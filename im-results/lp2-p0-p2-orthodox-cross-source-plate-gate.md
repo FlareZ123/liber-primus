@@ -1,6 +1,6 @@
-# Original LP2 p0–2 triple-bar cross: 180° reuse, external plate and key-selector gate
+# Original LP2 p0–2 triple-bar cross: source plate, reversal and alternate-language register
 
-**Agent36, 13 November 2026. Source-image-positive result, external-key negative. No recovered original LP2 plaintext.** Director [#758](https://github.com/FlareZ123/liber-primus/issues/758) asks whether the two marginal black stave/cross engravings repeated across physical pp0–2 identify a *dated pre-2014 source plate whose caption specifies a decipherment operation*.
+**Agent36 original-image evidence, 13 November 2026; Agent2 native-wordshape extension, 15 November 2026. Source-image-positive result, source-literal Russian-language test negative. No recovered original LP2 plaintext.** Director [#758](https://github.com/FlareZ123/liber-primus/issues/758) asks whether the two marginal black stave/cross engravings repeated across physical pp0–2 identify a *dated pre-2014 source plate whose caption specifies a decipherment operation*.
 
 ## What the original images actually fix
 
@@ -24,6 +24,24 @@ Targeted searches for an exact dated original plate using the terms “Russian O
 
 The printed pair's inversion offers an *original-image* reversible operation (rotate the right cross 180° to get the left), which a puzzle maker could deliberately use as decoration or as a hint about “reversal”. However, the 2010 iconographic caption describes religious symbolism, not Gematria, Atbash, a 13-symbol cipher or a key clock. No original LP2 author instruction links this illustration to a particular rune transformation. Any source-agnostic 180° positional reversal or GP29 Atbash alone preserves the original page/chapter IoC; physical pp0–2 have source-native IoC **0.03408251556**, much closer to uniform GP29 than known prose, and those operations cannot recover an English-register plaintext from these runes.
 
+## One source-selected alternate language: Russian word lengths (Agent2, 15 November 2026)
+
+The actual *Eastern/Russian Orthodox* cross classification motivates checking a Russian plaintext register before treating the striking 28 different one-rune ciphertext words as proof of a changing English key. This is a **word-boundary-preserving and one-Cyrillic-letter-to-one-rune** hypothesis. It does not claim that a Russian reading is indicated by Cicada. Original unknown LP2 contains **2,896 printed complete words, 12,956 runes**, including **83 length-one** and **720 length-three** words. Printed cross-page fragments are joined; runeless physical p50 is skipped.
+
+Against three *independent nineteenth-century Russian prose* sources, every possible contiguous **2,896-word** window has far too many one-letter words even before an alphabet key is considered. All data and word counts are source-pinned in [derived public-domain control lengths](../resources/control/orthodox-russian-wordlengths.json); the [standalone CJS regression](../sims/lp2_orthodox_russian_wordshape_sft.cjs) checks all original printed boundaries and the exact full-window extrema.
+
+| Source and exact Git blob SHA1 | Word windows tested | Minimum 1-letter words in any window | Maximum 3-letter words in any window | Lowest 15-bin length-frequency L1 count |
+| --- | ---: | ---: | ---: | ---: |
+| Original LP2 target | 1 | **83** | **720** | 0 |
+| Tolstoy, *Albert* (`98edcf96824b2a61476206c765746b26ee4fe793`) | 5,017 | 300 | 418 | 1,196 |
+| Dostoevsky, *White Nights* (`6e0084a49ff124465ace3d943176fca836888811`) | 14,162 | 301 | 595 | 772 |
+| Chekhov, *In the Ravine* (`30caa34212c3f1cb53329a07c25175625c590d91`) | 8,810 | 368 | 392 | 1,290 |
+| Project's original English Emerson essays control | 75,037 | 50 | 769 | **196** |
+
+All Russian sources are the original public-domain texts of [d0rj/RusLit at commit `4509680428729da225a73a22008133660f92bb7e`](https://github.com/d0rj/RusLit/tree/4509680428729da225a73a22008133660f92bb7e), tokenized by contiguous Unicode Cyrillic `[а-яё]+` (case-insensitive). No archaic nonstandard Cyrillic codepoints are present in these three files. The reproducible L1 statistic sums absolute count differences for word-length bins **1 through 13, and 14+**, each on an equal **2,896-word** window. The closest English reference window has **81** singleton words and **719** three-letter words, compared with original 83 and 720. This is a frozen *language-shape* comparison; the minimum one-letter count, maximum three-letter count and best L1 can occur in different windows.
+
+**Decision:** the Orthodox crosses are insufficient reason to redirect decoding from English to **literal modern Russian with unchanged printed words**. Those Russian source windows have a stronger, key-independent disagreement than the English control under a length-preserving characterwise cipher. The result does **not** exclude Russian with resegmentation, complex runic transliteration, a special restricted lexicon, transposition of spaces, other Church Slavonic language registers, or an intentionally constructed message. It recovers no unknown plaintext or key. A new Russian-key attack must independently justify why the original printed word shapes would no longer be preserved.
+
 ## Decision
 
-**The visual source operation is established: a single triple-bar cross art asset reused, with one side rotated 180° across pp0–2. The exact historical plate and independent caption-derived decipherment are still absent.** The cross provides no authenticated new key, plaintext or p56 destination. Close this bounded source-plate search as unsupported after original-image registration and identified pre-2014 cross-class source evidence; do not launch additional inversion/alphabet phase sweeps without an exact period legend. If a previously unseen dated exact engraving is later found, compare its printed source caption before assigning a new original-cipher test.
+**The visual source operation is established: a single triple-bar cross art asset reused, with one side rotated 180° across pp0–2. The exact historical plate and independent caption-derived decipherment are still absent.** The independent Russian-wordshape test further disfavours the unmodified Cyrillic-word explanation for this chapter's religious imagery under three source controls, while leaving nonliteral mappings untested. The cross provides no authenticated new key, plaintext or p56 destination. Close this bounded source-plate search as unsupported after original-image registration and identified pre-2014 cross-class source evidence; do not launch additional inversion/alphabet phase sweeps without an exact period legend. If a previously unseen dated exact engraving is later found, compare its printed source caption before assigning a new original-cipher test.
