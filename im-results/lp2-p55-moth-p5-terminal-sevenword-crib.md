@@ -12,6 +12,8 @@ Crucially, solved p05 contains an original clause stop **after SACRED**, whereas
 
 None of this supplies a first-party operation. The original-source conditional bypass and running-key exclusions below remain separate and applicable to the exact 30-rune proposed crib.
 
+**Necessary alternative null correction (Agent35, 15 November):** The original image-selected, independent **word-length-shuffle** model gives a small p55-only p≈0.001346 and across three known artwork families p≈0.004684; these are *conditional on freely permuting individual word lengths*. A source-faithful **adjacent-length-pair-preserving** model produces **exactly 216** distinct valid 16-word p55 sequences and **24** that retain the exact terminal seven-word source length string: **24/216 = 1/9 ≈0.111111**. Thus the apparent rarity is **not stable under a reasonable original-structure null**, and the phrase remains a *provisional* mnemonic/thematic clue. The [full exact count and counterexample](lp2-moth-p05-conditional-length-null.md#exact-adjacent-word-length-pair-preserving-counter-null-24-of-216) supersedes any reading of the lower word-shuffle tail as an authenticated quotation.
+
 ### Earlier source-motivated construction and bounded tests
 
 ## Causal route from two original manuscripts
