@@ -10,10 +10,18 @@ on:
         options:
           - medium
           - maximum
+      carrier_order:
+        description: Exact original source-page traversal
+        type: choice
+        required: true
+        default: printed
+        options:
+          - printed
+          - p15-spiral
 permissions:
   contents: read
 concurrency:
-  group: openpuff-v400-lp2-floral16-${{ inputs.bit_level }}
+  group: openpuff-v400-lp2-floral16-${{ inputs.carrier_order }}-${{ inputs.bit_level }}
   cancel-in-progress: false
 jobs:
   source-selected-floral16:
@@ -68,7 +76,7 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           $level = if ('${{ inputs.bit_level }}' -eq 'maximum') { '1/2 (50%) - Maximum' } else { '1/5 (20%) - Medium' }
-          $out = 'probe-output/original-floral16-' + '${{ inputs.bit_level }}'
+          $out = 'probe-output/original-floral16-' + '${{ inputs.carrier_order }}' + '-' + '${{ inputs.bit_level }}'
           $arguments = @(
             '--exe', "$env:OPENPUFF_EXE",
             '--password', '33011033',
@@ -78,14 +86,20 @@ jobs:
             '--wait-seconds', '1300'
           )
           $manifest = @()
-          foreach ($idx in 57..72) {
+          # The spiral coordinates are fixed by the original p15 4x4 Fibonacci square.
+          # Source p15 center-out clockwise flat positions: 5,6,10,9,8,4,0,1,2,3,7,11,15,14,13,12.
+          $sourceIndices = if ('${{ inputs.carrier_order }}' -eq 'p15-spiral') {
+            @(62,63,67,66,65,61,57,58,59,60,64,68,72,71,70,69)
+          } else { @(57..72) }
+          foreach ($idx in $sourceIndices) {
             $source = Join-Path $env:GITHUB_WORKSPACE ('resources/liber-primus/{0:D2}.jpg' -f $idx)
             if (-not (Test-Path -LiteralPath $source)) { throw "Missing fixed source image $source" }
             $manifest += [pscustomobject]@{scan=$idx; lp2_physical_page=($idx-17); name=[System.IO.Path]::GetFileName($source)}
             $arguments += @('--carrier', "$source")
           }
-          if (@($manifest).Count -ne 16 -or $manifest[0].scan -ne 57 -or $manifest[15].scan -ne 72) {
-            throw 'Expected only the sixteen original floral-border pages p40..p55'
+          if (@($manifest).Count -ne 16 -or @($manifest | Select-Object -ExpandProperty scan | Sort-Object -Unique).Count -ne 16 -or
+            @($manifest | Where-Object { $_.scan -lt 57 -or $_.scan -gt 72 }).Count -ne 0) {
+            throw 'Expected a permutation of precisely the sixteen original floral-border scans 57..72'
           }
           New-Item -ItemType Directory -Force -Path probe-output | Out-Null
           $manifest | ConvertTo-Json -Depth 3 | Set-Content -LiteralPath probe-output/floral16-original-manifest.json -Encoding utf8
@@ -103,6 +117,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: original-v400-floral16-${{ inputs.bit_level }}-evidence
+          name: original-v400-floral16-${{ inputs.carrier_order }}-${{ inputs.bit_level }}-evidence
           path: probe-output/
           if-no-files-found: warn
