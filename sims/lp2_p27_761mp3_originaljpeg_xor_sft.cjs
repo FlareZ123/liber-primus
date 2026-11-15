@@ -57,7 +57,9 @@ function classify(b){
    last16hex:b.subarray(-16).toString("hex"),fileMagic:hits,printableRate:+ascii.toFixed(6),
    shannonEntropy:+entropy.toFixed(6),uniqueBytes:nonzero,zeroBytes:seen[0]};
 }
-const pages=[27,53,55];
+const requestedPages=process.argv.slice(3).map(Number);
+assert.ok(requestedPages.every(p=>Number.isInteger(p)&&p>=0&&p<=55),"Optional page arguments must be physical LP2 pages 0..55");
+const pages=requestedPages.length?requestedPages:[27,53,55];
 const results=pages.map(p=>{
  const img=read("resources/liber-primus/"+(p+17)+".jpg");
  assert.ok(isJpeg(img));
@@ -66,7 +68,7 @@ const results=pages.map(p=>{
    xored:classify(raw)};
 });
 console.log(JSON.stringify({
- method:"2013 raw Twitter XOR JPEG positive chooses the sole MP3 pad offset; apply unchanged to LP2 p27,p53,p55 JPEG bytes",
+ method:"2013 raw Twitter XOR JPEG positive chooses the sole MP3 pad offset; apply unchanged to requested original LP2 JPEG pages (default p27,p53,p55)",
  mp3:{sha256:sha(mp3),bytes:mp3.length,ID3:tag,selectedOffset:selected},
  historical:{twitter:twitter.length,validJPEGStarts:historicalMatches.map(x=>x.start),
  recoveredJPEG:classify(historicalMatches[0].decoded)},
