@@ -32,9 +32,9 @@ The entire table contains exactly **three** literal `49` tokens at zero-based in
 
 Freeze the three input positions **9, 227, 229**, the two target literal values **49, 00**, and the observed histogram with three copies of 49 and two of 00. Under a uniformly random permutation of the same 256 table bytes, the probability of the precise required ordered triple `[49,49,00]` is:
 
-[
+$
 \frac{3\cdot 2\cdot 2}{256\cdot255\cdot254}=\frac{1}{1{,}381{,}760}.
-]
+$
 
 **This is not a discovery-adjusted p-value.** We noticed the matching outputs during source-led investigation, and substantial preceding work has examined many numerals, data framings and page relationships. The 256-cell modulo rule, literal page-number targets and 2016 hint linkage were not all registered before table inspection. Therefore the above small conditional probability cannot by itself establish Cicada authorial design or a recovered key. Another alphabet, row count, seed list or arbitrary output could easily increase the effective search space. A real author instruction would be much stronger evidence than this coincidence, however visually striking.
 
