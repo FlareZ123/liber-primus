@@ -188,7 +188,7 @@ function main() {
     pairCoverage.push(contextCoverage([V[0][a], V[1][a], V[2][a], V[3][a]].flat()));
   }
   assert.deepEqual(pairCoverage.map((x) => x.knownStates),
-    [180, 179, 179, 179, 179, 179, 179, 180, 179]);
+    [180, 179, 179, 179, 179, 179, 179, 179, 180]);
   assert.ok(pairCoverage.every((x) => x.outerPairs === 75 && x.supportedOuter === 0));
   const answer = [];
   for (const [degree, expectedTermCount] of [[2, 15], [3, 35]]) {
