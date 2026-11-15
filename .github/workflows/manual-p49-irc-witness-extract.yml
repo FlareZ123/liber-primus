@@ -1,0 +1,28 @@
+name: Extract original 2014 p49 table discussion witnesses
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out original project
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify and extract pinned IRC witnesses
+        run: node sims/lp2_2014_p49_irc_witness_extract_sft.cjs
+      - name: Upload compact source windows
+        uses: actions/upload-artifact@v4
+        with:
+          name: p49-irc-witnesses
+          path: p49-irc-witnesses.json
+          if-no-files-found: error
+          retention-days: 3
