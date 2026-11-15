@@ -93,6 +93,75 @@ for (const stateSource of ["cipher", "plain"]) {
   }
 }
 
+
+// The actual punctuation-delimited words carry across p48->49 and p51->52.
+// The 66/92 physical-page-only results above are diagnostic fragments.
+const transcription = fs.readFileSync(path.join(root, "resources/liber-primus/lp2-transcription.txt"), "utf8");
+const printedPages = transcription.split(/^%$/m);
+assert.equal(printedPages.length, 57);
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+/** @param {string} source */
+function runeNumbers(source) {
+  return [...source].flatMap(x => runeIndex.has(x) ? [runeIndex.get(x)] : []);
+}
+/** @param {number} n Physical LP2 page */
+function pageText(n) {
+  return printedPages[n < 50 ? n : n - 1].replace(/[\/\r\n]/g, "");
+}
+const p48Text = pageText(48), p49Text = pageText(49);
+const p51Text = pageText(51), p52Text = pageText(52);
+const before = runeNumbers(p48Text.slice(p48Text.lastIndexOf(".") + 1) + p49Text);
+const after = runeNumbers(p51Text + p52Text.slice(0, p52Text.indexOf(".") + 1));
+assert.equal(before.length, 138);
+assert.equal(after.length, 170);
+assert.deepEqual(before.slice(-66), p49);
+assert.deepEqual(after.slice(0, 92), p51);
+
+// The same original-source key rule at proper sentence starts, and across the
+// numeric grid without resetting either previous-rune or eight-column clock.
+/**
+ * @param {number[]} input
+ * @param {"cipher"|"plain"} stateSource
+ * @param {1|-1} sign
+ * @param {{state:number,position:number}} prior
+ */
+function decryptContinuous(input, stateSource, sign, prior) {
+  let { state, position } = prior;
+  const plaintext = [];
+  for (const c of input) {
+    const plain = mod29(c - sign * key(state, position % 8));
+    plaintext.push(plain);
+    state = stateSource === "cipher" ? c : plain;
+    position++;
+  }
+  return { plaintext, state, position };
+}
+const fullSentenceTests = [];
+for (const stateSource of ["cipher", "plain"]) {
+  for (const sign of [1, -1]) {
+    const prior = { state: 0, position: 0 };
+    const decodedBefore = decryptContinuous(before, stateSource, sign, prior);
+    const reset = decryptContinuous(after, stateSource, sign, prior);
+    const carry = decryptContinuous(after, stateSource, sign, decodedBefore);
+    const sourceCase = {
+      stateSource, sign, before138Ioc: Number(ioc(decodedBefore.plaintext).toFixed(12)),
+      after170ResetIoc: Number(ioc(reset.plaintext).toFixed(12)),
+      after170CarryIoc: Number(ioc(carry.plaintext).toFixed(12))
+    };
+    assert(sourceCase.before138Ioc < 0.045 && sourceCase.after170ResetIoc < 0.045 &&
+      sourceCase.after170CarryIoc < 0.045, "Unexpected sentence-scale language candidate");
+    fullSentenceTests.push(sourceCase);
+  }
+}
+assert.deepEqual(fullSentenceTests.map(row => [
+  row.before138Ioc, row.after170ResetIoc, row.after170CarryIoc
+]), [
+  [0.033322754681, 0.034458753916, 0.032718412809],
+  [0.035650058183, 0.035363731291, 0.035015663070],
+  [0.037025282979, 0.035363731291, 0.033136094675],
+  [0.034169046863, 0.034110685694, 0.034389140271]
+]);
+
 // A second natural reading, using the current ciphertext rune as row:
 // it is not a 29-to-29 bijection in any of the eight columns and either sign.
 const currentRowInjectivity = [];
@@ -117,5 +186,6 @@ console.log(JSON.stringify({
   exactForwardReencryption: "4 of 4 models on both original p49 and p51",
   positiveNativeSolvedP57Plants: "4 of 4 models recover all 95 original known plaintext symbols",
   testedModels: results,
+  originalComplete138And170RuneSentenceTests: fullSentenceTests,
   currentCipherRowNotInjective: currentRowInjectivity
 }, null, 2));
