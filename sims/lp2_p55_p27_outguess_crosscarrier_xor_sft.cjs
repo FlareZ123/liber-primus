@@ -86,8 +86,16 @@ function compare(x, y) {
   const printable = Array.from(xor).filter(
     (c) => c === 9 || c === 10 || c === 13 || c >= 32 && c <= 126
   ).length / xor.length;
+  const core = xor.subarray(prefix, xor.length - suffix);
+  assert.ok(core.length > 100);
+  const coreZeros = Array.from(core).filter((v) => v === 0).length;
+  const corePrintable = Array.from(core).filter(
+    (v) => v === 9 || v === 10 || v === 13 || v >= 32 && v <= 126
+  ).length / core.length;
   return {equal, prefix, suffix, maxZeroRun, maxZeroRunStart,
     xorSHA256: digest(xor), xorEntropy: entropy(xor),
+    coreLength: core.length, coreZeroFraction: coreZeros / core.length,
+    coreEntropy: entropy(core), corePrintableFraction: corePrintable,
     xorPrintableFraction: printable,
     xorFirst64: xor.subarray(0, 64).toString('hex'),
     xorAfterPrefix64: xor.subarray(prefix, Math.min(xor.length, prefix + 64)).toString('hex')};
