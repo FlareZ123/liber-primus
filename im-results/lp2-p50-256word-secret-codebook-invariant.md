@@ -33,6 +33,8 @@ Q=\frac{\sum_b\sum_{k=0}^{28}n_{b,k}(n_{b,k}-1)}
 
 It is calculated without needing to know an encryption key, a byte-to-rune mapping, or the underlying plaintext. A first-rune-only version uses j=0.
 
+**Stronger deterministic consequence:** Even if each bucket used a **possibly non-injective, arbitrary fixed function** rather than a permutation, equal plaintext symbols would still produce equal ciphertext symbols. Thus the forward implication alone gives **Q(ciphertext) ≥ Q(plaintext)** for the exact same buckets. The observed original Q is *smaller* than every source-native reference Q below, so broadening the static codebooks to lossy deterministic mappings cannot rescue this register. Injectivity is needed for a naturally reversible symbolwise cipher; the stronger one-sided result shows it is not needed for the negative gate. Randomized/homophonic one-to-many emitters with explicit state remain outside this statement.
+
 The original runes were read from the complete canonical original transcription and checked one-by-one against the independent LP2 corpus records. The first 55 rune-bearing pages yield exactly **2,896 whole words and 12,956 GP29 runes**. Original physical line/page wraps preserve word continuity; actual printed word delimiters split them. The numerical-only p50 has no rune words, and solved pp56–57 are excluded. The original table has precisely 256 printed cells.
 
 | Original 256-word bucket statistic | Equal ordered pairs | Eligible ordered pairs | Q |
