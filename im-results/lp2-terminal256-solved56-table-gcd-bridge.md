@@ -16,10 +16,10 @@ N=\sum_{i=0}^{255} B_i\,256^{255-i}.
 
 The unchanged 256-byte source has SHA-256 **3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290** and exact 2,048-bit width. For the terminal base29 reading, use the canonical **zero-based GP29 indices** (0–28) in printed page order. Define two 256-rune integers:
 
-- \`T_C\`: original **p55 ciphertext (76)**, original **p56 ciphertext (85)**, original **p57 clear runes (95)**.
-- \`T_P\`: the **same 76 source p55 ciphertext runes**, followed by **the 85 known p56 plaintext runes** and the same **95 p57 clear runes**.
+- `T_C`: original **p55 ciphertext (76)**, original **p56 ciphertext (85)**, original **p57 clear runes (95)**.
+- `T_P`: the **same 76 source p55 ciphertext runes**, followed by **the 85 known p56 plaintext runes** and the same **95 p57 clear runes**.
 
-P56's exact known transform is \`P56[i]=(C56[i]−(prime[clock]−1)) mod29\`, with zero-based prime clock starting at prime2; \`C56[56]=F=0\` is literal and does not advance the prime clock. The resulting authentic GP spelling begins \`ANENDWITHINTHEDEEPWEBTHEREEXISTS\`. For each terminal variant, evaluate its full 256-digit radix29 numeral and its **exact Euclidean GCD with N**.
+P56's exact known transform is `P56[i]=(C56[i]−(prime[clock]−1)) mod29`, with zero-based prime clock starting at prime2; `C56[56]=F=0` is literal and does not advance the prime clock. The resulting authentic GP spelling begins `ANENDWITHINTHEDEEPWEBTHEREEXISTS`. For each terminal variant, evaluate its full 256-digit radix29 numeral and its **exact Euclidean GCD with N**.
 
 ## Exact original-source result
 
@@ -34,7 +34,7 @@ The observed **3,024 = 2⁴ × 3³ × 7** is an exact divisor of the original ta
 N=2^4\cdot3^3\cdot7\cdot13\cdot29\cdot179^2\cdot Q,
 \]
 
-with \`Q\` a 2,013-bit composite. Hence \`gcd(N,T_P)=3024\` draws a precise nontrivial factor from the source table, whereas the unchanged terminal ciphertext's GCD is only four. No characters on unknown p55 are guessed, replaced or omitted.
+with `Q` a 2,013-bit composite. Hence `gcd(N,T_P)=3024` draws a precise nontrivial factor from the source table, whereas the unchanged terminal ciphertext's GCD is only four. No characters on unknown p55 are guessed, replaced or omitted.
 
 The **important restriction** is the deliberately hybrid terminal register: the 76 positions of p55 remain **ciphertext**, p56 alone is true **plaintext**, and p57 is clear. There is no first-party evidence prescribing such a hybrid 256-digit base29 integer. This result therefore establishes a mathematical relation, not an authenticated checksum protocol or plaintext.
 
@@ -42,15 +42,17 @@ The **important restriction** is the deliberately hybrid terminal register: the 
 
 The GCD result supplies a particularly compact, original-source **candidate** for a future p55 checksum:
 
-- The table-selected divisor is \`m=3,024\`.
-- The GP29 radix has exact multiplicative order **36** modulo m: \`29^36 ≡ 1 (mod 3024)\`.
-- The independently known p56+p57 suffix contains **180 = 5×36** runes. Thus \`29^180 ≡ 1 (mod 3024)\`, and the terminal base29 integer \`T_P = A×29^180 + B\` obeys \`T_P ≡ A+B (mod3024)\`.
-- The 76-rune **p55 ciphertext** integer \`A\` has exact residue **64** modulo3024.
-- The 180-rune **authentic p56 plaintext + p57 clear** integer \`B\` has exact residue **2,960** modulo3024, equal to \`−64\`.
+- The table-selected divisor is `m=3,024`.
+- The GP29 radix has exact multiplicative order **36** modulo m: `29^36 ≡ 1 (mod 3024)`.
+- The independently known p56+p57 suffix contains **180 = 5×36** runes. Thus `29^180 ≡ 1 (mod 3024)`, and the terminal base29 integer `T_P = A×29^180 + B` obeys `T_P ≡ A+B (mod3024)`.
+- The 76-rune **p55 ciphertext** integer `A` has exact residue **64** modulo3024.
+- The 180-rune **authentic p56 plaintext + p57 clear** integer `B` has exact residue **2,960** modulo3024, equal to `−64`.
 
-Hence \`(64+2960) mod3024 = 0\` gives the full 256-rune congruence independently of the two giant terminal-integer magnitudes. This is an executable **12-bit-class necessary condition** *if* a first-party source eventually selects such a modular check. It can score a proposed p55 decoder by computing its plaintext integer \`A'\` and asking whether \`A' mod3024=64\`.
+The two terminal components each share the table's factor **16 separately**: `gcd(N,A)=16` and `gcd(N,B)=16`. Assembled, their sum gains the extra factor `3³×7=189`, giving `gcd(N,T_P)=3024`. Modulo 189, the two residues are 64 and 125, whose sum is 189. The perfect-cube expressions `64=4³` and `125=5³` are consequences of those already selected residues, **not independent evidence of a cube-based instruction**.
 
-**Limit:** the printed unsolved p55 *ciphertext already satisfies the residue*, before any decryption. The condition therefore cannot identify even one p55 plaintext rune on its own, and using it to filter unrelated cipher candidates assumes the very checksum rule we are trying to establish. Neither \`m=3024\`, its order36, nor the special residue64 is an authenticated Cicada instruction.
+Hence `(64+2960) mod3024 = 0` gives the full 256-rune congruence independently of the two giant terminal-integer magnitudes. This is an executable **12-bit-class necessary condition** *if* a first-party source eventually selects such a modular check. It can score a proposed p55 decoder by computing its plaintext integer `A'` and asking whether `A' mod3024=64`.
+
+**Limit:** the printed unsolved p55 *ciphertext already satisfies the residue*, before any decryption. The condition therefore cannot identify even one p55 plaintext rune on its own, and using it to filter unrelated cipher candidates assumes the very checksum rule we are trying to establish. Neither `m=3024`, its order36, nor the special residue64 is an authenticated Cicada instruction.
 
 ## Can this relationship independently select the genuine p56 key?
 
@@ -71,4 +73,4 @@ The next useful decision is an **independent author-source selection of the actu
 
 **Executed on the unchanged original-source GitHub repository:** the dedicated manual Node.js 22 job [run 43766874567](https://github.com/FlareZ123/liber-primus/actions/runs/43766874567) completed **successfully**, including every listed assertion. This executes the actual checked-in reproducer rather than only repeating an independent in-tool calculation.
 
-The complete reproducible CJS script asserts original table SHA-256 and all three exact page lengths; recomputes p56 from the historical prime-totient rule; checks \`gcd(N,T_C)=4\`, \`gcd(N,T_P)=3024\`, both remainders, all 2,032 alternatives, exact two 3,024-divisible candidates, and the authentic eighth-place rank. It does not write a file, consult an external language model, or require a secret key.
+The complete reproducible CJS script asserts original table SHA-256 and all three exact page lengths; recomputes p56 from the historical prime-totient rule; checks `gcd(N,T_C)=4`, `gcd(N,T_P)=3024`, both remainders, all 2,032 alternatives, exact two 3,024-divisible candidates, and the authentic eighth-place rank. It does not write a file, consult an external language model, or require a secret key.
