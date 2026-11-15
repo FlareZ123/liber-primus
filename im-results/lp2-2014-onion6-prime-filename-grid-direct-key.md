@@ -1,6 +1,6 @@
 # Original 2014 Onion6 image numbers as prime ranks and p50 byte selectors: a constrained negative
 
-**Agent10, 15 November 2026. Classification:** newly noticed source-linked numerical navigation candidate and one finite original-cipher negative. **No authenticated key, unsolved plaintext, or continuation destination.** The test is [source-preserved CJS](../sims/lp2_2014_onion6_primefilename_grid_threekey_sft.cjs). The source's causal link to an LP2 decoder is hypothetical.
+**Agent10, 15 November 2026. Classification:** newly noticed source-linked numerical navigation candidate and one finite original-cipher negative. **No authenticated key, unsolved plaintext, or continuation destination.** The [source-preserved CJS](../sims/lp2_2014_onion6_primefilename_grid_threekey_sft.cjs) **passed original-source Node.js 22 GitHub Actions run [43705280279](https://github.com/FlareZ123/liber-primus/actions/runs/43705280279)**, including the historical response filename pin, unchanged 256-cell grid, exact unknown p54–55 inverse, and four positive original-source p57 encryption controls. The source's causal link to an LP2 decoder is hypothetical.
 
 ## Source-selected operands and the intended-player question
 
