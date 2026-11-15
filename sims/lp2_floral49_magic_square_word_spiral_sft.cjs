@@ -418,7 +418,6 @@ for (const line of read("resources/control/latin-vulgate-gp-wholewords.txt").spl
   latinPools[line.length].push([...line].map((symbol) => latinSymbols.indexOf(symbol)));
 }
 assert.ok(floral.every(({length}) => latinPools[length].length > 0));
-const latinRandom = shuffler(0x4c415449);
 let latinState = 0x4c415449;
 function drawLatin() {
   latinState ^= latinState << 13;
