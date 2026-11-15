@@ -72,7 +72,8 @@ async function probe(target) {
       const b=r.body.toString('utf8').slice(0,20000);
       let records=[];
       try {
-        const parsed=JSON.parse(b);
+        const parsed=endpoint.provider==='arquivo'?
+          b.split(/\r?\n/).filter(Boolean).flatMap(line=>{try {const item=JSON.parse(line);return Array.isArray(item)?item:[item]}catch{return []}}):JSON.parse(b);
         if(endpoint.provider==='arquivo'){
           records=Array.isArray(parsed)?parsed:Array.isArray(parsed?.results)?parsed.results:parsed&&typeof parsed==='object'?[parsed]:[];
         } else if(Array.isArray(parsed)) {
