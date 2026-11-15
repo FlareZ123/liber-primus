@@ -1,6 +1,6 @@
-# LP2 full-secret five-tap ciphertext-feedback spectral inverse
+# LP2 full-secret five-tap feedback: Fourier native-register and all-alphabet invariant
 
-**Original-input decision, 15 November 2026.** An exhaustive, blind inversion of the **29^5 = 20,511,149** possible global five-tap GP29 linear ciphertext-feedback keys does **not** recover the original unknown-page plaintext. Unlike the earlier four-lag brute force, this includes all five independently unrestricted coefficients, zero as well as nonzero, and uses an exact Fourier score rather than a finite trial-key list. This rejects the **specific global-key, printed-page-local, additive five-predecessor cipher as a direct source-native-English decoder**. It does not reject nonlinear stateful ciphers, different reset clocks, per-chapter keys, additional output postprocessing, or non-English intermediates.
+**Original-input decision, 15 November 2026.** An exhaustive, blind inversion of the **29^5 = 20,511,149** possible global five-tap GP29 linear ciphertext-feedback keys does **not** recover the original unknown-page plaintext. Unlike the earlier four-lag brute force, this includes all five independently unrestricted coefficients, zero as well as nonzero, and uses an exact Fourier score rather than a finite trial-key list. This rejects the **specific global-key, printed-page-local, additive five-predecessor cipher as a direct native-English decoder**, even if the residual runes are subsequently relabeled through an entirely secret fixed alphabet permutation. The stronger alphabet-invariant result was added after the initial Fourier-native result using a distinct complete-key Parseval calculation. It does not reject nonlinear stateful ciphers, different reset clocks, per-chapter keys, additional output postprocessing, or non-English intermediates.
 
 ## Motivated but unconfirmed model
 
@@ -36,6 +36,23 @@ This proves the implemented exhaustive algorithm has adequate detection power fo
 
 **Reproduce:** [single Python SFT](../sims/lp2_fivetap_allsecret_spectral_original_sft.py), using NumPy 2.2.6 and SciPy 1.15.3 on the immutable checked-in corpus. [Successful original-cipher and blind-positive GitHub Actions run 43662369367](https://github.com/FlareZ123/liber-primus/actions/runs/43662369367), job 132654265921. The existing manual `four-lag-feedback.yml` workflow has an explicit opt-in choice `five-tap-spectral` and does not run the older four-lag branch when selected. A first run 43662275913 failed pre-analysis at an unnecessary short Latin-control assertion, which was removed; the successful run contains the full tested source-native corpus. No page decryption or final destination was recovered.
 
+## Full 29^5-key IoC and arbitrary secret alphabet: exact second inverse
+
+A direct GP29 alphabet is a stronger assumption than the puzzle supplies. To remove it, a second **all-key exhaustive** inverse evaluates **the full GP29 index of coincidence** of `C−Σ(a_j C[i−j])` for every possible coefficient vector. A completely arbitrary final fixed 29-rune substitution, any affine GP29 relabeling, any rune-order transposition, and any fixed Vigenère-zero rotation all **preserve the IoC exactly**. The score therefore bounds those downstream classes without needing their unknown alphabet.
+
+Use Parseval's exact identity `Σ_r count[r]^2=(1/29)Σ_(h=0..28)|F_h(a)|²` and aggregate all **14** nonconjugate nonzero harmonics at the **same** key position in the five-dimensional tensor. The `h*x mod29` coordinate pretransform ensures the `h`th DFT correctly scores the original unknown `a` rather than `h*a`. This computes the IoC for all 20,511,149 keys, never selecting a fitted language register or shortcut key subset. Direct GF29 histogram checks at all reported maxima and fixed control keys agree with the spectral result.
+
+| Entire training search over every secret key | Max original pp0–27 | Blind Shakespeare plant |
+| --- | ---: | ---: |
+| Exact GP29 IoC at maximum | **0.0352727817934** | **0.0615651178778** |
+| Maximizing five-part key | **[1,0,0,0,0]** | **[5,17,26,9,14]** |
+| Unseen pp28–55 IoC at that fixed key | **0.0354038968842** | **0.0598429524418** |
+| Next-highest training IoC | **0.0347813032759** | **0.0347886952816** |
+
+The unique best original key is simply **first ciphertext differencing**, a previously identified statistic; all other 20,511,148 possible five-step coefficient vectors score lower. The original *maximum over the entire family* still falls well below the native plaintext control, and its holdout remains low. A global secret 29-rune permutation applied afterward cannot turn this residual into native-English-like IoC. No recovered unknown-page plaintext exists in this family. The synthetically encrypted Shakespeare source in exactly the same geometry gives a unique correct all-key maximum, with the entire independently held-out section decoded and re-encoded exactly. This is a true positive control for the **complete statistic**, not merely for one expected key.
+
+**Reproduce second independent calculation:** [full-key Parseval IoC Python SFT](../sims/lp2_fivetap_allsecret_ioc_original_sft.py), with the same pinned Python dependencies and original corpus. [Successful original-input and blind full-key plant GitHub Actions run 43662750942](https://github.com/FlareZ123/liber-primus/actions/runs/43662750942), job 132655431799. The existing manual `four-lag-feedback.yml` workflow now offers an independent `five-tap-all-ioc` choice. It runs without the other two modes.
+
 ## Decision
 
-Retire **five-tap, globally shared, page-local linear ciphertext feedback as a direct native-English encoder** under the explicitly frozen model. The expensive 20.5-million-key space now has an exact spectral certificate and a planted recovery for both training and withheld pages. Do not add a sixth coefficient, insert a free state or change reset scopes to rescue the model without a separate, independently observable clue. Pursue source-derived actual keystreams, reversible output-state operations and genuine unknown-page plaintext instead.
+Retire **five-tap, globally shared, page-local linear ciphertext feedback as a direct native-English encoder, including any following fixed secret rune permutation**, under the explicitly frozen model. The expensive 20.5-million-key space now has an exact spectral certificate and a planted recovery for both training and withheld pages. Do not add a sixth coefficient, insert a free state or change reset scopes to rescue the model without a separate, independently observable clue. Pursue source-derived actual keystreams, reversible output-state operations and genuine unknown-page plaintext instead.
