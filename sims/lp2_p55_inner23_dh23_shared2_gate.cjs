@@ -127,6 +127,24 @@ function main() {
   assert.deepEqual(terminalWords.map(w => w.length),
     [4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3]);
   const core = layer(terminalWords, 2);
+  // Freeze the two removed circumference layers in reading order:
+  // outermost layer first, then the next layer; within each word take left
+  // edge before right edge. A one-rune residual contributes only once.
+  const firstPeelWords = terminalWords.map(w =>
+    w.slice(1, Math.max(1, w.length - 1)));
+  const outerLayer1 = terminalWords.flatMap(w => [w[0], w[w.length - 1]]);
+  const outerLayer2 = firstPeelWords.flatMap(w =>
+    w.length === 1 ? [w[0]] :
+    w.length > 1 ? [w[0], w[w.length - 1]] : []);
+  const outer = [...outerLayer1, ...outerLayer2];
+  assert.equal(outerLayer1.length, 32);
+  assert.equal(outerLayer2.length, 20);
+  assert.equal(outer.length, 52);
+  const gpString = runes => runes.map(i => corpus.translit[i]).join(' ');
+  assert.equal(gpString(outerLayer1),
+    'AE W S B X M S AE F U W R B EO M F B C EO E EA S E S TH OE C X D U B I');
+  assert.equal(gpString(outerLayer2),
+    'M I EO TH IA C EA L S P H EO E G S E EA C J E');
   assert.deepEqual(core, [
     6, 23, 24, 17, 0, 14, 10, 19, 1, 5, 13, 8,
     21, 23, 27, 10, 6, 14, 12, 2, 2, 10, 19
@@ -158,8 +176,8 @@ function main() {
   assert.equal(modPow(8, 11, 23), 1);
   assert.equal(modPow(8, 4, 23), modPow(8, 15, 23));
 
-  // One fixed consumer: apply the established p56 prime-totient inverse
-  // to the extracted 23-rune core, starting at the first prime (2).
+  // Apply the established p56 prime-totient inverse to the inner23 and
+  // to the two circumference layers serialized outer-first (52 runes).
   const primes = firstPrimes(100);
   const fPositions = core.map((r, i) => r === 0 ? i : -1)
     .filter(i => i >= 0);
@@ -186,6 +204,24 @@ function main() {
     }
   ]);
 
+  const outerFPositions = outer.map((r, i) => r === 0 ? i : -1)
+    .filter(i => i >= 0);
+  assert.deepEqual(outerFPositions, [8, 15]);
+  const outerCandidates = [];
+  for (let mask = 0; mask < (1 << outerFPositions.length); mask++) {
+    const decoded = decodeWithMask(outer, outerFPositions, mask, primes);
+    if (decoded) outerCandidates.push({
+      mask,
+      consumedPrimes: decoded.consumedPrimes,
+      gp: gpString(decoded.plain)
+    });
+  }
+  assert.deepEqual(outerCandidates, [{
+    mask: 0,
+    consumedPrimes: 52,
+    gp: 'A C J J R W EA W W TH G Y G EA TH G B O R G X A D X OE N M A TH C W AE EA B N Y T B W OE J W NG D AE J H EA C N J EO'
+  }]);
+
   // Positive control: the same inverse recovers the independently known
   // p56 plaintext with its established start and literal-F mask.
   const p56Cipher = corpus.pages.find(page => page.page === 56).indices;
@@ -211,8 +247,11 @@ function main() {
     p56TotientStart: primes[0],
     p55CoreCiphertextFPositions: fPositions,
     p55CoreInverseCandidates: candidates,
+    p55Outer52Runes: gpString(outer),
+    p55Outer52FPositions: outerFPositions,
+    p55Outer52InverseCandidates: outerCandidates,
     p56KnownPlaintextPositiveControl: 'PASS',
-    verdict: 'No readable p55 inner23 plaintext under this single fixed transfer'
+    verdict: 'No readable p55 inner23 or outer52 plaintext under this fixed p56 transfer'
   }, null, 2));
 }
 
