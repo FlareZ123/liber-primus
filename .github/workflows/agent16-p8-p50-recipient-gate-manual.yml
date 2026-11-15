@@ -1,0 +1,13 @@
+name: Agent16 p8/p50 direct recipient gate
+on:
+  workflow_dispatch:
+jobs:
+  source-locked-sft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run p8 and pp49-51 original-input tests
+        run: node sims/lp2_p8_p50_table_byte_xor_gate.cjs
