@@ -1,6 +1,16 @@
-# Provisional LP2 p55 moth-matched seven-word plaintext crib
+# LP2 p55 moth-page seven-word length resemblance: no authenticated crib
 
-**Agent 41, 13 November 2026. Source-motivated word-length candidate; no plaintext recovered.**
+**Decision, 15 November 2026 (Agent35 supplement to Agent41's 13 November original-input work): RETIRE the exact `THE TOTIENT FUNCTION IS SACRED ALL THINGS` p55 plaintext conjecture as a key/decoding premise.** The original moth imagery and seven-word rune-length coincidence remain source observations. No surviving original Cicada instruction selects that text for LP2 p55, any complete key, an F policy compatible with the proposed text, or a reversible unknown-page decoder. No unknown plaintext has been recovered. Preserve the existing explicit cipher negatives below as *conditional tests of an unverified guess*.
+
+### Earlier publicly dated witness and selection calibration
+
+An independent [Cicada Notebook Session 36, “Word-length fingerprints and self-quotation,” dated **13 October 2026**](https://cicadanotebook.com/sessions/36.html), publicly documented the exact LP2 p55 physical rune indices **46–75** and length sequence `[2,7,7,2,6,3,3]` beside the solved LP1 Wisdom words `THE TOTIENT FUNCTION IS SACRED. ALL THINGS`. This is an **earlier traceable published discussion** than the 13 November 2026 report in this repository; it is not authenticated as the first ever discussion and is not a 2014 Cicada-author source. Its other maximum-length match is a seven-word LP2 p25 ↔ solved warning resemblance.
+
+Rather than treating a seven-word match selected after scanning as unique, Session 36 searched **740 solved-reference words against 2,899 unknown-source words** and calibrated the **longest** length match anywhere in that entire fixed search. Under 9,999 shuffles preserving each block's length inventory, **9,691** generated a seven-or-longer match (plus-one tail **p=0.9692**); under 999 shuffles also preserving adjacent length-pair counts, **982** did (tail **p=0.9830**). Both conditional comparisons show that seven-length matches are ordinary in a broad postselected full-corpus search. They do **not** calculate a separate probability conditional on first selecting the p05↔p55 repeated image or prove that an actual quotation is impossible.
+
+Crucially, solved p05 contains an original clause stop **after SACRED**, whereas the corresponding p55 source word boundary lacks that punctuation. Session 36 explicitly warns that its **2,899** target-word count used a superseded punctuation/apostrophe grouping, corrected in its Session 42; its null was not rerun under the later grouping. The repository's later corrected canonical count is **2,896** authentic printed unknown-page words, so the two word-count inventories must not be silently equated. None of this supplies a first-party operation. The original-source conditional bypass and running-key exclusions below remain separate and applicable to the exact 30-rune proposed crib.
+
+### Earlier source-motivated construction and bounded tests
 
 ## Causal route from two original manuscripts
 
