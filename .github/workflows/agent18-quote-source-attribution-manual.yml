@@ -1,0 +1,18 @@
+name: Agent18 LP2 p40-p53 firstparty quote source attribution
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-exact:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test frozen quoted source fingerprint against archived firstparty and literary sources
+        run: node sims/lp2_p40_p53_quote_source_attribution_sft.cjs
