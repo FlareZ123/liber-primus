@@ -140,12 +140,20 @@ const changed=parse(inserted);
 assert.ok(changed.hashed.some(x=>x.type===20 && x.value.toString("ascii")==="ABCD"));
 assert.ok(observed.every(x=>x.hashedSubpacketTypes.length===1&&x.unhashedSubpacketTypes.length===1));
 const uniqueSignatures=new Set(observed.map(x=>x.signatureSha256)).size;
+const stage10PrimeFilenames=new Set([107,167,229]);
+const matchingStage10Clocks=observed.filter(item=>{
+  const date=new Date(item.creationTime*1000);
+  const hhmmss=date.getUTCHours()*10000+date.getUTCMinutes()*100+date.getUTCSeconds();
+  return stage10PrimeFilenames.has(hhmmss);
+}).map(item=>item.filename);
+assert.deepEqual(matchingStage10Clocks,["resources/historical/cicada2016-4gq25-outguess.asc"]);
 assert.equal(uniqueSignatures,14,"The 2014 May2 and stage11 files share one identical signature");
 console.log(JSON.stringify({
   source:"15 original archived Cicada RSA clearsignatures, including independently pinned historical 2012–2017 stages",
   scopedFinding:"All 15 signature packets have only a four-byte creation time and an eight-byte issuer ID as their v4 metadata. None contains notation (20), embedded signature (32), or any other key-bearing extra subpacket.",
   sourceFileCount:observed.length,
   distinctSignatureBlocks:uniqueSignatures,
+  retroactive2014Stage10FilenameClockMatches:matchingStage10Clocks,
   packetFormat:"OpenPGP v4 RSA signed message, total 543 bytes, signature packet body 540 bytes",
   positivePlant:"Synthetic type-20 notation ABCD inserted and detected exactly",
   caveat:"RSA signature MPI values are original signed cryptographic checks, not separately decoded hidden keys; this test only rules out the native OpenPGP metadata subpacket carrier.",
