@@ -324,7 +324,7 @@ function gpWord(word, lookup) {
   const normalized = word.toUpperCase().replace(/[KQ]/g, "C")
     .replace(/V/g, "U").replace(/Z/g, "S");
   const glyphs = [...normalized.matchAll(/ING|TH|NG|EO|OE|AE|IA|EA|IO|[A-Z]/g)]
-    .map((part) => lookup.get(part[0] === "IO" ? "IA" : part[0]));
+    .map((part) => lookup.get(part[0] === "IO" ? "IA" : part[0] === "ING" ? "NG" : part[0]));
   assert.ok(glyphs.length > 0 && glyphs.every(Number.isInteger));
   return glyphs;
 }
