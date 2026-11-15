@@ -36,8 +36,42 @@ A one-AC-coefficient deliberate mutation is detected by the comparator. Every or
 
 **Additional original cross-export-class Y comparison (15 November 2026).** The grayscale files and color files have an identical luma quantization table and 300×450 Y block geometry, so direct comparison of their original quantized Y blocks is also well-defined. A modified copy of the same libjpeg coefficient comparator tested color reference scan57 against **all fifteen** other floral scans57–72, including ten grayscale scans. **All fourteen** unchanged frames scans58–71 have **0 changed luma DCT blocks out of 84,950 exterior blocks each**, and scan72 retains only its visible moth-wing **16 changed Y blocks /311 coefficients**. Thus the exact common luminance DCT border extends **across both JPEG export classes**, not only within separate classes. Chroma exists only for color files and retains the previously reported within-color conclusion. This is a direct original-coefficient result; the same-class SFT above remains the published full-assertion reproducer.
 
+## p55 moth-wing exception: source-registered cover and payload gate (Agent 16, 15 November 2026; issue #1175)
+
+The only nonidentical exterior is p55 / original scan `72.jpg`. This test resolves the specific 16-luma-block exception; it does not claim that all image steganography is impossible.
+
+The exact local inputs used were p53 `70.jpg` (SHA-256 `4ec7293ba72bd52384787646d204c8a68fefaf2d22673c40d27f23812d424548`), p54 `71.jpg` (`dbc2cfca46a150689e60ea83015dcd54ace81245711fefe114d6076b96412ec4`), and p55 `72.jpg` (`a80191592add93a86ed3868f9e4e6ba3944ec20c9ffccc7d3e221b461344beba`). The target is luma block columns 227–228 and rows 349–356: a 2×8 strip at p55 pixel coordinates x=1816–1831, y=2792–2855.
+
+### Visible-only and known-cover models
+
+- At the same absolute coordinates, p53 versus p54 has **0/1,024** changed quantized luma coefficients. p53 versus p55 has **311/1,024** changes in all 16 target blocks: **16 DC and 295 AC**.
+- Reading the original decoded Y plane with libjpeg, taking the same-coordinate p55−p53 pixel delta, applying an orthonormal 8×8 DCT and the original shared luma quantization table predicts **exactly 311 nonzero quantized coefficient changes**. It matches **1,016/1,024** observed coefficient deltas exactly; the remaining eight differ by only one quantization unit. Thus the full 311-coefficient count is already required by the visible wing pixels; it is not an unexplained coefficient residual.
+- The independent p53→p55 moth registration is (+66,+67) pixels ([coordinate-registration report](lp2-moth-art-coordinate-registration-source-gate.md)). Sampling p53 at that translated source location gives a known-cover model for the same 16 p55 blocks. Across all 1,024 Y samples, the aligned images differ by at most 7 levels (mean absolute difference 0.903320; no sample differs by more than 10). Quantized DCT prediction from the translated p53 cover matches **905/1,024** p55 coefficients; the 119 residual coefficients have total absolute magnitude 120 and maximum magnitude 2. The residual is small and consistent with the two separately encoded, shifted copies of the same visible moth.
+
+### Frozen transport test and positive control
+
+Before reading the local bitstream, I froze the historically available JSteg-style order: target blocks in raster order, AC coefficients in JPEG zigzag order, skip coefficients with |c|≤1, emit |c| mod 2, pack MSB-first. The original p55 strip yields **169 bits** (21 complete bytes plus one trailing bit), with complete-byte hex `80a06744e0b0cc0801a3cc03c7806808478732a002`; printable ASCII fraction is 0.238 and there is no recognizable file/PGP header.
+
+For a source-registered differential readout, keep only AC positions where both the p55 coefficient and translated-p53 predicted coefficient have |c|>1, and emit the XOR of their magnitude LSBs in that same fixed order. This yields 156 bits (19 complete bytes plus four trailing bits), with complete-byte hex `09e40003c108d80812b1815e5914a404ec0d4a` and 52 one-bits. A single direct GP29 candidate, `K[i] = byte[i] mod 29` repeated over all 76 original p55 ciphertext runes, gives IoC 0.033684 for P=C−K and 0.037895 for P=C+K (uniform 1/29 = 0.034483); neither direction produces plaintext. This is a bounded direct-key check, not an author-authenticated byte-to-GP29 instruction.
+
+The same 16-block JSteg extractor/plant routine was calibrated by planting the 21-byte payload `LP2-WING-POSITIVE-001` into a copy of original p55 and reopening the JPEG: all 168 planted bits were recovered byte-exactly. Payload SHA-256 is `3320c5c17e534fbc9ce09a9adf586c80651de8f83d21929dc675dfe2b4b90822`; the planted JPEG SHA-256 is `70881b52eb5a82133e8ae89b7bab1e60350c5f01bb3c70a0dee06e6e920c5459`. This establishes that the selected 16-block carrier has enough capacity for the positive control and that the local extractor works. The existing [full-image JSteg coefficient scan](jpeg-jsteg-coefficient-scan.md) separately covers all 58 original LP2 images, including solved p56/p57, and includes byte-exact planted controls.
+
+### Reproduction and decision
+
+Build and run from the repository root:
+
+```sh
+cc -O2 -Wall -Wextra sims/lp2_p55_moth_wing_dct_sft.c -ljpeg -lm -o /tmp/lp2_moth_sft
+/tmp/lp2_moth_sft analyze resources/liber-primus
+printf 'LP2-WING-POSITIVE-001' > /tmp/payload.bin
+/tmp/lp2_moth_sft plant resources/liber-primus/72.jpg /tmp/72-planted.jpg /tmp/payload.bin
+sha256sum resources/liber-primus/70.jpg resources/liber-primus/71.jpg resources/liber-primus/72.jpg
+```
+
+**Decision:** retire the p55 16-block moth-wing DCT anomaly as an independent payload/key route. The 311 changes are explained by visible artwork and the source-registered moth copy; the fixed local readouts provide no coherent payload or GP29 plaintext. This does not exclude a different carrier region, a keyed/randomized steganographic method with an independently sourced key, or other non-image channels. Do not repeat this 16-block search without a new source selector.
+
 ## Cryptanalytic decision
 
-The repeated floral exterior is a **pixel-identical template** and, within each export class, a **quantized-DCT-identical template** except for the visible p55 moth wing. A page-index key therefore cannot be recovered from varying exterior petals, decoded border colors or differing exterior DCT coefficient parity in the specified regions. Static ornament may select a route; central glyphs, page-specific illustrations, changed optimized JPEG Huffman tables and text/boundary ordering remain separate inputs without a known extraction rule.
+The repeated floral exterior is a **pixel-identical template** and, within each export class, a **quantized-DCT-identical template** except for the visible p55 moth wing. The p55 exception is now source-registered: the visible pixel delta predicts all 311 changed coefficients (1,016/1,024 exact, maximum residual one), while the translated p53 moth is a known cover (905/1,024 coefficient matches, maximum residual two). The fixed local JSteg-style readout and one direct GP29 key candidate yield no plaintext. A page-index key therefore cannot be recovered from varying exterior petals, decoded border colors or the p55 wing's coefficient differences. Static ornament may select a route; central glyphs, page-specific illustrations, changed optimized JPEG Huffman tables and text/boundary ordering remain separate inputs without a known extraction rule.
 
 This is a bounded elimination of a particularly source-attractive *16-page decoration-variation* channel. It should prevent another attempt to read variable values from features that demonstrably never change. It does not authorize a new 4×4 key, encryption operation, or plaintext.
