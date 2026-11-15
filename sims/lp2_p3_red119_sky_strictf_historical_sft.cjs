@@ -100,8 +100,18 @@ for (const sign of /** @type {Array<1|-1>} */ ([-1, 1])) {
   const ciphertextPlant = encryptPlaintext(control, /** @type {1|-1} */ (-sign));
   const positive = strictInverseStates(ciphertextPlant, sign);
   assert.equal(positive.firstImpossible, null);
-  const allConsumingRecovered = ciphertextPlant.map((c, i) =>
-    mod(c + sign * key[i % 3]));
+  const recovered = [];
+  let plantedClock = 0;
+  for (let i = 0; i < control.length; i++) {
+    if (control[i] === 0) {
+      assert.equal(ciphertextPlant[i], 0);
+      recovered.push(0);
+      continue;
+    }
+    recovered.push(mod(ciphertextPlant[i] + sign * key[plantedClock % 3]));
+    plantedClock++;
+  }
+  assert.deepEqual(recovered, control);
   console.log("SKY_SOURCE_FIXED " + JSON.stringify({
     sign, fullChapterRunes: input.length,
     firstImpossibleZeroBased: strict.firstImpossible,
