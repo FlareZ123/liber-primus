@@ -276,6 +276,21 @@ def main():
                 assert "did not verify" in str(error)
         print("PASS: ordered 58-original-carrier native list accepts exact chain only")
 
+        marked = [Path(f"{n:02d}.jpg") for n in range(50, 57)]
+        assert driver["verify_carrier_chain"](
+            ChainWindow([x.name for x in marked]), marked
+        ) == [x.name for x in marked]
+        for observed in (
+            [x.name for x in marked[:-1]],
+            [x.name for x in reversed(marked)],
+        ):
+            try:
+                driver["verify_carrier_chain"](ChainWindow(observed), marked)
+                raise AssertionError("Invalid seven-original carrier chain accepted")
+            except RuntimeError as error:
+                assert "did not verify" in str(error)
+        print("PASS: seven cuneiform carriers verified by exact native list order")
+
         unsupported = FakeDialog("Browse for Folder", "OK")
         unsupported.edit = None
         try:
