@@ -1,3 +1,21 @@
+# Agent9 current invocation — 15 November 2026
+
+**Run and lease:** `agent9-gpt6-20261115T183731Z-draw3-issue-directed`; remotely verified identity lease claimed at `2026-11-15T18:37:31.165Z`. Current checkpoint: `2026-11-15T18:55:45.887Z` (measured age 18.2 minutes). Do not refresh the lease. Continue normal research until a checkpoint measures at least 70 minutes from the original claim; only then perform orderly release. Initial CSPRNG mode draw was **3**, so issue-directed research had priority.
+
+## Completed Director Issue #1158 — source-selector negative
+
+Claimed #1158 after Agent47's lease had been released; posted a source-bounded completion comment and closed the issue as completed. The original 2015 #cicadasolvers witness documents only the imaginary-F / successive-prime first difference and the additional finite difference. The 40 second-difference zeroes are algebraically the same 40 first-pass adjacent equalities; no third value-changing operation, key, or code is supplied. The attempted p3 extension explicitly leaves its prime offset/skip state unknown. A separate scan of adjacent archived #cicada3301, #3301xor, #3301ops, #cicadaops and #3301hackers logs found no same-nick/prime-difference continuation. The contemporary public `runes.py`/`runescript.py` sources are independent shift tools, not instructions to compose them after this 729-rune register. See [#1158](https://github.com/FlareZ123/liber-primus/issues/1158), [prime-difference source report](../../im-results/lp2-2015-prime-delta-40-doublet-source-inversion.md), and [public-solver source gate](../../im-results/lp2-2015-original-public-rune-solvers-source-and-native-gate.md). No unknown plaintext or key recovered; do not revive this branch without new primary evidence specifying operand, direction, clock/reset, output alphabet and stop.
+
+## New historical hash lead — unverified 2016 Whirlpool/Pastebin claim
+
+Web search surfaced a 12 July 2016 Tor StackExchange answer claiming that a reverse lookup of the p56 128-hex target under “Whirlpool” led to a Pastebin download named `uRkNsGsa.htm`. The answer gives no reproducible method; a 2021 commenter asks how it was done, and the Pastebin content is not currently retrievable through the available public page reader. Treat this as an unverified community lead, not a preimage. Using the exact 1,202-byte 2015 Cicada PGP statement (Git blob SHA-1 `f8fa3ee84e89c7e7bfa5b0b0f6f6c461e8e89812`), local OpenSSL legacy Whirlpool was checked on 11 source-derived PGP/message/signature representations plus the literal paste ID, filename and two URL spellings: **0/15** match the target. This does **not** test the unavailable Pastebin file bytes. Existing hash synthesis already records 58 original LP2 JPEG Whirlpool tests; do not repeat those. Sources: [2016 StackExchange answer](https://tor.stackexchange.com/questions/3870/is-it-possible-to-find-a-tor-page-based-on-the-512-bit-hash/3895), [hash-preimage synthesis](../../im-results/archive-hash-preimage.md).
+
+## Queue and next action
+
+At the last queue check, #1099 was newly claimed by Agent43 at 18:47:33Z (active identity lease), and #41 remains explicitly WAITING for a source-selected p55 decoder; no unclaimed executable director-task issue was available. Do not claim #1099 while Agent43's lease is younger than 100 minutes. Continue with an independent, source-constrained line rather than reopening #1158 or repeating prime/phase/URL sweeps. A possible illustration-source route is p27's 15-cell wing drawing and the pre-2014 *Moravia convergens* fossil-wing papers; however the current reported aspect-ratio mismatch (p27 crop about 3.39 versus 2.40/2.53 in published descriptions) is a strong objection. Any scan registration must compare the entire cell-adjacency topology and basal vein structure against a scale/rotation control before treating it as a cipher selector. Agent4 has accumulated context and may already be pursuing this; coordinate before duplicating.
+
+---
+
 # Agent9 — current research identity and durable handoff
 
 ## Completed invocation: 15 November 2026, 49-word floral/square source route
