@@ -273,6 +273,58 @@ function main() {
     n + Number((c - b[i] + 29) % 29 ===
       (candidateA[i] - candidateB[i] + 29) % 29), 0);
   assert.equal(matchingP50, 2);
+  // Original source-number action: treat only the shared 5 quoted *lengths*
+  // as a frozen 5-shift key, try both historical additive directions and the
+  // three visible state clocks. All 3,008 runes of the floral p40-53 chapter
+  // remain in order and all 29 GP symbols count normally.
+  const fullRunes = Array.from(
+    transcription.replace(/\/\r?\n/g, '').replace(/\r?\n/g, ''),
+    (glyph) => runeIndex.get(glyph)).filter((v) => v !== undefined);
+  const wordPhasesAll = words.flatMap((w) =>
+    w.indices.map((_, i) => i));
+  assert.equal(fullRunes.length, 13136);
+  assert.equal(wordPhasesAll.length, 13136);
+  const chapterStart = runeStarts[40];
+  const chapterEnd = runeStarts[54];
+  assert.equal(chapterEnd - chapterStart, 3008);
+  const sourceKey = first.lengths.slice(0, 5);
+  const coincidence = (seq) => {
+    const frequencies = Array(29).fill(0);
+    for (const rune of seq) frequencies[rune] += 1;
+    return frequencies.reduce((acc, count) =>
+      acc + count * (count - 1), 0) / (seq.length * (seq.length - 1));
+  };
+  const directKeyResults = [];
+  for (const clock of ['chapter', 'page', 'word']) {
+    for (const sign of [-1, 1]) {
+      const decoded = [];
+      let page = 40;
+      for (let i = chapterStart; i < chapterEnd; i += 1) {
+        while (page < 53 && i >= runeStarts[page + 1]) page += 1;
+        const phase = clock === 'chapter' ? i - chapterStart :
+          clock === 'page' ? i - runeStarts[page] : wordPhasesAll[i];
+        decoded.push((fullRunes[i] + sign * sourceKey[phase % 5] + 29) % 29);
+      }
+      const value = coincidence(decoded);
+      assert(value > 0.03 && value < 0.04,
+        'Unexpected original plaintext or data drift, inspect explicitly');
+      directKeyResults.push({ clock, sign, originalDecodedIoc: value,
+        firstTenGP: decoded.slice(0, 10).map((r) => corpus.translit[r]) });
+    }
+  }
+  // Exact reversible control on a separately known original clear page.
+  const clearP57 = fullRunes.slice(runeStarts[57]);
+  assert.equal(clearP57.length, 95);
+  const cipherPlant = clearP57.map((v, i) => (v + sourceKey[i % 5]) % 29);
+  assert.deepEqual(cipherPlant.map((v, i) =>
+    (v - sourceKey[i % 5] + 29) % 29), clearP57);
+  console.log('QUOTE_LENGTHS_AS_NUMERIC_KEY', JSON.stringify({
+    sourceKey, originalFloralChapterRunes: chapterEnd - chapterStart,
+    unalteredCiphertextIoC: coincidence(fullRunes.slice(chapterStart, chapterEnd)),
+    originalSixClockSignTests: directKeyResults,
+    solvedP57PlantAndRecover: clearP57.length
+  }));
+
   console.log('FROZEN_SAME_PHRASE_MECHANISM_GATES', JSON.stringify({
     sourceSymbolPairs: a.length,
     sameCipherSymbols: 1,
