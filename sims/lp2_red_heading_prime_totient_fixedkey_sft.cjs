@@ -58,7 +58,7 @@ function gpText(text) {
   }
   return out;
 }
-const shakespeare=read('resources/control/shakespeare_first300k.txt');
+const shakespeare=read('resources/control/shakespeare_first300k.txt').replace(/\r\n/g,'\n');
 assert.equal(shakespeare.length,300000);
 const train=gpText(shakespeare.slice(0,200000));
 const heldout=gpText(shakespeare.slice(200000));
