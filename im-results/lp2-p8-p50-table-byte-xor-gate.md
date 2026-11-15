@@ -28,12 +28,28 @@ Neither output contains a common PNG, ZIP, PDF, GZIP, ELF, GIF or JPEG signature
 
 These are binary-looking streams, not recovered English or GP29 plaintext. A 255-byte ASCII positive control was encrypted and recovered exactly under both alignments, validating the byte order and XOR implementation.
 
+
+## Conditional five-passage GP29 key as a p8 recipient
+
+A separate existing hypothesis maps each pp49–51 base60 token (high digit h, low digit l) to the rune at offset l in one of five red-numbered passages on p36–38. This gives a 256-symbol GP29 key, but the passage concatenation and digit-as-coordinate rule are not authenticated; see the [originating five-passage report and SFT](lp2-fivepassage-base60-bookcode-original-gate.md). p8 is a new length-selected receiver for that candidate: it is the unique 255-rune page, one symbol shorter than the key.
+
+Without modifying the originating agent's files, I tested the p8 ciphertext one-to-one against the first 255 or last 255 symbols of that 256-symbol key, under both additive signs, and under both the report's base60 reading and its published base59 alternative. The red initial is included. The exact IoCs are:
+
+| Key alphabet | Key alignment | P=C−K | P=C+K |
+|---|---|---:|---:|
+| base60 | first 255 | 0.036529257372 | 0.034429519839 |
+| base60 | last 255 | 0.034800061757 | 0.033256137101 |
+| base59 | first 255 | 0.034213370388 | 0.034089856415 |
+| base59 | last 255 | 0.034553033812 | 0.032762081210 |
+
+The uniform GP29 baseline is 1/29 = 0.0344827586. All eight outputs remain near it; none yields continuous GP29 English. The SFT checks that the base60 key prefix matches the originating report, and each 255-rune alignment/sign has an exact synthetic GP29 round-trip control. This is a bounded additional recipient test, not an authentication of the five-passage key construction.
+
 ## Relationship to prior table tests
 
 This is distinct from the existing [ciphertext-dependent table feedback test](lp2-grid-cipherfeedback-byte-xor-allseed-gate.md), which updates a 256-state register and reduces the plaintext output modulo 29, and from the [terminal row/column/rune-mask XOR gate](lp2-terminal256-byte-xor-allsecret-source-gate.md), which uses known p56/p57 text to test arbitrary byte masks. Here the proposed plaintext is the raw 255-byte output of direct table-byte XOR with p8.
 
 ## Decision
 
-Retire this direct p8/p50 byte-XOR reading. Neither natural end alignment yields text or a recognizable binary payload, and the source provides no instruction for a second decoder. Do not continue with arbitrary offsets or add a new cipher layer to rescue these bytes. A different table consumer needs an independent author-selected selector or a discriminating prediction on original ciphertext.
+Retire both tested direct p8/p50 consumers: raw byte-XOR and the conditional five-passage GP29 additive key. Neither natural end alignment produces text; the raw-byte streams are not recognizable binary payloads and all eight GP29 outputs have near-uniform IoC. The five-passage coordinate rule itself remains unauthenticated. Do not continue with arbitrary offsets or add a new cipher layer to rescue these outputs. A different table consumer needs an independent author-selected selector or a discriminating prediction on original ciphertext.
 
 **Reproducer:** sims/lp2_p8_p50_table_byte_xor_gate.cjs (Node standard library only). Run from repository root with node sims/lp2_p8_p50_table_byte_xor_gate.cjs.

@@ -51,6 +51,54 @@ assert.equal(p8.indices[0], 14, 'the red initial is included as the first GP29 r
 const pagesWith255 = corpus.pages.filter(p => p.indices?.length === 255).map(p => p.page);
 assert.deepEqual(pagesWith255, [8], 'p8 is the unique 255-rune page');
 
+const pageByNumber = new Map(corpus.pages.map(p => [p.page, p.indices]));
+const passages = [
+  pageByNumber.get(36).slice(99, 238),
+  pageByNumber.get(37).slice(0, 91),
+  pageByNumber.get(37).slice(91, 189),
+  [...pageByNumber.get(37).slice(189, 228), ...pageByNumber.get(38).slice(0, 57)],
+  pageByNumber.get(38).slice(57, 186),
+];
+assert.deepEqual(passages.map(x => x.length), [139, 91, 98, 96, 129]);
+
+function ioc29(values) {
+  const freq = new Uint32Array(29);
+  for (const x of values) freq[x]++;
+  return freq.reduce((sum, n) => sum + n * (n - 1), 0) / (values.length * (values.length - 1));
+}
+function mod29(x) { return ((x % 29) + 29) % 29; }
+
+const p8KeyTests = [];
+for (const [codec, keyAlphabet] of [['base60', alphabet], ['base59', alphabet.replace('f', '')]]) {
+  const derivedKey = grid.rows.flat().map(token => {
+    const hi = keyAlphabet.indexOf(token[0]);
+    const lo = keyAlphabet.indexOf(token[1]);
+    assert.ok(hi >= 0 && hi < 5 && lo >= 0 && lo < 60, codec + ' table digit range');
+    return passages[hi][lo];
+  });
+  assert.equal(derivedKey.length, 256);
+  if (codec === 'base60') {
+    assert.deepEqual(derivedKey.slice(0, 32), [23,15,7,19,8,10,24,11,18,11,4,12,22,24,11,24,1,8,25,10,4,0,10,16,24,8,3,22,13,14,23,21],
+      'base60 key prefix agrees with the published five-passage SFT');
+  }
+  for (const [alignment, key] of [['first255', derivedKey.slice(0, 255)], ['last255', derivedKey.slice(1)]) {
+    for (const [operation, sign] of [['C-K', -1], ['C+K', 1]]) {
+      const plain = p8.indices.map((c, i) => mod29(c + sign * key[i]));
+      const synthetic = Array.from({ length: 255 }, (_, i) => i % 29);
+      const encrypted = synthetic.map((p, i) => mod29(p - sign * key[i]));
+      const recovered = encrypted.map((c, i) => mod29(c + sign * key[i]));
+      assert.deepEqual(recovered, synthetic, codec + ' ' + alignment + ' ' + operation + ' positive control');
+      p8KeyTests.push({ codec, alignment, operation, ioc: ioc29(plain), first32: plain.slice(0, 32) });
+    }
+  }
+}
+const expectedP8KeyIocs = [
+  0.036529257372, 0.034429519839, 0.034800061757, 0.033256137101,
+  0.034213370388, 0.034089856415, 0.034553033812, 0.032762081210,
+];
+p8KeyTests.forEach((test, i) => assert.ok(Math.abs(test.ioc - expectedP8KeyIocs[i]) < 1e-12, 'p8 key IoC regression ' + i));
+
+
 const signatures = [
   ['PNG', Buffer.from('89504e47', 'hex')],
   ['ZIP', Buffer.from('504b0304', 'hex')],
@@ -141,4 +189,5 @@ console.log(JSON.stringify({
   operation: 'output[i] = base60_table_byte[i] XOR GP29_index[i]; output remains raw bytes',
   positive_control: '255-byte ASCII payload round-trips exactly under both alignments',
   results,
+  five_passage_gp29_key_tests: p8KeyTests,
 }, null, 2));
