@@ -82,6 +82,15 @@ def main():
                      for x in (550, 1880)]
         print(name, "first 5x5 row mapped y", projected)
         assert min(projected) > 3600
+    # Independent art-layer control: stationary side vines on the same LP2 pages.
+    # The moth moves, while the source JPEG border ornaments stay in place.
+    assert np.array_equal(images["70"][480:3250, 0:560],
+                          images["72"][480:3250, 0:560])
+    right_delta = np.abs(images["70"][480:3250, 1820:2400].astype(np.int16)
+                         - images["72"][480:3250, 1820:2400].astype(np.int16))
+    print("left vine identical bytes:", True, "right vine mean abs pixel delta:",
+          round(float(right_delta.mean()), 8))
+    assert right_delta.mean() < 0.02
     print("source rune height under art-fit scale", round(s1 * 114, 2))
     print("PASS: fixed artwork reuse yields no font-coherent or in-page 5x5 overlay")
 
