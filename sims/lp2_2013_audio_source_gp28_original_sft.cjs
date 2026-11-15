@@ -16,11 +16,16 @@ const path = require("node:path");
 const crypto = require("node:crypto");
 const assert = require("node:assert/strict");
 const corpus = require("../resources/liber-primus/lp2-corpus.json");
-const pages = corpus.pages.filter(p => p.page <= 55 && p.indices.length);
+const p27Mode = process.argv[3] === "p27-708";
+assert.ok(process.argv.length === 3 || process.argv.length === 4 && p27Mode,
+  "Optional mode must be p27-708");
+const pages = p27Mode
+  ? [{page:27, indices:corpus.pages.filter(p => p.page >=27 && p.page <=32)
+      .flatMap(p => p.indices).slice(19)}]
+  : corpus.pages.filter(p => p.page <= 55 && p.indices.length);
 const raw = pages.flatMap(p => p.indices);
-assert.equal(pages.length, 55);
-assert.equal(raw.length, 12956);
-assert.equal(process.argv.length, 3);
+assert.equal(pages.length, p27Mode ? 1 : 55);
+assert.equal(raw.length, p27Mode ? 1414 : 12956);
 const audio = fs.readFileSync(process.argv[2]);
 assert.equal(audio.length, 4010732);
 assert.equal(
@@ -86,7 +91,7 @@ function decrypt(ciphertext, clock, rule, sign) {
         continue;
       }
       const r = rank(page[j - 1], page[j], rule);
-      const key = audio[k++] % 28;
+      const key = audio[(p27Mode ? 708 : 0) + k++] % 28;
       out.push(mod(r + sign * key, 28));
     }
     return out;
@@ -113,7 +118,7 @@ function encrypt(plain, originalIVs, clock, rule, sign) {
         out.push(out[j - 1]);
         continue;
       }
-      const key = audio[k++] % 28;
+      const key = audio[(p27Mode ? 708 : 0) + k++] % 28;
       const r = mod(p - sign * key, 28);
       out.push(unrank(out[j - 1], r, rule));
     }
@@ -132,7 +137,7 @@ function ioc(values) {
 const translit = values => values.map(v => corpus.translit[v]).join("");
 const original = pages.map(p => p.indices);
 const cases = [];
-for (const clock of ["global", "page"]) {
+for (const clock of p27Mode ? ["global"] : ["global", "page"]) {
   for (const rule of ["cyclic", "numeric"]) {
     for (const sign of [-1, +1]) {
       const recovered = decrypt(original, clock, rule, sign);
@@ -147,7 +152,7 @@ for (const clock of ["global", "page"]) {
           "independent source-native GP plaintext plant");
         exact += control[p].length - 1;
       }
-      assert.equal(exact, 12901);
+      assert.equal(exact, raw.length - pages.length);
       assert.deepEqual(encrypt(plantedClear, original, clock, rule, sign),
         plantedCipher, "positive re-encryption");
       const flat = recovered.flat();
@@ -157,22 +162,24 @@ for (const clock of ["global", "page"]) {
         originalIoc: ioc(flat),
         nativePlantIoc: ioc(plantedClear.flat()),
         first80: translit(recovered[0].slice(0, 80)),
-        page55Start: translit(recovered.at(-1).slice(0, 50))
+        lastPageStart: translit(recovered.at(-1).slice(0, 50))
       };
       cases.push(out);
     }
   }
 }
-assert.equal(cases.length, 8);
-assert.ok(cases.every(x => x.exactNativePlantSymbols === 12901));
+assert.equal(cases.length, p27Mode ? 4 : 8);
+assert.ok(cases.every(x => x.exactNativePlantSymbols === raw.length - pages.length));
 const sourceRepeats = pages.reduce((sum, p) =>
   sum + p.indices.slice(1).reduce((a, c, i) =>
     a + Number(c === p.indices[i]), 0), 0);
-assert.equal(sourceRepeats, 86);
+if (!p27Mode) assert.equal(sourceRepeats, 86);
 console.log(JSON.stringify({
   source: "2013 761.MP3 byte-zero original raw source",
   source_sha256: crypto.createHash("sha256").update(audio).digest("hex"),
   source_length: audio.length,
+  source_start_byte: p27Mode ? 708 : 0,
+  original_target: p27Mode ? "LP2 original p27-32 black body after 19-rune red heading" : "LP2 pp0..55",
   original_length: raw.length,
   original_cipher_ioc: ioc(raw),
   within_page_repeats: sourceRepeats,
