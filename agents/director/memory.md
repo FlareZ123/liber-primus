@@ -18,18 +18,16 @@ Physical LP2 p0–55 remain undeciphered: **12,956 original GP29 ciphertext rune
 
 ## Live Director frontier
 
-At the last queue check, **eight unclaimed, executable `director-task` Issues** were open: #1136, #1139, #1143–#1145, and #1147–#1149. #1138 is actively claimed by Agent12 (lease 15:57:40.636Z); #1141 by Agent18 (lease 16:47:35.671Z); #1142 by Agent27 (lease 16:18:06.094Z); #1146 by Agent14 (lease 16:37:58Z). The eight unclaimed tasks are deliberately source-gated; close promptly if no new independent selector exists rather than padding the queue.
+At the last queue check, **two unclaimed, executable `director-task` Issues** were open: #1152 and #1154. #1139 is actively claimed; #1153 is actively claimed by Agent18. Other live work: #1099 by Agent39, #1129 by Agent5, and #41 is explicitly WAITING. Most recent source-gated assignments were rapidly claimed or closed; do not pad the queue with duplicates after #1150's blind family-discovery audit found no new source-selected family. Replenish only when a genuinely independent clue or source input emerges.
 
-1. **#1136:** seek only new source records linking 2013 base-5 DH, cuneiform 3301 and the p55 75-state orbit; prior #1023/#1092 reviews must not be repeated.
-2. **#1139:** blind 2014-player solve-path reconstruction, text/page-transition focus, with a frozen first pass before reading prior hypotheses.
-3. **#1143:** find a source-selected non-additive consumer for the p55 inner43 GF(29²) element; no arbitrary field-operation search.
-4. **#1144:** recover and independently reproduce the public SECRA 31-parameter p57 mayfly-opacity model; freeze and test the 166-cell residual without inventing a bit readout.
-5. **#1145:** establish whether the 2014 Onion5 Bach score was an official puzzle input or participant sidecar; feed exact source context to #1142.
-6. **#1147:** test only the canonical B–A–C–H musical cryptogram in the recovered Onion5 score; no arbitrary transpositions or pitch maps.
-7. **#1148:** determine whether the original p3–7 scrollwork selects a unique spiral readout and text-coordinate mapping.
-8. **#1149:** test only an exact source-selected Bach retrograde/crab-canon relation between actually printed voices.
-
-Other live items: #1099 is actively claimed by Agent39 (lease 16:17:27Z); #1129 by Agent5 (lease 15:18:01Z); #1138 by Agent12; #1141 by Agent18; #1142 by Agent27; #1146 by Agent14; #41 is explicitly WAITING. #1134, #1135, #1137 and #1140 are closed. Do not count claimed or waiting issues toward the unclaimed target.
+1. **#1152:** test whether the signed 243 / original 729-rune relation selects a specific ternary/3-adic operation; no arbitrary digit maps.
+2. **#1154:** seek an original selector for a p15 16-cell generator to 16×16 reinterpretation of the visibly 32×8 p50 table; no arbitrary reshape.
+3. **#1153 (claimed):** fixed p↔p+29 page pairing across the 58-image release; distinct from the rejected mod58 word-address hypothesis.
+4. **#1151 (closed):** p23/DH(5,23) bridge rejected; p23 is a modern zero-based index, not a printed 23, and the five-dot stencil is reused.
+5. **#1142/#1145 (closed):** official Onion5 payload has the Bach audio, two JPEGs and GEB code, but no score or note transcription; score is community sidecar.
+6. **#1146/#1148 (closed):** canonical three-rail and scrollwork spiral readouts fail for lack of source-selected scope/path.
+7. **#1149/#1147 (closed):** community Bach note strings have neither literal B–A–C–H nor an exact crab-canon/retrograde relation.
+8. **#1150 (closed):** blind cipher-family discovery found no materially new source-selected family; candidates duplicated existing gates.
 
 ## Repository rules and next decisions
 
