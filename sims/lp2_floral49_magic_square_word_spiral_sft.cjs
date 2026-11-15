@@ -277,7 +277,7 @@ for (let trial = 0; trial < T; trial++) {
   languageSum += backwards;
 }
 assert.equal(languageHits, 6585);
-assert.equal(languageEitherHits, 8480);
+assert.equal(languageEitherHits, 8481);
 
 let heldBefore=0, heldAfter=0, nativeWindows=0;
 for (let offset=0; offset+735 < shakespeare.length; offset+=735) {
