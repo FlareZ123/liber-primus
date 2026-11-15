@@ -31,7 +31,7 @@ Test both additive directions and, independently, p56-inspired transparent consu
 
 ## Result
 
-<badge color="success">Test completed</badge>
+**Test completed.**
 
 - Source sequence: **464** primes, endpoint **3301**.
 - Target: **2,896 words / 12,956 runes**.
