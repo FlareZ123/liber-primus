@@ -11,8 +11,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 
-const sourcePath = path.resolve(__dirname, '..', 'resources', 'external',
-  'cicada2013-prime_echo-source.txt');
+const sourcePath = path.resolve(__dirname, '..', 'resources', 'historical',
+  'cicada2013-os-original-prime-echo.sh');
 const source = fs.readFileSync(sourcePath, 'utf8');
 const lines = source.split(/\r?\n/).filter(line => /^echo\s/.test(line));
 /** @type {Array<{prime:number, noNewline:boolean, sleep:number}>} */
