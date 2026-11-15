@@ -142,6 +142,28 @@ The source shapes are frozen, and the reproducer plants A/I/O words under a genu
 
 **Decision:** A single, entire-book additive key drawn from either source-selected fourth-order scalar recurrence and an **arbitrary fixed 29-entry nonlinear output table** cannot explain ordinary preserved A/I/O singleton words, even if the hidden scalar seed and the S-box are unconstrained. The **chapter-local** model with its own scalar state survives in many ways; no authentic decoder or plaintext follows. This is distinct from the all-affine chapter-local obstruction above: allowing a nonlinear codebook substantially changes which models remain possible.
 
+### Full original p15–22 nonlinear S-box consumer: a key-blind native-English collision obstruction
+
+The remaining **10,052 p15** and **10,556 H·G** chapter-start seeds are exact A/I/O-compatible possibilities under an arbitrary secret 29-entry S-box. Test their entire unchanged **1,903-symbol p15–22 ciphertext**, rather than granting the surviving candidate free prose. For any fixed fourth-order scalar-state sequence \(z_n\), each plaintext letter obeys \(P_n=C_n-F(z_n)\). **All occurrences of the same z undergo the same unknown Caesar translation**, so every pairwise equality \(C_i=C_j\) for \(z_i=z_j\) is exactly equivalent to \(P_i=P_j\), regardless of the 29 wholly unknown S-box entries, even if F is not bijective. This defines the exact **conditional collision IoC**
+
+\[
+I_z=\frac{\sum_{z=0}^{28}\sum_{c=0}^{28}n_{z,c}(n_{z,c}-1)}
+{\sum_{z=0}^{28}n_z(n_z-1)}.
+\]
+
+For **every one** of the 707,281 possible scalar starting states, first intersect the 18 original singleton A/I/O constraints; for each remaining state, compute \(I_z\) across the full 1,903 original runes. Independently encode contiguous source-native GP29 runs from three fixed English controls, using historically attested **ING and IO digraph spelling**, and apply each **same source-state assignment** to each matching 1,903-rune comparison window. This evaluates exactly the models which survived the most generous singleton gate without guessing F, fitting original plaintext, or optimizing any source key to the controls.
+
+| Source-linked recurrence | Seeds surviving original singleton A/I/O | **Maximum original** \(I_z\) across all surviving seeds | Minimum Gibran \(I_z\) | Minimum Shakespeare \(I_z\) | Minimum Emerson \(I_z\) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Signed p15 matrix χ | 10,052 | **0.03685370** | 0.06000788 | 0.05738005 | 0.05815029 |
+| Signed-2013 H · p39 G | 10,556 | **0.03677984** | 0.06017215 | 0.05725631 | 0.05810310 |
+
+The three original-independent source windows are fixed, source-GP-encoded slices **Gibran index7000–8902**, **Shakespeare index50000–51902**, **Emerson index70000–71902**. They contain only authentic contiguous source-native GP29 runes, regardless of the original manuscript's word-length profile. The paired control-minus-original collision gap stays **positive for every eligible secret seed**; minima across Gibran/Shakespeare/Emerson are respectively p15 **0.02419 / 0.02129 / 0.02300**, H·G **0.02381 / 0.02229 / 0.02179**. The source-positive nonlinear S-box \(F(z)=z^2+7z+11\) continues to pass the earlier original-shape A/I/O marker test.
+
+**Decision:** Both specific, source-linked scalar-state clocks, with **every** secret initial four-symbol state and **every arbitrary nonlinear 29-entry output function**, are severely incompatible with these three independently retained contiguous native-GP English registers for the **complete original p15–22 chapter**. Unlike the exact 18-singleton contradiction for all *linear* output models, the conditional language comparison does not mathematically exclude a specially contrived English passage, another plaintext encoding, a different period/clock, changing output table, or all ciphers. It adds a complete-chapter, all-hidden-seed discrimination that the basic 18 singleton support test could not supply, while recovering no unknown plaintext.
+
+**Reproducer:** [Source-exact Node.js CJS all-seed chapter/nonlinear lookup SFT](../sims/lp2_p15_hg_sbox_chapter_native_allseed_sft.cjs) reads the original canonical LP2 corpus and printed-word transcript, verifies all 83 singleton source positions, source-native controls, all 18 p15–22 events, both 707,281-state censuses, and all original/control collision envelopes. The original-source arrays and calculations were evaluated directly against the GitHub repository corpus; this newly committed CJS file has not yet been separately run in GitHub CI.
+
 ## Positive control and reproduction
 
 [Standalone original-input C++17 SFT](../sims/lp2_all_order4_singletons_original_sft.cpp) is read-only. It parses the repository's exact UTF-8 \`resources/lp2-transcription.txt\` rune/word stream, verifies all **83** ciphertext singleton positions and source symbols, computes the complete coefficient census, and checks the last-polynomial witness. A synthetic positive uses the independently chosen nondegenerate recurrence **[9,4,10,6]**, initial four-key state at the first singleton **[7,1,12,23]**, and a cycling A/I/O plaintext at every one of the **same 83 original word positions**. The true planted coefficient and key survive all 83 tests, confirming that the inverse is capable of recognizing a genuine source-shaped cipher. The implementation uses only standard C++17 containers, no third-party dependencies, and no file writes.
