@@ -458,7 +458,11 @@ def main() -> None:
         )[:5],
         "best_continuous": sorted(
             global_results,
-            key=lambda x: x["holdout_mean"] if x["holdout_mean"] is not None else -999,
+            key=lambda x: (
+                sum(x.get("holdout_scores", {}).values()) /
+                len(x["holdout_scores"])
+                if x.get("holdout_scores") else -999.0
+            ),
             reverse=True
         )[:5],
         "output": str(args.output),
