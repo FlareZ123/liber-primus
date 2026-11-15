@@ -71,8 +71,13 @@ cross = cv2.getStructuringElement(cv2.MORPH_CROSS, (3, 3))
 
 def contour_envelope(mask):
     raw = mask.astype(np.uint8)
-    dilate = cv2.dilate(raw, cross, iterations=2).astype(bool)
-    erode = cv2.erode(raw, cross, iterations=2).astype(bool)
+    # A clipped glyph box has no ink outside it. Explicit constant-zero
+    # padding matches the original source-local SciPy morphology control;
+    # OpenCV's default erosion border is effectively all-white/255.
+    dilate = cv2.dilate(raw, cross, iterations=2,
+                        borderType=cv2.BORDER_CONSTANT, borderValue=0).astype(bool)
+    erode = cv2.erode(raw, cross, iterations=2,
+                      borderType=cv2.BORDER_CONSTANT, borderValue=0).astype(bool)
     return dilate & ~erode
 
 
