@@ -87,12 +87,32 @@ const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const lp1 = read('resources/liber-primus/lp1-plaintext-reference.txt');
 const transcription = read('resources/liber-primus/lp2-transcription.txt');
 const pages = corpus.pages.filter(p => p.page <= 55 && p.indices.length >= 3);
-const key = 'FIRFUMFERENCE';
+const key = 'FIRFUMFERENFE';
 const keyIndices = [...key].map(ch => corpus.translit.indexOf(ch));
 assert(keyIndices.every(i => i >= 0), 'key letter missing from GP alphabet');
 const keyShifts = keyIndices.map(i => 29 - i);
-assert.deepEqual(keyIndices, [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 5, 18]);
-assert.deepEqual(keyShifts, [29, 19, 25, 29, 28, 10, 29, 11, 25, 11, 20, 24, 11]);
+assert.deepEqual(keyIndices, [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18]);
+assert.deepEqual(keyShifts, [29, 19, 25, 29, 28, 10, 29, 11, 25, 11, 20, 29, 11]);
+
+// Source-authenticated solved-LP1 positive: the first 36 original p14
+// runes decode to the first 36 known A COAN / DURNG / LESSON ...
+// rune indices. The earlier 'FIRFUMFERENCE' spelling fails at 11 and 24.
+/** @type {Map<string,number>} */
+const lp1RuneMap = new Map(corpus.runes.map((r, i) => [r, i]));
+const lp1Sections = read("resources/transcriptions/liber_primus_master.txt").split("%");
+const lp1Koan = [...lp1Sections[13] + lp1Sections[14]]
+  .filter(ch => lp1RuneMap.has(ch)).map(ch => lp1RuneMap.get(ch));
+assert.equal(lp1Koan.length, 319);
+const knownStart = "A C O A N D U R NG A L E S S O N TH E M A S T E R E X P L A I N E D TH E I"
+  .split(" ").map(token => corpus.translit.indexOf(token));
+assert.equal(knownStart.length, 36);
+assert.ok(knownStart.every(i => i >= 0));
+assert.deepEqual(lp1Koan.slice(0, 36).map((c, i) =>
+  mod(c - keyIndices[i % keyIndices.length])), knownStart);
+const obsoleteKey = [..."FIRFUMFERENCE"].map(c => corpus.translit.indexOf(c));
+assert.deepEqual(lp1Koan.slice(0, 36).flatMap((c, i) =>
+  mod(c - obsoleteKey[i % obsoleteKey.length]) === knownStart[i] ? [] : [i]),
+  [11, 24]);
 
 let keyPosition = 0;
 const decodedPages = pages.map(page => ({
@@ -226,7 +246,7 @@ assert.ok(wordInteriorComposition.p57Interior.ioc > 0.07);
 assert.ok(wordInteriorComposition.decodedIoC < wordInteriorComposition.rawIoC);
 
 console.log(JSON.stringify({
-  hypothesis: 'LP2 p57 “circumferences” points to the 2014 FIRFUMFERENCE Vigenere key',
+  hypothesis: 'LP2 p57 “circumferences” points to the 2014 FIRFUMFERENFE Vigenere key',
   operation: 'P = C + (29 - GP_INDEX(key_letter)) mod 29',
   key,
   keyIndices,

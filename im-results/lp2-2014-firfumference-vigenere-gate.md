@@ -1,75 +1,44 @@
-# Cross-round 2014 `FIRFUMFERENCE` key on LP2
+# Corrected original 2014 circumference key, exact LP2 transfer
 
-**Decision: reject the direct continuous-key transfer and the p57-selected word-interior composition.** The 2014 key is a real, source-documented GP29 Vigenere key for LP1 prime pages 107 and 167. LP2 p57's “circumferences” is a plausible human-facing callback. Applying the exact 2014 key schedule continuously to the 12,956 unknown LP2 runes does not produce plaintext or a meaningful language-score improvement.
+**Decision (15 November 2026):** The historically validated 13-rune GP29 key is **`FIRFUMFERENFE`**, with F at position 12 (one-based). A former version of this report and its executable used `FIRFUMFERENCE`, with C in that slot. That was an incomplete source-control check. Both original-LP2 experiments have now been recomputed with the correct key. The direct continuous and word-interior applications still yield no unknown plaintext, with their exact earlier scores retired.
 
-## Why this was a motivated test
+## Why the correction matters
 
-The 2014 sixth-onion archive states that LP1 pages 107 and 167 are encrypted with Vigenere key `FIRFUMFERENCE`, and that the key continues across the page boundary. Its original `gematriaprimus.py` implements the key as a 1-based position in the reverse GP alphabet and adds that shift to each ciphertext rune. In GP indices this is exactly:
+The primary physical 2014 LP1 pages 14–15 (the first two Stage10 JPEGs, original scan files `14.jpg` and `15.jpg`) contain 319 encrypted runes. The first 36 form the recoverable plaintext `A COAN DURNG A LESSON THE MASTER EXPLAINED THE I` when read as GP29 rune tokens, with `NG` a single glyph. Under `P_i=(C_i-K_{i\bmod13})\bmod29`, the corrected key recovers **36/36**, while the prior key misses **exactly original positions 11 and 24**, both at its erroneous key slot. This check is on the original source transcription, rather than an inferred LP2 candidate. Both have exactly 13 positions; the corrected index11 is F=0 where the obsolete index11 is C=5.
 
-```
-P[i] = (C[i] + 29 - GP_INDEX(key[i mod 13])) mod 29
-```
+The 2014 sixth-onion `/008` historical README/solving program uses the less successful spelling `FIRFUMFERENCE`, while its later `/009` README and independent 2014 walkthrough use `FIRFUMFERENFE`. The original fully solved first 36 runes independently resolve the spelling disagreement. The former report's claims that `/008` and an archived 317-rune positive established the obsolete spelling were too strong, particularly against the 319-rune original physical record. Plaintext-F skipping can change alignment later in the solved passage, but none of the first 36 known runes requires such skipping. The corrected key is not newly recovered LP2 key material.
 
-LP2 p57 says “WE MUST SHED OUR OWN CIRCUMFERENCES.” That is a plausible cue to revisit the earlier Cicada circumference key and its known operation. The hypothesis is a direct cross-round transfer, not a claim that p57 proves the key.
+Original source and independent context:
+- [Original 2014 sixth-onion solved-page materials](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion)
+- [Original 2014 stage report with the corrected string](https://uncovering-cicada.fandom.com/wiki/What_Happened_Part_1_(2014))
+- Original `resources/transcriptions/liber_primus_master.txt` and `resources/liber-primus/lp2-corpus.json`
 
-Sources:
-- [2014 sixth-onion README: key and page relationship](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/README.md)
-- [Original 2014 GP/Vigenere implementation](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/gematriaprimus.py)
-- [2014 page 107 rune source](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/107.jpg.runes.txt) and [archived decryption possibilities](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/107.jpg.runes-possibilities.txt)
-- [2014 page 167 rune source](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/167.jpg.runes.txt) and [archived decryption possibilities](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/167.jpg.runes-possibilities.txt)
-- The 2014/009 README contains the spelling `FIRFUMFERENFE`; the actual 2014/008 README and executable source use `FIRFUMFERENCE`. Only the code-backed spelling was tested.
+## Two original LP2 inverses, source-corrected
 
-## Positive control
+The externally supplied LP2 cue remains the solved p57 admonition to shed one's circumferences. That gives a motivated historical key to test, although it does **not** specify applying it to unknown LP2 or resetting its clock.
 
-The key schedule was replayed on the archived 2014 page-107 and page-167 rune sources, starting at key offset 0 and carrying the pointer across the page boundary. It reproduces the archived output apart from three known `IO/IA` transliteration choices. The pointer consumes 224 runes on page 107 and 93 on page 167 (317 total), confirming the source's continuous schedule and the GP-index sign used below.
+**Direct full-rune schedule:** At zero phase, concatenate all 55 rune-bearing unknown physical pages p0–55 (12,956 ciphertext runes; p50 has none), and subtract the 13-rune correct key, without reinserting a skip or changing the input alphabet. The exact corrected GP indices are `[0,10,4,0,1,19,0,18,4,18,9,0,18]`; corresponding shifts `[29,19,25,29,28,10,29,11,25,11,20,29,11]`. Original raw IoC is 0.034478397865; corrected output IoC is **0.034483056926**. All three GP29-trigram scores remain at the original cipher's random-like level:
 
-## Frozen LP2 test
+| Independently trained 700-rune native GP model | Original ciphertext | Corrected continuous inverse |
+| --- | ---: | ---: |
+| Emerson | −4.361516 | **−4.355107** |
+| Gibran | −4.437846 | **−4.420092** |
+| Shakespeare | −4.435810 | **−4.412554** |
 
-- Input: `resources/liber-primus/lp2-corpus.json`, pages 0–55, 55 rune-bearing pages, 12,956 runes.
-- p50 contributes zero runes and therefore consumes no key.
-- Key: `FIRFUMFERENCE`; GP indices `[0,10,4,0,1,19,0,18,4,18,9,5,18]`; source shifts `[29,19,25,29,28,10,29,11,25,11,20,24,11]`.
-- Schedule: start at offset 0 on p0; carry continuously across every rune-bearing page; punctuation does not consume key; no page resets or searched offsets.
-- The 2014 implementation has colon-triggered skip behavior for marked runes. The LP2 transcription contains **zero colon markers**, so no unsourced skip rule was introduced.
-- Language scores use the same 700-rune matched-control protocol as `sims/source_register_benchmark.cjs`, with Emerson, Gibran and Shakespeare models. p56/p57 are retained as readable positive controls.
+These are small improvements of 0.0064–0.0233 nats/rune, versus native p56/p57 scores around −2.6 to −3.0. The 12,956-rune inverse contains no coherent passage, so this does not recover unknown plaintext.
 
-| Matched 700-rune model | Raw LP2 | After key | Change |
-|---|---:|---:|---:|
-| Emerson | -4.361516 | -4.364094 | -0.002578 |
-| Gibran | -4.437846 | -4.426299 | +0.011547 |
-| Shakespeare | -4.435810 | -4.424500 | +0.011310 |
+**Word-interior schedule:** Under the independently source-visible p57 “circumferences” hypothesis, strip the first/last rune of each of 2,896 original complete unknown words, preserving words continued across line/page breaks. Concatenate **7,247** interior runes and apply the same corrected key from phase zero. Raw interior IoC is 0.034473457585; corrected IoC **0.034443331001**. The corrected scores worsen on all three matched models:
 
-The known plaintext controls score substantially better: p56 is `-2.961452 / -2.878342 / -2.885286` and p57 is `-2.820506 / -2.871894 / -2.625673` under the same three models. The key changes the global IoC only from `0.0344784` to `0.0344762`. The decoded prefix is `SIAXOCFIAJJHNTTTHUTHAEEANGOEXCPFPEBXJOEJLNGEOCWYCPHWCIAEOIANDWPSTHXWMPBHFAETHJGHIAFOYNGAETHXNOEMHAEBOOBAEULAEMIPRUHFJUJUCMNGBNGENGMEOGRAEYAYFYOAEALEONGW`, not readable text.
+| Model | Original 7,247 interiors | Corrected key inverse |
+| --- | ---: | ---: |
+| Emerson | −4.357298 | **−4.381539** |
+| Gibran | −4.429005 | **−4.444168** |
+| Shakespeare | −4.424953 | **−4.451088** |
 
-The tiny Gibran/Shakespeare score increases are not a coherent recovery: Emerson worsens, all scores remain about 1.5 nats/rune below the solved-page controls, IoC is unchanged, and no page yields an English passage. This is a negative result for the **direct continuous Vigenere transfer**, not proof that p57's wording has no historical significance.
+This rejects these two **frozen**, originally motivated direct GP29 consumers, assuming source-native English-like prose and unchanged word boundaries. It leaves other transfer mechanisms, specially marked F positions, and external keys open. Neither a native wrong-key roundtrip nor isolated four-rune fragments should be treated as a solve.
 
-## Source-selected word-interior composition with the 2014 key (12 November 2026)
+## Reproduction
 
-The earlier test applied the historical 2014 `FIRFUMFERENCE` key to all 12,956 unknown runes and rejected that direct transfer. A distinct human solve-path hypothesis is selected by two independent source clues: p57 says to shed word circumferences, and the documented 2014 key itself is named `FIRFUMFERENCE`. This test strips each unknown word's first and last rune, then applies the same historical GP29 Vigenère operation to the resulting interior stream.
+The updated [standalone Windows/Node CJS reproducer](../sims/lp2_2014_firfumference_vigenere_gate.cjs) verifies the original 319-rune LP1 input and 36/36 source-key control, positively diagnoses the obsolete key's exactly two mismatches, checks the corrected key vector, evaluates all original 12,956 LP2 runes and all 7,247 interior runes, and includes a 700-rune synthetic encrypt/decrypt positive.
 
-**Frozen operation.** The canonical parser preserves cross-page word carries and treats `-`, `.`, `&`, and `§` as word separators; `/` and `%` do not terminate a word. The 2,896 unknown words contain 12,956 runes, yielding 7,247 interior runes and 5,709 endpoint runes. The interior stream is concatenated in original order. The source-authentic key indices are `[0,10,4,0,1,19,0,18,4,18,9,5,18]`, with shifts `[29,19,25,29,28,10,29,11,25,11,20,24,11]`; decode is `P[i] = C[i] + shift[i mod 13] (mod 29)`. The key starts at the first interior rune and continues across the full stream; removed endpoints do not consume key and there are no page resets or searched offsets.
-
-**Result: negative.** The raw interior IoC is `0.0344734576`; after decryption it is `0.0344646215`. All three independently trained 700-rune GP29 trigram models worsen:
-
-| Model | Raw interior | After 2014 key | Change | Solved p57 interior control |
-|---|---:|---:|---:|---:|
-| Emerson | −4.357298 | −4.378387 | −0.021089 | −3.073710 |
-| Gibran | −4.429005 | −4.442801 | −0.013796 | −2.921147 |
-| Shakespeare | −4.424953 | −4.453081 | −0.028129 | −2.875867 |
-
-The solved p57 word-interior control has IoC `0.0713805` (55 runes), while the unknown interior stream remains near the random GP29 baseline. The decoded prefix is `HHEAGEHYFBOEYGLEYPAXOEONGBWYCEANWWNGAERIAJIBRJJPLBYLAOWNGMCYAFJUAELNGNGDMTAEJTHUGNGHEAXOUAEXEOIANUCLCTICTHUTHEAXLGNIURHAENGAYSEEOGTHEOMFFSSOCNDDPSEOLTHLEOFLGNGEOHDETNGTHUXXEMBTHFDLMDLMYESNGTHYLXNGNGXRPSIAEADEPXFTONGFHUTHAEARXHCUBMUJIIARLFAE`, not plaintext.
-
-The existing historical 2014 source positive control remains intact; the updated reproducer also checks a 700-symbol synthetic encrypt/decrypt round-trip. This rejects only the exact composition `strip word endpoints → continuous FIRFUMFERENCE Vigenère`; it does not invalidate either source clue. Do not rescue it with key trimming, phase sweeps, or page resets without a new source selector.
-
-Reproduce with `node sims/lp2_2014_firfumference_vigenere_gate.cjs`.
-
-## Reproduction and decision
-
-Run:
-
-```sh
-node sims/lp2_2014_firfumference_vigenere_gate.cjs
-```
-
-The script reads only repository inputs, asserts the 55-page/12,956-rune corpus and key-shift vector, and prints the control, raw, decoded and IoC statistics.
-
-Do not retune key offsets, reset the key at page boundaries, test the README typo, or invent skip positions to rescue either tested route. The p57-selected word-interior composition is also negative; reopen only if a new independent LP2 source clue selects a different use of the 2014 key or supplies the missing skip/reset rule. No LP2 plaintext, authentic key, complete cipher mechanism or destination is recovered.
+Use `node sims/lp2_2014_firfumference_vigenere_gate.cjs` from the repository root. The correction changes the former numerical findings; any study importing `FIRFUMFERENCE` as an authentic source key must replace it with `FIRFUMFERENFE` or explicitly label it a different conditional candidate. The full 56 unknown physical LP2 pages remain undeciphered.
