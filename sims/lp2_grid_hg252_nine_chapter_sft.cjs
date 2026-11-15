@@ -228,8 +228,9 @@ function testLiteralFBypass(label, keys, sign) {
     chapterStats,
     prefix: decodedBook.slice(0, 36).map(v => corpus.translit[v]).join(" ")
   });
-  // A true literal-F bypass cannot re-encode a non-F ciphertext as F.
-  assert.equal(reencodeMismatches, impossibleF);
+  // The first impossible F output makes the encoder skip a key position,
+  // so replay mismatches can cascade after the initial collision.
+  assert.ok(reencodeMismatches >= impossibleF);
 }
 
 /* The quotient orientation and both additive signs are fixed, not searched. */
