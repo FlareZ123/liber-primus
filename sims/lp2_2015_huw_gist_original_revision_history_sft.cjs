@@ -27,7 +27,7 @@ function staticKeys(body) {
   for(let i=0;i<lines.length;i++){
     const line=lines[i].trim();
     if(/(?:^def forge_offsets|offsets\s*=\s*forge_offsets|^#\s*offsets\s*=|^#\s*sequence\s*=|^sequence\s*=|if.*rune|off_num|def find_position|^import)/.test(line))
-      selected.push({line:i+1,code:line.slice(0,180)});
+      selected.push({line:i+1,chars:line.length,sha256:sha256(line),code:line.length>350?line.slice(0,165)+' ... '+line.slice(-165):line});
   }
   return {lineCount:lines.length,selected};
 }
