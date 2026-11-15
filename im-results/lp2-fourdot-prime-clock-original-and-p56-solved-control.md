@@ -8,6 +8,8 @@ The original source punctuation audit distinguishes exactly **138 physical four-
 
 The same recognizable four-dot small stop is used as a **sentence/title terminator in authentic solved material**, including [original p56 scan 73.jpg](../resources/liber-primus/73.jpg) and [unencrypted p57 scan 74.jpg](../resources/liber-primus/74.jpg). Its shape identifies a punctuation boundary, but by itself supplies **no operator, numerical key or state-update direction**.
 
+The **unique red** four-dot stop, unlike the remaining 137 black stops, is on original LP2 **p7** (scan `24.jpg`, original punctuation event26, p7 rune offset200/global1866), inside its red terminal caption. It divides exactly **6+8 runes** but preserves five printed words with lengths **[2,4] . [3,2,3]**. The original-source [p7 red-stop/SCY scope result](lp2-p3-red119-sky-strictf-source-gate.md#the-unique-red-four-dot-stop-as-a-restricted-p7-source-key-handoff) shows that the sole red mark still does not identify a key or actual receiver. Critically, the **p56 black-stop** control below cannot disprove a separately indicated *red-only* reset rule; it rejects the unsupported assumption that **all stops** automatically reset the known totient key.
+
 ## A decisive solved-page key-clock counterexample
 
 The known p56 `AN END.` heading occupies original **five runes** and ends in an authentic four-dot stop. The next plaintext word is `WITHIN`, beginning with GP rune **W = index 7**. On the untouched p56 ciphertext, the **sixth** rune is GP index **19**. The independently solved p56 key uses **successive primes minus one modulo29**. Its first six shifts are `[1, 2, 4, 6, 10, 12]`, so the sixth ciphertext rune decodes:
