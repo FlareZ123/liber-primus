@@ -20,8 +20,8 @@ The global maximum is **ten consecutive matching word lengths**, exactly twice, 
 
 | Unknown printed word index (zero-based) | Emerson word index | Exact ten-length match | Emerson phrase in matched span |
 | ---: | ---: | --- | --- |
-| 910 | 72,743 | 8,3,4,2,3,3,6,2,7,3 | *their origin from thoughts and laws in his own breast* |
-| 2,514 | 48,612 | 3,4,3,4,2,3,4,3,3,3 | *that is the good man will be the wise man and* |
+| 910 | 72,743 | 8,3,4,2,3,3,6,2,7,3 | *thoughts and laws in his own breast he studies the* |
+| 2,514 | 48,612 | 3,4,3,4,2,3,4,3,3,3 | *the good man will be the wise man and the* |
 
 These are word-length coincidences only. No decrypted rune has been found, and a fitted key to either phrase would have no independent legitimacy.
 
