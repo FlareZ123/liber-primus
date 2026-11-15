@@ -89,23 +89,18 @@ assert.equal(p32Steps.length, 13);
 assert.equal(p32Steps.reduce((a, b) => a + b, 0), 413);
 assert.deepEqual(p32Steps, [107, 11, 59, 5, 2, 2, 7, 5, 23, 7, 71, 67, 47]);
 
-// Marker rows are transcribed from original JPGs: p32/p49 share the 9-row
-// pattern; p53 has the 7-row version. A centre dot is 1, a side pair is 0.
+// Correct image mapping: logical p32 is original JPEG49. Its final red
+// marker has 13 dots in nine alternating rows. This binary polarity is a
+// hypothesis; the earlier p49/p53 marker corroboration was based on wrong files.
 const p32MarkerBits = "101010101";
-const p49MarkerBits = "101010101";
-const p53MarkerBits = "1010101";
 const dotCount = bits => [...bits].reduce((sum, bit) => sum + (bit === "1" ? 1 : 2), 0);
 const p32MarkerCode = Number.parseInt(p32MarkerBits, 2);
-const p49MarkerCode = Number.parseInt(p49MarkerBits, 2);
-const p53MarkerCode = Number.parseInt(p53MarkerBits, 2);
 assert.equal(dotCount(p32MarkerBits), 13);
-assert.equal(dotCount(p49MarkerBits), 13);
-assert.equal(dotCount(p53MarkerBits), 10);
-assert.deepEqual([p32MarkerCode, p49MarkerCode, p53MarkerCode], [341, 341, 85]);
-assert.equal(p49MarkerCode % 256, p53MarkerCode);
-assert.notEqual(Number.parseInt("010101010", 2) % 256, Number.parseInt("0101010", 2));
-const start = p53MarkerCode;
+assert.equal(p32MarkerCode, 341);
+const oppositePolarityCode = Number.parseInt("010101010", 2);
+const start = p32MarkerCode % 256;
 assert.equal(start, 85);
+assert.equal(oppositePolarityCode, 170);
 
 const tableBytes = grid.pages.flatMap(page => page.bytes);
 const tableTokens = grid.pages.flatMap(page => page.tokens);
@@ -171,8 +166,8 @@ assert.deepEqual(startsWithBoth, [85]);
 
 console.log(JSON.stringify({
   markerEncoding: {
-    p32Bits: p32MarkerBits, p49Bits: p49MarkerBits, p53Bits: p53MarkerBits,
-    codes: [p32MarkerCode, p49MarkerCode, p53MarkerCode], startCell: start
+    logicalPage: 32, originalImage: "49.jpg", p32Bits: p32MarkerBits,
+    p32Code: p32MarkerCode, oppositePolarityCode, startCell: start
   },
   p32Window: {text: p32WindowText.join(" "), steps: p32Steps, sum: 413},
   goodLuck: {
