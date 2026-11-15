@@ -1,0 +1,16 @@
+name: LP2 word-rekeyed ciphertext feedback all-secret equality (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-cipher:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original-source key-independent feedback test with four native controls
+        run: node sims/lp2_wordrekey_cipherfeedback_equality_sft.cjs
