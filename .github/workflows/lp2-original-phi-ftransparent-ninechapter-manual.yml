@@ -18,3 +18,5 @@ jobs:
           node-version: '22'
       - name: Assert all nine original failure offsets and full solved p56 positive
         run: node sims/lp2_original_phi_Ftransparent_ninechapter_gate_sft.cjs
+      - name: Verify tree-to-instar finite word routes including original F skip
+        run: node sims/lp2_tree_instar_within_source_sft.cjs
