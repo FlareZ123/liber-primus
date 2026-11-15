@@ -218,6 +218,52 @@ assert.deepEqual(wordPlain,plantPlain);
 const wordPlantBefore=perWordCollisions(plantPlain,false);
 const wordPlantAfter=perWordCollisions(wordCipher,true);
 assert.deepEqual(wordPlantBefore,wordPlantAfter);
+/**
+ * For the surviving fresh-word-key branch, test the much more economical
+ * additive word-specific Caesar phase on its observable fiveback residual:
+ * D[j] = P[j] + k(word) mod29 for j>=5. A complete original long word
+ * (10..14 runes) must match at least one same-length source-native word
+ * under one unknown shift. Zero fitted cipher key enters the native pool.
+ *
+ * @param {number[]} cipherWord
+ * @param {number[][]} nativeWords
+ * @returns {boolean}
+ */
+function hasCaesarSuffix(cipherWord,nativeWords){
+  for(const plain of nativeWords){
+    const initial=(cipherWord[5]-cipherWord[0]-plain[5]+58)%29;
+    let equal=true;
+    for(let j=6;j<cipherWord.length;j++){
+      const diff=(cipherWord[j]-cipherWord[j-5]-plain[j]+58)%29;
+      if(diff!==initial){equal=false;break;}
+    }
+    if(equal)return true;
+  }
+  return false;
+}
+const originalLong=words.filter(w=>w.length>=10);
+assert.equal(originalLong.length,109);
+const nativeCaesar=[];
+for(const item of sources){
+  const pool=nativeBuckets(item.path);
+  let matched=0;
+  for(const w of originalLong){
+    if(hasCaesarSuffix(w,pool[w.length]))matched++;
+  }
+  const positiveOriginalLong=originalLong.map((w,i)=>{
+    const plain=pool[w.length][i%pool[w.length].length], k=(3+7*i)%29;
+    const cipher=w.slice(0,5);
+    for(let j=5;j<plain.length;j++){
+      cipher.push((cipher[j-5]+plain[j]+k)%29);
+    }
+    assert(hasCaesarSuffix(cipher,pool[w.length]));
+    return cipher;
+  });
+  assert.equal(positiveOriginalLong.length,109);
+  nativeCaesar.push({name:item.name,longOriginalWords:109,
+    nativeDictionaryMatched:matched,nativeDictionaryMissed:109-matched,
+    positiveOriginalShapeMatches:positiveOriginalLong.length});
+}
 console.log(JSON.stringify({
   cipherFamily:'each printed word resets; j>=5 C_j=C_(j-5)+sigma_(page,j mod5)(P_j) modulo29, with unrestricted separate page-phase secret bijections',
   original:{words:2896,runes:12956,deltaPositions:2105,
@@ -225,6 +271,7 @@ console.log(JSON.stringify({
     differentialPerPage:actual,differentialGlobal:global,
     differentialPerWordOneAlphabet:wordOriginal},
   matchedNativeControls:controls,
+  perWordCaesarFivebackFiniteNativeRegister:nativeCaesar,
   positiveControl:{independentSecretAlphabets:275,
     GPPlainRunesExactlyRecovered:12956,
     differencePositions:before.n,pairs:before.pairs,
