@@ -37,7 +37,7 @@ function get(url){
 }
 /** @param {Buffer} buf @returns {string} */
 function gitBlob(buf){
- return crypto.createHash('sha1').update('blob '+buf.length+'\\0','binary')
+ return crypto.createHash('sha1').update('blob '+buf.length+'\0','binary')
   .update(buf).digest('hex');
 }
 async function main(){
@@ -47,8 +47,8 @@ async function main(){
    const data=await get(url);
    assert.equal(data.length,r.bytes);
    assert.equal(gitBlob(data),r.sha);
-   const lines=data.toString('latin1').split(/\\r?\\n/);
-   const exact=/\\bdecryptionist\\b|elbarto(?:@reborn\\.com)?|@reborn\\.com/ig;
+   const lines=data.toString('latin1').split(/\r?\n/);
+   const exact=/\bdecryptionist\b|elbarto(?:@reborn\.com)?|@reborn\.com/ig;
    const hits=[];
    for(let i=0;i<lines.length;i++){
       if(!exact.test(lines[i])){exact.lastIndex=0;continue;}
