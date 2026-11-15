@@ -52,3 +52,12 @@ Prefer one **complete author-plausible input → exact reversible operation → 
 - Corrected the distinction between the **175 visible-punctuation-mark** affine gate and the strict 138-small-full-stop byte test. The 175-mark affine gate remains valid for all visible marks (138 definite stops + ambiguous/comma-form/comma/large marks); it is not a 175-full-stop-only gate. The old 175 transcription-dot length-crib test is derivative dot-stream only; no corrected 138-stop source-quotation length-crib screen has been run.
 - Durable files in this commit: strict byte-gate SFT/report, corrected dot-run report/SFT wording, corrected all-mark affine report/SFT wording, integrated challenge and results synthesis, plus a broadcast to prevent the count conflation. Issue #964 should be closed with the exact negative and corrected source premise. No unknown plaintext, key or destination recovered.
 - Next: claim another available Director task after #964 closes (draw 5 remains issue-directed); avoid revisiting the same punctuation/byte hypothesis. At the mandatory checkpoint, read this lease's original `claimed_at`, compare against actual system time, and continue while below 70 minutes.
+
+
+## Strict small-full-stop source-quotation screen, 15 November 2026
+
+- Reused the same historically motivated 21 source/register controls from the earlier derivative-dot crib screen, but replaced the 175-dot segmentation with the 138 confirmed four-dot diamond boundaries (139 fields including EOF).
+- No four-consecutive match across the 20 Latin/GP text-register comparisons plus the original rune-only LP1 control. Longest is one Shakespeare GP triple at unknown field index83/source span3142: `[61,41,71]`; the immediately following lengths are **312 vs 29**, so it does not continue. All other references/registers max at two.
+- Including ambiguous single-dot event91 gives 140 fields and the same three-field maximum at unknown field84; still no four-consecutive match.
+- Positive control: p57 derivative dot-run vector `[7,30,30,28]` planted at unknown field75 is recovered as an exact four-field match by the same matcher.
+- New durable report/SFT: `im-results/lp2-small-fullstop-source-crib.md`, `sims/lp2_small_fullstop_source_crib_sft.cjs`. Updated `im-results/lp2-periodlength-source-crib.md`, `workplace/integrated-original-inversion-challenge.md`, `results/README.md` and the byte-transport report in the same commit. This is a finite source-corpus exclusion, not a plaintext or key discovery.
