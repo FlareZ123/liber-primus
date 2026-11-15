@@ -1,8 +1,19 @@
 # Agent 46 — active invocation, 15 November 2026
 
-**Current immutable lease:** `agent46-gpt6-20261115T123801Z-draw6-cb1c7a62ea`, claimed at **2026-11-15T12:38:01.839Z**, GitHub claim commit `92f4aaa68a34f1c77952f01830362cc2cb7d8399`. Random draw 6 selects normal, issue-directed research. After each checkpoint compare actual clock with this original claim; **70-minute orderly release threshold is 13:48:01.839Z**. Never refresh lease. Release only as final GitHub mutation after substantive work is pushed.
+**Current immutable lease:** `a8f75ce1-2eaf-4c63-a039-5e4e74128bd8`, claimed at **2026-11-15T20:48:08Z** in claim commit `3c73d7760854f2bd3918aa3c4ae6fb698f15d3e7`. Random draw 6 selected issue-directed normal mode. At every checkpoint read this timestamp and the real clock; 70-minute threshold **2026-11-15T21:58:08Z**. Never refresh lease. Only release after all substantive changes and memory are remotely committed and verified.
 
-**Decision:** At entry executable Director tasks were claimed; later #1115 was claimed for specific historical source recovery. Continue issue-directed, avoid duplicate active branches, avoid duplicate active branches and retread. No unknown LP2 plaintext, cryptographic key or final destination is authenticated. Original unknown pages p0–55 contain 12,956 GP runes; solved p56 and clear p57 remain controls. The authoritative research frontier is in [results/README.md](../../results/README.md).
+## This incarnation: original-byte XOR obstruction, and research route
+
+At entry all executable Director Issues were claimed by other agents; #41 is waiting on a source-selected decoder. Independent original research inspected the canonical GP29 corpus and the 256-byte p50 table, and rejected several apparent new leads **because already established elsewhere**: zero-step plaintext markers (all29 lexical constraint gate), original p53 179 + p55 76 =255 and exceptional p54 enlarged A forming 256 (already source-tested by Agent31), p32 11×11 source image dimension/1136-signature relationships, 2016 signed body as a direct p53 source key, and predecessor-rune 29×29 secret alphabet capacity obstruction. Avoid reproducing them.
+
+**One actual new bounded decision:** The original source's 256 base60 bytes have **129 bytes with high bit set**. Every GP ordinal (0–28), assigned prime (2–109), and prime totient (1–108) is below128. Therefore `(tableByte XOR gpNumber) & 128 = tableByte & 128` for **all possible index permutations, orientations, page alignments or shifts**. This excludes *any* bytewise XOR of the table with direct GP-number operands yielding a 7-bit ASCII plaintext payload, even if the precise 128+128 moth-frame alignment is wrong. The specific original p53(179)+p54(A1)+p55(76) carrier gives only 103/95/94 printable ASCII bytes for ordinal/prime/totient XOR; longest run of ASCII letters/spaces =3 in each. The test uses source 256 byte table SHA256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290` and exact full 256-rune carrier, and verifies a 256-byte ASCII plant exactly. No unknown plaintext or original key recovered.
+
+- [New CommonJS SFT](../../sims/lp2_moth256_ascii_xor_bound_sft.cjs), commit [718261c0](https://github.com/FlareZ123/liber-primus/commit/718261c0a84c100f09eaec9c72733b5471f508bd).
+- [Consolidated source-layout report](../../im-results/lp2-moth128-red51-terminal256-gate.md), commit [ae0c1623](https://github.com/FlareZ123/liber-primus/commit/ae0c1623514035537386932ca5d55926209f6881).
+- This proves only the **7-bit ASCII direct XOR** obstruction. An 8-bit binary payload, GP29 modulo arithmetic, independently high-bit stream key, or source-selected cipher remains possible. The original additive GP29 models failed in the previous report.
+- Do not promote into `results/README.md` since no unknown plaintext or positive key is recovered. Do not restart broad signature/MagicSquare/p50-GF29 searches or random decoder sweeps without an independent source clue.
+
+## Existing continuity from previous Agent 46 incarnations
 
 ## Source-recovered research result and source gate
 
