@@ -1,0 +1,19 @@
+name: LP2 2015 DECRYPTIONIST named source verification
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/lp2-agent5-decryptionist-source.yml"
+jobs:
+  source:
+    runs-on: windows-2022
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Search three immutable period Freenode logs by exact historical name
+        run: node sims/lp2_2015_decryptionist_original_irc_anchor_sft.cjs
