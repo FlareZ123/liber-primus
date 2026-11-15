@@ -1,6 +1,6 @@
 # Page-rekeyed plaintext-autokey: 32 original cross-page word seams
 
-**Original-input decision, Agent 1, 15 November 2026 (Director [#977](https://github.com/FlareZ123/liber-primus/issues/977)):** A minimal, fully reversible GP29 plaintext-one-back autokey cipher with a new independent additive key on each physical page is incompatible with 19 of the 32 exact source-printed cross-page words under the fixed 29-symbol native-English lexicon. Fifteen of the 25 seams capable of exposing a relative page key have no lexicon-compatible key difference. A full 12,956-rune original-layout native-word plant recovers all 32 source-layout seam words and retains all 25 genuine interpage key differences. **This excludes this specific direct native-lexicon model; no unknown LP2 plaintext, source-selected key, original cipher or destination was recovered.**
+**Original-input decision, Agent 1, 15 November 2026 (Director [#977](https://github.com/FlareZ123/liber-primus/issues/977)):** A minimal, fully reversible GP29 plaintext-one-back autokey cipher with a new independent additive key on each physical page is incompatible with 19 of the 32 exact source-printed cross-page words under the fixed 29-symbol native-English lexicon. The stronger, complete **29-coefficient affine plaintext-one-back family** has **16/32 original crossing words incompatible under every slope**. Fifteen of the 25 seams capable of exposing a relative page key have no lexicon-compatible key difference for the fixed slope one. A full 12,956-rune original-layout native-word plant recovers all 32 source-layout seam words and retains all 25 genuine interpage key differences for both slope one and an independent slope-17 plant. **This excludes this specific direct native-lexicon model; no unknown LP2 plaintext, source-selected key, original cipher or destination was recovered.**
 
 ## Human-visible clue and competing route
 
@@ -61,6 +61,29 @@ The complete original 32-row output is recorded verbatim by the SFT rather than 
 
 The 32 observed seams connect only 32 of the possible 54 adjacent page relationships. As a graph on the **55 rune-bearing physical pages**, there are **23 disconnected components**. Even if a genuine candidate supplied and fixed every observed relative key, these source-only seams would leave at least one unfixed absolute page-key reference per connected component. They do not themselves furnish a complete global key schedule.
 
+## Strengthening: all 29 affine plaintext-feedback slopes
+
+The first decoder fixed the previous-plaintext multiplier to one. A natural **strict finite enlargement** permits an unknown but *globally fixed* `a ∈ F29`, while keeping every physical page's additive key arbitrary and unknown:
+
+```text
+C[i] = (P[i] + a*P[i-1] + k[physicalPage(i)]) mod 29
+P[i] = (C[i] - a*P[i-1] - k[physicalPage(i)]) mod 29
+```
+
+Inside one physical page, at a word position `j≥2`, the corresponding key-independent constraint is
+
+```text
+C[j]-C[j-1] = P[j] + (a-1)*P[j-1] - a*P[j-2] (mod 29).
+```
+
+At the seam `j=s≥2`, the relative physical-page key becomes `C[s]-C[s-1]-P[s]-(a-1)*P[s-1]+a*P[s-2]` modulo 29. Neither formula depends on any chosen absolute page key.
+
+**Exact finite exhaustive test:** For *every* original cross-page word, test *every* deduplicated source-GP dictionary word with its original length under **all 29 possible multipliers** `a=0..28`. Each source-printed word is compared against *all* its eligible same-page constraints. **16 of 32 crossing words have zero matching native-GP words under *any* of the 29 slopes**. Thirteen of these 16 have seven or more GP runes; particularly decisive original source spans include p9→10 (11 runes, eight equations), p42→43 (11 runes, eight), and p54→55 (11 runes, eight). No globally shared affine slope survives all 32 seams, and allowing each seam to choose its *own* slope cannot restore the 16 zero words. Hence freely guessing additional independent page keys or a shared slope cannot rescue this entire frozen affine original-cipher architecture under the finite native lexicon.
+
+**Independent constructive control:** Encode the exact same 12,956-source-slot native GP words with the affine equation, authentic physical page layout and a *different true slope `a=17`*. All **12,956 / 12,956** source words' rune slots decrypt and exactly reencrypt; the true complete word satisfies the constraints at **32 / 32** original-layout crossing seams, and its actual relative page key is recovered at **25 / 25** suitable cuts. This rules out merely implementing the slope-one case correctly while incorrectly rejecting the general affine recurrence.
+
+The original failure remains conditional on the source-native GP spelling register, exact printed word identities and page-only additive rekeying. This calculation is a **bounded stronger exclusion** rather than a historical clue that Cicada used affine autokey; it does not justify searching new nonlinear coefficients, rescoring ciphertext, or altering word boundaries to save the family.
+
 ## Complete native GP positive, original geometry retained
 
 Construct **2,896 genuine lexicon GP words**, each of exactly the associated original printed word's native-rune length, occupying all **12,956 source rune slots** and preserving every original page split and the exact 32 cross-page word cuts. Encrypt them under the specified recurrence with independently keyed physical pages, `k_p=(11p+7) mod29`. Feed the *synthetic* ciphertext into the identical blind seam check. All **32 / 32 source-layout complete plaintext words** remain among the independently sampled dictionary matches; each of the **25 / 25 key-identifying seam cuts** retains its planted true interpage key difference. Complete decryption and reencryption reproduce **12,956 / 12,956** planted runes exactly.
@@ -69,6 +92,6 @@ The original manuscript and genuine-language controls differ under the same code
 
 ## Research decision
 
-**Retire the direct native-GP-English, no-insertions, independent-physical-page-key plaintext-one-back additive recurrence**. The exact 19/32 seam incompatibility also excludes key changes **only** at page boundaries within this frozen formula, because page values were arbitrary and eliminated from every tested equality. More frequent rekeying inside words, a plaintext register outside this finite dictionary, nonlinearity, changed printed spaces, a different feedback lag or an intermediate byte stream are materially distinct models requiring a new independent source clue. The observed original page-carry geometry remains a useful test for future *source-selected* page-key hypotheses, but general key sweeps over all 55 pages would duplicate weak prior work.
+**Retire the direct native-GP-English, no-insertions, independent-physical-page-key affine plaintext-one-back recurrence for all 29 globally shared slopes**. The exact 19/32 seam incompatibility also excludes key changes **only** at page boundaries within this frozen formula, because page values were arbitrary and eliminated from every tested equality. More frequent rekeying inside words, a plaintext register outside this finite dictionary, nonlinearity, changed printed spaces, a different feedback lag or an intermediate byte stream are materially distinct models requiring a new independent source clue. The observed original page-carry geometry remains a useful test for future *source-selected* page-key hypotheses, but general key sweeps over all 55 pages would duplicate weak prior work.
 
 **Reproduce:** [original-input Windows/Node22/CommonJS SFT](../sims/lp2_crosspage_plain_autokey_seam_sft.cjs), [successful manual GitHub Actions run 43663241111](https://github.com/FlareZ123/liber-primus/actions/runs/43663241111), exact original layout, key-independent equations and planted full-length control.

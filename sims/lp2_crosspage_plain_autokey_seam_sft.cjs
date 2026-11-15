@@ -265,6 +265,114 @@ for (const physicalPage of neighbors.keys()) {
 }
 assert.equal(pageComponents, 23);
 
+
+/**
+ * Affine plaintext-one-back model with completely arbitrary independent page keys:
+ * C_i=P_i+a*P_(i-1)+k[page_i], for every a in all GF29 residues.
+ * Compare an original complete spanning word against every dictionary candidate
+ * without guessing any page key.
+ * @param {number[]} ciphertext
+ * @param {RuneWord} printed
+ * @param {number[]} plaintextWord
+ * @param {number} a
+ * @returns {boolean}
+ */
+function affineCompatible(ciphertext, printed, plaintextWord, a) {
+  for (let j = 2; j < ciphertext.length; j++) {
+    if (printed.pages[j] !== printed.pages[j - 1]) continue;
+    if (mod29(ciphertext[j] - ciphertext[j - 1]) !==
+        mod29(plaintextWord[j] + (a - 1) * plaintextWord[j - 1] -
+          a * plaintextWord[j - 2])) return false;
+  }
+  return true;
+}
+
+/**
+ * @param {number[]} message
+ * @param {number[]} physicalPages
+ * @param {number[]} keys
+ * @param {number} coefficient
+ * @param {boolean} inverse
+ * @returns {number[]}
+ */
+function affineTransform(message, physicalPages, keys, coefficient, inverse) {
+  const output = [];
+  let lastPlain = 0;
+  for (let i = 0; i < message.length; i++) {
+    const currentPlain = inverse
+      ? mod29(message[i] - coefficient * lastPlain - keys[physicalPages[i]])
+      : message[i];
+    output.push(inverse ? currentPlain
+      : mod29(currentPlain + coefficient * lastPlain + keys[physicalPages[i]]));
+    lastPlain = currentPlain;
+  }
+  return output;
+}
+
+/**
+ * @param {number[]} ciphertext
+ * @param {number[]} plaintextWord
+ * @param {number} cut
+ * @param {number} a
+ * @returns {number}
+ */
+function affineRelativePageKey(ciphertext, plaintextWord, cut, a) {
+  assert.ok(cut >= 2);
+  return mod29(ciphertext[cut] - ciphertext[cut - 1] -
+    plaintextWord[cut] - (a - 1) * plaintextWord[cut - 1] +
+    a * plaintextWord[cut - 2]);
+}
+
+const affineRows = [];
+const sharedSlopeSurvival = Array(29).fill(true);
+for (const {word} of crossPage) {
+  const candidateList = candidates.get(word.c.length) || [];
+  const matchesPerSlope = Array(29).fill(0);
+  for (const candidate of candidateList) {
+    for (let slope = 0; slope < 29; slope++) {
+      if (affineCompatible(word.c, word, candidate.indices, slope)) {
+        matchesPerSlope[slope]++;
+      }
+    }
+  }
+  for (let slope = 0; slope < 29; slope++) {
+    if (!matchesPerSlope[slope]) sharedSlopeSurvival[slope] = false;
+  }
+  affineRows.push({boundary: word.pages[0] + "->" + word.pages[word.pages.length - 1],
+    length: word.c.length, compatibleSlopes: matchesPerSlope.filter(Boolean).length,
+    compatibleDictionarySlopePairs: matchesPerSlope.reduce((sum, n) => sum + n, 0)});
+}
+assert.equal(affineRows.filter((row) => row.compatibleSlopes === 0).length, 16);
+assert.equal(affineRows.filter((row) =>
+  row.compatibleSlopes === 0 && row.length >= 7).length, 13);
+assert.equal(sharedSlopeSurvival.filter(Boolean).length, 0);
+
+const knownSlope = 17;
+const plantedAffine = affineTransform(plaintext, pageAtPosition, pageKeys, knownSlope, false);
+assert.deepEqual(affineTransform(plantedAffine, pageAtPosition, pageKeys, knownSlope, true), plaintext);
+let affineOffset = 0, affineValidNativeWords = 0, affineValidRelativeKeys = 0;
+for (let i = 0; i < words.length; i++) {
+  const source = words[i], wordPlain = plantedWords[i];
+  if (source.pages[0] !== source.pages[source.pages.length - 1]) {
+    const observed = plantedAffine.slice(affineOffset, affineOffset + source.c.length);
+    assert.ok(affineCompatible(observed, source, wordPlain, knownSlope));
+    assert.ok((candidates.get(source.c.length) || []).some((candidate) =>
+      candidate.indices.join(",") === wordPlain.join(",")));
+    affineValidNativeWords++;
+    const cut = source.pages.findIndex((p) => p !== source.pages[0]);
+    if (cut >= 2) {
+      const actualDelta = mod29(pageKeys[source.pages[cut]] - pageKeys[source.pages[cut - 1]]);
+      const inferredDelta = affineRelativePageKey(observed, wordPlain, cut, knownSlope);
+      assert.equal(inferredDelta, actualDelta);
+      affineValidRelativeKeys++;
+    }
+  }
+  affineOffset += source.c.length;
+}
+assert.equal(affineOffset, plaintext.length);
+assert.equal(affineValidNativeWords, 32);
+assert.equal(affineValidRelativeKeys, 25);
+
 console.log(JSON.stringify({
   model: "GP29 plaintext-one-back with independent per-physical-page additive keys",
   source: {runes: sourceRunes.length, words: words.length,
@@ -273,7 +381,10 @@ console.log(JSON.stringify({
   original: {zeroDictionaryCompatibleSeams: 19, ambiguousOrViableSeams: 13,
     seamsWithObservableKeyDifference: 25,
     zeroCompatibleObservableKeyDifferences: 15, rows},
-  nativePlant: {runesRecovered: plaintext.length,
+  affineAll29: {zeroWordsAnySlope: 16, zeroWordsLengthAtLeast7: 13, sharedSurvivingSlopes: 0, rows: affineRows},
+  nativePlant: {affineKnownSlope: 17, affineCompleteRecovered: plaintext.length,
+    affineSeamWordsRecovered: affineValidNativeWords, affineTrueRelativeKeys: affineValidRelativeKeys,
+    runesRecovered: plaintext.length,
     originalLayoutSeamWordsRecovered: nativeSeamsFound,
     originalLayoutRelativeKeysRetained: deltaSeamsFound}
 }, null, 2));
