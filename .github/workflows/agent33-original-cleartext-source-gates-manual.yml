@@ -39,3 +39,7 @@ jobs:
         run: |
           node --check sims/lp2_p55_moth_crib_allsecret_hill4_sft.cjs
           node sims/lp2_p55_moth_crib_allsecret_hill4_sft.cjs
+      - name: Check LP1 p05 geometry versus original p49/p55 alphabets
+        run: |
+          node --check sims/lp2_p05_geometry_allsecret_76to66_sft.cjs
+          node sims/lp2_p05_geometry_allsecret_76to66_sft.cjs
