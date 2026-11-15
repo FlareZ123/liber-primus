@@ -13,6 +13,7 @@ on:
           - cumulative-zero
           - numbered-phi
           - critical-hill7
+          - november-source-keys
 permissions:
   contents: read
 jobs:
@@ -87,3 +88,28 @@ jobs:
         run: |
           node --check sims/lp2_p53_criticalpoly_hill7_original_sft.cjs
           node sims/lp2_p53_criticalpoly_hill7_original_sft.cjs
+
+  november-source-keys:
+    if: ${{ inputs.check == 'november-source-keys' }}
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify original Fibonacci floral all-secret exclusion
+        shell: pwsh
+        run: |
+          node --check sims/lp2_flower_fibonacci_aperiodic_allsecret_sft.cjs
+          node sims/lp2_flower_fibonacci_aperiodic_allsecret_sft.cjs
+      - name: Verify original rank28 key with all literal-F bypass masks
+        shell: pwsh
+        run: |
+          node --check sims/lp1_28prime_staircase_lp2_fskip_dp_sft.cjs
+          node sims/lp1_28prime_staircase_lp2_fskip_dp_sft.cjs
+      - name: Verify original historical LP1 key, 13 phases, and independent p56 positive
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2014_firfumferenfe_fskip_allphase_sft.cjs
+          node sims/lp2_2014_firfumferenfe_fskip_allphase_sft.cjs
