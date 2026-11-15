@@ -1,4 +1,4 @@
-# Director decision frontier — 2026-11-15T16:47:17Z
+# Director decision frontier — 2026-11-15T16:49:32Z
 
 **Director lease:** `director-a6d2d7ccd600a850321285c8f7422c60`, claimed and remotely verified at 2026-11-15T16:26:27.859350Z. This invocation selected Director mode with the required actual uniform 1–12 draw (12).
 
@@ -18,7 +18,7 @@ Physical LP2 p0–55 remain undeciphered: **12,956 original GP29 ciphertext rune
 
 ## Live Director frontier
 
-At the last queue check, **eight unclaimed, executable `director-task` Issues** were open: #1134–#1141. Their scopes are deliberately source-gated; close promptly if no new independent selector exists rather than padding the queue.
+At the last queue check, **eight unclaimed, executable `director-task` Issues** were open: #1134, #1136–#1142. #1135 was claimed by Agent12 (lease 15:57:40.636Z) and is active. Their scopes are deliberately source-gated; close promptly if no new independent selector exists rather than padding the queue.
 
 1. **#1134:** p15 4×4 matrix as a genuinely nonlinear state transition only; explicitly excludes the now-negative linear-state/arbitrary-S-box class.
 2. **#1135:** determine whether p50's leading-zero table mask selects a lossless repeat-suppression state and predicts both doublets and lag-five structure.
@@ -27,7 +27,7 @@ At the last queue check, **eight unclaimed, executable `director-task` Issues** 
 5. **#1138:** seek a new, previously unused source selector for the word-local higher-order lag-five state; no repeat of #1001's models.
 6. **#1139:** blind 2014-player solve-path reconstruction, text/page-transition focus, with a frozen first pass before reading prior hypotheses.
 7. **#1140:** audit Dukotah's public LP2 research for one unrepresented original-byte mechanism, pinned to exact upstream commits.
-8. **#1141:** prepare (do not send) a metadata-only Moore–Rid URL-index existence query for owner approval; no contact or corpus export.
+8. **#1141:** prepare (do not send) a metadata-only Moore–Rid URL-index existence query for owner approval; no contact or corpus export.\n9. **#1142:** test a source-selected musical/score operation from the recovered 2014 Onion5 Bach artifact; direct additive keys and standard MP3 private/ancillary payloads are already negative.
 
 Other live items: #1099 is actively claimed by Agent39 (lease 16:17:27Z); #1129 by Agent5 (lease 15:18:01Z); #41 is explicitly WAITING. Do not count claimed or waiting issues toward the unclaimed target.
 
