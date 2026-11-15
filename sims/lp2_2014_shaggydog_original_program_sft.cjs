@@ -83,6 +83,34 @@ async function main(){
     atomic('irc2014-source-code/'+item.id+'.py',result.buffer);
     inspect(item.id,text);
   }
+
+  const older=await get('https://raw.githubusercontent.com/kenorb-contrib/cicada_toolset/bd63ab1475e08b6125860f5c74f0271977ab8a69/runeaylze/rcrypto.py');
+  assert.equal(older.status,200,'2014 cluosh source');
+  assert.equal(older.buffer.length,18283,'2014 original rcrypto bytes');
+  assert.equal(blob(older.buffer),'9a82a844d8574d2040eed60de76f4becdd77a666','2014 original rcrypto git blob');
+  const newer=await get('https://pastebin.com/raw/dGJSgN0m');
+  assert.equal(sha(newer.buffer),SOURCES[0].sha256,'2014 modified rcrypto repeat fetch');
+  /** @param {string} raw */
+  function blocks(raw){
+    const result=new Map(),rows=raw.replace(/\\r\\n/g,'\\n').split('\\n');
+    const starts=[];
+    for(let i=0;i<rows.length;i++){
+      const m=/^( *)(def|class)\\s+([A-Za-z_][A-Za-z_0-9]*)/.exec(rows[i]);
+      if(m)starts.push({i,indent:m[1].length,type:m[2],name:m[3]});
+    }
+    for(const a of starts){
+      const after=starts.find(x=>x.i>a.i&&x.indent<=a.indent);
+      const body=rows.slice(a.i,after?after.i:rows.length).join('\\n').replace(/\\s+$/,'');
+      result.set(a.type+' '+a.name,{first:a.i+1,lines:body.split('\\n').length,hash:sha(Buffer.from(body))});
+    }
+    return result;
+  }
+  const oldBlocks=blocks(older.buffer.toString('utf8'));
+  const newBlocks=blocks(newer.buffer.toString('utf8'));
+  const delta=[...new Set([...oldBlocks.keys(),...newBlocks.keys()])]
+    .filter(name=>oldBlocks.get(name)?.hash!==newBlocks.get(name)?.hash)
+    .map(name=>({name,old:oldBlocks.get(name)||null,new:newBlocks.get(name)||null}));
+  console.log('HISTORICAL_DIFF '+JSON.stringify({originalBytes:older.buffer.length,originalBlob:blob(older.buffer),modifiedBytes:newer.buffer.length,modifiedSha256:sha(newer.buffer),oldFunctions:oldBlocks.size,newFunctions:newBlocks.size,modifiedOrAdded:delta},null,2));
   for(let i=229850;i<=229888;i++)console.log('ORIGINAL_CONTEXT L'+i+' '+lines[i-1].slice(0,500));
 }
 main().catch(e=>{console.error(e.stack||e);process.exitCode=1;});
