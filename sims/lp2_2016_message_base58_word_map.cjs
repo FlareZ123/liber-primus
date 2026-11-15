@@ -326,6 +326,47 @@ for (let i = 0; i < fullMap.length - 1; i++) {
 assert.deepEqual(adjacentPairs413, [
   {index: 36, words: ["Good", "luck"], targetPrimeSum: 413}
 ]);
+function targetWordPrimeValues(row) {
+  assert(row.runeWord !== null);
+  return [...row.runeWord].map(rune => {
+    const index = corpus.runes.indexOf(rune);
+    assert.notEqual(index, -1);
+    return corpus.prime[index];
+  });
+}
+const seeksIndex = signedAllWords.findIndex(word => word.toLowerCase() === "seeks");
+assert.equal(seeksIndex, 6);
+const seeksRow = fullMap[seeksIndex];
+const seeksPrimeValues = targetWordPrimeValues(seeksRow);
+assert.deepEqual({
+  sourceWord: seeksRow.word,
+  page: seeksRow.page,
+  wordIndex: seeksRow.wordIndex,
+  runeWord: decodeRunes(seeksRow.runeWord),
+  primeValues: seeksPrimeValues,
+  difference: Math.abs(seeksPrimeValues[0] - seeksPrimeValues[1])
+}, {
+  sourceWord: "seeks", page: 21, wordIndex: 4, runeWord: "MY",
+  primeValues: [71, 103], difference: 32
+});
+const twoRuneDirections = fullMap
+  .filter(row => row.runeWord !== null && [...row.runeWord].length === 2)
+  .map(row => ({
+    sourceWord: row.word,
+    runeWord: decodeRunes(row.runeWord),
+    primeValues: targetWordPrimeValues(row),
+    difference: Math.abs(targetWordPrimeValues(row)[0] - targetWordPrimeValues(row)[1])
+  }));
+assert.deepEqual(twoRuneDirections, [
+  {sourceWord: "path", runeWord: "UNG", primeValues: [3, 79], difference: 76},
+  {sourceWord: "seeks", runeWord: "MY", primeValues: [71, 103], difference: 32},
+  {sourceWord: "way", runeWord: "HO", primeValues: [23, 7], difference: 16},
+  {sourceWord: "OpenPGP", runeWord: "NM", primeValues: [29, 71], difference: 42}
+]);
+assert.deepEqual(twoRuneDirections.filter(row => row.difference === 32), [
+  {sourceWord: "seeks", runeWord: "MY", primeValues: [71, 103], difference: 32}
+]);
+
 const p32Window = p32Page.indices.slice(25, 38);
 assert.deepEqual(p32Window.map(index => corpus.translit[index]),
   ["IA", "R", "T", "TH", "F", "F", "O", "TH", "H", "O", "M", "E", "X"]);
@@ -477,6 +518,13 @@ console.log(JSON.stringify({
     targets: goodLuckTargets,
     adjacentPairsScanned: 42,
     uniqueMatches: adjacentPairs413
+  },
+  seeks32CrossCheck: {
+    sourceWordIndex: seeksIndex,
+    destination: decodeRunes(seeksRow.runeWord),
+    primeValues: seeksPrimeValues,
+    difference: Math.abs(seeksPrimeValues[0] - seeksPrimeValues[1]),
+    twoRuneDestinations: twoRuneDirections
   },
   foldHits,
   signedPrime193: {
