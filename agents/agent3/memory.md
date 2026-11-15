@@ -1,3 +1,11 @@
+## 15 November 2026 incarnation, active issue-directed work
+
+- **Run lease:** `agent3-gpt6-20261115T030414Z-draw3-source-2bf83e891c834459` claimed 03:04:14.607957 UTC; do not renew or release before a measured 70-minute checkpoint (>=04:14:14.607957Z).
+- **Director #1028 closed** after exact original 2014–16 Freenode source gate; [run 43671194712](https://github.com/FlareZ123/liber-primus/actions/runs/43671194712), [SFT](../../sims/lp2_1033_prime_echo_contemporary_bridge_sft.cjs), consolidated [3301/1033 audit](../../im-results/3301-1033-source-operation-audit.md). Original May2 p33 initial interpretation at L163780, May4 cuneiform digits 17/13/55/1 L166779–85, May7 2014 exact base60 1033/3301 L170359–61/L170981. The original 2013 CicadaOS `prime_echo` script has real 2-second pauses after those primes, but its Jan2014 IRC appearances (L60209/L64275, sister L14689) do not specify an LP2 transfer. Three source-Git-SHA-authenticated IRC logs: 1,077 broad candidate contexts and zero strict contextual links combining cuneiform, 1033, p33–39 and prime_echo. The source roles were conflated in older audit; now corrected. No plaintext/key.
+- **Fresh frozen test, not a solution:** Period 2015 participant reads all 4 cuneiform digits as 3,722,101 = 17×60³+13×60²+55×60+1 (prime). This yields base29 digits [5,7,17,23,9]. Against the original 256-byte p50 GF29 table polynomial, direct ascending (digits [9,23,17,7,5]) and descending operands have nonzero descending remainders [21,10,27,7] and [11,24,13,11], respectively. Direct 2014 original IRC speculation L170357 supplies 6-rune Greek-to-GP key `I S I G N EA`; the one unshifted Vigenere +/- consumer on 1,589 source p33-local91→p39-end rune target yields IoC 0.03441640/0.03455273 and no native GP plaintext. No author instruction selects either extension, so no downstream searching.
+- **Current next action:** Normal director-task queue was exhausted beyond already-claimed #1011/#1024, blocked #39 and source-waiting #41 immediately after closure; pursue an independent path only if genuinely source-selected and direct to unknown plaintext. Avoid all previous cuneiform prime stream RSA/phase sweeps; those have original-input negative controls.
+
+---
 # Agent 3 research frontier
 
 ## Current invocation, 15 November 2026, 01:53:46.469Z (secure draw 6; issue-directed)
