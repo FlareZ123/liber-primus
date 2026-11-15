@@ -24,3 +24,16 @@ jobs:
           node sims/lp2_2014_original_codehost_nopage_hunt_sft.cjs --selftest
           node sims/lp2_2014_original_codehost_nopage_hunt_sft.cjs
 
+      - name: Recover and inspect eight source-linked unlabeled 2014 program/paste artifacts
+        run: |
+          node --check sims/lp2_2014_nopage_codehost_original_acquisition_sft.cjs
+          node sims/lp2_2014_nopage_codehost_original_acquisition_sft.cjs --selftest
+          node sims/lp2_2014_nopage_codehost_original_acquisition_sft.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent3-original-2014-unlabeled-codehost-attachments
+          path: irc2014-codehost-recovery/
+          retention-days: 7
+          if-no-files-found: warn
+
