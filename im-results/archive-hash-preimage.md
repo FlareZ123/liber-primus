@@ -43,6 +43,25 @@ Public contacts for the 2025 authors who report access to a raw-HTML subset:
 - Guillermo Suárez-Tangil — `guillermo.suarez-tangil@networks.imdea.org` ([IMDEA profile](https://networks.imdea.org/team/imdea-networks-team/people/guillermo-suarez-tangil/))
 
 These authors report access to a subset; they are not asserted to be current custodians of the complete corpus. No email or external contact has been sent. The route remains pending maintainer authorization and an answer from the researchers.
+### Pre-LP2 2013 Tor crawl custody leads (added 15 November 2026)
+
+Two documented 2013 Tor content crawls are additional, lower-priority custody leads for the p56 page target. They are not public page archives in the cited records, and neither is known to contain Cicada material.
+
+**TNO / Spitters et al., December 2013.** The study reports 5,725 known hidden services, 1,481 with downloaded content, 2,196,410 downloaded page URLs, and 324,623 pages with usable content after preprocessing. The crawler downloaded HTML only; preprocessing filtered error/redirect pages, extracted text, and discarded texts shorter than 15 words. The paper does not establish whether original HTML or raw HTTP response bodies were retained. The TNO repository record exposes the publication, not a dataset download.
+
+- Paper: https://gwern.net/doc/darknet-market/2014-spitters.pdf (DOI 10.1109/JISIC.2014.40)
+- TNO record: https://repository.tno.nl/SingleDoc?docId=82829
+
+**University of Luxembourg / Biryukov et al., February–April 2013.** The authors collected 39,824 hidden-service descriptors on 4 February 2013. They later attempted 8,153 HTTP(S) destinations; 7,114 ports were open and 6,579 destinations accepted a connection. After excluding short/error/duplicate material, 3,050 destinations remained for classification; the thesis describes 1,813 English hidden services classified into topics. Binary data were excluded. Neither the paper nor the ORBilu record provides a page-corpus download or confirms that original HTTP bodies were preserved.
+
+- Paper: https://orbilu.uni.lu/bitstream/10993/17182/1/popularity-HS-2014.pdf (DOI 10.1109/ICDCSW.2014.20)
+- Thesis with detailed collection and filtering: https://orbilu.uni.lu/bitstream/10993/21798/1/phdthesis-pustogarov.pdf, Section 4.4.2
+- ORBilu record: https://orbilu.uni.lu/handle/10993/17182
+
+**Causal value and priority.** Either corpus could help only if the p56 target page (or a relevant Cicada resource) existed by 2013. TNO is the stronger of these two because its crawl is later and larger; both remain below the 2016 EURECOM/Deusto and DUTA routes, which are temporally closer and have better-documented HTML/HTTP metadata. The exact target hash is not known to be present in either corpus. Extracted text alone may be inadequate for a raw-page digest.
+
+**Next action:** after maintainer approval, ask TNO and the Luxembourg authors only whether the target host/page or digest is present and whether they retained the original URL, capture timestamp, raw HTML/HTTP body, headers, and body representation. A presence/absence result plus metadata is sufficient; do not request or redistribute the full corpus. No contact has been made. Do not treat these as recovered artifacts or as evidence of a Cicada connection.
+
 ## Execution, bounded conclusion, and decision
 
 [Windows GitHub Actions run 42762660445](https://github.com/FlareZ123/liber-primus/actions/runs/42762660445) completed successfully at 05:32 UTC on 2026-11-10. The script fetched and fingerprinted **all 22** files. Final log line: `sources=22 blobVariants=40 urlVariants=42 hashEvaluations=246 hits=0`. The report JSON remains in the run artifact `archive-hash-scan-output` (ID 13738128148). The manual [workflow](../.github/workflows/archive-hash-preimage.yml) is `workflow_dispatch` only.
