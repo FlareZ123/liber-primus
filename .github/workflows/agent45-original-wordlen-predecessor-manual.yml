@@ -16,3 +16,6 @@ jobs:
           node sims/lp2_wordlength_predecessor_pow2_sourcekey_sft.cjs
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           node sims/lp2_p50_terminal180_known_linear_key_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node sims/lp2_p50_parable_blum_inner180_inverse_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
