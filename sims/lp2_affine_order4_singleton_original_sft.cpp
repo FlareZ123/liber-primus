@@ -123,7 +123,7 @@ static int search(const V& c,const std::vector<Event>& events,bool verbose=false
  return int(events.size())+1;
 }
 static void sourceGate(){
- const int gp[29]={5792,5794,5798,5801,5809,5811,5822-7,5817,5819,5822,5825,5828,5831,5832,5833,5835,5839,5842,5846,5847,5850,5853,5855,5854,5802,5803,5795,5857,5856};
+ const int gp[29]={5792,5794,5798,5801,5809,5811,5815,5817,5819,5822,5825,5828,5831,5832,5833,5835,5839,5842,5846,5847,5850,5853,5855,5854,5802,5803,5795,5857,5856};
  std::ifstream f("resources/lp2-transcription.txt",std::ios::binary);
  if(!f)throw std::runtime_error("Need original LP2 transcription in repository root");
  std::string source((std::istreambuf_iterator<char>(f)),std::istreambuf_iterator<char>());
