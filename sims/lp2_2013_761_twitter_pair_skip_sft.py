@@ -113,6 +113,50 @@ def load_external_decoder_with_independent_wrong_key(external_root: Path):
 # independent Gibran text; this is recorded in the result metadata.
 base.load_external_decoder = load_external_decoder_with_independent_wrong_key
 
+
+def verify_reencipher_dynamic(cipher, plain, key, offset, sign, atbash, max_skip):
+    """Find any legal key-skip trace; unlike the upstream greedy checker, backtrack.
+
+    Different skip histories can reach the same key cursor. Keep one path per
+    cursor and propagate every legal 0..MAXSKIP transition across the complete
+    ciphertext. The previous emitted ciphertext rune is fixed by the input.
+    """
+    target = ((28 - cipher) % 29) if atbash else cipher
+    states = {int(offset): []}
+    for i, p_raw in enumerate(plain):
+        p = int(p_raw)
+        next_states = {}
+        for ptr, prior_skips in states.items():
+            for d in range(max_skip + 1):
+                if i == 0 and d:
+                    break
+                accepted_index = ptr + d
+                if accepted_index >= len(key):
+                    break
+                if i > 0:
+                    previous_cipher = int(target[i - 1])
+                    if any(
+                        (p - sign * int(key[ptr + m])) % 29 != previous_cipher
+                        for m in range(d)
+                    ):
+                        continue
+                emitted = (p - sign * int(key[accepted_index])) % 29
+                if emitted != int(target[i]):
+                    continue
+                next_ptr = accepted_index + 1
+                if next_ptr not in next_states:
+                    next_states[next_ptr] = prior_skips + [d]
+        if not next_states:
+            return None
+        states = next_states
+    end_ptr = min(states, key=lambda ptr: (sum(states[ptr]), ptr))
+    return end_ptr, states[end_ptr]
+
+
+# The external beam returns the best plaintext, not its hidden cursor history.
+# Verify it against all legal skip paths rather than a greedy single path.
+base.verify_reencipher = verify_reencipher_dynamic
+
 # Keep the established source-native decoder, projections, signs, Atbash,
 # beam widths, thresholds, and positive-control implementation unchanged.
 base.SOURCE_OFFSETS = SOURCE_OFFSETS
@@ -163,6 +207,7 @@ def main() -> None:
         "Source-pinned 2013 761.MP3, twitter.bin, and XOR-derived gematria.jpg "
         "screened as GP29 keys under the Campaign XVIII skip-aware decoder"
     )
+    report["reencipher_verifier"] = "independent dynamic program over every legal 0..MAXSKIP path; retains one path per key cursor"
     report["decoder_validation_control"] = {
         "upstream_decoder_commit": "f63501d8f2d835b80c30230eb89a1110fb9197d2",
         "upstream_gate": "unchanged Campaign XVIII skipdecode.gate positive and wrong-key tests",
