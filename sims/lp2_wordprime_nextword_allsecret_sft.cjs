@@ -40,8 +40,8 @@ assert.deepEqual(words.flat(), original);
 assert.equal(E, 18);
 
 /** Every previous-cipher-word prime sum picks one of 29 secret row keys. */
-function priorCipherwordState(previous) {
-  return previous.reduce((sum, glyph) => sum + corpus.prime[glyph], 0) % 29;
+function priorCipherwordState(previous, modulus = 29) {
+  return previous.reduce((sum, glyph) => sum + corpus.prime[glyph], 0) % modulus;
 }
 
 /**
@@ -50,13 +50,14 @@ function priorCipherwordState(previous) {
  *
  * @param {number[][]} ciphertextWords
  * @param {'word'|'eight'|'position'} clock
+ * @param {number} [modulus=29]
  * @returns {{capacity:number, groups:number, observed:number, collisionPairs:number, eligiblePairs:number}}
  */
-function bound(ciphertextWords, clock) {
+function bound(ciphertextWords, clock, modulus = 29) {
   const rows = new Map();
   let observed = 0;
   for (let i = 1; i < ciphertextWords.length; i++) {
-    const source = priorCipherwordState(ciphertextWords[i - 1]);
+    const source = priorCipherwordState(ciphertextWords[i - 1], modulus);
     for (let j = 0; j < ciphertextWords[i].length; j++) {
       const phase = clock === 'word' ? 0 : clock === 'eight' ? j % 8 : j;
       const key = source * 14 + phase;
@@ -94,7 +95,13 @@ assert.equal(eight.groups, 232);
 assert.equal(position.groups, 348);
 assert.equal(word.collisionPairs, 200770);
 assert.equal(word.eligiblePairs, 5838488);
-console.log('ORIGINAL', JSON.stringify({word, eight, position}));
+const word32 = bound(words, 'position', 32);
+const word60 = bound(words, 'position', 60);
+assert.equal(word32.capacity, 1320);
+assert.equal(word32.groups, 375);
+assert.equal(word60.capacity, 1682);
+assert.equal(word60.groups, 658);
+console.log('ORIGINAL', JSON.stringify({word, eight, position, word32, word60}));
 
 /** Source-native GP29 spelling, including the attested composite NG and IA runes. */
 function toGP(raw) {
@@ -202,14 +209,15 @@ for (const filename of controls) {
     eCounts.push(count);
   }
   eCounts.sort((a, b) => a - b);
-  assert(eCounts[0] > position.capacity, 'Source-native control falls within original capacity');
+  assert(eCounts[0] > position.capacity, 'Source-native control falls within original mod29 capacity');
+  assert(eCounts[0] > word32.capacity, 'Source-native control falls within original mod32 capacity');
   console.log('NATIVE_CONTROL', JSON.stringify({
     source: filename,
     simulations: samples,
     minE: eCounts[0],
     medianE: eCounts[Math.floor(samples / 2)],
     maxE: eCounts[samples - 1],
-    originalUpper: position.capacity
+    originalUpper29: position.capacity, originalUpper32: word32.capacity
   }));
   if (!positive) {
     const plaintext = sampleWords(pools, makeRng(0x1234abcd));
@@ -224,4 +232,4 @@ for (const filename of controls) {
     positive = true;
   }
 }
-console.log('PASS: the original previous-word-prime-state alphabet cannot encode any sampled native GP English control');
+console.log('PASS: original previous-word-prime-state modulo29 and modulo32 stationary alphabets exclude all sampled GP English controls; modulo60 is not excluded');
