@@ -50,6 +50,8 @@ Exact re-encryption of every tested rune and an authentic clear-p57 source ciphe
 
 No complete source-native words or coherent original plaintext emerge under any fixed joint key. The full original input round-trips exactly under each of the four invertible compositions. Thus even the natural **22-key paired-cycle Vigenère consumer is negative**.
 
+A comparably natural **page-reset predecessor-feedback** variant uses the same two ring keys on observable ciphertext differences, with initial previous ciphertext residue0: `P[i]=(C[i]−C[i−1]±A[i mod11]±B[i mod2]) mod29`. All four sign choices and the exact same original p49/p51/p52 pages were tested and reverse-encrypted. Their IoCs span **0.028438–0.039161 on p49**, **0.032250–0.037506 on p51**, and **0.034511–0.036775 on held-out p52**, again with no coherent unknown-page prose. This retires the most direct cumulative two-ring reading without introducing additional secrets. These are only finite, source-fixed negative consumers; more complicated feedback remains an unselected hypothesis.
+
 No arbitrary key phases, diagonal transpositions or rescored alphabets were added to rescue the candidate.
 
 ## 150,000 conditional original-byte shuffle controls
@@ -68,4 +70,4 @@ The global `flankTwo` event is ~1/50,000 sampled, compared with 771/50,000 in th
 
 This is a **narrow, fully reproducible potential human solve-path**, with two starting addresses derived solely from the printed source layout and two distinct original graph cycles. It makes the table's direct byte-pointer interpretation more interesting than an arbitrary hand-selected starting index. However it does not tell the player *which rune ciphertext stream is plaintext*, *which operation on the cycles yields a key*, *what success output is*, or *why the author would choose the graph*. Do **not** promote the cycle pattern as a decipherment or fit new phase variations. Advance with an original signed/rune instruction that independently selects the byte→index mapping, or an externally grounded key that predicts a complete unknown-page paragraph.
 
-**Reproduction:** [single Node22 source-original SFT](../sims/lp2_p50_direct_byte_pointer_firstcycle_sft.cjs) and [passing original-source Windows CI 43708751724](https://github.com/FlareZ123/liber-primus/actions/runs/43708751724). This is distinct from the older unproven [base60 q/r keypad graph](lp2-p50-directional-functional-graph-prime-ordinal-starts.md).
+**Reproduction:** [single Node22 source-original SFT](../sims/lp2_p50_direct_byte_pointer_firstcycle_sft.cjs) and [passing original-source Windows CI 43709332045](https://github.com/FlareZ123/liber-primus/actions/runs/43709332045). This is distinct from the older unproven [base60 q/r keypad graph](lp2-p50-directional-functional-graph-prime-ordinal-starts.md).
