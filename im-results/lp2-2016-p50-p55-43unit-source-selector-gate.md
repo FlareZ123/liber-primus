@@ -44,6 +44,22 @@ The solved p57 Parable says, “We must shed our own circumferences. Find the di
 
 This supports the interior-extraction convention substantially more strongly than cardinality alone. It does not fix the p50-byte mapping or whether boundary symbols should later be reinserted. A separate direct pairing of the 43 signed-message words with these interiors, using word GP-prime sums as shifts, is tested below and fails.
 
+### 2014 GEB book-cipher alignment (unverified; source-selected candidate)
+
+The primary 2014 Fifth-Onion archive documents a GEB book cipher in the same 2014 chain that later delivered LP2. Its exact coordinate convention is **chapter-title abbreviation : dialogue-exchange number : word number : letter number**. Fourteen coordinate records are interleaved with literal digits 3 and 7 and followed by the ONION marker: 17 total items. The known result is the Sixth-Onion address `ut3qtzbrvs7dtvzp.onion`. See the [pinned primary Fifth-Onion README](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/007-fifth-onion/README.md) and the corrected [2014 chain synthesis](../results/2014-onion-chain.md). This is a more specific prior source than a generic appeal to “book ciphers”; it is not proof that GEB is reused in LP2.
+
+A new structural alignment makes this source worth a bounded test:
+
+- p55 has **17 printed word segments** and **43 strict interior runes** under the source-selected p57 circumference stripping.
+- The 2016 signed clause “their meaning is the road, and their numbers are the direction” encodes to **43 GP runes** using the standard longest-match digraphs TH, EA, ING and IO.
+- The GEB code has **14 coordinate records × 3 numeric fields = 42** dialogue/word/letter values, plus a possible marker; its 14 records + two literal digits + ONION marker total **17 items**.
+
+This suggests—but does not establish—that p55's 17 word segments could encode the 17 GEB items and its 43 interiors could encode the 42 numeric fields plus a marker. The 33 boundary runes might select chapter-title abbreviations or delimiters. No unique parsing rule currently maps the original p55 word boundaries/runes to those fields.
+
+Direct tests of the 43 interiors against the 43-rune 2016 clause reject simple monoalphabetic and affine substitution (mapping conflicts), pure transposition (different rune frequencies), direct rune/prime indexing, and simple cumulative walks through the clause or its 11 words. These negatives do not exclude a GEB book-coordinate extraction, but they do rule out treating the count match as a direct plaintext identity. The separate 43-word / word-prime-sum shift test below also remains negative.
+
+**Next decisive test:** reproduce the known 2014 GEB positive control with an authorized edition; then derive a unique, source-fixed mapping from p55's original word boundaries and rune values to the chapter-title/dialogue-exchange/word/letter fields. Do not introduce free modulo, offset, phase, or fitted chapter assignments. If the original artifacts do not select such a mapping, retire the GEB transfer. The public archive contains a plain-text copy of the copyrighted book; do not copy it into `resources/` or redistribute it. Use a licensed/library edition or authorized copy.
+
 ### The 2014 5/7/5 squares: a new source-grounded 43/56/99 selector
 
 The pinned historical archive contains the three squares in 2014/007-fifth-onion/magicsquares.txt. The next-stage 2014 sixth-onion instructions explicitly tell solvers to submit the three squares from previous puzzles; after successful submission, three additional Liber Primus pages were returned. The 2014 seventh-onion archive contains the LP2 material. Thus these are not numbers selected retrospectively from an unrelated source: the solver was required to possess these exact prior-puzzle artifacts before receiving LP2.
