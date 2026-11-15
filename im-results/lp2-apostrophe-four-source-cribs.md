@@ -33,6 +33,23 @@ For ordinary additive GP29 ciphertext `C=P+K mod29`, suffix plaintext **S/D/T** 
 
 All residues are under canonical GP index order, not English-letter-number order. These constraints only apply if the stated additive encryption and ending letter are correct.
 
+## Exact source-contraction obstruction to a single shared affine slope
+
+**Independent all-key gate (Agent18, 15 November 2026).** The same four original apostrophes constrain a broader and simpler cipher family without fitting any unknown key. The solved LP1 \`DON'T\` independently supports an apostrophe-preserving native GP29 English contraction. Suppose, conditionally, all four unknown marked words also preserve their apostrophes and each character **immediately after the mark** is one of the common contraction suffixes **S, D, T**, with GP indices \`[15,23,16]\`. Do **not** assume the four complete words have already been recovered.
+
+Grant an arbitrary nonzero *global* multiplier \`a ∈ GF(29)^×\`, and independent, completely unknown additive offsets \`k2\` and \`k3\` at the suffix positions of the 2+1 and 3+1 words. The candidate word-reset affine encoder is \`C = a P + k_j (mod 29)\`. The offsets cancel when subtracting the two source words of the same morphology; no candidate key, dictionary word, phase or surrounding cipher text has to be fitted:
+
+| Original matched suffixes | Cipher indices | Difference mod29 |
+| --- | --- | ---: |
+| p4 **MXI'W** versus p41 **XLJ'C**, 3+1 suffix at word position 3 | W=7, C=5 | **2** |
+| p21 **AEO'Y** versus p35 **PE'T**, 2+1 suffix at word position 2 | Y=26, T=16 | **10** |
+
+For plaintext suffixes drawn from \`{S,D,T}\`, the complete set of possible **nonzero** pairwise differences is \`D={1,7,8,21,22,28}={±1,±7,±8} (mod 29)\`. Under a shared affine multiplier, there would have to exist \`d3,d2∈D\` with \`2=a·d3\` and \`10=a·d2\`; eliminating \`a\` demands \`d2=5·d3 (mod29)\`. But \`5D={5,6,11,18,23,24}\`, **disjoint from D**. Hence **all 28 possible nonzero shared multipliers fail exactly**, despite letting \`k2\` and \`k3\` be entirely unrelated unknown secret offsets. In particular, an ordinary shared per-word Vigenère/Beaufort shift is excluded under these suffix assumptions. The result is an algebraic necessary-condition failure, not a language-score sweep.
+
+The [exact original-input CommonJS SFT](../sims/lp2_apostrophe_shared_affine_suffix_sft.cjs) reads the unchanged four source offsets and page runes, checks the actual JPEG filename mapping, tests all 28 slopes and an independent affine planted positive, and reproduces the solved LP1 \`DON'T → RWN'B\` key-difference control. It **passed on Windows Node22** ([GitHub Actions 43691839818](https://github.com/FlareZ123/liber-primus/actions/runs/43691839818)).
+
+**Scope:** This does not prove that unknown apostrophe suffixes are S/D/T, establish any one of their plaintext letters, or reject position-varying affine multipliers, page/chapter-specific multipliers, a non-affine or stateful cipher, altered plaintext spelling, or a non-English contraction. Its causal value is to prevent another global-slope word-reset affine search from being mistaken for an untested option and to provide a four-word, original-ink grounded check for a newly motivated inverse.
+
 ## Original-cipher test, independent known decipherment control
 
 The [SFT](../sims/lp2_apostrophe_fourcrib_original_sft.cjs) reproduces all original four words, asserts every page/global offset, tests the known solved p56 first ciphertext **AE** to plaintext **A** using the documented prime-totient shift, then freezes the candidate contraction list. It covers **16 direct phase-zero prime/totient inverse models**: four clocks (continuous LP2 runes, original physical page restart, nine visual-chapter restart, word reset) × two key choices (primes and primes minus one) × two signs. There are **zero exact matches** to any candidate word at any apostrophe site. This is a small *source-constrained* negative; it cannot exclude other keys.
