@@ -183,5 +183,5 @@ console.log(JSON.stringify({
   p32Path, goodLuckPath,
   sharedCheckpoints: {positions: sharedPositions, values: sharedValues, difference: 76, p55Length: 76},
   goodLuckFoldPointer: goodLuckValueWords.slice(6, 8),
-  256StartNull: {startsWithSbThenFold, startsWithDifference76, startsWithBoth}
+  startNull256: {startsWithSbThenFold, startsWithDifference76, startsWithBoth}
 }, null, 2));
