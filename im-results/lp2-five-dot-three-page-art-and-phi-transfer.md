@@ -14,6 +14,14 @@ Original LP2 2400×3600 JPEGs: physical p7, archive 24.jpg (five dots at bottom)
 
 This is direct evidence of repeated source ornamentation. It does **not** identify a cipher, byte order or key. The p23 body still has **1,005 GP29 runes = 201 complete quintets**, but the five dots by themselves are not an independent instruction selecting the p23 five-strand Shamir transfer. See the [original p23 artwork and quintet gate](lp2-p23-26-original-art-source-gate.md).
 
+## 2013 DH(5,23) worked example: original page-number selector is absent
+
+The authenticated [26 January 2013 TCP-server challenge](../resources/external/2013-tcp-server-signed-source.md) does contain a **worked example**, `base=5`, `modulus=23`, server secret 6, server share `5^6 mod23=8`, client share19 and shared result `19^6 mod23=2`. Its actual protocol instructs each *participant server* to select a fresh base and secret for each exchange. The example does not define an LP2 cipher or permanent base/key. A later recorded **modulus 3301** exchange instead used participant base 2757, demonstrating that even the older service did not fix 5 globally.
+
+Direct inspection of the unmodified physical LP2 p23 JPEG (`40.jpg` in the original numbered archive) shows **five black dots above a red heading, but no printed numeral 23, DH symbol, group input, key rule or target plaintext register**. The term *p23* denotes the later research-local zero-based position **within the 58-page LP2 subset**; the original distributed image is named `40.jpg`. Therefore “page 23” is not a printed clue next to those five dots. The same five-dot stencil occurs on **p7 and solved p56**, where neither page index is 23, and the art is geometrically identical up to reflection/rotation as already measured above.
+
+This tests [Director #1151](https://github.com/FlareZ123/liber-primus/issues/1151) at its original-clue gate: **there is no author-selected map from the 2013 DH result 2 or its 22-element group to the 1,005 unchanged p23 GP29 runes**. Adding a 22→29 alphabet map, per-rune exponent/phase, page reset or unrelated cipher would be an investigator choice. The numeric pairing 5 and 23 remains a post-hoc cross-round hypothesis. No complete p23 inverse is specified, so no unconstrained inverse sweep is justified. If a new signed instruction names the group operation, the receiver and the conversion, that independent primary input would reopen the route.
+
 ## Solved-page operation transferred without fitted parameters
 
 The known p56 inverse is GP29 ciphertext minus the consecutive prime totients, with the original literal F at zero-based glyph index **56** retained and excluded from advancement of the prime clock. The SFT independently reproduces all **85 original p56 runes** as the authentic AN END text; the plaintext includes DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE (GP transliteration). Full output IoC = **0.07002801**. Exact forward re-encryption succeeds.
