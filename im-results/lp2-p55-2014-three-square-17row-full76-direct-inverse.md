@@ -40,6 +40,23 @@ The language test scores **only the 59 original within-word adjacent rune pairs*
 
 The two source-fixed decoders score below **all 60,000** matched native word samples by more than 2.56 log units per within-word pair. The source-native 76-symbol positive plant with the same row cycling exactly recovers all words; this tests the full operation at the correct lengths. These source controls are finite English-like prose samples and cannot rule out an intermediate non-English encoding.
 
+## Circumference as a direct square-perimeter key: negative
+
+The 2014 Onion6 final-image transcription supplies the phrase “the I is the voice of the circumference.” A simple LP2 interpretation is to use the three 2014 magic-square circumferences as key material for p55. This is distinct from the square-row and core transforms above.
+
+The clockwise perimeter sequences are:
+
+- 3301 5×5: `[434,1311,312,278,966,1071,626,204]` repeated twice (16 cells; period 8)
+- 1033 7×7: `[7,375,236,190,27,17,181,7,15,16,456,351]` repeated twice (24 cells; period 12)
+- 1033 5×5: `[272,138,341,131,151,18,226,366]` repeated twice (16 cells; period 8)
+
+Two direct consumers were tested against original p55 ciphertext:
+
+1. The two 5×5 circumferences each have 16 values, matching the 16 complete p55 words after the one-rune page carry. Apply one constant Caesar shift per word using the corresponding perimeter value modulo 29. Both signs and clockwise/counterclockwise readings were tested.
+2. Repeat each 16-, 24-, or 16-value circumference as a Vigenère key over the full 76-rune p55 stream; also test the concatenated 56-cell circumference. Both signs and clockwise/counterclockwise readings were tested.
+
+Some variants raise the raw p55 Shakespeare-bigram score from `-6.258` (best perimeter stream: `-5.306`), but every per-word and stream result remains below every 20,000-sample length-matched native-English control (each control minimum is greater than `-3.2`). The outputs are not plaintext. This rejects the direct “circumference values are the p55 key” interpretation; it does not rule out a different source-prescribed use of the squares. Reproduction is included in `sims/lp2_p55_2014_three_squares_17row_full76_sft.cjs`.
+
 ## Completed literal-F-bypass extension
 
 An independently observed Cicada cipher feature was absent from the direct row inverse above: solved LP1 and p56 allow **plaintext F** to pass as ciphertext F without advancing the key clock. To test the strongest literal p55 source-row model fairly, the original 76 runes and 17 printed fragment boundaries remain fixed; for each fragment, *every possible* plaintext-F and ordinary encrypted-non-F history is enumerated without language-fitting. Four finite variants use the authentic historical 17 source rows, either their actual numeric entries mod29 or **Euler φ(entries) mod29**, and the two conventional signs.

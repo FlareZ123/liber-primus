@@ -100,6 +100,65 @@ function bigramScore(data){
 const rawScore=bigramScore(cipher);
 const subScore=bigramScore(decoded.subtract);
 const addScore=bigramScore(decoded.add);
+function perimeter(M, direction) {
+  const n = M.length;
+  const out = [];
+  if (direction === "cw") {
+    for (let j = 0; j < n; j++) out.push(M[0][j]);
+    for (let i = 1; i < n; i++) out.push(M[i][n - 1]);
+    for (let j = n - 2; j >= 0; j--) out.push(M[n - 1][j]);
+    for (let i = n - 2; i >= 1; i--) out.push(M[i][0]);
+  } else {
+    out.push(M[0][0]);
+    for (let i = 1; i < n; i++) out.push(M[i][0]);
+    for (let j = 1; j < n; j++) out.push(M[n - 1][j]);
+    for (let i = n - 2; i >= 0; i--) out.push(M[i][n - 1]);
+    for (let j = n - 2; j >= 1; j--) out.push(M[0][j]);
+  }
+  return out.map(mod);
+}
+function indexOfCoincidence(data) {
+  const flat = data.flat(), freq = Array(29).fill(0);
+  for (const x of flat) freq[x]++;
+  return freq.reduce((s, n) => s + n * (n - 1), 0) / (flat.length * (flat.length - 1));
+}
+const squarePerimeters = squareMatrices.map((M, i) => ({
+  square: i + 1, cw: perimeter(M, "cw"), ccw: perimeter(M, "ccw"),
+}));
+assert.deepEqual(squarePerimeters.map(x => x.cw.length), [16, 24, 16]);
+assert.deepEqual(squarePerimeters.map(x => x.ccw.length), [16, 24, 16]);
+const completeWords = cipher.slice(1);
+const perimeterWordTests = [0, 2].flatMap(squareIndex =>
+  ["cw", "ccw"].flatMap(direction =>
+    [-1, 1].map(sign => {
+      const key = squarePerimeters[squareIndex][direction];
+      const transformed = completeWords.map((word, i) => word.map(v => mod(v + sign * key[i])));
+      const wrapped = [[], ...transformed];
+      assert.deepEqual(transformed.map((word, i) => word.map(v => mod(v - sign * key[i]))), completeWords);
+      return {square: squareIndex + 1, direction, sign, key,
+        bigramScore: bigramScore(wrapped),
+        words: transformed.map(word => word.map(v => c.translit[v]).join(""))};
+    })
+  )
+);
+const streamKeys = [
+  ...squarePerimeters.map(x => ({name: `square-${x.square}`, cw: x.cw, ccw: x.ccw})),
+  {name:"all-56", cw:squarePerimeters.flatMap(x=>x.cw), ccw:squarePerimeters.flatMap(x=>x.ccw)},
+];
+const perimeterStreamTests = streamKeys.flatMap(({name,cw,ccw}) =>
+  ["cw","ccw"].flatMap(direction =>
+    [-1,1].map(sign => {
+      const key=direction==="cw"?cw:ccw; let position=0;
+      const transformed=cipher.map(word=>word.map(v=>mod(v+sign*key[position++%key.length])));
+      let reversePosition=0;
+      const roundTrip=transformed.map(word=>word.map(v=>mod(v-sign*key[reversePosition++%key.length])));
+      assert.deepEqual(roundTrip,cipher);
+      return {name,direction,sign,keyLength:key.length,ioc:indexOfCoincidence(transformed),
+        bigramScore:bigramScore(transformed),
+        text:transformed.map(word=>word.map(v=>c.translit[v]).join("")).join(" ")};
+    })
+  )
+);
 assert.ok(Math.abs(rawScore+6.258208659537937)<1e-8);
 assert.ok(Math.abs(subScore+5.684912750268688)<1e-8);
 assert.ok(Math.abs(addScore+5.983544640047489)<1e-8);
@@ -145,10 +204,12 @@ for(const {name,words:sourceWords} of controls){
 }
 assert.ok(controlResults.every(x=>x.atOrBelowSub===0&&x.atOrBelowAdd===0));
 assert.ok(controlResults.every(x=>x.min>-3.2));
+assert.ok(perimeterWordTests.every(x => controlResults.every(c => x.bigramScore < c.min)));
+assert.ok(perimeterStreamTests.every(x => controlResults.every(c => x.bigramScore < c.min)));
 const transliterate=words=>words.map(word=>word.map(i=>c.translit[i]).join(""))
   .join(" | ");
 console.log(JSON.stringify({
-  classification:"bounded negative: 17 source square rows as direct word-local repeating Vigenere keys",
+  classification:"bounded negative: direct 17-row and square-circumference keys against p55",
   originalShape:wordLengths,
   sourceRowLengths:keyRows.map(r=>r.length),
   originalRuneCount:76,
@@ -157,6 +218,9 @@ console.log(JSON.stringify({
     exactReencryption:"76/76"},
   add:{score:addScore,output:transliterate(decoded.add),
     exactReencryption:"76/76"},
+  squarePerimeters,
+  perimeterWordTests,
+  perimeterStreamTests,
   originalWordLengthMatchedNativeControls:controlResults,
   genuineNativePositive:"76/76 for both signs and every printed word length",
   caveat:"No original text explicitly prescribes repeat-row padding, Vigenere or this row-word pairing; p55 begins with a carried one-rune segment from p54."
