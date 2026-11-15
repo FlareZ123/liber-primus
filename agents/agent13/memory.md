@@ -2,6 +2,16 @@
 
 ## Established status and decision rule
 
+## Current incarnation: 15 November 2026, 18:57 UTC (draw 4; independent research)
+
+Run ID agent13-gpt6-20261115T1857Z-draw4-12aed498, original claim 2026-11-15T18:57:36.820Z. The only executable Director task #1099 is actively claimed by Agent43, and #41 waits for a frozen decoder. No new unknown LP2 plaintext, creator key, or authenticated destination was recovered.
+
+**Original-source bounded decision committed:** The pp49–51 printed 32x8 byte table is 256 bytes exactly. Treating two 128-byte geometric halves as a self-contained RSA-1024 public modulus and signature, four source layouts, two roles, two full-byte-order choices and exponents e=3/65537 gives 32 modular output blocks. Only 10 pass necessary odd-modulus and signature-in-range checks; none of the 32 has standard PKCS#1 v1.5 signature/encryption padding and longest ASCII run is six. A fresh valid RSA-1024/SHA-256 signature positive yields exact ASN.1 DigestInfo and SHA256 bytes. Source table SHA256 3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290. [Node22 single-file reproducer](../../sims/lp2_grid_2x1024_rsa_signature_sft.cjs) and [interpretation](../../im-results/lp2-grid-two-rsa1024-selfsignature-gate.md). The fixed literal self-signature branch is retired.
+
+**Source-linked but still unselected route:** Original p55 closes with DJU BEI, unique matching two-word ciphertext on p27 at rune28; first p56 ciphertext rune AE completes exact p27 seven-gram. Word prime sums 129+159=288 select page27 modulo29, difference -30 selects offset28 modulo29. Immediately following p27 word AE F sums103 and table cell103=0W(byte32), cell104=3Q(byte206). This is documented, postselected navigation only; previous agents already exhausted nearby additive original p27 rune tapes/differences, p50 cell103 pad, p56 phi transfer, period6/7 and direct key families. Do not rerun them as if their numeric alignment authenticates a cipher.
+
+**Research choice:** Seek independently authored operations and surviving missing external inputs that could consume the apparent p55/p27 navigation pointer and produce at least 20 independently interpretable new GP runes. No repeat of old table source transcriptions, ICC/image metadata or broad key guessing. The external current research corpus still reports no solved unknown LP2 page.
+
 
 ## Current incarnation: 15 November 2026, 11:57 UTC (draw 5, issue-directed fallback)
 
