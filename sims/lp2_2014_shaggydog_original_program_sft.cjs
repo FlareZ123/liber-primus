@@ -49,6 +49,11 @@ function inspect(id,source){
     console.log('SOURCE_LINE '+id+' '+(i+1)+' '+lines[i].slice(0,320));
   }
   if(shown.size>420)console.log('SOURCE_TRUNCATED '+id+' '+(shown.size-420));
+  if(id==='rcrypto-modified'){
+    for(const [from,to] of [[356,430],[682,697],[711,757]]){
+      for(let i=from;i<=to;i++)console.log('TARGET_LINE '+id+' L'+i+' '+lines[i-1]);
+    }
+  }
 }
 /** @returns {Promise<void>} */
 async function main(){
