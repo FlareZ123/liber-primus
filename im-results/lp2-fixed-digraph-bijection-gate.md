@@ -53,6 +53,24 @@ For each bypass set, remove all its occurrences from each source segment, then p
 | Each physical rune page | **0 / 23,751** | **39** | 6,14,15,25 | 5,510 |
 | Each printed word | **0 / 23,751** | **25** | 7,9,10,25 | 4,773 |
 
+### Allowing independent four-bypass keys in each visual chapter
+
+A still more generous variant chooses **a different, arbitrary four-rune transparent set independently for each of the nine visible chapters**. It may use the core 5×5 square with any secret alphabet in each chapter; again each complete output pair must have distinct runes. The original source has no chapter-specific four-exception instruction, but this experiment closes the easy conjecture that the fixed-four restriction created the exclusion. Exhaust all 23,751 four-subsets separately on each chapter; retain the exact original 729/1145/1729/1903/1021/1433/1680/3008/308 rune boundaries. Grant unpaired tails at each chapter boundary. As a further concession, test a separate clock that also **resets core pairing at every printed word**, splitting the few printed words that cross chapter boundaries.
+
+| Visual chapter (0-based) | Original runes | Minimum equal pairs, chapter-continuous | Bypass sets achieving zero | Minimum equal pairs, word reset | Bypass sets achieving zero |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 0 | 729 | 0 | 663 | 0 | 5,977 |
+| 1 | 1,145 | 0 | 66 | 0 | 227 |
+| 2 | 1,729 | 0 | 4 | 0 | 201 |
+| **3** | **1,903** | **1** | **0** | **1** | **0** |
+| 4 | 1,021 | 0 | 1 | 0 | 6 |
+| **5** | **1,433** | 0 | 1 | **1** | **0** |
+| **6** | **1,680** | **1** | **0** | **1** | **0** |
+| **7** | **3,008** | **4** | **0** | **3** | **0** |
+| 8 | 308 | 0 | 2,200 | 0 | 13,806 |
+
+Therefore even independently rekeying all four bypass identities **once per chapter** leaves at least **six** forbidden pairs under chapter-continuous pairing, or at least **six** under word-reset pairing. No globally valid nine-chapter collection of four-bypass keys exists under either clock. This conclusion holds independently of the keyed 25! alphabet permutations and any target plaintext. It deliberately does **not** cover a new four-symbol exception set at every *physical page* or every word, individually adjusted pairing phase per fragment, or arbitrary editing/escape rules. An independent per-physical-page exhaustive diagnostic found at least one four-bypass set with zero equal core pairs on **each of all 55 rune-bearing pages** under page-continuous pairing, so a page-local variant survives this specific obstruction. Those pagewise sets were selected retrospectively and supply no cipher instruction or plaintext.
+
 The best-case bypass subsets vary by reset and are retrospective minimizers. All four scopes fail without needing a language model, a guessed key square, a phase change, or a candidate plaintext. This explicitly strengthens the earlier no-bypass pair-phase gate and is independent of the Bifid25 all-key test, which uses a different digraph mapping. The original separate verified 2014 5×5 number square is **not** itself a 25-distinct-rune alphabet permutation.
 
 **Limits:** The exclusion requires standard filler-preprocessed Playfair, a fixed transparent 4-rune set, unedited source ciphertext and one of the four reset policies. Other 29-rune adaptations, dynamic bypass choices, arbitrary inserted/deleted symbols, per-word arbitrary phase changes, variable-length escape channels and other polygraphic ciphers are outside this result. A 5×5 square clue by itself does not establish any decipherment.

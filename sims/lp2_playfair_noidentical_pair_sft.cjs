@@ -154,6 +154,71 @@ assert.deepEqual(Object.fromEntries(Object.entries(fourBypass)
    page:[6,14,15,25],word:[7,9,10,25]});
 assert(Object.values(fourBypass).every(x => x.passing === 0));
 
+// Grant four independently selected exception symbols per *visual chapter*.
+// Unlike the earlier fixed four-symbol key, this gives 9 × 4 freely
+// selected bypass identities while preserving each chapter's paired
+// ciphertext core. One invalid chapter defeats the whole proposed model.
+const bounds = [0];
+for (const length of chapterLengths) bounds.push(bounds.at(-1) + length);
+const chapterWords = Array.from({length: 9}, () => []);
+let globalOffset = 0;
+for (const sourceWord of words) {
+  let localOffset = 0;
+  while (localOffset < sourceWord.length) {
+    const offset = globalOffset + localOffset;
+    const group = bounds.findIndex((start, index) =>
+      index < 9 && offset >= start && offset < bounds[index + 1]);
+    assert(group >= 0);
+    const segmentLength = Math.min(
+      sourceWord.length - localOffset, bounds[group + 1] - offset);
+    chapterWords[group].push(sourceWord.slice(
+      localOffset, localOffset + segmentLength));
+    localOffset += segmentLength;
+  }
+  globalOffset += sourceWord.length;
+}
+assert.equal(globalOffset, flat.length);
+assert.deepEqual(chapterWords.map(ch => ch.flat().length), chapterLengths);
+const movingBypass = chapterLengths.map((length, chapter) => ({
+  chapter, length, minChapterPairs: Infinity, minWordPairs: Infinity,
+  compatibleChapterSets: 0, compatibleWordSets: 0,
+  bestChapterFour: [], bestWordFour: []
+}));
+for (let a = 0; a < 26; a++)
+  for (let b = a + 1; b < 27; b++)
+    for (let c = b + 1; c < 28; c++)
+      for (let d = c + 1; d < 29; d++) {
+        const mask = (1 << a) | (1 << b) | (1 << c) | (1 << d);
+        for (let chapter = 0; chapter < 9; chapter++) {
+          const item = movingBypass[chapter];
+          const unbroken = playfair25Violations([visualChapters[chapter]], mask)
+            .violations;
+          const wordReset = playfair25Violations(chapterWords[chapter], mask)
+            .violations;
+          if (unbroken < item.minChapterPairs) {
+            item.minChapterPairs = unbroken;
+            item.bestChapterFour = [a, b, c, d];
+          }
+          if (wordReset < item.minWordPairs) {
+            item.minWordPairs = wordReset;
+            item.bestWordFour = [a, b, c, d];
+          }
+          if (unbroken === 0) item.compatibleChapterSets++;
+          if (wordReset === 0) item.compatibleWordSets++;
+        }
+      }
+assert.deepEqual(movingBypass.map(x => x.minChapterPairs),
+  [0, 0, 0, 1, 0, 0, 1, 4, 0]);
+assert.deepEqual(movingBypass.map(x => x.compatibleChapterSets),
+  [663, 66, 4, 0, 1, 1, 0, 0, 2200]);
+assert.deepEqual(movingBypass.map(x => x.minWordPairs),
+  [0, 0, 0, 1, 0, 1, 1, 3, 0]);
+assert.deepEqual(movingBypass.map(x => x.compatibleWordSets),
+  [5977, 227, 201, 0, 6, 0, 0, 0, 13806]);
+assert(movingBypass.some(x => x.minChapterPairs > 0));
+assert(movingBypass.some(x => x.minWordPairs > 0));
+
+
 console.log(JSON.stringify({
   source: 'original LP2 physical p0..p55; p50 is runeless',
   runes: flat.length,
@@ -165,5 +230,6 @@ console.log(JSON.stringify({
   forcedViolationsAllowingIndependentPagePhases: compulsoryPageViolations,
   violationsIfEveryPrintedWordResetEvenOrOdd: [wordReset[1], wordReset[0]],
   fourTransparentBypass: {tested: bypassSetsTested, scopes: fourBypass},
+  fourBypassIndependentlyRekeyedPerVisualChapter: movingBypass,
   control: 'all distinct input digraphs on 5x5 and 7x7 standard Playfair maps pass'
 }, null, 2));
