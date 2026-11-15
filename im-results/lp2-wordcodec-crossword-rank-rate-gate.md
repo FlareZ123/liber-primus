@@ -22,6 +22,23 @@ Consequently, **a purely word-reset codec cannot plausibly be the sought origina
 
 A narrower source-only state check strengthens the implementation requirement. Among **82** one-rune words with a preceding word on the same physical page, group each single-rune ciphertext by the immediately preceding ciphertext rune. The 82 observations occupy **28** predecessor contexts; **16** contexts contain more than two different singleton outputs and **9** contain more than three, with a maximum of **six**. Any deterministic emitter whose entire boundary state is the last ciphertext rune needs at least six different plaintext singleton possibilities in one such context. This is conditional on intact printed breaks and a full state limited to that predecessor rune. Agent30's [stronger all-secret whole-book one-back frequency exclusion](lp2-previouscipher-rowperm-allsecret-frequency-gate.md) already rules out its corresponding book-static row-bijective family on normal GP-English frequency grounds. Do not duplicate that older key-family sweep.
 
+## An exact output-capacity bound for a universal anti-repeat encoder
+
+A **new unconditional combinatorial calculation under a clearly conditional encoder premise** fixes the side-channel size. On a 29-symbol alphabet, the equality indicator at each adjacent pair is an independent Bernoulli event of probability 1/29 when the underlying rune string ranges uniformly over all possible strings. This follows by choosing the first rune on each page freely and then choosing each successor as either its single equal option or one of 28 unequal options. The printed word/page boundaries are treated as fixed public data, so they do not themselves communicate independent bits.
+
+The original 55 rune-bearing pages have exactly **10,028 same-page within-word opportunities, with 63 equal pairs**, plus **2,873 same-page cross-word opportunities, with 23 equal pairs**. Suppose a *universal* lossless GP29 encoder of the same fixed rune length and same fixed word breaks were required to emit at most those counts in **both** strata for **every** possible plaintext. The proportion of all possible same-length GP29 outputs satisfying that restriction is the product of exact binomial lower tails:
+  
+\[
+q=\Pr\{\operatorname{Bin}(10028,1/29)\le63\}\,
+  \Pr\{\operatorname{Bin}(2873,1/29)\le23\}.
+\]
+
+A reproducible log-domain calculation gives separate capacity deficits **263.15832404** and **66.00189416** bits, totaling **329.16021820 bits**. To inject all `29^12956` arbitrary plaintexts into this restricted output set would require at least **330 independent extra side-information bits**, or at least **68 additional GP29 symbols** of output capacity, even ignoring the further constraints of their own adjacency positions. Pooling the 86 repeats instead of preserving their within/cross classification yields the weaker **325.45025418-bit** bound. A universally **zero-repeat** fixed-break scheme would need **653.12696868 bits** of additional capacity at this length.
+
+This is a cardinality theorem, **not** a conclusion that Cicada necessarily used a 330-bit escape tape. The only known output is one historically fixed LP2 ciphertext. A bijection on all GP29 strings can output one such rare string while allowing many repeats on other inputs. English prose also occupies a restricted subset of all GP29 strings, allowing a source model to exploit redundancy. Consequently, the calculation tests the storage budget of any proposed encoder claiming a *guaranteed* repeat cap on **arbitrary** GP29 input, and exposes the missing state/escape budget in such a proposal. The original displayed punctuation is externally given here; attributing 330 hidden bits to its positions would require a separate author-supplied interpretation.
+
+[Source-aware exact-binomial CommonJS SFT](../sims/lp2_wordcodec_doublet_channel_capacity_sft.cjs) · [passing original-source Windows Node22 run 43768598782](https://github.com/FlareZ123/liber-primus/actions/runs/43768598782).
+
 ## One fixed, fully reversible cross-word rank transport
 
 A deliberately narrow, **length-preserving 29-symbol finite-state rank codec** tests whether an English-conditioned low-probability rune escape could explain the output repeat budget. It is a fixed-radix entropy-rank **surrogate**, not a variable-rate rANS compressor and not an operation authenticated by Cicada. The entire choice was frozen before observing the candidate plaintext:
