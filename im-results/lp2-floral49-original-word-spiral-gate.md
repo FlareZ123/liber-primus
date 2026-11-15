@@ -47,10 +47,34 @@ The inverse reading's **−0.039956660** is still **worse** than the independent
 
 An explicit exploratory **location-sensitivity check** also reveals instability: inverse MI on the first **343 words = 7 blocks** gives a within-subset shuffle upper-tail near **0.533**, while the last **392 words = 8 blocks** gives about **0.045**. Both samples are much smaller and the cut was inspected after the full effect, so the second tail cannot be upgraded to an independent discovery. With the legitimate chapter boundary cutting through a block, the previously attractive length-MI signal is insufficient to guide a decoder.
 
+## Exact all-secret 7×7 value-class obstruction
+
+The historical 7×7 square is **centrosymmetric** and has only **24 distinct integer values** among 49 cells. A much more generous cipher family gives each numeric value an *arbitrary secret 29-symbol bijection*, applying its alphabet to every rune of the corresponding whole word. Each occurrence of the same printed numeric value must preserve **all equality relationships** between its plaintext runes, regardless of which of the 29! alphabets was chosen. No GP key needs to be guessed for this test.
+
+Two sharing scopes cover the apparent source-based consumer:
+
+1. **Book-shared:** one arbitrary 29! substitution for each of 24 distinct square values, reused across all fifteen aligned 49-word blocks. Exact original equal-rune pairs are **16,308 / 479,830 eligible ordered rune pairs = 0.0339870371**.
+2. **Fresh block keys:** entirely new independent alphabets for each of the 24 values in **each** of fifteen 49-word blocks, allowing 360 arbitrary complete 29-symbol bijections. Original within-group equal-rune pairs are **958 / 32,490 = 0.0294859957**.
+
+The equal-pair counts are mathematically invariant under every secret key in the declared models. The all-original SFT also checks the invariance on an independently GP-English planted passage, under actual source-number shifts with and without a fresh secret per-block rotation.
+
+For an original-word-length-exact positive-control comparison, draw one authentic GP-transcribed English word independently for each of the **735 original length slots**, with source-native historical ligatures (`ING` as `NG`, and `IO` as `IA`). Perform **400 source-length-matched draws each** from three pinned English literary corpora, using one frozen PRNG seed, and measure the same source-indexed 24-value groups. No native words are chosen to fit the manuscript's glyphs. Results from 1,200 complete matched-register controls:
+
+| GP-native source | Book-shared class collision rate, lowest / mean | Per-49-block fresh-key class collision rate, lowest / mean | Trials at or below original, either scope |
+| --- | ---: | ---: | ---: |
+| Gibran, 400 | 0.056157 / 0.059140 | 0.046784 / 0.051053 | **0/400** |
+| Emerson, 400 | 0.057383 / 0.060214 | 0.047091 / 0.052308 | **0/400** |
+| Shakespeare, 400 | 0.057095 / 0.059397 | 0.046845 / 0.052106 | **0/400** |
+| **Unchanged LP2 floral ciphertext** | **0.033987** | **0.029486** | |
+
+This is a **key-independent original-cipher incompatibility** for the specified native-English, preserved-word-boundary family. Granting separate completely secret bijections **every block**, while preserving only the source square's repeated-value equality constraints, still cannot reconcile the original coincidence deficit with any of the 1,200 matched controls. It does not prove English impossible under a changing-within-word alphabet, a changed plaintext register, ciphertext-dependent word breaks, or an arbitrary one-time pad. The source never explicitly instructs using the 2014 numbers as 2014 LP2 word-wise substitution classes.
+
+The exact finite equality counts, independent class-wise arbitrary-substitution positive, all three control minima, and the earlier word-spiral results passed together in [successful Node22 original-input workflow **43727409503**](https://github.com/FlareZ123/liber-primus/actions/runs/43727409503).
+
 ## Decision and reuse
 
-**Retire the exact direct square-number word shifts and center-out spiral word permutation as LP2 plaintext recovery routes.** The numerical `735=15×49` may remain a noteworthy cross-source alignment, but its causal hypothesis fails the genuine p54 text-boundary check and the independent language decoder-gate. Do not expand this into arbitrary square orientations, fitted phases, unrelated source texts, additional hand-tuned numeric parameters or a high-entropy key hunt without a first-party instruction selecting the recipient, operation and word count.
+**Retire the exact direct square-number word shifts, center-out spiral word permutation, and every value-class GP29 bijection shared by a 49-word block or the entire floral section as source-native-English LP2 plaintext recovery routes.** The numerical `735=15×49` may remain a noteworthy cross-source alignment, but its causal hypothesis fails the genuine p54 text-boundary check and the independent language decoder-gate. Do not expand this into arbitrary square orientations, fitted phases, unrelated source texts, additional hand-tuned numeric parameters or a high-entropy key hunt without a first-party instruction selecting the recipient, operation and word count.
 
 A materially useful reopening requires a dated Cicada-author instruction naming the **7×7 square** as an LP2 *word*-register tool, or an independently authenticated plaintext/known-key prediction that a frozen 49-word consumer reproduces on untouched original ciphertext. This report is a scoped bounded negative; [`results/README.md`](../results/README.md) continues to correctly record **all 56 unknown pages unsolved**.
 
-**Reproduce:** `sims/lp2_floral49_magic_square_word_spiral_sft.cjs` runs as a read-only Node.js 22 program with no third-party dependencies; all original source assertions, deterministic shuffles and independent corpus scores passed in [GitHub Actions original-source run **43725992194**](https://github.com/FlareZ123/liber-primus/actions/runs/43725992194). The finite previously sampled first7/last8 sensitivity results were evaluated separately under the same clipping and original parser and do not change the decision.
+**Reproduce:** `sims/lp2_floral49_magic_square_word_spiral_sft.cjs` runs as a read-only Node.js 22 program with no third-party dependencies; all original source assertions, deterministic shuffles and independent corpus scores passed in [GitHub Actions original-source run **43727409503**](https://github.com/FlareZ123/liber-primus/actions/runs/43727409503). The finite previously sampled first7/last8 sensitivity results were evaluated separately under the same clipping and original parser and do not change the decision.
