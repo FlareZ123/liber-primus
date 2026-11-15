@@ -227,7 +227,7 @@ def main() -> None:
 
     # Source-fixed key: phi(p_j)=p_j-1, j starts with prime 2; DIVINITY
     # uses the GP alias V=U, so its rune spelling is DIUINITY.
-    translit = corpus_translit = json.loads(
+    translit = json.loads(
         (ROOT / "resources" / "liber-primus" / "lp2-corpus.json").read_text(encoding="utf-8")
     )["translit"]
     single = {letter: i for i, letter in enumerate(translit) if len(letter) == 1}
@@ -289,6 +289,7 @@ def main() -> None:
             "null_model": "one uniform keyless null at an interior position of a word; invisible to anti-repeat and language model",
             "collision_channels": ["hold", "spend"],
             "signs_tested": [1, -1],
+            "literal_F_skip": false,
             "threshold_T300": T300,
         },
         "source_results": source_results,
