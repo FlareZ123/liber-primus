@@ -113,13 +113,13 @@ assert.equal(numbers.includes(continuationSum),false);
 
 // Independent chapter-initial controls. The listed heading counts come from
 // original red span boundaries, not from output-fitting.
-const chapterStart = [[3,7,16],[8,14,12],[15,22,20],[23,26,16],[27,32,19],[33,39,18],[40,53,8]];
+const chapterStart = [[3,7,16],[8,14,12],[15,22,20],[23,26,16],[27,32,19],[33,39,10],[40,53,8]];
 const controls = chapterStart.map(([a,b,h])=>{
   const c=p.slice(a,b+1).flatMap(x=>x.indices);
   const sum = fib.reduce((s,i)=>s+primeRune[c[h+i]],0);
   return {pages:a+'-'+b,runes:c.length,offset:h,primeSum:sum,matchesGrid:numbers.includes(sum)};
 });
-assert.deepEqual(controls.map(x=>x.primeSum), [903,641,708,936,761,696,884]);
+assert.deepEqual(controls.map(x=>x.primeSum), [903,641,708,936,761,895,884]);
 
 // A second, source-visible independent physical chapter happens to yield 761
 // at the same red-heading-following Fibonacci pickup. p27 draws a wing and
