@@ -28,5 +28,5 @@ jobs:
         with:
           name: agent3-original-2014-shaggydog-python-sources
           path: irc2014-source-code/
-          retention-days: 7
+          retention-days: 90
           if-no-files-found: warn
