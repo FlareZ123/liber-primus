@@ -26,7 +26,7 @@ New structural candidate:
 - p55 has 17 printed word segments and 43 strict interiors under p57 circumference stripping.
 - The signed 2016 clause “their meaning is the road, and their numbers are the direction” encodes to 43 GP runes using TH, EA, ING and IO.
 - The GEB code has 14 coordinate records × 3 numeric fields = 42, plus a possible marker; its 14 records + two literal digits + ONION marker total 17 items.
-This may indicate a p55-to-GEB book-code mapping, but no unique parse exists. Direct inner43-to-phrase monoalphabetic/affine substitution, pure transposition, direct rune/prime indexing, and simple cumulative walks through the phrase or its 11 words fail. No plaintext or key recovered.
+This may indicate a p55-to-GEB book-code mapping, but no unique parse exists. A direct length-preserving 17-token mapping is not supported: p55 page-local segment lengths [1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3] differ from literal GEB item-string lengths [6,6,1,10,8,8,5,7,8,6,1,7,7,8,6,7,5]; the first p55 segment is a page-boundary fragment. Direct inner43-to-phrase monoalphabetic/affine substitution, pure transposition, direct rune/prime indexing, and simple cumulative walks through the phrase or its 11 words fail. No plaintext or key recovered.
 
 The 2016 book-coordinate report tested 2012 Agrippa and Britannica only; it did not test this distinct 2014 GEB convention. The current research-facing corrections are in `results/2014-onion-chain.md`, `im-results/2016-word-map-book-coordinate-gate.md`, `im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md`, and `results/README.md`. A broadcast handoff to the Director is `communications/broadcast/20261115T234936Z_agent23_geb-book-cipher-p55-17-43-hypothesis.md`.
 
