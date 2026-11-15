@@ -1,6 +1,6 @@
 # LP2 no-repeat escape-channel capacity: source-visible carrier audit
 
-**Status:** bounded decision; no capacity contradiction, but no source-selected reversible boundary decoder.
+**Status:** boundary capacity is sufficient, and one complete natural rank codec is now tested against original runes and separators. Its source readout is unreadable; a common five-repeat version is impossible on eight pages. No source-selected historical boundary decoder or recovered unknown plaintext.
 
 ## Finding
 
@@ -36,6 +36,28 @@ M=29\cdot29^{86}\cdot28^{12,815}
 members: one free initial symbol, 29 choices at each of 86 fixed exception sites, and 28 choices at every ordinary transition. The quotient \(q=\lfloor X/M\rfloor\) is the side channel; the remainder is mixed-radix-unranked into the ciphertext. The decoder reverses the rank and reconstructs \(X=qM+r\). The minimum side-channel size is **649 bits**, matching the **648.770-bit** information deficit to integer rounding.
 
 The reproducer runs this construction on a deterministic 12,902-symbol synthetic GP29 input, verifies exact round-trip, and verifies that every ordinary transition excludes its predecessor. This is a tight positive control for the stated capacity bound, **not** a proposed LP2 cipher or recovered plaintext.
+
+
+## Exact boundary-assisted original-input codec (15 November 2026, Agent 1)
+
+**Decision:** a fully executable, lossless GP29 anti-repeat serializer can use the **observed printed word breaks** to carry the information missing from a 28-choice successor stream. Its literal natural BASE29/combinadic readout on all 55 original pages has GP29 coincidence **0.03444723816** and no intelligible unknown-page plaintext. A stronger *single common five-repeat bound per page* fails outright on **eight original physical pages (10, 22, 30, 36, 39, 51, 53, 54)** because the original source decodes to a number outside the allowed base29 message space. The source supplies no instruction selecting either rank convention, a repeat quota, or how printable spaces should carry code digits. Thus this establishes an implemented alternative to a capacity impossibility claim and a decisive negative for one simple frozen grammar, **without identifying the historical cipher**.
+
+**Exact, deterministic mapping.** Let a physical page contain \(n\) original GP29 runes, \(B\) original printed separator gaps and a chosen maximum \(k\) for allowed adjacent repetitions. At each page start the first output rune has 29 possibilities. Subsequent transitions are ordered as *repeat the previous rune*, followed by the 28 nonzero cyclic GP29 steps. Let \(f(t,k)=28f(t-1,k)+f(t-1,k-1)\), \(f(0,k)=1\), and \(f(t,-1)=0\). The number of allowed ciphertext pages is \(M=29f(n-1,k)\). Lexicographically rank this constrained stream as \(R\), \(0\le R<M\). The current original printed break positions \(g_1<\cdots<g_B\), zero-based in the \(n-1\) gaps, have an exact combinadic rank \(H=\sum_{i=1}^B \binom{g_i}{i}\), \(0\le H<\binom{n-1}{B}\). Define \(T=29^n\), \(Q=\lceil T/M\rceil\), \(q=H\bmod Q\), \(s=\lfloor H/Q\rfloor\). The candidate plaintext is precisely the **n-digit GP29 representation of \(X=qM+R\)** if \(X<T\). Otherwise, this page is impossible under the frozen grammar.
+
+The encoder maps any n-rune plaintext \(X<T\) to \(q=\lfloor X/M\rfloor\) and \(R=X\bmod M\), reconstructs the constrained ciphertext from \(R\), and places its \(B\) typographic boundaries by unranking \(H=sQ+q\) with the explicitly preserved layout salt \(s\). The salt is additional, freely settable state; the encoder verifies that \(H<\binom{n-1}{B}\). Full original-cipher **rune and separator-mask** reencryption is a correctness invariant, not evidence for a historical key. This natural code goes beyond the earlier capacity-only calculation by actually assigning a complete reversible map and applying it to the original artifact.
+
+Two *declared* original-input decisions share this same mapping, without a key, phase, alphabet-order or language-score sweep:
+
+| Constraint | Original original-page result | Native GP plaintext plant |
+| --- | --- | --- |
+| Allow exactly each page's **observed** repeat count as its upper bound \(k_p\) (explicit **post-selected** information) | **55/55** originals decode and reencode their exact runes and printed boundary positions; aggregate output IoC **0.03444723816**; no readable prose on p0–2, p23, p36 or p54–55 | Source-clear p57 GP indices cyclically fill every original page, producing all **12,956/12,956** recovered GP tokens. All 55 original layout salts are retained; only **144 of 2,873** separator positions move relative to the original layout. Plant IoC **0.07171027695** |
+| Impose one shared upper bound **\(k=5\)** per page (five-dot motif is a conjectural motivation, not an authenticated operator) | **47/55** original pages are numerically representable; **eight listed pages** give \(X\ge29^n\) and are impossible without repairing the literal rule. The 47 eligible pages have aggregate GP IoC **0.03446130479** | A direct fixed-five plant may round-trip where its separately selected layout rank permits it, but is irrelevant because eight unchanged originals fail a necessary condition |
+
+The exact original p54 \(k=5\) bound has \(Q=6\) and \(q=5\), overshooting \(T=29^{232}\) by about **11.03%**; p55 happens to pass with \(Q=2\), \(q=0\). The page-specific \(k_p\) construction only works because it uses the ciphertext's observed repeat count to select each codebook. That is a **retrospective parameter choice**, not information a 2014 solver was instructed to use. Its uniformly distributed recovered GP29 is a negative readout for this precise natural keyless rank.
+
+The manuscript's visible separators have more than enough combinatorial possibilities for a lossless codec, which is why no general absence-of-channel theorem follows. Any stronger candidate must supply an **independent original-source instruction** for a specific boundary-order rule, a recipient and page/reset clock, and the encoder's repeat allowance and layout salt. Arbitrarily changing combinadic direction or tuning \(k\) after seeing plaintext would merely replace one unselected codec with another.
+
+[Exact standalone CommonJS/JSDoc reproducer](../sims/lp2_no_repeat_boundary_enumerative_sft.cjs) checks the canonical original rune corpus against printed separator positions, all 55 original inverses and forward reconstructions, 55 full-length p57-native positive plants, and the eight fixed-five impossibilities. The SFT does not claim cryptographic authenticity from synthetic recoveries.
 
 ## Source-visible channel capacity
 
