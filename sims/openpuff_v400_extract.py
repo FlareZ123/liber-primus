@@ -176,13 +176,13 @@ def disable_optional_passwords(window):
     return states
 
 
-def add_carrier(app, window, carrier, out_dir):
+def add_carrier(app, window, carrier, out_dir, stage="carrier"):
     previous_title = safe(window.window_text) or ""
     window.child_window(control_id=1046, class_name="Button").click_input()
     time.sleep(2)
     # The common file picker may be owned outside OpenPuff's process. Inspect
     # all desktop windows rather than assuming app.top_window() is the dialog.
-    snapshot_desktop(out_dir, "carrier-dialog")
+    snapshot_desktop(out_dir, f"{stage}-dialog")
     desktop = Desktop(backend="win32")
     candidates = []
     for candidate in desktop.windows():
@@ -235,14 +235,37 @@ def add_carrier(app, window, carrier, out_dir):
         if not pending:
             break
         if time.monotonic() > deadline:
-            snapshot_desktop(out_dir, "carrier-parse-timeout")
+            snapshot_desktop(out_dir, f"{stage}-parse-timeout")
             raise RuntimeError("Historical carrier parsing modal exceeded 300 seconds")
         time.sleep(1)
     time.sleep(0.5)
-    snapshot_desktop(out_dir, "carrier-after-selection")
-    snapshot(app, out_dir, "carrier-after-selection-app")
+    snapshot_desktop(out_dir, f"{stage}-after-selection")
+    snapshot(app, out_dir, f"{stage}-after-selection-app")
     return app.top_window()
 
+
+
+def verify_carrier_chain(window, carriers):
+    """Read the real OpenPuff ordered native list before clicking Unhide.
+
+    A 58-file loop with a silently dropped/auto-reordered item is
+    inconclusive. Never classify its lack of output as a negative.
+    """
+    expected = [item.name.lower() for item in carriers]
+    for control in window.descendants():
+        if safe(control.class_name) != "SysListView32":
+            continue
+        count = safe(control.item_count)
+        if count != len(expected):
+            continue
+        labels = [control.get_item(index).text() for index in range(count)]
+        observed = [Path(text.strip()).name.lower() for text in labels]
+        if observed == expected:
+            return labels
+    raise RuntimeError(
+        f"OpenPuff native carrier chain did not verify {len(expected)} "
+        f"files in the submitted order; original window evidence retained"
+    )
 
 def save_dialog_if_present(app, output_path, output_dir):
     handled = False
@@ -422,7 +445,8 @@ def main():
         description="Run a source-native OpenPuff v4.00 extraction with verified UI settings."
     )
     parser.add_argument("--exe", required=True)
-    parser.add_argument("--carrier", required=True)
+    parser.add_argument("--carrier", required=True, action="append",
+                        help="Repeat once per carrier in exact chain order")
     parser.add_argument("--password", required=True)
     parser.add_argument("--bit-format", required=True)
     parser.add_argument("--bit-level", required=True)
@@ -434,7 +458,8 @@ def main():
     args = parser.parse_args()
 
     exe = Path(args.exe).resolve()
-    carrier = Path(args.carrier).resolve()
+    carriers = [Path(value).resolve() for value in args.carrier]
+    carrier = carriers[0]
     out_dir = Path(args.out).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
     output_name = Path(args.output_name).name
@@ -449,14 +474,16 @@ def main():
         previous.unlink()
     if not exe.is_file():
         raise FileNotFoundError(exe)
-    if not carrier.is_file():
-        raise FileNotFoundError(carrier)
+    for carrier_path in carriers:
+        if not carrier_path.is_file():
+            raise FileNotFoundError(carrier_path)
 
     write_json_atomic(out_dir / "input.json", {
         "exe": str(exe),
         "exe_size_bytes": exe.stat().st_size,
         "carrier": str(carrier),
         "carrier_facts": file_facts(carrier),
+        "carrier_chain": [file_facts(item) for item in carriers],
         "password_A": args.password,
         "password_B_enabled": False,
         "password_C_enabled": False,
@@ -471,6 +498,9 @@ def main():
         "attempted": False,
         "carrier": str(carrier),
         "carrier_basename": carrier.name,
+        "carrier_chain_order": [item.name for item in carriers],
+        "carrier_chain_verified": False,
+        "carrier_count": len(carriers),
         "carrier_added": False,
         "password_A": args.password,
         "password_BC_states": None,
@@ -513,10 +543,15 @@ def main():
         if "too short" in password_status.lower():
             raise RuntimeError(f"OpenPuff rejected password length: {password_status}")
 
-        window = add_carrier(app, window, carrier, out_dir)
-        if "Data Unhiding" not in (safe(window.window_text) or ""):
-            window = app.window(title_re=".*Data Unhiding.*")
-            window.wait("visible", timeout=5)
+        for index, item in enumerate(carriers):
+            window = add_carrier(app, window, item, out_dir,
+                                 f"carrier-{index:02d}")
+            if "Data Unhiding" not in (safe(window.window_text) or ""):
+                window = app.window(title_re=".*Data Unhiding.*")
+                window.wait("visible", timeout=5)
+        if len(carriers) > 1:
+            result["carrier_chain_native"] = verify_carrier_chain(window, carriers)
+            result["carrier_chain_verified"] = True
         selected_bytes = window.child_window(
             control_id=1048, class_name="Static"
         ).window_text()
