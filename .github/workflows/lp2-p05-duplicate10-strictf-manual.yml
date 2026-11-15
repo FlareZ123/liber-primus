@@ -1,0 +1,16 @@
+name: LP1 p05 duplicate ten source-key original strict-F gate
+on:
+  workflow_dispatch:
+jobs:
+  original-input:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: All p56-style literal F paths over original LP2 table sentences
+        run: node sims/lp2_p05_duplicate10_p49_strictf_original_sft.cjs
