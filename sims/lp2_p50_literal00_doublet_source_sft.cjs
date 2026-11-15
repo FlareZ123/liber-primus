@@ -29,6 +29,8 @@ const phaseCount = new Uint16Array(256);
 const phaseExposure = new Uint16Array(256);
 const pages = [];
 const actualPhaseEvents = [];
+const literal00Readout = [];
+const rim192Readout = [];
 let pointer = 0;
 let allEvents = 0;
 let allPairs = 0;
@@ -56,6 +58,8 @@ for (const page of corpus.pages.filter(p => p.page <= 55)) {
       events++;
       allEvents++;
       literalZeroEvents += Number(token === '00');
+      if (token === '00') literal00Readout.push(corpus.translit[page.indices[i]]);
+      if (phase === 192) rim192Readout.push(corpus.translit[page.indices[i]]);
       leadingZeroEvents += Number(token[0] === '0');
     }
   }
@@ -72,6 +76,8 @@ assert.equal(leadingZeroPairs, 3025);
 assert.equal(leadingZeroEvents, 33);
 assert.equal(phaseCount[192], 4);
 assert.equal(phaseCount[229], 1);
+assert.equal(literal00Readout.join(''), 'YOUAX');
+assert.equal(rim192Readout.join(''), 'YOUA');
 assert.equal(types.length, 161);
 
 // The same event-to-table linkage is tested with all 256 cyclic phases.
@@ -149,6 +155,8 @@ console.log(JSON.stringify({
     events: original[zeroId],
     eventsAt192: phaseCount[192],
     eventsAt229: phaseCount[229],
+    allOriginalRepeatedGlyphsInEventOrder: literal00Readout.join(''),
+    firstCellRim192OnlyReadout: rim192Readout.join(''),
     expectedUnderPageMatchedNull: expectation[zeroId],
     nullStd: Math.sqrt(variance[zeroId]),
     z: realZ,
