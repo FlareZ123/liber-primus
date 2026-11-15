@@ -16,9 +16,9 @@ The canonical original-index dataset [`resources/liber-primus/lp2-corpus.json`](
 | --- | ---: |
 | Observed equality rate | **86/12,901 = 0.00666614991** |
 | Independent uniform GP29 expectation | **12,901/29 = 444.86206897** |
-| Exact binomial standard deviation | **20.725...** |
+| Exact binomial standard deviation | **20.72491249** |
 | Difference from expected | **−17.31549 standard deviations** |
-| Exact P(X ≤ 86), X~Binomial(12,901,1/29) | **1.07077 × 10^−98** |
+| Exact P(X ≤ 86), X~Binomial(12,901,1/29) | **1.07080747 × 10^−98** |
 | log10 of exact lower tail | **−97.9702886058** |
 
 The original count is distributed across **all nine visual chapters**, so this is a full-corpus observation rather than one anomalous page. The existing [original-image doublet audit](lp2-original-ink-critical-site-audit.md) supports the literal 86-rune count. This calculation deliberately skips adjacency across original physical page breaks, avoiding assumptions about page-carry encryption.
