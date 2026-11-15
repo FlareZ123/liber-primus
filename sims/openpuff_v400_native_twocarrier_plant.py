@@ -233,7 +233,16 @@ def set_password(window, password):
     )
     if len(left) < 1:
         raise RuntimeError("Data Hiding lacks the expected password/target edits")
-    left[0][2].set_edit_text(password)
+    field_layout = [
+        {"id": safe(control.control_id),
+         "left": control.rectangle().left,
+         "top": control.rectangle().top,
+         "width": control.rectangle().width(),
+         "enabled": safe(control.is_enabled)}
+        for _, _, control in left
+    ]
+    print("OpenPuff Hide input edit layout:",
+          json.dumps(field_layout), flush=True)
     buttons = visible_controls(window, "Button")
     layout = [
         {"id": safe(button.control_id), "text": safe(button.window_text),
@@ -266,6 +275,18 @@ def set_password(window, password):
     states = [checkbox.get_check_state() for checkbox in checkboxes]
     if states != [0, 0]:
         raise RuntimeError(f"Optional passwords remain enabled: {states}")
+    # Original Hide validates password fields as they change. Set A *after*
+    # disabling B/C, so the final text event cannot leave the live password
+    # meter on the stale B/C-required branch.
+    left[0][2].set_edit_text(password)
+    time.sleep(0.5)
+    status = [
+        safe(control.window_text) for control in window.descendants()
+        if safe(control.class_name) == "Static"
+        and "password" in (safe(control.window_text) or "").lower()
+    ]
+    print("OpenPuff Hiding password validation:", json.dumps(status),
+          flush=True)
     return states
 
 
