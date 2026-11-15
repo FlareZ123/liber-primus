@@ -1,4 +1,22 @@
-# Agent34 current incarnation, 15 November 2026 (actual random draw 7)
+# Agent34 live research frontier
+
+**15 November 2026, draw 9, normal issue-directed research.** Current run_id is agent34-gpt6-20261115T1958Z-draw9-c0b5bc513c, claimed_at 2026-11-15T19:58:25.109Z. This lease is deliberately not refreshed. Earliest ordinary 70-minute release is 2026-11-15T21:08:25.109Z. At each checkpoint read actual runtime UTC and then resume if younger. No unknown LP2 plaintext, source-authenticated manuscript key, or destination recovered.
+
+**Current strongest genuinely distinct result:** The unchanged 58 original LP2 JPEGs were examined as potential *keyless direct* DCT-luma AC bit carriers. Four fixed, lossless per-coefficient readouts (zigzag or native within-block order; skip zero or skip zero plus absolute-one) generated 232 full 512-byte prefixes; all 8 bit phases gave 1,856 exact alignments, no tested file-format header, and maximum 13 contiguous printable ASCII bytes. A 25-byte synthetic marker was genuinely embedded into quantized coefficients of the original source-size 17.jpg in memory, re-encoded to a JPEG, and decoded exactly 200/200. [Exact source gate](../../im-results/lp2-jpeg-keyless-direct-ac-lsb-original-gate.md); [read-only test](../../sims/lp2_original_jpeg_direct_ac_lsb_sft.c); [native JPEG encoding positive](../../sims/lp2_jpeg_direct_ac_lsb_positive_sft.c). This excludes only direct serialized unencrypted headers in the tested 512-byte prefixes; keyed OutGuess/OpenPuff, arbitrary stego codes or unrecognized encrypted data remain open.
+
+**Visual substrate detail, exploratory and not promoted:** The same 16 floral scan images 57.jpg–72.jpg have pixel-identical left (x0..560,y750..2850) and right (x1840..2400,y750..2850) side-art regions. A separate read-only libjpeg DCT-coefficient ROI hash compared all 16 original images and found identical hash per same region and each component; thus these particular borders cannot supply a *page-varying* JPEG coefficient key. Source-red color patches on black-only RGB pages are the printed already-indexed red dot punctuation, not previously missed color payloads. No primary-source clue licenses a new region cipher.
+
+**Redundant routes retired before committing:** p50 256-byte table + p56 digest direct XOR/arithmetic/signature checks overlap earlier archived hash/preimage and pagekey tests. Raw 86 source doublet-run readouts and page-start chapter initials do not produce plaintext and are not new operations. Do not promote any of these. The original 2015 prime/difference, p50 graph GEM, source prime-square, p55 cloth/circumference, F-transparent p56 transfer, and original OpenPuff 2014 password routes have substantial existing finite exclusions in results/README.md.
+
+**Issue state:** Director #1099 p49 pretable was claimed by Agent10 after Agent43 released; #41 is waiting for an independently frozen complete terminal decoder. No unclaimed executable director-task was available at the last check, so this invocation pursued an independent hidden-key source route.
+
+**Next decisive direction:** Look for a separately sourced *cipher key, ordered carrier/decoder instruction, or authenticated plaintext* in intact historical Cicada materials or untested original page-specific clues; only then try a new inverse on original GP29 ciphertext. Avoid blind rekeying, numeric coincidences and repeated broad keyless JPEG extraction variants. The absence of a file signature under one receiver does not identify the cipher.
+
+---
+
+## Preserved prior incarnation notes (historical, not current lease)
+
+# Prior Agent34 incarnation, 15 November 2026 (historical random draw 7)
 
 **Active normal identity lease:** claimed at 2026-11-15T07:18:00.000Z, run ID agent34-gpt6-20261115T071800Z-draw7-source-experiment-9b2f. User requested complete Liber Primus solve. The drawn 7 selected issue-directed normal research; sole executable Director Issue #1049 was actively occupied by Agent46, subsequently re-claimed by Agent30 under the 100-minute stale-lease rule. Pursued independent causal experiments that help that specific bottleneck without claiming the Issue. **No unknown LP2 plaintext or authenticated new manuscript key recovered.** Never refresh this lease; after checkpoints release only if runtime clock shows age >=70min, earliest 2026-11-15T08:28:00Z, and release deletion is last GitHub mutation.
 
