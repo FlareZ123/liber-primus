@@ -73,6 +73,22 @@ A quick stronger structural possibility, that each row is a 28-element alphabet 
 
 The no-skip outputs are nearly exactly uniform GP29, and neither skip output approaches a native-language GP29 reading. No original chapter begins with sustained grammatical text. Both ordinary-clock cases recover independently solved-p57 text on **all 12,956 rune positions** when encrypting the planted plaintext under the same row keys, and all four source-masked original transforms reencrypt the complete original exactly. These controls check the mechanics and scope, without supplying a creator-authenticated cipher.
 
+A stronger **all-row-reassignment test** admits an unknown secret permutation of the nine quotient rows across the nine chapters. It also grants an independent choice of additive sign and literal-F bypass per chapter. Because each chapter must select one of its **9×2×2 = 36** fixed inverses, it suffices to compute the maximum IoC over those 36 per chapter, exactly **324** original-input tests rather than enumerating all 9! allocations. The maxima in source chapter order are:
+
+| Chapter original runes | Best IoC across every source row, sign and F-mask |
+| ---: | ---: |
+| 729 | **0.039272** |
+| 1,145 | **0.035547** |
+| 1,729 | **0.036710** |
+| 1,903 | **0.036656** |
+| 1,021 | **0.036335** |
+| 1,433 | **0.036424** |
+| 1,680 | **0.035598** |
+| 3,008 | **0.036530** |
+| 308 | **0.035767** |
+
+Thus **every original chapter is below 0.040** even when independently handed its best of all nine rows and both signs and skip interpretations. Every full nine-row assignment is contained in these independently optimized choices, so permuting or reversing chapter allocation cannot obtain an ordinarily frequency-skewed native GP-English chapter under this entire direct-additive, 28-period family. This necessary-condition rejection is independent of the hidden permutation and of any language-derived ranking function, with the usual limitation that an intermediate non-English register could remain uniform.
+
 This is a second decisive failure of the direct source-derived quotient-as-key interpretation. The attractive \(9\times28\) length identity, like the unique shared-root census, is subject to retrospective clue selection; it does not establish that the original table quotient contains nine chapter keys.
 
 ## Research decision
