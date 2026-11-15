@@ -90,6 +90,37 @@ def extract(name, values, tokens, offsets):
     }
 
 offsets = sentence_ranks + [title_rank]
+
+# The only source-attested competing radix model in this audit drops the
+# unused lowercase f from the 60-character alphabet (see
+# sims/base60_base59_source_ambiguity.cjs). Decode only the four fixed,
+# source-selected offsets; do not search alternate alphabets or offsets.
+digits60 = GRID["alphabet"]
+digits59 = digits60.replace("f", "")
+def decode_token(token, alphabet):
+    value = 0
+    for char in token:
+        digit = alphabet.find(char)
+        if digit < 0:
+            raise ValueError(f"Token {token!r} is not valid in radix alphabet")
+        value = value * len(alphabet) + digit
+    return value
+
+base59_values = [None] * 256
+for offset in offsets:
+    base59_values[offset] = decode_token(row_major_tokens[offset], digits59)
+base59_drop_f_control = extract(
+    "row-major-base59-drop-f", base59_values, row_major_tokens, offsets
+)
+assert base59_drop_f_control["values"] == [168,75,115,73]
+assert base59_drop_f_control["reverse_latin1"] == "IsK¨"
+assert base59_drop_f_control["reverse_gp29"] == "SEABD"
+
+base60_selected = extract("row-major-base60", row_major, row_major_tokens, offsets)
+assert base60_selected["values"] == [171,76,117,74]
+assert base60_selected["reverse_latin1"] == "JuL«"
+assert base60_selected["reverse_gp29"] == "TUEY"
+
 selected_values = [row_major[i] for i in offsets]
 phi_values = [phi(v) for v in selected_values[:3]]
 title_word_values = [row_major[i] for i in title_word_ranks]
@@ -108,6 +139,7 @@ print(json.dumps({
     "title_word_prime_ranks": title_word_ranks,
     "title_basename_sum": TITLE_BASENAME_SUM, "title_prime_rank": title_rank,
     "row_major_offset_extraction": extract("row-major", row_major, row_major_tokens, offsets),
+    "base59_drop_f_control": base59_drop_f_control,
     "column_major_control": extract("column-major", col_major, col_major_tokens, offsets),
     "row_serpentine_control": extract("row-serpentine", row_serp, row_serp_tokens, offsets),
     "column_serpentine_control": extract("column-serpentine", col_serp, col_serp_tokens, offsets),
