@@ -43,6 +43,16 @@ assert.equal(equalTransitions, 86);
 const maxZeroLabelCount = equalTransitions + originalPages.length;
 assert.equal(maxZeroLabelCount, 141);
 
+// Original visual chapter pp27–32 permits an independently selected s,
+// but that label must remain fixed throughout its six original pages.
+const chapterPages = originalPages.filter(p => p.page >= 27 && p.page <= 32);
+const chapterLength = chapterPages.reduce((n, p) => n + p.indices.length, 0);
+const chapterEqualTransitions = chapterPages.reduce((sum, page) =>
+  sum + page.indices.slice(1).filter((x, i) => x === page.indices[i]).length, 0);
+const chapterMaxZero = chapterEqualTransitions + chapterPages.length;
+assert.deepEqual([chapterPages.length, chapterLength, chapterEqualTransitions, chapterMaxZero],
+  [6, 1433, 13, 19]);
+
 // Continuous original printed words include seven cross-page fragments.
 // Splitting at '/\n' or '%' would mis-state the original word constraints.
 const parsed = parseLP2Words(source);
@@ -116,12 +126,12 @@ assert.deepEqual(possibleZeroLabels.map(x => x.symbol),
   ['C', 'N', 'S', 'T', 'E', 'L', 'D', 'A']);
 
 const sourceControls = [
-  ['Shakespeare', 'resources/control/shakespeare_first300k.txt', 391],
-  ['Gibran', 'resources/control/gibran_prophet_58585.txt', 289],
-  ['Emerson', 'resources/control/emerson_essays_2944.txt', 408],
+  ['Shakespeare', 'resources/control/shakespeare_first300k.txt', 391, 24],
+  ['Gibran', 'resources/control/gibran_prophet_58585.txt', 289, 21],
+  ['Emerson', 'resources/control/emerson_essays_2944.txt', 408, 25],
 ];
 
-for (const [name, relativePath, expectedMin] of sourceControls) {
+for (const [name, relativePath, expectedMin, expectedChapterMin] of sourceControls) {
   const text = read(relativePath);
   const samples = (text.match(/[A-Za-z]+/g) || []).flatMap(word => encodeGP(word) || []);
   assert.ok(samples.length >= originalLength);
@@ -137,9 +147,21 @@ for (const [name, relativePath, expectedMin] of sourceControls) {
   const smallest = Math.min(...possibleZeroLabels.map(({i}) => minimum[i]));
   assert.equal(smallest, expectedMin);
   assert.ok(smallest > maxZeroLabelCount);
+  const chapterCounts = new Int32Array(29);
+  for (let i = 0; i < chapterLength; i++) chapterCounts[samples[i]]++;
+  const chapterMin = Int32Array.from(chapterCounts);
+  for (let i = chapterLength; i < samples.length; i++) {
+    chapterCounts[samples[i]]++;
+    chapterCounts[samples[i - chapterLength]]--;
+    for (const {i: rune} of possibleZeroLabels)
+      if (chapterCounts[rune] < chapterMin[rune]) chapterMin[rune] = chapterCounts[rune];
+  }
+  const smallestChapter = Math.min(...possibleZeroLabels.map(({i}) => chapterMin[i]));
+  assert.equal(smallestChapter, expectedChapterMin);
+  assert.ok(smallestChapter > chapterMaxZero);
   console.log(name, 'native GP runes', samples.length,
-    'minimum candidate-label count in a 12956-rune window', smallest,
-    'versus original maximum', maxZeroLabelCount);
+    'full-book minimum', smallest, 'original maximum', maxZeroLabelCount,
+    'chapter p27–32 minimum', smallestChapter, 'chapter maximum', chapterMaxZero);
 }
 
 // Synthetic positive control proves both forward and inverse implementations,
@@ -168,6 +190,6 @@ console.log('ORIGINAL', originalLength, 'runes;', originalPages.length,
 console.log('p27 witness, 12 runes, within-word zero-step positions',
   witness.positions.join(','), 'surviving zero labels',
   possibleZeroLabels.map(x => x.symbol).join(','));
-console.log('DECISION: fixed global zero-label nonzero-multiplier feedback',
+console.log('DECISION: global or visual-chapter-fixed zero-label nonzero-multiplier feedback',
   'cannot yield this source-native English register with intact printed words.',
   'No original LP2 plaintext or secret key recovered.');
