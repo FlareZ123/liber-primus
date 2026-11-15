@@ -246,4 +246,66 @@ assert.equal(ciphertext.filter((v) => v === 0).length, 124);
 assert.equal(forcedF.maxLongWords, 4);
 assert(Math.abs(forcedF.maxIoC - 0.03732866511059242) < 1e-12);
 console.log("force all 124 printed F to bypass and not advance key:", JSON.stringify(forcedF));
+
+/** Full-period dynamic 4x4 Hill transform under both time directions. */
+function dynamicHillGate() {
+  const multiply = (a, b) => {
+    const next = Array(16).fill(0);
+    for (let r = 0; r < 4; r++)
+      for (let c = 0; c < 4; c++)
+        for (let k = 0; k < 4; k++)
+          next[4*r+c] = (next[4*r+c] + a[4*r+k]*b[4*k+c])%N;
+    return next;
+  };
+  const identity = [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];
+  const powers = [identity];
+  for (let t=1;t<=812;t++) powers.push(multiply(powers[t-1],M.flat()));
+  assert.deepEqual(powers[812],identity);
+  /** @param {number[]} input @param {number} phase @param {number} direction */
+  const apply = (input,phase,direction) => {
+    const output = new Uint8Array(input.length);
+    for(let t=0;t<input.length/4;t++){
+      const key=powers[(phase+direction*t+1624)%812];
+      for(let r=0;r<4;r++){
+        let value=0;
+        for(let k=0;k<4;k++) value+=key[4*r+k]*input[4*t+k];
+        output[4*t+r]=value%N;
+      }
+    }
+    return output;
+  };
+  let maxLong=0,maxIoC=0,maxStreak=0,best=null;
+  for(const direction of [-1,1])for(let phase=0;phase<812;phase++){
+    const decoded=apply(ciphertext,phase,direction);
+    let long=0,streak=0,run=0;
+    for(const {start,len} of words){
+      let token="";
+      for(let i=start;i<start+len;i++)token+=alphabet[decoded[i]];
+      if(len>=4&&dictionary.has(token)){long++;streak++;run=Math.max(run,streak)}
+      else streak=0;
+    }
+    const ioc=indexOfCoincidence(decoded);
+    if(long>maxLong){maxLong=long;best={phase,direction,long,ioc}};
+    maxStreak=Math.max(maxStreak,run);
+    maxIoC=Math.max(maxIoC,ioc);
+  }
+  assert.equal(maxLong,4);
+  assert.equal(maxStreak,1);
+  assert(Math.abs(maxIoC-0.03483627875958653)<1e-12);
+  assert.deepEqual(best,{phase:455,direction:-1,long:4,ioc:0.03468311659442036});
+  const planted=apply(plant,103,1);
+  const recovered=apply(Array.from(planted),709,-1);
+  assert.deepEqual(Array.from(recovered),plant);
+  let controlHits=0;
+  for(const {start,len} of words){
+    if(len<4)continue;
+    let token="";
+    for(let i=start;i<start+len;i++)token+=alphabet[recovered[i]];
+    if(dictionary.has(token))controlHits++;
+  }
+  assert.equal(controlHits,384);
+  return {clockVariants:1624,maxLongWords:maxLong,maxOriginalIoC:maxIoC,maxLongWordRun:maxStreak,best,positiveLongWords:controlHits};
+}
+console.log("all 1624 full-order matrix Hill clocks:",JSON.stringify(dynamicHillGate()));
+
 console.log("PASS: original exhaustive hidden-state inverse, dictionary-positive control and forced-F variant");
