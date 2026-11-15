@@ -3,7 +3,7 @@
  * Source-constrained original Cicada-era Titanpad revision-history acquisition.
  * This is a historical document search, never a claimed LP2 decryption.
  * Node.js 22, Windows 11: node sims/lp2_2014_titanpad_history_archive_sft.cjs
- * Revisions/export routes: https://docs.etherpad.org/faq.html
+ * The actual archived 2016 Titanpad UI links to /ep/pad/export/{id}/latest.\n * This differs from modern Etherpad documentation. Historical root is pinned.
  */
 const assert = require('node:assert/strict');
 const crypto = require('node:crypto');
@@ -101,9 +101,10 @@ async function main() {
   await replay('20160412033034', root);
   const prefixes = [
     ['historical-flat', 'titanpad.com/' + pad],
+    ['historical-2016-source-export', 'titanpad.com/ep/pad/export/' + pad],
+    ['historical-2016-source-export-www', 'www.titanpad.com/ep/pad/export/' + pad],
     ['historical-etherpad-p', 'titanpad.com/p/' + pad],
-    ['historical-www-flat', 'www.titanpad.com/' + pad],
-    ['historical-www-p', 'www.titanpad.com/p/' + pad]
+    ['historical-www-flat', 'www.titanpad.com/' + pad]
   ];
   const all = [];
   for (const [label, target] of prefixes) {
