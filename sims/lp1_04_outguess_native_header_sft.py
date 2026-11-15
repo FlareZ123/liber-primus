@@ -71,6 +71,14 @@ def inspect(scan: int) -> dict:
             assert content == POSITIVE.read_bytes()
             assert content.startswith(b"-----BEGIN PGP SIGNED MESSAGE-----")
             source["positiveControlMatchesOriginal"] = True
+        if scan == 0:
+            assert len(content) == 2899
+            assert content.startswith(b"-----BEGIN PGP SIGNED MESSAGE-----")
+            source["positiveControlMatchesOriginal"] = True
+        if scan == 8:
+            assert len(content) == 140
+            assert b"For those who have fallen behind" in content
+            source["positiveControlMatchesOriginal"] = True
         if scan == 4:
             source["archived04OutputMatchesExactly"] = (
                 hashlib.sha256(content).hexdigest() == EXPECTED_P04_SHA256
@@ -81,16 +89,16 @@ def inspect(scan: int) -> dict:
 
 
 def main() -> None:
-    items = [inspect(scan) for scan in (3, 4, 6)]
-    assert items[0]["positiveControlMatchesOriginal"]
-    assert items[0]["leadingOneBits"] == 9
-    assert items[2]["defaultKeyEncryptedHeader"] == "ffffffff"
-    assert items[2]["isEveryPasswordHeaderForcedToFFFF"]
-    assert items[1]["archived04OutputMatchesExactly"], (
+    items = [inspect(scan) for scan in (0, 3, 4, 6, 8)]
+    assert items[1]["positiveControlMatchesOriginal"]
+    assert items[1]["leadingOneBits"] == 9
+    assert items[3]["defaultKeyEncryptedHeader"] == "ffffffff"
+    assert items[3]["isEveryPasswordHeaderForcedToFFFF"]
+    assert items[2]["archived04OutputMatchesExactly"], (
         "Archive 04 must originate from authentic Default key extraction"
     )
     print(json.dumps({
-        "originalSource": "resources/liber-primus/03.jpg,04.jpg,06.jpg",
+        "originalSource": "resources/liber-primus/00.jpg,03.jpg,04.jpg,06.jpg,08.jpg",
         "reader": "calibrated source native libjpeg + OutGuess 0.4 ARC4",
         "fixedPassword": "Default key",
         "cases": items,
