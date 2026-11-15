@@ -1,6 +1,6 @@
 # Original p49/p51 source-table GP29 state lookup: one executable inversion gate
 
-**Decision, 15 November 2026 (Agent10, Director #1099):** The original LP2 32-row × 8-column numerical table admits one simple, completely specified, stateful GP29 key table: use the previous rune as row (0–28), the next rune's page-local ordinal modulo eight as column, and reduce the printed table's byte value modulo29. Both previous-*ciphertext* and previous-*plaintext* feedback states, in both additive directions, were inverted on the authentic original 66-rune pre-table p49 and 92-rune post-table p51. **None produced recognizable plaintext**, and all decoded outputs had GP29 index of coincidence below 0.0380. This is a bounded negative for four particular source-shaped decoders, not a general assertion about the manuscript, other table semantics, or historical source selection.
+**Decision, 15 November 2026 (Agent10, Director #1099):** The original LP2 32-row × 8-column numerical table admits a simple, completely specified candidate GP29 key lookup using the previous rune as row (0–28), the current rune clock modulo eight as column and the printed table byte modulo29 as key. Both previous-*ciphertext* and previous-*plaintext* feedback states, under both additive directions, fail to decrypt the authentic **complete 138-rune sentence before the table** or **170-rune sentence after it**. The physical-page-only 66/92-rune fragments and both sentence-reset and table-continuous clock rules also fail. No unknown plaintext is recovered. This is a bounded negative for four particular source-shaped decoders, not a general assertion about the manuscript, other table semantics, or historical source selection.
 
 ## Exact source cue and frozen rules
 
@@ -29,6 +29,19 @@ The decryptor obtains `P_i = (C_i-sign*K_i) mod29` sequentially, then updates th
 The unchanged original ciphertext has IoC **0.028438228** on p49 and **0.032728141** on p51. All four source-shaped inverses remain near the GP29 random reference 1/29≈0.03448 and produce non-prose GP transliterations, including on p51 withheld from any decoder choice. This is direct failure to recover the source-native 66-rune instruction rather than absence of a test.
 
 For all four models, complete *forward reencryption* exactly restores both original p49 and p51 ciphertexts. That checks algebra and source addressing, but the same property would hold on random data. An independent **authentic solved p57 95-rune plaintext control** is first encrypted under each model and then recovered at all **95/95 positions**. The control distinguishes a working inverse from arbitrary decoding; it does not establish that Cicada used this cipher on p49 or p51.
+
+### Complete original sentence controls, including page-carried words
+
+The original p49 starts **inside a word from p48**, and p51 ends **inside a word continued on p52**. Therefore a genuine *sentence-reset* stateful cipher must be evaluated on the **entire 138-rune before-table sentence** and 170-rune after-table sentence, preserving the actual printed punctuation boundaries. A source-continuous alternative carries both the previous-rune state and eight-position column clock across the table; the other resets at the independently printed sentence boundary. The updated SFT extracts both targets afresh from the original transcription and asserts that they contain the untouched 66/92 rune page fragments. No cipher parameter is chosen by plaintext.
+
+| Previous state | Forward sign | Complete preceding 138 IoC | Complete following 170, reset | Following 170, continued state |
+|---|---:|---:|---:|---:|
+| Cipher rune | +1 | 0.033322755 | 0.034458754 | 0.032718413 |
+| Cipher rune | −1 | 0.035650058 | 0.035363731 | 0.035015663 |
+| Plain rune | +1 | 0.037025283 | 0.035363731 | 0.033136095 |
+| Plain rune | −1 | 0.034169047 | 0.034110685 | 0.034389140 |
+
+**None of the four fixed-key interpretations produces language on the full source-selected 138/170-rune sentences under either natural column-clock policy.** The highest complete-sentence IoC is only 0.037025; the 170-rune after-table holdouts all remain near uniform. This closes the stronger, source-faithful form of this particular four-model table lookup hypothesis. The exact extended original-input SFT passed [Windows Node22 run 43759486862](https://github.com/FlareZ123/liber-primus/actions/runs/43759486862).
 
 A related source-natural reading addresses the row using the **current ciphertext rune**, rather than the previous state, then applies `C_i ± K_i`. For any one fixed printed column, this would need a 29-to-29 permutation to be a full-symbol reversible substitution. The actual table fails this necessary condition for *every* column: in printed column order, the eight distinct-output counts are **[21,19,17,18,20,20,19,18]** for `C−K` and **[14,17,19,16,19,18,18,18]** for `C+K`. No tested column reaches 29. This does not exclude restricted-text encodings or a separate disambiguating state.
 
