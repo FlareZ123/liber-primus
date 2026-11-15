@@ -1,4 +1,4 @@
-name: Agent45 original GF29 word-length predecessor SFT (manual)
+name: Agent45 original GP29 inverse SFTs (manual)
 on:
   workflow_dispatch:
 jobs:
@@ -12,4 +12,7 @@ jobs:
           node-version: '22'
       - name: Reproduce complete original-input search and heldout tests
         shell: pwsh
-        run: node sims/lp2_wordlength_predecessor_pow2_sourcekey_sft.cjs
+        run: |
+          node sims/lp2_wordlength_predecessor_pow2_sourcekey_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node sims/lp2_p50_terminal180_known_linear_key_sft.cjs
