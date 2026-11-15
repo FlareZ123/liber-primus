@@ -32,18 +32,26 @@ The reproducible implementation is sims/p57_parable_p50_prime_rank_date_hypothes
 
 The existing synthesis also records that the three-word parable title is THE INSTAR EMERGENCE, whose GP word sums are 72, 280, and 409, totaling 761 (the original 761.mp3 basename). The first word sum 72 independently matches the p55 72-symbol cipher-consuming payload and φ(91)=72 for the p05 center word FORM. The total 761 is prime and π(761) = 135. Treating 135 as another zero-based p50 byte offset selects token 2p, value 171 (0xAB). In ISO-8859-1/Windows-1252 this is the left-pointing double angle quotation mark «.
 
-Appending this title/basename selector after the three sentence selectors gives p50 values [76,117,74,171]. Reversing the combined sequence yields **«JuL**: the title-derived byte is now an explicit left-pointing marker, followed by the reversed sentence-derived month. The same reversed values modulo 29 give Y-T-U-E. This is a better source-grounded reason for reversing the three sentence outputs than MOBIUS alone, and is consistent with the 2016 message's statement that numbers provide direction.
+The original 2013 source title precedes the three parable lines, so it should not be appended after them as a fourth body item. Treat its selected byte as a separate orientation control: 0xAB decodes as the left-pointing marker «, which directs the three body selectors [76,117,74] to be read in reverse. That yields ASCII **JuL**; the same reversed body values modulo 29 yield **TUE**. The title selector's own modulo-29 residue is Y. This is a more coherent source-order-preserving interpretation than concatenating the title after the body, and is compatible with p05's MOBIUS clue and the 2016 message's statement that numbers provide direction. It remains an inferred direction flag, not an explicit instruction.
 
-The ordinary nth-item index for π(761) is 134, which selects token 1C / byte 72 (ASCII H), not a direction marker. The title's individual word sums have prime ranks 20, 59, and 80; their p50 offsets select bytes 102, 69, and 142, which do not yield a readable result under the same reverse ASCII/GP29 readings. I therefore use only the independently established title total as the fourth selector, not a cherry-picked word-level output. The offset interpretation is supported by a discriminating output, though still not proven: it assumes the title/basename sum is appended to the sentence-sum sequence and that p50 values should be interpreted as Latin-1 bytes.
+The ordinary nth-item index for π(761) is 134, which selects token 1C / byte 72 (ASCII H), not a direction marker. The title's individual word sums have prime ranks 20, 59, and 80; their p50 offsets select bytes 102, 69, and 142, which do not yield a readable result under the same reverse ASCII/GP29 readings. I therefore use only the independently established title total as a separate direction selector, not a cherry-picked word-level output. The zero-based offset and Latin-1 interpretations remain hypotheses: the source does not literally say “skip π(p) bytes,” and the role of « as a direction flag is inferred.
 
 ## Historical match
 
-Dukotah/cicada3301's PGP signature timeline records a 2015 signed message at 2015-07-28T05:12:39Z under key ID 181F01E57A35090F. 28 July 2015 was a Tuesday. The same timeline records the next relevant signed message on 2016-01-01T00:01:07Z under the same key. The 2015 signed message is the public statement denying association with illegal activity; it is an authentic historical waypoint, not evidence by itself of a new puzzle instruction.
+Dukotah/cicada3301's PGP signature timeline records a 2015 signed message at 2015-07-28T05:12:39Z under key ID 181F01E57A35090F. 28 July 2015 was a Tuesday. The same timeline records the next relevant signed message on 2016-01-01T00:01:07Z under the same key. The exact 1,202-byte 2015 clear-signed source is now preserved at resources/historical/cicada2015-planned-parenthood-denial.asc (upstream Git blob SHA-1 f8fa3ee84e89c7e7bfa5b0b0f6f6c461e8e89812). Running `gpg --verify` against resources/control/cicada-3301-public-key.asc reports a good signature; the primary-key fingerprint is 6D854CD7933322A601C3286D181F01E57A35090F. The message is the public statement denying association with illegal activity: the date match is source-authenticated, but the statement itself supplies no new puzzle instruction.
 
 Primary external records:
 - corpus/A-primary-artifacts/SIGNATURE-TIMELINE.json
 - corpus/A-primary-artifacts/pgp/messages/2015-07-planned-parenthood-denial.asc
 - corpus/A-primary-artifacts/pgp/messages/2016-01-liber-primus.asc
+
+## 2015 message follow-through
+
+Because the date pointer identifies a specific signed object, I tested whether that object or its signature is itself the p56 128-hex preimage. `sims/lp2_p57_date_2015_hash_candidate_sft.cjs` pins the exact upstream source bytes and compares 11 source-native representations (complete clear-signed file, body serializations, pre-signature cleartext block, binary signature packet, armor, RSA signature MPI in raw/hex/base64 forms, and MPI with bit-length prefix) under SHA-512, SHA3-512, and BLAKE2b-512: **33 comparisons, zero matches**. This is a bounded negative over those representations and algorithms, not a claim that all possible hash preimages or algorithms have been excluded.
+
+As a separate exploratory transfer, I applied the unchanged 2016 signed-message base-58 word-map rule to all 53 alphabetic words of the 2015 statement: page = GP-prime-sum mod 58; zero-based word index = floor(sum/58). All addresses were in bounds, but none selected p50; only three selected already-solved endpoints (their → p56 word 1, ciphertext transliteration OESR; organisations → p57 word 8, WE; has → p57 word 2, THE). The complete sequence is not readable. This transfer is not directly licensed by the 2016 instruction (which may refer only to Liber Primus words), so it is an exploratory negative, not a test of the LP2 word-map hypothesis.
+
+Decision: the date pointer reaches an authentic historical message but presently supplies neither a key nor a further decipherment operation. Do not expand into broad PGP-key, signature, word-map, or hash sweeps without a new source-derived instruction.
 
 
 ## Secondary totient sample on p55
@@ -60,7 +68,7 @@ This is a potentially useful p55 ciphertext sample, not recovered plaintext. It 
 
 ## Strongest objections
 
-1. **Index-origin sensitivity.** π(p) is a one-based prime rank. The ordinary zero-based index of the nth prime is π(p)−1, giving indices 204, 172, 200 for the sentence sums and 134 for 761. These select tokens 3E, 2S, 1o and 1C, bytes 194, 148, 110 and 72; they do not produce the date or the left-direction marker. Using π(p) as a byte offset instead yields the marker «. This discriminates in favor of offset semantics, but the source does not literally say “skip π(p) bytes,” and the title/basename ordering is still an interpretation.
+1. **Index-origin sensitivity.** π(p) is a one-based prime rank. The ordinary zero-based index of the nth prime is π(p)−1, giving indices 204, 172, 200 for the sentence sums and 134 for 761. These select tokens 3E, 2S, 1o and 1C, bytes 194, 148, 110 and 72; they do not produce the date or the left-direction marker. Using π(p) as a byte offset instead yields body bytes [76,117,74] and the title marker byte 171. This discriminates in favor of offset semantics, but the source does not literally say “skip π(p) bytes”; the marker's role as a direction flag remains an interpretation.
 2. **Reverse-order choice.** The date fragment requires reversing the three selected values. The p05 MOBIUS word, its mirrored byte shell, and the parable's circumference language are possible hints, but do not uniquely prescribe this reversal. Explicit row- and column-serpentine flattenings of the 32×8 p50 table (natural full-grid Möbius/boustrophedon controls) do not reproduce the date fragment; only plain row-major followed by reversing the selected triple does. This weakens any claim that a full Möbius traversal is source-selected.
 3. **Encoding choice.** ASCII and reduction modulo 29 are both natural for byte values in a GP29 puzzle, but the dual reading is not independent plaintext verification.
 4. **p55 sample layout sensitivity.** The 36/72/36 sample is DID only in plain row-major payload order; a natural 2×36 Möbius traversal gives DIAD. This is another reason not to promote DID as plaintext.
@@ -72,7 +80,7 @@ A further layout control: ordinary column-major flattening of the p50 32×8 grid
 
 ## Decision
 
-Preserve this as a low-cost, source-linked historical waypoint candidate. Do not use it to seed broad cipher or hash sweeps. The decisive next action is independent review of the offset convention and reversal against the original page layout and the 2015/2016 signed-message chain. If no source-grounded selector supports both choices, retire the date-pointer hypothesis as an attractive coincidence.
+Preserve this as a low-cost, source-linked historical waypoint candidate, not a decryption. The signed date match is authentic, but the selected 2015 statement yields no p56 hash preimage and no readable continuation under the unchanged 2016 word-map transfer. Do not use it to seed broad cipher or hash sweeps. Further work should require an independent source-derived instruction that links the PGP object or its authenticated metadata to a specific reversible LP2 operation; absent that, park this branch.
 
 ## Sources
 
@@ -81,4 +89,6 @@ Preserve this as a low-cost, source-linked historical waypoint candidate. Do not
 - p05 source instruction and MOBIUS word: original LP1 p05 image and solved-page transcription.
 - https://github.com/Dukotah/cicada3301/blob/master/corpus/A-primary-artifacts/SIGNATURE-TIMELINE.json
 - https://github.com/Dukotah/cicada3301/blob/master/corpus/A-primary-artifacts/pgp/messages/2015-07-planned-parenthood-denial.asc
+- resources/historical/cicada2015-planned-parenthood-denial.asc (pinned upstream Git blob SHA-1 above)
+- sims/lp2_p57_date_2015_hash_candidate_sft.cjs (33-case p56 candidate gate)
 - https://github.com/Dukotah/cicada3301/blob/master/corpus/A-primary-artifacts/pgp/messages/2016-01-liber-primus.asc
