@@ -1,0 +1,14 @@
+name: Agent21 LP1 sacred prime-rank 28 multiplicative original gate
+on:
+  workflow_dispatch:
+jobs:
+  source-original-multiplicative:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-fixed multiplicative inversions and controls
+        run: node sims/lp2_lp1_sacred_rank28_multiplicative_sft.cjs
