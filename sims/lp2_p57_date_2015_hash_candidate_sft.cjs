@@ -9,17 +9,17 @@ const sourcePath = process.argv[2] || 'resources/historical/cicada2015-planned-p
 const source = fs.readFileSync(sourcePath);
 const message = source.toString('ascii');
 const gitBlobSha1 = crypto.createHash('sha1')
-  .update(Buffer.from(`blob ${source.length}\\0`, 'ascii')).update(source).digest('hex');
+  .update(Buffer.from('blob ' + source.length + '\0', 'ascii')).update(source).digest('hex');
 assert.equal(source.length, 1202);
 assert.equal(gitBlobSha1, 'f8fa3ee84e89c7e7bfa5b0b0f6f6c461e8e89812');
 
 const target = '36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4';
 const algorithms = ['sha512', 'sha3-512', 'blake2b512'];
-for (const a of algorithms) assert(crypto.getHashes().includes(a), `missing ${a}`);
+for (const a of algorithms) assert(crypto.getHashes().includes(a), 'missing ' + a);
 const begin = '-----BEGIN PGP SIGNATURE-----';
 const end = '-----END PGP SIGNATURE-----';
 const armor = message.split(begin)[1].split(end)[0];
-const b64 = armor.split(/\\r?\\n/u).map(x => x.trim())
+const b64 = armor.split(/\r?\n/u).map(x => x.trim())
   .filter(x => x && !x.startsWith('Version:') && !x.startsWith('=')).join('');
 const packet = Buffer.from(b64, 'base64');
 assert.equal(packet.length, 543);
@@ -46,10 +46,10 @@ assert.equal(unhashed[1], 16);
 assert.equal(unhashed.subarray(2, 10).toString('hex'), '181f01e57a35090f');
 
 const afterHashHeader = message.split('Hash: SHA1')[1];
-const cleartext = afterHashHeader.split(begin)[0].replace(/^\\n+/u, '');
-const cleartextTrimmed = cleartext.replace(/\\n+$/u, '');
-const canonical = cleartextTrimmed.split('\\n')
-  .map(line => line.replace(/[ \\t]+$/u, '')).join('\\r\\n');
+const cleartext = afterHashHeader.split(begin)[0].replace(/^\n+/u, '');
+const cleartextTrimmed = cleartext.replace(/\n+$/u, '');
+const canonical = cleartextTrimmed.split('\n')
+  .map(line => line.replace(/[ \t]+$/u, '')).join('\r\n');
 const signedPrefix = message.split(begin)[0];
 const mpiWithBits = Buffer.concat([Buffer.from([mpiBits >> 8, mpiBits & 255]), mpi]);
 const candidates = [
