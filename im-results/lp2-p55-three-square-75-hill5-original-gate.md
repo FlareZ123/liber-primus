@@ -1,4 +1,4 @@
-# LP2 p55: 75-rune three-square Hill5 inverse, source-selected keys
+# LP2 p55: 75-rune three-square source-consumer gates
 
 **14 November 2026, Agent12. Classification:** complete original-page-body inverse for a constrained, historically motivated cipher candidate, with a full native-GP positive control. **Negative for direct plaintext**; no recovered unknown text, original cipher, true key, or destination.
 
@@ -37,12 +37,29 @@ The positive control takes **75 genuine clear GP29 runes from solved physical p5
 
 Neither produces coherent source-native prose, recognizable instructions, or an independently selected key. Their almost chance-level rune IoCs are weak evidence of natural language; the positive control's considerably higher IoC is only a diagnostic, **not** a statistical impossibility theorem on arbitrary 75-rune text. Exact source re-encryption is demanded by invertibility and cannot alone authenticate a cipher.
 
+## Additional three-square rank-transposition consumer (15 November 2026)
+
+The p57 parable's “shed our own circumferences” and the p55 body length **75 = 3×25** motivate one simple alternative consumer of the same 2014 source: retain the first and third 5×5 squares, take the central 5×5 of the 7×7 square, rank each square's 25 cells by ascending numeric value (stable printed row-major tie-break), and apply each rank permutation to its corresponding 25-rune block of the original p55 body. This uses the three source squares in their printed order and adds no fitted key, rotation or shift. Since the squares contain repeated values, the tie-break is a necessary convention not explicitly supplied by the source; only this simplest row-major rule and its reverse are tested.
+
+| Fixed route | Direction | Mean GP29 trigram log score |
+|---|---:|---:|
+| Ascending rank | Direct | -5.0505361358 |
+| Ascending rank | Inverse | -4.9686959323 |
+| Descending rank | Direct | -4.8144474694 |
+| Descending rank | Inverse | -4.5555269771 |
+| Unchanged p55 75-rune body | — | -4.5427044710 |
+| Genuine p57 first-75-rune positive control | — | -2.5408423778 |
+
+All four operations re-encrypt the original 75-rune body exactly and recover the planted p57 control exactly (75/75). The best output is slightly worse than unchanged p55 and remains far below the native-GP positive control; none produces coherent prose. The test therefore rejects this particular three-square rank-transposition reading. It does **not** exclude other uses of the 2014 squares, but those require an independent source instruction selecting the consumer and tie/ordering convention.
+
+[Standalone original-input CJS SFT](../sims/lp2_p55_three_square_rank_transposition_sft.cjs) · [2014 square bytes](../resources/cicada2014-openpuff-magic-squares.txt) · [canonical p55/p57 runes](../resources/liber-primus/lp2-corpus.json).
+
 ## Independent CI execution
 
 The manual 2014-square workflow now includes this source-75 direct inverse alongside its earlier independent 43-core/17-row tests. [GitHub Actions original-input run 43578451257](https://github.com/FlareZ123/liber-primus/actions/runs/43578451257) completed **successfully** with the new test on Node.js 22, including exact original reencryption and both complete positive recoveries. No CI workflow runs on repository pushes.
 
 ## Decision
 
-The historically sourced three-square-to-three-Hill5 mechanism is now **fully specified and executed on the entire original 75-rune p55 body**, including both standard vector conventions and an exact native-GP planted control. It does not recover plaintext. Retire the direct Hill5 candidate without adding fitted rotations, extra shifts, source order permutations, or newly selected alphabets. The possible deeper role of the 2014 number squares remains open only if **an independent source clue** specifies its consumer. All original p55 source runes are untouched.
+The historically sourced three-square-to-three-Hill5 mechanism and the simplest three-square rank-transposition consumer are now both fully specified and executed on the entire original 75-rune p55 body, with exact original reencryption and native-GP positive controls. Neither recovers plaintext. Retire these two fixed consumers; do not add fitted rotations, extra shifts, alternative tie-breaks or further source-order permutations without an independent instruction. The broader role of the 2014 number squares remains open only if **an independent source clue** specifies the consumer and its ordering convention. All original p55 source runes are untouched.
 
 [Standalone original-input CJS SFT](../sims/lp2_p55_three_square_75_hill5_sft.cjs) · [historical 2014 square bytes](../resources/cicada2014-openpuff-magic-squares.txt) · [canonical runes](../resources/liber-primus/lp2-corpus.json) · [distinct earlier 43-core Hill candidate](lp2-p55-2014-magic-squares-three-core-hill-original-inverse.md) · [17-row complete p55 source pad](lp2-p55-2014-three-square-17row-full76-direct-inverse.md).
