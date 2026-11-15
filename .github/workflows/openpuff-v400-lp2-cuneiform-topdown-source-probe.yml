@@ -10,6 +10,7 @@ on:
           - single
           - seven-chain
           - seven-chain-medium
+          - seven-chain-historical-maximum
 permissions:
   contents: read
 jobs:
@@ -90,15 +91,16 @@ jobs:
           $nonEmpty = @($cases | Where-Object { $_.extracted_count -gt 0 })
           if ($nonEmpty.Count -gt 0) { Write-Host "EXTRACTION_CANDIDATE_FOUND $($nonEmpty.Count)"; }
       - name: Test seven original cuneiform JPEGs with the source-selected depth
-        if: ${{ inputs.mode == 'seven-chain' || inputs.mode == 'seven-chain-medium' }}
+        if: ${{ inputs.mode == 'seven-chain' || inputs.mode == 'seven-chain-medium' || inputs.mode == 'seven-chain-historical-maximum' }}
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
           $level = if ('${{ inputs.mode }}' -eq 'seven-chain-medium') { '1/5 (20%) - Medium' } else { '1/2 (50%) - Maximum' }
-          $out = if ('${{ inputs.mode }}' -eq 'seven-chain-medium') { 'probe-output/original-cuneiform-seven-medium' } else { 'probe-output/original-cuneiform-seven-maximum' }
+          $out = if ('${{ inputs.mode }}' -eq 'seven-chain-medium') { 'probe-output/original-cuneiform-seven-medium' } elseif ('${{ inputs.mode }}' -eq 'seven-chain-historical-maximum') { 'probe-output/original-cuneiform-seven-historical-maximum' } else { 'probe-output/original-cuneiform-seven-maximum' }
+          $password = if ('${{ inputs.mode }}' -eq 'seven-chain-historical-maximum') { '33011033' } else { '10333301' }
           $arguments = @(
             '--exe', "$env:OPENPUFF_EXE",
-            '--password', '10333301',
+            '--password', "$password",
             '--bit-format', 'Jpeg (Image)',
             '--bit-level', "$level",
             '--out', "$out",
@@ -118,7 +120,7 @@ jobs:
           if ($result.native_probe_outcome -eq 'inconclusive-timeout') {
             throw 'Seven-image original chain reached timeout without a native outcome'
           }
-          Write-Host "SOURCE_SEVEN_TOPDOWN_RESULT level=$level $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 12 -Compress)"
+          Write-Host "SOURCE_SEVEN_CUNEIFORM_RESULT password=$password level=$level $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 12 -Compress)"
           if ($result.output_present) { Write-Host 'POTENTIAL_LP2_STEGO_PAYLOAD_DETECTED' }
       - name: Preserve original-tool evidence including hidden outputs
         if: always()
