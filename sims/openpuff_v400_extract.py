@@ -176,6 +176,34 @@ def disable_optional_passwords(window):
     return states
 
 
+def wait_for_native_file_picker(previous_title, timeout_seconds=15):
+    """Poll for the original common-file dialog after the UI's Add action."""
+    deadline = time.monotonic() + timeout_seconds
+    while True:
+        candidates = []
+        for candidate in Desktop(backend="win32").windows():
+            if not safe(candidate.is_visible):
+                continue
+            if safe(candidate.class_name) != "#32770":
+                continue
+            title = safe(candidate.window_text) or ""
+            if title == previous_title or "Data Unhiding" in title:
+                continue
+            edits = [
+                control for control in (safe(candidate.descendants) or [])
+                if safe(control.class_name) == "Edit"
+                and safe(control.is_visible)
+                and safe(control.is_enabled)
+            ]
+            if edits:
+                candidates.append((candidate, edits))
+        if candidates:
+            return candidates[-1]
+        if time.monotonic() >= deadline:
+            return None
+        time.sleep(0.5)
+
+
 def add_carrier(app, window, carrier, out_dir, stage="carrier"):
     previous_title = safe(window.window_text) or ""
     window.child_window(control_id=1046, class_name="Button").click_input()
@@ -183,30 +211,14 @@ def add_carrier(app, window, carrier, out_dir, stage="carrier"):
     # The common file picker may be owned outside OpenPuff's process. Inspect
     # all desktop windows rather than assuming app.top_window() is the dialog.
     snapshot_desktop(out_dir, f"{stage}-dialog")
-    desktop = Desktop(backend="win32")
-    candidates = []
-    for candidate in desktop.windows():
-        if not safe(candidate.is_visible):
-            continue
-        if safe(candidate.class_name) != "#32770":
-            continue
-        title = safe(candidate.window_text) or ""
-        if title == previous_title or "Data Unhiding" in title:
-            continue
-        edits = [
-            control for control in (safe(candidate.descendants) or [])
-            if safe(control.class_name) == "Edit"
-            and safe(control.is_visible)
-            and safe(control.is_enabled)
-        ]
-        if edits:
-            candidates.append((candidate, edits))
-    if not candidates:
+    picker = wait_for_native_file_picker(previous_title, timeout_seconds=15)
+    if picker is None:
+        snapshot_desktop(out_dir, f"{stage}-picker-timeout")
         raise RuntimeError(
-            "OpenPuff did not expose a distinct editable file-picker window; "
-            "desktop window snapshots were saved"
+            "OpenPuff did not expose a distinct editable file-picker window "
+            "within 15 seconds; desktop window snapshots were saved"
         )
-    dialog, edits = candidates[-1]
+    dialog, edits = picker
     dialog.set_focus()
     edits[-1].set_edit_text(str(carrier.resolve()))
     open_buttons = [

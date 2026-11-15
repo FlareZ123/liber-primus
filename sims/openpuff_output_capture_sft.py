@@ -232,6 +232,39 @@ def main():
         assert not any(row["checked"] for row in states)
         print("PASS: native single-selected TreeView bit level needs no checkbox state")
 
+        # A hosted Windows control intermittently missed the native picker
+        # at one fixed two-second observation. Exercise a delayed-window arrival.
+        delayed = FakeDialog("Open", "Open")
+        delayed.class_name = lambda: "#32770"
+        ignored = FakeDialog("Data Unhiding", "Open")
+        ignored.class_name = lambda: "#32770"
+
+        class MockDesktop:
+            calls = 0
+
+            def __init__(self, backend):
+                assert backend == "win32"
+
+            def windows(self):
+                type(self).calls += 1
+                return [ignored] if type(self).calls < 3 else [delayed]
+
+        picker_function = driver["wait_for_native_file_picker"]
+        saved_desktop = picker_function.__globals__["Desktop"]
+        try:
+            picker_function.__globals__["Desktop"] = MockDesktop
+            chosen, edits = picker_function("Data Unhiding", timeout_seconds=3)
+            assert chosen is delayed
+            assert edits == [delayed.edit]
+            assert MockDesktop.calls == 3
+
+            MockDesktop.calls = 0
+            assert picker_function("Data Unhiding", timeout_seconds=0) is None
+            assert MockDesktop.calls == 1
+        finally:
+            picker_function.__globals__["Desktop"] = saved_desktop
+        print("PASS: delayed native picker is polled, unrelated parent excluded, timeout bounded")
+
         # The new source-selected LP2 complete-carrier-chain candidate
         # requires GUI proof of both count and exact published order.
         class ChainItem:
