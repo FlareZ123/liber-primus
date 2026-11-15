@@ -2,7 +2,7 @@
 """Reproduce provisional LP2 p57 -> p50 selectors.
 
 This is not a decoder and establishes no LP2 plaintext/key. It exposes the
-prime-rank indexing ambiguity, full-grid serpentine controls, and p55 sample.
+prime-rank indexing ambiguity, p50 serpentine controls, and p55 layout sensitivity.
 """
 import json, re
 from datetime import date
@@ -26,10 +26,8 @@ def tokenize_gp(text):
     out, pos = [], 0
     while pos < len(text):
         token = next((t for t in vocab if text.startswith(t, pos)), None)
-        if token is None:
-            raise ValueError(f"Unmapped GP text at {pos}: {text[pos:]}")
-        out.append(TOKEN_INDEX[token])
-        pos += len(token)
+        if token is None: raise ValueError(f"Unmapped GP text at {pos}: {text[pos:]}")
+        out.append(TOKEN_INDEX[token]); pos += len(token)
     return out
 
 def is_prime(n):
@@ -72,7 +70,7 @@ for c in range(8):
     col_serp.extend(vals); col_serp_tokens.extend(toks)
 
 def extract(name, values, tokens):
-    picked = [values[i] for i in ranks]  # hypothesis: pi(p) is a zero-based byte offset
+    picked = [values[i] for i in ranks]
     rev = list(reversed(picked))
     return {
         "layout": name, "offset_tokens": [tokens[i] for i in ranks],
@@ -84,10 +82,14 @@ def extract(name, values, tokens):
 offset_values = [row_major[i] for i in ranks]
 phi_values = [phi(v) for v in offset_values]
 p55 = next(p["indices"] for p in CORPUS["pages"] if p["page"] == 55)
-# Page-local index 0 is the incoming NG carry; rune value 0 is F bypass.
 p55_payload = [v for i,v in enumerate(p55) if i != 0 and v != 0]
 assert len(p55) == 76 and len(p55_payload) == 72
-p55_sample = [p55_payload[n-1] for n in phi_values]
+p55_first, p55_second = p55_payload[:36], p55_payload[36:]
+p55_row_major = p55_payload
+p55_row_mobius = p55_first + list(reversed(p55_second))
+sample_positions = phi_values
+p55_sample = [p55_row_major[n-1] for n in sample_positions]
+p55_mobius_sample = [p55_row_mobius[n-1] for n in sample_positions]
 rank_indices = [r-1 for r in ranks]
 rank_values = [row_major[i] for i in rank_indices]
 
@@ -102,9 +104,9 @@ print(json.dumps({
     },
     "phi_of_selected_p50_bytes": phi_values,
     "p55_cipher_consuming_length": len(p55_payload),
-    "p55_sample_positions_1_based": phi_values,
-    "p55_sample_values": p55_sample,
-    "p55_sample_gp": "".join(TRANSLIT[v] for v in p55_sample),
+    "p55_sample_positions_1_based": sample_positions,
+    "p55_row_major_sample": "".join(TRANSLIT[v] for v in p55_sample),
+    "p55_2x36_mobius_sample": "".join(TRANSLIT[v] for v in p55_mobius_sample),
     "phi_29": phi(29),
     "weekday_of_2015_07_28": date(2015, 7, 28).strftime("%A"),
     "classification": "provisional selectors only; no LP2 plaintext/key",
