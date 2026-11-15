@@ -1,6 +1,6 @@
-# Original LP2 p40–53: exhaustive signed-p15-matrix states, including every legal F bypass
+# Original LP2 p40–53: two complete signed-p15-matrix additive clocks, with every legal F bypass
 
-**Agent17 and Agent18, 15 November 2026.** Exact original-cipher computation, source-derived reversible operator, *no newly authenticated LP2 plaintext or key*. The original direct four-rune matrix model first failed an all-secret native-GP English search. A stronger independent **all-state, all-four-phases, exact plaintext-F branch test** now rejects every nonzero source-matrix secret state on unchanged original ciphertext **without any language model**. The sole feasible secret is the zero state, equivalent to identity/no encryption. This is a specific and fully exhausted matrix **state** hypothesis, contingent on its unauthenticated source-selection and a continuous clock.
+**Agent17 and Agent18, 15 November 2026.** Exact original-cipher computation, source-derived reversible operator, *no newly authenticated LP2 plaintext or key*. The original direct four-rune matrix model first failed an all-secret native-GP English search. A stronger independent **all-state, all-four-phases, exact plaintext-F branch test** now rejects every nonzero source-matrix secret state on unchanged original ciphertext **without any language model**. The sole feasible secret is the zero state, equivalent to identity/no encryption. A second independent update clock, emitting **one scalar from M^k v at every consumed rune**, is now likewise excluded for **every linear matrix readout and every secret state**. Both are specific exhausted matrix **state** hypotheses, contingent on unauthenticated source selection and a continuous clock.
 
 ## Historical clue and weakest assumption
 
@@ -63,6 +63,46 @@ The single survivor at 1,500 symbols in **every** phase is **v=[0,0,0,0]**, givi
 
 **Result and boundaries:** The continuously consuming four-output-per-matrix-power additive architecture is now exactly rejected for **all hidden seeds, signs, within-block phases and authentic F masks**, apart from the no-encryption identity. Nothing in the source commands using the restored-sign matrix as this cipher, and the signed form itself is a mathematical inference from the original Fibonacci-prime construction. Changing the state update to every *single* rune, independently resetting at each page/word, using a nonlinear matrix consumer, selecting an alternate plaintext code or adding external key material are different untested models. This result supplies no unknown LP2 plaintext, historical key or destination.
 
+## Different scalar matrix-power clock: all linear readouts, including every unknown key (Agent18)
+
+A genuinely different, human-simple use of the same original 4×4 numeric square is a **single GP29 pad rune per matrix multiplication**, not the four successive vector coordinates per multiplication tested above:
+
+    v_(k+1) = M · v_k  (mod29)
+    K_k = L · v_k     (mod29)
+
+Here **L is any fixed but wholly secret linear output row**, and v₀ is also wholly secret. One could select a source row, a column, a sum of entries or a p39-inspired linear combination; no such selection has been authenticated. The following exact original-cipher gate removes **both** choices simultaneously.
+
+**Key-independent recurrence and complete all-key reduction.** The exact signed matrix has monic characteristic polynomial
+
+    χ_M(X) = X⁴ + 14X³ + 27X² + 10X + 7  over GF(29).
+
+Cayley–Hamilton therefore forces **every** projected scalar keystream of the form L·M^k·v₀ to obey
+
+    K_(k+4) = 15K_(k+3) + 2K_(k+2) + 19K_(k+1) + 22K_k (mod29).
+
+Conversely, the observability matrix formed by the first four rows of the **first-coordinate** source readout, O₀=[e₀, e₀M, e₀M², e₀M³]^T, has **determinant 20 mod29**, hence is invertible. The other three original coordinate observability matrices have determinants **16,14,24**, also nonzero. Thus every possible four-symbol starting pad (29⁴ initial quartets) comes from **exactly one** p15-matrix vector under the first-coordinate readout, and includes all possible scalar projections from any secret row L. Any unknown prime clock start is absorbed into v₀ because M is invertible; subtraction and addition signs are absorbed by negating the secret vector. **There is no unidentified matrix-output component, key phase, or nonzero secret state left within this architecture.**
+
+Invert the exact original **3,000 p40–53 black-body GP29 runes**, retaining both legal branches at all 124 original ciphertext F symbols, exactly as defined in the preceding section. Enumerate every four-term pad seed, with no language or key fitting.
+
+| Original-source prefix length | Secret scalar pads still feasible |
+| ---: | ---: |
+| 50 | 274,542 |
+| 100 | 71,555 |
+| 200 | 8,791 |
+| 500 | 459 |
+| 1,000 | 11 |
+| 1,500 | **1** |
+| 2,000 | **1** |
+| 3,000 | **1** |
+
+The sole survivor from rune1,500 onward is the scalar key [0,0,0,0], generating Kₖ=0 forever and decoding plaintext literally as ciphertext. **Every nonzero scalar key is impossible before 1,500 unchanged original runes**. The best two nonzero initial quartets, packed in base29 as **128995 and 204460**, each fail at zero-based body rune **1066**. This is a complete mathematical exclusion of the direct scalar linear-matrix-readout clock under the authentic F rule; it does not depend on an assumed English plaintext frequency.
+
+**Independent source-positive:** real solved-p57 GP plaintext is tiled to the same 3,000 rune count, then encrypted with nonzero scalar initial quartet [3,5,7,11] under the same exact recurrence and plaintext-F bypass. It creates **94 transparent plaintext-F events** plus **86 additional cipher-F events generated from non-F plaintext**, and consumes 2,906 key digits. The complete exact original-style branching inverse accepts all 3,000 planted runes; a separate brute-recursive F-branch oracle agrees on selected short original and planted prefixes. The script also computes the matrix characteristic identity, verifies all four observability determinants and matches 80 direct matrix-power key outputs to the scalar recurrence for six independent secret vectors.
+
+**Source code and native independent run:** [single-file scalar-recurrence original-input SFT](../sims/lp2_p15_matrix_scalar_lfsr_ambiguousF_original_sft.cjs) and its [successful original-source Windows/Node22 workflow run43732686502](https://github.com/FlareZ123/liber-primus/actions/runs/43732686502). This workflow reruns the distinct four-output F-transparent all-state test in the same job.
+
+**Cryptanalytic decision:** Both natural direct p15 signed-matrix additive generator clocks have now been exhaustively rejected against the unchanged original source **with every p56-style F bypass**. The four-output clock is excluded for every hidden vector/phase; the scalar matrix-power clock is excluded even with any secret linear output row. The original displayed matrix is nonnegative; restoring its two mathematically implied signs remains a source hypothesis, and no Cicada message explicitly commands either generator. Page-local rekeys, nonlinear readouts, transformations before the matrix, alternate state transitions, and intermediate non-native registers remain outside these results. The real plaintext, historical cipher and intended destination remain unknown.
+
 ## Distinct keyless, block-mixing dynamic Hill gate
 
 The same source matrix gives a different fully reversible model that mixes all four GP29 symbols in each block. Instead of using its vector as a key, decrypt the original ciphertext block by applying **M^(phase + direction × block)** over GF29. Because M has exact order **812**, all original phase choices and both independently meaningful exponent directions comprise **2 × 812 = 1,624** complete reversible clocks. There is no additional secret matrix, additive key or language-fitted phase. The inverse of one direction is available because M is invertible.
@@ -75,6 +115,6 @@ The **all-phase dynamic Hill decoder** is consequently a second, distinct scoped
 
 ## Decision and exact reproduction
 
-The original 4-vector matrix-power additive pad is exhausted on this full continuous black-body clock, **including the complete authentic F-skip ambiguity and all four component phases**. It yields no author-selected decoder, plaintext or hidden address. Do not restart matrix-vector seed searches, F-mask fitting, or dictionary phase tuning within this model. A new line would require a manuscript-authenticated different consumer, e.g. a block-mixing or nonlinear output function, a source-selected state reset, or an independent key source.
+The p15 signed-matrix **four-output vector** and **one-output scalar per-multiplication** additive generators are both exhausted on this continuous original black-body clock, **including every historical F-skip branch and all possible secret states**. They yield no author-selected decoder, plaintext or hidden address. Do not restart matrix-vector or matrix-scalar seed searches, output-row fitting, F-mask fitting, or dictionary phase tuning within these two models. A new line would require a manuscript-authenticated different consumer, e.g. a block-mixing or nonlinear output function, a source-selected state reset, or an independent key source.
 
-Earlier dictionary and dynamic-Hill experiments remain independently reproducible in [their original CJS](../sims/lp2_p15_signed_matrix_allstate_dictionary_sft.cjs); those are separate, weaker operator-level results. The newly completed exact F-branch source gate is [here](../sims/lp2_p15_matrix_ambiguousF_allstate_original_sft.cjs), with a [verified Windows/Node22 run](https://github.com/FlareZ123/liber-primus/actions/runs/43731862339). Both scripts read tracked original source and write no files.
+Earlier dictionary and dynamic-Hill experiments remain independently reproducible in [their original CJS](../sims/lp2_p15_signed_matrix_allstate_dictionary_sft.cjs); those are separate, weaker operator-level results. The newly completed exact four-output F-branch source gate is [here](../sims/lp2_p15_matrix_ambiguousF_allstate_original_sft.cjs), and the distinct scalar recurrence full-key gate is [here](../sims/lp2_p15_matrix_scalar_lfsr_ambiguousF_original_sft.cjs). Both pass together in the [verified Windows/Node22 run43732686502](https://github.com/FlareZ123/liber-primus/actions/runs/43732686502). All scripts read tracked original source and write no files.
