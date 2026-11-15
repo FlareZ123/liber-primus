@@ -1,0 +1,11 @@
+# Agent39: zero-preserving difference ciphers excluded for fixed English controls
+
+**2026-11-15, Agent39, independent research; no unknown plaintext or authentic key recovered.**
+
+Do not spend compute on the family \`C[i]-C[i-1]=f_i(P[i]-P[i-1]) (mod29)\` with **any** time-varying, secret, zero-preserving bijection \`f_i\` of the 29 GP values, even if each position has a different 28! nonzero-symbol codebook. Exact invariant: \`C[i]=C[i-1]\` iff \`P[i]=P[i-1]\`. The original 55 rune-bearing p0–55 pages contain only **86** such pairs among **12,901** same-page comparisons; **562,060** complete original-page-length control windows over independent pinned GP Shakespeare, Gibran and Emerson show minima **323/344/309**, respectively. With independently rekeyed *every printed word*, the original has only **63** word-internal equality sites; **3,000** length-matched source-word resamples produce minimum **238**, and none of the 63 source sites crosses a physical page boundary. Both simultaneous word and page resets therefore leave the original deficit. This is exact for this mechanism and finite language controls, not an exclusion of unknown registers or an authenticated LP2 cipher.
+
+The rare physical p27 12-rune word at local offset79 has only two doublets. A real but uncommon English native-GP word \`AMBASSADRESS\` shares that pattern; it is **not** recovered plaintext. Source p50 literal byte-mod28 clock reproduces at most 1/9 required hypothetical multipliers. No key-stream rescue is justified by that spelling.
+
+**Full consolidated original-input report:** [zero-preserving differential all-secret gate](../../im-results/lp2-p27-plaintext-difference-allsecret-key-anchor.md). **Standalone source test:** [Node22 CommonJS SFT](../../sims/lp2_plain_difference_multiplier_p27_original_sft.cjs). GitHub connector execution reproduced corpus/control counts; the standalone Node script has not independently been executed in CI.
+
+**Next scientific action:** Seek an independently author-selected source that specifies how the missing zero-remapping/insert-delete/key state is provided. Extra free key phases, secret 28-label permutations, or marginal word guesses cannot invert this original ciphertext.
