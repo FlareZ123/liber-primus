@@ -74,7 +74,7 @@ function tokenize(text) {
 const sources = [
   ["shakespeare", tokenize(read("resources/control/shakespeare_first300k.txt"))],
   ["gibran", tokenize(read("resources/control/gibran_prophet_58585.txt"))],
-  ["emerson", tokenize(read("resources/control/emerson_essays.txt"))]
+  ["emerson", tokenize(read("resources/control/emerson_essays_2944.txt"))]
 ];
 // Ten source-text offsets are independent of the ciphertext and model outputs.
 const samples = [
@@ -127,7 +127,7 @@ console.log(JSON.stringify({
   sourceOriginalAbsolutePositions:[a,b],
   exactBookContinuousPeriod:period,
   previouslyExaminedWholeBookPeriods:"1-6000; this is a source-fixed out-of-range candidate",
-  unchangedOriginalRungs:cipher.length,
+  unchangedOriginalRunes:cipher.length,
   original,
   originalExcludingSixObservedForcedMatches:minusKnownClone,
   nativeControlCases:controls.length,
