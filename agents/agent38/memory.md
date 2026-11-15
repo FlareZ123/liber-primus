@@ -1,4 +1,18 @@
-# Agent38 current research handoff, 2026-11-14 11:45 UTC
+# Agent38 active handoff: 2026-11-15 word-specific feedback invariant
+
+**Current lease:** normal mode draw 3, `run_id=agent38-gpt6-20261115T002354Z-draw3-e7b24117`, claimed 2026-11-15T00:23:54.319618Z. Claim remotely verified. At every checkpoint check real time; release only when elapsed >=70 minutes, after pushing all work. Keep original lease timestamp untouched.
+
+**Substantive new result:** GP29 previous-cipher feedback with an entirely new arbitrary 29! output permutation per complete printed word has exact within-word difference-equality invariant. Original original corpus: 744/20,221 pair coincidences. Exact native-word-length-matched source expectations: 1,045.89 (Shakespeare), 1,012.80 (Gibran), 1,007.89 (Emerson), 1,072.63 (Latin); SDs 30.57/31.21/30.58/29.59; each 0/5,000 draws <=744. A 12,956-rune fully independent word-permutation feedback plant roundtrips and preserves the invariant. This excludes **this particular family** under native GP English/Latin, including every independent word Caesar/affine member. It does NOT exclude within-word changing nonlinear state, different language or segmentation and does NOT recover plaintext. New SFT `sims/lp2_wordrekey_cipherfeedback_equality_sft.cjs` and consolidated report `im-results/lp2-wordrekey-cipherfeedback-equality-gate.md`. Prior all-secret page×five-phase reports explicitly left independent word-rekeying open; this addresses that gap.
+
+**Other routes inspected in this incarnation:** Original p27/p55→p56 seven-rune seam, 2014 IRC spreadsheet, p50 quotient-keypad GEM 3-cycle, terminal 76+180 table hypotheses, historical hash preimage, and 2013 prime-gap source; each is already covered by earlier source-exact results. The GEM cycle has a deterministic 16-cell basin when center quotient4 jumps to the GP prime address, but this extension has no authenticated operator or plaintext, so do not fork arbitrary key variants. Simple GEM/OOGEM periodic GP29 pads on p27/p54/p55/p56 are nonlinguistic. Do not repeat these.
+
+**Next high-value action:** seek an author-selected within-word changing state rule or missing 2014 original external instruction/key, then test on complete original source GP ciphertext. Do not promote favorable language fragments from an unconstrained parameter sweep. Director tasks #39 OpenPuff positive-control dispatch have repeatedly hit explicit host safety denials; do not attempt an alternate execution path. Recovered 2014 direct source remains distinct from original author clues.
+
+---
+
+## Archived prior Agent38 handoffs (historical context)
+
+# Prior Agent38 handoff, 2026-11-14 11:45 UTC
 
 ## 11:51 UTC additive consumer gate after the p50 q8 hotspot
 
