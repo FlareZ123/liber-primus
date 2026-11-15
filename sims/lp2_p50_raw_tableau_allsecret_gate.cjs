@@ -69,7 +69,7 @@ const alpha60='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx';
 const alpha59='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdeghijklmnopqrstuvwx';
 function tokenCells(alpha){
   const d=new Map([...alpha].map((c,i)=>[c,i]));
-  return tableTokens.map(t=>({byte:d.get(t[0])*alpha.length+d.get(t[1]),hi:d.get(t[0]),lo:d.get(t[1])}));
+  return tableTokens.map((t,index)=>({index,byte:d.get(t[0])*alpha.length+d.get(t[1]),hi:d.get(t[0]),lo:d.get(t[1])}));
 }
 const pageLocal=new Uint16Array(N);
 let pageBase=0;
@@ -128,6 +128,55 @@ const base60GlobalCurrent=repeatMask.find(x=>x.radix==='base60'&&x.clock==='glob
 assert.deepEqual(base60GlobalCurrent.highDigit.events,[15,25,24,18,4]);
 assert.deepEqual(base60GlobalCurrent.lowDigitMod5.events,[20,14,23,15,14]);
 assert.equal(base60GlobalCurrent.bottom20.eventCount,11);
+
 result.repeatMask={doubletSites:doubletSites.length,opportunities:N-1,tests:repeatMask};
+const rankedTable=tableCells60.slice().sort((a,b)=>a.byte-b.byte||a.index-b.index);
+const quintileByCell=new Uint8Array(256);
+rankedTable.forEach((x,rank)=>quintileByCell[x.index]=Math.floor(rank*5/256));
+const quintileOpportunities=Array(5).fill(0),quintileEvents=Array(5).fill(0),eventByCell=Array(256).fill(0);
+for(let i=1;i<N;i++){
+  const cell=(i-1)%256,q=quintileByCell[cell];
+  quintileOpportunities[q]++;
+  if(C[i]===C[i-1]){quintileEvents[q]++;eventByCell[cell]++;}
+}
+const observedBottom=quintileEvents[0],shiftFamily=[];
+for(let shift=0;shift<256;shift++){
+  const counts=Array(5).fill(0);
+  for(const i of doubletSites){const cell=((i-1+shift)%256+256)%256;counts[quintileByCell[cell]]++;}
+  shiftFamily.push(...counts);
+}
+const shiftGe=shiftFamily.filter(x=>x>=observedBottom).length;
+const bottomCells=rankedTable.slice(0,52).map(x=>x.index);
+const rnd=rng(0x3301c1ca),indices=Array.from({length:256},(_,i)=>i);
+let randomGe=0,randomSum=0,randomMax=0;
+const randomTrials=100000;
+for(let z=0;z<randomTrials;z++){
+  for(let j=0;j<52;j++){const k=j+rnd()%(256-j);[indices[j],indices[k]]=[indices[k],indices[j]];}
+  let s=0;for(let j=0;j<52;j++)s+=eventByCell[indices[j]];
+  randomSum+=s;if(s>=observedBottom)randomGe++;if(s>randomMax)randomMax=s;
+}
+const lagComparison=[];
+for(let lag=1;lag<=10;lag++){
+  const op=Array(5).fill(0),hit=Array(5).fill(0);
+  for(let i=lag;i<N;i++){
+    const q=quintileByCell[(i-lag)%256];op[q]++;
+    if(C[i]===C[i-lag])hit[q]++;
+  }
+  const otherOp=op.slice(1).reduce((s,x)=>s+x,0),otherHit=hit.slice(1).reduce((s,x)=>s+x,0);
+  lagComparison.push({lag,opportunities:op,events:hit,bottomRate:hit[0]/op[0],otherRate:otherHit/otherOp,rateRatio:(hit[0]/op[0])/(otherHit/otherOp),totalEvents:hit.reduce((s,x)=>s+x,0)});
+}
+result.repeatMask.alignment={
+  quintileOpportunities,quintileEvents,
+  bottomQuintile:{cells:52,cutoffBase60:rankedTable[51].byte,observed:observedBottom,expected:86*quintileOpportunities[0]/(N-1)},
+  cyclicShiftFamily:{combinations:shiftFamily.length,ge:shiftGe,p:shiftGe/shiftFamily.length},
+  randomSubset:{trials:randomTrials,ge:randomGe,p:(randomGe+1)/(randomTrials+1),mean:randomSum/randomTrials,max:randomMax,seed:'0x3301c1ca'},
+  lagComparison
+};
+assert.deepEqual(quintileEvents,[30,13,12,12,19]);
+assert.equal(rankedTable[51].byte,54);
+assert.equal(shiftGe,3);
+assert.equal(randomGe,392);
+assert(Math.abs(lagComparison[0].rateRatio-2.101)<0.01);
+
 
 console.log(JSON.stringify(result,null,2));
