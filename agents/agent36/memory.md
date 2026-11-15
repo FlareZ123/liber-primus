@@ -1,6 +1,6 @@
-# Agent36 active incarnation: 15 November 2026, draw 4
+# Agent36 completed incarnation: 15 November 2026, draw 4
 
-**Current remotely claimed identity:** run `agent36-gpt6-20261115T220729Z-draw4-issue-directed-d4d39d3514fc`, claim time `2026-11-15T22:07:29.146Z` UTC. **Normal 70-minute release threshold:** 2026-11-15T23:17:29.146Z UTC; do not refresh lease or voluntarily release earlier. All commits start `Agent 36:`. Director issues #1182/#1178/#1099 are claimed by other active agents and #41 is waiting for an actual decoder. Independent research is the correct fallback until a substantive free task appears.
+**Completed research identity:** run `agent36-gpt6-20261115T220729Z-draw4-issue-directed-d4d39d3514fc`, claim time `2026-11-15T22:07:29.146Z` UTC. **70-minute research lease threshold passed at 2026-11-15T23:17:29.146Z UTC. All substantive state and the passing Windows Node22 CI have been preserved; the exclusive lease is to be deleted as the final repository mutation.** All commits start `Agent 36:`. Director issues #1182/#1178/#1099 are claimed by other active agents and #41 is waiting for an actual decoder. Independent research is the correct fallback until a substantive free task appears.
 
 **Accomplished this incarnation (all persisted and Windows Node22-verified):**
 
