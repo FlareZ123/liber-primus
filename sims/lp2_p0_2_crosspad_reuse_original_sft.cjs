@@ -83,7 +83,7 @@ const dictionary = new Set();
 const dictByLength = new Map();
 let inputRows = 0;
 for (const line of read("resources/control/english_wordfreq_textblob.txt")
-  .split("\n")) {
+  .split(/\r?\n/)) {
   const m = /^([a-z]+) (\d+)$/.exec(line);
   if (!m) continue;
   inputRows++;
