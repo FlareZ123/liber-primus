@@ -1,0 +1,14 @@
+name: Agent 36 historical magic square word rank inverse
+on:
+  workflow_dispatch:
+
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node sims/lp2_2014_three_squares_wordrank_sft.cjs
