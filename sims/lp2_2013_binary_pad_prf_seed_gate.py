@@ -12,11 +12,13 @@ import argparse
 import hashlib
 import hmac
 import json
+import os
 import random
 import sys
 from pathlib import Path
 
 import numpy as np
+from filelock import FileLock
 
 HERE = Path(__file__).resolve()
 ROOT = HERE.parents[1]
@@ -446,7 +448,10 @@ def main() -> None:
         "continuous_clock": global_results,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(report, indent=2) + "\n")
+    with FileLock(str(args.output) + ".lock"):
+        temp = args.output.with_suffix(args.output.suffix + ".tmp")
+        temp.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+        os.replace(temp, args.output)
     print("REPORT " + json.dumps({
         "candidate_count": len(candidates),
         "screened_count": len(screened),
