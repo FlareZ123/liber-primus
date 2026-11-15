@@ -8,6 +8,8 @@ The authentic 2013 Cicada chain used **Shamir's Secret Sharing Scheme**: period 
 
 The 2014 LP2 pp49–51 visibly print exactly **32 rows × 8 columns** of two-glyph numerals, which the source-standard **conditional base-60** interpretation makes **256 bytes**. Under a natural file-format reading, the eight **columns** might be eight 32-byte Shamir shares; each column's **top byte** can serve as an encoded x coordinate, leaving **31 y bytes**, a potential **31-byte shared secret**. The rival orientation uses the printed column numbers **x=1..8**, giving 32 y bytes per share. The source provides no indication that this table uses Shamir, or which finite field applies.
 
+The separate original p39 red three-rune polynomial coefficient witness `[27,5,15]` could also motivate a three-share threshold. This is an **additional, conjectural** cross-page link; the same gate explicitly tests thresholds two through seven, including k=3, without adopting or tuning that particular polynomial.
+
 A five-of-eight secret-sharing scheme would have an unforgiving reversible property: any five shares determine a degree-four polynomial at every secret-byte position; the **three additional original shares must be exactly predicted**. This is a source-original, key-free, strong test. The model does not need to guess the secret or any LP2 unknown plaintext.
 
 ## Frozen original test
@@ -31,4 +33,4 @@ All other fixed candidate thresholds **k=2 through 7** fail the complete predict
 
 This does not exclude encrypted/compressed shares, different original radix or cell order, a secret threshold eight with no built-in redundancy, or a separate 2014 operation inspired by Shamir. None of these alternatives has a source-selected exact implementation. No decryption has resulted.
 
-**Reproduction:** [Original 256-cell and positive-control CJS SFT](../sims/lp2_p50_2013_shamir_5of8_source_sft.cjs) (Windows Node 22) · [the 2013 stage's publicly documented five-share implementation](https://uncovering-cicada.fandom.com/wiki/The_2013_Winners_Questions) · [2013 test's Shamir question, appendix A](https://brill.com/downloadpdf/view/journals/gnos/6/1/article-p79_4.pdf).
+**Reproduction:** [Passing original-input and Shamir-positive Windows CI](https://github.com/FlareZ123/liber-primus/actions/runs/43672133523) · [Original 256-cell and positive-control CJS SFT](../sims/lp2_p50_2013_shamir_5of8_source_sft.cjs) (Windows Node 22) · [the 2013 stage's publicly documented five-share implementation](https://uncovering-cicada.fandom.com/wiki/The_2013_Winners_Questions) · [2013 test's Shamir question, appendix A](https://brill.com/downloadpdf/view/journals/gnos/6/1/article-p79_4.pdf).
