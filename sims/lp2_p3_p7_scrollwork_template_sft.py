@@ -12,6 +12,8 @@ SOURCE = ROOT / "resources" / "liber-primus"
 BOUNDS = {
     "left": (180, 380, 560, 1500),
     "right": (1840, 380, 2180, 1500),
+    "lower_left": (60, 1450, 450, 2600),
+    "lower_right": (1950, 1450, 2340, 2600),
 }
 BODY = (700, 600, 1700, 1550)
 
@@ -50,7 +52,7 @@ def main():
         intersection = int(np.count_nonzero(a & b))
         assert int(np.count_nonzero(a)) > 10000
         assert int(np.count_nonzero(b)) > 10000
-        assert 0.95 < intersection / union < 0.99
+        assert (0.90 if label.startswith("lower_") else 0.95) < intersection / union < 0.99
         orphan_a = int(np.count_nonzero(a & ~dilated(b)))
         orphan_b = int(np.count_nonzero(b & ~dilated(a)))
         assert orphan_a == orphan_b == 0
