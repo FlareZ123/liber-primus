@@ -226,8 +226,8 @@ const p2Runes = corpus.pages.find(page => page.page === 2).indices;
 assert.equal(p2Runes[116], 0);
 const originalP2 = fs.readFileSync(
   path.join(root, 'resources/liber-primus/lp2-transcription.txt'), 'utf8'
-).split('%')[2].replace(/\\/\\s*/gu, '');
-const p2Words = [...originalP2.matchAll(/[\\u16a0-\\u16ff]+/gu)].map(match => match[0]);
+).split('%')[2].replace(/\/\s*/gu, '');
+const p2Words = [...originalP2.matchAll(/[\u16a0-\u16ff]+/gu)].map(match => match[0]);
 assert.equal(p2Words.length, 38);
 assert.deepEqual(p2Words.filter(word => [...word].length === 1), ['ᚢ','ᚠ']);
 assert.equal(p2Words[23], 'ᚠ');
