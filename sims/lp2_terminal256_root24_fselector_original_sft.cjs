@@ -107,6 +107,21 @@ assert.deepEqual(marked56, [56]);
 assert.deepEqual(marked59_55, []);
 assert.deepEqual(marked59_56, [47]);
 
+
+/*
+ * A second, independently original-visible register: the p55 six-rune
+ * closing bookend is a verbatim occurrence from p27, beginning at p55
+ * offset 70. It sits on the same exact printed grid token 2n = 169
+ * as p56's independently known transparent-F site at global index 132.
+ */
+const p27 = corpus.pages.find((page) => page.page === 27).indices;
+const twoNPositions = table.bytes.flatMap((byte, i) => byte === 169 ? [i] : []);
+assert.deepEqual(twoNPositions, [70, 132]);
+assert.equal(tokens[70], '2n');
+assert.equal(tokens[132], '2n');
+assert.deepEqual(p55.slice(70, 76), p27.slice(28, 34));
+assert.equal(p55.slice(70, 76).map((v) => corpus.translit[v]).join(''), 'DJUBEI');
+
 const rootCells = table.bytes.flatMap((b, i) => b % 29 === 24 ? [i] : []);
 assert.deepEqual(rootCells, [25, 70, 79, 86, 90, 132, 163, 246]);
 const center = [123, 124, 131, 132];
@@ -199,6 +214,8 @@ const lexicalControls = lexicalFiles.map(([name, n, hits]) => {
 console.log(JSON.stringify({
   model: 'row-major terminal256: p55(76), p56(85), p57(95)',
   originalPrintedGridRoot24Cells: rootCells,
+  repeated2nMarkerPositions: twoNPositions,
+  sourceP55FinalSixEqualsP27: true,
   specialCentralCell: { index: 132, row0: 16, col0: 4, byte: 169, mod29: 24 },
   printedF: {
     p55: p55.flatMap((v, i) => v === 0 ? [i] : []),
