@@ -121,6 +121,21 @@ const controls = chapterStart.map(([a,b,h])=>{
 });
 assert.deepEqual(controls.map(x=>x.primeSum), [903,641,708,936,761,696,884]);
 
+// A second, source-visible independent physical chapter happens to yield 761
+// at the same red-heading-following Fibonacci pickup. p27 draws a wing and
+// the actual 2013 carrier has literal filename 761.MP3. This source alignment
+// still does not select a rune cipher. Test the two least-free authentic PARABLE
+// rune keys instead of tuning MP3-byte mappings or key phases.
+const wingChapter=p.slice(27,33).flatMap(x=>x.indices).slice(19);
+assert.equal(wingChapter.length,1414);
+const parableSeven=p[57].indices.slice(0,7);
+const parableAll=p[57].indices;
+assert.equal(fib.reduce((sum,i)=>sum+primeRune[wingChapter[i]],0),761);
+assert.deepEqual(strictTransparentF(wingChapter,parableSeven),{reachable:0,firstImpossible:13});
+assert.deepEqual(strictTransparentF(wingChapter,parableAll),{reachable:0,firstImpossible:68});
+assert(strictTransparentF(encryptStrictTransparentF(p[57].indices,parableSeven),parableSeven).reachable>0);
+assert(strictTransparentF(encryptStrictTransparentF(p[57].indices,parableAll),parableAll).reachable>0);
+
 // One frozen candidate consumer: the extracted sixteen runes used directly
 // as a repeated Vigenere key, under the known p56 transparent-F convention.
 // The independent neighboring p23–26 chapter starts after its 16-rune title.
@@ -167,6 +182,7 @@ console.log(JSON.stringify({
   sameChapterCandidateStartHits:shifts,
   nextSelfAddressedWindow:{start:continuationStart,sum:continuationSum,hit:numbers.includes(continuationSum)},
   otherChapterInitialControls:controls,
+  wingP27Parable:{matchedOriginalFilename:761,sourceBodyRunes:wingChapter.length,strictF7:strictTransparentF(wingChapter,parableSeven),strictF95:strictTransparentF(wingChapter,parableAll)},
   shiftedKeyCandidate:{
     nextChapterRemainderIoc:ioc(direct),
     transparentFNextChapter:strictTransparentF(adjacent,picked),
