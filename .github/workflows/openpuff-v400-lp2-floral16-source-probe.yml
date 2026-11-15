@@ -21,7 +21,7 @@ on:
           - p49-p51-table
           - p55-single
       password_source:
-        description: Historically sourced password to test on original floral carriers
+        description: Historically or source-derived password to test on original floral carriers
         type: choice
         required: true
         default: historic-mp3
@@ -29,6 +29,7 @@ on:
           - historic-mp3
           - lp1-divinity
           - p50-center
+          - p55-16word-base32
 permissions:
   contents: read
 concurrency:
@@ -93,6 +94,7 @@ jobs:
           $password = switch ('${{ inputs.password_source }}') {
             'lp1-divinity' { 'DIVINITY' }
             'p50-center' { '0s0D202n' }
+            'p55-16word-base32' { '6sws36unkmvdy4b7' }
             default { '33011033' }
           }
           $arguments = @(
