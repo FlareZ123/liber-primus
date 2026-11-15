@@ -52,6 +52,10 @@ function sha1blob(b) {
     original04LikelyMentions:originalP04,
     actualSeedOverrideRelevant:focus,
     unusualEmbeddingCommandMatches:atypical,
+    sourceContexts:[21433,32904,45633,55111,57161,59749,85873,85895,92620].map(site => ({
+      site,
+      lines:lines.slice(site-7,site+8).map((t,j)=>({line:site-6+j,text:t.slice(0,550)})),
+    })),
     conclusionRule:'Only original positive command or typed content is evidence of non-default embedding. Absence in participant IRC cannot prove an author did not use -i.',
   },null,2)+'\n');
 })().catch(err=>{process.stderr.write(err.stack+'\n');process.exitCode=1;});
