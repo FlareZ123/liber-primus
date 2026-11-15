@@ -11,6 +11,7 @@ on:
         options:
           - legacy
           - rare-marker
+          - previous-literal-word
 
 permissions:
   contents: read
@@ -45,3 +46,17 @@ jobs:
         run: |
           node --check sims/lp2_raremarker_feedback29_original_sft.cjs
           node sims/lp2_raremarker_feedback29_original_sft.cjs
+
+  previous-literal-word-original:
+    if: ${{ inputs.gate == 'previous-literal-word' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test previous ciphertext-word literal Vigenere
+        run: |
+          node --check sims/lp2_previous_cipherword_literal_vigenere_original_sft.cjs
+          node sims/lp2_previous_cipherword_literal_vigenere_original_sft.cjs
