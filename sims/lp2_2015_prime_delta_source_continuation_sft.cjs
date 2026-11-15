@@ -55,6 +55,10 @@ async function main(){
     for(let url of matches)urls.push({...row,url:url.replace(/[.,;!?]+$/g,'')});
   }
   summarize('Outward links from source speakers OR within 75 raw lines of relevant prime/delta conversation',urls,150);
+  console.log('\n## Exact raw unsanitized context for 2015 Feb5 code-paste claim');
+  for(const at of [90113,90114,90115,90123,90124,90135,90136,90137,90138,90139,90140]) {
+    console.log('RAW L'+at+' '+JSON.stringify(raw[at-1]).slice(0,1200));
+  }
   // Freeze original whole-conversation neighborhoods for the historical
   // author's own result, its February 5 continuation, and later method fork.
   for (const [anchor,before,after] of [
