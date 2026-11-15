@@ -148,6 +148,41 @@ shadow[109] = (shadow[109] + 1) % 29;
 assert.equal(testNumber(short, shadow, xEdges, yEdges, dimensions).match, false);
 assert.equal(testNumber(cicada, shadow, xEdges, yEdges, dimensions).match, false);
 
+// Check whether the two source-number pixels are unusual *visible ink*
+// in the original signed JPEG. A fixed full-canvas brightness percentile
+// serves as an independent image-based control for the conjectured map.
+const decoder = require("./vendor/jpeg-js-decoder.cjs");
+const raster = decoder(jpeg, {useTArray: true, formatAsRGBA: false, maxResolutionInMP: 2});
+assert.deepEqual([raster.width, raster.height], [563,569]);
+assert.equal(raster.data.length, 3 * 563 * 569);
+/** @param {number} x @param {number} y @returns {number} */
+function brightness(x,y) {
+  const k = 3 * (y * raster.width + x);
+  return (raster.data[k] + raster.data[k+1] + raster.data[k+2]) / 3;
+}
+const brightnessCounts = new Int32Array(256);
+let brightnessTotal = 0;
+for (let y = 0; y < raster.height; y++) {
+  for (let x = 0; x < raster.width; x++) {
+    const v = Math.round(brightness(x,y));
+    brightnessCounts[v]++;
+    brightnessTotal += v;
+  }
+}
+const pointBrightness = {};
+for (const name of ["signed_short_keyid", "signed_identifier_3301"]) {
+  const point = checks[name];
+  const value = Math.round(brightness(point.x,point.y));
+  const idx = 3 * (point.y * raster.width + point.x);
+  pointBrightness[name] = {
+    rgb: Array.from(raster.data.slice(idx,idx+3)),
+    roundedBrightness: value,
+    percentileAmongOriginalImagePixels:
+      brightnessCounts.slice(0,value+1).reduce((a,b)=>a+b,0)/(563*569)
+  };
+}
+const sourceImageMeanBrightness = brightnessTotal/(563*569);
+
 console.log(JSON.stringify({
   mode: "original-source coincidence; no authentic LP2 decryption",
   dimensions,
@@ -155,6 +190,8 @@ console.log(JSON.stringify({
   interiorRuneCounts: 100,
   signedShortKeyId: keyId[1],
   checks,
+  pointBrightness,
+  sourceImageMeanBrightness,
   conditionalInteriorShuffleChance: conditionalExactProbability,
   caveat: "The p32 square, prime-weight strip model and fixed-point comparison are analyst-selected; conditional probability is post-selection-unadjusted."
 }, null, 2));
