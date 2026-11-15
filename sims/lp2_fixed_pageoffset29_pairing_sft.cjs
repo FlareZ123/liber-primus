@@ -151,26 +151,26 @@ const equalCountPairs = indices.filter(i => left[i].runeCount === right[i].runeC
   }));
 assert.deepEqual(equalCountPairs.map(x => x.physicalPages), [[13, 42], [19, 48]]);
 
-// Original-source folding anchor: signed 2016 THE=72 selects physical
-// p14 word1 FOLD under the published conditional 58-page address model.
-// This was identified after the ten fixed pair statistics, and is NOT a
-// source-selected cipher, key, or newly registered significance test.
+// Source-boundary-aware correction to the provisional midpoint fold:
+// A page edge is NOT necessarily a printed word boundary; 32 unknown
+// GP29 words continue over physical pages. The first/last page fragments
+// below are only physical-edge fragments, never claimed whole words.
 /** @param {number} p @returns {string[]} */
-function wordTokens(p) {
-  const words = [];
+function pageFragments(p) {
+  const parts = [];
   let token = '';
   for (const ch of texts[p]) {
     if (alphabet.has(ch)) token += ch;
     else if ('-.$&§'.includes(ch) && token.length) {
-      words.push(token);
+      parts.push(token);
       token = '';
     }
   }
-  if (token.length) words.push(token);
-  return words;
+  if (token.length) parts.push(token);
+  return parts;
 }
-const firstWords = Array.from({length: 58}, (_, p) => wordTokens(p)[0] || '');
-const lastWords = Array.from({length: 58}, (_, p) => wordTokens(p).at(-1) || '');
+const firstFrag = Array.from({length: 58}, (_, p) => pageFragments(p)[0] || '');
+const lastFrag = Array.from({length: 58}, (_, p) => pageFragments(p).at(-1) || '');
 /** @param {string} token @returns {string} */
 const roman = token => [...token].map(r => corpus.translit[corpus.runes.indexOf(r)]).join('');
 /** @param {number[]} seq @returns {number} */
@@ -179,33 +179,51 @@ function ioc(seq) {
   for (const x of seq) counts[x]++;
   return sum(counts.map(x => x * (x - 1))) / (seq.length * (seq.length - 1));
 }
-assert.equal(roman(firstWords[14]), 'TJ');
-assert.equal(roman(wordTokens(14)[1]), 'FOLD');
-assert.equal(roman(firstWords[43]), 'HJ');
-assert.equal(roman(lastWords[43]), 'JT');
+assert.equal(roman(firstFrag[14]), 'TJ');
+assert.equal(roman(pageFragments(14)[1]), 'FOLD');
+assert.equal(roman(firstFrag[43]), 'HJ');
+assert.equal(roman(lastFrag[43]), 'JT');
 assert.equal(corpus.pages[14].indices.length, 137);
 assert.equal(corpus.pages[43].indices.length, 274);
-const crossHalfReversedWordMatches = [];
-const crossHalfExactDoubleLengths = [];
+/** @param {number} p @returns {boolean} */
+function pendingAtEnd(p) {
+  let open = false;
+  for (const ch of texts[p]) {
+    if (alphabet.has(ch)) open = true;
+    else if ('-.$&§'.includes(ch)) open = false;
+  }
+  return open;
+}
+/** @param {number} p @returns {boolean} */
+function beginsWithRune(p) {
+  return [...texts[p]].some(ch => alphabet.has(ch) || '-.$&§'.includes(ch))
+    && alphabet.has([...texts[p]].find(ch => alphabet.has(ch) || '-.$&§'.includes(ch)));
+}
+const carriesInto43 = pendingAtEnd(42) && beginsWithRune(43);
+const carriesOutOf43 = pendingAtEnd(43) && beginsWithRune(44);
+assert.equal(carriesInto43, true);
+assert.equal(carriesOutOf43, true);
+const fullIncomingWord = lastFrag[42] + firstFrag[43];
+const fullOutgoingWord = lastFrag[43] + firstFrag[44];
+const crossHalfReversedEdgeMatches = [];
+const crossHalfDoubleLengths = [];
 for (let p = 0; p < 29; p++) {
   for (let q = 29; q < 58; q++) {
-    if (firstWords[p] && firstWords[p] === [...lastWords[q]].reverse().join(''))
-      crossHalfReversedWordMatches.push([p, q, roman(firstWords[p])]);
+    if (firstFrag[p] && firstFrag[p] === [...lastFrag[q]].reverse().join(''))
+      crossHalfReversedEdgeMatches.push([p, q, roman(firstFrag[p])]);
     if (2 * corpus.pages[p].indices.length === corpus.pages[q].indices.length)
-      crossHalfExactDoubleLengths.push([p, q]);
+      crossHalfDoubleLengths.push([p, q]);
   }
 }
-assert.deepEqual(crossHalfReversedWordMatches, [[14, 43, 'TJ']]);
-assert.deepEqual(crossHalfExactDoubleLengths, [[14, 43], [14, 47]]);
+assert.deepEqual(crossHalfReversedEdgeMatches, [[14, 43, 'TJ']]);
+assert.deepEqual(crossHalfDoubleLengths, [[14, 43], [14, 47]]);
 const p14 = corpus.pages[14].indices;
 const p43 = corpus.pages[43].indices;
 const n = p14.length;
 const p43first = p43.slice(0, n);
 const p43folded = p43.slice(n).reverse();
-// The source-selected three-lane alignment is hypothetical. The original
-// solved-stage 2013 Shamir precedent motivates exactly one direct GF29
-// interpolation test, with A=p14, B=first half, C=folded second half.
-// These x=1,2,3 coordinates and extraction are NOT original instructions.
+// One exploratory, not author-selected three-lane Shamir interpolation.
+// The original failed decoder is retained only as a finite exclusion.
 const recovered = p14.map((x, i) => (3 * x - 3 * p43first[i] + p43folded[i] + 29 * 3) % 29);
 const known = corpus.pages[57].indices;
 const planted = known.map((p, i) => {
@@ -215,24 +233,27 @@ const planted = known.map((p, i) => {
 const control = planted.map(([a, b, c]) => (3 * a - 3 * b + c + 29 * 3) % 29);
 assert.deepEqual(control, known);
 assert(Math.abs(ioc(recovered) - 0.03424216401889223) < 1e-12);
-assert.equal(corpus.prime[corpus.runes.indexOf(firstWords[43][0])]
-  + corpus.prime[corpus.runes.indexOf(firstWords[43][1])], 60);
-const p43FirstOrdinal29 = corpus.runes.indexOf(firstWords[43][0]) * 29
-  + corpus.runes.indexOf(firstWords[43][1]);
+const p43FirstOrdinal29 = corpus.runes.indexOf(firstFrag[43][0]) * 29
+  + corpus.runes.indexOf(firstFrag[43][1]);
 assert.equal(p43FirstOrdinal29, 243);
 const foldAnchor = {
   sourceAddress: {signedWord: 'THE', gematriaPrimeSum: 72,
     page: 14, wordIndexZeroBased: 1, readout: 'FOLD'},
   midpointPair: [14, 43], runeCounts: [137, 274],
-  openingAndMirroredEnding: {p14FirstWord: 'TJ', p43LastWord: 'JT'},
-  all841CrossHalfReversedFirstLastWordMatches: crossHalfReversedWordMatches,
-  all841CrossHalfDoubleLengthPairs: crossHalfExactDoubleLengths,
-  p43FirstWord: {translit: 'HJ', ordinalBase29: p43FirstOrdinal29,
-    primeSum: 60, interpretation: 'conditional, no author-specified transport'},
+  physicalEdgeFragments: {
+    p14FirstFullWord: roman(firstFrag[14]), p43FirstCarryFragment: roman(firstFrag[43]),
+    p43LastCarryFragment: roman(lastFrag[43]),
+    incomingCarryFromP42: carriesInto43, outgoingCarryToP44: carriesOutOf43,
+    actualIncomingFullWord: roman(fullIncomingWord),
+    actualOutgoingFullWord: roman(fullOutgoingWord)
+  },
+  all841CrossHalfReversedPhysicalEdgeMatches: crossHalfReversedEdgeMatches,
+  all841CrossHalfDoubleLengthPairs: crossHalfDoubleLengths,
+  p43OpeningFragmentNumericCoincidence: {translit: 'HJ',
+    ordinalBase29: p43FirstOrdinal29, interpretation: 'part of a carried word, no original transport'},
   singleFrozenGF29ThreeShare: {sourceShamirCoefficientOrder: [3, -3, 1],
     realOutputIoC: ioc(recovered), knownEnglishP57IoC: ioc(known),
-    positiveRecoveredRunes: control.length, first40: roman(
-      recovered.slice(0, 40).map(i => corpus.runes[i]).join(''))}
+    positiveRecoveredRunes: control.length}
 };
 
 console.log(JSON.stringify({
