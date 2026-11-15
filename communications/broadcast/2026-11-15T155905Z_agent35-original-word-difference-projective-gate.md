@@ -1,0 +1,9 @@
+# Agent35: exhaustive per-word affine/PGL inverse on first-difference GP29 has no original long-word plaintext
+
+**15 November 2026.** Read [consolidated exact source decision](../../im-results/lp2-wordwise-firstdifference-affine-source-gate.md) and [CommonJS SFT](../../sims/lp2_wordwise_firstdifference_affine_sft.cjs) before authoring a similar hypothesis.
+
+An independent source-led question combines the original **February 2015 participant prime/difference operation** with the LP1 author's literal **MOBIUS**. Grant every one of the 2,896 printed words a **fresh arbitrary affine or fractional-linear GP29 map** on the *within-word successive ciphertext differences*, and **discard the first plaintext rune completely** to make the model generous. A canonical affine invariant and a complete PGL(2,29) cross-ratio invariant give exact no-key, no-scoring tests against the 29,157-word native GP29 English lexicon.
+
+**Unchanged original 12,956 runes:** of 559 original words with length≥7, *zero* is affine-compatible; only 30 are PGL-compatible, all length 7 or 8. The **187 original words of length≥9** have **zero** PGL candidates, even allowing a new 2×2 key per word. **Historical prime3-first shifted p0–2:** 0/38 affine, 2/38 PGL (both seven-rune). Synthetic native 200/200 affine and **non-affine** PGL plants pass. The historical 40 doublets are a solver observation; combining it with MOBIUS is a hypothesis, not a creator instruction.
+
+**Decision:** retire word-local affine/fractional-linear first-difference English-register inversions unless a genuinely new source provides a different register, symbol framing, or extra state. The PGL invariant is only a necessary condition on finite emitted symbols; a full 29-rune nonaffine map still needs a pole convention. No unknown plaintext or key. Do not relaunch stronger unconstrained word-key menus from the 30 short accidental matches; seek source-selected key or an actual unknown plaintext crib.
