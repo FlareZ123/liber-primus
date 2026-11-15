@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 "use strict";
 
-// Source-constrained test: LP1 p16's printed 5x5 / 3301 magic square as a
-// direct stationary GP29 Hill-5 key on the original unsolved LP2 stream.
-// No phase, padding, key fitting, or language-scored parameter selection.
+// Test the two minimal source-motivated readings of LP1 p16's 5x5 / 3301
+// magic square as a direct stationary GP29 Hill-5 key:
+// (1) reduce each cell mod29; (2) apply Euler phi to each cell, then mod29.
+// Four natural matrix/inverse orientations and two natural clocks are tested.
+// No phase, padding, fitted key, or language-score parameter selection.
 
 const fs = require("fs");
 const path = require("path");
@@ -18,6 +20,17 @@ const unknown = pages.flat();
 const p57 = source.pages[57].indices;
 
 const mod = n => ((n % Q) + Q) % Q;
+function phi(n) {
+  let x = n, result = n;
+  for (let p = 2; p * p <= x; p++) {
+    if (x % p === 0) {
+      while (x % p === 0) x /= p;
+      result -= result / p;
+    }
+  }
+  if (x > 1) result -= result / x;
+  return result;
+}
 function inverseScalar(a) {
   for (let x = 1; x < Q; x++) if (mod(a * x) === 1) return x;
   throw new Error("noninvertible scalar " + a);
@@ -90,70 +103,91 @@ const raw = [
   [1071, 280, 934, 812, 204],
   [966, 278, 312, 1311, 434]
 ];
-const matrix = raw.map(row => row.map(mod));
 assert.deepStrictEqual(raw.map(row => row.reduce((a,b)=>a+b,0)), Array(5).fill(3301));
 assert.deepStrictEqual(raw[0].map((_,c)=>raw.reduce((s,row)=>s+row[c],0)), Array(5).fill(3301));
 assert.strictEqual(raw.reduce((s,row,i)=>s+row[i],0), 3301);
 assert.strictEqual(raw.reduce((s,row,i)=>s+row[4-i],0), 3301);
-assert.strictEqual(determinantMod(matrix), 10);
 
-const mt = transpose(matrix);
-const decoders = [
-  ["M^-1 (C=M·P)", inverseMatrix(matrix)],
-  ["M (C=M^-1·P)", matrix],
-  ["(M^T)^-1 (C=M^T·P)", inverseMatrix(mt)],
-  ["M^T (C=(M^T)^-1·P)", mt]
-];
+const direct = raw.map(row => row.map(mod));
+const totientValues = raw.map(row => row.map(phi));
+const totient = totientValues.map(row => row.map(mod));
+assert.deepStrictEqual(totient, [
+  [6,9,9,22,3],
+  [6,17,2,9,25],
+  [22,8,25,8,22],
+  [25,9,2,17,6],
+  [3,22,9,9,6]
+]);
+assert.strictEqual(determinantMod(direct), 10);
+assert.strictEqual(determinantMod(totient), 23);
+
 assert.strictEqual(source.pages.length, 58);
 assert.strictEqual(pages.length, 56);
 assert.strictEqual(unknown.length, 12956);
 assert.strictEqual(pages[50].length, 0);
 assert.strictEqual(p57.length, 95);
 
-const expected = [
-  ["M^-1 (C=M·P)", "global", 12955, 1, 0.03449662782662304],
-  ["M^-1 (C=M·P)", "page",   12840, 116, 0.03451733534822225],
-  ["M (C=M^-1·P)", "global", 12955, 1, 0.03447443726151027],
-  ["M (C=M^-1·P)", "page",   12840, 116, 0.034471536903598096],
-  ["(M^T)^-1 (C=M^T·P)", "global", 12955, 1, 0.034465451393575236],
-  ["(M^T)^-1 (C=M^T·P)", "page",   12840, 116, 0.03449263451822099],
-  ["M^T (C=(M^T)^-1·P)", "global", 12955, 1, 0.03448329203588126],
-  ["M^T (C=(M^T)^-1·P)", "page",   12840, 116, 0.034465580072787376]
+const variants = [
+  { label: "direct", matrix: direct, determinant: 10 },
+  { label: "totient", matrix: totient, determinant: 23 }
+];
+const expectedIocs = [
+  0.03449662782662304, 0.03451733534822225,
+  0.03447443726151027, 0.034471536903598096,
+  0.034465451393575236, 0.03449263451822099,
+  0.03448329203588126, 0.034465580072787376,
+  0.03448639061103127, 0.0344691226279742,
+  0.03447138635674718, 0.03450160009453284,
+  0.03448192151225722, 0.03446223163021353,
+  0.03446580892147716, 0.034509862012622655
 ];
 const results = [];
-for (const [name, decoder] of decoders) {
-  const encoder = inverseMatrix(decoder);
-  const plantedCipher = applyBlocks(p57, encoder);
-  const plantedPlain = applyBlocks(plantedCipher, decoder);
-  assert.deepStrictEqual(plantedPlain, p57);
-  assert.strictEqual(plantedPlain.length, 95);
+for (const variant of variants) {
+  const M = variant.matrix;
+  const mt = transpose(M);
+  const decoders = [
+    ["M^-1", inverseMatrix(M)],
+    ["M", M],
+    ["(M^T)^-1", inverseMatrix(mt)],
+    ["M^T", mt]
+  ];
+  for (const [orientation, decoder] of decoders) {
+    const encoder = inverseMatrix(decoder);
+    const plantedCipher = applyBlocks(p57, encoder);
+    const plantedPlain = applyBlocks(plantedCipher, decoder);
+    assert.deepStrictEqual(plantedPlain, p57);
+    assert.strictEqual(plantedPlain.length, 95);
 
-  for (const clock of ["global", "page"]) {
-    const streams = clock === "global" ? [unknown] : pages;
-    const transformed = streams.flatMap(stream => applyBlocks(stream, decoder));
-    const result = {
-      decoder: name,
-      clock,
-      outputRunes: transformed.length,
-      droppedIncompleteBlockRunes: unknown.length - transformed.length,
-      ioc: ioc(transformed),
-      syntheticP57Recovered: plantedPlain.length + "/" + p57.length
-    };
-    const expectedRow = expected[results.length];
-    assert.strictEqual(result.decoder, expectedRow[0]);
-    assert.strictEqual(result.clock, expectedRow[1]);
-    assert.strictEqual(result.outputRunes, expectedRow[2]);
-    assert.strictEqual(result.droppedIncompleteBlockRunes, expectedRow[3]);
-    assert(Math.abs(result.ioc - expectedRow[4]) < 1e-12);
-    results.push(result);
+    for (const clock of ["global", "page"]) {
+      const streams = clock === "global" ? [unknown] : pages;
+      const transformed = streams.flatMap(stream => applyBlocks(stream, decoder));
+      const result = {
+        matrix: variant.label,
+        determinantMod29: variant.determinant,
+        orientation,
+        clock,
+        outputRunes: transformed.length,
+        droppedIncompleteBlockRunes: unknown.length - transformed.length,
+        ioc: ioc(transformed),
+        syntheticP57Recovered: plantedPlain.length + "/" + p57.length
+      };
+      const expected = expectedIocs[results.length];
+      assert.strictEqual(result.outputRunes, clock === "global" ? 12955 : 12840);
+      assert.strictEqual(result.droppedIncompleteBlockRunes, clock === "global" ? 1 : 116);
+      assert(Math.abs(result.ioc - expected) < 1e-12);
+      results.push(result);
+    }
   }
 }
 console.log(JSON.stringify({
-  test: "LP1 p16 5x5 magic square as direct stationary GP29 Hill-5 key",
+  test: "LP1 p16 5x5 magic square as direct or totient-derived stationary GP29 Hill-5 key",
   alphabetModulus: Q,
   rawMatrix: raw,
-  matrixMod29: matrix,
-  determinantMod29: determinantMod(matrix),
+  directMatrixMod29: direct,
+  directDeterminantMod29: determinantMod(direct),
+  entrywiseTotientValues: totientValues,
+  totientMatrixMod29: totient,
+  totientDeterminantMod29: determinantMod(totient),
   unknownPageCount: pages.length,
   unknownRuneCount: unknown.length,
   sourceCiphertextIoc: ioc(unknown),
