@@ -49,6 +49,27 @@ Direct subtraction decodes the black opening to **T AE IA EA J H R Y M I J E TH 
 
 The historically inspired *ciphertext-F hold* diagnostics instead preserve all 33 original black F ciphertext symbols and suspend the key clock at those positions. In these frozen outputs, **21 (subtract)** and **22 (add)** further non-F ciphertext positions decode to F. A naive plaintext-F-skipping encoder therefore **cannot uniquely recover the original ciphertext without extra state**. These modes are diagnostic only, not claimed complete reversible decoders. All four original outputs lack an ordinary-language frequency signal and readable running text.
 
+## Composite gate: dot-routed p0 header key after the 2015 prime-delta operation (Agent16, 15 November 2026)
+
+The p0 red-heading/dot geometry above yields one fixed 13-rune candidate key, **SSHYEOEGMNGIAFC**. Separately, a dated 2015 participant dialogue specifies the first-chapter prime-shift/difference register **D**, and its 5 February continuation describes the second-difference diagnostic **E**. A low-cost composition a contemporary solver could try is to apply the p0 key as a repeating GP29 Vigenère layer to D or E. The p0 red title is a natural header, so the key clock is tested at phase zero either over the whole 729-rune register or over the 716-rune body immediately after that 13-rune header. Both arithmetic signs are fixed; no other key, phase, offset, alphabet or skip rule is fitted.
+
+| Register | Key clock | Direction | Runes | Original-output IoC |
+| --- | --- | --- | ---: | ---: |
+| D (first difference) | Whole 729-rune register | subtract key | 729 | 0.0346967846968 |
+| D (first difference) | Whole 729-rune register | add key | 729 | 0.0343877658692 |
+| D (first difference) | 716-rune body after header | subtract key | 716 | 0.0346837520022 |
+| D (first difference) | 716-rune body after header | add key | 716 | 0.0343634019612 |
+| E (second difference) | Whole 729-rune register | subtract key | 729 | 0.0342031082772 |
+| E (second difference) | Whole 729-rune register | add key | 729 | 0.0340862840863 |
+| E (second difference) | 716-rune body after header | subtract key | 716 | 0.0341719732781 |
+| E (second difference) | 716-rune body after header | add key | 716 | 0.0341524397390 |
+
+All eight original outputs remain at the uniform-GP29 baseline (1/29 = **0.034482758621**); the clear solved p57 control has IoC **0.062709966405**. None produces a readable opening or a native-language frequency signal. The exact first-40 outputs are retained in the SFT. All eight candidates re-encrypt the original 729 runes exactly, which is only an implementation invariant. For each candidate, a source-native p57-derived synthetic plant of the exact 716/729 length also recovers in full under the same inverse.
+
+**Decision:** this finite composition is negative. It joins two real observations, but neither the 2015 solver's operation nor the 13-dot key derivation is an author instruction to compose them; the connection remains a hypothesis. The result rejects only these eight fixed register/clock/sign combinations, not all possible uses of either clue. Do not expand into key-phase, orientation, F-skip or additional-layer searches without a new independent source instruction.
+
+**Reproduction:** [single-file Node22 SFT](../sims/lp2_p0_red13_prime_delta_composite_sft.cjs), also included in the manual 2015 prime-delta workflow. It reads the pinned original lp2-corpus.json, asserts the 262+266+201 source page lengths and exact red header, reconstructs the dot-routed key and 2015 D/E registers, checks all eight original inverses/forward re-encryptions, and passes p57-derived synthetic positive controls.
+
 ## Exact 27-cell odd/even stencil consumer (Agent5, 12 November 2026)
 
 The dot glyph's *entire* 3×9 occupancy, viewed row-major, is precisely odd-indexed cells **1,3,…,25** of a 27-cell tile; all **14** blank cells have even indices **0,2,…,26**. This reduces the supposed 13-dot route to a source-printed **13+14 parity interleave** rather than a less familiar 2D traversal. It also offers a second independently visible alignment: the complete first chapter is **729 = 27×27** runes. A concrete, keyless, lossless test divides the unmodified original pp0–2 stream into 27 consecutive 27-rune blocks, fills each block's 13 marked dot positions with its first 13 runes and its 14 unmarked positions with the next 14, and reads all 27 tiles row-major. Inversion collects the 13 marked cells first and 14 unmarked cells second for every block; it exactly recovers all 729 original source positions. The first block uses the red 13-rune heading as its 13 marked-cell occupants, matching the visible p0 local arrangement.

@@ -27,3 +27,8 @@ jobs:
         run: |
           node --check sims/lp2_prime_delta_p15_literal_hill_sft.cjs
           node sims/lp2_prime_delta_p15_literal_hill_sft.cjs
+      - name: p0 red13 key after prime-delta and second-difference registers
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p0_red13_prime_delta_composite_sft.cjs
+          node sims/lp2_p0_red13_prime_delta_composite_sft.cjs
