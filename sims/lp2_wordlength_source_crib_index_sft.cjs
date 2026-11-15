@@ -24,26 +24,43 @@ const runicWordPattern = new RegExp('[' + gp.runes.join('') + ']+', 'gu');
 const physicalRunePages = read('resources/lp2-transcription.txt').split('%').slice(0, 55);
 assert.equal(physicalRunePages.length, 55);
 
-function originalPageWordLengths(text) {
-  const joined = text.replace(/\/\r?\n/g, '').replace(/[\r\n%]/g, '');
-  const words = joined.match(runicWordPattern) || [];
-  return words.map((w) => Array.from(w).length);
-}
+// Physical pages may end in the MIDDLE of a printed word. Reconstruct the
+// canonical continuous 2,896-word / 12,956-rune sequence FIRST, then assign
+// each complete word to its illustrated chapter by its first rune offset.
+// Parsing words independently per JPEG would invent 32 boundary words.
+const joined = physicalRunePages.join('%')
+  .replace(/\/\r?\n/g, '').replace(/[\r\n%]/g, '');
+const originalWordLengths = (joined.match(runicWordPattern) || [])
+  .map((w) => Array.from(w).length);
+assert.equal(originalWordLengths.length, 2896);
+assert.equal(originalWordLengths.reduce((s, n) => s + n, 0), 12956);
 
-const originalPages = physicalRunePages.map(originalPageWordLengths);
 const chapterPageRanges = [
   [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
   [27, 32], [33, 39], [40, 53], [54, 55]
 ];
-const segmentNumber = (physicalPage) =>
-  physicalPage > 50 ? physicalPage - 1 : physicalPage;
-const chapters = chapterPageRanges.map(([first, last], index) => ({
-  chapter: index + 1,
-  pages: [first, last],
-  lengths: originalPages.slice(segmentNumber(first), segmentNumber(last) + 1).flat()
-}));
+const chapterRuneEnds = [];
+let chapterCumulative = 0;
+const chapters = chapterPageRanges.map(([first, last], index) => {
+  chapterCumulative += gp.pages
+    .filter((p) => p.page >= first && p.page <= last)
+    .reduce((sum, p) => sum + p.indices.length, 0);
+  chapterRuneEnds.push(chapterCumulative);
+  return { chapter: index + 1, pages: [first, last], lengths: [] };
+});
+assert.equal(chapterCumulative, 12956);
+let runeOffset = 0;
+for (const length of originalWordLengths) {
+  const chapterIndex = chapterRuneEnds.findIndex((end) => runeOffset < end);
+  assert(chapterIndex >= 0, 'Every original word starts in a chapter');
+  assert(runeOffset + length <= chapterRuneEnds[chapterIndex],
+    'An original complete word crosses a chapter boundary');
+  chapters[chapterIndex].lengths.push(length);
+  runeOffset += length;
+}
+assert.equal(runeOffset, 12956);
 assert.deepEqual(chapters.map((c) => c.lengths.length), [
-  160, 259, 385, 441, 227, 329, 380, 680, 67
+  158, 255, 383, 437, 224, 326, 378, 669, 66
 ]);
 assert.equal(chapters.reduce((a, x) => a + x.lengths.length, 0), 2896);
 assert.equal(chapters.reduce((a, x) => a +
@@ -164,10 +181,10 @@ const scans = references.map(([name, ref]) => ({
   source: name, sourceWords: ref.words.length,
   ...searchLengthMatches(ref, chapters)
 }));
-assert.deepEqual(scans.map((x) => x.longestMatch), [9, 10, 9, 9]);
-assert.equal(scans[1].tiedBest[0].chapter, 7);
-assert.equal(scans[1].tiedBest[0].originalWordOffset, 169);
-assert.equal(scans[1].tiedBest[0].sourceWordOffset, 4886);
+assert.deepEqual(scans.map((x) => x.longestMatch), [9, 9, 9, 9]);
+assert.equal(scans[1].tiedBest[0].chapter, 3);
+assert.equal(scans[1].tiedBest[0].originalWordOffset, 225);
+assert.equal(scans[1].tiedBest[0].sourceWordOffset, 4957);
 
 // Source-phrase positive control: a fully known, 20-word contiguous Gibran
 // segment is transplanted at a legal in-chapter word boundary. The same scanner
@@ -178,8 +195,11 @@ planted[6].lengths.splice(169, 20, ...gibran.lengths.slice(4886, 4906));
 const positive = searchLengthMatches(gibran, planted);
 assert(positive.longestMatch >= 20);
 assert(positive.tiedBest.some((m) =>
-  m.chapter === 7 && m.originalWordOffset === 169 &&
-  m.sourceWordOffset === 4886 && m.words >= 20
+  m.chapter === 7 &&
+  m.originalWordOffset <= 169 &&
+  m.originalWordOffset + m.words >= 189 &&
+  m.sourceWordOffset <= 4886 &&
+  m.sourceWordOffset + m.words >= 4906
 ));
 
 console.log(JSON.stringify({
@@ -196,5 +216,5 @@ console.log(JSON.stringify({
     recoveredAtSourceWordOffset: 4886,
     recoveredAtLeast: positive.longestMatch
   },
-  interpretation: 'No eleven-or-longer exact GP29 word-length source passage found in these four literal source editions. A 10-word length match by itself is not recovered plaintext.'
+  interpretation: 'No ten-or-longer exact GP29 word-length source passage found in these four literal source editions. Nine-word length matches alone are not recovered plaintext.'
 }, null, 2));
