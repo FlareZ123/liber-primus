@@ -1,0 +1,13 @@
+name: LP2 cuneiform 1033 3301 RSA432 exact inverse
+on:
+  workflow_dispatch:
+jobs:
+  source-exponent-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_cuneiform_rsa432_exponents_sft.cjs
