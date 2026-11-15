@@ -84,7 +84,7 @@ A natural next reading is to treat each byte encountered on either route as anot
 - p32 route values `[0,68,126,222,4,212,59,25,47,118,201,89,42]` select `SHEOGMIAF, XU, PTSUE, IATI, LIA, SRUTH, SOERUWSLIA, HN, EAITH, HT, NHGUIAHU, SIA, D`.
 - Good/Luck route values `[249,18,131,127,118,169,171,72,13,42]` select `NM, EAAJEOEAL, LUNGN, NLNG, HT, XIUNOOEN, SB, FOLD, GTHFJGC, D`.
 
-The complete readout is not coherent plaintext. The already-noted `SB → FOLD` pair is the only locally interpretable fragment; it is not enough to validate the other addresses. Reject the *full route-value-as-book-cipher* interpretation as a standalone decipherment. Keep “SB FOLD” only as a possible instruction whose meaning needs independent support from the original p49 prologue or another primary clue; “SB” = “S-box” is not established.
+The complete readout is not coherent plaintext. The isolated `SB → FOLD` pair occurs on a route whose p32 input window was selected retrospectively from 109 candidates; it is not a source-selected clue or authenticated instruction. Reject the *full route-value-as-book-cipher* interpretation as a standalone decipherment, and do not use the local pair to justify an S-box or fold. The entire `413 → start85 → SB/FOLD` alignment remains post-selected exploration.
 
 ## Solved-tail connection
 
@@ -133,7 +133,7 @@ The first four assumptions jointly make the FOLD destination a concrete predicti
 
 ## Next decisive experiment
 
-The candidate start85 comes from a hypothetical binary reading of the p32 13-dot marker alone. The step list was chosen from an unmarked interior 13-rune window, and the earlier p49/p53 marker corroboration was erroneous. Demand a source rule that fixes both the exact 13-rune span and the start/traversal independently before interpreting further table hits. The direct base-58 readout of every value on both routes has now been tested and is nonlinguistic. Do not continue arbitrary table readouts, rune extraction, or fold-orientation searches. The only live interpretation is that the local `SB → FOLD` fragment may be an instruction; require the original p49 66-rune prologue or another independent primary clue to identify what “SB” means and prescribe the fold. If that source support is absent, retire the instruction hypothesis and retain the two-route result as navigation only, not plaintext.
+The p32 span [25,38) is not source-selected: the red 13-dot marker is at the page end, and only one of 109 possible length-13 windows has the retrospectively matched sum413. The binary dot polarity, modulus, and forward walk are also unselected. The direct base-58 readout is nonlinguistic, and the isolated `SB → FOLD` pair is part of the same post-selected construction, not an independent instruction. Do not continue dependent table-fold, S-box, rune-extraction, or traversal tests. Reopen this branch only if an original-source cue independently fixes the exact p32 window and complete traversal *before* inspecting table outputs. Otherwise retire the p32→p50 route and keep the signed-message 243/58 arithmetic as a separate provisional observation.
 
 ## Reproduction
 

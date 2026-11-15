@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use strict";
 
-// Frozen test of the marker-derived p50 navigation hypothesis.
+// Frozen negative gate for a post-selected p32-to-p50 route; not a source-selected cipher.
 // Visual transcription: centre-only rows are bit 1; left+right rows are bit 0.
 // Correct image mapping: only logical p32 (original JPEG49) supplies the 13-dot
 // marker used here; the earlier p49/p53 marker corroboration was erroneous.
