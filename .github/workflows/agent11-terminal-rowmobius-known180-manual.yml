@@ -1,0 +1,18 @@
+name: Agent11 terminal 256 row-wise Mobius known180 test
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  projective-original:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate source-known row-wise projective inverse and recovery plant
+        run: node sims/lp2_terminal256_rowmobius_known180_sft.cjs
