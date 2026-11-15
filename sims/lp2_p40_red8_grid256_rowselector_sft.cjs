@@ -60,7 +60,7 @@ assert.equal(packed.length,1875);
 const magics={PNG:'89504e470d0a1a0a',GZIP:'1f8b08',ZIP:'504b0304',PDF:'255044462d',BZIP2:'425a68',XZ:'fd377a585a00',RIFF:'52494646'};
 /** @param {Buffer} values @param {'xor'|'subtract'|'add'} mode @returns {Buffer} */
 function byteOp(values,mode){
- return Buffer.from(values,(x,i)=>mode==='xor'?x^key[i%8]:mode==='subtract'?(x-key[i%8]+256)%256:(x+key[i%8])%256);
+ return Buffer.from([...values].map((x,i)=>mode==='xor'?x^key[i%8]:mode==='subtract'?(x-key[i%8]+256)%256:(x+key[i%8])%256));
 }
 for(const mode of ['xor','subtract','add']){
  const inverse=mode==='xor'?'xor':mode==='subtract'?'add':'subtract';
