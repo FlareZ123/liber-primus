@@ -1,6 +1,6 @@
 # First-chapter prime-then-difference: exact original 2015 witness and eight-chapter holdout
 
-**Status, 14 November 2026:** A source-dated solver observation has been reconstructed **exactly** on original LP2 ciphertext, and the uniquely selected first-chapter alignment is mathematically verified. It does **not** recover plaintext or an author-selected cipher. This is intermediate evidence for a possible first-chapter preprocessing operation; eight independent visual chapters do not display the same effect.
+**Status, 15 November 2026:** A source-dated solver observation has been reconstructed **exactly** on original LP2 ciphertext, and the uniquely selected first-chapter alignment is mathematically verified. It does **not** recover plaintext or an author-selected cipher. This is intermediate evidence for a possible first-chapter preprocessing operation; eight independent visual chapters do not display the same effect.
 
 ## Historical operation, independently named in 2015
 
@@ -31,6 +31,28 @@ The inverse is exact for every GP29 sequence: starting at `S[-1]=27`, set `S[i]=
 **Follow-up historical inference falsified:** At original L89905 the same solver speculated that the transformed sequence contained “lots of even numbers.” Under the precise GP29 operation above it has **376 even** and **353 odd** residues. Uniform GP29 has 15 even values among 29 residues, predicting **729 × 15/29 = 377.07** even values. Thus the observed output has **no even-residue enrichment**. The original repetition-count observation survives, while this suggested explanatory clue does not. The screen also finds no source-selected second decoder at original L89906–16.
 
 The original **40** exactly reproduces the count from historical L89901; it is therefore an independently dated *historical reconstruction*, rather than an unexplained fitted count. The transformed tape remains almost completely uniform, with **no authenticated readable GP plaintext**.
+
+## The original 5 February continuation: second finite difference is a diagnostic, not a decoder
+
+A targeted retrieval of the **same immutable original IRC blob** covers 5,405 messages dated 1–16 February 2015 and the contemporaneous 4–5 February context. It identifies a **distinct second operation** actually described by the same human solver, which the 4 February-only interpretation missed. At **L90116–24 on 5 February**, `wetsand` gives 29 GP29 frequencies, clarifies that `40 for the F rune` arises from *zero differences between adjacent results*, then prints a source-readable first-difference string beginning **`XLHIUNGIANNSEAJOEOEBIAWNRTHTEACTGCTOESNGNEAGIRFSFWJTJTHN`**. The complete computed first-pass `D` on unchanged source ciphertext has precisely that initial romanization. This is an independent historical check on *which* register the participant printed. The word breaks in the human's message are editorial; the computation uses the source's 729 original unmodified runes.
+
+The participant also says the earlier output had `extra differencing on the ... end` (L90124). Taken literally, a **second** difference `E[0]=D[0], E[i]=(D[i]-D[i-1]) mod29` for `i>=1` gives the original witnessed count **`E=0` at exactly 40 positions**, because that is algebraically equivalent to the 40 adjacent repeats already counted in `D`. This yields a fully reversible source-motivated participant operation without guessing a key: reconstruct `D` cumulatively from `E`, then reconstruct `C` from `D` using the previous inverse. The original source provides no independent initial value `D[-1]`; `D[-1]=0` is the documented lossless implementation convention for `E[0]`. The 40 zeros are an **identity following from the first-pass matches**, rather than a second independent signal that Cicada encoded the tape this way.
+
+| Exact original p0–2 quantity | Count / value |
+| --- | ---: |
+| Original ciphertext adjacent matching pairs | 4 |
+| First shifted difference `D`: adjacent matching pairs | 40 |
+| First difference `D`: literal `F=0` runes | 21 |
+| Second difference `E`: literal `F=0` runes | **40** |
+| Second difference `E`: adjacent matching pairs | 21 |
+| Second difference `E`: GP29 index of coincidence | **0.03480230332082184** |
+| Native clear solved p57 GP-runic control IoC (95 runes) | **0.06270996640537514** |
+
+**No source-backed next decryption emerges.** At L90129–40, `wetsand` says the extension to physical p3 requires an *unknown* prime offset/skip state, requests pseudocode confirmation, and offers to paste the operation. The original channel's raw L90136–40 contains no resulting URL or code; the speaker's prime-clock offset was expressly unresolved. Two outbound `sprunge.us/afiP` and `sprunge.us/BQSC` links in the 5 February 00:33–03:09 discussion (L89969/89983/L90072) belong to **repeated n-gram offset listings**, not this proposed two-pass inverse. The source search finds no authentic unknown-page cleartext or independently selected third reversible layer in that exchange. `ether8unny` later discussed raw/absolute/mod shift features and database analysis (10 February L93044–45), without publishing an unknown-page plaintext or key in that context.
+
+A second period participant hypothesis from **12 February L93738–41** proposes first word **YOURSELF**, motivated by a hypothetical initial missing prime **19**. Testing that specifically proposed p56-style consecutive-prime-totient key on the original first printed word `S H E O G M IA F` yields **`Y S M TH EA H X EO`**, departing from **YOURSELF** at position two. The candidate required GP29 shifts `[18,5,17,28,20,1,7,0]` but consecutive prime19-and-above minus-one residues start `[18,22,28,1,7,11,13,17]`. This rejects that **one frozen literal reading**, not every cipher that might begin with a Y or use 19 differently.
+
+[Reproducible 729-rune twice-difference inverse and authentic p57 GP positive control](../sims/lp2_2015_prime_delta_second_difference_original_sft.cjs) · [successful original-cipher Windows run 43665241422](https://github.com/FlareZ123/liber-primus/actions/runs/43665241422) · [source-exact 2015 conversation retrieval and candidate-link index](../sims/lp2_2015_prime_delta_source_continuation_sft.cjs) · [original dialogue run 43664773881](https://github.com/FlareZ123/liber-primus/actions/runs/43664773881) · [raw pasting neighborhood run 43664965230](https://github.com/FlareZ123/liber-primus/actions/runs/43664965230). The historical operation is a **2015 solver experiment**, with no evidence that Cicada prescribed it. The unfilled requirement is a third *value-changing* original-source-selected decoder or authentic plaintext/key.
 
 ## Reading the 2015 participant's repeated glyphs directly
 
