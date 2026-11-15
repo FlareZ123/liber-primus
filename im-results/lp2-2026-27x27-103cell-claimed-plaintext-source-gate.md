@@ -30,6 +30,22 @@ This is an important distinction: the displayed 27×27 matrix is accurate, and i
 
 **Finite positive and negative controls:** the committed SFT checks *every* rendered rune against the canonical original, so it detects a wrong source matrix. It separately checks all 38 stage identifiers, asserts there are exactly 103 unique ciphertext cells, and fails on any source expansion/repetition or changed stage inventory. Its external input is immutable by both Git commit and exact Git blob hash. An entirely covered, specified full-chapter inverse would require either 729 ordered source positions or a separately specified disposition of omitted material; the present proposal supplies neither.
 
+## Direct continuation test on original ciphertext
+
+An independently selected test of the claimed **first** original-input inverse avoids inventing another key. The public [block 01](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/blob/ab9d8190e60009179563ac21b2d750271c2782b3/plaintext-i-found/01-as-i-go-the.md) begins at source row13/column25, reads seven consecutive row-major runes *across the row break*, and subtracts repeating key **AE-I-EA** modulo29 to produce exactly **A S I G O TH E**. This arithmetic is faithfully reproduced, including the source row wrap.
+
+If the same independent seed is used on the remaining contiguous original source, rather than choosing a new route/key when the readable phrase ends, the **next 38 runes** are:
+
+```text
+EO S I O U M TH Y Y J X T OE M EA AE Y TH J O W O AE Y NG C AE S G M W P U IA B E H NG
+```
+
+The resulting uninterrupted **381-rune** suffix, from original row13/column25 to chapter end, has GP29 IoC **0.03413454897085233**, essentially uniform. It supplies no natural-language continuation. Thus the initial seven-rune key does **not** itself unlock the remaining contiguous chapter. A genuine sparse-route method may change keys/locations, but that separate selector still needs external justification and a held-out test.
+
+A second non-fitted arithmetic calibration concerns the five-rune claim **W EA TH E R** in block02. Enumerate all straight, contiguous five-cell paths in the **eight compass directions**, with any internally consistent *repeating three-rune subtraction key*. The untouched original 27×27 matrix admits **five** paths, including the advertised central row14/column14, left-to-right, key X-X-I. The other four starts and keys are row21/col13 (left, C-H-E); row23/col12 (down-right, I-N-I); row25/col14 (left, C-A-EA); and row27/col16 (left, G-EO-S). Consequently, the period-three arithmetic alone cannot uniquely identify the advertised WEATHER location/key. The actual author-selected X-OE-X source mirror is an additional condition; its independent priority remains to be established. These finite candidate counts do not constitute a multiple-testing-adjusted chance probability for the complete claim.
+
+The same source-locked [SFT](../sims/lp2_2026_27x27_claim_103cell_audit_sft.cjs) now checks the true first seven-rune plaintext, fixed-key 381-rune continuation and all five alternative WEATHER arithmetic paths. This is a narrow, directly falsifiable continuation attempt that preserves original glyphs and supplies no new plaintext.
+
 ## Decision for the plaintext frontier
 
 Classify the published sentence as a **third-party, post-selected 103-cell submessage candidate**. It is **not established p0–2 plaintext**, and it must not count as even a partly solved full chapter merely from a fluent sentence. This finding does not mathematically disprove that some sparse route through the page could encode a genuine additional message. The step that could promote it is a source-independent, unambiguous key-node and cell-transition rule that predicts unseen ciphertext locations and recovers held-out GP29 plaintext, followed by a complete disposition of the remaining 626 original rune positions. Candidate selection, fitting more geometry conditions to the already selected 38 blocks, or extending a manually picked phrase is not that step.
