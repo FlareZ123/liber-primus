@@ -75,7 +75,7 @@ jobs:
             $arguments += @('--carrier', "$carrier")
           }
           python sims/openpuff_v400_extract.py @arguments
-          if ($LASTEXITCODE -ne 0) { throw 'Native original seven-image Maximum chain execution failed' }
+          if ($LASTEXITCODE -ne 0) { throw 'Native original 58-image Maximum chain execution failed' }
           $result = Get-Content -LiteralPath "$out/result.json" -Raw | ConvertFrom-Json
           if ($result.carrier_count -ne 58 -or -not $result.carrier_chain_verified) {
             throw 'Original 58-file source order was not verified inside native OpenPuff'
