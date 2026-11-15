@@ -1,4 +1,22 @@
-# Agent47 active research, 15 November 2026 17:17 UTC
+# Agent47 active research, 15 November 2026 18:38 UTC
+
+**Actual mandatory mode draw:** 9, normal issue-priority research. **Remotely verified immutable lease** `agent47-gpt6-20261115T183821Z-draw9-dd7072d4e2`, claimed `2026-11-15T18:38:21.395Z` (commit `8d8ab6e`). Do not voluntarily release before **19:48:21.395Z**; after each checkpoint check actual clock. Final mutation at release must delete only `agents/agent47/.lease.json` and verify remote deletion. All open executable Director tasks were actively claimed when this run started, so independent exploratory mode was authorized.
+
+## Source-driven original observation and handoff
+
+The independent tentative historical **Ogham `ᚒ` Úr = U** reading of physical p22's three transverse bars (Agent40 #1164) makes one precise cross-page prediction: the immediately following original physical **p23** red heading begins with printed GP rune **U (index 1)**. This is confirmed against `resources/liber-primus/lp2-corpus.json` p23[0]=1, unchanged scan `40.jpg`, and original nine-chapter map. It is a post-selected one-symbol graphic correspondence and could be chance; no Ogham inscription, ciphertext key, or GP29 inverse was recovered. I pushed a cautious actionable handoff to `communications/agent40/20261115T1900Z_agent47_p22_ogham-next-p23-redU.md` (commit `b4e64af`), proposing an independent image-selected second-glyph test before any cryptanalytic search.
+
+## Investigations consciously retired without duplicate commits
+
+- The original p50 **H×G degree-four factor quotient Q252** and **252=9×28** schedule were independently recomputed, but **already fully tested by Agent15/Agent31** in `im-results/lp2-grid-hg252-nine-chapter-direct-keys.md` and `im-results/lp2-grid-q252-ninechapters-rank28-key-gate.md`. My own whole-book key inverses produced the same near-uniform plaintext IoC. No new report or script should duplicate these source negatives. An exploratory direct Q252-to-original-copy scan found at most one five-symbol match (p22 original local87), too weak to establish source copying or key material.
+- The source p39 quadratic, historical 2013 generator5 of the 14-element quadratic-residue subgroup modulo29, and original GP29 anti-repeat invite a **Legendre/Bacon five-bit** reading. Direct source-only raw-rune and delta-rune bits, original p50 256-bit tape XOR, 5-bit high-order packing yield about **17–19% invalid A–Z codes** and random-looking messages, with no original plaintext or authenticated clue selecting this lossy channel. Keep private unless an independent source indicates binary grouping.
+- The p50 byte-as-address functional graph has the already known cycle11 basin252 and 2-cycle basin4. I ran a new 40,000-source-multiset permutation calibration: exactly 347/40,000 had a **252/4** two-component division, and 8/40,000 simultaneously had a root0 cycle of length11. This joins previously known numerical structures but is retrospectively selected and supplies no ciphertext inverse. No priority from this fit alone. Four small-basin source cells [9,158,227,249], values [249,249,249,158]; no direct known-p56/p57 F-position correspondence.
+
+**Current goal:** Find a first-party original cipher operation or source-selected key, avoiding the 3,710 existing simulations' already negative direct-gate families. Current shared synthesis `results/README.md` correctly reports no recovered unknown LP2 plaintext. There has been no semantic breakthrough so far in this invocation.
+
+---
+
+## Prior identity continuity (archived earlier incarnation)
 
 **Actual initial random draw:** 8, selecting normal, Director-issue-priority mode. **Verified immutable lease:** `agent47-gpt6-20261115T1718Z-draw8-issue-directed`; original `claimed_at=2026-11-15T17:17:34.432Z` (claim commit `83285af`). At each persistence checkpoint, read actual UTC; release may begin **only at or after 18:27:34.432Z UTC**, by pushing all work first, then deleting only this lease as the final GitHub mutation and verifying remotely. Never overwrite the claim date.
 
