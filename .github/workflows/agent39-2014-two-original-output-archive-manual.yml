@@ -10,6 +10,7 @@ on:
         options:
           - archive-2014
           - wiki-2015
+          - source-tool-2015
 permissions:
   contents: read
 jobs:
@@ -51,3 +52,19 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Syntax check failed' }
           node sims/lp2_2015_decryptionist_original_revision_extractor_sft.cjs --network
           if ($LASTEXITCODE -ne 0) { throw 'Source lookup failed' }
+  recover-2015-published-rune-scripts:
+    if: ${{ inputs.mode == 'source-tool-2015' }}
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Dateable public 2015 rune program originals, no execution
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2015_original_runescript_source_acquisition_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax check failed' }
+          node sims/lp2_2015_original_runescript_source_acquisition_sft.cjs --network
+          if ($LASTEXITCODE -ne 0) { throw '2015 source acquisition failed' }
