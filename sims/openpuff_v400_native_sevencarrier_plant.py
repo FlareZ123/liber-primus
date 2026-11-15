@@ -191,8 +191,8 @@ def main() -> None:
         # OpenPuff's Hide UI requires selecting a data file before carriers.
         preliminary = out / "temporary-positive-target.bin"
         record["preliminary_sha256"] = shared.atomic_payload(preliminary, 256)
-        window = shared.choose_file(
-            app, window, "Browse", preliminary, out, "preliminary-target"
+        window = shared.choose_hiding_target(
+            app, window, preliminary, out, "preliminary-target"
         )
 
         capacities = []
@@ -244,8 +244,8 @@ def main() -> None:
         record["seven_carrier_capacity"] = seven_capacity
         record["requires_seventh_carrier"] = payload_size > six_capacity
 
-        window = shared.choose_file(
-            app, window, "Browse", payload, out, "seven-carrier-secret"
+        window = shared.choose_hiding_target(
+            app, window, payload, out, "seven-carrier-secret"
         )
         # Original OpenPuff can restore Enable(C) during native Browse/Add.
         # The first seven-carrier attempt (run 43687940512) showed C visibly
