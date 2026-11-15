@@ -188,6 +188,128 @@ assert.ok(Math.abs(bodySurvivors[0].ioc - 0.033873873873873875) < 1e-12);
 assert.ok(bodySurvivors[0].nativeScore < p57Score - 2,
   'The sole authentic-F-consistent body candidate must be clearly inferior to solved GP text');
 
+
+// Independent 13-*word* numeric schedule, rather than a 76-rune schedule.
+// P05's 13 mixed-square word cells have 13 prime-weight sums and totients.
+// The 2016 authenticated words/map, numbers/direction phrasing motivates
+// placing these values once per printed complete p55 word rather than per
+// ciphertext rune. Both raw/sum and totient magnitudes are nonzero GF29
+// multipliers on this exact source. The 13 values repeat for later words.
+const rawTranscription = read('resources/lp2-transcription.txt');
+const p55RunicPage = rawTranscription.split('%')[54]
+  .replace(/[\/\n&$]/g, '');
+const originalWordGlyphs = p55RunicPage.split(/[-.]/)
+  .filter(token => /[ᚠ-ᛩ]/u.test(token));
+const segmentedWords = originalWordGlyphs
+  .map(word => [...word].map(rune => book.runes.indexOf(rune)));
+assert.deepEqual(segmentedWords.flat(), sourceCipher);
+assert.deepEqual(segmentedWords.map(word => word.length),
+  [1, 4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3]);
+assert.deepEqual(segmentedWords[0], [21]); // NG carry from p54
+const completeWords = segmentedWords.slice(1);
+const sourceWordSums = wordCells.map(cell =>
+  [...cell].reduce((sum, rune) => sum + book.prime[book.runes.indexOf(rune)], 0));
+assert.deepEqual(sourceWordSums,
+  [341, 366, 199, 130, 320, 245, 91, 226, 320, 130, 199, 366, 341]);
+/** @param {number} n */
+function totient(n) {
+  let value = n, phi = n;
+  for (let d = 2; d * d <= value; d++) {
+    if (value % d === 0) {
+      while (value % d === 0) value /= d;
+      phi -= phi / d;
+    }
+  }
+  if (value > 1) phi -= phi / value;
+  return phi;
+}
+const sourceWordTotients = sourceWordSums.map(totient);
+assert.deepEqual(sourceWordTotients,
+  [300, 120, 198, 48, 128, 168, 72, 112, 128, 48, 198, 120, 300]);
+assert.ok(sourceWordSums.every(n => mod(n) !== 0));
+assert.ok(sourceWordTotients.every(n => mod(n) !== 0));
+/**
+ * Applies one affine map to every rune in a given printed complete word,
+ * using 13 source key words cyclically and the authentic plaintext-F rule.
+ * @param {number[][]} words Original word lengths from p55
+ * @param {number[]} akey
+ * @param {number[]} bkey
+ * @param {1|-1} sign
+ * @param {number[]} skipped Positions within the 75-rune body
+ */
+function wordDecode(words, akey, bkey, sign, skipped) {
+  const skip = new Set(skipped), plain = [], forbidden = [];
+  let position = 0;
+  for (let word = 0; word < words.length; word++) {
+    const a = mod(akey[word % 13]), b = bkey[word % 13];
+    for (const c of words[word]) {
+      const p = skip.has(position) ? 0 : mod(inverse29(a) * (c - sign * b));
+      if (skip.has(position)) assert.equal(c, 0);
+      if (!skip.has(position) && p === 0) forbidden.push(position);
+      plain.push(p);
+      position++;
+    }
+  }
+  return { plaintext: plain, forbidden };
+}
+/** @param {number[][]} words */
+function wordEncrypt(words, akey, bkey, sign) {
+  const ciphertext = [], skipped = [];
+  let position = 0;
+  for (let word = 0; word < words.length; word++) {
+    const a = mod(akey[word % 13]), b = bkey[word % 13];
+    for (const p of words[word]) {
+      if (p === 0) {
+        skipped.push(position);
+        ciphertext.push(0);
+      } else ciphertext.push(mod(a * p + sign * b));
+      position++;
+    }
+  }
+  return { ciphertext, skipped };
+}
+const trueWordFs = bodyFs;
+const wordRows = [];
+for (const orientation of ['printed', 'reversed']) {
+  const raw = orientation === 'printed' ? sourceWordSums : sourceWordSums.slice().reverse();
+  const phi = orientation === 'printed' ? sourceWordTotients : sourceWordTotients.slice().reverse();
+  for (const multiplier of ['sum', 'totient']) {
+    for (const shift of ['sum', 'totient']) {
+      for (const sign of [-1, 1]) {
+        const akey = multiplier === 'sum' ? raw : phi;
+        const bkey = shift === 'sum' ? raw : phi;
+        let viableMasks = 0, minForbidden = Infinity, maxIoC = 0;
+        for (let mask = 0; mask < 8; mask++) {
+          const skip = trueWordFs.filter((_, bit) => (mask & (1 << bit)) !== 0);
+          const cand = wordDecode(completeWords, akey, bkey, sign, skip);
+          minForbidden = Math.min(minForbidden, cand.forbidden.length);
+          maxIoC = Math.max(maxIoC, ioc(cand.plaintext));
+          if (cand.forbidden.length === 0) viableMasks++;
+        }
+        // Separate source-native plant, with original 75 target word lengths
+        const native75 = book.pages[57].indices.slice(0, 75);
+        let offset = 0;
+        const plantWords = completeWords.map(word => {
+          const part = native75.slice(offset, offset + word.length);
+          offset += word.length;
+          return part;
+        });
+        assert.equal(offset, 75);
+        const encrypted = wordEncrypt(plantWords, akey, bkey, sign);
+        const replanted = completeWords.map(word =>
+          encrypted.ciphertext.splice(0, word.length));
+        const replantedPlain = wordDecode(replanted, akey, bkey, sign, encrypted.skipped);
+        assert.deepEqual(replantedPlain.plaintext, native75);
+        assert.deepEqual(replantedPlain.forbidden, []);
+        wordRows.push({ orientation, multiplier, shift, sign, viableMasks, minForbidden, maxIoC });
+      }
+    }
+  }
+}
+assert.equal(wordRows.length, 16);
+assert.equal(wordRows.reduce((sum, row) => sum + row.viableMasks, 0), 0,
+  'All 128 complete-word 13-sum and 13-totient affine source-key variants violate the F rule');
+
 console.log(JSON.stringify({
   source: 'Original LP1 p05 written magic-square cells and original LP2 p55',
   originalSourceTapeRunes: forward.length,
@@ -203,5 +325,8 @@ console.log(JSON.stringify({
   originalBody75Rows: bodyRows,
   originalBody75Survivors: bodySurvivors,
   p57NativeControlScore: p57Score,
-  decision: 'All 64 whole-page decodings structurally contradict the p56 F rule. Exactly one of 128 natural 75-body alignment cases survives that necessary rule, but fails the source-native prose test. No unknown plaintext or key recovered.'
+  originalWord13CipherCount: wordRows.length * 8,
+  originalWord13FViable: wordRows.reduce((s, row) => s + row.viableMasks, 0),
+  originalWord13Rows: wordRows,
+  decision: 'All 64 whole-page variants and 128 distinct word-local 13-value variants contradict the authentic F rule. One of 128 75-body rune-tape variants is F-valid, but is nonprose. No unknown plaintext or key recovered.'
 }, null, 2));
