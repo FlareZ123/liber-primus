@@ -185,8 +185,9 @@ function longWordSecondFCensus(source, sourceNative = false) {
   let soleF = 0;
   const examples = new Set();
   for (const word of words) {
-    const gpLatin = word.replace(/[KVZQ]/g, (letter) =>
-      ({ K: 'C', V: 'U', Z: 'S', Q: 'CW' })[letter]);
+    // Source-native solved LP1 spells QU as CW (one replacement for both letters).
+    const gpLatin = word.replace(/QU/g, 'CW').replace(/[KVZQ]/g, (letter) =>
+      ({ K: 'C', V: 'U', Z: 'S', Q: 'C' })[letter]);
     // LP1 p10–p13 and clear LP2 p57 attest single-rune ING and IO.
     const gp = gpLatin.match(sourceNative
       ? /ING|TH|NG|EO|OE|AE|IA|EA|IO|[A-Z]/g
@@ -203,11 +204,19 @@ function longWordSecondFCensus(source, sourceNative = false) {
   return { native12, secondF, soleF, examples: [...examples].slice(0, 5) };
 }
 const lexicalFiles = [
-  ['shakespeare_first300k.txt', 79, 0, 65, 0],
-  ['gibran_prophet_58585.txt', 57, 0, 28, 0],
-  ['emerson_essays_2944.txt', 470, 2, 355, 0],
-  ['english_wordfreq_textblob.txt', 884, 1, 776, 0]
+  ['shakespeare_first300k.txt', 78, 0, 62, 0],
+  ['gibran_prophet_58585.txt', 64, 0, 35, 0],
+  ['emerson_essays_2944.txt', 481, 2, 368, 0],
+  ['english_wordfreq_textblob.txt', 890, 1, 772, 0]
 ];
+// Nonvacuous positive: source-native AFTERTHOUGHTS has 12 GP runes, only F at index1.
+assert.deepEqual(longWordSecondFCensus('AFTERTHOUGHTS', true),
+  {native12: 1, secondF: 1, soleF: 1, examples: ['AFTERTHOUGHTS']});
+// Negative control: legacy AFFECTIONATE has two Fs; source-native IO contraction shortens it.
+assert.deepEqual(longWordSecondFCensus('AFFECTIONATE', false),
+  {native12: 1, secondF: 1, soleF: 0, examples: ['AFFECTIONATE']});
+assert.deepEqual(longWordSecondFCensus('AFFECTIONATE', true),
+  {native12: 0, secondF: 0, soleF: 0, examples: []});
 const lexicalControls = lexicalFiles.map(([name, legacyN, legacyHits, nativeN, nativeHits]) => {
   const source = fs.readFileSync(path.join(root, 'resources', 'control', name), 'utf8');
   const legacy = longWordSecondFCensus(source);

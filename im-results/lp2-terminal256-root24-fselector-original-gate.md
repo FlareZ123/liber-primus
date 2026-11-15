@@ -47,18 +47,20 @@ The frozen source-only proposal makes **p55 F25 transparent**. That glyph is the
 
 The initial lexical audit overlooked an established spelling constraint. Solved original LP1 p10–p13 and clear LP2 p57 require **single GP runes for ING (ᛝ) and IO (ᛡ)** ([source-authentic solved positive controls](../results/lp1-source-orthography.md)). Its legacy tokenizer instead used only the inventory labels. In all four existing corpora, the **only** legacy second-F example was `AFFECTIONATE`: under authentic IO contraction it occupies **11 GP runes**, and its two adjacent Fs already violate the original p55 sole-F mask.
 
-The exact same four checked-in corpora were rescored with both transparent tokenization rules:
+The exact same four checked-in corpora were rescored with both transparent tokenization rules. Both use the source-authenticated whole-digraph **QU→CW** contraction before single-letter **K/Q→C, V→U, Z→S**; an earlier intermediate test incorrectly replaced Q→CW while leaving the following U, which biased the denominators. This corrects that test and matches the separate independently established full solved-page encoder:
 
 | English source | Legacy 12-GP words with second F | Solved-page-native 12-GP words with second F | Source-native 12-GP words with **only** second F |
 | --- | ---: | ---: | ---: |
-| Shakespeare first 300k | 0/79 | **0/65** | **0/65** |
-| Gibran *Prophet* | 0/57 | **0/28** | **0/28** |
-| Emerson essays | 2/470 (`AFFECTIONATE` twice) | **0/355** | **0/355** |
-| TextBlob vocabulary | 1/884 (`AFFECTIONATE`) | **0/776** | **0/776** |
+| Shakespeare first 300k | 0/78 | **0/62** | **0/62** |
+| Gibran *Prophet* | 0/64 | **0/35** | **0/35** |
+| Emerson essays | 2/481 (`AFFECTIONATE` twice) | **0/368** | **0/368** |
+| TextBlob vocabulary | 1/890 (`AFFECTIONATE`) | **0/772** | **0/772** |
 
-The source totals use word occurrences in the first three texts and entries in the vocabulary source. These are different registers and samples; **do not combine their denominators or interpret zero hits as a universal language proof**. Spelling alternatives, other words/languages, different segmentation, and a cipher without strict passthrough remain possible. Nevertheless, the source-native audit removes the *entire* earlier apparent support for the unknown p55 F25 hypothesis under the tested native-English register. The real p56 85/85 decoder and its F56 selection remain untouched.
+The source totals use word occurrences in the first three texts and entries in the vocabulary source. These are different registers and samples; **do not combine their denominators or interpret zero hits as a universal language proof**. An independent broader CMU Pronouncing Dictionary 1.1.3 census (unique alphabetic headwords, bundled `cmudict.dict` SHA-256 `81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22`) finds **7** 12-rune words with *only* second-position F among **2,307** source-native twelve-rune entries: `AFGHANISTANS`, `AFRIKANERDOM`, `AFROAMERICAN`, `AFTERBURNERS`, `AFTERMARKETS`, `AFTERTHOUGHTS`, `PFANNENSTIEL`. Thus this word signature is **possible** in real English; the original four controls happened not to contain those uncommon tokens. The original p55 target word at offsets24–35 is immediately preceded by a separate **one-rune word at offset23**, a strong additional grammatical constraint if spaces survive encryption, although neither this preceding word nor the 12-rune plaintext has been recovered. This broader census is an adversarial check against a false impossibility claim, not license to nominate `AFTERTHOUGHTS` as solved plaintext.
 
-The existing [single-file original-source SFT](../sims/lp2_terminal256_root24_fselector_original_sft.cjs) now asserts both the legacy and source-authentic inventories against the same control files. Further significant effort on the p55 F25 branch should await an **independent real p55 key or plaintext**, rather than selecting a new lexicon or key to rescue the attractive retrospective coincidence.
+The corrected native-register four-corpus exclusion removes the earlier apparent `AFFECTIONATE` support while leaving other English words, spellings, languages, segmentation changes and non-strict interrupters open. The real p56 85/85 decoder and its F56 selection remain untouched.
+
+The existing [single-file original-source SFT](../sims/lp2_terminal256_root24_fselector_original_sft.cjs) now asserts both corrected inventories against the same control files, plus explicit source-native `AFTERTHOUGHTS` positive and `AFFECTIONATE` contraction/sole-F negative controls. Further significant effort on the p55 F25 branch should await an **independent real p55 key or plaintext**, rather than selecting a new lexicon or key to rescue the attractive retrospective coincidence.
 
 ## Research decision
 
