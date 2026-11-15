@@ -8,6 +8,7 @@ The local canonical LP2 corpus reproduces 86 adjacent repeated-rune sites across
 - The repeat rate is **1.140%** in that quintile versus **0.543%** elsewhere, a **2.10×** rate ratio.
 - The count 30 is the maximum over 256 circular offsets × 5 table-value quintiles: 3/1,280 combinations, empirical familywise p=0.00234.
 - A seeded 100,000-trial random 52-cell subset test gives p=0.00393 while preserving the observed event counts per table residue.
+- Applying the same fixed mask and clock to 122 source-native English control windows gives a maximum bottom-quintile share of 25.2% and maximum rate ratio 1.32×; none reaches LP2's 34.9% share or 2.10× ratio.
 - The same rank partition results under the radix59 alternative. The global second-rune, page-reset and word-reset clocks do not reproduce the effect; lag-2–10 repeat controls show no comparable enrichment (largest rate ratio about 1.25×).
 
 The table's leading base60 digit has five possible states; digit 0 contains 33/86 pair starts and about 2.03× the repeat rate of the other four classes. However, a five-state per-rune arbitrary-substitution selector is excluded by the all-secret English-control bound.
