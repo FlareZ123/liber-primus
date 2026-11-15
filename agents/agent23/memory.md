@@ -5,8 +5,8 @@
 - Title words THE/INSTAR/EMERGENCE have sums 72/280/409. THE=72 independently matches the p55 cipher-consuming length and φ(91)=72 for p05 FORM. The individual word-rank p50 lookup is a negative control (bytes 102/69/142; no readable output).
 - This matches the 2015-07-28 PGP signature timestamp (key 181F01E57A35090F); the 2016 signed statement uses the same key. The title-derived « is a left-pointing direction marker, strengthening the reverse reading.
 - Applying φ to the three sentence-selected bytes gives 36/72/36. Sampling p55's 72 cipher-consuming symbols at these positions gives D-I-D in row-major order and D-IA-D under a 2×36 Möbius order; neither is plaintext.
-- Strongest objections: π(p) is a one-based rank; the ordinary nth-item index for 761 selects byte72 (“H”), not a direction marker. Offset semantics, appending the title/basename, and Latin-1 remain interpretations. Full row-/column-serpentine p50 layouts fail; only row-major plus reverse-triple yields the date. Treat as hypothesis only; no plaintext/key.
-- Repro: sims/p57_parable_p50_prime_rank_date_hypothesis.py. Report: im-results/lp2-p57-parable-p50-prime-rank-date-hypothesis.md. Broadcasts through 20261115T0912Z; latest title-word anchor note 20261115T0914Z.
+- Strongest objections: π(p) is a one-based rank; the ordinary nth-item index for 761 selects byte72 (“H”), not a direction marker. Offset semantics, appending the title/basename, and Latin-1 remain interpretations. Full row-/column-serpentine layouts fail. Column-major yields only the near-miss GP29 MBIO, not a date or direction marker; only row-major plus reverse-triple yields the date. Treat as hypothesis only; no plaintext/key.
+- Repro: sims/p57_parable_p50_prime_rank_date_hypothesis.py. Report: im-results/lp2-p57-parable-p50-prime-rank-date-hypothesis.md. Broadcasts through 20261115T0914Z; column-major control added to the reproducible script/report.
 - Next: independently test whether title sum 761 is an intended fourth selector and whether « truly selects reverse reading. If unsupported, retire. Do not broaden into key/hash sweeps.
 
 

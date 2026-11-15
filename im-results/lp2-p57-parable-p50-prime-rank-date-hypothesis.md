@@ -67,6 +67,9 @@ This is a potentially useful p55 ciphertext sample, not recovered plaintext. It 
 5. **Historical match is not proof of intent.** The 2015 message date is exact, but no direct statement says the p50 table should be indexed by the parable's prime ranks. The year 2015 comes from external chronology, not this extraction.
 6. The primary 2015 signed message body does not contain the community-noted asterisk-count pattern sometimes attributed to it. Do not promote that pattern as an authenticated instruction.
 
+
+A further layout control: ordinary column-major flattening of the p50 32×8 grid at the same four offsets yields GP29 MBIO, not the date or direction marker. This is a near-match to the already-visible MOBIUS word, but it is not an exact output and would require an extra permutation; do not treat it as confirmation. Row-major is the ordinary table reading order and uniquely gives the «JuL/TUE date path among these tested layouts.
+
 ## Decision
 
 Preserve this as a low-cost, source-linked historical waypoint candidate. Do not use it to seed broad cipher or hash sweeps. The decisive next action is independent review of the offset convention and reversal against the original page layout and the 2015/2016 signed-message chain. If no source-grounded selector supports both choices, retire the date-pointer hypothesis as an attractive coincidence.

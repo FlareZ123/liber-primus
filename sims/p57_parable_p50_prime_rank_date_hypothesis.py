@@ -68,6 +68,8 @@ assert title_word_ranks == [20,59,80]
 byte_rows, token_rows = GRID["byte_rows"], GRID["rows"]
 row_major = [v for row in byte_rows for v in row]
 row_major_tokens = [v for row in token_rows for v in row]
+col_major = [byte_rows[r][c] for c in range(8) for r in range(32)]
+col_major_tokens = [token_rows[r][c] for c in range(8) for r in range(32)]
 row_serp = [v for i,row in enumerate(byte_rows) for v in (row if i%2==0 else reversed(row))]
 row_serp_tokens = [v for i,row in enumerate(token_rows) for v in (row if i%2==0 else reversed(row))]
 col_serp, col_serp_tokens = [], []
@@ -106,6 +108,7 @@ print(json.dumps({
     "title_word_prime_ranks": title_word_ranks,
     "title_basename_sum": TITLE_BASENAME_SUM, "title_prime_rank": title_rank,
     "row_major_offset_extraction": extract("row-major", row_major, row_major_tokens, offsets),
+    "column_major_control": extract("column-major", col_major, col_major_tokens, offsets),
     "row_serpentine_control": extract("row-serpentine", row_serp, row_serp_tokens, offsets),
     "column_serpentine_control": extract("column-serpentine", col_serp, col_serp_tokens, offsets),
     "title_word_rank_control": {
