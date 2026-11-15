@@ -1,0 +1,17 @@
+name: Agent10 2014 Onion6 Prime Filename Original GP29 Gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_2014_onion6_primefilename_grid_threekey_sft.cjs
