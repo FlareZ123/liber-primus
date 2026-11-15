@@ -30,6 +30,7 @@ from openpuff_v400_extract import (
     snapshot_desktop,
     tree_state,
     verify_carrier_chain,
+    wait_for_native_file_picker,
     write_json_atomic,
 )
 
@@ -87,23 +88,19 @@ def click_named(window, token):
 
 
 def choose_file(app, window, button_token, path, out, stage):
-    prior_windows = {w.handle for w in Desktop(backend="win32").windows()}
+    prior_title = safe(window.window_text) or ""
     click_named(window, button_token)
     time.sleep(1)
     snapshot_desktop(out, stage + "-picker")
-    dialogs = []
-    for dialog in Desktop(backend="win32").windows():
-        if (not safe(dialog.is_visible) or safe(dialog.class_name) != "#32770"
-                or dialog.handle in prior_windows
-                or "Data Hiding" in (safe(dialog.window_text) or "")):
-            continue
-        edits = visible_controls(dialog, "Edit")
-        if edits:
-            dialogs.append((dialog, edits))
-    if not dialogs:
+    picker = wait_for_native_file_picker(prior_title, timeout_seconds=15)
+    if picker is None:
+        print("OpenPuff Hide picker not found:",
+              json.dumps(native_modal_inventory()), flush=True)
+        snapshot_desktop(out, stage + "-picker-failure")
         raise RuntimeError("No native file-picker dialog with editable file path")
-    dialog, edits = dialogs[-1]
-    dialog.set_focus()
+    dialog, edits = picker
+    # Direct HWND text entry avoids the real historical 2014 picker
+    # WaitGuiThreadIdle hang observed in the sibling Unhide driver.
     edits[-1].set_edit_text(str(path.resolve()))
     opens = [
         c for c in visible_controls(dialog, "Button")
