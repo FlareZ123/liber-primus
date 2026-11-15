@@ -1,0 +1,98 @@
+name: Manual Bach source retrieval probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Install lightweight audio and MIDI tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg poppler-utils unzip
+          python -m pip install --quiet numpy scipy mido
+
+      - name: Retrieve the historically linked Dropbox transcription
+        shell: bash
+        run: |
+          set +e
+          URL='https://www.dropbox.com/sh/jpqwmteihyrrshp/nSksuROnvE?dl=1'
+          code=$(curl -L --retry 2 --retry-delay 2 --max-time 120 -sS -w '%{http_code}' "$URL" -o bach-dropbox-download 2>curl-dropbox.err)
+          status=$?
+          echo "DROPBOX_CURL_STATUS=$status HTTP=$code"
+          cat curl-dropbox.err || true
+          file bach-dropbox-download || true
+          ls -lh bach-dropbox-download 2>/dev/null || true
+          if [ "$status" -eq 0 ] && file bach-dropbox-download | grep -qi 'zip archive'; then
+            mkdir -p bach-dropbox
+            unzip -oq bach-dropbox-download -d bach-dropbox
+            echo 'DROPBOX_FILES:'
+            find bach-dropbox -type f -printf '%p\t%s bytes\n' | sort
+            echo 'TEXT_AND_PDF_CONTENT:'
+            while IFS= read -r -d '' f; do
+              echo "===== $f ====="
+              case "$f" in
+                *.txt|*.csv|*.md) sed -n '1,240p' "$f" ;;
+                *.pdf) pdfinfo "$f" | head -20; pdftotext -layout "$f" - | head -120 ;;
+              esac
+            done < <(find bach-dropbox -type f \( -iname '*.txt' -o -iname '*.csv' -o -iname '*.md' -o -iname '*.pdf' \) -print0)
+          else
+            echo 'Dropbox share did not yield a downloadable ZIP; response prefix:'
+            head -c 1200 bach-dropbox-download 2>/dev/null || true
+          fi
+
+      - name: Retrieve and inspect the original three-second Bach clip
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 2 --retry-delay 2 --max-time 90 \
+            'https://raw.githubusercontent.com/krisyotam/cicada3301/main/media/audio/c.mp3' -o c.mp3
+          sha256sum c.mp3
+          ffprobe -v error -show_entries format=duration,size,bit_rate:stream=codec_name,sample_rate,channels -of default=noprint_wrappers=1 c.mp3
+          ffmpeg -hide_banner -loglevel error -y -i c.mp3 -ac 1 -ar 48000 c.wav
+          python - <<'PY'
+          import glob, os, wave, collections
+          import numpy as np
+          from scipy.signal import find_peaks
+          import mido
+          print("MIDI_FILES:")
+          for path in glob.glob("bach-dropbox/**/*.mid", recursive=True)+glob.glob("bach-dropbox/**/*.midi", recursive=True):
+              mid=mido.MidiFile(path)
+              print(f"FILE {path} ticks_per_beat={mid.ticks_per_beat} tracks={len(mid.tracks)}")
+              for ti,track in enumerate(mid.tracks):
+                  t=0; active=collections.defaultdict(list); events=[]
+                  for msg in track:
+                      t+=msg.time
+                      if msg.type=="note_on" and msg.velocity>0: active[msg.note].append(t)
+                      elif msg.type=="note_off" or (msg.type=="note_on" and msg.velocity==0):
+                          if active[msg.note]:
+                              st=active[msg.note].pop(0)
+                              events.append((st,t-st,msg.note))
+                  print(" TRACK",ti,"events",len(events),"notes",events[:180])
+          with wave.open("c.wav","rb") as w:
+              sr=w.getframerate(); n=w.getnframes(); raw=w.readframes(n)
+              x=np.frombuffer(raw,dtype="<i2").astype(float)/32768.0
+          print(f"WAV samples={len(x)} rate={sr} duration={len(x)/sr:.6f}s")
+          def note_name(freq):
+              if freq<=0: return "?"
+              m=69+12*np.log2(freq/440.0)
+              names=["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"]
+              mi=int(round(m))
+              return f"{names[mi%12]}{mi//12-1}"
+          for start in np.arange(0,max(0,len(x)/sr-0.10),0.10):
+              seg=x[int(start*sr):int((start+0.10)*sr)]
+              if len(seg)<2048: continue
+              win=np.hanning(len(seg)); spec=np.abs(np.fft.rfft(seg*win))
+              freqs=np.fft.rfftfreq(len(seg),1/sr)
+              peaks,_=find_peaks(spec,distance=max(1,int(20/(sr/len(seg)))))
+              peaks=sorted((p for p in peaks if 80<freqs[p]<2200),key=lambda p:spec[p],reverse=True)[:8]
+              vals=[]
+              for p in peaks[:6]:
+                  vals.append(f"{note_name(freqs[p])}@{freqs[p]:.1f}Hz")
+              print(f"{start:5.2f}s", " ".join(vals))
+          PY
