@@ -289,7 +289,7 @@ def main() -> None:
             "null_model": "one uniform keyless null at an interior position of a word; invisible to anti-repeat and language model",
             "collision_channels": ["hold", "spend"],
             "signs_tested": [1, -1],
-            "literal_F_skip": false,
+            "literal_F_skip": False,
             "threshold_T300": T300,
         },
         "source_results": source_results,
