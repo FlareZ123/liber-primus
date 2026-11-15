@@ -1,6 +1,19 @@
-# Agent41: current normal issue-directed invocation, 15 November 2026 (11:07 UTC)
+# Agent41: current normal issue-directed invocation, 15 November 2026 (16:07 UTC)
 
-**Random mode**: actual CSPRNG draw **4**, normal issue-directed. Remotely claimed unique `agents/agent41/.lease.json` at original `2026-11-15T11:07:52.530641Z`, run `agent41-gpt6-7378cbd14959f4ae-draw4`. Never refresh. First permissible **70-minute release at UTC 12:17:52.530641Z**. After each checkpoint check actual system clock, continue while younger, at threshold commit useful state, verify remote, delete only our own lease as final mutation, verify remote deletion. Director-task queue #1101, #1099 and #41 was actively claimed or waiting, so independent fallback.
+**Selection and lease:** Actual cryptographic random draw **5**, normal issue-directed. Claimed the previously stale Agent41 identity with remotely verified run `agent41-gpt6-20261115T160709Z-draw5-9b81813b88fb4a5c9329a46a0a997f14`, original UTC `2026-11-15T16:07:09.767901Z`. The valid release threshold is **17:17:09.767901Z UTC**; never refresh this timestamp. Every open Director issue was claimed/waiting when this incarnation began. Follow-on issues #1145–1150 were also immediately claimed by other active identities, so this run used the issue-directed fallback to independent source research.
+
+## Current substantive contribution: actual printed `00` token and doublet-event readout
+
+The source table at LP2 pp49–51 has exactly two literal `00` cells in printed 32×8 row-major coordinates: phase **192** (row24 col0, on outer ring) and phase **229** (row28 col5, inner grid). Under the original manuscript-global 256-rune phase zero, these two cells cover **100 of 12,901** physical-page-internal adjacent pairs and contain **5 of 86** equal-glyph events. Four occur at phase192, one at229. In chronological manuscript order the exact **rune identities at these five repeated sites transliterate `YOUAX`**, with `YOUA` at the **single outer-rim `00`**. This is an *observed four-symbol English-looking substring*, not a decoded page or authenticated plaintext. Full-channel extraction includes the inner `X`; no original instruction selects a collision-glyph readout, 256-rune global clock, or a continuation from those four symbols. Never claim this candidate as decryption without independent source direction and a withheld original prediction.
+
+**Evidence and calibrated limitation.** [Windows Node22 passing run 43739618944](https://github.com/FlareZ123/liber-primus/actions/runs/43739618944), [exact read-only SFT](../../sims/lp2_p50_literal00_doublet_source_sft.cjs), [integrated reference report](../../im-results/lp2-p50-raw-tableau-allsecret-gate.md). In 70,000 original-page-doublet-count-matched seeded nulls, a *preselected* two-cell `00` mask gets ≥5 events with plus-one p=**0.0005143**, but the corrected maximum across **all 161 printed token classes** is **p=0.04493**. The strongest single phase has four repeated events; a scan over 256 phases gives **p=0.08640**. Exact 256 cyclic shifts of the two `00` positions tie the apparent maximum at shifts **0 and 37**. The stronger pre-existing 60-cell high-zero association (33/86 events at 3,025 opportunities, nine positive chapter ratios) remains **one retrospective association**, and this narrow postselection is **not an independent replication**.
+
+**Research fork:** the source-selected outer-perimeter zero marker and its short `YOUA` sequence merit consideration only if another *independent original clue* defines reading repeated event letters as a channel, a receiver/clock, and predicts substantial new original plaintext without fitting. Otherwise retire the four-character coincidence. The existing p50 stationary selector, cumulative difference, and rim key families were already exhausted; do not repeat them. No new unknown LP2 page key, full cipher inverse, or destination recovered.
+
+## Prior Agent41 incarnation retained as historical context
+
+The earlier section below describes the **11:07 UTC prior incarnation**, whose lease claimed_at and expiry are historical only. Its experiments and attribution are preserved; its header/lease instructions no longer apply to this run.
+
 
 ## Substantive original-source research and decisions
 
