@@ -217,6 +217,41 @@ assert.equal(
   7
 );
 
+// Orthogonal diagnostic: does the entire 29-step alphabet, rather than just
+// the exceptional zero step selected post hoc, depend on the five printed
+// table-leading digits? This is a fixed-clock Pearson 5 x 29 contingency.
+const stepCells = Array.from({ length: 5 }, () => new Uint32Array(29));
+let stepGlobal = 0;
+for (const page of PAGES) {
+  for (let i = 1; i < page.indices.length; i++) {
+    const digit = Number(TOKENS[(stepGlobal + i - 1) % 256][0]);
+    const step = (page.indices[i] - page.indices[i - 1] + 29) % 29;
+    stepCells[digit][step]++;
+  }
+  stepGlobal += page.indices.length;
+}
+assert.equal(stepGlobal, 12956);
+const stepRowCounts = stepCells.map((row) => row.reduce((a, b) => a + b, 0));
+const stepColumnCounts = Array.from({ length: 29 }, (_, j) =>
+  stepCells.reduce((sum, row) => sum + row[j], 0));
+assert.deepEqual(stepRowCounts, [3025, 2926, 3270, 2825, 855]);
+assert.deepEqual(stepCells.map((row) => row[0]), [33, 12, 17, 19, 5]);
+const stepPearson = stepCells.reduce((sum, row, digit) =>
+  sum + row.reduce((inner, count, step) => {
+    const expected = stepRowCounts[digit] * stepColumnCounts[step] / 12901;
+    return inner + ((count - expected) ** 2) / expected;
+  }, 0), 0);
+assert.ok(Math.abs(stepPearson - 113.20170622464354) < 1e-9);
+const fullStepContingency = {
+  shape: '5 printed first digits by 29 observed GP rune differences',
+  observations: 12901,
+  pearsonChiSquare: stepPearson,
+  degreesOfFreedom: (5 - 1) * (29 - 1),
+  zeroStepByDigit: stepCells.map((row) => row[0])
+};
+// A standard chi-square(112) reference gives upper-tail p ≈ 0.45044786;
+// the diagnostic was added after inspecting the zero-step anomaly.
+
 const lagControls = [];
 for (let lag = 2; lag <= 12; lag++) {
   const x = assess(inventory(lag), 0, 0);
@@ -251,5 +286,6 @@ console.log(JSON.stringify({
     })),
     sourceLeadingZeroShiftZeroIsUniqueNineChapterMaxExcess: true
   },
-  lagControls
+  lagControls,
+  fullStepContingency
 }, null, 2));
