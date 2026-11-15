@@ -1,0 +1,23 @@
+name: LP2 AN END original JPEG Skein and Streebog
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-byte-hash:
+    runs-on: windows-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout original Liber Primus assets
+        uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install hash implementations
+        run: python -m pip install pyskein gostcrypto
+      - name: Check independent test vectors and original image bytes
+        run: python sims/lp2_anend_skein_streebog_original_jpeg_sft.py
