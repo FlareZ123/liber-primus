@@ -1,6 +1,6 @@
 # 2013 prime_echo totient-key blocks: bounded original-cipher negative
 
-**Status: 14 November 2026. Two bounded source-derived prime schedules tested on original LP2 (direct repeated blocks, and a distinct 58-page × eight-prime schedule). Neither recovered unknown plaintext, an authentic key, nor an authored instruction.**
+**Status: 15 November 2026. Four bounded source-shaped prime schedules tested on original LP2: continuous 174/290/464-prime blocks, six 29-prime page rows, 58 eight-prime page rows, and 16 source-order 29-prime floral page rows. None recovers unknown plaintext or an authenticated key/operation. The latest 16-floral-page direct original-input test is mathematically impossible on every rune-bearing page under the authentic p56 F-bypass rule.**
 
 ## Solve-path hypothesis
 
@@ -90,6 +90,36 @@ The independent **native GP positive plant** preserves all **58 source physical-
 
 **Decision:** retire the direct page-reset eight-prime **`φ(prime)` additive/F-transparent inverse** as a complete LP2 English decipherment. Keep **133+331=464=58×8** only as an observable cross-source relationship requiring an independently authored key assignment or different reversible operation before more derived searches. It does not rescue the already-rejected continuous/174/290-prime arrangements, nor rule out unrelated uses of historical prime material.
 
+## Exact 464 = 16×29 floral-page schedule (Agent3, 15 November 2026)
+
+**Human-visible independent inputs:** (1) the original 2013 CicadaOS `prime_echo` script produces exactly 464 ascending primes ending 3301 (with a distinct pause after 1033), (2) the LP2 physical pp40–55 carry a uniform floral border on exactly sixteen pages, including the 256-number/no-rune page p50, and (3) the Gematria Primus alphabet has exactly 29 symbols. Hence `464 = 16×29` offers one source-natural grouping: assign the first 29 original primes to physical p40, the next 29 to p41, etc., ending the final group with 3301 at p55. **The grouping is a hypothesis**: no authenticated 2014 author clue specifies transfer of the 2013 program to the floral pages, nor the choice of repeated page-local φ-prime masks. The separate 16-word p55 and 58×8 original-output schedules above test different operands and do not cover this exact frozen assignment.
+
+**Frozen decoder:** each of the sixteen printed pages receives its source-ordered 29-prime row, starting at phase0 and cycling when necessary. For every rune, subtract `φ(p) = p−1` from the ciphertext index modulo29, using the **known p56 literal-plaintext-F rule**: a plaintext F emits ciphertext F with no prime consumed; a ciphertext F may instead be an encrypted non-F. Propagate every possible key phase and F mask exactly. If every state would make a non-F ciphertext decrypt to F, no legal plaintext exists under the genuine p56 forward operation. The runeless p50 retains its source prime row but consumes none. No target text, fitted phase, page reassignment, shifted key sign, language score or private seed is used.
+
+| Original floral page | First impossible local rune (zero-based) | Original C GP index | Prime at forced F |
+| ---: | ---: | ---: | ---: |
+| 40 | 39 | 1 | 31 |
+| 41 | 1 | 10 | 127 |
+| 42 | 39 | 17 | 337 |
+| 43 | 102 | 27 | 521 |
+| 44 | 6 | 9 | 677 |
+| 45 | 4 | 21 | 863 |
+| 46 | 42 | 14 | 1117 |
+| 47 | 107 | 17 | 1381 |
+| 48 | 98 | 19 | 1499 |
+| 49 | 10 | 6 | 1747 |
+| 50 | none, 0 original runes | none | none |
+| 51 | 89 | 13 | 2131 |
+| 52 | 15 | 22 | 2459 |
+| 53 | 37 | 23 | 2663 |
+| 54 | 33 | 19 | 2833 |
+| 55 | 33 | 21 | 3067 |
+
+**Original outcome:** every one of the 15 rune-bearing original physical pages is algebraically impossible, often by the first few runes. Only the deliberately preserved numeral-only p50 is vacuously compatible. The test examines **all 3,316** original pp40–55 runes with their actual per-page lengths, including the p50 zero-rune slot. Each reported witness is the earliest position where every legal prior literal-F branching yields a forbidden F at a non-F ciphertext rune. For example, at p40 local39 the candidate prime31 gives shift30 mod29=1, equal to ciphertext GP index1, so a non-F becomes forbidden plaintext F.
+
+**Exact source-shaped positive controls:** start with the independently clear 95-rune p57 sequence, repeat it to fill each original page's exact rune length, encrypt under its assigned 29-prime row while preserving all genuine plaintext-F no-key cases, and run the same 16-page F-branch inverse. All **16/16** original-geometry plants, including runeless p50, are compatible, with complete **3,316/3,316** source-position coverage. The very same source primes independently reproduce the authentic p56 85-rune ciphertext with 84 prime entries consumed and one transparent plaintext F. These controls establish that the decoder recognizes this cipher when actually present; they are not discovered plaintext.
+
+**Decision:** retire precisely the **2013 original source-ordered 16×29 prime rows → sixteen floral pages → cyclic φ(prime) GP29 additive inverse with authentic F transparency**. The exact script, run order and source page counts remain reproducible in [standalone Node22 CommonJS SFT](../sims/lp2_2013_primeecho_floral16_29page_sft.cjs) and its [successful 15 November Actions original-plus-plant run 43675077928](https://github.com/FlareZ123/liber-primus/actions/runs/43675077928). The numeric cardinality correspondence alone does not provide a reversible operator or authentic key, and no alternative phase, modulus or alphabet should be tuned to rescue the contradiction. This is a new narrow exclusion, without plaintext, secret material or destination.
 ## Decision
 
 Reject these three direct repeated prime-totient key readings: the full 464-prime stream, the 174-prime block ending at 1033, and the 290-prime block from 1039 through 3301. The p56 positive control confirms that the known prime-totient/F-bypass implementation is functioning.
