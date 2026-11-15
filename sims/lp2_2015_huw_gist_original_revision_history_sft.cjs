@@ -26,7 +26,7 @@ function staticKeys(body) {
   const lines=body.split(/\r?\n/),selected=[];
   for(let i=0;i<lines.length;i++){
     const line=lines[i].trim();
-    if(/(?:^def forge_offsets|offsets\s*=\s*forge_offsets|^#\s*offsets\s*=|^#\s*sequence\s*=|^sequence\s*=|if.*rune|off_num|def find_position|^import)/.test(line))
+    if(/(?:^def forge_offsets|offsets\s*=\s*forge_offsets|^#\s*offsets\s*=|^#\s*sequence\s*=|^sequence\s*=|if.*rune|off_num|def find_position|^import|output\s*\+?=|find_position\(|direction|advance|skip)/.test(line))
       selected.push({line:i+1,chars:line.length,sha256:sha256(line),code:line.length>350?line.slice(0,165)+' ... '+line.slice(-165):line});
   }
   return {lineCount:lines.length,selected};
@@ -55,6 +55,10 @@ async function main(){
       ...meta});
   }
   console.log('REVISIONS',JSON.stringify(output));
+  for(const version of output){
+    console.log('KEY_MECHANISM',JSON.stringify({revision:version.version,date:version.committedAt,
+      methods:version.selected.filter(x=>/forge_offsets|offsets\s*=|output|find_position|off_num/.test(x.code))}));
+  }
   const distinct=[...new Set(output.map(x=>x.sha256))];
   console.log('DECISION',JSON.stringify({revisions:versions.length,
     distinctCodeBodies:distinct.length,
