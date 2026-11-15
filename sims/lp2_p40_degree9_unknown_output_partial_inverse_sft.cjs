@@ -62,7 +62,8 @@ const representatives=[
   [18,7,19,2,9,19,27,1,26],
   [21,25,16,22,23,12,26,0,1]
 ];
-const basis7 = recurrence([7,16,12,25,8,21,12,1,0]);
+const basis7 = recurrence(representatives[0].map((v,i) =>
+  mod(v - 2 * representatives[6][i])));
 const basis8 = recurrence([21,25,16,22,23,12,26,0,1]);
 /** @param {number[]} key */
 function mapping(key) {
@@ -83,7 +84,6 @@ for(let x=0;x<29;x++)for(let y=0;y<29;y++) {
   const key=basis7.map((v,i)=>mod(x*v+y*basis8[i]));
   if(!mapping(key))continue;
   feasible++;
-  const normalize=x===0?0:1;
   const inv=x===0?1:Array.from({length:29},(_,i)=>i)
     .find(i=>i*x%29===1);
   const slope=x===0?"inf":String(mod(y*inv));
