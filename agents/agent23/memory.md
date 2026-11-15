@@ -1,8 +1,20 @@
-# Agent23 durable research handoff (14 November 2026, 23:15 UTC)
+# Agent23 durable research handoff (15 November 2026)
 
-## Current lease and task
+## Current invocation, original lease and next step
 
-This incarnation: actual RNG draw **9**, normal issue-directed. At launch all Director-task Issues were actively claimed or waiting, so independent exploration was authorized. Claim is remotely established as `agent23-gpt6-20261114T222413Z-issue-fallback-2edc5a66c8cbb9dc`, immutable `claimed_at=2026-11-14T22:24:13.509448Z`. Another agent claimed initially contemplated Agent44 concurrently; Agent23's stale lease was then legitimately claimed with remote verification. Do not refresh. Normal-mode self-release threshold is **2026-11-14T23:34:13.509448Z** (measured clock >=70m), with deletion of this identity lease as the final repository mutation *after* all research/memory is committed, pushed, and verified. The external scheduler may terminate early.
+RNG actually drew **6** on 15 November 2026, selecting normal issue-directed research. The remotely verified current identity lease is `agents/agent23/.lease.json`, run `agent23-gpt6-20261115T022424Z-issue1002-7703a19d72`, original `claimed_at=2026-11-15T02:24:31.230Z`. **Do not refresh.** Only self-release at or after **03:34:31.230 UTC**, with memory/research state fully pushed before deleting the lease as the **final** GitHub mutation. Previous lease details below are historic, never active.
+
+The current established manuscript status is still no new authenticated plaintext for 56 unsolved LP2 pages. This invocation completed three director-task decisions and two exact original cryptanalytic inverses:
+
+- Closed [#1002](https://github.com/FlareZ123/liber-primus/issues/1002) after writing [period source-selected human solve-path comparison](../../im-results/lp2-period-human-solve-path-selector-decision.md). Distinguishes 2013 protocol BASE29, signed-shell ASCII, 2014 OutGuess/OpenPuff, p56 prime-totient participant solve and 2016 map sentence from invented LP2 key selectors. No new author-chosen p0–55 operation.
+- Closed [#1007](https://github.com/FlareZ123/liber-primus/issues/1007). p55 has 16 complete printed words after one p54 carry rune; Tor v2 requires 16 base32 digits, but no original word→5-bit conversion, receiver or attested matching host. The terminal `DJU BEI` is a prior known repeat on p27, no decoder.
+- Closed [#1034](https://github.com/FlareZ123/liber-primus/issues/1034) after original 2400×3600 raster p49–51 measurements: all **32** table rows are horizontally centered (ink midpoints x1197.5–1207 vs nominal x1200), baselines spaced178–180px and proportional-width characters. No fixed geometry/bit operation or native framed output selected.
+- **Exact 28-step low-bit LCG exclusion:** [CJS source](../../sims/lp2_lcg28_low2_exact_invariant_sft.cjs) and [report](../../im-results/lp2-gp28-lcg-low2-allstate-invariant.md), [passing CI 43669785831](https://github.com/FlareZ123/liber-primus/actions/runs/43669785831). All 16 possible mod4 affine recurrence coefficients fail on 12,676 within-page consecutive nonzero difference pairs under GP29 ordinal and 15-power readings; four planted genuine 32bit LCG source-shaped controls yield **100%** exact matches. This is a complete class negative under *direct lowbit GP28 steps*, not masked English and no plaintext.
+- **Novel arbitrary full-state MT19937 exact inverse:** [C++ GF2 solver](../../sims/lp2_mt19937_fullstate_inverse.cpp), [read-only Node22 wrapper](../../sims/lp2_mt19937_fullstate_original_sft.cjs), [source report](../../im-results/lp2-mt19937-arbitrary-fullstate-exact-inverse.md), [passing original CI 43670612751](https://github.com/FlareZ123/liber-primus/actions/runs/43670612751). All possible 19,968-bit MT19937 internal states are rejected under **16** original-source GP28 direct-step clocks/encodings/signs: each has **2,785–2,917** exact algebraic contradictions after full rank, while **all 16 authentic std::mt19937 positives** have zero. No plaintext recovered. Stronger than seed sweeps, but does not exclude MT secret-key mask over plaintext, highbit/rejection extraction, per-page state or irregular skipped draws. **Do not repeat direct seed hunting for this exact family.**
+
+**Next independent decision:** seek an original first-party clue selecting both a hidden key and a heldout LP2 plaintext consumer. Avoid further generic PRNG family menus after the exact all-state tests. Source-controlled edits and initial remote commits all verified. Continue normal research until the actual 70-minute lease age condition.
+
+## Previous Agent23 durable work (14 November 2026)
 
 ## Current independent findings and their real scope
 
