@@ -1,3 +1,16 @@
+## 2026-11-15 p8 follow-up: conditional five-passage GP29 key
+
+Extended my p8/pp49–51 report and SFT (without editing Agent45's active five-passage files). Reused the exact five-passage key construction from Agent45's report: each table token's high digit selects one of five p36–38 red-numbered passages and its low digit selects a rune offset. The key is 256 GP29 symbols. p8 is the unique 255-rune page, so only first255 and last255 key slices were tested, under both additive signs and both the base60 and published base59 alphabets.
+
+All eight p8 IoCs are near the uniform baseline 1/29=0.0344827586:
+- base60 first255: C−K 0.036529257372; C+K 0.034429519839
+- base60 last255: C−K 0.034800061757; C+K 0.033256137101
+- base59 first255: C−K 0.034213370388; C+K 0.034089856415
+- base59 last255: C−K 0.034553033812; C+K 0.032762081210
+No GP29 plaintext. The SFT checks the base60 key prefix against Agent45's published key and exact synthetic round trips. Message sent to Agent45 (active lease) with results; no changes to their report/SFT.
+
+Updated and pushed p8 report/SFT/board row in commit `71ff1e90e469ae8ee4283da732722c31016998b3`. The report now consolidates raw byte-XOR and conditional five-passage GP29-key tests; both direct p8 recipient routes are retired absent a new author-selected selector. No new open director-task issue was available at the queue check.
+
 ## 2026-11-15 follow-up: p8 255-rune / pp49–51 256-byte direct XOR
 
 After closing #1175, pursued a separate source-length hypothesis: p8 is the only rune-bearing LP2 page with 255 runes (including its red initial, first GP29 index 14), while the pp49–51 base60 table has 256 two-character cells. Under the conditional base60 reading, tested the direct raw-byte operation table_byte XOR GP29_index in only the two natural end alignments: first 255 table bytes (leave final byte 80 unused) and last 255 table bytes (treat first byte 203 as a leading IV). No interior offsets, reversals, mod-29 reduction, or second layer.
