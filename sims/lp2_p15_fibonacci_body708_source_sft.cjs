@@ -15,6 +15,7 @@ const path = require('node:path');
 
 const corpus = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'));
 const p = corpus.pages;
+const ink = JSON.parse(fs.readFileSync(path.join(__dirname,'..','resources','liber-primus','lp2-ink-annotations.json'),'utf8'));
 const gp = corpus.translit;
 const primeRune = corpus.prime;
 const mod29 = x => ((x % 29) + 29) % 29;
@@ -114,6 +115,21 @@ assert.equal(numbers.includes(continuationSum),false);
 // Independent chapter-initial controls. The listed heading counts come from
 // original red span boundaries, not from output-fitting.
 const chapterStart = [[3,7,16],[8,14,12],[15,22,20],[23,26,16],[27,32,19],[33,39,10],[40,53,8]];
+// Assert red-heading starts from the physical colored-span source metadata.
+// p15's two contiguous red rune spans have an intervening numeric graphic;
+// both precede the first black body rune. p33 instead has an independent
+// second red span at 91, after 81 black runes, so its heading length is TEN.
+for (const [a,,h] of chapterStart) {
+  const source=ink.pages.find(x=>x.page===a);
+  assert(source && source.red_spans && source.red_spans[0].start===0);
+  if(a===15){
+    assert.deepEqual(source.red_spans.map(x=>[x.start,x.length]),[[0,9],[9,11]]);
+    assert.equal(h,20);
+  } else {
+    assert.equal(source.red_spans[0].length,h);
+  }
+}
+assert.deepEqual(ink.pages.find(x=>x.page===33).red_spans.map(x=>[x.start,x.length]),[[0,10],[91,8]]);
 const controls = chapterStart.map(([a,b,h])=>{
   const c=p.slice(a,b+1).flatMap(x=>x.indices);
   const sum = fib.reduce((s,i)=>s+primeRune[c[h+i]],0);
