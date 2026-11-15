@@ -1,6 +1,15 @@
 name: Agent15 source-selected five-dot chapter quintet transport
 on:
   workflow_dispatch:
+    inputs:
+      gate:
+        description: Select an original-source five-dot gate
+        required: true
+        type: choice
+        default: chapter-quintet
+        options:
+          - chapter-quintet
+          - local-delimiter
 permissions:
   contents: read
 jobs:
@@ -13,6 +22,7 @@ jobs:
         with:
           node-version: '22'
       - name: Test original chapter-grouped 5-GP-rune 24-bit packing
+        if: ${{ inputs.gate == 'chapter-quintet' }}
         shell: pwsh
         run: |
           node --check sims/lp2_five_dot_chapter_body_quintet_sft.cjs
@@ -27,3 +37,9 @@ jobs:
           node sims/lp2_p40_red8_grid256_rowselector_sft.cjs
           node --check sims/lp2_p40_red8_grid_rc4_sft.cjs
           node sims/lp2_p40_red8_grid_rc4_sft.cjs
+      - name: Test exact all-secret five-back delimiter obstruction
+        if: ${{ inputs.gate == 'local-delimiter' }}
+        shell: pwsh
+        run: |
+          node --check sims/lp2_lag5_local_delimiter_allsecret_sft.cjs
+          node sims/lp2_lag5_local_delimiter_allsecret_sft.cjs
