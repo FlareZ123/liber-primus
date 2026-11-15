@@ -93,7 +93,8 @@ def choose_file(app, window, button_token, path, out, stage):
     snapshot_desktop(out, stage + "-picker")
     dialogs = []
     for dialog in Desktop(backend="win32").windows():
-        if (not safe(dialog.is_visible) or safe(dialog.class_name) != "#32770"\n                or "Data Hiding" in (safe(dialog.window_text) or "")):
+        if (not safe(dialog.is_visible) or safe(dialog.class_name) != "#32770"
+                or "Data Hiding" in (safe(dialog.window_text) or "")):
             continue
         edits = visible_controls(dialog, "Edit")
         if edits:
