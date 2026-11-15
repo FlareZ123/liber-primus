@@ -99,6 +99,11 @@ async function replay(stamp, url) {
 async function main() {
   // Historical positive control, already demonstrated from archived actual pad.
   await replay('20160412033034', root);
+  // These exact two export links are embedded in the archived 2016 source HTML.
+  await replay('20160412033034',
+    'https://titanpad.com/ep/pad/export/' + pad + '/latest?format=txt');
+  await replay('20160412033034',
+    'https://titanpad.com/ep/pad/export/' + pad + '/latest?format=html');
   const prefixes = [
     ['historical-flat', 'titanpad.com/' + pad],
     ['historical-2016-source-export', 'titanpad.com/ep/pad/export/' + pad],
@@ -118,7 +123,7 @@ async function main() {
   console.log('INDEX_SUMMARY ' + JSON.stringify({
     pad, uniqueRecords: historical.length,
     revisionOrExportRecords: likely.length,
-    historicalStatus: likely.length ? 'INDEXED_CANDIDATES' : 'NO_REVISION_ARCHIVE_URL_INDEXED',
+    historicalStatus: likely.length ? 'INDEXED_CANDIDATES' : 'NO_REVISION_URL_RETURNED_CHECK_CDX_TRANSPORT',
     candidateUrls: likely.slice(0, 20).map(x => ({ timestamp: x.timestamp, url: x.original }))
   }));
   for (const hit of likely.slice(0, 8)) {
