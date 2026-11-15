@@ -105,6 +105,57 @@ function multiplyPolynomial(a, b) {
   return out;
 }
 
+/**
+ * The p15 signed matrix supplies P(8)=27 and P(17)=15, two extra
+ * conditional parity checks. Return all six error syndromes.
+ * @param {number[]} v @returns {number[]}
+ */
+function syndromeSix(v) {
+  const s = syndrome(v);
+  const evaluation = (x) => v.reduce((a,b) => mod(a * x + b),0);
+  return [s.value,s.derivative,...s.h,mod(evaluation(8)-27),mod(evaluation(17)-15)];
+}
+/** @param {number[]} a @returns {number} */
+const sixKey = a => a.reduce((v,x) => v * 29 + x,0);
+/** @param {number[]} a @param {number[]} b @returns {number[]} */
+const sixDiff = (a,b) => a.map((v,i) => mod(v-b[i]));
+
+/** Complete six-syndrome dictionary of single-error terms. */
+function singleErrorIndex() {
+  const map=new Map(), all=[];
+  let h=[1,0],p=1,d=0,q=1,r=1;
+  for(let e=0;e<256;e++) {
+    const basis=[p,d,h[0],h[1],q,r];
+    for(let delta=1;delta<29;delta++) {
+      const values=basis.map(v=>mod(v*delta));
+      const key=sixKey(values);
+      assert(!map.has(key));
+      const item={e,delta,values};
+      map.set(key,item);all.push(item);
+    }
+    d=mod(24*d+p);p=mod(24*p);
+    q=mod(8*q);r=mod(17*r);h=multiplyH(h,[0,1]);
+  }
+  return {map,all};
+}
+/**
+ * Enumerate all solutions rather than assuming a six-check code
+ * can uniquely correct every two-error pattern.
+ * @param {number[]} target
+ * @param {{map:Map<number,{e:number,delta:number,values:number[]}>,all:Array<{e:number,delta:number,values:number[]}>}} idx
+ */
+function recoverTwo(target,idx) {
+  const found=new Map();
+  for(const first of idx.all) {
+    const second=idx.map.get(sixKey(sixDiff(target,first.values)));
+    if(!second||first.e===second.e)continue;
+    const both=[first,second].sort((a,b)=>a.e-b.e);
+    const signature=both.map(x=>x.e+':'+x.delta).join('/');
+    found.set(signature,both.map(x=>({index:255-x.e,delta:x.delta})));
+  }
+  return [...found.values()];
+}
+
 const tokens = source.pages.flatMap((page) => page.tokens);
 const bytes = source.bytes;
 assert.equal(tokens.length, 256);
@@ -157,6 +208,38 @@ invisible[165] = 47;
 assert.deepEqual(syndrome(invisible), syndrome(bytes));
 assert.equal(locateOneResidueError(invisible), null);
 
+// The two extra p15 eigenvalue targets define six original syndromes.
+assert.deepEqual(syndromeSix(bytes),[0,0,0,0,0,0]);
+const one=singleErrorIndex();
+assert.equal(one.all.length,7168);
+const pair2014=bytes.slice();
+assert.equal(pair2014[170],254);assert.equal(pair2014[172],148);
+pair2014[170]=194;pair2014[172]=174;
+const historicPairSolutions=recoverTwo(syndromeSix(pair2014),one);
+assert.deepEqual(historicPairSolutions,
+  [[{index:172,delta:26},{index:170,delta:27}]]);
+
+// Deterministic original-shaped double-corruption controls.
+// Double errors can be ambiguous, so measure rather than conceal that.
+let randomState=3301;
+function random32() {
+ randomState^=randomState<<13;randomState^=randomState>>>17;
+ randomState^=randomState<<5;return randomState>>>0;
+}
+let doubleUnique=0,doubleAmbiguous=0;
+for(let t=0;t<128;t++) {
+ const i=random32()%256;let j=random32()%255;if(j>=i)j++;
+ const a=1+random32()%28,b=1+random32()%28;
+ const changed=bytes.slice();changed[i]=mod(changed[i]+a);
+ changed[j]=mod(changed[j]+b);
+ const solutions=recoverTwo(syndromeSix(changed),one);
+ assert(solutions.some(pair=>
+   pair.some(x=>x.index===i&&x.delta===a)&&
+   pair.some(x=>x.index===j&&x.delta===b)));
+ if(solutions.length===1)doubleUnique++;else doubleAmbiguous++;
+}
+assert.equal(doubleUnique,122);assert.equal(doubleAmbiguous,6);
+
 const alt59Bytes = tokens.map((s) => parseToken(s, ALT59));
 const alt59Syndrome = syndrome(alt59Bytes);
 assert.notDeepEqual(alt59Syndrome, syndrome(bytes));
@@ -165,6 +248,8 @@ console.log(JSON.stringify({
   status: 'PASS', checkedOriginalTokens: tokens.length,
   code: 'H × G over GF29, four parity conditions',
   singleResidueCorrections: recovered, rootOrder,
+  historicalTwoErrorSolutions: historicPairSolutions,
+  sampledTwoErrors: { unique: doubleUnique, ambiguous: doubleAmbiguous, total: 128 },
   base60Syndrome: syndrome(bytes), alt59Syndrome,
   alt59RepairableByOneResidueChange: false,
   period2014IsolatedError: { index: 170, fromByte: 194, toByte: 254,
