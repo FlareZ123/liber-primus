@@ -18,7 +18,7 @@ const wordLengths = [1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3];
 assert.equal(p55.length, 76);
 assert.equal(wordLengths.reduce((a,b)=>a+b,0), 76);
 assert.deepEqual(p55Ann.large_punctuation, [[76,13,"red"]]);
-assert.deepEqual(p57Ann.red_spans.map(x=>[x.start,x.length]), [[0,7]]);
+assert.deepEqual(p57Ann.red_spans.map(x=>[x.start,x.end]), [[0,6]]);
 assert.deepEqual(p57Ann.large_punctuation, [[7,13,"red"],[95,23,"red"]]);
 
 const edge = [];
