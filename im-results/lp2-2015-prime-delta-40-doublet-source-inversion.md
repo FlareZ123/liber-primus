@@ -106,6 +106,32 @@ A reproducibility correction on 14 November 2026 (Agent14) fixed a missing final
 
 The corresponding [source-exact Windows/Node CommonJS SFT](../sims/lp2_2015_prime_delta_base29_file_sft.cjs) recovers all original source ciphertext runes from the 729 transformed digits, then plants a **complete 443-byte valid GZIP file holding 420 ASCII bytes of a solved-p57 phrase** in the same 729-digit register. The identical prime-delta inverse and file decoder recover the complete planted GZIP bytes, decompress all 420 bytes of text, and restore all 729 synthetic cipher runes. The original computation was also run independently in the GitHub connector runtime; the complete Node SFT was run locally with an exact 729-symbol copy of the canonical first chapter, with the same original 443-byte hash and output. **No unknown-page plaintext, creator-selected key, or destination is recovered.**
 
+## New complete-key obstruction to a second multiplicative-feedback layer (Agent32, 15 November 2026)
+
+The 2015 participant's **historically specified first pass** transforms original p0–2 by subtracting consecutive primes with an imagined preceding F=0/prime2, then taking successive GP29 differences. The original 729-rune result has exactly **40** equal adjacent derived symbols. The source report above already establishes and reproduces that historical observation, including the documented four-rune plateau; the new question is whether that intermediate register can be **deciphered directly by an arbitrarily keyed nonzero-multiplier feedback cipher**, a much stronger possibility than another fixed-key or unkeyed difference.
+
+Freeze the second inverse as
+
+```text
+P[i] = s + inverse_GF29(K[i]) * (D[i] - D[i-1]) mod 29
+```
+
+with every `K[i]` an **independently unknown nonzero** residue and `s` an **arbitrarily selected** fixed GP29 plaintext rune. The choice of `s` can differ for each original printed word, physical page or chapter. IVs at page or word starts are also unrestricted. The field identity `D[i]=D[i-1] ⇔ P[i]=s` applies at every noninitial transition regardless of `K`, `s` or the start convention.
+
+**One unchanged original p2 word is decisive.** At original book-wide rune offset **543** (p2 local15), printed word 125 (zero-based) is exactly `ᚾᚻᛒᛖᚷᛇ` (GP `N H B E G EO`, six runes). Its **source-fixed 2015 prime-delta output** is
+
+```text
+GP indices:     15 26 26 26 26 13
+GP labels:       S  Y  Y  Y  Y  P
+index in word:   0  1  2  3  4  5
+```
+
+The equalities at derived positions **2, 3, 4** force any six-rune direct plaintext word to have **the same GP rune at indices 2–4**, irrespective of the unknown multiplier schedule. Under the repository's established GP-normalized source-English dictionary (29,157 entries, 29,154 encodable), **zero of the 4,665 six-rune entries** contain such a triple, for **any of the 29 possible symbols**. This yields an immediate one-word exact exclusion of the complete second-stage family on the original 2015 p0–2 register, without even using the other 29 words with equal derived runes or any English language-frequency threshold.
+
+The [read-only original-input CommonJS SFT](../sims/lp2_2015_prime_delta_second_feedback_zero_sft.cjs) asserts original source words (158 including two crossing page boundaries), 729 rune offsets, all 40 historical repeat transitions, the exact p2 witness, and the complete 29,154-entry dictionary count. It also synthesizes a complete **95-rune authentic solved-p57 native-GP positive** under the two-layer prime-delta plus arbitrary nonzero-multiplier-feedback encoder and exactly recovers all 95 plaintext runes for three distinct symbols `s=F/E/EA`. The test was independently executed against live GitHub source bytes with all assertions passing.
+
+This **retire-one-mechanism** result does not invalidate the 2015 observation or establish which further decoder Cicada intended. A second layer with additive offsets, position-varying zero symbol **inside the six-rune word**, changed word boundaries, nonlinear block mixing, or a different plaintext register remains possible. Unconstrained multiplier search for this frozen fixed-zero-feedback continuation cannot produce the tested source-native English register.
+
 ## Concrete research decision
 
 Preserve the **exact p0–2 prime-then-difference transform** and its unique source-position alignment as a small hypothesis for a *first-chapter intermediate register*. It is an independently dated human experiment that exactly reproduces its own reported original-text statistic. A source-visible p0 candidate has now been tested as that next step: the 13-dot-routed red-header sequence SSHYEOEGMNGIAFC, used as a period-13 Vigenère key on both D and E at phase zero over either the full tape or the 716-rune post-header body, in both signs. All eight original outputs remain uniform-like (IoC 0.034086–0.034697) and none yields plaintext; see [the integrated p0 composite gate](lp2-p0-red13-dot-topology-readout.md#composite-gate-dot-routed-p0-header-key-after-the-2015-prime-delta-operation-agent16-15-november-2026). This rejects only those fixed compositions. A genuinely new next step would require a different original image/number/statement that selects a reversible consumer and yields a withheld original plaintext prediction. Do not commission 29-phase scans, freely changed prime clocks, or stacked arbitrary language-model layers to chase the alignment anomaly. The eight held-out chapters provide affirmative evidence against promoting this single operation into a universal decryption mechanism.
