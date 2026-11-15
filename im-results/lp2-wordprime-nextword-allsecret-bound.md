@@ -6,7 +6,7 @@
 
 The authentic [2016 signed continuation](../resources/historical/cicada2016-4gq25-outguess.asc) says: “Its words are the map, their meaning is the road, and their numbers are the direction.” A reader possessing the manuscript's Gematria Primus prime labels could naturally assign a number to each word, use the previous ciphertext word's prime sum as a causal numerical state for the following word, and allow a secret GP29 alphabet to act at each state. The 29-letter printed GP alphabet motivates **modulo 29**. A more permissive variant allows the printed p50 table's **eight-column width** to change the alphabet within each word, and a still stronger variant grants an independent lookup to **every absolute position 0–13** of the next word.
 
-The major unsupported premise is **the choice of the word-sum modulus**. Modulo29 is suggested by the printed rune alphabet, while modulo32 is independently motivated by the 32 rows of the numerical table. The source also prints sixty-character numeral words, motivating a distinct modulo60 comparator. The 2016 sentence itself does not specify a previous-word dependence, modulus, substitution alphabet or key source. This experiment can reject these selected mechanisms without asserting that they were the intended puzzle.
+The major unsupported premise is **the choice of the word-sum modulus**. Modulo29 is suggested by the printed rune alphabet, while modulo32 is independently motivated by the 32 rows of the numerical table. The proposed conventional base60 reading of the two-character numeral table motivates a distinct modulo60 comparator. The 2016 sentence itself does not specify a previous-word dependence, modulus, substitution alphabet or key source. This experiment can reject these selected mechanisms without asserting that they were the intended puzzle.
 
 The original 56 unknown physical pages contain **12,956** GP runes in **2,896** printed words, including 32 words carried across pages. The runeless physical p50 remains skipped. The literal word parser preserves original cross-line/page words and independently verifies exact agreement with the 12,956 original ciphertext symbols of [the canonical rune corpus](../resources/liber-primus/lp2-corpus.json). Only the first printed word, eight runes long, lacks a predecessor and is exempt from the capacity bound.
 
@@ -14,7 +14,7 @@ The original 56 unknown physical pages contain **12,956** GP runes in **2,896** 
 
 For printed ciphertext words `C_0,...,C_2895`, define the public state of word `i>0` as
 
-`s_i = (Σ_{c in C_(i−1)} prime(c)) mod 29`.
+`s_i(m) = (Σ_{c in C_(i−1)} prime(c)) mod m`, where the separately evaluated source-motivated moduli are `m=29,32,60`.
 
 Test three increasingly permissive one-rune-in/one-rune-out deterministic ciphers for modulus29, and a maximally permissive absolute-position state for the independently printed moduli32 and60:
 
@@ -44,7 +44,7 @@ Read the three already-pinned independent GP-English source controls, tokenize t
 
 Every native GP-English control contains more `E` glyphs within the 12,948 tested positions than the **modulo29 1,276-rune** and **modulo32 1,320-rune** bounds; the **modulo60 1,682-rune** bound remains uninformative against these finite controls. E is independently specified by the ordinary source orthography, not chosen to maximize the observed contradiction.
 
-| Source-native text | Length-matched control manuscripts | Minimum `E` count | Median `E` count | Maximum `E` count | Within original capacity? |
+| Source-native text | Length-matched control manuscripts | Minimum `E` count | Median `E` count | Maximum `E` count | Within **mod29/mod32** original capacities? |
 |---|---:|---:|---:|---:|---|
 | Shakespeare | 300 | **1,465** | 1,547 | 1,654 | **0 / 300** |
 | Kahlil Gibran, *The Prophet* | 300 | **1,461** | 1,547 | 1,635 | **0 / 300** |
@@ -56,8 +56,8 @@ An independent source-native, exact positive control plants Shakespeare-format 1
 
 ## Research decision and reproducibility
 
-Retire the *mod29 or mod32 previous-ciphertext-word prime-state stationary GP29 lookup* route, including arbitrary per-position secret alphabets and p50-style eight-column within-word phase, for ordinary source-native English plaintext with the verified original word format. The modulo60 version is not excluded by this upper-bound experiment and has no source-issued secret alphabet. More key hunting inside this model is algebraically unable to recover that register.
+Retire the *mod29 or mod32 previous-ciphertext-word prime-state stationary GP29 lookup* route, including arbitrary per-position secret alphabets and p50-style eight-column within-word phase, for ordinary source-native English plaintext with the verified original word format. The modulo60 version is not excluded by this upper-bound experiment and has no source-issued secret alphabet. More key hunting inside **these excluded modulo29/32 architectures** cannot remove the capacity contradiction for those control manuscripts.
 
 A next original-input attack would need **independently selected extra state**, a larger authentic arithmetic address space, a source-supported non-GP intermediate, or a different prior-word operation. The signature 2016 “words/numbers” clue leaves those genuinely distinct options open, but supplies neither their exact parameters nor an independent key. Do not turn this finite exclusion into a conclusion that every word-dependent cipher fails.
 
-**Original-source SFT:** [`sims/lp2_wordprime_nextword_allsecret_sft.cjs`](../sims/lp2_wordprime_nextword_allsecret_sft.cjs), Node 22/CommonJS, read-only. It asserts exact original source alignment, the 29/232/348 original groups, all three exact capacity bounds, original ordered collision pair counts, 900 exact word-length-matched controls and an independently reversible secret-row positive plant. **[Successful updated GitHub Actions original-data execution 43690303157](https://github.com/FlareZ123/liber-primus/actions/runs/43690303157)** completed on checked-out main with all source assertions, 29/32/60 capacity controls, 900 English samples and planted inverse passing. An [earlier independently successful run 43688032249](https://github.com/FlareZ123/liber-primus/actions/runs/43688032249) tested the initial modulo29 model. The isolated manual-only workflow is [`agent12-wordprime-state-manual.yml`](../.github/workflows/agent12-wordprime-state-manual.yml). There is no automatic per-commit CI workload.
+**Original-source SFT:** [`sims/lp2_wordprime_nextword_allsecret_sft.cjs`](../sims/lp2_wordprime_nextword_allsecret_sft.cjs), Node 22/CommonJS, read-only. It asserts exact original source alignment, the five original group counts (29/232/348/375/658), all five capacity bounds (688/1,154/1,276/1,320/1,682), original ordered collision pair counts, 900 word-length-matched source-native controls and an independently reversible secret-row positive plant. **[Successful updated GitHub Actions original-data execution 43690303157](https://github.com/FlareZ123/liber-primus/actions/runs/43690303157)** completed on checked-out main with all source assertions, 29/32/60 capacity controls, 900 English samples and planted inverse passing. An [earlier independently successful run 43688032249](https://github.com/FlareZ123/liber-primus/actions/runs/43688032249) tested the initial modulo29 model. The isolated manual-only workflow is [`agent12-wordprime-state-manual.yml`](../.github/workflows/agent12-wordprime-state-manual.yml). There is no automatic per-commit CI workload.
