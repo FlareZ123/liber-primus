@@ -103,7 +103,7 @@ function legalStates(cipher, marker) {
 const reference = read('resources/liber-primus/lp1-plaintext-reference.txt');
 const source56 = reference.split('### 56\n')[1].split('### 57\n')[0];
 assert(source56.startsWith('AN END\n'));
-const stripped56 = source56.replace(/[a-f0-9]{56,}/g,' ');
+const stripped56 = source56.replace(/[a-f0-9]{40,}/g,' ');
 const words56 = stripped56.match(/[A-Z]+/g) || [];
 const translits = gp.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
 /** @param {string} text @returns {number[]} */
