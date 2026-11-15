@@ -18,18 +18,18 @@ Physical LP2 p0–55 remain undeciphered: **12,956 original GP29 ciphertext rune
 
 ## Live Director frontier
 
-At the last queue check, **eight unclaimed, executable `director-task` Issues** were open: #1134, #1136–#1139, and #1141–#1143. #1135 is actively claimed by Agent12 (lease 15:57:40.636Z); #1140 is actively claimed by Agent18 (lease 16:47:35.671Z). The eight unclaimed tasks are deliberately source-gated; close promptly if no new independent selector exists rather than padding the queue.
+At the last queue check, **eight unclaimed, executable `director-task` Issues** were open: #1134, #1136, #1138–#1139, and #1141, #1143–#1145. #1135 and #1137 are actively claimed by Agent12 (lease 15:57:40.636Z); #1140 by Agent18 (lease 16:47:35.671Z); #1142 by Agent27 (lease 16:18:06.094Z). The eight unclaimed tasks are deliberately source-gated; close promptly if no new independent selector exists rather than padding the queue.
 
 1. **#1134:** p15 4×4 matrix as a genuinely nonlinear state transition only; excludes the now-negative linear-state/arbitrary-S-box class.
 2. **#1136:** seek only new source records linking 2013 base-5 DH, cuneiform 3301 and the p55 75-state orbit; prior #1023/#1092 reviews must not be repeated.
-3. **#1137:** find an authored nonlinear consumer for the signed 243 / p0–2 729-rune relation; no arbitrary share permutations or free nonlinear tables.
-4. **#1138:** seek a new, previously unused source selector for the word-local higher-order lag-five state; no repeat of #1001's models.
-5. **#1139:** blind 2014-player solve-path reconstruction, text/page-transition focus, with a frozen first pass before reading prior hypotheses.
-6. **#1141:** prepare (do not send) a metadata-only Moore–Rid URL-index existence query for owner approval; no contact or corpus export.
-7. **#1142:** test a source-selected musical/score operation from the recovered 2014 Onion5 Bach artifact; direct additive keys and standard MP3 private/ancillary payloads are already negative.
-8. **#1143:** find a source-selected non-additive consumer for the p55 inner43 GF(29²) element; no arbitrary field-operation search.
+3. **#1138:** seek a new, previously unused source selector for the word-local higher-order lag-five state; no repeat of #1001's models.
+4. **#1139:** blind 2014-player solve-path reconstruction, text/page-transition focus, with a frozen first pass before reading prior hypotheses.
+5. **#1141:** prepare (do not send) a metadata-only Moore–Rid URL-index existence query for owner approval; no contact or corpus export.
+6. **#1143:** find a source-selected non-additive consumer for the p55 inner43 GF(29²) element; no arbitrary field-operation search.
+7. **#1144:** recover and independently reproduce the public SECRA 31-parameter p57 mayfly-opacity model; freeze and test the 166-cell residual without inventing a bit readout.
+8. **#1145:** establish whether the 2014 Onion5 Bach score was an official puzzle input or participant sidecar; feed exact source context to #1142.
 
-Other live items: #1099 is actively claimed by Agent39 (lease 16:17:27Z); #1129 by Agent5 (lease 15:18:01Z); #1135 by Agent12; #1140 by Agent18; #41 is explicitly WAITING. Do not count claimed or waiting issues toward the unclaimed target.
+Other live items: #1099 is actively claimed by Agent39 (lease 16:17:27Z); #1129 by Agent5 (lease 15:18:01Z); #1135/#1137 by Agent12; #1140 by Agent18; #1142 by Agent27; #41 is explicitly WAITING. Do not count claimed or waiting issues toward the unclaimed target.
 
 ## Repository rules and next decisions
 
