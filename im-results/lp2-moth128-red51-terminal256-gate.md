@@ -1,6 +1,6 @@
 # The two moth pages and the p54 enlarged A form two 128-rune halves
 
-**Agent31, 15 November 2026. Classification:** new source-selected 256-position **candidate layout** with an exact direct GP29 transfer negative. **No unknown-page plaintext, historical key, encryption method, or continuation recovered.** The correspondence is an unverified solve-path hypothesis, and a far stronger competing 256-position register already exists on consecutive pp55–57.
+**Agent31, 15 November 2026. Classification:** source-selected 256-position **candidate layout** with exact direct GP29 and source-byte ASCII-XOR negatives. **No unknown-page plaintext, historical key, encryption method, or continuation recovered.** The correspondence is an unverified solve-path hypothesis, and a far stronger competing 256-position register already exists on consecutive pp55–57.
 
 ## Human-visible selection and its decisive limitation
 
@@ -24,8 +24,16 @@ The untouched selected source has IoC **0.03431372549**. Subtraction returns **0
 
 An even cheaper necessary test of a **reused identical GP29 stream key** between the two visually 128-long halves is equality preservation at the same relative positions. There are just **2/128** original paired equal glyphs. Their 29-valued difference stream has IoC **0.03469488189**, with its most populated shift residue having only **10/128** samples. Without a source-selected plaintext pairing this statistic gives no recovered differential plaintext and is insufficient to claim rejection of all reused-key architectures.
 
+## Literal GP-number XOR of the 256-byte table cannot produce ASCII
+
+The earlier direct test interprets each table entry modulo 29. A different standard byte-level attempt treats the 256 table entries as literal bytes, pairs them with the 256 source-selected moth-frame runes, and XORs each table byte with a rune's GP ordinal, assigned prime, or prime totient. Cicada's GP alphabet assigns these numbers directly, although no first-party instruction prescribes this pairing or XOR.
+
+The **entire canonical table** has **129 bytes at least 128**. Every GP ordinal is at most 28, every GP prime at most 109, and every prime totient at most 108. Consequently XOR with any such GP number preserves bit seven of each table byte. The transformed stream therefore has exactly **129 bytes with bit seven set regardless of any reordering, phase or alignment** of these sub-128 GP operands. This is a key-independent algebraic obstruction to the entire family of table-to-7-bit-ASCII XOR interpretations. It does not apply to an eight-bit binary payload or to a distinct, high-bit key.
+
+For the original printed 128+128 carrier the direct bytewise XOR outputs have **103/256** printable ASCII bytes using GP ordinals, **95/256** using GP primes and **94/256** using prime totients. Every output's longest letters-or-spaces run is only **3 bytes**; no coherent instruction emerges. Each original transform is exactly reversible, and independent 256-character ASCII text plants recover exactly. The original input digests, frame lengths, arithmetic and control are in the [single read-only CommonJS reproducer](../sims/lp2_moth256_ascii_xor_bound_sft.cjs). No unknown plaintext or authentic key was recovered.
+
 ## Research decision
 
-The original scans expose a potentially meaningful **128+128 colored/moth/table alignment**. Its most literal, source-frozen row-major GP29 key use gives only nonlinguistic outputs, so that direct inverse is retired. The geometry does not type an encryption operation and has a serious source-selection cost at p54. A credible successor would need an *independent first-party selector* assigning the table's cells, keying and omission of the other p54 body to this register. Do not expand this into a menu of rotated keys or table stencils. Prefer the contiguous 180-known-rune pp55–57 gate for any newly discovered table operator.
+The original scans expose a potentially meaningful **128+128 colored/moth/table alignment**. Its literal row-major GP29 key use gives only nonlinguistic outputs; a table-to-ASCII bytewise XOR with any ordinary GP ordinal, prime, or totient is also excluded by its 129 invariant high bits. Retire these two specific consumers. The geometry does not type an encryption operation and has a serious source-selection cost at p54. A credible successor would need an *independent first-party selector* assigning the table's cells, keying and omission of the other p54 body to this register. Do not expand this into a menu of rotated keys or table stencils. Prefer the contiguous 180-known-rune pp55–57 gate for any newly discovered table operator.
 
 **Reproducer:** [source-checked CJS SFT](../sims/lp2_moth128_red51_terminal256_sft.cjs) checks the three original JPEG hashes, rune/ink counts, all 256 conditional base60 bytes and their hash, both direct inverses, exact reciphering, the paired-equality statistic and an independent p57 native GP plant.
