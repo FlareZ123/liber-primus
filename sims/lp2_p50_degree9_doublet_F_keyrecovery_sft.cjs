@@ -160,6 +160,44 @@ for (const e of events) assert.equal(
   rows[e.at].reduce((sum, x, j) => sum + x * recovered.seed[j], 0) % GF,
   plant[e.at]);
 
+// Independently source-visible alternative: reset the same characteristic
+// polynomial at the nine original illustrated chapter boundaries. Do not
+// infer a replacement clock or phase from any of the rejected observations.
+const chapterRanges = [[0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+  [27, 32], [33, 39], [40, 53], [54, 55]];
+const chapterResults = chapterRanges.map(([from, to]) => {
+  const chapter = pages.filter(p => p.page >= from && p.page <= to)
+    .flatMap(p => p.indices);
+  const mark = [];
+  for (let i = 1; i < chapter.length; i++) {
+    if (chapter[i] === chapter[i - 1])
+      mark.push({at: i, value: chapter[i]});
+  }
+  const chapterBasis = basis(chapter.length);
+  const equations = mark.map(e => [...chapterBasis[e.at], e.value]);
+  const inferred = recover(equations.slice(0, degree));
+  const withheld = mark.slice(degree).map(e => ({
+    at: e.at, observed: e.value,
+    predicted: mod(chapterBasis[e.at].reduce(
+      (sum, factor, j) => sum + factor * inferred.seed[j], 0))
+  }));
+  if (mark.length >= degree) assert.equal(inferred.rank, degree);
+  if (mark.length > degree) {
+    assert.equal(recover(equations).consistent, false);
+    assert(withheld.some(e => e.predicted !== e.observed));
+  }
+  return {pages: [from, to], runes: chapter.length, repeatSites: mark.length,
+    fitRank: inferred.rank, withheldSites: withheld.length,
+    withheldMatches: withheld.filter(e => e.predicted === e.observed).length,
+    firstFailure: withheld.find(e => e.predicted !== e.observed) || null};
+});
+assert.equal(chapterResults.reduce((sum, chapter) => sum + chapter.runes, 0),
+  cipher.length);
+assert.deepEqual(chapterResults.map(c => c.repeatSites),
+  [4, 6, 9, 10, 11, 13, 12, 18, 3]);
+assert.equal(chapterResults.reduce((sum, c) => sum + c.withheldSites, 0), 19);
+assert.equal(chapterResults.reduce((sum, c) => sum + c.withheldMatches, 0), 0);
+
 console.log(JSON.stringify({
   source: "Original 12956 LP2 GP29 runes and p50 degree9 factor",
   model: "one continuous degree9 GF29 pad; every adjacent repeat means plaintext F",
@@ -172,6 +210,7 @@ console.log(JSON.stringify({
   candidateWholeBookPlaintextIoC: ioc(decode),
   reencryptsExactly: true,
   plantedKnownStateRecovered: true,
+  nineIllustratedChapterResets: chapterResults,
   unknownPlaintextRecovered: false,
   decision: "Fixed original source polynomial and global repeat=F additive mode rejected by independent heldout repeat site"
 }, null, 2));
