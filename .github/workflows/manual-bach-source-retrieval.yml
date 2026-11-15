@@ -198,6 +198,11 @@ jobs:
           if-no-files-found: warn
           retention-days: 90
 
+      - name: Run recovered participant Bach GP key original inverse
+        run: |
+          node --check sims/lp2_2014_bach_pastebin_key_original_sft.cjs
+          node sims/lp2_2014_bach_pastebin_key_original_sft.cjs
+
       - name: Retrieve exact 2014 Wikia score screenshot
         shell: bash
         run: |
