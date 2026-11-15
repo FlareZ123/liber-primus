@@ -1,0 +1,25 @@
+# Original moth artwork does not select a native rune-coordinate overlay
+
+**Decision (15 November 2026, Director #1056).** The original moth on LP1 p05 is the same source drawing used on LP2 physical p53 and p55, but a single artwork-registered similarity transform **cannot** also register the ordinary text or original LP1 5×5 square. The actual reuse is translation/scaling without an observable flip or nonzero rotation. The repeated picture remains an authentic visual motif; these exact source images supply **no unique rune-index traversal, secret operand, value-changing cipher inverse or unknown plaintext**. This retires the literal art-alignment/overlay route, without excluding an instruction independently connected to the moth elsewhere.
+
+## Original inputs and reproducible geometry
+
+Original JPEGs in `resources/liber-primus/`: `05.jpg` (LP1 p05, SHA-256 `2db94921ae5216d8a589890495fa5432446cd3227c45fbeb4934cbb0525112f7`), `70.jpg` (LP2 p53, `4ec7293ba72bd52384787646d204c8a68fefaf2d22673c40d27f23812d424548`) and `72.jpg` (LP2 p55, `a80191592add93a86ed3868f9e4e6ba3944ec20c9ffccc7d3e221b461344beba`). All are 2400×3600 source pixels. This experiment neither modifies the originals nor constructs a rune reading from a fitting score.
+
+`sims/lp2_moth_registration_source_sft.py` is a self-contained source test (Python with NumPy and OpenCV). It runs SIFT feature extraction on predeclared moth/ornament regions, 0.68 Lowe ratio, a fixed-seed 3px RANSAC partial-affine registration, converts local fits to global source coordinates, then independently checks source text height and the location of the LP1 square. Reproducer results:
+
+| Source → destination | Inliers / candidate matches | Relative scale | Rotation | Global translation (pixels) |
+| --- | ---: | ---: | ---: | --- |
+| LP1 p05 → LP2 p53 | 307 / 330 | 2.3306384 | +0.01812° | (−1592.01, −1030.74) |
+| LP1 p05 → LP2 p55 | 292 / 305 | 2.3302504 | +0.00017° | (−1526.74, −962.21) |
+| LP2 p53 → LP2 p55 | 2052 / 2100 | 0.9999975 | +0.00035° | (+66.02, +67.00) |
+
+All three moth pairs strongly favor the same orientation, with no observed 90°/180° rotation or reflection. The LP2 p53/p55 bottom decorative frame is an essentially identical raster reuse shifted right by 66 and down by 67 pixels; the first rune lines in **all three untransformed pages** occupy exact original y673–786, height **114px**, showing normal text layout did not undergo the artwork scale. A moth-aligned LP1 114px letter would become approximately **266px** high, 2.33 times the actual LP2 letter height, and cannot coincide with ordinary rune glyph slots.
+
+The first physical row of the five-by-five number/rune table *below* the LP1 p05 moth occupies original y2224–2314. Its earliest row, projected using the independently registered moth frame, begins at original LP2 y≈**4153** for p53 and y≈**4220** for p55. Those coordinates are below the 3600px image bounds. Thus the author-visible moth does not supply a direct transparent-overlay alignment of the LP1 printed square onto p53/p55 runes.
+
+## Cryptanalytic consequence and scope
+
+A human solver could notice the repeated drawing and reasonably attempt placing the LP1 sheet on top of LP2. That operation has a uniquely measurable art fit, but breaks the source's shared rune grid and moves the only nearby LP1 numerical 5×5 structure off-page. A different mapping would require manually discarding the art scale or inventing a fresh affine transform, traversal, flip, displacement or secret that the visible source does not identify. A positional permutation alone would also leave uniformly distributed GP29 ciphertext values unchanged and supplies no value-changing inverse.
+
+This is a **bounded geometric exclusion**, not a proof that the creators intended only decoration. The former p55 seven-word moth crib was already rejected under its source-conditioned null by #1024, and its assumptions are not reused here. Genuine next progress would require a *separate original instruction* naming a wing/center coordinate, an extraction rule and a reversible cipher/key consumer that produces coherent unknown-page plaintext on withheld source runes. Do not expand into arbitrary fit-selected image rotations or keys on the strength of the reused moth alone.
