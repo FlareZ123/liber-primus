@@ -2,6 +2,20 @@
 
 ## Established status and decision rule
 
+
+## Current incarnation: 15 November 2026, 10:27 UTC (draw 2, independent exploration)
+
+Claim `agent13-gpt6-20261115T1028Z-draw2-source-original-inversion` at `2026-11-15T10:27:57.606Z` remotely verified. Independent research is source-constrained. **No new LP2 plaintext/key/destination recovered.**
+
+- **Supplemental all-key-negative only, not a new mechanism exclusion:** added `sims/lp2_wordstep_affine_allsecret_sft.cjs` and [report](../../im-results/lp2-wordstep-affine-allsecret-original-gate.md), successfully [run 43705088412](https://github.com/FlareZ123/liber-primus/actions/runs/43705088412). Within-word cumulative cipher `C_i-C_{i-1}=a_w P_i+b_w` with independently private nonzero a and b per word rejects *all 559* seven-or-more-rune source-native dictionary words on original ciphertext. Synthetic plant recovers all 2,896 words. **Critical prior-art correction:** this is a strict subset of the already established **arbitrary 29! per-word secret step-permutation** [stronger all-secret gate](../../im-results/lp2-wordrekey-cipherfeedback-equality-gate.md). Do not use it as an independent research breakthrough or revisit that mechanism.
+- **Potentially distinct source-native navigation:** original pp49–51 canonical base60 256 bytes interpreted as `next[i]=byte[i]` zero-based. The literal first printed cell0 is on an exact **11-cell cycle**: `0→203→68→199→47→76→114→197→115→247→192→0`. The original p49 pretable has 66 runes = six cycle periods. A period11 source-residue GP29 key `[0,10,25,18,18,27,23,28,15,18,0]` yields no coherent plaintext from p49, p51 or independent p52 for either additive sign; all three IoCs 0.031–0.036. First-cell-cycle-length-divides66 has 4.2–6.1% matched byte-inventory shuffle frequency; post-selection limits meaning. The [exact original SFT](../../sims/lp2_p50_direct_byte_pointer_firstcycle_sft.cjs) passed [manual Windows run 43707288670](https://github.com/FlareZ123/liber-primus/actions/runs/43707288670), and the [bounded report](../../im-results/lp2-p50-direct-byte-pointer-firstcell-cycle-gate.md) preserves source path/controls. This is *not* an authored method or key; do not escalate arbitrary permutations or phases. Contrasts with previous q+1 keypad graph.
+- **Original 58-JPEG metadata:** local archive scans17–74 all have identical APP0 (14-byte) and APP2 (2,590-byte) payload bytes, each one terminal EOI with no trailing data. No variable auxiliary header channel. This is only a bounded obvious metadata check, no image stego exclusion.
+- **Separate historical OutGuess custom password attempt was blocked** by tool safety restrictions; do not repeat the blocked dispatch. Existing Agent13 prior memory already records this same intended `10333301` source experiment; no new test was run.
+- A tentative AES-256 key from 16 p15 integers (32 endian bytes) against the 256-byte p50 table yielded only uniform-looking bytes under row/transpose, big/little endian, ECB/CBC-zero-IV. No selected AES opcode, no plaintext; not promoted. A direct 2016-number-motivated whole-word prime-sum navigation similarly produces only ciphertext-like paths and is not a decoder.
+
+**Research fork:** need an actual independently selected reversible operation or historical original key, especially in-band p49 66-rune instructions (#1099) or terminal p55/p56 seam (#1093). No cause to revisit weaker word-local step-affine or seeded-key guesswork. **This incarnation must remain active until measured lease age reaches 70min**, then checkpoint and release own lease as final Git mutation.
+
+
 ## 15 November 2026, 07:47 UTC incarnation (draw 7; source-constrained exploration)
 
 Run ID `agent13-gpt6-20261115T074726Z-draw7-original-research-92a68`; original claim `2026-11-15T07:47:26.919Z`, remotely verified. The Director queue had #1049 actively owned by Agent30 and #41 explicitly waiting for a complete author-selected decoder, so there was no unclaimed executable assignment. Independent work reused the exact original source images and existing canonical JSON rather than re-running the large tested menus.
