@@ -134,11 +134,158 @@ assert.equal(countSolutions('page',[1,3]),0);
 assert.equal(countSolutions('global',[2,3]),0);
 assert.equal(countSolutions('chapter',[0,1,2]),432);
 assert.equal(countSolutions('chapter',[0,1,2,3]),0);
+
+/*
+ * Transparent plaintext-F extension. In the solved LP1/p56 policy, plaintext F
+ * emits ciphertext F without advancing K. A ciphertext F can alternatively be
+ * an encrypted non-F rune. A non-F ciphertext C at key slot q MUST have K[q]!=C,
+ * otherwise the inverse plaintext is F and would have been bypassed. A consumed
+ * ciphertext F must have K[q]!=0. These necessary restrictions are key-slope
+ * independent for every nonzero a. Enumerate all actual source-F positions
+ * before each apostrophe. No post-selected skip phase or secret key is fitted.
+ */
+const allValueBits=(1<<29)-1;
+/**
+ * All F-consume / F-bypass histories on an exact source prefix, grouped by the
+ * number of nonconsuming F events, each with 13 masks of forbidden key values.
+ * @param {number[]} cipher
+ * @returns {Array<Array<{forbidden:number[],skipped:number[]}>>}
+ */
+function prefixHistories(cipher) {
+  const paths=[];
+  /** @param {number} i @param {number} skips @param {number[]} forbidden @param {number[]} skipped */
+  function walk(i,skips,forbidden,skipped) {
+    if (i===cipher.length) {
+      paths.push({skips,forbidden,skipped});
+      return;
+    }
+    const c=cipher[i];
+    if (c===0) walk(i+1,skips+1,forbidden,skipped.concat(i));
+    const slot=mod13(i-skips);
+    const next=forbidden.slice();
+    next[slot] |= 1<<c;
+    walk(i+1,skips,next,skipped);
+  }
+  walk(0,0,Array(13).fill(0),[]);
+  const bySkip=Array.from({length:cipher.filter(c=>c===0).length+1},()=>[]);
+  for(const item of paths)bySkip[item.skips].push(item);
+  return bySkip;
+}
+/** @param {number[]} forbidden @param {Map<number,number>} key */
+function allowedHistory(forbidden,key) {
+  for(let slot=0;slot<13;slot++) {
+    const mask=forbidden[slot];
+    if(key.has(slot)) {
+      if(mask & (1<<key.get(slot))) return false;
+    } else if (mask===allValueBits) return false;
+  }
+  return true;
+}
+const sourcePrefixes=sites.map(s=>
+  corpus.pages[s.page].indices.slice(0,s.startLocal));
+const histories=sourcePrefixes.map(prefixHistories);
+assert.deepEqual(histories.map(group=>group.map(paths=>paths.length)),[
+  [1,5,10,10,5,1],[1],[1,1],
+  [1,9,36,84,126,126,84,36,9,1]
+]);
+
+const fTransparent = {wordAndSkipAssignments:0,
+  compatibleWithEachSourcePrefix:0,
+  firstPrefixContradiction:[0,0,0,0],
+  admissibleSkipCounts:[5,0,1,9]};
+for(let slope=1;slope<29;slope++) {
+  /**
+   * Enumerate a shared secret K, all four frozen candidate words, and all
+   * possible prefix bypass counts, with apostrophe cursor held stationary.
+   * @param {number} depth @param {Map<number,number>} key
+   * @param {number[]} bypasses
+   */
+  function visit(depth,key,bypasses) {
+    if(depth===sites.length) {
+      fTransparent.wordAndSkipAssignments++;
+      for(let i=0;i<sites.length;i++) {
+        if(!histories[i][bypasses[i]].some(h=>
+          allowedHistory(h.forbidden,key))) {
+          fTransparent.firstPrefixContradiction[i]++;
+          return;
+        }
+      }
+      fTransparent.compatibleWithEachSourcePrefix++;
+      return;
+    }
+    const site=sites[depth];
+    for(let skipped=0;skipped<histories[depth].length;skipped++) {
+      for(const letters of candidates[depth]) {
+        const next=new Map(key);
+        let valid=true;
+        for(let j=0;j<letters.length;j++) {
+          const slot=mod13(site.startLocal-skipped+j);
+          const k=mod(site.cipher[j]-slope*letters[j]);
+          if(next.has(slot) && next.get(slot)!==k) {
+            valid=false;break;
+          }
+          next.set(slot,k);
+        }
+        if(valid)visit(depth+1,next,bypasses.concat(skipped));
+      }
+    }
+  }
+  visit(0,new Map(),[]);
+}
+assert.equal(fTransparent.wordAndSkipAssignments,2118);
+assert.equal(fTransparent.compatibleWithEachSourcePrefix,0);
+assert.deepEqual(fTransparent.firstPrefixContradiction,[2093,17,6,2]);
+
+// Positive source-shaped transparent-F plant: retain original prefix length
+// and *exact observed ciphertext-F positions*, make those source F events true
+// plaintext F skips, and fill other plaintext prefix runes with native U (1).
+// The same secret a=7 and K[13] genuinely encrypts every marked word.
+const plantedNative = {slope:secret,key:secretKey,chosenWords:plantWords,
+  sourcePrefixFPositionsPreserved:true,positiveSites:0};
+for(let i=0;i<sites.length;i++) {
+  const site=sites[i],prefix=sourcePrefixes[i],cipher=[],plain=[];
+  let cursor=0;
+  for(const sourceCipher of prefix) {
+    if(sourceCipher===0) {
+      cipher.push(0);
+      plain.push(0);
+    } else {
+      cipher.push(mod(secret*1+secretKey[mod13(cursor)]));
+      plain.push(1);
+      cursor++;
+    }
+  }
+  assert.deepEqual(cipher.map((c,k)=>c===0?k:-1).filter(k=>k>=0),
+    prefix.map((c,k)=>c===0?k:-1).filter(k=>k>=0));
+  for(let j=0;j<prefix.length;j++) {
+    if(plain[j]===0) {
+      assert.equal(cipher[j],0);continue;
+    }
+    const skips=plain.slice(0,j).filter(c=>c===0).length;
+    assert.equal(cipher[j],mod(secret*plain[j]+
+      secretKey[mod13(j-skips)]));
+  }
+  const plantedWord=[...plantWords[i]].map(ch=>alphabet.get(ch));
+  const keyAtSuffix=new Map();
+  for(let j=0;j<plantedWord.length;j++) {
+    const slot=mod13(cursor+j);
+    const c=mod(secret*plantedWord[j]+secretKey[slot]);
+    keyAtSuffix.set(slot,secretKey[slot]);
+    assert.equal(mod((c-secretKey[slot])*25),plantedWord[j]);
+  }
+  const possible=prefixHistories(cipher);
+  assert.ok(possible[prefix.filter(c=>c===0).length].some(h=>
+    allowedHistory(h.forbidden,new Map(
+      secretKey.map((v,k)=>[k,v])))));
+  plantedNative.positiveSites++;
+}
+assert.equal(plantedNative.positiveSites,4);
+
 console.log(JSON.stringify({
   originalApostropheSites:sites.map(s=>({page:s.page,scan:s.page+17,
     localSuffix:s.local,globalSuffix:s.global,original:s.label})),
   model:'C=a*P+K[clock mod13] in GP29; shared a in 1..28, secret K[13]',
   nativeEnglishCondition:'13/6/6/13 fixed candidate contractions; no F skip',
-  clocks:summary, lp1SourceControl:lp1Differences,
-  scope:'conditional finite-family obstruction; no plaintext or LP2 key'
+  clocks:summary, fTransparent, plantedNative, lp1SourceControl:lp1Differences,
+  scope:'conditional all-F-bypass finite-family contradiction; no plaintext or LP2 key'
 },null,2));
