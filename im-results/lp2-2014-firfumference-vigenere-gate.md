@@ -1,6 +1,6 @@
 # Corrected original 2014 circumference key, exact LP2 transfer
 
-**Decision (15 November 2026):** The historically validated 13-rune GP29 key is **`FIRFUMFERENFE`**, with F at position 12 (one-based). A former version of this report and its executable used `FIRFUMFERENCE`, with C in that slot. That was an incomplete source-control check. Both original-LP2 experiments have now been recomputed with the correct key. The direct continuous and word-interior applications still yield no unknown plaintext, with their exact earlier scores retired.
+**Decision (15 November 2026):** The historically validated 13-rune GP29 key is **`FIRFUMFERENFE`**, with F at position 12 (one-based). It is exactly `CIRCUMFERENCE` with all three C letters changed to F, a source-text observation without an authenticated general key-generation rule. An older report incorrectly retained C at that position. The corrected fixed-phase Vigenère and word-interior transfers yield no unknown plaintext. **A stronger, exhaustive p56-style literal-F bypass gate now excludes every common additive sign across original p0 and p1 even when both pages have independently chosen initial phases:** on p0, only plus-sign phases 3–5 survive; on p1, only minus-sign phases 7, 10 and 11 survive. The source-native positive and historical-key controls are checked; other cipher architectures remain open.
 
 ## Why the correction matters
 
@@ -35,10 +35,30 @@ These are small improvements of 0.0064–0.0233 nats/rune, versus native p56/p57
 | Gibran | −4.429005 | **−4.444168** |
 | Shakespeare | −4.424953 | **−4.451088** |
 
-This rejects these two **frozen**, originally motivated direct GP29 consumers, assuming source-native English-like prose and unchanged word boundaries. It leaves other transfer mechanisms, specially marked F positions, and external keys open. Neither a native wrong-key roundtrip nor isolated four-rune fragments should be treated as a solve.
+These two **frozen** no-skip inverses lack source-native GP prose. The following key-independent feasibility test also closes the natural, source-authenticated literal-F-bypass extension across the first two original unknown pages, including every starting phase. Alternative changing-state, transposed, whole-word or otherwise instructed cipher consumers remain open.
+
+## Complete original p0/p1 literal-F-bypass transfer, all key phases and both signs
+
+The original 2014 LP1 p14–15 source key is proven on its first **36/36** known GP runes, using the first 36 original encrypted runes, and a false historic variant produces mismatches at offsets 11 and24. A source-visible interpretation of its spelling is `CIRCUMFERENCE` with **all three C replaced by F**, matching the GP F=0/no-shift character at the changed key sites. This exact character rule identifies no additional LP2 recipient or key. Unlike the initial no-skip transfers above, the new test takes seriously the *first-party p56* running-prime cipher exception: a ciphertext F may be the unchanged literal plaintext F, in which case **no key element is consumed**; otherwise the input must decrypt to a non-F GP character by one additive shift.
+
+For the authentic 13-rune historic key `K=[0,10,4,0,1,19,0,18,4,18,9,0,18]`, test every initial phase `0..12` and **both** additive signs. Each printed C=F admits the skip interpretation and an ordinary shift branch if its resulting plaintext is non-F; any mandatory shifted plaintext F is invalid under the p56-style transparent-F protocol. Exactly enumerate the key consumption count after each original rune, collapsing paths with identical consumed count since they have the same future transitions. Thus **no search approximation, fitted plaintext, beam pruning or phase inference** enters the result. The original p0 has 262 source runes and 14 ciphertext F; the immediately consecutive p1 has 266 runes and 13 ciphertext F. Each original page can receive its **own unrestricted 13-way initial phase**, which is strictly more permissive than a continuous-key assumption.
+
+| Original source receiver | Minus-key direction `P=C−K` | Plus-key direction `P=C+K` |
+| --- | --- | --- |
+| p0 (262 runes, 14 F) | **0/13 phases legal** | **3/13 phases legal: 3, 4, 5** |
+| p1 (266 runes, 13 F) | **3/13 phases legal: 7, 10, 11** | **0/13 phases legal** |
+| p0 then p1 as one continuous 528-rune key clock | **0/13 phases legal** | **0/13 phases legal** |
+
+The most favorable plus-key phases on p0 reach **original global rune349** before the forced disallowed F in p1; the first impossible positions of all thirteen combined plus-sign trials are **[35,47,47,349,349,349,16,35,35,5,148,148,14]** (zero-based). All negative-sign p0 trials are already impossible by or before original local rune255. The authentic glyphs are unmodified, and every skip pattern on all **27** F positions is subsumed by this exact DP. Consequently there is **no single additive direction** able to decode even the first two original unknown LP2 pages under *any independent page phase*, and no book-continuous version using this fixed historical key either.
+
+Two original/source-native positives prevent falsely excluding the actual cryptographic rules. First the authentic historical LP1 p14 first36 directly recover the correct key from unchanged original 319-rune koan source, with the obsolete 12th-letter-C key failing exactly twice. Second the genuine original 85-rune p56 prime-totient decryption with its established single **fourth ciphertext-F** bypass recovers all known plaintext and re-encrypts 85/85 native cipher runes; 26 independent native p57 positive controls encrypt all 95 known runes under the 13 historic-key phases and both signs with a literal-F bypass, and the identical DP accepts each actual key-consumption path.
+
+**Scope and decision:** This is an **absolute algebraic inconsistency** for the fixed 13-letter historical key under the p56-style **position-preserving** per-rune additive-plus-literal-F protocol, across p0 and p1 with a common sign, even with unknown independent page phases. A richer changing-key operation, different F policy, source-independent key material or non-GP register can evade it. The original p56 exception is authenticated; transferring it to p0/p1 remains a conditional hypothesis. No unknown LP2 plaintext, cipher, creator key or continuation is recovered.
+
+The [single-file source-exact CJS SFT](../sims/lp2_2014_firfumferenfe_fskip_allphase_sft.cjs) verifies every original input, all 13 phases, both signs, continuous and page-local clocks, exact impossibility indices, full historical solved-key/solved-page positives, and all 26 native planted positives.
 
 ## Reproduction
 
-The updated [standalone Windows/Node CJS reproducer](../sims/lp2_2014_firfumference_vigenere_gate.cjs) verifies the original 319-rune LP1 input and 36/36 source-key control, positively diagnoses the obsolete key's exactly two mismatches, checks the corrected key vector, evaluates all original 12,956 LP2 runes and all 7,247 interior runes, and includes a 700-rune synthetic encrypt/decrypt positive.
+The fixed-phase no-skip [standalone Windows/Node CJS reproducer](../sims/lp2_2014_firfumference_vigenere_gate.cjs) verifies the original 319-rune LP1 input and 36/36 source-key control, positively diagnoses the obsolete key's exactly two mismatches, checks the corrected key vector, evaluates all original 12,956 LP2 runes and all 7,247 interior runes, and includes a 700-rune synthetic encrypt/decrypt positive.
 
-Use `node sims/lp2_2014_firfumference_vigenere_gate.cjs` from the repository root. The correction changes the former numerical findings; any study importing `FIRFUMFERENCE` as an authentic source key must replace it with `FIRFUMFERENFE` or explicitly label it a different conditional candidate. The full 56 unknown physical LP2 pages remain undeciphered.
+Use `node sims/lp2_2014_firfumference_vigenere_gate.cjs` for the prior complete no-skip source test, and `node sims/lp2_2014_firfumferenfe_fskip_allphase_sft.cjs` for the independently stronger all-phase literal-F gate. Both use pinned native original data without writing intermediate files. Any study importing `FIRFUMFERENCE` as an authentic source key must correct the spelling to `FIRFUMFERENFE` or explicitly label it a different speculative key. The full 56 unknown physical LP2 pages remain undeciphered.
