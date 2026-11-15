@@ -19,13 +19,13 @@ const root = path.join(__dirname, "..");
 const source = fs.readFileSync(path.join(root,
   "resources/external/2014-09-stage11-period-onion-hosts.txt"));
 const originalGitBlob = crypto.createHash("sha1")
-  .update(Buffer.from("blob " + source.length + "\\0", "utf8"))
+  .update(Buffer.from("blob " + source.length + String.fromCharCode(0), "utf8"))
   .update(source).digest("hex");
 assert.equal(source.length, 73692);
 assert.equal(originalGitBlob, "8722ee2edd749f01b4fffbd91053fac5a8ca0ff3");
 
-const rows = source.toString("utf8").split(/\\r?\\n/u).filter(Boolean);
-const exactValidRows = rows.filter((s) => /^[a-z2-7]{16}\\.onion$/iu.test(s));
+const rows = source.toString("utf8").split(/\r?\n/u).filter(Boolean);
+const exactValidRows = rows.filter((s) => /^[a-z2-7]{16}\.onion$/iu.test(s));
 const hosts = new Set(exactValidRows.map((s) => s.toLowerCase().slice(0, 16)));
 assert.equal(rows.length, 3204);
 assert.equal(exactValidRows.length, 3174);
