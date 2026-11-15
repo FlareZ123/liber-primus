@@ -1,7 +1,10 @@
 'use strict';
 
 /**
- * Original-scan red-ten-dot/end-mark p49 ↔ p55 shared-key test.
+ * Exploratory p49 vs p55 shared-key test. Source correction:
+ * p49 has a 10-dot mark while p55 has a DIFFERENT 13-dot mark.
+ * Original stencil census provides NO original shared-key selector.
+ * This arithmetic comparison is retired as an unselected negative control.
  *
  * For a repeated GP29 additive pad C_i=P_i+K_i (mod29), subtraction of
  * the two original ciphertexts removes ANY unknown pad. Source-native
@@ -106,4 +109,4 @@ for (const pair of frozenPairs) {
     exactSourceRotationRank: pair.rank + '/76', corpusControls
   }));
 }
-console.log('PASS: source p49/p55 matched-red-ten original two-time pad gate; all positive native shared-pad controls.');
+console.log('PASS: unselected p49/p55 GP29 shared-pad negative; all positive native controls. Source correction: p49=10 dots, p55=13 dots.');
