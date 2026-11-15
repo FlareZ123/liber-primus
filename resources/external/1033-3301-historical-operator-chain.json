@@ -11,7 +11,7 @@
       "stage": "boot image prime_echo",
       "source": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/002-3301/README.md",
       "sourceCode": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/002-3301/rootfs-contents/usr/local/bin/prime_echo",
-      "operation": "emit primes in increasing order through 3301; pause 2 seconds rather than 0.5 seconds on 1033 and 3301",
+      "operation": "emit every consecutive prime from 2 through 3301; ordinary sleep 0.05 seconds; pause 2 seconds at 1033 and 3301 (confirmed in archived extracted script)",
       "consequence": "the pair is explicitly highlighted inside an ordered prime stream, making their prime ordinals player-recoverable"
     },
     {
