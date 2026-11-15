@@ -158,6 +158,34 @@ for (const layout of ['contiguous', 'interleaved']) {
   }
 }
 
+
+// The p40 red eight-rune heading and the exactly 3,000-rune post-heading
+// body supply a stronger, wholly source-visible eight-column key geometry.
+// The historical seven-column Cicada precedent motivates one fixed classic
+// sorted-column receiver. Neither raw-table address read is a full inverse.
+const headingSort = Array.from({ length: 8 }, (_, i) => i)
+  .sort((a, b) => heading[a] - heading[b]);
+assert.deepEqual(headingSort, [0, 4, 7, 1, 2, 5, 6, 3]);
+const headingRank = Array.from({ length: 8 }, (_, i) =>
+  headingSort.indexOf(i));
+const postHeadingBody = floral.slice(8);
+assert.equal(postHeadingBody.length, 3000);
+for (const layout of ['red8-classic-columnar', 'literal-row-major']) {
+  const addresses = table.bytes.map((byte, cell) => {
+    const col = cell % 8;
+    return layout === 'red8-classic-columnar'
+      ? headingRank[col] * 375 + byte : byte * 8 + col;
+  });
+  assert(addresses.every(addr => addr < 3000));
+  assert.equal(new Set(addresses).size, 244);
+  const extracted = addresses.map(addr => postHeadingBody[addr]);
+  reads.push({
+    layout, order: 'table-row-major', unique: 244, repeatedPairs: 12,
+    ioc: ioc(extracted),
+    prefix: extracted.slice(0, 24).map(n => alphabet[n]).join('-')
+  });
+}
+
 console.log(JSON.stringify({
   inputs: { floralRunes: floral.length, tableCells: table.bytes.length,
     divinityPrimeSum: 376, headingRunes: heading.length,
