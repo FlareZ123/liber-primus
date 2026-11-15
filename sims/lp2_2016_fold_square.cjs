@@ -107,6 +107,18 @@ const selected = {
 };
 const solvedTail = node(address(selected.FOLD.sum).page, address(selected.FOLD.sum).wordIndex);
 
+const destinationDiagonalSums = {
+  foldSb: selected.THE.sum + selected.FOLD.sum,
+  ngcAemiw: selected.FOUND.sum + selected.YOU.sum,
+};
+const destinationDiagonalAddresses = Object.fromEntries(
+  Object.entries(destinationDiagonalSums).map(([name, sum]) => [name, address(sum)])
+);
+const destinationDiagonalNodes = {
+  foldSb: node(destinationDiagonalAddresses.foldSb.page, destinationDiagonalAddresses.foldSb.wordIndex),
+  ngcAemiw: node(destinationDiagonalAddresses.ngcAemiw.page, destinationDiagonalAddresses.ngcAemiw.wordIndex),
+};
+
 const checks = {
   uniqueSourceCollision243: collisions.length === 1 && collisions[0].sum === 243 && collisions[0].words.includes('hello') && collisions[0].words.includes('liber'),
   uniqueSourceDifference58: diff58.length === 1 && new Set([diff58[0].a, diff58[0].b]).has('the') && new Set([diff58[0].a, diff58[0].b]).has('found'),
@@ -116,6 +128,11 @@ const checks = {
   complementFold: keySums.HELLO === 243 && keySums.LIBER === 243 && 243 - keySums.THE === keySums.FOLD && 243 - keySums.YOU === keySums.FOUND,
   equalDiagonals: keySums.THE + keySums.FOLD === 243 && keySums.YOU + keySums.FOUND === 243,
   pointerHitsSolvedTail: selected.FOLD.sum === 114 && solvedTail.page === 56 && solvedTail.wordIndex === 1 && solvedTail.gp === 'OESR',
+  destinationDiagonalsPointToFlanks:
+    destinationDiagonalSums.foldSb === 285 && destinationDiagonalSums.ngcAemiw === 281 &&
+    destinationDiagonalAddresses.foldSb.page === 53 && destinationDiagonalAddresses.foldSb.wordIndex === 4 &&
+    destinationDiagonalAddresses.ngcAemiw.page === 49 && destinationDiagonalAddresses.ngcAemiw.wordIndex === 4 &&
+    destinationDiagonalNodes.foldSb.gp === 'NGTHIAWSH' && destinationDiagonalNodes.ngcAemiw.gp === 'INGGTH',
 };
 
 console.log(JSON.stringify({
@@ -128,6 +145,11 @@ console.log(JSON.stringify({
     labels: [['THE', 'FOUND'], ['YOU', 'FOLD']],
     addresses,
     selected,
+  },
+  destinationDiagonals: {
+    sums: destinationDiagonalSums,
+    addresses: destinationDiagonalAddresses,
+    nodes: destinationDiagonalNodes,
   },
   solvedTail,
 }, null, 2));

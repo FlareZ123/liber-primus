@@ -51,6 +51,13 @@ A diagonal fold through THE/FOLD swaps YOU with FOUND, matching the source sente
 
 This materially strengthens the earlier base58-word-map observation because the divisor 58 and the THE/FOUND adjacency are selected by a relation internal to the signed source, before reading p14.
 
+### Conditional destination-diagonal pointers to the table flanks
+
+Adding the *mapped destination* words along the two diagonals is an extra operation, not one stated by the signed message. It nevertheless gives a concrete, checkable prediction: **FOLD + SB = 171 + 114 = 285 = 58×4 + 53**, addressing **p53:w4 NGTHIAWSH**; **NGC + AEMIW = 59 + 222 = 281 = 58×4 + 49**, addressing **p49:w4 INGGTH**. Both addresses use word index4, on pages49 and53, which flank the p50–52 numeric table. The page separation is4, and the two diagonal sums differ by4, the length of FOLD. The two selected words both contain the GP digraph tokens **NG** and **TH** (p49 has an intervening G).
+
+The original JPGs add a visual coincidence worth checking: p49 carries a **13-dot** red marker and p53 a **10-dot** marker. These counts match the lengths of the 13-rune p32 window and the 10-rune Good/Luck mapped sequence, respectively; both sequences have GP-prime sum413. This may connect the fold square to the table's flanking pages, but the destination-word addition is not source-authenticated. Treat the p49/p53 pointers and marker correspondence as a navigation hypothesis only, not as a key or decryption. The exact word-address predictions are reproduced by `sims/lp2_2016_fold_square.cjs`.
+
+
 ## Solved-tail connection
 
 FOLD has sum 171, so the same address rule selects p55:w2 `SB`. `SB` has sum 114, which selects p56:w1 `OESR`. The established p56 mechanism decrypts that ciphertext word to **END**.
