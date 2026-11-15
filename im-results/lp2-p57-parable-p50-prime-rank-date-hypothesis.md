@@ -30,11 +30,11 @@ The reproducible implementation is sims/p57_parable_p50_prime_rank_date_hypothes
 
 ## Title-derived direction byte
 
-The existing synthesis also records that the three-word parable title sums to 761, the original 761.mp3 basename. 761 is prime and π(761) = 135. Treating 135 as another zero-based p50 byte offset selects token 2p, value 171 (0xAB). In ISO-8859-1/Windows-1252 this is the left-pointing double angle quotation mark «.
+The existing synthesis also records that the three-word parable title is THE INSTAR EMERGENCE, whose GP word sums are 72, 280, and 409, totaling 761 (the original 761.mp3 basename). The first word sum 72 independently matches the p55 72-symbol cipher-consuming payload and φ(91)=72 for the p05 center word FORM. The total 761 is prime and π(761) = 135. Treating 135 as another zero-based p50 byte offset selects token 2p, value 171 (0xAB). In ISO-8859-1/Windows-1252 this is the left-pointing double angle quotation mark «.
 
 Appending this title/basename selector after the three sentence selectors gives p50 values [76,117,74,171]. Reversing the combined sequence yields **«JuL**: the title-derived byte is now an explicit left-pointing marker, followed by the reversed sentence-derived month. The same reversed values modulo 29 give Y-T-U-E. This is a better source-grounded reason for reversing the three sentence outputs than MOBIUS alone, and is consistent with the 2016 message's statement that numbers provide direction.
 
-The ordinary nth-item index for π(761) is 134, which selects token 1C / byte 72 (ASCII H), not a direction marker. The offset interpretation is therefore supported by a discriminating output, though still not proven: it assumes the title/basename sum is appended to the sentence-sum sequence and that the p50 values should be interpreted as Latin-1 bytes.
+The ordinary nth-item index for π(761) is 134, which selects token 1C / byte 72 (ASCII H), not a direction marker. The title's individual word sums have prime ranks 20, 59, and 80; their p50 offsets select bytes 102, 69, and 142, which do not yield a readable result under the same reverse ASCII/GP29 readings. I therefore use only the independently established title total as the fourth selector, not a cherry-picked word-level output. The offset interpretation is supported by a discriminating output, though still not proven: it assumes the title/basename sum is appended to the sentence-sum sequence and that p50 values should be interpreted as Latin-1 bytes.
 
 ## Historical match
 

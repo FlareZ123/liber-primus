@@ -19,6 +19,7 @@ SENTENCES = [
     "WE MUST SHED OUR OWN CIRCUMFERENCES",
     "FIND THE DIVINITY WITHIN AND EMERGE",
 ]
+TITLE_WORDS = ["THE", "INSTAR", "EMERGENCE"]
 TITLE_BASENAME_SUM = 761
 
 def tokenize_gp(text):
@@ -53,12 +54,16 @@ def phi(n):
     if x > 1: result -= result // x
     return result
 
-sums = [sum(PRIMES[i] for i in tokenize_gp(s)) for s in SENTENCES]
-assert sums == [1259, 1031, 1229]
-assert sums[0]*sums[1]*sums[2] == 1595277641
-ranks = [prime_rank(n) for n in sums]
+sentence_sums = [sum(PRIMES[i] for i in tokenize_gp(s)) for s in SENTENCES]
+assert sentence_sums == [1259,1031,1229]
+assert sentence_sums[0]*sentence_sums[1]*sentence_sums[2] == 1595277641
+title_word_sums = [sum(PRIMES[i] for i in tokenize_gp(w)) for w in TITLE_WORDS]
+assert title_word_sums == [72,280,409] and sum(title_word_sums) == TITLE_BASENAME_SUM
+sentence_ranks = [prime_rank(n) for n in sentence_sums]
 title_rank = prime_rank(TITLE_BASENAME_SUM)
-assert ranks == [205,173,201] and is_prime(TITLE_BASENAME_SUM) and title_rank == 135
+title_word_ranks = [prime_rank(n) for n in title_word_sums]
+assert sentence_ranks == [205,173,201] and title_rank == 135
+assert title_word_ranks == [20,59,80]
 
 byte_rows, token_rows = GRID["byte_rows"], GRID["rows"]
 row_major = [v for row in byte_rows for v in row]
@@ -82,9 +87,10 @@ def extract(name, values, tokens, offsets):
         "reverse_gp29": "".join(TRANSLIT[v%29] for v in rev),
     }
 
-offsets = ranks + [title_rank]  # sentences, then title/basename checksum
+offsets = sentence_ranks + [title_rank]
 selected_values = [row_major[i] for i in offsets]
 phi_values = [phi(v) for v in selected_values[:3]]
+title_word_values = [row_major[i] for i in title_word_ranks]
 p55 = next(p["indices"] for p in CORPUS["pages"] if p["page"] == 55)
 p55_payload = [v for i,v in enumerate(p55) if i != 0 and v != 0]
 assert len(p55) == 76 and len(p55_payload) == 72
@@ -92,18 +98,25 @@ p55_first, p55_second = p55_payload[:36], p55_payload[36:]
 p55_mobius = p55_first + list(reversed(p55_second))
 p55_sample = [p55_payload[n-1] for n in phi_values]
 p55_mobius_sample = [p55_mobius[n-1] for n in phi_values]
-
 rank_indices = [r-1 for r in offsets]
-rank_values = [row_major[i] for i in rank_indices]
+
 print(json.dumps({
-    "sentence_sums": sums, "title_basename_sum": TITLE_BASENAME_SUM,
-    "sentence_prime_ranks": ranks, "title_prime_rank": title_rank,
+    "sentence_sums": sentence_sums, "sentence_prime_ranks": sentence_ranks,
+    "title_words": TITLE_WORDS, "title_word_sums": title_word_sums,
+    "title_word_prime_ranks": title_word_ranks,
+    "title_basename_sum": TITLE_BASENAME_SUM, "title_prime_rank": title_rank,
     "row_major_offset_extraction": extract("row-major", row_major, row_major_tokens, offsets),
     "row_serpentine_control": extract("row-serpentine", row_serp, row_serp_tokens, offsets),
     "column_serpentine_control": extract("column-serpentine", col_serp, col_serp_tokens, offsets),
+    "title_word_rank_control": {
+        "tokens": [row_major_tokens[i] for i in title_word_ranks],
+        "values": title_word_values,
+        "reverse_latin1": bytes(reversed(title_word_values)).decode("latin-1"),
+        "reverse_gp29": "".join(TRANSLIT[v%29] for v in reversed(title_word_values)),
+    },
     "ordinary_nth_item_control": {
         "indices": rank_indices, "tokens": [row_major_tokens[i] for i in rank_indices],
-        "values": rank_values,
+        "values": [row_major[i] for i in rank_indices],
     },
     "phi_of_sentence_selected_bytes": phi_values,
     "p55_cipher_consuming_length": len(p55_payload),
