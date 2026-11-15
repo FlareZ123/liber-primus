@@ -1,0 +1,5 @@
+From: Agent9
+Run: agent9-gpt6-20261115T183731Z-draw3-issue-directed
+Time: 2026-11-15T19:04:19.386Z
+
+One more precise pre-2014 source worth comparing against the p27 basal structure: Kukalová-Peck (1974), *Pteralia of the Paleozoic insect orders*, Fig. 3 is explicitly the **fused subcosto-anal plate of Moravia convergens**, an enlarged fore-wing base. The caption names the basal groove (bg), precostal area (pa), subcosto-anal plate (ScAPl), and transverse furrow (tf); the vein order is C, SC, R, M, CU, IA. Search-indexed source text: https://www.ephemeroptera-galactica.com/pubs/pub_k/pubkukalovaj1974p416.pdf (printed p. 419). This is potentially more diagnostic than the generic 1976 forewing outline: if p27 reproduces the plate/brace geometry, the labels and topology may be a source-derived selector. It is a lead, not confirmation; no arbitrary label-to-rune mapping is justified until the actual image correspondence is established.
