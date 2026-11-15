@@ -58,6 +58,29 @@ p39 red [-K mod29, g, y] = [27, 5, 15].
 
 **Severe interpretation limit:** the red inscriptions never explicitly label `g+A`, `−K`, or `y`; choosing those arithmetic expressions to match the historical DH worked example is **post-hoc** and there is no known human-readable selector for the role split. The signed example's client exponent15 is derivable by discrete log in this toy group, but not explicitly printed as a parameter. The red relation may be intentional cross-round hinting or coincidence among small modular numbers. The shared offset119 and 36-page separation are authentic geometry, but neither directs a decoding operation. The earlier [independent original red/black 36-page affine test](lag6-conditioned-echo.md) correctly predicted one nearby black rune under a retrospectively chosen affine 36-page transfer; no full-page or unknown-plaintext inverse resulted. Do not treat the red triples, p50 factors, and the lag-six echo as statistically independent evidence, since all are now linked by a **single retrospectively selected DH interpretation**.
 
+## A second independent ciphertext motif uses the same 2013 DH generator and client exponent
+
+The authenticated 2013 toy DH exchange also has **generator `g=5`** and a **recoverable client private exponent `b=15`** (`5^15 mod23=19`). Independently of the lag-six echo, earlier [original source-conditioned research](lag5-rune-specific-echo.md) identified LP2's strongest **specific-rune lag identity** as:
+
+```text
+C[word,i] = C[word,i−5] = 15, for eligible i≥5.
+```
+
+The rune with canonical GP29 index **15** is **S**. Exactly **11** of 2,105 within-word lag-five sites form this S→S self-echo, in **11 different words**. It had previously beaten all 29 rune identities at lag5 (strict 3,000-sample word-multiset and adjacent-doublet-conditioned family maximum) and then **all 174** rune-identity × short-lag (2–7) combinations under a separately frozen 3,000/3,000 null experiment, **0/3,000** exceedances (finite add-one bound 1/3,001). These independent primary-data observations **predate the present historical association**.
+
+Thus the **same Cicada-signed 2013 numerical example** now supports a *retrospectively reconstructed two-clock explanation* for the book's two previously distinct strongest ciphertext motifs:
+
+| Independent old LP2 feature | Source arithmetic selected retrospectively |
+| --- | --- |
+| `C[i] = 24−2 C[i−6] mod29`; 80/1,290, whole-source word-local echo | Lag **6** is toy DH server exponent `log_5 8=6`; map is `−g−Kx` with source generator **5**, shared **2** and `−g=24` matching signed BASE29 3301 last digit |
+| `C[i]=C[i−5]=15`; **11/2,105**, most exceptional symbol-specific short-lag echo | Lag **5** is signed DH generator **5**; echoed **S GP-index15** equals separately recovered toy DH client exponent `log_5 19=15` |
+
+The original [four-feature trained/frozen conditional ciphertext predictor](lag5-lag6-heldout-conditional-prediction.md) **already** detects both motifs and the general lag-five/contiguous-copy features across all eight withheld section folds, with combined heldout log-likelihood improvement **+23.2726 nats** and 0/1,500 independent original-section-word surrogate exceedances. That is **prior art** and a source-conditioned predictive-statistical result. The historical DH connection may supply a more compact *human clue path* to choosing both clocks and a special symbol, but **nothing in the 2013 instructions says to use `g` as a lag or recovered `b` as a marker**. The cross-round association is selected after both motifs were known, hence its apparent numerical fit has no discovery-wide p-value.
+
+A concrete *original-site disambiguation* prevents treating this as a solved two-channel code: among the **11** original S5 matches, **7** occur late enough also to have a T6 opportunity; **none** is simultaneously a T6 match. An overlap would require the untouched triple of source indices `C[i−6]=19, C[i−5]=15, C[i]=15`, because source `T(19)=15`; **no such event is present**. Similarly, `T(15)=23` and `T(24)=5` are exact transitions among signed values on the already established 28-cycle, but the fact that all 28 nonfixed GP symbols lie on one T-cycle makes additional orbit coincidences easy to select after observing the data.
+
+**Research-useful constraint:** Any source-selected two-clock *reversible* explanation would have to predict **both** word-local T6 and the S-only lag5 surplus, explain the anti-repeat global deficit, preserve the original word lengths, and recover coherent GP prose using a key found independently. The known artificial M3 random-rewrite plus 1.5% five-back copy model approximates the aggregate heldout statistic **without** being a reversible source cipher. A false assumption that a direct dense lag-five affine map explains the S5 surplus was already excluded by the [29-map non-S fixedpoint sieve](lag5-rune-specific-echo.md). Do not run yet another broad 5/6 clock sweep on this numeric resemblance alone.
+
 ## A common algebraic generator for the p39 red factor and the lag-six echo, with a signed-branch discriminator
 
 **Prior-art boundary for this subsection:** The factorization `G=15(X+5)²` is already printed in [the 2013 source-factor study](2013-base29-gf29-grid-factor.md); the original affine branch T− and its 80 hits, as well as the opposite-sign branch's 34 raw hits, are already in [the 12 November signed-source bridge](2013-signed-dh6-original-lag6-source-bridge.md). The incremental result here is the **explicit polynomial functional equation** `G(T±(x))=2x²` that connects those independently studied objects as a single algebraic two-root mechanism, the exact original-source **two-branch/union** counts, and the 1,800-book source-conditioned significance contrast. None is a recovered cipher.
