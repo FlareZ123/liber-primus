@@ -113,6 +113,18 @@ This stronger p15–22 certificate subsumes the homogeneous result under a per-c
 
 **Reproducer:** [Original-source C++17 affine fourth-order all-key SFT](../sims/lp2_affine_order4_singleton_original_sft.cpp) checks 83 complete original singleton positions, the 1,903-rune chapter boundaries, all 707,281 candidate coefficients in both whole-book and isolated-chapter modes, a positive native-GP A/I/O plant under a genuine five-degree affine key, and the exact fourteenth-event exception. The independent local execution of the full search completed in approximately 17 seconds with **0 survivors** under either scope; the committed SFT is source-exact and has not been separately exercised in GitHub CI. The algebraic 5-state inverse is exhaustive, with every hidden b admitted.
 
+### Exact all-matrix corollary: every four-dimensional affine linear state generator
+
+The preceding 707,281-coefficient theorem covers vastly more than a named recurrence. **Let M be any entirely unknown 4×4 matrix over GF29**, let its state evolve by \(\mathbf{s}_{n+1}=M\mathbf{s}_n+\mathbf{u}\), and let its additive key be any fixed linear output \(K_n=\mathbf{w}^{\mathsf T}\mathbf{s}_n+d\), with **all entries** of \(M,\mathbf{u},\mathbf{w},d\) and the **chapter-start state** unconstrained. By the Cayley–Hamilton theorem, the characteristic polynomial \(\chi_M(X)\) has degree four and annihilates each state difference because \(\Delta\mathbf{s}_n=M^n((M-I)\mathbf{s}_0+\mathbf{u})\). Therefore
+
+\[
+(X-1)\chi_M(X)K=0,
+\]
+
+and **every such scalar key is in the exact affine fourth-order class just excluded** by the 14 p15–22 original singleton words. This proves a universal original-input conditional negative for **every four-dimensional linear/affine GF29 state update with a fixed linear output**, regardless of hidden matrix, seed, additive input, output coordinate, or page-15 chapter reinitialization.
+
+This directly covers the source-visible original [p15 signed 4×4 Fibonacci-prime square](../results/lp2-p15-fibonacci-prime-spiral.md) as an arbitrary matrix-running-key generator, even if its authentic sign orientation, nonzero seed and output row are all secret. It is stronger than prior finite tests of just the literal signed matrix, certain seed choices, and its order-812 period. It **does not** cover a nonlinear state update, a nonlinear output lookup or S-box, a nonadditive GP encryption layer, a secret matrix changing within p15–22, key-clock skips, or a different native plaintext register. The theorem is exact under its algebraic assumptions; the English A/I/O interpretation remains the only linguistic premise.
+
 ## Positive control and reproduction
 
 [Standalone original-input C++17 SFT](../sims/lp2_all_order4_singletons_original_sft.cpp) is read-only. It parses the repository's exact UTF-8 \`resources/lp2-transcription.txt\` rune/word stream, verifies all **83** ciphertext singleton positions and source symbols, computes the complete coefficient census, and checks the last-polynomial witness. A synthetic positive uses the independently chosen nondegenerate recurrence **[9,4,10,6]**, initial four-key state at the first singleton **[7,1,12,23]**, and a cycling A/I/O plaintext at every one of the **same 83 original word positions**. The true planted coefficient and key survive all 83 tests, confirming that the inverse is capable of recognizing a genuine source-shaped cipher. The implementation uses only standard C++17 containers, no third-party dependencies, and no file writes.
