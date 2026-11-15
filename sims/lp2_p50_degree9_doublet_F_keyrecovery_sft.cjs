@@ -245,6 +245,22 @@ function allSecretOutputBijectionGate(sites, scalarRows) {
 const secretOutputGlobal=allSecretOutputBijectionGate(events, rows);
 assert.deepEqual(secretOutputGlobal,
   {markerTypes: 28, equalityEquations: 58, homogeneousRank: 9});
+// There are 28 distinct observed output letters but only 29 possible
+// source scalar values. For ANY stationary function from GF29 to GP29,
+// at most one observed output letter may have two source preimages;
+// all other 27 groups necessarily each have one source preimage. Grant
+// one arbitrary "collision group" entirely unconstrained, choose it
+// adversarially from all 28 values, and enforce equality for all others.
+// The linear rank remains NINE even after every possible group removal.
+// Hence only the all-zero hidden state survives, which cannot produce
+// 28 distinct printed output glyphs under any stationary function.
+const distinctMarkerValues = [...new Set(events.map(e => e.value))];
+const rankExcludingAnyOneOutputClass = distinctMarkerValues.map(value =>
+  allSecretOutputBijectionGate(
+    events.filter(e => e.value !== value), rows).homogeneousRank);
+assert.equal(rankExcludingAnyOneOutputClass.length, 28);
+assert(rankExcludingAnyOneOutputClass.every(x => x === degree));
+
 // Rank nine forces every initial state entry to zero. A fixed output
 // bijection of that constant LFSR state can print only ONE marker value;
 // the original source contains 28 distinct values. This rejects *all*
@@ -276,6 +292,13 @@ console.log(JSON.stringify({
   plantedKnownStateRecovered: true,
   nineIllustratedChapterResets: chapterResults,
   arbitrarySecretBijectionGlobal: secretOutputGlobal,
+  everyStationaryOutputFunctionGlobal: {
+    originalOutputClasses: distinctMarkerValues.length,
+    sourceInputClasses: 29,
+    hypotheticalMergedOutputClassesGranted: 1,
+    minimumRankAfterRemovingOneOutputClass: Math.min(...rankExcludingAnyOneOutputClass),
+    sourceStationaryMapPossible: false
+  },
   arbitrarySecretBijectionPerChapter: secretOutputChapters,
   unknownPlaintextRecovered: false,
   decision: "Fixed original source polynomial and global repeat=F additive mode rejected by independent heldout repeat site"
