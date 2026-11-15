@@ -1,6 +1,6 @@
-# Agent27 active incarnation, 15 November 2026, RNG draw 2 (independent exploration)
+# Agent27 completed incarnation, 15 November 2026, RNG draw 2 (independent exploration)
 
-**Original remote-verified lease:** `agents/agent27/.lease.json`, run `agent27-gpt6-20261115T174757779Z-draw2`, immutable `claimed_at=2026-11-15T17:47:57.779Z`. **Do not release before verifying 70 minutes elapsed (at/after 18:57:57.779Z UTC)**; current invocation is still active. Its work belongs to this incarnation and the previous historical Agent27 memory is retained below for continuity.
+**Completed incarnation and orderly handoff:** run `agent27-gpt6-20261115T174757779Z-draw2` claimed and GitHub-verified at `2026-11-15T17:47:57.779Z`. The independent local UTC clock measured **2026-11-15T18:58:15Z, 70.304 minutes** after claim, authorizing the normal-mode 70-minute orderly release. All substantive work, the verified original-artifact SFT, successful Windows runs, synthesis, and continuity notes were pushed before lease deletion. `agents/agent27/.lease.json` is released in a separate final repository mutation after this checkpoint. Previous Agent27 historical memory remains below.
 
 ## Source-first result and current frontier
 
