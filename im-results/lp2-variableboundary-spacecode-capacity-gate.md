@@ -82,13 +82,27 @@ The physical page/chapter divisions are fixed by original red rubric and red ter
 | Original complete p3–7 chapter | 1,144 | **15** | **12** |
 | Original complete terminal p54–55 chapter | 307 | **4** | **3** |
 
+**Independent authentic plaintext-layout benchmark.** The already-solved **p56 AN END** original manuscript has **85 encrypted GP29 runes and 25 authentic known-plaintext words**, hence 24 interword breaks, giving **24/109 = 22.0183%** SPACE-token density. In p56 the printed ciphertext boundaries agree with its known English plaintext; it is a genuine cipher control. The independently solved unencrypted p57 has **95 GP29 runes and 20 words**, giving **19/114 = 16.6667%**. Pool the two original solved pages as independent examples: **180 runes + 43 interword SPACE tokens**, or **43/223 = 19.2825%**. The original pages p0–55 are *not known* to share either plaintext word-density register, so this is explicitly a second conditional benchmark, **not a fact about the hidden plaintext**.
+
+Using the same unchanged ciphertext and the stronger **combined solved-source** spacing benchmark, the corresponding first potentially sufficient phase-period thresholds for maximum-two-digit source tokens become:
+
+| Original unknown scope | Direct GP29 output, period needed for 43/223 | Cumulative GP29 differences, period needed for 43/223 |
+| --- | ---: | ---: |
+| Whole book shared codebook | **224** | **237** |
+| Nine independently keyed original visual chapters | **30** | **27** |
+| Fifty-five independently keyed rune-bearing pages | **5** | **5** |
+| Independent p3–7 complete chapter | **23** | **21** |
+| Original terminal p54–55 chapter | **7** | **7** |
+
+Thus a period-four-or-less two-symbol SPACE codec remains capacity-incompatible even when *all 55 pages have independent phase dictionaries*, **if** LP2's unknown plaintext uses the pooled p56+p57 spacing rate. The shorter p57-only thresholds remain the more conservative benchmark. The [test now checks both original solved pages](../sims/lp2_variableboundary_spacecode_capacity_sft.cjs), the complete 300-period scan and the exact combined thresholds on [Windows Node.js 22 run 43666080470](https://github.com/FlareZ123/liber-primus/actions/runs/43666080470). No unknown key or plaintext is fitted.
+
 The threshold is **necessary, never sufficient**: the period \(k\) at the threshold might still have no valid prefix code, no grammatical plaintext and no independently specified key. Larger periods need not improve the bound monotonically; "first potentially sufficient" means every smaller positive integer period failed under the exact stated source/IV convention.
 
 In particular, for the **nine original visible chapters**, cumulative GP-difference output has \(M_k=762\) for \(k=5\), \(831\) for \(k=7\), and \(1036\) for \(k=16\). On its 12,947 coded rune positions, even the generous \(k=16\) scheme carries at most \(2\times1036/12947\approx16.0037\%\) true SPACE tokens, short of the native p57 **16.6667%**. For a single book codebook, phase-five has \(M_5=552\), only \(2\times552/12955\approx8.5218\%\) capacity. Page-independently keyed schemes with \(k\ge3\) remain unexcluded, as do longer codewords, unknown evolving states, a source register without 1/6 spaces, an unknown compression layer, or a state driven by **plaintext token index** instead of output rune position.
 
 This is the strongest version of the decision: **ordinary p57-density prose cannot be restored from all original p0–55 ciphertext by a one- or two-rune stationary or short-period 5/7/16-phase GP29 token codebook under a globally or chapter-reset public output clock, regardless of the secret per-phase codeword maps**. The original p15 4×4 square, five-dot motif and seven-number hints may suggest periods, but no first-party instruction has been found selecting this token codec or asserting that unknown LP2 has p57-like word spacing. The result is a useful bound on a class of possible changing-state explanations, **not a genuine decipherment**.
 
-**Exact reproducibility:** The single-file [CommonJS source test](../sims/lp2_variableboundary_spacecode_capacity_sft.cjs) now executes the complete \(1\le k\le300\) capacity scan, the independent raw/cumulative GP output cases, all five source scopes, the original p57 full inverse plant, and both disjoint original ciphertext checks. It passed [the original-source Windows Node.js 22 CI run 43665230290](https://github.com/FlareZ123/liber-primus/actions/runs/43665230290). The relevant output object is \`phaseChangingCodebookGate\`, with explicit phase histograms summarized by codebook-scope maximum and the first possible period.
+**Exact reproducibility:** The single-file [CommonJS source test](../sims/lp2_variableboundary_spacecode_capacity_sft.cjs) now executes the complete \(1\le k\le300\) capacity scan, the independent raw/cumulative GP output cases, all five source scopes, the authentic p56/p57 solved source word inventories, the original p57 full inverse plant, and both disjoint original ciphertext checks. It passed [the original-source Windows Node.js 22 CI run 43665230290](https://github.com/FlareZ123/liber-primus/actions/runs/43665230290). The relevant output object is \`phaseChangingCodebookGate\`, with explicit phase histograms summarized by codebook-scope maximum and the first possible period.
 
 ## Scientific scope and next cryptanalytic decision
 
