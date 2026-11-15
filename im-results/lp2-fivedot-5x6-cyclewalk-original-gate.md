@@ -33,8 +33,25 @@ The unchanged original body values are 0.034305 and 0.034544 respectively. All c
 
 No variant reveals native English or a recognizable plaintext-bearing register on the 201 five-dot quintets or the 600 independent floral quintets. Original reencryption proves the candidate is implemented correctly; it does not prove historical use.
 
+## Stronger natural option: the thirtieth cell is a word separator
+
+The spare cell in a 5×6 board could be **SPACE**, giving 29 GP glyphs + one explicit separator as 30 direct plaintext/ciphertext symbols. This is a more human-plausible possibility than introducing cycle-walking, and, if used, it would permit a full reversible block fractionation to change the locations of printed word breaks. It directly addresses the LP2 singleton-word puzzle. The source remains permissive, however: neither the five-dot art nor an original Cicada instruction states that space should be the thirtieth symbol or that separators participate in the cipher.
+
+The p23–26 1,005-rune chapter body has **220 complete source-printed words**, with no partial cross-boundary word at the red 16-rune heading cut. Interleave the original 220 GP words with the literal symbol29 and give its final chapter-closing punctuation one terminal separator. The resulting **1,225 = 245×5** unit stream fits exact five-site fractionation, with all 29 runes and the SPACE cell represented. Crucially, the cipher here is the full mixed-radix coordinate permutation on **all 30^5 states**. It requires **no cycle-walking**. The 30th cell as space and one ending delimiter are declared hypotheses, rather than historical instructions.
+
+| Original p23–26 full30 five-rune inverse | Decoded literal SPACE cells | Longest decoded GP-only word | Decoded words ≥40 runes |
+| --- | ---: | ---: | ---: |
+| Row-major inverse | **53** | 88 | 7 |
+| Row-major forward | **71** | 94 | 5 |
+| Column-major inverse | **59** | 81 | 8 |
+| Column-major forward | **61** | 72 | 11 |
+
+In all variants 1,225 original source units round-trip exactly. Original printed text contains **220 separated words, maximum 14 GP runes per word**, whereas the four inverses imply 54–71 GP word runs of mean **16–22 runes**, with many implausibly long 40–94 rune runs. That is a direct grammar obstruction under ordinary word-spaced GP English, even allowing encrypted spaces to move. On planted source-native English words with the *same original word lengths* and one separator per word, every full30 inverse recovers the complete **1,225-symbol** plaintext and spaces. The forward plant's output separator counts, printed by the [reproducer](../sims/lp2_fivedot_space30_wordshift_original_sft.cjs), provide a matched positive contrast rather than a general proof about every possible plaintext register.
+
+The original printed source could in principle encode a non-English, compressed, or already encrypted intermediate; the test excludes only this precise canonical full30 direct transformation. Since the four direct inverses give no coherent original plaintext, **a new original key selector or different typed operation is still required**. Preserving spaces as a literal thirtieth cell introduces a distinct, more realistic hypothesis than discarding a forbidden cell, so future work should not conflate these two exclusions.
+
 ## Decision and next causal input
 
-Retire these **four source-fixed, lossless 29-of-30 mixed-radix fractionation variants** as direct English inverses. Preserve the source-visible five-dot artwork and the 1005/3000 divisibility; neither selects a keyed 5×6 grid or explains how a 2014 player would apply cycle-walking. Other secret squares, different plaintext registers, altered segmentation, position-varying keys and layered mechanisms are outside the test.
+Retire the **four source-fixed, lossless 29-of-30 cycle-walked variants** and the **four full 29-plus-SPACE variants** as direct native-English inverses as direct English inverses. Preserve the source-visible five-dot artwork and the 1005/3000 divisibility; neither selects a keyed 5×6 grid or explains how a 2014 player would apply cycle-walking. Other secret squares, different plaintext registers, altered segmentation, position-varying keys and layered mechanisms are outside the test.
 
 An authentic source-supplied coordinate square, key or cross-page receiver is needed before another phase/key search is warranted. This finding provides a narrow exclusion rather than additional unknown plaintext.
