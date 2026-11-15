@@ -1,6 +1,6 @@
 # Original p49–51 byte-pointer graph: two source-selected cycles, no plaintext yet
 
-**Decision (15 November 2026):** Under the simple *candidate* instruction `next_cell = the base60 byte printed in the current cell`, the original 256-cell p49–51 numeric table forms a complete directed functional graph with just **two disjoint cycles**. Original text geometry supplies a reason to examine **both cycles**: cell0, the first printed number, is on an exact **11-cycle**, and the **sum of the adjoining rune passage lengths 66+92=158** is itself a cell index on the **other two-cycle**, `158↔249`. The pre-table 66-rune paragraph also has exactly six times the first cycle length. This is a notable source-coupled numerical pattern, but **the byte-to-index interpretation has no authenticated original instruction, the stronger post-hoc pattern is not discovery-adjusted, and the simplest 11-key GP29 inverse fails**. No unknown-page plaintext/key/destination has been recovered.
+**Decision (15 November 2026):** Under the simple *candidate* instruction `next_cell = the base60 byte printed in the current cell`, the original 256-cell p49–51 numeric table forms a complete directed functional graph with just **two disjoint cycles**. Original text geometry supplies a reason to examine **both cycles**: cell0, the first printed number, is on an exact **11-cycle**, and the **sum of the adjoining rune passage lengths 66+92=158** is itself a cell index on the **other two-cycle**, `158↔249`. The pre-table 66-rune paragraph also has exactly six times the first cycle length. This is a notable source-coupled numerical pattern, but **the byte-to-index interpretation has no authenticated original instruction, the stronger post-hoc pattern is not discovery-adjusted, and the simplest single-ring and combined-ring GP29 additive inverses fail**. No unknown-page plaintext/key/destination has been recovered.
 
 ## Source-grounded candidate operations
 
@@ -40,7 +40,17 @@ Test exactly `P[i]=(C[i]±key[i mod11]) mod29`, resetting the key clock at each 
 | p51 | 92 | 0.036072623029 | 0.033683707597 |
 | p52 (held-out passage) | 263 | 0.034336632514 | 0.034975183583 |
 
-Exact re-encryption of every tested rune and an authentic clear-p57 source cipher plant establish that the code really executed this frozen invertible family. There is **no actual LP2 plaintext recovery**. No arbitrary key phases, diagonal transpositions or rescored alphabets were added to rescue the candidate.
+Exact re-encryption of every tested rune and an authentic clear-p57 source cipher plant establish that the code really executed this frozen invertible family. There is **no actual LP2 plaintext recovery**. The two rings have relatively prime lengths **11 and 2**, so a joint source-selected repeating key has `lcm(11,2)=22` rune positions. The p49 66-rune prologue is exactly **three** complete joint cycles, a tighter source-motivated arithmetic fit than six independent 11-turn laps. Give the two-cycle byte residues `[249 mod29, 158 mod29]=[17,13]`; test **all four sign choices** for the two source-derived keys, `P[i]=(C[i]±A[i mod11]±B[i mod2]) mod29`. No secret multiplier, free offset, clock phase or word fitting was used. The resulting original IoCs were:
+
+| Original page | Both keys added | 11 added, 2 subtracted | 11 subtracted, 2 added | Both subtracted |
+|---|---:|---:|---:|---:|
+| p49, 66 rune prologue | 0.028904428904 | 0.029370629371 | 0.034965034965 | 0.027972027972 |
+| p51, 92 rune postlude | 0.032489249881 | 0.032489249881 | 0.036311514572 | 0.037267080745 |
+| p52, 263 independent runes | 0.034191507271 | 0.033611006298 | 0.035613734653 | 0.034713958146 |
+
+No complete source-native words or coherent original plaintext emerge under any fixed joint key. The full original input round-trips exactly under each of the four invertible compositions. Thus even the natural **22-key paired-cycle Vigenère consumer is negative**.
+
+No arbitrary key phases, diagonal transpositions or rescored alphabets were added to rescue the candidate.
 
 ## 150,000 conditional original-byte shuffle controls
 
