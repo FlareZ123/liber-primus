@@ -123,67 +123,6 @@ function exactSevenProbability(input,phrases) {
   return {total,negatives,positives:total-negatives,states:memo.size,
     probability:Number(total-negatives)/Number(total)};
 }
-// Keyless literal-quotation gate: a deterministic substitution held fixed
-// during a word must send every repeated plaintext GP rune to the same
-// ciphertext rune. Each word may have its own arbitrary secret alphabet.
-const gp=JSON.parse(fs.readFileSync(path.join(__dirname,'..','resources',
-  'liber-primus','lp2-corpus.json'),'utf8'));
-const sourceSeven=originalWisdomWords.slice(6,13);
-const p55Last30=gp.pages[55].indices.slice(-30);
-assert.equal(sourceSeven.reduce((n,w)=>n+Array.from(w).length,0),30);
-/** @param {number[][]} segments */
-function samePlainDifferentCipher(segments) {
-  const contradictions=[];
-  for(let j=0;j<sourceSeven.length;j++) {
-    const P=Array.from(sourceSeven[j]).map(rune=>gp.runes.indexOf(rune));
-    assert.ok(P.every(x=>x>=0));
-    const C=segments[j];
-    assert.equal(P.length,C.length);
-    const mapping=new Map();
-    for(let i=0;i<P.length;i++) {
-      const previous=mapping.get(P[i]);
-      if(previous && previous.cipher!==C[i])
-        contradictions.push({wordIndex:j,positions:[previous.index,i],
-          plainRune:gp.translit[P[i]],
-          twoCipherRunes:[gp.translit[previous.cipher],gp.translit[C[i]]]});
-      if(!previous)mapping.set(P[i],{index:i,cipher:C[i]});
-    }
-  }
-  return contradictions;
-}
-let consumed=0;
-const originalCipherSegments=sourceSeven.map(word=>{
-  const n=Array.from(word).length;
-  const segment=p55Last30.slice(consumed,consumed+n);
-  consumed+=n;
-  return segment;
-});
-assert.equal(consumed,30);
-const wordSubstitutionContradictions=samePlainDifferentCipher(originalCipherSegments);
-assert.deepEqual([...new Set(wordSubstitutionContradictions.map(x=>x.wordIndex))],[1,2,5]);
-const planted=sourceSeven.map((word,j)=>Array.from(word).map(rune=>
-  (7*gp.runes.indexOf(rune)+j)%29));
-assert.equal(samePlainDifferentCipher(planted).length,0);
-// Even arbitrary rune reorderings after any bijective per-word substitution
-// preserve each word's multiset of character multiplicities.
-/** @param {number[]} symbols */
-function sortedMultiplicity(symbols) {
-  const counts=new Map();
-  for(const x of symbols)counts.set(x,(counts.get(x)??0)+1);
-  return [...counts.values()].sort((a,b)=>b-a);
-}
-const permutationInvariantFailures=[];
-for(let i=0;i<sourceSeven.length;i++) {
-  const sourceIndices=Array.from(sourceSeven[i]).map(x=>gp.runes.indexOf(x));
-  const input=sortedMultiplicity(sourceIndices);
-  const output=sortedMultiplicity(originalCipherSegments[i]);
-  if(input.join(',')!==output.join(','))
-    permutationInvariantFailures.push({wordIndex:i,sourceMultiplicity:input,
-      ciphertextMultiplicity:output});
-  assert.deepEqual(input,sortedMultiplicity(planted[i]));
-}
-assert.deepEqual(permutationInvariantFailures.map(x=>x.wordIndex),[1,2,4,5]);
-
 const exact=exactSevenProbability(page55,patterns);
 assert.equal(exact.total,908107200n);
 assert.equal(exact.negatives,906885000n);
@@ -219,8 +158,6 @@ console.log(JSON.stringify({
   motifSource:"LP1 p05 exact 18-word/81-rune Wisdom passage",
   searchedTargets:["LP2 p53 (40 words)","LP2 p55 (16 body words after carry)"],
   originalObserved:{p53:longest(wisdom,page53),p55:longest(wisdom,page55)},
-  keylessWordSubstitutionExclusion:{contradictions:wordSubstitutionContradictions,
-    substitutionPlusArbitraryTranspositionFailures:permutationInvariantFailures},
   p55Exact:{positivePermutations:exact.positives.toString(),
     distinctPermutations:exact.total.toString(),probability:exact.probability,
     memoStates:exact.states},
