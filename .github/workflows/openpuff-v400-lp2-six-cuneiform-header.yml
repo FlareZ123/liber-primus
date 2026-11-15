@@ -61,7 +61,7 @@ jobs:
             '819261c833837cbaa2bd200d210ca299d79031f3'
           )
           $out = 'probe-output/original-six-cuneiform'
-          $args = @('--exe', "$env:OPENPUFF_EXE", '--password', '33011033',
+          $arguments = @('--exe', "$env:OPENPUFF_EXE", '--password', '33011033',
             '--bit-format', 'Jpeg (Image)', '--bit-level', '1/5 (20%) - Medium',
             '--out', "$out", '--wait-seconds', '180')
           for ($i=0; $i -lt 6; $i++) {
@@ -70,7 +70,7 @@ jobs:
             if (-not (Test-Path -LiteralPath $carrier)) { throw "Original carrier missing: $idx" }
             $blob = (& git hash-object -- $carrier).Trim().ToLowerInvariant()
             if ($LASTEXITCODE -ne 0 -or $blob -ne $expected[$i]) { throw "Original JPEG mismatch: $idx" }
-            $args += @('--carrier', "$carrier")
+            $arguments += @('--carrier', "$carrier")
           }
           python sims/openpuff_v400_extract.py @args
           if ($LASTEXITCODE -ne 0) { throw 'Original six-cover native extraction failed' }
