@@ -120,6 +120,15 @@ for (const start of [0, 1]) {
   const got = fBypassStates(second, primes, start);
   assert.equal(got.failure, 48);
   assert.equal(got.maxStates, 2);
+  for (let initial = 0; initial < 29; initial++) {
+    const alternative = second.slice();
+    alternative[0] = initial;
+    const seeded = fBypassStates(alternative, primes, start);
+    assert.equal(seeded.failure,
+      initial === start + 1 ? 0 : 48);
+  }
+  console.log('Original p0-2: prime start', start,
+    'all 29 possible second-difference initial symbols extinct by rune48');
   console.log('Original p0-2: prime start', start,
     'all legal F-bypass paths impossible at zero-based rune', got.failure);
 
