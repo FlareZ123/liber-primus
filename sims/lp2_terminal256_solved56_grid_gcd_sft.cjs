@@ -105,6 +105,22 @@ do {
 assert.equal(multiplicativeOrder, 36);
 assert.equal((p55Integer + knownSuffixInteger) % modulus, 0n);
 
+// Composite source-factor bridge: p48 is immediately before the table,
+// p53's 51 red runes are its final 51 canonical ciphertext symbols,
+// and p53's full original page has 179 rune symbols.
+const page48 = integer(corpus.pages[48].indices, 29);
+const red53 = integer(corpus.pages[53].indices.slice(128), 29);
+assert.equal(corpus.pages[53].indices.length, 179);
+const d48 = gcd(N, page48);
+const d53 = gcd(N, red53);
+assert.equal(d48, 81432n);
+assert.equal(d53, 358n);
+/** @param {bigint} a @param {bigint} b */
+const lcm = (a, b) => a / gcd(a, b) * b;
+const accumulated = lcm(lcm(d48, d53), gcd(N, solvedTerminal));
+assert.equal(accumulated, 204068592n);
+assert.equal(accumulated * 179n, G);
+
 /** @type {{ startIndex: number; sign: number; gcd: bigint; mod3024: bigint; opening: string }[]} */
 const trials = [];
 for (let startIndex = 0; startIndex < 1016; startIndex += 1) {
@@ -136,6 +152,7 @@ assert.equal(best.sign, -1);
 
 console.log('Original 256-byte table SHA-256:', crypto.createHash('sha256').update(bytes).digest('hex'));
 console.log('Table integer bits:', N.toString(2).length);
+console.log('Independent p48/p53/terminal GCD LCM:', accumulated.toString(), 'x 179 =', G.toString());
 console.log('Original p55(cipher)+p56(cipher)+p57(clear) gcd:', gcd(N, originalTerminal).toString());
 console.log('Authentic p56 decoded, other pages unchanged gcd:', gcd(N, solvedTerminal).toString());
 console.log('Authentic prime phase/sign rank among 2032 candidates:', rank);
