@@ -1,8 +1,8 @@
-# Whole unknown LP2, nine-chapter exact all-secret periodic alphabet gate: periods 1–1000
+# Whole unknown LP2: direct and ciphertext-feedback all-secret chapter-period gates, periods 1–1000
 
-**Agent 12, 15 November 2026.** No unknown page is deciphered here. This experiment closes a broad, simple, mathematically identifiable class of ciphers against source-native English reference texts: *any fixed-phase monoalphabetic GP29 bijection reused with period m = 1,...,1000 independently in each of the nine source-illustrated chapters*. The unknown keys and their 29-symbol contents are unrestricted.
+**Agent 12, 15 November 2026.** No unknown page is deciphered here. This experiment closes two broad, mathematical cipher architectures against source-native English reference texts: direct GP29 periodic substitution and GP29 ciphertext-feedback accumulation of a periodic substitution. For either architecture, every one of 1,000 period positions may have an arbitrary unknown 29-rune substitution alphabet, independently for each of the nine illustrated chapters.
 
-## Human solve-path premise and exact equation
+## Human solve-path premise and exact direct-substitution equation
 
 Original LP2 is printed with 29 Gematria Primus runes and nine chapter-like visual regions. Earlier Cicada solutions use Vigenère-style alphabet shifts, so a human solver might hypothesize one repeating table of substitutions per chapter, possibly with a new secret key at each large red heading. This test grants much more freedom than Vigenère. For each chapter c and candidate integer period m, allow **m completely arbitrary GP29 permutation alphabets** pi(c,0)...pi(c,m−1), distinct across chapters. Encrypt the unknown plaintext at chapter-local rune i as:
 
@@ -14,7 +14,7 @@ At any positions i and i+m inside the same chapter, the phase and secret alphabe
 
 This equality is an *exact necessary condition*. It applies to every chapter-specific repeating additive key, affine alphabet, or arbitrary secret permutation. Key search, secret-language guessing and numerical key starts are irrelevant to the equality test.
 
-The premise is deliberately limited: encryption must be symbolwise, bijective, phase-static for the chapter, and preserve relative rune order. The result does **not** exclude distinct phase resets at every word/page, alphabet mutation based on state, non-bijective encoding, transposition, other plaintext languages, or very long periods beyond 1000. The original nine major boundaries are source-visible candidates, not historically authenticated encryption resets.
+The premise is deliberately limited: encryption must be symbolwise, bijective, phase-static for the chapter, and preserve relative rune order. The result does **not** exclude distinct phase resets at every word/page, alphabet mutation based on evolving state, non-bijective encoding, transposition, other plaintext languages, or very long periods beyond 1000. A separately source-motivated ciphertext-feedback model is evaluated below. The original nine major boundaries are source-visible candidates, not historically authenticated encryption resets.
 
 ## Original data, native language controls, and positive plant
 
@@ -24,9 +24,9 @@ Three independently sourced English documents already pinned in the repository a
 
 The three source controls are Shakespeare (first 300k characters), Emerson essays, and Gibran's *The Prophet*. Use three deterministic full-length **12,956-rune contiguous windows** from each: the first, the middle, and the last possible window, giving **nine English-GP windows**. Partition each into exactly the nine original chapter lengths before computing pair counts. The method compares unmodified source-native passages, with no word-length fitting and no plaintext or secret substitution tuning.
 
-As a separate synthetic positive, an arbitrary different additive secret alphabet is applied to each of the nine chapters at periods 13, 331 and 1000. The program asserts that equal-lag pairs remain **exactly** equal to the original GP plaintext control. This calibrates the exact all-secret invariant and the chapter reset implementation.
+As separate positives, arbitrary distinct chapter-specific additive secret alphabets are applied at periods 13, 331 and 1000. Direct-cipher equal-lag pairs remain **exactly** equal to native GP plaintext. Reversible ciphertext-feedback plants at periods 1, 13, 331 and 1000 give identical source-native *increment* pair counts. These calibrate both exact invariants and source-visible chapter reset boundaries.
 
-## Original full-family result
+## Original full-family direct-substitution result
 
 Every one of the **1,000** possible candidate periods has an original equal-lag rate **strictly below all nine** native English control-window rates at that same period. The rates are proportions of matching GP29 rune pairs separated by m within an original nine-chapter boundary.
 
@@ -51,12 +51,28 @@ The strongest original excursion from a uniform 29-way lag-match baseline over a
 
 The m=1 original count is **86/12,947 chapter-local adjacent pairs**. It includes adjacent original page ends/starts *inside* the major chapter; the separately source-audited 86/12,901 result uses only within-physical-page adjacencies. The equality counts in this test should not be misreported as the 55-page denominator.
 
+## Source-motivated ciphertext-feedback architecture, all 1,000 periods
+
+The visible original source suppresses adjacent equal ciphertext runes. This makes a preceding-ciphertext accumulator plausible enough to test independently of the direct architecture. Grant a completely arbitrary secret permutation per chapter and phase, but encrypt the plaintext rune by adding that substituted value to the previous ciphertext:
+
+    C(c,i) = C(c,i−1) + pi(c,i mod m)(P(c,i)) mod29.
+
+The cipher's within-chapter increment D(c,i)=C(c,i)−C(c,i−1) mod29 equals the secret phase-bijection of plaintext. Every i≥1 and i+m within the same chapter therefore obeys the exact key-independent invariant D(c,i)=D(c,i+m) if and only if P(c,i)=P(c,i+m). The first rune of every chapter is excluded because its source ciphertext predecessor is undefined.
+
+Against the same exact LP2 corpus and all nine native GP English windows, **999 of 1,000 periods fail** the necessary equality gate: for every m=2,...,1000, the original ciphertext-increment equality at lag m is **strictly below each native control**. Period m=1 is the sole survivor of this one condition: the original has **436/12,938 = 0.033699** equal adjacent increments, versus the lowest native GP reference rate **0.027670**. It does not follow that m=1 decrypts the text.
+
+**Independent period-one frequency invariant:** For m=1 each chapter uses one fixed secret permutation of plaintext rune values in the cipher increments. A permutation cannot change the sorted 29-bin increment-frequency histogram or its within-chapter equal-symbol pair count. The unknown original contains **415,744 equal within-chapter increment pairs / 11,737,862 eligible pairs = 0.0354190567**. The nine source-native English windows range from **694,281 / 11,737,862 = 0.0591488467** to **729,094 / 11,737,862 = 0.0621147190**. The original falls below every control independently of the unknown nine secret permutations.
+
+Thus **period one fails the separate histogram gate**, and the combined all-secret result excludes **all periods 1–1000 for this particular ciphertext-feedback architecture** against the declared native reference class. This is a genuine extension from the direct model: neither test implies that every stateful cipher is ruled out. A key depending on prior plaintext/ciphertext, an independently reset word/page, transposed runes, or a different language could escape both invariants.
+
+The positive feedback plant uses arbitrary chapter-and-phase key shifts of the form pi(c,r)(x)=(x+7c+13+19r) mod29, accumulating the shifted rune modulo29 into the predecessor. At periods 1, 13, 331 and 1000, the exact native-source increment equality is preserved after encryption, confirming the necessary invariant for a full reversible feedback cipher.
+
 ## Decision and next input needed
 
-For all 1–1000 source-clock periods, **no arbitrary fixed GP29 phase alphabets can transform any of these nine natural GP English controls into the original ciphertext**, because the exact symbol equality is invariant. This is a concrete original-cipher obstruction to a classic human-plausible Vigenère route, including complete independent chapter key reinitialization. It provides no original plaintext, external destination, key, or proof that unknown pages contain the sampled English reference register.
+For all 1–1000 source-clock periods, **neither direct periodic substitution nor periodic ciphertext-feedback substitution can transform any of the nine natural GP English controls into the original ciphertext**, according to their respective exact key-independent invariants. The source-motivated no-repeat feedback class is now jointly excluded with the classic Vigenère and general fixed-phase substitution class. It provides no original plaintext, external destination, key, or proof that unknown pages contain the sampled English reference register.
 
-This has greater reach than trials of a handful of key phrases: it gives each of up to 1000 phases its own unconstrained 29-rune permutation and still does not match. The causal next decision is to focus on **changing-state transformations, differently reset clocks, source-authored key material, or independently recovered plaintext**. Do not search longer repeating Vigenère keys within the same 1–1000 fixed-phase chapter architecture unless new first-party evidence specifically demands an unrepresented language or character segmentation.
+Both families grant each phase its own unrestricted 29-rune secret permutation and still fail. The causal next decision is to focus on **changing-state transformations, differently reset word/page clocks, source-authored key material, or independently recovered plaintext**. Do not search longer repeating Vigenère keys within the same 1–1000 fixed-phase chapter architecture unless new first-party evidence specifically demands an unrepresented language or character segmentation.
 
-The [dependency-free Windows Node22 CommonJS SFT](../sims/lp2_period1000_allsecret_lag_collision_sft.cjs) reads the exact original and reference corpora, asserts original source p57 95/95, checks all 1000 periods against the nine controls, tests independent chapter-specific additive-key plants, and reports fixed numeric results. This is bounded *intermediate* evidence; established plaintext and unknown cipher have not changed.
+The [dependency-free Windows Node22 CommonJS SFT](../sims/lp2_period1000_allsecret_lag_collision_sft.cjs) reads exact original and reference corpora, asserts source p57 95/95, tests both full 1–1000 period families and the one-period step-histogram gate, and positively plants reversible chapter-dependent direct and feedback ciphers. This is a broad *exact architecture exclusion*; established plaintext and the unknown cipher have not changed.
 
 **Independent Windows GitHub Actions execution:** [Manual Node.js 22 run 43765093094](https://github.com/FlareZ123/liber-primus/actions/runs/43765093094) completed **successfully** on 15 November 2026; both source-driven SFTs exited without assertion failure. This establishes exact-script execution in the shared repository, with no unknown plaintext or key claim.
