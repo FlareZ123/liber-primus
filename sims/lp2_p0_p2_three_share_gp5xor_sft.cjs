@@ -119,6 +119,64 @@ assert(shares.every((page) => page.every((n) => n >= 0 && n < 29)));
 const recovered = clear.indices.map((_, i) => shares[0][i] ^ shares[1][i] ^ shares[2][i]);
 assert.deepEqual(recovered, clear.indices);
 
+
+// Distinct historically literal byte interpretation: each original GP rune
+// supplies the byte-sized *prime* printed in the 2013 Gematria Primus chart.
+// The authentic 2014 OutGuess stage XORed three byte streams, not ordinal 5-bit
+// symbols. Keep all three physical pages aligned from their first glyph.
+/** @type {number[]} */
+const primeWeights = corpus.prime;
+assert.equal(primeWeights.length, 29);
+assert.equal(primeWeights[0], 2);
+assert.equal(primeWeights[28], 109);
+const primeByteXor = Buffer.from(Array.from({ length }, (_, i) =>
+  primeWeights[source[0][i]] ^ primeWeights[source[1][i]] ^ primeWeights[source[2][i]]));
+assert.equal(primeByteXor.length, 201);
+assert.equal(primeByteXor.subarray(0, 32).toString('hex'),
+  '074f0725374f11406f634b410b5d79693d0a3f691549470b01732b617b15466b');
+assert.equal(new Set(primeByteXor).size, 79);
+assert.equal([...primeByteXor].filter((value) => value % 2 === 0).length, 28);
+const primePrintable = [...primeByteXor].filter((value) =>
+  value === 9 || value === 10 || value === 13 || (value >= 32 && value <= 126)).length;
+assert.equal(primePrintable, 155);
+const primeDisplay = [...primeByteXor].map((v) =>
+  v === 9 || v === 10 || v === 13 || (v >= 32 && v <= 126) ?
+    String.fromCharCode(v) : '\0').join('');
+const primeLongestPrintable = Math.max(...primeDisplay.split('\0').map((span) => span.length));
+const primeLongestLetters = Math.max(0,
+  ...(primeDisplay.match(/[a-zA-Z]+/g) || []).map((span) => span.length));
+assert.equal(primeLongestPrintable, 13);
+assert.equal(primeLongestLetters, 5);
+assert(!primeByteXor.subarray(0, originalHeader.length).equals(originalHeader));
+assert(!primeByteXor.subarray(0, 4).equals(Buffer.from('%PDF')));
+assert(!primeByteXor.subarray(0, 4).equals(Buffer.from('PK\x03\x04', 'binary')));
+// The 29 actual GP prime weights nevertheless CAN act as valid ASCII XOR
+// shares: every possible 7-bit byte has at least one triple preimage.
+// Plant the same genuine 2014 PGP armor prefix as a byte-level positive.
+/** @type {Map<number, number[]>} */
+const primeSharePreimages = new Map();
+for (let a = 0; a < 29; a += 1) {
+  for (let b = 0; b < 29; b += 1) {
+    for (let c = 0; c < 29; c += 1) {
+      const value = primeWeights[a] ^ primeWeights[b] ^ primeWeights[c];
+      if (!primeSharePreimages.has(value)) primeSharePreimages.set(value, [a, b, c]);
+    }
+  }
+}
+assert.equal(primeSharePreimages.size, 128);
+const plantedPrimeShares = [[], [], []];
+for (const byte of originalHeader) {
+  const triple = primeSharePreimages.get(byte);
+  assert(triple);
+  for (let lane = 0; lane < 3; lane += 1) plantedPrimeShares[lane].push(triple[lane]);
+}
+const plantedPrimeBytes = Buffer.from([...originalHeader].map((_, i) =>
+  primeWeights[plantedPrimeShares[0][i]] ^
+  primeWeights[plantedPrimeShares[1][i]] ^
+  primeWeights[plantedPrimeShares[2][i]]));
+assert(plantedPrimeBytes.equals(originalHeader));
+assert(plantedPrimeShares.every((lane) => lane.every((index) => index < 29 && index >= 0)));
+
 console.log(JSON.stringify({
   originalPageLengths: originalPages.map((page) => page.indices.length),
   alignedRunes: length,
@@ -131,5 +189,12 @@ console.log(JSON.stringify({
   directBase32PrintableBytes: printable,
   directBase32LongestPrintableRun: longestPrintableRun,
   plantedPGPHeaderPackedRecovered: originalHeader.length,
-  decision: 'NO direct GP29 full-window XOR with fixed five-bit relabeling; no unknown plaintext',
+  originalPrimeByteXorLength: primeByteXor.length,
+  originalPrimeByteXorDistinct: new Set(primeByteXor).size,
+  originalPrimeByteXorEvenCount: 28,
+  originalPrimeByteXorPrintable: primePrintable,
+  originalPrimeByteXorLongestPrintable: primeLongestPrintable,
+  originalPrimeByteXorLongestAlphabetic: primeLongestLetters,
+  primeValuePGPHeaderPlantRecovered: plantedPrimeBytes.length,
+  decision: 'No direct GP29 ordinal XOR or direct GP-prime-byte XOR plaintext on original cross pages',
 }, null, 2));
