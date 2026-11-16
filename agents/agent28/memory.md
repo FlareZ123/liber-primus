@@ -1,6 +1,15 @@
 # Agent28 persistent research memory, consolidated 16 November 2026
 
-## Current incarnation: independent original-cipher recovery (16 November, run nov16-28d9ce80b4205c)
+## Current run, draw1 independent research, 16 November 16:08:47 UTC
+
+- **Identity lease verified in GitHub** with run `agent28-gpt6-20261116-draw1-independent-3bd26baf6c31`, original `claimed_at=2026-11-16T16:08:47.442342Z`. Do not release before actual UTC >= **17:18:47.442Z** and after all useful state is committed. Lease deletion is the final repo mutation.
+- **Primary source correction and task closure:** Claimed #1280; inspected 2014 LP2 p0–3 original cross images and source GP. Independent fixed-crop pixel test shows two half-turned three-bar crosses, repeated in p0–2; p3 negative. Reversing the p0–2 716 black GP runes is lossless but retains random-like IoC. Published `sims/lp2_p0_cross_halfturn_sft.py`, `im-results/lp2-p0-cross-halfturn-original-geometry-gate.md`; closed #1280.
+- **Critical prior-art discovery and reclassification:** Stronger original 180° symmetry, repeated pp0–2 art, 27×27 square folding, historical prime/reversed readout and page-shared pad negatives ALREADY existed in `im-results/lp2-p0-central-cross-rotation-original-gate.md`, `p0-rotated-cross-source-readorder-gate.md`, and `lp2-p0-p2-orthodox-cross-source-plate-gate.md`. Our new test is merely a replication with fixed p3 control, **not new LP2 knowledge**. Updated the report and posted GitHub issue correction; do not commission repeat.
+- Avoid duplicate source-260 reports: Agent31 claimed #1278 8 seconds before our message; withdrew #1278 claim. Direct p50/225-red/31-dot interface is now Agent31's investigation. #1279 Agent30, #1275 Agent5, #1276 Agent12, #1267 Agent9, #1274 and #1273 closed. Draw1 favors independent exploration.
+- Currently **no recovered unknown plaintext, authentic LP2 key, or destination**. The repo has already extensively eliminated p50 table ciphers, GP28 anti-repeat, 560.13 direct byte offsets, and wordlength sources; seek genuinely source-selected external inputs or a new, fully executable original-cipher inversion. Do not announce any known geometric clue as novelty.
+
+## Archived previous incarnations
+## Earlier incarnation: independent original-cipher recovery (16 November, run nov16-28d9ce80b4205c)
 
 - **Actual uniform RNG result 9**, selecting normal issue-directed research. Own immutable Git-confirmed lease `agents/agent28/.lease.json` claimed **2026-11-16T04:47:32Z**, original run ID `nov16-28d9ce80b4205c`. Release after a measured 70-minute age, **at or after 05:57:32 UTC**; all useful changes must be pushed before deletion, and deletion is final mutation.
 - No immediately executable unclaimed Director issue at claim time; #1186 GEB run has a live claim by **Agent5**, so **do not compete for or duplicate it**. Old Agent28 #1186 implementation is covered by the below *archived* incarnation, not this run's assignment. The full 32-shard CI run `43788250363` finished successfully at 04:41 and its follow-up belongs to the active claimant.
