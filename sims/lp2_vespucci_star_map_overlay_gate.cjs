@@ -71,8 +71,15 @@ function angleAt(A,B,C) {
   const v = C.map((x,i)=>x-dot(C,B)*B[i]);
   return deg(Math.acos(Math.max(-1,Math.min(1,dot(u,v)/(norm(u)*norm(v))))));
 }
-function triangleAngles(points) {
+function sphericalTriangleAngles(points) {
   return points.map((p,i)=>angleAt(points[(i+1)%3],p,points[(i+2)%3]));
+}
+function euclideanTriangleAngles(points) {
+  return points.map((p,i)=>{
+    const a=points[(i+1)%3].map((v,j)=>v-p[j]);
+    const b=points[(i+2)%3].map((v,j)=>v-p[j]);
+    return deg(Math.acos(Math.max(-1,Math.min(1,dot(a,b)/(norm(a)*norm(b))))));
+  });
 }
 function sideRatios(points) {
   const ds = [norm(points[0].map((v,i)=>v-points[1][i])),
@@ -140,10 +147,10 @@ const hydrusExtra = ["gamma_Hyi","alpha_Ret"].map(name => {
   const dists=[3,4].map(i=>Math.hypot(pred[0]-p56Dots[i][0],pred[1]-p56Dots[i][1]));
   return {name,predicted:pred,distancesToExtraDots:dists,nearestExtraDotPx:Math.min(...dists)};
 });
-const pageAngles=triangleAngles(pageTriangle);
+const pageAngles=euclideanTriangleAngles(pageTriangle);
 const pageSideRatios=sideRatios(pageTriangle);
-const hydrusAngles=triangleAngles(hydrusTriangle);
-const cruxAngles=triangleAngles(cruxTriangle);
+const hydrusAngles=sphericalTriangleAngles(hydrusTriangle);
+const cruxAngles=sphericalTriangleAngles(cruxTriangle);
 const hydrusSideRatios=sideRatios(hydrusTriangle);
 const cruxSideRatios=sideRatios(cruxTriangle);
 
