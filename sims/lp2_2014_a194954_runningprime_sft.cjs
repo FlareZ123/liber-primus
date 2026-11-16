@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Signed-2014 A194954 prime-key transfer against untouched LP2 GP29.
+ * 2014 archived-whitespace A194954 prime-key transfer against untouched LP2 GP29.
  * Original-input source: resources/liber-primus/lp2-corpus.json.
  * Run on Windows 11 with Node.js: node sims/lp2_2014_a194954_runningprime_sft.cjs
  */
@@ -152,7 +152,7 @@ assert.ok(results.every(x => Object.values(x.noSkipDecodedIoC)
   .every(v => v < .04)));
 
 console.log(JSON.stringify({
-  source:'2014 signed message.txt.asc 11 prime-whitespace counts; OEIS A194954',
+  source:'archived 2014 message.txt.asc whitespace transcription (mostly unsigned trailing runs); OEIS A194954',
   sourceNumberSequence:first35,
   numberOfTerms:13000, lastTerm:special[12999],
   positive:'85/85 authentic p56 known GP plaintext/F-transparent prime-totient encoder',
