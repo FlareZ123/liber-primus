@@ -80,6 +80,31 @@ assert.deepEqual(reconstructed, canonical);
 assert.equal(wordCount, 2896);
 assert.equal(paragraphCount, 175);
 assert.equal(edges.length, 2721);
+
+// Exact impossibility witnesses on the original first 35 runes, without
+// training, language assumptions, any secret lookup, or cross-page changes.
+// Within p0, length-3 predecessors occur with two distinct GP29 deltas (10,7);
+// previous-prime-sum 12 occurs with distinct deltas (7,8).
+const firstLength3 = edges.filter((e) => e.page === 0 && e.length === 3)
+  .slice(0, 2).map((e) => e.delta);
+const firstPrime12 = edges.filter((e) => e.page === 0 && e.sum === 12)
+  .slice(0, 2).map((e) => e.delta);
+assert.deepEqual(firstLength3, [10, 7]);
+assert.deepEqual(firstPrime12, [7, 8]);
+const exactContradictions = {
+  samePage: 0,
+  precedingLength3: {
+    predecessorGlobalOffsets: [17, 20],
+    nextRuneOffsets: [20, 23],
+    forcedDifferences: firstLength3,
+  },
+  precedingGPPrimeSumMod29_12: {
+    predecessorGlobalOffsets: [20, 23],
+    nextRuneOffsets: [23, 34],
+    forcedDifferences: firstPrime12,
+  },
+  conclusion: 'No fixed deterministic number-to-boundary-delta lookup exists even for original p0',
+};
 const train = edges.filter((e) => e.page < 40);
 const holdout = edges.filter((e) => e.page >= 40 && e.page <= 53);
 assert.equal(train.length, 2031);
@@ -152,6 +177,7 @@ console.log(JSON.stringify({
   status: 'bounded original-cipher negative, no plaintext or key',
   source: 'original 12956 runes, 2896 printed words, 175 punctuation spans',
   boundaryCount: edges.length,
+  exactContradictions,
   calibration: {training: train.length, holdout: holdout.length},
   directTrain: direct(train),
   directHoldout: direct(holdout),
