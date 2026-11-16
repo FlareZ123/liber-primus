@@ -21,6 +21,8 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Read giant capitals without unknown-page training labels
         shell: pwsh
+        env:
+          PYTHONIOENCODING: utf-8
         run: |
           & python sims/lp2_round9_fullcaps_p56_template_sft.py
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
