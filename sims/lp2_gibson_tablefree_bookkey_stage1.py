@@ -125,7 +125,7 @@ def main():
     ap.add_argument("--upstream", required=True, help="directory holding pinned work/*.py")
     ap.add_argument("--shard", type=int, required=True)
     ap.add_argument("--shards", type=int, default=4)
-    ap.add_argument("--scope", choices=("smoke", "full"), default="full")
+    ap.add_argument("--scope", choices=("smoke", "full", "tail"), default="full")
     ap.add_argument("--output", required=True)
     args = ap.parse_args()
     assert 0 <= args.shard < args.shards
@@ -180,9 +180,16 @@ def main():
         hit = []
         offsets = 0
         start_wall = time.monotonic()
-        # Offset grid frozen in upstream Phase23; start=0,8,... through book.
-        end = len(key) - 3 * WINDOW
-        for offset in range(0, end, SPREAD):
+        # Whole-run conservative window and disjoint near-end extension.
+        # The late-region model leaves 128 symbols beyond a 729-rune readout,
+        # accommodating realistic skip drift without wrapping the 2012 poem.
+        if args.scope == "tail":
+            lo = len(key) - 3 * WINDOW
+            start = ((lo + SPREAD - 1) // SPREAD) * SPREAD
+            end = len(key) - WINDOW - 128
+        else:
+            start, end = 0, len(key) - 3 * WINDOW
+        for offset in range(start, end, SPREAD):
             if (offset // SPREAD) % args.shards != args.shard:
                 continue
             if args.scope == "smoke" and offsets >= 6:

@@ -5,12 +5,13 @@ on:
     inputs:
       scope:
         type: choice
-        description: smoke checks one source-fixed shard; full runs four disjoint shards
+        description: smoke checks one source-fixed shard; full scans early source offsets; tail scans disjoint suffix in four shards
         required: true
         default: smoke
         options:
           - smoke
           - full
+          - tail
 
 permissions:
   contents: read
@@ -22,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: ${{ fromJSON(inputs.scope == 'full' && '[0,1,2,3]' || '[0]') }}
+        shard: ${{ fromJSON(inputs.scope != 'smoke' && '[0,1,2,3]' || '[0]') }}
     steps:
       - name: Checkout original LP2 corpus and source-fixed gate
         uses: actions/checkout@v4

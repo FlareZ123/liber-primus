@@ -17,10 +17,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--folder", type=Path, required=True)
     ap.add_argument("--output", type=Path, required=True)
-    ap.add_argument("--scope", choices=("smoke", "full"), required=True)
+    ap.add_argument("--scope", choices=("smoke", "full", "tail"), required=True)
     args = ap.parse_args()
     parts = [json.loads(f.read_text(encoding="utf-8")) for f in sorted(args.folder.glob("part-*.json"))]
-    required = 4 if args.scope == "full" else 1
+    required = 4 if args.scope in ("full", "tail") else 1
     assert len(parts) == required, (len(parts), required)
     assert sorted(p["shard"] for p in parts) == list(range(required))
     reference = parts[0]
@@ -47,6 +47,11 @@ def main():
         if args.scope == "full":
             expected = len(range(0, length - 3 * W, STRIDE))
             assert total == expected, (fmt, total, expected)
+        if args.scope == "tail":
+            lo = length - 3 * W
+            start = ((lo + STRIDE - 1) // STRIDE) * STRIDE
+            expected = len(range(start, length - W - 128, STRIDE))
+            assert total == expected, (fmt, total, expected)
         rows = []
         for section in range(8):
             top = max((p["formats"][fmt]["best_by_section"][section]["score"],
@@ -61,12 +66,12 @@ def main():
             "screen_offsets": total,
             "section_peaks": rows,
             "stage1_hits": sorted(hits, key=lambda h: -h["nats_per_rune"]),
-            "plant_passes": sum(sum(x["pass"] for x in p["formats"][fmt]["plant"]) for p in parts),
-            "plant_trials": 6 * len(parts)
+            "plant_passes": sum(x["pass"] for x in reference["formats"][fmt]["plant"]),
+            "plant_trials": 6
         }
         print(f"{fmt}: {total} screened offsets, "
               f"{len(hits)} stage-1 crossings, "
-              f"{result['formats'][fmt]['plant_passes']}/{6*len(parts)} native plants; "
+              f"{result['formats'][fmt]['plant_passes']}/6 distinct native plants; "
               f"highest {max(x['max_score'] for x in rows):.6f}",
               flush=True)
         for row in rows:
