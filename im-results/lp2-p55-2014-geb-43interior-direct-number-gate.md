@@ -1,6 +1,6 @@
-# Direct p55 43-interior to 2014 GEB numeric coordinates: bounded rejection
+# p55 43-interior to 2014 GEB coordinates: direct and inner-core Hill gates
 
-**Decision, 16 November 2026:** The apparent 43 = 14 × 3 + 1 coincidence cannot encode the historical 2014 GEB book-coordinate numbers through any fixed deterministic one-GP29-rune-per-number mapping, independently of ordering or marker position. This is a finite original-cipher obstruction. It is not a decryption or key recovery.
+**Decision, 16 November 2026:** The apparent 43 = 14 × 3 + 1 correspondence does not recover the historical 2014 GEB coordinates. A fixed one-rune-per-number map is mathematically impossible, and the simplest source-motivated 3×3 Hill transform of the 14 interior triples yields at most 5/42 coordinate-field matches and no exact triple. These are bounded negatives, not a decryption or key recovery.
 
 ## Source-motivated model
 
@@ -18,8 +18,24 @@ Across the authentic 42 GEB numeric fields, value 1 appears **13 times**. Across
 
 A varying-state symbol emission, multiple runes per value, homophonic encoding or a clock/key derived from the 33 exteriors remains logically possible. No first-party operation currently selects such a mechanism. The earlier p55/GEB 17-item and 43-interior coincidence is insufficient to justify searching unconstrained stateful keys.
 
+## Source-motivated inner-3×3 Hill transform: bounded negative
+
+The direct one-rune frequency obstruction does not exclude a blockwise transform. A finite, human-plausible extension is suggested by two source features: the original 2014 LP1 p05 Wisdom square is a 5×5 magic square of 1033, and the solved p57 PARABLE says to "shed our own circumferences" and "find the divinity within." Removing the outside ring of the p05 square leaves a 3×3 core. The p55 interior stream has 43 runes: the first 42 form fourteen ordered triples, with a final one-based GP index 19 left as a marker. The signed 2014 Fifth-Onion GEB code supplies fourteen ordered coordinate triples.
+
+The tested hypothesis was: use the p05 square's central 3×3 as a Hill matrix over GF(29), mapping each successive p55 interior triple to one GEB coordinate triple. Because the p05 source explicitly names the totient function, the test also used the cellwise Euler-totient matrix. Both matrices are symmetric, so row/column orientation is identical; both are invertible modulo 29.
+
+- Printed p05 core modulo 29: [[25,14,1],[13,4,13],[1,14,25]].
+- Its inverse modulo 29: [[28,15,5],[16,26,16],[5,15,28]].
+- φ(core) modulo 29: [[24,19,12],[23,14,23],[12,19,24]].
+- Its inverse modulo 29: [[24,18,7],[5,1,5],[7,18,24]].
+- Determinants modulo 29 are 24 and 26, respectively.
+
+The fixed test covered 16 variants: each of the two matrices and its inverse, with input and output offsets independently 0 or 1. The 14 GEB records and their page order were held fixed; no record permutation, field permutation, fitted matrix, extra key, or further state was introduced. The best variant matched **5/42** numeric fields, only one more than the direct zero-origin baseline (4/42); no variant recovered even one complete 3-field record. The φ-derived variants reached at most 2/42. The direct one-rune baseline remains 4/42 at zero origin and 2/42 at one origin.
+
+This is not evidence for a partial coordinate decode: the best matrix output does not yield a coherent sequence of page/word/letter coordinates, and the 16-way maximum is a post-selection statistic. The source suggests an inner square, but does not say to use it as a Hill matrix on p55 or connect that operation to the GEB code. Retire this specific inner-core Hill-to-GEB transfer. Do not expand it into arbitrary matrices, record permutations, or fitted offsets without a new first-party selector.
+
 ## Reproduction and research decision
 
 Executable: sims/lp2_p55_geb_coordinate_gate_sft.cjs. It checks the original 76/17/43/33 segmentation, the exact first-party historic 42 fields, the repeated-value obstruction, and an independent 42/42 planted affine GP29 positive.
 
-Retire direct historical GEB coordinate substitution. Do not treat a reversible simulation as plaintext. Reopen only if an independent manuscript or 2014 source fixes a complete variable-state inverse, including its exterior role, that can be tested blind on original ciphertext. The waiting p55 decoder issue #41 receives no eligible handoff from this exclusion.
+Retire direct historical GEB coordinate substitution and the tested p05-inner-core 3×3 Hill consumer. Do not treat a reversible simulation as plaintext. Reopen only if an independent manuscript or 2014 source fixes a complete variable-state inverse, including its exterior role, that can be tested blind on original ciphertext. The waiting p55 decoder issue #41 receives no eligible handoff from these exclusions.
