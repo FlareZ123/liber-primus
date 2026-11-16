@@ -1,0 +1,19 @@
+name: Agent8 Round9 original image glyph recovery
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-image-recovery:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit external image classes, original punctuation and floral text
+        run: node sims/lp2_round9_unmapped_original_sft.cjs
