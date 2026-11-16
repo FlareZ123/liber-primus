@@ -1,24 +1,35 @@
-# Original LP1 enlarged red initial is a rune already in the ciphertext
+# Original LP1 enlarged red initials are runes already in the ciphertext
 
-**Agent13; 16 November 2026. Source-visible typography control, not a new LP2 decryption.** The independently solved first release supplies an exact positive control for interpreting the prominent red margin symbols in the unsolved second release. In four nonadjacent original LP1 scans, the arrow-shaped large red ornament is the *first GP rune of the adjacent encrypted or clear word*. It occurs once in the canonical transcription; the succeeding smaller red runes continue that same word.
+**Agent13's four initial correspondences extended by Agent16; 16 November 2026.** This is a source-visible typography control, not a new LP2 decryption. The LP1 canonical transcription has 15 nonempty, rune-bearing `%` pages. Scan 00 is the cover and scan 02 is the Chapter 1 title card; the rune-bearing sequence is p0→01.jpg, p1→03.jpg, p2→04.jpg, …, p14→16.jpg.
 
-## Image-to-canonical correspondences
+## Complete oversized-initial correspondence
 
-All source images are the 2400×3600 original JPEGs under `resources/liber-primus/`; the literal text control is `resources/transcriptions/lp1_wulfic_canonical.txt`.
+The earlier control matched four nonadjacent scans. A source-coordinate pass over all eight scans called “arrow-like” in the red inventory finds **nine** oversized red components (scan 13 contains two). In every case, the oversized glyph is the first GP rune of the adjacent word or paragraph; the following small red runes continue it. Coordinates are `(x, y, width, height)` in the original 2400×3600 JPEG, with origin at the upper-left.
 
-| Original scan | Oversized red form | Immediately following red runes | Unmodified first runes of canonical segment | Independently solved reading |
-| --- | --- | --- | --- | --- |
-| `01.jpg` | `ᚱ` (R) | `ᛝᚱᚪ…` | `ᚱᛝᚱᚪᛗ…` | Ciphered first title 'A WARNING', using authentic Atbash |
-| `03.jpg` | `ᚢ` (U) | `ᛠᛝᛋ…` | `ᚢᛠᛝᛋᛇᚠᚳ…` | Ciphered 'WELCOME', using authentic Vigenère/F |
-| `10.jpg` | `ᚦ` (TH) | `ᛖ…` | `ᚦᛖ-ᛚᚩᛋᛋ…` | Plain 'THE LOSS OF' |
-| `16.jpg` | `ᚪ` (A) | `ᚾ…` | `ᚪᚾ-ᛁᚾᛋᛏᚱᚢᚳᛏᛡᚾ…` | Plain 'AN INSTRUCTION' |
+| Original scan | LP1 page | Oversized rune | Component box (x,y,w,h) | Following small red runes | Canonical text at that word/paragraph start | Source reading |
+| --- | ---: | --- | --- | --- | --- | --- |
+| `01.jpg` | 0 | `ᚱ` (R) | `602,672,164,550` | `ᛝᚱᚪ…` | `ᚱᛝᚱᚪᛗ…` | Encrypted “A WARNING” heading; authentic Atbash |
+| `03.jpg` | 1 | `ᚢ` (U) | `601,673,230,492` | `ᛠᛝᛋ…` | `ᚢᛠᛝᛋᛇᚠᚳ…` | Encrypted “WELCOME” heading; authentic Vigenère/F |
+| `04.jpg` | 2 | `ᛒ` (B) | `601,2044,149,492` | `ᛗᚱᚦᚠᛈ…` | `& ᛒᛗᚱᚦᚠᛈ…` | Paragraph initial; counted once in the canonical text |
+| `06.jpg` | 4 | `ᚹ` (W) | `600,670,150,495` | `ᚣᛠᚹᛟ…` | `ᚹ-ᚣᛠᚹᛟ…` | One-rune word followed by the normal word separator |
+| `10.jpg` | 8 | `ᚦ` (TH) | `601,667,148,497` | `ᛖ…` | `ᚦᛖ-ᛚᚩᛋᛋ…` | Clear “THE LOSS OF” heading |
+| `13.jpg` | 11 | `ᛋ` (S) | `602,1488,148,498` | `ᚩᛗᛖ…` | `& ᛋᚩᛗᛖ-ᚹᛁᛋᛞᚩᛗ…` | Clear “SOME WISDOM” paragraph |
+| `13.jpg` | 11 | `ᚪ` (A) | `600,2489,148,495` | `ᚾ…` | `& ᚪᚾ-ᛁᚾᛋᛏᚱᚢᚳᛏᛡᚾ…` | Clear “AN INSTRUCTION” paragraph |
+| `14.jpg` | 12 | `ᚪ` (A) | `601,669,148,497` | `ᛋᚹᚪᛁ…` | `ᚪ-ᛋᚹᚪᛁ…` | One-rune word followed by the normal word separator |
+| `16.jpg` | 14 | `ᚪ` (A) | `601,670,148,495` | `ᚾ…` | `ᚪᚾ-ᛁᚾᛋᛏᚱᚢᚳᛏᛡᚾ…` | Clear “AN INSTRUCTION” heading |
 
-The canonical first symbol in the genuinely encrypted `01.jpg` is **ᚱ**, whereas the decoded English heading begins **A**. This is particularly informative: the large red form is an honest **ciphertext rune**, not a free-standing plain-English initial supplied to the decoder. The `03.jpg` parallel is another encrypted positive. The `10.jpg` and `16.jpg` controls show the same design applied to literal clear GP text.
+The p0/p1 controls are especially useful: their oversized runes are authentic **ciphertext runes**, not plaintext initials supplied to the decoder. The p8/p11/p14 controls show the same typography on printed clear-GP text. Therefore the enlarged form does not signal cipher state, an extra token, or a direction opcode.
 
-The original LP2 opening `17.jpg` similarly begins in a single oversized **ᛋ**, followed by small `ᚻᛖ…`, matching the first source-inscribed red span `ᛋᚻᛖᚩᚷᛗᛡᚠᛋᚣᛖᛝᚳ` of p0. The 2014 LP2 p0 image does not supply a second extra 'arrow' at the same location.
+## Cipher consequence and boundary
 
-## Cipher consequence
+The original LP2 opening scan 17 likewise begins with an oversized `ᛋ`, followed by small `ᚻᛖ…`, matching the first source-inscribed red span `ᛋᚻᛖᚩᚷᛗᛡᚠᛋᚣᛖᛝᚳ` of p0. The LP2 p0 image does not supply a second extra arrow at the same location.
 
-This supplies a **cross-release author-contemporaneous visual convention**: an enlarged red rune may function as an ordinary *drop capital* of its own word, in sections whose decipherment is independently known. Treating every such red glyph as an additional directional opcode, key glyph or a second copy of the first rune would contradict known original LP1 text at the cited pages. This specifically challenges the provisional 'left-margin arrow-like mark' description in [the newer LP1 red inventory](lp1-red-ink-channel-inventory.md); the shapes should be cataloged as large initials unless some distinct non-letter decoration is established.
+The LP1 “arrow-like” forms are now source-identified as ordinary drop capitals and must be counted once. This rejects the proposed interpretation of those shapes as an independent direction selector. It does **not** prove every red-highlighted word or punctuation mark is semantically inert, nor does it rule out a distinct visual instruction elsewhere. The remaining red ink supplies no unique ordering, key serialization or reversible receiver by itself; no LP1→LP2 key or plaintext follows from this observation. Existing LP1 Vigenère-transfer and LP2 red256-XOR tests remain separate, previously bounded branches and are not repeated here.
 
-The convention **does not** prove every LP2 large letter is purely decorative, explain the distinct p0 black crosses or the terminal chapter illustrations, or decrypt any unknown rune. It gives a concrete source-native control to avoid inventing a new channel out of already counted manuscript letters. A future operator must identify the *residual* mark or visual instruction absent from the ordinary-rune control before fitting keys.
+## Reproduction
+
+Run from the repository root:
+
+    python sims/lp1_red_initial_dropcap_sft.py resources/liber-primus
+
+The script verifies all nine oversized red component boxes against the original scans and asserts that each adjudicated rune/context occurs in the corresponding canonical page. It is not OCR and does not claim to infer a cipher.
