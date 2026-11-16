@@ -32,6 +32,22 @@ Separately, treat the 40 event **positions** as an ordered 40-element subset of 
 
 No output is directly readable ordinary text or begins with one of the tested PDF, PNG, ZIP, JPEG or gzip file magics. The literal BASE29 outputs are at most 25 bytes long; they **cannot directly hold 150 consecutive rune plaintext symbols** even if a further decoder were specified. An opaque secret/seed of 25–28 bytes can of course look random, so these observations do **not** rule out a deliberately encoded cryptographic key or a compressed headerless payload. Neither can be authenticated as a key from these outputs alone.
 
+## P57 word-edge 40-rune key and exact first-chapter replacement-only capacity (Agent24, 16 November 2026)
+
+The **20** source-printed words of the solved p57 PARABLE give **40** outer runes when a solver literally sheds each word's first and last rune, left then right. The separately reconstructed 2015 human-solver prime-delta D on untouched original p0–2 has exactly **40 adjacent-equal derived events**. This 40↔40 numerical alignment is an exploratory *human-solve conjecture*: the signed 2016 clue does not equate the two registers, and the 2015 prime-delta procedure came from a participant, not a first-party Cicada instruction. The simplest direct operation pairs all 40 D repeat values with the 40 p57 word-edge key symbols in source order. Their GP29 additive result is **nonprose** (begins `OE W D B N NG O J NG L S G E TH EO`), and a fixed GP-trigram model's score was only in the top **~5.2%** of 20,000 key-order shuffles; this exploratory tail cannot authenticate a key or account for choosing the favorable arithmetic sign. The other natural ordinal/GP-prime and grouped-boundary combinations likewise reveal no coherent plaintext.
+
+A stronger [source-only SFT](../sims/lp2_p57_wordedge40_replacement_capacity_sft.cjs) asks whether **any** 40-symbol key, known or unknown, could restore native-looking 729-rune prose by *changing only those 40 event rune values*. On the printed C register, 2015 first D register, or the documented second E register, hold the other **689** rune slots fixed. Because the GP29 index of coincidence is a sum of convex occupancy functions, its exact global maximum assigns all 40 free sites to whichever rune is most frequent among those 689 fixed positions; the proof does **not** depend on testing particular passwords.
+
+| Original p0–2 register | Original 729-rune GP IoC | **Maximum GP IoC under any replacement of these 40 event symbols** |
+|---|---:|---:|
+| Printed C | 0.03408252 | **0.03829949** |
+| 2015 D, prime-shift then first difference | 0.03450459 | **0.03862358** |
+| 2015 E, next difference | 0.03480230 | **0.03992749** |
+
+For comparison, the independently solved **p57 GP text IoC is 0.06270997**. This is a deterministic all-key obstruction: even granting all 29⁴⁰ conceivable replacement assignments and any GP primer, **the rest of the transformed p0–2 register remains too uniform for native English-like rune frequency**. The SFT uses unchanged canonical source, reconstructs the historically witnessed 40 events and both D/E registers, asserts all exact IoC maxima, checks that 1,000 explicit arbitrary assignments never exceed each bound, and matches the solved p57 word count, 40 edge symbols and 55 inner symbols.
+
+**Decision:** retire the exact 40-to-40 event *replacement-only* story. It cannot decode the whole original first chapter into native GP prose. It does **not** exclude those 40 symbols being a compact binary key for a separate reversible cipher affecting all 729 runes, nor does it imply the 40=40 alignment was intentional.
+
 ## Reproducible decision and scope
 
 The [standalone Node22/CommonJS SFT](../sims/lp2_2015_repeat_base29_integer_gate_sft.cjs) asserts the original 729-input/40-event census, first and last event coordinates and all four exact hex outputs. It includes an **authentic 2013 BASE29 3QO→3301 arithmetic control**, a planted ASCII BASE29 encode/decode positive, rank-zero and rank-one subset positive controls and both rank range assertions. The four outputs were independently calculated against the repository's canonical original GP29 JSON in the connected research runtime. A separate Node22 workflow execution of the committed SFT is **not claimed**.
