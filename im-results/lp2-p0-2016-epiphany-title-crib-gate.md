@@ -6,7 +6,7 @@
 
 ## Human-visible source premise
 
-The *authenticated 2016* OutGuess signed message contains the clause “The path lies empty; **epiphany seeks** the devoted.” The original *2014* physical p0 red heading is two GP rune words of lengths **8 and 5**, exactly the source-normalized GP counts for **EPIPHANY SEEKS**. A human facing the 2016 message could propose these two words as an opening title crib. The author has **not** signed a statement identifying the heading, and the matching lengths do not prove that the text is right.
+The *authenticated 2016* OutGuess signed message contains the clause “The path lies empty; **epiphany seeks** the devoted.” The original *2014* physical p0 opening phrase is two GP rune words of lengths **8 and 5**, the first red and the second black, exactly the source-normalized GP counts for **EPIPHANY SEEKS**. A human facing the 2016 message could propose these two words as an opening title crib. The author has **not** signed a statement identifying the heading, and the matching lengths do not prove that the text is right.
 
 The canonical original p0 opening phrase is \`SHEOGMIAFSYENGC\` (13 GP29 symbols), with the 2016-inspired proposed plaintext \`EPIPHANYSEECS\` (K rendered as C under the standard GP alphabet). Direct modular subtraction under a fresh one-time hypothesis gives the 13-symbol implied key
 
@@ -18,7 +18,7 @@ GP prime-weight sum: 729
 
 The *entire original p0–2 ciphertext* also has **262+266+201 = 729 = 27²** runes. This is a numerical cross-match and the 27×27 proposal is older work, independently documented in [the p0 27×27 opening investigation](lp2-p0-27x27-opening-selector.md). The value was observed retrospectively after choosing this crib. To measure specificity rather than treating it as an instruction, the fixed phrase was aligned against **all 12,944** original 13-rune windows in pp0–55: **51** windows yield a derived key with GP prime sum729, including p0's opening phrase (offset0) and another p0 position178. This weakens interpreting 729 as a unique cryptographic checksum. No original rubric says to sum the inferred keystream's prime weights.
 
-## Multiple signed-2016 word-shape matches to original red headings
+## Multiple signed-2016 word-shape matches to original opening phrases and other red headings
 
 After freezing “EPIPHANY SEEKS” for p0, a second scan examined the exact signed message's **44 alphabetic tokens** against the independently registered original red-title word shapes (see the pre-existing [full original rubric register](../sims/lp2_red_title_ordered_phrase_source_sft.cjs)). Two additional message fragments happen to match distinct red-title shapes, with a third location repeating the same shape:
 
