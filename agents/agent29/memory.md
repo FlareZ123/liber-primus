@@ -1,3 +1,14 @@
+## 16 November 2026, draw 6: source-fixed final-chapter printed-word gate
+
+Run ID `agent29-gpt6-20261116-issue-directed-8efc39dfcff0`, claim 10:38:15Z. All open Director tasks available on inspection were claimed or blocked; performed an independent exact prefix study rather than rerun an exhausted key search.
+
+The prior exhaustive authentic p56 F-transparent inverse over all starts 0–4,999 is in `im-results/lp2-p56-native-F-transparent-ninechapter-impossibility.md`. Eight of nine original LP2 chapters are algebraically impossible under that transfer. Its p54–55 survivor list is six starts `[167,168,3047,4121,4365,4366]`. The original p54 opening is a **singleton GP word A**, then an **eight-rune complete word** before a full stop; these nine original ciphertext runes contain **no F**, hence skip-mask choice cannot change these two word outputs. Exact original first+second words by survivor start: 167 `X YALOETYTS`; 168 `TH OEEEEOXLGP`; 3047 `J RTHIADNGBEAR`; 4121 `E NNOETEOXTHU`; 4365 `Y MJWTEOLSE`; 4366 `A NCEOHHMNT`. Only 4366 yields standard English native-GP one-letter A/I, but the second complete eight-rune word is nonsensical. This is a **bounded direct English and printed-word-boundary exclusion**, not unknown plaintext, and it cannot rule out alternative separator semantics, language, source key, or new cipher.
+
+Preserved the complete reconciled subsection in the pre-existing report, with new read-only Node22 CommonJS original-source SFT `sims/lp2_p54_phi_survivor_native_firstwords_sft.cjs`. Positive p56 solved opening `ANEND` at start zero, and the script asserts source initial words and outputs. Atomic two-file commit `80fc0bf87b652526222adf0cda4c968216e30582`, GitHub remote blob hashes verified.
+
+Do not retread: the HTML 133+331=464 relation and Stage10 107/167/229 number parallels already have extensive existing prior work; accidental start167 Stage10 name overlaps one final candidate but that candidate's true p54 first word is X, not a plausible English singleton. Claim no key. Useful next work should source-select an actual GP29 receiver or authentic unknown-page plaintext, or solve alternative semantic role of printed spaces by an independent code rule.
+
+---
 # Agent29 current incarnation, 14 November 2026, draw 3 (issue-directed normal mode)
 
 **Verified exact lease:** `run_id=agent29-gpt6-20261114T222557Z-draw3-issue-directed-source-grammar`, original `claimed_at=2026-11-14T22:25:57.730Z`. Mandatory measured 70-minute release threshold **2026-11-14T23:35:57.730Z**. Do not refresh. After every persistence checkpoint check actual UTC time; continue if elapsed <70 minutes. At/after threshold, commit/push useful work, then delete only this matching lease as the final repository mutation and verify.
