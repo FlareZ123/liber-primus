@@ -195,6 +195,72 @@ const wordInterior = conditional(lineInside, baselineInside);
 console.log(JSON.stringify({ wordBoundaryLineStarts: wordBoundary, interiorWrapLineStarts: wordInterior }, null, 2));
 assert.ok(wordInterior.widthWeightedChiSquare < wordBoundary.widthWeightedChiSquare);
 
+
+/** Original-source color and physical-page-first conditional restriction. */
+const ink = JSON.parse(fs.readFileSync(
+  path.join(root, 'resources', 'liber-primus', 'lp2-ink-annotations.json'), 'utf8'
+));
+const redOffsets = new Set();
+const physicalFirstOffsets = new Set();
+const pageStarts = new Map();
+let pageOffset = 0;
+for (const page of pages) {
+  pageStarts.set(page.page, pageOffset);
+  physicalFirstOffsets.add(pageOffset);
+  pageOffset += page.indices.length;
+}
+for (const page of ink.pages) {
+  const start = pageStarts.get(page.page);
+  if (start === undefined) continue;
+  for (const span of page.red_spans || []) {
+    for (let i = 0; i < span.length; i++) redOffsets.add(start + span.start + i);
+  }
+}
+let runeOffset = 0;
+let atWord = true;
+let atLine = true;
+const allWordPositioned = [];
+const lineWordPositioned = [];
+for (const symbol of transcript) {
+  if (runeOffset === ciphertext.length) break;
+  if (symbol === '\n') { atLine = true; continue; }
+  if (symbol === '-' || symbol === '.' || symbol === '%' || symbol === '&' || symbol === '$') {
+    atWord = true;
+    continue;
+  }
+  const v = runeIndex.get(symbol);
+  if (v === undefined) continue;
+  if (atWord) {
+    const entry = { v, position: runeOffset };
+    allWordPositioned.push(entry);
+    if (atLine) lineWordPositioned.push(entry);
+  }
+  runeOffset++;
+  atWord = false;
+  atLine = false;
+}
+assert.equal(allWordPositioned.length, baselineWord.length);
+assert.equal(lineWordPositioned.length, lineWord.length);
+const restrictedChi = (predicate) => {
+  const selected = lineWordPositioned.filter(predicate);
+  const source = allWordPositioned.filter(predicate);
+  const b = counts(source.map((x) => x.v));
+  const a = counts(selected.map((x) => x.v));
+  const norm = b.reduce((sum, n, index) => sum + n * inkWidths[index], 0);
+  const expected = b.map((n, index) => selected.length * n * inkWidths[index] / norm);
+  return { n: selected.length, chiSquare: chi2(a, expected) };
+};
+const excludeRed = (x) => !redOffsets.has(x.position);
+const excludePage = (x) => !physicalFirstOffsets.has(x.position);
+const restrictions = {
+  excludeRed: restrictedChi(excludeRed),
+  excludePageFirst: restrictedChi(excludePage),
+  excludeBoth: restrictedChi((x) => excludeRed(x) && excludePage(x))
+};
+assert.equal(restrictions.excludeBoth.n, 144);
+assert.ok(Math.abs(restrictions.excludeBoth.chiSquare - 47.46970659976371) < 0.000001);
+console.log(JSON.stringify({ wordStartInkAndPageRestricted: restrictions }, null, 2));
+
 const lp1 = fs.readFileSync(path.join(root, 'resources', 'transcriptions', 'lp1_wulfic_canonical.txt'), 'utf8');
 const lp1Lines = lp1.split(/\r?\n/u).map((line) =>
   Array.from(line).filter((rune) => runeIndex.has(rune)).map((rune) => runeIndex.get(rune))
