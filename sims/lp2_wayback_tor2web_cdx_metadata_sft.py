@@ -31,12 +31,12 @@ CDX_ENDPOINTS = (
     "http://web.archive.org/search/cdx",
 )
 QUERIES = (
-    "tor2web.onionsearchengine.com/*",
-    "*.onion.ly/",
+    ("tor2web.onionsearchengine.com", "domain"),
+    ("onion.ly", "domain"),
 )
 
 
-def fetch_cdx(pattern: str) -> list[dict[str, str]]:
+def fetch_cdx(pattern: str, match_type: str) -> list[dict[str, str]]:
     params = [
         ("url", pattern),
         ("output", "json"),
@@ -46,6 +46,7 @@ def fetch_cdx(pattern: str) -> list[dict[str, str]]:
         ("fl", "timestamp,original,mimetype,statuscode,digest,length"),
         ("collapse", "urlkey"),
         ("limit", "10000"),
+        ("matchType", match_type),
     ]
     query = urllib.parse.urlencode(params)
     last_error: Exception | None = None
@@ -77,10 +78,10 @@ def main() -> None:
         "known_cicada_2014_hosts": sorted(CICADA_HOSTS),
         "queries": [],
     }
-    for pattern in QUERIES:
+    for pattern, match_type in QUERIES:
         started = time.time()
         try:
-            rows = fetch_cdx(pattern)
+            rows = fetch_cdx(pattern, match_type)
             matches = []
             onion_hosts_seen: set[str] = set()
             for row in rows:
@@ -100,6 +101,7 @@ def main() -> None:
                     })
             report["queries"].append({
                 "pattern": pattern,
+                "match_type": match_type,
                 "rows": len(rows),
                 "distinct_onion_hosts": len(onion_hosts_seen),
                 "known_cicada_host_matches": matches,
@@ -109,6 +111,7 @@ def main() -> None:
         except Exception as exc:  # preserve the failure as a reproducible result
             report["queries"].append({
                 "pattern": pattern,
+                "match_type": match_type,
                 "error": f"{type(exc).__name__}: {exc}",
             })
 
