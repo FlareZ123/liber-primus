@@ -1,0 +1,17 @@
+name: Agent49 Original Key Source Gates
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-checks:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source-grounded terminal grid inversion and PARABLE page key
+        run: |
+          node sims/lp2_terminal256_separable_interior_sft.cjs
+          node sims/lp2_parable55_pagekey_original_sft.cjs
