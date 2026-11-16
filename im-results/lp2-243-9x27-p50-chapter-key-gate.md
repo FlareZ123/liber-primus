@@ -8,7 +8,7 @@ Several independent source observations invite a compact structural hypothesis:
 
 - The authenticated 2016 message supplies the numbers **243** and **58** and says that words are a map and numbers are direction ([fold/source analysis](lp2-2016-signed-message-fold-square.md)).
 - LP2 has **nine** original visual sections ([section map](lp2-global-original-visual-section-map.md)).
-- Liber AL II:55 says to obtain the order and value of the English alphabet and find new symbols to attribute to it ([2013 source transcription](../resources/external/2013-book-of-law-II.txt)). Crowley's Old Comment points to *Liber Trigrammaton*, whose 27 trigrams carry English-letter attributions on the first 26 figures ([text and trigrams](https://sacred-texts.com/oto/lib27.htm)).
+- Liber AL II:55 says to obtain the order and value of the English alphabet and find new symbols to attribute to it ([2013 source transcription](../resources/external/2013-book-of-law-II.txt)). Crowley's Old Comment points to *Liber Trigrammaton*, whose 27 trigrams carry English-letter attributions on the first 26 figures ([text and trigrams](https://lib.oto-usa.org/libri/liber0027.html)).
 - The original p50 numerical table contains **256** base-60 byte values. The p32 image has a **13-dot** marker, and 256−13=243=9×27.
 
 The hypothesis was that the 13-dot marker selects a 13-cell leading skip in the p50 table; the remaining 243 values form nine consecutive 27-value keys, one per visual section. A 27-value key repeats within its chapter. The table values are reduced modulo29 and used as a direct additive GP29 key. The alternative is one continuous 243-value key across the whole unknown stream.
