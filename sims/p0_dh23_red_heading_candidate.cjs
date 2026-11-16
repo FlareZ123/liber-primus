@@ -58,9 +58,12 @@ const translit = (indices) => indices.map((i) => corpus.translit[i]).join("-");
 
 assert.equal(corpus.pages.length, 58);
 const physical = physicalOverride.physical_zero_based;
-assert.equal(physical.red_runes[0].length, 8);
-assert.equal(physical.large_punctuation[0].after_runes, 8);
-assert.equal(physical.black_following_runes[0].length, 5);
+assert.deepEqual(physical.red_words.map((w) => [w.start, w.length]), [[0, 8], [8, 5]]);
+assert.equal(physical.small_punctuation[0].after_runes, 8);
+assert.equal(physical.large_punctuation[0].after_runes, 13);
+assert.equal(physical.large_punctuation[0].dots, 13);
+assert.equal(physical.black_following_runes[0].start, 13);
+assert.equal(physical.black_following_runes[0].length, 7);
 
 const openingPhrase = corpus.pages[0].indices.slice(0, 13);
 const postPeriodSeven = corpus.pages[0].indices.slice(13, 20);

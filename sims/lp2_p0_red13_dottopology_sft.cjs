@@ -1,4 +1,4 @@
-/** Original-source red8/black5 opening phrase / 13-dot route and held-out tail gate. */
+/** Original-source two RED words (8+5), ordinary red word dot, then 13-dot marker at rune13. */
 'use strict';
 
 const assert = require('node:assert/strict');
@@ -14,12 +14,12 @@ const firstHeader = transcription.split(/\r?\n/u, 1)[0].split('.', 1)[0].split('
 assert.deepEqual(firstHeader.map((s) => Array.from(s).length), [8, 5]);
 
 const physical = physicalOverride.physical_zero_based;
-assert.equal(physical.red_runes[0].start, 0);
-assert.equal(physical.red_runes[0].length, 8);
-assert.equal(physical.large_punctuation[0].after_runes, 8);
+assert.deepEqual(physical.red_words.map((w) => [w.start, w.length]), [[0, 8], [8, 5]]);
+assert.equal(physical.small_punctuation[0].after_runes, 8);
+assert.equal(physical.large_punctuation[0].after_runes, 13);
 assert.equal(physical.large_punctuation[0].dots, 13);
-assert.equal(physical.black_following_runes[0].start, 8);
-assert.equal(physical.black_following_runes[0].length, 5);
+assert.equal(physical.black_following_runes[0].start, 13);
+assert.equal(physical.black_following_runes[0].length, 7);
 
 const source = corpus.pages.slice(0, 3).flatMap((p) => p.indices);
 assert.deepEqual(corpus.pages.slice(0, 3).map((p) => p.runic_count), [262, 266, 201]);
