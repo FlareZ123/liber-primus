@@ -104,7 +104,7 @@ const results = sources.map((source, n) => {
     assert.deepEqual(hits, [{targetIndex:1565, sourceIndex:50253}]);
     const boundary = sourceText.slice(sourceMatches[50258].index +
       sourceMatches[50258][0].length, sourceMatches[50259].index);
-    assert.equal(boundary, '.\n'); // 'none.' then 'Thus'
+    assert.match(boundary, /^\.\r?\n$/u); // CRLF on Windows checkout
     assert.ok(transcript.includes(
       parsed.words[1570].runes + '-' + parsed.words[1571].runes));
     // A separate source-image census finds no raised apostrophe on either
