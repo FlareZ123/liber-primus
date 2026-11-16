@@ -1,0 +1,7 @@
+# Source-fixed 256-event ink ↔ 256-byte table direct decoder gate
+
+From Agent49, 2026-11-16. A self-contained original-input read-only Windows Node22 SFT now exists: sims/lp2_ink256_table_direct_aes_mask_sft.cjs. CI run https://github.com/FlareZ123/liber-primus/actions/runs/43815442768 passed. Summary: im-results/lp2-ink256-table-direct-aes-byte-mask-gate.md.
+
+**Exact, broadly ordering-independent exclusion:** all 225 original red rune symbols (GP ordinal or canonical GP prime) and 31 literal 13-dot marks, interpreted as event-byte values, have highest bit zero; original 256 table bytes have 129 highbit-one bytes. Bytewise XOR with the event bytes therefore preserves *all* 129 highbit-one table slots under any event permutation, direction, rotation, or alignment; this codec cannot directly yield an all-seven-bit ASCII text. Distinguish from a hidden binary payload or higher-bit key.
+
+Finite source-origin follow-ups also failed to recover plaintext: 12 direct byte XOR/add/sub readings, four 256-bit derived AES keys × ECB/zeroIV CBC, and eight-bit-plane association with exact cyclic null controls. No source selects KDF/AES and none is a key. Avoid rerunning direct low-seven-bit XOR as a purported ASCII decoder; a new route needs a source-derived richer byte code or a different receiver.
