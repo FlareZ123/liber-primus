@@ -98,6 +98,19 @@ assert.deepEqual(sum288Pairs.filter((item) => item.pair === phrase)
   .map((item) => item.page), [27, 55]);
 assert.equal(288 % 58, 56);
 assert.equal(Math.floor(288 / 58), 4);
+// Exact random-GP-prime-label null for the six distinct observed rune types:
+// all 6-subsets of 29 prime labels are exchangeable.
+const subsetWays = Array.from({ length: 7 }, () => Array(655).fill(0));
+subsetWays[0][0] = 1;
+for (const prime of corpus.prime) {
+  for (let count = 6; count >= 1; count--) {
+    for (let sum = 654; sum >= prime; sum--) {
+      subsetWays[count][sum] += subsetWays[count - 1][sum - prime];
+    }
+  }
+}
+assert.equal(subsetWays[6][288], 3823);
+assert.equal(subsetWays[6].reduce((a, b) => a + b, 0), 475020);
 // On the historically solved page the prime-totient stream has no F skips
 // before the fourth word; check its DEEP plaintext from original cipher.
 const deepStart = 12;
@@ -156,6 +169,7 @@ console.log('SOURCE: ᛞᛄᚢ-ᛒᛖᛁ, p27 second line, p55 final two words')
 console.log('CORPUS: 2584 literal-dash word pairs, 2583 types, 1 repeat');
 console.log('MAP CANDIDATE: DJU(129)+BEI(159)=288 = 58*4+56, p56:w4 DEEP');
 console.log('MAP CONTROLS: 9/2584 exact-sum pairs; 3/164 are 3+3 (two are DJU-BEI)');
+console.log('MAP WRONG-PRIME-LABEL NULL: P(fixed six distinct runes sum 288) = 3823/475020');
 console.log('GEOMETRY: 789 three-rune word slots; 164 adjacent 3+3 edges; 26 sharing edge pairs');
 console.log('SOURCE CONTROLS: original p27 offsets 28..33 -> global 6555..6560');
 console.log('SOURCE CONTROLS: original p55 offsets 70..75 -> global 12950..12955');
