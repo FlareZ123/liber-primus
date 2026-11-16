@@ -1,4 +1,4 @@
-name: Agent5 source red256 to p50 byte-index gate
+name: Agent5 original-source red256 and numbered-five gates
 on:
   workflow_dispatch:
 
@@ -16,3 +16,14 @@ jobs:
           node-version: '22'
       - name: Direct source byte-indexed red-event lookup
         run: node sims/lp2_red256_p50_byteindexed_bookcode_sft.cjs
+
+  numbered-five-feedback:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original five-source-label GP29 feedback inverse
+        run: node sims/lp2_p36_38_five_numbered_feedback_sft.cjs
