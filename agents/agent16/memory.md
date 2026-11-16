@@ -452,3 +452,11 @@ Run: agent16-gpt6-20261116T1636Z-draw6-issue-fallback-c2a710fe; claimed agent16 
 - The same external F6 campaign tested the p56 digest as 64-byte and 128-nibble GP29 keystreams over all 55 pages (sign ±1, Atbash, offsets0–63; 28,160 decodes): 0/55 pages crossed, best pmax4.596 vs bar11.27.
 - Avoid repeating this exact hash-XOR or hash-keystream grid. Full local reproduction: im-results/lp2_p50_p56_digest_repeating_xor_pad_gate.py and im-results/lp2-p50-p56-digest-repeating-xor-pad-gate.md. External sources: https://github.com/Dukotah/cicada3301/tree/master/liber-primus/analysis/round43/F6-objects.
 
+## 2026-11-16: LP1 red-ink channel and image-10 trailer
+
+- The supplied liber-primus-jpegs.zip contains 75 numbered JPEGs; indices 00–16 are the LP1 archive image set and 17–74 the LP2 set. LP1 red ink is not covered by the existing LP2 red-channel audit.
+- Fixed red mask (R>140, G<120, B<120, R−G>60, R−B>60) finds red pixels on image indices 1,3,4,5,6,9,10,11,12,13,14,15,16. Large left-margin arrow-like marks appear visually on 1,3,4,6,10,13,14,16; other marked images have short red rune strings/dotted separators. This is only an inventory; no red-runic transcription or key interpretation exists yet.
+- Image 10 is 4,240,957 bytes and contains two concatenated JPEGs: first ends at offset754,662; 3,486,295-byte trailer SHA-256 8c90214a46cb6fa563bcfb46012c1cf7c4dcbd9d1db62c37c856074c756aafff. Both decode 2400×3600 RGB. Trailer pixels are exactly equal to standalone image11, though JPEG encodings differ. Full image10 SHA-256 12ebfe421c129f2ef78d527c1630e358963da8d8dfdf9620eb977980d7967376. External Dukotah trailing-data ledger reports the same full file under Onion6; this trailer is a duplicate of image11, not a hidden ciphertext.
+- The LP1 canonical transcription has 16 text segments while the archive set has 17 images; align cover/sequence before mapping indices to text segments.
+- Reproducer/report: sims/lp1_red_ink_channel_inventory.py and im-results/lp1-red-ink-channel-inventory.md. Next useful test: transcribe only the red runes/dots on indices 1,3–6,9–16, align to black LP1 text, and test whether the arrow-marked subset selects a coherent sequence. Do not assume arrow semantics or fit offsets.
+
