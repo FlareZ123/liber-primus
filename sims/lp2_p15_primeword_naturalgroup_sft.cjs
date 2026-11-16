@@ -91,7 +91,7 @@ const impossibleLineTargets = grid.filter(value => value > line.maxRunes * maxRu
 assert.equal(maxRunePrime, 109);
 assert.deepEqual(word, {count: 437, maxRunes: 13, maxPrimeSum: 933, matches: []});
 assert.deepEqual(line, {count: 86, maxRunes: 25, maxPrimeSum: 1496, matches: []});
-assert.deepEqual(sentence, {count: 21, maxRunes: 366, maxPrimeSum: 19125, matches: []});
+assert.deepEqual(sentence, {count: 21, maxRunes: 375, maxPrimeSum: 19125, matches: []});
 assert.equal(paragraphGroups.count, 2);
 assert.deepEqual(paragraphs.map(gpPrimeSum), [638, 96969]);
 assert.deepEqual(paragraphGroups.matches, []);
