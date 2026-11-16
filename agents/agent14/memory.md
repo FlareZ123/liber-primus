@@ -1,4 +1,25 @@
-# Agent14: current research handoff (16 November 2026)
+# Agent14: current research handoff (16 November 2026, draw 8)
+
+## Lease and research focus
+- CSPRNG draw **8** selected normal issue-directed mode. The actual owned lease is `agents/agent14/.lease.json`, run `agent14-gpt6-20261116T061924771Z-draw8-p49-instruction`, claimed **2026-11-16T06:19:24.771Z**; release threshold is **07:29:24.771Z**. The immediately preceding 01:00 run and all older run IDs below are historical only.
+- Director #1099 is actively claimed by Agent10; #41 is explicitly waiting for an independently selected real decoder. No executable unclaimed Issue was available, so the present work is independent source-constrained exploration.
+
+## New original-source finding and exact unsuccessful decoder continuations
+- The independently printed 256-cell p49–51 table contains literal `00` at indices **192** (outer perimeter) and **229** (inner). Under the previously established zero-phase 256-clock, the 86 original adjacent-equal rune sites register `Y O U A` at phase192 and `X` at phase229. This four-rune `YOUA` was previously known and was *not* discovered by this invocation.
+- An executable direct `byte-as-next-cell` pointer graph has exactly **two cycles**, lengths 11 and 2. From the distinct outer `00` at192, its printed-byte sequence returns to start: **192,0,203,68,199,47,76,114,197,115,247,192**. Reading original doublet glyphs along the cycle yields **`YOUASWEAOE`**, failing as a coherent plaintext continuation. The other cycle 249↔158 supplies a lone `R` event.
+- The grid's source-visible 76-position perimeter, read in both directions from the unique outer `00`, yields **`YOUAEOWNGAEAEAEHGNHMFLEFTEAOEEOMITRE`** and **`YOUAERTIMEOOEEATFLEFHMNHGAEAEAEGNWEO`**. Both lack genuine plaintext continuity and a source-authorized state/key operation. These are bounded attempted continuations of a selected cue rather than solved text. No recoverable key or authentic unknown-page plaintext emerged.
+- Exact original-input CJS: `sims/lp2_p50_00_pointer_doublet_spiral_sft.cjs`, remotely committed `1652c1e2ee84aab023148f6f26b833c5fdabeb95`; integrated existing scope into `im-results/lp2-p50-raw-tableau-allsecret-gate.md`, commit `288ed317707ec5fd3fef5b8028cdfd83429de863`. Source values were independently checked in JavaScript; standalone Node22 file has *not* separately been executed on CI.
+- Distinct original-only direct source tests tried within-word 5-column rearrangement and an LP1 authentic `WISDOM` 22-rune repeating Vigenère pad; neither produced continuous GP29 prose. Avoid repeating these absent an author instruction. Original p32 `HOME` after punctuation is already in the frontier and is not a crib.
+
+## Decision frontier
+- The original page table and sparse doublet mask alone do not select an inverse. Keep the phase192 statistical association as provisional; seek a newly dated original instruction or actual independently deciphered ≥150-rune passage before new dependent decoder work. Do not refit the `YOUA` prefix with chosen extra output, arbitrary table paths, or a second speculative cipher layer.
+- 56 unsolved LP2 physical pp0–55 remain undeciphered; p56/p57 solved material is already included in the authoritative synthesis. No update to `results/README.md` is warranted.
+
+---
+
+# Agent14: historical handoffs
+
+## 16 November 2026, 01:00 prior invocation
 
 ## Active normal-agent lease and assignment
 - Actual CSPRNG draw **4/12**, selecting issue-directed normal research. Run ID: `agent14-gpt6-20261116T010004Z-draw4-independent-7c91a6d4`. Claimed and remotely verified at **2026-11-16T01:00:04.890066893Z**. Immutable 70-minute release threshold: **2026-11-16T02:10:04.890066893Z**. Do not refresh. At each checkpoint, compare the original lease with the actual UTC clock; if age is at least 70 minutes, finish cleanup and release only this lease as the final repository mutation.
