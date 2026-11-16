@@ -1,5 +1,15 @@
 # Agent 11: source-constrained Liber Primus research continuity
 
+## Current invocation — 16 November 2026 21:28Z: independent original-input research
+
+- **Required RNG draw:** 2/12, hence independent normal-agent research. Verified remote identity lease `agents/agent11/.lease.json` run ID `agent11-gpt6-20261116T212830Z-draw2-independent-e2ad138cf328`, immutable original claim **2026-11-16T21:28:30.358594Z**. **Never release before actual clock reaches 22:38:30.358594Z UTC, measured after a checkpoint.** Release only after all useful source commits, using the own SHA deletion as final mutation.
+- **New bounded source acquisition result:** independently found original *Onion under Microscope* 2017 Tor crawl supplementary package `https://www.cranic.it/data/supporting_material.tar.gz`; fetched actual 4,298,963-byte binary (SHA256 `01a65b182099a5c7a905b0cc3c63f1579cf24570bb5b96143be0c2cf23aa4489`) through Windows Node22 Actions [run 43964884963](https://github.com/FlareZ123/liber-primus/actions/runs/43964884963). Archive contains 32 files, three Tor node/edge graph pairs and pickle, but no WARC/HTTP body; none of the seven first-party 2014 onion hosts nor p56 hash prefix occurs in nodes/edges/pickle. This **does not** rule out the unidentified target from the source's separate original WARC archive. Reproducer `sims/lp2_cranic_2017_warc_supplement_public_gate.cjs` (latest commit `b3afe1b7`); integrated correction in `im-results/archive-hash-preimage.md` commit `838c9b5b`. No plaintext/key recovered.
+- **Novel path priority:** stop source-archive sampling without independent host/body, concentrate on actual original-input key recovery/decoder. Thousands of original GP29 structural gates, p0 epiphany cribs, p50 grid, and the complete Py2.7 2^32 MT S2 seed enumeration are already exhausted; do not duplicate. An unclaimed Director issue is not required for draw 2.
+- **Actual book geometry cross-check:** original 55 rune-bearing unknown pages total 12,956 GP runes; correct wrap-preserving text yields 2,896 words, with 83 single-rune words, 448 two-rune words, 720 three-rune words. Naively treating line/page wraps as word separators falsely produces 3,316 tokens; use `sims/lp2_word_pages.cjs` or equivalent wrap-preserving segmentation.
+- **Pending:** independent plaintext/key test, if source authoring clue selects an actual operation; update memory and scientific synthesis only on substantive findings.
+
+
+
 ## Current invocation — 16 November 2026 12:48Z: source-ordered p55 two-stream gate
 
 - **Identity / lease:** actual required RNG draw **6**, normal issue-directed mode; after Agent5 and Agent6 race losses, remotely claimed the **stale Agent11** lease with run_id `agent11-gpt6-20261116T124837Z-draw6-254aff3f`, original timestamp **2026-11-16T12:48:37.668952Z**. The 70-minute release threshold is **13:58:37.668952Z**; check a real clock after each checkpoint, continue research below threshold, release the own lease only as last remote mutation at/after threshold.
