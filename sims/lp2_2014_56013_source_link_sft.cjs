@@ -48,10 +48,15 @@ async function run(){
     const rows=b.toString("latin1").split(/\r?\n/);
     let periodCount=0, e=0, r=0, both=0;
     const allDateCases=[], focusContexts=[];
+    const laterContext=[];
     const exactCases=[], relatedCases=[];
     for(let i=0;i<rows.length;i++){
       const line=rows[i];
       if(exact.test(line))allDateCases.push({line:i+1,text:line.slice(0,420)});
+      if(arc.name==="#cicadasolvers.freenode.2.log" && [101552,246982,311210].includes(i+1))
+        laterContext.push(...rows.slice(Math.max(0,i-10),Math.min(rows.length,i+11)).map((v,j)=>"L"+(Math.max(0,i-10)+j+1)+": "+v.slice(0,400)));
+      if(arc.name==="#cicadasolvers.freenode.log" && [37281,37283,43215,69052].includes(i+1))
+        laterContext.push(...context(rows,i));
       if(arc.name==="#cicadasolvers.freenode.log" &&
          line.startsWith("2014 May 19 ") && /AN END|prime.*page\s?56/i.test(line))control++;
       if(!period(line))continue;
@@ -75,6 +80,7 @@ async function run(){
     console.log("RELATED_CONTEXTS "+JSON.stringify(relatedCases.slice(0,90)));
     console.log("EXACT_ALL_DATES "+JSON.stringify(allDateCases.slice(0,150)));
     console.log("FOCUS_2014_CONTEXTS "+JSON.stringify(focusContexts));
+    console.log("HISTORICAL_BROAD_DATE_CONTEXT "+JSON.stringify(laterContext));
   }
   assert(control>0,"original-source 19 May p56 positive control");
   console.log("TOTAL "+JSON.stringify({original2014MayAugLines:count,exactHits:exactTotal,relatedHits:relatedTotal,relatedNearLP2:concurrentTotal,positiveHistoricalP56Witnesses:control}));
