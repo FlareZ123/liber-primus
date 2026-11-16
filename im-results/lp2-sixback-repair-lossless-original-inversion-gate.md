@@ -56,6 +56,23 @@ The original chapter counts for eligibility/matches are: p0–2 **79/6**, p3–7
 
 A deterministic 5,000-repetition null fixes *each actual printed word's* multiset, length and adjacent-equal-pair count. It evaluates **812** possible invertible affine maps at word-local lag six (seed `0x6b31a250`). Original T6 is rank 1: **80** matches versus null **45.6694 ± 6.5611**, standardized score **5.23244**. Three of 5,000 whole-book nulls have an affine maximum at least this high; familywise add-one p **4/5,001 = 0.00079984**. This only corrects *812 maps at the already selected lag six*, and is nested inside the **earlier, wider 5,684-map/lag family** with corrected p approximately 0.013. It is a software and calibration control; it does not establish an independent source clue, cipher, plaintext or recovered key.
 
+## Full M1 generator also fails the five-apart S carrier
+
+The previous original-cipher research identified **11** word-local five-apart echoes of the literal GP29 S=index15. Of the 2,105 eligible j≥5 positions on the unchanged manuscript, **74** have S exactly five runes earlier. Crucially, none of those 74 original sites has the T6 overwrite target equal to S, so the six-back M1 overwrite cannot preferentially generate any of these eleven events.
+
+With q=0.81543357 estimated from the distinct **eight** surviving j≥6 doublets, the exact published M1 emission probabilities conditional on the original preceding runes yield only **2.51858460** S5 events expected among those 74 sites. Tuning q from0 to1 moves the expectation only from **2.55172414** to **2.51108374**.
+
+The [new source-exact M1 generator SFT](../sims/lp2_sixback_m1_s5_generator_sft.cjs) runs 15,000 seeded complete stochastic M1 books with the original **2,896 word lengths, 32 page-carry words, nine section resets and 12,956 symbols**. It implements iid uniform GP29 pre-repair bases, M1's q collision probability, six-back target and uniform-other fallback, including the final no-repeat guard. The fixed seed is `0x152ff00d`.
+
+| Observable | Original | M1 simulated mean |
+|---|---:|---:|
+| Section-internal adjacent doublets | **86** | **82.4331** |
+| Word-local T6 matches | **80** | **78.2686** |
+| S at five-back eligible sites | **74** | **72.5115** |
+| Five-apart S→S matches | **11** | **2.5059** |
+
+Exactly **1/15,000** generated books reaches at least eleven S5 echoes; add-one empirical p **2/15,001≈0.0001333**. No generated book reaches both the actual S5 and T6 thresholds. This tests the completeness of one frozen generator against an **already-discovered** S5 anomaly, so the p-value is conditional model adequacy, not a discovery-wide significance assessment. M1 fits broad six-back/doublet counts yet fails the value-specific S carrier. A second S-specific operation would require independent source selection and a reversible restoration mechanism; varying q alone cannot supply it.
+
 ## Completion and next causal decision
 
 The literal Phase 25 M1 operator cannot be a **lossless stand-alone inverse** of original LP2 while emitting only the original 29-way rune and keeping the next key phase fixed. The source material supplies a historical numeric way to *write down T6*; it does **not** supply the additional event flags, source-register restoration values, key-pointer jumps, or an independently specified word-local locator needed to recover one unique input.
