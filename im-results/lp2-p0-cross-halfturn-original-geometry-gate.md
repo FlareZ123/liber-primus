@@ -1,0 +1,21 @@
+# The opening three-bar crosses select a page half-turn, not a cipher inverse
+
+**Original-image geometry and finite inversion decision, 16 November 2026, Agent28.** Original scans \`resources/liber-primus/{17,18,19,20}.jpg\`, physical pp0–3. This tests the two **separate black three-bar cross ornaments** bordering each of pp0–2. It recovers **no unknown plaintext, key, message, or destination**.
+
+## Source-visible operation and independent comparison
+
+The right cross sits above/right of the paragraph and the left cross below/left. Each has three transverse bars. Thresholding original black ink at grayscale intensity below 90 and cropping original pixel rectangles \`left=(57,1697,548,2953)\`, \`right=(1852,647,2343,1903)\` (exclusive upper bounds) yields **98.5846840% intersection-over-union** when the source p1 left crop is rotated exactly **180 degrees** against its right crop. These rectangles are paired around the *precise* 2400×3600 page center \`(1200,1800)\`; this is a printed half-turn symmetry without a fitted affine alignment. Independent p0 and p2 yield **98.5484520%** and **98.5846840%**, respectively. The original cropped black-pixel masks on p1 and p2 are *exactly identical*, despite different text lengths and an insect illustration on p2. The following original p3 (\`20.jpg\`) yields only **4.8797339%** half-turn IoU at the identical source rectangles and lacks this cross pair. This distinguishes repeated opening-chapter art from a general page or pixel artefact. There are **two distinct three-bar crosses**, rather than three independently placed black crosses.
+
+A contemporary solver could infer the geometric operation **turn the page 180 degrees**, or attempt a page-local reversal of rune reading order. The illustrations repeat at the same positions while the manuscript text changes across pp0–2; they provide **no printed rune/word-column address, stopping index, GP29 rotation alphabet or cryptographic key**. Their three transverse bars are elements of each reused drawing, not separately positioned address pointers. The intent behind the obvious half-turn relationship remains unverified.
+
+## Original-length reversible inversion and control
+
+The corrected p0 heading is 13 red GP runes (8+5), followed by the 13-dot separator. The remaining p0 body has 249 black runes, followed by p1 with 266 and p2 with 201: exactly **716 original black GP29 symbols**. Their empirical IoC is **0.0341016525374**, near alphabet-uniform. Known clear p57 has **95 original runes**, IoC **0.0627099664054**. Page-local reversal of all three original black bodies is exactly reversible and **preserves every rune frequency and the same 0.0341016525374 IoC**. Thus reversal alone cannot restore native GP prose with the letter-frequency profile of the independently clear control. Reversing an already readable natural-language page also preserves its IoC, so this statistic establishes a *necessary distributional mismatch for this particular pure permutation*, not a universal exclusion of reverse text.
+
+To alter the original rune values under literal glyph rotation, the solver would need a complete independently specified 180-degree glyph-to-GP mapping. The illustrated crosses provide no such mapping. Extra Caesar shifts, column selection or secret keys would be additional, unsupported operations.
+
+The read-only [original-source SFT](../sims/lp2_p0_cross_halfturn_sft.py) tests pp0–3 pixels, pixel equality of p1/p2 cross artwork, original p0 red13 exclusion, all 716 GP indices, IoC invariance, and lossless page-local reversal. The p3 illustration is a negative control. All source JPEGs and corpus bytes remain untouched.
+
+## Research decision
+
+Retire the **literal half-turn/ordering** branch as a complete unknown-page decoder. The 180-degree symmetry is real, but no unique value-changing cipher operation or column selector follows from it. Revisit only if a first-party instruction supplies an actual rotated rune alphabet or specifies which original text region to read. The larger LP2 manuscript remains unsolved.
