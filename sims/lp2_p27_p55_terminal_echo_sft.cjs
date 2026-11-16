@@ -1,0 +1,134 @@
+'use strict';
+
+/**
+ * Source-frozen LP2 p27 -> p55 terminal two-word echo.
+ * Read-only CommonJS SFT for original manuscript words and a finite
+ * fixed-multiset null. No ciphertext guesses, plaintext fitting or writes.
+ * Run in the repository root with: node sims/lp2_p27_p55_terminal_echo_sft.cjs
+ */
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+
+const root = path.resolve(__dirname, '..');
+const transcription = fs.readFileSync(
+  path.join(root, 'resources', 'liber-primus', 'lp2-transcription.txt'), 'utf8');
+const corpus = JSON.parse(fs.readFileSync(
+  path.join(root, 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'));
+const parts = transcription.split(/^%$/m);
+assert.equal(parts.length, 57, 'Expected 56 rune-page delimiters');
+
+/** @param {number} n @param {number} k @returns {number} */
+function falling(n, k) {
+  let result = 1;
+  for (let i = 0; i < k; i++) result *= n - i;
+  return result;
+}
+
+/** @param {number} n @returns {number} */
+function choose2(n) {
+  return n * (n - 1) / 2;
+}
+
+const token3 = [];
+const pair3Edges = [];
+const printedPairs = new Map();
+const runeWordTypes = new Map();
+let totalPrintedPairs = 0;
+
+for (let page = 0; page <= 55; page++) {
+  if (page === 50) continue; // numeric-only original image
+  // The text transcription omits numeric-only p50, while JSON reserves it.
+  const body = parts[page < 50 ? page : page - 1];
+  const words = [...body.matchAll(/[ᚠ-ᛠ]+/gu)].map((match) => ({
+    text: match[0], offset: match.index, slot3: -1
+  }));
+
+  for (const word of words) {
+    const byLength = runeWordTypes.get(word.text.length) || new Map();
+    byLength.set(word.text, (byLength.get(word.text) || 0) + 1);
+    runeWordTypes.set(word.text.length, byLength);
+    if (word.text.length === 3) {
+      word.slot3 = token3.length;
+      token3.push(word.text);
+    }
+  }
+
+  for (let i = 0; i + 1 < words.length; i++) {
+    const a = words[i];
+    const b = words[i + 1];
+    if (body.slice(a.offset + a.text.length, b.offset) !== '-') continue;
+    const pair = a.text + '-' + b.text;
+    const hits = printedPairs.get(pair) || [];
+    hits.push({ page, byteOffsetInTranscription: a.offset, wordIndex: i });
+    printedPairs.set(pair, hits);
+    totalPrintedPairs++;
+    if (a.slot3 >= 0 && b.slot3 >= 0) {
+      pair3Edges.push([a.slot3, b.slot3]);
+    }
+  }
+}
+
+const repeated = [...printedPairs.entries()].filter(([, occurrences]) =>
+  occurrences.length > 1);
+const phrase = 'ᛞᛄᚢ-ᛒᛖᛁ';
+assert.equal(totalPrintedPairs, 2414);
+assert.equal(printedPairs.size, 2413);
+assert.equal(repeated.length, 1);
+assert.equal(repeated[0][0], phrase);
+assert.deepEqual(repeated[0][1].map((p) => [p.page, p.wordIndex]),
+  [[27, 7], [55, 19]]);
+
+assert.equal(token3.length, 830);
+assert.equal(new Set(token3).size, 813);
+assert.equal(pair3Edges.length, 150);
+const counts3 = [...runeWordTypes.get(3).values()].filter((v) => v > 1);
+assert.deepEqual(counts3.slice().sort((a, b) => a - b),
+  [...Array(15).fill(2), 3]);
+// No printed word of >=4 runes repeats in this source transcription.
+for (const [len, types] of runeWordTypes) {
+  if (len >= 4) assert([...types.values()].every((n) => n === 1));
+}
+
+let sharedPairs = 0;
+for (let i = 0; i < pair3Edges.length; i++) {
+  for (let j = i + 1; j < pair3Edges.length; j++) {
+    const a = pair3Edges[i];
+    const b = pair3Edges[j];
+    if (a[0] === b[0] || a[0] === b[1] ||
+        a[1] === b[0] || a[1] === b[1]) sharedPairs++;
+  }
+}
+assert.equal(sharedPairs, 21);
+const n = token3.length;
+const A = counts3.reduce((s, m) => s + m * (m - 1), 0);
+const B = counts3.reduce((s, m) => s + (m * (m - 1)) ** 2, 0);
+const C = counts3.reduce((s, m) => s + m * (m - 1) * (m - 2), 0);
+const D = counts3.reduce((s, m) =>
+  s + m * (m - 1) * (m - 2) * (m - 3), 0);
+const disjointPairs = choose2(pair3Edges.length) - sharedPairs;
+const expectedDuplicates = disjointPairs * (A * A - B + D) / falling(n, 4) +
+  sharedPairs * C / falling(n, 3);
+assert(Math.abs(expectedDuplicates - 2.86293408946e-5) < 1e-12);
+
+const glyphs = corpus.runes;
+const expectedSix = phrase.replace('-', '');
+const test = [[27, 28, 6555], [55, 70, 12950]];
+for (const [page, offset, global] of test) {
+  const source = corpus.pages[page].indices.slice(offset, offset + 6)
+    .map((v) => glyphs[v]).join('');
+  const before = corpus.pages.slice(0, page)
+    .reduce((sum, item) => sum + item.indices.length, 0);
+  assert.equal(source, expectedSix);
+  assert.equal(before + offset, global);
+}
+
+console.log('SOURCE: ᛞᛄᚢ-ᛒᛖᛁ, p27 word 8-9, p55 terminal words 20-21');
+console.log('CORPUS: 2414 literal-dash word pairs, 2413 types, 1 repeat');
+console.log('GEOMETRY: 830 three-rune word slots; 150 adjacent 3+3 edges; 21 sharing edge pairs');
+console.log('SOURCE CONTROLS: original p27 offsets 28..33 -> global 6555..6560');
+console.log('SOURCE CONTROLS: original p55 offsets 70..75 -> global 12950..12955');
+console.log('CONDITIONAL permutation null: E[duplicated 3+3 pairs] = ' +
+  expectedDuplicates.toPrecision(12) +
+  '; P(any duplicate) <= expectation (Markov bound)');
+console.log('No plaintext, authentic key, or cipher mechanism recovered.');
