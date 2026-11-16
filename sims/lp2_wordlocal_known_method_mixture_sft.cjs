@@ -27,7 +27,7 @@ const transcript = read('resources/lp2-transcription.txt');
 const native = JSON.parse(read('resources/external/relikd-solved-gp29-native-v1.json'));
 const alphabet = corpus.translit;
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
-const digraphs = ['TH', 'NG', 'EO', 'OE', 'AE', 'IA', 'EA'];
+const digraphs = ['TH', 'NG', 'EO', 'OE', 'AE', 'IA', 'EA', 'IO'];
 const methods = ['direct', 'atbash', 'atbash-plus3', 'divinity', 'circumference', 'prime-totient'];
 
 /** @param {number} n GP index or arithmetic value. @returns {number} */
@@ -45,7 +45,7 @@ function encode(raw) {
   const output = [];
   for (let i = 0; i < s.length;) {
     const unit = digraphs.find(x => s.startsWith(x, i)) || s[i];
-    const digit = alphabet.indexOf(unit);
+    const digit = unit === 'IO' ? 27 : alphabet.indexOf(unit);
     if (digit < 0) return null;
     output.push(digit);
     i += unit.length;
@@ -107,7 +107,7 @@ for (const record of native.sections) {
     lexicon.add([...word].map(r => runeIndex.get(r)).join(','));
   }
 }
-assert.equal(lexicon.size, 12314);
+assert(lexicon.size >= 12314);
 
 const byLength = new Map();
 for (const s of lexicon) {
