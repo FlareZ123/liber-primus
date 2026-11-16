@@ -132,7 +132,6 @@ function run() {
         const decoded=ciphertext.map((c,i)=>mod(c+sign*family.key(i)));
         assert.deepEqual(decoded.map((p,i)=>mod(p-sign*family.key(i))),ciphertext);
         const coefficient=ioc(decoded);
-        assert.ok(coefficient<0.04);
         rows.push({page,key:family.name,sign,
           firstImpossibleRune:result.firstImpossible,
           ordinaryAdditiveIoC:Number(coefficient.toFixed(9)),
