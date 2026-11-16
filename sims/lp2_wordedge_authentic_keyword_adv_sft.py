@@ -77,7 +77,12 @@ def original():
         out[label] = (np.asarray(c, dtype=np.int64),
                       np.asarray(candidate, dtype=np.uint8))
     assert sum(len(x) for x in pages[:56]) == 12956
-    return out, digest
+    assert len(pages[57]) == 95 and len(starts[57]) == 95
+    assert "".join(corpus["translit"][v] for v in pages[57][:7]) == "PARABLE"
+    native_solved = (np.asarray(pages[57], dtype=np.int64),
+                     np.asarray(starts[57], dtype=np.uint8))
+    native_solved[1][0] = 0
+    return out, digest, native_solved
 
 
 def emit(plain, cand, key, seed):
@@ -140,7 +145,7 @@ def main():
     assert to_runes(KEYWORD, letters=True).tolist() == key13.tolist()
     key = np.tile(key13, 64)
     assert len(key) == 832
-    pages, corpus_sha = original()
+    pages, corpus_sha, native_solved = original()
 
     gibran = (ROOT / "resources/control/gibran_prophet_58585.txt").read_text(encoding="utf-8")
     source = to_runes(gibran)
@@ -174,6 +179,19 @@ def main():
         assert not wrong["crosses_T300"], "Native-positive reversed-key null crossed gate"
         assert not null["crosses_T300"], "Native-positive uniform-key null crossed gate"
 
+    # Full, independently known LP2 p57 PARABLE plaintext: 95 authentic
+    # GP runes, planted under the frozen forward cipher and the same
+    # original p57 word-start positions. T300 is not used at length95.
+    p57_plain, p57_starts = native_solved
+    p57_cipher, p57_advances, p57_repairs = emit(
+        p57_plain, p57_starts, key, 119557
+    )
+    solved_true = score(p57_cipher, p57_starts, key, pi, lm, engine_edge)
+    solved_wrong = score(p57_cipher, p57_starts, np.tile(key13[::-1], 64),
+                         pi, lm, engine_edge)
+    assert solved_true["advance"] > solved_wrong["advance"] + 20, (
+        "Solved 95-rune known-plaintext control cannot distinguish its key"
+    )
     original_readouts = {
         name: score(cipher, starts, key, pi, lm, engine_edge)
         for name, (cipher, starts) in pages.items()
@@ -188,6 +206,10 @@ def main():
         "advance_probability": NU, "window": WINDOW,
         "threshold_T300": T300, "native_train_runes": train_end,
         "native_heldout_runes": len(held), "plants": plants,
+        "solved_p57_native95_control": {
+            "advance_events": p57_advances, "collision_repairs": p57_repairs,
+            "true_source_key": solved_true, "reverse_wrong_key": solved_wrong
+        },
         "original": original_readouts,
         "original_undeciphered_plaintext_runes": 12956,
         "registered_gate_passed": all(x["true_source_key"]["crosses_T300"] for x in plants),
