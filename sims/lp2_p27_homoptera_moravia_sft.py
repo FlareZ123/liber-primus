@@ -143,7 +143,7 @@ def run() -> dict[str, object]:
         "source_plan": ["Moravia 1964 Fig2", "Moravia 1974 Fig3 base",
                         "Moravia 1976 Fig1", "Moravia 2000 Fig17a",
                         "Rohdendorf 1949 figs8-9 via Metafysica"],
-        "registration": "existing original-image SIFT partial-affine RANSAC; no anisotropic warp",
+        "registration": "original/mirrored source SIFT partial-affine RANSAC; no anisotropic warp",
         "positive_native": positive,
         "negative_different_original": negative,
         "sources": [],
@@ -178,8 +178,14 @@ def run() -> dict[str, object]:
                 for region_name, region in [(label, src),
                                             *[(label + "_" + k, v) for k, v in
                                               separate_plate_regions(src)]]:
-                    detail = match(region, target)
-                    ranked.append({"frame": region_name, **detail})
+                    # Explicitly allow mirrored historical reproductions.
+                    # Similarity matching itself permits rotation and
+                    # uniform scale, but not reflection.
+                    for mirror, candidate in (("original", region),
+                                               ("mirror-x", cv2.flip(region, 1))):
+                        detail = match(candidate, target)
+                        ranked.append({"frame": region_name,
+                                       "orientation": mirror, **detail})
                 preview(name + "_" + label, src)
             row["candidate_frames"] = len(ranked)
             row["best"] = max(
