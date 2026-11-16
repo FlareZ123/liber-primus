@@ -62,10 +62,17 @@ assert.equal(adjacentRepeats(quotient), 8);
 
 const qNumerator = collisionNumerator(quotient);
 assert.equal(qNumerator, 2298);
+const canonical = quotient.slice(1); // Literal 251-digit BASE29 integer omits the formal leading zero
+const canonicalNumerator = collisionNumerator(canonical);
+assert.equal(quotient[0], 0);
+assert.equal(canonical.length, 251);
+assert.equal(canonicalNumerator, 2288);
 const spanSize = 252;
 const denominator = spanSize * (spanSize - 1);
 const runeToId = new Map(solved.runes.map((rune, i) => [rune, i]));
 let controls = 0;
+let canonicalControls = 0;
+let canonicalMinNumerator = Infinity;
 let minControlNumerator = Infinity;
 let maxControlNumerator = -Infinity;
 const sections = [];
@@ -81,11 +88,19 @@ for (const section of solved.sections) {
     minControlNumerator = Math.min(minControlNumerator, numerator);
     maxControlNumerator = Math.max(maxControlNumerator, numerator);
   }
+  for (let start = 0; start + canonical.length <= runes.length; start++) {
+    canonicalControls++;
+    canonicalMinNumerator = Math.min(canonicalMinNumerator,
+      collisionNumerator(runes.slice(start, start + canonical.length)));
+  }
   sections.push({name: section.name, sourceRunes: runes.length, windows: count, minIoC: count ? min / denominator : null});
 }
 assert.equal(controls, 1365);
 assert.equal(minControlNumerator, 3498);
 assert(qNumerator < minControlNumerator);
+assert.equal(canonicalControls, 1369);
+assert.equal(canonicalMinNumerator, 3462);
+assert(canonicalNumerator < canonicalMinNumerator);
 
 const arbitraryPermutation = Array.from({length: 29}, (_, i) => (7 * i + 3) % 29);
 const permutedReordered = quotient.slice().reverse().map(x => arbitraryPermutation[x]);
@@ -98,6 +113,9 @@ console.log(JSON.stringify({
   quotientRunes: 252,
   adjacentEqualPairs: 8,
   quotientIoC: qNumerator / denominator,
+  canonical251DigitIoC: canonicalNumerator / (251 * 250),
+  canonicalNativeControlWindows: canonicalControls,
+  canonicalNativeMinIoC: canonicalMinNumerator / (251 * 250),
   nativeControlWindows: controls,
   nativeControlMinIoC: minControlNumerator / denominator,
   nativeControlMaxIoC: maxControlNumerator / denominator,
