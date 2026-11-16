@@ -40,21 +40,25 @@ The first-five-chapter endpoint was inspected during exploration, so the test al
 
 Original **LP1** is a useful independent type-set runic control under the same word parser: all 2,797 source glyphs / 694 words contain **30 odd and 21 even** within-word doublet sites (conditional two-sided p **0.936**); its first three transcribed blocks contain 12 odd and four even among 16 (two-sided p **0.229**). These controls are heterogeneous solved material and do not prove that the LP2 early-chapter signal is cryptographic.
 
-## Key-independent exclusion: stationary word-aligned digraph substitution
+## Key-independent exclusion: stationary word-aligned block substitutions
 
-The already completed [hard Playfair pair-alignment gate](lp2-polygraphic-pair-alignment-gate.md) showed that **27 of 63** original within-word doublets fall *inside* word-initial two-rune blocks, so a *hard no-equal-pair* Playfair model fails. The chapter-conditioned 10/22 positional skew here refines that established global 27/36 observation; it does not rehabilitate hard Playfair.
+The earlier [hard Playfair pair-alignment gate](lp2-polygraphic-pair-alignment-gate.md) establishes that **27/63** original within-word doublets fall *inside* source word-initial two-rune blocks. Thus a *hard no-equal-pair* classical Playfair cannot explain all source ciphertext. The chapter-conditioned 10/22 early skew here refines that established global 27/36 count; it is not a proof of a soft or hard Playfair key.
 
-There is a stronger, **key-independent** test of every *stationary bijective substitution on complete word-aligned two-rune blocks*, with no need to guess its 841-entry key. Each original pair is one of `29²=841` labels. Any fixed permutation of those labels preserves the number of repeated pair labels, and therefore the *normalized collision index* `841 Σ n_i(n_i−1) / [N(N−1)]` exactly.
+More generally, **every stationary bijection on a complete, word-initial, non-overlapping block of `b` GP29 runes preserves the exact number of repeated block labels**, no matter how many secret lookup entries it has. For blocks `B_i`, a fixed permutation `f` satisfies `B_i=B_j ⇔ f(B_i)=f(B_j)`. This includes all stationary secret 29²-entry digraph tables, secret 29³-entry trigram tables, and stationary 4-rune permutations, including a fixed invertible Hill4 map with word-local resets. It requires *no key search* and is independent of how the table entries are shuffled.
 
-| Source-original register | Word-initial non-overlapping pairs | Repeated pair-label pairs | `841×IoC` |
+The [original-input SFT](../sims/lp2_wordlocal_pairphase_chapter_sft.cjs) freezes the source printed word boundaries and takes blocks at word offsets `0,b,2b,...` (dropping only the final incomplete block from each word for this statistic). The original source emits:
+
+| Source-original words | Complete `b=2` blocks / repeated block pairs | `b=3` blocks / repeated block pairs | `b=4` blocks / repeated block pairs |
 | --- | ---: | ---: | ---: |
-| LP2 pp0–26 | **2,903** | **5,202** | **1.038609** |
-| LP2 pp27–55 | **2,850** | **4,950** | **1.025401** |
-| Original LP1 transcript (source-native comparator, mixed solved regimes) | **1,242** | **2,765** | **3.017364** |
-| Original LP1 transcribed first three blocks (short comparator) | **312** | **107** | **1.854790** |
-| Original LP1 later blocks (predominantly clear GP prose) | **930** | **2,369** | **4.612033** |
+| LP2 pp0–26, 1,457 words | **2,903 / 5,202** | **1,718 / 56** | **1,012 / 0** |
+| LP2 pp27–55, 1,439 words | **2,850 / 4,950** | **1,674 / 69** | **1,001 / 2** |
+| Original LP1, 694 words | **1,242 / 2,765** | **701 / 637** | **396 / 178** |
 
-The nearly uniform 812 unequal-pair states themselves predict `841/812 ≈ 1.035714` as the zero-doublet limiting normalized index, consistent with **1.038609** on actual early original ciphertext. A stationary bijection of original disjoint ciphertext pairs cannot convert that flat histogram into the strongly repeated ordered digraphs of source-native LP1 prose; the relative pair multiplicities are unchanged under every possible secret 841-label permutation. This is a **general, key-independent word-aligned 2-rune substitution objection**, separate from the particular direct dual-ring decoder below. It is conditional on the plaintext having a native-GP-style pair collision distribution like the available solved control. A changing keyed permutation, block reordering, altered word segmentation, non-GP payload or longer context remains outside the claim.
+The known LP1 first three blocks *alone*, despite being considerably shorter than either LP2 cohort, have **312 aligned pairs with 107 collision pairs; 181 aligned triples with 21; and 104 aligned quadruples with seven**. The LP1 remainder has **930 pairs with 2,369 collisions; 520 triples with 614; and 292 quadruples with 171**. Short native source controls naturally reuse glyph blocks across words, while LP2's word-initial ciphertext blocks are almost completely unique for `b≥3`.
+
+For quantitative context, under independently uniform `29^b` block labels the expected collision count is `N(N−1)/(2·29^b)`. With LP2's original early word-block counts, expected collisions for `b=2,3,4` are **5,008.62, 60.47 and 0.723**; the observed **5,202, 56 and zero** are ordinary at these scales. Source-native LP1 has **2,765, 637 and 178** instead of the uniform **916.36, 10.06 and 0.111**. The normalized collision index `29^b Σ n_i(n_i−1)/[N(N−1)]` for original early LP2 `b=2` is **1.038609**, against LP1 **3.017364**. No stationary bijective mapping of intact complete blocks can change any of those source collision counts.
+
+**Scope:** this excludes a simple fixed 2-, 3- or 4-rune word-reset block-substitution *as a route to ordinary source-style GP29 prose*, regardless of the unknown permutation key, because repeated plaintext blocks would need repeated ciphertext blocks at the exact same word-aligned locations. It does **not** prove that every possible human-authored English text has repeated four-rune prefixes; such a constructed text could avoid them. It does not constrain stateful changing-key block maps, cross-word clocks, transpositions, different plaintext segmentation, arithmetic/range coding or non-GP payload. The source does not tell us to use an arbitrary secret block map in the first place.
 
 ## Frozen direct decoder attempted, with complete negative
 
