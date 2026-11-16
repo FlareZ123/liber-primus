@@ -15,6 +15,12 @@ Original 2014 Liber Primus JPEG `resources/liber-primus/17.jpg` (physical LP2 pa
 
 The published original rune transcription begins with two visibly distinct 8-rune and 5-rune printed words, `ᛋᚻᛖᚩᚷᛗᛡᚠ-ᛋᚣᛖᛝᚳ.`; the first word is **entirely red** and the second **entirely black**. Its hyphen/period word breaks are correct. The physical **large marker is between the two words**, whereas the derived punctuation event mistakenly places it after the full 13-rune two-word heading. This alters any attempt to use that large marker to control the start of a new cipher stream.
 
+## Independent solved-page layout control
+
+The authentic **solved** LP2 p56 title consists of five red GP runes spelling `AN END`, followed by a red 13-dot chapter marker at **offset 5**; its following black prose begins `WITHIN THE DEEP WEB`. The authentic cleartext p57 title consists of seven red runes spelling `PARABLE`, followed by the same class of red 13-dot marker at **offset 7**; its following black prose begins `LIKE THE INSTAR`. These original layout roles match the newly observed **p0 title red8 → red 13-dot marker at offset 8 → first black body word black5**. The independent controls support interpreting the eight red p0 runes as one *chapter heading* rather than viewing the full 13-rune phrase as a continuous red heading. This does not say what that unknown title means or require the body to be in Latin.
+
+References: `resources/external/relikd-solved-gp29-native-v1.json`, sections `p56_an_end` and `p57_parable`; original LP2 p56/p57 `resources/liber-primus/73.jpg` and `74.jpg`; their source-ink annotation marks at offsets 5 and 7 respectively. These are independent of the public 27×27 Latin hypothesis.
+
 ## Exact discrepancy against derivative inventories
 
 1. `resources/liber-primus/lp2-ink-annotations.json` p0 currently labels the **whole 13-rune** phrase as one red span beginning at 0 and puts the red 13-dot glyph at **rune offset 13**. Original photographic ink establishes red **length 8** and large punctuation **offset 8**. As a conditional bookkeeping consequence, its whole-book red count 225 would become **220** if all other records were held fixed; other pages have not been reaudited here.
