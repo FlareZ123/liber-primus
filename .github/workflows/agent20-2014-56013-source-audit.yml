@@ -1,0 +1,13 @@
+name: Agent20 2014 DATA56013 source-link audit
+on:
+  workflow_dispatch:
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_2014_56013_source_link_sft.cjs
