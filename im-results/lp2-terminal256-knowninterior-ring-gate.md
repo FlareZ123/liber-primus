@@ -1,6 +1,6 @@
 # Terminal p55–57: 256-rune known-interior ring hypothesis
 
-**Current synthesis (16 November 2026):** the physical 32×8 table supports a provisional terminal alignment of **76 outside cells / 180 inside cells** and an exact 52-rune *SHED* innermost boundary. The previously tested 180-inside-to-solved-rune receivers remain inconsistent with the authentic known plaintext. An independent **mixed-register alignment** now pairs the two middle shells with p56's **128 printed hash hex characters**, reserving the deepest 52 cells for the clear p57 *SHED* passage; its direct hash, static codebook, historical prime and recovered short-LFSR-key gates also fail. Source geometry constrains each proposed route, but the author has supplied no authenticated table-to-rune operation. **No unknown LP2 plaintext, historical key or destination has been recovered.**
+**Current synthesis (16 November 2026):** the physical 32×8 table supports a provisional terminal alignment of **76 outside cells / 180 inside cells** and an exact 52-rune *SHED* innermost boundary. The previously tested 180-inside-to-solved-rune receivers remain inconsistent with the authentic known plaintext. An independent **mixed-register alignment** now pairs the two middle shells with p56's **128 printed hash hex characters**, reserving the deepest 52 cells for the clear p57 *SHED* passage; its direct hash, static codebook, historical prime recovered short-LFSR-key and direct GF(257) erasure gates also fail. Source geometry constrains each proposed route, but the author has supplied no authenticated table-to-rune operation. **No unknown LP2 plaintext, historical key or destination has been recovered.**
 
 ## Why this is a plausible human-facing next route
 
@@ -65,6 +65,19 @@ Because a stateful stream could evade the stationary lookup obstruction, the sam
 | Numeric hex nibble bytes | **29** | **2/64** | **286/512** |
 
 Both registers have high training complexity and predict the withheld output approximately as poorly as a random mask. An independently constructed genuine eight-bit, short-LFSR stream planted into this *identical* 64/64 procedure predicts **64/64 bytes and 512/512 bits**, demonstrating that the test is sensitive to the specified recoverable-key family. This negative applies to binary linear stream keys under this frozen bytewise-XOR alignment, and says nothing about stronger evolving ciphers or another actual hash-page serialization.
+
+### Direct 76-symbol recovery from the 180 known mixed-register values
+
+A distinct **fully specified erasure-code inverse** tests whether the **known 128 hash nibbles (0–15) followed by the known 52 GP rune indices (0–28)** are evaluations of one polynomial over **GF(257)** and the missing original p55 GP rune indices are the remaining 76 values. The field is large enough to use every one of the 256 printed positions as a different interpolation point, without a secret key or selecting desired plaintext. Compute the unique polynomial of degree at most **179** through all 180 inner values. Evaluate it at the 76 outer positions under the only two directly visible ordered coordinate systems: original **0–255 physical table-cell indices** or ascending **shell ordinals** (outer76 followed by inner180). A genuine direct GP target requires every recovered value in **0–28** before attempting to match the unknown ciphertext.
+
+| Exact original 76-symbol interpolation | Recovered entries within GP29 0–28 | First sixteen reconstructed values |
+| --- | ---: | --- |
+| Original physical printed 32×8 cell indices | **7/76** | \`155,119,179,25,46,214,9,61,75,186,42,228,256,77,254,161\` |
+| Concentric-ring ordinal indices | **8/76** | \`134,0,50,180,117,22,86,106,240,38,1,234,1,70,176,130\` |
+
+Both source-frozen versions fail **before any unknown p55 content or language score is consulted**. The same GF(257) Lagrange/barycentric routine recovers **all 76 untouched unknown field values** from a separately planted degree-37 polynomial, demonstrating that this exact known180→missing76 decoder works when its premise holds. An arbitrary degree-179 interpolation always fits 180 data, so successful interpolation itself is not decryption; the rigorous rejection is the resulting 68–69 non-GP outputs. The mixed nibble-plus-rune encoding and GF(257) field are exploratory hypotheses, not manuscript instructions. This removes one direct error-correcting-code route to the intended p55 plaintext, while a truly source-specified different operator remains open.
+
+**Independent passing updated Windows CI:** [43782001572](https://github.com/FlareZ123/liber-primus/actions/runs/43782001572) executes these assertions within the same original-input SFT, including the positive inverse.
 
 **Decision and handoff:** The mixed 76/128/52 interpretation is an intriguing *possible* intended route because it uses source-visible content formats rather than invented plaintext. No tested direct or short-state operation authenticates it. Further dependent CI should require a first-party source clue selecting a changing key, serialization or inverse and a concrete original unknown p55 rune prediction. The known p56 digest is still an unsolved external preimage challenge. Do not treat the 128 written hex digits as identified plaintext corresponding to the table without a genuine decoder.
 
