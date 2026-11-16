@@ -99,6 +99,42 @@ function fixedWeightPermutationControl(trials) {
   }
   return {trials, joint, sumOnly, diffOnly};
 }
+
+// Smallest historical Vigenere-style GP29 consumer for the two candidate
+// source values. This deliberately consumes every rune, including F.
+// It is an *exploratory* fixed key-schedule choice, never a creator opcode.
+const candidateKey = [webDiv % 29, halfDifference];
+assert.deepEqual(candidateKey, [12, 16]);
+const p0Black = corpus.pages.slice(0, 3).flatMap((page) => page.indices).slice(13);
+const heldoutP3to7 = corpus.pages.slice(3, 8).flatMap((page) => page.indices);
+assert.deepEqual([p0Black.length, heldoutP3to7.length], [716, 1145]);
+/** @param {number[]} values @returns {number} */
+function ioc(values) {
+  const counts = new Uint32Array(29);
+  for (const value of values) counts[value]++;
+  const n = values.length;
+  return counts.reduce((total, count) => total + count * (count - 1), 0) / (n * (n - 1));
+}
+/** @param {number[]} original @param {number} sign @returns {{ioc: number, exact: boolean}} */
+function directConsumer(original, sign) {
+  const plain = original.map((value, index) =>
+    (value - sign * candidateKey[index % 2] + 58) % 29);
+  const exact = plain.every((value, index) =>
+    (value + sign * candidateKey[index % 2] + 58) % 29 === original[index]);
+  return {ioc: ioc(plain), exact};
+}
+const directTests = [1, -1].map((sign) => ({
+  sign, first: directConsumer(p0Black, sign), holdout: directConsumer(heldoutP3to7, sign)
+}));
+assert.deepEqual(directTests.map((x) => [x.first.exact, x.holdout.exact]), [[true, true], [true, true]]);
+for (const [index, expected] of [
+  [0, [0.03378911591202094, 0.03416343481845665]],
+  [1, [0.033699261632222526, 0.03421687482822854]]
+]) {
+  assert(Math.abs(directTests[index].first.ioc - expected[0]) < 1e-12);
+  assert(Math.abs(directTests[index].holdout.ioc - expected[1]) < 1e-12);
+}
+
 const conditionalNull = fixedWeightPermutationControl(1000000);
 console.log(JSON.stringify({
   kind: '2014 archive title and p0 red-heading prime pair',
@@ -113,6 +149,6 @@ console.log(JSON.stringify({
       halfDifference === (webTitle + webDiv) / 29,
     htmlNumbersEqualZeroDroppedCuneiform: true
   },
-  conditionalNull,
+  conditionalNull, candidateKey, directTests,
   caveat: 'No authenticated original-cipher inverse, unknown-page plaintext, or creator key provenance established'
 }, null, 2));
