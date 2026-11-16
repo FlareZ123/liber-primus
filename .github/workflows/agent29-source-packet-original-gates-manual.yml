@@ -20,3 +20,5 @@ jobs:
         run: node sims/lp2_pagecarry_grid32_packet_sft.cjs
       - name: Public WEATHER mirror-source null, 2048 controls
         run: node sims/lp2_nov2026_27grid_weather_mirror_null_sft.cjs
+      - name: Word-number to printed-boundary blind GP29 deltas
+        run: node sims/lp2_wordnumber_boundary_delta_holdout_sft.cjs
