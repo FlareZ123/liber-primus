@@ -45,10 +45,26 @@ The passing reproducer independently asserts the three original numeric source s
 
 **Successful Windows Node 22 original-input run:** [GitHub Actions 43781146119](https://github.com/FlareZ123/liber-primus/actions/runs/43781146119). **Exact standalone CommonJS SFT:** [`lp2_2014_magic_squares_singleton_allstate_sft.cjs`](../sims/lp2_2014_magic_squares_singleton_allstate_sft.cjs). The workflow [manual only](../.github/workflows/agent22-2014-square-singleton-manual.yml) has no automatic run triggers.
 
+## Stronger affine-bias extension: exact all-offset exclusion
+
+A conventional cipher can add an independent **unknown constant** `b` to the matrix-generated key, `C[n]=P[n]±L(M^n S[0])+b (mod29)`. The homogeneous matrix proof alone would leave this simple alternative open, so the same SFT now tests it without guessing or fitting any bias.
+
+Every constant sequence satisfies `(X−1)K=0`. Consequently every scalar matrix key plus an arbitrary unknown constant obeys the single **augmented source polynomial** `f_M(X)·(X−1)`. Again, allow **all** possible initial states of this larger recurrence, giving a strict mathematical superclass of every fixed-bias matrix state (and including both signs). No initial state or output functional can fall outside it.
+
+| Historical square | Augmented polynomial descending mod29 | First impossible original singleton | Basis rank |
+| --- | --- | ---: | ---: |
+| First 3301 5×5 | `[1,4,12,10,0,21,10]` | **9th**, rune1062 | 6 |
+| Middle 1033 7×7 | `[1,10,11,4,16,3,2,9,2]` | **13th**, rune1814 | 8 |
+| Last 1033 5×5 | `[1,10,16,9,27,21,3]` | **9th**, rune1062 | 6 |
+
+The original first-square state counts after each of its first nine standalone words are `3,9,27,81,10,1,3,9,0`. The middle-square counts after first thirteen words are `3,9,27,81,243,729,2187,6561,663,76,13,1,0`; the final-square counts after first nine words are `3,9,27,81,7,4,12,36,0`. **No original ciphertext A/I/O assignment survives**. Source-native positive controls with the actual 2014 matrices, arbitrary initial state, **explicit bias 7**, and all 83 original singleton positions pass all three tests, so this extra key freedom is genuinely represented.
+
+**Successful extended Windows Node22 CI:** [GitHub Actions 43781452997](https://github.com/FlareZ123/liber-primus/actions/runs/43781452997). The direct whole-book additive running-key exclusion now covers **every unknown fixed constant bias as well as every initial state and any fixed linear output projection** for each of the three authentic 2014 matrices. A page- or context-varying bias, a nonlinear evolving map, keyed F-bypass clock, altered tokenization, and other independently selected operations remain outside this exact exclusion. Zero unknown-page plaintext recovered.
+
 ## Research decision and limits
 
-Retire a whole-book **homogeneous** GF29 matrix-running-key GP29 additive cipher using any of the three historical 2014 magic squares, **every unknown matrix initial state, any fixed linear projection, both signs, one clock step per printed rune, preserved original spaces and A/I/O singleton plaintext**. Repeating seed searches, using more source matrix state initialization methods, or changing the secret output projection cannot rescue these source-polynomial contradictions.
+Retire a whole-book **homogeneous or fixed-affine-bias** GF29 matrix-running-key GP29 additive cipher using any of the three historical 2014 magic squares, **every unknown matrix initial state, any fixed linear projection, both signs, one clock step per printed rune, preserved original spaces and A/I/O singleton plaintext**. Repeating seed searches, using more source matrix state initialization methods, or changing the secret output projection cannot rescue these source-polynomial contradictions.
 
-The result does *not* exclude a nonlinear matrix output, page/section state resets, ciphertext/plaintext feedback, different key-consumption clocks, actual F-transparent skipping, a changing or secret alphabet, native non-English or nonliteral plaintext word breaks, or a genuinely separate source-specified operation. An additional arbitrary constant affine bias would require its own independent test; it is not part of the homogeneous state class. Any successor should be selected by an original clue and predict unseen plaintext rather than search arbitrary changes to fix the early singleton contradiction.
+The result does *not* exclude a nonlinear matrix output, page/section state resets, ciphertext/plaintext feedback, different key-consumption clocks, actual F-transparent skipping, a changing or secret alphabet, native non-English or nonliteral plaintext word breaks, or a genuinely separate source-specified operation. Fixed additive output bias is now excluded by the expanded exact recurrence test above. Any successor should be selected by an original clue and predict unseen plaintext rather than search arbitrary changes to fix the early singleton contradiction.
 
 **Recovered unknown LP2 plaintext: zero runes.** The precise new exclusion is useful because it closes an otherwise plausible use of real 2014 artifacts against all hidden initial states without further key search.
