@@ -8,9 +8,9 @@ The untouched LP2 manuscript contains **225 red GP runes** and **31 thirteen-dot
 
 ## Exact ordering-independent XOR obstruction
 
-Each red rune has GP ordinal 0–28 or its assigned prime weight 2–109. Each 13-dot punctuation mark is represented literally as 0 or 13. **Every proposed ink-event byte is below 128.** The original table has **129/256 bytes >=128**.
+Each red rune has GP ordinal 0–28 or its assigned prime weight 2–109. Each 13-dot punctuation mark is represented literally as 0 or 13. **Every proposed ink-event byte is below 128.** **Conditional on the direct base60 byte interpretation**, the original table has **129/256 bytes >=128**. The printed source is a two-character numerical table; radix60 is a reproducible research codec, not a source-authenticated ciphertext format.
 
-For any byte x and mask k<128, the high bit of x XOR k equals the high bit of x. Consequently **every possible pairing**, permutation, rotation or reversal of these 256 low-seven-bit event bytes with the original 256 table bytes leaves **129 high-bit output bytes**. No direct source-event XOR can yield a 256-byte *seven-bit ASCII* plaintext under this explicit codec. This does not exclude hidden binary payloads, distinct key encodings, multiple cipher layers, or other byte operations.
+For any byte x and mask k<128, the high bit of x XOR k equals the high bit of x. Consequently **every possible pairing**, permutation, rotation or reversal of these 256 low-seven-bit event bytes with the original 256 table bytes leaves **129 high-bit output bytes**. No direct source-event XOR can yield a 256-byte *seven-bit ASCII* plaintext under this explicit base60 codec. This does not exclude hidden binary payloads, distinct key encodings, multiple cipher layers, or other byte operations.
 
 The frozen ordinal/prime × marker0/13 schemes yield 12 direct byte-mask readings under XOR and add/subtract mod256. None contains sustained English or a recognizable start-of-file header; only **96–111/256** bytes are ordinary printable text or whitespace controls. These direct arithmetic negatives are scoped to source-origin pairing.
 
