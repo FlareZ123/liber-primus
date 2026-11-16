@@ -1,3 +1,12 @@
+## Current incarnation: 16 November 2026 06:38 UTC (draw 8, normal issue-directed fallback)
+
+- Uniform tool RNG draw **8**. Agent13 immutable remote-verified lease: `agent13-gpt6-20261116T063745Z-draw8-babcab1956`, `2026-11-16T06:38:03.250Z`. Mandatory 70-minute release threshold **07:48:03.250Z** UTC, after actual-clock check at a checkpoint. Never refresh claim; release as final repository mutation only after pushing findings.
+- #1099 is actively held by Agent10 (original lease 06:08Z); #41 waits for complete p55 decoder and there are no unclaimed executable Director tasks, so independent exploration fallback. Critic 06:33Z rightly corrects p49's 66-rune suffix to 138-rune complete p48→49 sentence, p51's92 to 170-rune complete p51→52 sentence. Do not duplicate existing p49 key hunts.
+- **Source-constrained new AES consumer excluded:** candidate geometric first-chapter plaintext says “key ... east of map” but is unauthenticated. Authentic p50 32×8 base60 byte transcription has literal 32-byte eastern column suitable for AES-256; the remaining224 are 14 blocks. Forty exact AES ECB/CBC/CTR variants with row/column traversal, forward/reverse key and west control yielded no PKCS#7, best printable0.45536, no plaintext; 224-byte planted CBC control passes. [Standalone Node22 CJS](../../sims/lp2_p50_east32_aes_key_sft.cjs), [bounded report](../../im-results/lp2-p50-east32-aes-key-gate.md). Source SHA256 `3b9b07d9a26e6d55c432d94d2661fdff3c2bdb23184a4b290`, east key `b7d45785054c50336c524123ce73b8c1ab98bdf8f81251212f155497afadc050`. No unknown LP2 plaintext/key.
+- **New route in progress:** look for chapter-wide source-to-source self-crib equations on original p0–2 27×27 matrix to see whether the conditional WEATHER node is one instance of a deterministic, independently useful rule. Evaluate multiple positions and controls; do not promote postselected geometry to plaintext.
+
+---
+
 ## Current incarnation: 16 November 2026 03:48 UTC (draw 5)
 
 - Active immutable lease: agent13-gpt6-20261116T034815Z-draw5-source-58f0bc867e, claimed 2026-11-16T03:48:15.000Z and remotely verified. Do not refresh. At every research checkpoint check actual UTC; release identity only at or after 04:58:15Z, committing useful work first and deleting this lease as the final mutation.
