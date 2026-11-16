@@ -52,16 +52,22 @@ function forwardRank(rank,previous){
 }
 for(let prev=0;prev<29;prev++)for(let p=0;p<29;p++)
  assert.equal(inverseRank(forwardRank(p,prev),prev),p);
+/** @param {number} c @param {number} previous @returns {number} */
+const inverseOrdered=(c,previous)=>c===previous?28:(c<previous?c:c-1);
+/** @param {number} rank @param {number} previous @returns {number} */
+const forwardOrdered=(rank,previous)=>rank===28?previous:(rank<previous?rank:rank+1);
+for(let prev=0;prev<29;prev++)for(let p=0;p<29;p++)
+ assert.equal(inverseOrdered(forwardOrdered(p,prev),prev),p);
 /**
  * @param {Array<Array<{val:number,page:number}>>} runs
  * @param {boolean} undoRank
  * @returns {{ioc:number,collisions:number,pairs:number,groups:number,positions:number}}
  */
-function score(runs,undoRank){
+function score(runs,undoRank,ordered=false){
  const groups=new Map();let positions=0;
  for(const word of runs)for(let j=1;j<word.length;j++){
   const group=word[j].page*5+j%5;
-  const symbol=undoRank?inverseRank(word[j].val,word[j-1].val):word[j].val;
+  const symbol=undoRank?(ordered?inverseOrdered(word[j].val,word[j-1].val):inverseRank(word[j].val,word[j-1].val)):word[j].val;
   if(!groups.has(group))groups.set(group,Array(29).fill(0));
   groups.get(group)[symbol]++;positions++;
  }
@@ -75,11 +81,16 @@ function score(runs,undoRank){
    pairs:denominator,groups:groups.size,positions};
 }
 const actual=score(words,true);
+const ordered=score(words,true,true);
 const original=score(words,false);
 assert.equal(actual.positions,10060);
 assert.equal(actual.groups,275);
 assert.equal(actual.pairs,462380);
 assert.equal(actual.collisions,8277);
+assert.equal(ordered.collisions,8218);
+assert.equal(ordered.positions,10060);
+assert.equal(ordered.pairs,462380);
+assert(ordered.ioc<0.04);
 assert(Math.abs(actual.ioc-0.03580172152774774)<1e-14);
 assert(Math.abs(original.ioc-0.03449543665383451)<1e-14);
 const nativePool=new Map();
@@ -136,10 +147,11 @@ console.log(JSON.stringify({
  source:'12956 original unsolved LP2 runes / 2896 source words / 55 rune-bearing pages',
  cipherFamily:'arbitrary 29! pagewise word-local five-phase symbol bijections followed by lossless rank28 successor framing',
  originalCipherText:original,
- exactRankInverse:actual,
+ exactCyclicRankInverse:actual,
+ exactAlphabetOrderedRankInverse:ordered,
  sourceNativeGP29FromSolvedLP1MatchedWordLengths:nativeScore,
  nativePlantedSecretPagePhaseExactInverse:12956,
  nativePlantedConditionalIoc:plantedRankScore.ioc,
- verdict:'Original rank28 successor stream has near-uniform five-phase page-conditional equality rates. The whole family cannot yield ordinary native GP29 plaintext with the original observed statistical register.'
+ verdict:'Both cyclic and alphabet-ordered rank28 successor streams have near-uniform five-phase page-conditional equality rates. The whole family cannot yield ordinary native GP29 plaintext with the original observed statistical register.'
 },null,2));
 console.log('PASS: all-secret pagewise five-phase equality invariant and original-source negative');
