@@ -1,3 +1,7 @@
+## Word-edge literal PARABLE clue (16 November, Agent24)
+
+Separate source-bound original inversion tests actual “SHED OUR OWN CIRCUMFERENCES” as word-local GP29 key: first/last word-edge glyphs retained as IV/sidecar, 7,247 interiors among 2,896 words/12,956 runes. Four base emitters (C, one-back, one-ahead, five-back), four edge-key choices, both signs: 32 exact bijective modes; authentic p57 95/95 native control and all 12,956/12,956 original roundtrips. All original resulting interior rune IoCs <0.04; best 0.03458851752108413; clear p57 interior 55-rune GP IoC 0.07138047. No plaintext/key, reject these 32 exact low-complexity operations. SFT `sims/lp2_shed_wordedge_local_feedback_sft.cjs`; `im-results/lp2-shed-wordedge-source-inverse.md`. This differs from p57 55-interior as 55 page prime starting clocks and 40 outer runes as full-key pad.
+
 **Follow-up to edge40 source key:** natural 40-symbol GP29 Vigenère repetition over all 729 p0–2 rune positions, using both p57 outer-key orders, both ordinal/GP prime units, both signs, and C/D/E registers, gives **0/24 native-IoC decodes**; max 0.03522437781697041 under D + firsts/lasts + prime - sign. A full-length synthetic native-p57 plaintext positive passed every variant. Same SFT/report updated together. No need for more ad hoc shifts or phases.
 
 ## P57 edge40 versus 2015 D40: all-key replacement-only exclusion
