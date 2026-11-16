@@ -86,6 +86,40 @@ function encipher(m, plain, seed, sign) {
   return out;
 }
 
+/**
+ * Plaintext feedback changes the state driver:
+ * P_t = C_t + sign*S_t; S_(t+1) = M*S_t + P_t.
+ */
+function decipherPlain(m, c, seed, sign) {
+  assert.equal(c.length % 4, 0);
+  let state = seed.slice();
+  const out = [];
+  for (let k = 0; k < c.length; k += 4) {
+    const block = c.slice(k, k + 4);
+    const p = block.map((v, i) => mod(v + sign * state[i]));
+    out.push(...p);
+    const next = times(m, state);
+    state = next.map((v, i) => mod(v + p[i]));
+  }
+  return out;
+}
+function encipherPlain(m, plain, seed, sign) {
+  assert.equal(plain.length % 4, 0);
+  let state = seed.slice();
+  const out = [];
+  for (let k = 0; k < plain.length; k += 4) {
+    const block = plain.slice(k, k + 4);
+    const c = block.map((v, i) => mod(v - sign * state[i]));
+    out.push(...c);
+    const next = times(m, state);
+    state = next.map((v, i) => mod(v + block[i]));
+  }
+  return out;
+}
+function feedbackMatrix(m, sign) {
+  return m.map((row, i) => row.map((v, j) => mod(v + sign * Number(i === j))));
+}
+
 /** Precompute all signed scalar contributions of the two 29^2 seed halves. */
 function masks(m) {
   const a = new Uint8Array(LIMIT * PAIRS);
@@ -107,9 +141,10 @@ function masks(m) {
 }
 
 /** Complete 707,281-state enumeration on a frozen untouched original prefix. */
-function exhaustive(m, sign) {
-  const base = decipher(m, cipher.slice(0, LIMIT), [0, 0, 0, 0], sign);
-  const { a, b } = masks(m);
+function exhaustive(m, sign, feedback) {
+  const decode = feedback === "plain" ? decipherPlain : decipher;
+  const base = decode(m, cipher.slice(0, LIMIT), [0, 0, 0, 0], sign);
+  const { a, b } = masks(feedback === "plain" ? feedbackMatrix(m, sign) : m);
   const hist = new Int16Array(29);
   let best = -1, bestIndex = -1, above045 = 0, above050 = 0;
   for (let ab = 0; ab < PAIRS; ab++) {
@@ -134,8 +169,8 @@ function exhaustive(m, sign) {
   // Independent direct decoder verifies optimized two-half mask arithmetic.
   const ab = Math.floor(bestIndex / PAIRS), cd = bestIndex % PAIRS;
   const seed = [Math.floor(ab / 29), ab % 29, Math.floor(cd / 29), cd % 29];
-  assert.equal(pairNumerator(decipher(m, cipher.slice(0, LIMIT), seed, sign)), best);
-  return { sign, candidateStates: TOTAL, bestNumerator: best,
+  assert.equal(pairNumerator(decode(m, cipher.slice(0, LIMIT), seed, sign)), best);
+  return { feedback, sign, candidateStates: TOTAL, bestNumerator: best,
     bestIoC: best / (LIMIT * (LIMIT - 1)), bestSeed: seed,
     above045, above050 };
 }
@@ -182,25 +217,32 @@ for (const [file, exactSize, expectedWindows, expectedMin, expectedLagMin] of so
 }
 
 const complete = [];
-for (const signed of [true, false]) {
-  const m = matrix(signed);
-  for (const sign of [-1, 1]) {
-    const result = exhaustive(m, sign);
-    const expected = {
-      "true,-1": 4128, "true,1": 4144,
-      "false,-1": 4160, "false,1": 4134,
-    }[String(signed) + "," + String(sign)];
-    assert.equal(result.bestNumerator, expected);
-    assert.equal(result.above045, 0);
-    assert.equal(result.above050, 0);
-    // Authentic text is planted under an arbitrary secret initial state.
-    const seed = [13, 23, 2, 0];
-    const plant = encipher(m, native, seed, sign);
-    assert.deepEqual(decipher(m, plant, seed, sign), native);
-    assert.ok(pairNumerator(native) > result.bestNumerator);
-    result.matrix = signed ? "signed-fibonacci" : "literally-printed";
-    result.plantedRunesRecovered = native.length;
-    complete.push(result);
+const expectedNumerators = {
+  "cipher,true,-1": 4128, "cipher,true,1": 4144,
+  "cipher,false,-1": 4160, "cipher,false,1": 4134,
+  "plain,true,-1": 4122, "plain,true,1": 4138,
+  "plain,false,-1": 4096, "plain,false,1": 4084,
+};
+for (const feedback of ["cipher", "plain"]) {
+  for (const signed of [true, false]) {
+    const m = matrix(signed);
+    for (const sign of [-1, 1]) {
+      const result = exhaustive(m, sign, feedback);
+      assert.equal(result.bestNumerator,
+        expectedNumerators[feedback + "," + String(signed) + "," + String(sign)]);
+      assert.equal(result.above045, 0);
+      assert.equal(result.above050, 0);
+      // Genuine source-native text planted under a fixed hidden initial state.
+      const seed = [13, 23, 2, 0];
+      const encrypt = feedback === "plain" ? encipherPlain : encipher;
+      const decrypt = feedback === "plain" ? decipherPlain : decipher;
+      const plant = encrypt(m, native, seed, sign);
+      assert.deepEqual(decrypt(m, plant, seed, sign), native);
+      assert.ok(pairNumerator(native) > result.bestNumerator);
+      result.matrix = signed ? "signed-fibonacci" : "literally-printed";
+      result.plantedRunesRecovered = native.length;
+      complete.push(result);
+    }
   }
 }
 // Entire hidden-initial-state family of signed plaintext feedback:
@@ -231,9 +273,9 @@ for (const seed of [[13, 23, 2, 0], [10, 3, 20, 22], [28, 28, 28, 28]])
 console.log(JSON.stringify({
   original: "LP2 physical pp16-22, first 320 of exact 1744 source GP29 runes",
   sourceMatrix: "p15 printed 4x4 Fibonacci-prime magnitudes, both literal and two-sign-restored",
-  model: "four-rune additive feedback, hidden initial state ranges over all 29^4 choices",
+  model: "four-rune additive ciphertext/plaintext feedback, each of eight source/sign/update models exhausts all 29^4 hidden initial states",
   controls,
-  originalCipherFeedback: complete,
+  originalEightFeedbackFamilies: complete,
   plainFeedback: {
     signedEOrder: firstOrder,
     algebraicAllSeedInvariant: "E=M-I; E^203=I; every seed's mask repeats after 203 blocks = 812 runes",
