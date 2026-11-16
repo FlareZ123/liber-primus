@@ -178,6 +178,28 @@ The other 42–47 visits necessarily reuse cells; both modes are therefore **not
 
 **Decision:** the exactly 122→121 opening-word map is a useful source-selected finite hypothesis, now rejected in its direct GP-prime-sum modulo29 arithmetic interpretation. Do not rescue it by searching a new word omission, arbitrary reorderings or a new numeric map without independent original instruction.
 
+## P15 four-word numerical consumer: bounded negative (Agent37, 16 November 2026)
+
+The signed 2016 instruction that LP's words are a map and their numbers are direction, combined with the source-derived signed 4×4 p15 matrix, motivates one finite word-register test. The canonical parser in [`sims/lp2_word_pages.cjs`](../sims/lp2_word_pages.cjs) yields **2,896 printed words**, including **32 words continuing across page boundaries**, hence exactly **724 four-word blocks**. This is a natural block size for the p15 matrix, but it is a hypothesis, not an instruction supplied by the manuscript.
+
+The matrix used is the source-selected signed p15 matrix over GF(29), resolved by the p39 red-triad relation:
+```text
+M = [[10, 3,20,22],
+     [ 1,22,21,25],
+     [11,17,19, 7],
+     [ 8,12,12,22]]
+```
+See [the p15/p39 source derivation](lp2-p15-p39-signed-matrix-eigen-crosslink.md).
+
+Two candidate word-number registers were tested on the exact 724 blocks:
+
+1. **Printed word lengths.** Apply M or M⁻¹, row- or column-vector convention, with both direct 1-based lengths and the zero-based (L-1) representation. Across these eight fixed variants, only **1,321–1,400 of 2,896** outputs fall in the valid original word-length range 1–14. A uniform 29-symbol output predicts **1,398.1** such values; the best result (1,400) is indistinguishable from that baseline. No natural word-length sequence is recovered.
+2. **GP-prime word sums.** Sum the original GP29 prime weights within each printed word, reduce modulo29, and apply M or M⁻¹ to each four-word block. The static row/column variants and the source-natural successive-power variants (M^{pm(t+s)}), (sin\{0,1\}), were scored against the TextBlob word-frequency dictionary conditioned on GP rune length. The untransformed ciphertext-word baseline has mean log-likelihood **−3.8901**; every transformed candidate is worse, with the best at **−3.9052** and the worst at **−3.9799**. Dictionary coverage is high even before transformation and is not itself discriminating.
+
+Thus the direct four-word Hill interpretation of either word length or GP-prime word sum is **not supported**. This does not exclude every semantic/navigation use of word numbers; it rejects these explicit, reproducible consumers without a plaintext fit.
+
+**Reproduction inputs:** [canonical word parser](../sims/lp2_word_pages.cjs), [LP2 transcription](../resources/liber-primus/lp2-transcription.txt), [GP29 rune/prime corpus](../resources/liber-primus/lp2-corpus.json), [TextBlob word-frequency control](../resources/control/english_wordfreq_textblob.txt), and the signed p15 matrix derivation linked above. The test groups words in printed order, preserving the 32 cross-page words; no reordering or tuned phase is used.
+
 ## Causal relevance and stop rule
 
 This link supplies two *uniquely source-addressed printed ciphertext words*, and the signed 2016 guidance offers a plausible human reason to inspect word sums. It may be used to **propose a concrete next reversible operation or source-derived key/clock** if an independently readable clue supplies one. The 2016 dimensions already serve as p32 11×11 orientation markers, so there is a real competing explanation: their additional collision with opening-page word sums may be incidental.
