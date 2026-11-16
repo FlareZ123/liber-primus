@@ -1,6 +1,6 @@
 # Terminal p55–57: 256-rune known-interior ring hypothesis
 
-**Current synthesis (16 November 2026):** the physical 32×8 table supports a provisional terminal alignment of **76 outside cells / 180 inside cells** and an exact 52-rune *SHED* innermost boundary. The previously tested 180-inside-to-solved-rune receivers remain inconsistent with the authentic known plaintext. An independent **mixed-register alignment** now pairs the two middle shells with p56's **128 printed hash hex characters**, reserving the deepest 52 cells for the clear p57 *SHED* passage; its direct hash, static codebook, historical prime recovered short-LFSR-key and direct GF(257) erasure gates also fail. Source geometry constrains each proposed route, but the author has supplied no authenticated table-to-rune operation. **No unknown LP2 plaintext, historical key or destination has been recovered.**
+**Current synthesis (16 November 2026):** the physical 32×8 table supports a provisional terminal alignment of **76 outside cells / 180 inside cells** and an exact 52-rune *SHED* innermost boundary. The previously tested 180-inside-to-solved-rune receivers remain inconsistent with the authentic known plaintext. An independent **mixed-register alignment** now pairs the two middle shells with p56's **128 printed hash hex characters**, reserving the deepest 52 cells for the clear p57 *SHED* passage; its direct hash, static codebook, historical prime recovered short-LFSR-key, full table-byte GF256 erasure and direct GF(257) erasure gates also fail. Source geometry constrains each proposed route, but the author has supplied no authenticated table-to-rune operation. **No unknown LP2 plaintext, historical key or destination has been recovered.**
 
 ## Why this is a plausible human-facing next route
 
@@ -65,6 +65,22 @@ Because a stateful stream could evade the stationary lookup obstruction, the sam
 | Numeric hex nibble bytes | **29** | **2/64** | **286/512** |
 
 Both registers have high training complexity and predict the withheld output approximately as poorly as a random mask. An independently constructed genuine eight-bit, short-LFSR stream planted into this *identical* 64/64 procedure predicts **64/64 bytes and 512/512 bits**, demonstrating that the test is sensitive to the specified recoverable-key family. This negative applies to binary linear stream keys under this frozen bytewise-XOR alignment, and says nothing about stronger evolving ciphers or another actual hash-page serialization.
+
+### Full field-byte p55 reconstruction with original table values
+
+The preceding GF(257) direct-symbol inverse uses the table's **physical position grid** but not its printed two-character **byte values**. A more byte-faithful fully executable receiver can be tested because the table holds exactly **256 conditional base60 bytes**, the number of possible evaluation positions in AES's **GF(2^8)** field. We therefore reuse the pre-existing independently tested [GF256 erasure implementation](../sims/lp2_terminal256_gf256_erasure_sft.cjs), keeping the precise clockwise ring order **76/68/60/52**, and substitute the **new** 128 printed hash nibbles plus 52 solved *SHED* runes for the old 85+95 known-rune receiver.
+
+For each known inner position \(i\), calculate the source table byte's residual against its corresponding *known* 0–15 or GP29 0–28 target. Try the two conventional, fixed byte-level reversible relations: **XOR** and **subtraction modulo 256**. Treat the 180 residuals as evaluations of a single degree-at-most-179 polynomial over GF256 (primitive AES modulus \`0x11b\`), interpolate it exactly, and evaluate it at all 76 physically printed outer-rim positions. Reverse the same byte relation using the original 76 outer table bytes to produce **all 76 proposed p55 plaintext values**. A genuine direct GP29 ciphertext reader needs all outputs in the 0–28 original alphabet.
+
+| Mixed receiver byte inverse | Original untrained 52-rune suffix predicted by only the first 128 known digits | Complete recovered p55 outputs within 0–28 | First eight outer outputs |
+| --- | ---: | ---: | --- |
+| Byte XOR with GF256 interpolated key | **0/52** | **11/76** | \`54,179,218,116,65,85,73,194\` |
+| Byte subtraction modulo 256 | **0/52** | **9/76** | \`184,67,116,156,43,187,111,72\` |
+
+These are two **complete p55-decoding attempts** using the original table byte values, all 180 independently known target labels and a truly constructive field erasure inverse. Neither returns the 76 required GP29 symbols; in addition, the lower-degree independent hash128→SHED52 holdout is **0/52** under both operations. Source data are unmodified. The existing exact positive control verifies a native-GP known-plaintext byte-XOR plant with all **95/95 withheld inner** and **76/76 withheld outer** byte values predicted by this same GF256 implementation. No additional key fitting is involved. The source does not establish any polynomial field-code instruction; this result excludes precisely those two literal hypotheses.
+
+**Source-exact passing Windows Node22 execution:** [run 43783660898](https://github.com/FlareZ123/liber-primus/actions/runs/43783660898). The original file and earlier known85+95 erasure controls remain intact, and the combined mixed180 result is emitted separately as \`sourceKnown128HashPlus52Clear\`.
+
 
 ### Direct 76-symbol recovery from the 180 known mixed-register values
 
