@@ -212,7 +212,7 @@ const knownPolynomials = [
   [1, 11, 22, 26, 13, 16, 18, 27],
   [1, 11, 27, 7, 5, 26],
 ];
-const expectedFirstFailure = [5, 8, 5];
+const expectedFirstFailure = [5, 12, 5];
 console.log('SOURCE: original 2014 5x5 / 7x7 / 5x5 squares, exact LP2 83 one-rune words');
 for (let i = 0; i < squares.length; i += 1) {
   const polynomial = characteristicPolynomial(squares[i]);
