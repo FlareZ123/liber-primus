@@ -51,13 +51,13 @@ def fetch_cdx(pattern: str) -> list[dict[str, str]]:
     last_error: Exception | None = None
     for endpoint in CDX_ENDPOINTS:
         url = endpoint + "?" + query
-        for attempt in range(3):
+        for attempt in range(2):
             request = urllib.request.Request(
                 url,
                 headers={"User-Agent": "LiberPrimusResearch/1.0 (metadata-only CDX audit)"},
             )
             try:
-                with urllib.request.urlopen(request, timeout=90) as response:
+                with urllib.request.urlopen(request, timeout=30) as response:
                     raw = response.read().decode("utf-8", "replace")
                 data = json.loads(raw)
                 if not data:
@@ -66,7 +66,7 @@ def fetch_cdx(pattern: str) -> list[dict[str, str]]:
                 return [dict(zip(header, row)) for row in data[1:]]
             except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, OSError) as exc:
                 last_error = exc
-                time.sleep((1, 3, 6)[attempt])
+                time.sleep((1, 3)[attempt])
     raise RuntimeError(f"CDX query failed for {pattern}: {last_error}")
 
 
