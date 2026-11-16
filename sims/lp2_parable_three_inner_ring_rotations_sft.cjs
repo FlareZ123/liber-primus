@@ -41,13 +41,15 @@ function gp(phrase) {
 function primeSum(xs) {
   return xs.reduce((sum, x) => sum + corpus.prime[x], 0);
 }
-const clauses = [
-  "LIKE THE INSTAR TUNNELING TO THE SURFACE",
-  "WE MUST SHED OUR OWN CIRCUMFERENCES",
-  "FIND THE DIVINITY WITHIN AND EMERGE",
+// Original p57 punctuation fixes its four exact GP index spans.
+// Read them directly to preserve K->C, V->U and ING->NG orthography.
+const page57 = corpus.pages[57].indices;
+const heading = page57.slice(0, 7);
+const bodies = [
+  page57.slice(7, 37),
+  page57.slice(37, 67),
+  page57.slice(67, 95)
 ];
-const heading = gp("PARABLE");
-const bodies = clauses.map(gp);
 const sums = bodies.map(primeSum);
 assert.equal(primeSum(heading), 449);
 assert.deepEqual(sums, [1259, 1031, 1229]);
