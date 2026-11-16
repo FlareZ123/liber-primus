@@ -121,13 +121,13 @@ for (const v of variants.slice(0, 2)) {
     const digest = crypto.createHash('sha512').update(input).digest();
     const out = Buffer.from(table.map((b, i) => b ^ digest[i % digest.length]));
     const printable = [...out].filter(b => b === 9 || b === 10 || b === 13 || (b >= 32 && b <= 126)).length;
-    const signatures = ['%PDF-', 'PK\\x03\\x04', 'GIF8', 'OggS', 'RIFF', 'ID3', 'MZ'];
+    const signatures = [Buffer.from('%PDF-'), Buffer.from([0x50, 0x4b, 0x03, 0x04]), Buffer.from('GIF8'), Buffer.from('OggS'), Buffer.from('RIFF'), Buffer.from('ID3'), Buffer.from('MZ')];
     const prefix = out.subarray(0, 8);
     hashXor.push({
       candidate: v.name, encoding, digestMatchesP56Target: digest.toString('hex') === hashTarget,
       printableBytes: printable, printableFraction: printable / out.length,
       first16Hex: out.subarray(0, 16).toString('hex'),
-      knownHeader: signatures.some(sig => prefix.equals(Buffer.from(sig, 'binary')))
+      knownHeader: signatures.some(sig => out.subarray(0, sig.length).equals(sig))
     });
   }
 }
