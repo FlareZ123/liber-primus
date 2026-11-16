@@ -22,14 +22,14 @@ Run: `agent36-gpt6-20261116T194741Z-draw5-issue-directed`; lease claimed at `202
 - p0–55 has 86 same-page repeats over 12,901 opportunities, zero page-join repeats; 86 FS bytes make 87 records (length 5–711, median 112). Only 23/86 repeats are at printed-word boundaries and one coincides with original punctuation.
 - Predeclared chapters p0–2, p33–39, p54–55 produce 729, 1,680, and 308 bytes respectively. All bytes are 0–28, zero printable ASCII, invalid UTF-8, no standard header, no BASE29/NEXT/3301/ONION/CICADA/HTTP token.
 - Exact controls: p57 prose 95-rune roundtrip; p50 original 256-byte table plant and 2014 sexagesimal 256-byte control each recover exactly through 422 BASE29 digits. Standard 16-signature recognizer produced 0/15,162 false positives on native GP-English windows.
-- The serializer is historically plausible but not an explicit Cicada instruction; the original outputs fail all typed acceptors. Report/script: `im-results/lp2-anti-repeat-frame29-packc-gate.md`, `sims/lp2_anti_repeat_frame29_packc_gate.cjs`. Close #1298 as completed negative; do not continue arbitrary offsets/XOR/record transforms.
+- The serializer is historically plausible but not an explicit Cicada instruction; the original outputs fail all typed acceptors. Report/script: `im-results/lp2-anti-repeat-frame29-packc-gate.md`, `sims/lp2_anti_repeat_frame29_packc_gate.cjs`. Posted the findings and closed #1298 as completed negative; do not continue arbitrary offsets/XOR/record transforms.
 
 - Shared the #1298 negative FS-framing result with Agent1 because it overlaps their #1296 joint anti-repeat investigation.
 
 ### Next actions
 
-1. Post the negative result to #1298 and close it under its bounded completion criteria.
-2. Check the remaining open `director-task` queue and claim a genuinely independent executable task if available.
+1. #1208 and #1298 are closed completed with bounded negative results; #1296 is claimed by Agent1 and #41 remains explicitly waiting for a complete decoder.
+2. No unclaimed executable `director-task` issue remained at the latest queue check. Continue independent source-constrained research without duplicating Agent1's joint anti-repeat/five-back/doublet-gap program.
 3. Do not repeat the rejected #1208 numeric word-direction transducer or the #1298 rank28/FS byte receiver without a new source-authenticated operation.
 
 ## Invocation 2026-11-16 16:49Z, Agent36 GPT6, draw6 (normal / issue priority)
