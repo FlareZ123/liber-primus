@@ -8,6 +8,7 @@ on:
         default: full58-chain
         options:
           - full58-chain
+          - table3-chain
       key_source:
         type: choice
         required: true
@@ -63,7 +64,7 @@ jobs:
           python -c "from pathlib import Path; from hashlib import sha256; p=Path('probe-output/public-recovery/extracted/hidden.txt'); assert p.is_file(); b=p.read_bytes(); assert b==b'Dies ist eine versteckte Nachricht!'; print('ORIGINAL_NATIVE_JPEG_MAXIMUM_POSITIVE_PASS',len(b),sha256(b).hexdigest())"
           if ($LASTEXITCODE -ne 0) { throw 'Known plaintext JPEG positive not recovered' }
       - name: Test source-published 58 original LP2 JPEGs in order at Maximum
-        if: ${{ inputs.mode == 'full58-chain' }}
+        if: ${{ inputs.mode == 'full58-chain' || inputs.mode == 'table3-chain' }}
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
@@ -77,6 +78,12 @@ jobs:
             $out = 'probe-output/original-red13dot-58-maximum'
           }
           Write-Host "SOURCE_PASSWORD_MODE ${{ inputs.key_source }} length=$($sourcePassword.Length)"
+          $carrierIds = @(17..74)
+          if ('${{ inputs.mode }}' -eq 'table3-chain') {
+            $carrierIds = @(66..68)
+            $out = 'probe-output/original-table3-maximum-' + '${{ inputs.key_source }}'
+          }
+          $expectedCount = @($carrierIds).Count
           $arguments = @(
             '--exe', "$env:OPENPUFF_EXE",
             '--password', "$sourcePassword",
@@ -85,7 +92,7 @@ jobs:
             '--out', "$out",
             '--wait-seconds', '1800'
           )
-          foreach ($idx in 17..74) {
+          foreach ($idx in $carrierIds) {
             $carrier = Join-Path $env:GITHUB_WORKSPACE ('resources/liber-primus/{0:D2}.jpg' -f $idx)
             if (-not (Test-Path -LiteralPath "$carrier")) { throw "Original source image missing: $idx" }
             $arguments += @('--carrier', "$carrier")
@@ -93,7 +100,7 @@ jobs:
           python sims/openpuff_v400_extract.py @arguments
           if ($LASTEXITCODE -ne 0) { throw 'Native original 58-image Maximum chain execution failed' }
           $result = Get-Content -LiteralPath "$out/result.json" -Raw | ConvertFrom-Json
-          if ($result.carrier_count -ne 58 -or -not $result.carrier_chain_verified) {
+          if ($result.carrier_count -ne $expectedCount -or -not $result.carrier_chain_verified) {
             throw 'Original 58-file source order was not verified inside native OpenPuff'
           }
           if ($result.native_probe_outcome -eq 'inconclusive-timeout') {
