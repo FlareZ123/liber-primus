@@ -88,4 +88,47 @@ for (const sign of [-1, 1]) {
 }
 assert(Math.abs(result.candidates[0].decoded_ioc - 0.03425245098039216) < 1e-12);
 assert(Math.abs(result.candidates[1].decoded_ioc - 0.0328125) < 1e-12);
+
+/**
+ * Independent proposed p56-known-hash attack: the same 128+rune black
+ * ink carrier and 128+rune opposite carrier are aligned with 128 HEX
+ * DIGITS printed on solved p56. Treat each hex digit's numeric 0..15
+ * value as a GP29 known plaintext rune; recover every individual secret
+ * additive shift from black p53, and use exactly the same shifts on the
+ * other half, including all 76 unknown p55 runes, without word fitting.
+ *
+ * There is no Cicada-source instruction selecting this mixed encoding.
+ * The calculation is an actual full plaintext candidate that can be
+ * decisively judged on untouched p55 rather than via fitted keys.
+ */
+const hash128 = '36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4';
+assert.equal(hash128.length,128);
+const known = Array.from(hash128, digit => parseInt(digit,16));
+assert.equal(known.length,halfBlack.length);
+const inferredShift = halfBlack.map((c,i)=>mod(c-known[i]));
+const predictedOther = halfOther.map((c,i)=>mod(c-inferredShift[i]));
+const roundtripSecond = predictedOther.map((p,i)=>mod(p+inferredShift[i]));
+assert.deepEqual(roundtripSecond,halfOther);
+assert.deepEqual(known.map((p,i)=>mod(p+inferredShift[i])),halfBlack);
+// A fresh 128-rune GP native-language source positive must recover
+// identically, with no tuning or threshold applied to the original.
+const plantedOther = Array.from({length:128},(_,i)=>native[i%native.length]);
+const plantedCipher = plantedOther.map((p,i)=>mod(p+inferredShift[i]));
+assert.deepEqual(plantedCipher.map((c,i)=>mod(c-inferredShift[i])),plantedOther);
+const sourceHashCrib={
+  hashDigits:known.length,
+  recoveredKeySymbols:inferredShift.length,
+  reconstructedSecond:predictedOther.length,
+  reconstructedP55:predictedOther.slice(52).length,
+  recoveredOtherIoc:ioc(predictedOther),
+  recoveredP55Ioc:ioc(predictedOther.slice(52)),
+  originalP55Ioc:ioc(p55),
+  p55First43:predictedOther.slice(52,95).map(i=>corpus.translit[i]).join(''),
+  originalP55Reencoded:true, plantedExact128:true
+};
+assert.ok(Math.abs(sourceHashCrib.recoveredOtherIoc-0.033710629921259845)<1e-12);
+assert.ok(Math.abs(sourceHashCrib.recoveredP55Ioc-0.03368421052631579)<1e-12);
+assert.equal(sourceHashCrib.reconstructedP55,76);
+result.p56HashKnownPlaintextReuse=sourceHashCrib;
+
 console.log(JSON.stringify(result, null, 2));
