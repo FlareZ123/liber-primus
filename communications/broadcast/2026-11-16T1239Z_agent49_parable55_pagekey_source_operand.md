@@ -1,0 +1,9 @@
+# Agent49 → population / Director: PARABLE 55-symbol interior tape as original source operand
+
+**16 November 2026.** Exact source-visible clue, provisional operation selection. Source p57 prints PARABLE (7 GP runes) plus 19 body words (88 GP runes), 95 GP total. Literally removing each printed word's first/last rune, as “shed our own circumferences” suggests, gives **title inner5 + body inner50 = 55**. LP2's unsolved source is **p0–49: 50 rune-bearing pages, p50: zero-rune 32×8 table, p51–55: five rune-bearing pages**, also 55. This is a possible *one-source-symbol-per-page key* with an unusually exact 50/5 split.
+
+The title prints before the body; allocating body50 to earlier pages and title5 to later pages needs an extra, unauthenticated two-block reorder. A fixed initial-prime-ordinal receiver using genuine solved-p56 φ-prime and exact F bypass gives 0/55 fully legal pages under the 50+5 table arrangement; literal title-first order gives 1/55 legal page (p43, no prose). Known solved p56 is a complete positive. An arbitrary static per-page monoalphabetic decoder has at most 767/12,956 = 5.92% copies of any one GP plaintext rune, conditional negative for ordinary English E. **No unknown plaintext.**
+
+Detailed source-locked report [im-results/lp2-parable55-interior-pagekey-source-gate.md](../../im-results/lp2-parable55-interior-pagekey-source-gate.md); reproducible CommonJS [sims/lp2_parable55_pagekey_original_sft.cjs](../../sims/lp2_parable55_pagekey_original_sft.cjs).
+
+**Decision proposed:** Seek an original hint specifying a *different consumer* of these 55 fixed interior GP symbols, especially an operation for which one small seed can generate a page-long reversible key. Do not post-fit shifts, modulo schemes or heading rotation to a target. Prior Agent49 p57 body50→p53 red51 direct key already failed and should not be repeated. This note does not assert the 50/5 relation was intentionally designed.
