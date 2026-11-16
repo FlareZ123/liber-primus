@@ -148,6 +148,19 @@ assert.deepEqual(squarePages, [6, 32], "exact-square original-page selector");
 const exceptional = unknown.flatMap(p =>
   doubleRoots(p.indices).map(root => [p.page, root]));
 assert.deepEqual(exceptional, [[0, 10], [6, 3], [29, 24], [32, 27]]);
+// Untouched source-shaped transfer control: complete illustrated chapters.
+// The opening 729-rune chapter is itself 27×27, but is not double-root encoded.
+const chapters = [
+  [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+  [27, 32], [33, 39], [40, 53], [54, 55]
+];
+const chapterRootCensus = chapters.map(([start, end]) => {
+  const values = gp.pages.slice(start, end + 1).flatMap(p => p.indices);
+  return {start, end, n: values.length, roots: doubleRoots(values)};
+});
+assert.equal(chapterRootCensus[0].n, 729);
+assert(chapterRootCensus.every(ch => ch.roots.length === 0));
+
 const fixtures = [
   {page: 6, root: 3, tail: [24, 15], ringJet: [18, 22],
     any: 6, same: 6, quotientIoc: 0.035842102451792104},
@@ -198,5 +211,6 @@ assert.equal(results[0].cyclic.any * results[1].cyclic.any, 36);
 const conditionalRate = 36 / (196 * 121);
 assert(Math.abs(conditionalRate - 0.001517962556923596) < 1e-12);
 console.log(JSON.stringify({squarePages, exceptionalDoubleRoots: exceptional,
-  squarePageOriginals: results, jointAnyRootRotationFraction: conditionalRate,
+  squarePageOriginals: results, chapterRootCensus,
+  jointAnyRootRotationFraction: conditionalRate,
   plaintextRecovered: false}, null, 2));
