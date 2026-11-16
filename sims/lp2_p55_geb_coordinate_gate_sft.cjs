@@ -12,7 +12,9 @@ function main() {
   const base = path.join(__dirname, "..", "resources", "liber-primus");
   const corpus = JSON.parse(fs.readFileSync(path.join(base, "lp2-corpus.json"), "utf8"));
   const transcript = fs.readFileSync(path.join(base, "lp2-transcription.txt"), "utf8");
-  const section = transcript.split("\n%\n").at(-3).split(/\n[&$]/)[0];
+  const pages = transcript.split(/\r?\n%\r?\n/);
+  assert.equal(pages.length, 57, "LP2 transcription has 57 rune-bearing/source pages");
+  const section = pages.at(-3).split(/\r?\n[&$]/)[0];
   const alphabet = new Set(corpus.runes);
   const words = section.replace(/[\n/.]/g, "").split("-")
     .filter(Boolean).map(w => [...w].filter(g => alphabet.has(g)));
