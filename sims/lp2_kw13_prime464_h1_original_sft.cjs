@@ -223,6 +223,30 @@ assert.equal(original[0].p40First220.furthest, 123);
 assert.equal(original[1].p0First220.furthest, 51);
 assert.equal(original[1].p40First220.furthest, 220);
 
+// Source independently verifies ordinary glyphs, but each chapter's first
+// oversized red rune is one of 13 unresolved ornamental identities.
+const firstRuneErasures = [];
+for (const model of [0, 1]) {
+  const everyFirstRune = (original) => Array.from({length: 29}, (_, rune) => {
+    const input = original.slice();
+    input[0] = rune;
+    return invertReachable(input, model).furthest;
+  });
+  const p0 = everyFirstRune(c0);
+  const p40 = everyFirstRune(c40);
+  firstRuneErasures.push({
+    model: model ? 'coin' : 'skip',
+    p0All29MaxReached: Math.max(...p0),
+    p0All29Full220: p0.filter(n => n === 220).length,
+    p40All29MaxReached: Math.max(...p40),
+    p40All29Full220: p40.filter(n => n === 220).length
+  });
+}
+assert.equal(firstRuneErasures[0].p40All29MaxReached, 123);
+assert.equal(firstRuneErasures[0].p40All29Full220, 0);
+assert.equal(firstRuneErasures[1].p0All29MaxReached, 51);
+assert.equal(firstRuneErasures[1].p0All29Full220, 0);
+
 console.log(JSON.stringify({
   hypothesis: 'fixed authentic 2014 keyword + literal 2013 prime_echo source',
   corpus: 'resources/liber-primus/lp2-corpus.json',
@@ -235,6 +259,7 @@ console.log(JSON.stringify({
   },
   models: ['skip: 0..5 rejected collision attempts', 'coin: single redraw'],
   original,
+  firstRuneErasures,
   planted,
   decision: 'A global fixed H1 mode cannot decode both original p0 and p40 windows with authentic plaintext-F transparency: skip fails at p40 zero-based rune123 and coin fails at p0 zero-based rune51. The exact original-inverse failure needs no fitted language or key. Source does not authorize mode switching between the two chapters. No LP2 plaintext or unknown key.'
 }, null, 2));

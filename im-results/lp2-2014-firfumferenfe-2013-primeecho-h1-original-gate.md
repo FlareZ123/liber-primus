@@ -25,6 +25,8 @@ Untouched 220-rune original windows:
 | Skip, 0..5 collision retries | All 220 reachable; five final key states | **Impossible at zero-based rune123** |
 | Coin, one redraw | **Impossible at zero-based rune51** | All 220 reachable; six final key states |
 
+**All-29 first-rune erasure control:** Both 220-rune windows lie entirely within one physical page (p0 contains 262 runes, p40 contains 231). The first source rune on each page is one of the 13 red oversized initials which are independently image-ambiguous, as established in the [whole-manuscript original-image audit](lp2-round9-independent-unmapped-class-audit.md). The same exact H1 inverse was therefore run on **all 29 possible values of that one first rune**, leaving the next 219 original-image-verified runes unchanged. **Every one of 29 p40 readings fails skip by or before offset123, and every one of 29 p0 readings fails coin by or before offset51**. There is no plausible rescue from transcription uncertainty at these two actual printed sites. This erasure-sensitive original-input result is asserted by the SFT.
+
 Both failures precede any 464-prime source-list wrap, so neither is caused by the chosen periodic extension. The surviving windows have no authenticated plaintext and no identified final key clock. No *single* fixed tested model can decode both original chapters. Unspecified per-chapter mode switches, other prime transforms, arbitrary offsets, changing the F rule or keyword shifts would be distinct hypotheses requiring new original clues.
 
 ## Control, implementation and scope
