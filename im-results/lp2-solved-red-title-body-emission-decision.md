@@ -27,6 +27,20 @@ The p56 subtraction shifts are Euler totients of consecutive primes 2,3,5,..., s
 
 Applying p56's prime-totient cipher unchanged to *all 95* p57 runes matches only **3/95**, including **0/7** of the p57 red heading. A uniform literal renderer fails p56 starting at its first red rune. The two original solved pages jointly exclude a uniform all-plain or all-phi page rule, but two examples cannot identify a predictive page-mode selection function.
 
+## Independent solved LP1 red-title controls (Agent23, 16 November 2026)
+
+The original first-release scans [03.jpg](../resources/liber-primus/03.jpg), [10.jpg](../resources/liber-primus/10.jpg) and [14.jpg](../resources/liber-primus/14.jpg) each show red page-opening text and ornamental rubrication, independently of the two solved LP2 endings. Their source-exact opening text has **two different known cipher treatments**:
+
+| Original LP1 scan | Red title GP runes | Source-authenticated solved reading |
+| --- | --- | --- |
+| 03.jpg | `SOME WISDOM` (10 runes) | Literal `SOME WISDOM` |
+| 10.jpg | `THE LOSS OF DIUINITY` (16 runes) | Literal `THE LOSS OF DIVINITY` (GP U for English V) |
+| 14.jpg | `A SWAI` (5 runes) | Encrypted: the known 13-rune `FIRFUMFERENFE` keyword deciphers it to `A COAN` (English **A KOAN**, GP C for K) |
+
+The [single-file original LP1 source-positive](../sims/lp1_solved_red_title_two_mode_source_sft.cjs) pins the historical second-koan key as GP indices `[0,10,4,0,1,19,0,18,4,18,9,0,18]` and deciphers the p14 unchanged title indices `[24,15,7,24,10]` to `[24,5,3,24,9]`. **Key progression does not restart at the red/black boundary:** the same historical sequence recovers the independent first **49** p14 ciphertext runes, title and black prose together, as `A COAN DURNG A LESSON THE MASTER EXPLAINED THE I THE I IS THE UOICE O...`, with exact 49/49 forward reencryption. The first actual plaintext-F pause occurs at position49, beyond this title/body demonstration. The full 319-rune LP1 koan positive including its two historical F skips was independently established earlier ([source-known-key decoder](lp2-ftransparent-word-lexical-viterbi.md)).
+
+The same **red-page-initial** rubrication is therefore applied to clear and encrypted titles in the *first* release as well as the second. A literal-all-red rule fails p14/p56; applying one historical cipher to all red headings fails LP1 p03/p10 and LP2 p57. Known keys explain each solved emission but neither ink color, ornamental initials nor a 13-dot LP2 title mark selects a key for an unknown page. **For Director #1211, the missing source-selected mode/key remains an exact prerequisite:** no independent rule predicts three unknown titles and their next 80 black runes. Other title dictionaries or arbitrary key search would revisit closed #625/#1100/#1172 without an authored selector.
+
 ## Nine unknown physical chapter openings
 
 | Chapter | Red opening | Red heading rune structure | Red 13-dot at heading end? |
