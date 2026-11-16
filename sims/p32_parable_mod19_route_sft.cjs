@@ -160,6 +160,17 @@ for (let depth = 0; depth < 5; depth++) {
 }
 assert.deepEqual(fiveInstarShellSizes, [40, 32, 24, 16, 8]);
 assert.equal(peeledOffsets.size, 120);
+// Independently account for every physical LP2 unknown page whose complete
+// rune count is square. Page6 (14x14) has no unique central survivor after five
+// peelings; page32 (11x11) is the only odd square and unique central survivor.
+const squareRunePages = corpus.pages
+  .filter((page) => page.page <= 55 && page.runic_count > 0 &&
+    Number.isInteger(Math.sqrt(page.runic_count)))
+  .map((page) => ({ page: page.page, side: Math.sqrt(page.runic_count) }));
+assert.deepEqual(squareRunePages, [
+  { page: 6, side: 14 }, { page: 32, side: 11 }
+]);
+assert.equal((14 - 2 * 5) ** 2, 16);
 assert.ok(!peeledOffsets.has(60)); // unique centre at row5, column5
 assert.equal(corpus.translit[p32Indices[60]], 'W'); // GP-prime 19
 const rowCentresMatchingGridCentre = matrix.flatMap((row, r) =>
@@ -484,7 +495,7 @@ const output = {
     sourceConsecutivePaths,
     trueCenterPrime: matrix[5][5],
     biologicallyMotivatedFiveShells: { shellSizes: fiveInstarShellSizes,
-      centreZeroBasedOffset: 60, centreRune: 'W', centrePrime: genuineGridCentre }
+      squareRunePages, centreZeroBasedOffset: 60, centreRune: 'W', centrePrime: genuineGridCentre }
   },
   2016: {
     asciiArmoredFileBytes: Buffer.byteLength(pgpText, 'utf8'),
