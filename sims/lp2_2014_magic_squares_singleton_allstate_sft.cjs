@@ -261,3 +261,49 @@ for (let i = 0; i < squares.length; i += 1) {
   console.log('CONTROL: all 83 source-shaped A/I/O sites and 95 solved GP runes PASS');
 }
 console.log('DECISION: no homogeneous GF29 direct additive square-charpoly key over original printed words');
+
+/**
+ * Multiplication by (X-1) over GF29 gives a strict superclass for any
+ * arbitrary fixed output bias added to a source-matrix running key.
+ * @param {number[]} polynomial
+ * @returns {number[]}
+ */
+function withConstantBias(polynomial) {
+  const out = Array(polynomial.length + 1).fill(0);
+  for (let i = 0; i < polynomial.length; i += 1) {
+    out[i] = mod(out[i] + polynomial[i]);
+    out[i + 1] = mod(out[i + 1] - polynomial[i]);
+  }
+  return out;
+}
+
+for (let i = 0; i < squares.length; i += 1) {
+  const polynomial = withConstantBias(characteristicPolynomial(squares[i]));
+  const rows = recurrenceRows(polynomial, events.at(-1).offset);
+  let failure = 0;
+  const prefix = [];
+  for (let n = 1; n <= events.length; n += 1) {
+    const result = countConsistentStates(events.slice(0, n), rows);
+    if (n <= 18 || result.count === 0) prefix.push([n, result.rank, result.count]);
+    if (result.count === 0) { failure = n; break; }
+  }
+  assert.ok(failure > 0, 'Original ciphertext must exclude whole-book affine matrix recurrence');
+  const size = squares[i].length;
+  let state = Array.from({ length: size }, (_, j) => j + 1);
+  const initialKeys = [];
+  for (let j = 0; j < size + 1; j += 1) {
+    initialKeys.push(mod(state[0] + 7));
+    state = squares[i].map((row) => dot(row, state));
+  }
+  const fake = events.map((event, index) => ({
+    offset: event.offset,
+    cipher: mod([24, 10, 3][index % 3] + dot(rows[event.offset], initialKeys)),
+  }));
+  assert.ok(countConsistentStates(fake, rows).count > 0,
+    'Actual source-square output with arbitrary constant bias must remain consistent');
+  console.log('AFFINE-BIAS SQUARE=' + [3301, 1033, 1033][i] + ' (' + size + 'x' + size +
+    ') charpoly=' + polynomial.join(',') + ' first_failure=' + failure);
+  console.log('AFFINE original [event,rank,live assignments]=' + JSON.stringify(prefix));
+  console.log('CONTROL: source-matrix+bias-7 planted all 83 singletons PASS');
+}
+console.log('DECISION: no direct additive homogeneous or constant-bias square-state whole-book key');
