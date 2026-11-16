@@ -1,4 +1,4 @@
-"""Original p56 five-dot vs five main Cassiopeia stars: source-position gate.
+"""Original p56 five-dot vs Cassiopeia and southern sky: source-position gate.
 
 Uses original LP2 scan 73.jpg and published J2000 stellar coordinates.
 No ciphertext or language score is used in fitting the celestial geometry.
