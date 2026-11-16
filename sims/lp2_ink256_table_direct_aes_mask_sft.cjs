@@ -17,12 +17,18 @@ const read = (name) => JSON.parse(fs.readFileSync(path.join(base, name), 'utf8')
 const ann = read('lp2-ink-annotations.json');
 const gp = read('lp2-corpus.json');
 const table = read('lp2-grid-256.json').pages.flatMap((p) => p.bytes);
+const tabulated = read('base60-grid.json');
+const radix59 = tabulated.rows.flat().map((token) =>
+  59 * tabulated.alphabet.indexOf(token[0]) + tabulated.alphabet.indexOf(token[1]));
 const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47,
   53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109];
 const index = new Map(gp.runes.map((r, i) => [r, i]));
 assert.equal(gp.runes.length, 29);
 assert.equal(table.length, 256);
 assert.equal(table.filter((n) => n >= 128).length, 129);
+assert.equal(radix59.length, 256);
+assert(radix59.every((n) => Number.isInteger(n) && n >= 0 && n <= 255));
+assert.equal(radix59.filter((n) => n >= 128).length, 126);
 assert(table.every((n) => Number.isInteger(n) && n >= 0 && n <= 255));
 
 /** @type {{page:number,pos:number,mark:boolean,value:number}[]} */
@@ -126,6 +132,7 @@ for (const kind of ['ordinal', 'prime']) {
       add: table.map((n, i) => (n + key[i]) % 256),
     };
     assert.equal(transforms.xor.filter((n) => n >= 128).length, 129);
+    assert.equal(radix59.map((n, i) => n ^ key[i]).filter((n) => n >= 128).length, 126);
     for (const [op, output] of Object.entries(transforms)) {
       console.log(kind, 'marker', marker, op,
         'printable', printable(output) + '/256',
@@ -133,5 +140,6 @@ for (const kind of ['ordinal', 'prime']) {
     }
   }
 }
+console.log('EXACT XOR ASCII OBSTRUCTION: radix60 129 high bits, radix59 126 high bits, both preserved under all event permutations.');
 console.log('RESULT: No native ASCII/file-header recovery under these frozen direct consumers.');
 console.log('LIMIT: Other bit orderings, hidden keys, codecs and nontextual binary data remain open.');
