@@ -26,6 +26,18 @@ Freeze the least-parametric one-to-one candidate: GP29 corpus indices **0..28** 
 
 The complete p0–57 source has **13,136 runes + 36 physical marks = 13,172 five-bit symbols**, yielding **8,232 bytes and four residual one-bits** (`1111`). The p57 unique 23-dot terminal maps to code31 (`11111`) under the frozen mapping. All 11 page ranges and the whole-source stream fail the predeclared file-type-at-start recognizers (PNG, PDF, ZIP, gzip, bzip2, xz, GIF, ELF, MZ) and fail a complete printable-ASCII receiver. No page readout recovers an independently typed instruction, a natural GP29 passage, or a verifiable key.
 
+## Historically typed 2014 Tor-v2 continuation check
+
+The historical Cicada continuations used **16-character RFC4648 Base32** Tor-v2 hostnames. Sixteen such hostnames consume exactly **256 five-bit codes**. Source imagery independently supplies three competing 256-event registers, which were frozen in earlier #1278/#1282: **A** = 225 red runes + all 31 physical 13-dot marks; **B** = the same 225 red runes + 30 red 13-dot marks + the final red 23-dot mark; **C** = the 225 red runes + 31 chapter marks (28 thirteen-dot and three ten-dot, including p7 black). Original page/rune offset order is unchanged and the alphabet/code assignment remains GP29 = 0..28; 10/13/23-dot = 29/30/31. Each source order deterministically gives sixteen 16-character Base32 hostnames.
+
+| Registered event class | First 16-symbol host | Last 16-symbol host | Exact matches among seven documented 2014 Cicada onions |
+|---|---|---|---:|
+| A | `pisdgt3ap2svf66u` | `6zlwpe66nyeyrus6` | 0 |
+| B | `pisdgt3ap2svf66u` | `zlwpe66nyeyrus67` | 0 |
+| C | `pisdgt3ap2svf66u` | `kt66zlwpenyeyrus` | 0 |
+
+Every output is automatically syntactically valid Base32 and that fact carries no evidentiary weight: Tor-v2 hostnames have no built-in checksum that authenticates the address as a working historical service. The direct event-to-Tor-base32 consumer fails the independently checkable first-party-host receiver for all three class choices. No archived service identity or original LP2 destination was established. Other historical hosts or encrypted/processed outputs are untested. The source still does not choose among the three event registers, and a same-length match to an expected Tor format cannot supply the missing selection. This result is distinct from the prior **red16 GP29-integer→Tor-v2** experiment on p3/p23, which has different source selection and numeric conversion.
+
 ## Decision for further research
 
 The simple **literal five-bit pack** is rejected as an unencrypted byte/file payload decoder at source-visible chapter starts. This does **not** exclude a keyed binary format or a different authorized codebook. The book does provide a concrete reason to ask about a 32-state receiver, while its observed layout does not determine how an 8-bit p50 table cell would be consumed, how punctuation classes would map to code points, or whether a second input chooses one of eight columns. Every additional parameter is presently free. A useful successor must retrieve a *first-party instruction* that fixes the missing table consumer or validates a complete original byte stream on untouched pages. Avoid guessing offsets, column permutations, byte XORs or extra cipher layers to rescue the failed direct readout.
