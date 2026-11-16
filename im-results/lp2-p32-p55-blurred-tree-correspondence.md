@@ -32,6 +32,25 @@ A second controlled test fixes a p55 tree degradation after the p32 fit, then us
 
 **Result:** the intended target p32 image is the highest of all 75, with a **0.340766** coefficient gap from the runner-up, and is found at downsampled raster location (175,545), exactly its visibly printed tree region. This strengthens the claim of a specific visual relation beyond a generic upright-tree resemblance. Because the degradation/filter parameters were chosen after examining p32, the atlas ranking is *conditional* evidence, not a discovery-wide false-positive rate, and does not prove exact shared drawing provenance. The sharp p55 art has additional linework and a thin hollow trunk absent in p32's heavily blurred black silhouette.
 
+## Source-outline-fill model and independent crown holdout (Agent8, 16 November 2026)
+
+A distinct physical explanation of the two renderings is **filling enclosed contours in the thin-line p55 tree, then scaling and defocusing that silhouette**. Instead of selecting the transformation by matching the entire tree, a new test fits **only the lower trunk** in the original p32 crop and predicts the spatially disjoint upper branches. Crops are fixed original-image rectangles: p32 (650,2070,1810,3230) on image 49; p55 (625,1430,1735,2510) on image 72, each downsampled to 360×360. The trunk rows are 175–339 and the untouched crown rows are 40–174.
+
+Each input undergoes the same 225 candidate descriptions: ink thresholds 15/25/35/45/55; raw outline, elliptical dilation radius 6, or binary **enclosed-hole fill**; Gaussian sigma 5/9/13; isotropic scale 0.80/0.85/0.90/0.95/1.0. Search translation ±45 pixels, maximizing Pearson/template correlation **only on the trunk rows**. Read out crown correlation at the trunk-selected translation and parameters without a second fit. Apply the *identical search* to horizontally mirrored p55, the independent p57 central plant and the earlier p8 margin sapling.
+
+| Original model fitted to p32 trunk | Trunk correlation, trained | Upper-branch correlation, untouched holdout | Full-crop correlation under trunk fit |
+| --- | ---: | ---: | ---: |
+| **p55 upright outline, filled** | **0.914336** | **0.898599** | **0.893481** |
+| p55 horizontally mirrored | 0.729074 | 0.733040 | 0.701847 |
+| p57 independent sapling | 0.939195 | 0.583621 | 0.773941 |
+| p8 marginal sapling | 0.490337 | 0.275500 | 0.281431 |
+
+The upright p55 fit chooses (threshold15, binary hole-fill, sigma9, scale0.9, translation(-12,+1)). Notably, **p57 matches the trunk even better** after its own optimization but predicts a substantially worse upper crown, controlling for generic upright tree silhouettes. The 0.899 p55 held-region correlation is an independent spatial branch-shape correspondence *conditional on choosing this tree-pair family*. Filling enclosed outlines is physically interpretable and improves the earlier pure-dilation whole-image score (approximately 0.79–0.81). Residual inspection still shows broad mismatched branch details; this is neither an exact shared-art-source proof nor an authenticated author instruction, key or plaintext.
+
+**Research fork:** treat p32/p55 as a substantially strengthened **specific candidate art-plate relationship**. Cryptanalytic advancement requires an original-source instruction that **consumes the relationship** to select a rune order, key or operation, plus an untouched ciphertext prediction. Image correlation alone is insufficient; additional registration parameter searches are low value.
+
+[Single-file, original SHA-gated trunk/crown reproducer](../sims/lp2_p32_p55_outline_fill_trunk_holdout_sft.py). Tested on the four unmodified original JPEGs on 16 November 2026.
+
 ## Cryptanalytic decision
 
 The orientation-specific full-artifact match supplies a concrete candidate human visual route: an observably blurred, earlier manuscript tree points toward a later sharper tree in an art-rich terminal sequence. **Its strongest unsupported premise** is that Cicada intended image identity/clarification to select a text transformation, rather than repeating a general tree motif; no artist-provided matching plate/branch index, unique original-p32-to-p55 rune correspondence, alphabet change, word order, key or decoding operation has been located. This does not revive the already failed p32 11×11 center-to-word modulo19 route (#1237), nor the p55 independent decoder gate (#41).
