@@ -94,7 +94,26 @@ const best=Math.max(...checks.map(x=>x.ioc));
 const worst=Math.min(...checks.map(x=>x.ioc));
 assert(Math.abs(best-0.03638055755319599)<1e-13);
 assert(Math.abs(worst-0.033461652354160494)<1e-13);
+
 assert(checks.every(x=>x.ioc<0.04));
+// Cicada's historically attested binary XOR operand family has a hard
+// five-bit GP29 necessary condition. A direct XOR cannot emit 29,30 or 31
+// as a native GP rune. No arbitrary conversion of these values is admitted.
+const xorChecks=[];
+for(const [register,p56] of [
+ ['authentic p56 plain',plain56],['as-printed p56 cipher',ciphertext56]
+])for(const [placement,key] of [
+ ['digest between p56 halves',p56.slice(0,45).concat(hex,p56.slice(45),clear57)],
+ ['digest after p57',p56.concat(clear57,hex)],
+ ['digest before p56',hex.concat(p56,clear57)]
+]){
+ const output=unknown.map((v,i)=>v^key[i]);
+ assert.deepEqual(output.map((v,i)=>v^key[i]),unknown);
+ xorChecks.push({register,placement,illegalNativeGp:
+   output.filter(v=>v>=29).length,firstIllegal:output.findIndex(v=>v>=29)});
+}
+assert.deepEqual(xorChecks.map(v=>v.illegalNativeGp),[21,23,24,26,23,28]);
+
 
 // Positive: a native source-derived GP text fully reconstructs from the same
 // fixed key material when an actual additive-pad model is applied.
@@ -109,8 +128,8 @@ console.log(JSON.stringify({
   p56KnownRunes:85,p57ClearRunes:95,printedHashChars:128,
   exactHashPrintedAfterNativeP56Rune:45,originalTargetSHA256:pin,
   nativeKnown180Ioc:nativeIoc,originalEncrypted308Ioc:rawIoc},
- variants:checks,bestIoc:best,worstIoc:worst,
+ variants:checks,bestIoc:best,worstIoc:worst,xorChecks,
  additiveModelPlantRecovered:'308/308',
- status:'All 12 exact source-order/sign/register additive consumers are near-uniform; no recovered unknown GP prose. Alternative nonadditive/codecs remain open.'
+ status:'All 12 source-order/sign/register additive outputs are near-uniform; all 6 literal five-bit XOR consumers produce forbidden 29-31 output values. No unknown GP prose.'
 },null,2));
 console.log('PASS: original p56 authentic key, digest and 308 source-shaped additive gate');
