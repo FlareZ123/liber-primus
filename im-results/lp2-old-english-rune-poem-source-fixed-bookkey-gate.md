@@ -1,0 +1,26 @@
+# Old English Rune Poem as an LP2 running key: source-fixed original-input decision
+
+**Decision, 16 November 2026:** The historically attested 29-stanza Anglo-Saxon Rune Poem supplies a natural correspondence to all 29 Gematria Primus rune names, but **does not meet the preregistered stage-1 detection threshold** under the source-fixed phase23 running-key model on any of eight original LP2 chapter windows. This is a conditional negative for one literal Old English source and decoder family, not a finding that the poem lacks other clue roles or that any unknown LP2 rune was decoded.
+
+## Independent historical premise and competing explanation
+
+The source's 29 stanza headings are, in printed order: Feoh, Ur, Ðorn, Os, Rad, Cen, Gyfu, Wenne, Hægl, Nyd, Is, Ger, Eoh, Peorð, Eolhsecg, Sigel, Tir, Beorc, Eh, Man, Lagu, Ing, Eþel, Dæg, Ac, Æsc, Yr, Iar, Ear. This is the same Anglo-Saxon futhorc ordering used for the GP29 names (F, U, TH, O, R, C, G, W, H, N, I, J, EO, P, X, S, T, B, E, M, L, NG, OE, D, A, AE, Y, IA, EA). The original Old English poem was published by George Hickes in 1705, survived as a lost-manuscript witness, and was publicly accessible before the 2014 puzzle. The source-name match provides a human-recognizable hypothesis. **No signed Cicada clue has appointed this particular verse body as an encryption key.** The rival is that GP29 borrows the conventional futhorc for its alphabet while its running key comes from another source.
+
+The immutable transcription used in the run was the 29-line public-domain original Old English verse body at [Dukotah/cicada3301, blob `dea9478b3ded47cc1fbbe30be7b8941486054e07`](https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/liber-primus/data/keys/runepoem_oe.txt); its names appear one per line, source length 3,176 characters. Transliterations fixed before testing: thorn and eth to TH; ash to AE; wynn to W. Historical source reference: Bruce Dickins, *Runic and Heroic Poems of the Old Teutonic Peoples* (1915), [Old English verse text](https://en.wikisource.org/wiki/Runic_and_Heroic_Poems_of_the_Old_Teutonic_Peoples/The_Runic_Poems/The_Anglo-Saxon_Runic_Poem). The editorial status of rune names does not supply further key instructions.
+
+## Exact original-input test
+
+Reused the already registered phase23 [table-invariant unknown-GP29-map decoder](https://github.com/pnotisdev/cicada3301/blob/15200c67abee106913ba01ff504c5b6e88d16cc7/work/book_key_decoder.py) unchanged, including skip-drift probability q=0.81, 729 ciphertext runes per window, eight original physical chapters, beam64, per pointer8, start stride8, wrong-source/null and planted controls. The manuscript source is `resources/liber-primus/lp2-corpus.json` pinned by SHA-256 `58588725a006432a50a1c8d852b881e5e844ba32073e729b42e0f78074b17338`. In the poem's natural two representations the resulting GP29 sequences contain 2,533 digraph-mode and 2,836 single-letter-mode runes, respectively. Source body is tested without cycling or repeating as a shorter invented key. Original key offsets are nonwrapping and reserve 128 positions for skip drift.
+
+| Frozen spelling | Key length | Original offset screens | Best original score (nats/rune) | Registered stage1 threshold | Hits | Native planted controls |
+|---|---:|---:|---:|---:|---:|---:|
+| GP29 digraph | 2,533 | 210 | −0.1465963 | −0.0112 | **0** | 5/6 |
+| Single-letter | 2,836 | 248 | −0.1728452 | −0.0417 | **0** | 4/6 |
+
+Each of the 8 untouched original windows was scored at each eligible offset per spelling (1,680 + 1,984 = **3,664 original window evaluations**, all below the frozen gate). The imperfect planted-control sensitivities limit strength of this detector but all eight original chapter maxima are substantially below its threshold. No table/clock is fitted to original plaintext because stage1 never crossed its gate. The negative is specific to the literal verse body, the source spelling conventions, the q=.81 phase23 skip-aware unknown-table family, and this preregistered 729-rune screen; other historically motivated operations remain open.
+
+The source, exact decoder, original hash assertions, negative controls and atomic shard outputs are in [source-fixed runner](../sims/lp2_rune_poem_tablefree_bookkey_stage1.py), [aggregate](../sims/lp2_rune_poem_tablefree_bookkey_aggregate.py), [manual workflow](../.github/workflows/lp2-rune-poem-bookkey-stage1.yml) and completed [four-shard full original-input run 43808668974](https://github.com/FlareZ123/liber-primus/actions/runs/43808668974). [Aggregated numeric artifact 14198664914](https://github.com/FlareZ123/liber-primus/actions/runs/43808668974/artifacts/14198664914), with no poem text committed here. This report consolidates the already-completed source-fixed run; it does not claim a novel independent decryptor.
+
+## Frontier after this decision
+
+Retire only the **Old English poem as a literal GP29 running key in the fixed phase23 family**. Treat the poem's 29-name correspondence as an ordinary historical explanation of the alphabet, unless an independently sourced verse/line index, key schedule, or opcode is found. Prefer the direct original p49 66-rune instruction or an independently recoverable numeric-table payload over new arbitrary poem translations or shift phase tuning. **Recovered unknown LP2 plaintext: zero.**
