@@ -1,0 +1,18 @@
+name: Agent3 fixed-self-loop original-source necessary-condition gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-fixed-loop:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact source and GP29 lexical constraints
+        run: |
+          node --check sims/lp2_fixed_selfloop_symbol_original_gate.cjs
+          node sims/lp2_fixed_selfloop_symbol_original_gate.cjs
