@@ -60,10 +60,11 @@ function encrypt(plain,key,sign){
  * @param {number[]} cipher
  * @param {number[]} key
  * @param {number} sign
- * @returns {{plain:number[],consumed:number}[]}
+ * @returns {{paths:{plain:number[],consumed:number}[],firstDead:number|null}}
  */
 function decrypt(cipher,key,sign){
   let paths=[{plain:[],consumed:0}];
+  let i=0;
   for(const c of cipher){
     const next=[];
     for(const s of paths){
@@ -72,9 +73,11 @@ function decrypt(cipher,key,sign){
       if(p!==0)next.push({plain:[...s.plain,p],consumed:s.consumed+1});
     }
     paths=next;
+    i++;
+    if(!paths.length)return {paths,firstDead:i};
   }
   for(const s of paths)assert.deepEqual(encrypt(s.plain,key,sign),cipher);
-  return paths;
+  return {paths,firstDead:null};
 }
 /** @param {number[]} xs */
 function ioc(xs){
@@ -89,27 +92,31 @@ for(const {label,key} of words){
   for(const start of [0,1]){
     const cipher=page55.indices.slice(start);
     for(const sign of [1,-1]){
-      const variants=decrypt(cipher,key,sign);
+      const inverse=decrypt(cipher,key,sign);
+      const variants=inverse.paths;
       const scored=variants.map(s=>({...s,ioc:ioc(s.plain)}))
         .sort((a,b)=>b.ioc-a.ioc);
       const best=scored[0];
       const planted=page57.indices.slice(0,cipher.length);
       const plantCipher=encrypt(planted,key,sign);
-      assert(decrypt(plantCipher,key,sign).some(s=>
+      assert(decrypt(plantCipher,key,sign).paths.some(s=>
         s.plain.length===planted.length &&
         s.plain.every((v,i)=>v===planted[i])));
       outcomes.push({label,start,sign,candidates:variants.length,
-        maxIoC:best.ioc,openingGP:asGP(best.plain.slice(0,50)),
-        fullCandidateContains:asGP(best.plain),
+        firstDead:inverse.firstDead,
+        maxIoC:best ? best.ioc : null,
+        openingGP:best ? asGP(best.plain.slice(0,50)) : null,
+        fullCandidateContains:best ? asGP(best.plain) : null,
         plantedExact:planted.length});
     }
   }
 }
 const actual= ioc(page55.indices);
 const solved = ioc(page57.indices.slice(0,76));
-const max=Math.max(...outcomes.map(x=>x.maxIoC));
+const viable=outcomes.filter(x=>x.maxIoC!==null);
+const max=viable.length ? Math.max(...viable.map(x=>x.maxIoC)) : null;
 assert(outcomes.length===8);
-assert(max<solved);
+assert(max===null || max<solved);
 console.log(JSON.stringify({
   historicalSource:'2012 Cicada emblem 845145127.com/cicada.jpg title',
   input:'unaltered 76-runic original p55, authentic plaintext-F bypass',
