@@ -87,6 +87,24 @@ An all-source scan uses every consecutive full-length source-native original GP2
 
 There are **zero exact matches** in every cell; no possible thirteen-rune initial key produces any of the tested source-native passages by **this exact additive Fibonacci recurrence with no faults**. The p0 and p3 heldouts demand **at least 42/703 =5.97%** and **49/1,132 =4.33%** exceptions respectively to imitate even one tested native-English residual histogram. Over the full book the lower bound is smaller (as low as **322/12,943 =2.49%**), but still excludes a single error-free stream. The full original GP index order is preserved in each scope. A 95-rune independently solved p57 positive is encrypted using two *different unknown thirteen-rune initial keys*, with the same recurrence: the residuals match in **82/82** positions and both complete 95-rune decryptions round-trip perfectly.
 
+### The complete nine-chapter independent-key variant
+
+A manuscript author could reset the *entire thirteen-symbol secret key* at every original illustrated chapter instead of continuing a global key. This is a natural and strictly more generous hypothesis. The same mathematical annihilator `Y(C)=Y(P)` remains necessary **separately within each chapter** and does not depend on how its initial 13 symbols are chosen. The exact SFT extends the original-source/three-reference sliding histogram computation to all nine source-visible chapters, with a fresh arbitrary thirteen-symbol initial seed permitted on each.
+
+| Original chapter | Runes | Residual positions | Optimistic least faults over Shakespeare / Gibran / Emerson |
+| --- | ---: | ---: | ---: |
+| p0–2 | 729 | 716 | **41** |
+| p3–7 | 1,145 | 1,132 | **49** |
+| p8–14 | 1,729 | 1,716 | **69** |
+| p15–22 | 1,903 | 1,890 | **73** |
+| p23–26 | 1,021 | 1,008 | **41** |
+| p27–32 | 1,433 | 1,420 | **81** |
+| p33–39 | 1,680 | 1,667 | **76** |
+| p40–53 | 3,008 | 2,995 | **92** |
+| p54–55 | 308 | 295 | **22** |
+
+**Every chapter independently fails** the no-exception necessary condition under each of the three frozen native-English reference texts, even after allowing arbitrarily secret, independently chosen 13-rune keys at all nine chapter starts. The most permissive chapter requires 92/2,995 ≈ **3.07%** changed recurrence residuals; the final 308-rune chapter requires at least 22/295 ≈ **7.46%**. The full 9×3 minima, exact windows, and both native positives are produced and assertion-checked by the executable. These are lower bounds for *this literal candidate coding law*, not a claim that all English is mathematically impossible or that the manuscripts use the tested key model.
+
 This is a **key-independent finite-register obstruction** and an exact quantitative requirement for fault-bearing/rekeyed variants; it does not exclude arbitrary unknown prose with a precisely matching residual distribution, source encoding not tested, a cipher inserting/deleting runes, a key skipping positions for F, or alternative recurrences. The original manuscript's visual Fibonacci spiral motivates the tested taps but does not authenticate this coding model or the use of giant initials as a seed. The [standalone read-only Windows CommonJS SFT](../sims/lp2_giant13_fib8_13_allseed_hist_sft.cjs) was executed against all four exact checked-in sources with **all hard assertions and two independent planted positives passing**. Unlike searching 29¹³ seeds, the histogram proof is complete for the stated algebraic family.
 
 ## Decision and a real next gate
