@@ -233,7 +233,7 @@ function beamDecode(C, key, sign, maxSkip, savePath = false, repeatKey = true) {
 
   if (savePath) {
     const pathRunes = new Uint8Array(C.length);
-    pathRunes[0] = firstRune;
+    pathRunes[0] = best.firstRune;
     let index = 0;
     for (let i = C.length - 1; i >= 1; i -= 1) {
       pathRunes[i] = runeHistory[i - 1][index];
@@ -299,23 +299,23 @@ function encipherFtransparent(plain, key, sign = -1) {
 }
 
 function beamFtransparent(C, key, sign, savePath = false) {
-  let firstRune;
-  let firstKeyIndex;
+  const initial = [];
+  // C=F can be either transparent plaintext-F or an encrypted non-F symbol.
   if (C[0] === 0) {
-    firstRune = 0;
-    firstKeyIndex = 0;
-  } else {
-    firstRune = mod(C[0] + sign * key[0]);
-    if (firstRune === 0) return { complete: false, failedAt: 0 };
-    firstKeyIndex = 1;
+    initial.push({
+      score: 0, keyIndex: 0, tail: GP[0], charCount: GP[0].length, firstRune: 0
+    });
   }
-  const firstText = GP[firstRune];
-  let beam = [{
-    score: 0,
-    keyIndex: firstKeyIndex,
-    tail: firstText,
-    charCount: firstText.length
-  }];
+  if (key.length > 0) {
+    const p = mod(C[0] + sign * key[0]);
+    if (p !== 0) {
+      initial.push({
+        score: 0, keyIndex: 1, tail: GP[p], charCount: GP[p].length, firstRune: p
+      });
+    }
+  }
+  if (initial.length === 0) return { complete: false, failedAt: 0 };
+  let beam = initial;
   const parentHistory = [];
   const runeHistory = [];
 
@@ -341,7 +341,8 @@ function beamFtransparent(C, key, sign, savePath = false) {
           tail,
           charCount,
           parent,
-          rune: 0
+          rune: 0,
+          firstRune: state.firstRune
         });
       }
 
@@ -364,7 +365,8 @@ function beamFtransparent(C, key, sign, savePath = false) {
             tail,
             charCount,
             parent,
-            rune: p
+            rune: p,
+            firstRune: state.firstRune
           });
         }
       }
@@ -402,7 +404,7 @@ function beamFtransparent(C, key, sign, savePath = false) {
 function exactFtransparentReachability(C, key, sign) {
   let states = new Set();
   if (C[0] === 0) states.add(0);
-  else {
+  if (key.length > 0) {
     const p = mod(C[0] + sign * key[0]);
     if (p !== 0) states.add(1);
   }
@@ -477,14 +479,22 @@ const pretableMinus = beamDecode(
 assert.ok(pretablePlus.complete && pretableMinus.complete);
 assert.ok(pretablePlus.score < SCORE_THRESHOLD && pretableMinus.score < SCORE_THRESHOLD);
 
-const fTransparentPlant = encipherFtransparent(positivePlain.slice(0, 138), blobKey, -1);
+const fTransparentPlain = positivePlain.slice(0, 138);
+const fTransparentPlant = encipherFtransparent(fTransparentPlain, blobKey, -1);
 const fTransparentPositive = beamFtransparent(fTransparentPlant.ciphertext, blobKey, -1, true);
 assert.ok(fTransparentPositive.complete);
 let fTransparentMatches = 0;
 for (let i = 0; i < 138; i += 1) {
-  if (fTransparentPositive.path[i] === positivePlain[i]) fTransparentMatches += 1;
+  if (fTransparentPositive.path[i] === fTransparentPlain[i]) fTransparentMatches += 1;
 }
 const fTransparentRecovery = fTransparentMatches / 138;
+const firstFPlain = fTransparentPlain.slice();
+firstFPlain[0] = 0;
+const firstFPlant = encipherFtransparent(firstFPlain, blobKey, -1);
+const firstFDecoded = beamFtransparent(firstFPlant.ciphertext, blobKey, -1, true);
+assert.ok(firstFDecoded.complete);
+const firstFRecovery = firstFDecoded.path.reduce((n, x, i) => n + (x === firstFPlain[i] ? 1 : 0), 0) / 138;
+assert.ok(firstFRecovery > 0.98);
 assert.ok(fTransparentRecovery > 0.98);
 const fTransparentPlus = exactFtransparentReachability(pretableSentence, blobKey, -1);
 const fTransparentMinus = exactFtransparentReachability(pretableSentence, blobKey, +1);
@@ -494,7 +504,8 @@ const fTransparentGate = {
   positiveControl: {
     recovery: fTransparentRecovery,
     score: fTransparentPositive.score,
-    keyBytesConsumed: fTransparentPlant.keyBytesConsumed
+    keyBytesConsumed: fTransparentPlant.keyBytesConsumed,
+    firstFEdgeRecovery: firstFRecovery
   },
   actualExactReachability: {
     C_equals_P_plus_K: fTransparentPlus,
