@@ -45,7 +45,8 @@ const p57 = page(57);
 assert.deepEqual([p54.length, p55.length, p56.length, p57.length],
   [232, 76, 85, 95]);
 const originalRed = ink.pages.find(p => p.page === 54).red_spans;
-assert.deepEqual(originalRed, [{start: 0, length: 9}]);
+assert.deepEqual(originalRed.map(({start, length}) => ({start, length})),
+  [{start: 0, length: 9}]);
 const candidate = p54.slice(0, 9).concat(p55);
 assert.equal(candidate.length, p56.length);
 assert.deepEqual(candidate.slice(0, 9), [24, 19, 21, 23, 27, 2, 14, 10, 19]);
