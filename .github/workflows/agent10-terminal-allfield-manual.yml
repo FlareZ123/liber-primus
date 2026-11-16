@@ -23,3 +23,7 @@ jobs:
         run: |
           node --check sims/lp2_terminal256_degree31_repeatclass_gcd_sft.cjs
           node sims/lp2_terminal256_degree31_repeatclass_gcd_sft.cjs
+      - name: Exhaust every GF257 unlabeled degree160 polynomial mapping against first 20 withheld positions
+        run: |
+          node --check sims/lp2_terminal256_gf257_unlabeled_degree160_sft.cjs
+          node sims/lp2_terminal256_gf257_unlabeled_degree160_sft.cjs
