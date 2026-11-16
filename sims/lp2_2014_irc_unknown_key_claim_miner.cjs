@@ -62,7 +62,7 @@ async function read(meta) {
         text:line.slice(0,480)});
     }
   }
-  return {file:meta.file,sha:meta.blob,periodCount,messageCount:messages.length,linkCount:links.length,messages,links};
+  return {file:meta.file,sha:meta.blob,periodCount,messageCount:messages.length,linkCount:links.length,messages,links,lines};
 }
 (async()=>{
   const records=[];
@@ -74,7 +74,12 @@ async function read(meta) {
     const old=allLinks.get(l.url);
     if(!old||l.rank>old.rank)allLinks.set(l.url,{...l,file:r.file});
   }
+  const selectedContexts=records.flatMap(r=>{
+    const picks=r.file==="#cicadasolvers.freenode.log"?[165336,165780,175235,187146,188780,225858,226693,229866]:[];
+    return picks.map(n=>({file:r.file,n,near:r.lines.slice(Math.max(0,n-15),n+14).map((line,i)=>({n:Math.max(0,n-15)+i+1,line:line.slice(0,360)}))}));
+  });
   const output={
+    selectedContexts,
     sources:records.map(r=>({file:r.file,sha:r.sha,periodCount:r.periodCount,
       matchingLines:r.messageCount,sourceLinkMentions:r.linkCount})),
     topUnknownPageMessages:lines.slice(0,150),
