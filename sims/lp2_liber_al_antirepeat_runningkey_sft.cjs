@@ -245,7 +245,7 @@ function main() {
   const first = parseOriginal(original, 729);
   const expected = corpus.pages.slice(0, 3).flatMap((p) => p.indices);
   assert.deepEqual(first.c, expected, "Original p0-p2 GP29 mismatch");
-  const solved = parseOriginal(original.split("%")[57], 95);
+  const solved = parseOriginal(original.split("%").at(-1), 95);
   assert.deepEqual(solved.c, corpus.pages[57].indices, "Solved p57 mismatch");
 
   const report = {source:"Original 2013 Cicada Book of the Law, chapters I/II/III",
