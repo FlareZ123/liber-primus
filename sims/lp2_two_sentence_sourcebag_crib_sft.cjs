@@ -154,7 +154,8 @@ function scan(original, source, minWordCount = 13) {
   return {minCombinedDeficit, exactPairs, best: best.slice(0, 5)};
 }
 
-const originals = originalSpans();
+function main() {
+  const originals = originalSpans();
 const sources = [
   ['Gibran Prophet', 'resources/control/gibran_prophet_58585.txt'],
   ['Emerson Essays', 'resources/control/emerson_essays_2944.txt'],
@@ -196,3 +197,7 @@ console.log(JSON.stringify({
   results,
   sourcePositiveControls: sources.length
 }, null, 2));
+}
+
+if (require.main === module) main();
+module.exports = {originalSpans, sourceSpans, gpLength, sources, key, scan};
