@@ -1566,5 +1566,17 @@
       "nonphysical_events_in_original_180_inventory": 5
     },
     "preservation": "The original events array and its symbols/offsets are unchanged. The CSV retains one row per event index, including ambiguous and absent events; source morphology is supplemental and does not silently recode transcription symbols."
-  }
+  },
+  "physical_image_exceptions": [
+    {
+      "page": 0,
+      "original_jpeg": "resources/liber-primus/17.jpg",
+      "source_sha256": "197e1e153958b9a2736b09c10eea7d8bb00e0632fd22a8d9606840becc79942e",
+      "historical_annotation": "red13, 13-dot after rune13",
+      "confirmed_original": "red8, 13-dot after rune8, black5 then ordinary full stop",
+      "affected_properties": "p0 red-spans first length and p0 large punctuation local rune offset; the historical arrays and aggregate counts are preserved as derivative transcription data",
+      "authoritative_physical_override": "resources/liber-primus/lp2-p0-physical-ink-override.json",
+      "reproducible_source": "sims/lp2_p0_red8_marker8_original_image_sft.py"
+    }
+  ]
 }
