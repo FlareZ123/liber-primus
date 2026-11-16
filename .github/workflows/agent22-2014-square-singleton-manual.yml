@@ -1,0 +1,13 @@
+name: Agent22 2014 square state singleton gate
+on:
+  workflow_dispatch:
+jobs:
+  original_singletons:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-locked GP29 exact all-state test
+        run: node sims/lp2_2014_magic_squares_singleton_allstate_sft.cjs
