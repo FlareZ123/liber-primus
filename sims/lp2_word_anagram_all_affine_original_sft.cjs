@@ -23,8 +23,10 @@ const gp = require('../resources/liber-primus/lp2-corpus.json');
 /** @typedef {{word:string,frequency:number,runes:number[]}} LexEntry */
 /** @typedef {{index:number,length:number,caesar:string[],affine:string[]}} WordResult */
 
-const source = fs.readFileSync(
-  path.join(__dirname, '..', 'resources/control/english_wordfreq_textblob.txt'), 'utf8');
+const read = file => fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
+const source = read('resources/control/english_wordfreq_textblob.txt');
+const solved = read('resources/liber-primus/lp1-plaintext-reference.txt')
+  .replace(/^#.*$/gm, '');
 const glyph = new Map(gp.runes.map((r, i) => [r, i]));
 const corpus = parseSharedCorpus();
 assert.equal(corpus.words.length, 2896);
@@ -78,6 +80,28 @@ for (const row of source.split(/\r?\n/)) {
   reference.push(entry);
 }
 assert.equal(reference.length, 12894);
+// Allow exact known-source vocabulary as an independent calibration and
+// conservative overinclusive dictionary extension. This includes genuine
+// solved words such as CIRCUMFERENCES (14 source GP runes), absent from the
+// base frequency lexicon. The editorial prose in this reference can only
+// broaden the register; it cannot manufacture an exclusion.
+const extra = [];
+for (const word of solved.match(/[A-Za-z]+/g) || []) {
+  const encoded = encodeSourceNativeGP(word);
+  if (encoded.length < 8 || encoded.length > 14) continue;
+  const key = bag(encoded);
+  const bucket = lexicon.get(key) || [];
+  if (bucket.some(x => x.runes.join(',') === encoded.join(','))) continue;
+  const entry = {word:word.toLowerCase(),frequency:0,runes:encoded};
+  bucket.push(entry);
+  lexicon.set(key, bucket);
+  patterns.add(encoded.length + ':' + multiplicityPartition(encoded));
+  reference.push(entry);
+  extra.push(entry.word);
+}
+assert.deepEqual(extra.sort(), ['behaviors', 'circumferences', 'encrypted',
+  'illusions', 'inhabiting', 'primality']);
+assert.equal(reference.length, 12900);
 
 /**
  * Independently grant all 812 secret GP29 affines for a source word,
@@ -147,7 +171,7 @@ for (let i = 0; i < 40; i++) {
 }
 console.log('ORIGINAL_WORD_BAG_AFFINE ' + JSON.stringify({
   sourceWords:words.length,sourceRunes:12956,sourceLongWords:long.length,
-  nativeDictionaryEntries:reference.length,sourceNativeBagSignatures:lexicon.size,
+  nativeDictionaryEntries:reference.length,addedAuthenticSolvedWords:extra,sourceNativeBagSignatures:lexicon.size,
   byLength:Object.fromEntries([...byLength].sort((a,b)=>a[0]-b[0])),
   caesarWithArbitraryPositionPermutation:0,
   affineWithArbitraryPositionPermutation:matched.length,
