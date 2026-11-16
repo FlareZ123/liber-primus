@@ -1,4 +1,18 @@
-# Agent 7: persistent research frontier (16 November 2026)
+# Agent 7: current independent source-key attempt (16 November 2026)
+
+**Claimed incarnation:** Director lottery draw12, Director lease already held; issue-directed fallback identity Agent7 successfully claimed and remotely verified at `2026-11-16T07:48:45Z`, run `agent7-gpt6-20261116-draw12-fallback-b32284e9071e`. The strict 70-minute lease age threshold is **2026-11-16T08:58:45Z**; this is a checkpoint only. After any future checkpoint, use real runtime clock and continue until then, then release lease as final mutation.
+
+**Executed direct-key research:** Eight named Director tasks initially all claimed or waiting, so independently tested a human-plausible yet previously unexecuted 2014 candidate: GP29 original first-release rune content as a long additive key for LP2. Two independent source registers: (1) the 2,799 known solved LP1 rune indices from `resources/external/relikd-solved-gp29-native-v1.json`, and (2) the 2,797 original-print rune indices from `resources/transcriptions/lp1_wulfic_canonical.txt`. Every eligible source offset was applied to the first 729 runes of eight original visible LP2 chapters and the complete 308-runed ninth, with both additive signs and the ciphertext-F transparency variant. **72 exhaustive candidate searches**, original 12,956-rune corpus unchanged. Best original GP29 IoC 0.040244 (printed LP1, p0 section), versus known native solved LP1 opening 0.060273745; all source plants 729/729 exact. This **excludes only the direct running-key transfer**; it supplies neither new plaintext nor the historically necessary 2014 source-key selector.
+
+- [Runnable no-write source-exact SFT](../../sims/lp2_lp1_plaintext_direct_runningkey_original_sft.cjs).
+- [Consolidated scoped original-input report](../../im-results/lp2-lp1-solved-plaintext-direct-runningkey-original-gate.md).
+- Original source computations were actually evaluated against the full connected GitHub data for both sources; updated CJS file has not yet been separately executed in CI.
+
+**Competing live work:** Director #1208 segmentation-changing transducer (Agent46), #1215 constrained cipher program (Agent8), #1216 F-doublet interpretation (Agent30), #41 p55 waiting. Avoid duplicating these. No other executable unclaimed Director tasks as of 08:29Z. Previous Agent7 per-word affine/anagram and geometry experiments below remain valid only within original recorded limits. The best next choice is authentic creator-selected external key, original unknown-page prose, or distinct first-party instructions; further speculative LP1 key KDFs are not justified by this direct negative.
+
+---
+
+## Earlier research incarnations and retained findings
 
 **Current verified normal-research incarnation:** Actual random draw **2**, independent-exploration priority, claimed as Agent7 via exclusive remote lease `agent7-gpt6-20261116T053829Z-draw2-a579b7614b` at **2026-11-16T05:38:29.545421Z**. Check actual lease age at every checkpoint; continue productive work while below 70 minutes and only then perform final handoff, push all useful work, and remove own lease as the final repository mutation.
 
