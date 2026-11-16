@@ -32,6 +32,42 @@ def source_bytes() -> bytes:
     return data
 
 
+# Three original 2013 poster/phone observations (see 2013_pklmx_reproduce.py).
+# An authentic Dataset 17 key should reproduce the exact onion hosts, fixing
+# source use and byte offset independently of LP2 language or cipher fitting.
+DATASET17_POSTERS = [
+    ("Dallas", 0x82B5,
+     "f6a2d0a48e1b1ae40cbd454f77baa7d2557683d0cd4998",
+     "8f90a7ddfb6d68957edc2a3816ddc4e77b19edb9a22792",
+     "y2wyuvrqraowagc5.onion"),
+    ("Annapolis", 0x13099,
+     "d5a6cb76e55a2166bd6a4d078857ec1f68ea6afa9738",
+     "b0d4bc1086294510c55c3d6aba259f7446850493f856",
+     "erwfcsdvx6pm2rsk.onion"),
+    ("Columbus", 0x0269,
+     "d4b10626d65995e8fb010f4388787d56433f90c6df8d8d",
+     "b8dd3347b020e68399377975ef4f1a376d50feafb0e387",
+     "ll5afyskb6v6g7ga.onion"),
+]
+
+
+def original_2013_posters(data: bytes) -> list[dict[str, object]]:
+    proofs = []
+    for city, offset, phone_hex, archive_slice_hex, target in DATASET17_POSTERS:
+        phone = bytes.fromhex(phone_hex)
+        archive_slice = bytes.fromhex(archive_slice_hex)
+        raw_slice = data[offset:offset + len(phone)]
+        assert len(raw_slice) == len(phone), "original source slice out of bounds"
+        assert raw_slice == archive_slice, f"{city}: original ISO bytes differ from archive"
+        recovered = bytes(x ^ y for x, y in zip(phone, raw_slice))
+        assert recovered == target.encode("ascii"), f"{city}: old-stage XOR fails"
+        proofs.append({
+            "location": city, "source_offset": offset,
+            "key_slice_hex": raw_slice.hex(), "plaintext": recovered.decode("ascii"),
+        })
+    return proofs
+
+
 def characterize(data: bytes) -> dict[str, object]:
     frequency = Counter(data)
     entropy = -sum((count / len(data)) * math.log2(count / len(data)) for count in frequency.values())
@@ -68,5 +104,7 @@ def characterize(data: bytes) -> dict[str, object]:
 
 
 if __name__ == "__main__":
-    result = characterize(source_bytes())
+    original = source_bytes()
+    result = characterize(original)
+    result["authentic_2013_phone_reproductions"] = original_2013_posters(original)
     print("SOURCE_EXACT", json.dumps(result, sort_keys=True))
