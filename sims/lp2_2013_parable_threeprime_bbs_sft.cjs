@@ -33,7 +33,7 @@ function stateStream(count, emitNext) {
 
 function makeKey(count, mode, emitNext) {
   if(mode==='residue') return stateStream(count,emitNext).map(x=>x%29);
-  const values=[],buffer=[],states=stateStream(Math.ceil(count*5*32/29)+60,emitNext);
+  const values=[],buffer=[],states=stateStream(Math.ceil(count*6.1)+1000,emitNext);
   for(const x of states){
     buffer.push(x&1);
     if(buffer.length===5){
