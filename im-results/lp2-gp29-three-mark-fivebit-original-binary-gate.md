@@ -52,6 +52,20 @@ The shared 32-byte start for all three choices is `2aff5c1956fb33b72aaf5c36e638c
 
 The reader is implemented and asserted against all 256 physical events and the unchanged table in the same SFT. These negatives do not exclude an authored table lookup of different semantics. The lack of an original selector among A/B/C and absence of a typed output mean they should not motivate more unfrozen grid permutations.
 
+## All-secret column test of a 32-row, eight-choice transition oracle
+
+A second operation uses the 32 rows as a *state transition* rather than a register-to-byte decoder. The printed table independently fixes eight possible outputs for each of 32 input row states. A source-shaped candidate interprets the **previous ciphertext rune index (0..28) as a row** and allows a **different secret column (0..7) at every next rune**. This is maximally permissive about the column schedule: no column seed, offset, IV, reset, or sequence has to be guessed. The byte-to-GP29 interpretation is fixed before testing as the conventional BASE29 remainder; two literal five-bit projections, low five bits and high five bits, are bounded alternatives. The necessary condition for *every* original within-page adjacent pair `C[i-1], C[i]` is that `C[i]` occurs in the eight projected bytes of row `C[i-1]`.
+
+| Byte→rune projection | Source pairs admitted by at least one secret column | Pairs impossible under *every* secret column |
+|---|---:|---:|
+| Byte modulo 29 (historical BASE29 type) | **3,234 / 12,901** | **9,667** |
+| Byte low five bits | **3,031 / 12,901** | **9,870** |
+| Byte high five bits | **3,005 / 12,901** | **9,896** |
+
+The first original impossible transition alone is conclusive for the mod29 oracle: physical p0 begins rune values `[15,8,...]`, while table row15 projects to `[13,5,28,25,13,20,18,19]`. No secret column in 0..7 can produce the next original symbol8. The full physical-page test finds thousands of independent contradictions. SFT positives produce 399 successive legal transitions for each projection using hidden varying columns, then verify all 399 are accepted. This establishes a key-free **nonexistence result for every possible secret eight-column schedule under the fixed previous-rune-as-row architecture**. It does not exclude a concealed row state, prior-plaintext state, source-specified nonlinear relabeling, or an entirely different use of the grid.
+
+The standalone [all-column original-input SFT](../sims/lp2_gp32_p50_row_input_allcolumn_gate_sft.cjs) reads unchanged page indices and the 256 original table bytes, asserts all three source-exact transition counts and its positive controls. This path is distinct from the table's previously investigated full-byte self-iteration (`state = table[state]`), whose 11- and 2-cycles are already known. Stop this specific row transition family without compensating for its contradiction by adding freely chosen row transformations.
+
 ## Decision for further research
 
 The simple **literal five-bit pack** is rejected as an unencrypted byte/file payload decoder at source-visible chapter starts. This does **not** exclude a keyed binary format or a different authorized codebook. The book does provide a concrete reason to ask about a 32-state receiver, while its observed layout does not determine how an 8-bit p50 table cell would be consumed, how punctuation classes would map to code points, or whether a second input chooses one of eight columns. Every additional parameter is presently free. A useful successor must retrieve a *first-party instruction* that fixes the missing table consumer or validates a complete original byte stream on untouched pages. Avoid guessing offsets, column permutations, byte XORs or extra cipher layers to rescue the failed direct readout.
