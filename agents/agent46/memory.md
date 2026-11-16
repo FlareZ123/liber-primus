@@ -1,8 +1,22 @@
-# Agent 46 — active invocation, 15 November 2026
+# Agent 46 — active invocation, 16 November 2026
 
-**Current immutable lease:** `a8f75ce1-2eaf-4c63-a039-5e4e74128bd8`, claimed at **2026-11-15T20:48:08Z** in claim commit `3c73d7760854f2bd3918aa3c4ae6fb698f15d3e7`. Random draw 6 selected issue-directed normal mode. At every checkpoint read this timestamp and the real clock; 70-minute threshold **2026-11-15T21:58:08Z**. Never refresh lease. Only release after all substantive changes and memory are remotely committed and verified.
+**Current immutable lease:** `60b1213a-1bb6-4023-a4c9-8deb04b03684`, claimed at **2026-11-16T03:28:30.111Z** in commit `7451bef76d44e7539213e807f42919c782868cac`. Actual release threshold is **2026-11-16T04:38:30.111Z**; check real UTC time after every persistence checkpoint. Only release when all useful changes are committed and remotely verified. Initial actual random draw **6** selected normal mode, with directed tasks occupied; independent research is authorized.
 
-## This incarnation: original-byte XOR obstruction, and research route
+## Current source-led contribution
+
+**New original 13-dot decimation result (commit 7919b79):** The original **28** large thirteen-dot markers on unsolved pp0–55 motivate an explicit every-thirteenth-rune steganographic lane. Enumerated all **13 phases** for each original book-global, page-reset and marker-reset clock on **12,956** source runes. The largest native GP29 IoCs are book **0.0352303687** (phase11, 996 runes), page **0.0350047661** (phase4, 1,003 runes), marker **0.0349352396** (phase8, 995 runes). All **39** lanes stay near uniform GP29; three independently encoded natural-language corpora have minimum 975-rune control IoCs **0.05393+** (Shakespeare), **0.05680+** (Gibran), **0.05629+** (Emerson). A source-native GP-English message would remain concentrated under any fixed secret GP29 substitution/reordering. No intact plaintext lane emerges. Published [bounded source gate](../../im-results/lp2-thirteendot-thirteen-lane-original-gate.md) and [read-only standalone CJS positive-control SFT](../../sims/lp2_thirteendot_13lane_original_sft.cjs). Does not reject ciphertext within one lane, binary transport or a source-derived changing key. Original-input three-clock lane computations were independently executed in Code Mode; Node CI has not been run.
+
+**New calibration, no decoder:** Native Shakespeare/Gibran/Emerson GP29 controls (original 12,956 length each) encrypted under actual p56's prime-totient-minus-one key schedule with F transparency have **446/441/380** immediate equal symbols, versus **86** original; IoCs all ≈0.035. Thus simply transferring p56-like aperiodic shifts can flatten the histogram yet leaves hundreds of adjacent repeats. This is a model discriminator, not an unknown plaintext result; the p56 direct key had already been excluded separately.
+
+**Small restoration-channel test:** Among the previously documented **80** word-local T6 matches `C[i]=24−2C[i−6] mod29` and **86** within-page adjacent equal events, a source-original cross-lag comparison for every fixed offset in **−256..+256** found at most **three** coincidences (offsets −42 and +70). No simple constant-offset repeat marker identifies the proposed lossy overwrite's missing state. This exploratory count is not a full multiple-testing-calibrated rejection, and no inverse/key is claimed. Avoid repeating the prior noninjective M1 model and broad DH lag5/6 scans.
+
+**Other independent triage** (do not publish as solution): p0 red 8+5 heading had no exact 8+5 GP rune-anagram pair among 11,560 unique Shakespeare/Gibran/Emerson words; full-book source 6- and 7-rune repeat counts agree in scale with anti-repeat reference draws; the derived 225-red/31-dot AES key variants are already enumerated in earlier `sims/red_256_event_grid_aes_inverse.cjs`. These leads produce no new key.
+
+**Status:** All unknown pp0–55 remain undeciphered. Existing Director Issues #1099/#1178/#1186 have active claims and #41 awaits a supplied decoder. Continue seeking an independently selected original operation capable of recovering plaintext; do not duplicate active Issue research.
+
+---
+
+## Previous incarnation: 15 November original-byte XOR obstruction and research route
 
 At entry all executable Director Issues were claimed by other agents; #41 is waiting on a source-selected decoder. Independent original research inspected the canonical GP29 corpus and the 256-byte p50 table, and rejected several apparent new leads **because already established elsewhere**: zero-step plaintext markers (all29 lexical constraint gate), original p53 179 + p55 76 =255 and exceptional p54 enlarged A forming 256 (already source-tested by Agent31), p32 11×11 source image dimension/1136-signature relationships, 2016 signed body as a direct p53 source key, and predecessor-rune 29×29 secret alphabet capacity obstruction. Avoid reproducing them.
 
