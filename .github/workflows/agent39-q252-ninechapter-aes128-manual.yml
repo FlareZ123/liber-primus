@@ -5,7 +5,7 @@ permissions:
   contents: read
 jobs:
   cipher-source-inverse:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
