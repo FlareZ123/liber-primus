@@ -1,6 +1,6 @@
-# Source-linked Parable integer as a six-rune format-preserving RSA cipher
+# PARABLE source-derived RSA: six-rune inverses and seven-rune packet obstruction
 
-**Agent22, 15 November 2026. Evidence classification:** a finite original-cipher inverse screen, with an exact 2013 numerical operand and synthetic solved-page controls. **It recovers no previously unknown Liber Primus plaintext, key, or intended cipher operation.**
+**Agent22 (15 November) and Agent47 (16 November 2026). Evidence classification:** original-cipher inversions with a historical 2013 modulus, new source-derived exponent and exact packet-domain bound. **No unknown plaintext, authentic key, authored RSA instruction or final destination is recovered.**
 
 ## Source selected operand and missing instruction
 
@@ -27,6 +27,24 @@ Unchanged original 12,956-rune ciphertext IoC is **0.03447840**; authentic clear
 
 [Read-only reproducible CommonJS SFT](../sims/lp2_parable3prime_rsa_cyclewalk_sft.cjs) uses built-in Node22 modules, `BigInt` modular arithmetic, and the untouched canonical indexed corpus. The same inverse computations and source statistics were executed directly against fetched, unchanged repository corpus in this invocation.
 
+## PARABLE title-derived RSA449 original-input test
+
+The previous four optional exponents were historical numbers but were not selected by a source instruction. A stronger conjecture reads *all four physically printed p57 units* as one RSA public-key declaration: red heading PARABLE has exact GP-prime sum **449**, and the three sentence sums are **1259, 1031, 1229**. These are four genuine prime numbers, with the body product **1,595,277,641** exactly matching the independently dated 2013 audio identifier. This naturally motivates the **candidate** RSA public key e=449, n=1259×1031×1229=1595277641, with phi(n)=1591168720 and inverse exponent d=283504449. The arithmetic is source-pinned; **RSA itself is an interpretive leap**.
+
+The [full-source CommonJS SFT](../sims/lp2_parable449_rsa_original_sft.cjs) applies e or d to complete original six-rune GP29 packets using conventional RSA exponentiation plus a cycle-walk to remain within 29^6=594823321. It fixes printed and reversed within-packet digit orders, and book-continuous, page-reset, or terminal p54–55 clocks. Reversal with the paired exponent re-encrypts every original output exactly. Native clear p57, deliberately encrypted under this rule, returns **95/95** runes on both orientations and directions; these are implementation controls.
+
+| Original scope | e=449 forward/reverse GP IoC | d=283504449 forward/reverse GP IoC |
+| --- | --- | --- |
+| Whole book, 12,956 unknown runes | **0.03445795 / 0.03446703** | **0.03449033 / 0.03450249** |
+| Individual physical pages, 12,956 runes | **0.03449802 / 0.03446110** | **0.03449099 / 0.03451333** |
+| Terminal p54–55, 308 runes | **0.03458268 / 0.03394814** | **0.03460383 / 0.03608444** |
+
+The untouched ciphertext has GP IoC 0.03447840, while the native clear p57 has 0.06270997. Each complete source-derived RSA449 reading remains near-random in original-GP language and produces no recognizable consecutive English plaintext. These results close this exact six-rune direct RSA-FPE operation, without claiming that the original author selected RSA.
+
+**Literal seven-rune packet obstruction:** The complete original p54–55 chapter has **308=44×7** ciphertext glyphs. Since 29^7=17249876309 is greater than n=1595277641, canonical seven-rune base29 RSA ciphertext packets must be less than n. Only **4/44** original packets satisfy this condition in printed digit order (zero-based blocks 22,25,36,39); reversing digits inside all packets still admits only **4/44** (blocks 1,5,9,27). Consequently **40/44** original blocks are impossible standard RSA residues in either fixed natural orientation, regardless of exponent. This excludes an ordinary seven-rune direct RSA packet reading of p54–55; separately specified padding, a different modulus or cyclewalking would be distinct models.
+
+**Interpretation:** An internally coherent source-derived keypair is available as an RSA hypothesis, but neither six-rune cyclewalking nor literal seven-rune packet transport recovers genuine plaintext. The text gives no first-party RSA opcode, fixed width or padding convention. Do not expand exponent or framing hunts without fresh independent evidence selecting the operation.
+
 ## Research consequence
 
-A source-known RSA modulus alone does not specify cipher receiver, exponent, padding, block resets, or the authority of a signature. These sixteen natural initial models fail to recover unknown prose. An intended RSA continuation would require an independent period-authenticated rule selecting those missing inputs, or authentic ciphertext provenance linking a block to the modulus. Additional arbitrary exponents, offsets, short partial pages, and speculative padding schemes would be unconstrained searches, so they are not justified by this result.
+The historical modulus and derived PARABLE heading exponent 449 fail to decode the original under the declared six-rune cycle-walk operator, while the seven-rune canonical packet interpretation is algebraically impossible for 40/44 final-chapter blocks. These bounds supply no authentic plaintext, RSA instruction, unknown-page key or Cicada continuation. Further exponents, offsets, short partial pages and padding formats need a new original source selector before further research investment.
