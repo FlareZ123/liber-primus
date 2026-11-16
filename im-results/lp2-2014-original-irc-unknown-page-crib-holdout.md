@@ -33,14 +33,14 @@ The original 2 July 2014 channel lines **216910–931** preserve a second p54 ti
 A-M-NG-D-IA-TH-X-I-M
 ```
 
-The second red word is therefore exactly eight GP29 symbols: `M-NG-D-IA-TH-X-I-M`. Canonical tokenization gives:
-- `BEGINNING` → `B-E-G-I-N-N-I-NG` (**8**, fits);
-- `DIRECTION` → `D-I-R-E-C-T-I-O-N` (**9**, does not fit);
-- `DECEPTION` → `D-E-C-E-P-T-I-O-N` (**9**, does not fit).
+The second red word is exactly eight GP29 symbols: `M-NG-D-IA-TH-X-I-M`. The 2014 p56 decoder documents the aliases `IA/IO` and `NG/ING`; using them, all three July guesses fit:
+- `DIRECTION` → `D-I-R-E-C-T-IO-N` (**8**);
+- `DECEPTION` → `D-E-C-E-P-T-IO-N` (**8**);
+- `BEGINNING` → `B-E-G-I-N-N-I-ING` (**8**).
 
-This corrects the 2014 participant's “beginning not enough runes” assessment: the `NG` digraph is one GP29 symbol. It makes `A BEGINNING` a source-dated length-fit crib, not a recovered title.
+Thus the 2014 participants' rejection of DIRECTION and statement that BEGINNING was too short are judgments, not decisive length evidence. The original page and source do not select among the three.
 
-The contemporaneous `anoniem4l-modcracker-M5BccDpT.py` has `our=[71,79,89,107,5,47,31,71]`, exactly matching the ordinal-prime values of the eight ciphertext title runes. Its `want` array is eight values, commented as `D-I-R-E-C-T-IO-N`; canonical GP29 has no `IO) symbol and DIRECTION needs nine symbols. Its final Python condition is also defective: it compares only the first two differences and truth-tests the other six. The corrected all-eight equality test for the script's intended model, a constant difference between target prime value and ciphertext prime modulo (m), was run for every (m=1,ldots,330). For canonical BEGINNING, the target prime values are `[61,67,17,31,29,29,31,79]`; **no modulus matches**. The original DIRECTION array is not a canonical GP29 target and cannot validate the crib.
+The contemporaneous `anoniem4l-modcracker-M5BccDpT.py` has `our=[71,79,89,107,5,47,31,71]`, exactly matching the ordinal-prime values of the eight ciphertext title runes. Its `want` array is eight values, commented as `D-I-R-E-C-T-IO-N`; the `IO` alias is valid, but the E value 63 differs from the canonical ordinal-prime value 67. Its final Python condition is defective: it compares only the first two differences and truth-tests the other six. The corrected all-eight equality test for a constant difference between target prime value and ciphertext prime modulo (m), over every (m=1,ldots,330), finds **no modulus** for canonical DIRECTION prime values `[89,31,11,67,13,59,107,29]`, DECEPTION `[89,67,13,67,43,59,107,29]`, or BEGINNING `[61,67,17,31,29,29,31,79]`.
 
 This retires only the 2014 simple constant-modulus-shift attempt. It does not test the separate p56 red-title key schedule; that is being independently investigated under #1211. No p54 plaintext or key is claimed.
 

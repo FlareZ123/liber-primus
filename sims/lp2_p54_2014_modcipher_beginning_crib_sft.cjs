@@ -1,12 +1,13 @@
 "use strict";
 
 /**
- * Reproduce the 2 July 2014 p54 red-title / BEGINNING modcipher check.
+ * Reproduce the 2 July 2014 p54 red-title / modcipher crib check.
  * Run from the repository root:
  *   node sims/lp2_p54_2014_modcipher_beginning_crib_sft.cjs
  *
- * This tests one historical constant-modulus-shift proposal. It does not
- * decrypt p54 and does not test the separate p56 red-title key schedule.
+ * The 2014 decoder has IA/IO and NG/ING aliases. This tests the stored
+ * constant-modulus-shift proposal for all three eight-rune candidate words.
+ * It does not decrypt p54 or test the separate p56 red-title key schedule.
  */
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
@@ -35,15 +36,16 @@ const nthPrime = ordinal => {
   }
   return candidate;
 };
+const aliases = new Map([["IO", "IA"], ["ING", "NG"]]);
 const tokenize = word => {
-  const alphabet = [...corpus.translit].sort((a, b) => b.length - a.length);
+  const options = [...corpus.translit, ...aliases.keys()].sort((a, b) => b.length - a.length);
   const out = [];
   let rest = word;
   while (rest.length) {
-    const symbol = alphabet.find(candidate => rest.startsWith(candidate));
-    if (!symbol) throw new Error("No GP29 token for suffix: " + rest);
-    out.push(symbol);
-    rest = rest.slice(symbol.length);
+    const spelling = options.find(candidate => rest.startsWith(candidate));
+    if (!spelling) throw new Error("No GP29 token for suffix: " + rest);
+    out.push(aliases.get(spelling) || spelling);
+    rest = rest.slice(spelling.length);
   }
   return out;
 };
@@ -69,7 +71,7 @@ const originalWant = parseArray(wantMatch[1]);
 assert.deepEqual(originalOur, cipherPrimeValues);
 assert.deepEqual(originalWant, [89, 31, 11, 63, 13, 59, 107, 29]);
 
-const candidateWords = ["BEGINNING", "DIRECTION", "DECEPTION"];
+const candidateWords = ["DIRECTION", "DECEPTION", "BEGINNING"];
 const candidates = Object.fromEntries(candidateWords.map(word => {
   const symbols = tokenize(word);
   return [word, {
@@ -78,14 +80,14 @@ const candidates = Object.fromEntries(candidateWords.map(word => {
     primeValues: primeValues(symbols)
   }];
 }));
+assert.deepEqual(candidates.DIRECTION.symbols, ["D", "I", "R", "E", "C", "T", "IA", "N"]);
+assert.deepEqual(candidates.DECEPTION.symbols, ["D", "E", "C", "E", "P", "T", "IA", "N"]);
 assert.deepEqual(candidates.BEGINNING.symbols, ["B", "E", "G", "I", "N", "N", "I", "NG"]);
-assert.equal(candidates.BEGINNING.runeCount, 8);
-assert.equal(candidates.DIRECTION.runeCount, 9);
-assert.equal(candidates.DECEPTION.runeCount, 9);
+for (const candidate of Object.values(candidates)) assert.equal(candidate.runeCount, 8);
+assert.deepEqual(candidates.DIRECTION.primeValues, [89, 31, 11, 67, 13, 59, 107, 29]);
+assert.deepEqual(candidates.DECEPTION.primeValues, [89, 67, 13, 67, 43, 59, 107, 29]);
 assert.deepEqual(candidates.BEGINNING.primeValues, [61, 67, 17, 31, 29, 29, 31, 79]);
 
-// Reproduce the modcracker's intended condition correctly:
-// target[j] - (cipherPrime[j] mod modulus) must be the same for every j.
 function commonDifferenceMatches(target, cipher, maxModulus = 330) {
   assert.equal(target.length, cipher.length);
   const matches = [];
@@ -102,21 +104,16 @@ function commonDifferenceMatches(target, cipher, maxModulus = 330) {
   nearest.sort((a, b) => a.distinct - b.distinct || a.spread - b.spread);
   return { matches, closest: nearest.slice(0, 8) };
 }
+const tests = Object.fromEntries(candidateWords.map(word => [
+  word,
+  commonDifferenceMatches(candidates[word].primeValues, cipherPrimeValues)
+]));
+for (const word of candidateWords) assert.deepEqual(tests[word].matches, []);
 
-const beginningTest = commonDifferenceMatches(
-  candidates.BEGINNING.primeValues,
-  cipherPrimeValues
+const storedDirectionDelta = originalWant.map((value, i) =>
+  value - candidates.DIRECTION.primeValues[i]
 );
-assert.deepEqual(beginningTest.matches, []);
-
-// The old DIRECTION array is eight values, but canonical GP29 DIRECTION is
-// nine symbols. Its original eight-value target cannot be a valid comparison.
-const originalDirectionShape = {
-  canonicalRuneCount: candidates.DIRECTION.runeCount,
-  storedWantCount: originalWant.length,
-  comparable: candidates.DIRECTION.runeCount === originalWant.length
-};
-assert.equal(originalDirectionShape.comparable, false);
+assert.deepEqual(storedDirectionDelta, [0, 0, 0, -4, 0, 0, 0, 0]);
 
 console.log(JSON.stringify({
   original_p54_first_line: titleSymbols,
@@ -124,7 +121,7 @@ console.log(JSON.stringify({
   ciphertext_prime_values: cipherPrimeValues,
   candidates,
   original_modcracker_arrays: { our: originalOur, want: originalWant },
-  original_direction_shape: originalDirectionShape,
-  beginning_constant_modulus_test: beginningTest,
-  decision: "BEGINNING is an 8-rune historical length-fit crib, but the stored constant-modulus-shift method finds no modulus 1..330; no plaintext recovered."
+  stored_direction_target_delta_from_canonical: storedDirectionDelta,
+  corrected_constant_modulus_tests: tests,
+  decision: "All three candidate words fit eight GP29 runes under IA/IO and NG/ING aliases; none matches the historical constant-modulus-shift model for m=1..330. No plaintext recovered."
 }, null, 2));

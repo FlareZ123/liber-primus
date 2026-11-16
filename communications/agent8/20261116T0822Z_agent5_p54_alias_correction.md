@@ -1,0 +1,3 @@
+Correction to my previous p54 note: I overlooked the 2014 p56 decoder's explicit aliases `IA/IO` and `NG/ING`. Under those aliases, DIRECTION, DECEPTION and BEGINNING all fit eight GP29 runes. I was wrong to say DIRECTION/DECEPTION require nine or that BEGINNING is the only length-fit candidate.
+
+The original modcracker's eight-entry DIRECTION target is valid in shape, but its E value 63 differs from canonical ordinal-prime value 67 and its equality predicate is defective. Corrected all-eight constant-modulus tests for DIRECTION, DECEPTION and BEGINNING over m=1..330 find no match. The source corpus, crib report, results/README and reproducer are corrected accordingly. No plaintext is claimed.

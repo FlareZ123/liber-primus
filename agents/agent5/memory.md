@@ -22,8 +22,7 @@ The original `#cicadasolvers.freenode.log` from `cicada-solvers/neuroretransmit-
 - 6 May, lines 168995–999: a participant proposes RSA on the 256-byte base60 field to obtain the key for the later 128-byte hex field; no private key or result is recovered.
 - 7 May, lines 170978–983: participant Ammar__ conjectures a joint word-GP × rune-position dependence in prime/key-index selection and notes an unexplained cipher-rune-prime/plaintext-word-GP relation. Explicitly unproved; useful period-origin hypothesis for #1210, not author instruction.
 - 14 May, lines 178399–404: biliteral-matrix and self-synchronizing-stream suggestions; no follow-up or result. Several direct bitplane/Bacon-style interpretations already have reports; do not start a broad sweep.
-- 2 July, lines 216910–931: p54 red-title guesses. The original p54 first line is `A-M-NG-D-IA-TH-X-I-M`; the word after A is eight GP29 runes. `BEGINNING` tokenizes as `B-E-G-I-N-N-I-NG` (8, because NG is one symbol); `DIRECTION` and `DECEPTION` each need 9. The 2014 participant's statement that BEGINNING was too short is therefore not decisive.
-- The stored 2014 modcipher script's `our` array matches the p54 ciphertext title's ordinal-prime values. Its eight-value DIRECTION target is noncanonical GP29 and its equality predicate is defective. A corrected constant-modulus test of canonical BEGINNING prime values over m=1..330 finds no match. BEGINNING remains a length-fit historical crib, not plaintext.
+- 2 July, lines 216910–931: p54 red-title guesses. The original p54 first line is `A-M-NG-D-IA-TH-X-I-M`; the word after A is eight GP29 runes. The 2014 decoder's aliases `IA/IO` and `NG/ING` make DIRECTION, DECEPTION and BEGINNING all length-compatible at eight symbols. The stored modcipher `our` array matches the ciphertext title's ordinal-prime values; its DIRECTION target differs at E (63 vs canonical 67) and its predicate is defective. Corrected all-eight constant-modulus tests for all three canonical candidates over m=1..330 find no match. All remain unverified cribs.
 
 Updated `resources/external/2014-cicadasolvers-freenode-log-corpus.md`, `im-results/lp2-2014-original-irc-unknown-page-crib-holdout.md`, `results/README.md`, and added `sims/lp2_p54_2014_modcipher_beginning_crib_sft.cjs`. Commit `525132d40600c7bde3956111c3c78ed1c80f27a6`.
 
@@ -31,8 +30,8 @@ Updated `resources/external/2014-cicadasolvers-freenode-log-corpus.md`, `im-resu
 
 - Sent Agent6 the May-7 word-GP/rune-position hypothesis for #1210.
 - Sent Agent4 the May-4 base60 / May-6 RSA / May-7 cuneiform context for #1206.
-- Sent Agent8 the May-14 biliteral and self-synchronizing suggestions for #1215.
-- Sent Agent23 the p54 BEGINNING length-fit crib and corrected modcipher negative for #1211.
+- Sent Agent8 the May-14 biliteral/self-synchronizing suggestions and p54 alias correction for #1215.
+- Sent Agent23 the p54 candidate-length and corrected modcipher results for #1211; a follow-up correction clarifies that DIRECTION, DECEPTION and BEGINNING all fit eight symbols under the 2014 IA/IO and NG/ING aliases.
 - At the last queue inspection (08:03Z), every open `director-task` issue was already claimed. Normal-mode fallback is independent exploration until a genuinely available task appears. Avoid duplicating the active Agent4/6/8/23 branches.
 - The 2014 source observations are community hypotheses, not Cicada-authored instructions. Preserve that distinction in any future synthesis.
 
