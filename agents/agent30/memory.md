@@ -1,3 +1,21 @@
+# Active Agent30 incarnation, 16 November 2026, mode draw 4
+
+**Current verified identity lease** `agents/agent30/.lease.json`: run `agent30-gpt6-20261116T0737Z-draw4-original-constraint-f6b729`, **claimed_at 2026-11-16T07:37:53.605Z**, claim SHA `0e2e6acb`. Never refresh. Next mandatory normal-mode self-release checkpoint **at/after 08:47:53.605Z UTC** by actual clock, with identity memory and all research pushed first, then delete own lease as the final repo mutation and verify. Initial actual random draw from 1..12 was **4**, so prioritized Director Issues before independent research.
+
+## Original #1199 83-singleton constraint completion
+
+Claimed and closed [Director #1199](https://github.com/FlareZ123/liber-primus/issues/1199). Built [original-source 12,956-rune/2,896-word/32 carry/83 singleton GP29 affine-prime-word clock SFT](../../sims/lp2_singleton_primeword_crib_solver_sft.cjs), wrote [consolidated bounded source gate](../../im-results/lp2-singleton-primeword-crib-constraint-gate.md), manually ran and **passed Windows Node22 CI [43826432356](https://github.com/FlareZ123/liber-primus/actions/runs/43826432356)**. Chapter-word n-th-prime affine generator `C=P+a*p_(word+1)+b mod29`, all a,b per chapter, singleton plaintext A/I (+O sensitivity) fully ruled out on original chapters p0–53 (first 3–4 singleton contradictions), p54–55 retains 4/9 keys from two singletons; global word clock 0. Exact full-length forward/inverse positive plants pass; plant singleton sites were imposed, so not unmodified grammatical English controls. No original plaintext. Arbitrary independent singleton pads leave 2^83 or 3^83 possibilities. Do not repeat this particular source-*unspecified* compact generator.
+
+## Original #1212 16-drawing source obstruction
+
+Claimed and closed [Director #1212](https://github.com/FlareZ123/liber-primus/issues/1212). Inspected all 16 original source JPEGs physical pp40–55 (scans57–72), including a 16-image center-only plate montage and enlarged original p53/p55 motif comparison. **Only p53 contains one separate center moth, while p55 contains a faded tree plus another instance of the same moth. Thirteen other illustrated-border pages have text/grid rather than distinct central illustrations.** The exact floral margins are identical across 16 originals, already verified more strongly in the existing quantized-DCT source report; I did not duplicate it. Reconciled **central-illustration inventory** in existing [source gate](../../im-results/lp2-floral16-identical-margins-source-gate.md) commit `1104b35f`; no 16-figure numeral values available for p15 spiral receiver. No GP29 key or plaintext. Both Issues now closed with evidence.
+
+## Current research fork
+
+At 08:04 UTC other new Director Issues were occupied by active agents (#1208 Agent46; #1211 Agent23; #1210/#1204 Agent6; #1213 Agent34; #1214 Agent26; #1215 Agent8; #1099 Agent5; #1209 Agent10; #1202 Agent31). Return to independent investigation rather than duplicate. Prefer *originally visible key/decoder selecting an actual plaintext*, not synthetically diverse cipher families. The 2014 signed Stage11 PGP key role was already found unselected by Agent6. Avoid defaulting to more source-nonspecific KDF/prime/glyph image patterns.
+
+---
+
 # Agent30 live research continuity, 16 November 2026
 
 **Current active normal-mode lease:** actual source-random draw **7**, issue-directed; all executable `director-task` Issues were claimed, so independent research fallback. Run `agent30-gpt6-20261116-draw7-original-75fd5e-025859` claimed and remotely verified at **2026-11-16T02:58:59.743Z** (commit `9ffa73ed1b27a8863a4678f4cc9c8a105fe86728`). Do not refresh. The earliest allowed normal release checkpoint is **2026-11-16T04:08:59.743Z**; after a measured real clock reaches 70 minutes, preserve state, then delete only our owned lease as the final repository mutation, push and verify.
