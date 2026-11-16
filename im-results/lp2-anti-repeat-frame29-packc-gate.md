@@ -78,9 +78,9 @@ All output bytes are in 0–28. The first 16 bytes are:
 - p33–39: `170c0d050009170707060b15000f1115`
 - p54–55: `181314161a020d0a121a170d14010617`
 
-Every chapter output has zero printable ASCII, fails strict UTF-8, and matches none of 16 fixed standard file signatures. The BASE29 alphanumeric renderings contain no `BASE29`, `NEXT`, `3301`, `ONION`, `CICADA`, or `HTTP` token. Incidental short bigrams are not evidence of an instruction or address.
+Every chapter output has zero printable ASCII and matches none of 16 fixed standard file signatures. **All three streams are valid strict UTF-8:** bytes 0–28 are valid one-byte UTF-8 encodings of C0 control characters, but these streams have no readable text. The earlier assertion that strict UTF-8 decoding fails was incorrect. The BASE29 alphanumeric renderings contain no `BASE29`, `NEXT`, `3301`, `ONION`, `CICADA`, or `HTTP` token. Incidental short bigrams are not evidence of an instruction or address.
 
-A fixed 16-signature recognizer was also run over 15,162 non-overlapping 40-rune windows from native GP-English controls: 0 false positives (0.0%). The original outputs have no standard header or validating file structure. Since the raw byte alphabet is restricted to C0 controls 0–28, common printable and high-byte file signatures are excluded by construction.
+A fixed 16-signature recognizer also returned zero matches over 15,162 non-overlapping 40-rune native GP-English control windows. **This 0/15,162 result is non-discriminating:** the pack-C output alphabet is deterministically 0–28 for every GP29 input, so none of the sixteen selected standard signatures can occur under this encoding, in either manuscript or controls. Likewise zero printable ASCII and valid strict UTF-8 follow for every input. These checks cannot supply evidence for or against LP2 encryption. The original bytes have no independently identified C0-control protocol or typed payload. The observed irregular FS intervals and absence of a source-authored C0 decoder are the genuine stopping conditions for this proposed consumer.
 
 ## Positive controls and invertibility
 
@@ -94,7 +94,7 @@ The 2013 BASE29 vector `3301 → 3QO` is reproduced exactly. The 2014 converter 
 
 ## Decision
 
-Retire this concrete same-rune / FS-framed receiver. A historically available serializer exists—BASE29 digits followed by one-byte `pack 'C'`—but it does not rescue the original chapters: the outputs are C0-control streams with no typed acceptor, no standard file header, no valid text, and no first-party instruction/address. The repeat events are also poorly aligned with printed boundaries.
+Retire this concrete same-rune / FS-framed receiver. A historically available serializer exists—BASE29 digits followed by one-byte `pack 'C'`—but it does not rescue the original chapters: the outputs are valid UTF-8 C0-control streams with no source-selected text or binary interpreter, no independently typed acceptor, and no first-party instruction/address. Their lack of printable ASCII and standard file headers is a structural certainty of the chosen pack-C representation and is **not a manuscript-specific negative test**. The repeat events are also poorly aligned with printed boundaries.
 
 Do not continue by scanning byte offsets, XOR keys, magic bytes, or arbitrary record transformations. Reopen only if an original source supplies a second operation or a specific payload type for this control-byte stream.
 
@@ -106,4 +106,4 @@ From the repository root:
 node sims/lp2_anti_repeat_frame29_packc_gate.cjs
 ```
 
-The script reproduces the BASE29 vector, 29→28 transition mapping, FS framing, selected chapter bytes, record lengths, source-native prose/binary plants, and file-signature false-positive control.
+The script reproduces the BASE29 vector, 29→28 transition mapping, FS framing, selected chapter bytes, record lengths, source-native prose/binary plants, and the mechanically zero file-signature check. The script's `byteStream.validUtf8` output correctly reports `true`.
