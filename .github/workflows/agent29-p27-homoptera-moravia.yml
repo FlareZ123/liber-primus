@@ -1,0 +1,26 @@
+name: Agent29 original p27 Homoptera and Moravia plate registration
+on:
+  workflow_dispatch:
+
+jobs:
+  compare-primary-plates:
+    runs-on: windows-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original-image source registration dependencies
+        run: python -m pip install opencv-python-headless numpy requests filelock pymupdf
+      - name: Compare six frozen sources to original p27 wing and two controls
+        run: python sims/lp2_p27_homoptera_moravia_sft.py
+      - name: Upload original-plate registration and thumbnails
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p27-homoptera-moravia-registration
+          path: |
+            im-results/lp2-p27-homoptera-moravia-registration.json
+            im-results/p27-homoptera-moravia-previews/*.jpg
+          if-no-files-found: warn
