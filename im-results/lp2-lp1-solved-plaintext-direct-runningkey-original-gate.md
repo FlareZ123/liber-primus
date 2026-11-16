@@ -1,6 +1,6 @@
 # First-release Liber Primus, solved and printed streams, as direct LP2 running keys
 
-**Agent 7, 16 November 2026. Two bounded original-cipher negatives, not decryptions.** A simple puzzle-designer move would be to use the first-release Liber Primus's already recovered GP29 rune text as the running pad for the 2014 second release. The first book itself says its words and numbers are sacred; its cipher pages already teach a 29-rune additive Vigenère inverse. This is a *human-plausible* source choice, though no authenticated instruction is known to select the whole LP1 plaintext as a key.
+**Agent 7, 16 November 2026. Three source-register bounded original-cipher negatives, not decryptions.** A simple puzzle-designer move would be to use the first-release Liber Primus's already recovered GP29 rune text as the running pad for the 2014 second release. The first book itself says its words and numbers are sacred; its cipher pages already teach a 29-rune additive Vigenère inverse. This is a *human-plausible* source choice, though no authenticated instruction is known to select the whole LP1 plaintext as a key.
 
 ## Source-fixed experiment
 
@@ -44,8 +44,19 @@ Run the same exactly fixed nine chapter openings, both additive signs, both F co
 | p40–53 | 0.0358688 | 0.0393660 |
 | p54–55 (308 runes) | 0.0380304 | 0.0393629 |
 
-A synthetic 729-rune source-LP1 plaintext encrypted under the printed stream at a secret offset is recovered **729/729** by the same tested inverse. The strongest of the **72** combined original chapter×source×sign×F-offset sweeps is **0.0402440**, with no recognizable native GP-English key recovery. This narrows an obvious creator-plausible historical source reuse without implying anything about source-key KDFs, stateful skip paths, ciphertext word order, or other ciphers.
+A synthetic 729-rune source-LP1 plaintext encrypted under the printed stream at a secret offset is recovered **729/729** by the same tested inverse. The strongest of the **108** combined original chapter×source×sign×F-offset sweeps is **0.0402440**, with no recognizable native GP-English key recovery. This narrows an obvious creator-plausible historical source reuse without implying anything about source-key KDFs, stateful skip paths, ciphertext word order, or other ciphers.
+
+## Original-koan spelling correction and exact solved register
+
+The candidate *solved* LP1 source has a recoverable **two-word editorial discrepancy**. In `resources/external/relikd-solved-gp29-native-v1.json`, solved `0_koan_1` is **780 runes**, whereas the four original koan pages of `resources/transcriptions/lp1_wulfic_canonical.txt` contain **778 runes**. The original encryption's known GP29 Atbash/reversed+3 decoder is `P=(31−C) mod29`. Its exact application to those 778 printed ciphertext runes aligns against the derived solved text with just two local word replacements:
+
+- Original koan offsets **140–142** read **WHO** (`ᚹᚻᚩ`) in “THAT IS NOT WHO YOU ARE”; the derived relikd solved version reads **WHAT** (`ᚹᚻᚪᛏ`).
+- Original koan offsets **276–278** again read **WHO** in “THAT IS WHAT YOU DO NOT WHO YOU ARE”; the derived relikd version again reads **WHAT**.
+
+These corrections come from known LP1 plaintext, not any unknown LP2 decryption. Preserve the independent external reference as published. For key research, rebuild the **2,797-rune source-corrected solved-LP1 key** by replacing only the `0_koan_1` part with the original printed GP29 ciphertext's exact historical inverse.
+
+All 36 source-corrected chapter×sign×F-mask LP2 searches, each with every possible source offset, were executed. Its maximum IoC **0.0400895** (pp40–53, negative sign, literal-F bypass) again fails to recover native GP plaintext. A 729-rune source-shaped synthetic additive plant recovers **729/729** under this corrected key. In total the three-source study comprises **108** original-input combinations, with combined maximum **0.0402440** (original *printed* key, p0 section).
 
 ## Decision
 
-Both the **already-solved LP1 plaintext** and the **original first-release printed rune sequence**, used as **contiguous direct GP29 additive running keys**, fail to recover native-looking GP prose from the start of **any** of the nine illustrated unknown chapters. Allowing either additive direction, every source offset, and the two stated F masks does not improve it. This retires **this direct and transparent-F-only source-to-key transfer**, which is distinct from a cryptographic running-key decoder with changing key pointer, undisclosed key alphabet, different page or section clocks, or a book-code lookup. An independently authored instruction would be needed to justify those new assumptions. No unknown LP2 plaintext, historical LP2 key, complete inverse, or destination was recovered.
+The **edited solved LP1 plaintext**, the **source-corrected solved LP1 plaintext**, and the **original first-release printed rune sequence**, used as **contiguous direct GP29 additive running keys**, fail to recover native-looking GP prose from the start of **any** of the nine illustrated unknown chapters. Allowing either additive direction, every source offset, and the two stated F masks does not improve it. This retires **this direct and transparent-F-only source-to-key transfer**, which is distinct from a cryptographic running-key decoder with changing key pointer, undisclosed key alphabet, different page or section clocks, or a book-code lookup. An independently authored instruction would be needed to justify those new assumptions. No unknown LP2 plaintext, historical LP2 key, complete inverse, or destination was recovered.
