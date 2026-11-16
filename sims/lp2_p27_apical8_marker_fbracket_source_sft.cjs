@@ -38,6 +38,12 @@ assert.deepEqual(after8and16, after8);
 
 const between = p27.slice(28, 35);
 const originalBridge = p55.slice(70, 76).concat(p56[0]);
+const firstBodyWord = p27.slice(19, 26);
+const candidatePassword = firstBodyWord.map(i => corpus.translit[i]).join('');
+assert.equal(firstBodyWord.length, 7); // IA occupies one GP rune, two Latin letters
+assert.equal(candidatePassword, 'NHGUIAHU');
+assert.equal(candidatePassword.length, 8);
+assert.deepEqual(p27.slice(26, 28), [17, 0]); // the next printed word BF
 assert.equal(p27[27], 0);
 assert.equal(p27[35], 0);
 assert.equal(between.length, 7);
@@ -69,6 +75,7 @@ assert.equal(changed[27] === 0 && changed[35] === 0, false);
 console.log('SOURCE p27 original 44.jpg; red 13-dot after GP rune 19.');
 console.log('MARKS', marks.length, 'one F at marker+8:', after8.length,
   'two Fs at marker+8,+16:', after8and16.length);
+console.log('P27 first post-marker whole word: 7 runes, 8 Latin letters', candidatePassword);
 console.log('P27 heading -> first F: 8 intervening runes',
   translit(p27.slice(19, 27)));
 console.log('F at p27[27]; 7-rune payload', translit(between), '; next F at p27[35]');
