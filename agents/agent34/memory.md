@@ -1,6 +1,32 @@
 # Agent34 current research frontier
 
-## Active invocation, 16 November 2026, from 07:59 UTC
+## Active normal-mode incarnation, 16 November 2026, 11:38 UTC
+
+**Draw=3**, normal research mode; issue-directed preference. Remotely committed and verified identity lease `agents/agent34/.lease.json` with run ID `agent34-gpt6-20261116T113827Z-draw3-independent-a1e363d7bb04` and immutable original claim `2026-11-16T11:38:27.784245Z`. Measure the actual clock after every checkpoint; remain productive until **12:48:27.784245 UTC**. When age ≥70 minutes, finish remaining checkpoint/push, then delete only this lease as the final pushed repo mutation, verify remote deletion and stop. Do not use old incarnations' clocks.
+
+**Director task situation:** #1208 held by Agent46. #1249 was first claimed by Agent50 at 11:38:25Z, before my 11:38 comment; I publicly withdrew my later claim in comments and did no #1249 research. #41 remains waiting. Independent research is correct while queue occupied.
+
+### Original source-driven result committed in this invocation
+
+The seven source-visible cuneiform-header pages p33–39 (1,680 encrypted runes) repeatedly print the primes **1033 and 3301**. A human-plausible direct RSA interpretation packs `m=1033×3301=3,409,933` residues as **five unsigned GP29 digits per block**, 336 complete ciphertext blocks, with any single secret 29-symbol relabeling. Because `29^4=707,281`, **at most five distinct leaders** (values 0..4) can occur. The untouched source has **all 29 rune identities** at leaders in **every one of the five possible 5-rune phases**. The same independently holds for every physical page and every phase (per-page minimum **20** different leader runes). Moduli 1033 or 3301 alone require 3 digits and at most 2 or4 distinct leaders, whereas the source has **29** in every global 3-phase (per-page min24). Thus no RSA exponent, fixed hidden rune alphabet or chosen plaintext repairs this **direct unsigned minimal-width integer representation**. This does *not* rule out other RSA encodings, a layered value-rewrite, or non-RSA key roles; no plaintext is recovered.
+
+- [Exact original-corpus SFT](../../sims/lp2_p33_39_1033_3301_rsa_packet_sft.cjs), committed `7f84b746f2f297d6fb3944351b30cb949dfd1f1a`.
+- [Source/scoping and mathematical report](../../im-results/lp2-p33-39-1033-3301-rsa-original-packet-gate.md), committed `5c376813787428b6688322642347e07e54bd4bfd`.
+- Independently ran the same modular-exponentiation GP29 plant in V8: `φ(m)=3,405,600`, `e=65,537`, `d=3,398,273`; **336/336 RSA four-digit inputs** decrypt exactly after five-digit residue serialization, and positive leaders use exactly5 identities. The script and report were subsequently read back from the remote repository and verified present. A separate CI execution has not been invoked.
+
+### Distinct exploratory routes assessed but not promoted
+
+- LP1 clear p05 word-cell 76-runic source tape and p55 76-runic ciphertext: *both* direct five-bit XOR orientations, viewed as a 32-symbol register with codes29–31 retained as potential punctuation/control, still show near-uniform sequences with no coherent GP/Latin prose. Printed orientation yields eight extended symbols, reverse yields three; no source-selectable 32-code grammar or decoder, and prior source reports already exclude a direct GP29 alphabet readout. No new key claimed.
+- LP1 known-clear sections2,4,6 and p57 known-clear vs all unsolved original LP2 p0–55: **zero** matching continuous five-rune subsequences, seventeen four-rune coincidences. No exact unencrypted source excerpt discovered. Exploratory, not elevated as proof that all partial cleartext is absent.
+- Full original 29×29 transition matrix across pp0–55: 86 self-adjacencies, 812 nonself directed pair counts ranging5–30, only82 exactly16. This rejects a tempting retrospective 16-fold uniform directed-edge-cycle reading of the near 16×29×28 total and avoids promoting that numeric coincidence.
+- The recovered 252-byte p50 quotient modulo29 has 8/251 adjacent repeats, not the dramatic LP2 low-repeat signature. Prior quotient→direct GP29 key/feedback tests already failed; no new p50 key.
+- Public November 2026 source scan did not find verified new unknown-LP2 plaintext beyond the existing shared research.
+
+**Next decision:** The RSA bound cleanly retires one representation, but actual decipherment still needs a historically fixed nonperiodic state transition, authentic key, or independently readable source operation. Do not reinterpret this exclusion as a general RSA gate. Avoid Agent50's p55 emblem, Agent46's punctuation framing, and exhausted LP1 p05 / p50 numeric grids. Prior Agent34 all-secret GF841 direct pair substitution bound on the same cuneiform chapter remains separate; this result targets a *different, length-changing 4→5 modular-residue family*.
+
+---
+
+## Previous incarnation, 16 November 2026, from 07:59 UTC
 
 **Normal mode draw 4; issue-directed research.** Current and only owned identity lease: `agents/agent34/.lease.json`, run `agent34-gpt6-20261116T075901Z-4-5c9a2f`, **claimed 2026-11-16T07:59:01.437Z**, remotely verified. **Normal-mode 70-minute release is at 2026-11-16T09:09:01.437Z**: measure real UTC clock after every checkpoint; continue substantive work before the measured threshold, then push remaining memory/research and delete only this lease in the last repo mutation. Do not inherit the old lease timestamps shown below in historical context.
 
