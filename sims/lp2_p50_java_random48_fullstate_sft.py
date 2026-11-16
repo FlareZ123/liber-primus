@@ -171,6 +171,49 @@ def source_groups() -> dict[str, list[int]]:
     return groups
 
 
+
+def java_lowbyte(seed: int, length: int, discard: int) -> tuple[int, list[int]]:
+    """Unsigned low byte of each Java Random.nextInt() 32-bit output."""
+    state = (seed ^ A) % M
+    for _ in range(discard):
+        state = next_state(state)
+    output = []
+    first = None
+    for _ in range(length):
+        state = next_state(state)
+        if first is None:
+            first = state
+        output.append((state >> 16) & 255)
+    assert first is not None
+    return first, output
+
+
+def nextint_lowbyte_inverse(values: list[int]) -> list[int]:
+    """Exhaust all 2^24 possible low-state patterns consistent with byte0.
+
+    The observed low output byte depends on state bits 16..23 only.
+    The lower 24 state bits evolve independently of the upper 24 bits,
+    hence 2^16 candidates cover *every* unknown 48-bit state and phase.
+    Recovered values are complete residue classes modulo 2^24, each
+    representing all 2^24 possible upper-state choices.
+    """
+    assert len(values) >= 2
+    lowmask = (1 << 24) - 1
+    initial_high_byte = values[0] << 16
+    valid = []
+    for low16 in range(65536):
+        state = initial_high_byte | low16
+        complete = True
+        for observed in values[1:]:
+            state = (state * A + C) & lowmask
+            if (state >> 16) != observed:
+                complete = False
+                break
+        if complete:
+            valid.append(initial_high_byte | low16)
+    return valid
+
+
 def main() -> None:
     groups = source_groups()
     inverses = {k: Top8Inverse(k) for k in (8, 12)}
@@ -178,20 +221,26 @@ def main() -> None:
     for size, discard in ((8, 123), (12, 337)):
         state, known = java_top8(seed, size, discard)
         assert inverses[size].solve(known) == state
+    sampled, low_data = java_lowbyte(seed, 48, discard=183)
+    assert nextint_lowbyte_inverse(low_data) == [sampled & ((1 << 24)-1)]
     state, plant = java_bytes(seed, 256)
     assert nextbytes_inverse(plant, 0) == [state]
 
     upper_survivors = []
     block_survivors = []
+    lowbyte_survivors = []
     for label, values in groups.items():
         s = inverses[min(12, len(values))].solve(values)
         if s is not None:
             upper_survivors.append((label, s))
+        for lower24 in nextint_lowbyte_inverse(values):
+            lowbyte_survivors.append((label, lower24))
         for align in range(4):
             for s in nextbytes_inverse(values, align):
                 block_survivors.append((label, align, s))
     assert not upper_survivors, upper_survivors
     assert not block_survivors, block_survivors
+    assert not lowbyte_survivors, lowbyte_survivors
     print(json.dumps({
         "original_sha256": DIGEST,
         "original_streams": len(groups),
@@ -199,13 +248,17 @@ def main() -> None:
         "exhaustive_java_nextBytes_48bit_lanes": 4 * len(groups),
         "original_nextInt256_survivors": upper_survivors,
         "original_nextBytes_survivors": block_survivors,
+        "exhaustive_java_nextInt_low8_mod24_lanes": len(groups),
+        "original_nextInt_low8_survivors": lowbyte_survivors,
         "gram_schmidt_radius_certificate": {
             n: solver.radius_certificate for n, solver in inverses.items()
         },
         "synthetic_fullstate_nextInt256": "PASS",
         "synthetic_fullstate_nextBytes": "PASS",
+        "synthetic_nextInt_low8_unknown_residue": "PASS",
         "scope": "Continuous standard java.util.Random streams with listed layouts; "
-                 "all internal 48-bit states and 0..3 nextBytes alignments. "
+                 "all internal 48-bit states and 0..3 nextBytes alignments; "
+                 "low-byte lane all 2**24 possible lower-state patterns. "
                  "Not java.security.SecureRandom, altered sampling or other paths."
     }, indent=2))
 
