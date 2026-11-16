@@ -19,7 +19,7 @@ Read the exact 12,956 original unknown GP29 runes in all 2,896 original whole-wo
 
 For s=−1 there are 2,826 total admissible plaintext-word alternatives among the whole book; for s=+1 there are 2,808. For example, original p0's second complete word S-Y-E-NG-C has zero admissible plaintext for **both** arithmetic signs. The positive sign additionally rejects the following black word TH-J-G-AE. Thus the model cannot be rescued merely by calling the initial rubric a different kind of plaintext.
 
-As a constructive positive, every native GP29 word in the nine previously solved Cicada source texts is encrypted under the exact same self-prime shift definition and inverted under the exhaustive 29-key loop. The true original solved word appears among the recovered alternatives for both signs in every case. The model is not necessarily uniquely decodable when multiple keys exist, but the **absence of any key** is a definitive source-original impossibility proof.
+As a constructive positive, every native GP29 word in the nine previously solved Cicada source texts is encrypted under the exact same self-prime shift definition and inverted under the exhaustive 29-key loop. The true original solved word appears among the recovered alternatives for both signs in every case, **740/740** native solved words under each sign. The model is not necessarily uniquely decodable when multiple keys exist, but the **absence of any key** is a definitive source-original impossibility proof.
 
 ## Decision and boundary
 
@@ -27,4 +27,4 @@ As a constructive positive, every native GP29 word in the nine previously solved
 
 The source never explicitly instructs the solver to use a word's own prime sum as a Caesar shift; other source-selected keying operations and changes to plaintext word segmentation are **not tested**. The model yields **zero unknown-page plaintext** and no deep-web location. The relevant next discovery would have to identify the missing genuine key operand or decoding operation from original clues.
 
-Reproduce using [the read-only Node22 original-input SFT](../sims/lp2_word_selfprime_caesar_exact_original_sft.cjs) with unchanged [LP2 original transcript](../resources/lp2-transcription.txt) and [source-native solved GP29 controls](../resources/external/relikd-solved-gp29-native-v1.json).
+[Windows Node22 original-source test run 43971488691](https://github.com/FlareZ123/liber-primus/actions/runs/43971488691) completed successfully and printed the complete 2,896-word candidate histogram. Reproduce using [the read-only Node22 original-input SFT](../sims/lp2_word_selfprime_caesar_exact_original_sft.cjs) with unchanged [LP2 original transcript](../resources/lp2-transcription.txt) and [source-native solved GP29 controls](../resources/external/relikd-solved-gp29-native-v1.json).
