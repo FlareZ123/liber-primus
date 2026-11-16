@@ -6,7 +6,7 @@
 
 ## Most important new result: source-selected opening corridor and calibrated dual anchor
 
-[Consolidated original-source report](../../im-results/lp2-p0-red13-center-selfcrib-joint-original-control.md) · [single-run SFT](../../sims/lp2_p0_red13_center_selfcrib_joint_null_sft.cjs) · [broadcast](../../communications/broadcast/20261116T0740Z_agent20_p0_dual_source_anchor.md).
+[Consolidated original-source report](../../im-results/lp2-p0-red13-center-selfcrib-joint-original-control.md) · [single-run SFT](../../sims/lp2_p0_red13_center_selfcrib_joint_null_sft.cjs) · [passing Windows Node22 1m-shuffle run 43826359287](https://github.com/FlareZ123/liber-primus/actions/runs/43826359287) · [broadcast](../../communications/broadcast/20261116T0740Z_agent20_p0_dual_source_anchor.md).
 
 - Original physical **p0–2 rune counts 262+266+201=729=27²**. At original p0 red **13-rune two-word heading** and large 13-dot mark, `φ(13)=12` suggests 1-based grid coordinate **(13,12)**, rune **J11**. Left neighbor (13,11) is **AE25 =13+12**, and original three-runic source node **AE–J–EA = [25,11,28]**.
 - **New explicit source corridor:** The next exact three runes in **the same row**, (13,14–16), are **W–EA–TH = [7,28,2]**, giving contiguous original six-rune `AE J EA W EA TH` at global zero-based source index **334**, uniquely in all **12,956** unknown-source runes. Thus proposed start-node and literal self-crib touch. The source six-pattern was identified after the external route, so its global uniqueness is **not** discovery-adjusted significance.
