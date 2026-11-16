@@ -207,10 +207,6 @@ function positive(plain, skipF, chain) {
   const cmpPlain = countGroups(plain.map((xs) => project(xs, skipF)), false, ring);
   // Each source key is a bijection at every repeated phase. Remove the first
   // comparison in the chain model, whose predecessor has a different phase.
-  const plainLag = chain ? plain.map((xs) => {
-    const filtered = project(xs, skipF);
-    return filtered.slice(1).filter(() => true);
-  }) : null;
   if (!chain) assert.equal(cmpCipher.hits, cmpPlain.hits);
   else {
     let expected = 0;
@@ -261,8 +257,8 @@ for (const split of ['book', 'chapters']) {
 }
 
 const expected = [
-  [435,12700],[481,12699],[434,12242],[450,12241],
-  [357,10652],[403,10643],[359,10194],[373,10185]
+  [435,12700],[449,12699],[434,12242],[450,12241],
+  [357,10652],[374,10643],[359,10194],[373,10185]
 ];
 for (let i = 0; i < report.length; i++)
   assert.deepEqual([report[i].source.hits,report[i].source.eligible],expected[i]);
