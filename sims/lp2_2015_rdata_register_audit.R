@@ -19,10 +19,14 @@ cat("Saved objects:", length(loaded), "\n")
 matches <- character()
 for (name in loaded) {
   obj <- get(name, envir = env, inherits = FALSE)
-  d <- dim(obj)
-  shape <- if (is.null(d)) paste0("length=", length(obj)) else paste(d, collapse = "x")
+  # Old project persists S4 tuneR Wave objects without their package.
+  # Inspect serialized attributes directly so classification cannot dispatch missing S4 methods.
+  d <- attr(obj, "dim", exact = TRUE)
+  cls <- attr(obj, "class", exact = TRUE)
+  shape <- if (isS4(obj)) "S4-object" else if (is.null(d)) paste0("length=", length(obj)) else paste(d, collapse = "x")
   cat("OBJECT", name, "type=", typeof(obj),
-      "class=", paste(class(obj), collapse = "/"), "shape=", shape, "\n")
+      "class=", paste(cls, collapse = "/"), "shape=", shape, "\n")
+  if (isS4(obj)) next
   if (is.data.frame(obj) || is.matrix(obj)) {
     cat("COLUMNS", name, ":", paste(head(colnames(obj), 30), collapse = ","), "\n")
     if (nrow(obj) %in% c(13041L, 13136L, 13173L))
@@ -32,7 +36,8 @@ for (name in loaded) {
   if (is.list(obj) && length(obj) <= 100) {
     for (child in names(obj)) {
       val <- obj[[child]]
-      dd <- dim(val)
+      if (isS4(val)) next
+      dd <- attr(val, "dim", exact = TRUE)
       if (!is.null(dd) && length(dd) >= 2) {
         cat("NESTED_FRAME", name, "/", child, "shape=", paste(dd, collapse = "x"), "\n")
         if (dd[1] == 13173L && dd[2] == 12L) matches <- c(matches, paste(name, child, sep = "/"))
