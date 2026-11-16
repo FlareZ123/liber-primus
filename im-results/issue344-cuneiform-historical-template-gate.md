@@ -1,6 +1,6 @@
 # Issue #344: historical Babylonian numeral diagrams and the p33–39 rubric
 
-**Decision, 11 November 2026:** No independently selected read direction, alphabet, positional origin or decipherment operation was found in the bounded pre-2014 numeric references inspected here. The authentic two-row manuscript motif continues to read **(17,13)₆₀ = 1033** and **(55,1)₆₀ = 3301**, and those values are already established. No unknown plaintext or key follows from this inspection.
+**Decision, updated 16 November 2026:** No independently selected read direction, alphabet, positional origin or decipherment operation was found in the bounded historical numeric references inspected here. The authentic two-row manuscript motif continues to read **(17,13)₆₀ = 1033** and **(55,1)₆₀ = 3301**. The 2014 Stage10 magic squares have also been tested as direct GP29 Hill matrices on p33–39; all twelve fixed row/column and matrix/inverse readouts remain ciphertext-like. No unknown plaintext or key follows from these numeric clues.
 
 ## Primary visual and historic evidence
 
@@ -59,8 +59,26 @@ Each control preserves the *six original physical page lengths and two original 
 
 [Original-input, self-contained CommonJS positive/negative SFT](../sims/lp2_cuneiform_wordaware_sharedclock_sft.cjs); exact original and all 19,425 control counts were also independently executed in the tool JavaScript runtime before committing the SFT. This is a bounded architectural exclusion, **not recovered unknown plaintext or a historical encryption instruction**.
 
+## 2014 Stage10 magic squares as direct GP29 Hill keys (Agent38, 16 November 2026)
+
+**Human-solve-path motivation.** The recovered 2014 OpenPuff payload contains three matrices in the order 5×5 / magic sum 3301, 7×7 / magic sum 1033, and 5×5 / magic sum 1033. The contemporaneous Stage10 form preserved in the repository labels its three inputs with those same order/sum pairs. LP2 p33–39 is a seven-page chapter carrying the repeated 1033/3301 cuneiform motif and exactly 1,680 runes; 1,680 is divisible by both 5 and 7. A solver who recognized the historical square values could reasonably try the matching square as a Hill-cipher matrix over the 29-symbol GP alphabet.
+
+**Frozen operation.** Each matrix was reduced entrywise modulo 29. The entire p33–39 stream was processed continuously in fixed blocks of the matrix order, with no padding, page reset, phase, or fitted offset. For each square, the four conventional interpretations were tested: inverse-matrix decryption with column vectors, inverse-matrix decryption with row vectors, and the two corresponding direct-matrix readouts (if the printed square itself were the decoder). All three matrices are invertible modulo 29: determinants are 10, 2, and 3 respectively. Exact chapter-length planted vectors round-trip through every matrix/inverse pair in both row and column layouts.
+
+| Historical square | det mod 29 | K⁻¹C (column) | CK⁻¹ (row) | KC (column) | CK (row) |
+|---|---:|---:|---:|---:|---:|
+| 5×5 / 3301 | 10 | 0.03439264 | 0.03444936 | 0.03467980 | 0.03428912 |
+| 7×7 / 1033 | 2 | 0.03467483 | 0.03442738 | 0.03418063 | 0.03447985 |
+| 5×5 / 1033 | 3 | 0.03452239 | 0.03439051 | 0.03434088 | 0.03446071 |
+
+The untouched 1,680-rune chapter has IoC **0.03436002** and a maximum single-rune count of 71. The 12 transformed outputs remain in **0.03418063–0.03467980**, with maximum single-rune counts 67–78; none develops the concentration expected of ordinary GP29 English or readable text. The 95-rune clear p57 reference has IoC 0.06270997 (a short within-manuscript sanity reference, not a calibrated language null).
+
+**Decision and limits.** Retire only the direct continuous GP29 Hill transfer of these three historical matrices to p33–39. The historical form asks participants to submit magic squares; it does not say to use them as Hill matrices, does not specify modulo 29, and does not define an LP2 receiver. This negative does not rule out a different matrix operation, a separate key, another section, or a non-GP intermediate register. No unknown plaintext, key, or final destination was recovered.
+
+Reproducer: [lp2_2014_magic_square_hill_gate.cjs](../sims/lp2_2014_magic_square_hill_gate.cjs). Source inputs: [recovered 2014 magic squares](../resources/cicada2014-openpuff-magic-squares.txt), [historical Stage10 form and response witness](../resources/external/cicada2014-onion6-magic-form-and-response.json), and [canonical LP2 rune corpus](../resources/liber-primus/lp2-corpus.json).
+
 ## Bounded result and next decision
 
-No independent pre-2014 source examined above offers a unique graphic/caption match with an additional explicit decoding rule. This is a **bounded search**, not a proof that no original diagram or mathematical procedure exists elsewhere. Following the issue's gate, retire **these conventional historical templates as a direct decoder**. Preserve the 1033/3301 source arithmetic as a verified clue and demand a new external instruction specifying exact original input and reversible operation before opening dependent rune-key work. Generic prime/phase/radix sweeps on the same two values have already been investigated elsewhere and are outside this issue.
+No independent pre-2014 source examined above offers a unique graphic/caption match with an additional explicit decoding rule. This is a **bounded search**, not a proof that no original diagram or mathematical procedure exists elsewhere. Following the issue's gate, retire **these conventional historical templates and the direct 2014 magic-square Hill transfer as direct decoders**. Preserve the 1033/3301 source arithmetic as a verified clue and demand a new external instruction specifying exact original input and reversible operation before opening dependent rune-key work. Generic prime/phase/radix sweeps on the same two values have already been investigated elsewhere and are outside this issue.
 
 The [source-aligned p33–39 page and title partition](../workplace/lp2-section-clock-ambiguity.md) remains the canonical input to any later, genuinely distinct route.
