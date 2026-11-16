@@ -1,0 +1,26 @@
+name: Agent17 Wayback Tor2web metadata gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cdx-metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Query Wayback CDX metadata only
+        run: python sims/lp2_wayback_tor2web_cdx_metadata_sft.py
+      - name: Preserve metadata report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wayback-tor2web-cdx-metadata
+          path: im-results/wayback-tor2web-cdx-metadata.json
+          if-no-files-found: ignore
