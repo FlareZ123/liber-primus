@@ -32,6 +32,21 @@ The separate established native-GP English control is 62,492 runes obtained from
 
 In all eight fully specified models the unchanged original has **at least 178 fewer** same-phase equalities than *any* exact-length contiguous native-English comparator window. This is an all-secret-key necessary-condition result within the tested language and clock assumptions. It does not prove what language or intermediate code the original actually represents.
 
+## Separate 256-event red/13-dot tape as a direct p50 XOR pad
+
+The older red-event inventory contains **225 red runes plus 31 thirteen-dot marks = 256 events**, matching the 256 cells in the p50 32×8 table. This is a numerical alignment, not an authenticated cross-round instruction; the event inventory is not yet a fully audited original-image census, and the p50 base60-to-byte interpretation remains provisional.
+
+I froze one natural byte mapping and one operation:
+- page/offset order over the annotation file;
+- each red rune maps to its source Gematria **prime value**;
+- each 13-dot mark maps to **13** and is inserted after the preceding rune (at offset *i*, before rune *i*);
+- the p50 table is read in printed order across pp49–51;
+- output byte (O_i = T_i \oplus K_i).
+
+The exact source-derived input has 225 red-rune events, 30 red 13-dot events, and one black 13-dot event. The output is 256 bytes, begins `FE F0 E4 BD 70 AA 15 B5...`, has **37.109375%** printable ASCII, and has no PNG, JPEG, ZIP, PDF, gzip, ELF, GIF, or 7z signature. Its SHA-512 is `05d7f54a44bd09c97a5996f43c4279e9019ac9a94f74a6f6ff318522bf0ef65639feae675ce9f0f308d327f22dd0e906d6ca8955dad8a478be26da8b2aa1225a`, not the p56 target `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`.
+
+**Decision:** the direct 256-byte XOR does not yield a readable page, common file, or the p56 hash preimage. This rejects only this exact one-time-pad consumer; it does not establish the event tape or base60 byte rule, nor exclude a differently sourced downstream use. Do not expand into arbitrary encodings without an independent selector. [Reproducer](../sims/lp2_red225_plus31_p50_xor_sft.cjs).
+
 ## Exact reversible controls, reproduction, and decision
 
 The **single-file CJS/Node22 reproducer** at [sims/lp2_grid256_allsecret_keyclock_sft.cjs](../sims/lp2_grid256_allsecret_keyclock_sft.cjs) reads the canonical source and asserts every original count and chapter/F length. It also generates eight full-length (12,956-rune) native-GP encrypted plants under independent fully secret 256-phase permutations, decrypts **12,956/12,956** runes in each, and verifies perfect preservation of the correct same-phase equality invariant. The plants confirm power against the eight exact classes and do not establish original author keys. [Successful original-source manual GitHub Actions run 43784583230](https://github.com/FlareZ123/liber-primus/actions/runs/43784583230).
