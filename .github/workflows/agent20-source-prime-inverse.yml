@@ -19,6 +19,7 @@ on:
           - trifid
           - trifidCollision
           - fivephase
+          - gridmap
 
 jobs:
   source-prime-inverse:
@@ -180,3 +181,16 @@ jobs:
       - name: Original GP29 additive phase-five word invariant with native controls
         shell: pwsh
         run: node sims/lp2_wordlocal_period5_delta_invariant_sft.cjs
+
+  original-256-table-selfmap:
+    if: ${{ inputs.mode == 'gridmap' }}
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Base59 and base60 original 256-cell self-addressed graph and fixed-multiset null
+        shell: pwsh
+        run: node sims/lp2_p50_base59_base60_selfmap_sft.cjs
