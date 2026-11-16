@@ -91,7 +91,9 @@ function positiveControls(key) {
   const offset = 500;
   const directC = source.map((p, i) => (p + key[offset + i]) % 29);
   assert.deepEqual(decode(directC, key, offset, -1, false), source);
-  // Native-F bypass requires an encoder to avoid accidental ciphertext F.
+  // This blanket ciphertext-F-skip surrogate only handles collision-free synthetic plants.
+  // The genuine plaintext-F-transparent encoder may emit ciphertext F from a non-F
+  // plaintext rune, which must consume the key and remain a decoder branch.
   let ptr = 0;
   const adjusted = [];
   const bypassC = [];
