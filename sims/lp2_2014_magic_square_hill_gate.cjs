@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 'use strict';
 
-// Source-constrained test: use the three 2014 Stage10 magic-square matrices
-// as direct GP29 Hill matrices on the complete original p33-p39 chapter.
-// No fitted phase, padding, page reset, offset, or key search is used.
+// Source-constrained tests of the three 2014 Stage10 magic-square matrices
+// against the complete p33-p39 chapter. Tests direct GP29 Hill use and
+// direct/repeating Vigenere-key use; no fitted phase, padding, page reset,
+// offset, arbitrary traversal, or key search is used.
 
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -110,6 +111,21 @@ function applyMatrix(stream, matrix, orientation) {
   return output;
 }
 
+function toBase29Fixed(value, width) {
+  const digits = Array(width).fill(0);
+  for (let i = width - 1; i >= 0; i -= 1) {
+    digits[i] = value % MODULUS;
+    value = Math.floor(value / MODULUS);
+  }
+  assert.equal(value, 0, 'Fixed base-29 width must contain the complete value');
+  return digits;
+}
+
+function applyVigenere(stream, key, sign) {
+  assert(key.length > 0);
+  return stream.map((value, index) => mod(value + sign * key[index % key.length]));
+}
+
 function stats(stream) {
   const frequencies = Array(MODULUS).fill(0);
   stream.forEach((value) => { frequencies[value] += 1; });
@@ -123,7 +139,8 @@ function stats(stream) {
 const rawStats = stats(ciphertext);
 const clearP57 = corpus.pages.find((page) => page.page === 57).indices;
 const p57Stats = stats(clearP57);
-const results = [];
+const hillResults = [];
+const vigenereResults = [];
 
 matrices.forEach((rawMatrix, index) => {
   const matrix = rawMatrix.map((row) => row.map(mod));
@@ -131,8 +148,8 @@ matrices.forEach((rawMatrix, index) => {
   assert.notEqual(determinant, 0, 'The source matrix must be invertible modulo 29');
   const inverse = matrixInverse(matrix);
 
-  // Exact positive controls: the same matrix/inverse pair must round-trip
-  // a complete chapter-sized GP29 plant in both conventional vector layouts.
+  // Exact positive controls: matrix/inverse pairs round-trip a chapter-sized
+  // GP29 plant in both conventional vector layouts.
   const plant = Array.from({ length: ciphertext.length }, (_, i) => mod(7 * i + 11));
   for (const orientation of ['column', 'row']) {
     const encrypted = applyMatrix(plant, matrix, orientation);
@@ -146,16 +163,57 @@ matrices.forEach((rawMatrix, index) => {
     { operation: 'K * C (square used as decoder; column vectors)', matrix, orientation: 'column' },
     { operation: 'C * K (square used as decoder; row vectors)', matrix, orientation: 'row' }
   ];
-  const outputs = variants.map((variant) => ({
-    operation: variant.operation,
-    ...stats(applyMatrix(ciphertext, variant.matrix, variant.orientation))
-  }));
-  results.push({
+  hillResults.push({
     matrix: matrixNames[index],
     order: matrix.length,
     determinantMod29: determinant,
     positiveRoundTrips: 2,
-    outputs
+    outputs: variants.map((variant) => ({
+      operation: variant.operation,
+      ...stats(applyMatrix(ciphertext, variant.matrix, variant.orientation))
+    }))
+  });
+
+  const n = matrix.length;
+  const columnMajor = Array.from({ length: n }, (_, j) =>
+    Array.from({ length: n }, (_, i) => matrix[i][j])
+  );
+  const maxEntry = Math.max(...rawMatrix.flat());
+  const baseWidth = maxEntry >= MODULUS * MODULUS ? 3 : 2;
+  const base29Matrix = rawMatrix.map((row) =>
+    row.map((value) => toBase29Fixed(value, baseWidth))
+  );
+  const base29ColumnMajor = Array.from({ length: n }, (_, j) =>
+    Array.from({ length: n }, (_, i) => base29Matrix[i][j])
+  );
+  const keys = [
+    { encoding: 'matrix entries modulo 29, row-major', key: matrix.flat() },
+    { encoding: 'matrix entries modulo 29, column-major', key: columnMajor.flat() },
+    { encoding: 'fixed-width base-29 digits, row-major', key: base29Matrix.flat(2) },
+    { encoding: 'fixed-width base-29 digits, column-major', key: base29ColumnMajor.flat(2) }
+  ];
+  const keyTests = [];
+  for (const item of keys) {
+    const key = item.key;
+    const keyPlant = Array.from({ length: ciphertext.length }, (_, i) => mod(7 * i + 11));
+    assert.deepEqual(
+      applyVigenere(applyVigenere(keyPlant, key, 1), key, -1),
+      keyPlant
+    );
+    keyTests.push({
+      encoding: item.encoding,
+      keyLength: key.length,
+      positiveRoundTrip: true,
+      outputs: [
+        { operation: 'C - K (repeating key)', ...stats(applyVigenere(ciphertext, key, -1)) },
+        { operation: 'C + K (repeating key)', ...stats(applyVigenere(ciphertext, key, 1)) }
+      ]
+    });
+  }
+  vigenereResults.push({
+    matrix: matrixNames[index],
+    base29DigitWidth: baseWidth,
+    keyTests
   });
 });
 
@@ -170,5 +228,6 @@ console.log(JSON.stringify({
   divisibleBy: [5, 7],
   rawCiphertext: rawStats,
   clearP57Reference: { runeCount: clearP57.length, ...p57Stats },
-  results
+  hillResults,
+  vigenereResults
 }, null, 2));
