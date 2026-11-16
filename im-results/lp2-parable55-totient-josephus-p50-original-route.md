@@ -97,6 +97,16 @@ The inverse rule is not merely a no-op: a synthetic 24-rune plaintext deliberate
 
 **Decision:** reject this exact deterministic cyclic-perimeter/additive-GP29/collision-rejection family as a p55 decoder. This does **not** reject the p57→p49/p50 navigation hypothesis, the 76-cell perimeter as an operand under some other independently selected operation, or other whole-table/rim-only consumers. Do not rescue this failed family by tuning arbitrary byte maps or key schedules; keep #41 waiting for an author-visible reversible rule.
 
+## Outer 76-cell ring as a rank-order transposition key for p55
+
+The original p49–51 table is printed as a 32×8 grid, whose visible perimeter contains exactly **76 cells**; p55 contains exactly **76 GP29 runes**. In light of the 2016 signed message's “numbers give direction” wording, a natural operation distinct from the failed cyclic additive key is to use the perimeter values as a **rank-order transposition key**: sort the 76 perimeter cells by their byte values, then scatter or gather the 76 p55 runes in that order. This uses the source-visible rectangle and exact length match, rather than the unrelated 16×16 reshaping.
+
+The source-pinned SFT [lp2_p50_perimeter_p55_rank_transposition_sft.cjs](../sims/lp2_p50_perimeter_p55_rank_transposition_sft.cjs) tests the conditional base60 byte reading. It evaluates all 76 perimeter starting offsets, both traversal directions for stable tie-breaking, ascending and descending value order, and both inverse permutation conventions: **608 candidates**, representing **56 distinct sorted orders**. The p55 word-boundary mask is preserved, including its first rune as the carried end of a word begun on p54. The 76 perimeter values contain 68 distinct values, so stable tie-breaking is explicitly varied. A synthetic 76-symbol positive control round-trips exactly.
+
+**Result:** the raw p55 text scores **−6.125** per bigram event; the best transposition scores **−6.008**, while the known p56 English control scores **−2.435** under the same Shakespeare-derived GP29 model. The best output begins “X GTHMH CB PS PAEIAEATH DJTHDUIA …” and remains gibberish. No candidate approaches the known-plaintext control.
+
+**Decision:** reject this simple stable-rank transposition family as the p55 decoder. This does not reject the p50 perimeter under another independently selected operation, but it closes the most direct way to turn its 76 values into a 76-position permutation. Do not broaden the search to arbitrary nonlinear rank maps or fitted tie-break rules.
+
 ## Inner 180-cell grid under the same 55-step Josephus walk
 
 The solved parable has 20 words and 95 GP runes. Removing the first and last rune of every word leaves exactly **55 interior runes**; mapping each through the GP prime weights and taking prime totients gives the ordered 55-step sequence (sum 1,952). The same sequence applied by the previously defined count-current-as-one Josephus rule to 56 manuscript pages removes 55 pages and leaves p50. A second source-motivated reading of “shed our own circumferences” is to remove the 76-cell perimeter of this analyst-defined 32×8 arrangement, leaving a 30×6 interior of 180 cells, then apply the same 55 steps to that interior.
