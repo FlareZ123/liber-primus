@@ -166,6 +166,35 @@ for (let trial = 0; trial < trials; trial++) {
 assert.equal(cycles, 2560);
 assert.equal(exact33, 19);
 assert.equal(atLeast33, 94);
+ // Post-observation joint test: hold BOTH original p0 red words in place.
+ // This does not calibrate a discovery p-value: cycle sizes were selected
+ // from the actual data before this control was designed.
+ state = 0x33012016;
+ let joint33 = 0;
+ let joint4 = 0;
+ let bothExact = 0;
+ const jointTrials = 12000;
+ for (let t = 0; t < jointTrials; t++) {
+   const shuffled = sums.map((xs, page) => {
+     const copy = xs.slice();
+     if (page === 50 || page >= 56) return copy;
+     const first = page === 0 ? 2 : 0;
+     for (let i = copy.length - 1; i > first; i--) {
+       const j = first + Math.floor(random() * (i - first + 1));
+       [copy[i], copy[j]] = [copy[j], copy[i]];
+     }
+     return copy;
+   });
+   const firstWalk = walk(shuffled, 347);
+   const secondWalk = walk(shuffled, 315);
+   const hit33 = firstWalk.type === 'cycle' && firstWalk.length === 33;
+   const hit4 = secondWalk.type === 'cycle' && secondWalk.length === 4;
+   if (hit33) joint33++;
+   if (hit4) joint4++;
+   if (hit33 && hit4) bothExact++;
+ }
+ assert.deepEqual([joint33, joint4, bothExact], [30, 488, 1]);
+
 console.log(JSON.stringify({
   start: 'physical p0 first red 8-runic word, sum 347',
   firstHop: 'p57:w5 TO', nextHop: 'p8:w1',
@@ -182,5 +211,7 @@ console.log(JSON.stringify({
   seed: '0x33012016', shuffledTrials: trials,
   shuffledCycles: cycles, shuffledExactly33: exact33,
   shuffledAtLeast33: atLeast33,
+  jointTitlePinnedTrials: jointTrials, jointFirst33: joint33,
+  jointSecond4: joint4, jointBothExact: bothExact,
   decision: 'Interesting conditional navigation path; no plaintext or authenticated codebook.'
 }, null, 2));
