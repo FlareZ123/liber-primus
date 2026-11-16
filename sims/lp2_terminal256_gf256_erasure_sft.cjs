@@ -219,6 +219,41 @@ assert.deepEqual(ringOutput.map(r => [
   r.p55_gp29_legal, r.p55_distinct_output_bytes
 ]), [[2, 0, 9, 68], [0, 0, 7, 65]]);
 
+
+/**
+ * NEW mixed-media terminal receiver:
+ * two middle shells 68+60 match p56's 128 literal hexadecimal digits;
+ * the final 52 (p57 local index 43) are the known SHED suffix.
+ * They jointly pin 180 original-data byte-pad values, enough to predict
+ * all 76 unknown p55 GP rune symbols through one source-order GF256
+ * polynomial erasure. A valid decoded GP rune must be 0..28.
+ */
+const hash128='36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4';
+assert.equal(hash128.length,128);
+const mixed=Array.from(hash128, x=>parseInt(x,16)).concat(clearP57.slice(43));
+assert.equal(mixed.length,180);
+assert.equal(mixed[128],clearP57[43]);
+const mixedOutput=[];
+for(const mode of modes) {
+  const knownKey=ringKnown.map((cell,i)=>mode.residual(table[cell],mixed[i]));
+  const predictedOuter=predict(ringKnown.map((x,i)=>[x,knownKey[i]]),ringOuter);
+  const candidate=ringOuter.map((cell,i)=>mode.recover(table[cell],predictedOuter[i]));
+  const heldOut52=predict(ringKnown.slice(0,128)
+    .map((cell,i)=>[cell,knownKey[i]]),ringKnown.slice(128));
+  const hit52=matches(knownKey.slice(128),heldOut52);
+  mixedOutput.push({
+    mode:mode.label,
+    knownP56Hex:128,
+    knownP57GP:52,
+    knownP57GPKeysPredictedFromHash128:hit52,
+    p55Recovered:76,
+    p55GP29Legal:candidate.filter(x=>x<29).length,
+    p55First16:candidate.slice(0,16)
+  });
+  assert.ok(candidate.some(x=>x>=29),
+    'The original mixed-media p55 hypothesis must not be reported as a GP29 decryption');
+}
+
 // A complete no-secret-tuning positive control in the identical original
 // 32x8 geometry: degree-31 GP-byte XOR pad, synthetic original-shape bytes.
 const coeff = Array.from({ length: 32 }, (_, i) => (i * 37 + 13) & 255);
@@ -255,5 +290,6 @@ console.log(JSON.stringify({
   field: 'GF(256) irreducible polynomial 0x11b',
   plant: '31-degree interpolation key, 95/95 heldout and 76/76 perimeter',
   rowMajorInterior: output,
-  sourceClockwiseShells: ringOutput
+  sourceClockwiseShells: ringOutput,
+  sourceKnown128HashPlus52Clear: mixedOutput
 }, null, 2));
