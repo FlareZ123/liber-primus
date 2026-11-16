@@ -1,0 +1,21 @@
+name: Agent6 plaintext-word GP prime-pointer single-file gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact original corpus
+        uses: actions/checkout@v4
+      - name: Select Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-native dictionary, planted inverse, original p0/p40
+        run: node sims/lp2_plaintext_word_pointer_primewalk_sft.cjs
