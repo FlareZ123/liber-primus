@@ -40,6 +40,21 @@ The earlier Cicada byte-XOR operation gives another strict, fixed two-row candid
 
 A second concrete source-typed reading uses the shape 32×8 and byte domain 0–255 as a complete **self-addressing transition table** `next_state = T[state]`. Two literal five-bit seeds 13 and 31, and two crossed-bit coordinate seeds `(row13, col31 mod8)=111` and `(row31, col13 mod8)=253`, all converge to the same **11-cycle**. The literal seeds have paths of 17 and 15 states, and coordinate seeds paths of 12 and 18 states. Their byte streams contain no complete typed ASCII instruction, file header with structure, or recognizable first-party key. Even this interpretation requires an unauthenticated convention for the initial table address and output register.
 
+## Source-selected deletion of two eight-cell rows: 30×8 = 240 p39 runes
+
+There is a second, non-polynomial use of the same 13/31 address pair: **delete** those two 8-cell rows from the 32×8 original table. Exactly 240 ordered cells remain, matching original physical p39's **240 GP runes**. This gives a concrete complete-receiver hypothesis, distinct from the prior exact 16→240 polynomial quotient. The operation is source-contingent: original artwork does not say which original page should receive the residue tape or how a byte maps into GP29; the p39 match motivates this bounded test.
+
+Freeze the two original row origins and test a direct cell-to-GP map `byte mod 29` in source physical order, with the two natural additive polarities `P = C ± (byte mod29)`. Preserve every one of p39's 240 runes and no padding, key fitting or moving word boundaries. Original p39 baseline IoC is 0.03577406, while solved clear p57 is 0.06270997. Results:
+
+| Deleted rows | IoC of 240-symbol residue tape | `C − T` IoC | `C + T` IoC | Identical original symbols in untransformed p39/tape |
+|---|---:|---:|---:|---:|
+| Zero-based 13 and 31 | 0.03716876 | 0.03668061 | 0.03518131 | 2/240 |
+| One-based 13 and 31 (indices 12,30) | 0.03661088 | 0.03671548 | 0.03511158 | 3/240 |
+
+Neither candidate reaches a native-GP-English rune distribution. Source-preserving addition/subtraction re-encrypts the full original p39 exactly as a mathematical consequence and a native **p57 95-rune planted control** recovers exactly under both signs, confirming implementation. This is *not* evidence of authentic decryption. A global secret monoalphabetic relabeling of the 240-row residue tape cannot directly yield p39 either: the sorted rune-frequency multisets already disagree. The residue tape's largest repeated symbol appears **19** times, while original p39's largest appears **14** times, an invariant under any secret permutation of the 29-symbol alphabet.
+
+This eliminates the direct **13/31-row deletion plus original-order GP29 stationary substitution or additive pad** model for p39 plaintext recovery. A wholly different 240-position stateful decoder remains mathematically possible, but nothing in the original instructions selects one. Avoid promoting the 30×8 equality to a key or another self-validating ciphertext fit.
+
 ## Falsifiable boundary and decision
 
 The 13/31 motif plausibly names a **source event set**, but it does not uniquely name a reversible operation on original GP29 ciphertext. The direct two-row raw-byte and authored `BASE29` receivers fail to yield an independently recognizable message. The self-addressing direct map does not resolve the missing key/operation. **Do not expand to arbitrary bit traversals, modulus sweeps, permutations, synthetic row ciphers, or bulk onion-name guesses** without a separate first-party selector. The original 32-interval relation is still observationally real, and a future author-selected column/key/clock would reopen a *different* receiver; it is presently missing.
