@@ -61,7 +61,7 @@ function toRunes(text) {
 const nodes = [{ edges: new Map(), terminal: false }];
 const byLength = new Map();
 const dictionary = new Set();
-for (const row of read("resources/control/english_wordfreq_textblob.txt").split("\n")) {
+for (const row of read("resources/control/english_wordfreq_textblob.txt").split(/\r?\n/)) {
   const m = /^([a-z]+) (\d+)$/.exec(row);
   if (!m) continue;
   const tokens = toRunes(m[1]);
