@@ -16,7 +16,7 @@ Neither output contains a convincing follow-on sentence or native English-GP fre
 
 ## Distinct fixed autokey follow-on (Agent 30, 14 November 2026)
 
-A 13-rune mixed-colour opening phrase could itself be a seed rather than a periodically repeated Vigenère key. The literal GP29 recursive model is unusually cheap to reject because the first 13 original ciphertext runes, signed phrase, physical chapter and continued rune clock are fixed *before* decoding. Four source-frozen readings of the following 716 original pp0–2 runes were tested:
+A 13-rune red heading, printed as two words of lengths 8 and 5, could itself be a seed rather than a periodically repeated Vigenère key. The literal GP29 recursive model is unusually cheap to reject because the first 13 original ciphertext runes, signed phrase, physical chapter and continued rune clock are fixed *before* decoding. Four source-frozen readings of the following 716 original pp0–2 runes were tested:
 
 | Frozen operation, positions 13–728 | Original GP29 IoC | First ten decoded rune labels |
 | --- | ---: | --- |

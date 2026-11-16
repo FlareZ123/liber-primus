@@ -66,12 +66,12 @@ assert.equal(physical.black_following_runes[0].start, 13);
 assert.equal(physical.black_following_runes[0].length, 7);
 
 const openingPhrase = corpus.pages[0].indices.slice(0, 13);
-const postPeriodSeven = corpus.pages[0].indices.slice(13, 20);
+const postMarkerSeven = corpus.pages[0].indices.slice(13, 20);
 assert.equal(openingPhrase.length, 13);
-assert.equal(postPeriodSeven.length, 7);
+assert.equal(postMarkerSeven.length, 7);
 
 const N = base29(openingPhrase);
-const M = base29(postPeriodSeven);
+const M = base29(postMarkerSeven);
 const p = 23n;
 const g = 5n;
 const exponent = Number(N % (p - 1n));
@@ -196,10 +196,133 @@ function indexOfCoincidence(indices) {
     (indices.length * (indices.length - 1));
 }
 const primeSequence = firstPrimes(400);
-const p0BodyStart = openingPhrase.length + postPeriodSeven.length;
+const p0BodyStart = openingPhrase.length + postMarkerSeven.length;
 const p0Body = corpus.pages[0].indices.slice(p0BodyStart);
+
 assert.equal(p0BodyStart, 20);
 assert.equal(p0Body.length, 242);
+
+// The conditional DH secret 18 is a primitive root modulo 29. Test its
+// simplest period-28 additive power stream on the p0 body, including the
+// authentic plaintext-F bypass rule used by the solved p56 cipher.
+function modNumber(value, modulus) {
+  return ((value % modulus) + modulus) % modulus;
+}
+function powModNumber(base, exponent, modulus) {
+  let result = 1;
+  let b = base % modulus;
+  let e = exponent;
+  while (e > 0) {
+    if (e % 2) result = result * b % modulus;
+    b = b * b % modulus;
+    e = Math.floor(e / 2);
+  }
+  return result;
+}
+assert.equal(multiplicativeOrder(18n, 29n), 28);
+const powerKeys = [0, 1].map((phase) =>
+  Array.from({ length: 28 }, (_, i) => powModNumber(18, i + phase, 29))
+);
+assert.deepEqual(powerKeys.map((key) => new Set(key).size), [28, 28]);
+
+function powerStreamTransparentGate(cipher, phase, sign) {
+  let states = new Set([0]);
+  for (let position = 0; position < cipher.length; position++) {
+    const value = cipher[position];
+    const before = [...states];
+    const next = new Set();
+    const forcedF = [];
+    for (const clock of states) {
+      if (value === 0) next.add(clock); // literal plaintext F; no key advance
+      const key = powerKeys[phase][clock];
+      const decoded = modNumber(value + sign * key, 29);
+      if (decoded !== 0) next.add((clock + 1) % 28);
+      else forcedF.push({ clock, key, decoded });
+    }
+    if (next.size === 0) {
+      return {
+        survives: false,
+        firstFailureBodyOffset: position,
+        absoluteP0Offset: p0BodyStart + position,
+        cipherIndex: value,
+        cipherRune: corpus.translit[value],
+        statesBefore: before,
+        forcedF
+      };
+    }
+    states = next;
+  }
+  return { survives: true, finalClockStates: [...states] };
+}
+function encodePowerStreamTransparent(plain, phase, sign) {
+  let clock = 0;
+  const cipher = [];
+  const skipMask = [];
+  for (const value of plain) {
+    if (value === 0) {
+      cipher.push(0);
+      skipMask.push(true);
+    } else {
+      cipher.push(modNumber(value - sign * powerKeys[phase][clock], 29));
+      skipMask.push(false);
+      clock = (clock + 1) % 28;
+    }
+  }
+  return { cipher, skipMask };
+}
+function decodePowerStreamWithMask(cipher, phase, sign, skipMask) {
+  let clock = 0;
+  const plain = [];
+  for (let i = 0; i < cipher.length; i++) {
+    if (skipMask[i]) {
+      assert.equal(cipher[i], 0);
+      plain.push(0);
+    } else {
+      const value = modNumber(cipher[i] + sign * powerKeys[phase][clock], 29);
+      assert.notEqual(value, 0, "a consuming step cannot decode to plaintext F");
+      plain.push(value);
+      clock = (clock + 1) % 28;
+    }
+  }
+  return plain;
+}
+const p0PowerStreamVariants = [];
+const p0PowerStreamTransparent = [];
+const powerPlant = Array.from({ length: p0Body.length }, (_, i) => (17 * i + 11) % 29);
+assert.equal(powerPlant.filter((value) => value === 0).length, 8);
+const powerPlantControls = [];
+for (const phase of [0, 1]) {
+  for (const sign of [-1, 1]) {
+    const decoded = p0Body.map((value, i) =>
+      modNumber(value + sign * powerKeys[phase][i % 28], 29)
+    );
+    p0PowerStreamVariants.push({
+      phase,
+      firstKey: powerKeys[phase][0],
+      sign,
+      ioc: indexOfCoincidence(decoded),
+      prefix: translit(decoded.slice(0, 32))
+    });
+    p0PowerStreamTransparent.push({
+      phase,
+      firstKey: powerKeys[phase][0],
+      sign,
+      ...powerStreamTransparentGate(p0Body, phase, sign)
+    });
+    const planted = encodePowerStreamTransparent(powerPlant, phase, sign);
+    assert.deepEqual(
+      decodePowerStreamWithMask(planted.cipher, phase, sign, planted.skipMask),
+      powerPlant
+    );
+    assert.equal(powerStreamTransparentGate(planted.cipher, phase, sign).survives, true);
+    powerPlantControls.push({
+      phase, firstKey: powerKeys[phase][0], sign,
+      exactRoundTrip: true,
+      legalBranchPath: true
+    });
+  }
+}
+
 assert.equal(primeSequence[17], 61);
 assert.equal(primeSequence[18], 67);
 function decodeP0WithTotientStart(startOrdinal) {
@@ -254,8 +377,8 @@ const p0TotientTransfer = {
 console.log(JSON.stringify({
   openingPhrase: { indices: openingPhrase, transliteration: translit(openingPhrase), base29: N.toString(),
     mod23: Number(N % 23n), mod22: exponent, finalDigit: opening.at(-1) },
-  postPeriodSeven: { indices: postPeriodSeven, transliteration: translit(postPeriodSeven),
-    base29: M.toString(), mod23: Number(clientPublic), length: postPeriodSeven.length },
+  postMarkerSeven: { indices: postMarkerSeven, transliteration: translit(postMarkerSeven),
+    base29: M.toString(), mod23: Number(clientPublic), length: postMarkerSeven.length },
   dh23: { p: 23, base: 5, serverExponent: exponent, serverPublic: Number(serverPublic),
     clientPublic: Number(clientPublic), clientExponent, sharedSecret: Number(shared),
     groupOrder: p0GroupOrder },
@@ -265,6 +388,21 @@ console.log(JSON.stringify({
     p53w6, next: p18w5 },
   dhTo27x27: { center, node: translit(node), key: translit(key), predictedStart,
     ciphertext: translit(ciphertextBlock), decrypted: translit(decryptedBlock) },
+  p0DhPowerStream: {
+    root: 18,
+    multiplicativeOrder: 28,
+    period: 28,
+    bodyStart: p0BodyStart,
+    bodyLength: p0Body.length,
+    keyPhases: powerKeys.map((key, phase) => ({ phase, firstKey: key[0], firstSix: key.slice(0, 6) })),
+    noSkipVariants: p0PowerStreamVariants,
+    authenticFTransparentVariants: p0PowerStreamTransparent,
+    syntheticPositive: {
+      length: powerPlant.length,
+      literalFCount: powerPlant.filter((value) => value === 0).length,
+      variants: powerPlantControls
+    }
+  },
   p0TotientTransfer,
   conclusion: "candidate DH key derivation only; no symmetric LP2 cipher or plaintext recovered"
 }, null, 2));
