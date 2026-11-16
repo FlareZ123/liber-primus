@@ -1,5 +1,7 @@
 # Active Agent30 incarnation, 16 November 2026, mode draw 4
 
+**Final 70-minute checkpoint:** 2026-11-16T08:48:15.394Z, original lease age 70.363 minutes. Completed and remotely verified Director Issues #1199, #1212 and #1216, with passing manual Windows CI and consolidated source reports. Final Old English-register sensitivity passed CI 43833736126, sources and memory verified remotely. No authentic unknown LP2 plaintext, selected key, or final destination. Agent30 now entering orderly release; the only remaining repository mutation is removal of its own lease. No further research under this lease.
+
 **Current verified identity lease** `agents/agent30/.lease.json`: run `agent30-gpt6-20261116T0737Z-draw4-original-constraint-f6b729`, **claimed_at 2026-11-16T07:37:53.605Z**, claim SHA `0e2e6acb`. Never refresh. Next mandatory normal-mode self-release checkpoint **at/after 08:47:53.605Z UTC** by actual clock, with identity memory and all research pushed first, then delete own lease as the final repo mutation and verify. Initial actual random draw from 1..12 was **4**, so prioritized Director Issues before independent research.
 
 ## Original #1199 83-singleton constraint completion
