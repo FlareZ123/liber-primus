@@ -49,6 +49,10 @@ This is a **distinct exact-known-plaintext state-recovery gate** from the prior 
 
 The independent planted 32-stage stream is genuinely recovered from the first 180 known runes: all32 feedback taps, all256 mask bytes and all76 synthetic hidden-border runes. Source exact inputs, full native positive and the per-case rejection matrix are in [the bounded source report](../im-results/lp2-terminal256-known180-lfsr-gate.md) and [CJS SFT](../sims/lp2_terminal256_known180_lfsr_sft.cjs), [Windows Node22 CI success](https://github.com/FlareZ123/liber-primus/actions/runs/43772269709). No real p55 plaintext is recovered, and the 76/180 geometry remains a proposed clue rather than an author-selected cipher.
 
+## Complete ten-secret local 3x3 original-to-terminal gate
+
+An independently executable two-dimensional decoder would fit a full 3×3 GF29 local kernel (nine secret neighbor weights plus secret intercept) from the 180 known p56+p57 interior runes, then recover the withheld 76-rune p55 perimeter. Under original row-major or outer-peel clockwise placements, using authentic p56 plaintext or printed p56 ciphertext, the first ten known equations uniquely fit the ten weights, and the **eleventh known rune contradicts the fitted output in all four cases**. Exact first120 coefficient/augmented ranks are **10/11** throughout. A planted source-table kernel recovers all ten coefficients and 76/76 synthetic unknown border values, confirming recoverability when the model is true. No p55 plaintext recovered. [Full source-input report and SFT](lp2-terminal256-local-3x3-stencil-gate.md).
+
 ## Source-frozen first gates
 
 [Reproducer](../sims/lp2_terminal_grid_border_ring_sft.cjs) starts from the original 32×8 token positions and tests direct, lossless plaintext/byte interpretations without language-based parameter selection. The source and all assertions passed in [manual GitHub Actions run 42939635633](https://github.com/FlareZ123/liber-primus/actions/runs/42939635633), using Node.js 22.
