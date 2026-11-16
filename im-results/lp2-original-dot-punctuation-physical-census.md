@@ -1,0 +1,19 @@
+# Original LP2 large-dot punctuation: complete physical-source census
+
+**Source-positive original-image result, 16 November 2026, Agent 1.** A direct connected-component scan of all **58** original LP2 JPEGs (source images 17.jpg–74.jpg, physical manuscript pp0–57) finds **36** source-visible large compound dot marks, with the exact morphology and color distribution below. The result moves the large-punctuation count from derivative transcription agreement to an independently reproducible original-raster census. It does **not** recover a cipher key, page plaintext or continuation.
+
+| Original image classification | Count | Original coordinates |
+| --- | ---: | --- |
+| Red 13-dot | **30** | 30 groups, each verified against page and native 2400×3600 raster coordinate in the SFT |
+| Black 13-dot | **1** | Physical p7 / original 24.jpg, center (1707,2271) |
+| Red 10-dot | **4** | p36 (993,1482), p38 (620,2571), p49 (1710,1106), p56 (1073,1106) |
+| Red 23-dot | **1** | p57 / original 74.jpg, center (1678,1782) |
+| **Total** | **36** | Across the whole LP2 distribution |
+
+**Method and replay:** [single original-JPEG Python SFT](../sims/lp2_original_color_dots_census_sft.py). Decode all 58 original JPEG images into RGB; retain pixels satisfying red channel >75 with at least 50 intensity units of red dominance over each other channel, or black pixels with RGB channels each <80. Form eight-connected pixel components and select isolated ~9×9 square punctuation dots (55–150 red ink pixels; 55–175 black ink pixels; width/height 8–12). Form dot groups from centroids linked at Euclidean separation ≤23 image pixels. Retain clusters of at least six dots, assert exact source-page groups and their centroids within two pixels. No text transcription, reconstructed rune glyph, OCR classifier, or external hypothesis selects the marks. The native image count is 58/58. The original scan supports the **31** 13-dot marks: 30 red plus the p7 black exception. All 36 agree with source-annotated large punctuation positions and colors.
+
+**Important inventory distinction:** The companion [punctuation-identity transcription](../resources/liber-primus/lp2-punctuation-identity.json) has **31 chapter marks**, specifically **28** 13-dot and **3** 10-dot; the direct image count instead has **31 marks of 13-dot morphology**, including three additional solved-page source-visible 13-dot marks, and five other large marks (four tens and one 23). These are different counted selections. The [red-rune annotation](../resources/liber-primus/lp2-ink-annotations.json) separately reports 225 red *runes*, and the 225+31=256 combined event-tape hypothesis can now rely on 31 physically confirmed 13-dot marks. It still **cannot assert a 256-event physical census** until all 225 red runes are independently checked against original images. The candidate 256-tape's previously tested **direct original p50 XOR** is negative; this new morphological result does not reopen that consumer ([previous exact negative](lp2-grid256-allsecret-keyclock-original-gate.md)).
+
+**Independent red-ink disambiguation:** p37 / original 54.jpg has three conspicuous isolated red text-sized characters at the left margin, but close inspection shows visible decimal enumerators **2, 3 and 4**, not GP29 rune symbols. They must not be added to the derived 225-rune total. The original p0 red13/black-body boundary remains as separately corrected in [the p0 source adjudication](lp2-p0-red13-13dot-blackbody-original-source-adjudication.md).
+
+**Decision:** The complete large-mark inventory is source-grounded. Retain the red-rune-plus-13-dot tape as a *conditional* key/side-channel possibility only if a first-party clue selects its position clock and downstream reversible consumer. Prior direct XOR and static key tests remain bounded negatives; do not multiply free parameters to make the 256 coincidence decrypt by chance.
