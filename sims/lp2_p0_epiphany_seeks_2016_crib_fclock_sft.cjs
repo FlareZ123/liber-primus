@@ -116,6 +116,75 @@ assert.deepEqual(original.phaseBeforeFailure, [4]);
 assert.equal(C[original.firstFailure], key[4]);
 assert.equal(C[original.firstFailure], 27); // IA, not a literal F
 assert.notEqual(C[original.firstFailure], 0);
+
+/**
+ * Two source-era classical alternatives to periodic Vigenere, with the same
+ * fixed 13-symbol plaintext crib and no hidden key state:
+ *   plain autokey: first 13 GP29 plaintext glyphs become future key values
+ *   cipher autokey: first 13 ciphertext glyphs become future key values
+ * In both, only keyed non-F glyphs enter the feedback tape.
+ *
+ * @param {number[]} ciphertext Following original heading
+ * @param {'plain'|'cipher'} kind
+ * @returns {{firstFailure:number|null, maxStates:number}}
+ */
+function testAutokey(ciphertext, kind) {
+  let states = [{
+    keyStream: [...key, ...(kind === 'plain' ? crib : C.slice(0, 13))],
+    consumed: 13
+  }];
+  let maximum = 1;
+  for (let j = 0; j < ciphertext.length; j++) {
+    const ci = ciphertext[j];
+    const next = [];
+    for (const state of states) {
+      const pi = mod(ci - state.keyStream[state.consumed]);
+      if (pi !== 0) {
+        next.push({
+          keyStream: [...state.keyStream, kind === 'plain' ? pi : ci],
+          consumed: state.consumed + 1
+        });
+      }
+      if (ci === 0) next.push(state);
+    }
+    if (next.length === 0) return {firstFailure: j + 13, maxStates: maximum};
+    states = next;
+    maximum = Math.max(maximum, states.length);
+    assert.ok(states.length < 100000);
+  }
+  return {firstFailure: null, maxStates: maximum};
+}
+
+/**
+ * @param {number[]} plaintext Native GP29 symbols appended to the heading
+ * @param {'plain'|'cipher'} kind
+ * @returns {number[]} Source-native positive plant
+ */
+function encryptAutokey(plaintext, kind) {
+  const keyStream = [...key, ...(kind === 'plain' ? crib : C.slice(0, 13))];
+  let consumed = 13;
+  return plaintext.map((pi) => {
+    if (pi === 0) return 0;
+    const ci = mod(pi + keyStream[consumed]);
+    keyStream.push(kind === 'plain' ? pi : ci);
+    consumed++;
+    return ci;
+  });
+}
+const alternatives = {};
+for (const kind of ['plain', 'cipher']) {
+  const candidate = testAutokey(C.slice(13), kind);
+  const planted = testAutokey(encryptAutokey(nativeControl, kind), kind);
+  assert.equal(planted.firstFailure, null);
+  alternatives[kind] = {
+    firstFailure: candidate.firstFailure,
+    maximumSourceStateCount: candidate.maxStates,
+    nativeControlAccepted: planted.firstFailure === null
+  };
+}
+assert.equal(alternatives.plain.firstFailure, 333);
+assert.equal(alternatives.cipher.firstFailure, 34);
+
 console.log(JSON.stringify({
   originalWords: firstWords,
   sourcePhrase: 'EPIPHANY SEEKS',
@@ -126,7 +195,8 @@ console.log(JSON.stringify({
   phaseBeforeFailure: original.phaseBeforeFailure,
   forcedPlainAtFailure: labels[mod(C[original.firstFailure] - key[4])],
   solvedNativeFPlantRecoveredLength: positive.steps,
-  solvedNativeFPlantAccepted: positive.firstFailure === null
+  solvedNativeFPlantAccepted: positive.firstFailure === null,
+  autokeyAlternatives: alternatives
 }, null, 2));
-console.log('DECISION: source-authored 8+5 heading crib + period13');
-console.log('solved-LP1 F-transparent cipher has no legal inverse past rune56.');
+console.log('DECISION: the signed 2016 heading candidate fails the frozen');
+console.log('periodic, plaintext-autokey and ciphertext-autokey F-transparent ciphers.');
