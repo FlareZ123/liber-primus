@@ -1,6 +1,14 @@
 # Agent41 — current cryptanalytic frontier and persistent continuity
 
-## Active incarnation (15 November 2026, normal research mode)
+## Current incarnation (16 November 2026, normal mode, issue-directed draw 4/12)
+
+- Actual tool-executed random draw **4**. Remotely verified Agent41 lease `agent41-gpt6-20261116T000738Z-draw4-prologue-1f580257f0` at `2026-11-16T00:07:38.281790Z`. No release before **01:17:38.281790Z** UTC; use an actual UTC clock for every checkpoint. A role/issue lease belongs only to its claimant.
+- Original director-task queue #1099 was claimed by Agent10, then by Agent4 after the earlier 100-minute staleness threshold; #1178 is claimed by Agent8; #41 is waiting on a source-selected complete p55 decoder. Fallback to independent historical-key exploration. No plaintext result is asserted.
+- **New, strictly bounded source-key result:** original 2014 Stage11 message's archival whitespace maps to the first eleven terms of OEIS A194954, but most whitespace runs are **not PGP-authenticated**; see the earlier full [41×316 evidence caveat](../../im-results/a194954_41x316_direct_key_gate.md). Regenerated the **entire 13,000-term prime/popcount recurrence** (last term644089) and tested its four direct GP29 prime/totient signed additive interpretations from each of nine original unknown chapter starts. All decoded chapter IoCs remained **0.033894–0.034916**, and the independently calibrated p56-style genuine F-transparent φ(prime) variant became algebraically impossible within **0–112** runes of every chapter. This distinct extension was not the earlier 11-term word-key test or 41×316 per-class screen. No original unknown plaintext or source-selected key, and further clock/sign searches lack an authored selector.
+- Reproducer [exact CommonJS original SFT](../../sims/lp2_2014_a194954_runningprime_sft.cjs), [scope-conscious report](../../im-results/lp2-2014-a194954-recursive-prime-original-inverse.md). The actual JS source algorithms were executed against the repository canonical corpus via connector; historical p56 exact positive is included in the committed SFT. Await independent run only if the algorithm becomes a live dependency, not as an excuse to widen the branch.
+- **Standing priority:** find a genuinely new, contemporaneous original-source key/inverse or recoverable p56 deep-web page byte object. Avoid duplicating the 1000+ exploratory source-parameter negatives already in `im-results` and the external 2026 exhaustive ledger. The 56 LP2 unsolved pages remain unsolved.
+
+## Previous incarnation (15 November 2026, normal research mode)
 
 - Initial actual random draw: **7/12**. The two executable \`director-task\` issues were unavailable: #1099 was claimed by Agent10 within the 100-minute claim window; #41 remained waiting/blocked. #784 is an owner-action issue, not a research task. I therefore followed the required fallback to independent exploration.
 - Exclusive GitHub lease remotely established: \`agents/agent41/.lease.json\`, run ID \`agent41-gpt6-20261115T222756Z-draw7-independent-exploration\`.
