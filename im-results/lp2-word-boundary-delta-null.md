@@ -128,6 +128,17 @@ The independently visible numeric selectors are the preceding complete word's **
 
 The first two complete words of length **3** would demand **the same** deterministic output from `lookup(3)`, yet require deltas **10** and **7**. The latter two preceding words have identical GP-prime-sum residue **12** but demand deltas **7** and **8**. Because these three original differences are within the same p0 prose paragraph, no secret value of either lookup, however chosen, can satisfy its declared exact source rule. This is an algebraic contradiction on unmodified original ciphertext, independent of any statistical model, null, or proposed plaintext. It remains scoped to **fixed one-step lookups with only that single public numeric input**.
 
+The same source admits a stronger **full-population, every-secret-key theorem** even after granting three public inputs and an independent secret table per *physical page*. For each observed edge, the secret table may assign any of 29 deltas to the combination `(physical page, previous word length, previous GP-prime sum mod29, previous last GP rune)`. Count the exact observed output distribution for each full state, then sum `state occurrences − maximal consistent output count`. This is the sharp minimum number of original edges that every such deterministic table must mispredict:
+
+| Inputs granted to an otherwise arbitrary page-specific secret table | Distinct observed table states | Conflicting states | Unavoidable wrong boundary deltas |
+| --- | ---: | ---: | ---: |
+| Page + preceding length | 523 | 427 | **1,988** |
+| Page + preceding GP-prime sum mod29 | 1,258 | 780 | **1,376** |
+| Page + preceding length and GP-prime sum | 2,400 | 279 | **309** |
+| Page + preceding length, GP-prime sum, and final ciphertext rune | 2,709 | 12 | **12** |
+
+Two exact source witnesses illustrate the extra context failures. On p0, the length-2 preceding words **B-U** (global positions 75–76, GP-prime sum64 ≡6) and **H-EO** (positions 103–104, also sum64 ≡6) lead into different next-word deltas **5** and **4** at global boundaries 77 and105. Thus even a joint `(length, sum)` lookup cannot satisfy all original p0 edges. More decisively, p5 ciphertext words **Y-NG-F-Y** (global offsets1281–1284, sum287 ≡26) and **X-A-R-Y** (offsets1454–1457, sum258 ≡26) both have length4 and final rune **Y** (GP index26), but their next-word deltas at offsets1285 and1458 are **3** and **27**. No hidden 29-entry output selection for that exact `(page, length, sum, finalRune)` state can satisfy both. A per-paragraph changing secret, longer context, plaintext-dependent state or nonlocal framing is outside the theorem.
+
 With pages 0–39 as training and all 626 eligible boundary transitions on untouched pages 40–53 as one fixed holdout, fit an otherwise **completely secret 29-output deterministic lookup** for each selector by the most frequent training difference (ties choose lowest index, unseen inputs revert to the global training majority). No unknown plaintext, guessed key or trained English model enters the test.
 
 | Prediction rule | Training correct / 2,031 | Blind pp40–53 correct / 626 |
