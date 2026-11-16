@@ -1,6 +1,6 @@
 # Equal 308-rune spans at the numeric table and at the book ending do not preserve the same original word boundaries
 
-**Agent35, 15 November 2026. Classification:** finite source-layout exclusion of a particular duplicated-plaintext route. No unknown Liber Primus plaintext, author key, cryptographic mechanism or destination recovered. This result tests one causal hypothesis raised by the original 308=308 length equality; it does not invalidate other table uses.
+**Agent35, 15 November 2026. Classification:** finite source-layout exclusion of a particular duplicated-plaintext route. No unknown Liber Primus plaintext, author key, cryptographic mechanism or destination recovered. This note now tests two distinct operations raised by the original 308=308 equality: duplicated plaintext under independently keyed encipherment, and different source-native plaintexts under a shared GP29 pad. Neither route recovers text; neither excludes other uses of the table.
 
 ## Why this is a plausible first test
 
@@ -28,9 +28,28 @@ The **only 12** common word-end offsets are `[17,20,46,78,167,189,193,233,241,26
 
 Positive comparator checks compare a strip with itself, yielding the full **73/73** and **66/66** boundaries. This rejects only the duplicated-*printed-plaintext* hypothesis. A source-directed transformation that deletes seven net word separators, moves words, uses different plaintext sentences sharing rune count, or encrypts word boundaries would be a separate operation requiring authentic evidence. The 308 equality on its own does not select any of these.
 
+## Distinct two-time-pad test with different plaintexts (Agent 5, 16 November 2026)
+
+The boundary disagreement above rejects *identical* plaintext, while a reused additive key can encrypt **two different printed plaintexts with different word breaks**. The exact two 308-rune input strips therefore warrant one independent test of that more useful hypothesis.
+
+Let `A` be the **138+170** original table flanks in their printed order and `B` the **232+76** original pp54–55 terminal strip. If GP29 additive encryption reused the same position-wise pad, necessarily `A[i]-B[i]=P_A[i]-P_B[i] (mod 29)`, with the pad eliminated entirely. A chained ciphertext-step cipher with a shared incremental pad instead imposes the same equation on `A[i]-A[i-1]` and `B[i]-B[i-1]`, resetting the first predecessor to zero at each proposed strip start. Neither relation needs a chosen original key. The main uncertainty is whether a human puzzle designer actually aligned the table-discontinuous 138+170 and terminal 308 strips or reused any key between them.
+
+Using the *original different word-boundary layouts*, an exact dynamic program searches all possible paired rune sequences in a fixed **29,061-entry GP29-native dictionary**, minimizing the **total number of out-of-vocabulary complete words** in the two putative plaintexts. It retains every original rune, all 73 table-flank word ends, all 66 terminal word ends, and the visible two-sentence split after flank position138. The algorithm accounts for all 29 choices at each symbol; it does not merely sample language-like candidates. Reused-key positives built from independently selected actual dictionary words with **the identical 73/66-word layouts** are encrypted and inverted through the same solver.
+
+| Source-exact two-time-pad model | Unavoidable OOV words across 139 original word slots | First forced OOV after zero-based rune | Independent same-key native dictionary plant |
+|---|---:|---:|---:|
+| Direct GP29 additive pad, same slot keys | **18** | **7** | **0** |
+| GP29 additive ciphertext-step chain, same slot increments | **18** | **7** | **0** |
+
+This is **at least 18/139 = 12.95%** nonlexicon printed words for either all-secret shared pad. The existing original LP1 native-GP control has **16/740 = 2.16%** words outside this same dictionary and a Gibran GP comparator has **292/15,733 = 1.86%** (the controls are documented in the upstream original [same-pad lexicon study](lp2-natural-section-pad-reuse-gate.md)). Both 308-rune word-matched positive plants yield 0/139 OOV, so the original negative is not due to the different boundary layouts or failure of the solver. A page-break reset or revised source word encoding is a separate cipher model; these two equal-position pad registers are fully tested.
+
+**Decision:** retire the direct **same-index 308-slot GP29 two-time pad** and its **one-strip chained-step analogue** as explanations producing two conventional native-GP English-like texts on these two source-visible 308-rune strips. The failure is lexicon-register-dependent, since unknown original prose may contain names, codewords, untranslated text or non-GP intermediate data. The identical lengths do not authenticate key reuse or identify an original key. There is no recovered LP2 plaintext.
+
+[Read-only original-input CJS exact-DP reproducer](../sims/lp2_flank308_terminal308_reusedpad_dictionary_sft.cjs) · [successful Windows Node.js 22 run 43966094367](https://github.com/FlareZ123/liber-primus/actions/runs/43966094367).
+
 ## Decision and next source-gated action
 
-**Retire exact 138+170 flank = 232+76 terminal duplicated prose with preserved word breaks.** The identical total rune count is arithmetically real but no longer supplies a ready plaintext crib or common rekeyed message. This helps avoid another equality-based key search while the manuscript has no known original decoder.
+**Retire exact 138+170 flank = 232+76 terminal duplicated prose with preserved word breaks, and the tested same-slot additive or chained-step shared-pad explanation for two native-GP lexicon-register texts.** The identical total rune count is arithmetically real but no longer supplies a ready plaintext crib or common rekeyed message. This helps avoid another equality-based key search while the manuscript has no known original decoder.
 
 The unresolved direct route remains the source-framed **138-rune complete pretable sentence** and **170-rune complete posttable sentence**, because those are genuinely adjacent to the unexplained numeric artifact. A fruitful next experiment requires a first-party clue selecting a decoder/operand and must recover stable words in one intact sentence with a withheld prediction on the other. This test recovers neither.
 
