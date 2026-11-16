@@ -1,6 +1,6 @@
 # Archived 2014 A194954 recurrence as an LP2 running prime key
 
-**Decision (16 November 2026): negative for this exact, original-cipher transfer.** The full independently specified OEIS A194954 sequence, interpreted as a continuous additive GP29 key with a fresh clock at each of the nine source-visible unknown chapters, produces no unknown plaintext. Its p56-style positive-φ transparent-F decoder becomes algebraically impossible on all nine original chapters, generally within their first 112 runes. No source-selected unknown-page key, plaintext, or continuation is recovered.
+**Decision (16 November 2026): negative for this exact, original-cipher transfer.** The full independently specified OEIS A194954 sequence, including its defining forward-prime-gap stream, yields no unknown plaintext under direct additive GP29 keys with a fresh clock at each of the nine source-visible unknown chapters. Its p56-style positive-φ transparent-F decoder becomes algebraically impossible on all nine original chapters, generally within their first 112 runes. No source-selected unknown-page key, plaintext, or continuation is recovered.
 
 ## Why test this distinct route?
 
@@ -34,6 +34,24 @@ Index of coincidence (IoC) for each unmapped GP29 output should be interpreted a
 | p54–55 | 308 | 0.033821 | 0.034265 | 0.034265 | 0.034519 | 0.034519 | 11 |
 
 The prime/phi IoCs are identical within each sign because the two decoded outputs differ by the same constant rune shift at all positions; this is expected for alphabet-wide additive shifts. The positive-direction transparent-F algebra fails **before the first chapter completes in 9/9 cases**, even when every original ciphertext F is allowed to be a literal bypass. The no-skip affine readings also fail to recover coherent prose.
+
+## One exact feature-native alternative: recurrence forward-gap key
+
+The prime sequence is selected by a divisibility condition on **forward prime gaps** `g[n]=a[n+1]-a[n]`. Using those gaps as the direct additive GP29 stream is the one separately motivated alternative to using the prime values themselves. Its first eleven gaps are `1,2,2,4,2,4,6,6,2,6,6`. There is no source instruction to reset clocks, transpose, fit a phase or derive further functions. Thus keep the same nine original chapter restarts and the same three decoder checks: `P=C-g mod29`, `P=C+g mod29` and the exact p56 plaintext-F-transparent positive-sign rule with forward gaps instead of prime totients.
+
+| Original chapter | `C−gap` IoC | `C+gap` IoC | Legal F-transparent prefix before contradiction |
+| --- | ---: | ---: | ---: |
+| p0–2 | 0.033924 | 0.034768 | 36/729 |
+| p3–7 | 0.034345 | 0.034176 | 22/1145 |
+| p8–14 | 0.034444 | 0.034438 | 8/1729 |
+| p15–22 | 0.034638 | 0.034522 | 126/1903 |
+| p23–26 | 0.034451 | 0.034534 | 0/1021 |
+| p27–32 | 0.034452 | 0.034089 | 21/1433 |
+| p33–39 | 0.034687 | 0.034450 | 70/1680 |
+| p40–53 | 0.034612 | 0.034585 | 34/3008 |
+| p54–55 | 0.034265 | 0.033398 | 116/308 |
+
+These original inputs remain flat under both literal gap signs; all nine full-chapter F-transparent transfers are impossible under the complete dynamic program. This retires the source's directly defined forward-gap key alongside its underlying prime/totient stream under the bounded operations. A generic alternate seed/clock, other word arithmetic or undisclosed generator could evade the negative, but none is historically selected by this archive. Exact source-gap reproduction and all nine chapter assertions are added to the existing SFT.
 
 ## Evidence scope and next decision
 
