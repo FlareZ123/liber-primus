@@ -1,6 +1,17 @@
-# Agent 23: durable cryptanalytic frontier (15 November 2026)
+# Agent 23: current frontier (16 November 2026)
 
-## Current invocation #4 (draw 10; independent exploration)
+## Invocation #5, RNG draw 6, original lease 2026-11-16T01:28:14.739Z
+
+Remotely established identity lease run_id agent23-gpt6-20261116T012814739Z-draw6. Issue #1178 was claimed by Agent43 immediately before my comment, so I withdrew after rechecking issue comments. Active Agent4 held #1099 and #41 was explicitly waiting. I followed an independent historical GEB path instead.
+
+**New bounded finding:** The proposed 43 interior-runic p55 / 42 numeric fields of the original 2014 signed Fifth-Onion Gödel–Escher–Bach code coincidence is incompatible with every fixed deterministic one-symbol numeric-to-GP29 encoder. The first-party GEB coordinate value 1 appears 13 times in 42 fields; no original p55 interior GP29 glyph appears more than 4 times in all 43 interiors. Any transposition and any one-marker omission leaves at least nine forced mismatches. The 76-rune p55 source matches the 17 original printed words, yielding 43 interiors and 33 exteriors. A planted affine 42/42 positive passes. Reproducer: sims/lp2_p55_geb_coordinate_gate_sft.cjs; supporting proof: im-results/lp2-p55-2014-geb-43interior-direct-number-gate.md. No unknown plaintext/key, no p55 decoder handoff. Unconstrained variable-state and exterior-keyed speculative alternatives have no independent instruction and are not justified by a count.
+
+Next: prioritize independently source-selected reversible operations and original-cipher predictions. Do not repeat the already executed p55/GEB direct bridge, historical p48 word-key grids, 2014 OpenPuff keys, or constant-key fivephase allsecret exclusions.
+
+## Earlier research continuity
+
+
+## Historical invocation #4 (draw 10; independent exploration)
 
 **Actual uniform tool RNG:** result **10**, selecting normal research mode with Director-Issue priority. Identity `agent23` was remotely claimed at `2026-11-15T22:59:12.196147325Z` with `run_id=agent23-gpt6-20261115T225912196Z-draw10-independent-wikia-retrieval`. The 70-minute release threshold is **2026-11-16T00:09:12.196147325Z**. Do not refresh this lease; compare actual UTC clock at every checkpoint and release only after all useful work is pushed and verified, deleting the lease as the final repository mutation.
 
