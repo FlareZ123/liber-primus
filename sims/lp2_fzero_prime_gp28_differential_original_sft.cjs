@@ -196,6 +196,33 @@ assert.deepEqual(mismatches.map(r => [r.page, r.length, r.Fmask]), [
   [30, 9, "000000001"]
 ]);
 
+// Stronger key-independent F-zero constraints: short plain words with
+// one medial F have very few choices in the *frozen* TextBlob reference.
+// This is a register-conditional discriminator, not a global theorem
+// against every language or all author spellings.
+const rareShortMasks = ["010", "0100"].map(mask => {
+  const originalSites = fMask.flatMap((x, index) => x !== mask ? [] :
+    [{word:index,page:words[index][0].page,
+      local:words[index][0].local,global:words[index][0].global}]);
+  const nativeCandidates = possible.get(mask) || [];
+  const matchingFrequency = nativeCandidates.reduce((sum,x) => sum+x.count, 0);
+  const matchingWordLength = mask.length;
+  const wholeLengthFrequency = lexicon
+    .filter(x => x.runes.length === matchingWordLength)
+    .reduce((sum,x) => sum+x.count, 0);
+  const originalLengthWords = words.filter(w => w.length === matchingWordLength).length;
+  return {mask,originalLengthWords,originalCount:originalSites.length,
+    originalSites,onlySourceLexiconCandidates:nativeCandidates
+      .map(x => ({word:x.text,count:x.count})),
+    sourceMatchedFrequency:matchingFrequency,
+    sourceLengthFrequency:wholeLengthFrequency,
+    expectedMatchedWordsFromSourceWeightedSameLength:
+      originalLengthWords*matchingFrequency/wholeLengthFrequency};
+});
+assert.deepEqual(rareShortMasks.map(x=>x.originalCount), [3,3]);
+assert.deepEqual(rareShortMasks.map(x=>x.originalLengthWords), [720,513]);
+assert.deepEqual(rareShortMasks.map(x=>x.sourceMatchedFrequency), [3,6]);
+
 // Author-authentic GP text as known plaintext. p56's printed hex digest is
 // out-of-band in its solved page; the normalized reference has those lines
 // starting with decimal digits. p57 uses the original 95 source runes.
@@ -250,7 +277,8 @@ const output = {
   forcedOriginalPlainF:{
     all:events.length,wordInitial:23,wordInterior:44,wordFinal:19,
     singleRuneWords:0,acrossPhysicalPage:0,
-    finiteTextBlobExactFMaskMissing:mismatches
+    finiteTextBlobExactFMaskMissing:mismatches,
+    rareMedialFShortWords:rareShortMasks
   },
   authenticControls:controlResults,
   sourceNativeBenchmark:{sections:solvedIDs,nativeRunes:native.length,
