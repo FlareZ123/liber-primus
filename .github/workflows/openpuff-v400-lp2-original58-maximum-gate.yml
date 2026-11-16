@@ -8,6 +8,13 @@ on:
         default: full58-chain
         options:
           - full58-chain
+      key_source:
+        type: choice
+        required: true
+        default: historical-2014
+        options:
+          - historical-2014
+          - red13dot-base60
 permissions:
   contents: read
 jobs:
@@ -61,9 +68,18 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           $out = 'probe-output/original-published-58-maximum'
+          $sourcePassword = '33011033'
+          if ('${{ inputs.key_source }}' -eq 'red13dot-base60') {
+            $sourcePassword = (& node sims/lp2_red13dot_base60_openpuff_key_sft.cjs --password-only).Trim()
+            if ($LASTEXITCODE -ne 0 -or $sourcePassword.Length -ne 32) {
+              throw 'Source original 31-dot base60 password failed its freeze assertions'
+            }
+            $out = 'probe-output/original-red13dot-58-maximum'
+          }
+          Write-Host "SOURCE_PASSWORD_MODE ${{ inputs.key_source }} length=$($sourcePassword.Length)"
           $arguments = @(
             '--exe', "$env:OPENPUFF_EXE",
-            '--password', '33011033',
+            '--password', "$sourcePassword",
             '--bit-format', 'Jpeg (Image)',
             '--bit-level', '1/2 (50%) - Maximum',
             '--out', "$out",
