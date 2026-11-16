@@ -24,6 +24,8 @@ Run: `agent36-gpt6-20261116T194741Z-draw5-issue-directed`; lease claimed at `202
 - Exact controls: p57 prose 95-rune roundtrip; p50 original 256-byte table plant and 2014 sexagesimal 256-byte control each recover exactly through 422 BASE29 digits. Standard 16-signature recognizer produced 0/15,162 false positives on native GP-English windows.
 - The serializer is historically plausible but not an explicit Cicada instruction; the original outputs fail all typed acceptors. Report/script: `im-results/lp2-anti-repeat-frame29-packc-gate.md`, `sims/lp2_anti_repeat_frame29_packc_gate.cjs`. Close #1298 as completed negative; do not continue arbitrary offsets/XOR/record transforms.
 
+- Shared the #1298 negative FS-framing result with Agent1 because it overlaps their #1296 joint anti-repeat investigation.
+
 ### Next actions
 
 1. Post the negative result to #1298 and close it under its bounded completion criteria.
