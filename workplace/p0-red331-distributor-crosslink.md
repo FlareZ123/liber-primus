@@ -1,0 +1,24 @@
+# Physical p0 red heading: a 331/32 source crosslink, no decoder
+
+**Decision, 16 November 2026 (Agent3).** The original p0 **red 8|5 rune** heading has independently verified prime sums **347 and 315**. Their arithmetic is `347+315=662=2×331` and `347−315=32`. The source-dated May 2014 Stage11 index uses `<title>133</title>` and `<div id="331">`, and the manuscript's original p49–51 numeric table has **32 rows of eight cells**. These are correct, potentially intentional source-level correspondences. They do **not** recover unknown plaintext, the historical key, an operation, or an author-approved link from heading to table.
+
+## Concrete human-visible inputs
+
+- The original p0 **17.jpg** has eight red GP runes, a small red word separator, five red GP runes and a separate large red 13-dot mark at rune offset13. The corrected [original-source ink adjudication](../im-results/lp2-p0-red13-13dot-blackbody-original-source-adjudication.md) is authoritative; earlier red8/black5 claims are withdrawn.
+- The 2013 original Gematria Primus table fixes the first 29 prime weights independently of LP2. The 13 p0 red rune indices are `[15,8,18,3,6,19,27,0,15,26,18,21,5]`, carrying prime weights `[53,23,67,7,17,71,107,2,53,103,67,79,13]`. The first eight total **347** and the last five **315**, so their arithmetic midpoint is **331** and their signed difference **32**. Original GP spelling: `SHEOGMIAF-SYENGC`.
+- The original [Stage11 distributor HTML](../resources/historical/stage11-2014-index.html), preserved in an independently dated 2014 Git tree, explicitly contains `<title>133</title>`, `<div id="331">` and 58 original JPEG links. The HTML number331 precedes solving any ciphertext and is therefore a legitimate independent, albeit unexplained, numerical input.
+- The original [32×8 numeric-cell transcription](../resources/liber-primus/lp2-grid-256.json) spans physical pp49–51, 256 cells. The exact table size is original visible geometry, but applying the p0 word sums as grid indices or keys is **not instructed anywhere**.
+
+The separate 2013 signed TCP `BASE29` example maps **3301→3QO**; it does not prescribe averaging title sums, using the HTML id as a cipher key or selecting p50 cells. The 2013 participant DH transcript independently uses a private exponent331, but that exponent is *participant-chosen*, not an original Cicada key selector. Do not count that reuse as author testimony.
+
+## Original-corpus specificity and its limit
+
+The [single-file original-input SFT](../sims/lp2_p0_red331_html_table_sft.cjs) parses every original rune word across page carries and asserts 2,896 complete words / 12,956 runes and unchanged p0 first13. Of the 2,895 consecutive complete-word pairs, exactly **two** total662: p0's 347|315 (word lengths8|5) and a p43 498|164 pair (lengths6|4). Exactly **19** pairs have lengths8|5; p0 is the only such pair totaling662. Every one of the title's 1,287 possible 8-of-13 allocations is enumerated: **10** yield first-word sum347, **11** yield315, for conditional probability **21/1,287≈0.016317** of a 32-point absolute difference given this exact fixed title rune multiset.
+
+These numbers are **not a corrected discovery probability**. The manuscript's GP prime-weight mean is **1480/29≈51.03448**; thirteen unconstrained letters have expected total **≈663.448**, remarkably close to the observed **662**. Thus the 331 mean falls near the expected value for an arbitrary 13-rune heading. The 32/table-dimension association was noticed retrospectively; selecting multiple numbers, section lengths and arithmetic operations after inspection creates additional chances for coincidence. A 2014 human could have noticed the title, the HTML `331`, and the later table, but **nothing source-authenticated directs a conversion from these to plaintext**.
+
+## Cryptanalytic decision
+
+An intended route, if present, would have to specify an actual **source-driven consumer**: which exact original p0 symbols encode which key or table coordinates, how the 331 and32 enter a reversible operation, and what original ciphertext must become readable *without* fitting new keys after seeing its output. A fixed direct application of the authentic p56 prime-totient cipher is already incompatible with eight of nine unknown chapters for all first5,000 starting prime positions ([original exact gate](../im-results/lp2-p56-native-F-transparent-ninechapter-impossibility.md)); 331 is no excuse to repeat that search.
+
+**Most useful next discriminating evidence:** an independent dated 2013–14 source selecting sum/mean/difference as a command or an exact original-p50 consumer that predicts actual known p56/p57 content *before* any unknown-page cipher is used for tuning. Lacking that evidence, keep the arithmetic as a finite, unconfirmed crosslink rather than giving it established-results status.
