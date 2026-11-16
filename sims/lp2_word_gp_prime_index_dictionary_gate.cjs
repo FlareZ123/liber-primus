@@ -266,6 +266,7 @@ function study() {
     const inverse = new Map();
     for (const item of dictionary.byCode.values()) {
       const c = encryptCandidate(item.code, variant, primes);
+      if (!c) continue;
       const key = c.join(",");
       if (!inverse.has(key)) inverse.set(key, []);
       inverse.get(key).push(item.word);
