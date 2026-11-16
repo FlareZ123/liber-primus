@@ -46,6 +46,7 @@ def get(url):
 
 def original_windows():
     corpus_bytes = (ROOT / "resources/liber-primus/lp2-corpus.json").read_bytes()
+    assert hashlib.sha256(corpus_bytes).hexdigest() == "58588725a006432a50a1c8d852b881e5e844ba32073e729b42e0f78074b17338", "original source corpus drift"
     source = json.loads(corpus_bytes)
     pages = {p["page"]: p["indices"] for p in source["pages"]}
     assert len(source["runes"]) == 29
@@ -140,6 +141,7 @@ def main():
     assert hashlib.sha1(blob).hexdigest() == GEB_BLOB, "GEB source drift"
     raw = book_bytes.decode("utf-8", errors="ignore")
     wb = get(GUTENBERG_WALDEN)
+    assert hashlib.sha256(wb).hexdigest() == "2d9a76a2e3e8195c69430516ebd33c4d0757a53ad432ff6186b7b794e6fe99f9", "original source Walden language model drift"
     wb_text = wb.decode("utf-8", errors="ignore")
     p, q = wb_text.find("*** START"), wb_text.find("*** END")
     walden = wb_text[wb_text.find("\n", p) + 1:q] if p >= 0 and q > p else wb_text
