@@ -1,6 +1,6 @@
 # Original LP2 base-60 grid: direct key structures and historical RSA-block decoding
 
-**Classification:** Three independently executable, source-constrained interpretations of the numeric grid have negative original-input results. Neither original LP2 plaintext, a new private key nor a key schedule was recovered. Agents 9 and 3, 10 November 2026.
+**Classification:** Four independently executable, source-constrained interpretations of the numeric grid have negative original-input results. Neither original LP2 plaintext, a new private key nor a key schedule was recovered. Agents 9 and 3, 10 November 2026.
 
 ## Source data and motivation
 
@@ -50,12 +50,30 @@ A synthetic end-to-end positive implants a correctly public-encrypted PKCS#1 v1.
 
 **Scope:** This excludes literal RSA-432 blocks whose ciphertext bytes occur contiguously in one of the three specified physical readings with one of the specified key/exponent interpretations and plaintext formats. It cannot rule out a different RSA exponent, unusual byte permutation, custom padding, nontext binary payload, additional encryption layer, or a role for these historical factors elsewhere in LP2. It does not explain the independently reported divisibility of the full 2,048-bit printed grid integer by the square of physical page 53's 179-rune length ([factorization study](grid-bigint-factor-page53.md)).
 
+## 256-byte grid as two RSA-2048 prime factors
+
+**Agent 3, 16 November 2026.** The known p56 plaintext explicitly names primes and the totient function. The p49–51 table contains 256 cells, and its established conditional base60 byte reading is exactly 256 bytes. A plausible human test is therefore to ask whether the grid contains two 128-byte factors p||q for an RSA-2048 modulus. This is a source-motivated hypothesis, not an author-attested instruction: neither p56 nor the table explicitly specifies RSA-2048, the byte conversion is derived, and the table does not mark a split.
+
+The original resources/liber-primus/base60-grid.json byte stream is pinned by SHA-256 **3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290**. The test uses four obvious grid-aligned 2×128-byte partitions: first 16 rows / last 16 rows; left four columns / right four columns; even / odd columns; and even / odd rows. Each half is interpreted in both big-endian and little-endian order, for **16 candidates**. No arbitrary byte shuffle, fitted permutation, alternate radix, or guessed private exponent is introduced.
+
+| Grid partition | Half 1, BE / LE | Half 2, BE / LE |
+| --- | --- | --- |
+| First 16 rows / last 16 rows | factor 5 / factor 5 | factor 2 / factor 131 |
+| Left four columns / right four columns | factor 2 / factor 83 | factor 2 / strong Miller–Rabin witness 4 |
+| Even / odd columns | factor 3 / factor 3 | factor 2 / factor 3 |
+| Even / odd rows | factor 2 / factor 17 | factor 2 / factor 2 |
+
+All **16/16** candidates are composite. Fifteen have the displayed small prime divisor (at most 131); the remaining 1023-bit candidate has a strong compositeness witness at base 4. The Node.js crypto.checkPrimeSync check also rejects all sixteen. The positive control generates a genuine RSA-2048 keypair and verifies that both 1024-bit private factors pass the same primality checks.
+
+**Decision:** retire only the literal p||q reading of the conditional base60 byte grid under these four natural geometric partitions and both byte orders. This does not exclude RSA used elsewhere, encrypted or transformed factors, a different source-selected byte representation, or the unresolved p50 table's role as an operand/key for another cipher. It recovers no unknown plaintext, private key, or destination. Reproduction: [source-pinned Node 22 SFT](../sims/lp2_p50_two_prime_factor_screen.cjs).
+
 ## Reproduce and research conclusion
 
-Three built-in-library-only CommonJS tests for Node.js 22 retain the exact input transformations and synthetic controls:
+Four built-in-library-only CommonJS tests for Node.js 22 retain the exact input transformations and synthetic controls:
 
 - [Authentic OpenPGP RSA private-factor test](../sims/grid_rsa_crt_factor.cjs), [completed original-source CI 42781495472](https://github.com/FlareZ123/liber-primus/actions/runs/42781495472)
 - [AES expanded-schedule necessary-condition test](../sims/base60_aes_schedule_necessary.cjs), [completed original-source CI 42786189321](https://github.com/FlareZ123/liber-primus/actions/runs/42786189321)
 - [Historical factored RSA direct-block inverse](../sims/base60_historical_rsa432_block_inverse.cjs), tested on the exact source bytes with independent RSA PKCS#1 and OAEP positive controls
+- [Two-prime RSA-2048 factor-pair screen](../sims/lp2_p50_two_prime_factor_screen.cjs), with a generated RSA-2048 positive control
 
-The first two are already included in the manual-only [grid-rsa-pgp workflow](../.github/workflows/grid-rsa-pgp.yml); the third runs directly as an SFT. A final solution requires an independently specified key/payload reading that recovers authentic unknown LP2 plaintext and re-encrypts the original source. None of the three bounded hypotheses does so.
+The first two are already included in the manual-only [grid-rsa-pgp workflow](../.github/workflows/grid-rsa-pgp.yml); the third runs directly as an SFT. A final solution requires an independently specified key/payload reading that recovers authentic unknown LP2 plaintext and re-encrypts the original source. None of the four bounded hypotheses does so.
