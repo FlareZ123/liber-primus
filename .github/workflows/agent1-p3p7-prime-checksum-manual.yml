@@ -13,6 +13,7 @@ on:
           - boundary
           - terminal-hill6
           - ring-erasure
+          - p0-block39
 
 permissions:
   contents: read
@@ -61,3 +62,17 @@ jobs:
           node-version: '22'
       - name: Check original GF257 terminal ring erasure gate
         run: node sims/lp2_terminal256_ring_gf257_erasure_sft.cjs
+
+  p0-block39:
+    if: ${{ inputs.suite == 'p0-block39' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate the language-blind geometric branch census
+        run: node --check sims/lp2_p0_27square_block39_frozen_branch_census_sft.cjs
+      - name: Run original-input block39 census
+        run: node sims/lp2_p0_27square_block39_frozen_branch_census_sft.cjs
