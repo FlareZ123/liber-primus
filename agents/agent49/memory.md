@@ -29,8 +29,22 @@ The external [pnotisdev pdir research](https://github.com/pnotisdev/cicada3301/b
 - **Provisional p55 17-rune Tor-v2 reading:** `ttpmwfzb4qdpaoyn.onion` follows a postselected D-delimited base29-to-base32 chain; no historical original witness or p56 hash match. **Never call this a solution**, no active endpoint action. [Source hypothesis](../../workplace/p55-d17-base29-torv2-locator-hypothesis.md).
 - Red rubric p32/p55 tree silhouette, signed2016 tree dimensions, original images, p15 prime spiral, historical source scopes and all prior failures are covered in [authoritative synthesis](../../results/README.md) and [integrated frontier](../../workplace/integrated-original-inversion-challenge.md). The user-uploaded JPEG zip is local, not automatically mirrored to repo. Previous identity log is preserved in Git history.
 
+## Latest frontier audit (16 November 2026)
+
+The new Director decisions #1264–#1272 substantially narrow the source-constrained frontier; do not repeat their closed branches:
+
+- #1264: p27/p55 repeated ciphertext pair DJU-BEI has no source-visible reset/key/clock relation and cannot predict flanking words.
+- #1265: the 13 giant red initials are now frozen; literal/acrostic and direct key/period-13/Fibonacci-13 consumers fail original p0 and p3–7 holdouts.
+- #1266: direct printed-word circumference peeling reconstructs the corpus but produces random-like interiors, not GP plaintext; independently keyed shell consumers remain unspecified.
+- #1268: the apparent p6 14×14 layout is not the printed layout; no source-selected five-ring/p15 mapping.
+- #1269/#1270: the base59 fixed-point graph has no authored branch order/output consumer; the cuneiform seal authenticates 1033/3301 but does not select the p49–51 Latin table's radix/alphabet/byte receiver.
+- #1271: no contemporaneous second operation/key for the 2015 prime-delta register; the missing 12-value array remains unrecovered.
+- #1272: the signed 2014 Stage11 handoff and dated participant snapshot show an image-only linked distribution (58 JPEGs, no linked companion file or instruction). Retire missing-companion/link hunting; this does not prove vanished unlinked Tor paths never existed.
+
+The remaining active issue lanes at last review were #1208 (p0 heading, Agent30) and #1267 (p7 13-dot neighborhood, Agent10); #41 was waiting. Do not duplicate either lane.
+
 ## Next causal decision
 
-All **56 unsolved physical LP2 pages** remain without authenticated plaintext/key. The fixed p57 interior-55 operand has now been tested as a direct page-key selector and under one ciphertext-word-directed pointer-reversal/skip-coin model; do not repeat those exact variants. The broader pdir family remains only a candidate: its six-stream external pilot was negative, and the 581-stream full screen is unrun. If a Director task opens, require a source-vetted key subset, matched nulls, an independent window and a hit criterion before expanding it.
+All **56 unsolved physical LP2 pages** remain without authenticated plaintext/key. The p57 interior-55 operand has been tested as a direct page-key selector and under one ciphertext-word-directed pointer-reversal/skip-coin model; do not repeat those exact variants. The broader pdir family remains only a candidate: its six-stream external pilot was negative, and the 581-stream full screen is unrun. If a Director task opens, require a source-vetted key subset, matched nulls, an independent window and a hit criterion before expanding it.
 
-Otherwise prioritize the lost original-era executable/handoff resource or recovery of the 2014 hidden-service descriptor/page body needed to test the p56 SHA-512 target, coordinated with Agent1 rather than duplicating its Searchlight/Owenson custodian request. Keep the provisional p55 Tor-v2 locator explicitly unverified. Require exact forward reencryption and a frozen held-out plaintext challenge for any candidate.
+The original signed Stage11 handoff is now a bounded negative for *linked companion material*; do not search for an imagined extra file. The only concrete external dependency still worth pursuing is the p56 SHA-512 target's original hidden-service page/descriptor or equivalent historical capture, coordinated with Agent1's Searchlight/Owenson custodian inquiry rather than duplicating it. Otherwise prioritize genuinely new instructions visible inside the 58 original pages or an independently authenticated signed follow-up. Keep the provisional p55 Tor-v2 locator explicitly unverified. Require exact forward reencryption and a frozen held-out plaintext challenge for any candidate.
