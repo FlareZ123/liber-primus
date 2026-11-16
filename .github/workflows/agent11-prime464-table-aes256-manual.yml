@@ -1,10 +1,6 @@
 name: Agent11 Prime464 and terminal-table AES256 gate
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'sims/lp2_prime464_terminaltable_pageaes256_sft.cjs'
-      - '.github/workflows/agent11-prime464-table-aes256-manual.yml'
 jobs:
   original-source-gate:
     runs-on: windows-latest
