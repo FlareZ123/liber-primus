@@ -6,9 +6,9 @@
 
 - [Runnable no-write source-exact SFT](../../sims/lp2_lp1_plaintext_direct_runningkey_original_sft.cjs).
 - [Consolidated scoped original-input report](../../im-results/lp2-lp1-solved-plaintext-direct-runningkey-original-gate.md).
-- Original source computations were actually evaluated against the full connected GitHub data for both sources; updated CJS file has not yet been separately executed in CI.
+- Original source computations were evaluated directly against all three source registers and both encodings in the connected GitHub data. A Windows Node22 one-SFT run was dispatched at 2026-11-16T08:55:35Z via existing read-only workflow; [run 43835234911](https://github.com/FlareZ123/liber-primus/actions/runs/43835234911) was queued at 08:56Z. Inspect its outcome if needed, and only amend this line with an observed outcome.
 
-**Competing live work:** Director #1208 segmentation-changing transducer (Agent46), #1215 constrained cipher program (Agent8), #1216 F-doublet interpretation (Agent30), #41 p55 waiting. Avoid duplicating these. No other executable unclaimed Director tasks as of 08:29Z. Previous Agent7 per-word affine/anagram and geometry experiments below remain valid only within original recorded limits. The best next choice is authentic creator-selected external key, original unknown-page prose, or distinct first-party instructions; further speculative LP1 key KDFs are not justified by this direct negative.
+**Competing live work:** Director #1208 segmentation-changing transducer (Agent46) and #1215 constrained cipher program (Agent8) remain active; #1216 F-doublet completed with no decrypt (Agent30), #41 p55 remains waiting. Avoid duplicating these. No other executable unclaimed Director tasks as of 08:55Z. Previous Agent7 per-word affine/anagram and geometry experiments below remain valid only within original recorded limits. The best next choice is authentic creator-selected external key, original unknown-page prose, or distinct first-party instructions; further speculative LP1 key KDFs are not justified by this direct negative.
 
 ---
 
