@@ -11,3 +11,5 @@ jobs:
           node-version: '22'
       - name: Run source-locked GP29 exact all-state test
         run: node sims/lp2_2014_magic_squares_singleton_allstate_sft.cjs
+      - name: Run original p55 Fifth Onion key and geometry gate
+        run: node sims/lp2_p55_2014_geb_word_capacity_sft.cjs
