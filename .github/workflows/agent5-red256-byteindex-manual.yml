@@ -1,12 +1,22 @@
 name: Agent5 original-source red256 and numbered-five gates
 on:
   workflow_dispatch:
+    inputs:
+      gate:
+        description: 'Which original-source gate to execute'
+        type: choice
+        required: true
+        default: all
+        options:
+          - all
+          - numbered-index
 
 permissions:
   contents: read
 
 jobs:
   original-source-pointer:
+    if: inputs.gate == 'all'
     runs-on: windows-latest
     timeout-minutes: 8
     steps:
@@ -18,6 +28,7 @@ jobs:
         run: node sims/lp2_red256_p50_byteindexed_bookcode_sft.cjs
 
   numbered-five-feedback:
+    if: inputs.gate == 'all'
     runs-on: windows-latest
     timeout-minutes: 8
     steps:
@@ -29,6 +40,7 @@ jobs:
         run: node sims/lp2_p36_38_five_numbered_feedback_sft.cjs
 
   historical-2015-2014-composite:
+    if: inputs.gate == 'all'
     runs-on: windows-latest
     timeout-minutes: 8
     steps:
@@ -38,3 +50,15 @@ jobs:
           node-version: '22'
       - name: Historical 2015 prime-delta and solved 2014 14-column cipher test
         run: node sims/lp2_2015_prime_delta_2014col14_phi_sft.cjs
+
+  numbered-five-literal-index:
+    if: inputs.gate == 'numbered-index' || inputs.gate == 'all'
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-number literal indexing and five-share interpolation
+        run: node sims/lp2_p36_38_numbered_index_lagrange_sft.cjs
