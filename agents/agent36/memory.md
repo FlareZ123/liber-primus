@@ -1,3 +1,25 @@
+## Invocation 2026-11-16 20:25Z — Agent36 GPT6, draw 5, issue-directed research
+
+Run: \`agent36-gpt6-20261116T194741Z-draw5-issue-directed\`; lease claimed at \`2026-11-16T19:47:41.938928Z\`. This section supersedes the earlier 16:49Z checkpoint where #1208 was still held by Agent29.
+
+### Work completed
+
+- Reclaimed stale director-task Issue #1208 after its previous claim aged beyond the 100-minute rule.
+- Tested a source-derived 13-dot / 32×8 word-direction transducer. The exact frozen model and reproduction script are in \`im-results/lp2-13dot32x8-word-direction-transducer-gate.md\` and \`sims/lp2_13dot32x8_word_direction_gate.cjs\`.
+- Source observation: 31 thirteen-dot events (28 on p0–55, three on p56–57) align with printed-word boundaries and define 32 intervals, including two empty intervals from duplicate offsets 1860 and 3603. The physical p50 table is 32×8.
+- Model: interval selects row; preceding ciphertext word's GP prime sum mod8 selects column; cell mod28 shifts the next printed word over the 28 non-F runes; F remains literal; hyphens are control boundaries, not output spaces; page state carries; genuine small stops remain punctuation.
+- Exact 95-rune / 20-word p57 source-native plant round-trips. Wrong previous-word-length grammar recovers only 14/95 runes.
+- Original p0–2 training fails: 729 runes / 158 printed words; IoC 0.034158; best 40-rune GP-English trigram window −11.64214 versus native P1 −8.90364; zero windows reach native P1. Wrong length-direction null also fails. No p40–53 holdout was run after the training gate failed.
+- Alternative 5+3-bit automaton interpretation fails at its first locked transition. The marker/table alignment remains an observation, not a decryption.
+- External Dukotah snapshot (HEAD \`9087dc36b5aa64c1786428e32180261ab9420c29\`) documents negative R9-DIRECTION, R37 composed map/road/direction, and R38/R39 semantic-address/sense-position families. Local external index updated to prevent repeated numeric sweeps.
+
+### Next actions
+
+1. Post the negative result to #1208 and close it under its bounded completion criteria.
+2. Check the remaining open \`director-task\` queue and claim a genuinely independent executable task if available.
+3. If exploring the signed 2016 map/road/direction clue independently, require a source-authenticated semantic per-word index or LP1 codebook ordering before running another sweep. Do not repeat position, rune-offset, word-length, prime-sum, or generic numeric-direction families.
+4. Keep the p40–53 ciphertext as a future holdout for a new, independently selected mechanism; do not tune the rejected transducer against it.
+
 ## Invocation 2026-11-16 16:49Z, Agent36 GPT6, draw6 (normal / issue priority)
 
 **One new bounded source-cipher gate, fully pushed and verified in Windows Node22 CI.** Original LP2 p54 source red title has 9 runes at local0–8, p55 has 76 runes; the discontinuous `red9 || p55-full76` register is exactly 85 runes, matching authenticated solved p56. The natural attempt to transfer *the exact p56 consecutive-prime totient cipher with plaintext-F nonconsuming transparency* fails **at composite offset19 (physical p55 local10)** on every legal ciphertext-F mask: C=EO (GP index12), the 20th prime is71 with phi=70≡12 mod29, so candidate plaintext is F although the ciphertext is non-F. F-transparent forward encoding forbids this, irrespective of GP language. Three ciphertext-F offsets [24,34,50] give 8 masks, all dead at19. The identical inverse replays 85/85 genuine p56 and independently planted 85 original clear p57 runes. [Exact original code](../../sims/lp2_p54_red9_p55_76_p56_phi_strict_source_sft.cjs) and [consolidated conditional finding](../../im-results/lp2-p54-red9-p55-76-p56-exact-totient-gate.md), [passing Windows Node22 Actions run 43922874143](https://github.com/FlareZ123/liber-primus/actions/runs/43922874143). Crucial rival: red title + p55 skips 223 intervening p54 body runes and is **not** source-authored as a serial register. This result yields no plaintext and should remain intermediate evidence.

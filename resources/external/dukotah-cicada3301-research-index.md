@@ -1,6 +1,6 @@
 # Independent Liber Primus research index: Dukotah/cicada3301
 
-**Snapshot inspected:** 2026-11-15T00:45:02.913Z. Repository HEAD: `9087dc36b5aa64c1786428e32180261ab9420c29` (2026-11-12T05:54:21Z).  
+**Snapshot inspected:** 2026-11-16T20:25:27.421Z. Repository HEAD: `9087dc36b5aa64c1786428e32180261ab9420c29` (2026-11-12T05:54:21Z).
 **Source:** https://github.com/Dukotah/cicada3301  
 **License:** MIT covers the repository's original code and documentation; the license explicitly does not purport to license the underlying Cicada artifacts reproduced for research. No code was copied here.
 
@@ -26,17 +26,29 @@ The Round 44 closeout also reports negative results for red-ink, p15 grid, punct
 
 ## Measured ceiling and remaining gaps
 
-The external `MEASURED-CEILING.md` explicitly limits its claims to tested key spaces, decoder relations, and language registers. It lists, among other gaps, skip-by-4/5 and combined reset axes; the Marsaglia Random Number CDROM public-pad family (77 of 756 pad/builder/byte-order units swept); homophonic-downward mapping; non-additive ciphertext-feedback beyond a three-page pilot; per-instance O/A/AE calls; and original-PDF kerning/subpixel/colour channels. These are **unmeasured or partial**, not evidence that they are promising. Some ceiling prose predates later rounds, so prefer the latest `PICKUP-HERE.md` and live ledger when resolving status.
+This section is refreshed against upstream HEAD \`9087dc36b5aa64c1786428e32180261ab9420c29\` (2026-11-12). The ceiling is finite and family-scoped; negative results do not prove that every interpretation of the signed 2016 statement is impossible.
+
+- **R9-DIRECTION** in \`research/DEAD_ENDS.md\`: 2,670 readings across four families—self-indexing walks using seven step functions, cumulative walks using eleven strides, signed direction walks, and numeric sieves. No plaintext or source hit. Do not repeat these families without a new source selector.
+- **R37-C1-U3-COMPOSED-MAP-ROAD-DIRECTION** in \`liber-primus/MEASURED-CEILING.md\`: 4,176 decodes over position / rune offset / word length × mod-29/28 × start × sign. The reported controls were recovered, but no verified plaintext or source-selected index emerged.
+- **R38 semantic-address**: 28,224 decodes; **R39 sense-position**: 14,112 decodes. Both are reported negative. The upstream handoff reopens this lane only if “meaning” yields a determinate per-word index, or if LP1's codebook order is shown to differ from document order.
+- The signed 2016 phrase “words are the map, their meaning is the road, and their numbers are the direction” is therefore only partly exhausted: positional, length-based, and broad numeric-direction readings have been tested; a source-authored semantic index has not been established. Generic WordNet/dictionary searches are not a selector.
+- Other listed gaps—remaining Marsaglia public-pad units, non-additive feedback beyond the reported pilot, per-instance O/A/AE calls, and original-PDF kerning/subpixel/colour channels—remain unmeasured or partial. They are coverage gaps, not evidence of promising leads.
+
+Use the latest handoff and live ledger for any newer work. The upstream scope is not a global proof of impossibility.
 
 ## Recommended use
 
-- Do not repeat the already replicated T7 block-count test.
-- If revisiting the p27/p54 7-gram, do not repeat the 51-key reset family; require a new source-selected key or operation.
-- Reuse the p50 byte-for-byte cross-check and p27:93 adjudication rather than reopening those transcription questions.
-- Treat the remaining measured-ceiling gaps as a map of coverage, not a task list. Select work only where an original clue supplies the missing key, operation, or observable prediction.
+- Do not repeat the already replicated T7 block-count test, the p27/p54 51-key reset family, or the p50/p27:93 source adjudications.
+- Do not repeat R9-DIRECTION or R37–R39 numeric/position/length/semantic-position sweeps.
+- Reopen the signed 2016 map/road/direction clue only when an original source supplies a determinate semantic per-word index or an independently supported LP1 codebook order.
+- Treat remaining measured-ceiling gaps as a coverage map, not a task list. Select work only where an original clue supplies the missing key, operation, or discriminating prediction.
+
 
 ## Primary external references
 
+- Direction-family negative ledger (R9-DIRECTION): https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/research/DEAD_ENDS.md
+- Current measured ceiling (R37–R39): https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/liber-primus/MEASURED-CEILING.md
+- Pinned current handoff: https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/liber-primus/PICKUP-HERE.md
 - Repository overview: https://github.com/Dukotah/cicada3301
 - Current handoff: https://github.com/Dukotah/cicada3301/blob/master/liber-primus/PICKUP-HERE.md
 - Measured ceiling: https://github.com/Dukotah/cicada3301/blob/master/liber-primus/MEASURED-CEILING.md
