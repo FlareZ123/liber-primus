@@ -57,6 +57,55 @@ for (let i = 0; i < 16; i++) {
   }
 }
 assert.equal(symmetric, 0);
+/**
+ * Sixteen 4x4 matrix powers supply another source-fixed 256-value tape.
+ * The displayed infinity symbol motivates considering iteration, although
+ * no first-party annotation fixes this application to the later byte table.
+ * @param {readonly number[]} matrix
+ * @param {number} mod
+ * @param {boolean} startWithIdentity
+ * @returns {number[]}
+ */
+function matrixPowerTape(matrix, mod, startWithIdentity) {
+  const mat = matrix.map(value => ((value % mod) + mod) % mod);
+  const identity = Array.from({ length: 16 }, (_, i) => i % 5 === 0 ? 1 : 0);
+  let power = startWithIdentity ? identity : mat;
+  const tape = [];
+  for (let n = 0; n < 16; n++) {
+    tape.push(...power);
+    const next = Array(16).fill(0);
+    for (let row = 0; row < 4; row++) {
+      for (let col = 0; col < 4; col++) {
+        for (let k = 0; k < 4; k++) {
+          next[row * 4 + col] =
+            (next[row * 4 + col] + power[row * 4 + k] * mat[k * 4 + col]) % mod;
+        }
+      }
+    }
+    power = next;
+  }
+  return tape;
+}
+
+const signedP15 = p15.slice();
+signedP15[12] *= -1;
+signedP15[13] *= -1; // exact independent Fibonacci-prime subtraction signs
+const powerChecks = [];
+for (const [name, matrix] of [['printed', p15], ['signed', signedP15]]) {
+  for (const modulus of [29, 256]) {
+    for (const first of ['identity', 'M']) {
+      const tape = matrixPowerTape(matrix, modulus, first === 'identity');
+      const target = bytes.map(value => modulus === 29 ? value % 29 : value);
+      const matches = tape.filter((value, i) => value === target[i]).length;
+      powerChecks.push({ name, modulus, first, matches });
+      assert.deepEqual(matrixPowerTape(matrix, modulus, first === 'identity'), tape);
+    }
+  }
+}
+assert.deepEqual(powerChecks.map(({ matches }) => matches),
+  [11, 7, 1, 0, 2, 8, 2, 1]);
+assert.ok(powerChecks.every(({ matches }) => matches < 12));
+
 console.log(JSON.stringify({
   source: 'p15 32.jpg, p49-51 66.jpg-68.jpg',
   printedGeometry: '32x8, page splits 80/184',
@@ -65,6 +114,7 @@ console.log(JSON.stringify({
   originalDistinctPerFolded16ColumnRow: rowDistinct,
   symmetricOffDiagonalPairsOf120: symmetric,
   sourceP15TensorMatchesOf256: matches,
+  matrixPowerPredictions: powerChecks,
   sourceNativePlantAndWrongSourceControls: 'PASS',
   recoveredUnknownPlaintextRunes: 0
 }, null, 2));
