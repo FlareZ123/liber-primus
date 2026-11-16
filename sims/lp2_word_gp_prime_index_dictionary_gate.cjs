@@ -160,7 +160,7 @@ function encryptCandidate(code, variant, primes) {
     const primeIndex = start
       + (variant.fMode === "skip" ? keyPosition : j)
       + variant.delta; // one-based prime index
-    assert(primeIndex >= 1 && primeIndex <= primes.length);
+    if (primeIndex < 1 || primeIndex > primes.length) return null;
     const p = primes[primeIndex - 1];
     const key = mod(variant.keyType === "phi" ? p - 1 : p);
     cipher.push(mod(plain + variant.sign * key));
@@ -185,6 +185,7 @@ function study() {
     const inverse = new Map();
     for (const item of dictionary.byCode.values()) {
       const cipher = encryptCandidate(item.code, variant, primes);
+      if (!cipher) continue;
       const key = cipher.join(",");
       if (!inverse.has(key)) inverse.set(key, []);
       inverse.get(key).push(item.word);
@@ -261,6 +262,7 @@ function study() {
   assert(plant, "No suitable positive-control word");
   for (const variant of VARIANTS) {
     const cipher = encryptCandidate(plant.code, variant, primes);
+    assert(cipher, "Positive-control word is invalid for variant");
     const inverse = new Map();
     for (const item of dictionary.byCode.values()) {
       const c = encryptCandidate(item.code, variant, primes);
