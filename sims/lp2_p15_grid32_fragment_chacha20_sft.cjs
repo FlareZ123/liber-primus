@@ -194,7 +194,7 @@ for(const {name,key} of keys)
         Uint8Array.from(original));
       metrics.push({
         key:name,relation,sign,
-        first13:output.slice(0,13).map(v=>data.translit[v]).join(" "),
+        first13:Array.from(output.slice(0,13),v=>data.translit[v]).join(" "),
         chapter1:score(output,trainStart,trainEnd),
         holdA:score(output,holdAStart,holdAEnd),
         holdB:score(output,holdBStart,holdBEnd),
