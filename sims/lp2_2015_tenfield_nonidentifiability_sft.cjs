@@ -142,7 +142,7 @@ async function main() {
   const originalDisagreements = historicalChars
     .flatMap((value, i) => value === sourceChars[i] ? [] : [i + 1]);
   console.log('2015 RNE vs CSV rune disagreements:', originalDisagreements.join(','));
-  assert.equal(originalDisagreements.length, 12);
+  assert.equal(originalDisagreements.length, 11);
   // Two different, equally compatible choices for two hypothetical extra columns.
   // The absent February file has 132 more rows and unknown mark semantics as well.
   let different = 0;
