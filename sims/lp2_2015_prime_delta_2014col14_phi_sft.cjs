@@ -207,7 +207,7 @@ for (const job of jobs) {
 assert.equal(outcomes.length, 8);
 assert.ok(outcomes.every(x => x.firstImpossibleIndex < x.testedBodyRunes));
 console.log(JSON.stringify({
-  status: 'PASS', 2015HistoricalRepeatedD: 40,
+  status: 'PASS', historical2015RepeatedD: 40,
   originalSourceModelsRejected: outcomes.length,
   2014HistoricallySolved14Columns: true,
   allNativePlantRoundTrips: true,
