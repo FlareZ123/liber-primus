@@ -90,9 +90,28 @@ For p1 the adaptive OutGuess iterator reaches offset **686,973** in a bitmap of 
 
 The original 2014 three-share operation requires three complete, equal-length payloads before their XOR can reconstruct the message. Under this fixed, historically calibrated password, only p0 completes; p1 and p2 do not. There is consequently no valid three-share XOR to perform, and truncating the failed shares or changing the password would add an unselected operation. The same-run positive control recovers the authentic **31,809-byte** original LP1 03.jpg PGP clear-signed OutGuess payload byte-for-byte under Default key.
 
-**Decision:** reject the direct p0/p1/p2 three-share OutGuess transfer under the source-authenticated Default key. This does not exclude an independently instructed different passphrase, another steganographic channel, or deliberately embedded data with the forced header; none is selected by the cross artwork or surviving signed source. Do not turn this negative into an unknown-password sweep.
+**Decision:** the direct p0/p1/p2 three-share OutGuess transfer is negative under both tested source-motivated keys: Default key yields only one complete payload, while the LP1-derived candidate FIRFUMFERENFE yields three complete payloads whose XOR is high-entropy and has no recognizable message/file signature. This does not exclude a separately instructed different passphrase, another steganographic channel, or deliberately embedded data with the forced header; none is selected by the cross artwork or surviving signed source. Do not turn this negative into an unknown-password sweep.
 
 **Reproduction:** [single-file original-JPEG SFT](../sims/lp2_p0_p2_outguess_cross_three_share_gate.py), using the existing calibrated outguess_extract.py and outguess_bitmap_dump.c. It pins all three JPEG hashes, the 2014 LP1 positive, the forced header, p0's complete payload hash, and the exact p1/p2 iterator failure states.
+
+
+### LP1-derived FIRFUMFERENFE as a candidate OutGuess passphrase
+
+The default-key gate above tests the source-authenticated OutGuess password. A second, independently motivated candidate is the exact 13-letter LP1 solved Vigenère key **FIRFUMFERENFE**: LP2 p57 says to “shed our own circumferences,” and the earlier solved material supplies this key. Its use as an OutGuess passphrase is a cross-round hypothesis, not an authenticated OutGuess instruction. The repeated p0–p2 cross art selects the same three carriers, while the 2014 Cicada round supplies the historical three-share bytewise-XOR precedent.
+
+With OutGuess 0.4 and FIRFUMFERENFE, **all three** original images complete extraction. Each has the same source-forced encrypted header ffffffff; the decoded header is **2aa00225**, seed **41,002**, length **9,474**.
+
+| Physical page / scan | Payload bytes | Payload SHA-256 |
+|---|---:|---|
+| p0 / 17.jpg | 9,474 | d9505f6f6d40c2099cad79963a16f2823f2e46f6aead83776c863c648815f6e6 |
+| p1 / 18.jpg | 9,474 | ed5a3ced513c70c1f0e15cc3097af1173779fad7d2fbc994e763ba48393e9b15 |
+| p2 / 19.jpg | 9,474 | 3e190a76b50c25c486a4f21ca80e86730e878e418ebcf7f5f076e05e5cc02712 |
+
+The direct three-way XOR is 9,474 bytes, SHA-256 **fca81a16753c21df3d5874224d666c2c963cd8a036e67f766fa64e5f9b5628c8**. It has Shannon byte entropy **7.9821516973 bits**, printable ASCII/whitespace fraction **0.3836816551**, and longest printable run **12**. It contains no PGP, ZIP, gzip, bzip2, PDF, PNG, CICADA, LIBER or 3301 signature. The three extracted payloads share an identical **293-byte prefix** and **323-byte suffix**; the three-way XOR necessarily preserves those common regions. This does not resemble the clear-signed plaintext recovered by the historical 2014 three-share XOR operation.
+
+**Decision:** the direct p0/p1/p2 three-share OutGuess transfer is negative under both tested, source-motivated keys, for different reasons: Default key does not yield three complete payloads; FIRFUMFERENFE yields three complete payloads but their direct XOR is high-entropy and has no recognizable message/file signature. FIRFUMFERENFE remains only a candidate OutGuess passphrase, not a source-authenticated OutGuess password. Do not truncate, trim common regions, or search alternate passwords without a new original selector. An encrypted second layer remains logically possible but has no source-selected consumer.
+
+**Reproduction:** the updated [single-file original-JPEG SFT](../sims/lp2_p0_p2_outguess_cross_three_share_gate.py) tests both keys, the exact payload hashes, the three-way XOR statistics, the shared prefix/suffix, and the authentic LP1 03.jpg Default-key positive control.
 
 ## Reproduction and research decision
 

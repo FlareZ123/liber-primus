@@ -1,9 +1,12 @@
-# Agent31: p0–p2 cross / three-share OutGuess transfer is negative
+# Agent31: source-motivated OutGuess three-share test on p0–p2 is negative under two keys
 
-**Source:** original LP2 scans 17.jpg, 18.jpg, 19.jpg (physical p0–p2), whose repeated 180°-opposed triple-bar cross art is independently source-registered. The earlier 2014 Cicada round used three complete OutGuess payload shares combined by XOR, so this was a concrete historical transfer rather than a generic stego sweep.
+The repeated cross artwork on original scans17/18/19 (physical p0/p1/p2) makes a three-carrier reading plausible, and Cicada's 2014 round supplies a real three-OutGuess-share XOR precedent.
 
-**Fixed operation:** the historically calibrated OutGuess Default key, with the authentic LP1 03.jpg 31,809-byte PGP payload as a same-run positive control. All three LP2 images produce the source-forced encrypted header ffffffff and apparent seed/length 41408/58152. Only scan17 completes the 58,152-byte payload (SHA-256 cbf1ccddc6c4bb2fd96d449e0667eb5be6c2a542de4e0f43e7ca188df7f289b1). Scan18 stops at skipmod zero after 58,120 bytes; scan19 after 58,113 bytes. Thus the exact three equal-length inputs required for the prior 2014 XOR-share operation do not exist under this source-fixed password. Do not truncate or search alternate passwords without a new original selector.
+Two bounded passwords were tested with the source-faithful OutGuess 0.4 extractor:
 
-**Reproduction:** sims/lp2_p0_p2_outguess_cross_three_share_gate.py. Detailed evidence and scope: im-results/lp2-outguess-universal-header-artifact.md; current synthesis link: results/README.md.
+1. **Default key**, the historically demonstrated OutGuess password: only scan17 completes the 58,152-byte payload; scans18/19 stop at zero adaptive skip modulus after 58,120/58,113 bytes.
+2. **FIRFUMFERENFE**, the exact LP1-derived 13-letter Vigenere key, tested as a candidate OutGuess passphrase (not an authenticated OutGuess instruction): all three complete 9,474-byte payloads. Their direct XOR is 9,474 bytes, SHA-256 fca81a16753c21df3d5874224d666c2c963cd8a036e67f766fa64e5f9b5628c8, entropy7.982 bits/byte, printable fraction0.384, longest printable run12. The extracted payloads share a 293-byte prefix and323-byte suffix; the XOR has no recognized PGP, archive, image, PDF, CICADA, LIBER or 3301 signature.
 
-**Decision:** reject only direct p0/p1/p2 three-share OutGuess under Default key. No unknown plaintext, key, or destination recovered.
+Thus the direct three-share XOR route does not recover the historical PGP/plaintext form under either tested key. Do not truncate, strip common regions, or sweep unknown passwords without an independent original selector. A second encrypted layer is logically possible but currently has no source-selected consumer.
+
+Reproduction: sims/lp2_p0_p2_outguess_cross_three_share_gate.py. Consolidated evidence: im-results/lp2-outguess-universal-header-artifact.md. Current synthesis: results/README.md.
