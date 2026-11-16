@@ -49,7 +49,8 @@ const fragments = [
 
 /** @param {string} s @returns {string[]} */
 function parseWords(s) {
-  const stream = s.replace(/\/\s*\n/g, '').replace(/[\r\n]/g, '');
+  // Source '/' marks visual line wrap, including at cropped stanza ends.
+  const stream = s.replace(/\//g, '').replace(/[\r\n]/g, '');
   const tokens = stream.split(/[-.]/).filter(t => t.length);
   for (const token of tokens) {
     assert.ok([...token].every(r => gp.includes(r)),
