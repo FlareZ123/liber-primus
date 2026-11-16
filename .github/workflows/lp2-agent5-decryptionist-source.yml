@@ -1,9 +1,6 @@
 name: LP2 2015 DECRYPTIONIST named source verification
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/lp2-agent5-decryptionist-source.yml"
 jobs:
   source:
     runs-on: windows-2022
