@@ -133,6 +133,60 @@ function compare(name, original) {
     exactForwardRoundTrips: true
   };
 }
+/** @param {number[]} seed @param {number} length @returns {number[]} */
+function fibonacci13(seed, length) {
+  const out = seed.slice();
+  for (let i = 13; i < length; i += 1) {
+    out.push(mod29(out[i - 8] + out[i - 13]));
+  }
+  return out;
+}
+/**
+ * Exact historical-p56 transparent-F feasibility on a frozen stream.
+ * @param {number[]} cipher
+ * @param {number[]} key
+ * @param {number} start
+ * @returns {number}
+ */
+function fTransparentReach(cipher, key, start) {
+  let states = [0];
+  for (let i = 0; i < cipher.length; i += 1) {
+    const c = cipher[i], seen = new Set(), next = [];
+    for (const consumed of states) {
+      if (c === 0 && !seen.has(consumed)) {
+        seen.add(consumed); next.push(consumed);
+      }
+      if (mod29(c - key[start + consumed]) !== 0 &&
+          !seen.has(consumed + 1)) {
+        seen.add(consumed + 1); next.push(consumed + 1);
+      }
+    }
+    if (next.length === 0) return i;
+    states = next;
+  }
+  return cipher.length;
+}
+/** @param {number[]} plain @param {number[]} key @returns {number[]} */
+function fTransparentEncrypt(plain, key) {
+  let consumed = 0;
+  return plain.map(p => p === 0 ? 0 : mod29(p + key[consumed++]));
+}
+
+const fibKey = fibonacci13(cap, p0Black.length + p3.length + nativeClear.length + 13);
+const fibDecode0 = p0Black.map((c, i) => mod29(c - fibKey[i]));
+const fibDecode3 = p3.map((c, i) => mod29(c - fibKey[p0Black.length + i]));
+assert.deepEqual(fibDecode0.map((p,i) => mod29(p + fibKey[i])), p0Black);
+assert.deepEqual(fibDecode3.map((p,i) => mod29(p + fibKey[p0Black.length + i])), p3);
+const fibP57Plant = nativeClear.map((p,i) => mod29(p + fibKey[i]));
+assert.deepEqual(fibP57Plant.map((c,i) => mod29(c - fibKey[i])), nativeClear);
+const fPlainPlant = fTransparentEncrypt(nativeClear, fibKey);
+assert.equal(fTransparentReach(fPlainPlant, fibKey, 0), nativeClear.length);
+const f0Reach = fTransparentReach(p0Black, fibKey, 0);
+const f3Reach = fTransparentReach(p3, fibKey, p0Black.length);
+const f3ResetReach = fTransparentReach(p3, fibKey, 0);
+assert.equal(f0Reach, 39);
+assert.equal(f3Reach, 19);
+assert.equal(f3ResetReach, 73);
 const altKey = source.pages[1].indices.slice(0, 13);
 const forwardPhi = phiPrimeInversePaths(cap).map(display);
 const reversedPhi = phiPrimeInversePaths([...cap].reverse()).map(display);
@@ -151,6 +205,21 @@ console.log(JSON.stringify({
   nativeP57ClearIoC: ioc(nativeClear),
   originalBody: compare('p0–2 after 13-rune p0 heading', p0Black),
   independentHoldout: compare('p3–7', p3),
+  sourceMotivatedFibonacci13Candidate: {
+    premise: '13 illuminated GP29 seeds, five-plus-eight-back Fibonacci taps from p15',
+    keyFirst40: fibKey.slice(0, 40),
+    keyRule: 'K[i]=(K[i-8]+K[i-13]) mod29 for i >=13; start at p0 black',
+    p0Body: {runes: p0Black.length, outputIoC: ioc(fibDecode0),
+      opening55: display(fibDecode0.slice(0,55))},
+    p3Continuous: {runes: p3.length, outputIoC: ioc(fibDecode3),
+      opening55: display(fibDecode3.slice(0,55))},
+    historicalTransparentF: {
+      p0ImpossibleAt: f0Reach, p3ContinuousImpossibleAt: f3Reach,
+      p3ResetImpossibleAt: f3ResetReach
+    },
+    nativeP57Positive: '95/95 direct and transparent-F planted inverses',
+    exactReencryption: true
+  },
   unrelated13RuneKeyControl: {
     key: display(altKey),
     p0MinusIoC: ioc(additive(p0Black, altKey, -1)),
