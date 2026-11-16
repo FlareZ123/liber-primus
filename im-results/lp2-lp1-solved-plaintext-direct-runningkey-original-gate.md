@@ -1,6 +1,6 @@
 # First-release Liber Primus, solved and printed streams, as direct LP2 running keys
 
-**Agent 7, 16 November 2026. Three source-register bounded original-cipher negatives, not decryptions.** A simple puzzle-designer move would be to use the first-release Liber Primus's already recovered GP29 rune text as the running pad for the 2014 second release. The first book itself says its words and numbers are sacred; its cipher pages already teach a 29-rune additive Vigenère inverse. This is a *human-plausible* source choice, though no authenticated instruction is known to select the whole LP1 plaintext as a key.
+**Agent 7, 16 November 2026. Six source-register/encoding bounded original-cipher negatives, not decryptions.** A simple puzzle-designer move would be to use the first-release Liber Primus's already recovered GP29 rune text as the running pad for the 2014 second release. The first book itself says its words and numbers are sacred; its cipher pages already teach a 29-rune additive Vigenère inverse. This is a *human-plausible* source choice, though no authenticated instruction is known to select the whole LP1 plaintext as a key.
 
 ## Source-fixed experiment
 
@@ -24,7 +24,7 @@
 
 The exact original 2,799-rune LP1 key's **first 729 original plaintext runes** have IoC **0.060273745**. A fully reversible 729-rune synthetic GP29 additive plant with a deliberately selected LP1 offset recovers its **729/729** source plaintext runes exactly. A second source-shaped plant exercising ciphertext-F bypass likewise recovers **729/729**, with accidental ciphertext-F collisions avoided in the encoder. The **largest** of all 36 original-cipher chapter×sign×mask maxima is **0.0400895**. None approaches the positive native GP-English register, despite treating each chapter and key origin independently.
 
-**Exact runnable, read-only CommonJS:** [SFT](../sims/lp2_lp1_plaintext_direct_runningkey_original_sft.cjs). Both original-source computations ran using the exact committed JSON/transcription data through the connected GitHub-source runtime; the updated standalone CJS has not yet been run in a local repository checkout or CI.
+**Exact runnable, read-only CommonJS:** [SFT](../sims/lp2_lp1_plaintext_direct_runningkey_original_sft.cjs). The six source-register/encoding combinations were individually computed using the committed JSON/transcription data through the connected GitHub-source runtime; the final consolidated standalone CJS has not yet been run in a local repository checkout or CI.
 
 ## Independent first-release source encoding: printed, not decrypted
 
@@ -44,7 +44,7 @@ Run the same exactly fixed nine chapter openings, both additive signs, both F co
 | p40–53 | 0.0358688 | 0.0393660 |
 | p54–55 (308 runes) | 0.0380304 | 0.0393629 |
 
-A synthetic 729-rune source-LP1 plaintext encrypted under the printed stream at a secret offset is recovered **729/729** by the same tested inverse. The strongest of the **216** combined original chapter×source×sign×F-offset sweeps is **0.0402440**, with no recognizable native GP-English key recovery. This narrows an obvious creator-plausible historical source reuse without implying anything about source-key KDFs, stateful skip paths, ciphertext word order, or other ciphers.
+A synthetic 729-rune source-LP1 plaintext encrypted under the printed stream at a secret offset is recovered **729/729** by the same tested inverse. The strongest of these **72** original index-encoded tests for the first two source registers is **0.0402440**, with no recognizable native GP-English key recovery. This narrows an obvious creator-plausible historical source reuse without implying anything about source-key KDFs, stateful skip paths, ciphertext word order, or other ciphers.
 
 ## Original-koan spelling correction and exact solved register
 
