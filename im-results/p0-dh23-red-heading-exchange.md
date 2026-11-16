@@ -2,20 +2,20 @@
 
 **Status: intermediate hypothesis; no LP2 plaintext recovered.** This is a source-constrained key derivation worth retaining, not an established cipher solution.
 
-**Original-image correction (16 November 2026):** Physical p0 is red runes 0–7, then the red 13-dot mark after rune 7 (offset 8), then black runes 8–12, then an ordinary black full stop. The older derivative annotation's 13-red-rune span and marker-at-13 position are wrong. The first 13 GP29 values are unchanged, but they form an opening phrase split across red8 and black5, not a continuous red span. The first black rune after the marker is S at offset 8, not TH at offset 13. Treat any colour-based selector below under this correction; image-faithful code uses resources/liber-primus/lp2-p0-physical-ink-override.json.
+**Corrected original-image adjudication (16 November 2026):** Original p0 has **two RED heading words**, GP lengths **8 and 5**, with a SMALL red ordinary word dot between them, and then the LARGE RED thirteen-dot title marker **after all thirteen red runes at offset13**. The first black body rune is `TH` at offset13. The earlier same-day claim of red8/marker8/black5 was an [incorrect original-image interpretation and is retracted](lp2-p0-red13-13dot-blackbody-original-source-adjudication.md). The historical derived red13 and marker13 metadata were correct. All arithmetic using the first thirteen original GP rune values is unchanged.
 
 ## Proposed human-visible route
 
-The original p0 JPEG (\`resources/liber-primus/17.jpg\`) visibly presents an 8-rune red word, a red 13-dot mark, a 5-rune black word, and an ordinary black full stop; the next seven black runes follow that full stop. The page also has two marginal stave-like marks, although these have a competing branch-rune interpretation and are not treated as independent DH evidence.
+The original p0 JPEG (\`resources/liber-primus/17.jpg\`) visibly presents an 8-rune RED heading word, a small RED word dot, a 5-rune RED heading word, and then the LARGE RED 13-dot title mark; the next seven BLACK body runes follow that large mark. The page also has two marginal stave-like marks, although these have a competing branch-rune interpretation and are not treated as independent DH evidence.
 
 The authenticated 2013 TCP-server challenge (\`resources/external/2013-tcp-server-signed-source.md\`) documents BASE29 conversion and a Diffie–Hellman protocol with prime \`p=23\`, server base \`g=5\`, server-selected exponent, and client-supplied public share. That makes the following reading plausible without inventing a group:
 
-1. Read the first 13-rune opening phrase before the ordinary full stop (red8 plus black5, with the 13-dot mark between) as one big-endian BASE29 integer:
+1. Read the first 13-rune opening phrase before the large title marker (two red words of lengths 8+5, separated only by the ordinary red word dot) as one big-endian BASE29 integer:
    \`N = 5412445423142629857\`.
 2. Use the source-defined group order \`p−1=22\` to reduce the server exponent:
    \`a = N mod 22 = 7\`.
 3. The final BASE29 digit of the heading is \`5\`, matching the historical server base.
-4. Read the next seven black GP digits after the ordinary full stop as another big-endian BASE29 integer:
+4. Read the next seven black GP digits after the large red title mark as another big-endian BASE29 integer:
    \`M = 1420123033\`.
 5. Reduce that value modulo the historical prime to obtain a candidate client public share:
    \`B = M mod 23 = 16\`.
@@ -28,11 +28,11 @@ The exponent 7 also equals the length of this following seven-rune black segment
 
 ## Controls and limits
 
-- The canonical p0 rune sequence and physical-ink override support the exact inputs above: red8, marker at offset8, black5, full stop, then the seven-rune post-period segment. The 13-rune BASE29 operand spans both ink colours.
-- The former p15/p33 red-span comparisons are not matched controls for this mixed-colour p0 opening phrase and are retired as support for the p0 selector. The independent all-page scan of every 13-rune window still finds only p0 offset0 under the fixed conjunction below, but that postselected conjunction is a finite coincidence screen, not an author instruction:
+- The canonical p0 rune sequence and physical-ink override support the exact inputs above: red8, small red ordinary dot, red5, large marker at offset13, then the seven-rune black body opening. The 13-rune BASE29 operand is **entirely red**.
+- The earlier p15/p33 red-span comparisons remain matched as colour-class controls only to the extent that they compare original **red** opening phrases; this red13 correction restores p0 to the red-heading class, but those postselected comparisons do not authenticate the DH selector. The independent all-page scan of every 13-rune window still finds only p0 offset0 under the fixed conjunction below, but that postselected conjunction is a finite coincidence screen, not an author instruction:
 - A page-local scan of every 13-rune window on LP2 pages 0–55 finds only the p0 heading satisfying the fixed conjunction \`N mod 23 = 0\`, \`N mod 22 = 7\`, and final digit 5. This is a finite control, not a statistical proof; the scan covers many overlapping windows.
 - The following seven-rune post-period segment's residue 16 is a valid nonzero DH public share, but almost any nonzero residue would be valid when the base is primitive. Its value alone is not a strong discriminator.
-- The historical source establishes the protocol and parameters, not that LP2 reuses it or that this exact mapping of the mixed-colour opening phrase and following black segment to server exponent/client share was intended.
+- The historical source establishes the protocol and parameters, not that LP2 reuses it or that this exact mapping of the red opening title and following black segment to server exponent/client share was intended.
 - The two marginal staves may instead be branch-rune material. Do not count them as confirmed DH-party symbols.
 - Direct GP29 Caesar use of shared secret 18 and the simple affine test using the derived pair do not produce readable p0 text.
 - A frozen attempt to continue the existing 27×27 opening model also fails: treating \`(18,7)\` as row18/column7 selects node \`Y-X-D\`; the same center-totient rule gives \`Y-G-D\`; reusing the opening's +13 center-to-block displacement predicts block start 478. The seven ciphertext runes \`N-P-A-Y-P-C-Y\` decrypt to \`EO-W-U-F-W-J-F\`, not plaintext. No alternate starts, axes, phases, or signs were searched afterward.
@@ -45,7 +45,7 @@ This is an interesting conditional consistency, not a plaintext recovery: neithe
 
 ## Conditional GAHEALGO prime-weight Vigenère key (negative)
 
-The conditional p18:w7 address above selects `GAHEALGO`, whose GP-prime weights are `[17,97,23,109,73,17,7]`. Since the 2016 signed message says that words' numbers supply direction, a bounded next test treated those seven prime weights as a repeating numeric key for the p0 body. The body begins at canonical offset 20 (after the 13-rune mixed-colour opening phrase and the next seven black runes after the full stop) and contains 242 runes.
+The conditional p18:w7 address above selects `GAHEALGO`, whose GP-prime weights are `[17,97,23,109,73,17,7]`. Since the 2016 signed message says that words' numbers supply direction, a bounded next test treated those seven prime weights as a repeating numeric key for the p0 body. The body tested here begins at canonical offset20 (after the thirteen red heading runes and first seven black body runes after the large mark) and contains 242 runes.
 
 Four fixed phase-zero models were tested: direct prime weights modulo 29 and `φ(prime)=prime−1` modulo 29, each with both additive signs. No phase, offset, key permutation, or further key transformation was searched.
 
@@ -62,7 +62,7 @@ The raw p0 body scores −12.00701 nats/rune (IoC 0.034292). Across 8,982 native
 
 ## Conditional p32 11×11 map as a two-cycle p0 key (negative)
 
-The p32 page is a source-visible 11×11 map containing **121 runes**; the p0 body after its 13-rune mixed-colour opening phrase and seven-rune post-period segment contains **242 runes**, exactly two 121-rune periods. In light of the signed 2016 instruction that Liber Primus's words are a map, this motivated one bounded test of the p32 grid as a repeated key. This is an exploratory map-as-key interpretation, not an authenticated instruction to use Vigenère.
+The p32 page is a source-visible 11×11 map containing **121 runes**; the p0 body after its thirteen-rune red opening title and seven-rune black body opening contains **242 runes**, exactly two 121-rune periods. In light of the signed 2016 instruction that Liber Primus's words are a map, this motivated one bounded test of the p32 grid as a repeated key. This is an exploratory map-as-key interpretation, not an authenticated instruction to use Vigenère.
 
 The fixed reading is p32 row-major/page order, repeated exactly twice over p0 body offsets 20–261. The two native numeric encodings are GP indices and GP prime weights; each is tested with both additive signs modulo 29. No rotation, reversal, phase, or alternative traversal is searched.
 
@@ -79,7 +79,7 @@ The raw 242-rune p0 body scores −12.00701 nats/rune (IoC 0.034292). Across 8,9
 
 ## Conditional transfer of the solved p56 prime-totient clock (negative)
 
-The p0 DH reading gives candidate shared secret K=18, but does not specify the symmetric operation. A cheap, source-motivated transfer test was therefore made against the already solved p56 mechanism: subtract φ(p_i)=p_i-1 mod 29 from each GP29 symbol, using 18 as the one-based starting prime ordinal. The 13-rune mixed-colour opening phrase and next seven post-period black runes are the proposed DH inputs, so the p0 ciphertext body begins at canonical offset 20 and contains 242 runes. The p56-only literal-F skip at offset 56 was not imported into p0.
+The p0 DH reading gives candidate shared secret K=18, but does not specify the symmetric operation. A cheap, source-motivated transfer test was therefore made against the already solved p56 mechanism: subtract φ(p_i)=p_i-1 mod 29 from each GP29 symbol, using 18 as the one-based starting prime ordinal. The thirteen-rune red heading and next seven black body runes are the proposed DH inputs, so the p0 ciphertext body begins at canonical offset 20 and contains 242 runes. The p56-only literal-F skip at offset 56 was not imported into p0.
 
 Two natural index conventions were frozen:
 
