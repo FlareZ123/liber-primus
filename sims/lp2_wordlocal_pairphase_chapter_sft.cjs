@@ -371,7 +371,9 @@ function stationaryBlockCollisionGate(words) {
   const controls = [
     { name: "unknown early five chapters", source: words.filter(w => w.page <= 26), expected: [[6527, 735330], [2903, 5202], [1718, 56], [1012, 0]] },
     { name: "unknown last four chapters", source: words.filter(w => w.page >= 27), expected: [[6429, 711867], [2850, 4950], [1674, 69], [1001, 2]] },
-    { name: "original LP1", source: parseWords(lp1, 200), expected: [[2797, 155703], [1242, 2765], [701, 637], [396, 178]] }
+    { name: "original LP1", source: parseWords(lp1, 200), expected: [[2797, 155703], [1242, 2765], [701, 637], [396, 178]] },
+    { name: "original LP1 first three blocks", source: parseWords(lp1.split("%").slice(0, 3).join("%"), 200), expected: [[699, 9976], [312, 107], [181, 21], [104, 7]] },
+    { name: "original LP1 later blocks", source: parseWords(lp1.split("%").slice(3).join("%"), 200), expected: [[2098, 96347], [930, 2369], [520, 614], [292, 171]] }
   ];
   for (const control of controls) {
     const output = [];
