@@ -199,12 +199,61 @@ assert(wrongKeyDifferences > 10000);
 assert(scores.every(rate => rate > actual.rate),
   'matched original GP29 source-native control crossed original all-secret gate');
 const sorted = [...scores].sort((a, b) => a - b);
+/*
+ * Independent, source-visible nine-illustrated-chapter reset clock.
+ * Unlike the page-restarted test, this preserves fifth-back feedback across
+ * physical pages within each of the nine original visual chapters.
+ * There are 9 x 29 arbitrary secret permutations. The same observable
+ * conditional collision invariant remains exact for every secret key.
+ */
+const chapters = [
+  [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+  [27, 32], [33, 39], [40, 53], [54, 55]
+].map(([first, last]) => source.pages
+  .filter(p => p.page >= first && p.page <= last)
+  .flatMap(p => p.indices));
+assert.deepEqual(chapters.map(p => p.length),
+  [729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308]);
+const originalChapter = measure(chapters);
+assert.deepEqual(originalChapter,
+  { runes: 12911, classes: 261, comparisons: 402579,
+    matches: 13856, rate: 13856 / 402579 });
+const chapterRand = rng(0x31b46);
+const chapterPlants = [];
+for (let trial = 0; trial < 50; trial++) {
+  const native = nativePages(chapterRand).flat();
+  const encrypted = [];
+  let cursor = 0;
+  for (const chapter of chapters) {
+    const plain = native.slice(cursor, cursor + chapter.length);
+    cursor += chapter.length;
+    const tables = secretTables(chapterRand);
+    const cipher = encrypt(plain, tables);
+    assert.deepEqual(decrypt(cipher, tables), plain);
+    encrypted.push(cipher);
+  }
+  assert.equal(cursor, 12956);
+  chapterPlants.push(measure(encrypted).rate);
+}
+const sortedChapter = [...chapterPlants].sort((a, b) => a - b);
+assert(chapterPlants.every(rate => rate > originalChapter.rate));
+
 console.log(JSON.stringify({
   hypothesis: 'Per-page secret 29-state/29-symbol permutations, ' +
     'five-back modular feedback and one-back ciphertext-state selector',
   proof: 'C[i]-C[i-5] = pi[C[i-1]](P[i]) modulo 29, so exact ' +
     'within-page, within-C[i-1] equality pairs are key-invariant',
   original: actual,
+  sourceChapterResetControl: {
+    exactNineChapterOriginal: originalChapter,
+    newSecretTablesPerPlant: 9 * 29,
+    nativeControls: 50,
+    seed: '0x31b46',
+    minimum: sortedChapter[0],
+    median: sortedChapter[25],
+    maximum: sortedChapter.at(-1),
+    atOrBelowOriginal: chapterPlants.filter(x => x <= originalChapter.rate).length
+  },
   matchedSolvedCicadaControl: {
     source: 'resources/external/relikd-solved-gp29-native-v1.json',
     words: originalWordLengths.length,
