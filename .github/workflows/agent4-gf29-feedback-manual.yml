@@ -10,6 +10,7 @@ on:
         options:
           - legacy
           - q252-flanks
+          - grid256-allsecret
 jobs:
   sft:
     if: inputs.gate != 'q252-flanks'
@@ -58,3 +59,17 @@ jobs:
         run: |
           node --check sims/lp2_p50_hg_q252_flanking_direct_sft.cjs
           node sims/lp2_p50_hg_q252_flanking_direct_sft.cjs
+
+  grid256-allsecret:
+    if: inputs.gate == 'grid256-allsecret'
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source 256-cell all-secret periodic-GP29 and transparent-F clock
+        run: |
+          node --check sims/lp2_grid256_allsecret_keyclock_sft.cjs
+          node sims/lp2_grid256_allsecret_keyclock_sft.cjs
