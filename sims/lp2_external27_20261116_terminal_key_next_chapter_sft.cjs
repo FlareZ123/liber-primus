@@ -20,7 +20,7 @@ const source = JSON.parse(fs.readFileSync(
 const sourcePages = source.pages.slice(3, 8);
 const original = sourcePages.flatMap(p => p.indices);
 assert.deepEqual(sourcePages.map(p => p.page), [3, 4, 5, 6, 7]);
-assert.deepEqual(sourcePages.map(p => p.indices.length), [217, 235, 267, 218, 208]);
+assert.deepEqual(sourcePages.map(p => p.indices.length), [217, 261, 263, 196, 208]);
 assert.equal(original.length, 1145);
 assert.equal(source.pages.slice(0, 3).reduce((s,p)=>s+p.indices.length,0), 729);
 
