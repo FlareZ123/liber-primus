@@ -37,6 +37,23 @@ Two previously documented sources happen to intersect the same values:
 
 These intersections are hypotheses about **intended navigation or numerical key selection**. They do not authorize borrowing a modulus, exponent, starting prime, cipher sign or word order to produce plaintext.
 
+## One complete reversible key-use candidate, rejected on original ciphertext
+
+Cicada's original 2012–2014 rounds used RSA, and the solved LP1 WISDOM instructs that primes and the totient are sacred. The three **independently marked prime sums** suggest a particularly short source-driven interface: \`p=661\` (p6 red), \`q=449\` (p57 PARABLE), and \`e=1109\` (p27 red), giving the valid RSA values
+
+\`\`\`text
+n=p*q=296789
+phi(n)=(p-1)*(q-1)=295680
+gcd(e,phi(n))=1
+d=e^(-1) mod phi(n)=134909
+\`\`\`
+
+Because \`29^3 = 24389 < n < 29^4 = 707281\`, a compact, conventional **three-GP-rune plaintext block → four-GP-rune ciphertext block** would use RSA modular exponentiation and four positional GP29 digits per emitted block. The source stream contains **12,956/4=3,239** such candidate blocks, so this is a finite mathematically plausible format. The first 4 original ciphertext rune indices are **[15,8,18,3]**, whose ordinary base29 value is **373,088**, already **greater than n=296,789**, a prohibited canonical RSA ciphertext representative. The full original book contains **1,917/3,239** invalid blocks at zero phase with conventional big-endian digits. Granting every fixed four-block phase, both digit endiannesses and continuous/per-physical-page reset still leaves **at least 1,836** invalid blocks in every variant.
+
+The p0 red 13-rune heading may be metadata rather than encrypted data. Excluding those 13 runes from the original 729-rune opening chapter leaves **716 black runes**, exactly **179** complete 4-rune blocks, yet **107/179** are invalid (\`>=n\`) even under the intended heading-excluded start. A dedicated positive plant uses the **first 93 original clear p57 GP29 runes**, packs them into 31 three-rune message values, RSA-encrypts to 124 four-rune digits and recovers **93/93** unchanged with the derived private exponent. That establishes correctness of both the RSA inverse and the necessary ciphertext bounds.
+
+**Decision:** This direct source-selected-looking RSA \`(p,q,e)\` assignment with canonical four-rune GP29 serialization is mathematically **impossible as the original emission format**; decrypting invalid representatives by reducing them modulo \`n\` would be a different, lossy, unsupported format. Arbitrary padding, variable block packing or a cipher based on different prime roles remains untested because the original artifact supplies no packing rule. This gate deliberately does **not** evolve into an open-ended search over RSA encodings. [Read-only original RSA and authentic-clear-p57 SFT](../sims/lp2_red_totient_rsa29_blockgate_sft.cjs).
+
 ## Locked family calibration and reproducibility
 
 The [single-file Windows-compatible Node22 CJS reproducer](../sims/lp2_red_source_totient_relay_sft.cjs), [passed in original-source Windows Actions run 43910012110](https://github.com/FlareZ123/liber-primus/actions/runs/43910012110), asserts each red glyph against the actual \`lp2-corpus.json\`, recomputes the 18 complete red-span sums, checks the above four values and exact unique four-span relation, then runs a **60,000-draw, globally consistent permutation of the 29 GP prime-weight assignments**, xorshift32 seed \`0x5173301\`. Each null book reruns **the full original 18-span four-tuple search**, permitting neither duplicated span positions nor unprime \`B/D\`.
