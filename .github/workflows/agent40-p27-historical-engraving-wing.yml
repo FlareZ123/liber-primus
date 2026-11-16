@@ -1,0 +1,23 @@
+name: Agent40 p27 original Victorian wing source gate
+on:
+  workflow_dispatch:
+
+jobs:
+  compare-dated-engraving:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install existing original-image registration dependencies
+        run: python -m pip install opencv-python-headless numpy requests filelock pymupdf
+      - name: Compare unaltered original p27 and two dated published plates
+        run: python sims/lp2_p27_1881_1887_engraving_source_sft.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p27-1881-1887-engraving-results
+          path: im-results/lp2-p27-1881-1887-engraving-plate-results.json
+          if-no-files-found: warn
