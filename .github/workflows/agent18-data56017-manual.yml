@@ -1,0 +1,18 @@
+name: Agent18 original 2013 DATA 560.17 source check
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-original-source:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recover and hash immutable 1,183,811-byte member
+        run: python sims/lp2_2013_56017_original_source_gate.py
