@@ -55,32 +55,34 @@ def main():
                          "key_offset": int(top[1]),
                          "crossed_threshold": bool(top[0] > reference["threshold"][fmt])})
         hits = [h for p in parts for h in p["formats"][fmt]["stage1_hits"]]
-        # Shards may repeat deterministic controls because the gate seeds its RNG
-        # inside each spelling's control routine. Deduplicate exact records for
-        # unique control counts, while retaining the raw shard-record totals.
-        plant_records = [x for p in parts for x in p["formats"][fmt]["plant"]]
-        unique_plants = {
-            json.dumps(x, sort_keys=True, separators=(",", ":")): x
-            for x in plant_records
-        }
-        negative_records = [
-            x for p in parts
-            for x in p["formats"][fmt].get("negative_controls", [])
-        ]
-        unique_negatives = {
-            json.dumps(x, sort_keys=True, separators=(",", ":")): x
-            for x in negative_records
-        }
+        # The source-positive RNG restarts per shard; float beam scores may
+        # differ in low bits across runners, so full-JSON deduplication
+        # overcounts logically identical plants. Index by run position instead.
+        plant_by_shard = [p["formats"][fmt]["plant"] for p in parts]
+        neg_by_shard = [p["formats"][fmt]["negative_controls"] for p in parts]
+        assert all(len(x) == 6 for x in plant_by_shard)
+        assert all(len(x) == 18 for x in neg_by_shard)
+        for idx in range(6):
+            assert len({bool(row[idx]["pass"]) for row in plant_by_shard}) == 1, (
+                "Plant decision changed across shards", fmt, idx)
+        for idx in range(18):
+            assert len({bool(row[idx]["pass"]) for row in neg_by_shard}) == 1, (
+                "Null decision changed across shards", fmt, idx)
+            assert len({row[idx]["kind"] for row in neg_by_shard}) == 1
+        plant_records = [item for row in plant_by_shard for item in row]
+        negative_records = [item for row in neg_by_shard for item in row]
+        unique_plants = plant_by_shard[0]
+        unique_negatives = neg_by_shard[0]
         result["formats"][fmt] = {
             "key_runes": length,
             "screen_offsets": total,
             "section_peaks": rows,
             "stage1_hits": sorted(hits, key=lambda h: -h["nats_per_rune"]),
-            "plant_passes": sum(bool(x["pass"]) for x in unique_plants.values()),
+            "plant_passes": sum(bool(x["pass"]) for x in unique_plants),
             "plant_trials": len(unique_plants),
             "plant_passes_repeated": sum(bool(x["pass"]) for x in plant_records),
             "plant_trials_repeated": len(plant_records),
-            "negative_control_passes": sum(bool(x["pass"]) for x in unique_negatives.values()),
+            "negative_control_passes": sum(bool(x["pass"]) for x in unique_negatives),
             "negative_control_trials": len(unique_negatives),
             "negative_control_passes_repeated": sum(bool(x["pass"]) for x in negative_records),
             "negative_control_trials_repeated": len(negative_records)
