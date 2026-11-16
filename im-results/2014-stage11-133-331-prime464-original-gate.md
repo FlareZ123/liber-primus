@@ -18,6 +18,12 @@ Here `pi(n)` is the number of primes at most `n`, and `prime(k)` is the one-base
 
 There is a simple retrospective selection caveat: for three-digit positive reversed pairs `abc` and `cba`, the condition that their sum is 464 gives exactly `133/331`, `232/232`, or `331/133`. The observed pair is the only nonidentical unordered pair, but we observed the numbers before selecting the equality. This is **not** a statistical significance test on all conceivable HTML coincidences.
 
+## A prior stage's potentially explanatory 331 (participant solution, not author-fixed)
+
+The [2014 solver's saved magic-squares text](https://github.com/micheloosterhof/cicada-2014/blob/master/stage07/magicsquares.txt) records a **7×7, sum-1033** square whose **exact central cell is 331**, with central row `16,65,270,331,270,65,16` (sum **1033**). The authentic [2014 Stage10 signed form](https://github.com/micheloosterhof/cicada-2014/blob/master/stage10/ut3qtzbrvs7dtvzp.onion/index.html) actually requested an “Order 7 Square, 1033” via the field `71033`. The later Stage11 HTML uses **that 331** as its div ID, and its title **133** reverses it. This gives a *potentially human-recognizable earlier-stage reason* for one or both digits, independent of our prime-rank identity.
+
+However, the 7×7 square is a **participant-submitted solution**, not an author-supplied unique canonical arrangement. The Stage10 challenge only calls for magic squares of given orders/sums; many valid constructed squares can have different center cells. No first-party source says Stage11 personalizes its HTML element ID from the preceding submitted square, or that the creator independently chose 331 as its unique 7×7 center. The Stage11 `<title>133</title>` thus remains an unexplained reversal motif rather than a reliable opcode. The possible magic-square carryover could also explain why the sum happens to meet a prime-count identity, reducing its independent evidential weight.
+
 ## One source-native direct receiver test, fixed before expanding variants
 
 A literal and affordable consumer of **one-based prime ranks** is the genuine solved-p56 GP29 prime-totient cipher. We used the original p0 red title's **13 physical GP runes** (verified in `lp2-p0-physical-ink-override.json`), zero key clock before that title, consecutive primes beginning at one-based ranks **133** or **331**, the authentic plaintext-F passthrough rule with *all* F branches, and both additive signs. No extra key derivation, offset tuning, atbash, skip exceptions, word-language training, or smoothing was introduced.
