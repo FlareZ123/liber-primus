@@ -113,6 +113,31 @@ function coincidence(a) {
   return bins.reduce((s, n) => s + n * (n - 1), 0) / (a.length * (a.length - 1));
 }
 const allPrimes = primeSieve(10000);
+const omittedPrimes = allPrimes.filter(p => p >= 73 && p <= 1223);
+assert.equal(omittedPrimes.length, 180);
+assert.equal(omittedPrimes[0], 73);
+assert.equal(omittedPrimes.at(-1), 1223);
+const triple = [...pair, m29(omittedPrimes.length)];
+assert.deepEqual(triple, [2, 11, 6]);
+assert.deepEqual(p0.indices.slice(13, 16), triple);
+assert.equal(m29(1229), 11); // gap successor independently shares J residue
+const allTriples = [];
+for (const page of corpus.pages) {
+  if (page.page > 55) continue;
+  for (let i = 0; i + 2 < page.indices.length; i += 1)
+    if (triple.every((v, j) => page.indices[i + j] === v))
+      allTriples.push({page: page.page, offset: i});
+}
+assert.deepEqual(allTriples, [
+  {page: 0, offset: 13},
+  {page: 16, offset: 127},
+  {page: 48, offset: 3}
+]);
+assert.deepEqual(sites.filter(s => {
+  const page = corpus.pages.find(p => p.page === s.page);
+  return page.indices.slice(s.offset, s.offset + 3)
+    .every((v, i) => v === triple[i]);
+}).map(s => [s.page, s.offset]), [[0, 13]]);
 const primeKeys = successors.map(seed => {
   const first = allPrimes.indexOf(seed);
   assert.ok(first >= 0);
@@ -160,6 +185,10 @@ console.log(JSON.stringify({
   source: '2013 participant paste xGY4pbHV, doubled spaces after 29 and 3257',
   spaceSuccessors: successors,
   sourceResiduesMod29: pair,
+  omittedHistoricalPrimeCount: omittedPrimes.length,
+  omittedCountModulo29: m29(omittedPrimes.length),
+  sourceTripleAfterRed13: triple,
+  allOriginalThreeRuneOccurrences: allTriples,
   first2014BlackCiphertext: p0.indices.slice(13, 16).map(i => corpus.translit[i]),
   followingLargeMarkerInstances: sites.length,
   distinctFollowingMarkerOffsets: distinctSites.size,
