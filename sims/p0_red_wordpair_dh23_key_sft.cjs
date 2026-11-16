@@ -174,6 +174,14 @@ const atbashThenMinus3 = firstBlackWord.map(c => (28 - c - 3 + 58) % 29);
 const atbashThenPlus3 = firstBlackWord.map(c => (28 - c + 3 + 29) % 29);
 assert.deepEqual(directMinus3, [28, 8, 3, 22, 26, 8]);
 assert.deepEqual(atbashThenMinus3, [23, 14, 19, 0, 25, 14]);
+assert.deepEqual(directMinus3.map(p => (p + 3) % 29), firstBlackWord);
+assert.deepEqual(directPlus3.map(p => (p - 3 + 29) % 29), firstBlackWord);
+assert.deepEqual(atbashThenMinus3.map(p => (25 - p + 29) % 29), firstBlackWord);
+assert.deepEqual(atbashThenPlus3.map(p => (31 - p + 29) % 29), firstBlackWord);
+const sentenceDirectMinus3 = firstBlackSentence.map(c => (c - 3 + 29) % 29);
+const sentenceAtbashMinus3 = firstBlackSentence.map(c => (28 - c - 3 + 58) % 29);
+assert.deepEqual(sentenceDirectMinus3.map(p => (p + 3) % 29), firstBlackSentence);
+assert.deepEqual(sentenceAtbashMinus3.map(p => (25 - p + 29) % 29), firstBlackSentence);
 
 // Natural p56 transfer: seed the solved consecutive-prime φ(p) stream at
 // the DH result interpreted as the prime value p=3. Exact F-transparent
