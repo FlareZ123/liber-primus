@@ -1,0 +1,20 @@
+name: Agent18 p0 EPIPHANY GF29 Berlekamp-Massey original inverse
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-only BM6 inference and original F-transparent counterexample
+        run: |
+          node --check sims/lp2_p0_epiphany_bm6_original_sft.cjs
+          node sims/lp2_p0_epiphany_bm6_original_sft.cjs
