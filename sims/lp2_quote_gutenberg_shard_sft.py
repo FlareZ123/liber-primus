@@ -1,7 +1,7 @@
 """Source-quote word-length fingerprint scan of public Project Gutenberg Parquet.
 
 Use without LP2_GUTENBERG_SHARD for its positive/negative SFT. Set the
-environment variable to a Parquet shard 0..48 for the original-source scan.
+environment variable to a Parquet shard 0..58 for the original-source scan.
 """
 from __future__ import annotations
 
