@@ -140,6 +140,78 @@ console.log(JSON.stringify({
 assert.equal(baseline > widthScore, true);
 assert.ok(coefficient > 0.7);
 
+
+/** Exactly preserve printed word boundaries while distinguishing line wraps within words. */
+let sourceRuneIndex = 0;
+let firstRuneOfLine = true;
+let firstRuneOfWord = true;
+const baselineWord = [];
+const baselineInside = [];
+const lineWord = [];
+const lineInside = [];
+for (const symbol of transcript) {
+  if (sourceRuneIndex === ciphertext.length) break;
+  if (symbol === '\n') {
+    firstRuneOfLine = true;
+    continue;
+  }
+  if (symbol === '-' || symbol === '.' || symbol === '%' || symbol === '&' || symbol === 'path.join(root, 'resources', 'transcriptions', 'lp1_wulfic_canonical.txt'), 'utf8');
+const lp1Lines = lp1.split(/\r?\n/u).map((line) =>
+  Array.from(line).filter((rune) => runeIndex.has(rune)).map((rune) => runeIndex.get(rune))
+).filter((line) => line.length);
+const lp1Full = counts(lp1Lines.flat());
+const lp1Starts = counts(lp1Lines.map((line) => line[0]));
+const lp1Expected = lp1Full.map((f) => f * lp1Lines.length / lp1Full.reduce((s, n) => s + n, 0));
+const lp1WidthCorrelation = corr(inkWidths, lp1Starts.map((n, i) => n / lp1Expected[i]));
+assert.equal(lp1Lines.length, 147);
+assert.equal(lp1Full.reduce((s, n) => s + n, 0), 2797);
+console.log(JSON.stringify({
+  control: 'independent original 2014 LP1 (encrypted plus solved clear)',
+  printedLines: lp1Lines.length, originalRunes: 2797,
+  widthToRelativeInitialFrequencyPearson: lp1WidthCorrelation
+}, null, 2));
+console.log('PASS: original LP2 and independent LP1 width-selection tests completed.');
+
+) {
+    firstRuneOfWord = true;
+    continue;
+  }
+  const value = runeIndex.get(symbol);
+  if (value !== undefined) {
+    if (firstRuneOfWord) baselineWord.push(value);
+    else baselineInside.push(value);
+    if (firstRuneOfLine) {
+      if (firstRuneOfWord) lineWord.push(value);
+      else lineInside.push(value);
+    }
+    sourceRuneIndex++;
+    firstRuneOfLine = false;
+    firstRuneOfWord = false;
+  }
+}
+assert.equal(sourceRuneIndex, ciphertext.length);
+assert.equal(lineWord.length, 206);
+assert.equal(lineInside.length, 388);
+const conditional = (selected, source) => {
+  const base = counts(source);
+  const totalWeight = base.reduce((sum, frequency, index) => sum + frequency * inkWidths[index], 0);
+  const expected = base.map((frequency, index) => selected.length * frequency * inkWidths[index] / totalWeight);
+  const expectedRaw = base.map((frequency) => selected.length * frequency / source.length);
+  const actual = counts(selected);
+  return {
+    n: selected.length,
+    unweightedChiSquare: chi2(actual, expectedRaw),
+    widthWeightedChiSquare: chi2(actual, expected),
+    widthToRelativeEnrichmentPearson: corr(
+      inkWidths, actual.map((frequency, index) => frequency / expectedRaw[index])
+    )
+  };
+};
+const wordBoundary = conditional(lineWord, baselineWord);
+const wordInterior = conditional(lineInside, baselineInside);
+console.log(JSON.stringify({ wordBoundaryLineStarts: wordBoundary, interiorWrapLineStarts: wordInterior }, null, 2));
+assert.ok(wordInterior.widthWeightedChiSquare < wordBoundary.widthWeightedChiSquare);
+
 const lp1 = fs.readFileSync(path.join(root, 'resources', 'transcriptions', 'lp1_wulfic_canonical.txt'), 'utf8');
 const lp1Lines = lp1.split(/\r?\n/u).map((line) =>
   Array.from(line).filter((rune) => runeIndex.has(rune)).map((rune) => runeIndex.get(rune))
