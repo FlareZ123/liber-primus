@@ -27,3 +27,14 @@ jobs:
           node-version: '22'
       - name: Original five-source-label GP29 feedback inverse
         run: node sims/lp2_p36_38_five_numbered_feedback_sft.cjs
+
+  historical-2015-2014-composite:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Historical 2015 prime-delta and solved 2014 14-column cipher test
+        run: node sims/lp2_2015_prime_delta_2014col14_phi_sft.cjs
