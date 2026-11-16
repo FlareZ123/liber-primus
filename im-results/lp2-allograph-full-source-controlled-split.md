@@ -4,7 +4,7 @@
 
 ## Inputs and source registration
 
-The test uses the 58 original LP2 JPEGs in `resources/liber-primus/17.jpg`–`74.jpg`, the canonical `lp2-corpus.json`, and the fixed 163 ordinary source templates from solved p56/p57 in `sims/lp2_allglyph_original_allograph_sft.py`. All 58 images are 2400×3600 and have the same luma quantization table (SHA-256 `3a38d98a883064bc8f49c8d460c27b36a6382832ac8b2cf4`), matching the source corpus's Q92 table.
+The test uses the 58 original LP2 JPEGs in `resources/liber-primus/17.jpg`–`74.jpg`, the canonical `lp2-corpus.json`, and the fixed 163 ordinary source templates from solved p56/p57 in `sims/lp2_allglyph_original_allograph_sft.py`. All 58 images are 2400×3600 and have the same luma quantization table (SHA-256 `3a38d3fbf7a420a06503d98a883064bc8f49c8d460c27b36a6382832ac8b2cf4`), matching the source corpus's Q92 table.
 
 The source-locked extraction and sequence alignment reproduce the existing all-29 gate:
 
