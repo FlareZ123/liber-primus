@@ -266,6 +266,74 @@ async function main() {
     console.log('Floral image identities: 1801 matches, 30 mapped mismatches, 34 unlabeled');
     console.log('All 64 original-image disagreements: pinned coordinate manifest exact match');
 
+
+    const fullHeader = 'physical_page\tarchive_jpg\timage_band\tcanonical_page_line\t' +
+        'rune_index_in_line\tx_px\timage_class\tpixel_cost\tline_mean_cost\t' +
+        'canonical_rune\timage_class_assignment';
+    const fullRows = [];
+    let fullImageLineCount = 0;
+    let fullExact = 0;
+    let fullNew = 0;
+    let fullMatches = 0;
+    let fullWrong = 0;
+    let fullUnmapped = 0;
+    let fullOffset = 0;
+    for (let p = 0; p <= 55; p++) {
+        if (p === 50) continue;  // Original physical p50 is a rune-free number grid.
+        const segment = originalSections[p < 50 ? p : p - 1];
+        const target = canonicalLines(segment);
+        fullImageLineCount += target.length;
+        const original = source.filter(row => row.page === p);
+        const clipped = original.map(row => ({
+            ...row,
+            glyphs: row.glyphs.filter(g => g[1] >= 580 && g[1] <= 1800)
+        }));
+        const recovered = alignExactLines(clipped, target);
+        fullExact += recovered.length;
+        for (const [a, b] of recovered) {
+            const row = clipped[a];
+            if (!knownGlobalPairs.has(row.band + '/' + (fullOffset + b))) {
+                fullNew++;
+            }
+            const can = target[b];
+            const mean = Math.round(row.glyphs.reduce((sum, g) => sum + g[2], 0) /
+                row.glyphs.length);
+            for (let k = 0; k < can.length; k++) {
+                const [id, x, cost] = row.glyphs[k];
+                const actual = mapping[String(id)];
+                if (actual === can[k]) {
+                    fullMatches++;
+                    continue;
+                }
+                if (actual === undefined) {
+                    fullUnmapped++;
+                } else {
+                    fullWrong++;
+                }
+                fullRows.push([
+                    p, p + 17, row.band, b, k, x, id, cost, mean,
+                    RUNES[can[k]], actual === undefined ? 'UNMAPPED' : RUNES[actual]
+                ].join('\t'));
+            }
+        }
+        fullOffset += target.length;
+    }
+    assert.equal(fullImageLineCount, 594);
+    assert.equal(fullExact, 481);
+    assert.equal(fullNew, 253);
+    assert.equal(fullMatches, 10562);
+    assert.equal(fullWrong, 71);
+    assert.equal(fullUnmapped, 146);
+    assert.equal(fullRows.length, 217);
+    const fullText = fs.readFileSync(path.join(ROOT, 'im-results',
+        'lp2-round9-fullbook-text-column-disagreement-sites.tsv'), 'utf8').trimEnd();
+    assert.deepEqual(fullText.replace(/\r\n/g, '\n').split('\n').sort(),
+        [fullHeader, ...fullRows].sort());
+    console.log('Full LP2 unknown region: 481/594 text-column exact lines');
+    console.log('Image classes: 10,562 assigned matches, 71 assigned differences, 146 unassigned');
+    console.log('New matched image band/line pairs versus Round9 baseline:', fullNew);
+    console.log('Verified 217 original-photo anomaly loci against source-pinned raw JSON');
+
     const our = separateRuneStream(canonical);
     const other = separateRuneStream(externalTranscription);
     assert.equal(our.runes, other.runes, 'Rune identity stream differs from external copy');
@@ -283,7 +351,7 @@ async function main() {
     assert.deepEqual(separatorDifferences.map(v => v.external), ['-', '-']);
     console.log('Rune stream identical across 13,136 originals');
     console.log('Non-rune punctuation differences:', JSON.stringify(separatorDifferences));
-    console.log('PASS: original-image map, 57 missing classes, 82 restored floral lines and two punctuation boundaries');
+    console.log('PASS: 481 original-photo lines, 217 anomaly positions, complete source-pinned comparisons');
 }
 
 main().catch(error => {
