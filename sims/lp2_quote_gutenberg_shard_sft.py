@@ -20,6 +20,10 @@ from typing import Any
 TARGETS: dict[str, tuple[int, ...]] = {
     "p40_14word": (5, 7, 2, 3, 4, 6, 4, 3, 3, 4, 4, 4, 5, 4),
     "p53_14word": (5, 7, 2, 3, 4, 10, 3, 9, 7, 3, 7, 4, 3, 3),
+    "p42_13word": (9, 8, 3, 4, 6, 3, 10, 2, 4, 7, 6, 2, 4),
+    "p42_p43_joined47word": (
+        9, 8, 3, 4, 6, 3, 10, 2, 4, 7, 6, 2, 4, 4, 2, 4, 6, 6, 8, 8, 3, 5, 5, 9, 2, 2, 4, 3, 3, 2, 8, 4, 7, 4, 4, 3, 2, 5, 3, 3, 6, 3, 11, 4, 4, 8, 5,
+    ),
     "p42_p43_34word": (
         4, 2, 4, 6, 6, 8, 8, 3, 5, 5, 9, 2, 2, 4, 3, 3, 2,
         8, 4, 7, 4, 4, 3, 2, 5, 3, 3, 6, 3, 11, 4, 4, 8, 5,
@@ -87,7 +91,7 @@ def selftest() -> None:
     assert gp_length("SING") == 2
     assert gp_length("ÆTHER") == 4
     assert find_matches("A short unrelated test phrase.", {})[1] == dict.fromkeys(TARGETS, 0)
-    print("SFT PASS: GP29 ING-first spelling, three exact plants and negative decoy", flush=True)
+    print("SFT PASS: GP29 ING-first spelling, five exact plants and negative decoy", flush=True)
 
 
 def save_json_atomic_locked(path: Path, obj: dict[str, Any]) -> None:
