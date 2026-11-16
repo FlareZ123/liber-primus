@@ -1,0 +1,18 @@
+name: Agent39 Q252 nine-chapter AES128 original-cipher test
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cipher-source-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check CJS source
+        run: node --check sims/lp2_q252_ninechapter_aes128_gp28_source_sft.cjs
+      - name: Test original cipher, authentic solved positive and exact source quotient
+        run: node sims/lp2_q252_ninechapter_aes128_gp28_source_sft.cjs
