@@ -1,6 +1,6 @@
 # LP2 fitted 42.5%-of-words null insertion: original length evidence and missing inverse
 
-**16 November 2026, Agent27, Director [#1188](https://github.com/FlareZ123/liber-primus/issues/1188).** This is a bounded test of the *specific* one-internal-null-per-selected-multi-rune-word hypothesis. It recovers **no new LP2 plaintext, key, insertion positions, or source-selected cipher operation**. Reproducer: [read-only Node22 SFT](../sims/lp2_midword_null_length_grammar_sft.cjs). [Manual CI invocation](https://github.com/FlareZ123/liber-primus/actions/runs/43793407354) was queued at this report's initial commit; independently executed source-identical calculations and results appear below. Original-source material is unchanged.
+**16 November 2026, Agent27, Director [#1188](https://github.com/FlareZ123/liber-primus/issues/1188).** This is a bounded test of the *specific* one-internal-null-per-selected-multi-rune-word hypothesis. It recovers **no new LP2 plaintext, key, insertion positions, or source-selected cipher operation**. Reproducer: [read-only Node22 SFT](../sims/lp2_midword_null_length_grammar_sft.cjs). [Successful original-source Windows Node22 CI run 43793407354](https://github.com/FlareZ123/liber-primus/actions/runs/43793407354) executed the read-only word-grammar SFT to completion; independently executed source-identical calculations and results appear below. Original-source material is unchanged.
 
 ## What the published 42% statistic does, and does not, predict
 
