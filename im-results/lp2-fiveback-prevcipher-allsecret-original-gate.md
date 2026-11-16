@@ -36,6 +36,14 @@ For each of **100 independent planted books**, generate fresh random arbitrary 2
 
 The native samples use an actual solved manuscript register. The finite control result is strong for this English-like GP29 register but does **not** establish universal impossibility for every source language or deliberately structured nonprose plaintext. The equality-pair invariant itself is universal for the specified cipher family.
 
+## Independent reset clock: the nine original illustrated chapters
+
+A separate, natural player-visible clock uses the **nine** source-visible chapter breaks instead of the 55 physical page breaks; ciphertext state continues across intervening page turns. The nine exact original chapter lengths are **729, 1,145, 1,729, 1,903, 1,021, 1,433, 1,680, 3,008, 308**, totaling 12,956 runes. This alternative defines **9 × 29 = 261 independent arbitrary output permutations** and uses the same preceding-ciphertext-state selector, fifth-back feedback and exact inverse.
+
+Among **12,911** original fifth-back eligible positions, the 261 chapter/state classes contain **13,856 equal residual pairs in 402,579 comparisons**, an exact collision rate of **0.0344180893687947**. Fifty independently generated whole-word-length-matched solved-Cicada GP plants under fresh 261-map arbitrary secret permutations, with full exact correct-key inversion, have rates **0.0592288554–0.0621292747**, median **0.0607478841**, **0/50** at or below original. This independent clock is also incompatible with the tested native GP29 prose register under the complete proposed state family. Unlike the page-reset gate, it does not reset when a printed word continues across a physical page turn.
+
+The [same updated SFT](../sims/lp2_fiveback_prevcipher_allsecret_page_gate_sft.cjs) executes both clocks without any new cipher key search. Both passed the second original-source [Windows Node22 run 43972213553](https://github.com/FlareZ123/liber-primus/actions/runs/43972213553). The exact measure and empirical native-control exclusion have the same key-invariance logic under either explicitly defined reset schedule.
+
 ## Decision and live frontier
 
 **Retire the precise complete, page-secret, previous-ciphertext-controlled, fifth-back permutation family as a credible GP29 prose decipherment of the original ciphertext.** No choice of its 1,595 separate hidden permutation tables can change the measured original collision count. The complete forward and inverse passes on the native plants establish that this is an effective discrimination, and the unusually sparse collision count is not due to a missing ciphertext exception case.
