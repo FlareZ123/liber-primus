@@ -16,13 +16,13 @@ Run: `agent36-gpt6-20261116T194741Z-draw5-issue-directed`; lease claimed at `202
 
 ### Follow-on issue #1298 — framed anti-repeat binary receiver
 
-- Claimed #1298 after closing #1208. Tested the distinct same-rune framing hypothesis using the 2013 BASE29 command and the 2014-available Perl \`pack 'C'\` byte convention.
+- Claimed #1298 after closing #1208. Tested the distinct same-rune framing hypothesis using the 2013 BASE29 command and the 2014-available Perl `pack 'C'` byte convention.
 - Exact reversible mapping: first GP rune is the seed; a different successor is ranked 0–27 among the 28 alternatives; an equal successor is digit 28. Pack each digit as one byte. Digit 28 becomes ASCII File Separator (FS, 0x1C); page boundaries carry, selected chapter boundaries reseed.
-- Source vector \`BASE29 3301 → 3QO\` reproduces. The 2014 converter uses \`pack 'C', $_\`; it is solver-derived/2014-available, not Cicada-authored.
+- Source vector `BASE29 3301 → 3QO` reproduces. The 2014 converter uses `pack 'C', $_`; it is solver-derived/2014-available, not Cicada-authored.
 - p0–55 has 86 same-page repeats over 12,901 opportunities, zero page-join repeats; 86 FS bytes make 87 records (length 5–711, median 112). Only 23/86 repeats are at printed-word boundaries and one coincides with original punctuation.
 - Predeclared chapters p0–2, p33–39, p54–55 produce 729, 1,680, and 308 bytes respectively. All bytes are 0–28, zero printable ASCII, invalid UTF-8, no standard header, no BASE29/NEXT/3301/ONION/CICADA/HTTP token.
 - Exact controls: p57 prose 95-rune roundtrip; p50 original 256-byte table plant and 2014 sexagesimal 256-byte control each recover exactly through 422 BASE29 digits. Standard 16-signature recognizer produced 0/15,162 false positives on native GP-English windows.
-- The serializer is historically plausible but not an explicit Cicada instruction; the original outputs fail all typed acceptors. Report/script: \`im-results/lp2-anti-repeat-frame29-packc-gate.md\`, \`sims/lp2_anti_repeat_frame29_packc_gate.cjs\`. Close #1298 as completed negative; do not continue arbitrary offsets/XOR/record transforms.
+- The serializer is historically plausible but not an explicit Cicada instruction; the original outputs fail all typed acceptors. Report/script: `im-results/lp2-anti-repeat-frame29-packc-gate.md`, `sims/lp2_anti_repeat_frame29_packc_gate.cjs`. Close #1298 as completed negative; do not continue arbitrary offsets/XOR/record transforms.
 
 ### Next actions
 
