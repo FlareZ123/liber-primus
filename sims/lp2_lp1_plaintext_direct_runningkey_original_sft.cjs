@@ -141,6 +141,31 @@ function positiveControlsWithPad(sourcePlain, runningKey) {
   assert.deepEqual(decode(synthetic, runningKey, offset, -1, false), original);
 }
 
+/**
+ * Exact source-selected 9-rune "WHOYOUARE" crib, independently visible twice
+ * in the original Koan. Zero-offset global substring search, all pad offsets.
+ * @param {number[]} cipher
+ * @param {number[]} key
+ * @param {number[]} crib
+ * @returns {number}
+ */
+function countSourceCribMatches(cipher, key, crib) {
+  const keyed = new Set();
+  for (let i = 0; i <= key.length - crib.length; i++) keyed.add(key.slice(i, i + crib.length).join(","));
+  let n = 0;
+  for (let i = 0; i <= cipher.length - crib.length; i++) {
+    const reqPlus = [];
+    const reqMinus = [];
+    for (let k = 0; k < crib.length; k++) {
+      reqPlus.push((cipher[i + k] - crib[k] + 29) % 29);
+      reqMinus.push((crib[k] - cipher[i + k] + 29) % 29);
+    }
+    if (keyed.has(reqPlus.join(","))) n++;
+    if (keyed.has(reqMinus.join(","))) n++;
+  }
+  return n;
+}
+
 function main() {
   const { key, printedKey, correctedKey, gpPrimes, cipher } = load();
   positiveControls(key);
@@ -148,6 +173,11 @@ function main() {
   for (const [source, runningKey] of [["edited solved LP1", key], ["printed LP1", printedKey], ["source-corrected solved LP1", correctedKey]]) {
   for (const [encoding, encodedKey] of [["rune index", runningKey], ["rune prime mod29", runningKey.map((v) => gpPrimes[v] % 29)]]) {
   positiveControlsWithPad(key, encodedKey);
+  const crib = [7, 8, 3, 26, 3, 1, 24, 4, 18]; // WHOYOUARE
+  assert.equal(countSourceCribMatches(cipher, encodedKey, crib), 0);
+  const syntheticCrib = crib.map((v, i) => (v + encodedKey[200 + i]) % 29);
+  assert(countSourceCribMatches(syntheticCrib, encodedKey, crib) >= 1);
+  console.log("ORIGINAL WHOYOUARE exact LP1-source pad crib hits: 0 (" + source + "; " + encoding + ")");
   for (let ch = 0; ch < 9; ch++) {
     const n = ch === 8 ? 308 : 729;
     const fragment = cipher.slice(CHAPTER_STARTS[ch], CHAPTER_STARTS[ch] + n);
@@ -169,4 +199,4 @@ function main() {
 }
 
 if (require.main === module) main();
-module.exports = { load, ioc, decode, exhaustiveBest };
+module.exports = { load, ioc, decode, exhaustiveBest, countSourceCribMatches };
