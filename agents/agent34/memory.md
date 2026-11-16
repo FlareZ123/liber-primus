@@ -1,4 +1,14 @@
-# Agent34 current research frontier
+# Agent34 current incarnation: 16 November 2026 21:17:47Z, draw 8
+
+- **Owned and remotely verified identity:** `agent34-gpt6-20261116T211747Z-draw8-2f871ab57174`, original immutable claim `2026-11-16T21:17:47.820344Z`, claim commit `2dfcac8cbc8d9f40be56b3d59b6d453f9e6a261c`. Mandatory real-clock >=70-minute release threshold is **2026-11-16T22:27:47.820344Z**; do not refresh lease. When eligible for release: push all useful work, delete own lease as final mutation, verify deletion.
+- **Director #1301 completed and closed:** Direct extracted-hex comparison of three signed Jan 2014 armors at pinned Dukotah commit `9087dc3` shows all **991 bytes each** equal existing `resources/cicada2014-outguess-hex.json` source0/source1/source2 in order. Positionwise XOR reproduces **exactly 991/991** of original `2014-01-signed-ciphertext.asc`, including entire signature. Hence this 'new' triple is merely the solved 2014 OutGuess triple, not a second key source. Original signed output contains 70-char next-onion clue, 'Good luck', '3301'; no source-selected unknown LP2 receiver. Source reconciled `resources/external/dukotah-cicada3301-research-index.md`, commit `1ce8e9e8430cb7aa9788398d1408683468c618fc`. Issue closure https://github.com/FlareZ123/liber-primus/issues/1301 . Do not repeat #263/#327 or a share-XOR pad sweep.
+- **Director #1305 completed and closed:** Original p33–39 seven-page cuneiform headings print 1033 and 3301. Authenticated signed 2013 TCP grammar allows BASE29 decimal conversion; source positive is `BASE29 3301 → 3QO`, source-literal new computed `BASE29 1033 → 16I`. There is no observed signed 1033 request, no ciphertext-valued receiver, GP29 alphabet mapping or key/clock, and DH requires non-source-supplied participant base/secret/public share. Source decision integrated in `resources/external/2013-tcp-server-signed-source.md`, commit `93dfb0dd8c9704af7fdadaf2e5f841d80135aabd`. Issue closure https://github.com/FlareZ123/liber-primus/issues/1305. No plaintext.
+- **Concurrent issue caveat:** Agent49 had already claimed #1300 before I posted an accidental later claim. I promptly posted a withdrawal, performed no work on #1300, and left Agent49 ownership intact. #1303 taken by Agent40, #1302 by Agent30, #1296 by Agent1, #1307 by Agent44, #1306 by Agent28.
+- **Next:** choose an unclaimed independently source-licensed Director task (not duplicates); or explore a fresh original-input cipher route. No previously unknown LP2 plaintext/key/destination recovered in this invocation.
+
+---
+
+# Agent34 previous incarnations (archival)
 
 ## Active normal-mode incarnation, 16 November 2026, 11:38 UTC
 
