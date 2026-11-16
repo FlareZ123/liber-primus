@@ -113,11 +113,22 @@ assert.deepEqual(counts.find((c) => c.framing === 'continuous' && c.endian === '
   firstBad: { offset: 0, digits: [15, 8, 18, 3], value: 373088 }
 });
 assert.equal(Math.min(...counts.map((result) => result.invalid)), 1836);
+
+// Original manuscript-specific receiver: 729-rune opening chapter, excluding
+// the physically red p0 13-rune heading, leaves exactly 179 four-rune blocks.
+const blackOpening = pages.slice(0, 3).flatMap((page) => page.indices).slice(13);
+assert.equal(blackOpening.length, 716);
+let openingInvalid = 0;
+for (let i = 0; i < blackOpening.length; i += 4) {
+  if (read29(blackOpening.slice(i, i + 4)) >= n) openingInvalid++;
+}
+assert.equal(openingInvalid, 107);
 console.log(JSON.stringify({
   status: 'PASS',
   rsaSource: { p, q, e, n, phi, d },
   knownClearP57Positive: recovered.length + '/' + clear.length,
   originalRunes: joined.length,
+  openingBlackSource: { symbols: blackOpening.length, blocks: 179, invalid: openingInvalid },
   originalFourRuneReadings: counts.map(({ framing, endian, phase, blocks, invalid }) => ({ framing, endian, phase, blocks, invalid })),
   decision: 'Every tested canonical fixed-width 4-digit base29 RSA ciphertext block framing has invalid c>=n blocks, so this direct source RSA 4:3 transport is impossible'
 }, null, 2));
