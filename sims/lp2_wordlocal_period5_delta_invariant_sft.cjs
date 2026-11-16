@@ -186,16 +186,16 @@ function signedSignature(word) {
   return phaseSignatures.join("/");
 }
 /** @param {Map<string,number>} index @param {number[]} word */
-function addSignedWord(index,word){
+function addSignedWord(index,word,signatureFn=signedSignature){
   if(word.length<6)return;
-  const key=word.length+":"+signedSignature(word);
+  const key=word.length+":"+signatureFn(word);
   index.set(key,(index.get(key)||0)+1);
 }
-function signedLexiconIndices(){
+function signedLexiconIndices(signatureFn=signedSignature){
   const modern=new Map(),oldEnglish=new Map(),latin=new Map();
   for(const line of lexicon.split("\n")){
     const m=/^([a-z]+)\s+\d+$/.exec(line);
-    if(m){const word=toGP(m[1]);if(word)addSignedWord(modern,word);}
+    if(m){const word=toGP(m[1]);if(word)addSignedWord(modern,word,signatureFn);}
   }
   const oe=JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
   let cursor=0;
@@ -203,7 +203,7 @@ function signedLexiconIndices(){
     const word=Array.from(oe.sourceGpBase29.slice(cursor,cursor+length),
       ch=>oe.positiveControlAlphabet.indexOf(ch));
     cursor+=length;
-    addSignedWord(oldEnglish,word);
+    addSignedWord(oldEnglish,word,signatureFn);
   }
   assert.equal(cursor,48012);
   const alphabet="0123456789ABCDEFGHIJKLMNOPQRS";
@@ -211,16 +211,16 @@ function signedLexiconIndices(){
     .split(/\r?\n/).filter(line=>/^[0-9A-S]+$/.test(line));
   assert.equal(vulgate.length,39835);
   for(const line of vulgate)
-    addSignedWord(latin,Array.from(line,ch=>alphabet.indexOf(ch)));
+    addSignedWord(latin,Array.from(line,ch=>alphabet.indexOf(ch)),signatureFn);
   return {modern,oldEnglish,latin};
 }
 /** @param {number[][]} originals @param {Map<string,number>} dictionary */
-function signedMatches(originals,dictionary){
+function signedMatches(originals,dictionary,signatureFn=signedSignature){
   const counts=new Map();
   for(const w of originals.filter(w=>w.length>=6)){
     const r=counts.get(w.length)||{n:0,supported:0};
     r.n++;
-    if(dictionary.has(w.length+":"+signedSignature(w)))r.supported++;
+    if(dictionary.has(w.length+":"+signatureFn(w)))r.supported++;
     counts.set(w.length,r);
   }
   return Object.fromEntries([...counts].sort((a,b)=>a[0]-b[0]));
@@ -260,6 +260,61 @@ for(const [source,required] of Object.entries(orientedExpected)){
 const signedPlant=signedMatches(signedPositive(words,byLength),signedDict.modern);
 assert.equal(Object.values(signedPlant).reduce((s,row)=>s+row.supported,0),815);
 
+
+/**
+ * Further full affine extension: one unknown NONZERO scale per word.
+ * Same-phase differences eliminate all five shifts; the first nonzero
+ * difference normalizes out the word's arbitrary GF29 scalar A.
+ * This is the exact projective vector invariant previously tested only
+ * against the English register; here it is additionally tested on
+ * independent corrected Old English and Latin word-preserving corpora.
+ * @param {number[]} word @returns {string}
+ */
+function projectiveSignature(word){
+  const inv=Array.from({length:29},(_,d)=>{
+    if(d===0)return 0;
+    for(let k=1;k<29;k++)if(d*k%29===1)return k;
+    throw new Error("noninvertible GF29 residue");
+  });
+  const diffs=word.slice(5).map((v,j)=>mod29(v-word[j]));
+  const pivot=diffs.find(x=>x!==0);
+  const scale=pivot===undefined?0:inv[pivot];
+  return diffs.map(x=>x*scale%29).join(",");
+}
+/** @param {number[][]} originals @param {Map<number,number[][]>} pools */
+function affinePositive(originals,pools){
+  return originals.filter(w=>w.length>=6).map((w,i)=>{
+    const available=pools.get(w.length);
+    assert.ok(available?.length);
+    const clear=available[(31*i+7)%available.length];
+    const scale=(7*i)%28+1;
+    return clear.map((p,j)=>mod29(scale*p+3+7*i+11*(j%5)));
+  });
+}
+const affineDict=signedLexiconIndices(projectiveSignature);
+const affine={
+  modern:signedMatches(words,affineDict.modern,projectiveSignature),
+  oldEnglish:signedMatches(words,affineDict.oldEnglish,projectiveSignature),
+  latin:signedMatches(words,affineDict.latin,projectiveSignature)
+};
+const affineExpected={
+  modern:[[6,256],[7,216],[8,153],[9,9]],
+  oldEnglish:[[6,256],[7,216],[8,32],[9,0]],
+  latin:[[6,256],[7,216],[8,111],[9,3]]
+};
+for(const [source,required] of Object.entries(affineExpected)){
+  for(const [length,supported] of required)
+    assert.equal(affine[source][length]?.supported,supported,
+      "full arbitrary-scale affine source "+source+" length "+length);
+  for(const length of [10,11,12,13,14])
+    assert.equal(affine[source][length]?.supported,0,
+      "original long affine word survives in "+source+" "+length);
+}
+const affinePlant=signedMatches(
+  affinePositive(words,byLength),affineDict.modern,projectiveSignature);
+assert.equal(Object.values(affinePlant)
+  .reduce((sum,row)=>sum+row.supported,0),815);
+
 const support=report=>Object.values(report.byLength).reduce((sum,x)=>sum+x.supported,0);
 assert.equal(support(plant5),815);
 console.log(JSON.stringify({
@@ -268,6 +323,8 @@ console.log(JSON.stringify({
   oldEnglishBeowulfByLength:oldEnglish.byLength,
   latinVulgateByLength:latin.byLength,
   signedShiftOrAtbashByLength:oriented,
+  arbitraryNonzeroAffineMultiplierByLength:affine,
+  affineFivePhaseNativePlant:{n:815,supported:815},
   signedPhaseFiveNativePlant:{n:815,supported:815},
   long10Plus:{n:109,supported:0},
   sourceNativeFivePeriodPlant:{n:815,supported:support(plant5)},
