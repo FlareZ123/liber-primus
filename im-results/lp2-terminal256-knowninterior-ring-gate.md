@@ -38,20 +38,20 @@ The physical pp49–51 printed 32×8 table has four rings containing **76, 68, 6
 
 The strongest objection is that p56 asks for a page having a specified hash, rather than instructing a reader to store that hash inside another artifact. The 128 middle-cell count also follows arithmetically from the previously noted 256, 76 and 52 counts; **it is not a statistically independent coincidence**. There is no first-party rule assigning a cell to a hex digit, deriving a byte key, or aligning the three data registers. The independently validated p56 plaintext is 85 GP runes and was encrypted by a prime-totient operation, while p57 prints its 95 runes unencrypted. Their distinct original roles must be respected.
 
-A surviving participant transcript of the 2013 telnet \`primes\` command provides a separate, conditional key tape: first **20** primes through 71, omission of **180** primes at ranks 21–200 (73 through 1223), and resumption at ordinal 201 (1229). In the **first 256 primes**, exactly **20+56=76** are outside the omitted range. This complementary 76/180 partition was already observed in the original known-180 research above; the present experiment applies the exact source ranks to a *different* 128-nibble +52-rune target. The transcript is unsigned and does not authenticate cross-round application to LP2.
+A surviving participant transcript of the 2013 telnet `primes` command provides a separate, conditional key tape: first **20** primes through 71, omission of **180** primes at ranks 21–200 (73 through 1223), and resumption at ordinal 201 (1229). In the **first 256 primes**, exactly **20+56=76** are outside the omitted range. This complementary 76/180 partition was already observed in the original known-180 research above; the present experiment applies the exact source ranks to a *different* 128-nibble +52-rune target. The transcript is unsigned and does not authenticate cross-round application to LP2.
 
 ### Fixed original-input inverse gates
 
-Every table token is read exactly as in the [original JPEG-adjudicated base60 source](../resources/liber-primus/lp2-grid-256.json), with byte SHA-256 \`3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290\`. Use the source p56 target beginning \`36367763ab73783c\`, all 128 original characters, and the last 52 canonical p57 GP rune indices from local index43. Four physically printed ring corners and two traversal directions are allowed. The one shared-corner historical-prime decoder additionally tests the authentic prime-totient reduction \`q−1\` and its three direct additive alternatives. No unknown p55 plaintext is used to select a route.
+Every table token is read exactly as in the [original JPEG-adjudicated base60 source](../resources/liber-primus/lp2-grid-256.json), with byte SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. Use the source p56 target beginning `36367763ab73783c`, all 128 original characters, and the last 52 canonical p57 GP rune indices from local index43. Four physically printed ring corners and two traversal directions are allowed. The one shared-corner historical-prime decoder additionally tests the authentic prime-totient reduction `q−1` and its three direct additive alternatives. No unknown p55 plaintext is used to select a route.
 
 | Test performed on original source | Exact result | What it establishes |
 | --- | --- | --- |
 | Read the 68+60 middle bytes in each of **64** corner/direction combinations and hash them literally | **0/64** matches for each of SHA-512, SHA3-512, BLAKE2b-512 | Those 128 raw-byte serializations are not direct preimages under the three named algorithms |
-| Direct nibble projection of the middle bytes | Best **15/128** for low nibble; **12/128** for high nibble; **13/128** for \`(byte mod29) mod16\` | No literal nibble extraction recovers the printed target |
+| Direct nibble projection of the middle bytes | Best **15/128** for low nibble; **12/128** for high nibble; **13/128** for `(byte mod29) mod16` | No literal nibble extraction recovers the printed target |
 | Grant **every possible deterministic byte→hex-nibble codebook**, optimized after seeing the entire known target, across the 64 layouts | Best **105/128** matched; at least **23 forced errors** | A stationary full-byte lookup cannot encode all 128 hash digits |
-| Innermost ring against the 52 clear *SHED* GP runes, eight physical directions | Best **5/52** for \`byte mod29\`; arbitrary stationary byte→GP29 lookup at most **47/52** | Five errors remain even with every secret codebook entry fitted |
+| Innermost ring against the 52 clear *SHED* GP runes, eight physical directions | Best **5/52** for `byte mod29`; arbitrary stationary byte→GP29 lookup at most **47/52** | Five errors remain even with every secret codebook entry fitted |
 | Mix the omitted prime ranks 21–200 with the middle128 hex digits mod16 and the inner52 GP symbols mod29; send the complementary 20+56 ranks to p55 mod29 | **32** common-corner/direction and additive-key versions; best combined known target **17/180**; best isolated hash **16/128**, inner GP **4/52** | No source-selected direct prime/totient consumer produces known plaintext or a readable p55 |
-| Freeze upper-left clockwise, subtract \`prime−1\`, use ranks 21–200 inside | Only **5/128** hex and **1/52** GP known values correct; p55 IoC **0.0301754** | This most literal 2013-prime inverse fails to produce the supposed receiver |
+| Freeze upper-left clockwise, subtract `prime−1`, use ranks 21–200 inside | Only **5/128** hex and **1/52** GP known values correct; p55 IoC **0.0301754** | This most literal 2013-prime inverse fails to produce the supposed receiver |
 
 The strongest possible original p55 index of coincidence among all 32 direct prime constructions is **0.0385965**; their strings remain incoherent. Maximizing short-output IoC after enumeration is not source authentication.
 
@@ -70,16 +70,16 @@ Both registers have high training complexity and predict the withheld output app
 
 The preceding GF(257) direct-symbol inverse uses the table's **physical position grid** but not its printed two-character **byte values**. A more byte-faithful fully executable receiver can be tested because the table holds exactly **256 conditional base60 bytes**, the number of possible evaluation positions in AES's **GF(2^8)** field. We therefore reuse the pre-existing independently tested [GF256 erasure implementation](../sims/lp2_terminal256_gf256_erasure_sft.cjs), keeping the precise clockwise ring order **76/68/60/52**, and substitute the **new** 128 printed hash nibbles plus 52 solved *SHED* runes for the old 85+95 known-rune receiver.
 
-For each known inner position \(i\), calculate the source table byte's residual against its corresponding *known* 0–15 or GP29 0–28 target. Try the two conventional, fixed byte-level reversible relations: **XOR** and **subtraction modulo 256**. Treat the 180 residuals as evaluations of a single degree-at-most-179 polynomial over GF256 (primitive AES modulus \`0x11b\`), interpolate it exactly, and evaluate it at all 76 physically printed outer-rim positions. Reverse the same byte relation using the original 76 outer table bytes to produce **all 76 proposed p55 plaintext values**. A genuine direct GP29 ciphertext reader needs all outputs in the 0–28 original alphabet.
+For each known inner position \(i\), calculate the source table byte's residual against its corresponding *known* 0–15 or GP29 0–28 target. Try the two conventional, fixed byte-level reversible relations: **XOR** and **subtraction modulo 256**. Treat the 180 residuals as evaluations of a single degree-at-most-179 polynomial over GF256 (irreducible AES modulus `0x11b`), interpolate it exactly, and evaluate it at all 76 physically printed outer-rim positions. Reverse the same byte relation using the original 76 outer table bytes to produce **all 76 proposed p55 plaintext values**. A genuine direct GP29 ciphertext reader needs all outputs in the 0–28 original alphabet.
 
 | Mixed receiver byte inverse | Original untrained 52-rune suffix predicted by only the first 128 known digits | Complete recovered p55 outputs within 0–28 | First eight outer outputs |
 | --- | ---: | ---: | --- |
-| Byte XOR with GF256 interpolated key | **0/52** | **11/76** | \`54,179,218,116,65,85,73,194\` |
-| Byte subtraction modulo 256 | **0/52** | **9/76** | \`184,67,116,156,43,187,111,72\` |
+| Byte XOR with GF256 interpolated key | **0/52** | **11/76** | `54,179,218,116,65,85,73,194` |
+| Byte subtraction modulo 256 | **0/52** | **9/76** | `184,67,116,156,43,187,111,72` |
 
 These are two **complete p55-decoding attempts** using the original table byte values, all 180 independently known target labels and a truly constructive field erasure inverse. Neither returns the 76 required GP29 symbols; in addition, the lower-degree independent hash128→SHED52 holdout is **0/52** under both operations. Source data are unmodified. The existing exact positive control verifies a native-GP known-plaintext byte-XOR plant with all **95/95 withheld inner** and **76/76 withheld outer** byte values predicted by this same GF256 implementation. No additional key fitting is involved. The source does not establish any polynomial field-code instruction; this result excludes precisely those two literal hypotheses.
 
-**Source-exact passing Windows Node22 execution:** [run 43783660898](https://github.com/FlareZ123/liber-primus/actions/runs/43783660898). The original file and earlier known85+95 erasure controls remain intact, and the combined mixed180 result is emitted separately as \`sourceKnown128HashPlus52Clear\`.
+**Source-exact passing Windows Node22 execution:** [run 43783660898](https://github.com/FlareZ123/liber-primus/actions/runs/43783660898). The original file and earlier known85+95 erasure controls remain intact, and the combined mixed180 result is emitted separately as `sourceKnown128HashPlus52Clear`.
 
 
 ### Direct 76-symbol recovery from the 180 known mixed-register values
@@ -88,8 +88,8 @@ A distinct **fully specified erasure-code inverse** tests whether the **known 12
 
 | Exact original 76-symbol interpolation | Recovered entries within GP29 0–28 | First sixteen reconstructed values |
 | --- | ---: | --- |
-| Original physical printed 32×8 cell indices | **7/76** | \`155,119,179,25,46,214,9,61,75,186,42,228,256,77,254,161\` |
-| Concentric-ring ordinal indices | **8/76** | \`134,0,50,180,117,22,86,106,240,38,1,234,1,70,176,130\` |
+| Original physical printed 32×8 cell indices | **7/76** | `155,119,179,25,46,214,9,61,75,186,42,228,256,77,254,161` |
+| Concentric-ring ordinal indices | **8/76** | `134,0,50,180,117,22,86,106,240,38,1,234,1,70,176,130` |
 
 Both source-frozen versions fail **before any unknown p55 content or language score is consulted**. The same GF(257) Lagrange/barycentric routine recovers **all 76 untouched unknown field values** from a separately planted degree-37 polynomial, demonstrating that this exact known180→missing76 decoder works when its premise holds. An arbitrary degree-179 interpolation always fits 180 data, so successful interpolation itself is not decryption; the rigorous rejection is the resulting 68–69 non-GP outputs. The mixed nibble-plus-rune encoding and GF(257) field are exploratory hypotheses, not manuscript instructions. This removes one direct error-correcting-code route to the intended p55 plaintext, while a truly source-specified different operator remains open.
 
