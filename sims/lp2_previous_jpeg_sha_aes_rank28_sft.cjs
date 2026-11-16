@@ -158,6 +158,17 @@ for (const rankScheme of ["cyclic", "sorted"]) {
       assert.deepEqual(encode([artificial[0], ...recovered], keyPlant,
         rankScheme, sign, artificial[0]), artificial,
         "positive ciphertext round trip");
+      // P57 has zero native EA runes. Force all sentinel paths through a
+      // separate explicitly artificial native-GP perturbation control.
+      const sentinelPlant = p57.slice();
+      for (const at of [7, 31, 59]) sentinelPlant[at] = 28;
+      const sentinelCipher = encode(sentinelPlant, keyPlant,
+        rankScheme, sign, gp.pages[0].indices[0]);
+      assert.deepEqual(decode(sentinelCipher, keyPlant, rankScheme, sign),
+        sentinelPlant.slice(1), "three nonzero source EA sentinels round trip");
+      assert.equal(sentinelCipher.reduce((n,v,i,a) =>
+        n + (i > 0 && v === a[i-1] ? 1 : 0),0), 3,
+        "EA plaintext sentinel produces literal ciphertext repeat");
       controlCount++;
       const first = decode(pages[0].indices,
         reduce(aesPad(shaPrevious(0), pages[0].indices.length),
