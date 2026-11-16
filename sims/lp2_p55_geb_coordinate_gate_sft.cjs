@@ -68,6 +68,29 @@ function main() {
   assert.equal(directZero, 4);
   assert.equal(directOne, 2);
 
+  // Lossless source-native 43 -> (one anchor, 42 consecutive differences).
+  const differences = inner.slice(1).map((value, i) => mod29(value - inner[i]));
+  assert.equal(differences.length, fields.length);
+  const restored = [inner[0]];
+  for (const difference of differences) restored.push(mod29(restored.at(-1) + difference));
+  assert.deepEqual(restored, inner);
+  const differenceCounts = counts(differences);
+  assert.equal(differenceCounts.size, 24);
+  assert.equal(Math.max(...differenceCounts.values()), 4);
+  const differentialVariants = [
+    ["forward-zero", differences],
+    ["forward-one", differences.map(v => v + 1)],
+    ["reverse-zero", differences.map(v => mod29(-v))],
+    ["reverse-one", differences.map(v => mod29(-v) + 1)],
+  ].map(([name, values]) => ({
+    name,
+    matches: values.filter((value, i) => value === fields[i]).length,
+    triples: triples.filter((triple, i) =>
+      triple.every((value, j) => values[3 * i + j] === value)).length,
+  }));
+  assert.deepEqual(differentialVariants.map(v => v.matches), [0, 1, 0, 1]);
+  assert.deepEqual(differentialVariants.map(v => v.triples), [0, 0, 0, 0]);
+
   /** @param {number} n @returns {number} */
   function phi(n) {
     let result = n;
@@ -205,6 +228,9 @@ function main() {
   console.log("DIRECT STATIONARY ONE-RUNE CODE REJECTED:",
     "at least 9 conflicts independently of permutation, reversal, one marker.");
   console.log("Direct coordinate field matches (zero/one origin):", directZero, directOne);
+  console.log("Lossless p55 inner43 -> anchor+42 differences: 43/43 exact recovered.");
+  console.log("Maximum original difference multiplicity:", Math.max(...differenceCounts.values()));
+  console.log("Source-ordered difference-to-GEB variants:", JSON.stringify(differentialVariants));
   console.log("p05 inner core mod29:", JSON.stringify(coreMod), "inverse:", JSON.stringify(coreInverse), "det:", determinant3(coreMod));
   console.log("phi(core) mod29:", JSON.stringify(phiCoreMod), "inverse:", JSON.stringify(phiCoreInverse), "det:", determinant3(phiCoreMod));
   console.log("Inner-core Hill variants:", JSON.stringify(matrixVariants));
