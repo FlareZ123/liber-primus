@@ -136,6 +136,50 @@ function main() {
   assert.equal(cipher[20], 3); // O
   assert.equal(key[20], 3); // impossible non-F C=K forces plain F
 
+  // Reverse the title-derived tape, as optionally suggested by the p0
+  // 180-degree mirrored cross. No historical decipherment opcode selects it.
+  const reversedBm = berlekampMassey([...seed].reverse());
+  assert.equal(reversedBm.order, 6);
+  assert.deepEqual(reversedBm.coefficients, [1,2,6,1,22,13,24]);
+  const backwardTape = extend([...seed].reverse(), reversedBm.coefficients, 13000);
+  const reverseKey = seed.concat(backwardTape.slice(13));
+  const reversedSource = inverseStates(cipher, reverseKey, 13);
+  assert.equal(reversedSource.firstImpossible, 286);
+  assert.deepEqual(reversedSource.priorClocks, [282]);
+  assert.equal(cipher[286], 27);
+  assert.equal(reverseKey[282], 27);
+
+  // Source-native GP29 IoC on 267 contiguous positions with a direct
+  // additive inverse of the unfitted reverse key, before the first failure.
+  const count = new Uint16Array(MOD);
+  for (let i = 13; i < 280; i++) count[mod(cipher[i] - reverseKey[i])]++;
+  const n = 267;
+  const reverseIoc = count.reduce((sum, v) => sum + v * (v - 1), 0) /
+    (n * (n - 1));
+  assert.ok(Math.abs(reverseIoc - 0.03469347526118668) < 1e-14);
+
+  // Matched original-input null: random order-at-most-six GF29 recurrences
+  // and exact all-F-mask inverse, with no plaintext-dependent fitting.
+  let rng = 0x3301ac1d;
+  function random(n) {
+    rng ^= rng << 13;
+    rng ^= rng >>> 17;
+    rng ^= rng << 5;
+    return (rng >>> 0) % n;
+  }
+  let nullAtLeast286 = 0;
+  const first500 = cipher.slice(0, 500);
+  for (let trial = 0; trial < 4000; trial++) {
+    const state = Array.from({length: 6}, () => random(MOD));
+    const polynomial = [1, ...Array.from({length: 6}, () => random(MOD))];
+    const future = extend(state, polynomial, 550);
+    const randomKey = seed.concat(future.slice(13));
+    const test = inverseStates(first500, randomKey, 13);
+    if (test.firstImpossible === null || test.firstImpossible >= 286)
+      nullAtLeast286++;
+  }
+  assert.equal(nullAtLeast286, 172);
+
   // Real native-GP source controls: p57 PARABLE is original cleartext.
   const control = corpus.pages[57].indices;
   assert.equal(control.length, 95);
@@ -157,6 +201,11 @@ function main() {
     first_future_key: key.slice(13, 22),
     first_impossible_original_rune: original.firstImpossible,
     prior_clock_states: original.priorClocks,
+    reversed_bm_polynomial: reversedBm.coefficients,
+    reverse_first_impossible_rune: reversedSource.firstImpossible,
+    reverse_rune_ioc_before_failure: reverseIoc,
+    random6_null_reaching_rune286: nullAtLeast286,
+    random6_null_trials: 4000,
     p57_plant_reencrypts: true,
     original_unknown_plaintext_recovered: false
   }, null, 2));
