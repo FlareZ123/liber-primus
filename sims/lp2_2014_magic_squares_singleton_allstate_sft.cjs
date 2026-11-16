@@ -307,3 +307,73 @@ for (let i = 0; i < squares.length; i += 1) {
   console.log('CONTROL: source-matrix+bias-7 planted all 83 singletons PASS');
 }
 console.log('DECISION: no direct additive homogeneous or constant-bias square-state whole-book key');
+
+/**
+ * The source ciphertext's extreme underproduction of repeated adjacent runes
+ * independently motivates a DIFFERENCE register. We test the same authentic
+ * matrix clock with D[n]=C[n]-C[n-1] instead of raw C[n]. Every one-rune
+ * original word away from a page start has a legitimate previous rune.
+ */
+const originalIndices = corpus.pages.filter((page) => page.page <= 55)
+  .flatMap((page) => page.indices);
+assert.equal(originalIndices.length, 12956);
+const pageStarts = new Set();
+let cursor = 0;
+for (const page of corpus.pages.filter((page) => page.page <= 55)) {
+  if (page.indices.length) pageStarts.add(cursor);
+  cursor += page.indices.length;
+}
+assert.equal(cursor, 12956);
+const deltaEvents = events.filter((event) => event.offset > 0 && !pageStarts.has(event.offset))
+  .map((event) => ({
+    offset: event.offset,
+    cipher: mod(originalIndices[event.offset] - originalIndices[event.offset - 1]),
+  }));
+console.log('DELTA: original within-page standalone words=' + deltaEvents.length +
+  ' of ' + events.length + ' total');
+for (let i = 0; i < squares.length; i += 1) {
+  for (const withBias of [false, true]) {
+    const poly = characteristicPolynomial(squares[i]);
+    const polynomial = withBias ? withConstantBias(poly) : poly;
+    const rows = recurrenceRows(polynomial, deltaEvents.at(-1).offset);
+    let fail = 0;
+    let last = null;
+    for (let m = 1; m <= deltaEvents.length; m += 1) {
+      const res = countConsistentStates(deltaEvents.slice(0, m), rows);
+      last = res;
+      if (res.count === 0) { fail = m; break; }
+    }
+    const size = squares[i].length;
+    let state = Array.from({ length: size }, (_, j) => j + 1);
+    const initialKeys = [];
+    for (let j = 0; j < polynomial.length - 1; j += 1) {
+      initialKeys.push(mod(state[0] + (withBias ? 7 : 0)));
+      state = squares[i].map((row) => dot(row, state));
+    }
+    const clear = originalIndices.map((value, pos) =>
+      pos % 29);
+    for (const [j, event] of deltaEvents.entries()) {
+      clear[event.offset] = [24, 10, 3][j % 3];
+    }
+    const encoded = [];
+    let previous = 7;
+    for (let pos = 0; pos < clear.length; pos += 1) {
+      const decodedDelta = mod(clear[pos] + dot(rows[pos], initialKeys));
+      const current = mod(previous + decodedDelta);
+      encoded.push(current);
+      previous = current;
+    }
+    const planted = deltaEvents.map((event) => ({
+      offset: event.offset,
+      cipher: mod(encoded[event.offset] - encoded[event.offset - 1]),
+    }));
+    assert.ok(countConsistentStates(planted, rows).count > 0,
+      'Native-English singleton and actual source-matrix delta plant must survive');
+    console.log('DELTA square=' + [3301, 1033, 1033][i] + ' (' + size + 'x' +
+      size + ') withBias=' + withBias + ' firstFailure=' + fail +
+      ' finalSurvivors=' + last.count + ' rank=' + last.rank);
+    if (fail) console.log('DELTA original contradiction at rune=' +
+      deltaEvents[fail - 1].offset + ' (singleton ' + fail + ')');
+    else console.log('DELTA ORIGINAL KEY SURVIVES: requires independent word-level validation');
+  }
+}
