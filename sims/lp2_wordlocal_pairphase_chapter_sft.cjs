@@ -361,6 +361,39 @@ function pairCollisionInvariant(words) {
   console.log("ALIGNED PAIR COLLISION INVARIANT", JSON.stringify({ earlyUnknown: unknown[0], lateUnknown: unknown[1], lp1Control: old[0] }));
 }
 
+
+/**
+ * A source-word-reset stationary bijection on complete b-rune blocks must
+ * preserve the multiset of ciphertext block labels and all exact block
+ * collisions. Enumerate this invariant without searching any secret keys.
+ */
+function stationaryBlockCollisionGate(words) {
+  const controls = [
+    { name: "unknown early five chapters", source: words.filter(w => w.page <= 26), expected: [[6527, 735330], [2903, 5202], [1718, 56], [1012, 0]] },
+    { name: "unknown last four chapters", source: words.filter(w => w.page >= 27), expected: [[6429, 711867], [2850, 4950], [1674, 69], [1001, 2]] },
+    { name: "original LP1", source: parseWords(lp1, 200), expected: [[2797, 155703], [1242, 2765], [701, 637], [396, 178]] }
+  ];
+  for (const control of controls) {
+    const output = [];
+    for (let size = 1; size <= 4; size++) {
+      const counts = new Map();
+      let total = 0;
+      for (const word of control.source) {
+        for (let i = 0; i + size <= word.letters.length; i += size) {
+          const id = word.letters.slice(i, i + size).join(",");
+          counts.set(id, (counts.get(id) || 0) + 1);
+          total++;
+        }
+      }
+      let collisions = 0;
+      for (const count of counts.values()) collisions += count * (count - 1) / 2;
+      assert.deepEqual([total, collisions], control.expected[size - 1]);
+      output.push({ size, completeBlocks: total, repeatedPairs: collisions, uniformExpected: (total * (total - 1) / 2) / (29 ** size) });
+    }
+    console.log("ALL-SECRET STATIONARY BLOCK INVARIANT", JSON.stringify({ source: control.name, sizes: output }));
+  }
+}
+
 const words = parseWords(text, 55);
 assert.equal(words.length, 2896);
 assert.equal(words.reduce((n, w) => n + w.letters.length, 0), 12956);
@@ -368,6 +401,7 @@ wordLocalParityTest(words);
 conditionalWordShuffleGate(words);
 differenceReadoutGate(words);
 pairCollisionInvariant(words);
+stationaryBlockCollisionGate(words);
 lp1Control();
 originalDisjointPairGate(words);
 console.log("PASS original typed words, chapter family correction, dual-ring disjoint inverse, LP1 control");
