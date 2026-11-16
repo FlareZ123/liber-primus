@@ -179,6 +179,41 @@ assert.deepEqual(zlib.inflateSync(plantDecoded.bytes.subarray(0, compressed.leng
 assert.deepEqual(restore(recovered.digits, recovered.seeds, recovered.positions,
   [plantedRunes.length])[0], plantedRunes);
 
+/* The 86 duplicate glyphs cannot serve as one-for-one overflow markers at
+   any globally chosen quintet phase: nearly all are off a packet boundary. */
+const copyEdgeDigitCounts = [];
+let emittedRanks = 0;
+for (const page of pages) {
+  for (let i = 1; i < page.indices.length; i++) {
+    if (page.indices[i] === page.indices[i - 1]) {
+      copyEdgeDigitCounts.push(emittedRanks);
+    } else {
+      emittedRanks++;
+    }
+  }
+}
+assert.equal(emittedRanks, source.digits.length);
+assert.equal(copyEdgeDigitCounts.length, 86);
+const copyPacketBoundary = [];
+const overflowCopyBoundary = [];
+for (let phase = 0; phase < 5; phase++) {
+  const overflowEnds = new Set();
+  for (let i = phase; i + 5 <= source.digits.length; i += 5) {
+    const value = source.digits.slice(i, i + 5)
+      .reduce((sum, digit) => sum * 28 + digit, 0);
+    if (value >= 2 ** 24) overflowEnds.add(i + 5);
+  }
+  const edgeCopies = copyEdgeDigitCounts.filter(
+    (n) => n >= phase + 5 && (n - phase) % 5 === 0
+  );
+  copyPacketBoundary.push(edgeCopies.length);
+  overflowCopyBoundary.push(
+    edgeCopies.filter((n) => overflowEnds.has(n)).length
+  );
+}
+assert.deepEqual(copyPacketBoundary, [15,16,17,17,21]);
+assert.deepEqual(overflowCopyBoundary, [1,2,1,0,1]);
+
 const summary = {
   originalRuneCount: 12956,
   originalRunePages: 55,
@@ -188,6 +223,8 @@ const summary = {
   firstEightNonrepeatRanks: source.digits.slice(0, 8),
   candidateGroupsPerPhase: forward.map((p) => p.groups),
   forwardOverflowsByPhase: forward.map((p) => p.overflows),
+  copyMarksAtQuintetBoundaryByPhase: copyPacketBoundary,
+  copyMarksAtOverflowBoundaryByPhase: overflowCopyBoundary,
   reversedQuintetOverflowsByPhase: reverse.map((p) => p.overflows),
   first24LowBytesHex: forward[0].bytes.subarray(0,24).toString("hex"),
   nativeP57ZlibPlantBytes: compressed.length,
