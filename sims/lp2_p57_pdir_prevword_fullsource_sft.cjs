@@ -133,31 +133,31 @@ function beam(cipherWords, key, sign, collisionModel, beamWidth = 160) {
       for (const s of states) {
         const k0 = mod29(sign * key[mod55(s.j)]);
         const primary = mod29(c - k0);
-        const opts = [[primary, s.j + d]];
+        const opts = [[primary, s.j + d, s.j]];
         if (previous >= 0) {
           if (collisionModel === 'skip') {
             const k1 = mod29(sign * key[mod55(s.j + d)]);
             const p1 = mod29(c - k1);
-            if (mod29(p1 + k0) === previous) opts.push([p1, s.j + 2 * d]);
+            if (mod29(p1 + k0) === previous) opts.push([p1, s.j + 2 * d, s.j + d]);
             const k2 = mod29(sign * key[mod55(s.j + 2 * d)]);
             const p2 = mod29(c - k2);
             if (mod29(p2 + k0) === previous && mod29(p2 + k1) === previous) {
-              opts.push([p2, s.j + 3 * d]);
+              opts.push([p2, s.j + 3 * d, s.j + 2 * d]);
             }
           } else {
             opts[0][1] = s.j + (c === previous ? 2 * d : d);
             const k2 = mod29(sign * key[mod55(s.j + 2 * d)]);
             const p2 = mod29(c - k2);
-            if (mod29(p2 + k0) === previous) opts.push([p2, s.j + 3 * d]);
+            if (mod29(p2 + k0) === previous) opts.push([p2, s.j + 3 * d, s.j + 2 * d]);
           }
         }
-        for (const [p, nextj] of opts) {
+        for (const [p, nextj, readj] of opts) {
           const score = s.score + language.logprob[(s.a * 30 + s.b) * 29 + p];
           const a = s.b, b = p;
           const token = mod55(nextj) + ':' + a + ':' + b;
           const old = successors.get(token);
           if (!old || old.score < score) successors.set(token,
-            { j: nextj, a, b, score, prev: s, pt: p });
+            { j: nextj, a, b, score, prev: s, pt: p, readj });
         }
       }
       states = [...successors.values()].sort((a, b) => b.score - a.score).slice(0, beamWidth);
@@ -167,15 +167,21 @@ function beam(cipherWords, key, sign, collisionModel, beamWidth = 160) {
     states = states.map(s => ({ ...s, a: 29, b: 29 }));
   }
   const winner = states[0];
-  const reversed = [];
-  for (let p = winner; p; p = p.prev) if (p.pt >= 0) reversed.push(p.pt);
-  reversed.reverse();
+  const backtrace = [];
+  for (let p = winner; p; p = p.prev) if (p.pt >= 0) backtrace.push(p);
+  backtrace.reverse();
+  const reversed = backtrace.map(x => x.pt);
   assert.equal(reversed.length, allCipher.length);
+  // Cryptographic source-preserving forward invariant, for every actual inverse path.
+  for (let i = 0; i < reversed.length; i++) {
+    assert.equal(mod29(reversed[i] + sign * key[mod55(backtrace[i].readj)]), allCipher[i],
+      'exact original-cipher forward recovery');
+  }
   const lens = cipherWords.map(w => w.length);
   let cursor = 0;
   const plainWords = lens.map(n => reversed.slice(cursor, cursor += n));
   return { output: plainWords, bits: reversed, meanLog: winner.score / reversed.length,
-    ioc: ioc(reversed), states: states.length };
+    ioc: ioc(reversed), states: states.length, reencryptionCount: reversed.length };
 }
 
 /** Causal synthetic collision planter and its path certificate. */
@@ -294,7 +300,7 @@ const output = {
     nullMedian:sortedNulls[6], nullMaximum:sortedNulls.at(-1),
     nullEmpiricalUpperTail:(1+nulls.filter(x=>x>=candidate.log).length)/(nulls.length+1) },
   untouchedFloralHoldout: { n:heldout.bits.length, score:heldout.meanLog,
-    ioc:heldout.ioc, firstWords:heldoutPlain.slice(0, 25).map(w => w.map(r => source.translit[r]).join('')).join(' '),
+    ioc:heldout.ioc, reencryptionCount: heldout.reencryptionCount, firstWords:heldoutPlain.slice(0, 25).map(w => w.map(r => source.translit[r]).join('')).join(' '),
     lastWords:heldoutPlain.slice(-10).map(w => w.map(r => source.translit[r]).join('')).join(' ') },
   nullScores:nulls
 };
