@@ -1,0 +1,23 @@
+name: LP2 Onion2 source-key skip SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-key-sft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out research repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax-check reproducible gate
+        run: node --check sims/lp2_2014_onion2_keyskip_beam_sft.cjs
+      - name: Run source-key and positive-control gates
+        run: node sims/lp2_2014_onion2_keyskip_beam_sft.cjs
