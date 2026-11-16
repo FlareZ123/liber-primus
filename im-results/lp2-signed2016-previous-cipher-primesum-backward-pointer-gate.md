@@ -14,7 +14,7 @@ This exact prime/backward convention is **not specified by the signed message**;
 
 - [CommonJS source-exact decoder and forward encoder](../sims/lp2_signed2016_backward_prime_pointer_ftransparent_sft.cjs). Inputs: `resources/liber-primus/lp2-corpus.json` SHA256 `7f311254d406b755df39510b8b3f4e53d7dfaea87a0320074c16507d46a07522`; `lp2-transcription.txt` SHA256 `57d123515bc5310774913ce3b1bc27e18bfb695ac3f732f076a13bc8339fcd04`.
 - Run the script from the repository root under Windows Node 22. No flags or external model files beyond the repository's native Shakespeare control.
-- [Passing original Windows Node22 Action 43809190188](https://github.com/FlareZ123/liber-primus/actions/runs/43809190188), including the matched-null extension; [initial independent positive run 43808988848](https://github.com/FlareZ123/liber-primus/actions/runs/43808988848).
+- [Passing **5,000-start adversarial Windows Node22 manual run 43813598793**](https://github.com/FlareZ123/liber-primus/actions/runs/43813598793), including the original gate and matched-null extension; [initial independent positive run 43808988848](https://github.com/FlareZ123/liber-primus/actions/runs/43808988848).
 
 | Source | Original or control size | Exact decision |
 |---|---:|---|
