@@ -17,7 +17,7 @@ Any real latitude/longitude list must consist entirely of finite coordinates wit
 | Little, big | **7/32** | **25** | 2 | 0 |
 | Little, little | **10/32** | **22** | 2 | **1** |
 
-Under the independent **float64 adjacent-two-row model**, big/big yields **1/16** geographically valid pairs, big/little **1/16**, little/big **3/16** and little/little **3/16**; **none** has both latitude and longitude magnitude ≥1 degree. Thus all 16-point versions fail even before the float32 result is considered. The raw float64 coordinates are near-zero scientific-notation values, not recognizable poster coordinates.
+Under the independent **float64 adjacent-two-row model**, big/big yields **1/16** geographically valid pairs, big/little **3/16**, little/big **2/16** and little/little **3/16**; **none** has both latitude and longitude magnitude ≥1 degree. Thus all 16-point versions fail even before the float32 result is considered. The raw float64 coordinates are near-zero scientific-notation values, not recognizable poster coordinates.
 
 For sensitivity, little/little float32 row index10 (the first row on original physical p50) happens to encode **latitude −25.15359116°, longitude +14.94450092°**, a position in Namibia. This is an **isolated numerically plausible result, not a verified Cicada location**. Since most rows are nongeographic under the identical prescribed operation, no whole-list decoder exists; selecting just that row after inspection would be post-hoc fitting without a source-chosen row selector. A scalar encoded in arbitrary float32 bytes sometimes falls inside geographic bounds by accident. A GPS-looking pair is also not cryptographic evidence of address intent.
 
