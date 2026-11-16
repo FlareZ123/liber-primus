@@ -143,11 +143,34 @@ const report = probes.map(p=>{
   return {name:p.name,originalRunes:p.original.length,
     residualCount:p.original.length-13,controls};
 });
+
+const chapterRanges = [[0,2],[3,7],[8,14],[15,22],[23,26],
+  [27,32],[33,39],[40,53],[54,55]];
+const expectedChapterMinima = [
+  [41,45,42], [59,49,58], [69,106,87], [73,95,96],
+  [41,60,49], [81,82,82], [84,90,76], [92,103,97],
+  [24,26,22]
+];
+const visualChapters = chapterRanges.map(([first,last],i) => {
+  const original=source.pages.slice(first,last+1).flatMap(p=>p.indices);
+  const actual=references.map(r=>minHistogramFaults(original,r.encoded));
+  assert.deepEqual(actual.map(x=>x.minFaults),expectedChapterMinima[i]);
+  assert.ok(actual.every(x=>x.minFaults>0 && x.zeroMatches===0));
+  return {
+    pages:'p'+first+'–'+last,runicCount:original.length,
+    residualCount:original.length-13,
+    minRequiredFaults:actual.map(x=>x.minFaults),
+    bestNativeFaultLowerBound:Math.min(...actual.map(x=>x.minFaults))
+  };
+});
+assert.equal(visualChapters.reduce((n,c)=>n+c.runicCount,0),12956);
+assert.equal(visualChapters.length,9);
 console.log(JSON.stringify({
   model:'K_i=(K_(i-8)+K_(i-13)) mod29, no exceptions',
   theorem:'Y(C)=Y(P) for ALL secret initial K[0..12]',
   calibration:'GP words with attested ING=21 and IO=27',
   originalSamples:report,
+  visualChapterIndependentInitialKeys:visualChapters,
   positive:'two independent source-native p57 plants, each 82/82 filtered and 95/95 plaintext recovered',
   result:'No direct all-seed 13-state Fibonacci additive GP-native decoding is compatible with any of the 3 source control windows. Reported faults are exact optimistic exceptions to this model; no actual plaintext recovered.'
 },null,2));
