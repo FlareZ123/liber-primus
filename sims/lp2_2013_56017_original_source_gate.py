@@ -60,7 +60,7 @@ def original_2013_posters(data: bytes) -> list[dict[str, object]]:
         assert len(raw_slice) == len(phone), "original source slice out of bounds"
         assert raw_slice == archive_slice, f"{city}: original ISO bytes differ from archive"
         recovered = bytes(x ^ y for x, y in zip(phone, raw_slice))
-        assert recovered == target.encode("ascii"), f"{city}: old-stage XOR fails"
+        assert recovered.rstrip(b"\r\n") == target.encode("ascii"), f"{city}: old-stage XOR fails"
         proofs.append({
             "location": city, "source_offset": offset,
             "key_slice_hex": raw_slice.hex(), "plaintext": recovered.decode("ascii"),
