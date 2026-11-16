@@ -179,6 +179,13 @@ const originalP0 = original.slice(0, 729);
 const p0 = reachable(originalP0, lengths.slice(0, 158), 0);
 assert.equal(lengths.slice(0, 158).reduce((a,b) => a + b,0),729);
 assert.equal(full.furthest, p0.furthest);
+// One matched null: rotate the rune order inside every printed word by one.
+// Every exact word length, GP-prime sum, prime/composite direction and
+// number of ambiguous F sites is preserved; original position is destroyed.
+const rotationNull = words.flatMap(word =>
+  word.length > 1 ? [...word.slice(1), word[0]] : word);
+assert.equal(rotationNull.length, original.length);
+const nullReach = reachable(rotationNull, lengths, 0);
 
 // Synthetic full-register native GP plaintext, deliberately starts cursor at
 // 100 to exercise BOTH pointer directions without immediate underflow.
@@ -206,7 +213,7 @@ console.log(JSON.stringify({
     corpusSha256:crypto.createHash('sha256').update(corpusBytes).digest('hex'),
     transcriptSha256:crypto.createHash('sha256').update(transcriptBytes).digest('hex')
   },
-  original:{runes:original.length,words:words.length,full,p0},
+  original:{runes:original.length,words:words.length,full,p0,matchedRotationNull:nullReach},
   authenticPositive:{p56ExactCipher:true,p56:positiveP56.bypasses ? p56Reach : null,
     literalFBypasses:positiveP56.bypasses},
   independentPlant:{runes:plantPlain.length,source:'Shakespeare fixed GP29 reference',
