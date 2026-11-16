@@ -26,6 +26,7 @@ const pair = successors.map(m29);
 
 assert.deepEqual(doubleSpaceAfter.map(m29), [0, 9]);
 assert.deepEqual(pair, [2, 11]);
+assert.equal(pair[0] + pair[1], 13);
 assert.deepEqual(pair.map(i => corpus.translit[i]), ['TH', 'J']);
 
 const p0 = corpus.pages.find(p => p.page === 0);
