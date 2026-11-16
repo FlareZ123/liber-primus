@@ -34,6 +34,8 @@ const token3 = [];
 const pair3Edges = [];
 const printedPairs = new Map();
 const runeWordTypes = new Map();
+const gpPrimes = new Map(corpus.runes.map((rune, index) => [rune, corpus.prime[index]]));
+const sum288Pairs = [];
 let totalPrintedPairs = 0;
 
 for (let page = 0; page <= 55; page++) {
@@ -63,6 +65,11 @@ for (let page = 0; page <= 55; page++) {
     hits.push({ page, byteOffsetInTranscription: a.offset, wordIndex: i });
     printedPairs.set(pair, hits);
     totalPrintedPairs++;
+    const gematriaSum = [...a.text + b.text]
+      .reduce((total, rune) => total + gpPrimes.get(rune), 0);
+    if (gematriaSum === 288) {
+      sum288Pairs.push({ page, pair, lengthA: a.text.length, lengthB: b.text.length });
+    }
     if (a.slot3 >= 0 && b.slot3 >= 0) {
       pair3Edges.push([a.slot3, b.slot3]);
     }
@@ -76,6 +83,28 @@ assert.equal(totalPrintedPairs, 2584);
 assert.equal(printedPairs.size, 2583);
 assert.equal(repeated.length, 1);
 assert.equal(repeated[0][0], phrase);
+// The signed-2016 base58 map remains a hypothesis: this is an exact
+// arithmetic connection to the already solved p56 word DEEP, not a key.
+assert.equal([...phrase.replace('-', '')]
+  .reduce((total, rune) => total + gpPrimes.get(rune), 0), 288);
+assert.equal([...phrase.split('-')[0]]
+  .reduce((total, rune) => total + gpPrimes.get(rune), 0), 129);
+assert.equal([...phrase.split('-')[1]]
+  .reduce((total, rune) => total + gpPrimes.get(rune), 0), 159);
+assert.equal(sum288Pairs.length, 9);
+assert.equal(sum288Pairs.filter((item) =>
+  item.lengthA === 3 && item.lengthB === 3).length, 3);
+assert.deepEqual(sum288Pairs.filter((item) => item.pair === phrase)
+  .map((item) => item.page), [27, 55]);
+assert.equal(288 % 58, 56);
+assert.equal(Math.floor(288 / 58), 4);
+// On the historically solved page the prime-totient stream has no F skips
+// before the fourth word; check its DEEP plaintext from original cipher.
+const deepStart = 12;
+const deepPlain = corpus.pages[56].indices.slice(deepStart, deepStart + 4)
+  .map((cipher, index) =>
+    (cipher - (corpus.prime[deepStart + index] - 1) % 29 + 29) % 29);
+assert.deepEqual(deepPlain, [23, 18, 18, 13]);
 assert.deepEqual(repeated[0][1].map((p) => [p.page, p.wordIndex]),
   [[27, 6], [55, 17]]);
 
@@ -125,6 +154,8 @@ for (const [page, offset, global] of test) {
 
 console.log('SOURCE: ᛞᛄᚢ-ᛒᛖᛁ, p27 second line, p55 final two words');
 console.log('CORPUS: 2584 literal-dash word pairs, 2583 types, 1 repeat');
+console.log('MAP CANDIDATE: DJU(129)+BEI(159)=288 = 58*4+56, p56:w4 DEEP');
+console.log('MAP CONTROLS: 9/2584 exact-sum pairs; 3/164 are 3+3 (two are DJU-BEI)');
 console.log('GEOMETRY: 789 three-rune word slots; 164 adjacent 3+3 edges; 26 sharing edge pairs');
 console.log('SOURCE CONTROLS: original p27 offsets 28..33 -> global 6555..6560');
 console.log('SOURCE CONTROLS: original p55 offsets 70..75 -> global 12950..12955');
