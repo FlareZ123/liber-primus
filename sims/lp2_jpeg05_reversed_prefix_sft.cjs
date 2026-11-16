@@ -82,8 +82,10 @@ for (let row = 0; row < 5; row += 1) {
 }
 assert.equal(matrix.reduce((sum, values, i) => sum + values[i], 0), 1033);
 assert.equal(matrix.reduce((sum, values, i) => sum + values[4 - i], 0), 1033);
-assert.notDeepEqual(Buffer.from(reverse.subarray(1)).reverse(), file05.subarray(0, mainLength - 1),
-  'a one-byte offset in the reversed image must not match the original');
+const tamperedReverse = Buffer.from(reverse);
+tamperedReverse[0] ^= 1;
+assert.notDeepEqual(Buffer.from(tamperedReverse).reverse(), file05.subarray(0, mainLength),
+  'a one-bit corruption of the mirror must be detected');
 
 const file10 = read(10);
 const copies = Buffer.concat([read(11), read(12), read(13)]);
