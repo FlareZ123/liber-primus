@@ -26,7 +26,8 @@ assert.equal(fullBook.length,12956);
 const fullBookPacketLeaderCounts = Array.from({length:27},(_,phase)=>{
   const heads = [];
   for (let pos=phase;pos+26<fullBook.length;pos+=27) heads.push(fullBook[pos]);
-  assert.equal(heads.length,479);
+  assert.ok(heads.length >=478 && heads.length <=479,
+    'global source phase contains 478 or 479 complete 27-rune packets');
   return new Set(heads).size;
 });
 assert.deepEqual(fullBookPacketLeaderCounts,Array(27).fill(29));
