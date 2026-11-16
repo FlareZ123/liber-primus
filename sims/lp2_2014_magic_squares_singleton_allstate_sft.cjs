@@ -335,7 +335,7 @@ for (let i = 0; i < squares.length; i += 1) {
   for (const withBias of [false, true]) {
     const poly = characteristicPolynomial(squares[i]);
     const polynomial = withBias ? withConstantBias(poly) : poly;
-    const rows = recurrenceRows(polynomial, deltaEvents.at(-1).offset);
+    const rows = recurrenceRows(polynomial, originalIndices.length - 1);
     let fail = 0;
     let last = null;
     for (let m = 1; m <= deltaEvents.length; m += 1) {
