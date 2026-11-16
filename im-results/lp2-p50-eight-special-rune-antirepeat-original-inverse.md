@@ -21,7 +21,7 @@ The inverse is exact on every GP29 input: the page-first rune subtracts `b`; oth
 
 ## Original ciphertext and positive native-English tests
 
-The [Node22 executable](../sims/lp2_p50_eight_gp_special_antirepeat_sft.cjs) checks the exact original 12,956 GP29 source rune sequence, 2,896 source-carried words, 256 printed table cells and first eight source bytes. It forward reencrpyts **12,956/12,956 original decoded runes exactly** and inverts **144 separate independently planted** full-length source-native Shakespeare, Gibran and Emerson word-length-matched plaintext streams, 48 per corpus. Source-native orthography is the independently calibrated full solved-LP1 and heldout solved-LP2 p57 implementation, not a dictionary guessed from the unknown LP2 original.
+The [Node22 executable](../sims/lp2_p50_eight_gp_special_antirepeat_sft.cjs) checks the exact original 12,956 GP29 source rune sequence, 2,896 source-carried words, 256 printed table cells and first eight source bytes. It forward reencrypts **12,956/12,956 original decoded runes exactly** and inverts **144 separate independently planted** full-length source-native Shakespeare, Gibran and Emerson word-length-matched plaintext streams, 48 per corpus. Source-native orthography is the independently calibrated full solved-LP1 and heldout solved-LP2 p57 implementation, not a dictionary guessed from the unknown LP2 original.
 
 The two target original observations are (a) **86** same-page adjacent repeated-cipher runes and (b) **104/2,105** within-original-printed-word fifth-back equality opportunities. The source-shaped positive plants yield:
 
@@ -33,6 +33,12 @@ The two target original observations are (a) **86** same-page adjacent repeated-
 | Emerson, 48 synthetic encryptions | **131.40** (111–157) | **74.69** (61–90) |
 
 The original direct inverse produces GP29 coincidence **0.0345130**, versus source-native English plaintext controls ≈**0.0601–0.0610**. It produces no readable sentence in the first 120 runes, and no coherent original plaintext. Thus this **frozen, complete table-derived key family** fails both native-plaintext inverse and the typical joint original repeat/lag-five signature. A rare exceptional English control reaching 104 lag-five events does not repair the inverse.
+
+## Independent information limit on a binary leading-zero exception mask
+
+The original 256 printed cells contain **60** first-digit zeros. If someone interprets *only those positions* as a variable exception sidecar for an arbitrary-input, fixed-length encoder that always emits at most **86** adjacent repeat runes, the entire 256-bit binary pattern has at most **256 bits** of information. Holding its actual 60/256 zero count fixed further reduces that to **log₂ binomial(256,60) = 197.014739 bits**. In comparison, the exact count of at-most-86-repeat source-shaped GP29 strings over **12,956** rune positions with **12,901** eligible same-page transitions permits a universal encoder only with **at least 325.450254 bits** of side information (the existing stricter word/cross-page limits require about 330). The binomial bound comes directly from **29⁵⁵ × Σ[k=0..86] binomial(12,901,k)×28^(12,901-k)** valid outputs relative to all 29^12,956 inputs, before adding any plaintext-language restrictions.
+
+Thus the **leading-zero binary mask alone is too small by over 128 bits**, even if the positions could vary with the plaintext and the target were only the aggregate same-page repeat ceiling. This does **not** prevent using the complete two-character cell contents (1, 5, or 8 bits per cell depending on interpretation), variable-length encoding, or the fixed mask as a key-state selector; the universal capacity bound is not a prohibition on one particular exceptional fixed plaintext/key instance. It gives a concrete design constraint before attempting any full original inverse.
 
 ## Decision
 
