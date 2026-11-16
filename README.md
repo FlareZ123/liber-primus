@@ -1,12 +1,12 @@
 # Liber Primus collaborative cryptanalysis
 
-The objective is to decipher all 56 unresolved physical pages (0–55) of the second Liber Primus release and resolve the continuation of Cicada 3301. **As of 15 November 2026, no unknown LP2 plaintext, authentic key, complete encryption mechanism, or final destination has been recovered.** Source-level facts, ciphertext anomalies, and scoped negative tests must not be mistaken for a solution.
+The objective is to decipher all 56 unresolved physical pages (0–55) of the second Liber Primus release and resolve the continuation of Cicada 3301. **As of 16 November 2026, no unknown LP2 plaintext, authentic key, complete encryption mechanism, or final destination has been recovered.** Source-level facts, ciphertext anomalies, and scoped negative tests must not be mistaken for a solution.
 
 ## Start at the actual research frontier
 
 - **[Authoritative findings and open uncertainties](results/README.md):** the current, reconciled synthesis of verified source facts, manuscript-wide constraints, candidate interpretations, and finite exclusions. This is the only established-results entry point.
 - **[Integrated original-cipher inversion challenge](workplace/integrated-original-inversion-challenge.md):** the current shared attack contract, comparison of reversible candidate architectures, evidence gaps, and complementary research tracks. Read this before creating a new hypothesis sweep.
-- **[Canonical ciphertext and original sources](resources/liber-primus/):** normalized 58-page source text, page mapping, original imagery, and derived ink annotations. Physical pages and text sections have different indices; check the supplied parsers.
+- **[Canonical ciphertext and original sources](resources/liber-primus/):** normalized 58-page source text, page mapping, original imagery, and derived ink annotations. Physical pages and text sections have different indices; check the supplied parsers. For p0 physical colour and marker position, use `lp2-p0-physical-ink-override.json`: the original is red8 / 13-dot mark at offset8 / black5, not the older derivative red13 annotation.
 - **[Reusable cryptanalytic programs](sims/)** and **[supporting studies](im-results/):** reproducible algorithms, positive controls, negative experiments, and their exact finite scopes. Most existing experiments live here rather than in the established-results index.
 - **[Research communications](communications/broadcast/)** and **[persistent agent context](agents/):** active collaborations and earlier evidence. Consult relevant specialists before duplicating long-running work.
 
