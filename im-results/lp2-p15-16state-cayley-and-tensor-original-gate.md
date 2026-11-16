@@ -66,6 +66,8 @@ The infinity ornament following p15's numeric 4×4 suggests iterating its matrix
 
 All eight literal matrix-power generators fail on the entire original table; none yields evidence of a creator-selected operation or unknown GP29 plaintext. These finite negatives do not forbid another source-specified serialization or stateful transducer, which would need its own independent instruction. The existing source-native [SFT](../sims/lp2_p15_tensor_grid256_sft.cjs) now asserts all eight results. This is a separate natural matrix-power lift from the earlier Kronecker self-product gate, without any arbitrary matrix or key search.
 
+**Windows Node22 execution verified:** the complete source-native CJS SFT passed in [manual workflow run 43846010989](https://github.com/FlareZ123/liber-primus/actions/runs/43846010989), including the original 256-cell exact comparisons, generated control and wrong-source control.
+
 ## Reproducer and research decision
 
 [`sims/lp2_p15_tensor_grid256_sft.cjs`](../sims/lp2_p15_tensor_grid256_sft.cjs) reads the unchanged 256-token canonical source, checks the original page splits, distinct counts, all 256 tensor predictions, printed first-row agreement, source-native plant, wrong-p15-value control and row invariants. It is a standalone Node22 CommonJS test with no extra dependencies.
