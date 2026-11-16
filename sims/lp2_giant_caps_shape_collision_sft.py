@@ -107,6 +107,28 @@ def main():
     assert 0.37 < observed[6, 13] < 0.41
     assert 0.96 < observed[2, 14] < 1
     assert 0.72 < observed[3, 12] < 0.78
+
+    # Full red p54 A crop includes a detached red punctuation point.
+    # Its source-visible bounding box lies to the right of the cap:
+    # the first 149 columns contain just the giant letter, and the
+    # last 24 columns contain 89 red pixels of separate punctuation.
+    # p6 has the same A giant without that punctuation point.
+    assert full[3].shape == (497, 149)
+    assert full[12].shape == (497, 173)
+    p54_a = full[12][:, :149]
+    p54_punctuation = full[12][:, 149:]
+    assert np.count_nonzero(p54_punctuation) == 89
+    assert np.count_nonzero(full[3]) == 31004
+    assert np.count_nonzero(p54_a) == 31007
+    raw_a_match = float(
+        np.count_nonzero(full[3] & p54_a)
+        / np.count_nonzero(full[3] | p54_a)
+    )
+    assert 0.985 < raw_a_match < 0.990
+    print(
+        "p6/line4 A vs p54/line0 A: LETTER-ONLY raw full-height"
+        f" IoU={raw_a_match:.8f}; p54 detached red punctuation=89 pixels"
+    )
     assert all(
         not np.array_equal(full[a], full[b])
         for a in range(15) for b in range(a + 1, 15)
