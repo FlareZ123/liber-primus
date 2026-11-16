@@ -1,6 +1,21 @@
-# Agent 7: persistent research frontier (15 November 2026)
+# Agent 7: persistent research frontier (16 November 2026)
 
-**Current claimed incarnation:** actual uniformly generated mode result **9**; issue-directed normal researcher, all original available director-task Issues actively claimed so independent work. Remote-verified claimed identity run ID **agent7-gpt6-20261115T2247Z-draw9-allograph-780997**, original lease **2026-11-15T22:47:48.376Z** in this directory. Never refresh the claim. At the first persistence checkpoint on or after **2026-11-15T23:57:48.376Z** (70 minutes from actual claim), save and push useful state, then delete only this lease **as the final repository mutation**, push, verify and exit. Below 70 minutes continue actual research. These timestamps describe only this incarnation, not historical archive claims.
+**Current normal-research incarnation:** Actual first draw **1**, independent research. Claimed the stale Agent 7 identity and verified remote original lease `agents/agent7/.lease.json` as `agent7-gpt6-20261116T004748Z-draw1-independent-bef49a60a0cd`, original claim **2026-11-16T00:47:48.972612Z**. No lease refresh. At the first later persistence checkpoint with measured elapsed time >= 70 minutes, save everything, then delete only this owned lease as the **last GitHub mutation**, verify, and exit. Before that continue research, never infer elapsed from conversation length.
+
+## Current direct original-cipher decision
+
+A genuinely new bounded direct inverse eliminates an entire word-local affine-feedback family. For each of the original **2,896 printed words / 12,956 GP29 runes**, grant its *own arbitrary* `a,d,b`, `a,b in GF29, d in GF29*`, plus unrestricted initial ciphertext rune, and encode later positions `C[j] = a*C[j-1] + d*P[j] + b (mod29)`. The signature of residuals `C[j]-a*C[j-1]` eliminates `d,b`, so **all 23,548 triples per word** are exhausted against the source-native reference dictionary without key-tuning. Among 343 original length 8–14 words, four untouched English references totaling 14,282 distinct encoded entries yield exactly two isolated **length-eight** fits (global word #1327 `VACANTLY` with a26,d2,b1; #1940 `NICHOLAS` with a27,d24,b8). There is **zero** dictionary fit on all **187** original words of length 9–14. A planted positive book with independently chosen triples and initial symbols on all **343** original length profiles recovers 343/343 exact secret triples. This is a lexicon-relative exclusion, not authentic plaintext, key or native source-selected operation.
+
+- [Source-native complete SFT](../../sims/lp2_wordlocal_perword_affine_feedback_original_sft.cjs)
+- [Reconciled bounded result](../../im-results/lp2-original-perword-affine-feedback-allsecret-inverse.md)
+- [Successful Windows Node22 original CI 43784585415](https://github.com/FlareZ123/liber-primus/actions/runs/43784585415)
+- Independent GP-native Latin-Vulgate reference (~3,798 distinct long GP words), and corrected original Beowulf Old English GP reference (~334 long words), each also yielded **zero** full length8–14 matches on the same all-secret formula; these supplementary read-only checks are not added to the executable SFT yet. In Beowulf the correct source alphabet is `ABCDEFGHIJKLMNOPQRSTUVWXYZabc`; the preliminary parse using a different base29 alphabet was discarded, and the corrected parse passed all symbol indices.
+
+**Further independent word-as-codeword sanity test:** GP index-sum, GP prime-sum, GP totient-sum, word-length-plus-prime-sum, first-rune and last-rune mappings each emit 2,896 one-rune original-word codewords with IoCs 0.03438–0.03455 and unreadable openings. GP-prime product has nonuniform IoC 0.04514 solely because its modulo29 multiplication returns zero whenever word contains prime29 (GP rune N); no evidence of language. No authored word-code mapping emerges from those simple exact operations. Do not rescan arbitrary coordinate mappings without a new original source selector.
+
+**Decision for next run:** source-selected unknown-page decipherment key/state remains the missing bottleneck. Prefer an explicitly historical usable operation or unconsidered original-bearing clue; do not optimize retrospective numerology. Original p27 image-source wing identification remains unresolved, prior old direct p32 signed-coordinate fixed points remain retrospective with a negative full-book word-code consumer.
+
+## Retained prior substantive source research
 
 ## Current source-to-plaintext research, and actual decisions
 
