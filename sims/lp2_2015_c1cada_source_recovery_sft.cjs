@@ -5,7 +5,8 @@ const zlib = require('node:zlib');
 const SOURCES = {
   allData: 'https://raw.githubusercontent.com/resvolver/c1cada/e4bdbc24b1d1b5a6462f3332c9a8db785b5c48ec/full%20transcript%20data/all_data.csv',
   primeTranscription: 'https://raw.githubusercontent.com/resvolver/c1cada/6938cf432ba96815fd8a2864a072daafd274e46a/ruins/opt_i_must_primes.txt',
-  binaryThefile: 'https://raw.githubusercontent.com/resvolver/c1cada/e4bdbc24b1d1b5a6462f3332c9a8db785b5c48ec/thefile'
+  binaryThefile: 'https://raw.githubusercontent.com/resvolver/c1cada/e4bdbc24b1d1b5a6462f3332c9a8db785b5c48ec/thefile',
+  pageshix: 'https://raw.githubusercontent.com/resvolver/c1cada/0cc1d6302e2f95918992dbf008d9c395153d6e79/pageshix.csv'
 };
 
 async function get(url) {
@@ -131,14 +132,55 @@ function inspectBinary(buf) {
   result.utf16lePreview = utf16.slice(0, 1200);
   return result;
 }
+function summarizePageshix(text, target) {
+  const rows = parseCsv(text);
+  const header = rows[0];
+  const data = rows.slice(1).filter(r => r.length >= header.length);
+  const columns = [];
+  for (let j = 0; j < header.length; j++) {
+    const vals = data.map(r => parseInt(String(r[j]).trim().replace(/^0x/i, ''), 16));
+    if (vals.some(x => !Number.isInteger(x) || x < 0 || x > 255)) continue;
+    const buf = Buffer.from(vals);
+    columns.push({
+      label: header[j], bytes: buf.length,
+      sha256: crypto.createHash('sha256').update(buf).digest('hex'),
+      first16Hex: buf.subarray(0, 16).toString('hex'),
+      equalsThefile: !!target && buf.equals(target),
+      equalsThefileReversed: !!target && Buffer.from(buf).reverse().equals(target)
+    });
+  }
+  const xor = Buffer.alloc(data.length);
+  const sum = Buffer.alloc(data.length);
+  for (let i = 0; i < data.length; i++) {
+    let x = 0, s = 0;
+    for (let j = 0; j < header.length; j++) {
+      const v = parseInt(String(data[i][j]).trim().replace(/^0x/i, ''), 16);
+      if (Number.isInteger(v) && v >= 0 && v <= 255) { x ^= v; s = (s + v) & 255; }
+    }
+    xor[i] = x; sum[i] = s;
+  }
+  return {
+    sha256: crypto.createHash('sha256').update(text).digest('hex'),
+    rows: data.length, columns: header.length, header,
+    targetBytes: target ? target.length : null,
+    targetPrefix: target ? target.subarray(0, 16).toString('hex') : null,
+    columnMatches: columns.filter(x => x.equalsThefile || x.equalsThefileReversed),
+    columns,
+    xorAll: { sha256: crypto.createHash('sha256').update(xor).digest('hex'), equalsThefile: !!target && xor.equals(target), first16Hex: xor.subarray(0, 16).toString('hex') },
+    sumAll: { sha256: crypto.createHash('sha256').update(sum).digest('hex'), equalsThefile: !!target && sum.equals(target), first16Hex: sum.subarray(0, 16).toString('hex') }
+  };
+}
+
 async function main() {
   const report = {};
+  let binaryThefileBuffer = null;
   for (const [name, url] of Object.entries(SOURCES)) {
     try {
       const r = await get(url);
       if (name === 'allData') report[name] = { status: r.status, contentType: r.contentType, finalUrl: r.finalUrl, ...summarizeAllData(r.bytes.toString('utf8')) };
       else if (name === 'primeTranscription') report[name] = { status: r.status, contentType: r.contentType, finalUrl: r.finalUrl, sha256: r.sha256, ...summarizePrimeText(r.bytes.toString('utf8')) };
-      else report[name] = { status: r.status, contentType: r.contentType, finalUrl: r.finalUrl, ...inspectBinary(r.bytes) };
+      else if (name === 'binaryThefile') { binaryThefileBuffer = r.bytes; report[name] = { status: r.status, contentType: r.contentType, finalUrl: r.finalUrl, ...inspectBinary(r.bytes) }; }
+      else if (name === 'pageshix') report[name] = { status: r.status, contentType: r.contentType, finalUrl: r.finalUrl, ...summarizePageshix(r.bytes.toString('utf8'), binaryThefileBuffer) };
     } catch (e) { report[name] = { error: String(e) }; }
   }
 
