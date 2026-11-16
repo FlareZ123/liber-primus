@@ -220,13 +220,36 @@ function projectiveGate(basis,positions) {
   return {tested,injective,survived,minNew};
 }
 
+// Original 32x8 cell geometry: the 76-cell clockwise border is the
+// unknown p55 register, the 30x6 row-major interior is the known 180.
+// Unlike terminal page-order coordinates, this variant directly follows
+// the source-visible "shed our own circumferences" geometric conjecture.
+const gridRows=Array.from({length:32},(_,r)=>
+  Array.from({length:8},(_,c)=>8*r+c));
+const clockwiseBorder=[
+  ...gridRows[0],
+  ...gridRows.slice(1).map(row=>row[7]),
+  ...gridRows[31].slice(0,7).reverse(),
+  ...gridRows.slice(1,31).reverse().map(row=>row[0])
+];
+const rowMajorInterior=gridRows.slice(1,31)
+  .flatMap(row=>row.slice(1,7));
+assert.equal(clockwiseBorder.length,76);
+assert.equal(rowMajorInterior.length,180);
+const geometricSourceSlots=[...clockwiseBorder,...rowMajorInterior];
+assert.equal(new Set(geometricSourceSlots).size,256);
+
 for(const variant of [
   {name:'original contiguous LP2 terminal positions',
     positions:Array.from({length:256},(_,i)=>i),
-    expectedInjective:23974},
+    expectedInjective:23974,expectedMinNew:10},
   {name:'stable ascending original p50 numeric-table rank positions',
     positions:stableRanks,
-    expectedInjective:23998}
+    expectedInjective:23998,expectedMinNew:10},
+  {name:'p50 geometric clockwise shell and original row-major interior',
+    positions:geometricSourceSlots},
+  {name:'p50 clockwise shell / row-major interior, stable numeric table rank',
+    positions:geometricSourceSlots.map(cell=>stableRanks[cell])}
 ]) {
   const positions=variant.positions;
   const rows=equalityRows(positions,known);
@@ -248,9 +271,10 @@ for(const variant of [
   assert(new Set(plantAll.slice(0,20)).size<=17);
 
   const result=projectiveGate(kernel.basis,positions);
-  assert.equal(result.injective,variant.expectedInjective);
-  assert.equal(result.survived,0);
-  assert.equal(result.minNew,10);
+  if(variant.expectedInjective!==undefined)
+    assert.equal(result.injective,variant.expectedInjective);
+  if(variant.expectedMinNew!==undefined)
+    assert.equal(result.minNew,variant.expectedMinNew);
 
   console.log(JSON.stringify({
     source:variant.name,
@@ -267,6 +291,9 @@ for(const variant of [
     survivingValidAlphabetCodewords:result.survived,
     plantedDegree16CodewordDistinctValues:17
   }));
+  assert.equal(result.survived,0,
+    'A candidate survives: inspect its coefficient direction before declaring an exclusion');
+  assert(result.minNew>6);
 }
 
-console.log('PASS: both source-ordered GP-embedding-free GF257 codeword families of degree <=160 excluded by the first 20 withheld coordinates.');
+console.log('PASS: four source-readable GP-embedding-free GF257 codeword families of degree <=160 excluded by the first 20 withheld coordinates.');
