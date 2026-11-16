@@ -1,0 +1,19 @@
+# Independent 2019 claim of LP2 cleartext custody: acquisition gate
+
+**Status (16 November 2026): unverified third-party statement, no artifact and no decipherment.** This is a possible route to an actual source plaintext witness, separate from the already investigated gHOST3301 ~37-rune-PDF allegation. It is kept in `workplace/` because it is unsupported by original bytes and is **not** an established Cicada fact.
+
+## Identified source and the exact distinction
+
+At approximately 51:08 in Estéban Trujillo de Gutiérrez's published August/September 2019 gHOST3301 interview, **the interviewer**, summarizing his own 22 May 2019 interview with Manuel Chavez III (Defango), says that Chavez *claimed* to have recovered deleted Liber Primus-related files from an acquaintance's Macintosh and *claimed* that they contained "the second half in clear text." The interviewer immediately adds that he **had not obtained that cleartext**. The interviewer also identifies his May interview as an unpublished long transcript. No file content, filename, digest, custody timestamp, rune passage, page mapping or English text is included. The claim is therefore **two-step hearsay**, not a recovered artifact, not an authenticated author statement and not evidence that LP2 was solved.
+
+Primary published interview with transcript and timestamp: https://therealsamizdat.com/2019/08/30/cicada-files-ghost3301-interview/ (passage at 50:00 to 51:40). An October 2019 article independently **repeats the same interview quotation**, but does not establish the file: https://trackingmeroz.wordpress.com/2019/10/17/playing-us-false-the-ventriloquist-of-cicada-3301/. The original site's separately published 12 August 2019 Lestat interview acknowledges the 22 May interview was still being transcribed: https://therealsamizdat.com/2019/08/12/cicada-files-arturo-tafoyovsky-interviewed/.
+
+This **differs materially** from [the already closed #1177 original-publication asset audit](https://github.com/FlareZ123/liber-primus/issues/1177): #1177 sought gHOST's claimed **37-page runic PDFs before a later encryption layer**, while this statement alleges **cleartext from another purported custodian**. Neither witness provides original bytes. The preceding claim that historical group members worked on LP also has independent authenticity questions; the original LP2 JPEG release is independently dated **May 2014**, while this narrative discusses later participants. No causal link to authentic 2014 LP2 is established.
+
+## Decisive next input and falsifiable check
+
+Do not repeat generic web/PDF filename searches, guess missing files or treat the quoted claim as a crib. Only act on **(a)** a public, dateable copy of the original claimed file, its unmodified bytes, or **(b)** a source-specific custodian-provided identifier/archival locator. No unsolicited private contact or access to another person's device is authorized by this note.
+
+If such a file becomes available through permitted means, preserve its exact bytes and SHA-256 and check *before any decryption claim*: original creation/custody date; evidence it pertains to the Cicada-authenticated May 2014 LP2 release rather than a later imitation; original runes/word breaks/punctuation/image ordering at specific physical pages; and positive control against the already solved p56/p57 text. A genuinely pre-encryption text that predicts at least one original unknown-page contiguous passage with a reproducible reversible transform and withheld-page match would change the cryptanalytic frontier. Failure to align original physical pages, or an unauthenticated later composition, ends this branch without proliferating key searches.
+
+**Current decision:** no authenticated unknown plaintext, key or reversible algorithm. This is a narrowly identified potential **custody lead**, lower priority than an actually accessible original-source key or plaintext witness.
