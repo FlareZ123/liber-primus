@@ -50,6 +50,16 @@ This **is a genuine source-text wordlength multiset coincidence**, verified with
 - Windows Node22 successful execution: [43907734085](https://github.com/FlareZ123/liber-primus/actions/runs/43907734085).
 - The test includes independent reversed 44-word source-window plants that cross an invented split and recovers their actual source offsets in **all five** source corpora.
 
+## Independent plaintext-cipher discriminator at the exact p19 word-length hit
+
+A more decisive **actual rune-pattern** test is possible for the discovered Shakespeare offsets, independent of the null calibration. Grant the hypothesis **any possible permutation of all 41 ciphertext whole words**, and let **each word** have its own **arbitrary secret injective GP29 substitution alphabet**. A one-to-one substitution necessarily preserves every within-word repeated-symbol relation, irrespective of its key. Therefore the 41 source/cipher words admit a full word matching **if and only if** they can be paired by identical within-word equality patterns. Solve that finite constraint as an exact maximum bipartite matching, no search over 29! substitutions.
+
+On each of the two exact-length Shakespeare 41-word windows, at most **31 of the original 41 ciphertext words** can match source-word patterns; **at least 10 cannot**, even under entirely different secret substitution alphabets per word. This excludes **all word-preserving, word-permuting, independent-per-word bijective rune-substitution ciphers** using either passage, despite the perfect 41-word length bag. Both independent planted 41-word controls with an actual invertible GP29 substitution and reversed word order match **41/41**, proving the discriminator recognizes its target class.
+
+This further weakens the source-crib candidate without proving it impossible under **within-word variable keystreams, non-injective encoders, actual plaintext word-length changes, or a much more complex multi-layer cipher**. The source offered no clue selecting such a mechanism, so there is no causally justified Shakespeare-derived key.
+
+- [Exact 41-word original-pattern matching SFT](../sims/lp2_p19_shakespeare_sourcebag_wordpattern_sft.cjs), successfully run on [Windows Node22, 43909906767](https://github.com/FlareZ123/liber-primus/actions/runs/43909906767).
+
 ## Familywise calibration of the strongest-looking hit
 
 An observed 41-word bag match after testing millions of candidate windows cannot be treated as the probability of that individual bag occurring at a prespecified source offset. The correct discovery event includes searching **all 40 original span pairs, all 30 eligible window lengths, and all five source corpora**.
