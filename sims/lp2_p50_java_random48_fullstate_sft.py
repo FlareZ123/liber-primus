@@ -251,7 +251,7 @@ def main() -> None:
         "exhaustive_java_nextInt_low8_mod24_lanes": len(groups),
         "original_nextInt_low8_survivors": lowbyte_survivors,
         "gram_schmidt_radius_certificate": {
-            n: solver.radius_certificate for n, solver in inverses.items()
+            n: bool(solver.radius_certificate) for n, solver in inverses.items()
         },
         "synthetic_fullstate_nextInt256": "PASS",
         "synthetic_fullstate_nextBytes": "PASS",
