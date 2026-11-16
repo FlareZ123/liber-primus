@@ -67,6 +67,8 @@ for (const paragraph of paragraphs) {
         delta: mod29(word[0] - previous[previous.length - 1]),
         length: previous.length,
         sum: mod29(primeSum),
+        lastRune: previous[previous.length - 1],
+        nextOffset: runeCount,
         page: pageOf(runeCount - 1),
       });
     }
@@ -105,6 +107,54 @@ const exactContradictions = {
   },
   conclusion: 'No fixed deterministic number-to-boundary-delta lookup exists even for original p0',
 };
+/**
+ * Exact all-secret error lower bound for a deterministic public-input table.
+ * This is a logical original-cipher obstruction without an English model.
+ * Even independent secret lookups on every original physical page are granted.
+ * @param {Array<'length'|'sum'|'lastRune'>} features
+ * @returns {{tableStates:number,conflicts:number,minimumErrors:number}}
+ */
+function pageLookupLowerBound(features) {
+  /** @type {Map<string,number[]>} */
+  const counts = new Map();
+  for (const edge of edges) {
+    const key = [edge.page, ...features.map((feature) => edge[feature])].join(':');
+    if (!counts.has(key)) counts.set(key, Array(29).fill(0));
+    counts.get(key)[edge.delta]++;
+  }
+  let conflicts = 0;
+  let minimumErrors = 0;
+  for (const countsByDelta of counts.values()) {
+    if (countsByDelta.filter((n) => n > 0).length > 1) conflicts++;
+    minimumErrors += countsByDelta.reduce((n, v) => n + v, 0) -
+      Math.max(...countsByDelta);
+  }
+  return {tableStates: counts.size, conflicts, minimumErrors};
+}
+const exactAllSecret = {
+  lengthOnly: pageLookupLowerBound(['length']),
+  primeSumOnly: pageLookupLowerBound(['sum']),
+  lengthAndSum: pageLookupLowerBound(['length', 'sum']),
+  lengthSumLastRune: pageLookupLowerBound(['length', 'sum', 'lastRune']),
+};
+assert.deepEqual(exactAllSecret, {
+  lengthOnly: {tableStates: 523, conflicts: 427, minimumErrors: 1988},
+  primeSumOnly: {tableStates: 1258, conflicts: 780, minimumErrors: 1376},
+  lengthAndSum: {tableStates: 2400, conflicts: 279, minimumErrors: 309},
+  lengthSumLastRune: {tableStates: 2709, conflicts: 12, minimumErrors: 12},
+});
+// Original-source exact witnesses from p0 and p5 show nonzero cost even
+// for secret lookup per physical page, after adding earlier public inputs.
+assert.deepEqual([77, 105].map((pos) => {
+  const e = edges.find((x) => x.nextOffset === pos);
+  assert.ok(e);
+  return [e.page, e.length, e.sum, e.delta];
+}), [[0, 2, 6, 5], [0, 2, 6, 4]]);
+assert.deepEqual([1285, 1458].map((pos) => {
+  const e = edges.find((x) => x.nextOffset === pos);
+  assert.ok(e);
+  return [e.page, e.length, e.sum, e.lastRune, e.delta];
+}), [[5, 4, 26, 26, 3], [5, 4, 26, 26, 27]]);
 const train = edges.filter((e) => e.page < 40);
 const holdout = edges.filter((e) => e.page >= 40 && e.page <= 53);
 assert.equal(train.length, 2031);
@@ -178,6 +228,7 @@ console.log(JSON.stringify({
   source: 'original 12956 runes, 2896 printed words, 175 punctuation spans',
   boundaryCount: edges.length,
   exactContradictions,
+  exactAllSecret,
   calibration: {training: train.length, holdout: holdout.length},
   directTrain: direct(train),
   directHoldout: direct(holdout),
