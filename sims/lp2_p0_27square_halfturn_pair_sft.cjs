@@ -12,7 +12,8 @@ const path = require("node:path");
 const crypto = require("node:crypto");
 
 const source = fs.readFileSync(path.join(__dirname, "..", "resources", "liber-primus", "lp2-corpus.json"));
-assert.equal(crypto.createHash("sha1").update("blob " + source.length + "\0").update(source).digest("hex"), "054f2a0f780b7d46901acbe3d9bf4f0ac1801165");
+const canonical = Buffer.from(source.toString("utf8").replace(/\r\n/g, "\n"), "utf8");
+assert.equal(crypto.createHash("sha1").update("blob " + canonical.length + "\0").update(canonical).digest("hex"), "054f2a0f780b7d46901acbe3d9bf4f0ac1801165");
 const data = JSON.parse(source.toString("utf8"));
 const sections = data.pages.slice(0, 3);
 assert.deepEqual(sections.map((p) => [p.page, p.indices.length]), [[0, 262], [1, 266], [2, 201]]);
