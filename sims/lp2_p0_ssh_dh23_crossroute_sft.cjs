@@ -5,13 +5,15 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const corpus = JSON.parse(fs.readFileSync(path.join(root, 'resources/liber-primus/lp2-corpus.json'), 'utf8'));
-const ink = JSON.parse(fs.readFileSync(path.join(root, 'resources/liber-primus/lp2-ink-annotations.json'), 'utf8'));
+const physicalOverride = JSON.parse(fs.readFileSync(path.join(root, 'resources/liber-primus/lp2-p0-physical-ink-override.json'), 'utf8'));
 const first = corpus.pages.find((p) => p.page === 0).indices;
-const p0 = ink.pages.find((p) => p.page === 0);
+const physical = physicalOverride.physical_zero_based;
 const raw = first.slice(0, 13);
 assert.deepEqual(raw, [15, 8, 18, 3, 6, 19, 27, 0, 15, 26, 18, 21, 5]);
 assert.equal(physical.red_runes[0].length,8);
+assert.equal(physical.red_runes[0].length,8);
 assert.equal(physical.large_punctuation[0].after_runes,8);
+assert.equal(physical.black_following_runes[0].length,5);
 assert.equal(physical.black_following_runes[0].length,5);
 const b29 = (digits) => digits.reduce((n, x) => n * 29n + BigInt(x), 0n);
 const powmod = (a, exponent, modulus) => {

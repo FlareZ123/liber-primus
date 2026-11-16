@@ -1,4 +1,4 @@
-/** Original-source 8:5 red-heading / 13-dot route and held-out body gate. */
+/** Original-source red8/black5 opening phrase / 13-dot route and held-out tail gate. */
 'use strict';
 
 const assert = require('node:assert/strict');
