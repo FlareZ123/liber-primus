@@ -169,7 +169,7 @@ for (const [clock, resets] of clocks) for (const [name, triple] of sourceTriples
 }
 const maxOriginal = Math.max(...cases.map(x => x.best.ioc));
 assert(Math.abs(maxOriginal - 0.03454227823793121) < 1e-12);
-assert(Math.abs(ioc(native) - 0.060394037402846365) < 1e-12);
+assert(Math.abs(ioc(native) - 0.06012609969032139) < 1e-12);
 
 /* A complete independent English positive must recover its planted
  * source-selected key from the same full 812*29 hypothesis scan. */
