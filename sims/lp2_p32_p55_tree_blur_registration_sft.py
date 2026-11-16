@@ -85,6 +85,7 @@ def atlas() -> None:
     original = image('p55')[1430:2510, 625:1735]
     mask = (255 - original).astype(np.float32) / 255
     mask = cv2.resize(mask, (246, 246))
+    simple_template = cv2.GaussianBlur(mask, (0, 0), 7)
     mask = (mask > 0.14).astype(np.float32)
     mask = cv2.morphologyEx(
         mask, cv2.MORPH_CLOSE,
@@ -92,6 +93,7 @@ def atlas() -> None:
     )
     template = cv2.GaussianBlur(mask, (0, 0), 7)
     scores = []
+    simple_scores = []
     for scan in range(75):
         file = SRC / f'{scan:02}.jpg'
         raw = cv2.imread(str(file), cv2.IMREAD_GRAYSCALE)
@@ -99,15 +101,20 @@ def atlas() -> None:
         img = cv2.resize(raw, (600, 900))
         ink = (255 - img).astype(np.float32) / 255
         coeff = cv2.matchTemplate(ink, template, cv2.TM_CCOEFF_NORMED)
+        simple_coeff = cv2.matchTemplate(ink, simple_template, cv2.TM_CCOEFF_NORMED)
         # Reject zero/low-variance windows where a normalized coefficient
         # can be spuriously 1.0 (notably the blank interior of scan 00).
         width = 246
         local_mean = cv2.boxFilter(ink, -1, (width, width))[122:-123, 122:-123]
         local_sq = cv2.boxFilter(ink * ink, -1, (width, width))[122:-123, 122:-123]
         assert local_mean.shape == coeff.shape
-        coeff[local_sq - local_mean * local_mean < 0.0003] = -1
+        blank = local_sq - local_mean * local_mean < 0.0003
+        coeff[blank] = -1
+        simple_coeff[blank] = -1
         _, score, _, position = cv2.minMaxLoc(coeff)
         scores.append((float(score), scan, position))
+        _, raw_score, _, raw_position = cv2.minMaxLoc(simple_coeff)
+        simple_scores.append((float(raw_score), scan, raw_position))
     ranked = sorted(scores, reverse=True)
     assert ranked[0][1] == 49, ranked[:6]
     assert ranked[0][0] > 0.83, ranked[:6]
@@ -115,6 +122,10 @@ def atlas() -> None:
     print('Whole-manuscript p55-derived degraded tree template:')
     print('  all 75 scan maxima, top five:', ranked[:5])
     print('  strongest target scan49 margin:', round(ranked[0][0] - ranked[1][0], 6))
+    simple_ranked = sorted(simple_scores, reverse=True)
+    assert simple_ranked[0][1] == 49 and simple_ranked[0][0] > 0.7, simple_ranked[:6]
+    assert simple_ranked[0][0] - simple_ranked[1][0] > 0.13
+    print('  simple Gaussian-only tree template top five:', simple_ranked[:5])
     print('  source template selected using p32; no blind discovery-wide p-value')
 
 
