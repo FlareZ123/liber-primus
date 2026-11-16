@@ -166,7 +166,9 @@ async function main() {
       report.attachments[name] = {
         status: r.status, contentType: r.contentType, finalUrl: r.finalUrl,
         bytes: r.bytes.length, sha256: r.sha256,
-        preview: text.slice(0, 5000)
+        preview: text.slice(0, 5000),
+        tailPreview: text.slice(-5000),
+        fullText: (name === 'pastebin_wEgepAXG_raw' || name === 'pastebin_wWSxR5e9_raw') ? text : undefined
       };
     } catch (e) { report.attachments[name] = { error: String(e) }; }
   }));
