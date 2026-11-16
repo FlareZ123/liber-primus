@@ -12,9 +12,9 @@ The two original red title words on p0 have GP-prime sums 347 and 315; modulo th
 
 Two natural direct consumers fail:
 - Caesar shift 3 and Atbash-plus-shift-3 fail on the first original black word.
-- Starting the authentic p56 prime/totient cipher at prime 3, with its exact transparent-plaintext-F rule, makes the first black ciphertext rune TH decrypt to forbidden plaintext F. This is an exact first-symbol contradiction.
+- Starting the authentic p56 prime/totient cipher at prime 3 gives first key φ(3)=2, mapping first black ciphertext TH/index2 to plaintext F/index0. The plaintext-F-transparent forward rule is independently established across LP1 WELCOME/DIVINITY, LP2 p56, and the complete LP1 second koan. This rejects the direct p56-family consumer if that cipher is transferred to p0; the transfer itself is unproven, so this is not a universal rejection of p0 ciphers.
 
-The signed 2013 source supplies the DH scalar but no authenticated KDF, GP29 keystream serialization, or downstream receiver. Do not search arbitrary transforms from scalar 3. Issue #1200 is closed with this missing-consumer result. Reproducer/report:
+The signed 2013 source supplies the DH scalar but no authenticated KDF, GP29 keystream serialization, or downstream receiver. Do not search arbitrary transforms from scalar 3. The same consolidated p0 report also rejects the direct K18 consumers: p56 prime-totient start ordinal18 (both natural index conventions) is unreadable, and OutGuess passphrase18 on carrier17 yields high-entropy non-file data. The apparent SSH-dot-topology/K18 agreement is not selective after conditioning (435/9,969, approximately 1/23). Do not repeat these K18 branches or search SSH hosts. Issue #1200 is closed with this missing-consumer result. Reproducer/report:
 - `sims/p0_red_wordpair_dh23_key_sft.cjs`
 - `im-results/p0-dh23-red-heading-exchange.md` (pre-existing synthesis, retained as the single report; duplicate filenames briefly created during consolidation were deleted)
 
