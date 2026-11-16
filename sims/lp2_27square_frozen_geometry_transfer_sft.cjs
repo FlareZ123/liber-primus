@@ -132,6 +132,6 @@ function main() {
       assert.equal(labels(result.third.plaintext), 'A-T-T-P-AE-S-W');
     }
   }
-  console.log('All frozen original-cipher arithmetic and eight chapter controls passed.');
+  console.log('All original arithmetic, first chapter, and seven other 729-rune source-prefix controls passed.');
 }
 main();
