@@ -235,7 +235,7 @@ def main() -> None:
             upper_survivors.append((label, s))
         for lower24 in nextint_lowbyte_inverse(values):
             lowbyte_survivors.append((label, lower24))
-        for align in range(4):
+        for align in range(min(4, len(values) - 7)):
             for s in nextbytes_inverse(values, align):
                 block_survivors.append((label, align, s))
     assert not upper_survivors, upper_survivors
@@ -245,7 +245,7 @@ def main() -> None:
         "original_sha256": DIGEST,
         "original_streams": len(groups),
         "exhaustive_java_nextInt256_48bit_lanes": len(groups),
-        "exhaustive_java_nextBytes_48bit_lanes": 4 * len(groups),
+        "exhaustive_java_nextBytes_48bit_lanes": sum(min(4, len(v) - 7) for v in groups.values()),
         "original_nextInt256_survivors": upper_survivors,
         "original_nextBytes_survivors": block_survivors,
         "exhaustive_java_nextInt_low8_mod24_lanes": len(groups),
