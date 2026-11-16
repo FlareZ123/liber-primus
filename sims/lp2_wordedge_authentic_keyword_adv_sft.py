@@ -60,7 +60,8 @@ def original():
                 before_word = False
             elif ch in "-.&$§":
                 before_word = True
-            elif ch in "/ \n\t\r":
+            elif ch in "/ \n\t\r0123456789":
+                # Sparse textual numbers are annotations, never key-consuming runes.
                 continue
             else:
                 raise AssertionError(f"Unclassified original glyph page{page}: {ch!r}")
