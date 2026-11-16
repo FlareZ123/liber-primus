@@ -105,11 +105,44 @@ assert.equal(words.filter(w=>w.length>=6).length,815);
 assert.equal(words.filter(w=>w.length>=10).length,109);
 const plant5=classify(encryptPlant(words,byLength,5),signatures);
 const plant6=classify(encryptPlant(words,byLength,6),signatures);
+
+/**
+ * Corrected source-native Beowulf is a separately pinned Old English control.
+ * Its concatenated 48,012-rune GP29 string is split at its 10,885 original
+ * word lengths, using the fixture's explicit base29 alphabet.
+ */
+function oldEnglishBeowulfSignatures() {
+  const oe=JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+  const alphabet=oe.positiveControlAlphabet;
+  const out=new Map();
+  let position=0;
+  for(const length of oe.allSourceGpWordLengths){
+    const word=Array.from(oe.sourceGpBase29.slice(position,position+length),
+      ch=>alphabet.indexOf(ch));
+    position+=length;
+    assert.ok(word.every(x=>x>=0&&x<29));
+    if(length<6)continue;
+    const key=length+":"+signature(word);
+    if(!out.has(key))out.set(key,[]);
+    out.get(key).push("BEOWULF");
+  }
+  assert.equal(position,48012);
+  assert.equal(oe.allSourceGpWordLengths.length,10885);
+  return out;
+}
+const oldEnglish=classify(words,oldEnglishBeowulfSignatures());
+const oldExpected=[[6,256],[7,71],[8,1],[9,0],[10,0],
+  [11,0],[12,0],[13,0],[14,0]];
+for(const [length,supported] of oldExpected)
+  assert.equal(oldEnglish.byLength[length]?.supported,supported,
+    "corrected Old English source register at length "+length);
+
 const support=report=>Object.values(report.byLength).reduce((sum,x)=>sum+x.supported,0);
 assert.equal(support(plant5),815);
 console.log(JSON.stringify({
   scope:"all 12956 source runes, 2896 original printed words",
   originalByLength:source.byLength,
+  oldEnglishBeowulfByLength:oldEnglish.byLength,
   long10Plus:{n:109,supported:0},
   sourceNativeFivePeriodPlant:{n:815,supported:support(plant5)},
   sixPeriodWrongMechanismControl:{n:815,supported:support(plant6)},
