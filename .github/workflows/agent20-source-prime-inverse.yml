@@ -18,6 +18,7 @@ on:
           - radix
           - trifid
           - trifidCollision
+          - fivephase
 
 jobs:
   source-prime-inverse:
@@ -166,3 +167,16 @@ jobs:
       - name: Original all-secret GP27 length-3/5 block collision proof
         shell: pwsh
         run: node sims/lp2_trifid27_allsecret_block_collision_sft.cjs
+
+  wordlocal-periodfive-keyless-gate:
+    if: ${{ inputs.mode == 'fivephase' }}
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original GP29 additive phase-five word invariant with native controls
+        shell: pwsh
+        run: node sims/lp2_wordlocal_period5_delta_invariant_sft.cjs
