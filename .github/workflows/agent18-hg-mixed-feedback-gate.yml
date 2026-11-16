@@ -1,0 +1,25 @@
+name: Agent18 source H/G hybrid feedback original GP29 gate
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/agent18-hg-mixed-feedback-gate.yml'
+      - 'sims/lp2_hg_mixed_cipher_plain_feedback_sft.cjs'
+
+permissions:
+  contents: read
+
+jobs:
+  original-hg:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check self-contained source original gate
+        run: node --check sims/lp2_hg_mixed_cipher_plain_feedback_sft.cjs
+      - name: Run all-source native-GP controls and original inverse
+        run: node sims/lp2_hg_mixed_cipher_plain_feedback_sft.cjs
