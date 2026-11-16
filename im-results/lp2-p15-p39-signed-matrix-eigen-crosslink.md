@@ -264,7 +264,7 @@ A separate, more self-keyed program uses plaintext feedback: `P_t=C_t−S_t`, `S
 
 **Decision and limit.** The original p15 matrix does **not** decode adjacent p16–22 to ordinary source-native GP29 prose under these exact linear four-symbol feedback circuits, regardless of their hidden four-rune initial state. They still constitute **hypothesized** operations with no original publisher instruction selecting ciphertext feedback, a p16 reset, signed reconstruction, or literal GP29 text. This result does not address plaintext in a compressed/binary register, F-transparent variable-length coding, a different state transition, state resets, or other chapters. It reveals no author key, unknown plaintext or destination. Preserve the more unusual p15/p39/p50 polynomial identity as a possible clue only if a new **first-party value-changing consumer** appears.
 
-[Complete original-source, all-29⁴-seed CommonJS SFT](../sims/lp2_p15_matrix_feedback_allseeds_sft.cjs) · [Explicit manual Node22 workflow](../.github/workflows/lp2-p15-matrix-feedback-allseed-manual.yml).
+[Complete original-source, all-29⁴-seed CommonJS SFT](../sims/lp2_p15_matrix_feedback_allseeds_sft.cjs) · [Explicit manual Node22 workflow](../.github/workflows/lp2-p15-matrix-feedback-allseed-manual.yml) · [Passed all-eight-model GitHub Actions run 43868744550](https://github.com/FlareZ123/liber-primus/actions/runs/43868744550).
 
 ---
 
