@@ -319,12 +319,55 @@ function differenceReadoutGate(words) {
   console.log("UNKEYED DELTA READOUT", JSON.stringify(out));
 }
 
+
+/**
+ * The 841-label aligned-pair collision statistic is invariant under any
+ * stationary bijection of complete 2-rune blocks. This does not assume
+ * the particular p15/p39 dual-number labelling.
+ */
+function pairCollisionInvariant(words) {
+  /** @param {{page: number, letters: number[]}[]} source */
+  function grouped(source) {
+    const groups = [[], []];
+    for (const word of source) {
+      const pairs = groups[word.page <= 26 ? 0 : 1];
+      for (let i = 1; i < word.letters.length; i += 2) {
+        pairs.push(29 * word.letters[i - 1] + word.letters[i]);
+      }
+    }
+    return groups;
+  }
+  /** @param {number[]} pairs */
+  function profile(pairs) {
+    const counts = new Uint16Array(841);
+    for (const pair of pairs) counts[pair]++;
+    let doubleCollisions = 0;
+    for (const count of counts) doubleCollisions += count * (count - 1);
+    return {
+      pairs: pairs.length,
+      pairCollisions: doubleCollisions / 2,
+      ioc841: 841 * doubleCollisions / (pairs.length * (pairs.length - 1))
+    };
+  }
+  const unknown = grouped(words).map(profile);
+  const old = grouped(parseWords(lp1, 200)).map(profile);
+  assert.equal(unknown[0].pairs, 2903);
+  assert.equal(unknown[1].pairs, 2850);
+  assert.equal(unknown[0].pairCollisions, 5202);
+  assert.equal(unknown[1].pairCollisions, 4950);
+  assert.ok(Math.abs(unknown[0].ioc841 - 1.0386085546143595) < 1e-10);
+  // LP1 page numbers 0..16 all fall in the first group.
+  assert.ok(Math.abs(old[0].ioc841 - 3.0173643145299947) < 1e-10);
+  console.log("ALIGNED PAIR COLLISION INVARIANT", JSON.stringify({ earlyUnknown: unknown[0], lateUnknown: unknown[1], lp1Control: old[0] }));
+}
+
 const words = parseWords(text, 55);
 assert.equal(words.length, 2896);
 assert.equal(words.reduce((n, w) => n + w.letters.length, 0), 12956);
 wordLocalParityTest(words);
 conditionalWordShuffleGate(words);
 differenceReadoutGate(words);
+pairCollisionInvariant(words);
 lp1Control();
 originalDisjointPairGate(words);
 console.log("PASS original typed words, chapter family correction, dual-ring disjoint inverse, LP1 control");
