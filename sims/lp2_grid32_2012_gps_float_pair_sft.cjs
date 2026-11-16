@@ -25,7 +25,7 @@ const canonical = JSON.parse(fs.readFileSync(path.join(root,
 const source = canonical.bytes;
 assert.equal(source.length, 256);
 assert.equal(canonical.byte_count, 256);
-assert.deepEqual(canonical.shape, {rows:32, columns:8});
+assert.equal(canonical.shape, "32 rows by 8 columns across LP2 pages 49, 50, 51");
 
 /**
  * @param {ArrayLike<number>} bytes
