@@ -45,6 +45,21 @@ The correct local controls are discouraging for interpreting this as unique or c
 
 Printed context supplies a separate **hypothesis**, without plaintext recovery: p27 reads `ᛒᚠ-ᛞᛄᚢ-ᛒᛖᛁ-ᚫᚠ-ᛈ` (lengths **2–3–3–2–1**); p55 ends `ᚳᛉ-ᛞᛄᚢ-ᛒᛖᛁ` (lengths **2–3–3**), immediately before p56's independently decrypted **AN END**. These layouts make an interpretation resembling "... THE END OF A ..." tempting, but they supply **no cryptographic inverse or independent key** and many other sentences share these length patterns. No original unknown-page rune has thereby been decrypted. Preserve the 288→DEEP address as one bounded clue to be acted on **only when a source-selected word-combination or navigation rule predicts additional untouched ciphertext or a historical address**. The enlarged [original-source SFT](../sims/lp2_p27_p55_terminal_echo_sft.cjs) checks both original phrase copies, the nine and three 288-sum inventories, the exact 3823/475020 label-permutation null and the solved p56 DEEP inverse.
 
+## Original pixel-font comparison at the copied six runes (Agent2, 16 November)
+
+The source's two copies of `DJU-BEI` use the **same visible rune letterforms**. To test whether a reader could recognize a second typographic/allograph alphabet at this exact most unusual repetition, inspect the 2400×3600 original **44.jpg** (p27, line two) and **72.jpg** (p55, line four), with independently pinned original image SHA-256. Crop each of the six glyphs by their ink bounding columns, retain their full approximately 114px source-line height, downsample each cropped glyph to 60×114 with box averaging, and threshold at grayscale intensity 128. Do not infer glyph positions or boundaries from a desired matching score. This is a *visible original-ink shape* check, not a general JPEG steganography analysis.
+
+| Source rune | Matched p27-to-p55 thresholded ink IoU | Nearest cross-site *wrong-letter* IoU |
+| --- | ---: | ---: |
+| D | **0.951170** | 0.647539 |
+| J | **0.887586** | 0.337281 |
+| U | **0.956985** | 0.654709 |
+| B | **0.917476** | 0.501316 |
+| E | **0.988839** | 0.661126 |
+| I | **1.000000** | 0.489474 |
+
+Each of the six source p27 glyphs matches the **same** source p55 rune more closely than any of the other five letters; the lowest true-identity IoU is 0.8876, while the largest wrong-identity overlap is 0.6612. All copies have the usual source rune shapes. There is **no visible variant letterform that selects a key or a second text**, under this exact six-glyph grayscale test. Small JPEG residuals, subthreshold interior marks, cryptographic pixel payloads, and the distinct artwork outside these glyphs are outside its scope. The repeated text is still a useful possible *navigation* anchor, but its own visible typography gives no next operation. [Read-only original-JPEG SFT](../sims/lp2_p27_p55_echo_glyph_ink_sft.py); full 44.jpg/72.jpg SHA-256 checking, original-ink positive and all 30 wrong-glyph comparisons were executed against the zipped 2014 original JPEG bytes before commit.
+
 ## Source-selected circumference cue: finite cross-page negative
 
 The authenticated solved p57 parable says to **“shed our own circumferences”** and describes emergence from the **instar**. Its insect-molting theme makes it a plausible source-local operation to test against the detached wing on p27 and the moth-like insect on p55. Removing the **first and last rune of each printed word**, with line-wraps joined and actual word separators preserved, leaves **131 interior runes** on p27 (52 words) and **43 interior runes** on p55 (17 words). Their **longest common contiguous interior substring is at most two runes**; there are no exact three-rune interior repeats across those two page streams. The terminal six-rune echo itself reduces to the two single-rune word interiors `ᛄᛖ`. This finite source-cued operation provides **no additional ≥3-rune cross-page anchor** and produces no plaintext; other independently motivated operations remain open.
