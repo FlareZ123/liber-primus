@@ -204,6 +204,99 @@ assert.deepEqual(outer76.map((x,i)=>mod(x-(visible[i]-1),29)),gp55);
 assert.equal(crypto.createHash('sha512').update(Buffer.from(first128.concat(last52)))
   .digest('hex').length,128);
 
+
+/**
+ * Recover candidate XOR keystream independently from the 128 known digest
+ * characters. For every physical ring route, train an arbitrary binary LFSR
+ * separately on the first 64 keystream bytes (eight bitplanes) and predict
+ * the untouched final 64. This actually attempts unknown-key recovery, rather
+ * than ranking source-phrase or random-seed coincidences on original output.
+ */
+function berlekampMassey(bits) {
+  const n=bits.length;
+  const current=new Array(n+1).fill(0);
+  let prior=new Array(n+1).fill(0);
+  current[0]=1; prior[0]=1;
+  let order=0, priorChange=-1;
+  for(let t=0;t<n;t++) {
+    let error=bits[t];
+    for(let i=1;i<=order;i++) error^=current[i]&bits[t-i];
+    if(error) {
+      const before=current.slice();
+      const offset=t-priorChange;
+      for(let j=0;j<n+1-offset;j++) current[j+offset]^=prior[j];
+      if(2*order<=t) {
+        order=t+1-order;
+        prior=before;
+        priorChange=t;
+      }
+    }
+  }
+  return {order, coefficients:current.slice(0,order+1)};
+}
+function predictLfsr(prefix,model,n) {
+  const seq=prefix.slice();
+  for(let t=0;t<n;t++) {
+    let next=0;
+    for(let i=1;i<=model.order;i++)
+      next^=model.coefficients[i]&seq[seq.length-i];
+    seq.push(next);
+  }
+  return seq.slice(-n);
+}
+function lfsrAttempt(key) {
+  assert.equal(key.length,128);
+  const estimates=[];
+  const orders=[];
+  for(let bit=0;bit<8;bit++) {
+    const pre=key.slice(0,64).map(x=>(x>>>bit)&1);
+    const model=berlekampMassey(pre);
+    orders.push(model.order);
+    estimates.push(predictLfsr(pre,model,64));
+  }
+  const predicted=Array.from({length:64},(_,i)=>
+    estimates.reduce((s,layer,bit)=>s|(layer[i]<<bit),0));
+  const original=key.slice(64);
+  return {
+    minOrder:Math.min(...orders),
+    bytes:predicted.reduce((s,x,i)=>s+(x===original[i]),0),
+    bits:predicted.reduce((s,x,i)=>s+(8-(x^original[i]).toString(2)
+      .split('1').length+1),0)
+  };
+}
+const recovered={testedPerRegister:0,ascii:{minOrder:Infinity,bestBytes:0,bestBits:0},
+  nibble:{minOrder:Infinity,bestBytes:0,bestBits:0}};
+for(let c2=0;c2<4;c2++)for(const d2 of [1,-1])
+  for(let c3=0;c3<4;c3++)for(const d3 of [1,-1]) {
+    const values=traversal(1,c2,d2).concat(traversal(2,c3,d3))
+      .map(i=>bytes[i]);
+    recovered.testedPerRegister++;
+    for(const kind of ['ascii','nibble']) {
+      const key=values.map((v,i)=>v^(kind==='ascii'?
+        hash.charCodeAt(i):hex[i]));
+      const attempt=lfsrAttempt(key);
+      const summary=recovered[kind];
+      summary.minOrder=Math.min(summary.minOrder,attempt.minOrder);
+      summary.bestBytes=Math.max(summary.bestBytes,attempt.bytes);
+      summary.bestBits=Math.max(summary.bestBits,attempt.bits);
+    }
+  }
+assert.equal(recovered.testedPerRegister,64);
+assert.deepEqual(recovered.ascii,{minOrder:30,bestBytes:2,bestBits:281});
+assert.deepEqual(recovered.nibble,{minOrder:29,bestBytes:2,bestBits:286});
+// Eight independent short binary recurrent channels form an exact positive.
+const syntheticLayers=[];
+for(let bit=0;bit<8;bit++) {
+  const n=bit+3;
+  const seq=Array.from({length:n},(_,i)=>i===0?1:((i+bit)&1));
+  while(seq.length<128) seq.push(seq.at(-1)^seq.at(-n));
+  syntheticLayers.push(seq);
+}
+const synthetic=Array.from({length:128},(_,i)=>syntheticLayers
+  .reduce((s,v,bit)=>s|(v[i]<<bit),0));
+assert.equal(lfsrAttempt(synthetic).bytes,64);
+assert.equal(lfsrAttempt(synthetic).bits,512);
+
 console.log(JSON.stringify({
   source:'Original LP2 p49-51 table, p55, p56 printed hash, p57 clear text; 2013 180-prime skip',
   shellLengths:shells.map(x=>x.length),
@@ -212,5 +305,6 @@ console.log(JSON.stringify({
   fixedByteChecks:direct,
   innermostKnownGP:inner,
   primeTotientHybrid:mixed,
+  digestXorLinearKeyRecovery:recovered,
   conclusion:'No digest preimage, exact nibble codebook, direct prime consumer or unknown GP plaintext recovered'
 },null,2));
