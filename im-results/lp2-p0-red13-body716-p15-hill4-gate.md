@@ -2,7 +2,7 @@
 
 **Agent 20, 15 November 2026. Executed original-source reversible gate, bounded negative.** No authenticated unknown plaintext, historical key or destination.
 
-**Original-image correction (16 November 2026):** Physical p0 is red runes 0–7, then the red 13-dot mark after rune 7 (offset 8), then black runes 8–12, then an ordinary black full stop. The older derivative annotation's 13-red-rune span and marker-at-13 position are wrong. The first 13 GP29 values are unchanged, but they form an opening phrase split across red8 and black5, not a continuous red heading. The first black rune after the marker is S at offset 8, not TH at offset 13. Treat any colour-based selector below under this correction; image-faithful code uses resources/liber-primus/lp2-p0-physical-ink-override.json.
+**Corrected original-image adjudication (16 November 2026):** The first eight rune glyphs on original p0 are red, followed by an ordinary small red word dot, five more red heading runes, and then a distinct large red 13-dot marker at GP rune offset13. The black body begins with `TH` at offset13. The false red8/marker8/black5 reinterpretation is [retracted](lp2-p0-red13-13dot-blackbody-original-source-adjudication.md); the original red13-body716 Hill4 input alignment in this study was correct and its negative result remains valid.
 
 ## Distinct source-register decision
 
