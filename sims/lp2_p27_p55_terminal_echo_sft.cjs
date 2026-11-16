@@ -40,7 +40,7 @@ for (let page = 0; page <= 55; page++) {
   if (page === 50) continue; // numeric-only original image
   // The text transcription omits numeric-only p50, while JSON reserves it.
   const body = parts[page < 50 ? page : page - 1];
-  const words = [...body.matchAll(/[ᚠ-ᛠ]+/gu)].map((match) => ({
+  const words = [...body.matchAll(/[ᚠ-ᛡ]+/gu)].map((match) => ({
     text: match[0], offset: match.index, slot3: -1
   }));
 
@@ -72,19 +72,19 @@ for (let page = 0; page <= 55; page++) {
 const repeated = [...printedPairs.entries()].filter(([, occurrences]) =>
   occurrences.length > 1);
 const phrase = 'ᛞᛄᚢ-ᛒᛖᛁ';
-assert.equal(totalPrintedPairs, 2414);
-assert.equal(printedPairs.size, 2413);
+assert.equal(totalPrintedPairs, 2584);
+assert.equal(printedPairs.size, 2583);
 assert.equal(repeated.length, 1);
 assert.equal(repeated[0][0], phrase);
 assert.deepEqual(repeated[0][1].map((p) => [p.page, p.wordIndex]),
-  [[27, 7], [55, 19]]);
+  [[27, 6], [55, 17]]);
 
-assert.equal(token3.length, 830);
-assert.equal(new Set(token3).size, 813);
-assert.equal(pair3Edges.length, 150);
+assert.equal(token3.length, 789);
+assert.equal(new Set(token3).size, 773);
+assert.equal(pair3Edges.length, 164);
 const counts3 = [...runeWordTypes.get(3).values()].filter((v) => v > 1);
 assert.deepEqual(counts3.slice().sort((a, b) => a - b),
-  [...Array(15).fill(2), 3]);
+  [...Array(14).fill(2), 3]);
 // No printed word of >=4 runes repeats in this source transcription.
 for (const [len, types] of runeWordTypes) {
   if (len >= 4) assert([...types.values()].every((n) => n === 1));
@@ -99,7 +99,7 @@ for (let i = 0; i < pair3Edges.length; i++) {
         a[1] === b[0] || a[1] === b[1]) sharedPairs++;
   }
 }
-assert.equal(sharedPairs, 21);
+assert.equal(sharedPairs, 26);
 const n = token3.length;
 const A = counts3.reduce((s, m) => s + m * (m - 1), 0);
 const B = counts3.reduce((s, m) => s + (m * (m - 1)) ** 2, 0);
@@ -109,7 +109,7 @@ const D = counts3.reduce((s, m) =>
 const disjointPairs = choose2(pair3Edges.length) - sharedPairs;
 const expectedDuplicates = disjointPairs * (A * A - B + D) / falling(n, 4) +
   sharedPairs * C / falling(n, 3);
-assert(Math.abs(expectedDuplicates - 2.86293408946e-5) < 1e-12);
+assert(Math.abs(expectedDuplicates - 3.7224819186949e-5) < 1e-12);
 
 const glyphs = corpus.runes;
 const expectedSix = phrase.replace('-', '');
@@ -123,9 +123,9 @@ for (const [page, offset, global] of test) {
   assert.equal(before + offset, global);
 }
 
-console.log('SOURCE: ᛞᛄᚢ-ᛒᛖᛁ, p27 word 8-9, p55 terminal words 20-21');
-console.log('CORPUS: 2414 literal-dash word pairs, 2413 types, 1 repeat');
-console.log('GEOMETRY: 830 three-rune word slots; 150 adjacent 3+3 edges; 21 sharing edge pairs');
+console.log('SOURCE: ᛞᛄᚢ-ᛒᛖᛁ, p27 second line, p55 final two words');
+console.log('CORPUS: 2584 literal-dash word pairs, 2583 types, 1 repeat');
+console.log('GEOMETRY: 789 three-rune word slots; 164 adjacent 3+3 edges; 26 sharing edge pairs');
 console.log('SOURCE CONTROLS: original p27 offsets 28..33 -> global 6555..6560');
 console.log('SOURCE CONTROLS: original p55 offsets 70..75 -> global 12950..12955');
 console.log('CONDITIONAL permutation null: E[duplicated 3+3 pairs] = ' +
