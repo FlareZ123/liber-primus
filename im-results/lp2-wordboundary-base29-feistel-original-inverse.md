@@ -37,6 +37,20 @@ The actual first chapter begins **CYCBTIATHTHPE HCX SON REOJTH NOEEASP ...** und
 
 An **independent authentic solved-p57 PARABLE** source serves as the positive plant: the complete **95-rune / 20-word** native-GP text, including all four punctuation spans, is forward encoded under this rule and recovered **exactly, rune for rune and boundary for boundary**. Synthetic ciphertext changes word breaks in three of four punctuation spans; its source original remains untouched. Deliberately using boundary multiplier3310 instead of3301 fails this positive exact inversion. The positive verifies real two-register reversibility, and cannot establish a historical LP2 rule.
 
+## Full source-length GP-native control and mismatch
+
+A stronger positive control retains **every original punctuation span's exact number of runes, words and printed word lengths**. It selects real GP-normalized English words of the matching lengths from pinned Gibran, Emerson and Shakespeare controls. These lexemes need not compose grammatical sentences; the purpose is to measure whether the candidate cipher gives a realistic original ciphertext *shape* on reference GP text. The resulting **12,956-rune/2,896-word** native GP plant round-trips all rune identities and every original word boundary.
+
+| Same-size original or planted cipher | Actual source LP2 | Native GP encrypted plant |
+| --- | ---: | ---: |
+| One-rune printed words | **83** | **652** |
+| Adjacent identical ciphertext runes | **86** | **457** |
+| GP29 cipher/output coincidence | **0.034478397865** | **0.034481996423** |
+
+The full-length planted *plaintext* has GP29 coincidence **0.060708672967**, while the candidate's encrypted output has **0.034481996423**, nearly uniform. Thus the construction washes out source-native symbol frequency, but its output is sharply inconsistent with the actual manuscript's original singleton scarcity and anti-doublet structure. The candidate's boundary register behaves like approximately unconstrained random packetization, and its additive rune register leaves a random number of repeats. The exact source contrast rejects the fixed recipe more decisively than a missing readable prefix alone.
+
+[Successful full native-GP original-length Windows Node22 test 43836294352](https://github.com/FlareZ123/liber-primus/actions/runs/43836294352).
+
 ## Decision and reproducibility
 
 **Retire this exact 3301/checksum/BASE29/prime-totient Feistel composition as a direct LP2 plaintext decoder.** It genuinely changes cipher rune values and can move all source word boundaries, but original p0–2 and pp40–53 both remain nonlinguistic. The result has narrow scope; no general exclusion of context-dependent variable-boundary ciphers follows. In particular a newly discovered author-selected operator or key would deserve direct testing.
