@@ -66,9 +66,28 @@ For each starting index, a dynamic program stores the complete set of reachable 
 | 4365 | 62 | 0.0349423 |
 | 4366 | 63 | 0.0338424 |
 
-Every allowed output is near the 29-symbol uniform IoC **1/29≈0.034483**, far below the independently solved p57's original clear rune IoC **0.06270997**. Their GP-rune openings are printed in the source-exact SFT. The surviving p54 offsets are arithmetic continuations, **not recovered keys**; no original source selects one, and none produces an authenticated readable sentence. The first eight failures are exact independent of English, whereas the eight final outputs' nonnative character is a linguistic assessment.
+Every allowed output is near the 29-symbol uniform IoC **1/29≈0.034483**, far below the independently solved p57's original clear rune IoC **0.06270997**. Their GP-rune openings are printed in the source-exact SFT. The surviving p54 offsets are arithmetic continuations, **not recovered keys**; no original source selects one, and none produces an authenticated readable sentence. The first eight failures are exact independent of English. The final chapter's eight outputs are nonprose by coincidence statistics; the independent original printed-word gate below also excludes every surviving start as a credible direct English reading, conditional on those printed spaces being plaintext word boundaries.
 
 **Reproduction:** [Single-file Node22 CommonJS SFT with strict source p56 and nonzero-start controls](../sims/lp2_p56_phi_ftransparent_5000start_sft.cjs), successful [manual Windows Actions run 43723399919](https://github.com/FlareZ123/liber-primus/actions/runs/43723399919). This is a distinct finite extension of the initial [phase-zero SFT](../sims/lp2_original_phi_Ftransparent_ninechapter_gate_sft.cjs); it does not depend on its failure positions being assumed or language fitting.
+
+## Original p54 printed-word gate on all six surviving prime starts (16 November 2026, Agent 29)
+
+The exact 5,000-start F-transparent analysis above leaves only six possible complete arithmetic inverses of the **308-rune p54–55 chapter**. Instead of tuning any further key, use a source-fixed constraint at its very start: original p54 (JPEG 71) prints the complete first two units `ᚪ-ᛗᛝᛞᛡᚦᛉᛁᛗ.`. The first is **one rune**, followed by a printed word separator; the second is **eight runes** ending at a period. Their original GP indices are `[24]` and `[19,21,23,27,2,14,10,19]`. None of these nine ciphertext positions is F, so all F-transparent skip-mask variants at the same start produce **identical** first-two-word plaintext candidates.
+
+Using the original p56 consuming inverse `P[i] = C[i] − (prime[start+i]−1) mod29` with zero-based prime starts fixed by the preceding whole-chapter exhaustive gate:
+
+| Entire p54–55 legal prime start | Actual starting prime | First complete source word | Second complete source word |
+|---:|---:|---|---|
+| 167 | 997 | `X` | `YALOETYTS` |
+| 168 | 1009 | `TH` | `OEEEEOXLGP` |
+| 3047 | 27941 | `J` | `RTHIADNGBEAR` |
+| 4121 | 39157 | `E` | `NNOETEOXTHU` |
+| 4365 | 41759 | `Y` | `MJWTEOLSE` |
+| 4366 | 41761 | `A` | `NCEOHHMNT` |
+
+Under the independently established **GP-native English** spelling and if the manuscript's printed separators are real plaintext word boundaries, an ordinary first one-letter word must be `A` or `I`. Only start **4366** passes that necessary condition, and its immediately following complete eight-rune word `NCEOHHMNT` is not an ordinary recognizable English GP word. Thus the entire source-fixed p54 original word opening provides **no credible direct English reading among any of the exact surviving prime-start candidates**, strengthening the earlier uniform-IoC observation without adding a search parameter. It is a language/word-boundary gate, **not an algebraic exclusion**: another language, nonlinguistic packet, state-encoding separators, or a separately authenticated additional transform would require a distinct test.
+
+The [read-only Windows Node22 SFT](../sims/lp2_p54_phi_survivor_native_firstwords_sft.cjs) asserts the **printed punctuation and nine unchanged original runes**, independently rebuilds the prime list, computes all six complete word prefixes, and demonstrates a **solved original p56 `AN END` positive** at start0. It consumes the six starts already established by the exact whole-chapter gate; it does not re-run a 5,000-start sweep, fit word fragments, or claim recovered plaintext.
 
 ## Consolidated decision and limits
 
