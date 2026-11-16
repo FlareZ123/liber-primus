@@ -1,6 +1,6 @@
 # Original p27 wing: thirteen perimeter faces and two unnumbered internal faces
 
-**Agent5, 15 November 2026. New original-image structural observation and one bounded cipher-negative; zero recovered unknown LP2 plaintext or historical key.**
+**Agent5, 15 November 2026; Agent14 16 November full-face traversal gate. Original-image structural observation and two bounded cipher/reader negatives. Zero recovered unknown LP2 plaintext or historical key.**
 
 ## Source-visible result
 
@@ -13,6 +13,25 @@ Apply the pre-existing fixed crop x520..1939/y450..929, 8-connected pale compone
 Exactly **two** components are wholly enclosed from that exterior reading: **6** (centroid x1221,y698) and **9** (centroid x1379,y647). The previously missed small triangular face **7** is **on the lower rim**, not one of the two enclosed central faces.
 
 This precise 13+2 decomposition and the complete thirteen-face perimeter order recur unchanged at original grayscale thresholds **80, 120, 160, 200, 235**. Original contour run counts are **14, 14, 16, 14, 14** before omitting the exterior gap and threshold200's short contact fragments. The corresponding original labeled 15 components are unchanged. The single-file image and corpus reproduction verifies all five independent pixel thresholds. This is a fixed image-analysis contract, not a claimed author's parsing rule; contour proximity cutoffs are still analyst choices.
+
+
+### Whole-wing root-to-tip routing remains nonunique
+
+To determine whether the whole original venation network fixes one reader, retain the same fifteen native-scale faces and grant a restrictive deterministic operation: start at leftmost face 1 (812,723), end at rightmost face 15 (1711,680), visit every face exactly once, and move only between image-neighboring faces. This grants the apparent anatomical root-to-tip direction even though no arrow is printed.
+
+The existing reciprocal-near-contour contact criterion requires at least 25 boundary pixels on each of two cells to lie within the proposed fixed radius. At source grayscale threshold160 and minimum enclosed area200px, exhaustive bitmask DP yields:
+
+| Contact radius | Graph edges | Complete 1→15 paths |
+| ---: | ---: | ---: |
+| 18 px | 24 | **4** |
+| 22 px | 27 | **6** |
+| 26 px | 27 | **6** |
+| 30 px | 28 | **13** |
+
+For the stricter 18px graph, *both* 1,2,5,7,4,3,6,8,11,12,9,14,10,13,15 and 1,2,5,7,4,3,6,8,11,12,14,9,10,13,15 are valid distinct complete self-avoiding paths through actual neighboring face regions. Across source thresholds80,120,160,200,235 and contact radii18,22,26,30, the observed path-count minimum is **4**; only threshold235/radius22 differs from the usual six with four, still nonunique. The path algorithm detects exactly one route on a native synthetic 15-node chain and two on a complete four-node graph with specified endpoints.
+
+Thus even selecting the endpoints, disallowing revisits and requiring local image contacts cannot specify a unique full-wing cipher reading order. The proximity radius remains an investigator's convention, and no labels select one of these alternatives or map it to a GP29 inverse. [Read-only original-JPEG reproducible test](../sims/lp2_p27_wing_15face_root_tip_nonunique_sft.py) asserts exact source hash, all 20 image settings, and two admissible rival orders. No key, unknown plaintext, or original-cipher claim is derived.
+
 
 ## Cipher consequence and bounded test
 
@@ -33,6 +52,6 @@ The chosen shell append/columnar rule is explicitly an investigator attempt, **n
 
 ## Decision
 
-**Preserve the exact 13-rim/2-inner geometry as a new candidate clue; retire the literal fixed shell transposition of p55 and any claim that bare wing-cell count supplies a unique fifteen-step key.** A dated source plate with labels registered unambiguously onto the original graphic would be needed to fix the interior placement and labels. A separately period-authenticated operation must then explain which text stream to decrypt, its clock and how the labels become key material. There is currently **no such selector**, so extending the test by arbitrary winding starts, substitutions or matched language scores would overfit.
+**Preserve the exact 13-rim/2-inner geometry as a candidate visual clue; retire the tested fixed shell transposition and any claim that the unlabeled wing supplies one unique fifteen-step key.** Full root-to-tip traversal remains nonunique even under restrictive self-avoiding graph adjacency, with at least four routes in the native-image settings tested. An independently dated plate with unambiguous registered vein labels, or a separately authored rule distinguishing these valid routes, is needed to fix the fifteen-position sequence. A second author-selected operation must establish the ciphertext receiver and GP29 key mapping. Neither exists in the current source, so another path or shift selected from language scores would fit the output after the fact.
 
-**Reproducer:** sims/lp2_p27_wing_perimeter_sft.py, reading resources/liber-primus/44.jpg and resources/liber-primus/lp2-corpus.json. Prior face audit: im-results/lp2-p27-fifteenth-wing-face-source-gate.md; prior fifteen-transition graph ambiguity: im-results/lp2-p27-p15-fifteen-transition-order-gate.md.
+**Reproducer:** sims/lp2_p27_wing_perimeter_sft.py, reading resources/liber-primus/44.jpg and resources/liber-primus/lp2-corpus.json. Full root-to-tip test: sims/lp2_p27_wing_15face_root_tip_nonunique_sft.py. Prior face audit: im-results/lp2-p27-fifteenth-wing-face-source-gate.md; prior fifteen-transition graph ambiguity: im-results/lp2-p27-p15-fifteen-transition-order-gate.md.
