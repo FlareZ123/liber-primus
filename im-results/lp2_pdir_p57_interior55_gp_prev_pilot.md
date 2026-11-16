@@ -1,6 +1,6 @@
-# p57 interior-55 key: corrected pointer-direction gates
+# p57 circumference-key gates: interior-55 pointer and one-edge-75 p55
 
-**Status:** bounded negative for the tested source-motivated p57-key pointer readings. No LP2 plaintext, authentic key, or cipher mechanism recovered. This does not exclude the broader pointer-direction family or a different source-selected key.
+**Status:** bounded negative for two distinct original-clear p57 key readings: the interior-55 cyclic direction family and a direct one-edge-75 complete p55 F-transparent inverse. No unknown LP2 plaintext, authenticated key or cipher mechanism recovered. The broader pointer-direction family, other keys and other GP29 state machines remain unresolved.
 
 ## Human solve-path hypothesis
 
@@ -48,13 +48,31 @@ A more literal causal reading is that, after decoding a word, its GP-prime-value
 - Empirical upper-tail p-value: **0.412**. No plaintext-like register appears.
 - Positive control: the p57 clear text repeated three times (285 runes), planted under this causal rule, is recovered exactly at beam width 800.
 
+## Independent gate D — one p57 word edge removed, exact p55 75-rune receiver
+
+A separate, tighter same-source interpretation uses the **95 clear GP29 runes in p57's 20 authentic printed words**. Removing **one endpoint per word** leaves exactly **75 transmitted runes**. Physical p55 has **76 runes**, of which its very first rune continues the final p54 word, leaving **75 local runes**. The 2016 signed words/numbers guidance and p57's "shed our own circumferences" suggest the operation, but **neither explicitly commands one-sided peeling or GP29 addition**. This numerical correspondence is independently source-visible; no parameter is selected from candidate language scores.
+
+The frozen full-page test strips either the first or the last rune of each p57 word in printed order, forms one non-cyclic 75-rune key, and applies both GP29 addition signs to unchanged p55 local rune offsets 1–75. Each variant uses the **authentic solved p56/LP1 plaintext-F-transparent** operation: plaintext F (GP index 0) emits F without advancing the key; non-F plaintext consumes one rune; a ciphertext F can represent either branch. Exact dynamic programming tests all valid skip histories and verifies forward recovery; no beam or key offset is fitted.
+
+| p57 key rule | Encrypt sign | Complete original p55 inverses | First mathematically impossible rune of p55 local 75 | Candidate GP29 IoC |
+| --- | ---: | ---: | ---: | --- |
+| Remove first rune of each word | − | **2** | none | **0.03135; 0.03712** |
+| Remove first rune of each word | + | **0** | **54** | none |
+| Remove last rune of each word | − | **0** | **8** | none |
+| Remove last rune of each word | + | **0** | **66** | none |
+
+Both surviving complete 75-rune originals in the first case are nonlinguistic; they begin LDCAGGAARUSNELFTHAE... and have no sustained GP English words. The source-clear p57 75-rune control has **IoC 0.05946**. For all four exact modes, encrypting the complete authentic p57 first 75 runes as a planted plaintext and blindly inverting them with the same branching decoder recovers **75/75 original runes**. Every surviving original branch also forward re-encrypts to the exact unchanged ciphertext. Thus the three impossibility outcomes do not arise from broken F handling, and the surviving branch is an implementation-valid negative rather than a plaintext claim.
+
+**Decision:** retire this source-frozen one-sided p57 word-edge key as a direct, single-use historical F-transparent p55 cipher. A different word-clocking role, secret restoration of p54's carried rune, other ciphers or additional keys would be new hypotheses requiring an independent original clue. The bare 95−20=75 equality does not authenticate such a mechanism. [Exact original-input CJS SFT](../sims/lp2_p57_oneedge75_p55_ftransparent_sft.cjs).
+
 ## Decision
 
 The p57 interior-55 candidate does not select a successful cyclic pointer mechanism under the tested previous-ciphertext prime-sum, current word-length odd/prime, or causal previous-plaintext prime-sum readings. The coin-model controls demonstrate that the decoder can recover matched planted text; the original scores are nevertheless typical of shuffled key orders.
 
-Retire these specific p57-key/simple-direction readings. Do not expand them into arbitrary word statistics, offsets, or conventions without a new independent clue. The deterministic multi-skip model remains unassessed because its positive-control recovery gate failed. The broader pdir key-stream campaign is a separate question and is not excluded here.
+Retire these specific p57-key/simple-direction readings and the distinct one-edge-75 F-transparent p55 reading in gate D. Do not expand them into arbitrary word statistics, offsets, or conventions without a new independent clue. The deterministic multi-skip model remains unassessed because its positive-control recovery gate failed. The broader pdir key-stream campaign is a separate question and is not excluded here.
 
 ## Reproduction
 
 - node im-results/lp2_pdir_p57_interior55_gp_prev_pilot.cjs — corrected GP_prev screen and matched null.
 - node im-results/lp2_p57_interior55_causal_direction_gate.cjs — causal word-length and previous-plaintext coin gates with positive controls.
+- node sims/lp2_p57_oneedge75_p55_ftransparent_sft.cjs — exact p57 word-edge-75 to p55 complete-page historical F-transparent inverse and native solved source plants.
