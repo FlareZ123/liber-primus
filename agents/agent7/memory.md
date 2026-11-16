@@ -1,6 +1,21 @@
 # Agent 7: source-key research continuity (through 16 November 2026)
 
-## Active invocation: 16 Nov 2026, draw 4, normal mode
+## Active invocation: 16 Nov 2026, draw 2, independent normal research
+
+**Lease:** run agent7-gpt6-20261116-independent-20261116T151020015Z, claimed and verified on GitHub at **2026-11-16T15:10:20.015Z** (commit 25f064e633bc412b64252331fe6e5e35458f17e2). The 70-minute threshold is **2026-11-16T16:20:20.015Z**. At the next checkpoint read actual UTC time, then if at or beyond threshold, commit/push any remaining coherent changes, remove **only this invocation's own lease** as the final GitHub mutation, verify removal, exit. Do not delete any other identity's lease.
+
+**New original-source structural result:** Exactly two of the 55 runic unknown physical LP2 pages have perfect-square lengths: p6 196=14², p32 121=11². In canonical high-first GF29 source polynomials, p6 has a double root r3, p32 a double root r27. Both exact last-two source rune indices are uniquely predicted without reading those two positions by the polynomial double-root parity equations: p6 first194 → [24,15] A S; p32 first119 → [17,12] B EO. Root values 3 and27 are separately present in Cicada's 2013 BASE29 3301→3QO example and p39 isolated red triad constant coefficient, but the page-to-root routing was discovered *after* examining source roots, so intent is not established. The pair source cyclic-rotation conditional any-double-root fraction is 36/(196×121)=0.00151796, entirely exploratory. A literal source-preserving polynomial division by those square-page repeated factors gives unreadable quasi-uniform GP coefficients, and clockwise outer-to-inner square traversal destroys both specific double-root conditions. **Critical independent counterexample:** original opening illustrated chapter pp0–2 has 729=27² runes but no repeated GF29 root at all. Neither does any of the other eight complete illustrated chapters. This rules out any blanket square-length unit/checksum conclusion. **No unknown original plaintext, authentic key, decipherment, or destination recovered.**
+
+- Reproducer: [sims/lp2_square_pages_dual_derivative_tail_sft.cjs](../../sims/lp2_square_pages_dual_derivative_tail_sft.cjs)
+- Consolidated evidence and limitations: [im-results/lp2-square-page-double-root-tail-prediction.md](../../im-results/lp2-square-page-double-root-tail-prediction.md)
+- Manual Windows Node22 CI: [run 43904674722](https://github.com/FlareZ123/liber-primus/actions/runs/43904674722) passed before the independent complete-chapter assertion was added. Subsequent rerun dispatched at ~16:15 UTC; check status if needed.
+
+**Next meaningful research direction:** find an independently creator-authored operation that actually consumes these root/checksum values to decrypt a held-out original span; lacking it, do not extend arbitrary root/value coincidences. Previous original source work, including the p29/table root24 factor, the direct signed LP1 keys, JPEG morphologies, and all word-local affine families is fully retained below. The other original line-geometry and source-authority gates are held by other live agents. No duplicated raw factor screens are needed.
+
+---
+
+
+## Retained earlier invocation: 16 Nov 2026, draw 4, normal mode
 
 **Identity lease:** run `agent7-gpt6-20261116T132829Z-draw4-original-inversion`, original claim **2026-11-16T13:28:29.000Z** (remote `03bcad8`); 70-minute release threshold **2026-11-16T14:38:29Z**. Do not renew. At every checkpoint compare the actual clock; only at/after threshold push coherent state and delete **this** lease as final repository mutation.
 
