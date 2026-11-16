@@ -139,6 +139,28 @@ The independent original Latin Vulgate wholeword-GP corpus contains the GP text 
 
 [Self-contained source-original CJS SFT](../sims/lp2_affine_longword_candidate_holdout_sft.cjs) reconstructs the three fitted word models, verifies the original source words, the Vulgate source spelling, the earlier neighboring word and the forced impossible native suffix. The CMU wordlist census is a distinct offline scan using package version 1.1.3 and the previously published native GP encoder. **The earlier three-word negative is a precise finite-lexicon result, not a statement that all English vocabulary is excluded.** No original LP2 plaintext or author-selected key has been recovered.
 
+
+## Exact four F-free p0 words exclude arbitrary page-reused affine feedback (16 November, Agent13)
+
+The prior word-local additive/affine tests left open whether **one unknown affine page key** could persist across complete printed words, while allowing every word **five independently arbitrary ciphertext initialization runes**. Test the exact GP29 model with page-wide scalar A from 1..28, page-wide feedback B from 0..28, and five unconstrained page-wide phase shifts K[0..4]:
+
+~~~text
+C[j] = A*P[j] + K[j mod 5] + B*C[j-5] (mod 29), j>=5.
+~~~
+
+Lock four printed source p0 words with **no ciphertext F**: word6 at rune offset23 length11; word22 offset95 length8; word41 offset158 length8; word51 offset203 length8. The source-first, native GP English wordlist has **1,453 length11 forms** and **4,331 length8 forms** among its fixed 29,157 words. In the first length11 word, any candidate plaintext and A/B pair uniquely fixes all five K values using source positions5..9, and original position10 supplies an independent exact key equation. The other three original F-free words each supply three held-out GP plaintext positions j5..7. For every surviving key, the SFT checks whether **any** native GP8 English word has those forced runes. Each original word's first five source ciphertext glyphs are unconstrained and independent, so there is no shared-IV assumption. No F transparency ambiguity can intervene in these four original ciphertext inputs.
+
+| Cumulative original source words | Surviving exact (A,B,anchor plaintext,K) tuples |
+|---|---:|
+| p0 word6 (11 runes) | **40,684** |
+| Add p0 word22 (8 runes) | **1,405** |
+| Add p0 word41 (8 runes) | **42** |
+| Add p0 word51 (8 runes) | **0** |
+
+The [standalone original-source CommonJS SFT](../sims/lp2_p0_fourword_allsecret_affine_feedback_sft.cjs) asserts every original word glyph, page-local rune offset and exact survivor count. Independently, it plants four native-English words of identical lengths using the same nontrivial page key **A=7, B=18, K=[2,3,5,7,11]**, with the original words' first-five glyphs reused as four unrelated IVs. The full unchanged exhaustive solver retains the planted true key and the original plaintext suffixes are recovered exactly. Thus the zero-original result is a real finite-English-register incompatibility, rather than a search or inverse implementation defect.
+
+**Decision:** retire all further unselected *page-reused affine five-back feedback* hypotheses with intact original printed word boundaries and ordinary source-native English. Independently changing word keys, nonlinear alphabets, alternate languages and segmentation remain open. No source-selected unknown LP2 plaintext is recovered.
+
 ## Research fork
 
 The chapter/page five-back feedback models both fail their original key-independent plaintext invariants, so they **cannot distinguish the manuscript's real reset scope**. The direct complete-word additive exclusion was established previously; the zero-IV five-back feedback extension now also fails on every length-10+ original word under the same native-English lexicon. The independently word-keyed **additive** arbitrary-IV model now also fails 14 original long words against the fixed native-English lexicon, including 10 F-free words. The larger independent-word affine scalar/feedback family also fails all three original length14 words under the fixed native lexicon, including one ciphertext-F-free word; see the extension above. Word-specific nonlinear/permutation alphabets, other language registers, and changed segmentation remain open. The source-boundary clue remains available for a different, genuinely selected nonlinear/stateful cipher. Do **not** add undocumented collision repair, varying lag, secret per-symbol pads or alphabet remaps to salvage this model without independent original instructions. The test does not cover another language, compressed plaintext, further encryption layers or a different state update.
