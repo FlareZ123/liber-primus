@@ -55,6 +55,21 @@ Neither candidate reaches a native-GP-English rune distribution. Source-preservi
 
 This eliminates the direct **13/31-row deletion plus original-order GP29 stationary substitution or additive pad** model for p39 plaintext recovery. A wholly different 240-position stateful decoder remains mathematically possible, but nothing in the original instructions selects one. Avoid promoting the 30×8 equality to a key or another self-validating ciphertext fit.
 
+## Block-cipher receiver: selected two rows as a 16-byte AES-128 key
+
+The same 13/31 original five-dot selection yields **two 8-byte rows totaling 16 bytes**, the length of an AES-128 key; deleting those rows leaves **240 bytes = 15 complete AES blocks**. This is a distinct, 2014-era plausible byte-level complete receiver. The artwork never literally prescribes AES, key concatenation order, or an IV, so the test is confined to two conventional algorithm readings with no tunable key, offset, transposition or KDF.
+
+Freeze selected rows left then right, preserve the other 30 table rows in publication order, and decrypt using (1) AES-128-ECB, where the algorithm requires no IV, and (2) AES-128-CBC with a 16-byte zero IV. Disable implicit padding removal and inspect the entire 240-byte output for UTF-8 validity, standard PKCS#7 trailing padding, and recognizable plaintext/file structure. Execute the two direct 0/1-based row conventions only:
+
+| Row addresses | AES mode | First 16 decrypted bytes (hex) | Printable text/whitespace bytes, of 240 | Valid UTF-8 / PKCS#7 padding |
+|---|---|---|---:|---|
+| Zero-based 13,31 | ECB | `67c2c01810acb32aec58c636093efd40` | 86 | no / no |
+| Zero-based 13,31 | CBC, zero IV | `67c2c01810acb32aec58c636093efd40` | 95 | no / no |
+| One-based 13,31 | ECB | `f37b6cb9b424c4ea0a6e85d4b5b1e4fc` | 97 | no / no |
+| One-based 13,31 | CBC, zero IV | `f37b6cb9b424c4ea0a6e85d4b5b1e4fc` | 92 | no / no |
+
+Every candidate yields opaque byte output without a recognizable first-party typed instruction, conventional file signature at the start, complete UTF-8 prose or valid standard PKCS#7 block padding. In a separately executed Node 22 original-byte SFT and independent Python `cryptography` decryption, outputs agree exactly; Node re-encryption returns **all 240/240 source bytes** for all four cases. This rejects only **literal 13/31 row-pair AES-128 ECB/CBC-zero-IV** recovery. Do not infer that every AES mode, arrangement or secret IV is excluded. A different AES receiver requires independent author-supplied parameters, and a hex output from a correct roundtrip alone establishes no LP2 solution. [Original source and exact positive cryptographic roundtrip](../sims/lp2_floral_13_31_aes128_source_sft.cjs).
+
 ## Falsifiable boundary and decision
 
 The 13/31 motif plausibly names a **source event set**, but it does not uniquely name a reversible operation on original GP29 ciphertext. The direct two-row raw-byte and authored `BASE29` receivers fail to yield an independently recognizable message. The self-addressing direct map does not resolve the missing key/operation. **Do not expand to arbitrary bit traversals, modulus sweeps, permutations, synthetic row ciphers, or bulk onion-name guesses** without a separate first-party selector. The original 32-interval relation is still observationally real, and a future author-selected column/key/clock would reopen a *different* receiver; it is presently missing.
