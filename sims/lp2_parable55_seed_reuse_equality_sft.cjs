@@ -127,7 +127,64 @@ assert.equal(english.gibran.printed_title_first.matches, 1351);
 assert.equal(english.gibran.table_split_body_first.matches, 1420);
 assert.equal(english.emerson.printed_title_first.matches, 1437);
 assert.equal(english.emerson.table_split_body_first.matches, 1405);
+
+// Exact original page-pair sufficient statistics support a frozen
+// 2,000-draw shuffle of the 55 seed labels. This conditions on the exact
+// PARABLE symbol multiset and unchanged original page lengths/content.
+const originalPairs = [];
+for (let i = 0; i < pages.length; i++) {
+  for (let j = i + 1; j < pages.length; j++) {
+    const size = Math.min(pages[i].indices.length, pages[j].indices.length);
+    let matches = 0;
+    for (let k = 0; k < size; k++) {
+      matches += Number(pages[i].indices[k] === pages[j].indices[k]);
+    }
+    originalPairs.push([i, j, size, matches]);
+  }
+}
+/** @param {number[]} labels */
+function pairRate(labels) {
+  let matching = 0;
+  let compared = 0;
+  for (const [i, j, n, count] of originalPairs) {
+    if (labels[i] === labels[j]) {
+      matching += count;
+      compared += n;
+    }
+  }
+  return matching / compared;
+}
+let shuffleSeed = 0x3301a55a;
+function random() {
+  shuffleSeed ^= shuffleSeed << 13;
+  shuffleSeed ^= shuffleSeed >>> 17;
+  shuffleSeed ^= shuffleSeed << 5;
+  return shuffleSeed >>> 0;
+}
+const shuffled = {};
+for (const [name, labels] of Object.entries(keys)) {
+  const baseline = pairRate(labels);
+  const rates = [];
+  for (let draw = 0; draw < 2000; draw++) {
+    const perm = labels.slice();
+    for (let i = perm.length - 1; i > 0; i--) {
+      const j = random() % (i + 1);
+      [perm[i], perm[j]] = [perm[j], perm[i]];
+    }
+    rates.push(pairRate(perm));
+  }
+  rates.sort((a,b) => a - b);
+  shuffled[name] = {
+    original: baseline,
+    shuffledMedian: rates[999],
+    lowerTailRankOf2000: rates.filter(value => value <= baseline).length
+  };
+}
+assert.equal(shuffled.printed_title_first.lowerTailRankOf2000, 1009);
+assert.equal(shuffled.table_split_body_first.lowerTailRankOf2000, 1643);
+
 console.log(JSON.stringify({
   original, independentEnglishControls: english,
+  sourceSeedShuffleControl: shuffled,
   conclusion: 'No source-patterned equal-seed page-start reused GP29 substitution stream to ordinary English register'
 }, null, 2));
