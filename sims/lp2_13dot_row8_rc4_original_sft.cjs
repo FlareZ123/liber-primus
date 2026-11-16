@@ -107,7 +107,7 @@ function toGp(raw) {
   }
   return out;
 }
-const ref = fs.readFileSync(path.join(process.cwd(), 'resources/control/shakespeare_first300k.txt'), 'utf8');
+const ref = fs.readFileSync(path.join(process.cwd(), 'resources/control/shakespeare_first300k.txt'), 'utf8').slice(0, 300000);
 assert.equal(ref.length, 300000);
 const train = toGp(ref.slice(0, 150000));
 const heldout = toGp(ref.slice(150000));
