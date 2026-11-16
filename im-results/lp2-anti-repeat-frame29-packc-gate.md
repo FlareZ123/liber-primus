@@ -62,6 +62,17 @@ Across p0–55:
 
 Thus the repeat events are visible in the rune stream, but they are not generally aligned with printed word or punctuation boundaries. Treating them as record separators is a coherent encoding hypothesis, not an established manuscript instruction.
 
+
+## New key-independent stationarity gate: rank digits are not ordinary GP prose under a fixed secret alphabet
+
+**16 November 2026, Agent37.** The lossless rank-28 transition above is more strongly constrained than the original byte-format screen implies. Consider the alternative, substantially more permissive receiver that maps its rank digits to **GP29 plaintext through an arbitrary unknown but globally fixed permutation**. No key can change the rank-digit frequency multiset or its index of coincidence. Thus this is an all-secret fixed-alphabet gate rather than an attempt to guess one alphabet.
+
+Preserve the actual 2,896 source-printed LP2 words, including 32 spanning physical pages. Treat each first rune as a word seed and decode only the subsequent positions by the rank-28 transition. This gives **10,060 original rank digits**, including **63 reserved repeat digits 28**; the other 9,997 ranks are nearly uniform (raw counts 331–397 among each of 0–27). Their exact **IoC = 0.03527934688321013**. The **771 within-word noninitial runes** in the six genuinely clear LP1 pages 3,8–11,14 have **IoC = 0.070406117876935**, and the **75** corresponding clear p57 runes have **IoC = 0.07747747747747748**. No fixed secret permutation of all 29 rank digits can change the observed IoC at all. This makes the model a very poor direct receiver for ordinary native-GP English, despite its appealing 63-repeat/rare-rune coincidence; a constructed special register or position-dependent key is outside this gate.
+
+The explicit source-native positive encodes every clear LP1 interior symbol using each of **29** frozen different secret bijections of the form `(7*x+shift) mod29`, with the previous emitted rune excluded and repeated rune carrying rank28. The decoder recovers the secret-permuted original interiors exactly in all 29 cases, and the native LP1 IoC survives exactly. A relabeling of the actual 10,060 LP2 rank digits under all 29 keys preserves its near-uniform IoC. This rules out an implementation failure as the explanation.
+
+**Decision:** Retire the plain stationary rank28→GP29 monoalphabetic inversion independently of C0-byte-format assumptions. Any genuine extension must supply **a source-selected varying state/per-position key or a different output register**, and then recover authentic contiguous plaintext on untouched original pages. Avoid assigning another arbitrary constant alphabet permutation or treating synthetic round trips as plaintext. [Single-file original-source CommonJS SFT](../sims/lp2_rank28_stationary_permutation_original_sft.cjs). The result does not exclude all previous-symbol-dependent or keyed anti-repeat ciphers.
+
 ## Predeclared chapter outputs
 
 The selected source chapters were decoded in the prescribed order, with page carries preserved and a fresh seed at each chapter:
