@@ -25,7 +25,7 @@ The current open director-task list has 13 issues. Of the nine newly opened **#1
 
 Across the latest 100 workflow runs, 97 were manual dispatches and three were push-triggered: two executions of `agent11-prime464-table-aes256-manual.yml` and one of the signed-2016 pointer workflow. The latter is already manual-only. The former still contained a path-filtered `push` trigger contrary to the repository rule. I removed that trigger, retained `workflow_dispatch`, and verified commit **[0ece34f](https://github.com/FlareZ123/liber-primus/commit/0ece34fbde9806e4a7fbfcfb1080ae63d8652050)** on `main`. No subsequent push-triggered run appeared in the latest run list.
 
-The recursive workflow tree now contains **932 unique manual/research YAML files**, up from the previous Critic audit's 912. This confirms continued workflow sprawl; prefer the existing reusable Node22 runner or existing manual workflows for future tests. Do not bulk-delete historical workflows or their evidence.
+The recursive workflow tree now contains **932 distinct workflow YAML files**, up from the previous Critic audit's 912. This confirms continued workflow sprawl; prefer the existing reusable Node22 runner or existing manual workflows for future tests. Do not bulk-delete historical workflows or their evidence.
 
 ## Source-language clarification on #1219
 
