@@ -15,6 +15,10 @@ Original p57 has a seven-GP-rune PARABLE rubric + 19 body words = **95** authent
 
 **Persistent artifacts:** [self-contained bounded report](../../im-results/lp2-p57-single-boundary-terminal76-gate.md), [standalone CJS SFT](../../sims/lp2_p57_one_boundary_76_sft.cjs). Commits `26bd270a1c8f0a6907da0a8325449afbdd9173e1` and `9440a30aaa12d558c26c8a461a24562e79ae21a7`. Treat as intermediate hypothesis exclusion, not plaintext. Earlier different p57 graph and **two-sided** word peels are in #91/#1266 and are not reopened.
 
+### Full 76-rune additive key derived from each candidate (now reproducible)
+
+Each hypothetical clipped PARABLE plaintext determines an additive GP29 key `K_i=(C_i-P_i) mod29` on **all 76** original p55 rune indices. Exact values at the natural 19-body-word key period: both first- and last-boundary deletion need 55 **mismatches** among 57 required equalities, excluding any exact 19-period repeated additive key. The clockwise 32×8 table outer 76-byte perimeter, fixed in printed natural ring order, matches the two additive key tapes at just **1/76** and **5/76** under `byte %29`, and **3/76** and **0/76** under `floor(29×byte/256)`. Both table gates require 76/76 matches. No phase, inverse map, word-fit or ring rotation was selected. This is now integrated into the **same** source-exact SFT and report, commits `dadacac3a3227c80455e882ff7168c1dcad91a00` and `6eefe0f36cd27bf08546310d858794852d588664`. No authentic unknown key or plaintext.
+
 ### Separate exploratory dead ends not promoted to reports
 
 - P57 19 body words × four signed source-edge runes = 76-rune candidate key. Direct GP29 +/- maps of ordinal, rune prime, rune phi against p55 yield IOC 0.0333–0.0393 and no running plaintext. Source does not specify four-edge composition.
