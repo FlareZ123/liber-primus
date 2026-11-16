@@ -16,7 +16,7 @@ const segments = load("resources/liber-primus/lp2-transcription.txt").split("%")
 const symbolIds = new Map(corpus.runes.map((symbol, i) => [symbol, i]));
 const parse = text => [...text].filter(symbol => symbolIds.has(symbol))
   .map(symbol => symbolIds.get(symbol));
-const words = segments[54].replace(/[\\s/]/g, "").split(/[-.&$§]/g)
+const words = segments[54].replace(/[\s/]/g, "").split(/[-.&$§]/g)
   .map(parse).filter(word => word.length);
 const p55 = corpus.pages.find(page => page.page === 55).indices;
 const p57 = corpus.pages.find(page => page.page === 57).indices;
