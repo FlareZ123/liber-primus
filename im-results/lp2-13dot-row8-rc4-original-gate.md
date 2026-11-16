@@ -26,6 +26,8 @@ Held-out native-GP English window scores ranged from **−11.06928533 to −10.6
 
 The same script verifies the standard RC4 **Key** known-answer stream `eb9f7781b734ca72a7`, encrypts and independently recovers **12,956/12,956** original-shape planted p57 GP runes under *each* model, and forward-reencrypts exactly **12,956/12,956** unmodified original rune symbols under each model. Re-encryption verifies implementation consistency only, since an arbitrary wrong bijective key round-trips by construction.
 
+**Independent successful Windows/Node22 original-repository execution:** [GitHub Actions run 43837266558](https://github.com/FlareZ123/liber-primus/actions/runs/43837266558), validating all source-image annotation and original-cipher assertions. The initial CI invocation stopped before the source test because the checked-in Shakespeare file contains 311,121 characters; the calibrated source is explicitly its first 300,000 characters, matching the independently computed data and the amended successful SFT.
+
 **Standalone read-only Windows/Node22 SFT:** [`sims/lp2_13dot_row8_rc4_original_sft.cjs`](../sims/lp2_13dot_row8_rc4_original_sft.cjs). Stable inputs: [LP2 GP29 corpus](../resources/liber-primus/lp2-corpus.json), [original ink annotation](../resources/liber-primus/lp2-ink-annotations.json), [base60 table](../resources/liber-primus/base60-grid.json) and the pinned Shakespeare text.
 
 ## Decision and remaining uncertainty
