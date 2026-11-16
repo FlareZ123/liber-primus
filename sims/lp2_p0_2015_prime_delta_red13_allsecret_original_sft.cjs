@@ -62,6 +62,18 @@ function undelta(values) {
 const d=delta(original);
 assert.deepEqual(undelta(d),original);
 assert.equal(d.slice(1).filter((v,i)=>v===d[i]).length,40);
+/** The participant's separately recorded second modular difference E. */
+function second(values) {
+  return values.map((v,i)=>mod(v-(i?values[i-1]:0)));
+}
+/** Recover D exactly from E by one cumulative GP29 summation. */
+function undoSecond(values) {
+  let last=0;
+  return values.map(v=>{last=mod(last+v);return last;});
+}
+const e=second(d);
+assert.deepEqual(undoSecond(e),d);
+assert.equal(e.filter(v=>v===0).length,40);
 const allPageStarts=[0,262,528];
 const localWordClocks=words.flatMap(w=>Array.from({length:w.length},(_,i)=>i%13));
 assert.equal(localWordClocks.length,729);
@@ -127,6 +139,9 @@ let plant=null;
 const originalProfiles=Object.fromEntries(
   Object.entries(clocks).map(([name,clock])=>[name,fingerprint(d,clock)])
 );
+const originalSecondProfiles=Object.fromEntries(
+  Object.entries(clocks).map(([name,clock])=>[name,fingerprint(e,clock)])
+);
 for(const [number,[name,file]] of [
   ['Shakespeare','resources/control/shakespeare_first300k.txt'],
   ['Gibran','resources/control/gibran_prophet_58585.txt'],
@@ -149,8 +164,14 @@ for(const [number,[name,file]] of [
         assert.deepEqual(undelta(delta(madeCipher)),madeCipher);
         const before=fingerprint(plain,clock),after=fingerprint(delta(madeCipher),clock);
         assert.deepEqual(after,before);
+        const secondCipher=undelta(undoSecond(encodedDelta));
+        assert.deepEqual(second(delta(secondCipher)),encodedDelta);
+        assert.deepEqual(undelta(undoSecond(second(delta(secondCipher)))),secondCipher);
+        assert.deepEqual(second(delta(secondCipher)).map((v,i)=>perm[clock[i]].indexOf(v)),plain);
+        assert.deepEqual(fingerprint(second(delta(secondCipher)),clock),before);
         plant={runes:729,secretBijectiveAlphabets:13,
           exactlyRecovered:729,exactReencryption:true,
+          bothParticipantRegistersInvertExactly:true,
           collisionInvariantPairs:before.pairs,
           collisionInvariantHits:before.hits};
       }
@@ -159,9 +180,10 @@ for(const [number,[name,file]] of [
   samples.push(distribution);
 }
 assert(plant);
-const results={};
+const results={},secondResults={};
 for(const key of Object.keys(clocks)){
   const actual=originalProfiles[key];
+  const secondary=originalSecondProfiles[key];
   const reference=samples.map(s=>{
     const series=s[key].slice().sort((a,b)=>a-b);
     return {name:s.name,count:series.length,
@@ -171,17 +193,28 @@ for(const key of Object.keys(clocks)){
   });
   results[key]={original:{hits:actual.hits,pairs:actual.pairs,rate:actual.ratio},
     nativeReference:reference};
+  const secondReference=samples.map(s=>{
+    const series=s[key].slice().sort((a,b)=>a-b);
+    return {name:s.name,count:series.length,
+      min:series[0],median:series[Math.floor(series.length/2)],
+      max:series.at(-1),
+      atOrBelowOriginal:series.filter(x=>x<=secondary.ratio).length};
+  });
+  secondResults[key]={original:{hits:secondary.hits,pairs:secondary.pairs,rate:secondary.ratio},
+    nativeReference:secondReference};
 }
 assert.deepEqual(Object.values(results).flatMap(x=>x.nativeReference.map(r=>r.atOrBelowOriginal)),Array(9).fill(0));
+assert.deepEqual(Object.values(secondResults).flatMap(x=>x.nativeReference.map(r=>r.atOrBelowOriginal)),Array(9).fill(0));
 console.log(JSON.stringify({
   classification:'Source-constrained period13 secret-permutation family excluded against matched native prose, not universal cipher proof',
   source:'Original LP2 p0-2, participant-era February 2015 prime-difference operation, original red13 marker',
   originalRuneCount:729,originalCompletePrintedWords:words.length,
-  sourceDerivedDoubledPairs:40,
-  variant:'D=prime-difference(C), D_i = arbitrary secret bijection[phase13](P_i)',
+  sourceDerivedDoubledPairs:40,secondPassLiteralZeroRunes:40,
+  variant:'D=prime-difference(C), or participant second-difference E_i=D_i-D_(i-1); each tested as arbitrary secret bijection[phase13](P_i)',
   exactAllSecretInvariant:'same-phase identical-pair count, invariant for each of 29! 13 stationary GP29 secret alphabets',
   plantedNativeSource:plant,
-  output:results,
+  firstPassOutput:results,
+  secondPassOutput:secondResults,
   note:'English GP register and stationary 13-state symbol-only bijection assumed; different intermediate alphabet or dynamic rekey remains untested',
   recoveredUnknownPlaintext:false
 },null,2));
