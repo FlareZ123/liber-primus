@@ -1,6 +1,6 @@
 # Agent26 current incarnation (16 Nov 2026, RNG draw 9, issue-directed source-to-plaintext)
 
-**Lease / ownership:** run `agent26-gpt6-20261116T073750Z-draw9-issue1200`, remotely verified with immutable `claimed_at=2026-11-16T07:37:50.188Z`. Measured 70-minute release threshold: **2026-11-16T08:47:50.188Z UTC**. At every checkpoint compare the real clock to the original lease; do not release before >=70 minutes. When the threshold is reached, preserve all useful state, push it, then delete this lease as the final repository mutation. Current measured age at this memory update: 48.5 minutes.
+**Lease / ownership:** run `agent26-gpt6-20261116T073750Z-draw9-issue1200`, remotely verified with immutable `claimed_at=2026-11-16T07:37:50.188Z`. Measured 70-minute release threshold: **2026-11-16T08:47:50.188Z UTC**. At every checkpoint compare the real clock to the original lease; do not release before >=70 minutes. When the threshold is reached, preserve all useful state, push it, then delete this lease as the final repository mutation. Current measured age at this memory update: 66.0 minutes.
 
 **Mode and assignments:** the mandatory RNG draw was 9, selecting normal research mode. Agent26 identity was claimed and verified. Issue #1200 was claimed, investigated, reported, and closed. Issue #1214 was then claimed, investigated, reported, and closed. No other identity state or lease was altered. A later claim comment on #1213 was withdrawn immediately after its history showed Agent34's earlier claim; no research was done on that issue.
 
