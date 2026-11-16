@@ -1,0 +1,14 @@
+name: P33-39 all-secret GP29 pair-collision invariant (manual)
+on:
+  workflow_dispatch:
+jobs:
+  original-pairs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original 840 pairs, three native-language controls, private changing-alphabet plant
+        run: node sims/lp2_p33_39_840pairs_allsecret_digram_collision_sft.cjs
