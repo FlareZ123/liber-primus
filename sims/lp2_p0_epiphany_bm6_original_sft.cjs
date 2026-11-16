@@ -180,6 +180,53 @@ function main() {
   }
   assert.equal(nullAtLeast286, 172);
 
+  // Independent English 8|5 source-phrase controls: GP-native tokenization
+  // keeps the original 13 ciphertext runes and varies only the source title.
+  const tokens = corpus.translit.map((token, value) => ({token, value}))
+    .sort((a, b) => b.token.length - a.token.length);
+  function sourceWordIndices(word) {
+    const normalized = word.replace(/QU/g, "CW").replace(/[KQ]/g, "C")
+      .replace(/V/g, "U").replace(/Z/g, "S");
+    const answer = [];
+    for (let i = 0; i < normalized.length;) {
+      const token = tokens.find(x => normalized.startsWith(x.token, i));
+      assert.ok(token, "unmappable historical source English");
+      answer.push(token.value);
+      i += token.token.length;
+    }
+    return answer;
+  }
+  let nativePairs = 0, lowLinearComplexity = 0, sum729 = 0;
+  const doubleCoincidences = [];
+  const controls = [
+    "resources/control/shakespeare_first300k.txt",
+    "resources/control/gibran_prophet_58585.txt",
+    "resources/control/emerson_essays_2944.txt"
+  ];
+  for (const file of controls) {
+    const words = (fs.readFileSync(path.join(__dirname, "..", file), "utf8")
+      .toUpperCase().match(/[A-Z]+/g) || []);
+    const indices = words.map(sourceWordIndices);
+    for (let i = 0; i + 1 < words.length; i++) {
+      if (indices[i].length !== 8 || indices[i + 1].length !== 5)
+        continue;
+      nativePairs++;
+      const candidate = indices[i].concat(indices[i + 1]);
+      const candidateKey = candidate.map((p, j) => mod(cipher[j] - p));
+      const candidateSum = candidateKey.reduce(
+        (total, k) => total + corpus.prime[k], 0);
+      const lowOrder = berlekampMassey(candidateKey).order <= 6;
+      if (lowOrder) lowLinearComplexity++;
+      if (candidateSum === 729) sum729++;
+      if (lowOrder && candidateSum === 729)
+        doubleCoincidences.push(words[i] + " " + words[i + 1]);
+    }
+  }
+  assert.equal(nativePairs, 440);
+  assert.equal(lowLinearComplexity, 20);
+  assert.equal(sum729, 4);
+  assert.deepEqual(doubleCoincidences, ["LAUGHTER RISES"]);
+
   // Real native-GP source controls: p57 PARABLE is original cleartext.
   const control = corpus.pages[57].indices;
   assert.equal(control.length, 95);
@@ -206,6 +253,10 @@ function main() {
     reverse_rune_ioc_before_failure: reverseIoc,
     random6_null_reaching_rune286: nullAtLeast286,
     random6_null_trials: 4000,
+    english_source_8by5_controls: nativePairs,
+    controls_with_BM_order6: lowLinearComplexity,
+    controls_with_prime_weight_sum729: sum729,
+    controls_with_both: doubleCoincidences,
     p57_plant_reencrypts: true,
     original_unknown_plaintext_recovered: false
   }, null, 2));
