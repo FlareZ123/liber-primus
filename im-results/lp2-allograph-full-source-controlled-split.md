@@ -31,7 +31,7 @@ The 12,789 are not the full 12,956 unknown source positions: source-unmapped pos
 
 Each source-aligned candidate is compared only with solved-source templates of its canonical rune identity. Samples above the fixed 0.03 morphology residual are excluded. The remaining glyphs are aspect-preservingly normalized to 72×60 binary masks. The feature family is 6×6-pixel patch occupancy at stride 6 (120 patches per glyph).
 
-For each rune class, patch occupancies are centered within physical page/line groups, then nuisance-regressed on log height, log width, log ink area, ink class, horizontal page position, and categorical JPEG block phase `x mod 8` and `y mod 8`. The page-line centering controls local line position. Page parity is frozen before feature selection: train on even pages and test on odd pages, then reverse the split. The training side selects the largest adjacent residual-occupancy gap subject to each side containing at least 15% of samples and both sides recurring across at least three pages with at least two shared pages. The selected patch and threshold are then frozen for the opposite-parity evaluation.
+For each rune class, patch occupancies are centered within physical page/line groups, then nuisance-regressed on log height, log width, log ink area, ink class, horizontal page position, and categorical JPEG block phase `x mod 8` and `y mod 8`. The page-line centering controls local line position. Page parity is frozen before feature selection: train on even pages and test on odd pages, then reverse the split. The training side selects the largest adjacent residual-occupancy gap subject to each side containing at least 15% of samples and both sides recurring across at least three pages with at least two shared pages. The selected patch and threshold are then frozen for the opposite-parity evaluation. The runner deterministically selects one of two tied, equal-scoring patches; the statistic and null comparison are unchanged.
 
 The statistic is the maximum held-out selection score across all 29 rune classes and both page parities. This is a familywise search, not a post-selected single-rune test.
 
@@ -47,9 +47,9 @@ This 56-page extension preserves the source Q92 templates and controls JPEG phas
 |---|---:|
 | Observed familywise held-out maximum | **0.0006985316** |
 | Best class | S (GP index 15, `ᛋ`) |
-| Selected patch | (30, 42) in the 60×72 normalized mask |
-| Training split | 65 / 141 across 24 / 27 pages |
-| Held-out split | 69 / 158 across 25 / 28 pages |
+| Selected patch | (36, 66) in the 60×72 normalized mask |
+| Training split | 141 / 65 |
+| Held-out split | 158 / 69 across 28 / 25 pages |
 | Pages containing both held-out groups | 25 |
 | Held-out residual effect | 0.0662866 |
 | Synthetic no-message maxima, 20 replicates | 0.0008262137–0.0015698324 |
@@ -76,4 +76,4 @@ python -m pip install numpy pillow opencv-python-headless
 python sims/lp2_allograph_full_source_controlled_split_sft.py --null-reps 20 --seed 4401
 ```
 
-The script reuses the frozen p56/p57 extraction in `lp2_allglyph_original_allograph_sft.py`, asserts the source alignment and 12,963 morphology-match counts, checks the 58-image Q92-table identity, and prints the full familywise null distribution as JSON. The matching manual workflow is `.github/workflows/lp2-allograph-full-source-controlled-split-manual.yml`.
+The script reuses the frozen p56/p57 extraction in `lp2_allglyph_original_allograph_sft.py`, asserts the source alignment and 12,963 morphology-match counts, checks the 58-image Q92-table identity, and prints the full familywise null distribution as JSON. The matching manual workflow is `.github/workflows/lp2-allograph-full-source-controlled-split-manual.yml`. The implementation completed successfully in [GitHub Actions run 43875150975](https://github.com/FlareZ123/liber-primus/actions/runs/43875150975); its JSON artifact is retained for seven days.
