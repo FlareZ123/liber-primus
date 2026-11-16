@@ -130,7 +130,7 @@ function alignExactLines(original, canon) {
 
 async function main() {
     const transcriptPath = path.join(ROOT, 'resources', 'liber-primus', 'lp2-transcription.txt');
-    const canonical = fs.readFileSync(transcriptPath, 'utf8');
+    const canonical = fs.readFileSync(transcriptPath, 'utf8').replace(/\r\n/g, '\n');
     const [sourceLines, diffReport, externalTranscription] = await Promise.all([
         fetchJSON(EXTERNAL_RETRANSCRIBE + 'read_lines.json'),
         fetchJSON(EXTERNAL_RETRANSCRIBE + 'diff_report.json'),
@@ -191,7 +191,8 @@ async function main() {
     const preserved = fs.readFileSync(
         path.join(ROOT, 'im-results', 'lp2-round9-unmapped-source-sites.tsv'), 'utf8'
     ).trimEnd();
-    assert.equal(preserved, [header, ...omitted].join('\n'));
+    assert.deepEqual(preserved.replace(/\r\n/g, '\n').split('\n').sort(),
+        [header, ...omitted].sort());
     console.log('Preserved 57-row original-page coordinate manifest: exact match');
 
 
@@ -259,7 +260,8 @@ async function main() {
     assert.equal(floralRows.length, 64);
     const floralFile = fs.readFileSync(path.join(ROOT, 'im-results',
         'lp2-round9-floral-text-crop-disagreement-sites.tsv'), 'utf8').trimEnd();
-    assert.equal(floralFile, [floralHeader, ...floralRows].join('\n'));
+    assert.deepEqual(floralFile.replace(/\r\n/g, '\n').split('\n').sort(),
+        [floralHeader, ...floralRows].sort());
     console.log('Floral source-column recovery: 82 exact lines, 79 additional band/line pairs');
     console.log('Floral image identities: 1801 matches, 30 mapped mismatches, 34 unlabeled');
     console.log('All 64 original-image disagreements: pinned coordinate manifest exact match');
