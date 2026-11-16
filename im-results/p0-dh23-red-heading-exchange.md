@@ -1,10 +1,40 @@
-# p0 opening-phrase BASE29 / historical DH23 exchange candidate
+# p0 red heading: source-constrained DH interpretations and the missing GP29 consumer
 
-**Status: intermediate hypothesis; no LP2 plaintext recovered.** This is a source-constrained key derivation worth retaining, not an established cipher solution.
+**Status (16 November 2026): no LP2 plaintext recovered.** The corrected 8+5 red heading now has a new red-only word-pair DH interpretation yielding provisional shared secret **K=3**, alongside the earlier full-heading/body-assisted interpretation yielding **K=18**. These are competing readings of the same heading, not independent confirmations or cipher layers. Neither supplies a source-selected GP29 inverse.
 
 **Corrected original-image adjudication (16 November 2026):** Original p0 has **two RED heading words**, GP lengths **8 and 5**, with a SMALL red ordinary word dot between them, and then the LARGE RED thirteen-dot title marker **after all thirteen red runes at offset13**. The first black body rune is `TH` at offset13. The earlier same-day claim of red8/marker8/black5 was an [incorrect original-image interpretation and is retracted](lp2-p0-red13-13dot-blackbody-original-source-adjudication.md). The historical derived red13 and marker13 metadata were correct. All arithmetic using the first thirteen original GP rune values is unchanged.
 
-## Proposed human-visible route
+
+## New red-only word-pair DH interpretation (K=3; candidate, not a solution)
+
+**Operand choice:** treat the two red words as two candidate Diffie–Hellman public-share operands. They are not known plaintext, not a repeating key, and not a marker-8 state reset. The large 13-dot mark at offset13 terminates the red operand pair; no black ciphertext is used to choose either share.
+
+The authenticated 2013 TCP-server challenge in \`resources/external/2013-tcp-server-signed-source.md\` supplies the group \`p=23, g=5\` and the DH exchange rule. The already-solved LP1 injunction that primes are sacred motivates summing the GP prime weights within each printed red word:
+
+| Red operand | GP indices | Prime-weight sum | Modulo 23 |
+|---|---|---:|---:|
+| \`SHEOGMIAF\` (8 runes) | \`[15,8,18,3,6,19,27,0]\` | 347 | \(A=2=5^2\bmod23\) |
+| \`SYENGC\` (5 runes) | \`[15,26,18,21,5]\` | 315 | \(B=16=5^8\bmod23\) |
+
+Thus the discrete-log exponents are 2 and 8, and the shared secret is
+\[
+K=B^2=16^2\bmod23=3=A^8\bmod23.
+\]
+The visible word-length difference is independently \(8-5=3\). The final rune of the second word is GP index 5 (C), matching the source-supplied generator 5; this is a consistency check, not an input used to choose the generator.
+
+The original transcription contains 2,896 parsed words and 19 adjacent 8|5 pairs. Only the actual p0 heading has residues \((2,16)\) and shared secret 3 among those 19 pairs. Across all 2,895 adjacent pairs, eight have residues \((2,16)\), so this is a finite source-window specificity check, **not** a p-value or proof of author intent. The wordwise-prime-sum-as-public-share interpretation remains the weakest premise: the signed 2013 protocol authenticates DH arithmetic, but does not explicitly tell a solver to sum the two LP2 red words.
+
+This is nevertheless a new, checkable **red-only key prediction**: \(K=3\), fixed before looking at the black body.
+
+### Direct consumers and the precise obstruction
+
+The first black sentence occupies 141 runes (p0 offsets 13–153) and begins with \`THJGAE\`. The direct GP29 constant shifts selected by \(K=3\) do not decode it: \`P=C-3\` maps the first word to \`EA H O OE Y H\`; the known LP1 Atbash-plus-shift-\(-3\) form \`P=25-C\bmod29\` maps it to \`D X M F AE X\`. Both are exact bijections with exact forward inverses, but neither yields even a readable first word, let alone a full sentence or blind second sentence.
+
+The natural transfer to the solved p56 prime-totient method is also impossible at the first black rune. Interpreting \(K=3\) as the starting **prime value** gives the first key \(\varphi(3)=2\). The first black ciphertext rune is TH, index 2, so the p56 inverse forces plaintext F, index 0. Under the authentic p56 rule, plaintext F is a transparent, non-consuming rune and must therefore appear as ciphertext F; non-F ciphertext TH cannot decrypt to F. There are **zero legal inverse paths at the first body rune**. The SFT includes a 716-rune synthetic positive control that round-trips under the same F-bypass implementation, so this is not a decoder implementation failure. Treating 3 as an ordinal for the third prime instead would add an unsupported convention and is not used to rescue the route.
+
+**Source-to-operand obstruction:** the red-only DH hypothesis produces one scalar in \(\mathbb Z_{23}\), not a 716-rune GP29 keystream. The signed 2013 source specifies the DH exchange but no KDF, expansion, or mapping from its shared value to a 29-symbol state. The source-known direct GP29 shift and the natural p56 prime-totient consumer both fail on original p0. No first-party source currently selects the missing DH-secret-to-GP29 transition. Do not search arbitrary PRNGs, phases, or cipher families to fill this gap.
+
+## Competing full-heading/body-assisted DH interpretation (K=18; separate hypothesis)
 
 The original p0 JPEG (\`resources/liber-primus/17.jpg\`) visibly presents an 8-rune RED heading word, a small RED word dot, a 5-rune RED heading word, and then the LARGE RED 13-dot title mark; the next seven BLACK body runes follow that large mark. The page also has two marginal stave-like marks, although these have a competing branch-rune interpretation and are not treated as independent DH evidence.
 
@@ -148,8 +178,13 @@ A stricter source-matched control fixes the four raw GP digits mechanically forc
 **Classification:** a new *retrospectively observed* source-and-historical-operator agreement, not a solved key, independent prospectively predicted plaintext, a network address, or a decipherment operation. The 2013 signed source does not prescribe the SSH prefix extraction, suffix modulo or reuse of DH at LP2. Direct applications of candidate K18 already failed; do not compound unconstrained operations.
 
 
+
+## Comparison with the 2015 40-event alternative
+
+The 4 February 2015 participant observation applies a fake preceding F, consecutive-prime shifts, and successive differences to the **entire original 729-rune p0–2 chapter**, reproducing 40 adjacent equalities versus four in the original stream. It remains a source-dated, reversible intermediate without plaintext; see [the exact original-source report](lp2-2015-prime-delta-40-doublet-source-inversion.md). The new K=3 exchange is derived from the red words alone and does not use the 2015 difference register. It neither explains the 40 events nor supplies an instruction to feed K=3 into that register. The K=3 and 40-event hypotheses are separate; no composition is justified.
+
 ## Reproduction and next decision
 
-Run \`node sims/p0_dh23_red_heading_candidate.cjs\` from the repository root. It reconstructs the BASE29 values, DH exchange, source-window and subgroup controls, conditional word-map observation, and rejected 27×27 continuation from the canonical resources.
+Run \`node sims/p0_red_wordpair_dh23_key_sft.cjs\` for the new red-only K=3 derivation, full-corpus 8|5-pair specificity scan, direct GP29 consumer tests, first-rune p56 F-rule contradiction, synthetic positive control, and 2015 40-event comparator. Run \`node sims/p0_dh23_red_heading_candidate.cjs\` for the separate K=18 full-heading/body-assisted interpretation and its controls.
 
-**Research decision:** retain this as a candidate source-derived key, but do not promote it to \`results/\`. The tested direct consumers of the provisional DH route have all failed: the direct p56 prime-totient clock on p0 (no-skip starts 18/19 and exact F-transparent starts 1, 2, 5, 7, 13, 18, 19, 23 and 29 in both signs), OutGuess passphrase18 on image17, and the conditional p18:w7 prime-weight/φ-prime-weight repeating keys on p0, and the period-28 additive power stream from K=18 under both natural seed phases and signs (the exact F-transparent clock dies at p0 offsets 57, 31, 26 and 32). Separately, the source-visible 121-rune p32 map repeated twice over the 242-rune p0 body also fails as a direct additive key under GP-index/prime-weight encodings and both signs; the exact 2× length match does not authenticate the map-as-key interpretation. The missing piece remains a different source-selected reversible LP2 operation that consumes shared secret 18, or an independent second DH-encoded passage that validates the mapping. Do not expand into arbitrary PRNGs, coordinate orderings, or cipher families without another original clue.
+**Research decision:** no unknown plaintext is recovered. Retain K=3 as a new red-only candidate and K=18 as a separate full-heading/body-assisted candidate; they are competing interpretations of the same heading, not independent confirmations and not layers to combine. K=3 is source-constrained enough to deserve preservation, but its wordwise prime-sum-as-DH-share premise is still inferred, and the original black text does not supply a successful consumer: constant shifts fail at the first word, while the natural p56 prime-totient stream starting at prime value 3 is algebraically impossible at the first black rune. K=18's previously tested direct consumers also fail, as detailed above. The precise missing operation is an independently selected KDF/transition from the 2013 DH scalar in \(\mathbb Z_{23}\) to the 29-symbol LP2 state; neither the 2013 signed protocol nor the solved 2014 pages specify it. The independent 2015 40-event difference register remains a separate intermediate and is not explained by either DH interpretation. Do not promote either candidate to \`results/\`, combine them, or expand into unconstrained KDF/PRNG/cipher searches without a new original clue.
