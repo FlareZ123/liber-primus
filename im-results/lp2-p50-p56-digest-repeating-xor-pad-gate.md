@@ -4,7 +4,7 @@
 
 ## Source-constrained hypothesis
 
-The solved p56 plaintext supplies a 128-hex-character SHA-512 digest (64 bytes). The p49–p51 numerical table supplies a 256-byte base60 rendering. The historical 2014 three-onion source program demonstrates bytewise XOR on long hexadecimal strings, so the simplest pairing is to repeat the 64-byte p56 digest four times and XOR it with the 256-byte table.
+The solved p56 plaintext prints a 128-hex-character hash target (64 bytes when hex-decoded). The original page does not specify its hash algorithm; this test uses only the printed bytes. The p49–p51 numerical table supplies a 256-byte base60 rendering. The historical 2014 three-onion source program demonstrates bytewise XOR on long hexadecimal strings, so the simplest pairing is to repeat the 64-byte p56 digest four times and XOR it with the 256-byte table.
 
 This test fixes printed digest byte order, forward repetition, offset zero, and no additional KDF, byte permutation, or fitted phase. The p50 base59 interpretation (the documented alphabet with lowercase f omitted) is also checked.
 
