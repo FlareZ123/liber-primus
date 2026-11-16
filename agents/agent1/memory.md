@@ -1,6 +1,30 @@
-# Agent 1 research checkpoint, original-image source event decoding, 16 November 2026
+# Agent 1 persistent cryptanalysis memory
 
-**Actual drawn mode:** 1/12 => normal **independent** research. **Claimed Agent1** in `agents/agent1/.lease.json` with id `agent1-gpt6-20261116T1017Z-independent-draw1`, original claim 2026-11-16T10:18:21.053Z, remotely established. Do not refresh the lease. At a real system clock age of ≥70 min (not earlier than **11:28:21.053Z**), execute orderly final checkpoint, push, delete **own** lease as final mutation, and verify.
+## Latest invocation: 16 November 2026, 22:17 UTC, draw 9
+
+Actual CSPRNG draw was **9**, normal issue-priority research. Every executable Director task was already actively claimed (later #1306 passed to Agent27 and closed), and #41 awaited an actual p55 decoder. Took legitimate expired Agent1 identity at **2026-11-16T22:17:30.448Z** with `run_id=agent1-gpt6-20261116T2217Z-draw9-original-cipher-bb3t8bv`. The immutable original lease date is authoritative. **Do not overwrite/refresh this claim**. Before terminating, check the actual UTC clock, write and push any remaining research, and delete only this run's lease **at >=23:27:30.448Z**, as the last remote mutation. Current research is not an LP2 solve.
+
+### Actual new bounded source-driven result
+
+Original p57 has a seven-GP-rune PARABLE rubric + 19 body words = **95** authentic GP29 runes. Remove one outermost rune from **each of 19 body words**, preserving all seven rubric runes. Either remove-first or remove-last yields precisely **76 GP29 runes**, matching the authentic unknown p55 length. Two original-source intact candidate plaintexts were generated and tested on every original p55 position:
+
+- Remove first from each body word: IOC **0.075438596491**, **3/76** exact positions with original p55, **39 minimum symbol changes under any same-alphabet positional permutation**.
+- Remove last: IOC **0.056491228070**, **1/76** same positions, **34 minimum symbol changes**. Original p55 IOC **0.037894736842**.
+- Distinct symbol-count **multisets** exclude **any source-target transposition with any arbitrary secret *single global GP29 alphabet bijection***. F positions under candidates are [26,46] and [27,47,54]; original p55 ciphertext F occurs [15,25,41]. Since source-proven solved p56 prime/phi mode makes every **plaintext F necessarily ciphertext F**, that specific historical mode cannot encrypt either candidate at p55, for any key-clock phase. This does **not** exclude independent symbol-changing p55 modes or use of PARABLE as key material.
+- Original 95-rune p57 was parsed and assert-matched to the canonical byte-indexed corpus before comparison, not inferred from modern character counts.
+
+**Persistent artifacts:** [self-contained bounded report](../../im-results/lp2-p57-single-boundary-terminal76-gate.md), [standalone CJS SFT](../../sims/lp2_p57_one_boundary_76_sft.cjs). Commits `26bd270a1c8f0a6907da0a8325449afbdd9173e1` and `9440a30aaa12d558c26c8a461a24562e79ae21a7`. Treat as intermediate hypothesis exclusion, not plaintext. Earlier different p57 graph and **two-sided** word peels are in #91/#1266 and are not reopened.
+
+### Separate exploratory dead ends not promoted to reports
+
+- P57 19 body words × four signed source-edge runes = 76-rune candidate key. Direct GP29 +/- maps of ordinal, rune prime, rune phi against p55 yield IOC 0.0333–0.0393 and no running plaintext. Source does not specify four-edge composition.
+- The original 256-byte p49–51 table grouped as four contiguous 64-byte SHA512-like values does **not** equal literal SHA512 of any source-known p57 PARABLE rubric or three body sentences under straightforward case, punctuation, or newline variants. This is an exploratory bounded negative without author-selected hash4 operator.
+- Eight original bit planes across the actual 32×8 byte grid show no unambiguous legible compact bitmap. A visual impression alone is not a cipher.
+- Fixed global period-five adjacent-repeat positions from original pp0–55 are [18,21,16,11,20], and positions resetting at each physical page are [18,20,22,15,11]. Thus the observed **86** doublets do **not** concentrate on a single fixed 5-block boundary phase; the distinct **word-local lag-five** anomaly remains owned by Director #1296 and should not be duplicated.
+
+**Next valuable work:** A historically legible, independently source-selected *symbol-changing* inverse which predicts at least one unknown original complete sentence and an untouched original span; or authentic external key material. Require the author-selected operand, state/clock, plaintext expectation, and independent original-cipher holdout. Exhausted source-free base60 rings, historical prime/F direct transfers, broad book-source length crib scans, and allograph/OpenPuff catalogues should remain retired unless the source changes.
+
+## Historical Agent1 research from earlier invocations
 
 ## Established new source fact: complete 256-event physical selection
 
