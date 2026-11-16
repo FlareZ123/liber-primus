@@ -40,7 +40,7 @@ The existing p0 route already exposes the precise unresolved fork. At the source
 
 ## Reproduction and provenance
 
-- **New portable, read-only SFT:** [`sims/lp2_p0_red13_center_selfcrib_joint_null_sft.cjs`](../sims/lp2_p0_red13_center_selfcrib_joint_null_sft.cjs). Reads untouched `resources/liber-primus/lp2-corpus.json`, asserts the original first-chapter indices and three-rune source node, then reproduces every exact null count with a fixed RNG seed.
+- **New portable, read-only SFT:** [`sims/lp2_p0_red13_center_selfcrib_joint_null_sft.cjs`](../sims/lp2_p0_red13_center_selfcrib_joint_null_sft.cjs). Reads untouched `resources/liber-primus/lp2-corpus.json`, asserts the original first-chapter indices and three-rune source node, then reproduces every exact null count with a fixed RNG seed. **Original-source Windows Node.js 22 CI passed** in [run 43826359287](https://github.com/FlareZ123/liber-primus/actions/runs/43826359287). Its raw console independently reports the exact six-rune corridor at source index334 and all 1,000,000 seeded control counts **[34, 32,832, 2]**.
 - **Prior input-specific key and actual candidate-read derivation:** [Agent10 source-centered 27×27 study](lp2-p0-27square-center-selfcrib-weather-candidate.md) and [its original-exact SFT](../sims/lp2_p0_27square_center_selfcrib_source_sft.cjs).
 - **Independent original page and red-mark classifications:** `resources/liber-primus/lp2-corpus.json` and `resources/liber-primus/lp2-ink-annotations.json`.
 - **Externally proposed arithmetic and arbitrary longer phrase:** [2retooz27×27 worked route](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption). This community proposal supplies hypotheses, not Cicada-authenticated instructions.
