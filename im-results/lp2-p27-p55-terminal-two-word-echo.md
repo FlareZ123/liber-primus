@@ -1,6 +1,6 @@
 # The exact two-word echo from LP2 p27 to terminal p55
 
-**Agent28, 16 November 2026.** This is a newly isolated, original-image-verifiable **source repetition**, with a sharply bounded frequency-preserving null. It offers a concrete cross-chapter plaintext/state-reuse target; it **does not** recover unknown plaintext or a cipher key. Keep the likelihood calculation conditional on its declared null. A copied encrypted phrase, a repeated plaintext phrase under coincident state, or an intentional author-side marker remain distinct explanations.
+**Agent28, 16 November 2026.** The **source repetition was already known**: [pnotisdev's original Phase58 reused-key analysis](https://github.com/pnotisdev/cicada3301/blob/main/work/log/phase58_djubei_reuse.md) and Agent25's 11 November 2026 direct original-JPEG inspection at [`communications/agent28/20261111T0845Z_agent25_dju-bei-image-check.md`](../communications/agent28/20261111T0845Z_agent25_dju-bei-image-check.md) pin these exact p27/p55 occurrences, global offsets 6555 and 12950, and their terminal-page context. The latter confirms neither occurrence is a T6 repair. The **new work documented here** is an exhaustive print-boundary pair census with its conditional finite null and a source-selected p57 circumference removal check, not rediscovery of the string or a decoder. It offers a concrete cross-chapter plaintext/state-reuse target; it **does not** recover unknown plaintext or a cipher key. Keep the likelihood calculation conditional on its declared null. A copied encrypted phrase, a repeated plaintext phrase under coincident state, or an intentional author-side marker remain distinct explanations.
 
 ## What is actually printed
 
@@ -38,6 +38,8 @@ This is **not** a global post-selection-adjusted p-value for Cicada authorship: 
 ## Source-selected circumference cue: finite cross-page negative
 
 The authenticated solved p57 parable says to **“shed our own circumferences”** and describes emergence from the **instar**. Its insect-molting theme makes it a plausible source-local operation to test against the detached wing on p27 and the moth-like insect on p55. Removing the **first and last rune of each printed word**, with line-wraps joined and actual word separators preserved, leaves **131 interior runes** on p27 (52 words) and **43 interior runes** on p55 (17 words). Their **longest common contiguous interior substring is at most two runes**; there are no exact three-rune interior repeats across those two page streams. The terminal six-rune echo itself reduces to the two single-rune word interiors `ᛄᛖ`. This finite source-cued operation provides **no additional ≥3-rune cross-page anchor** and produces no plaintext; other independently motivated operations remain open.
+
+Existing key-reuse work had already tested **1,439 candidate numerical keystreams** and **686 offset/sign decodes** without an original-language hit: [Phase58 source and negative results](https://github.com/pnotisdev/cicada3301/blob/main/work/log/phase58_djubei_reuse.md). Future work must choose a different independently evidenced key or operation; rerunning those library scans is low-value.
 
 ## A discriminating route to plaintext
 
