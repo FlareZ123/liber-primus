@@ -1,6 +1,6 @@
 # Terminal p55–57: 256-rune known-interior ring hypothesis
 
-**Status (14 November 2026):** the exact 76-rune p55 / 180-known-rune p56–57 / 256-cell grid correspondence and the innermost **SHED** boundary remain a plausible human-visible terminal-layout hypothesis. All tested direct known-interior consumers, including stationary lookups, affine and nonlinear maps, low-rank and stencil transforms, erasure interpolation, Möbius inverses and now an exact **180×76 GF(29) polynomial-product factorization**, fail their original-input known-plaintext gates. The source has supplied no authentic operator connecting the table to the terminal runes; these failures are model-specific. **No p55 plaintext, historical key, unknown-page decipherment or destination has been recovered.**
+**Current synthesis (16 November 2026):** the physical 32×8 table supports a provisional terminal alignment of **76 outside cells / 180 inside cells** and an exact 52-rune *SHED* innermost boundary. The previously tested 180-inside-to-solved-rune receivers remain inconsistent with the authentic known plaintext. An independent **mixed-register alignment** now pairs the two middle shells with p56's **128 printed hash hex characters**, reserving the deepest 52 cells for the clear p57 *SHED* passage; its direct hash, static codebook, historical prime and recovered short-LFSR-key gates also fail. Source geometry constrains each proposed route, but the author has supplied no authenticated table-to-rune operation. **No unknown LP2 plaintext, historical key or destination has been recovered.**
 
 ## Why this is a plausible human-facing next route
 
@@ -27,6 +27,49 @@ The natural phi-subtraction gate has an exact **180/180 source-sized planted rec
 If the table and terminal text share an operation, the two independently solved pages supply **180 verified known plaintext runes** to constrain an inverse for all **76** p55 unknown runes. The verified p56 decoder is `C_i − φ(prime_key_i) mod 29` with a **single** source F interrupter at local offset **56**; ciphertext F runes at offsets 35, 47, 51 and 74 are enciphered and advance the prime clock. The reproducer asserts the complete 85/85 independently established GP plaintext before using it in any known-interior test. This distinction affects every numerical gate below.
 
 **Strongest objection:** p56 is a separately solved prime-totient cipher with a literal-F exception, while p57 is clear GP text, and both have their own headings. No source explicitly says that three different terminal pages form a single 32×8 cipher object or supplies a transform from table values to terminal runes. This is an exact layout correspondence pending an actual executable route, not proof of creator intent. Do **not** revive the alleged shared p49/p55 3×3 marker: original-pixel Issue #379 proved those stencils differ (10 versus 13 dots).
+
+## Mixed-media terminal receiver: 76-rune rim, 128 written hash digits, 52-rune SHED core (16 November 2026)
+
+**Research decision:** This is a different use of the same original rectangle than the previously tested 85+95 *known-runic-plaintext* alignment. It provides a source-motivated way to attempt actual p55 plaintext recovery via original p56 and p57 data, but the first explicit inverses and a held-out XOR-keystream recovery fail. The geometric hypothesis remains conjectural. This subsection is integrated here so it supersedes a separate cycle of speculative 256-cell decoder reports.
+
+### Independent original inputs and weakest premise
+
+The physical pp49–51 printed 32×8 table has four rings containing **76, 68, 60, 52** cells from the outside inward. LP2 p55 contains **76 unresolved GP29 runes**. The independently printed p56 SHA-512-sized target has **128 lowercase hexadecimal characters**, matching the *two middle rings*, **68+60**. The already clear p57 text has a terminal **52-rune passage** beginning with **SHED**, matching the innermost ring. Thus the alternative receiver would carry **76 GP29 / 128 hexadecimal nibbles / 52 GP29** in exactly the 256 printed numeral cells. The last 52 words/runes of the genuine p57 are not reselected by this experiment.
+
+The strongest objection is that p56 asks for a page having a specified hash, rather than instructing a reader to store that hash inside another artifact. The 128 middle-cell count also follows arithmetically from the previously noted 256, 76 and 52 counts; **it is not a statistically independent coincidence**. There is no first-party rule assigning a cell to a hex digit, deriving a byte key, or aligning the three data registers. The independently validated p56 plaintext is 85 GP runes and was encrypted by a prime-totient operation, while p57 prints its 95 runes unencrypted. Their distinct original roles must be respected.
+
+A surviving participant transcript of the 2013 telnet \`primes\` command provides a separate, conditional key tape: first **20** primes through 71, omission of **180** primes at ranks 21–200 (73 through 1223), and resumption at ordinal 201 (1229). In the **first 256 primes**, exactly **20+56=76** are outside the omitted range. This complementary 76/180 partition was already observed in the original known-180 research above; the present experiment applies the exact source ranks to a *different* 128-nibble +52-rune target. The transcript is unsigned and does not authenticate cross-round application to LP2.
+
+### Fixed original-input inverse gates
+
+Every table token is read exactly as in the [original JPEG-adjudicated base60 source](../resources/liber-primus/lp2-grid-256.json), with byte SHA-256 \`3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290\`. Use the source p56 target beginning \`36367763ab73783c\`, all 128 original characters, and the last 52 canonical p57 GP rune indices from local index43. Four physically printed ring corners and two traversal directions are allowed. The one shared-corner historical-prime decoder additionally tests the authentic prime-totient reduction \`q−1\` and its three direct additive alternatives. No unknown p55 plaintext is used to select a route.
+
+| Test performed on original source | Exact result | What it establishes |
+| --- | --- | --- |
+| Read the 68+60 middle bytes in each of **64** corner/direction combinations and hash them literally | **0/64** matches for each of SHA-512, SHA3-512, BLAKE2b-512 | Those 128 raw-byte serializations are not direct preimages under the three named algorithms |
+| Direct nibble projection of the middle bytes | Best **15/128** for low nibble; **12/128** for high nibble; **13/128** for \`(byte mod29) mod16\` | No literal nibble extraction recovers the printed target |
+| Grant **every possible deterministic byte→hex-nibble codebook**, optimized after seeing the entire known target, across the 64 layouts | Best **105/128** matched; at least **23 forced errors** | A stationary full-byte lookup cannot encode all 128 hash digits |
+| Innermost ring against the 52 clear *SHED* GP runes, eight physical directions | Best **5/52** for \`byte mod29\`; arbitrary stationary byte→GP29 lookup at most **47/52** | Five errors remain even with every secret codebook entry fitted |
+| Mix the omitted prime ranks 21–200 with the middle128 hex digits mod16 and the inner52 GP symbols mod29; send the complementary 20+56 ranks to p55 mod29 | **32** common-corner/direction and additive-key versions; best combined known target **17/180**; best isolated hash **16/128**, inner GP **4/52** | No source-selected direct prime/totient consumer produces known plaintext or a readable p55 |
+| Freeze upper-left clockwise, subtract \`prime−1\`, use ranks 21–200 inside | Only **5/128** hex and **1/52** GP known values correct; p55 IoC **0.0301754** | This most literal 2013-prime inverse fails to produce the supposed receiver |
+
+The strongest possible original p55 index of coincidence among all 32 direct prime constructions is **0.0385965**; their strings remain incoherent. Maximizing short-output IoC after enumeration is not source authentication.
+
+### Attempt to recover an evolving XOR key from the full hash
+
+Because a stateful stream could evade the stationary lookup obstruction, the same source-selected 128 hash characters are also used as a **known-plaintext keystream recovery target**. For each of the 64 middle-shell routes derive 128 bytewise XOR keystream candidates using either the actual printed hexadecimal **ASCII character bytes** or their numeric **nibble values**. Freeze the first **64** stream positions as training; fit a *free* binary LFSR separately to each of the eight bitplanes by Berlekamp–Massey. Predict the untouched next **64 bytes**, without fitting a fresh state, period or polynomial to the holdout.
+
+| Target interpretation | Minimum fitted bitplane LFSR order among all routes | Best exactly predicted withheld bytes | Best withheld bit agreements |
+| --- | ---: | ---: | ---: |
+| Literal hex ASCII characters | **30** | **2/64** | **281/512** |
+| Numeric hex nibble bytes | **29** | **2/64** | **286/512** |
+
+Both registers have high training complexity and predict the withheld output approximately as poorly as a random mask. An independently constructed genuine eight-bit, short-LFSR stream planted into this *identical* 64/64 procedure predicts **64/64 bytes and 512/512 bits**, demonstrating that the test is sensitive to the specified recoverable-key family. This negative applies to binary linear stream keys under this frozen bytewise-XOR alignment, and says nothing about stronger evolving ciphers or another actual hash-page serialization.
+
+**Decision and handoff:** The mixed 76/128/52 interpretation is an intriguing *possible* intended route because it uses source-visible content formats rather than invented plaintext. No tested direct or short-state operation authenticates it. Further dependent CI should require a first-party source clue selecting a changing key, serialization or inverse and a concrete original unknown p55 rune prediction. The known p56 digest is still an unsolved external preimage challenge. Do not treat the 128 written hex digits as identified plaintext corresponding to the table without a genuine decoder.
+
+**Reproduce:** [Single-file, read-only Node22 SFT](../sims/lp2_terminal256_hex128_sha512_inner52_source_sft.cjs); [successful original-source Windows Actions run 43781051412](https://github.com/FlareZ123/liber-primus/actions/runs/43781051412). It asserts all source sizes and the grid SHA-256, tests all frozen rotations, verifies the historical prime endpoints, and recovers exact planted GP/nibble operands and short recurrent XOR keys. No transcription edit, hidden holdout selection or unknown-p55 language fit is performed.
+
 
 ## GF(256) erasure-key interpolation: solved-page holdouts under both source-visible layouts
 
