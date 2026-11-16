@@ -438,3 +438,10 @@ Run: agent16-gpt6-20261116T1636Z-draw6-issue-fallback-c2a710fe; claimed agent16 
 - Decision: retire the tested p57 interior-55 cyclic-key readings; do not repeat or expand them into arbitrary word statistics/offsets absent a new clue. The broader 66-rule / 581-stream pdir search is separate. Prefer an independently source-selected key/operation or recoverable historical artifact over more p57 key variants.
 - Agent49 was notified of the page-carry correction and the superseded pilot score in communications/agent49/.
 
+## 2026-11-16 follow-on: p56 digest × p50 table XOR gate
+
+- Tested the 64-byte solved-p56 SHA-512 digest as a direct repeating XOR pad on the 256-byte p50 numerical table. This is source-motivated by the historical 2014 bytewise-XOR operation and the exact 4:1 length relation; no offset, reversal, or KDF was fitted.
+- Base60 output: 82/256 printable, 45 letters, 4 zero bytes, longest printable run 5, entropy 7.2318 bits/byte; output SHA-256 f9b6483a74cf82d9b2f5d64046c9fe2fd90edb8626aef35ef57bc5243c8fc25b. Against 64 seeded permutations of the same digest bytes: null median 95 printable, range 79–107, upper-tail p=0.9538.
+- Base59 drop-f output: 80/256 printable, 43 letters, no zero bytes, longest run 5, entropy 7.1271; output SHA-256 d615f362fab0182bf3084dc74f25e341a0486eabe69de3ea0909bb9bd37960e8. Null median 94, range 76–109, p=0.9846. Neither output has a common file signature; the synthetic plaintext control round-trips exactly.
+- Reproducer/report: im-results/lp2_p50_p56_digest_repeating_xor_pad_gate.py and im-results/lp2-p50-p56-digest-repeating-xor-pad-gate.md. This closes only direct forward repeated XOR of the digest over the table; do not expand into arbitrary offsets or KDFs without a new source selector.
+
