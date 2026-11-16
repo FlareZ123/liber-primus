@@ -1,38 +1,46 @@
-# Original 2013 761.MP3/Twitter/XOR-Gematria sources as skip-aware GP29 running keys
+# Original 2013 761.MP3/Twitter/Gematria sources as skip-aware GP29 keys — corrected p0 alignment
 
-**16 November 2026, Agent30. Supporting original-input finite negative.** The source-constrained screen has completed and found **no unknown LP2 plaintext, key or destination**. Source-original manual CI: [successful run 43795836572](https://github.com/FlareZ123/liber-primus/actions/runs/43795836572) (main commit `f9ca338d378f7c181b5983a75dbd1ae35a3d13a3`). Reproducer: [`sims/lp2_2013_761_twitter_pair_skip_sft.py`](../sims/lp2_2013_761_twitter_pair_skip_sft.py), using the previously committed [manual-only workflow](../.github/workflows/lp2-2013-761-twitter-pair-skip.yml).
+**16 November 2026, Agent41 revision.** The prior 72-screen report overstated its valid ciphertext coverage. The source annotation identifies the first 13 runes of p0 as red heading, not ciphertext. The previous p0 target was p0[0:90], so its 36 screens included those 13 non-ciphertext runes and are not valid evidence about an LP2 key. The other 36 screens on p54+p55 remain a valid finite negative for their explicitly independent key reset. A corrected p0 black-body screen is now reproducible in the new SFT and manual workflow linked below; its result is pending.
 
-## Historical cause and necessary missing clue
+## Historical source relation
 
-The original 2013 Twitter puzzle reconstructs a 64,167-byte file `twitter.bin` from 988 addressed records. XORing it with the **initial**, ID3-inclusive 64,167 bytes of the original 4,010,732-byte `761.MP3` produces `gematria.jpg`, a source-era explanation of GP29 runes. This is an **authentic period operation** and three concrete source streams with an independently fixed byte origin. The missing link is an instruction transferring any of these bytes to 2014 LP2 as a running key. This experiment tests that bounded transfer, rather than a search across arbitrarily aligned historical files.
+The original 2013 Twitter puzzle reconstructs a 64,167-byte file twitter.bin from addressed records. XORing it with the initial, ID3-inclusive 64,167 bytes of the original 4,010,732-byte 761.MP3 produces gematria.jpg, the source-era Gematria Primus reference table. This is an authentic period operation and three concrete source streams with independently fixed byte origin. The missing link is an instruction transferring any of these bytes to LP2 as a running key.
 
-Original bytes were obtained from the pinned [2013 MP3 archive](https://github.com/rtkd/iddqd/blob/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3) and [2013 Twitter reconstruction](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/003-twitter), with byte-length and SHA256 assertions before any decoding:
+Original bytes are obtained from the pinned [2013 MP3 archive](https://github.com/rtkd/iddqd/blob/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3) and [2013 Twitter reconstruction](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/003-twitter), with byte-length and SHA256 assertions before decoding:
 
 | File | Original bytes | SHA256 |
 | --- | ---: | --- |
-| `761.MP3` | 4,010,732 | `83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460` |
-| `twitter.bin` | 64,167 | `defa117644978755c9d6e5cf9ed3dc4179dc63e5b6da877f1212ca2d24ce3776` |
-| `gematria.jpg` | 64,167 | `d4736b09cfac03097efcb5c2f48ffc71f46700835fc09f7549283956580eb35d` |
+| 761.MP3 | 4,010,732 | 83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460 |
+| twitter.bin | 64,167 | defa117644978755c9d6e5cf9ed3dc4179dc63e5b6da877f1212ca2d24ce3776 |
+| gematria.jpg | 64,167 | d4736b09cfac03097efcb5c2f48ffc71f46700835fc09f7549283956580eb35d |
 
-The full byte relation `gematria.jpg == twitter.bin XOR 761.MP3[:64167]` passed.
+The full byte relation gematria.jpg == twitter.bin XOR 761.MP3[0:64167] passed in the original workflow.
 
-## Frozen original-cipher experiment
+## Correction to the earlier screen
 
-Import the original Campaign XVIII GP29 key-skip beam at upstream pinned commit `Dukotah/cicada3301@f63501d8f2d835b80c30230eb89a1110fb9197d2`. Its published mechanism enciphers a rune by additive GP29 key symbols, optionally skips key symbols that would emit a repeated ciphertext rune, and decodes with a skip-aware English-scored beam. Use only **source byte offset zero**, three documented byte→GP29 projections (`mod29`, `scaled29`, `bits5-reject`), each additive sign, and both direct and Atbash carrier readings. Decode the **first 90 original ciphertext runes** of p0 and of the joint p54+p55 endpoint, with separate reset at each frozen source origin. This is `3×3×2×2×2=72` original screens. Stage-one score threshold is the previously set **−6.0**, with no post-screen choice of key offset, page phase, alternate spelling, or secondary cipher. A stage-one survivor would trigger an independent full-page test.
+The earlier successful run is [CI run 43795836572](https://github.com/FlareZ123/liber-primus/actions/runs/43795836572), using the pinned Campaign XVIII skip-aware decoder at upstream commit f63501d8f2d835b80c30230eb89a1110fb9197d2.
 
-An earlier run [43774440543](https://github.com/FlareZ123/liber-primus/actions/runs/43774440543) failed a key-skip re-encipherment assertion without publishing a completed screen. The present successful run uses exact dynamic programming over **every legal 0–3-skip path** at each output rune, rather than a greedy single-path check, and records rejection details if a proposed plaintext cannot re-encipher the original input. The upstream positive/negative key-skip gate succeeded, including a native 212-rune source-text positive and an unrelated Gibran wrong-key control. Its own missing upstream Mabinogion control was replaced *only within that gate* by a repository-pinned independent Gibran text, not as an LP2 key candidate.
+The source annotation file resources/liber-primus/lp2-ink-annotations.json states that p0 has 262 runes and a red span at zero-based rune offset 0 of length 13, with the exact sequence ᛋᚻᛖᚩᚷᛗᛡᚠᛋᚣᛖᛝᚳ. Therefore the first black rune is at p0 offset 13 and the black body contains 249 runes.
 
-## Original outcome and planted controls
+The old script used p0[0:90] as a ciphertext screen. Reclassify those 36 p0 rows as **invalid ciphertext tests**. Do not count them toward a 0/72 negative. The 36 p54+p55 rows are unaffected: they tested the first 90 runes of that endpoint under the explicitly declared independent reset at original source byte offset zero. All 36 remained below the preset −6.0 screen threshold. The best valid endpoint candidate was gematria.jpg/mod29/p54+p55/sign −1/Atbash, score −6.8309565787435815; the next was −6.833654402293992. Both previews were nonlinguistic.
 
-- **72/72** source-locked original GP29 screens completed.
-- **0/72** surpassed the preset stage-one `score_norm > −6.0` requirement; hence **0** original full-page confirmation attempts and **0** recovered unknown plaintext passages.
-- The strongest candidate was `gematria.jpg/mod29/p54+p55/sign−/Atbash`, with score **−6.8309565787435815** and unreadable transliteration starting `IAESCEJXBHUCXWYNGRSAERIAWEASGXPSAEH`. The second scored **−6.833654402293992**, also unreadable.
-- Source-native, original-length-profile **240-rune Shakespeare plants**, encoded with the same mod29 sources and q=0.83 repeat suppression, recovered **240/240** for `761.MP3` (5 skips), **240/240** for `twitter.bin` (5 skips), and **229/240** for `gematria.jpg` (6 skips). The third plant is a **calibration imperfection** of the actual beam and should not be reported as an exact positive. In contrast, the global upstream 212-rune source-positive gate did recover its genuine key text exactly and rejected a wrong text.
+The old experiment's planted controls recovered the 240-rune Shakespeare plant exactly for 761.MP3 and twitter.bin, and 229/240 for gematria.jpg. The latter is a calibration imperfection, not an exact positive. The pinned upstream positive/negative decoder gate also passed.
 
-The best candidate lies **0.831** score units below the screen threshold. A failed stage-one English score alone does not mathematically rule out every unusual original plaintext, especially given that one source's positive 240-rune plant recovered only 95.4%. The result excludes a language-like screen hit **under this frozen finite transfer model**, not the source bytes as material in some other, independently instructed cipher.
+## Corrected p0 black-body test
 
-## Decision
+The new reproducer is sims/lp2_2013_761_twitter_pair_p0_body_skip_sft.py and the manual workflow is .github/workflows/lp2-2013-761-twitter-p0-body-skip.yml.
 
-Retire **zero-byte-offset, direct GP29 additive key-skip screening** of these three original 2013 streams against these two LP2 segments. Do not fit source offsets, tweak the beam after the no-hit, or escalate the top nonlinguistic candidate without a new primary instruction. An authentic source-specified key derivation, a different stateful cipher, or previously inaccessible original pre-encryption material remain independent routes.
+It asserts the 13-rune red span from the canonical ink annotation, removes it, and screens the first 90 black-body runes. It keeps the three original source streams, their original byte offset zero, the three fixed byte-to-GP29 projections (mod29, scaled29, bits5-reject), both additive signs, and direct/Atbash carrier readings. It tests only two key-symbol offsets:
 
-The original source relationship and all 72 finite outcomes are reproducible from the manual CI and CJS/Python source inventory; no change to the authoritative `results/README.md` plaintext status is warranted.
+- 0: the key starts at the first black ciphertext rune.
+- 13: the 13-rune red heading may have consumed the first 13 key symbols.
+
+This is 3 source files × 3 projections × 2 key-symbol offsets × 2 signs × 2 carrier readings = 72 bounded screens. Any screen above the existing −6.0 threshold triggers a full 249-rune p0 black-body decode and independent re-encipher verification. The script reuses the same source-pinned Campaign XVIII decoder and exact original source-byte hashes. It does not search arbitrary byte offsets or fit phases.
+
+**Corrected p0-body result: pending manual workflow run.** Until that result is available, the source-key hypothesis is not retired.
+
+## Scope and decision
+
+The existing evidence retires only the tested p54+p55 independent-reset screens at byte offset zero and their fixed projections. It does not test a continuous key clock across all 12,956 ciphertext runes. The previous p0-full screen is invalid as ciphertext evidence because it included the red heading. The corrected p0-body screen is the next decisive test.
+
+Even a negative English score would not mathematically exclude every unusual plaintext language or a different cipher. The current test addresses one historically motivated transfer: the 2013 761/Twitter/Gematria source bytes as additive GP29 key material under the published key-skip model. Do not widen offsets or add cipher layers unless an original LP2 clue selects them.
