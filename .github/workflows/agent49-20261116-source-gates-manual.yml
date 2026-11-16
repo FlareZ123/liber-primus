@@ -15,3 +15,4 @@ jobs:
         run: |
           node sims/lp2_terminal256_separable_interior_sft.cjs
           node sims/lp2_parable55_pagekey_original_sft.cjs
+          node sims/lp2_parable55_seed_reuse_equality_sft.cjs
