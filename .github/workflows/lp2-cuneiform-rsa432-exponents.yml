@@ -1,4 +1,4 @@
-name: LP2 cuneiform 1033 3301 RSA432 exact inverse
+name: LP2 cuneiform 1033/3301 original numerical inverse gates
 on:
   workflow_dispatch:
 jobs:
@@ -11,3 +11,7 @@ jobs:
         with:
           node-version: '22'
       - run: node sims/lp2_cuneiform_rsa432_exponents_sft.cjs
+      - name: Agent13 prime-rank endpoint interval and native F-skip inverse
+        run: |
+          node --check sims/lp2_p33_39_cuneiform_1033_3301_primeindex_sft.cjs
+          node sims/lp2_p33_39_cuneiform_1033_3301_primeindex_sft.cjs
