@@ -62,7 +62,7 @@ A 1504 *Mundus Novus* source lead describes 3+2+6 southern-sky star groups at no
 - Reading the eleven mapped p32 cells in source group order gives GP tokens **A, L, W, IO, IO, U, A, J, J, J, J**. Several stars collide in the same cells; this is not a plaintext or useful path.
 - Treating p50 as group-radius rows 10/13/32 and RA-octant columns, then applying the existing byte compass rule from H cell33, selects **[164,82,79,206,206,230,180,180,180,180,180]**. Under the source-consistent east-left orientation the route returns to H cell33; the mirror control ends at cell86. Neither reaches X cell37. The six outer-group stars collapse to the same table cell/byte.
 
-This rejects the obvious 11-star→p32 and 3+2+6→p50 compass overlays. It does **not** test or strengthen the separate four-ring φ→2016-word→p50→p32 route above; that route remains provisional on its own stated assumptions. Reproducer: [Vespucci star-map overlay gate](../sims/lp2_vespucci_star_map_overlay_gate.cjs).
+This rejects the obvious 11-star→p32 and 3+2+6→p50 compass overlays. It does **not** test or strengthen the separate four-ring φ→2016-word→p50→p32 route above; that route remains provisional on its own stated assumptions. Reproducer: [Vespucci star-map overlay gate](../sims/lp2_vespucci_star_map_overlay_gate.cjs). The source-dot geometry and non-unique triangle comparison are documented in the [five-dot constellation gate](lp2-p56-five-black-dots-constellation-gate.md), with exact page reflections in the [mirrored-emblem bridge](lp2-mirrored-five-dot-original-page-bridge.md).
 
 ## Decision
 
