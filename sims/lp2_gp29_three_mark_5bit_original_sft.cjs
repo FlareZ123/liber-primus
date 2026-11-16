@@ -167,6 +167,36 @@ function base32OnionBlocks(className) {
     known2014Matches: blocks.filter((host) => knownCicadaOnions.has(host)) };
 }
 
+
+/**
+ * Fixed table-cell receiver: code 0..31 selects one printed grid row,
+ * and original event ordinal modulo eight selects the printed column.
+ * This is a tested source-shaped hypothesis, not an authored opcode.
+ * @param {"A"|"B"|"C"} className
+ */
+function tableEventReceiver(className) {
+  const grid = read("resources/liber-primus/lp2-grid-256.json");
+  assert.equal(grid.bytes.length, 256);
+  const sourceEvents = red256Symbols(className);
+  const output = sourceEvents.map((code, ordinal) =>
+    grid.bytes[code * 8 + ordinal % 8]);
+  assert.equal(output.length, 256);
+  const columnCodebookSizes = Array.from({length: 8}, (_, column) =>
+    new Set(Array.from({length: 32}, (_, row) =>
+      grid.bytes[row * 8 + column])).size);
+  assert.deepEqual(columnCodebookSizes, [30, 32, 30, 30, 30, 31, 31, 30]);
+  const printable = output.filter((v) => v >= 32 && v <= 126).length;
+  return {
+    eventClass: className,
+    first16: output.slice(0, 16),
+    first32Hex: hex(output.slice(0, 32)),
+    printable,
+    distinctOutputBytes: new Set(output).size,
+    columnCodebookSizes,
+    fullyReversibleForAll32Symbols: columnCodebookSizes.every((n) => n === 32),
+  };
+}
+
 function main() {
   assert.equal(corpus.pages.length, 58);
   assert.equal(ink.counts.large, 36);
@@ -180,6 +210,12 @@ function main() {
     "7a24334f607ea552f84b3640bb0d224c8f1c3ecc55429c99");
   const reports = chapters.map(([start, end]) => measure(start, end));
   const onions = ["A", "B", "C"].map(base32OnionBlocks);
+  const tableOutputs = ["A", "B", "C"].map(tableEventReceiver);
+  assert.deepEqual(tableOutputs.map((o) => o.printable), [102, 90, 110]);
+  assert.deepEqual(tableOutputs.map((o) => o.distinctOutputBytes), [115, 117, 113]);
+  assert.equal(tableOutputs[0].first32Hex,
+    "2aff5c1956fb33b72aaf5c36e638c6f8d3961936e6894815d3b3c5c0a904a7c0");
+  assert.ok(tableOutputs.every((o) => !o.fullyReversibleForAll32Symbols));
   assert.deepEqual(onions.map((o) => o.known2014Matches.length), [0, 0, 0]);
   assert.equal(onions[0].first, "pisdgt3ap2svf66u");
   assert.equal(onions[1].last, "zlwpe66nyeyrus67");
@@ -192,9 +228,9 @@ function main() {
   assert.ok(reports.every((r) => r.standardHeader === null && !r.completeAscii));
   console.log(JSON.stringify({ alphabet: "GP29 + 10/13/23-dot marks -> 0..31",
     bitOrder: "MSB-first", markOrder: "ascending 10,13,23",
-    chapters: reports, whole, onions }, null, 2));
+    chapters: reports, whole, onions, tableOutputs }, null, 2));
 }
 
 if (require.main === module) main();
 
-module.exports = { originalSymbols, packFive, measure, red256Symbols, base32OnionBlocks };
+module.exports = { originalSymbols, packFive, measure, red256Symbols, base32OnionBlocks, tableEventReceiver };
