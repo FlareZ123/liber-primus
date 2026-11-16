@@ -85,6 +85,12 @@ def page_candidates(raw: bytes, hint: str, name: str) -> list[tuple[str, np.ndar
             hit = [3]
     positions = sorted({j for i in hit[:3] for j in (i - 1, i, i + 1)
                         if 0 <= j < len(document)})[:8]
+    # Wikimedia hosts the *entire* scanned Psyche 83 volume, not an
+    # article-only PDF.  A searchless PDF has no searchable figure captions;
+    # article pages 79–93 must be addressed by their original print folios.
+    # Include the cover/scan offset, once, without selecting by p27 match.
+    if "1976" in name and len(document) >= 120 and not hit:
+        positions = [i for i in range(76, 106) if i < len(document)]
     frames = []
     for i in positions:
         pix = document[i].get_pixmap(matrix=fitz.Matrix(1.8, 1.8),
