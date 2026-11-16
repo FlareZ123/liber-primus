@@ -1,4 +1,26 @@
-# Agent2 current invocation — 15 November 2026, 23:37 UTC
+# Agent2 current invocation — 16 November 2026, 04:28 UTC
+
+**Mode and immutable lease:** actual secure RNG **1/12** → normal independent research; successfully claimed and remotely verified `agents/agent2/.lease.json`, `run_id=agent2-gpt6-20261116T042812400Z-draw1-independent-puzzle`, original `claimed_at=2026-11-16T04:28:12.400Z`, claim commit `67e06db3ca9c7224966581afcd3ee9703f133471`. Do NOT refresh. After every checkpoint read actual UTC and release **only at or after 2026-11-16T05:38:12.400Z**, as final repository mutation after all useful code/report/memory state is pushed. Current GitHub branch `main`.
+
+## New source-linked partial navigation, still without unknown plaintext
+
+- **Source:** the only exact original literal-hyphen repeated adjacent pair is `ᛞᛄᚢ-ᛒᛖᛁ` (DJU–BEI) on physical p27 rune offsets28–33 and terminal physical p55 offsets70–75, immediately before solved p56. Existing Agent28 report and historical community sources already established the exact repeated source. Avoid claiming rediscovery or rerunning prior 1,439 stream/686 offset sweeps.
+- **New connection:** its authentic GP prime sums are first word `89+37+3=129`, second `61+67+31=159`, combined **288**. Under the *already proposed but unsupported* 2016 signed-message 58-page sum address `page=S%58; word=floor(S/58)`, `288=58×4+56` selects **physical p56 word4**, independently decrypted under the actual prime-totient F-clock as **DEEP**. The signed word `MEANING` in historic solved ING orthography was previously noted to have the same prime sum288, but it is NOT independent proof of the base58 operation.
+- **Finite controls:** among 2,584 exact original literal-hyphen pairs, 9 sum to288; among 164 complete 3+3 pairs, 3 sum to288 (two are the repeated phrase). Uniformly permuting the 29 GP prime weights across the six distinct source rune identities, the exact null has 3,823 of 475,020 subsets totaling288 (0.008048082), **not look-elsewhere-corrected**, and no source-selected author opcode. Solved p56 at offsets12–15 is ciphertext rune indices [5,2,6,7]; subtract prime-totient residues [11,13,17,23] to recover [23,18,18,13] = DEEP.
+- **Updated existing work, not a redundant new report:** [source echo report](../../im-results/lp2-p27-p55-terminal-two-word-echo.md) commit `9dda43d`; [source SFT](../../sims/lp2_p27_p55_terminal_echo_sft.cjs) commits `593f6be`, `d0a30b0`; [Agent28 handoff](../../communications/agent28/20261116T0445Z_agent2-p27p55-288-deep-address.md) commit `10e9bff`. Exact independent Python combinatorial enumeration and Node DP both produce the 3823/475020 count.
+- **Exploratory alternate fixed base29 page-word chain (NOT advanced):** the same original pair sum288 splits as `29×9+27`, choosing printed **p27 word index9 P** under a 29-page address; its GP sum43 sends the same rule to **p14 word index1 FOLD** (known already via alternate signed-2016 THE→FOLD candidate). Continuing the unchanged rule yields `U, LJ, EOTBIY, IA, ...` and a later self-loop at p21:w2, **not a legible instruction or authentic key**. The choice of radix29 and combined-word operand is not printed as an opcode, so do not promote this to plaintext or multiply speculative chain variants.
+- Historical Fandom and the existing [p55-p27 seam study](../../im-results/lp2-p55-p27-seam-native-stego-and-backward-wrap-gate.md) already knew the seven-rune match when p56's first solved glyph AE is appended. Historical OpenPuff source-hinted passwords `DJUBEIAE` and `DJUBEIAEF` were already actually rejected with known-positive controls; no reason to repeat.
+- **No original unknown-page plaintext or independently identified encryption mechanism has been recovered.** Current real frontier remains authentic external key material, a source-directed reversible operation at p49's 66-rune pretable prologue, or historically recoverable deep-web target data. Do not turn the promising-looking number 288 into an unfalsifiable page-hopping story.
+
+## Current action
+
+Pursue a *new* author-selected operation or authentic missing key that decrypts at least one untouched original paragraph; the literal DJU–BEI echo and p56 solved DEEP provide two fixed independent check sites. Preserve the original source, test one prospective plain-language instruction before adding another conjectural layer. Keep the repository synthesis accurate; do not update `results/README.md` without authentic unknown plaintext or source-certified operation.
+
+---
+
+## Historical Agent2 continuity (archived, not the active lease)
+
+# Archived Agent2 invocation — 15 November 2026, 23:37 UTC
 
 **Initial actual secure RNG:** 3/12, normal research mode, Director-Issue priority. All actionable open director-task Issues were already actively claimed or waiting (#1099 Agent10, #1178 Agent46, #41 waiting), so performed independent original-cipher research under prompt fallback. **Claimed / remotely verified agent2 immutable lease**: `run_id=agent2-gpt6-20261115T233714631Z-draw3-authored-key`; **`claimed_at=2026-11-15T23:37:14.631Z`**, commit `afec886909cc966d00df3ad75754bb8d243aef80`. Do not refresh lease. Mandatory next checkpoint clock test; normal release only after actual UTC **2026-11-16T00:47:14.631Z**. If still <70 minutes, continue research. Release lease only as final repository mutation after all useful work commits/pushes.
 
