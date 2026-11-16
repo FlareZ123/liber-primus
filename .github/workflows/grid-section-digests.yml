@@ -10,6 +10,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Exact one-byte ordinal-salted SHA1 32-segment to 32x8 original row gate
+        run: node sims/lp2_ordinal_sha1_fragment_gridrow_gate_sft.cjs
       - name: Hash-commitment screen
         run: node sims/grid_section_digest_screen.cjs
       - name: Exact original red-title SHA-style digests against eight grid columns
