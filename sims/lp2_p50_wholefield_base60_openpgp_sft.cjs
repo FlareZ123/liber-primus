@@ -83,6 +83,25 @@ assert.equal(invalid.valid, false);
 assert.ok(invalid.reason.includes('high bit zero'));
 assert.deepEqual(encode(original), sourceTokens);
 
+// Independent direct cellwise-byte (not wholefield) packet check: the first
+// two bytes resemble a real OpenPGP new tag-11 partial-length header. Test
+// its required literal format and complete packet boundaries, not just GnuPG
+// process exit status (GnuPG tolerantly lists mode ? for this malformed body).
+const cellwise = Buffer.from(grid.byte_rows.flat());
+assert.equal(cellwise.length, 256);
+assert.equal(cellwise[0], 0xcb); // New-format tag 11: literal data
+assert.equal(cellwise[1], 0xe7); // Partial body 2**7 = 128 octets
+assert.equal(cellwise[2], 0xa7); // Invalid literal data format, not b/t/u
+assert.ok(![0x62, 0x74, 0x75].includes(cellwise[2]));
+const secondLengthIndex = 2 + (1 << (cellwise[1] & 31));
+assert.equal(secondLengthIndex, 130);
+assert.equal(cellwise[secondLengthIndex], 0x56); // Final 86-octet segment
+const followingHeaderIndex = secondLengthIndex + 1 + cellwise[secondLengthIndex];
+assert.equal(followingHeaderIndex, 217);
+assert.equal(cellwise[followingHeaderIndex], 0xdb); // New-format tag 27
+assert.equal(cellwise[followingHeaderIndex + 1], 0x94); // Body requires 148 bytes
+assert.equal(cellwise.length - followingHeaderIndex - 2, 37); // 111 missing
+
 // Complete positive RFC4880 new-format literal packet containing "OK".
 // Values in this planted radix-60 field need not be 0..255 like the source.
 const planted = Buffer.from('cb086200000000004f4b', 'hex');
@@ -97,6 +116,19 @@ console.log(JSON.stringify({
     prefixHex: original.subarray(0, 16).toString('hex'),
     suffixHex: original.subarray(-16).toString('hex'),
     packet: invalid
+  },
+  directCellwise: {
+    byteLength: cellwise.length,
+    sha256: sha256(cellwise),
+    packet0Tag: 11,
+    packet0PartialOctets: 128,
+    literalFormatHex: cellwise[2].toString(16),
+    terminalBodyOctets: 86,
+    nextHeaderOffset: followingHeaderIndex,
+    nextTag: cellwise[followingHeaderIndex] & 63,
+    nextDeclaredBodyOctets: cellwise[followingHeaderIndex + 1],
+    nextAvailableBodyOctets: cellwise.length - followingHeaderIndex - 2,
+    outcome: "INVALID literal format and truncated next packet"
   },
   plantedPositive: {
     cells: plantedTokens.length,
