@@ -1,0 +1,15 @@
+name: Agent30 p05 ragged-13 GP prime p55 original SFT
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-sft:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p05 source and exact p55 GP29 inversion
+        run: node sims/lp2_p05_ragged13_phi_original_sft.cjs
