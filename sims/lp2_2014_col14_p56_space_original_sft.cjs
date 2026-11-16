@@ -17,6 +17,8 @@ const read = p => fs.readFileSync(path.join(root, p), 'utf8');
 const gp = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const transcript = read('resources/liber-primus/lp2-transcription.txt');
 const alphabet = new Map(gp.runes.map((r, i) => [r, i]));
+const originalUnknown = gp.pages.filter(p => p.page <= 55)
+  .flatMap(p => p.indices);
 const ranges = [[0,2], [3,7], [8,14], [15,22], [23,26],
   [27,32], [33,39], [40,53], [54,55]];
 const lengths = ranges.map(([lo, hi]) => gp.pages
@@ -40,8 +42,7 @@ function parseOriginal() {
   for (const ch of transcript) {
     if (alphabet.has(ch)) {
       if (runeCount === 12956) break;
-      assert.equal(alphabet.get(ch), gp.pages
-        .filter(p => p.page <= 55).flatMap(p => p.indices)[runeCount]);
+      assert.equal(alphabet.get(ch), originalUnknown[runeCount]);
       word.push(alphabet.get(ch));
       runeCount++;
     } else if (ch === '-') finishWord();
