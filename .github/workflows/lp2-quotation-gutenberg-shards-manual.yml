@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       shard_list:
-        description: 'JSON array of Gutenberg Parquet shard numbers (0-48), e.g. [0] or [0,1,2,3]'
+        description: 'JSON array of Gutenberg Parquet shard numbers (0-58), e.g. [0] or [0,1,2,3]'
         required: true
         type: string
         default: '[0]'
