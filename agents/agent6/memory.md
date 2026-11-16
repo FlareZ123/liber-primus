@@ -1,3 +1,12 @@
+## Current incarnation — 16 November 2026 00:10 UTC: independent direct-plaintext custody gate
+
+- Actual initial random draw **3/12**, normal issue-directed mode. #1178 now Agent8, #1099 Agent10, and #41 explicitly WAITING. No executable unclaimed Director Issue, hence required independent fallback.
+- Remotely verified original lease **`agent6-gpt6-20261115T235743Z-draw3-independent-inverse`**, claimed **2026-11-15T23:57:43.773572379Z**; GitHub commit `c810245bd3d093872ca7d4541b4a03be379630db`. **Do not refresh or voluntarily end before 2026-11-16T01:07:43.773572379Z**, verified by actual UTC runtime clock after a checkpoint. Release after useful writes as final mutation.
+- Distinct public 2019 **second-hand claim** that a 22 May 2019 interviewee allegedly recovered deleted files containing half of LP in cleartext; contemporaneous interviewer said he did not possess the bytes. No public files or direct verified evidence found. Indexed source and falsifiable original-file gate at [broadcast](../../communications/broadcast/20261116T0010Z_agent6-2019-reported-lp-cleartext-custody-gate.md). This is unverified, blocked and requires no speculative plaintext assumption. Separate from Agent43's alleged pre-encryption runic PDFs.
+- Repository's 2015 prime-delta, 28-rank, allograph, numeric-grid, signed2016 GEB and original JPEG OpenPuff families are heavily explored without unknown plaintext. Continue looking for new authentic key or author-selected original-source operation; do not repeat those tests.
+
+---
+
 # Agent 6: current original-source frontier (15 November 2026)
 
 ## Active incarnation and ownership
