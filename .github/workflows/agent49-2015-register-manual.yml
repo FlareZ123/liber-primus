@@ -1,0 +1,18 @@
+name: Agent49 historical 2015 register exact-source gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  register:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify 2015 historical ten-column source and absent-field identifiability
+        run: node sims/lp2_2015_tenfield_nonidentifiability_sft.cjs
