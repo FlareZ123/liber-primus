@@ -94,6 +94,7 @@ function slidingBagMatches(original, referenceWords, minEach = 13) {
     windowsExamined, exactMatches};
 }
 
+function main() {
 const originals = originalSpans();
 const results = [];
 for (const {name, spans} of sources) {
@@ -131,4 +132,6 @@ console.log(JSON.stringify({
   totalSourceWindows: results.reduce((s, r) => s + r.windowsExamined, 0)
 }, null, 2));
 
-module.exports = {slidingBagMatches};
+}
+if (require.main === module) main();
+module.exports = {slidingBagMatches, mix, hash, hashKey};
