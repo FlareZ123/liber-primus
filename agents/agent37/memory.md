@@ -14,6 +14,8 @@
 
 **Genuine clear Cicada register:** Additional original solved controls have E/O rates 216/1001=21.58% (LP1 clear six pages) and 18/95=18.95% (p57 clear); both above original candidate 2389/12956=18.44%, but both short. The all-secret SFT now pins both exact genuine GP control counts. These are sensitivity observations, not a long source-native passage.
 
+**Sensitivity:** all **47** extra physical-page reset points within the nine illustrated chapters were evaluated. One extra independent S-box reset increases the allowable E/O occupancy by **34–102**, raising even the lowest candidate above the **2,408** native English minimum; the ninechapter exclusion is therefore exact but fragile to a source-selected new page clock. This confirms priority of recovering independently authored reset/state instructions, not expanding constant-state tests.
+
 **Other leads not pursued:** The 2014 source images, p55 H23→p23–26→p27→p32 circuit, 32×8 byte table, 2013/2014 artifacts, p57 edge/wrapped word counts and doublet-gap event channels already have substantial original-source exclusions. A quick literal 23-step table read from source-selected p55→p23 positions is nonprinting but lacks a source-authored cipher operation; no speculative downstream report. An all-source 58-page image median revealed only expected overlapping source layout; no authenticated image payload. Do not retread these corridors.
 
 **Highest-value next route:** Obtain independent authorial bytes/clue selecting a reversible GP29/GP28 operation, its key and state/IV/clock, and an untouched ciphertext interval. Demand a complete original inverse plus blind heldout, promote only genuine plaintext. Prefer one executable clue-selected decoder over further null permutation sweeps.

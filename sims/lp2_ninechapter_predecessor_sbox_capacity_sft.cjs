@@ -190,6 +190,27 @@ function main() {
   const eoCount = a => a.filter(x=>x===E||x===O).length;
   assert.deepEqual([clearLP1.length,eoCount(clearLP1)],[1001,216]);
   assert.deepEqual([clearP57.length,eoCount(clearP57)],[95,18]);
+
+  // This exclusion has a sharp reset-schedule limit: allowing just one
+  // additional physical-page S-box reset within any illustrated chapter
+  // gives enough E/O capacity for the weakest historical spelling control.
+  const onePageSwitchGains = [];
+  for (let h=0;h<chapterRanges.length;h++) {
+    const [begin,end] = chapterRanges[h];
+    for (let split=begin;split<end;split++) {
+      const first = pages.filter(p=>p.page>=begin&&p.page<=split)
+        .flatMap(p=>p.indices);
+      const last = pages.filter(p=>p.page>split&&p.page<=end)
+        .flatMap(p=>p.indices);
+      const separate = capacity([first,last]).two;
+      onePageSwitchGains.push(separate-capacity([chapters[h]]).two);
+    }
+  }
+  assert.equal(onePageSwitchGains.length,47);
+  assert.equal(Math.min(...onePageSwitchGains),34);
+  assert.equal(Math.max(...onePageSwitchGains),102);
+  assert.ok(actual.two+Math.min(...onePageSwitchGains)>=
+    Math.min(...controls.map(x=>x.ingIo.count)));
   const originalGlobal = capacity([chapters.flat()]);
   assert.deepEqual([originalGlobal.one,originalGlobal.two],
     [803,1451]);
@@ -202,6 +223,7 @@ function main() {
     originalRunaCount:12956, chapters:sizes,
     free:actual.free,freeDoublets:actual.repeats,
     globalAllSecretEO:originalGlobal.two,
+    oneExtraPageReset:{testedBoundaries:47,minGain:34,maxGain:102},
     nineIndependentChapterAllSecretE:actual.one,
     nineIndependentChapterAllSecretEO:actual.two,
     controls,authenticClearGP:{lp1:{runes:1001,EplusO:216},p57:{runes:95,EplusO:18}},plant
