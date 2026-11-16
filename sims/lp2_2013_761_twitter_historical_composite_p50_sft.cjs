@@ -102,6 +102,50 @@ function readable(data) {
     pdf: output.subarray(0, 4).toString('ascii') === '%PDF',
     pgpArmor: output.subarray(0, 14).toString('ascii') === '-----BEGIN PGP'
   };
+  /** @param {number[]} ciphertext @returns {{full: boolean, prefix: number, paths: number}} */
+  function fTransparentDecodeState(ciphertext) {
+    let states = new Set([0]);
+    for (let i = 0; i < ciphertext.length; i++) {
+      const next = new Set();
+      for (const k of states) {
+        const residue = mask[k] % 29;
+        if (ciphertext[i] === 0) {
+          next.add(k); // plaintext F emitted visibly, without consuming the key
+          if (residue !== 0) next.add(k + 1);
+        } else if ((ciphertext[i] - residue + 29) % 29 !== 0) {
+          next.add(k + 1); // no plaintext F may encrypt to a non-F ciphertext
+        }
+      }
+      if (!next.size) return { full: false, prefix: i, paths: 0 };
+      states = next;
+    }
+    return { full: true, prefix: ciphertext.length, paths: states.size };
+  }
+  const nativeClear = corpus.pages.find(page => page.page === 57).indices;
+  const planted = [];
+  let plantedKeyClock = 0;
+  for (const plain of nativeClear) {
+    if (plain === 0) planted.push(0);
+    else planted.push((plain + mask[plantedKeyClock++] % 29) % 29);
+  }
+  assert.equal(fTransparentDecodeState(planted).full, true,
+    'source-native clear p57 transparent-F synthetic positive');
+
+  const runeReceivers = [0, 54, 55].map(pageNum => {
+    const cipher = corpus.pages.find(page => page.page === pageNum).indices;
+    const minus = Buffer.from(cipher.map((v, i) => (v - mask[i] % 29 + 29) % 29));
+    const plus = Buffer.from(cipher.map((v, i) => (v + mask[i] % 29) % 29));
+    const xor5 = cipher.map((v, i) => v ^ (mask[i] & 31));
+    return {
+      page: pageNum,
+      length: cipher.length,
+      additiveMinusIoc: ioc29(minus),
+      additivePlusIoc: ioc29(plus),
+      xor5Illegal29to31: xor5.filter(v => v >= 29).length,
+      fTransparentMinus: fTransparentDecodeState(cipher),
+      subtractHead: [...minus.subarray(0, 48)].map(v => corpus.translit[v]).join('')
+    };
+  });
   console.log(JSON.stringify({
     sourceCommit,
     sourceGitBlobShas: files.map(file => file[1]),
@@ -121,6 +165,8 @@ function readable(data) {
       modulo29Ioc: ioc29(output),
       signatures
     },
+    runeReceivers,
+    fTransparentSyntheticPlant: true,
     lp2P0DirectRawByteXor: {
       runeCount: rawXor.length,
       byteValuesBelow29: [...rawXor].filter(x => x < 29).length,
