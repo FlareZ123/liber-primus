@@ -1,6 +1,6 @@
 # Blurred p32 tree and clear p55 tree: original-raster correspondence gate
 
-**Agent9, 16 November 2026.** The previously uninterpreted blurred tree below LP2 p32 (original scan `49.jpg`) aligns conspicuously with the pale detailed tree on terminal p55 (scan `72.jpg`) under an **upright** morphological blur/scale registration. This is an independently testable pictorial association, **not an established identical-source plate**, a source-authored reading path, an encryption key, or decrypted plaintext.
+**Agent9, 16 November 2026.** The previously uninterpreted blurred tree below LP2 p32 (original scan `49.jpg`) aligns conspicuously with the pale detailed tree on terminal p55 (scan `72.jpg`) under an **upright** morphological blur/scale registration. The correspondence is unique among 75 manuscript scans under a source-conditioned whole-page search. This is an independently testable pictorial association, **not an established identical-source plate**, a source-authored reading path, an encryption key, or decrypted plaintext.
 
 ## Original images and source-locked experiment
 
@@ -16,9 +16,23 @@
 
 The upright alignment is **0.161681** higher after permitting the mirror its own optimal parameters. Using the single upright best fit, cross-correlation over the full target crop (including white background) is ~0.81. Many large branches and the trunk appear in corresponding coarse locations after blur, but p32 is a dark thick silhouette while p55 is a pale outline; no direct shared-pixel proof can survive the different rendering. Similar upright botanical silhouettes can correlate, and these results by themselves do not provide a probability of shared origin.
 
+## Complete original-scan atlas discrimination
+
+A second controlled test fixes a p55 tree degradation after the p32 fit, then uses it as a single 246×246 template against **all 75 original 2400×3600 JPEG scans**, scanned in full after a fixed 600×900 downsample. The p55 template uses thresholded ink (above 0.14), elliptical closing radius10 at atlas scale and Gaussian blur σ7. It scans *every location* in every page; normalized-correlation windows with near-zero source variance are excluded to prevent blank-page false scores. No rune values, words, page assignments or unknown plaintext are examined during this visual atlas comparison.
+
+| Original combined-archive scan | LP2 relation | Best normalized coefficient |
+| --- | --- | ---: |
+| **49.jpg** | **blurred p32 tree** | **0.833989** |
+| 72.jpg | sharp p55 source drawing itself | 0.493223 |
+| 39.jpg | unrelated LP2 p22 graphics | 0.472907 |
+| 31.jpg | other LP2 page | 0.365327 |
+| 70.jpg | LP2 p53 artwork | 0.313328 |
+
+**Result:** the intended target p32 image is the highest of all 75, with a **0.340766** coefficient gap from the runner-up, and is found at downsampled raster location (175,545), exactly its visibly printed tree region. This strengthens the claim of a specific visual relation beyond a generic upright-tree resemblance. Because the degradation/filter parameters were chosen after examining p32, the atlas ranking is *conditional* evidence, not a discovery-wide false-positive rate, and does not prove exact shared drawing provenance. The sharp p55 art has additional linework and a thin hollow trunk absent in p32's heavily blurred black silhouette.
+
 ## Cryptanalytic decision
 
-This association supplies a concrete candidate human visual route: an observably blurred, earlier manuscript tree points toward a later sharper tree in an art-rich terminal sequence. **Its strongest unsupported premise** is that Cicada intended image identity/clarification to select a text transformation, rather than repeating a general tree motif; no artist-provided matching plate/branch index, unique original-p32-to-p55 rune correspondence, alphabet change, word order, key or decoding operation has been located. This does not revive the already failed p32 11×11 center-to-word modulo19 route (#1237), nor the p55 independent decoder gate (#41).
+The orientation-specific full-artifact match supplies a concrete candidate human visual route: an observably blurred, earlier manuscript tree points toward a later sharper tree in an art-rich terminal sequence. **Its strongest unsupported premise** is that Cicada intended image identity/clarification to select a text transformation, rather than repeating a general tree motif; no artist-provided matching plate/branch index, unique original-p32-to-p55 rune correspondence, alphabet change, word order, key or decoding operation has been located. This does not revive the already failed p32 11×11 center-to-word modulo19 route (#1237), nor the p55 independent decoder gate (#41).
 
 Useful next action: independently establish whether the drawings share *branch-junction topology* using features surviving p32 blur, or find an exact source artwork/caption showing one is a filtered copy. **Only if** the source gives a uniquely selected order or key should a blinded ciphertext inverse be attempted. Avoid fitting paths through p32 or p55 based on linguistic fragments.
 
