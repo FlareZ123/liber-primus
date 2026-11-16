@@ -137,12 +137,37 @@ for(const [length,supported] of oldExpected)
   assert.equal(oldEnglish.byLength[length]?.supported,supported,
     "corrected Old English source register at length "+length);
 
+
+/** Independently pinned Vulgate GP29 word spellings, 39,835 source words. */
+function latinVulgateSignatures() {
+  const alphabet="0123456789ABCDEFGHIJKLMNOPQRS";
+  const latin=read("resources/control/latin-vulgate-gp-wholewords.txt")
+    .split(/\r?\n/).filter(line=>/^[0-9A-S]+$/.test(line));
+  assert.equal(latin.length,39835);
+  const signatures=new Map();
+  for(const line of latin){
+    const word=Array.from(line,ch=>alphabet.indexOf(ch));
+    if(word.length<6)continue;
+    const key=word.length+":"+signature(word);
+    if(!signatures.has(key))signatures.set(key,[]);
+    signatures.get(key).push("VULGATE");
+  }
+  return signatures;
+}
+const latin=classify(words,latinVulgateSignatures());
+const latinExpected=[[6,256],[7,124],[8,4],[9,1],
+  [10,0],[11,0],[12,0],[13,0],[14,0]];
+for(const [length,supported] of latinExpected)
+  assert.equal(latin.byLength[length]?.supported,supported,
+    "source-native Vulgate control at length "+length);
+
 const support=report=>Object.values(report.byLength).reduce((sum,x)=>sum+x.supported,0);
 assert.equal(support(plant5),815);
 console.log(JSON.stringify({
   scope:"all 12956 source runes, 2896 original printed words",
   originalByLength:source.byLength,
   oldEnglishBeowulfByLength:oldEnglish.byLength,
+  latinVulgateByLength:latin.byLength,
   long10Plus:{n:109,supported:0},
   sourceNativeFivePeriodPlant:{n:815,supported:support(plant5)},
   sixPeriodWrongMechanismControl:{n:815,supported:support(plant6)},
