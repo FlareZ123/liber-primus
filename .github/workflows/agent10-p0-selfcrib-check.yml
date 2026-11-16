@@ -1,0 +1,16 @@
+name: Agent10 temporary p0 self-crib original-source verification
+on:
+  workflow_dispatch:
+jobs:
+  original-input:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run p0 center self-crib original source SFT
+        run: node sims/lp2_p0_27square_center_selfcrib_source_sft.cjs
+      - name: Run original red 256 table-byte source SFT
+        run: node sims/lp2_red256_table_byte_allsecret_sft.cjs
