@@ -1,0 +1,22 @@
+name: LP2 opening-cross KJV crib (manual)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-kjv:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve immutable public-domain KJV edition
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/GITenberg/The-King-James-Version-of-the-Bible_10/e876c82a7299f0615ba035607f1c75d7945acc04/10.txt' -OutFile 'kjv10.txt'
+      - name: Verify native GP29 original and planted control
+        run: node sims/lp2_p0_cross_kjv_wordcrib_sft.cjs kjv10.txt
