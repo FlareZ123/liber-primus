@@ -1,6 +1,6 @@
 # LP2 pp0–2: chapter-wide 180-degree cross duplication and a source-fixed reverse test
 
-**Agent 26, 14 November 2026.** Classification: a newly measured original-image geometry and one bounded original-cipher negative. **No unknown plaintext, creator-selected cipher key, or intended continuation recovered.**
+**Current decision, 16 November 2026.** The repeated 180-degree cross art on p0–2 is an original-source geometric clue, and the chapter's 729 original runes permit a conditional 27×27 square. Two independently tested direct routes now fail: (i) the existing reverse-reading plus 2015 prime/difference transform, and (ii) newly computed half-turn pairwise GF(29) sums/differences across all 364 opposing cell pairs. Both original fold outputs remain nonlinguistic under an exact source-native solved-page comparison. Neither test establishes that Cicada intended a 27-square operation. **No unknown plaintext, creator-selected key, reusable decoder, or intended continuation was recovered.**
 
 ## Original source and player-visible operation
 
@@ -41,10 +41,28 @@ The inverse is `S[i]=(S[i−1]+D[i]) mod29`, then `C[i]=(S[i]+prime[i+1]) mod29`
 
 Neither reversal preserves the historically unusual 40-doublet feature. All three outputs remain near the uniform GP29 coincidence baseline **1/29 ≈ 0.034482759**, far from the native-GP English controls in this repository. The whole-chapter reversed 443-byte frame begins `0a49...` and the pagewise reversed frame begins `0a72...`: it has no GZIP, bzip2, PNG, ZIP, PDF, or OpenPGP packet header at byte zero. This check excludes only those direct first-byte container interpretations. It is not a proof that the bytes contain no encrypted or otherwise framed information.
 
+## Full 729-rune 180-degree pairwise-fold inverse (Agent24, 16 November 2026)
+
+The same original half-turn illustrated by p0–2's left/right crosses has an especially simple **keyless geometric operation** on the proposed 27×27 square: rotating the matrix 180° sends source row-major rune `C[i]` to `C[728−i]`. There are **364 disjoint opposing rune pairs** around one fixed center cell `C[364] = NG = GP index21`. Any player could compute the pairwise sum `S[i] = (C[i] + C[728−i]) mod29` and signed difference `D[i] = (C[i] − C[728−i]) mod29`, using the original 2013 GP29 arithmetic without a guessed key. This is a hypothesis about a human-readable rotated-square comparison, with no manuscript instruction selecting the sum, difference, or GP29 representation.
+
+The direct original source [`lp2-corpus.json`](../resources/liber-primus/lp2-corpus.json) has physical pages **262+266+201=729**, in 2014 printed order. The direct unfitted arithmetic on its **364 independent opposing pairs** gives:
+
+| Fixed half-turn field operation | Original output GP29 IoC | Exact adjacent identical pairs /363 | First 12 output GP symbols |
+| --- | ---: | ---: | --- |
+| GF(29) **sum** | **0.0348136711773** | 11 | OE N R T W B W D D AE E C |
+| GF(29) **difference** | **0.0346774437684** | 11 | H W O M C NG E G W IA E H |
+| Authentic already-clear p57 control, 95 GP29 symbols | **0.0627099664054** | different text length | PARABLE LIKE THE... |
+
+The two full original outputs appear uniform-like and do not recover known GP English word sequences. Their IoCs are essentially at the uniform 29-rune baseline 1/29, far below the independently known p57 solved-text control. These statistics make a **direct unkeyed sum or difference readout** unpersuasive as native GP29 prose; they are not a proof against a separately specified transform or a nonlinguistic intermediate.
+
+**Exact reversible whole-chapter control:** both channels together and the unchanged central rune recover every original source rune. The field inverse is `C[i] = 15 × (S[i]+D[i]) mod29` and `C[728−i] = 15 × (S[i]−D[i]) mod29`, since 15 is the inverse of 2 in GF(29). The [original source SFT](../sims/lp2_p0_27square_halfturn_pair_sft.cjs) asserts exact blob-normalized corpus input, 364 source pairs, the center rune, all output statistics, full **729/729** inverse reconstruction, and an independent native-p57-rune sum-channel plant recovered symbol-for-symbol. Successful [Windows Node22 original-input CI run](https://github.com/FlareZ123/liber-primus/actions/runs/43824954278).
+
+**Decision:** The manuscript's rotated cross art alone does not make the original 729 runes intelligible through either natural direct pair operation. Any source-selected **two-channel** code remains possible but needs a rule defining how the two outputs encode a message. The unkeyed field fold preserves original ciphertext exactly, so its invertibility by itself supplies no decryption or key. Retire the two single-channel direct prose readings. No further fitted offset, key or per-pair relabelling is justified from the cross ornament alone.
+
 ## Result, scope and next decision
 
-The **centrosymmetric artwork placement** is an independently confirmed original-image property that a 2014 player could notice. It is a more specific original clue than an inferred symbolic reading of the crosses. The **decoder is still missing**: no signed instruction, word key, reversible GP29 output operation or authentic plaintext is fixed by the visual symmetry. When combined with the one independently attested first-chapter prime/difference candidate, both finite literal reverse-original variants fail the precise high-doublet check and has no natural plaintext or file header.
+The **centrosymmetric artwork placement** is an independently confirmed original-image property that a 2014 player could notice. The new exact keyless half-turn pair test above also excludes direct sum/difference readouts as native GP English under the documented original-source register. It is a more specific original clue than an inferred symbolic reading of the crosses. The **decoder is still missing**: no signed instruction, word key, reversible GP29 output operation or authentic plaintext is fixed by the visual symmetry. When combined with the one independently attested first-chapter prime/difference candidate, both finite literal reverse-original variants fail the precise high-doublet check and has no natural plaintext or file header.
 
-Preserve the original artwork fact as a potential reading-direction cue only. **Retire both source-natural reversed-first-chapter prime/difference plus positional-BASE29 direct-file routes**. Any additional rotation, sign, offset, secret alphabet or cipher layer requires a genuinely separate original selector.
+Preserve the original artwork fact as a potential reading-direction cue only. **Retire both source-natural reversed-first-chapter prime/difference plus positional-BASE29 direct-file routes**, as well as direct 27-square GP29 half-turn sum/difference prose readouts. Any additional rotation, sign, offset, secret alphabet or cipher layer requires a genuinely separate original selector.
 
 **Reproducer:** [read-only Windows-friendly original JPEG and corpus SFT](../sims/lp2_p0_central_inversion_source_sft.py), requiring Pillow and NumPy; it checks the three original chapter JPEG SHA-256 values, the p1/p2 pixel-identical artwork, all four p0 image orientations, source ciphertext counts, all three complete reversible transformations, derived-rune statistics, fixed BASE29 prefixes and a 729-rune positive plant from the independently solved p57 source. No existing source file or illustration is edited.
