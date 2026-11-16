@@ -1,6 +1,6 @@
 # p57 circumference-key gates: interior-55 pointer and one-edge-75 p55
 
-**Status:** bounded negative for two distinct original-clear p57 key readings: the interior-55 cyclic direction family and a direct one-edge-75 complete p55 F-transparent inverse. No unknown LP2 plaintext, authenticated key or cipher mechanism recovered. The broader pointer-direction family, other keys and other GP29 state machines remain unresolved.
+**Status:** bounded original-cipher negative for the full 729-rune first chapter and independent 3,008-rune floral holdout under the source-fixed p57 interior-55 / previous-ciphertext-word direction cipher. Original p57 and LP1 GP-native positive plants recover exactly. Earlier 300-rune pilots and the one-edge-75 p55 F-transparent inverse remain as scoped predecessors. No previously unknown LP2 plaintext or original key was recovered.
 
 ## Human solve-path hypothesis
 
@@ -17,6 +17,33 @@ The original transcription's '%' marks physical page boundaries, not automatic w
 - The first 300-rune screen contains 66 word segments, with the final segment truncated only by the screen boundary. The p57 key itself remains 20 words / 95 runes / 55 interiors.
 
 The former pilot split at '%'. Its reported best score of 1.152887 is superseded and must not be reused. The corrected parser is asserted against the canonical p0–p2 rune corpus in the reproducer.
+
+## Full 2016-word-direction original-cipher decision (Agent50, 16 November 2026)
+
+The [PGP-preserved first-party 2016 instruction](../resources/historical/cicada2016-4gq25-outguess.asc) says that the book's words are the map, their meaning the road and their numbers the direction. Clear original PARABLE instructs solvers to shed circumferences. A finite, unauthenticated interpretation removes the first and last GP29 rune from each of p57's twenty words, yielding **55 original key indices**: five title interiors and fifty body interiors. The first target word traverses forward; each subsequent word traverses the key forward when the preceding **ciphertext** word's GP-prime sum is prime, otherwise backward. This schedule is causal for both enciphering and deciphering.
+
+The exact test locks title-first ordering, source GP indices or GP-prime residues mod29, both additive signs, a cyclic length-55 key and the original pilot's conv000 predecessor-comparison rule. It tests direct additive GP29 plus the legacy skip and coin collision models with a 160-state word-trigram beam. The language model is trained only on solved LP1 GP transliterations. Original punctuation, 32 page-carrying words and original rune values remain intact. Every candidate inverse is forward-checked with its recovered key-read positions. Collision paths are generally nonunique without extra branch information; this is an explicitly bounded candidate family.
+
+### Exact complete-source gate
+
+| Source-fixed test | Result |
+| --- | --- |
+| Original opening pp0–2 | **729 runes**, **158 joined printed words** |
+| Disjoint floral pp40–53 | **3,008 runes**, **669 joined printed words**; physical p50 is runeless |
+| Key | **55** original p57 word interiors; source p57 itself is **95** runes in **20** words |
+| P57 original clear control | GP29 IoC **0.06270997**, heldout model log score **−1.94191 nats/rune** |
+| Repeated original p57 planted under skip and coin | **285/285 exact original plaintext recovery** under both |
+| LP1-sourced GP-native plaintext plant under skip and coin | **429/429 exact recovery** under both |
+| Best original opening model | GP indices, negative sign, coin: log **−4.24221**, IoC **0.03534497**; begins IEOPLYFON UPPOEX JLWL TYTH HMOE |
+| Matched key-order null, twelve 55-rune shuffles with all four sign/encoding combinations and both collision models | Median best **−4.24965**, maximum **−4.17209**, empirical familywise upper-tail **5/13 = 0.384615** |
+| Untouched floral p40–53 with the opening-selected model | Log **−4.30123**, IoC **0.03532648**, no coherent GP-native prose |
+| Exact forward recovery of selected original inverse paths | **729/729** original opening runes and **3,008/3,008** original floral runes |
+
+The native solved-source controls demonstrate that the implementation can recover full grammatical GP29 text under the tested cipher. The unknown chapters remain ungrammatical, statistically close to noise, and do not beat the matched shuffled-key model-selection null. All selected paths can re-encrypt by construction, which alone cannot distinguish a real cipher.
+
+This retires the exact p57-interior55 / previous-ciphertext-word prime-direction / conv000 candidate as an immediate LP2 plaintext route. The signed 2016 text does not identify a GP-prime-sum direction opcode, key representation or branch semantics. Other source-specified keys and independently indicated state machines remain outside this test. The 66-rule and 18-convention external pointer campaign is not being opened merely because this finite candidate fails.
+
+**Reproduce:** [complete original-source Node22 SFT](../sims/lp2_p57_pdir_prevword_fullsource_sft.cjs), [successful Windows runner 43949605928](https://github.com/FlareZ123/liber-primus/actions/runs/43949605928). The reproducer asserts source boundaries, authentic native positive controls and complete exact forward return of both original unknown chapters.
 
 ## Gate A — previous-ciphertext GP-prime-sum direction
 
@@ -67,7 +94,7 @@ Both surviving complete 75-rune originals in the first case are nonlinguistic; t
 
 ## Decision
 
-The p57 interior-55 candidate does not select a successful cyclic pointer mechanism under the tested previous-ciphertext prime-sum, current word-length odd/prime, or causal previous-plaintext prime-sum readings. The coin-model controls demonstrate that the decoder can recover matched planted text; the original scores are nevertheless typical of shuffled key orders.
+The p57 interior-55 previous-ciphertext prime-sum direction has now been tested on the complete 729-rune first chapter and an untouched 3,008-rune floral section as described above. Those original inverses remain nonprose and statistically ordinary under matched shuffled keys, despite full native positive recoveries. The current-word length and causal previous-plaintext direction models retain only their 300-rune negative scope.
 
 Retire these specific p57-key/simple-direction readings and the distinct one-edge-75 F-transparent p55 reading in gate D. Do not expand them into arbitrary word statistics, offsets, or conventions without a new independent clue. The deterministic multi-skip model remains unassessed because its positive-control recovery gate failed. The broader pdir key-stream campaign is a separate question and is not excluded here.
 
