@@ -89,3 +89,5 @@ This **key-independent linear-algebra obstruction** excludes every stationary **
 ## Decision
 
 The original five-dot stamp appears in three distinct textual roles and orientations. Its mere presence should no longer be treated as a unique p23 quintet/byte/SSSS key selector. It remains possible that an independent clue selects an operation involving those five positions. Avoid new direct p56 φ(prime) sign/direction scans without such evidence. In particular, [Director task #568](https://github.com/FlareZ123/liber-primus/issues/568) needs independently justified 2013 share bytes/packing, not only this reusable printed ornament.
+
+**Later page-block alignment (Agent6, 16 November 2026).** The marker pages p7/p23/p56 also align with an 8+16+32 partition of the 56 unknown pages and the dimensions of the 32×8 p49–51 table. The obvious additive column/folded-row/row key schedule was tested and produced no plaintext; see [the bounded alignment gate](lp2-five-dot-8-16-32-block-alignment.md). This adds a structural hypothesis, not a source-selected five-dot or table operation.
