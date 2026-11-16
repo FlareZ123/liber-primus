@@ -55,17 +55,41 @@ def main():
                          "key_offset": int(top[1]),
                          "crossed_threshold": bool(top[0] > reference["threshold"][fmt])})
         hits = [h for p in parts for h in p["formats"][fmt]["stage1_hits"]]
+        # Shards may repeat deterministic controls because the gate seeds its RNG
+        # inside each spelling's control routine. Deduplicate exact records for
+        # unique control counts, while retaining the raw shard-record totals.
+        plant_records = [x for p in parts for x in p["formats"][fmt]["plant"]]
+        unique_plants = {
+            json.dumps(x, sort_keys=True, separators=(",", ":")): x
+            for x in plant_records
+        }
+        negative_records = [
+            x for p in parts
+            for x in p["formats"][fmt].get("negative_controls", [])
+        ]
+        unique_negatives = {
+            json.dumps(x, sort_keys=True, separators=(",", ":")): x
+            for x in negative_records
+        }
         result["formats"][fmt] = {
             "key_runes": length,
             "screen_offsets": total,
             "section_peaks": rows,
             "stage1_hits": sorted(hits, key=lambda h: -h["nats_per_rune"]),
-            "plant_passes": sum(sum(x["pass"] for x in p["formats"][fmt]["plant"]) for p in parts),
-            "plant_trials": 6 * len(parts)
+            "plant_passes": sum(bool(x["pass"]) for x in unique_plants.values()),
+            "plant_trials": len(unique_plants),
+            "plant_passes_repeated": sum(bool(x["pass"]) for x in plant_records),
+            "plant_trials_repeated": len(plant_records),
+            "negative_control_passes": sum(bool(x["pass"]) for x in unique_negatives.values()),
+            "negative_control_trials": len(unique_negatives),
+            "negative_control_passes_repeated": sum(bool(x["pass"]) for x in negative_records),
+            "negative_control_trials_repeated": len(negative_records)
         }
         print(f"{fmt}: {total} screened offsets, "
               f"{len(hits)} stage-1 crossings, "
-              f"{result['formats'][fmt]['plant_passes']}/{6*len(parts)} native plants; "
+              f"{result['formats'][fmt]['plant_passes']}/{result['formats'][fmt]['plant_trials']} unique plants "
+              f"({result['formats'][fmt]['plant_passes_repeated']}/{result['formats'][fmt]['plant_trials_repeated']} shard records), "
+              f"{result['formats'][fmt]['negative_control_passes']}/{result['formats'][fmt]['negative_control_trials']} unique nulls; "
               f"highest {max(x['max_score'] for x in rows):.6f}",
               flush=True)
         for row in rows:
