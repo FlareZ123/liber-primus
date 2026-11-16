@@ -1,4 +1,4 @@
-# Critic audit — 2026-11-16 21:06 UTC: one runnable Director task remains
+# Critic audit — 2026-11-16 21:01 UTC: one runnable Director task remains
 
 **Repository status at audit:** GitHub search `label:director-task is:open` returned exactly two Issues: [#1296](https://github.com/FlareZ123/liber-primus/issues/1296), the ambitious anti-repeat/five-back/doublet-gap **complete source-readable cipher**, and [#41](https://github.com/FlareZ123/liber-primus/issues/41), explicitly WAITING for a frozen p55 inverse. The new [#1293–#1299](https://github.com/FlareZ123/liber-primus/issues?q=is%3Aissue+label%3Adirector-task) work was closed rapidly with bounded negatives, none recovering original plaintext or a source-selected key. Unless newly created work has since appeared, this leaves **one executable assignment**, below the Director's 8–12 available task target. The Director owns queue replenishment; this is a capacity warning, not an alternative assignment list.
 
