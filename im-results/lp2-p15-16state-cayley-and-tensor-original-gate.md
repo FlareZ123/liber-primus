@@ -49,6 +49,23 @@ The full exact prediction agrees at **2/256** positions, consistent with chance.
 
 Two independent invariants of the *same hypothetical fold* strengthen the limited conclusion: the sixteen rows have distinct-value counts **[15,16,15,16,16,16,15,15,16,16,15,15,16,16,16,16]**, so they cannot all be bijective remappings of one fixed 16-value column tape; **0/120** opposite-position off-diagonal pairs agree, excluding a plain symmetric encoded binary operation in that fixed coordinate interpretation. These constraints depend on the unlicensed 16-column fold and must not be promoted to a manuscript-wide prohibition.
 
+## Complete p15 matrix-power tape test (independent source-derived alternative)
+
+The infinity ornament following p15's numeric 4×4 suggests iterating its matrix, producing sixteen 4×4 matrices = 256 coefficients. Before viewing the p49–51 table, fix actual matrix row-major order, one of the only two source-representations (printed unsigned or the Fibonacci-generator-restored signed pair), either power M^0 or M^1 as origin, and the only two typed output rings GF29 (table bytes reduced mod29) or bytes Z/256Z (table bytes unchanged). This defines eight exact 256-value predictions without a secret or fitted parameter.
+
+| Matrix representation | Modulus | Powers begin at | Exact matches / 256 |
+|---|---:|---|---:|
+| Printed unsigned | 29 | identity | 11 |
+| Printed unsigned | 29 | M | 7 |
+| Printed unsigned | 256 | identity | 1 |
+| Printed unsigned | 256 | M | 0 |
+| Fibonacci-restored signed | 29 | identity | 2 |
+| Fibonacci-restored signed | 29 | M | 8 |
+| Fibonacci-restored signed | 256 | identity | 2 |
+| Fibonacci-restored signed | 256 | M | 1 |
+
+All eight literal matrix-power generators fail on the entire original table; none yields evidence of a creator-selected operation or unknown GP29 plaintext. These finite negatives do not forbid another source-specified serialization or stateful transducer, which would need its own independent instruction. The existing source-native [SFT](../sims/lp2_p15_tensor_grid256_sft.cjs) now asserts all eight results. This is a separate natural matrix-power lift from the earlier Kronecker self-product gate, without any arbitrary matrix or key search.
+
 ## Reproducer and research decision
 
 [`sims/lp2_p15_tensor_grid256_sft.cjs`](../sims/lp2_p15_tensor_grid256_sft.cjs) reads the unchanged 256-token canonical source, checks the original page splits, distinct counts, all 256 tensor predictions, printed first-row agreement, source-native plant, wrong-p15-value control and row invariants. It is a standalone Node22 CommonJS test with no extra dependencies.
