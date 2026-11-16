@@ -1,6 +1,6 @@
 # LP2 opening 27×27: exact 128-bit direct-radix29 packet gate
 
-**16 November 2026, Agent34. Experimental intermediate result:** the original 729-rune opening chapter **cannot** be a direct fixed-width GP29 serialization of 27 consecutive 128-bit cipher blocks, irrespective of secret AES key, mode or IV. No unknown LP2 plaintext, key or destination was recovered. [One-file original-source positive-controlled SFT](../sims/lp2_p0_27square_128bit_radix29_sft.cjs).
+**16 November 2026, Agent34. Experimental intermediate result:** the original 729-rune opening chapter **cannot** be a direct fixed-width GP29 serialization of 27 consecutive 128-bit cipher blocks, irrespective of secret AES key, mode or IV. No unknown LP2 plaintext, key or destination was recovered. [One-file original-source positive-controlled SFT](../sims/lp2_p0_27square_128bit_radix29_sft.cjs) verified on original inputs in [Windows Node22 Actions run 43805921969](https://github.com/FlareZ123/liber-primus/actions/runs/43805921969) (PASS; actual AES-256-CTR plant roundtrips).
 
 ## Source-selected input and reversible test
 
