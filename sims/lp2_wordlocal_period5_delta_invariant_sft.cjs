@@ -161,6 +161,105 @@ for(const [length,supported] of latinExpected)
   assert.equal(latin.byLength[length]?.supported,supported,
     "source-native Vulgate control at length "+length);
 
+
+/**
+ * Natural Atbash/ROT interpretation: every printed word may choose five
+ * independent +/- orientations and five independent additive shifts.
+ *
+ * C[j] = sign[j%5] * P[j] + key[j%5] mod29.
+ * At a fixed phase the fifth-lag difference vector is preserved up to a
+ * single sign, so canonicalizing it under whole-vector negation eliminates
+ * ALL 2^5 sign choices and all 29^5 secret shifts, independently per word.
+ * A phase with two differences must use the same sign for both.
+ *
+ * @param {number[]} word
+ * @returns {string}
+ */
+function signedSignature(word) {
+  const phaseSignatures=[];
+  for(let phase=0;phase<5;phase++){
+    const delta=[];
+    for(let j=phase+5;j<word.length;j+=5)delta.push(mod29(word[j]-word[j-5]));
+    const positive=delta.join("."),negative=delta.map(x=>mod29(-x)).join(".");
+    phaseSignatures.push(positive<negative?positive:negative);
+  }
+  return phaseSignatures.join("/");
+}
+/** @param {Map<string,number>} index @param {number[]} word */
+function addSignedWord(index,word){
+  if(word.length<6)return;
+  const key=word.length+":"+signedSignature(word);
+  index.set(key,(index.get(key)||0)+1);
+}
+function signedLexiconIndices(){
+  const modern=new Map(),oldEnglish=new Map(),latin=new Map();
+  for(const line of lexicon.split("\n")){
+    const m=/^([a-z]+)\s+\d+$/.exec(line);
+    if(m){const word=toGP(m[1]);if(word)addSignedWord(modern,word);}
+  }
+  const oe=JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+  let cursor=0;
+  for(const length of oe.allSourceGpWordLengths){
+    const word=Array.from(oe.sourceGpBase29.slice(cursor,cursor+length),
+      ch=>oe.positiveControlAlphabet.indexOf(ch));
+    cursor+=length;
+    addSignedWord(oldEnglish,word);
+  }
+  assert.equal(cursor,48012);
+  const alphabet="0123456789ABCDEFGHIJKLMNOPQRS";
+  const vulgate=read("resources/control/latin-vulgate-gp-wholewords.txt")
+    .split(/\r?\n/).filter(line=>/^[0-9A-S]+$/.test(line));
+  assert.equal(vulgate.length,39835);
+  for(const line of vulgate)
+    addSignedWord(latin,Array.from(line,ch=>alphabet.indexOf(ch)));
+  return {modern,oldEnglish,latin};
+}
+/** @param {number[][]} originals @param {Map<string,number>} dictionary */
+function signedMatches(originals,dictionary){
+  const counts=new Map();
+  for(const w of originals.filter(w=>w.length>=6)){
+    const r=counts.get(w.length)||{n:0,supported:0};
+    r.n++;
+    if(dictionary.has(w.length+":"+signedSignature(w)))r.supported++;
+    counts.set(w.length,r);
+  }
+  return Object.fromEntries([...counts].sort((a,b)=>a[0]-b[0]));
+}
+/** @param {number[][]} original @param {Map<number,number[][]>} pools */
+function signedPositive(original,pools){
+  return original.filter(w=>w.length>=6).map((w,i)=>{
+    const available=pools.get(w.length);
+    assert.ok(available?.length);
+    const plaintext=available[(31*i+7)%available.length];
+    return plaintext.map((p,j)=>{
+      const phase=j%5;
+      const sign=(i+phase)%2===0?1:-1;
+      return mod29(sign*p+3+7*i+11*phase);
+    });
+  });
+}
+const signedDict=signedLexiconIndices();
+const oriented={
+  modern:signedMatches(words,signedDict.modern),
+  oldEnglish:signedMatches(words,signedDict.oldEnglish),
+  latin:signedMatches(words,signedDict.latin)
+};
+const orientedExpected={
+  modern:[[6,256],[7,216],[8,100],[9,6]],
+  oldEnglish:[[6,256],[7,159],[8,4],[9,0]],
+  latin:[[6,256],[7,200],[8,46],[9,2]]
+};
+for(const [source,required] of Object.entries(orientedExpected)){
+  for(const [length,supported] of required)
+    assert.equal(oriented[source][length]?.supported,supported,
+      "signed Atbash/ROT "+source+" source length "+length);
+  for(const length of [10,11,12,13,14])
+    assert.equal(oriented[source][length]?.supported,0,
+      "no long period-five signed/affine match for "+source+" "+length);
+}
+const signedPlant=signedMatches(signedPositive(words,byLength),signedDict.modern);
+assert.equal(Object.values(signedPlant).reduce((s,row)=>s+row.supported,0),815);
+
 const support=report=>Object.values(report.byLength).reduce((sum,x)=>sum+x.supported,0);
 assert.equal(support(plant5),815);
 console.log(JSON.stringify({
@@ -168,6 +267,8 @@ console.log(JSON.stringify({
   originalByLength:source.byLength,
   oldEnglishBeowulfByLength:oldEnglish.byLength,
   latinVulgateByLength:latin.byLength,
+  signedShiftOrAtbashByLength:oriented,
+  signedPhaseFiveNativePlant:{n:815,supported:815},
   long10Plus:{n:109,supported:0},
   sourceNativeFivePeriodPlant:{n:815,supported:support(plant5)},
   sixPeriodWrongMechanismControl:{n:815,supported:support(plant6)},
