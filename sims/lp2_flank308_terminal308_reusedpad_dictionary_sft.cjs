@@ -124,7 +124,7 @@ const difference = (a, b) => a.map((x, i) => (x - b[i] + 29) % 29);
  * @param {number[]} wordClassesB
  * @param {number} limit
  */
-function minOov(delta, wordClassesA, wordClassesB, limit = delta.length) {
+function minOov(delta, wordClassesA, wordClassesB, limit = delta.length, relation = "additive") {
   const unknown = nodes.length;
   const base = unknown + 1;
   let states = new Map([[0, 0]]);
@@ -139,7 +139,8 @@ function minOov(delta, wordClassesA, wordClassesB, limit = delta.length) {
       const na = Math.floor(key / base);
       const nb = key % base;
       for (let v = 0; v < 29; v++) {
-        const w = (v - delta[t] + 29) % 29;
+        const w = relation === "xor" ? (v ^ delta[t]) : (v - delta[t] + 29) % 29;
+        if (w >= 29) continue;
         let a1 = na === unknown ? unknown : nodes[na].edges.get(v);
         let b1 = nb === unknown ? unknown : nodes[nb].edges.get(w);
         let extra = 0;
@@ -188,6 +189,18 @@ const actual = minOov(difference(a,b),ca,cb);
 const plantedA = nativePlant(ca,179);
 const plantedB = nativePlant(cb,521);
 const planted = minOov(difference(plantedA,plantedB),ca,cb);
+// The 2014 puzzle also used three-way byte XOR, so check a shared
+// five-bit GP XOR pad separately from GP29 modular addition.
+const actualXor = minOov(a.map((x,i) => x ^ b[i]),ca,cb,count,"xor");
+const xorPad = plantedA.map((x,i) => {
+  for(let key=1;key<32;key++) if((x^key)<29 && (plantedB[i]^key)<29) return key;
+  return 0;
+});
+const plantXorA = plantedA.map((x,i) => x ^ xorPad[i]);
+const plantXorB = plantedB.map((x,i) => x ^ xorPad[i]);
+assert.ok(plantXorA.every(x => x < 29) && plantXorB.every(x => x < 29));
+const plantedXor = minOov(plantXorA.map((x,i) => x ^ plantXorB[i]),ca,cb,count,"xor");
+assert.equal(plantedXor.minOov,0);
 const steps = sequence => sequence.map((value,i) =>
   (value-(i?sequence[i-1]:0)+29)%29);
 const actualChain = minOov(difference(steps(a),steps(b)),ca,cb);
@@ -206,4 +219,5 @@ console.log(JSON.stringify({
   lexicon:{gpDistinct:dictionary.size,trieNodes:nodes.length},
   directPad:{original:actual,positivePlant:planted},
   chainedStepPad:{original:actualChain,positivePlant:plantedChain},
+  fiveBitXorPad:{original:actualXor,positivePlant:plantedXor},
 },null,2));
