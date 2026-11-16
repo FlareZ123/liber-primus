@@ -72,6 +72,24 @@ assert.equal(distinctCount(reversedHeads),17);
 assert.ok(distinctCount(rowHeads)>upperLeadingDigit+1);
 assert.ok(distinctCount(colHeads)>upperLeadingDigit+1);
 assert.ok(distinctCount(reversedHeads)>upperLeadingDigit+1);
+
+// All possible 27 symbol-clock phases are included, with a cyclic reading
+// to preserve the exact source glyphs rather than guessing a start cursor.
+/** @param {number[]} tape @returns {number[]} */
+function phaseLeaderDiversity(tape) {
+  return Array.from({length:27}, (_,phase)=>
+    distinctCount(Array.from({length:27},(_,i)=>tape[(phase+27*i)%729])));
+}
+const transposeTape = transpose(sourceRows).flat();
+const phaseCounts = phaseLeaderDiversity(original);
+const phaseCountsTranspose = phaseLeaderDiversity(transposeTape);
+const phaseCountsReverse = phaseLeaderDiversity([...original].reverse());
+assert.deepEqual(phaseCounts,[18,17,17,18,18,14,19,17,18,18,17,20,17,16,15,19,16,18,20,19,16,16,17,20,19,20,17]);
+assert.deepEqual(phaseCountsTranspose,[18,18,15,17,17,18,19,17,15,16,21,15,14,15,23,16,18,16,18,17,17,19,20,18,15,20,19]);
+assert.equal(Math.min(...phaseCountsReverse),14);
+assert.ok(Math.min(...phaseCounts)>upperLeadingDigit+1);
+assert.ok(Math.min(...phaseCountsTranspose)>upperLeadingDigit+1);
+assert.ok(Math.min(...phaseCountsReverse)>upperLeadingDigit+1);
 assert.deepEqual(rowValid, [7,10,13,18,24]);
 assert.deepEqual(colValid, [7,13,17,22]);
 assert.deepEqual(revValid, [10,18]);
@@ -114,6 +132,7 @@ console.log(JSON.stringify({
   row_valid: rowValid,
   full_secret_alphabet_first_rune_types: {row: distinctCount(rowHeads), column: distinctCount(colHeads), reverse: distinctCount(reversedHeads)},
   maximum_permitted_first_rune_types: upperLeadingDigit+1,
+  minimal_first_rune_types_over_all_27_cyclic_phases: {row: Math.min(...phaseCounts), column: Math.min(...phaseCountsTranspose), reverse: Math.min(...phaseCountsReverse)},
   column_valid: colValid,
   reverse_valid: revValid,
   all_original_rows_represent_128bit_blocks: rowValid.length === 27,
