@@ -1,0 +1,30 @@
+name: Extract expanded 2014 RSA and word-GP chat context
+on:
+  workflow_dispatch:
+jobs:
+  extract_context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify original log
+        run: |
+          curl --fail --location --retry 3 --silent --show-error \
+            'https://raw.githubusercontent.com/cicada-solvers/neuroretransmit-cicada/main/irc-logs/%23cicadasolvers.freenode.log' \
+            --output /tmp/cicadasolvers.freenode.log
+          actual="$(git hash-object /tmp/cicadasolvers.freenode.log)"
+          test "$actual" = "bdd277c14f94c34b5ae714cd00c238065beeed4e"
+          printf 'Verified pinned source blob: %s\n' "$actual"
+      - name: Extract relevant participant statements with line numbers
+        run: |
+          {
+            printf '=== May 6 RSA discussion, lines 168800-169500 ===\n'
+            awk 'NR>=168800 && NR<=169500 && tolower($0) ~ /(f10ur1ick3r|rsa|base60|128b|256b|52 potential|e and d|exponent|modulus|decrypt)/ { printf "%d:%s\n", NR, $0 }' /tmp/cicadasolvers.freenode.log
+            printf '\n=== May 7 word-GP discussion, lines 170800-171200 ===\n'
+            awk 'NR>=170800 && NR<=171200 && tolower($0) ~ /(ammar___|prime|gp|rune|cipher|position|vigenere|word)/ { printf "%d:%s\n", NR, $0 }' /tmp/cicadasolvers.freenode.log
+          } | tee 2014-irc-expanded-rsa-wordgp.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 2014-irc-expanded-rsa-wordgp
+          path: 2014-irc-expanded-rsa-wordgp.txt
+          if-no-files-found: error
