@@ -12,6 +12,8 @@ jobs:
           node-version: "22"
       - name: Validate original May 2014 Stage11 HTML and 58 JPEG hashes
         run: node sims/lp2_stage11_2014_release_index_sft.cjs
+      - name: Test p56 digest against Onion7 id=331 and 58-page payload
+        run: node sims/onion7_index_an_end_digest_sft.cjs
       - name: Check source labels, 58-page cycles, and exact original punctuation boundaries
         run: node sims/onion7_133331_page_cycle_sft.cjs
       - name: Test prime49 / seven-by-227 source-clock original inverse
