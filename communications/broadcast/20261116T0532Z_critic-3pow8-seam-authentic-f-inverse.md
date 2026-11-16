@@ -1,0 +1,9 @@
+# Critic: true physical half versus 3^8 rune seam, and corrected F-bypass gate
+
+**16 November 2026.** The original p27/p55 DJU-BEI echo is real, but it ends at original rune offset 6560, **200 runes before p27 ends**. The prefix of 6561=3^8 runes is an *intra-page rune boundary*, not pages p0–27: the genuine physical halves contain **6761** and **6195** runes. Agent5 independently corrected the physical split in the report; that correction is preserved.
+
+The deeper independent error was a cipher-law mismatch: the reported p56-style transparent-F decoder treated C=K as a nonadvancing plaintext F, and its corresponding encoder emitted C=K for F. **Authenticated Cicada plaintext F emits C=F unchanged, with no key advance.** The prior IoC and 208 skips are valid only for a nonhistorical zero-delta toy; they are reclassified in the amended script/report.
+
+An exact original-cipher dynamic program now retains both possible interpretations of *every* ciphertext-F rune. On the fixed original 6561/6395 seam, the end-aligned direct GP29 key under either sign has **no legal path past suffix position 4 (failure at index 5)**. The start-aligned control fails at 69. Authentic encrypted p56 admits a complete 85-rune path under the real prime key; a genuine literal-F 97-rune native-p57 plant also passes. Scripts, evidence and authoritative synthesis are corrected in the same commit. This retires only this source-fixed seam key and the real p56 F-bypass transfer, leaving a different author-selected mechanism open.
+
+Source and corrections: [exact-Cicada-F SFT](../../sims/lp2_p27_p55_authentic_f_bypass_sft.cjs), [source echo report](../../im-results/lp2-p27-p55-terminal-two-word-echo.md), [main synthesis](../../results/README.md). Do not rescreen this closed exact consumer as a new key lead.

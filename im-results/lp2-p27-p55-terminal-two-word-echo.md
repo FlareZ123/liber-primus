@@ -84,28 +84,26 @@ The only 4-rune match **outside** the anchor p27↔55 occurs at p9 offset99 ↔ 
 
 **Reproducer:** [`sims/lp2_p27_p55_halffold_sft.cjs`](../sims/lp2_p27_p55_halffold_sft.cjs), Node.js 22 CommonJS, original source JSON, exact seeded permutations. There is no new unknown-runic plaintext, source-selected key or valid >=150-rune original inverse. Further dependent fold-cipher sweeps are unwarranted unless a separate original clue fixes an operation and predicts untouched ciphertext.
 
-## Bounded 3^8-prefix / 6,395-rune suffix pad test (Agent5, 16 November)
+## Corrected 3^8-prefix / suffix additive-pad gate (16 November 2026)
 
-The p27/p55 echo also gives one simple, clue-constrained key hypothesis: treat the first **6,561 = 3^8** runes as a prefix and the remaining **6,395** as a suffix, then align the two blocks by their ends. This split is not the physical 28-page split. The prefix ends at p27 local offsets **28–33**, exactly the repeated six-rune pair DJU-BEI; the suffix begins at p27 local offset **34** (first suffix rune AE) and ends with the same DJU-BEI at p55 local offsets **70–75**. The first 27 pages contain 6,527 runes, p27 contains 234, and the physical page groups instead total p0–27=**6,761** and p28–55=**6,195**. The opening p0–2 contains 729=3^6 runes. Thus the 3^8 prefix boundary is an intra-page cut immediately after the p27 echo, not a page-half boundary.
+The exact duplicated DJU-BEI sequence appears at original global offsets 6555–6560 and 12950–12955. The first occurrence ends at **6,561 = 3^8** runes, inside physical p27 after its local rune33. The source-selected *rune cut* therefore divides the 12,956-rune unknown corpus into a **6,561-rune prefix** and a **6,395-rune suffix**. This is **not** the physical 28-page division: original p0–27 contain **6,761** runes, and p28–55 contain **6,195**. Physical p27 has 200 further runes after the first echo. The independent first 729-rune chapter length is 3^6, a numerical observation without an independently authenticated key instruction.
 
-End alignment fixes the candidate key to prefix offsets **166–6560** for suffix offsets **0–6394**. Start alignment (prefix offsets 0–6394) is a control. No other offset, reversal or clock was searched.
+For the *rune cut* only, the end-aligned candidate key is prefix offsets166–6560 (length 6,395), and the start-aligned control uses prefix offsets0–6394. The original 6,395-rune suffix and both literal GP29 additive signs were tested without key selection against Shakespeare-native language scores:
 
-Both direct additive signs and the solved-p56-style F-transparent/no-key-advance variant were tested against a Shakespeare-derived GP29 unigram/bigram model. All outputs are effectively uniform:
+| Alignment | Decoding sign | GP29 IoC | Unigram nats/rune | Bigram nats/rune |
+| --- | --- | ---: | ---: | ---: |
+| End | Cipher − key | 0.0345255 | −4.26684 | −4.83184 |
+| End | Key − cipher | 0.0345255 | −4.26359 | −4.82880 |
+| Start | Cipher − key | 0.0344956 | −4.27903 | −4.85053 |
+| Start | Key − cipher | 0.0344956 | −4.26766 | −4.84004 |
 
-| Alignment / operation | Sign | IoC | Unigram nats/rune | Bigram nats/rune |
-|---|---:|---:|---:|---:|
-| End, direct | C₂−K | 0.0345255 | −4.26684 | −4.83184 |
-| End, direct | K−C₂ | 0.0345255 | −4.26359 | −4.82880 |
-| Start control, direct | C₂−K | 0.0344956 | −4.27903 | −4.85053 |
-| Start control, direct | K−C₂ | 0.0344956 | −4.26766 | −4.84004 |
-| End, F-transparent | C₂−K | 0.0344747 | −4.25248 | −4.85573 |
-| End, F-transparent | K−C₂ | 0.0344747 | −4.28453 | −4.89367 |
+All four direct outputs remain uniform-like. Same-length Shakespeare GP29 windows previously gave IoC first percentile 0.05740 and median 0.06152, with median bigram score −2.61831; an independent direct-additive positive plant round-tripped with English-like scores. Ordinary end-aligned subtraction necessarily yields six terminal zero-delta positions because the 6-rune pair was copied, yet no further plaintext appears. This is a finite negative for a **direct additive pad using this intra-page 3^8 cut**, without excluding other stateful consumers of the visible echo.
 
-For reference, 2,178 same-length Shakespeare GP29 windows have IoC 1st percentile **0.05740**, median **0.06152**, and median bigram score **−2.61831**. A positive direct-additive plant roundtrips exactly (IoC 0.06162, bigram −2.59302); the F-transparent plant also roundtrips exactly. The F-transparent original decode consumes 6,187 key symbols and emits 208 zero symbols, close to the chance count under a uniform stream.
+**Important cipher-law correction.** The original script's purported “p56-style F-transparent” mode was misimplemented. It encoded plaintext F as **ciphertext equal to the current key symbol** while leaving the pointer stationary, and its decoder interpreted **C=K** as plaintext F. Authentic Cicada LP1/p56 transparency instead emits **C=F (GP29 zero)** without consuming key; ciphertext F may alternatively encode a non-F plaintext. The earlier 0.0344747 IoC, 208 “F” outputs and synthetic round-trip describe a *zero-delta skip toy*, **not an authentic-p56 F-transparent test**, and must not be cited as excluding that authentic mechanism. The old script now labels its toy branch explicitly as nonhistorical.
 
-End alignment does make the final six equal ciphertext runes subtract to six F symbols under ordinary, non-skipping subtraction. The remaining 6,389 symbols are nevertheless language-flat. Under F-transparent/no-key-advance decoding, the pointer stalls at each equality and the result is also flat. This is an algebraic consequence of the echo, not a plaintext recovery.
+**Exact authentic-F inverse on unchanged source.** A separate skip-aware dynamic program admits every original ciphertext-F either as transparent plaintext F (pointer unchanged) or as an encrypted non-F rune (pointer advanced), with both additive directions. For the 3^8 rune cut and end-aligned key, **all legal paths vanish at suffix rune offset 5 (zero-based)** under both signs; with the start-aligned key, both signs fail at suffix offset **69**. The authentic solved p56 cipher has a complete 85-rune legal path under its own original prime key, and a synthetic 97-rune planted p57-clear-text positive with five literal Fs passes under the tested prefix-derived key. The genuine-F negative is thus an exact source-input exclusion for this fixed key/clock, **stronger than a language score** and independent of any crib.
 
-**Decision:** retire the contiguous 3^8-prefix tail as a direct GP29 additive pad for the 6,395-rune suffix, both signs, with and without p56-style F transparency. This does not exclude a different source-selected operation or stateful key. Reproducer: [`sims/lp2_p27_p55_end_aligned_halfpad_gate.cjs`](../sims/lp2_p27_p55_end_aligned_halfpad_gate.cjs). No unknown plaintext or authentic key recovered.
+**Decision:** Retire this precise 3^8-cut direct GP29 additive consumer and its true-F-bypass extension. The coincident 3^8 end-of-first-echo position remains an unconfirmed structural clue. These tests do not justify reclassifying the first half of the book, generalizing to unknown keys, or declaring any original plaintext. [Direct-language SFT](../sims/lp2_p27_p55_end_aligned_halfpad_gate.cjs) · [Exact native-F SFT](../sims/lp2_p27_p55_authentic_f_bypass_sft.cjs).
 
 ## A discriminating route to plaintext
 

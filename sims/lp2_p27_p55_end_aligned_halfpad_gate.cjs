@@ -13,9 +13,11 @@ No offset search:
   end alignment selects key = prefix[166..6560] for suffix[0..6394]
   start alignment key = prefix[0..6394] is the control.
 
-Test only direct GP29 addition/subtraction in both signs, plus the solved-p56
-F-transparent/no-key-advance variant for the end-aligned key. The latter is
-not assumed to be the LP2 cipher; it is a source-motivated variant.
+Test direct GP29 addition/subtraction in both signs. A separate historical
+zero-delta skip toy test is retained solely as a record of the old experiment:
+when P=F, that toy emits C=K and does not consume the key. THIS IS NOT THE
+AUTHENTIC CICADA p56 F-BYPASS, which emits C=F unchanged. For the true bypass
+use lp2_p27_p55_authentic_f_bypass_sft.cjs instead.
 */
 
 const fs = require("fs");
@@ -93,11 +95,11 @@ function decodeDirect(key, ciphertext, sign) {
   return ciphertext.map((c, i) => mod(sign === -1 ? c - key[i] : key[i] - c));
 }
 
-function decodeFTransparent(key, ciphertext, sign) {
+function decodeZeroDeltaSkip(key, ciphertext, sign) {
   let j = 0;
   const plain = [];
   for (const c of ciphertext) {
-    assert(j < key.length, "F-transparent key exhausted");
+    assert(j < key.length, "zero-delta skip (nonhistorical) key exhausted");
     if (c === key[j]) {
       plain.push(0); // F plaintext: transparent, so the key pointer does not advance
     } else {
@@ -108,7 +110,7 @@ function decodeFTransparent(key, ciphertext, sign) {
   return { plain, keyConsumed: j, zeroCount: plain.filter(x => x === 0).length };
 }
 
-function encryptFTransparent(key, plain) {
+function encryptZeroDeltaSkip(key, plain) {
   let j = 0;
   const ciphertext = [];
   for (const p of plain) {
@@ -177,9 +179,9 @@ for (const [alignment, key] of [
 }
 
 for (const sign of [-1, 1]) {
-  const decoded = decodeFTransparent(prefix.slice(difference), suffix, sign);
+  const decoded = decodeZeroDeltaSkip(prefix.slice(difference), suffix, sign);
   variants.push({
-    alignment:"end", mode:"F-transparent", sign,
+    alignment:"end", mode:"zero-delta skip (nonhistorical)", sign,
     keyConsumed:decoded.keyConsumed, zeroCount:decoded.zeroCount,
     ...score(decoded.plain),
     first120:render(decoded.plain.slice(0, 120)),
@@ -197,8 +199,8 @@ const positivePlain = english.slice(50000, 56395);
 const positiveKey = english.slice(10000, 16395);
 const positiveCipher = positivePlain.map((p, i) => mod(p + positiveKey[i]));
 const positiveDirect = decodeDirect(positiveKey, positiveCipher, -1);
-const positiveFEncrypted = encryptFTransparent(positiveKey, positivePlain);
-const positiveFDecoded = decodeFTransparent(positiveKey, positiveFEncrypted.ciphertext, -1);
+const positiveFEncrypted = encryptZeroDeltaSkip(positiveKey, positivePlain);
+const positiveFDecoded = decodeZeroDeltaSkip(positiveKey, positiveFEncrypted.ciphertext, -1);
 
 const result = {
   lengths: {
@@ -220,9 +222,9 @@ const result = {
   positiveControls: {
     directExact:positiveDirect.every((x, i) => x === positivePlain[i]),
     directScore:score(positiveDirect),
-    fTransparentExact:positiveFDecoded.plain.every((x, i) => x === positivePlain[i]),
-    fTransparentKeyConsumed:positiveFDecoded.keyConsumed,
-    fTransparentScore:score(positiveFDecoded.plain)
+    zeroDeltaSkipExact:positiveFDecoded.plain.every((x, i) => x === positivePlain[i]),
+    zeroDeltaSkipKeyConsumed:positiveFDecoded.keyConsumed,
+    zeroDeltaSkipScore:score(positiveFDecoded.plain)
   }
 };
 
