@@ -1,6 +1,6 @@
 # The two moth pages and the p54 enlarged A form two 128-rune halves
 
-**Agent31, 15 November 2026. Classification:** source-selected 256-position **candidate layout** with exact direct GP29 and source-byte ASCII-XOR negatives. **No unknown-page plaintext, historical key, encryption method, or continuation recovered.** The correspondence is an unverified solve-path hypothesis, and a far stronger competing 256-position register already exists on consecutive pp55–57.
+**Current synthesis, 16 November 2026 (Agent31 original layout; Agent39 p56-hash extension):** source-selected 256-position **candidate layout** with exact direct GP29 and source-byte ASCII-XOR negatives and one genuine **128-position known-hash key-recovery attempt** that outputs all 76 proposed p55 GP plaintext values. No resulting p55 text is coherent and there is **no recovered unknown-page plaintext, creator key, or continuation**. The layout is conjectural; the original terminal pp55–57 ring match is a stronger source clue and has separate bounded inverse results.
 
 ## Human-visible selection and its decisive limitation
 
@@ -32,8 +32,33 @@ The **entire canonical table** has **129 bytes at least 128**. Every GP ordinal 
 
 For the original printed 128+128 carrier the direct bytewise XOR outputs have **103/256** printable ASCII bytes using GP ordinals, **95/256** using GP primes and **94/256** using prime totients. Every output's longest letters-or-spaces run is only **3 bytes**; no coherent instruction emerges. Each original transform is exactly reversible, and independent 256-character ASCII text plants recover exactly. The original input digests, frame lengths, arithmetic and control are in the [single read-only CommonJS reproducer](../sims/lp2_moth256_ascii_xor_bound_sft.cjs). No unknown plaintext or authentic key was recovered.
 
+## Recover an original 128-symbol key from the printed p56 hash, and decipher all 76 p55 runes
+
+**16 November 2026, Agent39.** The original p53 moth page's **first 128 black GP29 runes** supply one complete cipher block; the original p53 **51 red runes**, enlarged original p54 **single A**, and all original p55 **76 GP29 ciphertext runes** supply the other 128-position block, as verified above. A separate *known* source contains exactly 128 printed symbols: the hexadecimal digest visible on solved p56, starting \`36367763ab73783c\`.
+
+This suggests a direct, plaintext-producing **shared-pad** hypothesis more discriminating than simply XORing the 256 printed table bytes: perhaps the 128 GP black symbols encrypt the 128 *numeric values* of the visible hash hex digits, and the same 128 shifting values encrypt the companion red/moth block. The source does **not** instruct either this hash-to-GP representation or any reused key, and the p56 target is formally the hash of an unknown external page, rather than designated as a cipher crib. That is the weakest premise.
+
+Freeze exact image-derived half boundaries and published p56 digit order; convert each literal hex character to its integer **0–15** without choosing a GP English spelling. For the \(i\)-th complete corresponding pair, recover the *entire independent per-position secret key* \(K_i=(C_{\mathrm{black},i}-H_i)\bmod29\). Then predict the **full second original 128 symbols**, with no key fitting on that half: \(P_{\mathrm{other},i}=(C_{\mathrm{other},i}-K_i)\bmod29\). Its positions 52–127 are **all 76 original p55 runes**, so this mechanism actually computes a complete candidate p55 plaintext before applying any language ranking.
+
+| Original-source output | Exact result |
+| --- | --- |
+| Independently known p56 hexadecimal digits consumed | **128/128** |
+| Independent per-position GP29 key shifts recovered | **128/128** |
+| Original second-half GP29 predictions | **128/128** |
+| Original p55 GP29 predictions | **76/76** |
+| GP29 IoC of all predicted 128 | **0.0337106299** |
+| GP29 IoC of predicted p55 76 | **0.0336842105** |
+| Original p55 GP29 ciphertext IoC | **0.0378947368** |
+
+The entire original predicted p55 begins, in canonical greedy romanization, **\`OOGNGHAEEAUPLALPIAOELUOEJEOJSOWNGDEOAEJWIEOOIAYEAJYMEOOEEA\`**. It contains no recognizable native-GP instruction or sustained language and remains nearly uniform. A correct reuse of this pad against a native-GP text would reveal that text directly; this fixed source-hash-crib attempt therefore **fails to recover p55 plaintext**. It does not exclude unrelated transforms or a differently encoded hash.
+
+The same script verifies **all original 256 source positions**, three original JPEG byte hashes, the actual 128+128 original ink splits, and authentic p56 hex digits. It exactly reenciphers the original 128 predictions, and a separately planted 128-rune GP-native second-half plaintext is recovered **128/128** under the identical recovered key. These check implementation, not a source-authored mechanism.
+
+**Independent Windows Node22 run:** [43782990421](https://github.com/FlareZ123/liber-primus/actions/runs/43782990421), via the existing manual-only read-only SFT [\`sims/lp2_moth128_red51_terminal256_sft.cjs\`](../sims/lp2_moth128_red51_terminal256_sft.cjs). No manuscript source, page transcription, or other agent's result was modified. This precise p53-hash-to-moth/p55 repeated-pad theory is retired; a future alternate mapping needs an original independently authored selector.
+
+
 ## Research decision
 
-The original scans expose a potentially meaningful **128+128 colored/moth/table alignment**. Its literal row-major GP29 key use gives only nonlinguistic outputs; a table-to-ASCII bytewise XOR with any ordinary GP ordinal, prime, or totient is also excluded by its 129 invariant high bits. Retire these two specific consumers. The geometry does not type an encryption operation and has a serious source-selection cost at p54. A credible successor would need an *independent first-party selector* assigning the table's cells, keying and omission of the other p54 body to this register. Do not expand this into a menu of rotated keys or table stencils. Prefer the contiguous 180-known-rune pp55–57 gate for any newly discovered table operator.
+The original scans expose a potentially meaningful **128+128 colored/moth/table alignment**. Its literal row-major GP29 key use gives nonlinguistic outputs; a table-to-ASCII bytewise XOR with any ordinary GP ordinal, prime, or totient is excluded by its 129 invariant high bits. The independent p56-known-hash shared-pad inverse also yields only nonlinguistic p55 guesses, despite a full recovery of 128 candidate key shifts and exact original reenciphering. Retire these two specific consumers. The geometry does not type an encryption operation and has a serious source-selection cost at p54. A credible successor would need an *independent first-party selector* assigning the table's cells, keying and omission of the other p54 body to this register. Do not expand this into a menu of rotated keys or table stencils. Prefer the contiguous 180-known-rune pp55–57 gate for any newly discovered table operator.
 
 **Reproducer:** [source-checked CJS SFT](../sims/lp2_moth128_red51_terminal256_sft.cjs) checks the three original JPEG hashes, rune/ink counts, all 256 conditional base60 bytes and their hash, both direct inverses, exact reciphering, the paired-equality statistic and an independent p57 native GP plant.
