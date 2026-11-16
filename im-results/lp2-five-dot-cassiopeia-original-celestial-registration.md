@@ -35,7 +35,7 @@ The preregistered five-star index sets, gnomonic projection and complete 120-per
 
 | Fixed sky subset | Best RMS over any of 5! star-to-dot assignments | Extra source-visible constraint |
 | --- | ---: | --- |
-| Cassiopeia α/β/γ/δ/ε | **78.744 px** | Earlier result; normal RA/Bayer order is 88.877 px |
+| Cassiopeia α/β/γ/δ/ε | **78.744 px** | Earlier result; RA-ascending β,α,γ,δ,ε ordering is 88.877 px |
 | Crux α/β/γ/δ/ε | **79.587 px** | Natural α,β,γ,δ,ε→x-order RMS **219.944 px** |
 | Crux α,β,γ + Centaurus α,β | **63.480 px** | The best arbitrary assignment **interleaves** Crux and Centaurus dots, contrary to the visible 3+2 grouping |
 | Same five Crux/Centaurus stars with all three Crux on the left and both pointers on the right | **84.728 px** | Best of the **12** naturally grouped assignments |
