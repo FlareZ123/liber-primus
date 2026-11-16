@@ -209,7 +209,7 @@ assert.ok(outcomes.every(x => x.firstImpossibleIndex < x.testedBodyRunes));
 console.log(JSON.stringify({
   status: 'PASS', historical2015RepeatedD: 40,
   originalSourceModelsRejected: outcomes.length,
-  2014HistoricallySolved14Columns: true,
+  historically2014Solved14Columns: true,
   allNativePlantRoundTrips: true,
   verdict: 'Exact historic 2015-D/E + authentic 2014 col14 + p56 phi F-bypass receiver fails on original GP29, no source-selected continuation'
 }));
