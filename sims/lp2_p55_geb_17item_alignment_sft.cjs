@@ -172,6 +172,56 @@ assert.equal(oneBasedIndexMatches, 2);
 assert.equal(monoalphabeticConflictSymbols, 13);
 assert.equal(affineSolutions.length, 0);
 
+// No-selector test: a literal word-local GEB coordinate needs three nonempty
+// numerical fields. Check the image-preserved dots and the p54 page carry.
+const localMissing = coordinatePositions.filter(
+  i => (i === 0 ? 0 : p55Words[i].length - 2) < 3
+).map(i => i + 1);
+const fullWordMissing = coordinatePositions.filter(
+  i => (i === 0 ? p54LastIndices.length - 1 : p55Words[i].length - 2) < 3
+).map(i => i + 1);
+assert.deepEqual(localMissing, [1, 2, 4, 7, 10, 14, 16]);
+assert.deepEqual(fullWordMissing, [2, 4, 7, 10, 14, 16]);
+assert.equal(coordinateInterior.length, 42);
+assert.equal(coordinateInterior.length + p54LastIndices.length - 1, 51);
+
+// Each title was distinct in the known 2014 source. Every p55 title-boundary
+// pair is distinct too, so arbitrary lookup assignment fits but is undetermined.
+const titleCodes = coordinatePositions.map(i => gebItems[i].label);
+const boundaryCodes = coordinatePositions.map(i => itemBoundaryPair(i).join(':'));
+assert.equal(new Set(titleCodes).size, 14);
+assert.equal(new Set(boundaryCodes).size, 14);
+const possibleUnselectedTitleCodebooks = Array.from(
+  { length: 14 }, (_, i) => i + 1
+).reduce((p, n) => p * n, 1);
+assert.equal(possibleUnselectedTitleCodebooks, 87178291200);
+
+// Two genuinely different simple GP29 digit rules both fit the highlighted
+// 2014 literal 3/7 items, demonstrating that those hits do not select a rule.
+const cyclicDirectedDistance = pair => ((pair[1] - pair[0] + 29) % 29) + 1;
+assert.deepEqual([2, 10].map(i => cyclicDirectedDistance(itemBoundaryPair(i))), [3, 7]);
+assert.notEqual(
+  cyclicDirectedDistance(itemBoundaryPair(1)),
+  inclusiveBoundaryDistance(itemBoundaryPair(1))
+);
+
+const grammarGate = {
+  source_2014_known_items: '14 dialogue-title/exchange/word/letter coordinates, 3, 7, ONION',
+  source_2014_known_decoded_address: 'ut3qtzbrvs7dtvzp.onion',
+  p55_local_coordinate_interiors: coordinateInterior.length,
+  p54_p55_full_coordinate_interiors: coordinateInterior.length + p54LastIndices.length - 1,
+  required_nonempty_numeric_fields: coordinateFields.length,
+  local_coordinate_items_below_three_field_runes: localMissing,
+  complete_word_coordinate_items_below_three_field_runes: fullWordMissing,
+  distinct_coordinate_title_boundary_pairs: new Set(boundaryCodes).size,
+  arbitrary_bijective_title_codebooks_without_a_selector: possibleUnselectedTitleCodebooks,
+  inclusive_distance_digit_hits: digitChecks.map(x => x.inclusive_distance),
+  cyclic_directed_distance_digit_hits: [2, 10].map(i => cyclicDirectedDistance(itemBoundaryPair(i))),
+  source_selected_decoder: false,
+  verdict: 'no unique creator-selected 17-item GEB field grammar on original p55'
+};
+
+
 console.log(JSON.stringify({
   status: 'structural alignment only; no p55 plaintext or key recovered',
   geb_item_count: gebItems.length,
@@ -200,6 +250,7 @@ console.log(JSON.stringify({
     monoalphabetic_conflict_symbols: monoalphabeticConflictSymbols,
     global_affine_gp29_solutions: affineSolutions
   },
+  source_grammar_gate: grammarGate,
   coordinate_interior_indices: coordinateInterior,
   coordinate_fields: coordinateFields
 }, null, 2));
