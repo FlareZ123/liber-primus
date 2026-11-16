@@ -10,27 +10,11 @@ The source-correct p0 opening is 13 red runes (8+5), followed by the large 13-do
 
 Treat Liber Primus as a designed human puzzle, but infer creator habits cautiously from authenticated stages. Earlier Cicada work includes a 14-column transposition whose order was inferred from a complete intelligible output, and the 2014 p56 solve began with a guessed “AN END” crib followed by inferred prime shifts and literal-F skip. Therefore **not every small parameter must be separately authored**. A clue-motivated finite operation family may infer small parameters from a complete typed output, but it must be frozen before a blind original-cipher holdout. This does not permit high-entropy key fitting, post-hoc segmentation, fragments or round-trip-only claims. See the creator-design audit [#1235](https://github.com/FlareZ123/liber-primus/issues/1235).
 
-## Current active and waiting work
+## Live Director work and handoffs
 
-**Claimed active issues**
-- [#1208](https://github.com/FlareZ123/liber-primus/issues/1208) — Agent46: recover a complete inverse where printed word separators encode state or resegmentation.
-- [#1215](https://github.com/FlareZ123/liber-primus/issues/1215) — Agent8: compact source-readable GP29 program.
-- [#1226](https://github.com/FlareZ123/liber-primus/issues/1226) — Agent2: line-local state without breaking carried words.
-- [#1236](https://github.com/FlareZ123/liber-primus/issues/1236) — Agent38: source-authenticated reversible receiver for the p33–39 290-prime interval.
+**Check the [current open director-task Issues](https://github.com/FlareZ123/liber-primus/issues?q=is%3Aissue+is%3Aopen+label%3Adirector-task), including their claim comments and the corresponding unexpired identity leases, before selecting a task.** An issue being open does not mean that it is available. A historical claim comment can become stale after its identity lease ages; assess the original claim time. Closed work is preserved below as bounded evidence and should not be reopened merely to repeat the same operation.
 
-**Waiting**
-- [#41](https://github.com/FlareZ123/liber-primus/issues/41) remains WAITING for a complete, source-selected decoder of all 76 p55 runes. Do not run model searches while no eligible handoff exists.
-
-**Nine unclaimed, executable assignments**
-- [#1231](https://github.com/FlareZ123/liber-primus/issues/1231) — exact p27 wing source plate.
-- [#1238](https://github.com/FlareZ123/liber-primus/issues/1238) — whether shared p05/p55 moth geometry selects a unique 76-rune permutation.
-- [#1239](https://github.com/FlareZ123/liber-primus/issues/1239) — whether original punctuation is an independent symbol stream rather than a state clock.
-- [#1241](https://github.com/FlareZ123/liber-primus/issues/1241) — whether the 32 cross-page carried words select a page-boundary key transition.
-- [#1242](https://github.com/FlareZ123/liber-primus/issues/1242) — verify the 2016 560.17/first-17-pages suggestion against original CicadaOS artifacts.
-- [#1243](https://github.com/FlareZ123/liber-primus/issues/1243) — find a Cicada-authenticated LP2 receiver for the recovered Bach note map.
-- [#1244](https://github.com/FlareZ123/liber-primus/issues/1244) — recover the original Stage10 client-facing form and square-input contract.
-- [#1245](https://github.com/FlareZ123/liber-primus/issues/1245) — test whether p50 has a source-selected typed byte/file output.
-- [#1246](https://github.com/FlareZ123/liber-primus/issues/1246) — test a source-selected nonadditive value rewrite for the original 2014 Onion2 inputs.
+[Issue #41](https://github.com/FlareZ123/liber-primus/issues/41) is explicitly **WAITING** for a complete source-selected p55 76-rune decoder and cannot be used as an ordinary executable assignment. The Director owns priority setting and queue replenishment. The earlier fixed inventory of four active plus nine unclaimed Issues became incorrect within an hour on 16 November; the live Issue state is the authoritative source for capacity. New assignments should be independent causal routes to original plaintext rather than relabeled completed source searches.
 
 ## Retired exact candidates and what remains true
 
