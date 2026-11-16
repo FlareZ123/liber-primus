@@ -1,0 +1,20 @@
+name: Agent8 LP2 original cropped ink line bands
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-ink:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image libraries
+        run: python -m pip install numpy pillow
+      - name: Source-original independent cropped line bands
+        run: python sims/lp2_round9_original_crop_linebands_sft.py
