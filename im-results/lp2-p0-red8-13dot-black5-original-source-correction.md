@@ -36,11 +36,12 @@ The read-only [SFT](../sims/lp2_p0_red8_marker8_original_image_sft.py) pins the 
 
 | Source crop | Box | Red pixels | Near-black pixels excluding red |
 | --- | --- | ---: | ---: |
-| First eight runes | (765,640,1388,770) | **23,455** | 481 |
+| Oversized red initial (first rune) | (620,640,758,1190) | **25,133** | 0 |
+| Seven ordinary red continuation runes | (765,640,1388,770) | **23,455** | 481 |
 | Large red punctuation | (1399,640,1448,770) | **1,116** | 0 |
 | Final five runes | (1449,640,1777,770) | **0** | 11,434 |
 
-The 13 red punctuation components have widths 9–10px, heights 7–10px and sum to the 1,116 red pixels in the punctuation region. The first-eight crop's small near-black count comes from typographic holes/antialiasing; the decisive cross-color segregation is 23,455 red vs 0 red in the five-rune black crop. The test ran successfully on the user's byte-identical original `17.jpg`; the repo blob SHA `abab573f7a3786f46fe4fab17d5f2dcf2476136b` is the same as the local image Git blob.
+The 13 red punctuation components have widths 9–10px, heights 7–10px and sum to the 1,116 red pixels in the punctuation region. The p0 heading includes a **giant red initial** that is the first of its eight title runes, then **seven smaller red continuation runes**. The seven-continuation crop's small near-black count comes from antialiasing; the decisive source separation is the entire red initial-plus-continuation followed by the red 13-dot marker and the five-rune black crop with zero red pixels. The test ran successfully on the user's byte-identical original `17.jpg`; the repo blob SHA `abab573f7a3786f46fe4fab17d5f2dcf2476136b` is the same as the local image Git blob.
 
 ## Consequence for purported Latin heading and next decision
 
