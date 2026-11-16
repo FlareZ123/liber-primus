@@ -55,6 +55,15 @@ The p32 runes at indices 33–37 spell **HOMEX**. Thus this four-step route star
 - The prior p50_outer76_totient_p55.md test applied φ to the *76 perimeter byte values* as an additive key for p55 and encountered the source zero (φ(0) undefined). This investigation is distinct: it applies φ to the four **perimeter counts** to select message-word positions; it does not use φ(byte) or decrypt p55.
 - The route combines individually motivated pieces, but the complete chain is not explicitly stated by one source. In particular, “φ of each ring length”, inside-out order, GP-prime-sum-as-zero-based-table-address, and reuse of the existing p32 compass origin are still interpretive links.
 
+## Rejected source-specific astronomical overlay (separate from the ring route)
+
+A 1504 *Mundus Novus* source lead describes 3+2+6 southern-sky star groups at nominal 9.5°, 12.5° and 32°; a 2026 reconstruction proposes eleven named stars. The exact 11-star count makes the p32 11×11 rune grid tempting, and 32° makes the p50 32×8 table tempting. I tested those correspondences with a frozen south-pole map: centre (5,5), RA=0 at top, east-left, 32°→five cells, and the three source group radii assigned to their respective stars.
+
+- Reading the eleven mapped p32 cells in source group order gives GP tokens **A, L, W, IO, IO, U, A, J, J, J, J**. Several stars collide in the same cells; this is not a plaintext or useful path.
+- Treating p50 as group-radius rows 10/13/32 and RA-octant columns, then applying the existing byte compass rule from H cell33, selects **[164,82,79,206,206,230,180,180,180,180,180]**. Under the source-consistent east-left orientation the route returns to H cell33; the mirror control ends at cell86. Neither reaches X cell37. The six outer-group stars collapse to the same table cell/byte.
+
+This rejects the obvious 11-star→p32 and 3+2+6→p50 compass overlays. It does **not** test or strengthen the separate four-ring φ→2016-word→p50→p32 route above; that route remains provisional on its own stated assumptions. Reproducer: [Vespucci star-map overlay gate](../sims/lp2_vespucci_star_map_overlay_gate.cjs).
+
 ## Decision
 
 This is a **promising, reproducible navigation bridge** from the solved p57 instruction through the p50 numerical grid and signed 2016 word map to the p32 H→X marker. It does not recover unknown-page plaintext, an authentic cipher key, or the intended final destination. The next useful work is independent reproduction/adversarial review of the complete chain and investigation of what the X endpoint signifies—not additional unconstrained transformations of the same four bytes.
