@@ -1,0 +1,18 @@
+name: LP2 historical 2014 unknown-key source miner
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-key-claim-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Mine May to September 2014 period source messages
+        run: node sims/lp2_2014_irc_unknown_key_claim_miner.cjs
