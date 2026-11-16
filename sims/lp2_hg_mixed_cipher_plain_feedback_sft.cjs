@@ -55,6 +55,17 @@ const references = [
   assert.equal(sequence.length, length);
   return { name, sequence };
 });
+// Independent Latin source is already GP29-transcribed, one word per line.
+// Its code alphabet 0..9,A..S is explicitly documented in the source header.
+const latinAlphabet = '0123456789ABCDEFGHIJKLMNOPQRS';
+const latinWords = read('resources/control/latin-vulgate-gp-wholewords.txt')
+  .split(/\r?\n/).map(line => line.trim())
+  .filter(line => line && !line.startsWith('#'));
+const latin = [...latinWords.join('')].map(c => latinAlphabet.indexOf(c));
+assert.equal(latinWords.length, 39835);
+assert.equal(latin.length, 204802);
+assert(latin.every(i => i >= 0 && i < 29));
+references.push({ name: 'Latin Vulgate', sequence: latin });
 
 /** @param {number[]} s @returns {number[][]} */
 function digrams(s) {
@@ -108,8 +119,8 @@ const spectra = references.map(r => ({
   ...fit(observed, digrams(r.sequence), r.sequence.length)
 }));
 assert.deepEqual(spectra.map(r => [r.best.a, r.best.b, r.best.c]),
-  [[14, 12, 28], [14, 12, 28], [14, 12, 28]]);
-const expectedChi = [501.1764170561152, 497.3158252058383, 482.1364982896717];
+  [[14, 12, 28], [14, 12, 28], [14, 12, 28], [6, 8, 7]]);
+const expectedChi = [501.1764170561152, 497.3158252058383, 482.1364982896717, 1069.3132550779326];
 for (let i = 0; i < spectra.length; i++)
   assert(Math.abs(spectra[i].best.chi - expectedChi[i]) < 1e-8);
 

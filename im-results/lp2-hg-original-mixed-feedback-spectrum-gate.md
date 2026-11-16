@@ -31,9 +31,10 @@ An even stronger necessary condition avoids fitting or guessing plaintext output
 | Gibran, *The Prophet* | 62,492 | **501.176417** | (14,12,28) | 275.31 |
 | Emerson, *Essays* | 321,327 | **497.315825** | (14,12,28) | 297.14 |
 | Shakespeare sample | 217,106 | **482.136498** | (14,12,28) | 285.65 |
+| Latin Vulgate NT, independently GP-coded | 204,802 | **1069.313255** | (6,8,7) | 232.97 |
 | **Untouched LP2** | **12,956** | | | **86 observed** |
 
-These are minimized *after searching the entire affine triple class* on each source, and the actual original increments are compared without fitting a ciphertext key. At the literal **2013 H** coefficients, the native references instead predict **371.50–406.24 zero increments**; at **2014 G**, **634.16–687.54**, all compared with the original 86. The exhaustive best triples remain far from the original even with free coefficient selection.
+These are minimized *after searching the entire affine triple class* on each source, and the actual original increments are compared without fitting a ciphertext key. An independent Latin control using the deposited Vulgate GP29 word corpus also fails the entire 23,548-triple scan; it employs the repository's historically pinned Latin normalization, not the English ING/IO control reading. At the literal **2013 H** coefficients, the native references instead predict **371.50–406.24 zero increments**; at **2014 G**, **634.16–687.54**, all compared with the original 86. The exhaustive best triples remain far from the original even with free coefficient selection.
 
 A complete **positive** uses the first 12,956 real GP-native Gibran symbols, enciphers with **H=(3,26,24)** and uses the exact same full 23,548-triple scan and reference distribution. The recovered best key is **exactly H** (global rank one), Pearson chi-squared **66.60573141008082**. The inverse also recovers every planted rune exactly. This checks that the statistic can identify an independently known true member of the family rather than merely produce a null due to a flawed implementation.
 
@@ -45,4 +46,4 @@ The chi-squared values are **descriptive distances**: real-language digrams are 
 
 [Successful Windows Node22 original-input SFT run 43782230063](https://github.com/FlareZ123/liber-primus/actions/runs/43782230063) verifies every original-source, native-reference and planted-control assertion.
 
-[Standalone Windows Node22 CJS reproducer](../sims/lp2_hg_mixed_cipher_plain_feedback_sft.cjs) reads the existing original corpus and three pinned native reference texts, searches the complete finite coefficient space, round-trips the source and positive-control ciphertext, and asserts the numerical output.
+[Standalone Windows Node22 CJS reproducer](../sims/lp2_hg_mixed_cipher_plain_feedback_sft.cjs) reads the existing original corpus and three pinned native English reference texts plus the independently GP-coded Latin Vulgate corpus, searches the complete finite coefficient space, round-trips the source and positive-control ciphertext, and asserts the numerical output.
