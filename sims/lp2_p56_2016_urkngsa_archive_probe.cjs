@@ -74,7 +74,7 @@ async function check(label, url) {
     if (label === 'wayback-cdx' && body && body.trimStart().startsWith('[')) {
       const rows = JSON.parse(body);
       const captures = rows.slice(1).filter((row) => row[2] === '200').slice(0, 4);
-      console.log('wayback_200_capture_count=' + (rows.length - 1) + ' total indexed; checking up to 4 200 captures');
+      console.log('wayback_200_capture_count=' + Math.max(0, rows.length - 1) + ' total indexed; checking up to 4 200 captures');
       for (const row of captures) {
         await check('wayback-raw-' + row[0], 'https://web.archive.org/web/' + row[0] + 'id_/' + row[1]);
       }
