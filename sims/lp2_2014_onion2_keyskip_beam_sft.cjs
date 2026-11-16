@@ -118,14 +118,46 @@ function encipherKeyskip(plain, key, sign = -1, seed = 3301) {
   };
 }
 
+function encipherKeyskipOneShot(plain, key, sign = -1, seed = 3301) {
+  const random = xorshift32(seed);
+  const out = [];
+  const skips = [];
+  let keyIndex = 0;
+  let previous = null;
+  for (const p of plain) {
+    let skipped = 0;
+    let c;
+    while (true) {
+      if (keyIndex >= key.length) throw new Error('one-shot key exhausted in plant');
+      c = mod(p - sign * key[keyIndex]);
+      if (previous !== null && c === previous && random() < SUPPRESSION) {
+        keyIndex += 1;
+        skipped += 1;
+        continue;
+      }
+      break;
+    }
+    out.push(c);
+    skips.push(skipped);
+    keyIndex += 1;
+    previous = c;
+  }
+  let totalSkips = 0;
+  let maxSkip = 0;
+  for (const n of skips) {
+    totalSkips += n;
+    if (n > maxSkip) maxSkip = n;
+  }
+  return { ciphertext: out, totalSkips, maxSkip, keyBytesConsumed: keyIndex };
+}
+
 // M1 key-skip inverse: for each rune, try 0..maxSkip rejected key draws.
 // Every rejected draw must have produced the preceding ciphertext rune.
 // The accepted key position determines the candidate plaintext rune.
-function beamDecode(C, key, sign, maxSkip, savePath = false) {
-  const keyStream = Array.from(
-    { length: C.length * (maxSkip + 1) + 8 },
-    (_, i) => key[i % key.length]
-  );
+function beamDecode(C, key, sign, maxSkip, savePath = false, repeatKey = true) {
+  const keyStream = repeatKey
+    ? Array.from({ length: C.length * (maxSkip + 1) + 8 }, (_, i) => key[i % key.length])
+    : key;
   const firstRune = mod(C[0] + sign * keyStream[0]);
   const firstText = GP[firstRune];
   let beam = [{
@@ -276,6 +308,57 @@ const blobResult = {
   actual: actualPair(blobKey)
 };
 
+const p48 = corpus.pages.find((p) => p.page === 48).indices;
+const p49 = corpus.pages.find((p) => p.page === 49).indices;
+const pretableSentence = p48.slice(-72).concat(p49.slice(0, 66));
+assert.equal(pretableSentence.length, 138, 'p48 final72 + p49 first66 must be the complete 138-rune sentence');
+
+const pretablePlant = encipherKeyskipOneShot(positivePlain.slice(0, 138), blobKey, -1, 3301);
+assert.ok(pretablePlant.maxSkip <= maxIdenticalRun(blobKey));
+const pretablePositive = beamDecode(
+  pretablePlant.ciphertext, blobKey, -1, maxIdenticalRun(blobKey), true, false
+);
+assert.ok(pretablePositive.complete);
+let pretableMatches = 0;
+for (let i = 0; i < 138; i += 1) {
+  if (pretablePositive.path[i] === positivePlain[i]) pretableMatches += 1;
+}
+const pretableRecovery = pretableMatches / 138;
+assert.ok(pretableRecovery > 0.98);
+
+const pretablePlus = beamDecode(
+  pretableSentence, blobKey, -1, maxIdenticalRun(blobKey), false, false
+);
+const pretableMinus = beamDecode(
+  pretableSentence, blobKey, +1, maxIdenticalRun(blobKey), false, false
+);
+assert.ok(pretablePlus.complete && pretableMinus.complete);
+assert.ok(pretablePlus.score < SCORE_THRESHOLD && pretableMinus.score < SCORE_THRESHOLD);
+
+const pretableOneShot = {
+  sourceSpan: 'p48 final 72 runes + p49 first 66 runes',
+  runes: pretableSentence.length,
+  keyPeriod: blobKey.length,
+  positiveControl: {
+    recovery: pretableRecovery,
+    score: pretablePositive.score,
+    plantedSkips: pretablePlant.totalSkips,
+    keyBytesConsumed: pretablePlant.keyBytesConsumed
+  },
+  actual: {
+    C_equals_P_plus_K: {
+      score: pretablePlus.score,
+      skips: pretablePlus.skips,
+      keyBytesConsumed: pretablePlus.endKeyIndex + 1
+    },
+    C_equals_P_minus_K: {
+      score: pretableMinus.score,
+      skips: pretableMinus.skips,
+      keyBytesConsumed: pretableMinus.endKeyIndex + 1
+    }
+  }
+};
+
 const timingResults = timingKeys.map(({ name, key }) => ({
   name,
   period: key.length,
@@ -311,9 +394,10 @@ const output = {
   },
   target: { pages: 'LP2 p0-p55', runes: N, adjacentDoublets: actualDoublets },
   onion2ByteString: blobResult,
+  oneShotPretableSentence: pretableOneShot,
   onion2TimingIntervals: timingResults,
   deterministicRandomKeyNull: randomNull,
-  scope: 'Forward source order, offset zero, repeated key, both arithmetic signs. No page resets, reversal, free phase search, KDF, or value-rewrite inverse.'
+  scope: 'Forward source order, offset zero, repeated full-book keys and a one-shot 256-byte key for the complete 138-rune p48→49 pre-table sentence, both arithmetic signs. No page resets, reversal, free phase search, KDF, or value-rewrite inverse.'
 };
 
 console.log(JSON.stringify(output, null, 2));

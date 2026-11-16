@@ -73,23 +73,23 @@ Reproducers and full results:
 
 A separate community hypothesis proposes that the unusually low adjacent-repeat rate is produced by a soft ciphertext collision-rejection filter: when a candidate ciphertext rune equals the preceding ciphertext rune, the encoder sometimes rejects that key draw and advances the key pointer. The external model estimates rejection probability **s = 0.8129**. This is a hypothesis, not an authenticated Cicada instruction. I independently implemented its M1 key-skip inverse using a width-400 GP29 quadgram beam; the method and model are documented in [Dukotah/Cicada3301 Campaign XVIII](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round18/L2-filter-leak/RESULTS.md) and [skipdecode.py](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/campaign18_skip/skipdecode.py) (MIT-licensed source repository).
 
-**Fixed scope:** original p0–p55 corpus (12,956 runes); continuous key clock across pages; forward source order; key starts at offset zero and repeats; both arithmetic signs; no p56 transparent-F bypass. Maximum skips per rune are bounded by the source key's longest identical-symbol run (2 for the byte string, 3 for the timing sequence). No phase search, page resets, reversal, KDF, or value-rewrite inverse is included.
+**Fixed scope:** original p0–p55 corpus (12,956 runes); continuous key clock across pages for full-book tests; forward source order; key starts at offset zero; both arithmetic signs; no p56 transparent-F bypass. Full-book tests repeat the source key. In addition, the 256-byte Onion2 string was tested as a **one-shot** key against the complete 138-rune pre-table sentence: the final 72 runes of p48 plus all 66 runes of p49, as independently segmented in [the #1099 source correction](https://github.com/FlareZ123/liber-primus/issues/1099#issuecomment-6893143467). Maximum skips per rune are bounded by the source key's longest identical-symbol run (2 for the byte string, 3 for the timing sequence). No phase search, page resets, reversal, KDF, or value-rewrite inverse is included.
 
-Each key was first planted into a 12,956-rune Gibran English control using the same soft rejection rule and deterministic seed. The width-400 inverse recovered **99.93–100%** of the planted runes, scoring approximately **−4.288**; the external English gate is **−5.2**. Thus the decoder is capable of recovering English under the same key-period and skip constraints.
+Each key was first planted into a same-length Gibran English control using the same soft rejection rule and deterministic seed. The width-400 inverse recovered **99.93–100%** of the planted runes, scoring approximately **−4.288** for full-book plants and **−4.361** for the 138-rune one-shot plant; the external English gate is **−5.2**. Thus the decoder is capable of recovering English under the same key-period and skip constraints.
 
-| Source input and GP29 mapping | Period | Positive-control recovery | Actual C=P+K | Actual C=P−K |
-|---|---:|---:|---:|---:|
-| Onion2 byte string, byte mod 29 | 256 | 99.93% | −7.293 (293 skips) | −7.268 (295) |
-| Timing intervals, k = interval/5 | 114 | 100% | −7.297 (334) | −7.287 (358) |
-| Timing intervals, 5k mod 29 | 114 | 99.93% | −7.284 (378) | −7.319 (358) |
-| Timing intervals, prime(k) mod 29 | 114 | 100% | −7.270 (326) | −7.286 (379) |
+| Source input and GP29 mapping | Use | Positive-control recovery | Actual C=P+K | Actual C=P−K |
+|---|---|---:|---:|---:|
+| Onion2 byte string, byte mod 29 | Repeated, full p0–p55 | 99.93% | −7.293 (293 skips) | −7.268 (295) |
+| Onion2 byte string, byte mod 29 | One-shot, 138-rune p48→49 sentence | 100% | −7.342 (4 skips; 142 bytes consumed) | −7.774 (5 skips; 143 bytes consumed) |
+| Timing intervals, k = interval/5 | Repeated, full p0–p55 | 100% | −7.297 (334) | −7.287 (358) |
+| Timing intervals, 5k mod 29 | Repeated, full p0–p55 | 99.93% | −7.284 (378) | −7.319 (358) |
+| Timing intervals, prime(k) mod 29 | Repeated, full p0–p55 | 100% | −7.270 (326) | −7.286 (379) |
 
-The original ciphertext has **86 adjacent doublets**. A deterministic random 256-symbol key null scores **−7.305/−7.316**, essentially the same as the Onion2 byte-string results. All eight source-key/sign combinations remain below the English threshold and are ciphertext-like. The source-order timing keys' synthetic plants also produce more doublets (102–121) than the original's 86, a further mismatch with this particular filter/key pairing.
+The original full-book ciphertext has **86 adjacent doublets**. A deterministic random 256-symbol key null scores **−7.305/−7.316**, essentially the same as the Onion2 byte-string full-book results. All ten original source-key/sign outputs remain below the English threshold and are ciphertext-like. The source-order timing keys' synthetic plants also produce more doublets (102–121) than the original's 86, a further mismatch with this particular filter/key pairing.
 
-**Decision:** these tests reject the specified repeated-key mappings under the M1 key-skip model; they do not establish that M1 was used. The external work also describes an M2 ciphertext-value-rewrite model with similar ciphertext statistics; that inverse is not tested here. Nor does this exclude a source-selected KDF, a different key source, or a separately evidenced state reset. No first-party source currently links either 2014 Onion2 sequence to LP2 as a key.
+**Decision:** these tests reject the specified repeated-key mappings and the one-shot 138-rune p48→49 consumer under the M1 key-skip model; they do not establish that M1 was used. The external work also describes an M2 ciphertext-value-rewrite model with similar ciphertext statistics; that inverse is not tested here. Nor does this exclude a source-selected KDF, a different key source, or a separately evidenced state reset. No first-party source currently links either 2014 Onion2 sequence to LP2 as a key.
 
-**Reproducer:** [Node 22 source-key key-skip SFT](../sims/lp2_2014_onion2_keyskip_beam_sft.cjs), including same-key positive controls and a deterministic random-key null.
-
+**Reproducer:** [Node 22 source-key key-skip SFT](../sims/lp2_2014_onion2_keyskip_beam_sft.cjs), including same-key positive controls, the one-shot p48→49 test, and a deterministic random-key null.
 ---
 
 ## Decision and next actionable requirement
