@@ -1,0 +1,16 @@
+name: Agent25 source-derived red13dot AES192 GP28 original inverse
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-frozen-inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Frozen native GP29 original cipher inverse plus solved p57 round-trip
+        run: node sims/lp2_red13dot_aes192_gp28_chain_original_sft.cjs
