@@ -7,6 +7,7 @@
  */
 const assert = require('node:assert/strict');
 const crypto = require('node:crypto');
+const fs = require('node:fs');
 const F = [
   ['#cicadasolvers.freenode.log', 18487233, 'bdd277c14f94c34b5ae714cd00c238065beeed4e'],
   ['#33012014.freenode.log', 8629610, 'a2880b1db31ce523599ef30ca2e55291bf295900'],
@@ -67,6 +68,13 @@ async function main(){
         console.log('=== COMPLETE ORIGINAL SOURCE WINDOW '+first+'..'+last);
         for(let k=first;k<=last;k++) console.log('L'+k+' '+lines[k-1].slice(0,620));
       }
+      const firstWordGp=170970, lastWordGp=170990;
+      const wordGpExcerpt=lines.slice(firstWordGp-1,lastWordGp)
+        .map((line,i)=>'L'+(firstWordGp+i)+' '+line).join('\n');
+      fs.mkdirSync('out',{recursive:true});
+      fs.writeFileSync('out/2014-may7-word-gp-rune-position.txt',wordGpExcerpt+'\n','utf8');
+      console.log('=== ORIGINAL MAY7 WORD-GP / RUNE-POSITION SOURCE WINDOW');
+      console.log(wordGpExcerpt);
     }
     console.log('=== CONTEXT source='+name+' windows='+ix.length);
     for(const i of ix)console.log('WINDOW '+name+' '+(i+1)+'\n'+window(lines,i,2).join('\n'));
