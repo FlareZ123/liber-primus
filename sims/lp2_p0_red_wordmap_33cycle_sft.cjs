@@ -49,8 +49,8 @@ assert.equal(primeSum(pages[0][0]), 347);
  * @param {number[][]} sums source word prime sums per page
  * @returns {{type:string, length?:number, preperiod?:number, steps:Array<{page:number,wi:number,n:number}>}}
  */
-function walk(sums) {
-  let n = 347;
+function walk(sums, start = 347) {
+  let n = start;
   const seen = new Map();
   const steps = [];
   for (let i = 0; i < 2000; i++) {
@@ -73,6 +73,15 @@ function walk(sums) {
 const sums = pages.map((words, page) =>
   page === 50 ? [] : words.map(primeSum));
 const actual = walk(sums);
+const alternate = walk(sums, 315);
+assert.equal(pages[0][1], 'ᛋᚣᛖᛝᚳ');
+assert.equal(primeSum(pages[0][1]), 315);
+assert.equal(347 - 315, 32); // 32 source printed table rows, interpretation provisional.
+assert.equal(alternate.type, 'cycle');
+assert.equal(alternate.preperiod, 15);
+assert.equal(alternate.length, 4);
+assert.deepEqual(alternate.steps[0], { page: 25, wi: 5, n: 315 });
+assert.deepEqual(alternate.steps[15], { page: 8, wi: 2, n: 124 });
 assert.equal(actual.type, 'cycle');
 assert.equal(actual.preperiod, 1);
 assert.equal(actual.length, 33);
@@ -85,6 +94,19 @@ assert.equal(cycle.length, 33);
 const derivedKey = cycle.map(({ page, wi }) => sums[page][wi] % 29);
 assert.equal(derivedKey.length, 33);
 const cipher55 = corpus.pages.find((p) => p.page === 55).indices;
+// The two originally red words select independent 33- and 4-node cycles.
+// Their unmodified simultaneous prime-sum residues produce a 132-step
+// repeating key after a 15-iteration transient. This is one tested, unlicensed
+// key-combination conjecture, not an authored cipher operation.
+const combined = [];
+let firstSum = 347;
+let secondSum = 315;
+for (let i = 0; i < 14000; i++) {
+  combined.push((firstSum + secondSum) % 29);
+  firstSum = sums[firstSum % 58][Math.floor(firstSum / 58)];
+  secondSum = sums[secondSum % 58][Math.floor(secondSum / 58)];
+}
+assert.ok(combined.slice(15, 15 + 132).every((v, i) => v === combined[15 + 132 + i]));
 assert.equal(cipher55.length, 76);
 /** @param {number[]} text @returns {number} */
 function ioc(text) {
@@ -101,6 +123,9 @@ const plus = inverse(cipher55, 1);
 const minus = inverse(cipher55, -1);
 assert.ok(Math.abs(ioc(plus) - 0.034035087719298245) < 1e-12);
 assert.ok(Math.abs(ioc(minus) - 0.03263157894736842) < 1e-12);
+const combinedDec = (sign) => cipher55.map((v, i) => (v + sign * combined[i] + 29) % 29);
+assert.ok(Math.abs(ioc(combinedDec(-1)) - 0.032280701754385965) < 1e-12);
+assert.ok(Math.abs(ioc(combinedDec(1)) - 0.034035087719298245) < 1e-12);
 const originalKnown = corpus.pages.find((p) => p.page === 57).indices;
 const planted = originalKnown.map((v, i) => (v + derivedKey[i % 33]) % 29);
 assert.deepEqual(inverse(planted, -1), originalKnown);
@@ -144,6 +169,12 @@ assert.equal(atLeast33, 94);
 console.log(JSON.stringify({
   start: 'physical p0 first red 8-runic word, sum 347',
   firstHop: 'p57:w5 TO', nextHop: 'p8:w1',
+  secondRedSum: 315, secondFirstHop: 'p25:w5', secondCycleLength: alternate.length,
+  secondCyclePreperiod: alternate.preperiod, twoRedSumsDifference: 32,
+  speculativeCombinedKeyPeriodAfterTransient: 132,
+  fixedCombinedVigenereP55: {
+    plusIoC: ioc(combinedDec(1)), minusIoC: ioc(combinedDec(-1))
+  },
   distinctCycleNodes: cycle.length, transientSolvedNodes: actual.preperiod,
   cycleAddresses: cycle.map(({ page, wi }) => 'p' + page + ':w' + wi),
   derived33Key: derivedKey, originalP55IoC: ioc(cipher55),
