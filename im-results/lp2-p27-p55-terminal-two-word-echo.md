@@ -84,9 +84,11 @@ The only 4-rune match **outside** the anchor p27↔55 occurs at p9 offset99 ↔ 
 
 **Reproducer:** [`sims/lp2_p27_p55_halffold_sft.cjs`](../sims/lp2_p27_p55_halffold_sft.cjs), Node.js 22 CommonJS, original source JSON, exact seeded permutations. There is no new unknown-runic plaintext, source-selected key or valid >=150-rune original inverse. Further dependent fold-cipher sweeps are unwarranted unless a separate original clue fixes an operation and predicts untouched ciphertext.
 
-## Bounded end-aligned first-half pad test (Agent5, 16 November)
+## Bounded 3^8-prefix / 6,395-rune suffix pad test (Agent5, 16 November)
 
-The 28-page fold supplies a second simple human-visible candidate, distinct from the already-retired page-pair correspondence test: use the first 28-page half as a contiguous GP29 additive key for the second half. The original corpus has **6,561 = 3^8** runes on p0–27 and **6,395** on p28–55; p0–2 has 729=3^6. End alignment therefore fixes the key to first-half offsets **166–6560** for second-half offsets **0–6394**. Start alignment (key offsets 0–6394) is a control. No other offset, reversal or clock was searched.
+The p27/p55 echo also gives one simple, clue-constrained key hypothesis: treat the first **6,561 = 3^8** runes as a prefix and the remaining **6,395** as a suffix, then align the two blocks by their ends. This split is not the physical 28-page split. The prefix ends at p27 local offsets **28–33**, exactly the repeated six-rune pair DJU-BEI; the suffix begins at p27 local offset **34** (first suffix rune AE) and ends with the same DJU-BEI at p55 local offsets **70–75**. The first 27 pages contain 6,527 runes, p27 contains 234, and the physical page groups instead total p0–27=**6,761** and p28–55=**6,195**. The opening p0–2 contains 729=3^6 runes. Thus the 3^8 prefix boundary is an intra-page cut immediately after the p27 echo, not a page-half boundary.
+
+End alignment fixes the candidate key to prefix offsets **166–6560** for suffix offsets **0–6394**. Start alignment (prefix offsets 0–6394) is a control. No other offset, reversal or clock was searched.
 
 Both direct additive signs and the solved-p56-style F-transparent/no-key-advance variant were tested against a Shakespeare-derived GP29 unigram/bigram model. All outputs are effectively uniform:
 
@@ -103,9 +105,7 @@ For reference, 2,178 same-length Shakespeare GP29 windows have IoC 1st percentil
 
 End alignment does make the final six equal ciphertext runes subtract to six F symbols under ordinary, non-skipping subtraction. The remaining 6,389 symbols are nevertheless language-flat. Under F-transparent/no-key-advance decoding, the pointer stalls at each equality and the result is also flat. This is an algebraic consequence of the echo, not a plaintext recovery.
 
-**Decision:** retire the contiguous first-half-tail as a direct GP29 additive pad for the second half, both signs, with and without p56-style F transparency. This does not exclude a different source-selected operation or stateful key. Reproducer: [`sims/lp2_p27_p55_end_aligned_halfpad_gate.cjs`](../sims/lp2_p27_p55_end_aligned_halfpad_gate.cjs). No unknown plaintext or authentic key recovered.
-
-
+**Decision:** retire the contiguous 3^8-prefix tail as a direct GP29 additive pad for the 6,395-rune suffix, both signs, with and without p56-style F transparency. This does not exclude a different source-selected operation or stateful key. Reproducer: [`sims/lp2_p27_p55_end_aligned_halfpad_gate.cjs`](../sims/lp2_p27_p55_end_aligned_halfpad_gate.cjs). No unknown plaintext or authentic key recovered.
 
 ## A discriminating route to plaintext
 

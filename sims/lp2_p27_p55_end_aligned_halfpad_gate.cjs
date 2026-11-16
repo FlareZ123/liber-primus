@@ -2,14 +2,16 @@
 "use strict";
 
 /*
-Bounded first-half-as-pad test motivated by the original p27/p55 repeated
-terminal pair and the physical 28-page fold.
+Bounded 3^8-prefix / 6,395-rune suffix pad test.
+
+The first 6,561 = 3^8 runes end at p27 local offsets 28..33, exactly the
+repeated DJU-BEI pair. The remaining 6,395 runes begin at p27 local offset 34
+and end with the same pair on p55. This is a rune-prefix/suffix split, NOT the
+physical 28-page split (p0-27=6,761; p28-55=6,195).
 
 No offset search:
-  p0-27 = 6,561 = 3^8 runes
-  p28-55 = 6,395 runes
-  end alignment therefore selects key = firstHalf[166..6560]
-  start alignment key = firstHalf[0..6394] is the control.
+  end alignment selects key = prefix[166..6560] for suffix[0..6394]
+  start alignment key = prefix[0..6394] is the control.
 
 Test only direct GP29 addition/subtraction in both signs, plus the solved-p56
 F-transparent/no-key-advance variant for the end-aligned key. The latter is
@@ -128,30 +130,44 @@ function render(a) {
 const pages = corpus.pages.slice(0, 56);
 const pageLengths = pages.map(p => p.indices.length);
 const ciphertext = pages.flatMap(p => p.indices);
-const firstHalf = ciphertext.slice(0, 6561);
-const secondHalf = ciphertext.slice(6561);
-const difference = firstHalf.length - secondHalf.length;
+const prefix = ciphertext.slice(0, 6561);
+const suffix = ciphertext.slice(6561);
+const difference = prefix.length - suffix.length;
+const p27 = pages.find(p => p.page === 27);
+const p55 = pages.find(p => p.page === 55);
+const p0to26 = pageLengths.slice(0, 27).reduce((a, b) => a + b, 0);
+const physicalP0to27 = p0to26 + p27.indices.length;
+const physicalP28to55 = pageLengths.slice(28, 56).reduce((a, b) => a + b, 0);
+const p27Echo = p27.indices.slice(28, 34);
+const p55Echo = p55.indices.slice(-6);
 
 assert.strictEqual(ciphertext.length, 12956);
-assert.strictEqual(firstHalf.length, 6561);
-assert.strictEqual(secondHalf.length, 6395);
+assert.strictEqual(prefix.length, 6561);
+assert.strictEqual(suffix.length, 6395);
 assert.strictEqual(difference, 166);
-assert.strictEqual(pageLengths.slice(0, 28).reduce((a, b) => a + b, 0), 6561);
-assert.strictEqual(pageLengths.slice(28, 56).reduce((a, b) => a + b, 0), 6395);
+assert.strictEqual(p0to26, 6527);
+assert.strictEqual(p27.indices.length, 234);
+assert.strictEqual(p0to26 + 34, 6561, "the 3^8 boundary must fall after p27 local offset 33");
+assert.strictEqual(physicalP0to27, 6761);
+assert.strictEqual(physicalP28to55, 6195);
 assert.strictEqual(pageLengths.slice(0, 3).reduce((a, b) => a + b, 0), 729);
-assert(firstHalf.slice(-6).every((x, i) => x === secondHalf[secondHalf.length - 6 + i]),
-  "the terminal six-rune echo must remain exact");
+assert(p27Echo.every((x, i) => x === prefix[prefix.length - 6 + i]),
+  "the prefix must end with p27 local runes 28..33");
+assert(p55Echo.every((x, i) => x === suffix[suffix.length - 6 + i]),
+  "the suffix must end with the p55 terminal pair");
+assert(p27Echo.every((x, i) => x === p55Echo[i]),
+  "the repeated DJU-BEI pair must be exact");
 
 const english = encodeEnglish(englishText);
 const score = makeLanguageModel(english);
 const variants = [];
 
 for (const [alignment, key] of [
-  ["end", firstHalf.slice(difference)],
-  ["start-control", firstHalf.slice(0, secondHalf.length)]
+  ["end", prefix.slice(difference)],
+  ["start-control", prefix.slice(0, suffix.length)]
 ]) {
   for (const sign of [-1, 1]) {
-    const plain = decodeDirect(key, secondHalf, sign);
+    const plain = decodeDirect(key, suffix, sign);
     variants.push({
       alignment, mode:"direct", sign, ...score(plain),
       first120:render(plain.slice(0, 120)),
@@ -161,7 +177,7 @@ for (const [alignment, key] of [
 }
 
 for (const sign of [-1, 1]) {
-  const decoded = decodeFTransparent(firstHalf.slice(difference), secondHalf, sign);
+  const decoded = decodeFTransparent(prefix.slice(difference), suffix, sign);
   variants.push({
     alignment:"end", mode:"F-transparent", sign,
     keyConsumed:decoded.keyConsumed, zeroCount:decoded.zeroCount,
@@ -172,8 +188,8 @@ for (const sign of [-1, 1]) {
 }
 
 const reference = [];
-for (let start = 0; start + secondHalf.length <= english.length; start += 97) {
-  reference.push(score(english.slice(start, start + secondHalf.length)));
+for (let start = 0; start + suffix.length <= english.length; start += 97) {
+  reference.push(score(english.slice(start, start + suffix.length)));
 }
 reference.sort((a, b) => a.bigramNatsPerRune - b.bigramNatsPerRune);
 
@@ -186,12 +202,12 @@ const positiveFDecoded = decodeFTransparent(positiveKey, positiveFEncrypted.ciph
 
 const result = {
   lengths: {
-    total:ciphertext.length, firstHalf:firstHalf.length, secondHalf:secondHalf.length,
-    difference, openingPages0to2:729, firstHalfIs3pow8:firstHalf.length === 3 ** 8
+    total:ciphertext.length, prefix:prefix.length, suffix:suffix.length,
+    difference, openingPages0to2:729, prefixIs3pow8:prefix.length === 3 ** 8
   },
   terminalEcho: {
-    equal:firstHalf.slice(-6).every((x, i) => x === secondHalf[secondHalf.length - 6 + i]),
-    runes:render(firstHalf.slice(-6))
+    equal:prefix.slice(-6).every((x, i) => x === suffix[suffix.length - 6 + i]),
+    runes:render(prefix.slice(-6))
   },
   variants,
   englishReference: {
