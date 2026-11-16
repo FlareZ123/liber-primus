@@ -30,10 +30,30 @@ Under this uninterrupted clock there is **no matching initial seed for either si
 
 For **both signs**, the exact terminal states are **{0,637362,1506115}**. These are **degenerate zero-keystream states**: \`next(0)=0\`, \`next(637362)=1506115\`, \`next(1506115)=637362\`, and all three residues are zero modulo 29. Since the RSA state transition is a permutation, *no different initial state can enter these fixed/2-cycle states*. All surviving paths therefore encode \`P_i=C_i\` for every original rune, which remains the original uniform-looking unreadable ciphertext (GP IoC **0.03447839786450569**). This is a complete all-state result within the specified model, rather than a language-selected weak-key candidate.
 
+
+## Direct fixed-width GP29 RSA block encoding is incompatible with pp33–39
+
+The preceding all-state test explicitly left open whether the printed cuneiform primes might be RSA factors for a separately selected byte message. A more immediate human-solver test is direct RSA on the cuneiform chapter itself: pp33–39 print **1033** and **3301**; the authenticated Cicada public key supplies **e=65537**; and the chapter contains exactly **1,680** runes, divisible by five. With **N=1033×3301=3,409,933**, the radix bounds are **29⁴=707,281 < N < 29⁵=20,511,149**, so a natural fixed-width GP29 encoding of RSA residues uses five rune digits per ciphertext block (and four-rune plaintext blocks).
+
+The source-order, page-33-aligned partition gives **336** five-rune blocks. A direct RSA ciphertext block must encode an integer c with **0 ≤ c < N**. This necessary condition already fails overwhelmingly:
+
+| Encoding order | Valid residues | Invalid residues | Blocks whose leading digit is 0–4 |
+|---|---:|---:|---:|
+| Big-endian base29 | **45/336** | 291/336 | 47/336 |
+| Little-endian base29 | **56/336** | 280/336 | 59/336 |
+
+The first big-endian block is **[23,12,14,5,0] = 16,572,050**, already greater than N. The first little-endian invalid block begins at rune offset 5: **[10,24,7,8,6] = 4,445,391**. These are not language-score failures; the original symbols do not encode valid RSA residues under the proposed fixed-width representation.
+
+The Node22 SFT also performs a 336-block synthetic positive control: 4-rune GP29 messages are RSA-encrypted with the same N/e, encoded as five base29 digits, and decrypted with d=e⁻¹ mod φ(N). Every generated ciphertext block is below N and all 336 plaintext blocks round-trip exactly. This verifies the integer/radix implementation and shows the original failure is not a broken codec.
+
+**Decision:** reject direct fixed-width GP29 RSA block encryption of the original pp33–39 chapter with the cuneiform prime pair and Cicada e=65537. This is distinct from the complete unknown-state additive-pad exclusion above. It does not reject RSA over independently selected bytes, a different radix or variable-length format, other factors/exponents, or an independently source-selected receiver; none is currently selected. Do not expand to arbitrary encodings without new source evidence.
+
+**Reproduction:** [original-corpus Node22 SFT](../sims/lp2_cuneiform_rsa65537_base29_block_original_gate.cjs), including the exact 1,680-rune source partition and a passing 336-block synthetic RSA round-trip.
+
 ## Checks and decision
 
 The self-contained [CommonJS Node22 SFT](../sims/lp2_cuneiform_rsa65537_fullseed_original_sft.cjs) reads the checked-in original numerical GP transcription and asserts the original rune count, eight singleton glyphs, all RSA/CRT survivor counts, the three exact terminal states, the zero-key two-cycle, and the source IoC. It independently builds eight A/I/O singleton ciphertexts under hidden original state3299 and detects the real state with the same unknown-seed sieve. It additionally encrypts **two repetitions of authentic solved p57 (190 runes)** under the authentic plaintext-F bypass and unknown initial seed3299, then confirms that the exact all-state inverse retains the genuine terminal state for **both key directions**. No manuscript plaintext is silently inserted into the unknown original pages.
 
 **Windows Node22 [CI run 43776070505](https://github.com/FlareZ123/liber-primus/actions/runs/43776070505) passed** the complete original and planted tests.
 
-**Decision:** this particular source-composed RSA-state additive pad cannot recover English plaintext with authentic word lengths under the uninterrupted clock, and its exact solved-p56 F-bypass transfer leaves only vacuous original-cipher identity outputs after exhausting every seed. This says nothing about cryptographic use of the printed primes as RSA *factors* for an independently selected byte message, a different exponent and state operation, a nonlinear receiver, transformed word segmentation, a different source language, or an unavailable historical key. The core unsolved need is still a **creator-selected receiver and initial state** or authentic unknown plaintext. A new test should identify that source instruction before multiplying free parameters.
+**Decision:** this particular source-composed RSA-state additive pad cannot recover English plaintext with authentic word lengths under the uninterrupted clock, and its exact solved-p56 F-bypass transfer leaves only vacuous original-cipher identity outputs after exhausting every seed. The separate direct fixed-width GP29 block test below rejects the natural original-chapter encoding, but this still says nothing about RSA over independently selected byte messages, another radix or variable-length representation, a different exponent/state operation, a nonlinear receiver, transformed word segmentation, a different source language, or an unavailable historical key. The core unsolved need is still a **creator-selected receiver and initial state** or authentic unknown plaintext. A new test should identify that source instruction before multiplying free parameters.
