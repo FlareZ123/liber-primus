@@ -137,6 +137,31 @@ assert.deepEqual(wholeGridRows,
   [{ wordNumber: 8, first: 33, lastExclusive: 44, length: 11 }]);
 const genuineGridCentre = matrix[5][5];
 assert.equal(genuineGridCentre, 19);
+
+// The solved PARABLE explicitly evokes an INSTAR shedding its circumference.
+// Cicadas have five juvenile instars. Under the *conditional* 11x11 p32
+// square reading, five successive one-cell exterior peels must leave one rune.
+// This is a source-motivated geometric selector, not a cipher inverse.
+const fiveInstarShellSizes = [];
+const peeledOffsets = new Set();
+for (let depth = 0; depth < 5; depth++) {
+  let count = 0;
+  for (let row = depth; row < 11 - depth; row++) {
+    for (let column = depth; column < 11 - depth; column++) {
+      if (row !== depth && row !== 10 - depth &&
+          column !== depth && column !== 10 - depth) continue;
+      const offset = row * 11 + column;
+      assert.ok(!peeledOffsets.has(offset));
+      peeledOffsets.add(offset);
+      count++;
+    }
+  }
+  fiveInstarShellSizes.push(count);
+}
+assert.deepEqual(fiveInstarShellSizes, [40, 32, 24, 16, 8]);
+assert.equal(peeledOffsets.size, 120);
+assert.ok(!peeledOffsets.has(60)); // unique centre at row5, column5
+assert.equal(corpus.translit[p32Indices[60]], 'W'); // GP-prime 19
 const rowCentresMatchingGridCentre = matrix.flatMap((row, r) =>
   row[5] === genuineGridCentre ? [r] : []);
 assert.deepEqual(rowCentresMatchingGridCentre, [3, 5]);
@@ -457,7 +482,9 @@ const output = {
     row6Prefix9Sum: row6Prefix9,
     uniqueFourCellHits: hits,
     sourceConsecutivePaths,
-    trueCenterPrime: matrix[5][5]
+    trueCenterPrime: matrix[5][5],
+    biologicallyMotivatedFiveShells: { shellSizes: fiveInstarShellSizes,
+      centreZeroBasedOffset: 60, centreRune: 'W', centrePrime: genuineGridCentre }
   },
   2016: {
     asciiArmoredFileBytes: Buffer.byteLength(pgpText, 'utf8'),
