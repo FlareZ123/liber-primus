@@ -283,6 +283,148 @@ function actualPair(key) {
   };
 }
 
+function encipherFtransparent(plain, key, sign = -1) {
+  const out = [];
+  let keyIndex = 0;
+  for (const p of plain) {
+    if (p === 0) {
+      out.push(0);
+      continue;
+    }
+    if (keyIndex >= key.length) throw new Error('F-transparent one-shot key exhausted');
+    out.push(mod(p - sign * key[keyIndex]));
+    keyIndex += 1;
+  }
+  return { ciphertext: out, keyBytesConsumed: keyIndex };
+}
+
+function beamFtransparent(C, key, sign, savePath = false) {
+  let firstRune;
+  let firstKeyIndex;
+  if (C[0] === 0) {
+    firstRune = 0;
+    firstKeyIndex = 0;
+  } else {
+    firstRune = mod(C[0] + sign * key[0]);
+    if (firstRune === 0) return { complete: false, failedAt: 0 };
+    firstKeyIndex = 1;
+  }
+  const firstText = GP[firstRune];
+  let beam = [{
+    score: 0,
+    keyIndex: firstKeyIndex,
+    tail: firstText,
+    charCount: firstText.length
+  }];
+  const parentHistory = [];
+  const runeHistory = [];
+
+  for (let i = 1; i < C.length; i += 1) {
+    const candidates = [];
+    for (let parent = 0; parent < beam.length; parent += 1) {
+      const state = beam[parent];
+
+      // Verified p56 convention: plaintext F is emitted unchanged and consumes no key.
+      if (C[i] === 0) {
+        let tail = state.tail;
+        let charCount = state.charCount;
+        let addedScore = 0;
+        for (const ch of GP[0]) {
+          tail += ch;
+          charCount += 1;
+          if (charCount >= 4) addedScore += quadgrams.get(tail.slice(-4)) ?? floor;
+          tail = tail.slice(-3);
+        }
+        candidates.push({
+          score: state.score + addedScore,
+          keyIndex: state.keyIndex,
+          tail,
+          charCount,
+          parent,
+          rune: 0
+        });
+      }
+
+      // Every non-F plaintext rune consumes one byte from the one-shot key.
+      if (state.keyIndex < key.length) {
+        const p = mod(C[i] + sign * key[state.keyIndex]);
+        if (p !== 0) {
+          let tail = state.tail;
+          let charCount = state.charCount;
+          let addedScore = 0;
+          for (const ch of GP[p]) {
+            tail += ch;
+            charCount += 1;
+            if (charCount >= 4) addedScore += quadgrams.get(tail.slice(-4)) ?? floor;
+            tail = tail.slice(-3);
+          }
+          candidates.push({
+            score: state.score + addedScore,
+            keyIndex: state.keyIndex + 1,
+            tail,
+            charCount,
+            parent,
+            rune: p
+          });
+        }
+      }
+    }
+    if (candidates.length === 0) return { complete: false, failedAt: i };
+    candidates.sort((a, b) => b.score - a.score);
+    const next = candidates.slice(0, WIDTH);
+    if (savePath) {
+      parentHistory.push(Uint16Array.from(next.map((x) => x.parent)));
+      runeHistory.push(Uint8Array.from(next.map((x) => x.rune)));
+    }
+    beam = next;
+  }
+
+  const best = beam[0];
+  const result = {
+    complete: true,
+    score: best.score / Math.max(1, best.charCount - 3),
+    keyBytesConsumed: best.keyIndex
+  };
+  if (savePath) {
+    const pathRunes = new Uint8Array(C.length);
+    pathRunes[0] = firstRune;
+    let index = 0;
+    for (let i = C.length - 1; i >= 1; i -= 1) {
+      pathRunes[i] = runeHistory[i - 1][index];
+      index = parentHistory[i - 1][index];
+    }
+    result.path = pathRunes;
+  }
+  return result;
+}
+
+// Exact reachability over all possible key-pointer states; no language-model pruning.
+function exactFtransparentReachability(C, key, sign) {
+  let states = new Set();
+  if (C[0] === 0) states.add(0);
+  else {
+    const p = mod(C[0] + sign * key[0]);
+    if (p !== 0) states.add(1);
+  }
+  if (states.size === 0) return { complete: false, failedAt: 0 };
+  for (let i = 1; i < C.length; i += 1) {
+    const next = new Set();
+    for (const keyIndex of states) {
+      if (C[i] === 0) next.add(keyIndex);
+      if (keyIndex < key.length) {
+        const p = mod(C[i] + sign * key[keyIndex]);
+        if (p !== 0) next.add(keyIndex + 1);
+      }
+    }
+    states = next;
+    if (states.size === 0) return { complete: false, failedAt: i };
+  }
+  return {
+    complete: true,
+    finalKeyIndices: [...states].sort((a, b) => a - b)
+  };
+}
+
 const blobHex = read('resources/2014-onion2-final-256byte-hex.txt').replace(/\s+/g, '');
 assert.match(blobHex, /^[0-9a-f]+$/i);
 assert.equal(blobHex.length, 512);
@@ -335,6 +477,31 @@ const pretableMinus = beamDecode(
 assert.ok(pretablePlus.complete && pretableMinus.complete);
 assert.ok(pretablePlus.score < SCORE_THRESHOLD && pretableMinus.score < SCORE_THRESHOLD);
 
+const fTransparentPlant = encipherFtransparent(positivePlain.slice(0, 138), blobKey, -1);
+const fTransparentPositive = beamFtransparent(fTransparentPlant.ciphertext, blobKey, -1, true);
+assert.ok(fTransparentPositive.complete);
+let fTransparentMatches = 0;
+for (let i = 0; i < 138; i += 1) {
+  if (fTransparentPositive.path[i] === positivePlain[i]) fTransparentMatches += 1;
+}
+const fTransparentRecovery = fTransparentMatches / 138;
+assert.ok(fTransparentRecovery > 0.98);
+const fTransparentPlus = exactFtransparentReachability(pretableSentence, blobKey, -1);
+const fTransparentMinus = exactFtransparentReachability(pretableSentence, blobKey, +1);
+assert.deepEqual(fTransparentPlus, { complete: false, failedAt: 6 });
+assert.deepEqual(fTransparentMinus, { complete: false, failedAt: 9 });
+const fTransparentGate = {
+  positiveControl: {
+    recovery: fTransparentRecovery,
+    score: fTransparentPositive.score,
+    keyBytesConsumed: fTransparentPlant.keyBytesConsumed
+  },
+  actualExactReachability: {
+    C_equals_P_plus_K: fTransparentPlus,
+    C_equals_P_minus_K: fTransparentMinus
+  }
+};
+
 const pretableOneShot = {
   sourceSpan: 'p48 final 72 runes + p49 first 66 runes',
   runes: pretableSentence.length,
@@ -356,7 +523,8 @@ const pretableOneShot = {
       skips: pretableMinus.skips,
       keyBytesConsumed: pretableMinus.endKeyIndex + 1
     }
-  }
+  },
+  p56FTransparent: fTransparentGate
 };
 
 const timingResults = timingKeys.map(({ name, key }) => ({

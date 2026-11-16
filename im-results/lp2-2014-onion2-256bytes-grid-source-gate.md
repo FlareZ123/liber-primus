@@ -85,6 +85,12 @@ Each key was first planted into a same-length Gibran English control using the s
 | Timing intervals, 5k mod 29 | Repeated, full p0–p55 | 99.93% | −7.284 (378) | −7.319 (358) |
 | Timing intervals, prime(k) mod 29 | Repeated, full p0–p55 | 100% | −7.270 (326) | −7.286 (379) |
 
+### Transfer of the solved p56 plaintext-F transparency rule to the one-shot p49 sentence
+
+The solved p56 page establishes an additive GP29 operation in which plaintext **F** is emitted unchanged and consumes no key symbol. A human solver could reasonably test that known convention with the historical 256-byte Onion2 string as a one-shot key. I therefore ran a second, independent inverse on the same complete 138-rune p48→49 sentence: forward bytes mod29, key offset zero, no repetition, both arithmetic signs. The decoder branches between transparent plaintext-F and encrypted non-F symbols. Its positive control uses the same key and rule on a 138-rune Gibran plant and recovers **100%** (score **−4.361**, 134 key bytes consumed).
+
+For the original sentence, an **exact reachability DP** over every possible key-pointer state (at most 257 states, with no language-model pruning) proves that no legal inverse path exists: **C=P+K first becomes impossible at rune offset 6; C=P−K at offset 9**. Both failures occur long before the 256-byte key is exhausted. This is a conditional exact exclusion of the direct byte-mod29 one-shot key under the verified p56 plaintext-F rule; transferring that rule to p49 is itself a hypothesis.
+
 The original full-book ciphertext has **86 adjacent doublets**. A deterministic random 256-symbol key null scores **−7.305/−7.316**, essentially the same as the Onion2 byte-string full-book results. All ten original source-key/sign outputs remain below the English threshold and are ciphertext-like. The source-order timing keys' synthetic plants also produce more doublets (102–121) than the original's 86, a further mismatch with this particular filter/key pairing.
 
 **Decision:** these tests reject the specified repeated-key mappings and the one-shot 138-rune p48→49 consumer under the M1 key-skip model; they do not establish that M1 was used. The external work also describes an M2 ciphertext-value-rewrite model with similar ciphertext statistics; that inverse is not tested here. Nor does this exclude a source-selected KDF, a different key source, or a separately evidenced state reset. No first-party source currently links either 2014 Onion2 sequence to LP2 as a key.
