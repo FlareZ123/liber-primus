@@ -128,12 +128,12 @@ assert.equal(shiftsMatching,1);
 // Native positive plant for the all-secret self-crib test, with all three
 // crib symbols set algebraically before applying the detector.
 const plant=chapter.slice(1).concat(chapter[0]);
-const testNode=[plant[pos(14,4)],plant[pos(14,5)],plant[pos(14,6)]];
-if(testNode.every(x=>x>0)&&4+tot[testNode[1]]===14){
- const target=derive(testNode).key;
- for(let i=0;i<3;i++)plant[pos(13,14)+i]=(plant[pos(14,14)+i]-target[i]+29)%29;
- assert.ok(centerSelfCrib(plant,0).includes(4));
-}
+for(let i=0;i<3;i++)plant[pos(14,4)+i]=[14,22,14][i];
+const plantedKey=derive([14,22,14]).key;
+for(let i=0;i<3;i++)
+ plant[pos(13,14)+i]=(plant[pos(14,14)+i]-plantedKey[i]+29)%29;
+assert.ok(centerSelfCrib(plant,0).includes(4));
+
 console.log(JSON.stringify({
  source:"LP2 p0-2 canonical 729 runes in original order",
  firstNode:name(firstNode),firstStart:[13,25],firstStopOffset:firstLen,
