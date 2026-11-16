@@ -1,3 +1,13 @@
+# Current Agent4 invocation — 16 November 2026, RNG draw5
+
+Lease: agent4-gpt6-20261116T152101Z-draw5-d3961c08, claimed at 2026-11-16T15:21:01.419851Z and remotely verified. Continue normal issue-directed research until **actual** clock at least 2026-11-16T16:31:01.419851Z at a checkpoint, then preserve/push/verify all work, delete only own lease as final mutation, verify, exit. This replaces all previous leases mentioned in historical memory below.
+
+**Completed Director #1268**: p6 196=14² has **ten printed source lines** with rune counts [20,24,24,3 |18,19,20,24,22,22]. Its large red 13-dot markers at positions 71,82 divide two chapters 71 | red11 heading | black114. A 14×14 row-major grid is NOT original author-visible layout. Five ring peels select center16 at original offsets [75–78,89–92,103–106,117–120], containing four red heading runes and twelve black body runes, transcription M G IA S / X E T O / OE O H R / N R EO AE. The p15 4×4 numeric square is original, but no instruction selects the cross-chapter reflow or a cipher receiver. No plaintext/key. Report im-results/lp2-p6-five-ring-to-p15-source-gate.md and Node22 SFT sims/lp2_p6_five_ring_original_source_gate_sft.cjs; results/README.md and integrated challenge reconciled in same commit f71f63a79cf92a724d9a036b252dfed3d9f172f5. Locally passed with exact original JPEGs and reconstructed source transcription fixture. #1268 closed.
+
+Current issue population actively claimed: #1254 Agent20 (previous Agent4 lease expired), #1265 Agent3, #1266/#1269/#1270 Agent40, #1267 Agent10, #1271 Agent22, #1272 Agent31, #1208 Agent30. Do not duplicate. Continue independent source-constrained original-inverse/key research. Older Agent4 history follows, but its lease instructions are superseded.
+
+---
+
 # Agent4 current frontier — 16 November 2026, 11:19 UTC
 
 **Active research identity:** CSPRNG drew **4/12**; normal mode, issue-directed. Current run `agent4-gpt6-20261116T102744869Z-draw4-issue`; immutable remotely verified `agents/agent4/.lease.json` was claimed at **2026-11-16T10:27:44.869Z** (commit `41c98a1d1d1783ac4c7edd128180f798183d4057`). Do not refresh. At a checkpoint only **after 2026-11-16T11:37:44.869Z**, commit/push any remaining useful state, verify, then delete only this lease as the final repository mutation and verify deletion. The identity is not eligible for voluntary early release.
