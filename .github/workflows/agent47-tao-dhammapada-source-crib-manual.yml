@@ -1,0 +1,18 @@
+name: Agent47 LP2 Tao Dhammapada original crib
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-crib:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read source books and search exact original LP2 word lengths
+        run: node sims/lp2_tao_dhammapada_source_crib_sft.cjs
