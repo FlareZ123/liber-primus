@@ -57,9 +57,9 @@ function listTar(tar) {
     assert(n >= 0 && offset + 512 + n <= tar.length, 'Invalid TAR record: ' + path);
     const bytes = tar.subarray(offset + 512, offset + 512 + n);
     const lower = path.toLowerCase();
-    const candidate = /\.warc(\.gz)?$|\.html?$|\.jsonl?$|\.csv$/.test(lower);
+    const candidate = /\.warc(\.gz)?$|\.html?$|\.jsonl?$|\.csv$|\.nodes$|\.edges$|\.pickle$/.test(lower);
     const matches = candidate ? TARGETS.filter(s => bytes.includes(Buffer.from(s))) : [];
-    entries.push({path, size: n, kind: head[156], candidate, targets: matches});
+    entries.push({path, size: n, kind: head[156], candidate, targets: matches, sample: /\.nodes$/.test(lower) ? bytes.toString('utf8', 0, 200).replace(/[\r\n]+/g, ' ') : undefined});
     offset += 512 + Math.ceil(n / 512) * 512;
   }
   return entries;
