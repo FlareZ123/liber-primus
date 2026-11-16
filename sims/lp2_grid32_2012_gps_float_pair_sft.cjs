@@ -117,12 +117,68 @@ assert.deepEqual(strictLE.nontrivialGeographicRows.map(x => x.row), [10]);
 const strictBE = results.find(x => !x.latLittleEndian && !x.lonLittleEndian);
 assert.equal(strictBE.geographicalRows, 6);
 assert.equal(strictBE.nontrivialGeographicRows.length, 0);
+/**
+ * Second source-width model: each printed 8-byte row is one float64 value,
+ * so consecutive even/odd rows form 16 latitude/longitude pairs.
+ * @param {ArrayLike<number>} input
+ * @param {boolean} littleEndian
+ * @returns {number}
+ */
+function decodeFloat64(input, littleEndian) {
+  assert.equal(input.length, 8);
+  const view = new DataView(Uint8Array.from(input).buffer);
+  return view.getFloat64(0, littleEndian);
+}
+
+/** @param {number} value @param {boolean} littleEndian @returns {Uint8Array} */
+function encodeFloat64(value, littleEndian) {
+  const buffer = new ArrayBuffer(8);
+  new DataView(buffer).setFloat64(0, value, littleEndian);
+  return new Uint8Array(buffer);
+}
+for (const little of [false, true]) {
+  for (const [lat, lon] of historicallyObserved2012GPS) {
+    assert.equal(decodeFloat64(encodeFloat64(lat, little), little), lat);
+    assert.equal(decodeFloat64(encodeFloat64(lon, little), little), lon);
+  }
+}
+const double64Results = [];
+for (const latLittleEndian of [false, true]) {
+  for (const lonLittleEndian of [false, true]) {
+    const coordinates = [];
+    for (let pair = 0; pair < 16; pair++) {
+      const latitude = source.slice(16 * pair, 16 * pair + 8);
+      const longitude = source.slice(16 * pair + 8, 16 * pair + 16);
+      coordinates.push({
+        pair,
+        lat: decodeFloat64(latitude, latLittleEndian),
+        lon: decodeFloat64(longitude, lonLittleEndian)
+      });
+    }
+    const valid = coordinates.filter(geographicallyValid);
+    double64Results.push({
+      latLittleEndian,
+      lonLittleEndian,
+      geographicalPairs: valid.length,
+      nontrivialGeographicPairs: valid.filter(nontrivialCoordinate),
+      invalidPairs: 16 - valid.length
+    });
+  }
+}
+for (const item of double64Results) {
+  assert(item.geographicalPairs < 16);
+  assert.equal(item.nontrivialGeographicPairs.length, 0);
+}
+assert.equal(double64Results[0].geographicalPairs, 1);
+assert.equal(double64Results[3].geographicalPairs, 3);
+
 console.log(JSON.stringify({
   source: "Original physical LP2 pp49-51 32x8 printed byte table",
   hypothesis: "Every printed row is one IEEE754 float32 latitude/longitude pair in original byte order",
   historicalPositive: historicallyObserved2012GPS.length,
-  results,
+  float32RowPairs: results,
+  float64ConsecutiveRowPairs: double64Results,
   recoveredOriginalLocations: 0,
   decodedUnknownLP2Plaintext: false,
-  status: "Falsified as a complete natural-serialization 32-location list; isolated geographic-looking floats are non-authenticating"
+  status: "Falsified as complete natural-serialization 32-float32 or 16-float64 coordinate lists; isolated geographic-looking floats are non-authenticating"
 }, null, 2));
