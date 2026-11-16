@@ -89,7 +89,7 @@ function buildLanguage() {
       logprob[prefix * 29 + r] = Math.log(hit / denom);
     }
   }
-  return { logprob, sampleWords: native.length, sampleRunes: native.flat().length };
+  return { logprob, sampleWords: native.length, sampleRunes: native.flat().length, native };
 }
 const language = buildLanguage();
 function languageScore(plainWords) {
@@ -243,15 +243,23 @@ function certifyPath(plainWords, ciphertextWords, key, sign, collisionModel, kee
 const titleKey = insides;
 const primeKey = insides.map(i => source.prime[i] % 29);
 const nativeControl = clear.concat(clear, clear);
+// Separate GP-native LP1 translation plant, distinct from source-original clear p57.
+const lp1Control = language.native.filter(w => w.length >= 2).slice(120, 215);
+assert.ok(lp1Control.flat().length >= 300);
 const controls = {};
 for (const model of ['skip', 'coin']) {
   const planted = plant(nativeControl, titleKey, 1, model, false);
   const roundtrip = certifyPath(nativeControl, planted.cipherWords, titleKey, 1, model, false);
   const decoded = beam(planted.cipherWords, titleKey, 1, model, 320);
+  const lp1Planted = plant(lp1Control, titleKey, 1, model, false);
+  const lp1Roundtrip = certifyPath(lp1Control, lp1Planted.cipherWords, titleKey, 1, model, false);
+  const lp1Recovered = beam(lp1Planted.cipherWords, titleKey, 1, model, 320);
   controls[model] = { plantedRunes: roundtrip,
     exactRecovered: decoded.bits.every((x, i) => x === nativeControl.flat()[i]),
     runeMatch: decoded.bits.filter((x, i) => x === nativeControl.flat()[i]).length,
-    bestIoc: decoded.ioc, score: decoded.meanLog };
+    bestIoc: decoded.ioc, score: decoded.meanLog,
+    lp1PlantRunes: lp1Roundtrip, lp1ExactRecovered: lp1Recovered.bits.every((x, i) => x === lp1Control.flat()[i]),
+    lp1RuneMatch: lp1Recovered.bits.filter((x, i) => x === lp1Control.flat()[i]).length };
 }
 const keyConfigs = [
   ['gp-title-plus', titleKey, 1], ['gp-title-minus', titleKey, -1],
