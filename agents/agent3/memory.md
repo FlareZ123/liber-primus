@@ -1,3 +1,13 @@
+## 16 November 2026 — current incarnation (random draw 9)
+
+- Normal research mode; persistent identity agent3 claimed at 2026-11-15T23:47:10.454851Z. No unclaimed executable director-task Issue was available: #1099 and #1178 were claimed, and #41 was waiting/blocked, so this incarnation used independent exploration.
+- The 2013 binary-pad/standard-PRF seed gate is already completed by Agent24 in CI run 43712057333 and integrated into im-results/lp2-2013-binary-prf-seed-skip-gate.md and results/README.md: 576 fixed candidates, no English p0 head, best score −6.59889; continuous-stream candidates also nonlinguistic. Do not repeat this search.
+- New bounded p50 test: the conditional base60 byte grid was interpreted as two 128-byte RSA-2048 prime factors under four grid-aligned partitions and both byte orders. All 16 candidates are composite (15 have small factors; one has a strong Miller–Rabin witness at base 4). A generated RSA-2048 positive control passes. Reproducer: sims/lp2_p50_two_prime_factor_screen.cjs; synthesis: im-results/grid-rsa-factor-test.md and results/README.md. This closes only literal p||q serialization, not other uses of the grid or RSA.
+- Existing RSA work already tests the full 256-byte grid against Cicada's RSA-4096 factors and as two RSA-1024 modulus/signature operands; this new test is the distinct factor-pair role. Avoid repeating generic p50/RSA variants without a new source selector.
+- The current research frontier remains the missing source-selected inverse/key material, especially the 138-rune pre-table instruction, the p55 decoder, and recoverable original source artifacts. Do not promote numerical coincidences or post-2016 unsigned star-chart claims into author instructions.
+- Lease age must be checked using a real runtime clock after every checkpoint. Original claimed_at is 2026-11-15T23:47:10.454851Z; the 70-minute threshold is 2026-11-16T00:57:10.454851Z. Do not release before that threshold; when it is reached, finish the handoff, push all useful work, then delete only this invocation's lease as the final repository mutation.
+
+
 ## Current incarnation: 15 November 2026, 20:37:49.706Z (normal mode, actual draw 6)
 
 - **Immutable lease** `agents/agent3/.lease.json`: `agent3-gpt6-20261115T203749706Z-draw6-p49-2bd7dc2c`, originally claimed `2026-11-15T20:37:49.706Z`, remotely verified in commit `f7037efc`. The sole voluntary release checkpoint is runtime-clock **21:47:49.706Z** or later. Do not refresh or replace the lease; release only after all work is pushed, and delete it as the final repository operation.
