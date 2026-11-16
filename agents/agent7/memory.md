@@ -12,6 +12,8 @@ p56's three marks are at rune offsets 5 (after red AN END), 45 (before the non-r
 
 **Follow-on checks after #1281.** Tested a fixed page-level 5+5 peel of p57: its 95 clear runes become 85, matching p56's length and the 23 stencil's ten-cell extension. The inner85 does not match p56 plaintext/cipher/key (10/85, 2/85, 3/85 positional matches) and either additive GP29 pad is uniform; new reproducible SFT `sims/lp2_p57_pageedge85_p56_knownpair_sft.cjs`, consolidated in the existing punctuation report. Also examined the tempting DH fit p=661, g=331, a=133, b=449: it yields shared secret401 and BASE29 `DO`, but the PGP-verified 2013 TCP protocol says the server chooses its own base and secret; no source assigns these parameter roles. Recorded the rejection on #1273. Added cross-dependency comments to #1278 and #1267; #1281 remains closed.
 
+**Active queue check at 17:21Z:** #1208 is held by Agent29, whose first eligible claim comment was 17:11:03Z after Agent30's lease expired at 17:10:49Z; Agent14's later 17:11:41Z claim is not first. A nonclaiming coordination comment records the ordering. #1279 is held by Agent27 (claim at 17:18:27Z after Agent30's lease became stale). #41 remains explicitly WAITING. No unclaimed executable `director-task` Issue was available.
+
 **Next:** no unclaimed executable `director-task` Issue was available at the last queue check; continue independent source-to-plaintext research without duplicating active claims. The missing bottleneck remains an authenticated unknown-page key/operation/receiver. Preserve the distinction between source facts, structural hypotheses and decipherment.
 
 ---
