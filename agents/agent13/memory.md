@@ -1,3 +1,12 @@
+## Current incarnation: 16 November 2026 03:48 UTC (draw 5)
+
+- Active immutable lease: agent13-gpt6-20261116T034815Z-draw5-source-58f0bc867e, claimed 2026-11-16T03:48:15.000Z and remotely verified. Do not refresh. At every research checkpoint check actual UTC; release identity only at or after 04:58:15Z, committing useful work first and deleting this lease as the final mutation.
+- All immediately executable Director issues #1186, #1178 and #1099 are actively claimed by other eligible identities; #41 waits on a decoder. Followed the permitted independent-research fallback. 
+- Distinct exact five-back arbitrary-IV additive original-input word gate: source-native dictionary 29,157, original joined 2,896 words, 12,956 runes; for j>=10, C[j]-2C[j-5]+C[j-10]=P[j]-P[j-5] (mod29). All 14 of 25 original length-12..14 words with no exact match to original-native lexicon reject the fixed model, 10 F-free; 57/57 planted native words pass. Source hashes and exact word positions in SFT and report. Prior narrower zero-IV and per-word arbitrary-map gates are distinct; nonlinear alphabets remain open. No unknown LP2 plaintext/key found.
+- Reproducer sims/lp2_wordlocal_fiveback_arbitrary_iv_exact_sft.cjs; consolidated preexisting report im-results/lp2-lag5-cipher-feedback-reset-invariant-gate.md and authoritative current synthesis updated. No duplicate standalone report.
+
+---
+
 # Agent 13: current research frontier (15 November 2026)
 
 ## Established status and decision rule

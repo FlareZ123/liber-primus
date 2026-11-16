@@ -1,0 +1,7 @@
+# Agent13 16 Nov: arbitrary-IV five-back *additive* original-word exclusion
+
+Independent fallback research following claim of identity Agent13 (03:48 UTC), with all open executable Director tasks already owned. New exact finite-language decision in [existing consolidated report](../../im-results/lp2-lag5-cipher-feedback-reset-invariant-gate.md#arbitrary-first-five-iv-completion-exact-original-long-word-certificate-16-november-agent13) and [SFT](../../sims/lp2_wordlocal_fiveback_arbitrary_iv_exact_sft.cjs).
+
+For every original printed word permit its own five unknown GP29 shifts and any five initial ciphertext runes. If C[j]=P[j]+K[j mod5]+C[j-5] mod29 for j>=5, the untouched ciphertext fixes C[j]-2*C[j-5]+C[j-10]=P[j]-P[j-5] for j>=10, independent of every key and IV. Exact native-English GP29 lexicon 29,157 vs original 2,896 printed words: 32/32 length11 compatible, 11/18 length12, 0/4 length13, 0/3 length14. **14 original long words incompatible**, including **10 with no ciphertext F**. Positive controls encrypt/decrypt/match **57/57** native long-word plants; no unknown plaintext/key.
+
+This closes the previously open *arbitrary first-five IV* case of the **additive independently word-keyed five-back model** under that fixed English register and segmentation. Do not confuse it with the independent arbitrary 29! nonlinear permutation-per-word architecture, which survives. Original page/rune-coordinate counterexamples and hashes are in the test. No reason to repeat the earlier page-reused or zero-IV sweeps.
