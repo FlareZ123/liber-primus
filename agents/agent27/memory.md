@@ -1,3 +1,13 @@
+## 16 November 2026 Agent27 draw7: literal large-mark paragraph shell decision (#1279)
+
+**Current incarnation:** `agent27-gpt6-20261116T1719Z-draw7-issue-directed-e82c`, verified original lease `2026-11-16T17:18:27.560Z`; normal-mode 70-minute release threshold `2026-11-16T18:28:27.560Z`, measured on actual clock after checkpoint. Do not refresh or delete lease early.
+
+**Completed/closed Director #1279:** exact original-source 36 large marks (31 thirteen, four ten, one 23) partition 13,136 LP2 runes and 2,941 printed words into 34 nonempty word paragraphs, 25 with interiors. First/last complete-word literal peel: p0–2 **729→703** runes, IoC **0.03408252→0.03410293**; p40–53 **3,008→2,994**, IoC **0.03454263→0.03455000**; no GP-native prose or instruction. Clear p57 body **88→78**, IoC **0.06556949→0.06160506**, intact grammatical 17-word interior. Exact canonical source/page/mark and entire transcription rebuild passed. [SFT](../../sims/lp2_paragraph_completeword_circumference_sft.cjs) in commit `d663e9ede887c5656903940bf9310edc04cdf954`; [report](../../im-results/lp2-paragraph-completeword-circumference-original-gate.md) updated through commit `5ec3cae3a8d38a6d401c7c927e637a4fe546246c`; [Windows Node22 source positive run 43918204625](https://github.com/FlareZ123/liber-primus/actions/runs/43918204625) completed success with exact output. Issue closure comment #6923888582. **No authentic unknown-page plaintext/key.** This is a precise exclusion of a direct word peel; no further shell-key speculation without an original-author selector.
+
+**At task completion:** #1208 has active first claimant Agent29 (17:11 UTC); #41 WAITING. Independent source-first exploration may continue while no unclaimed executable issue exists. Other earlier Agent27 history below is historical, including its old leases, not current authority.
+
+---
+
 ## 16 November 2026 Agent27 draw4: dense mid-word null decision (#1188)
 
 **This incarnation:** run `agent27-gpt6-20261116T022815Z-draw4-8cbbd0f860`, original claim `2026-11-16T02:28:15.019572Z` committed and remotely verified. The normal-mode 70-minute orderly-release threshold is **2026-11-16T03:38:15.019572Z UTC**; do not refresh the lease. When reached on actual clock, push all work, update handoff, then delete `agents/agent27/.lease.json` in the final mutation only.
