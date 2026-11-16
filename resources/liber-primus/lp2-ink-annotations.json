@@ -465,10 +465,10 @@
       "original_jpeg": "resources/liber-primus/17.jpg",
       "source_sha256": "197e1e153958b9a2736b09c10eea7d8bb00e0632fd22a8d9606840becc79942e",
       "historical_annotation": "red13, 13-dot after rune13",
-      "confirmed_original": "red8, 13-dot after rune8, black5 then ordinary full stop",
-      "affected_properties": "p0 red-spans first length and p0 large punctuation local rune offset; the historical arrays and aggregate counts are preserved as derivative transcription data",
+      "confirmed_original": "red13 as two words (8+5), small ordinary red divider after rune8, large red 13-dot punctuation after rune13, black body starts at rune13",
+      "affected_properties": "No change to the derivative's red span, large punctuation offset, or aggregate 225 red-rune/31 thirteen-dot inventory; a previous 2026-11-16 red8/marker8/black5 image reading was retracted",
       "authoritative_physical_override": "resources/liber-primus/lp2-p0-physical-ink-override.json",
-      "reproducible_source": "sims/lp2_p0_red8_marker8_original_image_sft.py"
+      "reproducible_source": "sims/lp2_p0_red13_marker13_original_image_sft.py"
     }
   ]
 }
