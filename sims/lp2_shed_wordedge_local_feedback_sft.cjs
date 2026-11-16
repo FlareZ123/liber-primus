@@ -107,6 +107,29 @@ assert.equal(models.length,32);
 models.sort((a,b)=>b.ioc-a.ioc);
 assert.equal(models[0].ioc,0.03458851752108413);
 assert.ok(models.every(m=>m.ioc<0.04));
+const allSecretBounds={};
+for(const rule of ['first','last','sum','difference']){
+  const tables=Array.from({length:29},()=>new Uint32Array(29));
+  for(const word of words){
+    const w=word.source,group=key(w,rule);
+    w.slice(1,-1).forEach(symbol=>tables[group][symbol]++);
+  }
+  const top=(k)=>tables.reduce((total,row)=>total+[...row].sort((a,b)=>b-a)
+    .slice(0,k).reduce((s,x)=>s+x,0),0);
+  allSecretBounds[rule]={top1:top(1),top5:top(5),top12:top(12)};
+}
+assert.deepEqual(allSecretBounds,{
+  first:{top1:435,top5:1878,top12:3928},
+  last:{top1:440,top5:1889,top12:3940},
+  sum:{top1:435,top5:1895,top12:3957},
+  difference:{top1:443,top5:1888,top12:3933}
+});
+const clearCounts=new Uint32Array(29);
+controls.flatMap(w=>w.slice(1,-1)).forEach(x=>clearCounts[x]++);
+const clearSorted=[...clearCounts].sort((a,b)=>b-a);
+assert.equal(clearSorted[0],8);
+assert.equal(clearSorted.slice(0,12).reduce((s,x)=>s+x,0),50);
+
 console.log(JSON.stringify({
   hypothesis:'source p57 SHED OUR OWN CIRCUMFERENCES: exterior runes supply local key to interior runes',
   source:'unaltered 12956 GP29 LP2 runes, 2896 printed words, 32 physical-page carries',
@@ -117,5 +140,6 @@ console.log(JSON.stringify({
   positive:'95/95 authentic p57 runes re-encoded and inverted, 32/32 models',
   originalRoundTrip:'12956/12956, all modes, endpoints transmitted verbatim',
   result:'all 32 original interior outputs near uniform, no unknown plaintext/key',
-  topModes:models.slice(0,4),minIOC:models.at(-1).ioc
+  topModes:models.slice(0,4),minIOC:models.at(-1).ioc,
+  allSecretAny29PermutationUpperBounds:allSecretBounds
 },null,2));
