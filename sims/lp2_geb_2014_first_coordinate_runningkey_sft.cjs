@@ -85,7 +85,7 @@ async function main() {
   assert.equal(ix,87816,'Historical GEB source OCR anchor unexpectedly changed');
   const start = ix + 'TORTOISE: Yo'.length;
   assert.equal(start,87828);
-  console.log('Original source anchor, 3PI:6:1:3 (U): byte/UTF-16 index',start);
+  console.log('Original source anchor, 3PI:6:1:3 (U): UTF-16 code-unit index',start);
   console.log('First original chapter GP29 runes:',first.length,'; original IoC',coincidence(first).toFixed(12));
 
   for (const native of [true,false]) {
