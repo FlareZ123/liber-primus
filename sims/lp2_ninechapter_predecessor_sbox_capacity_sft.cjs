@@ -179,6 +179,7 @@ function main() {
       ingIo:{runes:sourceNative.length,...historical}};
   });
   assert.deepEqual(controls.map(x=>x.regular.count),[2556,2430,2455]);
+  assert.deepEqual(controls.map(x=>x.ingIo.count),[2548,2441,2408]);
   const originalGlobal = capacity([chapters.flat()]);
   assert.deepEqual([originalGlobal.one,originalGlobal.two],
     [803,1451]);

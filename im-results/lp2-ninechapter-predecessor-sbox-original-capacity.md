@@ -22,7 +22,17 @@ Source chapter boundaries are not tuned: physical **p0–2, p3–7, p8–14, p15
 | One global set of 29 secret predecessor alphabets, original repeats/first rune free | **803** | **1,451** |
 | Nine independently selected sets (261 unrestricted unknown bijections), all 86 repeats and nine chapter initials free | **1,353** | **2,389** |
 
-The global case is included for comparison, not selected by the text. The stronger nine-chapter upper bound is the meaningful stopping rule. **Every** same-length historical GP29 English control has greater E+O occupancy (see code-read minimum over all source windows); the strictest earlier source calibrated Shakespeare normalizer produces at least **2,408** in any source-matched window, still **19 more** than the *most favorable model including all 95 free positions*. The tests use both established transliteration convention and the source-attested **ING→NG, IO→IA** single-rune spelling variant, so the conclusion is not an accident of the legacy GP English tokenizer. These references are finite comparison classes, and neither spelling is an asserted universal form of authored English.
+The global case is included for comparison, not selected by the text. The stronger nine-chapter upper bound is the meaningful stopping rule. **Every** same-length historical GP29 English control has greater E+O occupancy (see code-read minimum over all source windows); the strongest source-calibrated **Emerson** normalizer produces at least **2,408** in any source-matched window, still **19 more** than the *most favorable model including all 95 free positions*. The tests use both established transliteration convention and the source-attested **ING→NG, IO→IA** single-rune spelling variant, so the conclusion is not an accident of the legacy GP English tokenizer. These references are finite comparison classes, and neither spelling is an asserted universal form of authored English.
+
+### Original-source native reference windows (all 12,956-rune windows)
+
+| Reference | Ordinary GP spelling: minimum E+O | Source-attested ING/IO rune spelling: minimum E+O |
+| --- | ---: | ---: |
+| Gibran | **2,556** | **2,548** |
+| Shakespeare | **2,430** | **2,441** |
+| Emerson | **2,455** | **2,408** |
+
+These are minima over *every* contiguous native GP window of the original manuscript's 12,956-rune length, with both GP spellings frozen before reading the original ciphertext. The source-native comparison with the smallest margin is Emerson's **2,408 − 2,389 = 19** distinct E/O occurrences. The original cipher bound is deterministic; this is a finite reference-class exclusion, not a claim of universal natural-language impossibility.
 
 A native-language positive **actually encrypts 12,956 real Gibran GP symbols**, using 261 independent secret 29-way bijections with the previous ciphertext selecting the per-symbol alphabet and the EA rune reserved to emit the one-step repeat. It exactly decodes and re-encodes every symbol, verifies repeats align *only* with planted EA, and passes the same all-secret necessary-condition bound. This is a constructive control of the specific encoder, independent of guesses about actual LP2 text.
 
