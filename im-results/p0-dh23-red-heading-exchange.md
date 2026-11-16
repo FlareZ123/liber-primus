@@ -53,6 +53,29 @@ The authentic p56 plaintext-F rule was tested as a state-only exact inverse: at 
 
 A 242-rune full-alphabet synthetic plant containing eight literal Fs was encoded and recovered exactly under all four phase/sign variants, and the same branch-state gate retained a legal path for each plant. This validates the skip-state implementation. The test rejects only the simple period-28 additive power stream derived from the candidate DH secret; it does not invalidate the DH arithmetic or specify what other symmetric operation, if any, the secret should drive. The exact reproducer is the existing [p0 DH23 source SFT](../sims/p0_dh23_red_heading_candidate.cjs).
 
+
+## Direct p56 prime-totient transfer with exact F bypass (negative)
+
+The existing no-skip transfer tests use the DH-derived starts 18 and 19. The solved p56 cipher has a transparent plaintext-F rule: a literal F remains ciphertext F and does not consume a prime. I tested that exact inverse rather than treating all 242 body positions as clock-consuming. The body contains 12 ciphertext Fs, so the inverse must retain every possible bypass/consume branch.
+
+The only starts tested were source-selected: **1** and **2** (the solved p56 prime-2 start, with or without its historical fake-F offset), **5** (DH base), **7** (DH exponent), **13** (red-heading/marker length), **18** (candidate shared secret), **19** (adjacent one-based/zero-based convention), **23** (DH modulus), and **29** (GP alphabet size). Both (C-(p_i-1)) and (C+(p_i-1)) were tested. A state-only DP allows a ciphertext F either to bypass without advancing or to consume a prime if it decodes to non-F; a non-F ciphertext must consume a prime and may not decode to plaintext F.
+
+| Prime start | First prime | (C-(p_i-1)): first forced F | (C+(p_i-1)): first forced F |
+|---:|---:|---|---|
+| 1 | 2 | p0 offset 80: NG; prime 61 (ordinal 61), shift 21 | p0 offset 41: N; prime 79 (ordinal 22), shift 20 |
+| 2 | 3 | p0 offset 80: NG; prime 283 (ordinal 61), shift 21 | p0 offset 96: A; prime 383 (ordinal 76), shift 5 |
+| 5 | 11 | p0 offset 53: B; prime 163 (ordinal 38), shift 17 | p0 offset 30: EO; prime 47 (ordinal 15), shift 17 |
+| 7 | 17 | p0 offset 25: W; prime 37 (ordinal 12), shift 7 | p0 offset 32: NG; prime 67 (ordinal 19), shift 8 |
+| 13 | 41 | p0 offset 60: G; prime 239 (ordinal 52), shift 6 | p0 offset 28: S; prime 73 (ordinal 21), shift 14 |
+| 18 | 61 | p0 offset 40: B; prime 163 (ordinal 38), shift 17 | p0 offset 54: D; prime 239 (ordinal 52), shift 6 |
+| 19 | 67 | p0 offset 28: S; prime 103 (ordinal 27), shift 15 | p0 offset 23: N; prime 79 (ordinal 22), shift 20 |
+| 23 | 83 | p0 offset 235: H; prime 1459 (ordinal 232), shift 8 | p0 offset 50: NG; prime 241 (ordinal 53), shift 8 |
+| 29 | 109 | p0 offset 86: X; prime 479 (ordinal 92), shift 14 | p0 offset 25: W; prime 139 (ordinal 34), shift 22 |
+
+Every one of the 18 candidates loses all possible clock states at its first listed position; each has a single state immediately before the forced-F contradiction. The no-skip IoCs range from **0.033058 to 0.036350**, against raw p0-body IoC **0.034292**. This is a structural rejection of the tested direct p56 prime-totient transfers, not a language-score judgment.
+
+A 242-rune full-alphabet synthetic plant with eight literal Fs was encoded and recovered exactly under all 18 start/sign variants; the same branch-state gate retained a legal path in every case. This validates the bypass-state implementation. The result does not reject the provisional DH arithmetic or other source-selected symmetric mechanisms.
+
 ## Conditional 2016 word-map cross-check
 
 If the DH outputs are read as page 18, word 7, the canonical printed-word parser used by \`sims/lp2_2016_message_base58_word_map.cjs\` selects \`GAHEALGO\`. It has seven GP runes with prime weights \`[17,97,23,109,73,17,7]\`, summing to \`343 = 7^3\`. It is the only seven-rune word with prime sum 343 among the 2,973 printed words; five words of all lengths have that sum. Its first and last prime weights (17 and 7) match the candidate DH public value and exponent.
@@ -129,4 +152,4 @@ A stricter source-matched control fixes the four raw GP digits mechanically forc
 
 Run \`node sims/p0_dh23_red_heading_candidate.cjs\` from the repository root. It reconstructs the BASE29 values, DH exchange, source-window and subgroup controls, conditional word-map observation, and rejected 27×27 continuation from the canonical resources.
 
-**Research decision:** retain this as a candidate source-derived key, but do not promote it to \`results/\`. The tested direct consumers of the provisional DH route have all failed: the p56 prime-totient clock on p0, OutGuess passphrase18 on image17, and the conditional p18:w7 prime-weight/φ-prime-weight repeating keys on p0, and the period-28 additive power stream from K=18 under both natural seed phases and signs (the exact F-transparent clock dies at p0 offsets 57, 31, 26 and 32). Separately, the source-visible 121-rune p32 map repeated twice over the 242-rune p0 body also fails as a direct additive key under GP-index/prime-weight encodings and both signs; the exact 2× length match does not authenticate the map-as-key interpretation. The missing piece remains a different source-selected reversible LP2 operation that consumes shared secret 18, or an independent second DH-encoded passage that validates the mapping. Do not expand into arbitrary PRNGs, coordinate orderings, or cipher families without another original clue.
+**Research decision:** retain this as a candidate source-derived key, but do not promote it to \`results/\`. The tested direct consumers of the provisional DH route have all failed: the direct p56 prime-totient clock on p0 (no-skip starts 18/19 and exact F-transparent starts 1, 2, 5, 7, 13, 18, 19, 23 and 29 in both signs), OutGuess passphrase18 on image17, and the conditional p18:w7 prime-weight/φ-prime-weight repeating keys on p0, and the period-28 additive power stream from K=18 under both natural seed phases and signs (the exact F-transparent clock dies at p0 offsets 57, 31, 26 and 32). Separately, the source-visible 121-rune p32 map repeated twice over the 242-rune p0 body also fails as a direct additive key under GP-index/prime-weight encodings and both signs; the exact 2× length match does not authenticate the map-as-key interpretation. The missing piece remains a different source-selected reversible LP2 operation that consumes shared secret 18, or an independent second DH-encoded passage that validates the mapping. Do not expand into arbitrary PRNGs, coordinate orderings, or cipher families without another original clue.

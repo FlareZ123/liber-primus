@@ -374,6 +374,98 @@ const p0TotientTransfer = {
   conclusion: "No readable p0 plaintext; this rejects only direct p56-clock transfer, not the provisional DH key derivation."
 };
 
+
+const p0PrimeTotientStarts = [1, 2, 5, 7, 13, 18, 19, 23, 29];
+function primeTotientTransparentGate(cipher, startOrdinal, sign) {
+  let clocks = new Set([0]);
+  for (let position = 0; position < cipher.length; position++) {
+    const value = cipher[position];
+    const before = [...clocks];
+    const next = new Set();
+    const forcedF = [];
+    for (const clock of clocks) {
+      if (value === 0) next.add(clock);
+      const prime = primeSequence[startOrdinal - 1 + clock];
+      const shift = (prime - 1) % 29;
+      const decoded = modNumber(value + sign * shift, 29);
+      if (decoded !== 0) next.add(clock + 1);
+      else forcedF.push({ clock, primeOrdinal: startOrdinal + clock, prime, shift, decoded });
+    }
+    if (next.size === 0) {
+      return {
+        survives: false, firstFailureBodyOffset: position,
+        absoluteP0Offset: p0BodyStart + position, cipherIndex: value,
+        cipherRune: corpus.translit[value], statesBefore: before, forcedF
+      };
+    }
+    clocks = next;
+  }
+  return { survives: true, finalClockStates: [...clocks] };
+}
+function encodePrimeTotientTransparent(plain, startOrdinal, sign) {
+  let clock = 0;
+  const cipher = [], skipMask = [];
+  for (const value of plain) {
+    if (value === 0) { cipher.push(0); skipMask.push(true); }
+    else {
+      const shift = (primeSequence[startOrdinal - 1 + clock] - 1) % 29;
+      cipher.push(modNumber(value - sign * shift, 29));
+      skipMask.push(false); clock++;
+    }
+  }
+  return { cipher, skipMask };
+}
+function decodePrimeTotientWithMask(cipher, startOrdinal, sign, skipMask) {
+  let clock = 0;
+  const plain = [];
+  for (let i = 0; i < cipher.length; i++) {
+    if (skipMask[i]) { assert.equal(cipher[i], 0); plain.push(0); }
+    else {
+      const shift = (primeSequence[startOrdinal - 1 + clock] - 1) % 29;
+      const value = modNumber(cipher[i] + sign * shift, 29);
+      assert.notEqual(value, 0, "a consuming step cannot decode to plaintext F");
+      plain.push(value); clock++;
+    }
+  }
+  return plain;
+}
+const p0PrimeTotientNoSkip = [], p0PrimeTotientTransparent = [];
+const primePlant = Array.from({ length: p0Body.length }, (_, i) => (17 * i + 11) % 29);
+assert.equal(primePlant.filter((value) => value === 0).length, 8);
+const primePlantControls = [];
+for (const startOrdinal of p0PrimeTotientStarts) {
+  for (const sign of [-1, 1]) {
+    const decoded = p0Body.map((value, i) =>
+      modNumber(value + sign * ((primeSequence[startOrdinal - 1 + i] - 1) % 29), 29)
+    );
+    p0PrimeTotientNoSkip.push({
+      startOrdinal, firstPrime: primeSequence[startOrdinal - 1], sign,
+      ioc: indexOfCoincidence(decoded), prefix: translit(decoded.slice(0, 32))
+    });
+    p0PrimeTotientTransparent.push({
+      startOrdinal, firstPrime: primeSequence[startOrdinal - 1], sign,
+      ...primeTotientTransparentGate(p0Body, startOrdinal, sign)
+    });
+    const planted = encodePrimeTotientTransparent(primePlant, startOrdinal, sign);
+    assert.deepEqual(
+      decodePrimeTotientWithMask(planted.cipher, startOrdinal, sign, planted.skipMask),
+      primePlant
+    );
+    assert.equal(primeTotientTransparentGate(planted.cipher, startOrdinal, sign).survives, true);
+    primePlantControls.push({ startOrdinal, sign, exactRoundTrip: true, legalBranchPath: true });
+  }
+}
+p0TotientTransfer.fTransparentStartOrdinals = p0PrimeTotientStarts;
+p0TotientTransfer.fTransparentNoSkipVariants = p0PrimeTotientNoSkip;
+p0TotientTransfer.fTransparentVariants = p0PrimeTotientTransparent;
+p0TotientTransfer.fTransparentSyntheticPositive = {
+  length: primePlant.length,
+  literalFCount: primePlant.filter((value) => value === 0).length,
+  variants: primePlantControls
+};
+p0TotientTransfer.conclusion =
+  "No readable p0 plaintext; exact F-transparent transfer fails for all tested source-selected starts and both signs, without rejecting the provisional DH derivation.";
+
 console.log(JSON.stringify({
   openingPhrase: { indices: openingPhrase, transliteration: translit(openingPhrase), base29: N.toString(),
     mod23: Number(N % 23n), mod22: exponent, finalDigit: opening.at(-1) },
