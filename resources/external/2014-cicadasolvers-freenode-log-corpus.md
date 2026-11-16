@@ -42,6 +42,17 @@ The pinned primary `#cicadasolvers.freenode.log` object above also preserves the
 
 The May-7 word-GP/rune-position idea is a period-origin precedent for testing joint word/rune state, but it remains a participant conjecture. It is relevant context for the current word-number/pointer investigation; do not upgrade it to author intent or a verified mechanism. The original source object is still the same pinned 18,487,233-byte blob `bdd277c14f94c34b5ae714cd00c238065beeed4e`; line numbers above refer to that exact object.
 
+
+## Original 2014 p54 red-title guesses and the recovered modcipher attempt
+
+The same original channel records a later, distinct p54-title discussion on **2 July 2014**, lines **216910–931**. `Anoniem4l` says the second red word after the large `A` is **not DIRECTION**, then tests the eight-rune guess `D-I-R-E-C-T-IO-N`; `f10ur1ick3r` suggests `deception` or `beginnings`, and the participants discuss `Beginning` versus `beginnings`. The original p54 scan (archive image `71.jpg`) prints `A-M-NG-D-IA-TH-X-I-M`: the red word after A has exactly eight canonical GP29 runes, `M, NG, D, IA, TH, X, I, M`.
+
+Canonical GP29 tokenization changes the length assessment: **BEGINNING** is `B-E-G-I-N-N-I-NG`, exactly eight runes because `NG` is one alphabet symbol. **DIRECTION** and **DECEPTION** each require nine GP29 runes and do not fit the eight-rune red word. This makes `A BEGINNING` a historically suggested, length-compatible crib; it does not decrypt the title.
+
+The recovered participant script `2014-irc-shared/anoniem4l-modcracker-M5BccDpT.py` has `our = [71,79,89,107,5,47,31,71]`, exactly the ordinal-prime values of the eight observed p54 red-title runes. Its `want` array has eight entries and is commented as `D-I-R-E-C-T-IO-N`; canonical GP29 has no `IO` symbol, so that target is not a canonical GP29 spelling. The script also has a defective final predicate: it compares the first two candidate differences but only truth-tests the remaining six, rather than requiring all eight to be equal. A corrected source-faithful test of the same proposed constant-modulus-shift method against canonical `BEGINNING` prime values `[61,67,17,31,29,29,31,79]`, over every modulus 1–330, finds **no modulus**. This rejects that simple modcipher consumer for the candidate; it does not test or reject the separate p56 red-title key schedule.
+
+This is a contemporary solver's crib and experiment, not a Cicada-signed plaintext or author instruction. The 23 May 2014 `A Beginning` guess and the 2 July discussion are independent historical occurrences of the same idea; the 2014 comment that it had too few runes is not decisive once the canonical `NG` digraph is counted.
+
 ## Reproduction and research significance
 
 [The original-byte CommonJS SFT](../../sims/lp2_2014_original_irc_log_source_gate_sft.cjs) checks every Git blob SHA1 and exact original byte count before computing per-year/per-month tallies and extracting source-line numbers for p56/hash/totality clues. [Successful original-source GitHub Actions run 43599552893](https://github.com/FlareZ123/liber-primus/actions/runs/43599552893) recovered all three complete files, verified them, and printed source line numbers and counts. Existing earlier [May-2014-pad archival research](../../im-results/lp2-2014-may-unfiction-workpad-source-gate.md) had found only April–July **2016** snapshots and no 2014 chat; the present original IRC discovery materially resolves that historical acquisition gap, independently of recovering any original target URL.

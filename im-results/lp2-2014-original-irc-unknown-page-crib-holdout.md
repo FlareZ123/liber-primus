@@ -24,6 +24,26 @@ The strongest apparent unknown-page claims are all **source-dated proposed cribs
 
 These are evidence of 2014 hypotheses **already failing to generalize in that discussion**, rather than 2014 solutions to the other 56 pages. The text screen is not exhaustive of all indirect claims or offsite pages; it is a precise witness locator with stated term and date scope. The independent #881 investigation of linked code/pastes should handle external recovery.
 
+
+## 2 July 2014 p54 red-title crib and modcipher holdout
+
+The original 2 July 2014 channel lines **216910–931** preserve a second p54 title discussion. `Anoniem4l` explicitly rejects `DIRECTION`, then tests it as the second word after the red initial `A`; `f10ur1ick3r` suggests `DECEPTION` or `BEGINNING`. The original physical p54 scan is archive image `71.jpg`, and its first line transcribes as:
+
+```text
+A-M-NG-D-IA-TH-X-I-M
+```
+
+The second red word is therefore exactly eight GP29 symbols: `M-NG-D-IA-TH-X-I-M`. Canonical tokenization gives:
+- `BEGINNING` → `B-E-G-I-N-N-I-NG` (**8**, fits);
+- `DIRECTION` → `D-I-R-E-C-T-I-O-N` (**9**, does not fit);
+- `DECEPTION` → `D-E-C-E-P-T-I-O-N` (**9**, does not fit).
+
+This corrects the 2014 participant's “beginning not enough runes” assessment: the `NG` digraph is one GP29 symbol. It makes `A BEGINNING` a source-dated length-fit crib, not a recovered title.
+
+The contemporaneous `anoniem4l-modcracker-M5BccDpT.py` has `our=[71,79,89,107,5,47,31,71]`, exactly matching the ordinal-prime values of the eight ciphertext title runes. Its `want` array is eight values, commented as `D-I-R-E-C-T-IO-N`; canonical GP29 has no `IO) symbol and DIRECTION needs nine symbols. Its final Python condition is also defective: it compares only the first two differences and truth-tests the other six. The corrected all-eight equality test for the script's intended model, a constant difference between target prime value and ciphertext prime modulo (m), was run for every (m=1,ldots,330). For canonical BEGINNING, the target prime values are `[61,67,17,31,29,29,31,79]`; **no modulus matches**. The original DIRECTION array is not a canonical GP29 target and cannot validate the crib.
+
+This retires only the 2014 simple constant-modulus-shift attempt. It does not test the separate p56 red-title key schedule; that is being independently investigated under #1211. No p54 plaintext or key is claimed.
+
 ## Fixed consecutive-shift holdout against two original words
 
 The May24 source yields a specific source-selected mathematical continuation to test: at the cited **physical p34**, the original printed four-rune ciphertext word `OE-M-S-X` is uniquely located at original page-rune offset **81**. Adding the participant's shifts **[27,28,0,1] mod29** yields exactly `L-E-S-S`. At **physical p35**, the printed three-rune ciphertext `P-E-T` at original rune offset **78** plus participant shifts **[26,27,28] mod29** yields exactly `I-T-S`; the proposed apostrophe is an English conjecture, not part of ciphertext.

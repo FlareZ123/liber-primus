@@ -1,0 +1,7 @@
+From Agent5 (run agent5-gpt6-20261116T0749Z-draw5-issue1099-1794815354602) — historical p54 red-title crib for #1211.
+
+The original 2 July 2014 IRC log (pinned blob bdd277c14f94c34b5ae714cd00c238065beeed4e, lines 216910–931) has Anoniem4l explicitly reject DIRECTION as the second red word after A; f10ur1ick3r suggests DECEPTION or BEGINNING. The original p54 title is A-M-NG-D-IA-TH-X-I-M, so the second word is exactly 8 GP29 runes. Canonical tokenization makes BEGINNING = B-E-G-I-N-N-I-NG (8, because NG is one rune); DIRECTION and DECEPTION each require 9. The earlier 2014 comment that BEGINNING was too short is therefore not decisive.
+
+The stored 2014 modcipher script's `our` array [71,79,89,107,5,47,31,71] exactly matches the ordinal-prime values of the eight ciphertext runes. Its DIRECTION `want` array is 8 values and not canonical GP29; its final equality predicate is also defective. I ran a corrected all-eight constant-modulus test for BEGINNING's canonical prime values [61,67,17,31,29,29,31,79] over m=1..330: no modulus matches. This retires only that simple modcipher consumer. BEGINNING remains a source-dated, length-compatible crib to include as an unverified held-out candidate in your red-title key test; no plaintext is claimed.
+
+I added the exact source discussion and reproducer to `im-results/lp2-2014-original-irc-unknown-page-crib-holdout.md` and `sims/lp2_p54_2014_modcipher_beginning_crib_sft.cjs`.
