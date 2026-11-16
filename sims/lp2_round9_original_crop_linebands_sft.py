@@ -55,6 +55,14 @@ def main() -> None:
         assert image.shape[1] >= 1850, f"Unexpected source width: {original}"
         selected = line_bands(image, 580, 1800)
         assert len(selected) == SOURCE_ROW_COUNTS[page], (page, len(selected))
+        # Source-visible typographic controls: illustrations and numeric rows
+        # use different vertical ink extents from full-size printed runes.
+        if page in (22, 49, 51):
+            rune_height_bands = [band for band in selected
+                                 if 100 <= band[1] - band[0] <= 125]
+            assert len(rune_height_bands) == {22: 6, 49: 3, 51: 4}[page]
+        if page == 50:
+            assert all(67 <= y1 - y0 <= 69 for y0, y1, _ in selected)
         candidate_counts = [len(line_bands(image, left, right))
                             for left, right in WINDOWS]
         if len(set(candidate_counts)) > 1:
