@@ -135,3 +135,100 @@ function main() {
   console.log('All original arithmetic, first chapter, and seven other 729-rune source-prefix controls passed.');
 }
 main();
+
+/** A period-three GP29 key exists iff all positions with the same phase agree. */
+function periodicThreeSites(tape, phrase) {
+  const sites = [];
+  for (let start = 0; start + phrase.length <= tape.length; start++) {
+    const key = phrase.map((p, i) => (tape[start + i] - p + 29) % 29);
+    if (key.every((value, i) => value === key[i % 3])) sites.push(start);
+  }
+  return sites;
+}
+
+/** @param {number[]} runes */
+function signature7(runes) {
+  assert.equal(runes.length, 7);
+  return [3, 4, 5, 6].map((i) => (runes[i] - runes[i % 3] + 29) % 29).join(',');
+}
+
+/**
+ * Fully refitted, all-locations English phrase baseline: unlike the published
+ * geometric decoder, this control gives each candidate location any length-3
+ * key. It estimates phrase selection capacity, not the source-node model.
+ */
+function nativePhraseCapacity() {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const { encodeSourceNativeGP } = require('./lp2_native_gp_source_orthography_sft.cjs');
+  const files = [
+    'resources/control/shakespeare_first300k.txt',
+    'resources/control/gibran_prophet_58585.txt',
+    'resources/control/emerson_essays_2944.txt'
+  ];
+  const map = new Map();
+  const counts = [];
+  for (const file of files) {
+    const raw = fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
+    const words = (raw.match(/[A-Za-z]+/g) || []).map((word) => ({
+      text: word.toUpperCase(),
+      gp: encodeSourceNativeGP(word)
+    }));
+    let count = 0;
+    for (let start = 0; start < words.length; start++) {
+      const phrase = [];
+      const runes = [];
+      for (let end = start; end < Math.min(start + 8, words.length); end++) {
+        phrase.push(words[end].text);
+        runes.push(...words[end].gp);
+        if (runes.length > 7) break;
+        if (runes.length < 7) continue;
+        const sig = signature7(runes);
+        if (!map.has(sig)) map.set(sig, new Set());
+        map.get(sig).add(phrase.join(' '));
+        count++;
+      }
+    }
+    counts.push(count);
+  }
+  assert.deepEqual(counts, [14488, 3951, 18728]);
+  assert.equal(map.size, 17608);
+  const original = corpus.pages.filter((p) => p.page <= 2)
+    .flatMap((p) => p.indices);
+  assert.equal(original.length, 729);
+  const matches = [];
+  for (let start = 0; start + 7 <= original.length; start++) {
+    const phrases = map.get(signature7(original.slice(start, start + 7)));
+    if (phrases) matches.push({ start, examples: [...phrases].slice(0, 3) });
+  }
+  assert.equal(matches.length, 17);
+  assert(matches.some((m) => m.start === 231 &&
+    m.examples.includes('THEN BE IT')));
+  assert(matches.some((m) => m.start === 389 &&
+    m.examples.includes('AS WEAK AS')));
+  assert(matches.some((m) => m.start === 671 &&
+    m.examples.includes('TRUE THAT')));
+
+  const asIGoThe = [24, 15, 10, 6, 3, 2, 18];
+  const weather = [7, 28, 2, 18, 4];
+  const turns = [16, 1, 4, 9, 15];
+  const cold = [5, 3, 20, 23];
+  assert.deepEqual(periodicThreeSites(original, asIGoThe), [348]);
+  assert.deepEqual(periodicThreeSites(original, weather), [364]);
+  assert.deepEqual(periodicThreeSites(original, turns), []);
+  assert.equal(periodicThreeSites(original, cold).length, 22);
+  console.log(JSON.stringify({
+    completeEnglishPhraseReferences: counts.reduce((a, b) => a + b, 0),
+    sevenRuneDistinctDifferenceSignatures: map.size,
+    originalSevenRuneStartsWithAnyLiteraryPhrase: matches.length,
+    matchedOriginalSites: matches,
+    fixedTargetSites: { ASIGOTHE: [348], WEATHER: [364], TURNS: [], COLD_count: 22 },
+    iidFixedTargetExpectedSites: {
+      ASIGOTHE: 723 / Math.pow(29, 4),
+      WEATHER: 725 / Math.pow(29, 2),
+      COLD: 726 / 29
+    },
+    qualification: 'Free three-key phrase capacity and IID illustrative baselines; not a proof against the separately proposed source geometry.'
+  }, null, 2));
+}
+nativePhraseCapacity();
