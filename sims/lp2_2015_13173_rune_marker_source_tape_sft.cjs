@@ -24,7 +24,11 @@ assert.equal(annotations.counts.red13 + annotations.counts.black13 + annotations
 /** @type {Token[]} */
 const tape = [{ kind: 'fictitious-f', runeIndex: 0 }];
 for (const page of corpus.pages) {
-  const annotation = annotations.pages.find((entry) => entry.page === page.page);
+  // Annotation records exist only for pages with red ink or large marks.
+  const annotation = annotations.pages.find((entry) => entry.page === page.page) || {
+    rune_count: page.indices.length,
+    large_punctuation: []
+  };
   assert.equal(annotation.rune_count, page.indices.length);
   const markers = annotation.large_punctuation || [];
   for (let offset = 0; offset <= page.indices.length; offset++) {
