@@ -11,6 +11,7 @@ on:
           - all
           - numbered-index
           - literary
+          - scroll
 
 permissions:
   contents: read
@@ -75,3 +76,17 @@ jobs:
           python-version: '3.12'
       - name: Pinned public-domain NLTK Gutenberg literal-GP wordlength source test
         run: python sims/lp2_nltk_gutenberg_wordlength_literal_gate_sft.py
+
+  source-scroll-red-cap:
+    if: inputs.gate == 'scroll' || inputs.gate == 'all'
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source-image Python dependencies
+        run: python -m pip install numpy pillow opencv-python-headless
+      - name: Exact original-image margins and red initials gate
+        run: python sims/lp2_p3_p7_scroll_cap_source_geometry_sft.py
