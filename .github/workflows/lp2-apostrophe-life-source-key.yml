@@ -1,0 +1,18 @@
+name: LP2 apostrophe LIFE original-key decision
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-test:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source apostrophes and exact original-cipher key gate
+        run: node sims/lp2_apostrophe_tail_life_source_gate_sft.cjs
