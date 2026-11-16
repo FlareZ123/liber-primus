@@ -45,10 +45,19 @@ SOURCES = (
 
 # Pinned alternates only, never additional specimens or species.
 ALTERNATE = {
-    "kukalovapeck1976-moravia-fig1":
-      ("https://upload.wikimedia.org/wikipedia/commons/b/b4/Psyche_%28IA_psyche831976camb%29.pdf",),
-    "kukalova1964-moravia-fig2":
-      ("https://downloads.hindawi.com/journals/psyche/1964/34192.pdf",),
+    "kukalovapeck1976-moravia-fig1": (
+      "https://www.biodiversitylibrary.org/partpdf/184003",
+      "https://biostor.org/pdf/175378",
+      "https://groups.csail.mit.edu/mac/projects/psyche/83/83-079.pdf",
+      "https://psyche.entclub.org/83/83-079.pdf",
+      "https://upload.wikimedia.org/wikipedia/commons/b/b4/Psyche_%28IA_psyche831976camb%29.pdf",
+    ),
+    "kukalova1964-moravia-fig2": (
+      "https://groups.csail.mit.edu/mac/projects/psyche/71/71-153.pdf",
+      "https://psyche.entclub.org/71/71-153.pdf",
+      "https://archive.org/download/psyche711964camb/psyche711964camb.pdf",
+      "https://downloads.hindawi.com/journals/psyche/1964/34192.pdf",
+    ),
 }
 
 
@@ -97,7 +106,15 @@ def preview(name: str, img: np.ndarray) -> str:
     thumb = cv2.resize(img, (max(1, round(img.shape[1] * scale)),
                              max(1, round(img.shape[0] * scale))))
     encoded = cv2.imencode(".jpg", thumb, [cv2.IMWRITE_JPEG_QUALITY, 75])[1].tobytes()
-    (PREVIEW / (name + ".jpg")).write_bytes(encoded)
+    dest = PREVIEW / (name + ".jpg")
+    with FileLock(str(dest) + ".lock"):
+        with tempfile.NamedTemporaryFile("wb", dir=PREVIEW, suffix=".tmp",
+                                         delete=False) as f:
+            temp = Path(f.name)
+            f.write(encoded)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(temp, dest)
     return hashlib.sha256(encoded).hexdigest()
 
 
