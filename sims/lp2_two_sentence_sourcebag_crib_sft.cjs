@@ -154,8 +154,7 @@ function scan(original, source, minWordCount = 13) {
   return {minCombinedDeficit, exactPairs, best: best.slice(0, 5)};
 }
 
-function main() {
-  const originals = originalSpans();
+const originals = originalSpans();
 const sources = [
   ['Gibran Prophet', 'resources/control/gibran_prophet_58585.txt'],
   ['Emerson Essays', 'resources/control/emerson_essays_2944.txt'],
@@ -171,6 +170,7 @@ const sources = [
   return {name, spans: sourceSpans(content)};
 });
 
+function main() {
 const results = sources.map(({name, spans}) => ({
   name, sourcePunctuationSpans: spans.length, ...scan(originals, spans)
 }));
