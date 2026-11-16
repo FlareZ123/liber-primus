@@ -186,8 +186,14 @@ for (const spec of fixtures) {
     root: spec.root, tail: predicted, tailRunes: predicted.map(x => gp.runes[x]).join(""),
     ringJet, quotientIoc: ioc(quotient), cyclic: control});
 }
-assert.equal(mod(3 ** 3), 27);
-assert.equal(mod(27 ** 19), 3);
+/** @param {number} base @param {number} exponent @returns {number} */
+function powMod(base, exponent) {
+  let x = 1;
+  for (let i = 0; i < exponent; i++) x = mod(x * base);
+  return x;
+}
+assert.equal(powMod(3, 3), 27);
+assert.equal(powMod(27, 19), 3);
 assert.equal(results[0].cyclic.any * results[1].cyclic.any, 36);
 const conditionalRate = 36 / (196 * 121);
 assert(Math.abs(conditionalRate - 0.001517962556923596) < 1e-12);
