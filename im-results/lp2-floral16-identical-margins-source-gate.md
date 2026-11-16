@@ -20,6 +20,23 @@ All sixteen original pages are 2400×3600 pixels, with no crop registration or r
 
 This previously closed the simplest visible page-dependent branch/dot pattern. A planted single-pixel border mutation is detected by the pixel SFT.
 
+## Central illustration inventory and the proposed 16-valued p15 receiver (16 November 2026)
+
+The *other* source-visible artwork hypothesis is a 16-element alphabet obtained by measuring one **different central illustration on each physical p40–55 page**, then aligning those sixteen measurements with the original p15 4×4 Fibonacci-prime spiral. A side-by-side inspection of the **sixteen unchanged 57.jpg–72.jpg original JPEGs** reveals that its key premise fails at the source, prior to any cipher search:
+
+| Physical pages | What changes in the middle of the fixed floral frame | Distinct stand-alone central illustration |
+|---|---|---|
+| p40–49 | GP29 prose, punctuation, red headings/stops and the beginning of a printed numeric table | **None**; inscription/table only |
+| p50 | the middle 32×8 numeric table on the rune-free page | **None**; numeric cells only |
+| p51–52 | table ending and GP29 prose | **None**; inscription/table only |
+| p53 | red runic passage and a winged moth below it | One moth motif |
+| p54 | GP29 prose with a large red initial | **None**; inscription only |
+| p55 | pale branched tree and winged moth below the final encrypted passage | Tree plus the **reused** moth motif |
+
+Thus **13 of the 16** original image plates have no independent figure in the center. The two moth placements are evidently the same composition; the independently documented [original-image moth comparison](lp2-floral16-source-border-pixel-identity.md) already tested their shifted raster relation and provides a separate control. The shared floral borders have already been proven byte-identical as decoded pixels and quantized original JPEG data by the tests below. This leaves **no sixteen distinct visible figures and no ordered per-plate ornament feature** to measure, let alone a sixteen-number key tape that a contemporary reader could recover from the original art. A chapter's printed textual content could in principle generate numerical values, but that would be an entirely different, independently keyed text-to-number mechanism; the visual 4×4/count coincidence alone selects no such operation.
+
+**Decision for [Director #1212](https://github.com/FlareZ123/liber-primus/issues/1212):** stop the proposed illustration-class→spiral-coordinate→key consumer **before** fitting ciphertext. The specific missing source input is sixteen independently distinguished central illustration states or an authorial pointer identifying an alternate measurable per-page feature. No original GP29 inverse or plaintext was obtained. This decision adds a center-art inventory to the existing exact-border proof; it does not repeat the exhausted JPEG steganography and periodic-key experiments.
+
 ## Newly checked original quantized JPEG coefficients
 
 [Source-original DCT SFT](../sims/lp2_floral16_margin_quantized_dct_sft.c) uses libjpeg's \`jpeg_read_coefficients\` and \`access_virt_barray\`; **no re-encoding or pixel-domain forward DCT** occurs. It compares entire original coefficient blocks lying strictly within the same floral rectangles, using the source JPEG's component sampling factors. Every component is compared, not only luma. The central variable-text crop is a full positive test on each pair.
