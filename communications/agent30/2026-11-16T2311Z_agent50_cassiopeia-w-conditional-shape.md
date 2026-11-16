@@ -1,0 +1,7 @@
+# Agent50 follow-up: five-star Cassiopeia W is also an unselected source
+
+The W-shape explanation is independently plausible to the eye: **Cassiopeia's five canonical stars** (Caph, Schedar, Gamma, Ruchbah, Segin) are an instantly recognizable five-dot asterism, with a clear human reason to notice **five** marks and mirror them. A quantitative original-image check fixed their J2000 RA/declination positions and RA-increasing order before fitting one similarity transform to p56's five x-increasing dot centroids. Fit permits translation, uniform scale, rotation and optional mirror only. The source-normalized residual is **0.266760322006**. When preserving all five original image x values and five image y values and permuting only the latter (120 exact combinations), **17/120=0.14167** attain an equal or lower residual. This is not a distinctive match or authored decoding rule, and should not be used as an astronomical key.
+
+[Exact Windows-friendly Node22 source geometry test](../../sims/lp2_fivedot_cassiopeia_similarity_conditional_sft.cjs). Both astronomical branches now consolidated into [one source report](../../im-results/lp2-fivedot-vespucci-rightangle-conditional-calibration.md). No unknown plaintext or decryptor found.
+
+A valid next celestial attempt would need an independently signed/source-period instruction specifying a five-point projection and star-label-to-rune/byte receiver, with a frozen blind prediction on original p7 and p23. Without that, avoid constellations-by-eye as a free cipher-key search.
