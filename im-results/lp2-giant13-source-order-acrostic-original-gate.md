@@ -51,6 +51,22 @@ As a bounded check, use the 13 **original** cap indices directly as a repeated m
 
 The subtract-caps 716-rune result begins `T-L-OE-U-S-L-NG-P-S-I-J-E-E-O-TH-R-TH-IA-I-A-M-L` and the held-out 1,145-rune result begins `C-L-EA-P-W-X-U-Y-TH-M-E-X-P-U-I-N-L-EA-P`, with no apparent contiguous GP-native English. An unrelated, original 13-rune p1 control key (`A-I-M-S-N-S-OE-R-U-W-S-L-IA`) yields **0.03399226** on p0 and **0.03436956** on p3–7. Thus the cap-key output cannot be distinguished from this local original-source negative control by the same statistic. The p57 comparison is a short cleartext reference, not a formal p-value; the first 80-rune outputs and all exact computations are emitted by the SFT.
 
+## Independent original-source Fibonacci13 seed/clock candidate
+
+The original p15 prime-square is indexed by the Fibonacci sequence; the consecutive Fibonacci values **5, 8, 13** can motivate a 13-stage additive recurrence when combined with the genuinely image-identified thirteen giant initials. This yields a limited, source-legible alternative to a **repeated** 13-glyph key: freeze the source-index seed `K[0..12]` above and extend it deterministically by `K[i] = (K[i−8] + K[i−13]) mod 29` for `i≥13`. This is a plausible designer operation, **not an authenticated instruction to apply this recurrence to these initials**. The test has **no tuned cipher parameters**. The key begins `15,20,13,24,14,20,1,19,23,21,27,0,24,6,21,3,18,6,18,1,14,0,13,1`.
+
+Use the standard known-page additive convention `C=(P+K) mod29`. Start the key clock at the first **black** p0 rune after the original 13-rune red heading, run continuously through 716 p0–2 original body runes, then continue without reset through 1,145 untouched p3–7 runes. A full original rune-by-rune inverse and forward-encryption assertion passes. A separate source-native p57 positive plant decrypts **95/95** runes with this exact key. Original results:
+
+| Frozen original test | Rune positions | Decoded IoC | First decoded GP29 tokens |
+| --- | ---: | ---: | --- |
+| p0 black + p1–2 | 716 | **0.034765792866** | `T L OE U S L NG P S I J E EO J O OE R G NG L` |
+| holdout p3–7, same continuous key | 1,145 | **0.034604696613** | `P E A U U O EO R IA EO C IA X W E OE I D L F` |
+| genuinely clear p57 language reference | 95 | **0.062709966405** | `P A R A B L E L I C E...` |
+
+Both outputs are essentially uniform GP29 registers and contain no sustained recognizably grammatical plaintext. The accompanying independent natural rule that **plaintext F bypasses the cipher and does not consume key**, exactly as authenticated on solved p56, is even more decisively impossible. The exact F-branch state automaton tracks **every** possible consumed-clock count (ciphertext F may be a bypass or an encrypted non-F). It loses all legal paths at zero-based p0-black offset **39**; on the withheld p3–7 section it loses all paths at offset **19** with a continuous key, or **73** with a reset. The native p57 95-rune F-transparent planted positive fully decodes. This excludes the **specific** Fibonacci lag8+lag13 initial-key stream under either of those natural cipher-transport conventions, rather than all Fibonacci schemes or all uses of giant initials.
+
+This frozen additional test is in the **same** [source-locked runnable SFT](../sims/lp2_giant13_acrostic_original_sft.cjs), executed with all assertions passing against the exact original corpus and ink JSON inputs. It does not change the primary issue's conclusion: no source-selected key/clock or actual unknown plaintext has emerged. The result discourages further Fibonacci coefficient fitting absent a new historical instruction.
+
 ## Decision and a real next gate
 
 **Close #1265 as a sourced acrostic hypothesis with a completed narrow direct-consumer negative.** The image-derived 13-symbol string is genuine and reusable, but no first-party Cicada instruction presently selects its transposition, alphabet-to-key serialization, GP29 receiver, clock, or exact location within the manuscript. Source-natural prime/totient and the direct repeated-key attack produced no original plaintext. Neither result excludes some future, independently source-selected *nonrepeating* interpretation of the initials.
