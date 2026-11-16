@@ -197,6 +197,63 @@ for (const [name, filename] of referenceFiles) {
   assert.ok(chapterResults.at(-1).min > 0);
 }
 
+// Independent static dictionaries per physical page are a still wider
+// architecture. Drop every word crossing a physical page before testing,
+// so each retained word has one unambiguous page-key assignment.
+const pageEnds = [];
+let pageOffset = 0;
+for (const p of corpus.pages.filter((p) => p.page <= 55 && p.indices.length)) {
+  pageOffset += p.indices.length;
+  pageEnds.push(pageOffset);
+}
+assert.equal(pageOffset, 12956);
+const pageContainedWords = Array.from({length: 55}, () => []);
+let pageNumber = 0;
+let position = 0;
+let crossingWordCount = 0;
+for (const word of words) {
+  while (position >= pageEnds[pageNumber]) pageNumber++;
+  if (position + word.length <= pageEnds[pageNumber]) {
+    pageContainedWords[pageNumber].push(word);
+  } else {
+    crossingWordCount++;
+  }
+  position += word.length;
+}
+assert.equal(position, 12956);
+assert.equal(crossingWordCount, 32);
+assert.equal(pageContainedWords.flat().filter((w) => w.length >= 4).length, 1617);
+assert.deepEqual(pageContainedWords.map((w) => collisionPairs(w).pairs), Array(55).fill(0));
+const pageResults = [];
+seed = 0x3301c015;
+for (const [name, filename] of referenceFiles) {
+  const bins = nativeGPWordBins(read(filename));
+  const values = [];
+  for (let run = 0; run < 2000; run++) {
+    let total = 0;
+    for (const page of pageContainedWords) {
+      const seen = new Map();
+      for (const word of page) {
+        if (word.length < 4) continue;
+        const candidate = bins[word.length][
+          Math.floor(random() * bins[word.length].length)].join(",");
+        const old = seen.get(candidate) || 0;
+        total += old;
+        seen.set(candidate, old + 1);
+      }
+    }
+    values.push(total);
+  }
+  pageResults.push({
+    name,
+    min: Math.min(...values),
+    max: Math.max(...values),
+    mean: values.reduce((a, b) => a + b, 0) / values.length,
+    zeroTrials: values.filter((v) => v === 0).length
+  });
+  assert.ok(pageResults.at(-1).min > 0);
+}
+
 // In an iid GP29 model with no equal adjacent runes inside a word,
 // there are 29*28^(length-1) equally likely words of each length.
 // Count only same-length pairs; this is a descriptive null expectation.
@@ -211,7 +268,8 @@ console.log(JSON.stringify({
   wordLengthCounts: sourceCounts,
   uniformNoDoubletExpectedPairs: nullExpected,
   lengthMatchedNativeGP: results,
-  withinNineVisibleChapters: chapterResults
+  withinNineVisibleChapters: chapterResults,
+  withinFiftyFivePhysicalPages: pageResults
 }, null, 2));
 console.log("PASS: static occurrence-independent whole-word encodings are " +
   "incompatible with ordinary GP-native repeated-word prose on the unchanged " +
