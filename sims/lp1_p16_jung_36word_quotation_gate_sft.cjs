@@ -75,7 +75,7 @@ function longestMatch(source, ciphertext) {
 // Both predeclared treatments are tested; source-native GP ligatures were
 // collapsed once in the fixed fingerprint before inspecting original LP2.
 const splitDots = originalWordLengths('-.$%&');
-const joinDots = originalWordLengths('-\$%&');
+const joinDots = originalWordLengths('-$%&');
 const result = {
   originalRunes: 12956,
   sourceWordLengths: sourceGPWordLengths.length,
