@@ -31,4 +31,6 @@ The p57 inner55 source tape remains an interesting finite public operand. Using 
 
 A future attempt must recover an *authored receiver*: an operation explaining how the 55 public symbols control distinct page states or position-dependent masks while accounting for the original anti-doublet / fifth-back properties. No key tuning against the same pages or new alphabet guess is warranted from this count alignment alone.
 
+**Executed validation:** All three original source-gate programs, including this exact equality-invariance SFT and its positive controls, passed on [Windows Node.js 22 CI run 43870561022](https://github.com/FlareZ123/liber-primus/actions/runs/43870561022).
+
 **Reproduction:** [exact single-file CJS SFT](../sims/lp2_parable55_seed_reuse_equality_sft.cjs), [original page-rune corpus](../resources/liber-primus/lp2-corpus.json), [original physical-word transcription](../resources/lp2-transcription.txt), [pinned Gibran and Emerson source-native controls](../resources/control/). Source register caveats and previous prime/F exclusions are in [the PARABLE inner55 report](lp2-parable55-interior-pagekey-source-gate.md).
