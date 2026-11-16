@@ -98,6 +98,33 @@ Synthetic source-geometry positives under **periods 8, 13 and 17**, all with lit
 
 **Precise scope.** This is a *conditional all-keys contradiction* for source-original four contraction words and their physical-page prefixes under one shared GP29 affine slope, a single page-reset repeating key of **every period up to 16**, and exact historical plaintext-F bypass. It does **not** establish any contraction as plaintext, exclude keys reset at punctuation or words, independent page keys, nonaffine/stateful ciphers, changed word segmentation, non-English/archaic contractions, source-altering coordinate operations, or different page/global/chapter clocks with F bypass. Period 17's constructed witness shows why the finite rejection cannot be extrapolated to arbitrary unknown keys. **No unknown LP2 plaintext, authentic key, or destination is recovered.**
 
+## Frozen original-cipher decision: globally shared five-back plaintext feedback (Agent6, 16 November 2026)
+
+A distinct **conditional, exactly reversible** original GP29 construction was tested because the source exhibits a within-word lag-five echo excess and repeated five-dot illustrations. Neither clue selects this opcode, sign, reset clock, or plaintext register. The experiment deliberately fixes a single global rune clock across all **12,956** unknown LP2 runes (p0–55, excluding rune-free p50), with no reset at physical pages, printed spaces, or original raised apostrophes. This is distinct from the previously excluded within-word stationary ciphertext-increment alphabet: its state is the plaintext five runes behind.
+
+The tested complete cipher is
+
+\[
+C_i \equiv aP_i+bP_{i-5}+k\pmod {29}, \qquad a,b\in\{+1,-1\}.
+\]
+
+Six otherwise unconstrained shared secret GP29 values are granted: one additive k and five preceding plaintext symbols at offsets −5…−1. Because a is invertible modulo29, each shared six-value key specifies a unique causal inverse; every recovered sequence must reencrypt the *entire* original cipher. An apostrophe consumes no GP rune or state step, matching the authentic LP1 punctuation behavior. The unproven LP2 cipher does not additionally assume p56's literal-F bypass.
+
+**Locked original-input experiment.** Reserve original p35 **PE'T** and p41 **XLJ'C** from all training. From only p4 **MXI'W** and p21 **AEO'Y**, enumerate the previously frozen **13** possible 3+1 contractions and **six** possible 2+1 contractions, giving **78 training tuples** for *each* of four fixed sign pairs. Express the seven training plaintext runes as affine functions of the same six unknown secrets and solve the 7×6 GF29 systems by exact row reduction, with no site-specific keys or score optimization.
+
+| Signs (a,b) | Complete p4+p21 contraction pairs | Rank of consistent fits | Withheld p35 2+1 matches | Withheld p41 3+1 matches |
+|---|---:|---:|---:|---:|
+| (+1,+1) | **0/78** | — | 0 | 0 |
+| (+1,−1) | **6/78** | 6 | **0/6** | **0/6** |
+| (−1,+1) | **2/78** | 6 | **0/2** | **0/2** |
+| (−1,−1) | **0/78** | — | 0 | 0 |
+
+All **eight** original two-site fits have unique shared six-value keys in their sign family. As an exact example, signs (+1,−1), first-site **CAN'T**, second-site **IT'S** force k=5 and initial five-rune plaintext vector **[19,23,11,19,16]**. Their unchanged original p35 decrypts as **R-G-OE**, and p41 as **T-T-IA-IA**, neither a listed contraction. This fitted model still reencrypts **12,956/12,956** original runes; that identity is a required correctness condition of *any* invertible cipher and supplies no proof of a historical key. The eight complete inverses produce GP29 index-of-coincidence **0.03185682–0.03704698** over the same **150 contiguous original ciphertext runes, offsets 5060–5209** around p21, without discernible plaintext.
+
+**Positive controls and repeatability.** The [standalone Node22 CJS](../sims/lp2_apostrophe_lag5_plain_feedback_sft.cjs) asserts the unchanged original four words and tick offsets; it checks genuine LP1 **I-RWN'B** to **I DON'T** with key differences **FIRFU**, and the solved-p56 first original **AE** to **A** prime/totient step. A **12,956-rune source-shaped native GP** synthetic text plants all four grammatical contractions under a single six-value key and proves exact encryption and decryption under every sign pair. For both sign families with full-rank training, the first two planted cribs recover the **entire hidden planted key exactly**. The other two signs have rank five, correctly retaining an unidentified state degree of freedom. Wrong-sign decryption fails. [Successful Windows Node22 original-input run 43871621426](https://github.com/FlareZ123/liber-primus/actions/runs/43871621426) logs every original key fit, both independent holdouts, the withheld 150-rune window and each planted control.
+
+**Scope and decision.** This is a **finite negative** for the single globally clocked, shared six-secret-value, four-sign **plaintext-causal lag-five** family, conditional on unchanged ordinary English apostrophe morphology. Both untouched source sites separately reject all eight training fits. The argument does not prove that the printed ticks encode English contractions or exclude page/word resets, variable coefficients, a non-GP register, other plaintext spelling, or alternative state transitions. No unknown LP2 plaintext, genuine cipher opcode, historical key, or continuation was recovered. Retire this exact shared family rather than adding independent states to repair failed predictions.
+
 ## Causal decision
 
 The new contribution is **four original-source-selected morphology anchors** for assessing a genuinely independent proposed cipher/key. An author-selected key can now be tested on the original full words and neighboring printed context without inventing cribs after seeing output. A successful route must yield coherent surrounding plaintext and reconstruct the exact ciphertext. The all-keys original-source physical-page affine test now rules out **every repeating-key period 1–16**, including authentic LP1 key lengths 8 and 13, under every legal historical plaintext-F skip pattern and the fixed English contraction register; period 17 has an explicit algebraic nonprose counterexample. No decryptable unknown-page prose has emerged, and arbitrary key/clock retuning remains unsupported.
