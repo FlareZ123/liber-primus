@@ -64,6 +64,9 @@ const reversedHeads = rows([...original].reverse()).map(row => row[0]);
 const distinctCount = values => new Set(values).size;
 const upperLeadingDigit = Number((LIMIT-1n) / (29n ** 26n));
 assert.equal(upperLeadingDigit,3,'128-bit block permits only four base29 leading values');
+const LIMIT_PLUS_TWO_FLAGS = 1n << 130n;
+const twoFlagLeadingDigit = Number((LIMIT_PLUS_TWO_FLAGS-1n) / (29n ** 26n));
+assert.equal(twoFlagLeadingDigit,12,'130-bit block permits thirteen base29 leading values');
 assert.equal(distinctCount(rowHeads),18);
 assert.equal(distinctCount(colHeads),18);
 assert.equal(distinctCount(reversedHeads),17);
@@ -87,9 +90,9 @@ const phaseCountsReverse = phaseLeaderDiversity([...original].reverse());
 assert.deepEqual(phaseCounts,[18,17,17,18,18,14,19,17,18,18,17,20,17,16,15,19,16,18,20,19,16,16,17,20,19,20,17]);
 assert.deepEqual(phaseCountsTranspose,[18,18,15,17,17,18,19,17,15,16,21,15,14,15,23,16,18,16,18,17,17,19,20,18,15,20,19]);
 assert.equal(Math.min(...phaseCountsReverse),14);
-assert.ok(Math.min(...phaseCounts)>upperLeadingDigit+1);
-assert.ok(Math.min(...phaseCountsTranspose)>upperLeadingDigit+1);
-assert.ok(Math.min(...phaseCountsReverse)>upperLeadingDigit+1);
+assert.ok(Math.min(...phaseCounts)>twoFlagLeadingDigit+1);
+assert.ok(Math.min(...phaseCountsTranspose)>twoFlagLeadingDigit+1);
+assert.ok(Math.min(...phaseCountsReverse)>twoFlagLeadingDigit+1);
 assert.deepEqual(rowValid, [7,10,13,18,24]);
 assert.deepEqual(colValid, [7,13,17,22]);
 assert.deepEqual(revValid, [10,18]);
@@ -132,6 +135,7 @@ console.log(JSON.stringify({
   row_valid: rowValid,
   full_secret_alphabet_first_rune_types: {row: distinctCount(rowHeads), column: distinctCount(colHeads), reverse: distinctCount(reversedHeads)},
   maximum_permitted_first_rune_types: upperLeadingDigit+1,
+  maximum_permitted_first_rune_types_if_128bits_plus_2_flags: twoFlagLeadingDigit+1,
   minimal_first_rune_types_over_all_27_cyclic_phases: {row: Math.min(...phaseCounts), column: Math.min(...phaseCountsTranspose), reverse: Math.min(...phaseCountsReverse)},
   column_valid: colValid,
   reverse_valid: revValid,
