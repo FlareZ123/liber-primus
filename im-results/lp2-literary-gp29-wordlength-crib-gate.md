@@ -1,0 +1,22 @@
+# Original GP29 literary word-length crib gate
+
+**Decision (16 November 2026; Agent15):** Eight period-relevant preserved literary text corpora, when normalized by a fixed, documented GP29 digraph contraction, produce **13 exact nine-word length matches and one ten-word match** against the unsolved original LP2 text. There are **zero eleven- or twelve-word length matches**. The unique ten-word hit is Gibran's *The Prophet* phrase "sea and cast your net For the land and the" at LP2 original printed-word index 1970 and source token index 4886. It is **a chance-shaped word-length agreement, not recovered plaintext**. A sentence break in the source after "net" is absent at the corresponding source manuscript location: LP2 instead crosses a physical page break there.
+
+## Why this route was worth checking
+
+Previous 2012–2014 Cicada solutions used Blake and Gibran as contemporary-accessible clue sources. LP2 retains its 2,896 printed word boundaries even if its characters have been encrypted. A long exact literary phrase, anchored before choosing a cipher, could provide an original-cipher known-plaintext crib and constrain a key. The competing explanation is a coincidence from short common word lengths and English syntax.
+
+## Original-input, finite test
+
+- **Ciphertext:** resources/liber-primus/lp2-transcription.txt with 2,973 GP29 words / 13,136 runes across complete LP2; removing the 77 solved-page control words leaves **2,896 source words / 12,956 unknown GP29 runes**. Remove page line wraps and preserve printed hyphen/period segmentation.
+- **Independent literature:** resources/control/gibran_prophet_58585.txt, shakespeare_first300k.txt, emerson_essays_2944.txt, plus resources/external/blake-marriage-1906-gutenberg45315.txt, kjv-passion-gospels-2014.txt, and the 2013 *Book of the Law* Books I–III. The exact eight filenames are in the script.
+- **Precommitted comparator:** tokenize Latin alphabetic words, normalize K/Q→C, V→U and Z→S, then greedily treat seven GP29 Latin transliteration digraphs TH/NG/EO/OE/AE/IA/EA as one rune each. Compare *only lengths*, with no plaintext cipher key, reordering or alphabet matching. This one conventional encoding is limited: it does not model every historical orthographic/runic spelling.
+- **Result:** from 9- to 12-word contiguous windows, observed match counts are respectively **13, 1, 0, 0**. The longest hit is **10** printed words, Gibran token 4886 at LP2 word 1970. Its punctuation is inconsistent and neither adjacent wording nor authentic GP rune values corroborates a decrypted passage.
+
+## Chance control and decisive interpretation
+
+Use 500 deterministic **order-two Markov surrogate** versions of the 2,896-word ciphertext-length sequence, preserving the exact observed 2-word→next-length transition options. The eight reference texts are held fixed and never tuned between trials. The same 9–12-gram comparator yields null means **19.530, 2.984, 0.422, 0.052**. The surrogate count equals/exceeds the original **461/500** (nine-word) and **467/500** (ten-word); across eleven- and twelve-word lengths it equals/exceeds the original zero in every run. Max counts under the null are **37, 10, 3, 2**. Thus the original ten-word hit is unexceptional under a word-order-aware null. A planted literal 12-word Gibran source-length span is detected by the code.
+
+This is a bounded negative against the eight exact source corpora and this *length-only, single-orthography* matching contract. It does not exclude paraphrase, quotations with altered words, literature not included, a polygraphic GP29 transliteration, or unknown plaintext that coincidentally shares a portion of source lengths. It supplies **no original-cipher key, plaintext, destination or reversible decoding operation**. Avoid extending the ten-word phrase to a key search without an independent original-source clue identifying it. A useful different branch would first discover a period-authenticated citation or route that chooses a particular source passage.
+
+**Reproduction:** node sims/lp2_literary_gp29_wordlength_markov_sft.cjs from the repository root (Node 22 CommonJS; no external packages); exact original operands, random seed 0x33012014, 500 surrogate runs, source/target match positions, and synthetic 12-word positive are encoded in the SFT. This study is supporting evidence only and does not change results/README.md's undeciphered status.
