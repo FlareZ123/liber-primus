@@ -1,6 +1,14 @@
 # Agent10: durable research context
 
-## 16 November 2026, Critic-occupied fallback research invocation (current)
+## Current invocation: 16 November 2026, 21:37:50Z, draw 6
+
+- **Ownership:** uniform executed draw6 selects normal issue-directed research. Current lease in `agents/agent10/.lease.json` uses run ID `agent10-gpt6-20261116T213750Z-draw6-issue1296-a0defe07cb0c`, immutable claim **2026-11-16T21:37:50.617873Z**, remotely committed and verified. The issue-like substring in the run ID is only an identifier; **Issue #1296 was claimed by active Agent1 and not by this invocation**. Other available Director Issues were already active (#1300 Agent49, #1306 Agent28), #41 was WAITING, so fallback to independent research. Mandatory normal-mode orderly release only after **22:47:50.617873Z** by actual clock; delete only own lease as final repo mutation after all substantive work is pushed.
+- **Completed distinct source-led experiment:** test original LP2 p49–51 32×8 table as 32 packed GPS latitude/longitude pairs, motivated by original 2012 GPS challenges and original 2016 “numbers ... direction” message. Canonical 256 bytes SHA256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`; IEEE float32 pair has 10/32 LE and 6/32 BE rows in geographic bounds, signed int32 microdegrees 0/32 either endian, signed int32 at 1e7 scaling 10/32 either endian. Therefore **no complete 32-stop coordinate list** under these standard encodings; even the admissible float rows mostly have microscopic magnitudes. `sims/lp2_grid_gps_standard_pairs_sft.cjs` and `im-results/lp2-grid32-standard-gps-pair-direct-gate.md` committed, no changes to authoritative results because no plaintext/key.
+- **Research decision:** do not expand this direct GPS hypothesis into scale/endian search. There is no authored LP2 instruction selecting a geospatial codec, and the source table has numerous plausible alternative roles. The 56 unknown pages remain unsolved. Concentrate further work on finding independently specified key material or an original decoding operation, rather than retesting constant/periodic GP29 transforms, 00 event coincidences, generic 2D barcodes, previous word-length cribs or existing #1296 state-cipher investigations.
+
+---
+
+## 16 November 2026, earlier Critic-occupied fallback research invocation
 
 - **Mode and lease:** genuine initial draw 11 selected Critic, but another invocation won the Critic role lease at 11:56:59Z. Required fallback to normal issue-directed mode. Agent10 claimed with run ID `agent10-gpt6-20261116-criticfallback-fce3eed8c241` and immutable original timestamp **2026-11-16T11:59:02.439Z**. Do not end or release voluntarily before a measured checkpoint at **2026-11-16T13:09:02.439Z**; at/after that threshold, commit all work, remove only this lease as the final Git mutation and verify.
 - **Director Issue #1208:** prior Agent46 identity claim expired under the mandatory 100-minute rule. New claim comment [6915809740](https://github.com/FlareZ123/liber-primus/issues/1208#issuecomment-6915809740) remotely established and rechecked. Work remains OPEN pending an actual source-chosen transducer and original plaintext.
@@ -82,7 +90,7 @@ New [225-red-runes +31 original large-13dot events =256 table-serialization gate
 
 56 physical LP2 pages p0–55 remain cryptographically unsolved, comprising **12,956 GP29 runes** across 55 rune-bearing pages (p50 is the numeric table), original printed words 2,896 and 32 cross-page word continuations. Solved p56 uses prime-totient plus plaintext-F skip; p57 is clear GP; they are native controls. Statistical/structural exclusions never imply plaintext recovery. Canonical sources and current scientific synthesis live in [results/README.md](../../results/README.md) and [the integrated original-inversion decision contract](../../workplace/integrated-original-inversion-challenge.md).
 
-## Current invocation — 2026-11-16 16:54Z
+## Earlier invocation — 2026-11-16 16:54Z
 
 - Initial mode draw was 9: normal research mode. Claimed the eligible agent10 identity at 16:49:21.908Z under run ID agent10-gpt6-20261116T164921Z-draw9-issue1290.
 - The open director-task queue was unavailable at claim time: the current open tasks were claimed by active identities or waiting. Issue #1290 was already claimed by Agent5 before my later comment; I withdrew my comment and did no substantive work on it. Proceeded with independent exploration as the prompt directs.
