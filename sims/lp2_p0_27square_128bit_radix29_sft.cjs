@@ -93,6 +93,19 @@ assert.equal(Math.min(...phaseCountsReverse),14);
 assert.ok(Math.min(...phaseCounts)>twoFlagLeadingDigit+1);
 assert.ok(Math.min(...phaseCountsTranspose)>twoFlagLeadingDigit+1);
 assert.ok(Math.min(...phaseCountsReverse)>twoFlagLeadingDigit+1);
+
+// Constructive boundary: at 131 bits the same original 27 rows CAN be
+// encoded by a single globally fixed rune permutation. This prevents
+// mistakenly generalizing the 130-bit impossibility to every block size.
+const originalLeaders = [...new Set(rowHeads)];
+const complement = Array.from({length:29},(_,i)=>i)
+  .filter(glyph=>!originalLeaders.includes(glyph));
+const assigned = [...originalLeaders,...complement];
+const secretDigitForGlyph = Array.from({length:29},(_,glyph)=>assigned.indexOf(glyph));
+assert.equal(new Set(secretDigitForGlyph).size,29);
+const mappedRows131 = sourceRows.map(row=>row.map(glyph=>secretDigitForGlyph[glyph]));
+assert.equal(mappedRows131.filter(row=>decode(row)<(1n<<131n)).length,27,
+  '131bit format remains unconstrained by 130bit theorem');
 assert.deepEqual(rowValid, [7,10,13,18,24]);
 assert.deepEqual(colValid, [7,13,17,22]);
 assert.deepEqual(revValid, [10,18]);
@@ -136,6 +149,7 @@ console.log(JSON.stringify({
   full_secret_alphabet_first_rune_types: {row: distinctCount(rowHeads), column: distinctCount(colHeads), reverse: distinctCount(reversedHeads)},
   maximum_permitted_first_rune_types: upperLeadingDigit+1,
   maximum_permitted_first_rune_types_if_128bits_plus_2_flags: twoFlagLeadingDigit+1,
+  single_global_alphabet_relabeling_131bit_constructive_positive: mappedRows131.every(row=>decode(row)<(1n<<131n)),
   minimal_first_rune_types_over_all_27_cyclic_phases: {row: Math.min(...phaseCounts), column: Math.min(...phaseCountsTranspose), reverse: Math.min(...phaseCountsReverse)},
   column_valid: colValid,
   reverse_valid: revValid,
