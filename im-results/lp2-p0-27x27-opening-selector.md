@@ -2,13 +2,15 @@
 
 **Status: provisional opening hypothesis. No authenticated LP2 plaintext.** The source-visible arithmetic, palindrome-like GP rune labels, and original period/grid/printed-line seams now give conditional ways to reconstruct the published three-rune key, first seven-rune address, and second central five-rune reading. These operation choices were identified retrospectively from the published 27×27 result; the simple endpoint carry is independently contradicted at block03. Four conditional blocks now have source-defined local arithmetic reconstructions, but all navigation rules remain retrospective and a frozen fifth-step extrapolation fails. The author-intended general decryption method remains unknown.
 
+**Original-image correction (16 November 2026):** Physical p0 is red runes 0–7, then the red 13-dot mark after rune 7 (offset 8), then black runes 8–12, then an ordinary black full stop. The older derivative annotation's 13-red-rune span and marker-at-13 position are wrong. The first 13 GP29 values are unchanged, but they form an opening phrase split across red8 and black5, not a continuous red heading. The first black rune after the marker is S at offset 8, not TH at offset 13. Treat any colour-based selector below under this correction; image-faithful code uses resources/liber-primus/lp2-p0-physical-ink-override.json.
+
 ## Original-source selector
 
 The original corpus records exactly **729 runes** on physical p0–p2, permitting a conditional 27×27 row-major layout. This is the **only perfect-square total among the 54 consecutive three-page windows** across all original unsolved LP2 pages p0–p55 (other page triples do not sum to any integer square). It is also the only consecutive triple sum that is an exact power of 3. These are source-derived finite observations, but their frequency conditional on considering this manuscript and three-page square windows does not establish puzzle-designer intent. The specific 27×27 row-major layout itself remains a hypothesis. [Original-source finite audit](../sims/lp2_27x27_opening_wordboundaries_sft.cjs).
 
 On p0:
 
-- The red heading has **13 runes**, in two words of **8 and 5**.
+- The opening phrase has **13 runes**, in two words of **8 and 5**; original ink shows red8, then the 13-dot marker, then black5.
 - The sum and difference of those word lengths give **8+5=13** and **8−5=3**. The first agrees with the red-heading length and following 13-dot mark; the second is a direct source-visible cue for a **three-rune node**.
 - The two words' GP-prime sums are **347** and **315**, totaling **662** with mean **331**.
 - Applying the p56/2013-motivated totient operation gives **φ(662)=330**, and **330 mod 29 = 11 = J**.
@@ -68,17 +70,17 @@ This exactly reproduces the previously published four blocks **ASIGOTHE / WEATHE
 
 ## Evidence classification and remaining uncertainty
 
-**Direct observations:** p0 red-span length 13; word lengths 8 and 5; the two red-word GP-prime sums 347 and 315; the first post-marker black line length 7; two marginal staves; and the original rune values at the cited positions.
+**Direct observations:** p0 opening-phrase length 13; red8/black5 word lengths; the red-word GP-prime sum 347 and black-word sum 315; the seven-rune post-period segment length; two marginal staves; and the original rune values at the cited positions.
 
 **Mathematical/computational consequences:** φ(662)=330; 330 mod29=11; φ(13)=12; the AE–J–EA node, AE–I–EA key, first-block output, transition signature, X–OE–X next node, X–X–I aligned key, and WEATHER output.
 
-**Hypotheses:** 27×27 row-major layout; use of the red heading as a coordinate/seed; horizontal three-rune key-node cipher; the 13-cell eastward displacement; the external update rules; and the external block02 path.
+**Hypotheses:** 27×27 row-major layout; use of the mixed-colour opening phrase as a coordinate/seed; horizontal three-rune key-node cipher; the 13-cell eastward displacement; the external update rules; and the external block02 path.
 
 The arithmetic center selector is not unique under a simple p0 cyclic-rotation null: **15 of 262** rotations produce the same φ(sum) mod29 center. The 27×27 external route also retains reused-cell plaintext conflicts and **52 admissible next words after block38**. The opening fit therefore does not authenticate the full 38-block route, resolve its continuation, or recover any of the other 55 unsolved pages.
 
 ## Further source-geometry and the first falsified carry rule (11 November 2026, Agent 40)
 
-Three original facts give the published block-02 placement an economical retrospective geometric description. The second red-heading word has **five** runes. The published second key source **X–OE–X** is centered at **(row 14, column 5)**, and its five-rune ciphertext reading begins at **(row 14, column 14)**, the exact central cell of the 27×27 square. The first-row boundary between 13 red runes and the first black glyph likewise lies at **column 14**; that glyph is **TH**. These are exact ciphertext/layout observations, requiring no English language fit. The grid orientation, using the second word length as a key coordinate, and choosing the geometric center as a ciphertext origin were each identified after the published WEATHER selection, so they are **candidate source selectors**, not independent authentication.
+Three original facts give the published block-02 placement an economical retrospective geometric description. The second red-heading word has **five** runes. The published second key source **X–OE–X** is centered at **(row 14, column 5)**, and its five-rune ciphertext reading begins at **(row 14, column 14)**, the exact central cell of the 27×27 square. The physical red/black boundary is after 8 runes, before the 13-dot mark; the first black glyph is **S** at opening position 8. The old 13-red/TH-at-13 boundary is a derivative-annotation artifact. These are exact ciphertext/layout observations, requiring no English language fit. The grid orientation, using the second word length as a key coordinate, and choosing the geometric center as a ciphertext origin were each identified after the published WEATHER selection, so they are **candidate source selectors**, not independent authentication.
 
 A tempting *deterministic* sequel to the first two source nodes is to source each next three-rune key starting **at the final ciphertext rune of the previous block**. This reproduces the original first-to-second transition: block 01 ends at zero-based cell 354, and the published block-02 key source starts at cell 354. Freeze the carry rule and predict block 03 without consulting its claimed English text. The published block 02 ends at zero-based cell **368**, so the carried source node must be original cells **368–370**, namely **E–A–G** (GP indices **[18,24,6]**). With the published optional center totient this becomes **E–H–G**; with no center transform it remains E–A–G. Both have the same ordered Möbius/totient signature **[+1,0,−1]** and phase 0.
 

@@ -12,7 +12,7 @@ const assert = require("node:assert/strict");
 
 const read = (p) => fs.readFileSync(p, "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
-const annotations = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
+const physicalOverride = JSON.parse(read("resources/liber-primus/lp2-p0-physical-ink-override.json"));
 
 function base29(digits) {
   return digits.reduce((n, d) => n * 29n + BigInt(d), 0n);
@@ -57,17 +57,18 @@ const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
 const translit = (indices) => indices.map((i) => corpus.translit[i]).join("-");
 
 assert.equal(corpus.pages.length, 58);
-const p0Red = annotations.pages.find((p) => p.page === 0).red_spans
-  .find((s) => s.start === 0 && s.length === 13);
-assert(p0Red, "expected 13-rune red p0 heading at offset 0");
+const physical = physicalOverride.physical_zero_based;
+assert.equal(physical.red_runes[0].length, 8);
+assert.equal(physical.large_punctuation[0].after_runes, 8);
+assert.equal(physical.black_following_runes[0].length, 5);
 
-const heading = corpus.pages[0].indices.slice(p0Red.start, p0Red.start + p0Red.length);
-const firstBlackLine = corpus.pages[0].indices.slice(13, 20);
-assert.equal(heading.length, 13);
-assert.equal(firstBlackLine.length, 7);
+const opening = corpus.pages[0].indices.slice(0, 13);
+const postPeriodSeven = corpus.pages[0].indices.slice(13, 20);
+assert.equal(opening.length, 13);
+assert.equal(postPeriodSeven.length, 7);
 
-const N = base29(heading);
-const M = base29(firstBlackLine);
+const N = base29(opening);
+const M = base29(postPeriodSeven);
 const p = 23n;
 const g = 5n;
 const exponent = Number(N % (p - 1n));
@@ -82,7 +83,7 @@ assert.equal(N.toString(), "5412445423142629857");
 assert.equal(M.toString(), "1420123033");
 assert.equal(N % 23n, 0n); // additional residue, not required by DH
 assert.equal(exponent, 7);
-assert.equal(heading.at(-1), 5); // matches the source DH base
+assert.equal(opening.at(-1), 5); // matches the source DH base
 assert.equal(clientPublic, 16n);
 assert.equal(serverPublic, 17n);
 assert.equal(shared, 18n);
@@ -104,19 +105,6 @@ for (const page of corpus.pages.filter((p) => p.page <= 55)) {
 }
 assert.deepEqual(selectorHits, [{ page: 0, start: 0 }]);
 
-const redSpanDivisibleBy23 = [];
-for (const page of annotations.pages) {
-  for (const span of page.red_spans || []) {
-    const digits = corpus.pages[page.page].indices.slice(span.start, span.start + span.length);
-    const value = base29(digits);
-    if (value % 23n === 0n) {
-      redSpanDivisibleBy23.push({
-        page: page.page, start: span.start, length: span.length,
-        mod22: Number(value % 22n), finalDigit: digits.at(-1)
-      });
-    }
-  }
-}
 
 // Use the same canonical printed-word parser as the provisional 2016 map.
 const printedSource = read("resources/lp2-transcription.txt").split("%");
@@ -155,42 +143,6 @@ for (let page = 0; page < wordsByPage.length; page++) {
 }
 assert.equal(sum343Words.length, 5);
 assert.deepEqual(sum343Words.filter((x) => x.length === 7).map((x) => [x.page, x.wordNumber]), [[18, 7]]);
-
-// The other red spans divisible by 23 are negative DH controls under the same reading.
-const p15Red = annotations.pages.find((p) => p.page === 15).red_spans
-  .find((s) => s.start === 0);
-const p15Digits = corpus.pages[15].indices.slice(p15Red.start, p15Red.start + p15Red.length);
-const p15Base = BigInt(p15Digits.at(-1)) % p;
-const p15Order = multiplicativeOrder(p15Base, p);
-
-const p33Red = annotations.pages.find((p) => p.page === 33).red_spans
-  .find((s) => s.start === 0);
-const p33Digits = corpus.pages[33].indices.slice(p33Red.start, p33Red.start + p33Red.length);
-const p33Value = base29(p33Digits);
-const p33Base = BigInt(p33Digits.at(-1)) % p;
-const p33Exponent = p33Value % 22n;
-const p33Raw = printedSource[33];
-const p33FirstBlackLineText = (p33Raw.split(".")[1] || "").split("/")[0] || "";
-const p33FirstBlackLine = [...(p33FirstBlackLineText.match(/[ᚠ-᛿]/gu) || [])]
-  .map((r) => runeIndex.get(r));
-assert.equal(p33FirstBlackLine.length, 8);
-const p33M = base29(p33FirstBlackLine);
-const p33ClientPublic = p33M % p;
-const p33Order = multiplicativeOrder(p33Base, p);
-const p33Subgroup = new Set();
-let subgroupValue = 1n;
-for (let k = 0; k < Number(p33Order); k++) {
-  p33Subgroup.add(subgroupValue.toString());
-  subgroupValue = subgroupValue * p33Base % p;
-}
-assert.equal(p15Base, 1n);
-assert.equal(p15Order, 1);
-assert.equal(p33Base, 6n);
-assert.equal(p33Exponent, 21n);
-assert.equal(p33M.toString(), "220096403606");
-assert.equal(p33ClientPublic, 10n);
-assert.equal(p33Order, 11);
-assert.equal(p33Subgroup.has("10"), false);
 
 // Conditional use of the provisional 2016 base-58 word-pointer rule.
 const p53w6 = wordInfo(343 % 58, Math.floor(343 / 58));
@@ -241,7 +193,7 @@ function indexOfCoincidence(indices) {
     (indices.length * (indices.length - 1));
 }
 const primeSequence = firstPrimes(400);
-const p0BodyStart = p0Red.start + p0Red.length + firstBlackLine.length;
+const p0BodyStart = opening.length + postPeriodSeven.length;
 const p0Body = corpus.pages[0].indices.slice(p0BodyStart);
 assert.equal(p0BodyStart, 20);
 assert.equal(p0Body.length, 242);
@@ -297,21 +249,14 @@ const p0TotientTransfer = {
 };
 
 console.log(JSON.stringify({
-  heading: { indices: heading, transliteration: translit(heading), base29: N.toString(),
-    mod23: Number(N % 23n), mod22: exponent, finalDigit: heading.at(-1) },
-  firstBlackLine: { indices: firstBlackLine, transliteration: translit(firstBlackLine),
-    base29: M.toString(), mod23: Number(clientPublic), length: firstBlackLine.length },
+  openingPhrase: { indices: opening, transliteration: translit(opening), base29: N.toString(),
+    mod23: Number(N % 23n), mod22: exponent, finalDigit: opening.at(-1) },
+  postPeriodSeven: { indices: postPeriodSeven, transliteration: translit(postPeriodSeven),
+    base29: M.toString(), mod23: Number(clientPublic), length: postPeriodSeven.length },
   dh23: { p: 23, base: 5, serverExponent: exponent, serverPublic: Number(serverPublic),
     clientPublic: Number(clientPublic), clientExponent, sharedSecret: Number(shared),
     groupOrder: p0GroupOrder },
-  selectorControl: { scannedWindows, hits: selectorHits, redSpanDivisibleBy23 },
-  alternateRedSpanControls: {
-    p15: { base: Number(p15Base), groupOrder: p15Order },
-    p33: { base: Number(p33Base), exponent: Number(p33Exponent),
-      firstBlackLine: translit(p33FirstBlackLine), firstBlackLineLength: p33FirstBlackLine.length,
-      publicShare: Number(p33ClientPublic), groupOrder: p33Order,
-      generatedSubgroup: [...p33Subgroup], shareInSubgroup: p33Subgroup.has(p33ClientPublic.toString()) }
-  },
+  selectorControl: { scannedWindows, hits: selectorHits, selectorWasPostselected: true },
   conditionalWordMap: { p18w7, sum343WordCount: sum343Words.length,
     onlySevenRuneSum343: sum343Words.filter((x) => x.length === 7).map((x) => [x.page, x.wordNumber]),
     p53w6, next: p18w5 },

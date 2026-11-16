@@ -10,8 +10,9 @@ const first = corpus.pages.find((p) => p.page === 0).indices;
 const p0 = ink.pages.find((p) => p.page === 0);
 const raw = first.slice(0, 13);
 assert.deepEqual(raw, [15, 8, 18, 3, 6, 19, 27, 0, 15, 26, 18, 21, 5]);
-assert(p0.red_spans.some((x) => x.start === 0 && x.length === 13));
-assert(p0.large_punctuation.some((x) => x[0] === 13 && x[1] === 13 && x[2] === 'red'));
+assert.equal(physical.red_runes[0].length,8);
+assert.equal(physical.large_punctuation[0].after_runes,8);
+assert.equal(physical.black_following_runes[0].length,5);
 const b29 = (digits) => digits.reduce((n, x) => n * 29n + BigInt(x), 0n);
 const powmod = (a, exponent, modulus) => {
   let result = 1n;
@@ -102,7 +103,7 @@ assert.equal(conditioned, 9969);
 assert.equal(tailMatch18, 435);
 
 console.log(JSON.stringify({
-  source:'Original LP2 p0 red13, 13-dot and first seven black runes',
+  source:'Original LP2 p0 13-rune opening phrase (red8/black5), marker at8, then seven post-period black runes',
   DH23:{N:fullNumber.toString(),exponent:Number(a),clientShare:Number(B),
     publicValue:Number(A),secret:Number(secret)},
   dotRoute:route.map((x)=>corpus.translit[x]).join(' '),

@@ -8,23 +8,25 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const load = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
 const corpus = load('resources/liber-primus/lp2-corpus.json');
-const ink = load('resources/liber-primus/lp2-ink-annotations.json');
+const physicalOverride = load('resources/liber-primus/lp2-p0-physical-ink-override.json');
 const transcription = fs.readFileSync(path.join(root, 'resources/liber-primus/lp2-transcription.txt'), 'utf8');
 const firstHeader = transcription.split(/\r?\n/u, 1)[0].split('.', 1)[0].split('-');
 assert.deepEqual(firstHeader.map((s) => Array.from(s).length), [8, 5]);
 
-const p0 = ink.pages.find((x) => x.page === 0);
-assert.deepEqual(p0.red_spans[0], {
-  start: 0, length: 13, runes: 'ᛋᚻᛖᚩᚷᛗᛡᚠᛋᚣᛖᛝᚳ'
-});
-assert(p0.large_punctuation.some((m) => m[0] === 13 && m[1] === 13 && m[2] === 'red'));
+const physical = physicalOverride.physical_zero_based;
+assert.equal(physical.red_runes[0].start, 0);
+assert.equal(physical.red_runes[0].length, 8);
+assert.equal(physical.large_punctuation[0].after_runes, 8);
+assert.equal(physical.large_punctuation[0].dots, 13);
+assert.equal(physical.black_following_runes[0].start, 8);
+assert.equal(physical.black_following_runes[0].length, 5);
 
 const source = corpus.pages.slice(0, 3).flatMap((p) => p.indices);
 assert.deepEqual(corpus.pages.slice(0, 3).map((p) => p.runic_count), [262, 266, 201]);
 assert.equal(source.length, 729);
-const header = source.slice(0, 13);
-const outside = header.slice(0, 8);
-const middle = header.slice(8, 13);
+const opening = source.slice(0, 13);
+const outside = opening.slice(0, 8);
+const middle = opening.slice(8, 13);
 // Mark occupancy is .#./#.#/.#./#.#/.#./#.#/.#./#.#/.#.
 // Place the first printed (8-rune) word in the eight outer slots,
 // the second (5-rune) word in the five central slots; read rows L->R.
@@ -98,7 +100,7 @@ assert(Math.abs(diagnostics[0].ioc - 0.034597804430206665) < 1e-12);
 assert.deepEqual(diagnostics.filter((d) => d.skipF).map((d) => d.ambiguity), [21, 22]);
 console.log(JSON.stringify({
   original: 'LP2 physical pp0-2; archive JPEGs 17-19',
-  heading: name(header),
+  opening: name(opening),
   dotOccupancy: ['.#.', '#.#', '.#.', '#.#', '.#.', '#.#', '.#.', '#.#', '.#.'],
   transposed: name(routed),
   bodyRunes: body.length,

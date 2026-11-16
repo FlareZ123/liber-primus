@@ -2,15 +2,17 @@
 
 **Decision, 15 November 2026:** No authenticated unknown LP2 plaintext or usable first-chapter key. The four complete original-input inverses below are ciphertext-like. Retire the direct and one-ciphertext-predecessor 13-digit streams; no wider key search follows from this coincidence.
 
+**Original-image correction (16 November 2026):** Physical p0 is red runes 0–7, then the red 13-dot mark after rune 7 (offset 8), then black runes 8–12, then an ordinary black full stop. The older derivative annotation's 13-red-rune span and marker-at-13 position are wrong. The first 13 GP29 values are unchanged, but they form an opening phrase split across red8 and black5, not a continuous red heading. The first black rune after the marker is S at offset 8, not TH at offset 13. Treat any colour-based selector below under this correction; image-faithful code uses resources/liber-primus/lp2-p0-physical-ink-override.json.
+
 ## Source-selected operand, proposed receiver, and rival
 
 The first-party 2013 CicadaOS `/usr/local/bin/message.txt` says `@1231507051321`, then `The key is all around you.` The preserved original is [`resources/historical/cicada2013-os-original-message.txt`](../resources/historical/cicada2013-os-original-message.txt). The handle contains exactly thirteen palindrome digits, `1,2,3,1,5,0,7,0,5,1,3,2,1`. This was **already a 2013 Twitter-address instruction**, so the handle's historical authenticity does not license reusing its decimal digits as a 2014 LP2 cipher key.
 
-Original LP2 p0 (17.jpg) begins with **13 red GP29 runes in two printed groups of 8+5**, immediately followed by the normal 13-dot punctuation mark. The full p0–2 source-visible chapter has **729** runes; dropping the original red13 leaves **716 black runes**. The repeated 13 lengths make a fixed 2013→2014 *candidate* worth one finite check. Equally plausible rival: an unrelated 2013 Twitter identifier and a recurring stock 2014 punctuation stencil. No Cicada instruction states that the numeric Twitter handle encrypts this LP2 chapter, nor chooses a sign or feedback.
+Original LP2 p0 (17.jpg) begins with a **13-rune opening phrase in two printed groups of 8+5**: the first eight are red, the red 13-dot mark follows at offset 8, and the final five are black. The full p0–2 source-visible chapter has **729** runes; taking the first 13 opening runes leaves **716 subsequent runes**. The repeated 13 lengths make a fixed 2013→2014 *candidate* worth one finite check. Equally plausible rival: an unrelated 2013 Twitter identifier and a recurring stock 2014 punctuation stencil. No Cicada instruction states that the numeric Twitter handle encrypts this LP2 chapter, nor chooses a sign or feedback.
 
 ## Locked original-cipher experiment
 
-Fix the exact source digits as a 13-period GP29 key `K_i`. Preserve all 716 black source rune values from original pp0–2 (p0 offset13 onward, continuous page-spanning clock). Use the last red rune, source GP index5, solely as the natural preceding-ciphertext IV when feedback is enabled. Test the two historically simple directions with no fitted offset:
+Fix the exact source digits as a 13-period GP29 key `K_i`. Preserve all 716 source rune values after the opening phrase from original pp0–2 (p0 offset13 onward, continuous page-spanning clock). Use the last rune of the opening phrase, source GP index5, solely as the natural preceding-ciphertext IV when feedback is enabled. Test the two historically simple directions with no fitted offset:
 
 1. **Direct**: `P_i=(C_i ± K_i) mod29` (the straightforward historical GP additive alphabet).
 2. **Ciphertext chain**: `P_i=(C_i − C_{i−1} ± K_i) mod29`, where `C_{−1}=5`. This extra candidate is motivated only by the observed original anti-doublet step signature; there is **no first-party command selecting it**.

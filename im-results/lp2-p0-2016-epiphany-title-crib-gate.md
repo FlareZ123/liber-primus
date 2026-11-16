@@ -2,11 +2,13 @@
 
 **Status, Agent37 12 November, Agent29 14 November 2026:** all four signed-2016 matching red-title locations fail the historically authentic plaintext-F bypass family at a frozen original source position, including EPIPHANY SEEKS on p0 by rune57; no verified title or plaintext is recovered. Three independently supplied **2016 signed phrases** match three distinct original red-heading word-length patterns, one appearing at two original locations. A conditional p0 Vigenère key whose prime-sum matches the length of p0–2 emerges only if one matched phrase is assumed to be plaintext. The implied key has zero legal historical F-transparent inverse paths after p0 rune57, strengthening earlier low-language-scoring tests. No actual title, unknown plaintext, source-selected key, or decryption is established. The observation is retained as a bounded source-specific possibility, not promoted to \`results/\`.
 
+**Original-image correction (16 November 2026):** Physical p0 is red runes 0–7, then the red 13-dot mark after rune 7 (offset 8), then black runes 8–12, then an ordinary black full stop. The older derivative annotation's 13-red-rune span and marker-at-13 position are wrong. The first 13 GP29 values are unchanged, but they form an opening phrase split across red8 and black5, not a continuous red heading. The first black rune after the marker is S at offset 8, not TH at offset 13. Treat any colour-based selector below under this correction; image-faithful code uses resources/liber-primus/lp2-p0-physical-ink-override.json.
+
 ## Human-visible source premise
 
 The *authenticated 2016* OutGuess signed message contains the clause “The path lies empty; **epiphany seeks** the devoted.” The original *2014* physical p0 red heading is two GP rune words of lengths **8 and 5**, exactly the source-normalized GP counts for **EPIPHANY SEEKS**. A human facing the 2016 message could propose these two words as an opening title crib. The author has **not** signed a statement identifying the heading, and the matching lengths do not prove that the text is right.
 
-The canonical original p0 heading is \`SHEOGMIAFSYENGC\` (13 GP29 symbols), with the 2016-inspired proposed plaintext \`EPIPHANYSEECS\` (K rendered as C under the standard GP alphabet). Direct modular subtraction under a fresh one-time hypothesis gives the 13-symbol implied key
+The canonical original p0 opening phrase is \`SHEOGMIAFSYENGC\` (13 GP29 symbols), with the 2016-inspired proposed plaintext \`EPIPHANYSEECS\` (K rendered as C under the standard GP alphabet). Direct modular subtraction under a fresh one-time hypothesis gives the 13-symbol implied key
 
 \`\`\`text
 GP indices: 26 24 08 19 27 24 18 03 00 08 00 16 19
@@ -14,7 +16,7 @@ GP translit: YAHMIAAEOFHFTM
 GP prime-weight sum: 729
 \`\`\`
 
-The *entire original p0–2 ciphertext* also has **262+266+201 = 729 = 27²** runes. This is a numerical cross-match and the 27×27 proposal is older work, independently documented in [the p0 27×27 opening investigation](lp2-p0-27x27-opening-selector.md). The value was observed retrospectively after choosing this crib. To measure specificity rather than treating it as an instruction, the fixed phrase was aligned against **all 12,944** original 13-rune windows in pp0–55: **51** windows yield a derived key with GP prime sum729, including p0's red heading (offset0) and another p0 position178. This weakens interpreting 729 as a unique cryptographic checksum. No original rubric says to sum the inferred keystream's prime weights.
+The *entire original p0–2 ciphertext* also has **262+266+201 = 729 = 27²** runes. This is a numerical cross-match and the 27×27 proposal is older work, independently documented in [the p0 27×27 opening investigation](lp2-p0-27x27-opening-selector.md). The value was observed retrospectively after choosing this crib. To measure specificity rather than treating it as an instruction, the fixed phrase was aligned against **all 12,944** original 13-rune windows in pp0–55: **51** windows yield a derived key with GP prime sum729, including p0's opening phrase (offset0) and another p0 position178. This weakens interpreting 729 as a unique cryptographic checksum. No original rubric says to sum the inferred keystream's prime weights.
 
 ## Multiple signed-2016 word-shape matches to original red headings
 
@@ -35,7 +37,7 @@ Both the signed phrase scan and the controlled cross-heading key test execute in
 
 ## Exact all-clock inverse for the historically authentic F-transparent cipher
 
-The original red title really has the **8–5 word shape** of signed-message EPIPHANY SEEKS (GP29 normalized spelling EPIPHANY SEECS). Assuming those thirteen plaintext symbols recovers the unique period-13 additive key `[26,24,8,19,27,24,18,3,0,8,0,16,19]`. The earlier fixed-phase period13 and autokey experiments were linguistic tests, while the historical Cicada plaintext-F exception requires a branching key clock that cannot be replaced by skipping every ciphertext F.
+The original opening phrase really has the **8–5 word shape** of signed-message EPIPHANY SEEKS (GP29 normalized spelling EPIPHANY SEECS). Assuming those thirteen plaintext symbols recovers the unique period-13 additive key `[26,24,8,19,27,24,18,3,0,8,0,16,19]`. The earlier fixed-phase period13 and autokey experiments were linguistic tests, while the historical Cicada plaintext-F exception requires a branching key clock that cannot be replaced by skipping every ciphertext F.
 
 The new exact [original-input CJS certificate](../sims/lp2_p0_enlightenment_ftransparent_exact_certificate_sft.cjs) permits **every** valid skip assignment: a ciphertext F may bypass as plaintext F or consume a key symbol if its resulting plaintext is non-F. A nonzero ciphertext must consume the key and produce nonzero plaintext. Beginning after the derived thirteen title symbols, the complete set of possible consumed-key states becomes empty **at original p0 zero-based rune57**. Immediately before failure, the sole surviving clock is **56**, the original rune is **IA** (index27), and the scheduled key `K[56 mod13]` equals **27**. That forces forbidden plaintext F from non-F ciphertext; no literal bypass is possible. The stronger all-clock exclusion therefore holds without an English scorer, a guessed F mask, or tunable phase.
 

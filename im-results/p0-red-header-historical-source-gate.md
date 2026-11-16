@@ -1,14 +1,16 @@
 # p0 red preamble: bounded historical source gate
 
-**Result:** no source attribution survives the finite, independently selected panel. This is a bounded negative, not a claim that the red span is plaintext or that every possible historical source has been excluded.
+**Result:** the finite test finds no attribution for the historical derivative 13-symbol panel. The original-image correction shows p0 has no 13-rune red span, so this is not a source-faithful red-header test and its negative cannot be generalized to the physical red8/black5 opening.
+
+**Original-image correction (16 November 2026):** Physical p0 is red runes 0–7, then the red 13-dot mark after rune 7 (offset 8), then black runes 8–12, then an ordinary black full stop. The older derivative annotation's 13-red-rune span and marker-at-13 position are wrong. The first 13 GP29 values are unchanged, but they form an opening phrase split across red8 and black5, not a continuous red heading. The first black rune after the marker is S at offset 8, not TH at offset 13. Treat any colour-based selector below under this correction; image-faithful code uses resources/liber-primus/lp2-p0-physical-ink-override.json.
 
 ## Frozen original input
 
-- LP2 p0 is the original scan `resources/liber-primus/17.jpg`; the source-adjudicated red span in `resources/liber-primus/lp2-ink-annotations.json` begins at rune offset 0 and contains 13 runes.
+- LP2 p0 is the original scan `resources/liber-primus/17.jpg`; the historical derivative annotation records 13 red runes at offset 0, but the original-image override establishes only 8 red runes, a marker at offset 8, then 5 black runes.
 - Exact glyphs: `ᛋᚻᛖᚩᚷᛗᛡᚠ ᛋᚣᛖᛝᚳ`.
 - Canonical GP transliteration: `S H E O G M IA F  S Y E NG C` (`SHEOGMIAF SYENGC` when expanded). The printed word lengths are 8 and 5 runes.
-- The first black rune after the red span is `ᚦ` = `TH`. The first p0 transcription line has rune-word lengths `8, 5, 4, 3`; the first black word begins with `TH`.
-- The red header's 14-token test string is the 13 red GP tokens followed by the held-out first black token `TH`.
+- The first black rune after the physical red span and 13-dot marker is `ᛋ` = `S` at offset 8; `ᚦ` = `TH` occurs later at offset 13. The first p0 transcription line has rune-word lengths `8, 5, 4, 3`; the first black word begins with `TH`.
+- The historical test's 14-token string is derivative-annotation-based: its first 13 values cross the actual red/black boundary, and its held-out TH is not the first black rune.
 
 ## Finite source panel
 
@@ -37,11 +39,11 @@ The Book of the Law and Blake texts are included as source-relevant literary ref
 
 ## The tempting partial overlap is not a source match
 
-Book of the Law II.3 contains the wording `as she, the circumference, is nowhere found`. The p0 red transliteration begins with `SHE`, and the first black rune is `TH`, so the short `SHE` / `THE` echo is noticeable. It accounts for only three red tokens plus one held-out token; it does not explain the remaining ten red runes, preserve the printed 8:5 grouping, or satisfy the full equality-pattern test. Treat it as thematic overlap, not attribution. Likewise, the 13-rune length matching the 13 letters of `CIRCUMFERENCE` is only a length coincidence without a source-selected reversible operation.
+Book of the Law II.3 contains the wording `as she, the circumference, is nowhere found`. The p0 red8 transliteration begins with `SHE`, and the first black rune after the marker is `S`, so the short `SHE` / `THE` echo is noticeable. It accounts for only three red tokens plus one held-out token; it does not explain the remaining ten red runes, preserve the printed 8:5 grouping, or satisfy the full equality-pattern test. Treat it as thematic overlap, not attribution. Likewise, the 13-rune length matching the 13 letters of `CIRCUMFERENCE` is only a length coincidence without a source-selected reversible operation.
 
 ## Conclusion
 
-Close #446 as a bounded no-source result. The finite panel supplies no exact source phrase and no monoalphabetic source candidate that predicts the held-out first black `TH`. Reopen only if a newly authenticated original-era source or a documented alternate alphabet independently selects a complete operation and predicts the full red span plus a held-out symbol. Do not continue the 662/331 arithmetic branch or expand into arbitrary GP29 key sweeps.
+Retain #446 only as a bounded negative on the historical derivative panel; it is not a source-faithful physical red-header result. The finite panel supplies no exact source phrase and no monoalphabetic source candidate that predicts the held-out first black `TH`. Reopen only if a newly authenticated original-era source or a documented alternate alphabet independently selects a complete operation and predicts the full red span plus a held-out symbol. Do not continue the 662/331 arithmetic branch or expand into arbitrary GP29 key sweeps.
 
 ## Reproduction
 
