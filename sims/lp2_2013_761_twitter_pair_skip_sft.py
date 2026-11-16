@@ -147,6 +147,14 @@ def verify_reencipher_dynamic(cipher, plain, key, offset, sign, atbash, max_skip
                 if next_ptr not in next_states:
                     next_states[next_ptr] = prior_skips + [d]
         if not next_states:
+            print("ORIGINAL_SKIP_VERIFY_REJECT " + json.dumps({
+                "at_rune": i, "offset": offset, "sign": sign,
+                "atbash": atbash, "max_skip": max_skip,
+                "cipher_prefix": [int(v) for v in target[:i + 1]],
+                "plain_prefix": [int(v) for v in plain[:i + 1]],
+                "key_prefix": [int(v) for v in key[offset:offset + (i + 1) * (max_skip + 1)]],
+                "reachable_previous_key_cursors": sorted(int(v) for v in states),
+            }))
             return None
         states = next_states
     end_ptr = min(states, key=lambda ptr: (sum(states[ptr]), ptr))
