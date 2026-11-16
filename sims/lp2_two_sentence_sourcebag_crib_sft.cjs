@@ -159,6 +159,7 @@ const sources = [
   ['Gibran Prophet', 'resources/control/gibran_prophet_58585.txt'],
   ['Emerson Essays', 'resources/control/emerson_essays_2944.txt'],
   ['Shakespeare excerpt', 'resources/control/shakespeare_first300k.txt'],
+  ['2014 LP1 editor-normalized solved plaintext', 'resources/liber-primus/lp1-plaintext-reference.txt'],
   ['Crowley Book of the Law', null]
 ].map(([name, file]) => {
   const content = file ? read(file) : [
