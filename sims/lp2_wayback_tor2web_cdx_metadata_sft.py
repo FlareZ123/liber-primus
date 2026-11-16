@@ -31,12 +31,12 @@ CDX_ENDPOINTS = (
     "http://web.archive.org/search/cdx",
 )
 QUERIES = (
-    ("tor2web.onionsearchengine.com/*", "prefix"),
-    ("*.onion.ly/", "domain"),
+    "tor2web.onionsearchengine.com/*",
+    "*.onion.ly/",
 )
 
 
-def fetch_cdx(pattern: str, match_type: str) -> list[dict[str, str]]:
+def fetch_cdx(pattern: str) -> list[dict[str, str]]:
     params = [
         ("url", pattern),
         ("output", "json"),
@@ -46,7 +46,6 @@ def fetch_cdx(pattern: str, match_type: str) -> list[dict[str, str]]:
         ("fl", "timestamp,original,mimetype,statuscode,digest,length"),
         ("collapse", "urlkey"),
         ("limit", "10000"),
-        ("matchType", match_type),
     ]
     query = urllib.parse.urlencode(params)
     last_error: Exception | None = None
@@ -68,7 +67,6 @@ def fetch_cdx(pattern: str, match_type: str) -> list[dict[str, str]]:
             except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, OSError) as exc:
                 last_error = exc
                 time.sleep((1, 3, 6)[attempt])
-        # Try the legacy endpoint only if the modern endpoint failed.
     raise RuntimeError(f"CDX query failed for {pattern}: {last_error}")
 
 
@@ -79,10 +77,10 @@ def main() -> None:
         "known_cicada_2014_hosts": sorted(CICADA_HOSTS),
         "queries": [],
     }
-    for pattern, match_type in QUERIES:
+    for pattern in QUERIES:
         started = time.time()
         try:
-            rows = fetch_cdx(pattern, match_type)
+            rows = fetch_cdx(pattern)
             matches = []
             onion_hosts_seen: set[str] = set()
             for row in rows:
@@ -102,7 +100,6 @@ def main() -> None:
                     })
             report["queries"].append({
                 "pattern": pattern,
-                "match_type": match_type,
                 "rows": len(rows),
                 "distinct_onion_hosts": len(onion_hosts_seen),
                 "known_cicada_host_matches": matches,
@@ -112,7 +109,6 @@ def main() -> None:
         except Exception as exc:  # preserve the failure as a reproducible result
             report["queries"].append({
                 "pattern": pattern,
-                "match_type": match_type,
                 "error": f"{type(exc).__name__}: {exc}",
             })
 
