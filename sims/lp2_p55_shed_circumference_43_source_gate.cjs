@@ -4,7 +4,9 @@
  * Original-source "shed our own circumferences" finite inverse gate.
  *
  * The solved PARABLE instruction suggests deleting the first and last
- * GP rune from every canonical printed word, preserving linewraps.
+ * GP rune from every complete printed word, preserving linewraps and carries.
+ * On p55, the first page-local rune is the final boundary of a word begun
+ * on p54; it is not a standalone one-rune word.
  * This operation gives 43 p55 interior runes, matching the authenticated
  * 2016 clear-signed message's 43 natural-language words and a distinct
  * 43-byte bracketed numerical-table interval. Check the already published
@@ -24,6 +26,25 @@ const corpus = JSON.parse(load("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(load("resources/liber-primus/lp2-grid-256.json"));
 const text = load("resources/lp2-transcription.txt");
 const asc = load("resources/historical/cicada2016-4gq25-outguess.asc");
+const BASE29_DIGITS = "0123456789ABCDEFGHIJKLMNOPQRS";
+function base29Encode(value) {
+  assert(Number.isSafeInteger(value) && value >= 0);
+  let out = "";
+  do {
+    out = BASE29_DIGITS[value % 29] + out;
+    value = Math.floor(value / 29);
+  } while (value);
+  return out;
+}
+function base29Decode(text) {
+  return [...text].reduce((value, digit) => {
+    const n = BASE29_DIGITS.indexOf(digit);
+    assert(n >= 0);
+    return value * 29 + n;
+  }, 0);
+}
+assert.equal(base29Encode(3301), "3QO");
+assert.equal(base29Decode("3QO"), 3301);
 
 const runePages = text.split("%");
 assert.equal(runePages.length,57);
@@ -37,12 +58,20 @@ function insides(list) {
   return list.flatMap(w=>[...w].slice(1,-1))
     .map(r=>corpus.runes.indexOf(r));
 }
-const p55Words = words(54); // rune page54 = physical p55
+const p54Words = words(53); // physical p54
+const p55Segments = words(54); // physical p55, including its incoming carry
+const p55Carry = p55Segments[0]; // final rune of p54's last word
+const p55Words = p55Segments.slice(1); // 16 complete words wholly on p55
 const p55 = corpus.pages.find(p=>p.page===55).indices;
-assert.equal(p55Words.length,17);
+assert.equal(p55Segments.length,17);
+assert.equal(p54Words.at(-1), "ᚷᚩᛏᚦᛉᛖᛠᚱᚷᚣ");
+assert.equal(p55Carry, "ᛝ");
+assert.equal(p54Words.at(-1) + p55Carry, "ᚷᚩᛏᚦᛉᛖᛠᚱᚷᚣᛝ");
+assert.equal(p55Words.length,16);
 assert.deepEqual(p55Words.map(w=>[...w].length),
-  [1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]);
-assert.equal(p55Words.reduce((n,w)=>n+[...w].length,0),76);
+  [4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]);
+assert.equal(p55Words.reduce((n,w)=>n+[...w].length,0),75);
+assert.equal([...p55Carry].length + p55Words.reduce((n,w)=>n+[...w].length,0),76);
 const inner55 = insides(p55Words);
 assert.equal(inner55.length,43);
 assert.equal(inner55.reduce((s,i)=>s+corpus.prime[i],0),2060);
@@ -60,19 +89,24 @@ assert.equal(corpus.pages.find(p=>p.page===50).indices.length,0);
 
 // Independent image-selected 2016 tree page p32 has 7/15 printed words
 // and precisely 33/88 ciphertext runes in its two original sentences.
-// The same original tree's sharp counterpart appears on p55. Deleting
-// the outside of each p55 word leaves an OUTSIDE sequence of 33 runes,
-// while the solved p57 PARABLE body independently has 88 runes.
+// The p55 interval begins with one incoming carry-final rune from p54,
+// followed by 16 complete words. Its 33 boundaries are that carry rune
+// plus both endpoints of each complete word; its 43 interiors are unchanged.
 // The 33+88=121 and 33+43=76 correspondences do not yet specify a cipher.
 const p32Words=words(32);
 assert.equal(p32Words.length,22);
 const first32=p32Words.slice(0,7).reduce((n,w)=>n+[...w].length,0);
 const second32=p32Words.slice(7).reduce((n,w)=>n+[...w].length,0);
 assert.deepEqual([first32,second32],[33,88]);
-const outside55=p55Words.flatMap(w=>{
-  const a=[...w];
-  return a.length===1?a:[a[0],a[a.length-1]];
-}).map(r=>corpus.runes.indexOf(r));
+// One incoming carry-final rune plus both endpoints of each of 16
+// complete p55 words: 1 + 2*16 = 33 boundary runes.
+const outside55=[
+  ...[...p55Carry],
+  ...p55Words.flatMap(w=>{
+    const a=[...w];
+    return [a[0],a[a.length-1]];
+  })
+].map(r=>corpus.runes.indexOf(r));
 assert.equal(outside55.length,33);
 const all32=corpus.pages.find(p=>p.page===32).indices;
 const p32First=all32.slice(0,33);
@@ -264,7 +298,8 @@ assert.equal(atLeastAsGood,866);
 
 console.log(JSON.stringify({
   source:"p57 PARABLE circumference instruction, printed p55, signed-2016 words, source 43-byte table bracket",
-  p55:{words:p55Words.length,runes:p55.length,singletons:1,interior:inner55.length,interiorGpPrimeSum:2060},
+  p55:{pageLocalSegments:p55Segments.length,completeWords:p55Words.length,incomingCarryRunes:[...p55Carry].length,runes:p55.length,boundary:outside55.length,interior:inner55.length,interiorGpPrimeSum:2060},
+  base29ProtocolPositiveControl:{decimal:3301,encoded:base29Encode(3301),roundTrip:base29Decode("3QO")},
   p57:{bodyWords:19,bodyInteriorRunes:50,runelessPage:50},
   treeBridge:{p32Clauses:[33,88],p55Outside:33,p57Body:88,firstClauseLiteralMatches:1,firstClauseMinimumIdentityChanges,bodyLiteralMatches:2,allSecretMonoalphabeticChanges:known88Changes,shuffleAsGoodOrBetter:null88AsGood,shuffleDraws:2000,hill8Ranks:[hillPlainRank,hillCombinedRank],affineHill8Ranks:[affinePlainRank,affineCombinedRank]},
   signed2016Words:signedWords.length,
