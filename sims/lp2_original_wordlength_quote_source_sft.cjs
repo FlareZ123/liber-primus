@@ -107,6 +107,13 @@ const results = sources.map((source, n) => {
     assert.equal(boundary, '.\n'); // 'none.' then 'Thus'
     assert.ok(transcript.includes(
       parsed.words[1570].runes + '-' + parsed.words[1571].runes));
+    // A separate source-image census finds no raised apostrophe on either
+    // physical p28 or p29, while Shakespeare's fourth word is "obey'd".
+    assert.equal(sourceWords[50256], "obey'd");
+    const punctuation = JSON.parse(read(
+      'resources/liber-primus/lp2-quote-punctuation-spans.json'));
+    assert.ok(punctuation.source_visible_apostrophes.every(x =>
+      x.page !== 28 && x.page !== 29));
     // The manuscript has no full stop at the sole 10-word source match.
   }
   return {
