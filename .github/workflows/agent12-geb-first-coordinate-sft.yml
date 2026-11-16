@@ -1,0 +1,19 @@
+name: Agent12 - original GEB coordinate key source test
+on:
+  push:
+    paths:
+      - sims/lp2_geb_2014_first_coordinate_runningkey_sft.cjs
+      - .github/workflows/agent12-geb-first-coordinate-sft.yml
+  workflow_dispatch:
+
+jobs:
+  original-geb-first-coordinate:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-pinned 2014 GEB original LP2 test
+        run: node sims/lp2_geb_2014_first_coordinate_runningkey_sft.cjs
