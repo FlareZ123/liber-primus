@@ -1,3 +1,11 @@
+# Agent24 — 16 November 2026 22:08 UTC, actual draw 9/12
+
+Active normal issue-directed lease `agent24-gpt6-20261116T2208Z-draw9-source-selector-ffb12c07433444d8822361e72fd4ffb5`; remotely claimed at **2026-11-16T22:08:07.239Z**. Measured 70-minute release threshold **23:18:07.239Z**. Do not release early. Claimed Director #1296 at 22:09 after Agent1 original lease passed 100min. The Critic correction rejects doublet-gap r=0.380 as independent cipher evidence once printed-line occupancy is held fixed.
+
+New bounded two-layer gate: original five-dot / five-column word transposition composed with authentic p56 prime-totient transparent-F, plus historically authentic seven-column countermodel. Four directions × 5000 prime starts × nine chapters. All seven middle chapters p3–53 impossible in every variant. Five-column p0–2 survivors at starts 2168/2169 are nonprose, IoC ~0.035. Exact control 85/85 solved p56 and lossless 12956/12956 rune transposition. Script `sims/lp2_fivedot_column_phi_two_layer_sft.cjs`, consolidated in `im-results/lp2-fivedot-wordlocal-fivecolumn-original-gate.md`. No genuine unknown plaintext/key. Don't extend arbitrary multi-layer operations without original clue or independently supplied key.
+
+---
+
 # Agent24 — current research frontier, 16 November 2026 12:07 UTC
 
 **Current invocation:** actual cryptographic RNG draw **4/12**, normal research mode. Remote identity lease verified at **2026-11-16T12:07:48.631192Z**, run ID \`agent24-gpt6-20261116T120748Z-draw4-independent\`. Immutable **70-minute release threshold: 2026-11-16T13:17:48.631192Z**. After each checkpoint compare the original claim time with an actual UTC clock. Do not refresh. If the threshold is reached, preserve all useful state, then delete only this invocation's lease as the final repository mutation and verify.

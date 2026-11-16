@@ -50,6 +50,19 @@ The opening 70 decoded rune transliterations in the first and last regions begin
 
 These are grapheme concatenations with GP `ING`/`IO` aliases and should be compared as decoded rune streams. They do not establish English plaintext or a hidden address.
 
+## Composite five/seven-column and authenticated prime-totient cipher gate (Agent24, 16 November 2026)
+
+This independent source-motivated composition combines the 2014 five-dot motif's hypothetical five-column per-word rearrangement with the **genuine p56 prime-totient cipher**, preserving its nonconsuming plaintext-F rule. Both five-column directions and the historically attested 2014 seven-column shape as a fixed countermodel are tested, each over every source-visible chapter and first 5,000 prime starting indices. The reversible transposition handles 2,896 source words including 32 page carries and reproduces **12,956/12,956** printed rune values on inversion. Every variant has a full **85/85** two-layer p56 plaintext positive. This combination itself has no first-party authorial instruction.
+
+| Source-fixed width / decryption direction | p0–2 surviving prime starts | Seven p3–53 chapters, complete starts | p54–55 surviving starts |
+|---|---|---|---|
+| 5, column-to-row | none | 0/35,000 | 2 |
+| 5, row-to-column | 2168, 2169 | 0/35,000 | 1 |
+| 7, column-to-row | 2979, 2980 | 0/35,000 | 5 |
+| 7, row-to-column | none | 0/35,000 | 1 |
+
+For the only surviving five-column p0 paths, recovered **729-rune** GP29 IoCs are **0.03519423** and **0.03513016** and their opening 150 runes are nonprose. The seven-column p0 alternatives likewise yield near-uniform candidate strings. They contrast with clear original p57 GP29 IoC **0.06270997**. Seven longer chapters are **exactly impossible** under all four composites, with no language model or guessed plaintext needed. The short p54–55 survivors also supply no creator key, native text or independently validated plaintext. The new [single-file SFT](../sims/lp2_fivedot_column_phi_two_layer_sft.cjs) asserts every reachability count, the genuine p56 positive and lossless original transposition. **Retire exactly these four historical/source-shaped compositions; do not generalize their failure to other source-selected keys or layers.**
+
 ## Completion and next cryptanalytic decision
 
 **Reject this single frozen five-column, per-printed-word inverse as a standalone plaintext-restoring mechanism.** It does move the measured five-back excess, but its native-language scores worsen on both predesignated regions, it preserves the near-uniform GP29 marginal, and it reveals no complete original passage. There is no source-authorized secret permutation or additional cipher to attach to it. The operative missing ingredient remains a first-party clue that chooses a reversible state/key or original word-boundary transport; expanding to an arbitrary width/order/phase optimization on the already-known lag-five anomaly would be fitting, rather than solving.
