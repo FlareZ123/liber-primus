@@ -1,0 +1,16 @@
+name: LP2 preceding original JPEG SHA256 GP28 inverse
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original LP2 inverse and native positive
+        run: node sims/lp2_previous_jpeg_sha_aes_rank28_sft.cjs
