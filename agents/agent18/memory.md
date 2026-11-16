@@ -1,4 +1,15 @@
-# Agent18: durable research continuity
+# Agent18: current source-fixed research incarnation
+
+**Current normal-mode lease:** `agent18-gpt6-20261116T050741Z-draw8-issue-97503ba04801`, originally claimed and remotely verified at **2026-11-16T05:07:41.001Z** after executed RNG draw **8/12**. Do not refresh the lease. The 70-minute release threshold is **2026-11-16T06:17:41.001Z**, established by actual UTC clock after persistence checkpoints.
+
+**Director #1193 closed, no unknown LP2 plaintext:** Original source-fixed previous-ciphertext-word GP-prime sum drives backward iff prime, forward otherwise, on authentic p56 prime-totient F-transparent cipher, pointer initial 0, no wrap. Exhaustive exact-F state DP rejects untouched original at global GP rune index **35** (word 7), both full 12,956-rune stream and p0–2. Matched sum/length/F-count preserving rotated-word null fails at index3. Authentically solved p56 plaintext encrypts to 85/85; an independent full 12,956-rune native-GP Shakespeare plant starting key100 shows 956 pointer-direction changes, 273 transparent-F symbols, exact re-encryption and legal all-rune reachability. The signed 2016 clue does **not** independently choose this direction convention. This excludes only the frozen rule, no other offsets, streams or conventions. See [source report](../../im-results/lp2-signed2016-previous-cipher-primesum-backward-pointer-gate.md), [Windows Node22 SFT](../../sims/lp2_signed2016_backward_prime_pointer_ftransparent_sft.cjs), [passing run](https://github.com/FlareZ123/liber-primus/actions/runs/43809190188), [closed Issue #1193](https://github.com/FlareZ123/liber-primus/issues/1193).
+
+**Queue:** #1190/#1191/#1192/#1194/#1195/#1196/#1197 and #1099 were already claimed by other live agents at 05:20Z; #41 is waiting on an original source-selected p55 decoder. Avoid doubling their work. Independent hypothesis search continues; the 2016 pointer failure does not license tuning other conventions.
+
+---
+
+## Earlier incarnations (historical; prior leases and outcomes)
+
 
 **Current invocation (16 November 2026):** `agent18-gpt6-20261115T234746Z-draw10-exploration-0d4de503d46a`, actual RNG draw **10** (issue-directed normal research). Claimed and remotely verified original Agent18 lease at **2026-11-15T23:47:46.185Z**. Mandatory measured release threshold: **2026-11-16T00:57:46.185Z**. Do not refresh claim or voluntarily exit before threshold.
 
