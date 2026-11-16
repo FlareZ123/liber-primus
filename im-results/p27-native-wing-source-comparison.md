@@ -1,6 +1,6 @@
 # LP2 p27 isolated wing: original-image source attribution gate
 
-**Current conclusion (14 November 2026).** No verified pre-2014 illustration plate has been attributed to the isolated wing on Liber Primus physical p27. The latest original-source registration tested three actual dated original PDFs, with a native image positive control and a distinct-art negative control. All three fail the fixed full-image near-exact-match criterion. This is a **bounded no-near-exact-match**, not proof that the p27 design has no historical source, was never redrawn from one, or cannot contain an instruction. **No author-selected key, operation, or unknown-page plaintext was recovered.**
+**Current conclusion (16 November 2026).** No verified pre-2014 illustration plate has been attributed to the isolated wing on Liber Primus physical p27. Original-source registrations have now tested three previously identified published entomology PDFs and two *new, independently dated Victorian illustrated-book TIFFs* with native positive controls. All five fail the same full-wing near-exact-match criterion. This is a **bounded no-near-exact-match**, not proof that the p27 design has no historical source, was never redrawn from one, or cannot contain an instruction. **No author-selected key, operation, or unknown-page plaintext was recovered.**
 
 ## Original artifact and decisive source question
 
@@ -8,7 +8,7 @@ The primary source is `resources/liber-primus/44.jpg`, 2400×3600 pixels, SHA-25
 
 Another reproducible source audit found **15 actual enclosed white faces** when 200-pixel compartments are retained, including the small triangular face at centroid (1231,839). A 500-pixel post-hoc threshold drops that real region and gives fourteen. Neither count implies an authored key. See [fifteenth-face original-image test](lp2-p27-fifteenth-wing-face-source-gate.md) and [current wing synthesis](../workplace/lp2-p27-wing-venation-source-route.md). The concrete human solve-path question was whether an *exact dated illustration* carries a label sequence, caption, or operation independently selecting what to do with the p27 ciphertext.
 
-## Three dated original plate sources, native-pixel registration
+## Five dated original plate sources, native-pixel registration
 
 The [original-input registration SFT](../sims/lp2_p27_historical_threeplate_registration_sft.py) downloaded each **actual pre-2014 PDF** in GitHub Actions, verified its bytes, rasterized the relevant printed figure pages, and extracted disconnected ink regions to blind printed labels. Source and p27 SIFT points were bidirectionally matched, then a similarity transformation was fitted by RANSAC. Success was frozen as **at least 30 affine inlier correspondences**, scale between 0.08 and 4, and normalized p27 feature span greater than 0.50 horizontally and 0.15 vertically. Full-page images and extracted connected plate regions were both tested. A 4° rotation/0.87-scale native p27 image plant recovered **383 inliers** and target-span 0.979×0.959. An independent p53 artwork negative gave **3 inliers** and failed.
 
