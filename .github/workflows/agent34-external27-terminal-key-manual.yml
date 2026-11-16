@@ -1,0 +1,14 @@
+name: External 2026 terminal-node key on original LP2 next chapter (manual)
+on:
+  workflow_dispatch:
+jobs:
+  original-forward:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Frozen original p3-7 terminal T-M-EA GP29 inverse
+        run: node sims/lp2_external27_20261116_terminal_key_next_chapter_sft.cjs
