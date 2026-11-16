@@ -87,6 +87,39 @@ function ioc(xs){
 }
 /** @param {number[]} xs */
 function asGP(xs){return xs.map(x=>corpus.translit[x]).join('');}
+
+/*
+ * Second independent, source-size-exact original receiver:
+ * the archived image caption has 17 canonical GP rune symbols; the original
+ * p55 has precisely 17 printed word fragments (one carried from p54).
+ * Freeze one caption symbol as a constant Caesar key per original word.
+ * Every nonzero ciphertext symbol decoding to plaintext F violates the
+ * historical transparency rule, regardless of punctuation or skip masks.
+ */
+const wordLengths=[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3];
+assert.equal(wordLengths.length,17);
+assert.equal(wordLengths.reduce((a,b)=>a+b,0),76);
+const captionKey=words[1].key;
+assert.equal(captionKey.length,wordLengths.length);
+const wordGate=[];
+for(const sign of [1,-1]){
+  let offset=0;
+  const impossible=[];
+  for(let j=0;j<17;j++){
+    const key=captionKey[j];
+    for(let t=0;t<wordLengths[j];t++){
+      const c=page55.indices[offset+t];
+      if(c!==0&&(c+29-sign*key)%29===0)
+        impossible.push({word:j,position:offset+t});
+    }
+    offset+=wordLengths[j];
+  }
+  assert.deepEqual(impossible.map(x=>x.position),
+    sign===1?[72,74]:[8,36,48]);
+  wordGate.push({sign,impossible});
+}
+console.log('wordCaption17 exact original obstruction',JSON.stringify(wordGate));
+
 const outcomes=[];
 for(const {label,key} of words){
   for(const start of [0,1]){
