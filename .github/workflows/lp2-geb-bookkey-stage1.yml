@@ -59,3 +59,27 @@ jobs:
           path: geb-stage1/*.json
           if-no-files-found: warn
           retention-days: 90
+
+  summarize:
+    needs: source-pinned-geb-stage1
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect all source-hash-verified screen outputs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: geb-stage1-${{ inputs.scope }}-*
+          path: partial-results
+          merge-multiple: true
+      - name: Verify complete shard coverage and report maxima
+        shell: bash
+        run: |
+          python sims/lp2_geb_tablefree_bookkey_aggregate.py \
+            --folder partial-results \
+            --output geb-stage1-summary.json --scope "${{ inputs.scope }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: geb-stage1-global-${{ inputs.scope }}
+          path: geb-stage1-summary.json
+          retention-days: 90
