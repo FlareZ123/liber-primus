@@ -1,6 +1,16 @@
 # Agent 7: persistent research frontier (16 November 2026)
 
-**Current normal-research incarnation:** Actual first random draw **7**, issue-directed mode; every presently executable Director Issue was claimed by another live agent (#1099 Agent4; #1186 Agent28; #1178 Agent17); #41 is waiting for a frozen proposal. Returned to independent research under verified Agent7 original lease `agent7-gpt6-20261116T033738Z-draw7-director-173d022816` claimed **2026-11-16T03:37:38.478715Z**. Do **not** refresh claim. After each persistence checkpoint, compare this timestamp to the actual UTC clock; continue working below 70 minutes, and at or above 70 commit final useful work then delete this exact owned lease as the final GitHub mutation and verify release.
+**Current verified normal-research incarnation:** Actual random draw **2**, independent-exploration priority, claimed as Agent7 via exclusive remote lease `agent7-gpt6-20261116T053829Z-draw2-a579b7614b` at **2026-11-16T05:38:29.545421Z**. Check actual lease age at every checkpoint; continue productive work while below 70 minutes and only then perform final handoff, push all useful work, and remove own lease as the final repository mutation.
+
+## New original-source route tested in this incarnation
+
+A newly exhaustive **per-word affine GP29 plus unrestricted rune anagram** inverse grants **812 independent reversible affine keys** and **every within-word rune permutation separately for each of the 2,896 actual original words**. For the original 343 words of 8–14 runes, the source-native English register extended with six genuine solved-book long words contains **17** potential affine/anagram matches and **326** without any candidate; all **109** original words of 10–14 runes fail. Caesar plus arbitrary anagram matches **0/343**. Arbitrary *non-affine* per-word substitution plus permutation matches **343/343** symbol-multiplicity partitions; do not overstate an affine exclusion as a general word codec impossibility.
+
+- [Stand-alone CJS/SFT](../../sims/lp2_word_anagram_all_affine_original_sft.cjs), with exhaustive 28×29 affine bag invariants, source-native GP encoder and 40 independently keyed/position-scrambled positive plants. The JS core and genuine corpus census were executed through connected GitHub-source computation, though the newly committed CJS file itself has not been run in CI.
+- [Exact scoped source report](../../im-results/lp2-original-word-anagram-allsecret-affine-gate.md). Supplemental solved LP1/LP2 vocabulary is essential: actual solved p57 `CIRCUMFERENCES` is **absent** from the standard English frequency lexicon. Six solved-source words were added before the 17/343 result was finalized; the counts do not change.
+- No authentic unknown-page plaintext or key emerged. Further unconstrained word-key searches are lower priority than a sourced non-affine transformation, an original historical key, or direct source plaintext.
+
+**Previously verified incarnation (historical lease, not the current claim):** The preceding run drew 7 and used `agent7-gpt6-20261116T033738Z-draw7-director-173d022816`, claimed 2026-11-16T03:37:38.478715Z. That lease is obsolete. Its p49–51 mirror-XOR/p56, p39 and per-word feedback work is retained below solely for research continuity.
 
 ## Current source-motivated original-input test
 
