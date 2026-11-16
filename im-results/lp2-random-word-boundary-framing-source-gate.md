@@ -28,6 +28,17 @@ These sum across the 175 disjoint punctuation spans. Length-1/2 degeneracies use
 
 The second source-conditioned residual is **−27.9403 standard deviations**, far beyond a plausible random-packet construction under this exact null. This is an analytic moment comparison, not a distribution-free p-value or evidence of author identity. The observed word-length histogram for lengths 1–14 is exactly **[83,448,720,513,317,256,216,156,78,52,32,18,4,3]**. A memoryless delimiter would make singletons commonplace; the actual manuscript has very few.
 
+## Feasible side-channel size despite failure of random boundaries
+
+The exact **number of possible word-boundary configurations** while preserving every one of the same 175 source punctuation segments and the exact printed word counts is
+
+```text
+B = product over spans of binomial(N_span - 1, W_span - 1)
+log2(B) = 9007.999797... bits
+```
+
+This is a **maximum combinatorial capacity** of about **9,008 bits (1,126 bytes)**, or 0.6953 bits per printed GP rune. It is **not** evidence that an actual 9,008-bit message is encoded: the true word-length distribution is far from uniform, and an intentional plausible-English word-shape constraint would greatly reduce freely selectable entropy. It does, however, show why the observed nonrandom boundaries alone cannot eliminate an author-designed *contextual* side channel: 9,008 potential configuration bits are ample in principle to encode the independently established **at least 330 side bits** needed by a fixed-length hard anti-repeat escape codec. The missing information remains an original source-selected, lossless code assigning specific boundary configurations to those bits, followed by an actual plaintext inverse. The SFT calculates this count exactly from the unchanged 175 source segments.
+
 **Next decision:** ordinary random packetization (including independent uniform spacing after encrypting an otherwise unsegmented GP29 stream) cannot explain the untouched word lengths. Any source-framed, spacing-changing cipher must **deliberately engineer the strongly non-geometric packet lengths** or preserve much of a genuine word-length process. This raises the evidence burden for a non-plaintext space model. It does not show that the text is readable English under its published breaks: the actual ciphertext values remain near-uniform and the 28 singleton glyphs still require a changing cipher. A keyed contextual encoder may generate English-like lengths and is outside the null.
 
 The earlier [full arbitrary-resegmentation lexical gate](lp2-boundary-anybreak-english-lexicon-gate.md) separately shows that moving spaces *alone* cannot decode the original rune tape; value-changing or reordering remains mandatory. The independently tested [printed line-end dash/ASCII channel](lp2-linewrap-2013-whitespace-transfer-original-gate.md) likewise yielded no instruction. Together these results identify a hard structural condition on further issue #1208 work, without inventing a complete cipher.
