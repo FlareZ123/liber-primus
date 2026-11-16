@@ -4,7 +4,7 @@
 Only measurements, offsets, hashes, and original ciphertext are persisted.
 The copyrighted original 2012 book text is fetched at runtime, never printed or committed.
 The original 2012 source, authentic p56 plaintext-F bypass, candidate anti-repeat\nq=.81 skip law, eight original windows, and fixed zero-score diagnostic gate,
-and 8-position start grid are fixed before any original screen.
+with 128 beams, 16 histories/pointer and an 8-position start grid were\nselected on the six synthetic controls; earlier 64/8 original runs are retained.
 
 Distinct source-selected 2012 Gibson poem investigation (Agent42).
 """
@@ -35,7 +35,7 @@ SECTIONS = [
     (33, 39, 1680), (40, 53, 3008),
 ]
 THRESHOLD = {"digraph": 0.0, "letters": 0.0}
-BEAM, PER_PTR, SPREAD = 64, 8, 8
+BEAM, PER_PTR, SPREAD = 128, 16, 8
 Q, WINDOW, SKIP_Q = 29, 729, 0.81
 UPSTREAM = "15200c67abee106913ba01ff504c5b6e88d16cc7"
 
