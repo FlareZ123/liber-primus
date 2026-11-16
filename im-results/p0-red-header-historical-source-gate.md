@@ -39,11 +39,11 @@ The Book of the Law and Blake texts are included as source-relevant literary ref
 
 ## The tempting partial overlap is not a source match
 
-Book of the Law II.3 contains the wording `as she, the circumference, is nowhere found`. The p0 red8 transliteration begins with `SHE`, and the first black rune after the marker is `S`; the later post-period black word begins `TH`, so the short `SHE` / `THE` echo is separated by the intervening black5 word. It accounts for only three opening tokens plus one later post-period token; it does not explain the remaining ten red runes, preserve the printed 8:5 grouping, or satisfy the full equality-pattern test. Treat it as thematic overlap, not attribution. Likewise, the 13-rune length matching the 13 letters of `CIRCUMFERENCE` is only a length coincidence without a source-selected reversible operation.
+Book of the Law II.3 contains the wording `as she, the circumference, is nowhere found`. The p0 red8 transliteration begins with `SHE`, and the first black rune after the marker is `S`; the later post-period black word begins `TH`, so the short `SHE` / `THE` echo is separated by the intervening black5 word. It accounts for only three opening tokens plus one later post-period token; it does not explain the remaining ten opening tokens, preserve the printed 8:5 grouping, or satisfy the full equality-pattern test. Treat it as thematic overlap, not attribution. Likewise, the 13-rune length matching the 13 letters of `CIRCUMFERENCE` is only a length coincidence without a source-selected reversible operation.
 
 ## Conclusion
 
-Retain #446 only as a bounded negative on the historical derivative panel; it is not a source-faithful physical red-header result. The finite panel supplies no exact source phrase and no monoalphabetic source candidate that predicts the held-out first black `TH`. Reopen only if a newly authenticated original-era source or a documented alternate alphabet independently selects a complete operation and predicts the full mixed-colour opening phrase plus a later post-period symbol. Do not continue the 662/331 arithmetic branch or expand into arbitrary GP29 key sweeps.
+Retain #446 only as a bounded negative on the historical derivative panel; it is not a source-faithful physical red-header result. The finite panel supplies no exact source phrase and no monoalphabetic source candidate that predicts the held-out post-period black `TH`. Reopen only if a newly authenticated original-era source or a documented alternate alphabet independently selects a complete operation and predicts the full mixed-colour opening phrase plus a later post-period symbol. Do not continue the 662/331 arithmetic branch or expand into arbitrary GP29 key sweeps.
 
 ## Reproduction
 

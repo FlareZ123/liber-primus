@@ -62,12 +62,12 @@ assert.equal(physical.red_runes[0].length, 8);
 assert.equal(physical.large_punctuation[0].after_runes, 8);
 assert.equal(physical.black_following_runes[0].length, 5);
 
-const opening = corpus.pages[0].indices.slice(0, 13);
+const openingPhrase = corpus.pages[0].indices.slice(0, 13);
 const postPeriodSeven = corpus.pages[0].indices.slice(13, 20);
-assert.equal(opening.length, 13);
+assert.equal(openingPhrase.length, 13);
 assert.equal(postPeriodSeven.length, 7);
 
-const N = base29(opening);
+const N = base29(openingPhrase);
 const M = base29(postPeriodSeven);
 const p = 23n;
 const g = 5n;
@@ -83,7 +83,7 @@ assert.equal(N.toString(), "5412445423142629857");
 assert.equal(M.toString(), "1420123033");
 assert.equal(N % 23n, 0n); // additional residue, not required by DH
 assert.equal(exponent, 7);
-assert.equal(opening.at(-1), 5); // matches the source DH base
+assert.equal(openingPhrase.at(-1), 5); // matches the source DH base
 assert.equal(clientPublic, 16n);
 assert.equal(serverPublic, 17n);
 assert.equal(shared, 18n);
@@ -193,7 +193,7 @@ function indexOfCoincidence(indices) {
     (indices.length * (indices.length - 1));
 }
 const primeSequence = firstPrimes(400);
-const p0BodyStart = opening.length + postPeriodSeven.length;
+const p0BodyStart = openingPhrase.length + postPeriodSeven.length;
 const p0Body = corpus.pages[0].indices.slice(p0BodyStart);
 assert.equal(p0BodyStart, 20);
 assert.equal(p0Body.length, 242);
@@ -249,7 +249,7 @@ const p0TotientTransfer = {
 };
 
 console.log(JSON.stringify({
-  openingPhrase: { indices: opening, transliteration: translit(opening), base29: N.toString(),
+  openingPhrase: { indices: openingPhrase, transliteration: translit(openingPhrase), base29: N.toString(),
     mod23: Number(N % 23n), mod22: exponent, finalDigit: opening.at(-1) },
   postPeriodSeven: { indices: postPeriodSeven, transliteration: translit(postPeriodSeven),
     base29: M.toString(), mod23: Number(clientPublic), length: postPeriodSeven.length },
