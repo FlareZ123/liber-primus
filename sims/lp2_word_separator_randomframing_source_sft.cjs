@@ -42,6 +42,18 @@ function moments(N,W){
   return {mean:W*p,
     variance:W*p*(1-p)+W*(W-1)*(p2-p*p)};
 }
+/** @param {number} top @param {number} choose */
+function log2Choose(top,choose){
+  let bits=0;
+  for(let k=1;k<=choose;k++)
+    bits+=Math.log2(top-choose+k)-Math.log2(k);
+  return bits;
+}
+const boundaryCapacity=segments.reduce((acc,span)=>{
+  const N=span.reduce((t,w)=>t+w.length,0);
+  return acc+log2Choose(N-1,span.length-1);
+},0);
+assert.ok(Math.abs(boundaryCapacity-9007.999797165783)<1e-8);
 const baseline=moments(n,words.length);
 let expected=0,variance=0;
 for(const s of segments){
@@ -54,6 +66,7 @@ console.log(JSON.stringify({n,words:words.length,segments:segments.length,
   singletonObserved:singles,histogram:Array.from({length:14},(_,i)=>
     words.filter(w=>w.length===i+1).length),
   unrestricted:{mean:baseline.mean,sd:Math.sqrt(baseline.variance)},
+  maxBoundaryAllocationBits:boundaryCapacity,
   fixedPunctuation:{mean:expected,sd:Math.sqrt(variance),
     z:(singles-expected)/Math.sqrt(variance)}
 },null,2));
