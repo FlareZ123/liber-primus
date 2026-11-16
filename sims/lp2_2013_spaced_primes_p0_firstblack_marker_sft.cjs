@@ -84,6 +84,77 @@ assert.equal(isPair([2, 11]), true);
 assert.equal(isPair([2, 12]), false);
 assert.equal(isPair([3, 11]), false);
 
+
+/**
+ * Exploratory direct-key continuation: the only historically solved LP2 key
+ * operation is prime p -> phi(p)=p-1, so let the two marked 2013 primes
+ * initialize independent ordinary prime clocks. This is NOT source-selected;
+ * the proposed synchronization is evaluated separately above.
+ * @param {number} maximum
+ * @returns {number[]}
+ */
+function primeSieve(maximum) {
+  const marked = new Uint8Array(maximum + 1);
+  const result = [];
+  for (let p = 2; p <= maximum; p += 1) {
+    if (marked[p]) continue;
+    result.push(p);
+    if (p * p <= maximum)
+      for (let n = p * p; n <= maximum; n += p) marked[n] = 1;
+  }
+  return result;
+}
+
+/** @param {number[]} a @returns {number} */
+function coincidence(a) {
+  const bins = new Array(29).fill(0);
+  for (const rune of a) bins[rune] += 1;
+  return bins.reduce((s, n) => s + n * (n - 1), 0) / (a.length * (a.length - 1));
+}
+const allPrimes = primeSieve(10000);
+const primeKeys = successors.map(seed => {
+  const first = allPrimes.indexOf(seed);
+  assert.ok(first >= 0);
+  return allPrimes.slice(first, first + 729).map(p => m29(p - 1));
+});
+assert.ok(primeKeys.every(k => k.length === 729));
+const keys = {
+  from31: primeKeys[0],
+  from3259: primeKeys[1],
+  add: primeKeys[0].map((v, i) => m29(v + primeKeys[1][i])),
+  subtract: primeKeys[0].map((v, i) => m29(v - primeKeys[1][i])),
+  alternate: primeKeys[0].map((v, i) => i % 2 ? primeKeys[1][i] : v)
+};
+const firstChapter = corpus.pages.slice(0, 3).flatMap(p => p.indices);
+assert.equal(firstChapter.length, 729);
+const knownText = corpus.pages.find(p => p.page === 57).indices;
+assert.equal(knownText.length, 95);
+const direct = [];
+for (const start of [0, 13, 15]) {
+  const original = firstChapter.slice(start);
+  for (const [keyName, key] of Object.entries(keys)) {
+    for (const sign of [-1, 1]) {
+      const decoded = original.map((c, i) => m29(c + sign * key[i]));
+      const plant = Array.from({length: original.length},
+        (_, i) => knownText[i % knownText.length]);
+      const encrypted = plant.map((p, i) => m29(p - sign * key[i]));
+      assert.deepEqual(
+        encrypted.map((c, i) => m29(c + sign * key[i])),
+        plant, 'Reversible planted solved-native GP text'
+      );
+      direct.push({
+        start, key: keyName, sign,
+        ioc: coincidence(decoded),
+        opening: decoded.slice(0, 12).map(i => corpus.translit[i]).join(' ')
+      });
+    }
+  }
+}
+assert.equal(direct.length, 30);
+const bestDirectIoc = Math.max(...direct.map(r => r.ioc));
+assert.ok(bestDirectIoc < 0.036);
+const sortedDirect = direct.slice().sort((a, b) => b.ioc - a.ioc);
+
 console.log(JSON.stringify({
   source: '2013 participant paste xGY4pbHV, doubled spaces after 29 and 3257',
   spaceSuccessors: successors,
@@ -95,5 +166,8 @@ console.log(JSON.stringify({
   allOriginalWithinPagePairOccurrences: everyPair.length,
   literalNextListedPrimeResidues: afterMarkedPrimeResiduals,
   thirdCipherRuneIndex: p0.indices[15],
+  bestDirectPrimeClockIoc: bestDirectIoc,
+  topDirectPrimeClockCandidates: sortedDirect.slice(0, 5),
+  sourceNativePlantedReencryptions: direct.length,
   decision: 'One frozen source-to-marker two-rune synchronization candidate. No cipher continuation or recovered plaintext.'
 }, null, 2));
