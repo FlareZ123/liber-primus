@@ -1,0 +1,20 @@
+name: Agent17 original-image fused GP29 pair recovery
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fused-font:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image and clustering libraries
+        run: python -m pip install numpy pillow opencv-python-headless scikit-learn
+      - name: Source-only 29-rune glyph plus fused-pair reconstruction
+        run: python sims/lp2_round9_fused_pair_original_sft.py
