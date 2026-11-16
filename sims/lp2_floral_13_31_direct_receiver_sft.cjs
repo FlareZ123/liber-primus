@@ -97,6 +97,38 @@ for(const [name,indices] of [['zero-based',[13,31]],['one-based',[12,30]]]) {
 }
 assert.deepEqual(results,[16,16,15,16]);
 
+// The 2×8 selected rows can instead be *omitted*, leaving exactly 30×8
+// cells, matching the original p39's 240-rune count. This is independent of
+// polynomial division, which consumes the rows as GF29 factor coefficients.
+const countIoC = arr => {
+  const count=Array(29).fill(0);
+  for(const x of arr)count[x]++;
+  return count.reduce((a,n)=>a+n*(n-1),0)/(arr.length*(arr.length-1));
+};
+const solvedP57=corpus.pages[57].indices;
+assert.equal(solvedP57.length,95);
+for (const [name,rows] of [['zero-based',[13,31]], ['one-based',[12,30]]]) {
+  const tape=bytes.filter((_,i)=>!rows.includes(Math.floor(i/8))).map(x=>x%29);
+  assert.equal(tape.length,240);
+  const counts=arr=>Array.from({length:29},(_,sym)=>arr.filter(x=>x===sym).length)
+    .sort((a,b)=>b-a);
+  console.log('delete_rows=',name,'remaining_runes=',tape.length,
+    'GP29_table_IoC=',countIoC(tape).toFixed(9),
+    'frequency_multiset_equal_p39=',JSON.stringify(counts(tape))===JSON.stringify(counts(p39)));
+  // Both natural additive polarities are exact bijections; GP rune
+  // controls demonstrate inversion and no plaintext-F substitution claim.
+  for(const sign of [-1,1]) {
+    const out=p39.map((sym,i)=>mod(sym+sign*tape[i]));
+    const back=out.map((sym,i)=>mod(sym-sign*tape[i]));
+    assert.deepEqual(back,p39);
+    const plantedCipher=solvedP57.map((sym,i)=>mod(sym-sign*tape[i]));
+    const plantedRecovered=plantedCipher.map((sym,i)=>mod(sym+sign*tape[i]));
+    assert.deepEqual(plantedRecovered,solvedP57);
+    console.log(name,'sign=',sign,'p39_candidate_IoC=',countIoC(out).toFixed(9),
+      'first48_GP=',out.slice(0,48).map(i=>corpus.translit[i]).join(''));
+  }
+}
+
 assert.deepEqual(rowBytes(13), [122,63,31,218,14,184,32,115]);
 assert.deepEqual(rowBytes(31), [113,158,172,230,180,36,189,80]);
 console.log('PASS: original-table, row, BASE29 and self-map assertions');
