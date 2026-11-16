@@ -27,6 +27,7 @@ const english = input("resources/control/gibran_prophet_58585.txt");
 const books = ["I", "II", "III"].map((n) => input("resources/external/2013-book-of-law-" + n + ".txt"));
 const alphabet = new Map(corpus.translit.map((s, i) => [s, i]));
 alphabet.set("IO", 27);
+alphabet.set("ING", 21);
 const symbols = new Map(corpus.runes.map((s, i) => [s, i]));
 const Q = 29;
 const STOP = 29;
@@ -51,7 +52,7 @@ function tokens(text, digraphs) {
     for (let i = 0; i < s.length;) {
       const found = digraphs.find((x) => s.startsWith(x, i)) || s[i];
       const glyph = alphabet.get(found);
-      assert.notEqual(glyph, undefined, "Unmapped character in source");
+      assert.notEqual(glyph, undefined, "Unmapped token " + found + " from source " + raw);
       a.push(glyph);
       i += found.length;
     }
