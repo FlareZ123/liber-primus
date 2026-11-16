@@ -140,7 +140,7 @@ def main():
     # Original Anglo-Saxon Rune Poem: 29 stanzas, first published 1705;
     # this exact public-domain transcription is pinned to a Git blob.
     book_bytes = get(RUNE_POEM_URL)
-    blob = b"blob " + str(len(book_bytes)).encode() + b"\\0" + book_bytes
+    blob = b"blob " + str(len(book_bytes)).encode() + b"\0" + book_bytes
     assert hashlib.sha1(blob).hexdigest() == RUNE_POEM_GIT_BLOB
     original = book_bytes.decode("utf-8", errors="strict")
     assert len(original.strip().splitlines()) == 29
