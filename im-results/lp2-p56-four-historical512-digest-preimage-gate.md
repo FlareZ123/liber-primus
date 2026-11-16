@@ -53,6 +53,10 @@ Both Git blob hashes were independently reproduced from the exact byte strings b
 
 The two full-page SHA-512 values above are not equal to the original target. This is a **two-page, SHA-512-only supplement**, not an expansion of the four-algorithm 65-object count; it does not claim the two pages were tested under Skein, pre-FIPS Keccak, Streebog or Whirlpool.
 
+## 2016 Whirlpool/Pastebin claim: no reproducible preimage
+
+A 2016 [Tor StackExchange answer](https://tor.stackexchange.com/questions/3870/is-it-possible-to-find-a-tor-page-based-on-the-512-bit-hash/3895#3895) claims a Whirlpool reverse lookup led to a Pastebin file named `uRkNsGsa.htm`, and mentions `dxwd42hgpd7qrccm.onion` and `1711141131131.xyz`. The post does not provide exact page bytes or an exact preimage. We tested **21 literal candidates** with OpenSSL 3's Whirlpool implementation (legacy provider): the bare onion address, the alternative leading-`w` spelling, HTTP/HTTPS and slash variants, the named domain and URL forms, and the named Pastebin filename/URL forms. **None** matches the p56 target digest. Reproduce with [the candidate-string SFT](../sims/lp2_p56_stackexchange_whirlpool_candidate_sft.sh). The cited [md5hashing.net project](https://github.com/FVetrov/md5hashing.net) is a reverse-lookup database, not a general cryptographic preimage solver; a database hit alone would not authenticate the claimed page. This retires the literal strings named by the post, not the unknown preimage or hash algorithm.
+
 ## Decision and limit
 
 These original 65 whole-file byte strings are **not the p56 preimage under any of the four frozen algorithms**. Because the source says “a page” and does not actually name the algorithm, this result cannot select or reject one 512-bit hash family in general. A missing historical web page could hash to the target under any algorithm tested here, including SHA-512 and these alternatives. Variations of the original source files, HTTP serialization, a URL string, fragments, salt, or unknown keyed constructions were outside this finite test.
