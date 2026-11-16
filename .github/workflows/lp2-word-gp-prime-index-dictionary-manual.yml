@@ -1,0 +1,22 @@
+name: Agent4 word-GP prime-index dictionary gate
+on:
+  workflow_dispatch:
+jobs:
+  original_word_dictionary_gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run all 64 source-frozen variants
+        run: node sims/lp2_word_gp_prime_index_dictionary_gate.cjs > lp2-word-gp-prime-index-result.json
+      - name: Print compact result
+        run: |
+          node -e "const r=require('./lp2-word-gp-prime-index-result.json'); console.log(JSON.stringify({source:r.source,testedVariants:r.testedVariants,union:r.union,expectedUniformLength5PlusMatchesForOneVariant:r.expectedUniformLength5PlusMatchesForOneVariant,positiveControl:r.positiveControl,top:r.variants.slice(0,8).map(v=>({sumType:v.sumType,startType:v.startType,keyType:v.keyType,delta:v.delta,sign:v.sign,fMode:v.fMode,matchedWords:v.matchedWords,length5Plus:v.length5Plus,length6Plus:v.length6Plus,examples:v.examples}))},null,2));"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lp2-word-gp-prime-index-dictionary-gate
+          path: lp2-word-gp-prime-index-result.json
+          if-no-files-found: error
