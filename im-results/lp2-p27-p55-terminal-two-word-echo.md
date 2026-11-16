@@ -35,6 +35,10 @@ Because no four-rune-or-longer word type repeats in this transcription, **any** 
 
 This is **not** a global post-selection-adjusted p-value for Cicada authorship: many other patterns have been investigated, ciphertext is not established as a random permutation of independent words, visual word boundaries can be meaningful, and an author may reuse ciphertext by design. The conditional null shows why this exact pair is worth a targeted source-to-inverse test; it does not identify what the six ciphertext runes mean.
 
+## Source-selected circumference cue: finite cross-page negative
+
+The authenticated solved p57 parable says to **“shed our own circumferences”** and describes emergence from the **instar**. Its insect-molting theme makes it a plausible source-local operation to test against the detached wing on p27 and the moth-like insect on p55. Removing the **first and last rune of each printed word**, with line-wraps joined and actual word separators preserved, leaves **131 interior runes** on p27 (52 words) and **43 interior runes** on p55 (17 words). Their **longest common contiguous interior substring is at most two runes**; there are no exact three-rune interior repeats across those two page streams. The terminal six-rune echo itself reduces to the two single-rune word interiors `ᛄᛖ`. This finite source-cued operation provides **no additional ≥3-rune cross-page anchor** and produces no plaintext; other independently motivated operations remain open.
+
 ## A discriminating route to plaintext
 
 A simple globally deterministic word-substitution cipher is a weak explanation: none of the manuscript's 789 source three-rune tokens occurs more than **three** times, whereas ordinary natural-language function words recur frequently. A **fixed global period-five additive key** is also incompatible with the manuscript's nearly flat five residue-class rune distributions (GP IoCs about 0.0344–0.0347, close to 1/29); the mere difference of 6,395 original rune positions being divisible by five is insufficient evidence for a key.
