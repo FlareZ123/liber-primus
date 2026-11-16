@@ -109,9 +109,28 @@ With OutGuess 0.4 and FIRFUMFERENFE, **all three** original images complete extr
 
 The direct three-way XOR is 9,474 bytes, SHA-256 **fca81a16753c21df3d5874224d666c2c963cd8a036e67f766fa64e5f9b5628c8**. It has Shannon byte entropy **7.9821516973 bits**, printable ASCII/whitespace fraction **0.3836816551**, and longest printable run **12**. It contains no PGP, ZIP, gzip, bzip2, PDF, PNG, CICADA, LIBER or 3301 signature. The three extracted payloads share an identical **293-byte prefix** and **323-byte suffix**; the three-way XOR necessarily preserves those common regions. This does not resemble the clear-signed plaintext recovered by the historical 2014 three-share XOR operation.
 
-**Decision:** the direct p0/p1/p2 three-share OutGuess transfer is negative under both tested, source-motivated keys, for different reasons: Default key does not yield three complete payloads; FIRFUMFERENFE yields three complete payloads but their direct XOR is high-entropy and has no recognizable message/file signature. FIRFUMFERENFE remains only a candidate OutGuess passphrase, not a source-authenticated OutGuess password. Do not truncate, trim common regions, or search alternate passwords without a new original selector. An encrypted second layer remains logically possible but has no source-selected consumer.
+**Decision:** the direct p0/p1/p2 three-share OutGuess transfer is negative under all three tested source-motivated keys: Default key yields only one complete payload; the LP1-derived FIRFUMFERENFE and p57-derived DIVINITY candidates each yield three complete payloads whose direct XOR is high-entropy, dominated by large common prefix/suffix regions, and has no valid message/file signature. Neither candidate is authenticated as an OutGuess password. Do not truncate, trim common regions, treat the invalid gzip-like marker as data, or search alternate passwords without a new original selector. An encrypted second layer remains logically possible but has no source-selected consumer.
 
-**Reproduction:** the updated [single-file original-JPEG SFT](../sims/lp2_p0_p2_outguess_cross_three_share_gate.py) tests both keys, the exact payload hashes, the three-way XOR statistics, the shared prefix/suffix, and the authentic LP1 03.jpg Default-key positive control.
+**Reproduction:** the [main original-JPEG SFT](../sims/lp2_p0_p2_outguess_cross_three_share_gate.py) tests Default key and FIRFUMFERENFE; the separate [DIVINITY-specific SFT](../sims/lp2_p0_p2_outguess_divinity_candidate_sft.py) tests the third candidate, its exact payload hashes, XOR statistics, common regions, and invalid gzip-like occurrence.
+
+
+### DIVINITY as a source-visible OutGuess candidate passphrase
+
+A third fixed candidate is the literal **DIVINITY** from the p57 parable (“find the divinity within”). The signed 2016 Cicada carrier independently establishes OutGuess as a tool in this puzzle family, and the same three cross-framed originals are the candidate carriers. DIVINITY is already source-motivated as an OpenPuff password in separate research; its use as an OutGuess passphrase is a distinct, bounded cross-tool hypothesis, not an authenticated OutGuess instruction.
+
+OutGuess 0.4 completes all three original-image extractions under DIVINITY. Each has the forced encrypted header ffffffff; the decoded header is **ee5b43c7**, seed **23,534**, length **51,011**.
+
+| Physical page / scan | Payload bytes | Payload SHA-256 |
+|---|---:|---|
+| p0 / 17.jpg | 51,011 | 772860c15ca24d4cbb41b60f7058caf3bb2a4557e9000a27adc1df8adce64eef |
+| p1 / 18.jpg | 51,011 | bef2dcb6a0e8498ba6aa5ac24e21c7cd80ca1a0572f305b00f39ce8a4b815f30 |
+| p2 / 19.jpg | 51,011 | 4f7c591533218bd47b354dbdfe76995b6cbffae80e116bfe412f592c2e3313bf |
+
+The direct three-way XOR is 51,011 bytes, SHA-256 **62a287c6191693c7257f5958ba92e6136c992bfbcf8926ac6411bae1cd16c3dc**; entropy is **7.9968030801 bits/byte**, printable fraction **0.3824665268**, and longest printable run **10**. The extracted payloads share an identical **1,408-byte prefix** and **2,110-byte suffix**. The XOR has no PGP, ZIP, valid gzip, bzip2, PDF, PNG, CICADA, LIBER or 3301 signature. Its sole two-byte gzip-like occurrence is at offset **26,909**, but the following method byte is **BF**, not the required DEFLATE method 08; it is not a gzip header and does not decompress.
+
+**Decision:** the direct p0/p1/p2 three-share OutGuess transfer is negative under DIVINITY as well: all three extractions complete, but their direct XOR is high-entropy, structurally dominated by a large common prefix/suffix, and has no valid message/file signature. This candidate is source-visible but is not authenticated as an OutGuess password. Do not treat the invalid 1f8b occurrence as a compressed payload or search arbitrary second layers.
+
+**Reproduction:** [DIVINITY-specific original-JPEG SFT](../sims/lp2_p0_p2_outguess_divinity_candidate_sft.py), which imports the common OutGuess iterator and image-hash controls from the main p0–p2 SFT.
 
 ## Reproduction and research decision
 

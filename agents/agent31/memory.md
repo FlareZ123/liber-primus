@@ -4,20 +4,22 @@
 
 ## Current invocation results
 
-### p0–p2 cross / three-share OutGuess: direct XOR route rejected under two motivated keys
+### p0–p2 cross / three-share OutGuess: direct XOR route rejected under three motivated keys
 
 Original scans17/18/19 are physical LP2 p0/p1/p2 and carry the same 180°-opposed triple-bar cross artwork. The earlier 2014 round used three complete OutGuess shares XORed bytewise, so this is a plausible historical transfer.
 
 - **Default key** (historically demonstrated OutGuess password): all three images have source-forced encrypted header ffffffff, decoding to seed41408 / length58152. Only scan17 completes (58,152 bytes, SHA-256 cbf1ccddc6c4bb2fd96d449e0667eb5be6c2a542de4e0f43e7ca188df7f289b1). Scan18 stops at zero adaptive skip modulus after 58,120 bytes (remaining32, offset686973/687226, available253); scan19 stops after58,113 bytes (remaining39, offset619352/619659, available307).
-- **FIRFUMFERENFE** (exact LP1-derived Vigenere key, tested as a candidate OutGuess password—not an authenticated OutGuess instruction): all three complete at9,474 bytes; source-forced header ffffffff decodes to 2aa00225, seed41002, length9474. Payload hashes: scan17 d9505f6f6d40c2099cad79963a16f2823f2e46f6aead83776c863c648815f6e6; scan18 ed5a3ced513c70c1f0e15cc3097af1173779fad7d2fbc994e763ba48393e9b15; scan19 3e190a76b50c25c486a4f21ca80e86730e878e418ebcf7f5f076e05e5cc02712. Three-way XOR SHA-256 fca81a16753c21df3d5874224d666c2c963cd8a036e67f766fa64e5f9b5628c8; entropy7.9821516973 bits/byte; printable fraction0.3836816551; longest printable run12; common payload prefix293 and suffix323; no PGP/ZIP/gzip/bzip2/PDF/PNG/CICADA/LIBER/3301 signature.
+- **FIRFUMFERENFE** (exact LP1-derived Vigenere key, tested as candidate OutGuess password—not an authenticated OutGuess instruction): all three complete at9,474 bytes; forced header ffffffff decodes to 2aa00225, seed41002, length9474. Payload hashes: scan17 d9505f6f6d40c2099cad79963a16f2823f2e46f6aead83776c863c648815f6e6; scan18 ed5a3ced513c70c1f0e15cc3097af1173779fad7d2fbc994e763ba48393e9b15; scan19 3e190a76b50c25c486a4f21ca80e86730e878e418ebcf7f5f076e05e5cc02712. Three-way XOR SHA-256 fca81a16753c21df3d5874224d666c2c963cd8a036e67f766fa64e5f9b5628c8; entropy7.9821516973 bits/byte; printable fraction0.3836816551; longest printable run12; common payload prefix293 and suffix323; no recognized file/message signatures.
+- **DIVINITY** (literal p57 source-visible word, tested as candidate OutGuess passphrase—not an authenticated OutGuess instruction): all three complete at51,011 bytes; forced header ffffffff decodes to ee5b43c7, seed23534, length51011. Payload hashes: scan17 772860c15ca24d4cbb41b60f7058caf3bb2a4557e9000a27adc1df8adce64eef; scan18 bef2dcb6a0e8498ba6aa5ac24e21c7cd80ca1a0572f305b00f39ce8a4b815f30; scan19 4f7c591533218bd47b354dbdfe76995b6cbffae80e116bfe412f592c2e3313bf. Three-way XOR SHA-256 62a287c6191693c7257f5958ba92e6136c992bfbcf8926ac6411bae1cd16c3dc; entropy7.9968030801 bits/byte; printable fraction0.3824665268; longest printable run10; common payload prefix1408 and suffix2110. The sole 1f8b occurrence at offset26909 is followed by BF, not valid gzip method08; no valid PGP/ZIP/gzip/bzip2/PDF/PNG/CICADA/LIBER/3301 signature.
 - The authentic LP1 03.jpg 31,809-byte PGP-signed OutGuess payload is recovered byte-for-byte under Default key as a positive control.
 
-Decision: direct p0/p1/p2 three-share OutGuess under Default key lacks three complete shares; under the LP1-derived candidate key, all three complete but the direct XOR is high-entropy and has no recognizable message/file signature. Do not truncate, trim common regions, or search other passwords without a new original selector. No LP2 plaintext recovered.
+Decision: direct p0/p1/p2 three-share OutGuess under Default key lacks three complete shares; under FIRFUMFERENFE and DIVINITY all three complete but their direct XORs are high-entropy, share large identical prefix/suffix regions, and have no valid message/file signature. Do not truncate, trim common regions, treat the invalid gzip-like marker as data, or search further passwords without a new original selector. No LP2 plaintext recovered.
 
 - Report: im-results/lp2-outguess-universal-header-artifact.md.
-- Reproducer: sims/lp2_p0_p2_outguess_cross_three_share_gate.py.
+- Main reproducer: sims/lp2_p0_p2_outguess_cross_three_share_gate.py.
+- DIVINITY reproducer: sims/lp2_p0_p2_outguess_divinity_candidate_sft.py.
 - Summary: results/README.md.
-- Broadcast: communications/broadcast/20261116T0657Z_agent31_p0-p2-outguess-cross-three-share-gate.md (update follows).
+- Broadcast: communications/broadcast/20261116T0657Z_agent31_p0-p2-outguess-cross-three-share-gate.md.
 
 ### p33–39 direct fixed-width GP29 RSA block encoding: rejected
 
