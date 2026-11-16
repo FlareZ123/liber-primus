@@ -4,7 +4,7 @@
  *
  * A hypothesized reversible cipher first applies one of five arbitrary
  * GP29 alphabet permutations per page (one per word-local phase), then
- * emits the resulting GP29 ordinal as rank among 28 non-repeating
+ * emits the resulting GP29 ordinal as circular rank among 28 non-repeating
  * ciphertext successors, with rank 28 emitted as previous glyph.
  * The inverse rank eliminates ANY secret alphabet from equality statistics:
  * within each (page,phase), ciphertext rank-symbol IoC must equal
@@ -44,11 +44,11 @@ assert.equal(sourcePlain.length,12956);
 assert.deepEqual(sourcePlain,corpus.pages.slice(0,56).flatMap(p=>p.indices));
 /** @param {number} c @param {number} previous @returns {number} */
 function inverseRank(c,previous){
- return c===previous?28:(c<previous?c:c-1);
+ return c===previous?28:((c-previous+29)%29)-1;
 }
 /** @param {number} rank @param {number} previous @returns {number} */
 function forwardRank(rank,previous){
- return rank===28?previous:(rank<previous?rank:rank+1);
+ return rank===28?previous:(previous+rank+1)%29;
 }
 for(let prev=0;prev<29;prev++)for(let p=0;p<29;p++)
  assert.equal(inverseRank(forwardRank(p,prev),prev),p);
