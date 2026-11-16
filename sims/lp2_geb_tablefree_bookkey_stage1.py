@@ -58,7 +58,7 @@ def original_windows():
 
 
 def control(beam_decode, encrypt_skip_ptr, log_ratio, flattest_table,
-            to_runes, gutenberg_body, key, MT, source, spelling):
+            to_runes, wrongbook_text, key, MT, source, spelling):
     """Frozen author-era GEB-source positive with unknown flattening table.
 
     A plant is a calibration of the detector's power, never an LP2 recovery.
@@ -75,6 +75,9 @@ def control(beam_decode, encrypt_skip_ptr, log_ratio, flattest_table,
     _, pi = flattest_table(p_dist, k_dist, rng, restarts=3)
     table = np.argsort(pi)
     output = []
+    negatives = []
+    wrongbook = to_runes(wrongbook_text, letters=(spelling == "letters"))
+    assert len(wrongbook) > 3 * WINDOW + 50
     for run in range(6):
         o = 1000 + run * 20003
         if o + 3 * WINDOW >= len(key):
@@ -94,9 +97,27 @@ def control(beam_decode, encrypt_skip_ptr, log_ratio, flattest_table,
             "path_agreement": float(np.mean(path == o + used)),
             "original": False
         })
+        wrong_offset = (o + 7000) % (len(key) - 3 * WINDOW - 8)
+        wrong_book_offset = (o + 9000) % (len(wrongbook) - 3 * WINDOW - 8)
+        random_key = rng.integers(0, Q, 3 * WINDOW)
+        uniform_c, _ = encrypt_skip_ptr(plaintext, random_key, rng)
+        checks = (
+            ("wrong_GEB_offset", c, key, wrong_offset),
+            ("wrong_book_Walden", c, wrongbook, wrong_book_offset),
+            ("uniform_key_null", uniform_c, key, start)
+        )
+        for label, control_c, control_key, control_offset in checks:
+            null_score, _ = beam_decode(
+                control_c, control_key, control_offset, MT,
+                BEAM, source.LN_SKIP, PER_PTR, SPREAD
+            )
+            ratio = float(null_score / WINDOW)
+            negatives.append({"kind": label, "score": ratio,
+                              "pass": ratio > THRESHOLD[spelling]})
     if not any(x["pass"] for x in output):
         raise AssertionError("Native six-plant detector calibration failed")
-    return output
+    assert not any(x["pass"] for x in negatives), "Null crossed registered stage1 threshold"
+    return output, negatives
 
 
 def main():
@@ -146,9 +167,10 @@ def main():
         key = to_runes(raw, letters=letters)
         minimum_key_length = 3 * WINDOW + 16
         assert len(key) > minimum_key_length
-        plant = control(bkd.beam_decode, bkd.encrypt_skip_ptr, bkd.log_ratio,
-                        flattest_table, to_runes, None, key, model, bkd,
-                        spelling)
+        plant, negatives = control(
+            bkd.beam_decode, bkd.encrypt_skip_ptr, bkd.log_ratio,
+            flattest_table, to_runes, walden, key, model, bkd, spelling
+        )
         best = [[-1e100, -1] for _ in windows]
         hit = []
         offsets = 0
@@ -181,7 +203,8 @@ def main():
                 {"section": i, "score": float(v[0]), "offset": int(v[1])}
                 for i, v in enumerate(best)
             ], "stage1_hits": hit,
-            "plant": plant, "elapsed_seconds": time.monotonic()-start_wall
+            "plant": plant, "negative_controls": negatives,
+            "elapsed_seconds": time.monotonic()-start_wall
         }
         outcome["formats"][spelling] = summary
         print(f"{spelling} shard={args.shard}, offsets={offsets}, "
