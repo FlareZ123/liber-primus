@@ -150,22 +150,36 @@ function plantCipher(scope) {
   assert.deepEqual(recovered,plant);
   return {encoded,recovered};
 }
+/**
+ * Global chapter pairs are clocked across page boundaries, two of which
+ * are odd-length; a global-map positive MUST use the global pair grouping.
+ * @param {boolean} alternating
+ * @returns {number[]}
+ */
+function globalCipher(alternating){
+  const result=[];
+  for(let j=0;j<plant.length;j+=2){
+    const secretParity=alternating?(j/2)%2:0;
+    const cipher=encrypt(plant[j],plant[j+1],0,secretParity);
+    result.push(...cipher);
+    assert.deepEqual(decrypt(...cipher,0,secretParity),plant.slice(j,j+2));
+  }
+  return result;
+}
 const positiveBefore=counts(plant);
-const globalPlant=plantCipher("global"),pagePlant=plantCipher("page"),
-  parityPlant=plantCipher("pageParity");
-const globalAfter=counts(globalPlant.encoded),pageAfter=counts(pagePlant.encoded),
-  pageParityAfter=counts(parityPlant.encoded);
-assert.equal(positiveBefore.global,globalAfter.global);
-assert.equal(positiveBefore.globalParity,globalAfter.globalParity);
-assert.equal(positiveBefore.pageKey,pageAfter.pageKey);
-assert.equal(positiveBefore.pageParity,pageParityAfter.pageParity);
+const globalEncoded=globalCipher(false),globalParityEncoded=globalCipher(true),
+  pagePlant=plantCipher("page"),parityPlant=plantCipher("pageParity");
+assert.equal(positiveBefore.global,counts(globalEncoded).global);
+assert.equal(positiveBefore.globalParity,counts(globalParityEncoded).globalParity);
+assert.equal(positiveBefore.pageKey,counts(pagePlant.encoded).pageKey);
+assert.equal(positiveBefore.pageParity,counts(parityPlant.encoded).pageParity);
 assert.ok(positiveBefore.pageParity>original.pageParity);
 console.log(JSON.stringify({
   premise:"1680 original rune chapter = 840 ordered GP29 rune pairs, cuneiform units 1033 & 3301",
   originalPages:pageLengths, original,
   controlScope:"source-native GP29 prose, complete original 1680 symbol shape",
   controls,
-  positive:{runesRecovered:globalPlant.recovered.length,
+  positive:{runesRecovered:pagePlant.recovered.length,
    globalEqualPairs:positiveBefore.global,pageKeyEqualPairs:positiveBefore.pageKey,
    pageParityEqualPairs:positiveBefore.pageParity,
    distinctScopesPreserved:["global","globalParity","pageKey","pageParity"]},
