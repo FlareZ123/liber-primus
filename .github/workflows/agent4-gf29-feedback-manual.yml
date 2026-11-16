@@ -13,7 +13,7 @@ on:
           - grid256-allsecret
 jobs:
   sft:
-    if: inputs.gate != 'q252-flanks'
+    if: inputs.gate == 'legacy'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
