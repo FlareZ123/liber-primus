@@ -44,6 +44,6 @@ The chi-squared values are **descriptive distances**: real-language digrams are 
 
 **Retire this explicitly tested hybrid H/G recurrence and the complete continuous affine-digram class as direct, single-rune-per-rune GP-English inverses of the present original ciphertext.** The original table factorization remains exact; this test leaves it intact, without inferring a decrypting consumer. Do not optimize hidden starts, adjust the triads to language, or append another unmotivated second layer. A successor should require an independently authored transition or a genuine original unknown-page plaintext anchor.
 
-[Successful Windows Node22 original-input SFT run 43782230063](https://github.com/FlareZ123/liber-primus/actions/runs/43782230063) verifies every original-source, native-reference and planted-control assertion.
+[Successful complete four-reference Windows Node22 original-input SFT run 43782967687](https://github.com/FlareZ123/liber-primus/actions/runs/43782967687) verifies every original-source, native-reference and planted-control assertion.
 
 [Standalone Windows Node22 CJS reproducer](../sims/lp2_hg_mixed_cipher_plain_feedback_sft.cjs) reads the existing original corpus and three pinned native English reference texts plus the independently GP-coded Latin Vulgate corpus, searches the complete finite coefficient space, round-trips the source and positive-control ciphertext, and asserts the numerical output.

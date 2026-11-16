@@ -10,4 +10,4 @@ A broader coefficient-free necessary-condition scan exhausts **23,548** possible
 
 No LP2 plaintext/key is recovered and no primary source actually says H/G specify this recurrence. This excludes only the stated direct same-register cipher families; original table H×G factorization remains true. **Avoid retesting the same joint-state H/G variant without a new first-party operator.**
 
-[Report](../../im-results/lp2-hg-original-mixed-feedback-spectrum-gate.md) · [Full original source and three-reference CJS SFT](../../sims/lp2_hg_mixed_cipher_plain_feedback_sft.cjs) · [passed Windows Node22 CI](https://github.com/FlareZ123/liber-primus/actions/runs/43782230063).
+[Report](../../im-results/lp2-hg-original-mixed-feedback-spectrum-gate.md) · [Full original source and four-reference CJS SFT](../../sims/lp2_hg_mixed_cipher_plain_feedback_sft.cjs) · [passed Windows Node22 CI](https://github.com/FlareZ123/liber-primus/actions/runs/43782967687).
