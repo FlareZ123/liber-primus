@@ -88,7 +88,7 @@ function main() {
     }
     const test = countSupported([planted], projection);
     assert.deepEqual([test.pairs, test.supported, test.impossible], [399,399,0]);
-    positive.push({projection, pairs: test.pairs, fullyRecoverable: true});
+    positive.push({projection, pairs: test.pairs, allTransitionsSupported: true});
   }
 
   const report = {
