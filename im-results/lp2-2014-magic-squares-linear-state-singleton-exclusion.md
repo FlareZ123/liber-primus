@@ -61,6 +61,22 @@ The original first-square state counts after each of its first nine standalone w
 
 **Successful extended Windows Node22 CI:** [GitHub Actions 43781452997](https://github.com/FlareZ123/liber-primus/actions/runs/43781452997). The direct whole-book additive running-key exclusion now covers **every unknown fixed constant bias as well as every initial state and any fixed linear output projection** for each of the three authentic 2014 matrices. A page- or context-varying bias, a nonlinear evolving map, keyed F-bypass clock, altered tokenization, and other independently selected operations remain outside this exact exclusion. Zero unknown-page plaintext recovered.
 
+## Original predecessor-difference register: six additional all-secret exclusions
+
+The original LP2's exceptionally low adjacent-repeat rate also motivates reading **cyclic differences** `D[n]=(C[n]−C[n−1]) mod29` as the masked symbol register instead of reading `C[n]` directly. This would allow a fluent plaintext to be concealed by a ciphertext *walk*, an operational possibility distinct from a direct symbol stream. The source does not specify that operation, so it is a bounded candidate rather than authenticated decryption.
+
+Keep all original rune symbols and printed word positions fixed, and retain only **82 of the 83 singleton words** whose immediate predecessor lies within the same physical page. At each such original position require `D[n]=P[n]±K[n]` with `P[n]∈{A,I,O}`; all key states are unrestricted, and every source-square characteristic polynomial, both signs, and the full-book clock are exactly as above. Test also arbitrary fixed additive bias through the enlarged `f_M(X)(X−1)` scalar recurrence, with every initial condition allowed.
+
+| Original source square | Unbiased difference-register first contradiction | Any unknown fixed bias: first contradiction |
+| --- | --- | --- |
+| 3301 5×5 | Singleton **#5**, global rune644 | **#6**, rune792 |
+| 1033 7×7 | **#11**, rune1316 | **#13**, rune1814 |
+| 1033 5×5 | **#6**, rune792 | **#6**, rune792 |
+
+Every case has **zero possible GP29 key states** at its first listed event. For each of the six separate cases, the SFT also plants an actual 2014-square state (and bias7 when applicable), encrypts a full original-length synthetic GP29 stream through the declared *predecessor-sum forward equation*, reproduces all 82 genuine source-singleton positions as A/I/O, then verifies that the exact all-secret solver keeps a surviving key state. This validates the differential register and the matrix clock together, beyond a mere additive roundtrip.
+
+**Passing full Windows22 run** [43782442694](https://github.com/FlareZ123/liber-primus/actions/runs/43782442694), same [single-file CJS reproducer](../sims/lp2_2014_magic_squares_singleton_allstate_sft.cjs). The present direct and differential models exclude **twelve** source-square/sign-equivalent family cases: three actual square polynomials × two symbol registers × without/with unknown constant bias. They do not constrain a separately encoded 28-way nonrepeat register, unknown real F interrupter/skip choices, per-page state resets, altered word grammar, nonlinearity or other source-selected transport. No original unknown-page plaintext emerged.
+
 ## Research decision and limits
 
 Retire a whole-book **homogeneous or fixed-affine-bias** GF29 matrix-running-key GP29 additive cipher using any of the three historical 2014 magic squares, **every unknown matrix initial state, any fixed linear projection, both signs, one clock step per printed rune, preserved original spaces and A/I/O singleton plaintext**. Repeating seed searches, using more source matrix state initialization methods, or changing the secret output projection cannot rescue these source-polynomial contradictions.
