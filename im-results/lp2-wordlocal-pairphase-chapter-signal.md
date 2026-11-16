@@ -40,6 +40,10 @@ The first-five-chapter endpoint was inspected during exploration, so the test al
 
 Original **LP1** is a useful independent type-set runic control under the same word parser: all 2,797 source glyphs / 694 words contain **30 odd and 21 even** within-word doublet sites (conditional two-sided p **0.936**); its first three transcribed blocks contain 12 odd and four even among 16 (two-sided p **0.229**). These controls are heterogeneous solved material and do not prove that the LP2 early-chapter signal is cryptographic.
 
+### Specificity against all 29 rune-difference labels
+
+For the same first-five-chapter word-local transitions, the **known doublet event is exactly GP29 modular difference zero**. The SFT contrasts the odd/even counts for *every* modular difference residue `Δ=C[i]−C[i−1] mod29` under the same 2,903/2,167 eligible positional opportunities. Of all 29 differences, **zero is the largest absolute standardized odd-versus-even imbalance** (10 odd/22 even; approximate z **−2.9834**); difference **27** is second (116 odd/56 even; z **+2.7467**). The other 27 differences have |z| at most **1.6943**. Thus the observed zero-step pair-phase deficit is relatively specific among the 29 tested step values. The 27-step excess might suggest a collision-replacement operator, but **27 was discovered retrospectively**, its sign/placement has no first-party operator or key, and its z value does not survive treating all 29 residues as independently proposed cryptographic instructions. Do not turn this diagnostic into an unmotivated ±2 step-swap or rotor sweep.
+
 ## Key-independent exclusion: stationary word-aligned block substitutions
 
 The earlier [hard Playfair pair-alignment gate](lp2-polygraphic-pair-alignment-gate.md) establishes that **27/63** original within-word doublets fall *inside* source word-initial two-rune blocks. Thus a *hard no-equal-pair* classical Playfair cannot explain all source ciphertext. The chapter-conditioned 10/22 early skew here refines that established global 27/36 count; it is not a proof of a soft or hard Playfair key.
