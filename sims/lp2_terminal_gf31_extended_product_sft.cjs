@@ -131,11 +131,57 @@ const interior=byteRows.slice(1,31).flatMap(row=>row.slice(1,7));
 const predicted=ring(extend(interior,{infinityTop:false,reverseRows:false,reverseCols:false}));
 const sourceBorderMatches=predicted.filter((v,i)=>v===ring(byteRows)[i]).length;
 assert.equal(sourceBorderMatches,1);
+// Additional author-visible reading: solved 180 runes occupy the inner
+// 68+60+52 concentric rings rather than the 30x6 row-major rectangle.
+const nested=[];
+for(let d=0;d<4;d++){
+ const r=[];
+ for(let x=d;x<=7-d;x++)r.push([d,x]);
+ for(let y=d+1;y<=31-d;y++)r.push([y,7-d]);
+ for(let x=6-d;x>=d;x--)r.push([31-d,x]);
+ for(let y=30-d;y>d;y--)r.push([y,d]);
+ nested.push(r);
+}
+assert.deepEqual(nested.map(r=>r.length),[76,68,60,52]);
+const cornerCoords=[[0,0],[0,7],[31,7],[31,0]];
+const nestedResults=[];
+for(let corner=0;corner<4;corner++)for(const direction of [-1,1]){
+ const m=Array.from({length:32},()=>Array(8).fill(-1));
+ let at=0;
+ for(let d=1;d<4;d++){
+  const r=nested[d];
+  const cy=Math.max(d,Math.min(31-d,cornerCoords[corner][0]));
+  const cx=Math.max(d,Math.min(7-d,cornerCoords[corner][1]));
+  const start=r.findIndex(([y,x])=>y===cy&&x===cx);
+  assert(start>=0);
+  for(let j=0;j<r.length;j++){
+   const [y,x]=r[(start+direction*j+4*r.length)%r.length];
+   m[y][x]=known[at++];
+  }
+ }
+ assert.equal(at,180);
+ const rowMajor=m.slice(1,31).flatMap(row=>row.slice(1,7));
+ assert(!rowMajor.includes(-1));
+ const extended=extend(rowMajor,{infinityTop:false,reverseRows:false,reverseCols:false});
+ const border=ring(extended);
+ let best=0;
+ for(const shift of [0,7,38,45])for(const dir of [-1,1]){
+  let matches=0;
+  for(let i=0;i<76;i++)matches+=Number(border[(shift+dir*i+152)%76]===c55[i]);
+  best=Math.max(best,matches);
+ }
+ nestedResults.push({corner,direction,
+  forbiddenGp29Values:border.filter(x=>x>=29).length,
+  bestPrintedCipherMatches:best});
+}
+assert.deepEqual(nestedResults.map(v=>v.forbiddenGp29Values),[4,3,3,4,3,3,3,3]);
+assert.deepEqual(nestedResults.map(v=>v.bestPrintedCipherMatches),[6,4,4,6,4,4,4,4]);
 console.log(JSON.stringify({
  source:'Original 256-cell table, original p55-57, source-authentic p56 inversion',
  geometry:'32x8, 180 known interior + 76 perimeter',field:31,
  sourceGridPerimeterMatches:sourceBorderMatches,
  variants:result,
- conclusion:'All eight systematic direct GP29 decoders require 3-5 forbidden rune indices. No unknown plaintext recovered.'
+ nestedRingPlacement:nestedResults,
+ conclusion:'All 16 systematic direct GP29 decoders (eight row-major and eight source-shaped three-inner-ring placements) require 3-5 forbidden rune indices. No unknown plaintext recovered.'
 },null,2));
 console.log('PASS: source input and synthetic 76/76 positives');
