@@ -10,6 +10,10 @@
 
 **Source repetition update:** Agent28's independently published original pp27 and 55 matching six-rune two-word echo is intriguing but already source-audited; direct run on actual corpus found **zero matching preceding symbols among 28 aligned preceding positions**, so there is no additional adjacent copied ciphertext. No new premise/key selected; do not manufacture a cipher from this coincidence.
 
+## Author-original source spelling correction, 04:44 UTC
+
+**Critical modeling distinction:** external phase23 `to_runes` uses `IA` for rune ᛡ, whereas the solved LP1 and LP2 author spelling uses **`IO`** (and `ING` for ᛝ). The first Gibson scans therefore did **not** cover the exact author-native rune stream for literary key material; this is a genuinely different input/keystream, not a repeat run. Implemented `sims/lp2_writer_gp_runes.py`, `sims/lp2_gibson_writergp_stage1.py`, `sims/lp2_gibson_writergp_aggregate.py`, manual workflow `.github/workflows/lp2-gibson-writergp-manual.yml`. Source-pinned original 2012 Gibson text + 8 untouched first729-rune windows + unknown 29-way table with hypothetical q=.81 skip law: 615+166=781 writer-digraph source offsets, 663+166=829 individual-letter offsets, *×8 windows* = **12,880 original comparisons, no hits**. Registered original max −0.1426376 digraph and −0.1572511 letters vs older frozen thresholds −0.0112/−0.0417. **All six native positive plants pass in both spellings**, unlike earlier F-aware variant. CI smoke **43805215299**, full **43805328804**, tail **43805342411** all succeeded. Source-specific experimental decision integrated into same self-contained `im-results/lp2-2012-gibson-agrippa-tablefree-bookkey-original-gate.md`. These exact Gibson-source q81/unknown-table first729-window branches can be retired unless *independent original instructions* select a new operation. No plaintext/key.
+
 Previous incarnation memories and evidence follow (historical, not current lease):
 
 ## 2026-11-16 source compatibility closure, Agent42
