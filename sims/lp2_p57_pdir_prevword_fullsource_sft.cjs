@@ -276,14 +276,26 @@ const heldoutPlain = heldout.output;
 const rng = seed => () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 4294967296; };
 const random = rng(0x20160105);
 const nulls = [];
-for (let s = 0; s < 12; s++) {
-  const key = chosenKey.slice();
-  for (let i = key.length - 1; i > 0; i--) {
+for (let sample = 0; sample < 12; sample++) {
+  // Matched original-search null: permute the 55 actual GP runes, then
+  // refit ALL four arithmetic/sign and both collision-model alternatives.
+  const shuffled = titleKey.slice();
+  for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(random() * (i + 1));
-    [key[i], key[j]] = [key[j], key[i]];
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
-  const out = beam(start, key, chosenSign, candidate.model);
-  nulls.push(out.meanLog);
+  const primeShuffled = shuffled.map(i => source.prime[i] % 29);
+  let best = -Infinity;
+  for (const candidateKey of [shuffled, primeShuffled]) {
+    for (const sign of [1, -1]) {
+      const unconditional = direct(start, candidateKey, sign, 1);
+      best = Math.max(best, languageScore(unconditional));
+      for (const model of ['skip', 'coin']) {
+        best = Math.max(best, beam(start, candidateKey, sign, model).meanLog);
+      }
+    }
+  }
+  nulls.push(best);
 }
 const sortedNulls = [...nulls].sort((a,b)=>a-b);
 const controlP57 = languageScore(clear);
