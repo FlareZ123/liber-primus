@@ -54,7 +54,7 @@ const lp1Plain = runes('IDONT');
 assert.deepEqual(lp1Cipher, [10, 4, 7, 9, 17]);
 assert.deepEqual(lp1Cipher.map((v, i) => mod(v - lp1Plain[i])),
   runes('FIRFUMFERENFE').slice(0, 5));
-assert.equal(book.pages[56].indices[0], letters.AE);
+assert.equal(book.pages[56].indices[0], book.translit.indexOf('AE'));
 assert.equal(mod(book.pages[56].indices[0] - (2 - 1)), letters.A);
 console.log('AUTHENTIC POSITIVES: LP1 I-RWN-B to I-DONT; LP2 p56 AE to A');
 
@@ -146,13 +146,11 @@ function constraints(ex, siteIndex, word) {
 for (const a of [1, 28]) for (const b of [1, 28]) {
   const native = Array.from({length: original.length},
     (_, i) => book.pages[57].indices[i % book.pages[57].indices.length]);
+  const plantedWords = ['DONT', 'ITS', 'HED', 'CANT'];
   for (let site = 0; site < 4; site++) {
     const s = sites[site];
-    native.splice(s.start, s.original.length, ...runes(site % 2 ? 'ITS' : 'DONT'));
+    native.splice(s.start, s.original.length, ...runes(plantedWords[site]));
   }
-  // Site 2 is also 2+1, site 3 is 3+1.
-  native.splice(sites[2].start, 3, ...runes('HED'));
-  native.splice(sites[3].start, 4, ...runes('CANT'));
   const iv = [4, 9, 13, 20, 24], k = 11;
   const planted = encrypt(native, a, b, k, iv);
   assert.deepEqual(decrypt(planted, a, b, k, iv), native);
