@@ -137,10 +137,12 @@ function summarizePageshix(text, target) {
   const header = rows[0];
   const data = rows.slice(1).filter(r => r.length >= header.length);
   const columns = [];
+  const buffers = [];
   for (let j = 0; j < header.length; j++) {
     const vals = data.map(r => parseInt(String(r[j]).trim().replace(/^0x/i, ''), 16));
     if (vals.some(x => !Number.isInteger(x) || x < 0 || x > 255)) continue;
     const buf = Buffer.from(vals);
+    buffers.push(buf);
     columns.push({
       label: header[j], bytes: buf.length,
       sha256: crypto.createHash('sha256').update(buf).digest('hex'),
@@ -149,6 +151,19 @@ function summarizePageshix(text, target) {
       equalsThefileReversed: !!target && Buffer.from(buf).reverse().equals(target)
     });
   }
+  let commonPrefixBytes = 0;
+  if (buffers.length) {
+    const limit = Math.min(...buffers.map(x => x.length));
+    while (commonPrefixBytes < limit && buffers.every(x => x[commonPrefixBytes] === buffers[0][commonPrefixBytes])) commonPrefixBytes++;
+  }
+  function entropy(buf) {
+    const hist = new Array(256).fill(0);
+    for (const v of buf) hist[v]++;
+    let h = 0;
+    for (const n of hist) if (n) { const p = n / buf.length; h -= p * Math.log2(p); }
+    return h;
+  }
+  const after40 = target ? target.subarray(40) : Buffer.alloc(0);
   const xor = Buffer.alloc(data.length);
   const sum = Buffer.alloc(data.length);
   for (let i = 0; i < data.length; i++) {
@@ -162,7 +177,13 @@ function summarizePageshix(text, target) {
   return {
     sha256: crypto.createHash('sha256').update(text).digest('hex'),
     rows: data.length, columns: header.length, header,
+    commonPrefixBytes,
+    commonPrefixHex: buffers.length ? buffers[0].subarray(0, commonPrefixBytes).toString('hex') : null,
     targetBytes: target ? target.length : null,
+    targetAfter40Bytes: after40.length,
+    targetAfter40EntropyBitsPerByte: after40.length ? entropy(after40) : null,
+    targetAfter40UniqueByteValues: after40.length ? new Set(after40).size : null,
+    targetAfter40Fits256x227: after40.length === 256 * 227,
     targetPrefix: target ? target.subarray(0, 16).toString('hex') : null,
     columnMatches: columns.filter(x => x.equalsThefile || x.equalsThefileReversed),
     columns,
