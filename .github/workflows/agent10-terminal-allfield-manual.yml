@@ -1,0 +1,21 @@
+name: Agent 10 terminal polynomial all-field SFTs
+on:
+  workflow_dispatch:
+
+jobs:
+  terminal-polynomial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify source-known universal GP E root-count theorem
+        run: |
+          node --check sims/lp2_terminal256_known180_polynomial_rootbound_sft.cjs
+          node sims/lp2_terminal256_known180_polynomial_rootbound_sft.cjs
+      - name: Verify all-prime finite difference theorem and GF257 original-suffix inverse
+        run: |
+          node --check sims/lp2_terminal256_allprime_difference_gf257_suffix_sft.cjs
+          node sims/lp2_terminal256_allprime_difference_gf257_suffix_sft.cjs
