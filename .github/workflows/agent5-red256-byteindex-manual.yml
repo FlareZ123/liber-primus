@@ -10,6 +10,7 @@ on:
         options:
           - all
           - numbered-index
+          - literary
 
 permissions:
   contents: read
@@ -62,3 +63,15 @@ jobs:
           node-version: '22'
       - name: Source-number literal indexing and five-share interpolation
         run: node sims/lp2_p36_38_numbered_index_lagrange_sft.cjs
+
+  source-literary-gutenberg:
+    if: inputs.gate == 'literary' || inputs.gate == 'all'
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Pinned public-domain NLTK Gutenberg literal-GP wordlength source test
+        run: python sims/lp2_nltk_gutenberg_wordlength_literal_gate_sft.py
