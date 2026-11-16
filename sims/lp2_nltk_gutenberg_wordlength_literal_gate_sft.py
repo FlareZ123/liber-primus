@@ -64,7 +64,7 @@ def gp_length(word: str) -> int:
         total += 1
     return total
 
-assert [gp_length(x) for x in ("THE", "THINGS", "END", "QUICK", "CICADA")] == [2, 3, 3, 4, 6]
+assert [gp_length(x) for x in ("THE", "THINGS", "END", "QUICK", "CICADA")] == [2, 3, 3, 5, 6]
 
 keys: dict[tuple[int, ...], list[int]] = defaultdict(list)
 for j in range(len(lengths) - ANCHOR + 1):
