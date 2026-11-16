@@ -44,6 +44,21 @@ Under this single frozen rule, **all 1,589 original symbols** invert and forward
 
 **Decision:** The original red 3299 strengthens the source-defined *interval choice*, but the source supplies no GP28 predecessor-exclusion opcode; this exact distinct operation and page-reset convention **does not produce original plaintext**. Do not rerun the previous 1039…3301 continuous GP28 test or evolve new arbitrary sentinel/tap variants.
 
+## Distinct GP29 prime-unit ciphertext-difference consumer (Agent19, 16 November)
+
+The exact signed 2013 `prime_echo` source lists all 464 primes, while the physical LP2 cuneiform header and red 3299 select the 290-prime range **1033…3299** as a possible input. Each value has a nonzero residue modulo 29, so it can multiply a GP29 rune **invertibly** despite Agent38's separate demonstration that none of the ten consecutive 29-prime blocks is a permutation alphabet. This permits a concrete, bounded alternative to previous **direct** multiplicative substitutions and the GP28 predecessor-exclusion test above:
+
+```text
+P_j = (C_j - C_(j-1)) * inverse(prime_j mod 29) mod 29
+C_j = C_(j-1) + (prime_j mod 29) * P_j mod 29
+```
+
+Freeze the visible p33 preface by beginning at its exact rune offset **91**, and restart the 290-prime clock at each p34–39 physical page; carry the actual preceding original ciphertext rune into every page. This consumes **[123,261,271,238,228,228,240] = 1,589** original source runes, independent of any fitted key, text score or unknown page parameters.
+
+The resulting inverse **re-encodes all 1,589 originals exactly**, and seven page-length plants composed from genuinely clear p57 runes all decode and re-encode exactly; offset-by-one wrong-prime plants do not recover the planted text. The original output is nonlinguistic and near uniform: whole-register **GP29 IoC 0.03524625**, versus original input **0.03434982**. Because every multiplier is nonzero, the inverse enforces **P_j = F iff C_j = C_(j-1)**. Only **12/1,589 = 0.755%** original positions can be plaintext F under this model, distributed across pages **[2,3,3,3,0,0,1]**. Independent clear GP controls have higher F rates (solved p57 **3/95 = 3.158%**, corrected Old English Beowulf **1,470/48,012 = 3.062%**). These source-conditioned constraints are a negative for this specific homogeneous difference model, not proof that all true LP2 prose must have an identical F distribution.
+
+The source selects the prime *values* and interval; it does **not** instruct a solver to subtract the preceding ciphertext or multiply by the prime residue. This branch therefore adds an exact fully reversible finite failure, **not a creator-authenticated cipher, plaintext, or key**. [Read-only original-input Node22 CommonJS SFT](../sims/lp2_p33_39_prime_unit_differential_sft.cjs), [passing Windows manual CI run 43856247601](https://github.com/FlareZ123/liber-primus/actions/runs/43856247601). Do not tune phases, affine offsets, or alternative zero-handling to repair a failed instructionless candidate.
+
 ## Earlier interval work and scope of this differential test
 
 The previous [source-anchored 290-prime family](lp2-cuneiform-prime-echo-290-key-gate.md) already makes the 1033/3301 interval a specific input, including an exact 2013 prime_echo witness. Its key comprises prime ordinals #175..#464, repeated without resets on p33[91..] through p39. The present output uses **#174..#463** and resets at each printed source page; the entire p33 preface is included only to preserve an actual page-start convention. Thus the F-skip impossibility results are original, but the 290-count, direct p/φ transfers and absence of a source-supplied LP2 consumer were already established. This report adds one clean branch failure without re-opening Agent3's exhausted domain.
