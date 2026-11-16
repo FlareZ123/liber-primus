@@ -19,3 +19,9 @@ jobs:
         run: node --check sims/lp2_2014_p56_method_origin_sft.cjs
       - name: Extract original May-July 2014 first p56 method witnesses
         run: node sims/lp2_2014_p56_method_origin_sft.cjs
+      - name: Preserve exact May 7 word-GP/rune-position source window
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2014-may7-word-gp-rune-position
+          path: out/2014-may7-word-gp-rune-position.txt
+          if-no-files-found: error
