@@ -39,6 +39,8 @@ Observed source facts:
 
 The alignment is a real structural observation. It does not, by itself, establish that the table is a decoder.
 
+**Holdout provenance caveat:** The 13/31 floral selector came from Agent24's independent audit of original p40–55 JPEG artwork, which includes the nominal p40–53 holdout. I did not decode or score p40–53 rune content, but the visual selector was not image-blind to those pages. Treat this as a source-motivated training rejection, not a fully blind image-level holdout experiment.
+
 ## Frozen decoder and controls
 
 The exact implementation is `sims/lp2_13dot32x8_word_direction_gate.cjs`. It uses the source parser with page boundaries carried, computes each row from the count of thirteen-dot events at or before the printed-word start, and applies:
@@ -55,7 +57,7 @@ k_i=T[r_i,d_{i-1}]\bmod28
 
 where \(d_{i-1}\) is the preceding ciphertext word's prime sum modulo 8. The 138 genuine small stops are preserved as punctuation; they are not used as key events.
 
-A 95-rune, 20-word plant made from the known p57 GP plaintext, with its initial direction taken from the preceding p56 ciphertext word, round-trips exactly through the forward and inverse transducer. The wrong-grammar plant decoder using previous-word length modulo 8 recovers only 14 of 95 rune positions. This verifies the implementation and the literal-F bijection; it does not validate the cipher against LP2.
+A 95-rune, 20-word plant made from the known p57 GP plaintext, with its initial direction taken from the preceding p56 ciphertext word, round-trips exactly through the forward and inverse transducer. The wrong-grammar plant decoder using previous-word length modulo 8 recovers only 14 of 95 rune positions. This verifies the implementation and the literal-F bijection; it does not validate the cipher against LP2. This is a short source-native control, not an original-length plant; a full-length plant was not built because the original p0–2 training gate already failed.
 
 ## Original-ciphertext result
 
