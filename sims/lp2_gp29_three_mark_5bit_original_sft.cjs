@@ -106,6 +106,67 @@ function measure(lo, hi) {
   };
 }
 
+
+const torBase32 = "abcdefghijklmnopqrstuvwxyz234567";
+const knownCicadaOnions = new Set([
+  "auqgnxjtvdbll3pv", "cu343l33nqaekrnw", "fv7lyucmeozzd5j4",
+  "avowyfgl5lkzfj3n", "q4utgdi2n4m4uim5", "ut3qtzbrvs7dtvzp",
+  "ky2khlqdf7qdznac",
+]);
+
+/**
+ * Construct one of the three independent source-visible 256-object selections
+ * previously documented in #1278/#1282, preserving all 225 original red runes.
+ * @param {"A"|"B"|"C"} className
+ */
+function red256Symbols(className) {
+  const values = [];
+  let redCount = 0;
+  let markerCount = 0;
+  for (const p of corpus.pages) {
+    const inkPage = byPage.get(p.page);
+    const marked = inkPage?.large_punctuation || [];
+    const red = new Set();
+    for (const span of inkPage?.red_spans || []) {
+      for (let i = span.start; i < span.start + span.length; i++) red.add(i);
+    }
+    let markerIndex = 0;
+    for (let offset = 0; offset <= p.indices.length; offset++) {
+      while (markerIndex < marked.length && marked[markerIndex][0] === offset) {
+        const mark = marked[markerIndex++];
+        const chosen = className === "A" ? mark[1] === 13 :
+          className === "B" ? (mark[1] === 13 && mark[2] === "red") ||
+            (mark[1] === 23 && mark[2] === "red") :
+            p.page < 56;
+        if (chosen) {
+          values.push(extra.get(mark[1]));
+          markerCount++;
+        }
+      }
+      if (offset < p.indices.length && red.has(offset)) {
+        values.push(p.indices[offset]);
+        redCount++;
+      }
+    }
+  }
+  assert.deepEqual([redCount, markerCount, values.length], [225, 31, 256]);
+  return values;
+}
+
+/** @param {"A"|"B"|"C"} className */
+function base32OnionBlocks(className) {
+  const values = red256Symbols(className);
+  const blocks = [];
+  for (let i = 0; i < values.length; i += 16) {
+    const host = values.slice(i, i + 16).map((v) => torBase32[v]).join("");
+    assert.match(host, /^[a-z2-7]{16}$/);
+    blocks.push(host);
+  }
+  assert.equal(blocks.length, 16);
+  return { eventClass: className, first: blocks[0], last: blocks[15],
+    known2014Matches: blocks.filter((host) => knownCicadaOnions.has(host)) };
+}
+
 function main() {
   assert.equal(corpus.pages.length, 58);
   assert.equal(ink.counts.large, 36);
@@ -118,6 +179,11 @@ function main() {
   assert.equal(whole.first24Hex,
     "7a24334f607ea552f84b3640bb0d224c8f1c3ecc55429c99");
   const reports = chapters.map(([start, end]) => measure(start, end));
+  const onions = ["A", "B", "C"].map(base32OnionBlocks);
+  assert.deepEqual(onions.map((o) => o.known2014Matches.length), [0, 0, 0]);
+  assert.equal(onions[0].first, "pisdgt3ap2svf66u");
+  assert.equal(onions[1].last, "zlwpe66nyeyrus67");
+  assert.equal(onions[2].last, "kt66zlwpenyeyrus");
   assert.equal(reports[6].first24Hex,
     "bb1c502b0741bccb0212b731b79b5c48b241ee6774f578c0");
   assert.deepEqual([reports[6].byteCount, reports[6].residualBits], [1055, 0]);
@@ -126,9 +192,9 @@ function main() {
   assert.ok(reports.every((r) => r.standardHeader === null && !r.completeAscii));
   console.log(JSON.stringify({ alphabet: "GP29 + 10/13/23-dot marks -> 0..31",
     bitOrder: "MSB-first", markOrder: "ascending 10,13,23",
-    chapters: reports, whole }, null, 2));
+    chapters: reports, whole, onions }, null, 2));
 }
 
 if (require.main === module) main();
 
-module.exports = { originalSymbols, packFive, measure };
+module.exports = { originalSymbols, packFive, measure, red256Symbols, base32OnionBlocks };
