@@ -1,6 +1,6 @@
 {
-  "schema": 1,
-  "description": "Original-image adjudicated override for physical LP2 page 0 ink and punctuation boundaries. Preserve derivative upstream metadata and rune sequence.",
+  "schema": 2,
+  "description": "Original-image page0 red ink and ordinary/large punctuation. Supersedes a mistaken earlier red8/black5 claim. Retains original rune corpus and reconciles source derivative annotation.",
   "original_jpeg": {
     "path": "resources/liber-primus/17.jpg",
     "sha256": "197e1e153958b9a2736b09c10eea7d8bb00e0632fd22a8d9606840becc79942e",
@@ -12,7 +12,7 @@
   },
   "physical_page": 0,
   "physical_zero_based": {
-    "red_runes": [
+    "red_words": [
       {
         "start": 0,
         "length": 8,
@@ -26,23 +26,9 @@
           19,
           27,
           0
-        ]
-      }
-    ],
-    "large_punctuation": [
-      {
-        "after_runes": 8,
-        "dots": 13,
-        "ink": "red",
-        "crop_xyxy": [
-          1399,
-          640,
-          1448,
-          770
-        ]
-      }
-    ],
-    "black_following_runes": [
+        ],
+        "first_rune_is_oversized_initial": true
+      },
       {
         "start": 8,
         "length": 5,
@@ -56,24 +42,74 @@
         ]
       }
     ],
-    "next_small_punctuation": {
-      "after_runes": 13,
-      "kind": "black printed full stop"
-    },
-    "unchanged_gp29_prefix_length": 13
+    "small_punctuation": [
+      {
+        "after_runes": 8,
+        "ink": "red",
+        "kind": "ordinary word divider",
+        "crop_xyxy": [
+          1122,
+          640,
+          1135,
+          770
+        ],
+        "component_xyxy": [
+          1123,
+          725,
+          1133,
+          735
+        ]
+      }
+    ],
+    "large_punctuation": [
+      {
+        "after_runes": 13,
+        "dots": 13,
+        "ink": "red",
+        "crop_xyxy": [
+          1399,
+          640,
+          1448,
+          770
+        ]
+      }
+    ],
+    "black_following_runes": [
+      {
+        "start": 13,
+        "length": 7,
+        "runes": "ᚦᛄᚷᚫᚠᛄᛟ",
+        "gp_indices": [
+          2,
+          11,
+          6,
+          25,
+          0,
+          11,
+          22
+        ],
+        "crop_xyxy": [
+          1449,
+          640,
+          1777,
+          770
+        ]
+      }
+    ],
+    "first_line_transcription": "ᛋᚻᛖᚩᚷᛗᛡᚠ-ᛋᚣᛖᛝᚳ.ᚦᛄᚷᚫ-ᚠᛄᛟ-/"
   },
-  "source_discrepancy": {
+  "source_adjudication": {
     "historical_annotation": "resources/liber-primus/lp2-ink-annotations.json",
     "recorded_red_length": 13,
-    "original_image_red_length": 8,
+    "original_image_red_length": 13,
     "recorded_marker_after_runes": 13,
-    "original_image_marker_after_runes": 8,
+    "original_image_marker_after_runes": 13,
     "historical_punctuation_inventory": "resources/liber-primus/lp2-punctuation-identity.json",
     "historical_event_zero_offset": 13,
-    "original_image_event_zero_offset": 8,
-    "color_count_implication": "Subtract five from historical red-rune count 225 if all other annotations unchanged; this is not a full-book independent color census.",
-    "status": "Historical derivative entries retained unchanged; this file overrides the physical interpretation of p0 only."
+    "original_image_event_zero_offset": 13,
+    "previous_2026_11_16_wrong_claim": "red8 marker8 black5; retracted",
+    "red_census_implication": "Do not subtract five from derivative 225 red-rune total because both title words are original red ink."
   },
-  "reproducer": "sims/lp2_p0_red8_marker8_original_image_sft.py",
-  "notes": "The image-based finding constrains where a possible red/black encryption-mode switch occurs. It does not authenticate any proposed Latin decryption or assign a key."
+  "reproducer": "sims/lp2_p0_red13_marker13_original_image_sft.py",
+  "notes": "No unknown plaintext or decrypting key recovered."
 }
