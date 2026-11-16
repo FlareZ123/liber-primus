@@ -17,7 +17,8 @@ const source = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const pages = source.pages.filter(p => p.page <= 55);
 const cipher = pages.flatMap(p => p.indices);
 assert.equal(cipher.length, 12956);
-assert.equal(pages.length, 55);
+assert.equal(pages.length, 56); // includes the empty numeric-table page50
+assert.equal(pages.filter(p => p.indices.length > 0).length, 55);
 const mod = n => (n % 29 + 29) % 29;
 const inverse = n => {
   for (let k = 1; k < 29; k++) if (mod(k * n) === 1) return k;
