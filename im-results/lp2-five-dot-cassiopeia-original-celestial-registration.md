@@ -1,6 +1,6 @@
-# Original LP2 five-dot stencil vs the five bright Cassiopeia stars
+# Original LP2 five-dot stencil vs Cassiopeia and Southern Cross star geometry
 
-**Agent3 independent source-first gate, 16 November 2026.** Result: the natural five-star Cassiopeia chart does **not** faithfully register on LP2 p56's original five-dot graphic under any planar affine map, even granting a completely secret scale, rotation, shear, reflection and translation. The best unrestricted reassignment among all 120 five-star permutations also misses at larger than a dot diameter. This is a **bounded geometrical negative** for one natural and otherwise tempting celestial interpretation, **not** evidence that the stencil was intended as a star chart, and **not** a plaintext/key recovery.
+**Agent3 independent source-first gate, 16 November 2026.** Result: the natural five-star Cassiopeia chart does **not** faithfully register on LP2 p56's original five-dot graphic under any planar affine map. Five-star Southern Cross and 3+2 Southern Cross/Pointer alternatives also fail literal point-center registration, even granting a completely secret scale, rotation, shear, reflection and translation. Cassiopeia's and Crux's 120-permutation optima exceed a printed dot diameter in RMS. A cross-plus-pointer option narrowly lowers this to about one diameter, but only under interleaved, postselected star assignments contrary to the source's 3+2 geometry. This is a **bounded geometrical negative** for three natural and otherwise tempting celestial interpretations, **not** evidence that the stencil was intended as a star chart, and **not** a plaintext/key recovery.
 
 ## Why this candidate is testable
 
@@ -24,8 +24,28 @@ Compute the *gnomonic* tangent-plane projection of the five bright stars about t
 
 The natural candidate's third point lies about **168 px** from its optimized predicted position, around **2.4 printed dot diameters**. The unrelated 120-permutation optimization still leaves **79 px RMS**. These are objective disagreements with the literal affine-star-map proposal; allowing an arbitrary nonlinear warp or hand-drawn decorative distortion could of course make almost any five-dot figure match some sky pattern, losing a discriminating key rule.
 
-**Decision:** no source-selected Cassiopeia ordering, coordinate key or celestial-bearing cipher follows. Do not promote the five-dot zigzag into a Cassiopeia key without a new original instruction that determines the star assignment and rescues the measured mismatch *without* fitting free geometric exceptions. This result is intentionally distinct from the 16-Nov-2026 Agent30 **Vespucci orthogonal-triangle** proposal: that source describes a three-star near-right triangle and auxiliary southern stars, and this Cassiopeia gate neither evaluates nor rules it out. The earlier p56 three-of-five near-right triangle remains an independent, tentative observation.
+## Southern Cross and the visually suggested 3+2 split
 
-**Reproducer:** [original-source JPEG-centroid and gnomonic affine SFT](../sims/lp2_fivedot_cassiopeia_original_gnomonic_sft.py), runs with NumPy/OpenCV and original scan 73.jpg, asserts centroid count, source JPEG digest, original RMS range and a zero-residual positive plant. Python 3.11 / OpenCV 4.13 source execution passed locally on 16 November 2026. No editing of source images or ciphertext occurred.
+A documented 2019 interview proposed a constellation relation for the same five-dot motif, including a disputed reading of *Salvator Mundi*'s orb as the Southern Cross. This creates an independently specific alternative to a Cassiopeia W. Test source-standard J2000 sky positions, again using the same literal p56 source centroids and **the same unrestricted affine-fit code**, before attempting a star-name cipher.
+
+- **Five principal Crux stars:** α Acrux, β Mimosa, γ Gacrux, δ Imai and ε Ginan. The first four positions come from [SIMBAD Acrux](https://simbad.cds.unistra.fr/simbad/sim-id?Ident=Acrux), [SIMBAD β Crucis](https://simbad.u-strasbg.fr/simbad/sim-basic?Ident=Beta+Crucis&submit=SIMBAD+search), [SIMBAD γ Crucis](https://simbad.u-strasbg.fr/simbad/sim-basic?Ident=Gamma+Crucis), and [Crux J2000 star table](https://freestarcharts.com/component/content/article/14-guides/constellation/11-crux-constellation-guide); ε uses [Ginan's J2000 reference](https://theskylive.com/sky/stars/ginan-epsilon-crucis-star).
+- **Three Crux stars plus the Southern Pointers:** α, β and γ Crucis, then α Centauri and β Centauri. This is a real navigation asterism family, but the choice of three among four cross points is provisional and not specified by the manuscript. The two pointers are clearly separate stars, offering a source-independent candidate for the print's three leftmost and two rightmost points.
+
+The preregistered five-star index sets, gnomonic projection and complete 120-permutation affine minima yield:
+
+| Fixed sky subset | Best RMS over any of 5! star-to-dot assignments | Extra source-visible constraint |
+| --- | ---: | --- |
+| Cassiopeia α/β/γ/δ/ε | **78.744 px** | Earlier result; normal RA/Bayer order is 88.877 px |
+| Crux α/β/γ/δ/ε | **79.587 px** | Natural α,β,γ,δ,ε→x-order RMS **219.944 px** |
+| Crux α,β,γ + Centaurus α,β | **63.480 px** | The best arbitrary assignment **interleaves** Crux and Centaurus dots, contrary to the visible 3+2 grouping |
+| Same five Crux/Centaurus stars with all three Crux on the left and both pointers on the right | **84.728 px** | Best of the **12** naturally grouped assignments |
+
+The last three tested readings all use identical original p56 dots, with **no rune-language scoring, key search or after-the-fact geometric warp**. The apparently lower 63.480 px score is not a successful literal sky chart: its best five-star assignment interleaves groups that the visible split would distinguish; under the preselected 3+2 interpretation the RMS rises to 84.728 px. A 63 px residual is close to one original ink dot diameter and cannot be argued into a unique celestial key. More general hand drawings are not excluded. A precisely authored five-star mapping would need independent historical documentation, not a progressively freer fit.
+
+This does **not** falsify Vespucci's independently proposed 1504 **three-star** right-triangle analogy, which tests different period imagery and an explicit angular claim. It also does not assert that the 2019 interview is creator-authenticated.
+
+**Decision:** no source-selected Cassiopeia, Crux or Crux-plus-pointer ordering, coordinate key or celestial-bearing cipher follows. Do not promote the five-dot zigzag into a star-name key without a new original instruction that determines the star assignment and rescues the measured mismatch *without* fitting free geometric exceptions. This result is intentionally distinct from the 16-Nov-2026 Agent30 **Vespucci orthogonal-triangle** proposal: that source describes a three-star near-right triangle and auxiliary southern stars, and this Cassiopeia gate neither evaluates nor rules it out. The earlier p56 three-of-five near-right triangle remains an independent, tentative observation.
+
+**Reproducer:** [original-source JPEG-centroid and gnomonic affine SFT](../sims/lp2_fivedot_cassiopeia_original_gnomonic_sft.py), runs with NumPy/OpenCV and original scan 73.jpg, asserts centroid count, source JPEG digest, both constellation RMS ranges, the constrained Southern Pointer 3+2 fit, and a zero-residual positive plant. Python 3.11 / OpenCV 4.13 Cassiopeia source execution and independent numerical Southern Cross projection check passed locally on 16 November 2026. The consolidated source SFT's new Southern Cross assertions use the same original source-coordinate routine. No editing of source images or ciphertext occurred.
 
 **Overall state unchanged:** LP2 pp0–55 remain unsolved; this experiment only removes a concrete, independently computable celestial shortcut from the shortlist.
