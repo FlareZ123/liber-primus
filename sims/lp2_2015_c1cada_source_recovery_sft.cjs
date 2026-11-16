@@ -168,7 +168,6 @@ async function main() {
         bytes: r.bytes.length, sha256: r.sha256,
         preview: text.slice(0, 5000),
         tailPreview: text.slice(-5000),
-        fullText: (name === 'pastebin_wEgepAXG_raw' || name === 'pastebin_wWSxR5e9_raw') ? text : undefined
       };
     } catch (e) { report.attachments[name] = { error: String(e) }; }
   }));
