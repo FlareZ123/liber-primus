@@ -1,8 +1,18 @@
 name: Agent4 GF29 multiplicative feedback original-source gate
 on:
   workflow_dispatch:
+    inputs:
+      gate:
+        description: Select original-source test
+        required: true
+        type: choice
+        default: legacy
+        options:
+          - legacy
+          - q252-flanks
 jobs:
   sft:
+    if: inputs.gate != 'q252-flanks'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,3 +44,17 @@ jobs:
         run: |
           node --check sims/lp2_fiveback_fullword_partition_sft.cjs
           node sims/lp2_fiveback_fullword_partition_sft.cjs
+
+  q252-flanks:
+    if: inputs.gate == 'q252-flanks'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact p50 H-G quotient original flanking-text inverse
+        run: |
+          node --check sims/lp2_p50_hg_q252_flanking_direct_sft.cjs
+          node sims/lp2_p50_hg_q252_flanking_direct_sft.cjs
