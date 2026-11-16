@@ -316,6 +316,25 @@ function differenceReadoutGate(words) {
   assert.deepEqual(out.map(x => x.map(y => y.n)), [[2167, 2903], [2140, 2850]]);
   assert.deepEqual(out.map(x => x.map(y => y.zeros)), [[22, 10], [14, 17]]);
   assert.ok(Math.abs(out[0][1].ioc29 - 1.0270560671450646) < 1e-10);
+  // A post-hoc specificity check: did every 29-symbol difference share the
+  // original doublet's word-local imbalance, or was the zero step unusual?
+  // The equal-symbol step (residue 0) was independently motivated by the
+  // previously known 86 global doublets. Other 28 step labels are controls.
+  const first = tapes[0];
+  const hist = first.map(vals => {
+    const h = Array(29).fill(0);
+    for (const value of vals) h[value]++;
+    return h;
+  });
+  const nEven = first[0].length, nOdd = first[1].length;
+  const expectedOddShare = nOdd / (nEven + nOdd);
+  const deltaRanks = Array.from({ length: 29 }, (_, k) => {
+    const odd = hist[1][k], even = hist[0][k], total = odd + even;
+    const sd = Math.sqrt(total * expectedOddShare * (1 - expectedOddShare) * (1 - total / (nOdd + nEven)));
+    return { difference: k, odd, even, z: (odd - total * expectedOddShare) / sd };
+  }).sort((a, b) => Math.abs(b.z) - Math.abs(a.z));
+  assert.deepEqual(deltaRanks.slice(0, 2).map(x => [x.difference, x.odd, x.even]), [[0, 10, 22], [27, 116, 56]]);
+  console.log("ORIGINAL EARLY 29-DIFFERENCE PHASE RANK", JSON.stringify(deltaRanks.slice(0, 5)));
   console.log("UNKEYED DELTA READOUT", JSON.stringify(out));
 }
 
