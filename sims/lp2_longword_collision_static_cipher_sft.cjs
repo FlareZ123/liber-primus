@@ -149,6 +149,54 @@ for (const [name, filename] of referenceFiles) {
   }
 }
 
+// Original visual chapter boundaries all lie between complete source words.
+// A different fixed secret dictionary in each of nine chapters remains
+// unable to conceal repeated words within that chapter.
+const chapterEnds = [729, 1874, 3603, 5506, 6527, 7960, 9640, 12648, 12956];
+const chapters = Array.from({length: 9}, () => []);
+let chapter = 0;
+let runeOffset = 0;
+for (const word of words) {
+  if (runeOffset === chapterEnds[chapter]) chapter++;
+  assert.ok(chapter < chapters.length);
+  chapters[chapter].push(word);
+  runeOffset += word.length;
+}
+assert.equal(runeOffset, 12956);
+assert.deepEqual(chapters.map((w) => w.length), [
+  158, 255, 383, 437, 224, 326, 378, 669, 66
+]);
+assert.deepEqual(chapters.map((w) => collisionPairs(w).pairs), Array(9).fill(0));
+const chapterResults = [];
+seed = 0x3301c012;
+for (const [name, filename] of referenceFiles) {
+  const bins = nativeGPWordBins(read(filename));
+  const values = [];
+  for (let run = 0; run < 1000; run++) {
+    let total = 0;
+    for (const section of chapters) {
+      const repeated = new Map();
+      for (const word of section) {
+        if (word.length < 4) continue;
+        const candidate = bins[word.length][
+          Math.floor(random() * bins[word.length].length)].join(",");
+        const previous = repeated.get(candidate) || 0;
+        total += previous;
+        repeated.set(candidate, previous + 1);
+      }
+    }
+    values.push(total);
+  }
+  chapterResults.push({
+    name,
+    min: Math.min(...values),
+    max: Math.max(...values),
+    mean: values.reduce((a, b) => a + b, 0) / values.length,
+    zeroTrials: values.filter((v) => v === 0).length
+  });
+  assert.ok(chapterResults.at(-1).min > 0);
+}
+
 // In an iid GP29 model with no equal adjacent runes inside a word,
 // there are 29*28^(length-1) equally likely words of each length.
 // Count only same-length pairs; this is a descriptive null expectation.
@@ -162,7 +210,8 @@ console.log(JSON.stringify({
   original: {runes: 12956, words: 2896, longWords: 1645, exactPairs: actual.pairs},
   wordLengthCounts: sourceCounts,
   uniformNoDoubletExpectedPairs: nullExpected,
-  lengthMatchedNativeGP: results
+  lengthMatchedNativeGP: results,
+  withinNineVisibleChapters: chapterResults
 }, null, 2));
 console.log("PASS: static occurrence-independent whole-word encodings are " +
   "incompatible with ordinary GP-native repeated-word prose on the unchanged " +
