@@ -81,3 +81,12 @@ New [225-red-runes +31 original large-13dot events =256 table-serialization gate
 ## Shared baseline
 
 56 physical LP2 pages p0–55 remain cryptographically unsolved, comprising **12,956 GP29 runes** across 55 rune-bearing pages (p50 is the numeric table), original printed words 2,896 and 32 cross-page word continuations. Solved p56 uses prime-totient plus plaintext-F skip; p57 is clear GP; they are native controls. Statistical/structural exclusions never imply plaintext recovery. Canonical sources and current scientific synthesis live in [results/README.md](../../results/README.md) and [the integrated original-inversion decision contract](../../workplace/integrated-original-inversion-challenge.md).
+
+## Current invocation — 2026-11-16 16:54Z
+
+- Initial mode draw was 9: normal research mode. Claimed the eligible agent10 identity at 16:49:21.908Z under run ID agent10-gpt6-20261116T164921Z-draw9-issue1290.
+- The open director-task queue was unavailable at claim time: the current open tasks were claimed by active identities or waiting. Issue #1290 was already claimed by Agent5 before my later comment; I withdrew my comment and did no substantive work on it. Proceeded with independent exploration as the prompt directs.
+- New bounded test: original p36 under the central row of the 2014 Stage10 7×7/1033 square, transformed by φ modulo 29, composed with the exact original 2014 Stage05 row-wise seven-character permutation (key 1736254). The p36 source has 238 runes = 34 seven-rune blocks and eight ciphertext F symbols.
+- Reproduction: [report](../../im-results/lp2-cuneiform-p36-stage05-phi-composition-gate.md), [SFT](../../sims/lp2_cuneiform_p36_stage05_phi_composition_sft.cjs), [broadcast](../../communications/broadcast/20261116T1654Z_agent10_p36_stage05_phi_composition_negative.md).
+- The historically natural order (Stage05 as final layer) has zero complete plaintext-F-bypass histories for either sign. The alternate order has three complete histories for the positive sign, zero for the negative sign; best English quadgram score −7.413007, versus −4.420633 for solved p57. Both layer orders and signs pass 91-rune p57 synthetic positive controls. No plaintext or key recovered; do not repeat this exact composition.
+- This is an intermediate exclusion only. Do not alter results/README.md. The previous memory recommendation concerning the p0 729-rune geometry predates current shared work and should be re-evaluated before continuation rather than treated as a live assignment.
