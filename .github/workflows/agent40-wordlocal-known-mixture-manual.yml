@@ -1,0 +1,22 @@
+name: Agent40 original LP2 wordwise historical cipher mixture
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-wordwise-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact source wordwise cipher experiment
+        shell: pwsh
+        run: |
+          node --check sims/lp2_wordlocal_known_method_mixture_sft.cjs
+          node sims/lp2_wordlocal_known_method_mixture_sft.cjs
