@@ -32,6 +32,7 @@ function load() {
   const lp1 = JSON.parse(fs.readFileSync(path.join(ROOT, "resources/external/relikd-solved-gp29-native-v1.json"), "utf8"));
   const lp2 = JSON.parse(fs.readFileSync(path.join(ROOT, "resources/liber-primus/lp2-corpus.json"), "utf8"));
   const gp = new Map(lp1.runes.map((r, i) => [r, i]));
+  assert.equal(lp2.prime.length, 29);
   const key = lp1.sections.slice(0, 7).flatMap(
     (section) => Array.from(section.source_text).filter((r) => gp.has(r)).map((r) => gp.get(r))
   );
@@ -54,7 +55,7 @@ function load() {
   assert.deepEqual(koan.slice(276, 279), [7, 8, 3]); // second literal WHO
   assert.equal(cipher.length, 12956);
   assert.deepEqual(CHAPTER_STARTS.slice(1).map((end, i) => end - CHAPTER_STARTS[i]), [729,1145,1729,1903,1021,1433,1680,3008,308]);
-  return { key, printedKey, correctedKey, cipher };
+  return { key, printedKey, correctedKey, gpPrimes: lp2.prime, cipher };
 }
 
 /**
@@ -141,28 +142,30 @@ function positiveControlsWithPad(sourcePlain, runningKey) {
 }
 
 function main() {
-  const { key, printedKey, correctedKey, cipher } = load();
+  const { key, printedKey, correctedKey, gpPrimes, cipher } = load();
   positiveControls(key);
   let largest = 0;
   for (const [source, runningKey] of [["edited solved LP1", key], ["printed LP1", printedKey], ["source-corrected solved LP1", correctedKey]]) {
-  positiveControlsWithPad(key, runningKey);
+  for (const [encoding, encodedKey] of [["rune index", runningKey], ["rune prime mod29", runningKey.map((v) => gpPrimes[v] % 29)]]) {
+  positiveControlsWithPad(key, encodedKey);
   for (let ch = 0; ch < 9; ch++) {
     const n = ch === 8 ? 308 : 729;
     const fragment = cipher.slice(CHAPTER_STARTS[ch], CHAPTER_STARTS[ch] + n);
     assert.equal(fragment.length, n);
     for (const bypass of [false, true]) {
       for (const sign of [-1, 1]) {
-        const best = exhaustiveBest(fragment, runningKey, sign, bypass);
+        const best = exhaustiveBest(fragment, encodedKey, sign, bypass);
         if (best.ioc > largest) largest = best.ioc;
-        console.log(JSON.stringify({ chapter: ch, firstRunes: n, keySource: source, sign, bypassCipherF: bypass, bestOffset: best.offset, bestIoc: Number(best.ioc.toFixed(9)) }));
+        console.log(JSON.stringify({ chapter: ch, firstRunes: n, keySource: source, keyEncoding: encoding, sign, bypassCipherF: bypass, bestOffset: best.offset, bestIoc: Number(best.ioc.toFixed(9)) }));
       }
     }
+  }
   }
   }
   // Direct additive original source has no native-English-looking 729-rune
   // opening for any visible chapter, even with a freely selected source offset.
   assert(largest < 0.045, "Unexpected LP1-running-key original candidate; investigate before concluding");
-  console.log("PASS: 108 original-input scans, maximum IoC " + largest.toFixed(9) + "; no candidate reaches 0.045");
+  console.log("PASS: 216 original-input scans, maximum IoC " + largest.toFixed(9) + "; no candidate reaches 0.045");
 }
 
 if (require.main === module) main();
