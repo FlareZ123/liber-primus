@@ -66,6 +66,24 @@ The authenticated solved p57 parable says to **“shed our own circumferences”
 
 Existing key-reuse work had already tested **1,439 candidate numerical keystreams** and **686 offset/sign decodes** without an original-language hit: [Phase58 source and negative results](https://github.com/pnotisdev/cicada3301/blob/main/work/log/phase58_djubei_reuse.md). Future work must choose a different independently evidenced key or operation; rerunning those library scans is low-value.
 
+## Independent half-book fold decision (Agent8, 16 November 2026)
+
+Because p27 is the final physical page of the first 28-page half of LP2 p0–55, and p55 is the final page of the second half, an art-led speculation is that a solver should pair pages **p with p+28**. The original scans were reviewed as source constraints: p27 `44.jpg` actually depicts a **single insect wing**, while terminal p55 `72.jpg` displays a **bilaterally spread winged insect** plus a pale tree and decorative margin. The independently known solved p57 parable involves an instar/circumference. These facts can motivate considering metamorphosis, completion or bilateral reflection, but no authenticated instruction identifies a cipher, numeric key, wing orientation, mirror alphabet or reset clock. The images do not assert that two equal ciphertext phrases have equal plaintext.
+
+A finite separate test asks whether the *entire* 28-page physical fold has more literal ciphertext in common than independently randomized page pairings, rather than scoring only the six-rune pair that motivated the hypothesis. On the exact `lp2-corpus.json` GP29 indices, count every shared contiguous k-gram occurrence between p0↔28, p1↔29, ..., p27↔55 for k=2,3,4,5,6. Compare each fixed total against **30,000** seed-13271337 Fisher–Yates random bijections between those two physical 28-page halves, preserving within-page sequences, page sizes, p50's zero runes and all authorial punctuation-free rune positions. These nulls are conditional page-pairing controls, not a global post-selection correction.
+
+| k | Fixed paired matches | In p27↔55 | Other fixed matches | Random-pairing mean (30,000) | Add-one upper-tail p |
+| --: | --: | --: | --: | --: | --: |
+| 2 | 1,754 | 23 | 1,731 | 1,808.68 | 0.87660 |
+| 3 | 66 | 4 | 62 | 61.95 | 0.32259 |
+| 4 | 4 | 3 | 1 | 2.07 | 0.15566 |
+| 5 | 2 | 2 | 0 | 0.109 | 0.03640 |
+| 6 | 1 | 1 | 0 | 0.0364 | 0.03640 |
+
+The only 4-rune match **outside** the anchor p27↔55 occurs at p9 offset99 ↔ p37 offset161 (`27,17,19,21`). Every 5- and 6-rune match in the chosen 28-page fold comes from the **one preselected terminal DJU-BEI** pair. Accordingly, the two nominal k5/k6 p-values merely remeasure a known match being assigned its one correct partner among 28. At the untouched k3 scale there is no unusual alignment. This specifically **retires the broader fixed 28-page ciphertext-correspondence premise** as an independent key-schedule signal; it cannot exclude a particular authored two-site marker, variable-state cipher or nonliteral page relation. The preexisting visual association remains interpretive rather than a plaintext recovery.
+
+**Reproducer:** [`sims/lp2_p27_p55_halffold_sft.cjs`](../sims/lp2_p27_p55_halffold_sft.cjs), Node.js 22 CommonJS, original source JSON, exact seeded permutations. There is no new unknown-runic plaintext, source-selected key or valid >=150-rune original inverse. Further dependent fold-cipher sweeps are unwarranted unless a separate original clue fixes an operation and predicts untouched ciphertext.
+
 ## A discriminating route to plaintext
 
 A simple globally deterministic word-substitution cipher is a weak explanation: none of the manuscript's 789 source three-rune tokens occurs more than **three** times, whereas ordinary natural-language function words recur frequently. A **fixed global period-five additive key** is also incompatible with the manuscript's nearly flat five residue-class rune distributions (GP IoCs about 0.0344–0.0347, close to 1/29); the mere difference of 6,395 original rune positions being divisible by five is insufficient evidence for a key.
