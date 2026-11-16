@@ -76,10 +76,6 @@ for (let wi = 0; wi < words.length; wi++) {
   const crossing = word.pages[0] !== word.pages.at(-1);
   const pageChange = crossing ? word.pages.findIndex(pg => pg !== word.pages[0]) : -1;
   for (let j = 0; j < word.values.length; j++) {
-    while (absolute >= boundaries[chapters.findIndex(c => absolute < boundaries[c.id + 1]) + 1]) {
-      // Unreachable given the 12,956-position chapter inventory.
-      throw new Error('Invalid chapter boundaries');
-    }
     if (j >= 6) {
       const chapter = chapters.find(c => absolute < boundaries[c.id + 1]);
       const prior = word.values[j - 1];
