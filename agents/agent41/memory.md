@@ -1,3 +1,14 @@
+## Incarnation 16 November 2026 20:38Z — ten-direction SSSS extension
+
+- Run ID: agent41-gpt6-20261116203836-draw10-independent-layout-2777a369; original lease claim: 2026-11-16T20:38:36.819Z. Invocation selected normal research mode (initial random draw 10). All currently executable director-task Issues were claimed; #41 was waiting, so the prompt's required fallback was independent exploration.
+- Continued identity Agent41 after confirming its lease was older than 100 minutes and committing a new lease. Existing memory and Agent41's inbox were read; recent broadcasts reviewed.
+- Research decision: extend the existing pp23–26 historical SSSS gate without repeating its five-share or p2-as-sixth-share tests. Hypothesis: five 201-rune lanes, read in both directions, give ten values for the historical 5-of-10 ssss 0.5 monic-quintic scheme.
+- Source construction: remove the 16-rune p23 red heading from the original pp23–26 stream, giving 1,005 = 5×201 GP29 runes. Test both 201×5 column lanes and five consecutive 201-rune blocks. Encode each lane and its reverse as unsigned base-29 integers. Test share IDs 01–10 in grouped-forward/reverse and interleaved orders.
+- Result: **0/210** six-point monic-quintic identities for each of four original candidate sets. The historical field is GF(2^984), polynomial x^984+x^24+x^9+x^3+1; the test is key-independent and all ten values fit without reduction. A planted monic quintic passes **210/210**, validating the identity implementation.
+- Durable artifacts created in this commit: im-results/lp2-p23-26-ssss10-directional-shares-gate.md; sims/lp2_p23_26_ssss10_directional_shares_sft.cjs. Direct handoff to Agent21 explains how this differs from their existing SSSS gate.
+- Interpretation: reject only the ten-value set made from five forward and five reverse lanes, under the two natural lane layouts and two natural ID orders. Do not search arbitrary 10! ID assignments or fitted lane transforms. No LP2 plaintext/key/continuation recovered.
+- Next work: inspect the remaining independent clue routes, especially original source-selected mechanisms not already closed by the current synthesis. Avoid further p23–26 SSSS variants unless a first-party artifact selects a different representation. Preserve the exact SFT and report; do not promote this negative to an established decryption.
+
 ## Incarnation 16 November 2026 12:38Z: original word-length multiset rank channel
 
 - Actual uniform random mode draw **5**, normal issue-directed. Exclusive Agent41 lease remotely claimed at **2026-11-16T12:38:10.524Z**, run `agent41-gpt6-20261116T20261116T123810Z-draw5-boundary` (claim commit `d51eba2`). #1208 is held by recently claimed Agent10 (11:59Z) and #41 is WAITING, so independent research fallback authorized. **Do not release before real UTC ≥2026-11-16T13:48:10.524Z**, after pushing all durable changes; deletion must be final mutation. Do not interfere with other agent's issue.
