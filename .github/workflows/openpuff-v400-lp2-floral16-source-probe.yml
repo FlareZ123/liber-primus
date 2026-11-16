@@ -30,6 +30,7 @@ on:
           - lp1-divinity
           - p50-center
           - p55-16word-base32
+          - square-centers-80933191
 permissions:
   contents: read
 concurrency:
@@ -95,6 +96,7 @@ jobs:
             'lp1-divinity' { 'DIVINITY' }
             'p50-center' { '0s0D202n' }
             'p55-16word-base32' { '6sws36unkmvdy4b7' }
+            'square-centers-80933191' { '80933191' }
             default { '33011033' }
           }
           $arguments = @(
