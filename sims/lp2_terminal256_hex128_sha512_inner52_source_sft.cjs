@@ -297,6 +297,72 @@ const synthetic=Array.from({length:128},(_,i)=>syntheticLayers
 assert.equal(lfsrAttempt(synthetic).bytes,64);
 assert.equal(lfsrAttempt(synthetic).bits,512);
 
+
+/**
+ * Direct p55-recovery candidate: GF(257) erasure interpolation of all 76
+ * missing perimeter values from 128 known p56 hash nibbles plus 52 known
+ * p57 GP labels. Two independently printed coordinate conventions are used.
+ */
+function power257(a, e) {
+  let out=1, x=mod(a,257);
+  for (let n=e; n>0; n=Math.floor(n/2)) {
+    if (n%2===1) out=mod(out*x,257);
+    x=mod(x*x,257);
+  }
+  return out;
+}
+/** @param {number[]} xs @param {number[]} ys @param {number[]} query */
+function interpolate257(xs,ys,query) {
+  assert.equal(xs.length,ys.length);
+  assert.equal(new Set(xs).size,xs.length);
+  const weights=xs.map((x,j)=>{
+    let denominator=1;
+    for(let k=0;k<xs.length;k++)if(k!==j)
+      denominator=mod(denominator*(x-xs[k]),257);
+    return power257(denominator,255);
+  });
+  return query.map(x=>{
+    assert.ok(!xs.includes(x));
+    let product=1, total=0;
+    for(let j=0;j<xs.length;j++) {
+      const delta=mod(x-xs[j],257);
+      product=mod(product*delta,257);
+      total=mod(total+weights[j]*ys[j]*power257(delta,255),257);
+    }
+    return mod(product*total,257);
+  });
+}
+const innerCells=shells[1].concat(shells[2],shells[3]);
+const mixedKnown=hex.concat(suffix);
+const generatedFlat=interpolate257(innerCells,mixedKnown,shells[0]);
+const generatedRank=interpolate257(
+  Array.from({length:180},(_,i)=>i+76),mixedKnown,
+  Array.from({length:76},(_,i)=>i));
+const erasure={
+  field:257, knownSymbols:mixedKnown.length, recoveredPositions:76,
+  originalCellCoordinates:{
+    gpValid:generatedFlat.filter(x=>x<29).length,
+    first16:generatedFlat.slice(0,16)
+  },
+  ringOrdinalCoordinates:{
+    gpValid:generatedRank.filter(x=>x<29).length,
+    first16:generatedRank.slice(0,16)
+  }
+};
+assert.equal(erasure.originalCellCoordinates.gpValid,7);
+assert.equal(erasure.ringOrdinalCoordinates.gpValid,8);
+assert.deepEqual(erasure.originalCellCoordinates.first16,
+  [155,119,179,25,46,214,9,61,75,186,42,228,256,77,254,161]);
+assert.deepEqual(erasure.ringOrdinalCoordinates.first16,
+  [134,0,50,180,117,22,86,106,240,38,1,234,1,70,176,130]);
+const coefficients=Array.from({length:38},(_,i)=>mod(i*i*11+i*7+3301,257));
+function evaluation(x) {
+  return coefficients.reduceRight((v,c)=>mod(v*x+c,257),0);
+}
+assert.deepEqual(
+  interpolate257(innerCells,innerCells.map(evaluation),shells[0]),
+  shells[0].map(evaluation));
+
 console.log(JSON.stringify({
   source:'Original LP2 p49-51 table, p55, p56 printed hash, p57 clear text; 2013 180-prime skip',
   shellLengths:shells.map(x=>x.length),
@@ -306,5 +372,6 @@ console.log(JSON.stringify({
   innermostKnownGP:inner,
   primeTotientHybrid:mixed,
   digestXorLinearKeyRecovery:recovered,
+  directGF257Erasure:erasure,
   conclusion:'No digest preimage, exact nibble codebook, direct prime consumer or unknown GP plaintext recovered'
 },null,2));
