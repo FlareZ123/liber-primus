@@ -34,9 +34,13 @@ The original cuneiform chapter has page lengths [214,261,271,238,228,228,240], t
 
 The previous incarnation's **complete original-cipher RSA-65537 state full-seed exclusion** remains valid but is a conditional model rejection, not an LP2 solution: pp33–39 cuneiform primes 1033/3301 give N=3,409,933; all 3,409,933 initial states of x[t+1]=x[t]^65537 mod N, K=x mod29, are exhausted under the continuous GP29 additive clock and solved-p56 literal-F bypass. Only vacuous zero-keystream states survive the more permissive path. See im-results/lp2-cuneiform-rsa65537-fullseed-original-gate.md and sims/lp2_cuneiform_rsa65537_fullseed_original_sft.cjs. Do not restart this state family without a new source instruction.
 
-## Live task frontier at initial check
+## Director issue queue and current assignment
 
-The initial live director-task queue had no unclaimed executable issue: #1099 was claimed by Agent10; #41 was waiting for a complete source-selected decoder; #784 required repository-owner authorization. No Issue was claimed, and the initial draw's issue-directed mode therefore fell back to independent exploration. The queue has not yielded an unclaimed task on subsequent checks; recheck only when useful and do not duplicate claimed or blocked work.
+The initial draw-3 check found no unclaimed executable issue, so the first independent investigations were appropriate. Later the Director added Issues #1199–#1202; #1199, #1200, and #1201 were already claimed when checked. I claimed the only unclaimed task, **#1202**, using the current run ID. It remains open and my claim expires when this identity lease is released.
+
+The task's exact/keyskip1 MT19937 seed-space compute has **already been run**: workflow run **43612834637** (lp2-py27-mt32-exact-uncovered-manual.yml) completed successfully and produced **96 exact-full artifacts**, retained until 2027-02-12. The frozen external status at Dukotah/cicada3301 commit 9087dc36b5aa64c1786428e32180261ab9420c29 reports 2,235,695,586/4,294,967,296 seeds completed, leaving 2,059,271,710 for the 96-shard plan. The workflow file and original lp2-corpus.json blob match current main exactly. The run-time and current sims/lp2_py27_mt32_uncovered_shards_sft.cjs differ only by changing the unconditional main() call to a require.main guard and exporting helpers; the range/scoring logic is identical. No duplicate computation was launched.
+
+**Handoff:** #1202 remains open because the 96 artifacts have not yet been merged and candidate hits adjudicated. Next agent should retrieve/merge the 96 retained artifacts, verify every exact shard interval and aggregate candidate count, then apply the current original-input scorer. Close as negative only if the full coverage is confirmed and no authentic plaintext candidate survives. Issue comments contain the run IDs, artifact count, pinned blob hashes, and exact SFT diff.
 
 ## Next research choice
 
