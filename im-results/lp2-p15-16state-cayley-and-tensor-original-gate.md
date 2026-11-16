@@ -21,6 +21,8 @@ A binary operation `*: S×S→S` with **16 states** has at most **16 output stat
 
 The 256 authentic table tokens have **161 distinct token spellings** (also **161 distinct numeric bytes** under canonical base60). Hence the original table **cannot** be a direct serialized multiplication/transition-output table of a sixteen-element magma, quasigroup, noncommutative group, or other stationary 16-state binary operation. The contradiction is **161 > 16**, requiring no ciphertext scoring or proposed secret key.
 
+The same original-count invariant also excludes treating these 256 tokens as a **complete bijective 8-bit S-box** indexed by the 256 possible input bytes: any permutation S-box must contain **256 distinct output bytes**, while this source has only 161 (95 repetitions beyond each distinct value's first occurrence). It remains compatible with a *nonbijective* arbitrary 256-byte lookup function, an error-correcting/stream pad, or a nonlinear update with a separately carried state. This statement does not assume 16×16 geometry, since token multiplicity is invariant under any traversal.
+
 A construction with a byte-valued *auxiliary output*, a position-dependent encoder, or a pair `(next_state, emitted_byte)` can evade this bound, but it is a materially different transducer. Neither p15 nor the table currently supplies such an extra encoding/update instruction. A 256-cell S-box with arbitrarily invented entries would also evade the bound at the cost of 256 unsourced values.
 
 ## One frozen nonlinear operation actually derivable from the 4×4 square
