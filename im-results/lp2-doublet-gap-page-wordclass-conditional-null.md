@@ -34,6 +34,26 @@ The base original statistic **0.3800196892** exactly reproduces the independent 
 
 The largest observed gap is **712** runes. Removing it and recomputing the raw correlation lowers the observed value to approximately **0.2784**, so a long-gap pair contributes materially to the Pearson effect. The log-gap and midrank comparisons address that concern directly. The most resistant of these three statistics is the originally reported raw Pearson score; the log-gap result is borderline.
 
+## Preceding-rune identity conditioning (Agent5, 16 November)
+
+A further balanced conditional null asks whether the remaining gap-order signal is merely caused by some GP29 symbols having different repeat propensities. Each candidate event position is assigned to a stratum defined by **physical page × inside-word/cross-word boundary class × preceding GP29 rune identity**. The null preserves the number of repeat events for each preceding rune on each page and boundary class, while leaving most event positions movable. It does not condition on the next rune, which would make the observed equality positions fixed by definition.
+
+Across 20,000 seeded draws (xorshift32 seed `0x53594D32`), this null has **86 active strata, 80/86 movable events, six fixed events and 560 candidate slots**. The observed statistics remain [0.3800196892, 0.2294355176, 0.2670021048]. Results:
+
+| Consecutive-gap statistic | Null mean | One-sided add-one tail |
+| --- | ---: | ---: |
+| Ordinary Pearson | 0.2465293 | **0.00820** |
+| Log-gap Pearson | 0.1244612 | 0.08680 |
+| Midrank-gap Pearson | 0.1478376 | **0.04290** |
+
+Thus preceding-rune identity does **not** remove the raw or midrank residual, although the log-gap statistic is no longer significant at 0.05. The result is metric-sensitive: symbol-specific repeat propensity explains some structure but not all of the raw/midrank ordering under this balanced null.
+
+A finer sensitivity null preserves **physical page × exact word length/within-word offset (or cross-word class) × preceding rune identity**. It leaves only **32/86 movable events** (54 are fixed; 152 candidate slots), and yields tails about 0.171, 0.217 and 0.167. This is too constrained to be a decisive alternative: most event positions have no eligible substitute once all three source attributes are fixed. It shows how strongly the source geometry and rune identities restrict the point process, not that the autocorrelation has been explained.
+
+**Interpretation:** this is a conditional site-placement diagnostic, not a cipher or plaintext result. It narrows the next question to the interaction between source layout, preceding-rune identity and event ordering. The balanced null leaves a residual for two of three metrics; the over-fine null has insufficient randomization to adjudicate it. A proposed encoder still needs an independently selected reversible operation that predicts the original anti-repeat deficit and event placement together.
+
+**Reproducer:** [`sims/lp2_doublet_gap_page_boundary_symbol_conditional_null.cjs`](../sims/lp2_doublet_gap_page_boundary_symbol_conditional_null.cjs), Node.js 22 CommonJS; it runs both the balanced primary null and the explicitly labelled fine sensitivity.
+
 ## Decision and limits
 
 **Interpretation:** an event-order residual survives a particularly strict physical-page and exact word-shape conditional redistribution: original Pearson exceeds **19,770/20,000** source-matched controls. The effect is substantially weaker than in the externally reported gap-permutation null, so the previously inferred nonstationarity should **not** be treated as proof of a changing cryptographic key or per-rune rejection rate. A simple source-free renewal null is insufficient; a page/word-aware model is mandatory.
