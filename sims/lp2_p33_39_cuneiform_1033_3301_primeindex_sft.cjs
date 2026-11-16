@@ -182,3 +182,92 @@ console.log(JSON.stringify({
   results: outcomes,
   decision: 'New exact source arithmetic, but this direct solved-p56 prime-stream transfer has no legal transparent-F inverse or readable GP29 output on any original page. No LP2 plaintext.'
 }, null, 2));
+
+
+/**
+ * Distinct, source-framed GP28 predecessor-exclusion consumer. Unlike Agent3's
+ * prior 1039..3301 continuous-clock interval, the red 3299 on original p15
+ * fixes 1033..3299 inclusive, and identical pp34-39 physical headers motivate
+ * resets on each page. The p33 preface remains before the cuneiform marker.
+ * Predecessor feedback carries its actual ciphertext value over page breaks;
+ * only the prime-stream key resets. EA (index28) is the proposed exception.
+ */
+const rank28Key = primeInterval.map(n => (n - 1) % 28);
+
+/**
+ * @param {number[]} source
+ * @param {number} prior
+ * @returns {{plain:number[],consumed:number}}
+ */
+function excludedPredecessorInverse(source, prior) {
+  let previous = prior, consumed = 0;
+  const plain = [];
+  for (const c of source) {
+    if (c === previous) {
+      plain.push(28);
+    } else {
+      const d = mod(c - previous - 1);
+      plain.push((d - rank28Key[consumed % 290] + 28) % 28);
+      consumed++;
+    }
+    previous = c;
+  }
+  return { plain, consumed };
+}
+
+/**
+ * @param {number[]} nativePlain
+ * @param {number} prior
+ * @returns {number[]}
+ */
+function excludedPredecessorForward(nativePlain, prior) {
+  let previous = prior, consumed = 0;
+  const ciphertext = [];
+  for (const p of nativePlain) {
+    const c = p === 28 ? previous
+      : mod(previous + 1 + (p + rank28Key[consumed % 290]) % 28);
+    if (p !== 28) consumed++;
+    ciphertext.push(c);
+    previous = c;
+  }
+  return ciphertext;
+}
+
+const sourceSegments = pages.map((page, i) => ({
+  page: page.page,
+  prior: i === 0 ? page.indices[90] : pages[i - 1].indices.at(-1),
+  source: i === 0 ? page.indices.slice(91) : page.indices
+}));
+assert.deepEqual(sourceSegments.map(x => x.source.length),
+  [123, 261, 271, 238, 228, 228, 240]);
+const excludedDecoded = sourceSegments.map(x => {
+  const d = excludedPredecessorInverse(x.source, x.prior);
+  assert.deepEqual(excludedPredecessorForward(d.plain, x.prior), x.source);
+  const planted = Array.from({length:x.source.length},
+    (_,j) => p57[j % p57.length]);
+  planted[3] = 28;
+  const plantedCipher = excludedPredecessorForward(planted, x.prior);
+  assert.deepEqual(
+    excludedPredecessorInverse(plantedCipher, x.prior).plain, planted);
+  return {page:x.page, length:x.source.length, consumed:d.consumed,
+    eaCount:d.plain.filter(y => y === 28).length, output:d.plain};
+});
+const excludedCombined = excludedDecoded.flatMap(x => x.output);
+assert.equal(excludedCombined.length, 1589);
+assert.deepEqual(excludedDecoded.map(x => x.eaCount), [2,3,3,3,0,0,1]);
+assert(Math.abs(ioc(excludedCombined) - 0.03526210581881417) < 1e-12);
+console.log(JSON.stringify({
+  branch: 'Red 3299 terminal-prime GP28 predecessor exclusion; page-local reset, cipher predecessor crosses boundary',
+  physicalP15RedPrime: 3299,
+  orderedPrimeEndpoints: [1033,3299,3301],
+  firstParty2013PrimeEchoPauseOrdinals: [174,464],
+  originalMarkedInterval: 'p33:91 through p39:240',
+  fragmentLengths: excludedDecoded.map(x=>x.length),
+  eaSentinelCounts: excludedDecoded.map(x=>x.eaCount),
+  originalPlaintextCandidateIOC: ioc(excludedCombined),
+  first48NativeGP: excludedCombined.slice(0,48)
+    .map(x=>corpus.translit[x]).join(' '),
+  originalExactReencryption:true,
+  authenticP57NativeGPPlantsPass:true,
+  decision: 'No readable original GP plaintext; the p15 red endpoint and repeated cuneiform headers do not select an authenticated predecessor-exclusion decoder'
+},null,2));
