@@ -1,0 +1,19 @@
+name: Agent7 square-page double-root tail gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-original:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original LP2 double-root square-page gate
+        run: node sims/lp2_square_pages_dual_derivative_tail_sft.cjs
