@@ -40,7 +40,7 @@ function pageOf(offset) {
   }
   throw new Error('bad rune offset');
 }
-/** @type {{delta:number,length:number,sum:number,page:number}[]} */
+/** @type {{delta:number,length:number,sum:number,lastRune:number,nextOffset:number,page:number}[]} */
 const edges = [];
 /** @type {number[]} */
 const reconstructed = [];
