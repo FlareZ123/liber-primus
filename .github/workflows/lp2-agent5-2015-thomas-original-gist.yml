@@ -1,9 +1,6 @@
 name: LP2 2015 Thomas original Gist exact-ID source gate
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/lp2-agent5-2015-thomas-original-gist.yml"
 jobs:
   original-gist:
     runs-on: windows-2022
