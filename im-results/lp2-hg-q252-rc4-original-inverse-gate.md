@@ -64,6 +64,31 @@ A fixed **32-order control** keeps all six zero positions and the exact nonzero 
 
 **Decision:** the source-derived Q252 has no readable recovered plaintext under this complete 5,000-start transfer of the genuine p56 cipher law. The narrower zero-start mode is algebraically impossible; the start-relaxed family remains legally decodable but does not identify a key, plaintext or consumer. This retires the present fixed mode as a direct table-instruction route without weakening the true H/G algebraic factorization or ruling out an independent table codec. [Original-source CJS SFT](../sims/lp2_q252_p56_native_ftransfer_sft.cjs).
 
+## Cipher-register discriminator: Q252 resembles a key/random tape more than ordinary unknown-page ciphertext (Agent4, 16 November)
+
+An original-source decision can be made *without assuming an English plaintext crib or searching an inverse*: if the H×G quotient is another piece of LP2 **ciphertext encrypted by the same observed no-repeat mechanism** as the 12,956 unknown runes, its 251 adjacent transitions should broadly resemble the same-length original encrypted windows. The quotient is already fixed by the signed-2013 H and original p39 G polynomials; no symbols, skip positions, key or page offsets were chosen to improve a result.
+
+The exact original **252-digit quotient contains 8 immediate repeated GP29 symbols in 251 adjacent comparisons**. The original unmodified 256 table bytes, merely reduced modulo29, contain **13 repeats among 255 comparisons**. The entire original unknown book contains **86 repeats in 12,955 adjacent positions**, with original within-page pair rate 86/12,901, very unlike an ordinary 29-symbol random tape.
+
+To give the encrypted-book hypothesis its most favorable empirical context, compare **every one of the 12,705 contiguous, overlapping 252-rune windows** of the exact original 12,956-symbol unsolved stream. The source-native distribution of within-window immediate duplicates is
+
+| Repeated adjacent pairs per 252-rune window | Exact count of original LP2 ciphertext windows |
+| ---: | ---: |
+| 0 | 2,193 |
+| 1 | 4,692 |
+| 2 | 2,767 |
+| 3 | 1,668 |
+| 4 | 1,077 |
+| 5 | 306 |
+| 6 | 2 |
+| **7 or more** | **0** |
+
+**The quotient's eight repeats exceed the maximum observed in every source-native 252-rune ciphertext window.** This is a concrete *register mismatch* for the hypothesis that Q is another ordinary LP2 anti-repeat encrypted-passage fragment. The original window set is overlapping and includes page seams, so these counts are a deterministic within-book reference envelope, **not 12,705 independent trials or a calibrated significance probability**. A new soft-filter generator could produce eight repeats by chance; this is comparative evidence, not algebraic impossibility or definitive proof the quotient is a one-time pad.
+
+**Cryptanalytic decision:** Stop treating the Q252 polynomial quotient as **independently authenticated plaintext or normal-register ciphertext** merely because it has 252 GP29 digits. Its randomness-like adjacency is *more compatible* with a candidate key/register or encoded binary payload. This observation complements the already negative direct-base29 serializer, literal Q additive key and p56-native quotient-inverse gates; it does not provide the missing authentic key or reversible decoder. Its historical role needs an original author-selected operation, preferably one that deciphers the adjacent full p49 sentence and independently predicts p51.
+
+[Read-only, original-input Windows Node22/CommonJS SFT](../sims/lp2_p50_hg_q252_original_repeats_sft.cjs) computes the exact H×G division, asserts the zero remainder and original first ten quotient digits, and enumerates all source 252-rune windows with an exact frozen histogram. It was executed against unchanged GitHub source bytes with passing assertions and no CI claim.
+
 ## Interpretation and next missing evidence
 
-The source-dependent **H×G polynomial quotient is algebraically real**, while its author-selected historical role remains unproved. The RC4 consumer, the neighboring-prose GP29 pad, and the p56-native quotient inverse have failed to identify any authentic unknown plaintext under their specified clocks. The direct BASE29 quotient is not a recognizable plaintext container at offset zero. Neither conclusion warrants fitting phases, reversed alphabets, ad hoc key derivations or new cipher layers. What would change the decision is an independently preserved Cicada-era instruction that assigns the 252 coefficients to a reversible operation, or an exact withheld original plaintext prediction on adjacent text.
+The source-dependent **H×G polynomial quotient is algebraically real**, while its author-selected historical role remains unproved. Its eight adjacent duplicates in 252 digits are unlike any same-length original encrypted-LP2 window, so the quotient has no positive case for being an ordinary continuation of the unknown-page anti-repeat ciphertext register. The RC4 consumer, neighboring-prose GP29 pad and p56-native quotient inverse fail to recover authentic plaintext under their specified clocks; the direct BASE29 quotient lacks an identifiable file signature at offset zero. **Neither its key-like statistics nor its exact polynomial divisibility identifies the intended decoder.** Further phase fitting, reversed alphabets and newly invented cipher layers have no source support. The next genuine decision requires an independently preserved Cicada-era operation assigning the 252 coefficients a role, or an exact withheld original plaintext prediction on adjacent text.
