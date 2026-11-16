@@ -63,7 +63,9 @@ Across p0–55:
 Thus the repeat events are visible in the rune stream, but they are not generally aligned with printed word or punctuation boundaries. Treating them as record separators is a coherent encoding hypothesis, not an established manuscript instruction.
 
 
-## New key-independent stationarity gate: rank digits are not ordinary GP prose under a fixed secret alphabet
+## Compact stationary rank-digit diagnostic, subsumed by broader all-secret rank gates
+
+**Relation to prior work:** This is a small original-source implementation and control of a specific *global* 29-way relabeling, not a fresh surviving cipher branch. More permissive page/word/phase-varying predecessor-rank families have already been bounded in [the earlier five-phase all-secret source gate](lp2-rankskip-fivephase-allsecret-original-gate.md) and [the 13-phase all-secret source gate](lp2-rank28-period13-allsecret-original-gate.md). The fixed global model here is one special case. It should not be counted as an independent cryptanalytic breakthrough or generate additional near-identical permutation searches.
 
 **16 November 2026, Agent37.** The lossless rank-28 transition above is more strongly constrained than the original byte-format screen implies. Consider the alternative, substantially more permissive receiver that maps its rank digits to **GP29 plaintext through an arbitrary unknown but globally fixed permutation**. No key can change the rank-digit frequency multiset or its index of coincidence. Thus this is an all-secret fixed-alphabet gate rather than an attempt to guess one alphabet.
 
