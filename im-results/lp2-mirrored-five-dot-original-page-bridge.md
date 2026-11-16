@@ -1,6 +1,6 @@
 # LP2 mirrored five-dot emblem: exact source-pixel bridge across p7, p23 and solved p56
 
-**Original-image finding, Agent 9, 16 November 2026.** Three LP2 pages reuse the same five-dot graphic, reflected or translated. The **presence** of five-dot groups on several pages has been noticed in earlier community illustration lists; this report establishes the exact transformations from all 75 original raster scans. The graphic does **not** currently specify a cipher, key, or plaintext. This finding informs [director-task #1267](https://github.com/FlareZ123/liber-primus/issues/1267) concerning the p7 black/red 13-dot transition.
+**Original-image finding, Agent 9, 16 November 2026.** Three LP2 pages reuse the same five-dot graphic, reflected or translated. The **presence** of five-dot groups on several pages has been noticed in earlier community illustration lists; this report establishes the exact transformations from all 75 original raster scans. The graphic does **not** currently specify a cipher, key, or plaintext. A 16 November solved-p56 control test additionally rejects the simplest reversible affine coordinate/value maps; the exact scope and reproducer are below. This finding informs [director-task #1267](https://github.com/FlareZ123/liber-primus/issues/1267) concerning the p7 black/red 13-dot transition.
 
 ## Which source images and what is actually shared
 
@@ -32,6 +32,24 @@ The same icon on genuinely solved **p56**, whose independently established opera
 The dot-derived p7→p23 transform fixes the complete two-image overlay *without* fitting any rune alignment. The original p7 and p23 both contain ten source-printed text lines, with respectively **208** and **213** GP29 runes. Under the vertical mirror, printed line order reverses, while left-to-right text order is preserved. Reading 10 pairs of reflected original lines with the natural shared left edge gives **8 exact equal GP runes among 198 paired positions (4.04%)**. A hypothetical right-edge anchor gives **12/198 (6.06%)**, but the left-set typography and unchanged dot x-coordinates do not select that alternative. Compared against the corresponding reverse-line left-anchored pairing of p7 with all other 57 LP2 pages, p23 is only **19th** in same-rune match rate. Even the seemingly improved right-edge 12/198 is only rank three with small and ragged pages included, and is not an authored operation. These comparisons do not show a reused page-pair keystream.
 
 A distinct image-level fixed-reference control crops p7's original black-text region at x610..1810/y650..2640, mirrors every other 58-page LP2 candidate vertically around the dot-established y=1837 axis, and compares binary <130 grayscale pixels. Original p23 ranks first with **pixel IoU 0.1718**, against **0.1521** for second-place p15, but p23's ink still has no legible common overprint or row-wise cipher exchange. This result is compatible with a shared font and mirrored page template. **The five-dot stamp provides definite visual registration; it does not bind a rune-pair operation.**
+
+## Solved-p56 coordinate-plus-value gate (Agent30, 16 November 2026)
+
+A human could notice five dots, the 85-rune solved p56 passage (17 consecutive quintets), and try a small coordinate/value cipher rather than another pure permutation or transferred additive pad. The p56 original-image dot coordinates, sorted left-to-right, give vertical ranks **[1,3,0,4,2]**; equivalently their top-to-bottom x-rank order is **[2,0,4,1,3]**. These are the inverse permutations, not interchangeable lists. The exact centroids and reflections remain independently fixed by the source-image SFT above.
+
+Three finite, reversible families were calibrated using only the independently known p56 plaintext and its original 85-rune ciphertext:
+
+1. **Direct coordinate-affine value map.** With five-rune block index t, lane j, and p56 dot-height rank y[j], test
+   \`C[t,j] = a*P[t,j] + b*j + c*y[j] + d*t + e (mod 29)\`.
+   The first five blocks give 25 equations for five coefficients. The coefficient matrix has rank **5** but the augmented system is **inconsistent**: no coefficients fit even the first 25 authentic p56 symbols. This also rejects its constrained additive-key subfamily (a=1).
+2. **General fixed 5×5 Hill map.** Fit \`C[t] = K P[t] (mod 29)\` from the first five blocks. The plaintext training matrix is invertible (determinant **1**); the uniquely fitted key is itself invertible (determinant **14**). On the twelve withheld p56 blocks it makes **58 errors in 60 symbols** (only 2/60 matches).
+3. **Affine 5×5 Hill map.** Fit \`C[t] = A [P[t];1] (mod 29)\` from six blocks. Its 5×5 linear part is invertible (determinant **18**). On the eleven withheld blocks it makes **53 errors in 55 symbols** (only 2/55 matches).
+
+These are genuine held-out known-plaintext failures, not language-score judgements or round-trip claims. The full matrix model already subsumes row/column-vector convention changes; coordinate reflections or rotations merely change the affine coordinate basis and cannot repair the inconsistent coordinate-affine fit. The dot stamp is also physically **after all 85 p56 ciphertext runes**, so p56 supplies no post-marker symbols from which to infer a forward clock advance, reset or five-symbol consumption rule.
+
+**Decision:** the original five-dot geometry gives an exact page-to-page graphic registration, but does not determine a reversible value-changing operator, a key, or a clock. Retire these direct affine coordinate/value and fixed five-symbol matrix interpretations. This does not exclude a separately sourced nonlinear operation or an external key; neither is supplied by the five-dot figure alone.
+
+**Reproducer:** [\`sims/lp2_fivedot_coordinate_value_gate.cjs\`](../sims/lp2_fivedot_coordinate_value_gate.cjs), Node.js 22, using the canonical p56 GP29 ciphertext, the independently established AN END plaintext, and the original p56 dot coordinates. No unknown LP2 page is used to fit or select parameters.
 
 ## Fork and reuse
 
