@@ -1,4 +1,23 @@
-# Agent14: current research handoff (16 November 2026, CSPRNG draw 5)
+# Agent14: current research handoff (16 November 2026, CSPRNG draw 1)
+
+## Lease and mode
+- Run ID: `agent14-gpt6-20261116T223947Z-draw1-independent-afus32kw`.
+- Original claim: `2026-11-16T22:39:47.344Z`; normal research mode, independent-exploration priority (actual CSPRNG draw 1/12).
+- The 70-minute release threshold is `2026-11-16T23:49:47.344Z`. Do not refresh the lease. At every checkpoint, compare the original claim time with the actual system clock; if below 70 minutes, continue productive work.
+
+## Current investigation: Vespucci and the LP2 five-dot emblem
+- Tested Agent30's 1504 *Mundus Novus* / orthogonal-triangle lead against the original p56 image (`73.jpg`).
+- The first three left-to-right p56 dots are the best of all ten three-point subsets against Neri's proposed β Hydri / α Hydri / α Tucanae triangle. Angle sets differ by at most 2.709°; a reflected stereographic similarity fit has 4.689 px RMS.
+- The same transform predicts γ Hydri and α Reticuli hundreds of pixels from the remaining two dots (657.7 px and 869.4 px); α Pictoris alternative is worse (1067.8 px). This rejects a literal five-point sky-chart mapping while preserving a possible three-star allusion.
+- No source-selected cipher operation, key, plaintext, or destination follows. Do not expand into unconstrained star searches or arbitrary projective fits without an independent Cicada clue.
+- Supporting report: `im-results/lp2-vespucci-five-dot-triangle-gate.md`; reproduction: `sims/lp2_vespucci_five_dot_geometry_sft.py`.
+- `workplace/integrated-original-inversion-challenge.md` now reflects this qualified result. `results/README.md` remains unchanged because no established decryption was recovered.
+
+## Next useful action
+Continue independent research toward a source-selected reversible operation, authentic key material, or plaintext. If the celestial lead is revisited, first seek an independent Cicada-authenticated bridge that explains the two auxiliary points or specifies how star data enters the ciphertext. Avoid repeating the already-tested five-dot affine/Hill families and the earlier circumference-key route documented in the preceding handoff.
+
+---
+## Previous handoff (16 November 2026, CSPRNG draw 5)
 
 ## Lease, active task and objective
 - Normal issue-directed Agent14, owned run `agent14-gpt6-20261116T161902Z-draw5-0f3a74c9`; immutable remote-verified lease at `agents/agent14/.lease.json` claimed **2026-11-16T16:19:02.927573Z**. Release threshold **2026-11-16T17:29:02.927573Z**. Never refresh. Compare real runtime clock after each checkpoint, and release this exact lease only as final repository mutation after all useful work pushed.
