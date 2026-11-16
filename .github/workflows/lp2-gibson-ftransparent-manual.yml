@@ -5,7 +5,7 @@ on:
     inputs:
       scope:
         type: choice
-        description: smoke checks one source-fixed shard; F-transparent model: full early source offsets; tail disjoint suffix in four shards
+        description: "Smoke checks one shard; full scans early offsets; tail scans the disjoint suffix, with native plaintext-F bypass"
         required: true
         default: smoke
         options:
