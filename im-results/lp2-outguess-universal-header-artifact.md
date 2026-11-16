@@ -71,6 +71,29 @@ The bitwise XOR of **all three** published pseudo-payloads has all 256 byte valu
 
 The [six-original-JPEG reproducibility script](../sims/lp2_outguess_xordepth_original_sft.py) uses the already calibrated `outguess_extract.py`, validates all six SHA-256 outputs and all three external Git blob identities, tests the stated XOR metrics and proves the planted reused-pad inversion. It makes no source writes.
 
+
+## Source-selected p0–p2 cross as the historical three-share OutGuess route (Agent31, 16 November 2026)
+
+The original scans **17.jpg, 18.jpg and 19.jpg** are physical LP2 **p0, p1 and p2**. Their reused, 180°-opposed triple-bar cross artwork is independently established in [the original-image cross source-plate gate](lp2-p0-p2-orthodox-cross-source-plate-gate.md). Cicada's earlier 2014 puzzle used three equal-length OutGuess payload shares combined by bytewise XOR. A solver could therefore reasonably ask whether these three cross-framed images are the analogous three carriers. This is a concrete historical-mechanism transfer, not evidence that the crosses are share markers.
+
+Use the historically demonstrated OutGuess **Default key**, calibrated by the authentic LP1 03.jpg extraction. All three LP2 images have the source-forced encrypted header ffffffff; under that key it decodes to c0a128e3, seed **41,408**, length **58,152**. The header is not evidence of embedded content: the universal-header proof above establishes why it is forced.
+
+The exact original-byte results are:
+
+| Physical page / original scan | Original JPEG SHA-256 | Complete default-key payload |
+|---|---|---|
+| p0 / 17.jpg | 197e1e153958b9a2736b09c10eea7d8bb00e0632fd22a8d9606840becc79942e | **58,152 bytes**, SHA-256 cbf1ccddc6c4bb2fd96d449e0667eb5be6c2a542de4e0f43e7ca188df7f289b1 |
+| p1 / 18.jpg | f804fae06a68315eb6206158a2b34f55fe157c7d663fa961639fbe8dfc52a39f | **Fails after 58,120 bytes**; 32 remain |
+| p2 / 19.jpg | 74e955ebe248e6d7442e2d2cd3029951f258017987d5762f48e7897cf6611e34 | **Fails after 58,113 bytes**; 39 remain |
+
+For p1 the adaptive OutGuess iterator reaches offset **686,973** in a bitmap of **687,226** eligible bits, leaving 253 bits; the calculated skip modulus becomes zero. For p2 it reaches offset **619,352** of **619,659**, leaving 307 bits; its skip modulus likewise becomes zero. The exact first failure and all header/seed/length values are asserted by the new source-original reproducer.
+
+The original 2014 three-share operation requires three complete, equal-length payloads before their XOR can reconstruct the message. Under this fixed, historically calibrated password, only p0 completes; p1 and p2 do not. There is consequently no valid three-share XOR to perform, and truncating the failed shares or changing the password would add an unselected operation. The same-run positive control recovers the authentic **31,809-byte** original LP1 03.jpg PGP clear-signed OutGuess payload byte-for-byte under Default key.
+
+**Decision:** reject the direct p0/p1/p2 three-share OutGuess transfer under the source-authenticated Default key. This does not exclude an independently instructed different passphrase, another steganographic channel, or deliberately embedded data with the forced header; none is selected by the cross artwork or surviving signed source. Do not turn this negative into an unknown-password sweep.
+
+**Reproduction:** [single-file original-JPEG SFT](../sims/lp2_p0_p2_outguess_cross_three_share_gate.py), using the existing calibrated outguess_extract.py and outguess_bitmap_dump.c. It pins all three JPEG hashes, the 2014 LP1 positive, the forced header, p0's complete payload hash, and the exact p1/p2 iterator failure states.
+
 ## Reproduction and research decision
 
 [Executable all-source SFT](../sims/lp2_outguess_universal_header_sft.py) · [reusable source-forced-header helper](../sims/outguess_extract.py) · [CI workflow](../.github/workflows/lp2-outguess-universal-header-manual.yml) · [passing original-source CI with classifier](https://github.com/FlareZ123/liber-primus/actions/runs/43492473076).
