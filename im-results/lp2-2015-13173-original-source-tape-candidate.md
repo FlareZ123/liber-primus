@@ -24,7 +24,7 @@ This gives an exact literal source identity:
  1 (fictitious initial F) = 13,173
 \`\`\`
 
-Separately, **13,041 = 13,136 − 95**, exactly the source corpus through p56 when one drops only the final already-clear p57. These two identities provide an extremely simple rival explanation of the changing historical row counts: the two generations may have used *different original-book serialization boundaries and punctuation inclusion rules*. Nothing in the currently recovered 2015 source confirms this is what the original analyst actually did.
+Separately, **13,041 = 13,136 − 95**, exactly the source corpus through p56 when one drops only the final already-clear p57. This is supported by the [actual August 2015 13,041-row `all_data.csv` archive](https://github.com/resvolver/c1cada/blob/e4bdbc24b1d1b5a6462f3332c9a8db785b5c48ec/full%20transcript%20data/all_data.csv), whose last record is total-position 13041, printed source page 57 in the author's **one-based** numbering, page-local character 85. That identifies **physical p56**, not the 95-rune physical p57, as the historical last included page. These two identities provide an extremely simple rival explanation of the changing historical row counts: the two generations may have used *different original-book serialization boundaries and punctuation inclusion rules*. Nothing in the currently recovered 2015 source confirms this is what the original analyst actually did.
 
 ## Exact source-ordered serialization
 
