@@ -203,7 +203,9 @@ const positiveFDecoded = decodeFTransparent(positiveKey, positiveFEncrypted.ciph
 const result = {
   lengths: {
     total:ciphertext.length, prefix:prefix.length, suffix:suffix.length,
-    difference, openingPages0to2:729, prefixIs3pow8:prefix.length === 3 ** 8
+    difference, openingPages0to2:729, prefixIs3pow8:prefix.length === 3 ** 8,
+    physicalPageFold:{p0to27:physicalP0to27,p28to55:physicalP28to55},
+    p27PrefixBoundary:{localOffsetAfter:34,echoRunes:render(p27Echo),firstSuffixRune:render(suffix.slice(0, 1))}
   },
   terminalEcho: {
     equal:prefix.slice(-6).every((x, i) => x === suffix[suffix.length - 6 + i]),
