@@ -74,6 +74,16 @@ assert.equal(tot[13], 12);
 const sourceMarkerIndex = 27 * 12 + 10; // (13,11), left of (13, phi(13))
 assert.equal(chapter[sourceMarkerIndex], 13 + tot[13]);
 assert.deepEqual(chapter.slice(sourceMarkerIndex, sourceMarkerIndex + 3), [25,11,28]);
+// The marker-selected three-rune node touches the three-rune source crib
+// in the SAME original row, with no skipped cell: AE J EA | W EA TH.
+const contiguousCorridor = [25,11,28,7,28,2];
+assert.deepEqual(chapter.slice(sourceMarkerIndex,sourceMarkerIndex+6),
+  contiguousCorridor);
+const allUnknown = corpus.pages.filter(p=>p.page<=55).flatMap(p=>p.indices);
+const corridorSites = [];
+for (let i=0;i<=allUnknown.length-contiguousCorridor.length;i++)
+  if(contiguousCorridor.every((v,j)=>allUnknown[i+j]===v))corridorSites.push(i);
+assert.deepEqual(corridorSites,[sourceMarkerIndex]); // 334 zero-based
 
 /** Fixed-seed xorshift32, unsigned output; deterministic for Node 22. */
 let state = 0x33012016;
@@ -106,6 +116,8 @@ console.log(JSON.stringify({
   originalNodeLeft: 4,
   markerSelectedCenter: [13,12],
   markerSelectedLeftRuneIndex: 25,
+  consecutiveSixRuneSourceCorridor: contiguousCorridor,
+  fullUnknownCorpusCorridorStartOffsets: corridorSites,
   shuffles: N,
   seed: "0x33012016",
   matches: {centerSelfCrib: centerHits, markerLeft25: markerHits, both: jointHits},
