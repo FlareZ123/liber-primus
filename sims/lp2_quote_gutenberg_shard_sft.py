@@ -112,7 +112,12 @@ def run_shard(shard: int) -> dict[str, Any]:
     from huggingface_hub import HfApi
 
     repo = "kevinnejad/Gutenberg"
-    revision = HfApi().repo_info(repo_id=repo, repo_type="dataset").sha
+    info = HfApi().repo_info(repo_id=repo, repo_type="dataset")
+    revision = info.sha
+    all_shards = sorted(s.rfilename for s in info.siblings
+                        if re.fullmatch(r"Gutenberg-\\d{4}\\.parquet", s.rfilename))
+    print(f"SOURCE MANIFEST shard_files={len(all_shards)} first={all_shards[0] if all_shards else None} "
+          f"last={all_shards[-1] if all_shards else None}", flush=True)
     uri = f"hf://datasets/{repo}@{revision}/Gutenberg-{shard:04d}.parquet"
     print(f"SOURCE START shard={shard:04d} repository={repo} revision={revision} uri={uri}", flush=True)
     began = time.monotonic()
