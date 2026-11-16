@@ -89,7 +89,7 @@ def page_candidates(raw: bytes, hint: str, name: str) -> list[tuple[str, np.ndar
     # article-only PDF.  A searchless PDF has no searchable figure captions;
     # article pages 79–93 must be addressed by their original print folios.
     # Include the cover/scan offset, once, without selecting by p27 match.
-    if "1976" in name and len(document) >= 120 and not hit:
+    if "1976" in name and len(document) >= 120:
         positions = [i for i in range(76, 106) if i < len(document)]
     frames = []
     for i in positions:
