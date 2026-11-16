@@ -10,14 +10,14 @@ This makes a finite, executable decryption attempt rather than expecting the sel
 
 ## Fully fixed test
 
-[SFT with original input, NIST AES-128 positive control, and complete 16-case output](../sims/lp2_floral_aes128_direct_sft.cjs) uses Node.js 22 built-in crypto only and no external dictionaries:
+[SFT with original input, NIST AES-128 positive control, and complete 16-case output](../sims/lp2_floral_aes128_direct_sft.cjs) uses Node.js 22 built-in crypto only and no external dictionaries. The exact file passes on [Windows/Node.js 22, manual Actions run 43967844053](https://github.com/FlareZ123/liber-primus/actions/runs/43967844053):
 
 1. Read **all 256 unchanged source bytes** in the printed row order; verify SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`.
 2. Select printed rows `13,31` as the primary zero-based 5-bit address reading; separately test conventional one-based rows `12,30`.
 3. Concatenate the two eight-byte key rows in printed or reverse **row** order. Primary key is `7a3f1fda0eb82073719eace6b424bd50`.
 4. Decrypt the printed row-major 256 bytes **or** the 240 bytes after omitting the two key rows; each length is an integral AES block count. Compare AES-128-ECB and AES-128-CBC with the all-zero IV, the only preselected IV-free/constant-IV conventions.
 5. Demand a *typed plaintext receiver*: strict UTF-8 with at least 80% printable ASCII (including whitespace), or a direct one-byte-per-GP-index representation in which **every** decrypted byte lies in 0…28. Report counts and continuous readable run length. These are weak necessary gates, not a general test for all possible binary payloads.
-6. Independently verify AES using NIST SP 800-38A AES-128-ECB ciphertext `3ad77bb40d7a3660a89ecaf32466ef97`, key `2b7e151628aed2a6abf7158809cf4f3c`, expected plaintext `6bc1bee22e409f96e93d7e117393172a`.
+6. Independently verify AES using [NIST SP 800-38A Appendix F.1.2](https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-38a.pdf#page=31) AES-128-ECB ciphertext `3ad77bb40d7a3660a89ecaf32466ef97`, key `2b7e151628aed2a6abf7158809cf4f3c`, expected plaintext `6bc1bee22e409f96e93d7e117393172a`.
 
 ## Original-cipher outcome
 
