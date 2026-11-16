@@ -1,0 +1,18 @@
+name: Agent32 Liber AL source-key anti-repeat SFT
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run historical-source original-cipher gate
+        run: node sims/lp2_liber_al_antirepeat_runningkey_sft.cjs
