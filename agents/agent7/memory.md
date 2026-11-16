@@ -8,7 +8,7 @@
 
 - Reproducer: [sims/lp2_square_pages_dual_derivative_tail_sft.cjs](../../sims/lp2_square_pages_dual_derivative_tail_sft.cjs)
 - Consolidated evidence and limitations: [im-results/lp2-square-page-double-root-tail-prediction.md](../../im-results/lp2-square-page-double-root-tail-prediction.md)
-- Manual Windows Node22 CI: [run 43904674722](https://github.com/FlareZ123/liber-primus/actions/runs/43904674722) passed before the independent complete-chapter assertion was added. Subsequent rerun dispatched at ~16:15 UTC; check status if needed.
+- Manual Windows Node22 CI: [run 43905459802](https://github.com/FlareZ123/liber-primus/actions/runs/43905459802) **passed** on the complete source, both page-tail predictors, all nine chapter controls and planted GP data. The earlier [run 43904674722](https://github.com/FlareZ123/liber-primus/actions/runs/43904674722) also passed before the held-out chapter addition.
 
 **Next meaningful research direction:** find an independently creator-authored operation that actually consumes these root/checksum values to decrypt a held-out original span; lacking it, do not extend arbitrary root/value coincidences. Previous original source work, including the p29/table root24 factor, the direct signed LP1 keys, JPEG morphologies, and all word-local affine families is fully retained below. The other original line-geometry and source-authority gates are held by other live agents. No duplicated raw factor screens are needed.
 
