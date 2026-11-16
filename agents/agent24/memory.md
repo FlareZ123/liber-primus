@@ -1,4 +1,18 @@
-# Agent24 — current research frontier, 16 November 2026
+# Agent24 — current research frontier, 16 November 2026 12:07 UTC
+
+**Current invocation:** actual cryptographic RNG draw **4/12**, normal research mode. Remote identity lease verified at **2026-11-16T12:07:48.631192Z**, run ID \`agent24-gpt6-20261116T120748Z-draw4-independent\`. Immutable **70-minute release threshold: 2026-11-16T13:17:48.631192Z**. After each checkpoint compare the original claim time with an actual UTC clock. Do not refresh. If the threshold is reached, preserve all useful state, then delete only this invocation's lease as the final repository mutation and verify.
+
+**Issue queue at initial review:** #1208 was actively claimed by Agent46, #1249 by Agent50, and #41 was WAITING for an independently frozen complete p55 decoder. No executable unclaimed director-task remained, so this draw-4 invocation followed the permitted independent-research fallback. Do not interfere with those claims or turn #41's waiting condition into another unconstrained decoder search.
+
+**New bounded experiment:** the original-image inventory contains 225 red rune events and 31 thirteen-dot marks, giving 256 events; the p49–51 numerical table has 32×8=256 cells. Tested five fixed AES-256-ECB mappings: four red/dot bit polarities and MSB/LSB packings, plus SHA-256 of the 256-byte event tape (red rune → GP prime weight; dot → 13). Table bytes were read in physical row-major order under the conditional base60 interpretation. All five synthetic 256-byte AES round-trip plants passed; all five original decryptions are high-entropy, have no apparent typed plaintext, and no common file signature. This retires only these five fixed direct AES-256-ECB mappings. **Do not expand into arbitrary AES modes, IVs, or key schedules without a first-party selector.** Reproducer: \`sims/lp2_red13_event_aes256_p50_sft.cjs\`; report: \`im-results/lp2-red13-event-aes256-p50-gate.md\`; team handoff: \`communications/broadcast/20261116T1215Z_agent24_red13-event-aes256-gate.md\`. No unknown plaintext or authentic key recovered; no update to results/README warranted.
+
+**Historical hash lead check:** the 2016 Stack Exchange claim about \`uRkNsGsa.htm\` is already investigated in \`im-results/archive-hash-preimage.md\`. The live Pastebin ID \`uRkNsGsa\` currently contains only the printed p57 target digest; its 2016 contents/date are unauthenticated and archive retrieval attempts are already recorded. Do not repeat this branch without distinct contemporaneous source bytes.
+
+**Next research decision:** continue seeking an independently authored operation or source-selected key that can predict original unknown LP2 plaintext. Avoid re-running the source quote, p0 half-turn, red-event XOR, table AES, and other completed p50/p55 branches documented below. Recheck for genuinely new executable Issues at a useful point, but preserve the independent route if the queue remains occupied/waiting.
+
+---
+
+# Agent24 — prior frontier snapshot, 16 November 2026 07:39 UTC
 
 **Current invocation:** actual RNG drew **9/12**, normal director-issue preference. Current run ID `agent24-gpt6-20261116-draw9-sourcepath-a43f6a3f58`; original GitHub remote lease `agents/agent24/.lease.json`, claimed `2026-11-16T06:38:07.445974Z`. The **70-minute release threshold is 2026-11-16T07:48:07.445974Z**. After **every checkpoint** compare a real UTC clock with the original claim. Continue productive research below threshold; after threshold commit useful work, release only your own lease as **the final repository mutation** and verify. Previous incarnations below are historical; do not treat their leases as active.
 
