@@ -247,6 +247,65 @@ assert.notDeepEqual(plant,p57,"plant must exercise both channels");
 const phi = primeTotients(flatten(plant).length);
 assert.notDeepEqual(decode(plant[1],7,phi,3310n),p57[1],
   "incorrect boundary multiplier cannot decode a native-GP positive");
+/**
+ * Full-length native GP-word positive. Retain every original punctuation
+ * span's N/W inventory, selecting independently attested native GP words
+ * of exactly the source word lengths. The sentence grammar is not native;
+ * the symbol strings themselves all occur in reference English prose.
+ * @param {number[][][]} layout
+ */
+function nativeLengthMatched(layout) {
+  const templates = gp.translit.map((t,i) => ({t,i}))
+    .sort((a,b) => b.t.length-a.t.length);
+  /** @param {string} word @returns {number[]|null} */
+  const encodeWord = word => {
+    const src = word.toUpperCase().replace(/QU/g,"CW")
+      .replace(/V/g,"U").replace(/K/g,"C")
+      .replace(/Z/g,"S").replace(/Q/g,"C");
+    const result = [];
+    for (let i=0;i<src.length;) {
+      const token = templates.find(x => src.startsWith(x.t,i));
+      if (!token) return null;
+      result.push(token.i);
+      i += token.t.length;
+    }
+    return result;
+  };
+  const byLength = new Map();
+  const corpora = [
+    "resources/control/gibran_prophet_58585.txt",
+    "resources/control/emerson_essays_2944.txt",
+    "resources/control/shakespeare_first300k.txt"
+  ];
+  for (const name of corpora) {
+    for (const match of read(name).match(/[A-Za-z]+/g) || []) {
+      const word = encodeWord(match);
+      if (!word) continue;
+      if (!byLength.has(word.length)) byLength.set(word.length,[]);
+      byLength.get(word.length).push(word);
+    }
+  }
+  const positions = new Map();
+  return layout.map(span => span.map(originalWord => {
+    const len=originalWord.length,bucket=byLength.get(len);
+    assert.ok(bucket && bucket.length,"native reference has missing word length");
+    const at=positions.get(len)||0;
+    positions.set(len,at+1);
+    return bucket[at%bucket.length];
+  }));
+}
+const nativeOriginal = nativeLengthMatched(unknown);
+assert.equal(flatten(nativeOriginal).length,12956);
+const nativeCipher = encipher(nativeOriginal);
+assert.deepEqual(decipher(nativeCipher),nativeOriginal,
+  "full original-length 12,956-rune / 2,896-word native GP plant");
+const nativeSyntheticSingles = nativeCipher.flat()
+  .filter(w => w.length===1).length;
+const nativeSyntheticRunes = flatten(nativeCipher);
+const nativeSyntheticRepeats = nativeSyntheticRunes.reduce(
+  (s,x,i) => s+Number(i>0&&x===nativeSyntheticRunes[i-1]),0);
+const nativePlantedIoC = ioc(flatten(nativeOriginal));
+const nativeSyntheticIoC = ioc(nativeSyntheticRunes);
 const flatP = flatten(plaintext);
 assert.equal(flatP.length,C.length);
 assert.equal(plaintext.flat().length,2896);
@@ -273,6 +332,10 @@ console.log(JSON.stringify({
   fullOriginalRoundtrip:true,
   nativeP57Plant:{runes:95,words:20,roundtrip:true,
     syntheticSingletons:plant.flat().filter(w=>w.length===1).length},
+  nativeFullLengthPlant:{runes:12956,words:2896,exactRoundtrip:true,
+    nativeGPwordIoC:nativePlantedIoC,syntheticCipherIoC:nativeSyntheticIoC,
+    syntheticSingletons:nativeSyntheticSingles,
+    syntheticAdjacentRepeats:nativeSyntheticRepeats},
   sourceOutputs:{
     originalIoC:ioc(C),transformedIoC:ioc(flatP),
     firstChapterIoC:ioc(chapter0),untouchedFloralChapterIoC:ioc(chapter8),
