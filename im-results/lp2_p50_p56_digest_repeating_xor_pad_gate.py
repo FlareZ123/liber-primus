@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Direct p56-digest repeating-XOR test for the 256-byte p50 table."""
+"""Local reproduction of the p56-digest XOR test in independent R43/F6."""
 import hashlib
 import json
 import math
@@ -30,6 +30,29 @@ def decode(alphabet):
 def xor(data, key):
     return bytes(x ^ key[i % len(key)] for i, x in enumerate(data))
 
+def pgp_probe(data):
+    tag_byte = data[0]
+    if not (tag_byte & 0x80) or not (tag_byte & 0x40) or len(data) < 2:
+        return None
+    l1 = data[1]
+    if l1 < 192:
+        claimed, header = l1, 2
+    elif l1 < 224 and len(data) >= 3:
+        claimed, header = ((l1 - 192) << 8) + data[2] + 192, 3
+    elif l1 == 255 and len(data) >= 6:
+        claimed, header = int.from_bytes(data[2:6], "big"), 6
+    else:
+        claimed, header = None, None
+    runner_accepts = claimed is not None and claimed >= 64
+    fits = claimed is not None and header is not None and claimed <= len(data) - header
+    return {
+        "tag_byte": hex(tag_byte), "new_format_tag": tag_byte & 0x3f,
+        "preregistered_tag_byte": tag_byte in (0x99, 0x85, 0xc6, 0x95),
+        "claimed_packet_length": claimed, "header_bytes": header,
+        "external_runner_heuristic_accepts": runner_accepts,
+        "claimed_length_fits_buffer": fits
+    }
+
 def stats(data):
     printable = sum(32 <= x <= 126 for x in data)
     letters = sum(65 <= x <= 90 or 97 <= x <= 122 for x in data)
@@ -52,7 +75,8 @@ def stats(data):
     return {
         "printable": printable, "letters": letters, "zeros": zeros,
         "longest_printable_run": longest, "unique_bytes": len(counts),
-        "entropy_bits_per_byte": round(entropy, 4), "magic": magic,
+        "entropy_bits_per_byte": round(entropy, 4), "magic_at_zero": magic,
+        "pgp_probe": pgp_probe(data),
         "preview": "".join(chr(x) if 32 <= x <= 126 else "." for x in data[:96]),
         "sha256": hashlib.sha256(data).hexdigest()
     }
@@ -84,13 +108,13 @@ assert xor(xor(control, digest), digest) == control
 
 draw = rng32(0x56332016)
 results = []
-expected_input_hashes = {
+expected = {
     "base60": "3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290",
     "base59_drop_f": "511d4fdb69ffbae4707ef93acf7465421f5480208e28d8e8c598cafa0d33cb79"
 }
 for name, alphabet in [("base60", a60), ("base59_drop_f", a59)]:
     payload = decode(alphabet)
-    assert hashlib.sha256(payload).hexdigest() == expected_input_hashes[name]
+    assert hashlib.sha256(payload).hexdigest() == expected[name]
     output = xor(payload, digest)
     nulls = [stats(xor(payload, shuffle(digest, draw)))["printable"] for _ in range(64)]
     ordered = sorted(nulls)
@@ -99,13 +123,12 @@ for name, alphabet in [("base60", a60), ("base59_drop_f", a59)]:
         "encoding": name, "payload_sha256": hashlib.sha256(payload).hexdigest(),
         "output": actual, "null_count": 64,
         "null_printable_median": ordered[32], "null_printable_min": ordered[0],
-        "null_printable_max": ordered[-1],
-        "null_printable_counts": nulls,
+        "null_printable_max": ordered[-1], "null_printable_counts": nulls,
         "empirical_upper_tail_p": (1 + sum(x >= actual["printable"] for x in nulls)) / 65
     })
 
 print(json.dumps({
-    "test": "p50 256-byte table XOR repeating p56 SHA-512 digest",
+    "test": "p50 256-byte table XOR repeating p56 SHA-512 digest; local replication of R43/F6",
     "digest_hex": digest_hex, "digest_bytes": len(digest),
     "digest_sha256": hashlib.sha256(digest).hexdigest(),
     "key_repetitions": 4, "offset": 0, "positive_control_exact": True,

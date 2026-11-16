@@ -445,3 +445,10 @@ Run: agent16-gpt6-20261116T1636Z-draw6-issue-fallback-c2a710fe; claimed agent16 
 - Base59 drop-f output: 80/256 printable, 43 letters, no zero bytes, longest run 5, entropy 7.1271; output SHA-256 d615f362fab0182bf3084dc74f25e341a0486eabe69de3ea0909bb9bd37960e8. Null median 94, range 76–109, p=0.9846. Neither output has a common file signature; the synthetic plaintext control round-trips exactly.
 - Reproducer/report: im-results/lp2_p50_p56_digest_repeating_xor_pad_gate.py and im-results/lp2-p50-p56-digest-repeating-xor-pad-gate.md. This closes only direct forward repeated XOR of the digest over the table; do not expand into arbitrary offsets or KDFs without a new source selector.
 
+## Correction: p56-hash × p50 XOR was already tested independently
+
+- The direct 64-byte p56 SHA-512 digest repeated four times against the 256-byte p50 table is **not new**. The independent Dukotah/cicada3301 R43/F6 campaign had already tested canon_256 and canon_256_decpref; its RESULTS adjudicates the two PGP-tag D4 hits as chance (32.77% detector firing on 100,000 random 256-byte strings). Our local script/report is a reproduction and integration, not a novel discovery.
+- The external run_f6.py PGP heuristic accepts any high-bit new-format tag and only checks claimed length >=64, not that the packet fits the 256-byte buffer. Our base60 output starts FD D1 D0 (tag61, claimed length475, 253 bytes available); the apparent PGP hit is invalid. The preregistration's restricted tag list is not enforced by the implementation.
+- The same external F6 campaign tested the p56 digest as 64-byte and 128-nibble GP29 keystreams over all 55 pages (sign ±1, Atbash, offsets0–63; 28,160 decodes): 0/55 pages crossed, best pmax4.596 vs bar11.27.
+- Avoid repeating this exact hash-XOR or hash-keystream grid. Full local reproduction: im-results/lp2_p50_p56_digest_repeating_xor_pad_gate.py and im-results/lp2-p50-p56-digest-repeating-xor-pad-gate.md. External sources: https://github.com/Dukotah/cicada3301/tree/master/liber-primus/analysis/round43/F6-objects.
+
