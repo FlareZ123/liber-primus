@@ -14,7 +14,8 @@ const TWITTER_PATH = path.join(ROOT, "resources", "cicada2013-twitter-hex-stream
 const RUNES = Array.from("ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛇᛈᛉᛋᛏᛒᛖᛗᛚᛝᛟᛞᚪᚫᚣᛡᛠ");
 const TRANSLIT = ["F","U","TH","O","R","C","G","W","H","N","I","J","EO","P","X","S","T","B","E","M","L","NG","OE","D","A","AE","Y","IA","EA"];
 const SPECIALS = ["⁘","⁜","•"];
-const OFFSETS = [0,32,133,315,331,347,662];
+const OFFSETS = [0,13,32,65,133,315,331,347,416,662];
+const BYTE_OFFSETS = [0,32,133,315,331,347,662];
 const ORIENTATIONS = [
   {name:"symbol-MSB/byte-MSB", bits:[4,3,2,1,0], order:"msb"},
   {name:"symbol-LSB/byte-MSB", bits:[0,1,2,3,4], order:"msb"},
@@ -151,7 +152,7 @@ async function main() {
   results.sort((a,b)=>b.coverage-a.coverage||b.hits3-a.hits3||b.hits4-a.hits4);
   const primes=[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109];
   const byteXor=[];
-  for(const offset of OFFSETS) for(const [representation,values] of [["ordinal",runeValues],["GP-prime",runeValues.map(x=>primes[x])]]) {
+  for(const offset of BYTE_OFFSETS) for(const [representation,values] of [["ordinal",runeValues],["GP-prime",runeValues.map(x=>primes[x])]]) {
     const out=new Uint8Array(values.length);
     for(let i=0;i<values.length;i++)out[i]=values[i]^twitter.key[offset+i];
     byteXor.push({offset,representation,...inspectBytes(out)});

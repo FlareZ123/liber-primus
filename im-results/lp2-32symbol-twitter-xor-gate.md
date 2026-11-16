@@ -31,16 +31,16 @@ The relikd page files contain:
 
 Thus the proposed 32-symbol stream packs to 15,863×5 = 79,315 bits, or 9,915 bytes.
 
-The Twitter dump was reconstructed by absolute offsets from 988 records: 64,167 bytes, with no gaps or overlaps. The bounded test used the first 9,915-byte key window at source-selected offsets 0, 32, 133, 315, 331, 347 and 662. The latter values come from the p0/2014 HTML numeric relation being examined in #1254; no unconstrained offset scan was performed.
+The Twitter dump was reconstructed by absolute offsets from 988 records: 64,167 bytes, with no gaps or overlaps. The bounded test used the first 9,915-byte key window at source-selected offsets 0, 13, 32, 65, 133, 315, 331, 347, 416 and 662. The 13/65/416 additions are derived from the 13-rune red heading, 13×5 and 13×32; 133/331/315/347/32/662 come from the p0/2014 HTML numeric relation being examined in #1254. This is a finite clue-driven set; no unconstrained offset scan was performed.
 
 The 5-bit test covered:
 
 - 0-based GP codes 0–28 and 1-based GP codes 1–29;
 - all six assignments of **⁘**, **⁜** and **•** to the three remaining 5-bit values;
 - both symbol-bit orders and both byte-bit orders;
-- all seven listed Twitter offsets.
+- all ten listed Twitter offsets.
 
-That is **336** 5-bit candidates. The output was scored against a 20,000-word common-English list fetched from [first20hours/google-10000-english](https://github.com/first20hours/google-10000-english/blob/master/20k.txt). The source transcription and wordlist were fetched at test time and are not mirrored here.
+That is **480** 5-bit candidates. The output was scored against a 20,000-word common-English list fetched from [first20hours/google-10000-english](https://github.com/first20hours/google-10000-english/blob/master/20k.txt). The source transcription and wordlist were fetched at test time and are not mirrored here.
 
 A separate direct bytewise XOR test used rune ordinals and GP prime values as one-byte inputs at the same seven offsets.
 
@@ -48,7 +48,7 @@ A separate direct bytewise XOR test used rune ordinals and GP prime values as on
 
 No candidate resembles English.
 
-- The best 5-bit candidate had only **2.96%** of decoded transliteration letters covered by the wordlist, 23 recognized words of length at least three, and **zero** recognized words of length four or more.
+- The best 5-bit candidate (1-based GP codes, offset 315, symbol-MSB/byte-MSB, with **•/⁘/⁜** assigned to codes 0/30/31) had only **2.40%** of decoded transliteration letters covered by the wordlist, 23 recognized words of length at least three, and zero recognized words of length four or more. The best 0-based candidate reached 2.34% coverage and had only two four-plus-letter hits; neither output is coherent. Coverage counts expanded transliteration letters, including digraphs.
 - Its decoded word-separator code occurred 524 times, against 2,731 source separators; the decoded output contained only 1,430 nonempty word fragments.
 - The top candidate began **jaeuaedjygthohfaep eowihelo cfaembiacbwbfayyeoaiog ...**, not a coherent plaintext.
 - The one-byte ordinal/prime XOR outputs had approximately 37–39% printable bytes, a longest printable run of 43, and no tested common file signature.
