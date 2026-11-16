@@ -10,6 +10,29 @@ We independently replayed the external line-length dynamic program, with the sam
 
 The external reconstruction's own dependency and status are important: its [templates.py](https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/liber-primus/analysis/retranscribe/templates.py) clusters **13,140** full-height glyph crops into **1,067** bitmap variants; it retains **32** high-frequency classes among **226** agglomerative classes at a 0.10 difference threshold. In `diff.py`, class→rune naming then uses the *canonical transcript*, so the glyph segmentation is image-first while alphabet naming is a constrained alignment to a source transcript. No GP alphabet expansion follows merely from having 32 printed-shape classes.
 
+## New original-image geometry recovery: 79 additional text lines
+
+The external Stage2 `read.py` scans each entire text-line band across the **full 2,400-pixel image width**, then attempts a template segmentation over all ink. On the floral-border physical pages **p40–48**, border branches and five-dot side ornaments occupy the same vertical bands as the text. The original image itself confines ordinary rune text to the central vertical column. Excluding decoded glyph predictions whose original-image `x` is outside the fixed **[580, 1800]** central-text window, then reapplying the external author's **same length-only alignment DP with 15-point skipped-line penalty within each physical page**, restores **82 exact-rune-count lines out of 107 original text lines** on p40–48. This is a geometry correction to the independent image stream, **not a modification of any rune** or an identity-trained segmentation.
+
+| Physical pages | Original exact aligned lines before clipping | Text-column exact aligned lines after clipping | Assigned matches / mapped mismatches / unmapped |
+| --- | ---: | ---: | ---: |
+| p40 | 0 | 4 / 11 | 92 / 0 / 1 |
+| p41 | 1 | 9 / 12 | 187 / 17 / 5 |
+| p42 | 2 | 10 / 12 | 219 / 5 / 6 |
+| p43 | 0 | 11 / 12 | 246 / 0 / 5 |
+| p44 | 1 | 9 / 12 | 204 / 0 / 4 |
+| p45 | 1 (misaligned globally) | 10 / 12 | 219 / 2 / 3 |
+| p46 | 1 (misaligned globally) | 10 / 12 | 219 / 2 / 1 |
+| p47 | 1 (misaligned globally) | 10 / 12 | 215 / 3 / 7 |
+| p48 | 1 | 9 / 12 | 200 / 1 / 2 |
+| **Total** | **8** | **82 / 107** | **1,801 / 30 / 34** |
+
+Across the **1,865** image glyph positions in these 82 cropped exact-count lines, **1,801** have agreeing assigned rune classes (**96.568%**). The **64** nonagreed positions, including **34** unassigned templates, are preserved individually with source band/x, identity, cost and mean row cost in the [64-site original-geometry disagreement manifest](lp2-round9-floral-text-crop-disagreement-sites.tsv). Relative to the external global 232 line-pair comparison, **79 of the cropped 82 band/line matches are new distinct alignments**; thus a combined **311/604** band/line comparisons exist, although some originally aligned global pairs were displaced by ornament artifacts and the combined set is not an independent full-corpus proof. The p45–47 long-claimed "unreadable OTP page" failure is materially *reduced*: its original text column alone yields **10 of 12** exact-count lines on each page.
+
+The residual errors are strongly localized to image-read *quality*. **28/30** assigned rune mismatches occur in only six exact-count lines whose mean pixel-template cost is **above 300** (bands p41:475; p42:489,490; p45:518; p46:530; p47:542). These lines need source resegmentation, especially p41:475 with 16 of the 30 mismatches and mean cost 891. In the remaining **76** exact-count lines, only **two** mapped rune differences survive, both `template C → canonical I` at original p41 band470 x1208 cost899 and p48 band560 x866 cost856. The glyph template costs exceed typical median for clear glyph matches and the original image's straight I form should be inspected directly before treating them as transcription changes. The 29 remaining unassigned glyphs on low-cost lines are dominated by the class31→ordinary R split.
+
+**Decision from this geometric recovery:** the resource limit is image-reading software, especially artwork interference and extreme line-band centering, rather than a demonstrated 30th rune or ciphertext copy error. Re-evaluate source images using **crop-before-decoding** for those six bad bands; if the source-local row can be resegmented with template costs in the ordinary range, it will give a genuinely independent original-image check. This is an inexpensive, concretely prioritized way to inspect the previously skipped p40–48 ink, and it increases independently source-located coverage without guessing cryptographic keys.
+
 ## Targeted original-ink adjudications
 
 - **Repeated R silhouettes:** Original `34.jpg`, physical p17, has primary image class15 at approximately **(x1043, y861)** and class31 at approximately **(x1605, y861)**; a second class31 example lies near **(x1620, y673)**. Binary original-ink glyph crops at threshold 128 give **1,991** dark pixels for the class15 example and **1,983** for the class31 example, differing by **68** pixels in a nominal 37×114 comparison (IoU ~**0.9664**). Two examples within each class are pixel-identical at this threshold. Both display the same legible ᚱ skeleton. The minor branch-edge differences could arise from font/rendering phase or authored alternate forms; this inspection cannot identify a steganographic binary channel. Across 646 source bands, class15 occurs **281** times and class31 **140** times, but the 232 count-exact lines locate 55 class31 sites specifically at ordinary R in the source text. Preserve class identity as potential evidence, without declaring a 30th rune.
