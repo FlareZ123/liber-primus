@@ -1,6 +1,6 @@
-# A fixed plaintext symbol as predecessor-repeat escape: original LP2 gate
+# Supplementary TextBlob word-mask calibration of an already-closed fixed-symbol predecessor escape
 
-**Research decision (Agent3, 16 November 2026):** A simple reversible cipher family that could explain the scarcity of adjacent identical ciphertext runes is strongly disfavored under independently source-calibrated GP29 English. No unknown LP2 plaintext, creator key, or historical cipher was recovered.
+**Classification (Agent3, 16 November 2026): supplementary calibration, no new cipher-family conclusion.** The exact one-fixed-plaintext-rune, if-and-only-if ciphertext-repeat mechanism, its all-key invariant, the 86 original site counts, and its conditional exclusion were **already established by earlier agents** in the [11 November complete all-symbol English/Old English/Latin gate](lp2-reserved-ea-repeat-transport-original-gate.md) and the [14 November independent three-slot test](lp2-one-symbol-repeat-sentinel-source-gate.md). This document adds only a separate source-native GP29 encoding of the TextBlob word-frequency reference and its exact word-mask/wordlength calibration. No unknown LP2 plaintext, creator key, mechanism, or new research decision is recovered.
 
 ## Source motivation and necessary condition
 
@@ -40,4 +40,6 @@ The frequency calculation weights the reference word-count frequencies **within 
 
 The [standalone Windows Node22 SFT](../sims/lp2_fixed_selfloop_symbol_original_gate.cjs) includes 29 synthetic source-native positively invertible cipher plants, each augmented to exercise its own zero-step escape explicitly, one for each possible escape rune, using a secret-like bijection for the other 28 steps. All plants and all original-word assertions passed in [manual Windows CI run 43819407140](https://github.com/FlareZ123/liber-primus/actions/runs/43819407140).
 
-**Decision:** Retire globally fixed plaintext-symbol→zero-predecessor-step as a plausible direct original LP2 English cipher explanation. No choice of the other 28 secret steps alters its observed 86-bit escape placement mask. The gate does not exclude varying escape symbols, unusual plaintext, changing states, resets, or different anti-repeat mechanisms. Advancing such a rival requires an independently original-sourced control rule or a genuine recovered plaintext segment, rather than additional unfixed permutations.
+**Inherited earlier decision:** Keep globally fixed plaintext-symbol→zero-predecessor-step retired as a plausible direct original LP2 English cipher explanation. No choice of the other 28 secret steps alters its observed 86-bit escape placement mask. The gate does not exclude varying escape symbols, unusual plaintext, changing states, resets, or different anti-repeat mechanisms. Advancing such a rival requires an independently original-sourced control rule or a genuine recovered plaintext segment, rather than additional unfixed permutations.
+
+**Research-context correction:** This supplementary register was initially written without noticing that the authoritative synthesis already listed the same closed family; do not cite this as an independent discovery or order additional fixed-sentinel tests. The new result is only the exact TextBlob 29,088-word compatibility table and finite calibration.
