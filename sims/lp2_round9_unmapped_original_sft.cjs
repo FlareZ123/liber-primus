@@ -195,9 +195,9 @@ async function main() {
     console.log('Preserved 57-row original-page coordinate manifest: exact match');
 
 
-    const floralHeader = 'physical_page\\tarchive_jpg\\timage_band\\tcanonical_page_line\\t' +
-        'rune_index_in_line\\tx_px\\timage_class\\tpixel_cost\\tline_mean_cost\\t' +
-        'canonical_rune\\timage_class_assignment';
+    const floralHeader = 'physical_page\tarchive_jpg\timage_band\tcanonical_page_line\t' +
+        'rune_index_in_line\tx_px\timage_class\tpixel_cost\tline_mean_cost\t' +
+        'canonical_rune\timage_class_assignment';
     const floralRows = [];
     const knownGlobalPairs = new Set(exact.map(([a, b]) => source[a].band + '/' + b));
     let sectionsOffset = 0;
@@ -244,7 +244,7 @@ async function main() {
                     floralRows.push([
                         p, p + 17, row.band, b, k, x, id, cost, mean,
                         RUNES[original[k]], mapped === undefined ? 'UNMAPPED' : RUNES[mapped]
-                    ].join('\\t'));
+                    ].join('\t'));
                 }
             }
         }
@@ -259,7 +259,7 @@ async function main() {
     assert.equal(floralRows.length, 64);
     const floralFile = fs.readFileSync(path.join(ROOT, 'im-results',
         'lp2-round9-floral-text-crop-disagreement-sites.tsv'), 'utf8').trimEnd();
-    assert.equal(floralFile, [floralHeader, ...floralRows].join('\\n'));
+    assert.equal(floralFile, [floralHeader, ...floralRows].join('\n'));
     console.log('Floral source-column recovery: 82 exact lines, 79 additional band/line pairs');
     console.log('Floral image identities: 1801 matches, 30 mapped mismatches, 34 unlabeled');
     console.log('All 64 original-image disagreements: pinned coordinate manifest exact match');
