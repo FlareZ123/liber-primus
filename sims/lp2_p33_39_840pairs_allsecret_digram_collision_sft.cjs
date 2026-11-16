@@ -126,36 +126,48 @@ for(const source of sources) {
   controls.push({name:source.name,sourceRunes:encoded.length,windows:windows.length,stride,min,max});
 }
 
-// Independent original-shape native GP plant with distinct hidden alphabet
-// for each physical page and each parity class. No original ciphertext
-// source is used to build this plaintext.
+// Independent original-shape native GP plant tested against separate,
+ // correctly scoped secret maps: global, per page, and page plus parity.
 const plant=gp(read(sources[0].file)).slice(0,1680);
 const plantPages=asPages(plant);
-let recovered=[];
-let encrypted=[];
-for(let p=0;p<plantPages.length;p++){
-  const page=plantPages[p],out=[],back=[];
-  for(let j=0;j<page.length;j+=2) {
-    if(j+1===page.length){out.push(page[j]);back.push(page[j]);continue}
-    const par=(j/2)%2;
-    const [a,b]=encrypt(page[j],page[j+1],p,par);
-    out.push(a,b);
-    back.push(...decrypt(a,b,p,par));
+/** @param {"global"|"page"|"pageParity"} scope
+ * @returns {{encoded:number[], recovered:number[]}} */
+function plantCipher(scope) {
+  const encoded=[], recovered=[];
+  for(let p=0;p<plantPages.length;p++){
+    const source=plantPages[p],out=[],back=[];
+    for(let j=0;j<source.length;j+=2){
+      if(j+1===source.length){out.push(source[j]);back.push(source[j]);continue}
+      const secretPage=scope==="global"?0:p;
+      const secretParity=scope==="pageParity"?(j/2)%2:0;
+      const cipher=encrypt(source[j],source[j+1],secretPage,secretParity);
+      out.push(...cipher);
+      back.push(...decrypt(...cipher,secretPage,secretParity));
+    }
+    assert.deepEqual(back,source);
+    encoded.push(...out);recovered.push(...back);
   }
-  assert.deepEqual(back,page);
-  encrypted.push(...out);recovered.push(...back);
+  assert.deepEqual(recovered,plant);
+  return {encoded,recovered};
 }
-assert.deepEqual(recovered,plant);
-const positiveBefore=counts(plant),positiveAfter=counts(encrypted);
-assert.equal(positiveBefore.pageKey,positiveAfter.pageKey);
-assert.equal(positiveBefore.pageParity,positiveAfter.pageParity);
+const positiveBefore=counts(plant);
+const globalPlant=plantCipher("global"),pagePlant=plantCipher("page"),
+  parityPlant=plantCipher("pageParity");
+const globalAfter=counts(globalPlant.encoded),pageAfter=counts(pagePlant.encoded),
+  pageParityAfter=counts(parityPlant.encoded);
+assert.equal(positiveBefore.global,globalAfter.global);
+assert.equal(positiveBefore.globalParity,globalAfter.globalParity);
+assert.equal(positiveBefore.pageKey,pageAfter.pageKey);
+assert.equal(positiveBefore.pageParity,pageParityAfter.pageParity);
 assert.ok(positiveBefore.pageParity>original.pageParity);
 console.log(JSON.stringify({
   premise:"1680 original rune chapter = 840 ordered GP29 rune pairs, cuneiform units 1033 & 3301",
   originalPages:pageLengths, original,
   controlScope:"source-native GP29 prose, complete original 1680 symbol shape",
   controls,
-  positive:{runesRecovered:recovered.length,pageKeyEqualPairs:positiveBefore.pageKey,
-   pageParityEqualPairs:positiveBefore.pageParity,privateAffinePerPagePerParity:true},
+  positive:{runesRecovered:globalPlant.recovered.length,
+   globalEqualPairs:positiveBefore.global,pageKeyEqualPairs:positiveBefore.pageKey,
+   pageParityEqualPairs:positiveBefore.pageParity,
+   distinctScopesPreserved:["global","globalParity","pageKey","pageParity"]},
   conclusion:"conditional all-841!-secret fixed-pair substitution family excluded for these three source-native English registers; no plaintext/key"
 },null,2));
