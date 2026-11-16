@@ -1,0 +1,30 @@
+name: LP2 full-source controlled allograph split test (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  controlled-split:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: "4"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install image-analysis dependencies
+        run: python -m pip install --disable-pip-version-check numpy pillow opencv-python-headless
+      - name: Run all-29 held-out source test and 20 no-message books
+        run: python sims/lp2_allograph_full_source_controlled_split_sft.py --null-reps 20 --seed 4401 > im-results/lp2-allograph-full-source-controlled-split-run.json
+      - name: Print decision summary
+        run: |
+          python -c "import json; r=json.load(open('im-results/lp2-allograph-full-source-controlled-split-run.json',encoding='utf-8')); print({k:r[k] for k in ('images','source_templates','candidate_components','source_mapped_candidates','source_exact_matches','source_substitutions','morphology_matches_all_58','unknown_clean_glyphs_p0_p55','unknown_clean_red_glyphs')}); print('Observed:',r['observed_familywise_best']); print('Null:',{k:r['null_model'][k] for k in ('replicates','minimum','median','maximum','exceedances_ge_observed','plus_one_p')})"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-allograph-full-source-controlled-split
+          path: im-results/lp2-allograph-full-source-controlled-split-run.json
+          if-no-files-found: warn
+          retention-days: 7
