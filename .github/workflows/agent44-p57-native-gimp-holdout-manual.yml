@@ -10,6 +10,7 @@ on:
         options:
           - original
           - curved
+          - multiscale
 
 permissions:
   contents: read
@@ -30,7 +31,9 @@ jobs:
         env:
           SOURCE_MODEL: ${{ inputs.script }}
         run: |
-          if [ "$SOURCE_MODEL" = "curved" ]; then
+          if [ "$SOURCE_MODEL" = "multiscale" ]; then
+            python sims/lp2_p57_gimp_multiscale_source_sft.py
+          elif [ "$SOURCE_MODEL" = "curved" ]; then
             python sims/lp2_p57_gimp_curved_holdout_original_sft.py
           else
             python sims/lp2_p57_gimp_dissolve_native_holdout_sft.py
