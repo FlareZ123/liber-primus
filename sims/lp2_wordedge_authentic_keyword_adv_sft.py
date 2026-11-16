@@ -44,10 +44,13 @@ def original():
     fragments = source.strip().split("%")
     assert len(fragments) == 57, len(fragments)
     runes = {ch: i for i, ch in enumerate(corpus["runes"])}
-    pages = []
-    starts = []
+    pages = [[] for _ in range(58)]
+    starts = [[] for _ in range(58)]
     before_word = True
-    for page, fragment in enumerate(fragments):
+    # The raw transcription omits physical p50: its 256 table digits
+    # are in a separately parsed numeric artifact, with no GP runes.
+    for printed, fragment in enumerate(fragments):
+        page = printed if printed < 50 else printed + 1
         data = []
         word_starts = []
         for ch in fragment:
@@ -62,8 +65,8 @@ def original():
             else:
                 raise AssertionError(f"Unclassified original glyph page{page}: {ch!r}")
         assert data == corpus["pages"][page]["indices"], page
-        pages.append(data)
-        starts.append(word_starts)
+        pages[page] = data
+        starts[page] = word_starts
     out = {}
     for p, next_page, label in ((0, 1, "p0_p1_first300"), (40, 41, "p40_p41_first300")):
         c = (pages[p] + pages[next_page])[:WINDOW]
