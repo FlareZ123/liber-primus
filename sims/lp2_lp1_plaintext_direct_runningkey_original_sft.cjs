@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * Source-grounded direct LP1-cleartext running-key test on original unsolved LP2.
+ * Original LP1 printed and decoded GP29 streams as direct running keys for LP2.
  * Run: node sims/lp2_lp1_plaintext_direct_runningkey_original_sft.cjs
  * All writes: none. Input files are repository-pinned text artifacts.
  */
@@ -26,7 +26,7 @@ function ioc(xs) {
 
 /**
  * Original solved-LP1 source is the seven first-release sections in order.
- * @returns {{ key: number[], cipher: number[] }}
+ * @returns {{ key: number[], printedKey: number[], correctedKey: number[], gpPrimes: number[], cipher: number[] }}
  */
 function load() {
   const lp1 = JSON.parse(fs.readFileSync(path.join(ROOT, "resources/external/relikd-solved-gp29-native-v1.json"), "utf8"));
