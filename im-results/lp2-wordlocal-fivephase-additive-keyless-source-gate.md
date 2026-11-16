@@ -1,53 +1,71 @@
-# Word-local five-phase additive-key hypothesis: necessary GP29 difference invariant
+# Key-independent GP29 word-local period-five cipher exclusion
 
-**Agent20, 16 November 2026. Classification: bounded original-input cryptanalytic exclusion.** No unknown Liber Primus plaintext, creator key, or authenticated cipher is recovered. The goal is to decide a mechanistically natural explanation for the source's within-word lag-five echoes without searching five secret shifts for every word.
+**Agent20, 16 November 2026. Classification: original-cipher finite-register exclusion.** All 56 unknown Liber Primus pages remain unsolved. This test supplies a necessary algebraic condition that avoids guessing any of the secret keys. It excludes per-word five-phase **additive and independent Atbash/ROT** encoders across three pinned GP29 source-language registers, with the authentic printed cuts preserved. It does not establish plaintext or a first-party cipher.
 
-## Key-independent attack
+## The original-data puzzle and why this test is different
 
-Consider a lossless cipher that preserves the *original printed word boundaries* and encrypts each GP29 plaintext rune under five periodically reused additive shifts, with a **completely independent unknown five-rune key for every word**:
+Unknown LP2 p0–55 has **12,956 runes across 2,896 physical printed words**, with 32 words continuing over a page boundary. There are **104 within-word repeats at distance five** in 2,105 positions, against relatively scarce adjacent ciphertext repeats. A tempting explanation is that the same five key elements are repeated within each word, perhaps with a new independently generated key at every word. Even **29^5 independent secret shifts per word** are allowed in this experiment. Rather than enumerate those keys, the repeated phase creates a mathematical invariant on the original ciphertext.
+
+This gate is distinguishable from older five-phase arbitrary secret-permutation tests, whose invariant is just same-phase *equality*. Independent Latin Vulgate controls match that weaker equality fingerprint for **107/109** original words of length 10–14. The full difference vector is far more discriminating.
+
+## Invariant A: all per-word five-phase additive shifts
+
+For source rune values and plaintext GP29 values \(C_{w,j},P_{w,j}\in\mathbb Z_{29}\), allow every original printed word its own completely unknown five-symbol key:
 
 \[
-  C_{w,j}\equiv P_{w,j}+K_{w,j\bmod5}\pmod{29}.
+ C_{w,j}=P_{w,j}+K_{w,j\bmod 5}\pmod{29}.
 \]
 
-For every word position \(j\ge5\), the unknown key cancels exactly:
+Every one of the five unknown shifts cancels at every same-phase pair:
 
 \[
-  (C_{w,j}-C_{w,j-5})\bmod29
-  =(P_{w,j}-P_{w,j-5})\bmod29.
+  C_{w,j}-C_{w,j-5}=P_{w,j}-P_{w,j-5}\pmod{29},
+  \qquad j\ge 5.
 \]
 
-Thus any authentic plaintext word has to occur at the *same GP rune length* and have the *identical complete fifth-apart modular-difference vector*. This condition is necessary regardless of how the five shifts are generated, whether every word is rekeyed, or what first-word key is chosen. It is much sharper than merely preserving equality at positions five apart.
+For each original word, generate the complete vector of its differences for \(j=5,\ldots,n-1\), then compare it with every *source-native GP spelling* of the same length. A missing match means **no choice of any five shifts for that word**, independently of all other words, can produce that reference plaintext word.
 
-The original input is all **12,956** GP29 runes from physical LP2 pp0–55, parsed with all **2,896** authentic printed words and the 32 genuine page-carrying words intact. Unicode rune identity and native GP indices come from [the canonical transcription](../resources/liber-primus/lp2-transcription.txt) and [the 29-entry corpus](../resources/liber-primus/lp2-corpus.json). The English candidate set is the project's pinned **29,164-line word-frequency fixture**, encoded with the established source-native GP orthography (including TH, ING→NG, IO→IA, K/Q→C, V→U, Z→S). The independently pinned Old English comparison is the corrected 48,012-GP-rune *Beowulf* source containing 10,885 words. The separate Latin comparison uses 39,835 original *Vulgate* words, independently GP29-encoded while preserving Latin word boundaries. Each fixture is a finite source register rather than an exhaustive vocabulary.
+## Invariant B: independent per-phase shifts and Atbash signs
 
-## Untuned original results
+Real Cicada stages used simple ROT and Atbash operations. An even larger, source-era-compatible family grants a separate **addition or reversal** at each of the five phase lanes, freshly selectable for every word:
 
-| Original printed GP word length | Source words | Modern-English matches | *Beowulf* matches | Latin *Vulgate* matches |
+\[
+ C_{w,j}=\epsilon_{w,j\bmod 5}\,P_{w,j}
+          +K_{w,j\bmod5}\pmod{29},
+ \quad\epsilon_{w,r}\in\{-1,+1\}.
+\]
+
+For each phase \(r\), the complete same-phase fifth-lag difference vector must equal either the plaintext vector or its **whole-vector negation**. Canonicalize each of the five vectors as the lexicographically smaller of itself and its negation, *retaining both successive differences in the same lane for words long enough to contain them*. Thus the test admits all 32 independently selected sign patterns per printed word plus all possible additive shifts, without search. This expands the result from additive Vigenère to per-phase Atbash/ROT. It still excludes scaling other than ±1, nonlinear alphabets and stateful or resegmented emitters.
+
+## Whole-original source results
+
+Input: original pages p0–55 as [source transcription](../resources/liber-primus/lp2-transcription.txt) checked against the [canonical GP rune indices](../resources/liber-primus/lp2-corpus.json). The 29-symbol GP spelling and the project's explicit longest-match ING→NG, IO→IA, K/Q→C, V→U and Z→S normalization are used consistently.
+
+Three finite, independently pinned reference registers were tested: the project's ~29k modern-English word-frequency fixture; **10,885 native GP words** from the corrected *Beowulf* source (48,012 GP runes); and **39,835 original word-preserving GP Latin Vulgate words**. The two historical corpora are finite text samples, not complete dictionaries for their languages.
+
+| Original printed rune length | Original words | Additive matches: English / Old English / Latin | ±Atbash/ROT matches: English / Old English / Latin |
 |---:|---:|---:|---:|
-| 6 | 256 | 256 | 256 | 256 |
-| 7 | 216 | 207 | 71 | 124 |
-| 8 | 156 | 24 | 1 | 4 |
-| 9 | 78 | 1 | 0 | 1 |
-| 10 | 52 | **0** | **0** | **0** |
-| 11 | 32 | **0** | **0** | **0** |
-| 12 | 18 | **0** | **0** | **0** |
-| 13 | 4 | **0** | **0** | **0** |
-| 14 | 3 | **0** | **0** | **0** |
-| **Total length 10–14** | **109** | **0** | **0** | **0** |
+| 6 | 256 | 256 / 256 / 256 | 256 / 256 / 256 |
+| 7 | 216 | 207 / 71 / 124 | 216 / 159 / 200 |
+| 8 | 156 | 24 / 1 / 4 | 100 / 4 / 46 |
+| 9 | 78 | 1 / 0 / 1 | 6 / 0 / 2 |
+| 10 | 52 | **0 / 0 / 0** | **0 / 0 / 0** |
+| 11 | 32 | **0 / 0 / 0** | **0 / 0 / 0** |
+| 12 | 18 | **0 / 0 / 0** | **0 / 0 / 0** |
+| 13 | 4 | **0 / 0 / 0** | **0 / 0 / 0** |
+| 14 | 3 | **0 / 0 / 0** | **0 / 0 / 0** |
+| **Total length 10–14** | **109** | **0 in all three** | **0 in all three** |
 
-All **109 original long printed words** are incompatible with *every* GP-native modern-English word in the pinned fixture under this source-preserving period-five additive model. The independently encoded Old English and Latin source registers yield the same complete absence of long-word matches. This is particularly discriminating against the source-native Latin comparator, where a weaker secret-phase **equality-only** condition can match 107 of 109 original long printed words ([previous independent comparison](lag5-contiguous-echo-second-order.md)). The modular fifth-lag difference vector rejects all 109 in that same Latin source without estimating any key. The source is already effectively incompatible at length eight and nine if every long word must be ordinary lexicon prose.
+The full **109 original 10–14-rune words have no plaintext candidate from any of these finite registers under either exact five-period family**, even with an arbitrary five-symbol secret and independently chosen phase orientation for each word.
 
-A deterministic same-shape control selects GP-native dictionary words at *each original 6–14-rune word length*, encrypts all **815** of them with different five-period additive keys per word, and recovers a signature match for **815/815**. The included six-period wrong-mechanism control establishes that the period-five invariant is substantive, rather than a generic property of any shifted text. This control proves the signature test works for exactly the candidate family; it does not authenticate that family as Cicada's cipher.
+The signed extension improves on the already strong additive result and directly includes the historically recognized Atbash/ROT operations. In comparison, source-native Latin prose matched the exact *equality-only* secret-phase fingerprint on 107/109 long words in the earlier [independent morphology work](lag5-contiguous-echo-second-order.md). Therefore, these original long-word constraints distinguish the proposed arithmetic operations from the more permissive secret alphabet family under a previously relevant competing language register.
 
-**Decisive scope:** retire *literal per-printed-word period-five additive Vigenère*, even with all its secret key values independently variable. This leaves unrestricted nonadditive five-phase alphabets, feedback, changed plaintext segmentation, word transpositions, different language registers and layered encodings open. Five-back *equality* excess by itself cannot justify a five-repeated additive key. Further arbitrary search over its \(29^5\) per-word keys has no value, because the necessary invariant already fails before keys are considered.
+## Positive control, reproduction and decision
 
-## Reproduction
+The [Windows Node22 CommonJS SFT](../sims/lp2_wordlocal_period5_delta_invariant_sft.cjs) asserts the exact unchanged 12,956-rune sequence, 2,896 printed words, all original word lengths, all support counts in three registers, and authentic native-GP word normalization. To show that the invariant genuinely accepts a ciphertext made by the proposed architecture, it constructs **815** dictionary GP words matching each original long word length and encrypts them with new secret five-period keys. The basic additive test returns **815/815** supported candidates. A separate synthetic control uses different ± signs and shifts across every phase and word, and likewise returns **815/815**. A six-period additive wrong-family control is also output.
 
-The [manual Windows/Node22 run 43880161354](https://github.com/FlareZ123/liber-primus/actions/runs/43880161354) passed the complete original-source, English, corrected Old English and Latin assertions, including the independent 815/815 positive. Run [the source-native CommonJS SFT](../sims/lp2_wordlocal_period5_delta_invariant_sft.cjs) with Node.js 22 from repository root:
+The complete [manual Windows/Node22 source-original run 43880833564](https://github.com/FlareZ123/liber-primus/actions/runs/43880833564) passed all three original language registers, both 815-word native positive controls, and all exact original-source assertions.
 
-\`node sims/lp2_wordlocal_period5_delta_invariant_sft.cjs\`
+**Decision:** retire the complete class of GP29 per-printed-word five-period additive or independent Atbash/ROT rekeying as a direct ordinary GP-prose decoder under the three declared source registers. Its keys are mathematically irrelevant to the observed long-word failure. Preserve the genuine lag-five anomaly as a structural observation, without inferring these ruled-out period-five modes. A future live hypothesis would need independent evidence for a different operation, a new register, actual changed segmentation or a recoverable key and plaintext, rather than another unrestricted search through \(29^5\) shifts or 32 sign patterns per printed word.
 
-The program asserts unchanged word counts, exact canonical rune sequence, all nine source length/support bins, the corrected Old English and 39,835-word Latin bins, and 815/815 native-GP five-phase encryption positives. It emits a machine-readable per-length report and a six-period control count. No learned language model, post-hoc key tuning or original-passage search is used.
-
-This exclusion is narrower than the earlier [five-phase physical-page secret-alphabet studies](lp2-lag5-fixedrune-boundary-alignment.md): that work used a small number of page/phase alphabets and an equality invariant; this test grants **unlimited independent per-word additive keys** and checks the full modulus-29 fifth-lag difference vector.
+**Evidence boundary:** these corpus-based necessary-condition tests do not prove a universal impossibility theorem for every English, Latin or Old English word, and they do not address an additional value-changing or transposition layer before/after this model. There is no authenticated unknown-page plaintext, original authorial key or complete cipher recovered.
