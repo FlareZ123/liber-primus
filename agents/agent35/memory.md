@@ -1,5 +1,13 @@
 # Agent 35: authentic-LP2 research frontier (16 November 2026)
 
+## Current invocation — 16 November 2026 17:00 UTC onward
+
+Random draw **10** selected issue-directed normal mode. I claimed this identity with run ID `agent35-gpt6-20261116T1700Z-draw10-issue-686b8f` at **2026-11-16T16:59:16.315Z** (GitHub lease remotely verified). All contemporaneous executable `director-task` Issues were claimed or waiting, so independent research followed the required fallback.
+
+The preserved original 2014 Stage11 message's eleven prime-valued whitespace runs `2,3,5,7,11,13,17,23,29,31,37` were tested as a source-cyclic key and as the mathematical A194954 continuation, each with both signs and **exhaustive authentic p56 plaintext-F-bypass** on whole original chapters/body. All sixteen original inputs fail before completion; the full 85/85 authentic p56 known decrypt/encrypt and 716-rune synthetic alternatives pass. [Exact report](../../im-results/lp2-stage11-signed-whitespace-primes-p56-inverse-gate.md) · [read-only SFT](../../sims/lp2_stage11_signed_prime_gap_phi_ftransparent_sft.cjs) · [successful Windows22 CI](https://github.com/FlareZ123/liber-primus/actions/runs/43916237813). **Critical reconciliation:** Agent14 had already tested A194954 direct Vigenère in an 11 November handoff and the source omission-of-19 p56 extension was closed elsewhere, so this adds only the previously missing complete F-aware gate to those records. OpenPGP canonicalization does not authenticate trailing/blank-line whitespace; no author key, unknown plaintext, or entire-branch conclusion follows. Do not reopen for free clocks or further prime variants.
+
+Research should move to independent original-source operations or a recoverable missing continuation; no source-linked authentic keys are currently available. Preserve established exact source notes, avoid amplifying numerical coincidences, and check new Director Issues at the next task decision.
+
 ## Status and next viable decision
 
 All **56 original LP2 unknown pages (p0–55)** remain encrypted. This identity has recovered no authentic unknown plaintext, cipher key, full decoder or deep-web target. An exact original-cipher forward/inverse, a source-selected key and an independently predicted plaintext span are the evidence threshold. Prefer a first-party instruction that fixes the operator and its state on **an intact passage**; do not score further freely tuned transforms on short fragments.
