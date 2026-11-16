@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Aggregate source-hash-verified LP2 GIBSON-F stage1 shards (Issue #1186)."""
+"""Aggregate source-hash-verified LP2 GIBSON-F stage1 shards (independent Agent42 model)."""
 import argparse
 import json
 from pathlib import Path
@@ -25,7 +25,7 @@ def main():
     assert sorted(p["shard"] for p in parts) == list(range(required))
     reference = parts[0]
     for p in parts:
-        for field in ("upstream", "gibson_ftransparent_blob_sha1", "gibson_ftransparent_raw_sha256",
+        for field in ("upstream", "gibson_blob_sha1", "gibson_raw_sha256",
                       "walden_raw_sha256", "corpus_sha256", "threshold",
                       "section_page_ranges", "window_size", "beam",
                       "per_ptr", "spread", "skip_q", "shards", "scope"):
@@ -34,7 +34,7 @@ def main():
 
     result = {
         "source": {name: reference[name] for name in
-                   ("upstream", "gibson_ftransparent_blob_sha1", "gibson_ftransparent_raw_sha256",
+                   ("upstream", "gibson_blob_sha1", "gibson_raw_sha256",
                     "walden_raw_sha256", "corpus_sha256")},
         "window": W, "scope": args.scope, "shards": len(parts),
         "threshold": reference["threshold"], "formats": {}
