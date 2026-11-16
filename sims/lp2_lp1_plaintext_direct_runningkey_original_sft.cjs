@@ -37,12 +37,24 @@ function load() {
   );
   const printed = fs.readFileSync(path.join(ROOT, "resources/transcriptions/lp1_wulfic_canonical.txt"), "utf8");
   const printedKey = Array.from(printed).filter((r) => gp.has(r)).map((r) => gp.get(r));
+  // The external solved koan changes original WHO to WHAT at two sites.
+  // Restore the original by directly decoding the four printed LP1 koan pages
+  // under their authenticated Atbash/reversed +3 GP29 equation.
+  const printedKoan = printed.split("%").slice(4, 8).join("");
+  const koan = Array.from(printedKoan).filter((r) => gp.has(r)).map((r) => (31 - gp.get(r) + 29) % 29);
+  const correctedKey = lp1.sections.slice(0, 7).flatMap((section, i) =>
+    i === 3 ? koan : Array.from(section.source_text).filter((r) => gp.has(r)).map((r) => gp.get(r))
+  );
   const cipher = lp2.pages.slice(0, 56).flatMap((page) => page.indices);
   assert.equal(key.length, 2799);
   assert.equal(printedKey.length, 2797);
+  assert.equal(koan.length, 778);
+  assert.equal(correctedKey.length, 2797);
+  assert.deepEqual(koan.slice(140, 143), [7, 8, 3]); // W H O, not W H A T
+  assert.deepEqual(koan.slice(276, 279), [7, 8, 3]); // second literal WHO
   assert.equal(cipher.length, 12956);
   assert.deepEqual(CHAPTER_STARTS.slice(1).map((end, i) => end - CHAPTER_STARTS[i]), [729,1145,1729,1903,1021,1433,1680,3008,308]);
-  return { key, printedKey, cipher };
+  return { key, printedKey, correctedKey, cipher };
 }
 
 /**
@@ -129,10 +141,10 @@ function positiveControlsWithPad(sourcePlain, runningKey) {
 }
 
 function main() {
-  const { key, printedKey, cipher } = load();
+  const { key, printedKey, correctedKey, cipher } = load();
   positiveControls(key);
   let largest = 0;
-  for (const [source, runningKey] of [["solved LP1", key], ["printed LP1", printedKey]]) {
+  for (const [source, runningKey] of [["edited solved LP1", key], ["printed LP1", printedKey], ["source-corrected solved LP1", correctedKey]]) {
   positiveControlsWithPad(key, runningKey);
   for (let ch = 0; ch < 9; ch++) {
     const n = ch === 8 ? 308 : 729;
@@ -150,7 +162,7 @@ function main() {
   // Direct additive original source has no native-English-looking 729-rune
   // opening for any visible chapter, even with a freely selected source offset.
   assert(largest < 0.045, "Unexpected LP1-running-key original candidate; investigate before concluding");
-  console.log("PASS: 72 original-input scans, maximum IoC " + largest.toFixed(9) + "; no candidate reaches 0.045");
+  console.log("PASS: 108 original-input scans, maximum IoC " + largest.toFixed(9) + "; no candidate reaches 0.045");
 }
 
 if (require.main === module) main();
