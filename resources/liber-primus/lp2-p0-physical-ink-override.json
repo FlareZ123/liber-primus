@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "description": "Original-image adjudicated override for physical LP2 page 0 ink and punctuation boundaries. Preserve derivative upstream metadata and rune sequence.",
+  "original_jpeg": {
+    "path": "resources/liber-primus/17.jpg",
+    "sha256": "197e1e153958b9a2736b09c10eea7d8bb00e0632fd22a8d9606840becc79942e",
+    "git_blob_sha": "abab573f7a3786f46fe4fab17d5f2dcf2476136b",
+    "size_pixels": [
+      2400,
+      3600
+    ]
+  },
+  "physical_page": 0,
+  "physical_zero_based": {
+    "red_runes": [
+      {
+        "start": 0,
+        "length": 8,
+        "runes": "ᛋᚻᛖᚩᚷᛗᛡᚠ",
+        "gp_indices": [
+          15,
+          8,
+          18,
+          3,
+          6,
+          19,
+          27,
+          0
+        ]
+      }
+    ],
+    "large_punctuation": [
+      {
+        "after_runes": 8,
+        "dots": 13,
+        "ink": "red",
+        "crop_xyxy": [
+          1399,
+          640,
+          1448,
+          770
+        ]
+      }
+    ],
+    "black_following_runes": [
+      {
+        "start": 8,
+        "length": 5,
+        "runes": "ᛋᚣᛖᛝᚳ",
+        "gp_indices": [
+          15,
+          26,
+          18,
+          21,
+          5
+        ]
+      }
+    ],
+    "next_small_punctuation": {
+      "after_runes": 13,
+      "kind": "black printed full stop"
+    },
+    "unchanged_gp29_prefix_length": 13
+  },
+  "source_discrepancy": {
+    "historical_annotation": "resources/liber-primus/lp2-ink-annotations.json",
+    "recorded_red_length": 13,
+    "original_image_red_length": 8,
+    "recorded_marker_after_runes": 13,
+    "original_image_marker_after_runes": 8,
+    "historical_punctuation_inventory": "resources/liber-primus/lp2-punctuation-identity.json",
+    "historical_event_zero_offset": 13,
+    "original_image_event_zero_offset": 8,
+    "color_count_implication": "Subtract five from historical red-rune count 225 if all other annotations unchanged; this is not a full-book independent color census.",
+    "status": "Historical derivative entries retained unchanged; this file overrides the physical interpretation of p0 only."
+  },
+  "reproducer": "sims/lp2_p0_red8_marker8_original_image_sft.py",
+  "notes": "The image-based finding constrains where a possible red/black encryption-mode switch occurs. It does not authenticate any proposed Latin decryption or assign a key."
+}
