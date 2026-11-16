@@ -118,7 +118,17 @@ The word- and line-reset positive controls are far above every null replicate, s
 
 , `§` and omit page/line wraps; take every genuine internal printed hyphen and form `D = (first rune of next word − last rune of previous word) mod 29`. There are **2,721** such directed transitions over **2,896** source words in 175 punctuated spans. This same test includes the 32 words continued across physical pages, preserving the 12,956-rune source exactly.
 
-The independently visible numeric selectors are the preceding complete word's **rune length** or **sum of its original GP prime weights modulo 29**. With pages 0–39 as training and all 626 eligible boundary transitions on untouched pages 40–53 as one fixed holdout, fit an otherwise **completely secret 29-output deterministic lookup** for each selector by the most frequent training difference (ties choose lowest index, unseen inputs revert to the global training majority). No unknown plaintext, guessed key or trained English model enters the test.
+The independently visible numeric selectors are the preceding complete word's **rune length** or **sum of its original GP prime weights modulo 29**. A stronger **key-free impossibility witness is already contained entirely within the first 35 source runes of p0**, so any secret fixed lookup is ruled out even if it resets at every physical page, chapter or punctuated paragraph:
+
+| Exact original p0 GP boundary | Preceding complete word (native transliteration) | Preceding length | Preceding GP-prime sum mod29 | Observed first-to-last GP29 delta |
+| --- | --- | ---: | ---: | ---: |
+| Rune offsets **19→20** | F-J-OE (offsets 17–19) | 3 | 6 | **10** |
+| Rune offsets **22→23** | O-N-TH (offsets 20–22) | 3 | **12** | **7** |
+| Rune offsets **33→34** | N-E-W-B-A-S-OE-EO-ING-U (offsets 23–33) | 11 | **12** | **8** |
+
+The first two complete words of length **3** would demand **the same** deterministic output from `lookup(3)`, yet require deltas **10** and **7**. The latter two preceding words have identical GP-prime-sum residue **12** but demand deltas **7** and **8**. Because these three original differences are within the same p0 prose paragraph, no secret value of either lookup, however chosen, can satisfy its declared exact source rule. This is an algebraic contradiction on unmodified original ciphertext, independent of any statistical model, null, or proposed plaintext. It remains scoped to **fixed one-step lookups with only that single public numeric input**.
+
+With pages 0–39 as training and all 626 eligible boundary transitions on untouched pages 40–53 as one fixed holdout, fit an otherwise **completely secret 29-output deterministic lookup** for each selector by the most frequent training difference (ties choose lowest index, unseen inputs revert to the global training majority). No unknown plaintext, guessed key or trained English model enters the test.
 
 | Prediction rule | Training correct / 2,031 | Blind pp40–53 correct / 626 |
 | --- | ---: | ---: |
