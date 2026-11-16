@@ -172,13 +172,62 @@ for (const item of double64Results) {
 assert.equal(double64Results[0].geographicalPairs, 1);
 assert.equal(double64Results[3].geographicalPairs, 3);
 
+// Decimal signed 32-bit fixed-point coordinates are a third, direct
+// 2012-compatible serialization: 6- or 7-decimal microdegrees in each row.
+const decimalIntResults = [];
+for (const scale of [1_000_000, 10_000_000]) {
+  for (const latLittleEndian of [false, true]) {
+    for (const lonLittleEndian of [false, true]) {
+      const positions = [];
+      for (let row = 0; row < 32; row++) {
+        const view = new DataView(Uint8Array.from(
+          source.slice(8 * row, 8 * row + 8)).buffer);
+        positions.push({
+          row,
+          lat: view.getInt32(0, latLittleEndian) / scale,
+          lon: view.getInt32(4, lonLittleEndian) / scale
+        });
+      }
+      const valid = positions.filter(geographicallyValid);
+      decimalIntResults.push({
+        scale,
+        latLittleEndian,
+        lonLittleEndian,
+        geographicalRows: valid.length,
+        invalidRows: positions.length - valid.length
+      });
+    }
+  }
+}
+// Positive control for source-roundable signed microdegree coordinates.
+for (const scale of [1_000_000, 10_000_000]) {
+  for (const little of [false, true]) {
+    for (const [lat, lon] of historicallyObserved2012GPS) {
+      const buffer = new ArrayBuffer(8);
+      const view = new DataView(buffer);
+      view.setInt32(0, Math.round(lat * scale), little);
+      view.setInt32(4, Math.round(lon * scale), little);
+      const recovered = {
+        lat: view.getInt32(0, little) / scale,
+        lon: view.getInt32(4, little) / scale
+      };
+      assert(geographicallyValid(recovered));
+      assert(Math.abs(recovered.lat - lat) <= 0.5 / scale);
+      assert(Math.abs(recovered.lon - lon) <= 0.5 / scale);
+    }
+  }
+}
+assert.deepEqual(decimalIntResults.map(x => x.geographicalRows),
+  [0, 0, 0, 0, 10, 12, 11, 10]);
+
 console.log(JSON.stringify({
   source: "Original physical LP2 pp49-51 32x8 printed byte table",
   hypothesis: "Every printed row is one IEEE754 float32 latitude/longitude pair in original byte order",
   historicalPositive: historicallyObserved2012GPS.length,
   float32RowPairs: results,
   float64ConsecutiveRowPairs: double64Results,
+  decimalInt32RowPairs: decimalIntResults,
   recoveredOriginalLocations: 0,
   decodedUnknownLP2Plaintext: false,
-  status: "Falsified as complete natural-serialization 32-float32 or 16-float64 coordinate lists; isolated geographic-looking floats are non-authenticating"
+  status: "Falsified as complete natural-serialization 32-float32, 16-float64, or signed-int32 microdegree coordinate lists; isolated geographic-looking floats are non-authenticating"
 }, null, 2));
