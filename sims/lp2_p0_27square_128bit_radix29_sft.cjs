@@ -15,6 +15,22 @@ const corpus = JSON.parse(fs.readFileSync(path.join(root, 'resources/liber-primu
 const grid = JSON.parse(fs.readFileSync(path.join(root, 'resources/liber-primus/lp2-grid-256.json'), 'utf8'));
 const original = corpus.pages.filter(page => page.page <= 2).flatMap(page => page.indices);
 assert.equal(original.length, 729);
+
+// Broader fixed-clock physical-book transport: all 27 possible shifts of
+// 27-rune packet starts in the full 12,956-rune original unknown stream
+// expose all 29 rune identities as candidate packet leaders. Since a 131bit
+// integer has at most 26 possible leading base29 digits, no fixed secret
+// alphabet can serialize the full book directly in 131bit packets.
+const fullBook = corpus.pages.filter(page => page.page <= 55).flatMap(page => page.indices);
+assert.equal(fullBook.length,12956);
+const fullBookPacketLeaderCounts = Array.from({length:27},(_,phase)=>{
+  const heads = [];
+  for (let pos=phase;pos+26<fullBook.length;pos+=27) heads.push(fullBook[pos]);
+  assert.equal(heads.length,479);
+  return new Set(heads).size;
+});
+assert.deepEqual(fullBookPacketLeaderCounts,Array(27).fill(29));
+
 assert.equal(grid.bytes.length, 256);
 const LIMIT = 1n << 128n;
 
@@ -144,7 +160,8 @@ const decipher = crypto.createDecipheriv('aes-256-ctr', key, iv);
 const decrypted = Buffer.concat([decipher.update(restored), decipher.final()]);
 assert.deepEqual(decrypted, clear);
 console.log(JSON.stringify({
-  source: 'LP2 original physical p0–p2 729 runes',
+  source: 'LP2 original physical p0–p2 729 runes and complete p0–55 12956-rune book',
+  full_book_packet_leader_types_every_27phase: fullBookPacketLeaderCounts,
   row_valid: rowValid,
   full_secret_alphabet_first_rune_types: {row: distinctCount(rowHeads), column: distinctCount(colHeads), reverse: distinctCount(reversedHeads)},
   maximum_permitted_first_rune_types: upperLeadingDigit+1,
