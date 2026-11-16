@@ -15,7 +15,8 @@ from PIL import Image
 SHA256 = "197e1e153958b9a2736b09c10eea7d8bb00e0632fd22a8d9606840becc79942e"
 RED8 = "ᛋᚻᛖᚩᚷᛗᛡᚠ"
 BLACK5 = "ᛋᚣᛖᛝᚳ"
-REGIONS = {"red8": (765, 640, 1388, 770),
+REGIONS = {"oversized_red_initial": (620, 640, 758, 1190),
+           "red_continuation7": (765, 640, 1388, 770),
            "mark": (1399, 640, 1448, 770),
            "black5": (1449, 640, 1777, 770)}
 
@@ -34,7 +35,8 @@ def main():
     for label, (x0, y0, x1, y1) in REGIONS.items():
         census[label] = {"red": int(red[y0:y1, x0:x1].sum()),
                          "black": int(black[y0:y1, x0:x1].sum())}
-    assert census == {"red8": {"red": 23455, "black": 481},
+    assert census == {"oversized_red_initial": {"red": 25133, "black": 0},
+                      "red_continuation7": {"red": 23455, "black": 481},
                       "mark": {"red": 1116, "black": 0},
                       "black5": {"red": 0, "black": 11434}}
     x0, y0, x1, y1 = REGIONS["mark"]
