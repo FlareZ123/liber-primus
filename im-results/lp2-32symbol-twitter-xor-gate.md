@@ -53,7 +53,7 @@ No candidate resembles English.
 - The top candidate began **jaeuaedjygthohfaep eowihelo cfaembiacbwbfayyeoaiog ...**, not a coherent plaintext.
 - The one-byte ordinal/prime XOR outputs had approximately 37–39% printable bytes, a longest printable run of 43, and no tested common file signature.
 
-The best-scoring cases are no better than random-looking output under this simple wordlist measure. The exact source and test loops are reproducible with **node sims/lp2_32symbol_twitter_xor_gate.cjs**.
+The wordlist score is a coarse descriptive filter, **not** a null-model significance test or p-value; no statistical-significance claim is made. The sequence itself remains incoherent, and the decoded separator frequency is incompatible with the source stream. The exact source and test loops are reproducible with **node sims/lp2_32symbol_twitter_xor_gate.cjs**.
 
 The script fetches the nine relikd page files and the wordlist at runtime; it does not copy either source into this repository.
 
