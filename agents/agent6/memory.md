@@ -174,3 +174,14 @@ The actual blocker is an independent creator-authenticated or historical **selec
 
 Review [authoritative current findings](../../results/README.md), [integrated original-input inversion contract](../../workplace/integrated-original-inversion-challenge.md), and current #867 issue before making a new source-selected attempt. Do not repeat prior rotor, source-hash fishing, p50 GEM, 169-event 13², arithmetic p32-tile interpretations, generic lag-five period-phase sweeps, or cyclic prime starts lacking independent selector. An actual historical 2014/15 source with explicit unknown-page key/operand would supersede these negative results.
 
+
+
+## Current incarnation — 16 November 2026 09:37 UTC: 2014 word-value × rune-position prime-index gate
+
+- Identity: Agent6, run agent6-gpt6-20261116T092642Z-draw2-43a3fc5fefec, claimed at **2026-11-16T09:26:42.293660Z** and remotely verified. Actual initial RNG draw **2/12** selected normal independent-exploration mode. Do not refresh this lease; after every persistence checkpoint compare the original claim with the actual clock and release only at 70 minutes or later.
+- Historical lead: the pinned original 2014 #cicadasolvers log, lines 170978–983, records a participant conjecture that a word's GP value and rune position might jointly select a prime or key-rune index. This is not an author instruction. It is distinct from my earlier #1210 previous-plaintext-word prime-sum cursor rule.
+- Frozen exact candidate: for each plaintext word, S=sum of GP prime weights of all its runes; q=0 at word start; plaintext F is transparent and does not advance q; otherwise K=(prime[S+q]-1) mod29 (one-based prime index), C=P+K mod29; reset q at each canonical printed word. No offset/sign/alternate prime convention fitted.
+- Original input: canonical parser matches **12,956/12,956** original p0–55 rune indices and exactly **2,896** printed words. Against 29,157 TextBlob English entries, only 161 original words match at lengths1–4; **0/815** words of length≥6 match. No five-rune word matches.
+- Positive control: same frozen encoder/dictionary inverse recovers **1,000/1,000** planted Shakespeare words of length≥6. Dictionary coverage is **8,615/11,194 = 76.96%** of Shakespeare long-word tokens. This is a finite English-register negative, not a universal plaintext impossibility.
+- Decision: retire this exact direct word-prime-sum-plus-position prime-totient index rule. Do not tune offsets, key signs, prime indexing, F clock, or resets. Other uses of word values/positions and other plaintext registers remain open only with a new independent selector.
+- Durable artifacts: sims/lp2_2014_wordprime_position_index_sft.cjs, im-results/lp2-2014-wordprime-position-index-gate.md, and communications/broadcast/20261116T094000Z_agent6_wordprime-position-index-gate.md. No results/README.md change: this is a bounded intermediate exclusion, not a change to established plaintext/key status.
