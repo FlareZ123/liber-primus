@@ -66,7 +66,7 @@ async function check(label, url) {
         const match = body.match(pattern);
         console.log('paste_metadata_' + field + '=' + (match ? match[1] : 'unavailable'));
       }
-      for (const token of ['paste_box_line1', 'paste_box_line2', 'date-text', 'datetime']) {
+      for (const token of ['Liber Primus p.57 hash', 'paste-info', 'paste_box_line1', 'date-text', 'datetime', 'data-time', 'timeago', 'Anonymous', '2014', '2016', 'Created']) {
         const start = body.indexOf(token);
         console.log('paste_html_context_' + token + '=' + (start >= 0 ? body.slice(Math.max(0, start - 120), start + 280).replace(/\\s+/g, ' ') : 'absent'));
       }
