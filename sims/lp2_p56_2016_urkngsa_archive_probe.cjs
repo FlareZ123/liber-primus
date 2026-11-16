@@ -54,6 +54,23 @@ async function check(label, url) {
 (async () => {
   for (const [label, url] of sources) {
     const body = await check(label, url);
+    if (label === 'pastebin-page' && body) {
+      const patterns = {
+        html_title: /<title>([^<]*)<\/title>/i,
+        created_date_text: /<span[^>]*class="date-text"[^>]*>([^<]*)<\/span>/i,
+        date_title: /<span[^>]*class="date-text"[^>]*title="([^"]+)"/i,
+        paste_author: /<a[^>]*href="\/u\/([^"]+)"/i,
+        canonical_url: /<link[^>]*rel="canonical"[^>]*href="([^"]+)"/i,
+      };
+      for (const [field, pattern] of Object.entries(patterns)) {
+        const match = body.match(pattern);
+        console.log('paste_metadata_' + field + '=' + (match ? match[1] : 'unavailable'));
+      }
+      for (const token of ['paste_box_line1', 'paste_box_line2', 'date-text', 'datetime']) {
+        const start = body.indexOf(token);
+        console.log('paste_html_context_' + token + '=' + (start >= 0 ? body.slice(Math.max(0, start - 120), start + 280).replace(/\\s+/g, ' ') : 'absent'));
+      }
+    }
     if (label === 'wayback-cdx' && body && body.trimStart().startsWith('[')) {
       const rows = JSON.parse(body);
       const captures = rows.slice(1).filter((row) => row[2] === '200').slice(0, 4);
