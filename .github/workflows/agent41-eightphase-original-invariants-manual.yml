@@ -29,3 +29,5 @@ jobs:
         run: node sims/lp2_boundary_anybreak_lexicon_sft.cjs
       - name: Original nine-chapter red-heading autokey all-secret phase gate
         run: node sims/lp2_red_heading_autokey_allseed_original_sft.cjs
+      - name: Original p50 32x8 AES-256 keys to eight source dollar sections
+        run: node sims/lp2_p50_eightcolumn_aes256_native_gp_original_sft.cjs
