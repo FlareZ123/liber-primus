@@ -134,6 +134,77 @@ for(let i=0;i<3;i++)
  plant[pos(13,14)+i]=(plant[pos(14,14)+i]-plantedKey[i]+29)%29;
 assert.ok(centerSelfCrib(plant,0).includes(4));
 
+
+// A further conditional continuation uses independent source geometry:
+// current original OE (22) has phi=10, its transformed I (10) has phi=4.
+// The grid center is NG; find a later radius-4 same-NG horizontal mirror.
+const rawNextCenter=nextNode[1];
+const verticalRadius=tot[rawNextCenter];
+const horizontalRadius=tot[tot[rawNextCenter]];
+assert.deepEqual([verticalRadius,horizontalRadius],[10,4]);
+const horizontalCenters=[];
+for(let k=15+horizontalRadius;k<=27-horizontalRadius;k++){
+ if(cell(14,k)===cell(14,14) &&
+   cell(14,k-horizontalRadius)===cell(14,k+horizontalRadius))
+   horizontalCenters.push(k);
+}
+assert.deepEqual(horizontalCenters,[23]);
+const thirdNode=[cell(14-verticalRadius,23),cell(14,23),
+ cell(14+verticalRadius,23)];
+assert.deepEqual(thirdNode,[8,21,5]); // H-NG-C
+// A source-driven selector for whether a node transforms its center is
+// missing. Test the raw-center branch and preserve the alternative.
+const thirdSignature=thirdNode.map(x=>mob[x]);
+const thirdPhase=((thirdSignature.reduce((a,b)=>a+b,0)%3)+3)%3;
+const thirdKey=thirdNode.slice(thirdPhase).concat(thirdNode.slice(0,thirdPhase));
+assert.deepEqual(thirdKey,[8,21,5]);
+const thirdCipher=Array.from({length:5},(_,i)=>cell(14-i,19));
+const thirdPlain=thirdCipher.map((x,i)=>(x-thirdKey[i%3]+29)%29);
+assert.deepEqual(thirdPlain,[16,1,4,9,15]); // T-U-R-N-S
+const altKey=derive(thirdNode).key;
+const altPlain=thirdCipher.map((x,i)=>(x-altKey[i%3]+29)%29);
+assert.deepEqual(altPlain,[16,10,4,9,24]); // T-I-R-N-A
+const pageZeroEnd=corpus.pages[0].indices.length;
+const thirdGlobalSourcePositions=Array.from({length:5},(_,i)=>pos(14-i,19)+1);
+assert.equal(pageZeroEnd,262);
+assert.deepEqual(thirdGlobalSourcePositions,[370,343,316,289,262]);
+// The last TURNS rune is the original last rune of physical p0.
+// Reading the vertical sequence upward from its p1 start, this is the
+// FIRST symbol located on p0. A source-selected terminal is therefore
+// possible without knowing that the five-rune output spells TURNS.
+assert.ok(thirdGlobalSourcePositions.slice(0,-1).every(i=>i>pageZeroEnd));
+assert.equal(thirdGlobalSourcePositions.at(-1),pageZeroEnd);
+
+// Conditional fourth stage: phi(original NG=21)=12 moves down from
+// the left A of the preceding radius-4 mirror (14,19) to TH(26,19);
+// its immediate vertical neighbors H/ H supply H-TH-H.
+const down=tot[thirdNode[1]];
+assert.equal(down,12);
+assert.equal(cell(14+down,19),2); // TH
+const fourthNode=[cell(25,19),cell(26,19),cell(27,19)];
+const fourth=derive(fourthNode);
+assert.deepEqual(fourthNode,[8,2,8]);
+assert.deepEqual(fourth.key,[1,8,8]); // U-H-H
+// Moving left from the same A anchor by phi(NG)=12 yields (14,7),
+// which the author's axis prediction subsequently reads vertically up.
+const coldStart=19-down;
+assert.equal(coldStart,7);
+const fourthCipher=Array.from({length:4},(_,i)=>cell(14-i,coldStart));
+const fourthPlain=fourthCipher.map((x,i)=>(x-fourth.key[i%3]+29)%29);
+assert.deepEqual(fourthPlain,[5,3,20,23]); // C-O-L-D
+// Source-visible stopping point: the FIRST visited cell that is the
+// center of an immediately adjacent vertical mirrored triple.
+let firstCenterMirrorRow=-1;
+for(let r=14;r>=2;r--){
+ if(cell(r-1,coldStart)===cell(r+1,coldStart)){
+  firstCenterMirrorRow=r;break;
+ }
+}
+assert.equal(firstCenterMirrorRow,11);
+assert.deepEqual([cell(10,7),cell(11,7),cell(12,7)],[28,24,28]); // EA-A-EA
+const fourthGlobalPositions=Array.from({length:4},(_,i)=>pos(14-i,coldStart)+1);
+assert.deepEqual(fourthGlobalPositions,[358,331,304,277]);
+
 console.log(JSON.stringify({
  source:"LP2 p0-2 canonical 729 runes in original order",
  firstNode:name(firstNode),firstStart:[13,25],firstStopOffset:firstLen,
@@ -141,6 +212,15 @@ console.log(JSON.stringify({
  nextNode:name(nextNode),secondStart:[14,14],secondKey:name(second.key),
  sourceCribAboveCenter:name(above),sourceCipherAtCenter:name(secondCipher),
  secondOutput:name(secondPlain),
+ thirdSameCenterMirrorAt:[14,23], thirdRawCenterPhiRadius:verticalRadius,
+ thirdDerivedCenterPhiRadius:horizontalRadius,
+ thirdSourceNode:name(thirdNode), thirdRawKey:name(thirdKey),
+ thirdOutput:name(thirdPlain), thirdTransformedAlternative:name(altPlain),
+ thirdSourcePositions:thirdGlobalSourcePositions,
+ originalPhysicalP0Last:pageZeroEnd,
+ fourthSourceNode:name(fourthNode), fourthKey:name(fourth.key),
+ fourthOutput:name(fourthPlain), fourthSourcePositions:fourthGlobalPositions,
+ firstFourthRayVerticalMirrorCenter:[firstCenterMirrorRow,coldStart],
  completeBookUnknownRunes:all.length,
  contiguous729Windows:all.length-729+1,centerSelfCribHits:allHits,
  cyclic729PhasesWithCenterSelfCrib:shiftsMatching,
