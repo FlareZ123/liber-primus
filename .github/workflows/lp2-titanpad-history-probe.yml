@@ -1,8 +1,5 @@
 name: Titanpad historical revision archive probe
 on:
-  push:
-    paths:
-      - '.github/workflows/lp2-titanpad-history-probe.yml'
   workflow_dispatch:
 permissions:
   contents: read
