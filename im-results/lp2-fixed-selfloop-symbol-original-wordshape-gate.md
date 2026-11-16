@@ -38,6 +38,6 @@ The frequency calculation weights the reference word-count frequencies **within 
 
 ## Exact reproduction and result interpretation
 
-The [standalone Windows Node22 SFT](../sims/lp2_fixed_selfloop_symbol_original_gate.cjs) includes 29 synthetic source-native positively invertible cipher plants, one for each possible escape rune, using a secret-like bijection for the other 28 steps. All plants and all original-word assertions passed in [manual Windows CI run 43818792802](https://github.com/FlareZ123/liber-primus/actions/runs/43818792802).
+The [standalone Windows Node22 SFT](../sims/lp2_fixed_selfloop_symbol_original_gate.cjs) includes 29 synthetic source-native positively invertible cipher plants, each augmented to exercise its own zero-step escape explicitly, one for each possible escape rune, using a secret-like bijection for the other 28 steps. All plants and all original-word assertions passed in [manual Windows CI run 43819407140](https://github.com/FlareZ123/liber-primus/actions/runs/43819407140).
 
 **Decision:** Retire globally fixed plaintext-symbol→zero-predecessor-step as a plausible direct original LP2 English cipher explanation. No choice of the other 28 secret steps alters its observed 86-bit escape placement mask. The gate does not exclude varying escape symbols, unusual plaintext, changing states, resets, or different anti-repeat mechanisms. Advancing such a rival requires an independently original-sourced control rule or a genuine recovered plaintext segment, rather than additional unfixed permutations.
