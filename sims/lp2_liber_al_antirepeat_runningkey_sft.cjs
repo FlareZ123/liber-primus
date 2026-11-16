@@ -286,4 +286,6 @@ function main() {
     + " sourced candidate cells, all p0-p2 originals unchanged; no plaintext accepted.\n");
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = {corpus, input, tokens, language, parseOriginal, inverse, emit, flatten, MODELS};
