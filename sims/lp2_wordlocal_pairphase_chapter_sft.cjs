@@ -242,10 +242,89 @@ function originalDisjointPairGate(words) {
   }
 }
 
+
+/**
+ * Independent fixed-word-multiset control. Each source word containing exactly
+ * one repeat in chapters 1–5 is permuted until its repeat count stays one.
+ * Thus glyph multiset, word length and doublet-bearing words are all held fixed.
+ */
+function conditionalWordShuffleGate(words) {
+  const marked = words.filter(word => {
+    if (word.page > 26) return false;
+    let n = 0;
+    for (let i = 1; i < word.letters.length; i++) if (word.letters[i] === word.letters[i - 1]) n++;
+    return n > 0;
+  });
+  assert.equal(marked.length, 32);
+  let state = 0x33012026;
+  function random() {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return (state >>> 0) / 0x100000000;
+  }
+  const acceptedPerWord = 8000;
+  let dist = Float64Array.of(1), observed = 0, expectation = 0;
+  for (const word of marked) {
+    const a = word.letters.slice();
+    let originalRepeats = 0;
+    for (let i = 1; i < a.length; i++) if (a[i] === a[i - 1]) {
+      originalRepeats++;
+      if (i & 1) observed++;
+    }
+    assert.equal(originalRepeats, 1);
+    let accepted = 0, odd = 0, attempts = 0;
+    while (accepted < acceptedPerWord && attempts < 2000000) {
+      attempts++;
+      for (let j = a.length - 1; j > 0; j--) {
+        const k = Math.floor(random() * (j + 1));
+        [a[j], a[k]] = [a[k], a[j]];
+      }
+      let repeats = 0, at = 0;
+      for (let j = 1; j < a.length; j++) {
+        if (a[j] === a[j - 1]) { repeats++; at = j; }
+      }
+      if (repeats === originalRepeats) {
+        accepted++;
+        odd += at & 1;
+      }
+    }
+    assert.equal(accepted, acceptedPerWord);
+    const p = odd / accepted;
+    expectation += p;
+    dist = addBernoulli(dist, p);
+  }
+  const twoTail = doubledTails(dist)[observed];
+  assert.equal(observed, 10);
+  assert.ok(twoTail > 0.003 && twoTail < 0.007);
+  console.log("WORD MULTISET CONTROL", JSON.stringify({ markedWords: marked.length, acceptedPerWord, seed: 0x33012026, observedOdd: observed, expectedOdd: expectation, exactConditionalTwoTail: twoTail }));
+}
+
+/**
+ * If the within-word odd-pair steps were already GP29 plaintext under any
+ * fixed substitution, their IoC would rise. This checks that direct readout.
+ */
+function differenceReadoutGate(words) {
+  const tapes = Array.from({ length: 2 }, () => Array.from({ length: 2 }, () => []));
+  for (const word of words) {
+    const era = word.page <= 26 ? 0 : 1;
+    for (let i = 1; i < word.letters.length; i++) {
+      tapes[era][i & 1].push((word.letters[i] - word.letters[i - 1] + 29) % 29);
+    }
+  }
+  const out = tapes.map(era => era.map(vals => ({ n: vals.length, zeros: vals.filter(x => x === 0).length, ioc29: ioc29(vals) })));
+  assert.deepEqual(out.map(x => x.map(y => y.n)), [[2167, 2903], [2140, 2850]]);
+  assert.deepEqual(out.map(x => x.map(y => y.zeros)), [[22, 10], [14, 17]]);
+  assert.ok(Math.abs(out[0][1].ioc29 - 1.0270560671450646) < 1e-10);
+  console.log("UNKEYED DELTA READOUT", JSON.stringify(out));
+}
+
 const words = parseWords(text, 55);
 assert.equal(words.length, 2896);
 assert.equal(words.reduce((n, w) => n + w.letters.length, 0), 12956);
 wordLocalParityTest(words);
+conditionalWordShuffleGate(words);
+differenceReadoutGate(words);
 lp1Control();
 originalDisjointPairGate(words);
 console.log("PASS original typed words, chapter family correction, dual-ring disjoint inverse, LP1 control");
