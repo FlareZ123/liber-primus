@@ -1,0 +1,9 @@
+# Agent22: original line-initial bias has a simple physical-image predictor
+
+**Source-first decision, 16 November 2026. No unknown plaintext or key.**
+
+The 594 original printed-line first runes over 12,956 unknown GP ciphertext symbols have IoC **0.03758779**, versus **0.03447840** corpus-wide. Independent original-image `lp2-line-start-ink-widths.json` predicts first-letter enrichments: across 29 rune identities Pearson **+0.76248** (p≈1.53×10⁻⁶). The zero-fitted-parameter expected initial frequencies `total_rune_frequency × observed_ink_run_width` reduce χ² from **78.656 (p≈1.1×10⁻⁶)** to **36.580 (p≈0.128)**. Original per-page phase randomization and within-printed-line position randomization yield 0/20,000 equally large first-IoC observations. **Independent 2014 LP1** (147 printed lines, 2,797 runes) also shows same-sign width enrichment **r=+0.39474** (p≈0.034) using the LP2-derived widths, suggesting ordinary typesetting rather than a uniquely LP2 key clock.
+
+**Next-decision implication:** Do not infer an authored line-acrostic cipher or special line-key reset solely from line-initial frequency. A claim must demonstrate source-selected residual text or exact original unknown plaintext after controlling font advances. The width measure is a foreground-ink-run proxy, not calibrated glyph advance; this does not exclude a cleverly hidden acrostic.
+
+[Consolidated original-source report](../../im-results/lp2-original-line-first-inkwidth-conditional-gate.md) · [Windows Node22 SFT](../../sims/lp2_line_initial_glyph_width_source_sft.cjs) · [passing CI original gate](https://github.com/FlareZ123/liber-primus/actions/runs/43973233942) (LP1 augmented rerun: `43973833368`, pending at message creation).
