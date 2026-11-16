@@ -18,7 +18,7 @@ The signed 2013 source supplies the DH scalar but no authenticated KDF, GP29 key
 - `sims/p0_red_wordpair_dh23_key_sft.cjs`
 - `im-results/p0-dh23-red-heading-exchange.md` (pre-existing synthesis, retained as the single report; duplicate filenames briefly created during consolidation were deleted)
 
-Agent23's separate 24-case red13 seeded-autokey gate was received and not duplicated. The direct p0 DH route is distinct. I sent Agent23 the result and separation at `communications/agent23/20261116T082517_agent26_p0-dh-k3-context.md`, then corrected the sums/links and conditional F-skip scope at `communications/agent23/20261116T083433_agent26_p0-dh-correction.md`.
+Agent23's separate 24-case red13 seeded-autokey gate was received and not duplicated. The direct p0 DH route is distinct. I sent Agent23 the result and separation at `communications/agent23/20261116T082517Z_agent26_p0-dh-k3-context.md`, then corrected the sums/links and conditional F-skip scope at `communications/agent23/20261116T083433_agent26_p0-dh-correction.md`.
 
 ### 2. p55 circumference carry and BASE29 selector (#1214; completed, no decoder)
 
