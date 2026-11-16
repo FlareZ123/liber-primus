@@ -112,6 +112,78 @@ function cipherRays({axis, firstParity, lastParity, leftColParity,
   }
   return out;
 }
+const mod = (a, n) => ((a % n) + n) % n;
+const maxDistance = (a, b) => Math.max(
+  Math.abs(a[0] - b[0]), Math.abs(a[1] - b[1]));
+/**
+ * Published Reports 01–15, evaluated solely on current source coordinates.
+ * Candidate plaintext or next-stage coordinates are never consulted.
+ */
+function forecast(previous) {
+  const {source, ciphertext: C, sourceRunes, phase: p, S, a} = previous;
+  const B = C[0], E = C.at(-1), M = source[1];
+  const L = C.reduce((u,v) => v[1] < u[1] ||
+    (v[1] === u[1] && v[0] > u[0]) ? v : u);
+  const Z = source.reduce((u,v) => v[0] > u[0] ||
+    (v[0] === u[0] && v[1] > u[1]) ? v : u);
+  const mode = Math.floor(S / 7) % 4;
+  const reflected = mode === 1 || mode === 2;
+  const offset = (mode === 0 || mode === 2) ? 1 : 0;
+  const nextPhase = mod(offset + C.reduce((sum,cell) =>
+    sum + mu(reflected ? n180(cell) : n0(cell)), 0), 3);
+  assert.ok(!(nextPhase === 2 && S % 7 === 6),
+    "Proposed seven-phase skip is forbidden.");
+  const nextA = mod(a + mu(n90(L)), 2);
+  const signatures = [
+    ["0,0,0","1,1,1"],
+    ["0,1,0","1,-1,1"],
+    ["0,-1,0","1,0,1"]
+  ];
+  const group = Number(
+    (mu(n90(M)+n180(Z)) < 0) === (mu(n90(L)+n180(Z)) < 0));
+  const sourceSum = sourceRunes.reduce(
+    (sum,v) => sum + corpus.prime[v], 0);
+  const diagonalBit = Number(mu(gcd(n90(M),n270(Z))) < 0) ^
+    Number(mu(sourceSum) > 0) ^
+    Number(mu(n0(M)+n270(Z)) !== 0);
+  const axisNumber = 2*group + diagonalBit;
+  const axes = ["horizontal","NWSE","vertical","NESW"];
+  const centerRow = mod(1+B[1]+E[0]+M[0]+mu(n180(B)),2);
+  const centerColumn = mod(1+B[0]+E[0]+M[0],2);
+  const radiusParity =
+    mod(M[0]+M[1]+B[0]+B[1],2) ^
+    Number(mu(gcd(n180(Z),n180(L))) < 0) ^
+    Number(mu(n90(B)+n90(E)) > 0);
+  const score = mu(n180(B)+n0(M)) + mu(gcd(n90(E),n180(E)));
+  const nextCipherAxis = score === 0 ? "horizontal" :
+    score > 0 ? "vertical" : "diagonal";
+  const rowEnd = mod(1+p+mu(n180(M)),2);
+  const rowLeftmost = mod(centerRow+1+p+mu(M[0]),2);
+  const centerRotation = [n180(M),n270(M),n0(M)][p];
+  const colLeftmost = mod(B[0]+C.reduce(
+    (sum,v) => sum + mu(n90(v)),0) +
+    Number(sourceRunes[0] === sourceRunes[2]) +
+    mu(centerRotation),2);
+  const q = mu(n0(E)) === 0 && mu(n270(E)) === 0;
+  const z = mu(n0(B)) === 0 && mu(n90(B)) === 0;
+  const nextMode = Math.floor((S+nextPhase)/7)%4;
+  return {
+    phase:nextPhase, S:S+nextPhase, a:nextA,
+    signature:signatures[nextPhase][nextA],
+    sourceAxis:axes[axisNumber],
+    centerParity:[centerRow,centerColumn],
+    radiusParity,
+    mirror:maxDistance(Z,L)%3!==2,
+    cipherAxis:nextCipherAxis,
+    leftmostFirst:mod(mu(n270(E))+phi(sourceRunes[1]),2)===1,
+    leftmost:L,
+    leftmostRowParity:rowLeftmost,
+    leftmostColParity:colLeftmost,
+    endpointRowParity:rowEnd,
+    exactRayOffset: q && !z ? 1 : 0,
+    mode:nextMode===1||nextMode===2?"reflected":"direct"
+  };
+}
 const stage38 = {
   source: [[11,13],[12,13],[13,13]],
   ciphertext: [[5,17],[6,17],[7,17],[8,17]],
@@ -120,15 +192,28 @@ const stage38 = {
 };
 assert.deepEqual(stage38.source.map(([r,c]) => at(r,c)), stage38.sourceRunes);
 assert.deepEqual(stage38.ciphertext.map(([r,c]) => at(r,c)), [26,14,14,21]);
-const signature39 = "0,1,0";
+const stage39 = forecast(stage38);
+assert.deepEqual(stage39, {
+  phase:1, S:33, a:0, signature:"0,1,0",
+  sourceAxis:"horizontal", centerParity:[0,0],
+  radiusParity:0, mirror:false, cipherAxis:"diagonal",
+  leftmostFirst:true, leftmost:[8,17],
+  leftmostRowParity:1, leftmostColParity:0,
+  endpointRowParity:1, exactRayOffset:0, mode:"direct"
+});
 const key39 = keySources({
-  centerParity:[0,0], axis:"horizontal", mirror:false,
-  radiusParity:0, signature:signature39
+  centerParity:stage39.centerParity, axis:stage39.sourceAxis,
+  mirror:stage39.mirror, radiusParity:stage39.radiusParity,
+  signature:stage39.signature
 });
 const rays39 = cipherRays({
-  axis:"diagonal", firstParity:1, lastParity:1,
-  leftColParity:0, leftRowParity:1,
-  L:[8,17], exactRayOffset:0, mode:"direct"
+  axis:stage39.cipherAxis,
+  firstParity:stage39.leftmostRowParity,
+  lastParity:stage39.endpointRowParity,
+  leftColParity:stage39.leftmostColParity,
+  leftRowParity:stage39.leftmostRowParity,
+  L:stage39.leftmost, exactRayOffset:stage39.exactRayOffset,
+  mode:stage39.mode
 });
 const values39 = new Set();
 let assignments39 = 0;
@@ -157,16 +242,35 @@ assert.deepEqual(dieCandidates,[{
   ciphertext:[[3,22],[4,23],[5,24]],derivedKey:[5,23,27]
 }]);
 
-// Conditional after the postselected DIE branch, with stage39 state
-// S=33, a=0, phase=1. All source-only forecasts remain distinct tests.
+// Conditional after the postselected DIE branch. The stage40 forecast
+// uses only the selected original stage39 geometry, never its decoded text.
+const stage39DIE = {
+  source:[[18,10],[18,14],[18,18]],
+  ciphertext:[[3,22],[4,23],[5,24]],
+  sourceRunes:[5,23,27],
+  phase:stage39.phase, S:stage39.S, a:stage39.a
+};
+const stage40 = forecast(stage39DIE);
+assert.deepEqual(stage40, {
+  phase:1, S:34, a:0, signature:"0,1,0",
+  sourceAxis:"vertical", centerParity:[1,1],
+  radiusParity:1, mirror:true, cipherAxis:"vertical",
+  leftmostFirst:true, leftmost:[3,22],
+  leftmostRowParity:1, leftmostColParity:0,
+  endpointRowParity:1, exactRayOffset:0, mode:"direct"
+});
 const key40 = keySources({
-  centerParity:[1,1], axis:"vertical", mirror:true,
-  radiusParity:1, signature:"0,1,0"
+  centerParity:stage40.centerParity, axis:stage40.sourceAxis,
+  mirror:stage40.mirror, radiusParity:stage40.radiusParity,
+  signature:stage40.signature
 });
 const rays40 = cipherRays({
-  axis:"vertical", firstParity:1, lastParity:1,
-  leftColParity:0, leftRowParity:1,
-  L:[3,22], exactRayOffset:0, mode:"direct"
+  axis:stage40.cipherAxis, firstParity:stage40.leftmostRowParity,
+  lastParity:stage40.endpointRowParity,
+  leftColParity:stage40.leftmostColParity,
+  leftRowParity:stage40.leftmostRowParity,
+  L:stage40.leftmost, exactRayOffset:stage40.exactRayOffset,
+  mode:stage40.mode
 });
 const values40 = new Set();
 let assignments40 = 0;
@@ -183,13 +287,8 @@ assert.equal(values40.size,1063);
 console.log(JSON.stringify({
   source:"Original LP2 p0–p2 729 GP29 runes",
   stage38:"I ASK is a provisional route, not authenticated plaintext",
-  stage39Forecast:{
-    phase:1, signature:signature39, sourceAxis:"horizontal",
-    sourceCenterParity:[0,0],sourceRadiusParity:0,sourceMirror:false,
-    ciphertextAxis:"diagonal", leftmostFirst:true,
-    ciphertextStartParity:[1,0], ciphertextEndRowParity:1,
-    exactRayOffset:0
-  },
+  stage39Forecast:stage39,
+  stage40Forecast:stage40,
   stage39:{keyNodes:key39.length,ciphertextRays:rays39.length,
     assignments:assignments39,distinctOutputs:values39.size,
     conditionalDIE:dieCandidates},
