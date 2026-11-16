@@ -558,14 +558,14 @@ const output = {
     scoreThreshold: SCORE_THRESHOLD,
     clock: 'continuous across original pages 0-55',
     sourceKeyStartOffset: 0,
-    FHandling: 'ordinary GP29 symbol; no p56 transparent-F bypass'
+    FHandling: 'M1 uses ordinary GP29; separate one-shot p56 plaintext-F-transparent p48-to-p49 gate is included'
   },
   target: { pages: 'LP2 p0-p55', runes: N, adjacentDoublets: actualDoublets },
   onion2ByteString: blobResult,
   oneShotPretableSentence: pretableOneShot,
   onion2TimingIntervals: timingResults,
   deterministicRandomKeyNull: randomNull,
-  scope: 'Forward source order, offset zero, repeated full-book keys and a one-shot 256-byte key for the complete 138-rune p48→49 pre-table sentence, both arithmetic signs. No page resets, reversal, free phase search, KDF, or value-rewrite inverse.'
+  scope: 'Forward source order, offset zero, repeated full-book keys, a one-shot 256-byte key for the complete 138-rune p48→49 sentence under M1, and a separate p56 plaintext-F-transparent one-shot test; both arithmetic signs. No page resets, reversal, free phase search, KDF, or value-rewrite inverse.'
 };
 
 console.log(JSON.stringify(output, null, 2));
