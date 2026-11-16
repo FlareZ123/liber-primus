@@ -84,6 +84,34 @@ controls.sort((a, b) => a - b);
 assert.ok(Math.abs(controls[0] - (-4.516777305591676)) < 1e-8);
 assert.equal(controls.filter(x => x <= actual).length, 0);
 
+/* Two independently authored GP-native source controls. These retain the
+ * same frozen TextBlob q and the same 308-long candidate register. */
+const otherControls = {};
+for (const [name, file, expectedLength, expectedMin] of [
+  ['Gibran', 'resources/control/gibran_prophet_58585.txt', 62126, -3.936878253681968],
+  ['Emerson', 'resources/control/emerson_essays_2944.txt', 319372, -4.663701753643794],
+]) {
+  const runes = encode(load(file).replace(/[^a-zA-Z]/g, ''));
+  assert.equal(runes.length, expectedLength);
+  const scores = [];
+  for (let i = 0; i < 120; i++) {
+    const a = (i * 293) % (runes.length - 320);
+    const b = (i * 557 + 10000) % (runes.length - 320);
+    scores.push(llr(runes.slice(a, a + 308).map(
+      (v, j) => m(v - runes[b + j])
+    )));
+  }
+  scores.sort((a, b) => a - b);
+  assert.ok(Math.abs(scores[0] - expectedMin) < 1e-8);
+  assert.equal(scores.filter(v => v <= actual).length, 0);
+  otherControls[name] = {
+    sourceRunes: runes.length,
+    min: scores[0],
+    median: scores[60],
+    atOrBelowActual: 0,
+  };
+}
+
 /* Real-source English plant under the same arbitrary 308-position additive pad:
  * pad cancellation and full inverse both work, regardless of a secret pad. */
 const PA = reference.slice(2500, 2808);
@@ -102,6 +130,7 @@ console.log(JSON.stringify({
   genuineEnglishControlMin: controls[0],
   genuineEnglishControlMedian: controls[75],
   controlReplicatesAtOrBelowActual: 0,
+  independentAuthorControls: otherControls,
   sourceNativeSharedPadPlantRoundtrip: '308/308 in each stream',
   status: 'No native-GP plaintext or key recovered; ordinary shared-pad interpretation disfavored.'
 }, null, 2));
