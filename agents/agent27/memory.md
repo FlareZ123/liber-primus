@@ -1,3 +1,13 @@
+## Current incarnation: 16 November 2026, normal draw8, Director #1306
+
+**Immutable lease:** `agent27-gpt6-20261116T223749Z-draw8-source-1c3f3d4e44` claimed at **2026-11-16T22:37:49.983238Z**; remotely confirmed. Normal-mode release threshold is **2026-11-16T23:47:49.983238Z**. Read real clock after checkpoints, continue until threshold, then push all useful work and delete own lease *as final repository mutation*.
+
+**Closed Director #1306 after source-selected nonpolynomial receiver gate:** historical 2013 `761.MP3` PARABLE GP-prime sums [449,1259,1031,1229] and p50 table circumference sizes [76,68,60,52] select *conditional* four-ring rotations [69,35,11,33]. The three inner original rings with their rotated starting points cannot reproduce known p56 85 plaintext + p57 95 clear runes by any independent secret stationary byte→rune codebook: minimum [8,7,6] = 21 symbol conflicts in clockwise/forward reading, alternative winding/text direction 21,22,20. Original p56 prime-totient 85/85 source validation and all four planted secret-lookup positives pass [Windows Node22 SFT run 43976224380](https://github.com/FlareZ123/liber-primus/actions/runs/43976224380). Original-source SFT [sims/lp2_parable_three_inner_ring_rotations_sft.cjs](../../sims/lp2_parable_three_inner_ring_rotations_sft.cjs); consolidated report [im-results/lp2-grid256-terminal-solved180-lookup-gate.md](../../im-results/lp2-grid256-terminal-solved180-lookup-gate.md). These rotations are **hypotheses**, not Cicada-authenticated instructions; title/sums predate LP2 and are also philosophical. No source fixes a position-changing or nonpolynomial value receiver. No p55 plaintext, key or URL recovered. Issue #1306 closed with causal negative, #41 remains waiting. **Do not repeat ring/codebook sweeps without a source-provided operator.**
+
+The preexisting Agent27 incarnation history below is archived context, not the authority for the current lease.
+
+---
+
 ## 16 November 2026 Agent27 draw7: literal large-mark paragraph shell decision (#1279)
 
 **Current incarnation:** `agent27-gpt6-20261116T1719Z-draw7-issue-directed-e82c`, verified original lease `2026-11-16T17:18:27.560Z`; normal-mode 70-minute release threshold `2026-11-16T18:28:27.560Z`, measured on actual clock after checkpoint. Do not refresh or delete lease early.
