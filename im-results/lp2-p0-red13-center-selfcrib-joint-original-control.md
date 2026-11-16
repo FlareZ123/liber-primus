@@ -1,0 +1,46 @@
+# Opening red13 marker and 27×27 center self-crib: original-source joint control
+
+**Agent20, 16 November 2026. Evidence class: source-exact conditional geometry and newly executed finite-multiset null, with no authenticated decryption.** This is a calibration of the existing [p0 center self-crib / WEATHER route](lp2-p0-27square-center-selfcrib-weather-candidate.md), not a new plaintext claim.
+
+## Why the source itself selects two positions
+
+The first original LP2 visual chapter has **262 + 266 + 201 = 729 = 27² GP29 symbols** in the original unmodified physical-page order. The p0 red heading has **13 red rune symbols (8+5)**, followed by its original large **13-dot punctuation**. The latter is independent visible motivation for the **number 13**; using its Euler totient supplies **φ(13)=12**.
+
+Under a tentative 1-based 27×27 row-major map, the marker-derived **(13,12)** is the original source rune **J (index 11)**. Its immediately left original rune at (13,11) is **AE (index 25)**, agreeing exactly with the arithmetic **13+φ(13)=25**. The consecutive original source node is **AE–J–EA**, indices **[25,11,28]**. These coordinates and rune values were already noticed by the external 2retooz geometric-route author and independently reproduced in Agent10's existing SFT. They are source facts; interpreting the marker as two coordinate numbers and the sum as a required verification is an analyst-chosen hypothesis.
+
+Separately, the first-chapter physical square's center is **(14,14)**, with actual row-above **W–EA–TH** at (13,14–16). At its central-row offset (14,4–6) the original runes are **X–OE–X**. Under the existing proposed exact operator, replace OE index22 by φ(22)=10, rotate the key using the three Möbius-of-totient signatures, and move φ(22)=10 columns from c4 to c14. The resulting three-symbol key **X–X–I** maps the unchanged central ciphertext **NG–P–EO** to the actual row-above **W–EA–TH**. The next two source runes yield **E–R** under the repeated key, the conditional proposed word **WEATHER**.
+
+The first red marker determines a potential **starting source node**, while the geometrical center identifies a different potential **self-crib**; the two premises depend on separate original source locations. Crucially, no first-party instruction yet links them into a unique walk, plaintext boundary, transform-state rule or full 729-cell inverse.
+
+## New independently executed conditional null
+
+How often do these **two fixed source configurations** occur in a random rearrangement that keeps the *exact original 729-rune GP29 multiset*? Use a seeded Fisher–Yates permutation of the full original chapter for **1,000,000 trials**, xorshift32 seed `0x33012016`. At each trial:
+
+1. Apply **exactly the existing frozen center-self-crib operator**, allowing its prescribed 13 possible left-node columns only and no English score. The source must have positive key inputs; the proposed φ/μ transformation and key rotation must exactly reproduce all three original row-above values under GP29 subtraction.
+2. Independently require the actual rune at the **fixed** marker-derived source left neighbor (13,11) to equal **25 = 13+φ(13)**, with no scanning of any other location.
+3. Record center hits, marker-left matches and their intersection. Every trial retains all 29 source-symbol counts, all 729 symbols and the printed first-chapter length; it does *not* preserve word identities, local adjacency or the anomalous original doublet count.
+
+| Frozen observation | Original unchanged source | Null hits per 1,000,000 | Add-one rate |
+| --- | --- | ---: | ---: |
+| Center self-crib has a matching node | Yes, uniquely at row14 col4 | **34** | **35 / 1,000,001 ≈ 0.000035** |
+| Marker-directed cell (13,11) has rune index25 | Yes | **32,832** | **32,833 / 1,000,001 ≈ 0.03283** |
+| Both source features simultaneously | Yes | **2** | **3 / 1,000,001 ≈ 0.000003** |
+
+**What this supports.** The observed p0 data align under two separately articulated geometrical tests more rarely than a random reallocation of the same source-symbol inventory would. This is a finite, specific *signal worth explaining*, with all original inputs held fixed. It materially strengthens the case for prioritizing **one genuinely source-defined next-step interpreter** rather than indiscriminately testing additional 27×27 cipher parameters.
+
+**What it cannot establish.** The source chosen here already inspired the external English reading, and the center self-crib, φ/μ phase choice, left-neighbor sum test and trial design were all formulated **after inspecting that source**. These rates are **not discovery-adjusted probabilities of creator intent** and cannot authenticate WEATHER, AS I GO THE, any later words, or the full 27×27 method. Full-shuffle controls also fail to preserve the source's local print-language and anti-repeat structure. No new cipher mechanism or plaintext is recovered. Any future claim of a statistical p-value for the wider discovery would require a fixed *entire class of eligible operations and stopping rules* or an independent original-source holdout.
+
+## The next useful decision
+
+The existing p0 route already exposes the precise unresolved fork. At the source-selected **H–NG–C** node (vertical row4/14/24, column23), an unchanged-center key yields the candidate **TURNS** on the proposed upward ray, while applying the same center-totient operation used by the preceding source node yields **TIRNA** on the *identical original ciphertext*. A successful model must choose **raw vs φ-center** before checking language, and must also uniquely determine the subsequent ciphertext read direction, length, and next key-node location. Existing eight chosen blocks consume just **34 distinct original source cells out of 729**; extracting more English-looking isolated fragments from freely selected nodes would not close this gap.
+
+**Specific high-upside task:** derive a single state/branch rule from the original red heading, source geometry or independently authenticated 2016 instructions, freeze it on already visible node transitions, and have it predict the *next previously unselected original runic ciphertext path and decoded GP29 content*. Require contiguous coherent unknown plaintext on multiple nodes, no fitted English branches, and exact forward re-encoding. If no such rule can be grounded, preserve this dual-geometry observation as provisional evidence and stop expanding postselected English.
+
+## Reproduction and provenance
+
+- **New portable, read-only SFT:** [`sims/lp2_p0_red13_center_selfcrib_joint_null_sft.cjs`](../sims/lp2_p0_red13_center_selfcrib_joint_null_sft.cjs). Reads untouched `resources/liber-primus/lp2-corpus.json`, asserts the original first-chapter indices and three-rune source node, then reproduces every exact null count with a fixed RNG seed.
+- **Prior input-specific key and actual candidate-read derivation:** [Agent10 source-centered 27×27 study](lp2-p0-27square-center-selfcrib-weather-candidate.md) and [its original-exact SFT](../sims/lp2_p0_27square_center_selfcrib_source_sft.cjs).
+- **Independent original page and red-mark classifications:** `resources/liber-primus/lp2-corpus.json` and `resources/liber-primus/lp2-ink-annotations.json`.
+- **Externally proposed arithmetic and arbitrary longer phrase:** [2retooz27×27 worked route](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption). This community proposal supplies hypotheses, not Cicada-authenticated instructions.
+
+**Decision:** prioritize an unfitted *predictive parser* over further English-block construction. The new calibrated rarity is intermediate source support with a severe retrospective-selection caveat, and the objective of authentic LP2 plaintext remains open.
