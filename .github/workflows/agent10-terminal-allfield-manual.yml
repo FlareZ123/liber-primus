@@ -19,3 +19,7 @@ jobs:
         run: |
           node --check sims/lp2_terminal256_allprime_difference_gf257_suffix_sft.cjs
           node sims/lp2_terminal256_allprime_difference_gf257_suffix_sft.cjs
+      - name: Check any-GP-embedding degree31 obstruction under original and table-rank positions
+        run: |
+          node --check sims/lp2_terminal256_degree31_repeatclass_gcd_sft.cjs
+          node sims/lp2_terminal256_degree31_repeatclass_gcd_sft.cjs
