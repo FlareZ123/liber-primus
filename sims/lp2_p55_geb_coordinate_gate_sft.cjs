@@ -178,7 +178,9 @@ function main() {
     [[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
   assert.deepEqual(multiplyMatrices(phiCoreMod, phiCoreInverse),
     [[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
-  assert.deepEqual(coreMod, coreMod.map((_, i) => coreMod.map(row => row[i])));
+  const transpose = matrix => matrix.map((_, i) => matrix.map(row => row[i]));
+  assert.notDeepEqual(coreMod, transpose(coreMod));
+  assert.notDeepEqual(phiCoreMod, transpose(phiCoreMod));
 
   const matrixVariants = [];
   const matrices = [
@@ -188,28 +190,30 @@ function main() {
     ["phi-core-inverse", phiCoreInverse],
   ];
   for (const [name, matrix] of matrices) {
-    for (const inputOffset of [0, 1]) {
-      for (const outputOffset of [0, 1]) {
-        const output = [];
-        for (let record = 0; record < 14; record++) {
-          const input = inner.slice(3 * record, 3 * record + 3)
-            .map(value => mod29(value + inputOffset));
-          output.push(...multiplyVector(matrix, input)
-            .map(value => mod29(value + outputOffset)));
+    for (const [orientation, hill] of [["printed", matrix], ["transpose", transpose(matrix)]]) {
+      for (const inputOffset of [0, 1]) {
+        for (const outputOffset of [0, 1]) {
+          const output = [];
+          for (let record = 0; record < 14; record++) {
+            const input = inner.slice(3 * record, 3 * record + 3)
+              .map(value => mod29(value + inputOffset));
+            output.push(...multiplyVector(hill, input)
+              .map(value => mod29(value + outputOffset)));
+          }
+          const matches = output.reduce((sum, value, i) =>
+            sum + (mod29(value) === mod29(fields[i]) ? 1 : 0), 0);
+          const exactTriples = Array.from({ length: 14 }, (_, i) =>
+            output.slice(3 * i, 3 * i + 3)
+              .every((value, j) => mod29(value) === mod29(fields[3 * i + j])))
+            .filter(Boolean).length;
+          matrixVariants.push({ name, orientation, inputOffset, outputOffset, matches, exactTriples });
         }
-        const matches = output.reduce((sum, value, i) =>
-          sum + (mod29(value) === mod29(fields[i]) ? 1 : 0), 0);
-        const exactTriples = Array.from({ length: 14 }, (_, i) =>
-          output.slice(3 * i, 3 * i + 3)
-            .every((value, j) => mod29(value) === mod29(fields[3 * i + j])))
-          .filter(Boolean).length;
-        matrixVariants.push({ name, inputOffset, outputOffset, matches, exactTriples });
       }
     }
   }
   const bestMatches = Math.max(...matrixVariants.map(v => v.matches));
   const bestExactTriples = Math.max(...matrixVariants.map(v => v.exactTriples));
-  assert.equal(matrixVariants.length, 16);
+  assert.equal(matrixVariants.length, 32);
   assert.equal(bestMatches, 5);
   assert.equal(bestExactTriples, 0);
 
