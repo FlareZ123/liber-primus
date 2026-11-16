@@ -1,9 +1,5 @@
 name: Agent18 signed 2016 word-pointer source gate
 on:
-  push:
-    paths:
-      - "sims/lp2_signed2016_backward_prime_pointer_ftransparent_sft.cjs"
-      - ".github/workflows/agent18-signed2016-pointer-ftransparent.yml"
   workflow_dispatch:
 permissions:
   contents: read
