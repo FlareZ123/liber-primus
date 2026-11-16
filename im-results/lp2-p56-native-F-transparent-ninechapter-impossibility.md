@@ -89,8 +89,30 @@ Under the independently established **GP-native English** spelling and if the ma
 
 The [read-only Windows Node22 SFT](../sims/lp2_p54_phi_survivor_native_firstwords_sft.cjs) asserts the **printed punctuation and nine unchanged original runes**, independently rebuilds the prime list, computes all six complete word prefixes, and demonstrates a **solved original p56 `AN END` positive** at start0. It consumes the six starts already established by the exact whole-chapter gate; it does not re-run a 5,000-start sweep, fit word fragments, or claim recovered plaintext.
 
+## Backward-reading transfer of the authentic p56 clock (Agent 19, 16 November)
+
+**Independent but unauthenticated directional hypothesis:** A reader who reaches a solved chapter headed *AN END* could try traversing an unknown chapter's GP rune string from its physical last rune back to its first. The signed 2016 word/number/direction sentence does not specifically command this. The exact historical p56 transition remains in force: plaintext F emits F without consuming a prime, and all other plaintext symbols receive the successive \(\varphi(p)=p-1\) keys. The only changed rule is the **reading direction**; a separate two-sign comparison admits both \(C=P+K\) and \(C=P-K\) as finite controls. Every original visual chapter and page boundary is kept, with no resegmentation, secret alphabet, fitted skips, or extra key stages.
+
+The [read-only original-input CommonJS SFT](../sims/lp2_p56_phi_ftransparent_reversed_ninechapter_sft.cjs) exhaustively tests the same **5,000 initial prime indices 0–4,999**, both arithmetic signs, and every possible genuine transparent-F clock history for each of all nine untouched original chapters. An exact DP merges only paths with identical consumed-prime counts; no language scoring is used to discard legal paths. It separately reproduces **85/85** genuinely known solved p56 ciphertext runes under the true forward prime-totient cipher and constructs two independently encoded **308/308** source-native backward-clock positives, with exact plaintext-F masks and exact re-encryption. [Windows Node22 workflow run 43893639633 passed](https://github.com/FlareZ123/liber-primus/actions/runs/43893639633).
+
+| Original chapter | Runes | Complete reverse starts, plus-sign | Complete reverse starts, minus-sign | Furthest viable prefix, plus / minus |
+| --- | ---: | --- | --- | ---: |
+| p0–2 | 729 | **3072** | none | 729 / 723 |
+| p3–7 | 1,145 | none | none | 499 / 292 |
+| p8–14 | 1,729 | none | none | 517 / 682 |
+| p15–22 | 1,903 | none | none | 411 / 448 |
+| p23–26 | 1,021 | none | none | 965 / 481 |
+| p27–32 | 1,433 | none | none | 469 / 421 |
+| p33–39 | 1,680 | none | none | 328 / 380 |
+| p40–53 | 3,008 | none | none | 744 / 458 |
+| p54–55 | 308 | **224, 481, 1043, 1429, 1431** | **516, 1551, 1552, 3017** | 308 / 308 |
+
+The **seven complete middle chapters** are mathematically impossible under both sign variants and every tested start. At p0–2, only one start survives under the plus sign (3072); it leaves six distinct terminal key-pointer states, with no plaintext recovery. The 308-rune terminal chapter has exactly **14** complete legal plaintext paths across its nine surviving starts and both signs, exhausting its six original ciphertext-F sites (64 masks per start). All fourteen full-length outputs have GP29 IoC **0.03449808–0.03674013**, close to uniform. More concretely, their reconstructed first GP rune on original p54 is one of **IA, L, S, E, B, NG, AE**. Original p54 prints its first rune as a one-rune word followed by an eight-rune word; under the ordinary GP-English word-boundary hypothesis, this must read **A** or **I**, which none does. The one-rune-word obstruction depends on English and plaintext-faithful punctuation; the seven middle-chapter failures do not.
+
+**Decision:** The entire bounded 5,000-start backward p56-transfer architecture also lacks authenticated unknown-page plaintext. This is an additional directional exclusion, not a new key or a reason to extend prime-offset sweeps. The earlier forward-direction result remains stronger for the first eight chapters. A different authentic key, mode or independent reading instruction is still possible.
+
 ## Consolidated decision and limits
 
 The authenticated native p56 cipher, including every possible source-ciphertext F ambiguity, **cannot** decrypt any of the nine original chapters with historical prime start zero. Allowing **all initial prime indices 0..4,999** still leaves the first eight chapters algebraically impossible; the short ninth has only eight arithmetically admissible non-English-like results. This replaces the earlier narrow assertion that only zero-start transfer was excluded.
 
-The result does not exclude an independently source-selected starting index beyond 4,999, a different key sequence or cipher, a key clock restarted inside a chapter, a separately specified preprocessing operation, altered F conventions or genuine non-English plaintext. No such missing rule is supplied by this test. Given the failed 5,000-start family, further phase sweeps should require an original creator clue. Prioritize **authentic unknown-page keys, plaintext, or a new source-selected inverse operation** instead of rescanning unchanged p56 arithmetic.
+The result does not exclude an independently source-selected starting index beyond 4,999, a different key sequence or cipher, a key clock restarted inside a chapter, a separately specified preprocessing operation, altered F conventions or genuine non-English plaintext. No such missing rule is supplied by this test. A separate backward-reading version of the same 5,000-start authentic machine also fails outright on seven of nine chapters; the two surviving chapters yield no readable original plaintext and the terminal one-rune word disqualifies all its direct-English readings. Given both finite failures, further phase or direction sweeps should require an original creator clue. Prioritize **authentic unknown-page keys, plaintext, or a new source-selected inverse operation** instead of rescanning unchanged p56 arithmetic.
