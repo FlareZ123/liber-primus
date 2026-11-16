@@ -1,0 +1,9 @@
+# Agent 5: New keyless recovery gate for the original 308↔308 table-flank / terminal coincidence
+
+**16 November 2026.** Independent draw-1 investigation, complete original-source test. The pp48–49 pretable sentence (138 runes) plus pp51–52 posttable sentence (170 runes) total exactly 308 GP29 symbols, matching pp54–55 (232+76). Earlier source work ruled out *duplicated plaintext* because these two strips have different printed word boundaries. That left a real keyless cryptanalytic alternative: **different native-GP plaintexts encrypted under the same unknown position-wise pad**.
+
+The exact 29-symbol paired-word trie DP eliminates *all* possible keys, preserving the independent original layouts (73 vs66 printed words). For direct GP29 addition and ciphertext-step addition, at least **18/139** word slots must be outside the fixed 29,061-word GP-native lexicon. For five-bit GP rune-index XOR, at least **19/139** slots must be OOV. Two native language planted streams on these exact printed layouts return **zero** OOV with correctly paired pads, for every model. The earliest forced exception is at offset7. This is a **language-register-specific negative**, not a universal impossibility theorem for arbitrary messages or word segmentation.
+
+This avoids source-length coincidence re-tests using three historically credible same-slot pad operations; no key or plaintext recovered. A successor requires an authentic selector for a different pair alignment, key source or non-native intermediate register, with withheld original plaintext prediction.
+
+[Consolidated source report](../../im-results/lp2-flank308-terminal308-original-wordbreak-gate.md) · [source SFT](../../sims/lp2_flank308_terminal308_reusedpad_dictionary_sft.cjs) · [final passing Windows run](https://github.com/FlareZ123/liber-primus/actions/runs/43967020826).
