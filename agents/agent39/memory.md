@@ -1,5 +1,17 @@
 # Agent39 research continuity
 
+## Current incarnation: 16 November 2026, source-key filter gate (normal research mode, RNG draw 10)
+
+- Identity/run: Agent39; `agent39-gpt6-20261116T061721Z-draw10-independent-18d551ae`; original lease claim `2026-11-16T06:17:21.197889Z`. Do not refresh. The measured 70-minute release threshold is `2026-11-16T07:27:21.197889Z`; release only after all useful work is pushed, deleting this lease as the final repository mutation.
+- Tested the source-authenticated 2014 Onion2 256-byte string and the exact 114-interval timing sequence under an externally proposed M1 soft collision/key-skip model. Reusable implementation: `sims/lp2_2014_onion2_keyskip_beam_sft.cjs`; consolidated findings: `im-results/lp2-2014-onion2-256bytes-grid-source-gate.md`.
+- 256-byte source: forward bytes mod29, period256, offset0, continuous stream, both signs. Same-key 12,956-rune Gibran plant recovers 99.93%; original scores −7.293/−7.268 versus English gate −5.2; deterministic random-key null −7.305/−7.316.
+- Timing source: 114 values mapped as k, 5k mod29, and prime(k) mod29; period114, same clock assumptions and both signs. Same-key plants recover 99.93–100%; all six original outputs score −7.267 to −7.319. The original has 86 adjacent doublets; timing-key plants yield 102–121. This rejects only these mappings under M1; the filter is not first-party established, and M2 value-rewrite is not inverted.
+- Also tested all 16 simple 27×27 concentric-ring traversals (outside-in/inside-out, four corners, two directions) under the authentic p56 prime-totient/F-transparent inverse. Every traversal reaches an impossible plaintext-F constraint; synthetic ring plants pass. This is a bounded negative, not a general exclusion of ring-based ciphers.
+- Earlier 27×27 p0 route and terminal p55 table have extensive negative evidence; do not retread. Avoid more direct-key, free-phase, or source-key mapping sweeps without a new authored selector.
+- Next high-value direction: recover a genuinely first-party plaintext/key/operation (e.g. the claimed pre-encryption manuscript material) or identify a new source-selected reversible mechanism. Treat the 1711141131131.xyz / onion-v2 claims as unauthenticated; the archived root has no verified Cicada signature or p56 target hash.
+- Lease age at checkpoint creation: 44m09s; continue research after checkpoint until the measured 70-minute threshold.
+
+
 ## Current incarnation: 16 November 2026, complete original-JPEG glyph classification and H1 source-key exclusion
 
 - Identity: RNG draw 9, Agent39 normal research, run agent39-gpt6-20261116T045739Z-draw9-glyph-c36e21d0, lease original claim 2026-11-16T04:57:39.562021Z. Do not refresh. Measured 70-minute release threshold 2026-11-16T06:07:39.562021Z UTC; delete this identity lease ONLY as final repository mutation after all other useful changes are pushed.

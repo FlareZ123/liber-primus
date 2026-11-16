@@ -68,12 +68,35 @@ Reproducers and full results:
 - [External sweep script](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F5bT-timing-keystream/run_f5bt.py)
 - Local Möbius/additive exploratory gate: [`sims/lp2_2014_onion2_timing_key_gate.cjs`](../sims/lp2_2014_onion2_timing_key_gate.cjs)
 
+
+## Skip-aware source-key test (Agent39, 16 November 2026)
+
+A separate community hypothesis proposes that the unusually low adjacent-repeat rate is produced by a soft ciphertext collision-rejection filter: when a candidate ciphertext rune equals the preceding ciphertext rune, the encoder sometimes rejects that key draw and advances the key pointer. The external model estimates rejection probability **s = 0.8129**. This is a hypothesis, not an authenticated Cicada instruction. I independently implemented its M1 key-skip inverse using a width-400 GP29 quadgram beam; the method and model are documented in [Dukotah/Cicada3301 Campaign XVIII](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round18/L2-filter-leak/RESULTS.md) and [skipdecode.py](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/campaign18_skip/skipdecode.py) (MIT-licensed source repository).
+
+**Fixed scope:** original p0–p55 corpus (12,956 runes); continuous key clock across pages; forward source order; key starts at offset zero and repeats; both arithmetic signs; no p56 transparent-F bypass. Maximum skips per rune are bounded by the source key's longest identical-symbol run (2 for the byte string, 3 for the timing sequence). No phase search, page resets, reversal, KDF, or value-rewrite inverse is included.
+
+Each key was first planted into a 12,956-rune Gibran English control using the same soft rejection rule and deterministic seed. The width-400 inverse recovered **99.93–100%** of the planted runes, scoring approximately **−4.288**; the external English gate is **−5.2**. Thus the decoder is capable of recovering English under the same key-period and skip constraints.
+
+| Source input and GP29 mapping | Period | Positive-control recovery | Actual C=P+K | Actual C=P−K |
+|---|---:|---:|---:|---:|
+| Onion2 byte string, byte mod 29 | 256 | 99.93% | −7.293 (293 skips) | −7.268 (295) |
+| Timing intervals, k = interval/5 | 114 | 100% | −7.297 (334) | −7.287 (358) |
+| Timing intervals, 5k mod 29 | 114 | 99.93% | −7.284 (378) | −7.319 (358) |
+| Timing intervals, prime(k) mod 29 | 114 | 100% | −7.270 (326) | −7.286 (379) |
+
+The original ciphertext has **86 adjacent doublets**. A deterministic random 256-symbol key null scores **−7.305/−7.316**, essentially the same as the Onion2 byte-string results. All eight source-key/sign combinations remain below the English threshold and are ciphertext-like. The source-order timing keys' synthetic plants also produce more doublets (102–121) than the original's 86, a further mismatch with this particular filter/key pairing.
+
+**Decision:** these tests reject the specified repeated-key mappings under the M1 key-skip model; they do not establish that M1 was used. The external work also describes an M2 ciphertext-value-rewrite model with similar ciphertext statistics; that inverse is not tested here. Nor does this exclude a source-selected KDF, a different key source, or a separately evidenced state reset. No first-party source currently links either 2014 Onion2 sequence to LP2 as a key.
+
+**Reproducer:** [Node 22 source-key key-skip SFT](../sims/lp2_2014_onion2_keyskip_beam_sft.cjs), including same-key positive controls and a deterministic random-key null.
+
 ---
 
 ## Decision and next actionable requirement
 
-The historical onion-2 stream is now durably indexed as a **genuine complete source-selected 256-byte candidate key**, preventing later work from rediscovering or retyping it. Comparing it against the LP2 source table is motivated by the exact length and earlier documented binary operations, but both common direct consumers, bytewise binary masking and a repeated GP29 additive key, fail on untouched ciphertext.
+The original 2014 Onion2 page yields two source-authenticated inputs: a **256-byte byte string** and **114 exact timing intervals**. These are durable historical artifacts, not established LP2 keys. The byte string fails the previously tested direct binary and rigid GP29 consumers; the timing stream fails the preregistered additive/Beaufort/Atbash and direct Möbius-cycle families. The new skip-aware M1 beam also finds no English for the source-order repeated-key mappings, despite successful same-key positive controls. Do not describe either artifact as an LP2 key or repeat these mappings without new first-party evidence selecting the operation.
 
-A new route would require an **independently authored pairing/operation** (for example a specifically indicated format, permutation, KDF, or key-state reset) and a prediction that transforms the original table or unknown runes into authentic plaintext. Reinterpreting arbitrary numerical coincidences or freely changing the phase does not advance this experiment.
+A new route requires an **independently authored pairing/operation**—for example a specifically indicated format, permutation, KDF, or key-state reset—and a locked prediction that transforms original ciphertext into authentic plaintext. The externally proposed M1 filter is not itself established, and the M2 value-rewrite inverse remains a distinct untested model. Avoid further free phase, mapping, or transformation sweeps.
 
+**Reproduction:** [Node22 skip-aware source-key SFT](../sims/lp2_2014_onion2_keyskip_beam_sft.cjs) and [original direct-key SFT](../sims/lp2_2014_onion2_grid256_historical_key_sft.cjs) operating on the committed 256-byte sources and original 12,956-rune corpus. [Manual Windows GitHub Actions run 43392764070](https://github.com/FlareZ123/liber-primus/actions/runs/43392764070).
 **Reproduction:** [Node22 CommonJS original-source SFT](../sims/lp2_2014_onion2_grid256_historical_key_sft.cjs) operating on both committed complete 256-byte sources and the original untouched 12,956-runic corpus. [Manual Windows GitHub Actions run 43392764070](https://github.com/FlareZ123/liber-primus/actions/runs/43392764070).
