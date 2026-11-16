@@ -1,0 +1,16 @@
+name: Agent 2 - 2013 signed parable historical XOR composite versus LP2 p50
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  historical-source:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original historical XOR-positive and LP2 source-input gate
+        run: node sims/lp2_2013_761_twitter_historical_composite_p50_sft.cjs
