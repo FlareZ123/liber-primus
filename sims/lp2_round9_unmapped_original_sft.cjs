@@ -194,6 +194,76 @@ async function main() {
     assert.equal(preserved, [header, ...omitted].join('\n'));
     console.log('Preserved 57-row original-page coordinate manifest: exact match');
 
+
+    const floralHeader = 'physical_page\\tarchive_jpg\\timage_band\\tcanonical_page_line\\t' +
+        'rune_index_in_line\\tx_px\\timage_class\\tpixel_cost\\tline_mean_cost\\t' +
+        'canonical_rune\\timage_class_assignment';
+    const floralRows = [];
+    const knownGlobalPairs = new Set(exact.map(([a, b]) => source[a].band + '/' + b));
+    let sectionsOffset = 0;
+    let rescuedExact = 0;
+    let rescuedNew = 0;
+    let rescuedMatched = 0;
+    let rescuedWrong = 0;
+    let rescuedUnmapped = 0;
+    let highCostLines = 0;
+    const originalSections = canonical.split('%');
+    for (let p = 0; p < 49; p++) {
+        const sectionLines = canonicalLines(originalSections[p]);
+        if (p >= 40) {
+            const physical = source.filter(line => line.page === p);
+            const cropped = physical.map(line => ({
+                ...line,
+                glyphs: line.glyphs.filter(g => g[1] >= 580 && g[1] <= 1800)
+            }));
+            const rescued = alignExactLines(cropped, sectionLines);
+            console.log('Floral p' + p + ': cropped exact lines ' + rescued.length +
+                '/' + sectionLines.length);
+            rescuedExact += rescued.length;
+            for (const [a, b] of rescued) {
+                const row = cropped[a];
+                if (!knownGlobalPairs.has(row.band + '/' + (sectionsOffset + b))) {
+                    rescuedNew++;
+                }
+                const original = sectionLines[b];
+                const mean = Math.round(row.glyphs.reduce((sum, g) => sum + g[2], 0) /
+                    row.glyphs.length);
+                if (mean > 300) highCostLines++;
+                for (let k = 0; k < original.length; k++) {
+                    const [id, x, cost] = row.glyphs[k];
+                    const mapped = mapping[String(id)];
+                    if (mapped === original[k]) {
+                        rescuedMatched++;
+                        continue;
+                    }
+                    if (mapped === undefined) {
+                        rescuedUnmapped++;
+                    } else {
+                        rescuedWrong++;
+                    }
+                    floralRows.push([
+                        p, p + 17, row.band, b, k, x, id, cost, mean,
+                        RUNES[original[k]], mapped === undefined ? 'UNMAPPED' : RUNES[mapped]
+                    ].join('\\t'));
+                }
+            }
+        }
+        sectionsOffset += sectionLines.length;
+    }
+    assert.equal(rescuedExact, 82);
+    assert.equal(rescuedNew, 79);
+    assert.equal(rescuedMatched, 1801);
+    assert.equal(rescuedWrong, 30);
+    assert.equal(rescuedUnmapped, 34);
+    assert.equal(highCostLines, 6);
+    assert.equal(floralRows.length, 64);
+    const floralFile = fs.readFileSync(path.join(ROOT, 'im-results',
+        'lp2-round9-floral-text-crop-disagreement-sites.tsv'), 'utf8').trimEnd();
+    assert.equal(floralFile, [floralHeader, ...floralRows].join('\\n'));
+    console.log('Floral source-column recovery: 82 exact lines, 79 additional band/line pairs');
+    console.log('Floral image identities: 1801 matches, 30 mapped mismatches, 34 unlabeled');
+    console.log('All 64 original-image disagreements: pinned coordinate manifest exact match');
+
     const our = separateRuneStream(canonical);
     const other = separateRuneStream(externalTranscription);
     assert.equal(our.runes, other.runes, 'Rune identity stream differs from external copy');
@@ -211,7 +281,7 @@ async function main() {
     assert.deepEqual(separatorDifferences.map(v => v.external), ['-', '-']);
     console.log('Rune stream identical across 13,136 originals');
     console.log('Non-rune punctuation differences:', JSON.stringify(separatorDifferences));
-    console.log('PASS: 57 previously omitted external glyph sites and two original punctuation boundaries');
+    console.log('PASS: original-image map, 57 missing classes, 82 restored floral lines and two punctuation boundaries');
 }
 
 main().catch(error => {
