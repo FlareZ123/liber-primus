@@ -32,8 +32,9 @@ const rows = source.trim().split(/\r?\n/).map(row => row.trim())
   .filter(Boolean).map(row => row.split(/\s+/).map(Number));
 assert.deepEqual(rows.map(row => row.length),
   [5,5,5,5,5,7,7,7,7,7,7,7,5,5,5,5,5]);
-const keys = rows.flatMap(row => row.length === 7 ? row.slice(1,-1) : row)
-  .map(v => v % 29);
+const sourceValues = rows.flatMap(row =>
+  row.length === 7 ? row.slice(1, -1) : row);
+const keys = sourceValues.map(v => v % 29);
 assert.equal(keys.length, 85);
 const c = corpus.pages.find(page => page.page === 56).indices;
 assert.equal(c.length, 85);
@@ -76,6 +77,28 @@ function ioc(values) {
   return hist.reduce((sum, f) => sum + f * (f-1),0) /
     (values.length * (values.length-1));
 }
+// Independent, *key-independent* obstruction to any scalar map f(value):
+// the identical original numeric value 434 occurs at offsets 0 and 24,
+// where the known historical p56 key requires two different GP29 shifts.
+// Thus every pointwise mapping, including phi(x) mod 29 or modulus changes,
+// fails under this exact order without scanning families of functions.
+assert.equal(sourceValues[0], 434);
+assert.equal(sourceValues[24], 434);
+assert.equal(historicalKey[0], 1);
+assert.equal(historicalKey[24], 9);
+const byValue = new Map();
+for (let i = 0; i < sourceValues.length; i++) {
+  const key = sourceValues[i];
+  if (!byValue.has(key)) byValue.set(key, []);
+  byValue.get(key).push(historicalKey[i]);
+}
+const clashes = [...byValue.values()].filter(values =>
+  values.length > 1 && new Set(values.filter(v => v !== null)).size > 1);
+assert.equal(byValue.size, 44);
+assert.equal(clashes.length, 38);
+console.log('Source integers with repeated values: 41 of 44 value classes');
+console.log('Contradictory same-value historical-key classes: '+clashes.length);
+console.log('Direct witness: 434 at offsets 0,24 -> p56 keys 1,9 (impossible f(434)).');
 const keyMatches = keys.flatMap((key,i) =>
   historicalKey[i] === key ? [i] : []);
 assert.deepEqual(keyMatches,[14,31]);
