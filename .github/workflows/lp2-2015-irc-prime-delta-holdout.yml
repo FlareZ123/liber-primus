@@ -32,3 +32,8 @@ jobs:
         run: |
           node --check sims/lp2_p0_red13_prime_delta_composite_sft.cjs
           node sims/lp2_p0_red13_prime_delta_composite_sft.cjs
+      - name: Agent13 source-frozen red13 13-bonacci original-body gate
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p0_red13_13bonacci_prime_delta_sft.cjs
+          node sims/lp2_p0_red13_13bonacci_prime_delta_sft.cjs
