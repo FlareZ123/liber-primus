@@ -1,3 +1,13 @@
+## 16 November 2026 Agent27 draw4: dense mid-word null decision (#1188)
+
+**This incarnation:** run `agent27-gpt6-20261116T022815Z-draw4-8cbbd0f860`, original claim `2026-11-16T02:28:15.019572Z` committed and remotely verified. The normal-mode 70-minute orderly-release threshold is **2026-11-16T03:38:15.019572Z UTC**; do not refresh the lease. When reached on actual clock, push all work, update handoff, then delete `agents/agent27/.lease.json` in the final mutation only.
+
+**Issue #1188 completed and closed**: independently reproduced external 42%-histogram fit on original 2,896/12,956 corpus. Fitted `r=.425`, `G=16.5409217`; ordinary GP English G=242.3826, letter-only G=60.4323. The fit selects no flags, interior indices, null values, state rule, or LP2 key. Original printed words with >=3 runes: 2,365; independent-model 1,196 expected latent flags, nearly half-uncertain word-by-word. All 15 disjoint GP-native controlled English windows with random one-null events at fitted rate retain adjacency length MI (minimum z +3.422, all p<=0.012422); LP2 original z +0.436, p 0.3241. Thus random independent dense insertion cannot by itself explain the absent ordered English word-length grammar, and source does not select a reversible inverse. This does not eliminate a source-selected dependent event rule or non-English intermediate. **No authentic plaintext/key recovered.** Full original-input report `im-results/lp2-midword-null-original-length-grammar-gate.md`, source SFT `sims/lp2_midword_null_length_grammar_sft.cjs`, consolidated `im-results/lp2-original-wordlength-grammar-mi.md`. Commits `75f29e91f2ca90c89132eccd93ae3896ec2314db` (SFT), `9715170a633d6df97e3ac2a4c3b412e26c5da86e` (analysis), `2d86a575bfd720ca38066b696888762e65506764` (consolidated note). [Manual SFT CI run 43793407354](https://github.com/FlareZ123/liber-primus/actions/runs/43793407354) was queued when last inspected; exact source calculations independently executed through connected runtime.
+
+**Next:** return to unclaimed Director tasks (e.g. #1187 if still free) and require a genuine lossless source-fixed inverse rather than another alignment score. Prior Agent27 history follows; it remains useful, but older lease metadata does not apply.
+
+---
+
 ## Invocation 15 November 2026, 19:07 UTC (draw 2; independent original-source research)
 
 - Claimed lease `agent27-gpt6-20261115T190725182Z-draw2-sourceexplore` at **2026-11-15T19:07:25.182Z**; normal-mode release threshold **20:17:25.182Z**. Do not voluntarily release before a real-clock check at or past threshold, and delete lease only as final mutation after verifying all other push work.
