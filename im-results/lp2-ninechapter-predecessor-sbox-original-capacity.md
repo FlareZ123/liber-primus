@@ -34,6 +34,8 @@ The global case is included for comparison, not selected by the text. The strong
 
 These are minima over *every* contiguous native GP window of the original manuscript's 12,956-rune length, with both GP spellings frozen before reading the original ciphertext. The source-native comparison with the smallest margin is Emerson's **2,408 − 2,389 = 19** distinct E/O occurrences. The original cipher bound is deterministic; this is a finite reference-class exclusion, not a claim of universal natural-language impossibility.
 
+**Authentic authorial prose control (not extrapolated into a 12,956-rune sample):** The independent genuinely clear LP1 pages 3,8–11,14 contain **216 E/O in 1,001 runes (21.58%)**; clear LP2 p57 contains **18 E/O in 95 runes (18.95%)**. Both observed rates exceed the nine-chapter model ceiling **2,389/12,956 = 18.44%**. These are short, different-sized historical samples and cannot prove that the unknown author used identical long-form rates. The SFT reads the genuine rune controls and pins those counts.
+
 A native-language positive **actually encrypts 12,956 real Gibran GP symbols**, using 261 independent secret 29-way bijections with the previous ciphertext selecting the per-symbol alphabet and the EA rune reserved to emit the one-step repeat. It exactly decodes and re-encodes every symbol, verifies repeats align *only* with planted EA, and passes the same all-secret necessary-condition bound. This is a constructive control of the specific encoder, independent of guesses about actual LP2 text.
 
 ## Research consequence

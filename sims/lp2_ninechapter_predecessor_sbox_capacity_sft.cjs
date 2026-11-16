@@ -180,6 +180,16 @@ function main() {
   });
   assert.deepEqual(controls.map(x=>x.regular.count),[2556,2430,2455]);
   assert.deepEqual(controls.map(x=>x.ingIo.count),[2548,2441,2408]);
+  // Independently genuine original clear-LP1 and clear-LP2 controls.
+  const byGlyph = new Map(source.runes.map((r,i)=>[r,i]));
+  const directRunes = str => Array.from(str)
+    .filter(r=>byGlyph.has(r)).map(r=>byGlyph.get(r));
+  const lp1Source = read('resources/transcriptions/lp1_wulfic_canonical.txt').split('%');
+  const clearLP1 = [3,8,9,10,11,14].flatMap(p=>directRunes(lp1Source[p]));
+  const clearP57 = directRunes(read('resources/liber-primus/lp2-transcription.txt').split('%')[56]);
+  const eoCount = a => a.filter(x=>x===E||x===O).length;
+  assert.deepEqual([clearLP1.length,eoCount(clearLP1)],[1001,216]);
+  assert.deepEqual([clearP57.length,eoCount(clearP57)],[95,18]);
   const originalGlobal = capacity([chapters.flat()]);
   assert.deepEqual([originalGlobal.one,originalGlobal.two],
     [803,1451]);
@@ -194,7 +204,7 @@ function main() {
     globalAllSecretEO:originalGlobal.two,
     nineIndependentChapterAllSecretE:actual.one,
     nineIndependentChapterAllSecretEO:actual.two,
-    controls,plant
+    controls,authenticClearGP:{lp1:{runes:1001,EplusO:216},p57:{runes:95,EplusO:18}},plant
   }, null, 2));
 }
 if(require.main === module) main();
