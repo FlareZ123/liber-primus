@@ -25,7 +25,7 @@ CICADA_HOSTS = {
     "sq6wmgv2zcsrix6t.onion",
     "ut3qtzbrvs7dtvzp.onion",
 }
-ONION_RE = re.compile(r"(?i)([a-z2-7]{16}\\.onion)")
+ONION_RE = re.compile(r"(?i)([a-z2-7]{16}[.]onion)")
 CDX_ENDPOINTS = (
     "https://web.archive.org/cdx/search/cdx",
     "http://web.archive.org/search/cdx",
@@ -114,7 +114,7 @@ def main() -> None:
 
     out = Path("im-results/wayback-tor2web-cdx-metadata.json")
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2) + "\\n", encoding="utf-8")
+    out.write_text(json.dumps(report, indent=2) + chr(10), encoding="utf-8")
     for item in report["queries"]:
         print(json.dumps(item, sort_keys=True))
     if any("error" in item for item in report["queries"]):
