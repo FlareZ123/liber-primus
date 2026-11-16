@@ -92,6 +92,33 @@ assert.equal(clearP57,0.06270996640537514);
 assert.ok([maxC,maxD,maxE].every(x=>x.maximumPossibleReplacementOnlyIOC<0.04));
 const shifted=events.map((site,i)=>mod(D[site]+edgeKey[i]));
 const output=shifted.map(x=>corpus.translit[x]).join(' ');
+const sourceKeyOrders=[
+  {name:'left-right',runes:edgeKey},
+  {name:'firsts-lasts',runes:words.map(w=>w[0]).concat(words.map(w=>w.at(-1)))}
+];
+const native=Array.from({length:729},(_,i)=>corpus.pages[57].indices[i%95]);
+const fullTapeVariants=[];
+for(const register of [{name:'C',data:original},{name:'D',data:D},{name:'E',data:E}]){
+  for(const sourceKey of sourceKeyOrders){
+    for(const numeral of ['ordinal','prime']){
+      for(const sign of [-1,1]){
+        const pad=sourceKey.runes.map(r=>numeral==='ordinal'?r:corpus.prime[r]);
+        const inverse=register.data.map((c,i)=>mod(c+sign*pad[i%40]));
+        const synthetic=native.map((p,i)=>mod(p-sign*pad[i%40]));
+        assert.deepEqual(synthetic.map((c,i)=>mod(c+sign*pad[i%40])),native);
+        assert.deepEqual(inverse.map((p,i)=>mod(p-sign*pad[i%40])),register.data);
+        fullTapeVariants.push({register:register.name,keyOrder:sourceKey.name,numeral,
+          sign,ioc:ioc(inverse),first80:inverse.slice(0,80)
+            .map(r=>corpus.translit[r]).join('')});
+      }
+    }
+  }
+}
+assert.equal(fullTapeVariants.length,24);
+fullTapeVariants.sort((a,b)=>b.ioc-a.ioc);
+assert.equal(fullTapeVariants[0].ioc,0.03522437781697041);
+assert.ok(fullTapeVariants.every(x=>x.ioc<0.04));
+
 console.log(JSON.stringify({
   source:'original pp0–2 and solved p57: 20 printed words, 40 word-edge runes',
   historical:'2015 first prime-difference yields precisely 40 doublet event slots',
@@ -100,6 +127,7 @@ console.log(JSON.stringify({
   firstAndLastEvent:[events[0],events.at(-1)],
   direct40ValuePlusP57EdgeReadout:output,
   direct40TextIsNotPlaintext:true,
+  repeated40KeyFullTape:{tested:24,best:fullTapeVariants[0],maxIOC:fullTapeVariants[0].ioc},
   bounds:{printed:maxC,first2015Difference:maxD,second2015Difference:maxE},
   decision:'40-to-40 edge-key event replacement cannot itself recover 729-rune native-GP plaintext; another independently selected transformation would be required'
 },null,2));
