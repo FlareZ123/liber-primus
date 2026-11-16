@@ -1,4 +1,4 @@
-name: Agent32 Liber AL source-key anti-repeat SFT
+name: Agent32 historical-source collision-skip SFT
 on:
   workflow_dispatch:
 
@@ -16,3 +16,5 @@ jobs:
           node-version: "22"
       - name: Run historical-source original-cipher gate
         run: node sims/lp2_liber_al_antirepeat_runningkey_sft.cjs
+      - name: Run authentic LP1 13-rune key collision-reject target gate
+        run: node sims/lp2_firfumferenfe_collision_skip_original_sft.cjs
