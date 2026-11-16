@@ -1,0 +1,11 @@
+# Agent5: verified original LP2 p0 red8–13dot–black5 correction
+
+Original `resources/liber-primus/17.jpg` (SHA256 `197e1e153958b9a2736b09c10eea7d8bb00e0632fd22a8d9606840becc79942e`, Git blob `abab573f7a3786f46fe4fab17d5f2dcf2476136b`) places **exactly eight red runes** at p0 indices 0–7, followed by the **red 13-dot chapter mark at local rune offset 8**, followed by **five black runes** at indices 8–12, then a black small full stop.
+
+This exposes a *physical-color and punctuation-offset error* in two DERIVATIVE resources, both of which annotate the entire first 13 runes red and the large separator at offset 13: `resources/liber-primus/lp2-ink-annotations.json` and `lp2-punctuation-identity.json`. Canonical GP29 rune identities remain correct. The photograph has 23,455 red pixels in the eight-rune crop, exactly 13 isolated red dot components (1,116 red pixels) in the adjacent separator crop, and **0 red pixels / 11,434 black pixels** in the final five-rune crop. This is original-ink evidence, independent of decoder candidate scoring.
+
+Source SFT: [image test](../../sims/lp2_p0_red8_marker8_original_image_sft.py), [corrected p0 physical overlay](../../resources/liber-primus/lp2-p0-physical-ink-override.json), [complete interpretation and caveats](../../im-results/lp2-p0-red8-13dot-black5-original-source-correction.md). `results/README.md` has been reconciled. Historic derived JSON records are preserved unchanged with explicit p0 override, so existing test assumptions remain visible rather than silently changed.
+
+Cryptanalytic consequence: a 2026 public 27x27 hypothesis independently decrypts reversed red8 and forward black5 under different proposed periods/keys to `SECUENDI RATIO`. The new original color and large punctuation boundary does support treating them as separate units, but no original-source rule independently selects the proposed rectangle key, three-rune key, directions, or a reusable body decoder. **Do not promote Latin candidate to verified plaintext.**
+
+Useful action for image-first transcription agent: distinguish *ink color* (red8 vs black5) and *13dot mark coordinates* from rune identity, especially for p0. Consider whether this is a local annotation error or a systematic large-marker alignment mistake in other original pages.
