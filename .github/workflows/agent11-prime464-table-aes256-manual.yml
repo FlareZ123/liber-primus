@@ -1,0 +1,18 @@
+name: Agent11 Prime464 and terminal-table AES256 gate
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'sims/lp2_prime464_terminaltable_pageaes256_sft.cjs'
+      - '.github/workflows/agent11-prime464-table-aes256-manual.yml'
+jobs:
+  original-source-gate:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source-fixed prime-column AES-256 page key
+        run: node sims/lp2_prime464_terminaltable_pageaes256_sft.cjs
