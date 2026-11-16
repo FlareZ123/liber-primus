@@ -15,7 +15,7 @@ const crypto = require('node:crypto');
 
 const SOURCE_URL = 'https://www.cranic.it/data/supporting_material.tar.gz';
 const MAX_DOWNLOAD = 40 * 1024 * 1024;
-const TARGETS = ['ky2khlqdf7qdznac.onion', '36367763ab73783c7af284446c59466b'];
+const TARGETS = ["ky2khlqdf7qdznac.onion","auqgnxjtvdbll3pv.onion","cu343l33nqaekrnw.onion","fv7lyucmeozzd5j4.onion","avowyfgl5lkzfj3n.onion","q4utgdi2n4m4uim5.onion","ut3qtzbrvs7dtvzp.onion","36367763ab73783c7af284446c59466b"];
 
 /** @param {string} url @param {'HEAD'|'GET'} method */
 function request(url, method) {
