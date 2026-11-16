@@ -6,7 +6,7 @@ The 2013 original-source Crowley chapters are read locally and hashed, never pri
 The source/algorithm, spellings, skip law, eight original windows, thresholds,
 and 8-position start grid are fixed before any original screen.
 
-Distinct source-selected 2013 Crowley poem investigation (Agent42).
+Distinct source-selected 2013 Crowley book-code investigation (Agent3).
 """
 import argparse
 import hashlib
@@ -139,10 +139,10 @@ def main():
     chunks = []
     for rel, expected_git_blob in CROWLEY_CHAPTERS:
         chapter = (ROOT / rel).read_bytes()
-        blob = b"blob " + str(len(chapter)).encode() + b"\\0" + chapter
+        blob = b"blob " + str(len(chapter)).encode() + b"\0" + chapter
         assert hashlib.sha1(blob).hexdigest() == expected_git_blob, rel + " source drift"
         chunks.append(chapter)
-    book_bytes = b"\\n".join(chunks)
+    book_bytes = b"\n".join(chunks)
     raw = book_bytes.decode("utf-8", errors="strict")
     wb = get(GUTENBERG_WALDEN)
     assert hashlib.sha256(wb).hexdigest() == "2d9a76a2e3e8195c69430516ebd33c4d0757a53ad432ff6186b7b794e6fe99f9", "original source Walden language model drift"
