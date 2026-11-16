@@ -15,6 +15,7 @@ const reference = fs.readFileSync(path.join(root, 'resources', 'liber-primus', '
 const translit = corpus.translit;
 const seed = [...'EPIPHANYSEECS'].map((ch) => translit.indexOf(ch));
 const body = corpus.pages[0].indices.slice(13);
+const prime = corpus.prime;
 const solved = corpus.pages[57].indices;
 assert.equal(seed.length, 13);
 assert.equal(body.length, 249);
@@ -86,7 +87,7 @@ function logTrigram(a) {
  * @param {number[]} plain
  * @returns {number[]}
  */
-function encode(mode, sign, plain) {
+function encode(mode, sign, plain, keyMap) {
   const prevP = [], prevC = [], cipher = [];
   for (const p of plain) {
     if (p === 0) { cipher.push(0); continue; }
@@ -94,7 +95,7 @@ function encode(mode, sign, plain) {
     const key = mode === 'repeat' ? seed[t % 13]
       : t < 13 ? seed[t]
       : mode === 'plainauto' ? prevP[t - 13] : prevC[t - 13];
-    const c = mod(p - sign * key);
+    const c = mod(p - sign * keyMap(key));
     prevP.push(p);
     prevC.push(c);
     cipher.push(c);
@@ -109,7 +110,7 @@ function encode(mode, sign, plain) {
  * @param {number[]} cipher
  * @param {number[] | null} target
  */
-function enumerate(mode, sign, cipher, target = null) {
+function enumerate(mode, sign, cipher, keyMap, target = null) {
   const prevP = [], prevC = [], plain = [];
   let paths = 0, maxPrefix = 0, matchedTarget = false;
   /** @type {{score:number,ioc:number,skip:number,head:string,events:string}[]} */
@@ -132,7 +133,7 @@ function enumerate(mode, sign, cipher, target = null) {
     const key = mode === 'repeat' ? seed[t % 13]
       : t < 13 ? seed[t]
       : mode === 'plainauto' ? prevP[t - 13] : prevC[t - 13];
-    const p = mod(cipher[i] + sign * key);
+    const p = mod(cipher[i] + sign * keyMap(key));
     if (p !== 0) {
       plain.push(p);
       prevP.push(p);
@@ -158,16 +159,22 @@ console.log('p0 body ciphertext F:', body.filter((x) => x === 0).length);
 console.log('Training GP reference symbols:', train.length);
 console.log('Score native solved p57:', logTrigram(solved), 'IoC:', ioc(solved));
 console.log('Score original p0 body:', logTrigram(body), 'IoC:', ioc(body));
-for (const mode of ['repeat', 'plainauto', 'cipherauto']) {
-  for (const sign of [-1, 1]) {
-    const encoded = encode(mode, sign, solved);
-    const positive = enumerate(mode, sign, encoded, solved);
-    assert(positive.matchedTarget);
-    assert(encoded.length === solved.length);
-    console.log('POSITIVE', mode, sign, 'source-native p57 matched 95/95; cipherF=',
-      encoded.filter((x) => x === 0).length, 'legal_paths=', positive.paths);
-    const original = enumerate(mode, sign, body);
-    console.log('ORIGINAL', JSON.stringify(original));
+for (const [mapName, keyMap] of Object.entries({
+  ordinal: (x) => x,
+  gpPrime: (x) => prime[x] % 29,
+  gpTotient: (x) => (prime[x] - 1) % 29
+})) {
+  for (const mode of ['repeat', 'plainauto', 'cipherauto']) {
+    for (const sign of [-1, 1]) {
+      const encoded = encode(mode, sign, solved, keyMap);
+      const positive = enumerate(mode, sign, encoded, keyMap, solved);
+      assert(positive.matchedTarget);
+      assert(encoded.length === solved.length);
+      console.log('POSITIVE', mapName, mode, sign, 'source-native p57 matched 95/95; cipherF=',
+        encoded.filter((x) => x === 0).length, 'legal_paths=', positive.paths);
+      const original = enumerate(mode, sign, body, keyMap);
+      console.log('ORIGINAL', mapName, JSON.stringify(original));
+    }
   }
 }
-console.log('SFT PASS. Positive paths verified; original decoded cases preserve exact fixed model.');
+console.log('SFT PASS. All 18 GP rune/prime/totient key consumers pass p57-native controls; original paths exhaustively determined.');
