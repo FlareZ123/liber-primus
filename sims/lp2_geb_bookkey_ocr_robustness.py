@@ -22,14 +22,14 @@ def book_body(raw):
     return raw[raw.find("\n", a) + 1:b] if a >= 0 and b > a else raw
 
 
-def altered_key(true_source, position, amount, kind):
+def altered_key(true_source, amount, kind):
     """Return altered observable OCR and coordinates of actual source glyphs."""
     reader = true_source.copy()
     index_map = np.arange(-3, reader.size - 3, dtype=np.int64)
     if amount == 0:
         return reader, index_map
     sites = [3 + (i + 1) * 600 // (amount + 1) for i in range(amount)]
-    assert all(100 <= p < 660 for p in sites)
+    assert all(30 <= p < 700 for p in sites)
     # Apply descending-coordinate changes to keep source sites stable.
     for p in reversed(sites):
         if kind == "substitution":
@@ -96,7 +96,7 @@ def main():
             for kind in ("none", "substitution", "insert_observed", "delete_observed"):
                 for errors in ([0] if kind == "none" else [1, 4, 8]):
                     observed, index_map = altered_key(
-                        original_reference, start, errors, kind
+                        original_reference, errors, kind
                     )
                     score, path = decoder.beam_decode(
                         c, observed, 0, MT, gate.BEAM,
