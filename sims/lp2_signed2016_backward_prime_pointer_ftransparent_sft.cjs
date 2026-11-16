@@ -179,6 +179,25 @@ const originalP0 = original.slice(0, 729);
 const p0 = reachable(originalP0, lengths.slice(0, 158), 0);
 assert.equal(lengths.slice(0, 158).reduce((a,b) => a + b,0),729);
 assert.equal(full.furthest, p0.furthest);
+
+// Critic adversarial control: the original start0 failure could be caused by
+// early backwards-key underflow. Give the exact same frozen cipher and word
+// directions 5,000 different starting prime-key cursors, without selecting a
+// favorable one using a language score or changing its no-wrap/F law.
+// This is a finite clock-origin sensitivity, not a new historical key.
+const alternateStarts = Array.from({length: 5000}, (_, start) => {
+  const outcome = reachable(originalP0, lengths.slice(0, 158), start);
+  return {start, furthest: outcome.furthest};
+});
+const bestAlternateFurthest = Math.max(...alternateStarts.map(x => x.furthest));
+const bestAlternateStarts = alternateStarts
+  .filter(x => x.furthest === bestAlternateFurthest)
+  .map(x => x.start);
+const completedAlternativeStarts = alternateStarts
+  .filter(x => x.furthest === originalP0.length).length;
+assert.equal(completedAlternativeStarts, 0);
+assert.equal(bestAlternateFurthest, 571);
+assert.deepEqual(bestAlternateStarts, [3990, 3991, 3992]);
 // One matched null: rotate the rune order inside every printed word by one.
 // Every exact word length, GP-prime sum, prime/composite direction and
 // number of ambiguous F sites is preserved; original position is destroyed.
@@ -214,6 +233,13 @@ console.log(JSON.stringify({
     transcriptSha256:crypto.createHash('sha256').update(transcriptBytes).digest('hex')
   },
   original:{runes:original.length,words:words.length,full,p0,matchedRotationNull:nullReach},
+  alternativeStartSensitivity:{
+    testedStarts:'0..4999', sourceWindow:'original physical p0-2, 729 runes',
+    exactFBypass:true, noWrap:true, samePrimeWordDirections:true,
+    completed729:completedAlternativeStarts,
+    longestPrefix:bestAlternateFurthest,
+    bestStarts:bestAlternateStarts
+  },
   authenticPositive:{p56ExactCipher:true,p56:positiveP56.bypasses ? p56Reach : null,
     literalFBypasses:positiveP56.bypasses},
   independentPlant:{runes:plantPlain.length,source:'Shakespeare fixed GP29 reference',
