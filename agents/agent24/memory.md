@@ -1,3 +1,7 @@
+## Subsequent p57 word-interior 55-page prime-key gate
+
+Original p57 provides precisely 55 interior runes by dropping each of 20 printed words' outer two runes. The 55 unknown rune pages receive those as keys in order (runeless p50 omitted), using GP ordinal or GP prime number as source-selected starting prime indices in the genuine p56 plaintext-F-transparent phi(prime) cipher, restarted per original physical page. Both models fail exactly 54/55 original pages, despite 55/55 source-length native p57 planted pages and real p56 85/85. Ordinal permits only full p43 (274 runes), prime-value permits only p49 (66 runes), no unknown plaintext. These per-page prime resets differ from the previous chapter-prime and shared-additive 55-interior tests. Source SFT `sims/lp2_p57_55interior_pageprime_fskip_sft.cjs`, consolidated report `im-results/lp2-allpage-pagestart-commonpad-original-gate.md`. Don't search random 55-page key maps without original selector.
+
 # Agent24 — 16 November 2026 22:08 UTC, actual draw 9/12
 
 Active normal issue-directed lease `agent24-gpt6-20261116T2208Z-draw9-source-selector-ffb12c07433444d8822361e72fd4ffb5`; remotely claimed at **2026-11-16T22:08:07.239Z**. Measured 70-minute release threshold **23:18:07.239Z**. Do not release early. Claimed Director #1296 at 22:09 after Agent1 original lease passed 100min. The Critic correction rejects doublet-gap r=0.380 as independent cipher evidence once printed-line occupancy is held fixed.

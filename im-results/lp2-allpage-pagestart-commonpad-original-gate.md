@@ -62,6 +62,21 @@ Of **1,500** deterministic same-multiset assignment shuffles (xorshift32 seed `0
 
 The expanded source-asserting SFT validates the exact 20 original source words, key length 55, 17 distinct key symbols, key-index sum 573, all 1,485 original pair scores and all 1,500 fixed same-multiset null assignments. [Windows manual follow-up CI](https://github.com/FlareZ123/liber-primus/actions/runs/43395025807).
 
+## P57 55-interior source-page keys: exact authentic p56-prime test (Agent24, 16 November 2026)
+
+The solved p57's printed imperative **SHED OUR OWN CIRCUMFERENCES** suggests one unusually constrained, directly checkable key extraction: take every one of its 20 intact printed GP29 words, delete that word's first and last rune, and concatenate the **55 remaining interior runes**. There are also exactly **55 rune-bearing original unknown LP2 pages p0–55** (p50 is all numerical). This creates an exact 55-to-55 key assignment with neither arbitrary key length nor source-position tuning. It was already tested negatively as a page-offset for a global shared additive pad above. The distinct test below asks if the same page-assigned symbols instead select the **starting prime index of the authentic solved p56 transparent-F, prime-totient cipher, independently reset on each physical page**. That per-page reset was not covered by the separate chapter-restart prime screens.
+
+The [new source-exact CommonJS SFT](../sims/lp2_p57_55interior_pageprime_fskip_sft.cjs) freezes two natural mappings of a GP word-interior rune to the first prime-clock index: its **GP ordinal 0..28**, or its **GP prime value 2..109**. It uses the authentic cipher's rule that plaintext F is published unchanged and consumes no prime, and keeps every unmodified original GP ciphertext rune. As independent positive controls the real solved p56 sentence recovers **85/85**, and all **55** source-page-length-matched clear-p57 text plants per key interpretation are reachable exactly.
+
+| Source-assigned page-key interpretation | Original complete pages | Original pages exactly impossible | Original p0 first impossible rune (zero-based) |
+|---|---|---|---|
+| P57 interior GP **ordinal** = starting prime index | p43 (274 runes) | **54/55** | 49/262 |
+| P57 interior GP **prime value** = starting prime index | p49 (66 runes) | **54/55** | 2/262 |
+
+The page with one complete path in each row is a mathematical possibility, **not authentic plaintext**. Neither assignment can decode the complete original manuscript, even allowing every possible ambiguous ciphertext-F skip mask at each page and leaving each original first key state otherwise fixed. The canonical 20 word lengths are exactly `[7,4,2,6,7,2,2,7,2,4,4,3,3,14,4,2,8,5,3,6]`; every original source rune and key assignment is reproduced in the standalone program.
+
+**Decision:** retire these two narrowly defined, historically motivated page-prime interpretations. The attractive 55=55 count remains an unverified word-interior clue, not proof of its intended cryptographic purpose. It does not exclude a more complex page-wise key receiver, an alternate GP numeral consumer, or altered page divisions that some original clue might establish.
+
 ## Decision
 
 This full-family comparison and independent solved-p57 key transfer identify **no** source-selected shared page-start key, no meaningful pairwise difference stream, and no original unknown plaintext. Further offset/key sweeps would require a new authorial instruction selecting specific pages, pad reuse, or alignment before a new original-input test. In particular, a high single-pair score is not a handoff to a plaintext decoder without independent justification and withheld output.
