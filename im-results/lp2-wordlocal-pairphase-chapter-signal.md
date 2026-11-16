@@ -40,6 +40,22 @@ The first-five-chapter endpoint was inspected during exploration, so the test al
 
 Original **LP1** is a useful independent type-set runic control under the same word parser: all 2,797 source glyphs / 694 words contain **30 odd and 21 even** within-word doublet sites (conditional two-sided p **0.936**); its first three transcribed blocks contain 12 odd and four even among 16 (two-sided p **0.229**). These controls are heterogeneous solved material and do not prove that the LP2 early-chapter signal is cryptographic.
 
+## Key-independent exclusion: stationary word-aligned digraph substitution
+
+The already completed [hard Playfair pair-alignment gate](lp2-polygraphic-pair-alignment-gate.md) showed that **27 of 63** original within-word doublets fall *inside* word-initial two-rune blocks, so a *hard no-equal-pair* Playfair model fails. The chapter-conditioned 10/22 positional skew here refines that established global 27/36 observation; it does not rehabilitate hard Playfair.
+
+There is a stronger, **key-independent** test of every *stationary bijective substitution on complete word-aligned two-rune blocks*, with no need to guess its 841-entry key. Each original pair is one of `29²=841` labels. Any fixed permutation of those labels preserves the number of repeated pair labels, and therefore the *normalized collision index* `841 Σ n_i(n_i−1) / [N(N−1)]` exactly.
+
+| Source-original register | Word-initial non-overlapping pairs | Repeated pair-label pairs | `841×IoC` |
+| --- | ---: | ---: | ---: |
+| LP2 pp0–26 | **2,903** | **5,202** | **1.038609** |
+| LP2 pp27–55 | **2,850** | **4,950** | **1.025401** |
+| Original LP1 transcript (source-native comparator, mixed solved regimes) | **1,242** | **2,765** | **3.017364** |
+| Original LP1 transcribed first three blocks (short comparator) | **312** | **107** | **1.854790** |
+| Original LP1 later blocks (predominantly clear GP prose) | **930** | **2,369** | **4.612033** |
+
+The nearly uniform 812 unequal-pair states themselves predict `841/812 ≈ 1.035714` as the zero-doublet limiting normalized index, consistent with **1.038609** on actual early original ciphertext. A stationary bijection of original disjoint ciphertext pairs cannot convert that flat histogram into the strongly repeated ordered digraphs of source-native LP1 prose; the relative pair multiplicities are unchanged under every possible secret 841-label permutation. This is a **general, key-independent word-aligned 2-rune substitution objection**, separate from the particular direct dual-ring decoder below. It is conditional on the plaintext having a native-GP-style pair collision distribution like the available solved control. A changing keyed permutation, block reordering, altered word segmentation, non-GP payload or longer context remains outside the claim.
+
 ## Frozen direct decoder attempted, with complete negative
 
 There is a *possible mathematical bridge* already documented in [the 812-unit correspondence](lp2-dual812-fullring-nonunit-completion.md): original p15's signed matrix has order812; the p39 quadratic defines the dual-number ring GF(29)[ε]/ε² with exactly **812** units; source-linked `g = 19+13ε` generates those units. A complete bijection on the **841** ordered GP29 rune pairs is then:
