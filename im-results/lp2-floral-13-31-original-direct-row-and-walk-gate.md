@@ -25,10 +25,23 @@ The first-party 2013 signed TCP challenge explicitly demonstrates `BASE29 3301 �
 
 No source instruction directs these numerals to an LP2 key or receiver. Interpreting each byte's low five bits as Tor-v2 base32 generates `2772oyatr6mgue5q` for zero-based rows 13/31, or `6wictfaoqnkwwyga` for one-based rows. These are **unvalidated strings**: every arbitrary sequence of 16 bytes maps to a syntactically valid 16-character base32 string after throwing away three bits per cell, so this is not evidence for an onion destination. Neither row pair is a directly readable ASCII instruction.
 
+The earlier Cicada byte-XOR operation gives another strict, fixed two-row candidate: XOR corresponding cells of the two selected rows, without scanning offsets or keys. Zero-based gives \`0ba1b33cba9c9d23\` (ASCII \`...<...#\`); one-based gives \`4e1b62f445dde60e\` (ASCII \`N.b.E...\`). Neither is an eight-byte plaintext instruction or recognizable typed file header. This is a negative for only the rowwise XOR consumer.
+
+**Independent length-match algebra gate.** The original 256 byte coefficients have a previously established exact GF29 degree-16 polynomial factor yielding a 240-coefficient quotient, matching physical p39's **240 runes** ([existing original quotient report](lp2-p39-q240-p15-blockmix-original-gate.md)). The two eight-cell selected rows provide precisely **16 coefficients** of a candidate *monic* degree-16 factor. This is a source-motivated, decisive divisibility test, with zero or one-based rows and two conventional coefficient directions fixed in advance. For each candidate \`X^16 + a15 X^15 + … + a0\`, take the 16 raw row bytes modulo29 and divide the unchanged original grid polynomial over GF29. Results:
+
+| Row address | 16 coefficients | Nonzero remainder slots / 16 | Quotient positions matching p39's original rune indices / 240 |
+|---|---|---:|---:|
+| Zero-based 13,31 | Printed order | 16 | 4 |
+| Zero-based 13,31 | Reversed | 16 | 10 |
+| One-based 13,31 | Printed order | 15 | 4 |
+| One-based 13,31 | Reversed | 16 | 5 |
+
+**All four polynomial factors fail exact divisibility.** A true factor would have sixteen zero remainder coefficients. This decisively rejects the 13/31-row-as-factor interpretation in this GP29 reading and avoids guessing a secret 16-coefficient polynomial. No key/unknown plaintext emerged from these additional direct gates.
+
 A second concrete source-typed reading uses the shape 32×8 and byte domain 0–255 as a complete **self-addressing transition table** `next_state = T[state]`. Two literal five-bit seeds 13 and 31, and two crossed-bit coordinate seeds `(row13, col31 mod8)=111` and `(row31, col13 mod8)=253`, all converge to the same **11-cycle**. The literal seeds have paths of 17 and 15 states, and coordinate seeds paths of 12 and 18 states. Their byte streams contain no complete typed ASCII instruction, file header with structure, or recognizable first-party key. Even this interpretation requires an unauthenticated convention for the initial table address and output register.
 
 ## Falsifiable boundary and decision
 
 The 13/31 motif plausibly names a **source event set**, but it does not uniquely name a reversible operation on original GP29 ciphertext. The direct two-row raw-byte and authored `BASE29` receivers fail to yield an independently recognizable message. The self-addressing direct map does not resolve the missing key/operation. **Do not expand to arbitrary bit traversals, modulus sweeps, permutations, synthetic row ciphers, or bulk onion-name guesses** without a separate first-party selector. The original 32-interval relation is still observationally real, and a future author-selected column/key/clock would reopen a *different* receiver; it is presently missing.
 
-**Reproduction:** `node sims/lp2_floral_13_31_direct_receiver_sft.cjs`. The CJS script hashes the original 256 bytes, checks the visible 13/31 interpretation, verifies the signed 2013 BASE29 example, lists direct row bytes and null base32 strings, and traverses the four frozen table seeds. It does not alter any source.
+**Reproduction:** `node sims/lp2_floral_13_31_direct_receiver_sft.cjs`. The CJS script hashes the original 256 bytes, checks the visible 13/31 interpretation, verifies the signed 2013 BASE29 example, lists direct row bytes, source-typed XOR and null base32 strings, traverses four fixed table seeds, and tests four nonfitting degree-16 GP29 polynomial divisors against the intact original p50 table and p39 runes. It does not alter any source.
