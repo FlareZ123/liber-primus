@@ -1,0 +1,20 @@
+name: Agent43 original GP29 font recovery
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-font:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image and clustering libraries
+        run: python -m pip install numpy pillow opencv-python-headless scikit-learn
+      - name: Source-only full 29-rune font reconstruction
+        run: python sims/lp2_round9_font29_independent_sft.py
