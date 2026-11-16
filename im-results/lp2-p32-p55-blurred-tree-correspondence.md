@@ -28,6 +28,8 @@ A second controlled test fixes a p55 tree degradation after the p32 fit, then us
 | 31.jpg | other LP2 page | 0.365327 |
 | 70.jpg | LP2 p53 artwork | 0.313328 |
 
+**Robustness without shape fitting:** If the 246×246 p55 tree is merely Gaussian-blurred (σ7), with **no pixel threshold, dilation, or closing**, and searched over the identical full 75-image atlas, p32 remains the strongest match at **0.705856**, ahead of the p55 source page at **0.566388** and all 73 other pages (next unrelated score 0.480762). The target is localized at (176,543). This less elaborate, unfitted morphology corroborates the source-image relationship, while retaining the previously selected crop and scale.
+
 **Result:** the intended target p32 image is the highest of all 75, with a **0.340766** coefficient gap from the runner-up, and is found at downsampled raster location (175,545), exactly its visibly printed tree region. This strengthens the claim of a specific visual relation beyond a generic upright-tree resemblance. Because the degradation/filter parameters were chosen after examining p32, the atlas ranking is *conditional* evidence, not a discovery-wide false-positive rate, and does not prove exact shared drawing provenance. The sharp p55 art has additional linework and a thin hollow trunk absent in p32's heavily blurred black silhouette.
 
 ## Cryptanalytic decision
