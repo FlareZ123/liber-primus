@@ -205,6 +205,69 @@ assert.deepEqual([cell(10,7),cell(11,7),cell(12,7)],[28,24,28]); // EA-A-EA
 const fourthGlobalPositions=Array.from({length:4},(_,i)=>pos(14-i,coldStart)+1);
 assert.deepEqual(fourthGlobalPositions,[358,331,304,277]);
 
+
+// Further conditional source-local palindrome and re-encounter segments.
+// Fifth candidate: source endpoint A(11,7) => down phi(H=8)=4, right
+// phi(U=1)=1 => B(15,8), centered between NG(13,8) and NG(17,8).
+const fifthNode=[cell(13,8),cell(15,8),cell(17,8)];
+const fifth=derive(fifthNode);
+assert.deepEqual(fifthNode,[21,17,21]);
+assert.deepEqual(fifth.key,[21,16,21]);
+const fifthCipher=Array.from({length:4},(_,i)=>cell(26,19-i));
+const fifthPlain=fifthCipher.map((x,i)=>(x-fifth.key[i%3]+29)%29);
+assert.deepEqual(fifthPlain,[10,19,24,26]); // I-M-A-Y
+// The FIRST visited bottom endpoint of an adjacent vertical palindrome
+// along the row26 westward read is E(26,16) matched by E(24,16).
+const firstBottomPalindromeCol=(()=>{
+ for(let k=19;k>=1;k--)if(cell(26,k)===cell(24,k))return k;
+ return -1;
+})();
+assert.equal(firstBottomPalindromeCol,16);
+const sixthNode=[cell(24,16),cell(25,16),cell(26,16)];
+const sixth=derive(sixthNode);
+assert.deepEqual(sixthNode,[18,14,18]); // E-X-E
+assert.deepEqual(sixth.key,[6,18,18]); // G-E-E
+const phiX=tot[sixthNode[1]];
+assert.equal(phiX,6);
+const sixthCipher=Array.from({length:3},(_,i)=>cell(25-phiX-i,16));
+const sixthPlain=sixthCipher.map((x,i)=>(x-sixth.key[i%3]+29)%29);
+assert.deepEqual(sixthPlain,[5,4,26]); // C-R-Y
+// First right endpoint of radius6 horizontal palindrome along upward
+// ray c16 is S(17,16), matched by S(17,4), at third ciphertext rune.
+const firstRadius6MirrorRight=(()=>{
+ for(let r=19;r>=1;r--)if(cell(r,16)===cell(r,16-2*phiX))return r;
+ return -1;
+})();
+assert.equal(firstRadius6MirrorRight,17);
+const seventhNode=[cell(18,16),cell(19,16),cell(20,16)];
+const seventh=derive(seventhNode);
+assert.deepEqual(seventhNode,[22,11,22]); // OE-J-OE
+assert.deepEqual(seventh.key,[22,22,10]); // OE-OE-I
+const seventhStart=17-phiX;
+assert.equal(seventhStart,11);
+let firstKeyCenterReencounter=-1;
+for(let i=0;i<=11;i++){
+ if(cell(seventhStart+i,16+i)===seventhNode[1]){
+  firstKeyCenterReencounter=i;break;
+ }
+}
+assert.equal(firstKeyCenterReencounter,4);
+const seventhCipher=Array.from({length:5},(_,i)=>cell(11+i,16+i));
+const seventhPlain=seventhCipher.map((x,i)=>(x-seventh.key[i%3]+29)%29);
+assert.deepEqual(seventhPlain,[9,3,7,2,18]); // N-O-W-TH-E
+// The source diagonal A-TH-A (8,13)-(11,16)-(14,19) is visible
+// within the seventh read; its original center TH=2 supplies radius2
+// for the J-D-J diagonal centered on the eighth ciphertext endpoint.
+const eighthNode=[cell(8,13),cell(11,16),cell(14,19)];
+const eighth=derive(eighthNode);
+assert.deepEqual(eighthNode,[24,2,24]); // A-TH-A
+assert.deepEqual(eighth.key,[1,24,24]); // U-A-A
+const eighthCipher=Array.from({length:3},(_,i)=>cell(15+i,20-i));
+const eighthPlain=eighthCipher.map((x,i)=>(x-eighth.key[i%3]+29)%29);
+assert.deepEqual(eighthPlain,[10,23,28]); // I-D-EA
+assert.deepEqual([cell(15,20),cell(17,18),cell(19,16)],[11,23,11]);
+assert.equal(seventhCipher.at(-1),eighthCipher[0]); // J overlap
+
 console.log(JSON.stringify({
  source:"LP2 p0-2 canonical 729 runes in original order",
  firstNode:name(firstNode),firstStart:[13,25],firstStopOffset:firstLen,
@@ -221,6 +284,13 @@ console.log(JSON.stringify({
  fourthSourceNode:name(fourthNode), fourthKey:name(fourth.key),
  fourthOutput:name(fourthPlain), fourthSourcePositions:fourthGlobalPositions,
  firstFourthRayVerticalMirrorCenter:[firstCenterMirrorRow,coldStart],
+ fifthKey:name(fifth.key),fifthOutput:name(fifthPlain),
+ firstVerticalMirrorBottomCol:firstBottomPalindromeCol,
+ sixthKey:name(sixth.key),sixthOutput:name(sixthPlain),
+ firstRightRadius6MirrorRow:firstRadius6MirrorRight,
+ seventhKey:name(seventh.key),seventhOutput:name(seventhPlain),
+ firstOriginalKeyCenterReturnOffset:firstKeyCenterReencounter,
+ eighthKey:name(eighth.key),eighthOutput:name(eighthPlain),
  completeBookUnknownRunes:all.length,
  contiguous729Windows:all.length-729+1,centerSelfCribHits:allHits,
  cyclic729PhasesWithCenterSelfCrib:shiftsMatching,
