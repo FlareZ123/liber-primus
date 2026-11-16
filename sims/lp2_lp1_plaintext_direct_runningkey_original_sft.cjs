@@ -35,11 +35,14 @@ function load() {
   const key = lp1.sections.slice(0, 7).flatMap(
     (section) => Array.from(section.source_text).filter((r) => gp.has(r)).map((r) => gp.get(r))
   );
+  const printed = fs.readFileSync(path.join(ROOT, "resources/transcriptions/lp1_wulfic_canonical.txt"), "utf8");
+  const printedKey = Array.from(printed).filter((r) => gp.has(r)).map((r) => gp.get(r));
   const cipher = lp2.pages.slice(0, 56).flatMap((page) => page.indices);
   assert.equal(key.length, 2799);
+  assert.equal(printedKey.length, 2797);
   assert.equal(cipher.length, 12956);
   assert.deepEqual(CHAPTER_STARTS.slice(1).map((end, i) => end - CHAPTER_STARTS[i]), [729,1145,1729,1903,1021,1433,1680,3008,308]);
-  return { key, cipher };
+  return { key, printedKey, cipher };
 }
 
 /**
@@ -112,26 +115,42 @@ function exhaustiveBest(cipher, key, sign, bypass) {
   return best;
 }
 
+/**
+ * Prove inverse on a genuine solved-text GP29 source window under either
+ * separately derived first-release key stream.
+ * @param {number[]} sourcePlain
+ * @param {number[]} runningKey
+ */
+function positiveControlsWithPad(sourcePlain, runningKey) {
+  const original = sourcePlain.slice(0, 729);
+  const offset = 200;
+  const synthetic = original.map((p, i) => (p + runningKey[offset + i]) % 29);
+  assert.deepEqual(decode(synthetic, runningKey, offset, -1, false), original);
+}
+
 function main() {
-  const { key, cipher } = load();
+  const { key, printedKey, cipher } = load();
   positiveControls(key);
   let largest = 0;
+  for (const [source, runningKey] of [["solved LP1", key], ["printed LP1", printedKey]]) {
+  positiveControlsWithPad(key, runningKey);
   for (let ch = 0; ch < 9; ch++) {
     const n = ch === 8 ? 308 : 729;
     const fragment = cipher.slice(CHAPTER_STARTS[ch], CHAPTER_STARTS[ch] + n);
     assert.equal(fragment.length, n);
     for (const bypass of [false, true]) {
       for (const sign of [-1, 1]) {
-        const best = exhaustiveBest(fragment, key, sign, bypass);
+        const best = exhaustiveBest(fragment, runningKey, sign, bypass);
         if (best.ioc > largest) largest = best.ioc;
-        console.log(JSON.stringify({ chapter: ch, firstRunes: n, keySource: "original solved LP1 text", sign, bypassCipherF: bypass, bestOffset: best.offset, bestIoc: Number(best.ioc.toFixed(9)) }));
+        console.log(JSON.stringify({ chapter: ch, firstRunes: n, keySource: source, sign, bypassCipherF: bypass, bestOffset: best.offset, bestIoc: Number(best.ioc.toFixed(9)) }));
       }
     }
+  }
   }
   // Direct additive original source has no native-English-looking 729-rune
   // opening for any visible chapter, even with a freely selected source offset.
   assert(largest < 0.045, "Unexpected LP1-running-key original candidate; investigate before concluding");
-  console.log("PASS: 36 original-input scans, maximum IoC " + largest.toFixed(9) + "; no candidate reaches 0.045");
+  console.log("PASS: 72 original-input scans, maximum IoC " + largest.toFixed(9) + "; no candidate reaches 0.045");
 }
 
 if (require.main === module) main();
