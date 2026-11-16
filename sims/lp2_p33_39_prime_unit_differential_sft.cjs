@@ -22,7 +22,7 @@ const read = file => fs.readFileSync(path.join(ROOT, file), 'utf8');
 const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const script = read('resources/historical/cicada2013-os-original-prime-echo.sh');
 const control = JSON.parse(read('resources/control/beowulf_oe_gp_profile_corrected.json'));
-const primes = [...script.matchAll(/echo(?: -n)?\\s+"(\\d+)[^"]*"/g)].map(match => Number(match[1]));
+const primes = [...script.matchAll(/echo(?: -n)?\s+"(\d+)[^"]*"/g)].map(match => Number(match[1]));
 assert.equal(primes.length, 464);
 assert.deepEqual([primes[173], primes[462], primes[463]], [1033, 3299, 3301]);
 const interval = primes.slice(173, 463);
