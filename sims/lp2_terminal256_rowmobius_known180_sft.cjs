@@ -154,11 +154,122 @@ for (let row = 1; row <= 30; row++) {
 assert.equal(innerRecovered, 180);
 assert.equal(outerRecovered, 60);
 
+
+/**
+ * The author's circumference language more directly suggests placing
+ * p56+p57 in the three INSIDE PERIMETER rings (68,60,52) rather than
+ * printed row-major order. Test every 4 corner x 2 winding choice for
+ * each ring. All 30 projective keys remain free in each separate route.
+ * @param {number} depth One-cell inward peel of the 32x8 grid
+ * @returns {number[]} Source-grid flattened coordinates, clockwise
+ */
+function ring(depth) {
+  const out = [];
+  const r0 = depth, r1 = 31 - depth, c0 = depth, c1 = 7 - depth;
+  for (let col = c0; col <= c1; col++) out.push(8 * r0 + col);
+  for (let row = r0 + 1; row <= r1; row++) out.push(8 * row + c1);
+  for (let col = c1 - 1; col >= c0; col--) out.push(8 * r1 + col);
+  for (let row = r1 - 1; row > r0; row--) out.push(8 * row + c0);
+  return out;
+}
+
+/** @param {number} depth @returns {number[][]} */
+function ringChoices(depth) {
+  const source = ring(depth);
+  const r0 = depth, r1 = 31 - depth, c0 = depth, c1 = 7 - depth;
+  const corners = [8 * r0 + c0, 8 * r0 + c1, 8 * r1 + c1, 8 * r1 + c0];
+  return corners.flatMap(corner => [1, -1].map(direction => {
+    const start = source.indexOf(corner);
+    assert.ok(start >= 0);
+    return Array.from({ length: source.length }, (_, i) =>
+      source[(start + direction * i + 2 * source.length) % source.length]);
+  }));
+}
+
+const ringSets = [1, 2, 3].map(ringChoices);
+assert.deepEqual(ringSets.map(choices => choices[0].length), [68, 60, 52]);
+const perimeter = ring(0);
+assert.equal(perimeter.length, 76);
+assert.equal(new Set([...perimeter, ...ring(1), ...ring(2), ...ring(3)]).size, 256);
+
+/** @param {number[]} positions @param {number[]} values */
+function coordinateTargets(positions, values) {
+  assert.equal(positions.length, 180);
+  assert.equal(values.length, 180);
+  const target = new Array(256).fill(null);
+  positions.forEach((pos, i) => { target[pos] = values[i]; });
+  return target;
+}
+
+/** @param {(number|null)[]} target @param {number} row */
+function rowPairs(target, row) {
+  return Array.from({ length: 6 }, (_, col) => ({
+    x: residue(row, col + 1),
+    y: target[row * 8 + col + 1]
+  }));
+}
+
+let ringRoutes = 0;
+let sourceFullRankRows = 0;
+for (const first of ringSets[0]) {
+  for (const second of ringSets[1]) {
+    for (const third of ringSets[2]) {
+      const source = first.concat(second, third);
+      const target = coordinateTargets(source, known);
+      for (let row = 1; row <= 30; row++) {
+        assert.equal(rref(equations(rowPairs(target, row))).rank, 4,
+          "No secret rowwise Mobius key fits this authentic known ring order");
+        sourceFullRankRows++;
+      }
+      ringRoutes++;
+    }
+  }
+}
+assert.equal(ringRoutes, 512);
+assert.equal(sourceFullRankRows, 15360);
+
+// Positive source-shaped reconstruction under a nontrivial 3-ring route.
+// The 180 plaintext outputs are genuinely permuted into concentric order.
+// Infer each of the thirty secret row keys and recover all sixty hidden
+// left/right border cells WITHOUT looking at their planted target values.
+const positiveRingPositions = ringSets[0][5].concat(ringSets[1][0], ringSets[2][2]);
+const positiveCells = new Array(256).fill(null);
+for (let row = 1; row <= 30; row++) {
+  const xs = Array.from({ length: 8 }, (_, col) => residue(row, col));
+  const c = Array.from({ length: 28 }, (_, k) => k + 1)
+    .find(candidate => xs.every(x => mod(candidate * x + 1) !== 0));
+  assert.notEqual(c, undefined);
+  for (let col = 0; col < 8; col++)
+    positiveCells[row * 8 + col] = mobius(xs[col], [1, 0, c, 1]);
+}
+const positiveKnown = positiveRingPositions.map(pos => positiveCells[pos]);
+const positiveTarget = coordinateTargets(positiveRingPositions, positiveKnown);
+let ringKnownRecovered = 0;
+let ringBorderRecovered = 0;
+for (let row = 1; row <= 30; row++) {
+  const reconstructed = projectiveNullVector(rref(equations(rowPairs(positiveTarget, row))));
+  for (let col = 1; col <= 6; col++) {
+    assert.equal(mobius(residue(row, col), reconstructed),
+      positiveCells[row * 8 + col]);
+    ringKnownRecovered++;
+  }
+  for (const col of [0, 7]) {
+    assert.equal(mobius(residue(row, col), reconstructed),
+      positiveCells[row * 8 + col]);
+    ringBorderRecovered++;
+  }
+}
+assert.equal(ringKnownRecovered, 180);
+assert.equal(ringBorderRecovered, 60);
+
+
 console.log(JSON.stringify({
   source: "LP2 p50 256-byte table; solved p56+p57 authentic 180 GP runes",
   experiment: "30 independent row-local GF29 Mobius (projective) mappings",
   originalRank: { rank4: ranks.length, rank3OrLess: 0 },
   firstRowFourConstraintDeterminantMod29: 22,
+  independentInsideRings: { routes: ringRoutes, rankFourRows: sourceFullRankRows },
   syntheticPlant: { knownRecovered: innerRecovered, hiddenRimRecovered: outerRecovered },
+  concentricPlant: { knownRecovered: ringKnownRecovered, hiddenRimRecovered: ringBorderRecovered },
   conclusion: "Original p55 not recovered: no row-specific Mobius map can fit the known interior"
 }, null, 2));
