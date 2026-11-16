@@ -9,7 +9,7 @@ The physical LP2 p56 source [73.jpg](../resources/liber-primus/73.jpg) ends in a
 A period-available external candidate is Amerigo Vespucci's *Mundus Novus* (1503–1504). The original Latin contains `ad instar nimbi euanescunt` in a weather paragraph adjacent to the southern-star narrative; another edition reads `ad instar nubium`, so the exact qualifier depends on edition. The astronomical passage describes star motions and `peripherias et diametros`, **three** stars forming a `Trigoni Orthogoni Schema` (a right triangle), then `Post has veniunt alie due` (**two more** stars). It continues with an additional **six** stars and mentions angular widths 9½°, 12½°, 32°. This is a substantially more specific combined source than the mere word `instar` alone.
 
 Period-text reproductions and editions:
-- [1865 Varnhagen diplomatic transcription, original Latin and diagram, pp22–24](https://en.wikisource.org/wiki/Mundus_Novus)
+- [1865 Varnhagen diplomatic transcription, original Latin and diagram, pp22–24](https://upload.wikimedia.org/wikipedia/commons/e/e4/Amer%C3%ADgo_Vespucci._Son_caract%C3%A8re%2C_ses_%C3%A9crits_%28m%C3%AAme_les_moins_authentiques%29%2C_sa_vie_et_ses_navigations%2C_avec_une_carte_indiquant_les_routes%2C_par_F._A._de_Varnhagen_Ministre_du_Bresil_au_Perou_%28IA_bib_fict_2107029%29.pdf)
   (find `Trigoni Orthogoni Schema`; the same page describes the 3-star diagram, **two subsequent stars**, and a distinct six-star diagram).
 - [Morgan Library & Museum's period-original printed-edition inventory](https://www.themorgan.org/printed-books/176346): three-star figure and separately six-star figure in folio 3a.
 - [Museo Galileo transcription of the southern-sky passage](https://exhibits.museogalileo.it/waldseemuller/ewal.php?c%5B%5D=38849).
