@@ -254,6 +254,13 @@ const native = nativeWords.flat();
 assert.equal(nativeWords.length, 705);
 assert.equal(native.length, 2835);
 assert.equal(native.filter(x=>x===0).length, 46);
+const sourceFMask = nativeWords.map(w =>
+  w.map(x => x === 0 ? "1" : "0").join(""));
+const solvedShortF = ["010", "0100"].map(mask => ({
+  mask, matched:sourceFMask.filter(x => x === mask).length,
+  candidateLengthWords:nativeWords.filter(x => x.length === mask.length).length
+}));
+assert.deepEqual(solvedShortF.map(x => x.matched), [0, 0]);
 
 // Frozen original inverse. The complete cipher is actually inverted;
 // reencryption is a necessary program-integrity check, not a key proof.
@@ -282,7 +289,8 @@ const output = {
   },
   authenticControls:controlResults,
   sourceNativeBenchmark:{sections:solvedIDs,nativeRunes:native.length,
-    nativeWords:nativeWords.length,plaintextF:native.filter(x=>x===0).length},
+    nativeWords:nativeWords.length,plaintextF:native.filter(x=>x===0).length,
+    authenticSolvedShortF:solvedShortF},
   originalInverse:{
     first729F:p0to2.filter(x=>x===0).length,
     first32PrintedWords:openingWords,
