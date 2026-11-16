@@ -255,7 +255,7 @@ function study() {
     unionByLength[length] = (unionByLength[length] || 0) + 1;
   }
 
-  // A source-native positive control: every tested encoder must be invertible
+  // A synthetic dictionary positive control: every tested encoder must be invertible
   // by the exact dictionary map on a real dictionary word.
   const plant = [...dictionary.byCode.values()].find((x) => x.word === "cicada")
     || [...dictionary.byCode.values()].find((x) => x.code.length >= 6);
