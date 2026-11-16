@@ -1,4 +1,4 @@
-# LP2 32×8 table: source-shaped 30×6 product-code gate
+# LP2 32×8 table: fixed GF(256) row-parity and 30×6 product-code gates
 
 **16 November 2026, Agent13. Exact original-byte necessary-condition rejection for the specified code family. No new GP plaintext, key or destination.** [Node.js 22 reproducer](../sims/lp2_grid256_productcode_allgf8_sft.cjs).
 
@@ -7,6 +7,20 @@
 The 2014 LP2 pp49–51 numerical table prints **32 rows × 8 columns = 256** base60-byte cells. Removing its first/last row and first/last column leaves a **30×6 = 180**-byte interior and a **76**-byte perimeter. Those lengths independently equal solved p56 (85 runes) plus clear p57 (95 runes), and unknown p55 (76 runes), respectively. This numerical alignment was established before this test and is **not** proof that any page's runes are mapped to bytes of the table.
 
 A natural alternative to a direct 256-symbol Reed–Solomon code is a **two-dimensional systematic product code**: 180 data positions, with two check columns and two check rows. In particular, every fixed linear **[8,6]** row code over GF(256), including any unweighted, systematic Reed–Solomon row code with the six middle cells as information symbols, requires each outer-column byte of each interior row to be a *single fixed linear function* of the six middle bytes. If that model were correct, the same six unknown field coefficients would reproduce the appropriate check byte in all 30 interior rows. Grant a seventh free affine intercept to be more permissive.
+
+## Stronger all-column parity obstruction
+
+Independently of assigning the exterior columns as check values, suppose the original **32 eight-byte printed rows** satisfy some fixed nonzero linear or affine check over GF(256):
+
+```text
+a0*column0 + a1*column1 + ... + a7*column7 = b
+```
+
+The eight secret coefficients and the constant `b` are unrestricted, but must be *identical across rows*. This includes every unweighted and keyed fixed single-parity [8,7] systematic row code, without deciding which of the eight columns is the parity column.
+
+A necessary and sufficient test is whether the original **32×9 augmented matrix** `[1, c0, c1, ..., c7]` has rank below nine. Over **every one of the 30 monic irreducible degree-eight polynomial representations of GF(256)**, it has **full rank 9**. Thus the only affine equation satisfied identically by all original rows is the trivial all-zero equation. A separate synthetic planted seven-input systematic parity row code has augmented rank **8** in each field under the same implementation.
+
+This all-row result does **not depend** on the 180/76 perimeter interpretation or the choice of parity column. It subsumes raw-byte fixed [8,7] row-check hypotheses; the interior-specific [8,6] analysis below additionally tests two independent exterior checks and the modulus256 necessary condition.
 
 ## The original-data inverse
 
@@ -23,7 +37,7 @@ The alternative fixed linear model over integers modulo256 is also impossible wi
 
 ## Decision
 
-**Reject a fixed, raw-byte, systematic linear GF(256) [8,6] row code as the missing p50 perimeter/interior transfer**, including a two-dimensional unweighted Reed–Solomon product construction with such rows. The stronger intercept freedom means this conclusion holds even if the row check includes an unknown fixed additive constant. The modulo256 scalar-affine row model is independently excluded.
+**Reject any fixed nontrivial affine GF(256) eight-column row-check relation, as well as the specified systematic [8,6] double-parity transfer**, including a two-dimensional unweighted Reed–Solomon product construction with such rows. The stronger intercept freedom means this conclusion holds even if the row check includes an unknown fixed additive constant. The modulo256 scalar-affine row model is independently excluded.
 
 This is distinct from the previous [unweighted whole-field extended RS(256,180) XOR obstruction](lp2-grid256-gf256-fullfield-parity-gate.md), which tested a single 256-point evaluation codeword. The current gate instead examines **30 fixed eight-cell row codewords**.
 
