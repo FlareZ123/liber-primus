@@ -22,13 +22,13 @@ Under the frozen model, all original mark positions **must** correspond to zero 
 | Original table modulo59 zeros, 0-based positions | 22, 51, 57, 75, 92, 192, 219, 229 |
 | Table zeros coinciding with original 13-dot marks | **2 / 31** |
 | Table zeros at original red-rune positions (undefined log) | **6 / 225** |
-| Field59 log modulo29 equals original red rune index | **8 / 219** comparable positions |
-| Best **post-hoc** affine relabeling of the 29 field-log indices | **18 / 219**, at `r → 26r+7 (mod29)` over all 28×29 affine possibilities |
+| Field59 half-log `(15 × log₂) mod29` equals original red rune index | **8 / 219** comparable positions |
+| Best **post-hoc** affine relabeling of the 29 field-log indices | **18 / 219**, at `r → 23r+7 (mod29)` over all 28×29 affine possibilities |
 | Full-size exact synthetic positive | **256 / 256** event identities recovered |
 
 The zero disagreement is already a deterministic disproof of the **specific full 256-event/256-cell same-order representation**, independently of any language model. Even discarding impossible zeros, the rune projection agrees only 8 times. The all-affine upper bound is purely a diagnostic of distance from any fixed rune-label change; it does not license that postselected mapping as a cipher or key.
 
-A full synthetic plant from the same 225 source red indices and 31 mark positions was generated as `0` on marks and `(-1)^i·4^r` on runes, and the fixed GF59 logarithmic inverse recovered every source event. This verifies the implementation's lossless reversible model on an exact-size control. The original failed on the required symbol identities.
+A full synthetic plant from the same 225 source red indices and 31 mark positions was generated as `0` on marks and `(-1)^i·4^r` on runes, and the fixed GF59 logarithmic inverse recovered every source event. This verifies the implementation's lossless reversible model on an exact-size control. The original failed on the required symbol identities. The correct inverse exponent is `r = 15·(log₂(x) mod29) mod29`, since `4 = 2²` and 15 is the inverse of 2 modulo29.
 
 ## Decision
 

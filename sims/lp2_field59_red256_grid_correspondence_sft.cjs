@@ -58,7 +58,7 @@ assert.equal(exponent.size, 58);
 assert.equal(exponent.get(58), 29);
 const projected = cells.map((byte) => {
   const residue = byte % 59;
-  return residue === 0 ? null : exponent.get(residue) % 29;
+  return residue === 0 ? null : (exponent.get(residue) % 29) * 15 % 29;
 });
 const zeros = projected.map((v, i) => v === null ? i : -1).filter((i) => i >= 0);
 assert.deepEqual(zeros, [22, 51, 57, 75, 92, 192, 219, 229]);
@@ -94,7 +94,7 @@ for (let a = 1; a < 29; a++) {
     if (hit > best.matched) best = { matched: hit, a, b };
   }
 }
-assert.deepEqual(best, { matched: 18, a: 26, b: 7 });
+assert.deepEqual(best, { matched: 18, a: 23, b: 7 });
 
 // Full 256-symbol positive: a field element is +/-4^r for each red
 // rune r, and zero for each 13-dot mark. The sign bit is free.
@@ -108,7 +108,7 @@ assert.equal(testPower * 4 % 59, 1);
 assert.equal(new Set(squares).size, 29);
 const plant = events.map((event, i) => event.value === 29 ? 0 :
   (i % 2 ? 59 - squares[event.value] : squares[event.value]));
-const recoveredPlant = plant.map((x) => x === 0 ? 29 : exponent.get(x) % 29);
+const recoveredPlant = plant.map((x) => x === 0 ? 29 : (exponent.get(x) % 29) * 15 % 29);
 assert.deepEqual(recoveredPlant, events.map((e) => e.value));
 
 console.log(JSON.stringify({
