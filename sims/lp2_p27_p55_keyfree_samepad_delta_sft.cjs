@@ -157,7 +157,7 @@ const summary = {
   originalEndpoints: [endpoint27, endpoint55],
   physicalLocalEcho: {p27:[28, 33], p55:[70, 75]},
   excludedSharedAnchorRunes: anchor,
-  testedRrunes: tested,
+  testedRunes: tested,
   originalPairwiseEquality: originalCounts[0],
   originalDeltaHistogram: originalCounts,
   sourceNativeEnglishPairs: results,
