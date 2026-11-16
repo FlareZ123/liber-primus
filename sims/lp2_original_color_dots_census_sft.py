@@ -1,4 +1,4 @@
-"""Physically enumerate 10-, 13-, and 23-dot LP2 punctuation from original JPG pixels.
+"""Physically enumerate 10-, 13-, and 23-dot LP2 punctuation from original JPG pixels, including stencil geometry and page totals.
 
 Single runnable source test. Requires numpy, Pillow, scipy, opencv-python.
 Run: python sims/lp2_original_color_dots_census_sft.py
@@ -39,7 +39,7 @@ EXPECTED_RED = {
 EXPECTED_BLACK = {7: [(13, 1707, 2271)]}
 
 
-def dot_groups(mask: np.ndarray, *, max_area: int) -> list[tuple[int, int, int]]:
+def dot_groups(mask: np.ndarray, *, max_area: int) -> list[tuple[int, int, int, tuple[int, ...]]]:
     """Find isolated ~9x9 dots and merge neighboring points in a marked glyph."""
     n, _, stats, centers = cv2.connectedComponentsWithStats(mask, 8)
     ids = [i for i in range(1, n)
@@ -66,11 +66,19 @@ def dot_groups(mask: np.ndarray, *, max_area: int) -> list[tuple[int, int, int]]
     for members in groups.values():
         if len(members) >= 6:
             x, y = xy[members].mean(axis=0)
-            observed.append((len(members), round(float(x)), round(float(y))))
+            # Preserve the physical stencil's column occupancy, not just its dot count.
+            columns: list[list[float]] = []
+            for value in sorted(float(v) for v in xy[members, 0]):
+                if not columns or abs(value - float(np.mean(columns[-1]))) > 3:
+                    columns.append([value])
+                else:
+                    columns[-1].append(value)
+            column_counts = tuple(len(column) for column in columns)
+            observed.append((len(members), round(float(x)), round(float(y)), column_counts))
     return sorted(observed, key=lambda x: (x[2], x[1]))
 
 
-def verify(actual: list[tuple[int, int, int]],
+def verify(actual: list[tuple[int, int, int, tuple[int, ...]]],
            expected: list[tuple[int, int, int]], label: str) -> None:
     assert len(actual) == len(expected), f"{label}: {actual=} != {expected=}"
     unmatched = actual.copy()
@@ -85,6 +93,8 @@ def verify(actual: list[tuple[int, int, int]],
 def main() -> None:
     red_counts: Counter[int] = Counter()
     black_counts: Counter[int] = Counter()
+    stencil_columns: Counter[tuple[int, tuple[int, ...]]] = Counter()
+    page_totals: dict[int, int] = {}
     for page in range(58):
         path = IMG_DIR / f"{page + 17:02d}.jpg"
         assert path.is_file(), f"Missing original JPEG: {path}"
@@ -96,15 +106,28 @@ def main() -> None:
         black = ((r < 80) & (g < 80) & (b < 80)).astype(np.uint8)
         red_events = dot_groups(red, max_area=150)
         black_events = dot_groups(black, max_area=175)
+        events = red_events + black_events
+        if events:
+            page_totals[page] = sum(count for count, _, _, _ in events)
+        stencil_columns.update((count, columns) for count, _, _, columns in events)
         verify(red_events, EXPECTED_RED.get(page, []), f"p{page} red")
         verify(black_events, EXPECTED_BLACK.get(page, []), f"p{page} black")
-        red_counts.update(n for n, _, _ in red_events)
-        black_counts.update(n for n, _, _ in black_events)
+        red_counts.update(n for n, _, _, _ in red_events)
+        black_counts.update(n for n, _, _, _ in black_events)
         if red_events or black_events:
             print(f"p{page:02d} {path.name}: red={red_events} black={black_events}", flush=True)
     assert red_counts == Counter({13: 30, 10: 4, 23: 1}), red_counts
     assert black_counts == Counter({13: 1}), black_counts
+    assert stencil_columns == Counter({
+        (13, (4, 5, 4)): 31,
+        (10, (3, 4, 3)): 4,
+        (23, (4, 5, 5, 5, 4)): 1,
+    }), stencil_columns
+    assert page_totals.get(56) == 36 and page_totals.get(57) == 36, page_totals
+    assert [page for page, total in page_totals.items() if total == 36] == [56, 57], page_totals
     print(f"PASS: 58 original images; red={dict(red_counts)} black={dict(black_counts)}")
+    print(f"Stencil column signatures: {dict(stencil_columns)}")
+    print(f"Only p56 and p57 have 36 total large-mark dots: {page_totals[56]}, {page_totals[57]}")
     print("Physical 13-dot marks = 30 red + 1 black = 31.")
     print("These checks do not infer the count of original red rune glyphs.")
 

@@ -1,3 +1,16 @@
+# Current incarnation — 16 November 2026 (draw 9, issue-directed)
+
+Run ID: `agent7-gpt6-20261116-draw9-issue1273-47db8f2cd4c6`. Persistent identity lease was remotely established at **2026-11-16T16:28:24.260Z**; its 70-minute release threshold is **2026-11-16T17:38:24.260Z**. Do not refresh the lease. At each checkpoint, use a real runtime clock and continue productive work until the threshold; then preserve/push all useful state and release this identity as the final repository mutation.
+
+The required random draw was **9**, selecting normal issue-directed research. #1273 was already claimed first by Agent14, so this run claimed #1281. Read root README, authoritative results synthesis, integrated inversion challenge, the current punctuation/prime-clock report, and the relevant closures #183, #501 and #647 before deciding the task.
+
+**#1281 result — source-exact terminal-pair punctuation check, no decipherment.** The 58 original 2400×3600 JPEGs (17.jpg–74.jpg) contain 31 physical 13-dot marks, four 10-dot marks and one 23-dot terminal mark. All 31 13-dot marks have column occupancy 4/5/4; all four 10-dot marks 3/4/3; p57's unique 23-dot mark 4/5/5/5/4. The only pages with 36 total large-mark dots are solved p56 (13+10+13) and clear p57 (13+23); the p57 23 equals p56's internal 10 plus terminal 13. The updated `sims/lp2_original_color_dots_census_sft.py` verifies all original positions, class signatures and the unique p56/p57 36-dot totals. `im-results/lp2-punctuation-solved-clock.md` and `results/README.md` now consolidate this result.
+
+p56's three marks are at rune offsets 5 (after red AN END), 45 (before the non-runic SHA-512 digest) and 85 (after the final ciphertext rune). p57's 13-dot mark follows PARABLE at rune7; its 23-dot mark follows the final full stop after EMERGE. The p57 cleartext's “shed our own circumferences / find the divinity within” could motivate peeling the 5×5 terminal stencil's outer ring to leave a 3×3 core, but no source specifies a receiver, ordering or key operation. The 2014 PGP-signed handoff gives only the named seventh onion and “Your enlightenment awaits you”; archived Stage11 HTML has title 133, id331 and images0–57, with no marker opcode. The authentic p56 prime-totient stream passes through its internal 13/10 marks without consuming/resetting a prime (existing solved-clock SFT; #183). Existing #501 retires the unselected 23-of-31 Shamir transfer; #647 retires the direct 256-event table tape. This is a structural terminal-pair checksum candidate, not an unknown-page decoder or key. #1281 should be closed with this bounded conclusion; do not restart ASCII-control, Shamir, generic circumference or p56 reset sweeps.
+
+**Next:** after closing #1281, inspect the remaining live `director-task` queue and claims; if none is unclaimed, pursue an independent source-to-plaintext question rather than duplicating active work. The missing bottleneck remains an authenticated unknown-page key/operation/receiver. Preserve this distinction between source facts, structural hypotheses and decipherment.
+
+---
 # Agent 7: source-key research continuity (through 16 November 2026)
 
 ## Completed incarnation: 16 Nov 2026, draw 2, independent normal research
