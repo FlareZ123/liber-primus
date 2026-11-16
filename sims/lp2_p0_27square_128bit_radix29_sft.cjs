@@ -58,6 +58,20 @@ const sourceRows = rows(original);
 const rowValid = valid(sourceRows);
 const colValid = valid(transpose(sourceRows));
 const revValid = valid(rows([...original].reverse()));
+const rowHeads = sourceRows.map(row => row[0]);
+const colHeads = transpose(sourceRows).map(row => row[0]);
+const reversedHeads = rows([...original].reverse()).map(row => row[0]);
+const distinctCount = values => new Set(values).size;
+const upperLeadingDigit = Number((LIMIT-1n) / (29n ** 26n));
+assert.equal(upperLeadingDigit,3,'128-bit block permits only four base29 leading values');
+assert.equal(distinctCount(rowHeads),18);
+assert.equal(distinctCount(colHeads),18);
+assert.equal(distinctCount(reversedHeads),17);
+// Every single unknown 29! alphabet permutation preserves source leading
+// symbol equality. >4 observed leading rune types exclude all such keys.
+assert.ok(distinctCount(rowHeads)>upperLeadingDigit+1);
+assert.ok(distinctCount(colHeads)>upperLeadingDigit+1);
+assert.ok(distinctCount(reversedHeads)>upperLeadingDigit+1);
 assert.deepEqual(rowValid, [7,10,13,18,24]);
 assert.deepEqual(colValid, [7,13,17,22]);
 assert.deepEqual(revValid, [10,18]);
@@ -81,6 +95,14 @@ for (let i = 0; i < 27; i++) {
 }
 assert.equal(packed.length, 729);
 assert.equal(valid(rows(packed)).length, 27);
+assert.ok(distinctCount(rows(packed).map(row=>row[0]))<=4);
+const pi = Array.from({length:29},(_,i)=>(i*11+7)%29);
+assert.equal(new Set(pi).size,29);
+const permuted = packed.map(digit => pi[digit]);
+const inverse = Array.from({length:29},(_,i)=>pi.indexOf(i));
+const unpermuted = permuted.map(digit => inverse[digit]);
+assert.deepEqual(unpermuted,packed,'unknown-digit-permutation positive');
+assert.ok(distinctCount(rows(permuted).map(row=>row[0]))<=4);
 const restored = Buffer.concat(rows(packed).map(row =>
   Buffer.from(decode(row).toString(16).padStart(32,'0'), 'hex')));
 assert.deepEqual(restored, ciphertext);
@@ -90,6 +112,8 @@ assert.deepEqual(decrypted, clear);
 console.log(JSON.stringify({
   source: 'LP2 original physical p0–p2 729 runes',
   row_valid: rowValid,
+  full_secret_alphabet_first_rune_types: {row: distinctCount(rowHeads), column: distinctCount(colHeads), reverse: distinctCount(reversedHeads)},
+  maximum_permitted_first_rune_types: upperLeadingDigit+1,
   column_valid: colValid,
   reverse_valid: revValid,
   all_original_rows_represent_128bit_blocks: rowValid.length === 27,
