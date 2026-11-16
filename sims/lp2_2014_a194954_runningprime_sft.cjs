@@ -146,6 +146,25 @@ const results = chapters.map(([first,last],index) => {
     originalIoC:Number(ioc(cipher).toFixed(7)),
     noSkipDecodedIoC:mapped,transparentPhiPlusReach:reach};
 });
+// The recurrence itself selects forward prime gaps as a separate, bounded
+// key interpretation. It is not a freely chosen prime-start/phase scan.
+const forwardGaps = special.slice(1).map((p,i) => p-special[i]);
+assert.deepEqual(forwardGaps.slice(0,11),[1,2,2,4,2,4,6,6,2,6,6]);
+const expectedGapReach = [36,22,8,126,0,21,70,34,116];
+const gapResults = chapters.map(([first,last],index) => {
+  const cipher = corpus.pages.slice(first,last+1).flatMap(p => p.indices);
+  const sub = cipher.map((c,i) => mod29(c-forwardGaps[i]));
+  const add = cipher.map((c,i) => mod29(c+forwardGaps[i]));
+  const reachable = fTransparentReach(cipher,forwardGaps.map(mod29));
+  assert.equal(reachable,expectedGapReach[index]);
+  assert.ok(ioc(sub) < .04 && ioc(add) < .04);
+  return {pages:`p${first}–${last}`,
+    subtractGapIoC:Number(ioc(sub).toFixed(7)),
+    addGapIoC:Number(ioc(add).toFixed(7)),
+    transparentGapReach:reachable};
+});
+assert.ok(gapResults.every((x,i) => x.transparentGapReach < results[i].runes));
+
 assert.equal(results.reduce((sum,x) => sum+x.runes,0),12956);
 assert.ok(results.every(x => x.transparentPhiPlusReach < x.runes));
 assert.ok(results.every(x => Object.values(x.noSkipDecodedIoC)
@@ -157,5 +176,5 @@ console.log(JSON.stringify({
   numberOfTerms:13000, lastTerm:special[12999],
   positive:'85/85 authentic p56 known GP plaintext/F-transparent prime-totient encoder',
   keyReset:'first A194954 term at each of nine source-visible chapters',
-  results, decision:'No original LP2 unknown-page prose or legal full-chapter F-transparent inverse under the frozen transferred mode; no unknown key recovered.'
+  results, forwardGapResults:gapResults, decision:'No original LP2 unknown-page prose or legal full-chapter F-transparent inverse under the frozen transferred mode; no unknown key recovered.'
 },null,2));
