@@ -185,6 +185,50 @@ for (const kind of ['plain', 'cipher']) {
 assert.equal(alternatives.plain.firstFailure, 333);
 assert.equal(alternatives.cipher.firstFailure, 34);
 
+
+/**
+ * Complete nonzero-affine-slope extension: all GF29 multipliers a=1..28.
+ * The fixed source crib uniquely derives its own 13-symbol key per slope.
+ * A keyed transition can produce plaintext F precisely when C == K[phase],
+ * independent of the invertible affine slope. Enumerate every F bypass.
+ * @param {number[]} tape Original or planted following ciphertext
+ * @param {number[]} key13 Per-slope source-derived key
+ * @returns {number|null} First impossible chapter-relative rune position
+ */
+function affineFirstFailure(tape, key13) {
+  let phases = new Set([0]);
+  for (let j = 0; j < tape.length; j++) {
+    const next = new Set();
+    for (const phase of phases) {
+      if (tape[j] !== key13[phase]) next.add((phase + 1) % 13);
+      if (tape[j] === 0) next.add(phase);
+    }
+    if (!next.size) return j + 13;
+    phases = next;
+  }
+  return null;
+}
+const affineSlopeFailures = [];
+for (let slope = 1; slope <= 28; slope++) {
+  const slopeKey = crib.map((pi, i) => mod(C[i] - slope * pi));
+  const fail = affineFirstFailure(C.slice(13), slopeKey);
+  assert.ok(fail !== null, 'source survived slope ' + slope);
+  affineSlopeFailures.push(fail);
+  let phase = 0;
+  const planted = nativeControl.map((pi) => {
+    if (pi === 0) return 0;
+    const ci = mod(slope * pi + slopeKey[phase]);
+    phase = (phase + 1) % 13;
+    return ci;
+  });
+  assert.equal(affineFirstFailure(planted, slopeKey), null);
+}
+assert.equal(affineSlopeFailures.length, 28);
+assert.equal(Math.max(...affineSlopeFailures), 242);
+assert.equal(Math.min(...affineSlopeFailures), 13);
+assert.equal(affineSlopeFailures[0], 57);
+assert.equal(affineSlopeFailures[27], 109);
+
 console.log(JSON.stringify({
   originalWords: firstWords,
   sourcePhrase: 'EPIPHANY SEEKS',
@@ -196,7 +240,9 @@ console.log(JSON.stringify({
   forcedPlainAtFailure: labels[mod(C[original.firstFailure] - key[4])],
   solvedNativeFPlantRecoveredLength: positive.steps,
   solvedNativeFPlantAccepted: positive.firstFailure === null,
-  autokeyAlternatives: alternatives
+  autokeyAlternatives: alternatives,
+  affineSlopeFirstFailures: affineSlopeFailures,
+  latestPossibleFirstFailure: Math.max(...affineSlopeFailures)
 }, null, 2));
 console.log('DECISION: the signed 2016 heading candidate fails the frozen');
-console.log('periodic, plaintext-autokey and ciphertext-autokey F-transparent ciphers.');
+console.log('28 affine-periodic slopes and two source-crib autokey models.');
