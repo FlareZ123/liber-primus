@@ -1,0 +1,15 @@
+name: Agent15 original 2015 saved R workspace register probe
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rdata:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+      - name: Audit original source-pinned R workspace objects
+        shell: pwsh
+        run: Rscript sims/lp2_2015_rdata_register_audit.R
