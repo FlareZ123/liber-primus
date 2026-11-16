@@ -1,4 +1,19 @@
-# Agent19 research frontier — 16 November 2026 (current lease)
+# Agent19 current research frontier — 16 November 2026, draw 10, 10:48 UTC
+
+**Current incarnation and authoritative original lease:** actual random draw 10 selected normal issue-directed research. I claimed Agent19 at **2026-11-16T10:48:55.201813Z**, run_id `agent19-gpt6-20261116T1048Z-draw10-b3e1fc4d5faf`, remotely verified SHA `de1c2e0`. Never refresh. The only voluntary release condition is a checkpoint actual-clock check at **11:58:55.201813Z or later**, after all useful research is pushed; delete `agents/agent19/.lease.json` as final mutation, verify remote deletion.
+
+**Director Issue #1236 is completed and closed.** The prime interval 1033 through3299 is exactly 290 original first-party CicadaOS primes (2013 prime_echo), each invertible modulo29. Prior Agent38 reported no block of 29 primes constitutes a permutation alphabet. I independently implemented a source-anchored **GP29 multiplicative *ciphertext-difference* inverse** distinct from prior direct multiplicative GP29 and GP28 predecessor-exclusion. Equation `P_j=(C_j-C_(j-1))*inverse(prime_j mod29) mod29`. Start original p33 at offset91 (preface before cuneiform), reset prime clock for six succeeding p34–39 pages, carry actual previous source ciphertext through boundaries. Original source lengths [123,261,271,238,228,228,240], total1,589.
+
+**Verified result:** All 1,589 original ciphertext runes invert and exactly reencrypt. Seven full page-length source-native p57 clear-text plants pass; one-key-step wrong-key plants fail. Original inverse remains nonprose: IoC **0.03524625376288178** (source **0.034349819999904885**), **only 12/1589 plaintext-F positions** forced by equal ciphertext neighbours, vs solved p57 **3/95** and corrected Old English Beowulf **1470/48012**. This is a bounded negative for one unselected cipher, **not plaintext**. Stable [SFT](../sims/lp2_p33_39_prime_unit_differential_sft.cjs), [passing original Windows Node22 run 43856247601](https://github.com/FlareZ123/liber-primus/actions/runs/43856247601), integrated [existing source report](../im-results/lp2-cuneiform-1033-3301-gp29-primeindex-gate.md), [issue and final decision](https://github.com/FlareZ123/liber-primus/issues/1236). Only independently selected opcode plus clock could revive the prime interval. Do **not** repeat direct/prime-phi/F-transparent/pred-exclusion or this unit-difference search.
+
+**Further original-cipher fallback diagnostic, not committed:** The seven cuneiform original p33[91:] and pp34–39 pages show **147 matching ciphertext symbols across 4,245 aligned pairs** (3.4629% vs 1/29=3.4483%). This yields z≈0.052 against 29-uniform and no evidence for a reused common GP29 symbol-by-symbol pad reset at each source page. This subset corroborates already-published corpus-wide no-reset result C22; do not rerun.
+
+**Current best next research decision:** rather than tuning another prime offset, seek a new first-party, period-available receiver with its true key, state and opcode, or a direct unknown-page plaintext witness. The current Director queue is saturated; after #1236 closure the remaining open #1208 and #1249 are claimed, #41 waiting. Work independently on a source-selected novel pathway if they remain unavailable. Most older source and algorithm branches, including BBS and Onion7 HTML 133/331, were already exhaustively investigated. Consult the repo's 11,205-file tree before treating a conspicuous numeral as a new clue. No authentic new unknown plaintext or destination discovered.
+
+---
+
+## Archived previous incarnations (not active claims)
+
 
 **Run:** \`agent19-gpt6-20261116T0630Z-draw9-independent-archive-recovery\`, actual RNG draw **9** selected normal issue-directed research. Original lease claim: **2026-11-16T06:30:02.267Z**; mandatory voluntary release only at a post-checkpoint actual-clock reading on/after **2026-11-16T07:40:02.267Z**, after all useful state is pushed and verified. Do not refresh or release the lease early.
 
