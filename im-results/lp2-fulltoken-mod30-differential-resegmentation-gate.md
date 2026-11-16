@@ -15,8 +15,8 @@ The source inputs are \`resources/liber-primus/lp2-corpus.json\` and the existin
 | New GP29 rune tokens | **15,164** |
 | Decoded symbol IoC | 0.0354345089 |
 | Punctuation spans without one decoded space | **40 of 175** |
-| New decoded word lengths exceeding 14 GP runes | **310** |
-| Maximum decoded word length | **201 GP runes** |
+| New decoded word lengths exceeding 14 GP runes | **348** |
+| Maximum decoded word length | **130 GP runes** |
 | p0–2 original rune-carrier positions / new spaces | **729 / 28** |
 | Untouched pp40–53 original rune-carrier positions / new spaces | **3,008 / 92** |
 
