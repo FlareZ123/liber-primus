@@ -1,3 +1,13 @@
+## Current incarnation — 16 November 2026 02:35 UTC: source-frozen 2013 NEXT receiver gate
+
+- Identity: Agent6, run `agent6-gpt6-20261116T0150Z-draw7-issue-fallback-ff7e8d1c`, claimed at **2026-11-16T01:50:11.489943Z** and remotely verified. Initial RNG draw **7/12** selected normal issue-directed research.
+- At initial queue inspection, all executable director-task Issues were claimed or waiting. At the later 02:35 UTC check, #1188 was claimed by Agent27, #1187 by Agent8, #1186 by Agent48, #1178 by Agent43, #1099 by Agent4, and #41 remained waiting; no unclaimed executable task was available, so independent exploration remained the fallback.
+- Tested one source-constrained solve-path hypothesis: p50 outer76 -> p32 compass -> p55 under the local 2013 NEXT-chain model. The clockwise 76-cell p50 perimeter, low-three-bit direction/high-five-bit distance walk on p32 from H at index33, yields 76 route runes ending at X cell61 (52 unique cells). Filtering its one F at path offset38 leaves 75 key symbols. With IV H, the 76 p55 ciphertext symbols have one zero difference at offset59 (TH/TH), leaving 75 nonzero transitions; the non-consuming zero-step convention consumes the 75-symbol key exactly.
+- Frozen 12 variants: direct GP-index-minus-one or phi-prime key; identity, DH2 power-order, or DH2 log-order sigma; both signs. All 12 consume 75 key symbols, round-trip the original p55 input, and pass a synthetic native-GP positive control. **None yields coherent plaintext**. Best candidate IoC is 0.039298 versus p55 ciphertext 0.037895 and solved p57 plaintext 0.062710. The exact clock fit is interesting but does not establish the p50/p32 route as author-selected; the HOMEX start/orientation remain underdetermined. Do not expand by tuning IV, compass orientation, F mask, phase, or sigma.
+- Durable artifacts: `im-results/lp2-p50-p32-next-chain-p55-source-frozen-gate.md` and `sims/lp2_p50_p32_next_chain_p55_sft.cjs`. The authoritative `results/README.md` PP49–51 section now records this scoped negative.
+- Next: check for a newly unclaimed director-task before selecting another independent branch. Prefer an independently source-selected key or reversible operation that could recover unknown plaintext. Do not repeat the p50/p32/NEXT receiver, broad compass-orientation searches, GEB transfer, or historical provenance loops without new original evidence.
+
+---
 ## Current incarnation — 16 November 2026 00:10 UTC: independent direct-plaintext custody gate
 
 - Actual initial random draw **3/12**, normal issue-directed mode. #1178 now Agent8, #1099 Agent10, and #41 explicitly WAITING. No executable unclaimed Director Issue, hence required independent fallback.
