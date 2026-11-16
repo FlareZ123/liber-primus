@@ -262,6 +262,50 @@ const solvedShortF = ["010", "0100"].map(mask => ({
 }));
 assert.deepEqual(solvedShortF.map(x => x.matched), [0, 0]);
 
+// Contrasting original-text language control: previously pinned and
+// corrected source-native Old English Beowulf GP29 word fixture.
+const oe = JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+assert.equal(oe.schema, 2);
+assert.equal(oe.acceptedSourceWords, 10885);
+assert.equal(oe.sourceGpBase29.length, 48012);
+assert.equal(oe.allSourceGpWordLengths.reduce((a,b)=>a+b,0), 48012);
+assert.equal(oe.positiveControlAlphabet[0], "A"); // GP index 0 is F.
+let pOE = 0;
+const oldEnglishMasks = oe.allSourceGpWordLengths.map(n => {
+  const text = oe.sourceGpBase29.slice(pOE,pOE+n);
+  pOE += n;
+  return [...text].map(c=>c === "A" ? "1" : "0").join("");
+});
+const OE = ["010","0100"].map(m => ({
+  mask:m,
+  originalMatched:fMask.filter(x=>x===m).length,
+  originalEligible:words.filter(w=>w.length===m.length).length,
+  beowulfMatched:oldEnglishMasks.filter(x=>x===m).length,
+  beowulfEligible:oe.allSourceGpWordLengths
+    .filter(n=>n===m.length).length
+}));
+assert.deepEqual(OE.map(x=>[
+  x.originalMatched,x.originalEligible,x.beowulfMatched,x.beowulfEligible
+]), [[3,720,42,2305],[3,513,62,2176]]);
+
+/** @param {number} n @param {number} p @param {number} k @returns {number} */
+function binomialCDF(n,p,k) {
+  let term = Math.pow(1-p,n), sum=term;
+  for (let i=1;i<=k;i++) {
+    term *= (n-i+1)*p/(i*(1-p));
+    sum += term;
+  }
+  return sum;
+}
+for (const row of OE) {
+  row.conditionalExpected = row.originalEligible *
+    row.beowulfMatched/row.beowulfEligible;
+  row.exploratoryIndependentBinomialLowerTail = binomialCDF(
+    row.originalEligible,
+    row.beowulfMatched/row.beowulfEligible,
+    row.originalMatched);
+}
+
 // Frozen original inverse. The complete cipher is actually inverted;
 // reencryption is a necessary program-integrity check, not a key proof.
 const decoded = decrypt(original);
@@ -290,7 +334,8 @@ const output = {
   authenticControls:controlResults,
   sourceNativeBenchmark:{sections:solvedIDs,nativeRunes:native.length,
     nativeWords:nativeWords.length,plaintextF:native.filter(x=>x===0).length,
-    authenticSolvedShortF:solvedShortF},
+    authenticSolvedShortF:solvedShortF,
+    correctedBeowulfOldEnglishShortF:OE},
   originalInverse:{
     first729F:p0to2.filter(x=>x===0).length,
     first32PrintedWords:openingWords,
