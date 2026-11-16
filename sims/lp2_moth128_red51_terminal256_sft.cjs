@@ -131,4 +131,55 @@ assert.ok(Math.abs(sourceHashCrib.recoveredP55Ioc-0.03368421052631579)<1e-12);
 assert.equal(sourceHashCrib.reconstructedP55,76);
 result.p56HashKnownPlaintextReuse=sourceHashCrib;
 
+/**
+ * Three independently printed 128-position records:
+ * p53 black GP runes, the middle 68+60 of the original 32x8 table,
+ * and p56's 128 literal hexadecimal digits. Fully determine 128
+ * target values; a direct byte-mod29 additive key must hit every one.
+ */
+function sourceRing(depth) {
+  const result=[];
+  const t=depth,b=31-depth,l=depth,r=7-depth;
+  for(let x=l;x<=r;x++)result.push(t*8+x);
+  for(let y=t+1;y<=b;y++)result.push(y*8+r);
+  for(let x=r-1;x>=l;x--)result.push(b*8+x);
+  for(let y=b-1;y>t;y--)result.push(y*8+l);
+  return result;
+}
+function ringDirection(depth, corner, direction) {
+  const ring=sourceRing(depth);
+  const w=8-2*depth, h=32-2*depth;
+  const start=[0,w-1,w+h-2,2*w+h-3][corner];
+  return ring.map((_,i)=>ring[((start+direction*i)%ring.length+ring.length)%ring.length]);
+}
+let allSource128=0,best3way=0;
+let natural3way=null;
+for(let a=0;a<4;a++)for(const ad of [1,-1])
+  for(let b=0;b<4;b++)for(const bd of [1,-1]) {
+    const ring128=ringDirection(1,a,ad).concat(ringDirection(2,b,bd));
+    assert.equal(ring128.length,128);
+    const pad=ring128.map(i=>grid.bytes[i]%29);
+    const plus=halfBlack.reduce((sum,x,i)=>sum+(mod(x+pad[i])===known[i]),0);
+    const minus=halfBlack.reduce((sum,x,i)=>sum+(mod(x-pad[i])===known[i]),0);
+    best3way=Math.max(best3way,plus,minus);
+    if(a===0&&ad===1&&b===0&&bd===1)
+      natural3way={add:plus,subtract:minus};
+    allSource128++;
+  }
+assert.equal(allSource128,64);
+assert.deepEqual(natural3way,{add:3,subtract:3});
+assert.equal(best3way,10);
+const originalPad=ringDirection(1,0,1).concat(ringDirection(2,0,1))
+  .map(i=>grid.bytes[i]%29);
+const plantedKnownCipher=known.map((p,i)=>mod(p+originalPad[i]));
+assert.deepEqual(plantedKnownCipher.map((c,i)=>mod(c-originalPad[i])),known);
+result.p50Middle128MothBlackHashKnownDigit={
+  routeCount:allSource128,
+  expected:128,
+  natural:natural3way,
+  bestAcrossBothSigns:best3way,
+  plantRecovered:128
+};
+
+
 console.log(JSON.stringify(result, null, 2));
