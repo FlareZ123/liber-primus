@@ -67,6 +67,28 @@ Both outputs are essentially uniform GP29 registers and contain no sustained rec
 
 This frozen additional test is in the **same** [source-locked runnable SFT](../sims/lp2_giant13_acrostic_original_sft.cjs), executed with all assertions passing against the exact original corpus and ink JSON inputs. It does not change the primary issue's conclusion: no source-selected key/clock or actual unknown plaintext has emerged. The result discourages further Fibonacci coefficient fitting absent a new historical instruction.
 
+## All-secret 13-seed extension: a recurrence annihilator eliminates every possible initial key
+
+The fixed giant-cap seed above could fail simply because the **initial thirteen key symbols are wrong**. A stronger and mathematically independent question grants *every one of the 29¹³ possible initial thirteen-GP-rune seeds* under the **same source-motivated Fibonacci taps**. For ordinary mod29 additive encryption `C=P+K` with `K_i=K_(i−8)+K_(i−13)`, define the linear residual at each position `i≥13`:
+
+```text
+Y(X)[i] = X[i] − X[i−8] − X[i−13] (mod 29).
+```
+
+Every such unknown seeded key satisfies `Y(K)=0`; therefore **`Y(C)=Y(P)` exactly, at every single non-rekeyed position**, without ever guessing the key. A direct original-source check can compare the complete **29-bin** residual histogram against historical GP-native English references. If two histograms disagree, no initial key can fix it; each allowed independent recurrence fault can repair at most one histogram count, giving exact lower bound `½Σ |hist(Y(C))−hist(Y(P))|`, even after unrealistically allowing all positions to reorder.
+
+An all-source scan uses every consecutive full-length source-native original GP29 English rune window in Shakespeare, Gibran and Emerson, with their established manuscript-attested **ING→ᛝ** and **IO→ᛡ** spellings. The three control lengths are **217,106**, **62,492**, **321,327** original-token GP runes. Both separate p0-black and p3–7 chapter scopes and the whole unknown book are frozen. These numbers are the **minimum required recurrence-error glyphs**, among *all* corresponding native-English comparator windows; even the most favorable word sequence in each reference is admitted:
+
+| Original ciphertext scope / residual positions | Shakespeare | Gibran | Emerson |
+| --- | ---: | ---: | ---: |
+| p0-black through p2, **703** residuals | **42 / 216,391** tested windows | **45 / 61,777** | **43 / 320,612** |
+| Disjoint p3–7, **1,132** residuals | **59 / 215,962** | **49 / 61,348** | **58 / 320,183** |
+| All untouched p0–55, **12,943** residuals | **335 / 204,151** | **370 / 49,537** | **322 / 308,372** |
+
+There are **zero exact matches** in every cell; no possible thirteen-rune initial key produces any of the tested source-native passages by **this exact additive Fibonacci recurrence with no faults**. The p0 and p3 heldouts demand **at least 42/703 =5.97%** and **49/1,132 =4.33%** exceptions respectively to imitate even one tested native-English residual histogram. Over the full book the lower bound is smaller (as low as **322/12,943 =2.49%**), but still excludes a single error-free stream. The full original GP index order is preserved in each scope. A 95-rune independently solved p57 positive is encrypted using two *different unknown thirteen-rune initial keys*, with the same recurrence: the residuals match in **82/82** positions and both complete 95-rune decryptions round-trip perfectly.
+
+This is a **key-independent finite-register obstruction** and an exact quantitative requirement for fault-bearing/rekeyed variants; it does not exclude arbitrary unknown prose with a precisely matching residual distribution, source encoding not tested, a cipher inserting/deleting runes, a key skipping positions for F, or alternative recurrences. The original manuscript's visual Fibonacci spiral motivates the tested taps but does not authenticate this coding model or the use of giant initials as a seed. The [standalone read-only Windows CommonJS SFT](../sims/lp2_giant13_fib8_13_allseed_hist_sft.cjs) was executed against all four exact checked-in sources with **all hard assertions and two independent planted positives passing**. Unlike searching 29¹³ seeds, the histogram proof is complete for the stated algebraic family.
+
 ## Decision and a real next gate
 
 **Close #1265 as a sourced acrostic hypothesis with a completed narrow direct-consumer negative.** The image-derived 13-symbol string is genuine and reusable, but no first-party Cicada instruction presently selects its transposition, alphabet-to-key serialization, GP29 receiver, clock, or exact location within the manuscript. Source-natural prime/totient and the direct repeated-key attack produced no original plaintext. Neither result excludes some future, independently source-selected *nonrepeating* interpretation of the initials.
