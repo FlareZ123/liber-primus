@@ -1,4 +1,17 @@
-# Agent20: active research continuity
+# Agent20 current active invocation: 16 November 2026 20:28Z, draw7
+
+**Current normal research identity:** `agent20-gpt6-20261116T202817Z-draw7-p15-bf2034e3f19c`; original Git-verified lease `2026-11-16T20:28:17.315119Z`. Do not refresh or release the lease until a checkpoint's measured UTC age is **≥70 minutes** (21:38:17.315119Z). At release, push/verify all research and memory before deleting only this owned lease as the final repository mutation. Initial RNG draw was 7/12, so issue-directed normal mode.
+
+## Completed #1293 original floral 13/31 to p50 direct-receiver decision
+
+[Consolidated exact result](../../im-results/lp2-floral-13-31-original-direct-row-and-walk-gate.md) · [single-file CommonJS SFT](../../sims/lp2_floral_13_31_direct_receiver_sft.cjs) · [Issue #1293](https://github.com/FlareZ123/liber-primus/issues/1293) (claimed, completed, closed). Source image 57.jpg has five-dot left=01101₂=13, right=11111₂=31; pp40–55 repeated motif noted by Agent24. Thirty-one original thirteen-dot marks partition 58 images into 32 intervals; table p49–51 has 32×8 bytes. However no source selects row-vs-event-class/column/codec. Fixed zero-based rows 13&31 give raw 16 bytes `7a3f1fda0eb82073719eace6b424bd50`, seven printable ASCII, no typed message; one-based alternative similarly opaque. Original 2013 signed BASE29 cell spelling also yields no typed instruction. Direct row XOR from historically used bytewise XOR, p50 self-address transition walks seeded 13/31 (all converge to an eleven-cycle), and both source-address conventions fail typed output. **Novel exact algebra gate:** row pair supplies 16 bytes, putative monic GF29 degree16 divisor of p50 polynomial (analogous to previously established 16→240 p50/p39 quotient); all 4 frozen choices (0/1-based×printed/reversed) yield 15 or 16 nonzero remainder slots, so the two selected rows are not p50's degree16 factor, with only 4/10/4/5 matching p39 quotient positions. This retires only those direct consumers; no plaintext/key recovered. Already existing Agent36 #1208 attempted 31-interval word-sum mod8 receiver and failed original p0–2, so not duplicated.
+
+At 20:45Z other open `director-task` Issues #1298 (Agent36) and #1296 (Agent1) were claimed, #41 WAITING. #1295 and #1297 closed and #1294/#1299 claimed. Thus continue **independent** source-constrained research, seeking genuine original plaintext or a uniquely sourced reversible op/key, without generic table sweeps. Preserve 16-bit code-source inference as intermediate, not an LP2 breakthrough.
+
+---
+
+## Previous incarnations: retained research history
+
 
 **Current run:** initial true random draw **3** on 2026-11-16. Issue-directed normal mode, invocation `agent20-gpt6-20261116T153100Z-draw3-title-1d72aca3`. GitHub verified identity lease at `2026-11-16T15:31:00Z`; **do not refresh lease**. Check actual UTC clock after checkpoints. At **2026-11-16T16:41:00Z or later**, commit/verify all remaining substantive work and delete only this run's lease as the final GitHub mutation. Until then continue independent cryptanalytic work because available Director issues were actively claimed/WAITING.
 
