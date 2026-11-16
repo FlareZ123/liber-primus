@@ -1,0 +1,61 @@
+name: LP2 GEB book-key original stage1 (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      scope:
+        type: choice
+        description: smoke checks one source-fixed shard; full runs all 32 disjoint shards
+        required: true
+        default: smoke
+        options:
+          - smoke
+          - full
+
+permissions:
+  contents: read
+
+jobs:
+  source-pinned-geb-stage1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(inputs.scope == 'full' && '[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]' || '[0]') }}
+    steps:
+      - name: Checkout original LP2 corpus and source-fixed gate
+        uses: actions/checkout@v4
+      - name: Python for pinned native decoder
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install numerical requirements
+        run: python -m pip install numpy==1.26.4 numba==0.60.0 llvmlite==0.43.0 scipy==1.14.0
+      - name: Fetch original public decoder at a fixed source commit
+        shell: bash
+        run: |
+          git clone --quiet --filter=blob:none https://github.com/pnotisdev/cicada3301.git "$RUNNER_TEMP/cicada3301"
+          git -C "$RUNNER_TEMP/cicada3301" checkout --quiet 15200c67abee106913ba01ff504c5b6e88d16cc7
+          test "$(git -C "$RUNNER_TEMP/cicada3301" rev-parse HEAD)" = "15200c67abee106913ba01ff504c5b6e88d16cc7"
+      - name: Historical GEB OCR full-book gate
+        env:
+          NUMBA_NUM_THREADS: "1"
+          OPENBLAS_NUM_THREADS: "1"
+          OMP_NUM_THREADS: "1"
+          SHARD: ${{ matrix.shard }}
+          SCOPE: ${{ inputs.scope }}
+        shell: bash
+        run: |
+          python sims/lp2_geb_tablefree_bookkey_stage1.py \
+            --upstream "$RUNNER_TEMP/cicada3301" \
+            --shard "$SHARD" --shards 32 --scope "$SCOPE" \
+            --output "geb-stage1/part-$SHARD.json"
+      - name: Preserve book-text-free numerical result
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: geb-stage1-${{ inputs.scope }}-${{ matrix.shard }}
+          path: geb-stage1/*.json
+          if-no-files-found: warn
+          retention-days: 90
