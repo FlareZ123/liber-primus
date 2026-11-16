@@ -38,6 +38,20 @@ The historical Cicada continuations used **16-character RFC4648 Base32** Tor-v2 
 
 Every output is automatically syntactically valid Base32 and that fact carries no evidentiary weight: Tor-v2 hostnames have no built-in checksum that authenticates the address as a working historical service. The direct event-to-Tor-base32 consumer fails the independently checkable first-party-host receiver for all three class choices. No archived service identity or original LP2 destination was established. Other historical hosts or encrypted/processed outputs are untested. The source still does not choose among the three event registers, and a same-length match to an expected Tor format cannot supply the missing selection. This result is distinct from the prior **red16 GP29-integer→Tor-v2** experiment on p3/p23, which has different source selection and numeric conversion.
 
+## Fixed 32×8 table receiver from the same five-bit codes
+
+The manuscript's printed p50 byte grid has **32 rows and eight columns**. The candidate 256-event set also has 32-compatible rune/mark identities and an exact 32×8 cardinality. This independently motivates one unkeyed table lookup: at event ordinal `i`, use event code `e[i] = 0..31` as **row** and `i mod 8` as **column**; output the printed table byte at that cell. It is the direct code-into-grid consumer, with no fitted IV, alphabet permutation, offset, or password. The only event alternatives are the three already physically specified A/B/C registers above.
+
+| Event class | First 16 output bytes | Printable bytes / 256 | Distinct bytes / 256 |
+|---|---|---:|---:|
+| A | `2a ff 5c 19 56 fb 33 b7 2a af 5c 36 e6 38 c6 f8` | 102 | 115 |
+| B | same first 16 | 90 | 117 |
+| C | same first 16 | 110 | 113 |
+
+The shared 32-byte start for all three choices is `2aff5c1956fb33b72aaf5c36e638c6f8d3961936e6894815d3b3c5c0a904a7c0`. There is no complete printable-ASCII readout or typed historical file header. More decisively, the **32 possible code inputs** have only **[30,32,30,30,30,31,31,30] distinct outputs** across the eight fixed columns of the printed grid. Six columns therefore contain source-native byte collisions. This direct reader is **not a lossless 32-symbol-to-byte cipher** over the complete rune/mark alphabet; a hidden state or auxiliary channel would be needed to invert it. It can only remain a hypothetical partial or processed payload reader.
+
+The reader is implemented and asserted against all 256 physical events and the unchanged table in the same SFT. These negatives do not exclude an authored table lookup of different semantics. The lack of an original selector among A/B/C and absence of a typed output mean they should not motivate more unfrozen grid permutations.
+
 ## Decision for further research
 
 The simple **literal five-bit pack** is rejected as an unencrypted byte/file payload decoder at source-visible chapter starts. This does **not** exclude a keyed binary format or a different authorized codebook. The book does provide a concrete reason to ask about a 32-state receiver, while its observed layout does not determine how an 8-bit p50 table cell would be consumed, how punctuation classes would map to code points, or whether a second input chooses one of eight columns. Every additional parameter is presently free. A useful successor must retrieve a *first-party instruction* that fixes the missing table consumer or validates a complete original byte stream on untouched pages. Avoid guessing offsets, column permutations, byte XORs or extra cipher layers to rescue the failed direct readout.
