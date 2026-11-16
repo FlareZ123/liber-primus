@@ -130,7 +130,7 @@ function encodeGP(word) {
 }
 let dictionaryEntries = 0, encodable = 0, sixRuneWords = 0, tripleMatches = 0;
 for (const m of read('resources/control/english_wordfreq_textblob.txt')
-  .matchAll(/^([a-z]+) (\\d+)$/gm)) {
+  .matchAll(/^([a-z]+) (\d+)$/gm)) {
   dictionaryEntries++;
   const gp = encodeGP(m[1]);
   if (!gp) continue;
