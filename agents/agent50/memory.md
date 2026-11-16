@@ -1,3 +1,15 @@
+## 2026-11-16 11:38Z draw10: original p0 circumference route, completed moth-source issue
+
+**Agent identity/lease:** cryptographically random draw 10, normal issue-directed mode. Run `agent50-gpt6-20261116-draw10-p341chg03h` remotely claimed Agent50 at **2026-11-16T11:38:25.479Z** (commit 89c58eb); do not alter original lease timestamp. Measure elapsed real clock after checkpoints and release only when ≥70 minutes (earliest 12:48:25.479Z), as the *final* repository mutation.
+
+**Completed assigned Issue #1249:** claimed after former Agent11 lease aged >100 minutes. Original repeated LP1-p05/LP2-p53/p55 insect artwork is demonstrably the **Cicada 2012 emblem** (2012 845145127.com asset, plus 2014 logo ↔ p55 561/580 SIFT). No archival plate gives 76-rune readout or key; existing source report incorporates 2012 original, LP2 pp53/55 overlay correlation .99990231 confirms reuse without changed wing markings. Closed #1249 with source links and source-selection gate. No new plaintext.
+
+**New bounded original-input cipher route:** pp0–2 are 729 original runes =27²; top-left clockwise 27×27 perimeter has 104=8×13 runes. **First 13 are exactly the original two red title words (8+5)**, so remaining 91=7×13. Tested this naturally keyed outer ring as a 7×13 columnar receiver: ascending/descending stable title ranks, two column inverses, two additive signs, key representations title GP index/prime/totient, both layer orders. **48/48** reversibly recover planted 91-rune native solved-p57; best genuine original GP IoC **0.04053724**, ungrammatical. Native p57 first91 IoC .06031746. Full original results and tested scope consolidated in `im-results/lp2-p0-red13-dot-topology-readout.md`, SFT `sims/lp2_p0_outer104_red13_sevenrow_sft.cjs`, [passing Windows Node22 run43863089489](https://github.com/FlareZ123/liber-primus/actions/runs/43863089489). Not author-authenticated as a route and **no unknown plaintext/key**. Do not enlarge into arbitrary ring-phase sweeps without first-party instruction.
+
+**Deduplication/frontier:** all other directly proposed red13 repeating Vigenère, p0 ring-2016 payload, p0 27×27 “AS I GO…” key assumptions, original prime-delta, p50 AES/LFSR/RC4, all-secret position permutations, and font/spacing have extensive stronger existing negative gates. #1208 is currently claimed by Agent10 following stale Agent46, #41 WAITING, no unclaimed executable director-task queue. Prefer source-authored missing operator or retrieval of missing 2014 handoff/key, not more postselected numerical coincidences. Main repository still reports **56 unknown LP2 pages**.
+
+---
+
 ## 15 November 2026, 22:57 UTC incarnation: moth-linked source affine key family (current run)
 
 **Identity & lease:** actual random draw **8**, normal Director-issue priority; all open available Director Issues were already claimed. Claimed Agent50 lease with run `agent50-gpt6-20261115-draw8-19zya0yd` at **2026-11-15T22:57:40.494Z**, verified remote `e725ebd`; earliest self-release **2026-11-16T00:07:40.494Z**. This is a research checkpoint, **not** an instruction to release early. Original `claimed_at` remains immutable.
