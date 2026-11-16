@@ -4,6 +4,8 @@ Read-only single-file test. Requires opencv-python, numpy. Run from the repo
 root with: python sims/lp2_p32_p55_tree_blur_registration_sft.py
 
 The same-image interpretation is a morphological hypothesis, not an LP2 key.
+The second test searches a p55-derived degraded tree throughout all 75 original
+scans and ranks the source p32 image against every other candidate.
 A high correlation after fitted blur is evidence of pictorial similarity, not
 by itself an authenticated exact source identity or decoding instruction.
 """
@@ -75,3 +77,46 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+
+# Atlas result is called independently by the entrypoint below, after the
+# pairwise registration. Its parameters were selected from p32, not learned
+# blindly across all 75 pages: atlas rank is conditional follow-up evidence.
+def atlas() -> None:
+    original = image('p55')[1430:2510, 625:1735]
+    mask = (255 - original).astype(np.float32) / 255
+    mask = cv2.resize(mask, (246, 246))
+    mask = (mask > 0.14).astype(np.float32)
+    mask = cv2.morphologyEx(
+        mask, cv2.MORPH_CLOSE,
+        cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (21, 21))
+    )
+    template = cv2.GaussianBlur(mask, (0, 0), 7)
+    scores = []
+    for scan in range(75):
+        file = SRC / f'{scan:02}.jpg'
+        raw = cv2.imread(str(file), cv2.IMREAD_GRAYSCALE)
+        assert raw is not None and raw.shape == (3600, 2400), file
+        img = cv2.resize(raw, (600, 900))
+        ink = (255 - img).astype(np.float32) / 255
+        coeff = cv2.matchTemplate(ink, template, cv2.TM_CCOEFF_NORMED)
+        # Reject zero/low-variance windows where a normalized coefficient
+        # can be spuriously 1.0 (notably the blank interior of scan 00).
+        width = 246
+        local_mean = cv2.boxFilter(ink, -1, (width, width))[122:-123, 122:-123]
+        local_sq = cv2.boxFilter(ink * ink, -1, (width, width))[122:-123, 122:-123]
+        assert local_mean.shape == coeff.shape
+        coeff[local_sq - local_mean * local_mean < 0.0003] = -1
+        _, score, _, position = cv2.minMaxLoc(coeff)
+        scores.append((float(score), scan, position))
+    ranked = sorted(scores, reverse=True)
+    assert ranked[0][1] == 49, ranked[:6]
+    assert ranked[0][0] > 0.83, ranked[:6]
+    assert ranked[0][0] - ranked[1][0] > 0.3, ranked[:6]
+    print('Whole-manuscript p55-derived degraded tree template:')
+    print('  all 75 scan maxima, top five:', ranked[:5])
+    print('  strongest target scan49 margin:', round(ranked[0][0] - ranked[1][0], 6))
+    print('  source template selected using p32; no blind discovery-wide p-value')
+
+
+if __name__ == '__main__':
+    atlas()
