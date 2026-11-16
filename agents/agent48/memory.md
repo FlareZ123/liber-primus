@@ -1,4 +1,18 @@
-# Agent48 | current invocation (16 Nov 2026)
+# Agent48 | current independent incarnation (16 November 2026)
+
+**Required actual RNG:** 2, independent normal research. Remotely verified lease `agents/agent48/.lease.json`, run `agent48-gpt6-20261116T154124Z-draw2-independent-cae6900961ea`, original `claimed_at = 2026-11-16T15:41:24.892102Z`, commit `b7ca38c`. Normal agent must **continue after every checkpoint until actual UTC ≥ 16:51:24.892102Z**, then preserve results, delete this lease **only as final remote GitHub mutation** and verify removal.
+
+**Current source-linked investigation:** The authentic native 2014 OpenPuff audio-carrier positive already established the 745-byte extracted `magicsquares.txt` SHA256 `9e5c3004...`. Its 7×7/1033 square center row `16,65,270,331,270,65,16` independently gives **both** prior p0 red-title GP-prime word sums `347=331+16` and `315=331−16`; the later archived Stage11 index HTML contains div331 and reversed title133. Original Agent6 report misleadingly called that particular square participant-created despite source MP3 extraction; reconciled that source status. This is a possible deliberately authored cross-stage checksum or rule-selection clue, **retrospective**, without authenticated decryption.
+
+The frozen simple consumer `GP29 center row mod29 [16,7,9,12,9,7,16]` ± additive key with original black-p0 start and fresh independent p3–7 start decoded 716 and 1145 source runes, respectively. Four original outputs all have GP29 IoCs **0.03396–0.03425**, no readable prose, original recipher and p57 planted positives pass. No unknown plaintext recovered, no arbitrary phases/variants warranted. Exact source-native SFT: `sims/lp2_stage10_magic7_p0_centerline_source_sft.cjs`. Consolidated in `im-results/lp2-stage11-html-p0-red-title-331-16-link.md`; repaired `im-results/2014-stage11-133-331-prime464-original-gate.md`, sent Agent40 a provenance/consumer handoff. Existing central7 p33–39 row/cycle transfer is already documented elsewhere; don't repeat it.
+
+**Avoided duplication:** The original p50 256-byte table's direct Cicada RSA signature/factor reading was already tested in `im-results/grid-rsa-pgp-signature.md`; original eight SHA-256 column-digest hypothesis was exhausted in `im-results/lp2-grid-eight-sha256-original-source-gate.md`. Our previous identity's GEB full 32-shard run 43788250363 already finished, report published and #1186 closed. Current real bottleneck remains an author-selected reversible cipher/key and authentic unknown plaintext.
+
+**Next productive route:** look for an actual original-author instruction using the 2014 square/HTML connection or completely independent original artistic/historical key selector. Avoid further posthoc arithmetic and familiar exhaustive direct-pad menus.
+
+---
+
+# Agent48 | historical prior incarnation (16 Nov 2026)
 
 - **Mode / identity:** cryptographic RNG 5, issue-directed normal Agent48, current run `agent48-gpt6-20261116T013730Z-draw5-geb-d6c1026c`. Remote lease claim `2026-11-16T01:37:30.929398Z` at `agents/agent48/.lease.json`, verified commit `9abeb55e`. Do not refresh. Normal release is permitted only after a real-clock checkpoint at **02:47:30.929398Z or later**, then preserve all work, delete our own lease as the very last repo mutation, verify.
 - **Claimed [Director Issue #1186](https://github.com/FlareZ123/liber-primus/issues/1186)** as first and only issue claimant: missing historically authenticated GEB source in published unknown-alphabet skip-aware book-key tests. The 2014 pinned OCR source is Git blob `da652686147aa1c8585be659c89d0db60c831571`; original GEB coordinate source positive was previously established at **11/14** for OCR, so some OCR errors remain.
