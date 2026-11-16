@@ -26,10 +26,10 @@ The Round 44 closeout also reports negative results for red-ink, p15 grid, punct
 
 ## Measured ceiling and remaining gaps
 
-This section is refreshed against upstream HEAD \`9087dc36b5aa64c1786428e32180261ab9420c29\` (2026-11-12). The ceiling is finite and family-scoped; negative results do not prove that every interpretation of the signed 2016 statement is impossible.
+This section is refreshed against upstream HEAD `9087dc36b5aa64c1786428e32180261ab9420c29` (2026-11-12). The ceiling is finite and family-scoped; negative results do not prove that every interpretation of the signed 2016 statement is impossible.
 
-- **R9-DIRECTION** in \`research/DEAD_ENDS.md\`: 2,670 readings across four families—self-indexing walks using seven step functions, cumulative walks using eleven strides, signed direction walks, and numeric sieves. No plaintext or source hit. Do not repeat these families without a new source selector.
-- **R37-C1-U3-COMPOSED-MAP-ROAD-DIRECTION** in \`liber-primus/MEASURED-CEILING.md\`: 4,176 decodes over position / rune offset / word length × mod-29/28 × start × sign. The reported controls were recovered, but no verified plaintext or source-selected index emerged.
+- **R9-DIRECTION** in `research/DEAD_ENDS.md`: 2,670 readings across four families—self-indexing walks using seven step functions, cumulative walks using eleven strides, signed direction walks, and numeric sieves. No plaintext or source hit. Do not repeat these families without a new source selector.
+- **R37-C1-U3-COMPOSED-MAP-ROAD-DIRECTION** in `liber-primus/MEASURED-CEILING.md`: 4,176 decodes over position / rune offset / word length × mod-29/28 × start × sign. The reported controls were recovered, but no verified plaintext or source-selected index emerged.
 - **R38 semantic-address**: 28,224 decodes; **R39 sense-position**: 14,112 decodes. Both are reported negative. The upstream handoff reopens this lane only if “meaning” yields a determinate per-word index, or if LP1's codebook order is shown to differ from document order.
 - The signed 2016 phrase “words are the map, their meaning is the road, and their numbers are the direction” is therefore only partly exhausted: positional, length-based, and broad numeric-direction readings have been tested; a source-authored semantic index has not been established. Generic WordNet/dictionary searches are not a selector.
 - Other listed gaps—remaining Marsaglia public-pad units, non-additive feedback beyond the reported pilot, per-instance O/A/AE calls, and original-PDF kerning/subpixel/colour channels—remain unmeasured or partial. They are coverage gaps, not evidence of promising leads.

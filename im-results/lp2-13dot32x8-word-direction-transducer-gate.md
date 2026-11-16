@@ -1,10 +1,10 @@
 # 13-dot / 32×8 word-direction transducer gate — rejected
 
-**Status:** intermediate negative result. No plaintext recovered; do not promote to \`results/\`.
+**Status:** intermediate negative result. No plaintext recovered; do not promote to `results/`.
 
 ## Solve-path hypothesis
 
-A solver could notice the repeated five-dot floral border values 13 (left, \`01101\`) and 31 (right, \`11111\`), identify the authentic thirteen-dot marks, and compare their count with the unlabelled 32×8 numerical table on physical p50. The 31 marks divide the complete 58-page source into 32 intervals. The signed 2016 wording that words are a map and their numbers are direction suggests using a word's Gematria Primus number to select one of eight columns.
+A solver could notice the repeated five-dot floral border values 13 (left, `01101`) and 31 (right, `11111`), identify the authentic thirteen-dot marks, and compare their count with the unlabelled 32×8 numerical table on physical p50. The 31 marks divide the complete 58-page source into 32 intervals. The signed 2016 wording that words are a map and their numbers are direction suggests using a word's Gematria Primus number to select one of eight columns.
 
 The frozen interpretation was:
 
@@ -22,10 +22,10 @@ This is a causal, lossless word-autokey: encryption can derive the next shift fr
 
 Inputs are the original transcription and source-derived data:
 
-- \`resources/lp2-transcription.txt\`
-- \`resources/liber-primus/lp2-corpus.json\`
-- \`resources/liber-primus/lp2-ink-annotations.json\`
-- \`resources/liber-primus/base60-grid.json\`
+- `resources/lp2-transcription.txt`
+- `resources/liber-primus/lp2-corpus.json`
+- `resources/liber-primus/lp2-ink-annotations.json`
+- `resources/liber-primus/base60-grid.json`
 
 Observed source facts:
 
@@ -33,15 +33,15 @@ Observed source facts:
 - There are 31 thirteen-dot events: 28 on p0–55 and three on solved p56–57.
 - All 31 offsets fall on printed-word boundaries.
 - The 31 offsets are:
-  \`13, 729, 745, 848, 851, 1541, 1552, 1860, 1860, 1874, 3603, 3603, 3612, 3623, 5506, 5522, 6527, 6546, 7960, 7970, 8051, 8059, 9519, 9522, 9640, 12648, 12657, 12956, 12961, 13041, 13048\`.
+  `13, 729, 745, 848, 851, 1541, 1552, 1860, 1860, 1874, 3603, 3603, 3612, 3623, 5506, 5522, 6527, 6546, 7960, 7970, 8051, 8059, 9519, 9522, 9640, 12648, 12657, 12956, 12961, 13041, 13048`.
 - The markers define 32 intervals; two are empty because offsets 1860 and 3603 each occur twice.
-- The p50 table is exactly 32×8, with entries represented as values 0–255 in \`byte_rows\`.
+- The p50 table is exactly 32×8, with entries represented as values 0–255 in `byte_rows`.
 
 The alignment is a real structural observation. It does not, by itself, establish that the table is a decoder.
 
 ## Frozen decoder and controls
 
-The exact implementation is \`sims/lp2_13dot32x8_word_direction_gate.cjs\`. It uses the source parser with page boundaries carried, computes each row from the count of thirteen-dot events at or before the printed-word start, and applies:
+The exact implementation is `sims/lp2_13dot32x8_word_direction_gate.cjs`. It uses the source parser with page boundaries carried, computes each row from the count of thirteen-dot events at or before the printed-word start, and applies:
 
 \[
 P_i =
@@ -61,7 +61,7 @@ A 95-rune, 20-word plant made from the known p57 GP plaintext, with its initial 
 
 The frozen p0–2 training block contains 729 runes and 158 printed words.
 
-- First decoded chunks: \`THDCENGGXF AEHEAOS RPHIA FOX SNGX EONGILIAEAESPAR\`.
+- First decoded chunks: `THDCENGGXF AEHEAOS RPHIA FOX SNGX EONGILIAEAESPAR`.
 - GP rune IoC: 0.034158, essentially random.
 - A source-native GP-English trigram model was trained on the first 70% of Shakespeare, Gibran's *The Prophet*, and Emerson controls, then calibrated on 4,548 non-overlapping 40-rune holdout windows.
 - Native reference: first percentile −8.90364, median −7.89030, 99th percentile −7.22712.
@@ -77,7 +77,7 @@ A second natural reading of the table as a 5-bit next-state / 3-bit next-directi
 
 Retire this exact 13-dot / 32×8 word-direction transducer. Preserve the 31-marker/32-interval alignment as an established source observation, but do not treat it as proof that the p50 table is a key schedule.
 
-The signed 2016 map/road/direction wording remains relevant, but numeric direction sweeps are not a useful next step without a new source selector. The independent Dukotah research snapshot at upstream HEAD \`9087dc36b5aa64c1786428e32180261ab9420c29\` reports:
+The signed 2016 map/road/direction wording remains relevant, but numeric direction sweeps are not a useful next step without a new source selector. The independent Dukotah research snapshot at upstream HEAD `9087dc36b5aa64c1786428e32180261ab9420c29` reports:
 
 - R9-DIRECTION: 2,670 readings across self-indexing walks, cumulative walks, signed direction walks, and numeric sieves; no plaintext/source hit.
 - R37-C1-U3-COMPOSED-MAP-ROAD-DIRECTION: 4,176 position/rune-offset/word-length × mod-29/28 × start × sign decodes; no verified plaintext.
@@ -89,8 +89,8 @@ Do not repeat those numeric families. A successor investigation needs an indepen
 
 From the repository root:
 
-\`\`\`bash
+```bash
 node sims/lp2_13dot32x8_word_direction_gate.cjs
-\`\`\`
+```
 
 The script prints the source counts, interval structure, frozen decoder, native-language calibration, p0–2 result, wrong-grammar null, p57 round-trip control, and the failed 5+3 automaton check.
