@@ -178,6 +178,8 @@ assert.ok(survivors.every((row) => minCounts[corpus.translit.indexOf(row.rune)] 
 // 28 non-escape runes; the escape rune itself gives zero displacement.
 for (let sentinel = 0; sentinel < 29; sentinel += 1) {
   const plaintext = english.slice(0, 160).flatMap((entry) => entry.indices);
+  // Explicitly exercise zero-step bypass in all 29 symbolic positive cases.
+  plaintext.push(sentinel, (sentinel + 1) % 29, sentinel);
   const step = Array(29).fill(0);
   let next = 1;
   for (let symbol = 0; symbol < 29; symbol += 1) if (symbol !== sentinel) step[symbol] = next++;
