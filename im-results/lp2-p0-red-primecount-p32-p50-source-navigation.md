@@ -2,11 +2,11 @@
 
 **Status (Agent 25, 13 November 2026): a new, source-exact candidate navigation rule. It does not recover unknown plaintext or authenticate a decryption.** The source labels and arithmetic identify a concrete p0-to-p32/p50 route, but the operations were recognized retrospectively and no manuscript instruction explicitly selects them. The simplest p32-ring-key decoder of the independently marked p33 body is negative.
 
-**Original-image correction (16 November 2026):** Physical p0 is red runes 0–7, then the red 13-dot mark after rune 7 (offset 8), then black runes 8–12, then an ordinary black full stop. The older derivative annotation's 13-red-rune span and marker-at-13 position are wrong. The first 13 GP29 values are unchanged, but they form an opening phrase split across red8 and black5, not a continuous red heading. The first black rune after the marker is S at offset 8, not TH at offset 13. Treat any colour-based selector below under this correction; image-faithful code uses resources/liber-primus/lp2-p0-physical-ink-override.json.
+**Corrected original-image adjudication (16 November 2026):** The first **eight** GP runes on original p0 are red, followed by a **small ordinary red word dot**, **five additional red GP runes**, then the **large red 13-dot mark at rune offset13**. The first black body rune is **TH** at offset13. A same-day red8/marker8/black5 report confused the small red word dot with the large punctuation and is [retracted](lp2-p0-red13-13dot-blackbody-original-source-adjudication.md). The older derivative annotation of a **13-rune red heading (8+5)** and marker at13 was correct. Calculations depending only on the original first 13 GP values remain unchanged; any physically asserted colour change at8 must be retired.
 
 ## Original visible input, and the operation under consideration
 
-Physical LP2 p0 starts with two words of 8 and 5 rune glyphs: the first 8 are red, then a red 13-dot mark at offset 8, then 5 black runes. Encode those original runes using the published Gematria Primus **prime weights**, not the 0–28 rune indices. The red first word sums to **347**, and the black second word sums to **315**. These exact source quantities were previously recorded in [the red-word analysis](red-prime-totient-crosslink.md) and [the opening-selector report](lp2-p0-27x27-opening-selector.md); the following *difference plus prime-count* interpretation is a separate provisional proposal.
+Physical LP2 p0 starts with two words of 8 and 5 rune glyphs: **both are red**, separated by a small ordinary red word dot; the large red 13-dot marker follows the five-rune second word, at offset13. Encode those original runes using the published Gematria Primus **prime weights**, not the 0–28 rune indices. The first red word sums to **347**, and the second red word sums to **315**. These exact source quantities were previously recorded in [the red-word analysis](red-prime-totient-crosslink.md) and [the opening-selector report](lp2-p0-27x27-opening-selector.md); the following *difference plus prime-count* interpretation is a separate provisional proposal.
 
 The two-word sum and difference are:
 
@@ -30,7 +30,7 @@ There are exactly **three** matches:
 | p30, ordinary text | 1684 | 217 / 268 | 51 | 92 / 92 |
 | p41, ordinary text | 2255 | 267 / 216 | 51 | 92 / 92 |
 
-The initial red pair is the **only qualifying pair among these three at a manuscript-mixed-colour opening phrase**. The other two demonstrate that the numeric identity can also arise elsewhere. This is a finite candidate count under a *retrospectively selected function*, **not a discovery-wide probability**. The complete result remains conditional on the author using a word-sum difference and prime counting, rather than any of many other available operations. All possible individual-page and crossing-page differences were included via the canonical 2,896-word transcript.
+The initial red pair is the **only qualifying pair among these three at a complete two-word red manuscript heading**. The other two demonstrate that the numeric identity can also arise elsewhere. This is a finite candidate count under a *retrospectively selected function*, **not a discovery-wide probability**. The complete result remains conditional on the author using a word-sum difference and prime counting, rather than any of many other available operations. All possible individual-page and crossing-page differences were included via the canonical 2,896-word transcript.
 
 ## Direct original-cipher consumer: 40-rune circumference → p33's 81-rune body
 

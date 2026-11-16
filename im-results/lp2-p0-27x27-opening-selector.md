@@ -2,7 +2,7 @@
 
 **Status: provisional opening hypothesis. No authenticated LP2 plaintext.** The source-visible arithmetic, palindrome-like GP rune labels, and original period/grid/printed-line seams now give conditional ways to reconstruct the published three-rune key, first seven-rune address, and second central five-rune reading. These operation choices were identified retrospectively from the published 27×27 result; the simple endpoint carry is independently contradicted at block03. Four conditional blocks now have source-defined local arithmetic reconstructions, but all navigation rules remain retrospective and a frozen fifth-step extrapolation fails. The author-intended general decryption method remains unknown.
 
-**Original-image correction (16 November 2026):** Physical p0 is red runes 0–7, then the red 13-dot mark after rune 7 (offset 8), then black runes 8–12, then an ordinary black full stop. The older derivative annotation's 13-red-rune span and marker-at-13 position are wrong. The first 13 GP29 values are unchanged, but they form an opening phrase split across red8 and black5, not a continuous red heading. The first black rune after the marker is S at offset 8, not TH at offset 13. Treat any colour-based selector below under this correction; image-faithful code uses resources/liber-primus/lp2-p0-physical-ink-override.json.
+**Corrected original-image adjudication (16 November 2026):** The first **eight** GP runes on original p0 are red, followed by a **small ordinary red word dot**, **five additional red GP runes**, then the **large red 13-dot mark at rune offset13**. The first black body rune is **TH** at offset13. A same-day red8/marker8/black5 report confused the small red word dot with the large punctuation and is [retracted](lp2-p0-red13-13dot-blackbody-original-source-adjudication.md). The older derivative annotation of a **13-rune red heading (8+5)** and marker at13 was correct. Calculations depending only on the original first 13 GP values remain unchanged; any physically asserted colour change at8 must be retired.
 
 ## Original-source selector
 
@@ -10,8 +10,8 @@ The original corpus records exactly **729 runes** on physical p0–p2, permittin
 
 On p0:
 
-- The opening phrase has **13 runes**, in two words of **8 and 5**; original ink shows red8, then the 13-dot marker, then black5.
-- The sum and difference of those word lengths give **8+5=13** and **8−5=3**. The first agrees with the total opening-phrase length and 13-dot count, although the marker is physically between the words; the second is a direct source-visible cue for a **three-rune node**.
+- The opening phrase has **13 runes**, in two words of **8 and 5**; original ink shows two RED words of lengths 8 and 5, separated by a small ordinary red word dot; the large red 13-dot marker follows both words at offset13.
+- The sum and difference of those word lengths give **8+5=13** and **8−5=3**. The first agrees with the total opening-phrase length and 13-dot count, although the **small ordinary word dot** is physically between the words while the **large 13-dot mark** follows both; the second is a direct source-visible cue for a **three-rune node**.
 - The two words' GP-prime sums are **347** and **315**, totaling **662** with mean **331**.
 - Applying the p56/2013-motivated totient operation gives **φ(662)=330**, and **330 mod 29 = 11 = J**.
 - The heading's horizontal orientation and **φ(13)=12** select the candidate center at one-based **(row 13, column 12)**.
@@ -23,7 +23,7 @@ This uses the observed word-length difference to support node length 3; it does 
 
 ## First ciphertext block
 
-The seven-rune segment immediately after the first ordinary full stop has **7 runes**, selecting the candidate block length; it is not the first black material after the marker. The key node begins at position 334 and the candidate ciphertext path begins at position 348:
+The seven-rune segment immediately after the first ordinary full stop has **7 runes**, selecting the candidate block length; its occurrence is not the first black material after the large title marker. The key node begins at position 334 and the candidate ciphertext path begins at position 348:
 
 - The displacement is **14** from the node's first cell. The earlier interpretation was two marginal staves × the 7-rune line.
 - Equivalently, the displacement is **13** from the node center (position 335), equal to the 13-rune opening-phrase length, not the red-span length. This is a simpler candidate instruction: move 13 cells east from the center.
@@ -49,7 +49,7 @@ This yields a finite *source-only* locator for the **already published** opening
 
 ## Second-block consistency and a conditional source-only local recipe
 
-**Source-first reconstruction of the published second block:** the p0 opening phrase has two printed words of **8 and 5 runes**, with the second word black, so its second word supplies the candidate next reading length **5**. The 27×27 matrix has a unique geometric central cell, one-based (14,14) or flat index **364**, giving a conspicuous source-only candidate for the next starting cell and a left-to-right row-major path **364–368**. The first candidate ciphertext block ends at 354. Including its last rune and the next two source runes yields the exact native source node **354–356 = X–OE–X**. Transforming its central OE index22 by φ gives **X–I–X**; its three μ(φ(index)) signs are (+1,0,+1), giving left-rotation phase2 and the aligned key **X–X–I**. Applying this key to actual original runes **NG P EO O E** at the square center gives:
+**Source-first reconstruction of the published second block:** the p0 opening phrase has two printed words of **8 and 5 runes**, with the second word **also red**, so its second word supplies the candidate next reading length **5**. The 27×27 matrix has a unique geometric central cell, one-based (14,14) or flat index **364**, giving a conspicuous source-only candidate for the next starting cell and a left-to-right row-major path **364–368**. The first candidate ciphertext block ends at 354. Including its last rune and the next two source runes yields the exact native source node **354–356 = X–OE–X**. Transforming its central OE index22 by φ gives **X–I–X**; its three μ(φ(index)) signs are (+1,0,+1), giving left-rotation phase2 and the aligned key **X–X–I**. Applying this key to actual original runes **NG P EO O E** at the square center gives:
 
 **W EA TH E R** = **WEATHER**.
 
