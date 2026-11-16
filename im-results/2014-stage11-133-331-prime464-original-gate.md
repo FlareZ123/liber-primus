@@ -1,6 +1,6 @@
 # 2014 Stage11 133/331 HTML fields and 3301's 464th-prime rank
 
-**Agent6, 16 November 2026. Classification: original-source numerical observation with bounded negative first-cipher test. No original LP2 plaintext or key.** The coincidence was noticed after reviewing the recovered original page, so it is **not** a preregistered significance result or reason to multiply search parameters.
+**Agent6, 16 November 2026. Classification: original-source numerical observation with bounded original-cipher negative, including an exact whole-chapter F-branch impossibility. No original LP2 plaintext or key.** The coincidence was noticed after reviewing the recovered original page, so it is **not** a preregistered significance result or reason to multiply search parameters.
 
 ## Independently preserved participant-visible objects
 
@@ -36,6 +36,23 @@ A literal and affordable consumer of **one-based prime ranks** is the genuine so
 | 331 | add | `THJDEODDRFAESPOEI`, `THJDEODDRIRNGMYOE` |
 
 Every output is a fully determined 13-rune string, with longest multigraph transliteration spellings; none is coherent as a GP-native book heading. The fixed historical solved p56 positive cipher is independently checked by `sims/authentic_lp2_p56_totient_regression.cjs`. The negative result excludes **only** these direct prime-rank starts. It does not exclude a different original receiver of 133, 331 or 464, or a differently keyed code.
+
+## Exact original cuneiform F-branch infeasibility
+
+The short p0 heading test above is a language negative. A stronger independent cipher-level check uses the same **four frozen prime-start/sign choices** on the exact original p33–39 seven-page cuneiform text (1,680 GP29 runes), whose headings separately show 1033 and 3301. This is a plausible target for original Cicada-number clues, although no first-party source actually selects the solved-p56 consumer here.
+
+The authentic solved-p56 cipher permits plaintext **F** to emit ciphertext **F** without consuming a key prime. At each original ciphertext F, the decoder therefore retains both the legal bypass and the ordinary key-consuming branch when the latter yields non-F. At every other rune, a key-consuming branch yielding non-F is required. Keeping **all reachable key-consumption counts** under a continuous unchanged 1,680-rune input gives a decisive contradiction without a dictionary or any plaintext score:
+
+| One-based prime start | Cipher inverse | First impossible rune (one-based within p33–39) |
+| ---: | --- | ---: |
+| 133 | subtract totient | **33** |
+| 133 | add totient | **181** |
+| 331 | subtract totient | **55** |
+| 331 | add totient | **70** |
+
+Every branch of every one of the four exact models is empty before the end of physical p33. This excludes the literal Stage11 133/331 prime-rank starts under the known p56 prime-totient/F-clock cipher on the original cuneiform chapter. It does not exclude other, independently instructed uses of the HTML numbers.
+
+[Original-corpus CommonJS SFT](../sims/2014_stage11_133_331_prime464_cuneiform_sft.cjs) asserts the actual 133/331 HTML, 3301 as 464th prime, p33–39 length 1,680, the solved-p56 **85/85** positive regression and all four contradiction positions. Both original-input tests passed [native Node 22 GitHub Actions run 43832679203](https://github.com/FlareZ123/liber-primus/actions/runs/43832679203).
 
 ## Causal decision
 
