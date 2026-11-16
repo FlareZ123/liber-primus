@@ -67,6 +67,19 @@ const fields=[0x11b,0x11d,0x12b,0x12d,0x139,0x13f,0x14d,0x15f,
 assert.equal(fields.length,30);
 const min={left:Infinity,right:Infinity};
 for(const poly of fields){
+  // Any fixed affine or homogeneous linear parity among all eight cells
+  // forces rank([1, eight original row bytes]) < 9.
+  const fullRow=solve(r.map(row=>[1,...row]),Array(32).fill(0),poly);
+  assert.equal(fullRow.rank,9);
+  assert.equal(fullRow.incompatible,0);
+  // Positive: a secret seven-input parity row makes rank drop below nine.
+  const plantedRows=r.map(row=>{
+    const data=row.slice(0,7);
+    const check=data.reduce((t,v,j)=>t^mult(v,j+1,poly),0);
+    return [1,...data,check];
+  });
+  const fullPositive=solve(plantedRows,Array(32).fill(0),poly);
+  assert.equal(fullPositive.rank,8);
   for(const [name,y] of [["left",left],["right",right]]){
     const result=solve(X,y,poly);
     assert.equal(result.rank,7);
@@ -91,8 +104,10 @@ assert.equal(bitRight.incompatible,12);
 console.log(JSON.stringify({source_sha256:h,shape:"32x8",interior:"30x6",
   outer_columns:[0,7],original_interior_rows:30,fields:fields.length,
   candidate_affine_coefficients_per_column:7,
+  original_full_row_affine_rank:"9/9 in all 30 GF256 polynomial bases",
+  planted_full_row_affine_rank:"8/9 in all 30 GF256 polynomial bases",
   smallest_gf256_incompatible_rows:min,
   modulo256_low_bit_incompatible_rows:{left:bitLeft.incompatible,right:bitRight.incompatible},
   positive:"30/30 rows match planted GF256 affine parity in each of 30 bases",
-  verdict:"No fixed [8,6] raw-byte systematic linear row product-code parity."
+  verdict:"No fixed homogeneous/affine eight-column parity nor [8,6] systematic linear product-code over any tested raw-byte GF256 basis."
 },null,2));
