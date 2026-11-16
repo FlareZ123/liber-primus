@@ -19,3 +19,5 @@ jobs:
           node-version: '22'
       - name: Source-native dictionary, planted inverse, original p0/p40
         run: node sims/lp2_plaintext_word_pointer_primewalk_sft.cjs
+      - name: Stage11 HTML 133 and 331 prime-rank original cuneiform sieve
+        run: node sims/2014_stage11_133_331_prime464_cuneiform_sft.cjs
