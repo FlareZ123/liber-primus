@@ -8,7 +8,7 @@
 
 ### 1. p0 red-title → 2013 DH candidate (#1200; completed, no plaintext)
 
-The two original red title words on p0 have GP-prime sums 347 and 315; modulo the signed 2013 group modulus 23 these are 2 and 16. With the source generator 5, the discrete logs are 2 and 8 and the DH shared scalar is 3. This is a real, clue-motivated candidate, not a solved cipher. The existing p0 synthesis also records a competing K18 full-heading/body-assisted interpretation of the same heading; K3 and K18 are competing readings, not independent confirmations or cipher layers.
+The two original red title words on p0 have GP-prime sums 347 and 315; modulo the signed 2013 group modulus 23 these are 2 and 16. With the source generator 5, the discrete logs are 2 and 8 and the DH shared scalar is 3. This is a real, clue-motivated candidate, not a solved cipher. The existing p0 synthesis also records a competing K18 full-heading/body-assisted interpretation of the same heading; K3 and K18 are competing readings, not independent confirmations or cipher layers. The original-transcription SFT parses 2,896 words and finds 19 adjacent 8|5 pairs; p0 alone in that subset has residues (2,16), but eight of all 2,895 adjacent pairs share those residues, so this is only a finite specificity screen, not a p-value or intent proof.
 
 Two natural direct consumers fail:
 - Caesar shift 3 and Atbash-plus-shift-3 fail on the first original black word.
