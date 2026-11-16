@@ -37,13 +37,15 @@ The 64 frozen variants are the complete product of:
 | Additive direction | Add; subtract |
 | F handling | Spend a key position; transparent F bypass |
 
-For each candidate dictionary word, the forward transform is calculated from that candidate's own GP sum. The resulting ciphertext word is indexed in an exact inverse dictionary and compared with every original printed LP2 word. A source-native positive control confirms that each of the 64 forward encoders is recovered by its corresponding exact dictionary inverse.
+For each candidate dictionary word, the forward transform is calculated from that candidate's own GP sum. The resulting ciphertext word is indexed in an exact inverse dictionary and compared with every original printed LP2 word. A synthetic dictionary positive control (the word `abacus`) confirms that each of the 64 forward encoders is recovered by its corresponding exact dictionary inverse.
 
 ## Result
 
 **No six-rune-or-longer original word is a dictionary preimage under any of the 64 variants.** Across all variants, only three distinct original five-rune word positions match at all; their isolated dictionary candidates are `boned`, `canst`, and `unity`. No candidate extends into a coherent adjacent plaintext phrase.
 
 The best individual variant has 179 word positions with at least one dictionary match, but those matches are overwhelmingly one-, two-, and three-rune words. It has only one five-rune match and none of length six or greater. Such short-word matches are expected under a 29-symbol alphabet and are not evidence of decryption. The three five-rune hits across 64 related variants are likewise not plaintext recovery.
+
+The crude uniform-rune baseline expects 0.058 length-five-or-longer dictionary hits per variant. Three distinct five-rune positions across 64 correlated variants are consistent with chance, not enrichment. The matches are: p18 `OE.TH.F.C.H` → `boned`; p11 `P.W.D.R.J` → `canst`; p38 `M.AE.OE.Y.O` → `unity`.
 
 The exact tested family therefore fails the natural discriminating criterion: it does not recover even a single six-rune English word from the original ciphertext. This is not repaired by choosing a different one-based offset, sign, GP sum convention, prime-versus-totient value, or p56-style F clock among the frozen alternatives.
 
