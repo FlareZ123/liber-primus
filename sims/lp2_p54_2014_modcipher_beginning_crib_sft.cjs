@@ -6,7 +6,7 @@
  *   node sims/lp2_p54_2014_modcipher_beginning_crib_sft.cjs
  *
  * The 2014 decoder has IA/IO and NG/ING aliases. This tests the stored
- * constant-modulus-shift proposal for all three eight-rune candidate words.
+ * constant-modulus-shift proposal for three eight-rune candidate readings.
  * It does not decrypt p54 or test the separate p56 red-title key schedule.
  */
 const assert = require("node:assert/strict");
@@ -36,26 +36,14 @@ const nthPrime = ordinal => {
   }
   return candidate;
 };
-const aliases = new Map([["IO", "IA"], ["ING", "NG"]]);
-const tokenize = word => {
-  const options = [...corpus.translit, ...aliases.keys()].sort((a, b) => b.length - a.length);
-  const out = [];
-  let rest = word;
-  while (rest.length) {
-    const spelling = options.find(candidate => rest.startsWith(candidate));
-    if (!spelling) throw new Error("No GP29 token for suffix: " + rest);
-    out.push(aliases.get(spelling) || spelling);
-    rest = rest.slice(spelling.length);
-  }
-  return out;
-};
 const primeValues = symbols =>
   symbols.map(symbol => nthPrime(corpus.translit.indexOf(symbol) + 1));
 
 const p54Section = sections[53]; // physical p54; rune-free physical p50 omitted
-const firstLine = p54Section.split(/\r?\n/).map(numbers).find(line => line.length);
-assert(firstLine);
-const titleSymbols = firstLine.map(index => corpus.translit[index]);
+// The heading and first body line share a transcription line; the first period
+// is the printed heading terminator.
+const titleText = p54Section.split(/[.!?]/)[0];
+const titleSymbols = numbers(titleText).map(index => corpus.translit[index]);
 assert.deepEqual(titleSymbols, ["A", "M", "NG", "D", "IA", "TH", "X", "I", "M"]);
 const cipherWord = titleSymbols.slice(1);
 assert.equal(cipherWord.length, 8);
@@ -71,22 +59,25 @@ const originalWant = parseArray(wantMatch[1]);
 assert.deepEqual(originalOur, cipherPrimeValues);
 assert.deepEqual(originalWant, [89, 31, 11, 63, 13, 59, 107, 29]);
 
-const candidateWords = ["DIRECTION", "DECEPTION", "BEGINNING"];
-const candidates = Object.fromEntries(candidateWords.map(word => {
-  const symbols = tokenize(word);
-  return [word, {
-    symbols,
-    runeCount: symbols.length,
-    primeValues: primeValues(symbols)
-  }];
-}));
-assert.deepEqual(candidates.DIRECTION.symbols, ["D", "I", "R", "E", "C", "T", "IA", "N"]);
-assert.deepEqual(candidates.DECEPTION.symbols, ["D", "E", "C", "E", "P", "T", "IA", "N"]);
-assert.deepEqual(candidates.BEGINNING.symbols, ["B", "E", "G", "I", "N", "N", "I", "NG"]);
-for (const candidate of Object.values(candidates)) assert.equal(candidate.runeCount, 8);
-assert.deepEqual(candidates.DIRECTION.primeValues, [89, 31, 11, 67, 13, 59, 107, 29]);
-assert.deepEqual(candidates.DECEPTION.primeValues, [89, 67, 13, 67, 43, 59, 107, 29]);
-assert.deepEqual(candidates.BEGINNING.primeValues, [61, 67, 17, 31, 29, 29, 31, 79]);
+// Explicit canonical rune spellings. IA may be read IO; NG may be read ING.
+// For BEGINNING, keep the final I and NG as separate runes to obtain eight.
+const candidates = {
+  DIRECTION: ["D", "I", "R", "E", "C", "T", "IA", "N"],
+  DECEPTION: ["D", "E", "C", "E", "P", "T", "IA", "N"],
+  BEGINNING: ["B", "E", "G", "I", "N", "N", "I", "NG"],
+  BEGINNING_ING_ALIAS: ["B", "E", "G", "I", "N", "N", "NG"]
+};
+const candidateData = Object.fromEntries(Object.entries(candidates).map(([word, symbols]) => [
+  word,
+  { symbols, runeCount: symbols.length, primeValues: primeValues(symbols) }
+]));
+assert.equal(candidateData.DIRECTION.runeCount, 8);
+assert.equal(candidateData.DECEPTION.runeCount, 8);
+assert.equal(candidateData.BEGINNING.runeCount, 8);
+assert.equal(candidateData.BEGINNING_ING_ALIAS.runeCount, 7);
+assert.deepEqual(candidateData.DIRECTION.primeValues, [89, 31, 11, 67, 13, 59, 107, 29]);
+assert.deepEqual(candidateData.DECEPTION.primeValues, [89, 67, 13, 67, 43, 59, 107, 29]);
+assert.deepEqual(candidateData.BEGINNING.primeValues, [61, 67, 17, 31, 29, 29, 31, 79]);
 
 function commonDifferenceMatches(target, cipher, maxModulus = 330) {
   assert.equal(target.length, cipher.length);
@@ -104,24 +95,25 @@ function commonDifferenceMatches(target, cipher, maxModulus = 330) {
   nearest.sort((a, b) => a.distinct - b.distinct || a.spread - b.spread);
   return { matches, closest: nearest.slice(0, 8) };
 }
-const tests = Object.fromEntries(candidateWords.map(word => [
+const tests = Object.fromEntries(["DIRECTION", "DECEPTION", "BEGINNING"].map(word => [
   word,
-  commonDifferenceMatches(candidates[word].primeValues, cipherPrimeValues)
+  commonDifferenceMatches(candidateData[word].primeValues, cipherPrimeValues)
 ]));
-for (const word of candidateWords) assert.deepEqual(tests[word].matches, []);
-
+for (const word of ["DIRECTION", "DECEPTION", "BEGINNING"]) {
+  assert.deepEqual(tests[word].matches, []);
+}
 const storedDirectionDelta = originalWant.map((value, i) =>
-  value - candidates.DIRECTION.primeValues[i]
+  value - candidateData.DIRECTION.primeValues[i]
 );
 assert.deepEqual(storedDirectionDelta, [0, 0, 0, -4, 0, 0, 0, 0]);
 
 console.log(JSON.stringify({
-  original_p54_first_line: titleSymbols,
+  original_p54_title: titleSymbols,
   ciphertext_word: cipherWord,
   ciphertext_prime_values: cipherPrimeValues,
-  candidates,
+  candidates: candidateData,
   original_modcracker_arrays: { our: originalOur, want: originalWant },
   stored_direction_target_delta_from_canonical: storedDirectionDelta,
   corrected_constant_modulus_tests: tests,
-  decision: "All three candidate words fit eight GP29 runes under IA/IO and NG/ING aliases; none matches the historical constant-modulus-shift model for m=1..330. No plaintext recovered."
+  decision: "DIRECTION and DECEPTION fit eight via IO; BEGINNING has an eight-symbol I+NG spelling but an alternate seven-symbol ING spelling. None of the three eight-symbol readings matches the historical constant-modulus-shift model for m=1..330. No plaintext recovered."
 }, null, 2));
