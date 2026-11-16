@@ -109,7 +109,7 @@ function encode(data){
   const n=buf[i];
   for(let j=0;j<13;j++)buf[i+j]^=mul(n,poly[j]);
  }
- return buf;
+ return [...data,...buf.slice(12)];
 }
 /** @param {number[]} data */
 function syndrome(data){
