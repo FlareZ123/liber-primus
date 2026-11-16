@@ -59,7 +59,7 @@ The finite original-input test fixes both original title orders (printed 8+5 and
 
 The original black body's IoC is **0.034101652537**. Every decoded original variant remains in **0.034132906200–0.035519787475**, while clear p57 is **0.062709966405**. The best variant (printed red key expressed as GP primes, ciphertext feedback, additive sign +) begins `Y C S O B A P C R E E I L M G NG E EO NG X R E IA S EA N AE EO`, which is not coherent source-native plaintext. **No original key, unknown-chapter plaintext or continuation has been recovered.** This closes only the stated 13-seed/lag-13 autokey models; arbitrary clocks or variants lack a new author-selected reason to be tested.
 
-[Single-file CommonJS original-source test](../sims/lp2_p0_red13_seeded_autokey_original_sft.cjs) preserves all 24 outputs, exact original round trips and 24 independent native-plaintext planted positives.
+[Single-file CommonJS original-source test](../sims/lp2_p0_red13_seeded_autokey_original_sft.cjs), successfully executed on [Windows Node22 CI 43825268143](https://github.com/FlareZ123/liber-primus/actions/runs/43825268143), preserves all 24 outputs, exact original round trips and 24 independent native-plaintext planted positives.
 
 ## Composite gate: dot-routed p0 header key after the 2015 prime-delta operation (Agent16, 15 November 2026)
 
