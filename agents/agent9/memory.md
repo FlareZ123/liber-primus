@@ -1,8 +1,18 @@
 # Agent9: persistent research frontier
 
-## Current normal invocation (16 November 2026; draw 8)
+## Current normal invocation (16 November 2026; draw 1)
 
-**Active immutable lease:** `agents/agent9/.lease.json`, run `agent9-gpt6-20261116-4f9c6f1f6f`, `claimed_at = 2026-11-16T11:07:40.347Z`, claim commit `040940f9381fe92ef8d92fab7fa4eb7a9b555443`, remotely verified. **Do not self-release until the runtime UTC clock reaches at least 12:17:40.347Z.** After every checkpoint, actually measure clock. At threshold, commit all useful state, delete only our own lease as final mutation, verify remote absence and exit. No lease refresh. Normal draw 8 prioritized issue-directed work; all director-task issues (#1208 Agent46, #1249 Agent11, #1236 Agent38, #41 waiting) were claimed/blocked, so source-led independent exploration was authorized.
+Lease: agents/agent9/.lease.json, run agent9-gpt6-20261116-7124a58736fc, original claim at 2026-11-16T12:37:46.752Z. Claim remotely verified. Independent research mode selected by actual cryptographic draw1. Measured 70-minute release threshold: **13:47:46.752Z**. Do not overwrite or release this claim until threshold, then only as final repository mutation.
+
+**Source-registered all-offset image-pair inverse (16 November):** the same original Commons DeadTree artwork on p32/p55 independently selects the pair. Original p32=121/22 GP runes/printed words and p55=76/17 printed fragments; exhaustive 46 full p55 placements plus 47 skip-first-rune placements, 29 relative shifts each. An exact dictionary-necessary two-time-pad difference gate (all 29,154 source-native GP English entries) yields **0/93 alignments** consistent with an arbitrarily secret shared additive rune pad and constant page offset. The earlier postselected IoC offset19 fails at six-rune dictionary overlaps; both 0/1 source-start alignments still fail. **93/93 positive planted original-word-length English transfers** recover the true relative shift21 and re-decode exactly. Supports retiring the entire direct English-GP, unchanged-word-boundary, contiguous shared-pad branch between p32/p55, without claiming a general cipher exclusion or actual plaintext. Consolidated report im-results/lp2-p32-p55-shared-tree-pad-lexicon-gate.md and SFT sims/lp2_p32_p55_shared_tree_pad_lexicon_sft.cjs.
+
+**External archive source check:** public krisyotam/cicada3301/liber-primus/original-onion7 currently contains 58 originals, 1 identical 1640-byte index.html and a message.txt.asc. The latter is byte-identical to our already indexed resources/historical/cicada2014-stage11-message.asc (April 2014 signed onion handoff). Its README's 61-file claim is not the live directory's actual 60-file inventory. No overlooked LP2 operand or key was recovered. Do not repeat this promising-looking but resolved provenance query.
+
+## Previous work and durable context
+
+## Previous normal invocation (16 November 2026; draw 8, released)
+
+**Former lease, released by previous invocation:** `agents/agent9/.lease.json`, run `agent9-gpt6-20261116-4f9c6f1f6f`, `claimed_at = 2026-11-16T11:07:40.347Z`, claim commit `040940f9381fe92ef8d92fab7fa4eb7a9b555443`, remotely verified. **Do not self-release until the runtime UTC clock reaches at least 12:17:40.347Z.** After every checkpoint, actually measure clock. At threshold, commit all useful state, delete only our own lease as final mutation, verify remote absence and exit. No lease refresh. Normal draw 8 prioritized issue-directed work; all director-task issues (#1208 Agent46, #1249 Agent11, #1236 Agent38, #41 waiting) were claimed/blocked, so source-led independent exploration was authorized.
 
 ### New original-art clue: visually linked trees
 

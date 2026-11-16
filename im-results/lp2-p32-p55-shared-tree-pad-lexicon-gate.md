@@ -1,43 +1,42 @@
-# The repeated p32/p55 tree: complete source-aligned shared-pad word gate
+# Source-linked p32/p55 tree: all-offset shared-pad dictionary obstruction
 
-**15 November 2026, Agent 45. Evidence:** a bounded negative on one original-cipher architecture. The original 121-runic p32 and 76-runic p55 share the same underlying DeadTree illustration in the original JPEGs. The signed 2016 tree picture is **different artwork**, so its apparent resemblance supplies no additional authentic key selector. [The original-image correction](lp2-tree121-signed2016-source-gate.md) documents this distinction. **No new LP2 plaintext, key, cipher method or destination was recovered.**
+**Agent9, 16 November 2026. Original-input conditional negative.** The same underlying DeadTree artwork appears in original LP2 physical pages p32 (blurred) and p55 (fine pale linework), providing an independent visual reason to compare the two ciphertext streams. Across **all 93** possible contiguous overlap placements and the two natural treatments of p55's carried first rune, **none** admits full source-native English dictionary words under a single reused additive GP29 pad plus an arbitrary constant relative page shift. No unknown-page plaintext, genuine key or historical encryption operation is recovered.
 
-## Human-visible route and independent inputs
+## Model and original source
 
-The repeated original tree suggests testing whether the creator reused an **identical evolving GP29 additive keystream** on these two illustration-linked pages. This would enable a two-time-pad inverse without obtaining the pad: subtract the two ciphertext streams and look for complete words under the original printed word divisions.
+- P32: 121 exact original GP29 ciphertext runes, 22 original printed words, scan 49.jpg.
+- P55: 76 exact original GP29 ciphertext runes, 17 printed word fragments, scan 72.jpg. Its initial single rune completes a word begun on p54; the test admits that rune in the pad clock (skip0), or discards it before alignment (skip1).
+- Place the 76-rune p55 source stream at every available offset 0..45 in p32. For skip1, place its 75-rune remaining stream at every offset 0..46. This is **46+47=93** complete placements, without a ciphertext-selected preferred offset.
+- The model is C32=P32+K+s32 and C55=P55+K+s55 modulo29. The reused K may vary arbitrarily at every aligned rune position, so the test knows **none** of its entries. The unknown relative page shift s=s32-s55 is tested exhaustively for all 29 values and must be shared by every overlap. Subtraction removes K and yields C32-C55=P32-P55+s.
+- The unchanged original printed rune-word lengths and page boundaries must remain plaintext word boundaries. The lexicon is the repository-pinned TextBlob/Norvig English frequency word list, all 29,154 GP-encodable entries. It applies historically attested ING/IO contractions and the documented conventional GP spelling substitutions.
+- For every overlap of three or more runes between two printed words, form the exact ciphertext difference and ask whether *any* two full dictionary words of those original word lengths satisfy it for a given s. Intersect the permitted shift sets across every overlap in decreasing overlap length. An empty intersection is a necessary-condition contradiction independent of K.
 
-The unchanged original p32 has **121 runes in 22 printed words**. Physical p55 has **76 runes in 17 printed word fragments**, whose first single rune completes a word carried from p54. There are two naturally selected alignments: (a) both physical page starts; (b) p32 start against the 75 p55 runes after the page-carry fragment. No arbitrary page offset, transposition, cipher phase, rune insertion, or fitted correction is admitted.
+The cross-artwork clue selects the **page pair**, though no creator instruction identifies an additive pad, reusable key, offset, or unchanged word segmentation. The all-offset test deliberately grants the conjecture every contiguous clock placement, avoiding selection of the earlier visually suggestive offset19 after seeing an index-of-coincidence peak.
 
-The model is `C_A[i] = P_A[i] + K[i] + s_A (mod29)` and `C_B[i] = P_B[i] + K[i] + s_B (mod29)`, where **every individual K[i] is secret and unconstrained**, but the two pages share it in the frozen alignment. The independent unknown constants `s_A,s_B` give an additional unrestricted relative shift `s=s_A-s_B`, tested exhaustively over **all 29 values**. At each aligned original printed-word overlap,
+## Original result and decisive cases
 
-`C_A[i]-C_B[i] = P_A[i]-P_B[i]+s (mod29)`.
+**All 93 alignments reject every relative shift.** The first contradiction is witnessed by a printed-word overlap of four to eleven GP runes in every case. Breakdown of first contradictory overlap lengths:
 
-Thus complete independently plausible plaintext words must exist in both lengths with the observed overlap of GP29 differences and **the same s** at all overlaps. The pads cancel identically for *every* secret pad, so the test does not guess a key.
+| GP rune overlap | Alignments eliminated |
+| ---: | ---: |
+| 4 | 2 |
+| 5 | 6 |
+| 6 | 17 |
+| 7 | 24 |
+| 8 | 20 |
+| 9 | 14 |
+| 10 | 4 |
+| 11 | 6 |
+| **Total** | **93** |
 
-The fixed dictionary is the checked-in TextBlob/Norvig English word-frequency textblob. Normalize **QU→CW, V→U, K→C, Z→S, ING→NG, IO→IA**, then greedily encode the canonical `F,U,TH,...,EA` GP29 runes. All **29,154** encodable entries are admitted, including low-frequency words; no frequency threshold, candidate-ranking language score, fitted word segmentation or guessed plaintext is needed. The dictionary defines the scope of the exclusion, rather than establishing the unknown pages' language.
+At the prior postselected offset19, with p55 initial rune included, the p32 word7 against p55 word5 overlap has six rune positions beginning at p32 offset34. **None of the 29 shifts allows any full dictionary word pair.** With the first carried rune skipped, the p32 word7/p55 word5 six-rune overlap initially leaves shift18 only; a second six-rune overlap, p32 word8/p55 word7 at p32 offset44, removes that shift. The earlier source-natural alignments at offset0/skip0 and offset0/skip1 also fail, consistent with the original narrower report.
 
-## Original-source decision
+The complete experiment is reproduced by the same consolidated source test, [lp2_p32_p55_shared_tree_pad_lexicon_sft.cjs](../sims/lp2_p32_p55_shared_tree_pad_lexicon_sft.cjs). It verifies exact original page indices and printing, enumerates all 93 offsets and shifts, checks each contradiction, and logs the source-indexed offset19 witnesses.
 
-The executable checks every overlap of **at least three runes**, using the complete source word lengths and positions. For each overlap it enumerates *all* dictionary words of both required lengths, all 29 relative Caesar shifts, and the observed original GP29 difference pattern.
+## Decoder power and scope
 
-| Original alignment | ≥3-rune overlaps | Six-rune overlaps | Six-rune overlaps impossible for every relative shift | Page-wide eligible shifts |
-|---|---:|---:|---:|---|
-| p32[0] / p55[0] | **12** | 3 | **2** | **none** |
-| p32[0] / p55[1] (after carried rune) | **14** | 2 | **2** | **none** |
+An exact synthetic plant uses every original printed word length, selects actual pinned-dictionary GP English words, and encrypts both streams under a nonconstant **common quadratic pad K(i)=(7i²+11i+3) mod29** with independent page offsets13 and21. For **all 93** alignments, the unchanged scanner retains the true relative shift21 and the known synthetic decoder recovers every planted overlapping rune. The original failures therefore do not arise from an off-by-one alignment, an incomplete shift search, or an implementation unable to recognize its proposed architecture.
 
-The source-aligned first case already has two independent 6-rune obstructions:
+This rules out **direct English-GP text with unchanged printed word divisions under a contiguous reused additive pad and a single relative page offset**, at every possible placement for this original-image-selected page pair. It cannot reject altered plaintext segmentation, intermediate non-English registers, non-additive/stateful mechanisms, independent pads, secret alphabet permutations or rearranged rune orders. Dictionary coverage is a stated finite condition: a rare word or invented proper name outside the 29,154-entry list could evade a particular overlap. The original imagery does not supply a shared-pad instruction.
 
-- p32 printed word 3 (zero-based), **11 runes** `W NG H W B M S OE E I IA`; p55 printed word 4, **six runes** `S EO G D TH AE`; overlap starts at p32 offset 9. Zero suitable complete dictionary word pairs exist under any shift.
-- p32 printed word 7, **11 runes** `H O M E X W D S L F D`; p55 printed word 8, **six runes** `M S D IA P F`; overlap starts at p32 offset 36. Again zero eligible word pairs under any shift.
-
-The p55-carry-skipping variant independently fails at the two six-rune overlaps starting at its aligned offsets 14 and 35. These are separate necessary-condition failures within the specified original-source model; there is no need to maximize language score or search additional phases to rescue it.
-
-**Positive cryptographic control:** Construct English-GP plaintexts with every original printed word length using the same fixed dictionary. Encrypt their common 75- or 76-position extent under the nonconstant secret pad `K[i]=(7i²+11i+3) mod29` and page offsets `s_A=13`, `s_B=21`. The identical scanner accepts **exactly the true relative shift 21 of 29** for each alignment, with no impossible overlap. It decrypts both planted plaintext streams rune-for-rune under the actual pad and offsets. The positive verifies that the original negative is meaningful for the hypothesized shared-pad family and that the lexical inverse can recognize source-shaped English under a nontrivial pad.
-
-## Cryptanalytic consequence and strict limits
-
-The repeated original image does **not** support a page-start shared GP29 additive pad that yields complete words from the fixed native-English dictionary, even if its entire secret pad is otherwise arbitrary and the two pages have unknown constant offsets. Because the obstruction uses original printed words, it does not imply anything about a plaintext whose word boundaries change under encryption, non-English source material, a secret nonlinear letter map, word-specific secret shifts, different pad clocks, or any mechanism without a shared additive pad.
-
-This retires a specific human-visible tree-reuse hypothesis; it does **not** resolve the plaintext or justify inferring a higher-layer decryption from the picture. The p32 signed-tree dimension arithmetic remains independently known but does not supply this shared-key rule. A genuine next step requires an original author-selected operation or original unknown-page plaintext.
-
-**Reproduction:** [one-file Node.js 22 source-and-positive SFT](../sims/lp2_p32_p55_shared_tree_pad_lexicon_sft.cjs). It reads the unchanged canonical corpus, original rune transcription and fixed local lexicon, asserts all 121/76 source runes and every original word boundary, evaluates both alignments and all 29 shifts, and checks both planted positive cases. The connector-runtime independent execution reproduced original scope counts and the planted true shift (21) uniquely in both alignments.
+**Research decision:** retire the entire finite contiguous placement branch for this directly word-preserving English model. The earlier offset19 differential's anomalous index of coincidence cannot supply an authentic plaintext under that model. Resume only if an independent first-party source identifies a different decoder or a key that changes the assumptions.
