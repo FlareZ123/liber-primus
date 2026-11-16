@@ -28,7 +28,7 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **nonlinear 256-position p55 decoder (#1221):** no printed row/column state opcode or authenticated bridge selects its transition/emission.
 - **29→28 F-pair grammar (#1223):** 15 simple states are incompatible; 10 four-dot phase states do not supply an escape opcode.
 - **p27 apical-eight selector (#1227):** the subset is ambiguous and the Moulds 2005 plate is not an exact match.
-- **p32 five-instar/five-circumference route (#1237):** 121=11² and five peels leave W/19, while p6's 14×14 reflow leaves 16; the blind westward route yields only “LIKE THE AND THE MUST INSTAR” fragments, not a unique path or plaintext.
+- **p32 five-instar/five-circumference route (#1237):** 121=11² and five peels leave W/19, while p6's 14×14 reflow leaves 16 only by joining two marked chapter blocks, with four red heading runes in the center and no printed 14×14 grid ([source gate](../im-results/lp2-p6-five-ring-to-p15-source-gate.md)); the blind westward route yields only “LIKE THE AND THE MUST INSTAR” fragments, not a unique path or plaintext.
 - **Stage10 squares CGI (#1228):** no exact 965-byte executable or original POST/response pair recovered. The client-visible form remains a separate source question (#1244).
 - **DATA/560.13 receiver (#1229):** 76,639 original 2014 lines contain no LP2 receiver. The 2016 560.17/first-17-pages and 560.13/761.mp3 remarks are participant suggestions, not Cicada instructions.
 - **ZzNible/TheronEagle public repositories (#1233):** pinned commit audit found no new original-cipher plaintext/key; “missing scan67” is the p50 numeric-only field.
