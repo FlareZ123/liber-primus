@@ -80,6 +80,45 @@ for (const n of [76, 75]) {
   assert(multisetPossible(source, knownClear));
   assert(source.length - knownClear.length === 81 - n);
 }
+
+// Separate, genuinely executable original-cipher consumer: use the one
+// geometrically minimal five-cell cross (center + four cardinal neighbors) as
+// omitted positions. Use the other 76 p32 inset runes directly as the key
+// against the entire 76-rune original p55, both ordinary GP29 arithmetic signs.
+const omittedCenterCross = new Set(['5,5','4,5','6,5','5,4','5,6']);
+const directKey = [];
+for (let row = 1; row <= 9; row++) {
+  for (let col = 1; col <= 9; col++) {
+    if (!omittedCenterCross.has(row + ',' + col)) {
+      directKey.push(p32[11 * row + col]);
+    }
+  }
+}
+assert.equal(directKey.length, p55.length);
+const directResults = [];
+for (const sign of [-1, 1]) {
+  const plain = p55.map((c, i) => ((c + sign * directKey[i]) % 29 + 29) % 29);
+  const recipher = plain.map((v, i) =>
+    ((v - sign * directKey[i]) % 29 + 29) % 29);
+  assert.deepEqual(recipher, p55);
+  const plantedPlain = p57.slice(0, p55.length);
+  const plantedCipher = plantedPlain.map((v, i) =>
+    ((v - sign * directKey[i]) % 29 + 29) % 29);
+  assert.deepEqual(plantedCipher.map((c, i) =>
+    ((c + sign * directKey[i]) % 29 + 29) % 29), plantedPlain);
+  const forbiddenPlainF = plain.map((v, i) => v === 0 && p55[i] !== 0
+    ? i : -1).filter(i => i >= 0);
+  directResults.push({
+    sign, decodedEqualPairs: equalPairs(plain),
+    decodedIoC: equalPairs(plain) * 2 / (plain.length * (plain.length - 1)),
+    outputFirst20: plain.slice(0, 20).map(i => corpus.translit[i]).join(' '),
+    forcedNonciphertextFPositions: forbiddenPlainF,
+    fullOriginalReencryption: true, clearP57PlantedRecovery: true
+  });
+}
+assert.deepEqual(directResults.map(o => o.decodedEqualPairs), [107, 121]);
+assert.deepEqual(directResults.map(o => o.forcedNonciphertextFPositions),
+  [[2,36,48,56], [4,10,39,46,55]]);
 console.log(JSON.stringify({
   research: 'Original p32 inset versus p55 source-linked same-message model',
   source: 'resources/liber-primus/lp2-corpus.json',
@@ -95,5 +134,6 @@ console.log(JSON.stringify({
     abundantSymbols(p55WithoutCarriedRune, 5),
   matchingUnderAnyDeletionsPermutationAndRelabeling: false,
   historicalCipherOrPlaintextRecovered: false,
-  positives: '2/2 authentic p57-derived GP29 planted cases admitted'
+  positives: '2/2 authentic p57-derived GP29 planted cases admitted',
+  p55DirectCenterCrossInverse: directResults
 }, null, 2));
