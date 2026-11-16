@@ -8,6 +8,12 @@ The original 2400×3600 JPEGs `resources/liber-primus/66.jpg`, `67.jpg`, and `68
 
 The manuscript therefore supplies an adjudicated **printed token sequence** at these eleven positions. This does not choose between base 59 and base 60 as a numeric decoder; the separate source-level radix ambiguity still applies.
 
+## Newly recovered 2014 participant readings (interpretation, not an author instruction)
+
+An independent [2014 Stage11 participant archive](https://github.com/micheloosterhof/cicada-2014/tree/6c3421a4d245596e403c88e037509d162a2afd17/stage11) contains the complete 256 LP2 table tokens as `49.txt`, `50.txt`, `51.txt`, their 256 decimal readings, a literal byte-packing Perl script, and a 256-byte `sexagesimal.bin`. Thus a **base-60 reading was human-accessible and actually attempted in 2014**, rather than only arising from modern reconstruction. This strengthens the historical plausibility of byte interpretation, although it does not prove an author-specified radix or decipherment operation.
+
+An exact alignment with the original-correct grid reveals **10 token disagreements**, **9 decimal-byte disagreements**, **5 internal historical token/decimal inconsistencies**, spread across **12 distinct original cells**. Every one of the **eleven original glyph-dispute coordinates** examined below occurs among those twelve; cell 170 supplies a twelfth typographic error, with its original-correct value already present in the participant's decimal conversion. See [the precise 12-coordinate side-by-side comparison](lp2-2014-stage11-sexagesimal-byte-comparison.md). The old participant 256-byte stream is therefore **nine bytes wrong** relative to the source-adjudicated base-60 interpretation. It cannot serve as an unquestioned original key or independently refute the image-derived character adjudications.
+
 ## Exact original-image measurements
 
 Zero-based row-major table cell indexes run 0–255. The table has 10 rows in `66.jpg`, 13 in `67.jpg`, and 9 in `68.jpg`. “Alternative” is the conflicting third-party reading rendered as a two-character token using the *same base-60 alphabet* so that it can be compared directly with the image. For six contested cells the alternative is the [scream314-derived decimal column](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/data/scream314_lp.md), expressed as a base-60 token. For the other five it is the independently proposed transcription variant.
