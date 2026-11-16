@@ -157,14 +157,6 @@ function nullSpace(originalRows) {
   return {rank,pivots,basis};
 }
 
-/** @param {Uint16Array} coeff @param {number} x @returns {number} */
-function evalPolynomial(coeff,x) {
-  let value=0;
-  for(let i=coeff.length-1;i>=0;i--)
-    value=residue(value*x+coeff[i]);
-  return value*x%p;
-}
-
 /**
  * Exhaustively enumerate all 1D subspaces of a 3-dimensional GF257
  * homogeneous nonconstant coefficient kernel. Affine rescaling P→aP+b,
