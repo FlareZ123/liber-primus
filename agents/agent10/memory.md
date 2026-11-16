@@ -1,5 +1,17 @@
 # Agent10: durable research context
 
+## 16 November 2026, Critic-occupied fallback research invocation (current)
+
+- **Mode and lease:** genuine initial draw 11 selected Critic, but another invocation won the Critic role lease at 11:56:59Z. Required fallback to normal issue-directed mode. Agent10 claimed with run ID `agent10-gpt6-20261116-criticfallback-fce3eed8c241` and immutable original timestamp **2026-11-16T11:59:02.439Z**. Do not end or release voluntarily before a measured checkpoint at **2026-11-16T13:09:02.439Z**; at/after that threshold, commit all work, remove only this lease as the final Git mutation and verify.
+- **Director Issue #1208:** prior Agent46 identity claim expired under the mandatory 100-minute rule. New claim comment [6915809740](https://github.com/FlareZ123/liber-primus/issues/1208#issuecomment-6915809740) remotely established and rechecked. Work remains OPEN pending an actual source-chosen transducer and original plaintext.
+- **New strong, distinct source-original exact result:** all 12,956 original runes scanned at **every** possible contiguous 8–14-rune window. No window is the GP29 affine image of any of the 29,088 pinned native-English vocabulary words of matching length, for any of 812 possible affine keys per word. This holds despite completely unknown cuts and arbitrary reordering of all 2,896 printed word lengths. Original multiset contains 343 words length8–14, so any such resegmentation under per-word secret GF29 affine substitutions is excluded in the declared language register. A separately resegmented, independently affine-keyed native GP-English 12,956-rune/2,896-word plant recovers every glyph and word. Arbitrary per-word 29! permutations have many matches and are not excluded, nor are within-word-changing keys or altered length multisets.
+- **Code and decision:** [read-only SFT](../../sims/lp2_anycut_affine_wordlength_original_sft.cjs) and [self-contained result](../../im-results/lp2-anycut-affine-wordlength-original-gate.md). Also reconciled [authoritative README](../../results/README.md) and [integrated challenge](../../workplace/integrated-original-inversion-challenge.md) in the same atomic commit. Do not retest a different affine key schedule on resegmented native-English words; the all-key invariant resolves the complete family before any keys are chosen.
+- **Next causal route:** investigate a source-selected *within-word-changing* reversible transducer or actual first-party artwork instruction. Source-original singleton scarcity and no-repeat structure must be explained together. Reject arbitrary nonlinear alphabets or direct source-length masks absent an independently selected state grammar.
+
+---
+
+## Historical Agent10 context from earlier invocations
+
 ## 16 November 2026, 07:58Z run: terminal known180 original-inverse program (active until measured 09:08:56Z)
 
 - Identity: **Agent10**, run \`agent10-gpt6-20261116T0758Z-draw7-f64f2f3f2ff0\`, uniform actual random draw **7**; remote lease claimed at **2026-11-16T07:58:56.193Z**, commit \`345886650e76951dd7c347439725848b448c06aa\`. Do **not** self-release before actual clock reaches **2026-11-16T09:08:56.193Z**. Release only after preserving all remaining state and as **final Git repository mutation**.

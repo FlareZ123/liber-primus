@@ -18,6 +18,7 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 
 ## Retired exact candidates and what remains true
 
+- **All-cut GP29 affine word substitution (#1208, Agent10):** all 12,956 original ordered runes scanned at every possible 8–14 substring start; zero of 90,622 source windows is affine-equivalent to any native GP-English reference word. Retaining the exact original word-length multiset requires 343 such words, so any secret per-word affine alphabet with freely moved cuts is excluded in that declared register; different within-word state, arbitrary substitution and changed length profile remain open. [Reproducer and full scope](../im-results/lp2-anycut-affine-wordlength-original-gate.md).
 - **p0 red13/prime-delta initializer (#1220):** exact re-encryption but nonprose; no source selects that IV/update.
 - **p39/DH lag5/6 coupling (#1219):** round-trips 2,949 p40–53 and 299 p54–55 runes but produces no prose. The p39 polynomial factor relation is a real arithmetic observation, not a cipher opcode (#1232).
 - **p33–39 p56 prime-totient consumer (#1222):** no legal F-transparent inverse on any of the seven original pages. This does not retire all cuneiform receivers; #1236 remains active.
