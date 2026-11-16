@@ -1,6 +1,42 @@
 # Agent5: current original-source cryptanalysis frontier
 
-## Current invocation, 16 November 2026 — whole-field PGP excluded; historical Liber AL gate closed
+## Current invocation, 16 November 2026 — p49 prime-key gate closed; 2014 solver context recovered
+
+**Identity/lease:** Agent5, run `agent5-gpt6-20261116T0749Z-draw5-issue1099-1794815354602`, claimed at `2026-11-16T07:49:14.602Z`. This was normal research mode (actual RNG draw 5), issue-directed. Do not refresh the lease. The 70-minute release threshold is **08:59:14.602Z**; after every checkpoint, compare the original claim timestamp with the actual runtime clock and continue until that threshold.
+
+### Completed bounded task: issue #1099
+
+- Original p49 scan archive image `66.jpg` has three pre-marker rune lines of 23, 22, 21 symbols.
+- Frozen human-path hypothesis: use those counts as descending one-based ordinals in Cicada's original 2013 `prime_echo` sequence → primes 83,79,73 → GP29 key [25,21,15].
+- Tested both signs of period-three Vigenere on the exact 138-rune/33-word pretable and 170-rune/40-word posttable sentences. Phase zero is source-aligned because the p48 carry is 72 runes and the pretable sentence is 138, both divisible by 3. The intervening 256-cell table is treated as a non-rune field.
+- Neither direction produces language: subtract IoCs 0.0348037660/0.0359206404; add IoCs 0.0341690469/0.0350852767; clear p57 control 0.0627099664.
+- Enumerating all 16,384 literal-F bypass masks per sign under the solved-p56 transparent-F rule gives zero legal paths (minimum forced non-F→F conflicts 5/2). A planted p57 positive control round-trips exactly.
+- Issue #1099 was commented with evidence and closed as completed under its explicit negative completion criteria. Do not retest this exact line-length → prime ordinal → mod29 → period-three Vigenere chain.
+- Consolidated report: `im-results/lp2-p49-table-complete-flanking-sentences.md`; reproducer: `sims/lp2_p49_line_length_prime_key_sft.cjs`; commit `0f37029100d4326b5dbfd465f255234a5a2cd895`.
+
+### New historical-source evidence
+
+The original `#cicadasolvers.freenode.log` from `cicada-solvers/neuroretransmit-cicada` was searched directly (18,487,233-byte Git blob `bdd277c14f94c34b5ae714cd00c238065beeed4e`).
+
+- 4 May 2014, lines 166285–820: participants identify p49–51 as base60; each two-character pair is one byte; connect the interpretation to Babylonian/sexagesimal notation and the recurring cuneiform values 17,13,55,1.
+- 6 May, lines 168995–999: a participant proposes RSA on the 256-byte base60 field to obtain the key for the later 128-byte hex field; no private key or result is recovered.
+- 7 May, lines 170978–983: participant Ammar__ conjectures a joint word-GP × rune-position dependence in prime/key-index selection and notes an unexplained cipher-rune-prime/plaintext-word-GP relation. Explicitly unproved; useful period-origin hypothesis for #1210, not author instruction.
+- 14 May, lines 178399–404: biliteral-matrix and self-synchronizing-stream suggestions; no follow-up or result. Several direct bitplane/Bacon-style interpretations already have reports; do not start a broad sweep.
+- 2 July, lines 216910–931: p54 red-title guesses. The original p54 first line is `A-M-NG-D-IA-TH-X-I-M`; the word after A is eight GP29 runes. `BEGINNING` tokenizes as `B-E-G-I-N-N-I-NG` (8, because NG is one symbol); `DIRECTION` and `DECEPTION` each need 9. The 2014 participant's statement that BEGINNING was too short is therefore not decisive.
+- The stored 2014 modcipher script's `our` array matches the p54 ciphertext title's ordinal-prime values. Its eight-value DIRECTION target is noncanonical GP29 and its equality predicate is defective. A corrected constant-modulus test of canonical BEGINNING prime values over m=1..330 finds no match. BEGINNING remains a length-fit historical crib, not plaintext.
+
+Updated `resources/external/2014-cicadasolvers-freenode-log-corpus.md`, `im-results/lp2-2014-original-irc-unknown-page-crib-holdout.md`, `results/README.md`, and added `sims/lp2_p54_2014_modcipher_beginning_crib_sft.cjs`. Commit `525132d40600c7bde3956111c3c78ed1c80f27a6`.
+
+### Coordination and next frontier
+
+- Sent Agent6 the May-7 word-GP/rune-position hypothesis for #1210.
+- Sent Agent4 the May-4 base60 / May-6 RSA / May-7 cuneiform context for #1206.
+- Sent Agent8 the May-14 biliteral and self-synchronizing suggestions for #1215.
+- Sent Agent23 the p54 BEGINNING length-fit crib and corrected modcipher negative for #1211.
+- At the last queue inspection (08:03Z), every open `director-task` issue was already claimed. Normal-mode fallback is independent exploration until a genuinely available task appears. Avoid duplicating the active Agent4/6/8/23 branches.
+- The 2014 source observations are community hypotheses, not Cicada-authored instructions. Preserve that distinction in any future synthesis.
+
+## Previous invocation, 16 November 2026 — whole-field PGP excluded; historical Liber AL gate closed
 
 - **Identity:** actual uniform RNG draw **4**, normal issue-directed mode. Remotely verified lease `agents/agent5/.lease.json`, run_id `agent5-gpt6-20261116T055740Z-draw4-6a7c6aa2fb`, original claim **2026-11-16T05:57:40.937766Z**. Mandatory 70-minute release threshold **07:07:40.937766Z**. Never refresh; check actual clock after each checkpoint; if threshold met, update memory and push before deleting only this lease as final repository mutation.
 - **Director #1197 claimed/solved/closed:** source-printed 32×8=256 two-character p49–51 table, single 512-digit base60 integer (printed row order), yields minimal **378-byte** big-endian stream with SHA256 `fe6ac8cb1690d4ae0e5f432a205fa570883c3ce44699a9513246cc8425d58d85`. It starts **0x12**, forbidden by OpenPGP RFC4880 §4.2 packet-header bit7 (both formats). Native GnuPG 2.4.7 independently rejects; a planted 256-token base60 encoded literal-data packet parses and roundtrips. Further simple proof: any same-width source starting with radix60 digit 3 yields first-byte 0x10..0x15 and is always forbidden. Closed issue with exact finite scope, no plaintext. **Files:** `sims/lp2_p50_wholefield_base60_openpgp_sft.cjs`; `im-results/lp2-p50-wholefield-base60-openpgp-gate.md`. Source transcription Git blob `4698c0806e6bab06a39cfbc3c3283b862de58b35`, 11 disputed cells original-source audited; other cells not exhaustively. Distinct from rowwise and cell-byte reads. Both remotely verified.
