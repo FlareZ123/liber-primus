@@ -39,48 +39,7 @@ Original inputs are the full [canonical rune corpus](../resources/liber-primus/l
 | --- | ---: | ---: | ---: | --- |
 | Whole book | 1 | 748 | **891** | 7,9,17,23 |
 | Physical rune page | 55 | 747 | **885** | 1,2,10,23 |
-| Printed `# All-secret period-two and period-five 5×5 Bifid: original-LP2 exclusion
-
-**Evidence class (Agent10, 11 November 2026): exact key-independent original-cipher capacity exclusion.** A 5×5 Bifid cipher with **any 25! secret key square**, **any choice of four transparent runes among the 29 GP glyphs** (all 23,751 choices), and either a period-two clock reset at the whole book, each physical rune page, each printed section, or each canonical word, **or a period-five book-wide clock**, cannot directly encode any same-length GP-English window of the pinned Shakespeare text as the original 12,956 unsolved LP2 ciphertext runes. No unknown manuscript plaintext, authentic key, or actual encryption mechanism has been recovered.
-
-## Source clue and hypothesis
-
-The 2014 Cicada stages published a **5×5 magic square**. Classical Bifid is a recognizable coordinate-fractionation cipher using a secret 5×5 alphabet square. The additional **four** of GP's 29 runes might hypothetically pass through unchanged. No original author instruction establishes Bifid or selects which four runes are transparent. The mathematically strongest finite test therefore lets the unknown key choose all 25! square permutations and all four-symbol subsets, before considering plaintext.
-
-This model is distinct from the previously tested [28-/30-symbol rectangular coordinate shift](coordinate-fractionation-pair-capacity.md), [27-cube Trifid](trifid-27cube-allsecret-bound.md), and direct 5×5 numeric-square additive pads: standard Bifid concatenates row coordinates then column coordinates within each period-two block.
-
-## Universal upper-bound proof
-
-Let `S` be **any** one-to-one assignment of 25 GP glyphs to a keyed 5×5 square. Ignore the four transparent glyphs when advancing the core clock; reproduce each transparent glyph at its original position. For a full **period-two** ciphertext pair `(a,b)` with coordinates `S(a)=(ra,ca)`, `S(b)=(rb,cb)`, the standard Bifid inverse produces
-
-```text
-P0 = S^-1(ra,rb)
-P1 = S^-1(ca,cb)
-```
-
-Any target plaintext glyph `e` has one square row and one column. Each coordinate occurs on **exactly five** secret core glyphs. Each pair output can therefore equal `e` only if the original ciphertext pair belongs to *some 5×5 rectangle* of **25 ordered glyph pairs**.
-
-For one choice of the four bypass glyphs and a prescribed reset clock, remove the bypasses and count the original **29×29 ordered ciphertext-pair histogram** `F[a,b]`. Let `M25` be the sum of the **25 largest individual counts**, regardless of which rectangle they form. Every actual secret rectangle's count is at most `M25`. Each complete two-rune Bifid pair contributes **at most 2*M25** occurrences of any fixed core plaintext letter.
-
-A core stream can have one odd trailing glyph per reset segment; a period-one residual Bifid block reproduces that glyph unchanged. Let `maxTail` be the largest tally of trailing source glyphs with one common identity among all segments. Then, for **every** key square, core target `e`, and bypass set:
-
-```text
-number of plaintext e <= 2 * M25 + maxTail
-```
-
-For a **period-five** block, standard Bifid decryption associates each plaintext output position `i` with two of the five ciphertext symbols, using the coordinates at `D[i]` and `D[5+i]` of the ten interleaved ciphertext row/column coordinates. Each coordinate equality again restricts the relevant ciphertext glyph to **five** candidates. Partition the resulting ordered source-pair events into the **four** possible (row,row), (row,column), (column,row), (column,column) coordinate-type classes. The exact sum of each class histogram's 25 largest cells is an all-key upper bound on its contribution. A trailing partial block is handled at its **actual** remaining size and a size-one block contributes only its actual source identity. This is the same valid rectangle relaxation, applied to the ordinary length-five Bifid coordinate stream. No additional fitted alphabet or key is introduced.
-
-If `e` is one of the four bypass glyphs, its plaintext frequency equals its original ciphertext frequency, at most **492**. Taking the maximum of those two cases gives a universal 29-symbol plaintext bound. The proof requires no guess about the 25-square key arrangement or four bypass identities. The top-25 relaxation is deliberately generous and safe.
-
-## Exact exhaustive original results
-
-Original inputs are the full [canonical rune corpus](../resources/liber-primus/lp2-corpus.json), [printed transcript](../resources/lp2-transcription.txt), and [page-spanning word parser](../sims/lp2_word_pages.cjs). The book has **12,956** unknown runes in **55 rune-bearing physical pages**, **eight** source $$ sections with rune lengths `[729,1145,1738,1894,1021,1433,1680,3316]`, and **2,896** complete source words. In each row of the table, every one of the **23,751** four-symbol bypass sets was checked; **118,755 source/clock cases** are covered: 95,004 period-two configurations plus 23,751 period-five configurations.
-
-| Bifid period and reset | Segments | Min bound over 4-sets | Max bound over 4-sets | Maximizing transparent GP indices |
-| --- | ---: | ---: | ---: | --- |
-| Whole book | 1 | 748 | **891** | 7,9,17,23 |
-| Physical rune page | 55 | 747 | **885** | 1,2,10,23 |
-|  section | 8 | 745 | **889** | 11,15,21,27 |
+| Printed `#` section | 8 | 745 | **889** | 11,15,21,27 |
 | Canonical complete word | 2,896 | 746 | **865** | 8,14,18,25 |
 | **Period five: whole book** | 1 | 744 | **848** | 3,15,19,23 |
 | **Period seven: whole book** | 1 | 745 | **849** | 6,23,25,26 |
