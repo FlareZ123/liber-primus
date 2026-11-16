@@ -92,8 +92,39 @@ The shortest original-word counterexample is physical p22 rune offset35 (global 
 
 **Positive controls:** the SFT encrypts, decodes and signature-matches one independent native English word for every original eligible length-11–14 slot, **57/57 exact**, using nonzero independent five-phase shifts and five arbitrary first-block offsets. Hence the original failures reflect incompatibility with the proposed model and finite native lexicon rather than an invalid inverse. The resulting classification is: the *additive* independent-word five-back with arbitrary first-five ciphertext initialization is ruled out for ordinary native-English plaintext at intact original word breaks. The much broader **five independent arbitrary nonlinear alphabets per word**, source changes and altered segmentation are untouched; no unknown plaintext/key is recovered.
 
+
+## Word-specific affine multiplier and feedback: exact all-secret long-word obstruction (16 November, Agent13)
+
+Extend the independently word-keyed additive model above to the much broader GP29 recurrence with **an arbitrary nonzero scalar A**, **any feedback B∈GF(29)**, five independent phase shifts K[0..4] and five arbitrary initial ciphertext values, **fresh for each original printed word**:
+
+~~~text
+C[j] = A*P[j] + K[j mod 5] + B*C[j-5] (mod 29), j>=5
+~~~
+
+Every j>=10 necessarily obeys the *exact key- and IV-independent* identity
+
+~~~text
+C[j]-(B+1)*C[j-5]+B*C[j-10] = A*(P[j]-P[j-5]) (mod 29).
+~~~
+
+With a fixed B, normalize each GP29 residual vector by its first nonzero entry. This cancels **all 28 choices of the unknown A**; the zero-vector case is handled as its own signature. The original-cipher test exhausts **every B from 0 through 28** per word, compares against all same-length words in the exact frozen 29,157-entry source-native English lexicon, and keeps intact original printed word boundaries.
+
+| Original word length | Source words | Compatible for B=1, A arbitrary | Compatible for B arbitrary, A arbitrary |
+|---|---:|---:|---:|
+| 11 | 32 | 32 | 32 |
+| 12 | 18 | 18 | 18 |
+| 13 | 4 | **0** | 4 |
+| 14 | 3 | **0** | **0** |
+| **Total** | **57** | **50** | **54** |
+
+**Exact surviving contradiction:** all **three original complete 14-rune words**, at physical **p13:211**, **p25:46** and **p43:37**, have no compatible GP29-native English word under *any* B and nonzero A. The p13:211 original word is F-free, so the original solved-page plaintext-F-transparent rule cannot intervene inside that intact word. The two F-containing words also fail the stated fully consuming affine recurrence, although their outcomes need not persist under a different explicitly skipped-F clock.
+
+Allowing A but holding B=1 excludes **seven** original 13–14-rune words; allowing both unknown scalars leaves precisely the three long-word obstructions. The [independent Windows-compatible all-affine CommonJS SFT](../sims/lp2_wordlocal_fiveback_affine_ab_sft.cjs) also encrypts, decodes and proves the exact vector invariant on **228/228** native English positive plants: four different (A,B) models for each of the 57 original eligible word-length positions. Each original comparator and counterexample is printed from the untouched 2,896-word/12,956-rune corpus.
+
+This is a stronger **finite-English-lexicon exclusion** of the five-back *shared word-local affine A/B* feedback architecture, even with otherwise unrestricted independent word-specific keys and starting states. It supplies no recovered unknown ciphertext plaintext or historical key, and does not exclude unrelated languages, novel words, changed printed segmentation or five-phase *independently nonlinear* mappings.
+
 ## Research fork
 
-The chapter/page five-back feedback models both fail their original key-independent plaintext invariants, so they **cannot distinguish the manuscript's real reset scope**. The direct complete-word additive exclusion was established previously; the zero-IV five-back feedback extension now also fails on every length-10+ original word under the same native-English lexicon. The independently word-keyed **additive** arbitrary-IV model now also fails 14 original long words against the fixed native-English lexicon, including 10 F-free words. Word-specific nonlinear/permutation alphabets, other language registers, and changed segmentation remain open. The source-boundary clue remains available for a different, genuinely selected nonlinear/stateful cipher. Do **not** add undocumented collision repair, varying lag, secret per-symbol pads or alphabet remaps to salvage this model without independent original instructions. The test does not cover another language, compressed plaintext, further encryption layers or a different state update.
+The chapter/page five-back feedback models both fail their original key-independent plaintext invariants, so they **cannot distinguish the manuscript's real reset scope**. The direct complete-word additive exclusion was established previously; the zero-IV five-back feedback extension now also fails on every length-10+ original word under the same native-English lexicon. The independently word-keyed **additive** arbitrary-IV model now also fails 14 original long words against the fixed native-English lexicon, including 10 F-free words. The larger independent-word affine scalar/feedback family also fails all three original length14 words under the fixed native lexicon, including one ciphertext-F-free word; see the extension above. Word-specific nonlinear/permutation alphabets, other language registers, and changed segmentation remain open. The source-boundary clue remains available for a different, genuinely selected nonlinear/stateful cipher. Do **not** add undocumented collision repair, varying lag, secret per-symbol pads or alphabet remaps to salvage this model without independent original instructions. The test does not cover another language, compressed plaintext, further encryption layers or a different state update.
 
 The single-file test ran successfully on **Windows/Node.js 22** against the current canonical original corpus: [verified Actions run 43603927151](https://github.com/FlareZ123/liber-primus/actions/runs/43603927151), source commit [fac0ff8](https://github.com/FlareZ123/liber-primus/commit/fac0ff8bb801afb6e0867545557cbe53751fc093). It returns the complete pair counts, 16 independent control minimums and all positive inverse assertions. **No unknown original LP2 plaintext, creator key or destination was recovered.**
