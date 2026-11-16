@@ -16,7 +16,7 @@ const gp = JSON.parse(fs.readFileSync(path.join(root,
   'resources/liber-primus/lp2-corpus.json'), 'utf8'));
 const blocks = fs.readFileSync(path.join(root,
   'resources/transcriptions/lp1_wulfic_canonical.txt'), 'utf8')
-  .split(/\n%\n/);
+  .split(/\r?\n%\r?\n/);
 const index = new Map(gp.runes.map((rune, i) => [rune, i]));
 const mod = x => ((x % 29) + 29) % 29;
 
