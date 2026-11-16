@@ -44,7 +44,7 @@ A deterministic same-shape control selects GP-native dictionary words at *each o
 
 ## Reproduction
 
-The [manual Windows/Node22 check](https://github.com/FlareZ123/liber-primus/actions/runs/43879767046) passed the first English/Old English version; the latest Latin fixture extension is part of the same stable SFT. Run [the source-native CommonJS SFT](../sims/lp2_wordlocal_period5_delta_invariant_sft.cjs) with Node.js 22 from repository root:
+The [manual Windows/Node22 run 43880161354](https://github.com/FlareZ123/liber-primus/actions/runs/43880161354) passed the complete original-source, English, corrected Old English and Latin assertions, including the independent 815/815 positive. Run [the source-native CommonJS SFT](../sims/lp2_wordlocal_period5_delta_invariant_sft.cjs) with Node.js 22 from repository root:
 
 \`node sims/lp2_wordlocal_period5_delta_invariant_sft.cjs\`
 
