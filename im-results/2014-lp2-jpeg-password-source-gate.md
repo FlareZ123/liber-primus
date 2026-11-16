@@ -51,11 +51,23 @@ Bounded GitHub code-search results on the public archive repositories:
 
 The iBotPeaches repository-wide password search returned the MP3 extraction note and two software implementation/test files, not a 2014 message linking a password to Stage11 JPEGs. These searches cover preserved public repositories, not private participant mailboxes or lost onion/server storage.
 
+## One deterministic 2013 BASE29 output as a bounded seven-image passphrase candidate
+
+A participant-preserved 2013 Cicada TCP session log, [`clientlog-1362290293-9.txt`](https://github.com/neuroretransmit/cicada/blob/main/irc-logs/clientlog-1362290293-9.txt), records the exact command `BASE29 1033` and response **`01 OK 16I`**. This is reproducible arithmetic: with the server's base-29 digit alphabet `0123456789ABCDEFGHIJKLMNOPQRS`, `1033 = 1·29² + 6·29 + 18`, hence `16I`. The original LP2 cuneiform section p33–39 visibly repeats 1033/3301 and selects original scans **50.jpg–56.jpg**; the p0 red heading's source-derived half-difference is **16**. This gives a concrete, deterministic candidate passphrase rather than a guessed string.
+
+**Weakest premise:** the TCP log is a participant archive, not a signed Cicada instruction, and no surviving 2014 author message directs solvers to apply OpenPuff to the LP2 JPEGs or to reuse the `BASE29` output as an OpenPuff password. The historical OpenPuff v4.00 method and the seven-image cuneiform carrier group are independently documented, but the transfer remains a hypothesis.
+
+A single bounded test is therefore registered in the existing manual-only workflow `.github/workflows/openpuff-v400-lp2-cuneiform-topdown-source-probe.yml`, mode `seven-chain-base29`: **A=`16I`**, B/C disabled by the native driver, original JPEGs **50–56 in printed order**, JPEG **Medium 1/5**, with an independently authored public-JPEG positive control on the same Windows runner. A genuine extracted file must be independently identified and validated; a native corrupted-stream result with zero files rejects only this exact combination; a timeout is inconclusive. No additional passwords, carrier subsets, orders or bit levels are licensed by this candidate.
+
+The `16I` digits interpreted as GP29 indices `[1,6,18]` were also tested as a direct repeating additive key on the original p0–p2 black body (716 runes) and p33–p39 cuneiform section (1,589 runes), both signs. Both outputs remained near the uniform GP29 baseline and nonlinguistic. Thus this test does **not** recycle a failed direct-Vigenère interpretation; it tests only the historically real OpenPuff operation.
+
+The same 2013 session's `DH 3301` output `1067` is a session-specific exchange result, not a reproducible key supplied by the manuscript. A separate hypothesized `p=3301, g=133, A=16, B=331` DH construction yields shared secret `2906` and base-29 `3D6`; its direct repeating-additive GP29 use is also negative. Do not expand either DH interpretation into arbitrary key/seed searches.
+
 ## Research decision
 
 1. No **direct Cicada-authored LP2 steganography instruction** was recovered in the bounded 2014 public messages. The original LP2 seven-page cuneiform source group and authentic earlier OpenPuff password justify **one** source-cued ordered seven-carrier test without upgrading the reuse theory to an established fact.
 2. The original MP3 positive control **already passed** for `33011033`. The per-image original-JPEG probe is already dispatched separately by Agent8. After its outcome is understood, the two *distinct, source-fixed* candidate multi-image orders are 50.jpg–56.jpg (visibly marked pair) and 17.jpg–74.jpg (complete published source list), each with historical password and period-default JPEG Medium. Require genuine native completion and an independent multi-carrier positive before interpreting an empty result.
-3. Do not invent further passwords, arbitrary image subsets, bit-level menus or rune clocks on the basis of this clue. Never bypass protected manual GitHub Actions dispatch or treat a timeout as a negative.
+3. The one deterministic source-derived `16I` candidate above receives exactly one fixed seven-cuneiform-image test. Do not invent further passwords, arbitrary image subsets, bit-level menus or rune clocks on the basis of this clue. Never bypass protected manual GitHub Actions dispatch or treat a timeout as a negative.
 4. A genuine original extracted payload or creator instruction would promote the finding to a new key/plaintext investigation. A completed empty native probe rejects only its exact fixed input parameters; it does not prove LP2 contains no other image steganography.
 
 **Boundary:** this is a negative result for the identified surviving public archives. It does not prove that no private recipient archive, deleted message, unpreserved onion response or creator-side record ever existed. No LP2 plaintext, key, carrier payload or destination is recovered.
