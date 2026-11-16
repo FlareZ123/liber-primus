@@ -124,6 +124,25 @@ All **58/58** exact original images were attempted; **19/58** returned a formall
 
 This **retires the literal `GEM` OutGuess passphrase as a source-supported way to recover a recognized LP2 JPEG message** under the documented historical extractor. It cannot exclude hidden, separately encrypted binary data, a different steganographic format, or unrelated keys. There is no identified plaintext, verified hidden message, LP2 cryptographic key, or destination. The graph's GEM spelling was itself exploratory, so this test is a modest discriminating consumer, with no reason to expand into a spelling-variation password hunt.
 
+## Adjacent 66-rune instruction and 92-rune continuation: direct GEM-key inverse (16 November 2026, Agent1)
+
+The preceding source-derived `GEMY` pointer (original p48 offsets139–142, `Y` prime103) leads into the table's exact 103→111→119→127→128→119 graph. Its actual successive GP29 rune labels are **O,O,G,E,M,G,E,M,...**. The distinct original p10 7×G-prime selector begins on the cycle itself at cell119, yielding **G,E,M,G,E,M,...**. These source-visible paths give two narrowly defined *candidate key streams* for the nearest unopened textual instructions. The source **does not authenticate using the graph output as a cipher key**.
+
+A complete original-input inverse now applies the historically demonstrated modulo29 additive GP cipher to **all 66 original p49 runes immediately before the 10-dot/table break** and **all 92 original p51 runes immediately after the table**. Besides the exact 103 entrance stream, it grants all three possible GEM cycle phases, each under both key-arithmetic signs. Both pages start their own key cursor at zero, giving each a favorable independent reset. At every ciphertext F, the exact authenticated p56 rule retains every legal choice between genuine transparent plaintext F (no clock advance) and an encrypted non-F value (clock advance). The first source rune at which **no possible cursor survives** is:
+
+| Source key and initial state | p49 sign − | p49 sign + | p51 sign − | p51 sign + |
+| --- | ---: | ---: | ---: | ---: |
+| GEM cycle, starting G | **1** | **8** | **38** | **31** |
+| GEM cycle, starting E | **25** | **19** | **38** | **31** |
+| GEM cycle, starting M | **25** | **2** | **24** | **30** |
+| 103-source entrance O,O then GEM | **25** | **19** | **38** | **31** |
+
+Offsets are zero-based within each original physical page. Every entry is an **exact contradiction**, not a poor language-model fit. Accordingly **0 of 16** complete page-specific F-transparent decoder versions can emit genuine original plaintext for either text, even when every ambiguous F clock is retained. This excludes their use as direct historical skip-aware additive keys on these page-local source registers; other reset units or changing operations are outside the claim.
+
+Removing the F rule and applying direct ordinary additive GP29 for the same sixteen versions leaves all original full-page outputs random-like: empirical GP29 IoC ranges **0.031055901–0.041025641**, compared with **0.062709966** for separately solved and clear p57. The highest value occurs on 66-rune p49, GEM starting E, sign +; that small-sample maximum is a searched comparison and is not a decryption. Every no-skip inverse exactly reencrypts the original source by algebraic construction. Positive source-native tests separately encrypt all **95 genuinely clear p57 runes** with every one of the eight key/sign variants, respecting the authentic plaintext-F interruptions, and ensure that the same inverse retains each true final key clock.
+
+**Decision:** the source-selected `GEMY→103→OOGEM` navigation currently gives **no adjacent written instruction, GP29 key or table decoder** through direct historically attested Vigenère, under every tested starting GEM phase and sign. The graph's unusual cross-artifact path remains a provisional structural clue; do not extend period-three key/phase sweeps without a new independent operation or external key. [Original-source standalone CommonJS SFT](../sims/lp2_p48_gemy_p49_p51_strictf_source_sft.cjs) · [successful Windows Node22 execution](https://github.com/FlareZ123/liber-primus/actions/runs/43799096412).
+
 ## Decision and next work
 
 The q/r graph is a bounded navigation hypothesis, not a cipher inverse. Physical p10's independently printed 7–G marker now offers a concrete *additional start selector* to the exact GEM cycle, distinct from the 2016 prime-dimension route. But the author never explicitly instructs a player to multiply the decimal by the next rune's GP prime, decompose base60 bytes into GP29 quotient/remainder, or interpret the quotient as a keypad direction. The 2016 “numbers are direction” phrase motivates testing directionality without authenticating the keypad, orientation, centre/stay state, hollow-corner stop rule, or prime-ordinal starts. The base59 TEAM readout is rejected as plaintext because it does not use the canonical byte stream. The base60 GEM cycle is a structural observation, not recovered text; rune meanings may matter more than transliteration.
