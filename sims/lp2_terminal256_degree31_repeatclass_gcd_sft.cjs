@@ -214,4 +214,79 @@ for (const variant of variants) {
   }));
 }
 
-console.log('PASS: degree31 terminal polynomial excluded in original and table-rank orders for all field characteristics>=257 and all injective GP encodings; planted degree31 polynomial passes.');
+
+// A fully frozen candidate plaintext inverse: evaluate 180 authentic p56/57
+// GP-index values at the p50 table's stable 256-byte rank coordinates. The
+// unique GF257 degree<=179 interpolant predicts all 76 withheld p55 positions.
+// No original p55 ciphertext is consulted to fit or to choose the polynomial.
+
+/** @param {number} base @param {number} exponent @returns {number} */
+function power257(base, exponent) {
+  let result=1, b=mod257(base);
+  for(let e=exponent;e>0;e=Math.floor(e/2)){
+    if(e%2)result=mod257(result*b);
+    b=mod257(b*b);
+  }
+  return result;
+}
+
+/** @param {number[]} outputs @returns {(x:number)=>number} */
+function rankInterpolator(outputs) {
+  const xKnown=tableRank.slice(76);
+  assert.equal(outputs.length,xKnown.length);
+  const inverse=Array.from({length:257},(_,v)=>v===0?0:power257(v,255));
+  const weights=xKnown.map((x,i)=>{
+    let product=1;
+    for(let j=0;j<xKnown.length;j++)if(i!==j)
+      product=mod257(product*(x-xKnown[j]));
+    assert.notEqual(product,0);
+    return inverse[product];
+  });
+  /** @param {number} x @returns {number} */
+  const evaluate=x=>{
+    const existing=xKnown.indexOf(x);
+    if(existing!==-1)return outputs[existing];
+    let product=1,sum=0;
+    for(let i=0;i<xKnown.length;i++){
+      const dx=mod257(x-xKnown[i]);
+      assert.notEqual(dx,0);
+      product=mod257(product*dx);
+      sum=mod257(sum+outputs[i]*weights[i]*inverse[dx]);
+    }
+    return mod257(product*sum);
+  };
+  const leading=outputs.reduce((v,w,i)=>mod257(v+w*weights[i]),0);
+  return {evaluate,leading};
+}
+
+const sourceRankInterpolation=rankInterpolator(plaintext);
+assert.equal(sourceRankInterpolation.leading,114);
+for(let j=0;j<180;j++)
+  assert.equal(sourceRankInterpolation.evaluate(tableRank[76+j]),plaintext[j]);
+const predictedUnknown=tableRank.slice(0,76)
+  .map(x=>sourceRankInterpolation.evaluate(x));
+assert.deepEqual(predictedUnknown.slice(0,12),
+  [65,180,114,233,254,206,176,203,13,24,95,184]);
+const predictionsInGP29=predictedUnknown.filter(v=>v<29).length;
+assert.equal(predictionsInGP29,12);
+assert.equal(76-predictionsInGP29,64);
+
+// Positive control: a true GF257 degree31 polynomial in the same exact rank
+// coordinates must recover every withheld value from only 180 known ones.
+const roots=tableRank.slice(76).filter((_,j)=>plaintext[j]===18);
+const plantValues=plantedDegree31(tableRank.slice(76),plaintext);
+const positive=rankInterpolator(plantValues);
+for(let i=0;i<76;i++){
+  const x=tableRank[i];
+  const expected=mod257(18+7*roots.reduce(
+    (value,rootX)=>mod257(value*(x-rootX)),1));
+  assert.equal(positive.evaluate(x),expected);
+}
+
+console.log(JSON.stringify({
+  source:'stable ascending p50 256-byte rank as terminal GF257 abscissae',
+  known:180,withheld:76,degree179Leading:sourceRankInterpolation.leading,
+  validGp29Predictions:predictionsInGP29,outOfGp29Predictions:64,
+  first12:predictedUnknown.slice(0,12),plantedRecovery:76
+}));
+console.log('PASS: degree31 all-prime repeat-class obstruction and source-rank GF257 prediction with 76/76 planted recovery.');
