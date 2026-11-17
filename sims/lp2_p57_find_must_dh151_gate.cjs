@@ -299,6 +299,83 @@ const knownClearP57EncodingControls = p57EncodingOrders.map(({ name, cells }) =>
   };
 });
 
+
+function concatenateRingModulo(cells, alphabet) {
+  let value = 0;
+  for (const cell of cells) {
+    const token = grid.rows[Math.floor(cell / 8)][cell % 8];
+    for (const digit of token) value = (value * alphabet.length + alphabet.indexOf(digit)) % 150;
+  }
+  return value;
+}
+
+function gcd(a, b) {
+  while (b) [a, b] = [b, a % b];
+  return a;
+}
+
+const innerSecretClockwise = concatenateRingModulo(rotateRing(ring(2), 149, 1), BASE59);
+const innerSecretCounterclockwise = concatenateRingModulo(rotateRing(ring(2), 149, -1), BASE59);
+const innerSecretBase60 = concatenateRingModulo(rotateRing(ring(2), 149, 1), BASE60);
+const ourWord = p57Words.find((w) => w.word === 'OUR');
+const groupPublic = powMod(g, innerSecretClockwise, p);
+const groupPublicRuneIndex = corpus.prime.indexOf(groupPublic);
+const groupLog = Array(p).fill(null);
+for (let exponent = 0; exponent < p - 1; exponent++) {
+  groupLog[powMod(g, exponent, p)] = exponent;
+}
+
+const singleExponentDhTests = [];
+for (const [direction, outer] of [
+  ['clockwise', outerClockwise],
+  ['counterclockwise', outerCounterclockwise]
+]) {
+  const outerResidues = outer.map((v) => v % p);
+  const streams = [
+    {
+      name: 'outer ring as DH public shares: outer^21 mod 151, then mod 29',
+      key: outerResidues.map((v) => powMod(v, innerSecretClockwise, p) % 29),
+      invalidPublicSharePositions: outerResidues.map((v, i) => v === 0 ? i : null).filter((x) => x !== null)
+    },
+    {
+      name: 'outer ring as exponents: 35^(21*outer) mod 151, then mod 29',
+      key: outerResidues.map((v) =>
+        powMod(g, mod(innerSecretClockwise * v, p - 1), p) % 29
+      )
+    },
+    {
+      name: 'p55 GP-prime values as DH public shares: prime^21 mod 151, then mod 29',
+      key: p55.map((c) => powMod(corpus.prime[c], innerSecretClockwise, p) % 29),
+      symbolMapDistinct: new Set(corpus.prime.map((q, c) =>
+        mod(c - (powMod(q, innerSecretClockwise, p) % 29), 29)
+      )).size
+    },
+    {
+      name: 'p55 GP-prime values as public shares: shared exponent 21*log_g(q) mod 150, then mod 29',
+      key: p55.map((c) =>
+        mod(innerSecretClockwise * groupLog[corpus.prime[c]], p - 1) % 29
+      ),
+      symbolMapDistinct: new Set(corpus.prime.map((q, c) =>
+        mod(c - (mod(innerSecretClockwise * groupLog[q], p - 1) % 29), 29)
+      )).size
+    }
+  ];
+  for (const stream of streams) {
+    for (const sign of [-1, 1]) {
+      const plaintext = p55.map((c, i) => mod(c + sign * stream.key[i], 29));
+      singleExponentDhTests.push({
+        direction,
+        stream: stream.name,
+        sign: sign === -1 ? 'ciphertext - key' : 'ciphertext + key',
+        invalidPublicSharePositions: stream.invalidPublicSharePositions || [],
+        symbolMapDistinct: stream.symbolMapDistinct ?? null,
+        ioc: indexOfCoincidence(plaintext),
+        output: plaintext.map((i) => corpus.translit[i]).join('')
+      });
+    }
+  }
+}
+
 const result = {
   sourceFiles: [
     'resources/liber-primus/base60-grid.json',
@@ -334,7 +411,21 @@ const result = {
     rawInnerRingOutputLength: rawInnerBase29Length,
     phiInnerRingOutputLength: base29PhiLength
   },
-  randomization,\n  knownClearP57EncodingControls,\n  directDhTests: dhTests
+  randomization,\n  knownClearP57EncodingControls,
+  innerRingSecretExponent: {
+    base59Clockwise: innerSecretClockwise,
+    base59Counterclockwise: innerSecretCounterclockwise,
+    base60Clockwise: innerSecretBase60,
+    p57OURWordSum: ourWord?.sum ?? null,
+    matchesOUR: innerSecretClockwise === ourWord?.sum &&
+      innerSecretCounterclockwise === ourWord?.sum,
+    groupPublic: groupPublic,
+    groupPublicPrimeIndex: groupPublicRuneIndex,
+    groupPublicRune: groupPublicRuneIndex >= 0 ? corpus.translit[groupPublicRuneIndex] : null,
+    publicKeyOrder: (p - 1) / gcd(p - 1, innerSecretClockwise)
+  },
+  singleExponentDhTests,
+  directDhTests: dhTests
 };
 
 console.log(JSON.stringify(result, null, 2));
