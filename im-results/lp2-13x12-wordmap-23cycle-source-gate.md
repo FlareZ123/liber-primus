@@ -94,12 +94,12 @@ The F-transparent inverse retains every legal state: plaintext F must emit ciphe
 
 | Author-derived cycle starting point | GP inverse sign | Earliest F-rule contradiction at zero-based p55 rune | Full legal inverse paths | Direct no-bypass GP IoC |
 | --- | --- | ---: | ---: | ---: |
-| First red heading, 23-cycle entry | Subtract | none | **2** | 0.03438596 |
+| First red heading, 23-cycle entry | Subtract | none | 1 | 0.03438596 |
 | First red heading, 23-cycle entry | Add | **6** | 0 | 0.04035088 |
 | Second red heading, cycle step7 | Subtract | **1** | 0 | 0.03298246 |
 | Second red heading, cycle step7 | Add | **6** | 0 | 0.03087719 |
 
-The first-heading/subtraction case has **two legal F-branch plaintexts**, each consuming **74** cyclic key symbols. Its 76-rune recovered GP-index stream has IoC **0.03543860**, near the uniform-ciphertext baseline, and reads in unpunctuated native GP transliteration:
+The sole fully legal candidate (first-heading, subtraction) consumes **74** of the cyclic key symbols. Its 76-rune recovered GP-index stream has IoC **0.03543860**, near the uniform-ciphertext baseline, and reads in unpunctuated native GP transliteration:
 
 ```text
 RUXOEREOCEINPXJPPFOELHEBPGHJCNOETIAOEBEASNGLWYJOENFHNGEAJXNJDCEJOOOEGGOIGYMBUMDGJTXDGEOUW
@@ -120,11 +120,11 @@ The only address convention controls are **zero-based remainder** `S mod121` and
 | Zero-based | second heading | subtract | 65 | 0 |
 | Zero-based | second heading | add | 0 | 0 |
 | One-based | first heading | subtract | 56 | 0 |
-| One-based | first heading | add | none | **3** |
+| One-based | first heading | add | none | **1** |
 | One-based | second heading | subtract | 10 | 0 |
 | One-based | second heading | add | 24 | 0 |
 
-The **three** surviving one-based/first-heading/add F-branch inverses are legal and all exactly reencrypt to the unmodified original, but all are incoherent GP transliterations. One representative branch reads:
+The one surviving **one-based/first-heading/add** inverse is entirely legal and reencrypts to the unmodified original, but reads as incoherent GP transliteration:
 
 ```text
 OEAIAIAPJECCBJWAEPNJITHLNGMXEAEATHFOEIAAEYGRDDMPNGYWNAEFAJEADMPINGEDLTHTNUXUOLYSRBGPGDNGEOERAEGT
@@ -132,7 +132,7 @@ OEAIAIAPJECCBJWAEPNJITHLNGMXEAEATHFOEIAAEYGRDDMPNGYWNAEFAJEADMPINGEDLTHTNUXUOLYS
 
 Its legality is an expected property of a possible wrong additive key, not confirmation of the rule.
 
-**Decision:** Both direct source-cycle candidates and the additional p32-addressed source-cycle key fail to recover p55 plaintext. Across **twelve** complete source-fixed inverse/sign/address cases, **two model variants** permit an original F-bypass inverse, yielding **five distinct full plaintext candidates** (two direct, three grid-indexed). All five are nonprose. This retires the specific 23-period direct key and zero/one-based p32 lookup consumers, while preserving the original 23-cycle observation as a provisional possible key source. Further arbitrary rotations and compound transforms need a fresh author-authenticated clue. [Node22 original-input SFT](../sims/lp2_wordmap23_cycle_p55_native_inverse_sft.cjs) · [Windows original-source workflow](https://github.com/FlareZ123/liber-primus/actions/runs/44086567597) (previous 4-case revision queued) · [later 12-case workflow](https://github.com/FlareZ123/liber-primus/actions/workflows/agent22-prime-even-rune-original-manual.yml) (manual dispatch queued; verify final result before treating as CI-passed).
+**Decision:** Both direct source-cycle candidates and the additional p32-addressed source-cycle key fail to recover p55 plaintext. Across **twelve** complete source-fixed inverse/sign/address cases, **two** are fully syntactically legal under the authenticated F rule, and neither is readable GP prose. This retires the specific 23-period direct key and zero/one-based p32 lookup consumers, while preserving the original 23-cycle observation as a provisional possible key source. Further arbitrary rotations and compound transforms need a fresh author-authenticated clue. [Node22 original-input SFT](../sims/lp2_wordmap23_cycle_p55_native_inverse_sft.cjs) · [Windows original-source workflow](https://github.com/FlareZ123/liber-primus/actions/runs/44086567597) (previous 4-case revision queued) · [later 12-case workflow](https://github.com/FlareZ123/liber-primus/actions/workflows/agent22-prime-even-rune-original-manual.yml) (manual dispatch queued; verify final result before treating as CI-passed).
 
 ## Literal p57 PARABLE "within" receiver on the 23 original cycle words (Agent45, 17 November)
 
