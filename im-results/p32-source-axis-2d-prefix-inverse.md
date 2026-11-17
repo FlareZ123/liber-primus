@@ -4,12 +4,12 @@
 
 ## Human solve-path hypothesis
 
-The signed January 2016 tree image reuses the tree illustration on original LP2 physical p32 (JPEG 49.jpg) and measures 563×569 pixels. In the original p32 11×11 row-major rune square, GP-prime weights sum to 563 across the top row and 569 down the left column. These are unique among the eleven row and column sums:
+The signed January 2016 message includes a **different source tree image** from the blurred tree printed on LP2 physical p32 (JPEG 49.jpg); a later original-image lineage correction explicitly retracts the earlier image-identity claim ([source adjudication](lp2-tree121-signed2016-source-gate.md)). The signed image measures 563×569 pixels. Under an **inferred, not visibly printed**, 11×11 row-major square of p32's 121 runes, GP-prime weights sum to 563 across the top row and 569 down the left column. These are unique among the eleven row and column sums:
 
 - Row sums: `[563, 617, 287, 540, 743, 513, 577, 579, 603, 537, 486]`
 - Column sums: `[569, 429, 641, 669, 518, 611, 463, 690, 378, 578, 499]`
 
-A solver could therefore identify the first row and first column as the two axes of the map. Treating their 21 distinct runes as boundary/initial conditions leaves a 10×10 interior of 100 runes. A simple cumulative-sum encoding on a 2D map is a plausible operation to test once; the source does **not** explicitly say prefix sum, cumulative sum, integration, or finite difference. The test is motivated by the image-selected axes, not by an exploratory language-score sweep.
+If the inferred 11×11 shape and numerical link were intended, these two source-visible numbers could suggest its first row and first column as axes; their identity alone does **not** authenticate that link. Treating their 21 distinct runes as boundary/initial conditions leaves a 10×10 interior of 100 runes. A simple cumulative-sum encoding on a 2D map is a plausible operation to test once; the source does **not** explicitly say prefix sum, cumulative sum, integration, or finite difference. The test is motivated by the image-selected axes, not by an exploratory language-score sweep.
 
 ## Frozen inverse family
 
