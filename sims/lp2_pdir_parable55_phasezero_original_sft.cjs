@@ -259,6 +259,37 @@ assert(expectedIoc > 1.40);
 assert(plantedRecovery >= 1.40, 'known GP-native English plant must survive beam search');
 assert(wrongKeyRecovery < plantedRecovery, 'negative key control must be weaker');
 
+
+/**
+ * Independent source-native anti-repeat calibration. Encipher the same
+ * 300 verified GP English runes under the true pointer-key skip rule.
+ * Unlike the all-direct plant, this actually forces ciphertext collisions.
+ */
+const forcedCollisionPlant = [];
+let collisionPointer = 1100, previousCipher = -1;
+let collisionSkips = 0, doubleSkips = 0, maxSkipCollision = 0;
+for (let i = 0; i < plantedPlain.length; i++) {
+  const delta = sourceDirections[i], plain = plantedPlain[i];
+  let tries = 0, emitted = -1;
+  while (tries <= 2) {
+    emitted = mod(plain + literal[modKey(collisionPointer, literal.length)]);
+    if (emitted !== previousCipher) break;
+    if (tries === 2) throw new Error('source pad repeated over three forced skip positions');
+    tries++;
+    collisionPointer += delta;
+  }
+  forcedCollisionPlant.push(emitted);
+  previousCipher = emitted;
+  collisionPointer += delta;
+  collisionSkips += tries;
+  if (tries === 2) doubleSkips++;
+  maxSkipCollision = Math.max(maxSkipCollision, tries);
+}
+assert(collisionSkips >= 4, 'source pad + native English must force multiple skip events');
+const collisionRecoveredIoc = score(literal, sourceDirections, '000', 0, 1, 0, forcedCollisionPlant);
+assert(collisionRecoveredIoc >= 1.40,
+  'real source-pad collision-skipping English positive must survive beam8 first300 screen');
+
 const best = [];
 let max = 0, above135 = 0, above140 = 0, evaluated = 0;
 for (let r = 0; r < rules.length; r++) {
@@ -300,6 +331,7 @@ console.log(JSON.stringify({
     k_clock: 'forward/backward by printed word'
   },
   evaluated, max_ioc: max, above135, above140, top: best,
-  source_native_plant: { expectedIoc, plantedRecovery, wrongKeyRecovery },
+  source_native_plant: { expectedIoc, plantedRecovery, wrongKeyRecovery,
+    collisionSkips, doubleSkips, maxSkipCollision, collisionRecoveredIoc },
   conclusion: 'No original p0 prefix hit in this fixed p57 55-rune cyclic-key and word-direction family'
 }, null, 2));
