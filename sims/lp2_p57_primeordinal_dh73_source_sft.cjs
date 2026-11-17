@@ -128,6 +128,34 @@ function convert(alphabet) {
 }
 const bytes59 = convert(BASE59);
 const bytes60 = convert(BASE60);
+// Calibrate the missing-f radix premise: 256 trailing digits sample
+// 60 possible characters. Under a simple iid base60 suffix null,
+// exactly ONE missing among 60 is common (~37.7%), so the observed
+// alphabet's missing f does NOT independently authenticate base59.
+const trailingChars = printed.map((token) => token[1]);
+const seenSuffixes = new Set(trailingChars);
+assert.equal(trailingChars.length, 256);
+assert.equal(seenSuffixes.size, 59);
+assert.equal(seenSuffixes.has('f'), false);
+const baseAlphabetSize = grid.alphabet.length;
+assert.equal(baseAlphabetSize, 60);
+let occupancyDistribution = Array(baseAlphabetSize + 1).fill(0);
+occupancyDistribution[0] = 1;
+for (let draw = 0; draw < trailingChars.length; draw++) {
+  const next = Array(baseAlphabetSize + 1).fill(0);
+  for (let used = 0; used <= baseAlphabetSize; used++) {
+    next[used] += occupancyDistribution[used] * used / baseAlphabetSize;
+    if (used < baseAlphabetSize) {
+      next[used + 1] += occupancyDistribution[used] *
+        (baseAlphabetSize - used) / baseAlphabetSize;
+    }
+  }
+  occupancyDistribution = next;
+}
+const chanceOneMissing = occupancyDistribution[baseAlphabetSize - 1];
+const chanceAnyMissing = 1 - occupancyDistribution[baseAlphabetSize];
+assert(Math.abs(chanceOneMissing - 0.37676962677387843) < 1e-12);
+assert(Math.abs(chanceAnyMissing - 0.5693069430153482) < 1e-12);
 const titleToken = printed[titlePrimeOrdinal];
 const titleValue59 = bytes59[titlePrimeOrdinal];
 const titleValue60 = bytes60[titlePrimeOrdinal];
@@ -301,6 +329,17 @@ console.log(JSON.stringify({
     rankMinusOneAlternativeMissingCorner: bytes59[168]
   },
   conditionalExactSlotProbability: conditionalProbability,
+  base59RadixPremiseNull: {
+    sourceAlphabetSize: baseAlphabetSize,
+    sourceTrailingDigitCount: trailingChars.length,
+    observedDistinctTrailingDigits: seenSuffixes.size,
+    omittedSourceDigit: 'f',
+    conditionalSpecifiedFMissingProbability:
+      ((baseAlphabetSize - 1) / baseAlphabetSize) ** trailingChars.length,
+    chanceExactlyOneUnspecifiedMissingDigit: chanceOneMissing,
+    chanceAnyUnspecifiedMissingDigit: chanceAnyMissing,
+    conclusion: 'One unspecified absent trailing character is common under the declared base60 alphabet; missing f alone does not select base59.'
+  },
   conditionalFixedGeometryNull: {
     countedOriginalMultisetPermutations: fixedGeometryDenominator,
     relationMatchedAssignments: sourceRelationAssignments,
