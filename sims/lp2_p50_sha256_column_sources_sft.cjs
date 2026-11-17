@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Source-fixed SHA-256-column hypothesis for the original 32 x 8 numeric field.
+ * Source-fixed SHA-256-column and SHA-512 column-pair hypotheses for the original 32 x 8 numeric field.
  * Candidate inputs are complete original artifacts and immutable canonical
  * GP29 source registers, without fitted prefixes, salts, phases or truncation.
  * Execute: node sims/lp2_p50_sha256_column_sources_sft.cjs
@@ -15,6 +15,7 @@ const ROOT = path.resolve(__dirname, '..');
 const at = (p) => path.join(ROOT, p);
 const json = (p) => JSON.parse(fs.readFileSync(at(p), 'utf8'));
 const hash = (buffer) => crypto.createHash('sha256').update(buffer).digest();
+const hash512 = (buffer) => crypto.createHash('sha512').update(buffer).digest();
 const hex = (buffer) => buffer.toString('hex');
 const table = json('resources/liber-primus/lp2-grid-256.json');
 const corpus = json('resources/liber-primus/lp2-corpus.json');
@@ -35,6 +36,24 @@ const columns = Array.from({length: 8}, (_, c) => Buffer.from(Array.from({length
 const contiguous = Array.from({length: 8}, (_, c) => bytes.subarray(c * 32, c * 32 + 32));
 const targets = [{label: 'eight vertical 32-byte columns', blocks: columns},
   {label: 'eight consecutive 32-byte row-major blocks', blocks: contiguous}];
+const target512 = [
+  {label: 'four concatenated pairs of 32-byte columns',
+    blocks: Array.from({length: 4}, (_, n) => Buffer.concat([columns[2*n],columns[2*n+1]]))},
+  {label: 'four interleaved adjacent-column pairs',
+    blocks: Array.from({length: 4}, (_, n) => Buffer.from(Array.from({length: 32}, (_, r) =>
+      [values[r*8+2*n],values[r*8+2*n+1]]).flat()))},
+  {label: 'four consecutive 64-byte row-major blocks',
+    blocks: Array.from({length: 4}, (_, n) => bytes.subarray(n*64,n*64+64))},
+];
+const p56Target = Buffer.from(
+  '36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4',
+  'hex');
+assert.equal(p56Target.length, 64);
+const sourceP56HashMatches = target512.flatMap((t) =>
+  t.blocks.map((b,i) => ({label: t.label+':'+i, matched:b.equals(p56Target)})))
+  .filter(x=>x.matched);
+assert.equal(hex(hash512(Buffer.from('abc'))),
+  'ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f');
 assert.equal(hex(hash(Buffer.from('abc'))),
   'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
 const planted = Buffer.alloc(256);
@@ -49,6 +68,13 @@ for (let c = 0; c < 8; c++) {
 let inputs = 0;
 let hitCount = 0;
 let best = {prefixBytes: 0, source: null, target: null};
+let best512 = {prefixBytes: 0, source: null, target: null};
+const planted64 = Buffer.concat(Array.from({length: 4}, (_,n) =>
+  hash512(Buffer.from('sha512-control-'+n))));
+for (let n=0;n<4;n++) {
+  assert(hash512(Buffer.from('sha512-control-'+n))
+    .equals(planted64.subarray(n*64,n*64+64)));
+}
 const seenDigests = new Map();
 function examine(label, buffer) {
   const digest = hash(buffer);
@@ -56,6 +82,19 @@ function examine(label, buffer) {
   if (!seenDigests.has(signature)) seenDigests.set(signature, []);
   seenDigests.get(signature).push(label);
   inputs++;
+  const digest512 = hash512(buffer);
+  for (const t of target512) {
+    for (let i=0;i<t.blocks.length;i++) {
+      const candidate=t.blocks[i];
+      let n=0;
+      while(n<64 && digest512[n]===candidate[n]) n++;
+      if(n>best512.prefixBytes) best512={prefixBytes:n,source:label,target:t.label+':'+i};
+      if(n===64) {
+        hitCount++;
+        console.log('EXACT SHA512 COLUMN-PAIR MATCH: '+label+' -> '+t.label+':'+i);
+      }
+    }
+  }
   for (const target of targets) {
     for (let i = 0; i < 8; i++) {
       const candidate = target.blocks[i];
@@ -115,9 +154,12 @@ console.log('SHA-256 32x8 column-source test completed: ' + JSON.stringify({
   originalBytes: 256,
   candidateSourceRepresentations: inputs,
   uniqueCandidateDigests: seenDigests.size,
-  targetDigests: targets.length * 8,
+  targetDigestsSha256: targets.length * 8,
+  targetDigestsSha512: target512.reduce((n,t)=>n+t.blocks.length,0),
+  p56OriginalHashDirectMatches: sourceP56HashMatches,
   exactMatches: hitCount,
-  bestFirstByteAgreement: best,
+  bestSha256FirstByteAgreement: best,
+  bestSha512FirstByteAgreement: best512,
   tableSha256: hex(hash(bytes)),
 }));
 if (hitCount > 0) process.exitCode = 2;
