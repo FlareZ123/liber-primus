@@ -151,6 +151,21 @@ assert.equal(tokens[43], '1D');
 assert.equal(bytes[43], corpus.prime[like[0]]);
 assert.equal(bytes[43], 73);
 
+// The original p57 three stanza sums are the historical prime factors
+// of the 2013 PARABLE title. The inferred prime-ordinal link from 201
+// lands exactly on stanza three, but does not prescribe a p55 decoder.
+const stanzaSums = [
+  primeSum(p57Words.slice(1, 8).flat()),
+  primeSum(p57Words.slice(8, 14).flat()),
+  primeSum(p57Words.slice(14).flat()),
+];
+assert.deepEqual(stanzaSums, [1259, 1031, 1229]);
+assert.equal(stanzaSums.reduce((product, n) => product * n, 1), 1595277641);
+const primes205 = firstPrimes(205);
+assert.deepEqual([primes205[204], primes205[172], primes205[200]],
+  [1259, 1031, 1229]);
+assert.deepEqual([bytes[204], bytes[172], bytes[200]], [194, 148, 110]);
+
 // First-party lexical map: PAGE (224) -> table[223] = 151 -> FIND (151).
 // The 224th cell is *already* on the 76-cell outer circumference.
 const startingCell = primeSum(knownPlainP56.slice(
