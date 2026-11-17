@@ -20,3 +20,7 @@ jobs:
       - name: Assert original-image source and microspacing statistics
         shell: pwsh
         run: python sims/lp2_original_rune_microspacing_sft.py
+
+      - name: Original 25-page vertical glyph shift and Q92 plant
+        shell: pwsh
+        run: python sims/lp2_original_rune_vertical_baseline_sft.py
