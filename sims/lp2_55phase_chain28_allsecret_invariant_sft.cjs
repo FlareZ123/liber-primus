@@ -286,7 +286,7 @@ function plantAndRecover(plainPages, pageReset, perPageStatic = false) {
 /**
  * Independent 55-page native English positive with a different secret
  * 28-rune bijection at every (seed,local-symbol-position). Same seeds
- * repeat the entire aperiodic schedule on distinct physical pages.
+ * repeat the entire deterministic position-varying schedule on distinct physical pages.
  * Unknown cipher source does not enter any permutation construction.
  */
 function plantSeededPages(plainPages, key) {
