@@ -249,7 +249,10 @@ console.log(JSON.stringify({
     matchedSourcePairsInFirstRow:firstRowMatches,
     matchedPairsIn13rows:allMatches,
     rowCount:13,xor13:originalBytes,GP29Key:roman(key29),
-    oneTHENpairAmong28:sourceOtherPairs,\n    oneReverseHEADpairAmong28:reverseHeadPairs,\n    reversedGP29:reverseGP29,\n    rowConditionedPosthocSixModuleCollision:conditionalExactSixModuleChance
+    oneTHENpairAmong28:sourceOtherPairs,
+    oneReverseHEADpairAmong28:reverseHeadPairs,
+    reversedGP29:reverseGP29,
+    rowConditionedPosthocSixModuleCollision:conditionalExactSixModuleChance
   },
   originalP55: {
     runes:C.length,directCandidates:variants.length,
