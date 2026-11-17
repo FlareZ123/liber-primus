@@ -95,6 +95,28 @@ def main() -> None:
         assert (work / generated).resolve() == source_path.resolve()
         assert source_path.is_file(), ("Missing frozen original two-window D file", source_path)
 
+    # The external verifier launches another process from a different cwd.
+    # In the 17 Nov original run both frozen finalists generated the D file,
+    # but Rust could not resolve the relative windows= path inside their TSV.
+    # Rewrite ONLY the copy's path to the same verified absolute source file.
+    # Keep the immutable source TSV, candidate values, and original hit order.
+    for (conv, filename), _ in sorted(assembled.items()):
+        stem = Path(filename).stem
+        rule, direction = stem.rsplit("_", 1)
+        assert direction in {"fwd", "rev"}
+        source_path = (work / "data" / "dirs_seg0.7_seg0.8" / (rule + ".txt")).resolve()
+        assert source_path.is_file()
+        target = external / "results" / "kscreen" / "pdir" / tag / conv / "real" / filename
+        raw = target.read_text(encoding="utf-8")
+        old_window = "windows=data/dirs_seg0.7_seg0.8/" + rule + ".txt"
+        assert raw.splitlines()[0].count(old_window) == 1, ("Unexpected frozen TSV window", target)
+        absolute = source_path.as_posix()
+        assert not any(ch.isspace() for ch in absolute), ("Unsafe verifier source path", absolute)
+        locked_write(target, raw.replace(old_window, "windows=" + absolute, 1))
+        assert abs(score_file(target, conv) - score_file(
+            (args.six if conv in SIX else args.remaining) / Path(assembled[(conv, filename)]),
+            conv)) < 1e-8
+
     reports = []
     for conv in sorted({c for c, _ in assembled}):
         env = dict(os.environ, KSCREEN_BIN=str(executable.resolve()))
