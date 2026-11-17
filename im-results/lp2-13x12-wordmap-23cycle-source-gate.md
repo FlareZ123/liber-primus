@@ -79,6 +79,35 @@ If each cycle word's prime sum is additionally reduced modulo 256 to address the
 
 This continuation depends on two extra conventions not established by the core result: modulo-256 table addressing and the p50 byte bit-split as compass instruction. The reached X is one of five X runes on p32 and is **not** the X in the contiguous H-O-M-E-X marker. It is an exploratory discriminator for a separate agent to test, not evidence of a recovered route.
 
+## Bounded direct terminal p55 inverse from the original cycle (Agent22, 17 November)
+
+The opening red heading's GP-prime-sum rule yields 23 cyclic *body-word prime sums*:
+
+```text
+220,111,34,336,119,3,563,170,67,209,463,108,244,569,128,237,323,618,277,419,139,143,473
+```
+
+There is a simple direct key consumer that does not require the exploratory p50 compass or a hidden alphabet: the authentic known p56 GP29 additive rule and transparent plaintext-F. Take **each one of the 23 word sums modulo 29** to obtain exactly 23 GP key symbols. Repeat them against the **76 original p55 ciphertext runes** in their printed order. Try the two independently headed starts: the first red word enters the 23-cycle at body cell6; the second red word starts at body cell4, step7 of that same cycle (zero-based key rotation6). Both documented GP addition signs are finite controls, giving **four** entire original-cipher key/operation decisions. No fitted key phase, table offset, phrase or trigram screen determines the key.
+
+The F-transparent inverse retains every legal state: plaintext F must emit ciphertext F **without consuming** the next key symbol, while ciphertext F may also be an encrypted non-F rune and consume a key. This is stricter than ordinary GP29 addition and captures all eight possible transparent/consumed choices for the three p55 ciphertext Fs.
+
+| Author-derived cycle starting point | GP inverse sign | Earliest F-rule contradiction at zero-based p55 rune | Full legal inverse paths | Direct no-bypass GP IoC |
+| --- | --- | ---: | ---: | ---: |
+| First red heading, 23-cycle entry | Subtract | none | 1 | 0.03438596 |
+| First red heading, 23-cycle entry | Add | **6** | 0 | 0.04035088 |
+| Second red heading, cycle step7 | Subtract | **1** | 0 | 0.03298246 |
+| Second red heading, cycle step7 | Add | **6** | 0 | 0.03087719 |
+
+The sole fully legal candidate (first-heading, subtraction) consumes **74** of the cyclic key symbols. Its 76-rune recovered GP-index stream has IoC **0.03543860**, near the uniform-ciphertext baseline, and reads in unpunctuated native GP transliteration:
+
+```text
+RUXOEREOCEINPXJPPFOELHEBPGHJCNOETIAOEBEASNGLWYJOENFHNGEAJXNJDCEJOOOEGGOIGYMBUMDGJTXDGEOUW
+```
+
+This is no coherent GP-native original plaintext. Its **exact forward reencryption** is expected for any legal wrong key and is verified, so a round trip is not evidence of a solution. A separate genuine solved-p57 **76-rune plaintext** is planted with each exact key/sign and recovered among all legal inverse states in **4/4** source-native positive controls. The test operates on all 76 original p55 runes, reproduces the 729-rune 158-word first-three-page parse, red word sums347/315, 156-word pointer rule, both original cycle starts, all printed F positions and its fixed sign decisions.
+
+**Decision:** The first-party opening red-heading → 156-word sum-pointer → 23-cycle yields a reproducible source-shaped **key candidate**, but direct repeated mod29 GP29 addition or subtraction under the authentic p56 F convention does not decipher p55. This rejects these four fixed consumers, not the rare opening 23-cycle observation or an as-yet-unauthenticated nonperiodic use of its 23 words. Avoid further arbitrary rotations and compound transformations without a separate original clue. [Node22 source-native SFT](../sims/lp2_wordmap23_cycle_p55_native_inverse_sft.cjs) · [manual Windows CI run](https://github.com/FlareZ123/liber-primus/actions/runs/44086567597) (queued at publication; check final status).
+
 ## Weakest premise and next decisive work
 
 The weakest premise is the proposed pointer rule `f(i)=S_i mod 156`: it is motivated by the exact 156-word map and the 2016 message, but no creator-authored instruction explicitly specifies this modulus or zero-based convention.
@@ -86,7 +115,7 @@ The weakest premise is the proposed pointer rule `f(i)=S_i mod 156`: it is motiv
 Highest-value next actions:
 1. Independently reproduce the canonical parse, heading sums, two-cycle graph, and 563/569 uniqueness from the original transcription and corpus.
 2. Seek an independent Cicada-authored selector for the modulo-156 word pointer, rather than sweeping alternative moduli or tuning conventions.
-3. Determine whether the 23-cycle has a source-prescribed readout that produces authentic plaintext or key material. Do not treat its length or numerical correspondences alone as a solve.
+3. Find an independent original clue selecting a new use of the 23-cycle beyond the completed direct 23-symbol additive/F-transparent p55 inverse. The cycle's length, exact sum correspondences and a syntactically valid wrong-key forward reencryption alone do not authenticate plaintext.
 4. Evaluate the p50 compass continuation separately against the original p50/p32 artifacts and a held-out target; retire it if the modulo-256/bit-split choices cannot be independently justified.
 
 The result changes the research frontier by supplying a compact, falsifiable word-level route from the opening red heading to a unique 23-cycle and the 563/569 p32/2016 correspondence. It does not yet decipher any of the 56 unknown pages.
