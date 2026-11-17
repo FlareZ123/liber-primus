@@ -1,23 +1,18 @@
 name: Agent 12 LP2 pdir original survivors whole-window verification
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows:
-      - "Agent 13 LP2 pointer-direction finished-stage1 reducer"
-    types: [completed]
 permissions:
   contents: read
   actions: read
 jobs:
   inspect-reducer:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: windows-latest
     outputs:
       candidate_count: ${{ steps.gate.outputs.candidate_count }}
     steps:
       - uses: actions/download-artifact@v4
         with:
-          run-id: "${{ github.event.workflow_run.id || '44106816793' }}"
+          run-id: "44106816793"
           name: original-lp2-pdir-stage1-18convention-report
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           path: source-reducer
@@ -65,7 +60,7 @@ jobs:
           python sims/lp2_pdir_issue1329_gate.py external-cicada3301
       - uses: actions/download-artifact@v4
         with:
-          run-id: "${{ github.event.workflow_run.id || '44106816793' }}"
+          run-id: "44106816793"
           name: original-lp2-pdir-stage1-18convention-report
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           path: source-reducer
