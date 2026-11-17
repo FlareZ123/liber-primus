@@ -104,6 +104,9 @@ function run() {
   let bestLookup = null;
   let bestDirect = null;
   let tested = 0;
+  let testedAffine = 0;
+  let bestAffineLookup = null;
+  let bestAffineDirect = null;
   const bestOptions = [];
   for (const {radix,bytes} of tables)
     for (const marker of [0,13])
@@ -118,21 +121,34 @@ function run() {
             if (reverseTerminal) plain.reverse();
             const knownPositions = Array.from({length:180}, (_,i) => i + (reverseTerminal ? 0 : 76));
             const actual = knownPositions.map(i => plain[i]);
-            for (let k = 0; k < 29; k++) {
-              const predicted = knownPositions.map(i => mod(k*red[i] + (1-k)*table[i]));
-              const {direct,lookup} = score(predicted, actual);
-              const desc = {radix,marker,reverseRed,reverseGrid,reverseTerminal,k,direct,lookup};
-              tested++;
-              if (bestLookup === null || lookup > bestLookup.lookup)
-                bestLookup = desc;
-              if (bestDirect === null || direct > bestDirect.direct)
-                bestDirect = desc;
-              bestOptions.push(desc);
-            }
+            for (let a = 0; a < 29; a++)
+              for (let b = 0; b < 29; b++) {
+                const predicted = knownPositions.map(i => mod(a*red[i] + b*table[i]));
+                const {direct,lookup} = score(predicted, actual);
+                const desc = {radix,marker,reverseRed,reverseGrid,reverseTerminal,a,b,direct,lookup};
+                testedAffine++;
+                if (bestAffineLookup === null || lookup > bestAffineLookup.lookup)
+                  bestAffineLookup = desc;
+                if (bestAffineDirect === null || direct > bestAffineDirect.direct)
+                  bestAffineDirect = desc;
+                // Original 2-of-3 degree-one Shamir share coordinates
+                // impose exactly a+b=1, a proper subset of two-pad affine mixing.
+                if (mod(a + b) === 1) {
+                  tested++;
+                  if (bestLookup === null || lookup > bestLookup.lookup)
+                    bestLookup = desc;
+                  if (bestDirect === null || direct > bestDirect.direct)
+                    bestDirect = desc;
+                  bestOptions.push(desc);
+                }
+              }
           }
   assert.equal(tested, 928);
   assert.equal(bestLookup.lookup, 53);
   assert.equal(bestDirect.direct, 15);
+  assert.equal(testedAffine, 26912);
+  assert.equal(bestAffineLookup.lookup, 53);
+  assert.equal(bestAffineDirect.direct, 16);
 
   // Positives: correctly constructed direct and secret-alphabet Shamir
   // interpolation outputs must recover each of the 180 reserved known slots.
@@ -151,8 +167,9 @@ function run() {
       terminalUnknown:76,terminalKnown:180,knownPageLengths:[85,95]},
     model:'GF29 affine Shamir 2-of-3, 29 unknown coordinates, secret terminal alphabet',
     variants:tested, bestLookup, bestDirect, top:bestOptions.slice(0,5),
+    affineVariants:testedAffine, bestAffineLookup, bestAffineDirect,
     planted:{direct:180,stationaryRelabel:180},
-    conclusion:'No tested direct 2-of-3 cross-channel Shamir reconstruction; no unknown plaintext'
+    conclusion:'Neither direct 2-of-3 Shamir sharing nor any two-channel GF29-affine fixed-alphabet mixer recovers known original terminal plaintext'
   },null,2));
 }
 run();
