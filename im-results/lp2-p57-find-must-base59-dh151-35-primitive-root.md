@@ -322,7 +322,10 @@ reproducible arithmetic correspondence, not recovered ciphertext.
 The original printed table uses **256 two-character tokens**. In
 the source-declared base60 alphabet, the **first digit** is a
 restricted 0–4 prefix (source first-character counts
-**60,58,65,56,17**), so only the **256 trailing digits** can
+**60,58,65,56,17**), matching an arbitrary-byte
+uniform base60 expectation **60,60,60,60,16**. Every original
+token under the declared base60 decodes within the valid
+byte range **0..255**. Consequently only the **256 trailing digits** can
 fairly be treated as 60-way samples. Their original multiset
 uses 59/60 alphabet characters and omits **lowercase f** only.
 That fact initially suggested dropping f and interpreting
