@@ -122,6 +122,58 @@ const plantedRepeats = repeatCount(planted);
 assert.equal(originalRepeats, 86);
 assert.equal(plantedRepeats, 78);
 
+// Independent original-printed-word five-lag test: the counter is not
+// optimized to this known anomaly, preserving future discriminability.
+const {parseSharedCorpus} = require('./lp2_word_pages.cjs');
+const {words, runeCount, crossPageWords} = parseSharedCorpus();
+assert.equal(words.length, 2896);
+assert.equal(runeCount, 12956);
+assert.equal(crossPageWords, 32);
+/** @param {number[][]} body */
+function fiveBack(body) {
+  const stream = body.flat();
+  let start = 0, slots = 0, matches = 0;
+  for (const word of words) {
+    for (let delta = 5; delta < word.length; delta++) {
+      slots++;
+      matches += Number(stream[start + delta] === stream[start + delta - 5]);
+    }
+    start += word.length;
+  }
+  assert.equal(start, stream.length);
+  assert.equal(slots, 2105);
+  return {slots, matches};
+}
+const originalFiveBack = fiveBack(pages);
+const plantedFiveBack = fiveBack(planted);
+assert.equal(originalFiveBack.matches, 104);
+
+/** @param {number[][]} body */
+function gapCorrelation(body) {
+  const sites = [];
+  let start = 0;
+  for (const page of body) {
+    for (let i = 1; i < page.length; i++)
+      if (page[i] === page[i - 1]) sites.push(start + i);
+    start += page.length;
+  }
+  const gaps = sites.slice(1).map((x, i) => x - sites[i]);
+  const left = gaps.slice(0, -1), right = gaps.slice(1);
+  const avgL = left.reduce((a, b) => a + b, 0) / left.length;
+  const avgR = right.reduce((a, b) => a + b, 0) / right.length;
+  let numerator = 0, varianceL = 0, varianceR = 0;
+  for (let i = 0; i < left.length; i++) {
+    const a = left[i] - avgL, b = right[i] - avgR;
+    numerator += a * b;
+    varianceL += a * a;
+    varianceR += b * b;
+  }
+  return {repeatSites: sites.length,
+    adjacentGapPearson: numerator / Math.sqrt(varianceL * varianceR)};
+}
+const originalGaps = gapCorrelation(pages);
+const plantedGaps = gapCorrelation(planted);
+
 // Exactly maximize the full per-state unigram likelihood over all 29!
 // possible secret substitutions, WITHOUT enumerating 29! possibilities:
 // the rearrangement inequality pairs ciphertext-frequency ranks with
@@ -195,6 +247,7 @@ for (const [name, train, ntr, nte, sourceGain, plantGain] of splits) {
 console.log(JSON.stringify({
   originalRunes: 12956, originalSuccessors: 12901, keyedStates: 377,
   originalRepeats, plantedRepeats,
+  originalFiveBack, plantedFiveBack, originalGaps, plantedGaps,
   construction: '377 independent state-conditioned GP29 bijections; 3/4 NG and 1/4 J -> previous ciphertext, all plaintext values remain representable',
   plantedInverseRecoveredRunes: 12901,
   model: 'C[i] = secretPermutation[(i%13), C[i-1]](P[i]), reset per physical page',
