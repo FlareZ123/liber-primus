@@ -23,6 +23,15 @@ const index=new Map(original.runes.map((r,i)=>[r,i]));
 const clear=solved.sections.flatMap(s=>Array.from(s.source_text)
   .filter(r=>index.has(r)).map(r=>index.get(r)));
 assert.equal(clear.length,2979);
+// Independently selected Latin Vulgate GP29 register used by the project.
+// Each already-converted source word occupies one line; metadata is a comment.
+const latinAlphabet='0123456789ABCDEFGHIJKLMNOPQRS';
+const latin=fs.readFileSync(path.join(root,'resources','control',
+  'latin-vulgate-gp-wholewords.txt'),'utf8').split(/\r?\n/)
+  .filter(line=>line.length>0&&!line.trim().startsWith('#'))
+  .join('').split('').map(ch=>latinAlphabet.indexOf(ch));
+assert.equal(latin.length,204802);
+assert.ok(latin.every(x=>x>=0&&x<=28));
 const segment=(a,b)=>original.pages.filter(p=>p.page>=a&&p.page<=b)
   .flatMap(p=>p.indices);
 const map=segment(0,2);
@@ -30,8 +39,8 @@ assert.equal(map.length,729);
 const east=Array.from({length:27},(_,r)=>map[27*r+26]);
 assert.deepEqual(east,[17,17,21,25,7,11,25,28,1,4,16,6,9,24,28,5,1,8,6,19,8,16,18,20,7,21,7]);
 const inputs=[
-  {pages:'p3-p7',source:segment(3,7),plain:clear.slice(0,1145)},
-  {pages:'p8-p14',source:segment(8,14),plain:clear.slice(1145,2874)}
+  {pages:'p3-p7',source:segment(3,7),plain:clear.slice(0,1145),latin:latin.slice(0,1145)},
+  {pages:'p8-p14',source:segment(8,14),plain:clear.slice(1145,2874),latin:latin.slice(1145,2874)}
 ];
 assert.deepEqual(inputs.map(x=>x.source.length),[1145,1729]);
 const mod=(x,n)=>((x%n)+n)%n;
@@ -140,14 +149,24 @@ for(const input of inputs)for(const ordering of ['numeric','cyclic']){
     const native=profile(input.plain,'native',ordering,skipRepeatClock);
     assert.deepEqual([actual.n,actual.pairs,actual.matches,
       native.n,native.pairs,native.matches],expectations[label]);
+    const latinProfile=profile(input.latin,'native',ordering,skipRepeatClock);
+    const latinExpected=input.pages==='p3-p7'
+      ?(skipRepeatClock?[1143,47250,3518]:[1143,47250,3484])
+      :(skipRepeatClock?[1725,108486,7922]:[1725,108486,7804]);
+    assert.deepEqual([latinProfile.n,latinProfile.pairs,latinProfile.matches],
+      latinExpected);
     const planted=encrypt(input.plain,ordering,skipRepeatClock);
     assert.equal(planted.length,input.plain.length);
     assert.deepEqual(decrypt(planted,ordering,skipRepeatClock),input.plain);
     const plantedStat=profile(planted,'cipher',ordering,skipRepeatClock);
     assert.deepEqual(plantedStat,native);
-    assert.ok(actual.ioc<0.04 && native.ioc>0.062);
-    rows.push({label,original:actual,native,
-      independentUnknownAlphabetPlantRecovered:planted.length,
+    const latinPlant=encrypt(input.latin,ordering,skipRepeatClock);
+    assert.deepEqual(decrypt(latinPlant,ordering,skipRepeatClock),input.latin);
+    assert.deepEqual(profile(latinPlant,'cipher',ordering,skipRepeatClock),
+      latinProfile);
+    assert.ok(actual.ioc<0.04 && native.ioc>0.062 && latinProfile.ioc>0.071);
+    rows.push({label,original:actual,native,latin:latinProfile,
+      independentUnknownAlphabetPlantRecovered:planted.length+latinPlant.length,
       exactSecretAlphabetCollisionInvariant:true});
   }
 }
@@ -155,7 +174,7 @@ assert.equal(rows.length,8);
 console.log(JSON.stringify({
   original:'LP2 intact p3-p14, 27 phase positions from p0-p2 map east edge',
   keyAllowance:'27 entirely arbitrary hidden bijections of 28 GP symbol indices',
-  source:'All nine authentic solved GP rune source texts, concatenated 2,979 runes',
+  source:'2,979 authentic solved GP runes plus 204,802 independently encoded Latin Vulgate GP runes',
   rows,
   verdict:'No all-secret fixed-27-phase anti-repeat successor decoder to native solved-Cicada register',
   limitation:'Only native GP prose, 27 constant phase permutations, and two public clock definitions',
