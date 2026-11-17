@@ -69,11 +69,13 @@ const key = outguessBytes(password, previous.length + terminal.length);
 const first = decode(terminal, key);
 const predecessor = decode(previous, key);
 const combined = decode([...previous, ...terminal], key);
+const continuousTerminal = combined.slice(previous.length);
 assert.deepEqual(encode(first, key), terminal);
 assert.deepEqual(encode(predecessor, key), previous);
 assert.deepEqual(encode(combined, key), [...previous, ...terminal]);
 assert.deepEqual(first.slice(0, 10), [26,8,0,6,3,6,8,24,9,0]);
 assert.equal(coincidence(first), 0.05473684210526316);
+assert.equal(coincidence(continuousTerminal), 0.03368421052631579);
 assert.equal(coincidence(terminal), 0.037894736842105266);
 
 // The solved PARABLE explicitly says to shed word circumferences.
@@ -223,6 +225,7 @@ console.log(JSON.stringify({
   candidate: {terminalIoc:coincidence(first),
     priorPageIoc:coincidence(predecessor),
     entire308Ioc:coincidence(combined),
+    terminalIocWhenClockContinuesFromP54:coincidence(continuousTerminal),
     decodedFirst40: first.slice(0,40).map(i=>corpus.translit[i]).join('-'),
     gp3gramScorePerRune:candidateScore},
   originalShedCircumferenceOrder:{sourceWords:17,interiorRunes:43,shellRunes:33,
