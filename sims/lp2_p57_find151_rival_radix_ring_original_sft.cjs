@@ -250,15 +250,63 @@ for (const direction of [1, -1]) {
 }
 assert.equal(p55Original.length, 8);
 assert(Math.max(...p55Original.map(x => x.transformedIc)) < .04);
+
+// The solved FIND prime sum 151 is also the *one-based index* of the
+// unique base59 cell bearing value151 (table position150). This gives
+// an exact self-indexing source address, rather than a free key guess.
+assert.equal(bytes59[findPrimeSum - 1], findPrimeSum);
+assert.equal(tokens[findPrimeSum - 1], '2X');
+
+// The authored word EMERGE permits a sharply frozen competing consumer:
+// from base59's *interior* value151, move exactly one adjacent cell
+// outward to its outer perimeter, then follow that 76-cell circumference.
+// For the right-side inner cell (row18,col6), the outward cell is
+// row18,col7, linear index151. No table start is searched or fitted.
+const interiorFind = src151.find(s => s.radix === 59);
+assert.equal(interiorFind.index, 150);
+const emergeCell = interiorFind.index + 1;
+assert.equal(emergeCell, 151);
+assert.equal(Math.floor(emergeCell / columns), interiorFind.row);
+assert.equal(emergeCell % columns, interiorFind.column + 1);
+assert(allRings[0].includes(emergeCell));
+
+const outwardP55 = [];
+const outerRing = allRings[0];
+const emergeStart = outerRing.indexOf(emergeCell);
+for (const direction of [1, -1]) {
+  const walked = Array.from({length: 76}, (_, j) =>
+    outerRing[(emergeStart + direction * j + outerRing.length * 2) %
+      outerRing.length]);
+  const values = walked.map(i => bytes59[i]);
+  for (const map of ['raw', 'totient']) {
+    const key = values.map(x => mod29(map === 'raw' ? x : totient(x)));
+    for (const sign of [-1, 1]) {
+      const output = c55.map((x, j) => mod29(x + sign * key[j]));
+      assert.deepEqual(output.map((x, j) => mod29(x - sign * key[j])),
+        c55);
+      const planted = p57.slice(0, 76).map((x, j) =>
+        mod29(x - sign * key[j]));
+      assert.deepEqual(planted.map((x, j) => mod29(x + sign * key[j])),
+        p57.slice(0, 76));
+      outwardP55.push({direction, map, sign, transformedIc: symbolIc(output),
+        prefix: output.slice(0, 28).map(x => corpus.translit[x]).join('')});
+    }
+  }
+}
+assert.equal(outwardP55.length, 8);
+assert(Math.max(...outwardP55.map(x => x.transformedIc)) < .04);
+
 console.log(JSON.stringify({
   corpus: 'resources/liber-primus/lp2-corpus.json',
   table: 'resources/liber-primus/lp2-grid-256.json',
   sourceText: 'resources/liber-primus/lp2-transcription.txt',
   findPrimeSum, gpFind, src151,
+  selfIndex59: {oneBasedIndex: findPrimeSum, token: tokens[150],
+    numericValue: bytes59[150], outwardNeighborIndex: emergeCell},
   ringLengths: allRings.map(x => x.length),
   terminalKnownPlaintext: {p56: 85, p57: 95, total: terminal.length,
     scaledIc: symbolIc(terminal)},
-  knownReadout, p55Original,
+  knownReadout, p55Original, outwardP55,
   outcome: 'No direct p55 plaintext or native known-terminal 180-rune key found'
 }, null, 2));
 console.log('PASS: source-selected FIND151 rival-radix ring gates and plants');
