@@ -33,6 +33,23 @@ The [complete original SFT](../sims/lp2_p50_base59_base60_selfmap_sft.cjs) shuff
 
 The canonical reverse-tree permutation read as original numeric *byte values* is no authenticated message. For base60 its byte tape has **103/256 printable ASCII bytes**, a longest printable span of six, and begins in hexadecimal **CB 00 E5 44 C7 44 2F C7 2E 2E 8D 8D 85 1F 6A 6A**. Neither base's canonical byte stream begins with a tested PNG, PDF, ZIP, gzip, ELF, GIF, or RIFF file header, and neither is a complete readable typed text. A 256-position permutation cannot repair this byte histogram. No cipher key, plaintext or authenticated file emerges from the canonical readout.
 
+## Direct outer-perimeter depth-key decision on original terminal p55
+
+A previously proposed finite original-cipher use of the source graph is now executed without fitting ciphertext. The table has **32 rows × 8 columns**, so its **outermost clockwise perimeter has 76 cells**, exactly the length of physical p55's 76 original ciphertext runes. The p57 PARABLE's language of “circumferences” motivates inspecting this one boundary, but it does not independently prescribe the following value-changing operation.
+
+Decode the source numbers in each of the original *two* justified radices (59 from omission of lowercase f, or conventional 60), construct the exact row-major address graph above, and assign each of the 76 clockwise outer-ring cells its graph distance to any cycle, reduced mod29. For radix59 this is distance to the unique root189; radix60 is the distinct two-cycle-graph control. Add or subtract that fixed 76-symbol sequence against original p55 GP29 indices, without starting-point shifts, word resets, row/column reordering, graph-walk searches, fitted substitutions or guessed plaintext. The natural clockwise start is the printed top-left cell.
+
+| Original ciphertext p55 inverse | 76-rune output IoC | Literal GP29 transliteration opening |
+| --- | ---: | --- |
+| Base59, add depth | 0.03333333 | `BTAEOTHTSWXWEHGMEAHXMNGH` |
+| Base59, subtract depth | 0.03789474 | `AECXHEOXMNGADGRJXOENGJFP` |
+| Base60, add depth | 0.03719298 | `NGINXEOEAWFUTIDXGAONDBTH` |
+| Base60, subtract depth | 0.03333333 | `NGJFGTHEOINGNFHTHDMSCOEI` |
+
+All four full original outputs lack a coherent GP-native 76-rune passage. Every 76-rune output forward-reencrypts the exact original ciphertext. A 76-rune planted clear p57 prefix, encrypted under each identical source key, recovers **76/76** in every case, separating a functioning reversible implementation from a successful original decipherment. [Source-locked read-only SFT](../sims/lp2_p50_base59_outer76_depth_p55_sft.cjs).
+
+**Decision:** the specific **graph-distance-on-clockwise-outer76** key is a negative original-input plaintext test in either source-supported numeric radix. The source alone still supplies no instruction to use graph depth as a rune keystream. This finite check does not rule out a different, *independently prescribed* consumer of the source graph and does not justify searching alternative graph traversals to tune a decipherment. The exact graph structural observation remains as classified above.
+
 ## Causal interpretation and explicit limitation
 
 The missing-f 59-digit alphabet creates one exact **global destination cell at address189**, potentially useful if a player was intended to use the 256 values as directions. Its attraction-basin feature is independent of the earlier *keypad* graph; it remains opposed by the existing base60 quadratic-syndrome result. The root and its full convergence are new concrete original-data properties. Their original authorial meaning is unresolved: no Cicada source yet tells a reader **which reverse branch to follow, what visited addresses mean as GP29/bytes, or which LP2 ciphertext page should consume them**. The signed 2016 message about words, meanings, numbers and direction does not independently choose the 59-digit radix, depth-first child order or plaintext receiver. The six source seeds provide no independent confirmation because a single basin forces their convergence.
