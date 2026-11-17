@@ -21,6 +21,8 @@ const p15Printed = [
   3258,3222,3152,3038,3278,3299,3298,2838,
   3288,3294,3296,2472,4516,1206,708,1820
 ];
+// Clockwise original visible spiral begins with the uniquely red 3299.
+const p15SpiralOrder = [5,6,10,9,8,4,0,1,2,3,7,11,15,14,13,12];
 
 /**
  * @param {number[]} p15Numbers
@@ -114,20 +116,30 @@ function main() {
   assert.ok(rem.every((v) => v === 0));
   const page55 = d.pages[55].indices;
   const page0 = d.pages[0].indices;
+  const page15 = d.pages[15].indices;
   const solved = d.pages[57].indices;
   assert.equal(page55.length, 76);
   assert.equal(page0.length, 262);
+  assert.equal(page15.length, 159);
   assert.equal(solved.length, 95);
   assert.deepEqual(
     page55.map((x, i) => x === 0 ? i : -1).filter((i) => i >= 0),
     [15, 25, 41]);
   const results = [];
   let positives = 0;
-  for (const sourceSeed of ['printed', 'restored-signs']) {
-    const seed = p15Printed.map((v, i) =>
-      sourceSeed === 'restored-signs' && (i === 12 || i === 13) ? -v : v);
+  for (const sourceSeed of [
+    'row-printed', 'row-restored-signs',
+    'red-center-spiral-printed', 'red-center-spiral-restored-signs'
+  ]) {
+    const positions = sourceSeed.startsWith('red-center-spiral')
+      ? p15SpiralOrder : Array.from({ length: 16 }, (_, i) => i);
+    const seed = positions.map((i) => {
+      const v = p15Printed[i];
+      return sourceSeed.endsWith('restored-signs') && (i === 12 || i === 13)
+        ? -v : v;
+    });
     for (const sign of [-1, +1]) {
-      for (const [page, observed] of [[55, page55], [0, page0]]) {
+      for (const [page, observed] of [[55, page55], [0, page0], [15, page15]]) {
         const candidates = decipher(observed, seed, sign);
         for (const candidate of candidates)
           assert.deepEqual(encipher(candidate.plain, seed, sign), observed);
@@ -156,14 +168,15 @@ function main() {
       }
     }
   }
-  assert.equal(positives, 8);
+  assert.equal(positives, 24);
   assert.deepEqual(results.map((x) => x.originalSurvivorCount),
-    [2,0,0,0,3,0,0,6]);
-  // Eight original cases, read separately against their own true source page.
+    [2,0,0,0,0,0,3,0,0,0,6,0,0,0,0,1,0,2,0,0,0,0,0,0]);
+  // Twenty-four original cases, read against their true physical pages.
   console.log(JSON.stringify({
     status: 'PASS: original F-transparent p15/p50 recurrence candidates',
     originalSourceP55Runes: page55.length,
     originalSourceP0Runes: page0.length,
+    originalSourceP15Runes: page15.length,
     originalP55IoC: ioc(page55),
     originalP0IoC: ioc(page0),
     originalVariants: results,
