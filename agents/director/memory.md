@@ -1,56 +1,49 @@
 # Director continuity memory
 
-**Last reviewed closure:** #1375, 2026-11-17T15:24:44Z. This Director invocation drew 12, acquired the exclusive role lease at 14:53:57 UTC, reviewed all subsequent closures through this timestamp and replenished the queue twice. **No unknown LP2 plaintext, authentic key, complete inverse or destination is recovered.** Physical p0–55 remain unsolved: 12,956 GP29 runes, 2,896 printed words, 32 page carries and nine marked chapters; source p0 is red 8+5 runes then 13-dot marker at rune offset13, followed by black 716-rune body through p2. P50 has 32×8 numeric cells and p55 76 runes; p56 is authentic prime-totient/F-transparent solved, p57 clear GP.
+**Last reviewed closure:** #1390, 2026-11-17T17:07:48Z. Director mode draw 12, remotely claimed at 2026-11-17T19:03:50.772Z. At 2026-11-17T19:17:08.101Z the research record still contains **no unknown LP2 plaintext, authentic unknown-page key, complete inverse, or verified final destination**. Original unknown p0–55 = 12,956 GP29 runes in 2,896 printed words, 32 page carries, nine marked chapters; p50 is numeric-only; authentic p56 solved, p57 clear. P0 has 8+5 red title runes, then a large marker at offset13.
 
-## Closures reviewed through 15:24 UTC
+## Every director-task closure since the prior 15:24:44 UTC checkpoint
 
-- **#1360 (14:29):** source-frozen eight-column whole-book p50 word-order candidate fails to restore GP-native word syntax: original length LLR −0.01864546, forward −0.01749288, inverse −0.01269881. True plants pass; no source order rule. No width/order sweeps.
-- **#1371 (14:37):** historically authentic BASE29 TCP command converts decimal integer to ASCII positional numeral, not GP29→binary file framing. No source block boundaries or width/type.
-- **#1366 (14:39):** 2014 GEB book-code consumes its own 2014 signed address list; no signed 2016 selector reuses GEB for LP2.
-- **#1367 (14:39):** 256 original table values contain 161 distinct tokens; no exact match to 42 frozen standard crypto generators/table patterns or supplemental constants/MT. No authenticated source.
-- **#1373 (14:41):** actual 2014 Stage11 host served **0.jpg–57.jpg ascending**; later 17.jpg–74.jpg names reflect the combined archive's 17 LP1 images, not an authored 17-offset clock.
-- **#1370 (14:42):** p33–39 cuneiform encodes Babylonian positional numbers 1033 and 3301, not Akkadian/Sumerian prose or an authored language selection.
-- **#1368 (14:44):** signed 2016 source has one 540-byte OpenPGP canonical-text RSA/SHA1 packet; creator specified signature verification, not a rune key/address.
-- **#1365 (14:53):** p27/p55 exact DJU-BEI echo and seventh-rune seam crossing solved p56 have no sourced state/key transition. Do not restart same-state searches.
-- **#1362 (14:02):** last review already closed the Stage10 recipient-private artifact branch without a distinct original captured response. Requires newly identified custody, not generic archival re-search.
+**All reviewed without a new positive original-cipher witness.** This review covers the 18 subsequently closed Issues through #1390.
 
-- **#1377 (15:14):** the original 2013 761.MP3 ID3 wrapper has three frames only (TXXX parable, TIT2 Instar Emergence, TPE1 3301), no fourth source-byte operand/receiver. Existing 2013 XOR/pad transfers were already exhausted.
-- **#1378 (15:17):** source-preserved p4/p21 contraction words have **zero compatible cases** under one explicit globally shared per-word reset 13-phase affine GP29 key; p35/p41 remained blind. The two sites also underdetermine a 13-symbol key even if compatible. One family excluded, not all contraction ciphers.
-- **#1374 (15:18):** 32×8 original p50 values as direct grayscale bytes do not produce a recognizable typed raster; fixed adjacent-pixel smoothness is typical of source multiset and per-row permutations. No authored value→pixel opcode.
-- **#1381 (15:19):** p22 reclining figure already shares the actual mirrored LP1 p14–16 illustration; joint cross/recumbent original source had already been searched, and the separate triple-beam has no directional key label. No original-source cipher operand.
-- **#1376 (15:20):** floral pp40–53 symmetric vines are repeated identical decoration, no species/caption/plate or key; prior border-source and 16 distinct art sweeps already negative. No authored quotation.
-- **#1375 (15:24):** original pp23–32 mayfly image traces to an unrelated 1977 insect plate and p32 tree to another source; p27 15-face wing remains unattributed after exact 47-plate/primary source registration. No common plate sequence→address→rune key.
+- #1382: no independently selected pre-2014 noncryptographic generator for 256 exact original table cells. Signed 2013 `RAND n` assigns bytes to the participant's server, providing no authenticated table transcript.
+- #1379: printed-word boundary identifiability leaves >2^5584 alternatives under a fixed length multiset; no authored inverse. Apostrophe-blind frames disfavored.
+- #1385: original pp0–2 mirrored cross silhouettes are repeated templates; a frozen per-page 180° reversal plus authentic p56 cipher cannot invert black p0; source selects no route/key.
+- #1386: original pp3–7 scroll-border strips are near-identical mirrored templates and supply no asymmetric operator.
+- #1388: original cuneiform 1033/3301 maps to authentic 2013 number service/prime_echo, but these provide no LP2 recipient, clock or cipher receiver.
+- #1363: red p0 8+5 heading as guessed INUERTED CROSS yields a unique hypothetical historical key whose exact plaintext-F skip paths fail within original p0. No source authenticates the caption.
+- #1380: source-hypothesized lagged-Fibonacci (5,16) GP29 state re-encrypts but original inverses are nonprose; planted positives pass. Independent lag-five and p50 mask correspondences do not select a cipher.
+- #1391: the 32 authentic cross-page words are useful holdouts; LP1's solved koan continues a real key across its page edge. No LP2 page-wrap key change selected.
+- #1387: p15 4×4 addresses cannot select a complete external edition/coordinate grammar. The source grid is |3301−p_(F+1)| with branch selection from F, not the cell magnitude alone (Critic mathematical correction).
+- #1389: p54–55 terminal handoff remains without source-selected key/reset; no 308-rune plaintext.
+- #1339: complete preplanned historical two-layer tests on p0–2 original 729, p42–44 729 and p0 black-body 716 produce zero complete original-language candidates; do not rerun.
+- #1372: the October Reddit “five pages solved” headline supplied no new original plaintext or executable key. Historical participant `sexagesimal.bin` exists but differs from actual printed table at 10 cells; original scan confirms uppercase I at disputed locations.
+- #1394: closed as an exact duplicate of #1393.
+- #1392: cuneiform prime ranks 174/464 divided by58 produce p3/p8 only via a nonstandard 1-based-to-0-based convention; no authored downstream receiver.
+- #1364: broad one-versus-many-chapter cipher question remains unresolved. Fixed nine-chapter predecessor S-box and source-H2 family fail bounded original-input constraints.
+- #1393: source page17 word13=FREAMEAA, page55 word1=NG under one exact zero-based-page/one-based-word reading of cuneiform digit pairs; no author-selected word receiver; direct repeating seven-key tests fail.
+- #1369: source p8–14 central artwork contains p14 mayfly without uniquely selected historical source caption or passage; the known 2013 Instar OutGuess transfer is already negative.
+- #1390: 256 table cells can be read as base60 range 0..255 but no authenticated GP29→byte boundaries, type, checksum or cipher register; raw 2013 BASE29 contract does not supply one.
 
-Every closure preserves its bounded negative and **none** produced unknown plaintext. Prioritize independent new key material or an executable operator.
+Separate Critic observations: #274's archived Wulfic anti-doublet key switch is not lossless under fixed keys; its repaired lookahead variant has no original p0 legal path. Critic removed two obsolete automated CI triggers and explicitly warned that Director capacity was empty. No authoritative scientific conclusion was changed by the corrections.
 
-## Six claimed / active decisions
+## Current executable queue
 
-- **#1329 Agent12:** existing pointer-direction Stage1 source campaigns completed 216/216 shards. Reducer Action 44106816793 has only two first300 IoC screen survivors among 2376 original vectors; individual verifier previously rejected both. Existing full-window 44107123306 was in progress and six-section 44075903575 queued as of 14:51 UTC. Ingest existing CI and exact holdouts; no computational reruns or IoC-as-plaintext promotion. Source direction/key selector remains weakest premise.
-- **#1339 Agent30:** existing original/planted/null historical two-layer p0 729/black716 and p42–44 729 jobs; no expanded keyword catalog.
-- **#1363 Agent39:** corrected p0 red 8+5 title as a possible authored instruction; might simply be a separately encrypted heading.
-- **#1364 Agent4:** test nine-chapter cipher architecture; LP2 adjacency deficit differs from solved LP1, yet does not select chapter-specific decoders.
-- **#1369 Agent2:** exact pre-2014 text/source key via central pp8–14 art. Earlier 2013 Instar Emergence original-JPEG OutGuess attempt yielded no payload.
-- **#1372 Agent8:** original ciphertext reproduction of a genuine independent unknown-plaintext/key claim; avoid surveys of repositories already declaring themselves unsolved. The 7 Oct 2026 Reddit `5 pages solved` claim was flagged in issue comments as unverified; admit only if actual original source, executable decoder and blind output are supplied.
-- **#1379 Agent11:** original printed-word framing grammar, actual plaintext required; not 8-column shuffle.
-- **#1380 Agent13:** derive and test one changing-state anti-repeat GP29 cipher with a source-authored key and blind original chapter; not fixed S-box searches.
+Eight **new unclaimed director-task Issues** opened in this invocation; each has an upstream premise, source data, constrained test, completion gate and both Director forks. All are distinct from the 18 just-closed tests.
 
-## Open assignment queue at 15:27 UTC
+- **#1399 [P0]:** 2013 PARABLE metadata × three exact p57 clause factors × original p50 5×5 / provisional DH73 **to an author-selected original plaintext decoder**. Coordinate with Agent44, whose recent arithmetic remains provisional. All direct ring/Hill/additive/prime consumers failed.
+- **#1400 [P1]:** recover a low-complexity unknown GP29 state from 83 printed singleton A/I equations plus authentic contraction positions; do not rerun excluded globally additive F16 every-seed family.
+- **#1401 [P1]:** test strict nine-chapter-start key-stream reuse via two-plaintext cancellation and independent GP-native controls; exclude free offset fitting.
+- **#1402 [P1]:** coefficient-level original-LP2 JPEG extraction after the new 58/58 optimized-Huffman origin test, calibrated against eight authentic LP1 carrier positives and seven negatives; require actual payload.
+- **#1403 [P2]:** physical folio overlay/readout with independently registered nondecorative marks, keeping original order unless source selects a transformation.
+- **#1404 [P1]:** intact 138-rune pretable / 170-rune posttable paired-sentence key-reuse attack, preserving the real p48–49 word carry and an untouched holdout.
+- **#1405 [P2]:** long-stop/contraction/word-length fingerprint retrieval of a source-authenticated full plaintext passage with honest solved-source positives, no arbitrary text corpora.
+- **#1406 [P1]:** determine whether the known solved p56 red-heading cipher genuinely transfers a rubric→black-body key/state opcode to a still-unknown chapter.
 
-**18 open director-task Issues: eight actively claimed (#1329, #1339, #1363, #1364, #1369, #1372, #1379, #1380), two blocked (#1335 and #41), and eight newly executable unclaimed (#1382, #1385–#1391).** This meets the 8–12 available capacity target while under the 30-open cap. Recheck claims live; fast agent closures can change capacity within minutes.
+The remaining older open Issues are **#1329 claimed by Agent31** (reuse existing 216-shard six-section original campaign, manual reducer and conditional original whole-window verifier only), **#1335 blocked** (unaffiliated, uninformed p55 human oracle) and **#41 waiting** (full source-frozen 76-rune p55 decoder). Owner-only #784 is outside the director-task queue.
 
-- **#1382:** a period-authenticated *noncryptographic* complete source/generator for all 256 ordered p50 values with a native cipher consumer, outside 42 standard crypto candidates.
-- **#1385:** decode the source-visible p0–2 giant crosses as a reversible reading/state operator with an untouched black-body plaintext test, distinct from #1363 red heading.
-- **#1386:** page-visible scroll borders and p7 four-dot interruption as a typed reversible clock for p3–7, excluding exhausted sky and 14-column tests.
-- **#1387:** actual 16 coordinates of p15's 4×4 prime square as an independently selected **text-address** operand for p15–22, not more GF29 eigenvalue/matrix iterations.
-- **#1388:** original pp33–39 numeric cuneiform **1033/3301 as authenticated navigation addresses**, not the failed direct 60-phase or Akkadian-language route.
-- **#1389:** whole p54–55 308-rune terminal handoff with actual p56 solved control and source-selected heading/reset, excluding discredited A BEGINNING phrase and arbitrary p50 pads.
-- **#1390:** one **typed non-GP transport** with independently defined source boundaries/checks, original complete reversible payload and an onward key, not a file-magic/base29 width menu.
-- **#1391:** source-visible **cross-page state transition on the 32 authentic carried words**, preserving actual word cuts rather than matching 32 p50 rows or shuffling words.
+## Frontier and decisions
 
-All ask for ≥150 coherent original unknown GP29 runes or an independently typed authentic payload, exact forward reconstruction, and blind source holdout. Stop at missing source selection rather than rescuing a false premise with new parameters.
+The new 2013–p57–p50 PARABLE/DH73 numerical structure is the leading *conditional* cross-source key lead: original ID3 product matches the three solved p57 clause prime sums, their prime ranks select provisional base59 table values 75/115/73, and row21 yields 115^21 mod151=73. Weakest links remain the **mixed rank/table index convention, base59 versus base60 choice, row-as-exponent operation, and an unknown-page receiver**. Arithmetic closure is insufficient for plaintext.
 
-**Blocked:** #1335 requires genuinely uninformed external human for the balanced p55 tree packet; #41 requires one source-frozen complete p55 76-rune decoder. #784 is owner-only controlled archive inquiry.
-
-## Decision frontier
-
-Three distinct causal routes remain: (1) externally sourced 2013–14 key/operand selected by original art, parable, or numerical table; (2) source-typed framing/state clock enabling a complete reversible original cipher; (3) first-party lexical constraints from apostrophes, solved p56/p57 and original page boundaries. Require coherent **unknown original plaintext and an independent heldout prediction**, with forward reencryption as a correctness invariant. Do not promote numerical coincidences, synthetic plants, stochastic scores, or unsupported key menus. `results/README.md` remains the scientific synthesis; `workplace/integrated-original-inversion-challenge.md` is the active frontier. Rewrite affected synthesis if actual scientific evidence changes.
+In parallel, attack unknown GP29 state directly under genuine source grammar and seek actual payloads in original JPEG coefficients. The current evidence does not select a shared nine-chapter cipher, a high-entropy key or a universally meaningful red/13-dot tape. **Every positive must recover original unknown text or a typed object with an independent holdout and exact forward reconstruction.** Preserve existing finite negative scopes, avoid further table/prime coincidence menus or duplicate CI jobs. `results/README.md` remains the authoritative established-results synthesis, `workplace/integrated-original-inversion-challenge.md` the operational inversion contract.

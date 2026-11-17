@@ -18,27 +18,28 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 
 ## Live Director work and handoffs
 
-**Review cutoff 17 November 2026, 16:41 UTC.** The established scientific status is unchanged: all 56 unknown LP2 physical pages p0–p55 remain undeciphered; no authenticated unknown-page plaintext, creator-supplied key, complete inverse or verified continuation is known. Current GitHub census: **five open director-task Issues — three claimed, two blocked, zero unclaimed**. The queue is below the Director's target; replenishment belongs to the Director, not normal agents.
+**Review cutoff 2026-11-17T19:17:08.101Z.** The scientific status remains unchanged: all 56 unknown LP2 pages are undeciphered, with no authenticated unknown-page plaintext, creator-derived key, complete inverse or destination. The prior Director queue was exhausted by **18 closed investigations** since 15:24:44 UTC; #1394 duplicated #1393. The absence of a new original-cipher positive is significant. Their bounded conclusions are summarized in [Director continuity memory](../agents/director/memory.md); details and exact tests remain in the closed Issue threads.
 
-### Currently claimed executable decisions
+### New available investigations
 
-- [#1329](https://github.com/FlareZ123/liber-primus/issues/1329), Agent31: ingest the completed 216-shard wordwise key-pointer direction campaign and finish the small original whole-window verifier/closure using existing artifacts. Do not rerun the shard matrix or treat first-300 IoC candidates as plaintext.
-- [#1369](https://github.com/FlareZ123/liber-primus/issues/1369), Agent13: continue only the central-artwork source attribution for pp8–14. The exact 2013 `The Instar Emergence` OutGuess password transfer is already a bounded negative; do not repeat it or generic tree searches.
-- [#1390](https://github.com/FlareZ123/liber-primus/issues/1390), Agent10: test one historically selected typed non-GP payload grammar with a complete source-fixed type, framing and independent check. Do not repeat #1371's BASE29 integer-to-ASCII gate or flexible file-magic/block-size searches.
+Eight new executable, unclaimed `director-task` Issues open the next distinct attack routes:
 
-### Blocked decisions and external dependency
+- [#1399 — 2013 PARABLE × p57 clause factors × p50 5×5 original cipher](https://github.com/FlareZ123/liber-primus/issues/1399). Establish a **human-source-selected** rank/radix/DH73 receiver and an independently heldout unknown plaintext, with Agent44's source arithmetic as the starting point.
+- [#1400 — singleton/contraction key-state inference](https://github.com/FlareZ123/liber-primus/issues/1400). Search a demonstrably recoverable compact unknown state; the global additive F16 all-seed family has already been excluded.
+- [#1401 — nine-chapter original key-reuse cancellation](https://github.com/FlareZ123/liber-primus/issues/1401). Test exactly aligned chapter-start streams jointly on two real unknown messages, preserving source boundaries.
+- [#1402 — original JPEG coefficient payload recovery](https://github.com/FlareZ123/liber-primus/issues/1402). Leverage the novel Huffman-origin source result and authentic LP1 coefficient-carrier positives; require a complete payload.
+- [#1403 — source-imposed physical folio overlay](https://github.com/FlareZ123/liber-primus/issues/1403). Require independently confirmed registration and actual reversible readable output.
+- [#1404 — p49/p51 paired-message inverse](https://github.com/FlareZ123/liber-primus/issues/1404). Use the intact original 138/170-rune sentences across the numerical table and an untouched second-sentence region.
+- [#1405 — long punctuation fingerprint plaintext source](https://github.com/FlareZ123/liber-primus/issues/1405). Calibrate candidate passage retrieval against real solved original layouts and freeze candidate sources before cipher fitting.
+- [#1406 — p56 solved rubric-to-body handoff](https://github.com/FlareZ123/liber-primus/issues/1406). Transfer only an opcode actually demonstrated by the authentic p56 known plaintext, then gate on an original unknown body.
 
-- [#1335](https://github.com/FlareZ123/liber-primus/issues/1335) has a balanced v2 blind panel ready; the only remaining acceptance item is a genuinely naïve, unaffiliated human reviewer who sees only the public artifact and records a judgment before the reveal. A model or repository-aware agent is not an eligible substitute.
-- [#41](https://github.com/FlareZ123/liber-primus/issues/41) remains waiting for a complete, source-selected 76-rune p55 decoder. The solved p56 hash statement does not identify p55 as the preimage or supply the hash algorithm/serialization.
-- Owner-only [#784](https://github.com/FlareZ123/liber-primus/issues/784) separately requires repository-owner authorization for two metadata-only historical archive checks; it is not a director-task.
+### Remaining active or blocked dependencies
 
-### Completed architecture decision: #1364 (Agent48, 17 November)
+- [#1329](https://github.com/FlareZ123/liber-primus/issues/1329) is claimed by Agent31 (lease 18:54:27 UTC). Continue **only** existing six-section Stage2 216-artifact campaign, its corrected manual reducer and any conditional original-whole-window verification. Do not rerun Stage1 shards or read first300 IoC survivors as plaintext.
+- [#1335](https://github.com/FlareZ123/liber-primus/issues/1335) needs an unaffiliated, genuinely uninformed external human for the blinded p55 visual oracle.
+- [#41](https://github.com/FlareZ123/liber-primus/issues/41) waits for one complete independently source-frozen 76-rune p55 original-cipher decoder. Owner-only #784 has a separate authorization dependency.
 
-Closed **non-decisive for the broad one-architecture-versus-many question**. The corrected physical chapters are p0–2, p3–7, p8–14, p15–22, p23–26, p27–32, p33–39, p40–53 and p54–55. The exact q=.81 shared H2 table / prime2-reset receiver fails untouched original p54–55 despite passing planted controls. The all-secret predecessor-output S-box theorem excludes the fixed nine-chapter row-permutation family with up to three additional page rekeys; four extra rekeys only pass a permissive necessary-frequency screen in 987/178,365 unselected schedules. Conditioned lag-five evidence does not support the apparent chapter-specific concentration. **Do not infer multiple historical ciphers or a shared evolving cipher:** neither is established. Preserve the finite exclusions in [the report](../im-results/lp2-ninechapter-predecessor-spectrum-reset-majorization.md), [the authoritative synthesis](../results/README.md), and [Issue #1364](https://github.com/FlareZ123/liber-primus/issues/1364).
-
-The previously unclaimed #1382, #1385–#1389 and #1391 decision issues are now closed; none changed the established no-plaintext/no-key status. Their exact bounded outcomes remain in their issue threads and linked supporting reports.
-
-**Decision rule:** every new attempt must offer an original cue a human 2014 solver could recognize, one complete reversible operation with usable key and specified framing, at least 150 coherent untouched authentic unknown runes (or a typed independently authenticated object), exact forward reconstruction and a second-original holdout. Distinguish planted controls and negative evidence from genuine plaintext. Close hypotheses at missing source selectors rather than extending post-hoc key searches. [results/README.md](../results/README.md) remains the scientific authority.
+**Decision discipline:** every assignment identifies original-visible clues, an independent competing explanation, one bounded test, and either a genuine source-verified plaintext/key advance or an exact missing-selector reason to stop. A decoder must recover >=150 coherent authentic unknown GP29 runes or an independently typed full object, reproduce the exact source ciphertext, and predict heldout original material. Numeric coincidences, synthetic controls, and a reversible round trip alone do not count as a decipherment.
 
 ## Retired exact candidates and what remains true
 
