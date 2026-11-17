@@ -61,6 +61,31 @@ function polynomialAt(seq,x) {
   }
   return [y,dy];
 }
+/** @param {number} nonzero */
+function inverse29(nonzero) {
+  for (let i=1;i<29;i++) if (mod(i*nonzero)===1) return i;
+  throw new Error('Expected nonzero GF29 divisor');
+}
+/**
+ * Infer the final two polynomial coefficients from all earlier coefficients,
+ * conditioned on a double root specified independently by original p15.
+ * @param {number[]} prefix @param {number} root
+ */
+function repeatedRootTail(prefix,root) {
+  const [v,d]=polynomialAt(prefix,root);
+  const a=mod(-2*root*v-root*root*d);
+  return [a,mod(-root*root*v-a*root)];
+}
+/**
+ * Infer the last two original runes from a source-pinned pair of simple roots.
+ * @param {number[]} prefix @param {number} x @param {number} y
+ */
+function distinctRootTail(prefix,x,y) {
+  const u=mod(-x*x*polynomialAt(prefix,x)[0]);
+  const v=mod(-y*y*polynomialAt(prefix,y)[0]);
+  const a=mod((v-u)*inverse29(mod(y-x)));
+  return [a,mod(u-a*x)];
+}
 /** @param {number[]} seq */
 function coincidence(seq) {
   const hist = Array(29).fill(0);
@@ -97,6 +122,9 @@ function main() {
   assert.deepEqual(polynomialAt(p29,24),[0,0]);
   assert.deepEqual(polynomialAt(p30,8)[0],0);
   assert.deepEqual(polynomialAt(p30,17)[0],0);
+  assert.deepEqual(repeatedRootTail(p29.slice(0,-2),24),p29.slice(-2));
+  assert.deepEqual(distinctRootTail(p30.slice(0,-2),8,17),p30.slice(-2));
+  assert.deepEqual(p29.slice(-2),[8,19]);
   assert.deepEqual(p30.slice(-2),[12,12]);
   assert.deepEqual(unknown.filter(p=>p.indices.at(-1)===p.indices.at(-2))
     .map(p=>p.page),[30]);
