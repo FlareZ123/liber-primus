@@ -320,12 +320,8 @@ for(const [order,source] of [
       const positivePlain=[],positiveCipher=[];
       for(let i=0;i<cipher.length;i++){
         if(i===56){positivePlain.push(0);positiveCipher.push(0);continue;}
-        const k=key[positiveClock++%76],p=mod(k+2+sign);
-        const actual=p===0?1:p;
-        const encoded=mod(actual-sign*k);
-        // The source generator may make a collision at this branch.
-        // Select the next clear symbol in that exceptional case.
-        const planted=encoded===0?mod(actual+1):actual;
+        const k=key[positiveClock++%76];
+        const planted=mod(sign*k)===1?2:1;
         const finalCipher=mod(planted-sign*k);
         assert(planted!==0 && finalCipher!==0);
         positivePlain.push(planted);positiveCipher.push(finalCipher);
