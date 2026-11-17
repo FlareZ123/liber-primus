@@ -39,6 +39,8 @@ Without changing the inferred original keyword or stream origin, carry the chose
 OTHTHDEAYXAELOOJADDRJFIAWFHSEONEAEWWPBTHLIBYRTEANEYHSDIADOEWACRUOODSLUREABOETHBAETEHOJEAAEIAMFMRXRYCTHTRHGWMNGWDJSSDTCXYPERAETHIIIAWXRIAHSECIAFWDSGFIBGNGEOGTAENGPSDEOELEOPYINLNPEO
 \`\`\`
 
+The entire independent Python source-native SFT additionally **passed on Windows / Python 3.12** in [Actions run 44059521132](https://github.com/FlareZ123/liber-primus/actions/runs/44059521132), confirming the exact original-window source score, 20-rune keyword, ten-iteration collapse, native forward consistency and all 150 untouched output runes. The repaired previous `some wisdom`/`DIVINITY` source reproducer also **passed on Windows** in [run 44059528611](https://github.com/FlareZ123/liber-primus/actions/runs/44059528611), independently establishing the restored 29-entry prior and source-Rust first-initializer behavior.
+
 The SFT asserts both original score values, full word key, 150-rune statistics and exact forward recreation. The complete source-selected hypothesis was not established from an authorial clue, and the higher-scoring 300-rune inference has failed independent original continuation. **Retire this candidate.**
 
 ## Earlier high-score cells and corrected independent reproducibility
