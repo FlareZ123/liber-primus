@@ -36,6 +36,7 @@ let preceding = null;
 let startPreceding = null;
 let startPage = 0;
 let startOffset = 0;
+let lastRunePage = 0;
 /** @type {number[]} */
 let word = [];
 let completeWords = 0;
@@ -44,7 +45,8 @@ let crossPageWords = 0;
 function finish() {
   if (!word.length) return;
   completeWords++;
-  if (page !== startPage) crossPageWords++;
+  // A leading separator on the next page does not carry the preceding word.
+  if (lastRunePage !== startPage) crossPageWords++;
   if (word.length===1) {
     singles.push({page:startPage,offset:startOffset,
       preceding:startPreceding,current:word[0]});
@@ -63,6 +65,7 @@ for(const char of sourcePages.join('%')) {
     assert.ok(Number.isInteger(c),'unknown original rune');
     observed[page].push(c);
     word.push(c);
+    lastRunePage=page;
     preceding=c;
   } else if(char==='%') {
     page++;
