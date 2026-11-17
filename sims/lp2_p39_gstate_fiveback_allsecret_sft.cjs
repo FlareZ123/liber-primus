@@ -273,6 +273,42 @@ assert.ok(relaxations.envelopes.every((limits) => limits.some(
   (limit, j) => limit < nativeMinimum[j],
 )));
 
+
+/* Independent English-language profile exclusion with source-calibrated
+ * 2014/2016 Gematria Primus orthography; exact 3008-rune disjoint windows.
+ */
+const {encodeSourceNativeGP} = require('./lp2_native_gp_source_orthography_sft.cjs');
+const englishBooks = [
+  {name:'Shakespeare',file:'resources/control/shakespeare_first300k.txt',
+    nativeRunes:217106,windows:72,rejection:[72,72,63,3],minimum:[296,558,781,1162,1823,2440]},
+  {name:'Gibran',file:'resources/control/gibran_prophet_58585.txt',
+    nativeRunes:62492,windows:20,rejection:[20,20,19,0],minimum:[314,578,812,1228,1888,2467]},
+  {name:'Emerson',file:'resources/control/emerson_essays_2944.txt',
+    nativeRunes:321327,windows:106,rejection:[106,106,106,12],minimum:[318,564,793,1221,1928,2462]},
+];
+const englishRejected = [0,0,0,0];
+let englishWindowCount = 0;
+for (const book of englishBooks) {
+  const text = fs.readFileSync(path.join(root,book.file),'utf8');
+  const encoded = encodeSourceNativeGP(text);
+  assert.equal(encoded.length,book.nativeRunes,book.name);
+  const windows=[];
+  for (let start=0;start+ciphertext.length<=encoded.length;start+=ciphertext.length) {
+    windows.push(topCounts(encoded.slice(start,start+ciphertext.length)));
+  }
+  assert.equal(windows.length,book.windows,book.name);
+  assert.deepEqual(K.map((_,j)=>Math.min(...windows.map(row=>row[j]))),
+    book.minimum,book.name+' profile minima');
+  const rejection=relaxations.envelopes.map(upper=>windows.filter(
+    row=>row.some((count,j)=>count>upper[j])
+  ).length);
+  assert.deepEqual(rejection,book.rejection,book.name+' rekey profile exclusion');
+  for (let i=0;i<4;i++)englishRejected[i]+=rejection[i];
+  englishWindowCount+=windows.length;
+}
+assert.equal(englishWindowCount,198);
+assert.deepEqual(englishRejected,[198,198,188,15]);
+
 // Source-shaped positive plant: every secret alphabet is correctly inverted,
 // and the SAME necessary bound includes its true plaintext symbol counts.
 const nativePlain = latin.slice(0, ciphertext.length);
@@ -294,6 +330,7 @@ console.log('Authenticated solved-GP English counts (2979):', JSON.stringify(eng
 console.log('Latin 68 x 3008-rune control minima:', JSON.stringify(nativeMinimum));
 console.log('Envelope with 0, 1, 2, 3 best-placed physical-page rekeys:', JSON.stringify(relaxations.envelopes));
 console.log('One actual p50 numeric-table rekey (all 29 seeds):', JSON.stringify(relaxations.p50Seam));
+console.log('Calibrated English exclusion (0..3 rekeys) across 198 windows:', JSON.stringify(englishRejected));
 console.log('Positive native-Latin plant 3008/3008 inverted; bound dominates true top-k');
 console.log('Decision: continuous GF29 G-state five-back one-row-per-state cipher');
 console.log('cannot generate these native-GP language profiles; original key not found.');

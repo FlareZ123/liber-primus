@@ -55,6 +55,22 @@ Each row of the first five entries is an **independent per-k upper envelope** ov
 
 The **literal numeric p50-table seam**, positioned exactly 2,474 GP runes into this chapter, has its own source-driven check. A completely unrestricted new set of 29 secret permutations at that single seam still permits at most **284** occurrences of the most frequent plaintext rune in the entire original chapter. That is below each 3,008-rune Latin control's minimum **328**, and below the 2,979-rune already-solved English control's **380**. Any claimed use of the p50 table as *only a rekey for this exact state-and-row architecture* therefore misses the original-language register even under completely secret rekey values.
 
+
+## Independent source-calibrated GP29 English controls
+
+The initial native-language gate uses a separately sourced Latin-GP corpus. An additional test invokes the repository's pre-existing [source-calibrated English-to-GP29 encoder](../sims/lp2_native_gp_source_orthography_sft.cjs), calibrated against **181 original solved LP1 word spellings** and **all 95 original solved LP2 p57 runes**. Its ING and IO spellings reproduce authenticated sources rather than using naive Roman digraphs. Three independently pinned English texts were then converted without consulting the unknown LP2 ciphertext and split into **complete disjoint 3,008-rune windows**. Each is tested with the same all-secret six-coordinate histogram capacity, across all 29 initial states and all permitted page-boundary secret rekeys.
+
+| Source | Windows | Excluded, 0 rekeys | Excluded, 1 rekey | Excluded, 2 rekeys | Excluded, 3 rekeys |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Shakespeare, first 300,000 characters | 72 | 72 | 72 | 63 | 3 |
+| Gibran, The Prophet | 20 | 20 | 20 | 19 | 0 |
+| Emerson, essays | 106 | 106 | 106 | 106 | 12 |
+| **Total** | **198** | **198** | **198** | **188** | **15** |
+
+Every one of **198 native-English control windows** fails the zero-rekey or single-rekey necessary condition, despite allowing any original page boundary for that single rekey. **188/198** fail even when two arbitrary complete state-alphabet rekeys can be placed at source page boundaries. With three rekeys, only 15/198 fail: the other 183 are **not thereby deciphered or positively identified as possible original plaintext**. The Latin and English profiles differ, so the universal three-rekey rejection over all 68 pinned Latin windows does not extend to all source-English windows. These controls preserve source passage order and exact rune count; they do not assume or reproduce the original 2,896 printed-word lengths.
+
+This independent English-language extension narrows a plausible intended-GP29-prose cipher architecture without relying on any guessed secret permutation, ciphertext-fitted language, or outside keys. No actual unknown LP2 plaintext was recovered.
+
 ## Correctness control and evidentiary scope
 
 The [single Windows Node22 SFT](../sims/lp2_p39_gstate_fiveback_allsecret_sft.cjs) loads the untouched physical p39 red span, all physical pp40–53 source runes, the separate solved-Cicada GP fixture, and the independently GP-coded Latin whole-word reference. It pins all source counts, the 29-source-seed capacity envelopes, the 133-rune synchronization, the 2,474-rune table seam, and the Latin minima.
@@ -63,4 +79,4 @@ For a **positive cipher control**, it constructs 29 nonzero-affine secret alphab
 
 **Scope:** This is a theorem about the stated one-register, fixed-five-tap, source-polynomial, history-derived reversible family, with at most three *independent page-boundary rekeys* and native-GP reference-frequency tests. It does **not** reject other nonlinear cipher state updates, unknown key material, arbitrary word-level rekeys, table-driven changes to the *state* itself, source symbols outside GP29, homophonic/non-bijective mappings, alternative output ordering, unusual natural-language frequency registers, or nonlinguistic typed data. The original manuscript does not authenticate the chosen recurrence or 2013-seed interpretation.
 
-**Director decision:** Retire this specific p39-G five-back single-state cipher and every simple original-page rekey rescue of size 0–3. The broad stateful decoding question in #1422 remains open. A successor should first acquire a *new original source-selected operation or external key* that changes the computational model, rather than adding a fourth guessed page rekey or another secret-alphabet sweep. No actual LP2 page was decoded by this test.
+**Director decision:** With the independently calibrated English controls, retire this specific p39-G five-back single-state cipher and every simple original-page rekey rescue of size 0–3. The broad stateful decoding question in #1422 remains open. A successor should first acquire a *new original source-selected operation or external key* that changes the computational model, rather than adding a fourth guessed page rekey or another secret-alphabet sweep. No actual LP2 page was decoded by this test.
