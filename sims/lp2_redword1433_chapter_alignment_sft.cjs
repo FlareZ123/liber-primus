@@ -154,4 +154,56 @@ console.log("Nine original chapter lengths scanned, any repeated factor:", anyDu
   "add-one family frequency:", (anyDuplicate + 1) / (draws + 1));
 console.log("Null mean matches by chapter size:",
   chapterLengths.map((size, j) => [size, counts[j] / draws]));
+/**
+ * Independent exploratory selector: the *largest positive pairwise GCD* among
+ * all red words. This selects a pair without first choosing a chapter length.
+ * The book does not explicitly tell a solver to use this operation.
+ */
+function maxPositiveGcd(values) {
+  let best = 1n;
+  for (let i = 0; i < values.length; i++) {
+    if (values[i] === 0n) continue;
+    for (let j = i + 1; j < values.length; j++) {
+      if (values[j] === 0n) continue;
+      const common = gcd(values[i], values[j]);
+      if (common > best) best = common;
+    }
+  }
+  return best;
+}
+const actualMax = maxPositiveGcd(reds.map((word) => numeral(word.digits)));
+assert.equal(actualMax, 1433n);
+console.log("Largest positive GCD among all 1378 unordered red-word pairs:", String(actualMax));
+state = 0x33012014;
+const pairwise = flat.slice();
+const maxTrials = 20000;
+const chapterFactorSet = new Set(chapterLengths.map((x) => BigInt(x)));
+let maxAtLeast1433 = 0;
+let maxEqualsChapterSize = 0;
+let maxExactly1433 = 0;
+for (let trial = 0; trial < maxTrials; trial++) {
+  for (let i = pairwise.length - 1; i > 0; i--) {
+    const j = random32() % (i + 1);
+    [pairwise[i], pairwise[j]] = [pairwise[j], pairwise[i]];
+  }
+  const values = [];
+  let at = 0;
+  for (const len of lengths) {
+    let n = 0n;
+    for (let i = 0; i < len; i++) n = 29n * n + BigInt(pairwise[at++]);
+    values.push(n);
+  }
+  const winner = maxPositiveGcd(values);
+  if (winner >= actualMax) maxAtLeast1433++;
+  if (chapterFactorSet.has(winner)) maxEqualsChapterSize++;
+  if (winner === 1433n) maxExactly1433++;
+}
+assert.equal(maxAtLeast1433, 5110);
+assert.equal(maxEqualsChapterSize, 51);
+assert.equal(maxExactly1433, 5);
+console.log("20000 original-red-shuffle max-GCD controls: >=1433", maxAtLeast1433,
+  "; max equals any nine chapter sizes", maxEqualsChapterSize,
+  "; max exactly1433", maxExactly1433);
+console.log("Maximal-GCD equals original chapter length, add-one frequency:",
+  (maxEqualsChapterSize + 1) / (maxTrials + 1));
 console.log("PASS: observed coincidence is a provisional lead; no plaintext or key is recovered");
