@@ -244,6 +244,50 @@ for (const [name, naturalOrder] of Object.entries(internalOrders)) {
     }
   }
 }
+
+// Separate original-glyph register control: assume the tree directly
+// reconstructs the 256 *visible* source runes on p55/p56/p57, requiring
+// no guessed 76-runic plaintext and no p56 decryption as an input.
+const visibleTerminal = [
+  ...corpus.pages.find((page) => page.page === 55).indices,
+  ...originalP56
+];
+assert.equal(visibleTerminal.length, 161);
+const printedUnary = [];
+for (const [internalOrder, naturalInternals] of Object.entries(internalOrders)) {
+  for (const reverseInternal of [false, true]) {
+    const internals = reverseInternal
+      ? [...naturalInternals].reverse() : naturalInternals;
+    for (const [leafOrder, leaves] of Object.entries(leafOrders)) {
+      for (const reverseClear of [false, true]) {
+        const labels = Array(256).fill(-1);
+        for (let j = 0; j < 161; j++)
+          labels[internals[j]] = visibleTerminal[j];
+        for (let j = 0; j < 95; j++)
+          labels[leaves[j]] = p57[reverseClear ? 94 - j : j];
+        const byChildInput = new Map();
+        let testedUnary = 0;
+        for (const node of addresses) {
+          if (children[node].length !== 1) continue;
+          testedUnary++;
+          const input = labels[children[node][0]];
+          if (!byChildInput.has(input)) byChildInput.set(input, new Set());
+          byChildInput.get(input).add(labels[node]);
+        }
+        assert.equal(testedUnary, 92);
+        const contradictoryInputs = [...byChildInput.values()]
+          .filter((set) => set.size > 1).length;
+        printedUnary.push({internalOrder, reverseInternal,
+          leafOrder, reverseClear, knownUnary: testedUnary,
+          contradictoryInputs});
+      }
+    }
+  }
+}
+assert.equal(printedUnary.length, 24);
+assert.equal(Math.min(...printedUnary.map((x) => x.contradictoryInputs)), 20);
+assert.equal(Math.max(...printedUnary.map((x) => x.contradictoryInputs)), 25);
+
 assert.equal(symmetricLeafSet.length, 6);
 assert.equal(allSecretUnary.length, 24);
 assert(allSecretUnary.every((x) => x.inconsistentInputs >= 6));
@@ -262,6 +306,6 @@ console.log(JSON.stringify({
     internalOrders: Object.keys(internalOrders),
     primeWeights: 2, sourceDirections: 2, models: results.length,
     best, histogram, results},
-  allSecret: {unary: allSecretUnary, symmetricLeafSet},
+  allSecret: {unary: allSecretUnary, symmetricLeafSet, printedUnary},
   decision: 'All 24 fixed parent-sum readers fail; all 24 unrestricted unary function folds are contradictory, and all six invariant leaf-set readers conflict with known p56. No unknown plaintext.'
 }, null, 2));
