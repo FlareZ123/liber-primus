@@ -171,6 +171,29 @@ assert.equal(minRingResiduals, 112);
 assert.equal(minGFResiduals, 112);
 assert.ok(minRingResiduals > 32 && minGFResiduals > 32);
 
+// Recovered-plaintext positive: a *secret*, arbitrary 30-symbol codebook,
+// a fully original-shaped 256-cell table, 76 withheld planted target runes,
+// and the same 180 true known terminal runes. Infer codebook from interior
+// alone, then decode every unknown perimeter rune exactly.
+const distinct = [...new Set(tape)];
+const secret = new Map(distinct.map((label, i) => [label, (131 * i + 19) & 255]));
+const planted55 = p57.slice(0, 76);
+const allPlain = [...planted55, ...p56, ...p57];
+const synthetic = new Array(256);
+for (let i = 0; i < 256; i++) {
+  synthetic[positions[i]] = secret.get(tape[i]) ^ allPlain[i];
+}
+const decodedSecret = new Map();
+for (let i = 0; i < 180; i++) {
+  const label = tape[76 + i];
+  const keyByte = synthetic[inner[i]] ^ allPlain[76 + i];
+  if (decodedSecret.has(label)) assert.equal(decodedSecret.get(label), keyByte);
+  decodedSecret.set(label, keyByte);
+}
+assert.equal(decodedSecret.size, 30);
+const recovered55 = outer.map((cell, i) => synthetic[cell] ^ decodedSecret.get(tape[i]));
+assert.deepEqual(recovered55, planted55);
+
 // Fully blind original-shape stateful event-codebook positive. The original
 // source order is used only by this synthetic positive; the original negative
 // above holds even for any secret event reordering.
@@ -215,28 +238,6 @@ for (let i = 75; i >= 0; i--) {
 const recoveredStatefulPlant = outer.map((pos, i) => masked[pos] ^ recoveredState[i]);
 assert.deepEqual(recoveredStatefulPlant, planted55);
 
-// Recovered-plaintext positive: a *secret*, arbitrary 30-symbol codebook,
-// a fully original-shaped 256-cell table, 76 withheld planted target runes,
-// and the same 180 true known terminal runes. Infer codebook from interior
-// alone, then decode every unknown perimeter rune exactly.
-const distinct = [...new Set(tape)];
-const secret = new Map(distinct.map((label, i) => [label, (131 * i + 19) & 255]));
-const planted55 = p57.slice(0, 76);
-const allPlain = [...planted55, ...p56, ...p57];
-const synthetic = new Array(256);
-for (let i = 0; i < 256; i++) {
-  synthetic[positions[i]] = secret.get(tape[i]) ^ allPlain[i];
-}
-const decodedSecret = new Map();
-for (let i = 0; i < 180; i++) {
-  const label = tape[76 + i];
-  const keyByte = synthetic[inner[i]] ^ allPlain[76 + i];
-  if (decodedSecret.has(label)) assert.equal(decodedSecret.get(label), keyByte);
-  decodedSecret.set(label, keyByte);
-}
-assert.equal(decodedSecret.size, 30);
-const recovered55 = outer.map((cell, i) => synthetic[cell] ^ decodedSecret.get(tape[i]));
-assert.deepEqual(recovered55, planted55);
 console.log('PASS 225 red rune + 31 source 13-dot tape: 256 events, 30 distinct symbol classes');
 console.log('PASS p56 85/85 solved + clear p57 95 original GP29 runes');
 console.log('PASS blinded 76-rune p55 plant recovered exactly from the 180 known plaintext runes using ONLY the 30-byte secret codebook');
