@@ -130,12 +130,12 @@ function allSecretCeiling(input, phase) {
   return {classes: rows.size, numerator};
 }
 const expectedPeriod = [
-  [108826, 112724, 153832],
-  [108566, 111490, 152110],
-  [109250, 111490, 152110],
-  [108588, 111490, 152110],
-  [109644, 113174, 157544],
-  [108028, 111034, 148484]
+  [108826, 112724, 123156, 125566, 153832],
+  [108566, 111490, 122290, 126332, 152110],
+  [109250, 111490, 122290, 126656, 152110],
+  [108588, 111490, 122290, 124900, 152110],
+  [109644, 113174, 126216, 126332, 157544],
+  [108028, 111034, 123358, 126332, 148484]
 ];
 const expectedPagePhase = [
   [151970, 172004],
@@ -146,18 +146,22 @@ const expectedPagePhase = [
   [143792, 152916]
 ];
 const comparison = variants.map(([name, items], i) => {
-  const periods = [5, 7, 35].map(period =>
+  const periods = [5, 7, 14, 16, 35].map(period =>
     allSecretCeiling(items, (_, position) => position % period));
   const pageReset = [5, 7].map(period =>
     allSecretCeiling(items, (item, position) => (item.page - 8) * period + position % period));
   assert.deepEqual(periods.map(s => s.numerator), expectedPeriod[i], name);
   assert.deepEqual(pageReset.map(s => s.numerator), expectedPagePhase[i], name);
-  return {name, period: Object.fromEntries([5, 7, 35].map((k, j) =>
+  return {name, period: Object.fromEntries([5, 7, 14, 16, 35].map((k, j) =>
     [String(k), {numerator:periods[j].numerator, maxIoC:periods[j].numerator / denominator}])),
     pageReset: Object.fromEntries([5, 7].map((k, j) =>
       [String(k), {classes:pageReset[j].classes,
         numerator:pageReset[j].numerator, maxIoC:pageReset[j].numerator / denominator}]))};
 });
+const strongest14 = Math.max(...comparison.map(x => x.period["14"].numerator));
+const strongest16 = Math.max(...comparison.map(x => x.period["16"].numerator));
+assert.equal(strongest14, 126216);
+assert.equal(strongest16, 126656);
 const strongest35 = Math.max(...comparison.map(x => x.period["35"].numerator));
 assert.equal(strongest35, 157544);
 const strongestPage7 = Math.max(...comparison.map(x => x.pageReset["7"].numerator));
@@ -247,9 +251,11 @@ console.log(JSON.stringify({
   source: "original 24.jpg + pp8-14 original transcript, 1730 mixed symbols",
   dotOrder, digitBefore:692, digitAfter:0, sourceRunes:1729,
   sourceIoC:originalNumerator / denominator, denominator,
+  period14WholeFamilyMaximumIoC:strongest14 / denominator,
+  period16WholeFamilyMaximumIoC:strongest16 / denominator,
   period35WholeFamilyMaximumIoC:strongest35 / denominator,
   pageBy7WholeFamilyMaximumIoC:strongestPage7 / denominator,
   comparison, controls:controlResults,
-  conclusion: "Direct recurring periods 5/7/35 plus source-fixed 5-/7-column rearrangements cannot recover the independently observed native GP29-English unigram profile, even with every phase alphabet secret.",
+  conclusion: "Direct recurring periods 5/7/14/16/35 plus source-fixed 5-/7-column rearrangements cannot recover the independently observed native GP29-English unigram profile, even with every phase alphabet secret.",
   limitation: "Does not rule out changing internal state, non-bijective code, another register, or page-conditional 7-phase models matched by some independent English controls."
 }, null, 2));
