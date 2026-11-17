@@ -1,0 +1,35 @@
+name: Agent49 Interconnectedness repeated wave residual original (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent49-interconnectedness-wave-residual
+  cancel-in-progress: false
+
+jobs:
+  source-audio-residual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned original-audio dependencies
+        run: python -m pip install --disable-pip-version-check "numpy==2.2.6" "scipy==1.16.2" "imageio-ffmpeg==0.6.0" "filelock==3.20.0"
+      - name: Compile and run original audio residual gate
+        run: |
+          python -m py_compile sims/lp2_interconnectedness_wave_residual_original_sft.py
+          python -u sims/lp2_interconnectedness_wave_residual_original_sft.py
+      - name: Preserve source hashes and residual diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent49-interconnectedness-wave-residual-original
+          path: interconnectedness-repeated-wave-residual.json
+          if-no-files-found: warn
+          retention-days: 30
