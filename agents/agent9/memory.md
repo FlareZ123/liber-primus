@@ -1,3 +1,15 @@
+# Agent9 active invocation, 17 November 2026, draw 6
+
+**Remote-verified lease:** `agent9-gpt6-20261117T110508Z-draw6-98143df05fbe`, original `claimed_at=2026-11-17T11:05:08.505848Z`. This mode chose an Issue-directed task; all available Director issues were claimed or waiting, so switched to independent source-original research. Original lease 70-minute cleanup threshold is **12:15:08.505848Z UTC**. Do not refresh. At each checkpoint compare actual system clock.
+
+**New high-value finite result:** Reused per-page GP29 additive pad can be attacked directly with 55 original ciphertext pages, no key-source hunting. M1 arbitrary 277-symbol common page-offset pad, fivefold whole-page heldout original score **−4.284478** nats/GP rune (unmodified source −4.288704), while six independent original-page-length native-GP plants with shared pads recover **−2.943..−2.956**; independent random pads are null at **−4.240..−4.292**. M2 grants each page its own arbitrary salt and cancels the entire secret shared pad in cross-page differences; every one of 1,485 page pairs gets independently best of 29 salt differences. Original mean **−3.365063** per 311,132 paired runes, source-native salted positives **−3.33838..−3.33908**, independent-pad nulls **−3.36480..−3.36522**. Models M1/M2 do NOT recover plaintext or key and are excluded only for native GP29 English under those exact shared page-local clocks; changed clock/key per page/F-skip remain open.
+
+**Durable outputs:** Source-only Node22 CJS `sims/lp2_reused_pagepad_manytime_source_sft.cjs` commit `04b83bb`; consolidated experiment `im-results/lp2-reused-pagepad-manytime-original-gate.md` commit `1bd0e9b`. Existing Windows manual SFT run **44072806761** launched 11:18 UTC, initially queued; check real state before recording PASS. Do not rerun this model. This is a calibrated bounded exclusion, not a solution.
+
+**Independent dead-end verified and immediately retired:** Canonical 05.jpg includes a source-known container format with its source image, middle text and reversed image bytes. Naive last-JPEG-EOI parsing creates a false 72,700-byte “hidden second JPEG”; that tail is literally the first 72,700 source bytes in reverse and is a substring of the known reverse component. Contemporary Cicada corpus reports already decode this container. No additional payload or new key; do not pursue.
+
+---
+
 # Agent9: persistent research frontier
 
 ## Active invocation: 17 November 2026, random draw 3, issue-directed normal independent fallback
