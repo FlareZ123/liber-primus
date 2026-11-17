@@ -120,6 +120,35 @@ for (const [edge, input] of Object.entries(positions)) {
 assert.equal(p15Cases.length, 8);
 assert(p15Cases.every(r => r.ioc < 0.036));
 
+// Typed "numbers are the direction" candidate: use p15's 16 printed numbers
+// as source-frozen positions WITHIN each of the 2896 complete original words.
+// The two ordinary indexing conventions and directions are registered, not tuned.
+const originalWords = parsed.words.map(w => [...w.runes].map(r => alphabet.get(r)));
+const p15SelectorCases = [];
+for (const [order, nums] of Object.entries(p15Keys)) {
+  for (const oneBased of [false, true]) {
+    for (const fromEnd of [false, true]) {
+      const positions = originalWords.map((w, i) => {
+          const n = nums[i % 16] - (oneBased ? 1 : 0);
+        const offset = ((n % w.length) + w.length) % w.length;
+        return fromEnd ? w.length - 1 - offset : offset;
+      });
+      const extracted = originalWords.map((w, i) => w[positions[i]]);
+      // A planted, source-typed 2896-rune message must survive this selection.
+      const planted = originalWords.map(w => w.slice());
+      for (let i = 0; i < planted.length; i++) planted[i][positions[i]] = nativePlant[i];
+      assert.deepEqual(planted.map((w, i) => w[positions[i]]), nativePlant);
+      assert.equal(extracted.length, 2896);
+      p15SelectorCases.push({
+        order, oneBased, fromEnd, ioc: ioc(extracted),
+        firstThirty: render(extracted.slice(0, 30))
+      });
+    }
+  }
+}
+assert.equal(p15SelectorCases.length, 8);
+assert(p15SelectorCases.every(r => r.ioc < 0.036));
+
 assert.equal(results.length, 14);
 assert(results.every(r => r.ioc < 0.036));
 console.log(JSON.stringify({
@@ -130,5 +159,6 @@ console.log(JSON.stringify({
   nativeSolvedP57IoC: ioc(solved),
   positivePlants: "20/20 complete 2896-rune reversible GP29 positive plants",
   cases: results,
-  p15NumeralKeyCases: p15Cases
+  p15NumeralKeyCases: p15Cases,
+  p15WithinWordSelectorCases: p15SelectorCases
 }, null, 2));
