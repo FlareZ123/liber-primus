@@ -1,0 +1,17 @@
+name: Historical LP2 Key Switch original word constraint
+on:
+  workflow_dispatch:
+
+jobs:
+  archived-keyswitch-sft:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout original repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify archival two-key necessary condition and planted native positives
+        run: node sims/lp2_archived_keyswitch_word_gate_sft.cjs
