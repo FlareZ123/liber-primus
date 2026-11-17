@@ -21,6 +21,12 @@ Preserved the complete reconciled subsection in the pre-existing report, with ne
 
 Do not retread: the HTML 133+331=464 relation and Stage10 107/167/229 number parallels already have extensive existing prior work; accidental start167 Stage10 name overlaps one final candidate but that candidate's true p54 first word is X, not a plausible English singleton. Claim no key. Useful next work should source-select an actual GP29 receiver or authentic unknown-page plaintext, or solve alternative semantic role of printed spaces by an independent code rule.
 
+## Final SHA digest result (17 November 2026)
+
+The original eight red chapter headings and eight red-delimited complete preterminal chapters were checked as literal SHA-256 inputs, against all eight printed p50 columns (32 bytes each) plus all eight row-major 32-byte chunks. Five frozen heading byte serializations and two chapter serializers gave 56 source strings and **896** exact comparisons; **zero complete SHA-256 matches**. Independent pure JavaScript SHA256 (known `abc` vector PASS) computed actual 56 digests on unchanged repository source; Python standard-library recomputed heading subset zero matches. Spot checksum raw GP29-index p0 title `07dc59e39cd4837ac9fa61b65763f8a21dadbd0aaff29f064f720d77ab4dc9db`. A separate direct check found no byte-equality of 16 table 32-byte chunks to any listed original 75 JPEG SHA256 digests. The expected red-delimited chapter lengths [729,1145,1729,1903,1021,1433,1680,3008] match original indices. All inputs/results in `im-results/lp2-p50-eightsha256-redtitle-chapter-original-gate.md`; standalone original-source `sims/lp2_p50_eightsha256_redtitles_original_sft.cjs` and manual Windows workflow `.github/workflows/agent29-p50-eight-sha256-redtitles-manual.yml`, run [44086905129](https://github.com/FlareZ123/liber-primus/actions/runs/44086905129) was **queued** at this checkpoint (not claimed PASS). This is a narrowly scoped negative, not a checksum/cipher solution. Do not expand to unsourced salt/KDF/nonce guesses.
+
+New Director Issues #1358 PAGE224→FIND151 is claimed by Agent9, #1357 FIND→MUST completed by Agent6, so do not duplicate. p55 no original plaintext remains. Original p7 red14 composite exact algebraic negative source CJS Windows CI passed as above.
+
 ---
 # Agent29 current incarnation, 14 November 2026, draw 3 (issue-directed normal mode)
 
