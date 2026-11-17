@@ -73,6 +73,29 @@ All four actual inverses are uniform-like GP symbol streams, without readable GP
 
 [Independent original-input self-contained CommonJS SFT](../sims/lp2_floral_red_root24_quotient_lfsr_sft.cjs) · [Passing Windows Node22 CI 43548517822](https://github.com/FlareZ123/liber-primus/actions/runs/43548517822).
 
+### Root-24 Horner checksum as a ciphertext-dependent state, frozen original inversion (Agent2, 17 November)
+
+A deterministic alternative to the earlier heading-polynomial-as-LFSR is to treat the shared root as the Horner multiplier itself, as a human checking a polynomial might. The public constant is `r=3301 mod29=24`. Scan either authentic red heading from state `h=0` with `h <- 24*h + redRune (mod29)`. **Both headers produce `h=0`**, so their subsequent black bodies have a canonically identical, source-fixed initial state without guessing a quotient, phase, offset or hidden key. An internally motivated guess for a changing-state cipher is to use the same accumulator on the adjacent ciphertext or inferred plaintext rune:
+
+- Decode `P_i = C_i ± h_i (mod29)`, then set `h_(i+1) = 24*h_i + C_i (mod29)` (ciphertext-autokey).
+- Alternatively set `h_(i+1) = 24*h_i + P_i (mod29)` (plaintext-autokey).
+
+The sign is the only explicit inversion convention in this four-model candidate, and each model is symbolwise bijective from state 0; no word/page state resets or collision exceptions are allowed. Crucial objection: **the original images say neither to apply a polynomial rolling checksum nor to use its state as an additive GP29 output key.** These are inexpensive, precisely specified tests of an internally suggested equation, not first-party recovered instructions.
+
+| Frozen inverse | p40–53 black 3,000-rune IoC | p54–55 black 299-rune IoC |
+| --- | ---: | ---: |
+| Cipher-feedback, subtract | 0.034524841614 | 0.033848847388 |
+| Cipher-feedback, add | 0.034386795599 | 0.036093465915 |
+| Plain-feedback, subtract | 0.034447037902 | 0.033534600795 |
+| Plain-feedback, add | 0.034545292875 | 0.033983524500 |
+| Untouched ciphertext | 0.034544403690 | 0.033489708424 |
+
+All eight original-source outputs retain essentially flat GP29 symbol histograms; direct inspections of the complete original outputs find no coherent unknown plaintext, key or typed payload. In each heading group the first black rune survives unchanged (`A` for p40, `IA` for p54) because the red checksum state is zero at the boundary. No parameters were learned on the first 300 p40 body runes, so the remaining p40–53 text and full p54–55 were used only after all four variants were frozen. Exact forward reencryption recovers all original 3,000/299 rune bodies; each variant also round-trips an independently clear 95-rune p57 GP-native plant. Such invertibility alone is no evidence of cipher identification. [Self-contained Windows-compatible Node22 source test](../sims/lp2_floral_root24_horner_feedback_sft.cjs).
+
+**Independent artifact distinction:** the original archive JPEGs `57.jpg` (physical p40) and `71.jpg` (physical p54) have **exactly identical grayscale pixel values** in both exterior ornament rectangles `x=0..519` and `x=1880..2399`, `y=750..2849` (2400×3600 images). Their central text rectangles differ. This directly establishes duplicated border artwork at those coordinates, so the border itself provides no per-chapter-distinct feedback update, IV or page clock. It does not rule out an instruction encoded in the different red headings, relative layout or another page feature.
+
+**Bounded decision:** the root-24 headings are compatible with the public zero-state checksum but do not identify a symbol-changing opcode. Both minimal Horner-feedback inverses, under both signs and with unchanged original page-carry, fail the complete-text gate. No source-selected nonlinear floral cipher has been recovered; further fitted tweaks to this same checksum equation would be unjustified without another original clue.
+
 **Decision:** preserve the newly noticed paired red-heading root24 equalities as a source structural constraint and candidate *single-parity* relation. **Retire** the source-fixed quotient-as-repeating-additive-key inverse and its self-seeded characteristic-polynomial LFSR variant on the original chapter bodies. A historical instruction specifying coefficient order and a concrete operation is still needed. Further ad hoc phases, permutations and stacked ciphers are unjustified absent such evidence. No unknown-page plaintext, key, or final destination has been recovered.
 
 **Reproduction:** [one read-only Node22 CommonJS SFT](../sims/lp2_red_floral_root24_quotient_key_sft.cjs) checks original spans and coefficients, all exact roots and nonroots, the 7/8 source quotients, both whole-chapter inverses and exact native-GP planted controls. [Successful read-only Windows GitHub Actions run](https://github.com/FlareZ123/liber-primus/actions/runs/43543857247). The separate quotient-LFSR original inverse and its native plant passed [Windows CI 43548517822](https://github.com/FlareZ123/liber-primus/actions/runs/43548517822).
