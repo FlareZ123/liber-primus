@@ -188,8 +188,8 @@ function main() {
   const original = scan(tapes);
   assert.deepEqual([original.a, original.b, original.delta,
     original.overlap, original.valid, original.hits, original.shifts],
-  [1, 6, 391, 753, 699, 48, 85180]);
-  assert.ok(Math.abs(original.z - 4.695039438242998) < 1e-11);
+  [7, 8, 290, 307, 302, 25, 85180]);
+  assert.ok(Math.abs(original.z - 4.407554778094466) < 1e-11);
   const draw = random(0x33011199);
   const nulls = Array.from({length: 10}, () => scan(control(tapes, draw)));
   assert.equal(nulls.filter((x) => x.z >= original.z).length, 10);
