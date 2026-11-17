@@ -1,0 +1,14 @@
+name: Agent15 original singleton crib GF29 LFSR gate
+on:
+  workflow_dispatch:
+jobs:
+  single-test:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original and synthetic positives
+        run: node sims/lp2_singleton_crib_source_poly_lfsr_sft.cjs
