@@ -14,4 +14,6 @@ The hypothesis makes an exact and immediate necessary prediction, even without k
 
 **The source-count correspondence is statistically ordinary:** 256 independent uniform draws from 256 possibilities have expected distinct count about 162, so observing 161 is unsurprising. There is no authored direction to split the table by repeat versus first occurrence. The source-correct terminal split and direct reusable dictionary decoder are therefore *not established*, and the simplest deterministic implementation is rejected. A time-varying mapping or rearrangement could evade the test but requires a new first-party instruction before investment.
 
+**Execution:** both original-input experiments and their planted controls passed [Windows Node22 on-demand run 44111031094](https://github.com/FlareZ123/liber-primus/actions/runs/44111031094), 17 November 2026.
+
 **Reproducer:** [single-file read-only CommonJS SFT](../sims/lp2_p50_distinct161_terminal95_duplicate_sft.cjs). It reads only the unchanged original grid and corpus and asserts the 161/95 counts, 23/26 original contradictions and a 0/26 planted control. This result leaves all LP2 unknown pages encrypted.
