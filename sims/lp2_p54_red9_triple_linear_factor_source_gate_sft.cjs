@@ -205,5 +205,260 @@ for (const sign of [-1, 1]) {
     nativePlantRecovered: nativePlant.length,
   }));
 }
+
+/*
+ * Follow-on: source-seeded 28-step chain receiver.
+ *
+ * Independent external research (indexed at resources/external/
+ * leo-y-zhang-liberprimusanalysis-index.md) proposes a chain receiver:
+ * C[i]=C[i-1]+step[i] mod29, with 28 nonzero steps and one zero-step symbol.
+ * Here the p54 primitive quintic supplies the candidate key generator:
+ * first five red runes as LFSR state. This is a bounded source-to-model test,
+ * not evidence that either the external model or this key is Cicada's.
+ */
+const mod28 = (x) => ((x % 28) + 28) % 28;
+function ioc28(values) {
+  const counts = Array(28).fill(0);
+  for (const value of values) {
+    assert(Number.isInteger(value) && value >= 0 && value < 28);
+    counts[value]++;
+  }
+  return 28 * counts.reduce((sum, count) => sum + count * (count - 1), 0) /
+    (values.length * (values.length - 1));
+}
+const primitiveRoots = [];
+for (let g = 2; g < 29; g++) {
+  const seen = new Set();
+  let x = 1;
+  for (let i = 0; i < 28; i++) {
+    seen.add(x);
+    x = mod29(x * g);
+  }
+  if (seen.size === 28) primitiveRoots.push(g);
+}
+assert.equal(primitiveRoots.length, 12);
+const chainRawKey = recurrence(seed, monicQuintic, 1200);
+const chainNonzeroKey = chainRawKey.filter((x) => x !== 0);
+assert.equal(chainRawKey.length, 1200);
+assert.equal(chainNonzeroKey.length, 1153);
+const chainKeyMaps = [{
+  name: 'rank(x-1)',
+  key: chainNonzeroKey.map((x) => x - 1)
+}];
+for (const g of primitiveRoots) {
+  const lookup = Array(29).fill(-1);
+  let x = 1;
+  for (let e = 0; e < 28; e++) {
+    lookup[x] = e;
+    x = mod29(x * g);
+  }
+  chainKeyMaps.push({name: 'log' + g, key: chainNonzeroKey.map((v) => lookup[v])});
+}
+chainKeyMaps.push({name: 'raw(x mod28)', key: chainRawKey.map(mod28)});
+assert.equal(chainKeyMaps.length, 14);
+const chainDeltas = body.slice(1).map((value, i) =>
+  mod29(value - body[i]));
+assert.equal(chainDeltas.length, 298);
+assert.equal(chainDeltas.filter((x) => x === 0).length, 3);
+assert.equal(chainDeltas.filter((x) => x !== 0).length, 295);
+const chainCandidates = [];
+for (const keyMap of chainKeyMaps) {
+  for (const direction of ['forward', 'reverse']) {
+    for (const start of [0, 5]) {
+      for (const sign of [-1, 1]) {
+        for (const consumeZeroSteps of [false, true]) {
+          let keyIndex = start;
+          const decoded = [];
+          const p54Decoded = [];
+          const p55Decoded = [];
+          for (let i = 0; i < chainDeltas.length; i++) {
+            const delta = chainDeltas[i];
+            if (delta === 0) {
+              if (consumeZeroSteps) keyIndex++;
+              continue;
+            }
+            const step = direction === 'forward' ? delta : 29 - delta;
+            const keyValue = keyMap.key[keyIndex++];
+            const plain = mod28((step - 1) - sign * keyValue);
+            decoded.push(plain);
+            if (i < 222) p54Decoded.push(plain);
+            else p55Decoded.push(plain);
+          }
+          chainCandidates.push({
+            keyMap: keyMap.name, direction, start, sign, consumeZeroSteps,
+            n: decoded.length,
+            ioc28: ioc28(decoded),
+            p54IoC28: ioc28(p54Decoded),
+            p55IoC28: ioc28(p55Decoded),
+            first48: decoded.slice(0, 48)
+              .map((i) => corpus.translit[i]).join(' ')
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(chainCandidates.length, 224);
+chainCandidates.sort((a, b) => b.ioc28 - a.ioc28);
+const maxP54 = chainCandidates.slice().sort((a, b) =>
+  b.p54IoC28 - a.p54IoC28)[0];
+const maxP55 = chainCandidates.slice().sort((a, b) =>
+  b.p55IoC28 - a.p55IoC28)[0];
+
+// Pin and parse the solved GP reference word-by-word, preserving IA digraphs.
+const referencePath = path.join(__dirname, '..', 'resources', 'liber-primus',
+  'lp1-plaintext-reference.txt');
+const referenceText = fs.readFileSync(referencePath, 'utf8');
+const referenceBytes = Buffer.from(referenceText, 'utf8');
+const referenceBlobSha1 = crypto.createHash('sha1')
+  .update(Buffer.from('blob ' + referenceBytes.length + '\0'))
+  .update(referenceBytes).digest('hex');
+assert.equal(referenceBlobSha1, '8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d');
+const referenceLines = referenceText.split(/\r?\n/)
+  .filter((line) => {
+    const s = line.trim();
+    return s && !s.startsWith('#') && !s.startsWith('[') &&
+      !/^[0-9a-f]{25,}$/iu.test(s);
+  });
+const translitTokens = corpus.translit.map((s, i) => ({s, i}))
+  .sort((a, b) => b.s.length - a.s.length);
+const nativeReference = [];
+for (const line of referenceLines) {
+  for (const rawWord of line.split(/\s+/)) {
+    const word = rawWord.toUpperCase()
+      .replace(/QU/g, 'CW').replace(/V/g, 'U')
+      .replace(/K/g, 'C').replace(/Z/g, 'S')
+      .replace(/[^A-Z]/g, '');
+    if (!word) continue;
+    let i = 0;
+    const encodedWord = [];
+    while (i < word.length) {
+      const token = translitTokens.find((t) => word.startsWith(t.s, i));
+      assert(token, 'Unmapped solved-reference word: ' + word);
+      encodedWord.push(token.i);
+      i += token.s.length;
+    }
+    nativeReference.push(...encodedWord);
+  }
+}
+assert.equal(nativeReference.length, 3249);
+const native28 = nativeReference.filter((x) => x !== 28);
+assert.equal(native28.length, 3228);
+const nativeIoC28 = ioc28(native28);
+
+// Same-length native windows for every possible zero-step plaintext symbol.
+function nativeWindowFloorForLength(length) {
+  let totalWindows = 0;
+  const allValues = [];
+  let floor = {minIoC28: Infinity};
+  for (let special = 0; special < 29; special++) {
+    const sequence = nativeReference.filter((x) => x !== special);
+    const counts = Array(29).fill(0);
+    let pairs = 0;
+    for (let i = 0; i < length; i++) {
+      const value = sequence[i];
+      pairs += 2 * counts[value];
+      counts[value]++;
+    }
+    for (let start = 0; start <= sequence.length - length; start++) {
+      const value = 28 * pairs / (length * (length - 1));
+      allValues.push(value);
+      totalWindows++;
+      if (value < floor.minIoC28) floor = {special, start, minIoC28: value};
+      if (start < sequence.length - length) {
+        const removed = sequence[start];
+        counts[removed]--;
+        pairs -= 2 * counts[removed];
+        const added = sequence[start + length];
+        pairs += 2 * counts[added];
+        counts[added]++;
+      }
+    }
+  }
+  allValues.sort((a, b) => a - b);
+  return {
+    length, totalWindows, floor,
+    p01IoC28: allValues[Math.floor((allValues.length - 1) * 0.01)],
+    p05IoC28: allValues[Math.floor((allValues.length - 1) * 0.05)],
+    medianIoC28: allValues[Math.floor((allValues.length - 1) * 0.5)]
+  };
+}
+const nativeWindow75 = nativeWindowFloorForLength(75);
+const nativeWindow220 = nativeWindowFloorForLength(220);
+const nativeWindow295 = nativeWindowFloorForLength(295);
+assert.equal(nativeWindow75.floor.special, 6);
+assert.equal(nativeWindow220.floor.special, 11);
+assert.equal(nativeWindow295.floor.special, 11);
+assert(Math.abs(nativeWindow75.floor.minIoC28 - 1.2612612612612613) < 1e-12);
+assert(Math.abs(nativeWindow220.floor.minIoC28 - 1.5423827314238274) < 1e-12);
+assert(Math.abs(nativeWindow295.floor.minIoC28 - 1.5722356739305892) < 1e-12);
+assert(chainCandidates[0].ioc28 < nativeWindow295.floor.minIoC28);
+assert(maxP54.p54IoC28 < nativeWindow220.floor.minIoC28);
+assert(maxP55.p55IoC28 < nativeWindow75.floor.minIoC28);
+
+// Exact positive controls for both natural zero-step key-clock conventions.
+const log15Map = chainKeyMaps.find((x) => x.name === 'log15');
+assert(log15Map);
+const positivePlain = native28.slice(0, 294);
+positivePlain.splice(73, 0, 28);
+assert.equal(positivePlain.length, 295);
+const chainPositiveControls = [];
+for (const consumeZeroSteps of [false, true]) {
+  let keyIndex = 0;
+  let previous = 7;
+  const cipher = [previous];
+  for (const plain of positivePlain) {
+    if (plain === 28) {
+      cipher.push(previous);
+      if (consumeZeroSteps) keyIndex++;
+      continue;
+    }
+    const keyValue = log15Map.key[keyIndex++];
+    const step = 1 + mod28(plain + keyValue);
+    previous = mod29(previous + step);
+    cipher.push(previous);
+  }
+  keyIndex = 0;
+  const recovered = [];
+  for (let i = 1; i < cipher.length; i++) {
+    const delta = mod29(cipher[i] - cipher[i - 1]);
+    if (delta === 0) {
+      recovered.push(28);
+      if (consumeZeroSteps) keyIndex++;
+      continue;
+    }
+    const keyValue = log15Map.key[keyIndex++];
+    recovered.push(mod28((delta - 1) - keyValue));
+  }
+  assert.deepEqual(recovered, positivePlain);
+  chainPositiveControls.push({
+    consumeZeroSteps, plaintextRunes: positivePlain.length,
+    ciphertextRunes: cipher.length, recoveredRunes: recovered.length,
+    exact: true
+  });
+}
+console.log(JSON.stringify({
+  chainReceiver: 'C[i]=C[i-1]+step mod29; step=0 for one special plaintext symbol, otherwise 1+((sigma(P[i])+K[i]) mod28)',
+  sourceKey: 'p54 red9 primitive quintic; first five red runes seed GF29 LFSR',
+  seed, monicQuintic,
+  lfsrRawSymbols: chainRawKey.length,
+  lfsrZeroSymbols: chainRawKey.length - chainNonzeroKey.length,
+  lfsrNonzeroSymbols: chainNonzeroKey.length,
+  primitiveRoots,
+  keySymbolMaps: chainKeyMaps.map((x) => x.name),
+  originalTransitions: chainDeltas.length,
+  originalZeroSteps: chainDeltas.filter((x) => x === 0).length,
+  originalDecodedNonzeroSteps: chainDeltas.filter((x) => x !== 0).length,
+  candidateCount: chainCandidates.length,
+  nativeSolvedReferenceRunes: nativeReference.length,
+  native28Runes: native28.length,
+  native28IoC: nativeIoC28,
+  nativeWindow75, nativeWindow220, nativeWindow295,
+  best: chainCandidates[0],
+  maxP54,
+  maxP55,
+  positiveControls: chainPositiveControls
+}, null, 2));
+
 console.log('p54 red9 factorization: (X-24)(X-19)^2 times quintic, exact');
 console.log('p50 polynomial: double root X=24, exact; no unknown plaintext');
