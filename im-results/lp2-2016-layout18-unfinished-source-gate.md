@@ -83,6 +83,23 @@ The original results below maximize over all **23** source-fixed physical signs,
 | p33–39 | 1,589 | 0.043513894 | 0.048769643 |
 | p40–55 | 3,316 | **0.039311933** | **0.041800348** |
 
+### Exact required periodic-class complexity to match authentic long LP1 cleartext
+
+The same rearrangement bound supplies a **conditional minimum period** for each original unknown chapter, without limiting the secret alphabet to Caesar shifts. Set the reference target in advance to the independently known **755-rune original LP1 THE LOSS OF DIVINITY IoC = 0.061215241**. For each unknown source section, examine every integral period **starting at 1** and, at that fixed period, grant 29! independent key permutations for **both sign states in every phase**, across every one of the same 23 source-derived physical sign masks. The first period where the **absolute maximum possible** output IoC reaches or exceeds that fixed authentic English reference is:
+
+| Unsolved source section | First potentially sufficient period | Source sign attaining first crossing | Attainable IoC at crossing |
+| --- | ---: | --- | ---: |
+| p0–2, 729 runes | **12** | Pg_half_lines | 0.063239572 |
+| p3–7, 1,145 runes | **17** | Po_m3_2 | 0.061662137 |
+| p8–14, 1,729 runes | **28** | Pg_half_runes | 0.062431721 |
+| p15–22 (without nine-rune bridge), 1,894 runes | **28** | Po_par | 0.061334177 |
+| p23–26, 1,021 runes | **16** | Ln_par | 0.061222177 |
+| p27–32, 1,524 runes | **23** | PL_xor | 0.061281695 |
+| p33–39, 1,589 runes | **26** | Ln_par | 0.062055251 |
+| p40–55, 3,316 runes | **51** | PL_xor | 0.061836482 |
+
+Therefore, for example, **every direct alphabet-permutation cipher of period at most 50**, with any of the 23 original physical sign rules and independently chosen section keys, has a **strictly insufficient one-rune frequency capacity** to reproduce the author's known long LP1 reference concentration on the 3,316-rune p40–55 section. This statement encompasses any unknown sequence of Caesar key symbols as a strict subset and any final global rune-alphabet permutation. It is a *necessary capacity condition conditional on that reference IoC*, and is not evidence that Cicada selected a 51-symbol key, that every English paragraph must have the same IoC, or that nonlocal transpositions and anti-repeat or F-transparent clocks fail. The first-crossing periods are algorithmically determined bounds rather than hidden numbers discovered in the manuscript, and must not be promoted to source-selected keys. The accompanying SFT checks every integer period below each crossing explicitly against original ciphertext and asserts these first-crossing values.
+
 **Decision:** Even arbitrary alphabet substitutions per physical sign and per historical short-key phase cannot reproduce the observed frequency concentration of authentic original clear LP1 section4 **or** solved p57 in **all eight period-8 windows and seven of eight period-13 windows**. The p0–2 period-13 bound of **0.067170141** remains above the chosen solved reference and cannot be excluded on this criterion. IoC is only a necessary distributional feature of ordinary GP29 English; neither the 95-rune p57 sample nor the 755-rune original LP1 clear section supplies a **universal lower bound** for every possible passage or language, and some legitimate passages can have less concentrated symbol frequencies. Consequently this is a rigorously exact **capacity bound** for a massive direct, per-class substitution family, rather than a proof about the actual author language, an unknown F-transparent/skip-key system, a changing key-state model, or a layered nonlocal transposition.
 
 The [same all-secret source-native Windows CJS reproducer](../sims/lp2_layout_23rules_allsecret_8_13_sft.cjs) now computes both the earlier optimum logLR and this independent exact frequency ceiling. It checks the original physical source, original p57 positive reference, original p56 encrypted reference, and native-Shakespeare blind cipher plants that must remain at or under the mathematically derived ceiling. A completed regression is required before treating those code assertions as externally verified.
