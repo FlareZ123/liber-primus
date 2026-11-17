@@ -141,6 +141,94 @@ assert.equal(secondHeading[91], 21);
 assert.equal(secondKey[90 % 10], 21);
 assert.equal(legalClocks(forward(finalClear, secondKey, 10), secondKey, 10).death, -1);
 
+
+/**
+ * Exact finite-field affine cipher-feedback coefficient gate.
+ * For lag r, all sections share the same (2r+3 or 2r+4) coefficients:
+ * K[i+1] = Σ(a[j]K[i-j]+b[j]P[i-j]) + c [+ d*i] (mod29).
+ * Every candidate coefficient vector is allowed, no tuning is performed.
+ * @param {Array<{plaintext:number[], key:number[]}>} pairs
+ * @param {number} lag
+ * @param {boolean} positionTerm
+ */
+function affineFeedbackFit(pairs, lag, positionTerm) {
+  const unknownCount = 2 * (lag + 1) + Number(positionTerm) + 1;
+  const rows = [];
+  for (const {plaintext, key: sequence} of pairs) {
+    for (let i = lag; i < sequence.length - 1; i++) {
+      rows.push([
+        ...Array.from({length: lag + 1}, (_, j) => sequence[i - j]),
+        ...Array.from({length: lag + 1}, (_, j) => plaintext[i - j]),
+        ...(positionTerm ? [i] : []),
+        1,
+        sequence[i + 1]
+      ]);
+    }
+  }
+  let rank = 0;
+  const pivots = [];
+  for (let col = 0; col < unknownCount && rank < rows.length; col++) {
+    let pivot = rank;
+    while (pivot < rows.length && rows[pivot][col] === 0) pivot++;
+    if (pivot === rows.length) continue;
+    [rows[pivot], rows[rank]] = [rows[rank], rows[pivot]];
+    const unit = Array.from({length:28}, (_, i) => i + 1)
+      .find((x) => modulo(x * rows[rank][col]) === 1);
+    assert.notEqual(unit, undefined);
+    for (let j = col; j <= unknownCount; j++) {
+      rows[rank][j] = modulo(rows[rank][j] * unit);
+    }
+    for (let k = 0; k < rows.length; k++) {
+      if (k === rank || rows[k][col] === 0) continue;
+      const factor = rows[k][col];
+      for (let j = col; j <= unknownCount; j++) {
+        rows[k][j] = modulo(rows[k][j] - factor * rows[rank][j]);
+      }
+    }
+    pivots.push(col);
+    rank++;
+  }
+  /** @type {number[]} */
+  const coefficients = Array(unknownCount).fill(0);
+  pivots.forEach((col, i) => { coefficients[col] = rows[i][unknownCount]; });
+  return {
+    consistent: rows.slice(rank).every((row) => row[unknownCount] === 0),
+    rank,
+    rowCount: rows.length,
+    coefficients
+  };
+}
+const titlePairs = [
+  {plaintext: proposed, key},
+  {plaintext: secondCrib, key: secondKey}
+];
+const feedbackDecisions = [];
+for (let lag = 0; lag <= 4; lag++) {
+  for (const positionTerm of [false, true]) {
+    const fit = affineFeedbackFit(titlePairs, lag, positionTerm);
+    assert.equal(fit.consistent, false);
+    feedbackDecisions.push({lag, positionTerm, rank: fit.rank, observations: fit.rowCount});
+  }
+}
+assert.equal(key[0], 21);
+assert.equal(secondKey[0], 21); // An intriguing but unvalidated shared-IV coincidence.
+
+/** Native GP29 key generator positive with a hidden but common affine feedback. */
+function plantKey(plaintext, initial) {
+  const sequence = [initial];
+  for (let i = 0; i < plaintext.length - 1; i++) {
+    sequence.push(modulo(7 * sequence[i] + 13 * plaintext[i] + 4));
+  }
+  return sequence;
+}
+const positivePair = [
+  {plaintext: proposed, key: plantKey(proposed, 21)},
+  {plaintext: secondCrib, key: plantKey(secondCrib, 21)}
+];
+const positiveFit = affineFeedbackFit(positivePair, 0, false);
+assert.equal(positiveFit.consistent, true);
+assert.deepEqual(positiveFit.coefficients, [7, 13, 4]);
+
 const result = {
   status: 'bounded-negative; no unknown source plaintext',
   p0_heading_wordlengths: [8, 5],
@@ -162,6 +250,9 @@ const result = {
   p33_plaintext_autokey_body_ioc: coincidence(secondAutokey.slice(10)),
   p33_ciphertext_feedback_body_ioc: coincidence(secondFeedback.slice(10)),
   p33_strict_F_skip_first_illegal_offset: 10 + secondStrict.death,
-  p33_positive_95_runes: 'pass'
+  p33_positive_95_runes: 'pass',
+  shared_initial_GP29_key_symbol: 21,
+  shared_affine_cipherfeedback_lag_0_to_4: feedbackDecisions,
+  shared_affine_cipherfeedback_native_plant: 'pass'
 };
 process.stdout.write(JSON.stringify(result, null, 2) + '\n');
