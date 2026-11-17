@@ -109,10 +109,24 @@ for (const p of english) {
 }
 assert.equal(positive, 1000);
 const nativeEight = english.filter(w => w.length === 8);
+const englishWordList = read('resources/control/english_wordfreq_textblob.txt')
+  .split(/\r?\n/u).filter(x => /^[a-z]+ \d+$/u.test(x))
+  .map(x => x.split(' ')[0]);
+const englishThreeCopy = englishWordList.filter((w, i) =>
+  english[i].length === 8 &&
+  [0, 1, 2].every(j => english[i][j] === english[i][j+5]));
+assert.deepEqual(englishThreeCopy, ['mesdames']);
 const latinAlphabet = '0123456789ABCDEFGHIJKLMNOPQRS';
 const latinEight = read('resources/control/latin-vulgate-gp-wholewords.txt')
   .split(/\r?\n/u).filter(x => /^[0-9A-S]{8}$/u.test(x))
   .map(s => Array.from(s, ch => latinAlphabet.indexOf(ch)));
+const latinThreeCopy = latinEight.filter(w =>
+  [0, 1, 2].every(j => w[j] === w[j+5]));
+assert.deepEqual(Array.from(new Set(latinThreeCopy.map(w =>
+  w.map(x => latinAlphabet[x]).join('')))), ['G14HIG14']);
+assert.equal(latinThreeCopy.length, 2);
+console.log('Only native original-equality-pattern candidates for p51 echo:',
+  {english:englishThreeCopy,latin:'TURBETUR (two occurrences)'});
 for (let E = 0; E < 29; E++) {
   assert.equal(nativeEight.filter(w =>
     w[5] === E && w[6] === E && w[7] === E).length, 0);
