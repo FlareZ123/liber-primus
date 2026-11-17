@@ -1,4 +1,4 @@
-name: Agent1 p50 rim76 R4 checksum tape original test
+name: Agent1 perimeter checksum and bookend source-key tests
 
 on:
   workflow_dispatch:
@@ -19,3 +19,7 @@ jobs:
         run: node --check sims/lp2_p50_rim76_p55_r4_74check_source_sft.cjs
       - name: Check 48 original source-key receivers and native-GP packet plant
         run: node sims/lp2_p50_rim76_p55_r4_74check_source_sft.cjs
+      - name: Validate 76-geometry source crib CommonJS
+        run: node --check sims/lp2_p57_our_own_76_bookend_crib_sft.cjs
+      - name: Recover all anchored F-transparent p55 and p27 candidates
+        run: node sims/lp2_p57_our_own_76_bookend_crib_sft.cjs
