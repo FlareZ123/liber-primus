@@ -31,6 +31,18 @@ The p0 opening receiver starts exactly after the source-correct red 13-rune titl
 
 Offsets are **zero-based within each tested original stream**, and indicate the first rune after which no legal key-clock state remains. Every p57-derived positive is legally invertible under its corresponding key and sign (12/12). Thus the direct historically documented F-skip receiver fails mathematically on authentic inputs before subjective language scoring.
 
+## Whole-cycle prime checksum: the 50:119:23 identity
+
+The 23 word-prime sums in the original graph's first-heading cycle add exactly to **5,973**. Those 23 printed words contain **119** original runes, and Euclidean division gives:
+
+`5,973 = 50 × 119 + 23`
+
+The **quotient is 50**, the zero-based physical index of the numeric table's central page (p50 of pp49–51); the **remainder is 23**, exactly the cycle's **word count**. The two operands of this calculation are determined by the already specified original source graph and literal GP rune count, without optimizing the ciphertext plaintext. This is a possible explanation for why this particular cycle could lead a human to p50 independently of the previously hypothesized modulo256 table lookup. It is **an exploratory numerical crosslink, not a proved authorial page/address instruction**: neither the signed 2016 message nor an original image says to divide summed word-prime values by cycle rune length or interpret the quotient as a physical-page index. The quotient 50 is near the original rune prime-weight average, so it is not intrinsically surprising.
+
+The 156-word functional graph also has a separate two-word cycle (original body cells26/49), with nine runes and GP-prime sum385, giving **385 mod9=7** rather than its word count2; the congruence is not an algebraic identity forced on every graph cycle. In the preexisting fixed-seed **1,000,000 page-stratified original-word permutations**, exactly 93 retain the red-seed shared23/563/569 feature gate; **4** of those have total 119 rune glyphs, **12** have GP-mean integer quotient50, and **none** has the additional cycle self-descriptive remainder `sumPrime mod runeCount = 23` (or the complete 50:119:23 triple). Those zero counts provide a **small, retrospective conditional diagnostic**, since the division and q/r wording were discovered after seeing the cycle. The 93 candidates are too few to estimate an extreme tail; these are not discovery-adjusted probabilities.
+
+The remaining causal decision is precise: **find a first-party source rule mapping a cycle's numerical quotient/remainder to p50 and an actual 256-cell table operation**, before trying arbitrary byte lookups, cipher phases, or readers. If that rule cannot be sourced, this congruence remains a compact original-number observation and adds no plaintext.
+
 ## Second source-selected receiver: 119-rune loop versus red119 prefixes
 
 The **23 original words** selected by this same unique cycle contain **exactly 119 rune glyphs** when concatenated in graph traversal order. This is a newly exposed cross-feature candidate: physical p3 and p39 each print an isolated red three-rune span beginning at original local **rune offset 119** (see [previous original red119 inventory](lp2-red119-p49-3340-crosslink-source-gate.md)). These are independently present source boundaries. The matching length is suggestive, but a red triad at 119 does not itself say that the preceding ciphertext is enciphered under the cycle words, or that the word-map route is author-intended.
