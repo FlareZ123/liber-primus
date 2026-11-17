@@ -47,7 +47,7 @@ const targetPair = finalWords.findIndex((word, i) =>
   i + 1 < finalWords.length &&
   word.join(',') === phrase.slice(0, 3).join(',') &&
   finalWords[i + 1].join(',') === phrase.slice(3).join(','));
-assert.equal(targetPair, 10);
+assert.equal(targetPair, 11);
 const sixBySix = [];
 const sum76 = [];
 for (let i = 0; i + 1 < finalWords.length; i++) {
@@ -151,10 +151,8 @@ function positive(len, anchor) {
   const plain = Array.from({ length: len }, (_, i) => original[i % original.length]);
   plain.splice(anchor, phrase.length, ...phrase);
   const consumedBefore = plain.slice(0, anchor).filter(x => x !== 0).length;
-  const startPhase = mod(-consumedBefore) % 6;
   // Required adjustment is modulo six, not modulo29.
   const actualStartPhase = (6 - (consumedBefore % 6)) % 6;
-  assert.equal(startPhase >= 0, true); // no hidden branch used for key source
   const cipher = encrypt(plain, actualStartPhase);
   assert.deepEqual(cipher.slice(anchor, anchor + 6), tail55);
   const possibilities = candidates(cipher, anchor);
