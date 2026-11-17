@@ -18,7 +18,7 @@ const root = process.cwd();
 /** @param {string} file @returns {any} */
 const read = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
 const C = read('resources/liber-primus/lp2-corpus.json');
-const G = read('resources/liber-primus/base60-G.json');
+const G = read('resources/liber-primus/base60-grid.json');
 const id3 = fs.readFileSync(
   path.join(root, 'im-results/audio761-original-id3-frame-inventory.md'), 'utf8'
 );
