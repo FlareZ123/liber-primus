@@ -15,6 +15,7 @@ on:
           - four-dot-phi
           - p7-red-scy
           - table-sentence-pair
+          - 3301-1033-sixphase
 
 permissions:
   contents: read
@@ -105,3 +106,17 @@ jobs:
         run: |
           node --check sims/lp2_p49_table_sentence_pair_sft.cjs
           node sims/lp2_p49_table_sentence_pair_sft.cjs
+
+  sixphase-original:
+    if: ${{ inputs.gate == '3301-1033-sixphase' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original GP29 3301/1033 full-word rotor and global-phase inverse
+        run: |
+          node --check sims/lp2_3301_1033_sixphase_rotor_original_sft.cjs
+          node sims/lp2_3301_1033_sixphase_rotor_original_sft.cjs
