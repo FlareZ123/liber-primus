@@ -39,7 +39,6 @@ For each original source key, the middle columns fit the secret shifts on one ha
 | P50 reversed row-major, book clock | **−14.216** | −22.97 | −17.44 |
 | P50 reversed row-major, page clock | **−10.890** | −14.74 | −17.44 |
 
-**Correction to final row:** the source-exact reverse-page, second-to-first holdout is **−17.43996**; the adjacent rounded value should therefore read **−17.44**.
 
 The strongest full-sample signal is prime-totient page-reset, with fitted \(f(A),f(I)=(23,17)\). It breaks on withheld data: fitting the first half chooses (6,14) and scores **−23.001** on the second; fitting the second chooses (23,17) and scores **−6.034** on the first. Every tested key has a negative score in both withheld directions. The known p56 cipher's literal-F nonconsuming clock is outside the consuming-clock hypotheses tested here.
 
