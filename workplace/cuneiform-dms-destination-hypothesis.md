@@ -15,6 +15,10 @@ Map: https://www.openstreetmap.org/?mlat=17.2166667&mlon=55.0166667#map=12/17.21
 - The page:word interpretation of the same pairs is separately tested and remains unselected (#1393). The decimal values 1033 and 3301 also have the independent 2013 `prime_echo` connection.
 - The 2013 signed clue “Sometimes one must knock on the sky and listen to the sound” leaves an astronomical/radio reading (17h13m, +55°01′) conceivable; it may also simply refer to ICMP echo. No named radio source is established at that position.
 
+## Existing alternatives already exhausted
+
+Do not conflate this geographic reading with the 2013 prime_echo or ICMP branches. The exact 2013 `prime_echo` timing is fully explained by the original 464-event executable; the 16×29 floral-page row-key consumer and direct prime-totient blocks were tested and rejected. The recovered ICMP stream and its prime-ID-to-LP2-fragment readout were also tested without recovering unknown plaintext. Relevant syntheses: `im-results/lp2-2013-prime-echo-source-selector-gate.md`, `im-results/lp2-2013-primeecho-floral16-source-rowkey-gate.md`, `im-results/2013-icmp-echo-packet-reconstruction.md`, and `im-results/lp2-2013-icmp28-inkfragment-original-gate.md`.
+
 ## Strongest objection
 
 No first-party source supplies N/E signs, says “latitude/longitude,” or connects Cicada to Dhofar/Sadah/Oman. The 2012/2013 poster locations do not include Oman. The nearby POI is not independent puzzle evidence. A valid coordinate and a nearby attraction can be coincidence.
