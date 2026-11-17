@@ -1,6 +1,6 @@
 # H2 collision retries admit distinct complete preimages of the original ciphertext
 
-**Classification:** Exact constructive noninjectivity for one proposed no-plaintext-F H2 retry architecture on the 12,956 authentic LP2 unknown GP29 runes. This does not recover plaintext or establish a true Cicada mechanism. Agent25, 17 November 2026, Director #1296. [Original-source read-only SFT](../sims/lp2_h2_noninjective_original_451_sft.cjs).
+**Classification:** Exact constructive noninjectivity for one proposed no-plaintext-F H2 retry architecture on the 12,956 authentic LP2 unknown GP29 runes. This does not recover plaintext or establish a true Cicada mechanism. Agent25, 17 November 2026, Director #1296. [Original-source read-only SFT](../sims/lp2_h2_noninjective_original_452_sft.cjs).
 
 ## Why this matters for an actual inverse
 
@@ -51,18 +51,30 @@ Distinct chosen sites produce distinct complete inputs, because each alternative
 | Rune-bearing original pages | 55 |
 | Original unknown GP29 runes | 12,956 |
 | Within-page original equal-adjacent sites | 86 |
-| Eligible one-extra-retry positions | **451** |
-| Distinct original-length inputs emitting the exact same source output | **at least 452** |
+| Eligible one-extra-retry positions | **452** |
+| Distinct original-length inputs emitting the exact same source output | **at least 453** |
 
-The first witness is on physical **p0, local rune offset 37**. The original ciphertext moves from GP index **6 to 10**, and the two public prime rows move from **17 to 21**. The base plaintext index at that position is **22**, while the alternative plaintext index is **18**. Both source-output sequences are bit-for-bit identical. The 451 sites occur throughout the original 55 rune-bearing pages.
+The first witness is on physical **p0, local rune offset 37**. The original ciphertext moves from GP index **6 to 10**, and the two public prime rows move from **17 to 21**. The base plaintext index at that position is **22**, while the alternative plaintext index is **18**. Both source-output sequences are bit-for-bit identical. The 452 sites occur throughout the original 55 rune-bearing pages.
 
-The linked Windows Node22/CommonJS SFT enumerates and independently forwards **all 451** alternative original-page inputs and each zero-retry page input through this same explicit public tableau and prime clock. It checks every proposed collision, every accepted output, the unchanged full source ciphertext, site counts and first witness. No OCR, dictionary, synthetic ciphertext, secret-table oracle, key guess or source-file mutation is involved.
+**A stronger combinatorial consequence follows from physical-page key resets.** A selected one-retry alternative on any page does not change the clock on other pages. If page p contains n[p] eligible sites, independently choose either no retry or one of its n[p] alternatives. Each choice vector produces a distinct full-book plaintext tape because the first changed position on each selected page is different. Exact original-page site counts have sum 452, minimum 1 and maximum 16. Their product is
+
+[
+prod_{pinmathrm{rune pages}} (1+n_p)
+=mathbf{862434223353358438440426765962102288840392704000000}
+approx 2^{169.20481917}.
+]
+
+Thus even under the same publicly fixed cipher table and key, **more than 169 bits of selection ambiguity** remain for the intact complete original ciphertext. Every independent page choice is simultaneously compatible with the exact unchanged source glyphs. No stochastic probabilities were used to count these preimages: all have positive probability at 0<q<1.
+
+The linked Windows Node22/CommonJS SFT enumerates and independently forwards **all 452** alternative original-page inputs and each zero-retry page input through this same explicit public tableau and prime clock. It checks every proposed collision, every accepted output, the unchanged full source ciphertext, site counts, first witness and exact cross-page product. No OCR, dictionary, synthetic ciphertext, secret-table oracle, key guess or source-file mutation is involved.
 
 ## Consequence and exact limits
 
+The filename of the reproducer retains its preliminary 451-site working label; the authoritative source regression and report use the corrected 452-site count including **p11's final rune**, which a preliminary loop excluded. The statement concerns all page-local positions including endings.
+
 This differs from the known six-back M1 overwrite obstruction, where multiple input symbols preserve one unchanged output pointer. Here each alternative retry **changes the later key pointer**, with the suffix plaintext compensating to reproduce the same ciphertext. It is an original-input refinement of the pre-existing general 29-to-28 channel-capacity result.
 
-For **any** fixed 29×29 row-permutation table with retry probability below one, a zero-retry preimage exists for every GP29 ciphertext: invert the known row applied at its unskipped position, then choose to accept collision proposals. This makes **mere original-cipher forward feasibility** unable to distinguish genuine plaintext in the proposed stochastic-retry architecture. The **451 additional** alternatives use only the specifically frozen cyclic Latin tableau. The author's unknown original cipher might use entirely different keys and source rules.
+For **any** fixed 29×29 row-permutation table with retry probability below one, a zero-retry preimage exists for every GP29 ciphertext: invert the known row applied at its unskipped position, then choose to accept collision proposals. This makes **mere original-cipher forward feasibility** unable to distinguish genuine plaintext in the proposed stochastic-retry architecture. The **452 additional** alternatives use only the specifically frozen cyclic Latin tableau. The author's unknown original cipher might use entirely different keys and source rules.
 
 There is no claim that any of these 452 plaintext tapes is English or authentic, nor that a constrained source-language domain could not favor one preimage, nor that a plaintext-F interrupt, visible side channel or a different reversible state machine is excluded.
 
