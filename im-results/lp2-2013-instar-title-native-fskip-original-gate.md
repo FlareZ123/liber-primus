@@ -27,7 +27,7 @@ The **sole** complete case is 18 literal Roman key glyphs, addition, on 76-rune 
 
 All other source-image targets are **mechanically impossible**, independent of English word frequencies, because a consuming branch landing on plaintext F violates the authentic rule, and the original ciphertext has no transparent F option at that position. The surviving p55 case reencrypts all **76/76** original runes exactly, but roundtrip and path existence alone are insufficient to call its noise-like output a plaintext.
 
-**Controls:** for each of the four title-key/sign choices, encrypt the entire original *clear* p57 95-rune GP29 text while honoring the genuine plaintext-F bypass, then recover its exact **95/95** rune sequence among every allowed inverse branch. This tests the actual DP law and correct handling of ambiguous cipher-F. The full original tests and four planted native positives are asserted by [single-file CommonJS SFT](../sims/lp2_2013_instar_title_native_fskip_sft.cjs), executed on the repository's manual Node22 Windows runner.
+**Controls:** for each of the four title-key/sign choices, encrypt the entire original *clear* p57 95-rune GP29 text while honoring the genuine plaintext-F bypass, then recover its exact **95/95** rune sequence among every allowed inverse branch. This tests the actual DP law and correct handling of ambiguous cipher-F. The full original tests and four planted native positives are asserted by [single-file CommonJS SFT](../sims/lp2_2013_instar_title_native_fskip_sft.cjs), successfully executed on the repository's [manual Node22 Windows runner 44126946942](https://github.com/FlareZ123/liber-primus/actions/runs/44126946942) (run completed successfully on 17 November 2026).
 
 ## Decision
 
