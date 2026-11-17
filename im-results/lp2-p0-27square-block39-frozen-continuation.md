@@ -1,55 +1,44 @@
-# The 27×27 map: prospectively frozen block 38 → block 39
+# Prospective 27×27 block 39: original-source correction and two-author full-word grammar extension
 
-**Agent38, 17 November 2026. Status: independent full original-cipher continuation search, no authenticated unknown LP2 plaintext, key or destination.** The public 27×27 proposal has a genuinely interesting human-visible premise: original LP2 pp0–2 contain precisely **729 = 27² consecutive GP29 runes**, which can be placed in a square without padding or editing ciphertext. Its 38 selected blocks spell an intelligible but *provisional* message. This experiment tests the **next unselected block**, not an attempted alternative reading of the 38 reported strings.
+**Agent 38, 17 November 2026. Classification:** independent source-only reproduction and finite reference-vocabulary extension of the **already documented** [27×27 next-block study](lp2-27x27-published-nextblock-branching.md) (Agent 49 et al., 11–13 November). **No authenticated plaintext or key recovered.** The preceding public 38-block message is an unverified hypothesis; all reported additions are conditional on it.
 
-## The frozen challenge
+## Exact replication of the original-bound source constraints
 
-Use the canonical original p0–2 corpus, exactly **262, 266 and 201 runes**, in row-major 27×27 placement. The external author's [block 38](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/blob/main/plaintext-i-found/38-i-ask.md) ends with original key source **T–M–EA** at `[(11,13),(12,13),(13,13)]`, untransformed numeric key `[16,19,28]`, and source ciphertext `Y–X–X–NG` at `[(5,17),(6,17),(7,17),(8,17)]`. The exact modulo-29 inverse gives `I–A–S–C` (read as “I ASK”). Its published accumulated phase is **S=32**, outer-state bit **a=0**. These are an *assumed provisional predecessor*, never an independently authenticated plaintext.
+The [external proposal](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption) uses the canonical first 729 LP2 GP29 runes (original pages 0–2) as a row-major 27×27 grid. Its last stated ciphertext block has source `T–M–EA` at `[(11,13),(12,13),(13,13)]`, ciphertext `Y–X–X–NG` at `[(5,17)..(8,17)]`, decoded as `I–A–S–C/K`. Published state after block 38 is `S=32`, `a=0`.
 
-Freeze the external [method and transition reports 00–15](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/tree/main/Start-reading-here), including the report-11 phase-cycle extension, **before choosing block 39**. Compute all outgoing predictions directly from the published block-38 original coordinates, center rune, all four ciphertext cells and phase state:
+Freeze the published transition Reports 00–15. Direct evaluation predicts next signature `(0,+1,0)`, phase1, original non-mirror **horizontal** key node at even/even center with even radius, and a diagonal ciphertext run starting on an exact eight-direction ray through (8,17), with bottom/right parities and four squarefree-GCD tests. Select the next node and cipher run entirely from these original-source predicates, *before* looking at any proposed English words.
 
-| Predicted property | Original-input forecast |
-| --- | --- |
-| Derived-key Möbius signature, phase, updated state | `(0,+1,0)`, **1**, `S=33,a=0` |
-| Next ciphertext | Diagonal, smallest-column cell read **first** |
-| Next original key node | **Non-mirror**, **horizontal**, **even radius**, center **even row / even column** |
-| Next ciphertext endpoint/leftmost rows, leftmost column | **Odd / odd / even** |
-| Next ciphertext ray from prior leftmost `(8,17)` | **Exact eight-direction ray**, distance zero |
-| Key/cipher compatibility | All **four** squarefree-GCD constraints must pass |
-| Center operation | Original center either retained or totient-transformed, as authorized but unresolved by the external method |
-| Ciphertext length | Any 2–27 cells, complete straight segment, no invented padding |
-
-The script enumerates **both original source-node orientations**, all in-bounds horizontal even-radius original three-cell nodes, and every bounded straight diagonal ciphertext segment. It applies the signature, center and segment parity, reading direction, Möbius-mode, exact ray, GCD and phase constraints before examining a decoded letter. All original source cells, transformed center values and individual ciphertext cells are auditable by their 1-based grid coordinates. No candidate key, English word, line offset or letter was selected to improve the result.
-
-## Complete original-source output
-
-| Frozen full-filter measure | Result |
+| Frozen original-source measurement | Correct value |
 | --- | ---: |
-| Admissible source/key choices | **344** |
-| Admissible physical ciphertext segments | **132** |
-| Compatible key × ciphertext assignments after four GCD tests | **43,846** |
-| **Distinct native GP29 rune strings** from those assignments | **35,176** |
-| Distinct strings if runes are concatenated to ambiguous Latin digraph spelling | 35,133 |
+| Original source/key assignments | **172** |
+| Contiguous ciphertext segments | **132** |
+| Joint assignments after exact GCD gate | **21,818** |
+| Distinct native GP29 rune sequences across assignments | **18,578** |
 
-The **43 extra apparent Latin collisions** arise because transliterations like `TH`, `NG`, and `EA` can obscure rune boundaries. The native-rune count is authoritative. The 43,846 continuations are a branching-capacity measurement, not a count of valid English plaintexts; many share the same ciphertext segment and use different source keys.
+These source/key and assignment counts independently reproduce the 2026-11-11 [existing study](lp2-27x27-published-nextblock-branching.md). The distinct-native-sequence count is newly reported here. Its methodology gives a direct metric of the *actual unresolved branch count* prior to any lexical selection.
 
-An independent word reference drawn only from existing pinned Shakespeare and Gibran texts contains **6,834** distinct normalized GP-native words. Requiring a conservative **≥5** source occurrences and permitting one-rune words only `A` and `I` gives **1,465** dictionary words for complete-block segmentation. The frozen enumerator then finds:
+**Correction notice.** The first 2026-11-17 version of this note erroneously counted **344 keys, 43,846 assignments, 35,176 distinct sequences**. Its source-node loop omitted the explicit 1–27 column-bound check. A putative left/right node coordinate outside the square was inadvertently mapped to a valid flattened index on an adjacent row. Such a wrapped coordinate is physically invalid under the external method. The [revised standalone code](../sims/lp2_p0_27square_block39_frozen_continuation_sft.cjs) now forbids this and asserts the corrected counts. The erroneous values must not be used.
 
-| Native-language diagnostic | Result |
+## New independent language-register extension
+
+The existing 2026-11-11 source test establishes **52 distinct single-word alternatives** in a pinned Shakespeare register. This extension instead compiles a *native GP-rune* vocabulary from the preexisting `resources/control/shakespeare_first300k.txt` and `resources/control/gibran_prophet_58585.txt`, preserving the standard Latin-to-GP collision rules C/K, V/U, Z/S, QU/CW and multirune digraphs. There are **6,834 distinct GP words** in the two pinned source excerpts.
+
+Fix a deterministic high-frequency vocabulary of **1,465 GP words** occurring at least five times in the combined excerpts. Include single-rune A and I if they pass that frequency filter, and disallow other single-rune words. Without changing any node, source, cipher or phase rule, perform exhaustive dynamic-programming segmentation of each entire candidate GP rune sequence into one or more **complete** reference words. This reproduces the external Report16 all-words-in-a-block acceptance criterion without selecting a desired phrase or allowing broken word ends.
+
+| Language-conditioned measurement | Corrected result |
 | --- | ---: |
-| Assignments exactly equal to one full word of any reference frequency | **125** |
-| Single-word assignments of five or more GP runes | **1**, `MACING` = “MAKING” with standard K→C normalization |
-| Assignments completely segmentable into frequent reference words | **192** |
-| Distinct completely segmented phrases | **123** |
-| Segmented assignments by complete block length | **169** of 3 runes; **22** of 5; **1** of 7; **0** of 9 or more |
-| Only accepted seven-rune phrase | `ME TIS NO` (grammatically implausible after “I ASK”) |
+| GP-native assignments exactly equal to one whole source word (any frequency) | **63** |
+| Whole-word assignments of 5 GP runes or longer | **1**, `MACING` = “MAKING” with C/K mapping |
+| Joint assignments fully segmented into frequent complete source words | **95** |
+| Distinct frequent-language segmented strings | **74** |
+| Complete frequent-word segmentations by block length | 3 runes: **82**; 5 runes: **12**; 7 runes: **1** |
+| Segmented candidates of 9 or more GP runes | **0** |
+| Only seven-rune segmentation | **ME TIS NO** |
 
-The only five-rune **single-word** extension (“MAKING”) is a perfectly reproducible key-and-cell inverse but does **not** independently make the alleged preceding English statement grammatical. Very short outputs include ordinary words such as ARE, WHO, HOW and ONE, and are not uniquely selected by the reported rules. The reference coverage is finite and dialect-sensitive; these numbers are **not** an English impossibility theorem or a discovery-adjusted chance probability.
+The Shakespeare and Gibran excerpts cover a limited literary register. The 95 assignments quantify the substantial ambiguity that persists after a fixed dictionary check; they do **not** imply the ciphertext excludes another language, dialect or intended 39th word. The five-rune “MAKING” inversion is arithmetically valid but has no authored reason to follow “I ASK.”
 
-## Cryptanalytic decision
+## Decision
 
-This is a **prospective attempt to recover block 39** from an externally proposed decoder, and it finds substantial residual freedom: the published 00–15 rules do not determine a next node, key, or grammatical continuation. The reported 38-block sentence could still be intended to stop at “I ASK”; such a stop would require an **independent original source selector** rather than recognition of an attractive final phrase. The 27² source-square itself remains a testable structural hypothesis. The raw book's 12,956 unknown runes have **not** been decrypted by extracting a selected 115-rune sparse path through the first 729.
+The published formulas do **not** select one original source node or a unique next plaintext block, consistent with the [prior original-cipher result](lp2-27x27-published-nextblock-branching.md). Restricting block39 output to complete words from two independent preexisting public-domain literary excerpts still leaves **74 different candidate strings**. The external candidate's 38-block reading remains unconfirmed. A fruitful future test would require a *historically demonstrable original start/stop/traversal or key selector*, or a single precommitted rule that reproduces genuine plaintext on a fresh untouched original page. Further post hoc prime coincidences and grammar-tuned selectors cannot establish the missing mechanism.
 
-The actionable missing input is a human-visible **start, stop and traversal selector** that fixes a *single* source node and straight ciphertext range **before decoding its letters**, or a reproducible forward cipher mapping longer unseen original pages to prose. A selected second page of authentic plaintext would materially change the choice. Further retrospective arithmetic correspondences cannot make the 43,846-way branch independent evidence.
-
-**Reproduction:** [Node22 CommonJS standalone, original corpus, source reference dictionary and strict assertions](../sims/lp2_p0_27square_block39_frozen_continuation_sft.cjs). Source: original page images and `resources/liber-primus/lp2-corpus.json`; dictionary: `resources/control/shakespeare_first300k.txt` and `resources/control/gibran_prophet_58585.txt`; external [method specification](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption).
+**Reproduction:** [single-file CommonJS Node22 original-source SFT](../sims/lp2_p0_27square_block39_frozen_continuation_sft.cjs) checks all 729 original source runes, the literal block38 ciphertext arithmetic, every applicable reported forecast, the full original-source node and cipher segment bounds, 21,818 joint assignments, 18,578 distinct native strings, and the two independent reference lexicons. See [parent study and its separate original-source SFT](lp2-27x27-published-nextblock-branching.md).
