@@ -31,7 +31,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           run-id: "44006868510"
-          name: pdir-stage1-000-0
+          name: pdir-stage1-000-4
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           path: frozen-original
       - name: Test paired 3301-times-prime against both entire original sections
