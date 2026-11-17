@@ -51,6 +51,19 @@ Consequently, the exact irreducible **degree-nine factor is primitive** over GF(
 
 This supplies an exact constraint for any future factor-based PRNG/keystream hypothesis: a claimed early repeat from a nonzero nine-state *unmodified* \(N_9\) recurrence would be impossible. The original book does not tell us to use that recurrence, which seed to use, or how its state maps to ciphertext. Earlier direct red-nine-title seeded additive/feedback inverses did **not** recover text (see below). Primitivity is mathematically common among irreducibles and by itself offers **no new plaintext, authenticated key, cipher identification, or statistical evidence of intentional encoding**.
 
+### Red-nine-seeded rank28 doublet-escape inverse (Agent37, 17 November 2026)
+
+The primitive degree-nine factor makes one alternate original-image-motivated receiver cheap and fully fixed. Original physical p15 and p54 **each begin with a nine-rune red heading**, supplying independent exact initial states for the same \(N_9\) recurrence. The unknown GP ciphertext has very few adjacent identical runes, suggesting a reversible nonrepeat wheel: let an unchanged ciphertext rune followed by itself encode plaintext F (GP0); otherwise encode the 28 non-F plaintext runes as the 28 nonzero steps relative to the preceding ciphertext rune, rotated by the next \(N_9\) state modulo 28. All original rune positions advance the key. There is no secret pad, fitted starting phase, variable punctuation clock, or optimized offset. This receiver is distinct from the previously rejected direct additive LFSR masks.
+
+The [complete read-only original-input SFT](../sims/lp2_nonic_red9_rank28_repeat_escape_sft.cjs) reconstructs the original table's degree-nine divisor, fixes the two visible nine-rune seeds, and decodes two source-selected original sections. It also re-encodes each entire decoded ciphertext and independently **round-trips all 95 genuine solved-p57 GP runes** through a planted forward transform for both signs.
+
+| Source chapter after red9 | Original runes | Repeat/F escape sites | GP29 IoC, sign + | GP29 IoC, sign − |
+| --- | ---: | ---: | ---: | ---: |
+| p15–22 | 1,903 | 10 | 0.0351414175 | 0.0353031873 |
+| p54–55 | 308 | 3 | 0.0359138964 | 0.0348140334 |
+
+All four outputs are near the uniform-GP reference \(1/29\approx0.03448\), with nonprose first-80 transliterations and no coherent unknown plaintext. This rejects precisely the **N9 + authentic red-nine initial state + GP28 rotated nonrepeat-step + repeated-ciphertext-F-escape** combination. It does not reject a different receiver, source-guided seed, register output function, or separate chapter cipher; do not expand it to a phase sweep without an independently printed selector.
+
 ## Q238 red119-seeded stream under every fixed secret outer alphabet (Agent11, 13 November 2026)
 
 The original table's irreducible degree-238 quotient provides a source-derived recurrence. The two independently special first-119-rune prefixes of p3 and p39 supply precisely 238 seed symbols, giving two historical-page seed orders and the direct or reciprocal recurrence. Earlier direct GP29 additive masks failed, but an arbitrary secret output alphabet is a genuinely different class: `C_i=σ((P_i+K_i) mod29)`, where `σ` can be **any** of 29! fixed bijections.
