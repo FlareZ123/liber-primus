@@ -10,6 +10,7 @@ on:
         options:
           - "761"
           - "56013"
+          - "interconnected"
 permissions:
   contents: read
 jobs:
@@ -25,7 +26,14 @@ jobs:
         env:
           INPUT_SOURCE: ${{ inputs.original_source }}
         run: |
-          if [ "$INPUT_SOURCE" = "56013" ]; then
+          if [ "$INPUT_SOURCE" = "interconnected" ]; then
+            curl --fail --location --retry 3 --retry-delay 2 \
+              --output /tmp/interconnected.mp3 \
+              https://raw.githubusercontent.com/iBotPeaches/cicada_3301/a0a616d85717af59f8b806875b43d51e06e1e874/tool/storage/interconnected.mp3
+            test "$(stat -c %s /tmp/interconnected.mp3)" = "6651873"
+            test "$(git hash-object /tmp/interconnected.mp3)" = "09fe068192b76a3697c47ec1d604b527703db798"
+            echo "SOURCE_FILE=/tmp/interconnected.mp3" >> "$GITHUB_ENV"
+          elif [ "$INPUT_SOURCE" = "56013" ]; then
             curl --fail --location --retry 3 --retry-delay 2 \
               --output /tmp/560.13 \
               https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13
