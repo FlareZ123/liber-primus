@@ -30,6 +30,18 @@ The superficially enticing rare last-rune \`EA\` is *not* an escape fit. Shakesp
 
 The table is conditional on native GP English from these two independent sources. Shakespeare and Gibran are stylistically different from Cicada's unknown author, and the original plaintext may be non-English, differently tokenized, multiple-stage encrypted or otherwise intentionally patterned. Treat this as a decisive *model choice* against the simplest one-global-escape English model, never as a complete cryptanalytic impossibility theorem.
 
+## Independent rival: repeat locations are compatible with page-conditioned uniform placement
+
+A different mechanism can suppress consecutive ciphertext duplicates by source-irrelevant key material or stateful output filtering. Its residual repeats need not share any fixed native-English plaintext symbol. Test that simpler **positional null** without assuming any plaintext: retain each original physical page's exact repeat count, select those repeat sites uniformly among that page's possible internal adjacent-rune pairs, and evaluate the resulting site categories against the original word boundaries. The 32 cross-page words are preserved as printed, and runeless p50 contributes no samples. The Monte Carlo seed is \`314159265\`; all **10,000** deterministic trials are in the same SFT.
+
+| Repeat-position feature | Original source | Page-count-preserving uniform control mean | Control SD |
+| --- | ---: | ---: | ---: |
+| Repeat occurs on the first rune of a word | **23** | 18.978 | 3.818 |
+| Repeat occurs on the final rune of a word | **19** | 19.003 | 3.842 |
+| Repeat occurs in a one-rune word | **0** | 0.496 | 0.704 |
+
+A descriptive standardized-quadratic-distance Monte Carlo comparison yields **joint empirical tail 0.6161**. This independent positional null is fully compatible with the source counts at the scale of this test. It does **not** show that the author's cipher used random repeat placement or establish H2, a specific skip rule or a source key. It distinguishes the observed near-word-independent repeat-site geometry from the fixed one-native-English-symbol escape explanation above, and motivates searching for source-selected operations whose low residual repeat rate arises from the *ciphertext or key state*.
+
 ## Reproducibility and research consequence
 
 [Executable Windows Node22/CommonJS SFT](../sims/lp2_fixed_escape_repeat_site_native_gate_sft.cjs) reads the original untouched committed transcription, 256 source-table bytes only for its synthetic positive, and both full independent English references. It asserts the original \`[86,23,19]\` triple and validates exact forward/inverse losslessness. The seeded simulations evaluate **all** 29 escape choices rather than only the preselected rare symbols. On 17 November 2026 the identical calculations were independently executed in the repository-connected JS runtime. A manual Windows CI run was dispatched as [run 44050649896](https://github.com/FlareZ123/liber-primus/actions/runs/44050649896), **queued at initial report time**; do not claim CI PASS without its confirmed terminal result.
