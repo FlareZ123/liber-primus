@@ -12,6 +12,16 @@ import argparse
 import hashlib
 from pathlib import Path
 
+# Pinned source objects from neuroretransmit/cicada at this exact commit.
+# The fourth residual is the object from which that README extracts 13.jpg.
+ARCHIVE_COMMIT = "ade9a02889ef8acbc8cde8edbfd0a785c369f4c3"
+ARCHIVE_OBJECTS = [
+    ("10.jpg", "bd270e45c58dfb6f0c50f9af60cf7104cf78e78e"),
+    ("11.jpg", "d80bea5ec6aac4eee0eebeaaed31840cb24c029d"),
+    ("12.jpg", "49253cf8e4c1cacda601c9507111f0c4bfe318b3"),
+    ("10,11,12-trimmed.bin", "754a18ce2d0b2f8bcdd03e0a0e458e2bc4912a0a"),
+]
+
 
 def jpeg_eoi_end(buf: bytes, start: int) -> int:
     """Return the end offset of one JPEG, parsing markers and entropy stuffing."""
@@ -83,6 +93,12 @@ def dimensions(jpeg: bytes) -> tuple[int, int]:
     raise ValueError("SOF dimensions not found")
 
 
+def git_blob_sha1(data: bytes) -> str:
+    """Git object ID for an exact byte sequence."""
+    header = f"blob {len(data)}\0".encode("ascii")
+    return hashlib.sha1(header + data).hexdigest()
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", type=Path, help="optional directory for extracted JPEGs")
@@ -101,11 +117,37 @@ def main() -> None:
         end = jpeg_eoi_end(raw, pos)
         part = raw[pos:end]
         parts.append(part)
+        segment_number = len(parts)
+        if segment_number > len(ARCHIVE_OBJECTS):
+            raise SystemExit(f"unexpected extra JPEG segment {segment_number}")
+        archive_object, expected_blob_sha1 = ARCHIVE_OBJECTS[segment_number - 1]
+        actual_blob_sha1 = git_blob_sha1(part)
+        if actual_blob_sha1 != expected_blob_sha1:
+            raise SystemExit(
+                f"segment {segment_number} does not match pinned archive object "
+                f"{archive_object}: {actual_blob_sha1} != {expected_blob_sha1}"
+            )
+        standalone_match = "embedded-only segment"
+        if segment_number >= 2:
+            local_page_number = segment_number + 9
+            standalone_path = source.parent / f"{local_page_number}.jpg"
+            if not standalone_path.exists() or standalone_path.read_bytes() != part:
+                raise SystemExit(
+                    f"segment {segment_number} differs from local {local_page_number}.jpg"
+                )
+            standalone_match = f"{local_page_number}.jpg byte-identical"
         w, h = dimensions(part)
-        print(f"page{len(parts)}: start={pos} end={end} bytes={len(part)} dimensions={w}x{h} sha256={hashlib.sha256(part).hexdigest()}")
+        print(
+            f"page{segment_number}: start={pos} end={end} bytes={len(part)} "
+            f"dimensions={w}x{h} archive_object={archive_object!r} "
+            f"archive_commit={ARCHIVE_COMMIT} git_blob_sha1={actual_blob_sha1} "
+            f"standalone={standalone_match} sha256={hashlib.sha256(part).hexdigest()}"
+        )
         if args.out:
             (args.out / f"10-part{len(parts)}.jpg").write_bytes(part)
         pos = end
+    if len(parts) != len(ARCHIVE_OBJECTS):
+        raise SystemExit(f"expected four archived page objects, found {len(parts)}")
     print(f"total: {len(parts)} concatenated JPEGs; {len(raw)} bytes; consumed={pos}")
 
 
