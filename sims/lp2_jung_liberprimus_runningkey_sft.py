@@ -147,6 +147,40 @@ def main() -> None:
     gibran = runes(gibran_text)
     assert len(gibran) > 50_000
     p1, p3 = model(gibran)
+
+    # Two source-selected, exact p57 red-title plaintext proposals, previously
+    # derived against the original p0 (8+5) and p33 (2+8) red headings.
+    # Native GP29 title cribs contain no plaintext F, so historical F bypass
+    # cannot affect the 13/10 consecutive source-key symbols inside the titles.
+    poem = raw["pages"][57]["indices"]
+    p0_crib = [23, 10, 1, 10, 9, 10, 16, 26, 7, 10, 2, 10, 9]
+    p33_crib = [2, 18, 23, 10, 1, 10, 9, 10, 16, 26]
+    assert poem[73:86] == p0_crib
+    assert poem[71:81] == p33_crib
+    headers = {
+        "p0_DIVINITY_WITHIN_13":
+            [((c - p) % 29) for c, p in zip(raw["pages"][0]["indices"][:13], p0_crib)],
+        "p33_THE_DIVINITY_10":
+            [((c - p) % 29) for c, p in zip(raw["pages"][33]["indices"][:10], p33_crib)],
+    }
+    assert headers["p0_DIVINITY_WITHIN_13"] == [21,27,17,22,26,9,11,3,8,16,16,11,25]
+    assert headers["p33_THE_DIVINITY_10"] == [21,23,20,24,28,0,15,26,21,9]
+    source_bytes = bytes(jung)
+    exact_title_key_offsets = {}
+    for name, inferred_key in headers.items():
+        for pad_sign in (1, -1):
+            needle = bytes((pad_sign * x) % 29 for x in inferred_key)
+            offsets = []
+            pos = source_bytes.find(needle)
+            while pos >= 0:
+                offsets.append(pos)
+                pos = source_bytes.find(needle, pos + 1)
+            exact_title_key_offsets[f"{name}_key_sign_{pad_sign}"] = offsets
+    # Blind source-window lookup positive: an actual contiguous 13-rune key
+    # and its negation are independently planted from real original source.
+    chosen = source_bytes[3301:3314]
+    assert source_bytes.find(chosen) == 3301
+    assert len(chosen) == 13
     original_result = search(original, jung, p1, p3, TOP)
 
     # Real 729-GP-rune English plant, secret-offset source passage, source
@@ -178,6 +212,8 @@ def main() -> None:
                          "inverse_sign": -1,
                          "control_holdout_trigram": recovered["holdout_trigram_log"],
                          "control_holdout_ioc": recovered["holdout_ioc"]},
+        "p57_title_native_GP_consecutive_Jung_key_offsets": exact_title_key_offsets,
+        "p57_title_native_source_readout": "exact GP29 substring; 4 candidate signed title-key strings and every source offset",
         "real": original_result,
         "decision": "Seek readable full plaintext and authentic source offset; high head score alone is not a decryption",
     }, indent=2))
