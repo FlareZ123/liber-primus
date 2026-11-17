@@ -61,6 +61,34 @@ assert.equal(Math.max(...terminal), 117);
 const freq = array => Object.fromEntries(
   array.map((n, i) => [corpus.translit[i], n])
 );
+const chapterWordCounts = [158, 255, 383, 437, 224, 326, 378, 669, 66];
+assert.equal(chapterWordCounts.reduce((a, b) => a + b), words.length);
+let offset = 0;
+const chapterEndpointCounts = chapterWordCounts.map((count, i) => {
+  const segment = words.slice(offset, offset + count)
+    .filter(word => word.length >= 2);
+  offset += count;
+  const leading = new Array(29).fill(0);
+  const trailing = new Array(29).fill(0);
+  for (const word of segment) {
+    leading[word[0]]++;
+    trailing[word[word.length - 1]]++;
+  }
+  const minLeading = Math.min(...leading);
+  const minTrailing = Math.min(...trailing);
+  if (i < 8) {
+    assert.ok(minLeading > 0, "Chapter zero-digit contradiction, forward");
+    assert.ok(minTrailing > 0, "Chapter zero-digit contradiction, reverse");
+  }
+  return {
+    chapter: i + 1,
+    multiRuneWords: segment.length,
+    minLeading, minTrailing,
+    missingLeadingRunes: corpus.translit.filter((_, j) => !leading[j]),
+    missingTrailingRunes: corpus.translit.filter((_, j) => !trailing[j])
+  };
+});
+assert.equal(offset, words.length);
 console.log(JSON.stringify({
   classification: "conditional exact impossible, no plaintext",
   source: {runes: original.length, printedWords: words.length,
@@ -70,5 +98,7 @@ console.log(JSON.stringify({
   leadingRange: [Math.min(...initial), Math.max(...initial)],
   trailingRange: [Math.min(...terminal), Math.max(...terminal)],
   zeroEligibleSymbolCountForAnyStationaryUnknownBijection: 0,
-  statement: "Under any one fixed secret bijection between 29 printed runes and digits 0..28, neither end of every length>=2 token can avoid digit zero. Hence neither orientation is a canonical minimal-length base29 numeral without a separate word-escape/padding/mode operation."
+  chapterEndpointCounts,
+  independentlyForcedContradictoryChapters: 8,
+  statement: "Eight of nine original visual chapters individually contain all 29 rune identities at both multi-digit endpoints. Even allowing an independent secret rune-to-digit alphabet for each chapter fails for those eight chapters, in both directions."
 }, null, 2));
