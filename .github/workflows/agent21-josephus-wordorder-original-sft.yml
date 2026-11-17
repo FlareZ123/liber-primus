@@ -11,6 +11,7 @@ on:
         options:
           - josephus
           - p22-circumference
+          - geometry-extra-leading
 
 permissions:
   contents: read
@@ -39,3 +40,8 @@ jobs:
         run: |
           node --check sims/lp2_p22_lp1_circumference_spiral_sft.cjs
           node sims/lp2_p22_lp1_circumference_spiral_sft.cjs
+      - name: Original LP2 extra-leading geometry and word joins
+        if: ${{ inputs.test == 'geometry-extra-leading' }}
+        run: |
+          python3 -m pip install --quiet numpy pillow
+          python3 sims/lp2_line_extra_leading_source_sft.py
