@@ -16,3 +16,6 @@ jobs:
       - name: Sixteen-column planted and original heldout inverse
         run: node sims/lp2_16column_wordperm_blind_sft.cjs
         shell: pwsh
+      - name: Historical onion2 timing original table cross-source gate
+        run: node sims/lp2_onion2_timing_table_crosssource_sft.cjs
+        shell: pwsh
