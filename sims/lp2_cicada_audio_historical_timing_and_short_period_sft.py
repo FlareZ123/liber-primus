@@ -38,7 +38,11 @@ OUT = Path("lp2-audio-note-historical-ticks-results.json")
 def wrong_track(midi_path: Path) -> dict:
     mid = mido.MidiFile(str(midi_path))
     assert mid.ticks_per_beat == HISTORICAL_TPB, mid.ticks_per_beat
-    tracks = [[msg.note + msg.time for msg in t if msg.type == "note_off"] for t in mid.tracks]
+    tracks = [[], []]
+    for index, track in enumerate(mid.tracks):
+        for msg in track:
+            if msg.type == "note_off":
+                tracks[index - 1].append(msg.note + msg.time)
     assert len(tracks) == 2
     assert {msg.tempo for t in mid.tracks for msg in t if msg.type == "set_tempo"} == {500000}
     vals = [sorted(set(x)) for x in tracks]
