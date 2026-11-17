@@ -164,7 +164,11 @@ function trace(sections, dirs, config, addresses = false) {
     }
   }
   let maxOne = 0, maxTwo = 0, active = 0;
+  const majorized = new Uint32Array(Q);
   for (let state = 0; state < KEY_STATES; state++) {
+    const sorted = Array.from(hist.subarray(state * Q, (state + 1) * Q))
+      .sort((a, b) => b - a);
+    for (let p = 0; p < Q; p++) majorized[p] += sorted[p];
     let first = 0, second = 0;
     for (let glyph = 0; glyph < Q; glyph++) {
       const count = hist[state * Q + glyph];
@@ -175,7 +179,13 @@ function trace(sections, dirs, config, addresses = false) {
     maxTwo += first + second;
     if (first) active++;
   }
-  return {maxOne, maxTwo, active, phases};
+  assert.equal(majorized.reduce((a, b) => a + b, 0), N);
+  // Exactly maximal coincidence over all independently secret GP29
+  // bijections at each pointer state (rearrangement inequality).
+  const maximumIoCNumerator = majorized.reduce(
+    (sum, count) => sum + count * (count - 1), 0);
+  return {maxOne, maxTwo, active, maximumIoCNumerator,
+    maximumIoC: maximumIoCNumerator / (N * (N - 1)), phases};
 }
 
 /**
@@ -232,8 +242,40 @@ function positiveControl(original, nativeWordPools, config) {
   const target = GP.translit.indexOf("E");
   const actualE = plainFlat.filter((x) => x === target).length;
   assert.ok(traced.maxOne >= actualE);
+  const actualCounts = new Uint32Array(Q);
+  for (const x of decoded) actualCounts[x]++;
+  const nativeIoC = actualCounts.reduce((sum, v) => sum + v * (v - 1), 0) /
+    (N * (N - 1));
+  assert.ok(traced.maximumIoC + 1e-15 >= nativeIoC);
   return {runes: decoded.length, exactRecovery: true, exactReencryption: true,
+    nativeIoC, maximumSecretIoC: traced.maximumIoC,
     plaintextE: actualE, allSecretMaximumE: traced.maxOne};
+}
+
+/**
+ * Exact minimum unigram coincidence across every overlapping GP-native
+ * source window of the original ciphertext's 12,956-rune length.
+ * @param {number[]} text Native GP rune indices.
+ */
+function minimumWindowIoC(text) {
+  assert.ok(text.length >= N);
+  const counts = new Uint32Array(Q);
+  let numerator = 0, minimum = Infinity, offset = -1;
+  for (let i = 0; i < text.length; i++) {
+    const arriving = text[i];
+    numerator += 2 * counts[arriving];
+    counts[arriving]++;
+    if (i >= N) {
+      const departing = text[i - N];
+      counts[departing]--;
+      numerator -= 2 * counts[departing];
+    }
+    if (i >= N - 1 && numerator < minimum) {
+      minimum = numerator;
+      offset = i - N + 1;
+    }
+  }
+  return {numerator: minimum, offset, minimumIoC: minimum / (N * (N - 1))};
 }
 
 function main() {
@@ -248,8 +290,9 @@ function main() {
     const words = encodeWords(read(file));
     const text = words.flat();
     const minimumE = minimumWindow(text, N, GP.translit.indexOf("E"));
+    const minimumIoC = minimumWindowIoC(text);
     assert.ok(minimumE && minimumE.count >= 1397);
-    return {name, minimumE: minimumE.count, words};
+    return {name, minimumE: minimumE.count, minimumIoC, words};
   });
   const results = [];
   for (const name of RULES) {
@@ -269,6 +312,11 @@ function main() {
   const most = results[results.length - 1];
   const least = results[0];
   assert.ok(most.maxOne < Math.min(...native.map((n) => n.minimumE)));
+  const highestCoincidence = results.reduce((best, current) =>
+    current.maximumIoCNumerator > best.maximumIoCNumerator ? current : best);
+  const referenceMinimumIoC = Math.min(...native.map((n) => n.minimumIoC.minimumIoC));
+  assert.ok(highestCoincidence.maximumIoC < referenceMinimumIoC,
+    "Arbitrary secret GP alphabet majorization did not exclude native reference");
   const byLength = new Map();
   for (const word of native[0].words) {
     if (!byLength.has(word.length)) byLength.set(word.length, []);
@@ -284,7 +332,10 @@ function main() {
     allSecretMaximumE: most.maxOne, bestModel: most,
     allSecretMinimumE: least.maxOne, minimumModel: least,
     allSecretMaximumPair: Math.max(...results.map((r) => r.maxTwo)),
-    nativeMinimumE: native.map((n) => ({name: n.name, count: n.minimumE})),
+    highestCoincidenceModel: highestCoincidence,
+    minimumReferenceIoC: referenceMinimumIoC,
+    nativeMinimumE: native.map((n) => ({name: n.name, count: n.minimumE,
+      ...n.minimumIoC})),
     sourceNativePositive: plant, recoveredUnknownLP2Plaintext: false,
     scope: "Only source-section phase-zero reset, stationary cyclic-256 phase alphabets, deterministic equality update, no unobserved retries"
   };
