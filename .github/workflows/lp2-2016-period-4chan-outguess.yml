@@ -1,0 +1,35 @@
+name: 2016 4chan original image witness unkeyed OutGuess
+
+# Original source variant is a contemporary 4chan attachment later mirrored by Imgur.
+# Manual only; never schedule on source commits.
+on:
+  workflow_dispatch:
+
+jobs:
+  period-witness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out preserved signed source and image
+        uses: actions/checkout@v4
+
+      - name: Build pinned historical OutGuess extractor
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y autoconf automake libtool build-essential libjpeg-dev file
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess
+          ./autogen.sh
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
+          make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
+          sudo make install
+
+      - name: Check actual distinct 2016 repost for signed extraction
+        env:
+          CICADA_OUTGUESS: '1'
+        run: |
+          node --check sims/lp2_2016_4chan_original_carrier_variant_sft.cjs
+          node sims/lp2_2016_4chan_original_carrier_variant_sft.cjs
