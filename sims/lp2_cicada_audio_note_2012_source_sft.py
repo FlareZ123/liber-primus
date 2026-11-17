@@ -144,19 +144,32 @@ def ioc29(values: np.ndarray) -> float:
 def screen(stream: np.ndarray, sections: list[tuple[str, np.ndarray]]) -> dict:
     if len(stream) < WINDOW:
         return {"eligible": False, "key_length": len(stream)}
+    from numpy.lib.stride_tricks import sliding_window_view
+
+    # Exact batched GP29 IoC search. Bincount each row by a unique row identifier;
+    # this is equivalent to the original scalar loop but avoids Python per-window work.
+    key_windows = sliding_window_view(np.asarray(stream, dtype=np.int16), WINDOW)
     record = {"ioc": -1.0}
     tested = 0
     for name, section in sections:
         c = section[:WINDOW]
-        for offset in range(len(stream) - WINDOW + 1):
-            k = stream[offset:offset + WINDOW]
-            for sign in (-1, 1):
-                p = (c + sign * k) % 29
-                score = ioc29(p)
-                tested += 1
+        for sign in (-1, 1):
+            for base in range(0, len(key_windows), 1024):
+                keys = key_windows[base:base + 1024]
+                n = len(keys)
+                decoded = (c[None, :] + sign * keys) % 29
+                bins = (decoded + 29 * np.arange(n, dtype=np.int32)[:, None]).ravel()
+                frequency = np.bincount(bins, minlength=n * 29).reshape(n, 29)
+                scores = 29.0 * (frequency * (frequency - 1)).sum(axis=1) / (WINDOW * (WINDOW - 1))
+                local = int(np.argmax(scores))
+                score = float(scores[local])
+                tested += n
                 if score > record["ioc"]:
-                    record = {"ioc": round(score, 8), "chapter": name, "offset": offset,
-                              "sign": sign, "plaintext_first_75_GP_indices": p[:75].tolist()}
+                    record = {
+                        "ioc": round(score, 8), "chapter": name,
+                        "offset": base + local, "sign": sign,
+                        "plaintext_first_75_GP_indices": decoded[local, :75].tolist()
+                    }
     record["tested"] = tested
     return record
 
