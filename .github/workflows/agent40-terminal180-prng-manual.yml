@@ -1,0 +1,19 @@
+name: Agent40 original terminal256 affine-byte-stream gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-and-planted:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original LP2 256-cell byte-stream inversion and planted controls
+        run: node sims/lp2_terminal180_prng_original_gate_sft.cjs
