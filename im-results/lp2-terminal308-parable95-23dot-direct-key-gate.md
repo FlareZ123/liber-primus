@@ -33,16 +33,16 @@ The first **190 modular** outputs are always legal GP29 indices, and the **95 XO
 
 An unknown phase cannot rescue the five-bit direct XOR as a literal GP29 plaintext: **every** phase produces forbidden GP values, with at least fourteen violations.
 
-The 190 modular candidates require a *language-register* comparison, since their arithmetic is bijective. Use the repository's pinned Gibran, Shakespeare and Emerson corpus texts and the exact canonical GP29 word encoder used in the established prior source-native controls: uppercase, `QU→CW`, `V→U`, `K/Q→C`, `Z→S`, greedy longest-first GP digraph tokenization. Compare the IoC of **every contiguous 308-rune window**, with stride one, to the *highest* original modular candidate IoC, **0.03695165**.
+The 190 modular candidates require a *language-register* comparison, since their arithmetic is bijective. Use the repository's pinned Gibran, Shakespeare and Emerson corpus texts and the **original LP1/p57 source-authenticated** GP29 word encoder: uppercase, `QU→CW`, `V→U`, `K/Q→C`, `Z→S`, `ING→ᛝ` and `IO→ᛡ` *before* other greedy GP digraphs. The two special tokens are established by [181/181 original solved-LP1 word alignments and independent p57 95/95](../results/lp1-source-orthography.md). Compare the IoC of **every contiguous 308-rune window**, with stride one, to the *highest* original modular candidate IoC, **0.03695165**.
 
 | Independent native-English GP corpus | Exhaustive windows of 308 runes | **Lowest** window IoC | Native windows reaching any candidate's best IoC |
 |---|---:|---:|---:|
-| Gibran, *The Prophet* | **62,807** | **0.05254029** | **0** |
-| Shakespeare sample | **218,493** | **0.05015018** | **0** |
-| Emerson essays | **324,323** | **0.04991751** | **0** |
-| **Total** | **605,623** | **0.04991751** | **0** |
+| Gibran, *The Prophet* | **62,185** | **0.05249799** | **0** |
+| Shakespeare sample | **216,799** | **0.04989636** | **0** |
+| Emerson essays | **321,020** | **0.04945218** | **0** |
+| **Total** | **600,004** | **0.04945218** | **0** |
 
-Even the most favorable original-phase modular output is below **all 605,623** authentic GP-English windows. This is a decisive negative for this exact native-register cipher family, independent of first-word crib choices. It is *not* a mathematical impossibility theorem for every imaginable English source or a different intermediate symbol register.
+Even the most favorable original-phase modular output is below **all 600,004** authentic GP-English windows. This is a decisive negative for this exact native-register cipher family, independent of first-word crib choices. It is *not* a mathematical impossibility theorem for every imaginable English source or a different intermediate symbol register.
 
 ### 23-dot and zero-offset controls
 
@@ -63,6 +63,6 @@ The seemingly promising 23-offset XOR `I` is a **one-letter accidental hit**; it
 
 **Retire the entire direct 95-rune cyclic PARABLE-key 29-symbol additive and literal five-bit XOR families on the original 308-rune terminal chapter.** The visual 308=3×95+23 equality remains a conjectural coincidence without an operator. Don't launch phase-tuned variants, arbitrary key transformations or XOR-escape repairs from this count alone. Reconsider this source if an independent authentic clue supplies a different **specified** operator, intermediate register, or source-derived key.
 
-The [read-only Node22 CommonJS SFT](../sims/lp2_terminal308_parable95_23dot_direct_sft.cjs) asserts the 232/76/95/23 source lengths, original red-heading indices, all **285** phase/operator outputs, exact 308/308 round-trip and synthetic positives, all original IoC extrema and XOR-invalid extrema, and all **605,623** native English control windows. Original source: [canonical LP2 GP29 corpus](../resources/liber-primus/lp2-corpus.json); native controls: [Gibran](../resources/control/gibran_prophet_58585.txt), [Shakespeare](../resources/control/shakespeare_first300k.txt), and [Emerson](../resources/control/emerson_essays_2944.txt). Physical dot motif and first full word are separately recorded in [the original dot census](lp2-original-dot-punctuation-physical-census.md) and [p54–55 original boundary audit](lp2-original-page-boundary-audit-p32-p54-p55.md).
+The independently source-calibrated [read-only Node22 CommonJS SFT](../sims/lp2_terminal308_parable95_23dot_direct_sft.cjs) asserts the 232/76/95/23 source lengths, original red-heading indices, all **285** phase/operator outputs, exact 308/308 round-trip and synthetic positives, all original IoC extrema and XOR-invalid extrema, and all **600,004** native English control windows. Original source: [canonical LP2 GP29 corpus](../resources/liber-primus/lp2-corpus.json); native controls: [Gibran](../resources/control/gibran_prophet_58585.txt), [Shakespeare](../resources/control/shakespeare_first300k.txt), and [Emerson](../resources/control/emerson_essays_2944.txt). Physical dot motif and first full word are separately recorded in [the original dot census](lp2-original-dot-punctuation-physical-census.md) and [p54–55 original boundary audit](lp2-original-page-boundary-audit-p32-p54-p55.md).
 
 **Distinct earlier investigations:** [the 180-rune p56||p57 repeated-key transfer](lp2-solved-terminal-known-text-transfer-gate.md) targets the entire unknown manuscript, and [the original 308-unit known-hash bridge](lp2-terminal308-knownhash-fullsource-direct-pad.md) uses **85+128+95** adjacent source symbols. Neither tests the present complete 95-rune PARABLE cyclic key.
