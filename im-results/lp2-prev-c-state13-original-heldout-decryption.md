@@ -20,7 +20,7 @@ The source is **all original 12,956 LP2 unknown runes**, 55 rune-bearing pages a
 
 ## Blind original key recovery versus held-out controls
 
-Train all 377 shifts solely from labeled *training ciphertext pages* by maximizing the real canonical GP29-English **unigram** log-likelihood of each candidate inverse. GP29 reference frequencies are source-independent, obtained from the pinned 63,114-rune Gibran control with additive count5 for each rune. Each shift is selected from all **29** candidates; no manually selected offset, guessed English sentence, partial key, or source-fitted alphabet is supplied. Freeze the entire learned key, then decrypt and score the **disjoint held-out physical pages**, which did not contribute to any shift selection.
+Train all 377 shifts solely from labeled *training ciphertext pages* by maximizing the real canonical GP29-English **unigram** log-likelihood of each candidate inverse. GP29 reference frequencies are source-independent, obtained from the pinned 62,492-rune Gibran control with additive count5 for each rune, including original LP1/p57-authenticated `ING→ᛝ` and `IO→ᛡ` single-rune spelling instead of the insufficient inventory-label-only encoder. The earlier naive-label readout gives similar qualitative negative results but is superseded here. See [source orthography](../results/lp1-source-orthography.md). Each shift is selected from all **29** candidates; no manually selected offset, guessed English sentence, partial key, or source-fitted alphabet is supplied. Freeze the entire learned key, then decrypt and score the **disjoint held-out physical pages**, which did not contribute to any shift selection.
 
 A true instance should exhibit an **out-of-sample gain** under the source-native English distribution because it reuses the same 377 shifts across pages. A 377-parameter model can fit uniform ciphertext in-sample by accident; training likelihood is **not evidence**.
 
@@ -28,11 +28,11 @@ A true instance should exhibit an **out-of-sample gain** under the source-native
 
 | Original page train/held-out split | Train / held-out transitions | Original blind GP log-likelihood gain, nats/rune | Identical decoder on genuine-GP-language synthetic secret-key plant |
 |---|---:|---:|---:|
-| Even-index pages / odd-index pages | **6,314 / 6,587** | **−0.01202149** | **+1.23690462** |
-| First 28 pages / remaining 27 | **6,733 / 6,168** | **+0.05857445** | **+1.23076670** |
-| Odd-index pages / even-index pages | **6,587 / 6,314** | **+0.03548662** | **+1.22661772** |
+| Even-index pages / odd-index pages | **6,314 / 6,587** | **−0.00827959** | **+1.15003441** |
+| First 28 pages / remaining 27 | **6,733 / 6,168** | **+0.04519705** | **+1.11583432** |
+| Odd-index pages / even-index pages | **6,587 / 6,314** | **+0.00155222** | **+1.19001672** |
 
-For the primary alternating split, the original training inverse attains −3.40226 nats/rune, while **held-out original decoded** remains −4.24234 versus **held-out original undecoded** −4.23032. The large gap is a direct signature of a 377-secret-state **in-sample fit with no generalizable original plaintext**. The plant achieves held-out −3.01810 versus undecoded −4.25500, confirming that the identical inference can detect and substantially undo a genuine keyed model under this original-page budget.
+For the primary alternating split, the original training inverse attains −3.37920 nats/rune, while **held-out original decoded** remains −4.17253 versus **held-out original undecoded** −4.16425. The large gap is a direct signature of a 377-secret-state **in-sample fit with no generalizable original plaintext**. The plant achieves held-out −3.02894 versus undecoded −4.17898, confirming that the identical inference can detect and substantially undo a genuine keyed model under this original-page budget.
 
 This new experiment reaches actual blind key estimation and out-of-sample original decryption, with a large genuine-source positive, rather than just a synthetic forward/reverse test. It does **not** claim mathematical exclusion of every 13-phase cipher, every GP register, page-varying secret, non-additive 29×29 substitution, different clock, or an outside supplied key. The model's 13-phase and additive restriction have no authenticated selector, so do not build further variant chains from its negative.
 
