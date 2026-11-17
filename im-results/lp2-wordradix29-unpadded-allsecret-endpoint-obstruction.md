@@ -24,6 +24,25 @@ For these 2,813 eligible multi-rune words, the **initial** symbol count across a
 | 8 (669) | 656 | 12 | 12 |
 | 9 (66) | 64 | 0 | 0 |
 
+### Minimal compulsory alphabet-changing schedule
+
+The same endpoint condition determines **the minimum number of constant-digit-alphabet runs**, even allowing the secret "zero" symbol to be selected freely and adversarially from the full set of 29 runes in each run. Begin with an empty set and extend the current contiguous printed-word run until the first additional multi-rune word would complete all 29 endpoint identities. End the current run immediately before that word and continue; a run containing all 29 has no permissible zero digit. This greedy segmentation is globally optimal because extending a valid run to its last allowable word can only shorten the remaining suffix, and every shorter cut leaves at least as much source to cover. Single-rune words impose no leading-zero restriction.
+
+| Chapter | Minimum big-endian digit runs | Minimum little-endian digit runs |
+| ---: | ---: | ---: |
+| 1 | 2 | 2 |
+| 2 | 3 | 3 |
+| 3 | 4 | 4 |
+| 4 | 4 | 4 |
+| 5 | 2 | 3 |
+| 6 | 3 | 3 |
+| 7 | 3 | 4 |
+| 8 | 5 | 7 |
+| 9 | 1 | 1 |
+| **Total** | **27** | **31** |
+
+Thus even if all **nine** actual original chapter starts are key resets, a direct *unpadded* word-numeral encoder would need at least **18 additional within-chapter digit-alphabet changes** (forward) or **22 additional changes** (reversed). These are exact minima over **all possible assignments of a hidden zero rune to each run**, not a search over guessed key letters. Chapter eight alone requires at least five/seven runs and therefore at least four/six unprinted within-chapter resets. An independent alphabet for every **physical page** could evade this theorem and is not ruled out. The missing clue must independently explain why these extra changes occur and how the solver discovers the corresponding new digit alphabets.
+
 The ninth, shorter chapter is uninformative by itself: its source leading runes omit J/P/L/A and terminal runes omit N, so an unknown zero symbol could be chosen for that chapter. This loophole cannot rescue the preceding eight chapters under the hypothesized same numeral codec.
 
 ## All-secret impossibility, independent of language
