@@ -1,57 +1,68 @@
-# p0/cuneiform → base-60 word map → p54/p55 totient route (candidate)
+# Source-led base-60 word map and totient network (candidate)
 
-**Status: unverified navigation hypothesis; no plaintext or key recovered.** This remains an intermediate finding in `im-results/`, not an established result.
+**Status: promising navigation/selector hypothesis, not a decryption.** No unknown plaintext or cipher key has been recovered. Keep this in `im-results/`, not `results/`.
 
-## Reproducible address network
+## Coordinate rule under test
 
-Use the Gematria Primus prime weights and the global word segmentation in `resources/liber-primus/lp2-corpus.json` and `resources/liber-primus/lp2-transcription.txt`. A word is assigned to the page on which its first rune occurs.
+Use (n=60p+w), where (p) is the printed LP2 page label (zero-based) and (w) is a one-based word ordinal on that page. Words are assigned to the page on which their first rune occurs, using the global word segmentation in `resources/liber-primus/lp2-transcription.txt` and the rune/page counts in `resources/liber-primus/lp2-corpus.json`.
 
-The candidate coordinate rule is (n=60p+w), with the printed page label (p) zero-based and the word ordinal (w) one-based.
+This convention is natural for a zero-labelled page sequence and ordinary word ordinals, but is **not yet explicitly stated by a surviving instruction**. All results below are conditional on it.
 
-### p0 red title selects three p5 words
+## Three source routes converge
 
-The two p0 red-title words are `SHEOGMIAF` and `SYENGC`, with prime-weight sums **347** and **315**. Their mean is **331** and their difference is **32**.
+### p0 red title → three centered p5 words
 
-Under the candidate address rule:
+The two p0 red-title words are `SHEOGMIAF` and `SYENGC`, with Gematria-Primus prime-weight sums **347** and **315**. Their mean is **331** and their difference is **32**.
 
-- (315=60\cdot5+15) selects p5 word 15: `REO`, rune indices `[4,12]`, prime sum (11+41=52), so (arphi(52)=24).
-- (331=60\cdot5+31) selects p5 word 31: `CEAA`, rune indices `[5,28,24]`, prime sum (13+109+97=219), so (arphi(219)=144), then (arphi(144)=48).
-- (347=60\cdot5+47) selects p5 word 47: `TD`, rune indices `[16,23]`, prime sum (59+89=148), so (arphi(148)=72).
+The candidate coordinate rule gives:
 
-Thus the three positions 15, 31, 47 are centered on the address 331, and the totient-derived values (24,48,72) form an arithmetic progression. The extra totient iteration on the center word is a separate hypothesis, not independently selected.
+| Input | Address | Selected word | GP prime sum | Totient |
+|---:|---|---|---:|---:|
+| 315 | p5:w15 | `REO` | 52 | 24 |
+| 331 | p5:w31 | `CEAA` | 219 | 144, then 48 under a second totient |
+| 347 | p5:w47 | `TD` | 148 | 72 |
 
-### cuneiform endpoints independently reach p17 and p55
+The selected positions 15, 31, 47 are centered on 31. The endpoint totients are 24 and72; applying a second totient to the center's 144 gives48. These form (24,48,72), an arithmetic progression. The extra center iteration is target-guided and must not be treated as independently selected.
 
-The LP2 cuneiform section's source numbers **1033** and **3301** give two more candidate addresses:
+### cuneiform numbers → p17 and p55
 
-- (1033=60\cdot17+13) selects p17 word 13: `AEP`, rune indices `[25,13]`, prime sum (101+43=144), so (arphi(144)=48).
-- (3301=60\cdot55+1) selects p55 word 1: `AEMIW`, rune indices `[25,19,10,7]`, prime sum (101+71+31+19=222), so (arphi(222)=72).
+The cuneiform section's source numbers **1033** and **3301** give:
 
-These two totients have mean **60** and difference **24**. They independently reproduce the 48/72 values from the p0-derived route.
+| Input | Address | Selected word | GP prime sum | Totient |
+|---:|---|---|---:|---:|
+| 1033 | p17:w13 | `AEP` | 144 | 48 |
+| 3301 | p55:w1 | `AEMIW` | 222 | 72 |
 
-### Cross-source convergence
+The two totients have mean **60** and difference **24**. This independently reproduces the 48/72 values and the 24 marker from the p0 route.
 
-The five selected words (p17w13, p55w1, p5w15, p5w31, p5w47) contain **13 runes total**, matching the 13-rune p0 red title. Their first totients are (48,72,24,144,72), which sum to **360 = 6×60**.
+### Held-out p50 table token → p3 “DEO”
 
-The resulting values have visible source correspondences:
+The original p50 table contains the base-60 token **3D**, value **193**. Applying the same coordinate rule, (193=60\cdot3+13), selects p3 word13: **`DEO`**, rune indices `[23,12]`, prime sum **130**, and (arphi(130)=48).
 
-- **24**: p54's first red rune has GP index 24.
-- **48**: (7\times7-1), the noncentral cells of the original 2014 7×7 square.
-- **72**: p55 is original scan/image 72 (`72.jpg`).
-- **331**: the p0 title mean and the center of the 2014 7×7 square.
-- **1033**: the cuneiform endpoint and the 2014 square's magic constant.
-- **32**: the p0 title difference and the p50 table's row count.
+This was not used to construct the p0/cuneiform routes. It is a useful held-out match: 48 is (7\times7-1), the number of noncentral cells in the original 2014 7×7 square. The complete word list contains exactly two `DEO` tokens: p3:w13 and p33:w1. The solved p57 Parable says “find the divinity within”; Latin `DEO` is a plausible semantic echo. The 2016-message assignment of the word “lies” to the p50 3D token is itself a hypothesis, but the table token and its value are source-visible.
 
-This is a coherent candidate navigation network, not a decryption. The repeated values may be intentional, but their selection could still be post hoc.
+## Cross-source structure
 
-## Weakest premise and negative tests
+- **24**: p54's first red rune has GP index24.
+- **48**: (7\times7-1), the noncentral cells of the original 2014 square.
+- **60**: mean of the two cuneiform-derived totients.
+- **72**: p55 is original scan/image72 (`72.jpg`).
+- **331**: p0 title mean and center of the 2014 7×7 square.
+- **1033**: cuneiform endpoint and the 2014 square's magic constant.
+- **32**: p0 title difference and p50 table row count.
 
-The weakest premise remains the **base-60 page/word coordinate grammar**. The mixed convention (zero-based page label, one-based word ordinal) is natural but not explicitly selected by a surviving instruction. Global word starts are used to avoid counting page-crossing fragments as new words. The 2016 message (“words are the map, meaning is the road, numbers are the direction”) and p56's prime/totient instruction are relevant source hooks; they do not by themselves prove this exact coordinate convention.
+The five selected words p17:w13, p55:w1, p5:w15, p5:w31, p5:w47 contain **13 runes total**, matching the 13-rune p0 red title. Their first totients (48,72,24,144,72) sum to **360 = 6×60**.
 
-The obvious direct consumers tested in this invocation did **not** decrypt p54/p55: p56-style \(\varphi(p_n)\bmod29\) streams starting at prime ordinals 24 and 72; 24/72 and 72/24 start/stride variants on p55; affine use of 24/72; the 13-rune concatenated word key on p0's title and p55; and the five-totient key on p55. These negatives reject only those specific consumers.
+A separate p55 center-five candidate has prime sum **401 = 13×29+24**; this numerically echoes the p0 title's 13 runes and p54's red-rune index24. Treat this only as a checksum cross-reference to the existing p55 analysis, not as plaintext or an authenticated BASE29 word.
+
+## Why this is not yet a solution
+
+The 2016 message says words are the map and numbers give direction; the p56 plaintext names the prime sequence and totient function; the p33–39 cuneiform and p50 table provide genuine sexagesimal material. These are meaningful source hooks. However, the surviving 2016 message does not itself specify the radix, page/word address formula, or indexing convention. The base-60 mapping could still be a post-hoc fit.
+
+The obvious direct consumers tested in this invocation did **not** decrypt p54/p55: p56-style \(\varphi(p_n)\bmod29\) streams starting at prime ordinals24 and72; 24/72 and72/24 start/stride variants on p55; affine use of24/72; the 13-rune concatenated word key on p0's title and p55; and the five-totient key on p55. These negatives reject only those specific consumers.
 
 A separate attempt to treat the full p175–p464 prime interval as 290 page/word addresses produced 41 out-of-range addresses and is not a supported continuation.
 
 ## Next decision
 
-Do not launch broad base-60 offset or key searches. First seek an **independent source selector** for this exact page/word convention and its indexing. Then freeze a held-out prediction before inspecting the target. If no such selector exists, retire the route as a numerical coincidence. If it does, test one reversible p54/p55 consumer and require authentic plaintext or key material.
+The p50 3D → p3:w13 `DEO` → (arphi=48) result is the best held-out support so far, especially with the p57 “divinity within” wording. Before doing more cipher work, seek one independent source clue that fixes the exact page/word coordinate convention and indexing. If none exists, retire the route as a numerical coincidence. If it does, freeze a further held-out prediction and test one reversible p54/p55 consumer; require authentic plaintext or key material.
