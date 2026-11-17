@@ -10,6 +10,14 @@ The divisor is selected by p39's original red triad. The choice of **page 29**, 
 
 Original input is `resources/liber-primus/lp2-corpus.json`, Git blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, physical `pages[29].indices`, with rune indices 0..28 in printed order. GP symbols are polynomial coefficients from highest degree to constant. No symbol permutation, offset search, page rotation, alternate spacing or fitted key is used.
 
+## All red-span and chapter-body scope of the same polynomial interpretation
+
+A separate source-wide necessary-condition check asks whether the original red headings generally act as **polynomial divisors** of text, rather than treating the already known p29/G coincidence as a standalone decoder. It keeps the physically printed coefficient order, reading each red runic span as ascending powers and the 55 unsolved rune-bearing pages as descending powers over GF(29). All **18** marked red spans, including the two solved-ending titles, are compared against all **55** original unknown rune-bearing page streams: **990 divisions**. The only exact remainder is the pre-existing **p39 red triple → p29**. No second red-span/page zero-remainder pair appears.
+
+The stronger player-actionable variant says the opening red heading of a visual chapter encodes its own following chapter body by polynomial multiplication. All nine original red-heading/body cuts (p0–2, p3–7, p8–14, p15–22, p23–26, p27–32, p33–39, p40–53, p54–55) have **nonzero remainders**; respectively **12, 15, 11, 8, 15, 18, 9, 7, 8** nonzero coefficients remain. Thus no unmodified chapter can be decoded directly with its own source heading as a polynomial divisor. The canonical p29/G 275-rune quotient still round-trips, as does a planted 275-rune GP-native source control, but the original quotient stays nonlinguistic.
+
+[Exact-source single runnable test](../sims/lp2_redspan_polynomial_original_gate_sft.cjs). The exhaustive red-span comparison adds a finite **negative scope**, not new evidence that the p29 relation is deliberately authored, a recovered original key, or plaintext. The broader p29/source-selection objection remains the one already recorded in [the 2013 DH2 G-adic audit](p29-signed2013-dh2-gadic-congruence.md).
+
 ## Frozen inverse, original result and negative control
 
 In GF(29), divide the original 277-coefficient polynomial `C(X)` by `G(X)` using the unique inverse of leading coefficient 15. The exact result is a **275-rune** quotient `Q(X)` with remainder `[0,0]`. Re-multiplying `Q·G` reconstructs all 277 original rune coefficients identically; this is an implementation check, not independent identification of an authentic key.
