@@ -126,3 +126,77 @@ console.log('BASE29 quotient as one big-endian integer: bytes=' + bytes.length
   + ' opening24=' + bytes.subarray(0, 24).toString('hex'));
 console.log('PASS: 4 authentic full-original input modes, 4 exact forward inverses,'
   + ' 4 native p57 planted recoveries, source polynomial and byte-format checks');
+
+
+// Independent original-cipher receiver: the *actual solved-p56* F-transparent
+// condition, rather than a rigid-key approximation. A native plaintext F is
+// printed as F (GP index 0) and consumes no key. Every non-F must consume one
+// key symbol; its ciphertext could itself be GP F. The inverse therefore
+// branches at printed F but refuses a non-F cipher whose consumed plaintext
+// would be GP F. This is an exact feasibility gate, independent of language.
+ 
+/**
+ * @param {number[]} cipher
+ * @param {number[]} key
+ * @param {-1|1} sign
+ * @returns {{ failAt: number, clocks: number[] }}
+ */
+function transparentPaths(cipher, key, sign) {
+  let clocks = new Set([0]);
+  for (let i = 0; i < cipher.length; i++) {
+    const next = new Set();
+    for (const clock of clocks) {
+      // Only ciphertext F can represent a literal unencrypted plaintext F.
+      if (cipher[i] === 0) next.add(clock);
+      const plain = mod(cipher[i] + sign * key[clock % key.length]);
+      // A consuming branch cannot decode to the protected plaintext F.
+      if (plain !== 0) next.add(clock + 1);
+    }
+    if (next.size === 0) return { failAt: i, clocks: [] };
+    clocks = next;
+  }
+  return { failAt: -1, clocks: [...clocks].sort((a, b) => a - b) };
+}
+
+/**
+ * @param {number[]} plain
+ * @param {number[]} key
+ * @param {-1|1} sign
+ * @returns {number[]}
+ */
+function transparentEncode(plain, key, sign) {
+  let clock = 0;
+  return plain.map((p) => {
+    if (p === 0) return 0;
+    const c = mod(p - sign * key[clock % key.length]);
+    clock += 1;
+    return c;
+  });
+}
+
+// Honest native solved-p57 positive, including the plaintext-F bypass.
+const genuineNative = pageIndices(57);
+assert.equal(genuineNative.length, 95);
+for (const sign of [-1, 1]) {
+  const encrypted = transparentEncode(genuineNative, quotient, sign);
+  const possible = transparentPaths(encrypted, quotient, sign);
+  assert.equal(possible.failAt, -1);
+  assert.ok(possible.clocks.includes(genuineNative.filter((v) => v !== 0).length));
+}
+
+const protectedTargets = [
+  ['pretable p48→p49', pre, [29, 24]],
+  ['posttable p51→p52', post, [37, 30]],
+  ['terminal p55', pageIndices(55), [61, 63]],
+];
+for (const [name, source, expected] of protectedTargets) {
+  for (const sign of [-1, 1]) {
+    const result = transparentPaths(source, quotient, sign);
+    assert.equal(result.failAt, expected[sign === -1 ? 0 : 1], name + ' sign ' + sign);
+    assert.deepEqual(result.clocks, [], name + ' must have no legal complete inverse');
+    console.log('F-transparent source gate: ' + name + ' sign=' + sign
+      + ' impossible first at original zero-based rune ' + result.failAt);
+  }
+}
+console.log('PASS: all six original F-transparent Q252 inverses impossible;'
+  + ' both genuine solved-p57 transparent-key plants have legal full paths');
