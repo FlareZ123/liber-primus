@@ -286,6 +286,26 @@ assert.ok(transparentPositive.length>=60);
 assert.equal(transparentPositive.originalOffset,plantedAt);
 assert.equal(transparentPositive.referenceOffset,0);
 
+// Independent reversed-source 60-rune plant must also be recovered with no
+// knowledge of the secret alphabet, first under an ordinary 29-symbol affine
+// permutation and then under actual transparent plaintext F.
+const reversePlant = original.slice();
+const reverseFPlant = original.slice();
+const reversePayload = reversedKnown[6].values.slice(0, 60);
+assert.ok(reversePayload.includes(0));
+for (let j = 0; j < 60; j++) {
+  const p = reversePayload[j];
+  reversePlant[plantedAt + j] = (7 * p + 3) % 29;
+  reverseFPlant[plantedAt + j] = p === 0 ? 0 : (7 * p + 3) % 29;
+}
+const reversePositive = longestIsomorphic(reversePlant, reversedKnown[6].values);
+const reverseFPositive = longestTransparentF(reverseFPlant, reversedKnown[6].values);
+for (const witness of [reversePositive, reverseFPositive]) {
+  assert.ok(witness.length >= 60);
+  assert.equal(witness.originalOffset, plantedAt);
+  assert.equal(witness.referenceOffset, 0);
+}
+
 console.log(JSON.stringify({
   status: 'All-original exact all-secret crib attempt: no unknown plaintext recovered',
   scope: {unknownRunes: original.length, unknownPhysicalPages: pages.length,
@@ -309,5 +329,11 @@ console.log(JSON.stringify({
     recoveredIsomorphismLength:transparentPositive.length,
     recoveredInsertionOffset:transparentPositive.originalOffset,
     recoveredReferenceOffset:transparentPositive.referenceOffset},
+  reversePositive: {plantedRunes:60,
+    isomorphismLength:reversePositive.length, at:reversePositive.originalOffset,
+    source:reversePositive.referenceOffset},
+  reverseFPositive: {plantedRunes:60,
+    isomorphismLength:reverseFPositive.length, at:reverseFPositive.originalOffset,
+    source:reverseFPositive.referenceOffset},
   conclusion: 'No 17-rune or longer original LP2 passage is a fixed bijective or native literal-F-transparent substitution of any contiguous passage in six clear LP1 pages, clear p57, or nine original Cicada clearsigned 2012–2016 messages, in either forward or exact reversed source-rune order. All page-local unknown-to-unknown equality patterns have unique signatures at length 22. These are necessary-condition exclusions for identical typed plaintext under a single bijection, not universal decryptions or evidence against changing keys, transposition, or novel plaintext.'
 }, null, 2));
