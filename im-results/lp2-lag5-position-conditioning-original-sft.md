@@ -6,7 +6,7 @@ The global 104-count observation and its significance were already established i
 
 ## Exact source inputs and reproducible experiment
 
-[CommonJS single-file reproducible test](../sims/lp2_lag5_after_sixth_wordsource_sft.cjs) reads the repository's `resources/liber-primus/lp2-transcription.txt` and `lp2-corpus.json`, asserts original 2,896-word/12,956-rune totals and exact original five-back counts, and retains the 32 cross-page words. The runeless physical p50 is absent from the text blocks but accounted for in physical-page indices. A crossing word belongs to its starting physical page.
+[CommonJS single-file reproducible test](../sims/lp2_lag5_after_sixth_wordsource_sft.cjs) reads `resources/lp2-transcription.txt` and `resources/liber-primus/lp2-corpus.json`, asserts original 2,896-word/12,956-rune totals and exact original five-back counts, and retains the 32 cross-page words. The runeless physical p50 is absent from the text blocks but accounted for in physical-page indices. A crossing word belongs to its starting physical page.
 
 The test uses **3,000 deterministic conditioned Fisher–Yates shuffles** with seed `0x4a3b2c1d` (LCG), rejection-sampling to preserve original adjacent-doublet site indicators. Exactly 441 repeated-rune words of length≥6 can contribute a five-back equality. All other words remain fixed. The native Windows Node.js 22 script needs no packages or file writes.
 
@@ -61,4 +61,6 @@ Chapter-total heterogeneity is χ²=18.859 (empirical upper tail 0.0276) under t
 
 ## Cryptanalytic consequence
 
-A candidate word-local five-step cipher should **predict** the first-eligible versus later-position profile on original geometry instead of fitting its state rule to these counts. A delayed initializer or word-final checksum is an imaginable explanation, but an unrelated plaintext/register effect or conditional-null imperfection is also possible. No original instruction selects either operation. Future serious testing requires an explicit source-derived key and clock, source-native solved controls, a complete reversible encoder, held-out original ciphertext yielding ≥150 runes of coherent plaintext, and exact forward reconstruction. **All unknown LP2 pages remain unsolved.**
+The robust conclusion is a **global five-back equality excess** under source-conditioned word/line/page controls. The apparent chapter-3/4 concentration is sensitive to line-segment endpoints and should not be used to infer separate chapter encoders. The two cross-page events are too few to infer a page reset.
+
+A candidate reversible model must predict the global five-back profile and its same-line/cross-line distribution on original geometry; it must not tune its state rule to the observed counts. The statistic alone does not identify a five-back feedback cipher: positional permutation, another stateful encoder, or residual text structure remain possible. No original instruction selects a specific operation. Future serious testing requires an explicit source-derived key and clock, source-native solved controls, a complete reversible encoder, held-out original ciphertext yielding ≥150 runes of coherent plaintext, and exact forward reconstruction. **All unknown LP2 pages remain unsolved.**
