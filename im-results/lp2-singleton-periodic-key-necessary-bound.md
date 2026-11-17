@@ -24,6 +24,12 @@ Suppose the same deterministic key state is restarted at each physical page, usi
 
 Independently, p2, p25 and p39 contain one-rune words at page-local rune offset 2 and word ordinal 1, with ciphertext U/G/TH (indices 1/6/2). Their three key constraints likewise have empty intersection. Thus even an unrestricted key function of the page-local rune/word coordinates cannot reproduce the original singletons under the additive/XOR families, if the function is shared across pages.
 
+## The page-number salt escape fails the actual numerical-table key
+
+A more generous clue-motivated alternative lets the p50 table repeat with a **page-indexed clock**: phase = (page-local rune index + a × local completed-word ordinal + b × printed page number) mod256. Permit both unknown coefficients a,b and an otherwise arbitrary secret 256-position additive GP29 key. Exhaustively checking all 65,536 ordered coefficient pairs leaves exactly **one** singleton-compatible pair on the original: a=155, b=46. This is a post-selected fit, not a historical instruction. The same 65,536-test screen finds at least one admissible coefficient pair for **16 of 30** fixed-seed matched shuffles of the original singleton glyphs, so uniqueness of a pair supplies no discriminating evidence.
+
+Read the actual 256 original p49–51 table bytes in printed row-major order and use the frozen a=155,b=46 clock as a GP29 additive key. The untouched original 83 one-rune words then decode as A/I/O at only **9/83** sites under subtraction of the table values, and **8/83** under addition. Thus this precisely specified page-number-salt rescue also fails as a direct p50 key receiver. Other page-dependent/hidden-state rules remain unresolved; these tuned numerical coefficients should not be promoted to a key.
+
 ## What this does and does not decide
 
 The result retires simple **literal-word-preserving, no-skip, deterministic GP29 additive/XOR** inverses whose key is indexed by a global short repeating rune/word clock or identically reset on every physical page. The 256-cell p50 table cannot serve as a direct periodic key under those exact rules, irrespective of its cell values or any secret fixed key relabeling that stays additive/XOR at each phase.

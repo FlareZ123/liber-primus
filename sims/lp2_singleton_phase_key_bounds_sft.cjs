@@ -124,3 +124,63 @@ console.log(JSON.stringify({status:"PASS",originalRunes:next,
   firstPeriodOneExtraWordAdvance:one,
   originalPageResetContradiction:true,
   no256PeriodForEitherClock:true},null,2));
+
+
+// A finite, deliberately generous escape: a public-page-number linear salt.
+// Unlike the all-secret period bounds above, choose a,b after looking at
+// singleton glyphs. This post-selection MUST be compared with label nulls.
+const table=JSON.parse(read("resources/liber-primus/lp2-grid-256.json"))
+  .pages.flatMap(p=>p.bytes);
+assert.equal(table.length,256);
+const originalGlyphs=singles.map(s=>s.c);
+function saltCount(glyphs) {
+  let count=0,example=null;
+  for(let a=0;a<256;a++)for(let b=0;b<256;b++){
+    const km=new Int32Array(256);
+    km.fill((1<<N)-1);
+    let viable=true;
+    for(let i=0;i<singles.length;i++){
+      const s=singles[i],j=(s.pr+a*s.pw+b*s.page)%256;
+      km[j]&=masks["add+"][glyphs[i]];
+      if(km[j]===0){viable=false;break;}
+    }
+    if(viable){count++;if(example===null)example={a,b};}
+  }
+  return {count,example};
+}
+assert.deepEqual(saltCount(originalGlyphs),
+  {count:1,example:{a:155,b:46}});
+let seed=0x5f3759df;
+function nextInt(n) {
+  seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;
+  return (seed>>>0)%n;
+}
+let nullPositive=0;
+for(let trial=0;trial<30;trial++){
+  const shuffled=originalGlyphs.slice();
+  for(let i=shuffled.length-1;i>0;i--){
+    const j=nextInt(i+1);
+    [shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];
+  }
+  if(saltCount(shuffled).count>0)nullPositive++;
+}
+assert.equal(nullPositive,16); // One admissible pair is not remarkable.
+let directHits={};
+for(const sign of [1,-1]){
+  const count=singles.filter(s=>{
+    const phase=(s.pr+155*s.pw+46*s.page)%256;
+    const value=mod(s.c-sign*table[phase]);
+    return plain.includes(value);
+  }).length;
+  directHits[sign===1?"plus":"minus"]=count;
+}
+assert.deepEqual(directHits,{plus:9,minus:8});
+console.log(JSON.stringify({
+  affine_page_salt_original_survivors:1,
+  affine_page_salt_frozen_candidate:{wordAdvance:155,pageMultiplier:46},
+  matched_shuffled_positives:16,
+  matched_shuffled_trials:30,
+  genuine_table_singleton_plaintext_matches:directHits,
+  genuine_table_singleton_plaintext_total:83,
+  verdict:"no authenticated LP2 key or original plaintext"
+},null,2));

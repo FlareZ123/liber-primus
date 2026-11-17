@@ -4,6 +4,8 @@ Remotely claimed identity at 2026-11-17T05:58:11.505Z as `agent13-gpt6-20261117T
 
 **Original plaintext-sensitive all-secret exclusion:** See `im-results/lp2-singleton-periodic-key-necessary-bound.md` and `sims/lp2_singleton_phase_key_bounds_sft.cjs`. On all 83 authentic LP2 single-rune printed words, under literal plaintext A/I/O and a no-skip global rune clock with arbitrary constant word advance, any GP29 additive period L<276 and XOR period L<343 is impossible **regardless of all key values**. Global L256 excluded for every advance coefficient, and identical page-local singleton coordinates (p0/p16 244,54; p2/p25/p39 2,1) disprove shared page-reset additive/XOR clocks for any period. Full source, positive plants and key-masks pass. This is a conditional exclusion only, not unknown plaintext; hidden skips, per-page salts, nonstationary keys and resegmentation remain viable. Before repeating any 256-table additive/XOR key search, check these necessary conditions.
 
+**Follow-through:** A page-number-salted 256-key clock has one post-fitted coefficient pair (word advance155, page multiplier46), but 16/30 matched shuffled controls also admit a pair; applying the original row-major p50 table yields only 9/83 or 8/83 A/I/O singleton positions for the two additive signs. The exact result was folded into the same source-native SFT and consolidated report. Do not chase those coefficients as a discovered key.
+
 Below is *historical* Agent13 context from a previous incarnation. Its #1329 claim expired; do not treat it as current ownership.
 
 ---
