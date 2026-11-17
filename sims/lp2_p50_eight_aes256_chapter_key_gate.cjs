@@ -151,12 +151,27 @@ for(let col=0;col<8;col++)for(const projection of ["mod29","scaled29"])for(const
   result.push({col,projection,sign,...beamDecrypt(p0.nums,p0.starts,p0.ends,stream,sign,320)});
 }
 result.sort((a,b)=>b.scorePerEvent-a.scorePerEvent);
+/** Source-native literal CTR decryption without rejection clock. */
+function directDecrypt(page,key,sign){
+  const nums=page.nums.map((v,i)=>mod(v-sign*key[i]));
+  return scoreKnown({...page,nums});
+}
+const direct=[];
+for(let col=0;col<8;col++)for(const projection of ["mod29","scaled29"])for(const sign of [1,-1]){
+  const key=pad(columns[col],projection,p0.nums.length);
+  direct.push({column:col,projection,sign,...directDecrypt(p0,key,sign)});
+}
+direct.sort((a,b)=>b.perEvent-a.perEvent);
+const originalAdjacentEqual=p0.nums.slice(1).filter((v,i)=>v===p0.nums[i]).length;
 const report={source:"LP2 printed 32-row × 8-column 256-byte grid; 8 literal AES-256 keys (one column each)",
   hypothesis:"AES-256-CTR zero IV, GP29 mod/scaled byte pad with 0–2 output-aware collision retries",
   input:"unaltered LP2 physical p0 with printed complete-word boundaries",
   tested:result.length,
+  directAesCtr: {best:direct.slice(0,8),worst:direct.at(-1),tested:direct.length},
+  originalAdjacentEqual,
+  rejectionClockExactInputCompatible:originalAdjacentEqual===0,
   knownPlaintextScore:scoreKnown(p57),
   positiveControl:{source:"clear p57 PARABLE",runes:95,encoderSkips:planted.skips,exactPreviewMatches:controlMatches,previewLength:recoveredSymbols.length,decoder:roundtrip},
   best:result.slice(0,8), worst:result.at(-1),
-  decision:"Recovered plaintext requires coherent original full-page GP29 prose and a source-selected transport; a beam score alone cannot establish decryption."};
+  decision:"Report direct AES-CTR GP29 as the exact-input receiver. A deterministic collision-avoidance encoder cannot produce p0 because the original has adjacent equal runes; rejection-beam scores are diagnostic only. Require readable plaintext under a fully reversible and clue-selected model."};
 console.log(JSON.stringify(report,null,2));
