@@ -43,6 +43,26 @@ For the historical rule, the decoder starts with 10 consumed key symbols after t
 
 Together, the overlapping phrases identify two potential source-internal title cribs and directly reject their simplest continuation mechanisms. **The number of unencrypted unknown LP2 runes recovered remains zero.**
 
+## Shared initial key and a bounded feedback-key recovery attempt
+
+The two independently derived title keys have **the same first GP29 value**, `K_p0[0]=K_p33[0]=21 (NG)`, although their eight digits associated with the identical candidate word `DIUINITY` disagree. A human might suppose two red-heading sections initialize a common key state at NG and then evolve it according to their differing preceding plaintext. Such **cipher-feedback key evolution** could explain why a repeated linear pad fails despite a common IV. This is a testable rival to a fixed periodic key, not evidence for the title cribs: the chance of coincidental one-symbol agreement remains nontrivial, and the source gives no key-update formula.
+
+Freeze the two 13- and 10-rune p57-based plaintext proposals and the exact keys already inferred from the original two ciphertext headings. For each lag `r=0,1,2,3,4`, grant *all* possible coefficients in GF29 of the shared, unknown affine feedback family
+
+`K[i+1] = Σ_{j=0..r}(a[j] K[i-j] + b[j] P[i-j]) + c [+ d*i] (mod29)`.
+
+The two title streams reset their plaintext/key position clock at each original heading; their first key digit is the common 21. The optional `d*i` permits a common per-symbol linear drift. The family is a complete low-state additive-feedback key recovery method; setting coefficient choices to plain/cipher autokey, simple LCG, or one-back linear feedback is included. For a lag with `m` coefficients, form every exact linear constraint from **both** title pairs and ask by GF29 Gaussian elimination whether *any* hidden coefficient vector satisfies all of them. Thus one source-selected hypothetical plaintext provides training equations and the other title supplies additional independent ciphertext constraints. No English score or PRNG search is necessary.
+
+| Maximum preceding lag | Shared feedback without position drift | Shared feedback with position drift |
+|---:|---|---|
+| 0 | **Impossible**, 21 equations / 3 unknowns | **Impossible**, 21 equations / 4 unknowns |
+| 1 | **Impossible**, 19 / 5 | **Impossible**, 19 / 6 |
+| 2 | **Impossible**, 17 / 7 | **Impossible**, 17 / 8 |
+| 3 | **Impossible**, 15 / 9 | **Impossible**, 15 / 10 |
+| 4 | **Impossible**, 13 / 11 | **Impossible**, 13 / 12 |
+
+The exact inverse solver includes a **joint two-section native GP29 plant** under an independently generated feedback key `K[i+1]=7K[i]+13P[i]+4`, initializing both titles with 21. It recovers the unique planted coefficient vector `[7,13,4]`, confirming that the gate would detect an actual common short-memory feedback mechanism. The original disproof applies **conditionally on both hypothetical title cribs being correct and using one shared affine key-update law**. It does not disprove a genuine author-chosen nonlinear generator, evolving secret state, separate title encryption modes, a key with memory longer than five runes, or a different plaintext candidate. Given neither title is authenticated, none of those expansive alternatives should be searched absent a source operator.
+
 ## Decision and reproduction
 
 Retire both exact **p57 phrases as p0/p33 inferred title plaintext → repeated GP29 keys**, their natural periodic feedback continuations, and the authentic transparent-F family as complete plaintext solutions. The phrase may still be thematically connected or have a distinct use under an independently authored operator, but the source supplies no such instruction. This negative should not spawn speculative second layers or other offset sweeps.
