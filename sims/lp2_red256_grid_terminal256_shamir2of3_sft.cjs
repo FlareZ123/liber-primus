@@ -74,6 +74,50 @@ function sourceTables() {
 }
 
 /**
+ * Source-visible 32×8 table circumferences: 76+68+60+52 positions.
+ * The 8 admissible full-book spirals start at a fixed corner and turn
+ * clockwise or counterclockwise at every inward ring. No free ring
+ * permutation, skipped cells or inferred ciphertext offsets.
+ * @returns {{corner:string,clockwise:boolean,indices:number[]}[]}
+ */
+function ringRoutes() {
+  const out = [];
+  for (const corner of ['NW','NE','SE','SW'])
+    for (const clockwise of [true,false]) {
+      const indices = [];
+      const sizes = [];
+      for (let d = 0; d < 4; d++) {
+        const top=d, bottom=31-d, left=d, right=7-d;
+        const ring = [];
+        for (let c=left; c<=right; c++) ring.push(top*8+c);
+        for (let r=top+1; r<=bottom; r++) ring.push(r*8+right);
+        for (let c=right-1; c>=left; c--) ring.push(bottom*8+c);
+        for (let r=bottom-1; r>top; r--) ring.push(r*8+left);
+        const at = {
+          NW:top*8+left,NE:top*8+right,
+          SE:bottom*8+right,SW:bottom*8+left
+        }[corner];
+        const start=ring.indexOf(at);
+        assert.ok(start >= 0);
+        sizes.push(ring.length);
+        for (let i=0; i<ring.length; i++) {
+          const j=modRing(start+(clockwise?i:-i),ring.length);
+          indices.push(ring[j]);
+        }
+      }
+      assert.deepEqual(sizes,[76,68,60,52]);
+      assert.equal(indices.length,256);
+      assert.equal(new Set(indices).size,256);
+      out.push({corner,clockwise,indices});
+    }
+  assert.equal(out.length,8);
+  return out;
+}
+
+/** @param {number} value @param {number} n */
+function modRing(value,n) { return ((value%n)+n)%n; }
+
+/**
  * A source-blind stationary 29-symbol lookup may be noninjective.
  * The optimal lookup maps each input symbol to its modal known output.
  * Any true fixed bijection is a subcase; no English-language score is used.
@@ -150,6 +194,42 @@ function run() {
   assert.equal(bestAffineLookup.lookup, 53);
   assert.equal(bestAffineDirect.direct, 16);
 
+  // Independent physically motivated layout: p55's 76 runes equal
+  // the outer 32×8 ring; p56+p57's 180 runes equal the three inner rings.
+  // The explicit p57 instruction mentions shedding circumferences.
+  let ringBestLookup = null;
+  let ringBestDirect = null;
+  let ringVariants = 0;
+  for (const {radix,bytes} of tables)
+    for (const marker of [0,13])
+      for (const reverseRed of [false,true])
+        for (const reverseTerminal of [false,true])
+          for (const {corner,clockwise,indices} of ringRoutes()) {
+            const red = events.map(e => e.index === null ? marker : e.index);
+            const table = indices.map(i => bytes[i] % 29);
+            const plain = terminal.slice();
+            if (reverseRed) red.reverse();
+            if (reverseTerminal) plain.reverse();
+            const positions = Array.from({length:180},(_,i) =>
+              i + (reverseTerminal ? 0 : 76));
+            const actual = positions.map(i => plain[i]);
+            for (let k=0; k<29; k++) {
+              const predicted = positions.map(i =>
+                mod(k*red[i] + (1-k)*table[i]));
+              const {direct,lookup} = score(predicted,actual);
+              const desc = {radix,marker,reverseRed,reverseTerminal,
+                corner,clockwise,k,direct,lookup};
+              ringVariants++;
+              if (ringBestLookup === null || lookup > ringBestLookup.lookup)
+                ringBestLookup = desc;
+              if (ringBestDirect === null || direct > ringBestDirect.direct)
+                ringBestDirect = desc;
+            }
+          }
+  assert.equal(ringVariants,3712);
+  assert.equal(ringBestLookup.lookup,54);
+  assert.equal(ringBestDirect.direct,14);
+
   // Positives: correctly constructed direct and secret-alphabet Shamir
   // interpolation outputs must recover each of the 180 reserved known slots.
   const a = events.map(e => e.index === null ? 13 : e.index);
@@ -168,8 +248,9 @@ function run() {
     model:'GF29 affine Shamir 2-of-3, 29 unknown coordinates, secret terminal alphabet',
     variants:tested, bestLookup, bestDirect, top:bestOptions.slice(0,5),
     affineVariants:testedAffine, bestAffineLookup, bestAffineDirect,
+    spiralShamirVariants:ringVariants, ringBestLookup, ringBestDirect,
     planted:{direct:180,stationaryRelabel:180},
-    conclusion:'Neither direct 2-of-3 Shamir sharing nor any two-channel GF29-affine fixed-alphabet mixer recovers known original terminal plaintext'
+    conclusion:'Neither direct 2-of-3 Shamir sharing (flat or circled) nor any row-major two-tape GF29-affine fixed-alphabet mixer recovers known original terminal plaintext'
   },null,2));
 }
 run();
