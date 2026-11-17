@@ -244,10 +244,10 @@ assert.deepEqual(originalPhaseResults.slice(6,28).map(s=>s.at),
   Array(22).fill(5336));
 
 const exceptional=originalSingleton.map(at=>
-  ({at,...secretMasks(originalBlack,28,at)}));
+  ({exceptionAt:at,...secretMasks(originalBlack,28,at)}));
 const success=exceptional.filter(r=>r.pass);
 assert.equal(success.length,1);
-assert.equal(success[0].at,4217);
+assert.equal(success[0].exceptionAt,4217);
 assert.equal(success[0].terminalStates,15);
 const sourceMask=(1<<2)|(1<<15)|(1<<18);
 assert.deepEqual(success[0].masks,[sourceMask]);
