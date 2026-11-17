@@ -1,6 +1,6 @@
 # 2013 Cicada OS wisdom/folly bytes: original LP2 source-key gate
 
-**Classification:** reproduced external historical source; finite original-cipher negatives for direct cyclic pads, 58-page row/column and Hill models, and the 58×58 perimeter-as-key reading. No unknown plaintext, cryptographic key, mechanism or destination recovered. Agent 6 / Agent 12, 10–12 November 2026.
+**Classification:** reproduced external historical source; finite original-cipher negatives for direct cyclic pads, 58-page row/column and Hill models, and the 58×58 perimeter-as-key reading. No unknown plaintext, cryptographic key, mechanism or destination recovered. The later exact p51–55 four-byte-per-rune alignment is also tested here without promoting its arithmetic fit to an authored key. Agent 6 / Agent 12, 10–12 November 2026.
 
 ## Historically distinct source material
 
@@ -59,6 +59,24 @@ The 12,934 complete-block symbols (the original stream has a 22-rune remainder m
 Treat the first four bytes as a prefix and the remaining 3,364 bytes as four consecutive 29×29 matrices. Compose the four matrices in source order or reverse order, testing row/column layouts, both byte reductions, and direct/inverse readout: **16** variants. All are invertible under the tested reductions.
 
 The best IoC over 12,934 complete 29-rune blocks is **0.0345183407**; the 22-rune remainder is not scored. Exact forward/inverse round-trips pass.
+
+### p51–55 one-DWORD-per-rune alignment (Agent24, 17 November 2026)
+
+**Decision: no direct source-key plaintext.** A new, independently original-delimited candidate receiver was tested because the binary's **3,368 bytes = 4 × 842**, and the original LP2 post-table tail **physical pp51–55 contains exactly 842 contiguous runes**, in the printed per-page lengths **[92, 263, 179, 232, 76]**. This also equals `4 × (29²+1)` for the GP29 alphabet. Unlike the previous cyclic-byte pad and 58×58 / four-29×29 matrix interpretations, this is a literal **nonrepeating 32-bit word per original ciphertext rune**. It consumes all source bytes exactly once, with no padding or fitted phase.
+
+The relation is **an exploratory length match**: p51 is the physical page after the 256-byte number table, but the 842-rune span crosses a separately illuminated chapter heading on p54; no contemporary text selects it as a single cryptographic unit. The same 3,368 bytes also fit `4+58²`, so this is not a unique source-specified binary schema. The original 2013 OS startup does not read the binary. A human solver would still need an instruction joining the older object to this later printed tail.
+
+The [source-exact CommonJS SFT](../sims/lp2_2013_wisdom_folly_dword_842_source_sft.cjs) reads the pinned historical bytes and all 842 unchanged original GP29 indices, asserts the original SHA-256, and evaluates **72 finite GP29 reversible inverses**: two 32-bit endian orders, six direct reductions (word remainder29, scaled29, four-byte sum and XOR remainders, first/last byte remainder29), three emission registers (raw ciphertext, continuous first difference, page-reset first difference), and both signs. All models exactly re-encode **842/842** original ciphertext runes and recover **842/842** independent native GP plaintext plants made from the authentic p57 cleartext, preserving the real five-page boundaries.
+
+| Original source condition | GP29 index of coincidence |
+| --- | ---: |
+| Unmodified pp51–55, 842 runes | **0.0340986440** |
+| Best of 72 direct DWORD inverses, little-endian, byte-sum, page-reset difference, plus sign | **0.0352227441** |
+| Authentic solved p57 GP29 plaintext, 95 runes (separate known-language control) | **0.0627099664** |
+
+The same SFT separately exercises **36** five-bit XOR versions, because **literal XOR of external bytes** had a documented, successful role in the 2013 audio/Twitter stage. Across 2 endian choices, six byte/word 5-bit projections and three emission registers, **every** XOR readout produces **72–99 values in 29..31** among the 842 positions. Those are **outside the actual 29-rune alphabet**, so none defines a complete plain-GP29 inverse without an independently supplied escape or 32-symbol alphabet. This excludes only the direct unescaped GP29 interpretation; 32-way encodings are untested without a historical codebook.
+
+**Research fork:** retire these original-aligned one-DWORD additive/difference and literal-GP29-XOR readings. The equality of input and output lengths may be recorded as a hypothesis, but no cipher instruction, authentic key schedule, or unknown plaintext has been recovered. A different operation first needs a source-authenticated reason to treat the 2013 binary as the LP2 p51–55 key.
 
 ### GF(29²) paired-byte per-page substitution reading (Agent 33, 11 November 2026)
 
