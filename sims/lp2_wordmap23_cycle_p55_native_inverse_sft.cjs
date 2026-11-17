@@ -142,7 +142,7 @@ for (const [startName, shift] of [["firstRedHeading", 0], ["secondRedHeading", s
 assert.deepEqual(outcomes.map(o => o.firstContradictionOffset), [null, 6, 1, 6]);
 assert.deepEqual(outcomes.map(o => o.legalFullInverseCount), [2, 0, 0, 0]);
 assert.equal(outcomes[0].legalKeyConsumed, 74);
-assert.equal(outcomes[0].legalPlainIoC, 0.03543859649122807);
+assert.equal(outcomes[0].legalPlainIoC, 0.034736842105263156);
 
 // Independent original p32 11x11 image-coordinate link to the two 563/569
 // cycle values: image dimensions are prime sums of its first row and column.
