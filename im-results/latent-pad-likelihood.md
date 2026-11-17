@@ -58,6 +58,8 @@ The [standalone source-native test](../sims/lp2_shared256_freephase_orientation_
 
 **Decision:** The source shows no positive evidence for an ordinary shared 256-period *additive GP29* pad even when physical pages may independently rotate and reverse its clock. The test leaves open output-alphabet changes, per-page keys, non-256 periods, state changes and lossless insertions/skips. Those require an independent selector; further unrestricted 256-grid pad variants are unlikely to recover plaintext merely by fitting more phases.
 
+**Independent Windows implementation check:** The complete committed free-phase/reversal 256-cell standalone program [passed Node.js 22 on Windows in Actions run 44059468149](https://github.com/FlareZ123/liber-primus/actions/runs/44059468149) on 17 November 2026. Its exact original nonanchor score **−0.242258502389**, 40-control upper tail **0.658536585366**, 12/12 planted positive detections, and six original-anchor sensitivities match the figures above without platform-specific adjustments.
+
 ## Reproducibility
 
 - Implementation \`sims/latent_page_pad.cjs\`, CommonJS, only Node.js built-ins.
