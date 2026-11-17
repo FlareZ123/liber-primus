@@ -90,10 +90,21 @@ assert.equal(grid.rows[historicalDH.p+1][0],'00');
 const dhCell = historicalDH.p * 8 + historicalDH.base; // original 189
 assert.equal(dhCell, historicalDH.p * historicalDH.serverPublic + historicalDH.base);
 assert.equal(dhCell, 189);
+// Independent second field of the SAME signed DH worked example:
+// the original row23 column[shared DH key2] prints 0J=19,
+// exactly the source's CLIENT PUBLIC SHARE 19.
+const dhSharedColumnCell = historicalDH.p * historicalDH.serverPublic + historicalDH.shared;
+assert.equal(dhSharedColumnCell, 186);
+assert.equal(tokens[dhSharedColumnCell], '0J');
+assert.equal(base60[dhSharedColumnCell], historicalDH.clientPublic);
 assert.equal(tokens[dhCell], '3C');
 assert.equal(base60[dhCell], 192);
 assert.equal(tokens[base60[dhCell]], '00');
 assert.equal(base60[base60[dhCell]], 0);
+// The signed server public share A=8 itself is precisely the last
+// coordinate carry from row23 into the next row's leading 00.
+assert.equal(historicalDH.p*historicalDH.serverPublic+historicalDH.serverPublic,192);
+assert.equal(base60[historicalDH.p*historicalDH.serverPublic+historicalDH.serverPublic],0);
 // The second zero is independently addressed by the authenticated
 // BASE29 example's source numeric operand, 3301, modulo 256.
 const secondZero = historicalBase29Operand % 256;
@@ -240,6 +251,8 @@ process.stdout.write(JSON.stringify({
   status: 'source-conditional structure only; NO UNKNOWN PLAINTEXT',
   base60SignedDHToFirstZero: {fromIndex: 189, printed: '3C', firstZeroIndex: 192,
     secondZeroIndex: 229, bracketLength: zeroBracket.length,
+    sameDHExampleShared2Column186Value: historicalDH.clientPublic,
+    serverPublic8ColumnCarryDirectFirstZero: 192,
     p39RedDoubleRoot: p39Root, requiresZeroBasedCoordinates: true,
     firstTwoOriginalTablePagesRows: [10,13],
     thirdOriginalTablePageBeginsRow: 23,
