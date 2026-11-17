@@ -179,7 +179,7 @@ def main() -> None:
     # Blind source-window lookup positive: an actual contiguous 13-rune key
     # and its negation are independently planted from real original source.
     chosen = source_bytes[3301:3314]
-    assert source_bytes.find(chosen) == 3301
+    assert source_bytes.find(chosen, 3301) == 3301
     assert len(chosen) == 13
     original_result = search(original, jung, p1, p3, TOP)
 
