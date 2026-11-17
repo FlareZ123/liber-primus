@@ -203,7 +203,7 @@ for (let r = 0; r < 30; r++) {
   }
 }
 const plantReport = assess(base60, plant);
-assert.deepEqual(plantReport.countByDegree0to5.slice(0, 4), [0, 0, 0, 0]);
+assert.deepEqual(plantReport.collisionRows, []);
 assert.equal(plantReport.quarticCompatibleInteriorRows.length, 30);
 assert.equal(recoverableRows.length, 28);
 assert.equal(plantedBorder.length, 56);
