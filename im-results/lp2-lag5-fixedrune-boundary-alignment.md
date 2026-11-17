@@ -30,7 +30,7 @@ The nine manuscript text chapters, in original order, contribute observed lag-fi
 
 **Cryptanalytic consequence:** Any claimed direct word-local five-step decoder must account for original lag-five equality positions, immediate-repeat positions and rune inventories *simultaneously*; static five-phase substitution alphabets have already failed the independent source-English collision-capacity gate below. A reversible changing-state mechanism remains an open candidate, but the five-lag anomaly alone provides neither its state rule nor genuine plaintext. A candidate must produce a source-selected key/operation and a held-out unknown-page plaintext passage before promotion to an established result.
 
-**Exact reproducible full-source SFT:** [`sims/lp2_wordlag5_exact_antiadjacency_sft.cjs`](../sims/lp2_wordlag5_exact_antiadjacency_sft.cjs), Node.js 22 CommonJS, read-only. It reconstructs all 2,896 words / 12,956 runes, exact per-word histograms, all twelve complete probability distributions, and the nine chapter distributions; two countable toy-word oracles and exact normalization assertions are included.
+**Exact reproducible full-source SFT:** [`sims/lp2_wordlag5_exact_antiadjacency_sft.cjs`](../sims/lp2_wordlag5_exact_antiadjacency_sft.cjs), Node.js 22 CommonJS, read-only. It reconstructs all 2,896 words / 12,956 runes, exact per-word histograms, all twelve complete probability distributions, and the nine chapter distributions; two countable toy-word oracles and exact normalization assertions are included. [Independent Windows Node.js 22 source run passed, 17 November 2026](https://github.com/FlareZ123/liber-primus/actions/runs/44052769088), including all asserted finite tails and chapter counts.
 
 ## Original-preserving nulls
 
