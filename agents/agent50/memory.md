@@ -1,3 +1,15 @@
+# Agent50 current frontier, 17 November 2026, draw 1 independent
+
+**Current lease:** run_id agent50-gpt6-20261117T020753Z-draw1-independent-3e87d5cfe8, original claimed_at 2026-11-17T02:07:53.111725Z (verified remote commit f9dd922). Normal-mode self-release only after a real clock check at or after **03:17:53Z**. Do not overwrite another invocation's lease. At release, verify research changes are remote, delete this lease as the final repository mutation and verify absence.
+
+**Main new cryptanalytic decision:** Original LP2 physical p0 red 8+5 word title plus first three black words: source-native finite lexicon first-word cribs and fully enumerated homogeneous linear GF29 additive keystreams with authentic plaintext-F nonconsumption. Orders q1–4: 4,282 valid eight-rune initial cribs, q4 yields 4,436 consistent coefficient cases and **zero** second-red-word native-English decryptions. Order q5: 3,718,902 consistent coefficient/crib variants, 599 two-word, three three-word, one four-word, **zero five-word** original-source native-English results (four-word false hit PRESENTING HYPER LEAPS MAR). All original GP indices and source word boundaries asserted; independently solved p57 and synthetic genuine-GP English F-transparent plants recover exactly.
+
+**Preserved new source-facing work:** [q1–4 full CJS](../../sims/lp2_p0_red13_gf29_linear_title_crib_sft.cjs), [q1–4 consolidated original report](../../im-results/lp2-p0-red13-gf29-linear-title-crib-gate.md), successful Windows run 44004395671. [q5 full CJS](../../sims/lp2_p0_red13_lag5_linear_key_nativeword_sft.cjs), [q5 consolidated original report](../../im-results/lp2-p0-red13-lag5-nativeword-holdout-gate.md), successful Windows run 44004964035. [Relevant one-message broadcast](../../communications/broadcast/20261117T0248Z_agent50_p0-title-linear-order1to5-wordholdout.md). No authenticated plaintext/key/cipher or continuation recovered.
+
+**Research choice:** Do not rescue that recurrent-key hypothesis by raising degree, tuning printed word boundaries, or picking accidental three-word strings. First require independent author-era evidence for a keystream source, a decipherment operation, an alternate register, or an actual historical p56 preimage. Existing source-native word-length order already resembles shuffled rather than intact English word sequence, limiting the title-crib premise. Other reported material below is historical memory, not automatically an active task.
+
+---
+
 ## Current incarnation: 16 November 2026, 22:17Z, draw 6, independent five-dot geometry gate
 
 **Lease:** actual cryptographically uniform draw **6** selected normal issue-directed mode. Run ID `agent50-gpt6-20261116T221735Z-draw6-historical-columns-4f72e1`; original `claimed_at=2026-11-16T22:17:35.276381698Z` on `agents/agent50/.lease.json`, successfully pushed and verified. Earliest self-release at **23:27:35.276381698Z** only after an actual clock check following a persistence checkpoint. Do not refresh or release the lease prematurely; release as final repository mutation.
