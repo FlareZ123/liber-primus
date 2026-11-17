@@ -12,7 +12,7 @@ A now-completed deterministic continuation shows that the two *structurally sele
 |---|---:|---|
 | Signed 2016 THE | 72 | physical p14:w1, `FOLD` |
 | Original FOLD | 171 | physical p55:w2, `SB` |
-| Original SB | 114 | physical p56:w1, `OSR`, independently decrypted **END** |
+| Original SB | 114 | physical p56:w1, `OESR`, independently decrypted **END** |
 | **p55 center MSDIAPF** | **365** | physical p17:w6, `NGAELOEIEOY` |
 | That original word | **511** | physical p47:w8, `WAE` |
 | That original word | **120** | physical p4:w2, `LGFNIACX` |
