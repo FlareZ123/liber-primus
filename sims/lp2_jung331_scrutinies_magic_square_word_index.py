@@ -14,10 +14,10 @@ from __future__ import annotations
 import hashlib
 import re
 import urllib.request
-import fitz
+import pymupdf
 
 PDF_URL = "https://logoilibrary.com/wp-content/uploads/2023/11/The-Red-Book-Jung.pdf"
-ANCHOR = "I resist. I cannot accept this hollow nothing that I am."
+ANCHOR = "I resist, I cannot accept this hollow nothing that I am."
 MATRIX = [
     [434, 1311, 312, 278, 966],
     [204, 812, 934, 280, 1071],
@@ -57,7 +57,7 @@ def main() -> None:
     print("source_url:", PDF_URL)
     print("pdf_bytes:", len(pdf))
     print("pdf_sha256:", hashlib.sha256(pdf).hexdigest())
-    doc = fitz.open(stream=pdf, filetype="pdf")
+    doc = pymupdf.open(stream=pdf, filetype="pdf")
     page_texts = [page.get_text("text") for page in doc]
     full = "\n".join(page_texts)
     match = re.search(r"I\s+resist\.\s+I\s+cannot\s+accept\s+this\s+hollow\s+nothing\s+that\s+I\s+am\.", full, re.IGNORECASE)
