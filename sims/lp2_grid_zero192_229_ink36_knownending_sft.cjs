@@ -86,6 +86,34 @@ for(const row of actualLast5) {
   if(mod(row.printed+row.key)===row.expected)signCounts.add++;
 }
 assert.deepEqual(signCounts,{subtract:1,add:0});
+/**
+ * Independently motivated literal key use: the complete original 170-rune
+ * post-table sentence starts on the same physical page p51 after the table.
+ * The 36 source-delimited bytes cycle from phase zero across that sentence.
+ * GP29 source prose requires IoC substantially above uniform 1/29.
+ */
+const originalP51 = gp.pages.find(p=>p.page===51).indices;
+const originalP52 = gp.pages.find(p=>p.page===52).indices;
+assert.equal(originalP51.length,92);
+const posttable = originalP51.concat(originalP52.slice(0,78));
+assert.equal(posttable.length,170);
+function coincidence(v) {
+  const counts = new Array(29).fill(0);
+  for (const x of v) counts[x]++;
+  return counts.reduce((s,n)=>s+n*(n-1),0)/(v.length*(v.length-1));
+}
+const postOut=[];
+for(const sign of [-1,1]) {
+  const decoded=posttable.map((v,i)=>mod(v+sign*interval[i%36]));
+  assert.deepEqual(decoded.map((v,i)=>mod(v-sign*interval[i%36])),posttable);
+  const p57Cipher=p57.map((v,i)=>mod(v-sign*interval[i%36]));
+  assert.deepEqual(p57Cipher.map((v,i)=>mod(v+sign*interval[i%36])),p57);
+  postOut.push({sign,meanIoC:coincidence(decoded),
+    first32:decoded.slice(0,32).map(x=>gp.translit[x]).join("-")});
+}
+assert.ok(postOut.every(x=>x.meanIoC<0.04));
+assert.ok(coincidence(p57)>0.06);
+
 console.log(JSON.stringify({
   source:"original LP2 grid and all 36 large physical stops",
   anchors:{p39DoubleRoot:24,rowWidth:8,first,challengeNumber:3301,
@@ -94,6 +122,8 @@ console.log(JSON.stringify({
   glyphs:{large:marks.length,dotTypes:ink.counts,withoutPreceding,
     duplicateOffset:marks.filter(x=>x.page===7&&x.end===194)},
   independentKnownEnding:{last5:actualLast5,signCounts},
+  consecutiveOriginalPosttable:{n:posttable.length,postOut,
+    nativeClearP57IoC:coincidence(p57)},
   decision:"Exact source-addressed zero bracket and 36-count match; "+
     "no authored marker-to-cell opcode or original plaintext. "+
     "Direct preceding-rune additive receiver is undefined at marker11 "+
