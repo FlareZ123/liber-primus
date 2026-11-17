@@ -31,6 +31,23 @@ The p0 opening receiver starts exactly after the source-correct red 13-rune titl
 
 Offsets are **zero-based within each tested original stream**, and indicate the first rune after which no legal key-clock state remains. Every p57-derived positive is legally invertible under its corresponding key and sign (12/12). Thus the direct historically documented F-skip receiver fails mathematically on authentic inputs before subjective language scoring.
 
+## Second source-selected receiver: 119-rune loop versus red119 prefixes
+
+The **23 original words** selected by this same unique cycle contain **exactly 119 rune glyphs** when concatenated in graph traversal order. This is a newly exposed cross-feature candidate: physical p3 and p39 each print an isolated red three-rune span beginning at original local **rune offset 119** (see [previous original red119 inventory](lp2-red119-p49-3340-crosslink-source-gate.md)). These are independently present source boundaries. The matching length is suggestive, but a red triad at 119 does not itself say that the preceding ciphertext is enciphered under the cycle words, or that the word-map route is author-intended.
+
+A bounded *complete key* interpretation treats the 119 selected runes as a direct running key for the full 119-rune **pre-red-prefix** of both physical pages. The two red title seeds choose the two cycle rotations, with the 119 corresponding rune values interpreted either as GP29 ordinals or GP prime weights modulo29; both arithmetic signs are tested. The direct 119-rune key has **no repetition** within either targeted prefix. The authentic plaintext-F bypass dynamic program explores all F histories. This defines **eight source-fixed decoders** (two seeds × two values × two signs), without a fitted keyword, clock phase or cipher-language optimization.
+
+| Cycle start / rune key value | p3 first impossible rune, − / + | p39 first impossible rune, − / + |
+| --- | ---: | ---: |
+| First / GP29 ordinal | 54 / 51 | 6 / 25 |
+| First / GP prime mod29 | **legal (3 paths)** / 10 | 31 / 3 |
+| Second / GP29 ordinal | 41 / 0 | 82 / 7 |
+| Second / GP prime mod29 | 109 / 5 | 22 / 7 |
+
+All first-impossible offsets are zero-based within the original 119-rune target. **All eight original p39 prefixes are impossible** under the tested exact F-transparent decoder. One p3 variant alone admits three complete mechanical paths, but its matched p39 original holdout is impossible. All eight independently encrypted **95-rune authentic p57 clear-GP controls** pass the same exact state machine. Under the alternative skip-free direct additive consumer, the decoded p3/p39 original 119-rune concentration lies in **IoC 0.03076–0.03960**, against authentic clear p57 **0.06271**, without coherent prose.
+
+**Decision:** the newly noted 119-rune loop length and two original red119 boundaries preserve a possible source-to-source motif; the eight complete literal GP29 key consumers fail on their independent p39 holdout. The match neither recovers plaintext nor authenticates a broader map-transposition or state-dependent decoder. Preserve the simple bounded result; do not enlarge the key catalog or postselect an address/skip law. The additional F-transparent 119-rune assertions and synthetic positives are now in the **same source SFT**.
+
 ## Independent check on the four-direction interpretation
 
 All 156 opening body-word prime sums are below **624=4×156**, with maximum **618**. The quotients therefore happen to lie in `{0,1,2,3}`, which might tempt a four-way compass or base-four key interpretation. That bounded range alone is weak evidence: **326 of 2,741** possible 156-word windows through the untouched 2,896-word original unknown manuscript have all their prime sums below 624. In a separate length-conditioned comparison, the remaining manuscript words of the same lengths would predict **1.968** values ≥624 in a 156-word draw, with approximate independent zero-event probability **0.1063**. Neither comparison authenticates four-way directions; they are diagnostic baselines, and the unselected coordinate readout has not been found.
