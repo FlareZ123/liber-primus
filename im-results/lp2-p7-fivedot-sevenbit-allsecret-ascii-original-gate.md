@@ -23,7 +23,7 @@ The immutable original corpus and source JPEG select exactly these six full-leng
 
 The best **918/1,235** printable ASCII values still leave **317 control/DEL bytes**, and the output has no sustained readable English. These twelve direct views are a small illustrative subset; choosing a different secret five-bit code per rune is the important remaining possibility, handled **completely** below.
 
-## All 29! source-symbol assignments in one constraint
+## All stationary injective 29-of-32 codebooks in one constraint
 
 Permit every arbitrary *secret injective* codebook assigning the 29 distinct rune identities to 29 distinct members of the 32 possible five-bit words, with up to three unused codewords. This strictly contains the original GP ordinal-to-five-bit mapping and every stationary secret permutation of the 29 codewords. There is no restriction on the secret key beyond codeword injectivity, and reversing bits inside source symbols is already a particular such mapping.
 
@@ -60,4 +60,4 @@ The globally most permissive case still forces **at least 102 actual ASCII contr
 
 The result does **not** exclude ASCII with control codes used deliberately as binary structure, cryptographic or compressed intermediate data, a state-dependent per-rune five-bit mapping, a non-injective code with a separate disambiguation channel, a bit-level permutation **inside/between** rune symbols, a source-selected different text traversal, or a wholly different binary encoding. Such alternatives require a new authentic instruction or distinctive header/plaintext prediction rather than a larger free-key search. The human-visible five/7 clues remain source observations, not a proven author-selected bitwise operation.
 
-**Reproduction:** `node sims/lp2_p7_fivedot_sevenbit_allsecret_ascii_sft.cjs` on Windows Node.js22 from repository root; the script reads only existing pinned source files and prints all full original results, finite-pigeonhole evidence, assignment-optimum bounds, and exact positive transport control.
+**Reproduction:** [passing Windows Node.js22 CI run 44151669614](https://github.com/FlareZ123/liber-primus/actions/runs/44151669614) executed `node sims/lp2_p7_fivedot_sevenbit_allsecret_ascii_sft.cjs` from repository root; the script reads only existing pinned source files and prints all full original results, finite-pigeonhole evidence, assignment-optimum bounds, and exact positive transport control.
