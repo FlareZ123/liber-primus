@@ -1,0 +1,21 @@
+name: Agent1 p50 rim76 R4 checksum tape original test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-check:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate CommonJS source
+        run: node --check sims/lp2_p50_rim76_p55_r4_74check_source_sft.cjs
+      - name: Check 48 original source-key receivers and native-GP packet plant
+        run: node sims/lp2_p50_rim76_p55_r4_74check_source_sft.cjs
