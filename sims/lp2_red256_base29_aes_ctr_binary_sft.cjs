@@ -115,6 +115,26 @@ for(const key of keys)for(const iv of ivs){
  assert.deepEqual(aesCtrXor(y,key.key,iv.value),planted);
  correctPlants++;
 }
+// Simpler, physically motivated separate consumer: table has 32 rows x 8 columns,
+// bit-packed red-event key has 32 bytes. Repeat each 32-byte key for eight slices.
+const xorCandidates=[];
+for(const [orientation,source] of [
+ ['printedRowMajor',Buffer.from(table)],
+ ['eightColumns32Rows',Buffer.from(Array.from({length:256},(_,i)=>
+   table[8*(i%32)+Math.floor(i/32)]))]
+]){
+ for(const key of keys){
+  const output=Buffer.from(source.map((v,i)=>v^key.key[i%32]));
+  assert.deepEqual(Buffer.from(output.map((v,i)=>v^key.key[i%32])),source);
+  const signatures=magic.filter(([id,hex])=>
+    output.subarray(0,hex.length/2).toString('hex')===hex).map(([id])=>id);
+  const printable=[...output].filter(n=>n>=32&&n<=126||n===9||n===10||n===13).length;
+  const GP29=[...output].filter(n=>n<29).length;
+  xorCandidates.push({orientation,key:key.id,signatures,printable,GP29,
+    first16:output.subarray(0,16).toString('hex')});
+ }
+}
+assert.equal(xorCandidates.length,8);
 assert.equal(originalTests,1048);
 assert.equal(correctPlants,1048);
 const all=maxPrint.sort((a,b)=>b.printable-a.printable);
@@ -123,7 +143,7 @@ console.log(JSON.stringify({
  widths:packets.slice(0,10).map(p=>({id:p.id,GP:p.indices.length,
   min:base29(p.indices).minimal.length,fixed:base29(p.indices).fixed.length})),
  keys:keys.map(k=>k.id),IVs:ivs.map(v=>v.id),
- tests:originalTests,fullPositiveControls:correctPlants,
+ tests:originalTests,fullPositiveControls:correctPlants, repeatedXorCases:xorCandidates,
  signatures:hits,highestPrintRatio:all.slice(0,12),
  sourceWholeChecksum:createHash('sha256').update(Buffer.from(packets[0].indices)).digest('hex')
 },null,2));
