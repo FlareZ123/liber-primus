@@ -1,55 +1,55 @@
-# Exact GP29 five-position plaintext-autokey inverse on two original chapters (17 November 2026)
+# Exact GP29 five-rune plaintext autokey: both signs, two original chapters (17 November 2026)
 
-**Original ciphertext decision:** A source-native, completely reversible, five-rune **plaintext autokey** has now been inverted optimally under every possible initial five-symbol GP29 state on *two independent, authentic, untouched LP2 chapters*: physical pp0–2 (**729 runes / 158 original words**) and the visually five-dot-marked pp23–26 (**1,021 runes / 224 original words**). Both best plaintexts remain unreadable. The globally optimized original scores are **−5.174765 and −5.229442 nats/rune**, respectively, while eight independently shaped Gibran English test passages per chapter are fully recovered (**729/729 or 1,021/1,021**), with scores around **−2.5 to −2.7**. No unknown original LP2 plaintext, key or destination recovered.
+**Original-cipher result.** Two source-motivated, fully reversible **five-position plaintext-feedback** ciphers fail to recover English plaintext from the unchanged original opening pp0–2 (**729 GP29 runes, 158 printed words**) and visually five-dot-marked pp23–26 (**1,021 GP29 runes, 224 printed words**). Both signs are completely invertible; every one of the (29^5=20,511,149) possible initial five-symbol plaintext seeds is optimized **exactly** under an independent GP29 language model. The best original outputs are unreadable on **all four** combinations, while **eight original-geometry Gibran controls for each** recover **every symbol and seed**. This retires the two specified classical five-rune plaintext-autokey models as ordinary GP-English mechanisms on these chapters, without claiming any unknown plaintext or extrapolating to unrelated ciphers.
 
-This is an original-chapter, finite negative for a historically established reversible cipher family. The source five-dot motif makes p23–26 a plausible *recipient* for a five-step test, but **no original creator instruction specifies a plaintext-autokey recurrence or its sign**. We do not generalize to all feedback ciphers, other changing plaintext registers, other chapter-specific algorithms or lost offsite keys.
+These are **hypothesis choices, not authenticated Cicada opcodes**. Five positions are suggested weakly by the source five-dot motif (recipient pp23–26); the positive and negative feedback signs are two standard modular arithmetic variants. Earlier original p0 729-rune/27×27 observations and solved GP inversion methods motivate checking both signs, but neither source chooses the recurrence. No new key source is claimed.
 
-## Frozen operation and complete state search
+## Frozen equations and exact inverse
 
-All rune operations use the **original, unchanged GP29 numeric indices** 0…28, with original word and page boundaries retained. A five-rune plaintext initial state is unrestricted. For each later rune i≥5,
+Use the original ordered GP29 rune-index alphabet 0…28 and preserve the actual printed word/page layout. For sign `s=+1` or `s=−1` independently, a secret five-rune plaintext state initializes positions0…4. For every i≥5:
 
 ```
-C[i] = (P[i] + P[i-5]) mod 29
-P[i] = (C[i] - P[i-5]) mod 29
+C[i] = (P[i] + s*P[i-5]) mod 29
+P[i] = (C[i] - s*P[i-5]) mod 29
 ```
 
-The stream is continuous across word and physical page breaks within each tested chapter. The five unknown starting plaintext symbols are not guessed by hand: for each residue class j modulo5, every P[i] on that chain is a deterministic function of **only P[j]**. Evaluate all 29 candidate chains for each of the five classes. The independent GP29 within-word **bigram** language model couples only neighboring classes, forming a five-cycle. Condition on 29 possibilities for class0 and use an exact dynamic program for classes1–4, then close the cycle. This gives the **global optimum across all (29^5=20,511,149) starting states** without brute-force enumeration or model fitting to source ciphertext.
+Within each complete tested chapter, the modular recurrence crosses printed word and physical page boundaries. For a fixed sign, each five-phase plaintext chain is an exact deterministic function of its single initial state. Precompute all 29 chain trajectories per phase, score them under an independently trained GP29 unigram+within-word bigram language model, and optimize the five-state **cyclic pairwise factor graph** via exact 29-way conditioning on the first state and dynamic programming on the other four. The cyclic 4→0 score is included. Thus the returned state is **globally optimal over the full 29^5 keyspace**, without beam search, simulated annealing or plaintext cribs.
 
-The scoring model is trained only on `resources/control/shakespeare_first300k.txt` converted into authentic GP29 rune orthography: **217,106 native GP runes**, +1 unigram smoothing, +0.25 bigram smoothing and fixed unigram log-likelihood weight 0.25. No cross-word GP bigrams are scored. The original 158 / 224 printed word lengths and all rune positions remain unmodified.
+The independently frozen training corpus is `resources/control/shakespeare_first300k.txt`, with **217,106 native GP runes**, +1 unigram and +0.25 within-word bigram smoothing and fixed unigram log-likelihood weight0.25. The disjoint genuine-English plant corpus is `resources/control/gibran_prophet_58585.txt`; the algorithm selects whole words with exactly the authentic source word-length sequence, seeds its own original source cipher from the selected first five GP symbols, and blinds the receiver to those states. Each sign uses **eight** such exact-geometry controls at each of the two original chapters. All 32 controls decrypt every rune perfectly and recover every initial five-symbol seed; exact inverse/forward original reconstruction is also asserted.
 
-The independent positive plaintext corpus is `resources/control/gibran_prophet_58585.txt`, disjoint from Shakespeare training. A frozen sequence of eight seeds selects actual entire GP29 English words of **exactly** the original 158- or 224-word length pattern. Each synthetic ciphertext uses the same five-lag original operation, with unknown initial plaintext states. The decoder never receives a key oracle and must recover all five states from ciphertext.
+## Complete original-cipher and positive-control outcomes
 
-## Exact outputs of the source-native reproducer
+| Chapter | Feedback sign | Original best GP-English model log score, nats/rune | Eight positive-control scores, range | Recovered planted GP runes |
+|---|---:|---:|---:|---:|
+| p0–2: 729 runes, 158 words | +1 | **−5.174765** | −2.645960…−2.509760 | 8 × 729/729 |
+| p0–2: 729 runes, 158 words | −1 | **−5.183493** | −2.645960…−2.509760 | 8 × 729/729 |
+| p23–26: 1,021 runes, 224 words | +1 | **−5.229442** | −2.643657…−2.566232 | 8 × 1,021/1,021 |
+| p23–26: 1,021 runes, 224 words | −1 | **−5.218181** | −2.643657…−2.566232 | 8 × 1,021/1,021 |
 
-| Source and geometry | Native-controls recovered | Original optimum nats/rune | Range of eight native-control optima |
-|---|---:|---:|---:|
-| p0–2: 729 runes, 158 words | 8 × 729/729 | **−5.174765** | −2.645960 … −2.509760 |
-| p23–26: 1,021 runes, 224 words | 8 × 1,021/1,021 | **−5.229442** | −2.682236 … −2.516396 |
+The original optimized seeds are respectively `[25,0,25,20,10]`, `[19,16,24,16,21]`, `[4,5,20,7,23]` and `[8,22,10,16,16]` in the above row order. Output excerpts begin `AEFAELIDIARATADUWAJ...`, `MTATNGNXATHEIAGFRF...`, `RCLWDIESODFDUXTYC...`, and `HOEITTOETTYROEAOXX...`. They are nonprose optimum artifacts, **not decrypted text**. Every original score is >2.5 nats/rune worse than independent native-English positive controls. The control ranges for p23–26 above were corrected to match the **exact original-geometry script**; an earlier version of this report copied numbers from a temporary separate-run Gibran sampler with different selection positions. The true controls remain 100% recovered.
 
-The original inferred initial plaintext states are `[25,0,25,20,10]` for pp0–2 and `[4,5,20,7,23]` for pp23–26. The first 150 original-decoder runes begin respectively `AEFAELIDIARATADUWAJTHEARIANGWO...` and `RCLWDIESODFDUXTYCCUNTTHXIAOAIO...`, neither coherent plaintext. Both source-optimal outputs are **over 2.5 nats/rune** worse than every corresponding independent native-English positive. Their exact original ciphertext forward reconstructions pass under the selected 5-rune state, which shows only that the frozen operation is reversible, not that either decoding is authentic.
+## Independent equality invariant and its original-source constraint
 
-The [single-file read-only Windows Node22 CJS SFT](../sims/lp2_plaintext_autokey5_exact_state_original_sft.cjs) reads unmodified original `resources/liber-primus/lp2-corpus.json` and `lp2-transcription.txt`, asserts both original lengths, original printed-word counts and all eight control recoveries per chapter, and verifies exact forward recurrence and independent model-score recomputation. The exact committed code was executed in a standalone V8 evaluator against its fetched repository source files. No source files, control corpora or ciphertext are modified.
-
-## Output-alphabet invariant: a stronger no-go result
-
-A fixed unknown output-alphabet substitution cannot rescue this same plaintext-autokey mechanism on ordinary GP English. In fact, it can be **any secret bijection of the 29 glyphs for each separate printed word**: equality of two adjacent ciphertext runes **within that word** is unchanged by the relabeling. For original offsets i≥6, both symbols are fully under five-step feedback, so the exact test condition is
+For i≥6, both adjacent cipher symbols are already under known five-step plaintext feedback. With either frozen sign `s`, the within-word adjacency identity is
 
 ```
 C[i] = C[i-1]
-  iff P[i] + P[i-5] ≡ P[i-1] + P[i-6] (mod 29)
+  iff P[i] + s*P[i-5] ≡ P[i-1] + s*P[i-6] (mod 29).
 ```
 
-A secret initial five-symbol state is irrelevant to this condition; the counted positions start at i=6. The committed SFT samples a **new, independent 4,096-plant sequence** of Gibran GP29 complete words matching each original word-length layout, applies precisely the original five-lag plaintext-autokey addition, and records same-word adjacent glyph equalities. As the equation proves, an unobserved **wordwise static secret output permutation cannot change these counts**:
+**Any fixed secret bijection of output rune symbols, even a separate arbitrary GP29 alphabet for each printed word, preserves this equality.** It cannot repair the original adjacent-doublet deficit for the same five-back feedback model. A fixed 4,096-plant independent draw per sign and chapter selects full, genuine Gibran GP29 words at every original source word length, encrypts them with the frozen sign and records within-word adjacent equal symbols at original indices i≥6. The original ciphertext comparison requires no English key recovery or scoring:
 
-| Original chapter | Observed same-word doublets (i≥6) | Mean ± SD of 4,096 matched English plants | Control minimum | Plants ≤ observed | Empirical lower tail |
+| Original chapter | Sign | Original same-word adjacent equalities (i≥6) | Control mean ± SD | Min in 4,096 controls | Empirical lower-tail |
 |---|---:|---:|---:|---:|---:|
-| p0–2 | **2** | 20.158 ± 4.449 | 6 | 0/4,096 | ≤0.0002441 |
-| p23–26 | **9** | 28.313 ± 5.254 | 12 | 0/4,096 | ≤0.0002441 |
+| p0–2 | +1 | **2** | 20.158 ± 4.449 | 6 | 0.0002441 |
+| p0–2 | −1 | **2** | 23.666 ± 4.870 | 9 | 0.0002441 |
+| p23–26 | +1 | **9** | 28.313 ± 5.254 | 12 | 0.0002441 |
+| p23–26 | −1 | **9** | 33.013 ± 5.927 | 13 | 0.0002441 |
 
-These are **source-matched, model-conditional language controls**, not a universal probability that any conceivable natural-language passage has the same statistics. The test retires a materially larger family of five-lag classical autokeys with *static per-word or per-section output relabeling* in ordinary native English. It does **not** exclude position-changing or state-dependent output permutations, non-English/nonprose registers, missing padding, or an entirely different recurrence. The original equality counts are independent of English language-model optimization and make this extension stronger than score-only failure.
+All four outcomes have **0 of 4,096 controls** with equal or fewer matching within-word doublets than the original, so the smoothed one-sided Monte Carlo tail is `1/4097`. These are **conditional results for the pinned native-English source distribution**, not universal exclusion probabilities across conceivable messages, alternate languages, punctuation-reinterpretation, hidden padding, changing output permutations, or unrelated feedback clocks. The invariant alone is an especially useful key-independent cipher-family constraint.
 
-## Cryptanalytic decision
+## Reproducer and decision
 
-This standard five-step plaintext-autokey **cannot explain either visually different original chapter as ordinary GP English**, despite allowing its entire initial keyspace; the additional observed doublet deficit also rejects static output-alphabet relabelings under calibrated native-English controls. The targeted five-dot chapter matters: the original visual motif did not reveal the specified equation, but it supplied a less arbitrary recipient than the opening alone. This removes a bounded, fully reversible candidate from future exploratory searches without importing a speculative second cipher layer. Any future five-step hypothesis needs a **new, independently authored state transition or key/clock instruction** and must explain the original adjacent-repeat suppression plus the position-dependent lag-five statistics under a true inverse.
+[Single-file read-only Windows Node.js 22 CommonJS SFT](../sims/lp2_plaintext_autokey5_exact_state_original_sft.cjs) consumes canonical `resources/liber-primus/lp2-corpus.json` and `lp2-transcription.txt`, the two pinned GP English control texts, original word lengths and complete rune sequences. It asserts the exact 729/158 and 1,021/224 geometries, all 32 blind planted decodes, original forward reproduction, exact state-score recomputation, and 4×4,096 frozen original-geometry equality controls. The final exact remotely committed script was executed against the exact remote source files in a JS runtime, with all assertions passing.
 
-All 56 unknown physical LP2 pages remain unsolved; this is a calibrated exclusion, not a plaintext claim.
+**Decision:** neither additive nor subtractive five-rune plaintext-autokey explains the real opening or actual five-dot original chapter under a common native-English register; an arbitrary static output-rune renaming cannot rescue either. Before further computational campaigns, obtain a genuine *creator-visible* operation, initial key or rule for changed state. Do not repeat a 29^5 key sweep, tune an F exception, or invent a position-dependent letter rewrite to rescue these specific failed models. All 56 original unknown LP2 physical pages remain unsolved.
