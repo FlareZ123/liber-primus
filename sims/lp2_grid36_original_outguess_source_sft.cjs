@@ -105,7 +105,8 @@ function classify(filePath, bytes) {
 function extract(label, carrier, password) {
   const destination = path.join(output, label + ".bin");
   fs.rmSync(destination, { force: true });
-  const result = run("outguess", ["-k", password, "-r", carrier, destination]);
+  const args = password === null ? ["-r", carrier, destination] : ["-k", password, "-r", carrier, destination];
+  const result = run("outguess", args);
   const bytes = fs.existsSync(destination) ? fs.readFileSync(destination) : Buffer.alloc(0);
   const transcript = result.stdout + "\n" + result.stderr;
   const header = headerOf(transcript);
@@ -141,7 +142,7 @@ function main() {
   const priorPayload = path.join(root, "resources/historical/cicada2016-4gq25-outguess.asc");
   const originalHashBefore = sha(fs.readFileSync(originalJpg));
   try {
-    const historical = extract("historical-signed-2016-positive", priorJpg, key);
+    const historical = extract("historical-signed-2016-positive", priorJpg, null);
     assert.equal(historical.exitCode, 0, historical.stderr);
     assert.deepEqual(historical.bytes, fs.readFileSync(priorPayload));
     fs.rmSync(path.join(output, "historical-signed-2016-positive.bin"), { force: true });
