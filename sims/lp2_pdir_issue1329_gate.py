@@ -48,7 +48,7 @@ def source_gate(local: Path, ext: Path) -> list[str]:
             if start is None:
                 start = at
             at += 1
-        elif character not in ("/", "\\n", "\\r", "%") and start is not None:
+        elif character not in ("/", "%") and not character.isspace() and start is not None:
             local_words.append((start, at))
             start = None
     if start is not None:
