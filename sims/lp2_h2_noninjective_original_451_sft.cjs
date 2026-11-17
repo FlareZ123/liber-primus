@@ -16,7 +16,7 @@
  * For every original physical page, the zero-retry interpretation is a valid
  * forward trace with positive probability. A second interpretation at a
  * qualifying site retries exactly once and uses a different plaintext rune.
- * There are 451 such sites. All 452 full-book input tapes, including the
+ * There are 452 such sites. All 453 single-exception full-book input tapes, including the
  * zero-retry tape, forward-generate the identical original GP29 ciphertext
  * under the SAME known cipher and clock. Every original word boundary is
  * untouched. Their text is not native English and is not a proposed solve.
@@ -110,6 +110,7 @@ function plainWithOneRetry(ciphertext, at) {
 }
 
 let eligible = 0;
+let independentPageProduct = 1n;
 let originalsEqual = 0;
 const siteCounts = [];
 let firstSite = null;
@@ -146,18 +147,21 @@ for (const page of pages) {
         basePlainGPIndex: base[i], alternatePlainGPIndex: alternative[i]};
     }
   }
+  independentPageProduct *= BigInt(onPage + 1);
   siteCounts.push({page: page.page, originalRunes: C.length,
     oneRetryAlternatives: onPage});
 }
 
 assert.equal(originalsEqual, 86);
-assert.equal(eligible, 451);
+assert.equal(eligible, 452);
 assert.deepEqual(firstSite, {
   page: 0, localRuneOffset: 37, precedingGPIndex: 6,
   currentGPIndex: 10, priorPrimeRow: 17, nextPrimeRow: 21,
   basePlainGPIndex: 22, alternatePlainGPIndex: 18
 });
-assert.equal(eligible + 1, 452);
+assert.equal(eligible + 1, 453);
+assert.equal(independentPageProduct.toString(),
+  "862434223353358438440426765962102288840392704000000");
 
 console.log(JSON.stringify({
   classification: "exact source-original H2 noninjectivity witness; no LP2 plaintext",
@@ -168,7 +172,9 @@ console.log(JSON.stringify({
   secretTableau: "fixed known cyclic Latin row-permutation, T_r(P)=P+r mod29",
   retryRule: "collision-retry coin q strictly between 0 and 1",
   implicitRetryCoinChoices: "all non-target collisions accepted without retry",
-  distinctSameCiphertextCompleteInputTapes: eligible + 1,
+  singleSiteSameCiphertextCompleteInputTapes: eligible + 1,
+  distinctIndependentPageChoiceTapes: independentPageProduct.toString(),
+  ambiguityLowerBoundBits: Math.log2(Number(independentPageProduct)),
   oneRetryPositions: eligible,
   firstSite,
   byPage: siteCounts
