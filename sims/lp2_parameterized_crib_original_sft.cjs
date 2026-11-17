@@ -67,16 +67,27 @@ function nativeSignedProse(text) {
  * @param {string} message
  * @returns {number[]}
  */
-function signedProse(message) {
+function signedProse(message, options = {}) {
   assert.ok(message.startsWith('-----BEGIN PGP SIGNED MESSAGE-----'));
   const signature = '-----BEGIN PGP SIGNATURE-----';
   assert.ok(message.includes(signature));
   const beforeSignature = message.split(signature)[0].replace(/\r\n/g, '\n');
-  const body = beforeSignature.split('\n\n').slice(1).join('\n\n')
+  let body = beforeSignature.split('\n\n').slice(1).join('\n\n')
     .split('- -----BEGIN PGP MESSAGE-----')[0];
-  return nativeSignedProse(body
+  // The 2012 RSA example contains a separate encrypted block and public-key
+  // serialization; neither is signed plaintext prose for this crib test.
+  if (options.rsa) {
+    const before = body.split('- -----BEGIN COMPRESSED RSA ENCRYPTED MESSAGE-----')[0];
+    const marker = 'The encrypted message is a number.';
+    const after = body.includes(marker) ? marker + body.split(marker)[1] : '';
+    body = before + '\n' + after;
+  }
+  body = body
     .replace(/\b[a-z0-9]{16}\.onion\b/gi, ' ')
-    .replace(/\b3301\b/g, ' '));
+    .replace(/\b3301\b/g, ' ');
+  if (options.email)
+    body = body.replace(/\b[\w.+-]+@[\w.-]+\.\w+\b/g, ' ');
+  return nativeSignedProse(body);
 }
 
 
@@ -100,6 +111,23 @@ for (const [name, filename] of earlySigned) {
 }
 assert.deepEqual(known.slice(9).map(item => item.values.length),
   [73, 335, 43, 49, 91, 30, 167]);
+
+// Additional first-party 2012–2013 messages from the independently indexed
+// 20-signature iBotPeaches corpus. Nonprose coordinates/shares/encrypted
+// payloads are not converted into speculative "plaintext" cribs.
+const expandedSigned = [
+  ['Signed2012Song', 'resources/historical/cicada2012-song-is-your-own-path.asc', {}],
+  ['Signed2012RSA', 'resources/historical/cicada2012-message-only-displayed.asc', {rsa: true, email: true}],
+  ['Signed2013Welcome', 'resources/historical/cicada2013-welcome-and-congratulations.asc', {}],
+  ['Signed2013Followed', 'resources/historical/cicada2013-if-you-followed.asc', {email: true}],
+  ['Signed2013NoMoreTesting', 'resources/historical/cicada2013-no-more-testing.asc', {}],
+  ['Signed2013DoNotShare', 'resources/external/2013-do-not-share-this-information-2.asc', {email: true}]
+];
+for (const [name, filename, options] of expandedSigned) {
+  known.push({name, values: signedProse(read(filename), options)});
+}
+assert.deepEqual(known.slice(16).map(item => item.values.length),
+  [335, 517, 997, 98, 130, 1684]);
 assert.deepEqual(nativeSignedProse('MEANING'), [19, 28, 9, 21]);
 
 /**
@@ -223,11 +251,12 @@ function repeatedWindows(length) {
 
 const observed = known.map(reference => ({name: reference.name,
   ...longestIsomorphic(original, reference.values)}));
-assert.deepEqual(observed.map(row => row.length), [16, 15, 15, 16, 16, 15, 15, 15, 15, 16, 16, 15, 14, 14, 12, 16]);
+assert.deepEqual(observed.map(row => row.length),
+  [16, 15, 15, 16, 16, 15, 15, 15, 15, 16, 16, 15, 14, 14, 12, 16, 16, 15, 17, 15, 17, 18]);
 const transparentObserved = known.map(reference => ({name: reference.name,
   ...longestTransparentF(original, reference.values)}));
 assert.deepEqual(transparentObserved.map(row => row.length),
-  [16, 15, 15, 16, 16, 15, 14, 15, 14, 14, 16, 14, 14, 14, 12, 15]);
+  [16, 15, 15, 16, 16, 15, 14, 15, 14, 14, 16, 14, 14, 14, 12, 15, 16, 15, 17, 15, 17, 18]);
 
 // Historical Cicada puzzles have source-attested reversal steps. The same
 // all-secret tests also search the source runes in EXACT reversed order.
@@ -243,24 +272,69 @@ const reversedTransparent = reversedKnown.map(reference => ({
   name: reference.name, ...longestTransparentF(original, reference.values)
 }));
 assert.deepEqual(reversedObserved.map(row => row.length),
-  [16, 14, 16, 16, 15, 16, 16, 15, 15, 15, 15, 15, 14, 13, 12, 16]);
+  [16, 14, 16, 16, 15, 16, 16, 15, 15, 15, 15, 15, 14, 13, 12, 16, 15, 15, 18, 14, 19, 19]);
 assert.deepEqual(reversedTransparent.map(row => row.length),
-  [16, 14, 16, 16, 15, 16, 14, 15, 15, 14, 15, 15, 14, 13, 12, 15]);
+  [16, 14, 16, 16, 15, 16, 14, 15, 15, 14, 15, 15, 14, 13, 12, 15, 15, 15, 18, 14, 19, 18]);
 const sourceOffsets = [];
 let cursor = 0;
 for (const page of pages) {
   sourceOffsets.push({page: page.page, first: cursor, last: cursor + page.indices.length});
   cursor += page.indices.length;
 }
-for (const row of observed) {
-  const page = sourceOffsets.find(s => row.originalOffset >= s.first && row.originalOffset < s.last);
-  assert.ok(page);
-  row.physicalPage = page.page;
-  row.pageOffset = row.originalOffset - page.first;
+for (const collection of [observed, transparentObserved, reversedObserved, reversedTransparent]) {
+  for (const row of collection) {
+    const page = sourceOffsets.find(s => row.originalOffset >= s.first && row.originalOffset < s.last);
+    assert.ok(page);
+    row.physicalPage = page.page;
+    row.pageOffset = row.originalOffset - page.first;
+  }
 }
 const self = [15, 18, 20, 22].map(repeatedWindows);
 assert.deepEqual(self.map(row => row.repeatedWindows), [2519, 238, 17, 0]);
 assert.deepEqual(self.map(row => row.crossPageWindows), [2481, 234, 15, 0]);
+
+// Familywise null for the six added signed sources: preserve each source's
+// exact 29-symbol multiset, randomize rune order, and test forward/reverse.
+const expandedNames = new Set(expandedSigned.map(([name]) => name));
+const expandedReferences = known.filter(reference => expandedNames.has(reference.name));
+const originalPatterns19 = new Set();
+for (let start = 0; start + 19 <= original.length; start++)
+  originalPatterns19.add(pattern(original, start, 19));
+function hasPattern(values, length, patterns) {
+  for (let start = 0; start + length <= values.length; start++)
+    if (patterns.has(pattern(values, start, length))) return true;
+  return false;
+}
+let randomState = 0x6c696265;
+function seededRandom() {
+  randomState ^= randomState << 13;
+  randomState ^= randomState >>> 17;
+  randomState ^= randomState << 5;
+  return (randomState >>> 0) / 0x100000000;
+}
+function shuffled(values) {
+  const out = values.slice();
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(seededRandom() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+let nullReplicatesWith19 = 0;
+const nullReplicates = 1000;
+for (let trial = 0; trial < nullReplicates; trial++) {
+  let hit = false;
+  for (const source of expandedReferences) {
+    const sample = shuffled(source.values);
+    if (hasPattern(sample, 19, originalPatterns19) ||
+        hasPattern(sample.slice().reverse(), 19, originalPatterns19)) {
+      hit = true;
+      break;
+    }
+  }
+  if (hit) nullReplicatesWith19++;
+}
+assert.equal(nullReplicatesWith19, 301);
 
 // Fully specified positive: implant a native 60-rune clear p57 excerpt under
 // a complete secret 29-rune permutation, then find it without knowing the key.
@@ -307,11 +381,12 @@ for (const witness of [reversePositive, reverseFPositive]) {
 }
 
 console.log(JSON.stringify({
-  status: 'All-original exact all-secret crib attempt: no unknown plaintext recovered',
+  status: 'Expanded authenticated-source crib test: no unknown plaintext recovered',
   scope: {unknownRunes: original.length, unknownPhysicalPages: pages.length,
     knownReferenceRunes: known.reduce((s, p) => s + p.values.length, 0),
     testedStartPairs: observed.reduce((s, p) => s + p.pairs, 0),
     testedBothDirectionsStartPairs: observed.reduce((s, p) => s + 2 * p.pairs, 0),
+    testedFourModelsStartPairs: observed.reduce((s, p) => s + 4 * p.pairs, 0),
     acrossPrintedWordsAndPhysicalPageSeams: true},
   knownSubstitutionIsomorphism: observed,
   originalCrossPageCribCeiling: Math.max(...observed.map(item => item.length)),
@@ -321,6 +396,10 @@ console.log(JSON.stringify({
   transparentFLongestOriginalRunes:
     Math.max(...transparentObserved.map(item => item.length)),
   unknownWithinPageRepeats: self,
+  randomizedSourceCribNull: {seed: '0x6c696265', replicates: nullReplicates,
+    preservedSourceRuneMultisets: true, forwardAndReversed: true,
+    atLeast19Runes: nullReplicatesWith19,
+    empiricalRate: nullReplicatesWith19 / nullReplicates},
   positive: {plantedRunes: 60, insertionOffset: plantedAt,
     recoveredIsomorphismLength: positive.length,
     recoveredInsertionOffset: positive.originalOffset,
@@ -335,5 +414,5 @@ console.log(JSON.stringify({
   reverseFPositive: {plantedRunes:60,
     isomorphismLength:reverseFPositive.length, at:reverseFPositive.originalOffset,
     source:reverseFPositive.referenceOffset},
-  conclusion: 'No 17-rune or longer original LP2 passage is a fixed bijective or native literal-F-transparent substitution of any contiguous passage in six clear LP1 pages, clear p57, or nine original Cicada clearsigned 2012–2016 messages, in either forward or exact reversed source-rune order. All page-local unknown-to-unknown equality patterns have unique signatures at length 22. These are necessary-condition exclusions for identical typed plaintext under a single bijection, not universal decryptions or evidence against changing keys, transposition, or novel plaintext.'
+  conclusion: 'The expanded 22-reference scan finds no 20-rune or longer fixed-alphabet crib; its longest matches are 19 runes in generic 2013 recruitment prose. A frequency-preserving 1,000-trial null produces a 19-rune match in 301 trials (30.1%), so these short matches do not establish plaintext. No coherent LP2 plaintext, source-selected key, or global substitution is recovered. This remains a necessary-condition test for identical typed plaintext under one fixed bijection or the specified literal-F exception, not a universal cipher exclusion.'
 }, null, 2));

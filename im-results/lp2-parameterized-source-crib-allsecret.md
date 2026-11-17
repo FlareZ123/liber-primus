@@ -1,18 +1,31 @@
 # LP2 original-source plaintext crib under all secret alphabets and reversal
 
-**Agent 45, 16–17 November 2026. Classification: bounded original-ciphertext negative and reusable plaintext-crib discovery method.** No unknown Liber Primus plaintext, source-selected key, or cipher inverse has been recovered.
+**Agent36, 17 November 2026. Classification: expanded original-ciphertext source-crib test; no unknown plaintext, key, or cipher inverse recovered.**
 
-## Specific plaintext route
+## Hypothesis and test
 
-An entire contiguous original LP2 passage might repeat solved LP1/p57 prose or original Cicada-authored signed instructions under a fresh unknown rune alphabet. A substitution can change every visible rune, making ordinary exact-string searches fail, but **any fixed one-to-one alphabet over that passage must preserve the complete equality pattern**: positions equal in plaintext are equal in ciphertext, and positions unequal in plaintext must remain unequal. This supplies a key-free test for source-text reuse that allows *every* one-to-one mapping of the 29 GP runes, with no assumed shift, keyword, or frequency fit. A separate source-motivated case reverses the **rune order of each intact reference** before applying the same secret-alphabet test, reflecting Cicada's demonstrated historical use of reversal.
+A contiguous LP2 passage might reuse solved LP1/p57 prose or original Cicada-authored signed instructions under an unknown rune alphabet. Any fixed one-to-one alphabet over such a passage preserves its complete equality pattern: equal plaintext symbols remain equal ciphertext symbols, and distinct plaintext symbols remain distinct. This permits a key-free test over every 29-rune bijection, without guessing a shift, keyword, or frequency fit.
 
-The comparison corpus is the original 12,956-rune LP2 pp0–55 stream from [the original-derived page corpus](../resources/liber-primus/lp2-corpus.json), versus six known-clear LP1 pages p3, p8, p9, p10, p11, p14 from [the canonical LP1 transcription](../resources/transcriptions/lp1_wulfic_canonical.txt); the 95 clear LP2 p57 runes; and nine independently original-authored 2012–2016 [Cicada PGP-clearsigned prose sources](../resources/historical/) (two from 2012, four from 2013, two from 2014, one from 2016). The **16** fixed references total **2,126** source-native GP rune symbols. The full early 2012 MIDI quotation is included up to its nested PGP message; onion hostnames, numeric signer identifiers and stage09 diagram numerals remain outside the GP prose token stream. The source-message prose is encoded once using independently calibrated LP1/p57 spelling (e.g., ING→NG, IO→IA, V→U), with nonprose onion hostname and numeric signer ID excluded. These are source-derived candidate original author words, not previously recovered unknown LP2 text. All reference pieces are kept separate; all unknown printed words and 55 rune-bearing physical pages are joined in source order so a match may begin or end at any rune position, including across word and physical-page seams. No English tokenization is fitted or inferred.
+The test also scans each intact reference in exact reverse rune order, reflecting reversal operations used in earlier Cicada stages. A separate literal-F-transparent model permits a fixed secret mapping on the 28 non-F runes with one additional collision at ciphertext F, as required by the solved-page F behavior. Both models are scanned at every original and reference offset.
 
-A second source-authenticated structural operation was also tested. The known LP1/p56 ciphers copy *plaintext F* literally, while encryption of another plaintext rune can independently generate ciphertext F. This permits a fixed secret alphabet on the 28 non-F runes with *one extra collision at ciphertext F*, so it cannot be excluded using an ordinary full-bijection invariant. The exact scan permits that collision and the literal-F exception for every offset with no fitted key. This remains a fixed-alphabet reuse model: actual known Vigenère and p56 keystreams change alphabets across positions.
+The unknown input is the original 12,956-rune LP2 pp0–55 stream in [lp2-corpus.json](../resources/liber-primus/lp2-corpus.json). It is joined in source order across printed words and physical-page seams. Each reference remains a separate contiguous source; no English tokenization is fitted.
 
-## Complete original-input result
+## Source corpus
 
-For each original starting rune and reference starting rune, simultaneously build both directions of an arbitrary rune bijection until its first contradiction. The algorithm searches exactly **27,544,456** starting pairs **in each source direction**, totaling **55,088,912** original offsets per alphabet model. Both bijective and literal-F-transparent models are tested independently. The 16 original sources were fixed before reversal and are not reassembled or permuted.
+The 22 fixed references total **5,887 source-native GP29 runes**:
+
+- Six clear LP1 pages p3, p8, p9, p10, p11, p14 from [the canonical transcription](../resources/transcriptions/lp1_wulfic_canonical.txt).
+- The 95 clear LP2 p57 runes.
+- Nine previously indexed Cicada PGP-clearsigned prose sources from 2012–2016.
+- Six additional 2012–2013 signed prose sources: the 2012 *song-is-your-own-path* message (335 runes), the 2012 RSA-example instruction with its encrypted block and public-key serialization excluded (517), the 2013 *welcome-and-congratulations* message (997), *if-you-followed* (98), *no-more-testing* (130), and the already-stored *do-not-share-this-information* variant (1,684).
+
+The five newly vendored signed messages are preserved byte-for-byte under [resources/historical](../resources/historical/); the DoNotShare variant was already present in [resources/external](../resources/external/2013-do-not-share-this-information-2.asc). The source messages are from the iBotPeaches corpus indexed in [Dukotah/cicada3301](https://github.com/Dukotah/cicada3301/tree/9087dc36b5aa64c1786428e32180261ab9420c29). Its [REPORT-A.md](https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/corpus/A-primary-artifacts/REPORT-A.md) reports 20 valid Cicada PGP signatures against fingerprint 6D854CD7933322A601C3286D181F01E57A35090F; that is an external verification claim, not a new local GPG run. The five copied message blobs match these upstream Git blob IDs exactly: song d40ea4207b7db70be6f422865191451de05b63a1; RSA example 672184615cf25d19e5eb177875be83b4d83c1128; welcome 2a76372e671573028809260777169e3a4a0a6950; followed 2cac85317c8245dfe3bf6509807e7f8308b734ac; no-more-testing da51150df994f05b445b9c07338192aa95e2565f. The existing DoNotShare variant has blob 79784afcc6beced6ad1c7502007a6b3f53bde3e7. Nested PGP/RSA ciphertext, public-key serialization, email addresses, onion hostnames, and numeric signer ID 3301 are excluded from the natural-language crib stream; the signed prose itself is retained.
+
+The other messages in that 20-signature corpus include coordinates, SSSS share strings, and encrypted payloads. They are not silently treated as natural-language plaintext cribs. The separate 2014 Onion5 signed-media payload is already covered by the local [direct-media gate](lp2-2014-onion5-signed-media-directpad-gate.md); it supplies no new LP2 key in this investigation.
+
+## Complete original-input results
+
+The scan tests **76,271,972** starting pairs per source direction, or **152,543,944** forward-plus-reverse pairs per alphabet model and **305,087,888** across the bijective and literal-F-transparent models.
 
 | Known plaintext source | Reference runes | Forward bijective | Forward F-exception | Reverse bijective | Reverse F-exception |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -32,15 +45,35 @@ For each original starting rune and reference starting rune, simultaneously buil
 | Cicada signed 2013 second onion | 91 | 14 | 14 | 13 | 13 |
 | Cicada signed 2013 ICMP echo clue | 30 | 12 | 12 | 12 | 12 |
 | Cicada signed 2014 Stage09 file-upload instruction | 167 | 16 | 15 | 16 | 15 |
+| Cicada signed 2012 song-is-your-own-path | 335 | 16 | 16 | 15 | 15 |
+| Cicada signed 2012 RSA example prose | 517 | 15 | 15 | 15 | 15 |
+| Cicada signed 2013 welcome-and-congratulations | 997 | 17 | 17 | 18 | 18 |
+| Cicada signed 2013 if-you-followed | 98 | 15 | 15 | 14 | 14 |
+| Cicada signed 2013 no-more-testing | 130 | 17 | 17 | 19 | 19 |
+| Cicada signed 2013 do-not-share-this-information | 1,684 | 18 | 18 | 19 | 18 |
 
-**Exact consequence:** No unknown LP2 contiguous passage of **17 or more runes** is a single bijective rune relabeling **or the separately tested literal-F-transparent secret alphabet** of any contiguous passage in all 16 fixed authentic-source references, **including backward rune order**. This is a complete key-independent exclusion under the narrowly stated reuse model and the **one pinned, LP1-calibrated GP spelling of the Latin-source clues**. Different hypothetical author spellings of the English signed prose (especially ambiguous digraph choices) were not exhaustively searched. The result does not imply that the unknown book lacks repeated ideas, biblical allusions, independently written prose, or ciphertext decoded by an additional arithmetic/positional layer.
+The maximum is **18 runes forward**, **19 reversed**, and **19** in the literal-F-transparent reversed model. No 20-rune or longer match occurs.
 
-A parallel unknown-to-unknown all-secret search uses canonical first-occurrence signatures for windows entirely within physical pages. For lengths **15, 18, 20, 22**, respectively, the number of repeated signature windows is **2,519, 238, 17, 0**; among these, **2,481, 234, 15, 0** are repeats whose first signature occurrence lies on another page. Therefore no two complete *page-local 22-rune* windows have the same relative equality pattern under any secret monoalphabetic relabeling. This signal concerns relative equality patterns alone; the 17 length-20 matches do not establish any actual shared plaintext. There is no page-local length-22 repeat under any fixed alphabet relabeling.
+### Inspecting the near-matches
 
-## Reproducibility and next decision
+The new 17–19-rune matches are short fragments of generic recruitment prose, not a coherent recovered LP2 passage:
 
-- [Read-only Windows Node 22 CommonJS SFT](../sims/lp2_parameterized_crib_original_sft.cjs). The original corpus, clear LP1/p57 references, and the full selected original 2012–2016 PGP-clearsigned clue prose are read directly from checked-in source resources; source-reversal is computed exactly from those same frozen rune arrays; it prints every maximal location and the complete candidate-pair count.
-- Known p57 **60-rune excerpt implants at original offset 1,000** are recovered under a hidden GP29 permutation and, separately, under the native literal-F-transparent secret alphabet. The independent reverse-source test implants the first 60 runes of **reversed** authentic p57 at the same offset under both models. All four positive controls find the exact original source and target offsets, including real transparent F symbols.
-- [Passing original-input Windows CI run 43982602607](https://github.com/FlareZ123/liber-primus/actions/runs/43982602607); [literal-F extension CI run 43985046205](https://github.com/FlareZ123/liber-primus/actions/runs/43985046205); [passing 2014/2016-source expansion, Windows run 43986846748](https://github.com/FlareZ123/liber-primus/actions/runs/43986846748); [**passing all 16 first-party reference streams**, Windows run 43987465853](https://github.com/FlareZ123/liber-primus/actions/runs/43987465853); [**passing complete forward/reverse 16-reference and four positive-control run 43988617986**](https://github.com/FlareZ123/liber-primus/actions/runs/43988617986).
+- *welcome-and-congratulations*: 17 forward at LP2 p0 offset 165 (“been pleased with your teamwork”) and 18 reversed at p14 offset 102 (“keep this ID number as you will”).
+- *no-more-testing*: 17 forward at p22 offset 78 (“project and email us the”) and 19 reversed at p21 offset 230 (“the project and email us the”).
+- *do-not-share-this-information*: 18 forward at p9 offset 116 (“have by completing this recruitment”) and 19 reversed at p24 offset 1 (“you on board to help with future”). The literal-F-transparent reverse match is 18 at p24 offset 2.
 
-**Research decision:** Retire the assumption that substantial solved LP1/p57 text is hidden in LP2 merely by an undisclosed fixed rune substitution or a fixed substitution with the original solved-page literal-F exception. The scanner remains useful if an **independently authenticated new contiguous plaintext source** appears: the same test can recover an exact original ciphertext interval without knowing the substitution. Neither the six LP1 clear pages, clear LP2 p57, nor the nine authentic 2012–2016 author-signed clue messages supplies such an interval. Any higher-complexity search now needs a first-party indication of a different operation, rather than incremental expansion of this exhausted all-secret matching family.
+These are post-search phrase descriptions, not pre-registered cribs. Each local match admits its own unconstrained secret alphabet; the matches do not share a global mapping or extend to a longer coherent source passage.
+
+### Frequency-preserving randomized control
+
+A deterministic 1,000-trial control uses seed 0x6c696265. For each of the six added sources, it preserves the exact 29-symbol multiset, uniformly shuffles rune order, and tests both forward and reversed order against all original LP2 19-rune equality-pattern windows. **301/1,000** trials (30.1%) produce at least one match of 19 runes. Thus the observed 19-rune maximum is not unusual under this deliberately simple frequency-preserving null; it is not evidence that the source messages are plaintext cribs. This is a diagnostic null, not a proof that no more structured source-selection mechanism exists.
+
+A parallel unknown-to-unknown all-secret search uses canonical first-occurrence signatures for windows entirely within physical pages. For lengths **15, 18, 20, 22**, repeated signature windows remain **2,519, 238, 17, 0**; cross-page-first repeats are **2,481, 234, 15, 0**. No two page-local 22-rune windows share an equality pattern under a fixed secret alphabet. The 17 length-20 repeats do not establish shared plaintext.
+
+## Reproducibility and decision
+
+- [Read-only Windows Node 22 SFT](../sims/lp2_parameterized_crib_original_sft.cjs) reads the original LP2 corpus, clear LP1/p57 references, and the exact checked-in signed messages; it performs all four original-input scans, four 60-rune positive controls, and the deterministic 1,000-trial null.
+- Positive controls recover a planted 60-rune p57 excerpt under an unknown 29-rune permutation, under the literal-F-transparent model, and under exact reversed-source order. This confirms that the scanner detects the intended mechanism.
+- The original 16-reference ceiling of 16 is superseded by this 22-reference result. The expanded scan's maximum 19 is a multiple-offset near-match, and the randomized control shows it is not a useful crib signal.
+
+**Research decision:** Retire generic expansion of the signed-prose crib corpus. Reuse this scanner only when an independently authenticated source or a human-visible clue selects a particular contiguous plaintext and operation. The new historical sources add no plaintext, authentic key, or reversible mechanism for LP2.
