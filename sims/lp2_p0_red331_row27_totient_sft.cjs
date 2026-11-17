@@ -113,6 +113,22 @@ assert.match(lp1, /151\s+131\s+341\s+138\s+272/u);
 assert.equal(totient(rowBytes[7]), 150);
 assert.equal(a + b, 2 * grid.bytes.length + totient(rowBytes[7]));
 
+// Competing published radix-59 reading of the same printed token 2V.
+// This independent byte-codec ambiguity is documented by
+// sims/base60_base59_source_ambiguity.cjs. The same arithmetic
+// identity misses by two under radix 59, conditional on our row grammar.
+const alphabet59 = grid.alphabet.replace('f', '');
+assert.equal(alphabet59.length, 59);
+const token151 = grid.pages.flatMap(p => p.tokens)[8 * row + 7];
+assert.equal(token151, '2V');
+const byte59 = alphabet59.indexOf(token151[0]) * 59 +
+  alphabet59.indexOf(token151[1]);
+assert.equal(byte59, 149);
+assert.equal(totient(byte59), 148);
+assert.equal(2 * grid.bytes.length + totient(byte59), 660);
+assert.notEqual(a + b, 2 * grid.bytes.length + totient(byte59));
+
+
 /** @typedef {{position:number,a:number,b:number,row:number,last:number,phi:number,lengths:number[]}} Match */
 const matches = [];
 let matchingLengths = 0;
@@ -177,6 +193,7 @@ console.log(JSON.stringify({
   selectedRowBytes: rowBytes,
   unique151Count: 1,
   terminalByteTotient: totient(rowBytes[7]),
+  competingRadix59: { terminalToken: token151, byte: byte59, totient: totient(byte59), predictedRedSum: 660 },
   exactIdentity: '347+315=2*256+phi(151)=662',
   adjacentPairsTested: words.length - 1,
   length8Then5Pairs: matchingLengths,
