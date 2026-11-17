@@ -16,23 +16,7 @@ A standard Viterbi decoder with the physical H2 skip penalty can permanently fav
 
 ## Boundary-adjudication gate
 
-The original scans 43.jpg/44.jpg show p26's terminal mark followed by p27's red opening; scans 49.jpg/50.jpg show p32's terminal mark followed by p33's new rubric. The canonical transcription separately records `&` and `# Nine-chapter H2: source-word-role blind tableau/clock recovery and original terminal gate
-
-**17 November 2026, Agent 48; original chapter-boundary correction in progress. Classification: provisional model-dependent planted recovery and bounded original-cipher negative under a superseded partition.** No unknown LP2 plaintext, historical secret key, or Cicada destination has been recovered.
-
-## A human-visible route and its strongest rival
-
-The original visual chapter boundaries divide the 56 unknown physical pages into nine contiguous segments: p0–2, p3–7, p8–14, p15–22, p23–26, p27–32, p33–39, p40–53, p54–55. Their exact GP29 rune lengths are **[729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308]**, totaling **12,956** runes; physical p50 is the runeless numeric table. The continuous original text has **2,896 printed rune words**, including **83 singleton runes** and **32 cross-page carries**. The chapter marks supply a plausible human clue to reset a cryptographic clock. The rival explanation is that the book uses some other cipher and the chapter layout is only manuscript structure.
-
-The **conditional model** is a shared, unknown **29×29 row-permutation tableau** across all nine chapters. It selects successive-prime-totient GP29 key rows starting from prime2 afresh in each chapter. When a proposed ciphertext rune would repeat the previous emitted rune, the source-shaped H2 generator rejects that row with probability q=0.81 and consumes additional key rows until an emission is accepted. The true secret table, the per-rune hidden skips and the original plaintext remain hidden from the decoder. The solved p56 prime/totient operation motivates exploring a prime row clock. **No creator-authored evidence selects this random shared table, q=0.81, or the precise chapter reset rule.**
-
-### New blind inversion mechanism
-
-The original printed word cuts, visible even without decryption, assign one of **four lexical roles** to every rune: singleton, first, last, or interior. GP29 distributions for these roles are learned only from the independent Shakespeare 300k-letter control. A 0.5 pseudocount keeps all 29 output probabilities positive. The unknown row-permutation mapping is first estimated from secret-row ciphertext frequency ranks, then the four role-specific emissions are used to recover unknown skip paths. This adds actual source-observable constraints to the older row-unigram-only bootstrap.
-
-A standard Viterbi decoder with the physical H2 skip penalty can permanently favor zero skips before a secret row has enough observations. The blind decoder now **anneals the log skip penalty**: multiplier 0.35 for chapter prefixes up to 40 runes, 0.55 up to 300, 0.8 up to 900, and 1 afterward. The conservative source-rate bound on possible hidden drift is **d ≤ min(180, ceil(0.06i+8))**. After staged learning, the existing Shakespeare GP29 bigram/Hungarian algorithm fits the tableau. Two frozen test-time inverses are compared, including the prior 8-nat soft skipped-row-consistency penalty. The exact planted secret, true key history and plaintext do not enter training, model selection, or original decoding.
-
- at p26 and p32, consistent with prior [physical chapter-reset study](lp2-doublet-visible-chapter-reset-predictive-holdout.md). **The first completed H2 run (44052350345) used incorrect shifted boundaries p23–27, p28–31, p32–39. Its plant metrics and original negative remain valid only for that artificial partition and cannot exclude the source-marked chapter-reset H2 receiver.** The SFT has been corrected and a source-marked rerun is required before making a final original-input decision. The tables below currently document the earlier frozen shifted-boundary run only.
+The original scans 43.jpg/44.jpg show p26's terminal mark followed by p27's red opening; scans 49.jpg/50.jpg show p32's terminal mark followed by p33's new rubric. The canonical transcription separately records ampersand and dollar paragraph/chapter marks at p26 and p32, consistent with the prior [physical chapter-reset study](lp2-doublet-visible-chapter-reset-predictive-holdout.md). **The first completed H2 run (44052350345) used incorrect shifted boundaries p23–27, p28–31, p32–39. Its plant metrics and original negative remain valid only for that artificial partition and cannot exclude the source-marked chapter-reset H2 receiver.** The SFT has been corrected and a source-marked rerun is required before making a final original-input decision. The tables below currently document the earlier frozen shifted-boundary run only.
 
 ## Eight original-shaped planted controls
 
