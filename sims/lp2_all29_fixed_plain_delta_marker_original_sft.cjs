@@ -122,12 +122,104 @@ function exhaustive(native) {
   };
 }
 
+
+/**
+ * Permit an independent, secret fixed predecessor-difference marker per one
+ * of the NINE original visual chapters. Optimize each chapter's marker
+ * separately for each native-English original-length window. An O(N) rolling
+ * update keeps exact source-page interior difference counts per chapter.
+ * All 29^9 choices of secret chapter-specific marker values are covered
+ * without enumerating Cartesian products.
+ * @param {number[]} native
+ * @returns {{minimum:number,start:number,mean:number,compatibleWindows:number,bestMarkerByChapter:Array<{k:number,count:number}>}}
+ */
+function chapterResetExhaustive(native) {
+  const originalChapters = [
+    [0,2], [3,7], [8,14], [15,22], [23,26],
+    [27,32], [33,39], [40,53], [54,55]
+  ];
+  const chapterMap = originals.map(p =>
+    originalChapters.findIndex(([start, end]) => p.page >= start && p.page <= end));
+  assert.ok(chapterMap.every(v => v >= 0));
+  const lengths = originalChapters.map((_, ch) => originals.reduce((sum, p, i) =>
+    sum + (chapterMap[i] === ch ? p.indices.length : 0), 0));
+  assert.deepEqual(lengths,
+    [729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308]);
+  const starts = [];
+  let offset = 0;
+  for (const p of originals) {
+    starts.push(offset);
+    offset += p.indices.length;
+  }
+  assert.equal(offset, 12956);
+  const windows = native.length - offset + 1;
+  assert.ok(windows > 0);
+  const diff = new Uint8Array(native.length);
+  for (let i = 1; i < native.length; i++)
+    diff[i] = (native[i] - native[i-1] + Q) % Q;
+  const counts = Array.from({length:9}, () => new Int32Array(Q));
+  for (let i = 0; i < originals.length; i++) {
+    const start = starts[i], length = originals[i].indices.length;
+    for (let j = start+1; j < start+length; j++)
+      counts[chapterMap[i]][diff[j]]++;
+  }
+  let minimum = Infinity;
+  let at = -1;
+  let matched = 0;
+  let sum = 0;
+  let chosen = [];
+  /**
+   * @param {number} start
+   * @returns {void}
+   */
+  const evaluate = start => {
+    let cost = 0;
+    const best = [];
+    for (const chapter of counts) {
+      let value = Infinity;
+      let marker = -1;
+      for (let k = 0; k < Q; k++) {
+        if (chapter[k] < value) { value = chapter[k]; marker = k; }
+      }
+      cost += value;
+      best.push({k:marker, count:value});
+    }
+    sum += cost;
+    if (cost < minimum) {
+      minimum = cost;
+      at = start;
+      chosen = best;
+    }
+    if (cost <= 86) matched++;
+  };
+  evaluate(0);
+  for (let start = 1; start < windows; start++) {
+    for (let i = 0; i < originals.length; i++) {
+      const j = chapterMap[i];
+      const first = start + starts[i];
+      const len = originals[i].indices.length;
+      counts[j][diff[first]]--;
+      counts[j][diff[first + len - 1]]++;
+    }
+    evaluate(start);
+  }
+  return {
+    minimum, start:at, mean:sum/windows,
+    compatibleWindows:matched, bestMarkerByChapter:chosen
+  };
+}
+
 const reports = controls.map((file, i) => {
-  const result = exhaustive(gpNative(read(file)));
+  const native = gpNative(read(file));
+  const result = exhaustive(native);
+  const chapters = chapterResetExhaustive(native);
   assert.equal(result.minAny, expected[i], 'Native reference result changed');
+  assert.equal(chapters.minimum, [121,136,140][i],
+    'Source-correct nine-chapter reset result changed');
+  assert.equal(chapters.compatibleWindows, 0);
   assert.ok(result.minimums.every(min => min > originalEqual),
     'A full-length original-shaped native-English window survived');
-  return {file, ...result};
+  return {file, ...result, chapterReset:chapters};
 });
 assert.deepEqual(reports.map(r => r.runicLength), [62492, 217106, 321327]);
 assert.deepEqual(reports.map(r => r.windows), [49537, 204151, 308372]);
@@ -185,6 +277,10 @@ const output = {
   controls:reports,
   totalOriginalLengthWindows:562060,
   exactNativeWindowSurvivors:0,
+  nineChapterIndependentMarkers: 'All 29^9 combinations excluded in each complete native reference window',
+  nineChapterControlMinima:reports.map(r => r.chapterReset.minimum),
+  nineChapterWindowsAtOrBelowOriginal86:reports.reduce((s,r) =>
+    s+r.chapterReset.compatibleWindows,0),
   positiveNativeP57RoundtripTestedMarkers:29,
   scope:'Conditional exclusion for contiguous ordinary GP-English from three pre-existing control texts, intact 55-page original cut schedule; not a universal language impossibility.'
 };
