@@ -95,6 +95,31 @@ for (const [edge, input] of Object.entries(positions)) {
     }
   }
 }
+// Independent source-visible 16-cell p15 numeral key: 2896 source words = 16 * 181.
+// Both complete source-printed cell order and the red-3299-start decoded spiral are frozen.
+const p15Keys = {
+  redSpiral: [3299, 3298, 3296, 3294, 3288, 3278, 3258, 3222,
+              3152, 3038, 2838, 2472, 1820, 708, 1206, 4516],
+  printedRows: [3258, 3222, 3152, 3038, 3278, 3299, 3298, 2838,
+                3288, 3294, 3296, 2472, 4516, 1206, 708, 1820]
+};
+assert.equal(parsed.words.length, 16 * 181);
+const p15Cases = [];
+for (const [edge, input] of Object.entries(positions)) {
+  for (const [order, nums] of Object.entries(p15Keys)) {
+    assert.equal(nums.length, 16);
+    for (const decodeSign of [-1, 1]) {
+      const decoded = input.map((v, i) => mod29(v + decodeSign * nums[i % 16]));
+      const encrPlant = nativePlant.map((v, i) => mod29(v - decodeSign * nums[i % 16]));
+      assert.deepEqual(encrPlant.map((v, i) => mod29(v + decodeSign * nums[i % 16])), nativePlant);
+      assert.deepEqual(decoded.map((v, i) => mod29(v - decodeSign * nums[i % 16])), input);
+      p15Cases.push({edge, order, decodeSign, ioc: ioc(decoded), firstThirty: render(decoded.slice(0, 30))});
+    }
+  }
+}
+assert.equal(p15Cases.length, 8);
+assert(p15Cases.every(r => r.ioc < 0.036));
+
 assert.equal(results.length, 14);
 assert(results.every(r => r.ioc < 0.036));
 console.log(JSON.stringify({
@@ -103,6 +128,7 @@ console.log(JSON.stringify({
   runes: sourceIndices.length, printedWords: parsed.words.length,
   crossPageWords: parsed.crossPageWords,
   nativeSolvedP57IoC: ioc(solved),
-  positivePlants: "12/12 complete 2896-rune reversible GP29 positive plants",
-  cases: results
+  positivePlants: "20/20 complete 2896-rune reversible GP29 positive plants",
+  cases: results,
+  p15NumeralKeyCases: p15Cases
 }, null, 2));
