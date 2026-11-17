@@ -68,11 +68,12 @@ const ciphertext = words.flat();
 assert.deepEqual(ciphertext, corpus.pages[0].indices);
 assert.equal(ciphertext.length, 262);
 
-// The actual source switches keys to prevent a repeated ciphertext output.
-// If a repeat is nevertheless allowed when *both* choices collide, it can
-// occur only at a key-phase position where both additive shifts are equal.
-// This is a key-independent necessary condition, stronger than any lexicon
-// screen, and remains necessary even under an arbitrarily known plaintext.
+// IMPORTANT: This auxiliary phase diagnostic applies to an IDEALIZED,
+// REPAIRED anti-repeat encoder that compares with the last EMITTED output.
+// The historical C++ actually compares separate same-key LOOKAHEAD outputs
+// before choosing the present key. It may emit repeats at unequal key slots.
+// Therefore this diagnostic does NOT exclude the literal historical code.
+// The separate native-word necessary-condition test is branch-independent.
 /** @param {number} i @param {number} phaseA @param {number} phaseB */
 const matchingKeySlots = (i, phaseA, phaseB) =>
   keys[0][(i + phaseA) % keys[0].length] === keys[1][(i + phaseB) % keys[1].length];
@@ -125,7 +126,7 @@ console.log('Original p0 equal-rune outputs at indices:', firstPageDoubletIndice
 console.log('All original p0-p55 same-page equalities:', originalDoubletEvents.length,
   '; maximal global-phase legal sites:', bestGlobalCollisions,
   '; maximal independently page-rescored legal sites:', bestUnrelatedPagePhaseSum);
-console.log('Ciphertext-only event gate: PASS. Exact source two-key anti-repeat rule is contradicted before any plaintext guess.');
+console.log('DIAGNOSTIC PASS: the properly repaired last-emitted-output anti-repeat interpretation is excluded; the literal historical C++ is NOT evaluated by this event-phase argument.');
 
 /** @type {Map<number, {word:string,runes:number[],frequency:number}[]>} */
 const wordList = new Map();
