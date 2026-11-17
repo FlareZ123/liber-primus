@@ -60,7 +60,7 @@ def main() -> None:
     doc = pymupdf.open(stream=pdf, filetype="pdf")
     page_texts = [page.get_text("text") for page in doc]
     full = "\n".join(page_texts)
-    match = re.search(r"I\s+resist\.\s+I\s+cannot\s+accept\s+this\s+hollow\s+nothing\s+that\s+I\s+am\.", full, re.IGNORECASE)
+    match = re.search(r"I\s+resist,\s+I\s+cannot\s+accept\s+this\s+hollow\s+nothing\s+that\s+I\s+am\.", full, re.IGNORECASE)
     if not match:
         raise SystemExit("Scrutinies body anchor not found; do not substitute a different section.")
     anchor_offset = match.start()
