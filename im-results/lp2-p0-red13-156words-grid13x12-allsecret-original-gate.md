@@ -64,7 +64,7 @@ The descending column read is the only positive original word-length score. Howe
 
 Both directions of both title-key orders invert **all 156 word slots exactly** on independently planted controls; all 200 heldout native English passages preserve their full word-length sequences after an encrypt→decrypt test. No plaintext, key, authenticated word order or value-changing inverse was found. **Decision:** retire these four literal source-keyed whole-word transpositions as standalone native-GP-English grammar restorations. A distinct transposition requires an independent source selector and meaningful withheld-language signal; do not fit one of 13! column orders from the same 156 lengths.
 
-[Executable original-source Node22 SFT](../sims/lp2_p0_red13_wholeword_12x13_sft.cjs) · [Manual original-source run 44139147218](https://github.com/FlareZ123/liber-primus/actions/runs/44139147218) (dispatched 17 November; verify successful conclusion before asserting hosted PASS).
+[Executable original-source Node22 SFT](../sims/lp2_p0_red13_wholeword_12x13_sft.cjs) · [Passing original-source Windows Node22 SFT run 44141499615](https://github.com/FlareZ123/liber-primus/actions/runs/44141499615) (all exact original-language, random-control, endpoint and positive-plant assertions).
 
 ## Cryptanalytic decision
 
