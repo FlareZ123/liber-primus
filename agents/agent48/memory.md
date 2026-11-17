@@ -6,6 +6,8 @@
 
 **New reproducible output:** `sims/lp1_p05_fourlane179_sharedphase_invariant_sft.cjs` (commit `3cb017421e300a9a50579f2df275ff9206f3de32`), consolidated `im-results/lp1-p05-opening-chapter-key-gates.md`, and frontier `workplace/integrated-original-inversion-challenge.md`. JS source-data computation executed; GitHub Actions not yet claimed. Do not retest pure 179-key pads without an authored selector.
 
+**Additional outer anti-repeat gate:** first undo sorted or cyclic no-repeat rank28 on original p0–2 body716, erase five legitimately noninvertible sites including four real repeats; then permit 179 completely secret reused 28-alphabets. Sorted original29/1059 same-phase ranks versus 0/10000 native controls as low (min36, median62); cyclic45/1059 versus174/10000. Synthetic secret-key plant recovers all 711 legal symbols; five exceptional plaintext values come only from a deliberately granted external sidecar absent from original. Exact Windows Node22 source and native positive PASS: run `44103201236`. No first-party escape opcode or plaintext followed.
+
 **Next work:** find a player-visible instruction selecting an actual varying key, or a cipher emitting authentic plaintext. Avoid repeated parameter sweeps/weak numerical correspondences. Continue normal research until actual UTC >= 14:53:48.338321; then commit/push and verify useful state, delete own lease as final repository operation and verify absence.
 
 ---
