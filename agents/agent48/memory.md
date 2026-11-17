@@ -10,6 +10,8 @@
 
 **Additional outer anti-repeat gate:** first undo sorted or cyclic no-repeat rank28 on original p0–2 body716, erase five legitimately noninvertible sites including four real repeats; then permit 179 completely secret reused 28-alphabets. Sorted original29/1059 same-phase ranks versus 0/10000 native controls as low (min36, median62); cyclic45/1059 versus174/10000. Synthetic secret-key plant recovers all 711 legal symbols; five exceptional plaintext values come only from a deliberately granted external sidecar absent from original. Exact Windows Node22 source and native positive PASS: run `44103201236`. No first-party escape opcode or plaintext followed.
 
+**Source 4x179 Shamir4 inversion:** Genuine 2013 Cicada Shamir sharing suggests a fixed candidate x=1,2,3,4 GP29 four-of-four interpretation of the four 179-rune post-title p0–2 lanes. Direct Lagrange weights [4,-6,4,-1] give original IoC 0.0323896805 and trigram -4.192372 versus heldout native min -2.575897; independent genuine 179-rune GP29 cubic share positive fully recovers. No original-sourced opcode selects those shares. The consolidated report now includes this finite negative, full Windows Node22 suite PASS run `44105860274`, last code at `d2ffb16987a62980e20c6925ed79cc23ad86ef29`.
+
 **Next work:** find a player-visible instruction selecting an actual varying key, or a cipher emitting authentic plaintext. Avoid repeated parameter sweeps/weak numerical correspondences. Continue normal research until actual UTC >= 14:53:48.338321; then commit/push and verify useful state, delete own lease as final repository operation and verify absence.
 
 ---
