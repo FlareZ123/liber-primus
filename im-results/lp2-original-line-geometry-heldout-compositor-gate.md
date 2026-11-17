@@ -18,7 +18,26 @@ Those 29 pages have **348** unambiguous line starts, with optical left x-values:
 |---|---:|---:|---:|---:|
 | Lines | 12 | 301 | 19 | 16 |
 
-The **319** measured baseline-to-baseline pitches are **188 pixels (231)**, **189 pixels (81)**, and **224 pixels (7)**. All seven 224-pixel gaps are visible extra paragraph-leading events on p4, p10, p21, p41, p42 (twice), and p43. No clean line has a materially independent left-indent choice; the vertical positions use a nearly fixed pitch plus paragraph spacing. This does not assess decorated or heavily interrupted pages whose bands fail the clean criterion.
+The **319** measured baseline-to-baseline pitches are **188 pixels (231)**, **189 pixels (81)**, and **224 pixels (7)**. All seven 224-pixel gaps are visible **extra line-leading events** on p4, p10, p21, p41, p42 (twice), and p43. No clean line has a materially independent left-indent choice; the vertical positions use a nearly fixed pitch plus occasional extra spacing. This does not assess decorated or heavily interrupted pages whose bands fail the clean criterion.
+
+
+### The seven extra-leading sites are mostly *within original printed words* (17 November 2026)
+
+A cross-control against the unchanged physical printed-line transcription (`resources/lp2-transcription.txt`) corrects the earlier *paragraph-leading* label. The seven 224-pixel events are the start of physical lines **p4:8, p10:8, p21:2, p41:10, p42:3, p42:6, p43:1** (zero-based), verified directly on the original `21.jpg,27.jpg,38.jpg,58.jpg,59.jpg,60.jpg` scan pixels using the same x720–1639, y450–3249 threshold and row joins. For each site, inspect the end of the immediately preceding transcribed physical line and the beginning of the next line:
+
+| Event | Last printed line ends | First following line begins | Printed word continues across the gap? |
+| --- | --- | --- | --- |
+| p4 line8 | `...ᛗᛉᛁᚹ.ᛄᛋᛟᛗᚾᚱ/` | `ᛖᛒᛋ-...` | **Yes** |
+| p10 line8 | `...ᛚᛄᛖᚫ/` | `.ᚣᛁᚫᚹᚻ-...` | **Yes**, stop at next line beginning |
+| p21 line2 | `...ᚠᚱᛡᛚ/` | `ᛏ-...` | **Yes** |
+| p41 line10 | `...ᛖᚣᚢᛝᚦᛇᚱ-/` | `ᛠᛁᚫ-...` | No |
+| p42 line3 | `...ᛈᛁ.ᚠᚳᚦ/` | `ᛗᛄᚹᚱᚪᛚ-...` | **Yes** |
+| p42 line6 | `...ᚾᚠᛁᛝ.ᛏ/` | `ᚻᚹᚫ-...` | **Yes** |
+| p43 line1 | `...ᚷᛚᚣᚹᛟ-/` | `ᚠᚢ-...` | No |
+
+**Five of seven** extra pitches bisect a single printed ciphertext word. Among the other **532** within-page printed-line transitions (normal-gap or not among this list), **437** also continue inside a printed word and **95** fall at an explicit word divider. Thus the five-of-seven count is ordinary for this corpus and gives no evidence of a semantic paragraph boundary; the term *paragraph leading* should not be treated as a source-selected reset instruction. Moreover, the same original Liber Primus first-release scans contain many 223–225-pixel line starts alongside 188–189-pixel pitches, for example original `06.jpg` lines5/7/9 and `07.jpg` lines3/4/5/6/8/10, so **224-pixel leading is not unique to encrypted LP2**. The first-release panels contain quotation and section punctuation that can motivate ordinary editorial extra spacing, without specifying what LP2 glyphs would encode.
+
+The evidence permits aesthetic/interline adjustment and other author-intended spacing interpretations. Neither the seven literal gap positions nor their immediate printed-word context supplies an executable GP29 decoder or an authenticated key. Treat the original seven-gap selector as **unsupported** unless an independent first-party instruction changes this causal reading.
 
 ## Frozen width-dependent original holdout
 
