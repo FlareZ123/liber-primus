@@ -1,0 +1,19 @@
+name: LP2 original layout sign x known 2014 keys finite SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test 23 original layout rules and historical 2014 keys
+        shell: pwsh
+        run: |
+          node sims/lp2_layout_23rules_two_historical_keys_noskip_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Source-native 23-rule SFT failed' }
