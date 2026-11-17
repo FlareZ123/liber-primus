@@ -338,10 +338,31 @@ for(const kind of ['direct','delta']){
   assert(recoveredPrefix.every(x=>x>=0));
   assert.deepEqual(decrypt(planted3.slice(0,23),recoveredPrefix,kind),
     plantedPlain.slice(0,23));
+  // PLANT D: noninjective source-derived 29->29 key map, e.g. a
+  // prime-residue map. No bijection or affine assumption is permitted.
+  const manyToOne=Array.from({length:29},(_,i)=>mod(i*i+5));
+  assert(new Set(manyToOne).size<29);
+  const nonbijectiveKey=donorGlyphs.slice(donorIndex-23,donorIndex+53)
+    .map(x=>manyToOne[x]);
+  const planted4=encrypt(plantedPlain,nonbijectiveKey,kind);
+  const suffix4=knownKey(planted4,plantedPlain.slice(23),kind);
+  const found4=bestFunctionPrefix(suffix4,donorGlyphs,false);
+  assert.equal(found4.prefix,53);
+  assert.equal(found4.full53,1);
+  assert.equal(found4.offset,donorIndex);
+  const manyRecovered=Array(29).fill(-1);
+  for(let i=0;i<53;i++)
+    manyRecovered[donorGlyphs[found4.offset+i]]=suffix4[i];
+  const keyPrefix4=donorGlyphs.slice(found4.offset-23,found4.offset)
+    .map(x=>manyRecovered[x]);
+  assert(keyPrefix4.every(x=>x>=0));
+  assert.deepEqual(decrypt(planted4.slice(0,23),keyPrefix4,kind),
+    plantedPlain.slice(0,23));
   positive.push({kind,linearDegree:recovered.degree,
     linearHeldoutRecovered:23,sourceAffinePrefix:match.prefix,
     sourceAffineHeldoutRecovered:23,permutationPrefix:found.prefix,
-    permutationHeldoutRecovered:23});
+    permutationHeldoutRecovered:23,noninjectiveFunctionPrefix:found4.prefix,
+    noninjectiveFunctionHeldoutRecovered:23});
 }
 const output=[];
 for(const kind of ['direct','delta']){
@@ -389,6 +410,8 @@ assert.deepEqual(output.map(x=>x.heldout40.correct),[1,2]);
 assert(output.every(x=>x.sourceMatches.every(m=>m.full53===0)));
 assert(output.every(x=>x.permutationMatches.every(m=>m.full53===0)));
 assert(output.every(x=>x.functionMatches.every(m=>m.full53===0)));
+assert(output.every(x=>x.independentCribFunctionMatches.every(m=>m.full53===0)));
+
 
 console.log(JSON.stringify({
   classification:'conditional historical 53-rune known-plaintext-key recovery, no authentic unknown p55 plaintext',
