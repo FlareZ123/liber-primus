@@ -44,6 +44,31 @@ Freeze the existing **parent = sum(children) mod29** rule. Assign the 95 unchang
 
 The original known p56 therefore **falsifies the direct leaf-to-parent plaintext reconstruction under all 24 specified source-natural readers**, regardless of what the first 76 hypothetical p55 labels look like. A model matching 2–7 scattered runes is compatible with accidental 29-symbol agreements; there is no text recovery or source-selected tree grammar. The parent-sum *keystream* hypothesis tested above is distinct and remains negative on its own terms. The [read-only Windows Node22 SFT](../sims/lp2_p50_base59_tree95_p56_knownholdout_sft.cjs) builds the complete source graph and performs these exact original-input checks.
 
+## Key-independent exclusion of arbitrary unary graph folds
+
+The preceding parent-sum failure tests one chosen formula. The **same already-solved p56 original plaintext provides a much stronger algebraic obstruction** to an entire unlimited-key family. In the base59 tree, **92** of the 161 internal nodes have precisely one incoming child. For any *single stationary tree-fold rule*, every unary node must obey
+
+```text
+label(parent) = F1(label(only_child))
+```
+
+where `F1` is an **entirely unknown, unrestricted function from 29 GP rune values to 29 GP rune values**. We do not assume F1 is additive, invertible, uniform, a substitution alphabet, or one of a searched set of functions. Regardless of secret key choice, whenever the same known GP rune appears as the sole child of two known parent nodes, those parent nodes **must carry the same GP rune**.
+
+Assign the **95 original clear p57 runes** to graph leaves by ascending address or source-defined depth-first search, forward or backward. In the same original source graph, assign **the complete 85 independently solved p56 plaintext runes** to the last 85 of the 161 internal nodes. Read those nodes in address, source-defined DFS preorder, or DFS postorder, either forward or reversed. The first 76 internal node labels (possible p55 plaintext) remain **completely unrestricted**. This gives **24 fixed source-natural complete assignments**, with no plaintext fit.
+
+| Exact original-source necessary condition | Result |
+| --- | --- |
+| Known unary parent-child pairs, across the 24 readers | **36–52** |
+| Conflicting child-symbol inputs to a single unknown F1, across the 24 readers | **6–14** |
+| Best reader, even allowing an arbitrary noninjective F1 | **6 impossible parent output assignments** |
+| Required by any one stationary deterministic unary F1 | **Zero conflicts** |
+
+Example: ascending-address internals read in reverse and DFS-assigned forward p57 leaves produce **36** fully observed unary parent/child pairs. The input GP rune **I** (index 10) must map both to **G** (index 6), **E** (index 18), and **N** (index 9); the same single-valued F1 cannot satisfy these original plaintext equations. Every one of the 24 natural reader assignments has similar explicit contradictions. This **rules out all unary lookup tables** in that tree-fold family, even with 29 unconstrained secret outputs, independently of a proposed p55 message.
+
+A related but different **unlimited-function** family assigns each internal label by *only the unordered multiset of its descendant p57 leaf symbols*. Along unary graph chains, two internal nodes have the same descendant-leaf set and hence must have the same predicted output under any fixed symmetric function of that set. The source permits **six** natural full internal readout conventions (address/DFS-preorder/DFS-postorder × orientation); among p56's 85 known labels each has **19–33 unavoidable inconsistencies** under the multiset equality invariant, irrespective of leaf assignment, prime numbering, or hidden function.
+
+These are **exact constraints** on two specified graph-reader families; no random sampling, English-language scoring, guessed plaintext, or limited-key sweep enters the exclusions. A separately keyed function per node, a depth/address-dependent update, changed p55/p56 receiver order, non-symmetric structural folding, or an intermediate ciphertext rather than literal GP29 plaintext could evade them. The manuscript does **not** presently supply an author-visible clue selecting such richer exceptions. The complete original-table and known-plaintext calculations are added to the same [single-file CJS reproducer](../sims/lp2_p50_base59_tree95_p56_knownholdout_sft.cjs), rather than launching an unrelated new family search.
+
 ## Decision
 
-The base59 one-root tree and 95-leaf/p57 length alignment remain interesting candidate source geometry, though leaf count **95** follows mechanically from the original 161 distinct table values and is not an independent key signal. The direct eight-model leaf-derived additive pad fails on p55/p54–55 compared with shuffled p57 leaf orders, and the separately fixed 24-model internal-node **plaintext** reconstruction is decisively contradicted by all 85 authenticated p56 symbols. Neither consumer recovers unknown LP2 plaintext, key material or a destination. A new tree proposal requires an author-visible instruction specifying leaf order, inward operation and output receiver; expanding arbitrary graph traversals or key-fitting the 76 unknown positions would retread these unsuccessful routes.
+The base59 one-root tree and 95-leaf/p57 length alignment remain interesting candidate source geometry, though leaf count **95** follows mechanically from the original 161 distinct table values and is not an independent key signal. The direct eight-model leaf-derived additive pad fails on p55/p54–55 compared with shuffled p57 leaf orders, and the separately fixed 24-model internal-node **plaintext** reconstruction fails the 85-symbol known-p56 holdout. The stronger *unrestricted unary function* and *arbitrary symmetric leaf-multiset* tests reject their complete stationary tree-fold families across every tested source-natural receiver by hard original-rune contradictions. None recovers unknown LP2 plaintext, key material or a destination. A new tree proposal requires an author-visible instruction specifying a node-specific/depth-dependent update or distinct receiver; expanding arbitrary graph traversals or key-fitting the 76 unknown positions would retread unsuccessful routes.
