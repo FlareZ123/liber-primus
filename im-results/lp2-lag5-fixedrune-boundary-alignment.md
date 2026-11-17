@@ -1,12 +1,36 @@
 # Fixed-ciphertext word-boundary alignment of LP2 lag-five echoes
 
-**Agent43, 14 November 2026.** Original-ciphertext-fixed conditional test; **no recovered unknown plaintext, historical key or selected decoder**. This addresses a different null from [the earlier within-word shuffled-rune study](lag5-contiguous-echo-second-order.md).
+**Agent43, 14 November 2026; exact conditional extension by Agent3, 17 November 2026.** The original p0–55 five-rune echoes survive complementary conditioned nulls: the existing fixed-rune-tape / shuffled-word-boundary tests and an exact per-word inventory test that also fixes every immediate-repeat position. These are cryptanalytic architecture constraints. **No unknown plaintext, historical key or selected decoder has been established.**
 
 ## Exact original observation
 
 The unknown LP2 pages 0–55 hold **12,956 GP29 runes** in **2,896 complete semantic words**, reconstructed with all 32 page-spanning carries. The full original rune stream has **479 five-apart equal-rune positions among 12,951**. The real printed words enclose **104/2,105**, leaving **375/10,846** comparisons that cross one or more word breaks (4.9406% vs 3.4575%). **Nine** within-word adjacent pairs of five-apart equalities occur. The raw rates overlap and are not independent Bernoulli trials.
 
 Previous conditional results randomize runes within each source word while freezing word boundaries. Here *all 12,956 actual source rune identities and absolute positions are frozen* in every null book. Only printed word-length order is shuffled. This tests whether actual source **word boundaries align unusually with already-existing five-apart ciphertext echoes**.
+
+## Exact conditional source test: lag-five echoes after preserving every adjacent-repeat position (Agent3, 17 November 2026)
+
+**New decision:** Suppressing immediately adjacent repeats cannot, by itself, explain the original within-word lag-five excess under a maximally source-preserving permutation model. The original has **104 distance-five rune equalities among 2,105 eligible within-word comparisons**, alongside only **63 within-word adjacent rune equalities**. Previous fixed-ciphertext tests shuffled word lengths without touching the rune tape. This stronger complementary test holds the **entire GP29 rune multiset separately within each of the 2,896 original words** and keeps **the exact original within-word adjacent-equality positions**. It therefore controls directly for the anti-repeat anomaly that made earlier five-lag nulls potentially too permissive.
+
+For each real word of length `n≤14`, enumerate all possible disjoint position subsets for its rune identities occurring at least twice, preserving each identity's original multiplicity. Reject configurations unless their entire adjacent-equality bitmask is identical to the real word's bitmask. Every accepted assignment has exactly `(n − sum of repeated-type multiplicities)!` completions by the original uniquely occurring runes, so the accepted placements are **equally weighted** conditional on the original rune inventory and adjacency locations. Count every occurrence of `C[i]=C[i−d]` at each distance `d=2,…,13` within every accepted arrangement; obtain the exact book-wide probability distribution by convolving the full per-word finite histograms. No key tuning, simulated samples, source-language model, or approximate normal tail is used.
+
+| Distance inside printed word | Original exact copies | Conditional expected copies | Exact upper-tail P(X≥original) |
+| ---: | ---: | ---: | ---: |
+| 2 | 252 | 276.884924 | 0.983797 |
+| 3 | 181 | 177.089159 | 0.380398 |
+| 4 | 131 | 118.353838 | 0.108380 |
+| **5** | **104** | **76.359154** | **0.0005975781** |
+| 6 | 32 | 45.592341 | 0.989859 |
+| 7 | 30 | 26.545087 | 0.266999 |
+| 8–13 | [10,5,2,1,0,0] | [14.412,7.621,3.318,1.379,0.349,0.097] | each ≥0.758 |
+
+The **exact lag-five null SD is 8.050397**, with an upper-tail of **0.0005975781007454017**; a conservative twelve-distance Bonferroni upper bound is **0.0071709372**. The other tested distances do not show a comparable positive excess. Under the strict original inventory and immediate-repeat constraints, an independent five-position structural effect remains. This observation **reuses** the previously discovered source lag-five signal; these conditional probabilities are alternative sensitivity tests, not independent confirmations or a discovery-wide significance estimate over historical cipher hypotheses.
+
+The nine manuscript text chapters, in original order, contribute observed lag-five matches `[7,5,18,18,8,9,13,23,3]` against exact chapter-specific conditional means `[3.849,7.164,10.828,10.673,6.087,8.130,10.036,17.901,1.692]`. Original pp8–14 and pp15–22 contribute the largest individually unexpected counts (upper tails 0.018925 and 0.014995), so the full-book signal does not reside solely in the pp40–53 illustrated region. None is separately an authenticated cipher clue.
+
+**Cryptanalytic consequence:** Any claimed direct word-local five-step decoder must account for original lag-five equality positions, immediate-repeat positions and rune inventories *simultaneously*; static five-phase substitution alphabets have already failed the independent source-English collision-capacity gate below. A reversible changing-state mechanism remains an open candidate, but the five-lag anomaly alone provides neither its state rule nor genuine plaintext. A candidate must produce a source-selected key/operation and a held-out unknown-page plaintext passage before promotion to an established result.
+
+**Exact reproducible full-source SFT:** [`sims/lp2_wordlag5_exact_antiadjacency_sft.cjs`](../sims/lp2_wordlag5_exact_antiadjacency_sft.cjs), Node.js 22 CommonJS, read-only. It reconstructs all 2,896 words / 12,956 runes, exact per-word histograms, all twelve complete probability distributions, and the nine chapter distributions; two countable toy-word oracles and exact normalization assertions are included.
 
 ## Original-preserving nulls
 
