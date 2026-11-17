@@ -60,10 +60,18 @@ Exactly **16** complete rank28-step inversions (the same source page order, four
 
 The additive original-source consumer has its own independent positive: all **76/76** source-native planted GP runes recover, with **11/11** complete planted GP dictionary words of length at least three matching the original p55 physical word slots.
 
+### Original complete terminal-chapter clock (308 runes)
+
+The earlier 76-rune p55 experiment starts a proposed 76-key tape at p55's beginning. However, the physical manuscript's **p54 begins the same final encrypted chapter**, of **232+76=308 original runes**, with a word continuing across the p54/p55 page boundary. If the candidate wheel key is truly chapter-cyclic, the key starts at p54's first rune; therefore **p55 naturally begins at event index232 mod76 = 4**, without choosing a rotation to rescue the earlier failure.
+
+The complete test applies every same source-fixed 76-event tape repeatedly to the **unaltered 308-rune p54||p55 original ciphertext**, starting key position0 at p54. Both source page orders, four event readouts, both arithmetic signs and two independently motivated cipher registers (direct GP29 additive, GP28 predecessor-step with F as exact ciphertext doublet) give **32 complete original decryptions**. All invert and recover all 308 original runes under their own encoder. A separately planted 308-rune GP-source-native sequence is recovered **308/308** for every model.
+
+The original complete chapter has **66 printed physical word chunks**. The strongest among the 32 direct outputs matches only **3 complete dictionary words** of at least three GP runes; every other output matches at most one. The three incidental words are isolated **PIE, TUG, FEAR**, separated by nonwords in the same full output. The original chapter is not recovered as readable source-native prose under this bounded full-chapter key. This closes the natural **page-boundary/phase4** alternative to the first 76-rune p55 test.
+
 ## Cipher results, uncertainty, and next decision
 
 The two exact source sums fix the 76-event ordinal stream and the 272-prime-turn count before examining any p55 unknown glyph. The empirical native-language comparison above, while suggestive, cannot establish author selection. **No independently sourced key-use mechanism has been found.**
 
-The carrier-specific test uses one original full-page order plus one natural reverse comparator. A next solver would need a source-selected instruction for using carried runes or wheel positions as *non-additive state* or for feeding the exact resulting tape into a different authenticated cipher. It would be unproductive to retry these same 16 additive pads at tuned offsets or arbitrary alphabet mappings.
+The complete original test checks the source-printed order and one natural reverse comparator, including the unchanged p54 chapter carry that fixes p55 phase4. A next solver would need a source-selected instruction for using carried runes or wheel positions as *non-additive state* or for feeding the exact resulting tape into a different authenticated cipher. It would be unproductive to retry these same 16 additive pads at tuned offsets or arbitrary alphabet mappings.
 
-**Decision:** preserve the exact relation and 76-source-event tapes for potential independent corroboration, while **retiring the 16 direct GP29 addition/subtraction and 16 GP28 predecessor-step interpretations**. The completed original-cipher inversions did **not** recover any unknown LP2 plaintext, key chosen by the creator, or next location. The two-register source relations do not establish that the key construction was deliberate.
+**Decision:** preserve the exact relation and 76-source-event tapes for potential independent corroboration, while **retiring the 16 direct GP29 addition/subtraction and 16 GP28 predecessor-step p55 interpretations, plus their 32 complete-chapter source-phase consumers**. The completed original-cipher inversions did **not** recover any unknown LP2 plaintext, key chosen by the creator, or next location. The two-register source relations do not establish that the key construction was deliberate.
