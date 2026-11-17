@@ -1,0 +1,51 @@
+{
+  "survivors": [],
+  "missing": [
+    [
+      "opening",
+      "solved"
+    ],
+    [
+      "opening",
+      "words"
+    ],
+    [
+      "opening",
+      "combined"
+    ],
+    [
+      "opening",
+      "periodic0"
+    ],
+    [
+      "opening",
+      "periodic1"
+    ],
+    [
+      "p42",
+      "solved"
+    ],
+    [
+      "p42",
+      "words"
+    ],
+    [
+      "p42",
+      "combined"
+    ],
+    [
+      "p42",
+      "periodic0"
+    ],
+    [
+      "p42",
+      "periodic1"
+    ]
+  ],
+  "controls": {
+    "serial_pass": false,
+    "combined_pass": false,
+    "periodic_litf0_pass": false,
+    "periodic_litf1_pass": false
+  }
+}
