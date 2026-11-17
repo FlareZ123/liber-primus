@@ -1,13 +1,13 @@
 'use strict';
 /**
- * Source-anchored 13x12 WORD-grid gate for LP2 physical p0-p2.
+ * Source-anchored 156-word rectangular grid gate, both 13x12 and 12x13.
  *
  * The original red title has 13 runes and the 13-dot mark follows it;
- * the untouched chapter has 156 further words, exactly 13 rows x 12.
- * Test the simplest operational use: one original red-title symbol selects
- * a fixed row alphabet, allowing an ARBITRARY unknown bijection per row.
- * A row-preserving word shuffle is allowed because the same equality
- * invariant survives it. No English or key score is fitted to the source.
+ * the untouched chapter has 156 further words, permitting 13x12 or 12x13.
+ * Test one original red-title symbol per ROW (13x12) or per COLUMN
+ * (12x13), allowing an ARBITRARY unknown bijection on either selected axis.
+ * Reordering words inside the corresponding row or column preserves the
+ * exact equal-rune statistic; no keys are needed to test either family. No English or key score is fitted to the source.
  *
  * SFT (Windows Node 22): node sims/lp2_p0_red13_wordgrid13x12_allsecret_sft.cjs
  */
@@ -65,6 +65,18 @@ assert.equal(source.pairs, 39908);
 assert.equal(source.equalPairs, 1428);
 assert.ok(Math.abs(source.ioc - 0.03578229928836323) < 1e-14);
 
+const wordLengths = words.map((word) => word.length);
+const asColumns = (wordArray) => Array.from({length: 13}, (_, col) =>
+  wordArray.filter((_, index) => index % 13 === col).flat());
+const columns = asColumns(words);
+const columnSource = collisionProfile(columns);
+assert.equal(columns.length, 13);
+assert.deepEqual(columns.map((column) => column.length),
+  [56, 52, 55, 60, 53, 68, 55, 48, 58, 46, 58, 43, 64]);
+assert.equal(columnSource.pairs, 39300);
+assert.equal(columnSource.equalPairs, 1322);
+assert.ok(Math.abs(columnSource.ioc - 0.033638676844783715) < 1e-14);
+
 // Exact native-GP solved Cicada reference, preserving the same 13 row lengths.
 const native = solved.sections.flatMap((s) =>
   Array.from(s.source_text).filter((r) => index.has(r)).map((r) => index.get(r)));
@@ -87,6 +99,26 @@ assert.ok(Math.abs(sorted[0] - 0.053021950486118075) < 1e-14);
 assert.ok(source.ioc < sorted[0]);
 assert.equal(controls.filter((ioc) => ioc <= source.ioc).length, 0);
 
+// Fair 12x13 orientation control: preserve ALL 156 original word lengths,
+// then take each thirteenth word to form one vertically aligned column.
+const columnControls = [];
+for (let start = 0; start + windowLength <= native.length; start++) {
+  let offset = start;
+  const controlWords = wordLengths.map((n) => {
+    const output = native.slice(offset, offset + n);
+    offset += n;
+    return output;
+  });
+  assert.equal(offset - start, 716);
+  const profile = collisionProfile(asColumns(controlWords));
+  assert.equal(profile.pairs, columnSource.pairs);
+  columnControls.push(profile.ioc);
+}
+assert.equal(columnControls.length, 2264);
+const columnSorted = columnControls.slice().sort((a, b) => a - b);
+assert.ok(Math.abs(columnSorted[0] - 0.05333333333333334) < 1e-14);
+assert.equal(columnControls.filter((ioc) => ioc <= columnSource.ioc).length, 0);
+
 // Exact source-derived red-title additive row-key hypothesis, both signs.
 // Re-encryption checks algorithmic correctness; it cannot establish a key.
 const mod29 = (x) => ((x % 29) + 29) % 29;
@@ -105,6 +137,13 @@ for (const sign of [-1, +1]) {
     w.map((x) => corpus.translit[x]).join(''));
   assert.deepEqual(first.slice(0, 2), sign < 0
     ? ['TAELI', 'XAEW'] : ['BYNGJ', 'SYH']);
+
+  const columnDecoded = words.map((word, w) =>
+    word.map((c) => mod29(c + sign * red[w % 13])));
+  const columnEncrypted = columnDecoded.map((word, w) =>
+    word.map((p) => mod29(p - sign * red[w % 13])));
+  assert.deepEqual(columnEncrypted, words);
+  assert.deepEqual(collisionProfile(asColumns(columnDecoded)), columnSource);
 }
 
 // Independent 716-rune true-native positive under 13 arbitrary secret
@@ -136,10 +175,42 @@ assert.deepEqual(restored, clearRows);
 assert.deepEqual(collisionProfile(cipherRows), collisionProfile(clearRows));
 assert.ok(collisionProfile(clearRows).ioc >= sorted[0]);
 
+// Second planted positive for the competing orientation: independent
+// arbitrary 29-symbol alphabet at each of 13 columns of twelve words.
+let clearOffset = 0;
+const clearWords = wordLengths.map((length) => {
+  const out = native.slice(clearOffset, clearOffset + length);
+  clearOffset += length;
+  return out;
+});
+assert.equal(clearOffset, 716);
+const columnKeys = Array.from({length: 13}, permutation);
+const plantedColumns = clearWords.map((word, wi) =>
+  word.map((x) => columnKeys[wi % 13][x]));
+const recoveredColumns = plantedColumns.map((word, wi) =>
+  word.map((x) => columnKeys[wi % 13].indexOf(x)));
+assert.deepEqual(recoveredColumns, clearWords);
+assert.deepEqual(collisionProfile(asColumns(plantedColumns)),
+  collisionProfile(asColumns(clearWords)));
+assert.ok(collisionProfile(asColumns(clearWords)).ioc >= columnSorted[0]);
+
 console.log(JSON.stringify({
   source: 'Original LP2 p0-p2: red 13, black 156 words, 716 runes',
   sourceRows: 13, wordsPerRow: 12, redKey: red.map((v) => corpus.translit[v]).join(' '),
   rowLengths, original: source,
+  competingColumns: {
+    orientation: '12 rows x 13 red-key columns',
+    columnRuneLengths: columns.map((column) => column.length),
+    original: columnSource,
+    solvedNative: {
+      matchedExactWordLengthWindows: columnControls.length,
+      min: columnSorted[0],
+      median: columnSorted[Math.floor(columnSorted.length / 2)],
+      max: columnSorted.at(-1),
+      asLowAsOriginal: 0
+    },
+    secretAlphabetPlantRecoveredRunes: recoveredColumns.flat().length
+  },
   solvedNative: {
     originalRuneLength: native.length,
     matched716RuneWindows: controls.length,
@@ -153,6 +224,6 @@ console.log(JSON.stringify({
     exactRoundtrip: true,
     identicalCollisionProfile: true
   },
-  verdict: 'No direct ordinary native-GP English under any 13 static row bijections; row-preserving word rearrangements cannot rescue it.',
-  scope: 'Does not exclude changing state inside a row, cross-row transposition, another plaintext register or a non-bijective length-changing decoder.'
+  verdict: 'Neither rectangular orientation has ordinary native-GP collision structure under 13 static, arbitrary hidden axis bijections.',
+  scope: 'Cannot exclude changing state within word-axis bands, crossing bands, another plaintext register, or a non-bijective length-changing decoder.'
 }, null, 2));
