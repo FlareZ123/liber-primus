@@ -10,7 +10,7 @@ The precise candidate uses standard historical OutGuess 0.4 `arc4_initkey("Encry
 
 ## Reproducible source input and exact output
 
-Read-only, asserted [Node22 SFT](../sims/lp2_p55_instar2013_outguess_arc4_rune_gate_sft.cjs) uses the actual checked-in original LP2 corpus, original printed p55 word parsing, a complete 311,121-character Shakespeare reference, source-native p57 clear-GP re-encryption, and deterministic SHA256-derived wrong-password controls. [Windows original corpus run 44135359179](https://github.com/FlareZ123/liber-primus/actions/runs/44135359179).
+Read-only, asserted [Node22 SFT](../sims/lp2_p55_instar2013_outguess_arc4_rune_gate_sft.cjs) uses the actual checked-in original LP2 corpus, original printed p55 word parsing, a complete 311,121-character Shakespeare reference, source-native p57 clear-GP re-encryption, and deterministic SHA256-derived wrong-password controls. [passing Windows original corpus run 44135751073](https://github.com/FlareZ123/liber-primus/actions/runs/44135751073).
 
 | Register | Runes | Raw GP29 IOC | After exact key, restart from byte zero |
 |---|---:|---:|---:|
