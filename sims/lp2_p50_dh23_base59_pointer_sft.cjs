@@ -74,6 +74,46 @@ function primeSum(lo, hi) {
 
 const base59 = decode(59);
 const base60 = decode(60);
+
+// Independent signed-2013 route using STANDARD base60. The 2013 DH
+// example specifies p=23, server base=5; interpreting them as ZERO-BASED
+// 32-by-8 table coordinates remains an explicit hypothesis.
+const historicalDH = {p:23, base:5, serverPublic:8, clientPublic:19, shared:2};
+const historicalBase29Operand = 3301;
+const dhCell = historicalDH.p * 8 + historicalDH.base; // original 189
+assert.equal(dhCell, 189);
+assert.equal(tokens[dhCell], '3C');
+assert.equal(base60[dhCell], 192);
+assert.equal(tokens[base60[dhCell]], '00');
+assert.equal(base60[base60[dhCell]], 0);
+// The second zero is independently addressed by the authenticated
+// BASE29 example's source numeric operand, 3301, modulo 256.
+const secondZero = historicalBase29Operand % 256;
+assert.equal(secondZero, 229);
+assert.equal(tokens[secondZero], '00');
+assert.deepEqual(base60.flatMap((n, i) => n === 0 ? [i] : []), [192, 229]);
+// Original p39 rune triad [27,5,15] has double GF29 root 24.
+const p39Root=24;
+assert.equal((27 + 5*p39Root + 15*p39Root*p39Root) % 29, 0);
+assert.equal((5 + 30*p39Root) % 29, 0);
+assert.equal(p39Root * 8, 192);
+assert.equal(historicalBase29Operand % 29, p39Root);
+const zeroBracket = base60.slice(193, secondZero);
+assert.equal(zeroBracket.length, 36);
+assert.deepEqual(zeroBracket, [
+  155,159,89,176,115,105,47,110,74,209,68,194,
+  76,127,21,57,175,6,61,70,150,251,84,142,
+  219,148,59,58,52,51,151,68,52,73,249,144
+]);
+// Alternative normal one-based row/column interpretations fail this link.
+assert.equal(base60[(23-1)*8+(5-1)],144);
+assert.equal(base60[(23-1)*8+5],40);
+assert.equal(base60[23*8+(5-1)],38);
+// Base59 skips the zero: cell189 points to itself instead of 192.
+assert.equal(base59[dhCell], dhCell);
+// This conditional index match does NOT supply a key schedule,
+// authenticate a Cicada-selected row/column instruction, or decode runes.
+
 assert.equal(base59[189], 189);
 assert.equal(tokens[189], '3C');
 assert.equal(Math.floor(189 / 8), 23);
@@ -156,6 +196,9 @@ assert.equal(root189, 16);
 assert.equal(rootAnd31, 1);
 process.stdout.write(JSON.stringify({
   status: 'source-conditional structure only; NO UNKNOWN PLAINTEXT',
+  base60SignedDHToFirstZero: {fromIndex: 189, printed: '3C', firstZeroIndex: 192,
+    secondZeroIndex: 229, bracketLength: zeroBracket.length,
+    p39RedDoubleRoot: p39Root, requiresZeroBasedCoordinates: true},
   radix: 59,
   selfPointingCell: 189,
   originalToken: '3C',
