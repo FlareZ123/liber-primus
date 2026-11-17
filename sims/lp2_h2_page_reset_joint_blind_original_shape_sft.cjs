@@ -305,6 +305,9 @@ function solve(data){
     if(estimatedTable[r][c]===actualInverse[r][c])tableCorrect++;
   return {heldoutPage:HELDOUT_PAGE,heldoutRunes:heldoutPlain.length,
     heldoutCorrect,heldoutFirst150:spanCorrect,
+    heldoutBigramLog:scoreLanguage(heldoutPlain),
+    heldoutSkipCertificate:checkSkipped(pages[HELDOUT_PAGE],heldoutPath,
+      heldoutPlain,estimatedTable),
     trainingKeyPathCorrect:pathCorrect,trainingKeyPathTotal:pathTotal,
     heldoutKeyPathCorrect:heldoutPathCorrect,
     tableExactCells:tableCorrect,tableCells:N*N,
@@ -338,5 +341,99 @@ console.log(JSON.stringify({
   meanHeldoutPlainAccuracy:mean('heldoutCorrect')/
     PAGE_LENGTHS[HELDOUT_PAGE],
   meanHeldoutFirst150Accuracy:mean('heldoutFirst150')/150,
+  meanHeldoutBigramLog:mean('heldoutBigramLog'),
   results:tests.map(({prefixTrace,...rest})=>rest)
+},null,2));
+
+
+/** @param {number[]} sequence */
+function scoreLanguage(sequence){
+  let total=0;
+  for(let i=1;i<sequence.length;i++)
+    total+=model.logProb[sequence[i-1]][sequence[i]];
+  return total/(sequence.length-1);
+}
+
+/**
+ * An inferred path is authentic only when every rejected interim
+ * ciphertext equals the previously emitted ciphertext. An exact
+ * accepted-symbol table inverse is automatic and is not proof of a key.
+ * @param {number[]} cipher
+ * @param {number[]} drift
+ * @param {number[]} plain
+ * @param {number[][]} inverse
+ */
+function checkSkipped(cipher,drift,plain,inverse){
+  const fwd=inverse.map(row=>{
+    const out=new Array(N);
+    row.forEach((p,c)=>out[p]=c);
+    return out;
+  });
+  let skips=0,failed=0;
+  for(let i=1;i<drift.length;i++){
+    for(let d=drift[i-1];d<drift[i];d++){
+      skips++;
+      if(fwd[primeRows[i+d]][plain[i]]!==cipher[i-1])failed++;
+    }
+  }
+  return {skips,failed};
+}
+
+/**
+ * Frozen unmodified original-LP2 negative/positive-receiver gate:
+ * train without seeing source physical p41 ciphertext, then decode that
+ * page once. English plausibility alone is weak; exact skipped-row
+ * consistency is an independent key-changing constraint.
+ */
+function originalBlindGate(){
+  const pages=gp.pages.filter(p=>p.page<=55).map(p=>p.indices);
+  assert.deepEqual(pages.map(p=>p.length),PAGE_LENGTHS);
+  let paths=pages.map(c=>Array(Math.min(c.length,3)).fill(0));
+  for(const limit of [3,4,5,7,10,15,20,30,45,60,80,110,150,200,300]){
+    for(let sweep=0;sweep<3;sweep++){
+      const emit=learnEmissions(pages,paths,limit);
+      paths=pages.map((c,page)=>page===HELDOUT_PAGE?[]:
+        inferPage(c,emit,limit));
+    }
+  }
+  let fitted=trainTable(pages,paths);
+  for(let iteration=0;iteration<2;iteration++){
+    const emit=emissionFromTable(fitted.inverseTableau);
+    paths=pages.map((c,page)=>page===HELDOUT_PAGE?[]:
+      inferPage(c,emit));
+    fitted=trainTable(pages,paths);
+  }
+  const table=fitted.inverseTableau;
+  const heldout=pages[HELDOUT_PAGE];
+  const heldoutPath=inferPage(heldout,emissionFromTable(table));
+  const text=heldout.map((c,i)=>table[primeRows[i+heldoutPath[i]]][c]);
+  const skipped=checkSkipped(heldout,heldoutPath,text,table);
+  const trainingPlain=[];
+  for(let p=0;p<pages.length;p++){
+    if(p===HELDOUT_PAGE)continue;
+    for(let i=0;i<pages[p].length;i++)
+      trainingPlain.push(table[primeRows[i+paths[p][i]]][pages[p][i]]);
+  }
+  return {
+    status:'ONE source-frozen original receiver attempt, no fit to heldout page',
+    originalRunes:LENGTH,trainingRunes:trainingPlain.length,
+    withheldPage:HELDOUT_PAGE,withheldRunes:heldout.length,
+    trainingBigramLog:scoreLanguage(trainingPlain),
+    withheldBigramLog:scoreLanguage(text),
+    withheldRawCipherBigramLog:scoreLanguage(heldout),
+    withheldSkipCertificate:skipped,
+    inferredWithheldHiddenExtraKeys:heldoutPath.at(-1),
+    withheldCandidateFirst150: text.slice(0,150)
+      .map(i=>gp.translit[i]).join(''),
+    verdict:'A candidate is a real original-cipher inverse only if all rejected-row checks pass AND independently withheld native plaintext is coherent. Fitting and round-tripping a bijective table is not a decryption.'
+  };
+}
+console.log(JSON.stringify({
+  syntheticCalibration: {
+    mean150:mean('heldoutFirst150')/150,
+    meanBigramLog:mean('heldoutBigramLog'),
+    maxPositiveFailedSkipChecks:Math.max(...tests.map(
+      t=>t.heldoutSkipCertificate.failed))
+  },
+  originalAttempt:originalBlindGate()
 },null,2));
