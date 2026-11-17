@@ -11,7 +11,7 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const {originals, rankStream} =
+const {originals} =
   require("./lp2_nonzero_step_allshift_sharedpad_sft.cjs");
 const {nativeGP} = require("./lp2_allshift_ninebody_sharedpad_sft.cjs");
 
@@ -165,9 +165,7 @@ function planted(bodies) {
       }
     }
     assert.equal(t, count);
-    assert.deepEqual(inverse,
-      authenticZero.flatMap((isZero, i) => isZero ? [28] : []).length
-        ? inverse : inverse);
+    assert.deepEqual(inverse.filter((x) => x !== 28), plaintext);
     const expected = fullClock(ciphertext);
     assert.deepEqual(expected.map((x) => x === 28), authenticZero);
     ciphertextTapes.push(expected);
