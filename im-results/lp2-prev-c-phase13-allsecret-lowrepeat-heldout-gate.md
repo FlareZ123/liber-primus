@@ -1,65 +1,79 @@
-# A lossless low-repeat GP29 cipher and the original 13-phase all-secret decoder gate
+# A reversible low-doublet cipher, its original word-start obstruction and an all-secret 13-phase decoder test
 
-**17 November 2026 · Agent10. Classification: new fully reversible constructive positive with the original anti-doublet rate, followed by an independently held-out original LP2 plaintext attack which fails.** **No authentic unknown plaintext, original key, selected operator, or continuation endpoint was recovered.**
+**17 November 2026 · Agent10. Evidence: constructive source-native cipher/known-key positive; independent original-source key-independent necessary-condition obstruction; blinded all-secret plaintext-recovery negative. No authentic unknown LP2 plaintext, author key, selected operation, or destination recovered.**
 
-## What the original artifact suggests, and what it does not
+## Original problem and actual mechanism tested
 
-The original LP2 source contains 55 rune-bearing unknown pages, exactly **12,956** GP29 runes, **12,901** within-page successor positions and **86** same-rune successors (**0.6666%**). Distinctive **13-dot marks** recur on the original artwork. These facts make a source-shaped question worth answering: can a **fully reversible** plaintext-to-GP29 transducer with a **13-phase / preceding-ciphertext** key state generate an English-like source while nearly eliminating ciphertext doublets, and can we actually recover such a key from the available original ciphertext?
+The unsolved manuscript has **12,956** original GP29 runes across **55** rune-bearing physical pages, **12,901** within-page adjacent successor positions, and only **86** identical adjacent ciphertext runes. Physical images repeatedly use **13-dot punctuation**. Those clues suggest testing a 13-phase, previous-ciphertext-conditioned **full** rune-substitution transducer. No first-party text prescribes this operator or its secret tables.
 
-**Weakest premise:** neither 13-dot punctuation nor the 86-doublet anomaly is an original instruction to use the specific state machine or a source-derived key. This is a constructive rival to previously proposed lossy collision-overwrite systems, followed by an original-input attempted inverse. The ratio used to construct the positive was **chosen after seeing** the manuscript's low doublet rate; its similarity is a demonstration of possibility, **not a probability of Cicada design**.
-
-## Complete bijective transmitter
-
-Use a clock `t=i mod13` that restarts at every original physical page. Let the page-initial ciphertext rune be an arbitrary IV and let `s=(t,C[i−1])` be one of **13×29=377** states. For each state, an unconstrained unknown **permutation of all 29 GP rune symbols** `π_s` transmits one plaintext rune:
+Let `i` count rune positions from the start of each physical page, and `s=(i mod13,C[i−1])`. There are **13×29=377** public states, each with a completely independently chosen secret permutation `π_s` of **all 29** authentic GP runes. The page's first rune is an unmodeled public IV. At every other position:
 
 ```text
-Forward:  C[i] = π_(i mod13, C[i−1])(P[i])
-Inverse:  P[i] = π⁻¹_(i mod13, C[i−1])(C[i])
+C[i] = π_(i mod13,C[i−1])(P[i])
+P[i] = π⁻¹_(i mod13,C[i−1])(C[i])
 ```
 
-This is an exact **one-rune-in/one-rune-out bijection for every fixed state**, so it neither overwrites plaintext nor needs an auxiliary sidecar. All 29 possible plaintext symbols, including F and the authentic GP digraphs, remain representable. Ciphertext repeats are permitted, unlike a universal no-repeat coder.
+This is a **complete one-to-one, one-rune-in/one-rune-out cipher**. No plaintext rune is suppressed, altered, buffered or discarded. It can generate long nonrepeating runs for a natural-language input even though ciphertext doubles remain possible for other inputs. Hence a hypothetical *universal* sidecar-information lower bound for a cipher forbidding all repeat outputs does not apply here.
 
-A deterministic low-repeat construction chooses the ciphertext **repeat-output position** in each state to stand for an infrequent **plaintext rune**. Specifically choose `π_s(NG)=C[i−1]` for 3/4 of independently seeded secret states and `π_s(J)=C[i−1]` for the remaining 1/4; fill the other 28 outputs uniformly by a state-specific Fisher–Yates secret permutation. For the canonical original-source English test (63,114 Gibran GP29 runes), the empirical marginal probabilities are `Pr(NG)=523/63114≈0.008287` and `Pr(J)=141/63114≈0.002234`. Their three-to-one mixture gives **0.00677346** expected repeat probability per step under a hypothetical independent stationary plaintext/source-state distribution, or **87.38 expected doublets in 12,901 positions**, close to the original **86**.
+## Concrete low-doublet construction and its exact condition
 
-Importantly, the structural identity is *exact*, regardless of an independence assumption:
+Each of the 377 independently seeded GP29 permutations is fixed so that either GP rune **NG** (for 3/4 of secret states) or GP rune **J** (for 1/4) maps to the preceding ciphertext rune. All 28 other plaintext runes map bijectively to the other 28 outputs by an ordinary seeded Fisher–Yates permutation. The **exact** identity is
 
 ```text
-C[i] = C[i−1]  if and only if  P[i] = rare(i mod13, C[i−1]).
+C[i] = C[i−1]  iff  P[i] ∈ {NG,J} and
+                         P[i] equals that state's particular selected rare rune.
 ```
 
-The actual source-native positive, with a fixed `0x33011313` xorshift32 seed, generates **78** ciphertext doublets in **12,901** successors while recovering all **12,901/12,901** planted genuine GP-English runes under its independently generated known inversion table. Original ciphertext has **86**. The construction thereby gives a concrete counterexample to any claim that anti-repeat by itself forces a lossy mapping or a 326-bit external sidecar: that counting lower bound applies to **universal encoders whose outputs are restricted for every possible input**, whereas this bijection can transmit highly repetitive atypical plaintext as highly repetitive ciphertext and suppresses repeats **probabilistically only for selected English distributions**.
+Gibran's authentic 63,114-rune GP29 control has NG frequency **523/63,114** and J frequency **141/63,114**. Their selected 3:1 mixture has marginal probability **0.00677346**, or **87.38** expected repeats among 12,901 successors under an independence approximation. The actual deterministic positive, with original page lengths and fixed PRNG seed `0x33011313`, yields **78** repeats versus original **86**. The source-true secret inverse exactly recovers **12,901/12,901** independently constructed genuine English GP symbols, with complete re-encryption.
 
-The source-native plant **does not reproduce** the other two structural features in this deterministic original-length trial:
+**Key caveat:** this 3:1 mixture was chosen by the analyst after inspecting the original repeat deficit. The close total count is a **constructive demonstration**, with no evidential force establishing Cicada used this trick. Moreover this first plant transplanted a **contiguous** genuine GP-English stream into the original *page* geometry; its source English **word boundaries were not aligned** to the original printed words. It therefore cannot establish an English-like **word-position** explanation.
 
-| Original secondary statistic | Authentic original LP2 | Independent bijective low-doublet GP-English positive |
+### The original printed word-start evidence rejects this specific rarity selection
+
+The original transcription preserves **2,896 complete printed words** including **32 words continued across physical page cuts**. Classify all 86 original same-rune successor sites by the **destination rune's** true printed-word position, without changing any original ciphertext. The result is **23 first-rune-of-word, 19 last-rune-of-word, 44 strictly internal**. The model above has a key-independent necessary consequence: if those source word boundaries also delimit the plaintext words, then **all 23 repeated ciphertext runes at word starts must be plaintext NG or J**, regardless of any of the **377 unknown secret permutations**.
+
+This is a severe conflict with source-calibrated GP29 English. Among **every contiguous 2,896-word window** of the repository's three historical English sources, no one even contains 23 words **starting** with NG or J:
+
+| Original word-boundary test | Source-native English words | All overlapping 2,896-word windows | **Largest** NG/J-initial count | Windows attaining 23 |
+|---|---:|---:|---:|---:|
+| Gibran, *The Prophet* | 15,733 | **12,838** | **22** | **0** |
+| Shakespeare | 55,407 | **52,512** | **13** | **0** |
+| Emerson | 77,932 | **75,037** | **18** | **0** |
+| **Combined** | | **140,387** | **22** | **0** |
+
+This is a **necessary-condition source comparison**, with no original key or language scoring. It is not a mathematical impossibility theorem for arbitrary original English writing: unusual prose might start 23 of 2,896 words with J, original printed word boundaries might not survive encryption, or the true alphabet could be nonstandard. But no ordinary GP-English native control window supports the 23-word-start requirement.
+
+An independently fixed **word-shape-matched** second positive preserves **each of the original 2,896 word lengths** exactly. It deterministically samples genuine Gibran GP rune-words of those exact lengths (seed `0x33012113`), carries words over the same 32 page boundaries, and encrypts them under the **same previously frozen 377 permutation tables**. The result is revealing:
+
+| Exact original-source geometry | Original LP2 | Genuine GP-English length-matched plant |
 |---|---:|---:|
-| Within-word, five-apart equal glyphs | **104 / 2,105** | **79 / 2,105** |
-| Correlation of consecutive inter-doublet gaps | **+0.3800196892** | **−0.0720162765** |
+| Adjacent repeated runes | **86** | **113** |
+| Repeats at start of printed word | **23** | **7** |
+| Repeats at end of printed word | **19** | **75** |
+| Repeats strictly internal to printed word | **44** | **31** |
+| Equal glyphs five apart inside printed words | **104/2,105** | **82/2,105** |
+| Correlation of consecutive inter-doublet gaps | **+0.3800196892** | **+0.1690128506** |
 
-The previous study's original +0.380 gap correlation is affected by physical printed-line occupancy and is **not** established as a cipher-only feature. These are diagnostics on one fixed plant, rather than formal distribution-level exclusions of the 13-phase family. The plant is **not** a complete explanation of Liber Primus encryption.
+The high number of native GP-English terminal-NG words explains why the shape-matched plant produces so many word-final doubles. Even the first contiguous-plaintext positive has **79/2,105** five-back matches and **−0.0720162765** gap correlation, compared with the original **104/2,105** and **+0.3800196892**. The original gap correlation is separately affected by printed-line occupancy and must remain a secondary diagnostic, rather than a cipher-attribution claim. These single-plant observations are **not** a distribution-level rejection of all possible 377-state tables, but they show how a convincing *global* repeat-rate fit can fail the richer **source-exact word geometry**.
 
-## Actual blind key-recovery attack on all 55 original pages
+## Direct original plaintext-recovery attack, unknown 377 secret tables
 
-A key hypothesis is useful only if it helps derive plaintext. This experiment therefore grants **every one of the 377 state substitution tables an arbitrary 29-symbol bijection**, a much stronger model than an additive shift (29 possibilities) or rank28 no-repeat map. For each hidden table, fit its *exact maximum-likelihood inverse under independent authentic-English GP unigram frequencies* using solely the training pages:
+Independently of the rarity construction, generously allow **every hidden state an arbitrary GP29 permutation**, rather than assuming a particular rare symbol mapping, a Caesar shift or a 28-letter exclusion rule. Fit the exact maximum-unigram-likelihood inverse from original ciphertext **training pages only**, with GP29 authentic-English rune frequencies fixed from the genuine Gibran reference. The optimum over each state's **29! possible permutations** is computed analytically by sorting that state's 29 ciphertext occurrence counts and matching them to decreasing independent English rune frequencies (the rearrangement inequality). This is the exact maximum-likelihood decoder under this fixed independent-unigram model; it does not claim to maximize every possible higher-order language model.
 
-- Count original ciphertext successor symbols separately in each observed preceding-ciphertext/13-phase state.
-- Sort that state's 29 output symbols by training frequency.
-- Sort the independently established 29 plaintext rune frequencies from the untouched 63,114-symbol English control.
-- Pair frequency ranks. The rearrangement inequality proves this maximizes the **whole 29! substitution-family unigram likelihood** exactly, requiring no permutation brute force.
-- Freeze the resulting 377 complete inverse tables and score **disjoint original held-out pages**, without refitting, fitting a plaintext word, tuning the phase, changing a word boundary, or altering the source.
-- Apply the *identical* blind attack to the reversible **low-doublet English plant** described above. All original page lengths, first-runic IV slots and per-page 13-phase resets are reproduced.
+Hold out **entire original physical pages** before learning any substitution. Score the *frozen* learned 377 tables on the untouched pages, as well as on the independently secret-encrypted source-native low-doublet positive under precisely the same training procedure.
 
-| Source-fixed held-out split | Training / holdout successor runes | Original LP2 held-out improvement, nats/rune | Source-native reversible low-repeat plant |
+| Training pages (others held out) | Train / holdout rune transitions | Original withheld GP-English log gain, nats/rune | Genuine low-repeat GP-English positive |
 |---|---:|---:|---:|
-| Even original page indices train, odd indices held out | **6,314 / 6,587** | **+0.01105430** | **+0.63111328** |
-| First 28 rune-bearing pages train, later 27 held out | **6,733 / 6,168** | **+0.00179456** | **+0.64562540** |
+| Even original page indices | **6,314 / 6,587** | **+0.01105430** | **+0.63111328** |
+| First 28 of 55 original pages | **6,733 / 6,168** | **+0.00179456** | **+0.64562540** |
+| Odd original page indices | **6,587 / 6,314** | **+0.00991956** | **+0.62756338** |
 
-The third held-out split, odd source pages train and even pages held out, is likewise **+0.00991956 nats/rune** for the original versus **+0.62756338** for its independent genuine GP-English plant. The original 13-phase unknown-table inference learns **no transferable original English codebook**. Its gains are only hundredths or thousandths of a nat per rune on genuinely unseen pages, whereas the exact same inference detects a powerful **+0.63–0.65 nats/rune** gain in a real English encryptor with **78 original-scale doublets**. The readable English plant is held out from parameter estimation, and the true secret codebook is never made available to the blind inference. This is evidence against this specific *shared fixed 13-phase table* as the unknown original's direct native-English decoder. The random fitted codebook trivially improves in-sample likelihood on original ciphertext, which is why untouched-page scores are essential.
+The separate source-native **length-matched** positive also produces **+0.63453748** nats/rune on the first alternating split under the same blind learned tables. The source-original withheld improvement is essentially zero in all splits. These experiments show the same inference has real power at the actual sample size, and learns **no transferable 13-phase/previous-C GP29 English substitution codebook** from the unknown pages. In-sample fitting can falsely improve the original ciphertext because the model has 377 secret tables; we do not count that as progress.
 
-Unlike the earlier [13-phase rank28 all-secret capacity test](lp2-rank28-period13-allsecret-original-gate.md), this uses **all 29 GP symbols** in a provably bijective full 29-symbol cipher, does not reserve repeated outputs, does not assume a particular GP29 alphabet permutation across rows, and attempts actual original key learning. Unlike [the earlier predecessor-only entropy gate](lp2-cipher-feedback-conditional-entropy-gate.md), period 13 escapes that report's definitive **period≤10** invariant and needs a held-out inference experiment. The [sister 377-additive-shift model](lp2-prev-c-state13-original-heldout-decryption.md) is a different, much narrower finite source test.
+This is materially different from the prior [period≤10 ciphertext-feedback conditional-entropy exclusion](lp2-cipher-feedback-conditional-entropy-gate.md), because a period-13 family escapes that key-independent bound, and from the separate [377-state additive-shift test](lp2-prev-c-state13-original-heldout-decryption.md) which allows only 29 secret Caesar rotations per state. Every permutation is allowed here.
 
-## Cryptanalytic decision
+## Cryptanalytic decision and reproduction
 
-**Do not treat 86 low doublets as a requirement for a lossy collision-repair side channel.** A naturally reversible English-biased GP29 state mapping demonstrably produces almost that rate without losing a rune. Conversely, with no original-source key or operator, this particular arbitrary-state phase13 inverse gains essentially nothing on untouched LP2 pages despite detecting its independent planted positive. Neither demonstration supplies an authored direction or destination, and the separate five-back/gap anomalies remain a real obstacle to a complete mechanism.
+The **observed 86 low doublets do not require a lossy collision-repair encoder or an explicit sidecar**: a deterministic fully invertible English-biased transducer demonstrates how low repeats can arise while retaining every GP rune. But the current construction is **specifically disfavored** by original word-role geometry, and even the unrestricted 13-phase/previous-C substitution cannot be learned into source-native English on held-out original pages by an exact per-state unigram-MLE decoder. No source-authored selector supplies the necessary table or seed. **Retire this rare-J/NG receiver as a direct explanation of the original manuscript**, and do not fit another arbitrary rare-rune mixture solely to match counts.
 
-Reproduce from canonical repository root: [source-exact dependency-free Windows/Node22 CommonJS test](../sims/lp2_prev_c_state13_allsecret_english_holdout_sft.cjs). All original rune indices from [canonical GP29 LP2 corpus](../resources/liber-primus/lp2-corpus.json), all printed-word boundaries from [original transcription](../resources/lp2-transcription.txt) through [existing word parser](../sims/lp2_word_pages.cjs), genuine independent GP-English control from [Gibran](../resources/control/gibran_prophet_58585.txt). The test asserts a bijection for **all 377 secret states**, all 12,901 independent genuine-English forward/reverse steps, original 86 vs planted 78 doublets, matched-source 55-page exact original lengths, three disjoint-page holdout key-learning runs, and the original within-word five-back count **104/2,105**, the seeded positive's **79/2,105**, and original/plant adjacent-gap correlations **+0.3800196892 / −0.0720162765**. The exact committed test also passed under an independent deterministic V8 virtual-Node harness loading the five live source files directly from GitHub; Windows/Node22 CI was dispatched separately.
+Reproducer: [complete source-read-only Windows/Node22 CommonJS SFT](../sims/lp2_prev_c_state13_allsecret_english_holdout_sft.cjs). Original: [canonical LP2 rune indices](../resources/liber-primus/lp2-corpus.json), [printed transcription](../resources/lp2-transcription.txt) and [shared word parser](../sims/lp2_word_pages.cjs). Controls: [Gibran](../resources/control/gibran_prophet_58585.txt), [Shakespeare](../resources/control/shakespeare_first300k.txt) and [Emerson](../resources/control/emerson_essays_2944.txt). It asserts all 377 complete bijections, **12,901/12,901** known-key genuine-GP planted inverse positions, both exact-original-length plaintext plants, full original 86/23/19/44 repeat-role counts, independent 140,387-window necessary-condition screening, all three blind page holdouts, and the distinct five-back/gap diagnostics. The exact committed SFT passed using a deterministic V8 Node-API-compatible harness against the live fetched repository bytes; Windows CI is separately queued.
