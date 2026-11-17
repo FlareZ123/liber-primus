@@ -18,3 +18,10 @@ jobs:
         run: python sims/lp2_p55_ghosttree_balanced_v2_packet.py
       - name: Verify public ZIP contains no answer map
         run: python -c "from pathlib import Path; import zipfile; p=Path('im-results/ghost-tree-blinded-review-v2.zip'); z=zipfile.ZipFile(p); assert 'private-reveal.json' not in z.namelist(); assert len(z.namelist())==13; print('PASS public archive entries',len(z.namelist()))"
+      - name: Publish public blinded review only
+        uses: actions/upload-artifact@v4
+        with:
+          name: ghost-tree-public-v2
+          path: im-results/ghost-tree-blinded-review-v2.zip
+          if-no-files-found: error
+          retention-days: 30
