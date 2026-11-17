@@ -18,12 +18,14 @@ const gp=JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const {languageModel,recoverTableau} =
   require('./gp29_bigram_tableau_decoder.cjs');
 const LENGTH=12956,N=29,DRIFT_LIMIT=180,HELDOUT_PAGE=8,TRIALS=8;
-const CHAPTER_RANGES=[[0,3],[3,8],[8,15],[15,23],[23,28],
-  [28,32],[32,40],[40,54],[54,56]];
+// Marked endings p2,p7,p14,p22,p26,p32,p39,p53,p55; original scans
+// 43.jpg/44.jpg and 49.jpg/50.jpg prove the p26/27 and p32/33 boundaries.
+const CHAPTER_RANGES=[[0,3],[3,8],[8,15],[15,23],[23,27],
+  [27,33],[33,40],[40,54],[54,56]];
 const chapterPages=()=>CHAPTER_RANGES.map(([from,to])=>
   gp.pages.slice(from,to).flatMap(p=>p.indices));
 const PAGE_LENGTHS=chapterPages().map(p=>p.length);
-assert.equal(PAGE_LENGTHS.length,9);
+assert.deepEqual(PAGE_LENGTHS,[729,1145,1729,1903,1021,1433,1680,3008,308]);
 assert.equal(PAGE_LENGTHS.reduce((a,b)=>a+b,0),LENGTH);
 assert.equal(gp.pages[50].indices.length,0);
 assert.equal(PAGE_LENGTHS[8],308);
