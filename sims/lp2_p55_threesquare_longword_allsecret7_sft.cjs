@@ -171,6 +171,38 @@ assert.deepEqual(results.letter['literal F'].failureCounts, {
   'same 7-key phase requires different shift': 496
 });
 
+// Independently sourced Latin Vulgate is a separate source-language control.
+// Its native-GP words are stored as 29-valued alphanumeric strings, with
+// original word boundaries preserved (and no cross-word rune contraction).
+const latinSource = read('resources/control/latin-vulgate-gp-wholewords.txt');
+const latinAlphabet = '0123456789ABCDEFGHIJKLMNOPQRS';
+const latinCodes = [...new Set(latinSource.split(/\r?\n/)
+  .filter(line => /^[0-9A-S]{13}$/.test(line)))];
+assert.equal(latinCodes.length, 153);
+const latinResults = {};
+for (const fSkip of [false, true]) {
+  const matches = [];
+  const failures = {};
+  for (const code of latinCodes) {
+    const plain = [...code].map(ch => latinAlphabet.indexOf(ch));
+    const check = fitPeriod7(actualCipher, plain, fSkip);
+    if (check.ok) matches.push(code);
+    else failures[check.reason] = (failures[check.reason] || 0) + 1;
+  }
+  assert.deepEqual(matches, []);
+  latinResults[fSkip ? 'literal F' : 'all consumed'] = {
+    distinctLatinVulgateWords13: latinCodes.length,
+    matches, failureCounts: failures
+  };
+}
+assert.deepEqual(latinResults['literal F'].failureCounts, {
+  'forbidden literal F': 28,
+  'same 7-key phase requires different shift': 125
+});
+assert.deepEqual(latinResults['all consumed'].failureCounts, {
+  'same 7-key phase requires different shift': 153
+});
+
 // A source-independent arbitrary 29-way permutation per 7-key phase has
 // vastly more capacity. Report this as a non-exclusion control explicitly.
 function fitsBijections(cipher, plain) {
@@ -212,7 +244,8 @@ const outcome = {
   actualCipherText: actualCipher.map(i => gp.translit[i]).join(' '),
   sourceCipherFPositions: actualCipher.flatMap((v,i) => v === 0 ? [i] : []),
   result: 'No source-GP English length-13 word matches any secret seven-phase additive row key in either GP spelling register, with or without plaintext-F bypass',
-  output: results, syntheticPositive: positive,
+  output: results, latinVulgateWordControl: latinResults,
+  syntheticPositive: positive,
   broaderPermutationControl: control,
   plaintextRecovered: false
 };
