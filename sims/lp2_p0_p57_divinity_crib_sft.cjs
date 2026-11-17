@@ -111,6 +111,36 @@ const positive = forward(finalClear, key, 13);
 assert.equal(positive.length, 95);
 assert.equal(legalClocks(positive, key, 13).death, -1);
 
+
+/** Independently matched second red-heading shape: p33:0 is 2+8,
+ *  exactly THE DIUINITY at p57 offsets 71..80, overlapping the p0 crib.
+ *  This remains a hypothetical plaintext crib, not an authenticated title.
+ */
+const secondHeading = corpus.pages.slice(33, 40).flatMap((page) => page.indices);
+const secondCrib = [2, 18, ...proposed.slice(0, 8)];
+assert.equal(secondHeading.length, 1680);
+assert.deepEqual(finalClear.slice(71, 81), secondCrib);
+assert.deepEqual(secondHeading.slice(0, 10), [23, 12, 14, 5, 0, 10, 24, 7, 8, 6]);
+const secondKey = secondHeading.slice(0, 10).map((c, i) => modulo(c - secondCrib[i]));
+assert.deepEqual(secondKey, [21, 23, 20, 24, 28, 0, 15, 26, 21, 9]);
+assert.equal(key.slice(0, 8).filter((v, i) => v === secondKey[i + 2]).length, 0);
+const secondRepeated = secondHeading.map((c, i) => modulo(c - secondKey[i % 10]));
+assert(Math.abs(coincidence(secondRepeated.slice(10)) - 0.034424859089490285) < 1e-12);
+const secondAutokey = secondCrib.slice();
+for (let i = 10; i < secondHeading.length; i++) {
+  secondAutokey.push(modulo(secondHeading[i] - secondAutokey[i - 10]));
+}
+assert(Math.abs(coincidence(secondAutokey.slice(10)) - 0.03435095058534818) < 1e-12);
+const secondFeedback = secondHeading.map((c, i) =>
+  i < 10 ? secondCrib[i] : modulo(c - secondHeading[i - 10])
+);
+assert(Math.abs(coincidence(secondFeedback.slice(10)) - 0.03430000394657061) < 1e-12);
+const secondStrict = legalClocks(secondHeading.slice(10), secondKey, 10);
+assert.equal(secondStrict.death, 81);
+assert.equal(secondHeading[91], 21);
+assert.equal(secondKey[90 % 10], 21);
+assert.equal(legalClocks(forward(finalClear, secondKey, 10), secondKey, 10).death, -1);
+
 const result = {
   status: 'bounded-negative; no unknown source plaintext',
   p0_heading_wordlengths: [8, 5],
@@ -125,6 +155,13 @@ const result = {
   ciphertext_feedback_body_ioc: coincidence(cipherFeedback.slice(13)),
   strict_F_skip_first_illegal_original_offset: 13 + strict.death,
   strict_F_skip_obstruction: 'C=N and scheduled K=N forces forbidden non-bypassed P=F',
-  positive_95_runes: 'pass'
+  positive_95_runes: 'pass',
+  p33_2plus8_source_pair: 'THE DIUINITY, at p57 rune offsets 71..80',
+  p33_derived_key: secondKey,
+  p33_repeated_body_ioc: coincidence(secondRepeated.slice(10)),
+  p33_plaintext_autokey_body_ioc: coincidence(secondAutokey.slice(10)),
+  p33_ciphertext_feedback_body_ioc: coincidence(secondFeedback.slice(10)),
+  p33_strict_F_skip_first_illegal_offset: 10 + secondStrict.death,
+  p33_positive_95_runes: 'pass'
 };
 process.stdout.write(JSON.stringify(result, null, 2) + '\n');
