@@ -142,13 +142,22 @@ assert.ok(Math.abs(nullMean - 100.77935) < 1e-6);
  * @returns {number[]}
  */
 function encryptReserve(plain, reserve) {
-  return plain.map((p, i, out) => {
-    if (i === 0) return p;
-    const previousCipher = out[i - 1];
-    if (p === reserve) return previousCipher;
+  const cipher = [];
+  for (let i = 0; i < plain.length; i++) {
+    const p = plain[i];
+    if (i === 0) {
+      cipher.push(p);
+      continue;
+    }
+    const previousCipher = cipher[i - 1];
+    if (p === reserve) {
+      cipher.push(previousCipher);
+      continue;
+    }
     const rank = p - (p > reserve ? 1 : 0);
-    return (previousCipher + 1 + rank) % 29;
-  });
+    cipher.push((previousCipher + 1 + rank) % 29);
+  }
+  return cipher;
 }
 /** @param {number[]} cipher @param {number} reserve @returns {number[]} */
 function decryptReserve(cipher, reserve) {
