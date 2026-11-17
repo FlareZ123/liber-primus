@@ -47,6 +47,21 @@ The annotation-derived input has 225 red-rune events, 30 red 13-dot entries, and
 
 **Decision:** the direct 256-byte XOR does not yield a readable page, common file, or the p56 hash preimage. This rejects only this exact one-time-pad consumer; it does not establish the event tape or base60 byte rule, nor exclude a differently sourced downstream use. Do not expand into arbitrary encodings without an independent selector. [Reproducer](../sims/lp2_red225_plus31_p50_xor_sft.cjs).
 
+### Three source-sized 256-element registers: literal three-stream XOR gate (Agent23, 17 November 2026)
+
+The original p50 numeric grid contains exactly 256 base60 byte values, the image-verified 225 red GP runes plus 31 thirteen-dot marks provide one 256-element red-event stream, and the exact final physical p55/p56/p57 ciphertext/clear rune sequence contains **76+85+95=256 symbols**. The historically recorded 2014 Cicada round used a three-file XOR operation, motivating a bounded original-source three-input experiment. No source instructs applying that historical binary operation to these three different LP2 representations, and their coincident lengths do not resolve rune-to-byte conversion.
+
+Reuse the **same** canonical page/offset red-event serialization already fixed by `sims/lp2_red225_plus31_p50_xor_sft.cjs`: a red rune is its GP prime number and a large 13-dot glyph is integer13. XOR each event position with its p50 base60 byte and the GP29 numeric value of the corresponding terminal rune. The four frozen terminal conventions are GP **index0–28** versus GP **prime value**, with p56 held as original source ciphertext versus independently authenticated prime-totient plaintext (p55 remains untouched ciphertext and p57 remains originally clear).
+
+| Original source terminal convention | Printable ASCII fraction of resulting 256 bytes | First 20 bytes, hex |
+|---|---:|---|
+| Original p56 ciphertext, GP29 rune indices | 0.36718750 | `ebe9f7b777a504bb7a91d397ed0ba39d47fb096b` |
+| Original p56 ciphertext, GP prime values | 0.37109375 | `b195a3a2639f289a2eabf680a30cdf9f37822563` |
+| Authentically decoded p56 only, GP29 indices | 0.37109375 | Same p55-leading source bytes as above |
+| Authentically decoded p56 only, GP prime values | 0.35156250 | Same p55-leading source bytes as above |
+
+None of these four original-terminal direct XOR results has a recognized PNG/JPEG/ZIP/PDF/GZIP/GIF file signature, readable text, or the solved p56 page's 128-hex SHA-512 target. All four outputs are bytewise reversible to the unchanged p50 source under their stated input conventions, which establishes implementation integrity rather than authentic decryption. The full literal output SHA-512 values and source invariants are printed by [the read-only CommonJS SFT](../sims/lp2_three_source256_registers_xor_sft.cjs), successfully executed in [Windows Node22 CI 44168112629](https://github.com/FlareZ123/liber-primus/actions/runs/44168112629). **No original unknown LP2 plaintext, source-selected register map, or new key follows.** This finite exclusion does not imply that all mixed-register cryptographic compositions fail, nor justify widening arbitrary byte/rune mappings.
+
 ### Separate direct GP29 interpretation of the same 256 event positions (Agent 44, 16 November 2026)
 
 The 256 count alignment also motivates a narrower *rune-level* consumer distinct from bytewise XOR: retain original physical 13-dot events as explicit word separators, interpret each intervening red rune in GP29, and subtract the matching printed p50 byte residue modulo 29, reading both source registers in original page/offset and row order. The operation is fixed, invertible, and independently source-controllable; no Cicada instruction establishes it as a historical receiver.
