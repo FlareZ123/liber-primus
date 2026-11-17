@@ -183,6 +183,65 @@ for (const [layout, source] of [
 }
 assert(additiveReceivers.every((receiver) => receiver.originalIoC < 0.04));
 
+// Direct 16-word circumference recipient:
+// the authentic p55 raw transcription has one carried one-rune fragment
+// then exactly 16 complete printed words. A 5x5 square's outermost
+// circumference has exactly 16 literal cells, allowing a nonfitted
+// per-word GP29 shift from each original ring byte.
+const originalRunic = fs.readFileSync(
+  path.join(process.cwd(), 'resources/liber-primus/lp2-transcription.txt'), 'utf8'
+);
+const page55RunicText = originalRunic.split(/\n%\n/)[54]
+  .replace(/\/\s*\n/g, '').replace(/\s+/g, '')
+  .replace(/[&$§]/g, '').replace(/\./g, '-');
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const originalPrintedWords = page55RunicText.split('-').filter(Boolean)
+  .map((word) => [...word].map((rune) => runeIndex.get(rune)));
+assert.equal(originalPrintedWords.length, 17);
+assert.equal(originalPrintedWords[0].length, 1);
+assert.deepEqual(originalPrintedWords.flat(), page55);
+assert.equal(originalPrintedWords.slice(1).flat().length, 75);
+const outer16 = clockwisePeel.slice(0, 16);
+assert.equal(outer16.length, 16);
+assert.equal(outer16[0], 73);
+const outerReverse = [outer16[0], ...outer16.slice(1).reverse()];
+const wordLevelReceivers = [];
+for (const [direction, ring] of [
+  ['from-K73-clockwise', outer16],
+  ['from-K73-counterclockwise', outerReverse]
+]) {
+  for (const sign of [1, -1]) {
+    const decodedWords = originalPrintedWords.slice(1)
+      .map((word, wordNumber) => word.map((cipher) =>
+        mod(cipher + sign * (ring[wordNumber] % 29))));
+    const decoded = decodedWords.flat();
+    const recipher = decodedWords.flatMap((word, wordNumber) => word.map(
+      (plain) => mod(plain - sign * (ring[wordNumber] % 29))
+    ));
+    assert.deepEqual(recipher, ciphertext);
+    const plant = [];
+    let index = 0;
+    for (const word of originalPrintedWords.slice(1)) {
+      plant.push(synthetic.slice(index, index + word.length));
+      index += word.length;
+    }
+    const plantedCipher = plant.map((word, wordNumber) => word.map(
+      (plain) => mod(plain - sign * (ring[wordNumber] % 29))
+    ));
+    assert.deepEqual(plantedCipher.flatMap((word, wordNumber) => word.map(
+      (cipher) => mod(cipher + sign * (ring[wordNumber] % 29))
+    )).flat(), synthetic);
+    wordLevelReceivers.push({
+      direction, sign, originalIoC: ioc(decoded),
+      originalWordLengths: originalPrintedWords.slice(1).map((word) => word.length),
+      text: decodedWords.map((word) =>
+        word.map((rune) => corpus.translit[rune]).join('')).join(' '),
+      sourceOriginalRoundtrip: '75/75', plantedP57Positive: '75/75'
+    });
+  }
+}
+assert(wordLevelReceivers.every((receiver) => receiver.originalIoC < 0.04));
+
 console.log(JSON.stringify({
   source: {
     frame: 'source prime-ordinal [205,173,201] => rows21..25, columns1..5',
@@ -194,5 +253,6 @@ console.log(JSON.stringify({
   sourceClearP57IoC: ioc(page57),
   outcomes,
   sourceSquareAdditiveReceivers: additiveReceivers,
+  sourceSquareOuter16WordReceivers: wordLevelReceivers,
   conclusion: 'Four exact original inverses and solved-native plants, zero authenticated original plaintext.'
 }, null, 2));
