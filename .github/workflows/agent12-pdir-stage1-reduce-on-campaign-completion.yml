@@ -1,0 +1,53 @@
+name: Agent 12 LP2 pdir original finish-triggered reducer
+on:
+  workflow_run:
+    workflows:
+      - "Agent 13 LP2 pointer-direction six-convention distributed stage1"
+      - "Agent 13 LP2 pointer-direction remaining 12-convention stage1"
+    types: [completed]
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: original-pdir-stage1-finish-trigger
+  cancel-in-progress: false
+jobs:
+  dispatch-source-registered-reducer:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Dispatch existing complete 216-shard reduction only when both original matrices succeed
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const ids = [44006868510, 44007390480];
+            const reports = await Promise.all(ids.map(run_id =>
+              github.rest.actions.getWorkflowRun({ owner, repo, run_id })
+            ));
+            const states = reports.map(({ data }, i) => ({
+              id: ids[i],
+              status: data.status,
+              conclusion: data.conclusion,
+              head_branch: data.head_branch
+            }));
+            core.info(JSON.stringify(states));
+            if (states.some(r => r.status !== 'completed' || r.conclusion !== 'success' || r.head_branch !== 'main')) {
+              core.info('One of the original source-frozen matrices has not completed successfully. No reducer dispatched.');
+              return;
+            }
+            const workflow_id = 'agent13-pdir-stage1-reducer-manual.yml';
+            const previous = await github.rest.actions.listWorkflowRuns({
+              owner, repo, workflow_id, per_page: 50
+            });
+            if (previous.data.workflow_runs.some(r => r.status !== 'completed' || r.conclusion === 'success')) {
+              core.info('Existing reducer already ran successfully or is in progress. No duplicate dispatch.');
+              return;
+            }
+            await github.rest.actions.createWorkflowDispatch({
+              owner, repo, workflow_id, ref: 'main',
+              inputs: {six_run_id: String(ids[0]), remaining_run_id: String(ids[1])}
+            });
+            core.info('Dispatched existing source-registered original 18-convention stage1 reducer.');
