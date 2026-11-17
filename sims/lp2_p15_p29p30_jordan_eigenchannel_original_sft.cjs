@@ -239,8 +239,34 @@ assert.ok(Math.abs(results[2].channels[2].ioc - (0.04818865345181134)) < 1e-9);
 assert.ok(Math.abs(score(nativeHeldout) - (-2.4445153142275746)) < 1e-9);
 assert.ok(results.every(x => x.channels.every(c => c.score < -4.15)));
 
+
+// Most directly sourced receiver: the original p15-starting 1894-rune
+// chapter. Two trailing runes do not fill a four-symbol block. Rather than
+// fabricate padding or drop arbitrary text, enumerate the THREE possible
+// 1892-rune complete-block contiguous windows, retaining all source glyphs
+// in the master corpus.
+const allUnknown = corpus.pages.slice(0, 56).flatMap(p => p.indices);
+const ownChapterStart = 729 + 1145 + 1738;
+const ownChapter = allUnknown.slice(ownChapterStart, ownChapterStart + 1894);
+assert.equal(ownChapter.length, 1894);
+const ownSourceWindows = Array.from({ length: 3 }, (_, shift) => {
+  const original = ownChapter.slice(shift, shift + 1892);
+  const channels = toCoordinates(original);
+  assert.deepEqual(fromCoordinates(channels), original);
+  return {
+    sourceStartShift: shift,
+    sourceSymbols: original.length,
+    channelScores: channels.map(score),
+    channelIoCs: channels.map(indexOfCoincidence)
+  };
+});
+assert.ok(Math.abs(ownSourceWindows[1].channelScores[1] -
+  (-4.277173134927186)) < 1e-9);
+assert.ok(ownSourceWindows.every(w => w.channelScores.every(x => x < -4.25)));
+
 console.log(JSON.stringify({
   source: 'signed p15 GF29 matrix, p29/p30 complementary eigen factors',
+  localP15Chapter: ownSourceWindows,
   jordanBasis: E,
   jordanInverse: EInverse,
   nativeP57PositiveScores: nativeControl,
