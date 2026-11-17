@@ -78,29 +78,29 @@ The [exact algebraic original-input SFT](../sims/lp2_p57_our21_ring120digit_orie
 ## Frozen outer-ring K=73 self-index and p55 receiver (Agent44, 17 November)
 
 A subsequent original-source question asked whether the proposed DH shared scalar
-\`K=35^(21×113) mod151=73\` could select a 76-cell key for p55, and whether the
+`K=35^(21×113) mod151=73` could select a 76-cell key for p55, and whether the
 unique outer-ring value 107 could be an independently confirming DH public share.
 This is **conditional on the earlier speculative p=151, g=35 and a=21**
 selection, with no authenticated instruction for private exponent b or ring start.
 
 Using the 76 literal outer cells of the source 32×8 table, clockwise from the
 printed top-left corner gives a 152-digit base-59 concatenation with
-\`b mod150=53\`; anticlockwise from the same corner gives \`b=143\`.
+`b mod150=53`; anticlockwise from the same corner gives `b=143`.
 Neither gives b=113. Of **all 152 circular starts and both traversal directions**,
 32 produce b=113 and K=73. Exactly **one** additionally has the value
-\`107=35^21 mod151\` at its own \`K mod76\` ring index: counterclockwise from
+`107=35^21 mod151` at its own `K mod76` ring index: counterclockwise from
 outer-ring index70. Its selected key-index is 73, original flat source cell24
-(token \`1n\`, base59 value107). The starting index70 and counterclockwise
+(token `1n`, base59 value107). The starting index70 and counterclockwise
 orientation are not selected by an independent first-party clue.
 
 The correct comparison is the *searched* event across those 152 starts, rather
 than a fixed-start 1/76 coincidence. An exact original-multiset-preserving
 10,000-shuffle test with frozen seeded xorshift found **8,960/10,000** trials
 having *some* DH self-index and **3,623/10,000** having at least one
-\`b=113, K=73, value=107\` match. The preselected original \`start70,
-counterclockwise\` position matched in 141/10,000 shuffles, but this position
+`b=113, K=73, value=107` match. The preselected original `start70,
+counterclockwise` position matched in 141/10,000 shuffles, but this position
 was chosen from the original success and is **not** a valid predeclared p-value.
-The original observed \`1/152\` self-index is therefore not distinctive under
+The original observed `1/152` self-index is therefore not distinctive under
 the actual post-selected search.
 
 A single bounded, reversible p55 receiver was also tested on the **76 original
