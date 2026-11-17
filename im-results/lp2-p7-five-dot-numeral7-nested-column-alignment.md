@@ -78,8 +78,41 @@ The five dots already determine the column order above. A separate, bounded read
 
 Both candidates fail almost immediately. The same decoder still accepts the authentic solved p56 page under its established prime2 start, so this is not a broken reachability check. This rejects the additional interpretation of the five-dot **count** as a p56 prime start; it does not reject other cipher families or other source-supplied keys.
 
+## All-secret phase-alphabet capacity of the source-selected 5→7 path (17 November 2026)
+
+**New exact original-cipher obstruction, Agent24.** The source-position alignment above remains real. To ask whether a short, unknown GP29 substitution key could supply its missing rune-value step, grant the proposed solver **all possible secret alphabet bijections independently in each position class**. This avoids searching or guessing even one key: arbitrary 29! permutation choices per phase are allowed, including every five-dot permutation, any supplied five-/seven-rune Vigenère key, and more expressive nonlinear per-phase monoalphabetic maps. The source-fixed transposition paths are tested without adapting the original ciphertext.
+
+For each of the six original 1,729-rune streams (printed order, five-dot deinterleave, then four frozen seven-column/tup​le continuations), partition the rune positions by period **5**, **7**, or the combined cycle **35**. Let H[r,v] be the original frequency of GP rune v at phase r. Under a bijection in phase r, the 29 frequency counts can only be permuted. The **sharp** maximum possible output collision numerator is obtained by independently sorting every H[r,*] descending and summing equal ranks before computing Σ_v n_v(n_v−1). This follows by the rearrangement inequality. It holds simultaneously for every secret alphabet and key; a particular decoder's output cannot exceed the ceiling. The index of coincidence is this numerator divided by **1,729×1,728 = 2,987,712**.
+
+| Untouched-source ordering | Secret 5-phase ceiling | Secret 7-phase ceiling | Secret 35-phase ceiling |
+| --- | ---: | ---: | ---: |
+| Printed pp8–14, numeral 7 removed | 108,826 | 112,724 | 153,832 |
+| Five-dot deinterleave, first 7 removed | 108,566 | 111,490 | 152,110 |
+| Then historical seven-tuple [0,6,2,5,1,4,3] | 109,250 | 111,490 | 152,110 |
+| Then inverse seven-tuple [0,4,2,6,5,3,1] | 108,588 | 111,490 | 152,110 |
+| Then seven columns read down | 109,644 | 113,174 | **157,544** |
+| Then seven columns read across | 108,028 | 111,034 | 148,484 |
+
+These are exact **maximum equal-symbol pair numerators**, rather than observed candidate frequencies. All six input streams have the same original 1,729-rune IoC **102,958/2,987,712 = 0.03446048**. The most permissive of all 18 secret-phase cases has maximum **157,544/2,987,712 = 0.05273065**. Consequently even a perfectly chosen but undisclosed set of 35 substitution alphabets cannot produce an ordinary native-GP29 English output with IoC above 0.05273065 in any of the six proposed arrangements.
+
+**Independent original-language falsification.** Source-native GP29 spelling, including authenticated ING and IO ligatures, was applied without changing its grammar to the complete pinned solved-LP1 reference and to three already-preserved nonoverlapping-source literary corpora. Exhaustively scan every contiguous length-1,729 original-language window using the same collision numerator. Each control's **minimum** is greater than the strongest possible original encrypted output:
+
+| Independently stored plaintext register | GP29 control runes | Every sliding 1,729-rune window | Lowest collision numerator | Lowest original-language IoC |
+| --- | ---: | ---: | ---: | ---: |
+| Authentically solved LP1 | 3,510 | 1,782 | **178,186** | 0.05963962 |
+| Shakespeare | 217,106 | 215,378 | **164,130** | 0.05493501 |
+| Gibran | 62,492 | 60,764 | **171,684** | 0.05746337 |
+| Emerson | 321,327 | 319,599 | **172,456** | 0.05772176 |
+| **Combined observed control windows** | | **597,523** | **0 windows ≤ 157,544** | |
+
+This is a deterministic comparison against those observed sources, not a theorem covering every imaginable English text. The strongest bound is compatible with a random-looking output but excludes source-calibrated prose in all 597,523 tested control intervals. It also excludes any periodic substitution whose key symbols produce fixed alphabet permutations over a 35-position cycle, including arbitrary source-supplied keys, as the **complete final** operation for ordinary GP29 English. A key with state changing inside those cycles, an intervening value-changing step, a non-bijective symbol code, an alternate output register, or altered text segmentation remains outside this gate.
+
+**Page-reset sensitivity.** Even if arbitrary new phase-5/phase-7 alphabets are allowed separately for each of the seven original source pages, keyed by that source-page label and the current output position modulo the period, the greatest phase-5 ceiling over the six streams is **151,970/2,987,712**, and the greatest phase-7 ceiling is **172,004/2,987,712 = 0.05757048**. The latter is below all 1,782 solved-LP1 reference windows and all 319,599 Emerson windows, but **22,852 Shakespeare windows** and **55 Gibran windows** have IoC no greater than this upper bound. The page-specific phase-7 extension therefore does **not** support a universal native-English exclusion. A new first-party reset/clock rule must be justified independently; allowing new secret alphabets at arbitrary position classes eventually makes an IoC necessary-condition gate nondiscriminating.
+
+**Exact reproduction:** [read-only Windows/Node22 CommonJS SFT](../sims/lp2_p7_dot7_allsecret_bijection_ceiling_sft.cjs) hashes original p7 JPEG 24.jpg, verifies the original 7 position and every GP29 glyph, implements the six exact reversible ordering candidates, proves and asserts the secret-period ceilings, and independently scans all 597,523 solved/plaintext controls in rolling O(N) time. This runs without any cipher-key search or prose scoring fit; printed word boundaries, numbering and the unique 7 remain original-source observations. There is no unknown LP2 plaintext or authentic key recovered.
+
 ## Research decision
 
 **Retain the header relocation as an explicit clue-constrained candidate, without promoting it to a decipherment.** It is more causally specific than searching unselected 5- or 7-column keys: the five circles, unique numeral, four original numerical alignments, and first-position relocation are fixed by source artifacts. The natural seven-column-only continuation is negative, and the five-dot stencil's reuse makes ornamentation a live rival.
 
-A useful successor would identify a **first-party instruction or source-supplied rune-value key** that explains why the resulting 1,729-runic stream remains GP29-flat and can predict an independently held-out coherent original plaintext span. Further freely chosen permutations, phase shifts or cipher layers chosen solely to improve the observed score would not discriminate the intended solve path from overfitting. No new authenticated unknown LP2 plaintext has been recovered.
+The stronger all-secret test now excludes every direct **fixed period-5, period-7 or period-35 GP29 alphabet-bijection final layer** on any of the six source-driven orderings, even with completely unknown keys, under the observed native-English control register. A useful successor would identify a **first-party instruction selecting a different value-changing architecture, a changing-state rule, or an independently supplied cipher key** and predict a previously withheld original plaintext span. Further freely chosen permutations, phase shifts or cipher layers chosen solely to improve the observed score would not discriminate the intended solve path from overfitting. No new authenticated unknown LP2 plaintext has been recovered.
