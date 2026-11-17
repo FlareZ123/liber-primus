@@ -204,6 +204,10 @@ for (let period = 1; period <= 28; period++) {
   });
 }
 
+// Sharp necessary-condition frontier: period29 lacks a saturated phase.
+// This is NOT evidence of meaningful plaintext or the creator's key length.
+assert.equal(saturatedPhaseWitness(lastLong.runes,lastLong.words,29),null);
+
 // Independently assess native bypass with each of 30 historic fixed keywords,
 // both additive signs, every starting phase, and both chapter-only/printed-word
 // outer anti-repeat restart conventions on ALL nine authentic chapters.
@@ -271,6 +275,7 @@ console.log(JSON.stringify({
     reset:"anti-repeat comparison is exempt at every authentic printed-word start",
     keyClock:"continues across printed words and pages within section",
     periodsExcluded:[1,28],
+    firstWithoutSinglePhaseSaturation:29,
     witnesses
   },
   knownKeyword:{
