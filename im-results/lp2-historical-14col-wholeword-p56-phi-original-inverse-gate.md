@@ -28,9 +28,9 @@ After rearranging *complete printed rune-words* by either historical14 direction
 | p3–7 | 1,145 | 426 | 433 |
 | p8–14 | 1,729 | 614 | 554 |
 | p15–22 | 1,903 | 571 | 560 |
-| p23–27 | 1,021 | 546 | 509 |
-| p28–31 | 1,433 | 548 | 664 |
-| p32–39 | 1,680 | 463 | 505 |
+| p23–26 | 1,021 | 546 | 509 |
+| p27–32 | 1,433 | 548 | 664 |
+| p33–39 | 1,680 | 463 | 505 |
 | p40–53 | 3,008 | 595 | 921 |
 | p54–55 | 308 | **308** | **308** |
 
@@ -40,6 +40,29 @@ A separate *exact* best-native-GP-bigram path DP retains both consumed-prime cou
 
 Authentic solved p56 independently produces the exactly known **85/85** runes, and its 25 actual word lengths are restored exactly after the same historical14 scramble. True p56 native-GP score/rune is **−2.66594449**, IoC **0.07002801**, establishing meaningful positive separation from the seven source-original chance paths. Every original complete path is also forward re-encrypted to the exact ciphertext.
 
+
+## Literal original 14-column **rune-character** transfer
+
+The 2014 Stage03 operation was applied to *individual characters*. For source fidelity, a second independent original-input screen applies the same 14-wide historical column order directly to consecutive individual **GP29 runes**, with the same two directions, nine real visual-section boundaries, and first **5,000** prime ordinals. This removes the speculative assumption that the earlier operation should act on intact printed words; after transposition, original printed word breaks are not used for scoring. The new screen adds another **90,000** exact original cipher/clock configurations, with fully unrestricted literal-F skip branches and heldout source-native bigram scoring only after mathematically complete paths exist.
+
+| Original section | Runes | Furthest valid inverse, historical 14-rune decode | Furthest valid inverse, historical 14-rune encode |
+|---|---:|---:|---:|
+| p0–2 | 729 | **729** | **729** |
+| p3–7 | 1,145 | 474 | 414 |
+| p8–14 | 1,729 | 526 | 455 |
+| p15–22 | 1,903 | 592 | 551 |
+| p23–26 | 1,021 | 526 | 631 |
+| p27–32 | 1,433 | 544 | 670 |
+| p33–39 | 1,680 | 519 | 481 |
+| p40–53 | 3,008 | 498 | 555 |
+| p54–55 | 308 | **308** | **308** |
+
+Exactly **19** complete original GP29 ciphertext inverses survive: historical-**decode** has opening p0–2 prime starts **2829,2830,2831** and terminal p54–55 starts **646,1215,1217,2724,3715,3716,4052,4377**. Historical-**encode** has opening starts **1713,1714,1715,1716,1718,1719,1720** and terminal start **1264**. **Eight of nine complete original visual sections have no valid full inverse in either direction** except the opening and terminal; all 19 survivors are confined to these two short source chapters.
+
+The exact best native-GP English bigram path of each complete inverse has mean log score between **−5.26341** and **−4.77893** per rune; IoC range **0.03420–0.03659**. The original solved p56 control, independently pinned and exactly reproduced **85/85**, scores **−2.66594** and IoC **0.07003**. The 19 original outputs are nonprose and re-encrypt exactly into their source-transposed ciphertext. This rejects the direct, historically literal fourteen-column glyph permutation followed by the *authentic* p56 cipher, within the explicitly frozen 0–4,999 initial-prime range. It does not exclude a different cipher layer or independently selected permutation.
+
+The same [single-file source-original inverse SFT](../sims/lp2_2014_14column_phi_original_inversion_sft.cjs) now asserts the 2014 70-character correct transformation, authentic solved-p56 85-rune positive, all nine glyph-level maximal-prefix maxima and their argmax starts, the complete original survivor sets, exact forward GP29 encryption of all survivors, and their English-score null failure. In total it covers **180,000** original chapter/order/start cases across intact-word and literal-rune historical variants. The glyph-level extension was added after the previous [passing base CI run 44065597217](https://github.com/FlareZ123/liber-primus/actions/runs/44065597217); the updated code's CI result must be checked separately.
+
 ## Decision and remaining unknown
 
-The exact historical 2014 14-column *complete-word* inverse lacks a source-independent native-English length signature on original LP2, and layering on the actual p56 cipher yields no authentic plaintext across nine visual chapters. Do not rescue this finite transfer by fitting new column keys or arbitrary secret prime phases to partial phrases. This does **not** exclude other independently selected word transpositions, changes in rune segmentation, or a new source-authenticated cipher/clock. **A concrete LP2 clue specifying a different reversible operation or key remains necessary.**
+The historically derived 2014 fourteen-column complete-word inverse lacks a source-independent native-English length signature; both complete-word and original historical character-level routes, layered on the authentic p56 cipher, fail to recover any plaintext across nine visual chapters. Do not rescue this finite transfer by fitting new column keys or arbitrary secret prime phases to partial phrases. This does **not** exclude other independently selected word transpositions, changes in rune segmentation, or a new source-authenticated cipher/clock. **A concrete LP2 clue specifying a different reversible operation or key remains necessary.**
