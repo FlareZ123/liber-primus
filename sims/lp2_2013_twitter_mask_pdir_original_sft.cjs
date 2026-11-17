@@ -22,7 +22,7 @@ const corpus = JSON.parse(fs.readFileSync(
 const source = fs.readFileSync(
   path.join(root, 'resources/liber-primus/lp2-transcription.txt'), 'utf8');
 const sections = source.split(/^%\s*$/m);
-assert.equal(sections.length, 58);
+assert.equal(sections.length, 57); // p50 is numerical-only; no source rune section
 const Q = 29;
 const mod = (x, k) => (x % k + k) % k;
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
