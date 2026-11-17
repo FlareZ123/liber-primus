@@ -91,6 +91,35 @@ assert.equal(plantCount, 12);
 assert.equal(results.length, 36);
 assert.equal(results.filter(x => x.page === 0 && x.rejected_at_zero_based !== undefined).length, 12);
 assert.equal(results.filter(x => x.page === 15 && x.rejected_at_zero_based !== undefined).length, 12);
+/** Recover every full original p55 plaintext candidate, preserving all F clocks. */
+const fullPaths = (cipher, key, sign) => {
+  let paths = [{clock:0, indices:[], literalFPositions:[]}];
+  for (let i = 0; i < cipher.length; i++) {
+    const next = [];
+    for (const state of paths) {
+      const p = mod29(cipher[i] - sign * key(state.clock));
+      if (p !== 0) next.push({clock:state.clock + 1, indices:[...state.indices, p], literalFPositions:state.literalFPositions});
+      if (cipher[i] === 0) next.push({clock:state.clock, indices:[...state.indices, 0], literalFPositions:[...state.literalFPositions, i]});
+    }
+    paths = next;
+    if (!paths.length) break;
+  }
+  return paths;
+};
+const runeIoC = values => {
+  const h = Array(29).fill(0);
+  for (const v of values) h[v]++;
+  return h.reduce((s, n) => s + n*(n-1), 0) / (values.length*(values.length-1));
+};
+const key55 = t => primes[28 + 11*t - 1] - 1;
+const p55Decoded = [-1, 1].flatMap(sign => fullPaths(corpus.pages[55].indices, key55, sign).map(candidate => ({
+  sign, terminalClock:candidate.clock, literalFPositions:candidate.literalFPositions,
+  indexOfCoincidence:runeIoC(candidate.indices),
+  transliteratedFullCandidate:candidate.indices.map(i => corpus.translit[i]).join(''),
+})));
+assert.equal(p55Decoded.length, 4);
+assert.deepEqual(p55Decoded.map(c => c.literalFPositions), [[25], [15], [], [15,25,41]]);
+assert(p55Decoded.every(c => c.transliteratedFullCandidate.length >= 76));
 console.log(JSON.stringify({
   source_filenames: imageNames, one_based_prime_ordinals: starts,
   key_index_step: 11, first_party_positive: {
@@ -104,5 +133,6 @@ console.log(JSON.stringify({
   p15_rejections: results.filter(x => x.page === 15).length,
   p55_surviving_variants: results.filter(x => x.page === 55 && x.allowed_terminal_clocks),
   exact_results: results,
+  all_p55_full_path_readouts: p55Decoded,
   conclusion: "Historical filename prime-step is source-derived; transfer of solved p56 GP prime-totient F-transparent law fails on p0 and p15 for every source phase/sign. No LP2 plaintext.",
 }, null, 2));
