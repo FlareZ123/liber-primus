@@ -43,15 +43,16 @@ assert.equal(corpus.pages.length, 58);
 /**
  * @param {string} letters Uppercase A-Z only
  * @param {-1|1} sign Encrypt (+1) or decrypt (-1).
+ * @param {number} phase Preselected Latin-key phase, never inferred from LP2.
  * @returns {string}
  */
-function vig(letters, sign) {
+function vig(letters, sign, phase = 0) {
   let out = '';
   let offset = 0;
   for (const ch of letters) {
     assert.ok(alphabet.includes(ch), 'Latin26 input must be A-Z only');
     const c = ch.charCodeAt(0) - 65;
-    const k = key.charCodeAt(offset++ % key.length) - 65;
+    const k = key.charCodeAt((phase + offset++) % key.length) - 65;
     out += alphabet[(c + sign * k + 26) % 26];
   }
   return out;
@@ -271,6 +272,153 @@ const controls = [
     originalWordSlotLag5: wordLagRate(glyphs, sourceLengths, 5)
   };
 });
+
+/**
+ * Strong positive control: emit 64 complete native-English-lexicon plants
+ * through one fully reversible Latin26 cipher and the exact source GP chart.
+ * Their 2896 printed word lengths, 12956 glyph slots, and original physical
+ * line/page/punctuation locations exactly match the unmodified manuscript.
+ * The word inventory is genuine and external; the sequence is a synthetic
+ * word salad selected to satisfy source lengths and literal GP representability.
+ * No candidate is scored against unknown ciphertext before this calibration.
+ */
+function geometryPlants() {
+  const all = read('resources/control/english_wordfreq_textblob.txt')
+    .split(/\r?\n/u)
+    .map((line) => /^([a-z]+) (\d+)$/iu.exec(line))
+    .filter((match) => match !== null)
+    .map((match) => ({ word: match[1].toUpperCase(), frequency: Number(match[2]) }))
+    .sort((a, b) => b.frequency - a.frequency ||
+      (a.word < b.word ? -1 : a.word > b.word ? 1 : 0));
+  assert.equal(all.length, 29157);
+  const lengths = allWords.map((word) => word.length);
+  const maxLength = Math.max(...lengths);
+  assert.equal(maxLength, 14);
+  const options = Array.from({ length: maxLength + 1 }, () =>
+    Array.from({ length: key.length }, () =>
+      Array.from({ length: key.length }, () => [])));
+  for (const { word, frequency } of all) {
+    for (let phase = 0; phase < key.length; phase++) {
+      const ciphertext = vig(word, 1, phase);
+      const glyphs = spellToGp(ciphertext);
+      if (!glyphs || glyphs.length > maxLength) continue;
+      const next = (phase + word.length) % key.length;
+      options[glyphs.length][phase][next].push({ word, ciphertext, glyphs, frequency });
+    }
+  }
+
+  // Exact finite-state dynamic program: an eligible English word is selected
+  // only when all subsequent original word lengths can still be realized.
+  const suffix = Array.from({ length: lengths.length + 1 }, () =>
+    new Array(key.length).fill(false));
+  suffix[lengths.length].fill(true);
+  for (let i = lengths.length - 1; i >= 0; i--)
+    for (let phase = 0; phase < key.length; phase++)
+      suffix[i][phase] = options[lengths[i]][phase]
+        .some((choices, next) => choices.length > 0 && suffix[i + 1][next]);
+  assert.equal(suffix[0][0], true);
+
+  const printTemplate = corpus.pages
+    .filter((page) => page.page <= 55 && page.page !== 50)
+    .map((page) => source[page.page <= 49 ? page.page : page.page - 1]).join('%');
+  const geometryMask = [...printTemplate]
+    .map((ch) => corpus.runes.includes(ch) ? '#' : ch).join('');
+  /** @type {Array<{seed:number,digraphs:number,doublets:number,lag5:number,
+   * openingPlain:string,finalPhase:number}>} */
+  const results = [];
+  for (let seed = 1; seed <= 64; seed++) {
+    let state = seed >>> 0;
+    /** @returns {number} */
+    const rnd = () => {
+      state ^= state << 13;
+      state ^= state >>> 17;
+      state ^= state << 5;
+      return state >>> 0;
+    };
+    let phase = 0;
+    /** @type {string[]} */
+    const glyphs = [];
+    /** @type {string[]} */
+    const words = [];
+    for (let i = 0; i < lengths.length; i++) {
+      const wanted = lengths[i];
+      const eligible = [];
+      let total = 0;
+      for (let next = 0; next < key.length; next++) {
+        if (!suffix[i + 1][next]) continue;
+        const choices = options[wanted][phase][next];
+        if (choices.length === 0) continue;
+        eligible.push({ next, choices });
+        total += choices.length;
+      }
+      assert.ok(total > 0, 'Full native-text plant dead end at word ' + i);
+      let pick = rnd() % total;
+      let selected = null;
+      for (const entry of eligible) {
+        if (pick < entry.choices.length) {
+          selected = { ...entry.choices[pick], next: entry.next };
+          break;
+        }
+        pick -= entry.choices.length;
+      }
+      assert.ok(selected);
+      assert.equal(vig(selected.word, 1, phase), selected.ciphertext);
+      assert.equal(vig(selected.ciphertext, -1, phase), selected.word);
+      assert.equal(selected.glyphs.length, wanted);
+      words.push(selected.word);
+      glyphs.push(...selected.glyphs);
+      phase = selected.next;
+    }
+    assert.equal(words.length, 2896);
+    assert.equal(glyphs.length, 12956);
+    // Placing the synthetic rune symbols into the exact original non-rune
+    // print template retains every physical page/line/word carry, dot and
+    // separator, down to its original sequence position.
+    let cursor = 0;
+    const rendered = [...printTemplate].map((ch) =>
+      corpus.runes.includes(ch) ?
+        corpus.runes[spells.indexOf(glyphs[cursor++])] : ch).join('');
+    assert.equal(cursor, unknown.length);
+    assert.equal([...rendered].map((ch) => corpus.runes.includes(ch) ? '#' : ch).join(''),
+      geometryMask);
+    assert.deepEqual(printedWords(rendered).map((word) => word.length), lengths);
+    results.push({
+      seed,
+      digraphs: glyphs.filter((symbol) => symbol.length === 2).length,
+      doublets: lagRate(glyphs, 1).hits,
+      lag5: lagRate(glyphs, 5).hits,
+      openingPlain: words.slice(0, 12).join(' '),
+      finalPhase: phase
+    });
+  }
+  /** @param {'digraphs'|'doublets'|'lag5'} field */
+  function summary(field) {
+    const numbers = results.map((result) => result[field]);
+    return {
+      mean: numbers.reduce((sum, value) => sum + value, 0) / numbers.length,
+      min: Math.min(...numbers),
+      max: Math.max(...numbers)
+    };
+  }
+  const summary64 = {
+    nativeLexiconWords: all.length,
+    syntheticWordSlots: lengths.length,
+    syntheticSourceRuneSlots: unknown.length,
+    syntheticSourceOriginalPhysicalGeometry: true,
+    numberOfIndependentPlants: results.length,
+    digraphs: summary('digraphs'),
+    adjacentRepeats: summary('doublets'),
+    lag5Echoes: summary('lag5'),
+    firstSeed: results[0],
+    lastSeed: results[results.length - 1]
+  };
+  assert.ok(summary64.digraphs.max < 300);
+  assert.ok(summary64.adjacentRepeats.min > 500);
+  assert.ok(summary64.lag5Echoes.min > 475);
+  return summary64;
+}
+const fullGeometryPositiveControls = geometryPlants();
+
 const originalStats = {
   totalOriginalRunes: unknown.length,
   originalLatinExpansionLetters: reconstructed.length,
@@ -302,5 +450,6 @@ console.log(JSON.stringify({
   candidateKey: key,
   letterClock: 'one key advancement per Latin character; digraph runes consume 2',
   originalStats, independentOriginalRanges: ranges, nativeSourceControls: controls,
+  fullOriginalGeometryNativeLexiconPlants: fullGeometryPositiveControls,
   explicitLimits: 'A different 26-to-29 escape alphabet, secret normalization, keyed transducer, non-English register, or different key is outside this frozen model. Lossy K/Q->C and V->U and Z->S folding is used in native null controls only; it is not a proposed decryptor.'
 }, null, 2));
