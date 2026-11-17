@@ -6,6 +6,9 @@
 
 **Research next decision:** pursue another unclaimed Director task with a truly independent source-grounded plaintext/key mechanism. Avoid the already exhausted p3/p39 119-rune common pad, p50 eight-SHA test, p7 red14 prime-totient transposition, and generic original word-permutation families. Check active claim comments before choosing work.
 
+
+**Independent follow-on original source after #1404:** 170−138=32 agrees with p50's 32 rows; the first 32 posttable runes comprise exactly eight complete words [3,6,5,5,3,4,3,3], matching the eight 32-byte table columns. Source-native SHA-256 preimage test of seven serializations × eight individual words + full prefix (63 inputs) against all eight columns yielded **0/504** original digest equalities; planted SHA-256 column exact positive passed. SFT `sims/lp2_p51_eightword_p50_eightdigest_original_sft.cjs`; consolidated negative `im-results/lp2-p51-eightword-p50-eightdigest-source-gate.md`; passing Windows CI `44161870830`. No key or unknown plaintext; this was a new neighbor-message source-selector gate, not a reason to sweep secret hash transforms. Next prefer a genuinely different source-selected plaintext route.
+
 ---
 
 ## Historical identity memory preserved below
