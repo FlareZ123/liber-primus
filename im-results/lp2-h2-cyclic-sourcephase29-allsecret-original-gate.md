@@ -1,6 +1,6 @@
-# First 29 prime origins: cyclic-H2 transparent-F all-secret source exclusion
+# First 29 prime origins and one-exception native-GP exclusion for cyclic H2
 
-**17 November 2026, Agent15. Classification:** exact, source-original necessary-condition exclusion for 29 finitely specified key origins. **No unknown LP2 plaintext, original key, author-selected cipher, or final destination was recovered.** [Standalone Windows Node22 SFT](../sims/lp2_h2_primephase29_ftransparent_original_sft.cjs) · [passing original-corpus Windows run 44140671825](https://github.com/FlareZ123/liber-primus/actions/runs/44140671825).
+**17 November 2026, Agent15. Classification:** exact, source-original necessary-condition exclusions for 29 key origins, including an allowed exceptional singleton and a key-independent plaintext-frequency bound. **No unknown LP2 plaintext, original key, author-selected cipher, or final destination was recovered.** [Standalone Windows Node22 SFT](../sims/lp2_h2_primephase29_ftransparent_original_sft.cjs) · [passing original-corpus Windows run 44140671825](https://github.com/FlareZ123/liber-primus/actions/runs/44140671825).
 
 ## Concrete question and prior boundary
 
@@ -35,6 +35,40 @@ Original input is exactly [`resources/liber-primus/lp2-corpus.json`](../resource
 The **phase-zero** p15 contradiction at global rune **4176** reproduces Agent43's preexisting result verbatim. The remaining **28 initial prime origins** are the new finite coverage. Starting afresh on the black p16 page is independently excluded even though the previous p15 red heading is excluded in both tests. The p17 and p28 observations are intentionally retained as counterexamples to a blanket claim that an arbitrary short black span necessarily fails this family.
 
 The correct source-only conclusion is: **no single fixed secret `τ` and no legal F/collision hidden path can map the complete original black p15–p22 or black p16–p22 word-boundary pattern into ordinary GP29 English when the successive-prime-totient clock starts at any ordinal 0–28.** This conclusion uses **only the one-rune-word alphabet** and is independent of every remaining unknown plaintext rune.
+
+## Stronger original-input gate: allow one arbitrary one-rune word and bound EVERY secret plaintext symbol
+
+**17 November, same Agent15 invocation.** The [separate all-secret original-source SFT](../sims/lp2_h2_oneexception_unigram_capacity_original_sft.cjs) successfully ran its full Windows Node22 test, including a blinded synthetic English positive, in [run 44144589741](https://github.com/FlareZ123/liber-primus/actions/runs/44144589741). This is a stronger independent extension of the 29-start test above; it changes the finite family's interpretation but **still recovers zero original unknown-page plaintext**.
+
+### One source-singleton exception granted *anywhere*, all 29 clock starts
+
+A skeptic can reasonably question the strict A/I/O assumption: one printed one-rune word may be a symbol, initial, untranslated token or deliberate exception. Grant such an exception **without preselecting its site**, preserving all other original singleton words as at most three unknown labels under one arbitrary, fixed secret \`τ\`. In the exhaustive state machine, the exception may have *any* underlying secret label and consumes its key in the ordinary encrypted branch; no plaintext letters, literal strings or hidden skip positions are guessed. The state records the mask of up to three ordinary singleton labels, the number of exceptions used (0 or 1) and every legal hidden prime-pointer drift.
+
+The exact unchanged source results are:
+
+| Model / span | Surviving start prime ordinals out of 29 | Exact remaining freedom |
+| --- | ---: | --- |
+| Black original p15–p22, 18 singleton sites, **one optional free exception at any site** | **1/29** | Only ordinal **28** survives; phases 0–5 fail by global rune **4794** and phases 6–27 by **5336** |
+| Same span, start ordinal 28, try every one of the **18 original exception sites** | **1/18** | Only global rune **4217** can be exceptional |
+| Same surviving source span and exceptional site | **15 complete prime-pointer states** | All survivors have exactly the same three ordinary secret base labels **{2,15,18}** |
+
+The unique exceptional source rune is physical p17, original ciphertext transliteration **T** (GP index16). The three survivors' *labels* {2,15,18} are **unshifted secret-substitution values**, respectively coincident with GP transliterations TH/S/E in the conventional index order; **they are not decoded plaintext**. Exact forward/backward reachability under every remaining legal hidden key clock forces the one exceptional unshifted label to **20**, with all 17 other singleton labels uniquely determined. The full original coordinate-to-hidden-label array is printed in the SFT output. No arbitrary phase, plaintext string or hidden \`τ\` was fitted to obtain these forced labels.
+
+### All-alphabet upper bound rules out ordinary reference GP29 English
+
+With these now source-implied constraints fixed, the program computes a stronger, **key- and secret-alphabet-independent exact ceiling**. For **each possible underlying symbol** \`b∈{0,…,28}\`, a separate dynamic program retains at every source rune the maximum count of accepted encrypted base values equal to \`b\` for each reachable key-pointer drift. It includes all ciphertext-F transparent branches and all legal optional rejected-prime histories. The end-state maximum is an **upper bound**, since this relaxation does not even enforce the globally fixed bijection on nonsingleton positions.
+
+Across **all 1,883 original black source runes**:
+
+- The largest possible count of **any** fixed nontransparent plaintext symbol under every compatible unknown \`τ\` and key path is exactly **113/1,883 = 6.00%**. The cap reaches 113 for unshifted base label12; the cap for label18 is 105; all other 27 base labels are at most 112.
+- Independent GP29 conversion of the full original-source-sized **Shakespeare** control contains **217,106 runes**. Among **every one** of its **215,224 contiguous 1,883-rune windows**, even the least-E window contains **147** GP-index18 E runes.
+- Independent GP29 conversion of the **Gibran** control contains **62,492 runes**. Among **every one** of its **60,610 contiguous 1,883-rune windows**, even the least-E window contains **185** E runes.
+- Therefore no actual ciphertext inverse in this exact 29-origin, fixed-cyclic-\`τ\`, transparent-F, ≤1-singleton-exception family can produce *any* of those original-size native GP29 reference passages, regardless of the unknown key label assigned to plaintext **E**. This is stronger than rejecting a fitted decoder output based on a visually nonlinguistic prefix.
+- A frozen independent plant of **1,883 genuine Shakespeare GP29 runes**, with source-shaped 18 singleton sites, one special singleton, an independently shuffled unknown 29-symbol bijection, optional real collision skips and literal-F bypass, retains its **true hidden key-pointer and alphabet history at every rune**. Its plaintext-E count exceeds 113; the same all-secret count dynamic program correctly permits at least that many copies of its hidden E label. The original failure is therefore an original-cipher constraint rather than an inherent impossibility of the proposed encoder.
+
+The language conclusion is **reference-register conditional**: an adversarially written English passage with unusually few E runes, an alternate orthography, a binary intermediate, altered source word boundaries or a language in which a fourth singleton category is normal is not eliminated. The original source never authenticates a cyclic hidden substitution, this H2 retry rule, or one-exception cipher mode. A completely unrelated nonadditive transducer is unaffected.
+
+**Causal research decision:** Even a single arbitrary one-rune-word rescue does not make the first 29 prime starts into a plausible direct-GP-English decoder for the original black p15–p22 passage. Stop investing in more nearby phase choices or a single custom exception as a mechanism rescue. A truly independent creator-specified secret-state architecture or original plaintext witness is necessary before further variants are useful. [Exact original source, 18-site scan, 29-phase scan, 29-letter capacity, exhaustive native-window controls and positive](../sims/lp2_h2_oneexception_unigram_capacity_original_sft.cjs).
 
 ## Positive controls and scope of the decision
 
