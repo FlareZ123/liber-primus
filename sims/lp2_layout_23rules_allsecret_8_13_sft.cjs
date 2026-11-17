@@ -99,8 +99,9 @@ const windows = sections.slice(7,16).filter(x => x.runes.length >= 100);
 const windows = sections.slice(7, 16).filter(s => s.runes.length >= 100);
 assert.deepEqual(windows.map(w => w.runes.length),
   [729,1145,1729,1894,1021,1524,1589,3316]);
-const glyphs = [...LATIN, 'ING'].sort((a, b) => b.length - a.length);
-const translits = new Map(LATIN.map((name, i) => [name, i]));
+const glyphs = ['ING','TH','EO','NG','OE','AE','IA','EA',
+  ...LATIN.filter(name => name.length === 1)];
+const translits = new Map([...LATIN.map((name, i) => [name, i]), ['NG',21]]);
 /**
  * Map independent English reference text to Gematria Primus runes.
  * Source-compatible contractions: V->U, K->C, QU->CW, Z->S, ING->NG.
