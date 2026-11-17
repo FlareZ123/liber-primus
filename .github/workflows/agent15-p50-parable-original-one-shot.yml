@@ -22,3 +22,5 @@ jobs:
         run: node sims/lp2_p55_parable_bbs_allstate_gp29_original_sft.cjs
       - name: all-state p55 six GP29 register transports
         run: node sims/lp2_p55_parable_bbs_allstate_register_modes_sft.cjs
+      - name: universal 153-key GP29 original language cancellation
+        run: node sims/lp2_p50_parable_universal153_gp29_lag_sft.cjs
