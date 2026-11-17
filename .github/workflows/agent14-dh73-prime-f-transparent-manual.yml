@@ -1,0 +1,18 @@
+name: Agent14 source DH73 F-transparent inverse (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-original:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original four-branch and authentic GP-positive SFT
+        run: |
+          node --check sims/lp2_dh73_p56_ftransparent_original_gate_sft.cjs
+          node sims/lp2_dh73_p56_ftransparent_original_gate_sft.cjs
