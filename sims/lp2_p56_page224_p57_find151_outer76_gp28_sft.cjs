@@ -129,6 +129,28 @@ assert.deepEqual(
   ['2X', 151, '39', 186]
 );
 
+// The clear parable also has a source-native "shed / emerge" word-sum loop.
+// These are source arithmetical facts, not p55 plaintext or a cipher method.
+const p57RuneWord = (spelling) =>
+  p57Words.find((word) => transliterate(word) === spelling);
+const title = p57RuneWord('PARABLE');
+const tunnel = p57RuneWord('TUNNELNG');
+const divinity = p57RuneWord('DIUINITY');
+const like = p57RuneWord('LICE');
+const emerge = p57RuneWord('EMERGE');
+assert.equal(primeSum(title.slice(1, -1)), primeSum(tunnel));
+assert.equal(primeSum(tunnel), 339);
+assert.equal(tokens[82], '3L');
+assert.equal(bytes[82], primeSum(tunnel.slice(1, -1)));
+assert.equal(primeSum(tunnel.slice(1, -1)), 201);
+assert.equal(primeSum(divinity.slice(1, -1)), primeSum(like));
+assert.equal(primeSum(divinity.slice(1, -1)), 184);
+assert.equal(bytes[119], 184);
+assert.equal(primeSum(emerge), 300);
+assert.equal(tokens[43], '1D');
+assert.equal(bytes[43], corpus.prime[like[0]]);
+assert.equal(bytes[43], 73);
+
 // First-party lexical map: PAGE (224) -> table[223] = 151 -> FIND (151).
 // The 224th cell is *already* on the 76-cell outer circumference.
 const startingCell = primeSum(knownPlainP56.slice(
