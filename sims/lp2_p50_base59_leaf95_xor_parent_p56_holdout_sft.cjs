@@ -70,10 +70,10 @@ const forward=known.map(v=>v===0?0:mod(v+primes[used++]));
 assert.deepEqual(forward,p56);
 assert.equal(used,84);
 
-function xorGraph(leafOrder,weights,backwards){
+function xorGraph(leafOrder,weights,backwards,plant=p57){
   const labels=Array(256).fill(-1);
   for(let j=0;j<95;j++){
-    const letter=p57[backwards?94-j:j];
+    const letter=plant[backwards?94-j:j];
     labels[leaves[leafOrder][j]]=weights==="prime"?
       gp.prime[letter]%29:letter;
   }
@@ -114,6 +114,23 @@ const sourcePos=xorGraph("address","index",false);
 const nativePlanted=internal.address.slice(76).map(i=>sourcePos[i]);
 assert.equal(nativePlanted.length,84);
 assert.ok(nativePlanted.every(v=>v>=0&&v<=31));
+// Full legal GP29 source-shaped plant, including genuine p56 F-transparent
+// prime clock. Low-nibble leaves ensure XOR remains a GP29 rune at every node.
+const plantLeaves=p57.map(v=>v&15);
+const plantedGraph=xorGraph("address","index",false,plantLeaves);
+const plant84=internal.address.slice(76).map(i=>plantedGraph[i]);
+assert.ok(plant84.every(v=>v>=0&&v<29));
+const plant85=plant84.slice();
+plant85.splice(56,0,0);
+assert.equal(plant85.length,85);
+let clock=0;
+const encodedPlant=plant85.map(v=>v===0?0:mod(v+primes[clock++]));
+assert.equal(clock,plant85.filter(v=>v!==0).length);
+clock=0;
+const decodedPlant=encodedPlant.map((c,i)=>
+  i===56?0:mod(c-primes[clock++]));
+assert.deepEqual(decodedPlant,plant85);
+assert.deepEqual(decodedPlant.filter((v,i)=>i!==56),plant84);
 const output={source:{
   p50Cells:256,root:189,p57Leaves:95,unassignedInternalRoot:1,
   originalP55:76,p56ConsumingKnown:84,p56OriginalVerified85:true},
@@ -121,6 +138,8 @@ const output={source:{
   all24Cases:cases,
   bestOriginalP56Matches:maxKnown,
   minimumInvalidGP29Symbols:minIllegal,
+  plant:{rawLeafValues:plantLeaves.length,validFullGraph:256,
+    validP56PlusF:85,reencryptedAndRecovered:true},
   independentKnownTarget:target,
   result:"No XOR tree propagation through source p57 leaves recovers the independent p56 plaintext; therefore none qualifies to predict p55."
 };
