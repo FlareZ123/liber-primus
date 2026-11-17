@@ -75,6 +75,13 @@ function score(x,y,trim=0){
 }
 const ar=rank(originalA),br=rank(b);
 const observed=score(ar,br,6); // Six reused glyphs motivated the alignment.
+const suffixStart=a.length-b.length; // 2016 source JPEG 563×569 mean: 566.
+assert.equal(suffixStart,(563+569)/2);
+const suffixRanks=rank(a.slice(suffixStart));
+const lengthMatched=score(suffixRanks,br);
+assert.equal(lengthMatched.eligible,6111);
+assert.equal(lengthMatched.equal,232);
+assert.ok(Math.abs(lengthMatched.llr+126.89460437740401)<1e-7);
 assert.equal(observed.eligible,6108);
 assert.equal(observed.equal,235);
 assert.ok(Math.abs(observed.llr+109.04543777853046)<1e-7);
@@ -119,6 +126,10 @@ const pB=sh.slice(160000,160000+ar.length);
 const synthetic=score(encrypt(pA,ar,2),encrypt(pB,br,18),6);
 assert.equal(synthetic.eligible,observed.eligible);
 assert.ok(synthetic.llr>0);
+const lengthMatchedPlant=score(
+  encrypt(pA,suffixRanks,3),encrypt(pB,br,17));
+assert.equal(lengthMatchedPlant.eligible,lengthMatched.eligible);
+assert.ok(lengthMatchedPlant.llr>0);
 assert.ok(observed.llr<0);
 
 // Independent natural 28-page pair clock, same-ranked steps at page offset.
@@ -167,6 +178,7 @@ const output={
     sourceLockedOverlapStart:origin,excludedEchoRunes:6},
   model:"Ciphertext GP29 successor = previous + 1 + ((GP28 plaintext + equal keystream) mod28), with zero step as transparent exception",
   reference,bookend:{observed,rotationNull:bookNull,sourceNativeSharedKeyPlant:synthetic},
+  exactHalfLengthAlignment:{suffixStart,sourceDimensions:[563,569],observed:lengthMatched,sourceNativeSharedKeyPlant:lengthMatchedPlant},
   physicalPagePairs:{observed:pairObservation,pagePermutationNull:pairNull},
   limitations:"This excludes only the same GP28 additive pad under two source-selected public alignments and native GP prose. Changes of key phase, nonlinear feedback, source compression and non-English alphabets remain open."
 };
