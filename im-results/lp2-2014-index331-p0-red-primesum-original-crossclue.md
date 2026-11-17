@@ -4,7 +4,7 @@
 
 ## Both inputs were available to a 2014 solver
 
-The unchanged original 2014 distribution index at [pinned stage11 onion index.html](https://github.com/micheloosterhof/cicada-2014/blob/6c3421a4d245596e403c88e037509d162a2afd17/stage11/ky2khlqdf7qdznac.onion/index.html) contains **<title>133</title>** and **<div id="331">** around all 58 linked LP2 JPEGs. The historical index is a static HTML page with no embedded decoder or secret script. These two literal numbers are not inferred from a contemporary web service. The digit reversal 133/331 is visible in the original HTML.
+The unchanged original 2014 distribution index at [pinned stage11 onion index.html](https://github.com/micheloosterhof/cicada-2014/blob/6c3421a4d245596e403c88e037509d162a2afd17/stage11/ky2khlqdf7qdznac.onion/index.html) contains a literal HTML title of **133** and a div identifier **331** around all 58 linked LP2 JPEGs. The historical index is a static HTML page with no embedded decoder or secret script. These two literal numbers are not inferred from a contemporary web service. The digit reversal 133/331 is visible in the original HTML.
 
 The original p0 scan 17.jpg has a red heading of **8 + 5** GP runes, with a small ordinary red word dot separating them and a large thirteen-dot chapter mark after both. The verified source transcription and 2013 original GP-prime alphabet yield:
 
@@ -19,7 +19,7 @@ Both words **start S**, which has canonical GP index15 or **one-based ordinal16*
 
 where **331** is the independently documented original HTML div ID, **16** is the shared opening rune's one-based GP ordinal, and **133** is the HTML page title with the digits of 331 reversed. The sum of all thirteen red GP-prime values is 662 = 2×331.
 
-This is an original-source coincidence with a visually motivated boundary. Whether it was deliberate is unknown. The HTML does not say to sum GP primes, subtract initial-rune ordinals or use the result as a key. The earlier [p0 DH23 red-heading candidate](lp2-p0-red-heading-dh23-source-gate.md) uses a different source group and gives incompatible hypothetical secret values 3 and18, neither validated by plaintext.
+This is an original-source coincidence with a visually motivated boundary. Whether it was deliberate is unknown. The HTML does not say to sum GP primes, subtract initial-rune ordinals or use the result as a key. The earlier [p0 DH23 red-heading candidate](p0-dh23-red-heading-exchange.md) uses a different source group and gives incompatible hypothetical secret values 3 and18, neither validated by plaintext.
 
 ## Source-wide specificity, controls, and conditioning
 
