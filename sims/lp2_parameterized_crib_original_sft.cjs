@@ -1,8 +1,9 @@
 'use strict';
 /**
  * Lossless substitution-isomorphism crib scan over the original LP2 ciphertext.
- * Searches every rune offset against six genuinely clear LP1 passages and the
- * final, clear LP2 p57, allowing EVERY possible one-to-one 29-rune alphabet.
+ * Searches every rune offset against six genuinely clear LP1 passages,
+ * clear p57, and original 2012–2016 Cicada PGP-clearsigned source prose,
+ * allowing EVERY possible one-to-one 29-rune alphabet.
  * This is a complete all-secret test for contiguous monoalphabetic reuse of
  * those specific known texts, including non-word-aligned and cross-page starts.
  *
@@ -71,9 +72,10 @@ function signedProse(message) {
   const signature = '-----BEGIN PGP SIGNATURE-----';
   assert.ok(message.includes(signature));
   const beforeSignature = message.split(signature)[0].replace(/\r\n/g, '\n');
-  const body = beforeSignature.split('\n\n').slice(1).join('\n\n');
+  const body = beforeSignature.split('\n\n').slice(1).join('\n\n')
+    .split('- -----BEGIN PGP MESSAGE-----')[0];
   return nativeSignedProse(body
-    .replace(/ky2khlqdf7qdznac\.onion/gi, ' ')
+    .replace(/\b[a-z0-9]{16}\.onion\b/gi, ' ')
     .replace(/\b3301\b/g, ' '));
 }
 
@@ -83,6 +85,21 @@ known.push({name: 'Signed2016', values:
 known.push({name: 'Signed2014', values:
   signedProse(read('resources/historical/cicada2014-stage11-message.asc'))});
 assert.deepEqual(known.slice(7).map(item => item.values.length), [177, 65]);
+const earlySigned = [
+  ['Signed2012Countdown', 'cicada2012-countdown-message.asc'],
+  ['Signed2012Midi', 'cicada2012-midi-email.asc'],
+  ['Signed2013First', 'cicada2013-first-onion-hello.asc'],
+  ['Signed2013Forest', 'cicada2013-forest-clue.asc'],
+  ['Signed2013Second', 'cicada2013-second-onion-everything-you-need.asc'],
+  ['Signed2013Icmp', 'cicada2013-second-onion-icmp-echo.asc'],
+  ['Signed2014Stage09', 'cicada2014-stage09-first-jpeg-recovered.asc']
+];
+for (const [name, filename] of earlySigned) {
+  known.push({name, values:
+    signedProse(read('resources/historical/' + filename))});
+}
+assert.deepEqual(known.slice(9).map(item => item.values.length),
+  [73, 335, 43, 49, 91, 30, 167]);
 assert.deepEqual(nativeSignedProse('MEANING'), [19, 28, 9, 21]);
 
 /**
@@ -206,11 +223,11 @@ function repeatedWindows(length) {
 
 const observed = known.map(reference => ({name: reference.name,
   ...longestIsomorphic(original, reference.values)}));
-assert.deepEqual(observed.map(row => row.length), [16, 15, 15, 16, 16, 15, 15, 15, 15]);
+assert.deepEqual(observed.map(row => row.length), [16, 15, 15, 16, 16, 15, 15, 15, 15, 16, 16, 15, 14, 14, 12, 16]);
 const transparentObserved = known.map(reference => ({name: reference.name,
   ...longestTransparentF(original, reference.values)}));
 assert.deepEqual(transparentObserved.map(row => row.length),
-  [16, 15, 15, 16, 16, 15, 14, 15, 14]);
+  [16, 15, 15, 16, 16, 15, 14, 15, 14, 14, 16, 14, 14, 14, 12, 15]);
 const sourceOffsets = [];
 let cursor = 0;
 for (const page of pages) {
@@ -271,5 +288,5 @@ console.log(JSON.stringify({
     recoveredIsomorphismLength:transparentPositive.length,
     recoveredInsertionOffset:transparentPositive.originalOffset,
     recoveredReferenceOffset:transparentPositive.referenceOffset},
-  conclusion: 'No 17-rune or longer original LP2 passage is a fixed bijective or native literal-F-transparent substitution of any contiguous passage in six selected clear LP1 pages, clear p57, or the original prose of two Cicada clearsigned 2014/2016 messages. All page-local unknown-to-unknown equality patterns have unique signatures at length 22. These are necessary-condition exclusions for identical typed plaintext under a single bijection, not universal decryptions or evidence against changing keys, transposition, or novel plaintext.'
+  conclusion: 'No 17-rune or longer original LP2 passage is a fixed bijective or native literal-F-transparent substitution of any contiguous passage in six clear LP1 pages, clear p57, or any of nine original Cicada clearsigned 2012–2016 source messages. All page-local unknown-to-unknown equality patterns have unique signatures at length 22. These are necessary-condition exclusions for identical typed plaintext under a single bijection, not universal decryptions or evidence against changing keys, transposition, or novel plaintext.'
 }, null, 2));
