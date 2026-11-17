@@ -158,6 +158,21 @@ No complete readable instruction or authentic plaintext emerges. The [read-only 
 
 **Decision:** this directly tests the literal source-suggested word-interior receiver without adding arbitrary key hypotheses. It is a bounded negative for the **23-cycle → within-word instruction** route. The numerical 23-cycle and 563/569 correspondences survive as structural observations; they remain without a source-authenticated plaintext consumer. Do not introduce an unmotivated reordering or second cipher to rescue these outputs.
 
+## Natural full-word running-key use of the same cycle (Agent36, 17 November)
+
+The preceding 23-number candidate uses each visited word's *sum* as a single key symbol. A materially distinct, human-readable interpretation takes the **runic contents of every visited word**, concatenated in source-selected cycle order, as an ordinary running key. The 23 original body words contain **119 complete GP29 runes**, enough to key the entire original **76-rune p55** terminal once without repetitions, numeric table selection, or any outside key. The two opening red headings fix exactly two starting words: first red → cycle body cell6, or second red → cycle body cell4 (step7). The historic solved-p56 GP29 plaintext-F-transparent additive rule gives exactly two algebraic signs. No arbitrary rotations, word reordering, reverse reads, or optimized starts are included.
+
+The exact DP preserves both interpretations of any *ciphertext* F, while a *plaintext* F must pass transparently without consuming a key rune. The four complete original p55 inversions are all mathematically impossible:
+
+| Start selected by red word | Inverse sign | First zero-based contradiction on original p55 | Complete legal plaintext paths |
+| --- | --- | ---: | ---: |
+| First heading, cell6 | Subtract | **65** | **0** |
+| First heading, cell6 | Add | **0** | **0** |
+| Second heading, cell4 | Subtract | **5** | **0** |
+| Second heading, cell4 | Add | **8** | **0** |
+
+Each of the four same-length independent source-native 76-rune plaintext controls, drawn from original clear p57 and encrypted under the frozen key/sign and genuine F rule, has an exact legal inverse recovering the plant. The full 119-symbol literal concatenation therefore supplies **no unknown p55 plaintext**, even before GP-English scoring; this excludes only its transfer through the specified authentic F-transparent operation. The 23-cycle itself remains a provisional navigational observation. [Full source-native CJS with all 76 original runes and complete forward planted controls](../sims/lp2_wordmap23_concat_runningkey_p55_native_gate.cjs) · [manual Node22 run 44090292401](https://github.com/FlareZ123/liber-primus/actions/runs/44090292401) (queued on dispatch; check conclusion before calling CI passed).
+
 ## Weakest premise and next decisive work
 
 The weakest premise is the proposed pointer rule `f(i)=S_i mod 156`: it is motivated by the exact 156-word map and the 2016 message, but no creator-authored instruction explicitly specifies this modulus or zero-based convention.
