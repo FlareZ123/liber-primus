@@ -43,7 +43,7 @@ const pages=Array.from({length:58},(_,p) =>
       (w.match(/[ᚠ-᛿]+/gu)||[]).join("")).filter(Boolean)
     .map(w => [...w].map(ch => corpus.runes.indexOf(ch))));
 assert.equal(pages.length,58);
-assert.deepEqual(pages[56][1],encode("OSR"));
+assert.deepEqual(pages[56][1],encode("OESR"));
 const signedBody=signed.slice(signed.indexOf("Hello."),
   signed.indexOf("-----BEGIN PGP SIGNATURE-----"));
 const words=signedBody.match(/(?<![A-Za-z0-9])[A-Za-z]+(?![A-Za-z0-9])/g)||[];
