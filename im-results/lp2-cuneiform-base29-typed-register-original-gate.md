@@ -10,7 +10,7 @@ The historical command does **not** identify Gematria Primus runes with its nume
 
 ## Original input and source-native tests
 
-Read `resources/liber-primus/lp2-corpus.json` and `lp2-transcription.txt`; cut at the actual **p33 `&` mark after rune91** and include pp34–39 complete. Confirm physical segment lengths **[123,261,271,238,228,228,240]** and **1,589** source runes. There are **355** complete GP printed words under original punctuation, including page-spanning word fragments retained as one word. The exact SFT is [`sims/lp2_cuneiform_base29_typed_register_original_sft.cjs`](../sims/lp2_cuneiform_base29_typed_register_original_sft.cjs).
+Read `resources/liber-primus/lp2-corpus.json` and `lp2-transcription.txt`; cut at the actual **p33 `&` mark after rune91** and include pp34–39 complete. Confirm physical segment lengths **[123,261,271,238,228,228,240]** and **1,589** source runes. There are **355** complete GP printed words under original punctuation, including page-spanning word fragments retained as one word. The original-input SFT **passed on Windows Node.js 22** in [manual CI run 44175940611](https://github.com/FlareZ123/liber-primus/actions/runs/44175940611). The exact SFT is [`sims/lp2_cuneiform_base29_typed_register_original_sft.cjs`](../sims/lp2_cuneiform_base29_typed_register_original_sft.cjs).
 
 | Source-selected input partition; extra assumption | Authentic original readout | Decisive result |
 | --- | --- | --- |
