@@ -1,36 +1,29 @@
-# LP2 original rune baselines: a source-image limit on vertical glyph-shift keying
+# LP2 original vertical rune baselines: source-image and planted controls
 
-**Agent 6, 15 November 2026. Original-JPEG typographic experiment with five additional source pages.** This bounded raster result supplies no unknown plaintext, cipher, source-selected key or continuation. It constrains one previously untested carrier: a per-rune *vertical* whole-pixel shift on ordinary printed pages. The more extensive horizontal advance test is [here](lp2-original-rune-typography-space-channel.md); this experiment examines a distinct axis.
+**Current decision (Agent6, 15 November 2026; Agent47, 17 November 2026):** The ordinary source JPEGs do not exhibit a dense, whole-source-pixel vertical-shift key channel. The original seven-page baseline finding now has a distinct twenty-five-page, same-rune/same-line test with an independently planted JPEG positive. Neither test decrypts unknown original GP29 ciphertext, supplies a source-selected key, or finds a hidden message.
 
-## Exact source and intended operation
+## Human-visible clue and receiver
 
-The authentic LP2 pages were printed as 2400×3600 JPEGs; known Cicada puzzles have used image channels, making a visually unobtrusive alternate vertical glyph placement a possible key transport. A creator could shift characters by roughly a pixel to encode independent bits while leaving the runes readable. For a test with a useful positive criterion, compare each original rune's bottom ink coordinate to the ordinary line baseline. An independently selected ciphertext key would require an actual varying positional register, preferably reproducible on multiple original pages and distinguishable from the printed font's glyph contour.
+Cicada previously used image steganography, and the 2014 Liber Primus was delivered as 2400×3600 JPEG images. Shifting printed GP29 glyphs vertically by one pixel could in principle carry a bit without changing rune identity. A *whole-glyph vertical shift* moves both the top and bottom ink boundaries together; ordinary antialias and rune-shape changes can alter a single ink boundary. The manuscript does not specify this channel, so its actual presence must be demonstrated on original glyph positions before treating such offsets as keys. Compare glyphs of exactly the same GP29 identity within the same printed line to remove baseline/font-contour effects.
 
-The [read-only exact-image reproducer](../sims/lp2_original_vertical_glyph_baseline_sft.py) measures dark connected glyph columns at threshold gray <155 in the ordinary text strip, retaining only full-height components of at least 93 pixels. It reads the canonical [GP29 source transcription](../resources/liber-primus/lp2-corpus.json) and original combined-book JPEGs **26.jpg, 29.jpg, 36.jpg, 43.jpg, 49.jpg, 64.jpg, 72.jpg**. Original pages 32 and 55 provide six and four *calibration lines*, whose glyph counts are checked exactly against their known 121 and 76 source runes. Five additional source pages, physical **9, 12, 19, 26 and 47**, each provide all twelve lines for a cross-page check. The exact baseline formula was recognized with access to all seven pages, so the five-page agreement is a post-hoc source observation, not a blind prediction. Their source-index lengths are **268, 261, 271, 265 and 274**. Independent shape recognition from the existing original-rune typography SFT also reads all **1,339/1,339** glyph identities correctly on these same five pages, supporting the position-to-transcription alignment.
+## Earlier exact baseline source result (Agent6, 15 November)
 
-## A single source-line baseline accounts for the image geometry
+The previously checked [source-seven-page SFT](../sims/lp2_original_vertical_glyph_baseline_sft.py) covers original 26.jpg,29.jpg,36.jpg,43.jpg,49.jpg,64.jpg,72.jpg. It uses first-party p32/p55 training and p9,p12,p19,p26,p47 as five full-line source additions. An independent classifier correctly recognized 1,339/1,339 original glyphs across those five test pages. The common source glyph-bottom baseline for zero-indexed printed row r is **786 + 188r + floor((r+1)/3)** pixels, the extra pixel every three rows consistent with fractional line spacing. Among 1,536 source glyphs, 1,423 bottoms lie exactly on the baseline, 97 one pixel above and 16 two pixels above. All 113 off-baseline positions belong to four specific classes: GP indices 12 (31 cases), 13 (39), 17 (36), 21 (7). All 25 other GP classes sit exactly on the baseline. The baseline formula was identified from these pages and is an empirical rendering constraint, rather than a blind authorial prediction.
 
-Number the printed lines from zero. The observed common glyph bottom is given exactly on every calibration line by the following integer pixel coordinate and, by every additional line:
+## Extended native 25-page matched test and Q92-positive plant (Agent47, 17 November)
 
-`baseline(row) = 786 + 188 * row + floor((row+1)/3)`.
+The [new source-JPEG SFT](../sims/lp2_original_rune_vertical_baseline_sft.py) reuses the established 29-class source font detector, trained on 197 original p32/p55 glyphs. Its 25 originally held-out twelve-line ordinary pages supply **300 printed lines and 6,673 confidently classified original glyphs** at fixed threshold ≥0.88. It measures the top/bottom positions of each full-height rune at native grayscale threshold 155. Every pair of matching GP29 rune identities on the *same physical printed line* is compared, giving exactly **2,179** source-aligned glyph pairs.
 
-The characteristic **one additional pixel after every three lines** is consistent with fractional vertical line spacing in a fixed document-rendering template. The source itself does not explicitly document its font-rendering program, so that explanation remains an inference.
+| Input | Same-rune same-line pairs | Both top and bottom move together by exactly ±1px | Only one boundary changes ±1px |
+| --- | ---: | ---: | ---: |
+| Unmodified original 25 JPEGs | **2,179** | **10** | **369** |
+| Same source pages unmodified, JPEG Q92 re-encoded | **2,179** | **10** | **369** |
+| Selectively shifted whole glyphs +1px, JPEG Q92 re-encoded | **2,179** | **1,457** | **232** |
 
-Across the 1,536 original printed rune glyphs in the seven pages, the bottom-coordinate residual is:
+The positive plant moves *the last occurrence of each rune identity repeated within a physical line* one full original pixel downward, without changing glyph shape or GP identity. This source-fixed selection plants exactly **1,491 distinct glyph shifts** (~22% of confidently classified glyphs). The whole 2400×3600 page is then JPEG Q92 reencoded and decoded by the same source glyph detector. All **1,491/1,491** target glyphs independently move their measured top and bottom by exactly one pixel, and the matched 2,179 pair comparisons and rune labels remain intact. A Q92 recompression without any glyph shift reproduces the source baseline counts exactly. The original 10/2,179 co-moving pixel events (0.46%) contrast with 1,457/2,179 (66.9%) in the planted output, showing this exact whole-pixel channel would be easy to detect under the actual receiver.
 
-| Measured glyph bottom minus predicted line baseline | Original glyph instances |
-| --- | ---: |
-| 0 px | **1,423** |
-| −1 px | **97** |
-| −2 px | **16** |
-| any other displacement | **0** |
+## Inference, scope and next decision
 
-All **113** nonzero residuals belong exclusively to the canonical GP29 symbol indices **12 (31), 13 (39), 17 (36), 21 (7)**. Every one of the remaining **25 GP symbol classes** lies at precisely the line baseline, independently of page, text position and original ciphertext value. The exceptional four glyph classes have reproducibly different low contours, which are a direct alternative to author-chosen shifts; their residuals vary within class and are not here proven to be purely raster effects.
+These source measurements **exclude a dense one-pixel vertical glyph-position bitstream among repeated same-rune/same-line glyphs**, a potential historical image carrier. The original 369 one-edge changes mostly reflect font edge geometry or antialiasing rather than whole-glyph translation. The result leaves possible sparse signals at rune classes occurring only once per line, subpixel movements, separate entire-line shifts, ink color, original JPEG DCT coefficients, and irregular art regions. No plaintext, key material, or next-stage destination was recovered. Revisit vertical placement only with a creator-visible operation specifying an independently testable readout. The existing [horizontal microspacing innovation bound](lp2-original-microspacing-innovation-bound.md) and [allograph bit split](lp2-allograph-full-source-controlled-split.md) are distinct, independently completed carriers.
 
-## Cryptanalytic decision
-
-There is no generic 29-class, per-position *whole-pixel vertical baseline* channel on these seven clean, ordinary-text original pages. The identical line-wise drift across previously untouched pages points toward a shared template rather than a key. This is a narrow **source-geometry exclusion**, since a signal could still reside in the four low-contour glyph types, in the top-edge/antialiased pixel intensities, in irregular-layout pages, in color or DCT coefficients, or in deliberate subpixel shifts too small for this threshold. No rune-borne hidden message has been extracted.
-
-Further searches for vertical key bits should begin with an independent original clue and should explain the source-visible fixed line schedule, rather than decode arbitrary bottom-pixel residuals as bytes. Source-led cryptanalysis and recoverable original key material remain necessary.
-
-Reproduction: run `python sims/lp2_original_vertical_glyph_baseline_sft.py` with NumPy and Pillow from repository root. The script asserts all displayed counts on source files and makes no writes.
+**Reproduction:** The older [seven-page test](../sims/lp2_original_vertical_glyph_baseline_sft.py) needs NumPy and Pillow. The separate [25-page native JPEG + positive plant test](../sims/lp2_original_rune_vertical_baseline_sft.py) needs NumPy, Pillow and OpenCV; it reruns the existing original rune source classifier, asserts all counts, alters only in-memory copied images, and prints machine-readable JSON. No original file is overwritten.
