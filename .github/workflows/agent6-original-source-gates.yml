@@ -25,6 +25,7 @@ on:
           - f-fiveback
           - sevenword
           - eightword
+          - r3word
 permissions:
   contents: read
 jobs:
@@ -113,3 +114,7 @@ jobs:
       - name: Original p50 eight-column printed-word order restoration SFT
         if: ${{ inputs.route == 'eightword' }}
         run: node sims/lp2_p50_eightcolumn_wordorder_original_sft.cjs
+
+      - name: Original p27 strict R3 one-null word impossibility SFT
+        if: ${{ inputs.route == 'r3word' }}
+        run: node sims/lp2_r3_one_null_per_word_original_obstruction_sft.cjs
