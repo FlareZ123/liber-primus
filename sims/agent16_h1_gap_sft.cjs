@@ -88,18 +88,28 @@ function prepare(upstream, corpusFile, out) {
   writeAtomic(path.join(out,"library_flat.ksb"),flatBytes);
   writeAtomic(path.join(out,"null581.ksb"),nullBytes);
   writeAtomic(path.join(out,"lp2_windows.txt"),src);
+  // The final physically distinct red-titled p54–55 passage was not a
+  // restart window in the external eight-window campaign. Fix one source-led
+  // 300-rune original test with an explicit p54 beginning and no tuning.
+  const finalPassage=pages[54].indices.concat(pages[55].indices);
+  assert.equal(pages[54].indices.length,232);
+  assert.equal(pages[55].indices.length,76);
+  assert.equal(finalPassage.length,308);
+  const p54Window="W p54 -1\nR "+finalPassage.slice(0,300).join(" ")+"\n";
+  writeAtomic(path.join(out,"lp2_p54_window.txt"),p54Window);
   const sha=b=>crypto.createHash("sha256").update(b).digest("hex");
   const audit="H1 gap prepared from pinned pnotisdev/cicada3301\n"+
     "Full streams 1439; flat streams 581; null streams 581\n"+
     "All 8 exact original 300-rune windows match; original rune count 12956\n"+
     "Window global starts "+JSON.stringify(startByName)+"\n"+
     "flat KSB SHA256 "+sha(flatBytes)+"\n"+
-    "windows SHA256 "+sha(src)+"\n";
+    "windows SHA256 "+sha(src)+"\n"+
+    "p54 source SHA256 "+sha(p54Window)+"\n";
   writeAtomic(path.join(out,"audit.txt"),audit);
   process.stdout.write(audit);
 }
 /** @param {string} filepath @param {number} shard @returns {{hits:object[],best:object[]}} */
-function parseTsv(filepath,shard) {
+function parseTsv(filepath,shard,offsetStep,minL,maxL) {
   const hits=[],best=[];
   for (const line of fs.readFileSync(filepath,"utf8").split(/\r?\n/)) {
     if(!line||line.startsWith("#")) continue;
@@ -109,21 +119,25 @@ function parseTsv(filepath,shard) {
     const p=isBest?1:0;
     const e={name:f[p],offset:Number(f[p+1]),L:Number(f[p+2]),
       model:Number(f[p+3]),window:f[p+4],score:Number(f[p+5])};
-    assert.ok(e.offset===-1||(e.offset>=shard*100 && e.offset<(shard+1)*100));
-    assert.ok(e.offset===-1||(e.L>=14&&e.L<=20));
+    assert.ok(e.offset===-1||(e.offset>=shard*offsetStep && e.offset<(shard+1)*offsetStep));
+    assert.ok(e.offset===-1||(e.L>=minL&&e.L<=maxL));
     assert.ok([0,1].includes(e.model));
     assert.ok(Number.isFinite(e.score));
     (isBest?best:hits).push(e);
   }
   return {hits,best};
 }
-function analyze(dir,file,shardCount) {
+function analyze(dir,file,shardCount,variant) {
+  const isP54=variant==="p54";
+  assert.ok(isP54||variant==="gap");
+  const offsetStep=isP54?250:100, minL=isP54?2:14, maxL=isP54?13:20;
+  const expectedWindowModels=isP54?2:16;
   const realHits=[],nullHits=[],realBest=[],nullBest=[];
   for(let s=0;s<shardCount;s++){
     for(const [name,hits,best] of [["real",realHits,realBest],["null",nullHits,nullBest]]){
       const loc=path.join(dir,name+"_"+s+".tsv");
       assert.ok(fs.existsSync(loc),"missing shard "+loc);
-      const part=parseTsv(loc,s);
+      const part=parseTsv(loc,s,offsetStep,minL,maxL);
       hits.push(...part.hits);best.push(...part.best);
     }
   }
@@ -137,17 +151,17 @@ function analyze(dir,file,shardCount) {
     return m;
   }
   const nm=maxima(nullBest),rm=maxima(realBest);
-  assert.equal(nm.size,16);assert.equal(rm.size,16);
+  assert.equal(nm.size,expectedWindowModels);assert.equal(rm.size,expectedWindowModels);
   const floor=r=>Math.max(1.6,(nm.get(r.window+":"+r.model)||0)+0.15);
   const candidates=realHits.filter(r=>r.score>=floor(r)).sort((a,b)=>b.score-a.score);
   const lines=[
-    "# LP2 H1 keyword L14–20: original-source completed finite sweep",
+    isP54?"# LP2 p54–55 final passage: untouched H1 short-key original test":"# LP2 H1 keyword L14–20: original-source completed finite sweep",
     "",
     "Fixed external source: pnotisdev/cicada3301 commit 15200c67abee106913ba01ff504c5b6e88d16cc7.",
-    "Original source: resources/liber-primus/lp2-corpus.json; exact eight-window byte-for-byte rune match.",
+    isP54?"Original source: p54 232 + p55 76 =308 contiguous GP runes; first 300 fixed from p54 red-titled beginning; previous source chapter and original extra rune positions not used.":"Original source: resources/liber-primus/lp2-corpus.json; exact eight-window byte-for-byte rune match.",
     "Decoder: external parity-controlled Rust h5rs, frozen two anti-repeat models.",
-    "Real and matched-null grids: 581 independent streams × eight 300-rune windows × 2,000 offsets × lengths14–20 × two models, each.",
-    "Shards observed: "+shardCount+" (100 offsets each).",
+    isP54?"Real and matched-null grids: 581 historical streams × one 300-rune p54 original window × 2,000 offsets × lengths2–13 × two models, each.":"Real and matched-null grids: 581 independent streams × eight 300-rune windows × 2,000 offsets × lengths14–20 × two models, each.",
+    "Shards observed: "+shardCount+" ("+offsetStep+" offsets each).", 
     "Real hit rows >=1.5: "+realHits.length+"; null: "+nullHits.length+".",
     "Real hit rows >=1.6: "+realHits.filter(r=>r.score>=1.6).length+
       "; null: "+nullHits.filter(r=>r.score>=1.6).length+".",
@@ -168,11 +182,13 @@ function analyze(dir,file,shardCount) {
   lines.push("","## Strongest original near-misses","");
   for(const r of realHits.sort((a,b)=>b.score-a.score).slice(0,12))
     lines.push("- "+r.name+" / "+r.window+" / offset "+r.offset+" / L"+r.L+" / model"+r.model+" / IoC "+r.score);
-  lines.push("","Earlier externally completed L2–13 and nonflat L2–8 had no candidate. Longer H1 keywords have low planted-key screen power (L16 14%; L20 7% at floor1.6), so a screen negative does not exclude all H1. No unknown plaintext/key is claimed unless independently verified.","");
+  lines.push("",isP54?
+    "The final p54–55 red-titled passage is a newly motivated source-section restart, separate from the earlier eight H5 windows. This is a novel short-key screen, not a continuation of the L14–20 incomplete grid. Even a null does not rule out unprovided keys, other segment starts, or an exact invertible cipher.":
+    "Earlier externally completed L2–13 and nonflat L2–8 had no candidate. Longer H1 keywords have low planted-key screen power (L16 14%; L20 7% at floor1.6), so a screen negative does not exclude all H1. No unknown plaintext/key is claimed unless independently verified.","");
   writeAtomic(file,lines.join("\n"));
   process.stdout.write(lines.join("\n"));
 }
 const cmd=process.argv[2];
 if(cmd==="prepare") prepare(process.argv[3],process.argv[4],process.argv[5]);
-else if(cmd==="analyze") analyze(process.argv[3],process.argv[4],Number(process.argv[5]||20));
+else if(cmd==="analyze") analyze(process.argv[3],process.argv[4],Number(process.argv[5]||20),process.argv[6]||"gap");
 else throw new Error("usage: prepare <upstream> <corpus.json> <outdir> | analyze <shardsdir> <report.md> [shards]");
