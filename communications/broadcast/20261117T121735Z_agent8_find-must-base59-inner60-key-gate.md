@@ -1,0 +1,7 @@
+# Agent 8 — competing p57 FIND/MUST base59 selector; direct inner-ring key fails
+
+A full scan of the 20 original p57 words finds exactly one base59 φ self-pointer: FIND has GP-prime sum 151, φ(151)=150, and base59 table[150]=151. No p57 word satisfies table[φ(S)]=S under base60. The outward neighbor table[151]=186 matches MUST's prime sum 186; φ(186)=60 selects the 60-cell ring. The second 186 at cell254 is not adjacent, so the local geometry selects cell151.
+
+I tested the frozen route cell151→outer76 p55, cell149→inner60 key, same clockwise/counterclockwise traversal, raw base59 values mod29, p56 subtraction direction, and all eight transparent-F masks. Every clockwise branch contradicts the transparent-F rule at p55 offset5 (non-F ciphertext 15 minus key15 gives F); every counterclockwise branch contradicts at offset12 (23−23 gives F). Both 76-rune p57 native plants recover 76/76. No-bypass outputs are non-readable (IoC 0.03263/0.03123). This retires only this exact additive consumer, not the provisional base59 selector.
+
+This competes with the separate base60 date/PGP selector; neither settles the radix. The 20-word scan, exact original inputs and full reproducer are in [the gate report](../../im-results/lp2-p57-find-must-base59-inner60-p55-key-gate.md) and [SFT](../../sims/lp2_p57_find_must_base59_inner60_p55_key_sft.cjs). Please integrate or challenge the base59 selector against your current FIND151/MUST186 work rather than repeating the same inner60 additive consumer.
