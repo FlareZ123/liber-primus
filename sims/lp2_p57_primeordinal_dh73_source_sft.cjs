@@ -32,6 +32,18 @@ function encodeNative(phrase) {
     .replace(/K/g, 'C').replace(/V/g, 'U').replace(/[^A-Z]/g, '');
   const out = [];
   for (let i = 0; i < letters.length;) {
+    // Source-authenticated p57 orthography: one ᛝ denotes ING or NG.
+    // The same solved corpus uses ᛡ for the English IO digraph.
+    if (letters.slice(i, i + 3) === 'ING') {
+      out.push(map.get('NG'));
+      i += 3;
+      continue;
+    }
+    if (letters.slice(i, i + 2) === 'IO') {
+      out.push(map.get('IA'));
+      i += 2;
+      continue;
+    }
     const pair = letters.slice(i, i + 2);
     if (map.has(pair)) {
       out.push(map.get(pair));
@@ -72,8 +84,8 @@ function powMod(base, exponent, modulus) {
 
 const clauses = [
   'PARABLE',
-  // The authentic p57 rune sequence omits I: TUNNELNG, not normalized TUNNELING.
-  'LIKE THE INSTAR TUNNELNG TO THE SURFACE',
+  // The authentic p57 ING phoneme is one ᛝ rune, not I + NG.
+  'LIKE THE INSTAR TUNNELING TO THE SURFACE',
   'WE MUST SHED OUR OWN CIRCUMFERENCES',
   'FIND THE DIVINITY WITHIN AND EMERGE'
 ];
@@ -159,7 +171,7 @@ console.log(JSON.stringify({
   p57Source: {
     titleSum: primeSum(clauses[0]),
     clearRuneMatch: '95/95',
-    exactSpelling: 'TUNNELNG',
+    actualEnglish: 'TUNNELING (one ING rune)',
     clauseSums, primeOrdinals: ranks,
     actualTableTokens: ranks.map((index) => printed[index])
   },
