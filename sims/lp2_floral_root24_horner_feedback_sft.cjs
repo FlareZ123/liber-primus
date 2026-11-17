@@ -40,8 +40,8 @@ function ioc(a) {
  * @param {-1|1} sign
  * @returns {number[]}
  */
-function decipher(c, feedback, sign) {
-  let h = 0;
+function decipher(c, feedback, sign, initialState = 0) {
+  let h = initialState;
   return c.map(x => {
     const y = mod(x + sign * h);
     h = mod(R * h + (feedback === 'cipher' ? x : y));
@@ -54,8 +54,8 @@ function decipher(c, feedback, sign) {
  * @param {-1|1} sign
  * @returns {number[]}
  */
-function encipher(p, feedback, sign) {
-  let h = 0;
+function encipher(p, feedback, sign, initialState = 0) {
+  let h = initialState;
   return p.map(y => {
     const x = mod(y - sign * h);
     h = mod(R * h + (feedback === 'cipher' ? x : y));
@@ -86,14 +86,24 @@ for (const [first, last, redCount, bodyLength] of records) {
   let h = 0;
   for (const v of header) h = mod(R * h + v);
   assert.equal(h, 0, 'red heading does not reduce to zero');
+  const alteredHeader = header.slice();
+  alteredHeader[0] = mod(alteredHeader[0] + 1);
+  let alteredState = 0;
+  for (const v of alteredHeader) alteredState = mod(R * alteredState + v);
+  const expectedState = mod(R ** (redCount - 1));
+  assert.equal(alteredState, expectedState);
   console.log('chapter', first, last, 'header', header.join(','),
-    'H(24)', h, 'body', body.length, 'cipher IoC', ioc(body).toFixed(12));
+    'H(24)', h, 'perturb-first-red-+1-state', alteredState,
+    'body', body.length, 'cipher IoC', ioc(body).toFixed(12));
   for (const feedback of ['cipher', 'plain']) {
     for (const sign of [-1, 1]) {
       const plaintext = decipher(body, feedback, sign);
       assert.deepEqual(encipher(plaintext, feedback, sign), body);
       const plant = controls.slice();
       assert.deepEqual(decipher(encipher(plant, feedback, sign), feedback, sign), plant);
+      const alteredCipher = encipher(plant, feedback, sign, alteredState);
+      assert.deepEqual(decipher(alteredCipher, feedback, sign, alteredState), plant);
+      assert.notEqual(decipher(alteredCipher, feedback, sign, 0)[0], plant[0]);
       console.log('  feedback', feedback, 'sign', sign,
         'IoC', ioc(plaintext).toFixed(12), 'roundtrip', body.length,
         'solved-native plant', plant.length, 'prefix80', translit(plaintext.slice(0, 80)));
