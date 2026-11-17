@@ -174,6 +174,133 @@ function gapCorrelation(body) {
 const originalGaps = gapCorrelation(pages);
 const plantedGaps = gapCorrelation(planted);
 
+// The preceding positive uses genuine contiguous source GP English but places
+// its original English word boundaries at unrelated printed LP2 word breaks.
+// Evaluate the crucial original word-role evidence with ANOTHER genuine
+// source-native plant, sampled from actual Gibran words of precisely the
+// 2,896 original printed word lengths. Preserve rune count, word positions,
+// page-carry positions and all state rules unchanged.
+const normalizedWords = read('resources/control/gibran_prophet_58585.txt')
+  .toUpperCase().replace(/QU/g, 'CW').replace(/V/g, 'U')
+  .replace(/[KQ]/g, 'C').replace(/Z/g, 'S').match(/[A-Z]+/g) || [];
+const sourceWords = Array.from({length: 32}, () => []);
+for (const word of normalizedWords) {
+  const decoded = [];
+  for (let i = 0; i < word.length;) {
+    const token = runeTokens.find((x) => word.startsWith(x.rune, i));
+    assert.ok(token);
+    decoded.push(token.value);
+    i += token.rune.length;
+  }
+  sourceWords[decoded.length].push(decoded);
+}
+let wordSeed = 0x33012113;
+/** @returns {number} Independent native-word sample PRNG. */
+function wordDraw() {
+  wordSeed ^= wordSeed << 13;
+  wordSeed ^= wordSeed >>> 17;
+  wordSeed ^= wordSeed << 5;
+  return wordSeed >>> 0;
+}
+const wordAlignedPlain = words.flatMap((word) => {
+  const choices = sourceWords[word.length];
+  assert.ok(choices.length, 'must have authentic English word for every original length');
+  return choices[wordDraw() % choices.length];
+});
+assert.equal(wordAlignedPlain.length, 12956);
+let usedNative = 0;
+const shapeMatchedPlant = pages.map((original) => {
+  const plain = wordAlignedPlain.slice(usedNative, usedNative + original.length);
+  usedNative += original.length;
+  const cipher = [original[0]];
+  for (let i = 1; i < plain.length; i++)
+    cipher.push(maps[(i % phases) * 29 + cipher[i - 1]][plain[i]]);
+  for (let i = 1; i < plain.length; i++)
+    assert.equal(inverses[(i % phases) * 29 + cipher[i - 1]][cipher[i]], plain[i]);
+  return cipher;
+});
+assert.equal(usedNative, 12956);
+
+const wordStarts = new Uint8Array(12956);
+const wordEnds = new Uint8Array(12956);
+let wordPosition = 0;
+for (const word of words) {
+  wordStarts[wordPosition] = 1;
+  wordEnds[wordPosition + word.length - 1] = 1;
+  wordPosition += word.length;
+}
+assert.equal(wordPosition, 12956);
+/** @param {number[][]} body */
+function repeatRoles(body) {
+  const found = {all: 0, starts: 0, ends: 0, interior: 0};
+  let cursor = 0;
+  for (const page of body) {
+    for (let i = 1; i < page.length; i++) {
+      if (page[i] !== page[i - 1]) continue;
+      const absolute = cursor + i;
+      found.all++;
+      found.starts += wordStarts[absolute];
+      found.ends += wordEnds[absolute];
+      found.interior += Number(!wordStarts[absolute] && !wordEnds[absolute]);
+    }
+    cursor += page.length;
+  }
+  return found;
+}
+const originalRoles = repeatRoles(pages);
+const wordAlignedRoles = repeatRoles(shapeMatchedPlant);
+assert.deepEqual(originalRoles, {all: 86, starts: 23, ends: 19, interior: 44});
+assert.deepEqual(wordAlignedRoles, {all: 113, starts: 7, ends: 75, interior: 31});
+const wordAlignedFiveBack = fiveBack(shapeMatchedPlant);
+const wordAlignedGaps = gapCorrelation(shapeMatchedPlant);
+assert.equal(wordAlignedFiveBack.matches, 82);
+
+// A *key-independent* necessary condition for every repeat in the frozen
+// rare-NG/J cipher is P[i] in {NG,J}. If word boundaries are transported
+// literally, 23 original repeat sites at word starts require at least 23
+// source-English words beginning with NG or J out of the original 2,896.
+// No contiguous matching-length English controls in the 3 pinned corpora
+// attain 23 such word starts, independent of the 377 secret tables.
+/**
+ * @param {string} prose
+ * @returns {{words:number,windows:number,highest:number,total:number,atLeast23:number}}
+ */
+function scanRareWordStarts(prose) {
+  const normalized = prose.toUpperCase().replace(/QU/g, 'CW')
+    .replace(/V/g, 'U').replace(/[KQ]/g, 'C').replace(/Z/g, 'S');
+  const symbols = (normalized.match(/[A-Z]+/g) || []).map((word) => {
+    const rune = runeTokens.find((token) => word.startsWith(token.rune));
+    assert.ok(rune);
+    return Number(rune.value === rareNG || rune.value === rarerJ);
+  });
+  let total = symbols.reduce((a, b) => a + b, 0);
+  const windowSize = words.length;
+  let count = symbols.slice(0, windowSize).reduce((a, b) => a + b, 0);
+  let highest = count, atLeast23 = Number(count >= 23);
+  for (let i = 1; i + windowSize <= symbols.length; i++) {
+    count += symbols[i + windowSize - 1] - symbols[i - 1];
+    highest = Math.max(highest, count);
+    atLeast23 += Number(count >= 23);
+  }
+  return {
+    words: symbols.length, windows: symbols.length - windowSize + 1,
+    highest, total, atLeast23
+  };
+}
+const wordStartSources = {
+  gibran: scanRareWordStarts(read('resources/control/gibran_prophet_58585.txt')),
+  shakespeare: scanRareWordStarts(read('resources/control/shakespeare_first300k.txt')),
+  emerson: scanRareWordStarts(read('resources/control/emerson_essays_2944.txt'))
+};
+assert.deepEqual([
+  wordStartSources.gibran.highest, wordStartSources.shakespeare.highest,
+  wordStartSources.emerson.highest], [22, 13, 18]);
+assert.deepEqual([
+  wordStartSources.gibran.windows, wordStartSources.shakespeare.windows,
+  wordStartSources.emerson.windows], [12838, 52512, 75037]);
+for (const control of Object.values(wordStartSources))
+  assert.equal(control.atLeast23, 0);
+
 // Exactly maximize the full per-state unigram likelihood over all 29!
 // possible secret substitutions, WITHOUT enumerating 29! possibilities:
 // the rearrangement inequality pairs ciphertext-frequency ranks with
@@ -248,6 +375,9 @@ console.log(JSON.stringify({
   originalRunes: 12956, originalSuccessors: 12901, keyedStates: 377,
   originalRepeats, plantedRepeats,
   originalFiveBack, plantedFiveBack, originalGaps, plantedGaps,
+  originalRoles, wordAlignedRoles, wordAlignedFiveBack, wordAlignedGaps,
+  keyIndependentWordStartRareSourceWindowControls: wordStartSources,
+  sourceWordShapeMatchedNativePlantGain: blindDecrypt(shapeMatchedPlant, (j) => j % 2 === 0),
   construction: '377 independent state-conditioned GP29 bijections; 3/4 NG and 1/4 J -> previous ciphertext, all plaintext values remain representable',
   plantedInverseRecoveredRunes: 12901,
   model: 'C[i] = secretPermutation[(i%13), C[i-1]](P[i]), reset per physical page',
