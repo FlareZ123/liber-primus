@@ -12,7 +12,7 @@
  * transparent inverses. No language-optimised key, phases, word edits, or
  * invented reset rule. Source-native positive roundtrips on each key.
  *
- * 100,000 seeded page-stratified pointer-map shuffles estimate how often the
+ * 1,000,000 seeded page-stratified pointer-map shuffles estimate how often the
  * combined post-discovery conjunction occurs. Its p-value is exploratory.
  *
  * Run: node sims/lp2_wordmap23_circumference_dual_target_sft.cjs
@@ -278,6 +278,6 @@ console.log(JSON.stringify({
     noLegal: results.length - survivors.length, best: best.slice(0, 8)
       .map(x => ({...x, best: {...x.best,
         transliteration: x.best.transliteration.slice(0, 180)}}))},
-  conjunctionNull: lengthConjunctionNull(100000),
+  conjunctionNull: lengthConjunctionNull(1000000),
   decision: "No coherent GP-native original prose. Exact-length cycle is exploratory; no author-selected use of the two red sums or additive consumer.",
 }, null, 2));
