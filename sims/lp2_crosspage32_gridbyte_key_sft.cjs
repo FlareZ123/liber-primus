@@ -7,6 +7,7 @@
  */
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
+const {createDecipheriv, createCipheriv, createHash} = require("node:crypto");
 const path = require("node:path");
 const {parseLP2Words} = require("./lp2_word_pages.cjs");
 const {encodeWords} = require("./lp2_difference_allletter_capacity_sft.cjs");
@@ -82,6 +83,29 @@ function main() {
   const addresses = seams.map((x, row) => row * 8 + x.right - 1);
   const key = addresses.map(i => table[i]);
   const keyHex = Buffer.from(key).toString("hex");
+  // The 32 selected bytes would also be the right length for an AES-256
+  // key. Test exactly one no-IV, no-padding direct 256-table-byte receiver.
+  // This is a candidate consumer only: no first-party source selects AES.
+  const keyBuffer=Buffer.from(key);
+  const tableBuffer=Buffer.from(table);
+  const aesD=createDecipheriv("aes-256-ecb",keyBuffer,null);
+  aesD.setAutoPadding(false);
+  const aesPlain=Buffer.concat([aesD.update(tableBuffer),aesD.final()]);
+  const aesE=createCipheriv("aes-256-ecb",keyBuffer,null);
+  aesE.setAutoPadding(false);
+  assert.deepEqual(Buffer.concat([aesE.update(aesPlain),aesE.final()]),
+    tableBuffer);
+  const aesHash=createHash("sha256").update(aesPlain).digest("hex");
+  assert.equal(aesHash,
+    "3f7f59bf277f813ecef8490dba4eed7ca5f0c0da26f2a9dc95261f7155e5ca16");
+  const ascii=Array.from(aesPlain).filter(v=>
+    (v>=32 && v<=126) || v===10 || v===13).length;
+  assert.equal(ascii,99);
+  const aesResult={algorithm:"AES-256-ECB, no IV, no padding",
+    source:"Original 256 base60 bytes, including 32 key-selected entries",
+    plaintextSHA256:aesHash,plaintextFirst16:aesPlain.subarray(0,16).toString("hex"),
+    printableASCIIof256:ascii,roundtrip:true,
+    verdict:"No ordinary ASCII or standard recognizable file header; unselected consumer"};
   assert.equal(keyHex,
     "61f9cac6505456feff728edc483f49ed780ad221c0f0839c007f063b446a1671");
   // Test whether 32 seams and all right fragments fitting an 8-column
@@ -231,7 +255,7 @@ function main() {
     controls:{nativeSameShape76RuneRoundTrip29:true,
       nativeSameShape76RuneRoundTrip28WithEARepeat:true,
       sourceNativeLexiconSize:lexicon.size,pageWrapNull},
-    original:originals,
+    original:originals,tableSelfDecrypt:aesResult,
     decision:"Source count and grid dimensions provide a conditional 32-byte key. The exact GP29 additive/GP28 predecessor consumers yield no GP-English words of length >=3 on physical p55; no authored instruction selects the seam mapping, cipher family or key consumer."
   },null,2));
 }
