@@ -76,44 +76,11 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           path: from-six
           merge-multiple: false
-      - id: source-artifacts
-        name: Inventory all 144 original remaining-convention artifacts by immutable ID
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const conventions = ['001','002','011','012','021','022','101','102','111','112','121','122'];
-            const items = await github.paginate(github.rest.actions.listWorkflowRunArtifacts, {
-              owner: context.repo.owner, repo: context.repo.repo,
-              run_id: 44007390480, per_page: 100
-            });
-            const byName = new Map(items.map(a => [a.name, a]));
-            const expected = conventions.flatMap(conv =>
-              Array.from({length:12}, (_, shard) => 'pdir-stage1-remaining-' + conv + '-' + shard));
-            const missing = expected.filter(name => !byName.has(name));
-            if (missing.length || new Set(expected).size !== 144 || byName.size < 144) {
-              throw new Error('Incomplete source shards: ' + JSON.stringify(missing));
-            }
-            for (const prefix of ['0','1']) {
-              const names = expected.filter(name => name.startsWith('pdir-stage1-remaining-' + prefix));
-              if (names.length !== 72) throw new Error('Original prefix count invalid');
-              core.setOutput('ids' + prefix, names.map(name => byName.get(name).id).join(','));
-            }
-      - name: Retrieve remaining original conventions beginning 0
-        uses: actions/download-artifact@v4
-        with:
-          run-id: "44007390480"
-          artifact-ids: "${{ steps.source-artifacts.outputs.ids0 }}"
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-          path: from-twelve
-          merge-multiple: false
-      - name: Retrieve remaining original conventions beginning 1
-        uses: actions/download-artifact@v4
-        with:
-          run-id: "44007390480"
-          artifact-ids: "${{ steps.source-artifacts.outputs.ids1 }}"
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-          path: from-twelve
-          merge-multiple: false
+      - name: Retrieve complete 144-shard original remaining-convention set
+        shell: pwsh
+        env:
+          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        run: gh run download 44007390480 --repo FlareZ123/liber-primus --dir from-twelve --pattern "pdir-stage1-remaining-*"
       - name: Full original-section inversion of only source-registered threshold survivors
         run: |
           python sims/lp2_pdir_stage1_verify_candidates.py --manifest source-reducer/lp2-pdir-original-stage1.json --six from-six --remaining from-twelve --external external-cicada3301 --out original-whole-window
