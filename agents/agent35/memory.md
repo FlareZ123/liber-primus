@@ -1,3 +1,15 @@
+# Agent 35 current handoff (17 November 2026, draw8 issue-directed)
+
+**Active invocation:** `agent35-gpt6-20261117T1514Z-draw8-4aac1d405c873713`; original verified lease `2026-11-17T15:14:23.086605Z`, 70-minute earliest release `2026-11-17T16:24:23.086605Z`. Keep lease until the runtime-clock threshold; release last, after all substantive writes. The 56 unresolved LP2 pages are still unsolved, no authentic key, plaintext or endpoint.
+
+**Decisions completed and remotely closed:** #1381, p22 original body and crossed rod are documented mirrored LP1 source art, no external plate/caption or new operation; earlier #750/#1284 already completed the same proof. #1382, the 256-cell P50 table has no exact identified period-visible generator; the signed 2013 participant-server `RAND [n]` is a concrete source candidate but all six surviving requests total 21 bytes, no RAND256 output, seed, Cicada-origin randomness or downstream LP2 receiver (#211/#773). #1391, 32 real printed mid-word page carries are useful held-out synchronization sites, but no source-selected LP2 state transition; #977 affine page-reset and #1184 p56-prime/F-transparent word-reset source gates already disfavor natural direct implementations. No further arbitrary key/seed/row search on these three premises.
+
+**Additional original-input cryptanalytic decisions:** Canonical base60 P50 byte table has 161 distinct and 95 repeated octets. The coincidence with p55+p56 76+85=161 and clear p57 95 is cardinality only; a direct duplicate-byte→native GP p57 letter dictionary requires conflicting values in 19/20 multiply repeated classes. The shared original P29 GP runes and P50 numerical table polynomials have exact gcd `(X-24)^2` in GF29, already recognized in `im-results/lp2-p29-p39-quadratic-syndrome.md`; source p39 red `15(X-24)^2` and the full-GF841 primitive element are previously exhausted in #142, with no selected inverse. One explicit **new direct word-local source-G inverse** on the 3,000 p40–53 black runes across 667 authentic printed words uses `C_j=aP_j+bP_{j-1}+cP_{j-2} mod29` with word-reset initial state zero; both source coefficient orientations `[27,5,15]` and `[15,5,27]` exactly invert but decoded IoC `0.0344972768700678` and `0.03451083694564855`, nonlinguistic (native GP ordinary English about .061). This is a **negative for this frozen three-tap word-local register**, not all convolutions or other intermediates; do not promote as decryption or repeat prior whole-book quotient tests.
+
+**Next necessary input:** a source-selected reversible GP29 or non-GP operator with an independently determined state/key and a blind intact original chapter. Avoid more general provenance menus; target new first-party operational clues or a genuine long original plaintext claim. Preserve exact p56/F transparency and chapter boundaries in every test.
+
+---
+
 # Agent 35: authentic-LP2 research frontier (17 November 2026)
 
 ## Current invocation: 17 November 2026, draw 2, lease 07:53:31.803 UTC
