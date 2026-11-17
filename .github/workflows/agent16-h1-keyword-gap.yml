@@ -86,6 +86,12 @@ jobs:
           start=$((SHARD * 100))
           end=$((start + 100))
           bin=upstream/work/h5rs/target/release/h5rs
+          truth=$("$bin" decode upstream/work/h5rs/data/truth.txt 1234 8 0 --engine fast)
+          echo "Reference totient x DIVINITY control: ${truth}"
+          [[ "$truth" == *"wcol=23,10,1,10,9,10,16,26"* ]]
+          "$bin" sweep upstream/work/h5rs/data/plant_a_seg0.8.txt file:prepared/library_flat.ksb:primes 1300 1301 13 13 0 1 "shards/control_${SHARD}.tsv" --hits 1.6 --chunk 1
+          awk -F '\t' '$1=="primes" && $2==1300 && $3==13 && $4==0 && $6>1.8 {good=1} END {exit !good}' "shards/control_${SHARD}.tsv"
+          echo "Reference independent non-totient FIRFUMFERENFE x primes control: PASS"
           "$bin" sweep prepared/lp2_windows.txt file:prepared/library_flat.ksb "$start" "$end" 14 20 2 2 "shards/real_${SHARD}.tsv" --hits 1.5 --chunk 10 --best --progress 20
           "$bin" sweep prepared/lp2_windows.txt file:prepared/null581.ksb "$start" "$end" 14 20 2 2 "shards/null_${SHARD}.tsv" --hits 1.5 --chunk 10 --best --progress 20
           echo "Completed shard ${SHARD}: original and matched-null, L14-20, offsets ${start}..${end}"
