@@ -19,7 +19,7 @@ const parsed = parseLP2Words(source, 3);
 const words = parsed.words;
 assert.equal(words.length, 158);
 assert.equal(parsed.runeCount, 729);
-/** @param {{runes:string[]}} word */
+/** @param {{runes:string}} word */
 const gpSum = word => [...word.runes].reduce((sum, r) => sum + corpus.prime[runeIndex.get(r)], 0);
 const sums = words.slice(2).map(gpSum);
 const heading = words.slice(0, 2).map(gpSum);
