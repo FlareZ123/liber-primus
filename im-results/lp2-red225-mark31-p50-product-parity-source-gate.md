@@ -30,11 +30,11 @@ Complete product parity requires 16 zero rows and 16 zero columns. Therefore non
 
 Let `A` denote the original 15×15 data matrix over any field. Permit arbitrary unknown row- and column-checksum weights `u,v ∈ F¹⁵`. The 16×16 product-coded table necessarily has the form
 
-[
-B = egin{bmatrix} A & Au \\ v^{T}A & v^{T}Auend{bmatrix}
-  = egin{bmatrix}I_{15} \\ v^{T}end{bmatrix}
-    A egin{bmatrix}I_{15}&uend{bmatrix}.
-]
+```text
+B = [ A      A*u    ] = [ I_15 ] * A * [ I_15  u ]
+    [ v^T*A  v^T*A*u]   [ v^T  ]
+```
+
 
 Consequently **rank(B) ≤ 15 for every A, u, v**. This remains true under row/column reorderings, rotations, transposition, or any nonzero uniform scaling. It cannot be rescued by choosing different checksum multipliers or red rune data. (A genuine different placement of the 256 table entries, which intermixes positions between candidate rows and columns, falls outside the two specified folds.)
 
