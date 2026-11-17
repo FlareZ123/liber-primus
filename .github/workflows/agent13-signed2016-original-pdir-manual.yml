@@ -1,0 +1,45 @@
+name: Agent 13 original signed-2016 source-key pointer pilot
+on:
+  workflow_dispatch:
+    inputs:
+      conv:
+        description: Source-registered direction pointer convention
+        required: true
+        type: choice
+        default: "000"
+        options: ["000", "110", "122", "021"]
+permissions:
+  contents: read
+jobs:
+  signed-2016-original:
+    runs-on: windows-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: external-cicada3301
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build independent source-motivated original-cipher pointer decoder
+        run: |
+          python -m pip install numpy mpmath filelock
+          cargo build --release --manifest-path external-cicada3301/work/kscreen/Cargo.toml
+          python external-cicada3301/work/kscreen/export.py
+          python external-cicada3301/work/kscreen/signrules.py
+          python external-cicada3301/work/kscreen/dirrules.py
+      - name: Reproduce independent exact, planted and null pointer-direction controls
+        run: python external-cicada3301/work/kscreen/pdir_selftest.py --quick --threads 4
+      - name: Test 2016 signed-message source keys on original LP2
+        run: python sims/lp2_pdir_signed2016_gate.py external-cicada3301 --conv "${{ inputs.conv }}"
+      - name: Preserve authentic original source and matched random scores
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-original-signed2016-source-pdir-${{ inputs.conv }}
+          path: external-cicada3301/results/kscreen/issue1329-signed2016/
+          if-no-files-found: warn
