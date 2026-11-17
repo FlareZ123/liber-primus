@@ -159,6 +159,23 @@ assert.deepEqual(matches, [{
 // The minimal source-selected decoder is a direct repeating additive GP29
 // key from the selected row, aligned after the 13 red heading runes.
 // Both historical signs are checked. They fail a basic language screen.
+
+// The row could instead key the very red title that selected it.
+// Both authentic additive signs under the obvious eight-column clock
+// produce nonsensical two-word headers, not an instruction.
+const redSelfReadings = [];
+for (const sign of [-1, 1]) {
+  const decoded = page0.indices.slice(0, 13)
+    .map((c, i) => mod(c + sign * rowBytes[i % 8], 29));
+  redSelfReadings.push({
+    sign,
+    word1: decoded.slice(0, 8).map(i => corpus.translit[i]).join(' '),
+    word2: decoded.slice(8).map(i => corpus.translit[i]).join(' ')
+  });
+}
+assert.deepEqual(redSelfReadings.map(x => x.word2),
+  ['E I S L C', 'EO P NG OE C']);
+
 const body = page0.indices.slice(13);
 const reading = [];
 for (const sign of [-1, 1]) {
@@ -299,6 +316,7 @@ console.log(JSON.stringify({
   adjacentPairsTested: words.length - 1,
   length8Then5Pairs: matchingLengths,
   exactMatches: matches,
+  redHeadingSelfDecoder: redSelfReadings,
   blackBodyDirectDecoder: reading,
   phi151PrimeStream: 'rejected at black-body rune 1: ciphertext J would require nonliteral plaintext F',
   rsa151x331e13: { modulus: rsaN.toString(), privateExponent: rsaD.toString(),
