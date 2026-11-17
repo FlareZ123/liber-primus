@@ -1,31 +1,35 @@
-# LP2 original printed-word address into Jung's *Liber Primus*
+# Original LP2 GP29-word address into Jung *Liber Primus*: two direct source scopes rejected
 
-**Executed source-exact negative, 17 November 2026 (Agent34).** The original manuscript gives no coherent English readout by either direct word-number address rule tested here. A source-native 19-character planted message was recovered exactly. **No unknown LP2 plaintext, selected Jung key, cipher mechanism or destination was recovered.**
+**Agent34, 17 November 2026. Executed source-constrained original-input decision.** The original 2,896 printed LP2 words give no coherent English under either natural unkeyed address function, using either the complete source reader's edition or the exact *Liber Primus* body. A 19-character source-native planted message was recovered exactly in each. No previously unknown LP2 plaintext, author-selected key, decipherment or continuation destination was recovered.
 
-## Hypothesis and original-input boundary
+## Source-selected hypothesis
 
-The 2016 Cicada signed statement says that the manuscript's “words are the map, their meaning is the road, and their numbers are the direction.” Cicada previously used both GP29 numerals and GP-prime-weight sums. C. G. Jung's *The Red Book: Liber Novus* contains a named *Liber Primus* portion, independently providing a possible same-title text for a conventional book cipher, although no Cicada-authored LP2 clue identifies Jung as the intended donor. The simple, fully specified test uses the whole fixed English reader's-edition PDF as the donor, without selecting a source offset after seeing the output.
+The authentic 2016 Cicada text describes the book's *words* as a map and its *numbers* as directions; the 2013 signed puzzles demonstrate GP29 numeral handling and GP-prime sums. Jung's *The Red Book: Liber Novus* contains a section explicitly titled *Liber Primus*, historically accessible in English by 2012, making a possible same-title book-cipher donor. **No original Cicada instruction actually names Jung as the key text.** We therefore test one direct human-traceable operation without tuning a key, offset, alphabet, source, page start or plaintext phrase to the result.
 
-Input: canonical original 55 rune-bearing physical LP2 pages p0–p55 (p50 has no runes), parsed at the original printed word boundaries. Exact counts **12,956 GP29 runes** and **2,896 complete words**. Complete words spanning page breaks remain whole. The donor PDF SHA-256 is `5cbb32a6a6033399c8692ac9aaeb148e02a1a0734f4d7a31a90453fbc6073359`; Unicode text extraction produces **228,597** alphabetic donor words.
+For each actual LP2 printed whole word `w = [d0,...,dk]` in canonical GP29 index order, compute either (i) its base29 value modulo source word count or (ii) its GP-prime-weight **sum** modulo source word count, then output the **first letter** of the selected zero-based donor word. Preserve all original 12,956 rune values and all 2,896 intact words, including 32 original page-spanning words. The scheme generates one letter per printed ciphertext word; by itself it is an exact deterministic readout, **not** a one-to-one cipher of original source words, since addresses collide.
 
-For each original printed cipher word (w=(d_0,\dots,d_{k-1})) in original GP29 numeral order, try exactly:
+Two independent, frozen source scopes were evaluated:
 
-1. (a_{29}(w)=(\sum_i d_i 29^{k-1-i})\bmod 228597).
-2. (a_{prime}(w)=(\sum_i p_{d_i})\bmod 228597), where (p_{d_i}) is the established GP prime weight.
+- **Complete** 545-page reader's-edition PDF, 228,597 alphabetic donor words, no internal trim.
+- **Precisely titled** *Liber Primus* body, using the document's own bookmark and full heading at PDF zero-based page107 through before the *Liber Secundus* heading at zero-based page199; 41,654 donor words. The PDF TOC also names these on pages2–3, but the later actual body headings are unambiguous. This is a stronger title-specific source selection than the whole-reader control.
 
-Read the **first Latin letter** of donor word at zero-based address (a(w)). Concatenate all **2,896** resulting letters in printed order. No arbitrary alphabet, ROT, word offset, source section restart, discarded letters or plaintext prefix was optimized. This is a *direct original rune-to-text readout hypothesis*, rather than a candidate LP2 cryptographic decryptor; it is not itself reversible to the unique source word because many source words can map to one donor address.
+The unchanged source file is SHA-256 `5cbb32a6a6033399c8692ac9aaeb148e02a1a0734f4d7a31a90453fbc6073359`; it is downloaded into CI memory and not redistributed.
 
-## Executed original result
+## Complete executed original outcome
 
-A source-native planted control replaced 19 original-shape GP words by exact BASE29 encodings of known donor-word addresses, decoding the planted text `LIBERPRIMUSISOURMAP` with no fitting or loss. Both original readouts completed successfully on Windows Python 3.12, under [run 44182144954](https://github.com/FlareZ123/liber-primus/actions/runs/44182144954). The actual original readout prefixes are:
+Both direct runs use only the original ciphertext as their message input. The [full-edition completed source run 44182144954](https://github.com/FlareZ123/liber-primus/actions/runs/44182144954) and the [same-title section completed source run 44184388177](https://github.com/FlareZ123/liber-primus/actions/runs/44184388177) passed identical-shaped 19-character planted readouts `LIBERPRIMUSISOURMAP`, exact GP29 original-input parsing and both original unkeyed readouts.
 
-- BASE29 address: `DBBMAMSTAAWTDTJGAAISOIPWTPSBHDTASSTADARJATTIMDSOOIIBIDAITDLWNTAADWJTIRRCTFIWTTSCBOOTABTASCIAKGHHWTTTXGFJTOTLPASINCAPEAJNHRLFOTCTAIIDSIDCBWBM`.
-- Prime-sum address: `AXCITTTIINXVFIOSLFRRHSCVCCARXCRFTXTCTIVIVTRRTVAITFCFAYNCVODDOIFIINTCONJFROTFTEHPRWITWNAXVFOELOTWSVEOSSUSVTPCXFIGOPQINNOMSLNACTTVRVIIDTXMTIDI`.
+| Donor and fixed word-address function | First 45 original output letters | Source-trained trigram gain per letter | Original output upper-tail among 200 shuffled-letter outputs |
+|---|---|---:|---:|
+| Whole reader, base29 | `DBBMAMSTAAWTDTJGAAISOIPWTPSBHDTASSTADARJATTIM` | 4.519486 | 0.955224 |
+| Whole reader, prime sum | `AXCITTTIINXVFIOSLFRRHSCVCCARXCRFTXTCTIVIVTRRTV` | 4.094629 | 0.164179 |
+| Exact *Liber Primus* section, base29 | `OAYJYTTMBAMEMTMTIFFFBAWUIOOLDYADSSWFTTIETCSSB` | 3.275016 | 0.641791 |
+| Exact *Liber Primus* section, prime sum | `IMOSVBSHOETAUHIENHCSGEIBUNFDNGSTCTEUFANSSEDATB` | 3.092231 | 0.845771 |
 
-An unsmoothed clue search found **zero** complete occurrences of the nine preselected concepts `LIBER, PRIMUS, DIVINITY, CIRCUMFERENCE, INSTAR, TUNNEL, PARABLE, EMERGE, ENLIGHTENMENT`. GP-native entire output lacks intelligible unknown-page text. A donor-trained trigram likelihood, compared against 200 in-place whole-output letter shuffles, places BASE29 at upper-tail **0.955224** and prime sum at **0.164179**. Neither outperforms a shuffled output at a meaningful level in this bounded comparison; the BASE29 output is especially poor.
+The full 2,896-letter readouts are nonlinguistic; the predetermined intact phrase set `LIBER, PRIMUS, DIVINITY, CIRCUMFERENCE, INSTAR, TUNNEL, PARABLE, EMERGE, ENLIGHTENMENT` yields **zero hits in all four readouts**. Fixed word-by-word source addresses did not expose an English sentence, key instruction or signed payload. A shuffled-letter baseline preserves output letter frequencies; all four source-trained trigram comparisons fall inside or below the shuffled range. These scores are diagnostics, not a formal model-independent exclusion.
 
-## Research decision
+## Decision
 
-Retire both **direct unkeyed, zero-origin, entire-reader's-edition Jung first-letter book-address readings**. Their planted success demonstrates that the implementation recognizes a real encoded message, while the original full-book results do not support this specific source-to-readout transfer. This says nothing decisive about a different, original-author-selected book, a different source page, a keyed address rule, full-word outputs or more elaborate ciphers. The shared Jung whole-source plaintext-length and running-key analyses are separate completed gates; do not re-run them under this result. A successor requires a first-party instruction selecting a donor or address clock and must predict untouched original plaintext.
+Retire **these four exact unkeyed word-address transfers**. The direct human-runnable idea, including the correct named subbook boundary, fails to produce original plaintext despite exact native positive controls. Do not rescue it through fitted source offsets, arbitrary byte transformations, new moduli or keyword phase sweeps. A different book cipher with a genuinely source-selected address offset, word-order key, output grammar or donor remains logically possible. The next decision requires first-party independent evidence selecting the missing operation, then a prediction on withheld original LP2 words.
 
-Reproduce from [`sims/lp2_jung_liberprimus_wordaddress_sft.py`](../sims/lp2_jung_liberprimus_wordaddress_sft.py) in the [manual-only workflow](../.github/workflows/lp2-jung-wordaddress-manual.yml), complete original [Actions run 44182144954](https://github.com/FlareZ123/liber-primus/actions/runs/44182144954). The source PDF is downloaded in memory and pinned by SHA-256; no copyrighted donor material is redistributed.
+Reproducers: [full reader original SFT](../sims/lp2_jung_liberprimus_wordaddress_sft.py) and [strict section-only original SFT](../sims/lp2_jung_liberprimus_section_address_sft.py), both with manual-only Windows Python3.12 workflows [full](../.github/workflows/lp2-jung-wordaddress-manual.yml) and [section](../.github/workflows/lp2-jung-section-wordaddress-manual.yml). The already completed Jung running-key and wordlength source gates test different candidate operations; none of these tests authorizes general assertions that Jung was or was not the original LP2 donor.
