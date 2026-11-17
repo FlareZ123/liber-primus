@@ -1,6 +1,6 @@
 # Reflecting the 58 original LP2 pages: a source-locked shared-pad original-inversion gate
 
-**Agent 9, 17 November 2026. Classification:** new, bounded original-input negative for a position-aligned reused GP29 pad under full-release reflection. **No unknown plaintext, authored key, cipher mechanism, or destination recovered.** Reproducer: [Node22 CommonJS SFT](../sims/lp2_reflected58_pagepair_sharedpad_sft.cjs); [original-source workflow](../.github/workflows/agent9-reflected58-pagepair-manual.yml).
+**Agent 9, 17 November 2026. Classification:** new, bounded original-input negative for a position-aligned reused GP29 pad under full-release reflection. **No unknown plaintext, authored key, cipher mechanism, or destination recovered.** Reproducer: [Node22 CommonJS SFT](../sims/lp2_reflected58_pagepair_sharedpad_sft.cjs); [successful Windows Node22 original-source CI run 44012705745](https://github.com/FlareZ123/liber-primus/actions/runs/44012705745).
 
 ## Original clue and strongest alternative
 
@@ -25,13 +25,13 @@ The most conspicuous local pair is p17↔p40, with **18 equal positions of 231**
 
 ## Genuine original length-matched, shared-secret English plants
 
-A completely separate *positive* source test samples random non-overlapping-position GP29 English windows for the **same 26 original pair lengths** from each of Shakespeare, Gibran and Emerson, encoded with the repository's independently solved LP1-calibrated **ING/IO** GP spelling. Every pair is encrypted under a freshly drawn random GP29 `K[i]`, identically applied at each local position of both paired plaintexts. The decoder verifies every planted plaintext symbol and the expected equality invariance. Each source receives **2,000** such whole-book pairings. We count the number of equal paired ciphertext symbols over the same **5,402** locations.
+A completely separate *positive* source test samples independently sampled GP29 English windows for the **same 26 original pair lengths** from each of Shakespeare, Gibran and Emerson, encoded with the repository's independently solved LP1-calibrated **ING/IO** GP spelling. Every pair is encrypted under a freshly drawn random GP29 `K[i]`, identically applied at each local position of both paired plaintexts. The decoder verifies every planted plaintext symbol and the expected equality invariance. Each source receives **2,000** such whole-book pairings. We count the number of equal paired ciphertext symbols over the same **5,402** locations.
 
 | Source-native controlled author | Typical matching GP29 runes, 5,402 positions | Minimum of 2,000 matched plants | Plants with ≤215 |
 | --- | ---: | ---: | ---: |
-| Shakespeare | **about 321** | **266** | **0** |
-| Gibran | **about 323** | **255** | **0** |
-| Emerson | **about 332** | **270** | **0** |
+| Shakespeare | **320.995** | **266** | **0** |
+| Gibran | **321.9785** | **264** | **0** |
+| Emerson | **332.9055** | **257** | **0** |
 
 These figures were first independently computed by direct source-data execution; the source-exact SFT reruns the complete scan and self-inverting positive family. The finite empirical bounds are **1/2,001 per source**, conditional on each author and sampling model. They do not prove that an unknown non-English plaintext cannot obey a shared pad.
 
