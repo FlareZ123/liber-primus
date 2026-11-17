@@ -1,0 +1,78 @@
+name: Agent 12 LP2 pdir original near-threshold whole-window check
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  near-threshold-original:
+    runs-on: windows-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: external-cicada3301
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install numpy mpmath
+      - name: Build source-pinned original decoder
+        run: cargo build --release --manifest-path external-cicada3301/work/kscreen/Cargo.toml
+      - name: Reconstruct the original source and direction-rule windows
+        run: |
+          python external-cicada3301/work/kscreen/export.py
+          python external-cicada3301/work/kscreen/signrules.py
+          python external-cicada3301/work/kscreen/dirrules.py
+          python sims/lp2_pdir_issue1329_gate.py external-cicada3301
+          python -c "import sys; sys.path.insert(0, 'external-cicada3301/work/kscreen'); import pdir_pilot as p; p.window_file('B7_prev_pl','seg0.7,seg0.8'); p.window_file('B3_prev_G','seg0.7,seg0.8'); p.window_file('B7_cur_w','seg0.7,seg0.8')"
+      - name: Retrieve registered near-threshold original search hits
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "44006868510"
+          name: pdir-stage1-100-7
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          path: in-100-7
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: "44006868510"
+          name: pdir-stage1-100-9
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          path: in-100-9
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: "44006868510"
+          name: pdir-stage1-000-7
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          path: in-000-7
+      - name: Extract exactly the three predetermined original vectors
+        shell: pwsh
+        run: |
+          $targets = @(
+            @{Folder="in-100-7"; Name="B7_prev_pl_fwd.tsv"; Conv="100"},
+            @{Folder="in-100-9"; Name="B3_prev_G_fwd.tsv"; Conv="100"},
+            @{Folder="in-000-7"; Name="B7_cur_w_rev.tsv"; Conv="000"}
+          )
+          foreach ($target in $targets) {
+            $hits = @(Get-ChildItem -Path $target.Folder -Recurse -File -Filter $target.Name)
+            if ($hits.Count -ne 1) { throw "Expected one matching original TSV: $($target.Folder)/$($target.Name), found $($hits.Count)" }
+            $dest = "external-cicada3301/results/kscreen/pdir/issue1329-near/$($target.Conv)/real"
+            New-Item -ItemType Directory -Path $dest -Force | Out-Null
+            Copy-Item -LiteralPath $hits[0].FullName -Destination "$dest/$($target.Name)" -Force
+          }
+      - name: Inspect complete original windows and 20 same-stream control offsets
+        shell: pwsh
+        run: |
+          $env:KSCREEN_BIN = (Resolve-Path "external-cicada3301/work/kscreen/target/release/kscreen.exe").Path
+          python external-cicada3301/work/kscreen/pdir_verify.py --conv 100 --tag issue1329-near
+          python external-cicada3301/work/kscreen/pdir_verify.py --conv 000 --tag issue1329-near
+      - name: Preserve three original plaintext readings, noise comparisons, and controls
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent12-pdir-3-nearthreshold-original-whole-windows
+          if-no-files-found: warn
+          path: external-cicada3301/results/kscreen/pdir/issue1329-near/
