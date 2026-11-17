@@ -72,7 +72,45 @@ const corrupted = page29.slice();
 corrupted[corrupted.length - 1] = mod(corrupted[corrupted.length - 1] + 1);
 assert.notDeepEqual(remainder(corrupted, G), [0, 0]);
 
+/**
+ * Exact quotient under the same source G factor, to test the most literal
+ * decoding consequence before inventing any secondary transform.
+ * @returns {{quotient:number[],rem:number[]}}
+ */
+function quotientAndRemainder(digits, f) {
+  const work = digits.slice();
+  const quotient = [];
+  const highInv = inverse(f[2]);
+  for (let i = 0; i < digits.length - 2; i += 1) {
+    const k = mod(work[i] * highInv);
+    quotient.push(k);
+    for (let j = 0; j < 3; j += 1) {
+      work[i + j] = mod(work[i + j] - k * f[2 - j]);
+    }
+  }
+  return {quotient, rem:work.slice(-2)};
+}
+
+const division = quotientAndRemainder(page29, G);
+assert.deepEqual(division.rem, [0, 0]);
+assert.equal(division.quotient.length, 275);
+assert.deepEqual(division.quotient.slice(0, 30), [
+  4,6,26,27,11,9,15,25,15,21,7,0,18,26,8,28,7,5,23,12,6,1,18,0,22,2,28,6,14,13
+]);
+const counts = Array(29).fill(0);
+for (const value of division.quotient) counts[value] += 1;
+const iocNumerator = counts.reduce((sum, count) => sum + count * (count - 1), 0);
+assert.equal(iocNumerator, 2566);
+const reconstructed = Array(page29.length).fill(0);
+division.quotient.forEach((coefficient, i) => {
+  for (let j = 0; j < 3; j += 1) {
+    reconstructed[i + j] = mod(reconstructed[i + j] + coefficient * G[2 - j]);
+  }
+});
+assert.deepEqual(reconstructed, page29);
+
 console.log('Original p29: 277 GP29 symbols; p39 G(X) syndrome [0,0].');
+console.log('Literal G-quotient: 275 GP29 values, IoC 2566/75350 = 0.0340544; exact reconstruction.');
 console.log('Only G-divisible nonempty p0-55 physical page: p29.');
 console.log('Original last two symbols [8,19] equal G-predicted parity tail.');
 console.log('H remainder [16,20]; reversed-G remainder [10,5].');
