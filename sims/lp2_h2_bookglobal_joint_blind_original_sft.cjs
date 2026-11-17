@@ -214,7 +214,14 @@ function inferPage(cipher,logEmission,limit=cipher.length,base=0,startDrift=0){
       +temper*logSteps[d-startDrift];
   for(let i=1;i<n;i++){
     const next=new Float64Array(width).fill(-1e30);
-    for(let d=startDrift;d<width&&d<=startDrift+Math.ceil(i*.06+8);d++){
+    // Expected retry rate follows q=.81 and an independently random row:
+    // q/(29-q)=.028734. Four-sigma prefix corridor allows true random
+    // variation but forbids the optimizer to spend 640 unnecessary skips.
+    const mean=(.81/(29-.81))*i;
+    const margin=10+4*Math.sqrt(Math.max(1,mean));
+    const lo=Math.max(startDrift,Math.floor(startDrift+mean-margin));
+    const hi=Math.min(width-1,Math.ceil(startDrift+mean+margin));
+    for(let d=lo;d<=hi;d++){
       let best=prev[d]+temper*logSteps[0],step=0;
       for(let k=1;k<=4&&k<=d-startDrift;k++){
         const candidate=prev[d-k]+temper*logSteps[k];
@@ -477,7 +484,7 @@ console.log(JSON.stringify({
   sourcePrimeClock:'prime2 continuous over all 12956 GP29 original runes',
   priorSkipProbabilities:[.972,.0272,.0008,.000022,.00000062],
   prefixTempering:{upTo40:.35,upTo300:.55,upTo900:.8,later:1},
-  maximumPrefixDrift:'min(640,startDrift+ceil(0.06*i+8))',
+  maximumPrefixDrift:'q=.81 theoretical skip-count mean ± (10 + 4 sqrt(mean))',
   meanHiddenAdvances:mean('hiddenSkipRows'),
   meanTrainingKeyAccuracy:mean('trainingKeyPathCorrect')/
     (LENGTH-PAGE_LENGTHS[HELDOUT_PAGE]),
