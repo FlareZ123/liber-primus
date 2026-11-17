@@ -6,7 +6,7 @@
  *
  * The original 2014 OpenPuff 5x5/7x7/5x5 matrices have 99 cells.
  * Removing the 7x7 middle square's 24-cell circumference leaves three
- * 5x5 keys, precisely enough for p55's last 75 runes after its singleton.
+ * 5x5 keys, precisely enough for p55's last 75 runes after the opening cross-page word fragment.
  * Try both ordinary Hill column and row-vector conventions, with no key
  * fitting, segmentation search, or hidden padding.
  *
