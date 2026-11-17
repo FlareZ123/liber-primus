@@ -30,6 +30,8 @@ jobs:
           run-id: 44062412799
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: prepared
+      - name: Restore executable permission after artifact extraction
+        run: chmod +x prepared/upstream/work/layer2/target/release/layer2
       - name: Require independent 716-rune controls for both marker states
         run: python sims/agent30_p0_red13_body716_periodic_control_sft.py prepared/upstream/work/layer2
       - uses: actions/upload-artifact@v4
@@ -67,6 +69,8 @@ jobs:
           run-id: 44062412799
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: prepared
+      - name: Restore executable permission after artifact extraction
+        run: chmod +x prepared/upstream/work/layer2/target/release/layer2
       - name: Download the independently verified 716-rune positive controls
         uses: actions/download-artifact@v4
         with:
