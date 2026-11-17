@@ -96,11 +96,14 @@ The previously separate FIND/MUST pair now has a more constrained, still
 3. The p57 author-visible words give **FIND=151**, **MUST=186** and
    **OUR=21** in GP-prime weights. As in the earlier result, choose
    `p=151`, `g=186 mod151=35` and candidate local exponent
-   `a=OUR=21`. **The original table itself already supplies the
-   other participant's public share `B=115`, at the second
-   prime-counted clause address173.** Therefore compute the
-   candidate shared secret **directly from source-selected inputs**:
-   `K=B^a modp=115^21 mod151=73`. This equals the
+   `a=OUR=21`. **The table itself already supplies public share
+   `B=115` at the second clause address173.** This address is
+   zero-based **row21, column5** in the original eight-wide
+   grid, so its very **row number is 21**, independently matching
+   `GP-prime(OUR)=21` in that same parable clause.
+   Compute the candidate shared secret with the *table-supplied*
+   B and its own *row exponent*: `K=115^21 mod151=73`.
+   No b13 guess is involved. This equals the
    value of the original table at the *third* clause address201.
    The first value75 is exactly `(p−1)/2`, with
    `35^75 mod151=150`, and the optional local public share is
@@ -333,22 +336,23 @@ The only candidate after excluding the carry begins WANTH RIA LB OIAJYEAE; the f
 ## Assessment and next decision
 
 **Exact original-source observations:** the adjacent base59 FIND/MUST table pair
-at cells150–151; the p57 three-clause GP-prime sums and prime ordinals;
+at cells150–151; the p57 three-clause GP-prime sums and prime ordinals, including
+**source table B115's row index21 = GP-prime(OUR)**;
 the source-prime-rank 5×5 square whose missing fourth corner is
 base59 **PAGE=224**, with column-corner difference **A=107**;
 original base59 token values **[75,115,73]** at addresses **[205,173,201]**;
 the 2013 ID3 decimal product and its residue73 modulo256; and a clockwise
 outer-ring cell at offset73 with value107. The proposed **source-computable shared value**
-`K=115^21 mod151=73` uses table-public B115, p57 OUR21,
-and FIND151; optional A107 uses g35 from MUST186.
+`K=115^21 mod151=73` uses table-public B115, its grid row index21,
+and FIND151; the word OUR independently has GP sum21; optional A107 uses g35 from MUST186.
 The B-base-g discrete log13 is mathematical confirmation,
 not an input or first-party private key.
 
 **Historical inference remains provisional:** neither the signed 2013
 DH example nor LP2's printed instructions selects base59 over base60,
 the prime-counting function π(sum) as a zero-based table offset,
-the ID3-to-grid modulo operation, the role of OUR as a private
-exponent, or a GP29 key/receiver.
+the ID3-to-grid modulo operation, the use of B115's row21 as a
+DH private exponent (even though OUR sums to21), or a GP29 key/receiver.
 The 13-dot stencils are widespread and have no authenticated
 DH role; **their count is not needed** to compute the candidate K73. The alternative ring
 concatenation exponent b113 requires postselected ring starts and
