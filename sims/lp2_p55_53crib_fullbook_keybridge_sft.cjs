@@ -324,7 +324,8 @@ for(const kind of ['direct','delta']){
     fullLinearDegree:berlekampMassey(key).degree,
     sourceCrib23LinearDegree:berlekampMassey(key.slice(0,23)).degree,
     heldout26:predict(key,26),heldout40:predict(key,40),
-    sourceMatches:[],permutationMatches:[]};
+    sourceMatches:[],permutationMatches:[],
+    independentCribPermutationMatches:[]};
   for(const [name,source] of [
     ['original LP2 p0-55',sourceUnknown],
     ['original solved p56+p57',sourceSolved],
@@ -341,6 +342,13 @@ for(const kind of ['direct','delta']){
         ...bestAffinePrefix(key,source,reversed)});
       record.permutationMatches.push({source:name,reversed,
         ...bestPermutationPrefix(key,source,reversed)});
+      for(const [cribName,fragment] of [
+        ['2014 historical first23',key.slice(0,23)],
+        ['LP1 moth final30',key.slice(23)]
+      ]){
+        record.independentCribPermutationMatches.push({source:name,reversed,
+          cribName, ...bestPermutationPrefix(fragment,source,reversed)});
+      }
     }
   }
   output.push(record);
