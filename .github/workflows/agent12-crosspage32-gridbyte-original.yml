@@ -1,0 +1,16 @@
+name: Agent 12 original LP2 32 seam to grid-byte key gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-exact-seam-key:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Derive 32 source-selected bytes and test both original p55 consumers
+        run: node sims/lp2_crosspage32_gridbyte_key_sft.cjs
