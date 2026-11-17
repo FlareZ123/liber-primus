@@ -1,6 +1,6 @@
-# Direct 28-step chain with PARABLE's 55-rune interior: original LP2 negative
+# PARABLE's 55-rune 28-step chain: direct key and all-secret periodic inverse
 
-**17 November 2026 · Agent49.** Source-motivated exact reversible family; all 55 encrypted physical LP2 pages remain unsolved.
+**17 November 2026 · Agent49.** Source-motivated exact reversible family plus an all-secret periodic-key invariant; all 55 encrypted physical LP2 pages remain unsolved. The second result subsumes every arbitrary 55-phase 28-symbol secret bijection under the stated chain register.
 
 ## Why a player might try this
 
@@ -41,8 +41,35 @@ For comparison, a fixed 300-rune source-native English plant from independently 
 
 This excludes the specified **direct one-layer** 28-step chain reading using the clear p57 55-rune tape at phase zero; it does not exclude a chain using another source key, another alphabet, a secret tableau, a second cryptographic layer, a physically indicated nonzero key phase, or plaintext that is not natural GP29 English.
 
+## Stronger result: a key-independent impossibility for all secret 55-phase alphabets
+
+The direct tape above is one concrete source-value assignment. A more useful decision can be made **without knowing any of the 55 key values**, and even when each position of the 55-symbol period uses its own unknown **arbitrary permutation of the 28 nonreserved runes**. This covers every secret 55-phase Vigenère, secret affine transform and all 28! possible substitutions per phase, a vastly larger family than the supplied literal p57 tape.
+
+Let \`D_i=(C_i-C_prev) mod29\`. Remove the rare \`D_i=0\` positions; map each remaining step to \`R_i=D_i-1\` in 0..27. Under any fixed period55 unknown per-phase permutation \`f_{i mod55}\` of this 28-symbol alphabet,
+
+\`\`\`text
+R_i = f_(i mod55)(P_i),    for all P_i except the one reserved zero-step GP29 symbol.
+\`\`\`
+
+Whenever two positions share a 55-phase, their \`R\` values are equal **if and only if** the corresponding plaintext symbols are equal. Thus the sum of same-phase equal-rune pairs divided by all eligible same-phase pairs is **exactly invariant under every secret key**, regardless of which per-phase bijections were used. A global unknown phase offset merely renames the 55 bins and does not change the statistic.
+
+The normalized conditional statistic is \`28×(sum over phases and symbols n_(phase,symbol)(n_(phase,symbol)-1)) / (sum over phases N_phase(N_phase-1))\`, excluding zero-step observations from each eligible count. Full original physical pp0–55, **12,956 ciphertext runes**, tested with two natural clocks:
+
+| 55-phase key clock | Original GP29 chain steps, scaled conditional 28-IoC | Minimum across 44 natural-English original-length controls |
+| --- | ---: | ---: |
+| Continuous across physical pages | **1.0059917140** (107,742 / 2,998,808 ordered equal/eligible pairs; 86 zeros) | **1.6359185716** |
+| Reset at every physical page | **0.9974646612** (107,152 / 3,007,882; 88 zero steps after resets) | **1.6382247339** |
+
+The 44 calibration controls are disjoint 12,956-rune windows from **Gibran's *The Prophet*, Shakespeare, and Emerson**, greedily transliterated into the manuscript's GP29 alphabet using fixed K/Q→C, V→U, Z→S normalization. They are length-matched to all **55** original physical encrypted-page rune counts. They model ordinary GP29-transliterated English, not arbitrary non-English plaintext or an authentic exact GP word-spelling oracle. Across all 44 sources, no control is remotely as flat as the original at either clock.
+
+**All-secret planted positive:** construct 55 different phase-specific invertible affine maps on the 28 nonreserve symbols using multipliers coprime to 28 and independently phase-varying translations. Encipher one native GP-English 12,956-rune source window as a *chain*, with the reserved EA mapping to zero step. Decode with the exact inverse secret permutation at each phase. Both continuous and per-page-reset plants recover **all 12,956/12,956** true plaintext runes, and their phase-conditioned 28-IoC is **bit-for-bit equal** to the unencrypted source. This verifies the all-secret invariant even for a source-unknown position-dependent substitution with entirely different keys at every phase.
+
+**Consequence:** every *stationary 55-phase bijection* within this exact one-layer, nonzero-step 28-ary chain is incompatible with **ordinary natural GP29 English** on the original 12,956-rune source. Unknown key values, an unknown global phase rotation or arbitrary affine/tableau substitutions per phase cannot repair the observed 1.00-vs-1.64 conditional coincidence gap. Independent page-specific phase shifts, key feedback, aperiodic keys, a different treatment of zero steps, homophony, letter-order changes, and multi-layer encipherment are outside the theorem. The existing original no-doublet clue alone does not prove that this chain architecture was used.
+
+Reproducer: [all-secret 55-phase positive and original GP29 gate](../sims/lp2_55phase_chain28_allsecret_invariant_sft.cjs).
+
 ## Reproducer and decision
 
-[Single-file Windows-compatible CommonJS test](../sims/lp2_parable55_chain28_original_sft.cjs) reads the original rune transcription and source pages, verifies the p57 55-rune tape, enciphers and decrypts the independent LP1 known plaintext, and tests all **16** original complete reversible models on four independent scopes. The [manual workflow](../.github/workflows/agent49-20261116-source-gates-manual.yml) runs it together with the distinct original pointer-direction source-key gate.
+[Direct-key Windows-compatible CommonJS test](../sims/lp2_parable55_chain28_original_sft.cjs) reads the original rune transcription and source pages, verifies the p57 55-rune tape, enciphers and decrypts the independent LP1 known plaintext, and tests all **16** original complete reversible models on four independent scopes. The [manual workflow](../.github/workflows/agent49-20261116-source-gates-manual.yml) runs it together with the distinct original pointer-direction source-key gate.
 
-**Retire this specific PARABLE 55-tape cyclic 28-chain receiver.** The source-visible p57 circumference tape remains a potential operand with an unidentified operation. The low-doublet original cipher remains a source fact worth explaining, but applying a new free modulo, offset, table permutation or arbitrary key-phase sweep without an independent Cicada-authored selector has no justified causal path to plaintext.
+**Retire the direct PARABLE 55-tape cyclic 28-chain receiver and the strictly larger all-secret 55-phase bijection family in the same exact one-layer 28-step chain.** The source-visible p57 circumference tape remains a potential operand with an unidentified operation, including clocks or nonlinear state changes outside this 55-phase family. The low-doublet original cipher remains a source fact worth explaining, but applying a new free modulo, offset, table permutation or arbitrary key-phase sweep without an independent Cicada-authored selector has no justified causal path to plaintext.
