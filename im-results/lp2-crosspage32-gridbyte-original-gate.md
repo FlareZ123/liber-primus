@@ -48,6 +48,25 @@ To evaluate whether the numerical-table alignment could be an incidental consequ
 
 The reference population yields **1,119/20,000 = 5.595%** samples with exactly 32 crossings; **12.675%** have 32 or fewer crossings, **23.925%** have every later-page fragment at most seven runes, and **1.545%** simultaneously have exactly 32 crossings and every later-page fragment fitting one of the first seven table columns. The table's eighth column is never selected by the original simple right-fragment rule. This deliberately simple null holds chapter and page geometry fixed but cannot capture every artistic typesetting choice. The joint coincidence was discovered after examining the source, so **1.545% is not a corrected discovery-wide p-value** and cannot authenticate a 32-byte key. It does justify keeping the alignment as a bounded source-led lead while requiring an independently chosen decoding consumer.
 
+## Cross-page key as HMAC-SHA512 key for the archived Stage11 index (17 November 2026)
+
+**Bounded negative; new receiver, no plaintext or authenticated key.** The 32-byte seam-selected register above is a natural-sized HMAC key candidate because solved p56 specifies a 512-bit page digest but not the hash construction. I independently reconstructed the exact 32-byte base60 key from the canonical LP2 transcription, the original 32×8 table, and the chronological page-crossing words using the report's fixed one-based later-fragment column rule:
+
+`61f9cac6505456feff728edc483f49ed780ad221c0f0839c007f063b446a1671`.
+
+The single source-selected candidate consumer tested was **HMAC-SHA512(key, archived Stage11 index body)**. The preserved 1,640-byte `resources/cicada2014-onion7-index.html` and the two archived Stage11 copies `resources/external/cicada2014-stage11-onion7-original-index.html` and `resources/external/cicada2014-stage11-index-archived.html` are byte-identical, so they represent one input, not three independent candidates.
+
+| Quantity | Exact value |
+|---|---|
+| Stage11 index body length | 1,640 bytes |
+| Unkeyed SHA-512(body) | `83e50c118edb70dc34c9c760e332830a066b82006ebbbdcc7347b818d1961a571f32ef5a3717e98e282754d4a004dc0f7f0d99fb3824bb1b281a947c7ba70a31` |
+| HMAC-SHA512(seam key, body) | `594b4ad4eb93cd898a2b0bcff55e992913d719288a01cdb2bc1c38023a2e50f16b88de4175c3fce9b082e6667c7bd398907d1577a9dd588e2121d20195eeb915` |
+| p56 target | `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4` |
+
+Neither digest matches. The exact computation is reproducible with [`sims/lp2_crosspage32_hmac_stage11_index_sft.cjs`](../sims/lp2_crosspage32_hmac_stage11_index_sft.cjs).
+
+**Scope:** this excludes only the preserved Stage11 index bytes as the p56 preimage under this exact 32-byte key and HMAC-SHA512. The archived HTML is not an independently authenticated original HTTP response, and the unknown deep-web target may be a different page. HMAC is not specified by the manuscript; the seam-derived key itself remains conditional (including the unused eighth table column and the 1.545% source-conditioned page-wrap null). Do not broaden this into arbitrary HMAC keys, modes, or serializations. If an authorized historical crawl returns a candidate page body, this exact source-derived HMAC is one finite candidate to check, not an established hash rule.
+
 ## Decision and future trigger
 
 Treat the 32/32 cardinality and right-half column selector as a **conditional pointer/key**, not established key material. Source-visible data do not select GP29, GP28, AES, or another consumer, nor an IV or pad clock. Retire the tested direct GP29/28 consumers. Reopen only with a visible or historically authenticated instruction establishing that original page crossings address the p50 table **and** choosing a reversible receiver, or with a coherent entire original ciphertext passage that forwards exactly under one frozen program. Avoid adjusting table columns, offsets or word boundaries merely to tune short outputs.
