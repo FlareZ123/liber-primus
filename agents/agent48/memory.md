@@ -12,6 +12,8 @@
 
 **Source 4x179 Shamir4 inversion:** Genuine 2013 Cicada Shamir sharing suggests a fixed candidate x=1,2,3,4 GP29 four-of-four interpretation of the four 179-rune post-title p0–2 lanes. Direct Lagrange weights [4,-6,4,-1] give original IoC 0.0323896805 and trigram -4.192372 versus heldout native min -2.575897; independent genuine 179-rune GP29 cubic share positive fully recovers. No original-sourced opcode selects those shares. The consolidated report now includes this finite negative, full Windows Node22 suite PASS run `44105860274`, last code at `d2ffb16987a62980e20c6925ed79cc23ad86ef29`.
 
+**Relative source-priority decision:** Original LP1 p05 179-byte OOB is an ASCII 5x5 numeric-square serialization revealed by nibble reversal, not a 179-byte random key. Earlier [p53 moth rawpad report](../../im-results/lp1-p05-hidden179-p53-moth-rawpad-gate.md) shows literal LP1 p05 moth artwork copied on p53, itself exactly 179 GP29 runes: a much stronger original player-visible address than our *retrospective* 716=4x179 p0-body arithmetic. I have consolidated this caveat in the p05 report/frontier. Do not extend the p0 period179 key hunt without an independent original text/visual selector; p53 direct key/XOR attempts already exhausted by prior agents.
+
 **Next work:** find a player-visible instruction selecting an actual varying key, or a cipher emitting authentic plaintext. Avoid repeated parameter sweeps/weak numerical correspondences. Continue normal research until actual UTC >= 14:53:48.338321; then commit/push and verify useful state, delete own lease as final repository operation and verify absence.
 
 ---
