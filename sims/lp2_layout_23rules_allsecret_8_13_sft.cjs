@@ -257,6 +257,29 @@ console.log('SOURCE original GP runes:', original.length,
 assert.ok(score(heldout.slice(0, 12000)) > 0.35, 'independent GP-English source quality');
 for (let wi = 0; wi < windows.length; wi += 1) {
   const {runes, features} = windows[wi];
+  // For the much wider family of independent 29-symbol bijections in each
+  // physical-sign and key-phase class, find the first possible period that
+  // can even match real LP1 clear 755-rune word-frequency concentration.
+  // This is a condition on a reference statistic, not a guessed author key.
+  let minimumPeriodForLP1 = null;
+  for (let length = 1; length <= 64; length += 1) {
+    const bound = Object.entries(rules).map(([name, rule]) => ({
+      name, limit: arbitraryClassPermutationIocCeiling(
+        runes, features.map(rule), length)
+    })).sort((a, b) => b.limit - a.limit)[0];
+    if (bound.limit >= sourceClearLP1IoC) {
+      minimumPeriodForLP1 = {length, ...bound};
+      break;
+    }
+  }
+  const expectedNecessary = [12,17,28,28,16,23,26,51][wi];
+  assert.equal(minimumPeriodForLP1?.length, expectedNecessary,
+    'exact original-source permutation-capacity crossover changed');
+  console.log('SOURCE-NATIVE LP1 FREQUENCY CAPACITY, original window',
+    wi, 'runes', runes.length, 'all physical signs, minimum possible period:',
+    minimumPeriodForLP1.length, 'crossing ceiling:',
+    minimumPeriodForLP1.limit.toFixed(9), 'layout rule:',
+    minimumPeriodForLP1.name);
   for (const len of [8, 13]) {
     const candidates = Object.entries(rules).map(([name, rule]) => {
       const signs = features.map(rule);
