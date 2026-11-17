@@ -64,7 +64,7 @@ assert.equal(reference.length,217106);
 const model=languageModel(reference);
 const nRef=model.unigram.reduce((a,b)=>a+b,0);
 const rankedPrior=model.unigram.map(c=>c/nRef).sort((a,b)=>b-a);
-const log0=Math.log(.972),log1=Math.log(.0272),log2=Math.log(.0008);
+const logSteps=[.972,.0272,.0008,.000022,.00000062].map(Math.log);
 
 const composite=new Uint8Array(10000),primeRows=[];
 for(let p=2;p<composite.length&&primeRows.length<500;p++){
@@ -124,7 +124,7 @@ function plant(seed){
         ptr++;extra++;skips++;
         proposed=table[primeRows[ptr]][p];
       }
-      assert.ok(extra<=2);
+      assert.ok(extra<=4);
       maxLocal=Math.max(maxLocal,extra);
       c.push(proposed);d.push(ptr-i);r.push(primeRows[ptr]);
       previous=proposed;ptr++;total++;
@@ -141,7 +141,7 @@ function plant(seed){
 }
 
 /**
- * Unknown clock, known hypothesized row emission likelihood. Every 0/1/2
+ * Unknown clock, known hypothesized row emission likelihood. Every 0..4
  * pointer advance considered. No oracle path, table or plaintext.
  * @param {number[]} cipher
  * @param {Float64Array} logEmission
@@ -158,12 +158,10 @@ function inferPage(cipher,logEmission,limit=cipher.length){
   for(let i=1;i<n;i++){
     const next=new Float64Array(width).fill(-1e30);
     for(let d=0;d<width;d++){
-      let best=prev[d]+log0,step=0;
-      if(d>=1&&prev[d-1]+log1>best){
-        best=prev[d-1]+log1;step=1;
-      }
-      if(d>=2&&prev[d-2]+log2>best){
-        best=prev[d-2]+log2;step=2;
+      let best=prev[d]+logSteps[0],step=0;
+      for(let k=1;k<=4&&k<=d;k++){
+        const candidate=prev[d-k]+logSteps[k];
+        if(candidate>best){best=candidate;step=k;}
       }
       next[d]=best+logEmission[primeRows[i+d]*N+cipher[i]];
       back[i*width+d]=step;
@@ -330,7 +328,7 @@ console.log(JSON.stringify({
   trainedCiphertextExcludesEntireHeldoutPage:true,
   plaintextModel:'Gibran native-GP planted; Shakespeare native-GP independent reference',
   sourcePrimeClock:'prime2 restart on each original physical page',
-  priorSkipProbabilities:[.972,.0272,.0008],
+  priorSkipProbabilities:[.972,.0272,.0008,.000022,.00000062],
   meanHiddenAdvances:mean('hiddenSkipRows'),
   meanTrainingKeyAccuracy:mean('trainingKeyPathCorrect')/
     (LENGTH-PAGE_LENGTHS[HELDOUT_PAGE]),
