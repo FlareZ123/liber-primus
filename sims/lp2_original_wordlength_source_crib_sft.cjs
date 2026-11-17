@@ -1,7 +1,7 @@
 "use strict";
 /**
  * Key-independent historical-plaintext crib recovery from LP2 printed word
- * lengths, with three pinned pre-existing public-domain source corpora.
+ * lengths, with five pinned public-domain or dated historical text corpora.
  * SFT: node sims/lp2_original_wordlength_source_crib_sft.cjs
  * This neither assumes nor searches a cipher key. A real exact source
  * passage must preserve the displayed original GP29 word lengths.
@@ -100,20 +100,58 @@ for(const register of ["gp","latin"]){
   lp1KoanMatches[register]=match;
 }
 
+// The two source-class candidates are conditioned on the opening triple-bar
+// crosses and must not be treated as independently author-selected books.
 const sources=[
   {file:"resources/control/shakespeare_first300k.txt",nWords:55407,max:{gp:9,latin:9}},
   {file:"resources/control/gibran_prophet_58585.txt",nWords:15733,max:{gp:9,latin:9}},
-  {file:"resources/control/emerson_essays_2944.txt",nWords:77932,max:{gp:9,latin:10}}
+  {file:"resources/control/emerson_essays_2944.txt",nWords:77932,max:{gp:9,latin:10}},
+  {file:"resources/control/orthodox_daily_prayers_pg34981.txt",nWords:25088,
+   max:{gp:10,latin:9},opening:{gp:7,latin:7},section:"gutenberg"},
+  {file:"resources/control/hapgood1906_service_excerpts.txt",nWords:508,
+   max:{gp:7,latin:7},opening:{gp:0,latin:0},section:"hapgood"}
 ];
+/** @param {string} value @param {"gutenberg"|"hapgood"|undefined} section */
+function textBody(value,section){
+  if(section==="gutenberg"){
+    const start=/\\*\\*\\* START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\\r\\n]*\\*\\*\\*/i;
+    const end=/\\*\\*\\* END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK/i;
+    assert.match(value,start);
+    const after=value.split(start)[1];
+    assert.match(after,end);
+    return after.split(end)[0];
+  }
+  if(section==="hapgood"){
+    const at=value.indexOf("THE BEATITUDES");
+    assert.ok(at>0);
+    return value.slice(at);
+  }
+  return value;
+}
+const opening=[],openingRuneCount=729;
+let openingTotal=0;
+for(const l of lengths){
+  if(openingTotal>=openingRuneCount)break;
+  opening.push(l);
+  openingTotal+=l;
+}
+assert.equal(openingTotal,openingRuneCount);
+assert.equal(opening.length,158);
 const results=[];
 for(const item of sources){
-  const text=read(item.file);
+  const body=textBody(read(item.file),item.section);
   for(const register of ["gp","latin"]){
-    const words=parseText(text,register);
+    const words=parseText(body,register);
     assert.equal(words.length,item.nWords);
     const match=bestRun(lengths,words);
     assert.equal(match.length,item.max[register]);
-    results.push({file:item.file,register,words:words.length,...match});
+    let openingMatch;
+    if(item.opening){
+      openingMatch=bestRun(opening,words);
+      assert.equal(openingMatch.length,item.opening[register]);
+    }
+    results.push({file:item.file,register,words:words.length,...match,
+      ...(openingMatch?{firstThreePages:openingMatch}:{} )});
   }
 }
 // Positive control: replace an original interval with 32 source-native
@@ -132,5 +170,5 @@ console.log(JSON.stringify({
   solvedLP1KoanArtworkSource:{sourceWords:87,registers:lp1KoanMatches},
   positivePlant:{insertOriginalWordAt:500,sourceWordAt:1000,
                  embeddedLength:32,recoveredLength:recovery.length},
-  inference:"No exact >=11-word source-language length crib among these three finite public-domain texts. Other sources, page-boundary errors, variable-length ciphers and non-English input remain open."
+  inference:"No exact >=11-word source-language length crib among the five pinned texts. The opening crosses do not uniquely select either of the two religious texts. Other passages, page-boundary errors and variable-length ciphers remain open."
 },null,2));
