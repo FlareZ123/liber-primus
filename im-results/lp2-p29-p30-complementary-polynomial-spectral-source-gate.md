@@ -57,7 +57,7 @@ Use `K` and its inverse to process consecutive **four-rune column blocks**, alwa
 | original p55 alone, column-vector | 76 | 0.03228070 | 0.03754386 |
 | original p55 alone, row-vector | 76 | 0.03614035 | 0.03789474 |
 
-Each output is ciphertext-like and begins with nonlinguistic GP symbols; **none recovers native prose or an authentic instruction**. Both directions reconstruct every source symbol exactly under the algebraic inverse. A separate positive control encrypts and recovers **92/92 clear-source p57 GP29 runes** under the same full-rank Hill4 matrices. No plaintext claim is justified by exact roundtripping alone.
+Each output is ciphertext-like and begins with nonlinguistic GP symbols; **none recovers native prose or an authentic instruction**. Both directions reconstruct every original GP29 rune exactly under the algebraic inverse. For the table they reconstruct only the original **byte residues mod29**, since the required 256-byte→GF29 reduction loses information; the matrix is not a reversible operator on the original 8-bit cells. A separate positive control encrypts and recovers **92/92 clear-source p57 GP29 runes** under the same full-rank Hill4 matrices. No plaintext claim is justified by exact roundtripping alone.
 
 ## Decision and reproducibility
 
