@@ -1,0 +1,97 @@
+name: Agent11 2013 Instar parable number on original LP2 terminal JPEGs
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: agent11-2013-parable-number-original
+  cancel-in-progress: false
+jobs:
+  source-native-probe:
+    runs-on: windows-latest
+    timeout-minutes: 27
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x86
+      - name: Install native OpenPuff UI dependencies
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -c "import struct; assert struct.calcsize('P') == 4"
+          python -m pip install --disable-pip-version-check pywinauto Pillow filelock
+          python sims/openpuff_output_capture_sft.py
+          if ($LASTEXITCODE -ne 0) { throw 'Native capture control failed' }
+      - name: Retrieve immutable original OpenPuff v4.00 binary pair
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $root = Join-Path $env:RUNNER_TEMP 'OpenPuff-v400-Agent11-ParableNumber'
+          New-Item -ItemType Directory -Force -Path $root | Out-Null
+          $base = 'https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff'
+          $expected = @{
+            'OpenPuff.exe' = '466e03c792075313ce533a5dc7a789e8a41209f9'
+            'libObfuscate.dll' = 'f3b1c3315f8286346416fefd6141410f422f2454'
+          }
+          foreach ($name in $expected.Keys) {
+            $target = Join-Path $root $name
+            Invoke-WebRequest -Uri "$base/$name" -OutFile $target
+            $actual = (& git hash-object -- $target).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $actual -ne $expected[$name]) {
+              throw "Original binary mismatch: $name"
+            }
+          }
+          "OPENPUFF_EXE=$(Join-Path $root 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Validate original 2013 parable source and terminal carrier scope
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -c "import json; d=json.load(open('resources/liber-primus/lp2-corpus.json',encoding='utf-8')); p55=next(p for p in d['pages'] if p['page']==55); p57=next(p for p in d['pages'] if p['page']==57); s=''.join(d['translit'][i] for i in p57['indices']); assert len(p55['indices'])==76 and 'CIRCUMFERENCES' in s and 1031*1229*1259==1595277641; print('2013_ID3_PARABLE_NUMERAL_AND_P57_REPRINT_GATES_PASS')"
+          if ($LASTEXITCODE -ne 0) { throw '2013 source/P57 parable scope premise mismatch' }
+          if (-not (Test-Path -LiteralPath 'resources/liber-primus/72.jpg')) { throw 'Original JPEG72 missing' }
+          if (-not (Test-Path -LiteralPath 'resources/liber-primus/74.jpg')) { throw 'Original JPEG74 missing' }
+      - name: Calibrate exact original native JPEG decoder on a known 35-byte payload
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python sims/openpuff_public_jpeg_positive_source.py --out probe-output/public-source
+          if ($LASTEXITCODE -ne 0) { throw 'Source-published positive unavailable' }
+          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier probe-output/public-source/openpuff.jpg --password 12345678 --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/public-recovery --wait-seconds 60
+          if ($LASTEXITCODE -ne 0) { throw 'Original OpenPuff native positive could not run' }
+          python -c "from pathlib import Path; p=Path('probe-output/public-recovery/extracted/hidden.txt'); assert p.is_file() and p.read_bytes()==b'Dies ist eine versteckte Nachricht!'; print('ORIGINAL_NATIVE_JPEG_35BYTE_POSITIVE_PASS')"
+          if ($LASTEXITCODE -ne 0) { throw 'Native exact payload not recovered' }
+      - name: Test 2013 parable number on precisely p55 and p57 at both native depths
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $key = '1595277641'
+          # Unmodified 2013 Instar ID3 parable number, absent from the 2014 LP2 p57 verbatim reprint.
+          # Source-adjacent original physical pp55/57, no guessed password variants.
+          # The two standard native JPEG levels are separate complete attempts.
+          foreach ($scan in @(72, 74)) {
+            foreach ($format in @('medium', 'maximum')) {
+              $level = if ($format -eq 'medium') { '1/5 (20%) - Medium' } else { '1/2 (50%) - Maximum' }
+              $carrier = Join-Path $env:GITHUB_WORKSPACE ('resources/liber-primus/{0:D2}.jpg' -f $scan)
+              $out = "probe-output/source-scan$scan-$format"
+              python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier "$carrier" --password "$key" --bit-format 'Jpeg (Image)' --bit-level $level --out $out --wait-seconds 95
+              if ($LASTEXITCODE -ne 0) { throw "Native original source execution failed: $scan / $format" }
+              $result = Get-Content -LiteralPath "$out/result.json" -Raw | ConvertFrom-Json
+              if ($result.carrier_count -ne 1 -or -not $result.carrier_added -or -not $result.bit_selection_verified -or -not $result.attempted) {
+                throw "Native original-source coverage unproven: $scan / $format"
+              }
+              if ($result.native_probe_outcome -eq 'inconclusive-timeout') {
+                throw "Native result inconclusive: $scan / $format"
+              }
+              Write-Host "SOURCE_2013_PARABLE_NUMBER_RESULT scan=$scan format=$format $($result | Select-Object native_probe_outcome, carrier_count, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 10 -Compress)"
+              if ($result.output_present) { Write-Host 'POTENTIAL_ORIGINAL_LP2_PAYLOAD_DETECTED_VALIDATE_EXACT_BYTES' }
+            }
+          }
+      - name: Preserve original-tool evidence and any recovered payload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent11-2013-parable-number-native-original-evidence
+          path: probe-output/
+          if-no-files-found: warn
