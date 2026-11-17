@@ -208,6 +208,10 @@ function plant(seed,originalWordShape=true){
 function inferPage(cipher,logEmission,limit=cipher.length){
   const roles=rolesForCipher(cipher);
   const n=Math.min(cipher.length,limit);
+  // Finite-prefix annealing counters the zero-skip MAP trap while row
+  // permutations remain poorly estimated. Full physical prior is used once
+  // there are more than 900 training symbols in a chapter.
+  const temper=limit<=40?.35:limit<=300?.55:limit<=900?.8:1;
   if(!n)return [];
   const width=DRIFT_LIMIT+1;
   const back=new Uint8Array(n*width);
@@ -215,10 +219,12 @@ function inferPage(cipher,logEmission,limit=cipher.length){
   prev[0]=logEmission[roles[0]*N*N+primeRows[0]*N+cipher[0]];
   for(let i=1;i<n;i++){
     const next=new Float64Array(width).fill(-1e30);
-    for(let d=0;d<width;d++){
-      let best=prev[d]+logSteps[0],step=0;
+    // The loose physical H2 rate envelope excludes superlinear retry
+    // histories in very short prefixes without specifying any true skips.
+    for(let d=0;d<width&&d<=Math.ceil(i*.06+8);d++){
+      let best=prev[d]+temper*logSteps[0],step=0;
       for(let k=1;k<=4&&k<=d;k++){
-        const candidate=prev[d-k]+logSteps[k];
+        const candidate=prev[d-k]+temper*logSteps[k];
         if(candidate>best){best=candidate;step=k;}
       }
       next[d]=best+logEmission[roles[i]*N*N+primeRows[i+d]*N+cipher[i]];
@@ -467,6 +473,8 @@ console.log(JSON.stringify({
   plaintextModel:'Gibran original-word-shape GP29; Shakespeare independent role and bigram model',
   sourcePrimeClock:'prime2 restart on each original visual chapter',
   priorSkipProbabilities:[.972,.0272,.0008,.000022,.00000062],
+  prefixTempering:{upTo40:.35,upTo300:.55,upTo900:.8,later:1},
+  maximumPrefixDrift:'min(180,ceil(0.06*i+8))',
   meanHiddenAdvances:mean('hiddenSkipRows'),
   meanTrainingKeyAccuracy:mean('trainingKeyPathCorrect')/
     (LENGTH-PAGE_LENGTHS[HELDOUT_PAGE]),
