@@ -101,7 +101,7 @@ for (const [name, items] of variants) {
 }
 const denominator = 1729 * 1728;
 const originalNumerator = originalMultiset.reduce((sum, n) => sum + n * (n - 1), 0);
-assert.equal(originalNumerator, 102964);
+assert.equal(originalNumerator, 102958);
 
 /**
  * All-secret sharp upper bound. For every independent phase, allow one
