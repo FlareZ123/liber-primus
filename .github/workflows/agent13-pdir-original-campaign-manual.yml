@@ -34,7 +34,7 @@ on:
         default: "real,null"
         type: choice
         options: ["real,null", "real", "null"]
-      null:
+      null_streams:
         description: Matched random stream count
         required: true
         default: "6"
@@ -77,7 +77,7 @@ jobs:
         run: python external-cicada3301/work/kscreen/pdir_selftest.py --quick --threads 4
       - name: Execute the frozen original LP2 screen
         run: |
-          python sims/lp2_pdir_issue1329_gate.py external-cicada3301 --campaign --conv "${{ inputs.conv }}" --shard "${{ inputs.shard }}" --shards "${{ inputs.shards }}" --streams "${{ inputs.streams }}" --windows "${{ inputs.windows }}" --parts "${{ inputs.parts }}" --null "${{ inputs.null }}" --tag "${{ inputs.tag }}" --threads 4
+          python sims/lp2_pdir_issue1329_gate.py external-cicada3301 --campaign --conv "${{ inputs.conv }}" --shard "${{ inputs.shard }}" --shards "${{ inputs.shards }}" --streams "${{ inputs.streams }}" --windows "${{ inputs.windows }}" --parts "${{ inputs.parts }}" --null "${{ inputs.null_streams }}" --tag "${{ inputs.tag }}" --threads 4
       - name: Preserve complete result shard and control reports
         if: always()
         uses: actions/upload-artifact@v4
