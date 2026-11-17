@@ -167,3 +167,116 @@ console.log(JSON.stringify({
  knownNativePlant:{phase:truthPhase,skips,ioc:plantResult,plainIoc:truthIoc},
  original:{best:best.slice(0,12),screenHitsGe140:hits.length,firstTenWhole729:verify}
 },null,2));
+
+
+// FIELD-AFFINE ALL-PHASE: completely independent reversible cipher
+// reading of the same two historical small factors. The exponent in
+// 24^(phase+j) shares the authentic field-element clock rather than
+// being fitted independently. Direct and root-modulated trace are
+// C=24^(phase+j)*P ± Trace(alpha^(phase+j))
+// C=24^(phase+j)*(P ± Trace(alpha^(phase+j))).
+const f = [], finv = [];
+let g24=1;
+for(let j=0;j<840;j++){
+ f.push(g24);
+ let inverse=0;
+ for(let i=1;i<29;i++)if(g24*i%29===1){inverse=i;break;}
+ assert.ok(inverse);
+ finv.push(inverse);
+ g24=g24*24%29;
+}
+assert.equal(g24,1);
+
+/**
+ * @param {number[]} c Original source or planted cipher
+ * @param {number} type 0: trace-after-multiply, 1: trace-before-multiply
+ * @param {number} phase GF(29²) field state
+ * @param {number} sign ±1 in the field
+ * @param {number} model 0=LAST,1=coin
+ * @param {{dirs:number[],mv:number[],prev:number[]}} layout Word direction plan
+ * @param {number} n Original prefix
+ */
+function decodeAffine(c,type,phase,sign,model,layout,n){
+ const {dirs,mv,prev}=layout;
+ const enc=(p,j)=>{
+  const index=ring(phase+j);
+  return (f[index]*p+sign*key[type][index]+29)%29;
+ };
+ const dec=(v,j)=>{
+  const index=ring(phase+j);
+  return ((v-sign*key[type][index]+29)*finv[index])%29;
+ };
+ /** @type {State[]} */
+ let st=[{ptr:0,score:0,count:new Uint16Array(29)}];
+ for(let i=0;i<n;i++){
+  const next=new Map(),ci=c[i],pv=prev[i],dir=dirs[i];
+  for(const state of st){
+   const j=state.ptr+mv[i];
+   const p0=dec(ci,j),p1=dec(ci,j+dir),p2=dec(ci,j+2*dir);
+   const opts=[[p0,j+(model===1&&pv===ci?2:1)*dir]];
+   if(pv>=0){
+    if(model===0){
+     if(enc(p1,j)===pv)opts.push([p1,j+2*dir]);
+     if(enc(p2,j)===pv&&enc(p2,j+dir)===pv)opts.push([p2,j+3*dir]);
+    }else if(enc(p2,j)===pv)opts.push([p2,j+3*dir]);
+   }
+   for(const [val,nextPtr] of opts){
+    const score=state.score+2*state.count[val],older=next.get(nextPtr);
+    if(!older||score>older.score){
+     const count=state.count.slice();
+     count[val]++;
+     next.set(nextPtr,{ptr:nextPtr,score,count});
+    }
+   }
+  }
+  st=[...next.values()].sort((x,y)=>y.score-x.score).slice(0,16);
+  assert.ok(st.length);
+ }
+ return 29*st[0].score/(n*(n-1));
+}
+const affinePlant=[];let affinePointer=0,affineSkips=0;
+for(let i=0;i<300;i++){
+ const dir=truthLayout.dirs[i],start=affinePointer+truthLayout.mv[i];
+ let used=0,chosen=0;
+ for(let retry=0;retry<=2;retry++){
+  const at=ring(truthPhase+start+retry*dir);
+  const trial=(f[at]*plain[i]+key[0][at])%29;
+  if(retry===2||i===0||trial!==affinePlant[i-1]){
+   used=retry;chosen=trial;break;
+  }
+ }
+ affinePlant.push(chosen);
+ affineSkips+=used;
+ affinePointer=start+(1+used)*dir;
+}
+const affinePositive=decodeAffine(affinePlant,0,truthPhase,1,0,plan(affinePlant,1,0),300);
+assert.ok(affinePositive>1.4);
+const affineBest=[],affineHits=[];
+for(let type=0;type<2;type++)
+for(const flip of [-1,1])
+for(const convention of [0,1])
+for(const sign of [-1,1])
+for(const model of [0,1]){
+ const layout=plans[flip+':'+convention];
+ let local={ioc:-Infinity};
+ for(let phase=0;phase<840;phase++){
+  const ioc=decodeAffine(original,type,phase,sign,model,layout,300);
+  if(ioc>local.ioc)local={ioc,type,flip,convention,sign,model,phase};
+  if(ioc>=1.4)affineHits.push({ioc,type,flip,convention,sign,model,phase});
+ }
+ affineBest.push(local);
+}
+affineBest.sort((a,b)=>b.ioc-a.ioc);
+affineHits.sort((a,b)=>b.ioc-a.ioc);
+const affineVerify=affineHits.slice(0,10).map(item=>({
+ ...item,
+ full729:decodeAffine(original,item.type,item.phase,item.sign,item.model,
+   plans[item.flip+':'+item.convention],729)
+}));
+assert.equal(affineBest.length*840,26880);
+console.log(JSON.stringify({
+ source:'Original LP2 p0–2 GP29: field-affine all-840-phase inverse',
+ variants:26880,
+ knownNativePlant:{phase:truthPhase,skips:affineSkips,ioc:affinePositive},
+ original:{best:affineBest.slice(0,12),screenHitsGe140:affineHits.length,firstTenWhole729:affineVerify}
+},null,2));
