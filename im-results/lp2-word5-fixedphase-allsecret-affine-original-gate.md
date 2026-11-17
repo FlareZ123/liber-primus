@@ -60,7 +60,7 @@ Across the original **seven 13–14-rune words**, no candidate survives either s
 
 This excludes the exact word-specific affine coding of those seven long original words **into either finite native reference vocabulary**, provided the original printed word boundaries and GP rune counts are preserved. It does not prove exclusion for unlisted English/Latin words, novel vocabulary, other languages, ciphertext word resegmentation or multiple layers. The highly secret per-word key family may fit many shorter words, so the surviving isolated dictionary hits are insufficient to identify the author’s operation.
 
-The complete original-input candidate inverse, positive controls and Latin sensitivity are [`sims/lp2_wordlocal_affine5_allsecret_dictionary_sft.cjs`](../sims/lp2_wordlocal_affine5_allsecret_dictionary_sft.cjs). This is a second, distinct decision from the aggregate five-phase slope gate.
+The complete original-input candidate inverse, positive controls and Latin sensitivity are [`sims/lp2_wordlocal_affine5_allsecret_dictionary_sft.cjs`](../sims/lp2_wordlocal_affine5_allsecret_dictionary_sft.cjs); [the final English+Latin Windows Node22 test passed](https://github.com/FlareZ123/liber-primus/actions/runs/44073121675), with both per-length original nonmatch counts and 400 synthetic inverse positives asserted. This is a second, distinct decision from the aggregate five-phase slope gate.
 
 ## Original p51 five-back word echo and a second lossless inverse
 
@@ -74,7 +74,7 @@ The five-step lag and the repeated block motivate a **second explicit, lossless 
 
 The authentic p51 eight-rune word is decisive for this literal **single-E** receiver: its three consecutive copy outputs require `P[5]=P[6]=P[7]=E` for **every** possible E and secret key. Among the source-native GP29 words encoded from the 29,157-entry English dictionary and independently GP-encoded words of the Latin Vulgate, **zero eight-rune words end in three identical rune symbols**. Therefore this complete, straightforward 29→29 five-back-copy escape model fails for the witnessed p51 word under those actual English and Latin registers. This is a finite lexical contradiction, not a theorem excluding all invented vocabulary, languages or block-copy rules.
 
-The independent reversible-source SFT is [`sims/lp2_p51_word5_echo_copyescape_original_sft.cjs`](../sims/lp2_p51_word5_echo_copyescape_original_sft.cjs). Its source word location and original run counts are pinned; positive encrypt/decrypt plants and 10,000 conditioned word nulls are executed in one file. A generic variable-length **copy-block** mechanism would require its own explicitly authored trigger and copy length, and should not be inferred from the existence of this striking ciphertext echo alone.
+The independent reversible-source SFT is [`sims/lp2_p51_word5_echo_copyescape_original_sft.cjs`](../sims/lp2_p51_word5_echo_copyescape_original_sft.cjs), [passed on native Windows Node22](https://github.com/FlareZ123/liber-primus/actions/runs/44073703227). Its source word location and original run counts are pinned; positive encrypt/decrypt plants and 10,000 conditioned word nulls are executed in one file. A generic variable-length **copy-block** mechanism would require its own explicitly authored trigger and copy length, and should not be inferred from the existence of this striking ciphertext echo alone.
 
 ## Decision and next fork
 
