@@ -131,8 +131,8 @@ function run() {
             }
           }
   assert.equal(tested, 928);
-  assert.equal(bestLookup.lookup, 51);
-  assert.equal(bestDirect.direct, 14);
+  assert.equal(bestLookup.lookup, 53);
+  assert.equal(bestDirect.direct, 15);
 
   // Positives: correctly constructed direct and secret-alphabet Shamir
   // interpolation outputs must recover each of the 180 reserved known slots.
