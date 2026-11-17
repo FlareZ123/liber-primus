@@ -79,6 +79,42 @@ function longestIsomorphic(source, reference) {
 }
 
 /**
+ * GP29 source-native literal-F substitution with ciphertext-F collision:
+ * plaintext F copies unchanged; non-F runes use an arbitrary one-to-one
+ * secret map, which may map one additional non-F rune to ciphertext F.
+ * @param {number[]} source
+ * @param {number[]} reference
+ * @returns {{length:number,originalOffset:number,referenceOffset:number,pairs:number}}
+ */
+function longestTransparentF(source, reference) {
+  const seenPlain = new Int32Array(29);
+  const seenCipher = new Int32Array(29);
+  const toCipher = new Int32Array(29);
+  let epoch = 0, best = 0, from = -1, at = -1;
+  for (let i = 0; i < source.length; i++) {
+    for (let j = 0; j < reference.length; j++) {
+      epoch++;
+      let n = 0;
+      while (i + n < source.length && j + n < reference.length) {
+        const c = source[i + n], p = reference[j + n];
+        if (p === 0) {
+          if (c !== 0) break;
+        } else if (seenPlain[p] !== epoch) {
+          if (seenCipher[c] === epoch) break;
+          seenPlain[p] = epoch;
+          seenCipher[c] = epoch;
+          toCipher[p] = c;
+        } else if (toCipher[p] !== c) break;
+        n++;
+      }
+      if (n > best) { best = n; from = i; at = j; }
+    }
+  }
+  return {length:best, originalOffset:from,referenceOffset:at,
+    pairs:source.length*reference.length};
+}
+
+/**
  * Canonical first-occurrence pattern, invariant under any bijection.
  * @param {number[]} values @param {number} start @param {number} n
  * @returns {string}
@@ -121,6 +157,10 @@ function repeatedWindows(length) {
 const observed = known.map(reference => ({name: reference.name,
   ...longestIsomorphic(original, reference.values)}));
 assert.deepEqual(observed.map(row => row.length), [16, 15, 15, 16, 16, 15, 15]);
+const transparentObserved = known.map(reference => ({name: reference.name,
+  ...longestTransparentF(original, reference.values)}));
+assert.deepEqual(transparentObserved.map(row => row.length),
+  [16, 15, 15, 16, 16, 15, 14]);
 const sourceOffsets = [];
 let cursor = 0;
 for (const page of pages) {
@@ -148,6 +188,19 @@ assert.ok(positive.length >= 60);
 assert.equal(positive.originalOffset, plantedAt);
 assert.equal(positive.referenceOffset, 0);
 
+// The p57 source excerpt has real F at original offsets 33 and 59.
+const plantedTransparent = original.slice();
+for (let j = 0; j < 60; j++) {
+  const p = known[6].values[j];
+  plantedTransparent[plantedAt+j] = p===0 ? 0 : (7*p+3)%29;
+}
+assert.equal(plantedTransparent[plantedAt+33],0);
+assert.equal(plantedTransparent[plantedAt+59],0);
+const transparentPositive=longestTransparentF(plantedTransparent,known[6].values);
+assert.ok(transparentPositive.length>=60);
+assert.equal(transparentPositive.originalOffset,plantedAt);
+assert.equal(transparentPositive.referenceOffset,0);
+
 console.log(JSON.stringify({
   status: 'All-original exact all-secret crib attempt: no unknown plaintext recovered',
   scope: {unknownRunes: original.length, unknownPhysicalPages: pages.length,
@@ -156,10 +209,17 @@ console.log(JSON.stringify({
     acrossPrintedWordsAndPhysicalPageSeams: true},
   knownSubstitutionIsomorphism: observed,
   originalCrossPageCribCeiling: Math.max(...observed.map(item => item.length)),
+  sourceNativeTransparentFIsomorphism: transparentObserved,
+  transparentFLongestOriginalRunes:
+    Math.max(...transparentObserved.map(item => item.length)),
   unknownWithinPageRepeats: self,
   positive: {plantedRunes: 60, insertionOffset: plantedAt,
     recoveredIsomorphismLength: positive.length,
     recoveredInsertionOffset: positive.originalOffset,
     recoveredReferenceOffset: positive.referenceOffset},
-  conclusion: 'No 17-rune or longer contiguous original LP2 passage is an arbitrary one-to-one substitution of any contiguous passage in six selected clear LP1 pages or clear p57. All page-local unknown-to-unknown equality patterns have unique signatures at length 22. These are necessary-condition exclusions for identical typed plaintext under a single bijection, not universal decryptions or evidence against changing keys, transposition, or novel plaintext.'
+  transparentFPositive: {plantedRunes:60,
+    recoveredIsomorphismLength:transparentPositive.length,
+    recoveredInsertionOffset:transparentPositive.originalOffset,
+    recoveredReferenceOffset:transparentPositive.referenceOffset},
+  conclusion: 'No 17-rune or longer original LP2 passage is a fixed bijective substitution or a source-native literal-F-transparent substitution of any contiguous passage in six selected clear LP1 pages or clear p57. All page-local unknown-to-unknown equality patterns have unique signatures at length 22. These are necessary-condition exclusions for identical typed plaintext under a single bijection, not universal decryptions or evidence against changing keys, transposition, or novel plaintext.'
 }, null, 2));
