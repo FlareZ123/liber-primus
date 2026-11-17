@@ -36,7 +36,6 @@ const allSourceValues = gp.pages[51].indices.concat(gp.pages[52].indices);
 assert.deepEqual(words.flat(), allSourceValues);
 const table = grid.bytes;
 assert.equal(table.length, 256);
-assert.equal(grid.shape, undefined === grid.shape ? undefined : grid.shape); // unchanged source
 /** @param {number} c */
 function column(c) { return Buffer.from(Array.from({length: 32}, (_, row) => table[row * 8 + c])); }
 const columns = Array.from({length: 8}, (_, c) => column(c));
