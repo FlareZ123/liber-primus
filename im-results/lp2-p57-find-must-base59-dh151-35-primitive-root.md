@@ -149,7 +149,13 @@ This 5×5 geometry gives an inexpensive, human-visible reason to
 reconsider the manuscript's instruction to **shed circumferences**
 and its historically authenticated 2014 magic-square work. No
 original caption explicitly joins the 2013 Parable's **prime
-ordinals** to a 5×5 selection in the 2014 table. The internal
+ordinals** to a 5×5 selection in the 2014 table. The selected **5×5 table frame itself is not a magic square**:
+its five base59 row sums are **788,646,480,684,612**, with
+nonconstant column and diagonal sums. Ranking its 25 distinct
+entries from 1 to25 also gives unequal row sums
+**78,65,48,71,63**. Thus the 2014 authentic magic squares can
+motivate *noticing a five-by-five shape* but cannot identify this
+numeric block as another valid 3301/1033 magic square. The internal
 3×3 block has non-magic unequal row sums, and the original
 76-rune receiver remains unidentified. ### Original p55 5×5 Hill-cipher recipient: complete original negative
 
