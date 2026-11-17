@@ -127,6 +127,28 @@ for(let i=0;i<104;i++)for(let j=i+1;j<104;j++)
 assert.equal(firstRowMatches,1);
 assert.equal(allMatches,24);
 
+// A distinct length-selected candidate is the p0 physical 13-rune red
+// opening: MY=174 addresses p0:w3, whose location is black body text, so
+// applying the 13-byte table operator to the red title is separately tentative.
+assert.deepEqual(location(174),{page:0,word:3});
+assert.equal(roman(words[0][3]),"FJOE");
+const opening = corpus.pages[0].indices.slice(0,13);
+assert.equal(opening.length,13);
+assert.equal(roman(opening),"SHEOGMIAFSYENGC");
+const redOpeningVariants = [];
+for(const mapName of ["mod29","scaled29"])
+ for(const order of ["forward","reverse"])
+  for(const sign of [-1,1]) {
+    const key = originalBytes.map(b=>mapName==="mod29"?b%29:Math.floor(b*29/256));
+    if(order==="reverse")key.reverse();
+    const plain = opening.map((c,i)=>(c+sign*key[i]+29)%29);
+    redOpeningVariants.push({mapName,order,sign,
+      first8:roman(plain.slice(0,8)),last5:roman(plain.slice(8))});
+  }
+assert.equal(redOpeningVariants.length,8);
+assert.deepEqual(
+ [redOpeningVariants[0].first8,redOpeningVariants[0].last5],
+ ["SEATXYSHU","NGCAOEY"]);
 const C = corpus.pages[55].indices;
 assert.equal(C.length,76);
 assert.equal(C.filter(v=>v===0).length,3);
@@ -253,6 +275,11 @@ console.log(JSON.stringify({
     oneReverseHEADpairAmong28:reverseHeadPairs,
     reversedGP29:reverseGP29,
     rowConditionedPosthocSixModuleCollision:conditionalExactSixModuleChance
+  },
+  originalP0Red13: {
+    sourceHeading:roman(opening),alignedOriginalVariants:redOpeningVariants,
+    lengthOnlySelectsHeading:true,
+    sourceMYactualAddress:"physical p0 word3 FJOE, not red heading"
   },
   originalP55: {
     runes:C.length,directCandidates:variants.length,
