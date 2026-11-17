@@ -50,6 +50,30 @@ All four full original outputs lack a coherent GP-native 76-rune passage. Every 
 
 **Decision:** the specific **graph-distance-on-clockwise-outer76** key is a negative original-input plaintext test in either source-supported numeric radix. The source alone still supplies no instruction to use graph depth as a rune keystream. This finite check does not rule out a different, *independently prescribed* consumer of the source graph and does not justify searching alternative graph traversals to tune a decipherment. The exact graph structural observation remains as classified above.
 
+## Known-plaintext affine tree aggregation: complete coefficient family
+
+The source graph also permits a finite interpretation that can be rejected using already-authenticated plaintext rather than tuning an unknown page. It contains **95 leaves**, equal to the clear p57 rune count, and **161 internal nodes**, equal to p55 (76 ciphertext runes) plus p56 (85 independently solved runes). This count agreement motivates the specific conditional assignment of p57 runes to leaf labels and p55/p56 runes to internal labels. No original inscription instructs the assignment, so it remains a tested hypothesis.
+
+Take the native GP ordinal value or its corresponding GP prime reduced modulo29 as the node label. Assign p57's 95 runes to leaves in ascending address or canonical depth-first order, forward or reversed. Assign the 161 internal labels in ascending address, preorder or postorder, and place the solved p56 block before or after the unobserved p55 block. In total there are **48 exact source geometries**. For each geometry use the original p56's independently verified prime-totient decryption, requiring **84 prime-consuming positions and one transparent F at index56**. Every fully observable internal node then supplies a plain-language constraint on the candidate operation
+
+`parent = (a * sum(child labels) + b * numberOfChildren + c) mod 29`,
+
+with **all 29³ coefficient triples** evaluated. Nodes requiring unobserved p55 labels are excluded from the constraint set. Depending on the source geometry, 55 to 85 of p56's genuine plaintext labels produce complete constraints.
+
+| Complete original-input result | Outcome |
+| --- | --- |
+| Source geometries | 48 |
+| Exact affine solutions on their entire observable p56 sets | **0** |
+| Best entire p56 fit under GP ordinal labels | 16 of 85 |
+| Best entire p56 fit under GP prime-residue labels | **17 of 85** |
+| Best 85-constraint geometry, first 42 frozen as training | 10 matches |
+| Its remaining 43 held-out constraints | 6 matches |
+| Fully generated synthetic trees with source-shaped p57 leaves and `a=7, b=5, c=3` | **48 of 48 recover all known constraints** |
+
+The highest full original score uses `a=0, b=7, c=24`, eliminating the child values entirely. It is a weak match created by fitting many coefficient triples, with no evidence for a propagating key or plaintext. The known p56 plaintext supplies independent positive-ground truth: an exact local cipher in this tested class would match all complete p56 constraints under at least one eligible geometry, as the planted trees do.
+
+**Decision:** the entire stated *uniform local affine parent-from-children family*, including arbitrary constant, child-sum scale and node-degree offset over GP29, fails on original solved material. This extends the previous child-sum-only and node-salt tests, and blocks that route to recovering p55. More general graph-dependent algorithms, nonlocal operations and the source's numerical-base ambiguity remain unresolved. The [read-only Windows/Node22 SFT](../sims/lp2_p50_base59_tree95_affine_knownholdout_sft.cjs) reads the original resources and exhausts the finite family without any original unknown-plaintext fit.
+
 ## Causal interpretation and explicit limitation
 
 The missing-f 59-digit alphabet creates one exact **global destination cell at address189**, potentially useful if a player was intended to use the 256 values as directions. Its attraction-basin feature is independent of the earlier *keypad* graph; it remains opposed by the existing base60 quadratic-syndrome result. The root and its full convergence are new concrete original-data properties. Their original authorial meaning is unresolved: no Cicada source yet tells a reader **which reverse branch to follow, what visited addresses mean as GP29/bytes, or which LP2 ciphertext page should consume them**. The signed 2016 message about words, meanings, numbers and direction does not independently choose the 59-digit radix, depth-first child order or plaintext receiver. The six source seeds provide no independent confirmation because a single basin forces their convergence.
