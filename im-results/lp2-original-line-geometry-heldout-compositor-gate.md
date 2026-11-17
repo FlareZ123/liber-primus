@@ -21,43 +21,27 @@ Those 29 pages have **348** unambiguous line starts, with optical left x-values:
 The **319** measured baseline-to-baseline pitches are **188 pixels (231)**, **189 pixels (81)**, and **224 pixels (7)**. All seven 224-pixel gaps are visible **extra line-leading events** on p4, p10, p21, p41, p42 (twice), and p43. No clean line has a materially independent left-indent choice; the vertical positions use a nearly fixed pitch plus occasional extra spacing. This does not assess decorated or heavily interrupted pages whose bands fail the clean criterion.
 
 
-### The seven extra-leading sites are mostly *within original printed words* (17 November 2026)
+## Original printed-word controls for the seven 224-pixel extra leads (17 November 2026)
 
-A cross-control against the unchanged physical printed-line transcription (`resources/lp2-transcription.txt`) corrects the earlier *paragraph-leading* label. The seven 224-pixel events are the start of physical lines **p4:8, p10:8, p21:2, p41:10, p42:3, p42:6, p43:1** (zero-based), verified directly on the original `21.jpg,27.jpg,38.jpg,58.jpg,59.jpg,60.jpg` scan pixels using the same x720–1639, y450–3249 threshold and row joins. For each site, inspect the end of the immediately preceding transcribed physical line and the beginning of the next line:
+The initial term *paragraph-leading events* overinterpreted the geometry. Independent Agent24 and Agent34 original-scan and page-exact transcript adjudications now agree on all seven source sites. The line number is zero-based on its physical page; extra leading at line *k* means a baseline start 224px (versus ordinary 188/189px) below line *k−1*. Physical LP2 p maps to supplied original scan `p+17.jpg`.
 
-| Event | Last printed line ends | First following line begins | Printed word continues across the gap? |
+| Page; incoming line | Original source just before / after the line break | Physical classification | Scan |
 | --- | --- | --- | --- |
-| p4 line8 | `...ᛗᛉᛁᚹ.ᛄᛋᛟᛗᚾᚱ/` | `ᛖᛒᛋ-...` | **Yes** |
-| p10 line8 | `...ᛚᛄᛖᚫ/` | `.ᚣᛁᚫᚹᚻ-...` | **Yes**, stop at next line beginning |
-| p21 line2 | `...ᚠᚱᛡᛚ/` | `ᛏ-...` | **Yes** |
-| p41 line10 | `...ᛖᚣᚢᛝᚦᛇᚱ-/` | `ᛠᛁᚫ-...` | No |
-| p42 line3 | `...ᛈᛁ.ᚠᚳᚦ/` | `ᛗᛄᚹᚱᚪᛚ-...` | **Yes** |
-| p42 line6 | `...ᚾᚠᛁᛝ.ᛏ/` | `ᚻᚹᚫ-...` | **Yes** |
-| p43 line1 | `...ᚷᛚᚣᚹᛟ-/` | `ᚠᚢ-...` | No |
+| p4; line8 | `…ᛄᛋᛟᛗᚾᚱ/ᛖᛒᛋ…` | **Within printed word** | 21.jpg |
+| p10; line8 | `…ᚷ-ᛚᛄᛖᚫ/.ᚣᛁ…` | **Period at start of next line**, not a clean new-word gap | 27.jpg |
+| p21; line2 | `…ᚠᚱᛡᛚ/ᛏ-…` | **Within printed word** | 38.jpg |
+| p41; line10 | `…ᛖᚣᚢᛝᚦᛇᚱ-/ᛠᛁᚫ…` | **Between printed words** | 58.jpg |
+| p42; line3 | `…ᚠᚳᚦ/ᛗᛄᚹ…` | **Within printed word** | 59.jpg |
+| p42; line6 | `…ᚾᚠᛁᛝ.ᛏ/ᚻᚹᚫ…` | **Within printed word** | 59.jpg |
+| p43; line1 | `…ᚷᛚᚣᚹᛟ-/ᚠᚢ…` | **Between printed words** | 60.jpg |
 
-**Five of seven** extra pitches bisect a single printed ciphertext word. Among the other **532** within-page printed-line transitions (normal-gap or not among this list), **437** also continue inside a printed word and **95** fall at an explicit word divider. Thus the five-of-seven count is ordinary for this corpus and gives no evidence of a semantic paragraph boundary; the term *paragraph leading* should not be treated as a source-selected reset instruction. Moreover, the same original Liber Primus first-release scans contain many 223–225-pixel line starts alongside 188–189-pixel pitches, for example original `06.jpg` lines5/7/9 and `07.jpg` lines3/4/5/6/8/10, so **224-pixel leading is not unique to encrypted LP2**. The first-release panels contain quotation and section punctuation that can motivate ordinary editorial extra spacing, without specifying what LP2 glyphs would encode.
+**Four gaps bisect uninterrupted printed words; two begin new printed words; one begins with a displaced period.** This directly falsifies a strict seven-*paragraph*-boundary interpretation. The exact 594-line transcription `resources/lp2-transcription.txt` has **532 other within-page line transitions**, of which **437** continue within printed words, **95** end at a printed divider (using the end-of-line `-/` test). On just the six physical pages bearing the extra gaps, an independent manual classification of the **59 regular-pitch** transitions found 44 within-word continuations, 12 new-word starts and three other punctuation/boundary cases. Their ordinary word-continuation dominance makes the exceptional seven an inadequate semantic separator or reliable state clock.
 
-The evidence permits aesthetic/interline adjustment and other author-intended spacing interpretations. Neither the seven literal gap positions nor their immediate printed-word context supplies an executable GP29 decoder or an authenticated key. Treat the original seven-gap selector as **unsupported** unless an independent first-party instruction changes this causal reading.
+The same supplied original **first-release** Liber Primus scans display many 223–225-pixel pitches among the 188–189-pixel lines, including `06.jpg` at image lines5/7/9 and `07.jpg` lines3/4/5/6/8/10. Hence the 224-pixel layout convention is **not unique to encrypted LP2**. LP1 contains readable quotation/punctuation contexts for some extra leading; neither source edition specifies a bit interpretation or cipher-operation reset at its occurrence.
 
-## Original-boundary adjudication of the seven extra gaps (17 November 2026)
+**Decision:** Extra spacing is real, but no unique word, period, rubric, illumination or other source-visible class consistently selects the seven gaps, and no historical authored decoder has been identified. Retain the exact seven positions as typography, treat the cause of discretionary leading as open, and do not turn seven locations into a fitted key/clock. A prospective reading-unit cipher requires an additional independent author-selected operation plus an original unknown-page plaintext prediction.
 
-**Correction:** The original report called these “extra paragraph-leading events.” Directly aligning each 224-pixel baseline pitch to the unchanged, page-exact `resources/liber-primus/lp2-transcription.txt` shows **four of the seven are within a single uninterrupted printed word**, **two** follow a printed word separator, and **one** places a period at the beginning of the following line. Therefore **a seven-paragraph-break interpretation is false**. This corrects terminology; the original JPEG geometry, 170-transition right-edge holdout and source-width conclusions above are unchanged.
-
-The physical line number is zero-based on its page; an “extra” at line *k* means that line *k* starts 224 pixels below the previous baseline. The original 2400×3600 JPEG is numbered physical p+17 in the supplied 75-image archive.
-
-| Physical page; line receiving extra lead | Previous-to-next printed boundary | Relation | Source image |
-| --- | --- | --- | --- |
-| p4; line8 | `…ᛄᛋᛟᛗᚾᚱ/ᛖᛒᛋ…` | Within-word | 21.jpg |
-| p10; line8 | `…ᚷ-ᛚᛄᛖᚫ/.ᚣᛁ…` | Period begins next line | 27.jpg |
-| p21; line2 | `…ᚠᚱᛡᛚ/ᛏ-…` | Within-word | 38.jpg |
-| p41; line10 | `…ᛖᚣᚢᛝᚦᛇᚱ-/ᛠᛁᚫ…` | New word | 58.jpg |
-| p42; line3 | `…ᚠᚳᚦ/ᛗᛄᚹ…` | Within-word | 59.jpg |
-| p42; line6 | `…ᚾᚠᛁᛝ.ᛏ/ᚻᚹᚫ…` | Within-word | 59.jpg |
-| p43; line1 | `…ᚷᛚᚣᚹᛟ-/ᚠᚢ…` | New word | 60.jpg |
-
-Among the **59 normal-pitch** transitions on these same six pages, 44 also continue a word and 12 precede a printed new word (three other delimiter cases). The seven exceptional leading positions therefore do **not** appear to select one grammatical boundary type. Original p10's displaced full stop also cautions against automatically treating the next line's first visible mark as a rune. The positions were originally discovered through optical geometry, not through a preselected cryptographic operation; **no seven-symbol cipher, key, or plaintext receiver follows from this corrected classification**.
-
-To audit, use `python sims/lp2_line_geometry_gate.py --zip liber-primus-jpegs.zip` for the original-image baselines and read the physical lines at the exact page/line coordinates above. Classify word continuation by absence of a printed `-` or `.` at the preceding line end; punctuation at the first position of the following line is a separate case. Verify the source transcription's physical rune counts against `lp2-corpus.json` before changing its tokenization.
+**Reproduce and audit:** `python sims/lp2_line_geometry_gate.py --zip liber-primus-jpegs.zip` provides the source image starts, and `resources/lp2-transcription.txt` supplies the exact listed page/line text. The raw original image zip is 75 scans; the physical lines can be classified without OCR. The 170-transition right-margin holdout and original compositor conclusions below are unchanged.
 
 ## Frozen width-dependent original holdout
 
