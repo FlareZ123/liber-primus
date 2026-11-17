@@ -16,6 +16,19 @@ const get = name => JSON.parse(fs.readFileSync(path.join(root, name), 'utf8'));
 const corpus = get('resources/liber-primus/lp2-corpus.json');
 const grid = get('resources/liber-primus/lp2-grid-256.json');
 const ink = get('resources/liber-primus/lp2-ink-annotations.json');
+const transcript = fs.readFileSync(path.join(root,
+  'resources/liber-primus/lp2-transcription.txt'), 'utf8').split('%');
+const wordsAt = segment => [
+  ...transcript[segment].replace(/\/\s*/g, '').replace(/\s/g, '')
+    .matchAll(/[\u16A0-\u16FF]+/gu)
+].map(m => m[0]);
+const p53Words = wordsAt(52); // original p50 table is a runeless page
+const p55WordFragments = wordsAt(54);
+assert.equal(p53Words.length, 40);
+assert.equal(p55WordFragments.length, 17);
+assert.equal(p55WordFragments[0], 'ᛝ');
+assert.equal(p53Words.length + p55WordFragments.length - 1, 56);
+
 const alphabet = grid.alphabet;
 const tokens = grid.pages.flatMap(page => page.tokens);
 assert.equal(tokens.length, 256);
@@ -88,6 +101,37 @@ const ioc = digits => {
 };
 const mod = v => (v % 29 + 29) % 29;
 const gp = text => text.map(x => corpus.translit[x]).join('');
+/** A repeated numeric byte must have a repeated rune under any secret,
+ * deterministic, position-independent lookup from that byte to GP29. */
+const lookupContradictions = records => {
+  const seen = new Map();
+  let repeats = 0, conflicts = 0;
+  for (const t of records) {
+    const events = [...t.runes, -1]; // -1 = 13-dot mark, distinct from GP runes
+    assert.equal(events.length, t.order.length);
+    for (let i = 0; i < events.length; i++) {
+      const byte = bytes[t.order[i]];
+      const event = events[i];
+      if (seen.has(byte)) {
+        repeats++;
+        if (seen.get(byte) !== event) conflicts++;
+      } else {
+        seen.set(byte, event);
+      }
+    }
+  }
+  return {distinctBytes:seen.size,repeats,conflicts};
+};
+const byteLookup = {
+  inner:lookupContradictions([treatments[0]]),
+  outer:lookupContradictions([treatments[1]]),
+  joint:lookupContradictions(treatments)
+};
+assert.deepEqual(byteLookup, {
+  inner:{distinctBytes:127,repeats:53,conflicts:50},
+  outer:{distinctBytes:68,repeats:8,conflicts:8},
+  joint:{distinctBytes:161,repeats:95,conflicts:90}
+});
 const outcomes = [];
 for (const t of treatments) {
   assert.equal(t.order.length, t.runes.length + 1);
@@ -113,10 +157,12 @@ console.log(JSON.stringify({
   independent_art_selector:'p53/p55 repeated moth, source-pixel match documented separately',
   unique_255_rune_page_pair:exactPairs,
   structured_event_counts:{p53:180,p55_body:76,combined:256},
+  donor_words:{p53:40,p55_complete:16,total:56,coverage:'physical p0..p55'},
   table:{shape:[32,8],perimeter:outer.length,interior:inner.length,
     zero_positions:zeros.map(i=>({index:i,row:Math.floor(i/8),col:i%8,
       zone:outer.includes(i)?'outer':'inner'}))},
   marker_receiver:'conjectural zero-anchored cycle, NOT an authored opcode',
+  any_static_byte_to_rune_lookup:byteLookup,
   tests:outcomes,
   conclusion:'No original plaintext under direct +/- table-byte GP29 pads'
 }, null, 2));
