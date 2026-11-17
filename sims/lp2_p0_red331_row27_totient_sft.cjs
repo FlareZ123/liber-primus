@@ -234,9 +234,17 @@ const radix29Cubed = 29 ** 3;
  */
 function rsaTriplets(input, exponent, resetAtPage) {
   const output = [];
+  // Preserve physical page sizes while transforming the provided input.
+  // Re-reading corpus.pages here would silently ignore 'input' when reset.
+  let cursor = 0;
   const sections = resetAtPage
-    ? corpus.pages.filter(p => p.page < 56).map(p => p.indices)
+    ? corpus.pages.filter(p => p.page < 56).map(p => {
+        const section = input.slice(cursor, cursor + p.indices.length);
+        cursor += p.indices.length;
+        return section;
+      })
     : [input];
+  if (resetAtPage) assert.equal(cursor, input.length);
   for (const section of sections) {
     for (let i = 0; i + 2 < section.length; i += 3) {
       const packed = section[i] * 841 + section[i + 1] * 29 +
