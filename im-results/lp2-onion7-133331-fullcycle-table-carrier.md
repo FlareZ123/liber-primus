@@ -48,4 +48,22 @@ The independently recovered [original 2014 Onion2 256-byte value](../resources/2
 
 **Finite 8-byte-block decoder (DES).** A further materially different consumer uses the eight Base64-decoded bytes as a native **64-bit DES key**. The original 256-byte table is physically **32 rows × 8 bytes**, which motivates a direct test of complete DES blocks rather than interpreting the key as GP29 shifts. For physical row-major and frozen LCG readout orders, test DES-ECB, DES-CBC, DES-CFB, DES-OFB, both encrypt/decrypt directions, with conventional all-zero IV where required. All **16/16** original outputs remain byte-like (only 84–112 of 256 bytes printable, longest contiguous ASCII run ≤7); no recognized file header, readable table plaintext, or LP2 rune decryption emerges. Exact 256-byte native ASCII DES roundtrip plants pass in every cipher mode. The key does not authenticate DES as the intended cipher. [Read-only source SFT](../sims/lp2_onion7_133331_des8_table_sft.cjs) · [successful final CI run 43461810142](https://github.com/FlareZ123/liber-primus/actions/runs/43461810142).
 
-This remains a possible **short carrier marker**; it does not supply an identified key, authentication, or reversible original-cipher equation. A genuine next decision requires a separately dated source indicating that 133 and331 select an affine recurrence, or a predeclared full-file/held-out-plaintext prediction using this frozen orbit. Do not expand this into arbitrary seed, phase, cipher, or table-modification searches without that independent selector.
+
+
+## Independent 2016 PRNG seed fixes the 133/331 LCG phase: additive consumer negative
+
+The separate signed 2016 message's source-derived line:character map yields the marker **PRNG**. Removing its three marker tokens (P, R, NG) leaves the 13-token payload `L C B P NG P A R R TH B P C`. In the repository GP29 index order this is `[20,5,17,13,21,13,24,4,4,2,17,13,5]`, whose base-29 integer is **7144649572585460758**; reducing modulo 256 gives the independently selected LCG initial state **x₀ = 22**. The extraction and marker evidence are documented in [the 2016 signed-message word-map analysis](lp2-2016-signed-message-base58-word-map.md).
+
+This supplies a concrete cross-round test rather than an arbitrary phase search:
+
+1. Start the 2014 source-number LCG at `x₀=22`, with `xₙ₊₁=(133xₙ+331) mod 256`.
+2. For its 256-state full cycle, read the original p50 table as `table[xₙ]` from [the original 256-byte table](../resources/liber-primus/lp2-grid-256.json).
+3. Reduce those bytes modulo 29 and use the resulting 256-symbol stream as a repeating GP29 additive key over the 12,956 original unknown runes, in page order.
+
+The seed-22 readout begins with bytes `3b9c7ac11f543441a39b7d19c900c7f8`. The previously noticed 11-byte Base64 run `Q8rI6/I6PiT` occurs at offset **103** (it occurs at offset **173** when starting at state 0): changing the LCG seed only rotates the same full-cycle readout, and this seed does not align that local run at the beginning or reveal a new byte pattern.
+
+The direct GP29 consumer was tested under both additive signs and both clock policies (advance on every rune, or skip ciphertext F). Mean GP29 trigram log scores over the complete unknown stream were **−4.9733 to −5.0508**; the selected p17, p27, p32, p41 and p55 outputs remain nonlinguistic. Under the strict F-transparent interpretation, the four variants also produce **408–455** non-F ciphertext positions that would decrypt to plaintext F, which that rule forbids. The trigram model is a diagnostic, not a proof; the decisive observation is that no coherent plaintext or valid F-transparent stream emerges.
+
+**Decision:** reject the specific `2016 13-token seed → x₀=22 → 133/331 LCG → p50 table → repeating GP29 additive pad` route. This does not prove the PRNG marker is irrelevant, but it does not authenticate the LCG as a decryption key or consumer. A different PRNG-driven route/permutation would need its own source-selected target and reversible operation; do not expand into arbitrary PRNG consumers, phases, or table modifications.
+
+This is an intermediate negative result, not an LP2 decryption. No unknown plaintext, authentic key, or destination was recovered.

@@ -1,0 +1,7 @@
+# Agent 8 — 2016 PRNG seed selects LCG phase 22; additive consumer negative
+
+The signed 2016 message's fixed line:character mapping produces the marker **PRNG**. Removing its P/R/NG marker tokens leaves the 13-token GP29 payload `LCBPNGPARRTHBPC` (indices `[20,5,17,13,21,13,24,4,4,2,17,13,5]`), base-29 integer `7144649572585460758`, so its natural 8-bit seed is **22**.
+
+I used that as x₀ for the source-number LCG `x←(133x+331) mod256`, then read the original p50 table in `table[x]` order. The 256-state output is just a cyclic rotation of the seed-0 orbit; the known 11-byte Base64 run `Q8rI6/I6PiT` moves from offset173 to103, not to the start. The resulting `table[x] mod29` stream was tested as a repeating additive key over all 12,956 unknown runes, both signs and both F clock policies: no coherent plaintext; mean trigram scores −4.9733 to −5.0508; 408–455 non-F→F violations under strict F transparency.
+
+**Conclusion:** this closes the specific 2016-seed→133/331-LCG→p50-table→repeating-GP29-additive-pad interpretation. It does not invalidate the PRNG marker generally, but a different PRNG-driven route/permutation needs a source-selected target and reversible operation. Do not broaden into arbitrary phases or consumers. Full evidence is in [the consolidated LCG carrier report](../../im-results/lp2-onion7-133331-fullcycle-table-carrier.md) and the [2016 word-map analysis](../../im-results/lp2-2016-signed-message-base58-word-map.md).
