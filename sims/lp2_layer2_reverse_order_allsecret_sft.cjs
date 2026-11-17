@@ -236,6 +236,77 @@ assert.equal(allComplete, 0);
 assert.deepEqual(bestWordPrefix,[285,200,274,234,225,272,349,231,267]);
 assert.deepEqual(bestStrictPrefix,[222,200,208,201,225,201,215,170,220]);
 
+/**
+ * Complete exact secret-key enumeration for periods 1..4 with plaintext-F
+ * bypass enabled. Cyclic key rotation absorbs every initial phase. Negative
+ * and positive signs are both included because every residue is enumerated.
+ * The states are (keyword phase, previous intermediate rune), with wordwise
+ * first-stage anti-repeat resets; no language model or beam pruning applies.
+ *
+ * @param {number[]} c
+ * @param {boolean[]} wordStart
+ * @returns {Array<{period:number,secretKeys:number,passes:number,maxPrefix:number,bestKey:number[]}>}
+ */
+function exhaustiveSecretFehu(c, wordStart) {
+  const results = [];
+  for (let period = 1; period <= 4; period++) {
+    const secretKeys = 29 ** period;
+    const key = new Uint8Array(period);
+    const seen = new Uint32Array(period * 30);
+    let epoch = 1, maxPrefix = 0, bestKey = [], passes = 0;
+    for (let number = 0; number < secretKeys; number++) {
+      let v = number;
+      for (let j = 0; j < period; j++) {
+        key[j] = v % 29;
+        v = Math.floor(v / 29);
+      }
+      let current = [29], next = [], prefix = 0;
+      for (let i = 0; i < c.length; i++) {
+        next.length = 0;
+        epoch++;
+        const ci = c[i], reset = wordStart[i];
+        for (const token of current) {
+          const phase = Math.floor(token / 30);
+          const last = reset ? 29 : token % 30;
+          const q = mod(ci - key[phase]);
+          if (q !== 0 && q !== last) {
+            const nextPhase = phase + 1 === period ? 0 : phase + 1;
+            const label = nextPhase * 30 + q;
+            if (seen[label] !== epoch) {
+              seen[label] = epoch;
+              next.push(label);
+            }
+          }
+          if (ci === 0 && last !== 0) {
+            const label = phase * 30;
+            if (seen[label] !== epoch) {
+              seen[label] = epoch;
+              next.push(label);
+            }
+          }
+        }
+        const old = current;
+        current = next;
+        next = old;
+        prefix = i + 1;
+        if (!current.length) break;
+      }
+      if (prefix > maxPrefix) {
+        maxPrefix = prefix;
+        bestKey = [...key];
+      }
+      if (prefix === c.length) passes++;
+    }
+    results.push({period,secretKeys,passes,maxPrefix,bestKey});
+  }
+  return results;
+}
+
+const allSecretFehu = exhaustiveSecretFehu(lastLong.runes,lastLong.words);
+assert.equal(allSecretFehu.reduce((n, x) => n + x.secretKeys, 0), 732540);
+assert.deepEqual(allSecretFehu.map(x => x.passes), [0,0,0,0]);
+assert.deepEqual(allSecretFehu.map(x => x.maxPrefix), [278,278,278,353]);
+
 // Source-native clear p57 plant, both operator orders explicitly implemented.
 // The forward generator guarantees an intermediate GP29 stream with no adjacent
 // equal output, and both known-key F-bypass and unknown-key period28 receivers
@@ -254,6 +325,11 @@ for (const [length,sign,phase] of [[729,1,3],[308,28,2],[3008,1,7]]) {
   assert(invertNoRepeat(encoded,wordStart,knownKey,sign,true,false).pass);
   assert(invertNoRepeat(encoded,wordStart,knownKey,sign,true,true).pass);
   positive.push({length,sign,phase,accepted:true});
+}
+for (let m = 1; m <= 4; m++) {
+  const key = gp.prime.slice(0,m).map(x=>x%29);
+  const planted=plantFinal(intermediate,key,1,true,m-1);
+  assert(invertNoRepeat(planted,lastLong.words,key,1,true,true).pass);
 }
 const hiddenKey28 = gp.prime.slice(0,28).map(x=>x%29);
 const secretPlant = plantFinal(intermediate,hiddenKey28,1,false,11);
@@ -277,6 +353,12 @@ console.log(JSON.stringify({
     periodsExcluded:[1,28],
     firstWithoutSinglePhaseSaturation:29,
     witnesses
+  },
+  secretLiteralF:{
+    fullOriginalSecretKeyEnumeration:true,
+    wordBoundaryResets:true,
+    bothSignsAndAllStartPhasesByFullKeyEnumeration:true,
+    results:allSecretFehu
   },
   knownKeyword:{
     catalog:WORDS.length,
