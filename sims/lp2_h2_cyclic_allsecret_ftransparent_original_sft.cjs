@@ -181,6 +181,49 @@ const p18to21 = invert(cipher.slice(pageStarts[18], pageStarts[22]),
   pageStarts[18]);
 assert.equal(p18to21.pass, true);
 
+/**
+ * Source-selected physical-page boundaries give an independent bounded
+ * escape test: permit the key to reset to prime2 and tau to be ENTIRELY
+ * NEW AND INDEPENDENT at each chosen boundary. This is more permissive
+ * than a shared tau and avoids asserting an unknown start from the cipher.
+ * What is the minimum such unmotivated reset count across black p15..22?
+ */
+const physicalCuts = [blackFrom, ...Array.from({length: 7}, (_, i) =>
+  pageStarts[16 + i]), blackEnd];
+assert.deepEqual(physicalCuts,
+  [3623, 3762, 4029, 4302, 4562, 4833, 5102, 5375, 5506]);
+const interval = new Map();
+for (let i = 0; i < physicalCuts.length - 1; i++) {
+  for (let j = i + 1; j < physicalCuts.length; j++) {
+    interval.set(i + ',' + j,
+      invert(cipher.slice(physicalCuts[i], physicalCuts[j]),
+        physicalCuts[i]).pass);
+  }
+}
+const best = Array(physicalCuts.length).fill(Infinity);
+const routes = Array.from({length: physicalCuts.length}, () => []);
+best[0] = 0;
+routes[0] = [[]];
+for (let j = 1; j < physicalCuts.length; j++) {
+  for (let i = 0; i < j; i++) {
+    if (!interval.get(i + ',' + j)) continue;
+    const n = best[i] + 1;
+    if (n < best[j]) {
+      best[j] = n;
+      routes[j] = routes[i].map(x => [...x, j]);
+    } else if (n === best[j]) {
+      routes[j].push(...routes[i].map(x => [...x, j]));
+    }
+  }
+}
+assert.equal(best.at(-1), 3, 'minimum 3 reset-key sections');
+const minimumResets = routes.at(-1)
+  .map(route => route.slice(0, -1).map(i => physicalCuts[i]))
+  .sort((a, b) => a.join(',').localeCompare(b.join(',')));
+assert.deepEqual(minimumResets, [
+  [4029, 4302], [4029, 4562], [4029, 4833], [4029, 5102]
+]);
+
 /** The original isolated p28-only no-F obstruction is rescued by F bypass. */
 const p28 = gp.pages.find(p => p.page === 28);
 const p28At = pageStarts[28];
@@ -270,6 +313,11 @@ console.log(JSON.stringify({
       impossibleGlobal: p17to21.firstImpossibleGlobal},
     p18ThroughP21: {startGlobal: pageStarts[18],
       survives: p18to21.pass},
+  },
+  physicalPageResetEscape: {
+    minimumIndependentPrimeAndTauResets: best.at(-1) - 1,
+    testedEveryInternalPhysicalPageBoundary: physicalCuts,
+    onlyMinimalRescueRoutesGlobal: minimumResets,
   },
   importantOriginalScopeCorrection: {
     physicalPage28Alone: 'SURVIVES with F bypass, so prior collision-only p28 impossibility is not transferable',
