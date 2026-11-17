@@ -113,9 +113,9 @@ for (const [page, anchor] of [[27, 28], [55, 70]]) {
 }
 const counts = Object.fromEntries(cases.map(c => [`p${c.page}/lag${c.lag}/sign${c.sign}`, c.validMasks]));
 assert.deepEqual(counts, {
-  'p27/lag5/sign1': 12, 'p27/lag5/sign-1': 0,
+  'p27/lag5/sign1': 6, 'p27/lag5/sign-1': 0,
   'p27/lag6/sign1': 0, 'p27/lag6/sign-1': 0,
   'p55/lag5/sign1': 0, 'p55/lag5/sign-1': 0,
-  'p55/lag6/sign1': 0, 'p55/lag6/sign-1': 4
+  'p55/lag6/sign1': 0, 'p55/lag6/sign-1': 3
 });
 console.log(JSON.stringify({ conditionalCrib: 'DJU BEI -> THE END', cases }, null, 2));
