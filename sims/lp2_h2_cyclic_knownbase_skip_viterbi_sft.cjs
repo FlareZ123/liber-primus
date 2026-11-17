@@ -148,7 +148,7 @@ function recover(cipher,base,shift) {
             legal=false;break;
           }
         }
-        if(!legal)break;
+        if(!legal)continue;
         const score=previousScore+r*logReject+
           (i?ln[prevP][value]:0)+
           (cipher[i]===prior?logKeepRepeat:0);
