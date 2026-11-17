@@ -1,0 +1,49 @@
+name: Agent 13 LP2 pointer-direction remaining 12-convention stage1
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pdir-stage1-remaining:
+    runs-on: windows-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 18
+      matrix:
+        conv: ["001", "002", "011", "012", "021", "022", "101", "102", "111", "112", "121", "122"]
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: external-cicada3301
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build pinned original inputs and pointer-direction engine
+        run: |
+          python -m pip install numpy mpmath
+          cargo build --release --manifest-path external-cicada3301/work/kscreen/Cargo.toml
+          python external-cicada3301/work/kscreen/export.py
+          python external-cicada3301/work/kscreen/signrules.py
+          python external-cicada3301/work/kscreen/dirrules.py
+      - name: Gate original rune equality, 66 distinct rules and 581 key streams
+        run: python sims/lp2_pdir_issue1329_gate.py external-cicada3301
+      - name: Independently calibrate pointer-direction engine
+        run: python external-cicada3301/work/kscreen/pdir_selftest.py --quick --threads 4
+      - name: Distinct source-constrained pointer conventions
+        run: |
+          python sims/lp2_pdir_issue1329_gate.py external-cicada3301 --campaign --conv "${{ matrix.conv }}" --shard "${{ matrix.shard }}" --shards 12 --streams all --windows "seg0.7,seg0.8" --parts "${{ (matrix.conv == '001' || matrix.conv == '002') && 'real,null' || 'real' }}" --null "${{ (matrix.conv == '001' || matrix.conv == '002') && '581' || '6' }}" --tag issue1329-stage1-remaining --threads 4
+      - name: Preserve original-cipher scores and matched random nulls
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdir-stage1-remaining-${{ matrix.conv }}-${{ matrix.shard }}
+          path: |
+            external-cicada3301/results/kscreen/pdir_selftest.txt
+            external-cicada3301/results/kscreen/pdir/issue1329-stage1-remaining/${{ matrix.conv }}/
+          if-no-files-found: warn
