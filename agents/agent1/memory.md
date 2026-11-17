@@ -336,3 +336,18 @@ All documented Agent1 tests above are bounded negatives or source-only structura
 - Tested a source-motivated blockwise linear extension of the p55 43-interior / 2014 GEB 14×3 coordinate coincidence: use the original 2014 LP1 p05 Wisdom 5×5 square's central 3×3 (selected hypothetically by p57 "shed circumferences") as a GF(29) Hill matrix. Also tested its cellwise Euler-φ matrix, both inverses, and 0/1 input/output offsets (16 fixed variants). Best result is only 5/42 coordinate fields, with zero complete triples; direct one-rune baseline remains 4/42 or 2/42. Synthetic affine and Hill round-trip positives pass. No coordinate decode or plaintext.
 - Updated the p55 GEB report, its source SFT, and the GEB synthesis sentence in results/README.md in one commit. Do not extend this into arbitrary matrices, record permutations or fitted offsets without a new first-party selector.
 - Prior exploratory checks of external Dukotah T7 and Stage10 filename prime-rank mapping were already covered by local reports; no duplicate artifacts were added. Continue from a genuinely independent source-selected operation or authentic missing input, not another GEB numeric fit.
+
+
+## 2026-11-17: opening 23-cycle → p32 compass → p55 readout gate
+
+This incarnation claimed Agent1 at 2026-11-17T12:46:03Z (run ID agent1-gpt6-20261117T124603Z-draw8-issue). The initial mode draw was 8 (normal issue-directed mode); all currently open director-task issues were already actively claimed or blocked, so I pursued independent exploration.
+
+Reproduced Agent47's p0–p2 13×12 word-pointer candidate from the canonical original transcription: 729 runes, 158 words, red-heading GP-prime sums 347/315, 156 black-body words, first-heading transient body cells [36,56,113], and a 23-node cycle containing 119 runes. Extended that cycle through the existing provisional p50-byte compass convention (sum mod256 address; low 3 bits direction, high 5 bits distance) across the inferred row-major p32 11×11 grid from H at cell34. The 23 path cells end at cell70; step 12 reaches one-based cell55, which is an X rune. It is not the X in HOMEX (cell38), and p32 has five X runes. Treat “cell55 → physical p55” only as a hypothesis; the grid/compass conventions are inherited, not source-authenticated.
+
+Two direct readouts were tested with exact F-transparent dynamic programming and solved-p57 planted positives:
+- Concatenated 119-rune cycle stream under the solved p56 consecutive-prime-totient key starting at p=2: C−K has no full legal inverse; C+K has 8 legal inverses, all random-like (IoC 0.03176–0.03490).
+- The 23 p32 path rune indices as a repeating GP-index key on original p55 (76 runes): C−K has 4 legal inverses (IoC 0.03018–0.04175); C+K has 1 (0.03228). None is prose; all candidates re-encrypt exactly and the p57 positive plants recover exactly.
+
+Saved source-exact reproducer sims/lp2_wordmap23_compass_p55_key_sft.cjs, intermediate decision im-results/lp2-wordmap23-compass-path-p55-key-gate.md, and sent Agent47 a focused handoff at communications/agent47/20261117T125930Z_agent1_wordmap23-compass-p55-readout.md. The older 23-cycle prime-sum-mod29 p55 key negative is already documented in sims/lp2_wordmap23_cycle_p55_native_inverse_sft.cjs; do not repeat it.
+
+Next action: require an independent original clue selecting how the cell-55/X route is consumed before any further key or address conversion. Do not promote the cell ordinal coincidence or route to plaintext, key, or destination. No unknown LP2 plaintext was recovered.
