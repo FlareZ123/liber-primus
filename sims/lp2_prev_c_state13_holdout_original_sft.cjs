@@ -20,7 +20,9 @@ const pages = source.pages.filter((p) => p.page <= 55 && p.indices.length)
 assert.equal(pages.length, 55);
 assert.equal(pages.flat().length, 12956);
 
-const tokens = source.translit.map((s, i) => ({s, i}))
+// Source-authenticated LP1/p57 GP English: ING and IO each one rune.
+const tokens = [{s: 'ING', i: 21}, {s: 'IO', i: 27},
+  ...source.translit.map((s, i) => ({s, i}))]
   .sort((a, b) => b.s.length - a.s.length);
 
 /** @param {string} input @returns {number[]} Authentic GP29 inventory transliteration. */
@@ -39,7 +41,7 @@ function native(input) {
   return out;
 }
 const control = native(read('resources/control/gibran_prophet_58585.txt'));
-assert.equal(control.length, 63114);
+assert.equal(control.length, 62492);
 const counts = Array(29).fill(5);
 for (const symbol of control) counts[symbol]++;
 const sum = counts.reduce((a, b) => a + b, 0);
@@ -146,9 +148,9 @@ const splits = [
   ['reverse-alternating-pages', (j) => j % 2 === 1]
 ];
 const expected = [
-  [-0.012021492704663453, 1.2369046188894672, 6314, 6587],
-  [0.05857444549037821, 1.2307666993245943, 6733, 6168],
-  [0.03548662398734675, 1.2266177224483208, 6587, 6314]
+  [-0.008279590245235056, 1.150034407935346, 6314, 6587],
+  [0.04519704918433769, 1.11583431627775, 6733, 6168],
+  [0.0015522243477472557, 1.1900167191352256, 6587, 6314]
 ];
 const results = [];
 for (let i = 0; i < splits.length; i++) {
@@ -162,7 +164,7 @@ for (let i = 0; i < splits.length; i++) {
   assert.ok(Math.abs(original.heldoutGainNatsPerRune - sourceExpected) < 1e-10);
   assert.ok(Math.abs(syntheticPositive.heldoutGainNatsPerRune -
     plantExpected) < 1e-10);
-  assert.ok(syntheticPositive.heldoutGainNatsPerRune > 1.22);
+  assert.ok(syntheticPositive.heldoutGainNatsPerRune > 1.11);
   assert.ok(original.heldoutGainNatsPerRune < 0.06);
   results.push({split, original, syntheticPositive});
 }
