@@ -94,8 +94,6 @@ for (const [p, key] of Object.entries({Pa:'pa',Ps:'ps',Ln:'ln',Ls:'ls',Po:'po'})
   }
 }
 assert.equal(Object.keys(rules).length, 23);
-const windows = sections.slice(7,16).filter(x => x.runes.length >= 100);
-
 const windows = sections.slice(7, 16).filter(s => s.runes.length >= 100);
 assert.deepEqual(windows.map(w => w.runes.length),
   [729,1145,1729,1894,1021,1524,1589,3316]);
