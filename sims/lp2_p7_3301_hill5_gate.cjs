@@ -130,8 +130,27 @@ const hillKey = magicSquare.map(row => row.map(mod));
 assert.equal(determinantMod29(hillKey), 10);
 const hillInverse = inverseMatrixMod29(hillKey);
 
+// p57's "divinity within" can also suggest Euler's phi. Test the natural
+// source-constrained variant phi(each 2014 square entry) mod 29.
+function eulerTotient(n) {
+  let remaining = n;
+  let result = n;
+  for (let prime = 2; prime * prime <= remaining; prime++) {
+    if (remaining % prime !== 0) continue;
+    while (remaining % prime === 0) remaining /= prime;
+    result -= result / prime;
+  }
+  if (remaining > 1) result -= result / remaining;
+  return Math.round(result);
+}
+const totientHillKey = magicSquare.map(row => row.map(value => mod(eulerTotient(value))));
+assert.equal(determinantMod29(totientHillKey), 23);
+const totientHillInverse = inverseMatrixMod29(totientHillKey);
+
 const inverseOutput = hillTransform(hillInverse, selectedInput);
 const directOutput = hillTransform(hillKey, selectedInput);
+const totientInverseOutput = hillTransform(totientHillInverse, selectedInput);
+const totientDirectOutput = hillTransform(totientHillKey, selectedInput);
 const noInterleaveInverseOutput = hillTransform(hillInverse, source);
 
 // Alternative literal reading: the p7 dot order permutes the five columns
@@ -165,7 +184,9 @@ const result = {
   hillKey: {
     matrixMod29: hillKey,
     determinantMod29: determinantMod29(hillKey),
-    inverseMod29: hillInverse
+    inverseMod29: hillInverse,
+    phiOfSquareEntriesMod29: totientHillKey,
+    phiOfSquareEntriesDeterminantMod29: determinantMod29(totientHillKey)
   },
   sourceNativeGpTrigramScores: {
     lp1Training: model.trainingScore,
@@ -173,6 +194,8 @@ const result = {
     interleavedInput: model.scoreStream(selectedInput).mean,
     selectedDotOrderHillInverse: model.scoreStream(inverseOutput).mean,
     selectedDotOrderHillDirect: model.scoreStream(directOutput).mean,
+    phiOfSquareEntriesHillInverse: model.scoreStream(totientInverseOutput).mean,
+    phiOfSquareEntriesHillDirect: model.scoreStream(totientDirectOutput).mean,
     noInterleaveHillInverse: model.scoreStream(noInterleaveInverseOutput).mean,
     dotOrderAsKeyColumnPermutationHillInverse: model.scoreStream(columnPermutedKeyOutput).mean
   },

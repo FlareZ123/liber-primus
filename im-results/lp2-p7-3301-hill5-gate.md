@@ -29,7 +29,7 @@ The script reads the original canonical LP2 corpus and the repository's source-c
 - compares the source-selected order against all 120 five-column permutations;
 - checks the alternative reading in which the dot order permutes the key matrix columns instead of the data columns.
 
-The matrix determinant is 10 modulo 29, so the inverse is well-defined.
+The direct square matrix has determinant 10 modulo 29. A source-motivated variant applying Euler's φ to each square entry before reducing modulo 29 has determinant 23; both inverses are well-defined.
 
 ## Result
 
@@ -42,6 +42,8 @@ The source-native GP29 trigram model gives:
 | Dot-interleaved input, before Hill | -3.411375 |
 | Dot-interleaved input, Hill inverse | -3.403992 |
 | Dot-interleaved input, direct matrix | -3.422927 |
+| φ(each square entry) matrix, Hill inverse | -3.415568 |
+| φ(each square entry) matrix, direct | -3.416087 |
 | Dot order applied to key columns, then inverse | -3.416483 |
 
 The dot-selected permutation ranks **1st of 120**, but its score is only 0.000681 nats/trigram above the runner-up. The output begins:
@@ -52,7 +54,7 @@ It is not recognizable English. Its score remains about 0.94 nats/trigram below 
 
 ## Decision
 
-Reject this specific hypothesis: **the obvious 2014 5×5/3301 matrix is not a Hill-5 decryptor for the p7-dot-selected pp8–14 block under the tested source-derived alignments.**
+Reject this specific hypothesis: **neither the direct 2014 5×5/3301 matrix nor the natural φ(each entry) variant is a Hill-5 decryptor for the p7-dot-selected pp8–14 block under the tested source-derived alignments.**
 
 This does **not** reject every width-five polygraphic cipher, other authentic key matrices, or a different source-selected operation. Do not tune offsets, row/column shifts, or further matrix variants without an independent clue that selects them.
 
