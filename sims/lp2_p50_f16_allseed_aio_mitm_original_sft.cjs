@@ -170,12 +170,12 @@ function recover(observed, weights, inverse) {
  * @param {number[]} nativeP57 Authentic p57 cleartext controls (95 runes)
  * @returns {object}
  */
-function run(singles, ciphertext, nativeP57) {
+function run(singles, ciphertext, nativeP57, characteristic = factor16(), expected = [4934, 5025]) {
   assert.equal(singles.length, 83);
   assert.equal(ciphertext.length, SIZE);
   assert.equal(nativeP57.length, 95);
   assert.deepEqual(singles.slice(0, STAGES).map((w) => w.offset), FIRST);
-  const rows = stateRows(factor16());
+  const rows = stateRows(characteristic);
   const matrix = singles.map((s) => rows[s.offset]);
   const inverse = inverse16(matrix.slice(0, STAGES));
   const weights = matrix.slice(STAGES).map((row) =>
@@ -184,9 +184,9 @@ function run(singles, ciphertext, nativeP57) {
 
   const direct = recover(singles.map((w) => w.c), weights, inverse);
   const delta = recover(singles.map((w) => mod(ciphertext[w.offset] - ciphertext[w.offset - 1])), weights, inverse);
-  assert.equal(direct.firstFourPass, 4934);
+  assert.equal(direct.firstFourPass, expected[0]);
   assert.equal(direct.fullSolutions, 0);
-  assert.equal(delta.firstFourPass, 5025);
+  assert.equal(delta.firstFourPass, expected[1]);
   assert.equal(delta.fullSolutions, 0);
 
   const trueSeed = [3258, 3222, 3152, 3038, 3278, 3299, 3298, 2838,
@@ -247,7 +247,11 @@ function main() {
   const singles = singlesFromOriginal(txt, corpus.runes);
   assert.ok(singles.every((w) => w.c === tape[w.offset]));
   const p57 = corpus.pages.find((p) => p.page === 57).indices;
-  console.log(JSON.stringify({ status: 'PASS: source-original A/I/O 43m exact MITM', ...run(singles, tape, p57) }, null, 2));
+  const reversed = f.slice().reverse().map((v) => mod(v * 9));
+  assert.equal(reversed[0], 1);
+  const forward = run(singles, tape, p57);
+  const backward = run(singles, tape, p57, reversed, [4862, 4953]);
+  console.log(JSON.stringify({ status: 'PASS: source-original A/I/O 43m exact MITM both recurrence orientations', ...forward, reversedCharacteristic: reversed, reversedSource: backward }, null, 2));
 }
 
 if (require.main === module) main();
