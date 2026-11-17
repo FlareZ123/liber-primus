@@ -99,13 +99,47 @@ const apostrophe=[
 ];
 assert.deepEqual(apostrophe.map(s=>gpWord(s.word).length),[4,3,3,4]);
 
+
+/**
+ * Exact source-original printed-word shape. The 2896 target GP29 word
+ * lengths (including all 83 singleton words and 32 cross-page carries)
+ * are fixed independently of source text. Each length is filled with a
+ * Gibran native-GP word from an eligible source-word bucket.
+ */
+const originalRuneSet=new Set(gp.runes);
+const originalWordLengths=[];
+let pendingOriginal=0,originalRuneCount=0;
+for(const ch of read('resources/liber-primus/lp2-transcription.txt')
+  .split('%').slice(0,55).join('%')){
+  if(originalRuneSet.has(ch)){pendingOriginal++;originalRuneCount++;}
+  else if(ch==='/'||ch==='%'||/\s/u.test(ch)){}
+  else if(pendingOriginal){
+    originalWordLengths.push(pendingOriginal);pendingOriginal=0;
+  }
+}
+if(pendingOriginal)originalWordLengths.push(pendingOriginal);
+assert.equal(originalRuneCount,LENGTH);
+assert.equal(originalWordLengths.length,2896);
+assert.equal(originalWordLengths.filter(x=>x===1).length,83);
+const nativeBuckets=Array.from({length:15},()=>[]);
+for(const token of read('resources/control/gibran_prophet_58585.txt')
+  .match(/[A-Za-z]+/g)||[]){
+  const word=gpWord(token);
+  if(word.length<nativeBuckets.length)
+    nativeBuckets[word.length].push(word);
+}
+assert.ok(originalWordLengths.every(n=>nativeBuckets[n].length>0));
+
 /**
  * Separate planted secret and full source-index truth.
  * @param {number} seed
  */
-function plant(seed){
+function plant(seed,originalWordShape=false){
   const random=rng(seed),start=random.int(native.length-LENGTH);
-  const plain=native.slice(start,start+LENGTH);
+  const plain=originalWordShape?
+    originalWordLengths.flatMap(n=>
+      nativeBuckets[n][random.int(nativeBuckets[n].length)]):
+    native.slice(start,start+LENGTH);
   for(const s of apostrophe){
     const word=gpWord(s.word);
     plain.splice(s.at,word.length,...word);
@@ -436,4 +470,26 @@ console.log(JSON.stringify({
       t=>t.heldoutSkipCertificate.failed))
   },
   originalAttempt:originalBlindGate()
+},null,2));
+
+
+// Independent enhanced realism controls: preserve all 2896 actual printed
+// word lengths and all 83 source singleton sites, with no new inference
+// knobs or original-cipher plaintext access. The original p41 result above
+// is unchanged because the authentic receiver is completely frozen.
+const wordShaped=[];
+for(let t=0;t<2;t++){
+  const seed=(0x3301abcd+t*1013904223)>>>0;
+  const data=plant(seed,true);
+  const tested=solve(data);
+  wordShaped.push({trial:t,seed,actualHiddenAdvances:data.skips,
+    allOriginalWordLengths:true,originalSingletonCount:83,
+    ...tested});
+  console.log('H2 WORD-LENGTH SHAPED '+JSON.stringify(wordShaped.at(-1)));
+}
+console.log(JSON.stringify({
+  status:'second independent source-word-length exact blind-H2 calibration',
+  tests:wordShaped,
+  excludedOriginalP41AllTraining:true,
+  caveat:'The 841-cell shared secret and physical-page clock resets are still unselected by the original artifact; this is a synthetic positive only.'
 },null,2));
