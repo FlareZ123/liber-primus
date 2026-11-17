@@ -73,6 +73,12 @@ def png(image:Image.Image)->bytes:
 def main()->None:
  assert len(SOURCES)==len({n for _,n,_,_ in SOURCES})==11
  original_bytes={number:original(number) for _,number,_,_ in SOURCES}
+ # Physical p54/p55 share exact old-fashioned floral frame artwork.
+ # Entire original RGB crops, not thresholded or visually matched pixels.
+ frame_a=Image.open(io.BytesIO(original_bytes[71])).convert("RGB")
+ frame_b=Image.open(io.BytesIO(original_bytes[72])).convert("RGB")
+ for bounds in ((0,650,550,3000),(1850,650,2400,3000)):
+  assert frame_a.crop(bounds).tobytes()==frame_b.crop(bounds).tobytes()
  seed=hashlib.sha256(b"lp2-v2-balanced-2026-11-17"+
   b"".join(bytes.fromhex(EXPECTED[n]) for _,n,_,_ in SOURCES)).digest()
  items=list(SOURCES);random.Random(int.from_bytes(seed,"big")).shuffle(items)
