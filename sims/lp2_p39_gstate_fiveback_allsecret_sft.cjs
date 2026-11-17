@@ -101,6 +101,78 @@ function synchronizationPrefix(ciphertext) {
   return -1;
 }
 
+
+/**
+ * Enlarge the all-secret model by permitting independent new sets of
+ * 29 secret state-indexed permutations at actual physical-page boundaries.
+ * The GF29 state itself always continues across pages, words, and p50.
+ * @param {readonly number[]} ciphertext
+ * @param {readonly number[]} physicalPageLengths
+ * @returns {{ envelopes: number[][], p50Seam: number[] }}
+ */
+function pageRekeyCapacities(ciphertext, physicalPageLengths) {
+  const boundaries = [0];
+  for (const length of physicalPageLengths) boundaries.push(boundaries.at(-1) + length);
+  assert.equal(boundaries.length, 14);
+  assert.equal(boundaries.at(-1), 3008);
+  assert.equal(boundaries[10], 2474); // Literal p49 -> numeric p50 -> p51.
+
+  const envelopes = Array.from({ length: 4 }, () => K.map(() => 0));
+  const p50Seam = K.map(() => 0);
+
+  /** @param {number} n @param {number} next @param {number[]} picks @returns {number[][]} */
+  function chooseCuts(n, next, picks) {
+    if (picks.length === n) return [picks];
+    const sets = [];
+    for (let i = next; i <= 12 - (n - picks.length) + 1; i++) {
+      sets.push(...chooseCuts(n, i + 1, [...picks, i]));
+    }
+    return sets;
+  }
+  const cutSets = Array.from({ length: 4 }, (_, n) => chooseCuts(n, 1, []));
+
+  for (let seed = 0; seed < MOD; seed++) {
+    let state = seed;
+    const states = Array(ciphertext.length).fill(-1);
+    for (let i = 5; i < ciphertext.length; i++) {
+      states[i] = state;
+      state = mod(G(state) + ciphertext[i] - ciphertext[i - 5]);
+    }
+
+    const intervals = Array.from({ length: 14 }, () => Array(14).fill(null));
+    for (let start = 0; start < 13; start++) {
+      const rows = Array.from({ length: MOD }, () => Array(MOD).fill(0));
+      for (let end = start + 1; end < 14; end++) {
+        for (let i = Math.max(boundaries[end - 1], 5); i < boundaries[end]; i++) {
+          rows[states[i]][ciphertext[i]]++;
+        }
+        const sortedRows = rows.map((row) => [...row].sort((a, b) => b - a));
+        intervals[start][end] = K.map((count) => sortedRows.reduce(
+          (sum, row) => sum + row.slice(0, count).reduce((part, n) => part + n, 0), 0,
+        ));
+      }
+    }
+
+    for (let n = 0; n <= 3; n++) {
+      for (const selected of cutSets[n]) {
+        const cuts = [0, ...selected, 13];
+        const upper = K.map(() => 5);
+        for (let i = 0; i < cuts.length - 1; i++) {
+          const segment = intervals[cuts[i]][cuts[i + 1]];
+          for (let j = 0; j < K.length; j++) upper[j] += segment[j];
+        }
+        for (let j = 0; j < K.length; j++) {
+          envelopes[n][j] = Math.max(envelopes[n][j], upper[j]);
+          if (n === 1 && selected[0] === 10) {
+            p50Seam[j] = Math.max(p50Seam[j], upper[j]);
+          }
+        }
+      }
+    }
+  }
+  return { envelopes, p50Seam };
+}
+
 /** @param {number} a @returns {number} */
 function inverse(a) {
   for (let b = 1; b < MOD; b++) {
@@ -181,6 +253,26 @@ const nativeMinimum = K.map((_, j) => Math.min(...latinWindows.map((v) => v[j]))
 assert.deepEqual(nativeMinimum, [328, 635, 933, 1438, 2201, 2743]);
 assert.ok(K.every((_, j) => maxima[j] < nativeMinimum[j]));
 
+
+const physicalPages = corpus.pages.filter(
+  (p) => p.page >= PAGE_FIRST && p.page <= PAGE_LAST && p.indices.length,
+);
+assert.deepEqual(physicalPages.map((p) => p.page),
+  [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 51, 52, 53]);
+const relaxations = pageRekeyCapacities(
+  ciphertext, physicalPages.map((p) => p.indices.length),
+);
+assert.deepEqual(relaxations.envelopes, [
+  [233, 424, 602, 925, 1487, 2060],
+  [302, 545, 762, 1136, 1747, 2327],
+  [348, 627, 868, 1280, 1927, 2500],
+  [393, 702, 965, 1414, 2075, 2646],
+]);
+assert.deepEqual(relaxations.p50Seam, [284, 522, 737, 1096, 1684, 2253]);
+assert.ok(relaxations.envelopes.every((limits) => limits.some(
+  (limit, j) => limit < nativeMinimum[j],
+)));
+
 // Source-shaped positive plant: every secret alphabet is correctly inverted,
 // and the SAME necessary bound includes its true plaintext symbol counts.
 const nativePlain = latin.slice(0, ciphertext.length);
@@ -200,6 +292,8 @@ console.log('All-seed minimum top-k capacities:', JSON.stringify(minima));
 console.log('All 29 states synchronize at original chapter prefix length 133');
 console.log('Authenticated solved-GP English counts (2979):', JSON.stringify(englishTop));
 console.log('Latin 68 x 3008-rune control minima:', JSON.stringify(nativeMinimum));
+console.log('Envelope with 0, 1, 2, 3 best-placed physical-page rekeys:', JSON.stringify(relaxations.envelopes));
+console.log('One actual p50 numeric-table rekey (all 29 seeds):', JSON.stringify(relaxations.p50Seam));
 console.log('Positive native-Latin plant 3008/3008 inverted; bound dominates true top-k');
 console.log('Decision: continuous GF29 G-state five-back one-row-per-state cipher');
 console.log('cannot generate these native-GP language profiles; original key not found.');
