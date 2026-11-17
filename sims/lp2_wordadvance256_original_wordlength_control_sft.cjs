@@ -82,6 +82,26 @@ function wordPools(rawText) {
     assert.ok(pools[len].length, "No lexical control words of GP rune length "+len);
   return pools;
 }
+/** Already solved, genuinely Cicada-authored native GP29 rune words. */
+function solvedWordPools(rawSource) {
+  const solved=JSON.parse(rawSource);
+  const pools=Array.from({length:15},()=>[]);
+  for(const section of solved.sections) {
+    let current=[];
+    for(const rune of section.source_text) {
+      if(chars.has(rune)) {
+        current.push(chars.get(rune));
+      } else if(current.length) {
+        if(current.length<15)pools[current.length].push(current);
+        current=[];
+      }
+    }
+    if(current.length && current.length<15)pools[current.length].push(current);
+  }
+  for(let length=1;length<=14;length++)
+    assert.ok(pools[length].length,"Native solved corpus misses length "+length);
+  return pools;
+}
 function rng(seed) {
   let state=seed>>>0;
   return ()=>{
@@ -160,7 +180,9 @@ assert.deepEqual(measured.map(x=>x.equal),[11199,11199,12291]);
 assert.deepEqual(measured.map(x=>x.pairs),[322515,323233,353012]);
 const refs=[
  ["Gibran",wordPools(source("resources/control/gibran_prophet_58585.txt"))],
- ["Shakespeare",wordPools(source("resources/control/shakespeare_first300k.txt"))]
+ ["Shakespeare",wordPools(source("resources/control/shakespeare_first300k.txt"))],
+ ["AuthenticSolvedCicadaGP",solvedWordPools(
+   source("resources/external/relikd-solved-gp29-native-v1.json"))]
 ];
 const reports=[];
 for(const [name,pools] of refs) {
@@ -197,7 +219,7 @@ for(const [name,pools] of refs) {
 console.log(JSON.stringify({
   classification:"Original word-length-conditioned necessary invariant; no plaintext",
   assumption:"One independent secret GP29 substitution for each 256 phase; +1 key position at each genuine original word start",
-  controls:"Exact original 2896-word GP length profile; independent sampled native Shakespeare or Gibran word occurrences per length",
+  controls:"Exact original 2896-word GP length profile; independent source-native Shakespeare, Gibran or actual solved Cicada-GP word occurrences per length",
   plaintextCoherence:"Control words independently resampled, not syntactically connected text",
   corpusSHA256:sha,
   results:reports
