@@ -1,6 +1,6 @@
 # Exact all-secret 16-state source-polynomial test using original LP2 singletons
 
-**17 November 2026, Agent45. Classification:** a complete, source-exact **conditional family exclusion**, not a decrypted Liber Primus passage. We searched a large unknown key space with an exact known-plaintext constraint solver and a native-GP positive; **no authentic unknown plaintext, cryptographic key or continuation has been recovered.**
+**17 November 2026, Agent45. Classification:** a complete, source-exact **conditional family exclusion**, extended from A/I to A/I/O and a predecessor-differential receiver. No unknown Liber Primus passage was decrypted. We searched a large unknown key space with an exact known-plaintext constraint solver and a native-GP positive; **no authentic unknown plaintext, cryptographic key or continuation has been recovered.**
 
 ## Decipherment hypothesis and authentic input
 
@@ -65,8 +65,38 @@ The exhaustive experiment was independently implemented once using the source-li
 
 [Standalone Windows Node22 original-input SFT](../sims/lp2_p50_f16_allseed_singleton_original_sft.cjs). [Manually dispatched original-file CI run](https://github.com/FlareZ123/liber-primus/actions/runs/44139075312) (see the run's status before interpreting it as a passed repository replay). The test asserts the original byte SHA, the full source factor16, original word count, singleton offsets, GF29 anchor rank, all 65,536 original candidates, unique positive, exact full forward round-trip, and wrong-key comparison.
 
+## Stronger full-A/I/O constraint and predecessor-difference receiver (17 November)
+
+The A/I binary word hypothesis is stronger than necessary: genuine source-native single-rune English words can include the vocative **O** (GP index **3**). A much harder unknown-seed challenge is whether *any* key from the same entire GF29^16 F16 family can produce **A/I/O** at all 83 complete source singleton words. This permits **3^16 = 43,046,721** independent plaintext assignments at the same first sixteen source positions and covers both of these complete, source-order, book-continuous cipher laws:
+
+1. **Direct:** C_t = P_t + K_t (mod29), already bounded above under A/I.
+2. **Differential predecessor chain:** C_t − C_(t−1) = P_t + K_t (mod29), with a fixed virtual C_(−1)=0, which retains all 29 GP rune values and all observed ciphertext repeat events as actual runes. This admits a predecessor-dependent output convention without presuming a fixed secret symbol substitution.
+
+**One exhaustive meet-in-the-middle solver replaces 43 million redundant seed reconstructions.** The 16-anchor matrix is invertible over GF29. A heldout key K_j equals a known linear form in the sixteen anchor key values. Split the sixteen anchors into eight left and eight right (3^8 = 6,561 each), freeze the first **four source-order untouched singleton constraints** (positions 16–19), calculate each half's four GF29 contributions and map each source-allowed triple into a four-residue target. Exactly matching half sums are all and only the anchor assignments that satisfy these four original holds. Test every surviving pair against the remaining 63 original singleton positions, with no adjustable key, page reset, rune deletion, word segmentation, alphabet reassignment, or language-model score. The four-residue packing base29 is bijective, so **no state in the full 43,046,721 set is skipped**. Both signs of the additive key are equivalent after negating the completely secret seed, under the same fixed recurrence.
+
+| Exhaustive original-input gate | Direct C=P+K | Predecessor chain ΔC=P+K |
+| --- | ---: | ---: |
+| All anchor-consistent initial secret states represented | 43,046,721 | 43,046,721 |
+| Candidate seeds satisfying the first four untouched singleton constraints | **4,934** | **5,025** |
+| Candidate seeds satisfying all 83 original A/I/O words | **0** | **0** |
+| Maximum source-order matched initial singleton words (including 16 anchors) | **23** | **24** |
+
+The reported prefix maxima are only descriptive bookkeeping for this exact gate, not evidence of partial English or a fitted original decoder.
+
+**Two positive controls** are complete: a native 12,956-rune source-shaped GP plaintext from the real solved p57 tape, with A/I placed at the manuscript's eighty-three original singleton offsets, is encoded using the F16 source recurrence with a hidden original-p15 row-major sixteen-value seed. For the direct generator and separately its predecessor-integrated output, the same full A/I/O search finds **exactly one** all-83 matching seed and recovers the entire genuine p15 initial vector modulo29:
+
+\`\`\`text
+[10,3,20,22,1,22,21,25,11,17,19,7,21,17,12,22]
+\`\`\`
+
+Each complete encoder exactly decodes and re-encrypts all **12,956** planted symbols. Thus the original zero-solution conclusion is a source-constrained **all-secret algebraic impossibility for both defined stream-emission architectures**, not a failure to guess the initial 16 runes.
+
+[Full Windows Node22/CommonJS original-source MITM SFT](../sims/lp2_p50_f16_allseed_aio_mitm_original_sft.cjs) reads the unchanged canonical book rune tape, original word separators and source p50 digits. Its original counts **4,934 / 5,025** were independently duplicated with an isolated Python implementation from the 83 source-authentic original rune/difference pairs. The original full-A/I/O test and both positive controls have executed successfully in local Node22 and the independent Python reconstruction.
+
+**Boundary:** the F16 recurrence is mathematically source-derived, but no creator-era source explicitly selects this recurrence as an LP2 cipher. The observations exclude only book-global additive and predecessor-differential outputs under *preserved ordinary A/I/O word boundaries*. They do not constrain a secret nonlinear mapping, varying alphabet, transparent-F skip, alternate segmentation, non-GP output, or a genuinely different finite-state machine. No unknown original plaintext or authentic key was recovered.
+
 ## Research decision
 
-**Retire the book-global, directly additive p50-F16 recurrence for ordinary A/I GP text with preserved original word boundaries, for *all* possible unknown sixteen-symbol seeds.** This is substantially stronger than excluding eight p15-visible seeds and requires no assumed seed or prose scorer. In particular, reviving that recurrence by proposing another initial seed or additive sign is mathematically fruitless.
+**Retire the book-global direct-additive and predecessor-differential p50-F16 recurrence receivers for ordinary A/I/O GP text with preserved original word boundaries, for *all* possible unknown sixteen-symbol seeds.** This is substantially stronger than excluding eight p15-visible seeds and requires no assumed seed or prose scorer. In particular, reviving either recurrence receiver by proposing another initial seed or additive sign is mathematically fruitless.
 
 The source remains insufficient to assert that this recurrence was authored; and the true cipher could use an independent nonlinear output map, genuine plaintext F bypass, an evolving clock, a different plaintext register, or altered segmentation. Those possibilities require a new original-source selector and new equations. This proof contributes an exact *key-recovery architecture* reusable when an independent clue fixes a different linear recurrence. It should **not** be promoted to an LP2 plaintext decryption or a claim that the book has been solved.
