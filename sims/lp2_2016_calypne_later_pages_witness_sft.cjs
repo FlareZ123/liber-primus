@@ -10,28 +10,26 @@ const crypto = require('node:crypto');
 const live = 'https://calypne.boards.net/thread/53/supposed-decoded-liber-primus';
 const archive = 'https://web.archive.org/web/20160418151142/http://calypne.boards.net:80/thread/53/supposed-decoded-liber-primus';
 const sha256 = (s) => crypto.createHash('sha256').update(s).digest('hex');
-const terms = /\\b(?:solv(?:e|ed|ing)|decod(?:ed|ing|e)|decryp(?:t|ted)|crack(?:ed)?|plaintext|cleartext|key(?:word)?|algorithm|rune(?:s)?|page\\s*\\d{1,2}|cipher|translate|pastebin|gist)\\b/gi;
+const terms = /\b(?:solv(?:e|ed|ing)|decod(?:ed|ing|e)|decryp(?:t|ted)|crack(?:ed)?|plaintext|cleartext|key(?:word)?|algorithm|rune(?:s)?|page\s*\d{1,2}|cipher|translate|pastebin|gist)\b/gi;
 /** @param {string} html */
 function plain(html) {
-  return html.replace(/<script\\b[^>]*>[\\s\\S]*?<\\/script\\s*>/gi, '')
-    .replace(/<style\\b[^>]*>[\\s\\S]*?<\\/style\\s*>/gi, '')
-    .replace(/<br\\s*\\/?\\s*>/gi, '\\n')
-    .replace(/<\\/(?:p|div|blockquote)>/gi, '\\n')
+  return html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, '')
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, '')
+    .replace(/<br\s*\/?\s*>/gi, '\n')
+    .replace(/<\/(?:p|div|blockquote)>/gi, '\n')
     .replace(/<[^>]*>/g, ' ')
     .replace(/&nbsp;|&#160;/gi, ' ')
     .replace(/&amp;/gi, '&').replace(/&quot;/gi, '"')
     .replace(/&#39;|&apos;/gi, "'").replace(/&lt;/gi,'<').replace(/&gt;/gi,'>')
-    .replace(/[ \\t]+/g,' ').replace(/\\n[\\s\\n]*/g,'\\n').trim();
+    .replace(/[ \t]+/g,' ').replace(/\n[\s\n]*/g,'\n').trim();
 }
 /** @param {string} chunk */
 function messageHtml(chunk) {
-  const tag = /<div\\s+class=["']message["'][^>]*>/i.exec(chunk);
+  const tag = /<div\s+class=["']message["'][^>]*>/i.exec(chunk);
   if (!tag) return '';
   const start = tag.index + tag[0].length;
-  const rx = /<\\/?div\\b[^>]*>/gi;
-  rx.lastIndex = start;
   let depth = 1;
-  for (const m of chunk.slice(start).matchAll(/<\\/?div\\b[^>]*>/gi)) {
+  for (const m of chunk.slice(start).matchAll(/<\/?div\b[^>]*>/gi)) {
     depth += m[0].startsWith('</') ? -1 : 1;
     if (!depth) return chunk.slice(start, start + m.index);
   }
@@ -39,21 +37,21 @@ function messageHtml(chunk) {
 }
 /** @param {string} doc @param {string} label */
 function inspect(doc, label) {
-  const heads = [...doc.matchAll(/<tr\\s+id=["']post-(\\d+)["'][^>]*class=["'][^"']*\\bpost\\b[^"']*["'][^>]*>/gi)];
+  const heads = [...doc.matchAll(/<tr\s+id=["']post-(\d+)["'][^>]*class=["'][^"']*\bpost\b[^"']*["'][^>]*>/gi)];
   const posts = [];
   for (let i = 0; i < heads.length; i++) {
     const chunk = doc.slice(heads[i].index, heads[i+1]?.index ?? doc.length);
     const html = messageHtml(chunk);
     const body = plain(html);
     if (!body) continue;
-    const date = /<abbr\\b[^>]*data-timestamp=["'](\\d+)["']/i.exec(chunk)?.[1] ?? '';
-    const author = /<h3\\b[^>]*>Post by ([^<]*?) on <abbr/i.exec(chunk)?.[1] ?? '';
+    const date = /<abbr\b[^>]*data-timestamp=["'](\d+)["']/i.exec(chunk)?.[1] ?? '';
+    const author = /<h3\b[^>]*>Post by ([^<]*?) on <abbr/i.exec(chunk)?.[1] ?? '';
     const hits = [...body.matchAll(terms)].map(x => x.index);
-    const links = [...new Set([...html.matchAll(/<a\\b[^>]*href=["']([^"']+)["'][^>]*>/gi)].map(x=>x[1]))];
+    const links = [...new Set([...html.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>/gi)].map(x=>x[1]))];
     posts.push({id:Number(heads[i][1]),date,author,bytes:Buffer.byteLength(body),sha256:sha256(body),hits:hits.length,links:links.slice(0,10)});
     console.log('POST '+JSON.stringify({source:label,...posts[posts.length-1],
       text:body.slice(0,body.length<1800?body.length:1600),
-      matches:hits.slice(0,12).map(j=>body.slice(Math.max(0,j-70),Math.min(body.length,j+140)).replace(/\\s+/g,' '))}));
+      matches:hits.slice(0,12).map(j=>body.slice(Math.max(0,j-70),Math.min(body.length,j+140)).replace(/\s+/g,' '))}));
   }
   console.log('PAGE '+JSON.stringify({source:label,postCount:posts.length,ids:posts.map(x=>x.id)}));
   return posts;
