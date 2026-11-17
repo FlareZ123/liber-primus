@@ -48,6 +48,22 @@ The lower counts after shortening are expected: the six-back relation is re-eval
 
 As an independent coarse diagnostic on the complete source-printed words, the literal end rule `2*C[last] = sum C[all] mod29` holds for only **72/2,896** words of length at least two, versus **80.496** expected under uniform rotations of each original word's existing multiset; no source-wide edge sum is apparent. This coarse test alone would not reject a disguised or keyed check rune, but it corroborates the exact ambiguity-bearing edge gate.
 
+## Stronger all-position original check: most words still cannot be decoded
+
+The Phase57 best-fitting R4 puts its proposed extra null at an unrestricted word-local slot, so restricting checks to printed edges alone could miss it. A second original-only decision therefore grants **one unencrypted checksum glyph at any original printed position**, while preserving the six-back history of the complete transmitted word. The hypothesized check glyph is omitted from the nominal-body sum and cannot itself be overwritten. Every other original T6 ambiguity site may be taken as repaired or unrepaired independently. This is an extremely permissive existential test, since each word may choose its own invisible checksum location and flags to maximize a match.
+
+Three natural literal value grammars follow from the published GP29 chart and the original Cicada GP-prime sum precedent:
+
+| Literal one-glyph check rule | Source-affected words with at least one valid checksum slot/flag pair | Words incompatible with **every** slot and repair-flag assignment |
+| --- | ---: | ---: |
+| Printed check **GP index** equals body **sum of GP indices mod 29** | **43 / 74** | **31 / 74** |
+| Printed check **GP index** equals body **sum of GP prime weights mod 29** | **35 / 74** | **39 / 74** |
+| Printed check **GP prime weight mod 29** equals body **sum of GP prime weights mod 29** | **34 / 74** | **40 / 74** |
+
+The permissive index-sum grammar has **54** distinct passing slot/flag pairs across its 43 passing words. **34** passing words have one compatible pair, **nine** have multiple. The two prime-weight grammars have **55** and **47** passing slot/flag pairs respectively. All three source-original tests are frozen in the same [executable SFT](../sims/lp2_phase57_word_checksum_inverse_sft.cjs), which asserts these exact totals.
+
+**Decision:** even granting free placement, these three literal checksum grammars cannot supply universal R4 losslessness on the unchanged original 74 ambiguous words. The construction in the previous section requires a **separately supplied checksum value** and still stands as a valid positive inverse. A checksum encrypted under a hidden stream, encoded across punctuation/boundaries, or computed by another source-selected grammar would be different and remains unresolved. The experiments do not infer that the observed T6 events were actually repair markers.
+
 ## What changes for a real decipherment attempt
 
 The prior noninjective overwrite objection is **not** automatically fatal to a *different* R4-like system that provides one word-local repair checksum; the original ambiguous-word distribution actually makes one GP29 check sufficient. This is the useful positive construction. The manuscript's **literal unmasked word endpoints**, however, cannot be that checksum under the frozen rule, and a separate keyed or moved checksum must be specified independently.
