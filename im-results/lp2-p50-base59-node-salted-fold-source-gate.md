@@ -32,7 +32,7 @@ A natural concern about a failed fixed coefficient of `+1` or `-1` is that the o
 
 Here `B_v` is the original *printed node token* interpreted as a byte in either the candidate radix59 or the independent conventional radix60. The parent graph itself is always the source-derived radix59 graph. This family permits freely selected secret factors for the child sum, entire native byte, node address and in-degree, plus an arbitrary offset. There are exactly **29^5 = 20,511,149** possible coefficient vectors per source geometry. The earlier unscaled `sum ± B` and constant-shift variants are contained as special cases. There is no tuning to the p55 ciphertext or any dictionary.
 
-The same **24 predeclared source-natural label/reader layouts** are used: two leaf enumerations (ascending address or rooted DFS), three internal enumerations (ascending address, DFS preorder, DFS postorder), both p57 directions, and both GP-index or prime-weight-residue labels. Two printed-byte readings then give **48 original-source cases**. For a known p56 internal node, the equation is evaluable only if **every child** has an already-known label (p57 or p56); the first 76 p55 candidate labels and the root remain entirely withheld. This leaves **54–83 full parent equations** per case.
+The same **24 predeclared source-natural label/reader layouts** are used: two leaf enumerations (ascending address or rooted DFS), three internal enumerations (ascending address, DFS preorder, DFS postorder), both p57 directions, and both GP-index or prime-weight-residue labels. Two printed-byte readings then give **48 original-source cases**. For a known p56 internal node, the equation is evaluable only if **every child** has an already-known label (p57 or p56); the first 76 p55 candidate labels and the root remain entirely withheld. This leaves **55–83 full parent equations** per case.
 
 Use exact Gaussian elimination over the prime field GF(29) to compare rank of the **k×5** matrix of known child sums, printed-byte residues, address residues, child counts and constant with rank after augmenting its right side with the independent known p56 parent labels. A hidden coefficient vector exists **if and only if** the ranks coincide.
 
@@ -42,7 +42,7 @@ Use exact Gaussian elimination over the prime field GF(29) to compare rank of th
 | Independent original-token salt representations | 2 |
 | Full secret affine families | **48** |
 | Candidate coefficient vectors in each | **20,511,149** |
-| Authenticated known p56 parent equations available | **54–83** |
+| Authenticated known p56 parent equations available | **55–83** |
 | Feature-matrix rank | **5 in 48/48** |
 | Augmented rank with known authentic p56 labels | **6 in 48/48** |
 | Compatible original cases under any secret coefficients | **0/48** |
