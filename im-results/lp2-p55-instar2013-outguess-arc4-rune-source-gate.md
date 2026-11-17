@@ -10,7 +10,7 @@ The precise candidate uses standard historical OutGuess 0.4 `arc4_initkey("Encry
 
 ## Reproducible source input and exact output
 
-Read-only, asserted [Node22 SFT](../sims/lp2_p55_instar2013_outguess_arc4_rune_gate_sft.cjs) uses the actual checked-in original LP2 corpus, original printed p55 word parsing, a complete 311,121-character Shakespeare reference, source-native p57 clear-GP re-encryption, and deterministic SHA256-derived wrong-password controls. [passing Windows original corpus run 44135751073](https://github.com/FlareZ123/liber-primus/actions/runs/44135751073).
+Read-only, asserted [Node22 SFT](../sims/lp2_p55_instar2013_outguess_arc4_rune_gate_sft.cjs) uses the actual checked-in original LP2 corpus, original printed p55 word parsing, a complete 311,121-character Shakespeare reference, source-native p57 clear-GP re-encryption, and deterministic SHA256-derived wrong-password controls. [passing Windows original corpus and all-window source run 44136774197](https://github.com/FlareZ123/liber-primus/actions/runs/44136774197).
 
 | Register | Runes | Raw GP29 IOC | After exact key, restart from byte zero |
 |---|---:|---:|---:|
@@ -21,7 +21,9 @@ Read-only, asserted [Node22 SFT](../sims/lp2_p55_instar2013_outguess_arc4_rune_g
 
 The first 40 decoded p55 GP indices transliterate as `Y H F G O G H A N F M NG T S EO M O G D G A H S EA T AE G H J TH H A G S N L TH S M H`. The entire 76-rune output has **H=10, G=10, EA=6**, with only E=2. These frequencies are unlike authentic p57 (E=15, G=1, H=1) and the output does not form meaningful GP prose.
 
-The source-native positive plant re-encrypts and recovers **all 95/95** authentic p57 clear symbols. An unrelated-password null fixes the exact original p55 ciphertext and for each index `i=0…9999` derives the control key as SHA256 lowercase hexadecimal of `i:20261117` with five-digit zero-padded `i`. Of **10,000** keys exactly **one** gives IOC at least 0.0547368421, for an add-one conditional tail **0.00019998**, null mean **0.03441684** and null maximum **0.05543860**. The test is conditional on *this already selected key, cipher sign, receiver and 76-rune page*. It is **not a discovery-wide p-value**, given earlier key experiments and the unvalidated choice of byte projection.
+The source-native positive plant re-encrypts and recovers **all 95/95** authentic p57 clear symbols. An unrelated-password null fixes the exact original p55 ciphertext and for each index `i=0…9999` derives the control key as SHA256 lowercase hexadecimal of `i:20261117` with five-digit zero-padded `i`. Of **10,000** keys exactly **one** gives IOC at least 0.0547368421, for an add-one conditional tail **0.00019998**, null mean **0.03441684** and null maximum **0.05543860**. An additional **original-source location holdout** fixes the same complete historical title, historical ARC4 derivation, byte-to-rune operation, direction and zero-start key clock while sliding a complete 76-rune window over *every contiguous within-page position* on the 55 rune-bearing unknown LP2 physical pages. Exactly **1 of 8,840 original windows** reaches or exceeds the original p55 IOC 0.0547368421, and that window is **p55 itself**; the strongest other window is **p33 offset85**, at IOC **0.05017544**. These overlapping windows are highly dependent and the key/receiver were already motivated by p55; **1/8,840 is a within-source rank, not a statistical p-value or multiplicative evidence factor**. This documents location specificity while leaving the decoding failure decisive.
+
+The test is conditional on *this already selected key, cipher sign, receiver and 76-rune page*. It is **not a discovery-wide p-value**, given earlier key experiments and the unvalidated choice of byte projection.
 
 ### Clear-language and word-shell controls
 
