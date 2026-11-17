@@ -119,8 +119,8 @@ assert.ok(coincidence(p57)>0.06);
  * Its source-byte key has exactly36 entries; test its direct repetitive
  * GP29 cipher in the two signs, without any source-free phase scan.
  */
-const H=[3,26,24], G=[27,5,15],F=new Array(5).fill(0);
-for(let i=0;i<3;i++)for(let j=0;j<3;j++) F[i+j]=mod(F[i+j]+H[i]*G[j]);
+const H=[3,26,24], Gfactor=[27,5,15],F=new Array(5).fill(0);
+for(let i=0;i<3;i++)for(let j=0;j<3;j++) F[i+j]=mod(F[i+j]+H[i]*Gfactor[j]);
 assert.deepEqual(F,[23,21,11,17,12]);
 const coef=F.slice().reverse(), invLeading=17;
 const remainder=grid.bytes.map(mod),quotient=[];
