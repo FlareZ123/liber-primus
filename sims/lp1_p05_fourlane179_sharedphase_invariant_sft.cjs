@@ -148,6 +148,11 @@ const positiveDecoded = positiveCipher.map(lane =>
   lane.map((c, j) => reverse[j][c]));
 assert.deepEqual(positiveDecoded, positivePlain);
 assert.deepEqual(pairEqual(positiveCipher), pairEqual(positivePlain));
+// Even a deterministic many-to-one secret table cannot erase a genuine
+// equal-plaintext pair when reused at the same column: it can only add matches.
+const lossyCipher = positivePlain.map(lane =>
+  lane.map((p, j) => (p + j) % 15));
+assert.ok(pairEqual(lossyCipher).pairsEqual >= pairEqual(positivePlain).pairsEqual);
 
 /* The distinct literal four-share sum/difference candidate has eight
  * source-ordered sign readings (fixing first sign +1 removes global negation).
@@ -379,7 +384,9 @@ console.log(JSON.stringify({
     controlMedian:controls[10000], controlMax:controls.at(-1),
     plantedSourceNativeExact:positiveDecoded.every((lane, i) =>
       lane.every((v, j) => v === positivePlain[i][j])),
-    plantedSameColumnEqual:pairEqual(positiveCipher).pairsEqual
+    plantedSameColumnEqual:pairEqual(positiveCipher).pairsEqual,
+    deterministicNoninjectiveNecessaryBoundHolds:
+      pairEqual(lossyCipher).pairsEqual >= pairEqual(positivePlain).pairsEqual
   },
   rank28ThenSharedSecret179:{
     interpretation:'Two rank-28 no-repeat outer inverses plus unknown 179-phase shared secret 28-alphabet; original repeat sites conservatively erased',
