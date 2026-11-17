@@ -51,6 +51,22 @@ The first transform restores an ordinary number of adjacent equalities (56 from 
 
 [Read-only source-original Node22 CommonJS reproducer](../sims/lp2_p7_fivedot_seven_header_alignment_sft.cjs) validates the original scan hash, source rune transcript, unique 7 location, native source-art center order, exact marker movement, reverse transform, source-native positive plant, and all six reported original-cipher scores and doublet counts. The source image geometry itself remains separately reproducible from the earlier [native-raster art audit](lp2-p7-p23-p56-five-dot-dihedral-triad.md).
 
+## Another concrete interpretation of the numeral: prime 7
+
+The literal `7` might identify a **starting prime**, rather than a seven-column width. LP2 p56 is independently known to use consecutive-prime Euler-totient GP29 shifts with literal plaintext F passing through without advancing the key. Retain that **actual solved cipher mechanism**, grant every mathematically legal hidden F-skip history, and fix the source-7 reading to either **prime value 7** (fourth prime, zero-based index 3) or **seventh prime 17** (index 6). The first-prime start2 and zero-based index7 (prime19) are additional explicit indexing controls, not a search for secret starting points.
+
+For each of the five original streams above, exact exhaustive reachability finds the **first impossible zero-based rune offset**, including all potential plaintext-F branches. If any complete stream were a legal instance of the proposed authentic p56 cipher, it would have no impossible offset.
+
+| Proposed stream | Prime2 control | Literal prime7 | Seventh prime17 | Zero-based index7 = prime19 |
+| --- | ---: | ---: | ---: | ---: |
+| Five-dot order only | 22 | **49** | 18 | 61 |
+| Followed by historical seven tuple | 61 | **1** | 22 | 24 |
+| Followed by inverse seven tuple | 5 | **26** | 25 | 39 |
+| Followed by seven columns downward | 34 | **12** | 8 | 3 |
+| Followed by seven columns across | 37 | **3** | 20 | 17 |
+
+The very same complete all-skip-state decoder accepts **all 85 authentic solved p56 runes** under its real prime2 starting clock. Thus these original inputs disprove the literal `7` as a prime start **for precisely these five unchanged inverse streams**, including every admissible transparent-F history, without asserting anything about a more complex hidden cipher. A guess at a different key family or additional preceding layer is outside the test and needs a separate original clue.
+
 ## Research decision
 
 **Retain the header relocation as an explicit clue-constrained candidate, without promoting it to a decipherment.** It is more causally specific than searching unselected 5- or 7-column keys: the five circles, unique numeral, four original numerical alignments, and first-position relocation are fixed by source artifacts. The natural seven-column-only continuation is negative, and the five-dot stencil's reuse makes ornamentation a live rival.
