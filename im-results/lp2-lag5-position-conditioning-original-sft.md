@@ -1,6 +1,6 @@
 # Original LP2 lag-five offset gate (17 November 2026)
 
-**Result.** The known within-word five-back equality excess has a newly resolved position dependence. On 12,956 unchanged unknown runes in 2,896 original printed words, 104 symbols equal the rune five positions earlier within the same word. **36** occur at the first eligible offset (zero-based j=5, sixth rune); **68** occur at j≥6. Under a null that shuffles rune order within each printed word while preserving **both its rune inventory and the exact position of every adjacent equal-rune pair**, expected counts are about **30.56 and 45.78** respectively. This is a possible constraint on a future lossless inverse, not a recovered key or plaintext.
+**Current result.** The known within-word five-back equality excess is confirmed: on 12,956 unknown runes in 2,896 printed words, 104 symbols equal the rune five positions earlier within the same word (36 at j=5, 68 at j≥6). A new line/page-conditioned analysis shows the excess survives both a segment-multiset null and a more conservative endpoint-fixed sensitivity (104 observed versus 80.124 ± 7.383 expected; 5,000-trial upper tail 0.0008). The apparent concentration in chapters 3–4 is not robust to endpoint conditioning (chapter-total heterogeneity p=0.0844). This is a global key-invariant ciphertext feature, not a recovered key or plaintext.
 
 The global 104-count observation and its significance were already established in prior work. The new comparison is offset-aware and split by original physical-page range. The j=5 contrast was selected after exploratory inspection, so the resulting empirical tails below are **descriptive, not pre-registered independent significance claims**.
 
@@ -24,6 +24,40 @@ The test uses **3,000 deterministic conditioned Fisher–Yates shuffles** with s
 | p27–p55 | Word terminal | 19 | 13.96 ± 3.60 | 0.1073 |
 
 Empirical one-sided tails equal `(1 + number of shuffles with count ≥ observed)/3001`. All comparisons share the same original data and many correlated strata. The reported halves are useful consistency checks, not a prospective holdout.
+
+## Line/page-conditioned chapter fingerprint
+
+The [reproducer](../sims/lp2_lag5_chapter_lineconditioned_sft.cjs) classifies each eligible five-rune window by its original geometry. The source transcription uses `/` for line breaks and `%` for physical page boundaries; p50 is runeless and is restored in physical-page numbering. Words crossing pages are assigned to the chapter containing their first rune. The parser asserts the original 2,896 words, 12,956 runes, 55 rune-bearing page blocks, and 104 five-back matches.
+
+Observed matches: **72 same-line, 30 cross-line, 2 cross-page**. Their eligible windows number 1,645, 428, and 32.
+
+Two deterministic 5,000-trial nulls use seed `0x4a3b2c1d`. Both shuffle within each original word-line/page segment and rejection-sample to preserve the full word-level adjacent-equality indicator vector. All 815 words of length at least six are included; immovable words remain fixed and contribute to every draw.
+
+1. **Segment-multiset null:** preserves each segment's rune multiset; segment endpoints may move.
+2. **Endpoint-fixed sensitivity:** additionally fixes each segment's first and last rune, shuffling only its interior.
+
+| Category | Observed | Eligible | Segment-multiset null mean ± SD | Tail | Endpoint-fixed null mean ± SD | Tail |
+|---|---:|---:|---:|---:|---:|---:|
+| sameLine | 72 | 1,645 | 58.546 ± 7.050 | 0.0366 | 55.577 ± 6.686 | 0.0118 |
+| crossLine | 30 | 428 | 17.924 ± 3.782 | 0.0018 | 22.978 ± 3.212 | 0.0262 |
+| crossPage | 2 | 32 | 0.783 ± 0.793 | 0.1726 | 1.569 ± 0.680 | 0.4665 |
+| **All** | **104** | **2,105** | **77.252 ± 8.072** | **0.0014** | **80.124 ± 7.383** | **0.0008** |
+
+The global excess survives both controls. The cross-line excess is smaller after endpoint conditioning but remains elevated; the two cross-page matches do not.
+
+| Chapter | Physical pages | Observed | Segment-multiset null mean | Endpoint-fixed null mean | Endpoint-fixed z |
+|---:|---|---:|---:|---:|---:|
+| 1 | p0–2 | 7 | 4.157 | 4.464 | 1.453 |
+| 2 | p3–7 | 5 | 6.992 | 6.447 | -0.628 |
+| 3 | p8–14 | 18 | 10.654 | 12.411 | 1.943 |
+| 4 | p15–22 | 18 | 10.918 | 13.520 | 1.657 |
+| 5 | p23–26 | 8 | 6.197 | 5.907 | 1.084 |
+| 6 | p27–32 | 9 | 8.260 | 7.686 | 0.550 |
+| 7 | p33–39 | 13 | 10.379 | 10.194 | 1.006 |
+| 8 | p40–53 | 23 | 17.937 | 17.905 | 1.461 |
+| 9 | p54–55 | 3 | 1.759 | 1.589 | 1.267 |
+
+Chapter-total heterogeneity is χ²=18.859 (empirical upper tail 0.0276) under the segment-multiset null, but weakens to χ²=15.256 (upper tail 0.0844) when segment endpoints are fixed. The apparent chapter-3/4 concentration is therefore not robust to a reasonable line-edge sensitivity. This statistic does **not** justify splitting LP2 into chapter-specific ciphers.
 
 ## Cryptanalytic consequence
 
