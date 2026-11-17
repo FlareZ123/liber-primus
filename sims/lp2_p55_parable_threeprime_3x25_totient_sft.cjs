@@ -122,4 +122,31 @@ for (const sign of [-1, 1]) {
   }
   assert.equal(originalFullPaths, 0);
 }
-console.log('PASS: original p55 complete triple 3x25 prime-totient inverse impossible, both signs; 6/6 authentic-native positives pass.');
+// Stronger order-independent necessary condition: even granting every one of
+// the six permutations of the same three authentic prime starts cannot rescue
+// the original. With the actual p56 sign, p55 core block1 is impossible
+// under ALL three source starts. With the reverse sign, block2 is impossible
+// under ALL three. This proves a full permutation exclusion without choosing
+// a source order from plaintext or reinterpreting the cipher clock.
+const allSeedFailureOffsets = {
+  '-1': [[19, 11, null], [11, 10, 3], [null, null, null]],
+  '1': [[null, 9, null], [null, 0, 20], [5, 2, 4]]
+};
+for (const sign of [-1, 1]) {
+  for (let block = 0; block < 3; block++) {
+    const originalBlock = p55Core.slice(25 * block, 25 * (block + 1));
+    for (let seedIndex = 0; seedIndex < 3; seedIndex++) {
+      const result = invert(originalBlock, keyClock(firstPrimes[seedIndex]), sign);
+      assert.equal(
+        result.failAt, allSeedFailureOffsets[String(sign)][block][seedIndex]);
+      console.log(JSON.stringify({
+        class: 'all-3!-source-orders-gate',
+        sign, block, primeStart: firstPrimes[seedIndex],
+        originalFailAt: result.failAt
+      }));
+    }
+  }
+}
+assert(allSeedFailureOffsets['-1'][1].every((v) => v !== null));
+assert(allSeedFailureOffsets['1'][2].every((v) => v !== null));
+console.log('PASS: all 6 permutations of the three source primes fail under both signs; 6/6 native-positive controls pass.');
