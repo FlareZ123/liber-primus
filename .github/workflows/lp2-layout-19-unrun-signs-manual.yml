@@ -1,0 +1,122 @@
+name: LP2 2016-layout 19 genuinely unrun sign rules
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Acquire fixed original layout engine
+        shell: pwsh
+        run: |
+          git clone --quiet --depth 1 --branch main https://github.com/pnotisdev/cicada3301.git upstream
+          $head = git -C upstream rev-parse HEAD
+          if ($head -ne '15200c67abee106913ba01ff504c5b6e88d16cc7') { throw "Unexpected upstream source commit: $head" }
+          python -m pip install numpy scipy mpmath sympy cryptography
+          if ($LASTEXITCODE -ne 0) { throw 'Dependency installation failed' }
+          cargo build --release --manifest-path upstream/work/kscreen/Cargo.toml
+          if ($LASTEXITCODE -ne 0) { throw 'Pinned Rust engine compilation failed' }
+          python upstream/work/kscreen/export.py
+          if ($LASTEXITCODE -ne 0) { throw 'Corpus and keystream export failed' }
+          python upstream/work/kscreen/signrules.py
+          if ($LASTEXITCODE -ne 0) { throw 'Fixed flat-source library construction failed' }
+          python upstream/work/kscreen/layoutrules.py
+          if ($LASTEXITCODE -ne 0) { throw 'Original page-line vectors failed' }
+          python upstream/work/kscreen/selftest.py --threads 4 --null-keystreams 12
+          if ($LASTEXITCODE -ne 0) { throw 'Full engine source-planted controls failed' }
+          python upstream/work/kscreen/layout_selftest.py --threads 4
+          if ($LASTEXITCODE -ne 0) { throw '15 original-layout planted positives or controls failed' }
+          $rules = @(Get-Content upstream/work/kscreen/layout_rules.txt)
+          if ($rules.Count -ne 23) { throw "Expected 23 unchanged source rules, got $($rules.Count)" }
+          Write-Output "PREPARATION PASSED: original source pinned; 23 original layout rules; all controlled positives"
+      - name: Preserve exact decoder, library, layout, positive controls
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-layout-19-source-preparation
+          path: |
+            upstream/work/kscreen/data/
+            upstream/work/kscreen/target/release/kscreen.exe
+            upstream/results/kscreen/selftest.txt
+            upstream/results/kscreen/layout_selftest.txt
+          retention-days: 30
+
+  frozen-original-screen:
+    needs: prepare
+    runs-on: windows-latest
+    timeout-minutes: 230
+    strategy:
+      fail-fast: false
+      max-parallel: 19
+      matrix:
+        rule:
+          - Ln_m3_0
+          - Ln_m3_1
+          - Ln_m3_2
+          - Ls_m3_0
+          - Ls_m3_1
+          - Ls_m3_2
+          - Po_m3_0
+          - Po_m3_1
+          - Po_m3_2
+          - Pa_par
+          - Ps_par
+          - Pg_half_runes
+          - Pg_half_lines
+          - Pa_m3_0
+          - Pa_m3_1
+          - Pa_m3_2
+          - Ps_m3_0
+          - Ps_m3_1
+          - Ps_m3_2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Pin published physical layout source
+        shell: pwsh
+        run: |
+          git clone --quiet --depth 1 --branch main https://github.com/pnotisdev/cicada3301.git upstream
+          $head = git -C upstream rev-parse HEAD
+          if ($head -ne '15200c67abee106913ba01ff504c5b6e88d16cc7') { throw "Source commit drift: $head" }
+          python -m pip install numpy scipy mpmath sympy cryptography
+          if ($LASTEXITCODE -ne 0) { throw 'Dependency installation failed' }
+      - name: Retrieve controlled engine and frozen source bytes
+        uses: actions/download-artifact@v4
+        with:
+          name: lp2-layout-19-source-preparation
+          path: upstream
+      - name: Screen only this truly previously unrun source rule
+        shell: pwsh
+        env:
+          RULE: ${{ matrix.rule }}
+        run: |
+          $script = "upstream/work/kscreen/layout_queue.py"
+          $runner = "upstream/work/kscreen/target/release/kscreen.exe"
+          if (-not (Test-Path $runner)) { throw 'Prepared compiler binary missing from artifact' }
+          $env:KSCREEN_BIN = (Resolve-Path $runner).Path
+          $src = "upstream/work/kscreen/data/layout_signs/$env:RULE.txt"
+          if (-not (Test-Path $src)) { throw "Prepared original source layout sign vector missing: $src" }
+          python $script $env:RULE --threads 4 --top 15 --out-dir results/kscreen/layout
+          if ($LASTEXITCODE -ne 0) { throw "Original source screen or whole-window verification failed: $env:RULE" }
+          $report = "upstream/results/kscreen/layout/$env:RULE" + "_verify.txt"
+          if (-not (Test-Path $report)) { throw "No full-window verification report: $env:RULE" }
+          Get-Content $report | Select-Object -Last 5
+      - name: Preserve real source-cipher screen and adjudication
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-layout-original-${{ matrix.rule }}
+          path: |
+            upstream/results/kscreen/layout/${{ matrix.rule }}.tsv
+            upstream/results/kscreen/layout/${{ matrix.rule }}_verify.txt
+          retention-days: 30
