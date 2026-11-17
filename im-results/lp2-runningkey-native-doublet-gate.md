@@ -1,0 +1,26 @@
+# Plain literary running keys cannot by themselves explain the LP2 anti-repeat channel
+
+**Original-cipher model decision, Agent40, 17 November 2026.** The 12,956 unknown LP2 GP29 symbols have only **86 adjacent equal-ciphertext pairs**. As a separate source-native control, 500 fixed-seed, nonoverlapping pairs of ordinary English passages from the period-available *Emerson, Essays: First Series* produce **at least 404** such pairs over the same 12,956-symbol length when combined by a direct GP29 additive literary running key. This is a **conditional architecture discriminator**, not a plaintext recovery, a missing authorial key, a general ban on running keys, or a claim of a universally calibrated significance level.
+
+## Original and independent controls
+
+The untouched ciphertext is the exact canonical rune-index concatenation of physical LP2 pp0–55 from [the 2014-image-backed corpus](../resources/liber-primus/lp2-corpus.json). There are 55 rune-bearing pages (p50 is numeric-only) and 12,956 original GP indices. The direct whole-string adjacent-rune identity count is **86 out of 12,955** boundaries. Page joins are included; the already-established separate source census also reports 86 within physical pages. The result is consistent with the original near-exclusion of immediate repeats.
+
+The independent language reference is [the retained original English text of Ralph Waldo Emerson's *Essays: First Series*](../resources/control/emerson_essays_2944.txt), a historical work available before Liber Primus. Its complete source record, including its Project Gutenberg envelope, normalizes to 317,604 GP29 symbols with the same source-known canonical aliases: K→C, V→U, Z→S, QU→CW, ING→NG and IO→IA, taking the longest authentic rune labels where applicable. A deterministic LCG seed `0x33011331` selects **500 pairs** of length-12,956 passages with disjoint source positions. Both components are English literary prose; neither uses the unknown original LP2 key or a fitted LP2 rune.
+
+Freeze the textbook same-index `C_i=(P_i±K_i) mod29` operation, without additional plaintext-dependent alphabet rotation, hidden substitution, ciphertext-dependent key rephasing, rune skips or postprocessing. Every plant is decoded to exactly its original source passage; the exact solved p57 95-GP-rune page is also independently encrypted/decrypted under both signs. The generated key stream is continuous over 12,956 positions. This is an intentionally stronger-than-source-justified **control comparison**, as no author signal chooses Emerson or a direct running-key operation for LP2.
+
+| Exactly reproduced measurement | Add key | Subtract key | Untouched LP2 |
+| --- | ---: | ---: | ---: |
+| Ciphertext adjacent equal pairs | 404–533 | 437–554 | **86** |
+| Mean across 500 disjoint passage pairs | 460.248 | 492.894 | — |
+| Control standard deviation across 500 | 21.699 | 21.527 | — |
+| Control cases at or below 86 | **0/500** | **0/500** | — |
+
+The full single-file CommonJS SFT [`sims/lp2_runningkey_native_doublet_gate_sft.cjs`](../sims/lp2_runningkey_native_doublet_gate_sft.cjs) contains the original length/count assertions, exact 500-pair RNG selection, no-overlap requirement, reversible `±` encoders, source-native tokenizer and exact expected outputs. No external package or hidden input is required.
+
+## What this changes in the plaintext search
+
+A literal **independent** GP29 prose running key, even as long as the entire manuscript, naturally produces hundreds of adjacent repeats when the plaintext is also ordinary GP29 prose. Original LP2 has roughly one-fifth the repeats of the lowest of 1,000 tested sign/control instances. Existing source-specific GEB and Cicada book-code running-key exclusions test their proposed historical **key identities**; this control asks a different architectural question: whether a generic unfitted independent English literary key would account for the manuscript's repeat suppression at all.
+
+**Interpretation:** Do not prioritize blind searches for arbitrary literary offsets using an otherwise ordinary one-stage `±` Vigenère model. The actual LP2 generator would need a **distinct anti-repeat layer**, correlated/custom-chosen plaintext and key passages, a changed plaintext register, or a materially different transform to reconcile the original 86. None of those alternatives is ruled out by this experiment, and no original clue fixes one of them. The 500 overlapping-across-trials windows from one writer are **not 500 independent authors or an exact null for the unknown plaintext**; the table is descriptive, with no discovery p-value. Source-selected novel keys are still admissible if they predict independent original plaintext under a complete reversible method. The task remains to identify that key, method and continuation; **zero unknown LP2 plaintext runes have been authenticated by this gate.**
