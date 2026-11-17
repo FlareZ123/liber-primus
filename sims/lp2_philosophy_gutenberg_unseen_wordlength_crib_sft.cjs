@@ -4,7 +4,9 @@
  * Source-first, no-key plaintext crib attack on *whole printed word lengths*.
  *
  * Previous #333 tested 13 short Cicada-era source files (6,991 normalized
- * words). This distinct sealed extension tests nine independently identified
+ * words). The original Project Gutenberg host returns HTTP503 to Actions;
+ * this reproducer reads the matching public GITenberg GitHub text blobs.
+ * This distinct sealed extension tests nine independently identified
  * pre-2014 Project Gutenberg philosophy/poetry books in their full text.
  * All nine books/URLs, GP29 spelling reductions, 10-word discovery seeds
  * and 10 subsequent withheld words are frozen below; no edit/gap search.
@@ -32,15 +34,15 @@ const NULL_DRAWS = 500;
 // These are source-age candidates, not claimed manuscript quotations.
 // Gutenberg 45315 (Blake) and the full Book of the Law are already in #333.
 const BOOKS = Object.freeze([
-  {id:2944, name:'Emerson Essays First Series (1841)'},
-  {id:2945, name:'Emerson Essays Second Series (1844)'},
-  {id:205, name:'Thoreau Walden and Civil Disobedience (1854)'},
-  {id:1998, name:'Nietzsche Thus Spake Zarathustra (1885, Common translation)'},
-  {id:1497, name:'Plato Republic (Jowett translation)'},
-  {id:2680, name:'Marcus Aurelius Meditations (Long translation)'},
-  {id:1322, name:'Whitman Leaves of Grass (1892 edition)'},
-  {id:1232, name:'Machiavelli The Prince (Marriott translation)'},
-  {id:2701, name:'Melville Moby Dick (1851)'}
+  {id:2944, name:'Emerson Essays First Series (1841)', slug:'Essays---First-Series_2944', file:'2944.txt'},
+  {id:2945, name:'Emerson Essays Second Series (1844)', slug:'Essays---Second-Series_2945', file:'2945.txt'},
+  {id:205, name:'Thoreau Walden and Civil Disobedience (1854)', slug:'Walden-and-On-The-Duty-Of-Civil-Disobedience_205', file:'205.txt'},
+  {id:1998, name:'Nietzsche Thus Spake Zarathustra (1885, Common translation)', slug:'Thus-Spake-Zarathustra--A-Book-for-All-and-None_1998', file:'1998.txt'},
+  {id:1497, name:'Plato Republic (Jowett translation)', slug:'The-Republic_1497', file:'1497.txt'},
+  {id:2680, name:'Marcus Aurelius Meditations (Long translation)', slug:'Meditations_2680', file:'2680.txt'},
+  {id:1322, name:'Whitman Leaves of Grass (1892 edition)', slug:'Leaves-of-Grass_1322', file:'1322.txt'},
+  {id:1232, name:'Machiavelli The Prince (Marriott translation)', slug:'The-Prince_1232', file:'1232.txt'},
+  {id:2701, name:'Melville Moby Dick (1851)', slug:'Moby-Dick--Or-The-Whale_2701', file:'2701.txt'}
 ]);
 
 /**
@@ -230,7 +232,7 @@ async function main() {
   const bodies=sourceBodies();
   const sources=[];
   for(const book of BOOKS) {
-    const url='https://www.gutenberg.org/cache/epub/'+book.id+'/pg'+book.id+'.txt';
+    const url='https://raw.githubusercontent.com/GITenberg/' + book.slug + '/master/' + book.file;
     const raw=await getText(url);
     const content=ebookBody(raw);
     const words=content.match(/[A-Za-z]+/g)||[];
