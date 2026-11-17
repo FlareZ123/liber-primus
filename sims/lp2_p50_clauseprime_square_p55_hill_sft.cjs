@@ -191,7 +191,7 @@ assert(additiveReceivers.every((receiver) => receiver.originalIoC < 0.04));
 const originalRunic = fs.readFileSync(
   path.join(process.cwd(), 'resources/liber-primus/lp2-transcription.txt'), 'utf8'
 );
-const page55RunicText = originalRunic.split(/\n%\n/)[54]
+const page55RunicText = originalRunic.split(/\r?\n%\r?\n/)[54]
   .replace(/\/\s*\n/g, '').replace(/\s+/g, '')
   .replace(/[&$§]/g, '').replace(/\./g, '-');
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
