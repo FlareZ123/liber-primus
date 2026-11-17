@@ -28,7 +28,7 @@ OUT = Path("interconnectedness-repeated-wave-residual.json")
 
 
 def git_sha1(raw: bytes) -> str:
-    return hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + b"\\0" + raw).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + b"\0" + raw).hexdigest()
 
 
 def corr(a: np.ndarray, b: np.ndarray) -> float:
@@ -129,7 +129,7 @@ def main() -> None:
 
         with FileLock(str(OUT) + ".lock"):
             temp = OUT.with_suffix(".json.tmp")
-            temp.write_text(json.dumps(report, indent=2) + "\\n", encoding="utf-8")
+            temp.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
             os.replace(temp, OUT)
         print("SOURCE", report["source_git_blob_sha1"], len(raw), "samples", n)
         for c in range(2):
