@@ -124,6 +124,22 @@ for (const [label, digits, expectedHex] of base58Readings) {
     '| hex prefix:', expectedHex.slice(0, 24));
 }
 
+
+// Exact all-secret capacity obstruction: the authentic 64-byte p56 printed
+// target must be representable as a single 86-digit Base58 integer, even if
+// an unknown full 58-way substitution chooses every event's digit freely.
+const originalTarget = JSON.parse(read('resources/cicada2014-anend-binary-witness.json')).target_hex;
+assert.equal(originalTarget.length, 128);
+const digestInteger = BigInt('0x' + originalTarget);
+const capacity = 58n ** BigInt(repeated.length);
+assert.ok(digestInteger >= capacity, 'target unexpectedly fits 86 Base58 digits');
+let minimumDigits = 0;
+for (let x = digestInteger; x > 0n; x /= 58n) minimumDigits++;
+assert.equal(minimumDigits, 88);
+console.log('All-secret full-digest capacity theorem:',
+  'target needs', minimumDigits, 'Base58 digits; event channel has',
+  repeated.length, '| target/capacity (floor)=', String(digestInteger / capacity));
+
 console.log('Source: 55 original rune pages, 12,956 runes, 2,896 complete printed words');
 console.log('p50 original high-digit-zero cells:', 60, '/256');
 console.log('Within-page equal-rune events:', repeated.length,
