@@ -1,6 +1,6 @@
-# Cuneiform-bounded 2013 `prime_echo` 290-prime interval: GP29 and GP28 original-cipher inverses
+# Cuneiform-bounded 2013 prime_echo 290-prime interval: GP29, GP28 and five-by-58 original-cipher tests
 
-**Agent3, 13–15 November 2026.** Two bounded and distinct original-input decoder families are negative. The first uses direct GP29 arithmetic; the second uses a ciphertext-motivated, reversible GP28 predecessor-exclusion register. No unknown-page plaintext, key or authenticated cipher mechanism has been recovered.
+**Agent3, 13–17 November 2026.** Three bounded, source-motivated original-input consumer families are negative. The first uses direct GP29 arithmetic; the second uses a ciphertext-motivated, reversible GP28 predecessor-exclusion register. No unknown-page plaintext, key or authenticated cipher mechanism has been recovered.
 
 ## Why this was worth one bounded test
 
@@ -56,9 +56,39 @@ Fix the preceding ciphertext rune as the unaltered p33-local90 GP **L** (index20
 
 The model's full algorithm is reproduced by [one-file CommonJS original-input regression](../sims/lp2_cuneiform_290prime_gp28_successor_sft.cjs); no extra key variants were fitted. **Decision:** reject the **specific GP28 predecessor-exclusion / prime-phi-290 source-key composition** as the direct English decryptor of the marked p33–39 passage. The model is one bounded nonlinear consumer of the 2013 source; other authentic mechanisms remain unselected. This result remains intermediate evidence and does not change the overall manuscript solution state.
 
+
+## Five-by-58 prime-block partition across the five red-numbered passages (Agent3, 17 November 2026)
+
+### Source-constrained hypothesis
+
+The cuneiform header selects the 290-prime continuation 1039–3301. The enclosed body has **five explicitly red-numbered passages**, and the manuscript has **58 physical LP2 pages** over a **29-symbol GP alphabet**. Thus the selected 290 primes admit a particularly economical 5×58 arrangement: 290 = 5×58, while 58 = 2×29 and also equals the total page count. Assign one 58-prime block to each numbered passage, repeat that block within its passage, and reset at the printed red numeral. The source-authenticated p56 operator supplies the narrow consumer: φ(prime) mod29, with literal plaintext-F transparency and no key advance on F.
+
+The weakest premise is the unprinted 5×58 key schedule. The visible five labels, the 58-page artifact, and the 29-rune alphabet motivate the rectangle, but do not state row-major or column-major order, period-58 reuse, or a p56 cipher transfer. Only the two conventional rectangular layouts and the two global additive signs were tested; no phase, reversal, per-passage orientation, or per-passage sign was fitted.
+
+### Exact original-input result
+
+The 290 primes are partitioned in ascending order. In **row-major** order, passage k receives consecutive block k of 58 primes. In **column-major** order, passage k receives every fifth prime from the 5×58 rectangle. Each passage starts at phase zero. At every original ciphertext F, the inverse retains both legal histories: literal plaintext F with no key advance, or an ordinarily encrypted non-F plaintext that advances the key. All legal phase histories are exhausted.
+
+| Layout and cipher sign | Passage 1 | Passage 2 | Passage 3 | Passage 4 | Passage 5 | Complete five-passage decode |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| Row-major, C=P+K | **95** | **4** | **60** | **5** | **43** | No |
+| Row-major, C=P−K | **132** | **0** | **survives** | **6** | **9** | No |
+| Column-major, C=P+K | **10** | **54** | **survives** | **56** | **10** | No |
+| Column-major, C=P−K | **5** | **15** | **0** | **survives** | **11** | No |
+
+Numbers are zero-based first impossible rune offsets within each original passage; “survives” means the exact inverse retains at least one complete legal phase history. Passages 1, 2 and 5 fail under **all four** global layout/sign combinations. Passage 3 survives in two different models and passage 4 in one, but no single global model decodes all five. This is an exact original-cipher compatibility result, not a language-score threshold.
+
+A source-native positive control repeats solved p57 GP plaintext to each exact passage length, encrypts with the same corresponding key block and F-transparent rule, then runs the same inverse. **All 20/20** layout/sign/passage plants survive to their original end. The negative is therefore specific to the original ciphertext, not a broken inverse.
+
+For completeness, the simpler no-bypass additive readouts remain random-like: whole-enclosure IoC is **0.03486909** (row-major, +), **0.03436460** (row-major, −), **0.03483633** (column-major, +), and **0.03406976** (column-major, −), against the GP29 uniform baseline 1/29 ≈ **0.03448276**. Their initial transliterations are not recognizable prose. These descriptive values are not the decisive test; the all-history F-transparent obstruction is.
+
+**Decision:** reject the fixed 5×58 prime_echo partition under both conventional layouts and both global signs as a complete cipher of the five original passages. In particular, do not rescue it with fitted rotations, different per-passage signs, arbitrary key skips, or new resets absent a new independent source clue. This does not disprove a different use of the 2013 artifact or another cipher family; it recovers no unknown plaintext or key.
+
+Reproduction: [five-by-58 original-input SFT](../sims/lp2_cuneiform_290prime_five58_ftransparent_sft.cjs), Node.js 22, no external packages. It asserts the original 553-rune enclosure, the 290 prime endpoints, both matrix layouts, all first-failure offsets, all 20 source-native positives, and the descriptive direct-additive IoCs.
+
 ## Consolidated decision
 
-**Reject the tested direct 290-period GP29 additive, multiplicative and p/φ affine consumers, together with the GP28 predecessor-excluding source-key composition, on this marked interval.** The cuneiform-to-prime_echo endpoint connection remains an interesting source-selection hypothesis, but it does not by itself establish how the prime stream should be consumed. Do not extend this branch into prime gaps, fitted phases, marker/page resets, or arbitrary transpositions without a new independent clue.
+**Reject the tested direct 290-period GP29 additive, multiplicative and p/φ affine consumers, the GP28 predecessor-excluding source-key composition, and the fixed 5×58 row/column partition across the five numbered passages.** The cuneiform-to-prime_echo endpoint connection remains an interesting source-selection hypothesis, but it does not establish an operative receiver or clock. Do not extend this branch into prime gaps, fitted phases, further marker/page resets, per-passage sign changes, or arbitrary transpositions without a new independent clue.
 
 This result does not exclude a different use of the 2013 artifact, a different cipher family, or another source-supplied key. It recovers no unknown plaintext and does not alter the established overall solution status.
 
@@ -70,6 +100,6 @@ Run from the repository root:
 
 The script reads the original LP2 corpus and pinned Shakespeare control, asserts the page/block counts and prime endpoints, tests all six inverses, and prints the full deterministic summaries and decoded samples. It also checks exact roundtrips against repeated solved-p57 text.
 
-Nonlinear independent test: [GP28 successor source-key SFT](../sims/lp2_cuneiform_290prime_gp28_successor_sft.cjs).
+Nonlinear independent test: [GP28 successor source-key SFT](../sims/lp2_cuneiform_290prime_gp28_successor_sft.cjs).\n\nFive-by-58 passage partition: [original-input F-transparent SFT](../sims/lp2_cuneiform_290prime_five58_ftransparent_sft.cjs).
 
 Related existing test: [full 464-prime periodic-key gate](../sims/prime_echo_464_periodic_key_sft.cjs). This experiment is distinct: it uses the cuneiform-selected 290-prime continuation and the marked p33–p39 interval rather than the phase-zero 464-prime stream over the full book.
