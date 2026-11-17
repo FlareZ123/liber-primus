@@ -93,10 +93,34 @@ The [new read-only source-SHA-gated experiment](../sims/lp2_p55_tree_29tip_sourc
 This tests a concrete direct alphabet-consumer suggestion without searching character keys or fitting English. It does **not** recover an authentic original rune order, address, decoder, or plaintext. The paired tree art still provides a genuine source-level candidate relation documented above, but the graphic needs a separately specified segmentation and branch traversal before its numerical leaves could be used as cipher operands; tuning a raster threshold until 29 appears would make the key post-selected.
 
 
+## Branch-junction topology check (Agent5, 17 November 2026)
+
+The prior report's proposed next experiment—compare branch-junction topology after the fixed trunk/crown registration—has now been run on the exact repository originals. The uploaded ZIP images are byte-identical to the repository blobs: p32 `49.jpg` Git blob `1a8fa8978bad0efc088e5ae247ceba69b2f29c27` (SHA-256 `c0f778187a8e9ddbfc667a65929ac567430a2e38278a2022377984ac084e5f72`); p55 `72.jpg` Git blob `ee00cd34013fe3a5c6808650abb6d3206b6f1b13` (SHA-256 `a80191592add93a86ed3868f9e4e6ba3944ec20c9ffccc7d3e221b461344beba`).
+
+The source-fixed p55 model remains threshold 15, enclosed-hole fill, Gaussian sigma 9, scale 0.90, registered only against p32 trunk rows 175–339. It independently reproduces translation `(-12,+1)`, training correlation **0.914336**, upper-crown holdout correlation **0.898599**, and full-crop correlation **0.893481**.
+
+For topology, p32 ink was thresholded at 20/255 and the aligned p55 model at 0.20; both were skeletonized with 8-neighbour connectivity. Results:
+
+| Measure | p32 target | transformed p55 |
+|---|---:|---:|
+| Skeleton pixels | 1,011 | 865 |
+| Endpoint clusters | 11 | 9 |
+| Junction clusters | 11 | 7 |
+| Junction pixels | 31 | 19 |
+| Endpoint/junction clusters after 20-pixel endpoint-spur pruning | 8 / 10 | 7 / 6 |
+
+The p32 graph is threshold-sensitive: over target thresholds 10, 15, 20, 25, 30, 35, 40, endpoint/junction counts are respectively **12/10, 14/14, 11/11, 12/14, 12/14, 15/17, 15/15**. The fixed transformed-p55 threshold remains **9/7**. Thus the graph is not identical or stable under the original rendering; matching the counts would require threshold selection after seeing the target.
+
+The major skeleton lines nevertheless align coarsely: mean bidirectional skeleton coverage is **0.8333 within 8 px** and **0.8980 within 10 px**. This is consistent with the earlier silhouette-level similarity, but not with a one-to-one branch graph or a reproducible branch-derived rune order. No stable 29- or 43-feature key emerges.
+
+Reproducer: [`sims/lp2_p32_p55_tree_topology_sft.py`](../sims/lp2_p32_p55_tree_topology_sft.py). It records the fixed crops, source model, trunk-only registration, skeleton thresholds, graph counts, pruning and tolerance metrics. Tested with Python 3.12, NumPy 2.3.5, OpenCV 4.13.0, SciPy 1.17.0 and scikit-image 0.26.0.
+
 ## Cryptanalytic decision
 
-The exact original 9×9 inset frequency obstruction above now rules out the entire visually suggested five/six-cell-deletion same-message family under any stationary bijective GP29 alphabet and arbitrary text order. The orientation-specific full-artifact match otherwise supplies a concrete candidate human visual route: an observably blurred, earlier manuscript tree points toward a later sharper tree in an art-rich terminal sequence. **Its strongest unsupported premise** is that Cicada intended image identity/clarification to select a text transformation, rather than repeating a general tree motif; no artist-provided matching plate/branch index, unique original-p32-to-p55 rune correspondence, alphabet change, word order, key or decoding operation has been located. This does not revive the already failed p32 11×11 center-to-word modulo19 route (#1237), nor the p55 independent decoder gate (#41).
+The paired p32/p55 trees remain a **genuine silhouette-level visual correspondence**, but the source-locked branch-junction test does not preserve an identical or stable graph. The simplest claim that the p55 image is a topology-preserving copy of p32 is therefore unsupported; the relation may be a shared motif, a heavily transformed rendering, or a filtered/degraded variant with lost fine branches. Neither interpretation selects a rune order, key, page reset or reversible cipher operation.
 
-Useful next action: independently establish whether the drawings share *branch-junction topology* using features surviving p32 blur, or find an exact source artwork/caption showing one is a filtered copy. **Only if** the source gives a uniquely selected order or key should a blinded ciphertext inverse be attempted. Avoid fitting paths through p32 or p55 based on linguistic fragments.
+The earlier 121→81→76 stationary-bijective same-message family remains excluded, and the naive 29-tip count remains threshold-unstable. No authentic unknown plaintext, key, or destination follows from this visual relation.
 
-[Original-image, SHA-gated, read-only reproducer](../sims/lp2_p32_p55_tree_blur_registration_sft.py). Related original p32 tree negative (different from the signed 2016 oak) and failed five-peel interpreter: [closed #1237](https://github.com/FlareZ123/liber-primus/issues/1237). Overall established research remains in [results/README.md](../results/README.md); this image association remains provisional and belongs only here.
+**Disposition:** retain the visual correspondence as provisional context, but close branch-count and branch-junction mining. Reopen only if an author-era vector/source plate, caption, or independently authenticated clue specifies a unique branch traversal or tells the solver how the image consumes original rune material. Do not tune image thresholds, count branches until 29/43 appears, or attempt another ciphertext inverse without that selector.
+
+Overall established research remains in [results/README.md](../results/README.md); this image association remains provisional and belongs only here.
