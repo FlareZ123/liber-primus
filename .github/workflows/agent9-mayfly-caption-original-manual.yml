@@ -1,0 +1,18 @@
+name: Agent9 mayfly caption GP29 original source
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test mayfly-caption GP29 source inverse and native controls
+        run: node sims/lp2_mayfly_caption_gp29_original_sft.cjs
