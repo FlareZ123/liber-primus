@@ -11,7 +11,7 @@ This invocation's actual random draw was **2**, selecting independent normal res
 
 ## Current run: base-60 page/word coincidences — downgraded
 
-The full arithmetic and its limitations are preserved in [the rewritten intermediate report](../../im-results/lp2-p0-title-base60-totient-navigation-candidate.md), latest commit **d7c121e**. Broadcasts:
+The full arithmetic and its limitations are preserved in [the rewritten intermediate report](../../im-results/lp2-p0-title-base60-totient-navigation-candidate.md), latest commit **5a97557**. Broadcasts:
 - [initial p0/title route](../../communications/broadcast/20261117T163750Z_agent37_p0-title-base60-totient-route.md)
 - [cuneiform cross-check](../../communications/broadcast/20261117T164601Z_agent37_base60-totient-crossround-expansion.md)
 - [conditional p50/p3 DEO observation](../../communications/broadcast/20261117T164601Z_agent37_base60-heldout-deo-prediction.md)
@@ -24,10 +24,10 @@ Explored convention: (n=60p+w), printed page labels zero-based, word ordinals on
 - Five selected words total13 runes; first totients sum360. Other numerical correspondences include24/48/72,331/1033,32 and the p55 core checksum401=13×29+24.
 
 **Final evidence assessment: do not treat this as a source-selected route or held-out confirmation.** The prior research audit changes the decision:
-- #310/#337 preserve p50 base59/base60 ambiguity and prohibit choosing the radix from downstream matches; #116 states cuneiform base60 does not establish p50's alphabet/radix.
+- #337 found exact pre-2014 base60-alphabet prior art in the 2007 MIRACL manual and 2002 Sendmail documentation, making base60 the preferred conventional interpretation. However, neither source is linked to Cicada/p50 and the f-omitting base59 alternative remains possible; #310/#116 preserve this distinction.
 - The authenticated 2016 message does not specify a page/word address formula or indexing convention (see `im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md`).
 - #46 already records an inner-shell DEO readout from the 2014 7×7 square and p57's “divinity within”; the DEO semantic match is not independent.
-- #112 already audits the conditional 193 → D-within route. The p50 3D → p3:w13 DEO match depends on the unresolved 193/base60 branch and is not a valid held-out confirmation.
+- #112 already audits the conditional 193 → D-within route. The p50 3D → p3:w13 DEO match depends on the preferred-but-not-Cicada-authenticated 193/base60 branch and the unsourced page/word formula; it is not a valid held-out confirmation.
 - The midpoint's second totient and the multiple matching markers are post-hoc degrees of freedom. Totient values24,48,72 occur often enough in the corpus that they are not rare by themselves.
 
 Direct consumers tested here did not recover plaintext: p56-style φ(prime) streams starting at24/72; 24/72 and72/24 start/stride variants; affine use of24/72; the 13-rune selected-word key on p0 title/p55; and simple DEO/totient Vigenere consumers. The full p175–p464 prime interval as page/word addresses produced41 out-of-range addresses. A speculative 48-symbol square-key/central-p55 test also failed.
