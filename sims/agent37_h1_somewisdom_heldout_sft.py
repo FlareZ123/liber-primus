@@ -115,19 +115,27 @@ def run():
     c=source[5506:5806];held=source[5806:5956]
     assert len(c)==300 and len(held)==150
     stream=source_stream(650)
-    ptr=init_nats(c,stream)
-    w=est_cols(c,stream,ptr)
-    history=[]
-    for _ in range(5):
-        pp,ptr,score=fixed_beam(c,14,stream,w)
-        history.append(periodic_ioc(pp,ptr))
-        new=est_cols(c,stream,ptr)
-        if new==w:break
-        w=new
-    plain,ptr,score=fixed_beam(c,14,stream,w)
+    init=init_nats(c,stream)
+    def fit(n):
+        ptr=init
+        w=est_cols(c,stream,ptr)
+        history=[]
+        for _ in range(n):
+            pp,ptr,score=fixed_beam(c,14,stream,w)
+            history.append(periodic_ioc(pp,ptr))
+            new=est_cols(c,stream,ptr)
+            if new==w:break
+            w=new
+        plain,ptr,score=fixed_beam(c,14,stream,w)
+        return plain,ptr,w,score,history
+    plain,ptr,w,score,history=fit(5)
     screen=periodic_ioc(plain,ptr)
     print('original 300-rune source screen IoC',round(screen,9),'EM',history)
     assert abs(screen-1.7539423076923075)<0.00001
+    plain10,ptr10,w10,score10,hist10=fit(10)
+    ioc10=periodic_ioc(plain10,ptr10)
+    print('10-EM mandated redecode score',round(ioc10,9),'EM',hist10)
+    assert abs(ioc10-1.5474633699633698)<0.00001
     print('source library stream: md5-ctr mod :some wisdom; offset=1009, L20 model=skip')
     print('frozen inferred keyword:',w)
     print('original training text:', ''.join(GP[k] for k in plain[:160]))
