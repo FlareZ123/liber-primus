@@ -1,4 +1,4 @@
-name: LP2 original lag5-conditioned prime clock SFT
+name: LP2 original lag5-conditioned historical keys SFT
 
 on:
   workflow_dispatch:
