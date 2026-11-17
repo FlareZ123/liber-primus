@@ -1,0 +1,717 @@
+{
+  "schema": "external-onion2-timing-observations-v1",
+  "source": "Dukotah/cicada3301/liber-primus/analysis/round43/F5bT-timing-keystream/merged_intervals.json",
+  "source_blob_sha": "029b839a2d72c712448983f0dc2dd09ed116afdd",
+  "origin": "2014 cu343l33nqaekrnw.onion byte-growing service, solver-recorded timing; class C witness, values class B",
+  "known_consecutive_byte_positions": "143–189 and 192–256 (1-based), 190–191 missing",
+  "scale": "k = minutes elapsed between successive byte arrivals / 5",
+  "metadata": {
+    "attested": 112,
+    "single": 81,
+    "multi": 31,
+    "unconfirmed": 9,
+    "bridge": {
+      "positions": [
+        190,
+        191
+      ],
+      "sum_min": 30,
+      "variants_k": [
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          1
+        ]
+      ]
+    }
+  },
+  "observations": [
+    {
+      "pos": 143,
+      "byte": "49",
+      "k": 2,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 144,
+      "byte": "bf",
+      "k": 6,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 145,
+      "byte": "28",
+      "k": 2,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 146,
+      "byte": "fa",
+      "k": 3,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 147,
+      "byte": "67",
+      "k": 1,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 148,
+      "byte": "4d",
+      "k": 1,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 149,
+      "byte": "2a",
+      "k": 2,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 150,
+      "byte": "d2",
+      "k": 3,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 151,
+      "byte": "f7",
+      "k": 1,
+      "confidence": "single-witness-unconfirmed"
+    },
+    {
+      "pos": 152,
+      "byte": "26",
+      "k": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 153,
+      "byte": "e1",
+      "k": 4,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 154,
+      "byte": "97",
+      "k": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 155,
+      "byte": "83",
+      "k": 2,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 156,
+      "byte": "99",
+      "k": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 157,
+      "byte": "56",
+      "k": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 158,
+      "byte": "92",
+      "k": 2,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 159,
+      "byte": "1d",
+      "k": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 160,
+      "byte": "ab",
+      "k": 5,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 161,
+      "byte": "29",
+      "k": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 162,
+      "byte": "72",
+      "k": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 163,
+      "byte": "4c",
+      "k": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 164,
+      "byte": "d4",
+      "k": 4,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 165,
+      "byte": "8e",
+      "k": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 166,
+      "byte": "1a",
+      "k": 4,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 167,
+      "byte": "81",
+      "k": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 168,
+      "byte": "fc",
+      "k": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 169,
+      "byte": "9b",
+      "k": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 170,
+      "byte": "ab",
+      "k": 2,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 171,
+      "byte": "35",
+      "k": 7,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 172,
+      "byte": "65",
+      "k": 2,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 173,
+      "byte": "f7",
+      "k": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 174,
+      "byte": "51",
+      "k": 2,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 175,
+      "byte": "3e",
+      "k": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 176,
+      "byte": "3e",
+      "k": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 177,
+      "byte": "36",
+      "k": 1,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 178,
+      "byte": "8c",
+      "k": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 179,
+      "byte": "d0",
+      "k": 5,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 180,
+      "byte": "32",
+      "k": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 181,
+      "byte": "7b",
+      "k": 3,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 182,
+      "byte": "47",
+      "k": 2,
+      "confidence": "multi-witness"
+    },
+    {
+      "pos": 183,
+      "byte": "cf",
+      "k": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 184,
+      "byte": "59",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 185,
+      "byte": "5a",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 186,
+      "byte": "fe",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 187,
+      "byte": "bb",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 188,
+      "byte": "78",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 189,
+      "byte": "d6",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 192,
+      "byte": "a9",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 193,
+      "byte": "2b",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 194,
+      "byte": "a0",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 195,
+      "byte": "21",
+      "k": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 196,
+      "byte": "cd",
+      "k": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 197,
+      "byte": "67",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 198,
+      "byte": "34",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 199,
+      "byte": "f4",
+      "k": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 200,
+      "byte": "36",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 201,
+      "byte": "2a",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 202,
+      "byte": "0b",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 203,
+      "byte": "34",
+      "k": 4,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 204,
+      "byte": "1f",
+      "k": 5,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 205,
+      "byte": "35",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 206,
+      "byte": "91",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 207,
+      "byte": "57",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 208,
+      "byte": "17",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 209,
+      "byte": "3b",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 210,
+      "byte": "53",
+      "k": 4,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 211,
+      "byte": "d4",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 212,
+      "byte": "9e",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 213,
+      "byte": "a5",
+      "k": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 214,
+      "byte": "df",
+      "k": 5,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 215,
+      "byte": "f5",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 216,
+      "byte": "88",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 217,
+      "byte": "9d",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 218,
+      "byte": "2c",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 219,
+      "byte": "9d",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 220,
+      "byte": "e6",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 221,
+      "byte": "b0",
+      "k": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 222,
+      "byte": "d7",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 223,
+      "byte": "e8",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 224,
+      "byte": "c6",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 225,
+      "byte": "15",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 226,
+      "byte": "28",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 227,
+      "byte": "6c",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 228,
+      "byte": "e5",
+      "k": 6,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 229,
+      "byte": "96",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 230,
+      "byte": "bf",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 231,
+      "byte": "a8",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 232,
+      "byte": "3f",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 233,
+      "byte": "50",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 234,
+      "byte": "b6",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 235,
+      "byte": "ee",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 236,
+      "byte": "ab",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 237,
+      "byte": "d1",
+      "k": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 238,
+      "byte": "53",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 239,
+      "byte": "aa",
+      "k": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 240,
+      "byte": "f5",
+      "k": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 241,
+      "byte": "0c",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 242,
+      "byte": "d7",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 243,
+      "byte": "5f",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 244,
+      "byte": "39",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 245,
+      "byte": "92",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 246,
+      "byte": "9b",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 247,
+      "byte": "a1",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 248,
+      "byte": "1f",
+      "k": 3,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 249,
+      "byte": "b0",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 250,
+      "byte": "f8",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 251,
+      "byte": "e8",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 252,
+      "byte": "d6",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 253,
+      "byte": "11",
+      "k": 2,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 254,
+      "byte": "44",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 255,
+      "byte": "28",
+      "k": 1,
+      "confidence": "single-witness"
+    },
+    {
+      "pos": 256,
+      "byte": "46",
+      "k": 2,
+      "confidence": "single-witness"
+    }
+  ]
+}
