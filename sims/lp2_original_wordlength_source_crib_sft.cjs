@@ -114,11 +114,11 @@ const sources=[
 /** @param {string} value @param {"gutenberg"|"hapgood"|undefined} section */
 function textBody(value,section){
   if(section==="gutenberg"){
-    const start=/\\*\\*\\* START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\\r\\n]*\\*\\*\\*/i;
-    const end=/\\*\\*\\* END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK/i;
-    assert.match(value,start);
+    const start="*** START OF THE PROJECT GUTENBERG EBOOK ORTHODOX DAILY PRAYERS ***";
+    const end="*** END OF THE PROJECT GUTENBERG EBOOK ORTHODOX DAILY PRAYERS ***";
+    assert.ok(value.includes(start));
     const after=value.split(start)[1];
-    assert.match(after,end);
+    assert.ok(after.includes(end));
     return after.split(end)[0];
   }
   if(section==="hapgood"){
