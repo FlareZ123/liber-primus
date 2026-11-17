@@ -123,6 +123,30 @@ The previously separate FIND/MUST pair now has a more constrained, still
    **107=A**. This closes a source-number → shared-key → original
    ring-index → DH public-share cycle.
 
+### Fourth original p57 segment: title PARABLE independently selects 64
+
+The published p57 plaintext **PARABLE** is separate from the three
+body clauses whose source-GP sums formed the 2013 ID3 decimal.
+Its seven original runes sum to GP-prime **449**, itself a prime.
+The *same* now-frozen lookup `π(sum)` gives prime ordinal **87**.
+The exact original table at zero-based flat cell87, row10/column7,
+contains token **15**. Under the independently selected provisional
+base59 alphabet, this evaluates to **64**; the original 32×8
+printed grid's **column width squared equals 8×8=64**. Under
+conventional source base60, the same token would be **65**.
+
+This uses a fourth original parable source segment and extends
+the numerical differentiation of base59 from base60 without
+introducing a new cipher, index offset, or target page. It
+offers a plausible **8×8 geometry hint** alongside the
+source-selected five-by-five square. The interpretation of 64
+as the grid width squared was noticed *after* the table cell
+was inspected; it is a useful conditional source correspondence,
+not independently authenticated evidence of intended lookup.
+The 2013 parable decimal excludes the title, so the title
+sum449 was not a factor used in choosing the original three
+body addresses. [Native 95/95 p57 source-runic reproduction](../sims/lp2_p57_primeordinal_dh73_source_sft.cjs).
+
 ### Geometric closure to the solved p56 PAGE word
 
 The **same three clause prime-ordinal addresses**, without inspecting their
@@ -199,6 +223,31 @@ The full p54–55 chapter is 308 runes, so a p55-only reset is
 not authenticated; these experiments reject the exact 75-rune
 page-local receivers, not a source-selected continuous chapter cipher.
 [Windows PASS for both source-square consumers](https://github.com/FlareZ123/liber-primus/actions/runs/44150231888).
+
+### New word-boundary/perimeter match on p55, with original negative
+
+The original printed physical p55 contains **17** hyphen/dot-delimited
+rune groups. Its first `ᛝ` is the word continuation from p54;
+the remaining **16** are complete words, exactly the
+**16 cells of the selected 5×5 square's outer perimeter**.
+This gives a fixed physical key-to-recipient alignment: assign
+one source perimeter byte per complete p55 word, using a
+clockwise circumference beginning at the bottom-left K73 cell,
+or the reverse direction preserving the same first cell.
+Decode every original runic word by adding/subtracting that
+word's own perimeter byte mod29.
+
+All four fixed source-native outcomes are **nonprose**
+(IoCs **0.034955, 0.034595, 0.034955, 0.031712**)
+against the 75 original suffix runes; all 75/75 original
+forward encryptions and independent 75-rune solved-native
+p57 plants pass. This rejects the **simple per-word Caesar
+shift consumer** only. The exact 16-word versus 16-perimeter
+alignment is source-visible and may be a genuine hint for a
+different, originally motivated **wordwise operation**.
+The input p55 rune groups were reconstructed from original
+runic transcription, not inferred from ciphertext statistics.
+[Source 16-word/perimeter original SFT](../sims/lp2_p50_clauseprime_square_p55_hill_sft.cjs) · [Windows PASS 44154046722](https://github.com/FlareZ123/liber-primus/actions/runs/44154046722).
 
 This excludes **only the exact 5×5 matrix receiver** from
 the newly fixed source frame. It does not exclude a
