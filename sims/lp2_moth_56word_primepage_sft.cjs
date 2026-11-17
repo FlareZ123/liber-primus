@@ -97,6 +97,25 @@ function allPlaintexts(cipher,start) {
   }
   return states;
 }
+// Direct historical Vigenere consumer: donor ciphertext word repeated over
+// its assigned original physical page, two natural GP29 directions.
+const repeatedWordKey = [];
+for (let page=0;page<56;page++) {
+  if (page===50) continue;
+  const input=corpus.pages[page].indices;
+  const donor=donors[page];
+  for (const sign of [-1,1]) {
+    const decoded=input.map((v,i)=>mod29(v+sign*donor[i%donor.length]));
+    assert.deepEqual(
+      decoded.map((v,i)=>mod29(v-sign*donor[i%donor.length])),input);
+    repeatedWordKey.push({page,sign,key_length:donor.length,
+      decoded_gp29_ioc:ioc(decoded)});
+  }
+}
+assert.equal(repeatedWordKey.length,110);
+const wordKeyHighest = Math.max(...repeatedWordKey.map(x=>x.decoded_gp29_ioc));
+assert.ok(wordKeyHighest < 0.04);
+
 const details = {};
 for (const [method,seeds] of Object.entries(keys)) {
   const rows=[],survivors=[];
@@ -133,5 +152,12 @@ console.log(JSON.stringify({
   source_word_partition:{before_flora:40,flora:16,unsolved_physical_pages:56},
   cipher:'exact p56 phi(prime) clock, original plaintext-F nonconsuming bypass',
   candidates:details,
+  direct_repeating_donor_word_vigenere:{
+    original_full_page_decoders:repeatedWordKey.length,
+    best_gp29_ioc:wordKeyHighest,
+    readable_GP_pages:0,
+    best_candidate:repeatedWordKey.reduce((best,row)=>
+      row.decoded_gp29_ioc>best.decoded_gp29_ioc?row:best)
+  },
   conclusion:'Neither of these complete source-sized 56-word page-key rules decodes all original pages; no unknown plaintext.'
 },null,2));
