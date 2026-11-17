@@ -88,7 +88,7 @@ function extend(data, op) {
   const inner = data.map(row => row.concat(
     negate(checks([row], op).rows[0])));
   const bottom = Array.from({length:15}, (_, c) =>
-    negate(checks(data.map(row => [row[c]]), op).rows[0]));
+    negate(checks([data.map(row => row[c])], op).rows[0]));
   bottom.push(negate(checks([bottom], op).rows[0]));
   inner.push(bottom);
   return inner;
