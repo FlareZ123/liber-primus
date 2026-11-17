@@ -178,6 +178,9 @@ function exactOnsetTail(n,hits,p) {
 }
 const originalOnset=onsetCount/counted;
 const onsetControls=[];
+const nativeCounts=new Int32Array(29);
+const nativeInitialCounts=new Int32Array(29);
+let nativeRuneTotal=0;
 for(const [name,filename,expectedAll,expectedStart] of [
   ['Gibran','gibran_prophet_58585.txt',606,60],
   ['Shakespeare','shakespeare_first300k.txt',1633,98],
@@ -188,6 +191,11 @@ for(const [name,filename,expectedAll,expectedStart] of [
   let allEA=0,onsetEA=0;
   for(const word of body.match(/[A-Za-z]+/g)||[]) {
     const vals=encodeSourceNativeGP(word);
+    for(const item of vals) {
+      nativeCounts[item]++;
+      nativeRuneTotal++;
+    }
+    nativeInitialCounts[vals[0]]++;
     allEA+=vals.filter(v=>v===28).length;
     if(vals[0]===28)onsetEA++;
   }
@@ -200,6 +208,15 @@ for(const [name,filename,expectedAll,expectedStart] of [
     exactOneSidedBinomialTail:exactOnsetTail(counted,onsetCount,p)});
 }
 assert.ok(onsetControls.every(c=>c.exactOneSidedBinomialTail<0.00003));
+const nativeSpecialCandidates=gp.translit.map((name,i)=>({
+  rune:name,sourceFrequency:nativeCounts[i]/nativeRuneTotal,
+  wordInitialConditional:nativeInitialCounts[i]/nativeCounts[i],
+  occurrences:nativeCounts[i],wordInitialOccurrences:nativeInitialCounts[i]
+})).filter(x=>x.sourceFrequency>=0.00531275291738481&&
+  x.sourceFrequency<=0.008191291709575693);
+assert.deepEqual(nativeSpecialCandidates.map(x=>x.rune),['NG','EA']);
+assert.ok(nativeSpecialCandidates.every(x=>x.wordInitialConditional<0.09));
+
 
 const chapterRanges=[[0,2],[3,7],[8,14],[15,22],[23,26],
                      [27,32],[33,39],[40,53],[54,55]];
@@ -226,10 +243,14 @@ console.log(JSON.stringify({
   sourceDoubletEvents:counted,
   doubletAtSourcePrintedWordOnset:onsetCount,
   conditionalEAOnsetControls:onsetControls,
+  allNativeGP29SingleEscapeCandidates:nativeSpecialCandidates,
+  observedEscapeOnsetRate:originalOnset,
+  observedEscapePrevalence:counted/unknown.length,
+  exact95ClopperPearsonPrevalenceInterval:[0.00531275291738481,0.008191291709575693],
   originalGP29IoC:ioc(unknown),
   inverseGP29IoC:ioc(plain),
   nativeSolvedP57PlantIOC:ioc(plant),
   controls:'12956/12956 native-positive exact plaintext inversion and original ciphertext re-encryption',
   chapter,
-  decision:'No GP-native plaintext. Moreover 23/86 source doublets begin printed words, versus only 6–11% of actual EA in independent native English; this rejects the literal EA-transparent zero-step model if source word breaks are plaintext breaks, independently of key. This is one pinned hash-stream candidate, not a global exclusion of SHA512 or other KDFs.'
+  decision:'No GP-native plaintext. Under native-English word boundaries, all 29 possible single-GP-rune repeat markers are disfavored: only NG and EA frequencies fall in the exact 95% original repeat-prevalence interval, while both have <9% word-initial occurrences versus 23/86=26.74% source repeats. This fixed SHA512 key route is rejected; different state clocks and encoded word breaks remain open.'
 },null,2));
