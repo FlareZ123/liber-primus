@@ -35,7 +35,7 @@ The two totients have mean60 and difference24.
 
 If p50 token `3D` is read as base60 value193, then (193=60\cdot3+13) selects p3:w13: `DEO`, rune indices `[23,12]`, prime sum130, and (arphi(130)=48). The complete word list contains exactly two `DEO` tokens, p3:w13 and p33:w1.
 
-This is **not an independent held-out confirmation**: the p50 token's radix is unresolved (see #310 and #337), and the 2016-message mapping of “lies” to this token is itself provisional. Under the competing base59 reading the token is190, so the address changes. Do not use downstream matches to choose the radix.
+This is **not a valid independent held-out confirmation**: although #337 found exact pre-2014 base60-alphabet prior art in the 2007 MIRACL manual and 2002 Sendmail documentation, no examined Cicada source links p50 to either implementation. Base60 is the preferred conventional reading, but the f-omitting base59 alternative is not disproved; the 2016-message mapping of “lies” to this token is also provisional. Under base59 the token is190 and the address changes. The page/word address formula remains unsourced.
 
 ## Why the pattern initially looked interesting
 
