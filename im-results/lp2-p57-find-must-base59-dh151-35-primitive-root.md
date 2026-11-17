@@ -371,6 +371,28 @@ Native controls pass: the signed BASE29 example \(3301\mapsto3QO\), the product'
 
 **Reproducer:** [original-source Node SFT](../sims/lp2_p55_parable_base29_7key_receiver_sft.cjs).
 
+## The 5×5 source square as a GP29 Hill key: bounded p55 receiver test
+
+The DH73 candidate's geometric square is original p50 rows 21–25 and columns 1–5. Reading its 25 original cells with the proposed base59 alphabet and reducing modulo the 29-symbol Gematria Primus alphabet gives:
+
+\[
+M=\begin{bmatrix}
+21&18&24&1&28\\
+13&18&27&26&11\\
+9&19&22&9&15\\
+8&12&1&28&26\\
+15&3&9&17&17
+\end{bmatrix}
+\]
+
+Its determinant is **17 mod 29**, so it is invertible. The four original base59 corners remain **[224,115,73,75]** before reduction, preserving the proposed PAGE/B/K/(p−1)/2 geometry. This gives a direct, low-complexity receiver hypothesis: use the 5×5 square as a Hill-5 matrix over GP29.
+
+Original p55 has 76 runes; its first rune is the one-rune **NG** carry from p54. Removing that carry leaves exactly **75 = 15×5** complete runes. I tested the matrix, its transpose, its inverse, and the inverse transpose, each with both column-vector and row-vector multiplication. A synthetic encrypt/decrypt round trip passes. None of the eight original-cipher outputs is readable English; representative inverse outputs begin **REAJTHBOGTHWGIAD...** and **THFWSGRAEAEUYSA...**.
+
+This rejects the direct Hill-5 use of the full 5×5 square over GP29 on p55's 75 complete runes. It does not reject the square's geometric/arithmetic correspondence or a different, independently selected use of those cells.
+
+**Reproducer:** [original-source Node SFT](../sims/lp2_p55_dh73_square_hill29_sft.cjs).
+
 ## Assessment and next decision
 
 **Exact original-source observations:** the adjacent base59 FIND/MUST table pair
@@ -402,7 +424,7 @@ authentic unknown plaintext. A mathematically closed 2013–2014
 correspondence is now worth preserving and considering as an
 independent clue, while a new cipher campaign is unjustified until
 some source selects its **recipient and reversible operation**.
-The direct K73-to-p56-prime-totient start transfer is now rejected in both natural prime-start readings. The signed BASE29 rendering of the same Parable product, 2JMEKOO, also fails the direct 7-period additive, stable columnar and Stage05 block-permutation receivers on the 77-rune p55/p56 seam. The first new decisive step should identify a first-party operation
+The direct K73-to-p56-prime-totient start transfer is now rejected in both natural prime-start readings. The signed BASE29 rendering of the same Parable product, 2JMEKOO, also fails the direct 7-period additive, stable columnar and Stage05 block-permutation receivers on the 77-rune p55/p56 seam. The 5×5 square itself is invertible mod29 but fails all direct/inverse and row/column Hill-5 readings on p55's 75 complete runes. The first new decisive step should identify a first-party operation
 for the scalar73 or recover an actual original 76-rune p55 plaintext
 interval. Do not treat test-fitted keys, synthetic plants, or a
 matching original cipher round-trip as successful decryption.
