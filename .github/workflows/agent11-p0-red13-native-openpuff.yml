@@ -37,13 +37,20 @@ jobs:
             }
           }
           "OPENPUFF_EXE=$(Join-Path $root 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Isolate nonblocking native file-picker entry path
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -c "from pathlib import Path; import os; p=Path('sims/openpuff_v400_extract.py'); q=Path(os.environ['RUNNER_TEMP'])/'agent11-openpuff-directhwnd.py'; s=p.read_text(encoding='utf-8'); old='edits[-1].set_edit_text(str(carrier.resolve()))'; assert s.count(old)==1; new='import win32gui, win32con\\n    if not win32gui.SendMessage(edits[-1].handle, win32con.WM_SETTEXT, 0, str(carrier.resolve())):\\n        raise RuntimeError(\'Direct HWND WM_SETTEXT failed\')'; q.write_text(s.replace(old,new.replace('\\n','\\n')),encoding='utf-8'); print('DIRECT_HWND_DRIVER',q)"
+          if ($LASTEXITCODE -ne 0) { throw 'Could not prepare isolated original native driver' }
+          "OPENPUFF_DRIVER=$(Join-Path $env:RUNNER_TEMP 'agent11-openpuff-directhwnd.py')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Verify native public JPEG positive on the same runner
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
           python sims/openpuff_public_jpeg_positive_source.py --out probe-output/public-source
           if ($LASTEXITCODE -ne 0) { throw 'Unable to obtain independently known public JPEG carrier' }
-          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier probe-output/public-source/openpuff.jpg --password 12345678 --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/public-positive --wait-seconds 45
+          python "$env:OPENPUFF_DRIVER" --exe "$env:OPENPUFF_EXE" --carrier probe-output/public-source/openpuff.jpg --password 12345678 --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/public-positive --wait-seconds 45
           if ($LASTEXITCODE -ne 0) { throw 'OpenPuff public JPEG positive did not execute' }
           python -c "from pathlib import Path; from hashlib import sha256; p=Path('probe-output/public-positive/extracted/hidden.txt'); b=p.read_bytes(); assert b==b'Dies ist eine versteckte Nachricht!'; print('ORIGINAL_NATIVE_JPEG_POSITIVE_PASS',len(b),sha256(b).hexdigest())"
           if ($LASTEXITCODE -ne 0) { throw 'OpenPuff native positive did not recover exact original message' }
@@ -67,7 +74,7 @@ jobs:
             Write-Host "ORIGINAL_CARRIER_SCAN=$idx PHYSICAL_LP2=$($idx - 17) SHA256=$sha"
             $params += @('--carrier', "$carrier")
           }
-          python sims/openpuff_v400_extract.py @params
+          python "$env:OPENPUFF_DRIVER" @params
           if ($LASTEXITCODE -ne 0) { throw 'Original three-scan native Unhide invocation failed' }
           $result = Get-Content 'probe-output/original-red13-opening/result.json' -Raw | ConvertFrom-Json
           if ($result.carrier_count -ne 3 -or -not $result.carrier_chain_verified -or -not $result.bit_selection_verified -or -not $result.attempted) {
