@@ -156,7 +156,9 @@ for (const name of [
   'resources/historical/cicada2013-os-original-message.txt',
   'resources/historical/cicada2012-countdown-message.asc',
 ]) examine('2012-14 preserved source file ' + name, fs.readFileSync(at(name)));
-const signed2016 = fs.readFileSync(at('resources/historical/cicada2016-4gq25-outguess.asc'));
+const signed2016 = Buffer.from(fs.readFileSync(at('resources/historical/cicada2016-4gq25-outguess.asc'), 'utf8').replace(/\r\n/g, '\n'), 'utf8');
+assert.equal(hex(hash(signed2016)), 'fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010',
+  'Git checkout must preserve the authenticated original LF-normalized 2016 signed bytes');
 examine('2016 authenticated original signed OpenPGP envelope bytes', signed2016);
 const preface = Buffer.from('Hash: SHA1\n\n');
 const signature = Buffer.from('\n\n-----BEGIN PGP SIGNATURE-----');
