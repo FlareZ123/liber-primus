@@ -22,7 +22,7 @@ For each deterministic seed, the experiment builds a fresh native-GP Gibran 12,9
 
 | Frozen seed | Recovered heldout GP plaintext / 308 | Correct hidden heldout clock / 308 | Contradicted skip transitions |
 | --- | ---: | ---: | ---: |
-| Trial0, 855747533 | 283 | 302 | 2 |
+| Trial0, 855747533 | 287 | 303 | 1 |
 | Trial1, 1869651756 | 298 | 306 | 0 |
 | Trial2, 2883555979 | 298 | 308 | 0 |
 | Trial3, 3897460202 | 293 | 303 | 0 |
@@ -31,7 +31,7 @@ For each deterministic seed, the experiment builds a fresh native-GP Gibran 12,9
 | Trial6, 2644205575 | 303 | 308 | 0 |
 | Trial7, 3658109798 | 299 | 307 | 0 |
 
-**Recovery: 297.375/308 = 96.5503% mean heldout plaintext; 99.4318% exact heldout clock rows; 687.75/841 (81.78%) exact secret-table cells on average.** All eight independent-word-length planted manuscripts recovered 283–303 of the fully excluded 308 terminal symbols. Only four total rejected-row contradictions occur across the eight, with six plants free of contradictions. The planted heldout GP-English bigram score averages **−2.674665 nats/rune**, range **−2.736 to −2.609**. Exact generation truth gives a full H2 forward control for every trial. Because some recovered symbols and model collision checks remain wrong, this is a strong blind partial recovery, not a complete deterministic ciphertext inverse.
+**Recovery: 297.875/308 = 96.7127% mean heldout plaintext; 99.4724% exact heldout clock rows; 686.625/841 (81.6439%) exact secret-table cells on average.** All eight independent-word-length planted manuscripts recovered 287–303 of the fully excluded 308 terminal symbols. Only three total rejected-row contradictions occur across the eight, with six plants free of contradictions. The planted heldout GP-English bigram score averages **−2.673301 nats/rune**, range **−2.725 to −2.609**. Exact generation truth gives a full H2 forward control for every trial. Because some recovered symbols and model collision checks remain wrong, this is a strong blind partial recovery, not a complete deterministic ciphertext inverse.
 
 The earlier nine-chapter unigram bootstrap solved only the first seed robustly and lost key synchronization on other seeds. Source-visible lexical roles rescued trial1; tempered early Viterbi priors rescued trial3. These two seeds are development cases, and six other source-shaped seeds provide stronger untouched synthetic calibration. There is no authentic unknown-page plaintext in these controls.
 
@@ -58,7 +58,7 @@ The terminal begins **OEIPUNPAEOLTHMARAOTHNGRXBPYXWLOTHLM...** after decoding, r
 - Deterministic self-contained runner: [nine-chapter H2 joint-blind source SFT](../sims/lp2_h2_nine_chapter_joint_blind_original_sft.cjs). Node.js 22, CommonJS, no network, read-only.
 - Original GP29 input: [LP2 corpus](../resources/liber-primus/lp2-corpus.json) and [rune/word transcript](../resources/liber-primus/lp2-transcription.txt).
 - Existing shared fitting algorithm: [GP29 Hungarian permutation tableau decoder](../sims/gp29_bigram_tableau_decoder.cjs).
-- [Manual Windows Node22 Actions workflow](https://github.com/FlareZ123/liber-primus/actions/workflows/lp2-h2-nine-chapter-blind.yml).
+- [Manual Windows Node22 Actions workflow, completed SUCCESS 44052350345](https://github.com/FlareZ123/liber-primus/actions/runs/44052350345).
 - Earlier evidence: [physical page-reset blind H2](lp2-h2-page-reset-blind-joint-original-p41-gate.md), [original random-table flatness negative](lp2-h2-random-table-marginal-flatness-gate.md), and [blind apostrophe/oracle key-path study](lp2-h2-apostrophe-crib-oracle-identifiability.md). These different assumptions are not independent evidence that any H2 model is the historical cipher.
 
 **Original puzzle status remains unchanged:** all 56 unknown LP2 physical pages p0–55 remain undeciphered.
