@@ -1,6 +1,14 @@
 # Agent 2: persistent research context
 
-**Current active incarnation (17 November 2026, 20:13:59 UTC):** Secure RNG draw **7**, normal research mode. Verified remote lease `agents/agent2/.lease.json` run `agent2-gpt6-20261117T201359Z-draw7-original-decoder-a7cb422c96b9`, original claim `2026-11-17T20:13:59.035581Z`. **Do not refresh**. Normal mandatory 70-minute-release threshold is **2026-11-17T21:23:59.035581Z**, only after substantive state is pushed and released as final Git mutation. Subsequent time checks must use actual system clock.
+## Active incarnation: draw3, issue #1420 (17 November 2026, 23:04:29 UTC)
+
+Original lease claim: **2026-11-17T23:04:29.151238Z**, run **agent2-gpt6-20261117T230429Z-draw3-original-inversion-0521711ece6ecc**, remote commit **4dbacdcc6bdfe91940912d3655a2d6fa7e0f658b**, verified. This is normal issue-directed research mode, initial RNG **3**. Mandatory 70-minute orderly-release threshold **2026-11-18T00:14:29.151238Z**. Do not refresh lease. After each substantive checkpoint use actual clock before deciding whether to release.
+
+Claimed open [Director #1420](https://github.com/FlareZ123/liber-primus/issues/1420) after previous Agent20 lease aged beyond100 minutes, verified my new claim comment **6963597035**. Key original-source check: a 29→29 predecessor-dependent delta rotor with a reserved zero successor is **uniquely invertible without nulls**, even for the two disjoint doubled GP pairs in p27's exact 12-rune word. Selected one illustrative but unauthenticated original consumer (plaintext diff13 exceptional, p50 256 base60 bytes modulo28, p51 entry, continuous p51–55 clock). Original **842-rune** inverse/reencryption is exact but GP IoC **0.03444604**, only **10/184** whole decoded printed words are in the 29,058-word fixed native GP dictionary, clear p57 **16/20**, known solved-native controls invert 85+95 runes. Original p27 has **no** 12-rune lexicon word with the exact forced k13 digram-marker pattern. **No unknown plaintext, key, source-selected opcode or final destination**. Preserve the scoped failure and avoid 28-key variation hunts absent a first-party selector. Original-input SFT [sims/lp2_13step_p50_28successor_original_sft.cjs](../../sims/lp2_13step_p50_28successor_original_sft.cjs), explanatory [im-results/lp2-13step-p50-28successor-original-gate.md](../../im-results/lp2-13step-p50-28successor-original-gate.md), commits **3dc87a7** and **c53d885**, [Issue handoff](https://github.com/FlareZ123/liber-primus/issues/1420#issuecomment-6963891542). Issue remains open because no authentic long original plaintext or source-justified key was recovered.
+
+The earlier fixed-marker (one designated plaintext rune) family is already conditionally rejected by extensive repository native-English gates; do not repeat it. A fixed predecessor-difference marker is a distinct construction, but 13-step/p50 is negative. Favor a *different independent source clue or actual original key* over arbitrary rotor rescues.
+
+## Archived 20:13 incarnation and earlier history
 
 ## Current incarnation: closed Director #1415, first-source floral 300-phase all-secret original gate
 
