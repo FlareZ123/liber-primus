@@ -76,6 +76,35 @@ assert.deepEqual(first.slice(0, 10), [26,8,0,6,3,6,8,24,9,0]);
 assert.equal(coincidence(first), 0.05473684210526316);
 assert.equal(coincidence(terminal), 0.037894736842105266);
 
+// The solved PARABLE explicitly says to shed word circumferences.
+// Source-native p55 has 17 words. Test both operation orders and whether
+// the elevated coincidence survives in the 43-symbol interiors.
+const transcription = read('resources/lp2-transcription.txt').split('%');
+assert.equal(transcription.length,57);
+const printed = transcription[54].replace(/[\\/\\r\\n]/g,'')
+  .match(/[\\u16A0-\\u16FF]+/gu).map(word => [...word]);
+assert.equal(printed.length,17);
+const wordLengths = printed.map(word => word.length);
+assert.deepEqual(wordLengths,[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]);
+const sourceFlattened = printed.flat().map(rune => corpus.runes.indexOf(rune));
+assert.deepEqual(sourceFlattened,terminal);
+let at=0;
+const innerIndices=[],shellIndices=[];
+for(const n of wordLengths) {
+  shellIndices.push(at);
+  if(n>1)shellIndices.push(at+n-1);
+  for(let i=1;i<n-1;i++)innerIndices.push(at+i);
+  at+=n;
+}
+assert.deepEqual([innerIndices.length,shellIndices.length],[43,33]);
+const rawInner=innerIndices.map(i=>terminal[i]);
+const arc4ThenInner=innerIndices.map(i=>first[i]);
+const arc4ThenShell=shellIndices.map(i=>first[i]);
+const shedThenArc4=decode(rawInner,outguessBytes(password,rawInner.length));
+assert.equal(coincidence(arc4ThenInner),0.047619047619047616);
+assert.equal(coincidence(arc4ThenShell),0.056818181818181816);
+assert.equal(coincidence(shedThenArc4),0.035437430786267994);
+
 // Exactly one frozen native-GP signal: the p57 clear text encoded with this
 // source-derived historical key is recovered symbol-for-symbol, including F.
 const nativePad = outguessBytes(password, nativeClear.length);
@@ -176,7 +205,7 @@ console.log(JSON.stringify({
     priorPageIoc:coincidence(predecessor),
     entire308Ioc:coincidence(combined),
     decodedFirst40: first.slice(0,40).map(i=>corpus.translit[i]).join('-'),
-    gp3gramScorePerRune:candidateScore},
+    gp3gramScorePerRune:candidateScore},\n  originalShedCircumferenceOrder:{sourceWords:17,interiorRunes:43,shellRunes:33,\n    rawInteriorIoc:coincidence(rawInner),arc4ThenShedIoc:coincidence(arc4ThenInner),\n    arc4ThenShellIoc:coincidence(arc4ThenShell),shedThenArc4Ioc:coincidence(shedThenArc4)},
   sourceNativeControl: {p57RerencRoundTrip:true,
     originalP57Ioc:coincidence(nativeClear),
     nativeP57Gp3gramScorePerRune:sourceClearScore},
