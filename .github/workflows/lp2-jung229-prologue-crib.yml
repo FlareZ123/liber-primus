@@ -3,6 +3,12 @@ name: Jung Liber Primus 229 original-wordlength crib
 # Manual-only source screen. Do not create push or scheduled triggers.
 on:
   workflow_dispatch:
+    inputs:
+      run_magic_square:
+        description: "Also test the original 2014 5x5/3301 square as word indices in the Jung p229 excerpt"
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   source229:
@@ -19,6 +25,7 @@ jobs:
         run: |
           curl -fLsS --retry 3 --max-time 120 -o /tmp/jung229.pdf "https://www.jungiananalysts.org.uk/wp-content/uploads/2024/09/The-Way-of-What-is-to-Come-from-C.-G.-Jung-Liber-Novus-The-Red-Book-1-1.pdf"
           pdfinfo /tmp/jung229.pdf | head -20
+          echo "JUNG_PDF_SHA256=$(sha256sum /tmp/jung229.pdf | cut -d' ' -f1)" >> "$GITHUB_ENV"
           pdftotext /tmp/jung229.pdf /tmp/jung229-default.txt
           pdftotext -raw /tmp/jung229.pdf /tmp/jung229-raw.txt
           pdftotext -layout /tmp/jung229.pdf /tmp/jung229-layout.txt
@@ -28,3 +35,16 @@ jobs:
           node sims/lp2_jung229_prologue_crib_sft.cjs /tmp/jung229-default.txt
           node sims/lp2_jung229_prologue_crib_sft.cjs /tmp/jung229-raw.txt
           node sims/lp2_jung229_prologue_crib_sft.cjs /tmp/jung229-layout.txt
+      - name: Test source-selected 2014 magic-square word indices
+        if: ${{ inputs.run_magic_square }}
+        run: |
+          node --check sims/lp2_jung229_magic_square_word_index.cjs
+          node sims/lp2_jung229_magic_square_word_index.cjs /tmp/jung229-default.txt /tmp/jung229-raw.txt /tmp/jung229-layout.txt > /tmp/jung229-magic-word-index.json
+          cat /tmp/jung229-magic-word-index.json
+      - name: Preserve the selected-word result
+        if: ${{ inputs.run_magic_square }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: jung229-magic-word-index-${{ github.run_id }}
+          path: /tmp/jung229-magic-word-index.json
+          retention-days: 14
