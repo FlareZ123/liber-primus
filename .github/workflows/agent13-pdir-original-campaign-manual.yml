@@ -1,0 +1,89 @@
+name: Agent 13 LP2 pointer-direction source-locked manual campaign
+on:
+  workflow_dispatch:
+    inputs:
+      conv:
+        description: Pointer convention hmc
+        required: true
+        type: choice
+        default: "000"
+        options: ["000", "001", "002", "010", "011", "012", "020", "021", "022", "100", "101", "102", "110", "111", "112", "120", "121", "122"]
+      shard:
+        description: Zero-based rule shard
+        required: true
+        default: "0"
+        type: string
+      shards:
+        description: Number of disjoint rule shards
+        required: true
+        default: "1"
+        type: string
+      streams:
+        description: 6 for pilot, all for entire flat 581-stream library
+        required: true
+        default: "6"
+        type: string
+      windows:
+        description: Two registered windows or all eight original section windows
+        required: true
+        default: "seg0.7,seg0.8"
+        type: string
+      parts:
+        description: Real and/or matched-null streams
+        required: true
+        default: "real,null"
+        type: choice
+        options: ["real,null", "real", "null"]
+      null:
+        description: Matched random stream count
+        required: true
+        default: "6"
+        type: string
+      tag:
+        description: Results folder tag
+        required: true
+        default: "issue1329-pilot"
+        type: string
+permissions:
+  contents: read
+jobs:
+  original-pdir:
+    runs-on: windows-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin independent pointer-direction reference
+        uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: external-cicada3301
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install independent engine Python dependencies
+        run: python -m pip install numpy mpmath
+      - name: Build reference Rust engine with pdir option
+        run: cargo build --release --manifest-path external-cicada3301/work/kscreen/Cargo.toml
+      - name: Build original windows, all key streams, and frozen direction rules
+        run: |
+          python external-cicada3301/work/kscreen/export.py
+          python external-cicada3301/work/kscreen/signrules.py
+          python external-cicada3301/work/kscreen/dirrules.py
+      - name: Gate exact 12956 original runes, all 66 rules and 581 flat streams
+        run: python sims/lp2_pdir_issue1329_gate.py external-cicada3301
+      - name: Exact engine reference, planted positives and null controls
+        run: python external-cicada3301/work/kscreen/pdir_selftest.py --quick --threads 4
+      - name: Execute the frozen original LP2 screen
+        run: |
+          python sims/lp2_pdir_issue1329_gate.py external-cicada3301 --campaign --conv "${{ inputs.conv }}" --shard "${{ inputs.shard }}" --shards "${{ inputs.shards }}" --streams "${{ inputs.streams }}" --windows "${{ inputs.windows }}" --parts "${{ inputs.parts }}" --null "${{ inputs.null }}" --tag "${{ inputs.tag }}" --threads 4
+      - name: Preserve complete result shard and control reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdir-${{ inputs.conv }}-${{ inputs.tag }}-shard-${{ inputs.shard }}
+          if-no-files-found: warn
+          path: |
+            external-cicada3301/results/kscreen/pdir_selftest.txt
+            external-cicada3301/results/kscreen/pdir/${{ inputs.tag }}/${{ inputs.conv }}/
