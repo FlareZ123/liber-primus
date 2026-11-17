@@ -39,7 +39,7 @@ for (const page of annot.pages.slice().sort((a, b) => a.page - b.page)) {
     countDots++;
   }
   for (const span of page.red_spans || []) {
-    assert.deepEqual(span.runes, corpus.runes && span.runes); // source string is present
+    assert.equal([...span.runes].length, span.length);
     for (let j = 0; j < span.length; j++) {
       const offset = span.start + j;
       assert.equal([...span.runes][j], corpus.runes[printed[offset]]);
