@@ -142,10 +142,55 @@ assert.deepEqual(outcomes.map(o => o.firstContradictionOffset), [null, 6, 1, 6])
 assert.deepEqual(outcomes.map(o => o.legalFullInverseCount), [1, 0, 0, 0]);
 assert.equal(outcomes[0].legalKeyConsumed, 74);
 assert.equal(outcomes[0].legalPlainIoC, 0.03543859649122807);
+
+// Independent original p32 11x11 image-coordinate link to the two 563/569
+// cycle values: image dimensions are prime sums of its first row and column.
+// Two conventional zero/one-based conversions of each cycle sum into a
+// 121-cell address return a source-determined 23-rune key, still with no
+// language-fitted phase or secret lookup alphabet.
+const p32 = corpus.pages.find(page => page.page === 32).indices;
+assert.equal(p32.length, 121);
+const primes32 = p32.map(index => corpus.prime[index]);
+assert.equal(primes32.slice(0, 11).reduce((sum, p) => sum + p, 0), 563);
+assert.equal(primes32.filter((_, i) => i % 11 === 0).reduce((sum, p) => sum + p, 0), 569);
+assert.equal(originalCycleSums[6], 563);
+assert.equal(originalCycleSums[13], 569);
+const gridDecisions = [];
+for (const [indexing, offset] of /** @type {const} */ ([["zeroBased", 0], ["oneBased", 1]])) {
+  const key = originalCycleSums.map(sum => p32[(sum - offset + 121) % 121]);
+  for (const [startName, shift] of [["firstRedHeading", 0], ["secondRedHeading", secondStart]]) {
+    const rotated = key.slice(shift).concat(key.slice(0, shift));
+    for (const sign of /** @type {const} */ ([-1, 1])) {
+      const result = decodeAll(target, rotated, sign);
+      const plant = decodeAll(encrypt(knownPlain, rotated, sign), rotated, sign);
+      assert.ok(plant.solutions.some(item => item.plain.every((v, i) => v === knownPlain[i])));
+      for (const item of result.solutions) {
+        assert.deepEqual(encrypt(item.plain, rotated, sign), target);
+      }
+      gridDecisions.push({
+        indexing,
+        heading: startName,
+        inverseSign: sign,
+        processedBeforeContradiction: result.processed,
+        legalFullInverseCount: result.solutions.length,
+        legalPlainIoC: result.solutions.length ? ioc(result.solutions[0].plain) : null,
+        legalPlainRuneTokens: result.solutions.length ?
+          result.solutions[0].plain.map(i => corpus.translit[i]).join(" ") : null,
+        syntheticKnownP57Recovered: true,
+      });
+    }
+  }
+}
+assert.deepEqual(gridDecisions.map(item => item.processedBeforeContradiction),
+  [37,67,65,0,56,76,10,24]);
+assert.deepEqual(gridDecisions.map(item => item.legalFullInverseCount),
+  [0,0,0,0,0,1,0,0]);
+
 console.log(JSON.stringify({
   model: "original red-heading seeded p0–2 23-word prime-sum cycle / 23-period GP key, natural GP29 signs and p56 transparent-F",
   originalSource: { openingRunes: 729, openingWords: 158,
     bodyWordMap: 156, secondSeedCycleRotation: secondStart, targetPage: 55, targetRunes: 76 },
   decisions: outcomes,
-  caveat: "23-cycle is a provisional source selector. None of the full original outputs is readable GP prose; source does not explicitly select p55 as the key receiver.",
+  p32PrimeSumIndexGridDecisions: gridDecisions,
+  caveat: "23-cycle is a provisional source selector. No original output is readable GP prose; source does not explicitly select p55 as the key receiver.",
 }, null, 2));
