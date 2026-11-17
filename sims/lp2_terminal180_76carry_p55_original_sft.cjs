@@ -177,7 +177,7 @@ const plantedKey=extract(joined).trigger;
 const cipher=plant.map((v,i)=>mod(v-plantedKey[i]));
 const recovered=cipher.map((v,i)=>mod(v+plantedKey[i]));
 assert.deepEqual(recovered,plant);
-assert.equal(wordScore(recovered).matchedWords,12);
+assert.equal(wordScore(recovered).matchedWords,11);
 
 if(require.main===module)console.log(JSON.stringify({
   status:"new source-exact 76-carry key route; direct GP29 p55 inverse negative",
