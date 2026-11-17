@@ -203,6 +203,49 @@ assert.deepEqual(outputs.map((x) => Number(x.ioc.toFixed(8))),
 assert.equal(outputs[0].roman.startsWith('GIIASNGFNNIFSDLUGCIA'), true);
 assert.equal(outputs[3].roman.startsWith('EOOUFLIJUHOPMMMM'), true);
 
+
+// Count all source word→table→source word links, including non-instruction words.
+// The shuffled-multiset null prevents treating that broad link count as evidence.
+const allSums = p56.concat(p57).map((x) => x.sum);
+const addresses = [...new Set(allSums.map((sum) => (sum - 1) % 256))];
+const targets = new Set(allSums);
+assert.equal(addresses.length, 36);
+assert.equal(targets.size, 37);
+
+/** @param {number[]} tape */
+function wordLinks(tape) {
+  return addresses.filter((i) => targets.has(tape[i])).length;
+}
+
+/** @param {number[]} original */
+function shuffledLinkTail(original) {
+  let state = 0x33012659;
+  const random = () => {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return state >>> 0;
+  };
+  const trials = 150000;
+  const actual = wordLinks(original);
+  let atLeast = 0;
+  for (let trial = 0; trial < trials; trial++) {
+    const tape = original.slice();
+    for (let i = tape.length - 1; i > 0; i--) {
+      const j = random() % (i + 1);
+      [tape[i], tape[j]] = [tape[j], tape[i]];
+    }
+    if (wordLinks(tape) >= actual) atLeast++;
+  }
+  return { actual, atLeast, trials };
+}
+const base60Links = shuffledLinkTail(bytes);
+const base59Links = shuffledLinkTail(base59);
+assert.deepEqual(base60Links, { actual:4, atLeast:91744, trials:150000 });
+assert.deepEqual(base59Links, { actual:6, atLeast:12582, trials:150000 });
+console.log('Exact-multiset source-word link controls',
+  JSON.stringify({base60:base60Links, base59:base59Links}));
+
 console.log('Authentic word link: p56 PAGE=224 -> base60 cell224 (2V)=151 -> p57 FIND=151');
 console.log('Secondary base60 links: HASHES=316 -> OUT=69; DIUINITY=376 -> LICE=184');
 console.log('Competing base59 link: FIND=151 -> base59 cell151 (2X)=151, E neighbor MUST=186');
