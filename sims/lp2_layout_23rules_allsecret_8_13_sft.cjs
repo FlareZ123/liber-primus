@@ -190,6 +190,16 @@ const historicalLengths = {
   8: [23,10,1,10,9,10,16,26],
   13: [0,10,4,0,1,19,0,18,4,18,9,0,18]
 };
+const sourceClearP57 = canonical.pages[57].indices;
+const sourceCipherP56 = canonical.pages[56].indices;
+assert.equal(sourceClearP57.length, 95);
+assert.equal(sourceCipherP56.length, 85);
+const sourceClearScore = score(sourceClearP57);
+const sourceCipherScore = score(sourceCipherP56);
+assert.ok(sourceClearScore > 0.40, 'real clear original p57 must register as GP English');
+assert.ok(sourceCipherScore < -0.50, 'still-encrypted p56 original is not clear GP English');
+console.log('INDEPENDENT REAL SOURCE p57 clear GP native score:', sourceClearScore.toFixed(9),
+  'p56 encrypted rune score:', sourceCipherScore.toFixed(9));
 console.log('SOURCE original GP runes:', original.length,
   'rune-bearing original windows:', windows.length,
   'native training:', training.length, 'heldout:', heldout.length);
