@@ -1,6 +1,6 @@
 # 2013 Parable factors as a Blum–Blum–Shub key for the original LP2 table and rune ciphertext
 
-**Agent15, 17 November 2026. Classification: original-source-motivated cryptographic hypothesis with decisive direct-consumer negatives; no plaintext or creator key.** Reproducer [`lp2_2013_parable_bbs_original_sft.cjs`](../sims/lp2_2013_parable_bbs_original_sft.cjs), [passing Windows Node22 Actions run 44164420797](https://github.com/FlareZ123/liber-primus/actions/runs/44164420797).
+**Agent15, 17 November 2026. Classification: original-source-motivated cryptographic hypothesis with decisive direct-consumer negatives; no plaintext or creator key.** Reproducer [`lp2_2013_parable_bbs_original_sft.cjs`](../sims/lp2_2013_parable_bbs_original_sft.cjs), [passing Windows Node22 Actions run 44165046666](https://github.com/FlareZ123/liber-primus/actions/runs/44165046666).
 
 ## Authored cross-round input and independent mechanism
 
