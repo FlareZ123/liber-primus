@@ -1,0 +1,53 @@
+name: Agent 13 LP2 pointer-direction finished-stage1 reducer
+on:
+  workflow_dispatch:
+    inputs:
+      six_run_id:
+        description: Completed six-convention original stage1 Actions run ID
+        required: true
+        default: "44006868510"
+        type: string
+      remaining_run_id:
+        description: Completed remaining twelve-convention original stage1 run ID
+        required: true
+        default: "44007390480"
+        type: string
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-stage1-reduction:
+    runs-on: windows-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install file lock helper
+        run: python -m pip install filelock
+      - name: Retrieve every disjoint first-six-convention original artifact
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ inputs.six_run_id }}"
+          pattern: pdir-stage1-*
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          path: from-six
+          merge-multiple: false
+      - name: Retrieve every disjoint remaining-twelve-convention original artifact
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ inputs.remaining_run_id }}"
+          pattern: pdir-stage1-remaining-*
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          path: from-twelve
+          merge-multiple: false
+      - name: Reject missing, duplicate, wrong-engine, and incomplete vector coverage
+        run: python sims/lp2_pdir_stage1_reduce.py --six from-six --remaining from-twelve --out stage1-report
+      - name: Preserve calibrated original and matched-control reduction
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-lp2-pdir-stage1-18convention-report
+          path: stage1-report/
+          if-no-files-found: warn
