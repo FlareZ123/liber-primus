@@ -58,7 +58,7 @@ function gitSha(bytes) {
 
 /** @param {number} p @returns {{cipher:number[],lens:number[]}} */
 function windowAt(p) {
-  const raw = sections.slice(p, p + 3).join('');
+  const raw = sections.slice(p, p + 3).join('').replace(/[\/\n&$§%]/g, '');
   const words = [...raw.matchAll(group)].map(m =>
     [...m[0]].map(r => runeIndex.get(r)));
   const flat = words.flat();
