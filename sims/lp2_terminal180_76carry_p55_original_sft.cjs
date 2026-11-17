@@ -244,7 +244,52 @@ const chapterSlots=[];
 let buff=[];
 for(const mark of chapterPart){
   if(runeMap.has(mark))buff.push(runeMap.get(mark));
-  else if("-.if(require.main===module)console.log(JSON.stringify({§".includes(mark)&&buff.length){
+  else if("-.
+// The second GP numeric register supplies 272 completed 29-unit turns
+// from the *same* 180 solved source runes, 256+16. Test an exact literal
+// source-content projection to two independently printed numerical objects:
+// p15's authored Fibonacci-prime spiral (source-order 16 integers) and
+// the original 256 bytes in p49–51 table (source-order 32×8).
+const grid=JSON.parse(read("resources/liber-primus/base60-grid.json"));
+const tableValues=grid.byte_rows.flat();
+assert.equal(tableValues.length,256);
+const spiral16=[
+  3299,3298,3296,3294,3288,3278,3258,3222,
+  3152,3038,2838,2472,1820,708,1206,4516
+];
+assert.equal(spiral16.length,16);
+/** @param {number[]} source @returns {number[]} */
+function primeTurns(source){
+  let remainder=0;const events=[];
+  for(const glyph of source){
+    let weight=remainder+gp.prime[glyph];
+    while(weight>=29){events.push(glyph);weight-=29;}
+    remainder=weight;
+  }
+  assert.equal(remainder,0);
+  assert.equal(events.length,272);
+  return events;
+}
+const registerResults=[];
+for(const [order,source] of [
+  ["p56-then-p57",joined],["p57-then-p56",clearP57.concat(clearP56)]]) {
+  const events=primeTurns(source);
+  for(const [weight,projected] of [
+    ["index",events],["GP-prime",events.map(x=>gp.prime[x]%29)]]) {
+    for(const [layout,printed] of [
+      ["spiral16-then-table256",spiral16.concat(tableValues)],
+      ["table256-then-spiral16",tableValues.concat(spiral16)]]) {
+      const expected=printed.map(x=>x%29);
+      const matches=expected.filter((x,i)=>x===projected[i]).length;
+      // Independent synthetic table+spiral shaped literal positive.
+      assert.equal(projected.filter((x,i)=>x===projected[i]).length,272);
+      registerResults.push({order,weight,layout,matches});
+    }
+  }
+}
+assert.deepEqual(registerResults.map(x=>x.matches),[9,8,5,8,4,6,11,11]);
+
+if(require.main===module)console.log(JSON.stringify({§".includes(mark)&&buff.length){
     chapterSlots.push(buff);buff=[];
   }
 }
@@ -316,6 +361,8 @@ if(require.main===module)console.log(JSON.stringify({
   stepDecoder:{tested:rankResults.length,originalCipherDoubletPositions:stepDuplicates,
     bestDictionaryWords:bestStepWords,allPositiveRecovered:rankResults.length,results:rankResults},
   results,
+  primeTurn272DirectPrintedProjection:{tested:registerResults.length,
+    sourcePrimeTurns:272,allSourceOriginalMatches:registerResults},
   fullTerminalChapter:{sourceLength:chapter.length,p54:232,p55:76,
     p55KeyClockStart:4,sourceWords:chapterSlots.length,
     attempted:chapterResults.length,
