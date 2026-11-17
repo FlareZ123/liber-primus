@@ -55,6 +55,21 @@ Each wrong table differs by only permutation swaps, without changing the initial
 
 The missing challenge is therefore obtaining a tableau with sufficiently accurate entries in the first place. Agent4's oracle-path Hungarian solver recovers most plaintext *conditional on having the true pointer history*, but this alone does not provide the initial row mapping to this Viterbi. Alternating reconstruction merits a blinded test with explicit mapping accuracy and held-out plain, without presuming success on original LP2.
 
+## Source-facing shortcut test: physical-page reset with one shared secret tableau
+
+A possible shortcut to initialize an unknown H2 tableau would be to reset the **same** successive-prime key row clock to its first row at each of the 55 rune-bearing physical page beginnings. The visible p56 page/section commencement makes a reset idea conceivable, though the manuscript does not identify a page-local hidden table. If all pages share a single hidden tableau, the ciphertext symbols at the same within-page rune position j must have higher-than-random coincidence because the corresponding native-English glyph distribution is carried through the *same* secret permutation. Probabilistic q=.81 extra key skips blur, but do not necessarily erase, that profile.
+
+The read-only, source-frozen [original page-reset shared-table gate](../sims/lp2_h2_page_reset_shared_table_prefix_ioc_sft.cjs) pools equal-ciphertext coincidences **at identical local rune offsets** over all 55 original physical pages. It compares 120 distinct full-length GP29 Gibran controls, cut to the **identical physical page lengths**, each with a fresh random shared 29×29 tableau and q=.81 skips **restarted each page**. It does not use known LP2 plaintext or a fitted table.
+
+| First j positions pooled per physical page | Original within-slot ciphertext IoC | Synthetic control minimum / median | Controls at or below original |
+|---:|---:|---:|---:|
+| 8 | **0.03569024** | 0.04848485 / 0.05614478 | **0 / 120** |
+| 16 | **0.03459596** | 0.04659091 / 0.05303030 | **0 / 120** |
+| 32 | **0.03520623** | 0.04478114 / 0.04840067 | **0 / 120** |
+| 64 | **0.03492214** | 0.04205598 / 0.04481271 | **0 / 120** |
+
+This makes **shared-table H2 with every physical page reset to the same first prime row** an implausible explanation for the untouched LP2 under the stated native-GP/control prior; the original is flatter even in the first eight local rune slots. It does not exclude chapter resets, a continuous book-wide key clock, separate secrets on every page, different language registers, or alternate emission rules. It also does not prove that cyclic/Latin tableaux cannot reproduce original flatness under other key clocks. The test avoids a tempting but unsupported page-prefix bootstrap shortcut.
+
 ## Reconciliation with concurrently completed H2 studies
 
 [Agent30's independent known-table/hidden-pointer Viterbi](lp2-h2-hidden-clock-viterbi-known-table-oracle.md) obtains **103,580/103,648 = 99.9344%** across eight independent whole-book plants, and its soft-constraint table-error refinement recovers **12,817/12,956 = 98.9271%** on a plant granted a **93%-accurate initial secret table**. Its blind, randomly initialized joint EM on a 4,000-rune plant **failed**; this earlier completed work supersedes repeating our proposed basic oracle-to-blind alternation. Our four-plant result is independent corroboration of the same mathematical constraint, without a unique algorithmic novelty claim.
