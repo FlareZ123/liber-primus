@@ -69,6 +69,23 @@ The last reference control greedily maps English text to GP runes, normalizing K
 
 **Consequence.** The full frozen two-word path is uncommon under table-global randomization, but readily reproducible at the percent level when preserving the original row content or drawing authentic solved-text words. Its very specific \`FIND/MUST\` appearance does not repair its retrospective operator selection. The further equation \`φ(186)=60\` identifies a ring length once \`MUST\` has already been selected; it cannot be counted as an independent key or corroborating ciphertext. This is a defensible **provisional navigation clue**, not evidence of an actual decryption.
 
+### Original numeral-alphabet occupancy and codec identifiability
+
+The original 256 two-character tokens across physical JPEGs **66–68** contain **no lowercase \`f\`** among their 256 second characters. This initially motivates the f-omitting 59-digit interpretation, but a finite-source null is essential. The printed leading characters consist of **239** digits in \`0..3\` and **17** digit-\`4\` prefixes. Under a specific source-conditioned base60 null, the former have **60** possible second digits per legal 8-bit byte, while the latter have **16**. Hold those first-character counts (and their positions) fixed, sample the second digits independently and uniformly among the legal possibilities, and calculate *exactly* by inclusion-exclusion rather than simulation:
+
+| Source-conditioned event in 256 printed second digits | Exact probability, rounded |
+| --- | ---: |
+| At least one of the 60 possible glyphs is missing | **60.3227%** |
+| Exactly one glyph of any identity is missing | **38.2027%** |
+| The named lowercase \`f\` is missing, regardless of others | **1.8009%** |
+| Lowercase \`f\` is the **only** missing glyph | **0.7747%** |
+
+These are different conditional questions, not an implicit p-value for discovering base59. In particular, selecting the missing glyph *after* seeing the table makes the broad **38.2%** one-missing event more pertinent than the much smaller preselected \`f\`-only probability. A separately authenticated author clue that singled out the lowercase letter \`f\` in the numeric alphabet would change the prior-selection condition; none has been identified. Uppercase GP rune \`F\` in p56's authentic skip mechanism does not alone identify the lower-case second-digit \`f\` in a distinct numeral alphabet.
+
+The two complete 8-bit codebooks are **exactly observationally tied** on the unmodified table. The conventional full base60 and the f-deleted base59 alphabets each encode exactly 256 byte values, with **252** original two-character codewords in common. Base60-only symbols are \`0f,1f,2f,3f\`; f-deleted base59-only symbols are \`4G,4H,4I,4J\`. **Every one of the 256 printed tokens lies in their 252-element intersection**, so an iid uniform-byte generative model assigns the exact observed ordered token list probability \`(1/256)^256\` under either alphabet. The codec likelihood ratio for those two models is **1**. Selecting \`f\` after observing its absence cannot break this equality or authenticate base59. An independent original-source plaintext constraint, checksum, authenticated numeral alphabet, or uniquely specified receiver is still necessary.
+
+[Single-file exact inclusion-exclusion and codebook support reproduction](../sims/lp2_p57_find_must_address_null_sft.cjs) uses only immutable canonical source text and outputs both exact-coded null summaries; no new decryption was inferred.
+
 ## Decision and limits
 
 The historical first-party material discussed in the [source-clue review](lp2-p0-red331-row27-phi151-closed-loop-original.md) and [authenticated method synthesis](../workplace/integrated-original-inversion-challenge.md) includes the explicit \`FIND\`, \`WITHIN\`, \`EMERGE\`, \`circumferences\`, \`primes\`, \`totient\`, and 2016 \`words/numbers/direction\` language. **No authenticated dated 2013–2016 command has been identified that chooses the f-omitting radix, an outward-to-p55 mapping, a reversible byte→GP29 operation, a 76-rune key clock, or the plaintext-F skip handling.** Thus the source-selected inverse required by #1357 is missing. This is an evidentiary limitation, not a claim that all undiscovered historical material is absent.
