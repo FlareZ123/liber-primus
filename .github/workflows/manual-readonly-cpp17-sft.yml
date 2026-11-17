@@ -1,0 +1,35 @@
+name: Manual reusable C++17 original-source SFT
+
+on:
+  workflow_dispatch:
+    inputs:
+      sft:
+        description: 'Repository C++17 source test in sims/'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out original research corpus
+        uses: actions/checkout@v4
+      - name: Compile and run one source-native test
+        shell: bash
+        env:
+          SFT: ${{ inputs.sft }}
+        run: |
+          if [[ ! "$SFT" =~ ^sims/[A-Za-z0-9_-]+\.cpp$ ]]; then
+            echo 'Select a flat sims/*.cpp file with safe path characters' >&2
+            exit 2
+          fi
+          if [[ ! -f "$SFT" ]]; then
+            echo 'Selected source test does not exist' >&2
+            exit 2
+          fi
+          g++ -std=c++17 -O3 -o "$RUNNER_TEMP/source-test" "$SFT"
+          "$RUNNER_TEMP/source-test"
