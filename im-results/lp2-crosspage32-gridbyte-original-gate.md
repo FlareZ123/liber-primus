@@ -34,6 +34,10 @@ The lexicon includes 12,140 distinct native GP words of length three or more fro
 
 **Reproduce:** [read-only Windows 11 Node22 SFT](../sims/lp2_crosspage32_gridbyte_key_sft.cjs), with canonical corpus, original transcript, p50 grid and three control texts under resources/. [Windows Actions invocation](https://github.com/FlareZ123/liber-primus/actions/workflows/agent12-crosspage32-gridbyte-original.yml) runs the same script; a passing CI result is not presumed before execution.
 
+## Frozen AES-256 table self-consumer
+
+Because the derived register is exactly 32 bytes, one additional standard symmetric-key receiver was tested **without IV, offset, transpose, padding adjustment or score fitting**: AES-256-ECB decryption of the original 256 table bytes, including the source-selected key cells themselves. The exact decrypted SHA-256 is `3f7f59bf277f813ecef8490dba4eed7ca5f0c0da26f2a9dc95261f7155e5ca16`; its first 16 decrypted bytes are `31f2c4194767ec5a2bbd2a9a4e016f79` and **99/256 bytes** fall in printable ASCII or LF/CR, consistent with unstructured bytes rather than a direct plaintext file. Exact encrypt/decrypt inversion succeeds. No source explicitly selects AES, and this gate excludes only the direct no-IV ECB table-as-ciphertext route, not all possible 32-byte key uses.
+
 ## Source-conditioned page-wrap null: 32 is suggestive, not decisive
 
 To evaluate whether the numerical-table alignment could be an incidental consequence of page layout, the same SFT freezes nine original chapter boundaries and exact rune counts for every original page. In each of **20,000** independent deterministic samples (xorshift32 seed `41720919`), shuffle the actual complete printed-word lengths **only within their chapter**, then reinstate the *exact original rune positions of all page cuts*. Do not alter the original table or choose any key based on shuffled texts. The real chapter seam counts are **2,4,2,4,3,3,2,11,1**, totalling 32.
