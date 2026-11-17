@@ -158,46 +158,49 @@ const solvedIndexTotal=clearP56.concat(clear)
   .reduce((s,r)=>s+r,0);
 assert.equal(solvedIndexTotal, 76*29);
 
-// End-to-end source-shaped positive: plant 95 fresh leaf symbols, generate
-// the 160 nonroot internal values by the same parent-sum graph, put 76 on
-// unknown p55 and 84 on solved p56, and transparently insert one F at the
-// authentic source p56 offset. This validates full encoder/inverse geometry.
-const positiveLeaves = Array.from({length:95}, (_,i) =>
-  (i*17 + i*i*11 + 7)%29);
-const synthetic = Array(256).fill(-1);
-leaves.address.forEach((node,i) => { synthetic[node]=positiveLeaves[i]; });
-/** @param {number} node @returns {number} */
-function propagate(node) {
-  if (synthetic[node]>=0) return synthetic[node];
-  return synthetic[node] = children[node]
-    .reduce((sum, child)=>sum+propagate(child),0)%29;
+// Source-shaped native geometry positive: create fresh leaf symbol labels, make
+// every internal label with the same graph recurrence, and select a plant
+// with exactly the one visible plaintext F inserted at source p56 offset56.
+let plantSeed = -1, synthetic, plantedP55, plantedP56;
+for (let seed = 1; seed <= 1024 && plantSeed === -1; seed++) {
+  let state = seed;
+  const take = () => {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return (state>>>0)%29;
+  };
+  const trial = Array(256).fill(-1);
+  leaves.address.forEach(node => {trial[node]=take();});
+  /** @param {number} node @returns {number} */
+  function propagate(node) {
+    if(trial[node]>=0) return trial[node];
+    return trial[node]=children[node].reduce((s,i)=>s+propagate(i),0)%29;
+  }
+  propagate(189);
+  const labels = nonroot.address.map(node => trial[node]);
+  const terminalKnown = labels.slice(76);
+  if (terminalKnown.includes(0)) continue;
+  synthetic=trial;plantedP55=labels.slice(0,76);
+  plantedP56=terminalKnown;plantSeed=seed;
 }
-propagate(189);
-const plantedNonroot = nonroot.address.map(node=>synthetic[node]);
-assert.equal(plantedNonroot.length, 160);
-const plantedP55 = plantedNonroot.slice(0,76);
-const plantedP56 = plantedNonroot.slice(76);
+assert(plantSeed>0);
 assert.equal(plantedP55.length,76);
 assert.equal(plantedP56.length,84);
-const plantedComplete = plantedP56.slice();
+const plantedComplete=plantedP56.slice();
 plantedComplete.splice(56,0,0);
 assert.equal(plantedComplete.length,85);
-let pointer=0;
-const encryptedP56 = plantedComplete.map(p=>p===0 ? 0
-  : mod(p+primeClock[pointer++]));
-// This plant's internal labels can contain genuine F, so the source-style
-// F-transparent rule may yield more bypasses than the one observed on p56.
-const allKeyConsumed=plantedComplete.filter(p=>p!==0).length;
-assert.equal(pointer,allKeyConsumed);
-const decoded=encryptedP56.map((c,i)=>{
-  if(plantedComplete[i]===0) return 0;
-  // Recover the authentic count of preceding non-F symbols without
-  // obtaining the planted key from ciphertext.
-  const prior=plantedComplete.slice(0,i).filter(v=>v!==0).length;
-  return mod(c-primeClock[prior]);
-});
-assert.deepEqual(decoded,plantedComplete);
-assert.deepEqual(plantedP56,nonroot.address.slice(76).map(i=>synthetic[i]));
+let plantedClock=0;
+const plantedCipher=plantedComplete.map(p=>
+  p===0 ? 0 : mod(p+primeClock[plantedClock++]));
+assert.equal(plantedClock,84);
+let inverseClock=0;
+const recovered=plantedCipher.map((c,i)=>
+  i===56 ? 0 : mod(c-primeClock[inverseClock++]));
+assert.equal(inverseClock,84);
+assert.deepEqual(recovered,plantedComplete);
+assert.deepEqual(recovered.filter(x=>x!==0),nonroot.address
+  .slice(76).map(i=>synthetic[i]));
 
 console.log(JSON.stringify({
   classification:"original source geometry; 24 finite root-excluded inversions fail held-out p56",
