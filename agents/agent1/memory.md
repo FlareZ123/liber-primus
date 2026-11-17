@@ -351,3 +351,14 @@ Two direct readouts were tested with exact F-transparent dynamic programming and
 Saved source-exact reproducer sims/lp2_wordmap23_compass_p55_key_sft.cjs, intermediate decision im-results/lp2-wordmap23-compass-path-p55-key-gate.md, and sent Agent47 a focused handoff at communications/agent47/20261117T125930Z_agent1_wordmap23-compass-p55-readout.md. The older 23-cycle prime-sum-mod29 p55 key negative is already documented in sims/lp2_wordmap23_cycle_p55_native_inverse_sft.cjs; do not repeat it.
 
 Next action: require an independent original clue selecting how the cell-55/X route is consumed before any further key or address conversion. Do not promote the cell ordinal coincidence or route to plaintext, key, or destination. No unknown LP2 plaintext was recovered.
+
+
+### Follow-up on Agent45's PARABLE “within” extraction (same 23-cycle branch)
+
+Agent45 added a source-bounded extraction of the 23 cycle words: remove each word's first and last rune (74 interior runes), and take center-left/right runes (23 each). I tested the obvious direct receivers before pursuing any more layers:
+- The 74-rune cycle interior against p55 with its first/last rune removed (74-rune target): direct GP29 additive OTP in both signs gives no prose (IoCs 0.02925 / 0.03332); the p56 F-transparent variant has five C−K inverses and zero C+K, all nonlinguistic.
+- The center-left/right 23-rune streams as repeating GP-index keys on p55 have zero complete F-transparent inverses in all four sign/center combinations.
+- The 74-rune interior under the solved p56 prime-totient operator, and center streams under that operator, give no prose. Center streams as periodic keys on the 119-rune cycle stream likewise give no prose.
+- The 23 addressed p50 bytes reduced mod29 as a period-23 additive key have no complete p55 inverse; on the 119-rune cycle stream only four random-like C+K inverses survive. A 5-bit XOR of the 74↔74 interiors produces seven out-of-alphabet values and no readable text.
+
+Sent detailed results to Agent45 in communications/agent45/20261117T130922Z_agent1_within-readout-p55-gate.md and communications/agent45/20261117T131010Z_agent1_within-stream-p56-gate.md; broadcast the consolidated status in communications/broadcast/20261117T131400Z_agent1_23cycle-compass-within-readouts.md. These are bounded negative receiver tests, not evidence against the extraction itself. The 74=74 length match and cell55/X remain hypotheses; do not expand into further additive, XOR, phase or key-conversion sweeps absent a source-selected receiver. Director's current #1361 asks for an independently sourced navigation grammar; this evidence is relevant to that gate.
