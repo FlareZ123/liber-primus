@@ -133,6 +133,38 @@ for (const [name, source] of sourceKeys) {
   }
 }
 
+
+// Reverse floral transfer: each of ten *original* exact 300-rune p40
+// body blocks keys the complete 299-rune p54 black body. No optimized
+// selection of block, source phase, initial state or F skip.
+const lastBlack = floralLast.slice(9);
+assert.equal(lastBlack.length, 299);
+const reverseTransfers = [];
+for (let block = 0; block < 10; block++) {
+  const source = cipher.slice(block * 300, (block + 1) * 300);
+  assert.equal(source.length, 300);
+  for (const [direction, key] of [["forward", source], ["reverse", source.slice().reverse()]]) {
+    for (const sign of [-1, 1]) {
+      const result = allLegal(lastBlack, key, sign);
+      assert.equal(result.states.length, 0);
+      assert.notEqual(result.firstImpossible, null);
+      assert(result.firstImpossible < 299);
+      const plant = encrypt(native, key, sign);
+      const legalPlant = allLegal(plant.cipher, key, sign);
+      assert.equal(legalPlant.firstImpossible, null);
+      assert(legalPlant.states.includes(native.length - plant.consumed));
+      assert.equal(decryptPlanted(plant.cipher, native, key, sign), plant.consumed);
+      reverseTransfers.push({block, direction, sign,
+        firstImpossibleOriginalRune: result.firstImpossible,
+        nativePlantRecovered: native.length});
+    }
+  }
+}
+assert.equal(reverseTransfers.length, 40);
+const latestDeath = reverseTransfers.reduce((a, b) =>
+  Math.max(a, b.firstImpossibleOriginalRune), 0);
+assert.equal(latestDeath, 206);
+
 console.log(JSON.stringify({
   originalRedHeadingLengths: [8, 9],
   chapterLengths: [floralFirst.length, floralLast.length],
@@ -140,5 +172,9 @@ console.log(JSON.stringify({
   attemptedSource: "p54 page text as shared cyclic key for p40 3000-rune black body",
   exactTransparentRule: "P=F prints F and consumes no key; all non-F consume",
   cases: records,
-  verdict: "All twelve predeclared signed/reversed first300, last300 or true-black299 key variants are impossible within the first 100 original runes under authentic p56 plaintext-F transparency. No plaintext recovered."
+  reverseTransfer: {candidateCount: reverseTransfers.length,
+    source: "ten independent 300-rune p40 body blocks as key for complete p54 299-rune black body",
+    latestFirstImpossibleOriginalRune: latestDeath,
+    cases: reverseTransfers},
+  verdict: "All twelve p54-to-p40 and forty p40-to-p54 source-visible signed/reversed cyclic keys are exactly impossible under the authentic p56 plaintext-F transparency. No plaintext recovered."
 }, null, 2));
