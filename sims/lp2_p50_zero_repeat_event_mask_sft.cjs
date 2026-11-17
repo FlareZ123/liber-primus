@@ -8,6 +8,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 
 const root = path.resolve(__dirname, '..');
 /** @param {string} filename @returns {string} */
@@ -80,6 +81,48 @@ const singletonIncomingHits = single.reduce((n, e) =>
   n + leadingZero[(e.global - 1) & 255], 0);
 assert.equal(singletonGlyphHits, 23);
 assert.equal(singletonIncomingHits, 25);
+
+
+// A second, historically recognizable typed transport gate: two GP29 rune
+// values per one source-fixed bit yield 58 distinct digits (Bitcoin Base58).
+// No secret permuted alphabet is fitted. Preserve exact event order and the
+// original zero=1 polarity. Only the two natural product embeddings are read.
+/** @param {number[]} digits @returns {Buffer} */
+function decodeBase58(digits) {
+  let value = 0n;
+  for (const digit of digits) {
+    assert.ok(digit >= 0 && digit < 58);
+    value = value * 58n + BigInt(digit);
+  }
+  let hexText = value.toString(16);
+  if (hexText.length & 1) hexText = '0' + hexText;
+  return Buffer.from(hexText, 'hex');
+}
+/** @param {Buffer} bytes @returns {Buffer} */
+function sha256(bytes) {
+  return crypto.createHash('sha256').update(bytes).digest();
+}
+/** @param {Buffer} bytes @returns {boolean} */
+function hasBase58Check(bytes) {
+  const body = bytes.subarray(0, -4);
+  const checksum = sha256(sha256(body)).subarray(0, 4);
+  return checksum.equals(bytes.subarray(-4));
+}
+const base58Readings = [
+  ['rune+29*zero', repeated.map((r, i) => r.rune + 29 * marks[i]),
+    '0898975ee19bdea2ff3c88751c735d1607f5271387af780064807c17daed59eeebd4cdb813b32b18185fa46c2f1f9fe4f7894335609f25ba0a058c67e4548e'],
+  ['2*rune+zero', repeated.map((r, i) => 2 * r.rune + marks[i]),
+    '1120aacb7458f586fd3ae1a0f9a9e68f807510443d87737ea167301e1c07d61881de9e0157a1b0812683f9fc287adf722ac164785a36a5b04199767b924eb0']
+];
+for (const [label, digits, expectedHex] of base58Readings) {
+  const bytes = decodeBase58(digits);
+  assert.equal(bytes.length, 63);
+  assert.equal(bytes.toString('hex'), expectedHex);
+  assert.equal(hasBase58Check(bytes), false);
+  console.log('Natural Base58 product', label, '| decoded bytes:', bytes.length,
+    '| double-SHA256/Base58Check:', false,
+    '| hex prefix:', expectedHex.slice(0, 24));
+}
 
 console.log('Source: 55 original rune pages, 12,956 runes, 2,896 complete printed words');
 console.log('p50 original high-digit-zero cells:', 60, '/256');
