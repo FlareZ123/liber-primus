@@ -65,7 +65,9 @@ function gpText(text) {
   }
   return out;
 }
-const shakespeare = read('resources/control/shakespeare_first300k.txt').toString('utf8');
+const shakespeare = read('resources/control/shakespeare_first300k.txt')
+  .toString('utf8').replace(/\r\n/g, '\n');
+assert.equal(shakespeare.length, 300000);
 const gibran = read('resources/control/gibran_prophet_58585.txt').toString('utf8');
 const emerson = read('resources/control/emerson_essays_2944.txt').toString('utf8');
 const native = [shakespeare, gibran, emerson].map(gpText);
