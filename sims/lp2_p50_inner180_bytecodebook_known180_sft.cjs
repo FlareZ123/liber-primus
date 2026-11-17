@@ -92,6 +92,39 @@ function exactCodebook(bytes,clear){
   return {distinctBytes:histogram.size,maxUnderAnySecret256Lookup:highest,
     forcedMismatches:clear.length-highest,firstConflict};
 }
+/**
+ * Position-indexed arbitrary codebook f_group(byte) for source-visible group
+ * clocks: physical manuscript page (10/13/9 original table rows), six
+ * printed interior columns, or the thirty visible inner rows.
+ * @param {number[]} cells Exact printed row-major table coordinates.
+ * @param {number[]} bytes Full original 256-value table.
+ * @param {"page"|"column"|"row"} grouping
+ */
+function groupedCodebook(cells,bytes,grouping){
+  assert.equal(cells.length,CLEAR.length);
+  const hist=new Map();
+  for(let j=0;j<cells.length;j++){
+    const cell=cells[j],r=Math.floor(cell/8),c=cell%8;
+    const group=grouping==="page"?(r<10?0:r<23?1:2):
+      grouping==="column"?c:r;
+    const key=group+":"+bytes[cell];
+    if(!hist.has(key))hist.set(key,new Map());
+    const pair=hist.get(key),p=CLEAR[j];
+    pair.set(p,(pair.get(p)||0)+1);
+  }
+  let ceiling=0;
+  for(const counts of hist.values())ceiling+=Math.max(...counts.values());
+  return {distinctGroupedCodes:hist.size,maxMatches:ceiling,
+    forcedMismatches:CLEAR.length-ceiling};
+}
+/** @param {boolean} columns Original 30x6 interior scan coordinates. */
+function interiorCells(columns){
+  const list=[];
+  if(columns){for(let c=1;c<=6;c++)for(let r=1;r<=30;r++)list.push(r*8+c);}
+  else{for(let r=1;r<=30;r++)for(let c=1;c<=6;c++)list.push(r*8+c);}
+  assert.equal(list.length,180);
+  return list;
+}
 const possible=[];
 for(const basis of [60,59]){
   const alphabet=basis===60?table.alphabet:table.alphabet.replace("f","");
@@ -109,14 +142,22 @@ for(const basis of [60,59]){
     const source=inside(bytes,columns);
     if(reverse)source.reverse();
     const result=exactCodebook(source,CLEAR);
+    const cells=interiorCells(columns);
+    if(reverse)cells.reverse();
     possible.push({basis,order:columns?"column":"row",
-      direction:reverse?"reverse":"printed",...result});
+      direction:reverse?"reverse":"printed",...result,
+      phaseByOriginalPage:groupedCodebook(cells,bytes,"page"),
+      phaseByInteriorColumn:groupedCodebook(cells,bytes,"column"),
+      phaseByInteriorRow:groupedCodebook(cells,bytes,"row")});
   }
 }
 const expected=[133,131,132,131];
 for(let i=0;i<possible.length;i++)
   assert.equal(possible[i].maxUnderAnySecret256Lookup,expected[i%4]);
 assert.ok(possible.every(x=>x.forcedMismatches>=47));
+assert.deepEqual(possible.slice(0,4).map(x=>x.phaseByOriginalPage.maxMatches),[165,166,165,166]);
+assert.deepEqual(possible.slice(0,4).map(x=>x.phaseByInteriorColumn.maxMatches),[172,174,173,172]);
+assert.ok(possible.every(x=>x.phaseByInteriorRow.maxMatches===180));
 assert.equal(new Set(possible.map(x=>x.distinctBytes)).size,1);
 assert.equal(possible[0].distinctBytes,127);
 
@@ -135,5 +176,5 @@ console.log(JSON.stringify({
   originalTable:"p49-p51 32x8",originalSolvedTarget:"p56 85+p57 95 GP29",
   original:possible,
   plantedNative:{gpRunes:180,exactRecoveries:180,distinctCodes:known.distinctBytes},
-  conclusion:"Every fixed source-natural 256-byte codebook contradicts at least 47 authentic known GP29 positions; no unknown plaintext"
+  conclusion:"Stationary byte→GP29 lookup forces at least47/180 contradictions; even independently keyed original manuscript pages force at least14, and individual printed columns at least6. A 30-row lookup fits vacuously with 180 distinct (row,byte) codes, without predicting p55."
 },null,2));
