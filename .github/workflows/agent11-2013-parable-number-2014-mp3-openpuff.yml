@@ -1,0 +1,145 @@
+name: Agent11 2013 parable number as native OpenPuff password on historical 2014 MP3
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent11-2013-numeric-password-on-2014-mp3
+  cancel-in-progress: false
+
+jobs:
+  historical-crossround-test:
+    runs-on: windows-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 32-bit Python and native UI requirements
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x86
+
+      - name: Verify tested OpenPuff capture mechanics
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -c "import struct; assert struct.calcsize('P') == 4"
+          python -m pip install --disable-pip-version-check filelock pywinauto Pillow
+          python sims/openpuff_output_capture_sft.py
+          New-Item -ItemType Directory -Force -Path probe-output | Out-Null
+
+      - name: Download and authenticate period OpenPuff v4.00
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $base = 'https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff'
+          $folder = Join-Path $env:RUNNER_TEMP 'OpenPuffv400'
+          New-Item -ItemType Directory -Force -Path $folder | Out-Null
+          $expected = @{
+            'OpenPuff.exe' = '466e03c792075313ce533a5dc7a789e8a41209f9'
+            'libObfuscate.dll' = 'f3b1c3315f8286346416fefd6141410f422f2454'
+            'OpenPuff_license.txt' = 'b0bab97d3c9906caada26fbb890a2a6fe028baa4'
+          }
+          foreach ($name in $expected.Keys) {
+            $path = Join-Path $folder $name
+            Invoke-WebRequest -Uri "$base/$name" -OutFile $path
+            $blob = (& git hash-object -- $path).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $blob -ne $expected[$name]) {
+              throw "OpenPuff source blob mismatch: $name ($blob)"
+            }
+          }
+          $exe = Join-Path $folder 'OpenPuff.exe'
+          $vi = (Get-Item $exe).VersionInfo
+          $version = "$($vi.FileMajorPart).$($vi.FileMinorPart).$($vi.FileBuildPart).$($vi.FilePrivatePart)"
+          if ($version -ne '4.0.0.0') { throw "Unexpected OpenPuff version $version" }
+          if (-not (Select-String -LiteralPath (Join-Path $folder 'OpenPuff_license.txt') -Pattern 'OpenPuff v4.00' -Quiet)) {
+            throw 'Historical OpenPuff identity failed'
+          }
+          "OPENPUFF_EXE=$exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Retrieve and independently authenticate both MP3 source carriers
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $controlUrl = 'https://raw.githubusercontent.com/iBotPeaches/cicada_3301/a0a616d85717af59f8b806875b43d51e06e1e874/tool/storage/interconnected.mp3'
+          $targetUrl = 'https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3'
+          $control = Join-Path $env:RUNNER_TEMP 'interconnected.mp3'
+          $target = Join-Path $env:RUNNER_TEMP '761.MP3'
+          Invoke-WebRequest -Uri $controlUrl -OutFile $control
+          Invoke-WebRequest -Uri $targetUrl -OutFile $target
+          if ((Get-Item $control).Length -ne 6651873) { throw '2014 original length mismatch' }
+          if ((Get-Item $target).Length -ne 4010732) { throw '2013 original length mismatch' }
+          $controlHash = (Get-FileHash $control -Algorithm SHA256).Hash.ToLowerInvariant()
+          $targetHash = (Get-FileHash $target -Algorithm SHA256).Hash.ToLowerInvariant()
+          $controlBlob = (& git hash-object -- $control).Trim().ToLowerInvariant()
+          if ($LASTEXITCODE -ne 0 -or $controlBlob -ne '09fe068192b76a3697c47ec1d604b527703db798') {
+            throw "2014 source blob mismatch $controlBlob"
+          }
+          if ($targetHash -ne '83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460') {
+            throw "2013 source SHA256 mismatch $targetHash"
+          }
+          Write-Host "Verified 2014 control SHA256 $controlHash"
+          Write-Host "Verified 2013 PARABLE MP3 SHA256 $targetHash"
+          "CONTROL_MP3=$control" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "PARABLE_MP3=$target" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Authenticate exact historical 2014 password and settings
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python sims/openpuff_v400_extract.py `
+            --exe "$env:OPENPUFF_EXE" `
+            --carrier "$env:CONTROL_MP3" `
+            --password '33011033' `
+            --bit-format 'Mp3 (Audio)' `
+            --bit-level '1/2 (50%) - Maximum' `
+            --out 'probe-output/2014-control' `
+            --output-name 'magicsquares.txt' `
+            --wait-seconds 30 `
+            --expected-crc32 '6A8C41E3' `
+            --expected-size 745
+          if ($LASTEXITCODE -ne 0) { throw '2014 native control failed to execute' }
+          $result = Get-Content 'probe-output/2014-control/result.json' -Raw | ConvertFrom-Json
+          if (-not $result.expected_match) { throw 'Original 745-byte 2014 control mismatch' }
+          Write-Host 'Native OpenPuff v4.00 source-positive control passed'
+
+      - name: Test historical 2013 PARABLE number as a second A-only password on 2014 MP3
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          # The original 2013 audio's ID3 text, recovered independently by the repository,
+          # names the exact numerical title "Parable 1,595,277,641". Its text reappears
+          # on original LP2 p57, but the numerical title is omitted there.
+          $source = [System.IO.File]::ReadAllBytes($env:PARABLE_MP3)
+          $tag = [System.Text.Encoding]::GetEncoding('ISO-8859-1').GetString($source,0,206)
+          if (-not $tag.Contains('Parable 1,595,277,641')) { throw 'Historical 2013 numeric title absent' }
+          python sims/openpuff_v400_extract.py `
+            --exe "$env:OPENPUFF_EXE" `
+            --carrier "$env:CONTROL_MP3" `
+            --password '1595277641' `
+            --bit-format 'Mp3 (Audio)' `
+            --bit-level '1/2 (50%) - Maximum' `
+            --out 'probe-output/2013-number-on-2014-interconnectedness' `
+            --wait-seconds 60
+          if ($LASTEXITCODE -ne 0) { throw '2014 historical source carrier could not be evaluated by native OpenPuff' }
+          $result = Get-Content 'probe-output/2013-number-on-2014-interconnectedness/result.json' -Raw | ConvertFrom-Json
+          Write-Host "PARABLE_NUMERIC_2014_MP3_NATIVE_RESULT: $($result.native_probe_outcome)"
+          Write-Host "CAPACITY BYTES: $($result.selected_capacity_bytes_after_level)"
+          if (-not $result.carrier_added -or -not $result.bit_selection_verified) {
+            throw 'Original 2014 carrier selection failed before cryptographic test'
+          }
+          if ($result.native_probe_outcome -eq 'inconclusive-timeout') {
+            throw 'Native OpenPuff did not report completion; do not claim negative'
+          }
+
+      - name: Preserve native GUI evidence and any authentic extracted bytes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent11-parable-numeric-2014-mp3-native
+          path: probe-output/
+          if-no-files-found: warn
