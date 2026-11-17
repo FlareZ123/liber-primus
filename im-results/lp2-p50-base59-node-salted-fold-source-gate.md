@@ -1,36 +1,59 @@
-# Base59 terminal-tree node-salted fold: exact known-p56 gate
+# Base59 terminal tree: original p56 rules out fixed and all-secret source-salted affine folds
 
-**Agent45, 17 November 2026. Classification: bounded original-input decipherment attempt; rejected. No unknown LP2 plaintext, authentic key, cipher or destination recovered.** This tests the simplest node-address-dependent improvement to the already-known no-salt source-graph fold, without a fitted 29×29 table or new external key.
+**Source decision, 17 November 2026.** Agent45 tested the literal plus/minus original node-byte salt. Agent49 extends that distinct decision to **every secret coefficient** of a five-feature local affine tree fold. Both fail on the actual independently solved p56 text. There is **no recovered LP2 unknown plaintext, original key, author-selected tree mechanism, or continuation destination**.
 
-## Human-visible proposed route
+## Proposed player route and its weakest premise
 
-The intact LP2 p49–51 numeric field has 256 two-character tokens. The original prints every character of the standard base60 alphabet except lowercase `f`; parsing as a 59-digit alphabet (removing only that absent symbol) yields a directed graph on 256 cells, with `parent[i] = printed_numeric_value[i]`. It has one self-root at address **189**, **95 leaves** and **160 nonroot internal nodes**. This structural interpretation is exploratory and was first recorded in [the existing source-graph report](lp2-p50-base59-source-convergent-map.md).
+Original LP2 physical pp49–51 print 256 two-character numeric cells across a 32×8 rectangle. Lowercase `f` is the only missing symbol of the standard 60-character alphanumeric base. If the reader removes `f` and interprets each token in radix59, every token becomes an integer in 0–255 and defines the arrow `node -> decoded value`. The resulting functional graph has **one root at original cell address189, 95 indegree-zero leaves, 160 nonroot internal nodes**, and every vertex reaches that root. See the [original graph and its competing base60 reading](lp2-p50-base59-source-convergent-map.md).
 
-The adjacent original manuscript provides physical p55 **76 opaque runes**, solved p56 **85 runes** with one authentic transparent plaintext **F** that consumes no key position, and clear p57 **95 runes**. Omitting p56's exact F and leaving the graph's one root unassigned gives a literal **76 + 84 + 95 + 1 = 256** partition. Earlier tests assigned the clear p57 symbols to graph leaves and used the *unsalted* sum of children modulo29 to infer internal-node plaintext. It failed against the already-known p56 message. It also found contradictions in an unrestricted unary substitution constant per graph depth.
+The terminal pages present **76 original unknown p55 runes**, **85 independently solved p56 runes**, and **95 visually clear p57 PARABLE runes**. The p56 phi-prime encryption has exactly one plaintext-F at local rune56 that does **not** advance the key; consequently it has **84 key-consuming plaintext runes**. The source-visible counts permit the hypothetical placement **95 leaves = p57; first 76 of 160 nonroot internals = withheld p55; remaining 84 internals = known p56; root189 = unused**. The p55 tree drawing and p57 circumference language motivate asking whether a human reader should aggregate from leaves inward.
 
-The original 256 printed values supply a natural *varying* node parameter without a missing arbitrary key. The new frozen candidate is:
+This tree/terminal-page assignment is an **unconfirmed inference**. The signed Cicada material does not specify a base59 alphabet, a tree walk, parent equations, an internal-node order, or the GP29-to-tree representation. The same 95-leaf count follows from the 161 distinct token values in both base59 and base60. The tests below therefore reject precisely their declared consumers without establishing a designer-intended route.
+
+## Original fixed-salt fold: earlier bounded result
+
+Assign original p57 rune labels to the 95 leaves in original address or DFS order, forward or backward; use either literal GP rune indices or GP prime weights reduced modulo29. Treat the first 76 nonroot internal nodes as unobserved and the last 84 as independent solved p56 labels, under original-address, DFS-preorder, or DFS-postorder node order. The previously fixed local rule is
 
 ```
-leaf_value[node] = one exact clear-p57 GP index (or its GP prime residue)
-internal_value[node] = (signed printed_value[node] + sum(child_value)) mod 29
+leaf[node] = source p57 GP label, in one of two fixed numeric registers
+parent[node] = (sum(known child labels) + signed original printed byte[node]) mod 29
 ```
 
-The parent graph, node salt, and 29-symbol modulus all come from original source artifacts. The **weakest assumption** is the entire graph-to-terminal-plaintext association: Cicada did not print an instruction to interpret the table as a radix59 parent map or to fold plaintext this way. The fixed `+/-` salt signs are both natural algebraic orientations, and one extra root-normalized prediction simply subtracts the computed root label before testing known output.
+Every internal node is generated from the leaves without fitting a key. Across **48** layout/sign readings, the strongest result matches only **7 of 84** actual p56 labels, or **8 of 84** after subtracting the computed root label as a fixed normalization. Authentic p56 ciphertext reencrypts **85/85** from the documented solved text under the phi-prime clock, including its one bypass. The exact first analysis and synthetic control are preserved in [Agent45's read-only SFT](../sims/lp2_p50_base59_node_salt_fold_sft.cjs). The required direct readout would have matched **84/84**.
 
-## Exact original-ciphertext held-out result
+## Complete five-feature secret-affine gate: new decision
 
-Use the 95 unchanged original p57 GP rune indices as leaves. Natural source orders for leaves are increasing cell addresses or depth-first root traversal; their payload direction is forward or reverse; numeric GP labels are literal 0–28 or the corresponding prime residue modulo29. Place the **84 already-solved, actually prime-key-consuming p56 plaintext runes** on the last 84 nonroot internal nodes in printed-address order, DFS preorder, or DFS postorder. The earlier 76 nonroot nodes are reserved for unknown p55, and *never fitted or scored*.
+A natural concern about a failed fixed coefficient of `+1` or `-1` is that the original work arbitrarily chose the salt's sign and scale. Here **all** coefficients of a more expressive shared local law are granted to the hypothetical creator:
 
-This gives **2 leaf orders × 3 internal orders × 2 rune value rules × 2 p57 directions × 2 salt signs = 48** complete original-table readouts, each with two prespecified presentations (raw or root-subtracted). Every node label is uniquely determined before comparing to p56; no language model, secret alphabet or p55 plaintext is optimized.
+[
+\operatorname{parent}(v)=a\!\sum_{u\in\operatorname{children}(v)} \operatorname{value}(u)
++b\,B_v+c\,v+d\,\deg(v)+e\pmod {29}.
+]
 
-| Independent known-p56 check | Exact rune matches out of 84 |
+Here `B_v` is the original *printed node token* interpreted as a byte in either the candidate radix59 or the independent conventional radix60. The parent graph itself is always the source-derived radix59 graph. This family permits freely selected secret factors for the child sum, entire native byte, node address and in-degree, plus an arbitrary offset. There are exactly **29^5 = 20,511,149** possible coefficient vectors per source geometry. The earlier unscaled `sum ± B` and constant-shift variants are contained as special cases. There is no tuning to the p55 ciphertext or any dictionary.
+
+The same **24 predeclared source-natural label/reader layouts** are used: two leaf enumerations (ascending address or rooted DFS), three internal enumerations (ascending address, DFS preorder, DFS postorder), both p57 directions, and both GP-index or prime-weight-residue labels. Two printed-byte readings then give **48 original-source cases**. For a known p56 internal node, the equation is evaluable only if **every child** has an already-known label (p57 or p56); the first 76 p55 candidate labels and the root remain entirely withheld. This leaves **54–83 full parent equations** per case.
+
+Use exact Gaussian elimination over the prime field GF(29) to compare rank of the **k×5** matrix of known child sums, printed-byte residues, address residues, child counts and constant with rank after augmenting its right side with the independent known p56 parent labels. A hidden coefficient vector exists **if and only if** the ranks coincide.
+
+| Unmodified original-source test | Result |
 | --- | ---: |
-| Best of 48 raw node-salted readers | **7 / 84** |
-| Best of 48 root-subtracted readers | **8 / 84** |
-| Literal reconstruction required | **84 / 84** |
+| Original assignments | 24 |
+| Independent original-token salt representations | 2 |
+| Full secret affine families | **48** |
+| Candidate coefficient vectors in each | **20,511,149** |
+| Authenticated known p56 parent equations available | **54–83** |
+| Feature-matrix rank | **5 in 48/48** |
+| Augmented rank with known authentic p56 labels | **6 in 48/48** |
+| Compatible original cases under any secret coefficients | **0/48** |
+| Independently generated tree-fold positive controls | **48/48 algebraically consistent** |
 
-The already-established p56 plaintext spelling `AN END WITHIN THE DEEP WEB ... EUERY ... SEEC ...` is encoded with the original GP29 rune table. Its sole transparent F is at index56; the native solved-p56 prime-totient encoder reproduces the **entire 85-rune original ciphertext exactly**. This independently fixes the known-plaintext target before the tree is examined.
+The rank contradiction is **key-independent** under this law. No choice of the five coefficients can reproduce even the known p56 portion in any selected order, regardless of the 76 unknown p55 letters. The reference implementation asserts original source-table bytes' SHA-256, correct root and source counts, the authentic 85/85 p56 forward prime-totient cipher, the exact 48 rank failures, and 48 source-shaped positive folds using the hidden fixed test vector `(3,7,11,13,17)`. The independent field calculation was also evaluated against both live original JSON objects without guessing any plaintext.
 
-**Decision:** The physically printed node values are insufficient as the missing graph-fold salts. This rejects all 48 fixed readers and either root normalization, a finite simpler repair to the known no-salt fold. It does not rule out an independently authored address-dependent operation, other original graph interpretations, or unknown external keys. No further tree traversal or arbitrary salt fitting is warranted without a new source instruction.
+[Standalone CommonJS SFT](../sims/lp2_p50_base59_affine_tree_p56_sft.cjs) · [Manual Windows Node22 workflow](../.github/workflows/lp2-p50-base59-affine-tree-p56-manual.yml) · [Dispatch run](https://github.com/FlareZ123/liber-primus/actions/runs/44135649042).
 
-[Single-file Node22 original-input reproducer](../sims/lp2_p50_base59_node_salt_fold_sft.cjs). Its source semantics were independently executed against the live `lp2-corpus.json` and `base60-grid.json` objects and returned the stated maxima before committing. The program also asserts the 256 graph nodes, the unique root189, the 95/160 partition and byte-for-byte solved-p56 reencryption.
+## What this changes
+
+The strict simple `parent = sum(children) ± original byte` failure is now subsumed by an **entire arbitrary secret five-coefficient source-shaped family**. A hidden scale, address salt, degree offset or per-tree affine constant cannot rescue the hypothetical p50 tree → final three pages readout under the 24 fixed source-natural placements.
+
+This cannot exclude arbitrary nonlinear operations, independently secret functions per node, unseen historical material, a different graph reader or a different receiver. Those would change the mechanism rather than repair a coefficient. Reopening this branch should require a concrete original clue selecting such a change and an independent p56-compatible prediction. **No unknown LP2 ciphertext was decrypted.**
