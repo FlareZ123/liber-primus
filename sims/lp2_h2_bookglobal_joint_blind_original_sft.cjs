@@ -374,7 +374,8 @@ function solve(data){
   const pages=data.pages;
   let paths=pages.map(c=>Array(Math.min(c.length,3)).fill(0));
   const prefixSchedule=[3,4,5,7,10,15,20,30,45,60,80,110,
-    150,200,300,400,600,900,1200,1600,2200,3200];
+    150,200,300,400,600,900,1200,1600,2200,3200,
+    6000,9000,12648];
   const trace=[];
   for(const limit of prefixSchedule){
     for(let sweep=0;sweep<3;sweep++){
@@ -548,7 +549,8 @@ function originalBlindGate(){
   assert.deepEqual(pages.map(p=>p.length),PAGE_LENGTHS);
   let paths=pages.map(c=>Array(Math.min(c.length,3)).fill(0));
   for(const limit of [3,4,5,7,10,15,20,30,45,60,80,110,
-    150,200,300,400,600,900,1200,1600,2200,3200]){
+    150,200,300,400,600,900,1200,1600,2200,3200,
+    6000,9000,12648]){
     for(let sweep=0;sweep<3;sweep++){
       const emit=learnEmissions(pages,paths,limit);
       paths=pages.map((c,page)=>page===HELDOUT_PAGE?[]:
