@@ -81,6 +81,16 @@ for (const file of controls) {
 }
 assert.equal(dictionary.size, 12140);
 
+// Independent pre-specified Latin language register, drawn from original
+// word-preserving Vulgate source. The encoded source uses 0-9A-S for 0..28.
+const latinSymbols = '0123456789ABCDEFGHIJKLMNOPQRS';
+const latinLines = read('resources/control/latin-vulgate-gp-wholewords.txt')
+  .split(/\r?\n/).filter(line => /^[0-9A-S]+$/.test(line));
+const latinDictionary = new Set(latinLines.filter(line => line.length >= 3)
+  .map(line => [...line].map(ch =>
+    String.fromCharCode(65 + latinSymbols.indexOf(ch))).join('')));
+assert.equal(latinDictionary.size, 7265);
+
 const composite = new Uint8Array(120000);
 const key = [];
 const primes = [];
@@ -102,26 +112,39 @@ assert.equal(key.length, 8000);
  *
  * @param {number} physical LP2 page index
  * @param {number} start Prime-index zero-based first consumed key
- * @returns {{covered:number,hits:number}|null}
+ * @param {number[][]} [input] Optional original-shape Latin positive plant.
+ * @returns {{covered:number,hits:number,latinCovered:number,latinHits:number}|null}
  */
-function bestDecode(physical, start) {
-  /** @type {Map<number, {covered:number,hits:number}>} */
-  let dp = new Map([[0, { covered: 0, hits: 0 }]]);
+function bestDecode(physical, start, input = words[physical]) {
+  /** @type {Map<number, {covered:number,hits:number,latinCovered:number,latinHits:number}>} */
+  let dp = new Map([[0, { covered: 0, hits: 0, latinCovered: 0, latinHits: 0 }]]);
   let offset = 0;
-  for (const word of words[physical]) {
-    /** @type {Map<number, {covered:number,hits:number}>} */
+  for (const word of input) {
+    /** @type {Map<number, {covered:number,hits:number,latinCovered:number,latinHits:number}>} */
     const next = new Map();
     for (const [skips, previous] of dp) {
       /** @param {number} i @param {number} totalSkips @param {string} code */
       function visit(i, totalSkips, code) {
         if (i === word.length) {
-          const hit = dictionary.has(code) ? word.length : 0;
-          const covered = previous.covered + hit;
-          const hits = previous.hits + (hit ? 1 : 0);
+          const englishHit = dictionary.has(code) ? word.length : 0;
+          const latinHit = latinDictionary.has(code) ? word.length : 0;
+          const covered = previous.covered + englishHit;
+          const hits = previous.hits + (englishHit ? 1 : 0);
+          const latinCovered = previous.latinCovered + latinHit;
+          const latinHits = previous.latinHits + (latinHit ? 1 : 0);
           const old = next.get(totalSkips);
-          if (!old || covered > old.covered ||
-              (covered === old.covered && hits > old.hits)) {
-            next.set(totalSkips, { covered, hits });
+          if (!old) {
+            next.set(totalSkips, { covered, hits, latinCovered, latinHits });
+          } else {
+            if (covered > old.covered || (covered === old.covered && hits > old.hits)) {
+              old.covered = covered;
+              old.hits = hits;
+            }
+            if (latinCovered > old.latinCovered ||
+                (latinCovered === old.latinCovered && latinHits > old.latinHits)) {
+              old.latinCovered = latinCovered;
+              old.latinHits = latinHits;
+            }
           }
           return;
         }
@@ -137,8 +160,17 @@ function bestDecode(physical, start) {
     offset += word.length;
     if (!dp.size) return null;
   }
-  return [...dp.values()]
-    .sort((a, b) => b.covered - a.covered || b.hits - a.hits)[0];
+  const states = [...dp.values()];
+  const english = states.reduce((best, candidate) =>
+    candidate.covered > best.covered ||
+      (candidate.covered === best.covered && candidate.hits > best.hits)
+      ? candidate : best);
+  const latin = states.reduce((best, candidate) =>
+    candidate.latinCovered > best.latinCovered ||
+      (candidate.latinCovered === best.latinCovered && candidate.latinHits > best.latinHits)
+      ? candidate : best);
+  return { covered: english.covered, hits: english.hits,
+    latinCovered: latin.latinCovered, latinHits: latin.latinHits };
 }
 
 /** Genuine p56 control: encrypt the authenticated known plaintext, F transparent. */
@@ -150,7 +182,28 @@ let used = 0;
 const reencrypted = solved.map(p =>
   p === 0 ? 0 : (p + key[used++]) % 29);
 assert.deepEqual(reencrypted, corpus.pages[56].indices);
-assert.deepEqual(bestDecode(56, 0), { covered: 55, hits: 14 });
+const p56Control = bestDecode(56, 0);
+assert.deepEqual([p56Control.covered, p56Control.hits], [55, 14]);
+
+// Native Latin + genuine p56-phi encrypted positive with the original word shape.
+// Every length >=3 Latin word must be recovered lexically by the same decoder.
+const latinFirstByLength = new Map();
+for (const line of latinLines) {
+  if (!latinFirstByLength.has(line.length)) {
+    latinFirstByLength.set(line.length,
+      [...line].map(ch => latinSymbols.indexOf(ch)));
+  }
+}
+const latinPlainWords = words[56].map(w => latinFirstByLength.get(w.length));
+assert(latinPlainWords.every(Array.isArray));
+assert.equal(latinPlainWords.flat().length, 85);
+let latinKeyIndex = 0;
+const latinEncryptedWords = latinPlainWords.map(w => w.map(p =>
+  p === 0 ? 0 : (p + key[latinKeyIndex++]) % 29));
+const latinControl = bestDecode(56, 0, latinEncryptedWords);
+const latinExpectedCoverage = latinPlainWords.reduce((sum, w) =>
+  sum + (w.length >= 3 ? w.length : 0), 0);
+assert.equal(latinControl.latinCovered, latinExpectedCoverage);
 
 const results = [];
 for (let physical = 0; physical <= 55; physical += 1) {
@@ -159,10 +212,22 @@ for (let physical = 0; physical <= 55; physical += 1) {
   let maxCovered = -1;
   let topStarts = [];
   let maxHits = 0;
+  let maxLatinCovered = -1;
+  let maxLatinHits = 0;
+  let bestLatinStarts = [];
   for (let start = 0; start < 5000; start += 1) {
     const decoded = bestDecode(physical, start);
     if (!decoded) continue;
     viable += 1;
+    if (decoded.latinCovered > maxLatinCovered ||
+        (decoded.latinCovered === maxLatinCovered && decoded.latinHits > maxLatinHits)) {
+      maxLatinCovered = decoded.latinCovered;
+      maxLatinHits = decoded.latinHits;
+      bestLatinStarts = [start];
+    } else if (decoded.latinCovered === maxLatinCovered &&
+               decoded.latinHits === maxLatinHits && bestLatinStarts.length < 3) {
+      bestLatinStarts.push(start);
+    }
     if (decoded.covered > maxCovered) {
       maxCovered = decoded.covered;
       maxHits = decoded.hits;
@@ -183,7 +248,10 @@ for (let physical = 0; physical <= 55; physical += 1) {
     viablePrimeStarts: viable,
     mostNativeWordRunes: maxCovered,
     matchedWords: maxHits,
-    bestPrimeStarts: topStarts
+    bestPrimeStarts: topStarts,
+    mostLatinWordRunes: maxLatinCovered,
+    latinMatchedWords: maxLatinHits,
+    bestLatinPrimeStarts: bestLatinStarts
   });
 }
 
@@ -193,20 +261,27 @@ assert.equal(results.reduce((s, x) => s + x.viablePrimeStarts, 0), 9733);
 assert.equal(Math.max(...results.map(x => x.mostNativeWordRunes)), 10);
 assert.deepEqual(results.filter(x => x.mostNativeWordRunes === 10)
   .map(x => x.physical), [40, 47]);
-assert.deepEqual(results.find(x => x.physical === 35),
-  { physical: 35, runes: 271, printedWords: 61, viablePrimeStarts: 2,
-    mostNativeWordRunes: 3, matchedWords: 1, bestPrimeStarts: [2634] });
+const page35 = results.find(x => x.physical === 35);
+assert.deepEqual([page35.runes, page35.viablePrimeStarts,
+  page35.mostNativeWordRunes, page35.matchedWords, page35.bestPrimeStarts],
+  [271, 2, 3, 1, [2634]]);
+assert.equal(Math.max(...results.map(x => x.mostLatinWordRunes)), 9);
+assert.deepEqual(results.filter(x => x.mostLatinWordRunes === 9)
+  .map(x => x.physical), [33]);
 
 console.log(JSON.stringify({
   mode: 'p56 genuine phi(prime), exact plaintext-F bypass, page-local clock',
   primeStartsPerPage: 5000,
   dictionaryNativeGpWordsLengthAtLeastThree: dictionary.size,
+  dictionaryLatinGpWordsLengthAtLeastThree: latinDictionary.size,
   exactOriginalPageTranscription: '58/58',
-  authenticatedP56Positive: '55 of 85 GP runes covered by 14 dictionary words',
+  authenticatedP56Positive: '55 of 85 GP runes covered by 14 English words',
+  plantedLatinP56PositiveCovered: latinExpectedCoverage,
   unknownRunePages: 55,
   unknownRunes: 12956,
   viablePrimeStarts: 9733,
   maximumUnknownPageNativeWordRunes: 10,
+  maximumUnknownPageLatinWordRunes: 9,
   pages: results,
-  decision: 'No authentic unknown-page plaintext found under page-local prime-totient transfer.'
+  decision: 'No source-native English or Latin unknown-page plaintext found under page-local prime-totient transfer.'
 }, null, 2));
