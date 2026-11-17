@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   quote-source:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
@@ -33,4 +33,4 @@ jobs:
         env:
           BOOK_LIMIT: ${{ inputs.book_limit }}
           HF_HUB_DISABLE_TELEMETRY: '1'
-        run: python sims/lp2_wholechapter_gutenberg_quote_sft.py --limit "$BOOK_LIMIT"
+        run: python sims/lp2_wholechapter_gutenberg_quote_sft.py --limit $env:BOOK_LIMIT
