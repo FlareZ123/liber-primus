@@ -108,6 +108,64 @@ const holdout = corpus.pages.slice(40, 54).flatMap(page => page.indices);
 const clear = corpus.pages.find(page => page.page === 57).indices;
 assert.deepEqual([opening.length, holdout.length, clear.length], [716, 3008, 95]);
 
+// The selected 23 body words contain exactly 119 runes. Isolated red triads
+// on physical pages 3 and 39 begin at local rune offset 119; this motivates
+// testing the two complete 119-rune prefixes with a 119-rune cycle-word pad.
+/** @param {number[]} cipher @param {number[]} key @param {-1|1} sign */
+function reachTape(cipher, key, sign) {
+  let states = new Set([0]);
+  for (let pos = 0; pos < cipher.length; pos++) {
+    const advanced = new Set();
+    for (const cursor of states) {
+      const p = mod(cipher[pos] + sign * key[cursor]);
+      if (p !== 0) advanced.add(cursor + 1);
+      if (cipher[pos] === 0) advanced.add(cursor);
+    }
+    states = advanced;
+    if (states.size === 0) return { firstDead: pos };
+  }
+  return { legal: true, endStates: states.size };
+}
+/** @param {number[]} plain @param {number[]} key @param {-1|1} sign */
+function plantTape(plain, key, sign) {
+  let cursor = 0;
+  return plain.map(p => p === 0 ? 0 : mod(p - sign * key[cursor++]));
+}
+const red119Target = [
+  corpus.pages.find(p => p.page === 3).indices.slice(0, 119),
+  corpus.pages.find(p => p.page === 39).indices.slice(0, 119)
+];
+assert.deepEqual(red119Target.map(x => x.length), [119, 119]);
+const tapeOutcomes = [];
+for (const [seed, sequence] of Object.entries({
+  firstCycle: first.cycle,
+  secondCycle: second.cycle
+})) {
+  const ordinalTape = sequence.flatMap(j => [...body[j].runes].map(r => index.get(r)));
+  assert.equal(ordinalTape.length, 119);
+  for (const [value, tape] of Object.entries({
+    ordinal: ordinalTape,
+    primeMod29: ordinalTape.map(j => corpus.prime[j] % 29)
+  })) {
+    for (const sign of [-1, 1]) {
+      const a = reachTape(red119Target[0], tape, sign);
+      const b = reachTape(red119Target[1], tape, sign);
+      const positive = reachTape(plantTape(clear, tape, sign), tape, sign);
+      assert.equal(positive.legal, true);
+      assert.equal(b.legal, undefined);
+      tapeOutcomes.push({
+        seed, value, sign,
+        p3FirstDead: a.firstDead ?? null,
+        p3LegalPaths: a.endStates ?? 0,
+        p39FirstDead: b.firstDead,
+        plantedP57Legal: positive.legal
+      });
+    }
+  }
+}
+assert.deepEqual(tapeOutcomes.map(x => x.p3FirstDead), [54, 51, null, 10, 41, 0, 109, 5]);
+assert.deepEqual(tapeOutcomes.map(x => x.p39FirstDead), [6, 25, 31, 3, 82, 7, 22, 7]);
+
 const output = [];
 for (const [sequenceName, sequence] of Object.entries(sequences)) {
   for (const mode of ["sum", "quotient"]) {
@@ -140,5 +198,6 @@ console.log(JSON.stringify({
   sourceCycleLength: 23,
   openingRunes: opening.length,
   holdoutRunes: holdout.length,
-  outcomes: output
+  outcomes: output,
+  selectedRuneTape119: tapeOutcomes
 }, null, 2));
