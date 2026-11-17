@@ -60,7 +60,7 @@ const close=()=>{if(word.length){originalWords.push(word);word=[];}};
 for(const ch of originalSource) {
   if(runeId.has(ch)) {
     const symbol=runeId.get(ch);
-    word.push({symbol,repeat:previous===symbol});
+    word.push({symbol,repeat:previous===symbol,index:runeCount});
     previous=symbol;runeCount++;
   } else if(ch!=='/' && ch!=='%' && !/\s/u.test(ch)) close();
 }
@@ -153,5 +153,71 @@ for(const pair of refs) {
   assert.ok(ranks[0].maxAbs>6,
     'original site profile unexpectedly fits a native-GP fixed escape rune');
 }
+/* Rival keyless null: repeat positions selected uniformly within each
+ * original rune-bearing physical page, with actual per-page repeat counts
+ * frozen. Preserve source word positions and all 32 carried words.
+ * This is a site-placement comparison only, not a proposed ciphertext
+ * inverse or a formal linguistic randomness proof. */
+const positions=originalWords.flatMap(w=>w.map((o,j)=>({
+  index:o.index,start:j===0,end:j===w.length-1,
+  singleton:w.length===1,repeat:o.repeat
+})));
+assert.equal(positions.length,12956);
+const pageQuotas=[];
+let base=0;
+for(const p of gp.pages.filter(p=>p.page<=55)){
+  const n=p.indices.length;
+  if(n){
+    const slice=positions.slice(base,base+n);
+    pageQuotas.push({
+      count:slice.filter(o=>o.repeat).length,
+      eligible:slice.slice(1).map(o=>o.index)
+    });
+  }
+  base+=n;
+}
+assert.equal(base,12956);
+assert.equal(pageQuotas.length,55);
+assert.equal(pageQuotas.reduce((a,p)=>a+p.count,0),86);
+let siteState=314159265;
+const siteRand=n=>{
+  siteState=(Math.imul(1664525,siteState)+1013904223)>>>0;
+  return Math.floor(siteState/4294967296*n);
+};
+const observed=[original[1],original[2],0],SITE_TRIALS=10000;
+const samples=[],siteSum=[0,0,0],siteSumSq=[0,0,0];
+for(let t=0;t<SITE_TRIALS;t++){
+  const x=[0,0,0];
+  for(const p of pageQuotas){
+    const selected=new Set();
+    while(selected.size<p.count)selected.add(siteRand(p.eligible.length));
+    for(const k of selected){
+      const o=positions[p.eligible[k]];
+      x[0]+=Number(o.start);
+      x[1]+=Number(o.end);
+      x[2]+=Number(o.singleton);
+    }
+  }
+  samples.push(x);
+  for(let j=0;j<3;j++){
+    siteSum[j]+=x[j];siteSumSq[j]+=x[j]*x[j];
+  }
+}
+const siteMean=siteSum.map(x=>x/SITE_TRIALS);
+const siteSd=siteSumSq.map((x,j)=>
+  Math.sqrt(x/SITE_TRIALS-siteMean[j]*siteMean[j]));
+const dist=x=>x.reduce((a,v,j)=>
+  a+((v-siteMean[j])/Math.max(0.1,siteSd[j]))**2,0);
+const dOriginal=dist(observed);
+const jointP=(1+samples.filter(x=>dist(x)>=dOriginal).length)
+  /(SITE_TRIALS+1);
+console.log('Page-count-preserving uniform site placement: '+
+  JSON.stringify({observed,mean:siteMean.map(x=>+x.toFixed(3)),
+    sd:siteSd.map(x=>+x.toFixed(3)),
+    jointP:+jointP.toFixed(4)}));
+assert.ok(jointP>0.10,
+  'ordinary page-conditioned uniform site null unexpectedly excluded');
+console.log('PASS original repeat-site word geometry remains compatible with uniform page-conditioned placement');
+
 console.log('PASS original key-independent exclusion under two independent native-GP controls');
 console.log('SCOPE: normal English, one fixed escape, printed word boundaries, one-to-one ranks.');
