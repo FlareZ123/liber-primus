@@ -81,12 +81,16 @@ def chapter(page: int) -> int:
     return next(i for i in range(9) if CHAPTER_CUTS[i] <= page < CHAPTER_CUTS[i + 1])
 
 
-def search(target: list[int], pages: list[int],
-           source: list[int], max_items: int = 12) -> dict:
-    target_ch = [chapter(page) for page in pages]
+def make_lookup(source: list[int]) -> dict:
     lookup = defaultdict(list)
     for j in range(len(source) - SEED + 1):
         lookup[tuple(source[j:j + SEED])].append(j)
+    return lookup
+
+
+def search(target: list[int], pages: list[int],
+           source: list[int], lookup: dict, max_items: int = 12) -> dict:
+    target_ch = [chapter(page) for page in pages]
     best = 0
     hit_count = 0
     locations = []
@@ -152,12 +156,13 @@ def main() -> None:
 
     # Exact source-native positive. The search must find 25 Jung-source lengths
     # spliced at the beginning of an original chapter, without knowing the key.
+    lookup = make_lookup(source)
     control = original[:]
     control[15:40] = source[5000:5025]
-    planted = search(control, physical_pages, source)
+    planted = search(control, physical_pages, source, lookup)
     assert planted["best"] >= 25
 
-    actual = search(original, physical_pages, source)
+    actual = search(original, physical_pages, source, lookup)
     # Source-conditioned negative: shuffle original word lengths only within
     # the actual visual chapters, preserving all nine source length histograms.
     groups = defaultdict(list)
@@ -172,7 +177,7 @@ def main() -> None:
             rng.shuffle(perm)
             for index, length in zip(positions, perm):
                 synthetic[index] = length
-        null_max.append(search(synthetic, physical_pages, source, max_items=0)["best"])
+        null_max.append(search(synthetic, physical_pages, source, lookup, max_items=0)["best"])
 
     print(json.dumps({
         "classification": ("candidate plaintext length crib: investigate" if actual["best"] >= 14
