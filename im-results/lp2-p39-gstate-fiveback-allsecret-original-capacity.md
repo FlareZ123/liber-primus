@@ -71,6 +71,15 @@ Every one of **198 native-English control windows** fails the zero-rekey or sing
 
 This independent English-language extension narrows a plausible intended-GP29-prose cipher architecture without relying on any guessed secret permutation, ciphertext-fitted language, or outside keys. No actual unknown LP2 plaintext was recovered.
 
+
+## A source-word-clock variant
+
+The manuscript's fifth-back anomaly is concentrated **inside printed words**. To address that physical clue directly, an independently frozen variant uses the same p39 red polynomial G and one continuously updated 29-state register, but counts the fifth-back tap from the beginning of each printed word. For rune j of a word, define delta as the ciphertext rune itself when j is 0–4, and as the current ciphertext minus that word's rune j−5 for j≥5. Update the state as G(state)+delta modulo29; output plaintext through any secret 29-symbol permutation independently assigned to each state. Retain the original source word boundaries, including joins across physical page wraps, and optionally allow completely new unknown secret permutations at the actual p50 numeric-table seam.
+
+The unchanged p40–53 source yields exactly **669 joined printed word segments and 3,008 ciphertext runes**. Across all 29 initial states, every possible choice of the 29! state alphabets obeys maximum top-{1,2,3,5,9,14} plaintext-frequency capacities **[232,436,615,942,1503,2070]** with one alphabet epoch, or **[283,520,729,1092,1684,2267]** when a completely new alphabet set is freely granted after the real p50 table (position2,474). The top-one bounds are below the minimum top-one original-spelling GP count for every disjoint Shakespeare, Gibran and Emerson 3,008-rune window: **[296,314,318]**, respectively. They also fall below the 68 native-Latin window minimum **328**. Thus the single continuous register with a word-local fifth-back tap cannot produce *any of those fixed native-control windows*, even if rekeyed at the table.
+
+The same standalone SFT asserts byte-for-byte original rune and printed-word reconstruction; it additionally performs a full **3,008/3,008** source-shaped native GP encryption/decryption plant under this variant's own update equation. This variant is a separate bounded rejection of a source-plausible five-clock. It does not reject an unobserved page-dependent state reset, a different cipher state, word-by-word rekeying, a missing external key or a non-GP source register. **No original mystery plaintext is recovered.**
+
 ## Correctness control and evidentiary scope
 
 The [single Windows Node22 SFT](../sims/lp2_p39_gstate_fiveback_allsecret_sft.cjs) loads the untouched physical p39 red span, all physical pp40–53 source runes, the separate solved-Cicada GP fixture, and the independently GP-coded Latin whole-word reference. It pins all source counts, the 29-source-seed capacity envelopes, the 133-rune synchronization, the 2,474-rune table seam, and the Latin minima.

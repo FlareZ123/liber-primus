@@ -309,6 +309,79 @@ for (const book of englishBooks) {
 assert.equal(englishWindowCount,198);
 assert.deepEqual(englishRejected,[198,198,188,15]);
 
+
+/**
+ * A separately frozen source-motivated word-local five-back clock:
+ * for printed word position j<5 use delta=C[j], otherwise
+ * delta=C[j]-C[j-5] within THAT word.  Hidden state and its arbitrary
+ * permutation continue across words and original printed pages.
+ *
+ * The printed word masks are reconstructed across actual original page
+ * wraps rather than splitting carried words at every page boundary.
+ *
+ * @param {number[][]} words
+ * @param {number} seed
+ * @returns {{plainBound:number[],seamBound:number[],encodedStates:number[]}}
+ */
+function wordLocalBounds(words, seed) {
+  let state = seed;
+  let position = 0;
+  const plainRows = Array.from({length:MOD},()=>Array(MOD).fill(0));
+  const seamRows = Array.from({length:MOD*2},()=>Array(MOD).fill(0));
+  const encodedStates = [];
+  for (const word of words) {
+    for (let j=0;j<word.length;j++) {
+      const c=word[j];
+      plainRows[state][c]++;
+      seamRows[state+(position>=2474?MOD:0)][c]++;
+      encodedStates.push(state);
+      state=mod(G(state)+c-(j>=5?word[j-5]:0));
+      position++;
+    }
+  }
+  assert.equal(position,3008);
+  /** @param {number[][]} rows @returns {number[]} */
+  function cap(rows) {
+    const sorted=rows.map(row=>row.slice().sort((a,b)=>b-a));
+    return K.map(k=>sorted.reduce(
+      (sum,row)=>sum+row.slice(0,k).reduce((a,b)=>a+b,0),0));
+  }
+  return {plainBound:cap(plainRows),seamBound:cap(seamRows),encodedStates};
+}
+
+const joinedText=fs.readFileSync(
+  path.join(root,'resources/liber-primus/lp2-transcription.txt'),'utf8'
+).split('%').slice(40,53).join('').replace(/\/\s*/g,'').replace(/[\r\n]/g,'');
+const sourceRune=new Map(corpus.runes.map((r,i)=>[r,i]));
+const wordRegex=new RegExp('['+corpus.runes.join('')+']+','gu');
+const sourceWords=(joinedText.match(wordRegex)||[]).map(
+  w=>[...w].map(g=>sourceRune.get(g))
+);
+assert.equal(sourceWords.length,669);
+assert.deepEqual(sourceWords.flat(),ciphertext);
+const sourceWordCap=Array.from({length:MOD},(_,seed)=>wordLocalBounds(sourceWords,seed));
+const wordLocalMax=K.map((_,j)=>Math.max(...sourceWordCap.map(x=>x.plainBound[j])));
+const wordLocalSeamMax=K.map((_,j)=>Math.max(...sourceWordCap.map(x=>x.seamBound[j])));
+assert.deepEqual(wordLocalMax,[232,436,615,942,1503,2070]);
+assert.deepEqual(wordLocalSeamMax,[283,520,729,1092,1684,2267]);
+assert.ok(englishBooks.every(book=>wordLocalMax[0]<book.minimum[0]));
+assert.ok(englishBooks.every(book=>wordLocalSeamMax[0]<book.minimum[0]));
+assert.ok(wordLocalSeamMax[0]<nativeMinimum[0]);
+
+// Exact, independent native-GP forward/inverse plant for word-local state.
+let wordCipher=[],wordRecovered=[],nativePos=0,plantState=24;
+for(const word of sourceWords)for(let j=0;j<word.length;j++){
+  const p=latin[nativePos];
+  const a=1+(7*plantState)%28,b=mod(13*plantState+5);
+  const c=mod(inverse(a)*(p-b));
+  wordCipher.push(c);
+  wordRecovered.push(mod(a*c+b));
+  plantState=mod(G(plantState)+c-(j>=5?wordCipher[nativePos-5]:0));
+  nativePos++;
+}
+assert.equal(nativePos,3008);
+assert.deepEqual(wordRecovered,latin.slice(0,3008));
+
 // Source-shaped positive plant: every secret alphabet is correctly inverted,
 // and the SAME necessary bound includes its true plaintext symbol counts.
 const nativePlain = latin.slice(0, ciphertext.length);
@@ -331,6 +404,7 @@ console.log('Latin 68 x 3008-rune control minima:', JSON.stringify(nativeMinimum
 console.log('Envelope with 0, 1, 2, 3 best-placed physical-page rekeys:', JSON.stringify(relaxations.envelopes));
 console.log('One actual p50 numeric-table rekey (all 29 seeds):', JSON.stringify(relaxations.p50Seam));
 console.log('Calibrated English exclusion (0..3 rekeys) across 198 windows:', JSON.stringify(englishRejected));
+console.log('Word-local five-back 0-rekey and exact p50-seam maxima:', JSON.stringify([wordLocalMax,wordLocalSeamMax]));
 console.log('Positive native-Latin plant 3008/3008 inverted; bound dominates true top-k');
 console.log('Decision: continuous GF29 G-state five-back one-row-per-state cipher');
 console.log('cannot generate these native-GP language profiles; original key not found.');
