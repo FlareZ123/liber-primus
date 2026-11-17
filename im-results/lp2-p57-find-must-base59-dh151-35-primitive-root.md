@@ -165,6 +165,8 @@ outer-ring index70. Its selected key-index is 73, original flat source cell24
 (token `1n`, base59 value107). The starting index70 and counterclockwise
 orientation are not selected by an independent first-party clue.
 
+**Exponent-equivalence audit (Critic, 17 November):** Since `35` has multiplicative order 150 modulo 151 and `a=21`, the purported public share `A=35^21 mod151=107` has order `150/gcd(150,21)=50`. Consequently `K=A^b mod151` depends only on `b mod50`: **b=13, 63 and 113 all give K=73**. Their actual `g^b` public shares differ: **115, 131 and 56**, respectively. The original table value `B=115` corresponds to the specific `b=13` choice; a ring-concatenation `b=113` reproducing the *shared K* alone is mathematically forced by its congruence to 13 modulo50 and is **not a second confirmation of the original table triple**. This exact degeneracy strengthens the already recorded stop decision on post-selected ring-start and exponent searches. It leaves the arithmetic triple intact but supplies no independent source-selected private exponent or p55 decoder.
+
 The correct comparison is the *searched* event across those 152 starts, rather
 than a fixed-start 1/76 coincidence. An exact original-multiset-preserving
 10,000-shuffle test with frozen seeded xorshift found **8,960/10,000** trials
