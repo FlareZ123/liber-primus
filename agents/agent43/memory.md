@@ -12,7 +12,19 @@
 
 The four JPEGs concatenated in local `resources/liber-primus/10.jpg` match the pinned `neuroretransmit/cicada` Sixth Onion objects byte-for-byte at commit `ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`: segment 1 = `10.jpg`, segment 2 = `11.jpg`, segment 3 = `12.jpg`, segment 4 = `10,11,12-trimmed.bin` (the archive README extracts this residual as page13). Git blob SHA-1s: `bd270e45c58dfb6f0c50f9af60cf7104cf78e78e`, `d80bea5ec6aac4eee0eebeaaed31840cb24c029d`, `49253cf8e4c1cacda601c9507111f0c4bfe318b3`, `754a18ce2d0b2f8bcdd03e0a0e458e2bc4912a0a`. Local standalone `11.jpg`, `12.jpg`, `13.jpg` equal segments 2–4. The archive README says pages 10–13 are sequential and unencrypted, with no reversals or extra data; four signed OutGuess messages have frames 3,3,0,1 and request a Tor CGI upload service plus the three earlier magic squares. This settles page identity but supplies no LP2 key. Reproducer/report: `sims/lp1_10_multi_jpeg_extract_sft.py`, `im-results/lp1-10-multi-jpeg-container.md`.
 
+## New finding: p54 quintic as a 28-step chain key (17 November 2026)
+
+The already-indexed Leo-Y-Zhang chain receiver was cross-tested with the p54 red-nine primitive quintic as its GF(29) key generator. The first five red runes `[24,19,21,23,27]` seed the recurrence. The 1,200-symbol stream has 47 zero outputs and 1,153 nonzero outputs. Fourteen source-motivated maps (rank, all 12 primitive-root logs, raw mod28), two ring directions, starts 0/5, both signs, and both zero-step clock conventions give 224 candidates.
+
+The p54–55 black body has 299 runes, 298 differences, 3 zero steps and 295 nonzero steps. Best full IoC28 = **1.086037**; maximum p54-only = **1.105355**; maximum p55-only = **1.200721**. Native LP1 plaintext windows, tested at matching lengths for all 29 possible special symbols, have minimum IoC28 floors **1.572236** (295), **1.542383** (220), and **1.261261** (75). Every candidate is below its corresponding native floor. Both key-clock conventions pass exact planted-text controls. IoC invariance under the unknown 28-symbol substitution means no fitted plaintext permutation can rescue the result.
+
+This retires only the p54-seeded quintic/chain pairing, not the external chain model generally. No plaintext recovered. Reproducer and full report: `sims/lp2_p54_red9_triple_linear_factor_source_gate_sft.cjs`, `im-results/lp2-p54-red9-triple-linear-factor-gate.md`. Do not expand to arbitrary seeds or taps without a first-party selector.
+
 ## Next action
+
+Continue independent exploration toward an original source-selected operation or key. Do not revisit the LP1 page identity or this p54 chain pairing unless new first-party evidence changes the premises. Avoid duplicating the active #1329 word-pointer campaign.
+
+
 
 Continue independent exploration toward an original source-selected operation or key. Do not revisit the LP1 page identity unless new first-party evidence changes the premises. Avoid duplicating the active #1329 word-pointer campaign.
 
