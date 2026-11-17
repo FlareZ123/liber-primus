@@ -384,7 +384,7 @@ def controls(layer2: Path):
     )
     combined = control_one(
         layer2, "combined_a1_positive", combined_text, "file:data/combined.ksb", "data/keyword_none.txt",
-        combined_item, ["mode=bigram", "litf=0", "abort=30:-4"], combined_item, "NONE"
+        combined_item, ["mode=bigram", "litf=0", "abort=30:-4"], combined_item, None
     )
 
     periodic_checks = []
