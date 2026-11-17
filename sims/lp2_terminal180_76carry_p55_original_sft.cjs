@@ -231,6 +231,79 @@ const bestStepWords=Math.max(...rankResults.map(x=>x.matchedWords));
 assert.equal(bestStepWords,1);
 assert.equal(rankResults.filter(x=>x.matchedWords===1).length,1);
 
+
+// Full original terminal chapter uses 308=232+76 source runes, with the
+// 76-carry clock repeated from chapter start. Thus p55 necessarily begins
+// at the source-calculated position 232 mod76 = 4, a non-fitted alignment.
+const chapter=gp.pages[54].indices.concat(p55);
+assert.equal(chapter.length,308);
+assert.equal(gp.pages[54].indices.length,232);
+assert.equal(232%76,4);
+const chapterPart=transcription.split("%").slice(53,55).join("");
+const chapterSlots=[];
+let buff=[];
+for(const mark of chapterPart){
+  if(runeMap.has(mark))buff.push(runeMap.get(mark));
+  else if("-.if(require.main===module)console.log(JSON.stringify({§".includes(mark)&&buff.length){
+    chapterSlots.push(buff);buff=[];
+  }
+}
+if(buff.length)chapterSlots.push(buff);
+assert.deepEqual(chapterSlots.flat(),chapter);
+assert.equal(chapterSlots.length,66);
+/** @param {number[]} plain @returns {{matched:number,examples:string[]}} */
+function chapterScore(plain){
+  let cursor=0,matched=0,examples=[];
+  for(const [wi,slot]of chapterSlots.entries()){
+    const part=plain.slice(cursor,cursor+slot.length);
+    cursor+=slot.length;
+    if(part.length<3)continue;
+    const result=dictionary.get(part.join(","));
+    if(result){matched++;examples.push(wi+":"+result);}
+  }
+  return {matched,examples};
+}
+const chapterResults=[];
+for(const [order,known] of [
+  ["p56-then-p57",joined],["p57-then-p56",clearP57.concat(clearP56)]
+]){
+  for(const [extractor,key]of Object.entries(extract(known))){
+    for(const sign of[-1,1])for(const mode of["GP29Add","GP28Step"]){
+      /** @param {number[]} source @returns {number[]} */
+      function decodeChapter(source) {
+        if(mode==="GP29Add")return source.map((c,i)=>
+          mod(c+sign*key[i%76]));
+        const plain=[source[0]];
+        for(let i=1;i<source.length;i++){
+          const d=mod(source[i]-source[i-1]);
+          plain.push(d===0?0:1+((d-1+sign*(key[i%76]%28))%28+28)%28);
+        }
+        return plain;
+      }
+      /** @param {number[]} plain @returns {number[]} */
+      function encryptChapter(plain) {
+        if(mode==="GP29Add")return plain.map((p,i)=>
+          mod(p-sign*key[i%76]));
+        const out=[plain[0]];
+        for(let i=1;i<plain.length;i++){
+          const d=plain[i]===0?0:1+((plain[i]-1-sign*(key[i%76]%28))%28+28)%28;
+          out.push(mod(out[i-1]+d));
+        }
+        return out;
+      }
+      const candidate=decodeChapter(chapter);
+      assert.deepEqual(encryptChapter(candidate),chapter);
+      const synthetic=Array.from({length:308},(_,i)=>clearP57[i%95]);
+      assert.deepEqual(decodeChapter(encryptChapter(synthetic)),synthetic);
+      chapterResults.push({order,extractor,sign,mode,
+        scaledIoC:scaledIoC(candidate),...chapterScore(candidate)});
+    }
+  }
+}
+assert.equal(chapterResults.length,32);
+assert.equal(Math.max(...chapterResults.map(x=>x.matched)),3);
+assert.equal(chapterResults.filter(x=>x.matched===3).length,1);
+
 if(require.main===module)console.log(JSON.stringify({
   status:"new source-exact 76-carry key route; direct GP29 p55 inverse negative",
   original:{p55Runes:76,p56PlaintextRunes:85,p57ClearRunes:95,
@@ -243,5 +316,11 @@ if(require.main===module)console.log(JSON.stringify({
   stepDecoder:{tested:rankResults.length,originalCipherDoubletPositions:stepDuplicates,
     bestDictionaryWords:bestStepWords,allPositiveRecovered:rankResults.length,results:rankResults},
   results,
+  fullTerminalChapter:{sourceLength:chapter.length,p54:232,p55:76,
+    p55KeyClockStart:4,sourceWords:chapterSlots.length,
+    attempted:chapterResults.length,
+    bestMatchedDictionaryWords:Math.max(...chapterResults.map(x=>x.matched)),
+    sourceNativePlantRecovered:chapter.length,
+    models:chapterResults},
   interpretation:"All 16 source-limited direct 76-symbol additive carry keys fail to decode coherent p55 text. The exact wheel-closure/key-length identity remains an unverified possible clue, not an authentic author cipher."
 },null,2));
