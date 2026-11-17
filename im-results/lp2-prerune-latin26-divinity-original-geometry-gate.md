@@ -1,0 +1,47 @@
+# Pre-rune Latin26 DIVINITY Vigenere: original-geometry source gate
+
+**Decision, Agent32, 17 November 2026:** A fully specified Latin26 Vigenere operation on canonical expanded GP rune spellings yields **no unknown LP2 plaintext**. Stronger, the stipulated longest-match GP renderer **cannot reconstruct 175 of the original 2,896 source-word rune segmentations**, regardless of Latin key or proposed plaintext. Exact English-dictionary positive plants matching every original word, line and page break confirm that the engine itself can build full 12,956-rune source-shaped ciphertext, but those 64 plants differ substantially from the unknown original in digraph and doublet statistics. This retires one **literal, single-layer** source-led Latin-before-rune model; it does not eliminate all possible letter-domain ciphers or separately authored escape encodings.
+
+[Exact, deterministic Windows Node22 CommonJS SFT](../sims/lp2_prerune_latin26_divinity_exact_clock_sft.cjs) includes authentic Cicada solved-stage controls, original p0–55 inputs, and 64 independently seeded geometry-matched lexical positives. It can be run through [the reusable manual workflow](../.github/workflows/manual-node22-sft-runner.yml). These counts were computed directly against current repository source by a separate live JavaScript original-data test. The manually dispatched Windows job was queued during a shared runner backlog at the time of publication; this report makes no claim that the queue had completed.
+
+## Source evidence and exact grammar
+
+The original 2013 Gematria Primus chart represents **29** runes. Canonical chart spellings include **seven two-Latin-letter runes**, TH, EO, NG, OE, AE, IA, EA, alongside **22 one-letter runes**. Literal one-letter K, Q, V and Z are absent from the canonical chart, although conventional transliteration sometimes normalizes C/K, U/V and S/Z. These ambiguities are not quietly replaced by a new cipher alphabet.
+
+Historical controls distinguish the operations: the original 2012 first JPEG contains a **61-byte post-EOI trailer**, whose ASCII Caesar −4 reveals **http://i.imgur.com/m9sYK.jpg**. That stage uses ASCII shifting rather than a 26-letter alphabet. A source-reproduced 2014 Stage04 image uses **GP29 Vigenere** and treats TH as one key rune. Authentic p56 deciphers with **GP29 prime-totient shifts plus a nonconsuming F**. Those independently established historical methods give good reasons to test a new letter clock, while warning that no existing solved LP2 passage proves Latin26.
+
+Freeze exactly one candidate: the conventional Latin spelling **DIVINITY** from solved p57 supplies the eight-letter key, and 2012 Latin-letter Vigenere usage supplies the operation. The strict runic source spelling of that word is DIUINITY; selecting the conventional semantic Latin spelling is part of this explicit hypothesis. An original first-party instruction **does not select** this joint transfer to unknown LP2.
+
+Expand every original rune into the canonical GP Latin letters before decryption. For each Latin letter at position j, starting from zero at the tested receiver's first rune, compute **P[j] = (C[j] − K[j mod 8]) mod 26**, A=0, ..., Z=25. Words, punctuation and page/line breaks consume no key. Unlike a GP29 key clock, each digraph rune consumes **two** key positions. The frozen forward program applies the inverse Vigenere and greedily groups those exact seven digraphs within each original printed word, otherwise emitting one-letter runes. It has **no hidden normalization, fitted phase, alias map, escape code, 29→26 codebook or added key layer**.
+
+## Actual original ciphertext tests
+
+All original physical pages' rune indices agree across the repository's [canonical numeric GP data](../resources/liber-primus/lp2-corpus.json) and the [full source print-layout transcription](../resources/liber-primus/lp2-transcription.txt), including physical p50's runeless 256-number table. The entire unknown p0–55 text is **12,956 GP runes in 2,896 printed words**. Source-literal expansion produces **16,131 Latin letters**. Exactly **3,175** of the 12,956 glyphs (24.506%) are two-character GP runes.
+
+| Frozen, original receiver | GP runes | Expanded Latin letters | Decrypted 26-letter IoC | Proposed Latin opening |
+| --- | ---: | ---: | ---: | --- |
+| p0–2 | 729 | 905 | **0.04096710** | PZJGTEPCCKDWAYJVEBLSRXQQBGSLUFLYYSXGRWVK... |
+| p40–53, independent holdout | 3,008 | 3,747 | **0.04306175** | CFRQTVHGESUPLZLQBSTWGFNGXDNLGZMOXUJVPLYQ... |
+| p54–55 | 308 | 378 | **0.04251049** | XESYQAHVEPNEVSKRKYZONEACKYSYGZPCTKMAPSLR... |
+
+The full Latin-letter inversion and reencryption are byte-for-byte exact under the fixed key, but the proposed text is nonprose. Reencryption to the same *Latin letters* alone cannot reconstruct the *runes*. The GP spelling table is not a prefix-free code: two separately printed one-letter runes **T,H** spell the same letters as the one rune **TH**, with equivalent T/H, E/O, N/G, O/E, A/E, I/A and E/A collisions. There are **100 occurrences** of such adjacent separate-single-rune digraph spellings within original printed words. The actual canonical greedy GP re-tokenization differs from the original rune sequence inside **175 of 2,896 printed words**, due to these collisions and overlaps with existing digraph runes. Since the expanded Latin ciphertext is completely determined by the original glyphs, **no Latin key or plaintext can make the prescribed greedy renderer reproduce those original 175 word segments**. Preserving glyph boundaries as additional metadata or inventing a selective digraph-escape code would be a new, unselected operation.
+
+For an authentic source-native control, directly encrypt the full clear LP2 p57 **95-rune / 100-Latin-letter** text using the declared Latin26 DIVINITY key. It creates **17** cipher letters from the forbidden K/Q/V/Z set, so the literal GP renderer cannot even represent the complete known passage. A legitimate bounded positive does work: clear p57's contiguous **13-rune MUSTSHEDOUROW** enciphers to **PCNBFPXBRCMWJ**, which is a legal 13-rune GP string and decodes back to the exact source-native text. The model is executable, with a severely constrained representable domain.
+
+## 64 fully reversible source-print-geometry positives
+
+An independent control generator uses the preserved [29,157-word TextBlob/Norvig English frequency lexicon](../resources/control/english_wordfreq_textblob.txt). It freezes the **2,896 original printed word lengths**, each **1–14 GP runes**, plus the actual 12,956 rune slots, punctuation, physical page breaks, line breaks and 32 page-spanning words. The complete dictionary is tried against every possible eight-position DIVINITY key phase using **the same Latin26 forward operation and the same greedy GP renderer**. Eligible words must yield the *exact required GP ciphertext word length*, never contain unrepresentable ciphertext K/Q/V/Z, and preserve the true next key phase.
+
+A finite eight-state backward dynamic program admits words only when the remaining original word lengths can still be filled. **64 fixed xorshift32 seeds** each choose from the eligible words to build an independently exact, reversible **12,956-GP-rune** synthetic manuscript in precisely the same 2,896 printed word slots. A literal character-level copy into the original print template changes only the rune glyphs; **all source separators and physical cuts remain at the identical positions**. These controls are made of real English lexicon words, arranged as *synthetic word sequences* rather than coherent prose. They calibrate the complete mechanism's ability to emit source-shaped ciphertext without secretly changing segmentation.
+
+| Feature across 12,956 glyphs | Actual unknown LP2 | 64 original-geometry positives |
+| --- | ---: | ---: |
+| Two-letter GP rune glyphs | **3,175 (24.51%)** | 180–254, mean **214.45** |
+| Identical adjacent runes | **86** | 551–643, mean **589.38** |
+| Rune lag-five equality | **479** | 506–596, mean **554.17** |
+
+The substantial gaps in *digraph occupancy* and *adjacent-repeat frequency* remain despite giving the Latin mechanism the exact physical word and page geometry of the genuine ciphertext. The lag-five gap is much smaller and is not a stand-alone discriminator. These 64 source-lexicon controls are a finite **conditional register test**; specially selected English phrases, other languages, additional adjacent-repeat filters, or a non-greedy rune encoder are outside their scope. A separate Gibran/Shakespeare illustrative diagnostic that **lossily folds** K/Q→C, V→U and Z→S yields about 0.82%/0.78% digraph rates; that deliberate information loss is never treated as a valid inverse.
+
+## Concrete research decision
+
+The exact **DIVINITY + Latin26 per-letter clock + literal canonical GP greedy renderer** cannot produce the unchanged original LP2 ciphertext and yields no readable unknown prose. The first-party 2012 cipher was ASCII Caesar and the reproduced 2014/p56 ciphers operate in GP29; these historical stages **do not independently select this proposed 26-letter receiver**. Retire the tested one-layer pre-rune route and avoid increasing the Latin26 key catalog to rescue it. A defensible successor requires a newly recovered Cicada-authored **reversible 26↔29 glyph framing/escape instruction** or an original source-specific key and typed receiver that handles the 175 boundary counterexamples. No unknown plaintext, key or deep-web destination was recovered under this gate.
