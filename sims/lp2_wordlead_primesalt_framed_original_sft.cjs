@@ -118,6 +118,23 @@ for(let nonce=0;nonce<29;nonce++){
 }
 const allSecretMaxLongMatches = nonceGroupBest.reduce(
   (sum,group)=>sum+group.maximumNativeLongMatches,0);
+function shape(word){
+  const seen=new Map();
+  return word.map(symbol=>{
+    if(!seen.has(symbol))seen.set(symbol,seen.size);
+    return seen.get(symbol);
+  }).join(",");
+}
+const sourceNativeWordShapes=new Set(
+  [...vocabulary.values()].flat().map(shape));
+const longBodiesWithoutAnyNativeShape=longPlain.filter(
+  w=>!sourceNativeWordShapes.has(shape(w)));
+const nativeLongWrongShape=native.filter(
+  w=>w.length>=5&&!sourceNativeWordShapes.has(shape(w))).length;
+assert.equal(nativeLongWrongShape,0);
+const shapeWitness=longBodiesWithoutAnyNativeShape.slice(0,6).map(
+  w=>({len:w.length,GP:w.map(x=>d.translit[x]).join(""),
+       pattern:shape(w)}));
 const preview=plain.slice(0,30).map(w=>w.map(x=>d.translit[x]).join("")).join(" | ");
 console.log(JSON.stringify({
   hypothesis:"first ciphertext rune holds per-word GP prime salt",
@@ -136,6 +153,9 @@ console.log(JSON.stringify({
   firstRunePrime29FivePlusTransparentWords:noShiftLong.length,
   firstRunePrime29FivePlusNativeMatches:noShiftLongHits,
   allSecret29NonceAdditiveBestFivePlusHits:allSecretMaxLongMatches,
+  allSecretFreeSubstitutionWordPatternMisses:longBodiesWithoutAnyNativeShape.length,
+  allSecretFreeSubstitutionNativeMatchedGeometryMisses:nativeLongWrongShape,
+  allSecretFreeSubstitutionExactWitnesses:shapeWitness,
   allSecret29NonceAdditiveTotalFivePlusCandidates:longPlain.length,
   perNonceBestFivePlusNativeMatches:nonceGroupBest,
   originalContentWords:words.length-83,
