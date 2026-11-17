@@ -1,0 +1,13 @@
+name: Agent 22 original prime-clause even-rune gate
+on:
+  workflow_dispatch:
+jobs:
+  original-source-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original GP29 parity inversion and shuffled null
+        run: node sims/lp2_prime_clause_secret_even_rune_sft.cjs
