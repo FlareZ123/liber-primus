@@ -37,6 +37,23 @@ const representations=[
   {name:"GP assigned prime values as bytes",bytes:r=>Buffer.from(r.indexes.map(i=>corpus.prime[i]))},
   {name:"GP uppercase latin romanization",bytes:r=>Buffer.from(r.indexes.map(i=>corpus.translit[i]).join(""),"utf8")}
 ];
+// The table is placed inside the eighth of nine source-visible visual chapters.
+// The eight complete preterminal chapters are a separate fixed checksum input.
+const firstEightChapterPages=[
+  [0,1,2],
+  [3,4,5,6,7],
+  [8,9,10,11,12,13,14],
+  [15,16,17,18,19,20,21,22],
+  [23,24,25,26],
+  [27,28,29,30,31,32],
+  [33,34,35,36,37,38,39],
+  [40,41,42,43,44,45,46,47,48,49,51,52,53]
+];
+const firstEightChapters=firstEightChapterPages.map((pageNumbers,chapter)=>{
+  const indexes=pageNumbers.flatMap(page=>corpus.pages.find(p=>p.page===page).indices);
+  return {chapter,indexes,runes:indexes.map(i=>corpus.runes[i]).join("")};
+});
+assert.deepEqual(firstEightChapters.map(x=>x.indexes.length),[729,1145,1729,1903,1021,1433,1680,3008]);
 const exact=[];
 for(const {name,bytes} of representations)for(const title of redItems){
   const digest=crypto.createHash("sha256").update(bytes(title)).digest();
@@ -44,9 +61,17 @@ for(const {name,bytes} of representations)for(const title of redItems){
     for(let i=0;i<8;i++)if(digest.equals(target[i]))exact.push({layout,index:i,title: title.page,representation:name});
   }
 }
+for(const title of firstEightChapters){
+  for(const [rep,raw] of [["raw GP29 rune indexes",Buffer.from(title.indexes)],["original UTF8 rune glyphs",Buffer.from(title.runes,"utf8")]]){
+    const digest=crypto.createHash("sha256").update(raw).digest();
+    for(const [layout,target] of [["printed-column",columns],["row-contiguous-32",chunks]]){
+      for(let i=0;i<8;i++)if(digest.equals(target[i]))exact.push({layout,index:i,chapter:title.chapter,representation:rep});
+    }
+  }
+}
 const digestToHex=b=>crypto.createHash("sha256").update(b).digest("hex");
 const test=Buffer.from("abc");
 assert.equal(digestToHex(test),"ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
 const positive=columns.map((col,i)=>({col:i,digest:digestToHex(col)}));
 assert.equal(exact.length,0,"An exact original source digest match has been found; needs interpretation.");
-console.log(JSON.stringify({testedTitles:redItems.map(x=>[x.page,x.indexes.length]),serializers:representations.map(x=>x.name),layouts:["eight printed 32-byte columns","eight contiguous 32-byte pieces"],sha256Evaluations:representations.length*8,exactMatches:exact,positiveControls:positive.length,warning:"Only direct SHA-256 of printed red headings is excluded; no new plaintext or key."},null,2));
+console.log(JSON.stringify({testedTitles:redItems.map(x=>[x.page,x.indexes.length]),serializers:representations.map(x=>x.name),layouts:["eight printed 32-byte columns","eight contiguous 32-byte pieces"],sha256Evaluations:representations.length*8+firstEightChapters.length*2,completeChapterLengths:firstEightChapters.map(x=>x.indexes.length),exactMatches:exact,positiveControls:positive.length,warning:"Only direct SHA-256 of eight printed red headings or eight source-visible chapter bodies is excluded; no new plaintext or key."},null,2));
