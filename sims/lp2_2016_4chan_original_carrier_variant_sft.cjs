@@ -14,6 +14,9 @@
 const assert = require('node:assert/strict');
 const crypto = require('node:crypto');
 const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
+const { spawnSync } = require('node:child_process');
 
 const originalPath = 'resources/historical/cicada2016-4gq25.jpg';
 const original = fs.readFileSync(originalPath);
@@ -52,6 +55,31 @@ const jpeg = (bytes) => bytes.length > 1000 &&
       received_jpeg: jpeg(bytes),
       exact_original_bytes: bytes.equals(original)
     });
+    if (jpeg(bytes) && process.env.CICADA_OUTGUESS === '1') {
+      const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'cicada-2016-repost-'));
+      const filename = path.join(tempDir, 'period-repost.jpg');
+      const extracted = path.join(tempDir, 'period-repost.outguess');
+      try {
+        // Unique per-invocation temporary directory, never a shared repository write.
+        fs.writeFileSync(filename, bytes);
+        const run = spawnSync('outguess', ['-r', filename, extracted], {
+          encoding: 'utf8', timeout: 20000
+        });
+        const payload = fs.existsSync(extracted) ? fs.readFileSync(extracted) : Buffer.alloc(0);
+        const signed = fs.readFileSync('resources/historical/cicada2016-4gq25-outguess.asc');
+        result.outguess = {
+          exit_status: run.status,
+          error: run.error?.message ?? null,
+          stderr: run.stderr?.slice(0, 1500) ?? '',
+          stdout: run.stdout?.slice(0, 1500) ?? '',
+          recovered_bytes: payload.length,
+          recovered_sha256: sha256(payload),
+          exact_signed_payload: payload.equals(signed)
+        };
+      } finally {
+        fs.rmSync(tempDir, { recursive: true, force: true });
+      }
+    }
     if (jpeg(bytes)) {
       result.decision = bytes.equals(original)
         ? '2016 repost exactly repeats the canonical already-extracted image; no additional carrier'
