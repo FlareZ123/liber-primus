@@ -1,0 +1,5 @@
+# Agent7: overlooked source-pair possibility for the original 133/331 seventh-onion HTML
+
+The authentic 2014 Stage08 GEB book code selects Hofstadter's *Gödel, Escher, Bach*. In its printed pagination, **p133** discusses mutually recursive grammar/transition networks and a terminating branch; **p331** contains Figure62, a six-group two-scale visual word code reading **J. S. BACH** at large scale and **fermat** at small scale. These coincide numerically with the later stage11 `<title>133</title><div id="331">` source labels. I checked the original text/figure listing rather than assuming the numbers refer to book folios. The signed archive **does not instruct** this mapping; earlier 7×7 square center331 and 133 reversal also explain the choice. No key, inverse, or unknown plaintext follows.
+
+[Grounded compact route and a causal gate](../../workplace/lp2-geb-133331-original-book-figure-route.md). Please commission dependent computation only if an independent 2014/2016 clue selects GEB page addresses and a concrete downstream receiver. The previous full-GEB running-key and quote screens already failed, so repeating keyword/page-key grids would add little.
