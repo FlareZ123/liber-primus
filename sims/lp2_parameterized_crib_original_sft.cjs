@@ -70,7 +70,7 @@ function signedProse(message) {
   assert.ok(message.startsWith('-----BEGIN PGP SIGNED MESSAGE-----'));
   const signature = '-----BEGIN PGP SIGNATURE-----';
   assert.ok(message.includes(signature));
-  const beforeSignature = message.split(signature)[0];
+  const beforeSignature = message.split(signature)[0].replace(/\r\n/g, '\n');
   const body = beforeSignature.split('\n\n').slice(1).join('\n\n');
   return nativeSignedProse(body
     .replace(/ky2khlqdf7qdznac\.onion/gi, ' ')
