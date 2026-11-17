@@ -164,10 +164,13 @@ function bruteShort(C) {
   visit(0, 0, []);
   return BigInt(seen.size);
 }
-for (const c of [
-  pages[0].indices.slice(0, 8),
+const shortControls = [
+  pages[0].indices.slice(1, 9), // Contains one known nonzero one-skip site
   source.pages.find(p => p.page === 57).indices.slice(0, 8)
-]) {
+];
+assert(countOneSkipPerRune(shortControls[0]) > 1n,
+  "short original-source positive control has a genuine skip path");
+for (const c of shortControls) {
   assert.equal(bruteShort(c), countOneSkipPerRune(c),
     "independent exhaustive 8-rune original-source control");
 }
