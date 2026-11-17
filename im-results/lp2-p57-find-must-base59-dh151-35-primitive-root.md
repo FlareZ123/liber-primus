@@ -57,29 +57,23 @@ The original scan set for this table is JPEGs 66–68 (LP2 pages 49–51), with 
 
 The p49 scan also has a **3×3 block of nine red squares** immediately after its third runic line and before the numeric rows begin. The p50 and p51 scans repeat the symmetric black dot clusters in the tree illustration but do not repeat the red 3×3 marker. The red mark may select a start, boundary, or 3×3 operation; no operation is currently justified. Preserve it as an original visual clue rather than treating it as decorative or assigning it a meaning prematurely.
 
-## Historical solve-path plausibility and its limit
+## Historical DH operation: which party owns which values?
 
-The repository's authenticated 2013 TCP-server source documents both a BASE29 conversion and a Diffie–Hellman operation. That makes DH a historically plausible operation for a technically literate solver to recognize after finding (151,35).
+The **PGP-authenticated 26 January 2013 TCP challenge** requires a connecting client to send `DH [p]` and thus **select modulus p**. The server chooses its own **base b and private exponent**, replies with the base and server public share, receives a **client public share**, and replies with the resulting shared value. The original signed *illustration* is `DH 23 → 01 OK 5 8 → 19 → 03 DATA 2`. A separate March 2013 participant-test log shows `DH 3301` with **participant-selected** base2757 and secret331, public share1264, remote-client share2800 and result1067. The log does not authenticate these generated values as an author-selected 2014 key. No signed Cicada source identifies `DH 151`, base35, a participant/client key for later LP2, or a 76-rune receiver. The same signed challenge's `BASE29 3301 → 3QO` illustrates a conventional *alphanumeric numeral*, never a Gematria Primus rune encoder. `NEXT` simply accepts participant-selected text. [Verified signed-source report](../resources/external/2013-tcp-server-signed-source.md) · [original challenge as published](https://github.com/iBotPeaches/cicada_3301/blob/27309e66746e21542f2b908d7f60b906915fe7c6/other/2013_TCP_Server.md) · [independent participant log witness](../resources/external/2013-tcp-live-test-vectors.json).
 
-However, the source describes an interactive server protocol: the participant running the server chooses a base and secret integer, the client supplies a public share, and the server returns the shared value. It does **not** prescribe p=151, g=35, an LP2 cipher, or a key schedule. The historical example uses different parameters. Therefore it authenticates the operation family, not this proposed LP2 use.
+The proposed source arithmetic makes **(p=151,g=35)** a valid finite-field DH *parameter candidate*. Its multiplicative group order is `150`, of which exactly **φ(150)=40** nonzero residues are primitive roots (**26.67%**). Thus the primitive-root condition is compatible with DH, without being a rare independent confirmation. **29, 60 and 76 do not divide 150:** none can be a subgroup order. Stronger, because `gcd(150,29)=1`, **every homomorphism of this DH group to additive GP29 is constant**. A reversible 29-rune DH output needs an independently selected, nonhomomorphic byte/rune conversion; the prime pair alone cannot furnish a full 29-symbol group-preserving alphabet or 60-/76-cycle. This does not exclude explicitly authored key derivation or output conversion.
 
-There is also a mathematical guardrail: 60 does not divide 150, so the 60-cell ring cannot itself be a subgroup of the multiplicative group modulo 151. Its length may select a data region or key schedule, but it is not the order of a subgroup of that group.
+## A conditional private-exponent candidate: OUR = 21
 
+The original 60-cell inner ring (selected by `φ(MUST)=60`) contains **60 two-digit source numerals**. Concatenate their digits into one 120-digit base-59 integer and reduce modulo the candidate DH group order `150`. Clockwise and counterclockwise from original cell149 both give **21**. The independently printed p57 word **OUR** has GP-prime sum21. One possible speculative private/public pair is `a=21, A=35^21 mod151=107`. Value107 is also a GP prime weight (rune IA) and appears **exactly once** on the numeric table's outermost ring at original zero-based cell24. The source gives no instruction to concatenate all ring tokens, select OUR as a private exponent, or interpret that outer cell as a DH public-share message. Agent23's already executed direct a21 consumers produce no p55 plaintext, and the obvious `q^21 mod151 mod29` symbol map reaches only 16 of the 29 GP values, so it is not a reversible 29-symbol substitution.
 
-## A source-selected private-exponent candidate: OUR = 21
+**Exact conditional-null correction to the apparent two-direction corroboration.** Each source table *token* is two base59 digits. Concatenating tokens modulo150 therefore applies `59² ≡ 31 (mod150)` per token, and `31^k ≡ 1+30k (mod150)`. The 60 original inner-ring token **values sum to 6,951**, so their sum mod150 is **51** and mod30 is **21**, irrespective of reading order. Let `E_forward` be the 60-token 120-digit numeral modulo150 and `E_backward` the reversed ring traversal keeping the source-selected first cell149 in place. For **every permutation of the same source tokens**, an algebraic identity gives
 
-The 60 inner-ring tokens can also be read as one concatenated 120-digit base-59 integer. Reducing that integer modulo the proposed group order 150 gives **21 in both clockwise and counterclockwise traversal**, starting at the radial cell 149. The p57 word **OUR** independently has GP-prime sum **21**. The same concatenation under base 60 gives 46, not a p57 word sum.
+`(E_forward + E_backward) mod150 = (92×6951) mod150 = 42`.
 
-This is a stronger clue-constrained candidate for the DH private exponent than an arbitrary ring cell:
+Both outputs must equal 21 modulo30, limiting each to **{21,51,81,111,141}**. Thus **`E_forward=21` if and only if `E_backward=21`**, independently of the token order. The two observed 21 outputs are *one* event, not two independent hits. In exact matched 200,000-trial deterministic permutations of all source ring tokens, the dual-21 result occurs **39,807 times (19.9035%)**. Holding the original first cell fixed and shuffling only the remaining 59 values gives **40,176/200,000 (20.088%)**. The sole distinct p57 printed word-sum below150 congruent to the source-invariant 21 mod30 is **OUR** (other distinct eligible sums:55,66,72,86,115). This specific start/word equality is therefore a low-discrimination conditional checksum, although it could in principle still be an intentional selector.
 
-```
-a = 21 = sum(OUR)
-A = g^a mod p = 35^21 mod 151 = 107
-```
-
-The public value 107 is itself one of the 29 GP prime weights (rune index 27, transliteration IA), and the base-59 p50 table contains 107 once, in the outer ring. The public key has order 50. This is an additional structural echo, not proof: a random nonzero residue has a 29/150 chance of belonging to the GP prime-weight set.
-
-The missing step remains how to use the public-share material. With a=21, direct tests treating outer-ring values as DH public shares or as exponents still do not decrypt p55. Treating each p55 GP-prime weight as a public share and reducing q^21 mod 151 modulo 29 produces a non-injective symbol map (only 16 distinct outputs over the 29-symbol alphabet), so that cannot be a reversible symbol-wise cipher. The corresponding shared-exponent low digit is likewise non-injective. The 38-pair p55 BASE29 public-share test also fails and contains one zero residue, invalid as a DH public share.
+The [exact algebraic original-input SFT](../sims/lp2_p57_our21_ring120digit_orientation_null_sft.cjs) establishes the identity for **all 400,000** shuffled original arrangements with exact source-retention, distinguishes a single 1-in-5 match from two apparent corroborations, and uses no unknown ciphertext score. This downgrades the `OUR21` exponent clue's independent strength. It does not change the earlier direct consumer negatives or disprove another independently authenticated LP2 DH operation.
 
 ## Direct tests already made
 
@@ -107,7 +101,7 @@ A 38-pair interpretation of p55 as BASE29 public-share integers was also tried w
 
 **Hypothesis:** p57 may select a DH parameter pair in the p50 table, with the 60- and 76-cell rings supplying further material.
 
-**Missing input:** no source-authenticated rule yet explains how the 60-ring values become a secret exponent, how they pair with the 76-cell region, or how the DH result becomes p55 plaintext.
+**Missing input:** neither the signed 2013 DH example nor the original LP2 images supplies a p55 DH public share, a reversible GP29 output decoder, or a 76-position key clock. The provisional OUR21 exponent coincides with a modulo30 source checksum and its two traversal matches are algebraically dependent, so the count correspondence cannot substitute for the missing operator.
 
 Do not launch an unconstrained DH/key search from this observation. The next useful investigation is to find an independent clue in the original manuscript or an earlier Cicada instruction that selects the missing key schedule or BASE29 mapping. If no such instruction appears, retain this as a notable base-59 structural lead but retire it as a decryption route. No claim of recovered plaintext is made.
 
