@@ -228,6 +228,24 @@ const transparentObserved = known.map(reference => ({name: reference.name,
   ...longestTransparentF(original, reference.values)}));
 assert.deepEqual(transparentObserved.map(row => row.length),
   [16, 15, 15, 16, 16, 15, 14, 15, 14, 14, 16, 14, 14, 14, 12, 15]);
+
+// Historical Cicada puzzles have source-attested reversal steps. The same
+// all-secret tests also search the source runes in EXACT reversed order.
+// A forward scan of the reversed reference is equivalent to scanning the
+// original reference backwards, without assuming the secret alphabet.
+const reversedKnown = known.map(reference => ({
+  name: reference.name, values: reference.values.slice().reverse()
+}));
+const reversedObserved = reversedKnown.map(reference => ({
+  name: reference.name, ...longestIsomorphic(original, reference.values)
+}));
+const reversedTransparent = reversedKnown.map(reference => ({
+  name: reference.name, ...longestTransparentF(original, reference.values)
+}));
+assert.deepEqual(reversedObserved.map(row => row.length),
+  [16, 14, 16, 16, 15, 16, 16, 15, 15, 15, 15, 14, 13, 12, 16, 15]);
+assert.deepEqual(reversedTransparent.map(row => row.length),
+  [16, 14, 16, 16, 15, 16, 14, 14, 15, 15, 14, 14, 13, 12, 15, 15]);
 const sourceOffsets = [];
 let cursor = 0;
 for (const page of pages) {
@@ -273,10 +291,13 @@ console.log(JSON.stringify({
   scope: {unknownRunes: original.length, unknownPhysicalPages: pages.length,
     knownReferenceRunes: known.reduce((s, p) => s + p.values.length, 0),
     testedStartPairs: observed.reduce((s, p) => s + p.pairs, 0),
+    testedBothDirectionsStartPairs: observed.reduce((s, p) => s + 2 * p.pairs, 0),
     acrossPrintedWordsAndPhysicalPageSeams: true},
   knownSubstitutionIsomorphism: observed,
   originalCrossPageCribCeiling: Math.max(...observed.map(item => item.length)),
   sourceNativeTransparentFIsomorphism: transparentObserved,
+  originalSourceReversedAllSecretIsomorphism: reversedObserved,
+  originalSourceReversedNativeF: reversedTransparent,
   transparentFLongestOriginalRunes:
     Math.max(...transparentObserved.map(item => item.length)),
   unknownWithinPageRepeats: self,
@@ -288,5 +309,5 @@ console.log(JSON.stringify({
     recoveredIsomorphismLength:transparentPositive.length,
     recoveredInsertionOffset:transparentPositive.originalOffset,
     recoveredReferenceOffset:transparentPositive.referenceOffset},
-  conclusion: 'No 17-rune or longer original LP2 passage is a fixed bijective or native literal-F-transparent substitution of any contiguous passage in six clear LP1 pages, clear p57, or any of nine original Cicada clearsigned 2012–2016 source messages. All page-local unknown-to-unknown equality patterns have unique signatures at length 22. These are necessary-condition exclusions for identical typed plaintext under a single bijection, not universal decryptions or evidence against changing keys, transposition, or novel plaintext.'
+  conclusion: 'No 17-rune or longer original LP2 passage is a fixed bijective or native literal-F-transparent substitution of any contiguous passage in six clear LP1 pages, clear p57, or nine original Cicada clearsigned 2012–2016 messages, in either forward or exact reversed source-rune order. All page-local unknown-to-unknown equality patterns have unique signatures at length 22. These are necessary-condition exclusions for identical typed plaintext under a single bijection, not universal decryptions or evidence against changing keys, transposition, or novel plaintext.'
 }, null, 2));
