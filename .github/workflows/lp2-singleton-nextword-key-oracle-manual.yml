@@ -1,0 +1,15 @@
+name: LP2 singleton successor key oracle manual
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-oracle:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recompute original-source key probes and native-positive controls
+        run: node sims/lp2_singleton_nextword_key_oracle_sft.cjs
