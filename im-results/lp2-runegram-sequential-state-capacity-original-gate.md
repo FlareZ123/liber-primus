@@ -44,6 +44,18 @@ Across the **450 specified original-alignment controls**:
 
 For completeness, global `D₃` minima are Shakespeare **92**, Gibran **112**, Emerson **104**; global `D₄` minima are **35, 48, 24**, respectively. `D₂` supplies the strongest simple constraint here. These are explicit fixed reference controls, **not a universal theorem that every possible English book has the quoted minima**, nor a population p-value. A coherent source has repeated common rune pairs and the original ciphertext nearly always displays different two-rune outputs at their aligned occurrences.
 
+### Exact minimum physical-page rekey capacity at 29 states
+
+The nine published chapter boundaries exclude a 29-state encoder on every literary alignment, but a 29-way rotor might be **rekeyed at some additional original page breaks**. Grant all **54 possible between-rune-page cuts** as independent new codebook boundaries, even where the original illustration supplies no visual selector. Starting at the first printed page, keep adding complete pages to one domain for as long as the source-exact two-rune fanout is at most 29. On the first failure, rekey before that page, exclude the crossing bigram, then continue. Because adding more positions can never reduce fanout, the longest-valid-prefix greedy partition gives the **minimum number of contiguous page-key domains that can satisfy this necessary inequality**. It does not construct any actual compatible state-transition cipher.
+
+| Hypothetical GP plaintext source | Exact windows | Minimum independent page-key domains | Mean domains | Maximum domains |
+|---|---:|---:|---:|---:|
+| Shakespeare | 150 | **9** | 11.527 | 14 |
+| Gibran | 150 | **11** | 16.327 | 20 |
+| Emerson | 150 | **11** | 12.287 | 15 |
+
+A globally stable 29-state transducer fails. Nine *fixed original-artwork* key domains also fail. Passing even the relaxed necessary capacity on these literary controls would demand **9–20 independently keyed domains placed at additional or differently located physical page boundaries**, depending on the exact candidate plaintext; 29 states with entirely independent keys at each of 55 rune-bearing pages are not excluded. Actual deterministic encoding might require more domains. This provides a concrete constraint for an independently sourced key-refresh instruction without presenting a self-selected page-cut plan as a decryption.
+
 ### Genuine Cicada plaintext as the control register
 
 The three literary sources above may differ stylistically from Cicada's actual authored text. To test that rival **without fitting any language model**, independently use the repository's already-solved LP1 and LP2 source-authored prose, [the first-party decoded reference](../resources/liber-primus/lp1-plaintext-reference.txt). It contains editor-normalized Latin transliterations but tracks the authenticated original solved messages. Avoid double-counting editorial continuation recaps on physical LP1 pp4,7,8, and discard numeric-only square rows, editorial commentary and p56's long hexadecimal hash. Encode its remaining natural-language text with the same fixed GP convention: **2,988 GP runes**. The source spans multiple original solved episodes, so its complete concatenation is a comparison register rather than one historically continuous 2,988-rune Cicada chapter.
@@ -70,7 +82,7 @@ The earlier [source-word minimum-state result](lp2-wordstate-minimum-keycount-or
 
 ## Reproduction
 
-- [Windows Node22 standalone CommonJS SFT](../sims/lp2_runegram_sequential_state_lowerbound_sft.cjs), pinned to the complete original LP2 GP29 source and three existing original-language controls. It checks all 450 literary alignments, all 3,655 source-native Cicada alignments, physical-page and chapter boundaries, `D₂/D₃/D₄`, assertions against reported minima, and exact 29-state forward/reverse control.
-- [Manual Windows workflow](../.github/workflows/agent21-runegram-state-manual.yml), [successful original-source run 44132044652](https://github.com/FlareZ123/liber-primus/actions/runs/44134377431).
+- [Windows Node22 standalone CommonJS SFT](../sims/lp2_runegram_sequential_state_lowerbound_sft.cjs), pinned to the complete original LP2 GP29 source and three existing original-language controls. It checks all 450 literary alignments, all 3,655 source-native Cicada alignments, physical-page and chapter boundaries, the exact optimal K=29 page-rekey domain counts, `D₂/D₃/D₄`, assertions against reported minima, and exact 29-state forward/reverse control.
+- [Manual Windows workflow](../.github/workflows/agent21-runegram-state-manual.yml), [successful original-source run 44132044652](https://github.com/FlareZ123/liber-primus/actions/runs/44135698179).
 
 All language models here are conditional controls, and the original 56 LP2 encrypted pages remain unsolved.
