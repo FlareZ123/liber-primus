@@ -105,6 +105,19 @@ const longHits=longPlain.filter(w=>lex.has(w.join(","))).length;
 const noShift=words.filter(w=>w[0]===9);
 const noShiftLong=noShift.filter(w=>w.length>=6);
 const noShiftLongHits=noShiftLong.filter(w=>lex.has(w.slice(1).join(","))).length;
+const nonceGroupBest = [];
+for(let nonce=0;nonce<29;nonce++){
+  const longCipher = words.filter(w=>w[0]===nonce&&w.length>=6);
+  const exactHitsByShift = Array.from({length:29},(_,shift)=>
+    longCipher.filter(word=>lex.has(word.slice(1).map(x=>mod(x-shift)).join(","))).length);
+  nonceGroupBest.push({
+    nonce,
+    count:longCipher.length,
+    maximumNativeLongMatches:Math.max(...exactHitsByShift)
+  });
+}
+const allSecretMaxLongMatches = nonceGroupBest.reduce(
+  (sum,group)=>sum+group.maximumNativeLongMatches,0);
 const preview=plain.slice(0,30).map(w=>w.map(x=>d.translit[x]).join("")).join(" | ");
 console.log(JSON.stringify({
   hypothesis:"first ciphertext rune holds per-word GP prime salt",
@@ -122,6 +135,9 @@ console.log(JSON.stringify({
   firstRunePrime29TransparentWordCount:noShift.length,
   firstRunePrime29FivePlusTransparentWords:noShiftLong.length,
   firstRunePrime29FivePlusNativeMatches:noShiftLongHits,
+  allSecret29NonceAdditiveBestFivePlusHits:allSecretMaxLongMatches,
+  allSecret29NonceAdditiveTotalFivePlusCandidates:longPlain.length,
+  perNonceBestFivePlusNativeMatches:nonceGroupBest,
   originalContentWords:words.length-83,
   first30DecodedPrintedWords:preview,
   exactFullOriginalRuneAndPunctuationRoundTrip:true,
