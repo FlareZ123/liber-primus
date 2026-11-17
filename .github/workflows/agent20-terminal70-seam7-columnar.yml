@@ -1,0 +1,20 @@
+name: Agent20 original p55 terminal70 seam7 7/14-column gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-rectangle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-exact 70+7 original and all solved70 window transport controls
+        run: |
+          node --check sims/lp2_p55_terminal70_seam7_columnar_source_sft.cjs
+          node sims/lp2_p55_terminal70_seam7_columnar_source_sft.cjs
