@@ -1,0 +1,21 @@
+name: LP2 Jung page-331 Scrutinies word-index gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  word-index-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install PDF text extractor
+        run: python -m pip install --disable-pip-version-check pymupdf
+      - name: Test 5x5 magic-square word indices against Scrutinies
+        run: python sims/lp2_jung331_scrutinies_magic_square_word_index.py
