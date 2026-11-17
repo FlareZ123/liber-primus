@@ -10,6 +10,16 @@ The independent candidate target is the untouched physical page **p29**, origina
 
 In particular, the first 275 original p29 runes **uniquely determine** a two-rune parity suffix if the requirement `G|P` is imposed, because the divisor has a nonzero constant term and degree two. The suffix computed solely from that fixed prefix is **[8,19]**, exactly the two original page-terminal glyph indices. A one-rune mutation makes the remainder nonzero. This suffix reconstruction is algebraically the same observation as zero remainder and provides no independent evidence.
 
+## Literal source-factor quotient does not recover prose
+
+The immediate, fully reversible decipherment hypothesis is to **divide** the original p29 277-term GP29 polynomial by its already selected `G` factor, read the **275-term quotient** in source order as GP runes, and recognize natural language. Since `G` is degree two, there is no hidden key, phase, or variable manuscript length in this direct operation. Exact ascending-source-factor division gives a GP29 quotient beginning with indices
+
+`[4,6,26,27,11,9,15,25,15,21,7,0,18,26,8,28,7,5,23,12,6,1,18,0,22,2,28,6,14,13]`
+
+which transliterates `RGYIAJNSAESNGWFEYHEAWCDEOGUEFINGTHEAGXP` (digraph-aware GP rune values), with **IoC 2566 / 75,350 = 0.0340544**, indistinguishable from a near-uniform rune stream by that statistic. It has no coherent native English sentence or detected original-script command. Multiplying all 275 quotient terms by G exactly reconstructs **all 277 original p29 ciphertext indices**; this controls the algebra without selecting or repairing glyphs. The exact control and first thirty indices are now asserted in the same reproducer.
+
+This directly tests the simplest potential ciphertext consumer of the three-red-rune clue and rejects its plain-GP reading. It does not exclude G as an error-detection factor, an operator embedded inside another cipher, or a key derivation ingredient; all those require an independent instruction before further work.
+
 ## Why it is not yet an encoding mechanism
 
 The simple independent-uniform-symbol null assigns a probability `1/29²=1/841` to a fixed page having zero degree-two remainder. Checking 55 nonempty original physical pages would then produce at least one match with probability `1−(840/841)^55≈0.06334`. This is a comparison reference, not a calibrated significance value: the original source may have non-independent runes, the examined G was known from past analyses, and many other factors and segmentation schemes have been studied. There is no source instruction selecting p29 as a checksum register or placing two parity glyphs at its end.
