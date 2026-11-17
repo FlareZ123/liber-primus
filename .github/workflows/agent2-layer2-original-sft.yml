@@ -1,0 +1,205 @@
+name: Agent2 layer2 original p0-p2 and p42 SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: agent2-layer2-original-sft
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout research repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Checkout pinned layer2 reference
+        uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: upstream
+      - name: Set up Python and Rust
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install reference exporter dependencies
+        run: python -m pip install numpy mpmath sympy
+      - name: Export source-fixed key families, prepare original windows, and parity-test the long-window counter extension
+        run: python sims/agent2_layer2_sft.py prepare upstream resources/liber-primus/lp2-corpus.json
+      - name: Bundle the patched decoder and exact inputs for parallel jobs
+        run: |
+          mkdir -p bundle/upstream/work
+          cp -a upstream/work/layer2 bundle/upstream/work/
+          cp upstream/work/lp.py bundle/upstream/work/lp.py
+          mkdir -p bundle/upstream/work/phpmt/data
+          cp upstream/work/phpmt/data/bigram.txt bundle/upstream/work/phpmt/data/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: layer2-prepared
+          path: bundle/
+          retention-days: 30
+
+  controls:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    outputs:
+      serial_pass: ${{ steps.flags.outputs.serial_pass }}
+      combined_pass: ${{ steps.flags.outputs.combined_pass }}
+      periodic_litf1_pass: ${{ steps.flags.outputs.periodic_litf1_pass }}
+    steps:
+      - name: Checkout research repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/download-artifact@v4
+        with:
+          name: layer2-prepared
+          path: prepared
+      - name: Run independent full-length GP29 positive controls
+        run: |
+          chmod +x prepared/upstream/work/layer2/target/release/layer2
+          python sims/agent2_layer2_sft.py controls prepared/upstream/work/layer2
+      - name: Publish control gates
+        id: flags
+        run: |
+          python - <<'PY'
+          import json, os
+          p = "prepared/upstream/work/layer2/data/controls.json"
+          d = json.load(open(p, encoding="utf-8"))
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
+              for k in ("serial_pass", "combined_pass", "periodic_litf1_pass"):
+                  f.write(f"{k}={str(bool(d[k])).lower()}\n")
+          PY
+      - name: Bundle control evidence
+        if: always()
+        run: |
+          mkdir -p controls_bundle
+          if [ -f prepared/upstream/work/layer2/data/controls.json ]; then
+            cp prepared/upstream/work/layer2/data/controls.json controls_bundle/
+          fi
+          if [ -d prepared/upstream/work/layer2/data/controls ]; then
+            cp -a prepared/upstream/work/layer2/data/controls controls_bundle/
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: layer2-controls
+          path: controls_bundle/
+          if-no-files-found: warn
+          retention-days: 30
+
+  screen:
+    needs: controls
+    if: >-
+      ${{ (matrix.family != 'solved' && matrix.family != 'words' || needs.controls.outputs.serial_pass == 'true') &&
+          (matrix.family != 'combined' || needs.controls.outputs.combined_pass == 'true') &&
+          (matrix.family != 'periodic1' || needs.controls.outputs.periodic_litf1_pass == 'true') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        window: [opening, p42]
+        family: [solved, words, combined, periodic0, periodic1]
+        side: [real, null]
+    steps:
+      - name: Checkout research repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/download-artifact@v4
+        with:
+          name: layer2-prepared
+          path: prepared
+      - name: Run one frozen original or equal-work null cell
+        run: |
+          chmod +x prepared/upstream/work/layer2/target/release/layer2
+          python sims/agent2_layer2_sft.py screen prepared/upstream/work/layer2 ${{ matrix.window }} ${{ matrix.family }} ${{ matrix.side }} --threads 4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: layer2-screen-${{ matrix.window }}-${{ matrix.family }}-${{ matrix.side }}
+          path: |
+            prepared/upstream/work/layer2/results/${{ matrix.window }}_${{ matrix.family }}_${{ matrix.side }}.tsv
+            prepared/upstream/work/layer2/results/${{ matrix.window }}_${{ matrix.family }}_${{ matrix.side }}_verify.txt
+            prepared/upstream/work/layer2/results/${{ matrix.window }}_${{ matrix.family }}_${{ matrix.side }}.json
+          if-no-files-found: error
+          retention-days: 30
+
+  summary:
+    needs: [prepare, controls, screen]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout latest research repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/download-artifact@v4
+        with:
+          name: layer2-prepared
+          path: prepared
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: layer2-controls
+          path: controls
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: layer2-screen-*
+          path: results
+          merge-multiple: true
+      - name: Consolidate current findings and preserve raw evidence
+        run: |
+          mkdir -p results controls im-results/agent2_layer2_p0_2_p42_raw
+          if [ ! -f controls/controls.json ]; then
+            echo '{"serial_pass":false,"combined_pass":false,"periodic_litf1_pass":false}' > controls/controls.json
+          fi
+          python sims/agent2_layer2_sft.py analyze results controls/controls.json im-results/agent2_layer2_p0_2_p42_original_screen.md
+          cp prepared/upstream/work/layer2/data/manifest.json im-results/agent2_layer2_p0_2_p42_manifest.json
+          cp controls/controls.json im-results/agent2_layer2_p0_2_p42_controls.json
+          cp im-results/layer2_summary.json im-results/agent2_layer2_p0_2_p42_summary.json
+          rm im-results/layer2_summary.json
+          if compgen -G "results/*" > /dev/null; then
+            cp results/* im-results/agent2_layer2_p0_2_p42_raw/
+          fi
+          if compgen -G "controls/controls/*" > /dev/null; then
+            mkdir -p im-results/agent2_layer2_p0_2_p42_raw/controls
+            cp controls/controls/* im-results/agent2_layer2_p0_2_p42_raw/controls/
+          fi
+      - name: Commit reproducible results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git rebase origin/main
+          git add im-results/agent2_layer2_p0_2_p42_original_screen.md \
+                  im-results/agent2_layer2_p0_2_p42_manifest.json \
+                  im-results/agent2_layer2_p0_2_p42_controls.json \
+                  im-results/agent2_layer2_p0_2_p42_summary.json \
+                  im-results/agent2_layer2_p0_2_p42_raw
+          if ! git diff --cached --quiet; then
+            git commit -m "Agent2: Record bounded layer-two p0-p2 and p42 SFT"
+            git push origin HEAD:main
+          fi
