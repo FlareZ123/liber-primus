@@ -12,4 +12,6 @@ jobs:
         with:
           node-version: '22'
       - name: Run original-input GP29 and native-language controls
-        run: node sims/lp2_p55_2012_signed_gps_digitpad_sft.cjs
+        run: |
+          node sims/lp2_p55_2012_signed_gps_digitpad_sft.cjs
+          node sims/lp2_p55_2012_signed_gps_dms76_sft.cjs
