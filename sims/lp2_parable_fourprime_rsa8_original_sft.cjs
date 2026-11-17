@@ -142,12 +142,55 @@ for (const e of EXPONENTS) {
 const maxIoc = Math.max(...originalResults.map((entry) => entry.output_ioc));
 assert.ok(maxIoc < 0.036, "unexpected original plaintext-frequency concentration");
 assert.ok(coincidence(controls) > 0.06, "clear p57 source-positive distribution");
+// A distinct source-visible five-byte receiver: p50 has 256 printed bytes,
+// while original p53 has exactly 51 red runes. The four-prime N fits five
+// bytes; therefore 51 RSA ciphertext blocks would consume 255 bytes and
+// leave one physically source-visible byte as a possible marker.
+// Standard RSA requires every five-byte input integer to be STRICTLY below N.
+const grid = JSON.parse(fs.readFileSync(path.join(
+  __dirname, "..", "resources", "liber-primus", "base60-grid.json"
+), "utf8"));
+const ink = JSON.parse(fs.readFileSync(path.join(
+  __dirname, "..", "resources", "liber-primus", "lp2-ink-annotations.json"
+), "utf8"));
+assert.equal(grid.byte_rows.length, 32);
+const bytes = grid.byte_rows.flat();
+assert.equal(bytes.length, 256);
+const p53 = ink.pages.find((p) => p.page === 53);
+assert.equal(p53.rune_count, 179);
+assert.equal(p53.red_spans.length, 1);
+assert.equal(p53.red_spans[0].start, 128);
+assert.equal(p53.red_spans[0].length, 51);
+const packetValidity = [];
+for (const headMarker of [false, true]) {
+  for (const littleEndian of [false, true]) {
+    let valid = 0;
+    let firstBad = null;
+    for (let i = 0; i < 51; i++) {
+      const packet = bytes.slice(Number(headMarker) + 5 * i,
+        Number(headMarker) + 5 * i + 5);
+      if (littleEndian) packet.reverse();
+      const x = packet.reduce((sum, byte) => 256n * sum + BigInt(byte), 0n);
+      if (x < N) valid++;
+      else if (firstBad === null) firstBad = i;
+    }
+    packetValidity.push({
+      head_marker: headMarker, little_endian: littleEndian,
+      valid, invalid: 51 - valid, first_invalid_block: firstBad,
+    });
+  }
+}
+assert.deepEqual(packetValidity.map((x) => x.valid), [35, 28, 33, 36]);
+assert.ok(packetValidity.every((x) => x.invalid > 0),
+  "no source-order reading supplies complete canonical RSA5 ciphertext");
+
 console.log(JSON.stringify({
   modulus: N.toString(),
   phi: PHI.toString(),
   eight_digit_domain: DOMAIN.toString(),
   original_models: originalResults.length,
   positive_controls: EXPONENTS.length * 2 * 2,
+  canonical_RSA5_grid_packets: packetValidity,
   max_original_ioc: maxIoc,
   known_clear_p57_ioc: coincidence(controls),
   results: originalResults,
