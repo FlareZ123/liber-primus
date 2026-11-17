@@ -119,6 +119,46 @@ const columnSorted = columnControls.slice().sort((a, b) => a - b);
 assert.ok(Math.abs(columnSorted[0] - 0.05333333333333334) < 1e-14);
 assert.equal(columnControls.filter((ioc) => ioc <= columnSource.ioc).length, 0);
 
+// Pure word/acrostic reordering can never alter first- or last-glyph
+// frequency. Evaluate source-native word-edge controls without any key.
+const solvedWords = [];
+for (const part of solved.sections) {
+  let currentWord = [];
+  for (const glyph of Array.from(part.source_text)) {
+    if (index.has(glyph)) {
+      currentWord.push(index.get(glyph));
+    } else if (currentWord.length) {
+      solvedWords.push(currentWord);
+      currentWord = [];
+    }
+  }
+  if (currentWord.length) solvedWords.push(currentWord);
+}
+assert.equal(solvedWords.length, 740);
+/**
+ * @param {(word:number[])=>number} take
+ * @returns {{source:ReturnType<typeof collisionProfile>,controls:number[],min:number}}
+ */
+function wordEdgeControls(take) {
+  const source = collisionProfile([words.map(take)]);
+  const nativeEdges = solvedWords.map(take);
+  const controls = [];
+  for (let i = 0; i + 156 <= nativeEdges.length; i++)
+    controls.push(collisionProfile([nativeEdges.slice(i, i + 156)]).ioc);
+  assert.equal(controls.length, 585);
+  const min = Math.min(...controls);
+  assert.ok(source.ioc < min);
+  return {source, controls, min};
+}
+const firstEdge = wordEdgeControls((word) => word[0]);
+const lastEdge = wordEdgeControls((word) => word.at(-1));
+assert.equal(firstEdge.source.pairs, 24180);
+assert.equal(firstEdge.source.equalPairs, 894);
+assert.ok(Math.abs(firstEdge.source.ioc - 0.036972704714640196) < 1e-14);
+assert.ok(Math.abs(firstEdge.min - 0.06153846153846154) < 1e-14);
+assert.equal(lastEdge.source.equalPairs, 826);
+assert.ok(Math.abs(lastEdge.min - 0.07733664185277088) < 1e-14);
+
 // Exact source-derived red-title additive row-key hypothesis, both signs.
 // Re-encryption checks algorithmic correctness; it cannot establish a key.
 const mod29 = (x) => ((x % 29) + 29) % 29;
@@ -228,6 +268,14 @@ console.log(JSON.stringify({
   source: 'Original LP2 p0-p2: red 13, black 156 words, 716 runes',
   sourceRows: 13, wordsPerRow: 12, redKey: red.map((v) => corpus.translit[v]).join(' '),
   rowLengths, original: source,
+  sourceWordAcrostic: {
+    originalInitials: firstEdge.source,
+    solvedNativeInitialControls: firstEdge.controls.length,
+    nativeInitialMinimum: firstEdge.min,
+    originalTerminals: lastEdge.source,
+    nativeTerminalMinimum: lastEdge.min,
+    pureReorderingCannotChangeFrequencies: true
+  },
   exploratoryPrimeMod12FirstRune: {
     output: selectedString,
     interpretation: 'Partial READ W prefix; no complete meaningful output',
