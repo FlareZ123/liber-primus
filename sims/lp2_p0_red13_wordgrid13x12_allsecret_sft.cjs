@@ -146,6 +146,36 @@ for (const sign of [-1, +1]) {
   assert.deepEqual(collisionProfile(asColumns(columnDecoded)), columnSource);
 }
 
+// One further source-derived, explicitly exploratory selector: the GP
+// prime of each title rune modulo φ(13)=12 chooses a row of the 12x13
+// word matrix, column fixed by title position; take the first rune.
+const selectedWords = red.map((glyph, col) =>
+  words[(corpus.prime[glyph] % 12) * 13 + col]);
+const selectedFirst = selectedWords.map((word) => word[0]);
+assert.deepEqual(selectedFirst, [4, 28, 23, 7, 25, 4, 2, 26, 28, 7, 28, 0, 2]);
+const selectedString = selectedFirst.map((v) => corpus.translit[v]).join('');
+assert.equal(selectedString, 'READWAERTHYEAWEAFTH');
+// READ W is a post-exploration partial prefix; the remaining symbols do
+// not form a readable instruction. Check only the source-natural next p3
+// as a held-out direct consumer, both signs and the solved p56 φ-prime key.
+const nextPage = corpus.pages[3].indices;
+assert.equal(nextPage.length, 217);
+const derivedKey = selectedFirst.map((value) =>
+  (corpus.prime[value] - 1) % 29);
+const decodedP3 = [];
+for (const [label, key] of [['raw', selectedFirst],
+  ['totientPrime', derivedKey]]) {
+  for (const sign of [-1, 1]) {
+    const output = nextPage.map((c, i) => mod29(c + sign * key[i % 13]));
+    const reverse = output.map((p, i) => mod29(p - sign * key[i % 13]));
+    assert.deepEqual(reverse, nextPage);
+    const cipher = collisionProfile([output]);
+    decodedP3.push({key: label, sign, ioc: cipher.ioc});
+  }
+}
+assert.deepEqual(decodedP3.map((row) => Math.round(row.ioc * 1e12)),
+  [33495477044, 33196791261, 35714285714, 35287591739]);
+
 // Independent 716-rune true-native positive under 13 arbitrary secret
 // row alphabets, ensuring the invariant detects exactly that architecture.
 let seed = 0x27a1b72c;
@@ -198,6 +228,11 @@ console.log(JSON.stringify({
   source: 'Original LP2 p0-p2: red 13, black 156 words, 716 runes',
   sourceRows: 13, wordsPerRow: 12, redKey: red.map((v) => corpus.translit[v]).join(' '),
   rowLengths, original: source,
+  exploratoryPrimeMod12FirstRune: {
+    output: selectedString,
+    interpretation: 'Partial READ W prefix; no complete meaningful output',
+    directP3SourceKeyConsumers: decodedP3
+  },
   competingColumns: {
     orientation: '12 rows x 13 red-key columns',
     columnRuneLengths: columns.map((column) => column.length),
