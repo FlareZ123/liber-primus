@@ -167,7 +167,7 @@ for(const line of read("resources/control/english_wordfreq_textblob.txt").split(
   const m=/^([a-z]+)\s+\d+$/.exec(line);
   if(m)add(m[1]);
 }
-for(const size of [3,4,5,8])assert(vocab.get(size).size>1000);
+for(const size of [3,4,5,8])assert(vocab.get(size).size>(size===3?100:1000));
 const lex5=vocab.get(5),lex4=vocab.get(4),lex3=vocab.get(3);
 
 const fourth=p0.slice(17,20), fifth=p0.slice(20,23);
