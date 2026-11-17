@@ -2,9 +2,9 @@
 
 ## Current conclusion
 
-The solved p57 text supports a **lossless boundary/interior split**, but the visible source does not select a reversible, symbol-changing word transform. A ring-only permutation is also insufficient for p55: its 76-rune index of coincidence is below every matched native 76-rune English window. The missing element is an explicit source-derived state/update rule, not another key search.
+The p57 Parable supplies a source-constrained reason to inspect word boundaries, and the p54-p55 black body admits a plausible 13x23 map from the visible marker counts. These produce exact count alignments (a one-edge p57 peel of 76 runes matching p55's 76; a 38-rune two-edge boundary stream; and 299 p54-p55 runes matching 13x23), but the bounded key consumers tested do not recover plaintext. Treat these as structural hypotheses, not as a recovered key or decipherment. The missing ingredient remains an independently selected reversible operation or state-update rule.
 
-This is an intermediate negative result, not a claim that the wider p57 clue is irrelevant.
+This remains an intermediate negative result, not a claim that the wider p57 clue is irrelevant.
 
 ## Source facts and exact counts
 
@@ -73,6 +73,24 @@ The in-runtime implementation passed a planted English positive control: a known
 **Decision:** the full 1906 *Marriage* text is unsupported as a direct unshifted additive key and is also disfavored as a key-skip running key under this validated, bounded search. Retire this exact full-text running-key branch; do not expand to Blake's other long works without a new source clue selecting them. The Blake allusion remains possible, but it supplies no LP2 key, plaintext, target interval, or cipher mechanism.
 
 **Reproduction:** direct additive/word-length tests are in [the original-input SFT](../sims/2012_blake_marriage_fulltext_original_sft.cjs). The skip-aware adapter is [sims/blake_mhh_skip_aware_gate.py](../sims/blake_mhh_skip_aware_gate.py); its [manual workflow](../.github/workflows/blake-mhh-skip-aware-manual.yml) pins the external decoder and runs its own planted-key/wrong-key gate before the corpus screen.
+## Additional cross-page key and 13x23 map gates
+
+### p57 circumference to p55
+
+The p57 page has a seven-rune red heading and 19 body words containing 88 runes. Removing exactly one endpoint rune from each body word leaves 69 body runes; retaining the heading gives a 76-rune stream, exactly the length of p55. The two-endpoint boundary stream has 38 runes, exactly half of p55; the first-edge-only and last-edge-only streams each have 19 runes, exactly one quarter. These are source-derived alignments, but not proof of a cipher.
+
+The 76-rune first-edge peel and last-edge peel were tested as one-time GP29 additive pads against p55 in both directions, including prime-weight and totient-weight representations modulo 29 and reversed key order. The 38-rune interleaved and paragraph-perimeter boundary keys, and the 19-rune first/last edge keys, were tested as repeated GP29 Vigenere keys; direct 5-bit XOR was also checked. None produced coherent plaintext. A separate English character-trigram screen gave raw p55 -5.06 per character, the p57 plaintext control -2.88, the best 19/38-boundary-key candidate -4.96, and the best 76-rune peel-pad candidate -5.20. These are heuristic ranking scores, not a proof of impossibility.
+
+The raw-marker word-map path SHED -> FIND -> CIRCUMFERENCES -> WE yields the 16-rune interior string HEINIRCUMFERENCE. The conditional two-cycle handoff yields the 31-rune string ICURFACITHIIUINITINIRCUMFERENCEN. Both were tested as direct GP29 Vigenere keys against p54-p55 and the complete p0-p55 unknown stream, with both signs, reversed key order, and continuous/per-page phase. The 19 p57 body-word prime sums reduced modulo 29 were also tested as a repeated key on p55. No candidate yielded plaintext or improved the English score. These strings are not established keys.
+
+### p54-p55 13x23 map
+
+The p54 page has 232 runes, including a nine-rune red heading; its black body therefore has 223 runes. Adding p55's 76 runes gives 299 = 13 x 23. The p54 marker has 13 dots, the p55 marker has 10, and the p57 terminal marker has 23; 13 + 10 = 23 is a plausible source selector for the rectangle.
+
+In row-major order, the 13x23 rectangle has a 68-rune perimeter and an 11x21 interior of 231 runes. Its central 11-rune row is BUGGAEONGOEL. The body, perimeter, and interior IoCs are respectively 0.03349, 0.03205, and 0.03234; none is plaintext-like. The perimeter's prime-weight sum is 3364 = 58^2, but the same sum occurs in 19 of 12,658 sliding 299-rune windows across the unknown stream, so this exact square is not selective evidence. Direct perimeter-as-key and center-core-as-key Vigenere tests did not produce language. A bounded transfer of the p56 prime-totient/F-transparent rule to the full and peeled rectangles, row-major and serpentine, with starts 2, 13, and 23, had no valid path under the strict F-transparent rule.
+
+**Decision:** preserve the 13x23 shape and p57/p55 length alignments as motivated structural hypotheses, but do not promote their numerical matches or derived strings to keys. The tested direct consumers are negative; further work needs an independently sourced operation or state-update rule, not more arbitrary key variants.
+
 ## What is and is not determined
 
 The only fully source-compatible reversible word operation presently fixed is the tuple split `(left boundary, interior, right boundary)` with the length-1/2 cases above; concatenating the tuple exactly reconstructs every original word. For p55, the leading one-rune page segment must be carried as the final boundary of the incoming cross-page word, not reclassified as a one-rune word. This is a representation change, not decryption.

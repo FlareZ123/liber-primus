@@ -321,6 +321,257 @@ const sourceLockedWordGate = {
 };
 
 
+
+function applyCandidateKey(target, key, sign, reverse = false) {
+  const stream = reverse ? [...key].reverse() : key;
+  return target.map((symbol, i) => (symbol + sign * stream[i % stream.length] + 290) % 29);
+}
+const textBlobWordFreq = fs.readFileSync(
+  path.join(ROOT, "resources", "control", "english_wordfreq_textblob.txt"), "utf8");
+const charTrigrams = new Map();
+const charBigramContexts = new Map();
+for (const line of textBlobWordFreq.match(/^[a-z]+\s+\d+$/gm) || []) {
+  const [word, countText] = line.split(/\s+/u);
+  const weight = Number(countText);
+  const upper = word.toUpperCase();
+  for (let i = 0; i + 2 < upper.length; i++) {
+    const trigram = upper.slice(i, i + 3);
+    const bigram = upper.slice(i, i + 2);
+    charTrigrams.set(trigram, (charTrigrams.get(trigram) || 0) + weight);
+    charBigramContexts.set(bigram, (charBigramContexts.get(bigram) || 0) + weight);
+  }
+}
+function charTrigramScore(indices) {
+  const letters = runeText(indices).replace(/[^A-Z]/gu, "");
+  let total = 0, count = 0;
+  for (let i = 0; i + 2 < letters.length; i++) {
+    const bigram = letters.slice(i, i + 2), trigram = letters.slice(i, i + 3);
+    total += Math.log(((charTrigrams.get(trigram) || 0) + 0.1) /
+      ((charBigramContexts.get(bigram) || 0) + 2.6));
+    count++;
+  }
+  return count ? total / count : null;
+}
+
+// Cross-page p57 -> p55 circumference/key tests.
+const p54PageWords = pageWordGlyphs(53).map((word) => [...word].map((rune) => runeIndex.get(rune)));
+const p54Heading = p54PageWords[0];
+const p54BlackBody = p54PageWords.slice(1).flat();
+const p54p55Body = [...p54BlackBody, ...p55Flat];
+const allUnknownRunes = corpus.pages.filter((page) => page.page <= 55).flatMap((page) => page.indices);
+assert.equal(p54Heading.length, 9);
+assert.equal(p54BlackBody.length, 223);
+assert.equal(p55Flat.length, 76);
+assert.equal(p54p55Body.length, 299);
+assert.deepEqual(allUnknownRunes.slice(-299), p54p55Body);
+
+const p57Heading = p57PageWords[0];
+const p57FirstEdges = p57BodyWords.map((word) => word[0]);
+const p57LastEdges = p57BodyWords.map((word) => word[word.length - 1]);
+const p57PeelFirst = [...p57Heading, ...p57BodyWords.flatMap((word) => word.slice(1))];
+const p57PeelLast = [...p57Heading, ...p57BodyWords.flatMap((word) => word.slice(0, -1))];
+const p57BoundaryInterleaved = p57BodyWords.flatMap((word) => [word[0], word[word.length - 1]]);
+const p57BoundaryGlobal = [...p57FirstEdges, ...p57LastEdges.slice().reverse()];
+assert.equal(p57BodyWords.length, 19);
+assert.equal(p57BodyFlat.length, 88);
+assert.equal(p57PeelFirst.length, 76);
+assert.equal(p57PeelLast.length, 76);
+assert.equal(p57BoundaryInterleaved.length, 38);
+assert.equal(p57BoundaryGlobal.length, 38);
+
+const keyRepresentations = (key) => ({
+  index: key,
+  primeMod29: key.map((symbol) => corpus.prime[symbol] % 29),
+  phiMod29: key.map((symbol) => (corpus.prime[symbol] - 1) % 29)
+});
+const p55PadCandidates = [];
+const p55KeyInputs = {
+  peelFirst76: p57PeelFirst,
+  peelLast76: p57PeelLast,
+  firstEdges19: p57FirstEdges,
+  lastEdges19: p57LastEdges,
+  interleavedBoundary38: p57BoundaryInterleaved,
+  perimeterBoundary38: p57BoundaryGlobal
+};
+for (const [keyName, key0] of Object.entries(p55KeyInputs)) {
+  const representations = key0.length === 76 ? keyRepresentations(key0) : {index: key0};
+  for (const [representation, baseKey] of Object.entries(representations)) {
+    for (const reverse of [false, true]) for (const sign of [-1, 1]) {
+      const decoded = applyCandidateKey(p55Flat, baseKey, sign, reverse);
+      const score = scoreStrings([runeText(decoded)]);
+      p55PadCandidates.push({
+        keyName, keyLength: baseKey.length, representation, reverse, sign,
+        meanLogCount: score.meanLogCount, coverage: score.coverage,
+        charTrigram: charTrigramScore(decoded), decoded: runeText(decoded)
+      });
+    }
+  }
+}
+const p55PadCandidatesByQuadgram = [...p55PadCandidates].sort((a, b) => b.meanLogCount - a.meanLogCount);
+const p55PadCandidatesByTrigram = [...p55PadCandidates].sort((a, b) => b.charTrigram - a.charTrigram);
+const p55XorCandidates = [];
+for (const [keyName, key0] of Object.entries(p55KeyInputs)) {
+  const repeated = Array.from({length: 76}, (_, i) => key0[i % key0.length]);
+  const decoded = p55Flat.map((symbol, i) => symbol ^ repeated[i]);
+  const invalidSymbols = decoded.filter((symbol) => symbol > 28).length;
+  p55XorCandidates.push({
+    keyName, keyLength: key0.length, invalidSymbols,
+    meanLogCount: invalidSymbols === 0 ? scoreStrings([runeText(decoded)]).meanLogCount : null,
+    charTrigram: invalidSymbols === 0 ? charTrigramScore(decoded) : null
+  });
+}
+
+const p57RawMarkerPathKey = [
+  ...p57BodyWords[9].slice(1, -1), ...p57BodyWords[13].slice(1, -1),
+  ...p57BodyWords[12].slice(1, -1), ...p57BodyWords[7].slice(1, -1)
+];
+const p57MinusCycleKey = [0, 6, 7, 16, 15].flatMap((i) => p57BodyWords[i].slice(1, -1));
+const p57PlusCycleKey = [13, 12, 7, 17, 4].flatMap((i) => p57BodyWords[i].slice(1, -1));
+const p57Conditional31Key = [...p57MinusCycleKey, ...p57PlusCycleKey];
+assert.equal(runeText(p57RawMarkerPathKey), "HEINIRCUMFERENCE");
+assert.equal(p57RawMarkerPathKey.length, 16);
+assert.equal(runeText(p57Conditional31Key), "ICURFACITHIIUINITINIRCUMFERENCEN");
+assert.equal(p57Conditional31Key.length, 31);
+const p57WordSumKey = p57BodyWords.map((word) =>
+  word.reduce((sum, symbol) => sum + corpus.prime[symbol], 0) % 29
+);
+
+const p54p55KeyTests = [];
+for (const [keyName, key] of [
+  ["rawMarkerPath16", p57RawMarkerPathKey],
+  ["conditionalCycle31", p57Conditional31Key],
+  ["p57WordPrimeSums19", p57WordSumKey]
+]) {
+  for (const reverse of [false, true]) for (const sign of [-1, 1]) {
+    const target = keyName === "p57WordPrimeSums19" ? p55Flat : p54p55Body;
+    const decoded = applyCandidateKey(target, key, sign, reverse);
+    const score = scoreStrings([runeText(decoded)]);
+    p54p55KeyTests.push({
+      keyName, keyLength: key.length, targetLength: target.length, reverse, sign,
+      meanLogCount: score.meanLogCount, coverage: score.coverage,
+      charTrigram: charTrigramScore(decoded)
+    });
+  }
+}
+p54p55KeyTests.sort((a, b) => b.charTrigram - a.charTrigram);
+
+const allPageArrays = corpus.pages.filter((page) => page.page <= 55).map((page) => page.indices);
+const fullBookKeyTests = [];
+for (const [keyName, key] of [
+  ["rawMarkerPath16", p57RawMarkerPathKey],
+  ["conditionalCycle31", p57Conditional31Key]
+]) {
+  const forms = keyName === "rawMarkerPath16" ? keyRepresentations(key) : {index: key};
+  for (const [representation, baseKey] of Object.entries(forms)) {
+    for (const reverse of [false, true]) for (const sign of [-1, 1]) {
+      const stream = reverse ? [...baseKey].reverse() : baseKey;
+      const continuous = applyCandidateKey(allUnknownRunes, stream, sign);
+      const pageReset = allPageArrays.flatMap((page) => applyCandidateKey(page, stream, sign));
+      fullBookKeyTests.push({
+        keyName, representation, keyLength: baseKey.length, reverse, sign, reset: "continuous",
+        charTrigram: charTrigramScore(continuous),
+        meanLogCount: scoreStrings([runeText(continuous)]).meanLogCount
+      });
+      fullBookKeyTests.push({
+        keyName, representation, keyLength: baseKey.length, reverse, sign, reset: "per-page",
+        charTrigram: charTrigramScore(pageReset),
+        meanLogCount: scoreStrings([runeText(pageReset)]).meanLogCount
+      });
+    }
+  }
+}
+fullBookKeyTests.sort((a, b) => b.charTrigram - a.charTrigram);
+
+// The 299 black-body runes of p54-p55 form a source-motivated 13x23 map.
+const gridRows = 13, gridCols = 23;
+const grid = Array.from({length: gridRows}, (_, r) => p54p55Body.slice(r * gridCols, (r + 1) * gridCols));
+const gridPerimeter = [];
+for (let c = 0; c < gridCols; c++) gridPerimeter.push(grid[0][c]);
+for (let r = 1; r < gridRows; r++) gridPerimeter.push(grid[r][gridCols - 1]);
+for (let c = gridCols - 2; c >= 0; c--) gridPerimeter.push(grid[gridRows - 1][c]);
+for (let r = gridRows - 2; r >= 1; r--) gridPerimeter.push(grid[r][0]);
+const gridInterior = [];
+for (let r = 1; r < gridRows - 1; r++) for (let c = 1; c < gridCols - 1; c++) gridInterior.push(grid[r][c]);
+const gridCore = grid[6].slice(6, 17);
+const gridRings = [];
+for (let k = 0; k < 6; k++) {
+  const r0 = k, c0 = k, r1 = gridRows - 1 - k, c1 = gridCols - 1 - k;
+  const ring = [];
+  for (let c = c0; c <= c1; c++) ring.push(grid[r0][c]);
+  for (let r = r0 + 1; r <= r1; r++) ring.push(grid[r][c1]);
+  for (let c = c1 - 1; c >= c0; c--) ring.push(grid[r1][c]);
+  for (let r = r1 - 1; r > r0; r--) ring.push(grid[r][c0]);
+  gridRings.push(ring);
+}
+const gridPerimeterPrimeSum = gridPerimeter.reduce((sum, symbol) => sum + corpus.prime[symbol], 0);
+const perimeterOffsets = [];
+for (let c = 0; c < gridCols; c++) perimeterOffsets.push(c);
+for (let r = 1; r < gridRows; r++) perimeterOffsets.push(r * gridCols + gridCols - 1);
+for (let c = gridCols - 2; c >= 0; c--) perimeterOffsets.push((gridRows - 1) * gridCols + c);
+for (let r = gridRows - 2; r >= 1; r--) perimeterOffsets.push(r * gridCols);
+let matchingPerimeterWindows = 0;
+for (let start = 0; start + gridRows * gridCols <= allUnknownRunes.length; start++) {
+  const sum = perimeterOffsets.reduce((total, offset) =>
+    total + corpus.prime[allUnknownRunes[start + offset]], 0);
+  if (sum === gridPerimeterPrimeSum) matchingPerimeterWindows++;
+}
+const gridKeyTests = [];
+for (const [keyName, key, target] of [
+  ["perimeter68", gridPerimeter, gridInterior],
+  ["centerCore11", gridCore, gridRings.slice().reverse().flat()]
+]) {
+  for (const reverse of [false, true]) for (const sign of [-1, 1]) {
+    const decoded = applyCandidateKey(target, key, sign, reverse);
+    gridKeyTests.push({
+      keyName, keyLength: key.length, targetLength: target.length, reverse, sign,
+      meanLogCount: scoreStrings([runeText(decoded)]).meanLogCount,
+      charTrigram: charTrigramScore(decoded)
+    });
+  }
+}
+gridKeyTests.sort((a, b) => b.charTrigram - a.charTrigram);
+
+const crossPageKeyGate = {
+  p57ToP55: {
+    bodyWords: p57BodyWords.length, bodyRunes: p57BodyFlat.length,
+    headingRunes: p57Heading.length, p55Runes: p55Flat.length,
+    peelFirstRunes: p57PeelFirst.length, peelLastRunes: p57PeelLast.length,
+    boundaryKeyRunes: p57BoundaryInterleaved.length, firstEdgeKeyRunes: p57FirstEdges.length,
+    keyTexts: {
+      peelFirst: runeText(p57PeelFirst), peelLast: runeText(p57PeelLast),
+      interleavedBoundary: runeText(p57BoundaryInterleaved), globalBoundary: runeText(p57BoundaryGlobal)
+    },
+    rawP55Quadgram: scoreStrings([runeText(p55Flat)]),
+    rawP55CharTrigram: charTrigramScore(p55Flat),
+    p57PlaintextCharTrigram: charTrigramScore(p57PageWords.flat()),
+    bestPadCandidatesByTrigram: p55PadCandidatesByTrigram.slice(0, 8).map(({decoded, ...entry}) => entry),
+    bestPadCandidatesByQuadgram: p55PadCandidatesByQuadgram.slice(0, 5).map(({decoded, ...entry}) => entry),
+    xorCandidates: p55XorCandidates
+  },
+  p57MapKeys: {
+    rawMarkerPath16: runeText(p57RawMarkerPathKey),
+    conditionalCycle31: runeText(p57Conditional31Key),
+    wordPrimeSumKey19: runeText(p57WordSumKey),
+    p54p55Best: p54p55KeyTests.slice(0, 8),
+    fullBookBest: fullBookKeyTests.slice(0, 8)
+  },
+  p54p55Grid: {
+    p54HeadingRunes: p54Heading.length, p54BlackBodyRunes: p54BlackBody.length,
+    p55Runes: p55Flat.length, bodyRunes: p54p55Body.length,
+    dimensions: [gridRows, gridCols], perimeterRunes: gridPerimeter.length,
+    interiorDimensions: [gridRows - 2, gridCols - 2], interiorRunes: gridInterior.length,
+    centerCoreRunes: gridCore.length, centerCore: runeText(gridCore),
+    bodyIoC: indexOfCoincidence([p54p55Body]).ioc,
+    perimeterIoC: indexOfCoincidence([gridPerimeter]).ioc,
+    interiorIoC: indexOfCoincidence([gridInterior]).ioc,
+    perimeterPrimeSum: gridPerimeterPrimeSum, equals58Squared: gridPerimeterPrimeSum === 58 * 58,
+    matching299WindowCount: matchingPerimeterWindows,
+    total299Windows: allUnknownRunes.length - 299 + 1,
+    bestKeyTests: gridKeyTests.slice(0, 8)
+  },
+  decision: "The source-bounded 76-rune p57 peel, 38/19-rune boundary keys, raw-marker 16-rune key, conditional 31-rune key, p57 word-prime-sum key, and 13x23 p54-p55 circumference map do not yield reproducible GP29 plaintext under the tested direct additive, prime/phi, or XOR consumers. Retain the count relationships as hypotheses, not as keys or decryptions."
+};
+
 const result = {
   interpretation: "remove the first and last rune of every original word; optionally decrypt each interior with repeating GP-DIUINITY",
   source: {
@@ -345,6 +596,7 @@ const result = {
     p57CleartextControl: scoreStrings(p57Control)
   },
   sourceLockedWordGate,
+  crossPageKeyGate,
   allConfigurations: configs
 };
 
