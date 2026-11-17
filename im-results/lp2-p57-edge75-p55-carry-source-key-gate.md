@@ -13,7 +13,7 @@ p57: 95 original runes − one leading/trailing rune from each of 20 words = 75
 p55: 76 original runes − one carried NG glyph = 75
 ```
 
-One could imagine a player reading `shed circumferences` as an instruction to trim an edge per complete p57 word, then using the surviving 75 GP29 values to unmask the adjacent 75 p55 glyphs. This is **weaker than an authored instruction**: the actual phrase says circumferences in the plural, does not choose first versus last edge, and does not specify Vigenère, sign, clock or the use of the heading word. The match was noticed retrospectively, and direct one-edge trimming is therefore only an explicitly bounded candidate.
+One could imagine a player reading `shed circumferences` as an instruction to trim an edge per complete p57 word, then using the surviving 75 GP29 values to unmask the adjacent 75 p55 glyphs. This is **weaker than an authored instruction**: the actual phrase says circumferences in the plural, does not choose first versus last edge, and does not specify Vigenère, sign, clock or the use of the heading word. The match was noticed retrospectively, and direct one-edge trimming is therefore only an explicitly bounded candidate. **Importantly,** the more literal removal of *both* word edges leaves **55** PARABLE runes. That distinct, independently published source analysis already supplies a conditional 55-step prime-totient page walk that ends at p49, or Josephus elimination that leaves p50 ([prior source navigation gate](lp2-parable55-totient-josephus-p50-original-route.md)). The earlier 55-rune result has a stronger reading of the actual wording; it neither endorses this new half-shell 75 alignment nor supplies its missing value-changing opcode.
 
 ## Frozen direct-key test
 
