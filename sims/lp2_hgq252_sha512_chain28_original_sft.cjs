@@ -143,6 +143,96 @@ const counted=unknown.reduce((n,v,i)=>n+((i===0?0:unknown[i-1])===v),0);
 const predicted=plain.filter(v=>v===28).length;
 assert.equal(counted,predicted);
 assert.equal(counted,86);
+// This chain's zero-step encoding fixes ALL 86 repeated-rune plaintext
+// symbols to EA, independently of the SHA512 key or modulus and phases.
+// If the original printed word boundaries represent native plaintext word
+// boundaries, a strong key-independent word-onset constraint follows.
+const source=fs.readFileSync(path.resolve(__dirname,
+  '../resources/liber-primus/lp2-transcription.txt'),'utf8');
+const runeIndex=new Map(gp.runes.map((r,i)=>[r,i]));
+const wordStarts=new Set();
+let inWord=false,off=0;
+for(const ch of source) {
+  if(runeIndex.has(ch)) {
+    if(!inWord)wordStarts.add(off);
+    off++;inWord=true;
+  } else if('-.,&
+                     [27,32],[33,39],[40,53],[54,55]];
+let pageOffset=0;
+const starts=gp.pages.map(p=>{const n=pageOffset;pageOffset+=p.runic_count;return n;});
+const chapter=chapterRanges.map(([a,b])=>{
+  const lo=starts[a],hi=starts[b+1],values=plain.slice(lo,hi);
+  const count=values.reduce((s,v)=>s+(v===28),0);
+  return {
+    pages:'p'+a+'–'+b,runes:values.length,
+    gpIoC:ioc(values),
+    EAtransparent:count,
+    first60:values.slice(0,60).map(i=>gp.translit[i]).join(' ')
+  };
+});
+console.log(JSON.stringify({
+  type:'fixed original-source SHA512 chain-cipher *hypothesis*, unverified',
+  seed:'canonical GF29 H2013×Gp39 quotient Q252 as BASE29 integer',
+  seedSize:seed.length,
+  seedSha256:crypto.createHash('sha256').update(seed).digest('hex'),
+  keyGeneration:'SHA512(seed||uint32BE(block)), %28',
+  transport:'GP29 predecessor-relative nonzero step, transparent EA index28',
+  sourceRunes:unknown.length,
+  sourceDoubletEvents:counted,
+  doubletAtSourcePrintedWordOnset:onsetCount,
+  conditionalEAOnsetControls:onsetControls,
+  originalGP29IoC:ioc(unknown),
+  inverseGP29IoC:ioc(plain),
+  nativeSolvedP57PlantIOC:ioc(plant),
+  controls:'12956/12956 native-positive exact plaintext inversion and original ciphertext re-encryption',
+  chapter,
+  decision:'No GP-native plaintext. Moreover 23/86 source doublets begin printed words, versus only 6–11% of actual EA in independent native English; this rejects the literal EA-transparent zero-step model if source word breaks are plaintext breaks, independently of key. This is one pinned hash-stream candidate, not a global exclusion of SHA512 or other KDFs.'
+},null,2));
+.includes(ch)) {
+    inWord=false;
+  }
+}
+assert.equal(off,13136);
+let onsetCount=0;
+for(let i=1;i<unknown.length;i++)
+  if(unknown[i]===unknown[i-1]&&wordStarts.has(i))onsetCount++;
+assert.equal(onsetCount,23);
+const {encodeSourceNativeGP}=
+  require('./lp2_native_gp_source_orthography_sft.cjs');
+/** Binomial survival probability Pr[X>=hits], under an empirical p. */
+function exactOnsetTail(n,hits,p) {
+  let term=(1-p)**n,tail=0;
+  for(let i=0;i<=n;i++) {
+    if(i>=hits)tail+=term;
+    term*=i===n?0:(n-i)/(i+1)*p/(1-p);
+  }
+  return tail;
+}
+const originalOnset=onsetCount/counted;
+const onsetControls=[];
+for(const [name,filename,expectedAll,expectedStart] of [
+  ['Gibran','gibran_prophet_58585.txt',606,60],
+  ['Shakespeare','shakespeare_first300k.txt',1633,98],
+  ['Emerson','emerson_essays_2944.txt',2224,237]
+]) {
+  const body=fs.readFileSync(path.resolve(__dirname,
+    '../resources/control',filename),'utf8');
+  let allEA=0,onsetEA=0;
+  for(const word of body.match(/[A-Za-z]+/g)||[]) {
+    const vals=encodeSourceNativeGP(word);
+    allEA+=vals.filter(v=>v===28).length;
+    if(vals[0]===28)onsetEA++;
+  }
+  assert.deepEqual([allEA,onsetEA],[expectedAll,expectedStart]);
+  const p=onsetEA/allEA;
+  onsetControls.push({source:name,totalEA:allEA,wordInitialEA:onsetEA,
+    conditionalWordStartGivenEA:p,
+    expectedWordInitialAmong86:counted*p,
+    observedOriginalWordInitialAmong86:onsetCount,
+    exactOneSidedBinomialTail:exactOnsetTail(counted,onsetCount,p)});
+}
+assert.ok(onsetControls.every(c=>c.exactOneSidedBinomialTail<0.00003));
+
 const chapterRanges=[[0,2],[3,7],[8,14],[15,22],[23,26],
                      [27,32],[33,39],[40,53],[54,55]];
 let pageOffset=0;
