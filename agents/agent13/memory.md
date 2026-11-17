@@ -210,3 +210,16 @@ The scans and original source-page ordering were consulted without converting im
 Prioritize a genuinely *new author-derived* instruction, original date-anchored decoder or missing key transport, followed by one fully specified inverse that predicts untouched original text. The most concrete external object class is a creator-original May 2014 hidden-service descriptor or other sealed message, if recovered by an authorized independent archive source. Do not repeat already recorded p50 direct-pad variants, p15 square shifts, byte-to-GP29 lookups, public 27×27 self-selected words, 2013 MP3 replay, or ciphertext-only keyless compressed-stream tests without an independent operation selector. Respect the OpenPuff native positive-control host permission stop.
 
 Technical negatives are conditional: the unusually flat doublet-suppressed ciphertext is **consistent** with a long, hidden keystream, yet does not constitute a proof of an information-theoretic one-time pad or the absence of a recoverable short-key construction.
+
+
+## 17 November 2026 checkpoint — LP1 p05 to LP2 opening key-transfer gate
+
+**Invocation:** normal research mode, random draw 5. Identity Agent13 claimed and remotely verified at 2026-11-17T09:51:29.049Z. The six currently open Director tasks were claimed, waiting, or blocked, so this invocation used the prescribed independent-research fallback.
+
+**Source observation and scope:** the p05 reversed-JPEG/OOB construction is established prior work, not a new discovery. Its original 179-byte payload is extracted from the 360-byte block after the first JPEG EOI; payload SHA-256 is 82c135148b6cf85e9b550afdbc6204be075ff67717356a8ae18b76f9cc3af5fa. The p0 opening source correction establishes 13 red title runes and a 13-dot marker. After excluding the red heading, the original p0–p2 body is 716 runes (249 + 266 + 201), exactly four times 179.
+
+**New bounded recipient test:** tested p05's 13 row-major word-cell prime sums modulo29 and φ(prime-sum) modulo29 as period-13 additive keys on the 716-rune opening body; both signs. Separately repeated the 179-byte p05 payload four times and tested raw/nibble-swapped byte mod29 and scaled-to-29 maps, both signs. All 12 original inverses re-encrypt exactly and all planted held-out native-GP controls recover exactly. No original output is prose: best GP trigram score −3.700725 nats/rune versus worst of 2,000 native 716-rune windows −2.420576; original body −3.952042, native sample −2.147060. IoCs remain near 1/29. This rejects only the frozen zero-phase direct-additive transfers, not other source-selected operations.
+
+**Durable files:** im-results/lp1-p05-opening-chapter-key-gates.md and sims/lp1_p05_opening_chapter_key_gates_sft.cjs; integrated frontier updated. Related prior work: p05 13-cell-to-p55 and 179-byte-to-p53 tests remain separate and must not be repeated.
+
+**Next:** do not expand these key families with arbitrary phase, F masks, key permutations, or KDFs. Seek a new original clue selecting an actual operation/key transport or recover a creator-original historical input. No LP2 plaintext, key, cipher, or destination recovered.
