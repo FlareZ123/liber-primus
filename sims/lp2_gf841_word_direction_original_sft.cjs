@@ -207,3 +207,123 @@ console.log(JSON.stringify({
   sourceNativePositive: {runes: 300, skips: skipped, ioc: plantScore},
   original: {best: candidates[0], countGe140: 0}
 }, null, 2));
+
+
+// AFFINE H/G READER: An independent, completely fixed, reversible use
+// of *both* original source factors at each pointer position:
+//   C = 24^j * P ± Trace(alpha^j) mod29  OR
+//   C = 24^j * (P ± Trace(alpha^j)) mod29.
+// Unlike additive trace, this includes the p39 root as the GP alphabet's
+// finite-field multiplier and needs no guessed 29x29 substitution table.
+const factors = [], inverseFactors = [];
+for (let j = 0, v = 1; j < 840; j++, v = v * 24 % 29) {
+  factors.push(v);
+  inverseFactors.push((() => {
+    for (let t = 1; t < 29; t++) if (t * v % 29 === 1) return t;
+    throw Error('Noninvertible G root');
+  })());
+}
+
+/**
+ * Exact 16-beam pdir inverse with source-derived affine GP29 operator.
+ * @param {number[]} c Source-shaped GP29 ciphertext
+ * @param {number} type 0: root-multiply then trace-add; 1: multiply both
+ * @param {number} sign Sign of the historical H root's trace
+ * @param {number} model 0=LAST skip / 1=coin
+ * @param {number} flip ±1 word-direction orientation
+ * @param {number} h 0..1 backward first-read
+ * @param {number} m 0..2 interword step
+ * @param {number} cmp 0..2 backward comparison
+ * @param {number} n Prefix length
+ * @returns {number} Normalized GP29 plaintext IoC
+ */
+function decodeAffine(c, type, sign, model, flip, h, m, cmp, n) {
+  const {d, mv, pv} = plan(c, flip, h, m, cmp);
+  const shifted = j => (sign * keys[type][wrap(j)] + 29) % 29;
+  const encrypt = (plain, j) =>
+    (factors[wrap(j)] * plain + shifted(j)) % 29;
+  const decrypt = (cipher, j) =>
+    ((cipher - shifted(j) + 29) * inverseFactors[wrap(j)]) % 29;
+  let states = [{j: 0, score: 0, counts: new Uint16Array(29)}];
+  for (let i = 0; i < n; i++) {
+    const next = new Map(), previous = pv[i], ci = c[i], step = d[i];
+    for (const state of states) {
+      const j = state.j + mv[i];
+      const p0 = decrypt(ci, j);
+      const p1 = decrypt(ci, j + step);
+      const p2 = decrypt(ci, j + 2 * step);
+      const offers = [[p0, j + (model === 1 && previous === ci ? 2 : 1) * step]];
+      if (previous >= 0) {
+        if (model === 0) {
+          if (encrypt(p1, j) === previous) offers.push([p1, j + 2 * step]);
+          if (encrypt(p2, j) === previous && encrypt(p2, j + step) === previous) {
+            offers.push([p2, j + 3 * step]);
+          }
+        } else if (encrypt(p2, j) === previous) {
+          offers.push([p2, j + 3 * step]);
+        }
+      }
+      for (const [plain, nextJ] of offers) {
+        const score = state.score + 2 * state.counts[plain];
+        const older = next.get(nextJ);
+        if (!older || score > older.score) {
+          const counts = state.counts.slice();
+          counts[plain]++;
+          next.set(nextJ, {j: nextJ, score, counts});
+        }
+      }
+    }
+    states = Array.from(next.values()).sort((x, y) => y.score - x.score).slice(0, 16);
+    assert.ok(states.length);
+  }
+  return 29 * states[0].score / (n * (n - 1));
+}
+
+// The source-native positive uses a genuinely reversibly affine-modulated
+// ciphertext with 16 hidden collision skips. This checks whether the
+// hypothesized class can be *detected*; a max-IoC beam can score above its
+// exact source plant by preferentially choosing false paths.
+const affinePlan = plan(opening, 1, 0, 0, 0);
+const affinePlant = [];
+let affinePointer = 0, affineSkips = 0;
+for (let i = 0; i < 300; i++) {
+  const j = affinePointer + affinePlan.mv[i], step = affinePlan.d[i];
+  let chosen = -1, retries = 0;
+  for (let retry = 0; retry < 3; retry++) {
+    const k = wrap(j + retry * step);
+    const trial = (factors[k] * plaintext[i] + keys[0][k]) % 29;
+    if (retry === 2 || i === 0 || trial !== affinePlant[i - 1]) {
+      chosen = trial;
+      retries = retry;
+      break;
+    }
+  }
+  affinePlant.push(chosen);
+  affinePointer = j + (retries + 1) * step;
+  affineSkips += retries;
+}
+const affinePlantScore = decodeAffine(affinePlant, 0, 1, 0, 1, 0, 0, 0, 300);
+assert.equal(affineSkips, 16);
+assert.ok(affinePlantScore >= 1.40);
+
+const affineOriginal = [];
+for (let type = 0; type < 2; type++)
+for (const flip of [-1, 1])
+for (const h of [0, 1])
+for (const m of [0, 1, 2])
+for (const cmp of [0, 1, 2])
+for (const sign of [-1, 1])
+for (const model of [0, 1]) {
+  affineOriginal.push({type, flip, h, m, cmp, sign, model,
+    ioc: decodeAffine(opening, type, sign, model, flip, h, m, cmp, 300)});
+}
+affineOriginal.sort((x, y) => y.ioc - x.ioc);
+assert.equal(affineOriginal.length, 288);
+assert.ok(Math.abs(affineOriginal[0].ioc - 1.1451282051282052) < 1e-12);
+assert.equal(affineOriginal.filter(x => x.ioc >= 1.40).length, 0);
+console.log(JSON.stringify({
+  cipher: 'Original first300 H/G field-affine pdir inverse',
+  variants: affineOriginal.length,
+  sourceNativePositive: {runes: 300, skips: affineSkips, ioc: affinePlantScore},
+  original: {best: affineOriginal[0], countGe140: 0}
+}, null, 2));
