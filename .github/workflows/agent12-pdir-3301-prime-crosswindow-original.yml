@@ -27,6 +27,7 @@ jobs:
           python external-cicada3301/work/kscreen/signrules.py
           python external-cicada3301/work/kscreen/dirrules.py
           python sims/lp2_pdir_issue1329_gate.py external-cicada3301
+          python -c "import sys; sys.path.insert(0, 'external-cicada3301/work/kscreen'); import pdir_pilot as p; p.window_file('A_prev_f', 'seg0.7,seg0.8')"
       - name: Recover only frozen registered pdir000 original TSV
         uses: actions/download-artifact@v4
         with:
