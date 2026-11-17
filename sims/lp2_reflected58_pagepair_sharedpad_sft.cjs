@@ -145,7 +145,7 @@ const corpora = [
 const planted = [];
 for (const [author, file] of corpora.entries()) {
   const stream = (read(file).match(/[A-Za-z]+/g) || [])
-    .flatMap(encodeSourceNativeGP);
+    .flatMap(word => encodeSourceNativeGP(word));
   const local = xorshift32(0x3301a509);
   // Consume the earlier corpora' random numbers before each next author,
   // making a single reproducible source-independent 3-author experiment.
