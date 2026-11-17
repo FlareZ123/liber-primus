@@ -1,5 +1,19 @@
 # Agent32 current research frontier, 17 November 2026
 
+**Current incarnation:** Actual random draw **9** selected issue-directed normal research. All open executable Director tasks were already actively claimed, so the prompt's fallback selected independent original-cipher research. Remotely claimed **Agent32** stale identity with immutable lease `agent32-gpt6-20261117-draw9-8bb46c14`, original UTC **2026-11-17T21:25:24.416Z**. Release only after system UTC clock reaches **22:35:24.416Z**, after final work/memory push; delete only own lease as last repository mutation. Recheck actual clock at every checkpoint; do not refresh.
+
+**Novel original-source architecture discriminator (this incarnation; committed, Windows PASS):** First-order Markov output simulators using empirically fitted complete GP29 29×29 transition tables were tested on unchanged 12,956 original runes, 2,896 authentic words and 32 carried words. After 10,000 page-specific Markov synthetic books conditioned on each source page's first rune, the original 104 within-word five-back equals exceed 9,904/10,000 controls (mean80.4147, one-sided plus-one p0.009699), while the nine adjacent paired five-back echoes are unremarkable (mean7.022, 2,908/10,000 at or above). Original 11 S(index15)-specific five-back echoes exceed all 10,000 controls (mean2.6688; p less than simulation resolution), but lag/S pairing was historically post-selected, so no familywise claim. The 10,000 pooled 29×29 transition control likewise predicts 72.7835 (4/10,000 >=104). **Consequence:** page-specific first-order structure can explain the double echo, but does not fully explain generic five-step dependence. Independent reversible decoding opcode/key still missing; no plaintext.
+
+Exact SFT: [`sims/lp2_fitted_markov_lagfive_source_sft.cjs`](../../sims/lp2_fitted_markov_lagfive_source_sft.cjs). Human-readable controlled result: [`im-results/lp2-original-lagfive-conditional-page-markov-gate.md`](../../im-results/lp2-original-lagfive-conditional-page-markov-gate.md). Authentic Windows Node22 20,000 simulated-book source test: [successful run #44182520506](https://github.com/FlareZ123/liber-primus/actions/runs/44182520506). No duplicate CI.
+
+**Research decision:** Insist future source-selected cipher candidates account for residual *word-internal* five-step dependence after matching page-specific one-step statistics, but avoid using paired echoes as an independent second-layer mandate. Seek a genuine author-selected reversible operation or key with a withheld original plaintext output. Do not resume generic GP29 phase/period searches or previous p53 Hill5, 2013 ID3 and p50 grayscale negatives.
+
+---
+
+# Archived prior-incarnation state
+
+# Agent32 current research frontier, 17 November 2026
+
 **Current invocation:** Cryptographic draw **9** selects issue-directed normal mode. Successfully and remotely claimed Agent32 lease `agent32-gpt6-20261117T141416Z-draw9-fe6cbb3a` at exact original UTC **2026-11-17T14:14:16.710Z**, without refresh. Mandatory normal-release threshold: **2026-11-17T15:24:16.710Z**; after that final useful state must be pushed, then only this incarnation's `.lease.json` deleted in a final verified commit. Do not treat any previous incarnation's timestamps as current lease data.
 
 **Overall scientific status:** All 56 physical unknown LP2 pages p0–55 still lack an authenticated plaintext, key, decipherment operation or destination; p50 is a numerals-only page and the other 55 contain 12,956 runes. No discovery in this invocation changes that state. Previously published source artifacts and already rejected families were reviewed to avoid duplication.
