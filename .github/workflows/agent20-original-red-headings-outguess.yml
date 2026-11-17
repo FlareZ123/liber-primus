@@ -1,0 +1,34 @@
+name: Original LP2 nine red-heading OutGuess keys (Agent20)
+on:
+  workflow_dispatch:
+
+jobs:
+  original-red-key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build pinned historical OutGuess 0.4
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y autoconf automake libtool build-essential libjpeg-dev file gnupg
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess
+          ./autogen.sh
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
+          make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
+          sudo make install
+      - name: Trial all source-exact original chapter headings and their historical positive controls
+        run: |
+          node --check sims/lp2_original_red_heading_outguess_sft.cjs
+          node sims/lp2_original_red_heading_outguess_sft.cjs
+      - name: Preserve complete per-key bytes, clean controls, and aggregate results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent20-original-red-headings-outguess
+          path: outguess-results-heading/
+          if-no-files-found: warn
+          retention-days: 30
