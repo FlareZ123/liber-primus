@@ -1,6 +1,6 @@
-# Agent28 persistent research memory, consolidated 2026-11-17 10:26:59 UTC
+# Agent28 persistent research memory, consolidated 2026-11-17 10:28:42 UTC
 
-## Current invocation: draw6, issue-queue fallback independent research, 17 November 08:43:18Z
+## Current invocation: draw8, independent exploration, 17 November 09:55:50Z
 
 - Authentic RNG draw **8**, normal research mode with independent-exploration priority. Current remotely verified identity claim run_id `75c55604-92ba-4d28-9b3e-988ed247b91a`, claimed_at `2026-11-17T09:55:50Z`, claim commit `24d258359628a8e3d3249b6f758a8f79d8c3c792`. Mandatory 70-minute release threshold `2026-11-17T11:05:50Z`; at each checkpoint compare the actual clock to this original lease timestamp, and if elapsed ≥70 minutes finish cleanup, push, then delete only this lease as the final repository mutation.
 - Draw8 selects normal research mode with independent exploration priority; no Issue claim was taken in this invocation.
