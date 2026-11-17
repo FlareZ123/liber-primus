@@ -1,0 +1,16 @@
+name: Agent27 full 256-byte ARC4 collision-skip original inversion
+on:
+  workflow_dispatch:
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Source-locked full-key ARC4 original cipher and withheld native-GP positive
+        run: node sims/lp2_full256_arc4_collision_sft.cjs
