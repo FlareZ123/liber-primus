@@ -54,6 +54,7 @@ jobs:
     outputs:
       serial_pass: ${{ steps.flags.outputs.serial_pass }}
       combined_pass: ${{ steps.flags.outputs.combined_pass }}
+      periodic_litf0_pass: ${{ steps.flags.outputs.periodic_litf0_pass }}
       periodic_litf1_pass: ${{ steps.flags.outputs.periodic_litf1_pass }}
     steps:
       - name: Checkout research repository
@@ -79,7 +80,7 @@ jobs:
           p = "prepared/upstream/work/layer2/data/controls.json"
           d = json.load(open(p, encoding="utf-8"))
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
-              for k in ("serial_pass", "combined_pass", "periodic_litf1_pass"):
+              for k in ("serial_pass", "combined_pass", "periodic_litf0_pass", "periodic_litf1_pass"):
                   f.write(f"{k}={str(bool(d[k])).lower()}\n")
           PY
       - name: Bundle control evidence
@@ -105,6 +106,7 @@ jobs:
     if: >-
       ${{ (matrix.family != 'solved' && matrix.family != 'words' || needs.controls.outputs.serial_pass == 'true') &&
           (matrix.family != 'combined' || needs.controls.outputs.combined_pass == 'true') &&
+          (matrix.family != 'periodic0' || needs.controls.outputs.periodic_litf0_pass == 'true') &&
           (matrix.family != 'periodic1' || needs.controls.outputs.periodic_litf1_pass == 'true') }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
@@ -114,7 +116,7 @@ jobs:
       matrix:
         window: [opening, p42]
         family: [solved, words, combined, periodic0, periodic1]
-        side: [real, null]
+        side: [real, "null"]
     steps:
       - name: Checkout research repository
         uses: actions/checkout@v4
@@ -174,7 +176,7 @@ jobs:
         run: |
           mkdir -p results controls im-results/agent2_layer2_p0_2_p42_raw
           if [ ! -f controls/controls.json ]; then
-            echo '{"serial_pass":false,"combined_pass":false,"periodic_litf1_pass":false}' > controls/controls.json
+            echo '{"serial_pass":false,"combined_pass":false,"periodic_litf0_pass":false,"periodic_litf1_pass":false}' > controls/controls.json
           fi
           python sims/agent2_layer2_sft.py analyze results controls/controls.json im-results/agent2_layer2_p0_2_p42_original_screen.md
           cp prepared/upstream/work/layer2/data/manifest.json im-results/agent2_layer2_p0_2_p42_manifest.json
