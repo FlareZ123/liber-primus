@@ -141,6 +141,36 @@ for (const r of long) {
   rows.push(rec);
   full.push({...rec, matches});
 }
+/* Independently sourced Latin Vulgate words are already GP29-encoded
+ * one word per line, source alphabet 0..9A..S. Keep that register separate
+ * from the English lexicon and deduplicate identical candidate rune forms. */
+const latinAlphabet = '0123456789ABCDEFGHIJKLMNOPQRS';
+const latinLines = read('resources/control/latin-vulgate-gp-wholewords.txt')
+  .split(/\r?\n/u).filter(line => /^[0-9A-S]+$/u.test(line));
+const latin = new Map(), latinSeen = new Set();
+for (const line of latinLines) {
+  if (line.length < 11 || line.length > 14 || latinSeen.has(line)) continue;
+  latinSeen.add(line);
+  if (!latin.has(line.length)) latin.set(line.length, []);
+  latin.get(line.length).push(Array.from(line, ch =>
+    latinAlphabet.indexOf(ch)));
+}
+const latinRows = long.map(r => ({
+  word: r.ordinal,
+  length: r.word.length,
+  matches: (latin.get(r.word.length) || [])
+    .filter(candidate => keyFor(r.word, candidate) !== null).length
+}));
+const latinSummary = [11, 12, 13, 14].map(n => {
+  const w = latinRows.filter(x => x.length === n);
+  return {
+    length: n,
+    words: w.length,
+    dictionary: (latin.get(n) || []).length,
+    noMatches: w.filter(x => x.matches === 0).length,
+    unique: w.filter(x => x.matches === 1).length
+  };
+});
 const summary = [11,12,13,14].map(n => {
   const w = rows.filter(x => x.length === n);
   return {
@@ -153,9 +183,12 @@ const summary = [11,12,13,14].map(n => {
     max: Math.max(...w.map(x => x.candidateCount))
   };
 });
+assert.deepEqual(summary.map(x => x.noMatches), [1, 6, 4, 3]);
+assert.deepEqual(latinSummary.map(x => x.noMatches), [1, 13, 4, 3]);
 console.log(JSON.stringify({
   originalWords: printed.length,originalRunes: runes, positives: positive,
   model: 'independent secret affine GP29 slope and shift per word and phase',
-  summary,
+  englishSummary: summary,
+  latinSummary,
   originalDetails: rows
 }, null, 2));
