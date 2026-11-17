@@ -34,11 +34,19 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           path: from-six
           merge-multiple: false
-      - name: Retrieve every disjoint remaining-twelve-convention original artifact
+      - name: Retrieve remaining conventions beginning 0 (72 original shards)
         uses: actions/download-artifact@v4
         with:
           run-id: "${{ inputs.remaining_run_id }}"
-          pattern: pdir-stage1-remaining-*
+          pattern: pdir-stage1-remaining-0*
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          path: from-twelve
+          merge-multiple: false
+      - name: Retrieve remaining conventions beginning 1 (72 original shards)
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ inputs.remaining_run_id }}"
+          pattern: pdir-stage1-remaining-1*
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           path: from-twelve
           merge-multiple: false
