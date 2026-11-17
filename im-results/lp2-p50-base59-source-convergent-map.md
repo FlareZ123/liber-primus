@@ -74,6 +74,36 @@ The highest full original score uses `a=0, b=7, c=24`, eliminating the child val
 
 **Decision:** the entire stated *uniform local affine parent-from-children family*, including arbitrary constant, child-sum scale and node-degree offset over GP29, fails on original solved material. This extends the previous child-sum-only and node-salt tests, and blocks that route to recovering p55. More general graph-dependent algorithms, nonlocal operations and the source's numerical-base ambiguity remain unresolved. The [read-only Windows/Node22 SFT](../sims/lp2_p50_base59_tree95_affine_knownholdout_sft.cjs) reads the original resources and exhausts the finite family without any original unknown-plaintext fit. The [original-source Windows/Node22 execution completed successfully](https://github.com/FlareZ123/liber-primus/actions/runs/44069571300).
 
+## Exact all-secret local lookup obstruction (17 November 2026, Agent38)
+
+**Decision:** Even granting a completely arbitrary, unknown 29-entry substitution table in place of the previously tested affine law, the source's graph and independently solved p56 exclude seven simple local propagation families. This is an exact original-input contradiction. It recovers no p55 plaintext and does not authenticate the provisional base59 graph.
+
+The **upstream human-path hypothesis** is unchanged: remove the only unused base60 digit `f`, read each printed two-character table token in base59, follow its address to the next cell, put the 95 original clear p57 rune indices at the graph's 95 leaves, and treat the other 161 cells as p55's 76 unknown and p56's 85 independently decrypted labels. The original p57 instruction to shed circumferences motivates an outside-to-inside traversal, but the book does not specify this tree operation or a lookup table. This test asks whether p56's **genuine known plaintext** could teach a reusable secret one-input law that recovers the withheld p55 labels. It does not fit the unknown p55 ciphertext.
+
+For a node with child values `x1,...,xd`, define a **fixed but entirely secret** function `f:{0,...,28}->{0,...,28}`. The proposed law is `parent=f(A(children))`, where the aggregation `A` is one of:
+
+| Original-source-derived aggregation `A` | Minimum known p56 labels that must change |
+| --- | ---: |
+| Sum of GP29 rune indices, mod29 | **24** |
+| Product of GP29 rune indices, mod29 | **25** |
+| Sum of GP29 prime values, mod29 | **25** |
+| Product of GP29 prime values, mod29 | **27** |
+| Sum of totients of GP29 prime values, mod29 | **24** |
+| Product of totients of GP29 prime values, mod29 | **27** |
+| Bitwise XOR of rune indices, reduced mod29 (2014 historical XOR control) | **25** |
+
+The natural first-party motivation for prime and totient aggregates is LP1's solved assertion that both are sacred; the historically used 2014 three-share operation motivates the separate XOR comparator. None of these operations is explicitly commanded at the original p49–51 table.
+
+Exactly **60 distinct fixed layouts** were tested: three canonical leaf orders (ascending address, depth-first, breadth-first); each in both directions; five canonical internal orders (address, depth-first preorder, postorder, breadth-first outward, and reversed breadth-first inward); and either p55-before-p56 or p56-before-p55 on the internal tape. For every combination the known constraints are every p56-labelled parent whose full child set is independently labelled by clear p57 or solved p56; the 76 p55 values are unobserved and never supplied. Each case has **55–85** complete authentic constraints.
+
+For each aggregate input `a`, count its known parent outputs. Any single-valued function `f(a)` must choose one of those outputs; its **mathematical minimum number of contradictions** is `sum_a(total[a]-max_output_count[a])`. This eliminates **all 29^29 possible global secret tables at once**, without a key search, English scoring or any assumption that `f` is affine or invertible. Across **420 original cases** there are **zero exact fits** and at least **24 incompatible known symbols** in the most favorable case. The observation is stronger than a poor best-fit language score: the same aggregate input demands different authentic p56 labels.
+
+**Synthetic power:** For each of the same 420 geometry-aggregate cases, the exact original p57 leaf text is kept, a distinct planted nonlinear table `f(a)=a²+3a+11 mod29` is propagated from leaves to root, and p55's 76 unknown internal labels are withheld. The invariant accepts all **420/420** plants exactly, with zero contradictions in every case. The script also asserts the authentic p56 prime-clock decryption, including its sole literal-F bypass at index56, before constructing any observation.
+
+**Scope:** This retires a *single global 29-output function of one commutative child aggregate* under the stated base59 graph and canonical layouts. It cannot exclude node-dependent or depth-dependent functions, degree-conditioned tables, multiple inputs, nonlocal cryptographic hashes, alternate numerical bases, other leaf orderings, or a lost external key. The previously documented exact root189, 95-leaf and 161-internal counts remain an unresolved clue, not a confirmed decipherment. An independent authored receiver or external key is required before enlarging this family.
+
+**Reproducer:** [All-secret original known-plaintext SFT](../sims/lp2_p50_base59_tree95_allsecret_lookup_sft.cjs). It operates directly on the pinned original table and GP29 corpus and prints each family minimum and strict source-shaped positive-control count.
+
 ## Causal interpretation and explicit limitation
 
 The missing-f 59-digit alphabet creates one exact **global destination cell at address189**, potentially useful if a player was intended to use the 256 values as directions. Its attraction-basin feature is independent of the earlier *keypad* graph; it remains opposed by the existing base60 quadratic-syndrome result. The root and its full convergence are new concrete original-data properties. Their original authorial meaning is unresolved: no Cicada source yet tells a reader **which reverse branch to follow, what visited addresses mean as GP29/bytes, or which LP2 ciphertext page should consume them**. The signed 2016 message about words, meanings, numbers and direction does not independently choose the 59-digit radix, depth-first child order or plaintext receiver. The six source seeds provide no independent confirmation because a single basin forces their convergence.
