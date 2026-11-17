@@ -39,6 +39,26 @@ A cross-control against the unchanged physical printed-line transcription (`reso
 
 The evidence permits aesthetic/interline adjustment and other author-intended spacing interpretations. Neither the seven literal gap positions nor their immediate printed-word context supplies an executable GP29 decoder or an authenticated key. Treat the original seven-gap selector as **unsupported** unless an independent first-party instruction changes this causal reading.
 
+## Original-boundary adjudication of the seven extra gaps (17 November 2026)
+
+**Correction:** The original report called these “extra paragraph-leading events.” Directly aligning each 224-pixel baseline pitch to the unchanged, page-exact `resources/liber-primus/lp2-transcription.txt` shows **four of the seven are within a single uninterrupted printed word**, **two** follow a printed word separator, and **one** places a period at the beginning of the following line. Therefore **a seven-paragraph-break interpretation is false**. This corrects terminology; the original JPEG geometry, 170-transition right-edge holdout and source-width conclusions above are unchanged.
+
+The physical line number is zero-based on its page; an “extra” at line *k* means that line *k* starts 224 pixels below the previous baseline. The original 2400×3600 JPEG is numbered physical p+17 in the supplied 75-image archive.
+
+| Physical page; line receiving extra lead | Previous-to-next printed boundary | Relation | Source image |
+| --- | --- | --- | --- |
+| p4; line8 | `…ᛄᛋᛟᛗᚾᚱ/ᛖᛒᛋ…` | Within-word | 21.jpg |
+| p10; line8 | `…ᚷ-ᛚᛄᛖᚫ/.ᚣᛁ…` | Period begins next line | 27.jpg |
+| p21; line2 | `…ᚠᚱᛡᛚ/ᛏ-…` | Within-word | 38.jpg |
+| p41; line10 | `…ᛖᚣᚢᛝᚦᛇᚱ-/ᛠᛁᚫ…` | New word | 58.jpg |
+| p42; line3 | `…ᚠᚳᚦ/ᛗᛄᚹ…` | Within-word | 59.jpg |
+| p42; line6 | `…ᚾᚠᛁᛝ.ᛏ/ᚻᚹᚫ…` | Within-word | 59.jpg |
+| p43; line1 | `…ᚷᛚᚣᚹᛟ-/ᚠᚢ…` | New word | 60.jpg |
+
+Among the **59 normal-pitch** transitions on these same six pages, 44 also continue a word and 12 precede a printed new word (three other delimiter cases). The seven exceptional leading positions therefore do **not** appear to select one grammatical boundary type. Original p10's displaced full stop also cautions against automatically treating the next line's first visible mark as a rune. The positions were originally discovered through optical geometry, not through a preselected cryptographic operation; **no seven-symbol cipher, key, or plaintext receiver follows from this corrected classification**.
+
+To audit, use `python sims/lp2_line_geometry_gate.py --zip liber-primus-jpegs.zip` for the original-image baselines and read the physical lines at the exact page/line coordinates above. Classify word continuation by absence of a printed `-` or `.` at the preceding line end; punctuation at the first position of the following line is a separate case. Verify the source transcription's physical rune counts against `lp2-corpus.json` before changing its tokenization.
+
 ## Frozen width-dependent original holdout
 
 An optical **first-ink-run width** is measured from the next source line's actual pixels. For each contiguous normal-pitch pair, the strict fixed-right condition is
@@ -68,6 +88,6 @@ The known p56 prime-totient page mixes runic lines, a hex digest and dots; p57's
 
 **No original-page clue independently selects a reversible geometry-to-key serialization.** In the ordinary 12-line runic pages, line-start positions and end-of-line deficits are sufficiently explained by the glyph-width compositor. A byte stream chosen from those residuals would be retrospective unless some separate original instruction specified its ordering and interpretation. Nothing here predicts 40 unknown runes.
 
-The single potentially worthwhile successor question is whether **visually exceptional 224-pixel paragraph leading or decorated pages** correspond to a *source-explicit* instruction for selecting bits/symbols; that requires a human-visible authored selector, since arbitrary serialization of extra gaps is uninformative. Prior width-only and first-column cipher searches remain retired.
+The single potentially worthwhile successor question is whether **visually exceptional 224-pixel extra interline leading or decorated pages** correspond to a *source-explicit* instruction for selecting bits/symbols; that requires a human-visible authored selector, since arbitrary serialization of extra gaps is uninformative. Prior width-only and first-column cipher searches remain retired.
 
 **To reproduce:** with repository images, run \`python sims/lp2_line_geometry_gate.py\`; with the original owner ZIP, run \`python sims/lp2_line_geometry_gate.py --zip liber-primus-jpegs.zip\`. Requires NumPy and Pillow. No external source text, OCR model, random language generator or ciphertext-derived key is used. Seed **20261113** fixes the page-conditioned shuffle.
