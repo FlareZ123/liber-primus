@@ -1,0 +1,17 @@
+name: Agent20 original terminal77 RSA seven-rune source gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-cipher:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Source-exact original 77-rune obstruction and native RSA positive
+        run: |
+          node --check sims/lp2_p55_p56_terminal77_rsa_source_sft.cjs
+          node sims/lp2_p55_p56_terminal77_rsa_source_sft.cjs
