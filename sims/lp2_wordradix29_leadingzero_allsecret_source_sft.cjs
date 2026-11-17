@@ -133,6 +133,82 @@ const requiredLittleEndianRuns = minimumRunsPerChapter.reduce(
   (sum, x) => sum + x.littleEndian, 0);
 assert.equal(requiredBigEndianRuns, 27);
 assert.equal(requiredLittleEndianRuns, 31);
+const ink = JSON.parse(fs.readFileSync(path.join(root,
+  "resources/liber-primus/lp2-ink-annotations.json"), "utf8"));
+const pageStarts = new Map();
+let pageRuneOffset = 0;
+for (const page of corpus.pages.slice(0, 56)) {
+  pageStarts.set(page.page, pageRuneOffset);
+  pageRuneOffset += page.indices.length;
+}
+assert.equal(pageRuneOffset, original.length);
+const everyMark = [];
+const thirteenMark = [];
+for (const page of ink.pages) {
+  if (page.page > 55) continue;
+  for (const [local, dotCount] of page.large_punctuation || []) {
+    const absolute = pageStarts.get(page.page) + local;
+    everyMark.push(absolute);
+    if (dotCount === 13) thirteenMark.push(absolute);
+  }
+}
+const orderedUnique = xs => [...new Set(xs)].sort((a, b) => a - b);
+const everyMarkUnique = orderedUnique(everyMark);
+const thirteenMarkUnique = orderedUnique(thirteenMark);
+assert.equal(everyMarkUnique.length, 29);
+assert.equal(thirteenMarkUnique.length, 26);
+let wordRuneOffset = 0;
+const positionedWords = words.map(word => {
+  const result = {start: wordRuneOffset, end: wordRuneOffset + word.length,
+    word};
+  wordRuneOffset = result.end;
+  return result;
+});
+assert.equal(wordRuneOffset, original.length);
+for (const marker of everyMarkUnique) {
+  assert.equal(positionedWords.some(w => w.start < marker && marker < w.end),
+    false, "Large original punctuation must delimit, never split, a word");
+}
+/**
+ * Every mark can rekey a word-numeral digit alphabet; test the longest
+ * original ranges where a constant alphabet has no printed reset.
+ *
+ * @param {number[]} markers
+ */
+function punctuationResetEvidence(markers) {
+  const cuts = [0, ...markers.filter(i => i > 0 && i < original.length),
+    original.length];
+  const bad = [];
+  for (let i = 0; i < cuts.length - 1; i++) {
+    const section = positionedWords.filter(w => w.word.length >= 2 &&
+      w.start >= cuts[i] && w.end <= cuts[i + 1]);
+    const a = new Array(29).fill(0);
+    const b = new Array(29).fill(0);
+    for (const entry of section) {
+      a[entry.word[0]]++;
+      b[entry.word[entry.word.length - 1]]++;
+    }
+    if (Math.min(...a) > 0 || Math.min(...b) > 0) {
+      bad.push({interval: i + 1, runeStart: cuts[i],
+        runeEnd: cuts[i + 1], multiRuneWords: section.length,
+        forwardImpossible: Math.min(...a) > 0,
+        reverseImpossible: Math.min(...b) > 0});
+    }
+  }
+  return {uniqueMarks: markers.length, intervals: cuts.length - 1,
+    intervalsWithImpossibleForwardOrReverse: bad};
+}
+const punctuationResetFindings = {
+  thirteenDotOnly: punctuationResetEvidence(thirteenMarkUnique),
+  allLargeDots: punctuationResetEvidence(everyMarkUnique)
+};
+assert.equal(punctuationResetFindings.thirteenDotOnly
+  .intervalsWithImpossibleForwardOrReverse.length, 8);
+assert.equal(punctuationResetFindings.allLargeDots
+  .intervalsWithImpossibleForwardOrReverse.length, 10);
+assert.equal(punctuationResetFindings.allLargeDots
+  .intervalsWithImpossibleForwardOrReverse.filter(x =>
+    x.forwardImpossible && x.reverseImpossible).length, 9);
 console.log(JSON.stringify({
   classification: "conditional exact impossible, no plaintext",
   source: {runes: original.length, printedWords: words.length,
@@ -145,6 +221,7 @@ console.log(JSON.stringify({
   chapterEndpointCounts,
   independentlyForcedContradictoryChapters: 8,
   minimumRunsPerChapter,
+  punctuationResetFindings,
   minimumStationaryDigitAlphabetRunsWithChapterResets: {
     bigEndian: requiredBigEndianRuns,
     littleEndian: requiredLittleEndianRuns
