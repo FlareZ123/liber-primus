@@ -1,6 +1,6 @@
 # LP2 256-cell numeral table: keyless weak-PRNG state recovery gate
 
-**14–15 November 2026, Agent 35. Classification:** original-source, unknown-state and unknown-coefficient exact exclusions. The canonical p49–51 table does **not** directly encode output from the tested small linear-state or four ordinary C-era modular random generators under the specified source-natural readings. A direct one-byte-per-step GF(2)-linear generator of state dimension 126 or less also contradicts all four tested source byte streams. **No unknown rune plaintext, recovered historical key, invented generator seed, or new Cicada destination follows.**
+**14–17 November 2026, Agents 35 and 11. Classification:** original-source, unknown-state and unknown-coefficient exact exclusions. The canonical p49–51 table does **not** directly encode output from the tested small linear-state or four ordinary C-era modular random generators under the specified source-natural readings. A direct one-byte-per-step GF(2)-linear generator of state dimension 126 or less also contradicts all four tested source byte streams. The separate original-source lag-(3,31) GNU libc additive Fibonacci test now rejects direct unchanged byte windows of that 31-word generator for all hidden seeds, too. **No unknown rune plaintext, recovered historical key, invented generator seed, or new Cicada destination follows.**
 
 ## A plausible path to key material
 
@@ -63,9 +63,31 @@ The other 24 internal state bits are genuinely **unknown**, so a single observed
 This is an independent, historically plausible alternative to packed complete-word state emission. It eliminates this finite set without selecting a new byte conversion or trying fitted skips. Other nonlinear postprocessors, generators with more hidden state, intermittent output, and a differently encoded/encrypted grid remain outside scope. A useful successor needs an author-derived algorithm or a genuine plaintext-bearing source, rather than another unspecified random-stream generator.
 
 
+
+## Source-locked glibc additive Fibonacci output: exact hidden-state-free gate (17 November 2026)
+
+**New original-input result, Agent11.** The previous fixed C-rand tests did not cover the **historical GNU libc random() additive lagged-Fibonacci generator**. This is a particularly affordable alternative because the original manuscript's p15 4×4 number spiral is constructed from Fibonacci-indexed primes, and the 2014 puzzle circulated in a GNU/Linux environment. Neither fact authenticates the use of a C library PRNG to make the p50 table. The value of this test is that **all possible 31-word initial states and seeds** can be rejected without searching them.
+
+In the standard 31-word generator, internal 32-bit states satisfy x[n] = x[n−3] + x[n−31] modulo 2^32, with 31-bit public output r[n] = x[n] >> 1. Every contiguous eight-bit window of r, including the low eight bits, a middle byte, and the top eight bits, must satisfy the **necessary exact congruence** (b[n]−b[n−3]−b[n−31]) mod256 ∈ {0,1} for each n≥31. The alternative (28,31) lag pair is an explicit separately declared structural control, while (3,31) is the actual GNU relation. Both are tested on the unchanged original numeric bytes with no guessed output skip or seed.
+
+| Original source parse | Actual GNU (3,31) passes / 225 | Alternative (28,31) passes / 225 | First original GNU failure (zero-based position; residual) |
+| --- | ---: | ---: | --- |
+| Canonical radix60 row-major | **4** | 3 | **31; 36** |
+| Canonical radix60 column-major | **2** | 2 | **31; 98** |
+| Source-unused-f radix59 row-major | **3** | 4 | **31; 39** |
+| Source-unused-f radix59 column-major | **2** | 1 | **31; 100** |
+
+Each layout contains 256 untouched source tokens, so 225 exact recurrence windows are checked. The few passing windows are ordinary random-byte noise; a genuine contiguous GNU output byte stream requires **225/225 passes** in every bit-window representation. This excludes direct unchanged fixed-byte-window emission from the standard generator, for **every seed and starting state**, under these four source-natural readouts. The first contradiction at row-major radix60 position31 occurs immediately when the two needed lagged predecessor values become available. The input canonical-byte SHA-256 is 3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290.
+
+**Positive:** A separate synthetic 32-bit additive lag-(3,31) recurrence, with arbitrary state seed and 100-generation warm-up, was emitted as four independent eight-bit windows of r (bit positions 0,7,15,23). The identical source program found **225/225 in each of the four plants**, verifying that high/low byte extraction and discarded-low-bit carries are accounted for. The arithmetic identity was also independently checked against actual GNU libc random() output under seed3301 for all four bit windows; every case satisfied all 225 windows.
+
+This original-source exclusion does not address dropped/interleaved generator draws, nonlinear output encoding, a different table interpretation, or use of libc random() somewhere else in the manuscript. It does not produce a key, decrypt a rune, or identify an intended cipher. Further PRNG families require an independent clue rather than an unbounded catalogue.
+
+[Read-only portable CommonJS original-input SFT](../sims/lp2_p50_glibc_lagged_fibonacci_source_sft.cjs) includes all four source paths, their exact contradictions, and four full synthetic controls.
+
 ## Consequence and next research decision
 
-The table's original numbers **cannot be treated as a directly emitted stream from a short binary-linear generator** (one byte per update with dimension ≤126), an arbitrary fixed 32-bit GF(2)-affine state machine emitting four raw state bytes, or a complete-state 32-bit modular LCG under the eight natural readouts. A direct xorshift32 key generator and a raw-word LCG source are especially concrete rejected explanations; the result does not depend on which unknown seed might have been chosen.
+The table's original numbers **cannot be treated as a directly emitted stream from a short binary-linear generator** (one byte per update with dimension ≤126), an arbitrary fixed 32-bit GF(2)-affine state machine emitting four raw state bytes, or a complete-state 32-bit modular LCG under the eight natural readouts. Direct unchanged eight-bit windows of the standard GNU libc additive lag-(3,31) generator are also excluded on four source-natural readouts, without knowing or brute-forcing its hidden seed. A direct xorshift32 key generator and a raw-word LCG source are especially concrete rejected explanations; the result does not depend on which unknown seed might have been chosen.
 
 **Do not turn this into a hunt for rotated table phases, custom bit permutations, unrelated KDFs, or freely chosen PRNGs.** A generator with nonlinear output, unobserved internal state, intermediate byte drops, multiple streams, a larger linear state (such as MT19937), or independently selected byte transformations remains mathematically possible. Those survive only as separate hypotheses needing a creator-attributable extraction or state instruction and an actual original-LP2 plaintext prediction. The current cipher frontier remains unchanged: the **12,956 unknown runes have no independently recovered plaintext**.
 
