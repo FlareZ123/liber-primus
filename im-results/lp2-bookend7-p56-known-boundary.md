@@ -36,6 +36,28 @@ The **same lag/sign choice never yields a physically legal plaintext on both ori
 
 **Decision:** the appealing THE END reading is an **unconfirmed textual guess** and fails as a simultaneous p27/p55 full-page native-GP plaintext-autokey solution under the specified lag-five/six F-transparent operators. Do not promote the phrase to decrypted text or search arbitrary additional offsets/operators merely to fit it. Its source-visible word-pair repetition remains available to a genuinely independent, author-selected key or mechanism.
 
+## Original 28-page fold: whole-page key-reuse test versus the localized bookend
+
+The identical final six-rune printed p55 footer and p27 inner pair are separated by **28 physical pages**. The p27 copy starts at local rune offset **28**, while the p55 copy starts at **70**, a displacement of **42**. This source-visible geometry suggests one affordable distinction: do two corresponding physical pages (p0↔p28, ..., p27↔p55), considered as two halves of the book, actually reuse the same positional GP29 key? A complete shared page-pair pad would be much more consequential than a single repeated six-rune marker: subtracting aligned ciphertext streams cancels the reused secret. The test below freezes the original page pairing and the only three simple candidate physical alignments, shifts **0**, **+42**, **−42**, without fitting a key.
+
+For a shared additive pad `C[p,i]=P[p,i]+K[p,i] (mod29)`, equality at matched ciphertext positions is exactly equality of plaintext identities. For the competing simple feedback form `C[p,i]=P[p,i]+K[p,i]+C[p,i−d] (mod29)`, the *ciphertext differences* `C[p,i]−C[p,i−d]` have the same equality invariant at tap `d=1` or `d=5`, when page-paired keys and physical positions are shared. The original 56-page corpus has **55 rune-bearing pages and a rune-free p50**. Page pairs involving p50 contribute zero comparisons; all other original runes are left unchanged. A full-length source-native English positive uses Gibran's *The Prophet*, normalized into the same 29 GP rune symbols and split according to the **original physical page-length template**.
+
+| Pairwise alignment | Register | Source equalities | Total comparable positions | Source English direct-register reference |
+| --- | --- | ---: | ---: | ---: |
+| physical shift 0 | raw ciphertext | **195** | **5,663** | **305 / 5,663** |
+| physical shift +42 | raw ciphertext | **157** | **4,821** | **284 / 4,821** |
+| physical shift −42 | raw ciphertext | **195** | **4,979** | **283 / 4,979** |
+| physical shift 0 | one-back step | **172** | **5,636** | reference emitted by synthetic shared-key plant |
+| physical shift +42 | one-back step | **182** | **4,794** | reference emitted by synthetic shared-key plant |
+| physical shift −42 | one-back step | **160** | **4,952** | reference emitted by synthetic shared-key plant |
+| physical shift 0 | five-back step | **192** | **5,528** | reference emitted by synthetic shared-key plant |
+| physical shift +42 | five-back step | **164** | **4,686** | reference emitted by synthetic shared-key plant |
+| physical shift −42 | five-back step | **195** | **4,844** | reference emitted by synthetic shared-key plant |
+
+The original ciphertext direct equality rate is **3.26–3.92%**, close to accidental 1/29, whereas this single matched native-English control has **5.39–5.89%** under the same direct comparisons. The p27/p55 **six** identical symbols within the +42 comparison occupy only **34** available paired symbols at that specific page pair; there is no manuscript-wide transfer of the same equality structure to other physical page pairs. All nine exact-page synthetic shared-pad controls enforce the expected equality invariant and round-trip through a deterministic key, showing the original-input comparison is sensitive to its target model. [Original-input script with native-English controls and synthetic planted cases](../sims/lp2_bookend_28page_sharedpad_original_sft.cjs).
+
+**Decision:** the terminal repeat does **not** extend to a book-wide, page-paired static GP29 additive pad or the specified shared one-/five-back key step under the tested physical alignments, if the unknown text is ordinary source-like GP English. The six-rune footer remains a localized source-level possible pointer. Nothing here excludes independent per-page pads, nonlinear changing state, an alternate encoding, or a source-authored navigation jump. Do not multiply arbitrary offsets or keys without an independent selector.
+
 ## Rarity control and limits
 
 The [SFT](../sims/lp2_bookend7_p56_source_sft.cjs) asserts the original seven positions, full-runic sliding-window census, p56 first rune, modulo-seven alignment, and a positive planted seven-run repeat. For a descriptive null, it generates 3,000 separate length-12,957 GP29 strings with first-order anti-doublet transitions: a repeat of the preceding symbol occurs at the observed **86/12,956** rate, and other transitions are uniform over the 28 alternative runes. Under the fixed generator seed `0x33012026`, **10/3,000** strings contain at least one seven-rune repeat anywhere; the mean simulated adjacent-repeat count is **86.156**, versus the source's **86**. The zero-to-one seven-run event is unusual under this simple null.
