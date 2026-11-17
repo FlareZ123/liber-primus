@@ -80,6 +80,10 @@ const base60 = decode(60);
 // 32-by-8 table coordinates remains an explicit hypothesis.
 const historicalDH = {p:23, base:5, serverPublic:8, clientPublic:19, shared:2};
 const historicalBase29Operand = 3301;
+assert.deepEqual(grid.page_row_counts, [10, 13, 9]);
+assert.equal(grid.page_row_counts[0]+grid.page_row_counts[1],historicalDH.p);
+assert.deepEqual(grid.rows[historicalDH.p], ['28','2a','0J','1L','0c','3C','2o','0X']);
+assert.equal(grid.rows[historicalDH.p+1][0],'00');
 const dhCell = historicalDH.p * 8 + historicalDH.base; // original 189
 assert.equal(dhCell, 189);
 assert.equal(tokens[dhCell], '3C');
@@ -233,6 +237,8 @@ process.stdout.write(JSON.stringify({
   base60SignedDHToFirstZero: {fromIndex: 189, printed: '3C', firstZeroIndex: 192,
     secondZeroIndex: 229, bracketLength: zeroBracket.length,
     p39RedDoubleRoot: p39Root, requiresZeroBasedCoordinates: true,
+    firstTwoOriginalTablePagesRows: [10,13],
+    thirdOriginalTablePageBeginsRow: 23,
     dhExponentKeyPosttableIoC: symbolIoc(postPlain),
     dhExponentKeyHeldoutIoC: symbolIoc(terminalPlain)},
   radix: 59,
