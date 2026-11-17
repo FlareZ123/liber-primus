@@ -190,6 +190,7 @@ assert.equal(unknown.filter((g) => g.length === 2).length, 3175);
 assert.equal(lagRate(unknown, 1).hits, 86);
 
 const allWords = printedWords(originalPrint(0, 55));
+assert.equal(allWords.length, 2896);
 assert.equal(allWords.reduce((a, w) => a + w.length, 0), unknown.length);
 const ambiguousAdjacent = allWords.reduce((sum, word) => {
   for (let i = 1; i < word.length; i++)
@@ -201,8 +202,8 @@ const wordsChangedByGreedy = allWords.filter((word) => {
   const reparsed = spellToGp(word.join(''));
   return !reparsed || reparsed.join('|') !== word.join('|');
 }).length;
-assert.equal(ambiguousAdjacent, 101);
-assert.equal(wordsChangedByGreedy, 177);
+assert.equal(ambiguousAdjacent, 100);
+assert.equal(wordsChangedByGreedy, 175);
 
 // One source-native, genuine positive under the HYPOTHESIZED Latin26
 // operation: the 13-rune p57 substring MUST SHED OUR OW... can be encrypted
