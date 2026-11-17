@@ -156,6 +156,104 @@ for (const result of results) histogram[result.hits] =
   (histogram[result.hits] || 0) + 1;
 assert.deepEqual(histogram, {'1': 1, '2': 6, '3': 7,
   '4': 5, '5': 1, '6': 3, '7': 1});
+
+// Independent key-free exclusions: even arbitrary shared functions are
+// constrained by repeated known child inputs and repeated leaf-set inputs.
+// These tests grant *unlimited secret lookup tables*, not just parent sums.
+// A unary tree node is one with exactly one child.
+const leafSets = Array(256).fill(null);
+/** @param {number} node @returns {number[]} */
+function descendants(node) {
+  if (leafSets[node]) return leafSets[node];
+  if (indegree[node] === 0) return (leafSets[node] = [node]);
+  const leaves = children[node].flatMap(descendants).sort((a, b) => a - b);
+  leafSets[node] = leaves;
+  return leaves;
+}
+for (const node of addresses) descendants(node);
+
+const allSecretUnary = [];
+const symmetricLeafSet = [];
+for (const [name, naturalOrder] of Object.entries(internalOrders)) {
+  for (const reverseInternal of [false, true]) {
+    const internals = reverseInternal
+      ? [...naturalOrder].reverse() : naturalOrder;
+    const knownNodes = internals.slice(76);
+
+    // For ANY unknown deterministic function of the multiset of p57 leaves,
+    // two internal nodes with identical descendant-leaf address sets must
+    // have identical output symbols. This does not fit any secret function.
+    const byLeafSet = new Map();
+    for (let i = 0; i < 85; i++) {
+      const key = leafSets[knownNodes[i]].join(',');
+      if (!byLeafSet.has(key)) byLeafSet.set(key, []);
+      byLeafSet.get(key).push(knownP56[i]);
+    }
+    let inevitableErrors = 0;
+    let conflictingLeafSets = 0;
+    for (const ys of byLeafSet.values()) {
+      const counts = new Map();
+      for (const y of ys) counts.set(y, (counts.get(y) || 0) + 1);
+      inevitableErrors += ys.length - Math.max(...counts.values());
+      if (counts.size > 1) conflictingLeafSets++;
+    }
+    symmetricLeafSet.push({
+      internalOrder: name, reverseInternal,
+      uniqueLeafSets: byLeafSet.size, conflictingLeafSets,
+      inevitableErrors
+    });
+
+    for (const [leafOrder, naturalLeaves] of Object.entries(leafOrders)) {
+      for (const reverseClear of [false, true]) {
+        const labels = Array(256).fill(-1);
+        for (let i = 0; i < 95; i++) {
+          const p = p57[reverseClear ? 94 - i : i];
+          labels[naturalLeaves[i]] = p;
+        }
+        for (let i = 0; i < 85; i++)
+          labels[knownNodes[i]] = knownP56[i];
+
+        // Let *every* unary node use any one global unknown 29->29
+        // function f1, with no injectivity or arithmetic restriction.
+        // If f1(x) is required to equal two distinct known rune labels,
+        // no possible hidden key/table can rescue the tree fold.
+        const byUnaryInput = new Map();
+        let knownUnaryPairs = 0;
+        for (const node of addresses) {
+          if (children[node].length !== 1 || labels[node] < 0) continue;
+          const child = children[node][0];
+          if (labels[child] < 0) continue;
+          knownUnaryPairs++;
+          const input = labels[child];
+          if (!byUnaryInput.has(input)) byUnaryInput.set(input, new Set());
+          byUnaryInput.get(input).add(labels[node]);
+        }
+        let inconsistentInputs = 0;
+        let conflictingOutcomes = 0;
+        for (const outputs of byUnaryInput.values()) {
+          if (outputs.size > 1) inconsistentInputs++;
+          conflictingOutcomes += outputs.size - 1;
+        }
+        allSecretUnary.push({
+          internalOrder: name, reverseInternal,
+          leafOrder, reverseClear, knownUnaryPairs,
+          distinctUnaryInputs: byUnaryInput.size, inconsistentInputs,
+          conflictingOutcomes
+        });
+      }
+    }
+  }
+}
+assert.equal(symmetricLeafSet.length, 6);
+assert.equal(allSecretUnary.length, 24);
+assert(allSecretUnary.every((x) => x.inconsistentInputs >= 6));
+assert.equal(Math.min(...allSecretUnary.map((x) => x.inconsistentInputs)), 6);
+assert.equal(Math.max(...allSecretUnary.map((x) => x.inconsistentInputs)), 14);
+assert.deepEqual(
+  symmetricLeafSet.map((x) => x.inevitableErrors),
+  [26, 19, 33, 29, 32, 30]
+);
+
 console.log(JSON.stringify({
   source: {cells: 256, root: 189, leaves: 95, internals: 161,
     p55Unknown: 76, p56Known: 85, p57Clear: 95},
@@ -164,5 +262,6 @@ console.log(JSON.stringify({
     internalOrders: Object.keys(internalOrders),
     primeWeights: 2, sourceDirections: 2, models: results.length,
     best, histogram, results},
-  decision: '0/24 source-natural reconstructions match authentic p56; no p55 plaintext can be claimed.'
+  allSecret: {unary: allSecretUnary, symmetricLeafSet},
+  decision: 'All 24 fixed parent-sum readers fail; all 24 unrestricted unary function folds are contradictory, and all six invariant leaf-set readers conflict with known p56. No unknown plaintext.'
 }, null, 2));
