@@ -167,6 +167,23 @@ assert.equal(strongest35, 157544);
 const strongestPage7 = Math.max(...comparison.map(x => x.pageReset["7"].numerator));
 assert.equal(strongestPage7, 172004);
 
+// A complete finite lower bound for any continuous, static-period alphabet
+// cipher, not just source-hinted key lengths. Every period 1..38 fails the
+// least concentrated native-English control window on all six source orders.
+const sourceKeyPeriodCapacity = [];
+for (let period = 1; period <= 39; period++) {
+  const candidates = variants.map(([name, items]) =>
+    ({name, numerator:allSecretCeiling(items, (_, i) => i % period).numerator}));
+  candidates.sort((a, b) => b.numerator - a.numerator);
+  sourceKeyPeriodCapacity.push({period, highestNumerator:candidates[0].numerator,
+    strongestOrdering:candidates[0].name});
+}
+const strongestPeriod1to38 = Math.max(...sourceKeyPeriodCapacity.slice(0, 38)
+  .map(x => x.highestNumerator));
+assert.equal(strongestPeriod1to38, 163128);
+assert.deepEqual(sourceKeyPeriodCapacity[38],
+  {period:39, highestNumerator:164632, strongestOrdering:"dot5"});
+
 // Independent source-native prose controls, using the already established
 // ING/IO grapheme rules. This same encoding yields exactly 3510 LP1 runes.
 const tokens = gp.translit.map((s, i) => ({s, i}))
@@ -246,6 +263,7 @@ const controlResults = controls.map(([name, file, expectedLength, windows, minim
     minimumIoC:result.minNumerator / denominator};
 });
 assert.equal(controlResults.reduce((sum, x) => sum + x.windows, 0), 597523);
+assert(controlResults.every(x => x.minNumerator > strongestPeriod1to38));
 
 console.log(JSON.stringify({
   source: "original 24.jpg + pp8-14 original transcript, 1730 mixed symbols",
@@ -256,6 +274,8 @@ console.log(JSON.stringify({
   period35WholeFamilyMaximumIoC:strongest35 / denominator,
   pageBy7WholeFamilyMaximumIoC:strongestPage7 / denominator,
   comparison, controls:controlResults,
+  strongestPeriod1To38Numerator:strongestPeriod1to38,
+  firstPotentialPeriod39:sourceKeyPeriodCapacity[38],
   conclusion: "Direct recurring periods 5/7/14/16/35 plus source-fixed 5-/7-column rearrangements cannot recover the independently observed native GP29-English unigram profile, even with every phase alphabet secret.",
   limitation: "Does not rule out changing internal state, non-bijective code, another register, or page-conditional 7-phase models matched by some independent English controls."
 }, null, 2));
