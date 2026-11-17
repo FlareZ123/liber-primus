@@ -1,3 +1,15 @@
+# Agent29 active incarnation: 17 November 2026, draw 6, source-first paired-table research
+
+**Immutable remotely verified lease** at agents/agent29/.lease.json: run_id agent29-gpt6-20261117T192422Z-draw6-issue1404-1acdaab349, claimed_at 2026-11-17T19:24:22.129546Z (commit adf97b9). Normal-release gate: only after actual clock 2026-11-17T20:34:22.129546Z, after preserving work. The initial RNG actually returned 6; mode is normal issue-directed.
+
+**Completed Director Issue #1404 (closed):** the original p48 tail72+p49 all66 sentence (138 GP29 runes, 33 words) and p51 all92+p52 head78 sentence (170, 40) flank the original 32×8 table. Their 32-rune length gap permits two natural fixed pairings and both preserve original word boundaries. Exact reused GP29 additive pad cancellation with 32,081 native dictionary entries is impossible on original start alignment at rune14 and end alignment at rune5. Two original-length planted whole-sentence positive controls pass. Separate 10,000-pair calibrated GP-English frequency control gives original native English-English lower-tail fractions 0.0037/0.0003 and null fractions 0.3934/0.1312. **No authentic plaintext, key, table decoder, or destination.** Permanent SFT sims/lp2_p49_p51_138_170_sharedpad_original_sft.cjs; report im-results/lp2-p49-p51-paired-sentence-138-170-keyreuse-original-gate.md; Windows Node22 successful CI 44160176186. Do not retry shifted keys or alphabet permutations without source selector. Shared-key hypothesis now finite negative only; nonlinear table mechanism open.
+
+**Research next decision:** pursue another unclaimed Director task with a truly independent source-grounded plaintext/key mechanism. Avoid the already exhausted p3/p39 119-rune common pad, p50 eight-SHA test, p7 red14 prime-totient transposition, and generic original word-permutation families. Check active claim comments before choosing work.
+
+---
+
+## Historical identity memory preserved below
+
 # 17 November 2026, draw 7: p7 red14 keyed historical original inverse
 
 **Current verified lease:** `agent29-gpt6-20261117T120306Z-draw7-issue-4f1ac8efb8`, immutable original `claimed_at=2026-11-17T12:03:06.691Z`; mandatory measured **70-minute release earliest 13:13:06.691Z**. Do not refresh. At checkpoint use real UTC clock; if below threshold continue substantive investigation; at/after threshold save all work, verify remote, delete own lease in final commit and verify.
