@@ -64,6 +64,26 @@ assert.equal(primeCursor, 84);
 assert.equal(translit(knownPlaintext),
   'ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHEDUTYOFEUERYPILGRIMTOSEECOUTTHISPAGE');
 
+
+// Stronger, key-independent obstruction: grant a completely unknown fixed
+// 29-symbol lookup f(K[i]) for the actual known p56 prime clock. Every
+// duplicated key rune must predict the same clock value. The best arbitrary
+// (possibly non-injective) f is optimized independently for each key rune.
+assert.equal(interiors[0], 24);
+assert.equal(interiors[2], 24);
+assert.equal(actualShifts[0], 1);
+assert.equal(actualShifts[2], 4);
+const bucket = Array.from({ length: 29 }, () => new Map());
+for (let i = 0; i < interiors.length; i++) {
+  if (i === 56) continue;
+  const observed = actualShifts[i];
+  const counts = bucket[interiors[i]];
+  counts.set(observed, (counts.get(observed) || 0) + 1);
+}
+const bestArbitraryFixedFunction = bucket.reduce((sum, counts) =>
+  sum + Math.max(0, ...counts.values()), 0);
+assert.equal(bestArbitraryFixedFunction, 25);
+
 const modes = [
   { name: 'ordinal', key: interiors },
   { name: 'GP prime mod29',
