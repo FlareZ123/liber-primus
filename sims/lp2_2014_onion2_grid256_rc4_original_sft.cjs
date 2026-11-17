@@ -60,6 +60,94 @@ function invert(key,scope,sign,skip){
   }
   return {all,blockIoC:blocks.map(ioc)};
 }
+
+/**
+ * Exact p56-authentic transparent-plaintext-F feasibility:
+ * P=F emits C=F without consuming key. P!=F consumes one RC4 byte
+ * and emits GP29(P+/-key). An encrypted non-F is allowed to emit F.
+ * All possible hidden key cursors are enumerated; no lexical scoring,
+ * guessed skip decisions, or secret parameters are needed.
+ *
+ * @param {number[]} ciphertext
+ * @param {number[]} stream
+ * @param {number} sign
+ * @returns {{survivors:number,deadAt:number,maxStates:number}}
+ */
+function fReachable(ciphertext,stream,sign){
+  let active=new Set([0]),maxStates=1;
+  for(let i=0;i<ciphertext.length;i++){
+    const out=new Set(),c=ciphertext[i];
+    for(const k of active){
+      if(c===0)out.add(k);
+      if(k<stream.length && norm(c-sign*(stream[k]%29))!==0)
+        out.add(k+1);
+    }
+    if(out.size===0)return {survivors:0,deadAt:i,maxStates};
+    active=out;
+    maxStates=Math.max(maxStates,active.size);
+  }
+  return {survivors:active.size,deadAt:-1,maxStates};
+}
+/** @param {number[]} plaintext @param {number[]} stream @param {number} sign */
+function fForward(plaintext,stream,sign){
+  const cipher=[];let keypos=0;
+  for(const p of plaintext){
+    if(p===0)cipher.push(0);
+    else cipher.push(norm(p+sign*(stream[keypos++]%29)));
+  }
+  return {cipher,keypos};
+}
+const chapterBreaks=[0,3,8,15,23,27,33,40,54,56];
+/** @param {'book'|'page'|'chapter'} scope */
+function originalSegments(scope){
+  const pages=corpus.pages.slice(0,56).map(p=>p.indices);
+  if(scope==='book')return [{head:0,runes:pages.flat()}];
+  if(scope==='page')return pages.map((runes,head)=>({head,runes})).filter(x=>x.runes.length>0);
+  return chapterBreaks.slice(0,-1).map((head,i)=>({
+    head,runes:pages.slice(head,chapterBreaks[i+1]).flat()
+  }));
+}
+function fSkipGate(){
+  const controls=[];
+  const plain=corpus.pages[57].indices;
+  for(const [name,key] of [['onion',onion],['grid',table],['onionXorGrid',xor]]){
+    const stream=rc4(key,plain.length);
+    for(const sign of [-1,1]){
+      const planted=fForward(plain,stream,sign);
+      assert(planted.keypos<=plain.length);
+      const res=fReachable(planted.cipher,stream,sign);
+      assert(res.survivors>0);
+      controls.push({name,sign,plainLength:plain.length,consumed:planted.keypos,possible:true});
+    }
+  }
+  const candidates=[];
+  for(const [name,key] of [['onion',onion],['grid',table],['onionXorGrid',xor]])
+    for(const skip of [0,256,512])
+      for(const sign of [-1,1]){
+        const scoped={name,skip,sign};
+        for(const scope of ['book','chapter','page']){
+          const result=originalSegments(scope).map(s=>{
+            const stream=rc4(key,s.runes.length+16,skip);
+            return {head:s.head,n:s.runes.length,...fReachable(s.runes,stream,sign)};
+          });
+          scoped[scope]={
+            total:result.length,
+            possible:result.filter(x=>x.survivors>0).length,
+            maxOriginalPrefix:Math.max(...result.map(x=>x.deadAt<0?x.n:x.deadAt)),
+            firstRejected:result.find(x=>x.deadAt>=0)||null,
+            p55:scope==='page'?result.find(x=>x.head===55):null
+          };
+        }
+        candidates.push(scoped);
+      }
+  assert.equal(candidates.length,18);
+  assert(candidates.every(x=>x.book.possible===0 && x.chapter.possible===0));
+  assert(candidates.every(x=>x.page.possible<55));
+  return {model:'Known solved p56 plaintext F emits literal F and skips RC4 key; encrypted non-F may also emit F',
+    method:'Exact all-cursor DP; no language model or inferred F placements',
+    controls,candidates};
+}
+
 function main(){
   const keys={onion,grid:table,onionXorGrid:xor};
   const controls=[];
@@ -103,6 +191,7 @@ function main(){
     highestWholeIoC:Math.max(...rank.map(x=>x.wholeIoC)),
     highestBlockIoCs:[0,1,2].map(i=>Math.max(...rank.map(x=>x.blockIoC[i]))),
     highestByKey:Object.keys(keys).map(name=>({name,best:rank.filter(x=>x.name===name).sort((a,b)=>b.wholeIoC-a.wholeIoC)[0]})),
+    fTransparentExactGate:fSkipGate(),
     outcome:'No source-key mode yields actual LP2 GP-native plaintext under the tested clock, reducer and no-skip rule'
   },null,2));
 }
