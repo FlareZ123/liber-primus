@@ -254,6 +254,51 @@ const randomization = {
   base60: shuffleSelectorTest(base60, p57Words, 0x60151, 100000)
 };
 
+
+const p57 = corpus.pages.find((page) => page.page === 57).indices;
+const inner180RowMajor = [];
+for (let row = 1; row <= 30; row++) {
+  for (let column = 1; column <= 6; column++) {
+    inner180RowMajor.push(row * 8 + column);
+  }
+}
+const p57EncodingOrders = [{ name: 'inner-rectangle row-major', cells: inner180RowMajor }];
+for (const direction of [1, -1]) {
+  const ring1 = rotateRing(ring(1), 150, direction);
+  const ring2 = rotateRing(ring(2), 149, direction);
+  const ring3 = rotateRing(ring(3), 148, direction);
+  p57EncodingOrders.push({
+    name: 'rings outside-in ' + (direction === 1 ? 'clockwise' : 'counterclockwise'),
+    cells: [...ring1, ...ring2, ...ring3]
+  });
+  p57EncodingOrders.push({
+    name: 'rings inside-out ' + (direction === 1 ? 'clockwise' : 'counterclockwise'),
+    cells: [...ring3, ...ring2, ...ring1]
+  });
+}
+const knownClearP57EncodingControls = p57EncodingOrders.map(({ name, cells }) => {
+  const tail = cells.slice(-p57.length);
+  const runeIndexMatches = p57.reduce((n, rune, i) =>
+    n + (base59[tail[i]] % p === powMod(g, rune, p) ? 1 : 0), 0);
+  const primeWeightMatches = p57.reduce((n, rune, i) =>
+    n + (base59[tail[i]] % p === powMod(g, corpus.prime[rune], p) ? 1 : 0), 0);
+  const literalFZeroMatches = p57.reduce((n, rune, i) =>
+    n + (rune === 0 && base59[tail[i]] % p === 0 ? 1 : 0), 0);
+  const fCellValues = p57.map((rune, i) => rune === 0 ? ({
+    offset: i,
+    cell: tail[i],
+    residue: base59[tail[i]] % p
+  }) : null).filter(Boolean);
+  return {
+    order: name,
+    p57Runes: p57.length,
+    runeIndexPowerMatches: runeIndexMatches,
+    primeWeightPowerMatches: primeWeightMatches,
+    literalFZeroMatches,
+    fCellValues
+  };
+});
+
 const result = {
   sourceFiles: [
     'resources/liber-primus/base60-grid.json',
@@ -289,7 +334,7 @@ const result = {
     rawInnerRingOutputLength: rawInnerBase29Length,
     phiInnerRingOutputLength: base29PhiLength
   },
-  randomization,\n  directDhTests: dhTests
+  randomization,\n  knownClearP57EncodingControls,\n  directDhTests: dhTests
 };
 
 console.log(JSON.stringify(result, null, 2));
