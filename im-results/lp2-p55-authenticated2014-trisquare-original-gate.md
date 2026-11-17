@@ -31,6 +31,10 @@ X.I.B.NG.X.E.IA.A.EA.C.IA.X.M.W.EO.H.AE.I.M.M.TH.B.H.M.U.IA.C.TH.H.M.EO.D.R.U.I.
 
 It has **no coherent GP-native English phrase or recoverable instruction**, and the slight coincidence elevation is insufficient evidence after selecting a 25-symbol alphabet and comparing four variants. All four original ciphertext readings satisfy exactly the same mechanical reversible cipher, so their ciphertext re-encryption is a consistency control rather than cryptographic authentication.
 
+### Matched original-symbol permutation calibration
+
+The ascending printed output's 0.05224 IoC might appear elevated relative to a near-uniform ciphertext. It was selected as the best of four variants, so the relevant null must apply the same four-way choice. A fixed-seed **20,000-draw** Fisher-Yates shuffle retains the exact **75 original rune values and their original frequencies**, then decodes both source-rank keys in printed and reversed order on each draw. The **highest** IoC across the four variants is at least the observed 0.052244897959 in **2,569/20,000** shuffles, yielding a familywise add-one **p=0.1284935753**; the null mean of the maximum is **0.04616934694**. This is a matched symbol-multiset control, not a complete generative model of p55 word breaks or anti-repeat dynamics. It confirms that the selected elevated IoC is not a discriminating plaintext signal. The reproducible test asserts the entire fixed-seed result instead of selecting a new threshold after inspecting the maximum.
+
 ### Source word-break obstruction and omitted-rune constraint
 
 P55 has 17 physical page-local segments of lengths [1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]. Dropping the first carried NG leaves 16 segments covering 75 ciphertext symbols. **10 of those 16 lengths are not divisible by three**, so no direct, independent, whole-word Tri-Square encipherment can preserve the original printed word separators: every whole-word ciphertext would need a trigraph-multiple length. A book-continuous Tri-Square with artificial downstream separators is still mathematically possible, but no authored clue has selected a rule for restoring the word breaks after a 75-to-50 contraction.
