@@ -473,6 +473,35 @@ This rejects the direct Hill-5 use of the full 5×5 square over GP29 on p55's 75
 
 **Reproducer:** [original-source Node SFT](../sims/lp2_p55_dh73_square_hill29_sft.cjs).
 
+## Central 3×3 after shedding the candidate 5×5 circumference: bounded Hill-3 test (Agent16, 17 November)
+
+The p57 phrase “shed our own circumferences” suggests one literal operation on Agent44's candidate p50 5×5 frame: remove its one-cell outer ring and retain the central 3×3. The p55 physical page has 76 runes; its first rune is the carried **NG** completing a p54 word, and the remaining 75 form exactly **25 blocks of three**. A small Hill-3 inverse is therefore a finite receiver hypothesis, not a new key search.
+
+Using the same provisional base-59 alphabet and zero-based source-table square (rows 21–25, columns 1–5) already fixed above, the central 3×3 table values are **[[163,172,142],[19,80,38],[157,88,173]]**. Reduced modulo GP29, the candidate key is:
+
+    18 27 26
+    19 22  9
+    12  1 28
+
+Its determinant is **10 mod 29**, so it is invertible; its inverse is:
+
+    23 14 28
+     4 25 10
+    19 19 26
+
+The test freezes the original p55 75-rune suffix as 25 consecutive 3-symbol blocks. It checks the four ordinary Hill-3 conventions: use the printed matrix or its inverse as the decoding matrix, with column-vector (left) or row-vector (right) multiplication. Each variant exactly reconstructs its original 75-rune input when run forward, and each recovers an independently encrypted 75-rune prefix of the clear p57 control exactly.
+
+| Fixed convention | Original-output IoC |
+|---|---:|
+| Decode with K inverse, left multiplication | 0.0371171 |
+| Decode with K inverse, right multiplication | 0.0327928 |
+| Decode with K, left multiplication | 0.0320721 |
+| Decode with K, right multiplication | 0.0367568 |
+
+The original p55 suffix IoC is **0.0385586**; clear p57 is **0.0627100**. All four outputs are nonlinguistic GP29 sequences, not an unknown plaintext interval. The exact outputs and source assertions are in [the reproducible SFT](../sims/lp2_p57_circumference_inner3x3_p55_hill_sft.cjs).
+
+**Decision:** this closes only the direct page-local Hill-3 interpretation of the central 3×3, under the candidate base-59 square and the four standard matrix conventions. It does not disprove a different use of the square, a source-selected chapter-wide state, or a different cipher. The major missing premise remains that no surviving first-party instruction selects base59, the mixed rank/index convention, a Hill cipher, or a reset at the 75-rune p55 suffix. Do not expand into rotations, arbitrary row/column permutations, padding, F-mask fitting, or new offsets without such a selector.
+
 ## The 76-cell outer ring as a p55 permutation: bounded receiver test
 
 The original p50 outer rectangular ring and original p55 page both contain **76** items, making a direct transposition a natural alternative to the already failed additive receiver. Under the candidate base59 reading, the clockwise ring contains **68 distinct values**; reducing its values modulo 76 produces only **47 distinct residues**, so it cannot directly define a 76-position bijection.
