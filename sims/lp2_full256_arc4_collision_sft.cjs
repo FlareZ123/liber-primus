@@ -22,7 +22,7 @@ function plant(text,pad,sign){
  return {cipher,skips};
 }
 function run(){
- assert.equal(Buffer.from(arc4(Buffer.from("Key"),10)).toString("hex"),"eb9f7781b734ca72a7");
+ assert.equal(Buffer.from(arc4(Buffer.from("Key"),9)).toString("hex"),"eb9f7781b734ca72a7");
  const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
  const grid=JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
  const key=Buffer.from(grid.bytes);
