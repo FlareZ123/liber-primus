@@ -70,7 +70,7 @@ function insert(tree,tokens){
  }
  tree[cur].end=true;
 }
-for(const line of read("resources/control/english_wordfreq_textblob.txt").split("\n")){
+for(const line of read("resources/control/english_wordfreq_textblob.txt").split(/\r?\n/)){
  const m=/^([a-z]+) (\d+)$/.exec(line);
  if(!m)continue;
  sourceWords++;
