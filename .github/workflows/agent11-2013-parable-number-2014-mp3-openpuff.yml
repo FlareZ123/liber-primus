@@ -2,6 +2,15 @@ name: Agent11 2013 parable number as native OpenPuff password on historical 2014
 
 on:
   workflow_dispatch:
+  inputs:
+    password:
+      description: "One of the frozen Parable-number candidates: original or decimal-reversed prime"
+      required: true
+      type: choice
+      options:
+        - "1595277641"
+        - "1467725951"
+      default: "1595277641"
 
 permissions:
   contents: read
@@ -107,7 +116,7 @@ jobs:
           if (-not $result.expected_match) { throw 'Original 745-byte 2014 control mismatch' }
           Write-Host 'Native OpenPuff v4.00 source-positive control passed'
 
-      - name: Test historical 2013 PARABLE number as a second A-only password on 2014 MP3
+      - name: Test frozen 2013 PARABLE-number candidate as A-only password on 2014 MP3
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
@@ -117,17 +126,20 @@ jobs:
           $source = [System.IO.File]::ReadAllBytes($env:PARABLE_MP3)
           $tag = [System.Text.Encoding]::GetEncoding('ISO-8859-1').GetString($source,0,206)
           if (-not $tag.Contains('Parable 1,595,277,641')) { throw 'Historical 2013 numeric title absent' }
+          $password = '${{ inputs.password }}'
+          if ($password -notin @('1595277641','1467725951')) { throw "Unapproved Parable-number candidate: $password" }
+          Write-Host "Testing frozen Parable-number candidate $password"
           python sims/openpuff_v400_extract.py `
             --exe "$env:OPENPUFF_EXE" `
             --carrier "$env:CONTROL_MP3" `
-            --password '1595277641' `
+            --password "$password" `
             --bit-format 'Mp3 (Audio)' `
             --bit-level '1/2 (50%) - Maximum' `
             --out 'probe-output/2013-number-on-2014-interconnectedness' `
             --wait-seconds 60
           if ($LASTEXITCODE -ne 0) { throw '2014 historical source carrier could not be evaluated by native OpenPuff' }
           $result = Get-Content 'probe-output/2013-number-on-2014-interconnectedness/result.json' -Raw | ConvertFrom-Json
-          Write-Host "PARABLE_NUMERIC_2014_MP3_NATIVE_RESULT: $($result.native_probe_outcome)"
+          Write-Host "PARABLE_CANDIDATE_2014_MP3_NATIVE_RESULT: $($result.native_probe_outcome)"
           Write-Host "CAPACITY BYTES: $($result.selected_capacity_bytes_after_level)"
           if (-not $result.carrier_added -or -not $result.bit_selection_verified) {
             throw 'Original 2014 carrier selection failed before cryptographic test'
@@ -140,6 +152,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: agent11-parable-numeric-2014-mp3-native
+          name: agent11-parable-candidate-${{ inputs.password }}-2014-mp3-native
           path: probe-output/
           if-no-files-found: warn
