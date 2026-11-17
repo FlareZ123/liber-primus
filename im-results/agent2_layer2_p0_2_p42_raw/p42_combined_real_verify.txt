@@ -1,0 +1,22 @@
+# verify p42_combined_real.tsv (mode=bigram): top 20 hits re-decoded over the whole window, 20 matched-null offsets each; pass = score >= 2.0 and >= null max + 5.0
+noise      p42 'primes + 28*DIVINITY@3' offset=2035 mult=28 model=0 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -5.779; whole window -5.779/rune (IoC 1.087), matched null max -8.956; keyword [0] atb=1
+noise      p42 'primes from 3301 + 28*DIVINITY@2' offset=1572 mult=28 model=0 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -5.779; whole window -5.779/rune (IoC 1.087), matched null max -8.927; keyword [0] atb=1
+noise      p42 'primes from 3301 + 28*DIVINITY@2' offset=1572 mult=28 model=0 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -5.779; whole window -5.779/rune (IoC 1.087), matched null max -8.927; keyword [0] atb=1
+noise      p42 'primes + 28*DIVINITY@3' offset=2035 mult=28 model=0 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -5.779; whole window -5.779/rune (IoC 1.087), matched null max -8.956; keyword [0] atb=1
+noise      p42 'primes from 3301 + 28*DIVINITY@2' offset=1571 mult=28 model=0 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -5.809; whole window -5.809/rune (IoC 1.082), matched null max -8.890; keyword [0] atb=1
+noise      p42 'primes from 3301 + 28*DIVINITY@2' offset=1571 mult=28 model=0 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -5.809; whole window -5.809/rune (IoC 1.082), matched null max -8.890; keyword [0] atb=1
+noise      p42 'primes + 28*DIVINITY@3' offset=2034 mult=28 model=0 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -5.809; whole window -5.809/rune (IoC 1.082), matched null max -9.831; keyword [0] atb=1
+noise      p42 'primes + 28*DIVINITY@3' offset=2034 mult=28 model=0 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -5.809; whole window -5.809/rune (IoC 1.082), matched null max -9.831; keyword [0] atb=1
+noise      p42 'sqrt2 digits (base 29) + 1*CIRCUMFERENCE@2' offset=6402 mult=28 model=1 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -6.055; whole window -6.055/rune (IoC 1.044), matched null max -10.136; keyword [0] atb=1
+noise      p42 'sqrt2 digits (base 29) + 1*CIRCUMFERENCE@2' offset=6402 mult=28 model=1 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -6.055; whole window -6.055/rune (IoC 1.044), matched null max -10.136; keyword [0] atb=1
+noise      p42 'primes from 3301 + 1*CIRCUMFERENCE@3' offset=17733 mult=1 model=1 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -6.099; whole window -6.099/rune (IoC 1.082), matched null max -8.901; keyword [0] atb=1
+noise      p42 'primes from 3301 + 1*CIRCUMFERENCE@3' offset=17733 mult=1 model=1 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -6.099; whole window -6.099/rune (IoC 1.082), matched null max -8.901; keyword [0] atb=1
+noise      p42 'primes + 1*CIRCUMFERENCE@8' offset=18196 mult=1 model=1 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -6.099; whole window -6.099/rune (IoC 1.082), matched null max -9.493; keyword [0] atb=1
+noise      p42 'primes + 1*CIRCUMFERENCE@8' offset=18196 mult=1 model=1 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -6.099; whole window -6.099/rune (IoC 1.082), matched null max -9.493; keyword [0] atb=1
+noise      p42 'primes-1 (totient) + 28*FIRFUMFERENFE@8' offset=18105 mult=1 model=1 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -6.176; whole window -6.176/rune (IoC 1.107), matched null max -7.820; keyword [0] atb=1
+noise      p42 'primes-1 (totient) + 28*FIRFUMFERENFE@8' offset=18105 mult=1 model=1 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -6.176; whole window -6.176/rune (IoC 1.107), matched null max -7.820; keyword [0] atb=1
+noise      p42 'sqrt2 digits (base 29) + 28*DIVINITY@7' offset=6935 mult=1 model=0 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -6.257; whole window -6.257/rune (IoC 1.136), matched null max -8.956; keyword [0] atb=1
+noise      p42 'sqrt2 digits (base 29) + 28*DIVINITY@7' offset=6935 mult=1 model=0 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -6.257; whole window -6.257/rune (IoC 1.136), matched null max -8.956; keyword [0] atb=1
+noise      p42 'sigma(n) + 1*FIRFUMFERENFE@7' offset=3970 mult=28 model=1 kw=NONE isign=28 phase=0 litf=0 atb=0: screen -6.276; whole window -6.276/rune (IoC 1.089), matched null max -9.000; keyword [0] atb=0
+noise      p42 'sigma(n) + 1*FIRFUMFERENFE@7' offset=3970 mult=28 model=1 kw=NONE isign=1 phase=0 litf=0 atb=0: screen -6.276; whole window -6.276/rune (IoC 1.089), matched null max -9.000; keyword [0] atb=0
+0 of 20 re-decoded hits pass (none: noise)

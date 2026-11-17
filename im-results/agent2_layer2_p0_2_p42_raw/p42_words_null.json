@@ -1,0 +1,11 @@
+{
+  "window": "p42",
+  "family": "words",
+  "side": "null",
+  "n": 272,
+  "mode": "bigram",
+  "family_file": "null_core20.ksb",
+  "tsv_sha256": "cf6a24fe6145c7fa047028791399c6c1406978ddd540909b451c77b4b48596fe",
+  "verify_sha256": "4cffc3762adc5b75deecaba610b423c86530de601ac8771cee5af58029ab119a",
+  "manifest_upstream": "15200c67abee106913ba01ff504c5b6e88d16cc7"
+}

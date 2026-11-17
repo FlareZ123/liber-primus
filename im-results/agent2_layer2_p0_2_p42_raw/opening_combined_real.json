@@ -1,0 +1,11 @@
+{
+  "window": "opening",
+  "family": "combined",
+  "side": "real",
+  "n": 729,
+  "mode": "bigram",
+  "family_file": "combined.ksb",
+  "tsv_sha256": "62c5a5fed8d274a128c86b33c37dc3974b10bc9c100d7a39f5c1d0b19d740cc9",
+  "verify_sha256": "154b2e74a68822d74ab26b1b87d8c7feeec38ac61dcb67e0c0020b92219fe09d",
+  "manifest_upstream": "15200c67abee106913ba01ff504c5b6e88d16cc7"
+}

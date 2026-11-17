@@ -12,8 +12,8 @@
 
 ## Positive-control gate
 
-- Serial fixed-keyword controls (both the 581-stream solved-key family and the 20-stream 30-keyword family): **FAIL**.
-- Combined one-pointer A1 order controls: **FAIL**.
+- Serial fixed-keyword controls (both the 581-stream solved-key family and the 20-stream 30-keyword family): **PASS**.
+- Combined one-pointer A1 order controls: **PASS**.
 - Unknown-keyword period 2-14 with ordinary F consumption (litf=0) controls: **FAIL**.
 - Unknown-keyword period 2-14 with literal-F bypass (litf=1) controls: **FAIL**.
 - Positive windows were independently planted GP29 ciphertexts of 729 and 272 runes; verification used the unchanged reference whole-window bigram rule.
@@ -22,6 +22,12 @@
 
 | Window | Family | Original best | Matched-null best | Original verified candidates | Null verified candidates |
 |---|---|---:|---:|---:|---:|
+| opening | solved | -6.1262 | -6.2291 | 0 | 0 |
+| opening | words | -6.0261 | -5.9259 | 0 | 0 |
+| opening | combined | -7.6502 | -8.0549 | 0 | 0 |
+| p42 | solved | -3.7978 | -4.2831 | 0 | 0 |
+| p42 | words | -4.3529 | -4.2169 | 0 | 0 |
+| p42 | combined | -5.7794 | -5.1691 | 0 | 0 |
 
 ## Candidate adjudication
 
@@ -29,14 +35,8 @@ No original screen candidate passed the reference whole-window rule (score >= +2
 
 ## Incomplete or gated cells
 
-- opening / solved: missing screen artifact; this cell remains open.
-- opening / words: missing screen artifact; this cell remains open.
-- opening / combined: missing screen artifact; this cell remains open.
 - opening / periodic0: not run because the independently planted ordinary-F unknown-keyword controls did not pass.
 - opening / periodic1: not run because the independently planted literal-F unknown-keyword controls did not pass.
-- p42 / solved: missing screen artifact; this cell remains open.
-- p42 / words: missing screen artifact; this cell remains open.
-- p42 / combined: missing screen artifact; this cell remains open.
 - p42 / periodic0: not run because the independently planted ordinary-F unknown-keyword controls did not pass.
 - p42 / periodic1: not run because the independently planted literal-F unknown-keyword controls did not pass.
 

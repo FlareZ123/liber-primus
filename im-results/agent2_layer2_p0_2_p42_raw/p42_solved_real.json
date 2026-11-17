@@ -1,0 +1,11 @@
+{
+  "window": "p42",
+  "family": "solved",
+  "side": "real",
+  "n": 272,
+  "mode": "bigram",
+  "family_file": "core.ksb",
+  "tsv_sha256": "2b5182df6632d6781aaaab695490a6f8103fdbe1562a310b5531388aca9224dd",
+  "verify_sha256": "53d80c5c6a3402c041db89170ac39f11d9ef0abf823ebf415abeedf754ea2536",
+  "manifest_upstream": "15200c67abee106913ba01ff504c5b6e88d16cc7"
+}
