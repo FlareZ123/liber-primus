@@ -30,11 +30,11 @@ To avoid incorrectly eliminating a secret-letter alphabet, also grant an **arbit
 
 | Strict original comparison | Best of all 928 models | Required for a successful two-share recovery |
 |---|---:|---:|
-| Direct GP29 equality on the 180 known runes | **14 / 180** | 180 / 180 |
-| Best unrestricted stationary 29→29 lookup agreement | **51 / 180** | 180 / 180 |
+| Direct GP29 equality on the 180 known runes | **15 / 180** | 180 / 180 |
+| Best unrestricted stationary 29→29 lookup agreement | **53 / 180** | 180 / 180 |
 | Exact original models surviving | **0 / 928** | At least one |
 
-The winning generous-lookup case uses base59, mark value 0, source-order red and table, reversed terminal, and \(k=10\); it matches only 51 of the 180 independently known symbols. Thus even an unrestricted *fixed* hidden relabeling has **at least 129 contradictions** in the best permitted model.
+The winning generous-lookup case uses base60, mark value 0, source-order red, reversed table, original-order terminal, and \(k=28\); it matches only 53 of the 180 independently known symbols. Thus even an unrestricted *fixed* hidden relabeling has **at least 127 contradictions** in the best permitted model.
 
 Two positive controls demonstrate the test's ability to recover a true original-length construction: a planted degree-one GF29 combination with coefficient 17 recovers **180/180**, and the same 180 symbols after a secret bijective substitution \(x\mapsto11x+7\pmod{29}\) also recover **180/180** through the unrestricted lookup gate. The canonical source-table byte SHA256 is asserted before testing.
 
@@ -44,4 +44,4 @@ Two positive controls demonstrate the test's ability to recover a true original-
 
 It says nothing about 3-of-3 sharing (which can interpolate any three unconstrained streams), a source-selected nontrivial permutation of slots, separate pagewise coordinates, a varying key, a non-GF29 field, a word cipher layered atop shares, or whether the three equal counts were authored intentionally. None of those extensions has a source instruction here; avoid opening a large arbitrary search from a failed count coincidence.
 
-**Reproducer:** [one-file Node 22 CommonJS original-input test](../sims/lp2_red256_grid_terminal256_shamir2of3_sft.cjs), with exact planted positives and the assertable 51/180, 14/180 original maxima.
+**Reproducer:** [one-file Node 22 CommonJS original-input test](../sims/lp2_red256_grid_terminal256_shamir2of3_sft.cjs), with exact planted positives and the assertable 53/180, 15/180 original maxima.
