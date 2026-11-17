@@ -134,6 +134,55 @@ for (const mode of ['inverse', 'forward']) {
   }
 }
 assert(outcomes.every((r) => r.originalIoC < 0.04));
+// A simpler author-motivated 25-cell GP29 additive alternative: use
+// the authentic base59 5x5 table values in printed row order, or peel
+// its two circumferences clockwise from source-selected corner K=73.
+// Both are fixed before reading any original plaintext output.
+const clockwisePeel = [];
+for (let layer = 0; layer < 2; layer++) {
+  const bottom = 4 - layer;
+  const top = layer;
+  const left = layer;
+  const right = 4 - layer;
+  for (let row = bottom; row >= top; row--) {
+    clockwisePeel.push(sourceSquare[row][left]);
+  }
+  for (let col = left + 1; col <= right; col++) {
+    clockwisePeel.push(sourceSquare[top][col]);
+  }
+  for (let row = top + 1; row <= bottom; row++) {
+    clockwisePeel.push(sourceSquare[row][right]);
+  }
+  for (let col = right - 1; col > left; col--) {
+    clockwisePeel.push(sourceSquare[bottom][col]);
+  }
+}
+clockwisePeel.push(sourceSquare[2][2]);
+assert.equal(clockwisePeel.length, 25);
+assert.equal(clockwisePeel[0], 73);
+assert.equal(new Set(clockwisePeel).size, 25);
+const additiveReceivers = [];
+for (const [layout, source] of [
+  ['row-major', sourceSquare.flat()],
+  ['from-K73-clockwise-circumference-peel', clockwisePeel]
+]) {
+  for (const sign of [1, -1]) {
+    const shifts = ciphertext.map((_, i) => source[i % 25] % 29);
+    const plaintext = ciphertext.map((c, i) => mod(c + sign * shifts[i]));
+    const recipher = plaintext.map((p, i) => mod(p - sign * shifts[i]));
+    assert.deepEqual(recipher, ciphertext);
+    const plantedCipher = synthetic.map((p, i) => mod(p - sign * shifts[i]));
+    const recoveredPlant = plantedCipher.map((c, i) => mod(c + sign * shifts[i]));
+    assert.deepEqual(recoveredPlant, synthetic);
+    additiveReceivers.push({
+      layout, sign, originalIoC: ioc(plaintext),
+      text: plaintext.map((rune) => corpus.translit[rune]).join(''),
+      sourceOriginalRoundtrip: '75/75', plantedP57Positive: '75/75'
+    });
+  }
+}
+assert(additiveReceivers.every((receiver) => receiver.originalIoC < 0.04));
+
 console.log(JSON.stringify({
   source: {
     frame: 'source prime-ordinal [205,173,201] => rows21..25, columns1..5',
@@ -144,5 +193,6 @@ console.log(JSON.stringify({
   originalP55BodyIoC: ioc(ciphertext),
   sourceClearP57IoC: ioc(page57),
   outcomes,
+  sourceSquareAdditiveReceivers: additiveReceivers,
   conclusion: 'Four exact original inverses and solved-native plants, zero authenticated original plaintext.'
 }, null, 2));
