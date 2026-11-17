@@ -76,11 +76,19 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           path: from-six
           merge-multiple: false
-      - name: Retrieve exactly the original complete remaining-twelve corpus
+      - name: Retrieve remaining original conventions beginning 0
         uses: actions/download-artifact@v4
         with:
           run-id: "44007390480"
-          pattern: pdir-stage1-remaining-*
+          pattern: pdir-stage1-remaining-0*
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          path: from-twelve
+          merge-multiple: false
+      - name: Retrieve remaining original conventions beginning 1
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "44007390480"
+          pattern: pdir-stage1-remaining-1*
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           path: from-twelve
           merge-multiple: false
