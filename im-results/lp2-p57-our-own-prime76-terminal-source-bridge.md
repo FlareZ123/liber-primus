@@ -1,0 +1,44 @@
+# Solved p57 “OUR OWN”: exact prime76-to-perimeter candidate and two failed original inverses
+
+**Agent 1, 17 November 2026. Evidence:** a precise original-source arithmetic/printed-word relationship, two complete source-constrained original-input negative tests, and independently planted positive controls. **No unknown LP2 plaintext, authentic key, author-specified operation or destination recovered.** Intentionality remains hypothetical.
+
+## Source-visible route that could prompt a human solver
+
+The original directly clear final p57 prints **WE MUST SHED OUR OWN CIRCUMFERENCES. FIND THE DIVINITY WITHIN AND EMERGE.** In the authentic GP29 alphabet, the complete printed pair **OUR OWN** has six runes, indices [3,1,4,3,7,9], and the six GP prime values **[7,3,11,7,19,29]**. Its prime-weight total is **76** (OUR=21, OWN=55). On the complete original final-page transcription it is uniquely both (a) the only adjacent two three-rune words and (b) the only adjacent word pair of GP prime sum 76. There are 20 complete printed p57 words and 19 adjacent pairs, with no line-break-created false word boundaries.
+
+Original pp49–51 print a **32×8=256** mixed-case numerical table. The one-cell printed outer perimeter has exactly **2(32+8)−4=76 cells**. Original p55 has precisely **76 GP29 rune symbols**. Its last two complete printed words contain the six-rune ciphertext **DJU-BEI** (p55 local70–75), exactly repeated at physical p27 local28–33. The six prime values of the clear phrase also divide the table border into **six consecutive complete arcs** of lengths 7+3+11+7+19+29=76, returning to the starting corner. This suggests a source-visible candidate perimeter path and perhaps a six-rune plaintext crib.
+
+The strongest objection: the manuscript does not explicitly assert this phrase is a key, select an operation on the resulting arcs, or say the p55 bookend encrypts OUR OWN. The 76 alignments could be coincidental. Distinguish the source-exact arithmetic fact from deliberate cipher design.
+
+## Original p55 and p27 six-rune anchored inverse
+
+Hypothesize that the common ciphertext DJU-BEI encrypts the clear GP plaintext OUR OWN under a standard additive GP29 Vigenere. This forces the **six-symbol key [20,10,26,14,11,1]**, with zero free key symbols. Use the source-authenticated solved-p56 plaintext-F transparency rule: F in plaintext emits literal ciphertext F without consuming key; a non-F plaintext rune consumes its next key symbol. Every original source ciphertext F must be branched as bypass or encryption and every branch must re-encrypt exactly.
+
+Exhaust **all six key phases** and complete lawful F paths, leaving all original noncrib ciphertext fixed:
+
+| Entire original page | Actual runes | Anchored crib | Lawful complete inverses | Best holdout rune IoC |
+| --- | ---: | ---: | ---: | ---: |
+| p55 | 76 | local70–75 | **1** | **0.03643892339544513**, 70 held-out runes |
+| p27 | 234 | local28–33 | **6** | **0.03562871937553134**, 228 held-out runes |
+
+The unique p55 state must bypass ciphertext F at local positions **15,25,41**. All reconstructed strings reproduce 100% of their original ciphertext exactly, but decoded holdouts remain close to flat GP29 IoC 1/29=0.03448 and contain no native-English sentence; independently clear p57 has IoC **0.06270996640537514**. Genuine p57 GP-text plants, with the same six-rune anchor, planted key and plaintext-F branch semantics, recover their entire true plaintext at both original lengths. The particular **period-six anchored additive Vigenere** route therefore yields no p27 or p55 plaintext.
+
+## Source-original prime arcs as a six-position key reader
+
+On the original **base60** table bytes under conventional row-major source reading, take the literal 76-cell clockwise outer rim beginning at upper-left. Six arcs of the original phrase prime lengths yield departure ring positions **[0,7,10,21,28,47]**; their numeric byte residues mod29 are **[0,9,17,10,18,19]**. Summing each entire consecutive arc's bytes modulo29 yields **[0,18,28,22,15,6]**. Neither proposed six-value source reader matches a single corresponding symbol of the implied anchored key [20,10,26,14,11,1]. A six-rune key planted at those exact original departure positions is correctly extracted by the same reader. Thus the straightforward clockwise starting-cell and per-arc checksum attempts fail as key sources. The canonical radix60 byte interpretation is itself contested by a valid radix59 interpretation that omits the never-printed lowercase f; this narrow original test does not promote either codec.
+
+## Independent 76-rim byte / p55 74-word checksum receiver
+
+The earlier hypothetical R4 six-back repair operator T(u)=24−2u mod29 has 79 source ambiguous rune sites in exactly **74 actual printed words** (69 words with one site and five with two). Each word supplies a finite set of 2 or 4 possible GP29 modular pre-repair sum checksums. A proposed 76-rune p55 appendix could hypothetically encode 74 such checks, while two exterior runes frame the packet; the original table's 76 perimeter bytes would provide one changing additive key per cell. Neither R4 nor this packet construction is a Cicada-authenticated mechanism.
+
+Test all **48 original-source consumers**, defined without fitting any text: numeric radix59/60; clockwise or reversed perimeter; forward or reversed printed p55; GP29 addition/subtraction; and all three contiguous 74-of-76 placements. The original best is **10/74 compatible checksum sets**, attained in two settings; mean across the complete 48-model census **5.5416667**. A simple independent-uniform baseline per setting expects **(69×2+5×4)/29=5.44827586** checks. The selected maximum over 48 correlated configurations is not a discovery-calibrated p-value.
+
+A positive synthetic 76-rune appendix built from the actual 74 legally enumerated original checksum sets and encrypted by the original printed p50 rim bytes is recovered **74/74**. Thus this *changing source-key direct appendix* is incompatible with the 74 original checksum sets. A separate previously completed all-secret **stationary** p55 checksum packet exclusion appears at [the prior original-source gate](lp2-p55-74word-r4-checksum-allsecret-gate.md), and does not subsume the new changing-key test.
+
+## Cryptanalytic decision
+
+**Preserve as a candidate intended human path:** the true six-prime 76-value of original clear p57 OUR OWN, its exact 76-cell geometric circumference counterpart, 76-runic unsolved p55 and repeated source p55/p27 six-rune word boundaries. These together identify one narrowly defined original input for a future mechanism, which is stronger motivation than an arbitrary numeric sweep.
+
+**Retire:** the 6-position source-crib Vigenere, the straightforward prime-arc base60 departure/sum key transfer, and the entire direct p50-perimeter-key 74-word R4 checksum receiver. They yield zero plaintext and should not be repaired by post-hoc key tuning. No new cipher operation was authenticated; a meaningful successor must find a source-selected value-changing consumer and recover a contiguous unknown GP-native sentence with exact independent source re-encryption.
+
+**Reproduction:** [single-file p57 prime76 and two full bookend inverse SFT](../sims/lp2_p57_our_own_76_bookend_crib_sft.cjs) and [48-model 76-rim checksum receiver SFT](../sims/lp2_p50_rim76_p55_r4_74check_source_sft.cjs), run on Windows Node22 with complete native positive plants. The combined last source run is [successful Actions #44157312093](https://github.com/FlareZ123/liber-primus/actions/runs/44157312093); the independent first source run is [successful Actions #44155375944](https://github.com/FlareZ123/liber-primus/actions/runs/44155375944). All original data are read unchanged from resources/liber-primus/lp2-corpus.json, lp2-transcription.txt and base60-grid.json, with the corresponding original scans p27 44.jpg, p50 67.jpg, p55 72.jpg, p57 74.jpg.
