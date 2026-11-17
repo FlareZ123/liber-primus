@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * One frozen GP29 plaintext-autokey test with five-rune memory.
- * Reversible model: C[i]=P[i]+P[i-5] (mod 29) for i>=5; first five C
- * positions are externally seeded and may encode arbitrary P values.
+ * Two fixed GP29 plaintext-autokey signs with five-rune memory.
+ * Reversible model: C[i]=P[i]+sign*P[i-5] (mod 29), sign=+1/-1.
+ * The first five plaintext runes are unconstrained starting states.
  * The best 5-symbol seed under the independent Shakespeare GP bigram
  * model is found exactly with a 5-cycle dynamic program, not a beam search.
  * Source-aware original word boundaries are excluded from bigram scoring.
@@ -43,7 +43,8 @@ const modelWords = words(reference);
 const hiddenWords = words(withheld);
 assert.equal(modelWords.flat().length, 217106);
 
-function runTarget(firstPage,lastPage,expectedWords,expectedRunes){
+function runTarget(firstPage,lastPage,expectedWords,expectedRunes,sign){
+assert.ok(sign===1 || sign===-1);
 const fromImage = new Map(gp.runes.map((s,i)=>[s,i]));
 const originalLengths=[];
 const ends=new Set();
@@ -90,7 +91,7 @@ function recover(ciphertext){
   for(let r=0;r<5;r++)for(let seed=0;seed<A;seed++){
     const plain=Array(n).fill(-1);
     for(let i=r;i<n;i+=5)plain[i]=i===r
-      ? seed : (ciphertext[i]-plain[i-5]+A)%A;
+      ? seed : (ciphertext[i]-sign*plain[i-5]+A)%A;
     table[r][seed]=plain;
     for(let i=r;i<n;i+=5)unaryScore[r][seed]+=logU[plain[i]]*W;
   }
@@ -132,7 +133,7 @@ function recover(ciphertext){
   for(let i=0;i<n;i++){
     verify+=logU[plain[i]]*W;
     if(i && !ends.has(i-1))verify+=logB[plain[i-1]][plain[i]];
-    if(i>=5)assert.equal((plain[i]+plain[i-5])%A,ciphertext[i]);
+    if(i>=5)assert.equal(((plain[i]+sign*plain[i-5]+A)%A),ciphertext[i]);
   }
   assert.ok(Math.abs(verify-bestScore)<1e-7);
   return {seed:bestSeed,score:bestScore,plain};
@@ -157,7 +158,7 @@ function plant(seed){
   assert.equal(plain.length,expectedRunes);
   return plain;
 }
-const emit=plain=>plain.map((v,i)=>i<5?v:(v+plain[i-5])%A);
+const emit=plain=>plain.map((v,i)=>i<5?v:((v+sign*plain[i-5]+A)%A));
 const originalResult=recover(original);
 const native=[];
 for(let k=0;k<8;k++){
@@ -173,7 +174,7 @@ const translit=seq=>seq.map(i=>gp.translit[i]).join('');
  * Permutation-invariant original test. For i>=6 both C[i], C[i-1] are
  * after the unknown five-symbol initialization. Any fixed output alphabet
  * permutation (even one changed per printed word) preserves same-word
- * adjacent equalities, so the original deficit cannot be repaired by
+ * adjacent equalities, for either sign, so the deficit survives
  * relabeling a complete autokey output alphabet.
  */
 function repeatCounts(seq){
@@ -212,6 +213,7 @@ const invariant={
 
 return {
   type:'frozen_lag5_plaintext_autokey_source_native_test',
+  sign,
   source:{runes:expectedRunes,words:expectedWords,language_model:'independent Shakespeare',
     controls:'8 independently selected Gibran original-shaped expectedRunes-rune texts'},
   original:{seed:originalResult.seed,score_per_rune:+(originalResult.score/expectedRunes).toFixed(6),
@@ -221,9 +223,11 @@ return {
 };
 }
 console.log(JSON.stringify({
-  type: 'exact_five_position_gp29_plaintext_autokey_original_gate',
+  type: 'exact_five_position_gp29_two_sign_plaintext_autokey_original_gate',
   chapters: [
-    {pages:'p0..p2', ...runTarget(0,3,158,729)},
-    {pages:'p23..p26', ...runTarget(23,27,224,1021)}
+    {pages:'p0..p2', ...runTarget(0,3,158,729,+1)},
+    {pages:'p23..p26', ...runTarget(23,27,224,1021,+1)},
+    {pages:'p0..p2', ...runTarget(0,3,158,729,-1)},
+    {pages:'p23..p26', ...runTarget(23,27,224,1021,-1)}
   ]
 },null,2));
