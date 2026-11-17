@@ -26,6 +26,17 @@ It has exactly **33 ones**. Using ordinary MSB-first bytes from its first bit pr
 
 The second byte `a2` is non-ASCII and the complete result is neither ten printable ASCII characters nor a self-identifying text instruction or recognizable conventional file header. Nothing source-authenticated specifies alternative bit polarity, bit order, framing, compression or a receiver. Thus **the literal leading-zero event mask does not immediately reveal a plaintext instruction**. This statement does not exclude a headerless key or an encrypted/compressed binary channel.
 
+## Typed Base58 alternative: source GP29 × one table bit
+
+A separately recognizable 2014-era transport is **Bitcoin Base58Check**. The source offers **29** possible repeated GP rune values and the single zero/nonzero bit above, so each event can occupy exactly **2×29 = 58** distinct digit states. This is a motivated *alternative typed receiver*, though neither the book nor a signed Cicada message instructs us to use Bitcoin or Base58 at this junction. There are two fixed elementary ways to embed the product into digits 0–57 without tuning symbol permutations:
+
+| Digit for event `i` | Unpadded original 86-digit Base58 integer, in big-endian bytes | Double-SHA256 last-four-byte Base58Check |
+| --- | --- | --- |
+| `rune[i] + 29*bit[i]` | **63 bytes**, hex begins `0898975ee19bdea2ff3c8875` and ends `ba0a058c67e4548e` | **Fails**: actual `67e4548e`, required `0c6008c5` |
+| `2*rune[i] + bit[i]` | **63 bytes**, hex begins `1120aacb7458f586fd3ae1a0` and ends `a5b04199767b924eb0` | **Fails**: actual `7b924eb0`, required `69c9e78e` |
+
+The SFT checks both complete 63-byte source outputs against hard assertions and uses the standard double-SHA256 of the preceding 59 bytes to verify the trailing four-byte checksum. Neither reading is a Bitcoin Base58Check object. This excludes the **two named, exact source-order, unsigned-integer product embeddings**, not a secretly keyed permutation or alternative original opcode. The generic raw Base58 outputs are binary-looking and lack a self-identifying payload type; further framing choices would be unconstrained.
+
 ## Independent test of a generic exceptional-glyph explanation
 
 An alternative is that this table phase preferentially marks *unusual printed one-rune words* rather than doublet events. Rebuild every original word boundary from the transcription, preserving the 32 genuine page-spanning words. This yields exactly **83 one-rune words**. Applying the same original 60/256 table mask gives:
@@ -40,6 +51,6 @@ The incoming-transition count is the more directly comparable pair clock; unlike
 
 ## Decision and next route
 
-The direct source-order 86-bit readout is an exact reproducible result, but **fails the typed output gate**; it supplies no plaintext and no evidence to select a subsequent cipher. The singleton control disfavors a simple indiscriminate mark-of-unusual-token interpretation and concentrates any surviving hypothesis on the repeat-event mechanism itself. Do **not** extend this into arbitrarily rotated binary/ASCII/BASE29 slices, clock shifts or tuned word indices. A useful reopener must bring a distinct original clue choosing the table clock, event receiver, and lossless cipher, or produce an independently reproducible unknown-LP2 ciphertext/plaintext pair.
+The direct source-order 86-bit readout and two fixed Base58Check consumers are reproducible, but **fail their typed output gates**; it supplies no plaintext and no evidence to select a subsequent cipher. The singleton control disfavors a simple indiscriminate mark-of-unusual-token interpretation and concentrates any surviving hypothesis on the repeat-event mechanism itself. Do **not** extend this into arbitrarily rotated binary/ASCII/BASE29 slices, clock shifts or tuned word indices. A useful reopener must bring a distinct original clue choosing the table clock, event receiver, and lossless cipher, or produce an independently reproducible unknown-LP2 ciphertext/plaintext pair.
 
 Reproduce on Windows Node.js 22 with `node sims/lp2_p50_zero_repeat_event_mask_sft.cjs`. Inputs are unmodified [original rune corpus](../resources/liber-primus/lp2-corpus.json), [source transcription](../resources/liber-primus/lp2-transcription.txt), and [printed token table](../resources/liber-primus/lp2-grid-256.json). The script asserts every page's exact original rune sequence, pair count, 86 event bits, ten output bytes, the six residual bits, and the 83 singleton counts.
