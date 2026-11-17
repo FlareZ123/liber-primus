@@ -170,6 +170,6 @@ console.log(JSON.stringify({
   candidateModels: models.length, bestMatches: best, bestModels,
   matchTotal: sumHits, meanMatches: sumHits / models.length,
   uniformReferenceMean: expectedSingle,
-  singleModelUniformTailAtLeast10, plantedCompatible: plantedHits
+  singleModelUniformTailAtLeast10: singleModelTailAtLeast10, plantedCompatible: plantedHits
 }, null, 2));
 console.log('PASS: exact source-conditioned packet test and 74/74 positive control.');
