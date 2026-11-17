@@ -63,6 +63,28 @@ The [all-seed original inversion SFT](../sims/lp2_p39_reverse_t6_exponent_allsee
 
 Separately, a retrospective split tests whether the red-triad affine target itself behaves consistently across the unknown manuscript. Among all **841** fixed affine functions `a·C[j−6]+b mod29`, the exact p39-derived `(a,b)=(27,24)` has **59** nondegenerate original hits in **953** eligible pp0–39 positions, ranking **first** across 841 affine alternatives. It has **20** such hits in **337** independent-position pp40–55 slots, ranking **sixth** among the same 841 alternatives. These two partitions were examined after the full-book anomaly and numerical p39 connection were known, so they provide descriptive cross-section consistency rather than a preregistered significance test. They make the **six-back operator** a comparatively substantive, original-supported lead; they do not authenticate a plaintext rune, a key, or the word-reversal operation.
 
+## A second fully source-originating changing key: the p3 primitive-field 840-state trace
+
+The other visually marked three-rune LP2 span is **p3 at the same local offsets 119–121**, source indices **[13,23,2]**. Its ascending quadratic `13+23u+2u²` is irreducible over GF29, and `u²=3u+8` defines a primitive 840-state root in GF(29²). Those are independently established source arithmetic in the [p3/p39 field report](lp2-red-triad-primitive-840-phase-gate.md), which *already excludes* this 840-state trace as a direct GP29 additive or ordinary relative-log feedback key, but has not tested it combined with **whole-word reversal and explicit T6→S bijective swaps**. The eight-red-rune heading on p40 has original GP-prime sum **435**, and **435/29=15**, providing a genuinely visible route to the special S rune. These source operands make this layered cipher more motivated than a fitted word alphabet.
+
+Retain every other decision above and fix the changing exponent key to
+
+`k_i = Tr(u^(φ+i)) mod29,  φ = 0..839`,
+
+where `Tr(a+bu)=2a+3b mod29`. Exactly 840 phases cover all nonzero primitive-field starting states and secret GF29-linear observations of this homogeneous generator, so no hidden initial state is omitted within the fixed source register. Use `15^{k_i}·15^p` as the nonzero output difference, preserve the GP28 zero-step symbol and source-first/interior GP-marker swaps, force T6→S as before, and reverse each plain word. This is a completely bijective, length-preserving, word-local-state cipher with a continuous 3,000-rune field clock; each candidate can be inverted and re-encrypted exactly. The only unknown is the 840-state source phase, exhausted for each of the four predefined boundary-marker choices.
+
+| Original p40–53 black-body result | I/IA markers | I/EA | C/IA | C/EA |
+| --- | ---: | ---: | ---: | ---: |
+| Exact original source length | 3,000 runes / 667 words | same | same | same |
+| Full phase inverses | 840 | 840 | 840 | 840 |
+| Maximum exact dictionary matches | **56** | **58** | **60** | **62** |
+| Phase choices yielding any GP dictionary word ≥6 runes | **2** | **2** | **2** | **2** |
+| Maximum ≥6-rune dictionary words under one phase | **1** | **1** | **1** | **1** |
+
+The only isolated long matches across all 840 phases occur at phase **94** (`GOITRE`) and phase **495** (`SPICES`), once each, identical for the four marker variants; neither has running plaintext context. Hence **no original 150-rune GP-English plaintext** was recovered under this source-rich layered hypothesis. The [new 840-phase CommonJS reproducer](../sims/lp2_p3_field840_p39_reverse_t6_sft.cjs) asserts the exact two original red triples, eight-rune p40 original header, primitive 840 field period, 3,000 original glyphs, full phase census, long-word identities and strict re-encryption of the candidate p40–53 inverse at phase94.
+
+**Decision:** once the word reversal, zero-step marker swaps, T6-S anchor and fixed p3 trace clock are specified, all possible field phases have been consumed on untouched original input; do not commission further phase hunting under this same fixed construction. A different *source-selected* observation/clock, word morphology or independent cryptographic layer would be necessary. The p3/p39 polynomial and red heading arithmetic are established source facts, while their proposed composition as a cipher is still a hypothesis and does not solve LP2.
+
 ## Decision
 
 **Reversed-word native GP source morphology provides a narrow reason to reconsider the previously unpromising S-T6 anchor.** The original p39 red triad offers a compact, source-readable *candidate* for its numbers and roles. But the first fully specified cipher built exclusively from those operands **does not recover any original long English word** in the 3,000-rune blind target. Numeric alignments are not a solution. The remaining missing operand, if this route is historical, is a **source-authenticated changing base alphabet/keystream or a different word/marker state rule** that both reproduces the original and yields contiguous plaintext. Any successor needs an independent source clue choosing that operand, with original printed input, 150 consecutive GP-English runes and exact forward reconstruction.
