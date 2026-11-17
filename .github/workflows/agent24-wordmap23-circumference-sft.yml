@@ -1,0 +1,20 @@
+name: Agent24 wordmap23 circumference source SFT
+on:
+  workflow_dispatch:
+
+jobs:
+  original:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check and complete original-source SFT
+        shell: pwsh
+        run: |
+          node --check sims/lp2_wordmap23_circumference_dual_target_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node sims/lp2_wordmap23_circumference_dual_target_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
