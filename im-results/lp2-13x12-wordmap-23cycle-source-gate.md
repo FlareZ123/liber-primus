@@ -299,7 +299,7 @@ The 2016 message supplies no modulus, index origin, extraction position, word/ru
 
 **Decision:** The p0 23-cycle remains a real, reproducible navigation structure with the two 563/569 correspondences, but the signed-2016 clue does not select a reproducible word-reading output. The most direct p32 withheld readout is nonlinguistic, and the p32 word list does not supply a 23-word receiver. Close the word-reading task as a bounded negative; retain the cycle as a provisional structural observation, not plaintext or a recovered key. Do not invent further output selectors or layers without a first-party instruction.
 
-[Full-cycle p32 readout and original-source assertions are included in the focused SFT](../sims/lp2_13x12_wordmap_p32_withheld_readout_sft.cjs).
+[Full-cycle p32 readout and original-source assertions are included in the focused SFT](../sims/lp2_13x12_wordmap_p32_withheld_readout_sft.cjs), which passed in Node 22 on [manual run 44179939759](https://github.com/FlareZ123/liber-primus/actions/runs/44179939759). The passing run verifies the cycle, six-position phase relation, complete p32 readout, and original punctuation/word-count assertions.
 
 ## Weakest premise and next decisive work
 
