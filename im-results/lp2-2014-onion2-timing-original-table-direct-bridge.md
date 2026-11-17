@@ -19,6 +19,8 @@ Observed original table results:
 | Transposed | 1/112 | 2/112 | 3/112 | 3/112 |
 | Transposed reversed | 0/112 | 4/112 | 3/112 | 3/112 |
 
+**Heldout mask-frequency calibration:** after refitting the best single XOR/subtraction mask on 4,000 source-table byte shuffles per layout, the original best counts4,3,3,3 have empirical upper probabilities **0.41390, 0.99500, 0.99500, 0.99625**. The 112/112 artificial direct-`B xor k` plant round-trips. The entire read-only Windows/Node22 source-to-source pipeline passed [GitHub Actions run 44043117306](https://github.com/FlareZ123/liber-primus/actions/runs/44043117306) after the earlier original-word-length and secret-column tests.
+
 In each layout `T=k` yields zero literal equalities; `T=5k` at most one. None of `T xor B=k`, `T xor B=5k`, `T−B=k`, or `T−B=5k` exceeds **two** equalities in any layout. These are exactly the sparse matches expected of unrelated bytes; a direct source-to-source key identity does **not** emerge. The direct plant is designed to succeed on 112/112. No original rune is decrypted.
 
 The witnessed interval integers themselves follow counts `k=1:46, 2:33, 3:21, 4:5, 5:4, 6:2, 7:1`, mean `2.08929` five-minute units. Against a one-parameter geometric waiting-time model fitted once to that mean, the fixed categories1,2,3,4,5+ give Pearson χ² **5.91267** on **3** degrees of freedom (upper-tail p≈**0.116**). This is **compatible** with stochastic waiting intervals; it cannot exclude deliberate scheduling or an encoded timing channel.
