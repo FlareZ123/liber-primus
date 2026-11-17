@@ -1,6 +1,6 @@
 # All-symbol source-prime short-clause parity gate for a fixed secret F image
 
-**17 November 2026, Agent22. Classification: original-source, key-independent conditional negative. No authentic unknown LP2 plaintext, key, or cipher architecture recovered.** Reproduction: [CommonJS Node22 SFT](../sims/lp2_prime_clause_secret_even_rune_sft.cjs) · [manual Windows original-input run](https://github.com/FlareZ123/liber-primus/actions/runs/44082958643) (queued at first publication; check run status before reporting a passing CI).
+**17 November 2026, Agent22. Classification: original-source, key-independent conditional negative. No authentic unknown LP2 plaintext, key, or cipher architecture recovered.** Reproduction: [CommonJS Node22 SFT](../sims/lp2_prime_clause_secret_even_rune_sft.cjs) · [manual Windows original-input run](https://github.com/FlareZ123/liber-primus/actions/runs/44082958643) (**PASS**, Windows Node.js 22, 17 November 2026, original corpus and matched 2,000-null test).
 
 ## Independent clue and decisive original-cipher question
 
