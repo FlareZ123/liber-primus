@@ -210,6 +210,46 @@ for (const [name, file] of [
     'minimum IoC:', minima.map(v => v.toFixed(8)).join(', '),
     'mean lag5 matches:', (totalFive / trials).toFixed(4));
 }
+/* Latin is an independent *already GP29-encoded* whole-word corpus,
+ * preserving its native word boundaries. Test the same original-length
+ * phase-conditioned invariants without an English spelling converter. */
+const latinAlphabet = '0123456789ABCDEFGHIJKLMNOPQRS';
+const latinBins = Array.from({length:15}, () => []);
+for (const line of read('resources/control/latin-vulgate-gp-wholewords.txt')
+  .split(/\r?\n/u)) {
+  if (!/^[0-9A-S]+$/u.test(line) || line.length >= latinBins.length) continue;
+  latinBins[line.length].push(Array.from(line,
+    ch => latinAlphabet.indexOf(ch)));
+}
+for (const length of lengths)
+  assert.ok(latinBins[length].length, 'Latin lacks source word length');
+state = 0x13a5c023;
+const LatinN = 3000;
+let latinAdjacentMean = 0, latinFiveMean = 0;
+let latinAdjacentMin = Infinity, latinFiveMin = Infinity;
+let latinAdjacentUnder = 0, latinFiveUnder = 0;
+for (let t = 0; t < LatinN; t++) {
+  const native = lengths.map(n => {
+    const bin = latinBins[n];
+    return bin[randomInt(bin.length)];
+  });
+  const adjacent = weightedIc(differenceHistograms(native));
+  const five = weightedIc(fiveBackHistograms(native));
+  latinAdjacentMean += adjacent;
+  latinFiveMean += five;
+  latinAdjacentMin = Math.min(latinAdjacentMin, adjacent);
+  latinFiveMin = Math.min(latinFiveMin, five);
+  latinAdjacentUnder += +(adjacent <= originalWeighted.adjacent);
+  latinFiveUnder += +(five <= originalWeighted.fiveBack);
+}
+assert.equal(latinAdjacentUnder, 0);
+assert.equal(latinFiveUnder, 0);
+console.log('Latin Vulgate native-GP original-shaped controls', {
+  N: LatinN, adjacentMean:latinAdjacentMean/LatinN,
+  fiveMean:latinFiveMean/LatinN,
+  adjacentMin:latinAdjacentMin, fiveMin:latinFiveMin,
+  atOrBelowOriginal:[latinAdjacentUnder,latinFiveUnder]
+});
 /* Conditional null holds each original word's multiset and exact adjacent
  * equality mask fixed. Rejection samples are uniform over the source-word
  * permutation multiset satisfying those sites, with a fixed RNG seed. */
