@@ -93,6 +93,10 @@ The 44 calibration controls are disjoint 12,956-rune windows from **Gibran's *Th
 
 Reproducer: [all-secret 55-phase positive and original GP29 gate](../sims/lp2_55phase_chain28_allsecret_invariant_sft.cjs).
 
+### Relationship to the pre-existing all-29 fixed-marker gate
+
+This is a **distinct necessary-condition witness** for a mechanism whose most basic fixed-reserved-rune premise already faced a stronger English *word-shape* test before this invocation: [Agent6's original all-29 marker source gate](lp2-fixed-reserved-rune-doublet-source-gate.md) and [Agent30's complete word-length-conditioned GP29 resampling gate](lp2-all29-zero-step-wordshape-gate.md) excluded one designated plaintext rune causing all 86 original ciphertext repeats under preserved printed word segmentation. The present equality theorem makes a separate, source-specific and **word-boundary-independent** argument against periodic and repeated-source-seed 28-step substitution schedules; it needs only approximate native-English GP29 symbol repetition across full-page or matched-seed positions. It therefore reinforces rather than supersedes those earlier exclusions and does **not** establish a new cipher operation. Future work should not create new fixed-marker variants merely because the key schedule differs.
+
 ## Reproducer and decision
 
 [Direct-key Windows-compatible CommonJS test](../sims/lp2_parable55_chain28_original_sft.cjs) reads the original rune transcription and source pages, verifies the p57 55-rune tape, enciphers and decrypts the independent LP1 known plaintext, and tests all **16** original complete reversible models on four independent scopes. The [manual workflow](../.github/workflows/agent49-20261116-source-gates-manual.yml) runs it together with the distinct original pointer-direction source-key gate.
