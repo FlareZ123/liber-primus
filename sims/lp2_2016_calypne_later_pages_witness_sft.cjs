@@ -3,12 +3,12 @@
  * Source-bound acquisition of previously unreviewed pages 2-5 of a March 2016
  * Calypne claim thread. Prints the complete date/author/source-bound claims.
  * The first page, audited elsewhere, is an independent parser positive control.
- * Read-only: original public site and one fixed 2016 Wayback witness.
+ * Read-only: original public site and one fixed 2019 Wayback snapshot of historical 2016 posts.
  */
 const crypto = require('node:crypto');
 
 const live = 'https://calypne.boards.net/thread/53/supposed-decoded-liber-primus';
-const archive = 'https://web.archive.org/web/20160418151142/http://calypne.boards.net:80/thread/53/supposed-decoded-liber-primus';
+const archive = 'https://web.archive.org/web/20190822220345/http://calypne.boards.net:80/thread/53/supposed-decoded-liber-primus';
 const sha256 = (s) => crypto.createHash('sha256').update(s).digest('hex');
 const terms = /\b(?:solv(?:e|ed|ing)|decod(?:ed|ing|e)|decryp(?:t|ted)|crack(?:ed)?|plaintext|cleartext|key(?:word)?|algorithm|rune(?:s)?|page\s*\d{1,2}|cipher|translate|pastebin|gist)\b/gi;
 /** @param {string} html */
@@ -61,7 +61,7 @@ function inspect(doc, label) {
   const inputs = [
     ['live-page1',live],
     ...[2,3,4,5].map(n=>['live-page'+n,live+'?page='+n]),
-    ['2016-archive-page2',archive+'?page=2']
+    ['2019-archive-page2',archive+'?page=2']
   ];
   for (const [label,url] of inputs) {
     try {
