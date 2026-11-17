@@ -28,6 +28,22 @@ The first p0–2 interior words transliterate `HEOGMIA-YENG-JG-J-N-EWBASOEEOING-
 
 **Rejected in this bounded decision:** the direct assertion that p57's shedding instruction exposes ordinary GP29 prose by deleting the first and last original rune of each printed ciphertext word, with existing word order and word divisions preserved. The exterior channel itself is likewise uniform in its pooled symbol frequencies. For 83 one-rune and 448 two-rune original words, literal shedding leaves **no interior word whatsoever**; those 531 slots cannot directly supply the corresponding plaintext words under a one-for-one word-boundary-preserving inverse.
 
+### The authentic DIVINITY key applied inside each original word (Agent48, 17 November 2026)
+
+A new, narrowly source-selected candidate combines both original solved p57 instructions: “shed our own circumferences” selects each printed GP29 word's strict interior, while “find the divinity within” supplies the authenticated **DIVINITY** keyword from solved LP1. The test preserves the first/last original runes, all **2,896** actual printed words, the **32 page-carried words** and all **7,247** interiors. The GP29 key restarts at the first interior rune of every word; both additive directions are frozen. No per-word fitted key, variable phase, reordering or extra layer is introduced.
+
+The exact source gives these GP29 Shakespeare bigram scores across **4,882 adjacent pairs within the printed-word interiors**:
+
+| Receiver | Interior bigram log-score per pair | Overall interior IoC |
+| --- | ---: | ---: |
+| Original minus DIVINITY | **−4.580545** | **0.03443552** |
+| Original plus DIVINITY | **−4.539053** | **0.03445876** |
+| Matched native-GP Gibran control | **−2.628306** | **0.07296240** |
+
+An independently sampled English GP29 plant preserving **all 2,896 exact original word lengths** reencrypts and recovers every one of its **7,247** interiors using this key-reset program, leaving outer shells unchanged. The untouched original **p0–2** interior (418 runes, 293 internal bigrams) scores **−4.608639** in the subtractive direction. The disjoint original **p40–53** interior (1,818 runes, 1,221 internal bigrams) scores **−4.544330**. The source interior remains near-uniform and nonprose in both orientations.
+
+**Decision:** Retire this *specific word-shell-preserving, local-restart DIVINITY Vigenère* under the original literal word breaks and ordinary GP-native English. This is a new named historical-key follow-up to the earlier unkeyed peel, supported by [a read-only Node22 CommonJS full-source SFT](../sims/lp2_word_inside_divinity_vigenere_sft.cjs). A different printed-word semantics, clock, output language or independently source-selected shell consumer remains open. No original plaintext was recovered.
+
 **Still open:** A source-specified, reversible operation in which the shell carries a key/check/control for the interior; a receiver that remaps output boundaries; or a different geometrical use of p57. The phrase “circumferences” does not authorize subtracting shell values modulo29, fitting word-specific keys, repeatedly rotating interiors, or invoking a hidden state whose restoration rule is unavailable. Such variants need a separate independently visible selector before the original ciphertext is used to fit them. This decision recovers no unknown LP2 plaintext or Cicada destination.
 
 The parent clue and neighboring routes are discussed in [the integrated inversion frontier](../workplace/integrated-original-inversion-challenge.md) and [the authoritative synthesis](../results/README.md). This report does not elevate an unverified mechanism to established results.
