@@ -1,27 +1,28 @@
 'use strict';
 
 /**
- * Exact all-secret F16 recurrence test with source-visible reset clocks.
+ * Exact all-secret A/I/O F16 recurrence tests with source-visible reset clocks.
  *
- * Reuses the source parser and p50 factor16 from
- * lp2_p50_f16_allseed_singleton_original_sft.cjs.
- * Tests one identical unknown 16-symbol seed reset at every rune-bearing
- * physical page, and separately at each of the nine printed chapters.
+ * Reuses the canonical source parser, p50 factor16 and exact 3^16 MITM
+ * receiver from the book-global original-input SFT. Tests one identical
+ * unknown 16-symbol seed reset at every rune-bearing physical page, and
+ * separately at each of the nine printed chapters.
  *
- * This is not an independent seed per page/chapter, nor a nonlinear/F-skip
- * receiver. Every original A/I singleton constraint is exact and held out.
+ * Not an independent seed per page/chapter; not a nonlinear/F-skip receiver.
  */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { createHash } = require('node:crypto');
 const base = require('./lp2_p50_f16_allseed_singleton_original_sft.cjs');
+const { recover } = require('./lp2_p50_f16_allseed_aio_mitm_original_sft.cjs');
 
 const root = path.resolve(__dirname, '..');
 const N = 12956;
 const D = 16;
 const mod = (x) => (x % 29 + 29) % 29;
 const trueSeed = [10, 3, 20, 22, 1, 22, 21, 25, 11, 17, 19, 7, 21, 17, 12, 22];
+const nativeSingletons = [24, 10, 3]; // GP29 A/I/O
 
 function seedFunctionalsForLength(f, length) {
   const rows = [];
@@ -74,10 +75,11 @@ function invert16(matrix) {
   const a = matrix.map((row, i) => [
     ...row, ...Array.from({ length: D }, (_, j) => (i === j ? 1 : 0))
   ]);
+  assert.equal(a.length, D);
   for (let pivot = 0; pivot < D; pivot++) {
     let q = pivot;
     while (q < D && a[q][pivot] === 0) q++;
-    assert.ok(q < D, 'Anchor matrix is singular');
+    assert.ok(q < D, 'Source anchor matrix is singular');
     [a[pivot], a[q]] = [a[q], a[pivot]];
     let inverse;
     for (let x = 1; x < 29; x++) {
@@ -100,67 +102,40 @@ function dot(row, seed) {
   return value % 29;
 }
 
-function enumerate(options, anchorIndices, weights) {
-  const anchorOptions = anchorIndices.map((i) => options[i]);
-  const heldIndices = options.map((_, i) => i)
-    .filter((i) => !anchorIndices.includes(i));
-  const heldOptions = heldIndices.map((i) => options[i]);
-  let valid = 0;
-  let maxMatched = 0;
-  let maxMask = -1;
-  for (let mask = 0; mask < (1 << D); mask++) {
-    const anchor = Array.from({ length: D }, (_, i) =>
-      anchorOptions[i][(mask >>> i) & 1]);
-    let matches = D;
-    for (let j = 0; j < weights.length; j++) {
-      const predicted = dot(weights[j], anchor);
-      if (predicted === heldOptions[j][0] || predicted === heldOptions[j][1]) {
-        matches++;
-      }
-    }
-    if (matches > maxMatched) {
-      maxMatched = matches;
-      maxMask = mask;
-    }
-    if (matches === options.length) valid++;
-  }
-  return { valid, maxMatched, maxMask, anchorCount: D, heldOutCount: heldOptions.length };
-}
-
 function runClock(name, resetLengths, singles, p57, f) {
   const rows = resetFunctionals(f, resetLengths);
   assert.equal(rows.length, N);
   const singletonRows = singles.map((s) => rows[s.offset]);
   const basis = firstIndependentRows(singletonRows);
-  assert.equal(basis.rank, D, name + ' anchor rank');
+  assert.equal(basis.rank, D, name + ' must have 16 independent source anchors');
   const anchorRows = basis.indices.map((i) => singletonRows[i]);
   const inverse = invert16(anchorRows);
-  const heldRows = singletonRows.filter((_, i) => !basis.indices.includes(i));
-  const weights = heldRows.map((row) => Array.from({ length: D }, (_, j) =>
-    mod(row.reduce((sum, x, i) => sum + x * inverse[i][j], 0))));
-  const options = singles.map((s) => [mod(s.c - 24), mod(s.c - 10)]);
-  const observed = enumerate(options, basis.indices, weights);
-  assert.equal(observed.valid, 0, name + ' original must have no A/I seed');
+  const heldIndices = singles.map((_, i) => i)
+    .filter((i) => !basis.indices.includes(i));
+  const weights = heldIndices.map((i) => Array.from({ length: D }, (_, j) =>
+    mod(singletonRows[i].reduce((sum, x, k) => sum + x * inverse[k][j], 0))));
+  const orderedIndices = basis.indices.concat(heldIndices);
+  const orderedSingles = orderedIndices.map((i) => singles[i]);
 
-  // Native source-shaped positive: solved p57 GP text, with A/I planted at
-  // the exact 83 original singleton offsets, encrypted with the p15 seed.
+  // Exact 3^16 A/I/O meet-in-the-middle over all secret anchor states.
+  const original = recover(orderedSingles.map((s) => s.c), weights, inverse);
+
+  // Native source-shaped positive: p57 repeated, A/I/O planted at the
+  // exact 83 source singleton offsets, then encrypted with the p15 seed.
   const plaintext = Array.from({ length: N }, (_, i) => p57[i % p57.length]);
-  singles.forEach((s, i) => { plaintext[s.offset] = (i & 1) ? 10 : 24; });
+  singles.forEach((s, i) => {
+    plaintext[s.offset] = nativeSingletons[i % nativeSingletons.length];
+  });
   const ciphertext = plaintext.map((p, i) => mod(p + dot(rows[i], trueSeed)));
-  const plantedOptions = singles.map((s) => [
-    mod(ciphertext[s.offset] - 24), mod(ciphertext[s.offset] - 10)
-  ]);
-  const planted = enumerate(plantedOptions, basis.indices, weights);
-  assert.equal(planted.valid, 1, name + ' positive must recover unique seed');
-  assert.equal(planted.maxMatched, 83);
+  const positive = recover(orderedSingles.map((s) => ciphertext[s.offset]), weights, inverse);
+  assert.equal(positive.fullSolutions, 1, name + ' positive must recover a unique seed');
+  assert.deepEqual(positive.solutions[0], trueSeed);
+  assert.equal(positive.longestMatchedPrefix, 83);
 
-  const anchorKey = basis.indices.map((i) => dot(singletonRows[i], trueSeed));
-  const recoveredSeed = inverse.map((row) => dot(row, anchorKey));
-  assert.deepEqual(recoveredSeed, trueSeed);
-  const recovered = ciphertext.map((c, i) => mod(c - dot(rows[i], recoveredSeed)));
+  const recovered = ciphertext.map((c, i) => mod(c - dot(rows[i], positive.solutions[0])));
   assert.deepEqual(recovered, plaintext);
-  const forward = recovered.map((p, i) => mod(p + dot(rows[i], recoveredSeed)));
-  assert.deepEqual(forward, ciphertext);
+  const reencrypted = recovered.map((p, i) => mod(p + dot(rows[i], positive.solutions[0])));
+  assert.deepEqual(reencrypted, ciphertext);
 
   return {
     clock: name,
@@ -168,11 +143,19 @@ function runClock(name, resetLengths, singles, p57, f) {
     resetLengths,
     anchorSingletonIndices: basis.indices,
     anchorOffsets: basis.indices.map((i) => singles[i].offset),
-    observed,
-    positive: planted,
-    recoveredSeed,
-    exactPositiveRecovery: recovered.length,
-    exactPositiveForwardReconstruction: forward.length
+    firstFourHeldoutOffsets: heldIndices.slice(0, 4).map((i) => singles[i].offset),
+    original: {
+      fullSolutions: original.fullSolutions,
+      firstFourPass: original.firstFourPass,
+      longestMatchedPrefix: original.longestMatchedPrefix,
+      recoveredUnknownPlaintext: original.fullSolutions > 0
+    },
+    positive: {
+      fullSolutions: positive.fullSolutions,
+      firstFourPass: positive.firstFourPass,
+      recoveredSeed: positive.solutions[0],
+      exactRoundTripSymbols: recovered.length
+    }
   };
 }
 
@@ -189,6 +172,13 @@ function main() {
     '3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290');
 
   const f = base.factor16();
+  const rem = bytes.map(mod);
+  for (let i = 0; i < 240; i++) {
+    const q = rem[i];
+    for (let j = 0; j < f.length; j++) rem[i + j] = mod(rem[i + j] - q * f[j]);
+  }
+  assert.ok(rem.every((x) => x === 0), 'p50 factor16 source relation');
+
   const singles = base.singlesFromOriginal(transcription, corpus.runes);
   const p57 = corpus.pages.find((p) => p.page === 57).indices;
   const pageLengths = corpus.pages
@@ -201,19 +191,17 @@ function main() {
       .reduce((sum, p) => sum + p.indices.length, 0));
   assert.equal(pageLengths.length, 55);
   assert.equal(chapterLengths.length, 9);
+  assert.equal(pageLengths.reduce((a, b) => a + b, 0), N);
+  assert.equal(chapterLengths.reduce((a, b) => a + b, 0), N);
 
   const page = runClock('same-secret-seed-reset-at-each-rune-bearing-page',
     pageLengths, singles, p57, f);
   const chapter = runClock('same-secret-seed-reset-at-each-printed-chapter',
     chapterLengths, singles, p57, f);
-  assert.deepEqual([page.observed.valid, page.observed.maxMatched, page.observed.maxMask],
-    [0, 30, 17750]);
-  assert.deepEqual([chapter.observed.valid, chapter.observed.maxMatched, chapter.observed.maxMask],
-    [0, 31, 12944]);
 
   console.log(JSON.stringify({
-    status: 'PASS: exact original-input reset-clock exclusions and unique native-GP positives',
-    original: { runes: N, words: 2896, singletonWords: 83, f16: f },
+    status: 'PASS: exact source-original A/I/O reset-clock MITM gates and unique native-GP positives',
+    original: { runes: N, words: 2896, singletonWords: 83, keyFamily: 'p50 F16 over GF29' },
     pageReset: page,
     chapterReset: chapter
   }, null, 2));
