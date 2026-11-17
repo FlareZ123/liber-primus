@@ -108,6 +108,39 @@ assert.deepEqual(new Set(inner), new Set(rows));
 function operation(a, b, op) {
   return op === 'xor' ? (a ^ b) : op === 'minus' ? ((a - b) & 255) : ((a + b) & 255);
 }
+/** @param {number} a @param {number} b */
+function gfMultiply(a, b) {
+  let value = 0;
+  while (b) {
+    if (b & 1) value ^= a;
+    b >>>= 1;
+    a <<= 1;
+    if (a & 256) a ^= 0x11b;
+  }
+  return value;
+}
+
+/**
+ * All-secret affine event-feedback necessary condition: if a hidden source
+ * event label selects one of at most 30/32 byte offsets, all key transitions
+ * must have <=32 different residual values, EVEN IF the labels/events are
+ * permuted arbitrarily. Scan every possible multiplier, no codebook oracle.
+ * @param {number[]} key
+ */
+function affineResidualCapacity(key) {
+  let minRing = 256, minGF = 256;
+  let bestRingA = -1, bestGFA = -1;
+  for (let a = 0; a < 256; a++) {
+    const ring = new Set(), gf = new Set();
+    for (let i = 1; i < key.length; i++) {
+      ring.add((key[i] - a * key[i - 1]) & 255);
+      gf.add(key[i] ^ gfMultiply(a, key[i - 1]));
+    }
+    if (ring.size < minRing) { minRing = ring.size; bestRingA = a; }
+    if (gf.size < minGF) { minGF = gf.size; bestGFA = a; }
+  }
+  return { minRing, minGF, bestRingA, bestGFA };
+}
 const tests = [];
 for (const [layout, indices] of [
   ['row', rows], ['column', columns], ['spiral', inner],
@@ -120,7 +153,8 @@ for (const [layout, indices] of [
       const key = indices.map((cell, i) => operation(bytes[cell], known[i], op));
       tests.push({
         layout, p56Input, op,
-        distinctRequiredKeyValues: new Set(key).size
+        distinctRequiredKeyValues: new Set(key).size,
+        affineEventFeedback: affineResidualCapacity(key)
       });
     }
   }
@@ -131,6 +165,55 @@ const maxDistinct = Math.max(...tests.map(x => x.distinctRequiredKeyValues));
 assert.equal(minDistinct, 119);
 assert.equal(maxDistinct, 138);
 assert.ok(minDistinct > 32); // 29 possible runes + at most 3 dot-type classes.
+const minRingResiduals = Math.min(...tests.map(x => x.affineEventFeedback.minRing));
+const minGFResiduals = Math.min(...tests.map(x => x.affineEventFeedback.minGF));
+assert.equal(minRingResiduals, 112);
+assert.equal(minGFResiduals, 112);
+assert.ok(minRingResiduals > 32 && minGFResiduals > 32);
+
+// Fully blind original-shape stateful event-codebook positive. The original
+// source order is used only by this synthetic positive; the original negative
+// above holds even for any secret event reordering.
+const codebook = new Map(distinct.map((label, i) => [label, (131 * i + 19) & 255]));
+const statefulKey = [157];
+for (let i = 1; i < 256; i++) {
+  statefulKey.push((67 * statefulKey[i - 1] + codebook.get(tape[i])) & 255);
+}
+const masked = new Array(256);
+for (let i = 0; i < 256; i++) masked[positions[i]] = statefulKey[i] ^ allPlain[i];
+const recovered180 = inner.map((pos, i) => masked[pos] ^ allPlain[i + 76]);
+const candidateMultiplier = [];
+for (let a = 0; a < 256; a++) {
+  const mapping = new Map();
+  let valid = true;
+  for (let i = 77; i < 256; i++) {
+    const label = tape[i];
+    const offset = (recovered180[i - 76] - a * recovered180[i - 77]) & 255;
+    if (mapping.has(label) && mapping.get(label) !== offset) {
+      valid = false;
+      break;
+    }
+    mapping.set(label, offset);
+  }
+  if (valid) candidateMultiplier.push({ a, mapping });
+}
+assert.equal(candidateMultiplier.length, 1);
+assert.equal(candidateMultiplier[0].a, 67);
+assert.equal(candidateMultiplier[0].mapping.size, 30);
+let inverse67 = -1;
+for (let candidate = 1; candidate < 256; candidate += 2) {
+  if (((candidate * 67) & 255) === 1) inverse67 = candidate;
+}
+assert.equal(inverse67, 107);
+const recoveredState = new Array(256);
+recoveredState[76] = recovered180[0];
+for (let i = 75; i >= 0; i--) {
+  recoveredState[i] = (inverse67 * (
+    recoveredState[i + 1] - candidateMultiplier[0].mapping.get(tape[i + 1])
+  )) & 255;
+}
+const recoveredStatefulPlant = outer.map((pos, i) => masked[pos] ^ recoveredState[i]);
+assert.deepEqual(recoveredStatefulPlant, planted55);
 
 // Recovered-plaintext positive: a *secret*, arbitrary 30-symbol codebook,
 // a fully original-shaped 256-cell table, 76 withheld planted target runes,
@@ -159,5 +242,7 @@ console.log('PASS p56 85/85 solved + clear p57 95 original GP29 runes');
 console.log('PASS blinded 76-rune p55 plant recovered exactly from the 180 known plaintext runes using ONLY the 30-byte secret codebook');
 console.log('ORIGINAL ' + JSON.stringify({ candidateByteConsumers: 24, knownInputRunes: 180,
   maxEventClasses: 32, sourceClassA: distinct.length, minDistinct, maxDistinct,
+  minRingResiduals, minGFResiduals,
   tests }));
-console.log('DECISION: every tested bytewise table/known-terminal receiver requires at least 119 key byte values; no fixed 29-rune/13-dot source-event codebook, even arbitrarily reordered, can encode it.');
+console.log('PASS blind 76/76 recovery under a secret stateful event-codebook generator, with all 256 possible affine multipliers considered');
+console.log('DECISION: all 24 known180 receivers require >=119 distinct direct key bytes or >=112 distinct affine event-feedback residuals; a 30/32-type source-event codebook cannot supply either, even with arbitrary event reordering and unknown multiplier.');
