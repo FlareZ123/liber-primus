@@ -51,7 +51,7 @@ K = A+B =     5  0 23 18     K^−1 =          25 13 26 11
                3 15  2 28                     25  4 14  6
 ```
 
-All arithmetic is over GF29. Both `A` and `B` have rank **2**; `AB=0` exactly. Their images occupy complementary eigenspaces, and `K=A+B` has rank **4** with `K·K^−1=I`. This produces a concrete reversible linear transformation using the original p15, p29 and p30 source objects with no fitted matrix entries. **The choice to sum them and apply Hill4 is exploratory; no source instruction asks for this construction.**
+All arithmetic is over GF29. Both `A` and `B` have rank **2**; `AB=0` exactly. Their images occupy complementary eigenspaces, and `K=A+B` has rank **4** with `K·K^−1=I`. This yields a concrete reversible linear transformation using the original p15, p29 and p30 source objects with no fitted matrix entries. **The zero product is a necessary algebraic consequence of the already observed complementary factors and the Cayley–Hamilton theorem.** Likewise, K's nonsingularity follows from the observed nonzero residual eigenvalues; these are *consequences*, not extra independent evidence for a historical cipher. **The choice to sum the two matrices and apply Hill4 remains exploratory; no source instruction asks for this construction.**
 
 ## Direct original-cipher readouts
 
