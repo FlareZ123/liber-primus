@@ -6,7 +6,7 @@
 
 For the historically ordinary last-stage Vigenère, **every possible 29-symbol secret keyword of each period 1–28 is impossible** on the complete original **3,008-rune chapter p40–p53**, even if the earlier anti-repeat layer is allowed to reset at every actual printed word. This exclusion requires no guess about the first-layer number sequence, the plaintext language, the final keyword, or its initial phase. Its proof is a 29-residue saturation witness at each period.
 
-For a last-stage cipher with the authentic Cicada plaintext-Fehu bypass, there is no equally simple all-secret phase proof. A separate *exact* finite-state test excludes all **30 historically catalogued explicit keywords**, both signs, all starting phases, both Fehu modes and both strict-anti-repeat reset conventions on each of the **nine original intact chapters**. None of the **2,160 original chapter/word-boundary tests** survives its complete chapter. This result is bounded to the 30 explicit keywords when bypass is enabled.
+For a last-stage cipher with the authentic Cicada plaintext-Fehu bypass, there is no equally simple all-secret phase proof. A separate *exact* finite-state test excludes all **30 historically catalogued explicit keywords**, both signs, all starting phases, both Fehu modes and both strict-anti-repeat reset conventions on each of the **nine original intact chapters**. None of the **2,160 original chapter/word-boundary tests** survives its complete chapter. **With literal-Fehu bypass and a completely unrestricted secret periodic key, an exact 732,540-key search additionally excludes every GP29 key of period 1–4** across the original 3,008-rune p40–p53 chapter, allowing the first layer to restart at every genuine printed word. Longer unrestricted Fehu-bypass periods remain open. The 30-word finite test independently covers the original nine chapters.
 
 ## First-party source geometry
 
@@ -38,6 +38,20 @@ The [reproducer](../sims/lp2_layer2_reverse_order_allsecret_sft.cjs) reconstruct
 
 The first period in the reproducible 1–29 single-phase saturation check without a 29-residue obstruction is **29**. This observation supplies **no evidence for a 29-rune key**: survival of one necessary condition is not a demonstration of decryption.
 
+## Completely secret Fehu-bypass keys of periods 1–4
+
+A further independent exhaustive receiver takes the same genuine 3,008 p40–p53 runes and their exact printed word boundaries. It enumerates all **29^m secret GP29 keyword arrays** for each period **m=1, 2, 3, 4**. Sign and arbitrary initial phase need no separate tuning because the enumerated arrays include negation and all cyclic rotations. For every secret array, the exact finite-state decoder retains all feasible states (current key phase, previous intermediate rune); a ciphertext-F permits either ordinary non-Fehu keyed output or genuine literal-Fehu passthrough with no key advance. An earlier anti-repeat stage may restart at **every** printed word. The decoder makes no language assumptions and uses no beam or early n-gram threshold.
+
+| Completely secret period | Exact keys tested | Whole original chapter passes | Longest feasible prefix |
+|---|---:|---:|---:|
+| 1 | 29 | 0 | 278 / 3,008 |
+| 2 | 841 | 0 | 278 / 3,008 |
+| 3 | 24,389 | 0 | 278 / 3,008 |
+| 4 | 707,281 | 0 | 353 / 3,008 |
+| **Total** | **732,540** | **0** | |
+
+A separate **positive** native-GP plant with each of the four secret periods, including literal Fehu skips, is accepted by the same decoder. This is a finite exhaustive exclusion of a highly motivated class under the stated clock and no-repeat constraints. An arbitrary period of 5 or longer, altered clock, or inner rune substitution is not included.
+
 ## Exact fixed-key Fehu-bypass branch
 
 The historical 30-word catalog is exactly the source-fixed `WORDS` list in [the existing terminal test](../sims/lp2_layer2_terminal_zerooffset_sft.cjs), including `DIVINITY`, `FIRFUMFERENFE`, `CIRCUMFERENCE`, `WELCOME`, `KOAN` and `THEPRIMESARESACRED`. Its GP transliteration and historical aliases are unchanged.
@@ -64,4 +78,4 @@ Some arbitrary configurations admit 150–285-rune prefixes, but none decodes a 
 
 The reproducer synthesizes a strict no-doublet first-layer stream from original **clear p57 GP runes**, repeating that 95-rune source to original-shaped lengths. A final Fehu-transparent Vigenère using the 13-rune historical candidate `CIRCUMFERENCE` is planted at lengths **729, 308 and 3,008**, different signed keys and nonzero initial phases; **all three** pass exact reverse decoding with and without wordwise anti-repeat resets. A separate **3,008-rune, unrestricted 28-symbol hidden-key** no-Fehu plant retains at least one allowable key delta per phase, so the supposed all-secret contradiction correctly **does not** fire. The full original-input and positive assertions passed in an isolated V8 reproduction of the committed source with exact original inputs; native Node 22 Windows CI was dispatched separately and should not be presented as complete until its run succeeds.
 
-**Remaining live possibilities:** the historically favored anti-repeat-**last** order, a first-layer mechanism that *allows* adjacent output doubles (the distinct coin model), an independently sourced Fehu-bypass last-stage keyword outside the frozen 30, final-key resets or advances inside a chapter, inserted/deleted runes, nonadditive or dynamically varying final substitutions, and other manuscript mechanisms. This is a targeted negative that removes a whole branch of speculative historical two-layer work. It does not close [Director issue #1339](https://github.com/FlareZ123/liber-primus/issues/1339), whose genuine original anti-repeat-last positive/negative campaign remains open.
+**Remaining live possibilities:** the historically favored anti-repeat-**last** order, a first-layer mechanism that *allows* adjacent output doubles (the distinct coin model), an independently sourced Fehu-bypass final key of period 5 or greater outside the frozen 30 historical keywords, final-key resets or advances inside a chapter, inserted/deleted runes, nonadditive or dynamically varying final substitutions, and other manuscript mechanisms. This is a targeted negative that removes a whole branch of speculative historical two-layer work. It does not close [Director issue #1339](https://github.com/FlareZ123/liber-primus/issues/1339), whose genuine original anti-repeat-last positive/negative campaign remains open.
