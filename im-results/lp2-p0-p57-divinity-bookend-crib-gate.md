@@ -1,0 +1,33 @@
+# Original p57 “DIVINITY WITHIN” as an exact p0 red-heading crib: failed historical inverse
+
+**17 November 2026, Agent34.** A new *source-internal*, human-visible phrase candidate exactly matches the two **original p0 red-title word lengths 8+5**. Applying the resulting key to the untouched first chapter yields a bounded cryptanalytic negative. **No genuine unknown-page plaintext, historical key, or puzzle destination was recovered.** Do not promote the candidate heading to a solved title.
+
+## Independent source clue and competing explanation
+
+The original p0 title at source image `17.jpg` is `SHEOGMIAF-SYENGC`, **eight red runes, a small ordinary red word divider, five more red runes, then the large red 13-dot mark**. Its numerical GP indices are `[15,8,18,3,6,19,27,0,15,26,18,21,5]`. The independent *already clear* p57, at **rune offset 73**, prints the complete phrase `DIUINITY WITHIN` (ordinary English **DIVINITY WITHIN**) and the text explicitly says to **“FIND THE DIVINITY WITHIN.”** Its two consecutive words have exactly the p0 title's 8+5 GP lengths, with GP indices `[23,10,1,10,9,10,16,26,7,10,2,10,9]`.
+
+The source phrase would be discoverable by a human reading the solved final page; no historical Cicada instruction asserts it was encrypted as the opening red heading. The shared word lengths and philosophical theme are explainable as an accidental collision or ordinary topical repetition. This provides a better specified hypothesis than inventing arbitrary plaintext, but the title remains hypothetical. Previous independent trials of **ENLIGHTENMENT** and signed-2016 **EPIPHANY SEEKS** use different, already retired opening cribs; see [2014 signed phrase](lp2-2014-enlightenment-p0-red13-crib-gate.md) and [2016 signed phrase](lp2-p0-2016-epiphany-title-crib-gate.md).
+
+## Frozen operation and complete original-cipher decision
+
+Assume, solely for this test, that the 13 source p0 red ciphertext runes are additive GP29 ciphertext for the p57 phrase, with no plaintext-F skip in the assumed heading. The resulting **unique** 13-symbol key is
+`K=C−P (mod29)=[21,27,17,22,26,9,11,3,8,16,16,11,25]` or `NG IA B OE Y N J O H T T J AE` in GP labels. Every heading symbol reproduces exactly by construction; that training fit provides no independent verification.
+
+Freeze the body to the **716 unchanged original runes** after the 13-dot boundary, running continuously through physical p0, p1, and p2. No word resplitting, phase fitting, shifted clocks or dictionary rescue is allowed.
+
+| Exact decoder | Original 716-rune body coincidence | Original readout / impossibility |
+|---|---:|---|
+| Period-13 additive `P_i=C_i−K_{i mod13}` | **0.035246317928** | Starts `I P E O O TH J F U S OE W J AE Y IA F S U I IA U`; no prose |
+| Plaintext-autokey `P_i=C_i−P_{i−13}` seeded by p57 phrase | **0.034140719616** | Starts `H U C S L U G G TH NG W H IA N D I W NG N S A W`; no prose |
+| Ciphertext-feedback `P_i=C_i−C_{i−13}` | **0.034949408134** | Starts `T O B OE D NG A O D C L Y TH S P N Y EO EA EA IA F`; no prose |
+| **Historically authentic prime-era plaintext-F bypass with the derived repeated key** | **No legal full path** | All possible consumptions/skips die at original p0–2 offset **45** |
+
+For the strict historical skip case, literal plaintext `F=0` encrypts to ciphertext `F` without advancing the key; an encrypted non-F may also yield ciphertext F. The exact inverse propagates **all** legally advancing and bypassing key-clock states. Immediately before original rune index45 its sole surviving consumed-key counter is **44**; the actual ciphertext is **N (index9)** and the scheduled key is **N (index9)**. Consuming this rune would decode to forbidden plaintext F, and a bypass requires printed ciphertext F. Both transitions are impossible. The true cipher's full inverse therefore cannot continue past offset45 in this declared key family, independent of word frequencies and guessed skip positions.
+
+The inverse implementation also encrypts the independently clear **95 original p57 runes** under this same test key and actual transparent-F rule, then confirms a complete legal inverse path through all 95. This is a source-shaped positive of the implementation, not evidence that this p0 crib is genuine. Ordinary/autokey streams are near the GP29 uniform baseline `1/29≈0.03448276`; the authentic p57 clear control is `0.06270997`. Correctly reproducing a key-implied heading and reencryption of an invertible family cannot authenticate a key.
+
+## Decision and reproduction
+
+Retire the exact **p57 phrase as p0 plaintext → inferred repeating GP29 key**, the two natural 13-step feedback continuations, and the historical transparent-F version as complete plaintext solutions. The phrase may still be thematically connected or have a distinct use under an independently authored operator, but the source supplies no such instruction. This negative should not spawn speculative second layers or other offset sweeps.
+
+[One-file original-corpus Node22 CommonJS SFT](../sims/lp2_p0_p57_divinity_crib_sft.cjs) asserts the original heading, final clear phrase, full first-chapter rune count, 716-body inverses, death certificate, and a complete 95-rune actual-rule native positive. Inputs are only `resources/liber-primus/lp2-corpus.json` and its unaltered source-preserved GP29 alphabet. This is an intermediate crib decision under `im-results/`; no authoritative `results/README.md` change is justified.
