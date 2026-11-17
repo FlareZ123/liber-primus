@@ -111,6 +111,35 @@ prefix.writeUInt16BE(primary.length, 1);
 const fingerprint = crypto.createHash('sha1').update(prefix).update(primary).digest('hex');
 assert.equal(fingerprint, '6d854cd7933322a601c3286d181f01e57a35090f');
 assert.equal(publicPackets[1].body.toString('utf8'), 'Cicada 3301 (845145127)');
+
+// Decode RSA signature using public key to inspect its encoded-message block.
+// OpenPGP RSA v4 signatures use the deterministic EMSA-PKCS1-v1_5 format.
+const modulusBytes = Math.ceil(primary.readUInt16BE(6) / 8);
+const modulus = primary.subarray(8, 8 + modulusBytes);
+const exponentOffset = 8 + modulusBytes;
+const exponentBytes = Math.ceil(primary.readUInt16BE(exponentOffset) / 8);
+const exponent = primary.subarray(exponentOffset + 2, exponentOffset + 2 + exponentBytes);
+assert.equal(exponent.toString('hex'), '010001');
+const key = crypto.createPublicKey({
+  key: { kty: 'RSA', n: modulus.toString('base64url'), e: exponent.toString('base64url') },
+  format: 'jwk'
+});
+const rsaSignature = sig.subarray(signatureValueOffset + 4);
+const encodedMessage = crypto.publicDecrypt({
+  key, padding: crypto.constants.RSA_NO_PADDING
+}, rsaSignature);
+assert.equal(encodedMessage.length, 512);
+assert.equal(encodedMessage.subarray(0, 2).toString('hex'), '0001');
+const digestInfoPrefix = Buffer.from('3021300906052b0e03021a05000414', 'hex'); // DER SHA-1
+const digestInfoOffset = encodedMessage.length - digestInfoPrefix.length - 20;
+assert.equal(encodedMessage[digestInfoOffset - 1], 0);
+assert.ok(encodedMessage.subarray(2, digestInfoOffset - 1).every((byte) => byte === 0xff));
+assert.ok(encodedMessage.subarray(digestInfoOffset, digestInfoOffset + 15).equals(digestInfoPrefix));
+const signedDigest = encodedMessage.subarray(-20);
+assert.equal(signedDigest.subarray(0, 2).toString('hex'), 'f065');
+const deterministicPadBytes = digestInfoOffset - 3;
+assert.equal(deterministicPadBytes, 474);
+
 const time = new Date(Number.parseInt(hashed[0].value, 16) * 1000).toISOString();
 assert.equal(time, '2016-01-01T00:01:07.000Z');
 const keyCreation = new Date(primary.readUInt32BE(1) * 1000).toISOString();
@@ -125,5 +154,9 @@ console.log(JSON.stringify({
     user_id: publicPackets[1].body.toString('utf8'),
     public_key_packet_tags: publicPackets.map((packet) => packet.tag) },
   signature_created_utc: time,
+  rsa_pkcs1_v1_5: { deterministic_ff_padding_bytes: deterministicPadBytes,
+    digest_info_prefix: digestInfoPrefix.toString('hex'),
+    signed_sha1_digest_hex: signedDigest.toString('hex'),
+    free_bytes_in_encoded_rsa_signature: 0 },
   decision: 'Packet contains only a creation-time hashed subpacket and issuer-ID unhashed subpacket; no LP2 key/operation mapping'
 }, null, 2));
