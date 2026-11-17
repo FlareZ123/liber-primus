@@ -179,6 +179,59 @@ assert.deepEqual([table.rows[2][2], table.rows[2][4]], ['0F', '1g']);
 assert.deepEqual([base60[2][2] % 29, base60[2][4] % 29], [15, 15]);
 assert.deepEqual([book.translit[known[7]], book.translit[known[9]]], ['TH', 'N']);
 
+// Stronger unknown-key gate: every row has arbitrary nonlinear f_r(x), then
+// each column applies its own fixed secret affine y=a_c*f_r(x)+b_c mod29.
+// Equal input residues at column pair 3/5 in three different rows imply
+// ONE common affine relationship between their two plaintext outputs.
+/** @param {number} x */
+function inverse(x) {
+  for (let i = 1; i < 29; i++) if (mod(i * x) === 1) return i;
+  throw new Error('noninvertible GF29 scalar');
+}
+/** @param {Array<[number,number]>} pairs */
+function affineThirdPrediction(pairs) {
+  assert.equal(pairs.length, 3);
+  const [[x1, y1], [x2, y2], [x3, y3]] = pairs;
+  assert.notEqual(x1, x2);
+  const slope = mod((y2 - y1) * inverse(mod(x2 - x1)));
+  const offset = mod(y1 - slope * x1);
+  return {slope, offset, predictedThird: mod(slope * x3 + offset),
+    observedThird: y3};
+}
+const collisionRowIds = [1, 7, 19]; // original printed table rows 3,9,21
+const collisionColumnPair = [2, 4]; // original printed columns 3,5
+const observedColumnPairs = collisionRowIds.map((r) => {
+  const [left, right] = collisionColumnPair;
+  assert.equal(mod(base60[r + 1][left]), mod(base60[r + 1][right]));
+  return [known[r * 6 + left - 1], known[r * 6 + right - 1]];
+});
+assert.deepEqual(observedColumnPairs, [[2, 9], [16, 10], [15, 4]]);
+assert.deepEqual(collisionRowIds.map((r) =>
+  collisionColumnPair.map((c) => table.rows[r + 1][c])),
+  [['0F', '1g'], ['0P', '3J'], ['3C', '1j']]);
+const affineObstruction = affineThirdPrediction(observedColumnPairs);
+assert.deepEqual(affineObstruction, {
+  slope: 27, offset: 13, predictedThird: 12, observedThird: 4
+});
+assert.notEqual(affineObstruction.predictedThird, affineObstruction.observedThird);
+
+// Independent native-cell positive with arbitrary row cubics and eight
+// unknown, nonzero, per-column affine maps. The third row must be predicted.
+const columnAffineKeys = Array.from({length: 8}, (_, c) =>
+  [mod(3 * c + 1), mod(11 * c + 7)]);
+assert.ok(columnAffineKeys.every(([slope]) => slope !== 0));
+const plantedColumnPairs = collisionRowIds.map((r) => {
+  const [left, right] = collisionColumnPair;
+  const x = mod(base60[r + 1][left]);
+  const latent = mod(7 * (r + 1) + 5 * x + x * x * x);
+  return [left, right].map((c) => {
+    const [slope, offset] = columnAffineKeys[c];
+    return mod(slope * latent + offset);
+  });
+});
+const affinePlant = affineThirdPrediction(plantedColumnPairs);
+assert.equal(affinePlant.predictedThird, affinePlant.observedThird);
+
 // Full synthetic decoder positive: independently chosen quartic in every row,
 // including rows with repeated x coordinates, fits ALL 180 known slots.
 // Where >=5 distinct x points permit unique recovery, the same fitted
@@ -218,6 +271,6 @@ console.log(JSON.stringify({
   witness: {tableRow1based: 3, columns1based: [3, 5],
     printedTokens: ['0F', '1g'], xMod29: [15, 15],
     authenticatedGPOutputs: ['TH', 'N']},
-  plantedPositive: {compatibleRows: 30, uniqueQuintupleRows: recoverableRows.length,
+  allSecretColumnAffineObstruction: {collisionInteriorRows: collisionRowIds,\n    knownPairs: observedColumnPairs, ...affineObstruction, plantedThirdPredictionPassed: true},\n  plantedPositive: {compatibleRows: 30, uniqueQuintupleRows: recoverableRows.length,
     independentlyRecoveredBorderCells: plantedBorder.length}
 }, null, 2));
