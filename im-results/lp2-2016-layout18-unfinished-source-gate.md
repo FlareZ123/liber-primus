@@ -20,6 +20,19 @@ The published screen separately tries both GP29 key multipliers **1 and 28 = −
 
 A separate first-300-rune equivalence was also computed on the eight authentic long windows: `Pa_par, Ps_par, Ps_m3_0` have identical **screening** sign vectors up to a global sign on each window, while `Ps_m3_0` differs over full windows. It remains distinct for an independent whole-window inverse, and so is retained. All other original 300-rune signatures are distinct up to global inversion: **21 distinct screen signatures among the 23 raw rules and 22 complete-window signatures**.
 
+## Fully specified original-input historical-key direct inverse (separate bounded decision)
+
+The exact original-source CJS [historical-key inverse](../sims/lp2_layout_23rules_two_historical_keys_noskip_sft.cjs) tests **both** creator-used 2014 LP1 keyword spellings, `DIVINITY` (GP indices `23,10,1,10,9,10,16,26`, with historical V written U in GP) and `FIRFUMFERENFE` (`0,10,4,0,1,19,0,18,4,18,9,0,18`), over **every one of the 23 source-defined sign masks, both arithmetic orientations, and every key phase**, independently on all eight long original unknown sections. This is a direct no-skip periodic GP29 additive inverse `P_i = (C_i - sign × layout_i × K_(i+phase)) mod29`. The key materials and source sign functions were fixed independently of the unknown output; all key phases are exhaustively allowed to avoid an assumed reset. The script checks exact 12,956-rune corpus equality, reproduces 21/22 collapsed 300/full signatures, and plants/inverts an exact 380-rune GP-native clear-p57 positive.
+
+The best **whole-section** IoC for each source window, even selecting the most favorable phase/sign/rule separately per window, is:
+
+| Historical source key | p0–2 (729) | next (1,145) | next (1,729) | next (1,894) | next (1,021) | next (1,524) | next (1,589) | final (3,316) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `DIVINITY` | 0.03532236 | 0.03519559 | 0.03481594 | 0.03493223 | 0.03537094 | 0.03523833 | 0.03486026 | 0.03474938 |
+| `FIRFUMFERENFE` | 0.03548817 | 0.03498641 | 0.03492907 | 0.03500531 | 0.03535749 | 0.03499448 | 0.03486501 | 0.03475484 |
+
+For comparison the native GP29 clear p57 IoC is **0.06270997**, and random-like baseline is about **1/29 = 0.03448**. No whole-section output exhibits ordinary native GP29 prose concentration, even after a generous maximum over all prescribed parameters. These are computed original-input outputs, not inferred from a search log; [manual Windows execution](https://github.com/FlareZ123/liber-primus/actions/workflows/lp2-layout-two-historical-keys-sft.yml) provides an additional end-to-end test. This **rejects only the explicit direct periodic no-skip model** using these two historically known keywords. It does not reject the authentic p56 prime/F skip operation, the source original skip/coin layout campaign below, different key material, or independently authored nonadditive transformations.
+
 ## Actual finite experiment
 
 The reproducible manual-only [18-rule Windows Actions workflow](../.github/workflows/lp2-layout-19-unrun-signs-manual.yml) pins the exact external historical source commit and regenerates the original 581 flat-IoC library and all source-text layout vectors, compiles the source Rust decoder, executes its native planted plaintext/control batteries, then searches the original eight long physical-section windows for each of the **nine previously unrun line/position mod3 rules and nine independent page/half rules**. It excludes the four already run rules and the one `Ps_par` duplicate.
