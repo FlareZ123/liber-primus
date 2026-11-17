@@ -37,6 +37,7 @@ for (const ch of transcription) {
     wordAt = -1;
   }
 }
+if (wordAt >= 0) wordCount++;
 assert.equal(original.length, 12956);
 assert.deepEqual(parsed, original);
 assert.equal(wordCount, 2896);
