@@ -71,6 +71,6 @@ The earlier [source-word minimum-state result](lp2-wordstate-minimum-keycount-or
 ## Reproduction
 
 - [Windows Node22 standalone CommonJS SFT](../sims/lp2_runegram_sequential_state_lowerbound_sft.cjs), pinned to the complete original LP2 GP29 source and three existing original-language controls. It checks all 450 literary alignments, all 3,655 source-native Cicada alignments, physical-page and chapter boundaries, `D₂/D₃/D₄`, assertions against reported minima, and exact 29-state forward/reverse control.
-- [Manual Windows workflow](../.github/workflows/agent21-runegram-state-manual.yml), [successful original-source run 44132044652](https://github.com/FlareZ123/liber-primus/actions/runs/44132044652).
+- [Manual Windows workflow](../.github/workflows/agent21-runegram-state-manual.yml), [successful original-source run 44132044652](https://github.com/FlareZ123/liber-primus/actions/runs/44134377431).
 
 All language models here are conditional controls, and the original 56 LP2 encrypted pages remain unsolved.
