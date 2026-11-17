@@ -284,6 +284,78 @@ for (const [internalOrder, naturalInternals] of Object.entries(internalOrders)) 
     }
   }
 }
+
+// A stronger hypothetical nonstationary tree fold permits an entirely
+// arbitrary 29->29 unary lookup *at each geometric level*. Two level
+// clocks are pinned by the source tree: distance from the root, and
+// maximum descendant distance from any original leaf. The latter is
+// the natural literal "shed a circumference / move inward" peeling index.
+const rootDepth = Array(256).fill(-1);
+const leafHeight = Array(256).fill(-1);
+/** @param {number} node @param {number} depth */
+function assignDepth(node, depth) {
+  rootDepth[node] = depth;
+  let h = 0;
+  for (const child of children[node]) {
+    assignDepth(child, depth + 1);
+    h = Math.max(h, leafHeight[child] + 1);
+  }
+  leafHeight[node] = h;
+}
+assignDepth(189, 0);
+assert(Math.max(...rootDepth) === 38);
+assert(Math.max(...leafHeight) === 38);
+assert(rootDepth.every((x) => x >= 0 && x <= 38));
+assert(leafHeight.every((x) => x >= 0 && x <= 38));
+const printedPerLevel = [];
+for (const [internalOrder, naturalInternals] of Object.entries(internalOrders)) {
+  for (const reverseInternal of [false, true]) {
+    const internals = reverseInternal
+      ? [...naturalInternals].reverse() : naturalInternals;
+    for (const [leafOrder, leaves] of Object.entries(leafOrders)) {
+      for (const reverseClear of [false, true]) {
+        const labels = Array(256).fill(-1);
+        for (let j = 0; j < 161; j++)
+          labels[internals[j]] = visibleTerminal[j];
+        for (let j = 0; j < 95; j++)
+          labels[leaves[j]] = p57[reverseClear ? 94 - j : j];
+
+        const counts = {};
+        for (const [levelClock, levels] of Object.entries({
+          rootDepth, leafHeight
+        })) {
+          const byLevelAndInput = new Map();
+          for (const node of addresses) {
+            if (children[node].length !== 1) continue;
+            const child = children[node][0];
+            const key = levels[node] + '/' + labels[child];
+            if (!byLevelAndInput.has(key))
+              byLevelAndInput.set(key, new Set());
+            byLevelAndInput.get(key).add(labels[node]);
+          }
+          const inconsistent = [...byLevelAndInput.values()]
+            .filter((set) => set.size > 1).length;
+          counts[levelClock] = {
+            uniqueInputs: byLevelAndInput.size,
+            contradictoryInputs: inconsistent
+          };
+        }
+        printedPerLevel.push({internalOrder, reverseInternal,
+          leafOrder, reverseClear, ...counts});
+      }
+    }
+  }
+}
+assert.equal(printedPerLevel.length, 24);
+const depthConflicts = printedPerLevel
+  .map((x) => x.rootDepth.contradictoryInputs);
+const heightConflicts = printedPerLevel
+  .map((x) => x.leafHeight.contradictoryInputs);
+assert.equal(Math.min(...depthConflicts), 4);
+assert.equal(Math.max(...depthConflicts), 12);
+assert.equal(Math.min(...heightConflicts), 8);
+assert.equal(Math.max(...heightConflicts), 16);
+
 assert.equal(printedUnary.length, 24);
 assert.equal(Math.min(...printedUnary.map((x) => x.contradictoryInputs)), 20);
 assert.equal(Math.max(...printedUnary.map((x) => x.contradictoryInputs)), 25);
@@ -306,6 +378,7 @@ console.log(JSON.stringify({
     internalOrders: Object.keys(internalOrders),
     primeWeights: 2, sourceDirections: 2, models: results.length,
     best, histogram, results},
-  allSecret: {unary: allSecretUnary, symmetricLeafSet, printedUnary},
+  allSecret: {unary: allSecretUnary, symmetricLeafSet,
+    printedUnary, printedPerLevel},
   decision: 'All 24 fixed parent-sum readers fail; all 24 unrestricted unary function folds are contradictory, and all six invariant leaf-set readers conflict with known p56. No unknown plaintext.'
 }, null, 2));
