@@ -217,7 +217,7 @@ def prepare(upstream: Path, corpus_path: Path):
     patch_reference(layer2)
     run(cargo, upstream)
     after = data / "periodic_u16_parity.tsv"
-    cmd[3] = "data/periodic_u16_parity.tsv"
+    cmd[4] = "data/periodic_u16_parity.tsv"
     run(cmd, layer2)
     after_norm = norm_tsv(after)
     if before_norm != after_norm:
