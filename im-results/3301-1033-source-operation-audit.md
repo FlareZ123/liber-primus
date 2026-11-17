@@ -48,6 +48,21 @@ The signed 2013 example fixes the operation and operand for 3301: BASE29(3301) =
 
 Applying the same BASE29 conversion to 1033 gives 16I, with coefficient vectors [1,6,18] and reversed [18,6,1]. The existing original-grid test gives nonzero remainders [3,11] and [24,3], respectively. Thus the same BASE29-to-polynomial operation does **not** carry both constants into the p50 factorization. The 1033 input is present in the unsigned participant test vector; it is a useful control, not a second signed operand.
 
+### Seven RAND bytes from the preserved March 2013 TCP session: page-key gate (Agent2, 17 November 2026)
+
+The same unsigned participant transcript that records `BASE29 1033` and `DH 3301` also records four `RAND` requests: `RAND 3 → [151,207,64]`, `RAND 3 → [91,172,47]`, `RAND 0 → []`, and `RAND 1 → [179]`. The flattened output is the exact seven-byte sequence `[151,207,64,91,172,47,179]`. The signed protocol authenticates the command's byte semantics, but not these particular participant-generated values; they are not an organizer-selected key.
+
+The p33–39 cuneiform interval has seven source-aligned segments, `p33[91:]` followed by p34–p39, of lengths `[123,261,271,238,228,228,240]` (1,589 runes total). The count match makes a one-byte-per-page key or a period-seven key a plausible bounded human-solve hypothesis. It is not, by itself, evidence that this particular participant transcript is part of LP2.
+
+The reproducible gate tests:
+- `byte mod 29` as one constant shift per segment and as a continuous period-seven key, both signs, with and without transparent-F handling;
+- each byte's conventional BASE29 representation (`56, 74, 26, 34, 5R, 1I, 65`) concatenated into a 14-symbol key, both as a global period-14 key and as a two-symbol page-local key, both signs;
+- the known p56 `φ(prime)` stream with each byte interpreted either as a one-based prime ordinal or as a prime value advanced to the next prime, page-local, both signs with transparent F.
+
+None yields coherent GP29 plaintext. Across the frozen candidates, aggregate IoC is `0.034213–0.036076`, essentially the original interval's `0.034350`; the 50-rune previews remain random-looking. Each transform also passes an exact forward/inverse round-trip control. [Reproducer](../sims/lp2_p33_39_cuneiform_2013_rand7_key_gate.cjs) · [completed RAND vector](../resources/external/2013-tcp-live-test-vectors.json) · [original participant log](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/clientlog-1362290293-9.txt).
+
+**Decision:** retire the direct page-shift, period-key, BASE29-expanded-key, and page-reset `φ(prime)` consumers of these seven bytes. The 7-byte/7-page correspondence is not a usable key selector on the tested paths; do not extend it into arbitrary PRNG/KDF searches without independent evidence that this exact participant session is part of the intended LP2 solve path.
+
 ### Prime-sum: exact same-2014-binary reconstruction, without an earlier key handoff
 
 The **2014** original LP1 page-05 word-cell prime-sum map reconstructs the 5×5 numerical trailer, 25/25. The two encodings are components of one preserved 2014 Stage04 object. This establishes the arithmetic reading of that page while providing **no independent 2013→2014 transformation**. The source-selected LP2 candidate is the five red-numbered passages on p36–p38, a 553-rune interval bounded by the original 1–5 labels and 10-dot delimiters. The existing [five-numbered wisdom inversion gate](lp2-cuneiform-five-numbered-wisdom-inversion.md) tested the row-wise φ(cell) mod 29 transfer, both orientations, and the solved-p56 prime/totient shift with exact original-input round trips and controls. None produces language. The proposed direct transfer from the 2014 square to unknown LP2 is negative.

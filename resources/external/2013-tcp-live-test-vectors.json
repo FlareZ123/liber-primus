@@ -36,9 +36,46 @@
         "serverPublic": 1264,
         "clientPublic": 2800,
         "sharedKeyReturned": 1067,
-        "nextReceived": true
+        "nextReceived": true,
+        "randResponses": [
+          {
+            "request": "RAND 3",
+            "values": [
+              151,
+              207,
+              64
+            ]
+          },
+          {
+            "request": "RAND 3",
+            "values": [
+              91,
+              172,
+              47
+            ]
+          },
+          {
+            "request": "RAND 0",
+            "values": []
+          },
+          {
+            "request": "RAND 1",
+            "values": [
+              179
+            ]
+          }
+        ],
+        "randByteSequence": [
+          151,
+          207,
+          64,
+          91,
+          172,
+          47,
+          179
+        ]
       },
-      "provenanceNote": "The protocol requires the participant server to select the DH base and server secret. Those values, its public share, and the resulting shared key therefore depend on participant-side randomness. The request arguments 1033 and 3301 are the stable organizer-side test values."
+      "provenanceNote": "The protocol requires the participant server to select the DH base and server secret. Those values, its public share, and the resulting shared key therefore depend on participant-side randomness. The request arguments 1033 and 3301 are the stable organizer-side test values. The exact seven RAND response bytes are transcribed in observed.randResponses/randByteSequence; they are participant-session outputs, not organizer-selected key material."
     }
   ],
   "stableOrganizerTestVector": {
