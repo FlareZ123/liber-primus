@@ -110,6 +110,26 @@ assert.throws(()=>decode(wrong),/wrong marker/);
 console.log('NATIVE PLANT: 285/285 recovered runes, '+planted.inserts.length+
   ' internal non-consuming markers, '+known.length+' real-word slots, exact roundtrip');
 console.log('WRONG PROTOCOL: changed first insertion marker, strict rejection');
+
+/**
+ * Fixed-seed wrong-cipher null: preserve all 60 planted ciphertext word
+ * lengths and randomize every printed rune independently. No fitted flags.
+ */
+let seed=0x33011033;
+function next32(){
+  seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;
+  return seed>>>0;
+}
+let nullAccept=0;
+for(let trial=0;trial<200;trial++){
+  const sampled=planted.rows.map(row=>row.map(()=>next32()%29));
+  try{decode(sampled);nullAccept++;}catch(err){
+    assert.match(err.message,/impossible vowel-first|wrong marker/);
+  }
+}
+assert.equal(nullAccept,0);
+console.log('WRONG-CIPHER NULL: '+nullAccept+'/200 independently randomized source-length ciphertext passages accepted');
+
 /** Known original p56 from independent historical plaintext. */
 const tokens=gp.translit.map((glyph,i)=>({glyph,i})).sort((a,b)=>b.glyph.length-a.glyph.length);
 const originalText='AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO '+
