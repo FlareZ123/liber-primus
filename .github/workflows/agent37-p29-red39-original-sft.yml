@@ -1,4 +1,4 @@
-name: Agent37 p29 red39 source-factor and direct-quotient test
+name: Agent37 source-original p29 factor and p50 lookup tests
 on:
   workflow_dispatch:
 jobs:
@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Run original p29 factor, quotient and native controls
         run: node sims/lp2_p29_red39_factor_syndrome_sft.cjs
+      - name: Run source p50 distinct161 and p57 repeat95 original lookup gate
+        run: node sims/lp2_p50_distinct161_terminal95_duplicate_sft.cjs
