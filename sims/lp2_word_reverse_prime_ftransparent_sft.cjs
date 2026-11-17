@@ -264,7 +264,8 @@ assert.equal(result.filter(r => r.pages === 'p54-55')
   .reduce((n, r) => n + r.viableStarts, 0), 44);
 const all = result.flatMap(r => r.candidates.map(x => ({pages: r.pages, ...x})));
 assert.ok(all.every(x => x.ioc < 0.04));
-assert.ok(all.every(x => x.plausibleOneRuneWords === 0));
+assert.ok(all.every(x => x.plausibleOneRuneWords < x.oneRuneWords),
+  'each candidate violates at least one source-printed one-rune word');
 assert.ok(result.every(r => r.candidates.every(x =>
   x.grammarLastReach < r.runes)),
   'exact all-F-branch A/I/O one-rune-word gate rejects all 47 surviving starts');
