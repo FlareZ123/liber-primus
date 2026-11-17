@@ -14,7 +14,6 @@ from __future__ import annotations
 from hashlib import sha256
 from pathlib import Path
 
-import cv2
 import numpy as np
 from PIL import Image
 
@@ -40,18 +39,33 @@ def original_rgb(filename: str, expected_sha256: str) -> np.ndarray:
     return rgb
 
 
-def red_thirteen_dot_center(rgb: np.ndarray) -> tuple[float, float]:
-    """Locate *only* isolated source red stencil dots, never OCR runes."""
-    r, g, b = [rgb[:, :, i].astype(np.int16) for i in range(3)]
-    ink = ((r > 80) & (r > g + 55) & (r > b + 55)).astype(np.uint8)
-    n, _, stat, centroids = cv2.connectedComponentsWithStats(ink, 8)
+def red_thirteen_dot_center(
+    rgb: np.ndarray, box: tuple[int, int, int, int]
+) -> tuple[float, float]:
+    """Count and center each original isolated red stencil dot, no OCR."""
+    x0, y0, x1, y1 = box
+    crop = rgb[y0:y1, x0:x1].astype(np.int16)
+    r, g, b = [crop[:, :, i] for i in range(3)]
+    ink = (r > 80) & (r > g + 55) & (r > b + 55)
+    pending = set(map(tuple, np.argwhere(ink).tolist()))
     points = []
-    for i in range(1, n):
-        width = int(stat[i, cv2.CC_STAT_WIDTH])
-        height = int(stat[i, cv2.CC_STAT_HEIGHT])
-        area = int(stat[i, cv2.CC_STAT_AREA])
-        if 6 <= width <= 17 and 6 <= height <= 17 and 35 <= area <= 200:
-            points.append(centroids[i])
+    while pending:
+        queue = [pending.pop()]
+        connected = []
+        while queue:
+            y, x = queue.pop()
+            connected.append((x, y))
+            for dy in (-1, 0, 1):
+                for dx in (-1, 0, 1):
+                    neighbor = (y + dy, x + dx)
+                    if neighbor in pending:
+                        pending.remove(neighbor)
+                        queue.append(neighbor)
+        xs, ys = zip(*connected)
+        width = max(xs) - min(xs) + 1
+        height = max(ys) - min(ys) + 1
+        if 6 <= width <= 17 and 6 <= height <= 17 and 35 <= len(connected) <= 200:
+            points.append((np.mean(xs) + x0, np.mean(ys) + y0))
     assert len(points) == 13, f"Expected source 13-dot mark, got {len(points)}"
     points = np.array(points)
     assert 28 <= np.ptp(points[:, 0]) <= 31
@@ -87,8 +101,8 @@ def inverse_projection(p32_xy: tuple[float, float]) -> tuple[float, float]:
 
 
 def main() -> None:
-    p32 = red_thirteen_dot_center(original_rgb(*P32))
-    p55 = red_thirteen_dot_center(original_rgb(*P55))
+    p32 = red_thirteen_dot_center(original_rgb(*P32), (920, 1620, 976, 1723))
+    p55 = red_thirteen_dot_center(original_rgb(*P55), (1025, 1245, 1083, 1345))
     projected = tree_fitted_projection(p55)
     displacement = np.subtract(projected, p32)
     distance = float(np.linalg.norm(displacement))
