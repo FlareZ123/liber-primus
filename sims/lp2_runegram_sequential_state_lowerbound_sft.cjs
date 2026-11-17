@@ -130,6 +130,50 @@ function stats(values) {
   };
 }
 
+// Source-native check: original-authored already-solved Liber Primus prose.
+// Treat physical spread continuations as one authored statement, not duplicate
+// editorial recap headings. Ignore numeric square lines, editorial comments,
+// and the solved p56 SHA-512 hex string (non-GP linguistic payload).
+const includedCicadaPages = new Set([1, 3, 5, 6, 9, 10, 11, 12, 13, 14, 15, 56, 57]);
+const cicadaLines = [];
+let activeCicadaPage = -1;
+for (const line of read('resources/liber-primus/lp1-plaintext-reference.txt').split(/\r?\n/)) {
+  const heading = line.match(/^###\s+(\d+)/);
+  if (heading) {
+    activeCicadaPage = Number(heading[1]);
+    continue;
+  }
+  if (!includedCicadaPages.has(activeCicadaPage) ||
+      line.startsWith('#') || line.startsWith('[') || line.startsWith('(') ||
+      /^\s*$/.test(line) || /^\s*[\d\s]+$/.test(line) ||
+      /^[\da-f]{60,}$/i.test(line.trim())) continue;
+  cicadaLines.push(line);
+}
+const cicadaKnown = encode(cicadaLines.join(' '));
+assert.equal(cicadaKnown.length, 2988);
+const cicadaChapterIndices = [2, 3, 6]; // p8-14, p15-22, p33-39
+const firstPartyResults = cicadaChapterIndices.map((chapterIndex) => {
+  const span = chapters[chapterIndex];
+  const chapterCipher = original.slice(span.start, span.end);
+  const nativeBounds = [];
+  for (let offset = 0; offset <= cicadaKnown.length - chapterCipher.length; offset++) {
+    const sourceWindow = cicadaKnown.slice(offset, offset + chapterCipher.length);
+    nativeBounds.push(lowerBound(sourceWindow, chapterCipher,
+      0, chapterCipher.length, 2));
+  }
+  return {
+    chapter: ['p8-p14', 'p15-p22', 'p33-p39'][cicadaChapterIndices.indexOf(chapterIndex)],
+    runes: chapterCipher.length,
+    contiguousKnownGpWindows: nativeBounds.length,
+    ...stats(nativeBounds),
+  };
+});
+assert.deepEqual(firstPartyResults.map((x) => x.runes), [1729, 1903, 1680]);
+assert.deepEqual(firstPartyResults.map((x) => x.contiguousKnownGpWindows),
+  [1260, 1086, 1309]);
+assert.deepEqual(firstPartyResults.map((x) => x.min), [33, 37, 32]);
+assert(firstPartyResults.every((x) => x.le29 === 0));
+
 // Exact positive: a known deterministic 29-state reversible transducer.
 // Current state + plaintext determines the output and next state.
 const plantedPlain = encode(read(nativePaths[0])).slice(0, original.length);
@@ -204,4 +248,9 @@ console.log(JSON.stringify({
     observedTwoRuneLowerBound: plantedBound,
   },
   coherentLiteraryControls: controls,
+  originalCicadaGpTextControls: {
+    curatedKnownCicadaRunes: cicadaKnown.length,
+    source: 'resources/liber-primus/lp1-plaintext-reference.txt',
+    originalChapters: firstPartyResults,
+  },
 }, null, 2));
