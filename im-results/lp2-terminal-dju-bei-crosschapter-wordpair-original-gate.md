@@ -68,6 +68,16 @@ Two direct original-source obstacles prevent adopting the whole seven-word sente
 1. The actual LP1 p05 has a **full stop immediately after SACRED**, whereas original p55 places ordinary word separators through the corresponding fifth/sixth-word boundary and only the period after the final BEI. Assuming that punctuation survives the original cipher as it does in historically solved material, the exact sentence was **not copied with its punctuation**.
 2. The 30-rune aligned plaintext phrase contains **F** at zero-based position 9, the start of FUNCTION. The source original p55 ciphertext at that aligned index (global rune12935) is **E** (GP index18), not F. The real solved p56 cipher requires plaintext F to remain an unchanged ciphertext F and consume no key. Thus the p05 seven-word literal crib is **algebraically impossible under authentic p56 F-transparent encryption** at the first letter of FUNCTION, without even guessing a prime start. The ordinary GP29 additive key differences computed from treating the phrase as plaintext have Berlekamp–Massey linear complexity **15 on 30 residues** over F29, so there is no simple order≤14 linear feedback recurrence in that artificial derived key. This last observation does not constrain nonadditive or other historical ciphers.
 
+**Independent exact period-five contradiction for the repeated terminal phrase under the same proposed words.** The two source ciphertext copies begin at global rune offsets 6555 and 12950; both are congruent to zero modulo 5, and their separation `6395 = 5×1279` could tempt reuse of an ordinary five-position key. If their plaintext were indeed the moth-linked `ALL-THINGS`, the original GP29 pairs would be:
+
+```text
+C (DJU BEI):          D  J  U  B  E  I    = [23,11,1,17,18,10]
+P (ALL THINGS):       A  L  L  TH NG S    = [24,20,20,2,21,15]
+required (C-P) mod29: 28 20 10 15 26 24
+```
+
+Any **ordinary GP29 periodic-five additive or subtractive pad**, under *any absolute key phase*, requires the first and sixth recovered pad residues to be identical; the actual residues **28 ≠ 24**. No plaintext F or ciphertext F occurs in these six runes, so the genuine transparent-F exception cannot repair this contradiction. The pair's distance therefore does **not** license a period-five Kasiski solution if the proposed plaintext is ALL THINGS. This conditional gate does not reject other words, changing-state encryption, word permutation, or nonperiodic keying.
+
 A different original encryption on p55, punctuation normalization, or a nonliteral semantic echo might make the length analogy interesting, but each requires a separate source-selected rule. Do not use the p05 word-length coincidence or the cross-chapter repeated ciphertext pair to **assert** that unknown p55 ends in ALL THINGS. The intended phrase and its key remain unestablished.
 
 ## Causal implications and next discriminating decision
