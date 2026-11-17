@@ -15,11 +15,36 @@ With no key search or unknown input:
 | Two full solved pages, original order | **2,204 = 29×76** |
 | Last unknown physical p55 | **76 runes** |
 
-This is a **different operation from the earlier 256-position terminal grid partitions** and from p57's known four prime-sum sections. It does not use p56's 85 *ciphertext* indices or silently count an F as 28. Re-encrypting the exact clear p56 text with the source prime shifts and its authentic plaintext-F bypass reconstructs all **85/85** original printed ciphertext rune indices, consuming **84** primes. Thus the 1,091 sum belongs to verified plaintext.
+This is a **different operation from the earlier 256-position terminal grid partitions** and from p57's known four prime-sum sections. The immediately following two-register calculation supplies an additional, conditional independent-number crosslink. It does not use p56's 85 *ciphertext* indices or silently count an F as 28. Re-encrypting the exact clear p56 text with the source prime shifts and its authentic plaintext-F bypass reconstructs all **85/85** original printed ciphertext rune indices, consuming **84** primes. Thus the 1,091 sum belongs to verified plaintext.
 
 Put a pointer at 0 on the GP29 wheel. Add all 180 solved indices in original order, reducing modulo 29 after each addition. Because every source index lies in 0…28, each addition can wrap *at most once*. The total number of wraps is therefore exactly **2,204/29 = 76**, and the wheel returns to 0 at its final symbol. **This generates a full-length potential p55 key without tuning the number of key events to unknown ciphertext.** It is a mathematical observation; the manuscript does not instruct the reader to count GP-index carries, assign them to p55, or perform GP28/GP29 subtraction.
 
 The equally complete reverse page order p57→p56 has the same sum and key length but generally different event positions. This is a useful operation control, not a second author-selected readout.
+
+## Second source-fixed total: GP prime weights give 272 complete turns
+
+The original Gematria Primus has two independently attested numeric registers: **ordinal indices** and **assigned ordinary primes**. Without selecting any new rune, operation, page or interval, repeat the whole-page calculation above with the *GP prime values* of the **same 180 authenticated source glyphs**:
+
+| Source | Sum of ordinal rune indices | Sum of GP prime values |
+| --- | ---: | ---: |
+| Full 85-rune solved p56 | **1,091** | **3,920** |
+| Full 95-rune original clear p57 | **1,113** | **3,968** |
+| Both solved physical pages | **2,204 = 29×76** | **7,888 = 29×272** |
+
+The second quotient **272 = 256 + 16** is exactly the original **256-cell** pp49–51 numeric table plus the **16-number** p15 spiral. Both dimensions were source-fixed independently of this calculation. It creates a possible *two-register* puzzle-design clue: ordinal-wheel turns could correspond to p55's 76 ciphertext runes, and prime-wheel turns could enumerate the 256 numeric cells plus sixteen other source values. However **no historical instruction tells the reader to assign those events to those objects**, and the particular 256+16 decomposition is analyst-selected.
+
+Unlike the 76 ordinal carries, GP primes may exceed29, so a single source rune can pass several full turns. The value272 is the **total number of complete 29-unit revolutions with multiplicity**, rather than 272 distinct source-rune events. An arbitrary traversal of source tokens could generate any of several different 272-item readouts. Do not silently interpret the second quotient as an independently supplied 272-character key.
+
+This exact two-register equality is rarer than the ordinal equality alone in fixed native-GP 180-rune English windows:
+
+| Independently authored GP text source | All 180-rune windows | Exact ordinal sum2,204 | Exact prime sum7,888 | **Both exact** | Both sums divisible by29 (any quotients) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Shakespeare | 216,927 | 768 | 173 | **1** | 238 |
+| Gibran | 62,313 | 200 | 62 | **2** | 69 |
+| Emerson | 321,148 | 1,007 | 263 | **11** | 390 |
+| **Combined** | **600,388** | **1,975** | **498** | **14** | **697** |
+
+The windows overlap heavily; these counts are an empirical source sensitivity check, **not a valid global p-value**. There were many prior numerical explorations and possible source artifact combinations; the 76/272 and 256+16 target sizes were noticed retrospectively. A creator-authored cross-register operator or a deliberately predicted ciphertext effect remains missing.
 
 ### Frozen finite candidate-key rules and direct original decryption
 
@@ -35,10 +60,10 @@ Exactly **16** complete rank28-step inversions (the same source page order, four
 
 The additive original-source consumer has its own independent positive: all **76/76** source-native planted GP runes recover, with **11/11** complete planted GP dictionary words of length at least three matching the original p55 physical word slots.
 
-## Null of the numerical bridge and limits
+## Cipher results, uncertainty, and next decision
 
-The exact 180-rune sum is unusual under preselected ordinary English source windows, though it is not an adjusted probability of intentional construction. In all contiguous length-180 GP source windows, the sum **2,204** occurs **768/216,927** in Shakespeare, **200/62,313** in Gibran and **1,007/321,148** in Emerson (rates 0.31–0.35%). These are highly overlapping windows and the target 76/29 relation was found retrospectively among many explored equations. This result supplies a **complete source-derived key-construction candidate**, with no independent original instruction selecting the crossing rule.
+The two exact source sums fix the 76-event ordinal stream and the 272-prime-turn count before examining any p55 unknown glyph. The empirical native-language comparison above, while suggestive, cannot establish author selection. **No independently sourced key-use mechanism has been found.**
 
 The carrier-specific test uses one original full-page order plus one natural reverse comparator. A next solver would need a source-selected instruction for using carried runes or wheel positions as *non-additive state* or for feeding the exact resulting tape into a different authenticated cipher. It would be unproductive to retry these same 16 additive pads at tuned offsets or arbitrary alphabet mappings.
 
-**Decision:** preserve the exact relation and 76-source-event tapes for potential independent corroboration, while **retiring the 16 direct GP29 addition/subtraction and 16 GP28 predecessor-step interpretations**. The completed original-cipher inversions did **not** recover any unknown LP2 plaintext, key chosen by the creator, or next location. The source relation does not establish that the key construction was deliberate.
+**Decision:** preserve the exact relation and 76-source-event tapes for potential independent corroboration, while **retiring the 16 direct GP29 addition/subtraction and 16 GP28 predecessor-step interpretations**. The completed original-cipher inversions did **not** recover any unknown LP2 plaintext, key chosen by the creator, or next location. The two-register source relations do not establish that the key construction was deliberate.
