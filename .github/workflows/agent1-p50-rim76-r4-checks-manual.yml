@@ -23,3 +23,7 @@ jobs:
         run: node --check sims/lp2_p57_our_own_76_bookend_crib_sft.cjs
       - name: Recover all anchored F-transparent p55 and p27 candidates
         run: node sims/lp2_p57_our_own_76_bookend_crib_sft.cjs
+      - name: Validate six-rune echo three-tape GF29 code
+        run: node --check sims/lp2_p27_echo6_three76_p55_affine_inverse_sft.cjs
+      - name: Invert all 8 three-tape source affine models with positive controls
+        run: node sims/lp2_p27_echo6_three76_p55_affine_inverse_sft.cjs
