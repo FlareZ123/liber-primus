@@ -230,11 +230,17 @@ assert.equal(positiveFit.consistent, true);
 assert.deepEqual(positiveFit.coefficients, [7, 13, 4]);
 
 
-/** A genuinely pre-2014 human clue distinct from p57's repeated text:
- *  Cicada's original 2013 761.MP3 has source ID3 title THE INSTAR EMERGENCE.
- *  Its final word has nine GP runes, exactly the original red p54 title.
- *  Treat this strictly as a third *hypothetical* title crib.
+/** Rejected title-wordshape hypothesis retained solely as a numerical negative:
+ * Cicada's 2013 761.MP3 title contains EMERGENCE (one 9-rune word).
+ * Actual physical p54 red heading is 1+8, with a printed word divider.
+ * The artificial 9-symbol cross-divider substitution is therefore NOT an
+ * original-typography-valid title crib. Never promote its fitted key.
  */
+const actualP54SourceTitle = fs.readFileSync(
+  path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-transcription.txt'),
+  'utf8'
+).split('%')[53].replace(/\/\s*/g, '').replace(/\s+/g, '');
+assert(actualP54SourceTitle.startsWith('ᚪ-ᛗᛝᛞᛡᚦᛉᛁᛗ.'));
 const finalChapter = corpus.pages.slice(54, 56).flatMap((page) => page.indices);
 const finalWord = [18, 19, 18, 4, 6, 18, 9, 5, 18];
 assert.deepEqual(finalChapter.slice(0, 9), [24, 19, 21, 23, 27, 2, 14, 10, 19]);
@@ -284,7 +290,7 @@ const result = {
   shared_initial_GP29_key_symbol: 21,
   shared_affine_cipherfeedback_lag_0_to_4: feedbackDecisions,
   shared_affine_cipherfeedback_native_plant: 'pass',
-  p54_historic_2013_songtitle_crib: 'EMERGENCE (not authenticated plaintext)',
+  p54_rejected_wordshape_crib: 'EMERGENCE is one nine-rune word; physical p54 is printed as 1+8',
   p54_derived_key: finalKey,
   p54_repeated_body_ioc: coincidence(finalPlainRepeating.slice(9)),
   p54_plaintext_autokey_body_ioc: coincidence(finalPlainAutokey.slice(9)),
