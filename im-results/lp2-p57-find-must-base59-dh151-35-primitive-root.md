@@ -95,16 +95,22 @@ The previously separate FIND/MUST pair now has a more constrained, still
    indices rank-minus-one they read **191, 146, 108**.
 3. The p57 author-visible words give **FIND=151**, **MUST=186** and
    **OUR=21** in GP-prime weights. As in the earlier result, choose
-   `p=151` and `g=186 mod151=35`. With candidate private
-   exponents `a=OUR=21` and `b=13` (the frequently printed
-   thirteen-dot mark, although no original instruction selects it as
-   a private exponent), the DH exchange is exact:
-   `A=35^21 mod151=107`, `B=35^13 mod151=115`,
-   `K=B^21 mod151=A^13 mod151=73`.
-   Therefore the original table's three clause addresses yield
-   **[(p-1)/2, B, K] = [75, 115, 73]**. The first value also
-   satisfies `35^75 mod151=150`, consistent with g being a primitive
-   root of order150.
+   `p=151`, `g=186 mod151=35` and candidate local exponent
+   `a=OUR=21`. **The original table itself already supplies the
+   other participant's public share `B=115`, at the second
+   prime-counted clause address173.** Therefore compute the
+   candidate shared secret **directly from source-selected inputs**:
+   `K=B^a modp=115^21 mod151=73`. This equals the
+   value of the original table at the *third* clause address201.
+   The first value75 is exactly `(p−1)/2`, with
+   `35^75 mod151=150`, and the optional local public share is
+   `A=35^21 mod151=107`. Because g35 is primitive modulo151,
+   the **discrete logarithm** of source B115 to base35 is
+   **13**, explaining the retrospective identity
+   `35^13 mod151=115`. **Guessing b=13 or interpreting thirteen-dot
+   stencils as a private key is unnecessary** to derive K73.
+   Thus the table's three addresses directly give
+   **[(p−1)/2, B, K] = [75,115,73]** under this hypothesis.
 4. The original **2013** ID3 number supplies an independent
    arithmetical comparison: `1,595,277,641 mod256=73`, with
    **256** cells explicitly visible in the 2014 original table.
@@ -207,21 +213,24 @@ twice, and 73 once. If both the three **fixed distinct zero-based
 addresses** and the radix were specified *before* seeing their cell
 contents, an exact multiset permutation would hit that triple with
 probability `(2/256)*(2/255)*(1/254) = 1/4,145,280`. This figure is
-**not an adjusted significance claim**: the radix, mixed ordinal/array
-indexing, modulus, 13-exponent, and related arithmetic were assembled
+**not an adjusted significance claim**: the radix, prime-counting
+offsets, selected word sums, and DH interpretation were assembled
 retrospectively, with other numerical alignments already searched.
+The discrete log13 is a derived consistency check, not a required
+key-selection degree of freedom.
 The three clause sums were simultaneously used to construct the
 original 2013 decimal, so those four source numbers are dependent.
 
 The useful advance is a **fully specified source-derived candidate
 DH tuple and cross-round key scalar** with several independent
 artifact-typed checks; none of them is a decryption. Its most severe
-missing selector is the unnatural conversion of a one-based prime
-ordinal into a zero-based array position. The thirteen-dot
-interpretation is equally underdetermined. The 2013 signed TCP
-illustration explicitly makes server-side base and private exponent
-participant-chosen, so historical use of DH does not authenticate this
-2014-specific b=13. Existing direct p55 DH/ring consumers remain
+missing selector is interpreting the prime-counting function
+`π(sum)` as an offset in the original zero-based table, together with
+the base59 codec and word-specific roles. The **other private exponent
+b=13 is optional**, recoverable as the discrete log of the table's
+own `B=115` in the candidate g35 group. The source needs to select
+`OUR=21` as a private exponent and explain why the 2013 DH
+protocol should be applied to the 2014 table; neither is established. Existing direct p55 DH/ring consumers remain
 nonlinguistic, including the new frozen K73 ring receiver below.
 One original 76-rune plaintext interval with independently identifiable
 meaning or a genuine first-party decoder selector is required before
@@ -329,15 +338,19 @@ the source-prime-rank 5×5 square whose missing fourth corner is
 base59 **PAGE=224**, with column-corner difference **A=107**;
 original base59 token values **[75,115,73]** at addresses **[205,173,201]**;
 the 2013 ID3 decimal product and its residue73 modulo256; and a clockwise
-outer-ring cell at offset73 with value107. The proposed full DH exchange
-(p151,g35,a21,b13,A107,B115,K73) is mathematically sound.
+outer-ring cell at offset73 with value107. The proposed **source-computable shared value**
+`K=115^21 mod151=73` uses table-public B115, p57 OUR21,
+and FIND151; optional A107 uses g35 from MUST186.
+The B-base-g discrete log13 is mathematical confirmation,
+not an input or first-party private key.
 
 **Historical inference remains provisional:** neither the signed 2013
 DH example nor LP2's printed instructions selects base59 over base60,
-one-based prime ranks as zero-based cell addresses, b=13 as a private
-exponent, the ID3-to-grid modulo operation, or a GP29 key/receiver.
-The original 13-dot stencils are widespread and their historical role
-as this exponent has not been established. The alternative ring
+the prime-counting function π(sum) as a zero-based table offset,
+the ID3-to-grid modulo operation, the role of OUR as a private
+exponent, or a GP29 key/receiver.
+The 13-dot stencils are widespread and have no authenticated
+DH role; **their count is not needed** to compute the candidate K73. The alternative ring
 concatenation exponent b113 requires postselected ring starts and
 fails the shuffled-source original-multiset gate.
 
