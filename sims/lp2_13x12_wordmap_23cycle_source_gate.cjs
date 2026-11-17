@@ -164,6 +164,20 @@ function compassRoute(cycleCells, wordSums) {
   return steps;
 }
 const exploratoryCompass = compassRoute(cycle, sums);
+const secondHeadingCompass = compassRoute(secondTrace.cycle, sums);
+const fullCycleDisplacement = cycle.reduce(([totalRow, totalCol], bodyIndex) => {
+  const value = p50.bytes[sums[bodyIndex] % 256];
+  const [dr, dc] = directions[value & 7];
+  const distance = value >> 3;
+  return [totalRow + dr * distance, totalCol + dc * distance];
+}, [0, 0]);
+assert.deepEqual(fullCycleDisplacement, [-85, 14]);
+assert.equal(exploratoryCompass[11].p32Rune, "X");
+assert.equal(secondHeadingCompass[11].p32Rune, "U");
+assert.equal(exploratoryCompass.at(-1).p32Index0, 69);
+assert.equal(secondHeadingCompass.at(-1).p32Index0, 69);
+assert.equal(exploratoryCompass.at(-1).p32Rune, "IA");
+assert.equal(secondHeadingCompass.at(-1).p32Rune, "IA");
 const p32XIndices0 = p32
   .map((value, i) => corpus.translit[value] === "X" ? i : null)
   .filter((i) => i !== null);
@@ -258,6 +272,14 @@ const output = {
     midpointStepRecord: exploratoryCompass[11],
     midpointIsX: actualMidpointX,
     steps: exploratoryCompass,
+    secondRedHeadingCycleStep1: secondTrace.cycle[0] + 1,
+    secondRedHeadingMidpoint: secondHeadingCompass[11],
+    secondRedHeadingSteps: secondHeadingCompass,
+    allStepsNetDisplacement: fullCycleDisplacement,
+    allStepsNetDisplacementMod11: fullCycleDisplacement.map((x) => ((x % 11) + 11) % 11),
+    bothRedHeadingCyclesFinishAtSameCell0: 69,
+    sameTerminalIsPermutationInvariant: true,
+    qualification: "The equal terminal is a tautology of commutative toroidal vectors, not independent evidence. Neither compass split nor wrap is source selected.",
   },
   pageStratifiedPermutationDiagnostic: nullResult,
 };
