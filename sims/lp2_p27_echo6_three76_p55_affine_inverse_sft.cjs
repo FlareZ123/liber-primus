@@ -150,10 +150,99 @@ assert.deepEqual(cases.map(c => c.sourceLaneEqualityPairs), [11, 11, 11, 11, 9, 
 assert.ok(cases.every(c => c.originalMatchesOutOf76 <= 9));
 assert.ok(cases.every(c => c.plantedCompleteMatches === 76));
 
+// Stronger key-independent original gate: grant *every* stationary polynomial
+// over GF29 in the three source lane values of total degree <= 5. This includes
+// all possible secret affine/quadratic/cubic/quartic/quintic coefficients.
+// Degree 5 has 56 independent monomials; 76 original observations can
+// distinguish a real secret polynomial from generic unrelated data.
+function monomials(degree) {
+  const out = [];
+  for (let a = 0; a <= degree; a++) {
+    for (let b = 0; b <= degree - a; b++) {
+      for (let c = 0; c <= degree - a - b; c++) out.push([a, b, c]);
+    }
+  }
+  return out;
+}
+
+/** @param {number[]} v @param {number[][]} terms */
+function feature(v, terms) {
+  return terms.map(([a, b, c]) => mod(v[0] ** a * v[1] ** b * v[2] ** c));
+}
+
+/**
+ * Exact rectangular GF29 row rank, optionally including the 77th
+ * independent right-hand-side column. No inverse/solve used on original
+ * after training data.
+ * @param {number[][]} rows
+ * @param {number} width
+ */
+function rank(rows, width) {
+  const A = rows.map(v => v.map(mod));
+  let pivotRow = 0;
+  for (let col = 0; col < width; col++) {
+    let pivot = pivotRow;
+    while (pivot < A.length && A[pivot][col] === 0) pivot++;
+    if (pivot === A.length) continue;
+    [A[pivot], A[pivotRow]] = [A[pivotRow], A[pivot]];
+    const scale = inverse(A[pivotRow][col]);
+    for (let j = col; j < A[pivotRow].length; j++) {
+      A[pivotRow][j] = mod(A[pivotRow][j] * scale);
+    }
+    for (let row = pivotRow + 1; row < A.length; row++) {
+      const factor = A[row][col];
+      if (factor) {
+        for (let j = col; j < A[row].length; j++) {
+          A[row][j] = mod(A[row][j] - factor * A[pivotRow][j]);
+        }
+      }
+    }
+    pivotRow++;
+    if (pivotRow === A.length) break;
+  }
+  return pivotRow;
+}
+
+const allSecret = [];
+for (const layout of ['chunk', 'interleave']) {
+  for (const reverse27 of [false, true]) {
+    for (const reverse55 of [false, true]) {
+      const tape = reverse27 ? trimmed.slice().reverse() : trimmed;
+      const x = threeLanes(tape, layout);
+      const target = reverse55 ? p55.slice().reverse() : p55;
+      const gates = [];
+      for (const degree of [1, 2, 3, 4, 5]) {
+        const terms = monomials(degree);
+        const matrix = x.map((v, i) => [...feature(v, terms), target[i]]);
+        const sourceRank = rank(matrix.map(v => v.slice(0, -1)), terms.length);
+        const augmentedRank = rank(matrix, terms.length + 1);
+        assert.equal(sourceRank, terms.length);
+        assert.equal(augmentedRank, sourceRank + 1);
+        gates.push({degree, terms: terms.length, sourceRank, augmentedRank});
+      }
+
+      // A distinct hidden, non-affine source-shaped polynomial positive:
+      // one arbitrary algebraic key assigns every source monomial its own
+      // unknown field coefficient. The augmented rank must remain exact
+      // and uncontradictory on its original 76 positions.
+      const terms = monomials(5);
+      const plantedKey = terms.map((_, i) => (13 * i + 7) % 29);
+      const planted = x.map(v => dot(feature(v, terms), plantedKey));
+      const fullPlant = x.map((v, i) => [...feature(v, terms), planted[i]]);
+      assert.equal(rank(fullPlant, terms.length), 56);
+      assert.equal(rank(fullPlant, terms.length + 1), 56);
+      allSecret.push({ layout, reverse27, reverse55, gates,
+        plantedPolynomialDegree5Exact: true });
+    }
+  }
+}
+assert.equal(allSecret.length, 8);
+
 console.log(JSON.stringify({
   actualSourceSizes: { p27: 234, echoedRuneCount: 6,
     p27AfterRemovingExactEcho: 228, p55: 76, originalThreeBy76: true },
   sharedSixRuneGP: echo,
-  originalSourceLayouts: cases
+  originalSourceLayouts: cases,
+  allSecretDegreeOneThroughFive: allSecret
 }, null, 2));
-console.log('PASS: 3x76 source bridge exact, all 8 all-secret stationary affine inverses impossible.');
+console.log('PASS: 3x76 source bridge exact, all 8 secret degree<=5 stationary polynomial inverses impossible.');
