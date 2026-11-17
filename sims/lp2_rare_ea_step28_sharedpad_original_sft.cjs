@@ -194,8 +194,8 @@ function plant(seed) {
     return Array.from({length: page.length - 1}, (_, j) =>
       ref.result[(offset + j) % ref.result.length]);
   });
-  const common = plain.map((p, i) => encrypt(p, key, 0, i));
-  const salted = plain.map((p, i) => encrypt(p, key, salts[i], i));
+  const common = plain.map((p, i) => encrypt(p, key, 0, i % M));
+  const salted = plain.map((p, i) => encrypt(p, key, salts[i], i % M));
   for (let i = 0; i < pages.length; i++) {
     assert.deepEqual(decrypt(common[i], key, 0), plain[i]);
     assert.deepEqual(decrypt(salted[i], key, salts[i]), plain[i]);
