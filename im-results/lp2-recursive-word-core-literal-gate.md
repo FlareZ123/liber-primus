@@ -17,4 +17,27 @@ Source-defined nine-section center lengths are **[237,387,574,658,337,479,35,525
 
 The alternative complete center streams, original positions, and **every recursively removed outer ring** are deterministically available from [the self-contained source SFT](../sims/lp2_recursive_word_core_sft.cjs). The SFT asserts all center counts, nine unit lengths, source blob fingerprint and exact **2,896/2,896 original-word reconstruction** from retained outer layers. This establishes implementation accuracy, not an original-cipher inverse. A ring-removal transformation alone is information losing; its reverse requires the entire discarded exterior sequence. The SFT writes no files and emits SHA-256 for independently identifying its computed streams.
 
-**Research decision:** The uniquely determined recursive outer-pair peeling gives no directly readable plaintext or key. Retire this **direct word-core instruction** route without treating all conceivable geometric/page/text interpretations of “circumference” as excluded. Since a further unmotivated rotation or keyed substitution would make the result arbitrarily flexible, no additional key search follows absent an independently authenticated selector.
+## Cross-artifact 32×8 receiver test (17 November 2026, Agent19)
+
+The 32-symbol p57 body-word center vector was already established above; this test asks whether its length, together with the eight-symbol solved `DIVINITY` key, selects a receiver in p50's 32×8 byte table. This is a new cross-artifact test, not a rerun of the direct word-core extraction.
+
+Frozen inputs and interpretations:
+
+- Row vector `c`: the 32 p57 body-word central runes, retaining both central runes for each even-length word.
+- Column vector `d`: GP29 `DIVINITY` = `[23,10,7,10,9,10,16,26]` (D I W I N I T Y).
+- Matrix `M`: p50's printed 32×8 byte table, reduced modulo 29 where a GP29 operation is tested.
+
+Results:
+
+| Receiver test | Result |
+| --- | --- |
+| `M d = c (mod 29)` | **4/32** coordinate matches; not an exact map |
+| `Mᵀ c = d (mod 29)` | **1/8** coordinate matches; not an exact map |
+| Separable two-axis Vigenère `M[r,c] ± c[r] ± d[c]` | Four sign variants; IoCs **0.03210784–0.03422181**, all below raw table IoC **0.03716299** |
+| Row/column XOR: byte XOR prime-weight(c[r]) XOR ASCII(`DIVINITY`)[c] | **35.55%** printable bytes; no recognizable byte/file signature |
+
+The dimension match is exact, but none of the frozen direct receivers produces a message. The 4/32 linear-map matches are not a recovered relation; the transpose is weaker. The p50 matrix should not be treated as a keyed 32×8 transform on this evidence.
+
+Reproducer: [`sims/lp2_p57_center_p50_32x8_gate.cjs`](../sims/lp2_p57_center_p50_32x8_gate.cjs). It reads only the canonical p57 corpus and p50 grid resources and emits all vectors, IoCs and the XOR diagnostic.
+
+**Research decision:** The uniquely determined recursive outer-pair peeling gives no directly readable plaintext or key. The new 32×8 p50 receiver check also fails under the direct linear, separable additive and row/column XOR interpretations above. Retire these specific word-core and 32×8 receiver routes without treating all conceivable geometric/page/text interpretations of “circumference” as excluded. Since a further unmotivated cipher family, rotation or keyed substitution would make the result arbitrarily flexible, no additional search follows absent an independently authenticated selector.
