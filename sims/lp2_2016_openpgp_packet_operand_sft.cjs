@@ -9,7 +9,9 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const crypto = require('node:crypto');
 
-const message = fs.readFileSync('resources/historical/cicada2016-4gq25-outguess.asc');
+// Windows Git checkout may expand LF to CRLF; reconstruct the pinned Git blob bytes.
+const checkedOut = fs.readFileSync('resources/historical/cicada2016-4gq25-outguess.asc');
+const message = Buffer.from(checkedOut.toString('utf8').replace(/\r\n/g, '\n'), 'utf8');
 const publicArmor = fs.readFileSync('resources/control/cicada-3301-public-key.asc', 'utf8');
 const messageText = message.toString('utf8');
 const sha256 = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
