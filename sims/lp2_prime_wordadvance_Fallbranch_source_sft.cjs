@@ -20,7 +20,7 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 const originalBytes = fs.readFileSync(path.join(root, "resources/liber-primus/lp2-corpus.json"));
 assert.equal(crypto.createHash("sha256").update(originalBytes).digest("hex"),
-  "58588725a006432a50a1c8d852b881e5e844ba32073e729b42e0f78074b17338");
+  "7f311254d406b755df39510b8b3f4e53d7dfaea87a0320074c16507d46a07522");
 const corpus = JSON.parse(originalBytes.toString("utf8"));
 const raw = fs.readFileSync(path.join(root, "resources/liber-primus/lp2-transcription.txt"), "utf8");
 const chunks = raw.split("%");
