@@ -215,7 +215,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          git rebase origin/main
           git add im-results/agent2_layer2_p0_2_p42_original_screen.md \
                   im-results/agent2_layer2_p0_2_p42_manifest.json \
                   im-results/agent2_layer2_p0_2_p42_controls.json \
@@ -223,5 +222,6 @@ jobs:
                   im-results/agent2_layer2_p0_2_p42_raw
           if ! git diff --cached --quiet; then
             git commit -m "Agent2: Record bounded layer-two p0-p2 and p42 SFT"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
