@@ -1,0 +1,19 @@
+name: Agent27 original p23 Serratella red16 crib gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  title-crib:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Freeze 16-rune source-synonym title and test original holdout
+        run: node sims/lp2_p23_serratella_title_crib_sft.cjs
