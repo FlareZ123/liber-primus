@@ -23,8 +23,19 @@ Original 2014 physical **p55 72.jpg** contains the final 76 encrypted runes and 
 
 All four native GUI errors are the explicit standard `Task stopped: corrupted stream` dialog; none is an unconfirmed missing-file inference. Source GUI, screenshots and extraction-state JSON are archived in [original evidence artifact 14318865944](https://github.com/FlareZ123/liber-primus/actions/runs/44056866435/artifacts/14318865944). The independent source-native Windows step passed.
 
+## Cross-round 2014 MP3 consumer (17 November 2026)
+
+The separate historical-carrier test is now complete. The exact source-derived A-only password `1595277641` was applied to the authentic original 2014 `interconnected.mp3`, using OpenPuff v4.00, `Mp3 (Audio)`, and the documented `1/2 (50%) - Maximum` bit-selection setting. The Windows workflow independently authenticated both original carriers and the native executable/DLL before testing.
+
+- 2014 control carrier: 6,651,873 bytes, Git blob SHA-1 `09fe068192b76a3697c47ec1d604b527703db798`.
+- 2013 `761.MP3` source carrying the TXXX title: 4,010,732 bytes, SHA-256 `83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460`.
+- Native OpenPuff v4.00 was first validated on the same 2014 carrier with the historically documented password `33011033`; it recovered the expected **745-byte** `magicsquares.txt` with CRC `6A8C41E3`.
+- The second A-only password `1595277641` reached the native extraction step with the carrier and bit-selection state verified, then returned **`native-corrupted-stream`**. The selected capacity was 1,088 bytes. The run completed normally; this was not a timeout, missing-carrier, or failed-UI-selection inference.
+
+The exact native result is recorded in [Windows workflow run 44058648904](https://github.com/FlareZ123/liber-primus/actions/runs/44058648904); its [source-state and GUI evidence artifact](https://github.com/FlareZ123/liber-primus/actions/runs/44058648904/artifacts/14318052851) contains the extraction-state JSON and screenshots.
+
 ## Decision
 
-**Retire precisely these four unmodified-JPEG, A=`1595277641` native OpenPuff extractions.** This negative says nothing about a separate carrier, an MP3 rather than JPEG, a genuinely author-specified multi-image chain, or different independent file-specific instructions. The same exact number was independently tested on the **historically authentic original 2014 Interconnectedness MP3**, which is a *genuine* known OpenPuff carrier, in separate workflow [agent11-2013-parable-number-2014-mp3-openpuff.yml](../.github/workflows/agent11-2013-parable-number-2014-mp3-openpuff.yml). That separate result must be evaluated on its own; do not infer its outcome from the JPEG failures.
+**Retire the exact A-only `1595277641` OpenPuff hypothesis on the tested original carriers:** LP2 physical p55 and p57 JPEGs at Medium 1/5 and Maximum 1/2, and the authentic 2014 Interconnectedness MP3 at Maximum 1/2. The successful same-carrier `33011033` positive control establishes that the historical MP3 procedure was functioning. This closes the outstanding cross-round test; it does not exclude other independently selected carriers, passwords, multi-carrier chains, or different source-authenticated mechanisms.
 
-**Reproducer:** [fixed original OpenPuff workflow](../.github/workflows/agent11-2013-parable-number-openpuff-original.yml). All tested passwords/carriers/settings, the historical number, source positive, binary identities and original extraction traces are preserved without changing any ciphertext rune.
+**Reproducers:** [original LP2 JPEG workflow](../.github/workflows/agent11-2013-parable-number-openpuff-original.yml) · [historical 2014 MP3 workflow](../.github/workflows/agent11-2013-parable-number-2014-mp3-openpuff.yml). The source files, passwords, native binary identities, extraction states and evidence remain preserved without changing any ciphertext rune.
