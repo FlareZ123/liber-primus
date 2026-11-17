@@ -8,7 +8,7 @@
  * model is found exactly with a 5-cycle dynamic program, not a beam search.
  * Source-aware original word boundaries are excluded from bigram scoring.
  * Source-native Gibran words are unseen by the language model and are
- * planted in the original 158-word/729-rune first-chapter geometry.
+ * planted in the original source-chapter word/rune geometry.
  * Windows Node22, standard library only, read-only.
  */
 const fs = require('node:fs');
@@ -43,11 +43,12 @@ const modelWords = words(reference);
 const hiddenWords = words(withheld);
 assert.equal(modelWords.flat().length, 217106);
 
+function runTarget(firstPage,lastPage,expectedWords,expectedRunes){
 const fromImage = new Map(gp.runes.map((s,i)=>[s,i]));
 const originalLengths=[];
 const ends=new Set();
 let count=0;
-for(const symbol of transcript.split('%').slice(0,3).join('%')){
+for(const symbol of transcript.split('%').slice(firstPage,lastPage).join('%')){
   if(fromImage.has(symbol)){count++;}
   if((symbol==='-'||symbol==='.') && count){
     const prev=originalLengths.reduce((sum,x)=>sum+x,0);
@@ -57,10 +58,10 @@ for(const symbol of transcript.split('%').slice(0,3).join('%')){
   }
 }
 if(count){const prev=originalLengths.reduce((sum,x)=>sum+x,0);originalLengths.push(count);ends.add(prev+count-1);}
-assert.equal(originalLengths.length,158);
-assert.equal(originalLengths.reduce((sum,v)=>sum+v,0),729);
-const original=gp.pages.slice(0,3).flatMap(p=>p.indices);
-assert.equal(original.length,729);
+assert.equal(originalLengths.length,expectedWords);
+assert.equal(originalLengths.reduce((sum,v)=>sum+v,0),expectedRunes);
+const original=gp.pages.slice(firstPage,lastPage).flatMap(p=>p.indices);
+assert.equal(original.length,expectedRunes);
 
 // The exact source GP bigram probability is frozen before original decoding.
 const unary=Array(A).fill(1);
@@ -79,7 +80,7 @@ const W=0.25; // Source-frozen unigram weight.
 
 /** @param {number[]} ciphertext @returns {object} */
 function recover(ciphertext){
-  assert.equal(ciphertext.length,729);
+  assert.equal(ciphertext.length,expectedRunes);
   const n=ciphertext.length;
   const table=Array.from({length:5},()=>[]);
   const unaryScore=Array.from({length:5},()=>Array(A).fill(0));
@@ -153,7 +154,7 @@ function plant(seed){
     const eligible=sourceBuckets.get(length);
     return eligible[Math.floor(next()*eligible.length)];
   });
-  assert.equal(plain.length,729);
+  assert.equal(plain.length,expectedRunes);
   return plain;
 }
 const emit=plain=>plain.map((v,i)=>i<5?v:(v+plain[i-5])%A);
@@ -163,15 +164,23 @@ for(let k=0;k<8;k++){
   const source=plant(0x5f07a1c4+k*10691);
   const inferred=recover(emit(source));
   const exact=inferred.plain.filter((x,i)=>x===source[i]).length;
-  native.push({seed:k,correct:exact,score_per_rune:+(inferred.score/729).toFixed(6),
+  native.push({seed:k,correct:exact,score_per_rune:+(inferred.score/expectedRunes).toFixed(6),
     known_seed:source.slice(0,5),inferred_seed:inferred.seed});
 }
 const translit=seq=>seq.map(i=>gp.translit[i]).join('');
-console.log(JSON.stringify({
+return {
   type:'frozen_lag5_plaintext_autokey_source_native_test',
-  source:{runes:729,words:158,language_model:'independent Shakespeare',
-    controls:'8 independently selected Gibran original-shaped 729-rune texts'},
-  original:{seed:originalResult.seed,score_per_rune:+(originalResult.score/729).toFixed(6),
+  source:{runes:expectedRunes,words:expectedWords,language_model:'independent Shakespeare',
+    controls:'8 independently selected Gibran original-shaped expectedRunes-rune texts'},
+  original:{seed:originalResult.seed,score_per_rune:+(originalResult.score/expectedRunes).toFixed(6),
     first150_plain_runes:translit(originalResult.plain.slice(0,150))},
   plants:native
+};
+}
+console.log(JSON.stringify({
+  type: 'exact_five_position_gp29_plaintext_autokey_original_gate',
+  chapters: [
+    {pages:'p0..p2', ...runTarget(0,3,158,729)},
+    {pages:'p23..p26', ...runTarget(23,27,224,1021)}
+  ]
 },null,2));
