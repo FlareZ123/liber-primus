@@ -6,6 +6,7 @@ spectrogram projections. The published R4 settings and planted nulls are fixed.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import subprocess
@@ -41,7 +42,9 @@ def main():
     manifest = json.loads((SOURCE / "manifest.json").read_text(encoding="utf8"))
     check = {item["file"]: item["digest"] for item in manifest}
     for name in ("761.MP3", "interconnectedness.mp3", "c.mp3"):
-        assert gitsha1((SOURCE / name).read_bytes()) == check[name] if name != "761.MP3" else True
+        data = (SOURCE / name).read_bytes()
+        actual = hashlib.sha256(data).hexdigest() if name == "761.MP3" else gitsha1(data)
+        assert actual == check[name], (name, actual, check[name])
     _, codebooks, _ = authentic_midi()
     sections = [
         (f"p{first}-{last}", np.asarray(
@@ -59,6 +62,7 @@ def main():
         "parameters": "historical 2012 tempo 120bpm, published original R4 fixed q=.81 nu=.42",
         "source": {}, "r4_reference": "pnotisdev 15200c67abee106913ba01ff504c5b6e88d16cc7",
     }
+    keys = {}
     for source, name in (("761", "761.MP3"), ("interconnectedness", "interconnectedness.mp3"),
                          ("c", "c.mp3")):
         both = stereo_pcm(SOURCE / name)
@@ -66,6 +70,7 @@ def main():
         side = (left - right) * 0.5
         note_events = detect_notes(side)
         summary, key = profile(note_events, codebooks)
+        keys[source] = key
         correlation = float(np.corrcoef(left[::100], right[::100])[0, 1])
         report["source"][source] = {
             "channel_correlation": round(correlation, 6),
@@ -82,11 +87,7 @@ def main():
         report["r4_exact_pins"] = hashes
         cipher = original_words()
         for name in report["source"]:
-            both = stereo_pcm(SOURCE / ("761.MP3" if name == "761" else
-                                        "interconnectedness.mp3" if name == "interconnectedness"
-                                        else "c.mp3"))
-            note_events = detect_notes((both[:, 0] - both[:, 1]) * .5)
-            _, key = profile(note_events, codebooks)
+            key = keys[name]
             report["source"][name]["side_r4"] = (
                 screen_source(lib, pi, lm, cipher, key, 13302130 + len(key))
                 if len(key) >= N else {"eligible": False}
