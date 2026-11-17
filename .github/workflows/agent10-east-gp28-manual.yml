@@ -12,5 +12,9 @@ jobs:
           node-version: '22'
       - name: Syntax check
         run: node --check sims/lp2_p0_east_gp28_successor_inversion_sft.cjs
+      - name: Check all-secret phase test syntax
+        run: node --check sims/lp2_p0_east_gp28_27phase_allsecret_sft.cjs
       - name: Reproduce original GP28 inverse and positive plants
         run: node sims/lp2_p0_east_gp28_successor_inversion_sft.cjs
+      - name: Reproduce all-secret 27-phase cipher and solved-native controls
+        run: node sims/lp2_p0_east_gp28_27phase_allsecret_sft.cjs
