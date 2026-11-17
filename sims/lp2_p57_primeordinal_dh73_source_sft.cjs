@@ -161,7 +161,7 @@ const sourceSolved = fs.readFileSync(
   path.join(root, 'resources/liber-primus/lp1-plaintext-reference.txt'), 'utf8'
 );
 const p56Text = sourceSolved.split('### 56')[1].split('### 57')[0];
-assert.equal((p56Text.match(/\\bPAGE\\b/g) || []).length, 2);
+assert.equal((p56Text.match(/\bPAGE\b/g) || []).length, 2);
 assert.equal(primeSum('PAGE'), 224);
 const cornerRows = [
   [upperLeft, ranks[1]],
