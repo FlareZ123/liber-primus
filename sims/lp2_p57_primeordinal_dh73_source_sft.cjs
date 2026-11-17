@@ -18,7 +18,7 @@ const root = process.cwd();
 /** @param {string} file @returns {any} */
 const read = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
 const C = read('resources/liber-primus/lp2-corpus.json');
-const G = read('resources/liber-primus/base60-grid.json');
+const G = read('resources/liber-primus/base60-G.json');
 const id3 = fs.readFileSync(
   path.join(root, 'im-results/audio761-original-id3-frame-inventory.md'), 'utf8'
 );
@@ -137,7 +137,7 @@ const seenSuffixes = new Set(trailingChars);
 assert.equal(trailingChars.length, 256);
 assert.equal(seenSuffixes.size, 59);
 assert.equal(seenSuffixes.has('f'), false);
-const baseAlphabetSize = grid.alphabet.length;
+const baseAlphabetSize = G.alphabet.length;
 assert.equal(baseAlphabetSize, 60);
 let occupancyDistribution = Array(baseAlphabetSize + 1).fill(0);
 occupancyDistribution[0] = 1;
@@ -162,8 +162,8 @@ const titleValue60 = bytes60[titlePrimeOrdinal];
 assert.equal(titleToken, '15');
 assert.equal(titleValue59, 64);
 assert.equal(titleValue60, 65);
-assert.equal(titleValue59, grid.rows[0].length ** 2);
-assert.equal(grid.rows[0].length, 8);
+assert.equal(titleValue59, G.rows[0].length ** 2);
+assert.equal(G.rows[0].length, 8);
 const at59 = ranks.map((address) => bytes59[address]);
 const at60 = ranks.map((address) => bytes60[address]);
 const oneBased59 = ranks.map((address) => bytes59[address - 1]);
@@ -297,7 +297,7 @@ console.log(JSON.stringify({
     titleOriginalTableToken: titleToken,
     titleBase59Value: titleValue59,
     titleBase60Value: titleValue60,
-    gridWidthSquared: grid.rows[0].length ** 2,
+    gridWidthSquared: G.rows[0].length ** 2,
     clearRuneMatch: '95/95',
     actualEnglish: 'TUNNELING (one ING rune)',
     clauseSums, primeOrdinals: ranks,
