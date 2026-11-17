@@ -14,6 +14,7 @@ on:
           - pixel-initial-control
           - width-residual
           - word-geometry
+          - table-rc4
 
 jobs:
   printed-line-invariant:
@@ -22,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        if: ${{ inputs.attack == 'phase' || inputs.attack == 'width-residual' || inputs.attack == 'word-geometry' }}
+        if: ${{ inputs.attack == 'phase' || inputs.attack == 'width-residual' || inputs.attack == 'word-geometry' || inputs.attack == 'table-rc4' }}
         with:
           node-version: '22'
       - name: Run exact line-phase and planted-control experiment
@@ -37,6 +38,9 @@ jobs:
       - name: Test 206 whole-word line starts conditional on native glyph advances
         if: ${{ inputs.attack == 'word-geometry' }}
         run: node sims/lp2_206_wordstart_visual_grammar_sft.cjs
+      - name: Test source-derived 8-16-32 RC4 page keys
+        if: ${{ inputs.attack == 'table-rc4' }}
+        run: node sims/lp2_8_16_32_table_rc4_pagekey_sft.cjs
       - name: Install original-JPEG geometric model dependencies
         if: ${{ inputs.attack == 'pixel-measure' }}
         run: python3 -m pip install --user numpy pillow
