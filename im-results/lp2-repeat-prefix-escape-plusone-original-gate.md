@@ -12,7 +12,7 @@ Native original clear p57 GP symbols are repeated three times for a 285-rune pla
 
 ## Frozen, seed-independent original obstruction
 
-The original [LP2 GP corpus](../resources/liber-primus/lp2-corpus.json) has 55 rune-bearing unknown physical pages, 12,956 runes, and **86** within-page equal adjacent pairs. Every such equality under this codec marks the start of an escape, so the *next* rune must have GP difference **+1 mod29**. The source data contain:
+The original [LP2 GP corpus](../resources/liber-primus/lp2-corpus.json) has 55 rune-bearing unknown physical pages, 12,956 runes, and **86** adjacent-equal pairs across the original continuous rune tape, one at a physical-page edge. Every such equality under this codec marks the start of an escape, so the *next* rune must have GP difference **+1 mod29**. The source data contain:
 
 | Required relation | Observed |
 | --- | ---: |
@@ -21,9 +21,9 @@ The original [LP2 GP corpus](../resources/liber-primus/lp2-corpus.json) has 55 r
 | Contradict the mandated terminator | **84** |
 | First contradiction | absolute rune offset **122**, `TH,TH,P` with next GP delta **11** |
 
-The 86 equal pairs have **zero triple-equal overlaps** and all 86 have a next original same-page glyph. The next-difference histogram covers all 28 nonzero differences; no choice of initial seed or secret start parameter repairs even the first contradiction. This is a **strict source-level impossibility**, stronger than a language score, and applies independently on an untouched distant chapter. No plaintext decoding or optimization was needed to discover the failure.
+The 86 equal pairs have **zero triple-equal overlaps** and all 86 have a next original rune in continuous physical-page order. The next-difference histogram covers all 28 nonzero differences; no choice of initial seed or secret start parameter repairs even the first contradiction. This is a **strict source-level impossibility**, stronger than a language score, and applies independently on an untouched distant chapter. No plaintext decoding or optimization was needed to discover the failure.
 
-[Read-only SFT](../sims/lp2_repeat_prefix_escape_source_sft.cjs) asserts the original rune length, 86/2/84 exact outcomes, first failure, native control roundtrips under four different IVs, and source-preserved page boundaries. The [Windows Node22 SFT run](https://github.com/FlareZ123/liber-primus/actions/runs/44166718105) documents execution.
+[Read-only SFT](../sims/lp2_repeat_prefix_escape_source_sft.cjs) asserts the original rune length, 86/2/84 exact outcomes, first failure, native control roundtrips under four different IVs, and source-preserved physical page order. The [Windows Node22 SFT run](https://github.com/FlareZ123/liber-primus/actions/runs/44166718105) documents execution.
 
 ## Scientific scope and next decision
 
