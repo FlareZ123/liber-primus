@@ -1,6 +1,6 @@
 # Integrated original inversion challenge
 
-## Decision frontier — 17 November 2026 (updated 14:38 UTC)
+## Decision frontier — 17 November 2026 (updated 14:40 UTC)
 
 All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; 32 words carry across physical page boundaries. Physical p50 is a rune-free 32×8 table of 256 two-character numeric cells. The p55 terminal contains 76 runes. The solved p56 remains under the prime-totient cipher with transparent plaintext-F bypass; p57 is 95 clear GP runes. **No unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.**
 
@@ -16,28 +16,26 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 
 ## Live Director work and handoffs
 
-**Live frontier checked 17 November 2026 at 14:38 UTC.** All 56 unknown pages p0–p55 remain unsolved; there is still no unknown-page plaintext, authentic unknown-page key, complete original inverse or verified final destination. The live Issue list is the operational queue; this section records the current decision frontier and prevents stale claims from being treated as current science.
+**Live frontier checked 17 November 2026 at 14:40 UTC.** All 56 unknown pages p0–p55 remain unsolved; there is still no unknown-page plaintext, authentic unknown-page key, complete original inverse or verified final destination. The live Issue list is the operational queue; this section records the current decision frontier and prevents stale claims from being treated as current science.
 
-### Claimed original-source decisions (five)
+### Claimed original-source decisions (six)
 
 - [#1329](https://github.com/FlareZ123/liber-primus/issues/1329) — **Agent25:** the 2016 signed words/meaning/numbers clue as a wordwise key-pointer direction. The 18-convention original-input and six-section campaigns are already dispatched; ingest CI, do not rerun. Weakest premise: no first-party instruction yet fixes pointer direction/key source.
 - [#1339](https://github.com/FlareZ123/liber-primus/issues/1339) — **Agent30:** remaining finite solved-key × historical-keyword layer-two slices. Existing 729-rune opening and p42–44 work must be ingested. Weakest premise: no source selects layer order or operands; do not expand the key catalog.
 - [#1363](https://github.com/FlareZ123/liber-primus/issues/1363) — **Agent39:** whether p0's corrected 8+5 red title is an executable opening instruction predicting the 716-rune black body. Weakest premise: title may be a separately enciphered heading rather than an opcode or crib. Avoid previous red13, 23-cycle and 2014 title-number sweeps.
 - [#1364](https://github.com/FlareZ123/liber-primus/issues/1364) — **Agent4:** whether nine marked chapters share or vary in reversible encryption architecture. An independent source-native comparison reports adjacent-equality rates of 2.462% for LP1 encrypted text and 2.814% for LP1 clear text, versus 0.664% for LP2. This is an architectural difference, not an identified cipher. Weakest premise: chapter differences may be confounded by formatting. Require a frozen, blind, plaintext-capable prediction.
 - [#1365](https://github.com/FlareZ123/liber-primus/issues/1365) — **Agent24:** whether the p27/p55 six-rune echo implies an evolving-state key relation. Director correction: the exact six-rune phrase and stronger seven-rune transcription were documented before this run. The seventh rune crosses into the first ciphertext rune of solved p56; p56's independent prime-totient/F-transparent clock does not transfer plaintext or key state to p27. The only live question is an independently authored same-state/clock rule. No further phrase census or static key-reset sweep.
+- [#1368](https://github.com/FlareZ123/liber-primus/issues/1368) — **Agent19:** inspect the exact signed 2016 OpenPGP packet for one first-party-selected LP2 operand; do not enumerate packet offsets, hashes or key-ID conversions without a source-selected mapping. No result yet.
 
 ### Blocked prerequisites (two)
 
 - [#1335](https://github.com/FlareZ123/liber-primus/issues/1335) needs a genuinely source-naive outside human oracle for the balanced p55 ghost-tree packet; an agent's own reading cannot substitute.
 - [#41](https://github.com/FlareZ123/liber-primus/issues/41) needs one independently frozen complete 76-rune p55 decoder. Do not run another ring/table sweep. Owner-only #784 archival permission is separate.
 
-### Unclaimed executable decisions (seven)
+### Unclaimed executable decisions (four)
 
-The queue now has **14 open director-task Issues: five claimed, two blocked, and seven unclaimed**. The unclaimed tasks are bounded exploratory routes, each requiring an actual source-selected key/operation or original plaintext:
+The queue now has **12 open director-task Issues: six claimed, two blocked, and four unclaimed**. The unclaimed tasks are bounded exploratory routes, each requiring an actual source-selected key/operation or original plaintext:
 
-- [#1366](https://github.com/FlareZ123/liber-primus/issues/1366) — test whether the authenticated 2014 GEB book-code convention supplies one LP2 address/key; do not repeat the missing Stage08 response or generic semantic-index search.
-- [#1367](https://github.com/FlareZ123/liber-primus/issues/1367) — identify an exact source/generator for all 256 ordered p50 cells, then use its native operation; no partial table matches or prior base59/byte sweeps.
-- [#1368](https://github.com/FlareZ123/liber-primus/issues/1368) — test whether the 2016 signed OpenPGP packet contains a first-party-selected LP2 operand; no arbitrary signature/hash/key-ID menu.
 - [#1369](https://github.com/FlareZ123/liber-primus/issues/1369) — identify a period-source text/key from the central illustrations on pp8–14, excluding known side-parity and generic tree searches.
 - [#1370](https://github.com/FlareZ123/liber-primus/issues/1370) — test one source-indicated alternate language or natural-language register; no language buffet or arbitrary 26↔29 mapping.
 - [#1372](https://github.com/FlareZ123/liber-primus/issues/1372) — reproduce one unindexed independent plaintext/key/decoder claim on original ciphertext; a repository inventory alone is not completion.
@@ -53,7 +51,11 @@ Critic #1402's 13:59 zero-unclaimed observation preceded #1362's closure and the
 
 **#1371 closed at 14:37:05 UTC (Agent50):** The surviving 2013 BASE29 command specifies decimal-integer-to-base-29 numeral conversion (worked example BASE29 3301 → 3QO), not a GP29-rune-to-binary framing rule. It does not select LP2 block boundaries, rune/integer direction, byte width or endianness, leading-zero handling, or payload type. No LP2 serializer is source-selected; stop before arbitrary block-size or magic-header searches. A future independently authenticated framing instruction could reopen the typed-payload route. [Issue #1371](https://github.com/FlareZ123/liber-primus/issues/1371).
 
-**Queue check (14:38 UTC):** 14 open director-task Issues remain: five claimed, two blocked and seven unclaimed. Seven is below the Director's 8–12 unclaimed target; the next Director should replenish with genuinely independent, executable hypothesis-discovery work rather than reopen either closed family.
+**#1366 closed at 14:39:19 UTC (Agent50):** The authenticated 2014 Stage08 GEB book-code has its own signed address list and was used for its own 2014 continuation. The separate signed 2016 LP2 message supplies no GEB title/reference, locator, dialogue label, coordinate quartet or instruction to continue counting through Hofstadter's book. No LP2 address/key mapping is selected; stop without coordinate enumeration. Reopen only if a first-party cue both reselects GEB and fixes an LP2-related address/list or mapping. [Original Stage08 source audit](../im-results/cicada2014-stage08-daughter-source-audit.md) · [Issue #1366](https://github.com/FlareZ123/liber-primus/issues/1366).
+
+**#1367 closed at 14:39:39 UTC (Agent38):** The canonical 256-cell p50 byte stream has 161 distinct values and is not a direct 256-element permutation S-box. A frozen source-native comparison against 42 standard cryptographic generator/table outputs found no complete match (best 4/256); a supplemental mathematical-constant/MT19937 scan also found none. This is a bounded generator search, not proof that no external source exists. No source-selected table generator or LP2 key was recovered; reopen only with a period-available source naming the complete ordered table and intended receiver. [Exact generator report](../im-results/lp2-p50-exact-generator-source-gate.md) · [SFT](../sims/lp2_p50_known_generator_match_sft.cjs) · [Issue #1367](https://github.com/FlareZ123/liber-primus/issues/1367).
+
+**Queue check (14:40 UTC):** 12 open director-task Issues remain: six claimed, two blocked and four unclaimed. Four is below the Director's 8–12 unclaimed target; the next Director should add at least four genuinely independent, executable discovery tasks before release rather than reopen closed families.
 
 **Decision rule:** prioritize routes that can specify an authentic key, a reversible operation, or a typed receiver and then recover a complete original interval. Statistical structure, exact phrase recurrence, synthetic fits, or successful round trips are intermediate evidence only. If a task's source selector fails, close it with the precise missing input; do not rescue it with tuned exceptions. No current finding warrants changing the authoritative science synthesis in [results/README.md](../results/README.md).
 
