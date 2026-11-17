@@ -77,6 +77,31 @@ Second, the row's unique terminal **151** itself provides a concrete *prime-valu
 **The p56-style prime151 direct inverse is therefore impossible already at black-body rune index1**, irrespective of later language-model choice. A nontransparent or differently initialized rule would be a distinct hypothetical decoder requiring a separate source instruction. This second test is a true exact structural rejection of the frozen p56 continuation.
 
 
+
+## Independent destination clue: source row 27 identifies the first of two repeated bookend pages
+
+There is a materially separate *navigation* interpretation of the same source-selected zero-based **row27**. It also names **physical LP2 page27**, the last page of the first 28-page half of the 56 unsolved physical-page slots. The corresponding page in the second half is **p55**, the final unsolved page immediately preceding the solved p56.
+
+Earlier researchers, independently of the current p0/table arithmetic, established that the entire **12,956-rune original unknown cipher** has **exactly one cross-page identical six-rune sequence**. It occurs at **p27 local offsets28–33** and **p55 local offsets70–75**, has GP indices \`[23,11,1,17,18,10]\`, and is the literal last six runes of p55. The p27 occurrence has a seventh following GP index **25**; the corresponding seventh rune after p55 is the **first rune of solved p56**, also GP index25. Thus the seven-rune continuation reads identically when one crosses the real p55/p56 boundary. See [original cross-page echo report](bookend-repeat-lag6395.md) and [terminal seven-rune seam study](lp2-2013-parable-rsa-cyclewalk-original-gate.md). The present SFT independently enumerates all within-page six-rune windows across the 55 rune-bearing unknown pages and obtains exactly that one cross-page match.
+
+This supplies a specific **potential human navigation chain** whose independent source objects were not adjusted to make it work:
+
+\`\`\`text
+p0 two red GP word sums 347,315
+  → both select row27 in the 32×8 table
+  → table row27 is prime-151/totient-linked to the red-title total
+  → row number27 also identifies LP2 physical page27
+  → p27 contains the unique cross-page six-rune echo
+  → its other occurrence closes p55
+  → the seventh shared rune reaches the already-solved p56 AN END
+\`\`\`
+
+The 2016 signed Cicada wording about words, numbers and direction gives contextual motivation for *navigation*, but **does not authenticate this route**, the table-to-page identification, or what to do after following the ciphertext echo. The page27/55 six-rune repeat was a known ciphertext observation and **is not a recovered plaintext phrase**; independent cryptanalysis rejects interpreting its displacement as a simple globally repeated additive key. The row27/page27 relationship could still be a retrospective coincidence.
+
+As a literal next-key alternative, apply the selected eight row27 bytes with position-zero GP29 additive clock to **p27 (234 runes)** and **p55 (76 runes)** independently. The exact original-source IoCs under subtraction/addition are **0.0335644327 / 0.0360588386** on p27 and **0.0421052632 / 0.0291228070** on p55. These are not native-GP language. Their original rune previews are nonlinguistic and their round-trip arithmetic is exact. This rejects the simplest row27-as-GP29-key consumer on the indicated bookend pages, without rejecting a source-instructed page navigation or another ciphertext relation.
+
+**Missing decisive operation:** an authentic source instruction must say whether to treat row27 as a page address, how to read or transform the two 6/7-rune markers, or how to reach genuine plaintext. Additional coincidental page positions should not be chained until an independently supplied operation predicts a complete original word or message.
+
 ## Historically motivated RSA consumer: p=151, q=331, e=13
 
 A stronger alternative to using a single GP29 additive row is to treat the two independent **prime-valued original source references** as a textbook RSA factor pair: **p=151** from the unique row27 terminal cell/earlier LP1 square and **q=331** from the original 2014 7×7 magic-square center (and archived HTML index). The red opening contains exactly **13 runes** and ends in a **13-dot** mark, motivating **e=13** as one candidate public exponent. RSA itself has genuine prior Cicada puzzle precedent, unlike a newly invented algorithm; see [original historical RSA source survey](grid-rsa-factor-test.md). The assignment of these primes and 13 as an RSA key remains conjectural because the manuscript supplies no such instruction.
