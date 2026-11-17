@@ -5,6 +5,7 @@
 
 const assert = require('node:assert/strict');
 const crypto = require('node:crypto');
+const fs = require('node:fs');
 const path = require('node:path');
 
 const corpus = require(path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-corpus.json'));
@@ -53,19 +54,39 @@ for (let chapter = 0; chapter < chapters.length; chapter += 1) {
   }
 }
 assert.equal(tested.length, 720);
-const exact = tested.filter(x => x.exact);
-const max = Math.max(...tested.map(x => x.equalBytes));
+const imageTests = [];
+const chapterImageNumbers = [17, 20, 25, 32, 40, 44, 50, 57, 71];
+for (let chapter = 0; chapter < chapterImageNumbers.length; chapter += 1) {
+  const filename = String(chapterImageNumbers[chapter]).padStart(2, '0') + '.jpg';
+  const originalJpeg = fs.readFileSync(path.join(__dirname, '..', 'resources', 'liber-primus', filename));
+  const digest = sha256(originalJpeg);
+  for (const [orientation, blocks] of [['column', columns], ['horizontal32', horizontal]]) {
+    for (let index = 0; index < 8; index += 1) {
+      let equalBytes = 0;
+      for (let k = 0; k < 32; k += 1) {
+        if (digest[k] === blocks[index][k]) equalBytes += 1;
+      }
+      imageTests.push({ chapter, filename, orientation, index, equalBytes, exact: equalBytes === 32 });
+    }
+  }
+}
+assert.equal(imageTests.length, 144);
+const allTests = tested.concat(imageTests);
+const exact = allTests.filter(x => x.exact);
+const max = Math.max(...allTests.map(x => x.equalBytes));
 console.log(JSON.stringify({
   protocol: 'p50-8x32-sha256-source-chapters',
   corpus: 'resources/liber-primus/lp2-corpus.json',
   table: 'resources/liber-primus/lp2-grid-256.json',
   chapterRuneCounts: chapters.map(([lo, hi]) =>
     corpus.pages.filter(p => p.page >= lo && p.page <= hi).reduce((total, p) => total + p.indices.length, 0)),
-  representations: ['gp_unicode', 'translit', 'index0', 'prime_ascii', 'index1'],
+  representations: ['gp_unicode', 'translit', 'index0', 'prime_ascii', 'index1', 'original-opening-jpeg-bytes'],
   orientations: ['column', 'horizontal32'],
-  tested: tested.length,
+  chapterTextTests: tested.length,
+  chapterJpegTests: imageTests.length,
+  totalTested: allTests.length,
   exact: exact.length,
   maxEqualBytes: max,
-  bestCases: tested.filter(x => x.equalBytes === max)
+  bestCases: allTests.filter(x => x.equalBytes === max)
 }, null, 2));
 assert.equal(exact.length, 0, 'Exact digest match discovered; inspect input bytes and preserve evidence');
