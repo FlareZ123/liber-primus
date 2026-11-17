@@ -8,7 +8,9 @@ The original LP2 physical p50 is a visible numerical 32×8 array, printed across
 CB E7 A7 BA 61 ED 7E B7
 ```
 
-A historically dated 11 May 2014 stage11 source archive supplies a **period clue** for testing the narrow possibility that an early-2010s PRNG wrote these bytes directly using a Unix-second launch-time seed. The earlier 2013 participant-server `RAND [n]` command is only a weak hypothesis prompt: the six preserved requests total 21 bytes, and no source shows that this server emitted the p50 table or used MT19937. The exact random generator and byte extraction are unselected by the puzzle.
+A historically dated 11 May 2014 stage11 source archive supplies a **period clue** for testing the narrow possibility that an early-2010s PRNG wrote these bytes directly using a Unix-second launch-time seed.
+
+**Prior-work boundary:** This is a small **C++ `std::mt19937` seed-initialization/readout complement** to the earlier and broader [April–May 2014 CPython MT timestamp tests](lp2-p50-2014-python-mt-seed-gate.md) and [keyless original small-state generator exclusions](lp2-p50-keyless-linearstate-prng-source-gate.md). The Python seed initialization is mathematically different from C++ `std::mt19937(seed)`; none of those exclusions select a table decoder. The original source already has extensive weak-PRNG exclusions, so this result is a minor remaining implementation-specific gate, **not a new strategic research direction**. The earlier 2013 participant-server `RAND [n]` command is only a weak hypothesis prompt: the six preserved requests total 21 bytes, and no source shows that this server emitted the p50 table or used MT19937. The exact random generator and byte extraction are unselected by the puzzle.
 
 ### Frozen finite operation
 
