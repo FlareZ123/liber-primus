@@ -15,6 +15,39 @@ const q = 1031;
 const seed = 1229;
 const modulus = p * q;
 assert.equal(modulus * seed, 1595277641);
+/**
+ * @param {number} base
+ * @param {number} exponent
+ * @param {number} modulus
+ * @returns {number}
+ */
+function modPow(base, exponent, modulus) {
+  let result = 1;
+  while (exponent > 0) {
+    if (exponent % 2 === 1) result = result * base % modulus;
+    base = base * base % modulus;
+    exponent = Math.floor(exponent / 2);
+  }
+  return result;
+}
+
+// Universal Blum-square-state period after one initial squaring:
+// QR(1259) has order629=17*37, ord_629(2)=72;
+// QR(1031) has order515=5*103, ord_515(2)=204.
+// Therefore lcm(72,204)=1224 squarings, independent of the seed.
+assert.equal((p - 1) / 2, 629);
+assert.equal((q - 1) / 2, 515);
+assert.equal(modPow(2, 72, 629), 1);
+assert.notEqual(modPow(2, 36, 629), 1);
+assert.notEqual(modPow(2, 24, 629), 1);
+assert.equal(modPow(2, 204, 515), 1);
+for (const divisor of [2, 3, 17]) {
+  assert.notEqual(modPow(2, 204 / divisor, 515), 1);
+}
+const universalBitPeriod = 1224;
+const universalByteLag = universalBitPeriod / 8;
+assert.equal(universalByteLag, 153);
+
 const row60 = table.byte_rows.flat();
 const digits59 = table.alphabet.replace('f', '');
 const row59 = table.rows.flat().map((x) =>
@@ -22,6 +55,13 @@ const row59 = table.rows.flat().map((x) =>
 );
 assert.equal(row60.length, 256);
 assert.equal(row59.length, 256);
+const pairCounts = { base60: 0, base59: 0 };
+for (let index = 1; index + universalByteLag < 256; index++) {
+  if (row60[index] === row60[index + universalByteLag]) pairCounts.base60++;
+  if (row59[index] === row59[index + universalByteLag]) pairCounts.base59++;
+}
+assert.deepEqual(pairCounts, { base60: 0, base59: 0 });
+
 assert.deepEqual(row60, table.rows.flat().map((x) =>
   60 * table.alphabet.indexOf(x[0]) + table.alphabet.indexOf(x[1])
 ));
@@ -122,6 +162,9 @@ console.log(JSON.stringify({
   originalSource: 'resources/liber-primus/base60-grid.json',
   id3ParableInteger: 1595277641,
   blumModulus: modulus,
+  universalBitPeriod,
+  universalByteLag,
+  originalLag153MatchesBeyondInitialByte: pairCounts,
   testedInitialStates: modulus,
   plantedState,
   variants
