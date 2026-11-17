@@ -120,6 +120,7 @@ function enumerateKeys() {
   for (let r = 2; r <= 26; r += 2) {
     for (let c = 2; c <= 26; c += 2) {
       for (let radius = 2; radius <= 12; radius += 2) {
+        if (c - radius < 1 || c + radius > 27) continue;
         const l = at([r, c - radius]), h = at([r, c]),
           rr = at([r, c + radius]);
         if (!l || !h || !rr || l === rr) continue;
@@ -168,7 +169,7 @@ function validGcd(center, segment) {
   ].every(x => mu(x) !== 0);
 }
 const keys = enumerateKeys(), segments = enumerateSegments();
-assert.equal(keys.length, 344);
+assert.equal(keys.length, 172);
 assert.equal(segments.length, 132);
 const candidates = [];
 for (const key of keys) {
@@ -178,9 +179,9 @@ for (const key of keys) {
     candidates.push({...key, ...seg, plain});
   }
 }
-assert.equal(candidates.length, 43846);
+assert.equal(candidates.length, 21818);
 const encoded = a => a.map(v => String.fromCharCode(v + 65)).join("");
-assert.equal(new Set(candidates.map(x => encoded(x.plain))).size, 35176);
+assert.equal(new Set(candidates.map(x => encoded(x.plain))).size, 18578);
 
 // External reference dictionary is independent of the original cipher.
 const tokens = corpus.translit.slice().sort((a, b) => b.length - a.length);
@@ -240,13 +241,13 @@ for (const candidate of candidates) {
   if (phrase) language.push({length: len, phrase: phrase.join(" ")});
 }
 assert.deepEqual(Object.fromEntries(lengths), {
-  3: 9310, 5: 7912, 7: 6934, 9: 5950,
-  11: 4360, 13: 3328, 15: 2312, 17: 1676,
-  19: 1032, 21: 688, 23: 344,
+  3: 4614, 5: 3922, 7: 3422, 9: 2960,
+  11: 2188, 13: 1672, 15: 1170, 17: 838,
+  19: 516, 21: 344, 23: 172,
 });
 assert.deepEqual(longSingleWords, ["MAKING"]);
-assert.equal(language.length, 192);
-assert.equal(new Set(language.map(x => x.phrase)).size, 123);
+assert.equal(language.length, 95);
+assert.equal(new Set(language.map(x => x.phrase)).size, 74);
 assert.deepEqual(language.filter(x => x.length >= 7),
   [{length: 7, phrase: "ME TIS NO"}]);
 console.log(JSON.stringify({
