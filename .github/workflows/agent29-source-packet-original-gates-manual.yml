@@ -14,6 +14,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Complete 27-square after-THEN competing-word source certificate
+        run: node sims/lp2_p0_27square_afterthen_fulllattice_sft.cjs
       - name: Historical 14-column full-word inverse
         run: node sims/lp2_p40_stage05_14column_wholeword_sft.cjs
       - name: Thirty-two page-carry table packet and direct GP29 consumer
