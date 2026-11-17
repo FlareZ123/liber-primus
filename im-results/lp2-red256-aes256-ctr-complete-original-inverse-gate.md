@@ -1,6 +1,6 @@
-# Chronological red256 events as AES-256-CTR keys: complete original GP29 inverse
+# Chronological red256 events as AES-256-CTR keys: original GP29 and byte receivers
 
-**Agent43, 17 November 2026. Original-input bounded negative; two native Windows/Node22 CI PASS executions. No unknown-page Liber Primus plaintext, authentic creator key, decipherment opcode, or final destination was recovered.**
+**Agent43, 17 November 2026. Original-input bounded negative; three native Windows/Node22 CI PASS executions, including the full binary receiver. No unknown-page Liber Primus plaintext, authentic creator key, decipherment opcode, or final destination was recovered.**
 
 ## Plausible source cue and independent starting evidence
 
@@ -42,11 +42,22 @@ Perform this separately for all 144 original source models on the **entire openi
 
 Every variant passes an additional **genuine p57 plaintext-F transparent encryption positive**: it recovers **95/95 clear p57 runes** without supplying the true transparent F locations. This rules out decoder error as the reason for the original opening contradiction and bounds the exclusion to the exact keys, IVs, reductions, signs and clocks used.
 
+## Full original-byte receiver: completed source-native execution
+
+The separate binary-input hypothesis consumes the same frozen four 256-bit event keys and two IVs, with AES-256-CTR but **no** GP29 reduction or English scoring. Each source GP29 rune packet is interpreted as a big-endian BASE29 integer, rendered either at minimal byte length or at the exact fixed ceiling of (L\log_2(29)/8) bytes, then XORed against AES-CTR. This is a historically motivated candidate receiver because Cicada's solved 2012 stages used bytewise XOR and BASE29 encodings; no LP2 authorial clue selects their use in this order. The exact 65 source packets are the entire 12,956-rune unknown book, its nine visible chapters and its 55 rune-bearing physical pages. The same AES keys/IVs separately decode the **256 actual printed p50 table bytes**. Thus the complete unmodified-source matrix is `65×2×4×2 + 1×4×2 = 1,048` exact candidates, all covered by **1,048/1,048 passing AES symmetry/English-payload positive controls**.
+
+The successful native [Windows Node22 run 44078288509](https://github.com/FlareZ123/liber-primus/actions/runs/44078288509), job `134021910448`, executed the full matrix using [the committed single-file original-source SFT](../sims/lp2_red256_base29_aes_ctr_binary_sft.cjs). Across 16 explicitly declared leading file signatures, including gzip, ZIP, PNG, PDF, JPEG, GIF, SQLite, ELF, RIFF, OGG, ID3 and ASCII PGP, it found **zero signature matches**. The greatest printable fraction among the first 128 bytes was only **0.517857** (p51 packet, parity/dot0 key, p50-first16 IV), with no coherent plaintext evidence. Whole original GP29 source-index SHA-256 is `73473a68c3fc4296f16009716d7fee18c9c102173e6e70d090c9494cc5bd9252`; the source native whole-packet decoded byte length is **7,868** under both widths.
+
+A separate geometrically fixed consumer applies the red-event-derived 32-byte key cyclically to the 256 original p50 bytes, in either 32×8 printed row-major or 8 slices of 32 column-major order. These **eight** original repeated-key XOR outputs also match **zero** of the 16 specified leading file signatures; their full 256-byte outputs have only **96–106** printable ASCII/control characters and **28–44** bytes in the GP29 ordinal range 0–28. Every XOR is exact/self-inverse on original bytes.
+
+**Decision:** no authentic binary file, known-format header, or recognizable prose was found under the precise source-projected keys, IVs, byte-packing or two repeated-XOR orientations. This is a negative for a frozen set of direct binary consumers and a set of leading signatures, **not** a proof against arbitrary encrypted binary content, hidden compression formats, different event selections, or other IV/key derivations. The source furnishes no independent instruction selecting such replacements, so avoid an unbounded AES parameter hunt.
+
 ## Reproduction, decision, and limits
 
 - [Standalone Node.js 22 CJS original-source inverse](../sims/lp2_red256_ink_aes_ctr_full_original_sft.cjs), source inputs original gp corpus, original red/dot annotations and original 256 numeric bytes, deterministic and read-only
 - [Native Windows manual workflow](../.github/workflows/agent43-red256-original-manual.yml)
 - [PASS first complete 144-case original-cipher run](https://github.com/FlareZ123/liber-primus/actions/runs/44075255635)
 - [PASS complete 729-rune F-bypass original-cipher extension](https://github.com/FlareZ123/liber-primus/actions/runs/44075819247)
+- [PASS full 1,048-case BASE29/byte receiver plus eight fixed XOR orientations](https://github.com/FlareZ123/liber-primus/actions/runs/44078288509)
 
-**Retire exactly these 144 red-event-bitkey AES-CTR GP29 consumer configurations as direct original plaintext routes.** Their bare inverses have near-uniform source outputs; if the authenticated solved plaintext-F bypass applies, none can even represent the complete first manuscript chapter. This cannot rule out a future independently sourced key, IV, alternative original A/B/C event inventory, an encrypted binary payload, new key schedule or different source-selected cipher. Further ad hoc bit offsets/IVs without first-party instruction would be an unfounded expansion. The open research need is a creator-selected operator/key that deciphers and reencrypts meaningful contiguous unknown-page runes or authentic recovered historical material specifying one.
+**Retire exactly these 144 red-event-bitkey AES-CTR GP29 consumer configurations as direct original plaintext routes.** Their bare inverses have near-uniform source outputs; if the authenticated solved plaintext-F bypass applies, none can even represent the complete first manuscript chapter. This cannot rule out a future independently sourced key, IV, alternative original A/B/C event inventory, a binary payload outside the frozen receivers and signatures, a new key schedule or a different source-selected cipher. Further ad hoc bit offsets/IVs without first-party instruction would be an unfounded expansion. The open research need is a creator-selected operator/key that deciphers and reencrypts meaningful contiguous unknown-page runes or authentic recovered historical material specifying one.
