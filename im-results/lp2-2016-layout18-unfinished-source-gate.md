@@ -60,6 +60,33 @@ The independent Shakespeare GP-native reference has mean logLR **+0.418329** ove
 
 **Decision:** This is a strong finite exclusion of ordinary native-GP English under any secret periodic **8- or 13-rune direct additive key** combined with any of the 23 original page/line/position signs, even where each section has an unrelated secret key. It does **not** cover the anti-repeat skip/coin rule used by the still-open historical 581-key campaign, a variable-length keystream, F transparency, alternate plaintext register, or a nonadditive transformation. No genuine LP2 plaintext or key has emerged. The [single-file Windows/CJS source-native reproducer](../sims/lp2_layout_23rules_allsecret_8_13_sft.cjs) and [manual-only Windows regression](../.github/workflows/lp2-layout-allsecret-shortperiod-sft.yml) preserve all source inputs, exact optimizer, 23 original masks and 16 independent planted recoveries.
 
+## A stronger, language-model-free frequency ceiling even under arbitrary secret GP29 alphabet permutations
+
+The previous exact 8/13-key result assumes the 29 Gematria Primus symbols have their ordinary linguistic identities when scored. A stronger information-theoretic necessary condition is available **without knowing the key, any rune-to-letter correspondence, or an English language model**. Preserve only the source-selected physical class of each original rune: its index modulo a historical key period (8 or 13) and the sign given by one of the **same 23 original source-layout rules**. Then grant the decipherer a fully arbitrary, independent and secret **29-symbol bijection for every (period phase, physical sign) class**, amounting to up to 16 or 26 independent full alphabet permutations per chapter. This strictly contains every direct signed GP29 Caesar-key decoder considered above and is vastly more permissive than any shift key or one global substitution alphabet.
+
+For each of the 2L original physical classes, count source ciphertext occurrences of all 29 rune values and **sort each class's 29-bin histogram in descending frequency order**. Add all these sorted histograms by rank to obtain counts H[r]. The exact **maximum** achievable plaintext index of coincidence, over every independent class-specific permutation, is
+
+\`IoC_max = Σ_(r=0..28) H[r](H[r]−1) / (N(N−1))\`.
+
+This is an attained global maximum, not a heuristic: the rearrangement inequality shows that any two class histograms have largest inner product when their ranked frequencies align. Sorting every class the same way realizes every pairwise upper bound simultaneously. This also covers any final **global** alphabet substitution, since IoC is permutation-invariant. No dictionary was used to select a candidate.
+
+The original results below maximize over all **23** source-fixed physical signs, independently for each chapter and historical period. They use the exact unedited original GP29 ciphertext and source line/page layout, including physically wrapped words. The actual already-solved p57, **95 original clear runes, has IoC 0.062709966**. Values below that positive reference cannot have as strong a one-rune frequency concentration under this enormous class of reversible decoders, even with adversarially selected secret alphabet permutations.
+
+| Original ciphertext section | Runes | Max IoC, any 16 signed-period-8 secret permutations | Max IoC, any 26 signed-period-13 secret permutations |
+| --- | ---: | ---: | ---: |
+| p0–2 | 729 | **0.053965239** | **0.067170141** |
+| p3–7 | 1,145 | 0.047303570 | 0.054495068 |
+| p8–14 | 1,729 | 0.043077780 | 0.047246856 |
+| p15–22 excluding 9-rune bridge | 1,894 | 0.042896884 | 0.046685644 |
+| p23–26 | 1,021 | 0.048971596 | 0.057738472 |
+| p27–32 | 1,524 | 0.044154116 | 0.049736930 |
+| p33–39 | 1,589 | 0.043513894 | 0.048769643 |
+| p40–55 | 3,316 | **0.039311933** | **0.041800348** |
+
+**Decision:** Even arbitrary alphabet substitutions per physical sign and per historical short-key phase cannot reproduce the observed frequency concentration of authentic original cleartext p57 in **all eight period-8 windows and seven of eight period-13 windows**. The p0–2 period-13 bound of **0.067170141** remains above the chosen solved reference and cannot be excluded on this criterion. IoC is only a necessary distributional feature of ordinary GP29 English; the 95-rune p57 sample is **not a universal lower bound** for every possible passage or language, and some legitimate passages can have less concentrated symbol frequencies. Consequently this is a rigorously exact **capacity bound** for a massive direct, per-class substitution family, rather than a proof about the actual author language, an unknown F-transparent/skip-key system, a changing key-state model, or a layered nonlocal transposition.
+
+The [same all-secret source-native Windows CJS reproducer](../sims/lp2_layout_23rules_allsecret_8_13_sft.cjs) now computes both the earlier optimum logLR and this independent exact frequency ceiling. It checks the original physical source, original p57 positive reference, original p56 encrypted reference, and native-Shakespeare blind cipher plants that must remain at or under the mathematically derived ceiling. A completed regression is required before treating those code assertions as externally verified.
+
 ## Authentic historical keyword pointer walk (six printed-layout direction conventions)
 
 The signed 2016 “direction” instruction also motivates a **reversible pointer-motion** cipher in place of a key-value sign: the source-defined line/page/position quantity determines the key pointer's direction **for each complete original printed word**, while the historical 2014 key material supplies the consumed rune values. The fully independent [actual original-input pdir inverse](../sims/lp2_layout_pdir_2014keywords_noskip_original_sft.cjs) reads all 12,956 unchanged rune values and original word boundaries, including words spanning line/page wraps, and runs the six distinct source-published direction conventions that remain in a no-skip decoder: first-read `h=0/1` × interword motion `m=0/oldDirection/newDirection`. It tests every original 23 layout-word direction rules, pointer orientation ±, arithmetic sign ±, every cyclic phase, and both authentic 2014 GP-key spellings. The third pointer convention `c` controls only repeat-triggered skip/coin behavior and is algebraically irrelevant in this explicitly skip-free model.
