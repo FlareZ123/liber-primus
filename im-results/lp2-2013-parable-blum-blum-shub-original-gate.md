@@ -1,6 +1,6 @@
 # 2013 Parable factors as a Blum–Blum–Shub key for the original LP2 table and rune ciphertext
 
-**Agent15, 17 November 2026. Classification: original-source-motivated cryptographic hypothesis with decisive direct-consumer negatives; no plaintext or creator key.** Reproducer [`lp2_2013_parable_bbs_original_sft.cjs`](../sims/lp2_2013_parable_bbs_original_sft.cjs), [passing Windows Node22 Actions run 44165046666](https://github.com/FlareZ123/liber-primus/actions/runs/44165046666).
+**Agent15, 17 November 2026. Classification: original-source-motivated cryptographic hypothesis with decisive direct-consumer negatives; no plaintext or creator key.** Reproducers: [complete original-source key test](../sims/lp2_2013_parable_bbs_original_sft.cjs) and [exhaustive all-state original-table test](../sims/lp2_p50_parable_bbs_allstate_original_sft.cjs). [Both passed Windows Node22 Actions run 44165724479](https://github.com/FlareZ123/liber-primus/actions/runs/44165724479).
 
 ## Authored cross-round input and independent mechanism
 
@@ -23,6 +23,17 @@ The 32×8 source numeric table holds 256 two-character values; under its convent
 
 The same 256-byte direct XOR under base59 yields only 95–104 printable ASCII bytes, with no complete readable instruction or ordinary file header in the first bytes. The generator fails as a **direct reproducer** of the original printed byte table, or as a directly usable **XOR pad exposing ASCII** in this complete four-format class.
 
+**Independent all-state inversion with no assumed seed:** Exhaust **every one of the M=1,298,029 possible current modular states**, even nonsquare states, to test whether *any* BBS seed and arbitrary clock offset can reproduce the first three printed table bytes. From each state, emit consecutive low bits, square modulo M and pack into bytes using either conventional bit order. Emitting after a square is already included because each possible successor state was enumerated. Test both numeral readings and both source-natural table orders. Exact first-byte and second-byte survival:
+
+| Source reading | MSB first: 1 byte | MSB first: 2 bytes | LSB first: 1 byte | LSB first: 2 bytes | 3-byte survivors, either |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| base60 row | 5,024 | 34 | 5,218 | 22 | **0** |
+| base59 row | 5,139 | 22 | 5,218 | 20 | **0** |
+| base60 column | 5,024 | 16 | 5,218 | 14 | **0** |
+| base59 column | 5,139 | 10 | 5,218 | 14 | **0** |
+
+Thus **no state and no arbitrary BBS clock start** can directly generate even the first three source bytes under any of these eight input/order interpretations. The all-state test also plants the original independent source seed s=1229 as a four-byte stream in both bit orders and recovers its genuine modular initial state in each case. This stronger exclusion depends only on the two prime factors forming M; it no longer requires s=1229 to be the original chosen seed. It does not exclude nonlinear output processing or a different modulus. [Exact all-state original-input SFT](../sims/lp2_p50_parable_bbs_allstate_original_sft.cjs) · [Windows PASS 44165724479](https://github.com/FlareZ123/liber-primus/actions/runs/44165724479).
+
 A stronger structural exclusion is available for the frozen seed. Its modular-square state returns to its start after exactly **612 steps** (no earlier repeat); thus the standard emitted bitstream has period612. Any direct eight-bit byte packing of those bits must repeat at a **153-byte** lag (1224 bits=2×612), independent of initial bit offset and bit orientation. Yet the **authentic base60 table has 0/103 equal byte pairs at lag153**, as does the alternate base59 reading. This is incompatible with **any directly copied consecutive byte trace** of this fixed BBS seed in the printed order, regardless of which prefix byte is aligned first. A secretly permuted or nonlinear postprocessed stream is outside scope.
 
 ## Direct full-manuscript GP29 receiver
@@ -35,6 +46,6 @@ The smallest original recipient p55 contains 76 ciphertext runes and ends in ori
 
 ## Outcome and next decision
 
-The original Parable factorization supplies unusually specific finite mathematical material: an independently printable Blum modulus and seed. A canonical BBS construction, however, reproduces **neither** the original table's bytes **nor** a readable direct XOR plaintext; direct 29-rune pads also fail on the complete unknown book, and the conditional p55 anchor fails. Retire these exact original BBS *direct consumers*, without increasing freedom through arbitrary secret seeds, clock skips, bit permutations or hashes. An independently authored instruction choosing BBS and a different reversible receiver would be required to reopen this lead. The 2013 factor identity remains intact and separately under investigation in the DH73 route.
+The original Parable factorization supplies unusually specific finite mathematical material: an independently printable Blum modulus and seed. Every possible BBS starting state under the candidate Blum modulus fails to reproduce even the first three printed table bytes as a direct low-bit stream. The source-derived fixed seed yields no readable direct XOR plaintext, its direct GP29 pads fail across the complete unknown book, and the conditional p55 anchor also fails. Retire these exact original BBS *direct consumers*, without increasing freedom through arbitrary secret seeds, clock skips, bit permutations or hashes. An independently authored instruction choosing BBS and a different reversible receiver would be required to reopen this lead. The 2013 factor identity remains intact and separately under investigation in the DH73 route.
 
-**Reproducibility:** the passing original-source CommonJS test loads the unchanged canonical 2013-prime-derived constants, the repo's complete original `base60-grid.json`, and the full GP29 `lp2-corpus.json`; it executes the BBS generator, source byte comparisons, ASCII XOR readouts, the original p55/footer F-count constraint, 16 whole-manuscript inverse IoCs, and planted p57 positives. No recovered unknown plaintext, usable original key, or Cicada destination is claimed.
+**Reproducibility:** the passing original-source CommonJS test loads the unchanged canonical 2013-prime-derived constants, the repo's complete original `base60-grid.json`, and the full GP29 `lp2-corpus.json`; it executes the BBS generator, exhaustive 1,298,029-state table-prefix inversion, source byte comparisons, ASCII XOR readouts, the original p55/footer F-count constraint, 16 whole-manuscript inverse IoCs, and planted p57 positives. No recovered unknown plaintext, usable original key, or Cicada destination is claimed.
