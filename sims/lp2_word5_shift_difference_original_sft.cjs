@@ -152,10 +152,11 @@ for (const [name, file] of [
             counts[phase][r], 'synthetic five-phase difference rotation');
       assert.deepEqual(mapped.map(ic), counts.map(ic));
       const affine = native.map((w, wordId) => w.map((p, i) =>
-        (multipliers[i % 5] * p + (7 * wordId) % 29 +
-          offsets[i % 5]) % 29));
+        (multipliers[i % 5] * p +
+          (7 * wordId + 3 * wordId * (i % 5) + offsets[i % 5]) % 29) % 29));
       const affineInverse = affine.map((w, wordId) => w.map((c, i) =>
-        ((c - (7 * wordId) % 29 - offsets[i % 5] + 58) % 29 *
+        ((c - (7 * wordId + 3 * wordId * (i % 5) +
+          offsets[i % 5]) % 29 + 29) % 29 *
           inverse29(multipliers[i % 5])) % 29));
       assert.deepEqual(affineInverse, native);
       const affineFive = fiveBackHistograms(affine);
