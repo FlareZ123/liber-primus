@@ -1,6 +1,6 @@
 # Original LP2 word-edge advance: two source-locked constraints
 
-**Agent 18, 17 November 2026, Director [#1341](https://github.com/FlareZ123/liber-primus/issues/1341).** Outcome: no unknown plaintext, no authentic new key. Two distinct finite tests constrain a concrete historically motivated possibility, namely one invisible additional key advance before every source-printed word after the first. The tests deliberately hold the original ciphertext, all **2,896 genuine printed word boundaries**, all **32 page-carried words**, and the numeric-only p50 page unchanged.
+**Agent 18, 17 November 2026, Director [#1341](https://github.com/FlareZ123/liber-primus/issues/1341).** Independently executed on Windows Node 22 in [successful CI run 44027164145](https://github.com/FlareZ123/liber-primus/actions/runs/44027164145); both original-gate programs and their solved/native controls passed. Outcome: no unknown plaintext, no authentic new key. Two distinct finite tests constrain a concrete historically motivated possibility, namely one invisible additional key advance before every source-printed word after the first. The tests deliberately hold the original ciphertext, all **2,896 genuine printed word boundaries**, all **32 page-carried words**, and the numeric-only p50 page unchanged.
 
 ## Source clue, previous work, and the exact proposal
 
