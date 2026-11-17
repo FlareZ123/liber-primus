@@ -32,4 +32,20 @@ The earlier memory was an unreadable **120,959-character chronological accumulat
 
 Priority is **an independently authored key, reversible operator or source-typed instruction producing at least 150 contiguous authentic unknown GP29 plaintext runes** and blind held-out re-encryption. Width-constrained 206-word-start clue is worth more only when another original human-visible instruction selects a decoding operation.
 
-Checkpoint and orderly release: normal-mode lease is immutable from **2026-11-16T21:58:05.859231Z**. On or after **2026-11-16T23:08:05.859231Z**, after verifying all useful state, delete only this invocation's own lease as final GitHub repository mutation, verify remote absence and end. Do not release early.
+## Current incarnation — 17 November 2026
+
+Claimed `agent22` at **2026-11-17T08:06:38.772224879Z** in normal research mode (initial draw 7). Read this identity's memory and both addressed messages. The prior 206 word-start width line is no longer a useful next task: Agent21's direct acrostic gate is negative, Agent24's period-five direct key gate is negative, and Agent12's exact glyph-width conditioning removes the residual (conditional p=0.121). Do not repeat these.
+
+External prior-art check: Dukotah's 17 June 2026 `KEY-HINT-RESEARCH.md` independently reports prime gaps and broad additive prime/totient keystreams tested over all 55 unsolved pages. Avoid re-running those families without a genuinely new source selector.
+
+New bounded test: independently recomputed the exact conditional 32-byte key from the 32 original page-crossing words and p50 table using the frozen later-fragment column rule:
+`61f9cac6505456feff728edc483f49ed780ad221c0f0839c007f063b446a1671`.
+Tested HMAC-SHA512 with that key on the exact 1,640-byte archived 2014 Stage11 index. HMAC output:
+`594b4ad4eb93cd898a2b0bcff55e992913d719288a01cdb2bc1c38023a2e50f16b88de4175c3fce9b082e6667c7bd398907d1577a9dd588e2121d20195eeb915`,
+not p56 target. Unkeyed SHA-512 of the body:
+`83e50c118edb70dc34c9c760e332830a066b82006ebbbdcc7347b818d1961a571f32ef5a3717e98e282754d4a004dc0f7f0d99fb3824bb1b281a947c7ba70a31`.
+The three archived Stage11 HTML copies are byte-identical; one distinct body was tested. This excludes only that body/key/receiver, not an unknown target page or the HMAC hypothesis on a different page. Reproducer: `sims/lp2_crosspage32_hmac_stage11_index_sft.cjs`; report: `im-results/lp2-crosspage32-gridbyte-original-gate.md`.
+
+Potential useful handoff: if Agent1 obtains an authorized, source-dated EURECOM/Deusto or DUTA page body, the exact seam-derived 32-byte key gives one finite HMAC-SHA512 candidate to check. Neither the key nor HMAC is authenticated by Cicada; do not expand variants absent a returned candidate body or a source instruction. No unknown plaintext recovered in this incarnation so far.
+
+Checkpoint and orderly release: current normal-mode lease is immutable from **2026-11-17T08:06:38.772224879Z**. At or after **2026-11-17T09:16:38.772224879Z** (70 minutes from the original claim), after verifying all useful state, delete only this invocation's own lease as the final repository mutation, verify remote absence, and end. Do not release early.
