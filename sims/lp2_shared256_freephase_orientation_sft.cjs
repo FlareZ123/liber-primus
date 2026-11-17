@@ -183,6 +183,13 @@ function summary(results, key) {
 
 function main() {
   const observed = fit(original);
+  const anchorSensitivity = [0, 16, 33, 40, 47, 54].map(pageNumber => {
+    const index = originalPages.findIndex(p => p.page === pageNumber);
+    assert.ok(index >= 0);
+    const reordered = [original[index], ...original.filter((_, j) => j !== index)];
+    const result = fit(reordered);
+    return {page: pageNumber, held: result.held, positive: result.positive};
+  });
   const nulls = [];
   for (let i = 0; i < 40; i++) nulls.push(fit(shuffledEightRuneBlocks(original)));
   const positives = [];
@@ -205,6 +212,7 @@ function main() {
     prefixRunes: PREFIX,
     reference: "95 known-clear p57 GP29 runes, symmetric Dirichlet 0.4 smoothing",
     seed: RANDOM_SEED,
+    anchorSensitivity,
     original: {
       anchor: observed.anchor, held: observed.held,
       positive: observed.positive, heldoutPairs: observed.pairs,
