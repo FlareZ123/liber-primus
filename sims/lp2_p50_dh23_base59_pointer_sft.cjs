@@ -97,6 +97,9 @@ const dhSharedColumnCell = historicalDH.p * historicalDH.serverPublic + historic
 assert.equal(dhSharedColumnCell, 186);
 assert.equal(tokens[dhSharedColumnCell], '0J');
 assert.equal(base60[dhSharedColumnCell], historicalDH.clientPublic);
+// Original value19 is unique; value192 occurs at four exact cells.
+assert.deepEqual(base60.flatMap((n,i)=>n===19?[i]:[]),[186]);
+assert.deepEqual(base60.flatMap((n,i)=>n===192?[i]:[]),[67,162,189,247]);
 assert.equal(tokens[dhCell], '3C');
 assert.equal(base60[dhCell], 192);
 assert.equal(tokens[base60[dhCell]], '00');
@@ -253,6 +256,8 @@ process.stdout.write(JSON.stringify({
     secondZeroIndex: 229, bracketLength: zeroBracket.length,
     sameDHExampleShared2Column186Value: historicalDH.clientPublic,
     serverPublic8ColumnCarryDirectFirstZero: 192,
+    sourceValue19OccursOnceAt186: true,
+    sourceValue192OccursAt: [67,162,189,247],
     p39RedDoubleRoot: p39Root, requiresZeroBasedCoordinates: true,
     firstTwoOriginalTablePagesRows: [10,13],
     thirdOriginalTablePageBeginsRow: 23,
