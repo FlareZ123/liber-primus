@@ -176,12 +176,70 @@ for (const [first, inside] of [[10, 27], [10, 28], [5, 27], [5, 28]]) {
   assert.deepEqual(top.map(x => x.phase), [94, 495]);
   assert.deepEqual(top[0].longWords.map(x => x.value), ['GOITRE']);
   assert.deepEqual(top[1].longWords.map(x => x.value), ['SPICES']);
-  assert.deepEqual(decrypt(94, first, inside),
-    decrypt(94, first, inside));
+  const originalInverse = decrypt(94, first, inside);
+  assert.equal(originalInverse.flat().length, 3000);
   assert.deepEqual(encrypt(decrypt(94, first, inside), 94, first, inside), ciphertext);
   variants.push({first: gp.translit[first], inside: gp.translit[inside],
     seeds: 840, maximumMatched, maximumLong, keysWithLong, top});
 }
+
+// Independent native whole-word English plant preserving original 667
+// word lengths. Each GP word reverses before encryption, then its inverse
+// must recover all 3000 symbols and the same original word boundaries.
+const byLength = new Map();
+for (const roman of read('resources/control/gibran_prophet_58585.txt')
+  .match(/[A-Za-z]+/g) || []) {
+  const x = encodeEnglish(roman);
+  if (!byLength.has(x.length)) byLength.set(x.length, []);
+  byLength.get(x.length).push(x);
+}
+let nativeSeed = 0x33013903;
+const random = () => {
+  nativeSeed ^= nativeSeed << 13;
+  nativeSeed ^= nativeSeed >>> 17;
+  nativeSeed ^= nativeSeed << 5;
+  return nativeSeed >>> 0;
+};
+const plant = ciphertext.map(w => {
+  const options = byLength.get(w.length);
+  assert(options?.length);
+  return options[random() % options.length].slice().reverse();
+});
+assert.equal(plant.flat().length, 3000);
+for (const [first, inside] of [[10, 27], [5, 28]]) {
+  const coded = encrypt(plant, 391, first, inside);
+  // decrypt() is bound to the original input, so the same full inverse
+  // is independently replayed here with a ciphertext argument.
+  let previous = iv, clock = 0;
+  const recovered = [];
+  for (const word of coded) {
+    const decoded = [];
+    for (let j = 0; j < word.length; j++) {
+      const step = m29(word[j] - previous);
+      const k = trace[(391 + clock) % 840] % 28;
+      const marker = j === 0 ? first : inside;
+      const inv = d => {
+        const p = d === 0 ? 28 : m28(log[d] - k);
+        return p === 28 ? marker : p === marker ? 28 : p;
+      };
+      let p = inv(step);
+      if (j >= 6) {
+        const t = m29(27 * word[j - 6] + 24);
+        const targetStep = m29(t - previous);
+        if (targetStep !== 0) {
+          const displaced = inv(targetStep);
+          if (step === targetStep) p = 15;
+          else if (p === 15) p = displaced;
+        }
+      }
+      decoded.push(p);
+      previous = word[j]; clock++;
+    }
+    recovered.push(decoded);
+  }
+  assert.deepEqual(recovered, plant);
+}
+
 console.log(JSON.stringify({
   sourceP3: [13, 23, 2], sourceP39: [27, 5, 15],
   sourceP40PrimeSum: 435, primitiveFieldOrder: 840,
