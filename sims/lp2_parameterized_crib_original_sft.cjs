@@ -36,6 +36,56 @@ known.push({name: 'LP2p57', values: corpus.pages[57].indices});
 assert.equal(known[6].values.length, 95);
 
 /**
+ * Convert literal author-signed prose to its source-native GP29 rune spelling.
+ * Exact reference words come from original signed message, not decrypted LP2.
+ * These source orthography conventions are established in solved LP1/p57.
+ * @param {string} text
+ * @returns {number[]}
+ */
+function nativeSignedProse(text) {
+  const spellings = corpus.translit.map((symbol, index) => ({symbol, index}))
+    .sort((a, b) => b.symbol.length - a.symbol.length);
+  const runes = [];
+  for (const unaltered of text.toUpperCase().match(/[A-Z]+/g) || []) {
+    const word = unaltered.replace(/QU/g, 'CW').replace(/V/g, 'U')
+      .replace(/[KQ]/g, 'C').replace(/Z/g, 'S')
+      .replace(/ING/g, 'NG').replace(/IO/g, 'IA');
+    for (let i = 0; i < word.length;) {
+      const token = spellings.find(entry => word.startsWith(entry.symbol, i));
+      assert.ok(token, 'No GP spelling for ' + unaltered);
+      runes.push(token.index);
+      i += token.symbol.length;
+    }
+  }
+  return runes;
+}
+/**
+ * Original inline prose between the PGP clearsigned wrapper and signature.
+ * Remove the one hostname and numeric signature identifier, which are not
+ * native GP29 words. The actual signed prose remains in original order.
+ * @param {string} message
+ * @returns {number[]}
+ */
+function signedProse(message) {
+  assert.ok(message.startsWith('-----BEGIN PGP SIGNED MESSAGE-----'));
+  const signature = '-----BEGIN PGP SIGNATURE-----';
+  assert.ok(message.includes(signature));
+  const beforeSignature = message.split(signature)[0];
+  const body = beforeSignature.split('\n\n').slice(1).join('\n\n');
+  return nativeSignedProse(body
+    .replace(/ky2khlqdf7qdznac\.onion/gi, ' ')
+    .replace(/\b3301\b/g, ' '));
+}
+
+
+known.push({name: 'Signed2016', values:
+  signedProse(read('resources/historical/cicada2016-4gq25-outguess.asc'))});
+known.push({name: 'Signed2014', values:
+  signedProse(read('resources/historical/cicada2014-stage11-message.asc'))});
+assert.deepEqual(known.slice(7).map(item => item.values.length), [177, 65]);
+assert.deepEqual(nativeSignedProse('MEANING'), [19, 28, 9, 21]);
+
+/**
  * Two equally long substrings have identical equality patterns iff there is a
  * bijective alphabet map between their distinct rune values. Epoch-stamped
  * maps avoid allocation per starting pair and permit complete all-offset scans.
@@ -156,11 +206,11 @@ function repeatedWindows(length) {
 
 const observed = known.map(reference => ({name: reference.name,
   ...longestIsomorphic(original, reference.values)}));
-assert.deepEqual(observed.map(row => row.length), [16, 15, 15, 16, 16, 15, 15]);
+assert.deepEqual(observed.map(row => row.length), [16, 15, 15, 16, 16, 15, 15, 15, 15]);
 const transparentObserved = known.map(reference => ({name: reference.name,
   ...longestTransparentF(original, reference.values)}));
 assert.deepEqual(transparentObserved.map(row => row.length),
-  [16, 15, 15, 16, 16, 15, 14]);
+  [16, 15, 15, 16, 16, 15, 14, 15, 14]);
 const sourceOffsets = [];
 let cursor = 0;
 for (const page of pages) {
@@ -221,5 +271,5 @@ console.log(JSON.stringify({
     recoveredIsomorphismLength:transparentPositive.length,
     recoveredInsertionOffset:transparentPositive.originalOffset,
     recoveredReferenceOffset:transparentPositive.referenceOffset},
-  conclusion: 'No 17-rune or longer original LP2 passage is a fixed bijective substitution or a source-native literal-F-transparent substitution of any contiguous passage in six selected clear LP1 pages or clear p57. All page-local unknown-to-unknown equality patterns have unique signatures at length 22. These are necessary-condition exclusions for identical typed plaintext under a single bijection, not universal decryptions or evidence against changing keys, transposition, or novel plaintext.'
+  conclusion: 'No 17-rune or longer original LP2 passage is a fixed bijective or native literal-F-transparent substitution of any contiguous passage in six selected clear LP1 pages, clear p57, or the original prose of two Cicada clearsigned 2014/2016 messages. All page-local unknown-to-unknown equality patterns have unique signatures at length 22. These are necessary-condition exclusions for identical typed plaintext under a single bijection, not universal decryptions or evidence against changing keys, transposition, or novel plaintext.'
 }, null, 2));
