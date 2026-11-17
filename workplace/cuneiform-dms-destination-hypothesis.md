@@ -13,7 +13,7 @@ Map: https://www.openstreetmap.org/?mlat=17.2166667&mlon=55.0166667#map=12/17.21
 - The 2016 Cicada-signed payload says: “Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.”
 - Earlier Cicada rounds demonstrably used GPS coordinates to direct solvers to physical posters. The 2012 and 2013 coordinate lists are preserved in public historical sources; their known poster sites do not include Oman.
 - The page:word interpretation of the same pairs is separately tested and remains unselected (#1393). The decimal values 1033 and 3301 also have the independent 2013 `prime_echo` connection.
-- The 2013 signed clue “Sometimes one must knock on the sky and listen to the sound” leaves an astronomical/radio reading (17h13m, +55°01′) conceivable; it may also simply refer to ICMP echo. No named radio source is established at that position.
+- The 2013 signed clue “Sometimes one must knock on the sky and listen to the sound” is explicitly reconstructed as an **ICMP ping** instruction: solvers pinged the leaked VPS IP and read data-bearing echo replies. It is not independent support for RA/Dec. The original ICMP payload, prime-ID hypothesis, and direct cross-round LP2 consumers are already documented; none recovers LP2 plaintext or selects the DMS reading. See `im-results/2013-icmp-echo-packet-reconstruction.md` and `im-results/lp2-2013-icmp28-inkfragment-original-gate.md`.
 
 ## Existing alternatives already exhausted
 
