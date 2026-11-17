@@ -23,8 +23,8 @@ static const std::array<int,83> SYM={28,15,9,1,0,21,8,7,2,27,26,19,8,10,3,10,9,6
 
 static V mul(const V& u,const V&v,const V&coeff){
   int t[11]={0};
-  for(int i=0;i<6;i++)for(int j=0;j<6;j++t[i+j]+=u[i]*v[j];
-  for(int k=10;k>=6;k--){const int q=fm(t[k]);for(int j=0;j<6;j++t[k-6+j]+=q*coeff[j];}
+  for(int i=0;i<6;i++)for(int j=0;j<6;j++)t[i+j]+=u[i]*v[j];
+  for(int k=10;k>=6;k--){const int q=fm(t[k]);for(int j=0;j<6;j++)t[k-6+j]+=q*coeff[j];}
   return V{fm(t[0]),fm(t[1]),fm(t[2]),fm(t[3]),fm(t[4]),fm(t[5])};
 }
 struct Poly {
@@ -42,9 +42,9 @@ static int rank6(const V*rows,int n){
  int r=0;
  for(int j=0;j<6&&r<n;j++){
   int k=r;while(k<n&&m[k][j]==0)k++;if(k==n)continue;
-  for(int col=0;col<5;col++)std::swap(m[r][col],m[k][col]);
-  int v=inverse[m[r][j]];for(int col=j;col<5;col++)m[r][col]=fm(m[r][col]*v);
-  for(int i=r+1;i<n;i++){int q=m[i][j];for(int col=j;col<5;col++)m[i][col]=fm(m[i][col]-q*m[r][col]);}
+  for(int col=0;col<6;col++)std::swap(m[r][col],m[k][col]);
+  int v=inverse[m[r][j]];for(int col=j;col<6;col++)m[r][col]=fm(m[r][col]*v);
+  for(int i=r+1;i<n;i++){int q=m[i][j];for(int col=j;col<6;col++)m[i][col]=fm(m[i][col]-q*m[r][col]);}
   r++;
  }
  return r;
@@ -106,10 +106,6 @@ static int search(const V& c,const std::vector<Event>& events,bool verbose=false
   for(int j=0;j<r;j++)for(int k=0;k<r;k++)weights[j]+=row[piv[k]]*invMat[k][j];
   for(int j=0;j<r;j++)weights[j]=fm(weights[j]);
   const int c0=fm(events[i].cipher-24),c1=fm(events[i].cipher-10),c2=fm(events[i].cipher-3);
-  for(int k=0;k<possibilities;k++)if(alive[k]){int v=0;for(int j=0;j<r;j++)v+=weights[j]*keys[k][j];v=fm(v);
-      std::printf("  forced K=%d plaintext=%d (allowed 24,10,3)\n",v,fm(events[i].cipher-v));
-    }
-  }
   for(int k=0;k<possibilities;k++)if(alive[k]){
    int v=0;for(int j=0;j<r;j++)v+=weights[j]*keys[k][j];v=fm(v);
    if(v!=c0&&v!=c1&&v!=c2){alive[k]=false;survivors--;}
