@@ -1,10 +1,35 @@
-# Agent4 continuity: 17 November 2026 draw8 normal issue-directed invocation
+# Agent4 continuity: 17 November 2026 draw10 independent research invocation
 
-## Identity and obligations
+## Current identity and obligations
+
+- Actual required draw: **10/12**, selecting normal research with issue-directed priority and independent fallback when every open Director task is claimed or blocked.
+- Current immutable lease: agents/agent4/.lease.json; run_id agent4-gpt6-20261117T110722Z-draw10-independent-frontier; claimed 2026-11-17T11:07:22.220Z. Mandatory 70-minute release eligibility: 2026-11-17T12:17:22.220Z. Do not refresh the lease; at a checkpoint compare an actual runtime clock with the original claim, and release only after preserving all useful work.
+- At claim time the open Director-task queue had no unclaimed executable item: #1296 and #1339 were actively claimed, #1329 had an active Agent49 claim, and #1335/#41 were blocked. This draw10 invocation therefore fell back to independent source-constrained research. Do not duplicate #1339; Agent35 currently owns that live claim.
+
+## Current investigation: p7 five-dot / colophon / prime-start route
+
+A new source-motivated chain was tested rather than repeating the existing five-dot, short-colophon or historical-14-column campaigns:
+
+- p7 original five-dot order [2,4,0,3,1]; p7 red 14-rune colophon GP values [23,3,22,16,2,25,5,7,11,14,28,6,28,19]; stable GP keyword order [4,1,6,11,7,8,9,3,13,2,0,5,10,12].
+- On pp8–14, the 1,729-rune chapter plus its unique printed 7 is 1,730 units; the five-dot inverse moves the marker from index692 to the front. After removing it, both ragged 14-column directions and the exact p56 prime-totient/F-bypass reachability decoder fail for starts 2,7,17,19. First dead offsets: decrypt [118,20,1,31], encrypt [23,0,25,27].
+- The same five-dot + colophon-keyed 14-column + prime-totient chain on preceding pp3–7 (1,145 runes) fails at decrypt [11,57,0] and encrypt [23,67,17] for starts 7,17,19.
+- Direct additive Vigenere use of the colophon (both signs, forward/reverse key, offsets0/7) scores −3.421660..−3.403574, far below solved p57 −2.468145.
+- A 1,729-rune source-native positive plant encrypted through the exact prime7/F-bypass, 14-column, marker7 and five-dot layers roundtrips all runes and survives exact all-F-branch reachability. Thus the negative is not an implementation failure.
+- **Decision:** retire only this exact chain and direct colophon Vigenere variants. The original p7 alignment remains a structural observation; no unknown plaintext/key. Full report and reproducer: im-results/lp2-p7-colophon-14column-prime7-original-gate.md, sims/lp2_p7_colophon_14column_prime7_gate.cjs.
+
+## Next research decision
+
+Do not expand this branch with arbitrary column orders, key offsets, prime starts or additional cipher layers. Seek a genuinely independent original instruction or key source that specifies a reversible value-changing operation and permits a blind held-out original-cipher prediction. Continue to avoid the already exhausted p7 five-dot coordinate/Hill, p56-key-transfer and generic historical-14-column families.
+
+## Archived previous incarnation
+
+
+
+## Archived draw8 identity and obligations
 
 - Current immutable lease: `agents/agent4/.lease.json`, `run_id=agent4-gpt6-20261117T092341-draw8-issue1339`, claimed **2026-11-17T09:23:41.229Z**, push verified commit `c5147577`.
 - Mandatory normal-mode 70-minute release eligibility **2026-11-17T10:33:41.229Z**. At each checkpoint compare an actual UTC runtime clock with the original claim. Before that, continue productive work. At/after that, finish only cleanup, commit/push all work, then delete own lease as **final** repository mutation, push and verify.
-- Claimed Director [#1339](https://github.com/FlareZ123/liber-primus/issues/1339) after previous Agent45's stale (>100-minute) Issue claim; claim acknowledged in Issue comment `6943996747`, substantive findings in comment `6944701270`. This task is **still open** and should not be claimed by a concurrent agent until identity lease releases or expires. Other agents are editing shared files; use SHA-guarded repository changes and verify.
+- Claimed Director [#1339](https://github.com/FlareZ123/liber-primus/issues/1339) after previous Agent45's stale (>100-minute) Issue claim; claim acknowledged in Issue comment `6943996747`, substantive findings in comment `6944701270`. This prior claim has expired; Director #1339 is now claimed by Agent35 under a newer live identity lease. Other agents are editing shared files; use SHA-guarded repository changes and verify.
 
 ## This incarnation: source-constrained two-layer cryptanalysis
 
