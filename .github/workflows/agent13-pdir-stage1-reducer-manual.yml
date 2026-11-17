@@ -34,45 +34,11 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           path: from-six
           merge-multiple: false
-      - id: source-artifacts
-        name: Inventory all 144 immutable source shard IDs with API pagination
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const conventions = ['001','002','011','012','021','022','101','102','111','112','121','122'];
-            const items = await github.paginate(github.rest.actions.listWorkflowRunArtifacts, {
-              owner: context.repo.owner, repo: context.repo.repo,
-              run_id: Number('${{ inputs.remaining_run_id }}'), per_page: 100
-            });
-            const byName = new Map(items.map(a => [a.name, a]));
-            const expected = conventions.flatMap(conv =>
-              Array.from({length:12}, (_, shard) => 'pdir-stage1-remaining-' + conv + '-' + shard));
-            const missing = expected.filter(name => !byName.has(name));
-            if (missing.length || new Set(expected).size !== 144 || byName.size < 144) {
-              throw new Error('Incomplete original source shards: ' + JSON.stringify(missing));
-            }
-            for (const prefix of ['0','1']) {
-              const names = expected.filter(name => name.startsWith('pdir-stage1-remaining-' + prefix));
-              if (names.length !== 72) throw new Error('Wrong original prefix count ' + prefix);
-              const ids = names.map(name => byName.get(name).id);
-              core.setOutput('ids' + prefix, ids.join(','));
-            }
-      - name: Retrieve remaining conventions beginning 0 (72 original shards)
-        uses: actions/download-artifact@v4
-        with:
-          run-id: "${{ inputs.remaining_run_id }}"
-          artifact-ids: "${{ steps.source-artifacts.outputs.ids0 }}"
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-          path: from-twelve
-          merge-multiple: false
-      - name: Retrieve remaining conventions beginning 1 (72 original shards)
-        uses: actions/download-artifact@v4
-        with:
-          run-id: "${{ inputs.remaining_run_id }}"
-          artifact-ids: "${{ steps.source-artifacts.outputs.ids1 }}"
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-          path: from-twelve
-          merge-multiple: false
+      - name: Fetch complete 144-shard original source via fully paginated GitHub CLI
+        shell: pwsh
+        env:
+          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        run: gh run download "${{ inputs.remaining_run_id }}" --repo FlareZ123/liber-primus --dir from-twelve --pattern "pdir-stage1-remaining-*"
       - name: Reject missing, duplicate, wrong-engine, and incomplete vector coverage
         run: python sims/lp2_pdir_stage1_reduce.py --six from-six --remaining from-twelve --out stage1-report
       - name: Preserve calibrated original and matched-control reduction
