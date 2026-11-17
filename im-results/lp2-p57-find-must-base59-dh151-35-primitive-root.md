@@ -317,6 +317,34 @@ tokens and both rival encodings, the historical ID3 string, the
 full DH equalities and the outer-ring selected share. It is a
 reproducible arithmetic correspondence, not recovered ciphertext.
 
+### Missing lowercase f does not independently select base59
+
+The original printed table uses **256 two-character tokens**. In
+the source-declared base60 alphabet, the **first digit** is a
+restricted 0–4 prefix (source first-character counts
+**60,58,65,56,17**), so only the **256 trailing digits** can
+fairly be treated as 60-way samples. Their original multiset
+uses 59/60 alphabet characters and omits **lowercase f** only.
+That fact initially suggested dropping f and interpreting
+values in base59, but its statistical status is weak.
+
+Under a simple uniform 60-symbol trailing-digit null,
+the probability that a *particular f digit chosen in advance*
+is absent after 256 draws is **(59/60)^256=0.013533**.
+The probability that **any** digit is missing is
+**0.569307**, and the probability of **exactly one missing**
+is **0.376770** by an exact 256-step occupancy recursion.
+Thus an unspecified missing character is *expected about
+0.812 times*, and the observed single absence does not
+independently justify silently replacing source base60 with
+base59. The **four actual original parable-to-table equalities**
+differentiate proposed base59 from base60 *conditionally on
+the full retrospective clue construction*, but the missing
+f itself supplies little independent support. This is a
+substantive risk to the source-derived K73 route, not a
+reason to alter source bytes or abandon its geometric
+positive tests.
+
 ## Frozen outer-ring K=73 self-index and p55 receiver (Agent44, 17 November)
 
 A subsequent original-source question asked whether the proposed DH shared scalar
