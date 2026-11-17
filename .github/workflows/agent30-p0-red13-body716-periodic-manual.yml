@@ -28,7 +28,7 @@ jobs:
         with:
           name: layer2-prepared
           run-id: 44062412799
-          github-token: \${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           path: prepared
       - name: Require independent 716-rune controls for both marker states
         run: python sims/agent30_p0_red13_body716_periodic_control_sft.py prepared/upstream/work/layer2
@@ -41,7 +41,7 @@ jobs:
 
   screen:
     needs: controls
-    name: body716 \${{ matrix.boundary }} / \${{ matrix.side }}
+    name: body716 ${{ matrix.boundary }} / ${{ matrix.side }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
     strategy:
@@ -65,7 +65,7 @@ jobs:
         with:
           name: layer2-prepared
           run-id: 44062412799
-          github-token: \${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           path: prepared
       - name: Download the independently verified 716-rune positive controls
         uses: actions/download-artifact@v4
@@ -84,15 +84,15 @@ jobs:
           PY
       - name: Build the exact black-body source window from original p0
         env:
-          BOUNDARY: \${{ matrix.boundary }}
+          BOUNDARY: ${{ matrix.boundary }}
         run: |
           mkdir -p prepared/upstream/work/layer2/data
-          node sims/agent30_p0_red13_body716_source_sft.cjs "$BOUNDARY" > "prepared/upstream/work/layer2/data/body716_\${BOUNDARY}.txt"
+          node sims/agent30_p0_red13_body716_source_sft.cjs "$BOUNDARY" > "prepared/upstream/work/layer2/data/body716_${BOUNDARY}.txt"
           python - <<'PY'
           import hashlib, os
           from pathlib import Path
           boundary=os.environ["BOUNDARY"]
-          p=Path(f"prepared/upstream/work/layer2/data/body716_\{boundary}.txt")
+          p=Path(f"prepared/upstream/work/layer2/data/body716_{boundary}.txt")
           lines=p.read_text().splitlines()
           assert lines[0].startswith("W body716_")
           previous=int(lines[0].split()[-1])
@@ -103,8 +103,8 @@ jobs:
           PY
       - name: Run original or matched-null periodic2-14 receiver and native whole-window verifier
         env:
-          BOUNDARY: \${{ matrix.boundary }}
-          SIDE: \${{ matrix.side }}
+          BOUNDARY: ${{ matrix.boundary }}
+          SIDE: ${{ matrix.side }}
         run: |
           cd prepared/upstream/work/layer2
           mkdir -p results
@@ -112,8 +112,8 @@ jobs:
             real) keyfile=core20 ;;
             null) keyfile=null_core20 ;;
           esac
-          target/release/layer2 screen "data/body716_\${BOUNDARY}.txt" "file:data/\${keyfile}.ksb" "results/body716_\${BOUNDARY}_\${SIDE}.tsv" mode=periodic ms=2:14 litf=0 abort=150:2.5 n=716 beam=16 mults=1,28 models=0,1 threads=4
-          python verify.py "results/body716_\${BOUNDARY}_\${SIDE}.tsv" --top 20 --controls 20 --out "results/body716_\${BOUNDARY}_\${SIDE}_verify.txt"
+          target/release/layer2 screen "data/body716_${BOUNDARY}.txt" "file:data/${keyfile}.ksb" "results/body716_${BOUNDARY}_${SIDE}.tsv" mode=periodic ms=2:14 litf=0 abort=150:2.5 n=716 beam=16 mults=1,28 models=0,1 threads=4
+          python verify.py "results/body716_${BOUNDARY}_${SIDE}.tsv" --top 20 --controls 20 --out "results/body716_${BOUNDARY}_${SIDE}_verify.txt"
           python - <<'PY'
           import hashlib, json, os
           from pathlib import Path
@@ -121,14 +121,14 @@ jobs:
           side=os.environ["SIDE"]
           data=Path("data")
           results=Path("results")
-          stem=f"body716_\{boundary}_\{side}"
-          window=(data/f"body716_\{boundary}.txt").read_bytes()
-          runes=[int(x) for x in (data/f"body716_\{boundary}.txt").read_text().splitlines()[1][2:].split()]
-          tsv=(results/f"\{stem}.tsv").read_bytes()
-          verify=(results/f"\{stem}_verify.txt").read_bytes()
+          stem=f"body716_{boundary}_{side}"
+          window=(data/f"body716_{boundary}.txt").read_bytes()
+          runes=[int(x) for x in (data/f"body716_{boundary}.txt").read_text().splitlines()[1][2:].split()]
+          tsv=(results/f"{stem}.tsv").read_bytes()
+          verify=(results/f"{stem}_verify.txt").read_bytes()
           keyfile=data/("core20.ksb" if side=="real" else "null_core20.ksb")
           report={
-            "window":f"body716_\{boundary}",
+            "window":f"body716_{boundary}",
             "boundary":boundary,
             "previous_cipher_state":5 if boundary=="continuity" else -1,
             "n":716,
@@ -141,15 +141,15 @@ jobs:
             "verify_sha256":hashlib.sha256(verify).hexdigest(),
             "candidate_lines":[x for x in verify.decode().splitlines() if x.startswith("CANDIDATE")]
           }
-          (results/f"\{stem}.json").write_text(json.dumps(report,indent=2)+"\n")
+          (results/f"{stem}.json").write_text(json.dumps(report,indent=2)+"\n")
           print(json.dumps(report,indent=2))
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: agent30-p0-red13-body716-\${{ matrix.boundary }}-\${{ matrix.side }}
+          name: agent30-p0-red13-body716-${{ matrix.boundary }}-${{ matrix.side }}
           path: |
-            prepared/upstream/work/layer2/results/body716_\${{ matrix.boundary }}_\${{ matrix.side }}.tsv
-            prepared/upstream/work/layer2/results/body716_\${{ matrix.boundary }}_\${{ matrix.side }}_verify.txt
-            prepared/upstream/work/layer2/results/body716_\${{ matrix.boundary }}_\${{ matrix.side }}.json
+            prepared/upstream/work/layer2/results/body716_${{ matrix.boundary }}_${{ matrix.side }}.tsv
+            prepared/upstream/work/layer2/results/body716_${{ matrix.boundary }}_${{ matrix.side }}_verify.txt
+            prepared/upstream/work/layer2/results/body716_${{ matrix.boundary }}_${{ matrix.side }}.json
           if-no-files-found: error
           retention-days: 30
