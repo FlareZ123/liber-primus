@@ -119,7 +119,7 @@ const chapterBounds = [[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53
 for (const [first, last] of chapterBounds) {
   const indices = corpus.pages.filter((p) => p.page >= first && p.page <= last).flatMap((p) => p.indices);
   const name = 'LP2 chapter ' + first + '-' + last;
-  examine(name + ' glyph UTF8', Buffer.from(indices.map((x) => corpus.runes[x]).join(''));
+  examine(name + ' glyph UTF8', Buffer.from(indices.map((x) => corpus.runes[x]).join('')));
   examine(name + ' native-index bytes', Buffer.from(indices));
 }
 for (const section of solved.sections) {
