@@ -28,4 +28,6 @@ Crucially, p29 **ends in the middle of a printed word**, continued onto p30, as 
 
 Therefore this is a **low-priority intermediate constraint** worth retaining only in case future source instructions independently select p29 and `G`. It does not justify a grid-derived keystream search, correction of the original ciphertext, extrapolation to other pages, or any claim of recovered plaintext.
 
+**Execution:** Original-source, direct-quotient and mutation controls passed under [on-demand Windows Node22 GitHub Actions run 44109800684](https://github.com/FlareZ123/liber-primus/actions/runs/44109800684), completed successfully on 17 November 2026.
+
 **Single-file, read-only reproducer:** [`sims/lp2_p29_red39_factor_syndrome_sft.cjs`](../sims/lp2_p29_red39_factor_syndrome_sft.cjs), CommonJS Node 22; source-derived H/G factors, original corpus and base60 grid only. It asserts the all-55-page census, p29 suffix prediction, two original negative orientations, table positive and one-symbol mutation control.
