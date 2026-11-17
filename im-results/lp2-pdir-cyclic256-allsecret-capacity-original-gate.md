@@ -1,6 +1,6 @@
 # LP2 wordwise 256-state pointer: key-independent capacity exclusion
 
-**Original-input decision, 17 November 2026 (Agent 4, Issue #1329).** All **4,752** bounded deterministic cyclic-256 pointer configurations defined below fail the *same-length native-GP English* E-frequency necessary condition on the untouched **12,956 GP29 ciphertext runes**. The result grants an **arbitrary unknown 29-symbol permutation at each of the 256 pointer states**, much more power than any additive shift key from the p50 numeric table. It recovers **no original unknown plaintext or historical key**. Source-correct [single-file CommonJS reproducer](../sims/lp2_pdir_cyclic256_allsecret_capacity_sft.cjs) passed [Windows Node.js 22 CI #44198802801](https://github.com/FlareZ123/liber-primus/actions/runs/44198802801), including a complete genuine-English forward-and-backward plant.
+**Original-input decision, 17 November 2026 (Agent 4, Issue #1329).** All **4,752** bounded deterministic cyclic-256 pointer configurations defined below fail the *same-length native-GP English* E-frequency and **complete unigram coincidence majorization** necessary conditions on the untouched **12,956 GP29 ciphertext runes**. The result grants an **arbitrary unknown 29-symbol permutation at each of the 256 pointer states**, much more power than any additive shift key from the p50 numeric table. It recovers **no original unknown plaintext or historical key**. Source-correct [single-file CommonJS reproducer](../sims/lp2_pdir_cyclic256_allsecret_capacity_sft.cjs) passed [Windows Node.js 22 CI #44198802801](https://github.com/FlareZ123/liber-primus/actions/runs/44198802801) (E bound) and [CI #44201716817](https://github.com/FlareZ123/liber-primus/actions/runs/44201716817) (stronger exact all-secret coincidence majorization), including a complete genuine-English forward-and-backward plant.
 
 ## Causal premise and explicit model boundary
 
@@ -30,6 +30,15 @@ A given plaintext rune E must, at fixed state s, correspond to **one** source ci
 
 For two distinct plaintext runes E and O, their ciphertext preimages must also differ at every state, so their combined count is at most the sum of the two largest entries of each state's H[s,*], summed across states. These are deterministic, key-independent upper bounds. They also dominate the simpler additive GP29 key family P = C-K[state] for every possible 256-value secret key. This statement requires a *single stationary secret alphabet per pointer state*. Hidden extra state or a chapter-specific secret alphabet is outside the proof.
 
+### Exact whole-alphabet concentration bound (stronger)
+
+The single-letter E bound might be evaded by an unusual English passage with few Es. A stronger, label-free invariant gives the **largest possible decoded GP29 unigram index of coincidence over every possible choice of all 256 secret permutations**. Sort the **29 ciphertext histogram counts** for each state independently in descending order, obtaining values h_s(1) >= ... >= h_s(29). Let N_j = sum_s h_s(j). Then the maximum plaintext coincidence numerator is exactly
+
+    max_over_all_secret_state_permutations sum_p count(P=p)*(count(P=p)-1)
+        = sum_{j=1}^{29} N_j*(N_j-1).
+
+**Proof:** Expand sum_p count(P=p)^2 into within-state terms plus twice all between-state dot products. Rearrangement inequality says every between-state dot product is bounded above by aligning both histograms in descending order. This upper bound can be simultaneously achieved for all pairs of states by choosing every state's secret alphabet so its sorted counts land on the **same ordered plaintext rune labels**. The linear subtraction of N, which is fixed, preserves the optimum. This argument is finite, exact, does not assume English character frequencies or posit E specifically, and covers every one of 29! secret alphabet choices per state. It bounds the **overall ciphertext-to-plaintext concentration**; GP29-native English controls supply a necessary conditional reference criterion.
+
 ## Untouched original output versus independent English
 
 | Quantity | Exact original result |
@@ -42,26 +51,29 @@ For two distinct plaintext runes E and O, their ciphertext preimages must also d
 | **Largest all-secret maximum E among those models** | **1,286** |
 | Largest combined all-secret E+O capacity | 2,343 |
 | Number of models admitting at least 1,397 E runes | **0** |
+| **Greatest possible all-secret plaintext IoC among 4,752 models** | **0.05238023800295** |
+| **Least native-English control-window IoC** | **0.05781642084261** |
+| Number of original models capable of matching the least control IoC | **0** |
 
-The highest E capacity, **1,286**, occurs for source direction C_cur_n, reversed orientation, h=1/m=2/c=0, and the observed-equality two-step clock. All 256 states are visited by that model. The lowest capacity model, A_cur_ws, h=0/m=2/c=1, original orientation, two-step clock, visits 159 states. The 1,286 ceiling is **111** below even the least E-rich control below.
+The highest E capacity, **1,286**, occurs for source direction C_cur_n, reversed orientation, h=1/m=2/c=0, and the observed-equality two-step clock. All 256 states are visited by that model. The lowest capacity model, A_cur_ws, h=0/m=2/c=1, original orientation, two-step clock, visits 159 states. The 1,286 ceiling is **111** below even the least E-rich control below. The strongest exact **29-symbol coincidence** upper bound is a *different model*: `E_cur_n3`, h=1/m=2/c=1/reversed/two-step, with all-secret maximum pair-count numerator **8,791,760** and IoC **0.05238023800295**. The smallest native-control 12,956-rune window has pair-count numerator **9,704,196**, a strict gap of **912,436 same-symbol ordered pairs**. This is an exact incompatibility for a native-control-shaped plaintext under every state-alphabet permutation, irrespective of whether E or any other particular rune is frequent.
 
 Use the independent repository's original native-GP word encoder, including source-attested ING and IO rune forms, to measure **every contiguous window of exactly 12,956 runes** in the three already-pinned controls:
 
-| Independent reference | Minimum GP29 E runes in any 12,956-rune window |
-| --- | ---: |
-| Gibran, *The Prophet* | 1,407 |
-| Emerson, *Essays* | 1,482 |
-| Shakespeare, first 300k source | **1,397** |
+| Independent reference | Minimum GP29 E runes in any 12,956-rune window | Minimum GP29 IoC over all such windows |
+| --- | ---: | ---: |
+| Gibran, *The Prophet* | 1,407 | **0.05953735405134** |
+| Emerson, *Essays* | 1,482 | **0.06114494457922** |
+| Shakespeare, first 300k source | **1,397** | **0.05781642084261** |
 
-These are *defined finite corpus controls*, not a proof that every possible English author must write as frequently as those sources. The mathematical exclusion is exact **conditional on the specified ciphertext-to-plaintext family and the original-length native-English reference criterion**. A corpus with fewer E runes, non-native intermediate bytes, a separate output transposition, compression, inserted symbols or a later value-changing layer is outside the test.
+These are *defined finite corpus controls*, not a proof that every possible English author must write as frequently as those sources. The mathematical exclusion is exact **conditional on the specified ciphertext-to-plaintext family and the original-length native-English reference criterion**. A corpus with fewer E runes **and a sufficiently flat overall rune-frequency histogram**, non-native intermediate bytes, a later value-changing transform, compression, inserted symbols or a different plaintext alphabet may fall outside the test. A **pure output transposition** (a permutation of rune positions) cannot help, because the whole-unigram coincidence index is itself invariant under such a transposition.
 
 ### Source-native positive gate
 
-The SFT selects genuine Gibran GP29 words in **each of all 2,896 original printed word-length slots**, splits them at the exact original eight source sections and applies a **causal** previous-cipher-word GP-prime-parity direction. Its secret 256-phase key is K[s]=(7s+11) mod29; its h=1/m=2/c=2/reversed/two-step convention is frozen. It enciphers every rune sequentially, deriving each following word's direction from *already produced ciphertext*. A second independent trace from the resulting ciphertext exactly decrypts and re-encrypts **12,956/12,956** plant runes; the plant contains **1,558 genuine GP-E** runes and its all-secret histogram correctly permits **1,882**. Thus the original-cipher bound does not mechanically forbid real English produced under the defined scheme.
+The SFT selects genuine Gibran GP29 words in **each of all 2,896 original printed word-length slots**, splits them at the exact original eight source sections and applies a **causal** previous-cipher-word GP-prime-parity direction. Its secret 256-phase key is K[s]=(7s+11) mod29; its h=1/m=2/c=2/reversed/two-step convention is frozen. It enciphers every rune sequentially, deriving each following word's direction from *already produced ciphertext*. A second independent trace from the resulting ciphertext exactly decrypts and re-encrypts **12,956/12,956** plant runes; the plant contains **1,558 genuine GP-E** runes and its all-secret histogram correctly permits **1,882**. Its true native-GP coincidence is **0.06070867296716**, below the plant's corresponding exact maximal secret-alphabet coincidence **0.07581415899361**. Thus both mathematical upper bounds permit a genuine independently encrypted native-English source under the defined scheme.
 
 ## Fork for Issue #1329
 
-**Retire:** Directly reused **cyclic 256-state** phase-zero-reset direction-guided GP29 additive keys, or *any* one stationary secret substitution alphabet for each of the 256 pointer states, with the 66 frozen word-number direction rules and deterministic no-extra-branch one-/two-step clocks. Searching the 256 table's secret bytes or its 29-rune projection cannot repair the all-secret E-capacity contradiction for these exact architectures.
+**Retire:** Directly reused **cyclic 256-state** phase-zero-reset direction-guided GP29 additive keys, or *any* one stationary secret substitution alphabet for each of the 256 pointer states, with the 66 frozen word-number direction rules and deterministic no-extra-branch one-/two-step clocks. This conclusion now follows from **both a named-letter upper bound and the stronger exact 29-symbol majorization invariant**. Searching the 256 table's secret bytes or its 29-rune projection cannot repair the all-secret E-capacity contradiction for these exact architectures.
 
 **Still open:** The externally proposed *hidden* anti-repeat skip/coin branches, which make the pointer address depend on a latent choice; genuinely nonperiodic 581-library streams; independent source-section phases; a secret output alphabet that changes across sections despite a repeated pointer state; non-native/plaintext-register interpretations; and an independently sourced new operation. The ongoing **216-job source-original pointer-direction campaign** belongs to these broader models, and **is not superseded or rerun by this gate**. Its strict reducer requires all 216 successful shard artifacts before any whole-window decision.
 
