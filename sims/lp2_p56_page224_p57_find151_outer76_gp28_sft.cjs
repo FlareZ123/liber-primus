@@ -292,3 +292,88 @@ for (const x of outputs) console.log(JSON.stringify({
   decoded:x.roman
 }));
 console.log('All four complete original GP28 receivers are nonprose. No unknown plaintext/key.');
+
+// Strict directed p56-to-p57 audit: one-based addresses only, no wrap.
+// This is distinct from the exploratory combined-page modulo-256 inventory above.
+const uniqueWords = (items) => [...new Map(items.map((item) => [item.word, item])).values()];
+const strictSources = uniqueWords(p56).filter((item) => item.sum >= 1 && item.sum <= 256);
+const strictTargets = uniqueWords(p57).filter((item) => item.sum >= 1 && item.sum <= 256);
+assert.equal(strictSources.length, 18);
+assert.equal(strictTargets.length, 12);
+assert.equal(strictSources.length * strictTargets.length, 216);
+function choose(n, k) {
+  if (k < 0 || k > n) return 0;
+  let value = 1;
+  for (let i = 1; i <= Math.min(k, n - k); i++) value *= (n - i + 1) / i;
+  return value;
+}
+function hypergeometricPmf(N, K, n) {
+  const pmf = Array(n + 1).fill(0), denominator = choose(N, n);
+  for (let x = Math.max(0, n - (N - K)); x <= Math.min(n, K); x++)
+    pmf[x] = choose(K, x) * choose(N - K, n - x) / denominator;
+  return pmf;
+}
+function convolvePmf(a, b) {
+  const result = Array(a.length + b.length - 1).fill(0);
+  for (let i = 0; i < a.length; i++) for (let j = 0; j < b.length; j++)
+    result[i + j] += a[i] * b[j];
+  return result;
+}
+function strictCrossPageNull(values, radix) {
+  const targetSums = new Set(strictTargets.map((item) => item.sum));
+  const sourceAddresses = strictSources.map((item) => item.sum - 1);
+  const targetFlags = values.map((value) => targetSums.has(value));
+  const K = targetFlags.filter(Boolean).length, links = [];
+  for (const source of strictSources) for (const target of strictTargets) {
+    const cell = source.sum - 1;
+    if (values[cell] === target.sum) links.push({
+      from: source.word, fromSum: source.sum, cell: cell + 1,
+      token: tokens[cell], value: values[cell], to: target.word, toSum: target.sum,
+    });
+  }
+  const globalPmf = hypergeometricPmf(256, K, sourceAddresses.length);
+  const rowAddressCounts = Array.from({ length: 32 }, (_, row) =>
+    sourceAddresses.filter((address) => Math.floor(address / 8) === row).length);
+  const rowTargetCounts = Array.from({ length: 32 }, (_, row) =>
+    targetFlags.slice(row * 8, row * 8 + 8).filter(Boolean).length);
+  let withinRowPmf = [1];
+  for (let row = 0; row < 32; row++) if (rowAddressCounts[row])
+    withinRowPmf = convolvePmf(withinRowPmf,
+      hypergeometricPmf(8, rowTargetCounts[row], rowAddressCounts[row]));
+  const page = strictSources.find((item) => item.word === 'PAGE');
+  const find = strictTargets.find((item) => item.word === 'FIND');
+  const pageCell = page.sum - 1;
+  const pairValueMultiplicity = values.filter((value) => value === find.sum).length;
+  const pairRowMultiplicity = values.slice(Math.floor(pageCell / 8) * 8,
+    Math.floor(pageCell / 8) * 8 + 8).filter((value) => value === find.sum).length;
+  return {
+    radix, sourceWords: strictSources, targetWords: strictTargets,
+    pairOpportunities: strictSources.length * strictTargets.length, links,
+    targetValueCellCount: K,
+    targetCellIndices: targetFlags.flatMap((flag, i) => flag ? [i + 1] : []),
+    global: { pmf: globalPmf, expected: sourceAddresses.length * K / 256,
+      pAtLeastOne: globalPmf.slice(1).reduce((sum, p) => sum + p, 0) },
+    withinRow: { rowAddressCounts, rowTargetCounts, pmf: withinRowPmf,
+      expected: rowAddressCounts.reduce((sum, n, row) => sum + n * rowTargetCounts[row] / 8, 0),
+      pAtLeastOne: withinRowPmf.slice(1).reduce((sum, p) => sum + p, 0) },
+    prespecifiedPageFindPair: { globalProbability: pairValueMultiplicity / 256,
+      withinRowProbability: pairRowMultiplicity / 8 },
+  };
+}
+const strictBase60 = strictCrossPageNull(bytes, 'base60');
+const strictBase59 = strictCrossPageNull(base59, 'base59');
+assert.deepEqual(strictBase60.links, [{ from:'PAGE',fromSum:224,cell:224,token:'2V',value:151,to:'FIND',toSum:151 }]);
+assert.equal(strictBase60.targetValueCellCount, 15);
+assert.ok(Math.abs(strictBase60.global.expected - 1.0546875) < 1e-12);
+assert.ok(Math.abs(strictBase60.global.pAtLeastOne - 0.675637516747424) < 1e-12);
+assert.ok(Math.abs(strictBase60.withinRow.expected - 0.875) < 1e-12);
+assert.ok(Math.abs(strictBase60.withinRow.pAtLeastOne - 0.6153182983398438) < 1e-12);
+assert.deepEqual(strictBase60.prespecifiedPageFindPair,{globalProbability:1/256,withinRowProbability:1/8});
+assert.equal(strictBase59.links.length, 0);
+assert.equal(strictBase59.targetValueCellCount, 16);
+assert.ok(Math.abs(strictBase59.global.expected - 1.125) < 1e-12);
+assert.ok(Math.abs(strictBase59.global.pAtLeastOne - 0.6998637603098571) < 1e-12);
+assert.ok(Math.abs(strictBase59.withinRow.expected - 1.875) < 1e-12);
+assert.ok(Math.abs(strictBase59.withinRow.pAtLeastOne - 0.897003173828125) < 1e-12);
+console.log('Strict directed p56-to-p57 audit',
+  JSON.stringify({ base60: strictBase60, base59: strictBase59 }));
