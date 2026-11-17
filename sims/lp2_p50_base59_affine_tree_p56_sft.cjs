@@ -180,7 +180,7 @@ for (const leafOrder of Object.values(leaves)) {
           n => children[n].every(c => known[c] >= 0));
         minimumObserved = Math.min(minimumObserved, observedNodes.length);
         maximumObserved = Math.max(maximumObserved, observedNodes.length);
-        assert(observedNodes.length >= 54);
+        assert(observedNodes.length >= 55);
 
         for (const salt of [byte59, byte60]) {
           const matrix = observedNodes.map(n => features(n, known, salt));
@@ -224,7 +224,7 @@ assert.equal(cases, 48);
 assert.equal(incompatible, 48);
 assert.equal(plantedPositive, 48);
 assert.deepEqual(Object.fromEntries(rankPairs), {"5/6": 48});
-assert.equal(minimumObserved, 54);
+assert.equal(minimumObserved, 55);
 assert.equal(maximumObserved, 83);
 console.log(JSON.stringify({
   result: "PASS",
