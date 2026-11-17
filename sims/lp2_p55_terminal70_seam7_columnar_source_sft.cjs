@@ -130,6 +130,79 @@ assert.equal(min.offset,30);
 assert.equal(min.value,0.04389233954451346);
 assert.equal(values.filter(x=>x.value<=ioc(sourceBody)).length,0);
 
+
+/**
+ * Authentic solved p56 cipher rule: plain F is emitted as cipher F and
+ * consumes no key rune. A cipher F can also be produced by an encrypted
+ * non-F rune. Use the exact repeated seven-rune source key, not a fitted
+ * phrase or arbitrary offset, on the same 70 complete original runes.
+ *
+ * @param {number[]} ciphertext
+ * @param {1|-1} sign
+ * @param {number} literalFMask
+ * @returns {{plain:number[],firstIllegal:number|null,keyPointer:number}}
+ */
+const mod29=x=>((x%29)+29)%29;
+const ciphertextFsites=sourceBody.flatMap((x,i)=>x===0?[i]:[]);
+assert.deepEqual(ciphertextFsites,[15,25,41]);
+function decodeF(ciphertext,sign,literalFMask){
+  let pointer=0,slot=0;
+  const plain=[];
+  for(let i=0;i<ciphertext.length;i++){
+    const cipher=ciphertext[i];
+    if(cipher===0 && (literalFMask&(1<<slot))){
+      plain.push(0);slot++;continue;
+    }
+    if(cipher===0)slot++;
+    const inferred=mod29(cipher-sign*sourceKey[pointer%7]);
+    if(inferred===0)
+      return {plain,firstIllegal:i,keyPointer:pointer};
+    plain.push(inferred);pointer++;
+  }
+  return {plain,firstIllegal:null,keyPointer:pointer};
+}
+/** @param {number[]} plain @param {1|-1} sign */
+function encryptF(plain,sign){
+  let pointer=0;
+  return plain.map(symbol=>{
+    if(symbol===0)return 0;
+    const out=mod29(symbol+sign*sourceKey[pointer%7]);
+    pointer++;
+    return out;
+  });
+}
+const fSkipSummary=[];
+for(const sign of [1,-1]){
+  const originalBranched=Array.from({length:8},(_,mask)=>
+    ({mask,...decodeF(sourceBody,sign,mask)}));
+  assert(originalBranched.every(r=>r.firstIllegal!==null));
+  const controlCipher=encryptF(positive,sign);
+  const plantedFsites=controlCipher.flatMap((x,i)=>x===0?[i]:[]);
+  assert(plantedFsites.length<=20);
+  let plantedNativeRecovered=false;
+  let nativeSolutions=0;
+  for(let mask=0;mask<2**plantedFsites.length;mask++){
+    const inverse=decodeF(controlCipher,sign,mask);
+    if(inverse.firstIllegal===null){
+      nativeSolutions++;
+      if(JSON.stringify(inverse.plain)===JSON.stringify(positive))
+        plantedNativeRecovered=true;
+    }
+  }
+  assert(plantedNativeRecovered,'authentic F-transparent plant must survive');
+  assert.deepEqual(encryptF(positive,sign),controlCipher);
+  const bestPrefix=Math.max(...originalBranched.map(r=>r.firstIllegal));
+  fSkipSummary.push({orientation:sign===1?'C=P+K':'C=P-K',
+    originalCipherFpositions:ciphertextFsites,
+    originalLiteralFBypassMasksTried:originalBranched.length,
+    fullyLegalOriginalMasks:0,
+    longestLegalOriginalRunePrefix:bestPrefix,
+    originalFirstIllegalByMask:originalBranched.map(r=>({mask:r.mask,index:r.firstIllegal})),
+    plantedNative70ExactRecovery:plantedNativeRecovered,
+    plantedNativeCipherFpositions:plantedFsites,
+    plantedNativeLegalMasks:nativeSolutions});
+}
+
 console.log(JSON.stringify({
   hypothesis:'Exact p55 15 whole words=70-cipher runes, terminal two printed words + p56 rune = 7-rune source key; conventional historical 7/14-column transposition',
   fixedOriginal:{
@@ -151,6 +224,7 @@ console.log(JSON.stringify({
     plantedSolvedP57IoC:ioc(positive),
     exactRecoveryForSevenAndFourteenColumns:true
   },
+  historicalFTransparentKeyConsumers:fSkipSummary,
   decision:'All pure, even secret, column permutations preserve the original 70-rune IoC below all 2358 solved GP-native windows; standard original inverses produce no authentic plaintext. Additional value-changing substitution not tested; original p56 first rune is an independently solved title, not a proved key component.'
 },null,2));
 module.exports={encrypt,decrypt,ioc};
