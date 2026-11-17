@@ -63,6 +63,27 @@ The exact best native-GP English bigram path of each complete inverse has mean l
 
 The same [single-file source-original inverse SFT](../sims/lp2_2014_14column_phi_original_inversion_sft.cjs) now asserts the 2014 70-character correct transformation, authentic solved-p56 85-rune positive, all nine glyph-level maximal-prefix maxima and their argmax starts, the complete original survivor sets, exact forward GP29 encryption of all survivors, and their English-score null failure. In total it covers **180,000** original chapter/order/start cases across intact-word and literal-rune historical variants. The glyph-level extension was added after the previous [passing base CI run 44065597217](https://github.com/FlareZ123/liber-primus/actions/runs/44065597217); the updated code's CI result must be checked separately.
 
+
+## Same historic key as a 28-symbol non-F alphabet permutation
+
+A third distinct, explicitly reversible use of the same **original 2014 14-column key** is selected by the genuine GP29 alphabet's **one special F interrupter and 28 non-F symbols**. Leave F fixed; split positions 1–28 into two fixed 14-symbol rows in canonical GP order; apply the source-fixed 14-column permutation independently to both rows, with each possible direction. Unlike the previous two paths this changes rune **values**, while leaving printed geometry untouched. Then try the same exact original p56 prime/F key inverse at each of the first 5,000 prime ordinals, per original nine visual sections.
+
+| Original section | Runes | Maximal valid prefix after alphabet forward+prime | Alphabet inverse+prime |
+|---|---:|---:|---:|
+| p0–2 | 729 | 613 | 712 |
+| p3–7 | 1,145 | 545 | 426 |
+| p8–14 | 1,729 | 618 | 539 |
+| p15–22 | 1,903 | 518 | 520 |
+| p23–26 | 1,021 | 518 | 584 |
+| p27–32 | 1,433 | 580 | 554 |
+| p33–39 | 1,680 | 408 | 468 |
+| p40–53 | 3,008 | 559 | 490 |
+| p54–55 | 308 | **308** | **308** |
+
+**All eight original sections p0–53 fail** on both fixed symbol directions across all 5,000 initial prime ordinals. Only terminal p54–55 has **nine** mathematical full inverses: forward phase ordinals **999,1001,2048,2284,3461,3462,3801**, inverse ordinals **1835,3593**. The optimum independently trained native-GP bigram candidate scores only **−4.74439** per rune; other eight are worse (down to **−5.11915**), IoC **0.03410–0.03617**. No candidate reconstructs prose. Source non-F alphabet permutation and its inverse are exhaustively asserted **29/29**, the real p56 85/85 ciphertext positive survives forward/inverse map roundtrip, and every completed terminal candidate forward-encrypts exactly.
+
+The source offers **14 genuine historic column positions**, but it does not explicitly choose to rearrange GP letters themselves. This is an independently motivated finite 28=2×14 symbol-transfer consumer, **not** a proof about all 29! secret alphabets, all possible 2014 transpositions, or additional value-changing layers. Combining the word, rune and symbol roles gives **270,000 original-input 9×2×5000 exact tests**, with **35** full mathematically valid nonprose outputs (7 word, 19 rune, 9 alphabet); the literal final signed-p56 cipher remains the same frozen final layer. There is no legitimate unknown plaintext/key in these outputs.
+
 ## Decision and remaining unknown
 
-The historically derived 2014 fourteen-column complete-word inverse lacks a source-independent native-English length signature; both complete-word and original historical character-level routes, layered on the authentic p56 cipher, fail to recover any plaintext across nine visual chapters. Do not rescue this finite transfer by fitting new column keys or arbitrary secret prime phases to partial phrases. This does **not** exclude other independently selected word transpositions, changes in rune segmentation, or a new source-authenticated cipher/clock. **A concrete LP2 clue specifying a different reversible operation or key remains necessary.**
+The source-derived 2014 fourteen-column whole-word inverse lacks an independent native-English length signature. Testing the historical operation at **all three natural source locations** (intact words, individual runes, and canonical 28 non-F GP rune symbols) before the real p56 prime/F cipher produces only **35 nonprose complete mathematical outputs** among 270,000 chapter/direction/prime-start configurations, and no authentic unknown-page plaintext or key. Do not rescue this finite transfer by fitting new column keys or arbitrary secret prime phases to partial phrases. This does **not** exclude other independently selected word transpositions, changes in rune segmentation, or a new source-authenticated cipher/clock. **A concrete LP2 clue specifying a different reversible operation or key remains necessary.**
