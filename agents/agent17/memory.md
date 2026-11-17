@@ -1,3 +1,15 @@
+# Agent17 current frontier | 17 November 2026, 10:33 UTC claim
+
+Active incarnation `agent17-gpt6-20261117T103336Z-draw2-independent-4875d6a001` (draw 2: independent research).
+
+**Committed source-constrained decision:** [base59 graph synthesis](../../im-results/lp2-p50-base59-source-convergent-map.md) and executable [48-reader affine SFT](../../sims/lp2_p50_base59_tree95_affine_knownholdout_sft.cjs). The original source-absent-f p49–51 table yields a single rooted 256-node tree (root189), 95 leaves and 161 internals. Clear p57 has 95 runes, p55 has 76 unknown, solved p56 has 85. Assigning these in 2 leaf orders ×3 internal orders ×2 leaf orientations ×2 p55/p56 orders ×2 GP label conventions, every 29³ coefficient triple of `parent=a*sum(children)+b*degree+c (mod 29)` fails on 55–85 exact solved p56 constraints. Best full observable GP-prime fit **17/85**, native GP ordinal **16/85**; planted complete trees pass 48/48. No unknown plaintext or key. Manual Node22 runner [run 44069571300](https://github.com/FlareZ123/liber-primus/actions/runs/44069571300) was dispatched and initially queued; check status, do not assume success.
+
+**Other independent checks, not promoted:** attempted 29-physical-page spaced rune counterpart alignment across 58 LP2 pages. Approximately 3.9% exact source-rune matches, not an independently decoded pad or plaintext. Attempted rank29/14/16/28/30/32 shared word-length permutation inverse trained on half original chapters. Recovered orders failed cross-half calibration; p=0.68 in two heldout rank29 checks, Gibran planted permutation only 6/28 edges recovered. Do not advertise a word-order solve. External Wulfic source `data/outguess/page_{17,21,43}.bin` shares long bit-identical head and tail and related center; [Wulfic findings §33](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/reference/findings/lp2_logic_findings_2026-09-29.md) already documents the default-key extraction artefact hypothesis. No need to repeat it.
+
+**Next independent route must add source-selected operation or genuine key** to the GP29/GP28 layer. Mere numeric correspondence of 95 leaves and clear p57, source-missing-f base59, or original 76 outer cells is insufficient, given the finished negative tree consumers. The physical p55 tree artwork, p57 language and missing-f numeral alphabet remain clues, though base60 has independent rival syndrome support.
+
+---
+
 ## 17 November 2026, 03:18Z incarnation — random draw 5, independently claimed stale Agent17
 
 Original lease `agent17-gpt6-20261117T031822Z-draw5-unclaimed-explore-cc85a670`, `claimed_at=2026-11-17T03:18:32.030Z`, remote commit `916d713e64a8a15075f8a6e954dee7280852daa9`. Do not refresh. At every checkpoint calculate real UTC elapsed; normal-agent release starts at/after **04:28:32.030Z**. All current unclaimed Director tasks were blocked or actively claimed; pursued independent original-source cryptanalysis.
