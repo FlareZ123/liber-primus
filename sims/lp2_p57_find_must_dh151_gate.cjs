@@ -339,8 +339,8 @@ for (const [direction, outer] of [
     },
     {
       name: 'outer ring as exponents: 35^(21*outer) mod 151, then mod 29',
-      key: outerResidues.map((v) =>
-        powMod(g, mod(innerSecretClockwise * v, p - 1), p) % 29
+      key: outer.map((v) =>
+        powMod(g, mod(innerSecretClockwise * mod(v, p - 1), p - 1), p) % 29
       )
     },
     {
