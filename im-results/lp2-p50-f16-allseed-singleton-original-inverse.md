@@ -84,7 +84,7 @@ The A/I binary word hypothesis is stronger than necessary: genuine source-native
 **The independent reversed-time reading also fails exhaustively.** Because F16 has nonzero constant 13 (inverse 9 modulo29), its companion evolution is invertible. A natural alternative is to read the same sixteen-state linear key generator backward through the original book. This is exactly described by the normalized reciprocal characteristic polynomial (descending):
 
 \`\`\`text
-[1, 6, 28, 21, 25, 18, 1, 2, 25, 2, 2, 5, 19, 12, 8, 22, 9]
+[1, 6, 2, 21, 25, 18, 1, 2, 25, 2, 12, 5, 19, 12, 8, 22, 9]
 \`\`\`
 
 The reciprocal is obtained by reversing all seventeen original coefficients and multiplying by 13^(-1) = 9 modulo29; it introduces **no new fitted key or cipher parameter**. Applying the identical 43,046,721-assignment exhaustive A/I/O solver to unchanged ciphertext gives **4,862** four-holdout survivors for direct addition, **4,953** for predecessor chaining, and **zero full all-83 solutions** in either case. Their maximum source-order matched singleton prefixes are **22** and **24**. Both reversed-time native-GP positive plants independently recover a unique correct sixteen-value secret key and complete 12,956-symbol forward/backward reconstruction. The same source-correct [MITM SFT](../sims/lp2_p50_f16_allseed_aio_mitm_original_sft.cjs) runs both directions. This closes a time-direction ambiguity present in the earlier fixed-seed p39 study; page-reset state, nonlinear output, or reverse *ciphertext travel* remain different unsourced programs.
