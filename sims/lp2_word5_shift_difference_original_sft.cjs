@@ -91,6 +91,26 @@ function bucketize(corpus) {
   for (const n of lengths) assert.ok(bins[n].length, 'missing word length');
   return bins;
 }
+/** @param {number[][]} words @returns {number[][]} */
+function fiveBackHistograms(words) {
+  const hist = Array.from({length: 5}, () => Array(29).fill(0));
+  for (const w of words)
+    for (let j = 5; j < w.length; j++)
+      hist[j % 5][(w[j] - w[j - 5] + 29) % 29]++;
+  return hist;
+}
+const originalFive = fiveBackHistograms(sourceWords);
+const originalFiveIc = originalFive.map(ic);
+assert.deepEqual(originalFive.map(h => h.reduce((a, b) => a + b, 0)),
+  [872, 584, 350, 190, 109]);
+console.log('LP2 word-phase five-back delta IoC:',
+  originalFiveIc.map(v => v.toFixed(8)).join(', '));
+const multipliers = [1, 2, 3, 5, 8];
+/** @param {number} a @returns {number} */
+function inverse29(a) {
+  for (let b = 1; b < 29; b++) if (a * b % 29 === 1) return b;
+  throw Error('field inverse missing');
+}
 const offsets = [2, 11, 19, 6, 23];
 for (const [name, file] of [
   ['Gibran', 'resources/control/gibran_prophet_58585.txt'],
@@ -99,6 +119,7 @@ for (const [name, file] of [
   const buckets = bucketize(nativeWords(read(file)));
   const trials = 300;
   const minima = Array(5).fill(Infinity);
+  const fiveMinima = Array(5).fill(Infinity);
   let totalFive = 0;
   for (let t = 0; t < trials; t++) {
     const native = lengths.map(n => {
@@ -106,6 +127,10 @@ for (const [name, file] of [
       return bin[randomInt(bin.length)];
     });
     const counts = differenceHistograms(native);
+    const fiveCounts = fiveBackHistograms(native);
+    fiveCounts.forEach((h, i) => {
+      fiveMinima[i] = Math.min(fiveMinima[i], ic(h));
+    });
     counts.forEach((h, i) => {
       minima[i] = Math.min(minima[i], ic(h));
     });
@@ -126,10 +151,27 @@ for (const [name, file] of [
           assert.equal(mapped[phase][(r + shift(phase)) % 29],
             counts[phase][r], 'synthetic five-phase difference rotation');
       assert.deepEqual(mapped.map(ic), counts.map(ic));
+      const affine = native.map((w, wordId) => w.map((p, i) =>
+        (multipliers[i % 5] * p + (7 * wordId) % 29 +
+          offsets[i % 5]) % 29));
+      const affineInverse = affine.map((w, wordId) => w.map((c, i) =>
+        ((c - (7 * wordId) % 29 - offsets[i % 5] + 58) % 29 *
+          inverse29(multipliers[i % 5])) % 29));
+      assert.deepEqual(affineInverse, native);
+      const affineFive = fiveBackHistograms(affine);
+      for (let phase = 0; phase < 5; phase++)
+        for (let r = 0; r < 29; r++)
+          assert.equal(affineFive[phase][(multipliers[phase] * r) % 29],
+            fiveCounts[phase][r], 'affine five-back multiplication');
+      assert.deepEqual(affineFive.map(ic), fiveCounts.map(ic));
     }
   }
   assert.ok(minima.every((min, i) => min > originalIc[i]),
     'original five-phase Caesar family unexpectedly compatible');
+  assert.ok(fiveMinima.every((min, i) => min > originalFiveIc[i]),
+    'original five-phase wordwise affine family unexpectedly compatible');
+  console.log(name, 'minimum five-back affine IoC:',
+    fiveMinima.map(v => v.toFixed(8)).join(', '));
   console.log(name, 'native controls N=' + trials,
     'minimum IoC:', minima.map(v => v.toFixed(8)).join(', '),
     'mean lag5 matches:', (totalFive / trials).toFixed(4));
