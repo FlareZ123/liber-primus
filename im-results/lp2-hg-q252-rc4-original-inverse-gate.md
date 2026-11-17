@@ -1,6 +1,6 @@
 # Original p50 H×G 252-symbol quotient: direct RC4, GP29 and BASE29 consumers
 
-**Agents 8 (13 November), 4 and 44 (16 November 2026). Classification: three source-motivated finite original-cipher negatives.** No previously unknown Liber Primus plaintext, authentic key, cipher architecture or deep-web destination recovered. The original quotient exists exactly, but none of the tested direct consumers reads as the manuscript's instructions.
+**Agents 8 (13 November), 4 and 44 (16 November), and 2 (17 November 2026). Classification: four source-motivated finite original-cipher negatives.** No previously unknown Liber Primus plaintext, authentic key, cipher architecture or deep-web destination recovered. The original quotient exists exactly, but none of the tested direct consumers reads as the manuscript's instructions.
 
 ## Source hypothesis
 
@@ -54,6 +54,24 @@ A further source-specific readout treats (Q) itself as one **big-endian BASE29 i
 
 **Reproducer:** [original-input Node22/CommonJS single-file SFT](../sims/lp2_p50_hg_q252_flanking_direct_sft.cjs), with source assertions, 4/4 exact original re-encryptions, 4/4 308-symbol native p57 planted decryptions and BASE29 header assertion. [Manual-only CI original-run 43781491464](https://github.com/FlareZ123/liber-primus/actions/runs/43781491464).
 
+## Exact source quotient as key with the solved-page F bypass (17 November, Agent2)
+
+The source-linked GP29 quotient has a stronger finite *key* test than rigid continuous Vigenère alone. The actually solved p56 cipher makes plaintext GP **F=0 transparent**: it prints as ciphertext F and does not consume its key. A non-F plaintext always consumes one key digit, potentially producing a printed F. Consequently a rigorous inverse must consider **both branches when ciphertext is F**, and must refuse every consuming branch whose decoded plaintext would be F. This exact source-demonstrated rule is distinct from treating Q itself as ciphertext under the p56 prime-totient key, which is tested in the next section.
+
+With the original table Q[0..251] exactly as above, source phase0, no extra mask, no secret phase or adaptive key schedule, at key position `j` a consuming branch uses `P=(C ± Q[j]) mod29` and advances `j`; a literal transparent-F branch requires `C=0` and leaves `j` unchanged. Dynamic programming exhaustively combines these two branches, deduplicating equal key positions. It tests both additive signs on the unchanged full 138-rune table-preceding sentence, complete 170-rune table-following sentence, and 76-rune p55 terminal page. There is no English score or tuned word boundary in the acceptance test.
+
+| Full original receiver, local key phase0 | Source runes | Printed F sites | Subtraction first impossible at | Addition first impossible at |
+| --- | ---: | ---: | ---: | ---: |
+| p48→p49 pretable sentence | 138 | 8 | 29 | 24 |
+| p51→p52 posttable sentence | 170 | 6 | 37 | 30 |
+| Physical p55 complete (including carry glyph) | 76 | 3 | 61 | 63 |
+
+Every number in the last two columns is a zero-based original-cipher rune index. **All six inverse path sets become empty** before their passage ends. The failure is an exact necessary-condition obstruction to this **phase-zero literal Q252 key under the authentic F-transparent rule**, even if the intended plaintext is a foreign language, code or nonstandard word segmentation. It is stronger than the rigid-key random-looking IoC result for this particular source-locked key model. It does not exclude a distinct key derivation, historical phase instruction or another LP2 cipher.
+
+**Positive control:** take the actual independently clear **95-rune p57 PARABLE**, encrypt it twice with the original Q252 key under both signs while bypassing every plaintext F, and enumerate all legal paths. Both positives yield at least one full-length legal path with the exact planted non-F key-consumption count. The original table polynomial identity, zero four-symbol remainder and the pre/post sentence counts remain asserted by the same script. This extension was executed on the original GitHub checkout in [Windows Node22 Actions run 44001775997](https://github.com/FlareZ123/liber-primus/actions/runs/44001775997), status **PASS**. [Single-file source-exact reproducer](../sims/lp2_p50_hg_q252_flanking_direct_sft.cjs).
+
+**Decision:** the original 252-residue table quotient cannot directly decrypt any of the three complete original targets with the documented p56-style F-transparent key schedule at phase0, under either arithmetic sign. There is **no recovered plaintext/key**, and no reason to invent another phase without an independent author clue.
+
 ## Historical p56 native-F prime-totient transfer to the extracted quotient (16 November, Agent44)
 
 The quotient itself is a distinct candidate encrypted GP29 payload. To see whether it can directly convey a hidden table instruction, run the only **historically solved LP2 cipher mode**, the original p56 prime-totient stream and plaintext-F nonconsuming bypass, on this complete source-derived **252-rune** tape. This uses neither p49/p51 unknown plaintext nor a free key. The source-derived factor orientation, six literal quotient-zero positions **0, 75, 120, 140, 170, 237**, key sign, GP29 alphabet, and skip law are fixed. We grant every prime-stream starting index **0–4,999** and every one of the six 0-site bypass masks, so the test does not falsely exclude a nonzero phase.
@@ -91,4 +109,4 @@ To give the encrypted-book hypothesis its most favorable empirical context, comp
 
 ## Interpretation and next missing evidence
 
-The source-dependent **H×G polynomial quotient is algebraically real**, while its author-selected historical role remains unproved. Its eight adjacent duplicates in 252 digits are unlike any same-length original encrypted-LP2 window, so the quotient has no positive case for being an ordinary continuation of the unknown-page anti-repeat ciphertext register. The RC4 consumer, neighboring-prose GP29 pad and p56-native quotient inverse fail to recover authentic plaintext under their specified clocks; the direct BASE29 quotient lacks an identifiable file signature at offset zero. **Neither its key-like statistics nor its exact polynomial divisibility identifies the intended decoder.** Further phase fitting, reversed alphabets and newly invented cipher layers have no source support. The next genuine decision requires an independently preserved Cicada-era operation assigning the 252 coefficients a role, or an exact withheld original plaintext prediction on adjacent text.
+The source-dependent **H×G polynomial quotient is algebraically real**, while its author-selected historical role remains unproved. Its eight adjacent duplicates in 252 digits are unlike any same-length original encrypted-LP2 window, so the quotient has no positive case for being an ordinary continuation of the unknown-page anti-repeat ciphertext register. The RC4 consumer, neighboring-prose GP29 pad and p56-native quotient inverse fail to recover authentic plaintext under their specified clocks; the exact F-transparent quotient-as-key inverse has no full legal path on three original targets at source phase0; the direct BASE29 quotient lacks an identifiable file signature at offset zero. **Neither its key-like statistics nor its exact polynomial divisibility identifies the intended decoder.** Further phase fitting, reversed alphabets and newly invented cipher layers have no source support. The next genuine decision requires an independently preserved Cicada-era operation assigning the 252 coefficients a role, or an exact withheld original plaintext prediction on adjacent text.
