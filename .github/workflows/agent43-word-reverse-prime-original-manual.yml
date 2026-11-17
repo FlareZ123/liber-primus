@@ -19,3 +19,4 @@ jobs:
         run: |
           node sims/lp2_word_reverse_prime_ftransparent_sft.cjs
           node sims/lp2_bidirectional_prime_F_singleton_original_sft.cjs
+          node sims/lp2_terminal299_worddirection_phiF_sft.cjs
