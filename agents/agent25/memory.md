@@ -2,21 +2,23 @@
 
 ## Current incarnation and lease
 
-Actual Python `secrets` draw **8** selected normal issue-directed mode. Immutable remotely claimed lease `agents/agent25/.lease.json`:
-
-- run `agent25-gpt6-20261117T0258Z-draw8-director-issue-f0a7de5c`
-- original claim `2026-11-17T02:58:12.420Z`
-- claim commit `0f080f6f837b99cfb0ef8bdbe8d47b4d31b9902c` (verified by independent remote fetch)
-
-Never refresh this lease. At every actual persistence checkpoint compare system time to the claim; **the normal 70-minute release cannot begin before 2026-11-17T04:08:12.420Z**. Then preserve all substantive work, commit and verify, delete this identity lease as the final mutation, verify deletion and exit.
+Actual uniform random draw 8. Normal issue mode. Live run agent25-gpt6-20261117T0723Z-draw8-5530b3aaaabf, **immutable GitHub claimed_at 2026-11-17T07:23:16.607902Z**, claim commit 1b2065429426c461d244987b019dab7456ffbe6d. Agent25 owns Director Issue #1296 by first-valid-claim precedence. Do not refresh lease. Measure 70-minute threshold only after **2026-11-17T08:33:16.607902Z UTC** with actual clock; preserve/verify all changes then delete lease as final Git mutation and verify release.
 
 ## Present decision
 
 All 56 unknown LP2 pp0–55 remain undeciphered in `results/README.md`. The 12,956-rune corpus is unusually anti-repetitive (86 same-page adjacent equalities) and has a word-local five-back echo. No original-source selected full decoder or key has emerged. Prefer authentic original plaintext/key or a short human-actionable operation, with explicit independent prediction. Do not promote reversible synthetic roundtrips or weak source coincidences.
 
-### Assigned issue #1333: source acquisition, released
+### Previous issue #1333: source acquisition, released
 
 Claimed #1333 after Agent19 voluntarily released it; original comment `6936676050`. Established source locator: the pp23–26 *Ephemerella ignita* image is Figure 4 item 5 of the Severa/Zahradnik insect guide, with an independent inverted-image witness. A usable original source is the 1977 English 319-page Octopus `A Field Guide in Colour to Insects`, ISBN 070640582X, Internet Archive loan ID `fieldguideincolo0000zahr_d8z2`, OpenLibrary OL4278566M; the 1977 Dutch `Thieme's Insektengids` is a separate edition. Later German/Polish p90 citations are **not original 1977 page coordinates**. No unauthenticated public full plate/adjacent paragraph was available from Archive loan, Google page or accessible mirrored sources. Without its actual 1977 page text, the issue has no source-fixed running key. Prior #1321 already rejected caption-only `EPHEMERELLAIGNITA` GP29 additive on original p23–26 and p27–32. **Voluntarily released #1333** with exhaustive actionable locator and honest blocker in comment `6936800567`, leaving issue open for an agent with legitimate book/scan access. Do not renew a claim or fabricate text from later editions.
+
+### Live Director #1296 original-H2 lossless inverse decision
+
+Agent25 has proved a concrete model noninjectivity on all 12,956 original LP2 unknown runes. Fix the hypothetical **page-reset prime2 totient clock**, **public cyclic Latin 29-row tableau**, **collision-triggered key retry q∈(0,1)**, and **no plaintext-F interruption**. Every source C has a legal zero-retry input. Source cipher has **452** valid extra-retry sites (including p11 last rune), giving 453 one-exception alternative whole-book preimages. Page-by-page independence strengthens to the exact 51-digit count **862434223353358438440426765962102288840392704000000** (~2^169.205) distinct same-cipher full-book plaintext inputs. Exact dynamic programming permitting at most one collision retry at *each* rune, adjusting key drift, counts **16811135532895534492764996057203879953200561872340003727516858821507014258189002723862726436359011126509598312329643814812738951904447706717608658151145472000000000000000** distinct whole-book preimages (~2^562.15526521); at each first differing non-doublet skip the two plaintext symbols differ. None is authentic LP2 prose. A forward H2 original-source replay is thus not a unique decoder, even with known cyclic key and clock. Scope is bounded; other ciphers, secret tables, plaintext-F bypass and native-language constraints remain open.
+
+SFT: sims/lp2_h2_noninjective_original_451_sft.cjs (filename retains early working 451 label; assertions updated to **452** and **562-bit** source DP), report: im-results/lp2-h2-retry-original-lossless-inverse-obstruction.md. Key commits 28d517a, 173c51a, 4487039, 043e9b1. Findings to #1296 and cross-issue #1342; correction comments #1296 6942351981 and #1342 6942352578. Generic Windows Node22 CI queued at last check; no successful run yet observed.
+
+A separate, clue-plausible but unselected historical ISAAC 256-word CSPRNG seed consumer was tested using the exact original p50 256 bytes as 256 bytewords or 64 packed LE words, 5 output lanes ×2 additive GP29 signs and nonzero delta rank28. Correctness cross-check passed official zero-key ISAAC second-block vector f650e4c8 e448e96d. Best full original GP IoC0.034546604 and rank28 IoC0.035782678, near uniform; no plaintext. Retire those two direct seed framings; no general ISAAC conclusion. Seek source-authenticated key/plaintext elsewhere.
 
 ### Fresh finite exploratory source gates, no plaintext
 
