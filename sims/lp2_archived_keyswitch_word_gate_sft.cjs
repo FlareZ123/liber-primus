@@ -147,6 +147,60 @@ function candidates(cipherWord, start, convention) {
     candidate.runes.every((r, i) => permitted[i].includes(r)));
 }
 
+
+// Literal source-C++ lookahead grammar, with the unsafe key[(i%P)+1]
+// naturally repaired as a cyclic key index. This is DISTINCT from the
+// idealized last-emitted-output anti-repeat model and uses no language model.
+// If both candidate lookahead pairs collide, the literal code uses continue
+// and writes no ciphertext rune; reject that branch for a lossless stream.
+const mod29 = n => ((n % 29) + 29) % 29;
+/** @param {number} i @param {number} p @param {number} a @param {number} b */
+const choices = (i, p, a, b) => ({
+  div: mod29(p + keys[0][(i + a) % 8]),
+  circ: mod29(p + keys[1][(i + b) % 14]),
+});
+const literalResults = [];
+for (let a = 0; a < 8; a++) {
+  for (let b = 0; b < 14; b++) {
+    let reachable = new Set([mod29(ciphertext[0] - keys[0][a]),
+                             mod29(ciphertext[0] - keys[1][b])]);
+    let endedAt = 0;
+    for (let i = 0; i < ciphertext.length - 1 && reachable.size; i++) {
+      const next = new Set([
+        mod29(ciphertext[i + 1] - keys[0][(i + 1 + a) % 8]),
+        mod29(ciphertext[i + 1] - keys[1][(i + 1 + b) % 14]),
+      ]);
+      const after = new Set();
+      for (const currentPlain of reachable) {
+        for (const nextPlain of next) {
+          const now = choices(i, currentPlain, a, b);
+          const future = choices(i + 1, nextPlain, a, b);
+          let emitted = now.div;
+          if (future.div === now.div) {
+            if (future.circ === now.circ) continue; // historical continue: no output
+            emitted = now.circ;
+          }
+          if (emitted === ciphertext[i]) after.add(nextPlain);
+        }
+      }
+      reachable = after;
+      endedAt = i + 1;
+    }
+    literalResults.push({ a, b, survived: reachable.size > 0, endedAt });
+  }
+}
+const literalBest = Math.max(...literalResults.map(r => r.endedAt));
+const sourceLiteral = literalResults.find(r => r.a === 0 && r.b === 0);
+assert.equal(literalResults.filter(r => r.survived).length, 0);
+assert.equal(literalBest, 209);
+assert.equal(sourceLiteral.endedAt, 123);
+console.log('Literal historical lookahead grammar (cyclic-index repair):',
+  '0 of 112 relative key-phase pairs emit the authentic 262-rune p0;',
+  'source phase dies at p0 index', sourceLiteral.endedAt,
+  'best shifted phase survives only to', literalBest);
+console.log('Exact DP checks all GP29 plaintext symbol paths; no dictionary needed.');
+console.log('Limit: source C++ out-of-bounds and unwritten output branches have undefined behavior.');
+
 let position = 0;
 let longTotal = 0;
 let zeroWithImageValues = 0;
