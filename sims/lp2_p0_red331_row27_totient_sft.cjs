@@ -202,6 +202,52 @@ assert.equal(prime157Second, 0); // F would have to be printed literally.
 assert.notEqual(body[1], 0); // Actual second ciphertext rune is J.
 
 
+
+// Independent original page-number navigation check: row27 points to the
+// only <=31 page participating in the unique cross-page 6-rune echo.
+// The 6-rune identity was independently discovered before this row link.
+// It is a marker, not a plaintext crib or shared-pad proof.
+const page27 = corpus.pages.find(p => p.page === 27).indices;
+const page55 = corpus.pages.find(p => p.page === 55).indices;
+const page56 = corpus.pages.find(p => p.page === 56).indices;
+const six = [23, 11, 1, 17, 18, 10];
+assert.deepEqual(page27.slice(28, 34), six);
+assert.deepEqual(page55.slice(70, 76), six);
+assert.equal(page27[34], page56[0]);
+const originalWindows = new Map();
+const crossPageRepeats = [];
+for (const page of corpus.pages.filter(p => p.page < 56)) {
+  for (let offset = 0; offset + 6 <= page.indices.length; offset++) {
+    const key = page.indices.slice(offset, offset + 6).join(',');
+    const prior = originalWindows.get(key) || [];
+    for (const earlier of prior) {
+      if (earlier.page !== page.page) {
+        crossPageRepeats.push({page1: earlier.page, offset1: earlier.offset,
+          page2: page.page, offset2: offset});
+      }
+    }
+    prior.push({page: page.page, offset});
+    originalWindows.set(key, prior);
+  }
+}
+assert.deepEqual(crossPageRepeats,
+  [{page1: 27, offset1: 28, page2: 55, offset2: 70}]);
+
+const bookendRowReadings = [];
+for (const p of [{page: 27, indices: page27},
+  {page: 55, indices: page55}]) {
+  for (const sign of [-1, 1]) {
+    const decoded = p.indices.map((value, i) =>
+      mod(value + sign * rowBytes[i % 8], 29));
+    bookendRowReadings.push({
+      page: p.page, sign, ioc: indexOfCoincidence(decoded),
+      preview: decoded.slice(0, 30).map(v => corpus.translit[v]).join(' ')
+    });
+  }
+}
+assert.deepEqual(bookendRowReadings.map(x => Number(x.ioc.toFixed(10))),
+  [0.0335644327, 0.0360588386, 0.0421052632, 0.0291228070]);
+
 // RSA is a historical Cicada operation, so p=151, q=331 and e=13
 // (the count of red title runes and dots in its terminal marker)
 // specify one exploratory, complete private inverse. No original clue
@@ -327,6 +373,9 @@ console.log(JSON.stringify({
   redHeadingSelfDecoder: redSelfReadings,
   blackBodyDirectDecoder: reading,
   phi151PrimeStream: 'rejected at black-body rune 1: ciphertext J would require nonliteral plaintext F',
+  page27ToPage55: { onlyCrossPageSixRuneEcho: crossPageRepeats,
+    sixRuneGpIndices: six, sevenRuneExtendsAcrossP55P56: true,
+    bookendRowReadings },
   rsa151x331e13: { modulus: rsaN.toString(), privateExponent: rsaD.toString(),
     p0BlackOutOfThreeRuneRange: outsideBase29Triples, grid16BitPacketsOutOfRange: tableRsaInvalid,
     cyclewalkFullOriginal: rsaOutcomes }
