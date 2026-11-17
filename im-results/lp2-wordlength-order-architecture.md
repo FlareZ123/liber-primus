@@ -39,6 +39,24 @@ The unchanged original score is **-0.054795**. All six outputs remain nonlinguis
 
 The source's historical seven-position cipher is therefore **insufficient by itself** to restore native word-order evidence for original LP2, under the three original reset conventions and both fixed directions. Do not rescue this with arbitrary row offsets, permutations or new ciphers until an original instruction chooses them.
 
+## Complete-book 2014 Stage05 historical 14-column word inverse (Agent28, 17 November)
+
+**Decision: no native GP-English word-order recovery from the original 2,896-word source.** This tests a fixed historically authored 14-column transposition at a previously untested *whole-book* scope, distinct from the prior p40–53 667-word trial ([narrower original comparison](lp2-p40-stage05-14column-wholeword-gate.md)). The LP2 unknown manuscript has **56 physical pages**, divisible into four groups of 14. That numerical fit gives a clue-shaped reason to check a 14-column whole-book transform, but the historical 2014 Stage05 source does not say to apply it here or to use words as units.
+
+The exact historical column reading order is `[2,8,9,1,12,13,11,4,5,7,3,0,6,10]`. Parse the complete original source into 2,896 joined printed words and 12,956 runes (2,896 source lengths with histogram exactly `[83,448,720,513,317,256,216,156,78,52,32,18,4,3]` for 1–14). Freeze the 14-column source order and its one opposite ordering, using row-major assignment of plaintext *whole words* and contiguous historical-column ciphertext concatenation, including the unequal final row. Both inverses re-encode the intact original word list, with no rune change, plaintext guess, key fit or reset. Score the resulting word-length adjacency by the independently trained same three source-native seven-bin GP English models already used elsewhere in this report, **without retraining models to the LP2 results**.
+
+| Independent GP training source | Unchanged order (bits/pair) | Historical inverse | Opposite inverse | Opposite one-sided shuffled tail | Best of two shuffled tail |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Solved-Cicada LP1 | **−0.057744** | −0.060222 | −0.051208 | 0.2482 | 0.4264 |
+| Gibran | **−0.077587** | −0.071189 | −0.053078 | 0.0311 | 0.0705 |
+| Emerson | **−0.057732** | −0.062146 | −0.038666 | 0.0105 | 0.0272 |
+
+The tails are plus-one proportions from **1,800 deterministic Fisher–Yates permutations of the exact original 2,896 word-length multiset** (`0x20143301` seed), with the fixed operation run on each. The opposite reading mildly improves two literary comparisons, but the historically recorded orientation does not, all six original inverse scores remain **below zero**, and solved-Cicada LP1 sees no relevant signal. Selection among the three training sources and two directions, plus the broader many-branch history, forbids interpreting the smallest one-control tail as a genuine decipherment. These permutations are not a language-independent model of exotic prose, and word-length bigrams alone cannot establish plaintext. The result therefore **does not justify** a second stage of fitted alphabets, free column-order search, or word-boundary exceptions.
+
+**Complete source-native positive control:** 2,896 authentic GP-rendered Gibran word lengths are encrypted under the *same fixed historical 14-column order*. The exact inverse recovers every original length; the source-trained Gibran score rises from approximately **−0.029735 scrambled** to **+0.048010 restored** bits/pair. This establishes that the operation and statistic have power against a genuine same-sized native text.
+
+**Reproduce:** [original-source CommonJS SFT](../sims/lp2_book14_wordlength_historical_sft.cjs), Windows Node.js 22; [manual-only Windows job](https://github.com/FlareZ123/liber-primus/actions/runs/44057594711) (submitted; do not assume CI succeeded before confirmation). The result adds a finite historical source-operation negative without recovering an LP2 rune, cryptographic key, instruction or destination.
+
 ## Original 2014 Wisdom 5×5 outer-to-inner spiral on complete words
 
 **Agent31, 14 November 2026.** A separate, clue-constrained whole-word inverse asks whether the already-known loss of ordinary GP-English word-length bigram association could reflect a *spiral* rather than the 2014 seven-position historical transposition. The actual **2014 LP1 Wisdom 5×5** is a source object. The original LP2 p57 PARABLE instructs solvers to shed "circumferences" and seek what is within, and physical p15 prints a clockwise spiral. Together these motivate the familiar 25-slot, outer-ring-to-inner-ring reading, without selecting a plaintext or secret key. The weakest premise is that this spatial instruction applies to **25 consecutive entire words** from unsolved LP2; no authored source explicitly assigns that unit or clock.
