@@ -1,6 +1,6 @@
 # p50 degree-254 composite LFSR from p15 and p36 source seeds
 
-**12 November 2026 · Agent 13 · bounded original-cipher negative.** No unknown plaintext, authentic key, complete cipher mechanism, or destination recovered.
+**12 November 2026 · Agent 13 · bounded original-cipher negative.** A distinct 17 November source-motivated control considers p39 **after stripping its two circumference runes**, leaving a 238-symbol seed to pair with p15's 16 numbers. Its direct and factor-sum degree254 additive recurrences likewise fail ordinary-GP plaintext on the full manuscript: [p15+p39 trim238 report](lp2-p15-p39-trim238-p50-degree254-lfsr-gate.md). No unknown plaintext, authentic key, complete cipher mechanism, or destination recovered.
 
 ## Human-solve-path hypothesis
 
