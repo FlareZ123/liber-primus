@@ -20,8 +20,7 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 const base = path.join(__dirname, '..', 'resources', 'liber-primus');
 const gp = JSON.parse(fs.readFileSync(path.join(base, 'lp2-corpus.json'), 'utf8'));
-const plainReference = fs.readFileSync(path.join(base, 'lp1-plaintext-reference.txt'), 'utf8')
-  .replace(/^#.*$/gm, '');
+const plainReference = fs.readFileSync(path.join(base, 'lp1-plaintext-reference.txt'), 'utf8');
 const parts = [7, 3, 11, 7, 19, 29];
 assert.deepEqual(['O', 'U', 'R', 'O', 'W', 'N'].map(
   (letter) => gp.prime[gp.translit.indexOf(letter)]), parts);
@@ -68,7 +67,6 @@ function sourceNative(x) {
   for (const word of clean.match(/[A-Z]+/g) || []) {
     for (let i = 0; i < word.length;) {
       if (word.startsWith('ING', i)) { out.push(21); i += 3; }
-      else if (word.startsWith('IO', i)) { out.push(27); i += 2; }
       else {
         const t = tokens.find((t) => word.startsWith(t.s, i));
         assert(t, 'Unmapped word ' + word);
@@ -85,13 +83,29 @@ assert.equal(ioc(originalRead), ioc(cipher), 'Permutation preserves IC');
 const solvedP57 = gp.pages[57].indices.slice(0, 76);
 assert.equal(solvedP57.length, 76);
 assert.deepEqual(decode(encode(solvedP57)), solvedP57);
-const native = sourceNative(plainReference);
-assert.equal(native.length, 3510);
+// LP1 solved-source pages only (1, 3–16); exclude LP2 p56/p57 and
+// never make a synthetic 76-rune window across a physical page boundary.
+const headers = [...plainReference.matchAll(/^###\s+(\d+)\s*$/gm)];
+const lp1Sections = headers.map((match, index) => {
+  const start = match.index + match[0].length;
+  const end = index + 1 < headers.length ? headers[index + 1].index : plainReference.length;
+  return { page: Number(match[1]), text: plainReference.slice(start, end).replace(/^#.*$/gm, '') };
+}).filter(section => section.page >= 1 && section.page <= 16);
+assert.deepEqual(lp1Sections.map(section => section.page),
+  [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+const nativePages = lp1Sections.map(section => ({
+  page: section.page, runes: sourceNative(section.text)
+}));
+const nativeRuneCount = nativePages.reduce((sum, page) => sum + page.runes.length, 0);
+assert.equal(nativeRuneCount, 3318);
 const nativeIoc = [];
-for (let i = 0; i + 76 <= native.length; i++) {
-  nativeIoc.push(ioc(native.slice(i, i + 76)));
+for (const page of nativePages) {
+  for (let i = 0; i + 76 <= page.runes.length; i++) {
+    nativeIoc.push(ioc(page.runes.slice(i, i + 76)));
+  }
 }
 nativeIoc.sort((a, b) => a - b);
+assert.equal(nativeIoc.length, 2253);
 const sourceIoc = ioc(originalRead);
 const countNativeBelow = nativeIoc.filter((x) => x <= sourceIoc).length;
 assert.equal(countNativeBelow, 0);
@@ -103,7 +117,9 @@ console.log(JSON.stringify({
   solvedP57PlantedExact: true,
   p55IocSourceAndPermutation: sourceIoc,
   p57First76Ioc: ioc(solvedP57),
-  lp1NativeWindows76: nativeIoc.length,
+  lp1NativePages: nativePages.map(page => page.page),
+  lp1NativeRuneCount: nativeRuneCount,
+  lp1NativePageContainedWindows76: nativeIoc.length,
   lp1NativeMinIoc: nativeIoc[0],
   lp1NativeMedianIoc: nativeIoc[Math.floor(nativeIoc.length / 2)],
   lp1NativeWindowsAtOrBelowOriginal: countNativeBelow,

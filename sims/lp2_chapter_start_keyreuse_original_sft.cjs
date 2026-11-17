@@ -9,7 +9,7 @@
  * possible alignments while preserving key-order synchrony.
  *
  * Both methods use a source-native GP29 English model trained exclusively
- * on the authenticated LP1 solved-source reference (3510 glyphs).
+ * on original LP1 pages 1 and 3–16 only (3318 glyphs), with page-contained controls.
  * Both are calibrated on planted same-pad LP1 text and on matched nulls.
  * Original first-300 scores are compared to the maximum over ALL 36 pairs
  * in independent 300-rune offsets of the very same original chapter streams.
@@ -52,9 +52,6 @@ function nativeGP(text) {
       if (word.startsWith('ING', i)) {
         result.push(21);
         i += 3;
-      } else if (word.startsWith('IO', i)) {
-        result.push(27);
-        i += 2;
       } else {
         const t = tokens.find((x) => word.startsWith(x.s, i));
         assert(t, 'Unmapped authentic solved-source word ' + word);
@@ -65,10 +62,22 @@ function nativeGP(text) {
   }
   return result;
 }
-const sourceReference = read('resources/liber-primus/lp1-plaintext-reference.txt')
-  .replace(/^#.*$/gm, '');
-const solved = nativeGP(sourceReference);
-assert.equal(solved.length, 3510);
+const sourceReference = read('resources/liber-primus/lp1-plaintext-reference.txt');
+const sourceSections = [...sourceReference.matchAll(/^###\s+(\d+)\s*$/gm)];
+const solvedPages = sourceSections.map((match, index) => {
+  const start = match.index + match[0].length;
+  const end = index + 1 < sourceSections.length
+    ? sourceSections[index + 1].index : sourceReference.length;
+  return { page: Number(match[1]),
+    text: sourceReference.slice(start, end).replace(/^#.*$/gm, '') };
+}).filter(section => section.page >= 1 && section.page <= 16);
+assert.deepEqual(solvedPages.map(section => section.page),
+  [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+const solvedPageStreams = solvedPages.map(section => ({
+  page: section.page, runes: nativeGP(section.text)
+}));
+const solved = solvedPageStreams.flatMap(section => section.runes);
+assert.equal(solved.length, 3318);
 
 function rng(seed) {
   let a = seed >>> 0;
@@ -218,12 +227,24 @@ function samePadEncode(p, k) {
   let at = 0;
   return p.map((v) => v === 0 ? 0 : (v + k[at++]) % 29);
 }
+// Positive/negative controls are drawn only from 300-rune windows wholly
+// inside an LP1 page; no synthetic page-boundary joins enter the controls.
+const controlWindows = [];
+for (const page of solvedPageStreams) {
+  for (let start = 0; start + n0 <= page.runes.length; start++) {
+    controlWindows.push({ page: page.page, start,
+      runes: page.runes.slice(start, start + n0) });
+  }
+}
+assert.equal(controlWindows.length, 680);
 const controlRand = rng(9961), controlPositive = [], controlNegative = [];
 for (let trial = 0; trial < 120; trial++) {
-  const A = Math.floor(controlRand() * (solved.length - n0));
-  const B = Math.floor(controlRand() * (solved.length - n0));
-  if (Math.abs(A - B) < n0) { trial--; continue; }
-  const pA = solved.slice(A, A + n0), pB = solved.slice(B, B + n0);
+  let A, B;
+  do {
+    A = controlWindows[Math.floor(controlRand() * controlWindows.length)];
+    B = controlWindows[Math.floor(controlRand() * controlWindows.length)];
+  } while (A.page === B.page && Math.abs(A.start - B.start) < n0);
+  const pA = A.runes, pB = B.runes;
   const same = Array.from({ length: n0 }, () => Math.floor(controlRand() * 29));
   const wrong = Array.from({ length: n0 }, () => Math.floor(controlRand() * 29));
   const ca = samePadEncode(pA, same), cb = samePadEncode(pB, same);
@@ -252,6 +273,8 @@ console.log(JSON.stringify({
   corpus: 'resources/liber-primus/lp2-corpus.json',
   modelSource: 'resources/liber-primus/lp1-plaintext-reference.txt',
   trainingRunes: solved.length,
+  trainingPages: solvedPageStreams.map(page => page.page),
+  pageContainedControlWindows: controlWindows.length,
   nineChapterRunes: lengths,
   genuineP56PlaintextFBypass: true,
   plainFRate: f,
