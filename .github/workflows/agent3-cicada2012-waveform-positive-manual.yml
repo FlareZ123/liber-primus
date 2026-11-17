@@ -1,0 +1,22 @@
+name: Agent3 2012 full waveform historical decoder positive (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-waveform-positive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install MIDI and signal packages
+        run: python -m pip install imageio-ffmpeg librosa mido numpy scipy filelock
+      - name: Recover both authentic 2012 messages from original MIDI-rendered PCM and MP3
+        run: python sims/lp2_cicada_2012_waveform_positive_sft.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agent3-original-2012-waveform-positive
+          path: run-data/agent3-cicada-2012-waveform-positive.json
+          retention-days: 14
