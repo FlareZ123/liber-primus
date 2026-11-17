@@ -18,16 +18,19 @@ A 28-bin difference likelihood is source-fixed from 145,000 Shakespeare GP28 pla
 |:--|--:|--:|--:|
 | Original source bookend alignment | 6,108 | 235 (3.8474%) | −109.0454 |
 | Planted native-English shared-pad encoder | 6,108 | 367 (6.0085%) | +104.2548 |
+| Source 2016 image dimension mean 566: first-half suffix versus complete second half | 6,111 | 232 (3.7964%) | −126.8946 |
 | Page p0 with p28, p1 with p29, …; 27 rune-bearing pairs | 5,562 | 172 (3.0924%) | −116.3221 |
+
+The independent 2016 signed image dimensions **563×569** average to **566**, exactly the first-half-minus-second-half rune count. This supplies a second, externally visible, full-length alignment: remove precisely the first 566 runes of p0–27 and compare its complete 6,195-rune suffix to p28–55. It too lacks the GP28 shared-pad signal (6,111 eligible, 232 equal, LLR −126.895); its independent native-English common-key plant scores positively. Unlike the six-rune echo alignment, no echo glyphs are dropped from this complete suffix alignment. Numeric equality alone does not authenticate the 2016 dimensions as a decryption instruction.
 
 The fixed GP28 native English training model predicts 6.1548% equal positions in differences of *independent* plaintext streams, and 3.5714% under independent uniform GP28 symbols. At the source-selected bookend alignment the observed 3.8474% is much closer to the latter. Across **all 6,194 circular shifts** of the original second rank stream, the bookend score is unexceptional (29.27% at or above the observed value, conditional phase-rank comparison). Across **10,000 seeded permutations** of the 27 second-half physical pages, 1.68% give an equal-step rate at or below the true 28-page pairing, in the *opposite* direction from expected same-key English. This is a conditional diagnostic, not an unconditional p-value for the source-selected relationship.
 
-**Bounded rejection.** A continuous identical GP28 additive keystream under the literal six-rune bookend alignment, or under same-local-offset p0↔p28 … page pairs, does not generate ordinary GP28 English plaintext differences with the same statistics as the source-native planted controls. These observations do not exclude changed key phase, distinct keys, a nonlinear keyed alphabet, a secret state beyond the displayed predecessor, different word boundaries, or independently transformed plaintext. The bookend phrase itself remains authentic and potentially relevant.
+**Bounded rejection.** A continuous identical GP28 additive keystream under the literal six-rune bookend alignment, or under the 566-rune source-dimension suffix alignment, or under same-local-offset p0↔p28 … page pairs, does not generate ordinary GP28 English plaintext differences with the same statistics as the source-native planted controls. These observations do not exclude changed key phase, distinct keys, a nonlinear keyed alphabet, a secret state beyond the displayed predecessor, different word boundaries, or independently transformed plaintext. The bookend phrase itself remains authentic and potentially relevant.
 
 ## Reproduce
 
 - [Self-contained read-only Windows Node.js 22 SFT](../sims/lp2_bookend_gp28_twotimepad_original_sft.cjs), consuming checked-in LP2, Shakespeare and Gibran files with fixed seeds.
-- [Successful Windows GitHub Actions execution](https://github.com/FlareZ123/liber-primus/actions/runs/44199538415).
+- [Successful Windows GitHub Actions executions](https://github.com/FlareZ123/liber-primus/actions/runs/44202168611) ([initial source-echo test](https://github.com/FlareZ123/liber-primus/actions/runs/44199538415)).
 - Earlier source arithmetic and different GP29 additive / multiplicative hypothesis: [2016 original 28-page bookend gate](../sims/2016_28page_bookend_ratio_inverse.cjs).
 
 **Next decision:** Retire the *equal shared GP28 additive keystream under these two literal public clocks*. Retain the source phrase as an artifact-level lead only if a separate authored operation specifies how to consume it. The missing object remains an original-language key or lossless nonperiodic state transition, and searching more free alignments cannot supply that instruction.
