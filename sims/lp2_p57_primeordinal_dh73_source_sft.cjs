@@ -201,6 +201,49 @@ const conditionalProbability =
 assert.deepEqual(count, [2, 2, 1]);
 assert.equal(1 / conditionalProbability, 4145280);
 
+// Exact fixed-geometry null, conditional on the ORIGINAL base59 256-value
+// multiset. Fix the three clause-rank addresses and the uniquely forced
+// fourth corner, modulus FIND151, second value's row21 exponent and
+// generator g35. Permute values among all 256 cells WITHOUT replacement.
+// Count ordered four-cell assignments (UL,UR,LL,LR) satisfying
+// LL = UR^21 mod151 and UL+LL-UR-LR = A107.
+// The relation itself was found retrospectively: these probabilities
+// must NEVER be treated as discovery-wide statistical evidence.
+const valueFrequencies = new Map();
+for (const value of bytes59) {
+  valueFrequencies.set(value, (valueFrequencies.get(value) || 0) + 1);
+}
+const possibleValues = [...valueFrequencies.entries()];
+const fixedGeometryDenominator = 256 * 255 * 254 * 253;
+let sourceRelationAssignments = 0;
+let exactAllCornersAssignments = 0;
+for (const [publicB, publicMultiplicity] of possibleValues) {
+  if (publicB < 1 || publicB >= p) continue;
+  const proposedK = powMod(publicB, rowOfB, p);
+  if (!valueFrequencies.has(proposedK) || proposedK === 0) continue;
+  for (const [upperLeftValue] of possibleValues) {
+    const lowerRightValue = upperLeftValue + proposedK - publicB - A;
+    if (!valueFrequencies.has(lowerRightValue)) continue;
+    const sequence = [publicB, proposedK, upperLeftValue, lowerRightValue];
+    const previouslyTaken = new Map();
+    let assignments = 1;
+    for (const value of sequence) {
+      const remaining = valueFrequencies.get(value) - (previouslyTaken.get(value) || 0);
+      assignments *= remaining;
+      previouslyTaken.set(value, (previouslyTaken.get(value) || 0) + 1);
+    }
+    sourceRelationAssignments += assignments;
+    if (upperLeftValue === 224 && publicB === 115 &&
+        proposedK === 73 && lowerRightValue === 75) {
+      exactAllCornersAssignments += assignments;
+    }
+  }
+}
+assert.equal(sourceRelationAssignments, 29807);
+assert.equal(exactAllCornersAssignments, 4);
+assert.equal(fixedGeometryDenominator, 4195023360);
+assert.equal(exactAllCornersAssignments / fixedGeometryDenominator, 1 / 1048755840);
+
 console.log(JSON.stringify({
   p57Source: {
     titleSum: primeSum(clauses[0]),
@@ -235,5 +278,14 @@ console.log(JSON.stringify({
     rankMinusOneAlternativeMissingCorner: bytes59[168]
   },
   conditionalExactSlotProbability: conditionalProbability,
+  conditionalFixedGeometryNull: {
+    countedOriginalMultisetPermutations: fixedGeometryDenominator,
+    relationMatchedAssignments: sourceRelationAssignments,
+    relationProbability: sourceRelationAssignments / fixedGeometryDenominator,
+    exactFourOriginalCornerAssignments: exactAllCornersAssignments,
+    exactFourOriginalCornersProbability:
+      exactAllCornersAssignments / fixedGeometryDenominator,
+    caution: 'Fixed selectors, radix, modulus and relation assumed in advance. Original discovery was retrospective.'
+  },
   note: 'K73 is computed directly from table-sourced B115 and its zero-based row21 (also GP(OUR)=21), independent of any b=13 guess. Fixed-address permutation probability is unadjusted. Zero unknown-page plaintext.'
 }, null, 2));
