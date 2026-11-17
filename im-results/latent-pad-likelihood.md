@@ -1,6 +1,6 @@
-# LP2 page-aligned additive common-pad likelihood (Agent 10, 2026-11-10)
+# LP2 common-pad likelihood: page-aligned and variable-phase original-input tests
 
-**Status:** powered negative experiment for a *specific shared-key model*. No plaintext, key, or confirmed cipher recovered.
+**Status:** two bounded original-input negatives: page-aligned common-pad reuse (Agent 10, 10 November 2026) and independently free page phases/reversals for a 256-period additive pad (Agent 8, 17 November 2026). Neither identifies unknown plaintext, a key, or a confirmed cipher.
 
 ## Hypothesis
 
@@ -36,7 +36,27 @@ Observed upper-tail Monte Carlo probability with +1 correction: **0.6693** (250 
 
 For a common page-aligned additive stream with ordinary GP-English plaintext frequencies, the model is highly sensitive and accurately recovers almost all planted keystream values. The real unsolved LP2 text scores **worse** than its circularly rotated null average. A shared pad operating in this exact way is therefore strongly disfavored for this register and alignment. This is **not** a universal rejection of common-key reuse: a page-specific substitution can erase the assumed rune labels; key start offsets or inserted/deleted runes can destroy alignment; the actual text might use drastically different rune statistics; and the ciphertext may implement context-sensitive anti-repeat repairs not captured by the control.
 
-The immediate next opportunity is an explicit **drifting/offset model**, with controlled planted page offsets or deletions and a held-out null. Avoid repeating raw page-aligned pad tests without changing the model. Another promising direction is learning shared keystream structure from label-free multi-view statistics, as suggested by Agent 3.
+The simplest remaining changes require independently motivated **insertions/deletions, evolving key state, per-page key derivation, or a different cipher register**. A source-blind change of the page-start phase alone is no longer sufficient to justify another scan; the 256-period free-phase experiment below explicitly tests that possibility. Additional extensions should be selected by an original clue or an independently discriminating plaintext prediction.
+
+## Extended original-input decision: unknown page phase and reading direction (Agent 8, 17 November 2026)
+
+The physical **256-cell** numeric table motivates testing a 256-symbol key period without assuming a particular interpretation of its bytes. Under the stronger *all-secret* model
+`C[j,t]=(P[j,t]+K[(phase[j]+direction[j]×t) mod256]) mod29`,
+each physical page has an independently unknown one of **256 phases** and a **forward or backward** key-clock direction, while the entire book shares one arbitrary 256-symbol additive pad. This extends the page-start-only model above; it does not assume that p50 actually supplies the pad.
+
+The [standalone source-native test](../sims/lp2_shared256_freephase_orientation_sft.cjs) selects the **46** original unsolved pages with at least 200 runes, freezes their first **200 original GP29 indices**, and derives a GP-native plaintext-difference likelihood from the original clear p57 PARABLE's **95 runes** (symmetric 0.4 smoothing). It fits 512 direction/phase pairs *against anchor p0 only* for each other page, without using the nonanchor pairs in fitting. Its final statistic is the mean log-likelihood ratio against uniform differences, normalized by the square root of the number of overlapping positions, over **990** nonanchor page pairs. The key cancels when correctly aligned; no actual secret key is fitted or presumed.
+
+| Frozen discriminator | Original LP2 | Matched null, 40 independent eight-rune-block shuffles | Twelve same-length synthetic shared-pad plants |
+| --- | ---: | ---: | ---: |
+| Mean nonanchor pair score | **−0.24225850** | Mean **−0.24010183**; range **−0.25655150 to −0.22912396** | Mean **−0.17820378**; range **−0.23110548 to −0.12382189** |
+| Positive-scoring nonanchor fraction | **0.12222** | Mean **0.12278** | Mean **0.21044** |
+| Mean fitted anchor score | **0.37080080** | Mean **0.36392345** | Mean **0.42474946** |
+
+**Null ranking:** 26/40 shuffled controls have higher nonanchor scores than original; the +1 empirical upper tail is **27/41 ≈0.65854**. The null shuffles independently reorder 25 contiguous eight-rune blocks within each page, preserving the source character inventory and most local adjacency. Crucially, *whole-page circular rotations would be invalid nulls for this free-phase hypothesis*, because arbitrary phase fitting would absorb them.
+
+**Power control:** Each plant uses fresh random 256-rune pad values, page-specific random phases and reversals, the p57 rune prior, and 81% replacement of newly created adjacent repeated ciphertext symbols. All **12/12** plants exceed the original nonanchor score; the anchor step recovers **9–21 of 46** exact relative page phase/direction pairs per plant. This is a measured detector with imperfect phase recovery, not a universal exclusion theorem. Sensitivity checks using p0, p16, p33, p40, p47 or p54 as the training anchor give original nonanchor scores **−0.25653 to −0.23401**, without a new familywise null claim. No original key trajectory or plaintext emerges.
+
+**Decision:** The source shows no positive evidence for an ordinary shared 256-period *additive GP29* pad even when physical pages may independently rotate and reverse its clock. The test leaves open output-alphabet changes, per-page keys, non-256 periods, state changes and lossless insertions/skips. Those require an independent selector; further unrestricted 256-grid pad variants are unlikely to recover plaintext merely by fitting more phases.
 
 ## Reproducibility
 
