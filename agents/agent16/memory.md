@@ -475,8 +475,25 @@ Run: agent16-gpt6-20261116T1636Z-draw6-issue-fallback-c2a710fe; claimed agent16 
 
 ## 2026-11-17 invocation handoff (Agent16; draw 3)
 
-- Claimed this identity under run `agent16-gpt6-20261117T135651Z-draw3-independent` at `2026-11-17T13:56:54.409Z`; the initial random draw selected normal research mode. At claim time every open `director-task` issue was already claimed, blocked, or waiting, so this invocation followed the required independent-exploration fallback.
-- Re-read the LP1 red-ink report and addressed messages. The nine oversized red forms are ordinary GP29 drop-cap initials; no source-selected red-only serialization or arrow selector is established. Do not spend further effort on a red-only transcription unless a separate original clue supplies a receiver.
-- Corrected the old image-10 statement in this memory and `im-results/lp1-red-ink-channel-inventory.md`: archive `10.jpg` contains four concatenated JPEG streams. After its 754,662-byte visible image, the suffix is three exact byte copies of `11.jpg`, `12.jpg`, and `13.jpg`, starting at 754,662, 1,467,395, and 2,170,823. Their lengths are 712,733, 703,428, and 2,070,134 bytes. The combined suffix is 3,486,295 bytes with SHA-256 `8c90214a46cb6fa563bcfb46012c1cf7c4dcbd9d1db62c37c856074c756aafff`; full `10.jpg` SHA-256 is unchanged at `12ebfe421c129f2ef78d527c1630e358963da8d8dfdf9620eb977980d7967376`. The source README and `sims/jpeg10_concatenation.cjs` are the authoritative reproduction.
-- One bounded exploratory test used the 19 p57 body-word prime sums modulo 4 as rotations of 19 contiguous four-rune blocks of p55 (76 = 19×4), testing both rotation signs. This is distinct from the existing 4×19 per-column rotation test, but neither output was readable GP text. No standalone result was promoted; do not repeat without a new source instruction.
-- Next: choose a genuinely independent, source-constrained path or collaborate on a concrete request. Avoid repeating LP1 red-channel inventories, p57 19×4 rotations, and already-exhausted 2013/2014 byte-pad transfers.
+Run ID: `agent16-gpt6-20261117T135651Z-draw3-independent`; lease claimed `2026-11-17T13:56:54.409Z`. Draw 3 selected normal research mode. At the last queue check, all executable `director-task` Issues were claimed or blocked: #1329 Agent12, #1339 Agent30, #1363 Agent39, #1364 Agent4, #1365 Agent24, #1369 Agent2, #1372 Agent8; #1335 awaited a human oracle and #41 had no eligible handoff. Independent exploration was the fallback.
+
+### Main contribution: global lag-five fingerprint, not chapter split
+
+Extended the original-input LP2 lag-five test with line/page-conditioned nulls. Parser invariants: 2,896 words, 12,956 runes, 55 rune-bearing page blocks (physical p50 is runeless), 104 within-word lag-five equalities (36 at j=5, 68 at j>=6). Observed events: 72 same-line, 30 cross-line, 2 cross-page; eligible windows: 1,645 / 428 / 32.
+
+Two deterministic 5,000-trial nulls (LCG seed `0x4a3b2c1d`) preserve each word's line/page segmentation, each segment's rune multiset, and the full word-level adjacent-equality vector:
+- Segment-multiset null: 104 observed vs 77.252 ± 8.072 expected, upper tail 0.0014; cross-line 30 vs 17.924 ± 3.782, p=0.0018.
+- Endpoint-fixed sensitivity (also fixing every segment's first/last rune): 104 vs 80.124 ± 7.383, p=0.0008; cross-line 30 vs 22.978 ± 3.212, p=0.0262; cross-page 2 vs 1.569, p=0.4665.
+
+Chapter-total heterogeneity weakens from p=0.0276 under the first null to p=0.0844 with endpoints fixed. The chapter-3/4 concentration is not robust; the statistic supports a global lag-five ciphertext constraint, not separate chapter encoders. It identifies no cipher, key, or plaintext.
+
+Commits: `27be7d34a36e` adds `sims/lp2_lag5_chapter_lineconditioned_sft.cjs`, consolidates `im-results/lp2-lag5-position-conditioning-original-sft.md`, and messages Agent4 at `communications/agent4/20261117T143800Z_agent16_lag5-lineconditioned-fingerprint.md`; `b33b8738275e` corrects the report's source path and consequence. Keep this in `im-results/`; do not promote it as a solved mechanism. Agent4 owns #1364.
+
+### Bounded exclusions
+
+- The p57 55-rune strict word-interior tape was tested against the p0–2 black body (716 runes = 13×55+1): repeating additive GP29 use (title-first/body-first, both signs, phases 0/13) was not English; the p56-style F-transparent inverse had no surviving path. Stable-sort 55-columnar and 13×55 row/column double transpositions using the p0 red 13-rune heading as row key were also poor. This does not test Agent12's wordwise pointer-direction family. Message: `communications/agent12/20261117T145318Z_agent16_p57-55key-p0-grid-controls.md`.
+- The 2014 square centers [809,331,91] give totients [808,330,72] and mod-29 shifts [25,11,14]. Direct three-symbol use on the 75-rune p55 body was gibberish; p56-style F-transparent inversion had no valid path. Prime-stream starts at indices phi(center) and at the centers themselves also failed to produce coherent three-block plaintext. These are exclusions, not a new report.
+
+### Handoff
+
+Use the lag-five feature only as a global key-invariant constraint in a source-selected reversible attack; do not infer chapter-specific architecture. Avoid duplicating Agent12's active #1329 wordwise pointer-direction task. The simple p57-key additive/columnar p0 controls and center-totient p55 tests above are already done. All 56 LP2 unknown pages remain unsolved; no authentic plaintext, key, or complete reversible mechanism was recovered in this invocation.
