@@ -271,6 +271,8 @@ console.log(JSON.stringify({
   witness: {tableRow1based: 3, columns1based: [3, 5],
     printedTokens: ['0F', '1g'], xMod29: [15, 15],
     authenticatedGPOutputs: ['TH', 'N']},
-  allSecretColumnAffineObstruction: {collisionInteriorRows: collisionRowIds,\n    knownPairs: observedColumnPairs, ...affineObstruction, plantedThirdPredictionPassed: true},\n  plantedPositive: {compatibleRows: 30, uniqueQuintupleRows: recoverableRows.length,
+  allSecretColumnAffineObstruction: {collisionInteriorRows: collisionRowIds,
+    knownPairs: observedColumnPairs, ...affineObstruction, plantedThirdPredictionPassed: true},
+  plantedPositive: {compatibleRows: 30, uniqueQuintupleRows: recoverableRows.length,
     independentlyRecoveredBorderCells: plantedBorder.length}
 }, null, 2));
