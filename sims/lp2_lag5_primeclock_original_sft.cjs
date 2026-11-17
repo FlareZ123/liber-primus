@@ -155,4 +155,128 @@ console.log(JSON.stringify({historicalModels,keywordMaxIoc,keywordMaxLLR}));
 console.log(JSON.stringify({status:'PASS',originalRunes:C.length,originalWords:words.length,
  lag5:flag.filter(Boolean).length,solvedP56:p56.length,plantedBooks:18,models,
  maxIoc,maxLLR,results},null,2));
+
+// Actual p56-style plaintext-F bypass, now WITHOUT assuming away encrypted C=F:
+// a literal plaintext F emits C=F and consumes zero key symbols; any other
+// plaintext symbol encrypts, consumes 1+mode*[C_j=C_(j-5) in the same word].
+// Every legal original key-count and F-placement path is enumerated exactly.
+const opening=C.slice(0,729),openingFlag=flag.slice(0,729),N=opening.length;
+assert.equal(N,729);
+assert.equal(opening.filter(x=>x===0).length,34);
+assert.equal(openingFlag.filter(Boolean).length,7);
+
+/** @param {number[]} cipher @param {boolean[]} echo @param {-1|0|1} mode @param {-1|1} sign @param {number} start @returns {number} */
+function reachableF(cipher,echo,mode,sign,start){
+ const maxLength=cipher.length+echo.filter(Boolean).length+2;
+ let prev=new Uint8Array(maxLength),next=new Uint8Array(maxLength),active=[0];
+ prev[0]=1;
+ for(let i=0;i<cipher.length;i++){
+  const c=cipher[i],delta=1+(echo[i]?mode:0),newKeys=[];
+  for(const k of active){
+   if(c===0&&!next[k]){next[k]=1;newKeys.push(k);}
+   const p=(c+58+sign*key[start+k])%29,nk=k+delta;
+   if(p!==0&&!next[nk]){next[nk]=1;newKeys.push(nk);}
+  }
+  if(!newKeys.length)return 0;
+  [prev,next]=[next,prev];
+  for(const k of active)next[k]=0;
+  active=newKeys;
+ }
+ return active.length;
+}
+// Six additional original-shaped English plants: actual F-transparent stream.
+const openingWords=[];let rest=N;
+for(const word of words){if(!rest)break;const take=word.slice(0,rest);
+ openingWords.push(take);rest-=take.length;}
+assert.equal(rest,0);
+/** @param {number[]} plain @param {-1|0|1} mode @param {-1|1} sign @param {number} start @returns {number[]} */
+function encryptWithLiteralF(plain,mode,sign,start){
+ const result=[];let k=start,i=0;
+ for(const word of openingWords){
+  const local=[];
+  for(let j=0;j<word.length;j++){
+   const p=plain[i++];
+   const c=p===0?0:(p-sign*key[k]+58)%29;
+   local.push(c);result.push(c);
+   if(p!==0)k+=1+(j>=5&&c===local[j-5]?mode:0);
+  }
+ }
+ assert.equal(i,N);
+ return result;
+}
+const openingNative=sourcePlant.slice(0,N);
+for(const mode of [-1,0,1])for(const sign of [-1,1]){
+ const planted=encryptWithLiteralF(openingNative,mode,sign,393);
+ const plantedEcho=[];let cursor=0;
+ for(const word of openingWords){
+  for(let j=0;j<word.length;j++)plantedEcho.push(j>=5&&planted[cursor+j]===planted[cursor+j-5]);
+  cursor+=word.length;
+ }
+ const terminal=reachableF(planted,plantedEcho,mode,sign,393);
+ assert(terminal>0,'native source plaintext-F branch excluded');
+}
+const expected=[[-1,1,393],[-1,1,394],[-1,1,396],[1,1,3342]];
+const found=[];
+for(const mode of [-1,0,1])for(const sign of [-1,1])for(let start=0;start<5000;start++){
+ const count=reachableF(opening,openingFlag,mode,sign,start);
+ if(count)found.push([mode,sign,start,count]);
+}
+assert.deepEqual(found,expected.map(([m,s,k])=>[m,s,k,2]));
+/** @type {{mode:number,sign:number,start:number,paths:number,maxIoc:number,maxLLR:number}[]} */
+const exact=[];
+for(const [mode,sign,start] of expected){
+ /** @type {Set<number>[]} */
+ const fwd=Array.from({length:N+1},()=>new Set());
+ fwd[0].add(0);
+ for(let i=0;i<N;i++){
+  const c=opening[i],step=1+(openingFlag[i]?mode:0);
+  for(const k of fwd[i]){
+   if(c===0)fwd[i+1].add(k);
+   if((c+58+sign*key[start+k])%29!==0)fwd[i+1].add(k+step);
+  }
+ }
+ const good=Array.from({length:N+1},()=>new Set());
+ good[N]=fwd[N];
+ for(let i=N-1;i>=0;i--){
+  const c=opening[i],step=1+(openingFlag[i]?mode:0);
+  for(const k of fwd[i]){
+   if(c===0&&good[i+1].has(k)||
+      (c+58+sign*key[start+k])%29!==0&&good[i+1].has(k+step))good[i].add(k);
+  }
+ }
+ assert(good[0].has(0));
+ const hist=new Uint16Array(29);let paths=0,maxIoc=-Infinity,maxLLR=-Infinity;
+ /** @param {number} i @param {number} k @param {number} pairs @param {number} sum */
+ function recurse(i,k,pairs,sum){
+  if(i===N){
+   paths++;
+   maxIoc=Math.max(maxIoc,pairs/(N*(N-1)));
+   maxLLR=Math.max(maxLLR,sum/N);
+   return;
+  }
+  const c=opening[i],step=1+(openingFlag[i]?mode:0);
+  if(c===0&&good[i+1].has(k)){
+   const before=hist[0]++;
+   recurse(i+1,k,pairs+2*before,sum+weight[0]);
+   hist[0]--;
+  }
+  const p=(c+58+sign*key[start+k])%29;
+  if(p!==0&&good[i+1].has(k+step)){
+   const before=hist[p]++;
+   recurse(i+1,k+step,pairs+2*before,sum+weight[p]);
+   hist[p]--;
+  }
+ }
+ recurse(0,0,0,0);
+ exact.push({mode,sign,start,paths,maxIoc,maxLLR});
+}
+assert.deepEqual(exact.map(x=>x.paths),[64,64,192,120]);
+assert.equal(exact.reduce((s,v)=>s+v.paths,0),440);
+const fMaxIoc=Math.max(...exact.map(x=>x.maxIoc));
+const fMaxLLR=Math.max(...exact.map(x=>x.maxLLR));
+assert(Math.abs(fMaxIoc-0.03493420160086827)<1e-12);
+assert(Math.abs(fMaxLLR+0.6307587662792099)<1e-12);
+console.log(JSON.stringify({status:'PASS full original plaintext-F-transparent key-clock inverse',
+ models:30000,survivingStarts:found.length,legalPaths:440,originalF:34,lag5OriginalOpening:7,
+ nativeFPlants:6,fMaxIoc,fMaxLLR,exact},null,2));
 console.log('NO GP29 prose: finite historical prime and ciphertext-lag5 key-clock mechanism negative.');
