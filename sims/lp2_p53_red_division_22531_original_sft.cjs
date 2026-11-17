@@ -147,6 +147,23 @@ for (const sign of [-1, 1]) {
 assert.equal(variants[0].first13, "LIGNYPDFLXWLTH");
 assert.equal(variants[1].first13, "IGUYSAETHFINFOEH");
 
+// Empirical original-source window baseline. Alternative 51-rune integers
+// keep every window, including the actual p53 red numeral.
+let sourceWindows = 0;
+let matchingByteFrames = 0;
+for (const page of corpus.pages.filter((p) => p.page <= 55)) {
+  for (let at = 0; at + 51 <= page.indices.length; at++) {
+    const candidate = page.indices.slice(at, at + 51)
+      .reduce((number, digit) => 29n * number + BigInt(digit), 0n);
+    assert(candidate > 0n);
+    sourceWindows++;
+    if ((N / candidate).toString(2).length === 1801 &&
+        (N % candidate).toString(2).length >= 241) matchingByteFrames++;
+  }
+}
+assert.equal(sourceWindows, 10206);
+assert.equal(matchingByteFrames, 4846);
+
 // Independent source-native plant: use real solved p57 GP29 text as
 // a 213-rune plaintext; the fixed 225-byte quotient pad must invert it.
 const clear = corpus.pages.find((p) => p.page === 57).indices;
@@ -173,6 +190,7 @@ console.log(JSON.stringify({
     firstContradiction
   },
   sourceRedIoc225: indexOfCoincidence(wholeRed),
+  sourceSizeBaseline: {sourceWindows, matchingByteFrames, share: matchingByteFrames / sourceWindows},
   additiveVariants: variants,
   positive: "213/213 genuine GP29 p57-runic source plant recovered",
   decision: "Size alignment is arithmetically induced; direct key and bijection readings do not recover plaintext. No author-selected operation."
