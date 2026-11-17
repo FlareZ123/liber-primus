@@ -36,6 +36,20 @@ The **eighth/final cell is byte 151**, which occurs **exactly once** in the enti
 
 The table's row27, prime151 and \`φ(151)\` are fixed by unchanged original artifacts. The **rules** “take the modulo-32 row,” “take column7,” and “subtract twice the table size” were inferred after seeing the source values, and no Cicada-authored plaintext or key instruction independently specifies those operations. The arithmetic should therefore be treated as one **retrospective crosslink** whose coincidences are interdependent, not several independent discoveries or probabilities.
 
+
+### A discriminating rival: radix 59 versus conventional radix 60
+
+The printed two-character cells can be parsed with two exact rival alphabets: full \`0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx\` (60 symbols), or the same alphabet omitting unused lowercase \`f\` (59 symbols). Both parse *all 256 original printed cells* into bytes 0–255 and neither has a standalone uniform-byte-likelihood advantage; see [the original radix ambiguity SFT](../sims/base60_base59_source_ambiguity.cjs).
+
+For the **same row27/last-column source token \`2V\`**, the two readings make distinct numerical predictions **without changing the observed title or table-cell location**:
+
+| Source byte reading | Decoded \`2V\` | Totient | Claimed reconstructible total \`512+φ(value)\` | Actual red-heading sum |
+| --- | ---: | ---: | ---: | ---: |
+| Conventional radix60 | **151** | **150** | **662** | **662**, exact |
+| Omit lowercase f / radix59 | **149** | **148** | **660** | **662**, miss by 2 |
+
+This is a *conditionally discriminating* observation. If an independently authenticated clue fixed the particular row/column/twice-256/totient reconstruction, the original p0 heading would select **radix60** over the otherwise valid radix59 grid parse. Since the reconstruction was discovered retrospectively, it is not yet independent evidence of the author's numeral radix or a decoded payload; the two-point difference alone must not be promoted into proof of intended base60.
+
 ## Exhaustive within-manuscript specificity check
 
 The [self-contained source-exact test](../sims/lp2_p0_red331_row27_totient_sft.cjs) re-parses the canonical 55 rune-bearing unknown pages, validating **2,896 complete printed words**, **12,956 original ciphertext runes**, and all word carries against the independent corpus. There are **2,895 consecutive printed-word pairs**; exactly **19** have the source heading's 8-rune followed by 5-rune word lengths.
