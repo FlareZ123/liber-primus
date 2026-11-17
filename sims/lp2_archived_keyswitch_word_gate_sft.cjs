@@ -68,6 +68,65 @@ const ciphertext = words.flat();
 assert.deepEqual(ciphertext, corpus.pages[0].indices);
 assert.equal(ciphertext.length, 262);
 
+// The actual source switches keys to prevent a repeated ciphertext output.
+// If a repeat is nevertheless allowed when *both* choices collide, it can
+// occur only at a key-phase position where both additive shifts are equal.
+// This is a key-independent necessary condition, stronger than any lexicon
+// screen, and remains necessary even under an arbitrarily known plaintext.
+/** @param {number} i @param {number} phaseA @param {number} phaseB */
+const matchingKeySlots = (i, phaseA, phaseB) =>
+  keys[0][(i + phaseA) % keys[0].length] === keys[1][(i + phaseB) % keys[1].length];
+const firstPageDoubletIndices = [];
+for (let i = 1; i < ciphertext.length; i++) {
+  if (ciphertext[i] === ciphertext[i - 1]) firstPageDoubletIndices.push(i);
+}
+assert.deepEqual(firstPageDoubletIndices, [122, 207]);
+const sourceMatchingResidues = [];
+for (let i = 0; i < 56; i++) if (matchingKeySlots(i, 0, 0)) sourceMatchingResidues.push(i);
+assert.deepEqual(sourceMatchingResidues, [1, 18, 29, 43]);
+let bestFirstPageCollisions = 0;
+let bestGlobalCollisions = 0;
+const originalDoubletEvents = [];
+let bookOffset = 0;
+for (const page of corpus.pages.filter(p => p.page <= 55)) {
+  for (let i = 1; i < page.indices.length; i++) {
+    if (page.indices[i] === page.indices[i - 1]) {
+      originalDoubletEvents.push({ page: page.page, local: i, global: bookOffset + i });
+    }
+  }
+  bookOffset += page.indices.length;
+}
+assert.equal(originalDoubletEvents.length, 86);
+for (let a = 0; a < 8; a++) {
+  for (let b = 0; b < 14; b++) {
+    bestFirstPageCollisions = Math.max(bestFirstPageCollisions,
+      firstPageDoubletIndices.filter(i => matchingKeySlots(i, a, b)).length);
+    bestGlobalCollisions = Math.max(bestGlobalCollisions,
+      originalDoubletEvents.filter(e => matchingKeySlots(e.global, a, b)).length);
+  }
+}
+let bestUnrelatedPagePhaseSum = 0;
+for (const page of corpus.pages.filter(p => p.page <= 55)) {
+  const events = originalDoubletEvents.filter(e => e.page === page.page);
+  let bestPage = 0;
+  for (let a = 0; a < 8; a++) {
+    for (let b = 0; b < 14; b++) {
+      bestPage = Math.max(bestPage, events.filter(e => matchingKeySlots(e.local, a, b)).length);
+    }
+  }
+  bestUnrelatedPagePhaseSum += bestPage;
+}
+assert.equal(bestFirstPageCollisions, 1); // No phase pair explains both p0 repeats.
+assert.equal(bestGlobalCollisions, 12); // Even global phase rescue explains <=12/86.
+assert.equal(bestUnrelatedPagePhaseSum, 49); // Even freely reset each physical page: <=49/86.
+console.log('Source image key-value equalities at positions modulo 56:', sourceMatchingResidues);
+console.log('Original p0 equal-rune outputs at indices:', firstPageDoubletIndices,
+  '; maximum under any phase pair:', bestFirstPageCollisions, '/', firstPageDoubletIndices.length);
+console.log('All original p0-p55 same-page equalities:', originalDoubletEvents.length,
+  '; maximal global-phase legal sites:', bestGlobalCollisions,
+  '; maximal independently page-rescored legal sites:', bestUnrelatedPagePhaseSum);
+console.log('Ciphertext-only event gate: PASS. Exact source two-key anti-repeat rule is contradicted before any plaintext guess.');
+
 /** @type {Map<number, {word:string,runes:number[],frequency:number}[]>} */
 const wordList = new Map();
 for (const line of dictionaryText.split(/\r?\n/)) {
