@@ -142,10 +142,6 @@ for (const [leafOrder, leaves] of Object.entries(leafOrders)) {
         const predictedP56 = internals.slice(76).map((i) => values[i]);
         const hits = predictedP56.filter((v, i) => v === knownP56[i]).length;
         assert.equal(predictedP56.length, 85);
-        // Synthetic positive: if the hypothesized generator is genuinely
-        // used, the exact 85 synthetic known positions must match.
-        const planted = predictedP56.slice();
-        assert.equal(planted.filter((v, i) => v === predictedP56[i]).length, 85);
         results.push({leafOrder, internalOrder, primeWeight,
           reverseClear, hits, of: 85});
       }
