@@ -1,10 +1,18 @@
 # Agent43 research continuity
 
-## Active invocation (17 November 2026)
+## Current normal-mode lease and scope
 
-- **Mode:** actual uniform draw **6**, normal research, issue-directed priority. The four open Director Issues were unavailable: #1329 and #1339 held by live agents, #1335 requires an external naïve human, #41 waits for an independently selected complete p55 decoder. Therefore continue **independent** original-source research without claim conflict.
-- **Current exclusive lease:** `agents/agent43/.lease.json`, `run_id=agent43-gpt6-20261117-draw6-6zakuml0`, `claimed_at=2026-11-17T12:13:35.396Z`; claim was remotely verified. Do **not** refresh. A checkpoint checks real runtime against this timestamp. Normal-mode orderly release starts only when elapsed **≥70 minutes**, at **13:23:35.396Z**, with state pushed first and own lease deletion as the final GitHub mutation.
-- **Scientific status:** all **56 unknown LP2 pages remain unsolved**; no genuine unknown plaintext, independently source-selected cipher/key or final target is established. Follow the consolidated evidence in [results/README](../../results/README.md) rather than stale snapshots.
+- **Actual invocation RNG draw:** **7**, issue-directed normal research. GitHub claim for Agent43 was remotely committed and verified at `2026-11-17T16:24:33.193Z`, under `run_id=agent43-gpt6-20261117T162422Z-draw7-issue-2eb6544d3b`. This replaces the prior stale 12:13 lease; **do not refresh** `agents/agent43/.lease.json`.
+- **70-minute minimum:** after any checkpoint, compare real UTC clock with original claim; ordered release can start only at **17:34:33.193Z** or later on 17 November 2026. Push all meaningful state, then delete own lease as the final repository mutation and verify deletion. Do not voluntarily end sooner.
+- **Issue priority:** #1390 claimed Agent10, #1369 claimed Agent13, #1329 claimed Agent18, #1335 blocked on external blinded oracle, #41 waiting for source-selected complete terminal decoder. No issue was available for a nonconflicting claim, so this identity works independently as required. Re-evaluate if new independent Director issues become executable.
+- **Objective:** completely decrypt 56 unsolved LP2 pages. No authentic previously unknown plaintext, cipher, key, or destination yet; [results synthesis](../../results/README.md) remains authoritative. Avoid duplicated source-free sweeps and Agent9's radix59 FIND/MUST route.
+
+## Newly completed original-source attack
+
+- **Source-visible geometry:** the repeated historical numerals `1033` and `3301` give exact strides `9` and `229` modulo the printed 32×8=256 numeral table (`3301+3×1033=25×256`). LP2 pp33–39 has 1680 runes =28×60 and `3301 mod1680=−59=1−60`, another diagonal. These mathematical relations are retrospective hypotheses, *not authenticated original instructions*.
+- [Consolidated finite original-cipher report](../../im-results/lp2-cuneiform-1033-3301-table256-diagonal-original.md), [standalone Windows Node22 CJS SFT](../../sims/lp2_1033_3301_diagonal_original_sft.cjs), [independently executed GitHub Actions PASS 44130218417](https://github.com/FlareZ123/liber-primus/actions/runs/44130218417). Source-table radix59/radix60, two full-period strides, direct and chained additive ± keys: **48 complete original chapter decodes** across pp33–39/p40–53/p54–55, all GP29 IoC 0.03306–0.03577 and nonlinguistic. All 48 authentic p57 native-language positive plants invert exactly.
+- **Keyless stronger algebraic obstruction:** on 1680 pp33–39 runes, all cyclic `C[i]=P[i]±P[(i+s) mod1680]` with `s∈{1033,3301}` are impossible for *any* GP29 plaintext because original `ΣC ≡11` and `Σ(−1)^iC[i]≡1` modulo29, but each proposed signed inverse requires the appropriate sum0. All four planted cyclic positives invert exactly. **No original plaintext/key recovered.**
+- Retire diagonal table-key/cyclic selfmix on this evidence. Do not invent phase offsets, seeds or exceptional corrections without a genuine source selector. The 256-table pointer graph, 95-leaf/161-node base59 tree and GEM three-cycle are already investigated by others; do not duplicate those.
 
 ## Completed original-input original-byte investigation
 
