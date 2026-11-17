@@ -78,6 +78,38 @@ This is a targeted permutation diagnostic, **not** a globally corrected p-value.
 
 The numerical pointer cycle itself remains exact. The **optional** p50→p32 compass continuation, however, has no author-selected direction-bit allocation, initial cell or stopping rule. The signed January 2016 message says that words, meanings and numbers supply map/road/direction; its image contains signed text over a faint tree. The archived source record documents that the 2016 image's leafless tree and the p32 blurred tree are **different stock artwork**, and the printed p32 page is not an 11×11 diagram. The 121-ciphertext-rune square and toroidal addressing are reconstructed conventions. No first-party source selects `sum mod256`, `byte & 7` as compass direction, `byte >> 3` as distance, N-first clockwise directions, toroidal wrap, or p32 H as the entry. The 32×8 native p50 table shape makes a five-bit/three-bit interpretation conceivable but supplies neither compass orientation nor a decoding instruction.
 
+### Red-heading address path into the 32×8 p49–51 table: direct-key gate (Agent2, 17 November)
+
+The January 2016 signed message says, “Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.” A plausible human reading is to use the two p0 red-heading GP-prime sums as addresses into the 256-cell numerical table. The source-correct p0 heading is 8+5 red runes; their sums are **347** and **315**, and `347−315=32`. The table is **32×8**. Reducing the sums modulo256 gives endpoint addresses **91→59**. Because the difference is `32=4×8`, both endpoints lie in one column and are four rows apart; the inclusive route has five cells. The 8-rune first word matches the table width and the 5-rune second word matches the path length. This is a motivated candidate, not an authenticated instruction: no first-party text explicitly selects modulo256 addressing, index base, base60 conversion, mod29 reduction, or repeating additive use.
+
+The five cells were checked against the original JPEGs [66.jpg](../resources/liber-primus/66.jpg) and [67.jpg](../resources/liber-primus/67.jpg); the p0 heading is on [17.jpg](../resources/liber-primus/17.jpg). Both conventional index choices give:
+
+| Index convention | Array indices, first heading to second | Table tokens | Base60 values | GP29 shifts (`value mod29`) |
+|---|---|---|---|---|
+| Zero-based addresses | `91,83,75,67,59` | `0n,3D,2v,3C,19` | `49,193,177,192,69` | `20,19,3,18,11` |
+| One-based cell numbers | `90,82,74,66,58` | `3I,3L,3P,0P,2Q` | `198,201,205,25,146` | `24,27,2,25,1` |
+
+The minimal receiver tested was a repeating five-symbol GP29 additive key, phase zero at the first black p0 rune, in both arithmetic directions. I also tested the known p56 plaintext-F transparency rule, where plaintext F (index0) is transmitted verbatim and does not consume a key symbol. No phase search, alternate receiver, or chapter reset was introduced.
+
+| Index convention | Inverse direction | First impossible black-body offset | Original p0 rune index | Forced plaintext-F equation |
+|---|---|---:|---:|---|
+| Zero-based | `P=C−K` | 7 | 20 | `3−3 ≡ 0 (mod29)` |
+| Zero-based | `P=C+K` | 21 | 34 | `9+20 ≡ 0 (mod29)` |
+| One-based | `P=C−K` | 3 | 16 | `25−25 ≡ 0 (mod29)` |
+| One-based | `P=C+K` | 220 | 233 | `4+25 ≡ 0 (mod29)` |
+
+All four F-transparent inverses die inside p0. At each first dead symbol, the only reachable key phase would turn a **nonzero ciphertext rune** into plaintext F. That is forbidden by the original plaintext-F bypass: an F plaintext would have appeared as ciphertext F and would not have advanced the key. The accompanying source-native SFT also encrypts the 95-rune clear p57 passage under each candidate key/sign as a planted control; all four planted paths remain reachable, so the early rejection is not a decoder that rejects every input.
+
+For ordinary no-skip repeating addition, the full 12,943-rune unknown LP2 body has scaled GP29 index of coincidence essentially at the uniform baseline 1.0:
+
+| Index convention | `P=C−K` | `P=C+K` |
+|---|---:|---:|
+| Zero-based | 0.999965 | 1.000431 |
+| One-based | 1.000219 | 1.000306 |
+
+**Decision:** reject this direct five-cell, base60-byte-mod29 repeating additive key under both index conventions and both signs. This does not show that the p49–51 table is irrelevant, nor exclude another source-selected operation, key expansion, or table interpretation. The geometric alignment is a useful clue to test, but it is not itself independent evidence for the modulo256 rule. Do not expand this branch into arbitrary phases, radices, or transformations without a new first-party selector. Reproduction: [source-native CommonJS SFT](../sims/lp2_red_heading_p50_column_key_sft.cjs).
+
+
 The previously published prototype in [the original self-indexed-map SFT](../sims/lp2_13x12_wordmap_23cycle_source_gate.cjs) uses that one explicit convention, starting from p32 zero-based cell33 (H). **Inspect the whole 23-step original route**, without stopping retrospectively on the midpoint X:
 
 | Step | Source word GP prime sum | p50 address0 | p50 byte | p32 cell0 | Read rune |

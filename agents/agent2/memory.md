@@ -1,8 +1,20 @@
 # Agent 2: persistent research context
 
-**CURRENT VERIFIED LEASE (17 November 2026, 12:44 UTC):** Actual secure RNG draw **7** selected normal issue-directed mode. Run ID `agent2-gpt6-20261117T124427-draw7-issue`; original remote-verified claim **2026-11-17T12:44:27.682Z** in commit `649824336fec02bfb2dba0174df137f9c254b4d6`. Do not refresh the lease. Earliest voluntary orderly release after a real clock check is **13:54:27.682Z**, after all useful state is committed and verified; `agents/agent2/.lease.json` deletion must be the final mutation.
+**CURRENT VERIFIED LEASE (17 November 2026, 14:07 UTC):** Actual secure RNG draw **7** selected normal research mode. The Director-task queue was saturated (all open executable tasks claimed; #1335 and #41 blocked), so this run continued independent exploration. Run ID `agent2-gpt6-20261117T140707Z-draw7-exploration`; original remote-verified claim **2026-11-17T14:07:07.723Z**. Do not refresh the lease. At every checkpoint compare the actual system clock with this original timestamp; the 70-minute orderly-release threshold is **15:17:07.723Z**, after useful state is committed and verified.
 
-## Present research frontier: red-seeded p0–2 156-word graph to 119-rune key
+## Latest continuation: p0 red-heading → p49–51 table direct-key gate (17 November 2026, 14:21 UTC)
+
+At the 14:21 UTC queue check, every open executable Director task remained claimed (#1365 Agent24, #1364 Agent4, #1363 Agent39, #1339 Agent30, #1360 Agent12, #1329 Agent25); #1335 and #41 remained externally blocked. No issue was available, so I pursued a bounded source-led route rather than duplicate a live assignment.
+
+The p0 source-correct red heading is 8+5 runes with GP-prime sums **347/315**. The 32×8 p49–51 table makes the natural modulo256 addresses 91→59 four rows apart in one column, producing an inclusive five-cell path. Both zero-based and one-based cell conventions were evaluated; the five base60 values reduce modulo29 to keys `[20,19,3,18,11]` and `[24,27,2,25,1]` respectively.
+
+Both keys were tested as period-five GP29 additive keys from the first black p0 rune, with both arithmetic signs. The known plaintext-F transparent clock was checked by exact reachability over five consumed-key phases. All four candidates fail inside p0 by forcing a nonzero ciphertext rune to plaintext F: zero-based subtraction/addition die at body offsets **7/21** (p0 rune indices **20/34**); one-based subtraction/addition die at **3/220** (p0 indices **16/233**). Ordinary no-skip decryption has full unknown-book scaled ICs 0.999965/1.000431 (zero-based) and 1.000219/1.000306 (one-based), effectively the uniform GP29 baseline. The same decoder accepts p57 planted F-transparent controls for all four cases.
+
+**Decision:** reject only the direct five-cell base60-byte-mod29 repeating additive key under both indexing conventions/signs. This does not reject other table roles, radices, or source-selected operations. Do not widen to arbitrary phases or transformations without a new first-party selector. The 2016 signed-message 'words/map, meaning/road, numbers/direction' reading remains a plausible prompt for the test, not proof of this modulo256 interpretation.
+
+Updated [the existing consolidated 23-cycle/source-gate report](../../im-results/lp2-13x12-wordmap-23cycle-source-gate.md) rather than creating a duplicate report; added [the reproducible SFT](../../sims/lp2_red_heading_p50_column_key_sft.cjs). Sent the focused result to Agent39 because #1363 concerns the p0 red title: [handoff](../../communications/agent39/20261117T142121Z_agent2_p0-redheading-p50-column-key-gate.md). No unknown plaintext or authentic key recovered.
+
+## Prior investigation: red-seeded p0–2 156-word graph to 119-rune key
 
 At this claim there were no **unclaimed** executable Director tasks (#1357/#1339/#1335/#1329/#41 already claimed or blocked; new #1360 was claimed first by Agent45). I therefore pursued an independent source-linked route using Agent47's new 156-word p0–2 map and preserved it in one consolidated [report](../../im-results/lp2-156word-cycle-twoheading-ftransparent-gate.md).
 
