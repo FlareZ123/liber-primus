@@ -167,7 +167,7 @@ for (let h = 0; h < 2; h++) for (let m = 0; m < 3; m++) for (let c = 0; c < 3; c
  * @param {number} multiplier
  * @param {number} model
  */
-function score(tape, direction, conv, orientation, multiplier, model) {
+function score(tape, direction, conv, orientation, multiplier, model, observed = ciphertext) {
   const h = Number(conv[0]), m = Number(conv[1]), cmp = Number(conv[2]);
   const ds = [], mvs = [], pvs = [];
   let pos = 0, old = 0, lastBack = -1;
@@ -175,18 +175,18 @@ function score(tape, direction, conv, orientation, multiplier, model) {
     const d = direction[pos] * (orientation ? -1 : 1);
     const move = (w === 0 ? 0 : m === 0 ? 0 : m === 1 ? old : d) + (d < 0 && h ? -1 : 0);
     for (let k = 0; k < W[w].n && pos < 300; k++, pos++) {
-      const before = pos === 0 ? -1 : ciphertext[pos - 1];
+      const before = pos === 0 ? -1 : observed[pos - 1];
       ds.push(d);
       mvs.push(k === 0 ? move : 0);
       pvs.push(d > 0 || cmp === 0 ? before : cmp === 1 ? (k === 0 ? -1 : before) : lastBack);
-      if (d < 0) lastBack = ciphertext[pos];
+      if (d < 0) lastBack = observed[pos];
     }
     old = d;
   }
   const len = tape.length;
   let states = [{ j: 1100, s: 0, counts: new Uint16Array(29) }];
   for (let i = 0; i < 300; i++) {
-    const candidate = new Map(), d = ds[i], C = ciphertext[i], pv = pvs[i];
+    const candidate = new Map(), d = ds[i], C = observed[i], pv = pvs[i];
     for (const st of states) {
       const j = st.j + mvs[i];
       const k0 = mod(tape[modKey(j, len)] * multiplier);
@@ -221,6 +221,43 @@ function score(tape, direction, conv, orientation, multiplier, model) {
 function modKey(n, k) {
   return (n % k + k) % k;
 }
+
+
+/** Source-native planted positive, disjoint from all unknown original LP2 pages. */
+const reference = fs.readFileSync(path.join(root, 'resources/liber-primus/lp1-plaintext-reference.txt'), 'utf8');
+const sample = reference.split('### 3')[1].split('### 4')[0].toUpperCase().replace(/[^A-Z]/g, '');
+const latin = new Map(corpus.translit.map((name, i) => [name, i]));
+const alias = { K: 'C', Q: 'C', V: 'U', Z: 'S' };
+const known = [];
+for (let i = 0; i < sample.length;) {
+  const digraph = sample.slice(i, i + 2);
+  if (latin.has(digraph)) {
+    known.push(latin.get(digraph));
+    i += 2;
+  } else {
+    const letter = alias[sample[i]] || sample[i];
+    if (latin.has(letter)) known.push(latin.get(letter));
+    i++;
+  }
+}
+const plantedPlain = known.slice(0, 300);
+assert.equal(plantedPlain.length, 300);
+const planted = [];
+const sourceDirections = vectors[rules.indexOf('A_cur_n')];
+let plantPointer = 1100;
+for (let i = 0; i < 300; i++) {
+  planted.push(mod(plantedPlain[i] + literal[modKey(plantPointer, literal.length)]));
+  plantPointer += sourceDirections[i];
+}
+const expectedIoc = 29 * plantedPlain.reduce((counts, rune) => {
+  counts[rune]++;
+  return counts;
+}, Array(29).fill(0)).reduce((sum, n) => sum + n * (n - 1), 0) / (300 * 299);
+const plantedRecovery = score(literal, sourceDirections, '000', 0, 1, 0, planted);
+const wrongKeyRecovery = score(literal.toReversed(), sourceDirections, '000', 0, 1, 0, planted);
+assert(expectedIoc > 1.40);
+assert(plantedRecovery >= 1.40, 'known GP-native English plant must survive beam search');
+assert(wrongKeyRecovery < plantedRecovery, 'negative key control must be weaker');
 
 const best = [];
 let max = 0, above135 = 0, above140 = 0, evaluated = 0;
@@ -263,5 +300,6 @@ console.log(JSON.stringify({
     k_clock: 'forward/backward by printed word'
   },
   evaluated, max_ioc: max, above135, above140, top: best,
+  source_native_plant: { expectedIoc, plantedRecovery, wrongKeyRecovery },
   conclusion: 'No original p0 prefix hit in this fixed p57 55-rune cyclic-key and word-direction family'
 }, null, 2));
