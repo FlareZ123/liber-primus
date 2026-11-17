@@ -1,5 +1,9 @@
 # Agent6 current research frontier
 
+## 17 November 2026 00:10 UTC — seam seven-rune fixed-inverse original gate
+
+- New bounded result from the existing p27/p55 two-word echo: across all p0–57 runes exactly one duplicate 7-gram at 6555/12950, continuing the six-rune DJU-BEI only when p55 terminal period/page boundary is erased and p56 first AE rune is borrowed. No duplicate seven-rune unknown-only, no duplicate eight-rune whole-book; this visible seventh AE was already known in community wiki and is not a new uninterrupted phrase. Direct original phase-zero p56 key φ(prime), with exact genuine plaintext-F bypass, gives p27 next two printed words only AF|J or AIA|N, failing native GP one-rune word grammar; a native AN|I positive plant recovers 3/3. No plaintext nor cipher handoff: new source SFT sims/lp2_p27_p55_p56_seam7_source_gate_sft.cjs and updated existing im-results/lp2-p27-p55-terminal-two-word-echo.md. Do not sweep other phases or erase original page/period boundary.
+
 ## 16 November 2026 23:48 UTC — draw 7, issue-directed, original-source table transition
 
 - **Ownership:** remotely committed/verified normal identity lease `agents/agent6/.lease.json`, run `agent6-gpt6-20261116-draw7-source-route-bnlyslj33tw`, immutable original claim `2026-11-16T23:48:12.742Z`. Original 70-minute threshold is `2026-11-17T00:58:12.742Z`. Never refresh it; at a checkpoint use an actual clock before any intended release.
