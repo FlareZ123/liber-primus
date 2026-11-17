@@ -178,6 +178,51 @@ function maximize(ciphertext, signs, period) {
   }
   return {score: maximum / ciphertext.length, key};
 }
+/**
+ * Exact maximum GP29 index of coincidence for ANY independent secret
+ * alphabet permutation at each (period phase, physical sign) class.
+ *
+ * For each class, count original ciphertext symbols, then sort its 29 bins.
+ * The global sum of squared output-bin counts is maximized by placing all
+ * class histograms in the same descending rank order. This follows from
+ * the rearrangement inequality applied to every pair of classes, and is
+ * simultaneously attainable by choosing a bijection for each class.
+ *
+ * This is a much larger model than any Caesar-shift key: it grants
+ * (29!)^(2*period) independently chosen class substitution permutations.
+ * Its exact upper bound is invariant under any additional GLOBAL alphabet
+ * substitution and is free of a language corpus.
+ *
+ * @param {number[]} ciphertext
+ * @param {number[]} signs
+ * @param {number} period
+ * @returns {number}
+ */
+function arbitraryClassPermutationIocCeiling(ciphertext, signs, period) {
+  assert.equal(ciphertext.length, signs.length);
+  const classes = Array.from({length: 2 * period}, () => Array(Q).fill(0));
+  for (let i = 0; i < ciphertext.length; i += 1) {
+    const klass = 2 * (i % period) + (signs[i] < 0 ? 1 : 0);
+    classes[klass][ciphertext[i]] += 1;
+  }
+  for (const histogram of classes) histogram.sort((a, b) => b - a);
+  const pooled = Array.from({length: Q}, (_, k) =>
+    classes.reduce((sum, h) => sum + h[k], 0));
+  const n = ciphertext.length;
+  return pooled.reduce((sum, c) => sum + c * (c - 1), 0) / (n * (n - 1));
+}
+/**
+ * Empirical GP29 index of coincidence on a physically sourced rune array.
+ * @param {number[]} symbols
+ * @returns {number}
+ */
+function ioc(symbols) {
+  const bins = Array(Q).fill(0);
+  for (const v of symbols) bins[v] += 1;
+  return bins.reduce((sum, c) => sum + c * (c - 1), 0) /
+    (symbols.length * (symbols.length - 1));
+}
+
 /** @param {number[]} plain @param {number[]} signs @param {number[]} key */
 function encrypt(plain, signs, key) {
   return plain.map((p, i) => mod(p + signs[i] * key[i % key.length]));
@@ -212,6 +257,21 @@ for (let wi = 0; wi < windows.length; wi += 1) {
       return {name, ...maximize(runes, signs, len)};
     }).sort((a, b) => b.score - a.score);
     const best = candidates[0];
+    const frequencyBounds = Object.entries(rules).map(([name, rule]) => ({
+      name, ceiling: arbitraryClassPermutationIocCeiling(
+        runes, features.map(rule), len)
+    })).sort((a, b) => b.ceiling - a.ceiling);
+    const mostPermissive = frequencyBounds[0];
+    const originalClearIoC = ioc(sourceClearP57);
+    if (len === 8 || wi > 0) {
+      assert.ok(mostPermissive.ceiling < originalClearIoC,
+        'original section unexpectedly reaches the real p57 GP-language IoC');
+    }
+    console.log('ARBITRARY SECRET GP29 CLASS PERMUTATIONS',
+      'window', wi, 'runes', runes.length, 'period', len,
+      'max IoC across 23 physical signs:', mostPermissive.ceiling.toFixed(9),
+      'best sign:', mostPermissive.name,
+      'original clear-p57 IoC:', originalClearIoC.toFixed(9));
     assert.ok(best.score < -0.30,
       'the native-GP all-secret upper bound is unexpectedly high on window ' + wi);
     const sourceKey = historicalLengths[len];
@@ -223,6 +283,8 @@ for (let wi = 0; wi < windows.length; wi += 1) {
     const signs = features.map(rules.Ln_m3_1);
     const plant = encrypt(native, signs, sourceKey);
     const recovered = maximize(plant, signs, len);
+    assert.ok(arbitraryClassPermutationIocCeiling(plant, signs, len) + 1e-12 >= ioc(native),
+      'source-native planted permutation IoC exceeds exact ceiling');
     assert.ok(score(native) > 0.30,
       'held-out native-GP English remains distinguishable');
     assert.deepEqual(recovered.key, sourceKey,
@@ -242,5 +304,8 @@ console.log('their complete hidden keys and plaintext exactly, with no fitting o
 console.log('the layout rule or original ciphertext.');
 console.log('BOUNDED EXCLUSION: all 29^8 and 29^13 secret additive keys,');
 console.log('all 23 fixed original-layout signs, all eight original long sections.');
+console.log('Stronger symbol-frequency theorem: arbitrary independent GP29');
+console.log('substitutions per (phase, physical sign) cannot achieve the actual');
+console.log('clear-p57 IoC on any L8 original chapter or on seven of eight L13 chapters.');
 console.log('Scope: no skip/coin, plaintext-F transparency, nonperiodic key,');
 console.log('nonadditive layer, or unmodeled plaintext register.');
