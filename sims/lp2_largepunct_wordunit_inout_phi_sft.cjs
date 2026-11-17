@@ -67,7 +67,8 @@ flush(transcription.length);
 assert.equal(indices.length, total);
 assert.equal(words.length, 2941);
 assert.equal(words.filter(w => w.begin < bases[56]).length, 2896);
-assert.equal(words.filter(w => w.begin < bases[56] && w.text.includes('%')).length, 32);
+assert.equal(words.filter(w => w.begin < bases[56] &&
+  bases.slice(1,56).some(boundary => w.begin < boundary && boundary < w.end)).length, 32);
 for (const page of corpus.pages) {
   assert.deepEqual(indices.slice(bases[page.page], bases[page.page] +
     page.runic_count), page.indices, 'Canonical original page ' + page.page);
