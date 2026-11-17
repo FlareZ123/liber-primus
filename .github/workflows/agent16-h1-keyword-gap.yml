@@ -10,6 +10,7 @@ on:
         options:
           - prepare
           - sweep
+          - p54
         default: prepare
 
 permissions:
@@ -129,5 +130,84 @@ jobs:
           path: |
             h1_gap_report.md
             shards/
+          if-no-files-found: error
+          retention-days: 60
+
+  p54:
+    if: inputs.mode == 'p54'
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    steps:
+      - name: Checkout original corpus and exact source-locked analyzer
+        uses: actions/checkout@v4
+      - name: Checkout pinned external reference H1 engine
+        uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: upstream
+          persist-credentials: false
+      - name: Download original-source prepared key streams and p54 window
+        uses: actions/download-artifact@v4
+        with:
+          name: h1-prepared
+          path: prepared
+      - name: Build upstream Rust decoder without modifying cipher
+        run: cargo build --release --locked --manifest-path upstream/work/h5rs/Cargo.toml
+      - name: Source-controlled short-key p54–55 one-window inverse
+        env:
+          SHARD: ${{ matrix.shard }}
+        run: |
+          mkdir -p p54-shards
+          start=$((SHARD * 250))
+          end=$((start + 250))
+          bin=upstream/work/h5rs/target/release/h5rs
+          truth=$("$bin" decode upstream/work/h5rs/data/truth.txt 1234 8 0 --engine fast)
+          echo "Independent planted control: ${truth}"
+          [[ "$truth" == *"wcol=23,10,1,10,9,10,16,26"* ]]
+          "$bin" sweep upstream/work/h5rs/data/plant_a_seg0.8.txt file:prepared/library_flat.ksb:primes 1300 1301 13 13 0 1 "p54-shards/control_${SHARD}.tsv" --hits 1.6 --chunk 1
+          awk -F '\t' '$1=="primes" && $2==1300 && $3==13 && $4==0 && $6>1.8 {good=1} END {exit !good}' "p54-shards/control_${SHARD}.tsv"
+          "$bin" sweep prepared/lp2_p54_window.txt file:prepared/library_flat.ksb "$start" "$end" 2 13 2 2 "p54-shards/real_${SHARD}.tsv" --hits 1.5 --chunk 10 --best --progress 25
+          "$bin" sweep prepared/lp2_p54_window.txt file:prepared/null581.ksb "$start" "$end" 2 13 2 2 "p54-shards/null_${SHARD}.tsv" --hits 1.5 --chunk 10 --best --progress 25
+          test -s "p54-shards/real_${SHARD}.tsv"
+          test -s "p54-shards/null_${SHARD}.tsv"
+      - name: Preserve disjoint original final-section candidate and null records
+        uses: actions/upload-artifact@v4
+        with:
+          name: h1-p54-shard-${{ matrix.shard }}
+          path: p54-shards/
+          if-no-files-found: error
+          retention-days: 30
+
+  p54-summary:
+    if: inputs.mode == 'p54' && always() && needs.p54.result == 'success'
+    needs: [prepare, p54]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout versioned source-locked adjudicator
+        uses: actions/checkout@v4
+      - name: Merge all p54 original-source shard records
+        uses: actions/download-artifact@v4
+        with:
+          pattern: h1-p54-shard-*
+          path: p54-shards
+          merge-multiple: true
+      - name: Adjudicate fixed source hypotheses against full-scale matched null
+        run: |
+          node sims/agent16_h1_gap_sft.cjs analyze p54-shards h1_p54_report.md 8 p54
+          cat h1_p54_report.md
+      - name: Preserve complete p54 original report
+        uses: actions/upload-artifact@v4
+        with:
+          name: h1-p54-complete-report
+          path: |
+            h1_p54_report.md
+            p54-shards/
           if-no-files-found: error
           retention-days: 60
