@@ -204,12 +204,81 @@ const lastChecks = words.filter(word => word.values.length > 1 &&
   mod(2 * word.values.at(-1)) === checksum(word.values)).length;
 assert.equal(lastChecks, 72);
 
+
+/**
+ * More permissive original-source test: a single visible checksum rune may
+ * occupy ANY printed slot, not just an endpoint. Keep the original published
+ * T6 history, including checksum glyphs, intact when calculating repair
+ * ambiguity. A putative checksum is exempt from repair and omitted from the
+ * body sum. Independently grant every 2^k original repair-flag assignment.
+ *
+ * These checks are literal, unencrypted checksums. A separate keyed encoding
+ * of the check rune is outside this exact test.
+ *
+ * @param {'index'|'prime-index'|'prime-prime'} mode
+ * @returns {{affected:number,compatible:number,incompatible:number,
+ *            unique:number,multiple:number,candidatePairs:number}}
+ */
+function anywhereChecksumGate(mode) {
+  let affected = 0;
+  let compatible = 0;
+  let incompatible = 0;
+  let unique = 0;
+  let multiple = 0;
+  let candidatePairs = 0;
+  for (const word of words) {
+    const source = word.values;
+    const sites = ambiguities(source);
+    if (sites.length === 0) continue;
+    affected++;
+    let candidates = 0;
+    for (let checkIndex = 0; checkIndex < source.length; checkIndex++) {
+      const bodySites = sites.filter(site => site.position !== checkIndex);
+      for (let mask = 0; mask < (1 << bodySites.length); mask++) {
+        let sum = 0;
+        for (let j = 0; j < source.length; j++) {
+          if (j === checkIndex) continue;
+          const branch = bodySites.findIndex(site => site.position === j);
+          const nominal = branch >= 0 && (mask & (1 << branch)) !== 0 ?
+            source[j - 1] : source[j];
+          sum += mode === 'index' ? nominal : corpus.prime[nominal];
+        }
+        const expected = mode === 'prime-prime' ?
+          mod(corpus.prime[source[checkIndex]]) : source[checkIndex];
+        if (expected === mod(sum)) candidates++;
+      }
+    }
+    candidatePairs += candidates;
+    if (candidates > 0) {
+      compatible++;
+      if (candidates === 1) unique++; else multiple++;
+    } else {
+      incompatible++;
+    }
+  }
+  return { affected, compatible, incompatible, unique, multiple, candidatePairs };
+}
+
+const anywhere = {
+  index: anywhereChecksumGate('index'),
+  primeIndex: anywhereChecksumGate('prime-index'),
+  primePrime: anywhereChecksumGate('prime-prime')
+};
+assert.deepEqual(anywhere, {
+  index: {affected: 74, compatible: 43, incompatible: 31,
+    unique: 34, multiple: 9, candidatePairs: 54},
+  primeIndex: {affected: 74, compatible: 35, incompatible: 39,
+    unique: 20, multiple: 15, candidatePairs: 55},
+  primePrime: {affected: 74, compatible: 34, incompatible: 40,
+    unique: 23, multiple: 11, candidatePairs: 47}
+});
+
 console.log(JSON.stringify({
   originalPages: 56, runes: real.length, words: words.length, eligible,
   ambiguityCount, affectedWords, multiplicities: Object.fromEntries(multiplicities),
   syntheticChecksumInverseVerified: externallySuppliedChecks.length,
   originalLiteralStart: start, originalLiteralEnd: end,
-  originalCompleteWordLastChecks: lastChecks,
+  originalCompleteWordLastChecks: lastChecks, anywhereChecksumGate: anywhere,
   twoAmbiguityWords: examples
 }, null, 2));
 console.log('PASS: conditional inverse is exact; original direct edge-check gates fail.');
