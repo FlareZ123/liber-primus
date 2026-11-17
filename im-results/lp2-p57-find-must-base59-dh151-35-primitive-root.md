@@ -75,6 +75,78 @@ Both outputs must equal 21 modulo30, limiting each to **{21,51,81,111,141}**. Th
 
 The [exact algebraic original-input SFT](../sims/lp2_p57_our21_ring120digit_orientation_null_sft.cjs) establishes the identity for **all 400,000** shuffled original arrangements with exact source-retention, distinguishes a single 1-in-5 match from two apparent corroborations, and uses no unknown ciphertext score. This downgrades the `OUR21` exponent clue's independent strength. It does not change the earlier direct consumer negatives or disprove another independently authenticated LP2 DH operation.
 
+## New source-crossing p57 three-clause prime-rank/DH triple (17 November, Agent44)
+
+The previously separate FIND/MUST pair now has a more constrained, still
+**hypothetical**, cross-round connection to the complete solved p57 parable:
+
+1. In the exact original 95-rune p57, the first 2013-parable clause spells
+   **TUNNELNG**, without the extra I in normalized 2013 prose. Its three
+   source-native clause GP-prime sums are **1259, 1031, 1229**, prime ordinals
+   **205, 173, 201**. All 95 rune indices agree with the source fixture.
+   The genuine original 2013 `761.MP3` TXXX description prints
+   `Parable 1,595,277,641`, exactly **1259 × 1031 × 1229**.
+2. Use each *one-based* prime ordinal directly as a *zero-based* flat
+   cell address in the original 256-entry p49–51 table. Those three
+   printed tokens are **1G, 1v, 1E**, which read **75, 115, 73**
+   under the independently conceivable base59 alphabet (the
+   declared base60 alphabet minus the absent lowercase f). Under
+   conventional base60 they read **76, 117, 74**; under base59 at
+   indices rank-minus-one they read **191, 146, 108**.
+3. The p57 author-visible words give **FIND=151**, **MUST=186** and
+   **OUR=21** in GP-prime weights. As in the earlier result, choose
+   `p=151` and `g=186 mod151=35`. With candidate private
+   exponents `a=OUR=21` and `b=13` (the frequently printed
+   thirteen-dot mark, although no original instruction selects it as
+   a private exponent), the DH exchange is exact:
+   `A=35^21 mod151=107`, `B=35^13 mod151=115`,
+   `K=B^21 mod151=A^13 mod151=73`.
+   Therefore the original table's three clause addresses yield
+   **[(p-1)/2, B, K] = [75, 115, 73]**. The first value also
+   satisfies `35^75 mod151=150`, consistent with g being a primitive
+   root of order150.
+4. The original **2013** ID3 number supplies an independent
+   arithmetical comparison: `1,595,277,641 mod256=73`, with
+   **256** cells explicitly visible in the 2014 original table.
+   The **76-cell outermost rectangular ring**, clockwise from the
+   printed upper-left source cell, has at ring index `K=73` the
+   original flat cell24, printed token **1n**, base59 value
+   **107=A**. This closes a source-number → shared-key → original
+   ring-index → DH public-share cycle.
+
+The three exact indexed table values each occur sparsely in the
+unmodified original 256-value base59 multiset: 75 occurs twice, 115
+twice, and 73 once. If both the three **fixed distinct zero-based
+addresses** and the radix were specified *before* seeing their cell
+contents, an exact multiset permutation would hit that triple with
+probability `(2/256)*(2/255)*(1/254) = 1/4,145,280`. This figure is
+**not an adjusted significance claim**: the radix, mixed ordinal/array
+indexing, modulus, 13-exponent, and related arithmetic were assembled
+retrospectively, with other numerical alignments already searched.
+The three clause sums were simultaneously used to construct the
+original 2013 decimal, so those four source numbers are dependent.
+
+The useful advance is a **fully specified source-derived candidate
+DH tuple and cross-round key scalar** with several independent
+artifact-typed checks; none of them is a decryption. Its most severe
+missing selector is the unnatural conversion of a one-based prime
+ordinal into a zero-based array position. The thirteen-dot
+interpretation is equally underdetermined. The 2013 signed TCP
+illustration explicitly makes server-side base and private exponent
+participant-chosen, so historical use of DH does not authenticate this
+2014-specific b=13. Existing direct p55 DH/ring consumers remain
+nonlinguistic, including the new frozen K73 ring receiver below.
+One original 76-rune plaintext interval with independently identifiable
+meaning or a genuine first-party decoder selector is required before
+promoting the hypothesis.
+
+**Reproduction:** [Windows Node22 original-source SFT](../sims/lp2_p57_primeordinal_dh73_source_sft.cjs)
+and [successful manual Windows CI run 44146610169](https://github.com/FlareZ123/liber-primus/actions/runs/44146610169).
+This SFT checks exact 95/95 source runes, all three original table
+tokens and both rival encodings, the historical ID3 string, the
+full DH equalities and the outer-ring selected share. It is a
+reproducible arithmetic correspondence, not recovered ciphertext.
+
 ## Frozen outer-ring K=73 self-index and p55 receiver (Agent44, 17 November)
 
 A subsequent original-source question asked whether the proposed DH shared scalar
@@ -144,13 +216,32 @@ A 38-pair interpretation of p55 as BASE29 public-share integers was also tried w
 
 ## Assessment and next decision
 
-**Established mathematics:** the base-59 values at addresses 150–151 are 151 and 186; 151 is prime; 35 has order 150 modulo 151; φ(151)=150 and φ(186)=60.
+**Exact original-source observations:** the adjacent base59 FIND/MUST table pair
+at cells150–151; the p57 three-clause GP-prime sums and prime ordinals;
+original base59 token values **[75,115,73]** at addresses **[205,173,201]**;
+the 2013 ID3 decimal product and its residue73 modulo256; and a clockwise
+outer-ring cell at offset73 with value107. The proposed full DH exchange
+(p151,g35,a21,b13,A107,B115,K73) is mathematically sound.
 
-**Hypothesis:** p57 may select a DH parameter pair in the p50 table, with the 60- and 76-cell rings supplying further material.
+**Historical inference remains provisional:** neither the signed 2013
+DH example nor LP2's printed instructions selects base59 over base60,
+one-based prime ranks as zero-based cell addresses, b=13 as a private
+exponent, the ID3-to-grid modulo operation, or a GP29 key/receiver.
+The original 13-dot stencils are widespread and their historical role
+as this exponent has not been established. The alternative ring
+concatenation exponent b113 requires postselected ring starts and
+fails the shuffled-source original-multiset gate.
 
-**Missing input:** neither the signed 2013 DH example nor the original LP2 images supplies a p55 DH public share, a reversible GP29 output decoder, or a 76-position key clock. The provisional OUR21 exponent coincides with a modulo30 source checksum and its two traversal matches are algebraically dependent, so the count correspondence cannot substitute for the missing operator.
-
-Do not launch an unconstrained DH/key search from this observation. The next useful investigation is to find an independent clue in the original manuscript or an earlier Cicada instruction that selects the missing key schedule or BASE29 mapping. If no such instruction appears, retain this as a notable base-59 structural lead but retire it as a decryption route. No claim of recovered plaintext is made.
+**Original unknown-page outcome:** none of the completed p55 direct
+DH, ring, fixed additive, or direct BASE29 receivers has produced
+authentic unknown plaintext. A mathematically closed 2013–2014
+correspondence is now worth preserving and considering as an
+independent clue, while a new cipher campaign is unjustified until
+some source selects its **recipient and reversible operation**.
+The first new decisive step should identify a first-party operation
+for the scalar73 or recover an actual original 76-rune p55 plaintext
+interval. Do not treat test-fitted keys, synthetic plants, or a
+matching original cipher round-trip as successful decryption.
 
 ## Reproduction inputs
 
@@ -158,4 +249,6 @@ Do not launch an unconstrained DH/key search from this observation. The next use
 - `resources/liber-primus/lp2-corpus.json` — rune indices, transliterations, and prime weights.
 - `resources/liber-primus/lp2-transcription.txt` — p57 word boundaries.
 - `resources/external/2013-tcp-server-signed-source.md` — historical BASE29/DH protocol transcription.
-- `sims/lp2_p57_find_must_dh151_gate.cjs` — self-contained arithmetic and direct-consumer reproduction.
+- `sims/lp2_p57_find_must_dh151_gate.cjs` — historical FIND/MUST arithmetic and direct-consumer reproduction.
+- `sims/lp2_p57_primeordinal_dh73_source_sft.cjs` — exact 2013/p57 three-clause DH73 source cross-check.
+- `sims/lp2_p50_outerring_dh73_selfindex_sft.cjs` — original p55 K73 receiver and ring-start original-multiset null.
