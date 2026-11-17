@@ -1,0 +1,14 @@
+name: Agent 6 cuneiform typed BASE29 original-source SFT (manual)
+on:
+  workflow_dispatch:
+jobs:
+  source-sft:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check exact original typed-register candidate
+        run: node sims/lp2_cuneiform_base29_typed_register_original_sft.cjs
