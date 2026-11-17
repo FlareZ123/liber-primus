@@ -1,0 +1,21 @@
+name: Agent 11 signed 2014 Stage11 host OutGuess recovery
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-58-page-scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the original-JPEG bitmap extractor dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libjpeg-dev
+      - name: Validate authentic historical payload and test two exact signed-host strings
+        run: |
+          python3 sims/lp2_stage11_signed_hostname_outguess_sft.py
