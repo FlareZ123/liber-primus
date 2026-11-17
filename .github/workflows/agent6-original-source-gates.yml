@@ -24,6 +24,7 @@ on:
           - x29-savedrev
           - f-fiveback
           - sevenword
+          - eightword
 permissions:
   contents: read
 jobs:
@@ -108,3 +109,7 @@ jobs:
       - name: Historical Stage05 seven-word packet source-grammar inverse
         if: ${{ inputs.route == 'sevenword' }}
         run: node sims/lp2_2014_stage05_sevenword_grammar_sft.cjs
+
+      - name: Original p50 eight-column printed-word order restoration SFT
+        if: ${{ inputs.route == 'eightword' }}
+        run: node sims/lp2_p50_eightcolumn_wordorder_original_sft.cjs
