@@ -11,8 +11,9 @@
  *
  * For a word-preserving GP29 additive or ciphertext-difference cipher,
  * derive all 53 required key symbols, then search the complete intact
- * original unknown manuscript and the authentic solved p56+p57 for a
- * contiguous source key, allowing one arbitrary affine alphabet map
+ * original unknown manuscript, solved p56+p57, original LP1 rune
+ * transcription, LP1 translated-reference prose and authenticated
+ * 2016 signed prose for a contiguous source key, allowing affine GP29
  * and both source read directions. Also test whether an inferred low-order
  * GF29 key recurrence predicts held-out crib symbols. The predeclared
  * key-only match threshold is all 53 symbols, with independent prefix
@@ -66,6 +67,28 @@ const sourceSolved=gp.pages.filter(p=>p.page>=56)
   .flatMap(p=>p.indices);
 assert.equal(sourceUnknown.length,12956);
 assert.equal(sourceSolved.length,180);
+// The original first release and the authenticated signed follow-up are
+// candidate *donor material*, never original LP2 plaintext or fitted keys.
+const gpIndex=new Map(gp.runes.map((r,i)=>[r,i]));
+const lp1Original=[...get('resources/transcriptions/lp1_wulfic_canonical.txt')]
+  .filter(ch=>gpIndex.has(ch)).map(ch=>gpIndex.get(ch));
+assert(lp1Original.length>2000);
+const editorialReference=get('resources/liber-primus/lp1-plaintext-reference.txt');
+const lp1Translated=editorialReference.split(/^### /m)
+  .filter(section=>/^([1-9]|1[0-7])\b/.test(section))
+  .join('\n').split('\n')
+  .filter(line=>line && !line.startsWith('#') && !line.startsWith('[')
+    && !/^\d+\s*$/.test(line))
+  .join(' ').match(/[A-Za-z]+/g).flatMap(encode);
+assert(lp1Translated.length>500);
+const signedText=get('resources/historical/cicada2016-4gq25-outguess.asc');
+const signedBody=signedText.split('-----BEGIN PGP SIGNED MESSAGE-----')[1]
+  .split('\n\n').slice(1).join('\n\n')
+  .split('-----BEGIN PGP SIGNATURE-----')[0];
+const signedLatin=signedBody.match(/[A-Za-z]+/g);
+assert.equal(signedLatin.length,43);
+const signedGP=signedLatin.flatMap(encode);
+assert(signedGP.length>100);
 
 /** @param {number[]} C @param {number[]} P @param {'direct'|'delta'} kind */
 function knownKey(C,P,kind){
@@ -224,7 +247,10 @@ for(const kind of ['direct','delta']){
     sourceMatches:[]};
   for(const [name,source] of [
     ['original LP2 p0-55',sourceUnknown],
-    ['original solved p56+p57',sourceSolved]
+    ['original solved p56+p57',sourceSolved],
+    ['original LP1 runes',lp1Original],
+    ['LP1 edited plain reference',lp1Translated],
+    ['2016 verified signed words',signedGP]
   ]){
     for(const reversed of [false,true]){
       record.sourceMatches.push({source:name,reversed,
@@ -236,11 +262,14 @@ for(const kind of ['direct','delta']){
 assert.deepEqual(output.map(x=>x.fullLinearDegree),[27,27]);
 assert.deepEqual(output.map(x=>x.sourceCrib23LinearDegree),[12,12]);
 assert.deepEqual(output.map(x=>x.heldout40.correct),[1,2]);
-assert(output.every(x=>x.sourceMatches.every(m=>m.prefix<=5)));
+assert(output.every(x=>x.sourceMatches.every(m=>m.full53===0)));
 console.log(JSON.stringify({
   classification:'conditional historical 53-rune known-plaintext-key recovery, no authentic unknown p55 plaintext',
   sourceWarning:'Both plaintext segments remain unverified hypotheses; their concatenation is NOT a Cicada-authenticated source quote',
   originalPrintedShape:printedWords.map(x=>[...x].length),
   conditionalCrib:phrases,cribGP29Symbols:known.length,
+  donorLengths:{originalLP2:sourceUnknown.length,solvedLP2:sourceSolved.length,
+    originalLP1:lp1Original.length,editedLP1:lp1Translated.length,
+    signed2016:signedGP.length},
   nativePlantPositive:positive,originalResults:output
 },null,2));
