@@ -131,18 +131,20 @@ function transform(lo, hi, spans, fn, inversePolarity) {
  * @param {number[]} ciphertext
  * @param {number} start
  */
-function furthest(ciphertext, start) {
+function furthest(ciphertext, start, singletonPositions = new Set()) {
   let states = [0];
   for (let i = 0; i < ciphertext.length; i++) {
     const c = ciphertext[i];
     const seen = new Uint8Array(i + 2);
     const next = [];
     for (const used of states) {
-      if (c === 0 && !seen[used]) {
+      if (c === 0 && !singletonPositions.has(i) && !seen[used]) {
         seen[used] = 1;
         next.push(used);
       }
-      if (mod(c - key[start + used]) !== 0 && !seen[used + 1]) {
+      const plain = mod(c - key[start + used]);
+      if (plain !== 0 && (!singletonPositions.has(i) ||
+          [24, 10, 3].includes(plain)) && !seen[used + 1]) {
         seen[used + 1] = 1;
         next.push(used + 1);
       }
@@ -222,6 +224,8 @@ for (const [from, to] of groups) {
         if (reach === tape.length) starts.push(start);
         maxReach = Math.max(maxReach, reach);
       }
+      const singletonPositions = new Set(spans
+        .filter(([a, b]) => b - a === 1).map(([a]) => a - lo));
       const candidates = starts.map(start => {
         const best = viterbi(tape, start);
         assert.ok(best);
@@ -235,6 +239,7 @@ for (const [from, to] of groups) {
           entries.has(best.plaintext.slice(a - lo, b - lo).join(',')));
         return {
           start, scorePerRune: best.score / tape.length, ioc: ioc(best.plaintext),
+          grammarLastReach: furthest(tape, start, singletonPositions),
           oneRuneWords: one.length, plausibleOneRuneWords: plausible.length,
           exactTrainingWords: dictionary.length, printedWords: spans.length,
           opening: best.plaintext.slice(0, 48).map(x => src.translit[x]).join('')
@@ -260,6 +265,9 @@ assert.equal(result.filter(r => r.pages === 'p54-55')
 const all = result.flatMap(r => r.candidates.map(x => ({pages: r.pages, ...x})));
 assert.ok(all.every(x => x.ioc < 0.04));
 assert.ok(all.every(x => x.plausibleOneRuneWords === 0));
+assert.ok(result.every(r => r.candidates.every(x =>
+  x.grammarLastReach < r.runes)),
+  'exact all-F-branch A/I/O one-rune-word gate rejects all 47 surviving starts');
 console.log(JSON.stringify({
   corpus: 'unaltered original 12956 GP29 cipher runes and 2896 printed words',
   control: 'authentic p56 exact 85/85 with plaintext-F nonconsumption',
