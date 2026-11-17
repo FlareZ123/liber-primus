@@ -241,6 +241,20 @@ for(let t=0;t<TRIALS;t++) {
   // Strong positive: true secret table + true path recover all glyphs.
   assert.deepEqual(cipher.map((c,i)=>inverse[row[i]][c]),plain);
   const result=invert(cipher,row,plain);
+  if(t<2) {
+    // Independent reusable module must match this stand-alone decoder's
+    // terminal results exactly on original-size, source-native plants.
+    const {languageModel,recoverTableau} =
+      require("./gp29_bigram_tableau_decoder.cjs");
+    const recovered=recoverTableau(cipher,row,languageModel(ref),{
+      known:known.map(([position,rune])=>({position,rune})),sweeps:12
+    }).plaintext;
+    const hit=positions=>positions.reduce((s,i)=>
+      s+Number(recovered[i]===plain[i]),0);
+    assert.deepEqual([hit(allPositions),hit(holdout),hit(span)],
+      [result.trace.at(-1).all,result.trace.at(-1).heldout,
+        result.trace.at(-1).span]);
+  }
   results.push({trial:t,first:result.trace[0],last:result.trace.at(-1)});
 }
 const expected=[
