@@ -59,11 +59,62 @@ assert.deepEqual(decoded.slice(0, 16), knownHeading);
 assert.deepEqual(encrypt(decoded), cipher);
 assert.deepEqual(encrypt(blind), holdout);
 assert.deepEqual(decrypt(encrypt(known)), known);
+
+/**
+ * Exact inverse reachability under authentic p56-style transparent plaintext F.
+ * When plaintext F is emitted the clock does not advance; ciphertext F can
+ * alternatively originate from a non-F plaintext rune with an encrypted key.
+ * @param {readonly number[]} ciphertext
+ * @returns {number | null} First impossible zero-based ciphertext position
+ */
+function firstImpossibleFSkip(ciphertext) {
+  let clocks = new Set([0]);
+  for (let i = 0; i < ciphertext.length; i += 1) {
+    const C = ciphertext[i];
+    const next = new Set();
+    for (const k of clocks) {
+      if (C === 0) next.add(k); // plaintext F skips the key clock
+      const P = (C - key[k] + 29) % 29;
+      if (P !== 0) next.add((k + 1) % key.length);
+    }
+    if (next.size === 0) return i;
+    clocks = next;
+  }
+  return null;
+}
+
+/**
+ * Encode a positive source-native control with the F-transparent key clock.
+ * @param {readonly number[]} plaintext
+ * @returns {number[]}
+ */
+function encodeFTransparent(plaintext) {
+  const ciphertext = [];
+  let k = 0;
+  for (const P of plaintext) {
+    if (P === 0) ciphertext.push(0);
+    else {
+      ciphertext.push((P + key[k]) % 29);
+      k = (k + 1) % key.length;
+    }
+  }
+  return ciphertext;
+}
+
+const originalFSkipImpossibleAt = firstImpossibleFSkip(cipher);
+const heldoutFSkipImpossibleAt = firstImpossibleFSkip(holdout);
+assert.equal(originalFSkipImpossibleAt, 17);
+assert.equal(heldoutFSkipImpossibleAt, 16);
+assert.equal(firstImpossibleFSkip(encodeFTransparent(known)), null);
+
 const stats = {
   hypothesis: "p23 red16 title is Serratella ignita",
   hypothesis_is_not_an_authenticated_crib: true,
   key_gp29: key,
   original_body_runes: decoded.length - 16,
+  f_transparent_original_first_impossible_offset: originalFSkipImpossibleAt,
+  f_transparent_holdout_first_impossible_offset: heldoutFSkipImpossibleAt,
+  f_transparent_known_p57_positive: "95/95 legal symbols under planted true key clock",
   original_body_norm_ioc: ioc29(decoded.slice(16)),
   independent_chapter_runes: blind.length,
   independent_chapter_norm_ioc: ioc29(blind),
