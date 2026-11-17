@@ -203,6 +203,29 @@ function main() {
   ];
   const refs = referencePaths.flatMap(file => encodeWords(read(file)));
   const lexicon = new Set(refs.filter(w => w.length >= 3).map(w => w.join(",")));
+  // The solved p57 instruction "shed our own circumferences" suggests a
+  // distinct original-source receiver: strip both outer runes of each
+  // complete p55 word, then consume the same source-selected table key.
+  // The first carried rune cannot be treated as an independent word.
+  const completeWords=parsed.byContainedPage[54];
+  assert.equal(completeWords.length,16);
+  const interiorShapes=completeWords.map(w=>Math.max(0,w.length-2));
+  const interiors=completeWords.flatMap(w=>[...w.runes].slice(1,-1)
+    .map(r=>runeIndex.get(r)));
+  assert.equal(interiors.length,43);
+  const interiorInverse=[
+    {method:"GP29 on p57-shed p55 interiors",symbols:gp29(interiors,0)},
+    {method:"GP28 on p57-shed p55 interiors",symbols:gp28(interiors,0,target[0])}
+  ];
+  const shedResult=interiorInverse.map(({method,symbols})=>{
+    const chunks=groups(symbols,interiorShapes);
+    const hits=chunks.filter(w=>w.length>=3&&lexicon.has(w.join(",")))
+      .map(gp);
+    return {method,sourceNativeDictionaryWordsLength3Plus:hits,
+      plaintext43Runes:gp(symbols),groupedByOriginalInteriors:chunks.map(gp)};
+  });
+  assert.ok(shedResult.every(x=>
+    x.sourceNativeDictionaryWordsLength3Plus.length===0));
   const originals = inverse.map(({method,symbols}) => {
     const chunks = groups(symbols, shapes);
     const hits = chunks.slice(1).filter(w =>
@@ -255,7 +278,7 @@ function main() {
     controls:{nativeSameShape76RuneRoundTrip29:true,
       nativeSameShape76RuneRoundTrip28WithEARepeat:true,
       sourceNativeLexiconSize:lexicon.size,pageWrapNull},
-    original:originals,tableSelfDecrypt:aesResult,
+    original:originals,p57ShedCircumferences:shedResult,tableSelfDecrypt:aesResult,
     decision:"Source count and grid dimensions provide a conditional 32-byte key. The exact GP29 additive/GP28 predecessor consumers yield no GP-English words of length >=3 on physical p55; no authored instruction selects the seam mapping, cipher family or key consumer."
   },null,2));
 }
