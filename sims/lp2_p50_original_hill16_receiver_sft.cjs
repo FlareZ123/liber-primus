@@ -78,10 +78,11 @@ function invert(M) {
     }
   }
   const I=A.map(row=>row.slice(16));
-  const identity=apply(M,I.flat(),0);
-  assert.deepEqual(identity,Array.from({length:16},(_,j)=>I.map(row=>row[j])).flat().map(x=>x));
-  // The flat-column test above is intentionally not treated as an
-  // independent matrix identity: the round-trip plants below are decisive.
+  const identity=Array.from({length:16}, (_,i)=>
+    Array.from({length:16}, (_,j)=>
+      mod(M[i].reduce((sum,value,k)=>sum+value*I[k][j],0))));
+  assert.deepEqual(identity,Array.from({length:16}, (_,i)=>
+    Array.from({length:16}, (_,j)=>Number(i===j))));
   return I;
 }
 
