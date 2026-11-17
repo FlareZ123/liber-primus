@@ -1,4 +1,4 @@
-name: Agent18 deterministic source-word-advance phase invariant
+name: Agent18 source word-advance original GP29 gates
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ permissions:
   contents: read
 
 jobs:
-  original-word-advance:
+  word-advance:
     runs-on: windows-latest
     timeout-minutes: 12
     steps:
@@ -15,7 +15,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate CommonJS syntax
-        run: node --check sims/lp2_wordadvance256_allsecret_samephase_sft.cjs
-      - name: Run original GP29 all-secret word-advance gate
+      - name: Validate standalone CommonJS files
+        run: |
+          node --check sims/lp2_wordadvance256_allsecret_samephase_sft.cjs
+          node --check sims/lp2_prime_wordadvance_Fallbranch_source_sft.cjs
+      - name: All-secret 256-position original phase invariant
         run: node sims/lp2_wordadvance256_allsecret_samephase_sft.cjs
+      - name: Authentic prime-totient exact F-bypass inverse
+        run: node sims/lp2_prime_wordadvance_Fallbranch_source_sft.cjs
