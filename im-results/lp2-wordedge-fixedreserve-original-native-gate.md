@@ -64,6 +64,29 @@ The symbol `S` faces an independent full-book count contradiction under ordinary
 
 These finite lexical dictionaries cannot disprove an unknown word, a different underlying language, artificial plaintext, nonstandard source spelling, or a mechanism whose reserved plaintext symbol changes with state. Frequency conclusions assume GP-native ordinary English, original word boundaries preserving plaintext word boundaries, and the specified page-first handling. The exact mathematical invariant applies only to the stated local-reserve family.
 
+
+## Independent Latin GP29 language-register extension (Agent3, 17 November 2026)
+
+The existing English result leaves different plaintext languages open, so we tested an independently pinned, **source-native Latin Vulgate New Testament** control. It is already GP29-contracted in [the retained Latin reference](../resources/control/latin-vulgate-gp-wholewords.txt), using fixed word boundaries and the manuscript's digraph convention: **39,785 whole-word tokens and 7,267 unique GP spellings of lengths 1–14**. The complete **same 2,896 authentic source words, 86 repeat sites and 55 physical-page-first unknown positions** were held unchanged. No Latin→GP29 re-tokenization or original punctuation was modified.
+
+For each of all 29 fixed candidate reserved plaintext runes, the unchanged source-word repeat-mask requires a matching authentic Latin word of exactly that GP length, having the rune *precisely* at the original known repeat positions and absent at every original known nonrepeat position. Separately, independently sampling Latin source words matched to every one of the 2,896 original word lengths determines the **expected full-book count and its exact source-empirical sampling standard deviation** for the same plaintext rune. The fixed-reserve cipher permits **86–141 total occurrences**, allowing a completely free unknown starting rune on every page.
+
+| Fixed reserved GP symbol | Original words without any Latin mask-compatible word | Vulgate length-matched expected occurrences ± SD | Decision |
+| --- | ---: | ---: | --- |
+| O | **0** | 702.53 ± 24.53 | All masks fit, native source frequency far too high |
+| M | **0** | 754.37 ± 24.49 | All masks fit, native source frequency far too high |
+| S | **0** | 1041.76 ± 28.41 | All masks fit, native source frequency far too high |
+| T | **0** | 1137.92 ± 26.43 | All masks fit, native source frequency far too high |
+| IA / IO | **17** | 114.64 ± 10.42 | Plausible total count, failed original words |
+| AE | **20** | 96.31 ± 9.69 | Plausible total count, failed original words |
+| F | **48** | 98.50 ± 9.79 | Plausible total count, failed original words |
+| G | **28** | 119.74 ± 10.78 | Plausible total count, failed original words |
+| EA | **36** | 26.92 ± 5.10 | Both diagnostics fail |
+
+**All 29 marker identities were tested**, not merely the nine illustrated. Exactly **O, S, T and M**, in original GP chart order, have *zero* original-word-mask incompatibilities; each requires a symbol that is hundreds of occurrences too common for independently sampled words from this pinned Latin register. No candidate combines zero incompatible original words with a remotely ordinary occurrence count under this empirical source. This is a **finite Vulgate word-dictionary and source-sampling incompatibility**, not an algebraic impossibility for a specially selected rare Latin passage, a different Latin register, uncommon words, altered word boundaries, or a state-changing marker. The distribution statistics assume independent length-matched source-word sampling; the exact original-word mask contradictions are deterministic only against the 7,267-word lexicon.
+
+The same checked-in [reproducer](../sims/lp2_wordedge_fixedreserve_source_sft.cjs) now asserts the original source geometry, 39,785 Latin tokens, all 29 exact marker masks, and independent length-conditioned means. This extends the previous native-English exclusion without changing its stronger source-wide word-edge finding. **No original key, unknown-page text or decoder is recovered.**
+
 ## Next actual decoding decision
 
 Do **not** expand the fixed-reserve branch by fitting a secret symbol per word or allowing arbitrary bypass masks. That would reintroduce unobservable state until an authentic original clue selects the symbol schedule. The remaining defensible search is for a **source-selected history-dependent, lossless emission rule** whose state crosses real printed word edges, plus a source-derived inverse table/key and an unchanged original heldout. A stronger proposal must explain the 86/12,901 overall repeat scarcity, the 23/2,873 word-edge rarity, and the near-uniform GP29 marginal histogram simultaneously. A standalone numerical match to these rates, or a synthetic recovery, is insufficient.
