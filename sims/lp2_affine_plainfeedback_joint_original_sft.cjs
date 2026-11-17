@@ -174,7 +174,10 @@ function search(target) {
 }
 
 const originalBest=search(ch[0]);
-const hold=decrypt(ch[7],originalBest.a,originalBest.b,originalBest.initial);
+const holdCandidate = Array.from({length:29},(_,initial) => ({initial,
+  plain:decrypt(ch[7],originalBest.a,originalBest.b,initial)}));
+const hold = holdCandidate.reduce((best,v) => trigram(v.plain)>trigram(best.plain)?v:best)
+  .plain;
 assert.deepEqual(encrypt(originalBest.plain,originalBest.a,originalBest.b,ch[0][0]),ch[0]);
 assert.deepEqual(encrypt(hold,originalBest.a,originalBest.b,ch[7][0]),ch[7]);
 const rawScore=trigram(ch[0]);
@@ -200,6 +203,9 @@ const cipherPlant=encrypt(targetPlain,sourceKey.a,sourceKey.b,sourceKey.initial)
 const sourceRecovered=search(cipherPlant);
 const correct=sourceRecovered.plain.every((x,i)=>x===targetPlain[i]);
 assert.ok(correct, "Planted true-key recovery failed; rank needs recalibration");
+assert.equal(sourceRecovered.a,sourceKey.a);
+assert.equal(sourceRecovered.b,sourceKey.b);
+assert.equal(sourceRecovered.initial,targetPlain[0]);
 assert.deepEqual(encrypt(sourceRecovered.plain,sourceRecovered.a,sourceRecovered.b,cipherPlant[0]),cipherPlant);
 console.log(JSON.stringify({
   source:{"corpus":"resources/liber-primus/lp2-corpus.json",
