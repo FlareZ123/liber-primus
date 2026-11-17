@@ -76,9 +76,41 @@ Second, the row's unique terminal **151** itself provides a concrete *prime-valu
 
 **The p56-style prime151 direct inverse is therefore impossible already at black-body rune index1**, irrespective of later language-model choice. A nontransparent or differently initialized rule would be a distinct hypothetical decoder requiring a separate source instruction. This second test is a true exact structural rejection of the frozen p56 continuation.
 
+
+## Historically motivated RSA consumer: p=151, q=331, e=13
+
+A stronger alternative to using a single GP29 additive row is to treat the two independent **prime-valued original source references** as a textbook RSA factor pair: **p=151** from the unique row27 terminal cell/earlier LP1 square and **q=331** from the original 2014 7×7 magic-square center (and archived HTML index). The red opening contains exactly **13 runes** and ends in a **13-dot** mark, motivating **e=13** as one candidate public exponent. RSA itself has genuine prior Cicada puzzle precedent, unlike a newly invented algorithm; see [original historical RSA source survey](grid-rsa-factor-test.md). The assignment of these primes and 13 as an RSA key remains conjectural because the manuscript supplies no such instruction.
+
+This yields a fully defined public/private key without guessing any unknown plaintext:
+
+\`\`\`text
+p=151, q=331, N=pq=49,981
+φ(N)=(151−1)(331−1)=49,500
+e=13, gcd(e,φ(N))=1
+d=e^(−1) mod φ(N)=38,077
+\`\`\`
+
+There are two simple **packet-domain obstructions** on unmodified original source data.
+
+* A conventional **two-byte big-endian RSA ciphertext packet** from the printed 256-byte table must be an integer less than 49,981. Among the complete **128 original 16-bit byte pairs**, **32 have value ≥49,981**; the very first equals **52,199**. Such pairs cannot all be textbook RSA ciphertext residues under this modulus, regardless of the exponent or plaintext.
+* The original p0 black body contains **249 = 83×3** GP29 runes after its red title; grouping from that original title terminator gives exactly **83 complete three-rune base29 packets**. Their integers all fit \`29³=24,389\`, which is below the RSA modulus. However the private exponent applied directly to them produces **46/83 recovered values ≥24,389**, and hence those outputs cannot fit the original **three-GP-rune plaintext block size**. The first original black triplet has packed integer **2,007**, whose RSA private inverse is **28,814**, already out of range. This rejects the literal fixed-width three-rune textbook RSA inverse with unchanged output length.
+
+A natural conventional workaround is **RSA cycle-walking**, repeatedly applying RSA until the result returns to the representable \`[0,29³)\` packet domain. This creates an exactly invertible *hypothetical* three-rune format-preserving transformation over any original ciphertext, so it is worth one direct original plaintext screen. With the source key frozen above, apply both the public (13) and private (38,077) exponents, and either a book-continuous three-rune packet clock or physical-page-local three-rune packet resets; copy trailing one/two runes unchanged. Preserve all **12,956 original LP2 unknown runes**, with no fitted phase, block size, alphabet or unprescribed subkey. The original-input outcomes are:
+
+| Cyclewalk exponent | Packet clock | Full original output GP29 IoC |
+| --- | --- | ---: |
+| 13 | Book continuous | **0.0344670302323** |
+| 13 | Physical page reset | **0.0344917196809** |
+| 38,077 | Book continuous | **0.0344992981023** |
+| 38,077 | Physical page reset | **0.0344840101861** |
+
+The original unsolved cipher has \`IoC = 0.0344783978645\`; original clear p57 has \`IoC = 0.0627099664054\`. All four transformed outputs remain near-uniform GP29 with nonlinguistic first-page previews. The exact inverse of each candidate recovers all 12,956 unchanged original cipher runes. An independent **93-rune native clear p57** positive sample is encrypted with e=13 cyclewalk and decrypted with d=38,077, recovering the exact 93-runic sample; this validates the implementation's packet mapping, **not** the historical key. No unknown LP2 plaintext emerges.
+
+**Decision:** this specific cross-source **RSA(151×331,e=13)** as a literal table-16-bit packet, unchanged-length direct GP29 triple, or direct GP29 triple cyclewalk is a **bounded negative**. There is no reason to iterate over new exponents, larger packets, padding formats or hidden clock adjustments without an independently authenticated RSA instruction. The arithmetic p0/table crosslink remains independent of these failed consumers.
+
 ## Research decision
 
-The original p0 red word-pair → row27 → unique151 → φ150 route is a **concrete, internally consistent numerical cross-artifact candidate**. It may be a puzzle-maker checksum, a clue pointing at the table/prime, or a retrospective numerical construction. The evidence does not yet tell those apart. The complete table-row direct GP29 consumer is nonlinguistic; the simplest p56-verified prime151/F-transparent direct transfer fails immediately. **No previously unknown LP2 plaintext, genuine key, or continuation has been recovered.**
+The original p0 red word-pair → row27 → unique151 → φ150 route is a **concrete, internally consistent numerical cross-artifact candidate**. It may be a puzzle-maker checksum, a clue pointing at the table/prime, or a retrospective numerical construction. The evidence does not yet tell those apart. The complete table-row direct GP29 consumer and the source-numbered RSA cyclewalk are nonlinguistic; literal RSA packet formats are algebraically contradicted; the simplest p56-verified prime151/F-transparent direct transfer fails immediately. **No previously unknown LP2 plaintext, genuine key, or continuation has been recovered.**
 
 The weakest premise is the unspoken **word-sum-to-row address plus eighth-cell selector**. A meaningful successor would find an independently dated author-visible instruction linking **32 rows**, **151**, and a decipherment *operation*, or use a predeclared row-derived transformation to recover substantial original plaintext on withheld positions. Avoid searching additional moduli, row offsets, cipher families or GP clocks merely to accommodate this arithmetic.
 
