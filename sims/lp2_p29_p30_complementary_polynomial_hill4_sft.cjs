@@ -131,7 +131,11 @@ function main() {
   const ch33to39=corpus.pages.slice(33,40).flatMap(p=>p.indices);
   const terminal=corpus.pages.slice(54,56).flatMap(p=>p.indices);
   const p55=corpus.pages[55].indices;
+  const originalPair = p29.concat(p30);
+  assert.equal(originalPair.length,540);
+  assert.deepEqual([p29.length%4,p30.length%4],[1,3]);
   for(const [name,seq] of [
+    ['p29→p30 complete, word-carried source pair',originalPair],
     ['p50 table row-major',table],
     ['p50 table col-major',tableColumn],
     ['p33-p39 complete chapter',ch33to39],
@@ -140,5 +144,7 @@ function main() {
   ]) reportReceiver(name,seq,K,invK);
   const transpose = a => a[0].map((unused,i)=>a.map(row=>row[i]));
   reportReceiver('p55 row-vector alternative',p55,transpose(K),transpose(invK));
+  reportReceiver('p29→p30 pair row-vector alternative',originalPair,
+    transpose(K),transpose(invK));
 }
 main();
