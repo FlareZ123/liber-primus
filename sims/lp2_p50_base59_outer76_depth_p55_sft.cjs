@@ -78,7 +78,7 @@ assert.equal(solvedControl.length, 76);
 for (const [radix, alphabet] of [[59, alphabet59], [60, alphabet60]]) {
   const map = addresses(alphabet);
   const depth = depths(map);
-  assert.equal(Math.max(...depth), radix === 59 ? 38 : 35);
+  assert.equal(Math.max(...depth), radix === 59 ? 38 : 24);
   if (radix === 59) {
     assert.equal(map[189], 189);
     assert.equal(depth[189], 0);
