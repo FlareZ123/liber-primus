@@ -85,7 +85,7 @@ const signedText=get('resources/historical/cicada2016-4gq25-outguess.asc');
 const signedBody=signedText.split('-----BEGIN PGP SIGNED MESSAGE-----')[1]
   .split('\n\n').slice(1).join('\n\n')
   .split('-----BEGIN PGP SIGNATURE-----')[0];
-const signedLatin=signedBody.match(/[A-Za-z]+/g);
+const signedLatin=signedBody.match(/\b[A-Za-z]+\b/g);
 assert.equal(signedLatin.length,43);
 const signedGP=signedLatin.flatMap(encode);
 assert(signedGP.length>100);
