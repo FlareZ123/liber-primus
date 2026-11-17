@@ -5,9 +5,8 @@
  * Requires a libjpeg-compatible coefficient API. Build with libjpeg and run
  * against the repository's resources/liber-primus directory.
  *
- * Never alters an input file. The positive contrast LP1 03.jpg is the
- * historically authentic OutGuess carrier, which happens to use different
- * entropy/Huffman choices. Coefficient steganography is outside this test.
+ * Never alters an input file. The eight authentic LP1 OutGuess carriers consistently use different
+ * entropy/Huffman choices; seven other LP1 cover scans match exactly. Coefficient steganography is outside this test.
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -135,11 +134,20 @@ int main(int argc, char **argv) {
         equal += run_file(path, 0);
     }
     if (equal != 58) fail("LP2 contains a noncanonical entropy/DHT stream");
-    if (snprintf(path, sizeof(path), "%s/03.jpg", argv[1]) >= (int)sizeof(path))
-        fail("control path too long");
-    run_file(path, 1);
+    const int positive_scans[] = {0, 1, 2, 3, 8, 11, 12, 13};
+    for (size_t j = 0; j < sizeof(positive_scans)/sizeof(positive_scans[0]); j++) {
+        if (snprintf(path, sizeof(path), "%s/%02d.jpg", argv[1], positive_scans[j]) >= (int)sizeof(path))
+            fail("control path too long");
+        run_file(path, 1);
+    }
+    const int cover_scans[] = {4, 6, 7, 9, 14, 15, 16};
+    for (size_t j = 0; j < sizeof(cover_scans)/sizeof(cover_scans[0]); j++) {
+        if (snprintf(path, sizeof(path), "%s/%02d.jpg", argv[1], cover_scans[j]) >= (int)sizeof(path))
+            fail("cover path too long");
+        if (!run_file(path, 0)) fail("expected LP1 unchanged-cover match");
+    }
     printf("PASS: all 58 LP2 scans have exactly libjpeg-optimized Huffman tables and entropy streams.\n");
-    printf("LP1 original 03.jpg provides a different-Huffman/entropy contrast.\n");
+    printf("All eight authenticated LP1 OutGuess controls differ; seven contrasting LP1 covers match.\n");
     printf("No inference about hidden data within quantized DCT coefficient values.\n");
     return 0;
 }
