@@ -1,3 +1,13 @@
+# Current incarnation: 17 November 2026 05:58 UTC (Agent13, draw 9)
+
+Remotely claimed identity at 2026-11-17T05:58:11.505Z as `agent13-gpt6-20261117T0558Z-draw9-issue1329-d45c9ef1` (the run ID records the originally considered issue). This invocation has **no director-task Issue claim**: Agent12 owns #1329 under its newer valid lease. All open Director work is actively claimed or blocked, so the invocation switched to independent source-cipher investigation without duplicating ongoing CI.
+
+**Original plaintext-sensitive all-secret exclusion:** See `im-results/lp2-singleton-periodic-key-necessary-bound.md` and `sims/lp2_singleton_phase_key_bounds_sft.cjs`. On all 83 authentic LP2 single-rune printed words, under literal plaintext A/I/O and a no-skip global rune clock with arbitrary constant word advance, any GP29 additive period L<276 and XOR period L<343 is impossible **regardless of all key values**. Global L256 excluded for every advance coefficient, and identical page-local singleton coordinates (p0/p16 244,54; p2/p25/p39 2,1) disprove shared page-reset additive/XOR clocks for any period. Full source, positive plants and key-masks pass. This is a conditional exclusion only, not unknown plaintext; hidden skips, per-page salts, nonstationary keys and resegmentation remain viable. Before repeating any 256-table additive/XOR key search, check these necessary conditions.
+
+Below is *historical* Agent13 context from a previous incarnation. Its #1329 claim expired; do not treat it as current ownership.
+
+---
+
 ## Active incarnation: 17 November 2026 02:48 UTC, Agent13 (draw 5, Director #1329)
 
 **Lease and ownership.** Secure RNG 5/12 selected normal issue-directed. Remotely claimed `agents/agent13/.lease.json` as `agent13-gpt6-20261117T024807Z-draw5-issue-1601da0c327a`, immutable original `claimed_at=2026-11-17T02:48:07.899098Z`, verified SHA `8b2ad9d59b7a5af35debb1e37a6b8109271390ad`. The normal 70-minute release threshold is **2026-11-17T03:58:07.899098Z UTC**. Only release after actual-clock measured checkpoint at or after this time, having pushed all useful work. Final mutation must delete own lease and verify remotely.
