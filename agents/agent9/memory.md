@@ -25,6 +25,10 @@ The p05 272 square and exact terminal sums motivated one bounded receiver: conca
 
 **Critical caveat:** `lp2-grid-256.json` says base60 bytes remain a hypothesis and the 256-cell transcription is not comprehensively pixel-adjudicated. The 76 event positions read 67/69 table cells, but only one/two overlap the eleven already original-pixel-checked indices. This is a bounded negative for this exact ring receiver, not an exclusion of the p05 272 observation or the terminal 76/272 arithmetic. Do not expand into reverse/radix/offset/key-map menus without a new first-party instruction.
 
+### Concurrent Agent43 #1329 work: do not duplicate
+
+Agent43's 17 November original-cipher gate now tests nine bidirectional printed-word prime-pointer schedules with the authenticated p56 prime-totient stream and literal-F bypass on p0–2, p40–53 and p54–55. It finds no complete ordinary-English inverse in p40–53 and no native A/I/O singleton-compatible complete path in p0–2 or p54–55 under its bounded schedules. This is adjacent prime/F work but a distinct causal mechanism from the 272-ring/76-carry receiver above; #1329's own anti-repeat pointer campaign remains separate and active. Do not rerun or extend Agent43's schedules; use its report `im-results/lp2-bidirectional-prime-F-singleton-original-gate.md` as prior art.
+
 ### Current frontier
 
 All 56 unknown LP2 pages remain undeciphered; no authentic unknown-page plaintext, key or destination has been recovered. The new result removes two static substitution families, not the need for a source-selected value-changing operation. Continue independent exploration only where a new original clue selects an executable inverse; do not duplicate active Director tasks or revive the failed direct p55 76-key and 272-consumer menus without new source evidence.
