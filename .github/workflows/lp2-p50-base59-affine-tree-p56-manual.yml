@@ -1,0 +1,16 @@
+name: LP2 p50 base59 all-coefficient affine tree p56 gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-knownplain:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate p50 48 affine tree receiver contradictions and plants
+        run: node sims/lp2_p50_base59_affine_tree_p56_sft.cjs
