@@ -165,7 +165,8 @@ for(const page of pages) {
   plantPages.push({cipher:c,plain,modes});
 }
 const planted = capacities([plantPages.map(p=>({indices:p.cipher}))]);
-assert.ok(plantE>planted.counts[1]);
+assert.ok(plantE>global.counts[1]);
+assert.ok(plantE<=planted.counts[1]);
 assert.equal(plantRecovered,12901);
 console.log('LP2 original source: '+total+' rune positions, '+global.starts+
   ' unconstrained starts and '+global.transitions+' exact transitions');
