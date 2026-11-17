@@ -20,7 +20,7 @@ SOURCE = (
 def digest(data: bytes, method: str) -> str:
     if method == "sha256":
         return hashlib.sha256(data).hexdigest()
-    return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\\0" + data).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
 
 
 def main() -> None:
