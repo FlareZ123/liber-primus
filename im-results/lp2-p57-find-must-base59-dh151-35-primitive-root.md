@@ -68,6 +68,12 @@ The reproducible script tests both clockwise and counterclockwise ring traversal
 
 None yields intelligible p55 plaintext. These are bounded negative results, not an exhaustive rejection of every possible DH construction.
 
+
+A known-clear-text control was also run against the natural 180-cell interior left after removing the outer ring. The p57 95-rune clear text was aligned to the final 95 cells under inner-rectangle row-major order and under the radial ring orders (outside-in / inside-out, both directions). The direct encodings
+`tableValue mod 151 = 35^(GP rune index) mod 151` and
+`tableValue mod 151 = 35^(GP prime weight) mod 151`
+produce at most **2/95** and **1/95** matches respectively; no ordering gives a coherent encoding, and the three p57 F positions do not all map to a common transparent/identity value. This rejects the simplest exponential-substitution reading of the group pair on the known p57 control. It does not reject a keyed or transposed use of the group.
+
 A separate BASE29 length check also fails to produce a direct 76-symbol key: converting the 60 raw inner-ring values gives 110 digits; converting their defined totients (omitting the zero input) gives 102 digits.
 
 A 38-pair interpretation of p55 as BASE29 public-share integers was also tried with the first 38 inner-ring exponents. Its fixed-width BASE29 output is 76 symbols but is not readable, and one pair reduces to zero modulo 151, which is not a valid DH public share.
