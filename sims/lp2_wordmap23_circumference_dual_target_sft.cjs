@@ -215,6 +215,64 @@ function lengthConjunctionNull(draws) {
     familywiseCalibrated: false, note: "post-discovery exact conjunction"};
 }
 
+
+/**
+ * Exact all-secret p32 -> p55 same-text target when the cycle word lengths
+ * prescribe which 45 "circumference" runes to discard from p32.
+ *
+ * A fixed (possibly non-injective) substitution must map each retained p32
+ * source rune to one and the same p55 target rune everywhere. The best any
+ * unknown 29-entry map can do is the sum of 29 row maxima.
+ *
+ * @param {number[]} a @param {number[]} b
+ */
+function anyFixedMapMax(a, b) {
+  assert.equal(a.length, b.length);
+  const hist = Array.from({length: 29}, () => new Uint8Array(29));
+  for (let i = 0; i < a.length; i++) hist[a[i]][b[i]]++;
+  return hist.reduce((n, row) => n + Math.max(...row), 0);
+}
+function treePairMaskGate() {
+  const page32 = source.pages.find(p => p.page === 32).indices;
+  const page55 = source.pages.find(p => p.page === 55).indices;
+  const trials = [];
+  for (const [entry, route] of [["first", first.cycle],
+    ["second", second.cycle]]) {
+    for (const headerAtStart of [true, false]) {
+      const selected = [];
+      let cursor = headerAtStart ? 2 : 0;
+      if (headerAtStart) selected.push(0, 1);
+      for (const cell of route) {
+        const length = body[cell].length;
+        for (let j = 1; j < length - 1; j++)
+          selected.push(cursor + j);
+        cursor += length;
+      }
+      if (!headerAtStart) selected.push(119, 120);
+      assert.equal(selected.length, 76);
+      for (const reverse32 of [false, true]) {
+        for (const reverse55 of [false, true]) {
+          const source32 = reverse32 ? page32.toReversed() : page32;
+          const source55 = reverse55 ? page55.toReversed() : page55;
+          const projected = selected.map(i => source32[i]);
+          trials.push({entry, headerAtStart, reverse32, reverse55,
+            agreement: projected.filter((value, i) => value === source55[i]).length,
+            maximumAnySecretStaticMap: anyFixedMapMax(projected, source55)});
+        }
+      }
+    }
+  }
+  assert.equal(trials.length, 16);
+  const max = Math.max(...trials.map(t => t.maximumAnySecretStaticMap));
+  assert.equal(max, 33);
+  const plant = page55.map(v => (7 * v + 13) % 29);
+  assert.equal(anyFixedMapMax(page55, plant), 76);
+  return {tested: trials.length, bestPossibleAgreement: max,
+    necessaryChanges: 76 - max, plantedRecovered: true,
+    bestCases: trials.filter(t => t.maximumAnySecretStaticMap === max),
+    note: "any one fixed substitution alphabet, original GP word boundaries, exact source-derived trim mask"};
+}
+
 const targets = [
   {page: 32, source: source.pages.find(item => item.page === 32).indices,
     keyKind: "full", length: 121},
@@ -278,6 +336,7 @@ console.log(JSON.stringify({
     noLegal: results.length - survivors.length, best: best.slice(0, 8)
       .map(x => ({...x, best: {...x.best,
         transliteration: x.best.transliteration.slice(0, 180)}}))},
+  sourceMaskAllSecret: treePairMaskGate(),
   conjunctionNull: lengthConjunctionNull(1000000),
   decision: "No coherent GP-native original prose. Exact-length cycle is exploratory; no author-selected use of the two red sums or additive consumer.",
 }, null, 2));
