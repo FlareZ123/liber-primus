@@ -157,7 +157,7 @@ console.log(JSON.stringify({
   runes: sourceIndices.length, printedWords: parsed.words.length,
   crossPageWords: parsed.crossPageWords,
   nativeSolvedP57IoC: ioc(solved),
-  positivePlants: "20/20 complete 2896-rune reversible GP29 positive plants",
+  positivePlants: "20/20 complete 2896-rune reversible GP29 additive positives; 8/8 literal within-word 2896-rune message implants",
   cases: results,
   p15NumeralKeyCases: p15Cases,
   p15WithinWordSelectorCases: p15SelectorCases
