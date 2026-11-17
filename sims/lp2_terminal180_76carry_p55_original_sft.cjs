@@ -336,6 +336,60 @@ for(const [order,source] of [
 assert.deepEqual(phiTransparent.map(x=>x.forbiddenNonzeroToF),
   [2,4,16,18,1,1,10,7]);
 
+
+// True source-style plaintext-F interruption must distinguish literal F
+// from encrypted non-F glyphs also appearing as ciphertext F. Solved p56
+// itself has five printed F but only one literal plaintext F. Enumerate
+// all such branch choices (at most 2^6 for the full terminal chapter).
+/** @param {number[]} cipher @param {number[]} key @param {number} sign
+ * @returns {{plain:number[],literalF:number[]}[]}
+ */
+function decodePhiAmbiguousF(cipher,key,sign){
+  const solutions=[];
+  /** @param {number} i @param {number} cursor
+   * @param {number[]} plain @param {number[]} literalF */
+  function walk(i,cursor,plain,literalF){
+    if(i===cipher.length){
+      let consumed=0;
+      const rebuilt=plain.map(p=>p===0?0:mod(p-sign*key[consumed++%76]));
+      assert.deepEqual(rebuilt,cipher);
+      solutions.push({plain:plain.slice(),literalF:literalF.slice()});
+      return;
+    }
+    const c=cipher[i];
+    if(c===0){
+      plain.push(0);literalF.push(i);
+      walk(i+1,cursor,plain,literalF);
+      literalF.pop();plain.pop();
+    }
+    const p=mod(c+sign*key[cursor%76]);
+    if(p!==0){plain.push(p);walk(i+1,cursor+1,plain,literalF);plain.pop();}
+  }
+  walk(0,0,[],[]);
+  return solutions;
+}
+const sourcePhiBranches=[];
+for(const [order,source] of [
+  ["p56-then-p57",joined],["p57-then-p56",clearP57.concat(clearP56)]]) {
+  const key=extract(source).trigger.map(p=>mod(gp.prime[p]-1));
+  for(const [scope,cipher]of [
+    ["p55",p55],["p54-and-p55",chapter]]) {
+    for(const sign of[-1,1]){
+      const solutions=decodePhiAmbiguousF(cipher,key,sign);
+      const scored=solutions.map(s=>({
+        literalF:s.literalF,
+        longWords:scope==="p55"?
+          wordScore(s.plain).matchedWords:
+          chapterScore(s.plain).matched}));
+      sourcePhiBranches.push({order,scope,sign,valid:solutions.length,
+        scored});
+    }
+  }
+}
+assert.deepEqual(sourcePhiBranches.map(x=>x.valid),[0,0,2,0,0,2,0,0]);
+assert(sourcePhiBranches.flatMap(x=>x.scored)
+  .every(x=>x.longWords===0));
+
 if(require.main===module)console.log(JSON.stringify({§".includes(mark)&&buff.length){
     chapterSlots.push(buff);buff=[];
   }
@@ -408,6 +462,8 @@ if(require.main===module)console.log(JSON.stringify({
   stepDecoder:{tested:rankResults.length,originalCipherDoubletPositions:stepDuplicates,
     bestDictionaryWords:bestStepWords,allPositiveRecovered:rankResults.length,results:rankResults},
   results,
+  phiTruePlaintextFEnumeratedOriginal:{tested:sourcePhiBranches.length,
+    cases:sourcePhiBranches},
   phiTransparentCipherFSourceBranch:{allEightHaveForbiddenNonzeroToF:true,
     originals:phiTransparent},
   primeTurn272DirectPrintedProjection:{tested:registerResults.length,
