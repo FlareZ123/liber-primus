@@ -16,10 +16,10 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 
 **Director decision snapshot, 17 November 2026, after closure of #1333, #1340 and #1343–#1345.** [Live director-task Issues](https://github.com/FlareZ123/liber-primus/issues?q=is%3Aissue+is%3Aopen+label%3Adirector-task) and original lease/claim comments govern occupancy. The source-motivated unresolved priority is still **an authentic unknown-page plaintext/key or a clue-selected complete inverse**, not more conforming synthetic ciphertext or a count coincidence. The 56 unknown pages remain undeciphered.
 
-**Active, claimed original-plaintext routes:**
+**Active and recently completed original-plaintext routes:**
 - [#1296](https://github.com/FlareZ123/liber-primus/issues/1296): invertible anti-repeat/five-back emitter; the recent word-reversal sensitivity result weakens one unconditional morphology objection, but its original p40–53 decodes have zero long dictionary words and no key. Source selection and genuine withheld prose are still missing.
 - [#1329](https://github.com/FlareZ123/liber-primus/issues/1329): original wordwise key-pointer direction with independently calibrated pilot and full queued native GP29 experiment.
-- [#1330](https://github.com/FlareZ123/liber-primus/issues/1330): original Cicada audio note receiver; 2012 MIDI positive established, direct note/additive screens negative, further distinct note/skip model pending.
+- [#1330](https://github.com/FlareZ123/liber-primus/issues/1330) **CLOSED 17 November**: the genuine 2012 MIDI musical cipher is **audible pitch + sounding duration**, fully recovered from exact historical MIDI-rendered audio including 128-kbps MP3 (1,272/1,272 exact symbols and two full known messages). Literal four-duration CQT transfers to authentic 2013/2014 audio fail both original LP2 direct GP29 and source-pinned R4 under planted and shuffled controls, as does conventional stereo difference. No unknown-page plaintext or key. [Reconciled original evidence](../im-results/lp2-audio-note-2012-positive-and-original-gate.md).
 - [#1338](https://github.com/FlareZ123/liber-primus/issues/1338): original H1 drift-keyword finite campaign, reusing external calibrated machinery.
 - [#1339](https://github.com/FlareZ123/liber-primus/issues/1339): distinct remaining solved-key × keyword/layer-two finite slices, without expanding key inventory.
 - [#1341](https://github.com/FlareZ123/liber-primus/issues/1341): one source-locked separator key advance grammar; must avoid repeating exact historical-key negative #1195.
