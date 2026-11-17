@@ -76,6 +76,11 @@ def midi_positive(path: Path) -> dict:
     assert outputs[1].startswith("letthepriestsoftheravenofdawn")
     return {
         "control": "2012 MIDI original complete known-message positive",
+        "ticks_per_beat": midi.ticks_per_beat,
+        "tempo_events": [[msg.tempo, msg.time] for t in midi.tracks for msg in t if msg.type == "set_tempo"],
+        "note_off_first_24": [x[:24] for x in tracks],
+        "note_off_midi_delta_top": [Counter(t for _, t in x).most_common(12) for x in tracks],
+        "distinct_note_plus_delta_values": [sorted(set(p + t for p, t in x)) for x in tracks],
         "events": [len(x) for x in tracks],
         "distinct_pitch_plus_delta": [len(set(p + t for p, t in x)) for x in tracks],
         "first_100_decoded": [x[:100] for x in outputs],
@@ -206,6 +211,8 @@ def main() -> None:
                     "events": len(pitches),
                     "distinct_pitches": len(set(map(int, pitches))),
                     "top_pitches": Counter(map(int, pitches)).most_common(8),
+                    "first_40_pitch_onset_frames": list(zip(pitches[:40].tolist(), onset_frames[:40].tolist())),
+                    "all_note_event_pairs_if_short": list(zip(pitches.tolist(), onset_frames.tolist())) if len(pitches) <= 40 else [],
                     "median_gap_seconds": round(float(np.median(np.diff(onset_frames))) * HOP / SR, 4)
                     if len(pitches) > 1 else None,
                 }
