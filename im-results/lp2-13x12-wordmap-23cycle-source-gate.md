@@ -173,14 +173,41 @@ The exact DP preserves both interpretations of any *ciphertext* F, while a *plai
 
 Each of the four same-length independent source-native 76-rune plaintext controls, drawn from original clear p57 and encrypted under the frozen key/sign and genuine F rule, has an exact legal inverse recovering the plant. The full 119-symbol literal concatenation therefore supplies **no unknown p55 plaintext**, even before GP-English scoring; this excludes only its transfer through the specified authentic F-transparent operation. The 23-cycle itself remains a provisional navigational observation. [Full source-native CJS with all 76 original runes and complete forward planted controls](../sims/lp2_wordmap23_concat_runningkey_p55_native_gate.cjs) · [manual Node22 run 44090292401](https://github.com/FlareZ123/liber-primus/actions/runs/44090292401) (queued on dispatch; check conclusion before calling CI passed).
 
+## Direct 23-cycle key against original p32 (Agent44, 17 November)
+
+The 23-cycle supplies a compact candidate GP29 key by reducing each cycle word's prime sum modulo 29. Page p32 is a reasonable independent target to test: its original 121-rune block has previously been reflowed 11×11 for the 563/569 axis-sum study, and the original page image visibly begins its fourth text line with the transliterated sequence HOMEX at zero-based rune offset 33. The exact original p32 JPEG is resources/liber-primus/49.jpg, SHA256 c0f778187a8e9ddbfc667a65929ac567430a2e38278a2022377984ac084e5f72.
+
+I tested the fixed 23-symbol key under both source-derived starts (first red heading at cycle entry; second red heading at cycle step 7, a six-place rotation), both additive signs, and two spans: all 121 p32 runes, and the 88-rune suffix beginning at the H of HOMEX. The decoder exhaustively branches at each ciphertext F between literal plaintext F/no key consumption and encrypted non-F/key consumption, preserving the authentic p56 transparent-F rule.
+
+| Span | Key start | Inverse | Earliest illegal plaintext-F contradiction (zero-based) | Full legal paths |
+| --- | --- | --- | ---: | ---: |
+| Full p32 (121) | First heading | P=C-K | 71 (C=A, K=A) | 0 |
+| Full p32 (121) | First heading | P=C+K | 11 (C=H, K=NG) | 0 |
+| Full p32 (121) | Second heading | P=C-K | 62 (C=IA, K=IA) | 0 |
+| Full p32 (121) | Second heading | P=C+K | 93 (C=B, K=EO) | 0 |
+| H-start suffix (88) | First heading | P=C-K | 13 (global p32 offset 46; C=EO, K=EO) | 0 |
+| H-start suffix (88) | First heading | P=C+K | 8 (global offset 41; C=L, K=N) | 0 |
+| H-start suffix (88) | Second heading | P=C-K | 40 (global offset 73; C=B, K=B) | 0 |
+| H-start suffix (88) | Second heading | P=C+K | none | **1** |
+
+The sole surviving H-start suffix inverse consumes all 88 key symbols and forward-reenciphers all 88 original runes, as any legal candidate should. Its output is:
+
+    LEAEAAPEAGROCIAURAENGERAEXPBMNSSHGGILMOEMPUJHOEICORAARLHURIAOIATHXNGYUMOJEAOOEOTTWAEUCEPCOEOPSTHCAETAIOESCW
+
+It has no readable GP prose; its IoC is **0.0350052247**, versus **0.0316091954** for the original suffix and **0.0627099664** for clear p57. The synthetic 121-rune positive control, including transparent F symbols, recovers exactly under the same DP and forward encoder.
+
+**Decision:** The direct repeated 23-cycle GP29 additive key does not decrypt p32 under either source-derived start or sign. Full p32 has no legal full-span F-transparent inverse in all four cases; the visually motivated H-start suffix has one syntactically legal but nonlinguistic wrong-key inverse. This is a bounded rejection of this direct p32 key consumer, not a test of the separate p50 compass walk and not a rejection of the 23-cycle's possible non-additive or navigation role. Do not add arbitrary rotations, offsets or key transformations.
+
+[Source-native reproducer](../sims/lp2_wordmap23_cycle_p32_direct_key_gate.cjs).
+
 ## Weakest premise and next decisive work
 
-The weakest premise is the proposed pointer rule `f(i)=S_i mod 156`: it is motivated by the exact 156-word map and the 2016 message, but no creator-authored instruction explicitly specifies this modulus or zero-based convention.
+The weakest premise remains the proposed pointer rule f(i)=S_i mod 156: it is motivated by the exact 156-word map and the 2016 message, but no creator-authored instruction explicitly specifies this modulus or zero-based convention. The direct repeated 23-symbol GP29 additive consumer has now also failed on both p55 and p32; the p32 H-start suffix's sole legal path is nonlinguistic.
 
 Highest-value next actions:
-1. Independently reproduce the canonical parse, heading sums, two-cycle graph, and 563/569 uniqueness from the original transcription and corpus.
-2. Seek an independent Cicada-authored selector for the modulo-156 word pointer, rather than sweeping alternative moduli or tuning conventions.
-3. Find an independent original clue selecting a new use of the 23-cycle beyond the completed direct 23-symbol and p32-indexed 23-symbol F-transparent p55 inverses. The cycle's length, exact sum correspondences and a syntactically valid wrong-key forward reencryption alone do not authenticate plaintext.
-4. Evaluate the p50 compass continuation separately against the original p50/p32 artifacts and a held-out target; retire it if the modulo-256/bit-split choices cannot be independently justified.
+1. Seek an independent Cicada-authored selector for the modulo-156 word pointer, rather than sweeping alternative moduli or tuning conventions.
+2. Keep the p50 compass continuation parked unless an original clue independently fixes both the byte-to-direction/distance encoding and the toroidal boundary rule; its midpoint-X observation is not plaintext.
+3. Do not expand direct 23-symbol additive key consumers, arbitrary rotations or offsets. A new 23-cycle use needs a separate source-selected operation and a locked prediction on untouched ciphertext.
+4. Prefer recovery of authenticated historical key/decoder material or a source-selected reversible operation over additional numerical correspondences.
 
-The result changes the research frontier by supplying a compact, falsifiable word-level route from the opening red heading to a unique 23-cycle and the 563/569 p32/2016 correspondence. It does not yet decipher any of the 56 unknown pages.
+The opening red-heading to 156-word to 23-cycle construction remains a provisional structural clue with the 563/569 p32/2016 correspondence. It has not recovered plaintext, a key or the intended destination, and does not decipher any of the 56 unknown pages.
