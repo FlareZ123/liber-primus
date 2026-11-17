@@ -46,6 +46,19 @@ This exact two-register equality is rarer than the ordinal equality alone in fix
 
 The windows overlap heavily; these counts are an empirical source sensitivity check, **not a valid global p-value**. There were many prior numerical explorations and possible source artifact combinations; the 76/272 and 256+16 target sizes were noticed retrospectively. A creator-authored cross-register operator or a deliberately predicted ciphertext effect remains missing.
 
+### Literal 272-item prime-turn readout against the two numerical objects
+
+The second register offers one literal, cheap original-source crosscheck before inventing a nonlinear cipher: enumerate each of the **272 GP-prime full turns** from the same 180 solved text runes, repeating the trigger rune when a weight passes multiple 29-unit thresholds. Assign the sequence to the **p15 Fibonacci-prime spiral in its established 16-step source order** plus the **p49–51 256 table values in printed 32×8 row-major order**. Compare all 272 events as either their GP ordinal index or their GP prime residue modulo29 against the printed numerical values modulo29. Include the source's complete reverse final-page order and the reversed object-order interpretation as negative controls, without shifts or fitted values.
+
+| Source known-page order | Event value | Literal p15(16) then table(256) matches | Literal table(256) then p15(16) matches |
+| --- | --- | ---: | ---: |
+| p56 then p57 | GP rune index | **9/272** | **8/272** |
+| p56 then p57 | GP rune prime residue | **5/272** | **8/272** |
+| p57 then p56 | GP rune index | **4/272** | **6/272** |
+| p57 then p56 | GP rune prime residue | **11/272** | **11/272** |
+
+The simple coincidence benchmark is **272/29≈9.38** under a uniform projected-label model; the actual label inventory is not uniform, so that expectation is illustrative. No model matches remotely close to **272/272**. This rejects a literal GP-to-decimal-mod29 equality readout under those eight source orders, leaving other source-chosen operations untested. It is especially important because the source relation **272=16+256 alone** does not supply the missing mapping rule. The same SFT preserves the original p15 16-number spiral, canonical table bytes, all 180 original solved runes and every GP index/prime value.
+
 ### Frozen finite candidate-key rules and direct original decryption
 
 At every wrap record, without key fitting: (a) the source rune that caused the carry; (b) wheel index before the carry; (c) wheel index after the carry; or (d) source trigger rune's ordinary GP prime value modulo29. The four 76-entry tapes are determined by original source alone. Two full-page orders give eight tapes, and the original additive GP29 cipher family gives two arithmetic signs, yielding **16 complete inverses** of the unchanged original 76-rune p55. Each output reconstructs all 76 original ciphertext runes on forward encryption.
