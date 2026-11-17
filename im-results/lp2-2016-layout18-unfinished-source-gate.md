@@ -33,6 +33,33 @@ The best **whole-section** IoC for each source window, even selecting the most f
 
 For comparison the native GP29 clear p57 IoC is **0.06270997**, and random-like baseline is about **1/29 = 0.03448**. No whole-section output exhibits ordinary native GP29 prose concentration, even after a generous maximum over all prescribed parameters. These are computed original-input outputs, not inferred from a search log; [manual Windows execution](https://github.com/FlareZ123/liber-primus/actions/workflows/lp2-layout-two-historical-keys-sft.yml) provides an additional end-to-end test. This **rejects only the explicit direct periodic no-skip model** using these two historically known keywords. It does not reject the authentic p56 prime/F skip operation, the source original skip/coin layout campaign below, different key material, or independently authored nonadditive transformations.
 
+## Exact all-secret 8/13-rune periodic key inversion across every physical sign
+
+The literal historical-key inverse above assumes the actual key values are spelled in the surviving 2014 LP1 passwords. The stronger and distinct test here grants **every possible secret 8-symbol and 13-symbol key**, allowing a key unrelated to either historical password. Eight and thirteen are still source-motivated period lengths: the GP-index forms of the actual Cicada 2014 keys `DIVINITY` and `FIRFUMFERENFE` have those lengths. Nothing in the signed 2016 direction clue authenticates a *periodic* key, a physical-layout sign choice, or a substitution of other secret values.
+
+For the direct, reversible **skip-free additive** rule `P[i]=(C[i]−s[i]K[i mod L]) mod29`, use every one of the source's 23 complete printed-layout signs `s[i]`, a fresh wholly secret key independently per original long section, all phases, and either arithmetic direction. Across **all `29^8` or `29^13` possible secret keys**, the exact best independent-GP-English-unigram score is computable without key enumeration. For each phase `j`, summarize the original ciphertext by two 29-bin histograms `h[j,+,c]` and `h[j,−,c]`, partitioned by the original physically derived sign. If `l(x)=log(29×Pr_GP-English(x))`, the maximum per rune is exactly
+
+`M_L = (1/N) × Σ_j max_{k=0..28} Σ_c [h[j,+,c] l(c−k) + h[j,−,c] l(c+k)]`
+
+with GP indices taken modulo 29. Each secret key position affects just one phase, so taking each independent 29-way maximum is an **exact global optimum**, including the apparently impossible `29^13` candidate family. A global ± decryption direction and any key starting phase are absorbed by the unconstrained secret key values. The unigram model is fixed from **62,696 GP-native runes of Gibran** and checked against an entirely separate **217,644-rune GP-native Shakespeare** source, with the known `ING` glyph contraction and documented GP orthography. Larger scores are more ordinary-English-like; zero is uniform-reference likelihood parity.
+
+Original results below are **the best score over all 23 physical sign rules and every secret key**, selected separately and maximally favorably in each of the eight original long sections. Nine original printed sections include one 9-rune bridge; that bridge is excluded from meaningful language scoring, while the combined **12,956 original runes are explicitly asserted** against the canonical corpus before running. The source-short-period upper bounds are:
+
+| Original window | Runes | Best GP-English logLR/rune, secret period 8 | Best, secret period 13 |
+| --- | ---: | ---: | ---: |
+| 0 (p0–2) | 729 | **−0.476728** | **−0.385476** |
+| 1 (p3–7) | 1,145 | −0.555171 | −0.442496 |
+| 2 (p8–14) | 1,729 | −0.644202 | −0.570109 |
+| 3 (p15–22, excluding the nine-rune bridge) | 1,894 | −0.631477 | −0.569721 |
+| 4 (p23–26) | 1,021 | −0.513569 | −0.433271 |
+| 5 (p27–32) | 1,524 | −0.589810 | −0.552471 |
+| 6 (p33–39) | 1,589 | −0.604104 | −0.575998 |
+| 7 (p40–55) | 3,316 | **−0.701033** | **−0.644265** |
+
+The independent Shakespeare GP-native reference has mean logLR **+0.418329** over its first 12,000 runes. In deliberately blind source-layout positive plants, the independent Shakespeare corpus is encrypted with the actual source `Ln_m3_1` sign vector and an unknown-to-inverse 8- or 13-symbol 2014-length key. The exact maximizer recovers **every symbol of the hidden key** and **all original-shaped plaintext glyphs** in each tested window, with positive native scores. Thus the negative original result cannot be attributed to a key search stopping early, using the wrong original physical line positions, or a high-entropy secret that a fixed-password test missed.
+
+**Decision:** This is a strong finite exclusion of ordinary native-GP English under any secret periodic **8- or 13-rune direct additive key** combined with any of the 23 original page/line/position signs, even where each section has an unrelated secret key. It does **not** cover the anti-repeat skip/coin rule used by the still-open historical 581-key campaign, a variable-length keystream, F transparency, alternate plaintext register, or a nonadditive transformation. No genuine LP2 plaintext or key has emerged. The [single-file Windows/CJS source-native reproducer](../sims/lp2_layout_23rules_allsecret_8_13_sft.cjs) and [manual-only Windows regression](../.github/workflows/lp2-layout-allsecret-shortperiod-sft.yml) preserve all source inputs, exact optimizer, 23 original masks and 16 independent planted recoveries.
+
 ## Authentic historical keyword pointer walk (six printed-layout direction conventions)
 
 The signed 2016 “direction” instruction also motivates a **reversible pointer-motion** cipher in place of a key-value sign: the source-defined line/page/position quantity determines the key pointer's direction **for each complete original printed word**, while the historical 2014 key material supplies the consumed rune values. The fully independent [actual original-input pdir inverse](../sims/lp2_layout_pdir_2014keywords_noskip_original_sft.cjs) reads all 12,956 unchanged rune values and original word boundaries, including words spanning line/page wraps, and runs the six distinct source-published direction conventions that remain in a no-skip decoder: first-read `h=0/1` × interword motion `m=0/oldDirection/newDirection`. It tests every original 23 layout-word direction rules, pointer orientation ±, arithmetic sign ±, every cyclic phase, and both authentic 2014 GP-key spellings. The third pointer convention `c` controls only repeat-triggered skip/coin behavior and is algebraically irrelevant in this explicitly skip-free model.
