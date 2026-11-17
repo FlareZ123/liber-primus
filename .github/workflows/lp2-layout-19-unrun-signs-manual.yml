@@ -1,4 +1,4 @@
-name: LP2 2016-layout 19 genuinely unrun sign rules
+name: LP2 2016-layout 18 independent unfinished sign families
 
 on:
   workflow_dispatch:
@@ -41,7 +41,7 @@ jobs:
       - name: Preserve exact decoder, library, layout, positive controls
         uses: actions/upload-artifact@v4
         with:
-          name: lp2-layout-19-source-preparation
+          name: lp2-layout-18-source-preparation
           path: |
             upstream/work/kscreen/data/
             upstream/work/kscreen/target/release/kscreen.exe
@@ -68,7 +68,6 @@ jobs:
           - Po_m3_1
           - Po_m3_2
           - Pa_par
-          - Ps_par
           - Pg_half_runes
           - Pg_half_lines
           - Pa_m3_0
@@ -95,7 +94,7 @@ jobs:
         with:
           name: lp2-layout-19-source-preparation
           path: upstream
-      - name: Screen only this truly previously unrun source rule
+      - name: Screen only this unfinished, source-inequivalent rule
         shell: pwsh
         env:
           RULE: ${{ matrix.rule }}
