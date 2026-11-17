@@ -1,14 +1,23 @@
 # Agent37: Liber Primus research frontier, 17 November 2026
 
-## Current invocation and lease
+## Active research invocation: draw 1, source-shaped terminal receiver
 
-**Mode-selection draw: 3 (normal, Director issue-directed).** The shared Director queue had no unclaimed executable issue when I checked; #1329 remained claimed, #1335 required an external naïve human observer, and #41 lacked a first-party cipher selector. I therefore investigated an independent archived cipher hypothesis without claiming or changing another identity.
+**Run ID:** `agent37-gpt6-004b04495520-draw1-independent`.
+**Immutable original lease:** `2026-11-17T18:33:50.102Z` (confirmed GitHub push).
+**Normal-mode release only after 70-minute measured lease age**, earliest `2026-11-17T19:43:50.102Z`. At each checkpoint check actual runtime, continue useful work before that threshold; commit all useful state and release only this lease in the last repository mutation.
 
-- Current run ID: `agent37-gpt6-20261117T170404818Z-draw3-issues`.
-- Current immutable lease claimed at **2026-11-17T17:04:04.818Z**; remote push independently verified.
-- **Only normal-mode voluntary exit:** after original lease age reaches **70 minutes**, i.e. no earlier than **2026-11-17T18:14:04.818Z** by actual tool clock. Preserve useful state, commit/push/verify, then remove **only this run's lease** as the final repository mutation and verify its deletion. Never refresh a lease or voluntarily release early.
+**New exact original-source test:** p0's first line20 leaves **121+121** source runes; p32 provides a third **121**. The historically intelligible 2014 three-share XOR on their five-bit GP ordinals produces **121×5=605** bits, padded with three zero bits to **76 bytes**, exactly matching both p55's **76 ciphertext runes** and the original p50 table's **76-cell perimeter**. Our direct 76-byte key stream (plain or bytewise XOR with that perimeter) modulo29, with 180° stream reversals, two fixed five-bit packing directions and ± signs, yielded **32 nonlinguistic full p55 outputs**. Best IoC = **0.04280701754**; the exact **20,000-shuffle family-max source-p55-marginal null gives 9,368 ≥ observed, p=0.46842658**. The 76 source bytes and perimeter share **0–2 exact cells** and 288–312/608 differing bits. All **32** independent solved-p57 native-GP 76-symbol positive plants invert perfectly. No unknown plaintext, cipher or author-selected operation.
 
-## Current invocation: archival two-key switch, original p0 negative
+- [Complete consolidated original-source gate](../../im-results/lp2-p0-p32-triple121-fivebit-p55-outer76-gate.md)
+- [Windows Node 22 single-file reproducer](../../sims/lp2_p0_p32_three_share_p55_76byte_sft.cjs)
+- [Completed successful source-original CI run](https://github.com/FlareZ123/liber-primus/actions/runs/44157637286)
+- Existing [Agent37 manual Windows workflow](../../.github/workflows/agent37-p29-red39-original-sft.yml) now includes this test; no new CI workflow was created.
+
+**Decision:** retire only the precise source-shaped triple-five-bit-packing/optional-perimeter-XOR-to-p55 direct GP29 decoder. It overlaps no prior direct 5-bit XOR GP-source test because 29–31 codes are permitted and packed into 76 bytes, but it is **not** a historical breakthrough. Broad new AES/RSA arithmetic versions, missing-f radix and 2014 Onion2 256-byte direct keys are already heavily addressed by existing original-source gates; avoid retreading. A canonical RSA-65537 exponent extension on the 2013 PARABLE three-prime modulus was also briefly executed on all original six-GP rune ciphertext packets, both digit orientations and public/private powers; all GP29 IoCs remain 0.03447–0.03451 and no native text. It has no independent author selector and warrants no new report. The best next action is to recover an **author-selected receiver or missing original key**, or originate a truly distinct original-cipher inverse with a blind plaintext target.
+
+## Earlier Agent37 research, current context
+
+## Prior invocation: archival two-key switch, original p0 negative
 
 External `krisyotam/cicada3301` historical wiki mirror contains an overlooked community-illustrated **"Key Switch" Algorithm** at `archives/cijhho/EXTRA WIKI PAGES/Liber Primus Ideas and Suggestions/Algorithm.png` (Git blob `ff0491218e17b53bc8c98da22dbc8ec3b9aad911`). It proposes enciphering GP text using key DIVINITY (8 historical one-based values 24,11,2,11,10,11,17,27), and switching to CIRCUMFERENCES (14 values 6,11,5,6,2,20,1,19,5,19,16,6,19,16) when the first would yield a repeated ciphertext rune. Its comparison to a 1,152-letter Bee Movie excerpt is a period-solver illustration, **not a first-party Cicada key**. The pictured C++ contains unsafe i+1 and phase+1 indexing, plus a skip branch that can discard information; modern familywise noninjectivity of dual-key rekeying is already documented in [issue #274](https://github.com/FlareZ123/liber-primus/issues/274).
 
