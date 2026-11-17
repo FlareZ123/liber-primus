@@ -426,7 +426,8 @@ const result = {
     rawInnerRingOutputLength: rawInnerBase29Length,
     phiInnerRingOutputLength: base29PhiLength
   },
-  randomization,\n  knownClearP57EncodingControls,
+  randomization,
+  knownClearP57EncodingControls,
   innerRingSecretExponent: {
     base59Clockwise: innerSecretClockwise,
     base59Counterclockwise: innerSecretCounterclockwise,
@@ -440,6 +441,13 @@ const result = {
     publicKeyOrder: (p - 1) / gcd(p - 1, innerSecretClockwise)
   },
   singleExponentDhTests,
+  pairedP55Base29DhTest: {
+    pairCount: p55Pairs.length,
+    zeroPublicSharePositions: p55PairShares.map((v, i) => v === 0 ? i : null).filter((x) => x !== null),
+    outputLength: p55PairBase29.length,
+    output: p55PairBase29,
+    decodedText: p55PairBase29Text
+  },
   directDhTests: dhTests
 };
 
