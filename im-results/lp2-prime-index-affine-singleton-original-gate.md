@@ -55,6 +55,14 @@ The **actual** longest prefix is **four** for A/I (shorter than 96/100 shuffled 
 
 The complete unchanged-source test passed the existing [Windows Node.js 22 manual SFT workflow, run 44161457324](https://github.com/FlareZ123/liber-primus/actions/runs/44161457324). That run asserts the exact counts, same-seed controls, secret-state recovery and round-trip.
 
+## Conditional information budget, the limit of singleton-only recovery
+
+For an arbitrary additive GP29 pad, every original singleton ciphertext index \(c\) can correspond to **two different key values** (\(c-A\) or \(c-I\)); the 83 sites permit \(2^{83}\) distinct key assignments without any constraint on non-singleton positions. The observation register therefore cannot itself disclose a true key stream. The generator or source rule is essential.
+
+In the **idealized independent-uniform-key model only**, restricting a position from 29 possible plaintext values to A/I supplies \(\log_2(29/2)\approx 3.85798\) bits per word, or **320.21242 bits** over 83 sites. Allowing A/I/O lowers that figure to **271.66054 bits**. For \(d\) otherwise independent GF29 secret parameters, the expected count of random code paths consistent with all 83 A/I constraints would be \(29^d(2/29)^{83}\), crossing expectation one near \(d=65.91471\); allowing O moves that illustrative threshold to \(d=55.92046\). In contrast the actual tested parameter list contains **2,776,141** abstract (start, a, b) combinations, about **21.40465** bits before the two-anchor algebra. These counts describe an optimistic *information ceiling under independence*, **not a proof that an arbitrary 65-state cipher can be identified, nor any source-selected secret key**. Dependencies, omitted F positions, rekeying and uncertain word grammar can drastically weaken that bound.
+
+This explains the methodological result: with a real generator the 83 source anchors could give a strong pruning oracle; without a source-selected generator, constructing a longer list of algebraically consistent pseudo-keys would not identify LP2 plaintext.
+
 ## Research decision
 
 This excludes the **aperiodic, absolute-rune-indexed ordinary-prime affine additive generator** for all starts 0..3300 even when its slope and offset are unknown. It differs from the earlier excluded affine prime-**word** clock, periodic table keys, and fully enumerated GF29 linear recurrences of order at most four. It does **not** exclude larger prime starts, independently page-rekeyed states, plaintext-F-transparent bypasses, different output alphabets, printed-boundary loss, or other state machines.
