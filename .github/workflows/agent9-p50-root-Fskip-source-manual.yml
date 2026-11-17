@@ -1,0 +1,16 @@
+name: Agent9 P50 root leaves and p56 F bypass
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  graph-fskip:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Root-excluded 95-leaf 84-and-76 source geometry with solved p56
+        run: node sims/lp2_p50_95leaf_160nonroot_Fskip_sft.cjs
