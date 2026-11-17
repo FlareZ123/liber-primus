@@ -14,7 +14,10 @@
  * original unknown manuscript, solved p56+p57, original LP1 rune
  * transcription, LP1 translated-reference prose and authenticated
  * 2016 signed prose for a contiguous source key, allowing affine GP29
- * and both source read directions. Also test whether an inferred low-order
+ * and both source read directions. Additionally grant an arbitrary secret
+ * global GP29 alphabet bijection on these donor registers, testing its
+ * exact necessary equality constraints without searching 29! candidates.
+ * Also test whether an inferred low-order
  * GF29 key recurrence predicts held-out crib symbols. The predeclared
  * key-only match threshold is all 53 symbols, with independent prefix
  * recovery as positive. No target fitting may be added after the screen.
@@ -183,6 +186,34 @@ function bestAffinePrefix(key,source,reversed){
   return {...best,full53};
 }
 /**
+ * Exact, keyless source-compatibility test for a single arbitrary secret
+ * GP29 permutation applied to a contiguous source's symbols. A full53
+ * match is necessary for the same static source substitution key to
+ * recover p55. This grants up to 29! secret mappings without brute force.
+ * @param {number[]} key @param {number[]} source
+ * @param {boolean} reversed
+ */
+function bestPermutationPrefix(key,source,reversed){
+  const seq=reversed?[...source].reverse():source;
+  let best={prefix:0,offset:-1};
+  let full53=0;
+  for(let start=0;start<=seq.length-key.length;start++){
+    const map=Array(29).fill(-1),inverse=Array(29).fill(-1);
+    let j=0;
+    for(;j<key.length;j++){
+      const from=seq[start+j],to=key[j];
+      if((map[from]>=0 && map[from]!==to) ||
+         (inverse[to]>=0 && inverse[to]!==from))break;
+      map[from]=to;inverse[to]=from;
+    }
+    if(j>best.prefix){
+      best={prefix:j,offset:reversed?source.length-1-start:start};
+    }
+    if(j===key.length)full53++;
+  }
+  return {...best,full53};
+}
+/**
  * Extend an order-d discovered recurrence 23 positions backwards
  * from known keys at 23..75. Only possible with nonzero final lag.
  * @param {number[]} tail
@@ -253,9 +284,38 @@ for(const kind of ['direct','delta']){
   const recoveredKey=Array.from({length:76},
     (_,i)=>mod(match.a*donor[donorStart+i]+match.b));
   assert.deepEqual(decrypt(c2,recoveredKey,kind),plantedPlain);
+  // PLANT C: the original LP2 glyph stream as a hidden running key
+  // under an arbitrary non-affine secret 29-symbol bijection.
+  // This original source window has 23/23 prefix donor symbols already
+  // witnessed in the 53-key training suffix.
+  const donorIndex=105,donorGlyphs=sourceUnknown;
+  const secretPerm=Array.from({length:29},(_,i)=>i);
+  let state=0x3301d15c;
+  for(let i=28;i>0;i--){
+    state^=state<<13;state^=state>>>17;state^=state<<5;
+    const j=(state>>>0)%(i+1);
+    [secretPerm[i],secretPerm[j]]=[secretPerm[j],secretPerm[i]];
+  }
+  const secretKey=donorGlyphs.slice(donorIndex-23,donorIndex+53)
+    .map(x=>secretPerm[x]);
+  const planted3=encrypt(plantedPlain,secretKey,kind);
+  const suffixKey=knownKey(planted3,plantedPlain.slice(23),kind);
+  const found=bestPermutationPrefix(suffixKey,donorGlyphs,false);
+  assert.equal(found.prefix,53);
+  assert.equal(found.full53,1);
+  assert.equal(found.offset,donorIndex);
+  const recoveredPerm=Array(29).fill(-1);
+  for(let i=0;i<53;i++)
+    recoveredPerm[donorGlyphs[found.offset+i]]=suffixKey[i];
+  const recoveredPrefix=donorGlyphs.slice(found.offset-23,found.offset)
+    .map(x=>recoveredPerm[x]);
+  assert(recoveredPrefix.every(x=>x>=0));
+  assert.deepEqual(decrypt(planted3.slice(0,23),recoveredPrefix,kind),
+    plantedPlain.slice(0,23));
   positive.push({kind,linearDegree:recovered.degree,
     linearHeldoutRecovered:23,sourceAffinePrefix:match.prefix,
-    sourceAffineHeldoutRecovered:23});
+    sourceAffineHeldoutRecovered:23,permutationPrefix:found.prefix,
+    permutationHeldoutRecovered:23});
 }
 const output=[];
 for(const kind of ['direct','delta']){
@@ -264,7 +324,7 @@ for(const kind of ['direct','delta']){
     fullLinearDegree:berlekampMassey(key).degree,
     sourceCrib23LinearDegree:berlekampMassey(key.slice(0,23)).degree,
     heldout26:predict(key,26),heldout40:predict(key,40),
-    sourceMatches:[]};
+    sourceMatches:[],permutationMatches:[]};
   for(const [name,source] of [
     ['original LP2 p0-55',sourceUnknown],
     ['original solved p56+p57',sourceSolved],
@@ -279,6 +339,8 @@ for(const kind of ['direct','delta']){
     for(const reversed of [false,true]){
       record.sourceMatches.push({source:name,reversed,
         ...bestAffinePrefix(key,source,reversed)});
+      record.permutationMatches.push({source:name,reversed,
+        ...bestPermutationPrefix(key,source,reversed)});
     }
   }
   output.push(record);
@@ -287,6 +349,8 @@ assert.deepEqual(output.map(x=>x.fullLinearDegree),[27,27]);
 assert.deepEqual(output.map(x=>x.sourceCrib23LinearDegree),[12,12]);
 assert.deepEqual(output.map(x=>x.heldout40.correct),[1,2]);
 assert(output.every(x=>x.sourceMatches.every(m=>m.full53===0)));
+assert(output.every(x=>x.permutationMatches.every(m=>m.full53===0)));
+
 console.log(JSON.stringify({
   classification:'conditional historical 53-rune known-plaintext-key recovery, no authentic unknown p55 plaintext',
   sourceWarning:'Both plaintext segments remain unverified hypotheses; their concatenation is NOT a Cicada-authenticated source quote',
