@@ -247,6 +247,27 @@ The earlier [stationary Baconian crib scanner](../sims/lp2_p23_26_bacon_crib_sca
 
 **Decoder decision:** The striking five-dot / 201×5 pairing motivates an exact two-class Bacon attack, and its complete keyspaces were tested without secret-key guessing or fit-dependent pruning. No plaintext or runic bit key is recovered from either conventional alphabet. The two-class model is retired as an original-source native-English decoder in the declared orientations. The page artwork does **not** specify which rune shapes belong to bit class one, and it does not authenticate Bacon as the intended operation. New work would require an independent source rule selecting a different symbol register, variable bit clock, or original decoding instruction; arbitrary relabeling/bit-fitting alone does not create a new finding.
 
+### Five marginal insect ornaments as a fixed 60-rune source key (Agent11, 17 November 2026)
+
+A separate original-layout hypothesis uses the actual **side-text contact** rather than the five-dot stencil as a grid or the mayfly source book as a quotation. In original 41.jpg, physical **p24**, one repeated winged-insect ornament sits beside the **right** text margin. In original 42.jpg and 43.jpg, physical **pp25–26**, the same ornament appears at **both** left and right margins. Each page has exactly **12 printed runic text lines**. This creates five visually identifiable ornamental sides, each adjoining 12 rune endpoints, or **60 exact source positions**. The same chapter begins with five black dots on p23. The count-to-margin connection is a *candidate human interpretation*, with the strong rival that repeated page art and line wrapping are ordinary typography.
+
+**Frozen original extraction:** for each p24 printed line select its final rune. For every p25 and p26 printed line select its first and final runes, left before right; advance in page order and top-down within each page. The resulting 60-runic GP29-index key is:
+
+**A NG U C N OE X OE X T J I H A Y S I EO U A U I F N S S G W EO R X I AE EA R U IA IA U G L C EA L TH I J IA D L C J P E S IA L Y S NG**
+
+This extraction is fully fixed from source line boundaries and the illustrated margins; it does not use an English score or fit a secret permutation. The candidate decoder is the historical simple GP29 additive subtraction, **P[i] = C[i] − K[i mod 60] (mod 29)**, starting at zero on the **entire original p23 post-heading black body of 197 runes**. That target shares no rune with the source key, since all 60 selected key runes are on pp24–26. The **entire original p27 text of 234 runes** was evaluated as a separate untouched chapter, with the same fixed decoder independently reset at zero. No F-skip, clock search, signed direction change, word resequencing, or extra substitution was added.
+
+| Original input and locked receiver | GP29 index of coincidence | Observation |
+| --- | ---: | --- |
+| Unchanged p23 black-body ciphertext, 197 runes | 0.0322697607 | Ciphertext-like baseline |
+| p23 body minus five-margin period-60 key | **0.0334611002** | No coherent sentence or key signal |
+| Original p27, same fixed key and reset | **0.0335277503** | No independent prose continuation |
+| Known-clear p57 original, 95 runes | **0.0627099664** | Native-GP clear comparison |
+
+[Complete original-source single-file CommonJS reproducer](../sims/lp2_p23_26_five_margins_60key_sft.cjs) parses the **exact committed line-break transcription** and all original canonical page runes, checks their complete 13,136-rune agreement, asserts 12 lines per key-giving page and 60 chosen endpoints, prints source coordinates/key/output, exactly re-encrypts both original target runs, and recovers all **95/95** p57 runes on an independently planted period-60 control. The exact committed source passed a CJS-compatible execution against those committed input files. The round trips establish program correctness; they cannot authenticate the assumed key/decoder because any invertible additive key round-trips.
+
+**Decision:** the visible five-ornament × twelve-line contact provides a new reproducible, original-image-constrained key *candidate* and one finite source-to-key-to-ciphertext test. Its literal repeating-additive original receiver does not decipher the p23 entry or adjacent p27 chapter. The artwork supplies no first-party instruction to treat margin endpoints as key, read them in this order, choose subtraction or reset a 60-clock. Retire this exact reading without expanding into page-rotation, arbitrary word offsets or new keyword tuning. The precise key-source geometry may be revisited only if an independent authored receiver selects it.
+
 ## The bounded clue→mechanism decision
 
 The **five dots** plus the padding-free 201×5 body make a naturally selected *group size* of five, but do not select a five-column rail/route transposition, a Bacon/5-bit representation, a particular five-rune arithmetic operator, a constellation reading, a keyed inverse, or a specific GP29 numeric key. The **bilaterally symmetrical repeated winged-insect** could invite reversal or alternating read directions, yet does not specify which runes to rearrange, the original plaintext alphabet or a substitution. A pure permutation of rune positions leaves all unigram counts exactly unchanged and therefore cannot by itself reconstruct ordinary GP29-transcribed English from this chapter's nearly uniform ciphertext distribution. An additional unspecified changing-key cipher would be needed.
