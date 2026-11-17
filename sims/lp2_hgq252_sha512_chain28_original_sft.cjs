@@ -132,6 +132,14 @@ function ioc(indices) {
 const unknown=gp.pages.slice(0,56).flatMap(p=>p.indices);
 assert.equal(unknown.length,12956);
 const primeKey=stream(12956);
+// The actual solved p57 passage contains no EA, so separately exercise the
+// special zero-step branch with GREAT, a source-calibrated clear LP1 word.
+const sourceGreat=[6,4,28,16]; // GP runes G R EA T
+assert.deepEqual(sourceGreat.map(i=>gp.runes[i]).join(''),'ᚷᚱᛠᛏ');
+const greatEncrypted=encrypt(sourceGreat,stream(sourceGreat.length));
+assert.deepEqual(decrypt(greatEncrypted,stream(sourceGreat.length)),
+  sourceGreat);
+assert.equal(greatEncrypted[2],greatEncrypted[1]);
 const nativePositive=gp.pages[57].indices;
 assert.equal(nativePositive.length,95);
 const plant=Array.from({length:12956},(_,i)=>nativePositive[i%95]);
