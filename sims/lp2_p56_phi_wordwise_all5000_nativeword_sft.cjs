@@ -222,6 +222,29 @@ assert.equal(allLong.filter(w => w.result.mask & 1).length, 8);
 assert.equal(allLong.filter(w => w.result.mask & 2).length, 0);
 assert.equal(allLong.filter(w => w.size >= 7 && (w.result.mask & 3)).length, 0);
 
+/** Source-red ink is an exceptional register; isolate the black-only conclusion. */
+const ink = JSON.parse(read('resources/liber-primus/lp2-ink-annotations.json'));
+const redByPage = new Map(ink.pages.map(x => [x.page, x.red_spans || []]));
+let blackLong = 0;
+let blackLongSeven = 0;
+let redLong = 0;
+for (let page = 0; page < 56; page += 1) {
+  let offset = 0;
+  for (const word of originals[page]) {
+    const start = offset;
+    offset += word.value.length;
+    if (!word.complete || word.value.length < 6) continue;
+    const colored = (redByPage.get(page) || []).some(span =>
+      span.start < start + word.value.length && start < span.start + span.length);
+    if (colored) redLong += 1;
+    else {
+      blackLong += 1;
+      if (word.value.length >= 7) blackLongSeven += 1;
+    }
+  }
+}
+assert.deepEqual([blackLong, blackLongSeven, redLong], [782, 537, 8]);
+
 /** A full-length source-native positive at EACH of 790 exact original sizes. */
 const firstEnglishByLength = new Map();
 for (const code of dictionary) {
@@ -258,6 +281,9 @@ console.log(JSON.stringify({
   strictPrintedWordsLengthAtLeastThree: strictThreePlus,
   originalPrintedWordsLengthAtLeastSix: allLong.length,
   originalCompleteWordsLengthAtLeastSeven: allLong.filter(w => w.size >= 7).length,
+  blackOnlyWordsLengthAtLeastSix: blackLong,
+  blackOnlyWordsLengthAtLeastSeven: blackLongSeven,
+  redOverlappingLongWords: redLong,
   nativeEnglishDictionarySize: dictionary.size,
   nativeLatinDictionarySize: latinDictionary.size,
   documentedP56CipherReencrypted: '85/85 original runes',
