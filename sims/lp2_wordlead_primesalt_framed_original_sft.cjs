@@ -100,6 +100,11 @@ for(let i=0;i<native.length;i++)
 assert(wrong>0);
 const lex=new Set([...vocabulary.values()].flat().map(w=>w.join(",")));
 const hits=plain.filter(w=>w.length&&lex.has(w.join(","))).length;
+const longPlain=plain.filter(w=>w.length>=5);
+const longHits=longPlain.filter(w=>lex.has(w.join(","))).length;
+const noShift=words.filter(w=>w[0]===9);
+const noShiftLong=noShift.filter(w=>w.length>=6);
+const noShiftLongHits=noShiftLong.filter(w=>lex.has(w.slice(1).join(","))).length;
 const preview=plain.slice(0,30).map(w=>w.map(x=>d.translit[x]).join("")).join(" | ");
 console.log(JSON.stringify({
   hypothesis:"first ciphertext rune holds per-word GP prime salt",
@@ -112,6 +117,11 @@ console.log(JSON.stringify({
   originalNormalizedIoC:normalizedIoc(plain.flat()),
   nativePositiveNormalizedIoC:normalizedIoc(native.flat()),
   originalNativeVocabularyHits:hits,
+  originalFivePlusRuneWordHits:longHits,
+  originalFivePlusRuneWords:longPlain.length,
+  firstRunePrime29TransparentWordCount:noShift.length,
+  firstRunePrime29FivePlusTransparentWords:noShiftLong.length,
+  firstRunePrime29FivePlusNativeMatches:noShiftLongHits,
   originalContentWords:words.length-83,
   first30DecodedPrintedWords:preview,
   exactFullOriginalRuneAndPunctuationRoundTrip:true,
