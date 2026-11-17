@@ -158,3 +158,96 @@ console.log(JSON.stringify({
   allFileMagicAndP56HashesAbsent:true,
   plantedExactInverse:true
 },null,2));
+
+// A second, different original receiver for these exact keys: the exceptional
+// EA symbol in a predecessor-excluding GP28 step alphabet. This checks whether
+// the p15 source integers could decrypt the actual unsolved runes even when the
+// printed numeral table is a separate payload.
+const corpus=JSON.parse(fs.readFileSync(
+  path.join(__dirname,'..','resources','liber-primus','lp2-corpus.json'),'utf8'
+));
+const unknownPages=corpus.pages.filter(p=>p.page<=55&&p.runic_count>0);
+const unknownLength=unknownPages.reduce((n,p)=>n+p.indices.length,0);
+assert.equal(unknownLength,12956);
+assert.equal(unknownPages.length,55);
+const sourceCipher=unknownPages.flatMap(p=>p.indices);
+assert.equal(unknownPages.reduce((n,p)=>n+p.indices.slice(1)
+  .reduce((x,v,i)=>x+(v===p.indices[i]),0),0),86);
+
+/**
+ * Decode predecessor-excluding GP28 steps. Zero step is exceptional EA=index28.
+ * The key is advanced once per original rune including repetitions.
+ * @param {number[][]} sections @param {Buffer} pad
+ * @param {'mod'|'scaled'} reducer @param {-1|1} sign
+ * @param {boolean} pageReset @returns {number[]}
+ */
+function inverseStepSections(sections,pad,reducer,sign,pageReset) {
+  const result=[];let cursor=0;let previous=-1;
+  for(const section of sections){
+    if(pageReset)previous=-1;
+    for(const cipher of section){
+      if(previous<0)result.push(cipher);
+      else{
+        const d=(cipher-previous+29)%29;
+        const k=reducer==='mod'?pad[cursor]%28:Math.floor(pad[cursor]*28/256);
+        result.push(d===0?28:(d-1+sign*k+56)%28);
+      }
+      previous=cipher;
+      cursor++;
+    }
+  }
+  return result;
+}
+
+/** @param {number[]} symbols @returns {number} */
+function runeIoC(symbols){
+  const hist=Array(29).fill(0);
+  for(const value of symbols)hist[value]++;
+  return hist.reduce((s,n)=>s+n*(n-1),0)/(symbols.length*(symbols.length-1));
+}
+const originalIoC=runeIoC(sourceCipher);
+assert(Math.abs(originalIoC-0.03447839786450569)<1e-12);
+const solved57=corpus.pages.find(p=>p.page===57).indices;
+assert(Math.abs(runeIoC(solved57)-0.06270996640537514)<1e-12);
+const runeResults=[];
+for(const {name,key} of keys){
+  for(const drop of [0,256]){
+    const pad=rc4(key,unknownLength,drop);
+    for(const reducer of ['mod','scaled']){
+      for(const sign of [-1,1]){
+        for(const pageReset of [false,true]){
+          const candidate=inverseStepSections(
+            unknownPages.map(p=>p.indices),pad,reducer,sign,pageReset
+          );
+          runeResults.push({key:name,drop,reducer,sign,pageReset,ioc:runeIoC(candidate)});
+        }
+      }
+    }
+  }
+}
+assert.equal(runeResults.length,96);
+const bestRune=runeResults.reduce((a,b)=>a.ioc>b.ioc?a:b);
+assert(bestRune.ioc<0.036);
+assert(bestRune.ioc>0.035);
+
+// Genuine solved GP passage as independent lossless plant, including the rare
+// 29th symbol; the chosen source key is independent of the plant message.
+const sampleKey=keyFromNumbers(spiral,'low8');
+const samplePad=rc4(sampleKey,solved57.length,0);
+const sampleCipher=[solved57[0]];
+for(let i=1;i<solved57.length;i++){
+  const prev=sampleCipher[i-1],p=solved57[i],k=samplePad[i]%28;
+  const step=p===28?0:1+((p-k+28)%28);
+  sampleCipher.push((prev+step)%29);
+}
+assert.deepEqual(
+  inverseStepSections([sampleCipher],samplePad,'mod',1,false),solved57
+);
+console.log(JSON.stringify({
+  originalRuneCount:unknownLength,
+  stepModels:runeResults.length,
+  bestStepModel:bestRune,
+  originalCipherIoC:originalIoC,
+  solvedP57IoC:runeIoC(solved57),
+  plantedSolvedP57Inverse:solved57.length
+},null,2));
