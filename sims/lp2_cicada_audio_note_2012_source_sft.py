@@ -167,7 +167,7 @@ def main() -> None:
                      for r in page["indices"]], dtype=np.int16))
         for start, end in GROUPS
     ]
-    assert [len(c) for _, c in sections] == [674, 498, 524, 559, 553, 642, 594, 648, 308]
+    assert [len(c) for _, c in sections] == [729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308]
     for name, c in sections:
         assert len(c) >= WINDOW, name
     rng = np.random.default_rng(1330)
