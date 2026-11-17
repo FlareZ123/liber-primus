@@ -24,3 +24,5 @@ jobs:
         run: node sims/lp2_p55_parable_bbs_allstate_register_modes_sft.cjs
       - name: universal 153-key GP29 original language cancellation
         run: node sims/lp2_p50_parable_universal153_gp29_lag_sft.cjs
+      - name: allstate p55 F transparent real source invert
+        run: node sims/lp2_p55_parable_bbs_allstate_ftransparent_sft.cjs
