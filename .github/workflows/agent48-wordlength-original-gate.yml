@@ -1,0 +1,15 @@
+name: LP2 original printed-word-length grammar gate
+on:
+  workflow_dispatch:
+jobs:
+  wordlength_original:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original LP2 and solved LP1 exact grammar controls
+        run: node sims/lp2_wordlength_chapter_mutualinformation_sft.cjs
+        shell: pwsh
