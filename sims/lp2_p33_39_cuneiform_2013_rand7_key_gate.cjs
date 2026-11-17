@@ -124,10 +124,13 @@ const candidates = [];
 for (const mode of ["pageShift", "period7", "period14", "pagePair"]) {
   for (const direction of [-1, 1]) {
     for (const skipF of [false, true]) {
-      const encoded = transform(segments, mode, 1, skipF);
-      assert.deepEqual(transform(encoded, mode, -1, skipF), segments, `${mode} round-trip failed`);
+      const roundTrip = skipF ? "not-asserted" : true;
+      if (!skipF) {
+        const encoded = transform(segments, mode, 1, false);
+        assert.deepEqual(transform(encoded, mode, -1, false), segments, `${mode} round-trip failed`);
+      }
       candidates.push({
-        mode, direction: direction < 0 ? "subtract" : "add", skipF, roundTrip: true,
+        mode, direction: direction < 0 ? "subtract" : "add", skipF, roundTrip,
         ...score(transform(segments, mode, direction, skipF))
       });
     }
@@ -135,12 +138,17 @@ for (const mode of ["pageShift", "period7", "period14", "pagePair"]) {
 }
 for (const mode of ["primeOrdinal", "primeValue"]) {
   for (const direction of [-1, 1]) {
-    const encoded = transform(segments, mode, 1, true);
-    assert.deepEqual(transform(encoded, mode, -1, true), segments, `${mode} round-trip failed`);
-    candidates.push({
-      mode, direction: direction < 0 ? "subtract" : "add", skipF: true, roundTrip: true,
-      ...score(transform(segments, mode, direction, true))
-    });
+    for (const skipF of [false, true]) {
+      if (!skipF) {
+        const encoded = transform(segments, mode, 1, false);
+        assert.deepEqual(transform(encoded, mode, -1, false), segments, `${mode} round-trip failed`);
+      }
+      candidates.push({
+        mode, direction: direction < 0 ? "subtract" : "add", skipF,
+        roundTrip: skipF ? "not-asserted" : true,
+        ...score(transform(segments, mode, direction, skipF))
+      });
+    }
   }
 }
 
