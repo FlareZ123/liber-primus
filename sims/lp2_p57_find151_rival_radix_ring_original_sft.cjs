@@ -296,6 +296,85 @@ for (const direction of [1, -1]) {
 assert.equal(outwardP55.length, 8);
 assert(Math.max(...outwardP55.map(x => x.transformedIc)) < .04);
 
+
+// Narrow independent historical consumer: p57 FIND=151 as the first prime
+// of the *actual p56* prime-totient, plaintext-F-transparent Vigenere clock,
+// transferred directly to the preceding original 76-rune p55. No guessed
+// prime ordinal, key period, phase or language target is involved.
+const longPrimes = primes(180);
+const prime151Ordinal = longPrimes.indexOf(findPrimeSum);
+assert.equal(prime151Ordinal, 35); // ordinary prime151 has one-based rank36
+assert.equal(longPrimes[prime151Ordinal + 14], 229);
+assert.equal(c55[14], 25); // original AE rune, GP29 index25
+assert.equal(mod29(229 - 1), 25); // would falsely force plaintext F at pos14
+
+/**
+ * Given GP ciphertext and a fixed first prime, invert the authenticated
+ * Cicada p56 literal-F rule. Every 0 ciphertext has both legal branches:
+ * an unencrypted F with no key consumption, and a non-F produced by a
+ * key-consuming encryption step. A nonzero ciphertext that inverts to
+ * plaintext F is impossible.
+ *
+ * @param {number[]} cipher
+ * @param {number} firstOrd zero-based ordinary-prime index
+ * @param {1|-1} sign encryption direction, C=(P+sign*shift)%29
+ * @returns {{deadAt:number|null, candidates:Array<{plain:number[], skips:number[]}>}}
+ */
+function invertTransparentF(cipher, firstOrd, sign) {
+  let states = [{offset: 0, plain: [], skips: []}];
+  let deadAt = null;
+  for (let j = 0; j < cipher.length; j++) {
+    const next = [];
+    for (const state of states) {
+      const prime = longPrimes[firstOrd + state.offset];
+      assert(prime !== undefined);
+      const shift = mod29(prime - 1);
+      const decoded = mod29(cipher[j] - sign * shift);
+      if (cipher[j] === 0) {
+        next.push({offset: state.offset, plain: state.plain.concat(0),
+          skips: state.skips.concat(j)});
+        if (decoded !== 0) next.push({
+          offset: state.offset + 1, plain: state.plain.concat(decoded),
+          skips: state.skips});
+      } else if (decoded !== 0) {
+        next.push({offset: state.offset + 1,
+          plain: state.plain.concat(decoded), skips: state.skips});
+      }
+    }
+    states = next;
+    if (!states.length) { deadAt = j; break; }
+  }
+  return {deadAt, candidates: states};
+}
+
+const original151Historical = invertTransparentF(c55, prime151Ordinal, 1);
+assert.equal(original151Historical.deadAt, 14);
+assert.equal(original151Historical.candidates.length, 0);
+const opposite151 = invertTransparentF(c55, prime151Ordinal, -1);
+assert.equal(opposite151.deadAt, null);
+assert.equal(opposite151.candidates.length, 2);
+const opposite151Stats = opposite151.candidates.map(state => ({
+  skips: state.skips, ic: symbolIc(state.plain),
+  preview: state.plain.slice(0, 32).map(x => corpus.translit[x]).join('')
+}));
+assert(Math.max(...opposite151Stats.map(x => x.ic)) < .04);
+
+// Exact source-native plant with GP F copied literally, using the same
+// first-prime151 key and the correct historical positive direction.
+const sourcePositive = p57.slice(0, 76);
+let advance = 0;
+const prime151Plant = sourcePositive.map(p => p === 0 ? 0 :
+  mod29(p + longPrimes[prime151Ordinal + advance++] - 1));
+const positiveInverse = invertTransparentF(prime151Plant, prime151Ordinal, 1);
+assert.equal(positiveInverse.deadAt, null);
+assert(positiveInverse.candidates.some(x =>
+  x.plain.length === sourcePositive.length &&
+  x.plain.every((v, i) => v === sourcePositive[i])));
+const authentic56 = invertTransparentF(c56, 0, 1);
+assert.equal(authentic56.deadAt, null);
+assert(authentic56.candidates.some(x =>
+  x.plain.length === p56.length && x.plain.every((v, i) => v === p56[i])));
+
 console.log(JSON.stringify({
   corpus: 'resources/liber-primus/lp2-corpus.json',
   table: 'resources/liber-primus/lp2-grid-256.json',
@@ -307,6 +386,10 @@ console.log(JSON.stringify({
   terminalKnownPlaintext: {p56: 85, p57: 95, total: terminal.length,
     scaledIc: symbolIc(terminal)},
   knownReadout, p55Original, outwardP55,
+  prime151HistoricalTransfer: {firstPrimeOrdinal: prime151Ordinal + 1,
+    originalHistoricalDirectionDeadAt: original151Historical.deadAt,
+    oppositeDirection: opposite151Stats,
+    positiveRecovered: true, authentic56Recovered: true},
   outcome: 'No direct p55 plaintext or native known-terminal 180-rune key found'
 }, null, 2));
 console.log('PASS: source-selected FIND151 rival-radix ring gates and plants');
