@@ -23,7 +23,7 @@ MATRIX = [
     [1071, 280, 934, 812, 204],
     [966, 278, 312, 1311, 434],
 ]
-WORD_RE = re.compile(r"[^\\W\\d_]+(?:['’][^\\W\\d_]+)*", re.UNICODE)
+WORD_RE = re.compile(r"[^\W\d_]+(?:['’][^\W\d_]+)*", re.UNICODE)
 
 def download(url: str) -> bytes:
     req = urllib.request.Request(url, headers={"User-Agent": "LiberPrimusResearch/1.0"})
@@ -37,14 +37,12 @@ def main() -> None:
     print("pdf_sha256:", hashlib.sha256(pdf).hexdigest())
     doc = fitz.open(stream=pdf, filetype="pdf")
     page_texts = [page.get_text("text") for page in doc]
-    full = "\\n".join(page_texts)
-    match = re.search(re.escape(ANCHOR).replace(r"\\ ", r"\\s+"), full, re.IGNORECASE)
-    if not match:
-        # Robust fallback for line breaks or PDF extraction spacing.
-        match = re.search(r"I\\s+resist\\.\\s+I\\s+cannot\\s+accept\\s+this\\s+hollow\\s+nothing\\s+that\\s+I\\s+am\\.", full, re.IGNORECASE)
+    full = "\n".join(page_texts)
+    # The phrase is the first body text after the Scrutinies heading; allow
+    # PDF line-wrap whitespace while keeping this source-defined anchor exact.
+    match = re.search(r"I\s+resist\.\s+I\s+cannot\s+accept\s+this\s+hollow\s+nothing\s+that\s+I\s+am\.", full, re.IGNORECASE)
     if not match:
         raise SystemExit("Scrutinies body anchor not found; do not substitute a different section.")
-    prefix = full[:match.start()]
     anchor_offset = match.start()
     page_no = 0
     consumed = 0
