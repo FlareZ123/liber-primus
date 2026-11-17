@@ -214,6 +214,32 @@ function bestPermutationPrefix(key,source,reversed){
   return {...best,full53};
 }
 /**
+ * Every deterministic source GP29 -> GP29 lookup, including noninjective
+ * prime-residue maps. Only equality of repeated source symbols is required.
+ * This is stronger than the preceding arbitrary-permutation gate and
+ * encompasses all 29^29 possible static symbol functions.
+ * @param {number[]} key @param {number[]} source
+ * @param {boolean} reversed
+ */
+function bestFunctionPrefix(key,source,reversed){
+  const seq=reversed?[...source].reverse():source;
+  let best={prefix:0,offset:-1};
+  let full=0;
+  for(let start=0;start<=seq.length-key.length;start++){
+    const map=Array(29).fill(-1);
+    let j=0;
+    for(;j<key.length;j++){
+      const from=seq[start+j],to=key[j];
+      if(map[from]>=0 && map[from]!==to)break;
+      map[from]=to;
+    }
+    if(j>best.prefix)
+      best={prefix:j,offset:reversed?source.length-1-start:start};
+    if(j===key.length)full++;
+  }
+  return {...best,full53:full};
+}
+/**
  * Extend an order-d discovered recurrence 23 positions backwards
  * from known keys at 23..75. Only possible with nonzero final lag.
  * @param {number[]} tail
@@ -324,8 +350,8 @@ for(const kind of ['direct','delta']){
     fullLinearDegree:berlekampMassey(key).degree,
     sourceCrib23LinearDegree:berlekampMassey(key.slice(0,23)).degree,
     heldout26:predict(key,26),heldout40:predict(key,40),
-    sourceMatches:[],permutationMatches:[],
-    independentCribPermutationMatches:[]};
+    sourceMatches:[],permutationMatches:[],functionMatches:[],
+    independentCribPermutationMatches:[],independentCribFunctionMatches:[]};
   for(const [name,source] of [
     ['original LP2 p0-55',sourceUnknown],
     ['original solved p56+p57',sourceSolved],
@@ -342,12 +368,16 @@ for(const kind of ['direct','delta']){
         ...bestAffinePrefix(key,source,reversed)});
       record.permutationMatches.push({source:name,reversed,
         ...bestPermutationPrefix(key,source,reversed)});
+      record.functionMatches.push({source:name,reversed,
+        ...bestFunctionPrefix(key,source,reversed)});
       for(const [cribName,fragment] of [
         ['2014 historical first23',key.slice(0,23)],
         ['LP1 moth final30',key.slice(23)]
       ]){
         record.independentCribPermutationMatches.push({source:name,reversed,
           cribName, ...bestPermutationPrefix(fragment,source,reversed)});
+        record.independentCribFunctionMatches.push({source:name,reversed,
+          cribName, ...bestFunctionPrefix(fragment,source,reversed)});
       }
     }
   }
@@ -358,6 +388,7 @@ assert.deepEqual(output.map(x=>x.sourceCrib23LinearDegree),[12,12]);
 assert.deepEqual(output.map(x=>x.heldout40.correct),[1,2]);
 assert(output.every(x=>x.sourceMatches.every(m=>m.full53===0)));
 assert(output.every(x=>x.permutationMatches.every(m=>m.full53===0)));
+assert(output.every(x=>x.functionMatches.every(m=>m.full53===0)));
 
 console.log(JSON.stringify({
   classification:'conditional historical 53-rune known-plaintext-key recovery, no authentic unknown p55 plaintext',
