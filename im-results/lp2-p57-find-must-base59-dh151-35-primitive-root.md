@@ -354,6 +354,23 @@ The only candidate after excluding the carry begins WANTH RIA LB OIAJYEAE; the f
 
 **Reproducer:** [original-source Node SFT](../sims/lp2_p55_dh73_prime_totient_start_sft.cjs). It reparses the original transcription, checks the exact p55 page and word boundaries, verifies the p56 known-plaintext positive control, and enumerates only the four fixed K73 start/boundary cases.
 
+## 2013 BASE29 rendering of the Parable product: seven-symbol p55 receiver gate
+
+The three p57 body-clause prime sums multiply to the original 2013 Parable ID3 number: \(1259\times1031\times1229=1{,}595{,}277{,}641\). The signed 2013 TCP source authenticates a BASE29 conversion using the alphabet 0123456789ABCDEFGHIJKLMNOPQRS (its published control is \(3301\mapsto3QO\)). Applying that same conversion to the Parable product gives **2JMEKOO**, numeric digits **[2,19,22,14,20,24,24]**. The conversion is source-authenticated; interpreting the digits as a cipher key is a hypothesis.
+
+There is a concrete 7-position holdout: original p55 has 76 runes, and appending the first p56 rune AE produces 77 = 11×7. This 77-rune stream also contains the exact repeated seven-rune block **DJUBEIAE** at p27 offset 28 and p55/p56 seam offset 70. The test therefore used only this source-selected 7-period seam, not an arbitrary page or key offset.
+
+The following receiver interpretations were tested:
+
+- Repeating GP29 additive key [2,19,22,14,20,24,24], both signs, with the p56 literal-F-transparent rule (all masks over p55 ciphertext-F positions [15,25,41]), on p55 full, p55 after its leading one-rune NG carry, and p55 plus p56's first rune. The 77-rune stream has no legal negative-sign path and one positive-sign path; the output is nonlinguistic.
+- The same repeating additive key without F skipping, both signs, on the 77-rune stream. Both outputs are nonlinguistic.
+- Stable keyed columnar transposition of the 11×7 stream, using the key's stable ascending order **[0,3,1,4,2,5,6]** and its reverse. Neither output is readable.
+- The exact historical 2014 Stage05 seven-position permutation **[0,6,2,5,1,4,3]** and its inverse, combined with the additive key in both layer orders and both signs. None produces plaintext.
+
+Native controls pass: the signed BASE29 example \(3301\mapsto3QO\), the product's base29 expansion, the exact 77-rune seam, and round-trip tests for the columnar and seven-position permutation implementations. These negatives reject the direct 7-symbol additive/columnar/Stage05 receivers motivated by this product and seam; they do not reject the Parable correspondence, the DH73 arithmetic candidate, or an as-yet-unspecified receiver.
+
+**Reproducer:** [original-source Node SFT](../sims/lp2_p55_parable_base29_7key_receiver_sft.cjs).
+
 ## Assessment and next decision
 
 **Exact original-source observations:** the adjacent base59 FIND/MUST table pair
@@ -385,7 +402,7 @@ authentic unknown plaintext. A mathematically closed 2013–2014
 correspondence is now worth preserving and considering as an
 independent clue, while a new cipher campaign is unjustified until
 some source selects its **recipient and reversible operation**.
-The direct K73-to-p56-prime-totient start transfer is now rejected in both natural prime-start readings. The first new decisive step should identify a first-party operation
+The direct K73-to-p56-prime-totient start transfer is now rejected in both natural prime-start readings. The signed BASE29 rendering of the same Parable product, 2JMEKOO, also fails the direct 7-period additive, stable columnar and Stage05 block-permutation receivers on the 77-rune p55/p56 seam. The first new decisive step should identify a first-party operation
 for the scalar73 or recover an actual original 76-rune p55 plaintext
 interval. Do not treat test-fitted keys, synthetic plants, or a
 matching original cipher round-trip as successful decryption.
