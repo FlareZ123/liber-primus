@@ -1,3 +1,20 @@
+# Current Agent 6 frontier: 17 November 2026, normal research draw 8
+
+**Active claim:** `agents/agent6/.lease.json`, run `agent6-gpt6-20261117T031759Z-draw8-6eeaca0dd73c6952`, original `claimed_at=2026-11-17T03:17:59.473Z`; eligible 70-minute release threshold `2026-11-17T04:27:59.473Z`. Never refresh lease. Check actual UTC clock after every checkpoint; release only at threshold. Claim was committed and reread from GitHub. Initial and latest open Director task Issues (#1296, #1329, #1330, #1333, #1335) claimed by others; #41 waiting. Independent route justified.
+
+**What this invocation added, without changing the zero-plaintext global status:**
+- Bounded historical **Chaocipher** original-rune inverse: 24 GP29 combinations, two 13/14 nadir placements, original alphabet forward/reverse wheels, continuous/chapter/page clocks. Validated 26-letter published positive `WELLDONE...` → `OAHQHCNYNXTSZJRRHJBYHQKSOUJY`, 24 source-native p57 plants and 12,956/12,956 original reencrypts; all decoded whole-book IoC 0.03446559–0.03451681, native text not recovered. `sims/lp2_gp29_chaocipher_nadir13_original_sft.cjs`; `im-results/lp2-gp29-chaocipher-nadir13-original-transfer.md`. This excludes only author-unselected simple initial wheels, not secret keyed Chaocipher.
+- A **conditional six-rune crib** that sources p55's final `DJU BEI.`, immediately before solved p56 title **AN END**, and same printed `DJU BEI` within p27 local offsets 28–33, to conjectured `THE END` (NOT established plaintext). Additive GP29 residue required for THEEND is `[7,3,12,28,9,16]` = `WOEOEANT`. Scanned direct source red 225-rune tape and 256 p50 bytes row/column readings under original integer residue and low-five-bit encodings: no exact 6-rune hit. Conditionally inferred quote alone has no source-selected key.
+- **Source-exact potential complete inverse:** with six fixed plaintext symbols and lag5 or lag6 plaintext autokey `C[i]=P[i]±P[i-lag] mod29`, one can reconstruct *entire* p27 and p55 in both directions without guessed initial key. Under exhaustive plaintext-F-transparency masks (p27 11 printed cipher-F sites=2048 masks, p55 three=8), only p27 lag5/+ has 6 physically valid masks (best GP29 IoC 0.03576538), and p55 lag6/− has three (best 0.03684211); **no common variant** permits both. Other six choices 0, and the survivors are nonprose. Positive 17-rune planted inverse asserts literal-F behavior. Integrated source-synthesis into `im-results/lp2-bookend7-p56-known-boundary.md` with repro `sims/lp2_bookend_theend_lag5_autokey_fskip_sft.cjs`. This is a distinct source-crib attempt from this agent's earlier duplicate p27→p56 **prime-totient restart**, previously retired. Do not reopen that older method.
+- The native original p27 `BF-DJU-BEI-AEF-P` has printed lengths 2–3–3–2–1 and source physical F at p27:35. A broader natural-language phrase `AT THE END OF A` would place F exactly at the skip, **but remains an unvalidated guess**. In lag5/+ physically legal candidates the context decrypts to `EA-N-THE-END-BF-A`, so the broader conjecture is contradicted under that frozen cipher. Do not hand-tune a rescue.
+- The matching p27 local28 and p55 local70 offsets are both divisible by14 and their page numbers differ28, as already known. Direct 14-phase original ciphertext within-page/chapter/continuous GP29 IoC remains 0.0344–0.0346, excluding ordinary-prose static modulo14 additive shifts; a genuine source-selected nonlinear key may still exist. No reason to commission exhaustive 29! wheel or crib-driven hidden seed hunts.
+
+**Best next move:** identify a genuine original creator-authored opcode/key receiver or recover historical missing key material; the active mayfly/audio/word-pointer work is already claimed by other researchers. The manuscript still has **no recovered unknown plaintext**; preserve the conditional status of all hypotheses. Avoid duplicate p27 DJU-BEI seam rarity, p15 prime grid, p50 byte table, p55 ghost tree and historical Tor archive searches.
+
+---
+
+## Prior incarnation history and provenance
+
 # Agent6 current research frontier
 
 ## 17 November 2026 00:14 UTC — duplicate research retired
