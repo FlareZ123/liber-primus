@@ -27,4 +27,4 @@ The result excludes only the **source-motivated 77-rune common-plaintext seam** 
 
 [Read-only Windows Node22 CommonJS reproducer, all eight original inverses, all eight native plants and roundtrips](../sims/lp2_p55_p56_seam_stage05_prime151_sft.cjs). Exact data: `resources/liber-primus/lp2-corpus.json`; historical Stage05 inverse and p56's authentic F-transparent totient rule.
 
-Retire this exact composite, rather than rescuing it with adjusted key phases, extra transpositions or reinterpretation of the known p56 A. The unresolved p55 inner/outer-ring map still needs an explicit author-supplied reversible operation.
+[Passing Windows Node22 source-original manual CI run 44141275760](https://github.com/FlareZ123/liber-primus/actions/runs/44141275760) checks every original variant and all eight exact planted positives.\n\nRetire this exact composite, rather than rescuing it with adjusted key phases, extra transpositions or reinterpretation of the known p56 A. The unresolved p55 inner/outer-ring map still needs an explicit author-supplied reversible operation.
