@@ -326,3 +326,81 @@ const evidence = {
   nativeLengthMatchedExpectedReserveCounts:nativeCounts
 };
 console.log(JSON.stringify(evidence, null, 2));
+
+
+/**
+ * Native GP29 Latin Vulgate extension, Agent3 2026-11-17.
+ * Treat the precomputed Latin words as genuine GP29 grapheme words.
+ * A fixed reserve R must occur at every original within-page doublet site
+ * and nowhere else except the 55 unobserved physical-page starting sites.
+ * This source test measures every authentic printed word's full mask.
+ */
+const latinAlphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
+const latinPools = Array.from({length: 15}, () => []);
+const latinUnique = Array.from({length: 15}, () => new Set());
+for (const rawLatinLine of read("resources/control/latin-vulgate-gp-wholewords.txt").split(/\r?\n/u)) {
+  const latinToken = rawLatinLine.trim();
+  if (!/^[0-9A-S]{1,14}$/u.test(latinToken)) continue;
+  const indices = [...latinToken].map(c => latinAlphabet.indexOf(c));
+  latinPools[indices.length].push(indices);
+  latinUnique[indices.length].add(latinToken);
+}
+assert.equal(latinPools.reduce((n, a) => n + a.length, 0), 39785);
+assert.equal(latinUnique.reduce((n, s) => n + s.size, 0), 7267);
+
+/** @type {Array<Array<Set<number>>>} */
+const latinReserveMasks = Array.from({length: 15},
+  () => Array.from({length: 29}, () => new Set()));
+for (let length = 1; length <= 14; length++) {
+  for (const latinToken of latinUnique[length]) {
+    for (let reserve = 0; reserve < 29; reserve++) {
+      let mask = 0;
+      for (let index = 0; index < latinToken.length; index++) {
+        if (latinAlphabet.indexOf(latinToken[index]) === reserve) mask |= 1 << index;
+      }
+      latinReserveMasks[length][reserve].add(mask);
+    }
+  }
+}
+const latinReserveResults = gp.translit.map((label, reserve) => {
+  let impossibleWords = 0;
+  for (const shape of shapes) {
+    let compatible = false;
+    for (const mask of latinReserveMasks[shape.length][reserve]) {
+      if ((mask & shape.known) === shape.repeat) {
+        compatible = true;
+        break;
+      }
+    }
+    if (!compatible) impossibleWords++;
+  }
+  const {expected, sd} = expectedCount(latinPools, reserve);
+  return {label, reserve, impossibleWords, expected, sd};
+});
+function nativeLatinCheck(label, incompatible, mean) {
+  const row = latinReserveResults.find(x => x.label === label);
+  assert.equal(row.impossibleWords, incompatible);
+  assert.ok(Math.abs(row.expected - mean) < 0.015);
+}
+nativeLatinCheck("O", 0, 702.53);
+nativeLatinCheck("M", 0, 754.37);
+nativeLatinCheck("S", 0, 1041.76);
+nativeLatinCheck("T", 0, 1137.92);
+nativeLatinCheck("IA", 17, 114.64);
+nativeLatinCheck("AE", 20, 96.31);
+nativeLatinCheck("F", 48, 98.50);
+nativeLatinCheck("G", 28, 119.74);
+nativeLatinCheck("EA", 36, 26.92);
+assert.deepEqual(
+  latinReserveResults.filter(row => row.impossibleWords === 0).map(row => row.label),
+  ["O", "S", "T", "M"] // original GP29 order, distinct from frequency rank
+);
+console.log(JSON.stringify({
+  source: "original authentic LP2 printed words vs original-language GP29 Vulgate NT",
+  originalPhysicalPageStartersUnobserved: 55,
+  observedReservedMinimum: 86,
+  observedReservedMaximum: 141,
+  fullWordMasks: shapes.length,
+  latinWords: latinPools.reduce((n, a) => n + a.length, 0),
+  results: latinReserveResults
+}, null, 2));
