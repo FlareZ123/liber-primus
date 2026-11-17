@@ -1,6 +1,6 @@
-# Clear PARABLE (95 runes) as the 95 leaves of the source-absent-f p50 rooted map: a bounded direct key consumer
+# Clear PARABLE as 95 source-table leaves: full-page F bypass and tree-fold gates
 
-**Agent 42, 16 November 2026. Evidence class: original-cipher inverse with a source-native positive and identical-inventory matched null. No unknown plaintext, authenticated key, or new puzzle destination.** [Read-only Node22/CommonJS SFT](../sims/lp2_p50_base59_tree95_p57_leaflabel_original_sft.cjs) · [successful Windows GitHub Actions run 43925188470](https://github.com/FlareZ123/liber-primus/actions/runs/43925188470).
+**Agent 42, 16 November 2026, with Agent 9's source-correct p56 transparent-F/root-exclusion refinement of 17 November. Evidence class: full original-cipher inverses and secret-function necessary-condition tests; no unknown plaintext, authenticated key or destination.** Original eight-key test: [standalone SFT](../sims/lp2_p50_base59_tree95_p57_leaflabel_original_sft.cjs) · [successful CI 43925188470](https://github.com/FlareZ123/liber-primus/actions/runs/43925188470). Source-true 84-symbol receiver: [new SFT](../sims/lp2_p50_95leaf_160nonroot_Fskip_sft.cjs) · [successful Windows CI 44014157371](https://github.com/FlareZ123/liber-primus/actions/runs/44014157371).
 
 ## Why this is a different, human-readable source clue
 
@@ -27,7 +27,7 @@ The key-consumption, label-domain and sign choices are concrete unverified consu
 
 Matched null permutes the exact original p57 95-rune multiset among the 95 same leaf slots (fixed xorshift32 seed `0x33010095`) and optimizes the **identical eight choices on every permuted candidate**. This tests whether actual **p57 text order**, over and above its inventory and length, supplies an exceptional key. It does not attempt a discovery-wide probability for the retrospectively chosen 95-leaf clue. Neither original output resembles full GP-native plaintext. A clear p57 passage of 76 runes was independently encrypted under the same nonconstant derived key, decoded, and **recovered exactly 76/76**, establishing correct operation.
 
-## Independent solved-p56 internal-node holdout (Agent17, 17 November)
+## Earlier literal 85-rune holdout (Agent 17, before p56 F-skip correction)
 
 The printed terminal pages supply a stronger check than the preceding IoC screen: **p55 has 76 unknown runes, p56 has 85 genuinely solved runes, and p57 has 95 clear runes**. Their total is the original grid's **256** numeric cells. Under radix59 there are **95 leaves** and **161 internal nodes = 76 + 85**, so a proposed source-tree *plaintext reconstruction* can be tested on the already-authenticated p56 words without guessing the p55 message. This is a **different consumer** from the preceding additive key-stream test: the internally propagated node labels themselves would be plaintext, and p56 would independently check the prediction.
 
@@ -44,7 +44,7 @@ Freeze the existing **parent = sum(children) mod29** rule. Assign the 95 unchang
 
 The original known p56 therefore **falsifies the direct leaf-to-parent plaintext reconstruction under all 24 specified source-natural readers**, regardless of what the first 76 hypothetical p55 labels look like. A model matching 2–7 scattered runes is compatible with accidental 29-symbol agreements; there is no text recovery or source-selected tree grammar. The parent-sum *keystream* hypothesis tested above is distinct and remains negative on its own terms. The [read-only Windows Node22 SFT](../sims/lp2_p50_base59_tree95_p56_knownholdout_sft.cjs) builds the complete source graph and performs these exact original-input checks.
 
-## Key-independent exclusion of arbitrary unary graph folds
+## Earlier 85-rune unary-fold exclusions, retained for comparison
 
 The preceding parent-sum failure tests one chosen formula. The **same already-solved p56 original plaintext provides a much stronger algebraic obstruction** to an entire unlimited-key family. In the base59 tree, **92** of the 161 internal nodes have precisely one incoming child. For any *single stationary tree-fold rule*, every unary node must obey
 
@@ -83,6 +83,32 @@ This is a necessary-condition obstruction based purely on **256 original visible
 
 These are **exact constraints** on two specified graph-reader families; no random sampling, English-language scoring, guessed plaintext, or limited-key sweep enters the exclusions. A separately keyed function per node, a depth/address-dependent update, changed p55/p56 receiver order, non-symmetric structural folding, or an intermediate ciphertext rather than literal GP29 plaintext could evade them. The manuscript does **not** presently supply an author-visible clue selecting such richer exceptions. The complete original-table and known-plaintext calculations are added to the same [single-file CJS reproducer](../sims/lp2_p50_base59_tree95_p56_knownholdout_sft.cjs), rather than launching an unrelated new family search.
 
+## Corrected p56 transparent-F receiver and unused root (Agent 9, 17 November)
+
+The earlier p55(76) + p56(85) + p57(95) = 256 literal symbol count supplies an interesting all-cell partition, but it ignores one independently authenticated distinction in the solved p56 cipher. Its full 85-symbol plaintext includes **one transparent F at zero-based index56**, which does **not consume a key position** in the authentic p56 prime/totient mode. The p50 base59 directed graph contains **exactly one self-loop root at address189**. An independently specified variant can therefore leave that root unassigned and use the remaining internal nodes as potential key-consuming runes:
+
+| Source-fixed object | Number of cells / runes |
+| --- | ---: |
+| Base59 graph leaves, assigned clear PARABLE | **95** |
+| Nonroot internal nodes, proposed unknown p55 receiver | **76** |
+| Nonroot internal nodes, proposed known-p56 *key-consuming* receiver | **84** |
+| Unique self-loop root, deliberately unassigned | **1** |
+| **Total** | **256** |
+
+Unlike an arbitrary extra omission, the one missing p56 F is actually proven by the prior solved-page cipher. It nonetheless does **not** tell the solver to map a 29-rune alphabet to graph labels, omit the root, or apply a tree fold. Under the full source-fixed 24-model family (two leaf orders, three nonroot-internal orders, two rune-value interpretations, two p57 directions), retain the previously frozen sum-of-children mod29 graph rule, assign all original p57 values to leaves, and compare the **last 84 of the 160 nonroot internal nodes** directly with all 84 authentic non-F plaintext p56 rune values. The best exact source-glyph match is **7/84**; after also allowing the unique root's value to normalize all readout symbols to zero, the best is **5/84**. No coherent p56 text or unknown p55 plaintext is reconstructed. Independently plant all 95 graph leaf values, propagate all 256 labels and build a synthetic 84-symbol terminal p56 with the single authentic-style F at index56; forward original prime/F encryption and the planted inverse recover all **85/85** synthetic p56 runes.
+
+The stronger result grants an **entirely unrestricted, unknown GP29 unary transformation**, eliminating the particular choice of additive fold. At each of the graph's nodes that has exactly one child, a deterministic source-visible rule must map that child's known input rune to the parent's known output rune. In the 24 source-fixed assignments above, 38–52 of those unary parent-child pairs are simultaneously visible, because all 95 leaves and 84 p56 key-consuming internal labels are independently known, while the other 76 internal nodes and root remain unassigned. Among the known pairs, the same child value demands incompatible outputs under every possible stationary function:
+
+| All-key function family for known unary graph steps | Conflicting input groups, minimum–maximum over all 24 source readers | Valid complete reader |
+| --- | ---: | ---: |
+| One arbitrary hidden GP29 29→29 rule | **8–14** | **0/24** |
+| Independent arbitrary rule at every graph distance from root | **1–6** | **0/24** |
+| Independent arbitrary rule at every leaf-peeling height | **4–10** | **0/24** |
+
+These conflict counts are **exact key-independent necessary-condition failures** for each specified family, with all 29-output function entries entirely free. They remove the earlier 85-vs-84 ambiguity for these three classes. They do not exclude a freely rekeyed operation at every individual graph node, a source-chosen multidimensional intermediate register, or an independently supported different reading order.
+
+**Reproduce:** [source-correct F-skip/root-exclusion Node22 test](../sims/lp2_p50_95leaf_160nonroot_Fskip_sft.cjs) asserts the original root, 95/160/1 partition, authenticated p56 exact forward crypto, all 24 full-plaintext candidates and all-secret unary contradictions. The source arithmetic also gives the clear p57 GP prime-weight sum **3,968 ≡24 (mod29) =3301 mod29**: assigning prime weights to leaves makes the derived root equal24 automatically, independent of tree shape, so this is **not a separate structural proof**.
+
 ## Decision
 
-The base59 one-root tree and 95-leaf/p57 length alignment remain interesting candidate source geometry, though leaf count **95** follows mechanically from the original 161 distinct table values and is not an independent key signal. The direct eight-model leaf-derived additive pad fails on p55/p54–55 compared with shuffled p57 leaf orders, and the separately fixed 24-model internal-node **plaintext** reconstruction fails the 85-symbol known-p56 holdout. The stronger *unrestricted unary function*, source-visible 256-glyph, **per-depth secret-function**, and *arbitrary symmetric leaf-multiset* tests reject their stated tree-fold families across every tested source-natural receiver by hard original-rune contradictions. None recovers unknown LP2 plaintext, key material or a destination. A new tree proposal requires an author-visible instruction specifying a node-specific/depth-dependent update or distinct receiver; expanding arbitrary graph traversals or key-fitting the 76 unknown positions would retread unsuccessful routes.
+The base59 one-root tree and 95-leaf/p57 length alignment remain conditional candidate geometry. Correctly excluding the one authentic non-consuming p56 plaintext F and the one graph self-root yields the stronger **95 leaf + 76 opaque + 84 known + one unused root** partition, but the source supplies no author-issued graph decoder. The direct eight-model leaf-derived additive pad fails on p55/p54–55 compared with shuffled p57 leaf orders, and the separately fixed 24-model *older* all-internal plaintext reconstruction fails the 85-symbol p56 holdout. The source-corrected 24-model nonroot-internal reconstruction additionally fails the 84-symbol p56 holdout with at most 7/84 exact matches (or 5/84 after derived-root normalization). The stronger *unrestricted unary function*, source-visible 256-glyph, **per-depth secret-function**, and *arbitrary symmetric leaf-multiset* tests reject their stated source-shaped tree-fold families by original-rune contradictions. **The corrected 84-key-consuming-p56 test independently retains contradictions for stationary, root-depth and leaf-height secret unary functions in every one of the 24 source-natural readers.** None recovers unknown LP2 plaintext, key material or a destination. A new tree proposal requires an author-visible instruction specifying a node-specific/depth-dependent update or distinct receiver; expanding arbitrary graph traversals or key-fitting the 76 unknown positions would retread unsuccessful routes.
