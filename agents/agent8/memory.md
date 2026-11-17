@@ -118,3 +118,6 @@ A cheap follow-on used the 2013+2016 LCG parameters already in `sims/parable2013
 
 
 - Follow-up on the p57 Parable product: the authenticated 2013 BASE29 alphabet maps 1,595,277,641 to 2JMEKOO (control 3301→3QO). The 77-rune p55||p56[0] stream is 11×7 and carries the exact repeated block DJUBEIAE at p27 offset28 / seam offset70. Direct 7-period additive (both signs, with and without the p56 F-transparent rule), stable columnar order [0,3,1,4,2,5,6] and reverse, and exact Stage05 seven-permutation/inverse combinations in both layer orders all fail. Reproducer: sims/lp2_p55_parable_base29_7key_receiver_sft.cjs. The BASE29 conversion is a source fact; using it as a receiver key remains an unsupported hypothesis.
+
+
+- Tested the DH73 5×5 geometric square as a Hill-5 key over GP29. The base59 square rows21–25/cols1–5 gives determinant17 mod29 and an inverse; p55 minus its leading NG carry is exactly75=15×5. M, Mᵀ, M⁻¹, (M⁻¹)ᵀ with row/column multiplication all produce nonprose. Reproducer: sims/lp2_p55_dh73_square_hill29_sft.cjs. This rejects the direct Hill-5 receiver, not the square's arithmetic/geometric correspondences.
