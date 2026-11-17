@@ -14,6 +14,8 @@ import json
 import os
 from pathlib import Path
 import tempfile
+import re
+from xml.etree import ElementTree
 
 import cv2
 import fitz
@@ -98,11 +100,31 @@ def page_candidates(raw: bytes, hint: str, name: str) -> list[tuple[str, np.ndar
     # Use the original article's embedded text when present. Otherwise
     # span the physically plausible page range without target-fitted selection.
     if "1964" in name and len(document) >= 400:
-        if hit:
-            positions = sorted({j for i in hit[:3]
-                                for j in range(max(0, i - 2), min(len(document), i + 3))})
-        else:
-            positions = list(range(360, min(510, len(document))))
+        # The first-volume printed index contains a Moravia/Fig.2 reference.
+        # Read Internet Archive's SOURCE leaf-to-folio table to identify
+        # the second-volume 1964 p153–168 article, independently of p27.
+        positions = list(range(350, min(525, len(document))))
+        try:
+            scandata_url = ("https://archive.org/download/psyche707119631964camb/"
+                            "psyche707119631964camb_scandata.xml")
+            root = ElementTree.fromstring(fetch_bytes(scandata_url))
+            leaves = []
+            for page in root.iter("page"):
+                pn = page.findtext("pageNumber")
+                leafnum = page.get("leafNum")
+                if pn and leafnum and re.sub(r"[^0-9]", "", pn) == "153":
+                    leaves.append(int(leafnum))
+            print("SOURCE_1964_SCANDATA", json.dumps({"p153_leaves": leaves,
+                  "bound_volume_pages": len(document)}), flush=True)
+            if leaves and max(leaves) >= 0.45 * len(document):
+                first = max(leaves)
+                positions = list(range(max(0, first - 5),
+                                       min(len(document), first + 24)))
+        except Exception as exc:
+            print("SOURCE_1964_SCANDATA_ERROR", type(exc).__name__,
+                  str(exc)[:180], flush=True)
+        print("SOURCE_1964_SELECTED_PDF_PAGES", positions[:8],
+              positions[-8:], "count", len(positions), flush=True)
     frames = []
     for i in positions:
         pix = document[i].get_pixmap(matrix=fitz.Matrix(1.8, 1.8),
