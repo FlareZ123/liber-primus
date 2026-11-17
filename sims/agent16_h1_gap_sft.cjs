@@ -89,13 +89,20 @@ function prepare(upstream, corpusFile, out) {
   writeAtomic(path.join(out,"null581.ksb"),nullBytes);
   writeAtomic(path.join(out,"lp2_windows.txt"),src);
   // The final physically distinct red-titled p54–55 passage was not a
-  // restart window in the external eight-window campaign. Fix one source-led
-  // 300-rune original test with an explicit p54 beginning and no tuning.
+  // restart window in the external eight-window campaign. Fix the original
+  // 299-rune body and p55 tail after the source-visible nine-rune title.
   const finalPassage=pages[54].indices.concat(pages[55].indices);
   assert.equal(pages[54].indices.length,232);
   assert.equal(pages[55].indices.length,76);
   assert.equal(finalPassage.length,308);
-  const p54Window="W p54 -1\nR "+finalPassage.slice(0,300).join(" ")+"\n";
+  // Match the external source's original p15/p33 red-heading rule: both
+  // start their body windows after a separate red title, carrying the title's
+  // last rune as the previous ciphertext rune (p15 prev24, p33 prev20).
+  // Here p54's red title has 9 runes and ends with GP index 19.
+  assert.equal(finalPassage[8],19);
+  const body=finalPassage.slice(9);
+  assert.equal(body.length,299);
+  const p54Window="W p54body "+finalPassage[8]+"\nR "+body.join(" ")+"\n";
   writeAtomic(path.join(out,"lp2_p54_window.txt"),p54Window);
   const sha=b=>crypto.createHash("sha256").update(b).digest("hex");
   const audit="H1 gap prepared from pinned pnotisdev/cicada3301\n"+
@@ -158,9 +165,9 @@ function analyze(dir,file,shardCount,variant) {
     isP54?"# LP2 p54–55 final passage: untouched H1 short-key original test":"# LP2 H1 keyword L14–20: original-source completed finite sweep",
     "",
     "Fixed external source: pnotisdev/cicada3301 commit 15200c67abee106913ba01ff504c5b6e88d16cc7.",
-    isP54?"Original source: p54 232 + p55 76 =308 contiguous GP runes; first 300 fixed from p54 red-titled beginning; previous source chapter and original extra rune positions not used.":"Original source: resources/liber-primus/lp2-corpus.json; exact eight-window byte-for-byte rune match.",
+    isP54?"Original source: p54 red title nine runes (last GP index19) followed by body223+p55 76 =299 contiguous GP runes. Clock starts after title, with previous ciphertext rune19, mirroring historical p15/p33 H1 source windows.":"Original source: resources/liber-primus/lp2-corpus.json; exact eight-window byte-for-byte rune match.",
     "Decoder: external parity-controlled Rust h5rs, frozen two anti-repeat models.",
-    isP54?"Real and matched-null grids: 581 historical streams × one 300-rune p54 original window × 2,000 offsets × lengths2–13 × two models, each.":"Real and matched-null grids: 581 independent streams × eight 300-rune windows × 2,000 offsets × lengths14–20 × two models, each.",
+    isP54?"Real and matched-null grids: 581 historical streams × one 299-rune p54 body/p55 tail × 2,000 offsets × lengths2–13 × two models, each.":"Real and matched-null grids: 581 independent streams × eight 300-rune windows × 2,000 offsets × lengths14–20 × two models, each.",
     "Shards observed: "+shardCount+" ("+offsetStep+" offsets each).", 
     "Real hit rows >=1.5: "+realHits.length+"; null: "+nullHits.length+".",
     "Real hit rows >=1.6: "+realHits.filter(r=>r.score>=1.6).length+
