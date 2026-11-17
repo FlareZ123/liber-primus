@@ -229,6 +229,36 @@ const positiveFit = affineFeedbackFit(positivePair, 0, false);
 assert.equal(positiveFit.consistent, true);
 assert.deepEqual(positiveFit.coefficients, [7, 13, 4]);
 
+
+/** A genuinely pre-2014 human clue distinct from p57's repeated text:
+ *  Cicada's original 2013 761.MP3 has source ID3 title THE INSTAR EMERGENCE.
+ *  Its final word has nine GP runes, exactly the original red p54 title.
+ *  Treat this strictly as a third *hypothetical* title crib.
+ */
+const finalChapter = corpus.pages.slice(54, 56).flatMap((page) => page.indices);
+const finalWord = [18, 19, 18, 4, 6, 18, 9, 5, 18];
+assert.deepEqual(finalChapter.slice(0, 9), [24, 19, 21, 23, 27, 2, 14, 10, 19]);
+assert.equal(labels(finalWord), 'E M E R G E N C E');
+assert.equal(finalChapter.length, 308);
+const finalKey = finalChapter.slice(0, 9).map((c, i) => modulo(c - finalWord[i]));
+assert.deepEqual(finalKey, [6, 0, 3, 19, 21, 13, 5, 5, 1]);
+const finalPlainRepeating = finalChapter.map((c, i) => modulo(c - finalKey[i % 9]));
+assert(Math.abs(coincidence(finalPlainRepeating.slice(9)) - 0.03387129357365716) < 1e-12);
+const finalPlainAutokey = finalWord.slice();
+for (let i = 9; i < finalChapter.length; i++) {
+  finalPlainAutokey.push(modulo(finalChapter[i] - finalPlainAutokey[i - 9]));
+}
+assert(Math.abs(coincidence(finalPlainAutokey.slice(9)) - 0.03499360283719782) < 1e-12);
+const finalPlainFeedback = finalChapter.map((c, i) =>
+  i < 9 ? finalWord[i] : modulo(c - finalChapter[i - 9])
+);
+assert(Math.abs(coincidence(finalPlainFeedback.slice(9)) - 0.03396107831474041) < 1e-12);
+const finalStrict = legalClocks(finalChapter.slice(9), finalKey, 9);
+assert.equal(finalStrict.death, 113); // p54+55 chapter offset 122
+assert.equal(finalChapter[122], 21);
+assert.equal(finalKey[121 % 9], 21);
+assert.equal(legalClocks(forward(finalClear, finalKey, 9), finalKey, 9).death, -1);
+
 const result = {
   status: 'bounded-negative; no unknown source plaintext',
   p0_heading_wordlengths: [8, 5],
@@ -253,6 +283,13 @@ const result = {
   p33_positive_95_runes: 'pass',
   shared_initial_GP29_key_symbol: 21,
   shared_affine_cipherfeedback_lag_0_to_4: feedbackDecisions,
-  shared_affine_cipherfeedback_native_plant: 'pass'
+  shared_affine_cipherfeedback_native_plant: 'pass',
+  p54_historic_2013_songtitle_crib: 'EMERGENCE (not authenticated plaintext)',
+  p54_derived_key: finalKey,
+  p54_repeated_body_ioc: coincidence(finalPlainRepeating.slice(9)),
+  p54_plaintext_autokey_body_ioc: coincidence(finalPlainAutokey.slice(9)),
+  p54_ciphertext_feedback_body_ioc: coincidence(finalPlainFeedback.slice(9)),
+  p54_strict_F_skip_first_illegal_offset: 9 + finalStrict.death,
+  p54_positive_95_runes: 'pass'
 };
 process.stdout.write(JSON.stringify(result, null, 2) + '\n');
