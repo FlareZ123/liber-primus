@@ -38,10 +38,24 @@ The winning generous-lookup case uses base60, mark value 0, source-order red, re
 
 Two positive controls demonstrate the test's ability to recover a true original-length construction: a planted degree-one GF29 combination with coefficient 17 recovers **180/180**, and the same 180 symbols after a secret bijective substitution \(x\mapsto11x+7\pmod{29}\) also recover **180/180** through the unrestricted lookup gate. The canonical source-table byte SHA256 is asserted before testing.
 
+## Circumference-selected original table traversal
+
+The strongest distinct visual ordering is the **32×8 concentric peel**. Its four ring lengths are **76, 68, 60, 52**: exactly p55's 76 unknown symbols followed by the 180 independently decoded/clear p56 and p57 symbols. The explicit p57 instruction about shedding circumferences supplies an observable, if nonexclusive, human rationale to follow the table rings instead of printed row-major order.
+
+Retaining literal Shamir degree-one interpolation, read all four rings from **one of four printed corners** with either clockwise or counterclockwise direction at each successive ring, for **eight complete, invertible spiral permutations**. Keep both table radices, both natural 13-dot constants, and both directions of the red and terminal source tapes. This is **8×2×2×2×2×29 = 3,712** further complete source-shaped key configurations, with no fitted individual-ring phases or unknown ciphertext interpretation.
+
+| Circumference Shamir 2-of-3 test | Best observed | Required |
+|---|---:|---:|
+| Direct known-terminal rune identity | **14 / 180** | 180 / 180 |
+| Best arbitrary stationary GP29 relabeling | **54 / 180** | 180 / 180 |
+| Surviving candidate | **0 / 3,712** | At least 1 |
+
+Thus the original geometry does not rescue this literal interpolation, despite giving the conjecture a substantially more specific human puzzle route. A later method using separately keyed rings, nonlinear transforms or different source-bound reading instructions remains a new premise.
+
 ## Decision and limits
 
-**Reject direct symbolwise GF(29) 2-of-3 Shamir sharing and every stationary GF(29) two-tape affine mixer among these three original 256-slot streams**, with constant marker value 0 or 13, either printed radix, whole-stream reversals and arbitrary fixed terminal glyph alphabet. The result is independent of English frequency assumptions and strongly excludes this exact candidate route to the 76 unknown runes.
+**Reject direct symbolwise GF(29) 2-of-3 Shamir sharing in both printed and intact-ring orderings, and every stationary GF(29) two-tape affine mixer in printed order**, with constant marker value 0 or 13, either printed radix, whole-stream reversals and arbitrary fixed terminal glyph alphabet. The result is independent of English frequency assumptions and strongly excludes this exact candidate route to the 76 unknown runes.
 
 It says nothing about 3-of-3 sharing (which can interpolate any three unconstrained streams), a source-selected nontrivial permutation of slots, separate pagewise coordinates, a varying key, a non-GF29 field, a word cipher layered atop shares, or whether the three equal counts were authored intentionally. None of those extensions has a source instruction here; avoid opening a large arbitrary search from a failed count coincidence.
 
-**Reproducer:** [one-file Node 22 CommonJS original-input test](../sims/lp2_red256_grid_terminal256_shamir2of3_sft.cjs), with exact planted positives and asserted original Shamir maxima 53/180, 15/180, and broader affine maxima 53/180, 16/180.
+**Reproducer:** [one-file Node 22 CommonJS original-input test](../sims/lp2_red256_grid_terminal256_shamir2of3_sft.cjs), with exact planted positives and asserted original Shamir maxima 53/180, 15/180, broader flat affine maxima 53/180, 16/180, and circumference Shamir maxima 54/180, 14/180.
