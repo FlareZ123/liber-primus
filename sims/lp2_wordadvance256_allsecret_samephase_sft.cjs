@@ -23,7 +23,7 @@ const root = path.resolve(__dirname, "..");
 const read = (p) => fs.readFileSync(path.join(root, p), "utf8");
 const corpusBytes = fs.readFileSync(path.join(root, "resources/liber-primus/lp2-corpus.json"));
 const corpusHash = crypto.createHash("sha256").update(corpusBytes).digest("hex");
-assert.equal(corpusHash, "58588725a006432a50a1c8d852b881e5e844ba32073e729b42e0f78074b17338");
+assert.equal(corpusHash, "7f311254d406b755df39510b8b3f4e53d7dfaea87a0320074c16507d46a07522");
 const book = JSON.parse(corpusBytes.toString("utf8"));
 const chars = new Map(book.runes.map((r, i) => [r, i]));
 const transcript = read("resources/liber-primus/lp2-transcription.txt");
