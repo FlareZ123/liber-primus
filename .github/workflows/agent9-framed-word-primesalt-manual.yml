@@ -1,0 +1,18 @@
+name: Agent9 framed word prime-salt original
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-framing:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-locked framed original and native-language plant
+        run: node sims/lp2_wordlead_primesalt_framed_original_sft.cjs
