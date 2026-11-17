@@ -289,6 +289,57 @@ for(const [order,source] of [
 }
 assert.deepEqual(registerResults.map(x=>x.matches),[9,8,5,8,4,6,11,11]);
 
+
+// Adjacent solved p56 actually uses Euler φ(prime)=prime−1 as its key
+// generator and plaintext F consumes no key. Test a literal-C=F bypass
+// interpretation using the source carry trigger's GP prime−1: every
+// original non-F ciphertext must decode to non-F in a self-identifying
+// transparent-F variant. All eight frozen page-order, sign, scope models
+// violate this key-independent 1:1 branch condition.
+const phiTransparent=[];
+for(const [order,source] of [
+  ["p56-then-p57",joined],["p57-then-p56",clearP57.concat(clearP56)]
+]){
+  const key=extract(source).trigger.map(r=>mod(gp.prime[r]-1));
+  for(const [scope,cipher] of [
+    ["p55",p55],["p54-and-p55",chapter]]) {
+    for(const sign of[-1,1]){
+      let cursor=0,transparent=0;const forbidden=[];
+      for(let i=0;i<cipher.length;i++){
+        const c=cipher[i];
+        if(c===0){transparent++;continue;}
+        if(mod(c+sign*key[cursor++%76])===0) forbidden.push(i);
+      }
+      phiTransparent.push({order,scope,sign,
+        originalCipherF:transparent,keyConsumingOriginal:cursor,
+        forbiddenNonzeroToF:forbidden.length,
+        firstContradictions:forbidden.slice(0,6)});
+      // Positive 76-source-shape sequence: every plaintext F is literal,
+      // every independently constructed non-F remains outside glyph F.
+      let positiveClock=0;
+      const positivePlain=[],positiveCipher=[];
+      for(let i=0;i<cipher.length;i++){
+        if(i===56){positivePlain.push(0);positiveCipher.push(0);continue;}
+        const k=key[positiveClock++%76],p=mod(k+2+sign);
+        const actual=p===0?1:p;
+        const encoded=mod(actual-sign*k);
+        // The source generator may make a collision at this branch.
+        // Select the next clear symbol in that exceptional case.
+        const planted=encoded===0?mod(actual+1):actual;
+        const finalCipher=mod(planted-sign*k);
+        assert(planted!==0 && finalCipher!==0);
+        positivePlain.push(planted);positiveCipher.push(finalCipher);
+      }
+      let decClock=0;
+      const restored=positiveCipher.map(c=>
+        c===0?0:mod(c+sign*key[decClock++%76]));
+      assert.deepEqual(restored,positivePlain);
+    }
+  }
+}
+assert.deepEqual(phiTransparent.map(x=>x.forbiddenNonzeroToF),
+  [2,4,16,18,1,1,10,7]);
+
 if(require.main===module)console.log(JSON.stringify({§".includes(mark)&&buff.length){
     chapterSlots.push(buff);buff=[];
   }
@@ -361,6 +412,8 @@ if(require.main===module)console.log(JSON.stringify({
   stepDecoder:{tested:rankResults.length,originalCipherDoubletPositions:stepDuplicates,
     bestDictionaryWords:bestStepWords,allPositiveRecovered:rankResults.length,results:rankResults},
   results,
+  phiTransparentCipherFSourceBranch:{allEightHaveForbiddenNonzeroToF:true,
+    originals:phiTransparent},
   primeTurn272DirectPrintedProjection:{tested:registerResults.length,
     sourcePrimeTurns:272,allSourceOriginalMatches:registerResults},
   fullTerminalChapter:{sourceLength:chapter.length,p54:232,p55:76,
