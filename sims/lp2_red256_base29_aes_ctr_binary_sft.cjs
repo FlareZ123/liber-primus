@@ -98,8 +98,25 @@ for(const packet of packets){
   }
  }
 }
-assert.equal(originalTests,1040);
-assert.equal(correctPlants,1040);
+for(const key of keys)for(const iv of ivs){
+ const plain=Buffer.from(table);
+ const x=aesCtrXor(plain,key.key,iv.value);
+ assert.deepEqual(aesCtrXor(x,key.key,iv.value),plain);
+ originalTests++;
+ for(const [id,hex] of magic){
+  if(x.subarray(0,hex.length/2).toString('hex')===hex)hits.push({
+   packet:'original_p50_table',mode:'printed256bytes',key:key.id,iv:iv.id,signature:id});
+ }
+ const printable=[...x].filter(n=>n>=32&&n<=126||n===9||n===10||n===13).length/x.length;
+ maxPrint.push({packet:'original_p50_table',mode:'printed256bytes',key:key.id,iv:iv.id,
+  first16:x.subarray(0,16).toString('hex'),printable});
+ const planted=Buffer.from('LIBER PRIMUS SOURCE-NATIVE TEST ENGLISH PAYLOAD AND PNG SIGNATURE');
+ const y=aesCtrXor(planted,key.key,iv.value);
+ assert.deepEqual(aesCtrXor(y,key.key,iv.value),planted);
+ correctPlants++;
+}
+assert.equal(originalTests,1048);
+assert.equal(correctPlants,1048);
 const all=maxPrint.sort((a,b)=>b.printable-a.printable);
 console.log(JSON.stringify({
  packetCount:packets.length,sourceRunes:packets[0].indices.length,
