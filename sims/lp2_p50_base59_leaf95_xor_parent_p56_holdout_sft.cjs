@@ -128,7 +128,7 @@ const encodedPlant=plant85.map(v=>v===0?0:mod(v+primes[clock++]));
 assert.equal(clock,plant85.filter(v=>v!==0).length);
 clock=0;
 const decodedPlant=encodedPlant.map((c,i)=>
-  i===56?0:mod(c-primes[clock++]));
+  plant85[i]===0?0:mod(c-primes[clock++]));
 assert.deepEqual(decodedPlant,plant85);
 assert.deepEqual(decodedPlant.filter((v,i)=>i!==56),plant84);
 const output={source:{
