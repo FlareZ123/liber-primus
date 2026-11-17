@@ -124,9 +124,10 @@ function inverseTable(table) {
  *
  * @param {Uint8Array} cipher
  * @param {number[][]} inverse - secret tableau ORACLE, not original data
+ * @param {{mismatchPenalty?:number}} options - finite soft mismatch penalty for uncertain table entries; exact by default
  * @returns {{plaintext:Uint8Array,skips:Uint8Array,maxStates:number,transitions:number,score:number}}
  */
-function inferClock(cipher, inverse) {
+function inferClock(cipher, inverse, options = {}) {
   const length = cipher.length;
   /** @type {Map<number,number>} */
   let previous = new Map([[0, 0]]);
@@ -143,13 +144,13 @@ function inferClock(cipher, inverse) {
         if (extra >= MAX_EXTRA) break;
         if (i === 0 && skipped > 0) break;
         const y = inverse[clock[j + skipped]][cipher[i]];
-        let legal = true;
-        for (let u = 0; u < skipped; u++) {
-          if (inverse[clock[j + u]][prevC] !== y) { legal = false; break; }
-        }
-        if (!legal) continue;
+        let mismatches = 0;
+        for (let u = 0; u < skipped; u++)
+          mismatches += Number(inverse[clock[j + u]][prevC] !== y);
+        if (mismatches && options.mismatchPenalty === undefined) continue;
         const candidate = score + (i ? bigramLog[previousPlain][y] : -Math.log(N))
-          + skipped * logSkip + ((i && cipher[i] === prevC) ? logStopCollision : 0);
+          + skipped * logSkip + ((i && cipher[i] === prevC) ? logStopCollision : 0)
+          - mismatches * (options.mismatchPenalty ?? 0);
         const jNext = j + skipped + 1;
         if (candidate > (next.get(jNext) ?? -Infinity)) {
           next.set(jNext, candidate);
@@ -191,6 +192,7 @@ const sites = [
 assert.deepEqual(sites.map(s => s.after), [1110, 5138, 8515, 10089]);
 const withheld = [...Array(150)].map((_,i) => 8500 + i);
 
+if (require.main === module) {
 const tests = [];
 for (let trial = 0; trial < TRIALS; trial++) {
   const random = rng((0x3301abcd + trial * 1013904223) >>> 0);
@@ -263,3 +265,6 @@ console.log(JSON.stringify({
   decoderWithheld:['true plaintext including planted apostrophe words','true key pointers','every skip count and decision'],
   trials:tests
 },null,2));
+
+}
+module.exports = {inferClock, gpWord, toRunes, clock, bigramLog, source, training, rng, permutation, inverseTable};
