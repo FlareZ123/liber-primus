@@ -19,3 +19,4 @@ jobs:
           node sims/lp2_pdir_parable55_phasezero_original_sft.cjs
           node sims/lp2_parable55_chain28_original_sft.cjs
           node sims/lp2_55phase_chain28_allsecret_invariant_sft.cjs
+          node sims/lp2_parable55_page_seed_additive_iv_invariant_sft.cjs
