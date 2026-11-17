@@ -8,6 +8,14 @@ const path = require('node:path');
 
 const corpus = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'));
 const grid = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'resources', 'liber-primus', 'base60-grid.json'), 'utf8'));
+/** @param {number} x @returns {boolean} */
+function isPrime(x) {
+  for (let candidate = 2; candidate * candidate <= x; candidate++) {
+    if (x % candidate === 0) return false;
+  }
+  return x > 1;
+}
+
 const p55 = corpus.pages.find((page) => page.page === 55).indices;
 assert.equal(p55.length, 76);
 const p57 = corpus.pages.find((page) => page.page === 57);
@@ -20,6 +28,19 @@ assert.deepEqual(primeFactors.map((p) => p % 4), [3, 3, 1]);
 const [p, q, seed] = primeFactors;
 const modulus = p * q;
 assert.equal(modulus, 1298029);
+assert.ok(primeFactors.every(isPrime), 'all three p57 clause sums must be prime');
+
+// The exact original seed has a 612-bit recurrent state cycle.
+const initialState = seed * seed % modulus;
+let cycleState = initialState;
+let statePeriod = 0;
+do {
+  cycleState = cycleState * cycleState % modulus;
+  statePeriod++;
+  assert.ok(statePeriod <= modulus);
+} while (cycleState !== initialState);
+assert.equal(statePeriod, 612);
+
 
 /** @param {number} a @param {number} b @returns {number} */
 function gcd(a, b) {
@@ -34,6 +55,13 @@ const c59 = grid.rows.flat().map((token) =>
   59 * alphabet59.indexOf(token[0]) + alphabet59.indexOf(token[1]));
 assert.equal(c60.length, 256);
 assert.equal(c59.length, 256);
+const sourceByteLag = 153; // (2 * 612) / 8 whole bytes.
+const sourceLagMatches = {
+  base60: c60.slice(0, 256 - sourceByteLag).filter((x, i) => x === c60[i + sourceByteLag]).length,
+  base59: c59.slice(0, 256 - sourceByteLag).filter((x, i) => x === c59[i + sourceByteLag]).length
+};
+assert.deepEqual(sourceLagMatches, { base60: 0, base59: 0 });
+
 
 /**
  * Standard BBS construction: Blum primes p,q; seed s, state x0=s^2 mod pq.
@@ -170,7 +198,7 @@ assert.ok(Math.min(...completeIocs) > 0.0344 && Math.max(...completeIocs) < 0.03
 
 assert.deepEqual(report.map((x) => [x.sourceByteMatches.base60, x.sourceByteMatches.base59]), [[1, 3], [0, 2], [0, 1], [1, 0]]);
 assert.deepEqual(report.map((x) => x.p55OurOwnSixCribMatchesByFSkips), [[0, 1, 0, 0], [0, 0, 0, 1], [0, 1, 1, 1], [0, 0, 0, 0]]);
-console.log(JSON.stringify({ parableId3, primeFactors, modulus, seed,
+console.log(JSON.stringify({ parableId3, primeFactors, modulus, seed, statePeriod, sourceByteLag, sourceLagMatches,
   source: '2013 Parable ID3 plus original LP2 numeric grid and p55/p57 GP29',
   originalP55Ioc: originalIoc, clearP57First76Ioc: clearP57Ioc, report,
   completeOriginalRunes: completeOriginal.length, fullOriginalReports }, null, 2));
