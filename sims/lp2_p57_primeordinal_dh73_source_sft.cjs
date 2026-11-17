@@ -130,14 +130,18 @@ const p = primeSum('FIND'); // 151
 const a = primeSum('OUR');  // 21
 const must = primeSum('MUST'); // 186
 const g = must % p; // 35
-const b = 13; // candidate use of book-wide 13-dot punctuation (not authenticated)
-const A = powMod(g, a, p);
-const B = powMod(g, b, p);
-const K = powMod(B, a, p);
-assert.deepEqual({p, g, a, b, A, B, K}, {
-  p: 151, g: 35, a: 21, b: 13, A: 107, B: 115, K: 73
+const B = at59[1]; // Public share comes from AUTHENTIC original table cell173.
+const K = powMod(B, a, p); // K does NOT require guessing any private b=13.
+const A = powMod(g, a, p); // Optional second public share, source checked below.
+assert.deepEqual({p, g, a, A, B, K}, {
+  p: 151, g: 35, a: 21, A: 107, B: 115, K: 73
 });
-assert.equal(powMod(A, b, p), K);
+// The discrete log of original B under source-derived g is precisely 13.
+// This is an auxiliary consistency witness, not an input to recover K.
+const candidateBExponents = Array.from({ length: p - 1 }, (_, i) => i)
+  .filter((b) => powMod(g, b, p) === B);
+assert.deepEqual(candidateBExponents, [13]);
+assert.equal(powMod(A, candidateBExponents[0], p), K);
 assert.equal(at59[0], (p - 1) / 2);
 assert.equal(at59[1], B);
 assert.equal(at59[2], K);
@@ -210,8 +214,9 @@ console.log(JSON.stringify({
   sourceSelectedArithmeticCandidate: {
     original2013ParableNumber: originalN,
     literalModulo256: originalN % 256,
-    modulus: p, generator: g, privateA: a, optional13MarkerExponent: b,
-    publicA: A, publicB: B, sharedK: K,
+    modulus: p, generator: g, sourceSelectedPrivateA: a,
+    tablePublicShareB: B, derivedSharedK: K, sourceCheckedPublicA: A,
+    optionalLogarithmOfB: candidateBExponents,
     firstClauseHalfGroupOrder: at59[0],
     secondClausePublicShare: at59[1],
     thirdClauseSharedValue: at59[2],
@@ -226,5 +231,5 @@ console.log(JSON.stringify({
     rankMinusOneAlternativeMissingCorner: bytes59[168]
   },
   conditionalExactSlotProbability: conditionalProbability,
-  note: 'Fixed-address multiset probability is not a search-adjusted p-value. Zero recovered unknown ciphertext runes.'
+  note: 'K73 is computed directly from table-sourced B115 and OUR21, independent of any b=13 guess. Fixed-address permutation probability is unadjusted. Zero unknown-page plaintext.'
 }, null, 2));
