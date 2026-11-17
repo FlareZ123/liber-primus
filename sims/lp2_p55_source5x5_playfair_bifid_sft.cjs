@@ -25,6 +25,10 @@ assert.equal(p54.length, 232);
 assert.deepEqual(p54.slice(19, 21), [21, 21]);
 assert.deepEqual(p54.slice(155, 157), [6, 6]);
 assert.deepEqual(p55.slice(58, 60), [2, 2]);
+// Two original printed p55 terminal words are DJU-BEI (3+3 runes).
+// Standalone wordwise Playfair also cannot yield odd-length ciphertext words.
+assert.deepEqual(p55.slice(70, 73), [23, 11, 1]);
+assert.deepEqual(p55.slice(73, 76), [17, 18, 10]);
 const wholeChapter = p54.concat(p55);
 assert.equal(wholeChapter.length, 308);
 const repeatStarts = Array.from({length: wholeChapter.length - 1}, (_, i) => i)
