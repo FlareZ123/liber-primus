@@ -1,0 +1,227 @@
+#!/usr/bin/env node
+'use strict';
+
+// Reproduce the p57 FIND/MUST -> p50 base-59 -> (p=151,g=35) observation
+// and run a small, clue-constrained set of direct DH consumers against p55.
+// Run from the repository root: node sims/lp2_p57_find_must_dh151_gate.cjs
+
+const fs = require('node:fs');
+const path = require('node:path');
+
+const readJson = (p) => JSON.parse(fs.readFileSync(path.join(process.cwd(), p), 'utf8'));
+const grid = readJson('resources/liber-primus/base60-grid.json');
+const corpus = readJson('resources/liber-primus/lp2-corpus.json');
+const transcription = fs.readFileSync(path.join(process.cwd(), 'resources/liber-primus/lp2-transcription.txt'), 'utf8');
+
+const BASE60 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx';
+const BASE59 = BASE60.replace('f', '');
+const BASE29 = '0123456789ABCDEFGHIJKLMNOPQRS';
+const mod = (x, m) => ((x % m) + m) % m;
+
+function decodeGrid(alphabet) {
+  const index = new Map([...alphabet].map((c, i) => [c, i]));
+  return grid.rows.flat().map((token) => {
+    if (token.length !== 2 || !index.has(token[0]) || !index.has(token[1])) {
+      throw new Error('Unexpected p50 token: ' + token);
+    }
+    return index.get(token[0]) * alphabet.length + index.get(token[1]);
+  });
+}
+
+function phi(n) {
+  if (n === 0) return null;
+  let result = n;
+  let remainder = n;
+  for (let p = 2; p * p <= remainder; p++) {
+    if (remainder % p === 0) {
+      while (remainder % p === 0) remainder /= p;
+      result -= result / p;
+    }
+  }
+  if (remainder > 1) result -= result / remainder;
+  return Math.round(result);
+}
+
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let d = 2; d * d <= n; d++) if (n % d === 0) return false;
+  return true;
+}
+
+function powMod(a, n, m) {
+  let result = 1;
+  a = mod(a, m);
+  while (n > 0) {
+    if (n % 2) result = (result * a) % m;
+    a = (a * a) % m;
+    n = Math.floor(n / 2);
+  }
+  return result;
+}
+
+function ring(depth) {
+  const top = depth;
+  const bottom = 31 - depth;
+  const left = depth;
+  const right = 7 - depth;
+  const cells = [];
+  for (let x = left; x <= right; x++) cells.push(top * 8 + x);
+  for (let y = top + 1; y <= bottom; y++) cells.push(y * 8 + right);
+  for (let x = right - 1; x >= left; x--) cells.push(bottom * 8 + x);
+  for (let y = bottom - 1; y > top; y--) cells.push(y * 8 + left);
+  return cells;
+}
+
+function rotateRing(cells, startCell, direction) {
+  const start = cells.indexOf(startCell);
+  if (start < 0) throw new Error('Start cell is not on ring: ' + startCell);
+  return Array.from({ length: cells.length }, (_, i) =>
+    cells[mod(start + direction * i, cells.length)]
+  );
+}
+
+function base29(n) {
+  if (n === 0) return '0';
+  let out = '';
+  while (n > 0) {
+    out = BASE29[n % 29] + out;
+    n = Math.floor(n / 29);
+  }
+  return out;
+}
+
+function indexOfCoincidence(values) {
+  if (values.length < 2) return 0;
+  const counts = Array(29).fill(0);
+  for (const v of values) counts[v]++;
+  return counts.reduce((s, n) => s + n * (n - 1), 0) /
+    (values.length * (values.length - 1));
+}
+
+const base59 = decodeGrid(BASE59);
+const base60 = decodeGrid(BASE60);
+const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
+const p57Source = transcription.split('%').at(-1).replace(/[\/\r\n§&$]/g, '');
+const p57Words = p57Source.split(/[-.]/).filter(Boolean).map((raw) => {
+  const indices = [...raw].map((r) => runeIndex.get(r));
+  if (indices.some((i) => i === undefined)) throw new Error('Unknown rune in p57 word');
+  return {
+    word: indices.map((i) => corpus.translit[i]).join(''),
+    sum: indices.reduce((s, i) => s + corpus.prime[i], 0)
+  };
+});
+const find = p57Words.find((w) => w.word === 'FIND');
+const must = p57Words.find((w) => w.word === 'MUST');
+if (!find || !must || find.sum !== 151 || must.sum !== 186) {
+  throw new Error('p57 FIND/MUST word sums did not reproduce');
+}
+
+const p55 = corpus.pages.find((p) => p.page === 55).indices;
+if (p55.length !== 76) throw new Error('Expected 76 p55 rune indices');
+
+const p = find.sum;
+const g = must.sum % p;
+const orderChecks = [2, 3, 5].map((q) => ({
+  primeFactor: q,
+  power: powMod(g, (p - 1) / q, p)
+}));
+const primitiveRoot = isPrime(p) &&
+  powMod(g, p - 1, p) === 1 &&
+  orderChecks.every((x) => x.power !== 1);
+
+const counts = (a, value) => a.filter((x) => x === value).length;
+const fixedSelectorProbability =
+  (counts(base59, 151) * counts(base59, 186)) / (256 * 255);
+
+const innerClockwise = rotateRing(ring(2), 149, 1).map((cell) => base59[cell]);
+const innerCounterclockwise = rotateRing(ring(2), 149, -1).map((cell) => base59[cell]);
+const outerClockwise = rotateRing(ring(0), 151, 1).map((cell) => base59[cell]);
+const outerCounterclockwise = rotateRing(ring(0), 151, -1).map((cell) => base59[cell]);
+
+const dhTests = [];
+for (const [direction, inner, outer] of [
+  ['clockwise', innerClockwise, outerClockwise],
+  ['counterclockwise', innerCounterclockwise, outerCounterclockwise]
+]) {
+  const keyStreams = [
+    {
+      name: 'generator^inner-exponent mod 151, then mod 29',
+      key: inner.map((v) => powMod(g, v % (p - 1), p) % 29),
+      period: inner.length
+    },
+    {
+      name: 'p55-GP-prime public share ^ inner exponent mod 151, then mod 29',
+      key: p55.map((c, i) =>
+        powMod(corpus.prime[c], inner[i % inner.length] % (p - 1), p) % 29
+      ),
+      period: p55.length
+    },
+    {
+      name: 'p50 outer-ring value ^ inner exponent mod 151, then mod 29',
+      key: outer.map((v, i) =>
+        powMod(v % p, inner[i % inner.length] % (p - 1), p) % 29
+      ),
+      period: outer.length,
+      invalidPublicSharePositions: outer.map((v, i) => v % p === 0 ? i : null).filter((x) => x !== null)
+    }
+  ];
+
+  for (const stream of keyStreams) {
+    for (const sign of [-1, 1]) {
+      const plaintext = p55.map((c, i) => mod(c + sign * stream.key[i % stream.key.length], 29));
+      dhTests.push({
+        direction,
+        stream: stream.name,
+        sign: sign === -1 ? 'ciphertext - key' : 'ciphertext + key',
+        keyPeriod: stream.period,
+        invalidPublicSharePositions: stream.invalidPublicSharePositions || [],
+        ioc: indexOfCoincidence(plaintext),
+        output: plaintext.map((i) => corpus.translit[i]).join('')
+      });
+    }
+  }
+}
+
+const phiInner = innerClockwise.map((v) => phi(v)).filter((v) => v !== null);
+const base29PhiLength = phiInner.reduce((n, v) => n + base29(v).length, 0);
+const rawInnerBase29Length = innerClockwise.reduce((n, v) => n + base29(v).length, 0);
+
+const result = {
+  sourceFiles: [
+    'resources/liber-primus/base60-grid.json',
+    'resources/liber-primus/lp2-corpus.json',
+    'resources/liber-primus/lp2-transcription.txt',
+    'resources/external/2013-tcp-server-signed-source.md'
+  ],
+  p57WordSums: { FIND: find.sum, MUST: must.sum },
+  selector: {
+    base59Cell150: base59[150],
+    base59Cell151: base59[151],
+    base60Cell150: base60[150],
+    base60Cell151: base60[151],
+    base59Count151: counts(base59, 151),
+    base59Count186: counts(base59, 186),
+    exactFixedSelectorShuffleProbability: fixedSelectorProbability
+  },
+  group: {
+    modulus: p,
+    generator: g,
+    modulusPrime: isPrime(p),
+    phiModulus: phi(p),
+    phiMust: phi(must.sum),
+    orderChecks,
+    primitiveRoot
+  },
+  geometry: {
+    outerRingLength: ring(0).length,
+    innerRingLength: ring(2).length,
+    p55RuneLength: p55.length
+  },
+  base29LengthChecks: {
+    rawInnerRingOutputLength: rawInnerBase29Length,
+    phiInnerRingOutputLength: base29PhiLength
+  },
+  directDhTests: dhTests
+};
+
+console.log(JSON.stringify(result, null, 2));
