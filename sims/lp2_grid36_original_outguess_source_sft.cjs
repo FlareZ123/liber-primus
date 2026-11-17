@@ -72,13 +72,56 @@ function main(){
     const result=run(["-k",key,"-r",originalJpg,scratch]);
     const payload=fs.existsSync(scratch)?fs.readFileSync(scratch):Buffer.alloc(0);
     const header=/Steg retrieve:\s*seed:\s*(\d+),\s*len:\s*(\d+)/i.exec(result.stdout+"\n"+result.stderr);
+    function stats(buf){
+      if(!buf.length)return {entropyBitsPerByte:null,printableAsciiFraction:null,distinctByteValues:0,magic:[]};
+      const counts=new Uint32Array(256);
+      for(const b of buf)counts[b]++;
+      let entropyBitsPerByte=0;
+      for(const n of counts)if(n){const p=n/buf.length;entropyBitsPerByte-=p*Math.log2(p);}
+      let printable=0;
+      for(const b of buf)if(b===9||b===10||b===13||(b>=32&&b<=126))printable++;
+      const signatures=[
+        ["PNG","89504e470d0a1a0a"],["JPEG","ffd8ff"],["GIF87a","474946383761"],
+        ["GIF89a","474946383961"],["ZIP","504b0304"],["GZIP","1f8b08"],
+        ["PDF","255044462d"],["PGP armor","2d2d2d2d2d424547494e2050475020"],
+        ["ELF","7f454c46"],["SQLite","53514c69746520666f726d6174203300"],
+        ["7z","377abcaf271c"],["RAR","526172211a07"]
+      ];
+      const magic=signatures.filter(([,hex])=>buf.subarray(0,Buffer.from(hex,"hex").length).equals(Buffer.from(hex,"hex"))).map(([name])=>name);
+      return {entropyBitsPerByte:Number(entropyBitsPerByte.toFixed(6)),
+        printableAsciiFraction:Number((printable/buf.length).toFixed(6)),
+        distinctByteValues:counts.reduce((a,n)=>a+(n?1:0),0),magic};
+    }
+    const gpAscii="ABCDEFGHIJKLMNOPQRSTUVWXYZ123";
+    assert.equal(gpAscii.length,29);
+    const residues=grid.bytes.slice(193,229).map(n=>n%29);
+    const controls=[
+      {name:"reverse-72-character-string",password:key.split("").reverse().join("")},
+      {name:"reverse-36-cell-order",password:chosen.slice().reverse().join("")},
+      {name:"gp29-residues-as-A-Z-1-3",password:residues.map(n=>gpAscii[n]).join("")},
+      {name:"shifted-window-192-through-227",password:tokens.slice(192,228).join("")},
+      {name:"shifted-window-194-through-229",password:tokens.slice(194,230).join("")}
+    ];
+    const nullControls=controls.map(control=>{
+      fs.rmSync(scratch,{force:true});
+      const r=run(["-k",control.password,"-r",originalJpg,scratch]);
+      const bytes=fs.existsSync(scratch)?fs.readFileSync(scratch):Buffer.alloc(0);
+      const h=/Steg retrieve:\s*seed:\s*(\d+),\s*len:\s*(\d+)/i.exec(r.stdout+"\n"+r.stderr);
+      if(bytes.length)writeAtomic(path.join(output,control.name+".bin"),bytes);
+      return {name:control.name,passwordLength:control.password.length,
+        passwordSha256:sha(Buffer.from(control.password)),exitCode:r.status,
+        declaredHeader:h?{seed:Number(h[1]),len:Number(h[2])}:null,
+        recoveredBytes:bytes.length,prefixHex:bytes.subarray(0,64).toString("hex"),
+        payloadSha256:bytes.length?sha(bytes):null,...stats(bytes),
+        stdout:r.stdout.slice(0,800),stderr:r.stderr.slice(0,800)};
+    });
     const report={key,key_sha256:sha(Buffer.from(key)),sourceCells:[193,228],
       carrier:"resources/liber-primus/68.jpg",historicalPositive:true,
       nativeKeyPlantPositive,plantError,exitCode:result.status,
       stderr:result.stderr.slice(0,1600),stdout:result.stdout.slice(0,1600),
       declaredHeader:header?{seed:Number(header[1]),len:Number(header[2])}:null,
       recoveredBytes:payload.length,prefixHex:payload.subarray(0,64).toString("hex"),
-      payloadSha256:payload.length?sha(payload):null};
+      payloadSha256:payload.length?sha(payload):null,payloadStats:stats(payload),nullControls};
     if(payload.length)writeAtomic(path.join(output,"p51-original-candidate.bin"),payload);
     writeAtomic(path.join(output,"summary.json"),JSON.stringify(report,null,2)+"\n");
     process.stdout.write("GRID36_ORIGINAL_OUTGUESS "+JSON.stringify(report)+"\n");
