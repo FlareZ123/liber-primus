@@ -245,6 +245,68 @@ function learnEmissions(pages,paths,prefixLength){
   return emissions;
 }
 
+
+/**
+ * Approximate H2 inverse with the *same-plaintext* rejected-row constraint.
+ *
+ * This is entirely blind: input is only observed ciphertext, previously
+ * estimated table and independent reference language model. It never reads
+ * the true planted plaintext/table or clock. The fixed soft mismatch
+ * penalty is 8 nats and bigram weight .25, selected on trial0 and frozen
+ * prior to evaluation of remaining seeds and original p41.
+ *
+ * A putative skipped key row must decode the preceding emitted C[i-1]
+ * to the SAME plaintext that the accepted key row decodes from C[i].
+ * The penalty is soft because the recovered inverse table is imperfect.
+ *
+ * @param {number[]} cipher
+ * @param {Float64Array} emission
+ * @param {number[][]} inverseTable
+ * @returns {number[]}
+ */
+function inferPageWithSoftCollision(cipher,emission,inverseTable){
+  if(!cipher.length)return [];
+  const width=DRIFT_LIMIT+1,back=new Uint8Array(cipher.length*width);
+  const logSteps=[.972,.0272,.0008,.000022,.00000062].map(Math.log);
+  let previous=new Float64Array(width).fill(-1e30);
+  previous[0]=emission[primeRows[0]*N+cipher[0]];
+  for(let i=1;i<cipher.length;i++){
+    const next=new Float64Array(width).fill(-1e30);
+    for(let drift=0;drift<width;drift++){
+      const acceptedRow=primeRows[i+drift];
+      const acceptedPlain=inverseTable[acceptedRow][cipher[i]];
+      for(let extra=0;extra<=4&&extra<=drift;extra++){
+        const old=drift-extra;
+        if(previous[old]<-1e20)continue;
+        const priorPlain=inverseTable[primeRows[i-1+old]][cipher[i-1]];
+        let mismatches=0;
+        for(let k=old;k<drift;k++){
+          if(inverseTable[primeRows[i+k]][cipher[i-1]]!==acceptedPlain)
+            mismatches++;
+        }
+        const candidate=previous[old]+logSteps[extra]
+          +emission[acceptedRow*N+cipher[i]]
+          -8*mismatches+.25*model.logProb[priorPlain][acceptedPlain];
+        if(candidate>next[drift]){
+          next[drift]=candidate;
+          back[i*width+drift]=extra;
+        }
+      }
+    }
+    previous=next;
+  }
+  let drift=0;
+  for(let d=1;d<width;d++)
+    if(previous[d]>previous[drift])drift=d;
+  const result=new Array(cipher.length);
+  for(let i=cipher.length-1;i>=0;i--){
+    result[i]=drift;
+    drift-=back[i*width+drift];
+    assert.ok(drift>=0);
+  }
+  return result;
+}
+
 /**
  * Training rows are estimated, never planted. Reuse shared Hungarian
  * GP29 source-language decoder on all except physically withheld p41.
@@ -311,6 +373,10 @@ function solve(data){
     emissionFromTable(estimatedTable));
   const heldoutPlain=pages[HELDOUT_PAGE].map((c,i)=>
     estimatedTable[primeRows[i+heldoutPath[i]]][c]);
+  const softPath=inferPageWithSoftCollision(pages[HELDOUT_PAGE],
+    emissionFromTable(estimatedTable),estimatedTable);
+  const softPlain=pages[HELDOUT_PAGE].map((c,i)=>
+    estimatedTable[primeRows[i+softPath[i]]][c]);
   const expectedPlain=data.plain.slice(pageStart[HELDOUT_PAGE],
     pageStart[HELDOUT_PAGE]+PAGE_LENGTHS[HELDOUT_PAGE]);
   let heldoutCorrect=0;
@@ -339,6 +405,14 @@ function solve(data){
     if(estimatedTable[r][c]===actualInverse[r][c])tableCorrect++;
   return {heldoutPage:HELDOUT_PAGE,heldoutRunes:heldoutPlain.length,
     heldoutCorrect,heldoutFirst150:spanCorrect,
+    softHeldoutCorrect:softPlain.filter((p,i)=>p===expectedPlain[i]).length,
+    softHeldoutFirst150:softPlain.slice(0,150)
+      .filter((p,i)=>p===expectedPlain[i]).length,
+    softHeldoutKeyCorrect:softPath.filter((d,i)=>
+      d===data.truePaths[HELDOUT_PAGE][i]).length,
+    softHeldoutBigramLog:scoreLanguage(softPlain),
+    softHeldoutSkipCertificate:checkSkipped(pages[HELDOUT_PAGE],
+      softPath,softPlain,estimatedTable),
     heldoutBigramLog:scoreLanguage(heldoutPlain),
     heldoutSkipCertificate:checkSkipped(pages[HELDOUT_PAGE],heldoutPath,
       heldoutPlain,estimatedTable),
@@ -375,6 +449,13 @@ console.log(JSON.stringify({
   meanHeldoutPlainAccuracy:mean('heldoutCorrect')/
     PAGE_LENGTHS[HELDOUT_PAGE],
   meanHeldoutFirst150Accuracy:mean('heldoutFirst150')/150,
+  meanSoftHeldoutAccuracy:mean('softHeldoutCorrect')/
+    PAGE_LENGTHS[HELDOUT_PAGE],
+  meanSoftHeldoutFirst150Accuracy:mean('softHeldoutFirst150')/150,
+  meanSoftHeldoutClockAccuracy:mean('softHeldoutKeyCorrect')/
+    PAGE_LENGTHS[HELDOUT_PAGE],
+  meanSoftHeldoutFailedSkipChecks:tests.reduce((z,t)=>
+    z+t.softHeldoutSkipCertificate.failed,0)/tests.length,
   meanHeldoutBigramLog:mean('heldoutBigramLog'),
   results:tests.map(({prefixTrace,...rest})=>rest)
 },null,2));
@@ -441,6 +522,9 @@ function originalBlindGate(){
   const heldout=pages[HELDOUT_PAGE];
   const heldoutPath=inferPage(heldout,emissionFromTable(table));
   const text=heldout.map((c,i)=>table[primeRows[i+heldoutPath[i]]][c]);
+  const softPath=inferPageWithSoftCollision(heldout,
+    emissionFromTable(table),table);
+  const softText=heldout.map((c,i)=>table[primeRows[i+softPath[i]]][c]);
   const skipped=checkSkipped(heldout,heldoutPath,text,table);
   const trainingPlain=[];
   for(let p=0;p<pages.length;p++){
@@ -456,6 +540,12 @@ function originalBlindGate(){
     withheldBigramLog:scoreLanguage(text),
     withheldRawCipherBigramLog:scoreLanguage(heldout),
     withheldSkipCertificate:skipped,
+    softWithheldBigramLog:scoreLanguage(softText),
+    softWithheldSkipCertificate:checkSkipped(heldout,
+      softPath,softText,table),
+    softInferredHiddenExtraKeys:softPath.at(-1),
+    softWithheldCandidateFirst150:softText.slice(0,150)
+      .map(i=>gp.translit[i]).join(''),
     inferredWithheldHiddenExtraKeys:heldoutPath.at(-1),
     withheldCandidateFirst150: text.slice(0,150)
       .map(i=>gp.translit[i]).join(''),
