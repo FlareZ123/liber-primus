@@ -63,10 +63,11 @@ assert.equal(original.length, 12956);
 const events = [], counter = Array(29).fill(0);
 let offset = 0;
 for (const page of originalPages) {
-  for (let i = 1; i < page.indices.length - 1; i++) {
+  for (let i = 1; i < page.indices.length; i++) {
     if (page.indices[i] !== page.indices[i-1]) continue;
-    const delta = mod(page.indices[i+1] - page.indices[i]);
-    events.push({page:page.page,offset:offset+i,delta});
+    const at = offset+i;
+    const delta = mod(original[at+1] - original[at]);
+    events.push({page:page.page,offset:at,delta});
     counter[delta]++;
   }
   offset += page.indices.length;
