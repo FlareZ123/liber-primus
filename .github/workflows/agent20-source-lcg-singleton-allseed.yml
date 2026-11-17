@@ -1,0 +1,20 @@
+name: Agent20 original all-seed Parable-tree LCG singleton gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-allseed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test every 32-bit seed on 83 original LP2 one-rune words
+        run: |
+          node --check sims/lp2_source_lcg_singleton_allseed_sft.cjs
+          node sims/lp2_source_lcg_singleton_allseed_sft.cjs
