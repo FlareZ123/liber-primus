@@ -1,0 +1,15 @@
+name: LP2 source-chapter predecessor-spectrum all-secret reset certificate
+on:
+  workflow_dispatch:
+jobs:
+  spectrum:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original spectrum, all native control windows and reset census
+        shell: pwsh
+        run: node sims/lp2_ninechapter_predecessor_spectrum_reset_sft.cjs
