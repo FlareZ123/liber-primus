@@ -97,6 +97,27 @@ for(let a=0;a<8;a++)for(let b=a+1;b<8;b++) {
   if(t.includes("THEN"))sourceOtherPairs.push([a,b]);
 }
 assert.deepEqual(sourceOtherPairs, [[3,6]]);
+const reverseGP29 = roman(key29.slice().reverse());
+assert.equal(reverseGP29, "HEADNGDEAMRNETHNF");
+const reverseHeadPairs=[];
+for(let a=0;a<8;a++)for(let b=a+1;b<8;b++) {
+  const reversed=roman(xorColumns(a,b).map(x=>x%29).reverse());
+  if(reversed.startsWith("HEAD"))reverseHeadPairs.push([a,b]);
+}
+assert.deepEqual(reverseHeadPairs, [[3,6]]);
+// Independent, row-conditioned count for six EXACT PRESELECTED rune modules.
+// Their locations/words were actually recognized retrospectively, so this
+// is only a collision baseline and must not be called a discovery p-value.
+const fixedRuneLocations=[[2,2],[3,18],[4,9],[10,23],[11,28],[12,8]];
+const matchCounts = fixedRuneLocations.map(([row,expected]) => {
+  let count=0;
+  for(let a=0;a<8;a++)for(let b=a+1;b<8;b++)
+    count+=Number((page50.bytes[8*row+a] ^ page50.bytes[8*row+b])%29===expected);
+  return count;
+});
+assert.deepEqual(matchCounts,[1,2,3,2,1,2]);
+const conditionalExactSixModuleChance=matchCounts.reduce((p,c)=>p*c/28,1);
+assert.ok(Math.abs(conditionalExactSixModuleChance-4.9803865736215336e-8)<1e-17);
 let firstRowMatches = 0, allMatches = 0;
 for(let i=0;i<104;i++)for(let j=i+1;j<104;j++)
  if((page50.bytes[i]^page50.bytes[j])===174) {
@@ -228,7 +249,7 @@ console.log(JSON.stringify({
     matchedSourcePairsInFirstRow:firstRowMatches,
     matchedPairsIn13rows:allMatches,
     rowCount:13,xor13:originalBytes,GP29Key:roman(key29),
-    oneTHENpairAmong28:sourceOtherPairs
+    oneTHENpairAmong28:sourceOtherPairs,\n    oneReverseHEADpairAmong28:reverseHeadPairs,\n    reversedGP29:reverseGP29,\n    rowConditionedPosthocSixModuleCollision:conditionalExactSixModuleChance
   },
   originalP55: {
     runes:C.length,directCandidates:variants.length,
