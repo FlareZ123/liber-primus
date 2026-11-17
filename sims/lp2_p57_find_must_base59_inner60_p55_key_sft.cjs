@@ -2,7 +2,7 @@
 'use strict';
 
 // Source-selected p57 FIND/MUST -> base59 table -> inner-60 / outer-76
-// additive-key hypothesis. Original inputs are read-only.
+// additive-key hypotheses. Original inputs are read-only.
 // Run: node sims/lp2_p57_find_must_base59_inner60_p55_key_sft.cjs
 
 const assert = require('node:assert/strict');
@@ -16,8 +16,10 @@ const grid = JSON.parse(read('resources/liber-primus/lp2-grid-256.json'));
 const transcription = read('resources/liber-primus/lp2-transcription.txt');
 const tokens = grid.pages.flatMap(page => page.tokens);
 assert.equal(tokens.length, 256);
-assert.equal(corpus.pages.find(page => page.page === 55).indices.length, 76);
-assert.equal(corpus.pages.find(page => page.page === 57).indices.length, 95);
+const p55 = corpus.pages.find(page => page.page === 55).indices;
+const p57 = corpus.pages.find(page => page.page === 57).indices;
+assert.equal(p55.length, 76);
+assert.equal(p57.length, 95);
 
 const alpha60 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx';
 const alpha59 = alpha60.replace('f', '');
@@ -127,8 +129,6 @@ assert.equal(outerStart, 151);
 assert.ok(innerRing.includes(innerStart));
 assert.ok(outerRing.includes(outerStart));
 assert.equal(innerRing.length, phi(mustWord.primeSum));
-const p55 = corpus.pages.find(page => page.page === 55).indices;
-const p57 = corpus.pages.find(page => page.page === 57).indices;
 const p55CipherF = p55.map((value, index) => value === 0 ? index : null)
   .filter(index => index !== null);
 assert.deepEqual(p55CipherF, [15, 25, 41]);
@@ -171,17 +171,10 @@ function encodeTransparent(plaintext, key) {
     return cipherValue;
   });
 }
-const directions = [];
-for (const direction of [1, -1]) {
-  const innerCells = startRing(innerRing, innerStart, direction);
-  const outerCells = startRing(outerRing, outerStart, direction);
-  const key = innerCells.map(cell => mod(table59[cell]));
-  assert.equal(key.length, 60);
+function testKey(mapping, innerCells, outerCells, key) {
   assert.equal(outerCells.length, p55.length);
-  assert.equal(outerCells[0], outerStart);
   const keyZeroCells = innerCells.map((cell, keyPosition) =>
-    table59[cell] === 0 ? { cell, keyPosition } : null).filter(Boolean);
-
+    key[keyPosition] === 0 ? { cell, keyPosition } : null).filter(Boolean);
   const branchResults = [];
   for (let mask = 0; mask < 8; mask += 1) {
     const literalFPositions = new Set(p55CipherF.filter((_, bit) => (mask & (1 << bit)) !== 0));
@@ -194,10 +187,10 @@ for (const direction of [1, -1]) {
     });
   }
   assert.ok(branchResults.every(result => !result.valid));
-  const expectedContradictionOffset = direction === 1 ? 5 : 12;
+  const firstContradiction = branchResults[0].contradiction;
   assert.ok(branchResults.every(result =>
-    result.contradiction.offset === expectedContradictionOffset));
-  assert.ok(expectedContradictionOffset < p55CipherF[0]);
+    JSON.stringify(result.contradiction) === JSON.stringify(firstContradiction)));
+  assert.ok(firstContradiction.offset < p55CipherF[0]);
 
   const noSkipPlaintext = p55.map((value, index) => mod(value - key[index % key.length]));
   const noSkipText = noSkipPlaintext.map(index => corpus.translit[index]).join('');
@@ -212,26 +205,66 @@ for (const direction of [1, -1]) {
   assert.deepEqual(recoveredPlant.plaintext, plant);
   assert.deepEqual(encodeTransparent(recoveredPlant.plaintext, key), plantCipher);
 
-  directions.push({
-    direction: direction === 1 ? 'clockwise' : 'counterclockwise',
-    innerStart,
-    outerStart,
+  return {
+    mapping,
     keyLength: key.length,
+    firstKeyValue: key[0],
     keyZeroCells,
+    firstContradiction,
     p55TransparentFBranches: branchResults,
     noSkipIoc,
     noSkipPlaintext: noSkipText,
     p57NativePlantRecovered: recoveredPlant.plaintext.length,
     p57NativePlantFPositions: [...plantLiteralF]
+  };
+}
+
+const directions = [];
+for (const direction of [1, -1]) {
+  const innerCells = startRing(innerRing, innerStart, direction);
+  const outerCells = startRing(outerRing, outerStart, direction);
+  const rawValues = innerCells.map(cell => table59[cell]);
+  assert.equal(rawValues.length, 60);
+  const zeroCells = innerCells.map((cell, keyPosition) =>
+    rawValues[keyPosition] === 0 ? { cell, keyPosition } : null).filter(Boolean);
+  assert.deepEqual(zeroCells.map(item => item.cell), [229]);
+  const rawKey = rawValues.map(value => mod(value));
+  const phiKey = rawValues.filter(value => value !== 0).map(value => mod(phi(value)));
+  assert.equal(phiKey.length, 59);
+  assert.equal(rawKey.length, 60);
+  directions.push({
+    direction: direction === 1 ? 'clockwise' : 'counterclockwise',
+    innerStart,
+    outerStart,
+    rawZeroCells: zeroCells,
+    rawKey: testKey('raw base59 value mod29', innerCells, outerCells, rawKey),
+    phiKey: testKey('phi(base59 value) mod29; omit the single zero because phi(0) is undefined',
+      innerCells.filter(cell => table59[cell] !== 0), outerCells, phiKey)
   });
 }
-assert.equal(directions[0].noSkipIoc, 0.03263157894736842);
-assert.equal(directions[1].noSkipIoc, 0.031228070175438598);
-assert.equal(directions[0].p57NativePlantRecovered, 76);
-assert.equal(directions[1].p57NativePlantRecovered, 76);
+const expected = [
+  { rawOffset: 5, rawCipher: 15, rawKey: 15, rawIoc: 0.03263157894736842,
+    phiOffset: 0, phiCipher: 21, phiKey: 21, phiIoc: 0.034035087719298245 },
+  { rawOffset: 12, rawCipher: 23, rawKey: 23, rawIoc: 0.031228070175438598,
+    phiOffset: 0, phiCipher: 21, phiKey: 21, phiIoc: 0.0343859649122807 }
+];
+for (let i = 0; i < directions.length; i += 1) {
+  const result = directions[i];
+  const e = expected[i];
+  assert.equal(result.rawKey.firstContradiction.offset, e.rawOffset);
+  assert.equal(result.rawKey.firstContradiction.cipher, e.rawCipher);
+  assert.equal(result.rawKey.firstContradiction.key, e.rawKey);
+  assert.equal(result.phiKey.firstContradiction.offset, e.phiOffset);
+  assert.equal(result.phiKey.firstContradiction.cipher, e.phiCipher);
+  assert.equal(result.phiKey.firstContradiction.key, e.phiKey);
+  assert.ok(Math.abs(result.rawKey.noSkipIoc - e.rawIoc) < 1e-15);
+  assert.ok(Math.abs(result.phiKey.noSkipIoc - e.phiIoc) < 1e-15);
+  assert.equal(result.rawKey.p57NativePlantRecovered, 76);
+  assert.equal(result.phiKey.p57NativePlantRecovered, 76);
+}
 
 console.log(JSON.stringify({
-  classification: 'bounded negative for one source-shaped inner60-to-outer76 additive consumer; no unknown plaintext',
+  classification: 'bounded negatives for two source-motivated inner60-to-outer76 additive consumers; no unknown plaintext',
   p57WordCount: wordData.length,
   base59RawWordValueHits: base59ValueHits.length,
   base60RawWordValueHits: base60ValueHits.length,
