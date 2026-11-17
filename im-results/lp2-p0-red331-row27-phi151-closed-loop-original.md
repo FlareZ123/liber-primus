@@ -78,6 +78,55 @@ Second, the row's unique terminal **151** itself provides a concrete *prime-valu
 
 
 
+
+## A sharply constrained source numeral stencil: 1-step and 7-step in row27
+
+The selected row has a **second internally structured carrier**, independent of the terminal byte151. Its four consecutive printed tokens at zero-based columns3–6 are
+
+\`\`\`text
+0x  0w  0q  0p    (four original printed cells)
+59  58  52  51    (canonical radix60 byte values)
+\`\`\`
+
+They form an exact 2×2 arithmetic stencil
+
+\`\`\`text
+59   58      horizontal decrement 1
+52   51      vertical decrement 7
+\`\`\`
+
+The pairwise source facts are \`59−58=52−51=1\` and \`59−52=58−51=7\`. This **stride7** has an independently authenticated historical operation: Cicada's 2014 Stage05 used an explicit *seven-position transposition*. The actual source-exact Stage05 inverse is \`[0,6,2,5,1,4,3]\`, as recorded in [its authenticated original-cipher regression](lp2-2014-stage04-source-exact-stage05-seven-column-inverse.md). There is no instruction applying Stage05 to the LP2 grid or specific pages. The stencil is a concrete hypothesis for an authored width/direction hint, not an identified cipher.
+
+This structure is unusually localized in the fixed source corpus:
+
+- Among **all 253 consecutive four-byte windows** in the 256-cell original table, the *only* window satisfying \`[v,v−1,v−7,v−8]\` begins at byte **219**, which is **row27/column3**.
+- Among all **32 complete eight-cell rows**, row27 is the **only row with two descending-by-one adjacent pairs**. The other two such pairs in the entire table occur singly at row4/col0 and row19/col6.
+- **The second descending pair also sums to 103:** \`52+51=103\`. Across all 32 original rows, **the only same-row adjacent byte pair with total103** is row27's column5+6 pair, beginning at global cell221. The **103rd one-based printed table cell** has original token \`0W\` and gives the decimal byte **32**.
+
+The number103 is independently singled out by another exact manuscript source: immediately **after the repeated six-rune marker on p27**, the first complete printed word \`AE.F\` at p27 offsets34–35 has original GP-prime sum **103**. Earlier [p27→table103→p32 navigation work](lp2-p55-p27-table103-p32-tree-navigation.md) noticed that one-based cell103 gives **physical-page-shaped numeral32**, pointing to p32's blurred tree, which has an independently confirmed visual correspondence to p55's tree. The new *row27* pair \`52+51\` yields **the very same address103** *before* the p27 word is even consulted. This supplies two physically separate original operands for the already investigated p27→p32 candidate hop. It still does not authenticate the rule that a neighboring-byte pair should be summed or that the table-cell's byte should be read as a page number.
+
+This also makes the radix rivalry more discriminating. Under the genuinely valid **radix59** reading, the four tokens become \`[58,57,51,50]\`; the **1×7 stencil survives**, but the final pair's total is **101**, so it no longer matches the original p27 word total103 or one-based cell103=32. Together with the separately identified terminal-\`2V\` totient equation, **two distinct, source-backed numerical equalities conditionally prefer radix60**, while the 1×7 stencil is radix-invariant. These equalities are analyst-selected and must not be treated as proof that Cicada intended either the arithmetic route or that radix59 is mathematically excluded.
+
+### A deliberately narrow shuffle calibration
+
+The [reproducer](../sims/lp2_p0_red331_row27_totient_sft.cjs) gives a fully exact *conditional* rarity calculation using the original 256-byte multiset. With all byte frequencies preserved and byte positions uniformly permuted, the count of admissible **ordered four-position tuples** of the prespecified form \`[v,v−1,v−7,v−8]\` is exactly **276** among
+
+\`\`\`text
+256 × 255 × 254 × 253 = 4,195,023,360
+\`\`\`
+
+possible ordered draws. Each specified four-cell window has exact chance **6.5792243884 × 10⁻⁸**. The expected number in all **253** sliding windows is **1.6645437703 × 10⁻⁵**; by Markov's inequality, this also bounds the chance of at least one such fixed-form stencil under that particular random-permutation null.
+
+**This is not a discovery-wide p-value.** The horizontal1, vertical7 geometry was recognized after examining the source row, and the grid may have cryptographic/typographic dependence that violates the shuffle null. Existing pre-2014 **seven-column** operations and the independently selected source row27 make the pattern motivated enough to preserve as an unexplained possible authored marker, yet they do not retroactively make an exploratory motif search preregistered.
+
+### Literal original Stage05 readout on the uniquely aligned seven-rune bookends
+
+The p27 repeated fragment begins at **p27 local offset28 = 4×7**. The terminal copy begins at **p55 local offset70 = 10×7** and extends to exactly seven runes by adjoining the first authentic ciphertext GP rune of solved p56. This yields a **77-rune p55+p56 seam = 11×7**, naturally divided into complete seven-rune blocks. Crucially the source copies align at corresponding **seven-block boundaries without any fitted phase**.
+
+Apply the *exact historical* Stage05 inverse \`[0,6,2,5,1,4,3]\` separately to p27's complete 7-rune blocks (234 rune page, last three untouched) and to the canonical p55+p56 77-rune seam. The duplicated ciphertext seven-block \`[23,11,1,17,18,10,25]\` maps to the *same* permuted seven-symbol block \`[23,25,1,10,11,18,17]\` at both locations. In source-native GP spelling this is \`D AE U I J E B\`, an uninterpretable fragment. The beginning of p27 after the complete fixed transposition reads \`M A Y O P S L AE M L I H EO E L...\`, and the terminal seam begins \`NG B M S AE W I X TH S D M G EO...\`; there is no authentic readable prose. This is a **specific original-input negative**, rather than an argument against all seven-column ciphers or a second layer. Prior Stage05 tests on other section clocks also failed; the seven-rune seam alignment here is the new source-selected case.
+
+The most productive next discriminator would be a **creator-authenticated instruction specifying how the 1×7 stencil supplies a key schedule or table traversal**. A complete original sentence on p27, p32, or p55 would substantiate the route. Further arbitrary 7-column permutations, pad offsets, or page hops chosen after reading results would erase the clue constraint.
+
 ## Independent destination clue: source row 27 identifies the first of two repeated bookend pages
 
 There is a materially separate *navigation* interpretation of the same source-selected zero-based **row27**. It also names **physical LP2 page27**, the last page of the first 28-page half of the 56 unsolved physical-page slots. The corresponding page in the second half is **p55**, the final unsolved page immediately preceding the solved p56.
