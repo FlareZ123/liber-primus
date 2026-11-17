@@ -87,7 +87,7 @@ The GP29 alphabet gives a natural two-rune domain of `29²=841` values; `29³=24
 
 The exhaustive control confirms both exponent directions invert exactly on all 841 states (maximum 20 cycle-walk steps). The four fixed readings—printed big-endian or reversed little-endian pairs, and decryption exponent 1297 or 1033—produce IoCs `0.03494072`, `0.03438697`, `0.03450396`, and `0.03470036`, against ciphertext IoC `0.03436002`. Their previews remain random-looking; no plaintext is recovered. [Reproducer](../sims/lp2_cuneiform_1033_exponent_3301_modulus_fpe_sft.cjs) · [2013 transcript vector](../resources/external/2013-tcp-live-test-vectors.json).
 
-**Decision:** retire this literal `e=1033,n=3301), two-rune cycle-walked modular-power assignment. It is a bounded negative, not a claim that all modular operations or other source roles have been excluded. The exact operand roles and cycle-walk rule are not authenticated by the historical protocol.
+**Decision:** retire this literal `e=1033,n=3301`, two-rune cycle-walked modular-power assignment. It is a bounded negative, not a claim that all modular operations or other source roles have been excluded. The exact operand roles and cycle-walk rule are not authenticated by the historical protocol.
 
 ### Other paired-value proposals already tested
 
