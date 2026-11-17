@@ -63,6 +63,32 @@ Beyond the key-independent invariant, this invocation directly attempted **maxim
 
 Under each **actual source-shaped native-GP positive plant**, the same fitting routine recovered **all 29/29 secret alphabet entries**, and the independent holdout score was approximately **−2.95584 nats/rune**. The negative originals are therefore substantive failed decryption attempts with an actual powered positive and frozen original holdout. Each exact 29×29 assignment algorithm and all six-plus-three original clock variants are frozen in the runnable Hungarian SFT. The exact all-secret statewise equality bound above is the stronger, key-independent result; no interpretation of the best-scoring original keys as plaintext is justified.
 
+## Extension: arbitrary hidden alphabet per prime residue and original line-direction bit
+
+**17 November 2026, Agent39.** The signed 2016 clue about “numbers” and “direction” suggests one additional source-observable bit from the physical printed layout. The [exact source-native all-secret state SFT](../sims/lp2_layout_prime_allsecret_14state_sft.cjs) therefore strengthens the earlier entire-29! bound to the more expressive state
+
+\[
+s_i=(\mathrm{originalPhysicalPage}_i,\phi(\mathrm{prime}_{\mathrm{clock},i})\bmod29,\mathrm{layoutSign}_i).
+\]
+
+Each state receives its **own entirely arbitrary 29! permutation**. The ciphertext-equality collision numerator and denominator remain invariant inside that state regardless of the secret permutation. This tests a concrete historical combination: p56's genuine prime-totient index schedule plus published binary page/line/position sign interpretations from `pnotisdev/cicada3301` (pinned historical source commit `15200c67abee106913ba01ff504c5b6e88d16cc7`). Input is the 12,956 unchanged original rune indices and physical page/line breaks. All source runes are checked against the canonical corpus before testing.
+
+The 14 genuinely different within-page sign-state partitions are line parity within page, line parity within section, position parity, half-page by rune count, half-page by line count, and all three mod-3 phase variants for line-in-page, line-in-section and position-in-line. The separately printed `PL_xor` is an exact relabel of `Ln_par` after conditioning on page, so running both repeats the same collision calculation. The page-only sign rules likewise do not split any `(page,prime)` state and were already covered by this report's original bound. This leaves **14 genuinely extended partitions × 3 original prime clocks = 42 distinct calculated cases**.
+
+For each case, the complete `12,956`-rune sample uses its original physical state sequence. The same 150 deterministic native-GP Shakespeare passages per case are evaluated with *identical* state sequences, giving 6,300 native-window comparisons over the finite source register. Observed ranges across the 14 source-layout masks:
+
+| Prime clock | Original statewise collision Q (min–max) | Minimum native control Q, all masks/windows | Eligible ordered source pairs per mask |
+| --- | ---: | ---: | ---: |
+| Book-continuous | **0.03285562–0.03455053** | **0.05534516** | 50,656–60,432 |
+| Physical-page reset | **0.03302614–0.03565951** | **0.05479798** | 48,076–58,764 |
+| Visual-chapter reset | **0.03275783–0.03575591** | **0.05617121** | 49,474–59,852 |
+
+**All 42 original Q values remain below all 150 native-GP windows for their matching case**. Their original rates are close to (1/29) despite granting each sign-conditioned prime/page state a completely independent substitution. This is an exactly invariant separation for the stated state definition. The 150 windows overlap, so 6,300 is a count of finite case/control comparisons rather than an independent-trial statistical significance claim.
+
+The SFT includes exact original source-alignment counts `Ln_par/book: 1,758/52,242` and `Po_par/page: 1,790/52,114`. It also creates a native-English 12,956-rune positive, encrypts it under independently varying **invertible affine secret alphabets for every page/prime/sign state**, and inverts every symbol. For all 42 cases, plaintext and ciphertext have identical per-state collision numerators and denominators by direct calculation. Original-source and planted assertions are executable with Node 22 on Windows through the [manual CI workflow](https://github.com/FlareZ123/liber-primus/actions/workflows/lp2-layout-prime-allsecret-42states-sft.yml).
+
+This independently excludes **ordinary native GP-English plaintext** concealed under any stationary per-`(page,primeResidue,layoutBit)` symbol permutation with book, page or chapter prime clocks. Different plaintext registers, actual p56 plaintext-F pauses (which make clock state depend on plaintext), a changing keystream pointer, full line positions beyond one mask bit, or deeper reversible layers remain outside the model.
+
 ## Research decision
 
-A direct extension of p56's prime-totient cipher to unknown LP2 with a stationary arbitrary alphabet keyed only by the **current prime residue and original page** cannot explain ordinary native GP-English plaintext, for any chosen 29! alphabets. Future work must introduce evidence for a genuinely **changing per-symbol state, nonnative intermediate register, external secret material, different prime-index selection or a different cipher architecture**. Another static key search inside these already excluded classes cannot unlock unknown pages. Do not turn this negative into a claim that the solved p56 method proves an LP2-wide cipher.
+A direct extension of p56's prime-totient cipher to unknown LP2 with a stationary arbitrary alphabet keyed by the **current prime residue and original page, optionally refined by any one of the 14 original page/line/position sign-state partitions**, cannot explain ordinary native GP-English plaintext, for any chosen 29! alphabets. Future work must introduce evidence for a genuinely **changing per-symbol state, nonnative intermediate register, external secret material, different prime-index selection or a different cipher architecture**. Another static key search inside these already excluded classes cannot unlock unknown pages. Do not turn this negative into a claim that the solved p56 method proves an LP2-wide cipher.
