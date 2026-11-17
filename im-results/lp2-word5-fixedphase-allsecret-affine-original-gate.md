@@ -27,7 +27,9 @@ Two distinct English corpora in `resources/control/` are greedily encoded into t
 | Adjacent-difference weighted GP29 IoC | 0.03535913 | min 0.04401521, mean 0.04580943 | min 0.04214097, mean 0.04372801 |
 | Five-back-difference weighted GP29 IoC | 0.03449957 | min 0.04012625, mean 0.04314134 | min 0.04035122, mean 0.04458337 |
 
-**Zero of 3,000 controls from either corpus** has a count-weighted IoC as low as the authentic LP2 ciphertext for either invariant. The phase-specific five-back IoC minima are **not individually all excluded**: 12 of 3,000 Gibran controls fall below original phase four alone. The weighted statistic combines all source phases and is the intended bound; isolated individual-phase significance is not claimed.
+An independent **Latin Vulgate already GP29-encoded** corpus, with its original word breaks and GP digraph orthography, supplies **3,000 more length-matched original-shape trials**. Its weighted adjacent-difference mean/min is **0.04556043/0.04403489** and weighted five-back mean/min is **0.04021837/0.03795238**. Zero of 3,000 Latin controls is as low as original on either invariant. This independent non-English check strengthens the direct fixed-slope conclusion while remaining conditional to those finite source registers.
+
+**Zero of 3,000 controls from any of these three corpora** has a count-weighted IoC as low as the authentic LP2 ciphertext for either invariant. The phase-specific five-back IoC minima in the two English corpora are **not individually all excluded**: 12 of 3,000 Gibran controls fall below original phase four alone. The weighted statistic combines all source phases and is the intended bound; isolated individual-phase significance is not claimed.
 
 **Decision:** Under original GP29 word boundaries and ordinary source-native English, the direct five-phase affine cipher with a *global* slope per phase and arbitrary hidden offset per word/phase is incompatible with the measured original corpus. Arbitrary word-specific slopes, transpositions, nonnative plaintext, nonlinear feedback, inserted/dropped runes and additional cipher layers remain outside this theorem.
 
