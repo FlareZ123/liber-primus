@@ -291,7 +291,7 @@ The 23-rune output is:
 EA Y O U B W H A R T R L AE S IA T NG B M Y I TH O
 ```
 
-The two previously noticed dimension hits produce **H** and **S** at cycle steps 7 and 14 (the 563 and 569 sums). The other 21 positions do not extend them into a phrase or instruction; the operation supplies no word boundaries. This is a withheld p32 prediction, not plaintext recovery.
+The two previously noticed dimension hits produce **H** and **S** at cycle steps 7 and 14 (the 563 and 569 sums). The other 21 positions do not extend them into a phrase or instruction; the operation supplies no word boundaries. The second red-heading seed is already on the same cycle at phase **6**, so it rotates this output by six positions; the first red word anchors the displayed order, but the signed clue does not choose a phase. This is a withheld p32 prediction, not plaintext recovery.
 
 A second literal word-address interpretation, using each cycle sum modulo 23 to select a p32 word, visits only **15 distinct** addresses; one address is outside p32's **21 printed words**. The p32 page has 121 runes and one red large-punctuation marker at rune position 121, but it does not contain a 23-word text list. Treating its tree illustration and punctuation as extra word cells would be an additional, unselected rule. The 11×11 p32 arrangement is a reflow of 121 runes, not a printed grid. Likewise, p0–2's 156 body words factor as 13×12, but the original pages are ordinary text lines (12, 12, and 9 lines, including p0's red heading), not a printed 13×12 word matrix.
 

@@ -60,7 +60,16 @@ function trace(seed) {
 }
 const firstTrace = trace(headingSums[0] % body.length);
 const secondTrace = trace(headingSums[1] % body.length);
-assert.deepEqual(firstTrace.cycle, secondTrace.cycle);
+function canonicalRotation(cycle) {
+  const minimum = Math.min(...cycle);
+  const offset = cycle.indexOf(minimum);
+  return cycle.slice(offset).concat(cycle.slice(0, offset));
+}
+assert.deepEqual(canonicalRotation(firstTrace.cycle), canonicalRotation(secondTrace.cycle));
+assert.equal(firstTrace.transient.length, 3);
+assert.equal(secondTrace.transient.length, 0);
+const secondSeedPhase = firstTrace.cycle.indexOf(secondTrace.cycle[0]);
+assert.equal(secondSeedPhase, 6);
 const cycle = firstTrace.cycle;
 assert.equal(cycle.length, 23);
 
@@ -80,6 +89,14 @@ const p32Readout = cycle.map((bodyIndex, step) => {
   };
 });
 const p32ReadoutRunes = p32Readout.map(item => item.rune);
+const secondSeedReadoutRunes = secondTrace.cycle.map(bodyIndex => {
+  const index0 = bodySums[bodyIndex] % p32.length;
+  return corpus.translit[p32[index0]];
+});
+assert.deepEqual(
+  secondSeedReadoutRunes,
+  p32ReadoutRunes.slice(secondSeedPhase).concat(p32ReadoutRunes.slice(0, secondSeedPhase))
+);
 const expectedReadout = [
   "EA","Y","O","U","B","W","H","A","R","T","R","L",
   "AE","S","IA","T","NG","B","M","Y","I","TH","O"
@@ -122,6 +139,7 @@ console.log(JSON.stringify({
     bodyWords: body.length,
     seeds0: headingSums.map(sum => sum % body.length),
     transientLengths: [firstTrace.transient.length, secondTrace.transient.length],
+    secondSeedPhaseOnFirstCycle: secondSeedPhase,
     cycleLength: cycle.length,
     cycleBodyWordCells1: cycle.map(index => index + 1),
     cyclePrimeSums: cycle.map(index => bodySums[index]),
@@ -134,6 +152,7 @@ console.log(JSON.stringify({
     p0To2PhysicalLineCounts,
     fullCycleModulo121Readout: p32Readout,
     fullCycleModulo121Transliteration: p32ReadoutRunes.join(" "),
+    secondSeedModulo121Transliteration: secondSeedReadoutRunes.join(" "),
     cycleModulo23WordReadout: p32WordAddressReadout,
     cycleModulo23UniqueWordAddresses: uniqueWordAddresses,
     cycleModulo23OutOfRangeWordAddresses: outOfRangeWordAddresses
