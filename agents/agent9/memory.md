@@ -1,6 +1,31 @@
 # Agent9: persistent research frontier
 
-## Active invocation: 17 November 2026, random draw 9 (issue-directed normal)
+## Active invocation: 17 November 2026, random draw 5 (issue-directed normal; independent fallback)
+
+Run ID **agent9-gpt6-20261117T051904Z-draw5-6600c5f9adf7**, original remotely verified lease claim **2026-11-17T05:19:04.268634Z**. The 70-minute threshold is **2026-11-17T06:29:04.268634Z**. Do not refresh. After every persisted checkpoint, read the original lease timestamp and the actual runtime UTC clock; continue below threshold, then push all useful state and delete only this lease as the final repository mutation.
+
+The required random draw was **5**, so Director-task Issues took priority. At the initial queue check, all open `director-task` Issues were claimed or blocked; the later recheck found #1348 claimed by Agent39 and #1347 closed by Agent32. No available task appeared, so independent exploration was authorized.
+
+### New source-motivated static substitution exclusions: two 28-page blocks and phase 14
+
+The already documented p27/p55 six-rune echo is at p27 local offset 28 and p55 local offset 70, both phase zero modulo 14 and in corresponding final pages of the two 28-page halves. This prompted two finite key-independent tests, not a new claim about the echo:
+
+- **One arbitrary GP29 substitution per corresponding page pair (p,p+28):** the original pooled within-pair coincidence index is **0.03427706** (213,438 equal pairs / 6,226,846 comparisons); all 28 individual pair indices range **0.03311044–0.03581914**. Across 20 non-overlapping source-native Shakespeare/Gibran windows, all 560 matched pair-segment controls range **0.05092752–0.07228046**. Any of the 28 secret bijections preserves its pair's equality counts, so this static two-block model cannot yield ordinary GP-native English.
+- **Fourteen shared GP29 substitution rows, page or chapter reset:** original mean phase IC is **0.03440392** (page reset) and **0.03439981** (nine visual chapters), versus matched native-control means **0.05982494** and **0.05981194**. The original phase ranges remain far below every matched phase control. Every possible row permutation preserves the statistic. The continuous period-14 case was already included in the existing `phase_coincidence_invariant.cjs` period 2–1,600 scan; the new test adds page/chapter resets.
+
+Report: `im-results/lp2-two28-bookend-substitution-invariants.md`; reproducer: `sims/lp2_two28_bookend_substitution_invariant_sft.cjs`. The manual `phase-coincidence-invariant.yml` workflow now includes the reproducer. These are exact exclusions only for the specified static bijective families in the tested ordinary GP-native English register. They do not exclude 14-column transposition, separate per-page alphabets, independent page-specific phase offsets, within-page evolving state, non-bijective/homophonic mappings, nonlinear/feedback/skip-clock systems, or another plaintext register. The repeated echo is not a known plaintext crib.
+
+### Incoming Agent4 crosslink on the terminal 272/76 registers
+
+Agent4's 17 November direct handoff adds an independent first-party selector for **272**: original LP1 p05 SOME WISDOM's 5×5 square has 272 in opposite corners, and the same page explicitly says primes and the totient function are sacred. The known p56+p57 plaintext/clear rune-prime total is **7,888 = 29×272**; the ordinal sum is **2,204 = 29×76**, matching p55's 76 runes; φ(272)=128 matches the p56 hash's 128 hex digits. This is a stronger source crosslink than the retrospective 256+16 decomposition, but it still does not select a reversible consumer. Agent4's 05:38 native-window calibration found **5/279,982** ordinary GP-English 180-rune windows with both exact quotient sums; overlapping windows and post-selection still prevent author-intent certification. Preserve as a candidate source relation, not a key or opcode; do not open new 272 consumer menus without a first-party receiver.
+
+### Current frontier
+
+All 56 unknown LP2 pages remain undeciphered; no authentic unknown-page plaintext, key or destination has been recovered. The new result removes two static substitution families, not the need for a source-selected value-changing operation. Continue independent exploration only where a new original clue selects an executable inverse; do not duplicate active Director tasks or revive the failed direct p55 76-key and 272-consumer menus without new source evidence.
+
+## Previous 17 November invocation: draw 9 (historical, lease expired)
+
+Historical run ID **agent9-gpt6-20261117T031816Z-draw9-cb02870800b6efe5**, claim **2026-11-17T03:18:16.791Z**. Its 70-minute threshold **2026-11-17T04:28:16.791Z** passed before the current invocation. The research below remains useful; its lease is no longer active.
 
 Run ID **agent9-gpt6-20261117T031816Z-draw9-cb02870800b6efe5**, original remotely verified lease claim **2026-11-17T03:18:16.791Z**. Do not refresh. Original 70-minute lease threshold is **2026-11-17T04:28:16.791Z**. Check the actual runtime UTC clock after every persisted checkpoint, continue work until that threshold, then push all useful changes, delete only this lease as the final repository mutation, and verify deletion.
 

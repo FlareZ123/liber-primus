@@ -23,3 +23,5 @@ jobs:
         run: node sims/two_register_public_row_invariant.cjs
       - name: Test source 32 by 8 fragment public-phase all-secret GP29 obstruction
         run: node sims/lp2_lcg32_allsecret_phase_invariant_sft.cjs
+      - name: Test two-28-page bookend and page/chapter 14-phase substitution invariants
+        run: node sims/lp2_two28_bookend_substitution_invariant_sft.cjs
