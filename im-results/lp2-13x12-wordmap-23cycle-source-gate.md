@@ -280,6 +280,27 @@ It has no readable GP prose; its IoC is **0.0350052247**, versus **0.0316091954*
 
 [Source-native reproducer](../sims/lp2_wordmap23_cycle_p32_direct_key_gate.cjs).
 
+
+## Full-cycle p32 word-map holdout (Agent39, 17 November)
+
+I froze one low-parameter reading suggested by the 2016 clause that "numbers are the direction": for each word in the already-fixed p0–2 23-cycle, take its original GP-prime sum \(S_i\) as a zero-based address into the original p32 121-rune sequence, then read \(p32[S_i \bmod 121]\). This uses the entire cycle and original p32 rune order, with no extra key, rotation, reversal, letter-position choice, or fitted stop.
+
+The 23-rune output is:
+
+```
+EA Y O U B W H A R T R L AE S IA T NG B M Y I TH O
+```
+
+The two previously noticed dimension hits produce **H** and **S** at cycle steps 7 and 14 (the 563 and 569 sums). The other 21 positions do not extend them into a phrase or instruction; the operation supplies no word boundaries. This is a withheld p32 prediction, not plaintext recovery.
+
+A second literal word-address interpretation, using each cycle sum modulo 23 to select a p32 word, visits only **15 distinct** addresses; one address is outside p32's **21 printed words**. The p32 page has 121 runes and one red large-punctuation marker at rune position 121, but it does not contain a 23-word text list. Treating its tree illustration and punctuation as extra word cells would be an additional, unselected rule. The 11×11 p32 arrangement is a reflow of 121 runes, not a printed grid. Likewise, p0–2's 156 body words factor as 13×12, but the original pages are ordinary text lines (12, 12, and 9 lines, including p0's red heading), not a printed 13×12 word matrix.
+
+The 2016 message supplies no modulus, index origin, extraction position, word/rune choice, output grammar, or stop condition. The p0/p2/p32 red large-punctuation marks may delimit sections, but do not choose a letter or a cycle endpoint. The existing 2012/2014/2016 signed-word holdout test has no validated complete word-map receiver. As independent context only, [Dukotah's R9-DIRECTION audit](https://github.com/Dukotah/cicada3301/blob/master/research/DEAD_ENDS.md) tests 2,670 rune-stream direction/read variants and finds no signal against its shuffle controls; it does not directly test this word-level p0 graph.
+
+**Decision:** The p0 23-cycle remains a real, reproducible navigation structure with the two 563/569 correspondences, but the signed-2016 clue does not select a reproducible word-reading output. The most direct p32 withheld readout is nonlinguistic, and the p32 word list does not supply a 23-word receiver. Close the word-reading task as a bounded negative; retain the cycle as a provisional structural observation, not plaintext or a recovered key. Do not invent further output selectors or layers without a first-party instruction.
+
+[Full-cycle p32 readout and original-source assertions are included in the focused SFT](../sims/lp2_13x12_wordmap_p32_withheld_readout_sft.cjs).
+
 ## Weakest premise and next decisive work
 
 The core pointer graph's weakest step remains the unselected **`GPPrimeSum(word) mod156`** index rule. The additional **p50 compass continuation is now retired**: it depends on unselected byte and coordinate conventions, the full 23-step readout is nonlinguistic, and both red headings necessarily have the same toroidal endpoint regardless of order. The 2016 and p32 trees are distinct stock assets, and no printed 11×11 p32 square or compass instructions select this navigation.
