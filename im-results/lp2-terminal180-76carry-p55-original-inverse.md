@@ -81,6 +81,21 @@ The complete test applies every same source-fixed 76-event tape repeatedly to th
 
 The original complete chapter has **66 printed physical word chunks**. The finite dictionary covers source-native GP spellings and cannot rule out arbitrary other languages, codes or invented vocabulary; this remains a strong negative for the intended English-text route, conditional on the chosen cipher family. The strongest among the 32 direct outputs matches only **3 complete dictionary words** of at least three GP runes; every other output matches at most one. The three incidental words are isolated **PIE, TUG, FEAR**, separated by nonwords in the same full output. The original chapter is not recovered as readable source-native prose under this bounded full-chapter key. This closes the natural **page-boundary/phase4** alternative to the first 76-rune p55 test.
 
+### Carry triggers under the solved p56's authentic φ(prime) and transparent-F rule
+
+The neighboring solved p56 has a more specific historically authenticated operation than generic subtraction: it uses **Euler's totient of successive ordinary primes**, φ(p)=p−1, and a plaintext-F interruption. Thus the GP-assigned prime weight of each of our 76 ordinal carry-trigger runes, transformed by the **same elementary φ(p)=p−1** and reduced mod29, supplies one more source-chosen 76-rune key readout, rather than an arbitrary new nonlinear function.
+
+A simple *self-identifying* F-transparent decoder treats every printed ciphertext F as literal plaintext F and does not advance its key clock there. Its necessary consistency condition is that no other printed ciphertext glyph can decode to plaintext F, since that would have had to be printed literally as F instead. Under both complete source-page orders and both ± GP29 key signs, this condition fails on all original registers, with no language assumptions:
+
+| Original ciphertext scope | p56→p57, negative/positive key | p57→p56, negative/positive key |
+| --- | --- | --- |
+| Physical p55 (76 original runes; three ciphertext F glyphs) | **2 / 4 impossible non-F→F positions** | **1 / 1** |
+| Complete p54||p55 (308 runes; six ciphertext F glyphs) | **16 / 18** | **10 / 7** |
+
+Every one of these **eight** source-frozen reversible *self-identifying* φ/GP29 models hits at least one impossible branch. Its independently planted cipher-F-transparent source-shaped positive uses the same key and exact skip rule with collision-free non-F plaintext, and decodes all 76 or 308 symbols respectively. This constitutes a stronger exclusion of a **ciphertext-F-identifiable** adaptation of the p56 mechanism than the English dictionary tests alone.
+
+A faithful p56-style *plaintext-F* interrupter can be ambiguous from ciphertext alone if another plaintext glyph also encrypts to F; such an encoder would require an independently specified interrupter-location side channel. The table above explicitly excludes the **self-identifying** branch, and does not purport to reject every possible plaintext-F interrupter variant with hidden branch choices.
+
 ## Cipher results, uncertainty, and next decision
 
 The two exact source sums fix the 76-event ordinal stream and the 272-prime-turn count before examining any p55 unknown glyph. The empirical native-language comparison above, while suggestive, cannot establish author selection. **No independently sourced key-use mechanism has been found.**
