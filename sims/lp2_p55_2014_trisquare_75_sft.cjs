@@ -136,4 +136,39 @@ for (const rank of ['asc', 'desc']) {
       ', text=' + output.map(index => corpus.translit[index]).join('.'));
   }
 }
+// Matched familywise null: retain every actual rune count, but permute the
+// original 75-body positions. Both rank keys and both directions are tested
+// together. The best apparent IoC must survive the full four-case selection.
+let rngState = 0x9a84a5d3;
+function nextRandom() {
+  rngState ^= rngState << 13;
+  rngState ^= rngState >>> 17;
+  rngState ^= rngState << 5;
+  return (rngState >>> 0) / 4294967296;
+}
+const keys = [makeSquares('asc'), makeSquares('desc')];
+const observedMax = predicted['asc/printed'];
+let atLeast = 0;
+let sumBest = 0;
+for (let draw = 0; draw < 20000; draw++) {
+  const shuffled = body.slice();
+  for (let k = shuffled.length - 1; k > 0; k--) {
+    const j = Math.floor(nextRandom() * (k + 1));
+    [shuffled[k], shuffled[j]] = [shuffled[j], shuffled[k]];
+  }
+  const reversed = shuffled.slice().reverse();
+  const scores = [
+    ioc(decrypt(shuffled, keys[0])),
+    ioc(decrypt(shuffled, keys[1])),
+    ioc(decrypt(reversed, keys[0])),
+    ioc(decrypt(reversed, keys[1])),
+  ];
+  const best = Math.max(...scores);
+  sumBest += best;
+  if (best >= observedMax - 1e-12) atLeast++;
+}
+assert.equal(atLeast, 2569);
+assert.ok(Math.abs(sumBest / 20000 - 0.046169346938775536) < 1e-10);
+console.log('Four-case familywise preserved-multiset permutation: 2569/20000 nulls >= observed best IoC; add-one p=' + ((atLeast + 1) / 20001).toFixed(7));
+
 console.log('PASS: 2014 three-square original-input Tri-Square test, four exact inverses, four 50/50 source-rune positive plants; no plaintext identified.');
