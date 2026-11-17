@@ -224,6 +224,7 @@ function rollingCollision(stream) {
   let minNumerator = numerator;
   let minOffset = 0;
   let belowPeriod35 = Number(numerator <= strongest35);
+  let belowPeriod38 = Number(numerator <= strongestPeriod1to38);
   let belowPage7 = Number(numerator <= strongestPage7);
   for (let index = length; index < stream.length; index++) {
     const departing = stream[index - length];
@@ -237,10 +238,11 @@ function rollingCollision(stream) {
       minOffset = index - length + 1;
     }
     belowPeriod35 += Number(numerator <= strongest35);
+    belowPeriod38 += Number(numerator <= strongestPeriod1to38);
     belowPage7 += Number(numerator <= strongestPage7);
   }
   return {windows: stream.length - length + 1, minNumerator, minOffset,
-    belowPeriod35, belowPage7};
+    belowPeriod35, belowPeriod38, belowPage7};
 }
 const controls = [
   ["solvedLP1", "resources/liber-primus/lp1-plaintext-reference.txt", 3510, 1782, 178186, 385, 0],
@@ -258,12 +260,43 @@ const controlResults = controls.map(([name, file, expectedLength, windows, minim
   assert.equal(result.minNumerator, minimum, name);
   assert.equal(result.minOffset, offset, name);
   assert.equal(result.belowPeriod35, 0, name + " cannot fall under source period-35 ceiling");
+  assert.equal(result.belowPeriod38, 0, name + " cannot fall under period-38 ceiling");
   assert.equal(result.belowPage7, belowPage7, name + " page×7 sensitivity");
   return {name, sourceRunes:encoded.length, ...result,
     minimumIoC:result.minNumerator / denominator};
 });
 assert.equal(controlResults.reduce((sum, x) => sum + x.windows, 0), 597523);
 assert(controlResults.every(x => x.minNumerator > strongestPeriod1to38));
+
+// Independent language-register sensitivity. These are original-source
+// *preencoded* GP29 witnesses, already archived with their own provenance,
+// not English words reinterpreted under the English-native grapheme rules.
+const oldEnglishProfile = JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+const alphabet29 = oldEnglishProfile.positiveControlAlphabet;
+assert.equal(alphabet29.length, 29);
+assert.equal(oldEnglishProfile.allSourceGpRunes, 48012);
+const oldEnglish = Array.from(oldEnglishProfile.sourceGpBase29,
+  letter => alphabet29.indexOf(letter));
+assert.equal(oldEnglish.length, 48012);
+assert(oldEnglish.every(x => x >= 0 && x < 29));
+const latinSource = JSON.parse(read("resources/control/latin-vulgate-heldout-gp.json"));
+assert.equal(latinSource.runes.length, 2400);
+assert(latinSource.runes.every(x => Number.isInteger(x) && x >= 0 && x < 29));
+const nonEnglish = [
+  ["source-normalized Beowulf Old English", oldEnglish, 46284, 157852, 38967, 2184],
+  ["source-normalized Vulgate Latin", latinSource.runes, 672, 212584, 1, 0]
+].map(([name, source, windows, minNumerator, minOffset, below38]) => {
+  const result = rollingCollision(source);
+  assert.equal(result.windows, windows, name);
+  assert.equal(result.minNumerator, minNumerator, name);
+  assert.equal(result.minOffset, minOffset, name);
+  assert.equal(result.belowPeriod35, 0, name + " source period35");
+  assert.equal(result.belowPeriod38, below38, name + " period38 sensitivity");
+  return {name, sourceRunes:source.length, ...result,
+    minimumIoC:result.minNumerator / denominator};
+});
+assert.equal(controlResults.reduce((n, x) => n + x.windows, 0)
+  + nonEnglish.reduce((n, x) => n + x.windows, 0), 644479);
 
 console.log(JSON.stringify({
   source: "original 24.jpg + pp8-14 original transcript, 1730 mixed symbols",
@@ -273,7 +306,7 @@ console.log(JSON.stringify({
   period16WholeFamilyMaximumIoC:strongest16 / denominator,
   period35WholeFamilyMaximumIoC:strongest35 / denominator,
   pageBy7WholeFamilyMaximumIoC:strongestPage7 / denominator,
-  comparison, controls:controlResults,
+  comparison, controls:controlResults, otherLanguageControls:nonEnglish,
   strongestPeriod1To38Numerator:strongestPeriod1to38,
   firstPotentialPeriod39:sourceKeyPeriodCapacity[38],
   conclusion: "Direct recurring periods 5/7/14/16/35 plus source-fixed 5-/7-column rearrangements cannot recover the independently observed native GP29-English unigram profile, even with every phase alphabet secret.",
