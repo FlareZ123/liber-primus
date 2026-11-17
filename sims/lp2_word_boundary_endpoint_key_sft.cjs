@@ -2,16 +2,12 @@
 
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
-const {
-  parseLP2Words,
-  parseSharedCorpus
-} = require("./lp2_word_pages.cjs");
+const { parseSharedCorpus } = require("./lp2_word_pages.cjs");
 const { encodeSourceNativeGP } =
   require("./lp2_native_gp_source_orthography_sft.cjs");
 
 const read = file => fs.readFileSync(file, "utf8").replace(/\r\n/g, "\n");
 const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
-const raw = read("resources/lp2-transcription.txt");
 const runeMap = new Map(gp.runes.map((r, i) => [r, i]));
 const mod = n => ((n % 29) + 29) % 29;
 
@@ -30,10 +26,16 @@ const words = parsed.words.map(w => ({
 }));
 assert.equal(words.reduce((n, w) => n + w.indices.length, 0), 12956);
 
-const p57 = parseLP2Words(raw, 58).byStartPage[57].map(w =>
-  [...w.runes].map(r => runeMap.get(r)));
+// p57 is not part of the unknown-page transcription file. Recover its
+// independently solved plaintext from the pinned reference and assert that
+// the calibrated GP encoder reproduces all 95 original source runes.
+const plainReference = read("resources/liber-primus/lp1-plaintext-reference.txt");
+const p57Text = plainReference.split("### 57\n")[1].trim();
+const p57Words = p57Text.match(/[A-Z]+/g) || [];
+const p57 = p57Words.map(w => encodeSourceNativeGP(w));
 assert.equal(p57.length, 20);
-assert.equal(p57.reduce((n, w) => n + w.length, 0), 95);
+assert.equal(p57.flat().length, 95);
+assert.deepEqual(p57.flat(), gp.pages[57].indices);
 
 const maps = {
   index: i => i,
@@ -41,16 +43,6 @@ const maps = {
   phi: i => (gp.prime[i] - 1) % 29
 };
 
-function keyFor(word, map) {
-  const x = word.indices;
-  return [map(x[0]), map(x[x.length - 1])];
-}
-
-/*
- * The proposed source-shaped operation preserves the two original
- * endpoint runes and alternates them as a two-symbol key over that
- * word's strict interior. Key phase resets at each printed word.
- */
 function encryptWord(plain, map, sign, transparentF) {
   if (plain.length <= 2) return plain.slice();
   const key = [map(plain[0]), map(plain[plain.length - 1])];
@@ -157,7 +149,6 @@ const rawQuadgram = quadgramScore(rawIndices, quadgrams);
 const results = [];
 for (const [mapName, map] of Object.entries(maps)) {
   for (const sign of [1, -1]) {
-    // First, the unique all-consuming inverse.
     const decoded = words.map(w =>
       inverseCandidates(w.indices, map, sign, false)[0]);
     const flat = decoded.flat();
@@ -173,7 +164,6 @@ for (const [mapName, map] of Object.entries(maps)) {
       noPathWords: 0
     });
 
-    // Then retain every legal literal-F / encrypted-non-F interpretation.
     let noPathWords = 0;
     let maximumDictionaryHits = 0;
     let totalPaths = 0;
@@ -200,8 +190,8 @@ for (const [mapName, map] of Object.entries(maps)) {
       maximumDictionaryHits
     });
 
-    // Positive control: the known-clear p57 words are planted under this
-    // exact endpoint-derived key and must be present in the inverse set.
+    // Plant and recover the independently solved p57 text under this exact
+    // key rule. Every mapping/sign must preserve all 95 source GP runes.
     let plantedRunes = 0;
     for (const plain of p57) {
       const cipher = encryptWord(plain, map, sign, true);
@@ -214,7 +204,7 @@ for (const [mapName, map] of Object.entries(maps)) {
   }
 }
 
-const summary = {
+console.log(JSON.stringify({
   status: "bounded negative; no unknown plaintext or key recovered",
   originalSource: {
     words: words.length,
@@ -235,6 +225,4 @@ const summary = {
     phi: "Gematria prime value minus one modulo 29"
   },
   variants: results
-};
-
-console.log(JSON.stringify(summary, null, 2));
+}, null, 2));
