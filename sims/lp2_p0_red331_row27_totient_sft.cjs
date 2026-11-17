@@ -261,6 +261,91 @@ for (const p of [{page: 27, indices: page27},
 assert.deepEqual(bookendRowReadings.map(x => Number(x.ioc.toFixed(10))),
   [0.0335644327, 0.0360588386, 0.0421052632, 0.0291228070]);
 
+
+// Stronger table-row structure: the four consecutive row27 tokens
+// 0x 0w 0q 0p decode to 59,58,52,51 in radix60. They form an
+// exact 2x2 decrement stencil with horizontal stride1 and vertical
+// stride7. The latter is the authenticated 2014 Stage05 tuple width.
+const stencilBytes = grid.bytes.slice(27 * 8 + 3, 27 * 8 + 7);
+assert.deepEqual(stencilBytes, [59, 58, 52, 51]);
+assert.equal(stencilBytes[0] - stencilBytes[1], 1);
+assert.equal(stencilBytes[2] - stencilBytes[3], 1);
+assert.equal(stencilBytes[0] - stencilBytes[2], 7);
+assert.equal(stencilBytes[1] - stencilBytes[3], 7);
+assert.equal(stencilBytes[2] + stencilBytes[3], 103);
+assert.equal(grid.bytes[102], 32); // one-based grid cell103
+const stencilLocations = [];
+const adjacent103 = [];
+for (let i = 0; i + 3 < grid.bytes.length; i++) {
+  if (grid.bytes[i] - grid.bytes[i + 1] === 1 &&
+      grid.bytes[i] - grid.bytes[i + 2] === 7 &&
+      grid.bytes[i + 1] - grid.bytes[i + 3] === 7) {
+    stencilLocations.push(i);
+  }
+}
+for (let i = 0; i + 1 < grid.bytes.length; i++) {
+  if (i % 8 !== 7 && grid.bytes[i] + grid.bytes[i + 1] === 103) {
+    adjacent103.push(i);
+  }
+}
+assert.deepEqual(stencilLocations, [219]); // row27 column3, only 1
+assert.deepEqual(adjacent103, [221]); // row27 column5, only 1
+
+// An exact, narrowly defined shuffle null: permute the complete
+// original 256-byte multiset without replacement. Count all ordered
+// 4-byte tuples satisfying [v,v-1,v-7,v-8], and multiply the
+// single-window probability by 253 for an all-window expectation.
+const byteCounts = new Map();
+for (const byte of grid.bytes) {
+  byteCounts.set(byte, (byteCounts.get(byte) || 0) + 1);
+}
+let favourableOrderedTuples = 0;
+for (let v = 8; v <= 255; v++) {
+  const indices = [v, v - 1, v - 7, v - 8];
+  favourableOrderedTuples += indices.reduce((product, value) =>
+    product * (byteCounts.get(value) || 0), 1);
+}
+assert.equal(favourableOrderedTuples, 276);
+const fourTupleDrawCount = 256 * 255 * 254 * 253;
+const exactWindowProbability = favourableOrderedTuples / fourTupleDrawCount;
+const expectedFullGridMatches = exactWindowProbability * 253;
+assert(Math.abs(expectedFullGridMatches - 0.000016645437702640114) < 1e-15);
+// This is NOT a corrected discovery significance: steps 1/7 and the
+// row's location were recognized after inspecting the unusual bytes.
+
+// The p27 word following the sole repeat, AE.F, has independent GP
+// prime sum103 and identifies the very same one-based table cell103.
+assert.deepEqual(page27.slice(34, 36), [25, 0]);
+assert.equal(corpus.prime[25] + corpus.prime[0], 103);
+
+/**
+ * Authentic 2014 Stage05 source inverse over blocks of seven. This
+ * original transfer is a narrow readout control, not a decipherment.
+ * @param {number[]} indices
+ * @param {number[]} order
+ * @returns {number[]}
+ */
+function stage05BlockReadout(indices, order) {
+  const result = [];
+  for (let i = 0; i + 6 < indices.length; i += 7) {
+    const block = indices.slice(i, i + 7);
+    result.push(...order.map(j => block[j]));
+  }
+  result.push(...indices.slice(Math.floor(indices.length / 7) * 7));
+  return result;
+}
+const stage05Inverse = [0, 6, 2, 5, 1, 4, 3];
+const p55Seam77 = page55.concat(page56.slice(0, 1));
+assert.equal(p55Seam77.length, 77);
+assert.equal(28 % 7, 0);
+assert.equal(70 % 7, 0);
+const stage05Page27 = stage05BlockReadout(page27, stage05Inverse);
+const stage05Terminal = stage05BlockReadout(p55Seam77, stage05Inverse);
+assert.deepEqual(stage05Page27.slice(28, 35),
+  stage05Terminal.slice(70, 77));
+assert.deepEqual(stage05Terminal.slice(70, 77),
+  [23, 25, 1, 10, 11, 18, 17]);
+
 // RSA is a historical Cicada operation, so p=151, q=331 and e=13
 // (the count of red title runes and dots in its terminal marker)
 // specify one exploratory, complete private inverse. No original clue
@@ -390,6 +475,12 @@ console.log(JSON.stringify({
     sixRuneGpIndices: six, footerPrimeSums: [footerFirstSum, footerSecondSum],
     earlierFooterMod29Address: [row, 28], sevenRuneExtendsAcrossP55P56: true,
     bookendRowReadings },
+  sourceSevenColumnStencil: { values: stencilBytes,
+    onlyFourWindowStart: stencilLocations, onlyAdjacentSum103: adjacent103,
+    cell103Byte: grid.bytes[102], favourableOrderedTuples,
+    narrowShuffleExpectedMatches: expectedFullGridMatches,
+    stage05Page27Prefix: stage05Page27.slice(0, 35).map(i => corpus.translit[i]).join(' '),
+    stage05P55Seam77Prefix: stage05Terminal.slice(0, 35).map(i => corpus.translit[i]).join(' ') },
   rsa151x331e13: { modulus: rsaN.toString(), privateExponent: rsaD.toString(),
     p0BlackOutOfThreeRuneRange: outsideBase29Triples, grid16BitPacketsOutOfRange: tableRsaInvalid,
     cyclewalkFullOriginal: rsaOutcomes }
