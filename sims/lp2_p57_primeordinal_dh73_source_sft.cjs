@@ -127,11 +127,14 @@ assert.deepEqual(at60, [76, 117, 74]);
 assert.deepEqual(oneBased59, [191, 146, 108]);
 
 const p = primeSum('FIND'); // 151
-const a = primeSum('OUR');  // 21
+const a = primeSum('OUR'); // 21, independently equals public B's grid row index
+const rowOfB = Math.floor(ranks[1] / 8);
+assert.equal(rowOfB, 21);
+assert.equal(a, rowOfB);
 const must = primeSum('MUST'); // 186
 const g = must % p; // 35
 const B = at59[1]; // Public share comes from AUTHENTIC original table cell173.
-const K = powMod(B, a, p); // K does NOT require guessing any private b=13.
+const K = powMod(B, rowOfB, p); // K uses B cell's own row, no guessed b13.
 const A = powMod(g, a, p); // Optional second public share, source checked below.
 assert.deepEqual({p, g, a, A, B, K}, {
   p: 151, g: 35, a: 21, A: 107, B: 115, K: 73
@@ -215,6 +218,7 @@ console.log(JSON.stringify({
     original2013ParableNumber: originalN,
     literalModulo256: originalN % 256,
     modulus: p, generator: g, sourceSelectedPrivateA: a,
+    exponentAlsoTableRowOfPublicShare: rowOfB,
     tablePublicShareB: B, derivedSharedK: K, sourceCheckedPublicA: A,
     optionalLogarithmOfB: candidateBExponents,
     firstClauseHalfGroupOrder: at59[0],
@@ -231,5 +235,5 @@ console.log(JSON.stringify({
     rankMinusOneAlternativeMissingCorner: bytes59[168]
   },
   conditionalExactSlotProbability: conditionalProbability,
-  note: 'K73 is computed directly from table-sourced B115 and OUR21, independent of any b=13 guess. Fixed-address permutation probability is unadjusted. Zero unknown-page plaintext.'
+  note: 'K73 is computed directly from table-sourced B115 and its zero-based row21 (also GP(OUR)=21), independent of any b=13 guess. Fixed-address permutation probability is unadjusted. Zero unknown-page plaintext.'
 }, null, 2));
