@@ -6,7 +6,7 @@
  * Source-conditioned assumptions: visible word boundaries are preserved,
  * GP29 additive cipher and the genuine Cicada plaintext-F bypass operate
  * continuously through the red title and the first black word, no reset at
- * the giant thirteen-dot mark; first word is a GP-native English word.
+ * the giant thirteen-dot mark; first word is English encoded one rune per normalized Latin letter.
  * All 29 symbols, including F, are handled. No unknown LP2 language score
  * or ciphertext-derived dictionary is used to select a key.
  *
@@ -302,7 +302,7 @@ const p57Cipher=encrypt(p57,p57Key);
 assert(decryptBranches(p57Cipher.cipher,p57Key,0)
   .some(s=>s.end===p57Cipher.end&&s.plain.join(",")===p57.join(",")));
 console.log(JSON.stringify({
-  status:"Original letter-spelled order-five linear-key letter-spelled GP29 word-crib screen",
+  status:"Original p0 GP29 letter-spelled English with all lag-five linear keys",
   originalWords:[fmt(red1),fmt(red2),fmt(black1),fmt(fourth),fmt(fifth)],
   letterSpelledLexiconCounts:Object.fromEntries([3,4,5,8].map(i=>[i,vocab.get(i).size])),
   originalFBypassFirstWordCases:skip,
@@ -310,6 +310,6 @@ console.log(JSON.stringify({
   ...counts,
   plantedAllFiveWordsExactRecovery:true,
   plantedSolvedP57ExactRecovery:true,
-  interpretation:"The candidate family is an all-coefficient GP29 homogeneous lag-5 running additive key with authentic literal-F transparency. Letter words required at every step; unknown words remain possible.",
+  interpretation:"The candidate family is an all-coefficient GP29 homogeneous lag-5 running additive key with authentic literal-F transparency. Letter-spelled dictionary words required at each boundary; unknown words remain possible.",
   plaintextRecovered:false
 },null,2));
