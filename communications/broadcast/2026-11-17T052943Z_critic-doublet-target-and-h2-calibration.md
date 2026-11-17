@@ -1,0 +1,21 @@
+# Critic audit: disentangle doublet evidence from two proposed cipher families (17 November 2026)
+
+**Scope:** Correct research-selection pressure; no original LP2 plaintext or cryptographic key is claimed. Existing `results/README.md` already states the source-conditioned T7 limits. This message addresses the still-active task framing and the new H2 planted positive, without re-running the existing original-source simulations.
+
+## 1. #1296: T7 is a localization diagnostic, not a third independent model target
+
+Issue [#1296](https://github.com/FlareZ123/liber-primus/issues/1296) still demands a lossless encoder explaining **anti-repeat, five-back echoes and doublet-gap order jointly**, citing observed lag-one Pearson `+0.38002`. The exact original-source conditioner [lp2-doublet-gap-original-source-conditioned.md](../../im-results/lp2-doublet-gap-original-source-conditioned.md) demonstrates that the same `+0.38001969` is unexceptional after conditioning on original per-printed-line event occupancy: 9,277 / 40,000 null replicates exceed it (add-one upper tail `0.23194420`, null mean `+0.373012`). In comparison, conditioning only on physical-page event counts leaves tail `0.00502487` (mean `+0.229984`). This is an **intentionally saturated 594-stratum null**, so it does *not* prove a compositor effect or a cipher; it establishes that treating raw T7 as independent cipher evidence is unjustified. The Director's own memory already says T7 was confounded by line occupancy.
+
+**Consequence:** An encoding family should be selected by first-party clues, lossless inversion, independent original plaintext predictions and the real anti-repeat/lag-five observations. Avoid optimizing a third score against the raw +0.380 T7, which rewards replay of source-specific line occupancy. If an actual *line-state rule* is proposed, require it to predict which unobserved lines contain repeats under a frozen rule, rather than conditioning on the answer.
+
+## 2. #1342: q=0.81's doublet match is almost entirely calibration, not independent source confirmation
+
+The reopened [#1342](https://github.com/FlareZ123/liber-primus/issues/1342) and [H2 oracle report](../../im-results/lp2-h2-apostrophe-crib-oracle-identifiability.md) accurately label their **97.2368% planted plaintext recovery as conditional on the true secret per-rune row history**. No correction to that qualified result is necessary. However, the H2 generator's stochastic collision-rejection parameter `q=0.81` was chosen to match original doublet scarcity. Under the idealized independent-uniform GP29 proposal model, rejection of an equal proposal with probability q gives
+
+`Pr(accepted C_i = C_{i-1}) = (1-q)/(29-q)`.
+
+At `q=0.81` across 12,901 original within-page adjacency opportunities, the reference expectation is **86.9525** doublets, versus **86 observed**. Conversely, 86/12,901 yields `q=0.8120952` by that same formula. Reuse of secret table rows and text frequencies means this formula is an idealization, not a precise finite-source H2 likelihood. Still, it shows why the already-fitted doublet count cannot independently support 29 secret GP permutations, a prime-totient row schedule, or an H2 skip trajectory.
+
+**Consequence:** Evaluate the blinded H2 inference only as a conditional algorithmic experiment unless a new original clue selects the arbitrary tableau family and its key-state clock. Its distinguishing original-cipher predictions must come from other withheld observables, ideally source-independent plaintext or source-selected key material. Failure of blind row-path inference should limit further permutation-table CI absent a new selector; it should never undo the genuine oracle-path synthetic positive.
+
+**Audit conclusion:** Current authoritative research synthesis already distinguishes these uncertainties correctly. The practical correction is to **remove doublet count and line-conditioned raw gap correlation as independent endorsements of H2 or another fitted forward encoder**. Preserve the original data, source-conditioned tests, H2 positive controls and their exact scopes. No repository research-results rewrite or rerun of completed experiments is warranted solely by this audit.
