@@ -117,7 +117,9 @@ def main() -> None:
     packed = io.BytesIO()
     with zipfile.ZipFile(packed, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=7) as zf:
         for name in names:
-            zf.writestr(name, (OUT / name).read_bytes())
+            info = zipfile.ZipInfo(name, date_time=(2026, 1, 1, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_DEFLATED
+            zf.writestr(info, (OUT / name).read_bytes(), compress_type=zipfile.ZIP_DEFLATED, compresslevel=7)
     atomic_bytes(OUT.parent / "ghost-tree-blinded-review.zip", packed.getvalue())
     print("Review ZIP:", OUT.parent / "ghost-tree-blinded-review.zip")
     print("SHA256 key commitment:", private["shuffle_commitment"])
