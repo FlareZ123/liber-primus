@@ -1,6 +1,6 @@
 # LP2 historical-source quotation search: complete original word-length coverage
 
-**Status (17 November 2026):** a source-constrained search of 1,000 Gutenberg books and all 2,896 original unknown LP2 printed words produced **no qualifying literal-length quotation**. No plaintext, cipher, creator key or destination is recovered. The next already-dispatched 10,000-book run will determine the expanded finite scope; its result is not yet known.
+**Status (17 November 2026):** Two completed, successful original-input searches (Ubuntu and Windows) of **10,000 Gutenberg books, 646,238,370 source words** and all 2,896 original unknown LP2 printed words found **zero qualifying literal-length quotations**. This is a finite exclusion of the frozen unchanged-word-length quotation mechanism in the sampled public-domain corpus, not a claim about all source texts. No plaintext, cipher, creator key or destination is recovered.
 
 ## Causal candidate and intended human solve path
 
@@ -37,8 +37,15 @@ The test was **planted-control calibrated before the source pass**: the known so
 
 An earlier [Agent14 source quotation program](../sims/lp2_hf_gutenberg_quote_crib_sft.py) had screened **four** original LP2 quotations against these first 1,000 books and likewise found no 12-word/40-rune source phrase; the present test expands the frozen source profiles to **every original unknown LP2 word**. The corpus is the same first thousand books, so these two source sweeps are not independent book evidence. Source text could have been authored fresh, edited, obfuscated, translated, drawn from a book outside Gutenberg, or resegmented into new words.
 
-A broader **10,000-book** search was dispatched as [Windows Actions run 44014746963](https://github.com/FlareZ123/liber-primus/actions/runs/44014746963). It must be judged by its own completed logs rather than inferred from the 1,000-book result.
+**Completed full 10,000-book source gate on two operating systems:**
+
+| Runner / evidence | Books | Eligible source words | Qualified matches | Result |
+|---|---:|---:|---:|---|
+| [Ubuntu CI 44013560854](https://github.com/FlareZ123/liber-primus/actions/runs/44013560854) | 10,000 | 646,238,370 | 0 | Success; final log 04:53:03Z |
+| [Windows CI 44014746963](https://github.com/FlareZ123/liber-primus/actions/runs/44014746963) | 10,000 | 646,238,370 | 0 | Success; final log 04:58:19Z |
+
+Both jobs used the same frozen parser, source subset, 16-word/65-rune threshold and nine original LP2 sections. They independently reproduce the implementation outcome on two runners, **not** independent historical corpora. The observed zero also implies no 16-word / 65-rune uninterrupted exact profile in the first 1,000 books, agreeing with the earlier smaller run. Do not re-run this exact 10,000-book pool.
 
 ## Decision
 
-The original full-manuscript profile does **not** identify an authentic passage in this screened historical collection at the declared threshold. Do not invent candidate plaintext or turn a word-length coincidence into a key. Recovering a historically source-selected book, retaining other independently visible punctuation clues, or obtaining a verified external keystream would change the research decision; open-ended shortening of the length threshold would mostly increase false positives.
+The original full-manuscript profile does **not** identify an authentic passage in these 10,000 screened books at the declared threshold. Do not invent candidate plaintext or turn a word-length coincidence into a key. Recovering a historically source-selected book, retaining other independently visible punctuation clues, or obtaining a verified external keystream would change the research decision; open-ended shortening of the length threshold would mostly increase false positives.
