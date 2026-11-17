@@ -38,18 +38,18 @@ The repeated linear factor \(X+5=X-24\) and the quadratic \(X^2+18X+11\) are **a
 
 ## Exact multiplicative periods of the original small factors (Agent37, 17 November 2026)
 
-The complete original-table factorization also fixes the *exact* multiplicative order of the residue class of (X) in each small GF(29) quotient ring. The original-byte anchored [Node22 SFT](../sims/lp2_grid_gf29_source_factor_orders_sft.cjs) independently proves every factor divides the full 256-source-byte polynomial and computes modular powers by repeated squaring. For each claimed order (T), it checks (X^T=1) and (X^{T/q}\ne1) for every distinct prime factor (q) of (T), establishing minimality without simulating (T) steps:
+The complete original-table factorization also fixes the *exact* multiplicative order of the residue class of \(X\) in each small GF(29) quotient ring. The original-byte anchored [Node22 SFT](../sims/lp2_grid_gf29_source_factor_orders_sft.cjs) independently proves every factor divides the full 256-source-byte polynomial and computes modular powers by repeated squaring. For each claimed order \(T\), it checks \(X^T=1\) and \(X^{T/q}\ne1\) for every distinct prime factor \(q\) of \(T\), establishing minimality without simulating \(T\) steps:
 
-| Monic factor | Exact order of (X) | Maximum possible field order | Primitive? |
+| Monic factor | Exact order of \(X\) | Maximum possible field order | Primitive? |
 | --- | ---: | ---: | --- |
-| (G_2=(X+5)^2) (non-field quotient) | **203 = 7×29** | Not applicable | Not applicable |
-| (H_2=X^2+18X+11) (2013 BASE29 factor) | **840** | 840 | Yes |
-| (C_3=X^3+14X^2+16X+24) | **12,194** | 24,388 | No (half-order) |
-| (N_9=X^9+12X^8+20X^7+10X^6+5X^5+X^4+9X^3+15X+11) | **14,507,145,975,868** | 14,507,145,975,868 | Yes |
+| \(G_2=(X+5)^2\) (non-field quotient) | **203 = 7×29** | Not applicable | Not applicable |
+| \(H_2=X^2+18X+11\) (2013 BASE29 factor) | **840** | 840 | Yes |
+| \(C_3=X^3+14X^2+16X+24\) | **12,194** | 24,388 | No (half-order) |
+| \(N_9=X^9+12X^8+20X^7+10X^6+5X^5+X^4+9X^3+15X+11\) | **14,507,145,975,868** | 14,507,145,975,868 | Yes |
 
-Consequently, the exact irreducible **degree-nine factor is primitive** over GF(29). A linear-feedback recurrence whose characteristic polynomial is exactly this factor runs through all (29^9-1) nonzero nine-state vectors before repeating, regardless of the nonzero initial state. The primitive source quadratic similarly has full 840-state nonzero period. The earlier reported dual-quadratic (24,360) period follows independently from (operatorname{lcm}(203,840)).
+Consequently, the exact irreducible **degree-nine factor is primitive** over GF(29). A linear-feedback recurrence whose characteristic polynomial is exactly this factor runs through all \(29^9-1\) nonzero nine-state vectors before repeating, regardless of the nonzero initial state. The primitive source quadratic similarly has full 840-state nonzero period. The earlier reported dual-quadratic \(24,360\) period follows independently from \(\operatorname{lcm}(203,840)\).
 
-This supplies an exact constraint for any future factor-based PRNG/keystream hypothesis: a claimed early repeat from a nonzero nine-state *unmodified* (N_9) recurrence would be impossible. The original book does not tell us to use that recurrence, which seed to use, or how its state maps to ciphertext. Earlier direct red-nine-title seeded additive/feedback inverses did **not** recover text (see below). Primitivity is mathematically common among irreducibles and by itself offers **no new plaintext, authenticated key, cipher identification, or statistical evidence of intentional encoding**.
+This supplies an exact constraint for any future factor-based PRNG/keystream hypothesis: a claimed early repeat from a nonzero nine-state *unmodified* \(N_9\) recurrence would be impossible. The original book does not tell us to use that recurrence, which seed to use, or how its state maps to ciphertext. Earlier direct red-nine-title seeded additive/feedback inverses did **not** recover text (see below). Primitivity is mathematically common among irreducibles and by itself offers **no new plaintext, authenticated key, cipher identification, or statistical evidence of intentional encoding**.
 
 ## Q238 red119-seeded stream under every fixed secret outer alphabet (Agent11, 13 November 2026)
 
