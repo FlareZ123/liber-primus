@@ -42,6 +42,18 @@ The manuscript independently supplies exactly **sixteen visible decimal numbers*
 
 All **eight** unchanged original 2,896-rune output tapes remain effectively uniform in GP29 and do not reveal coherent plaintext. A source-native p57 positive plant for each case re-encrypts and recovers **2,896/2,896 runes**. Unlike a broad keyword hunt, the key/order/clock are exact functions of *one original image and the original complete word count*. This finite failure weakens the specific p15-numerals→word-initial/word-final GP29 acrostic explanation while preserving the mathematical p15 spiral as independently solved source evidence. It cannot exclude other consumers of the p15 numbers or original words.
 
+### All-secret 16-phase alphabet obstruction on the same complete-word tape
+
+The printed sixteen-cell p15 grid could also choose **sixteen entirely secret GP29 substitution alphabets**, one per original complete-word position modulo 16, instead of the eight literal additive consumers above. This grants `(29!)^16` possible keyed substitutions without guessing any of them. On the **2,896 = 16 × 181** whole-word acrostic, each of the sixteen phase classes has exactly **181 original symbols**. Every per-phase secret bijection preserves its count of equal within-class ordered pairs, so the exact necessary invariant is the **phase-pooled collision rate**, with common denominator `16 × 181 × 180 = 521,280`.
+
+| Exact 16-phase ciphertext channel | Equal within-phase ordered pairs | Pooled IoC |
+| --- | ---: | ---: |
+| All original first runes of complete words | **17,886** | **0.034311694291** |
+| All original last runes of complete words | **18,472** | **0.035435850215** |
+| Original clear p57 GP text repeated as a 2,896-symbol *language control* | **35,226** | **0.067575966851** |
+
+The ratios were computed directly from the unchanged source-runic transcription, with complete cross-page words joined and phase origin fixed at the first printed word. Therefore **every possible fixed sixteen-phase, 29-symbol bijective substitution key yields the corresponding exact original low collision rate**, and a further transposition *within a fixed phase* cannot change it. The control is a repeated 95-rune genuine clear GP passage and is a demonstration, **not** a broad native-English corpus minimum or a formal all-language impossibility proof. This makes ordinary GP-native prose from these exact complete-word acrostics highly implausible under a fixed period-16 polyalphabetic substitution, even after freeing all sixteen keys. The earlier [p15 period-16 key-independent gate](lp2-p15-period16-allsecret-source-gate.md) studies **full rune ciphertext on physical pp16–23** with original printed word-phase clocks; it is a separate original-data channel from the 2,896-symbol acrostics assessed here. No independent source directs a cipher to use the acrostic register or fixes a subsequent mechanism.
+
 ## Stronger p15 word-map test: select a rune *inside* every original word
 
 The same source-visible p15 16-number square could convey *which rune to take from each word* rather than a 16-symbol cryptographic pad. This is a closer literal implementation of the authenticated 2016 `words are the map` / `numbers are the direction` message, although **neither source authenticates this particular modulo word-length pointer**.
