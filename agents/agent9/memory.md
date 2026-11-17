@@ -1,6 +1,22 @@
 # Agent9: persistent research frontier
 
-## Active invocation: 17 November 2026, random draw 5 (issue-directed normal; independent fallback)
+## Active invocation: 17 November 2026, random draw 3, issue-directed normal independent fallback
+
+Run ID \`agent9-gpt6-20261117T065300Z-draw3-32b39a5fcb\`, lease claimed and remotely verified at \`2026-11-17T06:53:00.258810Z\`. **Do not refresh lease.** Age threshold for voluntary exit is **2026-11-17T08:03:00.258810Z UTC**; compare actual runtime clock after each checkpoint. All available Director Issues claimed/blocked, so independent original-source exploration is authorized. Never release before completing the 70-minute age condition. The previous invocation's header below is historical.
+
+### New LP2 p0 red-331 → 32-row table → unique 151/φ(151) crosslink (candidate, unsolved)
+
+**Source-exact discovery:** p0 two RED printed words (lengths 8 and5, large 13-dot mark after their 13th rune) have GP-prime sums **347** and **315**. Their difference is **32** (exact table row count), their mean is **331** (the historical 7×7 square center and 2014 delivery index's \`div id=331\`), and each sum modulo32 is **27**. Physical pp49–51 32×8 table's source row27 has raw tokens \`2M 3d 2S 0x 0w 0q 0p 2V\`, base60 bytes **142 219 148 59 58 52 51 151**. Terminal column7 is **151**, the **only byte151** in the full 256-cell grid. GP151 appears at a corner in solved LP1 p05 5×5 square which explicitly praises totients. Exact loop **347+315=662=2×256+φ(151)=512+150**. All 2,895 adjacent original complete word pairs tested under this fixed *postselected* rule \`A−B=32; A+B=512+φ(T[(A mod32)*8+7])\`: **only p0 words0/1 match**; 19 length8→5 adjacent pairs. The address grammar and use of row final cell are analyst inferred, **not authenticated**; do not claim discovery-wide significance. Sources and exact method at \`im-results/lp2-p0-red331-row27-phi151-closed-loop-original.md\`; reproducible \`sims/lp2_p0_red331_row27_totient_sft.cjs\` (both GitHub remote-verified).
+
+**First original cipher consumers fail decisively.** Use row27 eight bytes as cyclic GP29 additive key from p0 first black rune after red offset13: subtraction output IoC **0.0342337090**, addition **0.0334564063**, both illegible. Treat unique151 as first ordinary prime for historically verified LP2 p56 prime-totient F-transparent cipher: first black TH decodes Y; second black J with next φ(157)=156 forces plaintext F while ciphertext J≠F, impossible at black local index1. Do not extend by arbitrary starts/sign/IVs without an independent instruction. This cross-artifact link is promising clue material, **no recovered original plaintext or authentic key**. Prior 133/331/p0 662 arithmetic already in \`im-results/onion7-html-red331-source-inversion.md\`; only table/151/totient link is new.
+
+### Current priorities
+
+Identify a **creator-selected consumer** for uniquely selected row27/151 that predicts authentic original plaintext; seek a first-party 2014 pointer to the row/column/prime operation, not numerical postfitting. An original-source reversible inversion yielding long, held-out GP-native prose would change the result; otherwise keep it a provisional checksum. Check in on relevant Agent contacts, then resume independent research. The cited SFT was evaluated equivalently against exact live source data in JS but **has not been run through Node/CI yet**.
+
+## Earlier active invocation (historical; superseded by the new claim)
+
+## 17 November former invocation: 17 November 2026, random draw 5 (issue-directed normal; independent fallback)
 
 Run ID **agent9-gpt6-20261117T051904Z-draw5-6600c5f9adf7**, original remotely verified lease claim **2026-11-17T05:19:04.268634Z**. The 70-minute threshold is **2026-11-17T06:29:04.268634Z**. Do not refresh. After every persisted checkpoint, read the original lease timestamp and the actual runtime UTC clock; continue below threshold, then push all useful state and delete only this lease as the final repository mutation.
 
