@@ -49,7 +49,8 @@ function extractPage(pageNumber) {
     archive_image: `${String(pageNumber + 17).padStart(2, "0")}.jpg`,
     runic_count: runeCount,
     word_count: words.length,
-    words
+    words,
+    runes: [...joined].filter(rune => runeSet.has(rune))
   };
 }
 
@@ -73,6 +74,43 @@ assert.equal(word55_1, "ᛝ");
 assert.equal(transliterate(word17_13), "FREAMEAA");
 assert.equal(transliterate(word55_1), "NG");
 
+const keyRunes = [...word17_13, ...word55_1];
+const keyValues = keyRunes.map(rune => corpus.runes.indexOf(rune));
+const chapter = Array.from({ length: 7 }, (_, i) => extractPage(33 + i));
+const chapterRunes = chapter.flatMap(page => page.runes);
+const chapterWords = chapter.flatMap(page => page.words);
+assert.equal(chapterRunes.length, 1680);
+assert.equal(chapterRunes.length % keyValues.length, 0);
+
+const continuousPlain = chapterRunes.map((rune, i) => {
+  const cipherValue = corpus.runes.indexOf(rune);
+  return corpus.runes[(cipherValue - keyValues[i % keyValues.length] + 29) % 29];
+});
+const continuousPreview = continuousPlain
+  .map(rune => corpus.translit[corpus.runes.indexOf(rune)])
+  .join("");
+let continuousOffset = 0;
+const continuousFirstWords = chapterWords.slice(0, 3).map(word => {
+  const output = continuousPlain.slice(continuousOffset, continuousOffset + word.length);
+  continuousOffset += word.length;
+  return output.map(rune => corpus.translit[corpus.runes.indexOf(rune)]).join("");
+});
+
+const perPage = chapter.map((page, pageIndex) => {
+  const shift = keyValues[pageIndex];
+  const output = page.runes.map(rune => {
+    const cipherValue = corpus.runes.indexOf(rune);
+    return corpus.runes[(cipherValue - shift + 29) % 29];
+  });
+  let offset = 0;
+  const firstWords = page.words.slice(0, 3).map(word => {
+    const decoded = output.slice(offset, offset + word.length);
+    offset += word.length;
+    return decoded.map(rune => corpus.translit[corpus.runes.indexOf(rune)]).join("");
+  });
+  return { page: page.page, key_rune: keyRunes[pageIndex], shift, first_words: firstWords };
+});
+
 console.log(JSON.stringify({
   frozen_grammar: "zero-based LP2 page, one-based printed word",
   coordinates: [
@@ -83,5 +121,11 @@ console.log(JSON.stringify({
     { page: p17.page, archive_image: p17.archive_image, runic_count: p17.runic_count, word_count: p17.word_count },
     { page: p55.page, archive_image: p55.archive_image, runic_count: p55.runic_count, word_count: p55.word_count }
   ],
-  decision: "extraction only; no source-selected receiver or plaintext"
+  candidate_key: { runes: keyRunes.join(""), gp: keyRunes.map(r => corpus.translit[corpus.runes.indexOf(r)]).join(""), length: keyRunes.length },
+  seven_page_chapter: { pages: "33-39", runic_count: chapterRunes.length, repeats: chapterRunes.length / keyValues.length },
+  key_receiver_tests: {
+    continuous_repeating_subtraction: { preview: continuousPreview.slice(0, 180), first_words: continuousFirstWords },
+    one_key_rune_per_page_subtraction: perPage
+  },
+  decision: "extraction reproduced; the two simple seven-rune key uses yield no readable English; no source-selected receiver"
 }, null, 2));

@@ -45,6 +45,19 @@ The two selected words are still original ciphertext fragments: `FREAMEAA` and `
 
 **Decision:** close #1393 as a bounded negative for this exact page:word interpretation. Preserve `(17,13)` and `(55,1)` only as an unverified reading; do not promote them to a key or cipher mechanism. This does not rule out other uses of the cuneiform values or the 2016 word-navigation clue.
 
+## Candidate seven-rune key receiver test
+
+The two extracted words contain six and one GP runes respectively, so concatenating them in address order gives a **seven-rune** candidate key: `ᚠᚱᛠᛗᛠᚪᛝ` (`FREAMEAANG`, seven GP symbols). The stamped section p33–p39 is also seven pages and contains exactly **1,680 runes = 240 × 7**. This is a motivated but potentially coincidental alignment.
+
+Two simple, locked GP29 subtraction tests were run on only that seven-page section:
+
+1. **Continuous repeating key:** `P[i] = C[i] - K[i mod 7] (mod 29)` across all 1,680 runes. The first output words are `DH`, `SSUSOWRWOED`, `CAEEFCEALX`; no readable English plaintext emerges.
+2. **One key symbol per stamped page:** use key rune 0 on p33, rune 1 on p34, …, rune 6 on p39, subtracting that fixed value from every rune on its page. p33 begins `DEO XCFIAWHGEOOE FTEOEEAAIASG`; p34 begins `SP CR HM`. Again, no readable English plaintext emerges.
+
+Both tests use the natural decryption direction `P=C-K mod 29`; no key permutation, alternate sign, extra layer, or parameter sweep was tried. The exact reproducible calculations are included in `sims/lp2_cuneiform_pageword_pair_extract_sft.cjs`.
+
+**Decision:** the seven-rune length match does not supply a receiver. The two simplest key uses fail; do not rescue the page:word hypothesis by inventing additional transformations. This negative does not rule out all conceivable uses of the selected words, but none is presently source-selected.
+
 ## Source references
 
 - `resources/liber-primus/README.md` — LP2 page/archive-image mapping.
