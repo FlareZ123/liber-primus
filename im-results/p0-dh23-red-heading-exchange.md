@@ -1,6 +1,6 @@
 # p0 red heading: source-constrained DH interpretations and the missing GP29 consumer
 
-**Status (16 November 2026): no LP2 plaintext recovered.** The corrected 8+5 red heading now has a new red-only word-pair DH interpretation yielding provisional shared secret **K=3**, alongside the earlier full-heading/body-assisted interpretation yielding **K=18**. These are competing readings of the same heading, not independent confirmations or cipher layers. Neither supplies a source-selected GP29 inverse.
+****Status (17 November 2026): no LP2 plaintext recovered; the red-only K=3 arithmetic remains provisional, and its most direct group-orbit additive GP29 consumer is now rejected.**
 
 **Corrected original-image adjudication (16 November 2026):** Original p0 has **two RED heading words**, GP lengths **8 and 5**, with a SMALL red ordinary word dot between them, and then the LARGE RED thirteen-dot title marker **after all thirteen red runes at offset13**. The first black body rune is `TH` at offset13. The earlier same-day claim of red8/marker8/black5 was an [incorrect original-image interpretation and is retracted](lp2-p0-red13-13dot-blackbody-original-source-adjudication.md). The historical derived red13 and marker13 metadata were correct. All arithmetic using the first thirteen original GP rune values is unchanged.
 
@@ -106,6 +106,28 @@ Every one of the 18 candidates loses all possible clock states at its first list
 
 A 242-rune full-alphabet synthetic plant with eight literal Fs was encoded and recovered exactly under all 18 start/sign variants; the same branch-state gate retained a legal path in every case. This validates the bypass-state implementation. The result does not reject the provisional DH arithmetic or other source-selected symmetric mechanisms.
 
+
+## K=3 DH group-orbit expansion on p1–55 (negative, 17 November 2026)
+
+The provisional red-only reading gives DH public residues \(A=2\), \(B=16\) in the signed 2013 group \(p=23,g=5\), with discrete logs \(a=2,b=8\) and shared scalar \(K=3\). The smallest group-native deterministic expansion is the orbit
+\[
+K_i=K g^i \pmod{23},
+\]
+which has period \(22\). The original continuous rune stream on pages 1–55 contains **12,694 runes = 22 × 577**. This exact divisibility motivated one locked test: treat p0 as the proposed key-exchange page, then apply the 22-value orbit continuously to p1–55 as an additive GP29 key.
+
+No phase search, page resets, KDF, plaintext-F bypass, or alternate GP29 serialization was allowed. Both group directions (\(3\cdot5^i\) and \(3\cdot5^{-i}\) mod 23) and both additive signs were tested. The forward key is [3,15,6,7,12,14,1,5,2,10,4,20,8,17,16,11,9,22,18,21,13,19]; the inverse key is [3,19,13,21,18,22,9,11,16,17,8,20,4,10,2,5,1,14,12,7,6,15]. Each orbit visits all 22 nonzero residues exactly once.
+
+| Orbit | GP29 operation | Native-GP trigram score (nats/rune) |
+|---|---|---:|
+| \(3\cdot5^i\) | \(P=C-K\) | −11.904159 |
+| \(3\cdot5^i\) | \(P=C+K\) | −11.894190 |
+| \(3\cdot5^{-i}\) | \(P=C-K\) | −11.877285 |
+| \(3\cdot5^{-i}\) | \(P=C+K\) | **−11.865863** |
+
+The raw p1–55 stream scores −11.869739. The best candidate improves by only 0.003876 nats/rune and remains far outside the same-length Gibran control: 7,203 stride-7 windows have minimum −8.094486, 10th percentile −8.076469, and median −7.970670. A source-length-matched Gibran plant encrypted and decrypted under each tested orbit/sign round-trips exactly, so the negative result is not an implementation failure.
+
+**Decision:** reject the direct group-orbit additive GP29 consumer of the provisional K=3 value. The 22 × 577 length alignment is an observation that motivated the test, not evidence that the mapping is intended. This does not disprove the red-word DH arithmetic; it leaves the source-to-operand step and any author-selected KDF/serialization unresolved. Do not continue with arbitrary phases, page resets, hashes, or KDFs without a new original-source instruction. Reproduce with [the source-derived SFT](../sims/p0_dh23_k3_group_orbit_p1_55_sft.cjs).
+
 ## Conditional 2016 word-map cross-check
 
 If the DH outputs are read as page 18, word 7, the canonical printed-word parser used by \`sims/lp2_2016_message_base58_word_map.cjs\` selects \`GAHEALGO\`. It has seven GP runes with prime weights \`[17,97,23,109,73,17,7]\`, summing to \`343 = 7^3\`. It is the only seven-rune word with prime sum 343 among the 2,973 printed words; five words of all lengths have that sum. Its first and last prime weights (17 and 7) match the candidate DH public value and exponent.
@@ -187,4 +209,4 @@ The 4 February 2015 participant observation applies a fake preceding F, consecut
 
 Run \`node sims/p0_red_wordpair_dh23_key_sft.cjs\` for the new red-only K=3 derivation, full-corpus 8|5-pair specificity scan, direct GP29 consumer tests, first-rune p56 F-rule contradiction, synthetic positive control, and 2015 40-event comparator. Run \`node sims/p0_dh23_red_heading_candidate.cjs\` for the separate K=18 full-heading/body-assisted interpretation and its controls.
 
-**Research decision:** no unknown plaintext is recovered. Retain K=3 as a new red-only candidate and K=18 as a separate full-heading/body-assisted candidate; they are competing interpretations of the same heading, not independent confirmations and not layers to combine. K=3 is source-constrained enough to deserve preservation, but its wordwise prime-sum-as-DH-share premise is still inferred, and the original black text does not supply a successful consumer: constant shifts fail at the first word, while the natural p56 prime-totient stream starting at prime value 3 fails at the first black rune under the p56-family plaintext-F-skip rule; this rejects that direct cipher transfer, not every possible p0 cipher. K=18's previously tested direct consumers also fail, as detailed above. The precise missing operation is an independently selected KDF/transition from the 2013 DH scalar in \(\mathbb Z_{23}\) to the 29-symbol LP2 state; neither the 2013 signed protocol nor the solved 2014 pages specify it. The independent 2015 40-event difference register remains a separate intermediate and is not explained by either DH interpretation. Do not promote either candidate to \`results/\`, combine them, or expand into unconstrained KDF/PRNG/cipher searches without a new original clue.
+**Research decision:** no unknown plaintext is recovered. Retain K=3 as a provisional red-only arithmetic candidate and K=18 as a separate full-heading/body-assisted candidate; they are competing interpretations of the same heading, not independent confirmations or layers. The K=3 wordwise prime-sum-as-DH-share premise remains inferred. Constant shifts, direct p56 prime-totient transfer, and the simplest group-native additive expansion \(K_i=3\cdot5^i\bmod23\) over p1–55 all fail; the exact 22×577 length alignment does not validate the GP29 mapping. K=18's previously tested direct consumers also fail. No source specifies a KDF or GP29 serialization from the 2013 DH scalar to the LP2 state. Do not expand into arbitrary KDF/PRNG/cipher searches without a new original clue. The independent 2015 40-event difference register remains separate and is not explained by either DH interpretation.
