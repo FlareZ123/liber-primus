@@ -54,10 +54,30 @@ Assign 29 distinct codes from 32 to the 29 runes at minimum total cost. The [rea
 
 The globally most permissive case still forces **at least 102 actual ASCII control characters out of 1,235**, before counting cross-codeword zero pairs. The source-selected five-dot reading forces **at least 117**. Thus a stationary injective GP29↔five-bit codebook cannot directly yield ordinary printable ASCII7 plaintext in any considered full-chapter traversal, regardless of how adversarially the entire missing alphabet key is chosen.
 
+## Periodically changing unknown five-bit alphabets
+
+**A stronger all-secret result (17 November 2026).** A stationarity objection can be resolved without guessing *any* periodic key: independently grant each rune phase `i mod P` its own arbitrary injective **29→32 codebook**. The family contains additive/XOR five-bit phase keys with any unknown values, arbitrary substitution tables and bit mirroring. Group the original ASCII top-bit placement counts additionally by source-rune phase. Since each 7-bit output's first-two-bit **internal** test is attributable to exactly one GP rune, independently minimize each phase's forced control cost by the same sharp 29×32 assignment, then add the per-phase minima. This is a correct lower bound for every possible set of `P` secret dictionaries; the cross-rune top-bit conditions are still omitted, so a zero lower bound means only that this gate is inconclusive.
+
+| Six original source orderings | One alphabet P=1 | Five-dot P=5 | Printed seven P=7 | p7 red colophon P=14 | p15 spiral P=16 | Combined 5×7 P=35 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Physical | 102 | 29 | 86 | 67 | 0 | 12 |
+| Five-dot deinterleave | 117 | 24 | 104 | 67 | 0 | 8 |
+| Seven-tuple | 114 | 28 | 99 | 63 | 0 | 12 |
+| Inverse seven-tuple | 115 | 22 | 100 | 67 | 0 | 7 |
+| Seven-column down | 109 | 26 | 96 | 60 | 0 | 14 |
+| Seven-column across | 121 | 36 | 104 | 60 | 0 | 21 |
+| **Smallest possible forced controls across all six** | **102** | **22** | **86** | **60** | **0** | **7** |
+
+These are **numbers of guaranteed nonprintable ASCII septets out of 1,235**, minimized over *all* secret injective five-bit codebooks separately at every specified phase. Thus four source-motivated periodic codebook families **P=5, 7, 14, 35** are also mathematically incompatible with direct all-printable ASCII7 on each of the six source-fixed readings, even if the entire alphabet can be replaced freely at every key phase. There is no reason to run an ASCII crib search under those families.
+
+The **P=16** rows instead have a zero interior-only lower bound. This is a strictly *necessary-condition survivor*, not evidence of successful ASCII plaintext: the omitted across-rune septet-top-bit constraints, the ASCII127 exception and actual English character statistics must still be met. The original p15 page has a source-authenticated **16-cell Fibonacci-prime spiral**, but its printed numbers do not themselves instruct `GP5bit XOR key -> ASCII7`, which page should receive it, or which key order/bit direction to use. A narrowly fixed actual 16-cell numeric consumer would be a justified separate test; unlimited new phase dictionaries would be unconstrained key hunting.
+
+[The source-independent period-table implementation](../sims/lp2_p7_fivedot_sevenbit_allsecret_ascii_sft.cjs) matches all six rows exactly and passed [Windows Node22 CI run 44152555563](https://github.com/FlareZ123/liber-primus/actions/runs/44152555563). No actual secret codebook, recovered LP2 plaintext or destination is claimed.
+
 ## Decision
 
-**Retire direct stationary injective 5-bit GP29 → 7-bit *printable ASCII* as the complete decoder for physical LP2 pp8–14 in each of the six source-fixed reading orders.** Neither the 7×5 dimension match nor the p7 source-mark relocation supplies a viable direct English ASCII message, even granting the entire unknown five-bit codebook. This rejects every plain binary alphabet substitution in this precise receiver class without brute force.
+**Retire direct stationary or period-5, period-7, period-14 and period-35 injective five-bit GP29 → seven-bit *printable ASCII* as the complete decoder for physical LP2 pp8–14 in each of the six source-fixed reading orders.** Neither the 7×5 dimension match nor the p7 source-mark relocation supplies a viable direct English ASCII message, even granting the entire unknown five-bit codebook. This rejects every plain binary alphabet substitution in this precise receiver class without brute force.
 
 The result does **not** exclude ASCII with control codes used deliberately as binary structure, cryptographic or compressed intermediate data, a state-dependent per-rune five-bit mapping, a non-injective code with a separate disambiguation channel, a bit-level permutation **inside/between** rune symbols, a source-selected different text traversal, or a wholly different binary encoding. Such alternatives require a new authentic instruction or distinctive header/plaintext prediction rather than a larger free-key search. The human-visible five/7 clues remain source observations, not a proven author-selected bitwise operation.
 
-**Reproduction:** [passing Windows Node.js22 CI run 44151669614](https://github.com/FlareZ123/liber-primus/actions/runs/44151669614) executed `node sims/lp2_p7_fivedot_sevenbit_allsecret_ascii_sft.cjs` from repository root; the script reads only existing pinned source files and prints all full original results, finite-pigeonhole evidence, assignment-optimum bounds, and exact positive transport control.
+**Reproduction:** [passing expanded Windows Node.js22 CI run 44152555563](https://github.com/FlareZ123/liber-primus/actions/runs/44152555563) executed `node sims/lp2_p7_fivedot_sevenbit_allsecret_ascii_sft.cjs` from repository root; the script reads only existing pinned source files and prints all full original results, finite-pigeonhole evidence, assignment-optimum bounds, and exact positive transport control.
