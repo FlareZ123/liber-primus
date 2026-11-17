@@ -2,7 +2,7 @@
 
 /**
  * Blind H2 29x29 joint-tableau / unknown-skip receiver under the nine
- * source-visible chapter boundaries instead of visual chapter resets.
+ * source-visible chapter boundaries instead of physical-page resets.
  * Test disjoint terminal chapter pp54–55 (308 original runes) with its
  * ciphertext excluded from all secret-table/clock fitting.
  * The first-party chapter marks motivate a reset; a shared 841-cell
@@ -17,7 +17,7 @@ const read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
 const gp=JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const {languageModel,recoverTableau} =
   require('./gp29_bigram_tableau_decoder.cjs');
-const LENGTH=12956,N=29,DRIFT_LIMIT=180,HELDOUT_PAGE=8,TRIALS=3;
+const LENGTH=12956,N=29,DRIFT_LIMIT=180,HELDOUT_PAGE=8,TRIALS=8;
 const CHAPTER_RANGES=[[0,3],[3,8],[8,15],[15,23],[23,28],
   [28,32],[32,40],[40,54],[54,56]];
 const chapterPages=()=>CHAPTER_RANGES.map(([from,to])=>
@@ -116,6 +116,34 @@ if(pendingOriginal)originalWordLengths.push(pendingOriginal);
 assert.equal(originalRuneCount,LENGTH);
 assert.equal(originalWordLengths.length,2896);
 assert.equal(originalWordLengths.filter(x=>x===1).length,83);
+// These four word-role categories are fixed solely by the 2,896 printed
+// source-word lengths, including 83 singletons and 32 page carries.
+const WORD_ROLES=originalWordLengths.flatMap(len=>
+  Array.from({length:len},(_,j)=>len===1?0:j===0?1:j===len-1?2:3));
+assert.equal(WORD_ROLES.length,LENGTH);
+assert.equal(new Set(PAGE_LENGTHS).size,PAGE_LENGTHS.length);
+const PAGE_ROLES=PAGE_LENGTHS.map((len,page)=>
+  WORD_ROLES.slice(pageStart[page],pageStart[page]+len));
+const roleCounts=Array.from({length:4},()=>Array(N).fill(.5));
+for(const token of read('resources/control/shakespeare_first300k.txt')
+  .match(/[A-Za-z]+/g)||[]){
+  const word=gpWord(token);
+  for(let j=0;j<word.length;j++){
+    const role=word.length===1?0:j===0?1:j===word.length-1?2:3;
+    roleCounts[role][word[j]]++;
+  }
+}
+const rolePrior=roleCounts.map(row=>{
+  const total=row.reduce((a,b)=>a+b,0);
+  return row.map(v=>v/total);
+});
+const rankedPlain=Array.from({length:N},(_,i)=>i)
+  .sort((a,b)=>model.unigram[b]-model.unigram[a]||a-b);
+const rolesForCipher=c=>{
+  const index=PAGE_LENGTHS.indexOf(c.length);
+  assert.ok(index>=0,'chapter length has unique source word roles');
+  return PAGE_ROLES[index];
+};
 const nativeBuckets=Array.from({length:15},()=>[]);
 for(const token of read('resources/control/gibran_prophet_58585.txt')
   .match(/[A-Za-z]+/g)||[]){
@@ -129,7 +157,7 @@ assert.ok(originalWordLengths.every(n=>nativeBuckets[n].length>0));
  * Separate planted secret and full source-index truth.
  * @param {number} seed
  */
-function plant(seed,originalWordShape=false){
+function plant(seed,originalWordShape=true){
   const random=rng(seed),start=random.int(native.length-LENGTH);
   const plain=originalWordShape?
     originalWordLengths.flatMap(n=>
@@ -178,12 +206,13 @@ function plant(seed,originalWordShape=false){
  * @returns {number[]}
  */
 function inferPage(cipher,logEmission,limit=cipher.length){
+  const roles=rolesForCipher(cipher);
   const n=Math.min(cipher.length,limit);
   if(!n)return [];
   const width=DRIFT_LIMIT+1;
   const back=new Uint8Array(n*width);
   let prev=new Float64Array(width).fill(-1e30);
-  prev[0]=logEmission[primeRows[0]*N+cipher[0]];
+  prev[0]=logEmission[roles[0]*N*N+primeRows[0]*N+cipher[0]];
   for(let i=1;i<n;i++){
     const next=new Float64Array(width).fill(-1e30);
     for(let d=0;d<width;d++){
@@ -192,7 +221,7 @@ function inferPage(cipher,logEmission,limit=cipher.length){
         const candidate=prev[d-k]+logSteps[k];
         if(candidate>best){best=candidate;step=k;}
       }
-      next[d]=best+logEmission[primeRows[i+d]*N+cipher[i]];
+      next[d]=best+logEmission[roles[i]*N*N+primeRows[i+d]*N+cipher[i]];
       back[i*width+d]=step;
     }
     prev=next;
@@ -224,7 +253,7 @@ function learnEmissions(pages,paths,prefixLength){
     for(let i=0;i<limit;i++)
       cnt[primeRows[i+paths[page][i]]*N+pages[page][i]]++;
   }
-  const emissions=new Float64Array(N*N);
+  const emissions=new Float64Array(4*N*N);
   for(let r=0;r<N;r++){
     const order=Array.from({length:N},(_,i)=>i)
       .sort((a,b)=>cnt[r*N+b]-cnt[r*N+a]||a-b);
@@ -232,9 +261,10 @@ function learnEmissions(pages,paths,prefixLength){
     for(let c=0;c<N;c++)samples+=cnt[r*N+c]-1;
     const confidence=samples/(samples+67);
     for(let j=0;j<N;j++){
-      const p=order[j];
-      emissions[r*N+p]=Math.log(
-        confidence*rankedPrior[j]+(1-confidence)/N);
+      const cipher=order[j],plain=rankedPlain[j];
+      for(let role=0;role<4;role++)
+        emissions[role*N*N+r*N+cipher]=Math.log(
+          confidence*rolePrior[role][plain]+(1-confidence)/N);
     }
   }
   return emissions;
@@ -260,11 +290,12 @@ function learnEmissions(pages,paths,prefixLength){
  * @returns {number[]}
  */
 function inferPageWithSoftCollision(cipher,emission,inverseTable){
+  const roles=rolesForCipher(cipher);
   if(!cipher.length)return [];
   const width=DRIFT_LIMIT+1,back=new Uint8Array(cipher.length*width);
   const logSteps=[.972,.0272,.0008,.000022,.00000062].map(Math.log);
   let previous=new Float64Array(width).fill(-1e30);
-  previous[0]=emission[primeRows[0]*N+cipher[0]];
+  previous[0]=emission[roles[0]*N*N+primeRows[0]*N+cipher[0]];
   for(let i=1;i<cipher.length;i++){
     const next=new Float64Array(width).fill(-1e30);
     for(let drift=0;drift<width;drift++){
@@ -280,7 +311,7 @@ function inferPageWithSoftCollision(cipher,emission,inverseTable){
             mismatches++;
         }
         const candidate=previous[old]+logSteps[extra]
-          +emission[acceptedRow*N+cipher[i]]
+          +emission[roles[i]*N*N+acceptedRow*N+cipher[i]]
           -8*mismatches+.25*model.logProb[priorPlain][acceptedPlain];
         if(candidate>next[drift]){
           next[drift]=candidate;
@@ -323,11 +354,11 @@ function trainTable(pages,paths){
 
 /** @param {number[][]} table */
 function emissionFromTable(table){
-  const res=new Float64Array(N*N);
-  for(let r=0;r<N;r++)
-    for(let c=0;c<N;c++)
-      res[r*N+c]=Math.log(
-        (model.unigram[table[r][c]]+1)/(nRef+N));
+  const res=new Float64Array(4*N*N);
+  for(let role=0;role<4;role++)
+    for(let r=0;r<N;r++)
+      for(let c=0;c<N;c++)
+        res[role*N*N+r*N+c]=Math.log(rolePrior[role][table[r][c]]);
   return res;
 }
 
@@ -429,11 +460,11 @@ for(let t=0;t<TRIALS;t++){
 const mean=key=>tests.reduce((s,x)=>s+x[key],0)/tests.length;
 console.log(JSON.stringify({
   status:'calibrated joint-blind H2 source-shaped original-page-reset experiment',
-  caveat:'Source author has not selected page resets or a shared random 841-cell tableau; no unknown LP2 plaintext is claimed.',
+  caveat:'Source author has not selected chapter resets or a shared random 841-cell tableau; no unknown LP2 plaintext is claimed.',
   trials:TRIALS,perTrialSourceRunes:LENGTH,
-  originalPageLengths:PAGE_LENGTHS,heldoutPhysicalPage:HELDOUT_PAGE,
+  originalPageLengths:PAGE_LENGTHS,heldoutChapter:HELDOUT_PAGE,
   trainedCiphertextExcludesEntireHeldoutPage:true,
-  plaintextModel:'Gibran native-GP planted; Shakespeare native-GP independent reference',
+  plaintextModel:'Gibran original-word-shape GP29; Shakespeare independent role and bigram model',
   sourcePrimeClock:'prime2 restart on each original visual chapter',
   priorSkipProbabilities:[.972,.0272,.0008,.000022,.00000062],
   meanHiddenAdvances:mean('hiddenSkipRows'),
@@ -560,23 +591,6 @@ console.log(JSON.stringify({
 },null,2));
 
 
-// Independent enhanced realism controls: preserve all 2896 actual printed
-// word lengths and all 83 source singleton sites, with no new inference
-// knobs or original-cipher plaintext access. The original terminal pp54–55 result above
-// is unchanged because the authentic receiver is completely frozen.
-const wordShaped=[];
-for(let t=0;t<2;t++){
-  const seed=(0x3301abcd+t*1013904223)>>>0;
-  const data=plant(seed,true);
-  const tested=solve(data);
-  wordShaped.push({trial:t,seed,actualHiddenAdvances:data.skips,
-    allOriginalWordLengths:true,originalSingletonCount:83,
-    ...tested});
-  console.log('H2 WORD-LENGTH SHAPED '+JSON.stringify(wordShaped.at(-1)));
-}
-console.log(JSON.stringify({
-  status:'second independent source-word-length exact blind-H2 calibration',
-  tests:wordShaped,
-  excludedOriginalP41AllTraining:true,
-  caveat:'The 841-cell shared secret and physical-page clock resets are still unselected by the original artifact; this is a synthetic positive only.'
-},null,2));
+// All eight calibration manuscripts already preserve the 2,896 exact
+// original printed word lengths. The frozen terminal original is tested
+// exactly once above with its ciphertext fully withheld during training.
