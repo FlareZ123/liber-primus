@@ -33,6 +33,18 @@ Two positive controls are in the SFT: all 12,956 unchanged original source indic
 
 The standalone original **p28** provides a particularly inexpensive failure certificate. The four authentic printed singletons lie at original p28-local rune offsets **32, 163, 229 and 233**, with unchanged ciphertext GP indices **21 (NG), 15 (S), 11 (J), 19 (M)**. Source ink annotations show **no red-rune spans** on p28. The exact all-path remaining `(M,d)` state counts immediately after those four original glyphs are respectively **1, 4, 10, 0**; there is no legal fourth transition that can use only three different underlying τ(A/I/O) labels. The four glyphs are not hypothetical plaintext guesses: the letters shown are original ciphertext, and the A/I/O constraint only concerns unknown printed one-rune words.
 
+The **last-step p28 impossibility** can be verified without any language model or search over τ. Immediately before local offset233, exactly ten (underlying singleton-label set M, skipped-key drift d) states survive. Grouping by d, the sets and the **forced direct fourth base label** are:
+
+| Prime drift d | Previous underlying labels M after local232 | Direct fourth base U at local233 |
+| --- | --- | ---: |
+| 0 | {1,2,11} | 18 |
+| 1 | {1,2,9}; {1,9,25} | 16 |
+| 2 | {1,2,3}; {1,3,25}; {1,3,19} | 12 |
+| 3 | {1,19,20}; {1,11,20} | 10 |
+| 4 | {1,10,19}; {1,10,11} | 6 |
+
+Every direct U is a **fourth distinct base label** not present in its state's M. At this position the immediately preceding original cipher rune is GP28 and the current original ciphertext is GP19. All alternative one- and two-row collision-skip transitions fail the exact preceding-output equality test on **each of the ten** states, so there is no other legal key clock or fourth-word label. This is an explicit ten-state certificate on a single unchanged original physical page.
+
 Across the eight independent source sections, exact independent-section first-failure positions are:
 - section 2 [729,1874), first impossible global1316;
 - section 4 [3612,5506), first impossible global4176;
