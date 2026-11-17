@@ -21,6 +21,23 @@ const pageLength = pages.map(p => p.length);
 assert.equal(pages.length, 55);
 assert.equal(pageLength.reduce((a, b) => a + b, 0), 12956);
 const mod = (x, n) => (x % n + n) % n;
+/** Strict printed p57 word shells define 55 original page-seed candidates. */
+const physical = read('resources/lp2-transcription.txt').split('%')
+  .map(s => s.replace(/\/\r?\n/g, '').replace(/\r?\n/g, ''));
+const runeTo = new Map(corpus.runes.map((r, i) => [r, i]));
+const runeRx = new RegExp('[' + corpus.runes.join('') + ']+', 'gu');
+const p57Words = [...physical.at(-1).matchAll(runeRx)]
+  .map(m => Array.from(m[0], ch => runeTo.get(ch)));
+assert.equal(p57Words.length, 20);
+const p57Inner = p57Words.map(w => w.slice(1, -1));
+const pageSeed = {
+  title: [...p57Inner[0], ...p57Inner.slice(1).flat()],
+  body: [...p57Inner.slice(1).flat(), ...p57Inner[0]]
+};
+assert.equal(pageSeed.title.length, 55);
+assert.equal(pageSeed.body.length, 55);
+
+
 
 /**
  * @param {number[][]} sourcePages
@@ -109,6 +126,38 @@ function pageStatistic(inputPages) {
   };
 }
 
+/**
+ * Same-p57-seed pairs of physical pages must share each *local-rune*
+ * secret alphabet under any deterministic seed-only, page-reset stream,
+ * including arbitrary aperiodic per-position permutations.
+ *
+ * @param {number[][]} inputPages
+ * @param {number[]} key
+ */
+function repeatedSeedStatistic(inputPages, key) {
+  let pairs = 0, allPairs = 0, equalPairs = 0;
+  for (let i = 0; i < key.length; i++) {
+    for (let j = i + 1; j < key.length; j++) {
+      if (key[i] !== key[j]) continue;
+      pairs++;
+      const a = inputPages[i], b = inputPages[j];
+      const limit = Math.min(a.length, b.length);
+      for (let k = 0; k < limit; k++) {
+        if (a[k] === 28 || b[k] === 28) continue;
+        allPairs++;
+        if (a[k] === b[k]) equalPairs++;
+      }
+    }
+  }
+  assert.equal(pairs, 106);
+  return {
+    scaled28_ioc: 28 * equalPairs / allPairs,
+    equal_pairs: equalPairs,
+    all_pairs: allPairs,
+    repeated_page_seed_pairs: pairs
+  };
+}
+
 /** @param {number[]} runes */
 function partition(runes) {
   let p = 0;
@@ -146,7 +195,9 @@ const sourceText = [
 const originals = {
   continuous: phaseStatistic(differenceToPlain(pages, false), false),
   per_page: phaseStatistic(differenceToPlain(pages, true), true),
-  per_page_static: pageStatistic(differenceToPlain(pages, true))
+  per_page_static: pageStatistic(differenceToPlain(pages, true)),
+  repeated_page_seed_title: repeatedSeedStatistic(differenceToPlain(pages, true), pageSeed.title),
+  repeated_page_seed_body: repeatedSeedStatistic(differenceToPlain(pages, true), pageSeed.body)
 };
 const controls = [];
 let first = null;
@@ -159,7 +210,9 @@ for (const [name, file] of sourceText) {
       name, native_offset: start,
       continuous: phaseStatistic(plain, false),
       per_page: phaseStatistic(plain, true),
-      per_page_static: pageStatistic(plain)
+      per_page_static: pageStatistic(plain),
+      repeated_page_seed_title: repeatedSeedStatistic(plain, pageSeed.title),
+      repeated_page_seed_body: repeatedSeedStatistic(plain, pageSeed.body)
     });
   }
 }
@@ -167,17 +220,25 @@ assert.equal(controls.length, 44);
 const min = {
   continuous: Math.min(...controls.map(x => x.continuous.scaled28_ioc)),
   per_page: Math.min(...controls.map(x => x.per_page.scaled28_ioc)),
-  per_page_static: Math.min(...controls.map(x => x.per_page_static.scaled28_ioc))
+  per_page_static: Math.min(...controls.map(x => x.per_page_static.scaled28_ioc)),
+  repeated_page_seed_title: Math.min(...controls.map(x => x.repeated_page_seed_title.scaled28_ioc)),
+  repeated_page_seed_body: Math.min(...controls.map(x => x.repeated_page_seed_body.scaled28_ioc))
 };
 assert(Math.abs(originals.continuous.scaled28_ioc - 1.0059917140410457) < 1e-12);
 assert(Math.abs(originals.per_page.scaled28_ioc - 0.9974646611801926) < 1e-12);
 assert(Math.abs(originals.per_page_static.scaled28_ioc - 1.0028036666356064) < 1e-12);
+assert(Math.abs(originals.repeated_page_seed_title.scaled28_ioc - 1.0365744870651203) < 1e-12);
+assert(Math.abs(originals.repeated_page_seed_body.scaled28_ioc - 1.0251379521765789) < 1e-12);
 assert(Math.abs(min.continuous - 1.6359185716198026) < 1e-12);
 assert(Math.abs(min.per_page - 1.6382247339355005) < 1e-12);
 assert(Math.abs(min.per_page_static - 1.6459615376008665) < 1e-12);
+assert(Math.abs(min.repeated_page_seed_title - 1.5666186532229025) < 1e-12);
+assert(Math.abs(min.repeated_page_seed_body - 1.6000353559906306) < 1e-12);
 assert(originals.continuous.scaled28_ioc < min.continuous);
 assert(originals.per_page.scaled28_ioc < min.per_page);
 assert(originals.per_page_static.scaled28_ioc < min.per_page_static);
+assert(originals.repeated_page_seed_title.scaled28_ioc < min.repeated_page_seed_title);
+assert(originals.repeated_page_seed_body.scaled28_ioc < min.repeated_page_seed_body);
 
 /**
  * Independent arbitrary per-phase secret bijections. The multiplier is
@@ -222,10 +283,48 @@ function plantAndRecover(plainPages, pageReset, perPageStatic = false) {
   assert.deepEqual(fromCipher, fromPlain, 'all-secret 55-phase permutation cannot change the statistic');
   return fromCipher;
 }
+/**
+ * Independent 55-page native English positive with a different secret
+ * 28-rune bijection at every (seed,local-symbol-position). Same seeds
+ * repeat the entire aperiodic schedule on distinct physical pages.
+ * Unknown cipher source does not enter any permutation construction.
+ */
+function plantSeededPages(plainPages, key) {
+  const cipher = [], recovered = [];
+  for (let i = 0; i < plainPages.length; i++) {
+    let prev = 0;
+    const cp = [], rp = [], seed = key[i];
+    for (let n = 0; n < plainPages[i].length; n++) {
+      const p = plainPages[i][n];
+      const unit = units28[(seed + n) % units28.length];
+      const constant = mod(seed * 17 + n * 3, 28);
+      const step = p === 28 ? 0 : 1 + mod(unit * p + constant, 28);
+      const c = mod(prev + step, 29);
+      const seen = mod(c - prev, 29);
+      const fromCipher = seen === 0 ? 28 : (() => {
+        for (let j = 0; j < 28; j++) {
+          if (mod(unit * j + constant, 28) === seen - 1) return j;
+        }
+        throw new Error('noninvertible 28-symbol affine key');
+      })();
+      cp.push(c);rp.push(fromCipher);
+      prev = c;
+    }
+    cipher.push(cp);
+    recovered.push(rp);
+  }
+  assert.deepEqual(recovered, plainPages);
+  const real = repeatedSeedStatistic(differenceToPlain(cipher, true), key);
+  const source = repeatedSeedStatistic(plainPages, key);
+  assert.deepEqual(real, source);
+  return real;
+}
 const planted = {
   continuous: plantAndRecover(first, false),
   per_page: plantAndRecover(first, true),
-  per_page_static: plantAndRecover(first, true, true)
+  per_page_static: plantAndRecover(first, true, true),
+  repeated_page_seed_title: plantSeededPages(first, pageSeed.title),
+  repeated_page_seed_body: plantSeededPages(first, pageSeed.body)
 };
 console.log(JSON.stringify({
   original: originals,
@@ -235,5 +334,5 @@ console.log(JSON.stringify({
     minimum_native_gp_english: min
   },
   native_GP29_blind_plant: planted,
-  conclusion: 'All secret 55-phase periodic and 55-independent-page-static 28-step bijections excluded for ordinary GP-native English'
+  conclusion: 'All secret period55, independent page-static, and repeated p57 page-seed aperiodic step alphabets excluded for GP-native English'
 }, null, 2));
