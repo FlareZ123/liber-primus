@@ -156,39 +156,7 @@ for(const ch of source) {
   if(runeIndex.has(ch)) {
     if(!inWord)wordStarts.add(off);
     off++;inWord=true;
-  } else if('-.,&
-                     [27,32],[33,39],[40,53],[54,55]];
-let pageOffset=0;
-const starts=gp.pages.map(p=>{const n=pageOffset;pageOffset+=p.runic_count;return n;});
-const chapter=chapterRanges.map(([a,b])=>{
-  const lo=starts[a],hi=starts[b+1],values=plain.slice(lo,hi);
-  const count=values.reduce((s,v)=>s+(v===28),0);
-  return {
-    pages:'p'+a+'–'+b,runes:values.length,
-    gpIoC:ioc(values),
-    EAtransparent:count,
-    first60:values.slice(0,60).map(i=>gp.translit[i]).join(' ')
-  };
-});
-console.log(JSON.stringify({
-  type:'fixed original-source SHA512 chain-cipher *hypothesis*, unverified',
-  seed:'canonical GF29 H2013×Gp39 quotient Q252 as BASE29 integer',
-  seedSize:seed.length,
-  seedSha256:crypto.createHash('sha256').update(seed).digest('hex'),
-  keyGeneration:'SHA512(seed||uint32BE(block)), %28',
-  transport:'GP29 predecessor-relative nonzero step, transparent EA index28',
-  sourceRunes:unknown.length,
-  sourceDoubletEvents:counted,
-  doubletAtSourcePrintedWordOnset:onsetCount,
-  conditionalEAOnsetControls:onsetControls,
-  originalGP29IoC:ioc(unknown),
-  inverseGP29IoC:ioc(plain),
-  nativeSolvedP57PlantIOC:ioc(plant),
-  controls:'12956/12956 native-positive exact plaintext inversion and original ciphertext re-encryption',
-  chapter,
-  decision:'No GP-native plaintext. Moreover 23/86 source doublets begin printed words, versus only 6–11% of actual EA in independent native English; this rejects the literal EA-transparent zero-step model if source word breaks are plaintext breaks, independently of key. This is one pinned hash-stream candidate, not a global exclusion of SHA512 or other KDFs.'
-},null,2));
-.includes(ch)) {
+  } else if('-.,&$'.includes(ch)) {
     inWord=false;
   }
 }
@@ -256,10 +224,12 @@ console.log(JSON.stringify({
   transport:'GP29 predecessor-relative nonzero step, transparent EA index28',
   sourceRunes:unknown.length,
   sourceDoubletEvents:counted,
+  doubletAtSourcePrintedWordOnset:onsetCount,
+  conditionalEAOnsetControls:onsetControls,
   originalGP29IoC:ioc(unknown),
   inverseGP29IoC:ioc(plain),
   nativeSolvedP57PlantIOC:ioc(plant),
   controls:'12956/12956 native-positive exact plaintext inversion and original ciphertext re-encryption',
   chapter,
-  decision:'No GP-native plaintext or original instruction recovered if chapter IoCs remain near 1/29. This is one pinned hash-stream candidate, not an exclusion of SHA512 or other KDFs.'
+  decision:'No GP-native plaintext. Moreover 23/86 source doublets begin printed words, versus only 6–11% of actual EA in independent native English; this rejects the literal EA-transparent zero-step model if source word breaks are plaintext breaks, independently of key. This is one pinned hash-stream candidate, not a global exclusion of SHA512 or other KDFs.'
 },null,2));
