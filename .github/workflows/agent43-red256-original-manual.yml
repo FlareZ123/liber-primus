@@ -13,3 +13,6 @@ jobs:
       - name: Source-native red256 AES-CTR SFT
         shell: pwsh
         run: node sims/lp2_red256_ink_aes_ctr_full_original_sft.cjs
+      - name: Original BASE29 byte packets under red256 AES-CTR
+        shell: pwsh
+        run: node sims/lp2_red256_base29_aes_ctr_binary_sft.cjs
