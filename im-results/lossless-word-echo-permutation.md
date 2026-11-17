@@ -1,6 +1,6 @@
 # A lossless permutation architecture for the original word-echo anomalies
 
-**Status, 10 November 2026: constructive, exactly reversible conditional cipher family; original unknown LP2 plaintext and key still unrecovered.** The hypotheses are **deliberately source-guided by previously observed anomaly counts**, so reproducing those counts is a model-capacity witness, not discovery-independent evidence of Cicada's mechanism. All original heldout decryption results remain GP-uniform. This is a useful lossless alternative to earlier collision-repair surrogates that could match runic echoes only by overwriting plaintext.
+**Current status, 17 November 2026: exactly reversible conditional cipher family; its fixed S and EA source symbols now fail independent GP-native whole-word checks. Original unknown LP2 plaintext and key remain unrecovered.** The hypotheses are **deliberately source-guided by previously observed anomaly counts**, so reproducing those counts is a model-capacity witness, not discovery-independent evidence of Cicada's mechanism. All original heldout decryption results remain GP-uniform. This is a useful lossless alternative to earlier collision-repair surrogates that could match runic echoes only by overwriting plaintext.
 
 ## Reversible assignment and manuscript inputs
 
@@ -36,6 +36,27 @@ The planted plaintext source is the independently committed Shakespeare-to-GP co
 | Variant3: +lag5 continuation | **87.12 ± 11.43** | **8.63 ± 2.74** | **79.56 ± 8.30** | **5.21 ± 2.15** | **97.31 ± 14.74** |
 
 Variant3 permits simultaneously elevated T6, S5 and consecutive lag5 events with **no arbitrary glyph overwrites, information loss or ciphertext replay**. However, it remains short of the original **104** total lag5 matches (planted mean 79.56), and its paired mean 5.21 is below the original 9. These are meaningful *model shortfalls*. The original duplicates 86 are within positive-source sampling variation, but every variant has exactly the number of repeats implied by its planted source EA positions by construction.
+
+## Independent native-word challenge: the S/EA marker choices fail their intended linguistic register
+
+**17 November 2026, Agent 1. Newly bounded original-cipher selection result.** The original report's 160 GP-English positive plants used *contiguous text rebroken at the original ciphertext word boundaries*, which preserves rune-level correlations but destroys natural English word beginnings and endings. This is adequate to demonstrate a mathematically bijective encoder and synthetic feature compatibility; it is **not** evidence that the S and EA choices can produce the observed source word morphology from actual English words. A direct corpus-true word control now changes that assessment.
+
+**Exact source-register bound, independent of the secret base alphabet.** In the frozen lossless permutation model, plaintext S (GP index15) is mapped to the six-back target `T(C[j-6])` at word-local positions `j≥6` whenever the target differs from the preceding ciphertext glyph. The untouched 2,896-word original has **1,290** eligible positions, **79** nondegenerate T6 events and **33** positions where the target equals the predecessor. Hence any fully decoded source under this precise S-anchor rule contains **between 79 and 112 plaintext S runes** among those eligible positions, regardless of the hidden baseline permutation, additive pad or starting key. The 33 conflicting positions were generously allowed to contain S. This bound operates on the fixed published runes; it requires no chosen-key inversion.
+
+The original also has **86** same-glyph successor events, split by authentic printed word boundary as **23 at word beginnings** and **63 inside words**. In the baseline zero-step scheme, plaintext EA (GP index28) produces a repeat of the preceding ciphertext at every ordinary position. Its source-native location pattern would need to resemble that original split. Later S5 swaps can interfere with the exact equality, so this is a bounded criticism of the baseline/first anchor variant rather than a blanket impossibility for every variant.
+
+Construct independent controls from three committed GP-English texts, each encoded using the original solved LP1 orthography (`ING→NG`, `IO→IA/IOR`, `QU→CW`, `V→U`, `K/Q→C`, `Z→S`). For every one of the original **2,896** printed GP-word lengths (including 7–14-rune long words), independently select a genuine whole English word with **exactly that GP rune length**. No synthetic word break, original ciphertext selection, or borrowed T6 event locations enter the plants. Run **500 deterministic plants per corpus**, preserving all 2,896 word positions and their lengths.
+
+| Independent GP-native whole-word source | Expected S at the 1,290 eligible j≥6 sites | Expected EA at a printed word beginning | Expected EA inside a printed word |
+| --- | ---: | ---: | ---: |
+| Actual LP2 ciphertext condition | **79–112** if S is the forced T6 source symbol | **23** repeats | **63** repeats |
+| Gibran | about **157** | about **11** | about **110** |
+| Emerson | about **181** | about **9** | about **87** |
+| Shakespeare | about **220** | about **5** | about **84** |
+
+Across the matched plants, **none of the 500 GP-native whole-word instances in any of the three source corpora** places its eligible S count in the source-imposed 79–112 interval. None simultaneously places at least 23 EA glyphs at word starts and at most 63 EA glyphs in interiors. The [independent CommonJS source-register SFT](../sims/lp2_word_native_T6_EA_marker_gate_sft.cjs) freezes the exact original counts, sampling seeds, source orthography and the full control distributions. It also records exploratory GP-R counts because R is less frequent and more evenly distributed over eligible long-word locations than S in some references.
+
+**Decision:** retire the literal fixed plaintext **S→T6** and universal **EA→previous ciphertext** assignment as a credible *word-preserving native GP-English decoder* for LP2, despite the successful earlier continuous-rune synthetic fit. These exact source-register demands are insensitive to unknown keys; searching more keys under the same assignments would not address them. This is strong calibrated evidence conditional on the three native-English controls and intact source word boundaries, rather than a theorem about every possible Cicada plaintext, non-English alphabet, spelling, optional inserted rune, or other reversible cipher. The less frequent R is an *exploratory competing plaintext marker*, selected retrospectively from the observed glyph profile; no first-party clue or 150-rune original decryption yet authenticates it.
 
 ## Direct original ciphertext inverse: conditional anchors, no decoded English
 
