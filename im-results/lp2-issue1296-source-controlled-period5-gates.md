@@ -6,7 +6,7 @@
 
 No unknown LP2 plaintext or authentic key was recovered. Two source-motivated reversible families were selected before examining the heldout pages, optimized exactly on p0–p39, and tested against untouched p40–p53 and p54–p55. Both fail. Their inverse implementations pass full-length Gibran controls and authentic LP1/p56/p57 source controls, so the negative results are not explained by a broken inverse. This is a bounded exclusion of the stated encoders and clocks, not a proof against all stateful or externally keyed ciphers.
 
-Reproducer: sims/lp2_issue1296_source_controlled_period5_gate_sft.cjs.
+Reproducer: sims/lp2_issue1296_source_controlled_period5_gate_sft.cjs. Validated by the reusable Node 22 manual SFT workflow (run #261, success): https://github.com/FlareZ123/liber-primus/actions/runs/44075394418.
 
 ## Source controls and experimental discipline
 
@@ -40,7 +40,7 @@ The one-back state crosses words and pages. The five-back tap was tested both wo
 | Global | Word-reset | [26, 16, 27, 25, 16] | 141 / 2,161 | 39 / 669 | 3 / 66 | 2 |
 | Global | Continuous | [16, 8, 14, 9, 15] | 136 / 2,161 | 31 / 669 | 4 / 66 | 2 |
 
-Training scores per rune range from −5.0745 to −5.1058; heldout scores remain nonlinguistic. Across the four variants, within-word adjacent-equality counts on the training prefix are 259–282 / 7,479, versus 63 / 10,060 in the raw full corpus; lag-five equalities fall to 50–54 / 1,563, versus 104 / 2,105 raw. None yields a meaningful heldout word run. Each variant recovers the exact hidden key and all 12,956 runes in 8/8 Gibran plants, and passes the p56/LP1/p57 source controls.
+Training scores per rune range from −5.0745 to −5.1058; heldout scores remain nonlinguistic. Across the four variants, training-prefix within-word adjacent equalities are 259–282 / 7,479, versus 48 / 7,479 raw; lag-five equalities are 50–54 / 1,563, versus 78 / 1,563 raw. On p40–p53, candidate adjacent equalities are 81–86 / 2,339 versus 14 / 2,339 raw, while lag-five counts are 15–22 / 486 versus 23 / 486 raw. On p54–p55, candidates give 7–12 / 242 adjacent and 0–2 / 56 lag-five, versus raw 1 / 242 and 3 / 56. None yields a meaningful heldout word run. Each variant recovers the exact hidden key and all 12,956 runes in 8/8 Gibran plants, and passes the p56/LP1/p57 source controls.
 
 The recurrence is therefore not rescued by the five-symbol key or by switching between word-local and global lag-five state. The four best-fit keys are statistical optima only, not source-authenticated material.
 
