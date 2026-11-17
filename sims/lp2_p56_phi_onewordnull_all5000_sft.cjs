@@ -3,7 +3,8 @@
  * Exact original LP2 test of the authentic p56 prime-totient GP29 cipher
  * with a source-visible word clock, an unknown initial prime chosen independently
  * for every word (all starts 0..4999), and zero or one unkeyed inserted rune
- * anywhere in that word. Original ciphertext rune values are never altered.
+ * anywhere in that word. At any eligible six-back affine T-echo site,
+ * the ciphertext may additionally represent a repaired tentative doublet.
  *
  * All original words of published length >= 9 are tested against independent
  * GP-native English and Latin vocabularies. This is a bounded necessary
@@ -118,10 +119,13 @@ for (let p = 2; p < sieve.length && keys.length < 5030; p++) {
 assert.equal(keys.length, 5030);
 assert.deepEqual(keys.slice(0, 8), [1, 2, 4, 6, 10, 12, 16, 18]);
 const mod = x => (x % 29 + 29) % 29;
+const echo = x => mod(24 - 2 * x);
 
 /**
  * Exact existential inverse for one word, one prime start and one sign.
  * The extra null can occur in any of the visible ciphertext positions.
+ * Any published C_i = 24 - 2*C_(i-6) (mod29) can optionally represent
+ * a tentative C_(i-1) overwritten by this six-back collision repair.
  * A plaintext F emits a literal F and does not consume the prime key;
  * ciphertext F can alternatively encrypt non-F plaintext and consume it.
  * @param {number[]} printed
@@ -139,15 +143,22 @@ function matches(printed, start, sign) {
       return;
     }
     if (!nullUsed) visit(position + 1, consumed, trie, true);
-    const cipher = printed[position];
-    if (cipher === 0) {
-      const nextF = trie.next.get(0);
-      if (nextF) visit(position + 1, consumed, nextF, nullUsed);
+    const actual = printed[position];
+    const tentative = [actual];
+    if (position >= 6 && actual === echo(printed[position - 6]) &&
+        actual !== printed[position - 1]) {
+      tentative.push(printed[position - 1]);
     }
-    const candidate = mod(cipher - sign * keys[start + consumed]);
-    if (candidate !== 0) {
-      const next = trie.next.get(candidate);
-      if (next) visit(position + 1, consumed + 1, next, nullUsed);
+    for (const cipher of tentative) {
+      if (cipher === 0 && cipher === actual) {
+        const nextF = trie.next.get(0);
+        if (nextF) visit(position + 1, consumed, nextF, nullUsed);
+      }
+      const candidate = mod(cipher - sign * keys[start + consumed]);
+      if (candidate !== 0) {
+        const next = trie.next.get(candidate);
+        if (next) visit(position + 1, consumed + 1, next, nullUsed);
+      }
     }
   }
   visit(0, 0, root, false);
@@ -214,6 +225,40 @@ assert.equal(positives.english, target.length);
 assert.equal(positives.latin, target.length);
 assert.equal(positives.withNull + positives.withoutNull, target.length);
 
+// Independent lag-six repair positives. When a tentative non-F ciphertext
+// collides with its preceding published rune, publish the affine echo
+// instead. A final non-key-consuming null is added to half the words.
+let repairedEvents = 0, repairedAndNull = 0, repairedWordPlants = 0;
+for (let index = 0; index < target.length; index++) {
+  const publishedLength = target[index].length;
+  const insertNull = index % 2 === 0;
+  const candidates = englishByLength.get(publishedLength - +insertNull);
+  const clear = candidates[(index * 47 + 3) % candidates.length];
+  const start = (index * 107 + 97) % 5000;
+  const encrypted = encrypt(clear, start, 1);
+  let repairedInWord = 0;
+  for (let j = 6; j < encrypted.length; j++) {
+    if (clear[j] !== 0 && encrypted[j] === encrypted[j - 1]) {
+      const output = echo(encrypted[j - 6]);
+      if (output !== encrypted[j - 1]) {
+        encrypted[j] = output;
+        repairedEvents++;
+        repairedInWord++;
+      }
+    }
+  }
+  if (insertNull) encrypted.push((index * 17 + 13) % 29);
+  assert.equal(encrypted.length, publishedLength);
+  assert.ok(matches(encrypted, start, 1) & 1,
+    "Lag-six and null planted word failed: " + index);
+  if (repairedInWord) {
+    repairedWordPlants++;
+    if (insertNull) repairedAndNull++;
+  }
+}
+assert.ok(repairedEvents > 0);
+assert.ok(repairedAndNull > 0);
+
 console.log(JSON.stringify({
   source: "canonical LP2 GP29 unsolved pages p0..p55",
   sourceSha256: sourceHash,
@@ -223,9 +268,11 @@ console.log(JSON.stringify({
   primeStarts: 5000,
   nullLimitPerWord: 1,
   authenticPlaintextFBypass: true,
+  allEligibleT6RepairBranches: true,
   englishLexicon: englishUnique.size,
   latinLexicon: latinUnique.size,
   original: bySign,
   matchedPositive: positives,
-  conclusion: "No original printed word of length >=9 decodes to a known GP-English or Latin word, despite independently free prime start for every word and up to one unkeyed ciphertext rune"
+  matchedT6RepairPositive: {repairedEvents, repairedWordPlants, repairedAndNull},
+  conclusion: "No original printed word of length >=9 decodes to known GP-English or Latin, granting independently free prime starts, up to one unkeyed ciphertext rune and every eligible T6 echo overwrite"
 }, null, 2));
