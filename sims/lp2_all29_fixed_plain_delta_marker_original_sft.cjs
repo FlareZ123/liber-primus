@@ -307,8 +307,100 @@ function markedSectionExhaustive(native) {
   };
 }
 
+const nativeControls = controls.map(file => gpNative(read(file)));
+
+/**
+ * Independent English-passage control for the 29 source-marked sections.
+ * A contiguous full-book reference is an imperfect null: the real book
+ * might use independent passages at each visible mark. Sample a NEW
+ * source and offset for each original section, while preserving all
+ * original section lengths and physical-page interior cut geometry.
+ * Optimize each secret k separately. The xorshift32 RNG is deterministic
+ * and cannot be tuned after seeing source ciphertext.
+ *
+ * @param {number[][]} nativeTexts
+ * @returns {{seed:string,trials:number,minimum:number,q01:number,q05:number,median:number,q95:number,maximum:number,mean:number,atMost86:number,atMost100:number}}
+ */
+function independentMarkedPassages(nativeTexts) {
+  const punct = JSON.parse(read('resources/liber-primus/lp2-punctuation-identity.json'));
+  const marks = [...new Set(punct.events.filter(e => e.symbol === '⁜')
+    .map(e => e.rune_offset).filter(v => v > 0 && v < 12956))]
+    .sort((a,b) => a-b);
+  const boundaries = [0, ...marks, 12956];
+  assert.equal(boundaries.length, 30);
+  let pagePos = 0;
+  const pageCuts = [];
+  for (const p of originals) {
+    pageCuts.push(pagePos);
+    pagePos += p.indices.length;
+  }
+  assert.equal(pagePos, 12956);
+  const allCuts = [...new Set([0, 12956, ...marks, ...pageCuts])]
+    .sort((a,b) => a-b);
+  const sections = boundaries.slice(1).map((end, j) =>
+    ({start:boundaries[j],end,spans:[]}));
+  let group = 0;
+  for (let i = 0; i+1 < allCuts.length; i++) {
+    while (group + 1 < sections.length &&
+      allCuts[i] >= boundaries[group+1]) group++;
+    sections[group].spans.push([
+      allCuts[i]-sections[group].start,
+      allCuts[i+1]-sections[group].start
+    ]);
+  }
+  assert.equal(sections.length, 29);
+  const diffs = nativeTexts.map(sourceText => {
+    const values = new Uint8Array(sourceText.length);
+    for (let i = 1; i < sourceText.length; i++)
+      values[i] = (sourceText[i]-sourceText[i-1]+29)%29;
+    return values;
+  });
+  let seed = 0x3301;
+  /** @returns {number} */
+  const random32 = () => {
+    seed ^= seed << 13;
+    seed ^= seed >>> 17;
+    seed ^= seed << 5;
+    return seed >>> 0;
+  };
+  const scores = [];
+  const trials = 10000;
+  for (let t = 0; t < trials; t++) {
+    let score = 0;
+    for (const section of sections) {
+      const sourceIdx = random32() % diffs.length;
+      const selected = diffs[sourceIdx];
+      const length = section.end - section.start;
+      const start = random32() % (selected.length - length + 1);
+      const counts = new Int16Array(29);
+      for (const [a,b] of section.spans) {
+        for (let i = start+a+1; i < start+b; i++)
+          counts[selected[i]]++;
+      }
+      score += Math.min(...counts);
+    }
+    scores.push(score);
+  }
+  scores.sort((a,b) => a-b);
+  const output = {
+    seed:'0x3301', trials,
+    minimum:scores[0],
+    q01:scores[99], q05:scores[499],
+    median:scores[4999], q95:scores[9499],
+    maximum:scores[scores.length-1],
+    mean:scores.reduce((s,x) => s+x,0)/trials,
+    atMost86:scores.filter(v=>v<=86).length,
+    atMost100:scores.filter(v=>v<=100).length
+  };
+  assert.equal(output.minimum, 114);
+  assert.equal(output.median, 156);
+  assert.equal(output.atMost86, 0);
+  assert.equal(output.mean, 155.5318);
+  return output;
+}
+
 const reports = controls.map((file, i) => {
-  const native = gpNative(read(file));
+  const native = nativeControls[i];
   const result = exhaustive(native);
   const chapters = chapterResetExhaustive(native);
   const punctuation = markedSectionExhaustive(native);
@@ -327,6 +419,7 @@ const reports = controls.map((file, i) => {
 assert.deepEqual(reports.map(r => r.runicLength), [62492, 217106, 321327]);
 assert.deepEqual(reports.map(r => r.windows), [49537, 204151, 308372]);
 assert.equal(reports.reduce((s, r) => s + r.windows, 0), 562060);
+const independentPassages = independentMarkedPassages(nativeControls);
 assert.ok(reports.every(r => r.minimums[13] > originalEqual));
 
 // A 29-to-29 reversible feedback rotor can encode all GP values with no
@@ -384,6 +477,7 @@ const output = {
   nineChapterControlMinima:reports.map(r => r.chapterReset.minimum),
   sourceMarked29SectionControlMinima:reports.map(r => r.sourceMarkedSectionReset.minimum),
   markedSectionWindowsAtOrBelow86:reports.reduce((s,r) => s+r.sourceMarkedSectionReset.compatibleWindows,0),
+  independentSourcePassagesAtEachMarkedSection:independentPassages,
   nineChapterWindowsAtOrBelowOriginal86:reports.reduce((s,r) =>
     s+r.chapterReset.compatibleWindows,0),
   positiveNativeP57RoundtripTestedMarkers:29,
