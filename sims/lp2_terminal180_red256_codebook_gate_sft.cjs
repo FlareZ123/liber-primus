@@ -164,12 +164,12 @@ const minDistinct = Math.min(...tests.map(x => x.distinctRequiredKeyValues));
 const maxDistinct = Math.max(...tests.map(x => x.distinctRequiredKeyValues));
 assert.equal(minDistinct, 119);
 assert.equal(maxDistinct, 138);
-assert.ok(minDistinct > 32); // 29 possible runes + at most 3 dot-type classes.
+assert.ok(minDistinct > 60); // Even 29 rune types + 31 individually keyable dot marks.
 const minRingResiduals = Math.min(...tests.map(x => x.affineEventFeedback.minRing));
 const minGFResiduals = Math.min(...tests.map(x => x.affineEventFeedback.minGF));
 assert.equal(minRingResiduals, 112);
 assert.equal(minGFResiduals, 112);
-assert.ok(minRingResiduals > 32 && minGFResiduals > 32);
+assert.ok(minRingResiduals > 60 && minGFResiduals > 60);
 
 // Recovered-plaintext positive: a *secret*, arbitrary 30-symbol codebook,
 // a fully original-shaped 256-cell table, 76 withheld planted target runes,
@@ -242,8 +242,8 @@ console.log('PASS 225 red rune + 31 source 13-dot tape: 256 events, 30 distinct 
 console.log('PASS p56 85/85 solved + clear p57 95 original GP29 runes');
 console.log('PASS blinded 76-rune p55 plant recovered exactly from the 180 known plaintext runes using ONLY the 30-byte secret codebook');
 console.log('ORIGINAL ' + JSON.stringify({ candidateByteConsumers: 24, knownInputRunes: 180,
-  maxEventClasses: 32, sourceClassA: distinct.length, minDistinct, maxDistinct,
+  maxEventClasses: 60, sourceClassA: distinct.length, minDistinct, maxDistinct,
   minRingResiduals, minGFResiduals,
   tests }));
 console.log('PASS blind 76/76 recovery under a secret stateful event-codebook generator, with all 256 possible affine multipliers considered');
-console.log('DECISION: all 24 known180 receivers require >=119 distinct direct key bytes or >=112 distinct affine event-feedback residuals; a 30/32-type source-event codebook cannot supply either, even with arbitrary event reordering and unknown multiplier.');
+console.log('DECISION: all 24 known180 receivers require >=119 distinct direct key bytes or >=112 distinct affine event-feedback residuals; even a 60-type codebook granting every dot its OWN secret byte cannot supply either, even with arbitrary event reordering and unknown multiplier.');
