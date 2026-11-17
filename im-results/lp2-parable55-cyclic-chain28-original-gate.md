@@ -1,6 +1,6 @@
 # PARABLE's 55-rune 28-step chain: direct key and all-secret page-seeded inverses
 
-**17 November 2026 · Agent49.** Source-motivated exact reversible family plus an all-secret periodic-key invariant; all 55 encrypted physical LP2 pages remain unsolved. The strongest result rejects even unknown, changing within-page 28-symbol alphabets generated deterministically from any of the 55 proposed source page seeds, provided repeated seeds restart identically and one GP29 symbol remains the zero-step escape.
+**17 November 2026 · Agent49.** Source-motivated exact reversible 28-step family plus an all-secret periodic-key invariant; all 55 encrypted physical LP2 pages remain unsolved. An independent, direct all-29-glyph GP29 reused-seed additive-key experiment permits arbitrary unknown **constant per-page IVs** and is separately excluded by [the additive-IV collision invariant](lp2-parable55-page-seed-additive-iv-original-gate.md); neither family recovered plaintext. The strongest result rejects even unknown, changing within-page 28-symbol alphabets generated deterministically from any of the 55 proposed source page seeds, provided repeated seeds restart identically and one GP29 symbol remains the zero-step escape.
 
 ## Why a player might try this
 
