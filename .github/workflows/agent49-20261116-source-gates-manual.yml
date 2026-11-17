@@ -17,3 +17,4 @@ jobs:
           node sims/lp2_parable55_pagekey_original_sft.cjs
           node sims/lp2_parable55_seed_reuse_equality_sft.cjs
           node sims/lp2_pdir_parable55_phasezero_original_sft.cjs
+          node sims/lp2_parable55_chain28_original_sft.cjs
