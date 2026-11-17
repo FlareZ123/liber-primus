@@ -89,7 +89,10 @@ assert.ok(Math.abs(floor.ioc - 0.032763653284825923) < 1e-12);
 
 // Source-native controls: identical canonical GP29 tokenization as
 // sims/lp2_cipher_feedback_entropy_sft.cjs, all contiguous 308-rune windows.
-const tokens = source.translit.map((s, i) => ({s, i}))
+// LP1 p10–p13 181/181 and LP2 p57 95/95 original source orthography:
+// ING and IO collapse to one GP rune, beyond inventory-label spellings.
+const tokens = [{s: 'ING', i: 21}, {s: 'IO', i: 27},
+  ...source.translit.map((s, i) => ({s, i}))]
   .sort((a, b) => b.s.length - a.s.length);
 function native(text) {
   const normalized = text.toUpperCase().replace(/QU/g, 'CW')
@@ -128,11 +131,11 @@ function lowestWindowIoC(data, width) {
 }
 const controls = [
   ['Gibran', 'resources/control/gibran_prophet_58585.txt',
-    62807, 0.05254029358263886],
+    62185, 0.052497990608739796],
   ['Shakespeare', 'resources/control/shakespeare_first300k.txt',
-    218493, 0.05015017555734168],
+    216799, 0.04989635771394729],
   ['Emerson', 'resources/control/emerson_essays_2944.txt',
-    324323, 0.049917509200896826]
+    321020, 0.04945217648800711]
 ].map(([name, filename, expectedWindows, expectedMin]) => {
   const result = lowestWindowIoC(native(load(filename)), cipher.length);
   assert.equal(result.windows, expectedWindows);
@@ -169,4 +172,4 @@ console.log(JSON.stringify({
   exactReencryption: true,
   plantedNativeRuneRecovery: true
 }, null, 2));
-console.log('PASS: original 308 GP runes, 285 cyclic phases and 605623 source-native windows');
+console.log('PASS: original 308 GP runes, 285 cyclic phases and 600004 source-calibrated native windows');
