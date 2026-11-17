@@ -209,6 +209,35 @@ for (let mask = 0; mask < 8; mask++) {
   }
   folds.push({signs, ioc:ioc(folded), trigram:score(folded)});
 }
+/* Authenticated Cicada historical Shamir-secret-sharing idiom: the four
+ * source-aligned 179-rune lanes can also be read as degree-three polynomial
+ * shares at x=1,2,3,4 over GF29, evaluated at x=0. This exact conventional
+ * four-of-four Lagrange inverse uses [4,-6,4,-1], not just +/- folds.
+ * No first-party LP2 source instructs this interpretation. */
+const shamirWeights = [4, -6, 4, -1];
+const shamirCandidate = Array.from({length:phaseCount}, (_, j) =>
+  mod(shamirWeights.reduce((sum, w, lane) =>
+    sum + w * lanes[lane][j], 0)));
+const shamirScore = score(shamirCandidate);
+const shamirIoC = ioc(shamirCandidate);
+const shamirPlain = heldout.slice(179, 358);
+const shamirRandom = xorshift(0x33010429);
+const shamirShares = Array.from({length:4}, () => new Array(phaseCount));
+for (let j = 0; j < phaseCount; j++) {
+  const a1 = shamirRandom() % 29;
+  const a2 = shamirRandom() % 29;
+  const a3 = shamirRandom() % 29;
+  for (let k = 0; k < 4; k++) {
+    const x = k + 1;
+    shamirShares[k][j] = mod(shamirPlain[j] +
+      a1 * x + a2 * x * x + a3 * x * x * x);
+  }
+}
+const shamirRecovered = Array.from({length:phaseCount}, (_, j) =>
+  mod(shamirWeights.reduce((total, w, lane) =>
+    total + w * shamirShares[lane][j], 0)));
+assert.deepEqual(shamirRecovered, shamirPlain);
+
 const heldScores = [];
 const stride = Math.floor((heldout.length - phaseCount) / 1999);
 for (let j = 0; j < 2000; j++) {
@@ -216,6 +245,7 @@ for (let j = 0; j < 2000; j++) {
 }
 heldScores.sort((a, b) => a - b);
 assert.ok(folds.every(f => f.trigram < heldScores[0]));
+assert.ok(shamirScore < heldScores[0]);
 // Compare every decoded candidate with native heldout. Avoid a hard-coded
 // score equality because the reference file's line endings can vary by checkout.
 
@@ -387,6 +417,15 @@ console.log(JSON.stringify({
     plantedSameColumnEqual:pairEqual(positiveCipher).pairsEqual,
     deterministicNoninjectiveNecessaryBoundHolds:
       pairEqual(lossyCipher).pairsEqual >= pairEqual(positivePlain).pairsEqual
+  },
+  conventionalGF29FourOfFourShamir:{
+    shares:'four consecutive original 179-rune ciphertext lanes at x=1,2,3,4',
+    interpolationWeights:shamirWeights,
+    originalScore:shamirScore,
+    originalIoC:shamirIoC,
+    authenticNativePlantRecovered:shamirRecovered.length,
+    nativeWorstHeldout179:heldScores[0],
+    modelCaveat:'No original instruction says these are Shamir shares; only conventional direct plaintext interpolation tested'
   },
   rank28ThenSharedSecret179:{
     interpretation:'Two rank-28 no-repeat outer inverses plus unknown 179-phase shared secret 28-alphabet; original repeat sites conservatively erased',
