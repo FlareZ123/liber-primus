@@ -325,6 +325,77 @@ for(const [mode,decode] of [["historicalDecode",true],["historicalEncrypt",false
 assert.equal(runeOutput.historicalDecode.flatMap(r=>r.candidates).length,11);
 assert.equal(runeOutput.historicalEncrypt.flatMap(r=>r.candidates).length,8);
 
+
+/**
+ * Third historical-key location: F is Cicada's known distinguished
+ * GP29 interrupter, leaving 28 other rune symbols = two complete
+ * original 14-column rows. Apply the same fixed 2014 permutation to
+ * both non-F alphabet rows, leaving F untouched. This is a value-
+ * substitution layer, not a glyph/word position transposition.
+ * The alphabet mapping is exactly bijective in both directions.
+ * @param {number} rune
+ * @param {boolean} inverse
+ * @returns {number}
+ */
+function mapNonF28(rune,inverse) {
+  if(rune===0) return 0;
+  const row=Math.floor((rune-1)/14), col=(rune-1)%14;
+  return 1+14*row+(inverse?order.indexOf(col):order[col]);
+}
+for(let i=0;i<29;i++) {
+  assert.equal(mapNonF28(mapNonF28(i,true),false),i);
+  assert.equal(mapNonF28(mapNonF28(i,false),true),i);
+}
+const mappedP56=sourceC56.map(c=>mapNonF28(c,false));
+assert.equal(furthest(mappedP56.map(c=>mapNonF28(c,true)),0),85);
+const expectedAlphabet = {
+  forward: {
+    maxima:[613,545,618,518,518,580,408,559,308],
+    starts:[4479,2382,3684,1997,115,3032,188,927,999],
+    completed:[[],[],[],[],[],[],[],[],
+      [999,1001,2048,2284,3461,3462,3801]]
+  },
+  inverse: {
+    maxima:[712,426,539,520,584,554,468,490,308],
+    starts:[3698,3070,1339,34,4146,1527,3669,1193,1835],
+    completed:[[],[],[],[],[],[],[],[],[1835,3593]]
+  }
+};
+const alphabetOutput = {};
+for(const [mode,inverse] of [["forward",false],["inverse",true]]) {
+  const tests=[];
+  for(let chapter=0;chapter<chapters.length;chapter++) {
+    const original=chapters[chapter].flat();
+    const candidateCipher=original.map(c=>mapNonF28(c,inverse));
+    let max=0,at=-1;
+    const complete=[];
+    for(let start=0;start<K;start++) {
+      const reached=furthest(candidateCipher,start);
+      if(reached>max) {max=reached;at=start;}
+      if(reached===candidateCipher.length) complete.push(start);
+    }
+    assert.equal(max,expectedAlphabet[mode].maxima[chapter],
+      mode+" alphabet chapter "+chapter+" max");
+    assert.equal(at,expectedAlphabet[mode].starts[chapter],
+      mode+" alphabet chapter "+chapter+" max arg");
+    assert.deepEqual(complete,expectedAlphabet[mode].completed[chapter],
+      mode+" alphabet chapter "+chapter+" complete set");
+    const candidates=complete.map(start=>{
+      const v=bestFullPath(candidateCipher,start);
+      const meanBigramLog=v.score/v.plain.length;
+      const collisionRate=ioc(v.plain);
+      assert.ok(meanBigramLog<-4.7 && collisionRate<.04,
+        "Potential authentic non-F alphabet transferred plaintext");
+      return {start,meanBigramLog,ioc:collisionRate};
+    });
+    tests.push({chapter,originalRunes:original.length,maxPrefix:max,
+      firstPrimeStartAtMax:at,completeStarts:complete,candidates});
+  }
+  alphabetOutput[mode]=tests;
+}
+assert.equal(alphabetOutput.forward.flatMap(t=>t.candidates).length,7);
+assert.equal(alphabetOutput.inverse.flatMap(t=>t.candidates).length,2);
+
 console.log(JSON.stringify({
   source:"12,956 original LP2 ciphertext runes/2,896 printed words",
   history:"signed 2014 Stage03 14-column permutation and authentic p56 prime-totient plaintext-F bypass",
@@ -334,6 +405,6 @@ console.log(JSON.stringify({
   initialPrimeIndexRange:"0..4999",
   genuineCandidateScores:"All 7 complete originals have GP-English mean bigram<-5.05 and IoC<0.036; actual p56 score -2.66594, IoC 0.07003",
   controls:{originalP56BigramScore:bestFullPath(sourceC56,0).score/85,
-    originalP56IoC:ioc(solvedP56)},results:output,runeLevelResults:runeOutput,
-  conclusion:"Both historical 14-column per-word and literal per-rune transpositions plus p56-F cipher fail on eight original chapters. Seven word-level and nineteen rune-level complete short/terminal outputs are nonprose. No unknown plaintext recovered."
+    originalP56IoC:ioc(solvedP56)},results:output,runeLevelResults:runeOutput,alphabetLevelResults:alphabetOutput,
+  conclusion:"All three source-fixed historical14 transfer levels fail to recover unknown LP2 plaintext under authentic p56-F prime clock over 5000 starts: whole words and runes have only opening/terminal nonprose completions; non-F 28-symbol alphabet transfer has only nine nonprose terminal completions."
 },null,2));
