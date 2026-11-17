@@ -10,7 +10,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const ROOT = path.join(__dirname, '..');
-const read = name => fs.readFileSync(path.join(ROOT, name), 'utf8');
+const read = name => fs.readFileSync(path.join(ROOT, name), 'utf8').replace(/\r\n/g, '\n');
 const grid = JSON.parse(read('resources/liber-primus/lp2-grid-256.json'));
 const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const signed = read('resources/historical/cicada2015-planned-parenthood-denial.asc');
