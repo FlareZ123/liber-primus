@@ -121,3 +121,6 @@ A cheap follow-on used the 2013+2016 LCG parameters already in `sims/parable2013
 
 
 - Tested the DH73 5×5 geometric square as a Hill-5 key over GP29. The base59 square rows21–25/cols1–5 gives determinant17 mod29 and an inverse; p55 minus its leading NG carry is exactly75=15×5. M, Mᵀ, M⁻¹, (M⁻¹)ᵀ with row/column multiplication all produce nonprose. Reproducer: sims/lp2_p55_dh73_square_hill29_sft.cjs. This rejects the direct Hill-5 receiver, not the square's arithmetic/geometric correspondences.
+
+
+- Tested the original p50 76-cell clockwise outer ring as a direct p55 transposition. It has 68 distinct base59 values and only 47 distinct residues mod76, so value mod76 cannot be a 76-permutation. Stable ascending rank-order and inverse permutations, with ring starts 0 and K=73, all produce nonprose. Reproducer: sims/lp2_p55_k73_outerring_permutation_sft.cjs. Do not pursue more ring permutations without a source-selected mapping.

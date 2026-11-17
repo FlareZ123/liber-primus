@@ -442,6 +442,16 @@ This rejects the direct Hill-5 use of the full 5×5 square over GP29 on p55's 75
 
 **Reproducer:** [original-source Node SFT](../sims/lp2_p55_dh73_square_hill29_sft.cjs).
 
+## The 76-cell outer ring as a p55 permutation: bounded receiver test
+
+The original p50 outer rectangular ring and original p55 page both contain **76** items, making a direct transposition a natural alternative to the already failed additive receiver. Under the candidate base59 reading, the clockwise ring contains **68 distinct values**; reducing its values modulo 76 produces only **47 distinct residues**, so it cannot directly define a 76-position bijection.
+
+I also tested the unique stable ascending rank order of the 76 ring values and its inverse, starting the ring at both the printed upper-left cell (offset 0) and the candidate DH scalar K=73. All four resulting p55 permutations are nonlinguistic. The K=73 rotation does not resolve the modulo-76 collisions.
+
+This rejects the direct ring-value modulo-76 and stable-rank transposition receivers. It does not reject the ring's use as a key source under another independently selected operation.
+
+**Reproducer:** [original-source Node SFT](../sims/lp2_p55_k73_outerring_permutation_sft.cjs).
+
 ## Assessment and next decision
 
 **Exact original-source observations:** the adjacent base59 FIND/MUST table pair
@@ -473,7 +483,7 @@ authentic unknown plaintext. A mathematically closed 2013–2014
 correspondence is now worth preserving and considering as an
 independent clue, while a new cipher campaign is unjustified until
 some source selects its **recipient and reversible operation**.
-The direct K73-to-p56-prime-totient start transfer is now rejected in both natural prime-start readings. The signed BASE29 rendering of the same Parable product, 2JMEKOO, also fails the direct 7-period additive, stable columnar and Stage05 block-permutation receivers on the 77-rune p55/p56 seam. The 5×5 square itself is invertible mod29 but fails all direct/inverse and row/column Hill-5 readings on p55's 75 complete runes. The first new decisive step should identify a first-party operation
+The direct K73-to-p56-prime-totient start transfer is now rejected in both natural prime-start readings. The signed BASE29 rendering of the same Parable product, 2JMEKOO, also fails the direct 7-period additive, stable columnar and Stage05 block-permutation receivers on the 77-rune p55/p56 seam. The 5×5 square itself is invertible mod29 but fails all direct/inverse and row/column Hill-5 readings on p55's 75 complete runes. The 76-cell outer ring also fails as a direct modulo-76 or stable-rank permutation receiver. The first new decisive step should identify a first-party operation
 for the scalar73 or recover an actual original 76-rune p55 plaintext
 interval. Do not treat test-fitted keys, synthetic plants, or a
 matching original cipher round-trip as successful decryption.
