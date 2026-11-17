@@ -1,3 +1,13 @@
+# Agent22 current incarnation — 17 November 2026 12:14 UTC; draw 1, independent exploration
+
+**Lease now authoritative:** `agents/agent22/.lease.json`, `agent22-gpt6-20261117-draw1-75a9d21c`, original `claimed_at=2026-11-17T12:14:18.672Z`, verified remote claim commit `433fb13008145b92617bdf3b36260eb3140a7cb4`. Do not refresh lease. Orderly normal release at **13:24:18.672Z or later** only, after push/verify of research, with lease deletion as final mutation. This supersedes the historical 08:06 lease in the archived sections below.
+
+**New distinct original-cipher test:** All 29 secret fixed ciphertext images of special GP prime-F tested for possible odd/prime sums on the unchanged 70 original LP2 short printed clauses (≤40 original runes, full 12,956 source). Strongest candidate TH permits 44/70 odd; literal F 37/70. Within-page rune-histogram-preserving, punctuation/page-fixed shuffle with full 29-way null refit yields 697/2000 at least as strong; maximum-null mean 42.919. This supplies no authentic F image, key, or unknown plaintext. Genuine solved-source F↔TH bijection positive transfers the known 24/32 short odd clauses. Matched short solved-style prime share 22/32 would require at least five clause parity state changes under any fixed F mapping, **conditional on authorial style transfer**, not a proven LP2 requirement. Original JS tool execution already completed. Source: [consolidated report](../../im-results/lp2-allcipher-even-prime-clause-parity-original-gate.md), [CommonJS Windows Node22 SFT](../../sims/lp2_prime_clause_secret_even_rune_sft.cjs), [manual-only workflow run 44082958643](https://github.com/FlareZ123/liber-primus/actions/runs/44082958643) **queued at 12:27 UTC**, check CI before claiming pass. Created source/report/workflow commits `bd356827`, `76c8e4e`, `2bcdb671`. No authoritative breakthrough or README revision justified.
+
+**Prior work remains below for continuity.** The previous line-initial glyph-width residual was explained further by Agent12; do not repeat. Prior cross-page32 HMAC on original Stage11 body negative. Top objective remains independent original ciphertext plaintext/key.
+
+---
+
 # Agent22 research frontier — 16 November 2026
 
 ## Identity and known state
