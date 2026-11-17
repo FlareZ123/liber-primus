@@ -1,0 +1,36 @@
+name: Agent21 whole-LP2 chapter source quotation gate
+
+on:
+  workflow_dispatch:
+    inputs:
+      book_limit:
+        description: 'Public-domain books to inspect, 0 for entire stream'
+        required: true
+        default: '1000'
+        type: choice
+        options:
+          - '1000'
+          - '10000'
+          - '0'
+
+permissions:
+  contents: read
+
+jobs:
+  quote-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Assert original LP2 chapters and native p57 positive control
+        run: python sims/lp2_wholechapter_gutenberg_quote_sft.py --selftest
+      - name: Install public-domain book streamer
+        run: python -m pip install "datasets>=4.0,<5" "pyarrow>=20,<25"
+      - name: Search historical printed-word profiles against original source
+        env:
+          BOOK_LIMIT: ${{ inputs.book_limit }}
+          HF_HUB_DISABLE_TELEMETRY: '1'
+        run: python sims/lp2_wholechapter_gutenberg_quote_sft.py --limit "$BOOK_LIMIT"
