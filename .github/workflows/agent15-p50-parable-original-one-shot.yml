@@ -17,3 +17,6 @@ jobs:
         run: node sims/lp2_p50_parable_bbs_allstate_original_sft.cjs
       - name: 2013 Parable Blum-Blum-Shub original gate
         run: node sims/lp2_2013_parable_bbs_original_sft.cjs
+
+      - name: full-state p55 GP29 language inverse
+        run: node sims/lp2_p55_parable_bbs_allstate_gp29_original_sft.cjs
