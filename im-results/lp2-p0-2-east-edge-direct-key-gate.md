@@ -1,6 +1,6 @@
-# Map east-edge keys on original p55: transparent-F gate
+# Map east-edge keys: direct GP29 p55 and lossless GP28 follow-on chapters
 
-**Decision:** neither the eastern edge of the conditional p0–p2 27×27 map nor the source-selected p32 11×11 map decrypts original p55 under the tested direct repeating-key GP29 interpretations, even when the authentic solved-p56 plaintext-F bypass convention is granted. This is a bounded negative, not a test of the external 27×27 project's separate three-rune-node / totient / Möbius route.
+**Decision:** source-selected eastern column keys do not recover plaintext under direct repeating-key GP29 on original p55. A distinct lossless GP28 predecessor-exclusion consumer using the p0–p2 27×27 east edge also fails on the next two untouched illustrated chapters p3–7 and p8–14, under both natural rank conventions, three source-derived key numeric registers, both signs and both repeated-rune clock policies. These are two bounded cipher-family decisions, not a test of the external project's own three-rune-node / totient / Möbius route. No authentic unknown plaintext or key has been found.
 
 ## Avoiding duplicated p3 work
 
@@ -94,6 +94,24 @@ A synthetic 76-rune p57 plant encrypted and decrypted under every edge/key repre
 Reject the direct **map east-edge repeating key + p56-style transparent-F** model for p55 under these six fixed key mappings and five source-motivated clocks. This does not reject a different eastward traversal, the external three-rune-node decoder, a non-Vigenère use of either map, or a key/state derived from another independently authenticated source.
 
 The φ-of-GP-prime mapping is not the authentic p56 consecutive-prime key stream; it is an explicitly tested candidate mapping of edge runes. Likewise, continuous phases assume no earlier F skips. Neither assumption is promoted to fact.
+
+## Distinct original GP28 anti-repeat consumer: two untouched follow-on chapters (Agent10, 17 November 2026)
+
+The prior direct p3 test used ordinary modulo-29 Vigenère. That operation alone cannot explain the original manuscript's very low adjacent-equal-rune rate. A separate executable proposal uses the same east-column key but **a fully invertible anti-repeat receiver**: for each output rune after a first public-IV rune, assign the 28 GP rune values other than the preceding ciphertext rune to rank 0–27. A repeated ciphertext rune represents exactly GP plaintext index28 (EA), so all 29 plaintext symbols are represented. This receiver explicitly explains how literal repeats could survive without losing information.
+
+Two fixed, natural rankings of permitted successor runes are tested: the original GP index order with the predecessor skipped, and cyclic order starting one glyph after the predecessor. The unmodified 27 east-edge GP indices are mapped to the **raw indices**, **GP primes**, or **prime totients**; each key value is reduced modulo28. The unknown receiver addition is checked in both directions. The repeated-output EA marker either consumes a key tick or does not, since the source does not specify its treatment. All **3×2×2×2 = 24** variants are frozen before reading the original receivers. No fitted start phase, trial location, word-level exception or language-targeted key is used. The first rune of each independent chapter is passed through as its own public IV.
+
+| Original receiver | Rune count | Cipher IoC | Highest IoC in 24 source-fixed inverses |
+| --- | ---: | ---: | ---: |
+| First consecutive illustrated chapter p3–7 | **1,145** | **0.0346337069** | **0.0357605277** |
+| Independent next illustrated chapter p8–14 | **1,729** | **0.0344604835** | **0.0355281901** |
+| Actually clear and independently readable p57 | **95** | **0.0627099664** | Not altered |
+
+The p3–7 leading candidate uses **prime totients, cyclic successor order, subtraction, and EA events that do not advance the key**. Its first 38 decoded runes transliterate as `L S A TH A OE B AE EO EO OE A G W U A N A AE P C B EO F B E OE H B NG B M L M Y F X T`, with no recognizable prose. Even its IoC remains close to the uniform GP29 baseline 1/29. The independent p8–14 receivers similarly remain nearly uniform under all 24 variants, including the highest-IoC one, so this result does not select a plausible shared decryption rule.
+
+The [read-only, Windows-compatible standalone SFT](../sims/lp2_p0_east_gp28_successor_inversion_sft.cjs) additionally synthesizes a **1,145-rune native-p57-derived message with five inserted EA markers**, encrypts it in all 24 complete receiver configurations, and recovers all 1,145 plaintext symbols exactly in every case. The 24/24 recoveries were independently executed on the exact original source in the connected research runtime. Thus an invertible receiver and explicit candidate key do exist and work as implemented; **they do not unlock original LP2 p3–14**. The corresponding manual Node22 workflow is `.github/workflows/agent10-east-gp28-manual.yml`.
+
+This distinct trial is motivated by the external, unauthenticated phrase “east of the map” and the authentic original adjacent-doublet deficit. Its negative cannot exclude a different east-key derivation, a nonperiodic changing key, independently keyed pages, unfamiliar plaintext register or a creator-specified cipher that does not rank predecessor-avoiding successors. Stop treating the map east edge alone as a reproducible key for these two receiver families; a genuine new clue is needed to motivate another consumer.
 
 ## Reproduction
 
