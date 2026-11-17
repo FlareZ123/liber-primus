@@ -209,17 +209,120 @@ function chapterResetExhaustive(native) {
   };
 }
 
+
+/**
+ * Third, source-visible reset grammar: allow an independent secret fixed
+ * difference marker at EVERY original marked chapter/section terminator,
+ * including short interior headings and numerically unusual ten-dot marks.
+ * These are 31 source punctuation records, 28 unique interior rune cuts,
+ * and 29 resulting nonempty sections; two marks share offsets and one marks
+ * the final book end. Also ignore the original 54 physical page boundaries.
+ *
+ * Therefore all original equality comparisons at any section cut are free;
+ * exactly 86 observed equalities remain on the 12,882 eligible interior
+ * transitions. The lower bound optimizes all 29 markers INDEPENDENTLY in
+ * each of 29 sections on every control window (all 29^29 assignments).
+ *
+ * @param {number[]} native
+ * @returns {{minimum:number,start:number,mean:number,compatibleWindows:number,bestMarkerBySection:Array<{k:number,count:number}>}}
+ */
+function markedSectionExhaustive(native) {
+  const punct = JSON.parse(read('resources/liber-primus/lp2-punctuation-identity.json'));
+  const marks = [...new Set(punct.events.filter(e => e.symbol === '⁜')
+    .map(e => e.rune_offset).filter(x => x > 0 && x < 12956))]
+    .sort((a,b) => a-b);
+  assert.equal(punct.large_mark_alignment.matched_records, 31);
+  assert.equal(marks.length, 28);
+  let pos = 0;
+  const pageStarts = [];
+  for (const p of originals) {
+    pageStarts.push(pos);
+    pos += p.indices.length;
+  }
+  assert.equal(pos, 12956);
+  const cuts = [...new Set([0, 12956, ...pageStarts, ...marks])]
+    .sort((a, b) => a - b);
+  let group = 0;
+  const spans = [];
+  for (let i = 0; i + 1 < cuts.length; i++) {
+    if (marks.includes(cuts[i])) group++;
+    spans.push({first:cuts[i], last:cuts[i+1]-1, group});
+  }
+  assert.equal(group+1, 29);
+  assert.equal(spans.length, 74);
+  assert.equal(spans.reduce((s, sp) => s+sp.last-sp.first, 0), 12882);
+
+  const full = originals.flatMap(p => p.indices);
+  const discontinuities = new Set(cuts);
+  let markedOriginal = 0;
+  for (let i = 1; i < full.length; i++) {
+    if (discontinuities.has(i)) continue;
+    markedOriginal += Number(full[i] === full[i-1]);
+  }
+  assert.equal(markedOriginal, 86);
+
+  const diff = new Uint8Array(native.length);
+  for (let i = 1; i < native.length; i++)
+    diff[i] = (native[i] - native[i-1] + Q) % Q;
+  const counts = Array.from({length:group+1},()=>new Int32Array(Q));
+  for (const span of spans)
+    for (let i = span.first+1; i <= span.last; i++)
+      counts[span.group][diff[i]]++;
+  const windows = native.length-12956+1;
+  let minimum = Infinity;
+  let bestStart = -1;
+  let sum = 0;
+  let matching = 0;
+  let chosen = [];
+  /**
+   * @param {number} start
+   * @returns {void}
+   */
+  const evaluate = start => {
+    let score = 0;
+    const keys = [];
+    for (const row of counts) {
+      let count = Infinity;
+      let k = -1;
+      for (let i = 0; i < Q; i++)
+        if (row[i] < count) {count = row[i]; k = i;}
+      score += count;
+      keys.push({k,count});
+    }
+    sum += score;
+    if (score < minimum) {minimum = score; bestStart = start; chosen = keys;}
+    if (score <= markedOriginal) matching++;
+  };
+  evaluate(0);
+  for (let start = 1; start < windows; start++) {
+    for (const span of spans) {
+      counts[span.group][diff[start+span.first]]--;
+      counts[span.group][diff[start+span.last]]++;
+    }
+    evaluate(start);
+  }
+  return {
+    minimum, start:bestStart, mean:sum/windows,
+    compatibleWindows:matching, bestMarkerBySection:chosen
+  };
+}
+
 const reports = controls.map((file, i) => {
   const native = gpNative(read(file));
   const result = exhaustive(native);
   const chapters = chapterResetExhaustive(native);
+  const punctuation = markedSectionExhaustive(native);
   assert.equal(result.minAny, expected[i], 'Native reference result changed');
   assert.equal(chapters.minimum, [121,136,140][i],
     'Source-correct nine-chapter reset result changed');
   assert.equal(chapters.compatibleWindows, 0);
+  assert.equal(punctuation.minimum, [111,122,124][i],
+    'Original 31-section-mark reset result changed');
+  assert.equal(punctuation.compatibleWindows, 0);
   assert.ok(result.minimums.every(min => min > originalEqual),
     'A full-length original-shaped native-English window survived');
-  return {file, ...result, chapterReset:chapters};
+  return {file, ...result, chapterReset:chapters,
+    sourceMarkedSectionReset:punctuation};
 });
 assert.deepEqual(reports.map(r => r.runicLength), [62492, 217106, 321327]);
 assert.deepEqual(reports.map(r => r.windows), [49537, 204151, 308372]);
@@ -279,6 +382,8 @@ const output = {
   exactNativeWindowSurvivors:0,
   nineChapterIndependentMarkers: 'All 29^9 combinations excluded in each complete native reference window',
   nineChapterControlMinima:reports.map(r => r.chapterReset.minimum),
+  sourceMarked29SectionControlMinima:reports.map(r => r.sourceMarkedSectionReset.minimum),
+  markedSectionWindowsAtOrBelow86:reports.reduce((s,r) => s+r.sourceMarkedSectionReset.compatibleWindows,0),
   nineChapterWindowsAtOrBelowOriginal86:reports.reduce((s,r) =>
     s+r.chapterReset.compatibleWindows,0),
   positiveNativeP57RoundtripTestedMarkers:29,
