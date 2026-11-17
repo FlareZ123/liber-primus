@@ -40,7 +40,7 @@ for (const n of chapterLengths) {
 const pageSpans = [];
 cursor = 0;
 for (const p of originalPages) {
-  pageSpans.push({ start: cursor, end: cursor + p.indices.length });
+  pageSpans.push({ start: cursor, end: cursor + p.indices.length, page: p.page });
   cursor += p.indices.length;
 }
 
@@ -113,6 +113,66 @@ function lowerBound(plain, cipher, start, end, order) {
     k = Math.max(k, values.size);
   }
   return k;
+}
+
+/**
+ * Minimum number of contiguous, independently keyed physical-page domains
+ * needed merely to satisfy the K-state two-rune necessary inequality.
+ * Greedily take each longest valid consecutive page prefix: D2 is monotone
+ * when the segment grows, so an earlier cut cannot reduce the number of
+ * remaining blocks. This is the exact optimum under this necessary condition
+ * and permits any of 54 source-visible page boundary rekey events.
+ *
+ * @param {number[]} plain
+ * @param {number[]} cipher
+ * @param {{start:number,end:number,page:number}[]} spans
+ * @param {number} K
+ * @returns {{domains:number,cutsAfterPages:number[]}}
+ */
+function minimumPageKeyDomains(plain, cipher, spans, K) {
+  let map = new Map();
+  let maxFanout = 0;
+  let domains = 0;
+  const cutsAfterPages = [];
+  let previousPage = -1;
+
+  /** @param {number} start @param {number} end */
+  function consume(start, end) {
+    for (let i = start; i + 1 < end; i++) {
+      const p = 29 * plain[i] + plain[i + 1];
+      const c = 29 * cipher[i] + cipher[i + 1];
+      let outputs = map.get(p);
+      if (!outputs) {
+        outputs = new Set();
+        map.set(p, outputs);
+      }
+      outputs.add(c);
+      maxFanout = Math.max(maxFanout, outputs.size);
+    }
+  }
+
+  for (const span of spans) {
+    if (domains === 0) {
+      domains = 1;
+      consume(span.start, span.end);
+    } else {
+      // Retain the previous-page to current-page bigram only when the
+      // two original physical pages share one unchanged key domain.
+      consume(span.start - 1, span.end);
+      if (maxFanout > K) {
+        cutsAfterPages.push(previousPage);
+        domains++;
+        map = new Map();
+        maxFanout = 0;
+        consume(span.start, span.end);
+      }
+    }
+    assert(maxFanout <= K,
+      'One original page already exceeds its K-state rune-gram capacity');
+    previousPage = span.page;
+  }
+  assert.equal(cutsAfterPages.length, domains - 1);
+  return { domains, cutsAfterPages };
 }
 
 /**
@@ -200,7 +260,7 @@ const controls = [];
 for (const nativePath of nativePaths) {
   const native = encode(read(nativePath));
   assert(native.length > original.length);
-  const data = { book2: [], book3: [], book4: [], chapter2: [], page2: [] };
+  const data = { book2: [], book3: [], book4: [], chapter2: [], page2: [], domains29: [] };
   for (let trial = 0; trial < 150; trial++) {
     // Source-independent and reproducible: 150 evenly spaced contiguous
     // GP-native windows, preserving prose order and ignoring source spaces.
@@ -213,6 +273,7 @@ for (const nativePath of nativePaths) {
       lowerBound(plain, original, s.start, s.end, 2))));
     data.page2.push(Math.max(...pageSpans.map((s) =>
       lowerBound(plain, original, s.start, s.end, 2))));
+    data.domains29.push(minimumPageKeyDomains(plain, original, pageSpans, 29).domains);
   }
   controls.push({
     source: nativePath,
@@ -223,6 +284,7 @@ for (const nativePath of nativePaths) {
     fourRuneGlobal: stats(data.book4),
     twoRuneNineIndependentChapters: stats(data.chapter2),
     twoRune55IndependentPages: stats(data.page2),
+    minimumPhysicalPageKeyDomains29: stats(data.domains29),
   });
 }
 assert.deepEqual(controls.map((x) => x.nativeRunes),
@@ -236,6 +298,10 @@ assert.deepEqual(controls.map((x) =>
 assert(controls.every((x) => x.twoRuneGlobal.le128 === 0));
 assert(controls.every((x) => x.twoRuneNineIndependentChapters.le29 === 0));
 assert(controls.every((x) => x.twoRune55IndependentPages.le29 === 150));
+assert.deepEqual(controls.map((x) => x.minimumPhysicalPageKeyDomains29.min),
+  [9, 11, 11]);
+assert.deepEqual(controls.map((x) => x.minimumPhysicalPageKeyDomains29.max),
+  [14, 20, 15]);
 
 console.log(JSON.stringify({
   experiment: 'Original LP2 finite-state rune-gram output multiplicity',
