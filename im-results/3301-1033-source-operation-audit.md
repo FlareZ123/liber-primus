@@ -48,11 +48,11 @@ The signed 2013 example fixes the operation and operand for 3301: BASE29(3301) =
 
 Applying the same BASE29 conversion to 1033 gives 16I, with coefficient vectors [1,6,18] and reversed [18,6,1]. The existing original-grid test gives nonzero remainders [3,11] and [24,3], respectively. Thus the same BASE29-to-polynomial operation does **not** carry both constants into the p50 factorization. The 1033 input is present in the unsigned participant test vector; it is a useful control, not a second signed operand.
 
-### Seven RAND bytes from the preserved March 2013 TCP session: page-key gate (Agent2, 17 November 2026)
+### Seven RAND bytes from the preserved March 2013 TCP session: page-key gate
 
 The same unsigned participant transcript that records `BASE29 1033` and `DH 3301` also records four `RAND` requests: `RAND 3 → [151,207,64]`, `RAND 3 → [91,172,47]`, `RAND 0 → []`, and `RAND 1 → [179]`. The flattened output is the exact seven-byte sequence `[151,207,64,91,172,47,179]`. The signed protocol authenticates the command's byte semantics, but not these particular participant-generated values; they are not an organizer-selected key.
 
-The p33–39 cuneiform interval has seven source-aligned segments, `p33[91:]` followed by p34–p39, of lengths `[123,261,271,238,228,228,240]` (1,589 runes total). The count match makes a one-byte-per-page key or a period-seven key a plausible bounded human-solve hypothesis. It is not, by itself, evidence that this particular participant transcript is part of LP2.
+The p33–39 cuneiform interval has seven source-aligned segments, `p33[91:]` followed by p34–p39, of lengths `[123,261,271,238,228,228,240]` (1,589 runes total). The count match makes a one-byte-per-segment key or a period-seven key a plausible bounded human-solve hypothesis. It is not, by itself, evidence that this particular participant transcript is part of LP2.
 
 The reproducible gate tests:
 - `byte mod 29` as one constant shift per segment and as a continuous period-seven key, both signs, with and without transparent-F handling;
