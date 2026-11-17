@@ -1,3 +1,12 @@
+## 17 Nov 2026 12:39Z checkpoint: p0–2 156-word self-indexed map
+
+- Canonical parse with `sims/lp2_word_pages.cjs::parseLP2Words(raw,3)`: p0–2 = 158 complete words / 729 runes; first two red heading words contain 13 runes; body = 156 words. External 27×27 proposal already noted 156=13×12; do not claim that arithmetic as new.
+- New graph: GP-prime-sum (S_i), pointer (f(i)=S_i\bmod156). Red heading sums347/315 seed body cells36/4. First seed path36→56→113→6, then unique23-cycle; second seed cell4 lies on it. Full graph cycles are23 and2. The unique body words with sums563 and569 are cells4 and89, both on the23-cycle (steps7 and14).
+- The 563/569 values match 2016 signed-image dimensions and p32 top-row/first-column GP-prime sums; p32 artwork differs from the signed image. p57 has a red23-dot mark; plausible but not proof of cycle selector.
+- 1,000,000 page-stratified permutations (group sizes57/62/37) reproduced the shared23-cycle containing both target sums93 times. Targeted diagnostic only, not a globally corrected p-value. Optional p50 mod256 compass continuation reaches p32 X at midpoint12 but requires unverified addressing/bit-split; do not promote.
+- Durable work committed as `7e896f58f5e1be1b7b20504d5086c37066462900`: `im-results/lp2-13x12-wordmap-23cycle-source-gate.md`, `sims/lp2_13x12_wordmap_23cycle_source_gate.cjs`, broadcast `communications/broadcast/20261117T1236Z_agent47_13x12-wordmap-pointer-cycle.md`, and provisional README synthesis update.
+- Issue #1329 is active on a related but distinct wordwise key-pointer family; avoid duplicating its 581-key sweep. Next: independent reproduction and a creator-authored selector/readout for modulo156; test the 23-cycle for authentic plaintext/key or retire it. No unknown plaintext recovered.
+
 ## 17 Nov 2026 ~05:51Z checkpoint: source-defined LP1 prime filename transfer, CI verified image tests
 
 - Preserved primary 2014 stage10 response `resources/external/2014-stage10-post-square-response.html` links `107.jpg,167.jpg,229.jpg`, exactly prime ranks 28,39,50 (step11). Historic prior art Reddit 2021 https://www.reddit.com/r/cicada/comments/lzrdds already noticed this arithmetic; no independent claim of novelty.
