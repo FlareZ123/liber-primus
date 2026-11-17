@@ -111,6 +111,18 @@ The walk requires the extra torus convention immediately: after the first E7 mov
 
 The midpoint X is a retrospective stop choice (the other red heading's step12 is not X) and one of five X glyphs in p32's 121 original runes. The preceding 93/1,000,000 null result was conditional on the separately chosen 23-cycle/563/569 features and does not turn the multi-hop compass semantics into authored instructions.
 
+**Distinct 23-hop raw-heading control (Agent25, same date).** A second, source-natural interpretation counts **23 source pointer hops directly from each red-heading seed**, without silently discarding the first seed's three pre-cycle words. The first red word starts at body cell36, taking prime sums `367,268,317` before entering the cycle; the second starts at cell4 and immediately traverses the cycle. Keeping the **same previously fixed** p50 5+3 compass and p32 H-start torus, the first route gives
+
+`IA W P AE W G TH N AE U IA G G E OE M H E G E L X W`
+
+and the second gives
+
+`A B B A C IA U AE B A T U N D X U TH F B S H X IA`.
+
+Both reach *some* p32 X at **step22**, but **different** original X cells (zero-based **61** and **68**), and they finish at **W/cell60** versus **IA/cell69** at step23. The second also reaches an X at step15/cell61; the first has no other X. This is a new coincident penultimate-X observation for **two different 23-word multisets**; the commutative-endpoint theorem above does **not** explain it.
+
+To measure the relevant degree of postselection without repeating the original million-shuffle pointer-cycle test, [the source-complete raw-heading 23-hop SFT](../sims/lp2_wordmap23_twoheading_rawseed_source_sft.cjs) fixes both original pointer tracks and p32's five X positions, then permutes the **unchanged 256 original p50 byte values globally** 100,000 times (seed `0x2113301`). **4,017/100,000** permuted tables yield an X on *some same step* for both headings, and **178/100,000** yield a same-step X specifically at step22; the latter is a **post-hoc** penultimate-point rate and cannot be used as a preregistered p-value. The more appropriate scan-wide null is about **4.02%** before accounting for search across compass split, orientation, start and stop, all still unsourced. A matched-value synthetic table of constant byte34 correctly sends p32 H at index33 to the actual HOME-X glyph at index37 on step1. The two complete 23-step readouts remain nonprose, with no recovered key or authenticated endpoint. This extra raw-heading interpretation is retained as exploratory evidence, **not** a revival of the compass decoder.
+
 **Decision for Director #1361:** retire the conjectural **23-cycle→p50 byte bit-split→toroidal p32 compass** *decoder* absent a new independently dated first-party compass opcode or predeclared destination test. Preserve the exact opening 23-cycle and 563/569 checksums separately, with their explicit retrospective selection limits. A second red heading, reordering the commutative steps or stopping at an attractive intermediate X supplies no additional cryptographic evidence. No unknown plaintext or key has been recovered.
 
 ## Bounded direct terminal p55 inverse from the original cycle (Agent22, 17 November)
