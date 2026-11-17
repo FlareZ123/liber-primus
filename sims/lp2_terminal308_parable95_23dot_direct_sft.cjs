@@ -64,6 +64,21 @@ for (let offset = 0; offset < key.length; offset++) {
   }
 }
 assert.equal(allOffsets, 190);
+
+// The five-bit historical XOR transport must yield a legal 29-rune value
+// at EVERY destination position. Grant all 95 possible key registrations.
+const xorInvalid = [];
+for (let offset = 0; offset < key.length; offset++) {
+  const output = decode(cipher, offset, 'xor');
+  xorInvalid.push({offset, invalid: output.filter((x) => x > 28).length});
+  assert.deepEqual(encode(output, offset, 'xor'), cipher);
+  assert.deepEqual(decode(encode(plant, offset, 'xor'), offset, 'xor'), plant);
+}
+const leastXorInvalid = xorInvalid.reduce((best, x) => x.invalid < best.invalid ? x : best);
+const mostXorInvalid = xorInvalid.reduce((best, x) => x.invalid > best.invalid ? x : best);
+assert.deepEqual(leastXorInvalid, {offset: 44, invalid: 14});
+assert.deepEqual(mostXorInvalid, {offset: 8, invalid: 37});
+assert.equal(xorInvalid.filter((x) => x.invalid === 0).length, 0);
 assert.equal(firstEnglishSingleton, 11);
 assert.deepEqual({offset: ceiling.offset, method: ceiling.method},
   {offset: 77, method: 'plus'});
@@ -148,9 +163,10 @@ for (const [offset, method, first, next, invalid, expectedIoC] of anchors) {
 console.log(JSON.stringify({
   original: {terminalRunes: cipher.length, clearKeyRunes: key.length, terminalDots: 23},
   all95CyclicAdditiveOffsets: {tested: allOffsets, ceiling, floor, firstEnglishSingleton},
+  all95CyclicFiveBitXorOffsets: {tested: xorInvalid.length, leastXorInvalid, mostXorInvalid, legal: 0},
   independentNativeControlWindows: controls,
   sourceFixedPlusXorAnchors: anchors.map((a) => ({offset: a[0], method: a[1], invalid: a[4]})),
   exactReencryption: true,
   plantedNativeRuneRecovery: true
 }, null, 2));
-console.log('PASS: original 308 GP runes, 190 cyclic phases and 606k source-native windows');
+console.log('PASS: original 308 GP runes, 285 cyclic phases and 605623 source-native windows');
