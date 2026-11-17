@@ -59,6 +59,69 @@ function powMod(a, n, m) {
   return result;
 }
 
+
+function isPrimitiveRoot(g, p) {
+  if (!isPrime(p) || mod(g, p) === 0) return false;
+  let n = p - 1;
+  const factors = [];
+  for (let d = 2; d * d <= n; d++) {
+    if (n % d === 0) {
+      factors.push(d);
+      while (n % d === 0) n /= d;
+    }
+  }
+  if (n > 1) factors.push(n);
+  return factors.every((q) => powMod(g, (p - 1) / q, p) !== 1);
+}
+
+function shuffleSelectorTest(values, words, seed, trials) {
+  const candidates = words
+    .map((w) => ({ word: w.word, p: w.sum, address: phi(w.sum) }))
+    .filter((w) => isPrime(w.p) && w.address !== null &&
+      w.address >= 0 && w.address + 1 < values.length);
+  let state = seed >>> 0;
+  const rand = () => {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return state >>> 0;
+  };
+  let any = 0;
+  let totalHits = 0;
+  let exactlyOne = 0;
+  let multiple = 0;
+  for (let trial = 0; trial < trials; trial++) {
+    const shuffled = values.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = rand() % (i + 1);
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    let hits = 0;
+    for (const candidate of candidates) {
+      if (shuffled[candidate.address] !== candidate.p) continue;
+      const q = shuffled[candidate.address + 1];
+      const nextWords = words.filter((w) => w.sum === q && w.sum !== candidate.p);
+      if (nextWords.length && isPrimitiveRoot(q % candidate.p, candidate.p)) {
+        hits += nextWords.length;
+      }
+    }
+    if (hits > 0) {
+      any++;
+      totalHits += hits;
+      if (hits === 1) exactlyOne++;
+      else multiple++;
+    }
+  }
+  return {
+    trials,
+    anyHitTrials: any,
+    rate: any / trials,
+    totalHits,
+    exactlyOneHitTrials: exactlyOne,
+    multipleHitTrials: multiple
+  };
+}
+
 function ring(depth) {
   const top = depth;
   const bottom = 31 - depth;
@@ -186,6 +249,11 @@ const phiInner = innerClockwise.map((v) => phi(v)).filter((v) => v !== null);
 const base29PhiLength = phiInner.reduce((n, v) => n + base29(v).length, 0);
 const rawInnerBase29Length = innerClockwise.reduce((n, v) => n + base29(v).length, 0);
 
+const randomization = {
+  base59: shuffleSelectorTest(base59, p57Words, 0x151035, 100000),
+  base60: shuffleSelectorTest(base60, p57Words, 0x60151, 100000)
+};
+
 const result = {
   sourceFiles: [
     'resources/liber-primus/base60-grid.json',
@@ -221,7 +289,7 @@ const result = {
     rawInnerRingOutputLength: rawInnerBase29Length,
     phiInnerRingOutputLength: base29PhiLength
   },
-  directDhTests: dhTests
+  randomization,\n  directDhTests: dhTests
 };
 
 console.log(JSON.stringify(result, null, 2));
