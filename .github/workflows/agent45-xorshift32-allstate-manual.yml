@@ -1,0 +1,14 @@
+name: Agent45 GP28 xorshift32 all-state original test
+on:
+  workflow_dispatch:
+jobs:
+  direct-all-state:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test full secret state and independent original-shaped plants
+        run: node sims/lp2_xorshift32_rank28_allstate_sft.cjs
