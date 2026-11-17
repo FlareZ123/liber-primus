@@ -1,0 +1,36 @@
+# Every complete LP2 word's initial/final rune: original-source acrostic and progressive key gate
+
+**Agent 42, 17 November 2026.** **Decision: finite negative for direct and classical progressively shifted complete-word acrostics.** No new plaintext, historical key, cipher architecture, or Cicada continuation is recovered. This test examines a distinct manuscript-selected channel from the already documented 206 *printed-line initial* runes and the thirteen giant red initials. It does not re-execute those searches.
+
+## Why this is an executable source route
+
+The authenticated 2016 Cicada instruction calls the manuscript's *words* its map, and the unsolved book visibly prints word divisions. One human-readable way to use that instruction is to take one rune from every complete printed word, potentially obtaining a second message that does not require decrypting the word bodies. As a small, historically familiar next operation, a classical progressively changing Caesar alphabet adds or subtracts the next mod-29 number at each word; a change of printed physical page or decorated chapter may reset that progression. These are **hypothetical** readings. Neither the 2016 text nor an original-page instruction specifies acrostics or a progressive alphabet.
+
+This is a sharply bounded direct test. It does not attempt to turn a short apparent word into a key, tune an offset to recovered language, or invent a new encrypted framing.
+
+## Original unchanged source and exact extraction
+
+Read `resources/liber-primus/lp2-transcription.txt` with the already checked-in `sims/lp2_word_pages.cjs` parser and compare **every rune** against `resources/liber-primus/lp2-corpus.json`. Preserve the actual punctuated complete words through physical line and page wraps. The source has **12,956 unsolved GP29 runes**, **2,896 complete printed words**, **32 authentic words carried across original page boundaries** and **55 rune-bearing physical pages among p0–55**, with numeral-only p50 skipped. No word fragments were split into fake initials at page turns.
+
+Define two complete **2,896-rune** tapes: (1) the first GP rune of each original complete word and (2) its last GP rune. For each tape, test literal order and the two inverse progressive shifts `P_i=(C_i±i) mod 29`, where `i` counts complete words from zero, either continuously through the book, restarting at each original physical page, or restarting at each of nine *actual* illustrated chapter boundaries: p0/3/8/15/23/27/33/40/54. The clock restarts based on the **original word's starting physical page**; the 32 page-spanning words stay intact.
+
+Each direction and reset has the entire modulo-29 alphabet as possible starting offset, but all such offsets are mere global rotations of the recovered GP symbols and **cannot alter the IoC statistic**. One representative origin zero therefore tests every 29 such phases for the declared pure progressive model. These direct classic Caesar lifts treat all 29 GP symbols ordinarily; they make **no claim to exhaust** historically solved p56's different conditional plaintext-F bypass, alternative symbols, word reordering or hidden clocks.
+
+## Original full-tape results
+
+IoC is the exact GP29 unordered-symbol marginal collision rate `Σ n_r(n_r−1)/(N(N−1))` on all 2,896 produced runes. Unshifted uniform-GP baseline is **1/29=0.03448276**. The authentic original clear p57 PARABLE reference has **IoC 0.06270997** on 95 real GP runes, and a genuine historical GP-English passage normally has an unequal symbol distribution. None of the original full-tape outputs displays sustained readable text.
+
+| Boundary tape | Direct | Decode −i, continuous | Decode +i, continuous | Decode −i, page | Decode +i, page | Decode −i, chapter | Decode +i, chapter |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Original **first rune per complete word** | **0.03442208** | 0.03438511 | 0.03436388 | 0.03441970 | 0.03450629 | 0.03435123 | 0.03441851 |
+| Original **last rune per complete word** | **0.03454518** | 0.03441898 | 0.03446097 | 0.03452562 | **0.03463559** | 0.03447695 | 0.03442161 |
+
+The most favorable of these fourteen finite original readouts is **0.03463559**, near the uniform baseline and far from the solved p57 control. The native source first-rune tape begins `S S TH F O N N H P EO A B E S Y B G NG I Y TH H T X E C EO TH Y Y`; the last-rune tape begins `F C AE OE TH U TH IA N TH X P F IA H U P TH G J Y EO IA Y NG N TH P EA Y`. They do not contain independent GP plaintext.
+
+## Reversible positive plant and decision
+
+The full 95-rune **genuinely clear p57 GP source** serves as an independently decrypted plaintext alphabet sample. Repeat it to 2,896 runes; for every one of the six progression/shift-direction cases at each edge channel, encrypt under the stipulated mod-29 clock, then invert and assert exact **2,896/2,896 recovered source indices**. Also assert that every original decoded tape re-encrypts to **the exact original extracted rune sequence**, and that constant offset rotations leave IoC mathematically unchanged. A successful roundtrip is an implementation check, **not evidence that this operation historically encrypted LP2**.
+
+Run the standalone CommonJS Node 22 test `node sims/lp2_completeword_acrostic_progressive_original_sft.cjs`. Source and the original-data control: [reproducer](../sims/lp2_completeword_acrostic_progressive_original_sft.cjs) and [manual-only Windows workflow](../.github/workflows/agent42-completeword-acrostic-original-manual.yml). The manually dispatched [original-input run 44138153738](https://github.com/FlareZ123/liber-primus/actions/runs/44138153738) was queued when this report was written; execution status must be independently checked before citing the CI as passed.
+
+**Fork:** The simplest independent word-first/last extraction plus direct or one-step progressive GP29 alphabets fails to uncover an authentic new text. This does not exclude a separately keyed acrostic, a different source-selected set of words, a different alphabet, a more complex state rule or the possibility that printed word boundaries are decoy framing. Do not extend this into an unconstrained key/word-index menu. A fresh attempt needs an **independent original instruction selecting exact word positions and a reversible decoding rule** that recovers a coherent untouched original passage.
