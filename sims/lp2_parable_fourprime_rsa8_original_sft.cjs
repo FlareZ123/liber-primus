@@ -20,7 +20,7 @@ const RADIX = 29n;
 const WIDTH = 8;
 const DOMAIN = RADIX ** BigInt(WIDTH);
 const CHAPTERS = [[33, 39], [40, 53]];
-const EXPONENTS = [449n, 3301n];
+const EXPONENTS = [449n, 1033n, 3301n];
 
 /** @param {bigint} base @param {bigint} exponent @returns {bigint} */
 function modPow(base, exponent) {
