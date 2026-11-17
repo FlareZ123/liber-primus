@@ -39,6 +39,16 @@ For the same source-natural phase zero, classify every adjacent within-page comp
 
 The two line-breaking cells contain too few events for inference. In the two well-populated conditions, the signal remains in the same direction. Plain word-gap placement alone therefore does not explain away the phase-zero excess. Again, these are partitions of the earlier same 86 events, without new experimental independence.
 
+## Physical printed-line occupancy as an independent confound test
+
+**Additional direct source experiment (17 November, Agent28):** The preceding word-boundary partitions do not control for the source's variable physical line widths and duplicate counts. To isolate that confound, preserve **the exact original number of equal-adjacent-rune events within every printed line**, hold the four observed across-line events at their original positions, and randomly reassign each line's repeat events among only that line's original eligible adjacent-rune sites. Keep all rune values, original page/line membership, the 256-cell literal-leading-zero mask and phase zero untouched. This produces 50,000 matched null placements, fixed xorshift32 seed `0x1333301`. There is no search for a new table clock or best mask.
+
+The original has **82 same-line equal-rune events**, of which **32** occupy a source-leading-zero table cell; **4 across-line events** include one additional zero-cell hit, restoring the original 33/86 count. There are 594 eligible same-line groups, of which 79 contain at least one repeat event. Under the *line-occupancy-preserving* null, the number of same-line zero-cell events has **mean 19.38784**, **SD 3.7621244**. Only **66/50,000** controls equal or exceed the original 32, giving a plus-one one-sided tail **67/50,001 = 0.00133997** and a descriptive standardized excess **+3.3524**.
+
+This is a **new original-input exclusion of simple physical-line occupancy as the sole cause** of the source-zero association. It meaningfully strengthens the constraint on any proposed independent masking explanation. The mask class, global phase and equality statistic were already chosen by prior exploratory research, and the line permutation is conditional on all observed per-line repeat counts. Consequently **0.00134 is a postselection-sensitive conditional diagnostic, not a global discovery p-value or evidence of a key**. It does not restore the missing author-selected clock, plaintext, key-consumer or lossless inverse. The earlier blind phase test still fails to recover natural phase zero.
+
+**Reproduction:** The [same original SFT](../sims/lp2_p50_zero_phase_holdout_original_sft.cjs) now includes the 50,000-line-permutation test and asserts the original 82/4 event partition, 32/1 mask-hit partition and 79 occupied lines.
+
 ## Cryptanalytic consequence
 
 The table's literal zero class is an unexplained statistical association with adjacent-equal events, not a standalone key or source-defined reverse transform. **53/86** original equality events fall outside the selected class, so that class cannot be an exclusive “repeat allowed” opcode. The full five-numeral-class × GP-difference test was already flat aside from zero differences in the prior report. This experiment adds two decision-relevant limits:
