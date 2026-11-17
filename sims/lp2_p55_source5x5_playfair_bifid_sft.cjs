@@ -18,6 +18,24 @@ assert.equal(p55.length, 76);
 assert.equal(support.length, 25);
 assert.deepEqual(Array.from({length: 29}, (_, i) => i).filter((i) => !support.includes(i)), [3, 9, 16, 26]);
 const cipher = p55.map((i) => latin[support.indexOf(i)]).join('');
+// Key-independent standard Playfair obstruction: encrypted digraphs
+// cannot have equal symbols within the same pair, for ANY 25! square.
+const p54 = corpus.pages.find((p) => p.page === 54).indices;
+assert.equal(p54.length, 232);
+assert.deepEqual(p54.slice(19, 21), [21, 21]);
+assert.deepEqual(p54.slice(155, 157), [6, 6]);
+assert.deepEqual(p55.slice(58, 60), [2, 2]);
+const wholeChapter = p54.concat(p55);
+assert.equal(wholeChapter.length, 308);
+const repeatStarts = Array.from({length: wholeChapter.length - 1}, (_, i) => i)
+  .filter((i) => wholeChapter[i] === wholeChapter[i + 1]);
+assert.deepEqual(repeatStarts, [19, 155, 290]);
+assert(repeatStarts.some((i) => i % 2 === 0), 'Phase 0 forbidden digraph');
+assert(repeatStarts.some((i) => i % 2 === 1), 'Phase 1 forbidden digraph');
+// Changing the phase at the visible 9-rune p54 red heading also fails:
+// the first repeated pair of the black continuation is at relative 10..11.
+assert.equal((19 - 9) % 2, 0);
+
 const tokens = grid.rows.flat();
 assert.equal(tokens.length, 256);
 const square = Array.from({length: 25}, (_, i) => tokens[(21 + Math.floor(i / 5)) * 8 + (1 + i % 5)]);
