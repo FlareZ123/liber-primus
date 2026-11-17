@@ -179,6 +179,58 @@ const recovered=cipher.map((v,i)=>mod(v+plantedKey[i]));
 assert.deepEqual(recovered,plant);
 assert.equal(wordScore(recovered).matchedWords,11);
 
+
+// Independently motivated anti-repeat receiver: nonzero ciphertext
+// predecessor steps rank 1..28, with rank-specific GP28 additive carry
+// and literal F/index0 represented by an exact repeated ciphertext rune.
+// P55[0] is carried from p54 in the source and serves as IV only.
+const rankResults=[];
+const stepDuplicates=p55.flatMap((c,i)=>
+  i>0&&c===p55[i-1]?[i]:[]);
+assert.deepEqual(stepDuplicates,[59]);
+for(const [order,known] of [
+  ["p56-then-p57",joined],
+  ["p57-then-p56",clearP57.concat(clearP56)]]) {
+  for(const [extractor,key] of Object.entries(extract(known))) {
+    for(const sign of [-1,1]) {
+      /** @param {number[]} ciphertext @returns {number[]} */
+      function decodeSteps(ciphertext) {
+        const plain=[ciphertext[0]];
+        for(let i=1;i<ciphertext.length;i++) {
+          const delta=mod(ciphertext[i]-ciphertext[i-1]);
+          plain.push(delta===0 ? 0
+            : 1+((delta-1+sign*(key[i]%28))%28+28)%28);
+        }
+        return plain;
+      }
+      /** @param {number[]} plaintext @returns {number[]} */
+      function encodeSteps(plaintext) {
+        const out=[plaintext[0]];
+        for(let i=1;i<plaintext.length;i++) {
+          const delta=plaintext[i]===0?0
+            :1+((plaintext[i]-1-sign*(key[i]%28))%28+28)%28;
+          out.push(mod(out[i-1]+delta));
+        }
+        return out;
+      }
+      const candidate=decodeSteps(p55);
+      assert.deepEqual(encodeSteps(candidate),p55);
+      const synthetic=clearP57.slice(0,76).map((v,i)=>
+        i===59?0:v===0?2:v);
+      assert.equal(synthetic.length,76);
+      assert.deepEqual(decodeSteps(encodeSteps(synthetic)),synthetic);
+      const lexical=wordScore(candidate);
+      rankResults.push({order,extractor,sign,
+        scaledIoC:scaledIoC(candidate),...lexical,
+        output:candidate.map(i=>gp.translit[i]).join(" ")});
+    }
+  }
+}
+assert.equal(rankResults.length,16);
+const bestStepWords=Math.max(...rankResults.map(x=>x.matchedWords));
+assert.equal(bestStepWords,1);
+assert.equal(rankResults.filter(x=>x.matchedWords===1).length,1);
+
 if(require.main===module)console.log(JSON.stringify({
   status:"new source-exact 76-carry key route; direct GP29 p55 inverse negative",
   original:{p55Runes:76,p56PlaintextRunes:85,p57ClearRunes:95,
@@ -188,6 +240,8 @@ if(require.main===module)console.log(JSON.stringify({
   tested:results.length,bestDictionaryWords:bestCount,bestScaledIoC:bestIoC,
   plant:{sourceNativeMatchedWords:wordScore(recovered).matchedWords,
     runesReencryptedAndRecovered:recovered.length},
+  stepDecoder:{tested:rankResults.length,originalCipherDoubletPositions:stepDuplicates,
+    bestDictionaryWords:bestStepWords,allPositiveRecovered:rankResults.length,results:rankResults},
   results,
   interpretation:"All 16 source-limited direct 76-symbol additive carry keys fail to decode coherent p55 text. The exact wheel-closure/key-length identity remains an unverified possible clue, not an authentic author cipher."
 },null,2));
