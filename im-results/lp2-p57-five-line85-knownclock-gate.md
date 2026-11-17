@@ -22,7 +22,9 @@ Test the line-interior tape `K[i]` as an **unrotated, unreordered 85-position** 
 | GP prime modulo29 | **2/84** | **3/85** | **5/85** |
 | GP totient modulo29 | **3/84** | **4/85** | **2/85** |
 
-Even granting the published p56 transparent F position, each candidate misses **at least 79** authentic plaintext positions and **at least 79** true prime shifts. This is an exact rejection of the tested **direct p57-line85-to-p56 key transfer**, without language guessing, arbitrary key fitting or inferred unknown-page plaintext.
+Even granting the published p56 transparent F position, each candidate misses **at least 79** authentic plaintext positions and **at least 79** true prime shifts.
+
+**All fixed secret alphabets fail, independent of arithmetic.** To avoid merely replacing the failed GP index/prime/totient choices with an arbitrary key alphabet, grant *every possible* fixed, even non-injective function `f: GP29(line-key) → GF29(true p56 prime-shift)`. The exact original witness is already the first and third source interior symbols: `K[0]=K[2]=A` (GP index24) but the true p56 clock requires **1** at position0 and **4** at position2. A fixed function cannot produce both. More strongly, independently give each of the 29 key-input values its most favorable output chosen *after seeing all original targets*. The **globally optimal arbitrary function still matches only 25 of the 84 true p56 clock values**. This bound includes all `29^29` fixed lookup functions, all 29! substitution alphabets, and every fixed affine reading; no extra key can repair the direct line85→p56-clock interpretation without adding time-varying state or permutation. The same original SFT asserts both collision witnesses and this optimized function bound. This is an exact rejection of the tested **direct p57-line85-to-p56 key transfer**, without language guessing, arbitrary key fitting or inferred unknown-page plaintext.
 
 ## Result and decision
 
