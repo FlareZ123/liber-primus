@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 GP = ('F','U','TH','O','R','C','G','W','H','N','I','J','EO','P','X','S','T','B','E','M','L','NG','OE','D','A','AE','Y','IA','EA')
-LOGF=(-3.627225549919135,-3.171893216150944,-3.383398158345403,-2.5820450256710257,-2.8039932356397377,-4.3908269120731305,-3.777481620401693,-3.527648700316938,-2.6219294362065617,-2.7044499163767224,-6.92541340580455,-7.987324327622232,-4.013164331071345,-6.364996870462134,-2.601912254223261,-2.6744379309954787,-4.218360586657605,-2.08781209076449,-3.6533955292644595,-3.15555710102528,-5.339425887179944,-7.3875972223481945,-3.2920170242342945,-2.5922481995215776,-10.499629951598346,-3.9866966206258936,-5.058367309065212,-4.928490375505553)
+LOGF=(-3.627225549919135,-3.171893216150944,-3.383398158345403,-2.5820450256710257,-2.8039932356397377,-3.3206777364242908,-4.3908269120731305,-3.777481620401693,-3.527648700316938,-2.6219294362065617,-2.7044499163767224,-6.92541340580455,-7.987324327622232,-4.013164331071345,-6.364996870462134,-2.601912254223261,-2.6744379309954787,-4.218360586657605,-2.08781209076449,-3.6533955292644595,-3.15555710102528,-5.339425887179944,-7.3875972223481945,-3.2920170242342945,-2.5922481995215776,-10.499629951598346,-3.9866966206258936,-5.058367309065212,-4.928490375505553)
 L=20
 OFFSET=1009
 
@@ -179,11 +179,11 @@ def fixed_beam_coin(cipher: list[int],prev: int,stream: list[int],w: list[int],s
     return pp,ptr,score
 
 def run_divinity():
-    """Second H1 original source spike, using the runner-compatible second init hypothesis.
+    """Reproduce the source-Rust original 300-rune 18-column coin-model peak.
 
-    The mathematically top W-free initializer in this independent Python port gives
-    1.495806; its second live candidate gives the Rust shard's 1.672712 exactly.
-    This locks a *screen-compatible path*; it does not assert scalar/FMA init parity.
+    Uses all 29 bit-exact English-prior entries. The true first ranked W-free
+    initializer then yields the same 1.672712418 score as the pinned Rust
+    campaign. The older 28-entry constant tuple misplaced the initializer.
     """
     global L,OFFSET
     L=18;OFFSET=1193
@@ -191,39 +191,34 @@ def run_divinity():
     source=[q for page in pages[:56] for q in page['indices']]
     assert len(source)==12956 and source[3611]==24
     c=source[3612:3912];held=source[3912:4062]
-    assert len(c)==300 and len(held)==150
+    assert len(c)==300 and len(held)==150 and len(LOGF)==29
     seed=b'DIVINITY'
     raw=b''.join(hashlib.sha512(seed+i.to_bytes(4,'big')).digest() for i in range((OFFSET+650+63)//64))
     vals=[v%29 for v in raw]
     assert vals[:8]==[3,11,7,9,1,9,5,15]
     stream=vals[OFFSET:OFFSET+650]
-    def fit(rank: int, steps: int):
-        ptr=init_nats(c,stream,rank=rank)
+    def fit(steps: int):
+        ptr=init_nats(c,stream,rank=0)
         w=est_cols(c,stream,ptr)
-        history=[]
         for _ in range(steps):
-            pp,ptr,score=fixed_beam_coin(c,24,stream,w)
-            history.append(periodic_ioc(pp,ptr))
+            pp,ptr,_=fixed_beam_coin(c,24,stream,w)
             new=est_cols(c,stream,ptr)
             if new==w:break
             w=new
-        plain,ptr,score=fixed_beam_coin(c,24,stream,w)
-        return periodic_ioc(plain,ptr),plain,ptr,w,history
-    top0,_,_,_,_=fit(0,5)
-    screen,plain,ptr,w,history=fit(1,5)
-    screen10,_,_,_,_=fit(1,10)
-    print('DIVINITY original model1 best-native-init IoC',top0)
-    print('DIVINITY source-Rust-matching second-init IoC',screen,'10-EM',screen10,'EM history',history)
-    assert abs(top0-1.4958061002178649)<0.00001
+        plain,ptr,_=fixed_beam_coin(c,24,stream,w)
+        return periodic_ioc(plain,ptr),plain,ptr,w
+    screen,plain,ptr,w=fit(5)
+    screen10,_,_,_=fit(10)
+    print('DIVINITY source-Rust matching first-init IoC',screen,'10-EM',screen10)
     assert abs(screen-1.6727124183006536)<0.00001
     assert abs(screen10-1.6727124183006536)<0.00001
     print('DIVINITY inferred 18-column keyword',w)
     print('DIVINITY original 300 preview', ''.join(GP[k] for k in plain[:160]))
-    pout,jout,ll=fixed_beam_coin(held,c[-1],stream,w,start=ptr[-1]+1,beam=64)
+    pout,_,_=fixed_beam_coin(held,c[-1],stream,w,start=ptr[-1]+1,beam=64)
     print('DIVINITY untouched 150 overall IoC',overall_ioc(pout))
     print('DIVINITY untouched 150 preview', ''.join(GP[k] for k in pout))
     assert abs(overall_ioc(pout)-0.9472035794183445)<0.00001
-    print('DIVINITY screen-compatible path yields no coherent original heldout text.')
+    print('DIVINITY original heldout has no coherent plaintext.')
 
 if __name__=='__main__':
     run()

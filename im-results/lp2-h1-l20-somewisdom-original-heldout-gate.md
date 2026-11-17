@@ -1,48 +1,59 @@
-# LP2 H1 L14–20: two original high-IoC peaks and their blind-continuation gates
+# Completed LP2 H1 drifting-keyword campaign: 20-shard original/null adjudication
 
-**Decision, 17 November 2026.** The two initial apparent candidates from the still-running original eight-window 581-stream L14–20 H1 campaign **do not recover unknown LP2 plaintext**. The `some wisdom` 20-column hit fails the prespecified wider ten-EM verifier, and the `DIVINITY` 18-column hit fails the matched-null candidate floor once additional independent null shards complete. Both fail a 150-rune *untouched original chapter continuation* under their fixed inferred key. **These decisions are bounded to these two cells**; do not claim the entire L14–20 campaign finished or the H1 family was disproven.
+**Decision, 17 November 2026 (Agent 8, Director Issue [#1338](https://github.com/FlareZ123/liber-primus/issues/1338)):** The entire frozen eight-window original H1 keyword L14–20 sweep has finished. Exactly **one original 300-rune cell** marginally crossed the predeclared model/window-specific null floor. Its exact original-cipher 10-iteration decode and next untouched 150 source runes **both fail**. No unknown Liber Primus plaintext, authentic source-selected key, cipher mechanism or continuation destination has been recovered. The result retires this *finite historical key and model envelope*, with important limited planted-key power at long periods.
 
-## Original-source inputs and executed screen
+## Independently selected original inputs and full search coverage
 
-The [distributed original H1 campaign](https://github.com/FlareZ123/liber-primus/actions/runs/44018360123) (Director Issue [#1338](https://github.com/FlareZ123/liber-primus/issues/1338)) uses pinned external [pnotisdev/cicada3301 commit `15200c67abee106913ba01ff504c5b6e88d16cc7`](https://github.com/pnotisdev/cicada3301/tree/15200c67abee106913ba01ff504c5b6e88d16cc7/work/h5rs) and the original [12,956-rune LP2 corpus](../resources/liber-primus/lp2-corpus.json). The exact H1 hypothesis is the two-stack running-key/unknown periodic keyword anti-repeat model; no source authenticates it as the unknown-page cipher. The immutable sweep starts from eight 300-rune source section windows, 581 original source keystreams, offsets 0–1999, periods 14–20, and both anti-repeat models; 20 disjoint offsets-by-100 original and matched-null shards; on each side **130,144,000 nominal cells** before keystream length/early-abort restrictions. Earlier L2–13 material was completed upstream and is not repeated.
+The 2014 physical LP2 manuscript is preserved in [the original-source archive](../resources/liber-primus/README.md); the canonical indexed original ciphertext has **12,956** unknown GP29 runes across pp0–55. H1 hypothesizes an unknown GP29 periodic keyword added to a separately sourced running key, with two alternative collision-avoidance cursor rules. The original signed 2016 message speaks of words, numbers, direction and the book, but does not specify a digest-counter keystream, H1 keyword, phase, length or the collision grammar. Accordingly this is a calibrated **hypothetical cipher-family search**, not an authenticated puzzle instruction.
 
-An original screening hit with periodic index of coincidence (IoC) ≥1.5 is recorded. A full original-cipher *candidate* must reach **max(1.6, complete matched 581-stream null max in that original window/model + 0.15)**. Its 10-EM re-decode and intelligible whole-original-section/heldout criteria are additional mandatory gates. An isolated high IoC or forward re-encryption identity is insufficient.
+Original search constants: eight verified source section openings \`seg0.7\`, \`seg0.8\`, \`seg0.9\`, \`seg0.11\`, \`seg0.12\`, \`seg0.13\`, \`seg0.14\`, \`seg0.15\`; **581** independently collected original-key streams; **2,000** source offsets (0–1999); keyword lengths **14–20**; two frozen anti-repeat models, **skip=0** and **coin=1**. On each side, the unmodified pinned [pnotisdev Rust h5rs source at \`15200c67\`](https://github.com/pnotisdev/cicada3301/tree/15200c67abee106913ba01ff504c5b6e88d16cc7/work/h5rs) runs **130,144,000 nominal combinations** (some reject/abort due to stream length). The identical 581-stream matched-null library is separately screened. The original and null computations were divided into **20 disjoint 100-offset shards**; all 20 jobs and the automatic summary succeeded in [Actions run 44018360123](https://github.com/FlareZ123/liber-primus/actions/runs/44018360123), completed **07:11 UTC**.
 
-| Original cell and source-visible window | Original 5-EM screen | 10-EM source-semantics test | Strongest observed matched-null floor (6 finished shards) | Following untouched original 150-rune plaintext IoC | Decision |
-|---|---:|---:|---:|---:|---|
-| `md5-ctr mod :some wisdom`, offset **1009**, L20, **skip** m0, `seg0.12` (runes 5506–5805; previous rune14) | **1.753942** | **1.547463370** | **1.734631** (matched null1.584631 +0.15) | **1.110693512** | Fails source 10-EM and heldout |
-| `sha512-ctr mod :DIVINITY`, offset **1193**, L18, **coin** m1, `seg0.11` (runes3612–3911; previous rune24) | **1.672712** | **1.672712418** in source-*compatible* 2nd initializer path | **1.739556** (matched null1.589556 +0.15) | **0.947203579** | Fails full-campaign null floor already in partial matrix and heldout |
+**Independent raw-artifact audit:** downloaded [the complete \`h1-gap-full-report\` artifact](https://github.com/FlareZ123/liber-primus/actions/runs/44018360123/artifacts/14307562437), checked every \`real_0..19.tsv\`, \`null_0..19.tsv\` and 20 reference plants. Each arm has **185,920** best-per-stream/window/model/shard records. Original had **172** recorded hits >=1.5, **19** >=1.6; matched null **175** >=1.5, **12** >=1.6. All 20 synthetic reference positives recovered the planted \`primes\`, offset1300, L13, skip-model cell at IoC **1.850136**. Counting maxima directly from all 40 original/null TSVs reproduces the summary's sole provisional candidate.
 
-Both matched-null floors above are **lower bounds** from six disjoint fully completed real+null shards (offset bands 0–99, 400–599, 900–1199). The complete 20-shard null can only raise the floors. Therefore the DIVINITY peak can never qualify even as a first-stage candidate under the frozen, increasingly inclusive matched null. The MD5 peak remains above the *partial* null floor, but the stricter fixed 10-EM gate fails independently. All reported 150-rune continuations are original physically contiguous GP ciphertext, held out of the screen and key optimization.
+Predeclared original-screen criterion: per original section and model, \`IoC >= max(1.6, complete matched-null maximum + 0.15)\`. Reconstructing a valid original 300-rune cipher is necessary but insufficient. A true candidate additionally requires the frozen original key/clock to yield a coherent whole original section and **150 contiguous previously unseen original runes**, with exact forward re-encryption. The same plaintext cannot be refitted against the untouched interval.
 
-## Reconstructed key and blind continuation: `some wisdom`
+## Full original-source 16-cell screen
 
-Historical key source: concatenate `MD5(b"some wisdom" + be32(counter))` for consecutive counters; reduce each byte modulo 29, start at offset1009. The H1 decoder's 20-column keyword fitted only from the first 300 original runes is:
+| Original 300-rune section | Skip real / null maxima | Coin real / null maxima |
+| --- | ---: | ---: |
+| seg0.7 | 1.611717 / 1.630065 | 1.622619 / 1.568709 |
+| seg0.8 | 1.602749 / 1.617168 | 1.609620 / 1.676032 |
+| seg0.9 | 1.563949 / 1.592157 | 1.606154 / 1.589663 |
+| seg0.11 | 1.607747 / 1.609900 | 1.672712 / 1.608835 |
+| seg0.12 | 1.753942 / 1.649932 | 1.574669 / 1.584461 |
+| seg0.13 | 1.662056 / 1.597257 | 1.568338 / 1.557953 |
+| seg0.14 | 1.595788 / 1.619001 | **1.664446 / 1.512709** |
+| seg0.15 | 1.715148 / 1.627001 | 1.625939 / 1.543214 |
 
-```text
-[28,25,11,16,19,20,6,0,19,14,10,9,3,26,27,21,11,15,9,23]
-```
+The bold cell passes its first-stage null floor \`1.512709 + 0.15 = 1.662709\` by **0.001737**. All 15 other original section/model maxima fall below their complete matched-null thresholds. That one apparent candidate is tested below against new, untouched ciphertext.
 
-A source-semantics W-free nats-marginalized initial pointer, 5 EM iterations, model0 collision-consistent beam and exact original forward inverse reproduce **1.753942308**, matching the Rust screen to six decimals. Retaining the **same** seed/beam initialization and extending to the preregistered 10-EM verifier produces **1.547463370**: a nonconverged high-IoC fluctuation after five EM. The next 150 original GP runes (global 5806–5955), decoded without keyword re-fitting and carrying the final key pointer, produce this nonword GP transliteration:
+## Sole provisional candidate: exact original-input inverse and rejection
 
-```text
-BOYYRIANDGMEATYBAWTHBEAGLBAENIAIAAMLXJAEOLMUSEOOESTHDFUBTGHEODYMTHCRJFGDNMWFMGIAHYMBUHNUBEAMTHIAAMBIAELOETHPEONGMSBTRLTHGEAEOBDRNNGNFBSFGEPAEGXPOETHUYEOHDAYGTHEOASRBUNNSOCNGUJFXNGBLEY
-```
+**Frozen original candidate:** \`sha256-ctr mod :FIRFUMFERENFE\`; digest blocks are \`SHA256(b"FIRFUMFERENFE" + counter.to_bytes(4,"big"))\`, each byte reduced modulo29. The stream starts at **offset1559**. The 300 original cipher runes are physical section \`seg0.14\`, global **8051–8350**, with predecessor rune **20**; fitted keyword length **L20**, anti-repeat **coin model1**. A separate stream-parity gate confirms the SHA256-counter values match the frozen KSB library; the first eight offset-selected residues are \`[14,22,28,0,3,27,4,19]\`.
 
-The heldout overall IoC is **1.110693512**, without original-language plaintext.
+A frozen Python standard-library [original 300 + 150-rune SFT](../sims/agent8_h1_final_candidate_original_sft.py) repeats the genuine Rust screen's per-column English likelihood, 12-state pointer initializer, 24-state coin-rule beam and keyword EM. **Five** iterations produce periodic IoC **1.6644459706959709**, exactly reproducing the original Rust hit. It infers the full 20-rune key \`[26,23,21,1,16,3,9,14,16,1,12,17,20,15,23,6,9,14,12,0]\`. With the same source and untouched 300-runic training data, the **mandatory ten-iteration re-decode falls to 1.6304532967032965**, below the full original model-specific **1.662709** floor.
 
-## `DIVINITY`: coin-model near-hit and independent null rejection
+Without changing the inferred original keyword or stream origin, carry the chosen key-pointer path into the **next 150 source-original contiguous runes, global 8351–8500**. Exact ciphertext re-encryption passes, but plaintext unigram IoC is **0.9549888143176734** and its GP29 transliteration is incoherent. With the 10-iteration key the heldout IoC is **0.9368232662192394**, again with no coherent words. The first 150 heldout runes under the five-iteration frozen key transliterate as:
 
-Source stream: `SHA-512(b"DIVINITY" + be32(counter))` digest bytes modulo29 at offset1193. Screen model1 uses the pinned **coin** anti-repeat semantics. The independent Python implementation's mathematically top W-free initialization at beam12 reaches only **1.495806100**; its **second** still-live initial candidate reproduces the Rust highscreen **1.672712418**. Because the initial winner differs between this Python port and the reference compiled Rust (perhaps stable-sort/tie or SIMD/float details), this is a **screen-compatible** path, not a claim of strict Rust initializer parity. Its original-trained 18-column key is
+\`\`\`text
+OTHTHDEAYXAELOOJADDRJFIAWFHSEONEAEWWPBTHLIBYRTEANEYHSDIADOEWACRUOODSLUREABOETHBAETEHOJEAAEIAMFMRXRYCTHTRHGWMNGWDJSSDTCXYPERAETHIIIAWXRIAHSECIAFWDSGFIBGNGEOGTAENGPSDEOELEOPYINLNPEO
+\`\`\`
 
-```text
-[0,23,4,28,7,14,26,21,26,20,22,7,12,12,13,0,8,5]
-```
+The SFT asserts both original score values, full word key, 150-rune statistics and exact forward recreation. The complete source-selected hypothesis was not established from an authorial clue, and the higher-scoring 300-rune inference has failed independent original continuation. **Retire this candidate.**
 
-At five and ten EM iterations this source-compatible path remains at **1.672712418**. Applied with no adjustment to the next 150 original GP runes (global3912–4061), it yields **0.947203579** overall IoC and incoherent GP transliteration. More decisively, the disjoint frozen matched-null shard collection has already produced a `seg0.11`/model1 maximum **1.589556**, hence the required candidate floor **1.739556**. This peak is unambiguously below even the *partial* null floor; future completed shards cannot revive it.
+## Earlier high-score cells and corrected independent reproducibility
 
-## Reproduction and remaining gate
+Two other high-score 300-rune peaks already failed *their respective* fixed gates and remain rejected:
 
-[Standalone Python standard-library SFT](../sims/agent37_h1_somewisdom_heldout_sft.py) regenerates both digest-counter streams from original historical source algorithms, uses exact canonical GP indices, runs the independent H1 W-free initializer plus collision-constrained EM beam with no unknown-page plaintext fitting, checks explicit original forward re-encryption, and evaluates the 150-rune originals that follow each training window. Its source-compatible, not perfectly Rust-parity, initializer choice for DIVINITY is explicitly labeled. Independent original/null hit rows and complete best-cell records are [run artifacts](https://github.com/FlareZ123/liber-primus/actions/runs/44018360123). The 2016 note in the archive does **not** independently authorize this digest-counter source/offset or the synthetic H1 generator; they remain speculative.
+| Key source / original section | Five-iteration IoC | Ten-iteration IoC | Next untouched original 150-rune IoC | Full matched-null screen floor |
+| --- | ---: | ---: | ---: | ---: |
+| \`md5-ctr mod :some wisdom\`, offset1009, L20, skip, \`seg0.12\` global5506 | 1.753942308 | 1.547463370 | 1.110693512 | 1.799932 |
+| \`sha512-ctr mod :DIVINITY\`, offset1193, L18, coin, \`seg0.11\` global3612 | 1.672712418 | 1.672712418 | 0.947203579 | 1.758835 |
 
-Keep Issue #1338 open until **all 20 original and matched-null shards** complete, their complete per-window/model maxima are merged by [the versioned adjudicator](../sims/agent16_h1_gap_sft.cjs), and any other surviving original cell receives wider source-semantics and genuine heldout testing. The already-finished independent terminal short-key start is separately reported in [p54–55 original 299-rune gate](lp2-h1-final-p54-299-rune-original-source-gate.md). Negative short-key/long-key H1 screens have limited power against long true planted keywords, unavailable stream sources and alternative original ciphers. No unknown LP2 plaintext, key, or authenticated decipherment mechanism has been recovered.
+The [original two-cell SFT](../sims/agent37_h1_somewisdom_heldout_sft.py) was found to contain a **real 28-versus-29-entry defect**: it accidentally omitted **GP29 index5** likelihood \`−3.3206777364242908\` from the source-parity English prior. As published, that version raises an out-of-bounds exception; the corrected SFT inserts the source-exact constant from [pinned \`h5rs/src/logf.rs\`](https://github.com/pnotisdev/cicada3301/blob/15200c67abee106913ba01ff504c5b6e88d16cc7/work/h5rs/src/logf.rs). The corrected original-window implementation matches the same two Rust highscores. In particular the \`DIVINITY\` 1.672712418 peak now emerges from the **first** correctly initialized pointer path rather than an allegedly special second initializer. This repairs the earlier discrepancy without reviving either failed candidate.
+
+## Decision and limits
+
+The full originally prescribed L14–20, 581-source, 8-window, 2,000-offset original/null workload is complete. No cell survives both the source/matched-null threshold and the mandatory 10-iteration plus original 150-rune continuation gates. [#1338](https://github.com/FlareZ123/liber-primus/issues/1338) can close as a calibrated negative and this exact finite search envelope should not be repeated.
+
+Other distinct branches remain open: unknown historically unavailable keys, a different key/clock, per-page variable state, and untested cipher families. The independently completed final p54–55 **299-rune** L2–13 branch is documented in [its separate report](lp2-h1-final-p54-299-rune-original-source-gate.md) and likewise has no survivor. The external H1 author's existing long-key planted-key power map reports only approximately **14%** key recall at L16 and **7%** at L20 under a 1.6 floor. Therefore the negative search does not prove that all conceivable H1 encryption implementations are impossible; it rules out substantive decrypted plaintext in the **specified, complete, controlled campaign**.

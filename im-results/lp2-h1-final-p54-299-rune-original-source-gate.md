@@ -23,7 +23,7 @@ The model-1 maximum is the **only** real record >=1.5; it is below 1.6, not a pr
 
 ## Interpretation and limits
 
-This closes the **exact terminal 299-rune H1 L2–13 short-key screen** and avoids repeating its 27.9-million-cell null comparison. The unchanged external eight-window L2–13 campaign was already completed separately with zero candidates; the L14–20 eight-window campaign was still executing at this report's preparation. The terminal p54 L14–20 case was **not** tested here.
+This closes the **exact terminal 299-rune H1 L2–13 short-key screen** and avoids repeating its 27.9-million-cell null comparison. The unchanged external eight-window L2–13 campaign was already completed separately with zero candidates. The distinct eight-window L14–20 campaign subsequently completed all 20 original/null shards, with no verified plaintext or surviving 10-EM/heldout candidate; see [the consolidated original H1 gate](lp2-h1-l20-somewisdom-original-heldout-gate.md). The terminal p54 L14–20 case was **not** tested here.
 
 The published [independent 6,000-plant H1 power map](https://github.com/pnotisdev/cicada3301/blob/main/results/analysis/h5_power_map.txt) finds that even an authentic synthetic planted key has recall only 19.3% at L13 under a 1.6 floor, and lower at stricter matched-null floors. Accordingly, the screen negative gives limited exclusion power, especially for long-key, wrong-clock, different original stream, or other cipher hypotheses. The repeated reference positive is a **300-rune** plant; a matched native **299-rune** plant would strengthen calibration if this exact envelope ever needed a recheck. Re-running the original screen without an independent clue or better-power inverse is not warranted.
 
