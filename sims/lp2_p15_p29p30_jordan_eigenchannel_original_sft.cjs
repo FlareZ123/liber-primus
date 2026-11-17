@@ -264,8 +264,39 @@ assert.ok(Math.abs(ownSourceWindows[1].channelScores[1] -
   (-4.277173134927186)) < 1e-9);
 assert.ok(ownSourceWindows.every(w => w.channelScores.every(x => x < -4.25)));
 
+
+// Every other Jordan chain with the same fixed eigenvector is
+// gv24 + t * ev24, t in GF29. Its exact coordinate change is
+// z[2]' = z[2] - t*z[3]. This is the WHOLE one-parameter ambiguity
+// of that generalized eigenvector, so do not select a value after seeing
+// original language scores. Enumerate all 29 without fixing a secret crib.
+const gaugeReceivers = [
+  ...receivers,
+  ...Array.from({ length: 3 }, (_, shift) =>
+    ['p15phase' + shift, ownChapter.slice(shift, shift + 1892)])
+];
+const allJordanGauges = gaugeReceivers.map(([name, original]) => {
+  const [a, b, c, d] = toCoordinates(original);
+  const options = Array.from({ length: 29 }, (_, gauge) => ({
+    gauge,
+    score: score(c.map((x, i) => mod(x - gauge * d[i])))
+  })).sort((x, y) => y.score - x.score);
+  return { source: name, n: original.length / 4,
+    bestGauge: options[0].gauge,
+    bestScore: options[0].score,
+    medianScore: options[14].score,
+    worstScore: options[28].score,
+    gaugesTested: options.length };
+});
+assert.equal(allJordanGauges.length, 6);
+assert.ok(allJordanGauges.every(x => x.gaugesTested === 29));
+assert.ok(allJordanGauges.every(x => x.bestScore < -3.98));
+assert.ok(Math.abs(allJordanGauges[2].bestScore -
+  (-3.9889928545342617)) < 1e-9);
+
 console.log(JSON.stringify({
   source: 'signed p15 GF29 matrix, p29/p30 complementary eigen factors',
+  allJordanGauges,
   localP15Chapter: ownSourceWindows,
   jordanBasis: E,
   jordanInverse: EInverse,
