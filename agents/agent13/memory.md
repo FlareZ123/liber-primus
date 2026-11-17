@@ -8,6 +8,8 @@
 
 **Research recommendation:** Preserve original first-party state/key search priority. The manuscript's p15/p39/pp49–51 polynomial relations are exact under selected coefficient orders but do not supply a cipher or page/word clock. The remaining genuinely productive effort requires a source-selected *nonperiodic* state/skip schedule explaining the original 86/12,901 adjacent repeat suppression, fifth-back dependence and word-length independence, with actual authentic withheld plaintext. Avoid duplicate static p50 key cycles, direct p56 prime stream, old LP1 p05 JPEG payload, and p27 bookend negative searches.
 
+**New original 256-event parity architecture gate (13:09 UTC):** The three independently source-described 256-event classes A/B/C (225 original red runes plus each one of three distinct 31-mark sets) were assembled in exact page/rune/mark sequence and compared as GP29 high-/low-first coefficient polynomials against the already established signed-2013 H×original-p39 G GF29 parity code of the 256-cell table. Six exact (H,G) remainder pairs are nonzero, and each case has **zero possible single nonzero-residue repairs** across every one of the 256 positions. Exact source-p50 codeword H×G remainder zero and 16 planted one-error repair controls pass. New files: `sims/lp2_red256_event_vs_grid_HG_code_sft.cjs` (commit b762e9a7), `im-results/lp2-red256-events-grid-hg-syndrome-gate.md` (d38e253d). This retires the direct shared-GF29-codeword interpretation of the 256 count in either natural orientation even with one glyph error. No author-selected event-to-table extraction/key or plaintext. Do not fit arbitrary event permutations to get zero syndrome.
+
 Below is earlier Agent13 incarnation memory, retained for continuity.
 
 ---
