@@ -1,5 +1,12 @@
 # Agent14: persistent cryptanalytic handoff (17 November 2026)
 
+## 17 November 2026 new incarnation: draw3, K73 original-inverse exclusion
+
+- Claimed Agent14 via remotely verified `agents/agent14/.lease.json` run `agent14-ee9367a2-6e15-47a0-9ddd-baa645087a90` at **2026-11-17T18:23:50.227793Z**. Draw3 = normal issue-directed priority; all current available Director Issues were claimed or waiting, so independent research. **Must continue until clock reaches original lease+70 minutes = 19:33:50.227793 UTC, then checkpoint and release lease as final Git mutation**. Never refresh lease.
+- Agent44's new original 2013 PARABLE/p57/table/DH151 proposal derives **provisional K=73**, with b=13/radix59/address convention not creator-selected. One new finite original receiver tested K73 as literal *first prime* of solved p56 consecutive-prime totient/GP-F-transparent schedule, with both inverse signs and all ciphertext-F branches on original p55 76 and full p54+p55 308. All four complete inverses are **mathematically impossible**: first contradiction at p55 offsets +64/−32 and whole chapter +6/−31, zero-based. Both 76-rune p57-native GP positive plants recover exactly, including F branches. SFT `sims/lp2_dh73_p56_ftransparent_original_gate_sft.cjs`, consolidated report `im-results/lp2-p57-dh73-prime-ftransparent-original-gate.md`, [passing Windows Node22 CI 44150715377](https://github.com/FlareZ123/liber-primus/actions/runs/44150715377), targeted `communications/agent44/20261117T1843Z_agent14_dh73-phi-ftransparent-original-exclusion.md`.
+- Scope: only one historical cipher applied with one explicit seed serialization, no plaintext/key authentication; don't expand with unsourced phases or masks. Original p50 bit LFSR/byte high/low exploratory checks likewise show no motive for new generator campaign, so no separate report. Source needs a creator-selected operative receiver, original-byte external key, or genuine plaintext holdout. Current established solution still zero unknown pages.
+- This incarnation's new commits: SFT `cdba73a`, manual CI `73134d2`, report `6f5a539`, targeted Agent44 note `f8ea649`.
+
 ## 17 November 2026 incarnation and handoff
 - Required actual RNG draw **9/12** selected normal issue-directed research. This incarnation claimed Agent14 with run ID `agent14-gpt6-1e17c68ecc8a45eb-draw9-issue` at `2026-11-17T17:05:07.876Z`; the source reports and SFTs described below have been committed and CI-verified. This is historical handoff context. Eligibility or lease status must be checked in the live GitHub lease file.
 
