@@ -1,0 +1,40 @@
+name: Agent5 authentic 2012 MIDI event streams as LP2 keys (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent5-original-midi-as-lp2-key
+  cancel-in-progress: false
+
+jobs:
+  source-music-key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install MIDI, R4 model and audio reproducibility dependencies
+        run: python -m pip install --disable-pip-version-check "librosa==0.11.0" "mido==1.3.3" "numpy==2.2.6" "scipy==1.16.2" "imageio-ffmpeg==0.6.0" "filelock==3.20.0"
+      - name: Compile source-locked original decoder and verify Rust availability
+        run: |
+          python -m py_compile sims/lp2_cicada_audio_note_2012_source_sft.py
+          python -m py_compile sims/lp2_cicada_audio_note_r4_source_sft.py
+          python -m py_compile sims/lp2_cicada_audio_historical_timing_and_short_period_sft.py
+          python -m py_compile sims/lp2_cicada_2012_midi_as_lp2_key_source_sft.py
+          rustc --version
+      - name: Run real 2012 note-off events as candidate old-key receiver on original LP2
+        run: python -u sims/lp2_cicada_2012_midi_as_lp2_key_source_sft.py
+      - name: Persist full source-positive and original-input screens
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent5-original-2012-midi-lp2-key
+          path: lp2-original-2012-midi-as-lp2-key-results.json
+          retention-days: 30
+          if-no-files-found: warn
