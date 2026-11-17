@@ -80,7 +80,9 @@ def audit(zip_path=None):
     assert Counter(x["join"] for x in extra) == Counter({
         "within_word": 4, "separator": 2, "punctuation": 1,
     })
-    assert len(normal) == 312
+    assert Counter(x["join"] for x in normal) == Counter({
+        "within_word": 227, "separator": 73, "punctuation": 12,
+    })
     return {
         "clean_pages": clean_pages,
         "pitch_counts": dict(sorted(counts.items())),
