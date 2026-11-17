@@ -12,6 +12,7 @@ on:
           - josephus
           - p22-circumference
           - geometry-extra-leading
+          - p57-edge75-p55
 
 permissions:
   contents: read
@@ -45,3 +46,6 @@ jobs:
         run: |
           python3 -m pip install --quiet numpy pillow
           python3 sims/lp2_line_extra_leading_source_sft.py
+      - name: PARABLE p57 edge75 direct p55 source-key gate
+        if: ${{ inputs.test == 'p57-edge75-p55' }}
+        run: node sims/lp2_p57_edge75_p55_carry_source_sft.cjs
