@@ -134,5 +134,107 @@ assert.ok(observations.every(item =>
   item.rowsZero < 16 && item.columnsZero < 16));
 console.log("Original 256-cell p50 table: 0 of 8 source-natural" +
   " fold/radix/check models is a direct 15x15 product parity code.");
-console.log("This rules out only direct XOR/mod29 row-column parity;" +
-  " it does not identify original red-event ordering, a key or plaintext.");
+/** @param {number} left @param {number} right @returns {number} */
+function gf256Multiply(left, right) {
+  let product = 0;
+  for (let bit = 0; bit < 8; bit++) {
+    if (right & 1) product ^= left;
+    const carry = left & 128;
+    left = (left << 1) & 255;
+    if (carry) left ^= 0x1b; // AES GF(256), x^8+x^4+x^3+x+1.
+    right >>= 1;
+  }
+  return product;
+}
+
+/** @param {number} base @param {number} exp @param {29|256} field */
+function fieldPower(base, exp, field) {
+  let product = 1;
+  while (exp) {
+    if (exp & 1) product = field === 256 ?
+      gf256Multiply(product, base) : (product * base) % 29;
+    base = field === 256 ? gf256Multiply(base, base) :
+      (base * base) % 29;
+    exp >>= 1;
+  }
+  return product;
+}
+
+/** @param {number[][]} input @param {29|256} field @returns {number} */
+function rank(input, field) {
+  const a = input.map(row => row.map(x => x % field));
+  const n = a.length, width = a[0].length;
+  assert.ok(a.every(row => row.length === width));
+  const multiply = field === 256 ? gf256Multiply :
+    (x, y) => (x * y) % 29;
+  const subtract = field === 256 ? (x, y) => x ^ y :
+    (x, y) => (x - y + 29) % 29;
+  let pivotRow = 0;
+  for (let col = 0; col < width && pivotRow < n; col++) {
+    let nonzero = pivotRow;
+    while (nonzero < n && a[nonzero][col] === 0) nonzero++;
+    if (nonzero === n) continue;
+    [a[pivotRow], a[nonzero]] = [a[nonzero], a[pivotRow]];
+    const inverse = fieldPower(a[pivotRow][col],
+      field === 256 ? 254 : 27, field);
+    assert.equal(multiply(inverse, a[pivotRow][col]), 1);
+    for (let j = col; j < width; j++)
+      a[pivotRow][j] = multiply(a[pivotRow][j], inverse);
+    for (let row = 0; row < n; row++) {
+      if (row === pivotRow) continue;
+      const factor = a[row][col];
+      if (factor === 0) continue;
+      for (let j = col; j < width; j++)
+        a[row][j] = subtract(a[row][j],
+          multiply(factor, a[pivotRow][j]));
+    }
+    pivotRow++;
+  }
+  return pivotRow;
+}
+
+/**
+ * A general secret-coefficient 15x15->16x16 linear product code.
+ * Output has exact rank 15 regardless of the 30 nonzero source-blind
+ * parity weights. This plant is intentionally stronger than the simple
+ * uniform parity control above.
+ * @param {29|256} field
+ * @returns {number[][]}
+ */
+function weightedControl(field) {
+  const multiply = field === 256 ? gf256Multiply :
+    (x, y) => (x * y) % 29;
+  const add = field === 256 ? (x, y) => x ^ y :
+    (x, y) => (x + y) % 29;
+  const a = Array.from({length:15}, (_, j) => j + 2);
+  const b = Array.from({length:15}, (_, j) => j + 3);
+  const source = Array.from({length:15}, (_, row) =>
+    Array.from({length:15}, (_, col) => Number(row === col)));
+  const built = source.map(row => row.concat(row.reduce((sum, value, j) =>
+    add(sum, multiply(a[j], value)), 0)));
+  built.push(Array.from({length:16}, (_, col) =>
+    built.reduce((sum, row, i) =>
+      add(sum, multiply(b[i], row[col])), 0)));
+  return built;
+}
+for (const field of [29, 256]) {
+  assert.equal(rank(weightedControl(field), field), 15);
+  console.log("Positive secret-weighted linear 15x15->16x16 code:",
+    "GF(" + field + ")", "rank 15 PASS");
+}
+for (const [radix, alphabet] of [[60,inputAlphabet],
+  [59,inputAlphabet.replace("f","")]]) {
+  for (const fold of ["paired-rows","parallel-halves"]) {
+    const original = reshape(parse(alphabet),fold);
+    for (const field of [29,256]) {
+      const actual = rank(original,field);
+      assert.equal(actual,16);
+      console.log(JSON.stringify({radix,fold,field:"GF(" + field + ")",
+        actualRank:actual,maximumLinearProductRank:15,possible:false}));
+    }
+  }
+}
+console.log("All 8 original rank tests are full rank 16. This rejects" +
+  " even arbitrary hidden-weight linear 15x15 product checks over GF29" +
+  " or GF256 for these folds; nonlinear and different layouts remain open.");
+console.log("No unknown ciphertext plaintext or authentic key is inferred.");
