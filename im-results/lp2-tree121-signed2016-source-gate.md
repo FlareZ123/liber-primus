@@ -35,6 +35,19 @@ The raw 100-rune interior GP index of coincidence is **0.0343434343**. The eight
 
 **Decision:** These eight direct 2D separable additive consumers do not recover unknown p32 text. The 563/569 equality is numerical evidence rather than an authenticated instruction: the signed 2016 oak and printed p32 dead tree are different stock-art lineages, and the 11×11 reflow was researcher-selected. No further shifts, corners, phase fitting or successive additive layers are licensed without a separate source operation.
 
+## LP1's literal MOBIUS as an original 121-rune divisor-sum inverse: bounded negative (Agent 21, 17 November 2026)
+
+The prior solved LP1 magic-square page explicitly prints **MOBIUS** alongside the primes/totient clues, so a literal *number-theoretic* Möbius inversion is an unusually concrete mathematical operation worth differentiating from this report's previously tested projective fractional-linear/Möbius maps and generic 2D finite differences. The already identified p32 original 121-rune block offers two canonical source-order domains: the complete flat 121-rune reading stream and the image-checksum-correlated 11×11 row-major square. Their shared crucial limitation is that the original source never says that these rune values are divisor sums. LP1's MOBIUS is not a p32-specific decoder instruction, and the signed 2016 oak drawing is not the same stock image as p32's tree.
+
+The [source-complete frozen original-rune reproducer](../sims/lp2_p32_mobius_divisor_inverse_sft.cjs) encodes the 121 exact p32 rune **ordinals** as GP29 field elements and tests exactly two original-order, parameter-free, invertible arithmetic operations:
+
+- **1D integer divisor order:** \`P[n] = Σ_{d|n} μ(n/d) C[d] (mod 29)\` for original source positions n=1..121.
+- **2D divisor order:** \`P[i,j] = Σ_{a|i,b|j} μ(i/a) μ(j/b) C[a,b] (mod 29)\` on the fixed first-row/first-column checksum square i,j=1..11, read back row-major.
+
+The finite differences here are restricted to *divisibility* order by the explicit LP1 Möbius clue. Both inverses have the exact forward *divisor-zeta* encoder as a lossless control. The program asserts the 563/569 original-image checksum, reconstructs the original **121/121** p32 ciphertext from each inverse, and recovers a 121-symbol native-solved-GP test plant exactly. [Original-source CI run 43990907219](https://github.com/FlareZ123/liber-primus/actions/runs/43990907219) **passed**. Candidate plaintext full GP29 IoC is **0.037327823691** for 1D and **0.034573002755** for 2D, against **0.034159779614** in original p32 ciphertext. Both complete printed rune outputs are nonlinguistic. The run publishes every rune ordinal and Latin transliteration so this cannot be reinterpreted as a score-only hit.
+
+**Decision:** Retire these two canonical arithmetic Möbius inverses on the original p32 page; they yield no original unknown plaintext. The LP1 word MOBIUS remains a real puzzle clue, but it does not license new divisor index shifts, alternate row/column permutations, repeated inversions, or other extra degrees of freedom without an independent original selector. The dimension/sum identity and existing p32 graphics are unaffected.
+
 ## Full 11×11 tree matrix as next-page Hill key: negative (Agent 49, 12 November 2026)
 
 A more explicitly reversible alternative uses the **same source-selected p32 11×11 array** as a matrix over GF(29), with either original GP indices or their prime weights reduced modulo 29. Both are invertible (determinants **8** and **21**, respectively). The next page p33 has a 91-rune opening section followed by a second printed heading and **123** further ciphertext runes. The first 121 runes after this boundary give one matching 11×11 block, leaving two trailing runes **DB**. The proposed alignment is natural but conditional: the source does not explicitly say to discard the two trailing runes or multiply the next page by the previous one.
