@@ -168,13 +168,56 @@ for(let k=0;k<8;k++){
     known_seed:source.slice(0,5),inferred_seed:inferred.seed});
 }
 const translit=seq=>seq.map(i=>gp.translit[i]).join('');
+
+/*
+ * Permutation-invariant original test. For i>=6 both C[i], C[i-1] are
+ * after the unknown five-symbol initialization. Any fixed output alphabet
+ * permutation (even one changed per printed word) preserves same-word
+ * adjacent equalities, so the original deficit cannot be repaired by
+ * relabeling a complete autokey output alphabet.
+ */
+function repeatCounts(seq){
+  let internal=0,cross=0;
+  for(let i=6;i<seq.length;i++)if(seq[i]===seq[i-1]){
+    if(ends.has(i-1))cross++;
+    else internal++;
+  }
+  return {internal,cross};
+}
+const observedRepeat=repeatCounts(original);
+const repeats=[];
+let low=0,high=-Infinity,minimum=Infinity,total=0,totalSq=0;
+const INVARIANT_SAMPLES=4096;
+for(let k=0;k<INVARIANT_SAMPLES;k++){
+  const seed=(0x45391fac+Math.imul(k,16211))>>>0;
+  const eq=repeatCounts(emit(plant(seed)));
+  repeats.push(eq.internal);
+  if(eq.internal<=observedRepeat.internal)low++;
+  if(eq.internal<minimum)minimum=eq.internal;
+  if(eq.internal>high)high=eq.internal;
+  total+=eq.internal;
+  totalSq+=eq.internal*eq.internal;
+}
+const repMean=total/INVARIANT_SAMPLES;
+const invariant={
+  observed:observedRepeat,
+  simulated_plants:INVARIANT_SAMPLES,
+  source:'original-geometry independent Gibran GP words, Shakespeare trained',
+  minimum,maximum:high,
+  mean:+repMean.toFixed(3),
+  sd:+Math.sqrt((totalSq-INVARIANT_SAMPLES*repMean*repMean)/(INVARIANT_SAMPLES-1)).toFixed(3),
+  count_at_or_below:low,
+  empirical_lower_tail:+((low+1)/(INVARIANT_SAMPLES+1)).toFixed(9)
+};
+
 return {
   type:'frozen_lag5_plaintext_autokey_source_native_test',
   source:{runes:expectedRunes,words:expectedWords,language_model:'independent Shakespeare',
     controls:'8 independently selected Gibran original-shaped expectedRunes-rune texts'},
   original:{seed:originalResult.seed,score_per_rune:+(originalResult.score/expectedRunes).toFixed(6),
     first150_plain_runes:translit(originalResult.plain.slice(0,150))},
-  plants:native
+  plants:native,
+  invariant
 };
 }
 console.log(JSON.stringify({
