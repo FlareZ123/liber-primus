@@ -24,6 +24,21 @@ The stricter authentic **plaintext-F transparent** dynamic decoder enumerates bo
 
 The exact original-number modulus and no-fitted-phase tests are in [read-only Windows-compatible Node22 CommonJS SFT](../sims/lp2_lp1p05_272wheel_terminal180_sft.cjs). It asserts original p56's 85/85 re-encryption, both LP1 square corner occurrences, p55/p54 physical lengths, all 29 key triggers, all eight original F-clock path results, and planted genuine GP-rune controls. The source corpus is [lp2-corpus.json](../resources/liber-primus/lp2-corpus.json).
 
+## Independent original wheel-feedback tableau gate
+
+The terminal-wrap key above transfers the authenticated LP1-p05 272 to a key from the **known p56+p57 cleartext**. A separate, much more generous but still original-source-selected possible consumer is to let the **original unknown ciphertext itself drive** a 272-prime-weight wheel while an unknown secret GP29 permutation changes by wheel state. Freeze the printed ciphertext first, accumulate only the *previous* published glyphs' GP prime weights modulo272, and select either (a) number of completed 272 revolutions modulo29 or (b) current wheel residue modulo29. Freeze either book-continuous or reset at the nine original chapter markers. These four discrete source-consistent row histories require no guessed phase, labels, plaintext or external pad.
+
+**All-secret invariant:** grant a separate completely unknown 29! GP29 permutation for **each one of the 29 wheel rows**. Any such bijection preserves the count of identical symbols among positions assigned to the same row. The row labels here are computed directly and completely from the *unchanged original ciphertext*, so their self-feedback does not invalidate this necessary original-input test. Evaluate 150 frozen GP-native Shakespeare English passages, each 12,956 runes, against the **same original-induced row history**. The resulting scaled conditional within-row index of coincidence (29×equal-ordered-pairs/all-ordered-pairs) is:
+
+| Original 272 wheel row selector | Reset | Original conditional IoC | Minimum of 150 native English controls | Median control |
+|---|---|---:|---:|---:|
+| Completed revolutions modulo29 | Book | **0.99481** | 1.66751 | 1.74769 |
+| Completed revolutions modulo29 | Nine chapters | **0.99313** | 1.67142 | 1.75009 |
+| Running residue modulo29 | Book | **1.00029** | 1.67586 | 1.75206 |
+| Running residue modulo29 | Nine chapters | **1.00188** | 1.67414 | 1.75108 |
+
+The original source is near the uniformly flat GP29 ciphertext benchmark **1.0** in **all four** source-frozen rows, while **all 150/150** independent-native reference windows score at least **1.667** under exactly the same row grouping. A free secret substitution **cannot raise the original conditional collision rate at all** because it relabels the same-row classes bijectively. Thus the direct original-cipher path using this LP1-p05 wheel as a static GP29 tableau selector is excluded for ordinary native-GP English, regardless of key contents, alphabet sign, or word interpretation. The hypothesis could still be modified by per-rune nonbijective overwrites, genuine key/row drift not selected by the wheel, or a flat intermediate plaintext register, but such changes require independently original clues before further tests. The [new source-pinned SFT](../sims/lp2_lp1p05_272wheel_allsecret_feedback_sft.cjs) asserts all four original pair counts and 150 native-English comparisons and demonstrates invariance under explicit secret row permutations.
+
 ## What follows
 
 The LP1-p05 **272** link is worth preserving as a potential operator cue because it comes from an independently solved earlier page and uses an authentic named prime/totient operation. Its selection still has a serious multiple-comparisons objection: LP1 has many printed numbers, the 180-rune terminal source was selected for its known text, and the direct 29-event wheel produces **no plaintext**. The source does not tell a human to use 272 as a modulus, record crossing glyphs, or replay them as a key. The exact finite path tested here can be retired; a successor needs an independent original clue identifying a *different* consumer or a source-authenticated plaintext crib. More phase/sign/readout searches around the 272 coincidence are unwarranted.
