@@ -48,6 +48,22 @@ The finite differences here are restricted to *divisibility* order by the explic
 
 **Decision:** Retire these two canonical arithmetic Möbius inverses on the original p32 page; they yield no original unknown plaintext. The LP1 word MOBIUS remains a real puzzle clue, but it does not license new divisor index shifts, alternate row/column permutations, repeated inversions, or other extra degrees of freedom without an independent original selector. The dimension/sum identity and existing p32 graphics are unaffected.
 
+### Whole LP2 domain of the literal LP1 Möbius instruction (Agent2, 17 November 2026)
+
+The same explicitly printed LP1 word **MOBIUS**, understood as arithmetic Möbius inversion of a divisor-sum register, also permits a simpler interpretation that does **not** require the postulated p32 tree/11×11 geometry: apply the operation directly to the complete original encrypted LP2 rune tape in its original one-based ordinal order. This tests a strictly broader natural input domain than the 121-rune p32-only experiment above, without a new secret key. It remains a **conditional operation** because LP1 does not instruct the reader to apply a divisor sum to LP2, let alone choose which sections restart the index.
+
+The six frozen choices are the two invertible directions `P=mu*C` and `P=zeta*C`, with three genuinely source-visible groupings: (i) all **12,956** unknown runes continuous; (ii) nine original visual chapters, lengths **729/1145/1729/9/1894/1021/1524/1589/3316**; (iii) all **55** nonempty original physical pages, restarting each one-based divisor index on each page. `zeta(X)[n]=sum_{d|n}X[d] mod29`. Its exact inverse `mu(X)` is computed by subtracting previously recovered proper-divisor entries in ascending source index; neither transform adjusts output to a readable target. This is a reversible source-order test of all positions, including page-crossing rune-words and literal F values; no printed punctuation is covertly assigned a GP29 coefficient.
+
+| Original source index scope | GP29 IoC of `mu*C` | GP29 IoC of `zeta*C` |
+| --- | ---: | ---: |
+| All 12,956 continuous unknown runes | **0.034479208136** | **0.034517278980** |
+| Nine visual chapter resets | **0.034523939888** | **0.034464373018** |
+| 55 physical page resets | **0.034489133962** | **0.034480864426** |
+
+The untouched original unknown ciphertext has GP29 IoC **0.034478397865**; authentic native-clear p57 has **0.062709966405**. All six complete outputs remain near uniform. Both first-page outputs are visibly nonlinguistic and do not provide contiguous plaintext; the first 80 GP tokens for every variant are printed by the program. In each of six cases, exact original rune-for-rune re-encoding succeeds, and an independently planted authentic clear-p57 stream recovers all **12,956 / 12,956** runes using the same source groupings. These controls establish the arithmetic inverse; they cannot authenticate use by Cicada.
+
+[Single-file full-original CJS reproducer](../sims/lp2_global_mobius_divisor_inverse_sft.cjs) and [Windows Node22 successful CI run 44003990341](https://github.com/FlareZ123/liber-primus/actions/runs/44003990341). **Decision:** source-native whole-book and page/chapter variants of the literal mathematical Möbius/divisor-sum transform do not produce GP-native prose. This does not exclude additional keyed layers, an independently source-selected different index domain or a cipher register that is not ordinary GP text. It adds no authentic unknown-page plaintext or key and does not change the established 563/569 p32 dimensions result.
+
 ## Full 11×11 tree matrix as next-page Hill key: negative (Agent 49, 12 November 2026)
 
 A more explicitly reversible alternative uses the **same source-selected p32 11×11 array** as a matrix over GF(29), with either original GP indices or their prime weights reduced modulo 29. Both are invertible (determinants **8** and **21**, respectively). The next page p33 has a 91-rune opening section followed by a second printed heading and **123** further ciphertext runes. The first 121 runes after this boundary give one matching 11×11 block, leaving two trailing runes **DB**. The proposed alignment is natural but conditional: the source does not explicitly say to discard the two trailing runes or multiply the next page by the previous one.
