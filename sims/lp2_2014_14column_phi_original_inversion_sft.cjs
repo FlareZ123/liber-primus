@@ -268,6 +268,63 @@ for(const [mode,decode] of [["historicalDecode",true],["historicalEncrypt",false
   }
   output[mode]=tests;
 }
+
+/**
+ * Stronger literal transfer: the historical Stage03 acted on individual
+ * characters. Preserve that source-faithful operation on original GP29
+ * runes, not the speculative complete-word extension. Word separators
+ * are not used by this second independent 90,000-case original screen.
+ */
+const expectedRune = {
+  historicalDecode: {
+    maxima:[729,474,526,592,526,544,519,498,308],
+    starts:[2829,4113,4867,330,2982,3817,2886,1333,646],
+    completed:[[2829,2830,2831],[],[],[],[],[],[],[],
+      [646,1215,1217,2724,3715,3716,4052,4377]]
+  },
+  historicalEncrypt: {
+    maxima:[729,414,455,551,631,670,481,555,308],
+    starts:[1713,3956,4702,2064,3289,3579,631,1295,1264],
+    completed:[[1713,1714,1715,1716,1718,1719,1720],[],
+      [],[],[],[],[],[],[1264]]
+  }
+};
+const runeOutput = {};
+for(const [mode,decode] of [["historicalDecode",true],["historicalEncrypt",false]]) {
+  const tests = [];
+  for(let chapter=0;chapter<chapters.length;chapter++) {
+    const original = chapters[chapter].flat();
+    const sourceRuneCipher = shuffle14(original,decode);
+    let bestPrefix=0, bestStart=-1;
+    const complete=[];
+    for(let start=0;start<K;start++) {
+      const reached=furthest(sourceRuneCipher,start);
+      if(reached>bestPrefix) {bestPrefix=reached;bestStart=start;}
+      if(reached===sourceRuneCipher.length) complete.push(start);
+    }
+    assert.equal(bestPrefix,expectedRune[mode].maxima[chapter],
+      mode+" rune-level chapter "+chapter+" maximal prefix");
+    assert.equal(bestStart,expectedRune[mode].starts[chapter],
+      mode+" rune-level chapter "+chapter+" argmax start");
+    assert.deepEqual(complete,expectedRune[mode].completed[chapter],
+      mode+" rune-level chapter "+chapter+" completion set");
+    const candidates=complete.map(start=>{
+      const v=bestFullPath(sourceRuneCipher,start);
+      const meanBigramLog=v.score/v.plain.length, equalRate=ioc(v.plain);
+      assert.ok(meanBigramLog<-4.7 && equalRate<.04,
+        "Potential new real rune-level plaintext: inspect full original");
+      return {start,meanBigramLog,ioc:equalRate,
+        first40:v.plain.slice(0,40).map(x=>gp.translit[x]).join(" ")};
+    });
+    tests.push({chapter,originalRunes:original.length,maxPrefix:bestPrefix,
+      startAtMaxPrefix:bestStart,completeStarts:complete,
+      candidates});
+  }
+  runeOutput[mode]=tests;
+}
+assert.equal(runeOutput.historicalDecode.flatMap(r=>r.candidates).length,11);
+assert.equal(runeOutput.historicalEncrypt.flatMap(r=>r.candidates).length,8);
+
 console.log(JSON.stringify({
   source:"12,956 original LP2 ciphertext runes/2,896 printed words",
   history:"signed 2014 Stage03 14-column permutation and authentic p56 prime-totient plaintext-F bypass",
@@ -277,6 +334,6 @@ console.log(JSON.stringify({
   initialPrimeIndexRange:"0..4999",
   genuineCandidateScores:"All 7 complete originals have GP-English mean bigram<-5.05 and IoC<0.036; actual p56 score -2.66594, IoC 0.07003",
   controls:{originalP56BigramScore:bestFullPath(sourceC56,0).score/85,
-    originalP56IoC:ioc(solvedP56)},results:output,
-  conclusion:"No historical 14-word transposition + authentic p56-F cipher decrypts eight original chapters; seven complete short/terminal paths are nonprose. This exact order/key-start family yields no unknown plaintext."
+    originalP56IoC:ioc(solvedP56)},results:output,runeLevelResults:runeOutput,
+  conclusion:"Both historical 14-column per-word and literal per-rune transpositions plus p56-F cipher fail on eight original chapters. Seven word-level and nineteen rune-level complete short/terminal outputs are nonprose. No unknown plaintext recovered."
 },null,2));
