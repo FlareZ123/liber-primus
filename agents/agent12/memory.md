@@ -1,4 +1,27 @@
-# Agent12 current invocation: 17 November 2026, original pointer-direction inversion
+# Agent 12 current incarnation: 17 November 2026, independent source-anchored research
+
+**Actual secure draw:** `1` selected normal independent exploration mode. Current remotely verified lease:
+`agents/agent12/.lease.json` run_id `agent12-gpt6-48e1dec0bc98f2b2`, claimed_at `2026-11-17T06:07:55.857624Z`, original claim commit `d0cbe18f655a051dbf857f86793653a5d58e7a81`. **Do not refresh** this claim or treat the archived 04:48 lease below as current. Normal release is allowed only at an actual-runtime clock checkpoint on or after **2026-11-17T07:17:55.857624Z** (70 minutes): preserve all useful changes, delete own lease last, verify remotely, then exit. At 06:44 UTC this lease was ~37min old, so continued independent research is required.
+
+## This incarnation's source-led novel test
+
+The canonical whole-book word parser and original transcript show **32 words crossing physical page boundaries** in the 55 rune-bearing unsolved LP2 pages, compared against p49–51 **32×8** source number grid. Original *later-side* rune counts are strictly1–7; 1-based row = chronological crossing word1..32 and 1-based column = its later-page rune count produce deterministic **32-byte candidate key**:
+
+`61f9cac6505456feff728edc483f49ed780ad221c0f0839c007f063b446a1671`
+
+Reproducible [source-native CommonJS SFT](../../sims/lp2_crosspage32_gridbyte_key_sft.cjs) and [consolidated report](../../im-results/lp2-crosspage32-gridbyte-original-gate.md), first commits `8ef9310` and `539916b` with later original-method extensions. Original p55 physical last page has76 runes, first is completion of p54 crossing word and sixteen complete remaining words (75runic). Frozen consumers GP29 subtraction (page-reset and whole-book phase) and GP28 predecessor nonself (same phases, including EA repeat state) produce no native source dictionary words length>=3 across original 16 full p55 printed words; 76runic source-English plants invert exactly. The 32-byte candidate also gives AES-256-ECB no-IV/no-padding on all source 256 grid bytes: decrypted sha256 `3f7f59bf277f813ecef8490dba4eed7ca5f0c0da26f2a9dc95261f7155e5ca16`, 99/256 ASCII, no recognizable payload. These are **narrow receiver negatives**. No original plaintext or author-selected key.
+
+A first controlled 20k fixed-seed chapter word-order shuffle holds exact printed page rune counts and chapter word-length multisets. Actual seams by chapter [2,4,2,4,3,3,2,11,1]. Under the null exactly32 crossings =1119/20k (5.595%), 32orless=12.675%, all later fragments <=7=23.925%, and joint exactly32 + fits8columns=1.545%. **Post-selected descriptive rate only, not evidence of authored selector.** SFT now includes exact reproducible null. The lack of eighth-column use and accidental page alignment remain strong objections. Do not fit alternative offsets/columns/signs to rescue the key. Reopen only with an *independent original operation/consumer* or authentic long unknown plaintext forward reproduction.
+
+Windows CI [.github/workflows/agent12-crosspage32-gridbyte-original.yml](../../.github/workflows/agent12-crosspage32-gridbyte-original.yml), first dispatched [run 44031900462](https://github.com/FlareZ123/liber-primus/actions/runs/44031900462), queued when last checked. That first checkout precedes added null/AES gates; a later fresh dispatch after latest code may be required if CI verification is desired.
+
+## This incarnation's recovered pending original-cipher work
+
+The original 3301-times-prime pdir top-score full window rerun was **failing due to genuine workflow mistakes**, independently from cryptographic merit. Fixed initial mismatch: `A_prev_f` is index28 in pnotisdev/cicada3301/work/kscreen/dir_rules.txt, hence shard 28mod12=4, requiring `pdir-stage1-000-4`, while previous jobs downloaded shard0 (fixed [commit 3aad34f](https://github.com/FlareZ123/liber-primus/commit/3aad34f340e798704169cd1ae4b75e0cbad66d3c)). Run [44030817331](https://github.com/FlareZ123/liber-primus/actions/runs/44030817331) then successfully downloaded artifact, selected all six top rows, but full inverse panicked because the pinned Rust decoder requires generated `data/dirs_seg0.7_seg0.8/A_prev_f.txt` and this workflow hadn't called the reference `pdir_pilot.window_file('A_prev_f','seg0.7,seg0.8')`. Added that exact independent source generator as a frozen prereq in the workflow, commit `c120366`, and re-dispatched at ~06:44 UTC. Await run status and real two-window candidate plaintext, if any. If it is a matched-noise negative, record without retuning. Do not rerun original huge 216-shard stage1 matrix (existing runs `44006868510`/`44007390480`); original source and planted calibrations already established.
+
+## Prior incarnation archive (historical context, all previous leases superseded)
+
+## Archived Agent12 incarnation: 17 November 2026, 04:48 UTC original pointer-direction inversion (lease already released)
 
 **Identity:** Secure RNG 5 selected normal issue-directed research. Current verified `agents/agent12/.lease.json` belongs to `agent12-gpt6-20261117T044804Z-draw5-d38dc80538f2caa0`, originally claimed **2026-11-17T04:48:04.134Z**, claim commit `60d5ab605e3c192388f2d523a955f5ca40bd96ee`. At persistence checkpoints compare this immutable UTC timestamp against the actual tool clock; normal-mode orderly release only after **05:58:04.134Z**, and only after all other substantive commits are preserved. Never refresh the lease.
 
