@@ -23,7 +23,7 @@ The original [LP2 GP corpus](../resources/liber-primus/lp2-corpus.json) has 55 r
 
 The 86 equal pairs have **zero triple-equal overlaps** and all 86 have a next original rune in continuous physical-page order. The next-difference histogram covers all 28 nonzero differences; no choice of initial seed or secret start parameter repairs even the first contradiction. This is a **strict source-level impossibility**, stronger than a language score, and applies independently on an untouched distant chapter. No plaintext decoding or optimization was needed to discover the failure.
 
-[Read-only SFT](../sims/lp2_repeat_prefix_escape_source_sft.cjs) asserts the original rune length, 86/2/84 exact outcomes, first failure, native control roundtrips under four different IVs, and source-preserved physical page order. The [Windows Node22 SFT run](https://github.com/FlareZ123/liber-primus/actions/runs/44166718105) documents execution.
+[Read-only SFT](../sims/lp2_repeat_prefix_escape_source_sft.cjs) asserts the original rune length, 86/2/84 exact outcomes, first failure, native control roundtrips under four different IVs, and source-preserved physical page order. The [Windows Node22 SFT run](https://github.com/FlareZ123/liber-primus/actions/runs/44167137098) documents execution.
 
 ## Scientific scope and next decision
 
