@@ -22,7 +22,8 @@ const bytes = table.pages.flatMap(p => p.bytes);
 assert.equal(tokens.length, 256);
 assert.equal(bytes.length, 256);
 assert.equal(lp.pages.length, 58);
-assert.equal(lp.pages.filter(p => p.status === 'unsolved').length, 56);
+assert.equal(lp.pages.filter(p => p.status === 'unsolved').length, 55);
+assert.equal(lp.pages.filter(p => p.status === 'numeric_grid_only').length, 1);
 
 for (const [index, original] of [[25, '3I'], [246, '3I'], [45, '1l'], [50, '0l']]) {
   assert.equal(tokens[index], original, 'original image-consistent token');
