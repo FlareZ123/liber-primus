@@ -13,7 +13,7 @@ const ROOT = path.resolve(__dirname, "..");
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, "resources/liber-primus/lp2-corpus.json"), "utf8"));
 const original = data.pages.slice(51, 56).map((p) => p.indices);
 const source = Buffer.from(
-  fs.readFileSync(path.join(ROOT, "resources/historical/cicada2013-wisdom-folly.b64"), "utf8").replace(/\\s/g, ""),
+  fs.readFileSync(path.join(ROOT, "resources/historical/cicada2013-wisdom-folly.b64"), "utf8").replace(/\s/g, ""),
   "base64"
 );
 assert.deepEqual(original.map((p) => p.length), [92, 263, 179, 232, 76]);
