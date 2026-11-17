@@ -102,7 +102,8 @@ assert.equal(DOMAIN, 500246412961n);
 assert.ok(DOMAIN < N && N < RADIX ** 9n);
 const controls = originalWindow(57, 57);
 assert.equal(controls.length, 95);
-const plantedPlain = controls.slice(0, 88);
+const plantedPlain = controls.slice(7);
+assert.equal(plantedPlain.length, 88, "p57 PARABLE body has eleven eight-rune blocks");
 const originalResults = [];
 
 for (const e of EXPONENTS) {
