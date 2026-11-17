@@ -58,11 +58,11 @@ The first witness is on physical **p0, local rune offset 37**. The original ciph
 
 **A stronger combinatorial consequence follows from physical-page key resets.** A selected one-retry alternative on any page does not change the clock on other pages. If page p contains n[p] eligible sites, independently choose either no retry or one of its n[p] alternatives. Each choice vector produces a distinct full-book plaintext tape because the first changed position on each selected page is different. Exact original-page site counts have sum 452, minimum 1 and maximum 16. Their product is
 
-[
-prod_{pinmathrm{rune pages}} (1+n_p)
-=mathbf{862434223353358438440426765962102288840392704000000}
-approx 2^{169.20481917}.
-]
+\[
+\prod_{p\in\mathrm{rune\ pages}}(1+n_p)
+=\mathbf{862434223353358438440426765962102288840392704000000}
+\approx 2^{169.20481917}.
+\]
 
 Thus even under the same publicly fixed cipher table and key, **more than 169 bits of selection ambiguity** remain for the intact complete original ciphertext. Every independent page choice is simultaneously compatible with the exact unchanged source glyphs. No stochastic probabilities were used to count these preimages: all have positive probability at 0<q<1.
 
