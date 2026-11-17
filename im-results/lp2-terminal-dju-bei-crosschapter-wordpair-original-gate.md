@@ -1,6 +1,6 @@
 # Original LP2 terminal DJU-BEI: unique repeated two-word ciphertext phrase
 
-**Evidence class: source-exact structural observation with two source-shaped null gates. No recovered unknown plaintext, key, cipher operation or destination.** This observation depends only on original GP29 word/rune order and chapter boundaries. Reproducer: [Node 22 single-file source test](../sims/lp2_terminal_dju_bei_phrase_sft.cjs); [manual native Windows test](../.github/workflows/agent29-terminal-dju-bei-original-manual.yml).
+**Evidence class: source-exact structural observation with two source-shaped null gates. No recovered unknown plaintext, key, cipher operation or destination.** This observation depends only on original GP29 word/rune order and chapter boundaries. Reproducer: [Node 22 single-file source test](../sims/lp2_terminal_dju_bei_phrase_sft.cjs); [passing native Windows Node22 run 44097795694](https://github.com/FlareZ123/liber-primus/actions/runs/44097795694).
 
 ## Why this matters to a solver
 
