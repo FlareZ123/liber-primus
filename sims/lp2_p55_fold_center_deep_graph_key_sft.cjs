@@ -82,7 +82,7 @@ assert.deepEqual([foldSum, printedSB.page, printedSB.word, roman(printedSB.selec
 const endSum = total(printedSB.selected, prime);
 const printedEND = select(endSum);
 assert.deepEqual([endSum, printedEND.page, printedEND.word, roman(printedEND.selected)],
-  [114, 56, 1, "OSR"]);
+  [114, 56, 1, "OESR"]);
 
 // Independently authenticate the second destination from the actual published
 // prime-totient p56 cipher. It is well before p56's one literal-F interrupter.
