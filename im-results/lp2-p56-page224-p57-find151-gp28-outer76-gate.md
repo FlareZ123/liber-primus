@@ -1,0 +1,37 @@
+# Solved p56 PAGE → p57 FIND selects an original numeric-table rim cell; GP28 p55 inverse remains nonprose
+
+**Agent26 · 17 November 2026. Classification: new original solved-word/table crosslink and bounded original-cipher candidate, not unknown plaintext or a historical key.**
+
+## Source-derived word addressing and a physically determined perimeter start
+
+The independently solved physical LP2 p56 uses the prime-totient clock, with a single transparent plaintext-F at rune offset56, and includes `PAGE` twice. The authentic GP29 letter-prime weights give **PAGE = P43+A97+G17+E67 = 224**. Reading the original pp49–51 **256** two-character numeric table in printed row-major order, the **224th cell** is literal **`2V`**, at **row28, column8** in the 32×8 rectangular arrangement. Under the conventional base60 digit order, **`2V` = 2×60+31 = 151**. The clear original p57 word **FIND** has GP-prime sum **F2+I31+N29+D89 = 151**. This gives the exact **PAGE → 224th cell 2V → 151 → FIND** cross-page link, including a source-selected **outer-perimeter cell223**. The second occurrence of PAGE repeats the same observation and supplies no additional independent evidence.
+
+Two other base60 links under the same whole-word prime-sum address rule are **HASHES = 316 → 60th cell `19` = 69 = OUT**, both on p56, and **DIUINITY = 376 → 120th cell `34` = 184 = LICE** (the manuscript's GP spelling of LIKE), both on p57. They may be useful for understanding the intended *human* route, but a source word→table→word equality is not an encryption instruction.
+
+There is a competing distinct base59 reading: lowercase `f` is absent from all original numeral cells, so omitting that digit yields a 59-symbol alphabet. **FIND = 151 → 151st cell `2X` = 151** under base59. In the source 32×8 rectangle, this cell lies just inside the right boundary; its immediate east neighbor, original **152nd cell `39` = 186** under base59, equals clear p57 **MUST = M71+U3+S53+T59 = 186**. The p57 instructions “find” and “emerge” motivate checking this neighbor. The known compass interpretation `b=29q+r` would also assign **east** to `2X` because its quotient is **5** and keypad code **6** is east. This *competing* route **requires a radix change** if joined to PAGE→FIND; neither the table nor the parable explicitly commands that change. Do not silently combine the two branches into a proven multi-radix decoder.
+
+**Selection-bias control:** The 25 authentic p56 plaintext words and 20 clear p57 words contain 36 distinct one-based table-address residues and 37 distinct prime sums. The unchanged full table produces **4** distinct word→word links under base60 and **6** under missing-f base59. Under 150,000 deterministic Fisher–Yates shuffles of each original decoded 256-value multiset (preserving duplicates), respectively **91,744/150,000** and **12,582/150,000** shuffles give at least as many links. These unconditional total-link counts are ordinary/modest and are **not** independent proof of author design. The specific semantically selected PAGE→FIND and FIND→MUST coincidences arose during open exploration, so their small fixed-token arrangement probabilities cannot be treated as prespecified puzzle probabilities.
+
+## One complete, motivated p55 inverse, without ciphertext tuning
+
+The table's **outermost 32×8 circumference has 76 cells**, exactly equal to the **76 original runes on physical p55** (including its word carried from p54). Start **at the selected cell223** rather than the conventional top-left corner, a departure from previously published outer-ring screens with no independently authored start. Traverse that **same fixed outer perimeter**, either clockwise or counterclockwise. Convert each authentic base60 byte to a GP28 rank shift `K_i = byte_i mod 28`. The choice of 28 is motivated by `φ(29)=28` and the remarkable low adjacent-equal rate in the original 29-rune LP2 corpus. The following is a proposed reversible **cyclic predecessor-excluding GP28** model, not an attested Cicada operation:
+
+- Set `C[-1]` to the *actual final ciphertext rune of physical p54*, since p55 opens with the original continuing passage. For each original p55 glyph `C[i]`, if it equals its immediate predecessor, output the reserved GP29 rune index28 (EA).
+- Otherwise compute `r[i] = (C[i] − C[i−1] − 1) mod29`, necessarily 0..27. Decode `P[i] = (r[i] ± K[i]) mod28`; these are the only two arithmetic signs. The two original-rim winding directions give **four complete** variants. Every key position and every ciphertext rune is consumed once, without fitted offsets, phases, word resets or guessed secrets.
+
+**Exact original-source results:**
+
+| Rim from PAGE's cell223 | Rank sign | GP29 IoC, 76 runes | Native-GP transliterated opening |
+| --- | --- | ---: | --- |
+| Clockwise | + | 0.04175439 | `GIIASNGFNNIFSDLUGCIA` |
+| Clockwise | − | 0.03157895 | `EOABDUXNGPYLWNGEOPIU` |
+| Counterclockwise | + | 0.03157895 | `GOSITHRMNGFBNAEPDAEPC` |
+| Counterclockwise | − | 0.03473684 | `EOOUFLIJUHOPMMMMNGMTD` |
+
+All four complete original outputs remain nonlinguistic. The sole original p55 adjacent repeat at local offset59 becomes EA under each variant. Their best observed index of coincidence **0.04175** stays far below the original solved-p57 GP-native reference **0.06271** (on 95 runes). IoC alone cannot prove a 76-rune message impossible, but the actual complete outputs offer **no decoded text or key**. Every decoded candidate exactly forward-reencrypts all 76 original source runes, as required by the algebra; round-tripping is an implementation property and **not** evidence of the author's mechanism.
+
+The source selector matters: the earlier [fixed top-left circumference and GP28 predecessor gate](p55-grid-ring76-predecessor-differential-gate.md) covered a similar *operator* at other starts, and [the full table-perimeter source gate](lp2-p50-76-perimeter-180-interior-source-partition.md) tested direct GP29 addition/XOR. This experiment instead uses a **solved p56 word to fix a new phase without looking at p55**, then tests only the four resulting operators. It does not reopen those rejected fixed-start variants or imply that a more elaborate operator will succeed.
+
+**Decision:** The PAGE→FIND link is a candidate clue for **where** a player might enter the numeric table. The straightforward period-76 predecessor-excluding **GP28 rank** inverse at that selected start fails to yield p55 plaintext, so do not promote the link to a decryption claim. A meaningful successor needs an independently evidenced table-navigation/transport operator or a new real plaintext prediction; searching nearby offsets or key alphabets to improve these four outputs is unjustified.
+
+**Reproduce:** [single source-reading Windows Node22 CommonJS test](../sims/lp2_p56_page224_p57_find151_outer76_gp28_sft.cjs). Inputs: [canonical LP2 corpus](../resources/liber-primus/lp2-corpus.json), [original word transcription](../resources/liber-primus/lp2-transcription.txt), [original numeric cells](../resources/liber-primus/base60-grid.json). The test first independently recovers the p56 solved plaintext and both source word sums, then asserts the original cell tokens, source-selected rim phase and full 76-symbol inverses. No new plaintext has been recovered.
