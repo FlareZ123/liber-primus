@@ -147,6 +147,33 @@ assert.notEqual(powMod(oneBased59[1], a, p), oneBased59[2]);
 assert.equal(originalN % printed.length, K);
 assert.equal(powMod(g, (p - 1) / 2, p), p - 1);
 
+// Three authenticated parable prime ordinals plot three corners of a
+// 5x5 grid square (rows21..25, columns1..5). The missing fourth corner
+// independently matches the source-solved p56 word PAGE=224 under base59.
+const tableCoords = ranks.map((i) => [Math.floor(i / 8), i % 8]);
+assert.deepEqual(tableCoords, [[25, 5], [21, 5], [25, 1]]);
+const upperLeft = 21 * 8 + 1;
+assert.equal(upperLeft, 169);
+assert.equal(printed[upperLeft], '3m');
+assert.equal(bytes59[upperLeft], 224);
+assert.equal(bytes60[upperLeft], 228);
+const sourceSolved = fs.readFileSync(
+  path.join(root, 'resources/liber-primus/lp1-plaintext-reference.txt'), 'utf8'
+);
+const p56Text = sourceSolved.split('### 56')[1].split('### 57')[0];
+assert.equal((p56Text.match(/\\bPAGE\\b/g) || []).length, 2);
+assert.equal(primeSum('PAGE'), 224);
+const cornerRows = [
+  [upperLeft, ranks[1]],
+  [ranks[2], ranks[0]]
+].map((row) => row.map((i) => bytes59[i]));
+assert.deepEqual(cornerRows, [[224, 115], [73, 75]]);
+const leftMinusRight = 224 + 73 - 115 - 75;
+assert.equal(leftMinusRight, A); // A is 107 from the separately derived DH tuple.
+const shiftedCorner = 21 * 8 + 0; // rank-minus-one changes all three corners.
+assert.equal(bytes59[shiftedCorner], 236);
+assert.equal(bytes59[shiftedCorner] + bytes59[200] - bytes59[172] - bytes59[204], 7);
+
 const outer = [];
 for (let c = 0; c < 8; c++) outer.push(c);
 for (let r = 1; r < 32; r++) outer.push(r * 8 + 7);
@@ -189,6 +216,14 @@ console.log(JSON.stringify({
     secondClausePublicShare: at59[1],
     thirdClauseSharedValue: at59[2],
     outerRingAtKIndex: { ringIndex: K, flatCell: outer[K], value: bytes59[outer[K]] }
+  },
+  primeRankSquare: {
+    anchoredCorners: { rows21and25: cornerRows, addresses: [169, 173, 201, 205] },
+    missingCornerValue224: bytes59[169],
+    solvedP56WordPAGEPrimeSum: primeSum('PAGE'),
+    solvedP56PAGEOccurrences: 2,
+    leftMinusRight,
+    rankMinusOneAlternativeMissingCorner: bytes59[168]
   },
   conditionalExactSlotProbability: conditionalProbability,
   note: 'Fixed-address multiset probability is not a search-adjusted p-value. Zero recovered unknown ciphertext runes.'
