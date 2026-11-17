@@ -133,6 +133,30 @@ Its legality is an expected property of a possible wrong additive key, not confi
 
 **Decision:** Both direct source-cycle candidates and the additional p32-addressed source-cycle key fail to recover p55 plaintext. Across **twelve** complete source-fixed inverse/sign/address cases, **two** are fully syntactically legal under the authenticated F rule, and neither is readable GP prose. This retires the specific 23-period direct key and zero/one-based p32 lookup consumers, while preserving the original 23-cycle observation as a provisional possible key source. Further arbitrary rotations and compound transforms need a fresh author-authenticated clue. [Node22 original-input SFT](../sims/lp2_wordmap23_cycle_p55_native_inverse_sft.cjs) · [Windows original-source workflow](https://github.com/FlareZ123/liber-primus/actions/runs/44086567597) (previous 4-case revision queued) · [later 12-case workflow](https://github.com/FlareZ123/liber-primus/actions/workflows/agent22-prime-even-rune-original-manual.yml) (manual dispatch queued; verify final result before treating as CI-passed).
 
+## Literal p57 PARABLE "within" receiver on the 23 original cycle words (Agent45, 17 November)
+
+A new, *nonarithmetical* consumer of the original word cycle is motivated by the authentic clear p57 instruction to **shed circumferences and find what lies within**. The 23-cycle already fixes the *exact* p0–2 body-word positions and their order. Take their printed GP29 runes unchanged. A word's circumference is its first and last rune, so one literal operation removes those endpoints and concatenates the remaining runes of the 23 cycle words in cycle order. An alternative literal "within" reading selects the central rune of each word; even-length words have two noninterchangeable central choices. No added keystream, word regrouping, symbol substitution, direction sweep, recovered spacing or tuned key phase is permitted.
+
+All **23** cycle words total **119 original runes** and have lengths
+`[4,2,2,8,5,1,11,3,3,3,9,2,5,10,2,7,6,11,3,7,3,3,9]`. Exactly **five** words have length one or two and contribute no runes after removal of both endpoints, leaving **74** inner runes. The unspaced, exact source-GP transliteration of the 74 is:
+
+```text
+BNGMJROLTHJIEWBASOEEOINGDOSOEWEAOELFEJEAFINIACYEAIXBGJPFSEOAEPTFPUNGYNGXEAEOLDHBYWCLWEADUD
+```
+
+The two independently declared 23-rune centre readouts are:
+
+```text
+Left of centre for even lengths:
+BFHJJUSDOSEAOJIAEAGSUEADYWEA
+Right of centre for even lengths:
+NEARRJUSDOSEAAEJCWGEOUEADYWEA
+```
+
+No complete readable instruction or authentic plaintext emerges. The [read-only source-native CommonJS SFT](../sims/lp2_wordmap23_parable_within_sft.cjs) asserts the 158 original words, 729 rune positions, 347/315 heading sums, exact 23-cycle, all 119 rune sources and the 74/23/23 strings. Three planted native GP29 clear-p57 controls recover the chosen within/centre symbols exactly. They confirm the extraction semantics, **not** a historical encryption mechanism.
+
+**Decision:** this directly tests the literal source-suggested word-interior receiver without adding arbitrary key hypotheses. It is a bounded negative for the **23-cycle → within-word instruction** route. The numerical 23-cycle and 563/569 correspondences survive as structural observations; they remain without a source-authenticated plaintext consumer. Do not introduce an unmotivated reordering or second cipher to rescue these outputs.
+
 ## Weakest premise and next decisive work
 
 The weakest premise is the proposed pointer rule `f(i)=S_i mod 156`: it is motivated by the exact 156-word map and the 2016 message, but no creator-authored instruction explicitly specifies this modulus or zero-based convention.
