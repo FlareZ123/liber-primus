@@ -143,13 +143,23 @@ for (const name of [
   'resources/historical/cicada2013-os-original-message.txt',
   'resources/historical/cicada2012-countdown-message.asc',
 ]) examine('2012-14 preserved source file ' + name, fs.readFileSync(at(name)));
+const signed2016 = fs.readFileSync(at('resources/historical/cicada2016-4gq25-outguess.asc'));
+examine('2016 authenticated original signed OpenPGP envelope bytes', signed2016);
+const preface = Buffer.from('Hash: SHA1\n\n');
+const signature = Buffer.from('\n\n-----BEGIN PGP SIGNATURE-----');
+const start = signed2016.indexOf(preface) + preface.length;
+const stop = signed2016.indexOf(signature);
+assert(start > preface.length && stop > start);
+examine('2016 authenticated signed literal message original line endings', signed2016.subarray(start,stop));
+examine('2016 authenticated tree JPEG original file bytes',
+  fs.readFileSync(at('resources/historical/cicada2016-4gq25.jpg')));
 for (const candidate of ['3301','1033','CICADA 3301','LIBER PRIMUS','DIVINITY','FIRFUMFERENFE']) {
   examine('2014-known literal ' + candidate, Buffer.from(candidate));
 }
 const mutated = Buffer.from(columns[0]);
 mutated[0] ^= 1;
 assert(!mutated.equals(columns[0]), 'Wrong-table original-byte control');
-assert.equal(inputs, 57 * 2 + 9 * 2 + 9 * 3 + 75 + 7 + 6);
+assert.equal(inputs, 57 * 2 + 9 * 2 + 9 * 3 + 75 + 7 + 3 + 6);
 console.log('SHA-256 32x8 column-source test completed: ' + JSON.stringify({
   originalBytes: 256,
   candidateSourceRepresentations: inputs,
