@@ -57,7 +57,7 @@ assert.equal(m * 1229, 1595277641);
 
 /**
  * Canonical BBS low-bit stream, after-square first bit,
- * five bits per GP29 symbol, MSB-first, rejecting 29..31.
+ * five bits per GP29 symbol, MSB-first, reduced modulo29.
  * The entire GF29 additive state/start is searched with no seed assumption.
  * @param {number} initial
  * @param {number} length
@@ -72,7 +72,7 @@ function pad(initial, length) {
       state = state * state % m;
       symbol = symbol * 2 + (state & 1);
     }
-    if (symbol < Q) out.push(symbol);
+    out.push(symbol % Q);
   }
   return out;
 }
@@ -98,14 +98,12 @@ for (const actual of [{source:'original',cipher:target},{source:'planted',cipher
     let sumMinus = 0;
     let pp = -1, ppp = -1, pm = -1, pmm = -1;
     for (let i = 0; i < screenLength; i++) {
-      let k;
-      do {
-        k = 0;
-        for (let bit = 0; bit < 5; bit++) {
-          x = x * x % m;
-          k = (k << 1) | (x & 1);
-        }
-      } while (k >= Q);
+      let k = 0;
+      for (let bit = 0; bit < 5; bit++) {
+        x = x * x % m;
+        k = (k << 1) | (x & 1);
+      }
+      k %= Q;
       const add = (actual.cipher[i] + k) % Q;
       const subtract = (actual.cipher[i] - k + Q) % Q;
       if (i >= 2) {
@@ -149,7 +147,7 @@ const lp1Scores=[];
 for(let i=0;i+75<=training.length;i++)lp1Scores.push(score(training.slice(i,i+75)));
 lp1Scores.sort((a,b)=>a-b);
 const output={
-  hypothesis:'BBS p=1259,q=1031, entirely unknown initial state; native GP29 5-bit rejection stream',
+  hypothesis:'BBS p=1259,q=1031, entirely unknown initial state; native GP29 five-bit modulo29 stream',
   cipher:'original source p55 complete printed-word suffix (75 runes)',
   statesPerTarget:m,
   twoAdditiveSigns:true,
