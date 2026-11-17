@@ -213,6 +213,19 @@ const page56 = corpus.pages.find(p => p.page === 56).indices;
 const six = [23, 11, 1, 17, 18, 10];
 assert.deepEqual(page27.slice(28, 34), six);
 assert.deepEqual(page55.slice(70, 76), six);
+
+// Earlier independently discovered p55-footer word-prime arithmetic
+// also maps this repeated pair back to p27@28 under GP29, a separate
+// conjectural coordinate grammar. We record convergence without
+// asserting the shared glyphs are a plaintext instruction.
+const footerFirstSum = six.slice(0, 3)
+  .reduce((total, gp) => total + corpus.prime[gp], 0);
+const footerSecondSum = six.slice(3)
+  .reduce((total, gp) => total + corpus.prime[gp], 0);
+assert.deepEqual([footerFirstSum, footerSecondSum], [129, 159]);
+assert.equal(mod(footerFirstSum + footerSecondSum, 29), row);
+assert.equal(mod(footerFirstSum - footerSecondSum, 29), 28);
+
 assert.equal(page27[34], page56[0]);
 const originalWindows = new Map();
 const crossPageRepeats = [];
@@ -374,7 +387,8 @@ console.log(JSON.stringify({
   blackBodyDirectDecoder: reading,
   phi151PrimeStream: 'rejected at black-body rune 1: ciphertext J would require nonliteral plaintext F',
   page27ToPage55: { onlyCrossPageSixRuneEcho: crossPageRepeats,
-    sixRuneGpIndices: six, sevenRuneExtendsAcrossP55P56: true,
+    sixRuneGpIndices: six, footerPrimeSums: [footerFirstSum, footerSecondSum],
+    earlierFooterMod29Address: [row, 28], sevenRuneExtendsAcrossP55P56: true,
     bookendRowReadings },
   rsa151x331e13: { modulus: rsaN.toString(), privateExponent: rsaD.toString(),
     p0BlackOutOfThreeRuneRange: outsideBase29Triples, grid16BitPacketsOutOfRange: tableRsaInvalid,
