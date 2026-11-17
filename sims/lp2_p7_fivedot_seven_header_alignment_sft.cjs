@@ -193,6 +193,14 @@ const primeTransfers=trials.slice(1).map(([name,nums],i)=>{
 assert.equal(transparentPrimeDeadOffset(corpus.pages[56].indices,0),null,
   "authentically solved p56 must survive genuine F-transparent prime cipher");
 
+const fiveDotCountStartIndices=[2,4];
+const fiveDotCountStartLabels=["prime5","fifthPrime11"];
+const fiveDotCountDeadOffsets=fiveDotCountStartIndices.map(start=>
+  transparentPrimeDeadOffset(unwrapped,start)
+);
+assert.deepEqual(fiveDotCountDeadOffsets,[3,30],
+  "the five-dot count as prime5 or fifthPrime11 must fail at its frozen offsets");
+
 /* The header placement is a single exactly predicted source position.
  * It is a structural observation, not a posterior probability of intent. */
 assert.equal(order[0]*346,692);
@@ -217,6 +225,10 @@ console.log(JSON.stringify({
     name,nativeLP1Trigram:model.scoreStream(bytes).mean,
     adjacentEqual:doubles(bytes),openingRunes:model.spell(bytes.slice(0,90))
   })),
-  primeTransfers,\n  finding:"A source-selected nested numeral/header alignment; none of the direct 7-column continuations recovers readable GP-native plaintext",
+  primeTransfers,
+  fiveDotCountPrimeStartGate:Object.fromEntries(fiveDotCountStartLabels.map((label,i)=>
+    [label,{zeroBasedPrimeIndex:fiveDotCountStartIndices[i],
+      firstImpossibleRuneOffset:fiveDotCountDeadOffsets[i]}])),
+  finding:"A source-selected nested numeral/header alignment; none of the direct 7-column continuations recovers readable GP-native plaintext",
   limitation:"Five-dot order is a hypothesis, not an authenticated cipher instruction; an independent source-keyed rune transform would be needed"
 },null,2));

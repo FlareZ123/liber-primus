@@ -67,6 +67,17 @@ For each of the five original streams above, exact exhaustive reachability finds
 
 The very same complete all-skip-state decoder accepts **all 85 authentic solved p56 runes** under its real prime2 starting clock. Thus these original inputs disprove the literal `7` as a prime start **for precisely these five unchanged inverse streams**, including every admissible transparent-F history, without asserting anything about a more complex hidden cipher. A guess at a different key family or additional preceding layer is outside the test and needs a separate original clue.
 
+## Does the five-dot count itself select a prime start?
+
+The five dots already determine the column order above. A separate, bounded reading is that their **count, 5**, also selects a starting prime for the authentic p56 totient cipher: either prime value **5** (zero-based prime index 2) or the **fifth prime, 11** (index 4). Apply the same exhaustive all-legal-F-skip reachability test to the unwrapped 1,729-rune stream, with no fitted plaintext.
+
+| Dot-count interpretation | Prime-sequence index | First impossible zero-based rune offset |
+| --- | ---: | ---: |
+| Prime value 5 | 2 | **3** |
+| Fifth prime 11 | 4 | **30** |
+
+Both candidates fail almost immediately. The same decoder still accepts the authentic solved p56 page under its established prime2 start, so this is not a broken reachability check. This rejects the additional interpretation of the five-dot **count** as a p56 prime start; it does not reject other cipher families or other source-supplied keys.
+
 ## Research decision
 
 **Retain the header relocation as an explicit clue-constrained candidate, without promoting it to a decipherment.** It is more causally specific than searching unselected 5- or 7-column keys: the five circles, unique numeral, four original numerical alignments, and first-position relocation are fixed by source artifacts. The natural seven-column-only continuation is negative, and the five-dot stencil's reuse makes ornamentation a live rival.
