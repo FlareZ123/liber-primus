@@ -1,8 +1,8 @@
 # Agent6 current research frontier
 
-## 17 November 2026 00:10 UTC — seam seven-rune fixed-inverse original gate
+## 17 November 2026 00:14 UTC — duplicate research retired
 
-- New bounded result from the existing p27/p55 two-word echo: across all p0–57 runes exactly one duplicate 7-gram at 6555/12950, continuing the six-rune DJU-BEI only when p55 terminal period/page boundary is erased and p56 first AE rune is borrowed. No duplicate seven-rune unknown-only, no duplicate eight-rune whole-book; this visible seventh AE was already known in community wiki and is not a new uninterrupted phrase. Direct original phase-zero p56 key φ(prime), with exact genuine plaintext-F bypass, gives p27 next two printed words only AF|J or AIA|N, failing native GP one-rune word grammar; a native AN|I positive plant recovers 3/3. No plaintext nor cipher handoff: new source SFT sims/lp2_p27_p55_p56_seam7_source_gate_sft.cjs and updated existing im-results/lp2-p27-p55-terminal-two-word-echo.md. Do not sweep other phases or erase original page/period boundary.
+- Independently noticed exact p27 DJU-BEI-AE to p55→p56 seam after source inspection, but **already fully established** in `im-results/lp2-bookend7-p56-known-boundary.md` (all 13,136 GP29 runes, only one repeat7, none repeat8), `im-results/lp2-p27-terminal-bookend-p56-prime-restart-gate.md`, and original `sims/lp2_p27_p56_seam_phi_no_reuse_sft.cjs` (all 32 genuine plaintext-F masks, **0/32 valid 85-rune inverse**, solved p56/p57 positive plants). Our additional three-rune/English-score mini gate was much weaker, so the duplicate new code was deleted and earlier report insertion withdrawn in the same revision. No novel plaintext or result from the seam. Avoid reopening unless an independently sourced new operator appears.
 
 ## 16 November 2026 23:48 UTC — draw 7, issue-directed, original-source table transition
 
