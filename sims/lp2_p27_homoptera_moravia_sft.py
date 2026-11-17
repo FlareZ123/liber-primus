@@ -53,6 +53,8 @@ ALTERNATE = {
       "https://upload.wikimedia.org/wikipedia/commons/b/b4/Psyche_%28IA_psyche831976camb%29.pdf",
     ),
     "kukalova1964-moravia-fig2": (
+      "https://upload.wikimedia.org/wikipedia/commons/9/96/Psyche_%28IA_psyche707119631964camb%29.pdf",
+      "https://archive.org/download/psyche707119631964camb/psyche707119631964camb.pdf",
       "https://groups.csail.mit.edu/mac/projects/psyche/71/71-153.pdf",
       "https://psyche.entclub.org/71/71-153.pdf",
       "https://archive.org/download/psyche711964camb/psyche711964camb.pdf",
@@ -91,6 +93,16 @@ def page_candidates(raw: bytes, hint: str, name: str) -> list[tuple[str, np.ndar
     # Include the cover/scan offset, once, without selecting by p27 match.
     if "1976" in name and len(document) >= 120:
         positions = [i for i in range(76, 106) if i < len(document)]
+    # The 1963-64 PDF binds TWO volumes. The 1964 p153-168 figure
+    # sits in volume 71, not at PDF page 9 of the 564-page scan.
+    # Use the original article's embedded text when present. Otherwise
+    # span the physically plausible page range without target-fitted selection.
+    if "1964" in name and len(document) >= 400:
+        if hit:
+            positions = sorted({j for i in hit[:3]
+                                for j in range(max(0, i - 2), min(len(document), i + 3))})
+        else:
+            positions = list(range(360, min(510, len(document))))
     frames = []
     for i in positions:
         pix = document[i].get_pixmap(matrix=fitz.Matrix(1.8, 1.8),
@@ -155,6 +167,8 @@ def run() -> dict[str, object]:
         "sources": [],
     }
     for name, kind, url, hint in SOURCES:
+        if os.getenv("LP2_P27_ONLY_1964") == "true" and "1964" not in name:
+            continue
         row = {"name": name, "url": url, "figure_hint": hint}
         raw = None
         for attempt in (url, *ALTERNATE.get(name, ())):
