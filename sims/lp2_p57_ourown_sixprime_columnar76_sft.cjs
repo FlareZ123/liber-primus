@@ -67,6 +67,7 @@ function sourceNative(x) {
   for (const word of clean.match(/[A-Z]+/g) || []) {
     for (let i = 0; i < word.length;) {
       if (word.startsWith('ING', i)) { out.push(21); i += 3; }
+      else if (word.startsWith('IO', i)) { out.push(27); i += 2; }
       else {
         const t = tokens.find((t) => word.startsWith(t.s, i));
         assert(t, 'Unmapped word ' + word);
@@ -77,27 +78,30 @@ function sourceNative(x) {
   }
   return out;
 }
+assert.deepEqual(sourceNative('FUNCTION'), [0, 1, 9, 5, 16, 27, 9]);
 const originalRead = decode(cipher);
 assert.deepEqual(encode(originalRead), cipher);
 assert.equal(ioc(originalRead), ioc(cipher), 'Permutation preserves IC');
 const solvedP57 = gp.pages[57].indices.slice(0, 76);
 assert.equal(solvedP57.length, 76);
 assert.deepEqual(decode(encode(solvedP57)), solvedP57);
-// LP1 solved-source pages only (1, 3–16); exclude LP2 p56/p57 and
-// never make a synthetic 76-rune window across a physical page boundary.
+// LP1 source-derived prose only; exclude LP2 p56/p57, bracketed editorial
+// notes and reference-only duplicated sections 4, 7 and 8. Windows remain
+// within the reference section; these are not necessarily physical-page cuts.
 const headers = [...plainReference.matchAll(/^###\s+(\d+)\s*$/gm)];
 const lp1Sections = headers.map((match, index) => {
   const start = match.index + match[0].length;
   const end = index + 1 < headers.length ? headers[index + 1].index : plainReference.length;
-  return { page: Number(match[1]), text: plainReference.slice(start, end).replace(/^#.*$/gm, '') };
-}).filter(section => section.page >= 1 && section.page <= 16);
+  return { page: Number(match[1]), text: plainReference.slice(start, end).replace(/^#.*$/gm, '')
+    .replace(/^\s*\[.*\]\s*$/gm, '') };
+}).filter(section => section.page >= 1 && section.page <= 16 && ![4, 7, 8].includes(section.page));
 assert.deepEqual(lp1Sections.map(section => section.page),
-  [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+  [1, 3, 5, 6, 9, 10, 11, 12, 13, 14, 15, 16]);
 const nativePages = lp1Sections.map(section => ({
   page: section.page, runes: sourceNative(section.text)
 }));
 const nativeRuneCount = nativePages.reduce((sum, page) => sum + page.runes.length, 0);
-assert.equal(nativeRuneCount, 3318);
+assert.equal(nativeRuneCount, 2797);
 const nativeIoc = [];
 for (const page of nativePages) {
   for (let i = 0; i + 76 <= page.runes.length; i++) {
@@ -105,7 +109,7 @@ for (const page of nativePages) {
   }
 }
 nativeIoc.sort((a, b) => a - b);
-assert.equal(nativeIoc.length, 2253);
+assert.equal(nativeIoc.length, 2002);
 const sourceIoc = ioc(originalRead);
 const countNativeBelow = nativeIoc.filter((x) => x <= sourceIoc).length;
 assert.equal(countNativeBelow, 0);

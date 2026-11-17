@@ -9,8 +9,10 @@
  * possible alignments while preserving key-order synchrony.
  *
  * Both methods use a source-native GP29 English model trained exclusively
- * on original LP1 pages 1 and 3–16 only (3318 glyphs), with page-contained controls.
+ * on noneditorial LP1 plaintext-reference sections (2797 GP29 glyphs), with reference-section-contained controls.
  * Both are calibrated on planted same-pad LP1 text and on matched nulls.
+ * The source-native convention includes ING -> NG and IO -> IA, as printed in LP1 p5 FUNCTION.
+ * Exclude editorial-only reference sections 4, 7 and 8 and bracketed continuation notes.
  * Original first-300 scores are compared to the maximum over ALL 36 pairs
  * in independent 300-rune offsets of the very same original chapter streams.
  *
@@ -52,6 +54,9 @@ function nativeGP(text) {
       if (word.startsWith('ING', i)) {
         result.push(21);
         i += 3;
+      } else if (word.startsWith('IO', i)) {
+        result.push(27);
+        i += 2;
       } else {
         const t = tokens.find((x) => word.startsWith(x.s, i));
         assert(t, 'Unmapped authentic solved-source word ' + word);
@@ -62,6 +67,8 @@ function nativeGP(text) {
   }
   return result;
 }
+assert.deepEqual(nativeGP('FUNCTION'), [0, 1, 9, 5, 16, 27, 9]);
+assert.deepEqual(nativeGP('DECEPTION'), [23, 18, 5, 18, 13, 16, 27, 9]);
 const sourceReference = read('resources/liber-primus/lp1-plaintext-reference.txt');
 const sourceSections = [...sourceReference.matchAll(/^###\s+(\d+)\s*$/gm)];
 const solvedPages = sourceSections.map((match, index) => {
@@ -69,15 +76,16 @@ const solvedPages = sourceSections.map((match, index) => {
   const end = index + 1 < sourceSections.length
     ? sourceSections[index + 1].index : sourceReference.length;
   return { page: Number(match[1]),
-    text: sourceReference.slice(start, end).replace(/^#.*$/gm, '') };
-}).filter(section => section.page >= 1 && section.page <= 16);
+    text: sourceReference.slice(start, end).replace(/^#.*$/gm, '')
+      .replace(/^\s*\[.*\]\s*$/gm, '') };
+}).filter(section => section.page >= 1 && section.page <= 16 && ![4, 7, 8].includes(section.page));
 assert.deepEqual(solvedPages.map(section => section.page),
-  [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+  [1, 3, 5, 6, 9, 10, 11, 12, 13, 14, 15, 16]);
 const solvedPageStreams = solvedPages.map(section => ({
   page: section.page, runes: nativeGP(section.text)
 }));
 const solved = solvedPageStreams.flatMap(section => section.runes);
-assert.equal(solved.length, 3318);
+assert.equal(solved.length, 2797);
 
 function rng(seed) {
   let a = seed >>> 0;
@@ -236,7 +244,7 @@ for (const page of solvedPageStreams) {
       runes: page.runes.slice(start, start + n0) });
   }
 }
-assert.equal(controlWindows.length, 680);
+assert.equal(controlWindows.length, 677);
 const controlRand = rng(9961), controlPositive = [], controlNegative = [];
 for (let trial = 0; trial < 120; trial++) {
   let A, B;
