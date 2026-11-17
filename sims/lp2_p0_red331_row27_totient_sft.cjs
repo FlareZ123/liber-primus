@@ -184,6 +184,107 @@ assert.equal(prime151First, 26); // Y, a legal first plaintext rune.
 assert.equal(prime157Second, 0); // F would have to be printed literally.
 assert.notEqual(body[1], 0); // Actual second ciphertext rune is J.
 
+
+// RSA is a historical Cicada operation, so p=151, q=331 and e=13
+// (the count of red title runes and dots in its terminal marker)
+// specify one exploratory, complete private inverse. No original clue
+// directly instructs using RSA or selecting its block framing.
+const rsaN = 151n * 331n;
+const rsaPhi = 150n * 330n;
+const rsaE = 13n;
+const rsaD = 38077n;
+assert.equal(rsaN, 49981n);
+assert.equal(rsaPhi, 49500n);
+/** @param {bigint} x @param {bigint} power @returns {bigint} */
+function powmod(x, power) {
+  let result = 1n;
+  let base = x % rsaN;
+  while (power > 0n) {
+    if (power & 1n) result = result * base % rsaN;
+    base = base * base % rsaN;
+    power >>= 1n;
+  }
+  return result;
+}
+assert.equal(rsaE * rsaD % rsaPhi, 1n);
+const radix29Cubed = 29 ** 3;
+/**
+ * Cycle-walk textbook RSA until its output fits 3 GP29 runes.
+ * @param {number[]} input
+ * @param {bigint} exponent
+ * @param {boolean} resetAtPage
+ * @returns {number[]}
+ */
+function rsaTriplets(input, exponent, resetAtPage) {
+  const output = [];
+  const sections = resetAtPage
+    ? corpus.pages.filter(p => p.page < 56).map(p => p.indices)
+    : [input];
+  for (const section of sections) {
+    for (let i = 0; i + 2 < section.length; i += 3) {
+      const packed = section[i] * 841 + section[i + 1] * 29 +
+        section[i + 2];
+      let value = BigInt(packed);
+      do {
+        value = powmod(value, exponent);
+      } while (value >= BigInt(radix29Cubed));
+      const n = Number(value);
+      output.push(Math.floor(n / 841), Math.floor(n / 29) % 29, n % 29);
+    }
+    output.push(...section.slice(Math.floor(section.length / 3) * 3));
+  }
+  return output;
+}
+// Without cyclewalking, RSA P=(C^d modN) directly decodes into three
+// base29 runes only when P<29^3. Already the first p0 black triplet
+// fails, as does 46 of 83 complete source black-body triplets.
+let outsideBase29Triples = 0;
+for (let i = 0; i < body.length; i += 3) {
+  const val = body[i] * 841 + body[i + 1] * 29 + body[i + 2];
+  if (powmod(BigInt(val), rsaD) >= BigInt(radix29Cubed)) outsideBase29Triples++;
+}
+assert.equal(body.length, 249);
+assert.equal(outsideBase29Triples, 46);
+const firstTriplet = body[0] * 841 + body[1] * 29 + body[2];
+assert.equal(firstTriplet, 2007);
+assert.equal(powmod(BigInt(firstTriplet), rsaD), 28814n);
+
+// A literal 2-byte table RSA ciphertext block must be strictly <n.
+// Exactly 32/128 unmodified big-endian grid blocks are outside that
+// legal domain, independent of exponent and any plaintext hypothesis.
+let tableRsaInvalid = 0;
+for (let i = 0; i < grid.bytes.length; i += 2) {
+  if (256 * grid.bytes[i] + grid.bytes[i + 1] >= Number(rsaN)) {
+    tableRsaInvalid++;
+  }
+}
+assert.equal(tableRsaInvalid, 32);
+
+const fullUnknown = corpus.pages.filter(p => p.page < 56)
+  .flatMap(p => p.indices);
+assert.equal(fullUnknown.length, 12956);
+const rsaOutcomes = [];
+for (const exponent of [rsaE, rsaD]) {
+  for (const pageReset of [false, true]) {
+    const decoded = rsaTriplets(fullUnknown, exponent, pageReset);
+    // All source positions are exactly returned by the opposite
+    // transformation. This validates bijectivity only, not its key.
+    const reverse = exponent === rsaE ? rsaD : rsaE;
+    assert.deepEqual(rsaTriplets(decoded, reverse, pageReset), fullUnknown);
+    rsaOutcomes.push({
+      exponent: exponent.toString(),
+      pageReset,
+      ioc: indexOfCoincidence(decoded)
+    });
+  }
+}
+const control = corpus.pages.find(p => p.page === 57).indices
+  .slice(0, 93);
+const planted = rsaTriplets(control, rsaE, false);
+assert.deepEqual(rsaTriplets(planted, rsaD, false), control);
+assert.deepEqual(rsaOutcomes.map(x => Number(x.ioc.toFixed(10))),
+  [0.0344670302, 0.0344917197, 0.0344992981, 0.0344840102]);
+
 console.log(JSON.stringify({
   status: 'cross-artifact candidate; no recovered plaintext',
   redTitleWordPrimeSums: [a, b],
@@ -199,5 +300,8 @@ console.log(JSON.stringify({
   length8Then5Pairs: matchingLengths,
   exactMatches: matches,
   blackBodyDirectDecoder: reading,
-  phi151PrimeStream: 'rejected at black-body rune 1: ciphertext J would require nonliteral plaintext F'
+  phi151PrimeStream: 'rejected at black-body rune 1: ciphertext J would require nonliteral plaintext F',
+  rsa151x331e13: { modulus: rsaN.toString(), privateExponent: rsaD.toString(),
+    p0BlackOutOfThreeRuneRange: outsideBase29Triples, grid16BitPacketsOutOfRange: tableRsaInvalid,
+    cyclewalkFullOriginal: rsaOutcomes }
 }, null, 2));
