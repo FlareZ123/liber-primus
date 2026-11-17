@@ -16,7 +16,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: agent16-h1-keyword-gap
+  group: agent16-h1-keyword-gap-${{ inputs.mode }}
   cancel-in-progress: false
 
 jobs:
