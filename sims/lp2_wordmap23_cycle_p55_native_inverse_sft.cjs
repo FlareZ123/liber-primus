@@ -68,20 +68,21 @@ assert.equal(originalF, 3);
  * @returns {{processed:number,solutions:{consumed:number,plain:number[]}[]}}
  */
 function decodeAll(cipher, key, sign) {
-  let states = new Map([[0, []]]);
+  // Keep each concrete F-bypass history. A Map keyed only by consumed count
+  // silently collapses distinct plaintexts and can drop the planted answer.
+  let states = [{ consumed: 0, plain: [] }];
   for (let offset = 0; offset < cipher.length; offset++) {
     const c = cipher[offset];
-    const later = new Map();
-    for (const [used, plain] of states) {
-      if (c === 0) later.set(used, [...plain, 0]);
-      const p = ((c + sign * key[used % key.length]) % 29 + 29) % 29;
-      if (p !== 0) later.set(used + 1, [...plain, p]);
+    const later = [];
+    for (const { consumed, plain } of states) {
+      if (c === 0) later.push({ consumed, plain: [...plain, 0] });
+      const p = ((c + sign * key[consumed % key.length]) % 29 + 29) % 29;
+      if (p !== 0) later.push({ consumed: consumed + 1, plain: [...plain, p] });
     }
-    if (!later.size) return { processed: offset, solutions: [] };
+    if (!later.length) return { processed: offset, solutions: [] };
     states = later;
   }
-  return { processed: cipher.length,
-    solutions: [...states].map(([consumed, plain]) => ({ consumed, plain })) };
+  return { processed: cipher.length, solutions: states };
 }
 /**
  * @param {number[]} plaintext
@@ -139,7 +140,7 @@ for (const [startName, shift] of [["firstRedHeading", 0], ["secondRedHeading", s
   }
 }
 assert.deepEqual(outcomes.map(o => o.firstContradictionOffset), [null, 6, 1, 6]);
-assert.deepEqual(outcomes.map(o => o.legalFullInverseCount), [1, 0, 0, 0]);
+assert.deepEqual(outcomes.map(o => o.legalFullInverseCount), [2, 0, 0, 0]);
 assert.equal(outcomes[0].legalKeyConsumed, 74);
 assert.equal(outcomes[0].legalPlainIoC, 0.03543859649122807);
 
@@ -184,7 +185,7 @@ for (const [indexing, offset] of /** @type {const} */ ([["zeroBased", 0], ["oneB
 assert.deepEqual(gridDecisions.map(item => item.processedBeforeContradiction),
   [37,67,65,0,56,76,10,24]);
 assert.deepEqual(gridDecisions.map(item => item.legalFullInverseCount),
-  [0,0,0,0,0,1,0,0]);
+  [0,0,0,0,0,3,0,0]);
 
 console.log(JSON.stringify({
   model: "original red-heading seeded p0–2 23-word prime-sum cycle / 23-period GP key, natural GP29 signs and p56 transparent-F",
