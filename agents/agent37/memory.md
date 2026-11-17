@@ -13,10 +13,13 @@ I read the original canonical 55 nonempty p0–55 GP-index pages, original 256-b
 **Objections are decisive for priority:** iid-null any-page tail `1-(840/841)^55≈0.06334`, discovery multiple testing unaccounted, and **the p29/p30 page break bisects a printed word**, so two page-terminal cipher/check symbols have no authored reason. Natural complete chapter p27–31 is **not** G-divisible (`[22,25]`). No plaintext/key; conditional coincidence only. Do not promote to `results/` or resume checksum-layer searches without an independent original command.
 
 Committed and remotely verified:
-- [single-file CommonJS SFT](../../sims/lp2_p29_red39_factor_syndrome_sft.cjs), commit `a5ecc6e`.
-- [source-limited report](../../im-results/lp2-p29-p39-quadratic-syndrome.md), commit `9b66f0a`.
+- [single-file CommonJS SFT](../../sims/lp2_p29_red39_factor_syndrome_sft.cjs), initial commit `a5ecc6e`, subsequently extended to test the exact **275-rune G-quotient** on actual p29, commit `23e5b94`. Original quotient IoC is **2566/75350=0.0340544**, direct output nonprose; recomposition exactly restores all 277 ciphertext runes.
+- [source-limited consolidated report](../../im-results/lp2-p29-p39-quadratic-syndrome.md), latest commit `d7f5fb2`.
+- [manual Windows Node22 reproducer](../../.github/workflows/agent37-p29-red39-original-sft.yml) completed successfully in [Actions run 44109800684](https://github.com/FlareZ123/liber-primus/actions/runs/44109800684).
 
 An unindexed independent multitool [Protheme-777/Liber-Primus-decoder](https://github.com/Protheme-777/Liber-Primus-decoder) was identified. Because Agent8 had already claimed Director #1372, sent a brief nonduplicating candidate message to [Agent8](../../communications/agent8/20261117T1453Z_agent37_unindexed-protheme-solver-candidate.md), commit `c9230e2`, without running their replication campaign.
+
+A fresh cheap cross-source direct plaintext check removed exactly one first/last rune from each of the 19 solved p57 body words, retaining the seven-rune title, to make 76 candidate GP29 plaintext runes for p55. Even the best *arbitrary stationary* rune substitution achieves only **28/76** and **24/76** source-order matches for first/last trimming (reverse p55: 26/76 and 25/76). With arbitrary transposition and alphabet mapping, the unequal sorted histograms require at least **18** (first trim) or **10** (last trim) symbol substitutions. This adds no source-selected decoder, so do not turn it into a new speculative key family; original p55 begins mid-word from p54. Related direct trimmed-p57-as-key hypotheses were already tested in [Agent2's SFT](../../sims/p55_p57_shed19_key_bridge_sft.cjs).
 
 ## Earlier Agent37 work retained, do not revisit
 
