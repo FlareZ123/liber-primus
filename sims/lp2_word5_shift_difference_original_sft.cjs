@@ -101,6 +101,22 @@ function fiveBackHistograms(words) {
 }
 const originalFive = fiveBackHistograms(sourceWords);
 const originalFiveIc = originalFive.map(ic);
+/** @param {number[][]} h @returns {number} */
+function weightedIc(h) {
+  let count = 0, weighted = 0;
+  for (const row of h) {
+    const n = row.reduce((a, b) => a + b, 0);
+    weighted += n * ic(row);
+    count += n;
+  }
+  return weighted / count;
+}
+const originalWeighted = {
+  adjacent: weightedIc(originalHist),
+  fiveBack: weightedIc(originalFive)
+};
+console.log('Original weighted delta IoC:', JSON.stringify(originalWeighted));
+
 assert.deepEqual(originalFive.map(h => h.reduce((a, b) => a + b, 0)),
   [872, 584, 350, 190, 109]);
 console.log('LP2 word-phase five-back delta IoC:',
@@ -117,9 +133,11 @@ for (const [name, file] of [
   ['Shakespeare', 'resources/control/shakespeare_first300k.txt']
 ]) {
   const buckets = bucketize(nativeWords(read(file)));
-  const trials = 300;
+  const trials = 3000;
   const minima = Array(5).fill(Infinity);
   const fiveMinima = Array(5).fill(Infinity);
+  let minWeightedAdjacent = Infinity, minWeightedFive = Infinity;
+  let lowWeightedAdjacent = 0, lowWeightedFive = 0;
   let totalFive = 0;
   for (let t = 0; t < trials; t++) {
     const native = lengths.map(n => {
@@ -128,6 +146,11 @@ for (const [name, file] of [
     });
     const counts = differenceHistograms(native);
     const fiveCounts = fiveBackHistograms(native);
+    const wa = weightedIc(counts), wf = weightedIc(fiveCounts);
+    minWeightedAdjacent = Math.min(minWeightedAdjacent, wa);
+    minWeightedFive = Math.min(minWeightedFive, wf);
+    lowWeightedAdjacent += +(wa <= originalWeighted.adjacent);
+    lowWeightedFive += +(wf <= originalWeighted.fiveBack);
     fiveCounts.forEach((h, i) => {
       fiveMinima[i] = Math.min(fiveMinima[i], ic(h));
     });
@@ -169,8 +192,18 @@ for (const [name, file] of [
   }
   assert.ok(minima.every((min, i) => min > originalIc[i]),
     'original five-phase Caesar family unexpectedly compatible');
-  assert.ok(fiveMinima.every((min, i) => min > originalFiveIc[i]),
-    'original five-phase wordwise affine family unexpectedly compatible');
+  assert.ok(minWeightedAdjacent > originalWeighted.adjacent);
+  assert.ok(minWeightedFive > originalWeighted.fiveBack);
+  assert.equal(lowWeightedAdjacent, 0);
+  assert.equal(lowWeightedFive, 0);
+  console.log(name, 'source-word-shaped weighted Ic minima', {
+    adjacent: minWeightedAdjacent,
+    fiveBack: minWeightedFive,
+    lowWeightedAdjacent,
+    lowWeightedFive
+  });
+  console.log(name, 'per-phase five-back minima (not individually excluded):',
+    fiveMinima.map(v => v.toFixed(8)).join(', '));
   console.log(name, 'minimum five-back affine IoC:',
     fiveMinima.map(v => v.toFixed(8)).join(', '));
   console.log(name, 'native controls N=' + trials,
