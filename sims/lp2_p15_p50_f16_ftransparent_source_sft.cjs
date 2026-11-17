@@ -117,10 +117,14 @@ function main() {
   const page55 = d.pages[55].indices;
   const page0 = d.pages[0].indices;
   const page15 = d.pages[15].indices;
+  // The p54-to-p55 first rune carries a physical word across these pages.
+  const terminal = d.pages[54].indices.concat(page55);
   const solved = d.pages[57].indices;
   assert.equal(page55.length, 76);
   assert.equal(page0.length, 262);
   assert.equal(page15.length, 159);
+  assert.equal(terminal.length, 308);
+  assert.equal(terminal.filter((v) => v === 0).length, 6);
   assert.equal(solved.length, 95);
   assert.deepEqual(
     page55.map((x, i) => x === 0 ? i : -1).filter((i) => i >= 0),
@@ -139,7 +143,9 @@ function main() {
         ? -v : v;
     });
     for (const sign of [-1, +1]) {
-      for (const [page, observed] of [[55, page55], [0, page0], [15, page15]]) {
+      for (const [page, observed] of [
+        [55, page55], [0, page0], [15, page15], ['terminal54-55', terminal]
+      ]) {
         const candidates = decipher(observed, seed, sign);
         for (const candidate of candidates)
           assert.deepEqual(encipher(candidate.plain, seed, sign), observed);
@@ -168,15 +174,20 @@ function main() {
       }
     }
   }
-  assert.equal(positives, 24);
-  assert.deepEqual(results.map((x) => x.originalSurvivorCount),
+  assert.equal(positives, 32);
+  assert.equal(results.filter((x) => x.page === 'terminal54-55').length, 8);
+  assert.ok(results.filter((x) => x.page === 'terminal54-55')
+    .every((x) => x.originalSurvivorCount === 0));
+  assert.deepEqual(results.filter((x) => x.page !== 'terminal54-55')
+    .map((x) => x.originalSurvivorCount),
     [2,0,0,0,0,0,3,0,0,0,6,0,0,0,0,1,0,2,0,0,0,0,0,0]);
-  // Twenty-four original cases, read against their true physical pages.
+  // Thirty-two source cases; eight full p54–55 natural terminal clocks rejected.
   console.log(JSON.stringify({
     status: 'PASS: original F-transparent p15/p50 recurrence candidates',
     originalSourceP55Runes: page55.length,
     originalSourceP0Runes: page0.length,
     originalSourceP15Runes: page15.length,
+    originalTerminalChapterRunes: terminal.length,
     originalP55IoC: ioc(page55),
     originalP0IoC: ioc(page0),
     originalVariants: results,
