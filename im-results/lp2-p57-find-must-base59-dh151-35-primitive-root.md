@@ -221,6 +221,27 @@ offsets, selected word sums, and DH interpretation were assembled
 retrospectively, with other numerical alignments already searched.
 The discrete log13 is a derived consistency check, not a required
 key-selection degree of freedom.
+A separate **exhaustive, exact conditional original-multiset null**
+restricts the question to the four specified square corners with fixed
+row21, proposed FIND modulus151, generator35 and public A107.
+Allow all original table values to be permuted without replacement,
+require UR=B in the nonzero modulus field, LL=B^21 mod151, and
+UL+LL−UR−LR=107. Of the **256×255×254×253=4,195,023,360**
+equally likely ordered original-source four-cell assignments,
+**29,807** satisfy those *two equations*, probability
+**0.0000071053**. Among them, **exactly four** assignments
+also place the full literal source values [[224,115],[73,75]]
+at the four prescribed cells, giving conditional probability
+**1/1,048,755,840** for all four values. The original values
+[75,115,73] and fourth PAGE224 were first noticed *before*
+formulating these complete tests; their mathematical dependencies
+and the extensive historical search make both probabilities **ineligible
+as discovery-adjusted significance**. The useful observation is
+that the two exact DH/square equations are jointly selective within
+the *unchanged* source multiset, rather than merely fitting a
+freely altered table. [Exact finite null, no random simulations](../sims/lp2_p57_primeordinal_dh73_source_sft.cjs).
+
+
 The three clause sums were simultaneously used to construct the
 original 2013 decimal, so those four source numbers are dependent.
 
