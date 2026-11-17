@@ -195,10 +195,7 @@ function encodeSource(source) {
 }
 const native = encodeSource(gibran);
 assert.equal(native.length, 62492);
-const random = rng(0x3301abcd);
-const plaintext = native.slice(random.integer(native.length - LEN),
-  random.integer(native.length - LEN) + LEN);
-// Reinitialize to ensure the source window and table seed are deterministic.
+// Separate deterministic synthetic seed from source-original calculations.
 const generator = rng(0x3301abcd);
 const offset = generator.integer(native.length - LEN);
 const clear = native.slice(offset, offset + LEN);
