@@ -129,7 +129,7 @@ def main() -> None:
                 continue
             report_path = base / "verify" / (Path(filename).stem + ".txt")
             report = report_path.read_text(encoding="utf-8")
-            match = re.search(r"(\\d+) of (\\d+) re-decoded hits keep IoC >= 1\\.4", report)
+            match = re.search(r"(\d+) of (\d+) re-decoded hits keep IoC >= 1\.4", report)
             assert match and int(match.group(2)) > 0, (
                 "Missing full-window original decode", item["relative_source"], report,
             )
@@ -179,7 +179,7 @@ def main() -> None:
     ]
     for report in reports:
         lines.append(
-            f"- \`{report['convention']}/{Path(report['original_tsv']).name}\`: "
+            f"- `{report['convention']}/{Path(report['original_tsv']).name}`: "
             f"{report['original_first300_ioc']:.4f} first300; "
             f"{report['full_window_survivors']}/{report['registered_candidate_count']} "
             "full-window survivors."
