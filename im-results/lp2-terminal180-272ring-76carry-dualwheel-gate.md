@@ -30,7 +30,7 @@ The ring is fixed as p15 clockwise spiral followed by the existing 256-byte p49â
 - The two timing conventions produce 76-element key tapes (included in the reproducer).
 - All **16** source-shaped p55 candidates (2 read timings Ã— 8 literal-F masks) violate the p56 transparent-F rule at least once: the minimum is **one non-bypassed plaintext-F contradiction**.
 - All 16 have **zero** exact dictionary matches in the 29,055-entry GP-native word list. The best scaled IoC is **1.05824561**, still close to the uniform-GP29 baseline rather than English.
-- The two no-bypass diagnostics also produce zero dictionary matches (scaled IoCs 1.05123 and 0.93614).
+- The two no-bypass diagnostics also produce zero dictionary matches (scaled IoCs 1.04807018 (before-step) and 0.93614035 (after-step)).
 - A p57-derived 76-rune method-positive round trip passes exactly.
 
 The direct receiver therefore fails on original p55 under the current table values. This is a real negative for the frozen operation, not a decryption.
