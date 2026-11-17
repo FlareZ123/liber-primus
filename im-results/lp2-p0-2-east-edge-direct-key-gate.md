@@ -1,4 +1,4 @@
-# Map east-edge keys: direct GP29 p55 and lossless GP28 follow-on chapters
+# Map east-edge keys: direct GP29 and two exact GP28 successor inverses
 
 **Decision:** source-selected eastern column keys do not recover plaintext under direct repeating-key GP29 on original p55. A distinct lossless GP28 predecessor-exclusion consumer using the p0–p2 27×27 east edge also fails on the next two untouched illustrated chapters p3–7 and p8–14, under both natural rank conventions, three source-derived key numeric registers, both signs and both repeated-rune clock policies. These are two bounded cipher-family decisions, not a test of the external project's own three-rune-node / totient / Möbius route. No authentic unknown plaintext or key has been found.
 
@@ -112,6 +112,29 @@ The p3–7 leading candidate uses **prime totients, cyclic successor order, subt
 The [read-only, Windows-compatible standalone SFT](../sims/lp2_p0_east_gp28_successor_inversion_sft.cjs) additionally synthesizes a **1,145-rune native-p57-derived message with five inserted EA markers**, encrypts it in all 24 complete receiver configurations, and recovers all 1,145 plaintext symbols exactly in every case. The 24/24 recoveries were independently executed on the exact original source in the connected research runtime. Thus an invertible receiver and explicit candidate key do exist and work as implemented; **they do not unlock original LP2 p3–14**. The corresponding manual Node22 workflow is `.github/workflows/agent10-east-gp28-manual.yml`.
 
 This distinct trial is motivated by the external, unauthenticated phrase “east of the map” and the authentic original adjacent-doublet deficit. Its negative cannot exclude a different east-key derivation, a nonperiodic changing key, independently keyed pages, unfamiliar plaintext register or a creator-specified cipher that does not rank predecessor-avoiding successors. Stop treating the map east edge alone as a reproducible key for these two receiver families; a genuine new clue is needed to motivate another consumer.
+
+## All-secret 27-phase successor tableaux: native-GP equality invariant
+
+The fixed-key inverse above checks a transparent 27-rune key read as numbers. A materially stronger, **key-independent** question is whether the printed 27 eastern positions select **27 entirely unknown, separately keyed 28-symbol substitution alphabets** after the same reversible predecessor-exclusion GP28 receiver. This grants all `(28!)^27` secret alphabet schedules, rather than guessing 24 additive variants.
+
+For original successive ciphertext runes, decode the public numeric- or cyclic-sorted **28 eligible successor ranks**. A repeated ciphertext rune is the reserved `EA` index28. The key phase advances at every noninitial rune, or only on a nonrepeated rank, in two explicitly separate clock conventions. At clock phase `t mod27`, the hypothetical phase-specific hidden alphabet `π_t` maps native GP29 plaintext indices 0–27 bijectively to observed successor ranks. For every phase the **number of equal-symbol pairs** in its ciphertext rank histogram is therefore *mathematically identical* to the number in its unknown plaintext histogram: an arbitrary secret alphabet merely renames its 28 output symbols. No secret key needs to be fitted or disclosed for that invariant to hold.
+
+Use the independently authentic, **already-solved Cicada LP1+p56+p57 GP-native rune corpus** (2,979 actual runes, joining its nine solved source sections) as a register comparator. The first 1,145 native runes match the first untouched p3–7 chapter length; the next 1,729 match independent p8–14. All observed repeated-source runes and candidate reserved native EA positions are omitted from the nonreserved 28-symbol histogram exactly as the model prescribes. The eight frozen original/native pairwise collisions are:
+
+| Receiver and phase clock | Original p3–7 collision IoC | Solved-native p3–7 | Original p8–14 | Solved-native p8–14 |
+| --- | ---: | ---: | ---: | ---: |
+| Numeric-sorted, full clock | 0.03411614 | 0.06329277 | 0.03503202 | 0.06226014 |
+| Numeric-sorted, skip repeat | 0.03484946 | 0.06352064 | 0.03625731 | 0.06313809 |
+| Cyclic-sorted, full clock | 0.03522630 | 0.06329277 | 0.03699991 | 0.06226014 |
+| Cyclic-sorted, skip repeat | 0.03715567 | 0.06352064 | 0.03378817 | 0.06313809 |
+
+For example, the **p3–7 numeric/full** original has exactly **1,598 equal ordered rank pairs of 46,840**, whereas native author prose in its matching 27 phase strata has **2,954/46,672**. In the **p8–14 cyclic/skip** original there are **3,640/107,730**, whereas native prose has **6,778/107,352**. These differences cannot be altered by any of the `28!` independent bijections at each of the 27 phases. The original is near the independently uniform baseline 1/28; authentic solved GP prose has substantially more repeated symbols inside the same phases.
+
+This all-key test also contains a **strict positive**: assign a distinct, deterministic secret random bijection of 28 symbols to each of the 27 phase positions and encrypt actual solved-source native GP runs with the previous-cipher anti-repeat emitter. In all eight chapter/rank/clock combinations, the source-length synthetic ciphertext inverts **every GP plaintext rune** exactly, including the native EA repeated-rune escapes, and reproduces the source-native collision counts *bit for bit* under its actual secret bijections. The original fails while the genuinely keyed positive preserves the asserted invariant. The original source and solved GP comparator were executed directly with the committed reproduction code in an independent runtime.
+
+**Decision:** a static 27-phase independently unknown **bijection-only** rank28 tableau is inconsistent with the tested source-native register on both untouched original chapters, regardless of its 27 secret alphabets. This is a much stronger conditional exclusion than all 24 direct key representations; it does **not** exclude independently changing row tables after every rune, different source plaintexts, encrypted/resegmented word divisions, nonbijective or state-dependent output, irregular non-source-selected phase clocks, or another cipher layer. The p0–2 27×27 map and its east instruction remain unauthenticated hypotheses, and no original LP2 plaintext is recovered.
+
+**Exact source-dependent reproducer:** [`sims/lp2_p0_east_gp28_27phase_allsecret_sft.cjs`](../sims/lp2_p0_east_gp28_27phase_allsecret_sft.cjs). It freezes both original chapter lengths, the 27 source edge values, all eight original and solved-native histogram counts, 8/8 all-secret hidden-table plants and exact inverse recovery of 11,496 planted rune slots.
 
 ## Reproduction
 
