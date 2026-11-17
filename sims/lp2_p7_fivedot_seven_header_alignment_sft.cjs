@@ -144,6 +144,55 @@ const encodedPlant=fiveColumnInterleave(planted,order);
 assert.equal(encodedPlant[692],"7");
 assert.deepEqual(fiveColumnDeinterleave(encodedPlant,order),planted);
 
+
+/* A distinct, historically authenticated seven-marker consumer: the genuine
+ * p56 consecutive-prime totient cipher with plaintext-F bypass. The literal
+ * header '7' might designate prime value 7 (zero-based prime index 3), or
+ * the seventh prime (index 6). These are fixed source interpretations.
+ * Exhaust ALL legal skip histories without fitting guessed plaintext.
+ */
+const primes=[];
+for(let n=2;primes.length<2000;n++){
+  let prime=true;
+  for(let d=2;d*d<=n;d++)if(n%d===0){prime=false;break;}
+  if(prime)primes.push(n);
+}
+/** @param {number[]} ct @param {number} startPrimeIndex
+ * @returns {number|null} zero-based first impossible rune, or null if reachable
+ */
+function transparentPrimeDeadOffset(ct,startPrimeIndex){
+  let states=new Set([0]);
+  for(let i=0;i<ct.length;i++){
+    const next=new Set();
+    for(const consumed of states){
+      const shift=(primes[startPrimeIndex+consumed]-1)%29;
+      const decoded=(ct[i]-shift+29)%29;
+      if(decoded!==0)next.add(consumed+1);
+      if(ct[i]===0)next.add(consumed); // literal F never consumes prime
+    }
+    if(next.size===0)return i;
+    states=next;
+  }
+  return null;
+}
+const sourcePrimeStarts=[0,3,6,7];
+const sourcePrimeStartLabels=["prime2","prime7","seventhPrime17","zeroBasedSeventhPrime19"];
+const primeExpected=[
+  [22,49,18,61], // source five-dot inverse alone
+  [61,1,22,24], // then historical seven tuple
+  [5,26,25,39], // then inverse historical tuple
+  [34,12,8,3], // then conventional seven columns down
+  [37,3,20,17], // then conventional seven columns across
+];
+const primeTransfers=trials.slice(1).map(([name,nums],i)=>{
+  const deadOffsets=sourcePrimeStarts.map(start=>transparentPrimeDeadOffset(nums,start));
+  assert.deepEqual(deadOffsets,primeExpected[i],name+" prime-totient all-skip gate");
+  return {name,firstImpossibleByStart:Object.fromEntries(
+    sourcePrimeStartLabels.map((label,j)=>[label,deadOffsets[j]]))};
+});
+assert.equal(transparentPrimeDeadOffset(corpus.pages[56].indices,0),null,
+  "authentically solved p56 must survive genuine F-transparent prime cipher");
+
 /* The header placement is a single exactly predicted source position.
  * It is a structural observation, not a posterior probability of intent. */
 assert.equal(order[0]*346,692);
@@ -168,6 +217,6 @@ console.log(JSON.stringify({
     name,nativeLP1Trigram:model.scoreStream(bytes).mean,
     adjacentEqual:doubles(bytes),openingRunes:model.spell(bytes.slice(0,90))
   })),
-  finding:"A source-selected nested numeral/header alignment; none of the direct 7-column continuations recovers readable GP-native plaintext",
+  primeTransfers,\n  finding:"A source-selected nested numeral/header alignment; none of the direct 7-column continuations recovers readable GP-native plaintext",
   limitation:"Five-dot order is a hypothesis, not an authenticated cipher instruction; an independent source-keyed rune transform would be needed"
 },null,2));
