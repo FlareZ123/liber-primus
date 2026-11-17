@@ -142,7 +142,9 @@ function repeatedSeedStatistic(inputPages, key) {
       pairs++;
       const a = inputPages[i], b = inputPages[j];
       const limit = Math.min(a.length, b.length);
-      for (let k = 0; k < limit; k++) {
+      // Ignore page-local position zero so unknown page-specific first-rune
+      // chaining IVs cannot affect this secret-key-invariant comparison.
+      for (let k = 1; k < limit; k++) {
         if (a[k] === 28 || b[k] === 28) continue;
         allPairs++;
         if (a[k] === b[k]) equalPairs++;
@@ -227,13 +229,13 @@ const min = {
 assert(Math.abs(originals.continuous.scaled28_ioc - 1.0059917140410457) < 1e-12);
 assert(Math.abs(originals.per_page.scaled28_ioc - 0.9974646611801926) < 1e-12);
 assert(Math.abs(originals.per_page_static.scaled28_ioc - 1.0028036666356064) < 1e-12);
-assert(Math.abs(originals.repeated_page_seed_title.scaled28_ioc - 1.0365744870651203) < 1e-12);
-assert(Math.abs(originals.repeated_page_seed_body.scaled28_ioc - 1.0251379521765789) < 1e-12);
+assert(Math.abs(originals.repeated_page_seed_title.scaled28_ioc - 1.036154294162448) < 1e-12);
+assert(Math.abs(originals.repeated_page_seed_body.scaled28_ioc - 1.027003254463893) < 1e-12);
 assert(Math.abs(min.continuous - 1.6359185716198026) < 1e-12);
 assert(Math.abs(min.per_page - 1.6382247339355005) < 1e-12);
 assert(Math.abs(min.per_page_static - 1.6459615376008665) < 1e-12);
-assert(Math.abs(min.repeated_page_seed_title - 1.5666186532229025) < 1e-12);
-assert(Math.abs(min.repeated_page_seed_body - 1.6000353559906306) < 1e-12);
+assert(Math.abs(min.repeated_page_seed_title - 1.5652645861601084) < 1e-12);
+assert(Math.abs(min.repeated_page_seed_body - 1.602593135295946) < 1e-12);
 assert(originals.continuous.scaled28_ioc < min.continuous);
 assert(originals.per_page.scaled28_ioc < min.per_page);
 assert(originals.per_page_static.scaled28_ioc < min.per_page_static);
