@@ -79,6 +79,36 @@ function phaseStatistic(inputPages, pageReset) {
   };
 }
 
+/**
+ * Independent source-key interpretation: all 55 clear-PARABLE interior
+ * runes index the 55 rune-bearing physical ciphertext pages, with one
+ * arbitrary secret bijection per page throughout that page.
+ *
+ * @param {number[][]} inputPages
+ */
+function pageStatistic(inputPages) {
+  let allPairs = 0, equalPairs = 0, reserved = 0;
+  for (const page of inputPages) {
+    const hist = Array(28).fill(0);
+    for (const p of page) {
+      if (p === 28) reserved++;
+      else {
+        assert(p >= 0 && p < 28);
+        hist[p]++;
+      }
+    }
+    const n = hist.reduce((a, b) => a + b, 0);
+    allPairs += n * (n - 1);
+    equalPairs += hist.reduce((a, b) => a + b * (b - 1), 0);
+  }
+  return {
+    scaled28_ioc: 28 * equalPairs / allPairs,
+    equal_pairs_ordered: equalPairs,
+    all_pairs_ordered: allPairs,
+    reserved_count: reserved
+  };
+}
+
 /** @param {number[]} runes */
 function partition(runes) {
   let p = 0;
@@ -115,7 +145,8 @@ const sourceText = [
 ];
 const originals = {
   continuous: phaseStatistic(differenceToPlain(pages, false), false),
-  per_page: phaseStatistic(differenceToPlain(pages, true), true)
+  per_page: phaseStatistic(differenceToPlain(pages, true), true),
+  per_page_static: pageStatistic(differenceToPlain(pages, true))
 };
 const controls = [];
 let first = null;
@@ -127,21 +158,26 @@ for (const [name, file] of sourceText) {
     controls.push({
       name, native_offset: start,
       continuous: phaseStatistic(plain, false),
-      per_page: phaseStatistic(plain, true)
+      per_page: phaseStatistic(plain, true),
+      per_page_static: pageStatistic(plain)
     });
   }
 }
 assert.equal(controls.length, 44);
 const min = {
   continuous: Math.min(...controls.map(x => x.continuous.scaled28_ioc)),
-  per_page: Math.min(...controls.map(x => x.per_page.scaled28_ioc))
+  per_page: Math.min(...controls.map(x => x.per_page.scaled28_ioc)),
+  per_page_static: Math.min(...controls.map(x => x.per_page_static.scaled28_ioc))
 };
 assert(Math.abs(originals.continuous.scaled28_ioc - 1.0059917140410457) < 1e-12);
 assert(Math.abs(originals.per_page.scaled28_ioc - 0.9974646611801926) < 1e-12);
+assert(Math.abs(originals.per_page_static.scaled28_ioc - 1.0028036666356064) < 1e-12);
 assert(Math.abs(min.continuous - 1.6359185716198026) < 1e-12);
 assert(Math.abs(min.per_page - 1.6382247339355005) < 1e-12);
+assert(Math.abs(min.per_page_static - 1.6459615376008665) < 1e-12);
 assert(originals.continuous.scaled28_ioc < min.continuous);
 assert(originals.per_page.scaled28_ioc < min.per_page);
+assert(originals.per_page_static.scaled28_ioc < min.per_page_static);
 
 /**
  * Independent arbitrary per-phase secret bijections. The multiplier is
@@ -157,17 +193,18 @@ const inv = perm.map(table => {
   assert(inverse.every(x => x >= 0));
   return inverse;
 });
-function plantAndRecover(plainPages, pageReset) {
+function plantAndRecover(plainPages, pageReset, perPageStatic = false) {
   const cipher = [], recovered = [];
-  let prev = 0, pos = 0;
+  let prev = 0, pos = 0, pageIndex = 0;
   for (const page of plainPages) {
     if (pageReset) { prev = 0; pos = 0; }
     const cPage = [], pPage = [];
     for (const p of page) {
-      const step = p === 28 ? 0 : 1 + perm[pos % 55][p];
+      const phase = perPageStatic ? pageIndex : pos % 55;
+      const step = p === 28 ? 0 : 1 + perm[phase][p];
       const c = mod(prev + step, 29);
       const recoveredStep = mod(c - prev, 29);
-      const q = recoveredStep === 0 ? 28 : inv[pos % 55][recoveredStep - 1];
+      const q = recoveredStep === 0 ? 28 : inv[phase][recoveredStep - 1];
       cPage.push(c);
       pPage.push(q);
       prev = c;
@@ -175,16 +212,20 @@ function plantAndRecover(plainPages, pageReset) {
     }
     cipher.push(cPage);
     recovered.push(pPage);
+    pageIndex++;
   }
   assert.deepEqual(recovered, plainPages, '12,956 exact original-format native GP29 runes must recover');
-  const fromCipher = phaseStatistic(differenceToPlain(cipher, pageReset), pageReset);
-  const fromPlain = phaseStatistic(plainPages, pageReset);
+  const fromCipher = perPageStatic ? pageStatistic(differenceToPlain(cipher, true)) :
+    phaseStatistic(differenceToPlain(cipher, pageReset), pageReset);
+  const fromPlain = perPageStatic ? pageStatistic(plainPages) :
+    phaseStatistic(plainPages, pageReset);
   assert.deepEqual(fromCipher, fromPlain, 'all-secret 55-phase permutation cannot change the statistic');
   return fromCipher;
 }
 const planted = {
   continuous: plantAndRecover(first, false),
-  per_page: plantAndRecover(first, true)
+  per_page: plantAndRecover(first, true),
+  per_page_static: plantAndRecover(first, true, true)
 };
 console.log(JSON.stringify({
   original: originals,
@@ -194,5 +235,5 @@ console.log(JSON.stringify({
     minimum_native_gp_english: min
   },
   native_GP29_blind_plant: planted,
-  conclusion: 'All secret 55-phase 28-step bijections excluded for ordinary GP-native English under both original page clocks'
+  conclusion: 'All secret 55-phase periodic and 55-independent-page-static 28-step bijections excluded for ordinary GP-native English'
 }, null, 2));
