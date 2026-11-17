@@ -50,6 +50,13 @@ This is a conditional, fixed-selector calculation, not a discovery-wide p-value.
 
 A separate deterministic 100,000-shuffle test searched the broader event of any eligible prime p57 word-sum self-pointer followed by another p57 word sum that is a primitive-root candidate. It found 2 hits for the base-59 multiset and 6 for base 60. The actual base-60 arrangement has no FIND self-pointer. These counts support specificity but do not remove the post-selection caveat.
 
+
+## Original-scan qualification
+
+The original scan set for this table is JPEGs 66–68 (LP2 pages 49–51), with **10, 13 and 9** complete rows of eight tokens respectively. The source resource declares the 60-character alphabet `0–9, A–Z, a–x`, but the **256 printed tokens use exactly 59 of those 60 characters: lowercase `f` is absent**. This is the concrete reason to test the alternate 59-symbol alphabet with `f` removed. It is not proof that the creator intended radix 59: the existing resource labels its conventional interpretation as a base-60 byte table, and both readings remain hypotheses until an independent instruction selects one.
+
+The p49 scan also has a **3×3 block of nine red squares** immediately after its third runic line and before the numeric rows begin. The p50 and p51 scans repeat the symmetric black dot clusters in the tree illustration but do not repeat the red 3×3 marker. The red mark may select a start, boundary, or 3×3 operation; no operation is currently justified. Preserve it as an original visual clue rather than treating it as decorative or assigning it a meaning prematurely.
+
 ## Historical solve-path plausibility and its limit
 
 The repository's authenticated 2013 TCP-server source documents both a BASE29 conversion and a Diffie–Hellman operation. That makes DH a historically plausible operation for a technically literate solver to recognize after finding (151,35).
