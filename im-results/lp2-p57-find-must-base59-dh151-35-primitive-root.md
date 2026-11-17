@@ -58,6 +58,22 @@ However, the source describes an interactive server protocol: the participant ru
 
 There is also a mathematical guardrail: 60 does not divide 150, so the 60-cell ring cannot itself be a subgroup of the multiplicative group modulo 151. Its length may select a data region or key schedule, but it is not the order of a subgroup of that group.
 
+
+## A source-selected private-exponent candidate: OUR = 21
+
+The 60 inner-ring tokens can also be read as one concatenated 120-digit base-59 integer. Reducing that integer modulo the proposed group order 150 gives **21 in both clockwise and counterclockwise traversal**, starting at the radial cell 149. The p57 word **OUR** independently has GP-prime sum **21**. The same concatenation under base 60 gives 46, not a p57 word sum.
+
+This is a stronger clue-constrained candidate for the DH private exponent than an arbitrary ring cell:
+
+```
+a = 21 = sum(OUR)
+A = g^a mod p = 35^21 mod 151 = 107
+```
+
+The public value 107 is itself one of the 29 GP prime weights (rune index 27, transliteration IA), and the base-59 p50 table contains 107 once, in the outer ring. The public key has order 50. This is an additional structural echo, not proof: a random nonzero residue has a 29/150 chance of belonging to the GP prime-weight set.
+
+The missing step remains how to use the public-share material. With a=21, direct tests treating outer-ring values as DH public shares or as exponents still do not decrypt p55. Treating each p55 GP-prime weight as a public share and reducing q^21 mod 151 modulo 29 produces a non-injective symbol map (only 16 distinct outputs over the 29-symbol alphabet), so that cannot be a reversible symbol-wise cipher. The corresponding shared-exponent low digit is likewise non-injective. The 38-pair p55 BASE29 public-share test also fails and contains one zero residue, invalid as a DH public share.
+
 ## Direct tests already made
 
 The reproducible script tests both clockwise and counterclockwise ring traversal and both additive signs for three low-parameter DH consumers:
