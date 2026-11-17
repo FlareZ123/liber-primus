@@ -30,8 +30,26 @@ The original inferred initial plaintext states are `[25,0,25,20,10]` for pp0–2
 
 The [single-file read-only Windows Node22 CJS SFT](../sims/lp2_plaintext_autokey5_exact_state_original_sft.cjs) reads unmodified original `resources/liber-primus/lp2-corpus.json` and `lp2-transcription.txt`, asserts both original lengths, original printed-word counts and all eight control recoveries per chapter, and verifies exact forward recurrence and independent model-score recomputation. The exact committed code was executed in a standalone V8 evaluator against its fetched repository source files. No source files, control corpora or ciphertext are modified.
 
+## Output-alphabet invariant: a stronger no-go result
+
+A fixed unknown output-alphabet substitution cannot rescue this same plaintext-autokey mechanism on ordinary GP English. In fact, it can be **any secret bijection of the 29 glyphs for each separate printed word**: equality of two adjacent ciphertext runes **within that word** is unchanged by the relabeling. For original offsets i≥6, both symbols are fully under five-step feedback, so the exact test condition is
+
+```
+C[i] = C[i-1]
+  iff P[i] + P[i-5] ≡ P[i-1] + P[i-6] (mod 29)
+```
+
+A secret initial five-symbol state is irrelevant to this condition; the counted positions start at i=6. The committed SFT samples a **new, independent 4,096-plant sequence** of Gibran GP29 complete words matching each original word-length layout, applies precisely the original five-lag plaintext-autokey addition, and records same-word adjacent glyph equalities. As the equation proves, an unobserved **wordwise static secret output permutation cannot change these counts**:
+
+| Original chapter | Observed same-word doublets (i≥6) | Mean ± SD of 4,096 matched English plants | Control minimum | Plants ≤ observed | Empirical lower tail |
+|---|---:|---:|---:|---:|---:|
+| p0–2 | **2** | 20.158 ± 4.449 | 6 | 0/4,096 | ≤0.0002441 |
+| p23–26 | **9** | 28.313 ± 5.254 | 12 | 0/4,096 | ≤0.0002441 |
+
+These are **source-matched, model-conditional language controls**, not a universal probability that any conceivable natural-language passage has the same statistics. The test retires a materially larger family of five-lag classical autokeys with *static per-word or per-section output relabeling* in ordinary native English. It does **not** exclude position-changing or state-dependent output permutations, non-English/nonprose registers, missing padding, or an entirely different recurrence. The original equality counts are independent of English language-model optimization and make this extension stronger than score-only failure.
+
 ## Cryptanalytic decision
 
-This standard five-step plaintext-autokey **cannot explain either visually different original chapter as ordinary GP English**, despite allowing its entire initial keyspace. The targeted five-dot chapter matters: the original visual motif did not reveal the specified equation, but it supplied a less arbitrary recipient than the opening alone. This removes a bounded, fully reversible candidate from future exploratory searches without importing a speculative second cipher layer. Any future five-step hypothesis needs a **new, independently authored state transition or key/clock instruction** and must explain the original adjacent-repeat suppression plus the position-dependent lag-five statistics under a true inverse.
+This standard five-step plaintext-autokey **cannot explain either visually different original chapter as ordinary GP English**, despite allowing its entire initial keyspace; the additional observed doublet deficit also rejects static output-alphabet relabelings under calibrated native-English controls. The targeted five-dot chapter matters: the original visual motif did not reveal the specified equation, but it supplied a less arbitrary recipient than the opening alone. This removes a bounded, fully reversible candidate from future exploratory searches without importing a speculative second cipher layer. Any future five-step hypothesis needs a **new, independently authored state transition or key/clock instruction** and must explain the original adjacent-repeat suppression plus the position-dependent lag-five statistics under a true inverse.
 
 All 56 unknown physical LP2 pages remain unsolved; this is a calibrated exclusion, not a plaintext claim.
