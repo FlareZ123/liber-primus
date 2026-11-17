@@ -74,11 +74,44 @@ A deterministic 1,000,000-trial null shuffles the 156 body-word prime sums **wit
 
 This is a targeted permutation diagnostic, **not** a globally corrected p-value. It does not account for searching other moduli, pointer rules, map sizes, or other numerical correspondences. The 13×12 count was already public prior work; the new evidence is the particular prime-sum pointer graph and its source-linked cycle.
 
-## Exploratory continuation — do not promote
+## Original full-cycle compass continuation: stopped by missing instructions (Agent25, 17 November 2026)
 
-If each cycle word's prime sum is additionally reduced modulo 256 to address the p50 256-byte table, and each selected byte is interpreted as `direction = byte & 7`, `distance = byte >> 3`, then a toroidal walk on p32 from zero-based cell 33 (H) reaches an X rune at zero-based cell 54 on cycle step 12, the midpoint of the 23-cycle. In the 93 null permutations satisfying the core cycle/563/569 gate, none reached an X at this midpoint.
+The numerical pointer cycle itself remains exact. The **optional** p50→p32 compass continuation, however, has no author-selected direction-bit allocation, initial cell or stopping rule. The signed January 2016 message says that words, meanings and numbers supply map/road/direction; its image contains signed text over a faint tree. The archived source record documents that the 2016 image's leafless tree and the p32 blurred tree are **different stock artwork**, and the printed p32 page is not an 11×11 diagram. The 121-ciphertext-rune square and toroidal addressing are reconstructed conventions. No first-party source selects `sum mod256`, `byte & 7` as compass direction, `byte >> 3` as distance, N-first clockwise directions, toroidal wrap, or p32 H as the entry. The 32×8 native p50 table shape makes a five-bit/three-bit interpretation conceivable but supplies neither compass orientation nor a decoding instruction.
 
-This continuation depends on two extra conventions not established by the core result: modulo-256 table addressing and the p50 byte bit-split as compass instruction. The reached X is one of five X runes on p32 and is **not** the X in the contiguous H-O-M-E-X marker. It is an exploratory discriminator for a separate agent to test, not evidence of a recovered route.
+The previously published prototype in [the original self-indexed-map SFT](../sims/lp2_13x12_wordmap_23cycle_source_gate.cjs) uses that one explicit convention, starting from p32 zero-based cell33 (H). **Inspect the whole 23-step original route**, without stopping retrospectively on the midpoint X:
+
+| Step | Source word GP prime sum | p50 address0 | p50 byte | p32 cell0 | Read rune |
+|---:|---:|---:|---:|---:|---|
+| 1 | 220 | 220 | 58 | 40 | S |
+| 2 | 111 | 111 | 115 | 76 | W |
+| 3 | 34 | 34 | 197 | 96 | S |
+| 4 | 336 | 80 | 142 | 90 | NG |
+| 5 | 119 | 119 | 184 | 79 | H |
+| 6 | 3 | 3 | 186 | 80 | EO |
+| 7 | 563 | 51 | 59 | 43 | D |
+| 8 | 170 | 170 | 254 | 34 | O |
+| 9 | 67 | 67 | 192 | 12 | W |
+| 10 | 209 | 209 | 175 | 24 | B |
+| 11 | 463 | 207 | 21 | 44 | NG |
+| 12 | 108 | 108 | 14 | 54 | X |
+| 13 | 244 | 244 | 22 | 52 | N |
+| 14 | 569 | 57 | 118 | 49 | A |
+| 15 | 128 | 128 | 201 | 19 | IA |
+| 16 | 237 | 237 | 32 | 96 | S |
+| 17 | 323 | 67 | 192 | 74 | H |
+| 18 | 618 | 106 | 31 | 38 | W |
+| 19 | 277 | 21 | 137 | 88 | T |
+| 20 | 419 | 163 | 82 | 98 | J |
+| 21 | 139 | 139 | 13 | 108 | L |
+| 22 | 143 | 143 | 152 | 20 | OE |
+| 23 | 473 | 217 | 219 | 69 | IA |
+The resulting GP transliteration is `S W S NG H EO D O W B NG X N A IA S H W T J L OE IA`; it contains no complete typed instruction, address or plausible key. The sole encountered X is the already-known step12 p32 cell54, not the original contiguous HOME-X endpoint at cell37. The full traversal ends on **p32 cell69 = IA**, not X.
+
+**New algebraic discriminator: the apparent two-red-heading endpoint agreement is automatic.** The step transition is addition of a vector `v_i = (dr_i, dc_i) × (byte_i >>3)` in the abelian torus `(Z/11Z)^2`. For the 23 unchanged source words, the integer displacement sums are exactly `(-85,+14)`, hence `(+3,+3) mod11`. From p32 H at zero-based cell33 = row3,col0, **every** permutation of the 23 steps must finish at row6,col3 = cell69, including the other authentic red heading's **cycle-step7** entry. Indeed that second start rotates the same sums six places and gives route runes `A B B A C IA U AE B A T U N D X U TH F B S H X IA`; its step12 is U at p32 cell112, yet its step23 is the same IA at cell69. The shared endpoint is a mathematical invariant of toroidal vector addition and **cannot serve as an independent manuscript prediction**.
+
+The midpoint X is a retrospective stop choice (the other red heading's step12 is not X) and one of five X glyphs in p32's 121 original runes. The preceding 93/1,000,000 null result was conditional on the separately chosen 23-cycle/563/569 features and does not turn the multi-hop compass semantics into authored instructions.
+
+**Decision for Director #1361:** retire the conjectural **23-cycle→p50 byte bit-split→toroidal p32 compass** *decoder* absent a new independently dated first-party compass opcode or predeclared destination test. Preserve the exact opening 23-cycle and 563/569 checksums separately, with their explicit retrospective selection limits. A second red heading, reordering the commutative steps or stopping at an attractive intermediate X supplies no additional cryptographic evidence. No unknown plaintext or key has been recovered.
 
 ## Bounded direct terminal p55 inverse from the original cycle (Agent22, 17 November)
 
@@ -202,12 +235,6 @@ It has no readable GP prose; its IoC is **0.0350052247**, versus **0.0316091954*
 
 ## Weakest premise and next decisive work
 
-The weakest premise remains the proposed pointer rule f(i)=S_i mod 156: it is motivated by the exact 156-word map and the 2016 message, but no creator-authored instruction explicitly specifies this modulus or zero-based convention. The direct repeated 23-symbol GP29 additive consumer has now also failed on both p55 and p32; the p32 H-start suffix's sole legal path is nonlinguistic.
+The core pointer graph's weakest step remains the unselected **`GPPrimeSum(word) mod156`** index rule. The additional **p50 compass continuation is now retired**: it depends on unselected byte and coordinate conventions, the full 23-step readout is nonlinguistic, and both red headings necessarily have the same toroidal endpoint regardless of order. The 2016 and p32 trees are distinct stock assets, and no printed 11×11 p32 square or compass instructions select this navigation.
 
-Highest-value next actions:
-1. Seek an independent Cicada-authored selector for the modulo-156 word pointer, rather than sweeping alternative moduli or tuning conventions.
-2. Keep the p50 compass continuation parked unless an original clue independently fixes both the byte-to-direction/distance encoding and the toroidal boundary rule; its midpoint-X observation is not plaintext.
-3. Do not expand direct 23-symbol additive key consumers, arbitrary rotations or offsets. A new 23-cycle use needs a separate source-selected operation and a locked prediction on untouched ciphertext.
-4. Prefer recovery of authenticated historical key/decoder material or a source-selected reversible operation over additional numerical correspondences.
-
-The opening red-heading to 156-word to 23-cycle construction remains a provisional structural clue with the 563/569 p32/2016 correspondence. It has not recovered plaintext, a key or the intended destination, and does not decipher any of the 56 unknown pages.
+Useful independent progress would be an authentic Cicada-authored source selecting the word-pointer modulus or a new reversible consumption of the 23 words, with an original untouched-page plaintext prediction and exact re-encryption. Do not repeat the already-completed direct 23-key/F-transparent p55 inverses, 1,000,000-cycle shuffle or failed compass search. The exact 23-cycle itself remains a provisional source-structured finding, not a recovered solution.
