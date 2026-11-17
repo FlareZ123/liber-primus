@@ -1,28 +1,27 @@
 # Agent14 — current handoff (17 November 2026)
 
-## Lease, role and research status
-- Normal issue-directed research, **actual RNG draw 6/12**. Current run is `agent14-gpt6-20261117T011804Z-draw6-p16to21-visual`.
-- Original immutable claim in `agents/agent14/.lease.json`: **2026-11-17T01:18:04.983Z**. Identity was remotely claimed/verified before research. **Do not renew lease**. At every checkpoint compute real UTC time; orderly release threshold **2026-11-17T02:28:04.983Z**. Preserve state and **delete only own lease as final repository mutation** once reached. Previous leases represented in older Git history are stale; this is the only current one.
-- Latest verified status: **all 56 unsolved LP2 pages p0–55 remain undeciphered**. No recovered authentic unknown plaintext or key; no destination.
+## Lease and current run
+- Normal issue-directed research; required cryptographic RNG draw **9/12**.
+- Run ID: `agent14-gpt6-20261117T045941Z-draw9-issue-1335-61c622ddc8`.
+- Immutable, remotely verified claim: **2026-11-17T04:59:41.677909Z**. Do not renew. Check the actual UTC clock after every checkpoint. Release threshold: **2026-11-17T06:09:41.677909Z**. After that, push all useful state, delete only this run's lease as the final repository mutation, verify, and exit.
 
-## Completed issues and source-gated decisions from current run
-1. **#1327 closed duplicate.** Original LP2 p16–21 illustrations and physical text lines were inspected. Closed #530/#945 already covered the identical local clue/operation decision: no new independently selected illustrated-page key or decoder. Do not reissue.
-2. **#1322 voluntarily withdrawn after source acquisition check, remains open.** No new 2014–16 public **byte-preserving** Tor HTTP WARC/response target was found beyond `im-results/archive-hash-preimage.md` and `im-results/lp2-2014-2016-public-tor-corpus-gate.md`. Public Bernaschi graph and 2015 Tor metadata are derived datasets, not raw response bytes; common accessible WARC indexes were already screened. P56 lacks validated target URL, hash algorithm and input serialization. Do not rehash the same lists.
-3. **#1320 completed/closed with a genuinely distinct original-cipher test.** The 2009 Jung *Red Book* **Liber Primus V scarab/fallen-man scene** was selected as a GP29 running key from original LP1 p16 art, with no ciphertext-optimized start. Original p0 body (after verified red13), pp23–26 and independent pp3–7 each have zero admissible full-path plaintext under both signs of the historically authentic plaintext-F transparent Vigenère rule, with first impossible positions **(220/8), (66/15), (12/42)**. Always-consuming GP29 p0 200-rune IoC **0.03311558/0.03527638**, no language. Authentic original p56 85-rune key DP and p57 95-rune native GP plants pass. Exact original CJS `sims/lp2_jung_chapter5_scarab_runningkey_sft.cjs`; coherent decision `im-results/lp2-jung-scarab-chapter5-runningkey-source-gate.md`; [successful Windows Node22 original run 43997003681](https://github.com/FlareZ123/liber-primus/actions/runs/43997003681). This retires only the fixed source-scene opening/key and GP29/F cipher, not Jung attribution in general.
+## Issue #1335
+- Claimed after confirming no active claimant. Balanced v2 p55 blind-review packet already exists through #1346.
+- Remaining acceptance item is a genuinely naïve human judgment based only on the public packet. AI/model reads, the packet builder, repository-aware agents, and anyone exposed to the source mapping/reveal are disqualified. Agent tools cannot recruit an unaffiliated reviewer; issue comment records the blocker and asks the maintainer to obtain one. Keep #1335 open; do not fabricate a human result or substitute another model.
 
-## Current active issue
-**#1296, claimed by Agent14 after Agent9 explicitly withdrew.** Seek a **real source-selected, reversible, within-chapter evolving cipher or authentic external key** jointly explaining the 12,956-rune anti-repeat, original printed word geometry and source-dependent five-back excess, with blind original text. Prior independent all-secret negative studies are binding. `results/README.md` and `workplace/integrated-original-inversion-challenge.md` are authoritative frontier.
+## New bounded original-cipher result
+- Tested the previously uncombined route: p50 base60 table polynomial / exact H·G divisor `[12,17,11,21,23]` → 252 quotient residues; signed 2013 DH example → affine `T(x)=24-2x mod29`, order 28, fixed H; nine original chapters → nine 28-phase exponent blocks. Candidate exponent at chapter-local rune `i`: `Q[28s+(i mod28)] mod28`.
+- Both direct original inverses are uniform-like (IoC **0.03447243998599** and **0.03447035472851** versus original **0.03447839786451**); no plaintext. Exact forward re-encryption and repeated solved-p57 positive plant pass.
+- Extended with solved-p56 literal-F/no-key-consumption semantics. Set-valued phase propagation allows all 28 starting phases independently per chapter and both literal-F and ordinary-non-F branches at ciphertext F. **All phases die** in every chapter; first impossible positions for any start (1-based): **342,160,155,180,163,184,124,104,158**. Positive F-bypass p57 plants retain the true phase and round-trip in all nine chapters.
+- This is a bounded negative for the exact quotient→T-cycle composition, not a rejection of H·G, signed DH, or all uses of Q. Do not repeat phase/sign sweeps for this schedule.
+- Reproducer: `sims/lp2_hg_q252_dh_t28_affine_original_sft.cjs`; report: `im-results/lp2-hg-q252-dh-t28-affine-original-gate.md`. Supporting evidence only; no change to `results/README.md`.
 
-An exploratory p15 printed-16 key modulo28 in a GF29 exponent-feedback generator was implemented and passed one original-source Windows Node22 CI run 43997737185. **It was discovered to be mathematically dominated by the existing source-authored phase-16 arbitrary-bijection impossibility** `im-results/lp2-p15-spiral-gp28-allsecret-gate.md` and `im-results/lp2-p15-16phase-no-repeat-allsecret-gate.md`. To honor the anti-repeat rule, the redundant SFT was **deleted** from main in commit `52aa51c7`. Do not revive period-16 predecessor-step variants merely because they use a different generator/key: existing all-secret proof is broader.
+## Older durable Agent14 exclusions
+- Fixed Jung *Red Book* p16 scarab/fallen-man running key rejected by original p0, pp23–26 and pp3–7 F-bypass tests: `im-results/lp2-jung-scarab-chapter5-runningkey-source-gate.md`.
+- #1322 found no new public byte-preserving 2014–16 Tor target corpus; p56 still lacks validated target URL, hash algorithm and serialization. Avoid repeating the same archive inventories.
+- #1327 duplicated p16–21 illustration/text inspection; no independent key/decoder.
+- p15 period-16 spiral/GP28 generator was dominated by the broader all-secret phase-16 no-repeat impossibility.
+- The 2015 prime-delta candidate reproduces 40 repeated differences but not the missing 12-column algorithm; p27 wing geometry has multiple valid paths; p50 phase192/229 and short YOUA associations have no coherent plaintext; p56 five-dot triangle fails its two extra points; p0 title is 13 red runes, not red8. Preserve the existing supporting reports.
 
-## Significant older durable Agent14 work
-- An original 2015 participant candidate full 13,173-event register (all book runes plus original punctuation plus one imagined F) reproduces 40 observed 2015 repeated differences but **does not recover the original missing 12-column algorithm**. The extant 2015 public 10-column, 13,041-row source differs. See `im-results/lp2-2015-prime-delta-40-doublet-source-inversion.md` and `sims/lp2_2015_13173_typed_fullbook_register_sft.cjs`. This is a structured candidate, not a creator-verified decoding route.
-- Original p27 insect-wing fifteen-cell traversal has **multiple** geometrically valid paths, so no unique authored key order. See `im-results/lp2-p27-wing-perimeter-order-gate.md`.
-- p50 256-cell grid phase192/229 and repeat-event pointer experiments yield intriguing short `YOUA` associations but no coherent plaintext or selector. See `im-results/lp2-p50-raw-tableau-allsecret-gate.md`; never extend by after-the-fact chosen starts.
-- LP2 p56 five-dot constellation: triangle submatch fails for the two additional points. See `im-results/lp2-vespucci-five-dot-triangle-gate.md`.
-- Correct p0 title has **13** red GP runes with black body starting exactly afterward; the false red8 correction was retracted. See `im-results/lp2-p0-red13-13dot-blackbody-original-source-adjudication.md`.
-
-## Next high-leverage decision
-Find a dated creator-authenticated source that selects a key/state evolution, or a source-visible operation that can produce an independently deciphered ≥150-rune original plaintext interval with exact forward reencryption on untouched pages. Prefer independent archival **operands/algorithms** to building new broad negative matrices. Avoid duplicate rank28 phase, scalar GF29, Fibonacci p15, static word edge, prime/phi original-start, JPEG false OutGuess, p50 stationary/rim and reused-pad searches unless a materially new clue locks a different operator.
-
-Reader-facing authoritative synthesis `results/README.md` remains unchanged by this run because only bounded negatives and source-gates were established. This handoff consolidates the agent's prior append-only notes; older experiments are permanently preserved in linked committed reports and Git history.
+## Next direction
+Seek a creator-authenticated instruction or independent source operand that selects a key/state evolution and can decode a blind ≥150-rune original interval with exact forward re-encryption. Prefer new historical evidence or a materially different reversible mechanism over another direct consumer of the tested p50 quotient, static 28-key schedule, phase search, or table-column permutation.
