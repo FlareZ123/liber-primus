@@ -1,0 +1,19 @@
+# Blinded review of the LP2 p55 ghost-tree claim
+
+**Scope (17 November 2026):** This packet prepares a blinded visual *human-oracle* test of an alleged second deliberate symbol in the pale p55 tree. The already established p32/p55 tree relationship is described in [the source-image report](../im-results/lp2-p32-p55-blurred-tree-correspondence.md). The new question is whether p55's original image has a separately drawn, meaningful object beyond that known shared tree. The strongest alternative is ordinary branch linework, contrast and image-rendering artefacts. **No independent human-oracle decision, new rune key or plaintext has been recovered.**
+
+## Frozen blinded packet
+
+Use [the fully reproducible original-JPEG builder](../sims/lp2_p55_ghosttree_blind_packet.py), requiring Pillow and filelock. It reads all nine crops from exact original 2400×3600 source JPEGs in `resources/liber-primus/`; optionally it reads the maintainer's exact ZIP when the `LP2_SOURCE_ZIP` environment variable points to it. It writes nine numbered 1110×1080 PNGs, a three-by-three contact sheet, a public manifest with SHA-256 for each crop, and a distinct excluded private reveal file. The package ZIP deliberately contains no source-page labels. Its fixed 4× ink-density adjustment is applied to just one source image; every other crop is original grayscale without tuned denoising, threshold or registration. Original bounding rectangles are frozen in the builder. A deterministic SHA-256-seeded shuffle fixes label order from original input bytes.
+
+**Local packet emitted on 17 November:** `ghost-tree-blinded-review.zip`, SHA-256 **`c194bdfe7889c5c92ab31d88db473a9de8af4c0ba41cdb9059f8c0874e67c083`**; preview `contact.png`, SHA-256 **`0e80bc4089dbd0342b74922f2df5065021489de71a0c5872d05dbdea7dfbeb8f`**. The deliberately withheld JSON reveal mapping has SHA-256 canonical-json commitment **`fca3cc905c0b299c6f6a4f5d98a17bbeb4ae4bdc180006220122fb7eaa9971bc`**. These fixed hashes make it possible to check that the image selection was unchanged after review. They do not imply deliberate hidden artwork.
+
+The controls comprise five physically different original non-terminal illustrations and one solved-page botanical subject. Two differently rendered views of the p55 tree and the associated p32 tree are included. Note that margin illustrations and centered trees differ in scale and surrounding text; a reviewer should therefore avoid decisions based on visual salience or framing alone.
+
+## Exact independent review instruction
+
+Present the public packet **without the builder, original page numbers or decoded mapping**. Ask: “Which image, if any, contains a second recognizable deliberately drawn object beyond its obvious main subject? For a positive selection, identify and mark the exact pixels or feature, and explain which drawing property distinguishes it from an ordinary line crossing or threshold artefact.” Record decisions and marked feature before unblinding. Multiple independent reviewers or genuine human-oracle input would strengthen an outcome. Show native resolution before interpreting the single high-contrast image.
+
+If the alleged feature fails blinded review or is readily present in controls, retain only the established source-tree relationship and retire the extra ghost-object conjecture. If a reviewer finds a specific extra drawn feature that survives ordinary contrast, compare source coordinates and obtain a separate Cicada-authored rule that actually selects a rune/reading operation before any LP2 decryption test. Do not treat a found shape or a human selection as itself a cipher solution.
+
+**Unfinished dependency:** The reproducible packet exists. An independently recorded blinded judgment, its markings and the first-party rule connecting it to an actual cipher operation do not yet exist. This document is a source-locked handoff, not a completed human test.
