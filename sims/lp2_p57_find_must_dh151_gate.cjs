@@ -376,6 +376,21 @@ for (const [direction, outer] of [
   }
 }
 
+
+function base29Fixed2(n) {
+  return base29(n).padStart(2, '0');
+}
+const p55Pairs = Array.from({ length: 38 }, (_, i) => p55[2 * i] * 29 + p55[2 * i + 1]);
+const p55PairShares = p55Pairs.map((v) => v % p);
+const p55PairSecrets = innerClockwise.slice(0, 38).map((v) => mod(v, p - 1));
+const p55PairShared = p55PairShares.map((share, i) =>
+  powMod(share, p55PairSecrets[i], p)
+);
+const p55PairBase29 = p55PairShared.map(base29Fixed2).join('');
+const p55PairBase29Text = [...p55PairBase29]
+  .map((digit) => corpus.translit[BASE29.indexOf(digit)] ?? '?')
+  .join('');
+
 const result = {
   sourceFiles: [
     'resources/liber-primus/base60-grid.json',
