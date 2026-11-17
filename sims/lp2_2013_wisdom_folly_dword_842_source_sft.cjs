@@ -158,10 +158,72 @@ for (const endian of ["LE", "BE"]) {
 assert.equal(xor.length, 36);
 xor.sort((a, b) => a.invalid - b.invalid);
 assert.equal(xor[0].invalid, 72);
+/** GP28 nonrepeat transport with an exact EA-to-equal-glyph escape. */
+function rank28Transform(pages, pad, mapping, clock, sign, encode) {
+  const output = [];
+  let previous = 0, position = 0;
+  for (const page of pages) {
+    const result = [];
+    for (let i = 0; i < page.length; i++) {
+      const prev = clock === "page" && i === 0 ? 0 : previous;
+      const input = page[i], k = pad[position++];
+      let value;
+      if (encode) {
+        if (input === 28) value = prev;
+        else {
+          const rank = ((input - sign * k) % 28 + 28) % 28;
+          value = mapping === "cyclic" ? (prev + rank + 1) % 29 : rank < prev ? rank : rank + 1;
+        }
+      } else if (input === prev) value = 28;
+      else {
+        const rank = mapping === "cyclic" ? ((input - prev + 29) % 29) - 1 : input - Number(input > prev);
+        value = ((rank + sign * k) % 28 + 28) % 28;
+      }
+      previous = encode ? value : input;
+      result.push(value);
+    }
+    output.push(result);
+  }
+  return output;
+}
+const knownRankPlain = knownPlain.map((page) => page.slice());
+for (const page of knownRankPlain) page[Math.min(5, page.length - 1)] = 28;
+const rank28 = [];
+for (const endian of ["LE", "BE"]) {
+  for (const reduction of ["mod", "scaled", "sum", "xor", "first", "last"]) {
+    const pad = Array.from({ length: 842 }, (_, i) => {
+      const w = dword(endian, i), j = 4 * i;
+      switch (reduction) {
+        case "mod": return w % 28;
+        case "scaled": return Math.floor(w * 28 / 4294967296);
+        case "sum": return (source[j] + source[j + 1] + source[j + 2] + source[j + 3]) % 28;
+        case "xor": return (source[j] ^ source[j + 1] ^ source[j + 2] ^ source[j + 3]) % 28;
+        case "first": return source[j] % 28;
+        case "last": return source[j + 3] % 28;
+        default: throw new Error("Unknown reduction");
+      }
+    });
+    for (const mapping of ["cyclic", "sorted"]) {
+      for (const clock of ["book", "page"]) {
+        for (const sign of [-1, 1]) {
+          const plain = rank28Transform(original, pad, mapping, clock, sign, false);
+          samePages(rank28Transform(plain, pad, mapping, clock, sign, true), original);
+          const plantedCipher = rank28Transform(knownRankPlain, pad, mapping, clock, sign, true);
+          samePages(rank28Transform(plantedCipher, pad, mapping, clock, sign, false), knownRankPlain);
+          rank28.push({ endian, reduction, mapping, clock, sign, ioc: ioc(plain.flat()) });
+        }
+      }
+    }
+  }
+}
+assert.equal(rank28.length, 96);
+rank28.sort((a, b) => b.ioc - a.ioc);
+assert.ok(Math.abs(rank28[0].ioc - 0.035815862238427844) < 1e-12);
+
 console.log(JSON.stringify({
   originalRunes: cipherReference.length, sourceBytes: source.length,
-  completeAdditiveModels: additive.length, minXorInvalid: xor[0].invalid,
+  completeAdditiveModels: additive.length, completeRank28Models: rank28.length, minXorInvalid: xor[0].invalid,
   directGp29XorModels: xor.length, originalIoC: ioc(cipherReference),
-  highestDecodedIoC: additive[0], bestXor: xor[0],
-  outcome: "No native-GP plaintext or directly valid 5-bit XOR GP29 inverse"
+  highestDecodedIoC: additive[0], highestRank28IoC: rank28[0], bestXor: xor[0],
+  outcome: "No native-GP plaintext from additive, predecessor-difference, or reversible GP28 nonrepeat inverses, and no directly valid 5-bit XOR GP29 inverse"
 }, null, 2));
