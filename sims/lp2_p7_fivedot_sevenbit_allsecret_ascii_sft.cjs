@@ -218,6 +218,47 @@ for (let a = 0; a < 5; a++)
         brute.push(small[0][a] + small[1][b] + small[2][c]);
 assert.equal(minInjectiveAssignment(small).total, Math.min(...brute));
 
+/**
+ * Exact lower bound with a *different completely secret injective 29→32
+ * bit-codebook at each periodic rune position*. The cost omits every
+ * cross-codeword septet top-bit pair, hence never overstates forced controls.
+ *
+ * @param {number[]} stream
+ * @param {number} period
+ * @returns {number}
+ */
+function periodicSecretLowerBound(stream, period) {
+  const grouped = Array.from({length: period},
+    () => Array.from({length: 29}, () => Array(4).fill(0)));
+  for (let asciiPosition = 0; asciiPosition < 1235; asciiPosition++) {
+    const firstBit = 7 * asciiPosition;
+    const runeIndex = Math.floor(firstBit / 5);
+    const runeOffset = firstBit % 5;
+    if (runeOffset < 4)
+      grouped[runeIndex % period][stream[runeIndex]][runeOffset]++;
+  }
+  let total = 0;
+  for (const row of grouped) {
+    const costs = row.map(occurrences =>
+      Array.from({length: 32}, (_, code) => {
+        const bits = fiveBits(code);
+        return occurrences.reduce((sum, count, offset) =>
+          sum + count * Number(bits[offset] === 0 && bits[offset + 1] === 0), 0);
+      }));
+    total += minInjectiveAssignment(costs).total;
+  }
+  return total;
+}
+const allSecretPeriods = [1, 5, 7, 14, 16, 35];
+const expectedPeriodicGuaranteedControls = [
+  [102, 29, 86, 67, 0, 12],
+  [117, 24, 104, 67, 0, 8],
+  [114, 28, 99, 63, 0, 12],
+  [115, 22, 100, 67, 0, 7],
+  [109, 26, 96, 60, 0, 14],
+  [121, 36, 104, 60, 0, 21]
+];
+
 const expectedDirectPrintable = [
   [853, 918], [901, 887], [894, 908],
   [896, 890], [900, 901], [895, 899]
@@ -240,6 +281,11 @@ const results = streams.map(([name, stream], index) => {
     }));
   const assignment = minInjectiveAssignment(costs);
   assert.equal(assignment.total, expectedGuaranteedControls[index], name);
+  const phaseLowerBounds = allSecretPeriods.map(period =>
+    periodicSecretLowerBound(stream, period));
+  assert.deepEqual(phaseLowerBounds, expectedPeriodicGuaranteedControls[index],
+    name + " complete phase-secret ASCII controls");
+  assert.equal(phaseLowerBounds[0], assignment.total);
   const direct = [false, true].map(reverseBits => {
     const codes = reverseBits ? stream.map(reverse5) : stream;
     const septets = regroup(codes, 5, 7);
@@ -257,7 +303,9 @@ const results = streams.map(([name, stream], index) => {
         ? String.fromCharCode(v) : ".").join("")};
   });
   return {name, minimumInternalOccurrence, minGuaranteedAsciiControls:assignment.total,
-    minGuaranteedAsciiControlFraction:assignment.total / 1235, direct};
+    minGuaranteedAsciiControlFraction:assignment.total / 1235,
+    periodicSecretGuaranteedControls:Object.fromEntries(allSecretPeriods.map((p, i) =>
+      [String(p), phaseLowerBounds[i]])), direct};
 });
 // Positive real English plant: 1235 printable ASCII glyphs regroup into exactly
 // 1729 base32 codewords. This particular plaintext only uses 27 distinct
@@ -283,6 +331,10 @@ console.log(JSON.stringify({
   pigeonhole: "All 29 rune symbols appear in all 4 internally constrained septet top-bit offsets; only 13 of 32 codewords avoid adjacent 00. Therefore no injective stationary GP29->5bit alphabet can emit only printable ASCII.",
   exactMinOriginalControls:Math.min(...results.map(x => x.minGuaranteedAsciiControls)),
   exactMinDotOrderControls:results[1].minGuaranteedAsciiControls,
+  allSecretPeriods,
+  minimumForcedControlByPeriod:Object.fromEntries(allSecretPeriods.map(p =>
+    [String(p), Math.min(...results.map(x => x.periodicSecretGuaranteedControls[p]))])),
+  page15Period16Limitation:"Period16 has an internal-bit lower bound of zero, so this necessary condition does not exclude that source-adjacent family; complete printable decoding remains unestablished.",
   allSecretBound: "Hungarian assignment minimizes only interior zero-zero septet prefixes; cross-codeword control characters can increase the real count.",
   positivePlant:{length:positive.length,distinctBinaryCodewords:distinctCodes.length,
     recoveredIdentical:recoveredText===positive},
