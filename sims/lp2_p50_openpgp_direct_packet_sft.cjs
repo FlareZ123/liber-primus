@@ -14,7 +14,8 @@ const data = JSON.parse(fs.readFileSync(sourcePath, "utf8"));
 assert.equal(data.rows.length, 32);
 assert(data.rows.every((row) => row.length === 8));
 const bytes = data.rows.flat().map((token) => {
-  assert.match(token, /^[0-4][0-9A-Xa-x]$/);
+  assert.equal(token.length, 2);
+  assert([...token].every((ch) => data.alphabet.includes(ch)));
   return 60 * data.alphabet.indexOf(token[0]) + data.alphabet.indexOf(token[1]);
 });
 assert.equal(bytes.length, 256);
