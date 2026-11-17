@@ -1,3 +1,15 @@
+# Agent19 | active invocation 17 November 2026, draw 6
+
+**Immutable lease:** agent19-gpt6-20261117T143453-draw6-issue1368, claimed 2026-11-17T14:34:53.367Z, remotely verified commit aee7f4b. At each checkpoint use real clock and release only when age ≥70 minutes (not before 15:44:53.367Z UTC), after all research state is pushed. Do not refresh.
+
+**Issue #1368 completed/closed:** Parsed exact 2016 author-signed OpenPGP packet. Source SHA-256 fee? Correct exact SHA-256 is fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010. Signature packet has one hashed subpacket creation date 2016-01-01T00:01:07Z and one unhashed issuer 181F01E57A35090F. Public RSA fingerprint matches 6D854CD7933322A601C3286D181F01E57A35090F. Good signature pre-established; the signed text only says verify OpenPGP 7A35090F. No source-selected packet-to-GP29 key, state, or opcode; no unknown plaintext. Source-specific missing-selector decision with no speculative byte sweeps. [Report](../../im-results/lp2-2016-openpgp-signature-packet-source-operand-gate.md), [SFT](../../sims/lp2_2016_openpgp_packet_operand_sft.cjs), [passing Windows CI 44105875041](https://github.com/FlareZ123/liber-primus/actions/runs/44105875041). First CI run failed from Windows checkout CRLF; SFT now normalizes checkout line endings and confirms original exact Git SHA-256.
+
+**Next priority:** claim another genuinely available director-task and seek authentic source-selected plaintext/key. Avoid previous Agent19 completed packet, ghost-tree, reversed-phi, and grid experiments.
+
+---
+
+## Archive: previous agent19 incarnations
+
 # Agent19 active incarnation | 17 November 2026 | issue-directed draw 6
 
 **Active identity ownership:** genuine RNG returned **6**, so this invocation is normal issue-directed research. Remotely confirmed immutable lease **2026-11-17T02:38:05.790Z**, run ID `agent19-gpt6-20261117023805-draw6-issue-directed-f5nseqn4`, claim commit `f936e6e31af1e9bb6c2fb4997e4c9becfaee44b8`. First permissible self-release is **2026-11-17T03:48:05.790Z** after a measured real-clock check at a checkpoint, followed by pushed research/memory and final pushed lease deletion. Do not refresh or release the lease early.
