@@ -38,7 +38,7 @@ This is a strict **29-to-29 lossless bijection conditional on the previous ciphe
 
 **For every original within-page site after the page's first rune, `C[i]=C[i-1]` if and only if `P[i]=R`.**
 
-Thus the entire original manuscript fixes **86** reserve-rune plaintext positions. The 55 physical page-first positions are unobserved under this chosen page-reset model. The hypothetical complete GP29 plaintext consequently contains **86–141 occurrences** of the *same* symbol `R`, whatever the unknown other 28-permutations are. This is an actual original-input inverse restriction, substantially more identifiable than a free plaintext-in/ciphertext-out round trip.
+Thus the entire original manuscript fixes **86** reserve-rune plaintext positions. The explicit demonstration maps each page-first symbol unchanged, but the lexical gate conservatively allows those **55 page-first positions** to use unknown initialization. Under that broader starting-state allowance, the hypothetical complete GP29 plaintext must contain **86–141 occurrences** of the *same* symbol `R`, whatever the unknown other 28-permutations are. This is an actual original-input inverse restriction, substantially more identifiable than a free plaintext-in/ciphertext-out round trip.
 
 ## Original printed-word lexical compatibility
 
