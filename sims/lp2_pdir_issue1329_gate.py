@@ -35,6 +35,34 @@ def source_gate(local: Path, ext: Path) -> list[str]:
     mismatches = [(i, x, y) for i, (x, y) in enumerate(zip(original, external)) if x != y]
     assert not mismatches, f"Original ciphertext mismatch (first 8): {mismatches[:8]}"
 
+    # Validate each printed word boundary against the local original transcript.
+    # The external nine section cuts differ from the local eight chapter cuts,
+    # even though their 2,896 physical printed word intervals agree exactly.
+    local_words = []
+    rune_set = set(corpus["runes"])
+    at, start = 0, None
+    for character in (local / "resources/liber-primus/lp2-transcription.txt").read_text(encoding="utf-8"):
+        if at == 12956:
+            break
+        if character in rune_set:
+            if start is None:
+                start = at
+            at += 1
+        elif character not in ("/", "\\n", "\\r", "%") and start is not None:
+            local_words.append((start, at))
+            start = None
+    if start is not None:
+        local_words.append((start, at))
+    assert at == 12956 and len(local_words) == 2896, (at, len(local_words))
+    section_starts = {}
+    offset = 0
+    for section_id in stats.UNSOLVED:
+        section_starts[f"seg0.{section_id}"] = offset
+        offset += len(lp.runes_of(stats.SEGS[section_id]))
+    assert offset == 12956
+    assert sum(len(lp.word_spans(stats.SEGS[i], lp.runes_of(stats.SEGS[i])))
+               for i in stats.UNSOLVED) == 2896
+
     d = ext / "work/kscreen/data"
     windows = {}
     name = ""
@@ -51,6 +79,10 @@ def source_gate(local: Path, ext: Path) -> list[str]:
         seg = int(name.split(".")[1])
         assert runes == lp.runes_of(stats.SEGS[seg])
         assert sum(lens) == len(runes) and len(runes) >= 100
+        begin = section_starts[name]
+        expected = [b - a for a, b in local_words
+                    if a >= begin and b <= begin + len(runes)]
+        assert lens == expected, (name, "canonical word lengths diverged", lens[:15], expected[:15])
 
     rules = (ext / "work/kscreen/dir_rules.txt").read_text(encoding="utf-8").splitlines()
     assert len(rules) == len(set(rules)) == 66
@@ -65,7 +97,11 @@ def source_gate(local: Path, ext: Path) -> list[str]:
         "cipher_sha256": hashlib.sha256(bytes(original)).hexdigest(),
         "windows": {n: len(v[0]) for n, v in windows.items()},
         "rules": len(rules), "orientations": 132,
-        "conventions": len(CONVS), "flat_streams": stream_count,
+        "conventions": len(CONVS), "flat_streams": stream_count, "original_word_intervals": len(local_words),
+        "screened_window_runes": sum(len(v[0]) for v in windows.values()),
+        "excluded_short_source_segments": {f"seg0.{i}": len(lp.runes_of(stats.SEGS[i]))
+                                          for i in stats.UNSOLVED
+                                          if len(lp.runes_of(stats.SEGS[i])) < 100},
     }, indent=2), flush=True)
     return rules
 
