@@ -13,3 +13,4 @@ jobs:
         run: |
           node sims/lp2_prime_clause_secret_even_rune_sft.cjs
           node sims/lp2_wordmap23_cycle_p55_native_inverse_sft.cjs
+          node sims/lp2_23cycle_74interiors_74successors_sft.cjs
