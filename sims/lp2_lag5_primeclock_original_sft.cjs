@@ -60,23 +60,23 @@ function score(values){
  for(const v of values){f[v]++;llr+=weight[v];}
  return {ioc:f.reduce((s,n)=>s+n*(n-1),0)/(values.length*(values.length-1)),llr:llr/values.length};
 }
-/** @param {number[]} plain @param {number[][]} form @param {-1|1} sign @param {-1|0|1} mode @param {number} start @returns {number[]} */
-function encrypt(plain,form,sign,mode,start){
+/** @param {number[]} plain @param {number[][]} form @param {-1|1} sign @param {-1|0|1} mode @param {number} start @param {number[]} [stream] @returns {number[]} */
+function encrypt(plain,form,sign,mode,start,stream=key){
  const out=[];let i=0,k=start;
  for(const w of form){const local=[];
   for(let j=0;j<w.length;j++){
-   const c=(plain[i++]-sign*key[k]+58)%29;out.push(c);local.push(c);
+   const c=(plain[i++]-sign*stream[k%stream.length]+58)%29;out.push(c);local.push(c);
    k+=1+(j>=5&&c===local[j-5]?mode:0);
   }
  }
  assert.equal(i,plain.length);return out;
 }
 /** @param {number[]} cipher @param {number[][]} form @param {-1|1} sign @param {-1|0|1} mode @param {number} start @returns {number[]} */
-function decrypt(cipher,form,sign,mode,start){
+function decrypt(cipher,form,sign,mode,start,stream=key){
  const out=[];let i=0,k=start;
  for(const w of form){const local=[];
   for(let j=0;j<w.length;j++){
-   const c=cipher[i++];out.push((c+sign*key[k]+58)%29);local.push(c);
+   const c=cipher[i++];out.push((c+sign*stream[k%stream.length]+58)%29);local.push(c);
    k+=1+(j>=5&&c===local[j-5]?mode:0);
   }
  }
@@ -114,7 +114,45 @@ const maxLLR=Math.max(...results.map(s=>s.bestLang.llr));
 assert(Math.abs(maxIoc-0.03635870302536969)<1e-12);
 assert(Math.abs(maxLLR+0.6339275059713757)<1e-12);
 assert(score(sourcePlant.slice(0,729)).ioc>0.06);
+
+// Separate explicit historical LP1 passwords, same source-visible next-clock
+// predicate, all source-original section starts, phases and both signs.
+// They are 8- and 13-rune known keys, never guessed from unknown text.
+const historical=[
+ {name:'DIVINITY',K:[23,10,1,10,9,10,16,26]},
+ {name:'FIRFUMFERENFE',K:[0,10,4,0,1,19,0,18,4,18,9,0,18]}
+];
+for(const {K} of historical)for(const mode of [-1,0,1])for(const sign of [-1,1]){
+ const plant=encrypt(sourcePlant,words,sign,mode,373,K);
+ const round=decrypt(plant,words,sign,mode,373,K);
+ assert.deepEqual(round,sourcePlant);
+ assert.deepEqual(encrypt(round,words,sign,mode,373,K),plant);
+}
+let historicalModels=0,keywordMaxIoc=-1,keywordMaxLLR=-Infinity;
+let position=0;
+for(const n of lengths){
+ const start=position,end=start+n;position=end;
+ if(n===9)continue;
+ for(const {K} of historical)for(const mode of [-1,0,1])for(const sign of [-1,1])
+  for(let phase=0;phase<K.length;phase++){
+   let k=phase,llr=0;const histogram=new Uint16Array(29);
+   for(let i=start;i<end;i++){
+    const p=(C[i]+58+sign*K[k%K.length])%29;
+    histogram[p]++;llr+=weight[p];
+    k+=1+(flag[i]?mode:0);
+   }
+   let eq=0;for(const count of histogram)eq+=count*(count-1);
+   keywordMaxIoc=Math.max(keywordMaxIoc,eq/(n*(n-1)));
+   keywordMaxLLR=Math.max(keywordMaxLLR,llr/n);
+   historicalModels++;
+  }
+}
+assert.equal(position,12956);assert.equal(historicalModels,1008);
+assert(Math.abs(keywordMaxIoc-0.0352884426958501)<1e-12);
+assert(Math.abs(keywordMaxLLR+0.6689457172753868)<1e-12);
+console.log('PASS 1008 original historical DIVINITY/FIRFUMFERENFE five-back clock inverses');
+console.log(JSON.stringify({historicalModels,keywordMaxIoc,keywordMaxLLR}));
 console.log(JSON.stringify({status:'PASS',originalRunes:C.length,originalWords:words.length,
- lag5:flag.filter(Boolean).length,solvedP56:p56.length,plantedBooks:6,models,
+ lag5:flag.filter(Boolean).length,solvedP56:p56.length,plantedBooks:18,models,
  maxIoc,maxLLR,results},null,2));
 console.log('NO GP29 prose: finite historical prime and ciphertext-lag5 key-clock mechanism negative.');
