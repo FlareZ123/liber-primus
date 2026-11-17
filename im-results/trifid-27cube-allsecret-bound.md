@@ -78,6 +78,21 @@ The SFT asserts equality of the full triple-frequency fingerprint and a two-way 
 
 These results close the **entire continuous standard-Trifid divisible-by-three period family** for this explicitly stated direct-GP model. They do not establish that the authors used Trifid or that all English text has the reference-corpus repetition rate. They do not restrict an evolving cube, different transparent controls, unequal/word/page-based clocks, ciphertext edits, non-GP intermediate alphabets or additional layers.
 
+## Original signed-onion HTML periods 133 and 331 (17 November 2026)
+
+The original 2014 Stage11 onion landing page literally prints `<title>133</title>` and `<div id="331">`. These integers supply a bounded, externally fixed pair of candidate *non-divisible-by-three* Trifid periods that were absent from the previously tested 29/79/127/179/256/263/3299/3301 subset. **Neither the HTML nor its signed handoff instructs Trifid** or chooses the GP27 cube, the two passthrough runes, or a book-wide clock. This is an independent *conditional* direct-GP cipher test, not a proposed historical solve.
+
+The original 12,956 GP runes were passed unchanged to the earlier exact `test(period,direction)` rectangle relaxation. For **every** book-fixed secret 27-symbol ternary cube, with the already declared transparent IA/EA controls, the frequency of any one decoded core rune cannot exceed the computed ceiling. The three pre-pinned literary native-GP control texts require at least 1,404 occurrences of their E rune in any original-length window.
+
+| Source period | Standard all-cube maximum | Reverse all-cube maximum | Original known-cube output IoC, standard/reverse |
+| ---: | ---: | ---: | ---: |
+| **133** | **1,325** | **1,398** | 0.03449277 / 0.03459605 |
+| **331** | **1,324** | **1,348** | 0.03450094 / 0.03453767 |
+
+All **four** exact 27!-cube upper bounds fall below 1,404 and therefore rule out their declared one-layer direct-GP literary-English family without enumerating cube keys. The tightest six-rune difference at period133/reverse is still an exact inequality against the stated control minimum, **not a universal rejection of every possible English passage**. All four arbitrary source-cipher inverse→forward calculations restore 12,956/12,956 original runes and independent 12,956-rune GP-native plants decode exactly; these are program controls, not identification of the original key. Other controls, scopes, language registers and layered architectures remain untested.
+
+[Reproducible SFT](../sims/lp2_onion7_133331_trifid_period_sft.cjs) · [successful Windows Node22 original-source CI 44074845438](https://github.com/FlareZ123/liber-primus/actions/runs/44074845438). No unknown plaintext, key or intended decoder is recovered; **do not expand to arbitrary title-derived periods without a first-party cipher selection**.
+
 ## Reproduction and scope
 
 Run the exact original-source tests on Node 22 from the repository root:
