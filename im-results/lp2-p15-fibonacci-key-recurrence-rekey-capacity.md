@@ -4,7 +4,7 @@
 
 ## Why the source motivates this *specific* recurrence
 
-Original physical LP2 p15 prints the 4×4 Fibonacci-indexed prime square: its entries are built from \(3301-p_{F_n+1}\) in the visually specified spiral. A historically plausible human solver might transfer the displayed recursion to a key, rather than hunt an arbitrary secret pad. Fix the following **one hypothesis before looking at a decipherment score**:
+Original physical LP2 p15 prints the 4×4 Fibonacci-indexed prime square: its entries are built from \(|3301-p_{F_n+1}|\) in the visually specified spiral. The absolute value matters for the final two primes, 4507 and 7817, whose printed distances are 1206 and 4516; the grid values alone do not specify the inverse sign. A historically plausible human solver might transfer the displayed recursion to a key, rather than hunt an arbitrary secret pad. Fix the following **one hypothesis before looking at a decipherment score**:
 
 \[
  C_i=P_i+K_i\pmod{29},\qquad
