@@ -102,7 +102,7 @@ function shuffleSelectorTest(values, words, seed, trials) {
       const q = shuffled[candidate.address + 1];
       const nextWords = words.filter((w) => w.sum === q && w.sum !== candidate.p);
       if (nextWords.length && isPrimitiveRoot(q % candidate.p, candidate.p)) {
-        hits += nextWords.length;
+        hits++;
       }
     }
     if (hits > 0) {
