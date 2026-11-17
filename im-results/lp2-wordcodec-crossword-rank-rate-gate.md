@@ -1,6 +1,6 @@
-# Original LP2 word-type obstruction and a two-back entropy-rank coder gate
+# Original LP2 word-framing and entropy-codec source gates
 
-**Status (15 November 2026): bounded original-cipher negatives and a necessary-state/capacity constraint. No recovered unknown plaintext, authentic key, source-selected ANS algorithm or final destination.** The exact experiment is [this read-only CommonJS SFT](../sims/lp2_wordcodec_gp29_crossword_rank_gate_sft.cjs), independently executed on the committed original source under [successful Windows Node.js 22 Actions run 43767401111](https://github.com/FlareZ123/liber-primus/actions/runs/43767401111). This report addresses [Director #1166](https://github.com/FlareZ123/liber-primus/issues/1166); it does **not** settle the broader family of cross-word arithmetic/ANS stream coders.
+**Status (17 November 2026): bounded original-cipher negatives and a necessary-state/capacity constraint. No recovered unknown plaintext, authentic key, source-selected ANS algorithm or final destination.** The exact experiment is [this read-only CommonJS SFT](../sims/lp2_wordcodec_gp29_crossword_rank_gate_sft.cjs), independently executed on the committed original source under [successful Windows Node.js 22 Actions run 43767401111](https://github.com/FlareZ123/liber-primus/actions/runs/43767401111). This report integrates bounded [Director #1166](https://github.com/FlareZ123/liber-primus/issues/1166) entropy/rate tests and [Director #1326](https://github.com/FlareZ123/liber-primus/issues/1326) word-leading explicit nonce framing. It does **not** settle nonstationary word framing or cross-word arithmetic/ANS streams.
 
 ## Source facts and a word-reset impossibility
 
@@ -21,6 +21,28 @@ There are **1,645** words of length ≥4; **every one is distinct**. This is a s
 Consequently, **a purely word-reset codec cannot plausibly be the sought original prose decoder** unless the original printed segmentation is not the plaintext segmentation, the plaintext register is nonstandard, or a cross-word/tweak/side state survives each boundary. This excludes that specific mechanism class independent of a secret fixed word substitution. A *streaming* ANS/range coder with state crossing words is outside the theorem.
 
 A narrower source-only state check strengthens the implementation requirement. Among **82** one-rune words with a preceding word on the same physical page, group each single-rune ciphertext by the immediately preceding ciphertext rune. The 82 observations occupy **28** predecessor contexts; **16** contexts contain more than two different singleton outputs and **9** contain more than three, with a maximum of **six**. Any deterministic emitter whose entire boundary state is the last ciphertext rune needs at least six different plaintext singleton possibilities in one such context. This is conditional on intact printed breaks and a full state limited to that predecessor rune. Agent30's [stronger all-secret whole-book one-back frequency exclusion](lp2-previouscipher-rowperm-allsecret-frequency-gate.md) already rules out its corresponding book-static row-bijective family on normal GP-English frequency grounds. Do not duplicate that older key-family sweep.
+
+## Word-leading GP prime-salt framing on the full original book (Agent9, 17 November 2026)
+
+**Different from a fixed word-length codec:** Here each printed ciphertext word begins with one explicit public nonce rune that has no corresponding plaintext rune. This could explain 83 printed singleton words using 28 distinct GP glyphs: they might be empty plaintext/control records. The original 2013 prime chart supplies numbers and the signed 2016 message mentions words and direction. Its specific nonce consumer remains **investigator-proposed**, not author-authenticated.
+
+Freeze this one lossless rule: for every complete original ciphertext word including a physical page-carry, read its first rune index n as a nonce. Each later ciphertext rune c decodes to p = (c − GPprime[n]) mod 29; re-encode by prepending n and emitting (p + GPprime[n]) mod29. Preserve every original word delimiter and punctuation symbol verbatim as external frame information. A one-rune ciphertext word yields an empty plaintext control word. No secret nonce, padding repair or fitted key is needed to execute this candidate.
+
+**Source-predicted zero-key crib:** index9 in the Gematria alphabet has printed prime value 29, so its public salt is zero modulo29. Every word whose first rune is GP9 must therefore display its remaining plaintext *literally unchanged*. There are **101** such original words, with **28** containing at least five subsequent GP runes; **none** of those 28 body strings matches a complete word in the pinned GP-native Shakespeare/Gibran vocabulary. This is a source-selected direct plaintext prediction, more discriminating than postselected whole-book frequency tuning.
+
+| Original-source measurement | Locked result | Genuine GP-native positive |
+| --- | --- | --- |
+| Untouched source inputs | **12,956 rune ciphertext, 2,896 printed words, 32 actual page carries** | Synthetic test uses the same 2,896 original word lengths and exact source typography |
+| Ciphertext/decoded lengths | 2,896 public salt runes + **10,060 decoded candidate runes**, including 83 empty records | **10,060/10,060** independently chosen Shakespeare/Gibran GP-native runes recovered |
+| Normalized GP29 IoC (29×IoC) | **1.00076046356** | **1.76484002833** for exact same ciphertext-word lengths |
+| Full-word vocabulary hits | **280/2,813** nonempty original candidate records, all short matches | Every 2,813 positive source-native content word is drawn from the same pinned vocabulary |
+| Content words of length ≥5 runes | **0/815** original candidates match vocabulary | Every matching-length positive content word is a genuine corpus word |
+| Transparent GP index9 source words | **28** content bodies of length ≥5, with **0/28** native vocabulary matches | Public zero-shift identity is exact by construction |
+| Independent native clear p57 plant | The actual **95** clear GP source runes were encoded with explicit first-rune salt and recovered **95/95** | Substituting the wrong GP-index-as-salt rule changes **9,363/10,060** native plant runes |
+
+The full original 12,956-rune source, including layout and punctuation, re-encodes exactly under this explicit invertible model. That is a correctness control, rather than evidence of an authentic cipher. The original plaintext remains near-uniform and contains no complete five-rune source-native vocabulary words. Thus **retire this particular source-prime-value word-IV architecture** without tuning nonce offsets, trying additional keys, or adding speculative layers. A differently located nonce or genuine changed word boundaries requires a separate first-party instruction. This negative does not exclude all self-describing word frames, compressed text or independent secret-key systems.
+
+[Single-run CommonJS original-source SFT](../sims/lp2_wordlead_primesalt_framed_original_sft.cjs) · [passing Windows Node22 original plus native controls run 44000217166](https://github.com/FlareZ123/liber-primus/actions/runs/44000217166) · [Director #1326](https://github.com/FlareZ123/liber-primus/issues/1326).
 
 ## An exact output-capacity bound for a universal anti-repeat encoder
 
