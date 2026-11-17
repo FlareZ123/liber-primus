@@ -206,6 +206,7 @@ const expected = [
   { skips: 345, pointerHits: 12953, plaintextHits: 12954 },
 ];
 const results = [];
+let firstPlant;
 for (let trial = 0; trial < expected.length; trial += 1) {
   const random = rng((0x3301abcd + trial * 1013904223) >>> 0);
   const sourceStart = random.int(corpus.length - LENGTH);
@@ -246,6 +247,7 @@ for (let trial = 0; trial < expected.length; trial += 1) {
   assert.deepEqual(
     { skips: inferred.extraSkips, pointerHits, plaintextHits },
     expected[trial], 'Unexpected hidden-pointer recovery');
+  if (trial === 0) firstPlant = { secret, ciphertext, truePointer, sourcePlain };
   results.push({
     trial,
     trueSkips: trueTotalSkips,
@@ -255,6 +257,47 @@ for (let trial = 0; trial < expected.length; trial += 1) {
     plaintextAccuracy: plaintextHits / LENGTH,
   });
 }
+// Calibration of joint-inference robustness to an imperfect tableau.
+// Each swap changes two cells of one valid permutation row. The solver
+// receives only the corrupted tableau. It never sees which entries differ.
+// Truth is consulted after the complete path is recovered.
+const noise = rng(0x53445123);
+const noisyTable = firstPlant.secret.map((row) => row.slice());
+const noiseResults = [];
+let swaps = 0;
+for (const targetSwaps of [0, 1, 3, 10, 30, 60]) {
+  while (swaps < targetSwaps) {
+    const row = noise.int(ALPHABET);
+    const a = noise.int(ALPHABET);
+    const b = noise.int(ALPHABET);
+    if (a === b) continue;
+    [noisyTable[row][a], noisyTable[row][b]] =
+      [noisyTable[row][b], noisyTable[row][a]];
+    swaps += 1;
+  }
+  const candidate = recoverPointer(firstPlant.ciphertext, noisyTable);
+  const wrongMappings = noisyTable.reduce((sum, row, i) =>
+    sum + row.reduce((total, value, j) =>
+      total + Number(value !== firstPlant.secret[i][j]), 0), 0);
+  const pointerHits = candidate.pointer.reduce((sum, value, i) =>
+    sum + Number(value === firstPlant.truePointer[i]), 0);
+  const plaintextHits = candidate.plaintext.reduce((sum, value, i) =>
+    sum + Number(value === firstPlant.sourcePlain[i]), 0);
+  noiseResults.push({
+    swaps, wrongMappings, inferredSkips: candidate.extraSkips,
+    pointerHits, plaintextHits,
+  });
+}
+assert.deepEqual(noiseResults.map((x) =>
+  [x.swaps, x.wrongMappings, x.inferredSkips, x.pointerHits, x.plaintextHits]),
+[
+  [0, 0, 406, 12949, 12949],
+  [1, 2, 406, 12949, 12935],
+  [3, 6, 406, 12815, 12762],
+  [10, 19, 406, 11701, 11488],
+  [30, 58, 406, 10818, 10255],
+  [60, 109, 406, 9585, 8701],
+]);
 console.log(JSON.stringify({
   status: 'PASS',
   model: 'H2 synthetic prime-totient row skips with ORACLE SECRET TABLEAU',
@@ -267,4 +310,5 @@ console.log(JSON.stringify({
   meanRecoveredRunes: results.reduce((sum, r) =>
     sum + r.correctPlaintextRunes, 0) / results.length,
   results,
+  tableCorruptionGate: noiseResults,
 }, null, 2));
