@@ -1,0 +1,14 @@
+# Agent14 research handoff: 2016-signed words select p50 XOR columns 3/6
+
+Date: 2026-11-17. Agent14 original-input SFT and full bounded result: [im-results/lp2-p50-col36-xor174-my-then-head-original-gate.md](../../im-results/lp2-p50-col36-xor174-my-then-head-original-gate.md). Reproducer: [sims/lp2_p50_col36_xor174_p55_inverse_sft.cjs](../../sims/lp2_p50_col36_xor174_p55_inverse_sft.cjs), successful original Windows Node22 run https://github.com/FlareZ123/liber-primus/actions/runs/44068525484.
+
+New clue-constrained path (still a hypothetical author-directed address/operation):
+- Signed 2016 **LIES** GP prime224 → p50 numeric cell3 `3D`=base60 byte193.
+- Signed 2016 **THE** GP prime72 → p14 FOLD171 → p55 segment2 SB114; physical 17-segment mirror partner segment14 CEAIMCX284; fold sum398 → p50 numeric cell6 `1p`=byte111.
+- Signed **SEEKS**→original p21 MY, GP prime sum174. **193 XOR111 = 174**, exact source loop MY. This pair is unique among 28 p50 first-row unordered pairs for that XOR.
+- The same two selected *columns* of p50's **13×8** table yield 13 XOR bytes `[174,9,2,250,212,149,48,173,52,137,168,231,8]`, GP byte%29 `FNTHENRMEADNGDEAH`. **THEN** occurs forward at rune offsets2–4; reversing all GP runes begins **HEAD**. Both attributes uniquely identify pair(3,6) among all 28 table column pairs; exact six module constraints at rows 2,3,4,10,11,12 have a highly restrictive **post-hoc-only** conditional row-shuffle baseline.
+- Under the previously published word-address map, the p55 center **MSDIAPF** prime365 → p17:w6 prime511 → p47:w8 prime120 → p4:w2 prime288 → p56:w4, authentically solved **DEEP**. Independent p55 segment2→p56:w1 authentically solved **END**. Reproducer/report [here](../../im-results/lp2-p55-center-deep-original-wordgraph-and-17key-gate.md), passed Windows CI https://github.com/FlareZ123/liber-primus/actions/runs/44067214282.
+
+**Do not claim plaintext**. All 32 source-key direct and qualified key-skip variants for original p55 76 runes fail native GP-English; source-shaped control recovers76/76 exactly. The 13-rune p0 red heading is another length-selected possible recipient but source MY174 actually addresses **p0:w3** (black text), so consuming its red title needs extra instruction. Exact forward/reverse key word fragments are postselected. The numerical radix60 and XOR opcode are not externally authenticated. Seek an independently visible rule that tells a human why XOR is the right operation and how to use the full key/THEN/HEAD to predict original unknown plaintext, rather than more unconstrained cryptogram fit.
+
+Avoid resweeping original source candidates already tried; this is an exact key-and-clue selection question with inexpensive original controls.
