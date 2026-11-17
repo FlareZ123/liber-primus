@@ -109,8 +109,72 @@ function plainWithOneRetry(ciphertext, at) {
   });
 }
 
+/**
+ * Count every valid 0-or-1 collision-retry path at every rune.
+ * d denotes the cumulative extra prime rows already consumed.
+ * Each extra retry needs exactly one observed predecessor equality at its
+ * rejected proposal, and we require C[i] != C[i-1], so at the first
+ * divergent retry path its plaintext rune necessarily differs.
+ *
+ * @param {number[]} C
+ * @returns {bigint}
+ */
+function countOneSkipPerRune(C) {
+  let current = Array(C.length + 1).fill(0n);
+  current[0] = 1n;
+  for (let i = 1; i < C.length; i++) {
+    const next = Array(C.length + 1).fill(0n);
+    for (let drift = 0; drift < i; drift++) {
+      const ways = current[drift];
+      if (!ways) continue;
+      next[drift] += ways;
+      const before = rows[i + drift];
+      const after = rows[i + drift + 1];
+      assert.notEqual(before, undefined);
+      assert.notEqual(after, undefined);
+      if (C[i] !== C[i - 1] &&
+          mod(C[i] - C[i - 1]) === mod(after - before)) {
+        next[drift + 1] += ways;
+      }
+    }
+    current = next;
+  }
+  return current.reduce((sum, ways) => sum + ways, 0n);
+}
+
+/** Exhaustive independent short-run positive control for the recurrence. */
+function bruteShort(C) {
+  const seen = new Set();
+  function visit(i, drift, plain) {
+    if (i === C.length) {
+      seen.add(plain.join(","));
+      return;
+    }
+    const base = rows[i + drift];
+    plain.push(mod(C[i] - base));
+    visit(i + 1, drift, plain);
+    plain.pop();
+    if (i > 0 && C[i] !== C[i - 1] &&
+        mod(C[i] - C[i - 1]) === mod(rows[i + drift + 1] - base)) {
+      plain.push(mod(C[i - 1] - base));
+      visit(i + 1, drift + 1, plain);
+      plain.pop();
+    }
+  }
+  visit(0, 0, []);
+  return BigInt(seen.size);
+}
+for (const c of [
+  pages[0].indices.slice(0, 8),
+  source.pages.find(p => p.page === 57).indices.slice(0, 8)
+]) {
+  assert.equal(bruteShort(c), countOneSkipPerRune(c),
+    "independent exhaustive 8-rune original-source control");
+}
+
 let eligible = 0;
 let independentPageProduct = 1n;
+let allOneSkipPaths = 1n;
 let originalsEqual = 0;
 const siteCounts = [];
 let firstSite = null;
@@ -148,8 +212,12 @@ for (const page of pages) {
     }
   }
   independentPageProduct *= BigInt(onPage + 1);
+  const pagePaths = countOneSkipPerRune(C);
+  assert(pagePaths >= BigInt(onPage + 1));
+  allOneSkipPaths *= pagePaths;
   siteCounts.push({page: page.page, originalRunes: C.length,
-    oneRetryAlternatives: onPage});
+    oneRetryAlternatives: onPage,
+    dynamicOneRetryPaths: pagePaths.toString()});
 }
 
 assert.equal(originalsEqual, 86);
@@ -160,6 +228,8 @@ assert.deepEqual(firstSite, {
   basePlainGPIndex: 22, alternatePlainGPIndex: 18
 });
 assert.equal(eligible + 1, 453);
+assert.equal(allOneSkipPaths.toString().length, 170);
+assert.equal(allOneSkipPaths.toString(2).length - 1, 562);
 assert.equal(independentPageProduct.toString(),
   "862434223353358438440426765962102288840392704000000");
 
@@ -175,6 +245,8 @@ console.log(JSON.stringify({
   singleSiteSameCiphertextCompleteInputTapes: eligible + 1,
   distinctIndependentPageChoiceTapes: independentPageProduct.toString(),
   ambiguityLowerBoundBits: Math.log2(Number(independentPageProduct)),
+  allLegalZeroOrOneRetryPerRuneTapes: allOneSkipPaths.toString(),
+  dynamicRetryAmbiguityBitsFloor: allOneSkipPaths.toString(2).length - 1,
   oneRetryPositions: eligible,
   firstSite,
   byPage: siteCounts
