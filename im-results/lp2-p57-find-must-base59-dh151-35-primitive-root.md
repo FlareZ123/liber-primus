@@ -75,7 +75,7 @@ Both outputs must equal 21 modulo30, limiting each to **{21,51,81,111,141}**. Th
 
 The [exact algebraic original-input SFT](../sims/lp2_p57_our21_ring120digit_orientation_null_sft.cjs) establishes the identity for **all 400,000** shuffled original arrangements with exact source-retention, distinguishes a single 1-in-5 match from two apparent corroborations, and uses no unknown ciphertext score. This downgrades the `OUR21` exponent clue's independent strength. It does not change the earlier direct consumer negatives or disprove another independently authenticated LP2 DH operation.
 
-## New source-crossing p57 three-clause prime-rank/DH triple (17 November, Agent44)
+## New source-crossing p57 prime-rank/DH triple and 5×5 square (17 November, Agent44)
 
 The previously separate FIND/MUST pair now has a more constrained, still
 **hypothetical**, cross-round connection to the complete solved p57 parable:
@@ -114,6 +114,47 @@ The previously separate FIND/MUST pair now has a more constrained, still
    **107=A**. This closes a source-number → shared-key → original
    ring-index → DH public-share cycle.
 
+### Geometric closure to the solved p56 PAGE word
+
+The **same three clause prime-ordinal addresses**, without inspecting their
+table values, occupy 32×8 grid coordinates **(25,5), (21,5), (25,1)**
+in zero-based row, column order. They are three corners of a **5×5**
+axis-aligned square (rows21–25, columns1–5). Its uniquely determined
+fourth corner is source flat cell **169=(21,1)**, original
+printed token **3m**, which under the *same* proposed base59
+alphabet has value **224**. The genuinely solved p56 text
+uses **PAGE twice** and `GP-prime(PAGE)=224`. This is a
+new cross-page original-word match with no adjustable cell once the
+three prime-rank addresses and the 32×8 grid were selected.
+
+The four literal base59 corner values in printed geometry are:
+
+| | Column1 | Column5 |
+|---|---:|---:|
+| Row21 | **224** = PAGE | **115** = B |
+| Row25 | **73** = K | **75** = (151−1)/2 |
+
+The left minus right column-corner sum is
+`(224+73)−(115+75)=107=A`, exactly the proposed
+21-exponent DH public share. The same table **under base60**
+places value228 at this fourth corner and destroys both the
+PAGE224 and A107 identities. Using `prime rank−1`
+as each index shifts the whole 5×5 square one column left:
+its missing corner is source cell168 with base59 value236,
+and its corresponding column difference is7. Therefore **square
+shape itself does not resolve the mixed-index convention**.
+The corner values add a conditional, source-correct distinction.
+
+This 5×5 geometry gives an inexpensive, human-visible reason to
+reconsider the manuscript's instruction to **shed circumferences**
+and its historically authenticated 2014 magic-square work. No
+original caption explicitly joins the 2013 Parable's **prime
+ordinals** to a 5×5 selection in the 2014 table. The internal
+3×3 block has non-magic unequal row sums, and the original
+76-rune receiver remains unidentified. The extra PAGE / A107
+connections were also discovered retrospectively and cannot
+be treated as independent cryptographic confirmation.
+
 The three exact indexed table values each occur sparsely in the
 unmodified original 256-value base59 multiset: 75 occurs twice, 115
 twice, and 73 once. If both the three **fixed distinct zero-based
@@ -138,7 +179,8 @@ participant-chosen, so historical use of DH does not authenticate this
 nonlinguistic, including the new frozen K73 ring receiver below.
 One original 76-rune plaintext interval with independently identifiable
 meaning or a genuine first-party decoder selector is required before
-promoting the hypothesis.
+promoting the hypothesis. The new square geometry selects a *candidate
+source-sized 5×5 frame*, not a decryption key schedule.
 
 **Reproduction:** [Windows Node22 original-source SFT](../sims/lp2_p57_primeordinal_dh73_source_sft.cjs)
 and [successful manual Windows CI run 44146610169](https://github.com/FlareZ123/liber-primus/actions/runs/44146610169).
@@ -220,6 +262,8 @@ A 38-pair interpretation of p55 as BASE29 public-share integers was also tried w
 
 **Exact original-source observations:** the adjacent base59 FIND/MUST table pair
 at cells150–151; the p57 three-clause GP-prime sums and prime ordinals;
+the source-prime-rank 5×5 square whose missing fourth corner is
+base59 **PAGE=224**, with column-corner difference **A=107**;
 original base59 token values **[75,115,73]** at addresses **[205,173,201]**;
 the 2013 ID3 decimal product and its residue73 modulo256; and a clockwise
 outer-ring cell at offset73 with value107. The proposed full DH exchange
