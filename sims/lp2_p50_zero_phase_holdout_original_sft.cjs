@@ -97,9 +97,84 @@ assert.deepEqual(Object.entries(boundaries).map(([name,s]) => [name,s.events,s.h
     ['within-word/line-break',3,1],
     ['within-word/same-line',60,22]
   ]);
+// Hold every original physical line's duplicate-event count fixed; test the same
+// retrospectively selected source-zero table mask without moving line occupancy.
+const lineGroups=new Map();
+let lineOffset=0,betweenLineEvents=0,betweenLineHits=0;
+let totalEvents=0,totalHits=0;
+for(const page of corpus.pages.filter(p=>p.page<=55&&p.indices.length)){
+  const chars=Array.from(textPages[page.page<50?page.page:page.page-1]);
+  const runes=[];
+  let line=0;
+  for(const ch of chars){
+    if(ch==='/'||ch==='\n')line++;
+    const value=corpus.runes.indexOf(ch);
+    if(value>=0)runes.push({value,line});
+  }
+  assert.deepEqual(runes.map(r=>r.value),page.indices);
+  for(let i=1;i<runes.length;i++){
+    const event=Number(runes[i].value===runes[i-1].value);
+    const hit=Number(zero[(lineOffset+i-1)&255]);
+    totalEvents+=event;totalHits+=event*hit;
+    if(runes[i].line!==runes[i-1].line){
+      betweenLineEvents+=event;
+      betweenLineHits+=event*hit;
+    }else{
+      const name=page.page+'_'+runes[i].line;
+      const group=lineGroups.get(name)||{sites:[],ct:0};
+      group.sites.push(hit);
+      group.ct+=event;
+      lineGroups.set(name,group);
+    }
+  }
+  lineOffset+=runes.length;
+}
+assert.deepEqual([lineOffset,totalEvents,totalHits,betweenLineEvents,betweenLineHits],
+  [12956,86,33,4,1]);
+const occupiedLines=[...lineGroups.values()].filter(g=>g.ct>0);
+assert.equal(occupiedLines.length,79);
+const physicalLineTrials=50000;
+let rng=0x1333301;
+/** @param {number} n @returns {number} */
+function randInt(n){
+  rng^=rng<<13;rng^=rng>>>17;rng^=rng<<5;
+  return (rng>>>0)%n;
+}
+let sumHits=0,sumSquaredHits=0,atLeast=0;
+const sourceSameLineHits=totalHits-betweenLineHits;
+for(let t=0;t<physicalLineTrials;t++){
+  let hits=0;
+  for(const group of occupiedLines){
+    const maskSites=group.sites.slice();
+    for(let i=0;i<group.ct;i++){
+      const k=i+randInt(maskSites.length-i);
+      [maskSites[i],maskSites[k]]=[maskSites[k],maskSites[i]];
+      hits+=maskSites[i];
+    }
+  }
+  sumHits+=hits;sumSquaredHits+=hits*hits;
+  atLeast+=Number(hits>=sourceSameLineHits);
+}
+const conditionalMean=sumHits/physicalLineTrials;
+const conditionalSd=Math.sqrt(sumSquaredHits/physicalLineTrials
+  -conditionalMean*conditionalMean);
+const physicalLineConditional={
+  trials:physicalLineTrials,
+  originalSameLineHits:sourceSameLineHits,
+  sameLineRepeatEvents:totalEvents-betweenLineEvents,
+  heldLineBreakHits:betweenLineHits,
+  heldLineBreakEvents:betweenLineEvents,
+  positiveOriginalLines:occupiedLines.length,
+  conditionalMean,conditionalSd,
+  z:(sourceSameLineHits-conditionalMean)/conditionalSd,
+  upperTail:(atLeast+1)/(physicalLineTrials+1)
+};
+assert.equal(physicalLineConditional.originalSameLineHits,32);
+assert.ok(physicalLineConditional.upperTail<0.002);
 console.log(JSON.stringify({
   overall:score(pairs,0),
   naturalPhase0:{train:phase0.train,heldout:phase0.heldout,trainingRank:10},
   blindPhaseWinner:blind,
-  boundaries
+  boundaries,
+  physicalLineConditional
 },null,2));
