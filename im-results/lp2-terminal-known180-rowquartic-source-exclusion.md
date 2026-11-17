@@ -37,6 +37,39 @@ A single visible pair demonstrates an even stronger degree-independent contradic
 
 These are **necessary-condition obstructions** to recovering the unknown perimeter. They apply even if the row polynomial coefficients are completely unknown and different in every row, and even if one permits polynomial degrees greater than four in the eight contradictory rows. They make no appeal to English word scores or to p55 ciphertext.
 
+## Stronger obstruction: secret affine maps for every column
+
+A row function might plausibly be followed by **another secret operation on each printed column**. The previous simple collision no longer rules that out by itself, because two outputs in different columns may be transformed independently. Test the **strictly larger family**
+
+```text
+Y[r,c] = a[c] * f[r]( X[r,c] ) + b[c] (mod 29),
+X[r,c] = original_table_byte[r,c] mod 29,
+a[c] != 0,
+```
+
+where **every row function `f[r]` is entirely arbitrary**, including unrestricted degree, and all **eight** secret column slopes and offsets are unrestricted except that a slope must be invertible. Such secret per-column affine maps could have masked every one of the eight original raw row collisions. There is no polynomial assumption in this test.
+
+But source rows **3, 9 and 21** (one-based, across the full 32-row printed table) each contain *equal residues* at original columns **3 and 5**. For those three rows, the latent `f[r](X)` is the same within that row, so the two corresponding known plaintext runes must lie on **one globally fixed affine graph** from output column3 to output column5. The three authentic original pairs are:
+
+| Original printed row | Equal-residue source pair (columns3 and5) | Known GP indices, column3 → column5 | Known runes |
+| --- | --- | --- | --- |
+| **3** | `0F` and `1g`, both 15 mod29 | **2 → 9** | **TH → N** |
+| **9** | `0P` and `3J`, both 25 mod29 | **16 → 10** | **T → I** |
+| **21** | `3C` and `1j`, both 18 mod29 | **15 → 4** | **S → R** |
+
+The first **two independently selected original rows** uniquely determine the column-to-column affine map, since 2 and16 are distinct field values:
+
+```text
+slope  = (10 - 9) / (16 - 2) mod29 = 27
+offset = 9 - 27 * 2 mod29          = 13
+third predicted = 27 * 15 + 13 mod29 = 12 (EO)
+third actual    = 4 (R)
+```
+
+Thus **the third authentic row is an exact, withheld algebraic contradiction**. Even entirely unknown secret per-column affine transforms cannot make one arbitrary row function of the GF29 cell value explain the 180 known source outputs. This is stronger than the source quartic exclusion and is independent of p55 unknown ciphertext, GPT word plausibility and high-level plaintext guessing.
+
+A separately planted positive uses **30 independent nonlinear cubic row functions**, with independent nonzero secret slopes and offsets for **each of the eight columns**, over the *same original source cell values*. Its third-row output is predicted exactly by the affine relation recovered from the first two synthetic rows, demonstrating that the discriminator accepts the architecture whenever it is actually generated from such functions. The SFT checks original pairs `[[2,9],[16,10],[15,4]]`, the unique slope/offset, the wrong original prediction **12 ≠ 4**, and the successful secret-key plant.
+
 ## Positive recovery plant
 
 Independently construct one arbitrary degree≤4 polynomial for each of the **same 30 original numeric rows**, compute 180 synthetic known target symbols on the unchanged source-cell residues, and fit each row with the same GF29 inverse. **All 30/30 synthetic rows are consistent.** Exactly **28/30** rows have at least five distinct observed residue coordinates, so five coefficients are uniquely identifiable. On those 28 rows, the recovered coefficients produce the exact **56/56 independently planted** edge values in the original source table's leftmost and rightmost columns. Two repeated-residue rows cannot identify all five coefficients from their six input positions, so the control deliberately avoids claiming their border predictions.
@@ -45,7 +78,7 @@ This validates both the correct row geometry and the inverse's actual ability to
 
 ## Decision and remaining possibilities
 
-Reject the entire model `P[r,c]=f_r(b[r,c] mod29)` over the canonical 30×6 source interior for **every** family of deterministic row-local residue functions, including any secretly keyed quartic. The alternative radix59 remains impossible in six rows. The more specific quartic failure already holds at 28/30 rows, so neither polynomial interpolation nor a search over secret coefficients can salvage it.
+Reject the row-local residue model `P[r,c]=f_r(b[r,c] mod29)` in the fixed source interior, for **every** deterministic row function, including secretly keyed quartics. Even its **more permissive secret per-column affine extension** fails the source-selected three-row contradiction above; additional polynomial coefficient searches cannot salvage it. The alternate radix59 table remains impossible under unadjusted row functions in six interior rows. These exclusions do not apply to mappings with arbitrary unknown secret per-column substitutions or source-chosen position-dependent input states.
 
 The result does **not** exclude the source table as a **keystream**, byte-sensitive decoder, nonlocal code, field extension, position-dependent stateful cipher, or a differently ordered alignment selected by an independent original clue. The manuscript has not established that the perimeter contains p55 plaintext at all. Future dependent work should first identify an author-specified map between table cells and terminal runes, and a transform using more information than the row-local GF29 residue alone. Arbitrary row-specific exceptions would destroy this model's decisive plaintext prediction and are unwarranted.
 
