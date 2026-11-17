@@ -502,6 +502,27 @@ The original p55 suffix IoC is **0.0385586**; clear p57 is **0.0627100**. All fo
 
 **Decision:** this closes only the direct page-local Hill-3 interpretation of the central 3×3, under the candidate base-59 square and the four standard matrix conventions. It does not disprove a different use of the square, a source-selected chapter-wide state, or a different cipher. The major missing premise remains that no surviving first-party instruction selects base59, the mixed rank/index convention, a Hill cipher, or a reset at the 75-rune p55 suffix. Do not expand into rotations, arbitrary row/column permutations, padding, F-mask fitting, or new offsets without such a selector.
 
+## Composite 2013 title ARC4 → central 3×3 Hill-3: bounded second-layer gate (Agent16, 17 November)
+
+A plausible source-motivated composition is to apply the exact historical OutGuess 0.4 ARC4-to-GP29 intermediate already reported in `lp2-p55-instar2013-outguess-arc4-rune-source-gate.md`, then apply the central 3×3 Hill-3 key selected by the candidate 5×5 frame and the p57 “shed circumferences” wording. This tests one fixed two-step path; it does not authorize a search over other second layers.
+
+First stage: use the 2013 `761.MP3` title `The Instar Emergence`, OutGuess's `MD5("Encryption" || UTF8(password))` key derivation and its original ARC4 state schedule, then subtract each byte modulo29 from the original 76 p55 rune indices. The implementation reproduces Agent25's fixed first ten intermediate GP indices **[26,8,0,6,3,6,8,24,9,0]** and full-page IoC **0.0547368**. Keep the same page-local stream and remove the first **NG** carry rune, leaving 75 runes.
+
+Second stage: apply the central 3×3 matrix and inverse already given above, with the four standard Hill-3 direction conventions. The four outputs are:
+
+| Decode matrix | Multiplication | Composite-output IoC |
+|---|---|---:|
+| K inverse | left | 0.0320721 |
+| K inverse | right | 0.0342342 |
+| K | left | 0.0302703 |
+| K | right | 0.0331532 |
+
+All four outputs remain nonlinguistic GP29 sequences. Each exactly re-encrypts to the 75-rune ARC4 intermediate, and a clear p57 75-rune plant passes through the same two-layer encode/decode in every convention. The ARC4 intermediate's 75-rune body IoC is **0.0558559**; clear p57 IoC is **0.0627100**. Thus the Hill-3 layer removes rather than resolves the unusual first-stage coincidence.
+
+**Decision:** the exact OutGuess-title ARC4 intermediate followed by the literal central-3×3 Hill-3 receiver is negative on original p55. This closes only these four composite conventions, conditional on the candidate base59 square, rank/index choices, ARC4 page reset and 75-rune boundary. It does not prove the ARC4 intermediate is meaningless or exclude a different authored consumer; it supplies no plaintext. Do not continue with arbitrary Hill key permutations, rotations, extra F masks, or new second layers without an independent first-party selector.
+
+Reproduction is consolidated in [the inner-3×3 SFT](../sims/lp2_p57_circumference_inner3x3_p55_hill_sft.cjs), which runs both the raw-p55 and ARC4-then-Hill-3 gates.
+
 ## The 76-cell outer ring as a p55 permutation: bounded receiver test
 
 The original p50 outer rectangular ring and original p55 page both contain **76** items, making a direct transposition a natural alternative to the already failed additive receiver. Under the candidate base59 reading, the clockwise ring contains **68 distinct values**; reducing its values modulo 76 produces only **47 distinct residues**, so it cannot directly define a 76-position bijection.
