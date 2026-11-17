@@ -69,7 +69,6 @@ for (let p = 0; p <= 55; p++) {
 }
 assert.equal(original.length, 12956);
 assert.equal(boundaries.filter(Boolean).length, 2896);
-assert.equal(original.filter((x) => x === 0).length, 0 + original.filter((x) => x === 0).length);
 const chapters = [729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308];
 assert.equal(chapters.reduce((a, b) => a + b, 0), original.length);
 const chapterByRune = [];
@@ -221,7 +220,7 @@ for (let i = 0; i < solved56.length; i++) {
   }
 }
 assert.equal(pIndex, 84);
-assert.equal(recovered56.slice(0, 11).map((i) => book.translit[i]).join(""), "ANENDWITHIN");
+assert.equal(recovered56.slice(0, 10).map((i) => book.translit[i]).join(""), "ANENDWITHIN");
 
 const output = [];
 for (const reset of ["global", "chapter", "page"]) {
@@ -277,7 +276,7 @@ console.log(JSON.stringify({
   modelScope: "No state-changing repair, no secret event mask, no per-position free alphabet",
   expectedOriginalRunes: 12956, originalPrintedWords: 2896, phaseCount: 256,
   originalCorpusSHA256: corpusHash, independentSourceNativeReference: "Gibran The Prophet",
-  originalP56TotientPositive: recovered56.slice(0, 11).map((i) => book.translit[i]).join(""),
+  originalP56TotientPositive: recovered56.slice(0, 10).map((i) => book.translit[i]).join(""),
   nativeP57BijectivePlantRecovered: 95,
   results: output
 }, null, 2));
