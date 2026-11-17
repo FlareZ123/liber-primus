@@ -3,7 +3,8 @@
 /**
  * Bounded source-derived test of the original Stage11 133/331 and p0 E=67
  * arithmetic cross-reference as a possible RSA key for the original p50
- * 32x8 numeric table, followed by a repeating GP29 additive-key use.
+ * 32x8 numeric table, followed by a repeating GP29 additive-key use. It tests
+ * row-major and the single red-heading-selected reverse-column-major order.
  *
  * This is a hypothesis test, not an assertion that the HTML numbers are RSA
  * parameters or that the p50 table is RSA ciphertext.
@@ -262,6 +263,7 @@ for (const hypothesis of hypotheses) {
       "The planted p57 dictionary coverage must remain reachable");
 
     results.push({
+      order: "row-major",
       hypothesis: hypothesis.name,
       keyLength: hypothesis.key.length,
       sign,
@@ -271,9 +273,82 @@ for (const hypothesis of hypotheses) {
   }
 }
 
+
+ // One source-motivated transposition, not a permutation search:
+ // 347-315=32, the original table has 32 rows, and modulo 256 the two red
+ // heading sums land in the same row in adjacent columns under column-major
+ // indexing. Their printed order (347 then 315) selects descending columns.
+ const columnMajorValues = Array.from({length: 8}, (_, col) =>
+   grid.byte_rows.map(row => row[col])
+ ).flat();
+ const reverseColumnMajorValues = columnMajorValues.slice().reverse();
+ const redHeadingSums = [347, 315];
+ const redHeadingColumnMajorAddresses = redHeadingSums.map(sum => {
+   const index0 = sum % 256;
+   const row0 = index0 % 32;
+   const col0 = Math.floor(index0 / 32);
+   return {
+     sum, index0, row0, col0,
+     columnMajorByte: columnMajorValues[index0],
+     reverseColumnMajorPhase0: 255 - index0
+   };
+ });
+ assert.deepEqual(
+   redHeadingColumnMajorAddresses.map(({row0, col0}) => [row0, col0]),
+   [[27, 2], [27, 1]]
+ );
+ assert.equal(
+   redHeadingColumnMajorAddresses[0].index0 - redHeadingColumnMajorAddresses[1].index0,
+   32
+ );
+ assert.deepEqual(
+   redHeadingColumnMajorAddresses.map(x => x.reverseColumnMajorPhase0),
+   [164, 196]
+ );
+
+ const reverseColumnMajorDecoded = reverseColumnMajorValues.map(value =>
+   powmod(value, D, N)
+ );
+ const reverseColumnMajorKey256 = reverseColumnMajorDecoded.map(value => value % 29);
+ const reverseColumnMajorKey512 = reverseColumnMajorDecoded.flatMap(value => [
+   Math.floor(value / 29), value % 29
+ ]);
+ const reverseColumnMajorHypotheses = [
+   {name: "one-symbol-per-cell m-mod29", key: reverseColumnMajorKey256},
+   {name: "padded-base29 m high-digit then low-digit", key: reverseColumnMajorKey512}
+ ];
+ for (const hypothesis of reverseColumnMajorHypotheses) {
+   for (const sign of [-1, 1]) {
+     const original = decodeDP(bodyWords, hypothesis.key, sign);
+     assert.equal(original.survivingOffsets, 0,
+       "No full original inverse should survive heading-selected reverse-column-major order");
+     const plantedCipher = encryptWords(p57Words, hypothesis.key, sign);
+     const plant = decodeDP(plantedCipher, hypothesis.key, sign);
+     assert.equal(plant.firstDeadWord, -1,
+       "F-transparent inverse must retain reverse-column-major planted p57 path");
+     assert(plant.bestCoverage >= p57ExpectedCoverage,
+       "Reverse-column-major planted p57 dictionary coverage must remain reachable");
+     results.push({
+       order: "reverse-column-major (32-row stride; red-heading direction)",
+       hypothesis: hypothesis.name,
+       keyLength: hypothesis.key.length,
+       sign,
+       original,
+       p57Plant: plant
+     });
+   }
+ }
+
+ const reverseColumnMajorAsciiPrintable = reverseColumnMajorDecoded.filter(
+   x => x >= 32 && x <= 126
+ ).length;
+ const reverseColumnMajorByteRange = reverseColumnMajorDecoded.filter(
+   x => x <= 255
+ ).length;
+
 console.log(JSON.stringify({
   source: "original LP2 transcription, canonical GP29 corpus, original p50 base60 grid",
-  hypothesis: "RSA private operation c^67 mod331 on each p50 table cell; use result as repeating GP29 additive key",
+  hypothesis: "RSA private operation c^67 mod331 on p50 table bytes; test row-major and red-heading-selected reverse-column-major orders as repeating GP29 additive keys",
   arithmetic: {publicExponent: E, modulus: N, privateExponent: D, inverseCheck: (E * D) % (N - 1)},
   sourceShape: {
     originalRunes: parsed.runeCount,
@@ -283,12 +358,17 @@ console.log(JSON.stringify({
     testedBlackBodyRunes: 12943,
     testedBlackBodyWords: 2894,
     p50TableShape: "32x8",
+    redHeadingPrimeSums: redHeadingSums,
+    redHeadingColumnMajorAddresses,
     p50TableCells: tableValues.length,
     p50CellRange: [Math.min(...tableValues), Math.max(...tableValues)]
   },
   rsaOutputRange: [Math.min(...rsaDecoded), Math.max(...rsaDecoded)],
   directAsciiPrintable,
   directByteRange,
+  reverseColumnMajorRsaOutputRange: [Math.min(...reverseColumnMajorDecoded), Math.max(...reverseColumnMajorDecoded)],
+  reverseColumnMajorAsciiPrintable,
+  reverseColumnMajorByteRange,
   dictionaryWords: dictionary.size,
   p57Plant: {words: p57Words.length, runes: 95, dictionaryCoverage: p57ExpectedCoverage},
   results
