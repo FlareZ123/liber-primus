@@ -89,6 +89,50 @@ const chapterEndpointCounts = chapterWordCounts.map((count, i) => {
   };
 });
 assert.equal(offset, words.length);
+/**
+ * For any source-visible chapter, greedily extend each constant-zero
+ * run until adding the next multi-digit word would cover all 29 rune
+ * identities. Any longer run is impossible; the greedy cut is optimal
+ * because every shorter valid prefix leaves a superset of remaining words.
+ *
+ * @param {number[][]} tokens
+ * @param {"first"|"last"} side
+ * @returns {number}
+ */
+function minimalDigitRuns(tokens, side) {
+  let runs = 0;
+  let symbols = new Set();
+  for (const word of tokens) {
+    if (word.length === 1) continue;
+    const glyph = side === "first" ? word[0] : word[word.length - 1];
+    if (symbols.size === 28 && !symbols.has(glyph)) {
+      runs++;
+      symbols = new Set();
+    }
+    symbols.add(glyph);
+  }
+  if (symbols.size) runs++;
+  return runs;
+}
+offset = 0;
+const minimumRunsPerChapter = chapterWordCounts.map(count => {
+  const part = words.slice(offset, offset + count);
+  offset += count;
+  return {
+    bigEndian: minimalDigitRuns(part, "first"),
+    littleEndian: minimalDigitRuns(part, "last")
+  };
+});
+assert.deepEqual(minimumRunsPerChapter.map(x => x.bigEndian),
+  [2, 3, 4, 4, 2, 3, 3, 5, 1]);
+assert.deepEqual(minimumRunsPerChapter.map(x => x.littleEndian),
+  [2, 3, 4, 4, 3, 3, 4, 7, 1]);
+const requiredBigEndianRuns = minimumRunsPerChapter.reduce(
+  (sum, x) => sum + x.bigEndian, 0);
+const requiredLittleEndianRuns = minimumRunsPerChapter.reduce(
+  (sum, x) => sum + x.littleEndian, 0);
+assert.equal(requiredBigEndianRuns, 27);
+assert.equal(requiredLittleEndianRuns, 31);
 console.log(JSON.stringify({
   classification: "conditional exact impossible, no plaintext",
   source: {runes: original.length, printedWords: words.length,
@@ -100,5 +144,10 @@ console.log(JSON.stringify({
   zeroEligibleSymbolCountForAnyStationaryUnknownBijection: 0,
   chapterEndpointCounts,
   independentlyForcedContradictoryChapters: 8,
+  minimumRunsPerChapter,
+  minimumStationaryDigitAlphabetRunsWithChapterResets: {
+    bigEndian: requiredBigEndianRuns,
+    littleEndian: requiredLittleEndianRuns
+  },
   statement: "Eight of nine original visual chapters individually contain all 29 rune identities at both multi-digit endpoints. Even allowing an independent secret rune-to-digit alphabet for each chapter fails for those eight chapters, in both directions."
 }, null, 2));
