@@ -243,9 +243,9 @@ const reversedTransparent = reversedKnown.map(reference => ({
   name: reference.name, ...longestTransparentF(original, reference.values)
 }));
 assert.deepEqual(reversedObserved.map(row => row.length),
-  [16, 14, 16, 16, 15, 16, 16, 15, 15, 15, 15, 14, 13, 12, 16, 15]);
+  [16, 14, 16, 16, 15, 16, 16, 15, 15, 15, 15, 15, 14, 13, 12, 16]);
 assert.deepEqual(reversedTransparent.map(row => row.length),
-  [16, 14, 16, 16, 15, 16, 14, 14, 15, 15, 14, 14, 13, 12, 15, 15]);
+  [16, 14, 16, 16, 15, 16, 14, 15, 15, 14, 15, 15, 14, 13, 12, 15]);
 const sourceOffsets = [];
 let cursor = 0;
 for (const page of pages) {
