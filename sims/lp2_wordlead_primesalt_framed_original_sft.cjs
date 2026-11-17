@@ -70,9 +70,21 @@ assert.deepEqual(recovered,words);
 assert.equal(reprint(original,recovered),original);
 const vocabulary=new Map();
 for(const file of ["resources/control/shakespeare_first300k.txt",
-                   "resources/control/gibran_prophet_58585.txt"]){
+                   "resources/control/gibran_prophet_58585.txt",
+                   "resources/control/emerson_essays_2944.txt"]){
   for(const w of read(file).match(/[A-Za-z]+/g)||[]){
     const x=encodeSourceNativeGP(w);
+    if(x.length>=1&&x.length<=13){
+      if(!vocabulary.has(x.length))vocabulary.set(x.length,[]);
+      vocabulary.get(x.length).push(x);
+    }
+  }
+}
+// Add the independently pinned high-coverage TextBlob/wordfreq dictionary.
+for(const line of read("resources/control/english_wordfreq_textblob.txt").split(/\r?\n/)){
+  const match=/^([a-z]+)\s+\d+$/.exec(line);
+  if(match){
+    const x=encodeSourceNativeGP(match[1]);
     if(x.length>=1&&x.length<=13){
       if(!vocabulary.has(x.length))vocabulary.set(x.length,[]);
       vocabulary.get(x.length).push(x);
@@ -146,6 +158,7 @@ console.log(JSON.stringify({
   nonceOnlyWords:plain.filter(w=>w.length===0).length,
   originalNormalizedIoC:normalizedIoc(plain.flat()),
   nativePositiveNormalizedIoC:normalizedIoc(native.flat()),
+  expandedGPVocabularyUniqueTypes:lex.size,
   originalNativeVocabularyHits:hits,
   originalFivePlusRuneWordHits:longHits,
   originalFivePlusRuneWords:longPlain.length,
