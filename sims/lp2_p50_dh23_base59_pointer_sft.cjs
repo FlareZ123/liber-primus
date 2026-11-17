@@ -105,6 +105,40 @@ assert.deepEqual(zeroBracket, [
   76,127,21,57,175,6,61,70,150,251,84,142,
   219,148,59,58,52,51,151,68,52,73,249,144
 ]);
+
+// One closed original-cipher receiver using ONLY the source's DH
+// modular exponentiation operation: treat each of the 36 bracket byte
+// values as exponent and compute K=5^byte mod23. Apply one continuous
+// 36-position cyclic additive GP29 inverse to the adjacent complete
+// 170-rune p51+early-p52 post-table original sentence. No key fitting.
+const dhKey36=zeroBracket.map(v=>powMod(historicalDH.base,v,historicalDH.p));
+assert.equal(dhKey36.length,36);
+assert.deepEqual(dhKey36,[5,20,5,1,20,15,10,1,16,22,2,6,
+  9,15,14,21,14,8,15,4,6,11,6,9,14,3,19,13,16,17,7,2,16,17,17,18]);
+const gpmod=v=>(v%29+29)%29;
+const posttable=corpus.pages[51].indices.concat(corpus.pages[52].indices.slice(0,78));
+assert.equal(posttable.length,170);
+const terminal=corpus.pages[54].indices.concat(corpus.pages[55].indices);
+assert.equal(terminal.length,308);
+const decrypt=(arr)=>arr.map((v,i)=>gpmod(v-dhKey36[i%36]));
+const encrypt=(arr)=>arr.map((v,i)=>gpmod(v+dhKey36[i%36]));
+const symbolIoc=(arr)=>{
+  const h=Array(29).fill(0);arr.forEach(v=>h[v]++);
+  return h.reduce((acc,c)=>acc+c*(c-1),0)/(arr.length*(arr.length-1));
+};
+const postPlain=decrypt(posttable),terminalPlain=decrypt(terminal);
+assert.deepEqual(encrypt(postPlain),posttable);
+assert.deepEqual(encrypt(terminalPlain),terminal);
+// Solved p57 is an actual 95-rune GP-native positive with an unknown
+// posttable plaintext response. The plant checks full inverse validity.
+const clear95=corpus.pages[57].indices;
+assert.equal(clear95.length,95);
+assert.deepEqual(decrypt(encrypt(clear95)),clear95);
+assert.equal(symbolIoc(postPlain),0.033275321963104766);
+assert.equal(symbolIoc(terminalPlain),0.03462498413638479);
+// Both unchanged unknown original outputs remain near uniform 1/29;
+// an independently chosen external source key/clock would be needed.
+
 // Alternative normal one-based row/column interpretations fail this link.
 assert.equal(base60[(23-1)*8+(5-1)],144);
 assert.equal(base60[(23-1)*8+5],40);
@@ -198,7 +232,9 @@ process.stdout.write(JSON.stringify({
   status: 'source-conditional structure only; NO UNKNOWN PLAINTEXT',
   base60SignedDHToFirstZero: {fromIndex: 189, printed: '3C', firstZeroIndex: 192,
     secondZeroIndex: 229, bracketLength: zeroBracket.length,
-    p39RedDoubleRoot: p39Root, requiresZeroBasedCoordinates: true},
+    p39RedDoubleRoot: p39Root, requiresZeroBasedCoordinates: true,
+    dhExponentKeyPosttableIoC: symbolIoc(postPlain),
+    dhExponentKeyHeldoutIoC: symbolIoc(terminalPlain)},
   radix: 59,
   selfPointingCell: 189,
   originalToken: '3C',
