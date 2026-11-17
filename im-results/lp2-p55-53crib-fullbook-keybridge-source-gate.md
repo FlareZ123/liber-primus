@@ -33,6 +33,19 @@ There is **zero** complete 53-rune affine donor match over every possible window
 
 **This result is conditional on a combined plaintext assumption that remains unverified**. It excludes the tested elementary recurrent/reused-key programs as a path from these two guesses to the missing 23 original p55 rune values. A different external or nonlinear pad remains possible.
 
+## Independent single-crib necessary constraints
+
+The combined 53-symbol test originally required two unrelated historical plaintext guesses to be simultaneously true. To remove that weakest joint premise, the same all-secret permutation source donor test also executes against **each source-linked passage separately**, preserving its own authentic p55 ciphertext positions. Under the direct GP29 key register the historical ENLIGHTENMENT phrase supplies its **23 known key symbols** alone; the LP1 moth-linked TOTIENT phrase supplies its independent **30 known key symbols** alone. The differential register uses the true preceding ciphertext value at the start of each fragment, not an inferred plaintext predecessor. Every source pool, every start, both text directions and every arbitrary bijective substitution are tested without the other provisional phrase.
+
+| Single historically proposed crib only | Maximum all-secret source-compatible prefix | Full crib matches, nine donor pools × two read directions |
+| --- | ---: | ---: |
+| ENLIGHTENMENT AWAITS THOSE, 23 runes, direct additive | **11/23** | **0** |
+| ENLIGHTENMENT AWAITS THOSE, 23 runes, cipher difference | **11/23** | **0** |
+| THE TOTIENT FUNCTION IS SACRED ALL THINGS, 30 runes, direct additive | **13/30** | **0** |
+| THE TOTIENT FUNCTION IS SACRED ALL THINGS, 30 runes, cipher difference | **15/30** | **0** |
+
+Thus even **either hypothetical passage alone** is inconsistent with *any single arbitrary static GP29 permutation of any selected first-party running-key donor*, under the two declared source/ciphertext registers. This makes the key-donor exclusion independent of the dubious concatenated 53-rune sentence. It does not establish that either guessed plaintext is false, and it cannot exclude a source-key with advancing permutation, different key generation or nonlinear state.
+
 ## Positive: exact previously hidden source-rune recovery
 
 The [standalone Windows Node22 CommonJS reproducer](../sims/lp2_p55_53crib_fullbook_keybridge_sft.cjs) uses 76 genuinely solved p57 runes as **native test plaintext** under both direct and differential key systems.
@@ -46,4 +59,4 @@ All three positive cases work in both tested key registers. The original p55 sou
 
 ## Decision
 
-The historical 23-rune guess and the independent LP1 moth-linked 30-rune guess can be jointly treated as a large hypothetical crib, but they **do not recover any unknown p55 plaintext** through a source-native low-order GF29 recurrence or through any registered original LP1/LP2 or dated first-party signed-message source as a running key, even after granting an **arbitrary secret global GP29 alphabet permutation** and reversal. Additional material must first independently establish these plain segments or furnish a specific external key. Do not fit order27 coefficients to the entire 53-symbol guess and call its automatically reproducible output a key discovery.
+The historical 23-rune guess and the independent LP1 moth-linked 30-rune guess are unverified plaintext hypotheses. Their **combined 53-rune** derived key cannot be extended by a low-order GF29 recurrence; **each single crib separately** also fails every original LP1/LP2 and dated first-party signed-source running-key donor, despite granting an arbitrary secret global GP29 alphabet permutation and reversal. No authentic unknown p55 plaintext or original key is recovered. Additional material must first independently establish these plain segments or furnish a specific external key. Do not fit order27 coefficients to the entire 53-symbol guess and call its automatically reproducible output a key discovery.
