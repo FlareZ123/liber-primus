@@ -78,6 +78,45 @@ assert.deepEqual(printedWords(sections.at(-3)).slice(-2).map(w => w.length), [3,
 const key = tail55.map((cipher, i) => mod(cipher - phrase[i]));
 assert.deepEqual(key, [20, 10, 26, 14, 11, 1]);
 
+// A distinct source-selected attempt to OBTAIN the same key, without using
+// the unknown p55 plaintext: treat the six GP primes 7,3,11,7,19,29 as
+// clockwise hop lengths on the genuine original 32x8 / 76-cell circumference.
+// One byte per outgoing hop, or one summed residue per arc, yields six values.
+const table = JSON.parse(fs.readFileSync(path.join(base, 'base60-grid.json'), 'utf8'));
+assert.equal(table.rows.length, 32);
+assert.ok(table.rows.every(row => row.length === 8));
+const tableBytes = table.rows.flat().map(token =>
+  60 * table.alphabet.indexOf(token[0]) + table.alphabet.indexOf(token[1]));
+assert.equal(tableBytes.length, 256);
+const ring = [];
+for (let col = 0; col < 8; col++) ring.push(col);
+for (let row = 1; row < 32; row++) ring.push(row * 8 + 7);
+for (let col = 6; col >= 0; col--) ring.push(31 * 8 + col);
+for (let row = 30; row >= 1; row--) ring.push(row * 8);
+assert.equal(ring.length, 76);
+assert.equal(new Set(ring).size, 76);
+const rim = ring.map(i => tableBytes[i]);
+const departure = [];
+const arcChecks = [];
+let at = 0;
+for (const size of primeParts) {
+  departure.push(at);
+  arcChecks.push(mod(rim.slice(at, at + size).reduce((a, b) => a + b, 0)));
+  at += size;
+}
+assert.equal(at, 76);
+const departureKey = departure.map(i => rim[i] % 29);
+assert.deepEqual(departure, [0, 7, 10, 21, 28, 47]);
+assert.deepEqual(departureKey, [0, 9, 17, 10, 18, 19]);
+assert.deepEqual(arcChecks, [0, 18, 28, 22, 15, 6]);
+assert.equal(departureKey.filter((x, i) => x === key[i]).length, 0);
+assert.equal(arcChecks.filter((x, i) => x === key[i]).length, 0);
+// Source-length positive: a genuine six-byte key written at the original
+// six prime-hop cells would be extracted exactly by the same source reader.
+const plantedRim = rim.slice();
+for (let i = 0; i < key.length; i++) plantedRim[departure[i]] = key[i];
+assert.deepEqual(departure.map(i => plantedRim[i] % 29), key);
+
 /**
  * Invert with the authentic solved-LP1 plaintext-F transparency semantics.
  * A ciphertext F may be literal unencrypted F (no key use), or encryption
@@ -195,7 +234,12 @@ console.log(JSON.stringify({
     p55Runes: p55.length, p50BorderCells: 76,
     sourceBookendP55Local70: tail55.map(i => corpus.translit[i]).join(' '),
     sourceBookendP27Local28: echo27.map(i => corpus.translit[i]).join(' '),
-    hypothesizedSixKey: key
+    hypothesizedSixKey: key,
+    clockwisePrimeArcLengths: primeParts,
+    tablePrimeHopPositions: departure,
+    originalTableDepartureKey: departureKey,
+    originalTableArcSums: arcChecks,
+    plantedHopKeyRecovered: true
   },
   clearP57IoC: ioc(page(57)), original
 }, null, 2));
