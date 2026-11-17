@@ -56,12 +56,26 @@ for (const {name, symbols, expectedSum} of variants) {
   assert.equal(sum % 3, 0);
   const orders = [bytes, columnMajor(bytes), Buffer.from(bytes).reverse()];
   for (const order of orders) assert.equal(moduloThree(order), 0n);
+  const nestedBlocks = [64, 128, 256].map(blockSize => {
+    const residues = [];
+    for (let offset = 0; offset < 256; offset += blockSize) {
+      const block = bytes.subarray(offset, offset + blockSize);
+      const blockSum = [...block].reduce((a, b) => a + b, 0);
+      residues.push({sum: blockSum, mod3: blockSum % 3});
+      assert.equal(moduloThree(block), BigInt(blockSum % 3));
+    }
+    return {byteBlockSize: blockSize, blocks: residues};
+  });
+  if (name === 'base59-without-f') {
+    assert.ok(nestedBlocks.every(row => row.blocks.every(b => b.mod3 === 0)));
+  }
   console.log(JSON.stringify({
     source: 'original LP2 physical pages 49–51 / 256 printed cells',
     reading: name,
     byteCount: bytes.length,
     byteSum: sum,
     byteSumMod3: sum % 3,
+    nestedBlocks,
     observedWholeIntegerMod3: String(moduloThree(bytes)),
     allBytePermutations: 'N mod 3 = byteSum mod 3 = 0 (256 ≡ 1 mod 3)',
     rsa2048Modulus: 'impossible as a product of two large primes',
