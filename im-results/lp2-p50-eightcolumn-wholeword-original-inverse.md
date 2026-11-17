@@ -19,11 +19,11 @@ The source parser reproduces the independently established **12,956 original run
 | Best mode | Each-chapter column-filled to row-reading; reverse columns and snake |
 | Next-highest mode | Global column-filled to row-reading; reverse columns and snake, **0.0236867815** |
 | Matched chapter-within word-length shuffles | **600** |
-| Null mean maximum over the same 16 modes | **0.0262125690** |
-| Null 95th/99th percentiles of maximum | **0.0294677192 / 0.0315597574** |
-| Familywise empirical upper-tail probability | **0.44592346** |
+| Null mean maximum over the same 16 modes | **0.0264441522** |
+| Null 95th/99th percentiles of maximum | **0.0294848502 / 0.0308214963** |
+| Familywise empirical upper-tail probability | **0.54242928** |
 
-The null reuses exactly the original nine word-length multisets, shuffles independently within each real chapter and reruns all 16 candidates, using a fixed xorshift32 seed. This is a matched maximum-over-menu test; the best original increase over its untransformed value is a statistically ordinary result **even after selecting the most favorable traversal**. English control words are independently transliterated into GP29-length units. The committed SFT includes ten invertible 2,896-word native-Gibran plant tests, checking exact restoration under two modes and positive native length MI; do not assert their remote pass until the queued workflow completes.
+The null reuses exactly the original nine word-length multisets, shuffles independently within each real chapter and reruns all 16 candidates, using a fixed xorshift32 seed. This is a matched maximum-over-menu test; the best original increase over its untransformed value is a statistically ordinary result **even after selecting the most favorable traversal**. English control words are independently transliterated into GP29-length units. The committed SFT was **executed directly in a V8 harness against exact fetched GitHub file bytes**; all assertions passed. Its ten independently chosen 2,896-word native-Gibran plant tests passed exact restoration under two modes: original plaintext MI 0.05288–0.06085, encrypted MI 0.01677–0.02445, and restored MI exactly equals the planted plaintext MI. A separate GitHub Actions Node22 run was queued at initial report; do not assert its remote pass until completion.
 
 ## Cryptanalytic decision
 
