@@ -4,7 +4,7 @@
 
 ## Original publication envelope
 
-The original Twitter status `684596461628223488` (account `@1231507051321`) carries a Snowflake publication time **2016-01-06 04:44:50.296 UTC**, equivalent to **5 January in the US Pacific time zone**. A modern Twitter-profile mirror displays the visible tweet body as only `infotomb.com/4gq25.jpg`. Participants independently recorded that exact URL and the OutGuess extraction by 2016-01-06 08:40:27 UTC. The original tweet/InfoTomb HTTP response bytes were not located. A contemporaneous January 7 4chan post also preserves a `4gq25.jpg` image attachment, 563×569 pixels; its raw bytes have not been compared. This publication-level witness supplies no additional authorial LP2 cipher or key selector. [Original tweet / InfoTomb source-envelope decision](../im-results/2016-tweet-infotomb-publication-envelope.md).
+The original Twitter status `684596461628223488` (account `@1231507051321`) carries a Snowflake publication time **2016-01-06 04:44:50.296 UTC**, equivalent to **5 January in the US Pacific time zone**. A modern Twitter-profile mirror displays the visible tweet body as only `infotomb.com/4gq25.jpg`. Participants independently recorded that exact URL and the OutGuess extraction by 2016-01-06 08:40:27 UTC. The original tweet/InfoTomb HTTP response bytes were not located. A contemporaneous January 7 4chan post also preserves a `4gq25.jpg` image attachment, 563×569 pixels. The currently accessible Imgur repost is byte-distinct from the canonical carrier but independently recovers the *identical* 1,136-byte authenticated OutGuess message; the 2016 4chan upload's original on-wire bytes remain unrecovered. This publication-level witness supplies no additional authorial LP2 cipher or key selector. [Original tweet / InfoTomb source-envelope decision](../im-results/2016-tweet-infotomb-publication-envelope.md).
 
 ## Image
 
@@ -15,6 +15,12 @@ The original Twitter status `684596461628223488` (account `@1231507051321`) carr
 - JPEG structure: 563×569 pixels, 8-bit, three components; JFIF APP0 only. No EXIF APP1 or JPEG COM segment was present. The EOI marker is at byte offset 26,340, with zero trailing bytes.
 - The raster shows the signed text over a faint leafless tree. The pixels do not establish the tree species or location.
 - The header/metadata check does **not** test OutGuess's DCT-coefficient payload; that is a separate steganographic channel.
+
+### Independent January 2016 repost carrier, byte-variant positive (17 November 2026)
+
+The [7 January 2016 /x/ post 17184052](https://4chanarchives.com/board/x/thread/17183963/post-all-your-cicada-3301-clues-here) links `https://i.imgur.com/6yfjB9k.jpg`. A direct 17 November 2026 HTTP 200 `image/jpeg` response returned **23,975 bytes**, SHA-256 `6dffc48b8672f03034dc6e3c17985ecdb7096d0686a77d74172f7629b687b39e`, contrasting with the preserved primary image's **26,342 bytes**, SHA-256 `a8340ad04b83fb3130e7ed9172867a440812e87089d6aa2b932d97c6ae38aebe`. The two JPEG byte streams demonstrably differ; the live Imgur response is **not** established to be the unmodified image originally attached in 2016.
+
+The pinned OutGuess 0.4 extractor, built from commit `24810e14327c2bbeedeaadd3e24491f2a4425c02`, independently retrieved from this byte-distinct Imgur image **seed 230, length 1,136** and recovered an output with SHA-256 `fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010`, **exactly identical** to the canonical signed extraction already GPG-verified. This is a separate contemporary repost-path carrier of **the same authenticated first-layer message**, without an extra first-layer key or plaintext. It does not establish byte fidelity to the original InfoTomb server, 4chan attachment, or any other hidden steganographic channel. [Single-file source witness/OutGuess gate](../sims/lp2_2016_4chan_original_carrier_variant_sft.cjs) · [successful pinned Linux source run](https://github.com/FlareZ123/liber-primus/actions/runs/44112529129).
 
 ## Extracted OutGuess payload
 

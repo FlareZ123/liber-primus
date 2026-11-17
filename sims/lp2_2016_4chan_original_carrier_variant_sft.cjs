@@ -83,7 +83,9 @@ const jpeg = (bytes) => bytes.length > 1000 &&
     if (jpeg(bytes)) {
       result.decision = bytes.equals(original)
         ? '2016 repost exactly repeats the canonical already-extracted image; no additional carrier'
-        : 'A distinct JPEG exists: retain bytes and test the preserved original OutGuess extraction separately';
+        : (result.outguess?.exact_signed_payload
+          ? 'Byte-distinct repost gives the exact authentic 1136-byte OutGuess signature payload; no new first-layer message'
+          : 'Distinct JPEG detected, with no verified new signed message under the exact unkeyed OutGuess extraction');
     } else {
       result.decision = 'No valid JPEG recovered; archival witness metadata cannot establish actual carrier bytes';
     }
