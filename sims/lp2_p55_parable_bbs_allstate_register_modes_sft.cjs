@@ -5,12 +5,12 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { buildSourceNativeTrigramModel } = require('./lp1_source_native_trigram_model.cjs');
+const { buildCleanNativeTrigram } = require('./lp2_agent15_clean_lp1_trigram.cjs');
 
 const root = path.join(__dirname, '..');
 const corpus = JSON.parse(fs.readFileSync(path.join(root, 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'));
 const referenceText = fs.readFileSync(path.join(root, 'resources', 'liber-primus', 'lp1-plaintext-reference.txt'), 'utf8');
-const model = buildSourceNativeTrigramModel({corpus, referenceText});
+const model = buildCleanNativeTrigram({corpus, referenceText});
 const p55 = corpus.pages.find((p) => p.page === 55).indices.slice(1);
 const clear = corpus.pages.find((p) => p.page === 57).indices.slice(0, 75);
 assert.equal(p55.length, 75);
@@ -23,8 +23,8 @@ const sourceSeedState=1229*1229%M;
 const bi=new Int32Array(Q*Q);
 const tri=new Int32Array(Q*Q*Q);
 const prob=new Float64Array(Q*Q*Q);
-const training=model.training;
-for(let i=2;i<training.length;i++){
+const trainingSegments=model.trainingSegments;
+for(const training of trainingSegments)for(let i=2;i<training.length;i++){
  const k=Q*training[i-2]+training[i-1];
  bi[k]++;
  tri[Q*k+training[i]]++;
