@@ -325,7 +325,8 @@ def run_verify(layer2: Path, tsv: Path, out: Path, top=10):
 
 
 def control_one(layer2: Path, label: str, plant_text: str, family: str, kwfile: str | None,
-                item: str, options, expected_item: str, expected_kw: str | None):
+                item: str, options, expected_item: str, expected_kw: str | None,
+                expected_litf: int | None):
     data = layer2 / "data"
     controls = data / "controls"
     controls.mkdir(parents=True, exist_ok=True)
@@ -350,6 +351,8 @@ def control_one(layer2: Path, label: str, plant_text: str, family: str, kwfile: 
         good = bool(row and row["item"] == expected_item and abs(row["offset"] - truth_off) <= 2 and candidate)
         if expected_kw and row:
             good = good and f"kw={expected_kw}" in row["inner"]
+        if expected_litf is not None and row:
+            good = good and f"litf={expected_litf}" in row["inner"]
         checks.append({"window": win, "truth_item": truth_item, "truth_offset": truth_off,
                        "best": row, "candidate": bool(candidate), "pass": bool(good)})
     return {"label": label, "pass": bool(checks) and all(x["pass"] for x in checks),
@@ -365,18 +368,22 @@ def controls(layer2: Path):
     solved = parse_keywords(data / "keywords_solved.txt")
     combined_item = "primes + 1*DIVINITY@3"
 
-    serial_text = plant_ref.plant(
-        str(plain), str(data / "core20.ksb"), "primes", 2000, 1, 0, 0.18, 101,
-        solved["DIVINITY"], 3, 1, 1, 0
-    )
-    serial_solved = control_one(
-        layer2, "serial_solved_positive", serial_text, "file:data/core.ksb", "data/keywords_solved.txt",
-        "primes", ["mode=bigram", "litf=0,1", "abort=30:-4"], "primes", "DIVINITY"
-    )
-    serial_words = control_one(
-        layer2, "serial_words_positive", serial_text, "file:data/core20.ksb", "data/keywords.txt",
-        "primes", ["mode=bigram", "litf=0,1", "abort=30:-4"], "primes", "DIVINITY"
-    )
+    serial_results = []
+    for litf in (0, 1):
+        serial_text = plant_ref.plant(
+            str(plain), str(data / "core20.ksb"), "primes", 2000, 1, 0, 0.18, 101 + litf,
+            solved["DIVINITY"], 3, 1, litf, 0
+        )
+        serial_results.append(control_one(
+            layer2, f"serial_litf{litf}_solved_positive", serial_text, "file:data/core.ksb",
+            "data/keywords_solved.txt", "primes",
+            ["mode=bigram", "litf=0,1", "abort=30:-4"], "primes", "DIVINITY", litf
+        ))
+        serial_results.append(control_one(
+            layer2, f"serial_litf{litf}_words_positive", serial_text, "file:data/core20.ksb",
+            "data/keywords.txt", "primes",
+            ["mode=bigram", "litf=0,1", "abort=30:-4"], "primes", "DIVINITY", litf
+        ))
 
     combined_text = plant_ref.plant(
         str(plain), str(data / "combined.ksb"), combined_item, 2000, 1, 0, 0.18, 102,
@@ -384,36 +391,41 @@ def controls(layer2: Path):
     )
     combined = control_one(
         layer2, "combined_a1_positive", combined_text, "file:data/combined.ksb", "data/keyword_none.txt",
-        combined_item, ["mode=bigram", "litf=0", "abort=30:-4"], combined_item, None
+        combined_item, ["mode=bigram", "litf=0", "abort=30:-4"], combined_item, None, 0
     )
 
-    periodic_checks = []
+    periodic_results = {0: [], 1: []}
     periodic_plants = [
-        ("periodic_litf1_m6", 2000, 28, 1, 103, [7, 18, 4, 3, 16, 24], 2, 28, 1, 1),
-        ("periodic_litf1_m9", 5000, 1, 0, 104, [4, 21, 2, 17, 8, 12, 5, 23, 9], 4, 1, 1, 0),
+        (2000, 28, 1, 103, [7, 18, 4, 3, 16, 24], 2, 28, 1),
+        (5000, 1, 0, 104, [4, 21, 2, 17, 8, 12, 5, 23, 9], 4, 1, 0),
     ]
-    for label, off, mult, model, seed, kw, phase, isign, litf, atb in periodic_plants:
-        plant_text = plant_ref.plant(
-            str(plain), str(data / "core20.ksb"), "primes", off, mult, model, 0.18, seed,
-            kw, phase, isign, litf, atb
-        )
-        result = control_one(
-            layer2, label, plant_text, "file:data/core20.ksb", None, "primes",
-            ["mode=periodic", "ms=2:14", "litf=1", "abort=150:2.5"],
-            "primes", None
-        )
-        for check in result["checks"]:
-            check["period"] = len(kw)
-        periodic_checks.append(result)
+    for litf in (0, 1):
+        for index, (off, mult, model, seed, kw, phase, isign, atb) in enumerate(periodic_plants):
+            label = f"periodic_litf{litf}_m{len(kw)}"
+            plant_text = plant_ref.plant(
+                str(plain), str(data / "core20.ksb"), "primes", off, mult, model, 0.18, seed + litf,
+                kw, phase, isign, litf, atb
+            )
+            result = control_one(
+                layer2, label, plant_text, "file:data/core20.ksb", None, "primes",
+                ["mode=periodic", "ms=2:14", f"litf={litf}", "abort=150:2.5"],
+                "primes", None, litf
+            )
+            for check in result["checks"]:
+                check["period"] = len(kw)
+                check["plant_index"] = index
+            periodic_results[litf].append(result)
 
     report = {
-        "serial_pass": serial_solved["pass"] and serial_words["pass"],
+        "serial_pass": all(x["pass"] for x in serial_results),
         "combined_pass": combined["pass"],
-        "periodic_litf1_pass": all(x["pass"] for x in periodic_checks),
+        "periodic_litf0_pass": all(x["pass"] for x in periodic_results[0]),
+        "periodic_litf1_pass": all(x["pass"] for x in periodic_results[1]),
         "positive_control_lengths": [729, 272],
-        "serial": [serial_solved, serial_words],
+        "serial": serial_results,
         "combined": combined,
-        "periodic_litf1": periodic_checks,
+        "periodic_litf0": periodic_results[0],
+        "periodic_litf1": periodic_results[1],
         "rule": "every positive window must rank its planted stream offset within 2 and pass unchanged whole-window bigram verification (>=+2/rune and >= matched 20-offset maximum +5)",
     }
     (data / "controls.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
@@ -480,7 +492,8 @@ def analyze(results: Path, controls_file: Path, out: Path):
         "",
         f"- Serial fixed-keyword controls (both the 581-stream solved-key family and the 20-stream 30-keyword family): **{'PASS' if controls_data['serial_pass'] else 'FAIL'}**.",
         f"- Combined one-pointer A1 order controls: **{'PASS' if controls_data['combined_pass'] else 'FAIL'}**.",
-        f"- Unknown-keyword period 2-14 with literal-F bypass controls: **{'PASS' if controls_data['periodic_litf1_pass'] else 'FAIL'}**.",
+        f"- Unknown-keyword period 2-14 with ordinary F consumption (litf=0) controls: **{'PASS' if controls_data['periodic_litf0_pass'] else 'FAIL'}**.",
+        f"- Unknown-keyword period 2-14 with literal-F bypass (litf=1) controls: **{'PASS' if controls_data['periodic_litf1_pass'] else 'FAIL'}**.",
         "- Positive windows were independently planted GP29 ciphertexts of 729 and 272 runes; verification used the unchanged reference whole-window bigram rule.",
         "",
         "## Original versus equal-work randomized null",
@@ -526,7 +539,9 @@ def analyze(results: Path, controls_file: Path, out: Path):
     if missing:
         lines += ["", "## Incomplete or gated cells", ""]
         for w, f in missing:
-            if f == "periodic1" and not controls_data["periodic_litf1_pass"]:
+            if f == "periodic0" and not controls_data["periodic_litf0_pass"]:
+                lines.append(f"- {w} / periodic0: not run because the independently planted ordinary-F unknown-keyword controls did not pass.")
+            elif f == "periodic1" and not controls_data["periodic_litf1_pass"]:
                 lines.append(f"- {w} / periodic1: not run because the independently planted literal-F unknown-keyword controls did not pass.")
             else:
                 lines.append(f"- {w} / {f}: missing screen artifact; this cell remains open.")
