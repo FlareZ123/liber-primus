@@ -113,6 +113,37 @@ for(const sign of [-1,1]) {
 }
 assert.ok(postOut.every(x=>x.meanIoC<0.04));
 assert.ok(coincidence(p57)>0.06);
+/**
+ * Distinct fixed historical H(2013)*G(p39) quotient target:
+ * source table [256] / generator degree4 => formal quotient252 = 7*36.
+ * Its source-byte key has exactly36 entries; test its direct repetitive
+ * GP29 cipher in the two signs, without any source-free phase scan.
+ */
+const H=[3,26,24], G=[27,5,15],F=new Array(5).fill(0);
+for(let i=0;i<3;i++)for(let j=0;j<3;j++) F[i+j]=mod(F[i+j]+H[i]*G[j]);
+assert.deepEqual(F,[23,21,11,17,12]);
+const coef=F.slice().reverse(), invLeading=17;
+const remainder=grid.bytes.map(mod),quotient=[];
+for(let i=0;i<=remainder.length-5;i++){
+  const q=mod(remainder[i]*invLeading);
+  quotient.push(q);
+  for(let j=0;j<5;j++) remainder[i+j]=mod(remainder[i+j]-q*coef[j]);
+}
+assert.deepEqual(remainder.slice(-4),[0,0,0,0]);
+assert.equal(quotient.length,252);
+assert.equal(quotient[0],0);
+assert.equal(quotient.length/interval.length,7);
+const quotientModels=[];
+for(const sign of [-1,1]){
+  const decrypted=quotient.map((v,i)=>mod(v+sign*interval[i%36]));
+  assert.deepEqual(decrypted.map((v,i)=>mod(v-sign*interval[i%36])),quotient);
+  const planted=p57.map((v,i)=>mod(v-sign*interval[i%36]));
+  assert.deepEqual(planted.map((v,i)=>mod(v+sign*interval[i%36])),p57);
+  quotientModels.push({sign,ioc:coincidence(decrypted),
+    first36:decrypted.slice(0,36).map(x=>gp.translit[x]).join("-")});
+}
+assert.ok(quotientModels.every(v=>v.ioc<0.04));
+
 
 console.log(JSON.stringify({
   source:"original LP2 grid and all 36 large physical stops",
@@ -124,6 +155,9 @@ console.log(JSON.stringify({
   independentKnownEnding:{last5:actualLast5,signCounts},
   consecutiveOriginalPosttable:{n:posttable.length,postOut,
     nativeClearP57IoC:coincidence(p57)},
+  tableQuotient:{factor:F,remainder:remainder.slice(-4),formalLength:quotient.length,
+    significantLength:quotient.length-1,rawIoC:coincidence(quotient),
+    keyRepeats:quotient.length/interval.length,quotientModels},
   decision:"Exact source-addressed zero bracket and 36-count match; "+
     "no authored marker-to-cell opcode or original plaintext. "+
     "Direct preceding-rune additive receiver is undefined at marker11 "+
