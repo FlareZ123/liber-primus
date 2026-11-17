@@ -121,7 +121,7 @@ function routeDecode(words,key,mode,initialOffset=0){
   });
 }
 function feedbackBase(recs,fiveMode,keyMode,initialPhase=0){
-  let previous=0,stateIndex=0,phaseIndex=initialPhase;const bases=[],phases=[];
+  let previous=0,stateIndex=0,phaseIndex=initialPhase;const history=Array(5).fill(0),bases=[],phases=[];
   for(const rec of recs){
     const b=[],p=[];
     for(let j=0;j<rec.v.length;j++){
@@ -268,6 +268,7 @@ const p56Reencrypted=p56Words.flat().map(p=>p===0?0:(p+p56Key[used++])%A);
 assert.deepEqual(p56Reencrypted,p56Cipher);
 assert.equal(p56Words.flat().filter(x=>x===0).length,1);
 assert.equal(p56Cipher.filter(x=>x===0).length,5);
+assert.equal(used,84);
 const p57Words=parseSegment(chunks[56]);
 assert.equal(p57Words.flat().length,95);assert.equal(p57Words.length,20);
 const lp2Offsets={
