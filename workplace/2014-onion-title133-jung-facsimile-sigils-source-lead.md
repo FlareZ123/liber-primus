@@ -23,6 +23,14 @@ The useful new causal proposal is narrower: title133 might **index a physical il
 3. If a unique human-readable symbolic operand genuinely emerges, define one reversible GP29 encoder and the key/index mapping **before** viewing decoded LP2 output. Try the whole untouched original p0–2 chapter and a second chapter/page holdout with strict original-rune forward reproduction, respecting the historically attested F bypass only where selected. Genuine continuous prose is required.
 4. If no exact symbol correspondence or source-independent key mapping exists, retire the **133-folio-to-LP2-sigils interpretation** and retain only the historical coincidence. Do not chase new numerological page numbers or fitted runic translations.
 
+## A second, testable reading of `id=331`: Jung's *Scrutinies*
+
+The `title=133` link is already a strong candidate reference to Jung's Red Book folio 133, whose facing text mentions old runes and magical sayings. There is a distinct possibility that `div id=331` is also a book reference: the 2009 *Liber Novus* table of contents places **Liber Tertius: Scrutinies** at p.331, while the body begins on printed p.334. This is more specific than merely observing that 331 reverses 133, but remains a hypothesis: an HTML `id` is not itself proof of a printed-page reference.
+
+The p16 5×5 magic-square values (row-major: 434, 1311, 312, 278, 966; 204, 812, 934, 280, 1071; 626, 620, 809, 620, 626; 1071, 280, 934, 812, 204; 966, 278, 312, 1311, 434) are a natural candidate set of 1-based word positions. The signed 2016 Cicada message's instruction that words form the map and numbers the direction, together with the earlier Cicada use of book ciphers, motivates exactly one finite test: read those 25 positions in row-major order from the first body sentence of *Scrutinies* (the text beginning “I resist…”). This uses the id-selected section rather than searching arbitrary books, sections, offsets, or permutations.
+
+The test implementation is `sims/lp2_jung331_scrutinies_magic_square_word_index.py`, dispatched by `.github/workflows/lp2-jung331-scrutinies-word-index-gate.yml`. Its output should be treated only as a candidate extraction. If the 25-word sequence is not a coherent instruction or key, retire this exact book-index hypothesis; do not rescue it with alternative offsets, tokenizers, or permutations. The p229 running-key and word-index experiments remain separate prior-art branches.
+
 ## Main rival explanation
 
 The original HTML's 133 and 331 might simply be deliberately reversible decorative integers or serve another Cicada-internal page/count/prime relationship. The match to a hand-numbered *Red Book* artwork only becomes historically persuasive if the specific plate's sigils select an exact operation. Shared book titles, occult references and the word “runes” do not meet that threshold. This lead offers a **potentially source-specific image key location**, with no claimed source-selected key yet.
