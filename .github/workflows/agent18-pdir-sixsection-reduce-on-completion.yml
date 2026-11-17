@@ -1,0 +1,48 @@
+name: Agent18 pdir six-section finish-triggered source reducer
+on:
+  workflow_run:
+    workflows:
+      - "Agent18 LP2 pdir remaining six original sections"
+    types: [completed]
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: agent18-sixsection-source-finish
+  cancel-in-progress: false
+jobs:
+  dispatch-source-registered-reducer:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Dispatch exact reducer only for the original registered six-section run
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const originalId = 44075903575;
+            const eventRun = context.payload.workflow_run;
+            if (eventRun.id !== originalId || eventRun.head_branch !== 'main') {
+              core.info('Unregistered run or branch; no action.');
+              return;
+            }
+            const { data } = await github.rest.actions.getWorkflowRun({ owner, repo, run_id: originalId });
+            if (data.status !== 'completed' || data.conclusion !== 'success') {
+              core.info('Original 216-shard matrix not complete/successful; no reduction.');
+              return;
+            }
+            const workflow_id = 'agent18-pdir-sixsection-reducer-manual.yml';
+            const listed = await github.rest.actions.listWorkflowRuns({
+              owner, repo, workflow_id, per_page: 50
+            });
+            if (listed.data.workflow_runs.some(r => r.status !== 'completed' || r.conclusion === 'success')) {
+              core.info('Exact reducer already successful or running; skipping duplicate.');
+              return;
+            }
+            await github.rest.actions.createWorkflowDispatch({
+              owner, repo, workflow_id, ref: 'main',
+              inputs: { run_id: String(originalId) }
+            });
+            core.info('Dispatched the exact 216-artifact six-section original reducer.');
