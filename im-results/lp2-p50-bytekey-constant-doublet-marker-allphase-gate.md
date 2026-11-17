@@ -46,6 +46,8 @@ The exhaustive 256-phase results range from **20 to 32 unavoidable violations**.
 
 The exact [read-only CommonJS source test](../sims/lp2_p50_bytekey_constant_doublet_marker_sft.cjs) independently constructs a complete 12,956-rune **synthetic** encrypted tape with the **same 55 page boundaries and exact same 86 repeated-site offsets** as the original. Choose a hidden arbitrary table-byte key `f(b)=(17b+5) mod29` and a hidden fixed marker `R=10`; force the observed repeat-site positions to encode `R`, and adjust other synthetic runes to prevent unintended repeat positions. The resulting synthetic tape has **86/86** repeat-site observations consistent with one byte function; the same inverse recovers the marker at all **86** exact sites. The full synthetic GP29 plaintext/encryption roundtrip matches **12,956/12,956** runes. The source test also locks the actual 256-byte SHA-256, all original counts, the two-site contradiction, the phase0/position/byte optima, and the full 256-phase negative.
 
+The [manually dispatched Windows Node.js 22 original-source run 44099184736](https://github.com/FlareZ123/liber-primus/actions/runs/44099184736) **completed successfully** with the published unchanged SFT and all assertions, including the complete positive 12,956-rune reencryption control.
+
 The positive plant is an implementation control, **not** recovered manuscript text or a historical cipher. The original contradiction is exact within the stated architecture; it does not require the synthetic control's particular hidden key values.
 
 ## Research decision
