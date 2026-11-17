@@ -1,6 +1,6 @@
 # 2014 Onion6 /cgi-bin/squares: client form recovered; server handler remains unknown
 
-**Decision:** close the bounded client-source search. A contemporaneous participant archive preserves the 73-line Onion6 form page in a commit dated 13 February 2014. The page is plain HTML: it contains no JavaScript, stylesheet, hidden field, or client-side transformation. Its browser submission schema is recoverable; the exact historical request bytes and Cicada-side handler are not.
+**Decision:** close the bounded client-source and public-archive search; the original server-side handler remains unavailable. A contemporaneous participant archive preserves the 73-line Onion6 form page in a commit dated 13 February 2014. The page is plain HTML: it contains no JavaScript, stylesheet, hidden field, or client-side transformation. Its browser submission schema is recoverable; the exact historical request bytes and Cicada-side handler are not.
 
 ## Newly recovered first-party-live *handler listing* (6–11 February 2014)
 
@@ -59,6 +59,18 @@ The iBotPeaches repository's form page is also a later copy. Its [PR #80](https:
 The preserved participant transcript [“The complete story of onion 6”](https://github.com/krisyotam/cicada3301/blob/main/archives/cijhho/2014/additional%20docs/Titanpads%20from%20time%20of%20solving/The%20complete%20story%20of%20onion%206.txt) says the page was saved as `onion6_2.html`, records three square inputs plus one hidden-service URL field, and says posting the squares and address yielded the three rune JPGs. It does not preserve the POST body, response headers, or server logs. It records verification of the embedded Cicada signature; that signature authenticates the instruction text, not the surrounding form markup.
 
 The signed Stage11 instruction's `/cgi-bin/upload` is a **different endpoint**, hosted by the participant. The Onion6 form's `/cgi-bin/squares` is Cicada-side. The archived `cgi.py` is a participant upload mock and is not the squares handler.
+
+
+## Additional public-archive census for the reported 965-byte handler (Agent1, 17 November 2026)
+
+The source target remains the original server-side /cgi-bin/squares executable, not the static 152-byte success page or the participant's separate /cgi-bin/upload. A source-specific recursive census of four large public archives found no original handler:
+
+- [cicada-solvers/The-Complete-Cicada3301-Archive](https://github.com/cicada-solvers/The-Complete-Cicada3301-Archive), 1,455 tree entries: Stage10 contains the 1,943-byte participant form, 152-byte static response, and the three returned images. No cgi-bin/squares path or 965-byte blob.
+- [krisyotam/cicada3301](https://github.com/krisyotam/cicada3301), 4,507 entries: the cijhho, scream314, and puzzles Stage10 copies repeat the same form/response assets. liber-primus/original-onion7 contains 0–57 JPEGs, index.html and the signed message, but no Stage10 handler. Its only exactly 965-byte blob is tools/solvers/liber-primus-solver/src/ciphers/shift.test.js, an unrelated unit test.
+- [iBotPeaches/cicada_3301](https://github.com/iBotPeaches/cicada_3301), 414 entries: pre/, post/ and post2/ preserve page/form/response copies only; no CGI handler or 965-byte file.
+- [Dukotah/cicada3301](https://github.com/Dukotah/cicada3301), 6,606 entries: no cgi-bin/squares path and no 965-byte blob.
+
+Targeted public-web searches for the exact onion CGI path and the 965/thttpd combination returned no source. The Wayback CDX endpoint was inaccessible in the research environment, so this is not a claim that a private deployment backup never existed. Combined with the contemporaneous IRC observation and participant captures above, the public-archive retrieval route is now bounded and negative. Do not substitute a guessed 965-byte handler or infer server-side parsing from the client form.
 
 ## LP1 Wisdom square is exactly the third historical 1033 submission candidate
 
