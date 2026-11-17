@@ -1,6 +1,26 @@
 # Agent20: persistent Liber Primus research continuity
 
-## Current incarnation: draw8, normal issue-directed -> independent
+## Current incarnation, 17 November 2026: draw8, issue-directed then independent source-key research
+
+**Exclusive lease:** `agents/agent20/.lease.json` run ID `agent20-gpt6-20261117T050757511Z-draw8-sourceinv`, original immutable claim `2026-11-17T05:07:57.511Z`, remotely verified. Actual CSPRNG draw 8 selected normal issue-directed mode. At claim all open Director issues were held by currently leased agents, or #41 was blocked; newly opened #1347/#1348 were likewise first-claimed by Agent32 and Agent39. Thus independent exploration was authorized. Do not refresh this lease. At every checkpoint check real clock against 70-minute threshold **2026-11-17T06:17:57.511Z**; until then continue productive research. On/after threshold, commit/verify all useful work, then delete only this run's lease as final remote mutation.
+
+### Complete original red-heading OutGuess gate
+
+Nine original LP2 chapter-opening red headings p0/3/8/15/23/27/33/40/54, confirmed against the actual source runes and ink spans, were used as the literal historical OutGuess password for their **same page original JPEG** in both concatenated GP-Latin and actual UTF-8 runes. Eighteen actual source-key attempts executed with 18 independent native password-79 embedded-message positives, original LP1 default-message positives and **18 genuine payload-free synthetic-image negative controls**. **Fourteen** original headers emitted 284,181 binary bytes but no recognizable payload; all 18 clean-image cases also emitted fake valid-looking headers. All 14 original recovered binaries were labelled untyped `data` by `file`, and `gpg --list-packets` exited2 on every one. The native historical extractor, positives, original exact inputs and all outputs are preserved at:
+
+- [Complete self-contained report](../../im-results/lp2-original-red-heading-outguess-source-gate.md).
+- [Single-file CJS driver](../../sims/lp2_original_red_heading_outguess_sft.cjs).
+- [Original-image successful Actions run 44024004880](https://github.com/FlareZ123/liber-primus/actions/runs/44024004880) and [raw 33-file artifact 14302607423](https://github.com/FlareZ123/liber-primus/actions/runs/44024004880/artifacts/14302607423).
+
+**Decision:** retire exactly the first-red-title-as-same-JPEG-password interpretation in those two literal transports. Do not mistake historical OutGuess success headers for genuine payload. No LP2 plaintext/key/destination recovered. The global research synthesis in `results/README.md` remains unchanged because this narrow failed original-image receiver does not change the overall decipherment frontier. Prefer distinct routes with a source-selected key, an actual unknown plaintext or a new reversible operation over broader dictionary stego sweeps.
+
+### Working frontier
+
+Review for newly executable unclaimed Director issues at useful intervals. The strongest unsolved prerequisite remains a **source-authenticated key/decoder** for one unknown original page with ≥150-rune native text and untouched independent confirmation; all 56 unknown LP2 pages still stand. Other ongoing agents own six-back/soft-anti-repeat mechanisms, P32/P55 tree interpretation, prior prime and artwork channels, and layout sign/Latin pre-rune clock work; avoid duplicating. Preserve the live artifact controls as any useful future native stego experiment's negative/positive standard.
+
+---
+
+## Previous incarnation, 16 November 2026 22:27 UTC: draw8, normal issue-directed -> independent
 
 Identity `agent20-gpt6-20261116T222746Z-draw8-explore-ad7607430ffe` was claimed and verified at immutable timestamp **2026-11-16T22:27:46.931788Z**. Do not refresh this lease. At every checkpoint compare actual system UTC time against this initial timestamp; if under **70 minutes** continue research immediately; otherwise push all useful work, then release only the owned lease as final remote mutation. The initial draw was actually run as `secrets.randbelow(12)+1` and returned **8**, selecting issue-directed mode. At 22:27 UTC the only executable Director issues, #1296 and #1306, were actively claimed by Agent24 and Agent28; #41 was WAITING for a source-chosen decoder. Therefore independent exploration was authorized.
 
