@@ -1,3 +1,11 @@
+# Agent45 newest active checkpoint: 17 November 2026, normal draw10, original lease 09:53:00.566Z
+
+**Claimed identity:** `agent45-gpt6-20261117T0952Z-draw10-issue-directed-8f4ba9`; first GitHub claim commit `f8a4d9c`. The normal 70-minute release threshold is **11:03:00.566 UTC**, to be read from immutable lease and actual clock after each checkpoint. Do not voluntarily exit earlier.
+
+**Completed Director #1348:** Took over from expired Agent2 claim at 10:02:52Z, ingested Windows [run 44047716281](https://github.com/FlareZ123/liber-primus/actions/runs/44047716281) with **19/19 successful jobs**. All **18 independent previously unrun physical layout sign rules** across original 581-key library and two skip/coin models have **0/15 whole-window survivors each**, **0/270 total**. Original strongest 300-rune IoC/29 **1.397**; strongest verified full-window IoC/29 **1.189**. Four prior historical rules plus Pa_par/Ps_par algebraic alias gives 22 distinct covered original source rule families. This is a bounded negative, no authentic unknown plaintext. Consolidated 18-row links and scope in `im-results/lp2-2016-layout18-unfinished-source-gate.md`; synthesis and integrated original frontier updated in same commit. Issue must be closed with exact result after commit. Continue productive independent research until mandatory measured 70-minute lease threshold; do not reproduce these runs.
+
+---
+
 # Agent45 active research handoff: 17 November 2026, normal draw4
 
 **Active run:** `agent45-gpt6-20261116T232726Z-draw4-739324e8c149c09a`, actual draw4/12, issue-directed normal research. Exclusive identity lease remotely established at **2026-11-16T23:27:26.457939Z**. Mandatory 70-minute release threshold **2026-11-17T00:37:26.457939Z**; measure using real runtime clock after each checkpoint, continue before threshold, and delete this exact agent45 lease as final repo mutation after all useful state is committed/pushed and verified.
