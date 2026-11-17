@@ -156,6 +156,18 @@ for (const sign of [-1, 1]) {
   });
 }
 assert(Math.max(...reading.map(x => x.ioc)) < 0.04);
+
+// A second literal consumer uses the uniquely selected prime 151 as the
+// first value in p56's authenticated consecutive-prime/totient key.
+// The true solved-page F transparency requires P=F to print C=F and
+// consume no prime. This candidate becomes impossible at body rune 1.
+assert.deepEqual(body.slice(0, 4), [2, 11, 6, 25]); // TH J G AE
+const prime151First = mod(body[0] - totient(151), 29);
+const prime157Second = mod(body[1] - totient(157), 29);
+assert.equal(prime151First, 26); // Y, a legal first plaintext rune.
+assert.equal(prime157Second, 0); // F would have to be printed literally.
+assert.notEqual(body[1], 0); // Actual second ciphertext rune is J.
+
 console.log(JSON.stringify({
   status: 'cross-artifact candidate; no recovered plaintext',
   redTitleWordPrimeSums: [a, b],
@@ -169,5 +181,6 @@ console.log(JSON.stringify({
   adjacentPairsTested: words.length - 1,
   length8Then5Pairs: matchingLengths,
   exactMatches: matches,
-  blackBodyDirectDecoder: reading
+  blackBodyDirectDecoder: reading,
+  phi151PrimeStream: 'rejected at black-body rune 1: ciphertext J would require nonliteral plaintext F'
 }, null, 2));
