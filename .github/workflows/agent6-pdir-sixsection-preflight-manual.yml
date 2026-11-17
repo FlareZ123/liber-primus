@@ -1,0 +1,23 @@
+name: Agent6 LP2 pdir original postprocessor source preflight
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-syntax:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pin atomic lock dependency
+        run: python -m pip install filelock
+      - name: Prove all postprocessor scripts compile under Windows Python
+        run: |
+          python -m py_compile sims/lp2_pdir_stage1_reduce.py
+          python -m py_compile sims/lp2_pdir_stage2_sixsection_reduce.py
+          python -m py_compile sims/lp2_pdir_stage2_verify_candidates.py
+          python sims/lp2_pdir_stage2_sixsection_reduce.py --help
+          python sims/lp2_pdir_stage2_verify_candidates.py --help
