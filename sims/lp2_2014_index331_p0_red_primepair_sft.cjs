@@ -191,6 +191,73 @@ for (const start of starts) {
     'realOriginalReach=' + reach + '/' + black.length,
     'nativePlant=' + plant.length + '/' + plant.length);
 }
+
+/**
+ * A finite, independent first-party HTML arithmetical interpretation:
+ * 133 is the reverse of 331, 331 is a prime, and 133^(-1) modulo
+ * (331-1) equals 67, the *one-based prime ordinal* of 331.
+ * The p0 red title has E (GP prime 67) as its third rune in both words.
+ * This is an additional postselected mathematical fit, not a key selector.
+ */
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let x = 2; x*x <= n; x++) if (n % x === 0) return false;
+  return true;
+}
+function inverse(a,m) {
+  let [oldR,r] = [a,m];
+  let [oldS,s] = [1,0];
+  while (r !== 0) {
+    const q = Math.floor(oldR/r);
+    [oldR,r] = [r,oldR-q*r];
+    [oldS,s] = [s,oldS-q*s];
+  }
+  return oldR === 1 ? (oldS % m + m) % m : null;
+}
+const primesTo1000 = [];
+for (let n=2;n<1000;n++) if (isPrime(n)) primesTo1000.push(n);
+assert.equal(primesTo1000.indexOf(htmlDivId),66);
+const secretExponent = inverse(htmlTitle,htmlDivId-1);
+assert.equal(secretExponent,67);
+assert.equal(corpus.prime[title[2]],secretExponent);
+assert.equal(corpus.prime[title[10]],secretExponent);
+let admissible = 0;
+const rankSelfInverse = [];
+for (const prime of primesTo1000) {
+  if (prime < 100) continue;
+  const reversed = Number(String(prime).split('').reverse().join(''));
+  const exponentInverse = inverse(reversed,prime-1);
+  if (exponentInverse === null) continue;
+  admissible++;
+  if (exponentInverse === primesTo1000.indexOf(prime)+1) {
+    rankSelfInverse.push([prime,reversed,exponentInverse]);
+  }
+}
+assert.equal(admissible,71);
+assert.deepEqual(rankSelfInverse,[[331,133,67]]);
+const gpPrimeSet = new Set(corpus.prime);
+function powMod(x,exponent,modulus) {
+  let out = 1;
+  let b = x % modulus;
+  for (let e = exponent;e > 0;e = Math.floor(e/2)) {
+    if (e % 2) out = (out*b) % modulus;
+    b = (b*b) % modulus;
+  }
+  return out;
+}
+// If original ciphertext runes directly encoded GP prime values under
+// prime-field exponentiation, the very first black TH value (prime 5)
+// would decrypt to 320, which has no GP rune; the direct 1-rune map fails.
+assert.equal(corpus.prime[black[0]],5);
+assert.equal(powMod(5,secretExponent,htmlDivId),320);
+assert.equal(gpPrimeSet.has(320),false);
+console.log('HTML reversed exponent/self-prime-rank',
+  'modulus=' + htmlDivId,'public=' + htmlTitle,
+  'inverse=' + secretExponent,
+  'eligibleOtherReversedPrimePairs=' + admissible,
+  'exactOrdinalInversePairs=' + JSON.stringify(rankSelfInverse),
+  'first GP-prime exponent inverse=320 (not alphabet)');
+
 console.log('HTML source metadata title=' + htmlTitle, 'divId=' + htmlDivId);
 console.log('p0 red title GP sums', left, right,
   'shared initial rune ordinal=' + (title[0] + 1));
