@@ -1,6 +1,6 @@
 # Original p57 “DIVINITY WITHIN” as an exact p0 red-heading crib: failed historical inverse
 
-**17 November 2026, Agent34.** A new *source-internal*, human-visible phrase candidate exactly matches the two **original p0 red-title word lengths 8+5**. Applying the resulting key to the untouched first chapter yields a bounded cryptanalytic negative. **No genuine unknown-page plaintext, historical key, or puzzle destination was recovered.** Do not promote the candidate heading to a solved title.
+**17 November 2026, Agent34.** Two *source-internal*, human-visible overlapping phrase candidates match the printed **p0 red title (8+5)** and **p33 first red title (2+8)**. Applying the resulting key to the untouched first chapter yields a bounded cryptanalytic negative. **No genuine unknown-page plaintext, historical key, or puzzle destination was recovered.** Do not promote the candidate heading to a solved title.
 
 ## Independent source clue and competing explanation
 
@@ -26,8 +26,25 @@ For the strict historical skip case, literal plaintext `F=0` encrypts to ciphert
 
 The inverse implementation also encrypts the independently clear **95 original p57 runes** under this same test key and actual transparent-F rule, then confirms a complete legal inverse path through all 95. This is a source-shaped positive of the implementation, not evidence that this p0 crib is genuine. Ordinary/autokey streams are near the GP29 uniform baseline `1/29≈0.03448276`; the authentic p57 clear control is `0.06270997`. Correctly reproducing a key-implied heading and reencryption of an invertible family cannot authenticate a key.
 
+## Independent overlapping p33 red-heading source crib
+
+The **other** exact major-red-heading pattern present as consecutive words on original clear p57 is **2+8**: the words `THE DIUINITY` at clear p57 rune offsets **71–80**. It corresponds exactly to the **p33 initial red title's 2+8 printed word lengths**. The p0 hypothetical `DIUINITY WITHIN` begins at p57 rune offset73. Hence the three consecutive clear words `THE DIUINITY WITHIN` visibly supply two overlapping word-length proposals for red headings on different original chapters. All eight other major heading source shapes either have no match in the 20-word p57 text or repeat one of these two distinct matching patterns. This is more constrained than an isolated thematic substring but remains susceptible to retrospective selection and coincidence; neither title is authenticated plaintext.
+
+Original p33:0–9 GP ciphertext is `D EO | X C F I A W H G`, and positing `THE | DIUINITY` gives another unique additive period-10 key `[21,23,20,24,28,0,15,26,21,9]` or `NG D L A EA F S Y NG N`. Comparing the eight key digits associated with the shared word `DIUINITY` to the p0 title's eight derived corresponding digits gives **zero matches out of eight** under a same-key, word-aligned hypothesis. A single fixed word-origin pad therefore fails this straightforward cross-heading condition. More importantly, an independently continued source-native p33–39 inverse gives the following:
+
+| Full p33–39 chapter continuation after red 10 | Source-native 1,670-rune coincidence / result |
+|---|---|
+| Repeated period-10 GP29 additive key | **0.034424859089**; nonprose |
+| Period-10 plaintext autokey seeded by hypothetical title | **0.034350950585**; nonprose |
+| Period-10 ciphertext-feedback key | **0.034300003947**; nonprose |
+| Historically authentic plaintext-F bypass | **No complete legal path: dies at p33 local rune91** |
+
+For the historical rule, the decoder starts with 10 consumed key symbols after the proposed heading and allows all possible literal-F skip histories. Just before original p33 rune91, the surviving consumed clock is90. Its ciphertext is `NG` index21 and its scheduled repeating key is also `NG` index21, requiring forbidden non-bypassed plaintext F. Coincidentally, offset91 is also the separately identified **second red-heading start** on p33. This location match is a post hoc observation, not evidence that resetting a cipher at that heading works: the default reset phase0 would recreate the same contradiction, and no source supplies another second-heading key. The independently clear p57 95-rune positive enciphered with this new period-10 key passes the same all-clock inverse.
+
+Together, the overlapping phrases identify two potential source-internal title cribs and directly reject their simplest continuation mechanisms. **The number of unencrypted unknown LP2 runes recovered remains zero.**
+
 ## Decision and reproduction
 
-Retire the exact **p57 phrase as p0 plaintext → inferred repeating GP29 key**, the two natural 13-step feedback continuations, and the historical transparent-F version as complete plaintext solutions. The phrase may still be thematically connected or have a distinct use under an independently authored operator, but the source supplies no such instruction. This negative should not spawn speculative second layers or other offset sweeps.
+Retire both exact **p57 phrases as p0/p33 inferred title plaintext → repeated GP29 keys**, their natural periodic feedback continuations, and the authentic transparent-F family as complete plaintext solutions. The phrase may still be thematically connected or have a distinct use under an independently authored operator, but the source supplies no such instruction. This negative should not spawn speculative second layers or other offset sweeps.
 
 [One-file original-corpus Node22 CommonJS SFT](../sims/lp2_p0_p57_divinity_crib_sft.cjs) asserts the original heading, final clear phrase, full first-chapter rune count, 716-body inverses, death certificate, and a complete 95-rune actual-rule native positive. Inputs are only `resources/liber-primus/lp2-corpus.json` and its unaltered source-preserved GP29 alphabet. This is an intermediate crib decision under `im-results/`; no authoritative `results/README.md` change is justified.
