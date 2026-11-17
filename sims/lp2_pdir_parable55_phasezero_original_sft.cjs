@@ -290,6 +290,30 @@ const collisionRecoveredIoc = score(literal, sourceDirections, '000', 0, 1, 0, f
 assert(collisionRecoveredIoc >= 1.40,
   'real source-pad collision-skipping English positive must survive beam8 first300 screen');
 
+/**
+ * The separate model1 coin/skip branch advances by 3 key positions
+ * whenever the direct key would repeat the preceding ciphertext rune.
+ * A true control must recover both this branch's plaintext and pointer.
+ */
+const forcedCoinPlant = [];
+let coinPointer = 1100, coinPrevious = -1, coinSkips = 0;
+for (let i = 0; i < plantedPlain.length; i++) {
+  const delta = sourceDirections[i], p = plantedPlain[i];
+  const direct = mod(p + literal[modKey(coinPointer, literal.length)]);
+  const skip = direct === coinPrevious;
+  const emitted = skip
+    ? mod(p + literal[modKey(coinPointer + 2 * delta, literal.length)])
+    : direct;
+  forcedCoinPlant.push(emitted);
+  coinPrevious = emitted;
+  coinPointer += (skip ? 3 : 1) * delta;
+  if (skip) coinSkips++;
+}
+assert(coinSkips >= 4, 'source-native model1 plant must force coin skips');
+const coinRecoveredIoc = score(literal, sourceDirections, '000', 0, 1, 1, forcedCoinPlant);
+assert(Math.abs(coinRecoveredIoc - expectedIoc) < 1e-10,
+  'real model1 source pad coin-skip must recover true English IoC');
+
 const best = [];
 let max = 0, above135 = 0, above140 = 0, evaluated = 0;
 for (let r = 0; r < rules.length; r++) {
@@ -332,6 +356,7 @@ console.log(JSON.stringify({
   },
   evaluated, max_ioc: max, above135, above140, top: best,
   source_native_plant: { expectedIoc, plantedRecovery, wrongKeyRecovery,
-    collisionSkips, doubleSkips, maxSkipCollision, collisionRecoveredIoc },
+    collisionSkips, doubleSkips, maxSkipCollision, collisionRecoveredIoc,
+    coinSkips, coinRecoveredIoc },
   conclusion: 'No original p0 prefix hit in this fixed p57 55-rune cyclic-key and word-direction family'
 }, null, 2));
