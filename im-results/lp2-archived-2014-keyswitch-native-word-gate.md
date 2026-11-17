@@ -41,7 +41,7 @@ The [reproducer](../sims/lp2_archived_keyswitch_word_gate_sft.cjs) parses **p0's
 | Words compatible with **any** reference English spelling | **0** | **0** |
 | Matching source-length synthetic GP-English membership plants | **22/22** | 22/22 not required by plant |
 
-For example, the original first red word has eight runes and produces no lexicon candidate under either arithmetic convention; the same is true of the independently printed long black-body words. The planted positive uses independently selected native lexicon words of the same GP lengths and the fixed first-key addition; it exercises the exact overapproximate word membership test. It is a membership-positive, **not** a demonstration that the historically depicted lookahead decoder is bijective. [Windows Node22 original-source CI run 44144711018](https://github.com/FlareZ123/liber-primus/actions/runs/44144711018) completed successfully.
+For example, the original first red word has eight runes and produces no lexicon candidate under either arithmetic convention; the same is true of the independently printed long black-body words. The planted positive uses independently selected native lexicon words of the same GP lengths and the fixed first-key addition; it exercises the exact overapproximate word membership test. It is a membership-positive, **not** a demonstration that the historically depicted lookahead decoder is bijective. [Windows Node22 original-source CI run 44145266700](https://github.com/FlareZ123/liber-primus/actions/runs/44145266700) completed successfully.
 
 ## Causal decision
 
