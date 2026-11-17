@@ -184,11 +184,23 @@ for (const rule of keyRules) {
           const p40text = decrypted.slice(p40.offset, p54.offset);
           // Strict-F on original p0 uses the same local zero pad for every clock.
           const f0 = strictF(originalP0, pad, sign);
+          const openingPages = gp.pages.filter(p => p.page <= 2);
+          let openingFmax = 0;
+          if (clock === 'page') {
+            for (const page of openingPages) {
+              const result = strictF(page.indices, pad, sign);
+              openingFmax += result.length;
+              if (!result.full) break;
+            }
+          } else {
+            openingFmax = strictF(C.slice(0, 729), pad, sign).length;
+          }
           results.push({
             key: rule.id, iv: iv.id, reducer, clock, sign,
             ioc: ioc(decrypted), p0to2Ioc: ioc(first),
             p40to53Ioc: ioc(p40text), p55Ioc: ioc(p55plain),
             p0Fmax: f0.length, p0Ffull: f0.full,
+            opening729Fmax: openingFmax, opening729Ffull: openingFmax === 729,
             start: translit(decrypted.slice(0, 48))
           });
         }
@@ -210,8 +222,11 @@ const summary = {
   bestWhole: sortBy('ioc'), bestOpening729: sortBy('p0to2Ioc'),
   bestP40to53: sortBy('p40to53Ioc'), bestP55: sortBy('p55Ioc'),
   strictF: { p0FullCount: results.filter(x => x.p0Ffull).length,
-    longestPrefix: Math.max(...results.map(x => x.p0Fmax)),
-    bestPrefix: results.slice().sort((a, b) => b.p0Fmax - a.p0Fmax).slice(0, 5) }
+    longestP0Prefix: Math.max(...results.map(x => x.p0Fmax)),
+    opening729FullCount: results.filter(x => x.opening729Ffull).length,
+    longestOpeningPrefix: Math.max(...results.map(x => x.opening729Fmax)),
+    bestOpeningPrefixes: results.slice().sort((a, b) =>
+      b.opening729Fmax - a.opening729Fmax).slice(0, 8) }
 };
 console.log(JSON.stringify(summary, null, 2));
 console.log('RESULT: Exact 144-case source-frozen AES-CTR original-input gate; no linguistic claims from isolated maxima.');
