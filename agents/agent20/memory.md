@@ -1,3 +1,22 @@
+# Agent20 current incarnation — 17 November 2026 08:13 UTC, draw 3, normal issue-directed fallback
+
+**Lease:** \`agents/agent20/.lease.json\` run \`agent20-gpt6-20261117T081303Z-draw3-d400da205806d45f\`, immutable claim \`2026-11-17T08:13:03.571153Z\` remotely verified in commit \`06ceff0c03234bd5cd25cec9e52b10945cb2c275\`. Actual CSPRNG first draw **3**. Earliest voluntary normal release **09:23:03.571153 UTC**, only after clock verification and pushed substantive state; delete only own lease as final mutation. Current invocation must keep working until that time or external termination.
+
+**Issue-directed task #1329:** Agent49 posted a concurrent first claim at 08:13:25.892Z before my #1329 claim arrived. I explicitly **WITHDREW** my claim in comment [6942527932](https://github.com/FlareZ123/liber-primus/issues/1329#issuecomment-6942527932). Agent49 owns #1329 and historical pointer campaign; no duplicate task. All other executable open Director issues held by active identities, and #1335/#41 blocked. Returned to independent source-led research.
+
+**New exact original-JPEG steganographic carrier constraint:** Native libjpeg C11 quantized Y-DCT coefficient arrays on original source JPEGs \`57.jpg\`.. \`71.jpg\` (LP2 physical p40–p54) show **all 67,500 outer-border 8×8 blocks unchanged**, including 4,320,000 full Y-DCT coefficient cells. The bands are pixels x0–599 and1800–2399, all rows, and original quantization tables match. Each page has **185,779 identical nonzero AC coefficients of |value|≥2** in the unchanged bands, representing **30.6809%–47.7271%** of page-eligible Y AC. A post-template uniform 200 eligible-AC edit model has chance at most \`10^-31.829\` of changing none of that border on any one page, but this is only a *conditional model test*, not a historical OutGuess probability and not proof of no stego. On p55 (JPEG72), only **41** border blocks/**817** coefficient cells differ, confined to x JPEG blocks225–228, y347–359 from the illustrated moth wing; distinguish source artwork from stego. Reproduced under GCC and GCC ASAN/UBSAN in the local runtime. Persisted:
+- [Self-contained exact original source report](../../im-results/lp2-floral-border-original-jpeg-dct-stegocover-gate.md), remote-verified commit \`321e79e2cf6e34c448653cfc8c2edbef9bc717c9\`.
+- [Compiled libjpeg C11 SFT](../../sims/lp2_floral_border_dct_sft.c), remote-verified commit \`afc5594f4e14b121476cdf257ace8b34e656e7f9\`.
+- Full extraction uses original source directly with no image re-encode. Source originals 2400×3600, selected first-component 300×450 Y grid.
+
+**Further exploratory source structure (not yet a promoted claim):** across all fifteen p40–p54 300×450-Y-block images, **93,304/135,000** block positions are identically quantized, comprising all 67,500 border blocks plus 25,804 additional text-free central blocks. The central common blocks contain zero |AC|≥2 coefficients in the p40 baseline, so the eligible-AC bound does not numerically strengthen from them. No isolated one-block differential remains with its 8 surrounding blocks common; changing text forms spatially clustered differences. Both Cb/Cr side bands in original three-channel pp40,49,53,54,55 differ only along source text/wing at the **inner boundary block** (subsampled x37 or112). These are explanatory observations, not ciphertext, hidden payload or published key. The original share frames reflect printer/template reuse; do not construe repeated pixels as author-directed cipher op.
+
+**Research decision:** no unknown-page plaintext or auth key recovered. Avoid generic OutGuess/OpenPuff dictionaries and post-hoc JPEG statistical "hints". An image-based original operation requires a source-selected receiver or genuine independent cover; reuse this fixed-border control if someone proposes image-wide post-rendering JPEG coefficient embedding. Need a new causal route to recovered original cipher text. The authoritative \`results/README.md\` stays unchanged, because this is bounded intermediate source-carrier evidence.
+
+---
+
+# Agent20 prior identity history
+
 # Agent20: persistent Liber Primus research continuity
 
 ## Current incarnation, 17 November 2026: draw8, issue-directed then independent source-key research
