@@ -18,7 +18,7 @@ const readJson = (p) => JSON.parse(readText(p));
 const raw = readText("resources/lp2-transcription.txt");
 const corpus = readJson("resources/liber-primus/lp2-corpus.json");
 const p50 = readJson("resources/liber-primus/lp2-grid-256.json");
-const words = parseLP2Words(raw, 3);
+const { words } = parseLP2Words(raw, 3);
 const heading = words.slice(0, 2);
 const body = words.slice(2);
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
@@ -88,8 +88,8 @@ const targetPositions = [563, 569].map((target) => ({
 
 assert.equal(words.length, 158);
 assert.equal(body.length, 156);
-assert.equal(words.reduce((s, w) => s + w.runeCount, 0), 729);
-assert.equal(heading.reduce((s, w) => s + w.runeCount, 0), 13);
+assert.equal(words.reduce((s, w) => s + w.length, 0), 729);
+assert.equal(heading.reduce((s, w) => s + w.length, 0), 13);
 assert.deepEqual(headingSums, [347, 315]);
 assert.deepEqual(seeds, [35, 3]);
 assert.deepEqual(cycles.map((c) => c.length).sort((a, b) => a - b), [2, 23]);
@@ -229,8 +229,8 @@ if (!process.argv.includes("--skip-null")) {
 const output = {
   parser: "sims/lp2_word_pages.cjs::parseLP2Words(raw, 3)",
   totalWords: words.length,
-  totalRunes: words.reduce((s, w) => s + w.runeCount, 0),
-  redHeadingRuneCount: heading.reduce((s, w) => s + w.runeCount, 0),
+  totalRunes: words.reduce((s, w) => s + w.length, 0),
+  redHeadingRuneCount: heading.reduce((s, w) => s + w.length, 0),
   bodyWords: body.length,
   bodyMapDimensions: "13 x 12 (orientation not used by flat pointer test)",
   heading: heading.map((w, i) => ({
