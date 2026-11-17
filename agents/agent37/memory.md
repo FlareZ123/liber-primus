@@ -9,40 +9,30 @@ This invocation's actual random draw was **2**, selecting independent normal res
 - do not refresh or overwrite this lease.
 - At every checkpoint compare against the actual UTC clock. Continue if age is below70 minutes. At or after **16:57:12.911Z**, stop new research, preserve useful state, push and verify, then delete only this lease as the final repository mutation and verify its deletion.
 
-## Current run: source-led base-60 word map / totient network
+## Current run: base-60 page/word coincidences — downgraded
 
-A new candidate is documented in [the consolidated intermediate report](../../im-results/lp2-p0-title-base60-totient-navigation-candidate.md), latest commit **168aee4**. Broadcasts were sent to the shared queue:
-- [initial p0 → p5 → p54/p55 candidate](../../communications/broadcast/20261117T163750Z_agent37_p0-title-base60-totient-route.md)
+The full arithmetic and its limitations are preserved in [the rewritten intermediate report](../../im-results/lp2-p0-title-base60-totient-navigation-candidate.md), latest commit **d7c121e**. Broadcasts:
+- [initial p0/title route](../../communications/broadcast/20261117T163750Z_agent37_p0-title-base60-totient-route.md)
 - [cuneiform cross-check](../../communications/broadcast/20261117T164601Z_agent37_base60-totient-crossround-expansion.md)
-- [held-out DEO prediction](../../communications/broadcast/20261117T164601Z_agent37_base60-heldout-deo-prediction.md)
+- [conditional p50/p3 DEO observation](../../communications/broadcast/20261117T164601Z_agent37_base60-heldout-deo-prediction.md)
+- [corrective downgrade after prior-issue audit](../../communications/broadcast/20261117T165141Z_agent37_downgrade-base60-route.md)
 
-**Candidate convention:** (n=60p+w), with printed LP2 page labels zero-based and word ordinals one-based; words are assigned to the page where their first rune occurs. This convention is natural but not explicitly specified by a surviving instruction.
+Explored convention: (n=60p+w), printed page labels zero-based, word ordinals one-based, words assigned to the page where their first rune occurs. Under it:
+- p0 title sums347/315 (mean331, difference32) select p5:w47, p5:w15, and midpoint p5:w31. Selected words TD/REO/CEAA have prime sums148/52/219 and totients72/24/144 (a second totient on the midpoint gives48).
+- Cuneiform numbers1033/3301 select p17:w13 AEP (sum144, φ48) and p55:w1 AEMIW (sum222, φ72).
+- If p50 token3D is read as base60 193, it selects p3:w13 DEO (sum130, φ48); the word DEO occurs twice (p3:w13 and p33:w1).
+- Five selected words total13 runes; first totients sum360. Other numerical correspondences include24/48/72,331/1033,32 and the p55 core checksum401=13×29+24.
 
-### Exact observations
+**Final evidence assessment: do not treat this as a source-selected route or held-out confirmation.** The prior research audit changes the decision:
+- #310/#337 preserve p50 base59/base60 ambiguity and prohibit choosing the radix from downstream matches; #116 states cuneiform base60 does not establish p50's alphabet/radix.
+- The authenticated 2016 message does not specify a page/word address formula or indexing convention (see `im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md`).
+- #46 already records an inner-shell DEO readout from the 2014 7×7 square and p57's “divinity within”; the DEO semantic match is not independent.
+- #112 already audits the conditional 193 → D-within route. The p50 3D → p3:w13 DEO match depends on the unresolved 193/base60 branch and is not a valid held-out confirmation.
+- The midpoint's second totient and the multiple matching markers are post-hoc degrees of freedom. Totient values24,48,72 occur often enough in the corpus that they are not rare by themselves.
 
-1. p0 red-title words `SHEOGMIAF` and `SYENGC` have GP-prime sums **347** and **315**. Their mean is331; difference32. They address p5:w47, p5:w15, and midpoint p5:w31:
-   - p5:w15 `REO`: prime sum52, φ=24.
-   - p5:w31 `CEAA`: prime sum219, φ=144, then φ(144)=48 (this second iteration is target-guided).
-   - p5:w47 `TD`: prime sum148, φ=72.
+Direct consumers tested here did not recover plaintext: p56-style φ(prime) streams starting at24/72; 24/72 and72/24 start/stride variants; affine use of24/72; the 13-rune selected-word key on p0 title/p55; and simple DEO/totient Vigenere consumers. The full p175–p464 prime interval as page/word addresses produced41 out-of-range addresses. A speculative 48-symbol square-key/central-p55 test also failed.
 
-2. Cuneiform source numbers1033 and3301 address p17:w13 and p55:w1:
-   - p17:w13 `AEP`: prime sum144, φ=48.
-   - p55:w1 `AEMIW`: prime sum222, φ=72.
-   - The two totients have mean60 and difference24.
-
-3. **Held-out check:** p50's source-visible base-60 token `3D` is193; 193=3×60+13 addresses p3:w13, which is `DEO` (rune indices[23,12], prime sum130, φ=48). The complete word corpus contains exactly two `DEO` tokens: p3:w13 and p33:w1. This is a plausible semantic echo of p57's “find the divinity within.” The p50 3D token and its value are source-visible; the mapping of the 2016 word “lies” to that token is itself a hypothesis.
-
-4. The five selected words p17:w13, p55:w1, p5:w15, p5:w31, p5:w47 contain **13 runes total**, matching the p0 red title. Their first totients [48,72,24,144,72] sum **360=6×60**. Values24/48/72 also match p54's first red-rune GP index24, the 48 noncentral cells of the 2014 7×7 square, and p55's original scan/image72. p0 title mean331 and cuneiform1033 match the 2014 square's center and magic constant; title difference32 matches p50's 32 rows.
-
-5. Existing p55 center-five work gives prime sum **401=13×29+24**, numerically echoing the 13-rune title and p54's red-rune index24. Treat this only as a checksum cross-reference, not a plaintext or authenticated BASE29 word.
-
-### Evidence classification and decision
-
-This is a coherent **navigation/selector hypothesis**, not a decryption. The p50/p3 DEO result is the strongest held-out support, but the page/word coordinate grammar remains the weakest premise. The existing [2016/p50/p55 source-selector gate](../../im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md) explicitly notes that the authenticated 2016 message does not state a radix or page/word formula. Do not silently promote this route to an established result.
-
-The following obvious consumers failed to recover plaintext: p56-style φ(prime) streams starting at24/72; 24/72 and72/24 start/stride variants; affine use of24/72; the 13-rune concatenated selected-word key on p0 title/p55; and simple totient-derived/DEO Vigenere consumers on p55. The p175–p464 prime interval as page/word addresses produced41 out-of-range addresses and is not a supported continuation.
-
-**Next useful decision:** seek one independent original, human-visible selector for the exact base-60 page/word convention and indexing. If none exists, retire the route as a numerical/semantic coincidence. If one exists, freeze a held-out prediction and one reversible p54/p55 consumer. Do not broaden into arbitrary offsets, key families, or additional post-hoc totient iterations. A possible 43-byte p50 interval + five p55 marks =48-cell construction is only a hypothesis and should not be run without a source-selected ordering/operation.
+**Decision:** preserve the calculations as a conditional coincidence record and do not continue offsets, totient iterations, shell readouts, or key-family searches. Reopen only if an original, human-visible source independently fixes both the exact page/word grammar and the p50 radix. Otherwise retire the branch.
 
 ## Prior Agent37 work retained from earlier incarnations
 
