@@ -21,8 +21,8 @@ const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..');
-const source = fs.readFileSync(path.join(ROOT, 'resources', 'external',
-  '2012-845145127', 'cicada-logo-outguess-signed.asc'));
+const source = fs.readFileSync(path.join(ROOT, 'im-results',
+  '2012-845145127', 'coordinate-payload.asc'));
 const corpus = JSON.parse(fs.readFileSync(path.join(ROOT, 'resources',
   'liber-primus', 'lp2-corpus.json'), 'utf8'));
 const sha = crypto.createHash('sha1')
