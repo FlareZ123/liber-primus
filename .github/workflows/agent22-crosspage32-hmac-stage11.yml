@@ -1,0 +1,18 @@
+name: Agent 22 cross-page 32-byte key HMAC-SHA512 Stage11 gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hmac-stage11-index:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-locked HMAC-SHA512 gate
+        run: node sims/lp2_crosspage32_hmac_stage11_index_sft.cjs
