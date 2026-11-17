@@ -303,7 +303,11 @@ def write_plain_targets(layer2: Path):
     eng = parse_windows(data / "plain.txt")
     if len(eng) < 3:
         raise AssertionError("upstream held-out English control windows missing")
-    long = eng[0]["runes"] + eng[1]["runes"][:329]
+    # The pinned English windows are eng0=398, eng1=400, eng2=399.
+    # Build an exact 729-rune native GP positive without assuming eng0=400.
+    if [len(w["runes"]) for w in eng[:3]] != [398, 400, 399]:
+        raise AssertionError("unexpected pinned English control corpus lengths")
+    long = eng[0]["runes"] + eng[1]["runes"][:331]
     short = eng[2]["runes"][:272]
     if len(long) != 729 or len(short) != 272:
         raise AssertionError("bad positive-control lengths")
