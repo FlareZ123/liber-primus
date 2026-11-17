@@ -93,6 +93,16 @@ const encoded = clauses.map(encodeNative);
 const p57 = C.pages.find((page) => page.page === 57).indices;
 assert.equal(p57.length, 95);
 assert.deepEqual(encoded.flat(), p57, 'Every original clear rune must agree');
+// PARABLE title is a fourth original p57 string, independent of the
+// three 2013 MP3-number factors that first selected the address rule.
+// Its GP-prime sum is itself prime, and its prime ordinal points to
+// the original grid token 15. Under the previously frozen base59 codec,
+// token15 evaluates to 64, the printed grid's 8x8 block size.
+// This geometric interpretation was noticed retrospectively.
+const titleSum = primeSum(clauses[0]);
+const titlePrimeOrdinal = primePi(titleSum);
+assert.equal(titleSum, 449);
+assert.equal(titlePrimeOrdinal, 87);
 const clauseSums = clauses.slice(1).map(primeSum);
 const ranks = clauseSums.map(primePi);
 assert.deepEqual(clauseSums, [1259, 1031, 1229]);
@@ -118,6 +128,14 @@ function convert(alphabet) {
 }
 const bytes59 = convert(BASE59);
 const bytes60 = convert(BASE60);
+const titleToken = printed[titlePrimeOrdinal];
+const titleValue59 = bytes59[titlePrimeOrdinal];
+const titleValue60 = bytes60[titlePrimeOrdinal];
+assert.equal(titleToken, '15');
+assert.equal(titleValue59, 64);
+assert.equal(titleValue60, 65);
+assert.equal(titleValue59, grid.rows[0].length ** 2);
+assert.equal(grid.rows[0].length, 8);
 const at59 = ranks.map((address) => bytes59[address]);
 const at60 = ranks.map((address) => bytes60[address]);
 const oneBased59 = ranks.map((address) => bytes59[address - 1]);
@@ -246,7 +264,12 @@ assert.equal(exactAllCornersAssignments / fixedGeometryDenominator, 1 / 10487558
 
 console.log(JSON.stringify({
   p57Source: {
-    titleSum: primeSum(clauses[0]),
+    titleSum,
+    titlePrimeOrdinal,
+    titleOriginalTableToken: titleToken,
+    titleBase59Value: titleValue59,
+    titleBase60Value: titleValue60,
+    gridWidthSquared: grid.rows[0].length ** 2,
     clearRuneMatch: '95/95',
     actualEnglish: 'TUNNELING (one ING rune)',
     clauseSums, primeOrdinals: ranks,
