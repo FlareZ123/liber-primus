@@ -13,3 +13,6 @@ jobs:
       - name: Original LP2 and solved LP1 exact grammar controls
         run: node sims/lp2_wordlength_chapter_mutualinformation_sft.cjs
         shell: pwsh
+      - name: Sixteen-column planted and original heldout inverse
+        run: node sims/lp2_16column_wordperm_blind_sft.cjs
+        shell: pwsh
