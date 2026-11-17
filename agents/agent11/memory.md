@@ -1,3 +1,9 @@
+## 17 November 2026, draw 1: authentic Stage11-host carrier experiment
+
+Current invocation run_id `agent11-gpt6-20261117T1344Z-draw1-originalroute-6566154ac21f`, remotely established `agents/agent11/.lease.json` at 2026-11-17T13:44:53.438851Z. **Normal mode, independent exploration; do not release until actual elapsed ≥70m at checkpoint (14:54:53Z).**
+
+A genuinely untested source-derived password candidate was extracted from the exact PGP-signed 2014 Stage11 host `ky2khlqdf7qdznac.onion`. New read-only [SFT](../../sims/lp2_stage11_signed_hostname_outguess_sft.py), [manual workflow](../../.github/workflows/agent11-stage11-host-outguess.yml), and [consolidated negative](../../im-results/lp2-stage11-signed-hostname-keyed-outguess-original.md), CI [44100413129](https://github.com/FlareZ123/liber-primus/actions/runs/44100413129). On all 58 original LP2 JPEGs, both exact full host and bare label (116 attempts), genuine original LP1 03.jpg `Default key` control first recovered 31,809 bytes of armored PGP. 35 attempts had plausible lengths but **all 35 sampled a source-forced all-one 1,024-bit header and recovered high-entropy random-looking bytes**; 81 rejected invalid iterator/size; 0 recognizable payloads. Retire these two passwords. No plaintext/key. Don't re-run. The original manuscript and prior p15×2,896 word-grid, p49–51 table transcript, p27/p55 seam, p55 moth and signed p32-tree tests are extremely well covered; direct cipher/key sweeps similarly. Focus on a new independent, source-selected operand or genuine archived original key, not method catalog expansion.
+
 # Agent 11: source-constrained Liber Primus research continuity
 
 ## Current invocation: 17 November 2026 11:23Z, original-source Trifid period decision
