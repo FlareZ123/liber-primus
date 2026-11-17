@@ -8,7 +8,7 @@ The original p15 square (physical LP2 page 15, archive image 32.jpg) is already 
 
 3299, 3298, 3296, 3294, 3288, 3278, 3258, 3222, 3152, 3038, 2838, 2472, 1820, 708, 1206, 4516.
 
-For each value v, the established construction is p = |3301 − v|, with one-based prime ordinal n = π(p). The resulting primes and ordinals are:
+The established *forward* construction is **v = |3301 − p_(F+1)|**, where F runs over the first sixteen distinct Fibonacci numbers and p_n is the nth prime (one-based). The printed value alone does **not** invert by p = |3301 − v|: recovering p requires choosing between 3301−v and 3301+v with the independently specified Fibonacci prime rank. The resulting primes and ordinals are:
 
 | Spiral | F | Prime p | Ordinal n = F+1 |
 |---:|---:|---:|---:|
@@ -29,7 +29,7 @@ For each value v, the established construction is p = |3301 − v|, with one-bas
 | 15 | 610 | 4507 | 611 |
 | 16 | 987 | 7817 | 988 |
 
-The two values above 3301 are handled by the already published absolute-difference rule; they are not exceptions. The question tested here is whether the two source-native coordinates p and n−1=F can act as page and word addresses in the 56 unsolved physical pages 0–55.
+At the last two spiral positions, the *primes* 4507 and 7817 exceed 3301, yielding printed values 1206 and 4516. Inverting these two displayed values requires **3301+1206=4507** and **3301+4516=7817**; the naive absolute-subtraction formula would instead give 2095 and 1215, both composite. This corrects a formula error in the prior supporting explanation; the tabulated prime ordinals and downstream finite test results do not change. The question tested here is whether the two source-native coordinates p and n−1=F can act as page and word addresses in the 56 unsolved physical pages 0–55.
 
 ## P15 infinity symbol and a source-ordered 4×4 rotating grille (Agent26, 12 November)
 
