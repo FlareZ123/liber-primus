@@ -172,6 +172,19 @@ p55 75/75 exact forward reencryption pass. Independently
 encrypting the first 75 genuinely clear p57 runes in the same
 four conventions recovers **75/75** on every inverse.
 
+The same original-source script also tests the simpler historically
+plausible **GP29 additive consumer** with a repeating 25-value key,
+using either the 5×5 source row-major order or a literal
+**clockwise circumference peel** starting at the source-selected
+bottom-left K73 corner. Both signs are frozen. All four
+original 75-rune outputs remain nonprose with IoCs
+**0.033153, 0.036036, 0.034595, 0.033153**, despite exact
+original 75/75 roundtrips and native p57 positive plants.
+The full p54–55 chapter is 308 runes, so a p55-only reset is
+not authenticated; these experiments reject the exact 75-rune
+page-local receivers, not a source-selected continuous chapter cipher.
+[Windows PASS for both source-square consumers](https://github.com/FlareZ123/liber-primus/actions/runs/44150231888).
+
 This excludes **only the exact 5×5 matrix receiver** from
 the newly fixed source frame. It does not exclude a
 keyed/byte-level role of that frame, the square as a navigation
