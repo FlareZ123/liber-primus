@@ -119,9 +119,59 @@ for (const emitInitial of [true, false]) {
     });
   }
 }
+
+/**
+ * Derive a direct GP29 additive pad from the actual BBS bitstream.
+ * Five-bit draws reject values 29..31; eight-bit draws reduce modulo29.
+ * These are two fixed, ordinary transports, with a continuous source clock.
+ * @param {number} length
+ * @param {boolean} emitInitial
+ * @param {boolean} packLowBitFirst
+ * @param {number} chunkBits
+ * @returns {number[]}
+ */
+function fullRunicPad(length, emitInitial, packLowBitFirst, chunkBits) {
+  let state = seed * seed % modulus;
+  const output = [];
+  while (output.length < length) {
+    let symbol = 0;
+    for (let bit = 0; bit < chunkBits; bit++) {
+      if (!emitInitial) state = state * state % modulus;
+      symbol |= (state & 1) << (packLowBitFirst ? bit : chunkBits - 1 - bit);
+      if (emitInitial) state = state * state % modulus;
+    }
+    if (chunkBits === 5 && symbol >= 29) continue;
+    output.push(symbol % 29);
+  }
+  return output;
+}
+
+const completeOriginal = corpus.pages.filter((page) => page.page <= 55 && page.indices.length)
+  .flatMap((page) => page.indices);
+assert.equal(completeOriginal.length, 12956);
+const fullOriginalReports = [];
+for (const chunkBits of [5, 8]) {
+  for (const emitInitial of [true, false]) {
+    for (const packLowBitFirst of [true, false]) {
+      const pad = fullRunicPad(completeOriginal.length, emitInitial, packLowBitFirst, chunkBits);
+      const clear = p57.indices.slice();
+      const originalPlant = clear.map((x, i) => (x + pad[i]) % 29);
+      assert.deepEqual(originalPlant.map((x, i) => (x - pad[i] + 29) % 29), clear);
+      for (const sign of [-1, 1]) {
+        const decoded = completeOriginal.map((x, i) => (x + sign * pad[i] + 29) % 29);
+        fullOriginalReports.push({ chunkBits, emitInitial, packLowBitFirst, sign,
+          originalIoc: indexOfCoincidence(decoded) });
+      }
+    }
+  }
+}
+const completeIocs = fullOriginalReports.map((x) => x.originalIoc);
+assert.ok(Math.min(...completeIocs) > 0.0344 && Math.max(...completeIocs) < 0.0346);
+
 assert.deepEqual(report.map((x) => [x.sourceByteMatches.base60, x.sourceByteMatches.base59]), [[1, 3], [0, 2], [0, 1], [1, 0]]);
 assert.deepEqual(report.map((x) => x.p55OurOwnSixCribMatchesByFSkips), [[0, 1, 0, 0], [0, 0, 0, 1], [0, 1, 1, 1], [0, 0, 0, 0]]);
 console.log(JSON.stringify({ parableId3, primeFactors, modulus, seed,
   source: '2013 Parable ID3 plus original LP2 numeric grid and p55/p57 GP29',
-  originalP55Ioc: originalIoc, clearP57First76Ioc: clearP57Ioc, report }, null, 2));
+  originalP55Ioc: originalIoc, clearP57First76Ioc: clearP57Ioc, report,
+  completeOriginalRunes: completeOriginal.length, fullOriginalReports }, null, 2));
 console.log('PASS: original source plus standard BBS source-key and planted controls');
