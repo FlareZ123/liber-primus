@@ -1,8 +1,28 @@
-# LP2 p0–2: source-selected center self-crib and candidate WEATHER
+# LP2 p0–2: source-derived central self-crib, provisional reading, and non-unique continuation
 
-**16 November 2026, Agent10. Classification: original-input geometric identity and reproducible *candidate* plaintext.** The passage is **not an authenticated Cicada decryption**. No source-selected complete reading order or fixed inter-block transition law yet exists.
+**Research state, 17 November 2026.** Agent10's original-source geometric self-crib and candidate WEATHER are reproducible. Agent29's independently reproduced post-THEN transition shows that the external author's complete Reports 00–16 still admit different original-cipher key nodes and intact English words for the next block. These data preserve a possible human route, but **no authenticated unknown-page plaintext, complete source-selected reading order, or unique fixed inter-block transition law has been recovered**.
 
 [All-input CommonJS SFT](../sims/lp2_p0_27square_center_selfcrib_source_sft.cjs) · [successful original GitHub Actions run](https://github.com/FlareZ123/liber-primus/actions/runs/43810073761) · [independent prior claim and worked route](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption) · [external audit of the earlier shorter route](https://secra.tech/research/liber-primus-strongest-findings/).
+
+## Current decisive limit: Reports 00–16 do not select a unique next block
+
+The external [27×27 map author's 17-block proposal](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption) ends at **THEN**. The complete original first chapter has **729 GP29 runes**, read row-major in 27×27. Its final proposed source node **IA–IA–IA** is at (25,22)–(27,22), centered at (26,22); its ciphertext **L–T–W** occupies (25,25)–(25,27). The published source phases of blocks 1–17 sum to **18**, selecting Report11's reflected/+1 next-key prediction.
+
+Apply the formulas of the external author's Reports **00–15**, including the later exact ray-deviation, key-source axis, and radius-parity rules. From the unchanged original THEN block, the predicted next-source signature is **(+1,+1,+1)**, phase **0**, a vertical *mirror* with center (even row, odd column) and **odd radius**. The next ciphertext must run **diagonally up-left**, end at its leftmost cell with an **odd row and even column**, satisfy the source's four squarefree-GCD constraints, and begin at exact eight-ray deviation **1** from prior leftmost (25,25). Report16 then accepts complete English words.
+
+These constraints admit at least the following physically different original readings, neither requiring a hypothetical rune or fitted key index:
+
+| Plaintext word | Original source node (outer–center–outer) | Original node runes → derived, aligned key | Next ciphertext cells, unchanged runes | Four μ(gcd) values |
+| --- | --- | --- | --- | --- |
+| **THE** (external proposed block18) | (17,17)–(20,17)–(23,17) | N–M–N → **N–E–N** | (22,21) J; (21,20) W | −1,+1,+1,+1 |
+| **MY** (independent competing block18) | (5,25)–(8,25)–(11,25) | X–M–X → **X–E–X** | (18,17) R; (17,16) S | −1,−1,−1,−1 |
+| **OF** (further whole-word witness) | (5,25)–(8,25)–(11,25) | X–M–X → **X–E–X** | (6,5) B; (5,4) E | −1,−1,−1,−1 |
+
+For the competing **MY**: the original X–M–X source's center has GP index 19, φ(19)=18=E; the aligned key is indices **[14,18]** at the two ciphertext positions. Their unchanged rune indices **[4,15]** give (4−14) mod29=19=M and (15−18) mod29=26=Y. The next start (18,17) has absolute displacement (−7,−8) from the preceding leftmost (25,25), giving **d₈=1**, exactly as required. Its key source radius 3, 90°-rotation leftmost Möbius value 0, coordinates/parities, and all four GCDs pass. The published **THE** candidate passes the *same* checks. Both are complete English words under Report16, and both leave the continuation unspecified.
+
+An exact lattice enumeration of **all four eligible vertically mirrored source nodes** and diagonal up-left source ciphertext runs, imposing the other published finite constraints, returns **1,104** admissible source/ciphertext pairs with **1,093 distinct decoded rune strings**. The three explicit complete-word witnesses above survive the **same** constraints. This count precedes further grammar/style judgment. The external scheme may still be a useful *proposal*, and the 27×27 center self-crib below remains a real original-rune relationship, but a semantic preference for THE does not constitute a deterministic, previously selected decoder. Claims of independent authentication for the external 38-block continuation require a new source-derived selection rule or genuinely withheld ciphertext prediction.
+
+**Reproducer:** [Agent29 standalone CommonJS SFT](../sims/lp2_p0_27square_afterthen_fulllattice_sft.cjs) reads the untouched canonical p0–2 source, verifies the 17-block predecessor state, recomputes every applicable report constraint, reconstructs the two competing whole words and OF, and exhaustively counts the finite surviving source/ciphertext pairs. This is a bounded **non-uniqueness certificate**, not a claim of recovered unknown-page text.
 
 ## A self-crib present in the first source-defined square
 
