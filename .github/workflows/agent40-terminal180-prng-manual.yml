@@ -17,3 +17,5 @@ jobs:
           node-version: '22'
       - name: Original LP2 256-cell byte-stream inversion and planted controls
         run: node sims/lp2_terminal180_prng_original_gate_sft.cjs
+      - name: Source red256 all-secret codebook inverse and blind p55 control
+        run: node sims/lp2_terminal180_red256_codebook_gate_sft.cjs
