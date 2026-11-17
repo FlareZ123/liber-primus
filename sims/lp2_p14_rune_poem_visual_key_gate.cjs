@@ -157,6 +157,8 @@ const primeWordSample = GP_PRIMES.map(prime => poemWords[prime - 1]);
 
 const p14LcgMod = p14.map((_, i) => ((47 * i + 89) % 137) % 29);
 const p14LcgScaled = p14.map((_, i) => Math.floor(29 * ((47 * i + 89) % 137) / 137));
+const p14EohDaegLcgMod = p14.map((_, i) => ((41 * i + 89) % 137) % 29);
+const p14EohDaegLcgScaled = p14.map((_, i) => Math.floor(29 * ((41 * i + 89) % 137) / 137));
 const render = (indices) => indices.map(i => GP[i]).join('');
 
 const result = {
@@ -189,6 +191,10 @@ const result = {
     a47c89m137Mod29Plus: decodeAdd(p14, p14LcgMod, +1),
     a47c89m137ScaledMinus: decodeAdd(p14, p14LcgScaled, -1),
     a47c89m137ScaledPlus: decodeAdd(p14, p14LcgScaled, +1),
+    a41c89m137Mod29Minus: decodeAdd(p14, p14EohDaegLcgMod, -1),
+    a41c89m137Mod29Plus: decodeAdd(p14, p14EohDaegLcgMod, +1),
+    a41c89m137ScaledMinus: decodeAdd(p14, p14EohDaegLcgScaled, -1),
+    a41c89m137ScaledPlus: decodeAdd(p14, p14EohDaegLcgScaled, +1),
   },
   rsaWordBlocks: {
     p14EolhxDaeg_p47q89e137: rsaBlocks(p14Words, 47, 89, 137),
