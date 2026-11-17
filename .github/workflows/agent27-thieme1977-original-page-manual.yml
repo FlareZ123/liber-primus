@@ -1,0 +1,26 @@
+name: Agent27 1977 mayfly original-plate source gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-source:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image metadata dependencies
+        run: python -m pip install Pillow==11.3.0 filelock==3.19.1
+      - name: Retrieve source-locked 1977 plate witness
+        run: python sims/lp2_thieme1977_p90_fetch.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agent27-thieme1977-p90-source
+          path: out_thieme/*
+          if-no-files-found: error
