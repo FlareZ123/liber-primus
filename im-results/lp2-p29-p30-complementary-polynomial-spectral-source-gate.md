@@ -46,7 +46,7 @@ All arithmetic is over GF29. Both `A` and `B` have rank **2**; `AB=0` exactly. T
 
 ## Direct original-cipher readouts
 
-Use `K` and its inverse to process consecutive **four-rune column blocks**, always starting at the printed beginning and preserving the source GP29 indices. Test the original table as 256 byte residues reduced mod29, in its actual row-major and conventional column-major orders. As separate natural chapter-length recipients, test complete original pp33–39 (1,680 runes) and pp54–55 (308 runes). These are **four source-fixed receivers × two opposite directions**, with no unknown phase, symbol mapping, word reshuffle, or language-score parameter.
+Use `K` and its inverse to process consecutive **four-rune column blocks**, always starting at the printed beginning and preserving the source GP29 indices. Test the original table as 256 byte residues reduced mod29, in its actual row-major and conventional column-major orders. As separate natural receivers, test complete original pp33–39 (1,680 runes), pp54–55 (308 runes) and the original short terminal p55 alone (**76 runes = 19 four-rune blocks**). These are **five source-fixed receivers × two opposite directions**, plus the equally conventional row-vector orientation on p55, with no unknown phase, symbol mapping, word reshuffle or language-score parameter.
 
 | Original receiver | N | `K·C` IoC | `K^−1·C` IoC |
 | --- | ---: | ---: | ---: |
@@ -54,12 +54,14 @@ Use `K` and its inverse to process consecutive **four-rune column blocks**, alwa
 | table column-major | 256 | 0.03431373 | 0.03501838 |
 | original chapter p33–39 | 1,680 | 0.03429621 | 0.03482586 |
 | original chapter p54–55 | 308 | 0.03384238 | 0.03564026 |
+| original p55 alone, column-vector | 76 | 0.03228070 | 0.03754386 |
+| original p55 alone, row-vector | 76 | 0.03614035 | 0.03789474 |
 
 Each output is ciphertext-like and begins with nonlinguistic GP symbols; **none recovers native prose or an authentic instruction**. Both directions reconstruct every source symbol exactly under the algebraic inverse. A separate positive control encrypts and recovers **92/92 clear-source p57 GP29 runes** under the same full-rank Hill4 matrices. No plaintext claim is justified by exact roundtripping alone.
 
 ## Decision and reproducibility
 
-The **new p30 complementary roots** are a specific, reproducible original-cipher relationship that extends the existing p29/p39/p50 and p15 source algebra. They change which page pair would be worth examining **if** a human-visible source selector for matrix/polynomial operations is independently found. The explicit invertible matrix combined from both pages did **not** directly decode the original table or either tested chapter. It cannot be promoted to a Cicada key merely because it is invertible.
+The **new p30 complementary roots** are a specific, reproducible original-cipher relationship that extends the existing p29/p39/p50 and p15 source algebra. They change which page pair would be worth examining **if** a human-visible source selector for matrix/polynomial operations is independently found. The explicit invertible matrix combined from both pages did **not** directly decode the original table, either tested chapter or p55's independently ink-bounded 76-rune body. It cannot be promoted to a Cicada key merely because it is invertible.
 
 Do not repeat the failed raw p29 quotient, whole-chapter H×G factor divisions, p15-only Hill4 transfers or unselected matrix permutations. The necessary next input is an independently authored instruction selecting a consumer of these two complementary page objects, a source-positioned crib that constrains a nonlinear second stage, or a genuinely new test with a locked original-cipher prediction. Without one, this relationship is an intermediate observation and a candidate clue.
 
