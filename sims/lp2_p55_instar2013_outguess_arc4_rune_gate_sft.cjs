@@ -81,8 +81,8 @@ assert.equal(coincidence(terminal), 0.037894736842105266);
 // the elevated coincidence survives in the 43-symbol interiors.
 const transcription = read('resources/lp2-transcription.txt').split('%');
 assert.equal(transcription.length,57);
-const printed = transcription[54].replace(/[\\/\\r\\n]/g,'')
-  .match(/[\\u16A0-\\u16FF]+/gu).map(word => [...word]);
+const printed = transcription[54].replace(/[\/\r\n]/g,'')
+  .match(/[\u16A0-\u16FF]+/gu).map(word => [...word]);
 assert.equal(printed.length,17);
 const wordLengths = printed.map(word => word.length);
 assert.deepEqual(wordLengths,[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]);
