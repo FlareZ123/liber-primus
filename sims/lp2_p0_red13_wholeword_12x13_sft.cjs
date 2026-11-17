@@ -152,7 +152,7 @@ corpora.forEach((words,g)=>{
  assert.ok(controls[name].nativeMean>0);
  assert.ok(Object.values(controls[name].transposedMeans).every(v=>v<0));
 });
-const sourceWords=body.map(w=>[...w]);
+const sourceWords=body;
 const equalEdges=words=>words.slice(1).reduce((n,w,i)=>n+Number(words[i].slice(-1)===w[0]),0);
 const repeatedWordEdges={
  original:equalEdges(sourceWords),
