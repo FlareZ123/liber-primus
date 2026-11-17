@@ -41,7 +41,7 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
-          python -c "from pathlib import Path; import os; p=Path('sims/openpuff_v400_extract.py'); q=Path(os.environ['RUNNER_TEMP'])/'agent11-openpuff-directhwnd.py'; s=p.read_text(encoding='utf-8'); old='edits[-1].set_edit_text(str(carrier.resolve()))'; assert s.count(old)==1; new='import win32gui, win32con\\n    if not win32gui.SendMessage(edits[-1].handle, win32con.WM_SETTEXT, 0, str(carrier.resolve())):\\n        raise RuntimeError(\'Direct HWND WM_SETTEXT failed\')'; q.write_text(s.replace(old,new.replace('\\n','\\n')),encoding='utf-8'); print('DIRECT_HWND_DRIVER',q)"
+          python -c "from pathlib import Path; import os; p=Path('sims/openpuff_v400_extract.py'); q=Path(os.environ['RUNNER_TEMP'])/'agent11-openpuff-directhwnd.py'; s=p.read_text(encoding='utf-8'); old='edits[-1].set_edit_text(str(carrier.resolve()))'; assert s.count(old)==1; new='import win32gui, win32con'+chr(10)+'    if not win32gui.SendMessage(edits[-1].handle, win32con.WM_SETTEXT, 0, str(carrier.resolve())):'+chr(10)+'        raise RuntimeError(42)'; q.write_text(s.replace(old,new),encoding='utf-8'); print('DIRECT_HWND_DRIVER',q)"
           if ($LASTEXITCODE -ne 0) { throw 'Could not prepare isolated original native driver' }
           "OPENPUFF_DRIVER=$(Join-Path $env:RUNNER_TEMP 'agent11-openpuff-directhwnd.py')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Verify native public JPEG positive on the same runner
