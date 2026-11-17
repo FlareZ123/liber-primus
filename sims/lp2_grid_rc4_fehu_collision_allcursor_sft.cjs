@@ -239,3 +239,166 @@ console.log(JSON.stringify({
   },
   terminalSurvivor: runs.find(c => c.terminal === terminal.length)
 }, null, 2));
+
+
+/**
+ * Complete exact-language adjudication of the single p54+p55 receiver that
+ * survived the 64-rule feasibility gate. We enumerate every legal 308-rune
+ * plaintext path. A separate fixed Shakespeare-GP trigram control scores the
+ * literal source candidates without supplying an unknown-page crib.
+ *
+ * @param {number[]} cipher
+ * @param {Uint8Array} key
+ * @param {1|-1} sign
+ * @returns {string[]}
+ */
+function allPlainPaths(cipher, key, sign) {
+  /** @type {Map<number, string[]>} */
+  let paths = new Map([[0, ['']]]);
+  for (let i = 0; i < cipher.length; i++) {
+    /** @type {Map<number, string[]>} */
+    const next = new Map();
+    const previous = i ? cipher[i - 1] : null;
+    const current = cipher[i];
+    for (const [cursor, variants] of paths) {
+      /** @param {number} newCursor @param {number} plain */
+      function append(newCursor, plain) {
+        let dst = next.get(newCursor);
+        if (!dst) {
+          dst = [];
+          next.set(newCursor, dst);
+        }
+        const encoded = String.fromCharCode(65 + plain);
+        for (const prefix of variants) dst.push(prefix + encoded);
+      }
+      if (current === 0) append(cursor, 0);
+      for (let skips = 0; cursor + skips < key.length; skips++) {
+        if (skips && previous === null) break;
+        if (skips > 1 && key[cursor + skips - 1] !== key[cursor]) break;
+        const plain = mod29(current - sign * key[cursor + skips]);
+        if (plain !== 0 &&
+          (skips === 0 || mod29(plain + sign * key[cursor]) === previous)) {
+          append(cursor + skips + 1, plain);
+        }
+      }
+    }
+    paths = next;
+    assert.ok(paths.size > 0);
+  }
+  return [...paths.values()].flat();
+}
+
+/** @param {string} text */
+function encodeToGP(text) {
+  const alphabet = new Map(source.translit.map((name, i) => [name.toLowerCase(), i]));
+  const lower = text.toLowerCase()
+    .replace(/qu/g, 'cw').replace(/v/g, 'u')
+    .replace(/k/g, 'c').replace(/z/g, 's')
+    .replace(/ing/g, 'ng').replace(/io/g, 'ia');
+  const out = [];
+  for (let i = 0; i < lower.length;) {
+    const pair = lower.slice(i, i + 2);
+    if (alphabet.has(pair)) {
+      out.push(alphabet.get(pair));
+      i += 2;
+    } else if (alphabet.has(lower[i])) {
+      out.push(alphabet.get(lower[i]));
+      i++;
+    } else {
+      i++;
+    }
+  }
+  return out;
+}
+
+const shakespeare = fs.readFileSync(path.join(root,
+  'resources/control/shakespeare_first300k.txt'), 'utf8');
+const gpTrain = encodeToGP(shakespeare.slice(0, 200000));
+assert.equal(gpTrain.length, 144904);
+const frequency = new Float64Array(30 * 30 * 29);
+const bigram = new Float64Array(30 * 30);
+{
+  let a = 29, b = 29;
+  for (const value of gpTrain) {
+    frequency[(a * 30 + b) * 29 + value]++;
+    bigram[a * 30 + b]++;
+    a = b;
+    b = value;
+  }
+}
+for (let a = 0; a < 30; a++) {
+  for (let b = 0; b < 30; b++) {
+    for (let c = 0; c < 29; c++) {
+      const i = (a * 30 + b) * 29 + c;
+      frequency[i] = Math.log((frequency[i] + 0.2) /
+        (bigram[a * 30 + b] + 29 * 0.2));
+    }
+  }
+}
+
+/** @param {number[]} runes */
+function gpTrigramScore(runes) {
+  let a = 29, b = 29, total = 0;
+  for (const value of runes) {
+    total += frequency[(a * 30 + b) * 29 + value];
+    a = b;
+    b = value;
+  }
+  return total / runes.length;
+}
+
+/** @param {string} encoded */
+function unpack(encoded) {
+  return [...encoded].map(c => c.charCodeAt(0) - 65);
+}
+
+const terminalKey = rc4(order(table(59), 3), 768, 16000);
+const terminalPaths = allPlainPaths(terminal, terminalKey, 1);
+assert.equal(terminalPaths.length, 1152);
+const scored = terminalPaths.map(encoded => ({
+  encoded, score: gpTrigramScore(unpack(encoded))
+})).sort((a, b) => b.score - a.score);
+const nativeP57 = gpTrigramScore(clear57);
+const heldout = gpTrigramScore(encodeToGP(shakespeare.slice(250000)).slice(0, 308));
+assert.ok(Math.abs(scored[0].score - (-4.12660683929743)) < 1e-9);
+assert.ok(Math.abs(nativeP57 - (-2.478206160059137)) < 1e-9);
+assert.ok(Math.abs(heldout - (-2.4445153142275746)) < 1e-9);
+
+// Recover the original 66 printed word boundaries, not inferred plaintext.
+const transcript = fs.readFileSync(path.join(root,
+  'resources/liber-primus/lp2-transcription.txt'), 'utf8');
+const observedParts = transcript.split('%').slice(53, 55).join('');
+const glyphMap = new Map(source.runes.map((glyph, i) => [glyph, i]));
+const segments = [];
+let fragment = [];
+for (const glyph of observedParts) {
+  if (glyphMap.has(glyph)) fragment.push(glyphMap.get(glyph));
+  else if ((glyph === '-' || glyph === '.') && fragment.length) {
+    segments.push(fragment);
+    fragment = [];
+  }
+}
+if (fragment.length) segments.push(fragment);
+assert.equal(segments.length, 66);
+assert.deepEqual(segments.flat(), terminal);
+
+/** @param {string} encoded */
+function renderOriginalWords(encoded) {
+  let pos = 0;
+  return segments.map(word => {
+    const result = [...encoded.slice(pos, pos + word.length)]
+      .map(c => source.translit[c.charCodeAt(0) - 65]).join('');
+    pos += word.length;
+    return result;
+  }).join(' ');
+}
+
+console.log(JSON.stringify({
+  terminalReceiver: '59 / reverse-column / RC4-drop768 / GP-plus',
+  exactAdmissiblePlaintexts: terminalPaths.length,
+  maxNativeGPTrigramPerRune: scored[0].score,
+  nativeClearP57Score: nativeP57,
+  independentShakespeareHeldout308Score: heldout,
+  bestSurvivorOpening: renderOriginalWords(scored[0].encoded).slice(0, 180),
+  sourcePrintedWords: segments.length
+}, null, 2));
