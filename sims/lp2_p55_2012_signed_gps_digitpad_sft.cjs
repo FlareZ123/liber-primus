@@ -20,8 +20,8 @@ const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 const ROOT = path.join(__dirname, '..');
-const SOURCE = path.join(ROOT, 'resources', 'external', '2012-845145127',
-  'cicada-logo-outguess-signed.asc');
+const SOURCE = path.join(ROOT, 'im-results', '2012-845145127',
+  'coordinate-payload.asc');
 const CORPUS = path.join(ROOT, 'resources', 'liber-primus', 'lp2-corpus.json');
 const original = fs.readFileSync(SOURCE);
 const blobHeader = Buffer.from('blob ' + original.length + '\0', 'ascii');
