@@ -1,0 +1,16 @@
+name: Agent27 p0 red5 printed-word collision-inverse SFT
+on:
+  workflow_dispatch:
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Source exact word reset red-five cipher and native matched positive
+        run: node sims/lp2_red5_wordreset_collision_sft.cjs
