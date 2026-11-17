@@ -84,6 +84,68 @@ function main() {
   const keyHex = Buffer.from(key).toString("hex");
   assert.equal(keyHex,
     "61f9cac6505456feff728edc483f49ed780ad221c0f0839c007f063b446a1671");
+  // Test whether 32 seams and all right fragments fitting an 8-column
+  // table could arise by ordinary page wrapping. Preserve every chapter's
+  // printed word-length multiset and every exact original page-rune count.
+  const chapterBounds = [[0,2],[3,7],[8,14],[15,22],[23,26],
+    [27,32],[33,39],[40,52],[53,54]];
+  const pageLengths = corpus.pages.filter(p => p.page <= 55 &&
+    p.indices.length).map(p => p.indices.length);
+  assert.equal(pageLengths.length,55);
+  /** @param {number[]} lengths @param {number[]} pLengths @returns {number[]} */
+  function crossingRightLengths(lengths, pLengths) {
+    let boundary=0, before=0, word=0;
+    const right=[];
+    for(let p=0;p<pLengths.length-1;p++) {
+      boundary+=pLengths[p];
+      while(before+lengths[word]<=boundary) {
+        before+=lengths[word++];
+      }
+      if(before<boundary)right.push(lengths[word]-(boundary-before));
+    }
+    return right;
+  }
+  const chapterSamples = chapterBounds.map(([lo,hi]) => {
+    const lengths = parsed.words.filter(w =>
+      w.startPage>=lo && w.endPage<=hi).map(w => w.length);
+    const pLengths = pageLengths.slice(lo,hi+1);
+    assert.equal(lengths.reduce((a,b)=>a+b,0),
+      pLengths.reduce((a,b)=>a+b,0));
+    return {lengths,pLengths};
+  });
+  const realChapterSeams = chapterSamples.map(({lengths,pLengths}) =>
+    crossingRightLengths(lengths,pLengths));
+  assert.deepEqual(realChapterSeams.map(x=>x.length),
+    [2,4,2,4,3,3,2,11,1]);
+  assert.equal(realChapterSeams.flat().length,32);
+  assert.ok(realChapterSeams.flat().every(x=>x>=1&&x<=7));
+  let state=41720919;
+  const rand=()=>{state^=state<<13;state^=state>>>17;state^=state<<5;
+    return (state>>>0)/4294967296;};
+  const sampleCount=20000;
+  let exact32=0,atMost32=0,allUnder8=0,joint=0;
+  for(let i=0;i<sampleCount;i++){
+    let n=0,within8=true;
+    for(const chapter of chapterSamples){
+      const lengths=chapter.lengths.slice();
+      for(let j=lengths.length-1;j>0;j--){
+        const k=Math.floor(rand()*(j+1));
+        [lengths[j],lengths[k]]=[lengths[k],lengths[j]];
+      }
+      const fragments=crossingRightLengths(lengths,chapter.pLengths);
+      n+=fragments.length;
+      if(fragments.some(x=>x>7))within8=false;
+    }
+    if(n===32)exact32++;
+    if(n<=32)atMost32++;
+    if(within8)allUnder8++;
+    if(n===32&&within8)joint++;
+  }
+  const pageWrapNull={method:"shuffle complete source word lengths within each chapter, preserve exact printed page-rune counts",
+    seed:41720919,samples:sampleCount,exactly32:exact32,
+    atMost32,allRightFragmentsFit8Columns:allUnder8,
+    exactly32AndFit8Columns:joint,
+    note:"Post-selected exploratory coincidences, no adjusted significance claim"};
   const key29 = key.map(n => n % 29);
   const key28 = key.map(n => n % 28);
   const all = corpus.pages.filter(p => p.page <= 55).flatMap(p => p.indices);
@@ -168,7 +230,7 @@ function main() {
     keyAsGP28:gp(key28),
     controls:{nativeSameShape76RuneRoundTrip29:true,
       nativeSameShape76RuneRoundTrip28WithEARepeat:true,
-      sourceNativeLexiconSize:lexicon.size},
+      sourceNativeLexiconSize:lexicon.size,pageWrapNull},
     original:originals,
     decision:"Source count and grid dimensions provide a conditional 32-byte key. The exact GP29 additive/GP28 predecessor consumers yield no GP-English words of length >=3 on physical p55; no authored instruction selects the seam mapping, cipher family or key consumer."
   },null,2));
