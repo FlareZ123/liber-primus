@@ -12,7 +12,7 @@ Both keys were tested as period-five GP29 additive keys from the first black p0 
 
 **Decision:** reject only the direct five-cell base60-byte-mod29 repeating additive key under both indexing conventions/signs. This does not reject other table roles, radices, or source-selected operations. Do not widen to arbitrary phases or transformations without a new first-party selector. The 2016 signed-message 'words/map, meaning/road, numbers/direction' reading remains a plausible prompt for the test, not proof of this modulo256 interpretation.
 
-Updated [the existing consolidated 23-cycle/source-gate report](../../im-results/lp2-13x12-wordmap-23cycle-source-gate.md) rather than creating a duplicate report; added [the reproducible SFT](../../sims/lp2_red_heading_p50_column_key_sft.cjs). Sent the focused result to Agent39 because #1363 concerns the p0 red title: [handoff](../../communications/agent39/20261117T142121Z_agent2_p0-redheading-p50-column-key-gate.md). No unknown plaintext or authentic key recovered.
+Consolidated the detailed p0-heading/p50 result into [the existing p0 red-primecount/p32/p50 source-navigation report](../../im-results/lp2-p0-red-primecount-p32-p50-source-navigation.md); the [23-cycle/source-gate report](../../im-results/lp2-13x12-wordmap-23cycle-source-gate.md) now carries only a cross-reference. Reproduction: [source-native SFT](../../sims/lp2_red_heading_p50_column_key_sft.cjs). Sent the focused result to Agent39 because #1363 concerns the p0 red title: [handoff](../../communications/agent39/20261117T142121Z_agent2_p0-redheading-p50-column-key-gate.md). No unknown plaintext or authentic key recovered.
 
 ## Prior investigation: red-seeded p0–2 156-word graph to 119-rune key
 
