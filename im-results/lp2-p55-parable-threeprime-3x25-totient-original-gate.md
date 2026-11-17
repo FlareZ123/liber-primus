@@ -1,6 +1,6 @@
 # Three source PARABLE clause primes as independent 25-rune p55 totient clocks
 
-**Agent14, 17 November 2026 | Outcome:** One new, historically motivated *complete* original page55 cipher architecture has **zero legal full-page plaintext inverses**, despite working exact native GP29 positive controls. The authors have not specified this architecture, and this is an exclusion of this particular source-shaped handoff, not of the clause-prime numbers or of other original LP2 methods. **No unknown plaintext or key recovered.**
+**Agent14, 17 November 2026 | Outcome:** One new, historically motivated *complete* original page55 cipher architecture has **zero legal full-page plaintext inverses in every one of the six source-prime orders**, despite working exact native GP29 positive controls. The authors have not specified this architecture, and this is an exclusion of this particular source-shaped handoff, not of the clause-prime numbers or of other original LP2 methods. **No unknown plaintext or key recovered.**
 
 ## Player-visible hypothesis frozen before inspecting ciphertext
 
@@ -22,8 +22,18 @@ In each row, `failAt` is the first **0-based offset within that 25-rune block** 
 | Second clause; core positions 25–49 | 1031 | **failAt 10**, zero legal full paths | **failAt 0**, zero legal full paths |
 | Third clause; core positions 50–74 | 1229 | possible, one local path with nonprose GP29 | **failAt 4**, zero legal full paths |
 
-The complete triple therefore has **zero full 75-rune inverses for either sign**. The historically solved sign already fails in the first and second blocks. This is an algebraic impossibility under literal-F transparency, stronger than simply observing an English-score failure. A hypothetical clear F cannot repair a non-F ciphertext that would have decrypted to F.
+The complete source-ordered triple therefore has **zero full 75-rune inverses for either sign**. The historically solved sign already fails in the first and second blocks. This is an algebraic impossibility under literal-F transparency, stronger than an English-score failure. A hypothetical clear F cannot repair a non-F ciphertext that would have decrypted to F.
 
-The reproducible [original-source Node22 SFT](../sims/lp2_p55_parable_threeprime_3x25_totient_sft.cjs) directly reads unchanged `resources/liber-primus/lp2-corpus.json`; asserts the authentic 2013 clause product, real page55 carry and 75-runic core, exact prime starts, six original branch outcomes; and constructs **six independent 25-rune true native-GP positive ciphertexts** from authentic p57 cleartext with the same local keys/signs and genuine F-bypass handling. Every true plaintext has at least one exact full inverse branch (25/25 each). Both complete original signs remain impossible.
+**Order-independent strengthening:** Even granting *all six permutations* of the three genuine PARABLE prime starts among the same three 25-rune blocks cannot repair the original. The complete 3×3 original-input F-transparent viability matrix, with every cell reporting its first impossible local offset or `OK`, is:
+
+| Core block | Seed 1259: sign − / + | Seed 1031: sign − / + | Seed 1229: sign − / + |
+| --- | --- | --- | --- |
+| First 25 | 19 / OK | 11 / 9 | OK / OK |
+| Middle 25 | **11 / OK** | **10 / 0** | **3 / 20** |
+| Last 25 | OK / **5** | OK / **2** | OK / **4** |
+
+For the authenticated **minus** sign, *every possible seed fails in the middle block*, so any assignment has an impossible second block. For the reverse **plus** sign, *every possible seed fails in the last block*. This is a clean **all-3! algebraic exclusion** using the three independently sourced primes, physical 25-rune grouping, and authentic F semantics, without choosing the seed order to maximize an English score. It does not address changing the block size, cipher operation, or unknown external key.
+
+The reproducible [original-source Node22 SFT](../sims/lp2_p55_parable_threeprime_3x25_totient_sft.cjs) directly reads unchanged `resources/liber-primus/lp2-corpus.json`; asserts the authentic 2013 clause product, real page55 carry and 75-runic core, exact prime starts, all **18 original block/prime/sign contradictions**, six original source-ordered branch outcomes; and constructs **six independent 25-rune true native-GP positive ciphertexts** from authentic p57 cleartext with the same local keys/signs and genuine F-bypass handling. Every true plaintext has at least one exact full inverse branch (25/25 each). Both complete original signs remain impossible.
 
 The source-derived *three clause numbers* are real and useful to preserve as potential instructions. The negative result means a proposed future decoder must use a **different, independently justified operation or recipient**. Do not revisit this exact 3×25 consecutive-prime/F-transparent transfer by adjusting masks, clocks, or phrase-dependent exceptions after observing the failure.
