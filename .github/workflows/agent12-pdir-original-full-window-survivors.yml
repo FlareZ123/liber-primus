@@ -1,0 +1,98 @@
+name: Agent 12 LP2 pdir original survivors whole-window verification
+on:
+  workflow_run:
+    workflows:
+      - "Agent 13 LP2 pointer-direction finished-stage1 reducer"
+    types: [completed]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  inspect-reducer:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: windows-latest
+    outputs:
+      candidate_count: ${{ steps.gate.outputs.candidate_count }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ github.event.workflow_run.id }}"
+          name: original-lp2-pdir-stage1-18convention-report
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          path: source-reducer
+      - id: gate
+        name: Check original 2376-vector matrix and determine frozen candidate count
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $m = Get-Content -LiteralPath 'source-reducer/lp2-pdir-original-stage1.json' -Raw | ConvertFrom-Json
+          if ($m.original_vector_count -ne 2376 -or $m.matched_random_vector_count -ne 396 -or -not $m.full_18_convention_coverage) {
+            throw 'Reducer artifact did not complete the registered source-exact 18-convention matrix'
+          }
+          if ($m.original_run_id_six -ne 44006868510 -or $m.original_run_id_remaining -ne 44007390480) {
+            throw 'Reducer changed original registered campaign run IDs'
+          }
+          $n = [int]$m.candidate_count
+          if ($n -ne @($m.candidates).Count) { throw 'Candidate list and reducer count disagree' }
+          Write-Host "Frozen original threshold survivors for complete decoding: $n"
+          Add-Content -LiteralPath $env:GITHUB_OUTPUT -Value "candidate_count=$n"
+  verify-original:
+    needs: inspect-reducer
+    if: needs.inspect-reducer.outputs.candidate_count != '0'
+    runs-on: windows-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: external-cicada3301
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install independent reference requirements
+        run: python -m pip install numpy mpmath filelock
+      - name: Build exact source-registered original GP29 pdir inverse
+        run: cargo build --release --manifest-path external-cicada3301/work/kscreen/Cargo.toml
+      - name: Reconstruct original source and all fixed key/rule inputs
+        run: |
+          python external-cicada3301/work/kscreen/export.py
+          python external-cicada3301/work/kscreen/signrules.py
+          python external-cicada3301/work/kscreen/dirrules.py
+          python sims/lp2_pdir_issue1329_gate.py external-cicada3301
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ github.event.workflow_run.id }}"
+          name: original-lp2-pdir-stage1-18convention-report
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          path: source-reducer
+      - name: Retrieve exactly the original complete six-convention corpus
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "44006868510"
+          pattern: pdir-stage1-*
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          path: from-six
+          merge-multiple: false
+      - name: Retrieve exactly the original complete remaining-twelve corpus
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "44007390480"
+          pattern: pdir-stage1-remaining-*
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          path: from-twelve
+          merge-multiple: false
+      - name: Full original-section inversion of only source-registered threshold survivors
+        run: |
+          python sims/lp2_pdir_stage1_verify_candidates.py --manifest source-reducer/lp2-pdir-original-stage1.json --six from-six --remaining from-twelve --external external-cicada3301 --out original-whole-window
+      - name: Preserve all actual decoded GP29 prefixes and 20-offset null controls
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-pdir-all-frozen-threshold-survivors-original-full-window
+          if-no-files-found: warn
+          path: |
+            original-whole-window/
+            external-cicada3301/results/kscreen/pdir/issue1329-autoverify/
