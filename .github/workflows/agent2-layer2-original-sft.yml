@@ -103,11 +103,6 @@ jobs:
 
   screen:
     needs: controls
-    if: >-
-      ${{ (matrix.family != 'solved' && matrix.family != 'words' || needs.controls.outputs.serial_pass == 'true') &&
-          (matrix.family != 'combined' || needs.controls.outputs.combined_pass == 'true') &&
-          (matrix.family != 'periodic0' || needs.controls.outputs.periodic_litf0_pass == 'true') &&
-          (matrix.family != 'periodic1' || needs.controls.outputs.periodic_litf1_pass == 'true') }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
     strategy:
@@ -119,21 +114,46 @@ jobs:
         side: [real, "null"]
     steps:
       - name: Checkout research repository
+        if: >-
+          ${{ (matrix.family != 'solved' && matrix.family != 'words' || needs.controls.outputs.serial_pass == 'true') &&
+              (matrix.family != 'combined' || needs.controls.outputs.combined_pass == 'true') &&
+              (matrix.family != 'periodic0' || needs.controls.outputs.periodic_litf0_pass == 'true') &&
+              (matrix.family != 'periodic1' || needs.controls.outputs.periodic_litf1_pass == 'true') }}
         uses: actions/checkout@v4
         with:
           ref: main
       - uses: actions/setup-python@v5
+        if: >-
+          ${{ (matrix.family != 'solved' && matrix.family != 'words' || needs.controls.outputs.serial_pass == 'true') &&
+              (matrix.family != 'combined' || needs.controls.outputs.combined_pass == 'true') &&
+              (matrix.family != 'periodic0' || needs.controls.outputs.periodic_litf0_pass == 'true') &&
+              (matrix.family != 'periodic1' || needs.controls.outputs.periodic_litf1_pass == 'true') }}
         with:
           python-version: "3.11"
       - uses: actions/download-artifact@v4
+        if: >-
+          ${{ (matrix.family != 'solved' && matrix.family != 'words' || needs.controls.outputs.serial_pass == 'true') &&
+              (matrix.family != 'combined' || needs.controls.outputs.combined_pass == 'true') &&
+              (matrix.family != 'periodic0' || needs.controls.outputs.periodic_litf0_pass == 'true') &&
+              (matrix.family != 'periodic1' || needs.controls.outputs.periodic_litf1_pass == 'true') }}
         with:
           name: layer2-prepared
           path: prepared
       - name: Run one frozen original or equal-work null cell
+        if: >-
+          ${{ (matrix.family != 'solved' && matrix.family != 'words' || needs.controls.outputs.serial_pass == 'true') &&
+              (matrix.family != 'combined' || needs.controls.outputs.combined_pass == 'true') &&
+              (matrix.family != 'periodic0' || needs.controls.outputs.periodic_litf0_pass == 'true') &&
+              (matrix.family != 'periodic1' || needs.controls.outputs.periodic_litf1_pass == 'true') }}
         run: |
           chmod +x prepared/upstream/work/layer2/target/release/layer2
           python sims/agent2_layer2_sft.py screen prepared/upstream/work/layer2 ${{ matrix.window }} ${{ matrix.family }} ${{ matrix.side }} --threads 4
       - uses: actions/upload-artifact@v4
+        if: >-
+          ${{ (matrix.family != 'solved' && matrix.family != 'words' || needs.controls.outputs.serial_pass == 'true') &&
+              (matrix.family != 'combined' || needs.controls.outputs.combined_pass == 'true') &&
+              (matrix.family != 'periodic0' || needs.controls.outputs.periodic_litf0_pass == 'true') &&
+              (matrix.family != 'periodic1' || needs.controls.outputs.periodic_litf1_pass == 'true') }}
         with:
           name: layer2-screen-${{ matrix.window }}-${{ matrix.family }}-${{ matrix.side }}
           path: |
