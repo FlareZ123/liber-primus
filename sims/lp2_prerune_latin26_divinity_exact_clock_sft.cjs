@@ -419,6 +419,101 @@ function geometryPlants() {
 }
 const fullGeometryPositiveControls = geometryPlants();
 
+/**
+ * Separate, source-agnostic steganography sanity check:
+ * the 175 printed words whose GP glyph boundaries are noncanonical are a
+ * genuine spelling ambiguity, but do they exceed source-shaped chance?
+ * Shuffle original glyph labels only within each of the nine printed chapters.
+ * Preserve each chapter's exact rune inventory and every word length, and
+ * rerender the literal seven canonically greedy GP digraph spellings. Source
+ * printed grammar remains unchanged; no English or key assumptions enter.
+ * @returns {Record<string, unknown>}
+ */
+function sourceAmbiguityNull() {
+  const chapterBounds = [
+    [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+    [27, 32], [33, 39], [40, 53], [54, 55]
+  ];
+  const chapters = chapterBounds.map(([lo, hi]) => {
+    const glyphs = sourceRunes(lo, hi);
+    const wordLengths = printedWords(originalPrint(lo, hi)).map((word) => word.length);
+    assert.equal(wordLengths.reduce((a, n) => a + n, 0), glyphs.length);
+    return { glyphs, wordLengths };
+  });
+  /** @param {string[]} glyphs @param {number[]} lengths */
+  function measure(glyphs, lengths) {
+    let pos = 0;
+    let splitAdj = 0;
+    let noncanonicalWords = 0;
+    for (const length of lengths) {
+      const word = glyphs.slice(pos, pos + length);
+      pos += length;
+      for (let j = 1; j < word.length; j++)
+        if (word[j].length === 1 && word[j - 1].length === 1 &&
+            doubles.has(word[j - 1] + word[j])) splitAdj++;
+      const canonical = spellToGp(word.join(''));
+      assert.ok(canonical);
+      if (canonical.join('|') !== word.join('|')) noncanonicalWords++;
+    }
+    assert.equal(pos, glyphs.length);
+    return { splitAdj, noncanonicalWords };
+  }
+  const sourceScores = chapters.map(({ glyphs, wordLengths }) =>
+    measure(glyphs, wordLengths));
+  const total = (scores, field) => scores.reduce((sum, score) => sum + score[field], 0);
+  const observed = {
+    splitAdj: total(sourceScores, 'splitAdj'),
+    noncanonicalWords: total(sourceScores, 'noncanonicalWords')
+  };
+  assert.equal(observed.splitAdj, 100);
+  assert.equal(observed.noncanonicalWords, 175);
+  let state = 0x33012026;
+  /** @returns {number} */
+  function rng() {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return state >>> 0;
+  }
+  const out = { splitAdj: [], noncanonicalWords: [] };
+  for (let trial = 0; trial < 1200; trial++) {
+    const measures = chapters.map(({ glyphs, wordLengths }) => {
+      const shuffle = glyphs.slice();
+      for (let i = shuffle.length - 1; i > 0; i--) {
+        const j = rng() % (i + 1);
+        [shuffle[i], shuffle[j]] = [shuffle[j], shuffle[i]];
+      }
+      return measure(shuffle, wordLengths);
+    });
+    for (const field of ['splitAdj', 'noncanonicalWords'])
+      out[field].push(total(measures, field));
+  }
+  /** @param {'splitAdj'|'noncanonicalWords'} field */
+  function stats(field) {
+    const values = out[field];
+    const n = values.length;
+    const mean = values.reduce((sum, x) => sum + x, 0) / n;
+    const sd = Math.sqrt(values.reduce((sum, x) => sum + (x - mean) ** 2, 0) / (n - 1));
+    return {
+      observed: observed[field], nullMean: mean, nullSampleSD: sd,
+      nullMin: Math.min(...values), nullMax: Math.max(...values),
+      nullUpperTailAddOne: (1 + values.filter((x) => x >= observed[field]).length) / (n + 1)
+    };
+  }
+  const output = {
+    design: '1200 seeded within-nine-chapter shuffles, original 29-rune inventories and original word lengths unchanged',
+    seed: '0x33012026', trials: 1200,
+    directSingletonPairSites: stats('splitAdj'),
+    noncanonicalSourceWordSpellings: stats('noncanonicalWords')
+  };
+  assert.ok(output.directSingletonPairSites.nullUpperTailAddOne > 0.05);
+  assert.ok(output.noncanonicalSourceWordSpellings.nullUpperTailAddOne > 0.05);
+  return output;
+}
+const sourceAmbiguityControl = sourceAmbiguityNull();
+
+
+
 const originalStats = {
   totalOriginalRunes: unknown.length,
   originalLatinExpansionLetters: reconstructed.length,
@@ -451,5 +546,6 @@ console.log(JSON.stringify({
   letterClock: 'one key advancement per Latin character; digraph runes consume 2',
   originalStats, independentOriginalRanges: ranges, nativeSourceControls: controls,
   fullOriginalGeometryNativeLexiconPlants: fullGeometryPositiveControls,
+  sourceSegmentAmbiguityNull: sourceAmbiguityControl,
   explicitLimits: 'A different 26-to-29 escape alphabet, secret normalization, keyed transducer, non-English register, or different key is outside this frozen model. Lossy K/Q->C and V->U and Z->S folding is used in native null controls only; it is not a proposed decryptor.'
 }, null, 2));
