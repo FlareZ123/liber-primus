@@ -194,12 +194,54 @@ function verifyEdges(first, second) {
 const observed = score(source);
 assert.deepEqual(observed, [104, 11, 9]);
 
+/**
+ * Count distance-five equalities independently of printed word boundaries.
+ * This retains the original physical-page order, including five-position
+ * windows passing across page turns, identically in observed and null books.
+ * @param {ArrayLike<number>} tape
+ * @returns {number}
+ */
+function wholeStreamFifthBack(tape) {
+  let matches = 0;
+  for (let position = 5; position < tape.length; position++)
+    if (tape[position] === tape[position - 5]) matches++;
+  return matches;
+}
+
+const totalFifthBackSlots = source.length - 5;
+const withinWordSlots = spans.reduce((sum, [start, end]) =>
+  sum + Math.max(0, end - start - 5), 0);
+const insideFraction = withinWordSlots / totalFifthBackSlots;
+const originalWholeStream = wholeStreamFifthBack(source);
+const originalOutsideWords = originalWholeStream - observed[0];
+const originalLocalization = observed[0] - insideFraction * originalWholeStream;
+assert.equal(withinWordSlots, 2105);
+assert.equal(originalWholeStream, 479);
+assert.equal(originalOutsideWords, 375);
+
+
 const random = generator(0x510e527f);
 const simulationCount = 10000;
 const sums = [0, 0, 0];
 const squaredSums = [0, 0, 0];
 const upper = [0, 0, 0];
 const maxima = [0, 0, 0];
+const localization = {
+  total: {sum: 0, squares: 0, upper: 0, min: Infinity, max: -Infinity},
+  outside: {sum: 0, squares: 0, upper: 0, min: Infinity, max: -Infinity},
+  concentration: {sum: 0, squares: 0, upper: 0, min: Infinity, max: -Infinity}
+};
+
+/** @param {keyof typeof localization} kind @param {number} value @param {number} threshold */
+function recordLocalization(kind, value, threshold) {
+  const part = localization[kind];
+  part.sum += value;
+  part.squares += value * value;
+  if (value >= threshold) part.upper++;
+  part.min = Math.min(part.min, value);
+  part.max = Math.max(part.max, value);
+}
+
 
 for (let trial = 0; trial < simulationCount; trial++) {
   const candidate = [];
@@ -212,6 +254,11 @@ for (let trial = 0; trial < simulationCount; trial++) {
   }
   assert.equal(candidate.length, 12956);
   const result = score(candidate);
+  const total = wholeStreamFifthBack(candidate);
+  recordLocalization("total", total, originalWholeStream);
+  recordLocalization("outside", total - result[0], originalOutsideWords);
+  recordLocalization("concentration", result[0] - insideFraction * total,
+    originalLocalization);
   for (let j = 0; j < 3; j++) {
     sums[j] += result[j];
     squaredSums[j] += result[j] * result[j];
@@ -240,6 +287,26 @@ console.log(JSON.stringify({
   upperTailHits: upper,
   upperTailPlusOne: upper.map((count) =>
     (count + 1) / (simulationCount + 1)),
-  maxima
+  maxima,
+  wordWindowLocalization: {
+    observedAll: originalWholeStream,
+    observedInside: observed[0],
+    observedOutside: originalOutsideWords,
+    allSlots: totalFifthBackSlots,
+    insideSlots: withinWordSlots,
+    originalConcentration: originalLocalization,
+    exactPageBigramConditional: Object.fromEntries(
+      Object.entries(localization).map(([kind, v]) => {
+        const mean = v.sum / simulationCount;
+        return [kind, {
+          mean,
+          sd: Math.sqrt(v.squares / simulationCount - mean * mean),
+          minimum: v.min,
+          maximum: v.max,
+          upperTailHits: v.upper,
+          upperTailPlusOne: (v.upper + 1) / (simulationCount + 1)
+        }];
+      }))
+  }
 }, null, 2));
 console.log("PASS: 10000 complete exact-bigram 55-page Euler randomizations");
