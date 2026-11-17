@@ -1,0 +1,16 @@
+name: Agent9 terminal 180 solved runes carry key
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  76-carry-key:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-derived 76-key inverse on original p55
+        run: node sims/lp2_terminal180_76carry_p55_original_sft.cjs
