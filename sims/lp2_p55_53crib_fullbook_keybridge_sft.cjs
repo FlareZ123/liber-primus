@@ -89,6 +89,26 @@ const signedLatin=signedBody.match(/\b[A-Za-z]+\b/g);
 assert.equal(signedLatin.length,43);
 const signedGP=signedLatin.flatMap(encode);
 assert(signedGP.length>100);
+/** @param {string} pathOfSigned */
+function sourceGPFromSigned(pathOfSigned){
+  const raw=get(pathOfSigned).replace(/\r\n/g,'\n');
+  assert(raw.startsWith('-----BEGIN PGP SIGNED MESSAGE-----'));
+  const body=raw.split('-----BEGIN PGP SIGNED MESSAGE-----')[1]
+    .split('\n\n').slice(1).join('\n\n')
+    .split('-----BEGIN PGP SIGNATURE-----')[0];
+  const lines=body.split('\n')
+    .filter(line=>!/^\s*[0-9a-f]{32,}\s*$/i.test(line));
+  const words=lines.join(' ').match(/\b[A-Za-z]+\b/g)||[];
+  return words.flatMap(encode);
+}
+const sourceSigned2014=sourceGPFromSigned('resources/cicada2014-may2-signed-message.asc');
+const sourceSigned2014stage9=sourceGPFromSigned('resources/historical/cicada2014-stage09-first-jpeg-recovered.asc');
+const sourceSigned2012midi=sourceGPFromSigned('resources/historical/cicada2012-midi-email.asc');
+const sourceSigned2013=sourceGPFromSigned('resources/historical/cicada2013-no-more-testing.asc');
+assert(sourceSigned2014.length>=53);
+assert(sourceSigned2014stage9.length>=53);
+assert(sourceSigned2012midi.length>=53);
+assert(sourceSigned2013.length>=53);
 
 /** @param {number[]} C @param {number[]} P @param {'direct'|'delta'} kind */
 function knownKey(C,P,kind){
@@ -250,7 +270,11 @@ for(const kind of ['direct','delta']){
     ['original solved p56+p57',sourceSolved],
     ['original LP1 runes',lp1Original],
     ['LP1 edited plain reference',lp1Translated],
-    ['2016 verified signed words',signedGP]
+    ['2016 verified signed words',signedGP],
+    ['2014 signed enlightenment message',sourceSigned2014],
+    ['2014 signed stage9 original instructions',sourceSigned2014stage9],
+    ['2012 signed MIDI/poem instructions',sourceSigned2012midi],
+    ['2013 signed no-more-testing note',sourceSigned2013]
   ]){
     for(const reversed of [false,true]){
       record.sourceMatches.push({source:name,reversed,
@@ -270,6 +294,9 @@ console.log(JSON.stringify({
   conditionalCrib:phrases,cribGP29Symbols:known.length,
   donorLengths:{originalLP2:sourceUnknown.length,solvedLP2:sourceSolved.length,
     originalLP1:lp1Original.length,editedLP1:lp1Translated.length,
-    signed2016:signedGP.length},
+    signed2016:signedGP.length,signed2014:sourceSigned2014.length,
+    signedStage9:sourceSigned2014stage9.length,
+    signed2012MIDI:sourceSigned2012midi.length,
+    signed2013Note:sourceSigned2013.length},
   nativePlantPositive:positive,originalResults:output
 },null,2));
