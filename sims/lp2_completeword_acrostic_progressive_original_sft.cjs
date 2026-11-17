@@ -1,0 +1,108 @@
+"use strict";
+
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const {parseLP2Words, physicalLP2Page} = require("./lp2_word_pages.cjs");
+
+/**
+ * Original complete-word acrostic, including genuine cross-page continuations.
+ * Rejects only direct and classic additive-progressive readings.
+ * No original LP2 plaintext is asserted or inferred.
+ */
+
+const root = path.join(__dirname, "..");
+const corpus = JSON.parse(fs.readFileSync(path.join(root, "resources", "liber-primus", "lp2-corpus.json"), "utf8"));
+const raw = fs.readFileSync(path.join(root, "resources", "liber-primus", "lp2-transcription.txt"), "utf8");
+const parsed = parseLP2Words(raw, 55);
+const alphabet = new Map(corpus.runes.map((r, i) => [r, i]));
+assert.equal(parsed.runeCount, 12956);
+assert.equal(parsed.words.length, 2896);
+assert.equal(parsed.crossPageWords, 32);
+const sourceIndices = parsed.words.flatMap(w => [...w.runes].map(r => {
+  assert(alphabet.has(r));
+  return alphabet.get(r);
+}));
+const original = corpus.pages.filter(p => p.page <= 55).flatMap(p => p.indices);
+assert.deepEqual(sourceIndices, original);
+
+const chapters = [0, 3, 8, 15, 23, 27, 33, 40, 54];
+
+/** @param {number} page Original physical LP2 page. @returns {number} */
+function chapterOf(page) {
+  let out = 0;
+  for (let i = 0; i < chapters.length; i++) if (page >= chapters[i]) out = i;
+  return out;
+}
+
+/**
+ * Return 0-based per-word progressive clock.
+ * @param {"book"|"page"|"chapter"} reset Reset policy.
+ * @returns {number[]}
+ */
+function clocks(reset) {
+  let lastScope = -1;
+  let t = 0;
+  return parsed.words.map(w => {
+    const physicalPage = physicalLP2Page(w.startPage);
+    const scope = reset === "book" ? 0 : reset === "page" ? physicalPage : chapterOf(physicalPage);
+    if (scope !== lastScope) t = 0;
+    lastScope = scope;
+    return t++;
+  });
+}
+
+/** @param {number} n Zero-based GP rune index. @returns {number} */
+function mod29(n) { return ((n % 29) + 29) % 29; }
+
+/** @param {number[]} values GP indices. @returns {number} */
+function ioc(values) {
+  const counts = Array(29).fill(0);
+  for (const x of values) counts[x]++;
+  return counts.reduce((sum, n) => sum + n * (n - 1), 0) / (values.length * (values.length - 1));
+}
+
+/** @param {number[]} values GP indices. @returns {string} */
+function render(values) { return values.map(v => corpus.translit[v]).join(" "); }
+
+const solved = corpus.pages.find(p => p.page === 57).indices;
+assert.equal(solved.length, 95);
+assert(ioc(solved) > 0.06);
+const nativePlant = Array.from({length: parsed.words.length}, (_, i) => solved[i % solved.length]);
+const positions = {
+  first: parsed.words.map(w => alphabet.get([...w.runes][0])),
+  last: parsed.words.map(w => alphabet.get([...w.runes].at(-1)))
+};
+const results = [];
+
+for (const [edge, input] of Object.entries(positions)) {
+  const plainResult = {edge, mode: "direct", ioc: ioc(input), firstThirty: render(input.slice(0, 30))};
+  results.push(plainResult);
+  for (const reset of ["book", "page", "chapter"]) {
+    const clock = clocks(reset);
+    for (const sign of [-1, 1]) {
+      // Hypothetical C_i = P_i + sign * i; inverse is P_i = C_i - sign * i.
+      const decoded = input.map((v, i) => mod29(v - sign * clock[i]));
+      const encPlant = nativePlant.map((v, i) => mod29(v + sign * clock[i]));
+      const decPlant = encPlant.map((v, i) => mod29(v - sign * clock[i]));
+      assert.deepEqual(decPlant, nativePlant);
+      assert.deepEqual(decoded.map((v, i) => mod29(v + sign * clock[i])), input);
+      assert.equal(ioc(decoded.map(v => mod29(v + 17))), ioc(decoded));
+      results.push({
+        edge, mode: reset + (sign > 0 ? "-plus" : "-minus"),
+        ioc: ioc(decoded), firstThirty: render(decoded.slice(0, 30))
+      });
+    }
+  }
+}
+assert.equal(results.length, 14);
+assert(results.every(r => r.ioc < 0.036));
+console.log(JSON.stringify({
+  test: "complete-word acrostic and progressive Caesar original-source gate",
+  originalPages: 56, runeBearingPages: 55,
+  runes: sourceIndices.length, printedWords: parsed.words.length,
+  crossPageWords: parsed.crossPageWords,
+  nativeSolvedP57IoC: ioc(solved),
+  positivePlants: "12/12 complete 2896-rune reversible GP29 positive plants",
+  cases: results
+}, null, 2));
