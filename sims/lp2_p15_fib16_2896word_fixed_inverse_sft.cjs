@@ -81,13 +81,15 @@ function toGPLength(sourceWord){
   return n;
 }
 const sources=controlText.map(text=>(text.match(/[A-Za-z]+/g)||[]).map(toGPLength));
+const MODEL_ENDS=[8500,40000], HELDOUT_STARTS=[10000,45000];
 assert.deepEqual(sources.map(s=>s.length),[15733,55407]);
 
 const bin=n=>Math.min(BINS-1,n-1);
 const pairs=Array.from({length:BINS},()=>new Float64Array(BINS));
 const row=new Float64Array(BINS),column=new Float64Array(BINS);
 let total=0;
-for(const source of sources)for(let i=1;i<source.length;i++){
+for(let group=0;group<sources.length;group++)for(let i=1;i<MODEL_ENDS[group];i++){
+  const source=sources[group];
   const a=bin(source[i-1]),b=bin(source[i]);
   pairs[a][b]++;row[a]++;column[b]++;total++;
 }
@@ -166,7 +168,8 @@ candidates.sort((a,b)=>b.gpLengthLR-a.gpLengthLR);
 const grid=KEYS[2].order;
 const plants=[];
 for(let source=0;source<sources.length;source++){
-  const plain=sources[source].slice(1000,1000+COUNT);
+  const start=HELDOUT_STARTS[source];
+  const plain=sources[source].slice(start,start+COUNT);
   assert.equal(plain.length,COUNT);
   const cipherColumns=columnEncrypt(plain,grid);
   const recoveredColumns=columnDecrypt(cipherColumns,grid);
