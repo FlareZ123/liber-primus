@@ -1,0 +1,15 @@
+name: Agent33 DH6 word-local key recurrence original
+on:
+  workflow_dispatch:
+jobs:
+  dh6-keyrecurrence:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source-selected DH6 original and independent native plants
+        shell: pwsh
+        run: node sims/lp2_dh6_wordlocal_keyrecurrence_lexicon_sft.cjs
