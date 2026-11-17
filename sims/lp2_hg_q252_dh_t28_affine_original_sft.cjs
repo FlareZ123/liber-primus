@@ -6,8 +6,10 @@ const path = require('node:path');
 const { createHash } = require('node:crypto');
 
 const root = process.cwd();
-const grid = JSON.parse(fs.readFileSync(path.join(root, 'resources/liber-primus/lp2-grid-256.json'), 'utf8'));
-const corpus = JSON.parse(fs.readFileSync(path.join(root, 'resources/liber-primus/lp2-corpus.json'), 'utf8'));
+const readJson = file => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+const grid = readJson('resources/liber-primus/lp2-grid-256.json');
+const corpus = readJson('resources/liber-primus/lp2-corpus.json');
+const transcription = fs.readFileSync(path.join(root, 'resources/liber-primus/lp2-transcription.txt'), 'utf8');
 const bytes = grid.pages.flatMap(page => page.bytes);
 assert.equal(bytes.length, 256);
 assert.deepEqual(grid.pages.map(page => page.bytes.length), [80, 104, 72]);
@@ -40,10 +42,6 @@ assert.equal(chapterLengths.reduce((a, b) => a + b, 0), 12956);
 assert.equal(ciphertext.length, 12956);
 assert.equal(p57.length, 95);
 assert.equal(p57.filter(value => value === 0).length, 3);
-assert.deepEqual(
-  Array.from({ length: 9 }, (_, s) => new Set(quotient.slice(28 * s, 28 * s + 28)).size),
-  [16, 19, 21, 16, 19, 16, 18, 17, 22]
-);
 
 const T = x => mod(24 - 2 * x, 29);
 const powers = Array.from({ length: 29 }, (_, x) => {
@@ -84,7 +82,6 @@ function ioc(values) {
 function prefix(values, count = 60) {
   return values.slice(0, count).map(value => corpus.translit[value]).join(' ');
 }
-
 const decodedMinus = transformBook(ciphertext, -1);
 const decodedPlus = transformBook(ciphertext, 1);
 assert.deepEqual(transformBook(decodedMinus, 1), ciphertext);
@@ -94,7 +91,7 @@ const iocPlus = ioc(decodedPlus);
 assert.ok(Math.abs(iocMinus - 0.03447243998599184) < 1e-12);
 assert.ok(Math.abs(iocPlus - 0.03447035472851199) < 1e-12);
 
-// Full-length positive control for the always-consuming model.
+// Positive control for the always-consuming model.
 const directPlant = Array.from({ length: 12956 }, (_, i) => p57[i % p57.length]);
 assert.deepEqual(transformBook(transformBook(directPlant, 1), -1), directPlant);
 
@@ -137,7 +134,7 @@ for (let s = 0; s < 9; s++) {
 assert.deepEqual(fixedDead, [34, 5, 44, 63, 4, 1, 39, 61, 37]);
 assert.deepEqual(allDead, [341, 159, 154, 179, 162, 183, 123, 103, 157]);
 
-// Positive control: known literal-F positions preserve the true phase.
+// Positive control for F bypass, including exact known-F recovery.
 function encryptBypass(plain, keyRow) {
   let phase = 0;
   const cipher = [], literalF = [];
@@ -171,13 +168,64 @@ for (let s = 0; s < 9; s++) {
   assert.equal(recovered.endingPhase, encrypted.endingPhase);
   const reachable = phaseDP(encrypted.cipher, keyRow, [0]).remaining;
   assert.ok(reachable.includes(encrypted.endingPhase));
-  bypassPlants.push({
-    chapter: s + 1,
-    runes: plain.length,
-    literalFCount: encrypted.literalF.filter(Boolean).length,
-    trueEndingPhase: encrypted.endingPhase
-  });
+  bypassPlants.push({ chapter: s + 1, runes: plain.length, trueEndingPhase: encrypted.endingPhase });
 }
+
+// Q-powered lag-six recurrence: parse the exact same original word stream
+// used by the established lag-six report. The chapter key row changes at a
+// visual chapter boundary; the word-clock variant resets phase at each word.
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const pageRecords = transcription.split('%');
+const joined = pageRecords.slice(0, 55).join('%').replace(/[\r\n\t\/% ]/g, '');
+const words = joined.split(/[-.&$§0-9]+/).filter(Boolean).map(word =>
+  [...word].map(rune => {
+    const value = runeIndex.get(rune);
+    if (value === undefined) throw new Error('Unknown rune in transcription');
+    return value;
+  })
+);
+assert.equal(words.length, 2896);
+assert.equal(words.reduce((sum, word) => sum + word.length, 0), 12956);
+
+function lag6Counts(clock) {
+  let chapter = 0, chapterLocal = 0;
+  let eligible = 0, plus = 0, minus = 0, base = 0, baseQ1 = 0, baseOther = 0, crossingWords = 0;
+  for (const word of words) {
+    let crossed = false;
+    for (let i = 0; i < word.length; i++) {
+      while (chapterLocal >= chapterLengths[chapter]) {
+        chapter++;
+        chapterLocal = 0;
+        crossed = true;
+      }
+      const phase = clock === 'word' ? i : chapterLocal;
+      const q = quotient[28 * chapter + (phase % 28)] % 28;
+      if (i >= 6) {
+        const prior = word[i - 6], current = word[i];
+        const fixedMatch = T(prior) === current;
+        eligible++;
+        if (powers[prior][q] === current) plus++;
+        if (powers[prior][mod(-q, 28)] === current) minus++;
+        if (fixedMatch) {
+          base++;
+          if (q === 1) baseQ1++;
+          else baseOther++;
+        }
+      }
+      chapterLocal++;
+    }
+    if (crossed) crossingWords++;
+  }
+  return { eligible, plus, minus, base, baseQ1, baseOther, crossingWords };
+}
+const lag6ChapterClock = lag6Counts('chapter');
+const lag6WordClock = lag6Counts('word');
+assert.deepEqual(lag6ChapterClock, {
+  eligible: 1290, plus: 37, minus: 43, base: 80, baseQ1: 2, baseOther: 78, crossingWords: 8
+});
+assert.deepEqual(lag6WordClock, {
+  eligible: 1290, plus: 47, minus: 46, base: 80, baseQ1: 1, baseOther: 79, crossingWords: 8
+});
 
 console.log(JSON.stringify({
   classification: 'bounded negative; no unknown plaintext or authentic key',
@@ -193,6 +241,11 @@ console.log(JSON.stringify({
   ],
   originalFBypassFirstImpossible: fBypassResults,
   allFBypassStartingPhasesFail: true,
+  qPoweredLag6: {
+    uniformReference: 1290 / 29,
+    chapterLocal: lag6ChapterClock,
+    wordLocal: lag6WordClock
+  },
   positiveControls: {
     directPlantRoundTripRunes: directPlant.length,
     literalFBypassChapterPlants: bypassPlants

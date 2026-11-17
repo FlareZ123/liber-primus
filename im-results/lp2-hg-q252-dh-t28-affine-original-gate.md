@@ -1,4 +1,4 @@
-# Signed-2013 DH affine cycle powered by the p50 H·G quotient
+# p50 H·G quotient with the signed-2013 DH affine cycle: original-cipher gate
 
 **Agent14, 17 November 2026. Classification: source-constrained combined candidate, rejected on the original ciphertext.** No unknown LP2 plaintext, authentic key, or destination recovered.
 
@@ -12,11 +12,11 @@ Three independent source structures motivate this bounded composition:
 2. The original p50 table, read in printed row-major order as conventional base-60 bytes and reduced modulo 29, is divisible by the source-motivated degree-four product `D(X)=12X⁴+17X³+11X²+21X+23`. Its factors combine the signed 2013 BASE29 3301 polynomial and the p39 red triad. Long division yields 252 formal quotient coefficients `Q[0..251]`; see [the original grid/radix analysis](lp2-grid-numeric-codec-ambiguity.md).
 3. The original book has nine visually marked chapters, and 252 = 9 × 28.
 
-The tested model assigns chapter `s`, local rune `i` the exponent `k=Q[28s+(i mod 28)] mod 28`, restarts the 28-phase block at each chapter, and applies `T^k` or `T^-k` to the rune.
+The tested key schedule assigns chapter `s`, local rune phase `i` the exponent `k=Q[28s+(i mod 28)] mod 28`, restarting the 28-slot block at each chapter. The direct candidate is `C=T^k(P)`, decoded by `T^-k`; both exponent signs were tested.
 
-**Weakest premise:** no Cicada-authored instruction says to divide the p50 polynomial by H·G, use the quotient as exponents, repeat each 28-slot block, or apply the signed-DH affine map to LP2. This is a plausible composition of separate clues, not an authenticated cipher instruction. The experiment tests only this exact construction.
+**Weakest premise:** no Cicada-authored instruction says to divide the p50 polynomial by H·G, use the quotient as exponents, repeat each 28-slot block, or apply the signed-DH affine map to LP2. This is a plausible composition of separate clues, not an authenticated cipher instruction. The experiment is deliberately limited to these exact constructions.
 
-## Original-cipher result
+## Direct original-cipher result
 
 The original 256-byte p50 stream has SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. Division by descending coefficients `[12,17,11,21,23]` gives 252 quotient residues and zero remainder. The nine source chapter lengths are `[729,1145,1729,1903,1021,1433,1680,3008,308]`, covering all 12,956 unknown runes.
 
@@ -49,10 +49,24 @@ The solved p56 plaintext-F convention emits a literal F (GP index 0) as cipherte
 
 A chapter-specific positive control encrypts repeated p57 plaintext with the same T-cycle and literal-F bypass. Its exact known-F inverse recovers every planted rune, and the set-valued phase test retains the true ending phase in all nine chapters. The original-cipher failure is therefore not an inability to model the documented F rule.
 
+## Lag-six recurrence variant
+
+The signed-DH source bridge also motivates the observed within-word relation `C[i]=T(C[i-6])` (80 matches among 1,290 eligible pairs). A natural combined test is to let the p50 quotient select the affine-cycle exponent on the lagged ciphertext rune: `C[i]=T^{q_i}(C[i-6])`, testing both signs. This was checked with both plausible phase clocks: continuous chapter-local phase and a phase reset at each word (the key row remains chapter-specific). The transcription parser and 1,290 eligible word-internal positions are identical to the existing lag-six analysis.
+
+| Phase clock | `T^{+q_i}` matches | `T^{-q_i}` matches | Existing `T^1` matches occurring at `q_i=1` |
+|---|---:|---:|---:|
+| Chapter-local | 37 | 43 | 2 of 80 |
+| Word-local | 47 | 46 | 1 of 80 |
+
+The uniform 29-symbol reference is 1,290/29 = **44.48** matches. The quotient-exponent recurrences are at or near that baseline, and the 80 fixed-`T` lag-six matches overwhelmingly occur where `q_i
+e1`. The quotient schedule therefore does not select or explain the observed lag-six echo. Eight words cross a visual chapter boundary; the reproducer changes the key row at the boundary while preserving the word-local lag and, in the word-clock test, the word-local phase.
+
+No new conditioned permutation run was warranted: neither pre-specified quotient schedule produced an excess to investigate. This test rejects the specific Q-powered lag-six recurrence; it does not reject the independently observed fixed-`T` lag-six relation.
+
 ## Decision
 
-Retire the specific **p50 H·G quotient → nine 28-phase chapter keys → signed-2013 affine T-cycle** as a direct LP2 rune decoder, both without F bypass and with the solved-p56 literal-F bypass. The latter fails a language-independent necessary condition even when every chapter receives an arbitrary starting phase.
+Retire the specific **p50 H·G quotient → nine 28-phase chapter keys → signed-2013 affine T-cycle** as a direct LP2 rune decoder, both without F bypass and with the solved-p56 literal-F bypass. Also retire the natural Q-powered lag-six recurrence under both chapter-local and word-local phase clocks. The F-bypass direct model fails a language-independent necessary condition even when every chapter receives an arbitrary starting phase.
 
-This does not refute the H·G factorization, the signed-DH affine map, other uses of the quotient, or a different cipher with an independently specified evolving state. Do not repeat phase/sign sweeps for this schedule. This bounded negative does not warrant changing `results/README.md`.
+This does not refute the H·G factorization, the signed-DH affine map, the independent fixed-`T` lag-six observation, other uses of the quotient, or a different cipher with an independently specified evolving state. Do not repeat phase/sign sweeps for these schedules. This bounded negative does not warrant changing `results/README.md`.
 
-**Reproduction:** run `node sims/lp2_hg_q252_dh_t28_affine_original_sft.cjs` from the repository root (Node 22; built-in modules only). The script asserts the original byte fingerprint, polynomial division, chapter lengths, original inverses, F-bypass exclusion, and positive controls.
+**Reproduction:** run `node sims/lp2_hg_q252_dh_t28_affine_original_sft.cjs` from the repository root (Node 22; built-in modules only). The script asserts the original byte fingerprint, polynomial division, chapter lengths, original inverses, F-bypass exclusion, lag-six counts, and positive controls.
