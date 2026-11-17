@@ -1,6 +1,6 @@
-# Original 2014 index 331 and p0 red title: symmetric GP-prime checksum candidate
+# Original 2014 index 331 and p0 red title: provisional RSA cross-clue and p50 key gate
 
-**Provisional, source-constrained arithmetic clue (17 November 2026). No unknown text or cipher key recovered.** The first two original p0 red heading words have an exact prime-value arithmetic relationship to a number visibly present in the historical 2014 onion index. A narrowly motivated transfer to the solved p56 cipher fails on the first original black sentence. The relation was discovered post hoc and currently has no first-party decoding instruction.
+**Provisional, source-constrained arithmetic clue (17 November 2026). No unknown text or cipher key recovered.** The first two original p0 red heading words have an exact prime-value arithmetic relationship to numbers visibly present in the historical 2014 onion index. The 133/331 relation also admits a mathematically valid RSA interpretation with inverse exponent 67, but direct prime-field, solved-p56 transfer, and a bounded RSA-derived p50 repeating-key consumer all fail. The relationships were noticed post hoc and currently have no first-party decoding instruction.
 
 ## Both inputs were available to a 2014 solver
 
@@ -47,8 +47,26 @@ As a finite descriptive comparison, search *all* three-digit primes p between 10
 
 A strict direct GP-prime-field original-cipher receiver is immediately impossible. If the p0 black ciphertext's first rune **TH** means its GP prime **5**, raising it to the candidate inverse exponent **67** modulo **331** yields **320**, which is outside the 29 GP-prime values. Other mappings from prime-field residues to runes would require a further source-selected, reversible codec. This natural direct one-rune scheme is retired; **67 is not authenticated original key material**. The same [read-only source SFT](../sims/lp2_2014_index331_p0_red_primepair_sft.cjs) asserts the entire finite three-digit prime comparison and first-rune rejection.
 
+
+## RSA331-to-p50 table: bounded repeating-key consumer fails
+
+The 133/331/67 arithmetic suggests one concrete, reversible use of the otherwise missing codec: treat each of the original p50 table's **256 base60-decoded byte values** as an RSA ciphertext representative, apply the candidate private operation **m = c^67 mod 331**, then use the resulting values as a GP29 additive key. This is only a hypothesis: neither the HTML nor the manuscript says that the table is RSA ciphertext.
+
+The test preserves the natural source order and uses no fitted key:
+- Read the original 32×8 table in ordinary row-major order; all 256 values are in 0..255, hence below the candidate modulus 331.
+- Test the direct one-rune-per-cell GP29 projection **m mod 29** (period 256).
+- Test the information-preserving fixed two-digit GP29 expansion **(floor(m/29), m mod 29)** (period 512).
+- Apply each repeating key to the original p0 black body through p55, excluding the two red p0 heading words used to derive the candidate exponent. Preserve all original word boundaries and the 32 page-carrying words.
+- Use the authentic p56 plaintext-F transparent-bypass rule, test both additive signs, and exhaust every possible starting phase of each key. No page reset, word reset, nonce, or tuned offset is introduced.
+
+The original source parser confirms **12,956 runes / 2,896 words / 32 page carries**; the tested black-body stream is **12,943 runes / 2,894 words**. The ambiguity-aware inverse has no complete legal path for any of the four combinations. All phases die after **113** body words (m mod 29, negative sign), **98** (m mod 29, positive), **94** (padded base29, negative), or **91** (padded base29, positive). The direct RSA output is also not an ASCII payload: only **78/256** residues fall in printable ASCII and **200/256** fall in the byte range.
+
+A source-shaped positive control encrypts the original clear p57 words with each same candidate key/sign and the F-bypass rule. The inverse retains a complete legal path and the expected **51 dictionary-covered runes across 11 words**, so the original-stream rejection is not caused by an F-branch implementation failure.
+
+**Decision:** retire these four exact RSA-decrypted-table / repeating-additive-key consumers. This does not disprove the descriptive 133/331/67 arithmetic relation, nor every possible use of it; it does reject the most direct row-major table-to-GP29 key projections under the solved-page F-bypass model. Do not add arbitrary table permutations, reset rules, or cipher layers without a new source selector. The result recovers no plaintext or authentic key.
+
 ## Decision
 
-Retain the equality as a **provisional independently sourced title/HTML cross-reference**, worth reconsidering only if an original instruction supplies a mapping from **331 and S-ordinal16** to an operation or a recipient. The signed 2016 words-map clue is too broad to establish that missing operation by itself. This new relationship does not establish a GP29 plaintext, an encryption mechanism, a source key or an address; the direct historically solved prime-totient consumers above are ruled out. Do not commission broad numerical sweeps on the basis of this pattern alone.
+Retain the equality as a **provisional independently sourced title/HTML cross-reference**, worth reconsidering only if an original instruction supplies a mapping from **331 and S-ordinal16** to an operation or a recipient. The signed 2016 words-map clue is too broad to establish that missing operation by itself. The RSA inverse exponent 67 is mathematically exact but is not authenticated key material; the direct GP-prime receiver and four RSA-derived p50 repeating-key consumers are now rejected. No GP29 plaintext, complete encryption mechanism, authentic key or destination has been recovered. Do not commission broad numerical sweeps or add further layers on the basis of this pattern alone.
 
-**Reproduction:** [CommonJS original-corpus SFT](../sims/lp2_2014_index331_p0_red_primepair_sft.cjs) and [Windows Node22 manual workflow dispatch](https://github.com/FlareZ123/liber-primus/actions/runs/44056645375), initial run queued at submission; updated arithmetic assertions are queued separately and no passing-run claim is made until a final outcome is observed.
+**Reproduction:** [Original-corpus arithmetic SFT](../sims/lp2_2014_index331_p0_red_primepair_sft.cjs); [RSA-derived p50 key SFT](../sims/lp2_rsa331_p50_key_gate_sft.cjs). The latter uses the existing Windows Node22 manual runner; no result is promoted to established plaintext.
