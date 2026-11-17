@@ -18,7 +18,7 @@ const crypto = require("node:crypto");
 const root = path.resolve(__dirname, "..");
 const read = p => fs.readFileSync(path.join(root, p), "utf8");
 const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
-const pages = read("resources/liber-primus/lp2-transcription.txt").split(/\n%\n/);
+const pages = read("resources/liber-primus/lp2-transcription.txt").split(/\r?\n%\r?\n/);
 const runeOrdinal = new Map(gp.runes.map((r, i) => [r, i]));
 assert.equal(gp.runes.length, 29);
 assert.equal(pages.length, 57);
