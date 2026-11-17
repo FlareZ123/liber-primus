@@ -1,0 +1,14 @@
+name: Agent37 p29 red39 source-factor and direct-quotient test
+on:
+  workflow_dispatch:
+jobs:
+  original-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original p29 factor, quotient and native controls
+        run: node sims/lp2_p29_red39_factor_syndrome_sft.cjs
