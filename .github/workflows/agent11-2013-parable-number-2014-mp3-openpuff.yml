@@ -2,15 +2,15 @@ name: Agent11 2013 parable number as native OpenPuff password on historical 2014
 
 on:
   workflow_dispatch:
-  inputs:
-    password:
-      description: "One of the frozen Parable-number candidates: original or decimal-reversed prime"
-      required: true
-      type: choice
-      options:
-        - "1595277641"
-        - "1467725951"
-      default: "1595277641"
+    inputs:
+      password:
+        description: "One of the frozen Parable-number candidates: original or decimal-reversed prime"
+        required: true
+        type: choice
+        options:
+          - "1595277641"
+          - "1467725951"
+        default: "1595277641"
 
 permissions:
   contents: read
