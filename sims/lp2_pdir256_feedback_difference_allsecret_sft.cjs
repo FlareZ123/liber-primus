@@ -164,10 +164,7 @@ function positiveControl(template, nativeWords, configuration) {
   assert.deepEqual(recovered, nativeFlat);
   // Check entire forward emission under the actual original ciphertext.
   assert.deepEqual(recovered.map((p, i) =>
-    (p + key[phases[i]] + (() => {
-      // Word-start predecessor data are in the ciphertext delta itself.
-      return mod(0, Q);
-    })()) % Q), delta);
+    (p + key[phases[i]]) % Q), delta);
   const countsBySymbol = new Uint32Array(Q);
   for (const c of recovered) countsBySymbol[c]++;
   const genuineNumerator = countsBySymbol.reduce(
