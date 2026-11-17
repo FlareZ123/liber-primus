@@ -1,0 +1,127 @@
+name: Agent16 H1 Unrun Keyword Lengths 14-20
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Source preparation only, or execute all unrun finite cells
+        required: true
+        type: choice
+        options:
+          - prepare
+          - sweep
+        default: prepare
+
+permissions:
+  contents: read
+concurrency:
+  group: agent16-h1-keyword-gap
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout exact original LP2 corpus and source-locked scripts
+        uses: actions/checkout@v4
+      - name: Checkout pinned external H1 reference source
+        uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: upstream
+          persist-credentials: false
+      - name: Python for original historical keystream exporter
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build genuine source's 1439-key library and exact 581-key subset
+        run: |
+          python -m pip install --disable-pip-version-check numpy mpmath
+          cd upstream
+          python work/kscreen/export.py
+          cd ..
+          node sims/agent16_h1_gap_sft.cjs prepare upstream resources/liber-primus/lp2-corpus.json prepared
+      - name: Retain original-input provenance and exact prepared binary streams
+        uses: actions/upload-artifact@v4
+        with:
+          name: h1-prepared
+          path: prepared/
+          if-no-files-found: error
+          retention-days: 30
+
+  sweep:
+    if: inputs.mode == 'sweep'
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - name: Checkout frozen integration source
+        uses: actions/checkout@v4
+      - name: Checkout exact archived Rust decoder
+        uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: upstream
+          persist-credentials: false
+      - name: Get checked original ciphertext and keystreams
+        uses: actions/download-artifact@v4
+        with:
+          name: h1-prepared
+          path: prepared
+      - name: Compile original parity-verified H1 decoder
+        run: cargo build --release --locked --manifest-path upstream/work/h5rs/Cargo.toml
+      - name: Frozen real and matched 581-stream-null sweep
+        env:
+          SHARD: ${{ matrix.shard }}
+        run: |
+          mkdir -p shards
+          start=$((SHARD * 100))
+          end=$((start + 100))
+          bin=upstream/work/h5rs/target/release/h5rs
+          "$bin" sweep prepared/lp2_windows.txt file:prepared/library_flat.ksb "$start" "$end" 14 20 2 2 "shards/real_${SHARD}.tsv" --hits 1.5 --chunk 10 --best --progress 20
+          "$bin" sweep prepared/lp2_windows.txt file:prepared/null581.ksb "$start" "$end" 14 20 2 2 "shards/null_${SHARD}.tsv" --hits 1.5 --chunk 10 --best --progress 20
+          echo "Completed shard ${SHARD}: original and matched-null, L14-20, offsets ${start}..${end}"
+          test -s "shards/real_${SHARD}.tsv"
+          test -s "shards/null_${SHARD}.tsv"
+      - name: Preserve exact best-cells and hit records from this disjoint shard
+        uses: actions/upload-artifact@v4
+        with:
+          name: h1-shard-${{ matrix.shard }}
+          path: shards/
+          if-no-files-found: error
+          retention-days: 30
+
+  summary:
+    if: inputs.mode == 'sweep' && always() && needs.sweep.result == 'success'
+    needs: [prepare, sweep]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact source-locked adjudicator
+        uses: actions/checkout@v4
+      - name: Merge all twenty complete shard records
+        uses: actions/download-artifact@v4
+        with:
+          pattern: h1-shard-*
+          path: shards
+          merge-multiple: true
+      - name: Recompute full 581-stream matched-null floors, report candidates
+        run: |
+          node sims/agent16_h1_gap_sft.cjs analyze shards h1_gap_report.md 20
+          cat h1_gap_report.md
+      - name: Preserve computed report and every original-output screen
+        uses: actions/upload-artifact@v4
+        with:
+          name: h1-gap-full-report
+          path: |
+            h1_gap_report.md
+            shards/
+          if-no-files-found: error
+          retention-days: 60
