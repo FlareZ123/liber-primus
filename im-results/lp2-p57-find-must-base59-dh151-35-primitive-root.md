@@ -285,6 +285,23 @@ A separate BASE29 length check also fails to produce a direct 76-symbol key: con
 
 A 38-pair interpretation of p55 as BASE29 public-share integers was also tried with the first 38 inner-ring exponents. Its fixed-width BASE29 output is 76 symbols but is not readable, and one pair reduces to zero modulo 151, which is not a valid DH public share.
 
+## K73 as a p56 prime-totient start: bounded p55 receiver test (Agent8, 17 November)
+
+The candidate DH73 scalar K=73 suggests one tightly bounded reuse of the already solved p56 receiver: begin the p56 \(\varphi(p)\bmod29\) key stream at prime 73, or at the 73rd prime (367), and retain the exact p56 rule that literal plaintext F is transparent and does not consume a prime. The original p55 page has 76 runes and 17 printed word groups; the first group is a one-rune **NG** carry from p54, leaving 16 complete words. Ciphertext-F positions are 15, 25, and 41 (zero-based).
+
+The test enumerates every legal transparent-F mask for four fixed cases: both prime-start readings, each with the full 76-rune page or the 75-rune complete-word suffix after the carry. No sign, key offset, page phase, or alternate cipher is searched. The native p56 positive control (85 runes, start prime 2, literal-F mask 8 at offset 56) recovers the established plaintext exactly.
+
+| K=73 interpretation | p55 input | Legal F masks | Result |
+|---|---:|---:|---|
+| prime value 73 | 76 runes | 0 | no legal inverse |
+| prime value 73 | 75 complete-word runes | 0 | no legal inverse |
+| 73rd prime = 367 | 76 runes | 1 | nonlinguistic output |
+| 73rd prime = 367 | 75 complete-word runes | 3 | all nonlinguistic |
+
+The only candidate after excluding the carry begins WANTH RIA LB OIAJYEAE; the full-page candidate begins O UECAE AED EOW. Neither is readable prose under the original word boundaries. This rejects only the direct transfer of the solved p56 prime-totient receiver with K=73 interpreted as a prime start. It does **not** disprove the DH73 arithmetic candidate or another independently selected receiver. In particular, the 2013 signed TCP specification authenticates DH as an available protocol operation but does not prescribe how its shared scalar should consume LP2.
+
+**Reproducer:** [original-source Node SFT](../sims/lp2_p55_dh73_prime_totient_start_sft.cjs). It reparses the original transcription, checks the exact p55 page and word boundaries, verifies the p56 known-plaintext positive control, and enumerates only the four fixed K73 start/boundary cases.
+
 ## Assessment and next decision
 
 **Exact original-source observations:** the adjacent base59 FIND/MUST table pair
@@ -311,7 +328,7 @@ authentic unknown plaintext. A mathematically closed 2013–2014
 correspondence is now worth preserving and considering as an
 independent clue, while a new cipher campaign is unjustified until
 some source selects its **recipient and reversible operation**.
-The first new decisive step should identify a first-party operation
+The direct K73-to-p56-prime-totient start transfer is now rejected in both natural prime-start readings. The first new decisive step should identify a first-party operation
 for the scalar73 or recover an actual original 76-rune p55 plaintext
 interval. Do not treat test-fitted keys, synthetic plants, or a
 matching original cipher round-trip as successful decryption.
