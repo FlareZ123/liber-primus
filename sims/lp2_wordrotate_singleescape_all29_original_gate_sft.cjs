@@ -96,7 +96,7 @@ function inverse3(matrix) {
     for (let r = k + 1; r < 3; r++) {
       if (Math.abs(a[r][k]) > Math.abs(a[pivot][k])) pivot = r;
     }
-    assert(Math.abs(a[pivot][k]) > 1e-8);
+    if (Math.abs(a[pivot][k]) < 1e-8) return null;
     [a[k], a[pivot]] = [a[pivot], a[k]];
     [b[k], b[pivot]] = [b[pivot], b[k]];
     const norm = a[k][k];
@@ -168,6 +168,7 @@ function referenceMoments(buckets, E) {
 function distance(observed,moments) {
   const d=observed.map((x,i)=>x-moments.mean[i]);
   const inv=inverse3(moments.cov);
+  if (inv===null) return {chi:Infinity,maxZ:Infinity};
   let chi=0;
   for(let i=0;i<3;i++)for(let j=0;j<3;j++) {
     chi+=d[i]*inv[i][j]*d[j];
