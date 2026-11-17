@@ -35,6 +35,14 @@ For each deterministic seed, the experiment builds a fresh native-GP Gibran 12,9
 
 The earlier nine-chapter unigram bootstrap solved only the first seed robustly and lost key synchronization on other seeds. Source-visible lexical roles rescued trial1; tempered early Viterbi priors rescued trial3. These two seeds are development cases, and six other source-shaped seeds provide stronger untouched synthetic calibration. There is no authentic unknown-page plaintext in these controls.
 
+## Necessary model-identifiability correction: H2's 29! row-label gauge
+
+A full unknown 29×29 H2 permutation tableau has an exact **29! row-label symmetry**: for any permutation σ of the 29 source-clock row labels, define an equally secret tableau T'[σ(r),p]=T[r,p] and clock row R'(k)=σ(R(k)). Every ciphertext symbol and every **collision-rejected intermediate row** is exactly the same under T,R and T',R', given the same source plaintext and coin decisions. This is an exact algebraic key-equivalence, independent of the ciphertext's language or the amount of data.
+
+A concrete frozen source-native wrong-row-label control illustrates this limitation. On the seed0 planted original-shaped cipher, the receiver was supplied the **wrong** fixed permutation σ(r)=(7r+11) mod29 **after generation**, with no access to the correct labels. It still recovered **288/308** withheld plaintext and **303/308** true skip counts, despite only **48/841** raw label-to-label table-cell matches against the *unpermuted* generator table. This does not refute clock recovery: σ is an unobservable relabeling because the hidden table compensates. A key-family negative control must change the **sequence of actual row equivalences**, rather than merely apply one fixed permutation of the row names.
+
+Similarly, when the four synthetic apostrophe-word replacements were disabled while preserving **all original word lengths**, the same seed0 blind recovery remained at **287/308** withheld plaintext and **303/308** key rows, essentially identical to the correct-word-shape source plant. This receiver is driven primarily by the source-visible lexical roles and global native GP distribution; **it has not demonstrated independent cryptanalytic leverage from the four actual LP2 apostrophe cribs**. These two one-seed ablations were executed in-memory against the pinned SFT loaded from GitHub, with no refitting on original ciphertext. They are diagnostic scope qualifications, not separate original-cipher discoveries.
+
 ## Frozen original-source terminal test
 
 The same source-authored chapter grouping, printed lexical roles, Shakespeare reference, annealed path estimator, H2 model and inferred 841-entry inverse tableau were applied to the **unchanged canonical original 12,956-rune LP2 source**. Again, original pp54–55 (308 runes) contributed **zero ciphertext symbols to fitting**. The independent original test is:
