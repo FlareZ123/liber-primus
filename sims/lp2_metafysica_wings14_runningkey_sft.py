@@ -118,8 +118,9 @@ def run():
     article, digest = load_text()
     key = gp_encode(article, mapping)
     assert len(key) > 1500
-    caption_position = article.lower().find("ephemerella", article.lower().find("figure 4"))
-    assert caption_position > 0
+    caption_match = re.search(r"ephemerella\s+ignita", article, flags=re.IGNORECASE)
+    assert caption_match, "the original source page no longer contains the Figure 4 mayfly label"
+    caption_position = caption_match.start()
     caption_rune_offset = len(gp_encode(article[:caption_position], mapping))
     probes = []
     for transparent in (False, True):
