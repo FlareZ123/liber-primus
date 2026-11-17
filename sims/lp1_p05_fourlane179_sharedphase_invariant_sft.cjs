@@ -231,6 +231,139 @@ const recovered = Array.from({length:phaseCount}, (_, j) =>
   mod(share.reduce((sum, lane) => sum + lane[j], 0)));
 assert.deepEqual(recovered, plantedPlain);
 
+
+/* Source-selected alternative outer layer: invert one of two standard rank-28
+ * no-adjacent-repeat encoders BEFORE applying a shared secret phase179 table.
+ * The opening's four actual repeated-cipher events and the first register
+ * rune are treated as erasures, not silently assigned favorable ranks. */
+const erased = body.map((value, i) => i === 0 || value === body[i - 1]);
+assert.equal(erased.filter(Boolean).length, 5);
+const native28 = native.map(sequence =>
+  sequence.map(value => value === 28 ? 25 : value));
+const rankModes = ['sorted', 'cyclic'];
+const rankGates = rankModes.map(method => {
+  const rank = body.map((value, i) => {
+    if (erased[i]) return null;
+    const preceding = body[i - 1];
+    if (method === 'sorted') return value - Number(value > preceding);
+    return (value - preceding + 29) % 29 - 1;
+  });
+  const pairCoordinates = [];
+  let originalMatches = 0;
+  for (let column = 0; column < phaseCount; column++) {
+    for (let first = 0; first < 4; first++) {
+      for (let second = first + 1; second < 4; second++) {
+        const a = column + phaseCount * first;
+        const b = column + phaseCount * second;
+        if (rank[a] !== null && rank[b] !== null) {
+          pairCoordinates.push([column, first, second]);
+          originalMatches += Number(rank[a] === rank[b]);
+        }
+      }
+    }
+  }
+  return {
+    method,
+    validRanks:rank.filter(x => x !== null).length,
+    comparedLanePairs:pairCoordinates.length,
+    originalMatches,
+    pairCoordinates,
+    rank
+  };
+});
+assert.deepEqual(rankGates.map(x =>
+  [x.validRanks, x.comparedLanePairs, x.originalMatches]),
+[[711, 1059, 29], [711, 1059, 45]]);
+const rankNullRandom = xorshift(0x20141179);
+const rankControlScores = rankGates.map(() => []);
+for (let trial = 0; trial < 10000; trial++) {
+  const quartet = [];
+  for (let lane = 0; lane < 4; lane++) {
+    const reference = native28[lane % 3];
+    const start = rankNullRandom() % (reference.length - phaseCount);
+    quartet.push(reference.slice(start, start + phaseCount));
+  }
+  rankGates.forEach((gate, index) => {
+    let matches = 0;
+    for (const [column, first, second] of gate.pairCoordinates)
+      matches += Number(quartet[first][column] === quartet[second][column]);
+    rankControlScores[index].push(matches);
+  });
+}
+rankControlScores.forEach(control => control.sort((a, b) => a - b));
+const rankedPlain = positivePlain.flat().map(v => v === 28 ? 25 : v);
+const rankSecretRandom = xorshift(0x28c1179);
+const rankSecret = [], rankInverse = [];
+for (let column = 0; column < phaseCount; column++) {
+  const table = Array.from({length:28}, (_, i) => i);
+  for (let k = 27; k > 0; k--) {
+    const j = rankSecretRandom() % (k + 1);
+    [table[k], table[j]] = [table[j], table[k]];
+  }
+  const inv = new Array(28);
+  table.forEach((v, i) => { inv[v] = i; });
+  rankSecret.push(table);
+  rankInverse.push(inv);
+}
+function encodeRank(mode, rank, previous) {
+  if (mode === 'sorted') return rank + Number(rank >= previous);
+  return (previous + rank + 1) % 29;
+}
+function decodeRank(mode, value, previous) {
+  if (mode === 'sorted') return value - Number(value > previous);
+  return (value - previous + 29) % 29 - 1;
+}
+const rankResult = rankGates.map((gate, index) => {
+  const simulated = new Array(body.length);
+  simulated[0] = 13;
+  for (let i = 1; i < simulated.length; i++) {
+    if (erased[i]) {
+      simulated[i] = simulated[i - 1];
+    } else {
+      const phase = i % phaseCount;
+      const scrambled = rankSecret[phase][rankedPlain[i]];
+      simulated[i] = encodeRank(gate.method, scrambled, simulated[i - 1]);
+      assert.notEqual(simulated[i], simulated[i - 1]);
+    }
+  }
+  const recovered = new Array(body.length);
+  let completeLegal = 0;
+  for (let i = 0; i < simulated.length; i++) {
+    if (erased[i]) {
+      // These five symbols are true outside-channel exceptions, given
+      // separately only as a deliberately stronger synthetic positive.
+      recovered[i] = rankedPlain[i];
+    } else {
+      const phase = i % phaseCount;
+      const inner = decodeRank(gate.method, simulated[i], simulated[i - 1]);
+      assert.equal(inner, rankSecret[phase][rankedPlain[i]]);
+      recovered[i] = rankInverse[phase][inner];
+      completeLegal++;
+    }
+  }
+  assert.equal(completeLegal, 711);
+  assert.deepEqual(recovered, rankedPlain);
+  const control = rankControlScores[index];
+  return {
+    rankInverse:gate.method,
+    sourceValidPositions:gate.validRanks,
+    sourceErasedPositions:erased.flatMap((v, i) => v ? [i] : []),
+    comparedLanePairs:gate.comparedLanePairs,
+    originalMatches:gate.originalMatches,
+    sourceMatchedControlCount:control.length,
+    controlsAtOrBelowOriginal:control.filter(x =>
+      x <= gate.originalMatches).length,
+    controlMinimum:control[0],
+    controlMedian:control[5000],
+    plantedLegalRecovered:completeLegal,
+    plantedExceptionSidecar:erased.filter(Boolean).length,
+    plantedFullRecovered:recovered.length
+  };
+});
+assert.deepEqual(rankResult.map(r => [
+  r.controlsAtOrBelowOriginal, r.controlMinimum, r.controlMedian
+]), [[0,36,62],[174,36,62]]);
+
 console.log(JSON.stringify({
   source:{
     originalJpeg:'resources/liber-primus/05.jpg',
@@ -247,6 +380,11 @@ console.log(JSON.stringify({
     plantedSourceNativeExact:positiveDecoded.every((lane, i) =>
       lane.every((v, j) => v === positivePlain[i][j])),
     plantedSameColumnEqual:pairEqual(positiveCipher).pairsEqual
+  },
+  rank28ThenSharedSecret179:{
+    interpretation:'Two rank-28 no-repeat outer inverses plus unknown 179-phase shared secret 28-alphabet; original repeat sites conservatively erased',
+    modelScope:'Strict rank-28 output itself cannot produce the four repeated ciphertext transitions without an independent escape channel',
+    results:rankResult
   },
   signedFourShareFold:{
     candidates:folds, bestOriginalScore:Math.max(...folds.map(x => x.trigram)),
