@@ -40,13 +40,26 @@ function rowRead(data,order) {
  for(let i=0;i<13;i++)columns[order[i]]=data.slice(12*i,12*(i+1));
  return Array.from({length:12},(_,r)=>Array.from({length:13},(_,c)=>columns[c][r])).flat();
 }
+const splitAsc=[...Array(8).keys()]
+ .sort((a,b)=>titleIndices[a]-titleIndices[b]||a-b)
+ .concat([...Array(5).keys()].map(i=>i+8)
+ .sort((a,b)=>titleIndices[a]-titleIndices[b]||a-b));
+const splitDesc=[...splitAsc.slice(0,8)].reverse()
+ .concat([...splitAsc.slice(8)].reverse());
+assert.deepEqual(splitAsc,[7,3,4,1,0,2,5,6,12,8,10,11,9]);
+const splitModes={
+ split_asc_column:a=>columnRead(a,splitAsc),
+ split_asc_row:a=>rowRead(a,splitAsc),
+ split_desc_column:a=>columnRead(a,splitDesc),
+ split_desc_row:a=>rowRead(a,splitDesc)
+};
 const modes={
  asc_column:a=>columnRead(a,asc),
  asc_row:a=>rowRead(a,asc),
  desc_column:a=>columnRead(a,desc),
  desc_row:a=>rowRead(a,desc)
 };
-for(const order of [asc,desc]) {
+for(const order of [asc,desc,splitAsc,splitDesc]) {
  assert.deepEqual(rowRead(columnRead(source,order),order),source);
  assert.deepEqual(columnRead(rowRead(source,order),order),source);
 }
@@ -105,6 +118,9 @@ function mi(a) {
 const original={llr:score(source),mi:mi(source)};
 const cases=Object.fromEntries(Object.entries(modes).map(([k,fn])=>
  [k,{llr:score(fn(source)),mi:mi(fn(source))}]));
+const splitCases=Object.fromEntries(Object.entries(splitModes).map(([k,fn])=>
+ [k,{llr:score(fn(source)),mi:mi(fn(source))}]));
+assert.ok(Math.abs(splitCases.split_asc_column.llr-0.0016098436362878006)<1e-12);
 assert.ok(Math.abs(original.llr-(-0.014982245190371262))<1e-12);
 assert.ok(Math.abs(cases.desc_column.llr-0.006647303468616497)<1e-12);
 let seed=0x3301abcd;
@@ -135,16 +151,37 @@ for(let i=0;i<iterations;i++){
  }
  if(best>=bestOriginal)anyExceed++;
 }
+// Physically separated red title words (8+5) provide two independently
+// key-sorted column groups, rather than one re-sorted 13-column heading.
+seed=0x3301abcd;
+const splitExceed=Object.fromEntries(Object.keys(splitModes).map(k=>[k,0]));
+let splitAnyExceed=0;
+const splitBest=Math.max(...Object.values(splitCases).map(x=>x.llr));
+for(let i=0;i<iterations;i++) {
+ const candidate=shuffle(source);
+ let best=-Infinity;
+ for(const [key,fn] of Object.entries(splitModes)) {
+  const s=score(fn(candidate));
+  if(s>=splitCases[key].llr)splitExceed[key]++;
+  if(s>best)best=s;
+ }
+ if(best>=splitBest)splitAnyExceed++;
+}
+assert.equal(splitAnyExceed,8465);
+assert.deepEqual(splitExceed,{
+ split_asc_column:3138,split_asc_row:6729,
+ split_desc_column:4841,split_desc_row:16884
+});
 const controls={};
 corpora.forEach((words,g)=>{
  const name=g?"Shakespeare":"Gibran",native=[],transformed={};
- for(const key of Object.keys(modes))transformed[key]=[];
+ for(const key of Object.keys({...modes,...splitModes}))transformed[key]=[];
  for(let i=0;i<100;i++){
   const start=[10000,45000][g]+i*13;
   const a=words.slice(start,start+156);
   assert.equal(a.length,156);
   native.push(score(a));
-  for(const [key,fn] of Object.entries(modes))transformed[key].push(score(fn(a)));
+  for(const [key,fn] of Object.entries({...modes,...splitModes}))transformed[key].push(score(fn(a)));
  }
  const avg=a=>a.reduce((x,y)=>x+y,0)/a.length;
  controls[name]={nativeMean:avg(native),transposedMeans:
@@ -165,8 +202,9 @@ assert.equal(anyExceed,5035);
 assert.deepEqual(exceed,{asc_column:12405,asc_row:12353,desc_column:1670,desc_row:8442});
 console.log(JSON.stringify({
  input:"untouched 13-rune red heading + 156 complete original body words in LP2 p0–p2",
- titleIndices,bodyRunes:716,grid:[12,13],asc,desc,
- original,cases,repeatedWordEdges,iterations,exceed,
+ titleIndices,bodyRunes:716,grid:[12,13],asc,desc,splitAsc,splitDesc,
+ original,cases,splitCases,repeatedWordEdges,iterations,exceed,splitExceed,
  bestOfFourRandomUpperTail:(1+anyExceed)/(iterations+1),
+ splitBestOfFourRandomUpperTail:(1+splitAnyExceed)/(iterations+1),
  controls,decision:"Source-keyed whole-word transpositions do not show selective GP-English word-order restoration; no unknown plaintext."
 },null,2));
