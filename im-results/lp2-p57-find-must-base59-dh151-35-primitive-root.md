@@ -81,7 +81,7 @@ The previously separate FIND/MUST pair now has a more constrained, still
 **hypothetical**, cross-round connection to the complete solved p57 parable:
 
 1. In the exact original 95-rune p57, the first 2013-parable clause spells
-   **TUNNELNG**, without the extra I in normalized 2013 prose. Its three
+   **TUNNELING** is printed in the original English. Its **ING** sequence is one source-authenticated ᛝ rune (inventory-transliterated NG), and the three
    source-native clause GP-prime sums are **1259, 1031, 1229**, prime ordinals
    **205, 173, 201**. All 95 rune indices agree with the source fixture.
    The genuine original 2013 `761.MP3` TXXX description prints
@@ -142,7 +142,7 @@ promoting the hypothesis.
 
 **Reproduction:** [Windows Node22 original-source SFT](../sims/lp2_p57_primeordinal_dh73_source_sft.cjs)
 and [successful manual Windows CI run 44146610169](https://github.com/FlareZ123/liber-primus/actions/runs/44146610169).
-This SFT checks exact 95/95 source runes, all three original table
+This SFT checks exact 95/95 source runes using the authenticated ING→ᛝ source spelling, all three original table
 tokens and both rival encodings, the historical ID3 string, the
 full DH equalities and the outer-ring selected share. It is a
 reproducible arithmetic correspondence, not recovered ciphertext.
