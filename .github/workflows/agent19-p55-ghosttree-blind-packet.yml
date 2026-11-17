@@ -1,0 +1,33 @@
+name: LP2 p55 blinded original-image review artifact
+on:
+  push:
+    paths:
+      - ".github/workflows/agent19-p55-ghosttree-blind-packet.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-blind-packet:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install deterministic original-image runtime
+        run: python -m pip install "Pillow==11.3.0" "filelock==3.20.0"
+      - name: Generate nine blinded original-source images
+        run: python sims/lp2_p55_ghosttree_blind_packet.py
+      - name: Report exact generated public artifact digest
+        run: python -c "from pathlib import Path; import hashlib; p=Path('im-results/ghost-tree-blinded-review.zip'); print('ZIP', p.stat().st_size, hashlib.sha256(p.read_bytes()).hexdigest())"
+      - name: Publish review packet without private reveal
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-p55-ghosttree-blinded-review
+          path: |
+            im-results/ghost-tree-blinded-review.zip
+            im-results/ghost-tree-blind-packet/contact.png
+            im-results/ghost-tree-blind-packet/manifest.json
+          if-no-files-found: error
+          retention-days: 90
