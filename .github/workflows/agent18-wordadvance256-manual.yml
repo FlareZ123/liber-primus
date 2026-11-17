@@ -19,7 +19,10 @@ jobs:
         run: |
           node --check sims/lp2_wordadvance256_allsecret_samephase_sft.cjs
           node --check sims/lp2_prime_wordadvance_Fallbranch_source_sft.cjs
+          node --check sims/lp2_wordadvance256_original_wordlength_control_sft.cjs
       - name: All-secret 256-position original phase invariant
         run: node sims/lp2_wordadvance256_allsecret_samephase_sft.cjs
+      - name: Matched original printed-word-length native GP29 controls
+        run: node sims/lp2_wordadvance256_original_wordlength_control_sft.cjs
       - name: Authentic prime-totient exact F-bypass inverse
         run: node sims/lp2_prime_wordadvance_Fallbranch_source_sft.cjs
