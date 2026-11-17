@@ -70,6 +70,38 @@ The read-only, source-frozen [original page-reset shared-table gate](../sims/lp2
 
 This makes **shared-table H2 with every physical page reset to the same first prime row** an implausible explanation for the untouched LP2 under the stated native-GP/control prior; the original is flatter even in the first eight local rune slots. It does not exclude chapter resets, a continuous book-wide key clock, separate secrets on every page, different language registers, or alternate emission rules. It also does not prove that cyclic/Latin tableaux cannot reproduce original flatness under other key clocks. The test avoids a tempting but unsupported page-prefix bootstrap shortcut.
 
+## New original-cipher reduction: cyclic/LATIN tableau skip constraints need no secret alphabet
+
+A significant change in the H2 frontier arises from [Agent38's source-native marginal test](lp2-h2-random-table-marginal-flatness-gate.md), which strongly disfavors the **independent random-row** tableau family under native-GP control. An empirically more original-like alternative uses **one** unknown base alphabet permutation tau, combined with a deterministic GP29 cyclic row shift:
+
+C_i = (tau(P_i) + r_(i+d_i)) mod29.
+
+An unknown tau is a 29-symbol permutation; d_i is the number of hidden extra key advances up to rune i, and r_j is still the ordinary-prime totient modulo29. Unlike a full arbitrary 29×29 tableau, this family allows **the entire secret substitution to cancel from the skip-consistency test**. For a proposed accepted key pointer j=i+d_i, define its unknown-but-determined base-alphabet output:
+
+B_i = (C_i − r_j) mod29 = tau(P_i).
+
+If m=d_i−d_(i−1) earlier key rows were rejected, all of their candidate ciphertexts must have been C_(i−1). Thus **independent of the unknown tau and of the plaintext value**, for each skipped j'=i+d_(i−1)+k with 0≤k<m:
+
+(B_i + r_(j')) mod29 = C_(i−1).
+
+This gives a *necessary and sufficient algebraic rule for a specific proposed hidden skip transition*, with no alphabet guesses. It does not determine which transition happened, because the m=0 transition is always allowed. The exact [original-source/positive SFT](../sims/lp2_h2_cyclic_keyless_original_skip_graph_sft.cjs) enumerates every possible cumulative extra-advance count d up to 850 for each original rune, and includes a truly independent native-GP synthetic positive from a secret tau and hidden skip path.
+
+| Last original global rune position | Distinct cumulative skip counts still possible | Largest possible cumulative skip count |
+|---:|---:|---:|
+| 255 | 10 | 9 |
+| 1,023 | 38 | 37 |
+| 4,095 | 142 | 141 |
+| 8,191 | 284 | 283 |
+| **12,955** | **456** | **455** |
+
+At the end of the **unaltered 12,956-rune unknown ciphertext**, every integer cumulative skip total **0 through 455** remains feasible under the fixed transition graph. No key, original plaintext, or unique skip trajectory results. This identifies the precise bottleneck: the source graph alone does not select an actual hidden path.
+
+A sharper authentic typography constraint is available. The 2,896 original complete printed words include **83 one-rune words** at fixed physical positions. Under native English, these would ordinarily be **A/I/O** (GP29 indices 24/10/3). Because tau is a single bijection, **all 83 underlying B values would have to occupy at most three unknown GP29 symbols**, regardless of which symbols tau assigns to A/I/O. For the special **zero-hidden-skip** path, the exact 83 original B values instead cover **25 distinct symbols**, an absolute key-independent contradiction of the native A/I/O register in this narrower no-skip cyclic model. This is *not* an exclusion of the intended skip-consuming H2: the hidden path can change the B values at these positions.
+
+On a truly independently planted, length-12,956 native-GP cyclic-H2 message, the exact transition graph retains all **12,956 true hidden key pointers** even though their positions are withheld. The direct source-input positive had 369 genuinely hidden total skips, at most one rejected candidate at any rune, and 487 possible terminal skip totals including the true 369. The synthetic oracle tableau was a random unknown base permutation of all 29 symbols. That positive verifies graph completeness but also confirms why selecting paths from allowed arithmetic alone cannot recover plaintext.
+
+**Decision:** a cyclic/Latin H2 family reduces secret state from 29×29 to one unknown 29-symbol permutation and exposes a **key-independent full-original skip graph**. This is a real reusable mathematical simplification, independent of speculative table guesses; it does **not** authenticate the H2 opcode. A credible next inverse must use **native word/gram constraints or a separately source-authenticated key** to select one path and one base alphabet jointly. Arbitrary run-path fitting and repeated graph enumerations cannot themselves yield unknown original plaintext.
+
 ## Reconciliation with concurrently completed H2 studies
 
 [Agent30's independent known-table/hidden-pointer Viterbi](lp2-h2-hidden-clock-viterbi-known-table-oracle.md) obtains **103,580/103,648 = 99.9344%** across eight independent whole-book plants, and its soft-constraint table-error refinement recovers **12,817/12,956 = 98.9271%** on a plant granted a **93%-accurate initial secret table**. Its blind, randomly initialized joint EM on a 4,000-rune plant **failed**; this earlier completed work supersedes repeating our proposed basic oracle-to-blind alternation. Our four-plant result is independent corroboration of the same mathematical constraint, without a unique algorithmic novelty claim.
