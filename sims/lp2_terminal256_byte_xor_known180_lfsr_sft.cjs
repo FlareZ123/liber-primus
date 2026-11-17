@@ -191,7 +191,7 @@ assert.equal(
   90
 );
 const result = {
-  classification: "Exact original negative for every row-major byte-XOR GF256 LFSR of order <=32",
+  classification: "Exact original negative for every row-major byte-XOR GF(2^8,0x11B) LFSR of order <=32",
   sourceGeometry: {tableBytes: 256, unknownP55: 76, knownP56: 85, knownP57: 95},
   sourceP56CipherReplay: "85/85",
   solvedP56Plaintext: solved,
