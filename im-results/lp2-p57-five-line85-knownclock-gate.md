@@ -29,3 +29,5 @@ Even granting the published p56 transparent F position, each candidate misses **
 The source-visible 85-rune correspondence is a **provisional layout observation**. There is no original instruction to apply the line-core symbols as a key to p56, and the independent known-plaintext test refutes the straightforward consumer under either GP29 additive sign and all three native numeric readings. It does not refute the already solved independent p56 prime-totient cipher, nor does it show that line interiors are encrypted or that any unknown page has been deciphered. Do not expand this failed alignment into searched shifts, permutations or key phases without a new manuscript-selected operation.
 
 **Complete standalone original-input reproducer:** [source-only CJS SFT](../sims/lp2_p57_five_line85_p56_knownclock_sft.cjs), Windows/Node22 compatible, with exact source assertions, known p56 plaintext and prime cursor, six original inverses, original-cipher re-encryption, and solved-page encrypted positive plants.
+
+**Windows Node22 original-input execution:** [passing GitHub Actions run 44125650081](https://github.com/FlareZ123/liber-primus/actions/runs/44125650081).
