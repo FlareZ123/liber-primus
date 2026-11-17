@@ -88,7 +88,7 @@ for(let i=0;i<phiSource.length;i++){
  }
 }
 assert.equal(consumed,84);
-assert.equal(authentic.map(i=>corpus.translit[i]).join('').slice(0,22),
+assert.equal(authentic.slice(0,22).map(i=>corpus.translit[i]).join(''),
  'ANENDWITHINTHEDEEPWEBTHER');
 let keypos=0;
 assert.deepEqual(authentic.map((p,i)=>i===56?0:(p+prime[keypos++])%29),phiSource);
