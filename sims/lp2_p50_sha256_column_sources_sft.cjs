@@ -17,6 +17,15 @@ const json = (p) => JSON.parse(fs.readFileSync(at(p), 'utf8'));
 const hash = (buffer) => crypto.createHash('sha256').update(buffer).digest();
 const hash512 = (buffer) => crypto.createHash('sha512').update(buffer).digest();
 const hex = (buffer) => buffer.toString('hex');
+/** Encode the 2013-authenticated BASE29 numeral, as minimal big-endian bytes. */
+function base29Bytes(indices) {
+  let n=0n;
+  for(const i of indices) n=n*29n+BigInt(i);
+  let h=n.toString(16);
+  if(h.length%2!==0) h='0'+h;
+  return Buffer.from(h,'hex');
+}
+assert.equal(hex(base29Bytes([3,26,24])), '0ce5', '2013 authenticated BASE29 3QO = 3301');
 const table = json('resources/liber-primus/lp2-grid-256.json');
 const corpus = json('resources/liber-primus/lp2-corpus.json');
 const solved = json('resources/external/relikd-solved-gp29-native-v1.json');
@@ -114,6 +123,7 @@ for (const page of corpus.pages) {
   const name = 'LP2 page ' + page.page;
   examine(name + ' rune glyph UTF8', Buffer.from(page.indices.map((x) => corpus.runes[x]).join(''), 'utf8'));
   examine(name + ' rune-index byte stream', Buffer.from(page.indices));
+  examine(name + ' 2013 BASE29 packed numeral', base29Bytes(page.indices));
 }
 const chapterBounds = [[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
 for (const [first, last] of chapterBounds) {
@@ -121,6 +131,7 @@ for (const [first, last] of chapterBounds) {
   const name = 'LP2 chapter ' + first + '-' + last;
   examine(name + ' glyph UTF8', Buffer.from(indices.map((x) => corpus.runes[x]).join('')));
   examine(name + ' native-index bytes', Buffer.from(indices));
+  examine(name + ' 2013 BASE29 packed numeral', base29Bytes(indices));
 }
 for (const section of solved.sections) {
   const text = section.source_text;
@@ -128,7 +139,9 @@ for (const section of solved.sections) {
   const name = 'already solved section ' + section.name;
   examine(name + ' full source UTF8', Buffer.from(text));
   examine(name + ' rune-only UTF8', Buffer.from(glyphs.join('')));
-  examine(name + ' rune-index bytes', Buffer.from(glyphs.map((c) => corpus.runes.indexOf(c))));
+  const indices = glyphs.map((c) => corpus.runes.indexOf(c));
+  examine(name + ' rune-index bytes', Buffer.from(indices));
+  examine(name + ' 2013 BASE29 packed numeral', base29Bytes(indices));
 }
 for (let i = 0; i < 75; i++) {
   const name = 'resources/liber-primus/' + String(i).padStart(2, '0') + '.jpg';
@@ -159,7 +172,7 @@ for (const candidate of ['3301','1033','CICADA 3301','LIBER PRIMUS','DIVINITY','
 const mutated = Buffer.from(columns[0]);
 mutated[0] ^= 1;
 assert(!mutated.equals(columns[0]), 'Wrong-table original-byte control');
-assert.equal(inputs, 57 * 2 + 9 * 2 + 9 * 3 + 75 + 7 + 3 + 6);
+assert.equal(inputs, 57 * 3 + 9 * 3 + 9 * 4 + 75 + 7 + 3 + 6);
 console.log('SHA-256 32x8 column-source test completed: ' + JSON.stringify({
   originalBytes: 256,
   candidateSourceRepresentations: inputs,
