@@ -16,6 +16,7 @@ import urllib.request
 from collections import Counter
 from pathlib import Path
 
+import imageio_ffmpeg
 import librosa
 import mido
 import numpy as np
@@ -85,7 +86,7 @@ def midi_positive(path: Path) -> dict:
 
 def pcm(path: Path) -> np.ndarray:
     completed = subprocess.run(
-        ["ffmpeg", "-nostdin", "-hide_banner", "-loglevel", "error",
+        [imageio_ffmpeg.get_ffmpeg_exe(), "-nostdin", "-hide_banner", "-loglevel", "error",
          "-i", str(path), "-vn", "-ac", "1", "-ar", str(SR),
          "-f", "f32le", "pipe:1"], check=True, capture_output=True,
     )
