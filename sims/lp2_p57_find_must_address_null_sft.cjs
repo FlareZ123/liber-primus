@@ -223,6 +223,101 @@ const sameRow = values59.slice(18 * 8, 19 * 8);
 assert.equal(sameRow.filter(value => value === 151).length, 1);
 assert.equal(sameRow.filter(value => value === 186).length, 1);
 
+
+// Source-level conditional null for the purported omitted-f base59 alphabet.
+// Preserve the original 256 leading digits exactly. A legal 8-bit base60 byte
+// has 60 possible second digits after leading 0..3, but only 16 after 4.
+// This calculation asks whether an unseen lower-case f is surprising under
+// that explicitly *conditional*, iid byte-model. It is not a likelihood
+// comparison between the two complete 256-byte codecs.
+const secondSymbols = [...alphabet60];
+const leading4 = tokens.filter(token => token[0] === '4').length;
+const ordinary = tokens.length - leading4;
+const secondObserved = new Set(tokens.map(token => token[1]));
+assert.equal(leading4, 17);
+assert.equal(ordinary, 239);
+assert.deepEqual(secondSymbols.filter(symbol => !secondObserved.has(symbol)), ['f']);
+const choose = (n, k) => {
+  let value = 1n;
+  for (let j = 1; j <= k; j += 1) {
+    value = value * BigInt(n - j + 1) / BigInt(j);
+  }
+  return value;
+};
+/**
+ * Exact count of second-digit assignments that contain all remaining allowed
+ * symbols, given fixed leading digits and two groups of forbidden symbols.
+ * @param {number} lowRemaining Number of legal high-leading-4 suffixes left.
+ * @param {number} highRemaining Number of suffixes legal only after 0..3 left.
+ * @param {number} bannedLow Already forbidden symbols in low group.
+ * @param {number} bannedHigh Already forbidden symbols in high-only group.
+ * @returns {bigint} Exact integer inclusion-exclusion count.
+ */
+function allRemainingUsed(lowRemaining, highRemaining, bannedLow = 0,
+  bannedHigh = 0) {
+  let total = 0n;
+  for (let i = 0; i <= lowRemaining; i += 1) {
+    for (let j = 0; j <= highRemaining; j += 1) {
+      const sign = (i + j) % 2 ? -1n : 1n;
+      const base60 = BigInt(60 - bannedLow - bannedHigh - i - j);
+      const base16 = BigInt(16 - bannedLow - i);
+      total += sign * choose(lowRemaining, i) * choose(highRemaining, j) *
+        base60 ** BigInt(ordinary) * base16 ** BigInt(leading4);
+    }
+  }
+  return total;
+}
+const allPossible = 60n ** BigInt(ordinary) * 16n ** BigInt(leading4);
+const noMissing = allRemainingUsed(16, 44);
+const exactlyOneMissingLow = 16n * allRemainingUsed(15, 44, 1, 0);
+const exactlyOneMissingHigh = 44n * allRemainingUsed(16, 43, 0, 1);
+const fixedScale = 10n ** 18n;
+const probability = numerator =>
+  Number(numerator * fixedScale / allPossible) / 1e18;
+const radixOccupancy = {
+  originalLeading4Count: leading4,
+  originalLeading0to3Count: ordinary,
+  missingSecondDigits: secondSymbols.filter(symbol => !secondObserved.has(symbol)),
+  conditionalProbabilityAnyMissing: probability(allPossible - noMissing),
+  conditionalProbabilityExactlyOneMissing: probability(
+    exactlyOneMissingLow + exactlyOneMissingHigh),
+  conditionalProbabilityFAbsent: Number(
+    59n ** BigInt(ordinary) * fixedScale /
+    (60n ** BigInt(ordinary))) / 1e18,
+  conditionalProbabilityFOnlyMissing: probability(
+    exactlyOneMissingHigh / 44n)
+};
+assert.ok(radixOccupancy.conditionalProbabilityAnyMissing > 0.60 &&
+  radixOccupancy.conditionalProbabilityAnyMissing < 0.61);
+assert.ok(radixOccupancy.conditionalProbabilityExactlyOneMissing > 0.38 &&
+  radixOccupancy.conditionalProbabilityExactlyOneMissing < 0.39);
+assert.ok(radixOccupancy.conditionalProbabilityFOnlyMissing > 0.0077 &&
+  radixOccupancy.conditionalProbabilityFOnlyMissing < 0.0078);
+
+// Both byte-valued codebooks have 256 legal encodings, 252 in common.
+// All 256 original tokens fall within the overlap. Therefore two separately
+// assumed iid uniformly random byte models give the observed EXACT sequence
+// the same probability (1/256)^256. This makes a genuine likelihood tie.
+const legal60 = new Set(Array.from({ length: 256 }, (_, value) =>
+  alphabet60[Math.floor(value / 60)] + alphabet60[value % 60]));
+const legal59 = new Set(Array.from({ length: 256 }, (_, value) =>
+  alphabet59[Math.floor(value / 59)] + alphabet59[value % 59]));
+const commonCodewords = [...legal60].filter(token => legal59.has(token));
+assert.equal(legal60.size, 256);
+assert.equal(legal59.size, 256);
+assert.equal(commonCodewords.length, 252);
+assert.ok(tokens.every(token => legal60.has(token) && legal59.has(token)));
+const codebookComparison = {
+  base60LegalCodewords: legal60.size,
+  base59LegalCodewords: legal59.size,
+  sharedCodewords: commonCodewords.length,
+  originalTokensOutsideSharedSupport: tokens.filter(token =>
+    !legal60.has(token) || !legal59.has(token)).length,
+  base60Exclusive: [...legal60].filter(token => !legal59.has(token)),
+  base59Exclusive: [...legal59].filter(token => !legal60.has(token)),
+  exactOriginalSequenceUniformByteLikelihoodRatio59to60: 1
+};
+
 const result = {
   seed: '0x6d3fbe21',
   original: {
@@ -237,6 +332,8 @@ const result = {
   exactFixedPairPWithinOriginalRow: 1 / (8 * 7),
   global,
   byRow,
-  matchedLp1
+  matchedLp1,
+  radixOccupancy,
+  codebookComparison
 };
 console.log(JSON.stringify(result, null, 2));
