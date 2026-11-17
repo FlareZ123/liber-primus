@@ -183,7 +183,7 @@ function encodeKey(original) {
  * @param {number} beam
  * @returns {{score:number,used:number}}
  */
-function decode(cipher,prev,outer,inner,start,litF,atbash,model,beam) {
+function decode(cipher,prev,outer,inner,start,litF,atbash,model,beam,strictLast=false,abortEarly=true) {
   let states = [{j:0,ph:start,last:29,s:0}];
   const m=inner.length;
   for (let i=0;i<cipher.length;i++) {
@@ -217,12 +217,12 @@ function decode(cipher,prev,outer,inner,start,litF,atbash,model,beam) {
     }
     const unique=new Map();
     for (const s of next) {
-      const id=s.j+"_"+s.ph,found=unique.get(id);
+      const id=s.j+"_"+s.ph+(strictLast?"_"+s.last:""),found=unique.get(id);
       if (!found||found.s<s.s) unique.set(id,s);
     }
     states=[...unique.values()].sort((a,b)=>b.s-a.s).slice(0,beam);
     if (!states.length) return {score:-Infinity,used:i+1};
-    if (i===29&&states[0].s< -120) return {score:states[0].s/30,used:30};
+    if (abortEarly&&i===29&&states[0].s< -120) return {score:states[0].s/30,used:30};
   }
   return {score:states[0].s/cipher.length,used:cipher.length};
 }
@@ -310,6 +310,29 @@ assert.equal(actual.tests,162560);
 assert.equal(actual.complete,1889);
 assert(Math.abs(actual.best.score-(-6.096989966555184))<1e-12);
 const matched=run(shuffledStreams(original));
+// Bigram continuation depends on the previous plaintext rune. Literal F bypass
+// can merge histories with equal (outer cursor, phase) but different last rune.
+// This independently tests the exact-state requirement on authentic p54–55.
+const strictStateWitness=[];
+for (const [word,model] of [["KOAN",0],["ENLIGHTENED",1]]) {
+  const sourceKey=encodeKey(word);
+  const old=decode(ciphertext,preceding,original["primes-1 (totient)"],
+    sourceKey,0,true,false,model,2048,false,false);
+  const fixed=decode(ciphertext,preceding,original["primes-1 (totient)"],
+    sourceKey,0,true,false,model,2048,true,false);
+  assert.equal(old.used,299);
+  assert.equal(fixed.used,299);
+  assert(fixed.score>old.score);
+  strictStateWitness.push({word,model,old:old.score,fixed:fixed.score,
+    gain:fixed.score-old.score});
+}
+const strictNonF=decode(ciphertext,preceding,
+  original["primes-1 (totient)"],encodeKey("KOAN"),0,false,false,
+  0,2048,true,false);
+const mergedNonF=decode(ciphertext,preceding,
+  original["primes-1 (totient)"],encodeKey("KOAN"),0,false,false,
+  0,2048,false,false);
+assert.equal(strictNonF.score,mergedNonF.score);
 assert.equal(matched.tests,actual.tests);
 const inputKey=encodeKey("DIVINITY");
 const plantCipher=plant(CONTROL,original["primes-1 (totient)"],inputKey);
@@ -325,6 +348,7 @@ console.log(JSON.stringify({
   originalCorpus:"resources/liber-primus/lp2-corpus.json",
   catalog:"20 historical streams x 30 historical keywords; all phases, both signs, both anti-repeat models, litF0/1 and Atbash0/1",
   original:actual,matchedSourceHistogramShuffle:matched,
+  strictStateWitness,
   control:{plain:299,positive,wrong},
   decision:"Zero-offset ninth-section fixed catalog rejects GP-English direct inverse; free-offset historical screen remains open."
 },null,2));
