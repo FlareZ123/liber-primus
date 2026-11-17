@@ -18,7 +18,7 @@ The 2014 and 256 moduli remain different candidate constraints; their targets we
 
 ## Exhaustive test conditional on established source features
 
-The [read-only Node22 CommonJS single-file test](../sims/lp2_red13_base29_congruence_order_sft.cjs) fixes the original *13-rune multiset*, both word-initial S runes, the 8|5 boundary and both 347|315 GP prime sums. It enumerates all distinct arrangements of the remaining eleven runes with the exact published rune identities, including duplicate E values, and evaluates the proposed residues on the resulting big-endian integer.
+The [read-only Node22 CommonJS single-file test](../sims/lp2_red13_base29_congruence_order_sft.cjs) ([Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44170924537)) fixes the original *13-rune multiset*, both word-initial S runes, the 8|5 boundary and both 347|315 GP prime sums. It enumerates all distinct arrangements of the remaining eleven runes with the exact published rune identities, including duplicate E values, and evaluates the proposed residues on the resulting big-endian integer.
 
 | Fixed-source conditional universe | Count |
 | --- | ---: |
