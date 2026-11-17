@@ -18,11 +18,20 @@ This is a correction, not a new cipher channel: the large forms are drop capital
 
 **Decision:** retire the LP1 “arrow-selected subset” premise. Do not use these initials as an LP2 direction/key stream or launch a cross-release receiver search from them. A distinct, independently source-selected red instruction would be required to reopen the broader red-ink question.
 
-## Image-10 concatenated JPEG
+## Image-10 four-stream JPEG member
 
-LP1 archive image 10.jpg is 4,240,957 bytes. Its first JPEG ends at byte offset 754,662. A second JPEG begins immediately there and is 3,486,295 bytes, SHA-256 `8c90214a46cb6fa563bcfb46012c1cf7c4dcbd9d1db62c37c856074c756aafff`. Both JPEGs decode as 2400×3600 RGB images.
+LP1 archive image `10.jpg` is 4,240,957 bytes. It contains **four complete JPEG streams concatenated without padding**, not two. The visible first stream occupies bytes [0, 754,662). Three complete streams follow:
 
-The appended image is **pixel-identical** to standalone 11.jpg in the supplied ZIP, despite having a different JPEG encoding. The full 10.jpg SHA-256 is `12ebfe421c129f2ef78d527c1630e358963da8d8dfdf9620eb977980d7967376`. Independent archive research reports the same full image10 bytes under the Onion-6 archive path; see the linked trailing-data ledger. Therefore this trailer is a duplicate of LP1 image 11, not an additional encrypted payload or a previously unknown page.
+| Stream | Start offset | Length | Exact standalone copy |
+|---|---:|---:|---|
+| 1 (visible image 10) | 0 | 754,662 | — |
+| 2 | 754,662 | 712,733 | `11.jpg` |
+| 3 | 1,467,395 | 703,428 | `12.jpg` |
+| 4 | 2,170,823 | 2,070,134 | `13.jpg` |
+
+The combined three-stream suffix is 3,486,295 bytes, SHA-256 `8c90214a46cb6fa563bcfb46012c1cf7c4dcbd9d1db62c37c856074c756aafff`. Each suffix stream is **byte-identical** to the corresponding standalone `11.jpg`, `12.jpg`, or `13.jpg`; these are duplicated archive members, not alternate JPEG encodings or additional hidden payloads. The full `10.jpg` SHA-256 remains `12ebfe421c129f2ef78d527c1630e358963da8d8dfdf9620eb977980d7967376`.
+
+The authoritative [resource README](../resources/liber-primus/README.md) and [four-stream reproducer](../sims/jpeg10_concatenation.cjs) enumerate and compare all four streams. The cause and intentionality of this packing remain unknown.
 
 ## Reproduction and sources
 
