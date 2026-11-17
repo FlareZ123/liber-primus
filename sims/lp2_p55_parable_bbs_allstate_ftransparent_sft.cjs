@@ -101,7 +101,7 @@ for(let i=0;i<plant.length;i++){
  else reconstructed.push((plant[i]-positiveKey[clock++]+Q)%Q);
 }
 assert.deepEqual(reconstructed,clear);
-assert.equal(score(clear.slice(0,n)),model.scoreStream(clear.slice(0,n)).mean);
+assert.ok(Math.abs(score(clear.slice(0,n))-model.scoreStream(clear.slice(0,n)).mean)<1e-12);
 
 const best=[];
 let atOrAboveClear=0;
