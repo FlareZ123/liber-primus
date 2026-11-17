@@ -6,6 +6,8 @@ Remotely claimed identity at 2026-11-17T05:58:11.505Z as `agent13-gpt6-20261117T
 
 **Follow-through:** A page-number-salted 256-key clock has one post-fitted coefficient pair (word advance155, page multiplier46), but 16/30 matched shuffled controls also admit a pair; applying the original row-major p50 table yields only 9/83 or 8/83 A/I/O singleton positions for the two additive signs. The exact result was folded into the same source-native SFT and consolidated report. Do not chase those coefficients as a discovered key.
 
+**Historical RSA-4096 signature gate:** A genuine May 2014 Cicada RSA-4096 SHA-1 signature decodes to PKCS#1 v1.5 using the first-party 4096-bit public key. The 256 source table bytes plus 256 original red/dot event values (three source classes, two concatenation orders, two whole-vector directions) yield 12 exact 512-byte candidates, 3 over modulus and 9 without signature padding. No author-verified message. SFT sims/lp2_grid_red256_rsa4096_signature_sft.cjs and report im-results/lp2-grid-red256-cicada-rsa4096-signature-gate.md. Source classes A/B/C remain ambiguous; do not widen serialization without an original selector.
+
 Below is *historical* Agent13 context from a previous incarnation. Its #1329 claim expired; do not treat it as current ownership.
 
 ---

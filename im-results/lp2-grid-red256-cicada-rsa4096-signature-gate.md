@@ -1,0 +1,13 @@
+# Original 256-cell table plus 256 ink events as Cicada RSA-4096 signature
+
+**Conditional original-source negative; no unknown LP2 plaintext recovered.** Cicada's authenticated OpenPGP key uses a 4,096-bit RSA modulus and exponent 65,537. A standard signature is 512 bytes. The original 256-byte p49–51 numerical table and an independently counted possible 256 red-rune/punctuation events could concatenate to exactly that length, though the source does not instruct the solver to join them.
+
+A read-only [Node22 reproducer](../sims/lp2_grid_red256_rsa4096_signature_sft.cjs) parses the actual first-party public key and May 2, 2014 Cicada-signed message. The real 512-byte RSA signature successfully verifies to the canonical PKCS#1 v1.5 SHA-1 block: 00 01, **474 FF bytes**, 00 delimiter and SHA-1 DigestInfo. This authentic positive validates the key and public exponentiation on known historical material.
+
+The original image-checked [ink annotations](../resources/liber-primus/lp2-ink-annotations.json) yield 225 red GP runes, 30 red thirteen-dot marks, one black thirteen-dot mark, and a terminal red 23-dot marker. The 256-byte table is read in printed row-major order. Each red rune contributes its GP prime value and each mark contributes its dot count, ordered by original physical page and rune coordinate.
+
+All three previously documented 256-event choices were tested: **A** = 225 red runes + all 31 thirteen-dot marks; **B** = 225 red runes + 30 red thirteen-dot marks + terminal 23-dot mark; **C** = 225 red runes + all 31 annotated chapter marks (28 thirteen-dot and three ten-dot). Two class-C chapter marks on p7 have the same rune offset and must remain separate objects. For each class, construct events followed by table and table followed by events, both in forward and globally reversed byte order, for **12** original-source candidates.
+
+**Result:** 3 of the 12 source-built signature integers are greater than the actual public modulus; the remaining nine have **no PKCS#1 signature padding** under the authentic RSA-4096 public key. No direct signature or decoded message emerged. The exact three event classes, two half orders, and whole reversal are rejected as a direct RSA-signature construction.
+
+This does not exclude alternative serialization, RSA encryption requiring an unknown private key, or a separate role for either object. The 512-byte size match is a motivated test, with no authenticated author instruction for concatenation. No arbitrary table transformations or signature padding searches are justified by this negative. The SFT checks the original event counts, the genuine historical signature positive and all original candidates without writing files.
