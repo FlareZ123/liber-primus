@@ -202,6 +202,56 @@ assert.deepEqual(recovered,plantedComplete);
 assert.deepEqual(recovered.filter(x=>x!==0),nonroot.address
   .slice(76).map(i=>synthetic[i]));
 
+
+// Under the source-correct p56 F skip and unassigned root, even a
+// completely arbitrary unary 29->29 lookup fails on observed known
+// parent-child values. Independently rekeying by depth/height still fails.
+const dRoot=Array(256).fill(-1),dLeaf=Array(256).fill(-1);
+/** @param {number} n @param {number} d */
+function depthRec(n,d){dRoot[n]=d;children[n].forEach(c=>depthRec(c,d+1));}
+/** @param {number} n @returns {number} */
+function heightRec(n){return dLeaf[n]>=0?dLeaf[n]:
+  (dLeaf[n]=children[n].length?
+    1+Math.max(...children[n].map(heightRec)):0);}
+depthRec(189,0);heightRec(189);
+/** @param {Map<string,Set<number>>} map @param {string} x
+ * @param {number} y */
+function insert(map,x,y){if(!map.has(x))map.set(x,new Set());map.get(x).add(y);}
+const contradictions=map=>[...map.values()].filter(s=>s.size>1).length;
+const allSecret=[];
+for(const [leaf,ids] of Object.entries(leaves))
+for(const [internal,inner] of Object.entries(nonroot))
+for(const weight of ["index","prime"])
+for(const reverse of [false,true]){
+  const values=Array(256).fill(-1);
+  ids.forEach((addr,i)=>{
+    const x=clear[reverse?94-i:i];
+    values[addr]=weight==="prime"?gp.prime[x]%29:x;});
+  for(let i=0;i<84;i++) values[inner[76+i]]=clearP56Consuming[i];
+  assert.equal(values[189],-1);
+  const stationary=new Map(),rootDepth=new Map(),leafHeight=new Map();
+  let observed=0;
+  for(let parent=0;parent<256;parent++){
+    if(children[parent].length!==1)continue;
+    const child=children[parent][0],x=values[child],y=values[parent];
+    if(x<0||y<0)continue;
+    observed++;
+    insert(stationary,String(x),y);
+    insert(rootDepth,dRoot[parent]+":"+x,y);
+    insert(leafHeight,dLeaf[parent]+":"+x,y);
+  }
+  allSecret.push({leaf,internal,weight,reverse,observed,
+    stationary:contradictions(stationary),
+    rootDepth:contradictions(rootDepth),
+    leafHeight:contradictions(leafHeight)});
+}
+const stat=k=>[Math.min(...allSecret.map(x=>x[k])),
+  Math.max(...allSecret.map(x=>x[k]))];
+assert.equal(allSecret.length,24);
+assert.deepEqual(stat("observed"),[38,52]);
+assert.deepEqual(stat("stationary"),[8,14]);
+assert.deepEqual(stat("rootDepth"),[1,6]);
+assert.deepEqual(stat("leafHeight"),[4,10]);
 console.log(JSON.stringify({
   classification:"original source geometry; 24 finite root-excluded inversions fail held-out p56",
   original:{
@@ -215,5 +265,8 @@ console.log(JSON.stringify({
   sourceExactP56Reencrypted:printedP56.length,
   testedModels:details.length,best84Raw:bestRaw,best84RootZero:bestRootZero,
   models:details,
+  allSecretUnary:{models:allSecret.length,knownUnaryPairRange:stat("observed"),
+    stationary:stat("stationary"),rootDepth:stat("rootDepth"),
+    leafHeight:stat("leafHeight"),details:allSecret},
   decision:"Root omission resolves the source count but a leaf-sum parent decoder misses at least 77 of 84 known p56 runes; no unknown plaintext."
 },null,2));
