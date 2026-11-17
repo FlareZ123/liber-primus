@@ -10,7 +10,7 @@ Using the unchanged `resources/liber-primus/lp2-corpus.json`, I independently ch
 
 | Block | Original node and derived/aligned key | Ciphertext cells in reading order | Exact GP29 output |
 |---|---|---|---|
-| 01 | `AE–J–EA` at (13,11–13); center φ(11)=10 gives `AE–I–EA`, phase 0 | (13,25) through (13,27), then (14,1–4): `L AE N TH P U X` | `A S I GO TH E` |
+| 01 | `AE–J–EA` at (13,11–13); center φ(11)=10 gives `AE–I–EA`, phase 0 | (13,25) through (13,27), then (14,1–4): `L AE N TH P U X` | `A S I G O TH E` |
 | 02 | `X–OE–X` at (14,4–6); φ(22)=10 gives `X–I–X`; μ(φ(k))=(+1,0,+1), left rotation 2 gives `X–X–I` | (14,14–18): `NG P EO O E` | `W EA TH E R` |
 | 03 | `H–NG–C` at (4,23), (14,23), (24,23), unchanged key | (14,19), (13,19), (12,19), (11,19), (10,19): `A OE N B W` | `T U R N S` |
 | 04 | `H–TH–H` at (26,19); φ(2)=1 and phase 1 give `U–H–H` | (14,7), (13,7), (12,7), (11,7): `G J EA A` | `C O L D` |
