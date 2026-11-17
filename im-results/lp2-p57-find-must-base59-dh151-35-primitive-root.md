@@ -151,7 +151,34 @@ and its historically authenticated 2014 magic-square work. No
 original caption explicitly joins the 2013 Parable's **prime
 ordinals** to a 5×5 selection in the 2014 table. The internal
 3×3 block has non-magic unequal row sums, and the original
-76-rune receiver remains unidentified. The extra PAGE / A107
+76-rune receiver remains unidentified. ### Original p55 5×5 Hill-cipher recipient: complete original negative
+
+The 76-rune physical p55 begins with one rune carried from the
+previous p54 printed word. Its 75 remaining exact original runes form
+**three consecutive 25-rune squares**. The source-selected table frame
+above contains **25 base59 integers**; taking their canonical
+row/column order modulo29 produces a concrete **5×5 GP29 Hill key**
+with exact nonzero determinant **17 mod29**.
+
+Treat the original 75-rune suffix as three 5×5 ciphertext matrices.
+For each, apply either **left** or **right** key multiplication,
+with the mathematically correct inverse K⁻¹ or the direct K
+(as both minimal encrypt/decrypt orientations). All four original
+outcomes are below the clear source-native p57 IoC:
+**0.034234, 0.036396, 0.034595, 0.031712**, versus original
+p55 suffix **0.038559** and clear p57 **0.062710**; all
+decode to nonlinguistic rune sequences. The key inversion and
+p55 75/75 exact forward reencryption pass. Independently
+encrypting the first 75 genuinely clear p57 runes in the same
+four conventions recovers **75/75** on every inverse.
+
+This excludes **only the exact 5×5 matrix receiver** from
+the newly fixed source frame. It does not exclude a
+keyed/byte-level role of that frame, the square as a navigation
+instruction, or a differently authored cipher with supplied
+plaintext controls. [Original 5×5 Hill source SFT](../sims/lp2_p50_clauseprime_square_p55_hill_sft.cjs) · [successful Windows run 44149368874](https://github.com/FlareZ123/liber-primus/actions/runs/44149368874).
+
+The extra PAGE / A107
 connections were also discovered retrospectively and cannot
 be treated as independent cryptographic confirmation.
 
