@@ -2,10 +2,11 @@
 
 /**
  * Native-GP word-shape gate for the source p56 prime-totient/collision-skip
- * cipher with a single secret cyclic/Latin substitution tableau.
+ * cipher with a secret cyclic/Latin substitution tableau in either operator order.
  *
  * The original 2014 p56 additive prime-totient stream selects the 29-row
- * circulant construction T[row][plain]=(sigma[plain]+sign*row) mod29.
+ * circulant constructions T[row][plain]=(sigma[plain]+sign*row) mod29
+ * and T[row][plain]=sigma((plain+sign*row) mod29).
  * The duplicate-output skip is hypothetical, q=0.81, and consumes another
  * prime state. This experiment does NOT claim that Cicada authored it.
  *
@@ -123,8 +124,8 @@ assert.deepEqual({
   total5:baseline.total5,total6:baseline.total6
 },{n:12956,words:2896,adjacent:63,lag5:104,s5:11,t6:80,
   total5:2105,total6:1290});
-/** @param {number[][]} buckets @param {-1|1} sign @param {number} seed */
-function trial(buckets,sign,seed){
+/** @param {number[][]} buckets @param {-1|1} sign @param {number} seed @param {'before'|'after'} placement */
+function trial(buckets,sign,seed,placement){
   const rng=random(seed);
   const P=new Uint8Array(LENGTH);
   let offset=0;
@@ -141,13 +142,19 @@ function trial(buckets,sign,seed){
   sigma.forEach((v,i)=>{inverse[v]=i;});
   const C=new Uint8Array(LENGTH);
   let cursor=0,previous=-1,skips=0;
+  const emit=(p,j)=>placement==='before'
+    ?(sigma[p]+sign*clock[j]+N)%N
+    :sigma[(p+sign*clock[j]+N)%N];
+  const decode=(cipher,j)=>placement==='before'
+    ?inverse[(cipher-sign*clock[j]+N)%N]
+    :(inverse[cipher]-sign*clock[j]+N)%N;
   for(let i=0;i<LENGTH;i++){
-    let z=(sigma[P[i]]+sign*clock[cursor]+N)%N;
+    let z=emit(P[i],cursor);
     while(z===previous && rng.uniform()<q){
       cursor++;skips++;
-      z=(sigma[P[i]]+sign*clock[cursor]+N)%N;
+      z=emit(P[i],cursor);
     }
-    const recovered=inverse[(z-sign*clock[cursor]+N)%N];
+    const recovered=decode(z,cursor);
     assert.equal(recovered,P[i],'true secret-table + key-path positive failed');
     C[i]=z;
     previous=z;
@@ -156,14 +163,16 @@ function trial(buckets,sign,seed){
   return {...stats(C),skips};
 }
 const result={classification:'original-cipher feature gate, not plaintext recovery',
-  model:'single hidden Latin/circulant GP29 tableau; native p56 phi(prime) rows, q=.81 repeated-output discard',
-  original:baseline,nativeShapeWords:lengths.length,trialsPerSignSource:TRIALS,experiments:[]};
-for(const [s,source] of sources.entries()){
-  for(const sign of [1,-1]){
-    const seed=(0x330148cc ^ (sign===1?0:0x7f16) ^ (s?0x3112aafe:0))>>>0;
-    const tests=[];
-    for(let i=0;i<TRIALS;i++)
-      tests.push(trial(source.buckets,sign,(seed+i*0x9e3779b9)>>>0));
+  model:'single hidden Latin/circulant GP29 tableau; both GP29 permutation/prime-shift orders, p56 phi(prime) rows, q=.81 duplicate rejection',
+  original:baseline,nativeShapeWords:lengths.length,trialsPerSignSourcePlacement:TRIALS,experiments:[]};
+for(const placement of ['before','after']){
+  for(const [s,source] of sources.entries()){
+    for(const sign of [1,-1]){
+      const seed=(0x330148cc ^ (sign===1?0:0x7f16) ^ (s?0x3112aafe:0)
+        ^ (placement==='after'?0x4aa53301:0))>>>0;
+      const tests=[];
+      for(let i=0;i<TRIALS;i++)
+        tests.push(trial(source.buckets,sign,(seed+i*0x9e3779b9)>>>0,placement));
     const fields={};
     for(const key of ['ioc','adjacent','lag5','s5','t6','skips']){
       const xs=tests.map(x=>x[key]).sort((a,b)=>a-b);
@@ -173,7 +182,8 @@ for(const [s,source] of sources.entries()){
         geOriginal:key==='skips'?null:xs.filter(x=>x>=baseline[key]).length
       };
     }
-    result.experiments.push({source:source.name,sign,seed,fields});
+    result.experiments.push({source:source.name,sign,seed,placement,fields});
+    }
   }
 }
 console.log(JSON.stringify(result,null,2));
