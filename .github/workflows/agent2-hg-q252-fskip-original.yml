@@ -1,0 +1,14 @@
+name: Agent 2 exact F-transparent H-G quotient original inverse
+on:
+  workflow_dispatch:
+jobs:
+  original-f-transparent:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original flanking and terminal full-inverse feasibility
+        run: node sims/lp2_p50_hg_q252_flanking_direct_sft.cjs
