@@ -106,7 +106,32 @@ RUXOEREOCEINPXJPPFOELHEBPGHJCNOETIAOEBEASNGLWYJOENFHNGEAJXNJDCEJOOOEGGOIGYMBUMDG
 
 This is no coherent GP-native original plaintext. Its **exact forward reencryption** is expected for any legal wrong key and is verified, so a round trip is not evidence of a solution. A separate genuine solved-p57 **76-rune plaintext** is planted with each exact key/sign and recovered among all legal inverse states in **4/4** source-native positive controls. The test operates on all 76 original p55 runes, reproduces the 729-rune 158-word first-three-page parse, red word sums347/315, 156-word pointer rule, both original cycle starts, all printed F positions and its fixed sign decisions.
 
-**Decision:** The first-party opening red-heading → 156-word sum-pointer → 23-cycle yields a reproducible source-shaped **key candidate**, but direct repeated mod29 GP29 addition or subtraction under the authentic p56 F convention does not decipher p55. This rejects these four fixed consumers, not the rare opening 23-cycle observation or an as-yet-unauthenticated nonperiodic use of its 23 words. Avoid further arbitrary rotations and compound transformations without a separate original clue. [Node22 source-native SFT](../sims/lp2_wordmap23_cycle_p55_native_inverse_sft.cjs) · [manual Windows CI run](https://github.com/FlareZ123/liber-primus/actions/runs/44086567597) (queued at publication; check final status).
+### A second, image-dimension-anchored 23-rune receiver
+
+The source graph's **563** and **569** word-prime sums occur at cycle steps 7 and14. They independently equal the GP-prime sum of the **top row and left column**, respectively, of the original **11×11 p32 rune grid**. These also match the 563×569 dimensions of Cicada's 2016 signed image, a numerical correspondence recognized before this receiver was constructed. Consequently a human-visible alternative to using each 23-cycle sum directly as a GP shift is to take its remainder modulo **121** as an address in the original p32 grid, collecting **23 ciphertext rune indices** as a possible key. This original first-three-page→p32 chain is an *inferred source operation*; neither the original image nor the signed text explicitly says to use a modulo121 lookup or p55 receiver.
+
+The only address convention controls are **zero-based remainder** `S mod121` and **one-based cell count** `(S−1) mod121`. For each, use the first or second red heading's exact starting cycle step, both arithmetic signs, the same authentic p56 transparent-plaintext-F rule, all p55 F branches, and no key fitting. This is **eight** source-fixed, full-76-rune exact inverse tests; all eight separately recover a 76-rune planted solved-p57 passage under their matching key and sign.
+
+| p32 address count | 23-cycle start | GP inverse | First impossible original p55 rune (zero-based) | Full legal paths |
+| --- | --- | --- | ---: | ---: |
+| Zero-based | first heading | subtract | 37 | 0 |
+| Zero-based | first heading | add | 67 | 0 |
+| Zero-based | second heading | subtract | 65 | 0 |
+| Zero-based | second heading | add | 0 | 0 |
+| One-based | first heading | subtract | 56 | 0 |
+| One-based | first heading | add | none | **1** |
+| One-based | second heading | subtract | 10 | 0 |
+| One-based | second heading | add | 24 | 0 |
+
+The one surviving **one-based/first-heading/add** inverse is entirely legal and reencrypts to the unmodified original, but reads as incoherent GP transliteration:
+
+```text
+OEAIAIAPJECCBJWAEPNJITHLNGMXEAEATHFOEIAAEYGRDDMPNGYWNAEFAJEADMPINGEDLTHTNUXUOLYSRBGPGDNGEOERAEGT
+```
+
+Its legality is an expected property of a possible wrong additive key, not confirmation of the rule.
+
+**Decision:** Both direct source-cycle candidates and the additional p32-addressed source-cycle key fail to recover p55 plaintext. Across **twelve** complete source-fixed inverse/sign/address cases, **two** are fully syntactically legal under the authenticated F rule, and neither is readable GP prose. This retires the specific 23-period direct key and zero/one-based p32 lookup consumers, while preserving the original 23-cycle observation as a provisional possible key source. Further arbitrary rotations and compound transforms need a fresh author-authenticated clue. [Node22 original-input SFT](../sims/lp2_wordmap23_cycle_p55_native_inverse_sft.cjs) · [Windows original-source workflow](https://github.com/FlareZ123/liber-primus/actions/runs/44086567597) (previous 4-case revision queued) · [later 12-case workflow](https://github.com/FlareZ123/liber-primus/actions/workflows/agent22-prime-even-rune-original-manual.yml) (manual dispatch queued; verify final result before treating as CI-passed).
 
 ## Weakest premise and next decisive work
 
@@ -115,7 +140,7 @@ The weakest premise is the proposed pointer rule `f(i)=S_i mod 156`: it is motiv
 Highest-value next actions:
 1. Independently reproduce the canonical parse, heading sums, two-cycle graph, and 563/569 uniqueness from the original transcription and corpus.
 2. Seek an independent Cicada-authored selector for the modulo-156 word pointer, rather than sweeping alternative moduli or tuning conventions.
-3. Find an independent original clue selecting a new use of the 23-cycle beyond the completed direct 23-symbol additive/F-transparent p55 inverse. The cycle's length, exact sum correspondences and a syntactically valid wrong-key forward reencryption alone do not authenticate plaintext.
+3. Find an independent original clue selecting a new use of the 23-cycle beyond the completed direct 23-symbol and p32-indexed 23-symbol F-transparent p55 inverses. The cycle's length, exact sum correspondences and a syntactically valid wrong-key forward reencryption alone do not authenticate plaintext.
 4. Evaluate the p50 compass continuation separately against the original p50/p32 artifacts and a held-out target; retire it if the modulo-256/bit-split choices cannot be independently justified.
 
 The result changes the research frontier by supplying a compact, falsifiable word-level route from the opening red heading to a unique 23-cycle and the 563/569 p32/2016 correspondence. It does not yet decipher any of the 56 unknown pages.
