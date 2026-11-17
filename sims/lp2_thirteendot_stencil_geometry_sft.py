@@ -77,8 +77,6 @@ def main() -> None:
     assert max(error for *_, error in maxima) <= 1.5, maxima
 
     # Native-shape positive: moving one dot by four original pixels must fail.
-    changed = centers.__name__  # Keep the control tied to exactly this normalized stencil.
-    assert changed == "centers"
     perturb = reference.copy()
     perturb[0, 1] += 4.0
     perturb -= np.mean(perturb, axis=0) - np.mean(reference, axis=0)
