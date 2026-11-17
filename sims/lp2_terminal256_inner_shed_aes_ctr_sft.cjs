@@ -1,6 +1,6 @@
 'use strict';
 /**
- * Fixed original-source test: one AES-256-CTR receiver of the 32x8
+ * Fixed original-source test: AES-256-CTR and historical RC4 receivers of the 32x8
  * numerical table, keyed by p57's literal SHED... innermost-52-rune passage.
  * Source p55 unknown outer 76 positions are never fitted or scored.
  * This is a bounded negative for a hypothetical cipher, not plaintext.
@@ -66,6 +66,28 @@ function aesCtr(input, key, encrypt) {
   return Buffer.concat([ctx.update(input), ctx.final()]);
 }
 
+/** @param {Buffer} input @param {Buffer} key @returns {Buffer} */
+function historicalRc4Xor(input, key) {
+  const S = Array.from({length: 256}, (_, i) => i);
+  let j = 0;
+  for (let i = 0; i < 256; i += 1) {
+    j = (j + S[i] + key[i % key.length]) & 255;
+    [S[i], S[j]] = [S[j], S[i]];
+  }
+  const output = Buffer.alloc(input.length);
+  let i = 0;
+  j = 0;
+  for (let k = 0; k < input.length; k += 1) {
+    i = (i + 1) & 255;
+    j = (j + S[i]) & 255;
+    [S[i], S[j]] = [S[j], S[i]];
+    output[k] = input[k] ^ S[(S[i] + S[j]) & 255];
+  }
+  return output;
+}
+assert.equal(historicalRc4Xor(Buffer.alloc(9), Buffer.from('Key')).toString('hex'),
+  'eb9f7781b734ca72a7');
+
 const B = Buffer.from(grid.bytes);
 assert.equal(B.length, 256);
 assert.equal(crypto.createHash('sha256').update(B).digest('hex'),
@@ -85,30 +107,38 @@ assert.equal(core.map((i) => corpus.translit[i]).join(''),
   'SHEDOUROWNCIRCUMFERENCESFINDTHEDIUINITYWITHINANDEMERGE');
 const known = Buffer.from(p56.concat(p57));
 assert.equal(known.length, 180);
-const keys = {
-  printedTransliteration: crypto.createHash('sha256').update(
-    core.map((i) => corpus.translit[i]).join(''), 'utf8').digest(),
-  originalGPIndices: crypto.createHash('sha256').update(Buffer.from(core)).digest(),
+const rawKeys = {
+  printedTransliteration: Buffer.from(core.map((i) => corpus.translit[i]).join(''), 'utf8'),
+  originalGPIndices: Buffer.from(core),
 };
 const trials = [];
-for (const [keyForm, key] of Object.entries(keys)) {
+for (const [keyForm, rawKey] of Object.entries(rawKeys)) {
   for (const direction of [1, -1]) {
     for (let corner = 0; corner < 4; corner += 1) {
       const order = originalRingOrder(corner, direction);
       const ciphertext = Buffer.from(order.map((k) => B[k]));
-      const output = aesCtr(ciphertext, key, false);
-      const hits = [...known].reduce((n, target, j) => n + Number(output[76 + j] === target), 0);
-      const gpRange = output.subarray(76).reduce((n, v) => n + Number(v < 29), 0);
-      const synthetic = Buffer.concat([Buffer.alloc(76, 0), known]);
-      assert.deepEqual(aesCtr(aesCtr(synthetic, key, true), key, false), synthetic);
-      trials.push({keyForm, direction, corner, hits, gpRange});
+      for (const cipherName of ['AES-256-CTR', 'RC4']) {
+        const key = cipherName === 'AES-256-CTR'
+          ? crypto.createHash('sha256').update(rawKey).digest() : rawKey;
+        const output = cipherName === 'AES-256-CTR'
+          ? aesCtr(ciphertext, key, false) : historicalRc4Xor(ciphertext, key);
+        const hits = [...known].reduce((n, target, j) => n + Number(output[76 + j] === target), 0);
+        const gpRange = output.subarray(76).reduce((n, v) => n + Number(v < 29), 0);
+        const synthetic = Buffer.concat([Buffer.alloc(76, 0), known]);
+        if (cipherName === 'AES-256-CTR') {
+          assert.deepEqual(aesCtr(aesCtr(synthetic, key, true), key, false), synthetic);
+        } else {
+          assert.deepEqual(historicalRc4Xor(historicalRc4Xor(synthetic, key), key), synthetic);
+        }
+        trials.push({cipherName, keyForm, direction, corner, hits, gpRange});
+      }
     }
   }
 }
-assert.equal(trials.length, 16);
+assert.equal(trials.length, 32);
 const maximum = Math.max(...trials.map((t) => t.hits));
 assert.equal(maximum, 2);
-console.log(JSON.stringify({n: 16, maximumExactKnownRuneHits: maximum,
+console.log(JSON.stringify({n: 32, maximumExactKnownRuneHits: maximum,
   maxPossible: 180, best: trials.filter((t) => t.hits === maximum),
   trials}, null, 2));
-console.log('PASS: literal inner-52 SHA256-keyed AES-256-CTR source receiver rejected; no p55 decryption.');
+console.log('PASS: inner-52 SHA256-keyed AES256-CTR and historical RC4 receivers rejected; no p55 decryption.');
