@@ -219,6 +219,37 @@ assert.equal(withinWordSlots, 2105);
 assert.equal(originalWholeStream, 479);
 assert.equal(originalOutsideWords, 375);
 
+// Page-safe sensitivity excludes all fifth-back windows that straddle a
+// physical page break, including the number-only p50 hiatus.
+const pageWindowIndices = [];
+let pageOffset = 0;
+for (const page of pages) {
+  for (let j = pageOffset + 5; j < pageOffset + page.indices.length; j++)
+    pageWindowIndices.push(j);
+  pageOffset += page.indices.length;
+}
+const wordWindowMask = new Uint8Array(source.length);
+for (const [start, end] of spans)
+  for (let j = start + 5; j < end; j++) wordWindowMask[j] = 1;
+/** @param {ArrayLike<number>} tape */
+function pageSafeFifthBack(tape) {
+  let total = 0;
+  let inside = 0;
+  for (const index of pageWindowIndices) {
+    if (tape[index] === tape[index - 5]) {
+      total++;
+      inside += wordWindowMask[index];
+    }
+  }
+  return [total, inside];
+}
+const originalPageSafe = pageSafeFifthBack(source);
+const pageSafeInsideSlots = pageWindowIndices.reduce((n, i) =>
+  n + wordWindowMask[i], 0);
+const pageSafeFraction = pageSafeInsideSlots / pageWindowIndices.length;
+const pageSafeConcentration = originalPageSafe[1] -
+  pageSafeFraction * originalPageSafe[0];
+
 
 const random = generator(0x510e527f);
 const simulationCount = 10000;
@@ -229,7 +260,10 @@ const maxima = [0, 0, 0];
 const localization = {
   total: {sum: 0, squares: 0, upper: 0, min: Infinity, max: -Infinity},
   outside: {sum: 0, squares: 0, upper: 0, min: Infinity, max: -Infinity},
-  concentration: {sum: 0, squares: 0, upper: 0, min: Infinity, max: -Infinity}
+  concentration: {sum: 0, squares: 0, upper: 0, min: Infinity, max: -Infinity},
+  pageSafeTotal: {sum: 0, squares: 0, upper: 0, min: Infinity, max: -Infinity},
+  pageSafeOutside: {sum: 0, squares: 0, upper: 0, min: Infinity, max: -Infinity},
+  pageSafeConcentration: {sum: 0, squares: 0, upper: 0, min: Infinity, max: -Infinity}
 };
 
 /** @param {keyof typeof localization} kind @param {number} value @param {number} threshold */
@@ -259,6 +293,12 @@ for (let trial = 0; trial < simulationCount; trial++) {
   recordLocalization("outside", total - result[0], originalOutsideWords);
   recordLocalization("concentration", result[0] - insideFraction * total,
     originalLocalization);
+  const [safeTotal, safeInside] = pageSafeFifthBack(candidate);
+  recordLocalization("pageSafeTotal", safeTotal, originalPageSafe[0]);
+  recordLocalization("pageSafeOutside", safeTotal - safeInside,
+    originalPageSafe[0] - originalPageSafe[1]);
+  recordLocalization("pageSafeConcentration", safeInside - pageSafeFraction * safeTotal,
+    pageSafeConcentration);
   for (let j = 0; j < 3; j++) {
     sums[j] += result[j];
     squaredSums[j] += result[j] * result[j];
@@ -295,6 +335,14 @@ console.log(JSON.stringify({
     allSlots: totalFifthBackSlots,
     insideSlots: withinWordSlots,
     originalConcentration: originalLocalization,
+    pageSafe: {
+      totalSlots: pageWindowIndices.length,
+      insideSlots: pageSafeInsideSlots,
+      observedAll: originalPageSafe[0],
+      observedInside: originalPageSafe[1],
+      observedOutside: originalPageSafe[0] - originalPageSafe[1],
+      observedConcentration: pageSafeConcentration
+    },
     exactPageBigramConditional: Object.fromEntries(
       Object.entries(localization).map(([kind, v]) => {
         const mean = v.sum / simulationCount;
