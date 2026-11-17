@@ -30,6 +30,8 @@ To avoid another arbitrary-key hunt, used same printed p39 triad to define quadr
 
 **p40 eight-red heading as repeating original key:** Tested 48 simple fixed key layouts (GP indices vs GP prime weights, both directions, additive signs, body/page/word reset clocks, normal and reversed word order) under the same H-pole/P-dot13 original cipher on 3000 black p40–53 runes; max52 GP dictionary words of667, *zero* at length≥6. No source-key breakthrough. These are exploratory pure original-input negatives; avoid re-running with arbitrary fitted offsets.
 
+**Full solved-source key comparators, source-led rather than random:** Under the fixed H8 pole / P13 exponent cipher, 60 original pp40–53 candidate key layouts from *known author-visible* short GP keys (LP1 DIVINITY, LP1 FIRFUMFERENFE/CIRCUMFERENCE, full solved p57 PARABLE plaintext, p57 phrase FINDTHEDIUINITYWITHINANDEMERGE, and eight red p40 title runes), ± symbol shifts, body/page/word clocks and normal/reversed word order, yield best55 full dictionary words among667 and **no native GP-English word ≥6 runes**. Complete model remains negative, and adding ad hoc source-key permutations is not a plaintext path.
+
 **Alternative hidden-message readout:** extracting the 79 original nondegenerate T6 spots as ordered GP29 streams (`C[j−6]`, `C[j]`, `C[j−1]`, word-start/end and event rank) gives rune-frequency IoC 0.030–0.038 except constrained event rank itself. Authentic p56 prime-totient inverse key with ± sign and literal-F skips on five plausible 79-rune streams gives max IoC 0.0367 and unreadable text. These are limited direct readouts rather than proof against steganography/segmentation. The coincidences 79 with p15 marked prime79 or p3 norm79 remain postselected.
 
 ### Next cryptanalytic decision
