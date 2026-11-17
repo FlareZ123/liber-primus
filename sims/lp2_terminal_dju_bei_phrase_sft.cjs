@@ -161,7 +161,7 @@ console.log(JSON.stringify({
   sourcePhrase: phrase,
   sourceOccurrences: originals[0],
   globalRuneOffsets: [words[1462].start, words[2894].start],
-  exactConditionalTerminalChance,
+  exactConditionalTerminalChance: exactTerminalChance,
   null: { seed: '0x33011717', trials: iterations,
     anyRepeatedPair, multipleRepeatedPairs, terminalRepeatedPair,
     familywisePlusOneRate: (anyRepeatedPair + 1) / (iterations + 1) }
