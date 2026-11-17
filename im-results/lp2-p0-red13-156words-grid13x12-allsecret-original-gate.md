@@ -46,6 +46,26 @@ Its literal transliteration begins **`READ W`**. The whole 13-rune string is `RE
 
 A natural direct consumer uses these 13 source glyphs as a period-13 key on the **next original physical p3** (217 runes), either directly or through the historically solved p56 transform `φ(GP prime) mod29`. Both arithmetic signs were checked at native p3 start. The four full 217-rune decryption outputs have GP29 IoC respectively **0.0334954770, 0.0331967913, 0.0357142857, 0.0352875917**, still random-like. Every output exactly re-encrypts, and none yields ordinary GP plaintext. No variable phase, invented key expansion, or selected English ending was fitted. Thus the selector is recorded as a possible clue to an operation, without a working adjacent-chapter decoder.
 
+## Complete-word 12×13 columnar inverses keyed by the red title (Agent3, 17 November)
+
+The source also nominates a human-scale *word-order* operation separate from the 13 independent static alphabet maps above. The 156 body words fit exactly into **12 rows × 13 columns**, with each column headed by one of the **13 unmodified red title runes**. Historical Cicada rounds used key-ordered columnar transpositions; here the title's GP ordinals give the stable ascending column order **[7,3,12,4,1,0,8,2,10,5,11,9,6]** (zero-based), or its full reversal. Test each order under the two legitimate transposition inverses: row-major input → column read, and column-major input → row read. These four operations preserve every word's exact runes and the original 716-rune inventory; they do not infer a key from plaintext.
+
+This can directly test **restoration of native-GP English adjacent word-length grammar**, even when the original letters remain cryptographically encrypted. An independent word-length transition log-likelihood ratio (LLR) is trained on the first 8,500 Gibran and 40,000 Shakespeare words using the project's established GP-contraction normalizer; its 200 disjoint 156-word native heldout windows have positive mean LLR +0.01563 / +0.01194. The identical four permutations turn those controls negative on average (−0.01702 to −0.01344), validating that this statistic is sensitive to the proposed operation at this length.
+
+| Source-fixed word permutation | Original 156-word LLR | Adjacent-length MI | Adjacent equal ciphertext endpoints |
+| --- | ---: | ---: | ---: |
+| Unchanged printed order | **−0.01498225** | 0.31378414 | 2/155 |
+| Ascending title, row → columns | −0.01467432 | 0.32292759 | 5/155 |
+| Ascending title, columns → rows | −0.01456279 | 0.29754743 | 3/155 |
+| Descending title, row → columns | **+0.00664730** | 0.32593870 | 5/155 |
+| Descending title, columns → rows | −0.00856474 | 0.31553723 | 6/155 |
+
+The descending column read is the only positive original word-length score. However, **1,670/25,000** fixed-seed, whole-original-marginal word shuffles score at least that high in the same particular cell, and **5,035/25,000** have **some** one of the four source-keyed candidate scores at least this high (best-of-four corrected upper-tail **0.20143**). The original 156-word register is too short and its lengths too broad for this weak improvement to identify an intended order. The exact original cross-word equal-rune deficit also becomes less extreme under every word permutation (two rises to three through six); this separately disfavors treating the permutation as a final, independent shuffle of already-encrypted words. It does not test a hypothetical earlier plaintext-word rearrangement followed by continuous encryption.
+
+Both directions of both title-key orders invert **all 156 word slots exactly** on independently planted controls; all 200 heldout native English passages preserve their full word-length sequences after an encrypt→decrypt test. No plaintext, key, authenticated word order or value-changing inverse was found. **Decision:** retire these four literal source-keyed whole-word transpositions as standalone native-GP-English grammar restorations. A distinct transposition requires an independent source selector and meaningful withheld-language signal; do not fit one of 13! column orders from the same 156 lengths.
+
+[Executable original-source Node22 SFT](../sims/lp2_p0_red13_wholeword_12x13_sft.cjs) · [Manual original-source run 44139147218](https://github.com/FlareZ123/liber-primus/actions/runs/44139147218) (dispatched 17 November; verify successful conclusion before asserting hosted PASS).
+
 ## Cryptanalytic decision
 
 The **13/12 rectangular word arrangement is a source-motivated human solve-path candidate**, distinct from the earlier proposed 27×27 *rune* square. The most obvious red-heading-key consumer, whether red keys label 13 rows or 13 columns, does not yield the collision footprint of the actual solved Cicada GP register even when the 13 secret alphabets are **completely unrestricted bijections**. Pursuing more additive phases or substitutions within this *stationary-axis model* cannot repair the missing repeated-symbol structure. A concrete next decode would need an independent original clue that selects a **within-band evolving state**, a **cross-axis transposition**, a different source register, or a **nonbijective/length-changing** transformation, followed by a locked unknown-rune plaintext prediction.
