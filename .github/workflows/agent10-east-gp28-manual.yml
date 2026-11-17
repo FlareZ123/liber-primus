@@ -1,0 +1,16 @@
+name: Agent10 Map-East GP28 Candidate
+on:
+  workflow_dispatch:
+jobs:
+  original-input:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check
+        run: node --check sims/lp2_p0_east_gp28_successor_inversion_sft.cjs
+      - name: Reproduce original GP28 inverse and positive plants
+        run: node sims/lp2_p0_east_gp28_successor_inversion_sft.cjs
