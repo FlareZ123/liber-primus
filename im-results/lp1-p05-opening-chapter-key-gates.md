@@ -1,4 +1,4 @@
-# LP1 p05 to LP2 opening: source-derived 13/179-key transfer gates
+# LP1 p05 to LP2 opening: source-derived 13/179 keys and four-lane inverse gates
 
 **Agent13, 17 November 2026. Classification: bounded original-cipher negative.** No unknown plaintext, authentic LP2 key, complete cipher mechanism, or destination was recovered.
 
@@ -82,13 +82,29 @@ The unchanged original body has IoC **0.034102** and trigram score **−3.952042
 
 All 12 original outputs remain near the uniform GP29 IoC baseline 1/29, and none develops readable GP prose. The native-GP positive controls re-encrypt and recover exactly under every tested key and sign.
 
+## Four source-sized 179-rune lanes: an all-secret original-cipher gate (Agent48, 17 November 2026)
+
+The original 716-rune p0–p2 black opening can be partitioned, without modifying a symbol, into four consecutive 179-rune lanes. The number 179 comes from the genuine LP1 p05 JPEG appended Onion3 payload; earlier source analysis already rejected four direct repeated-179-byte additive keys. This new test asks whether four ordinary GP29 plaintext streams could have been encrypted by a single secret GP29 alphabet at each of the 179 column positions, reused across all four lanes.
+
+For any one phase j and any two lanes a and b, a shared secret permutation of the 29 rune symbols preserves the exact condition C[a,j] = C[b,j] if and only if P[a,j] = P[b,j]. That invariance holds for all (29!)^179 secret phase-table choices, without knowing any key, byte serialization, or alphabet assignments. It includes arbitrary phasewise Caesar/affine substitutions as special cases.
+
+The unchanged original ciphertext has only **29 same-symbol pairs across the 1,074 aligned cross-lane pairs** (six lane pairs times 179 positions), in 28 distinct columns and with no triple-match column. Each original lane has precisely one within-lane adjacent equal-rune transition. A deterministic 20,000-quartet matched native-GP29 comparison uses the repository Shakespeare/Gibran/Emerson control texts, with Shakespeare for both first and fourth lane, exact 179-symbol windows, and xorshift32 seed 20261117. Those controls have minimum 27, first percentile 45, median 62, maximum 108, and just **1 of 20,000 at or below the original 29**. A planted 716-rune genuine literary-positive cipher using 179 independently random secret 29-permutations, each reused on four lanes, exactly recovers all 716 plaintext runes; the collision statistic is exactly invariant under its encryption.
+
+A separate fixed direct four-share reading uses signed arithmetic modulo29 at each column: choose the first sign positive, then enumerate all eight assignments of plus/minus to the other three lanes. This yields a 179-rune plaintext candidate per sign pattern. Across the exact original ciphertext, all eight GP29 IoCs are 0.033457–0.042119 and all eight trigram log scores are -4.194867 to -3.452848 nats/rune. By comparison, the worst of 2,000 independently held-out genuine Shakespeare-GP29 179-rune windows scores -2.575897. All eight candidate folds remain nonprose. They are invertible given the other three lanes, and an independently planted four-share additive cipher recovers all 179 authentic literary GP29 plaintext symbols, so the negative does not arise from a broken decoder.
+
+**Decision:** The source-sized 179-column, four-lane **shared-per-phase secret alphabet family** is strongly incompatible with the tested native-GP29 English plaintext register, regardless of its 179 arbitrary secret permutation values. The eight one-layer signed four-share arithmetic plaintext readings are also negative. This excludes only stationary shared phase alphabets and these eight fixed direct folds, with unchanged GP29 segmentation; it leaves extra layers, per-lane rekeying, unusual registers, or a separately authored framing rule open. The 716=4×179 numerical relationship has no authenticated Cicada instruction selecting four shares. **No authentic unknown-page plaintext, creator key, or continuation was recovered.**
+
+**Reproduction:** [read-only Node22 CommonJS SFT](../sims/lp1_p05_fourlane179_sharedphase_invariant_sft.cjs), using original JPEG and canonical LP2 corpus, exact 179-phase invariant, fixed-seed 20,000 controls, 716/716 full-secret positive, all eight four-share folds, independent native trigram holdouts and 179/179 additive share positive. Original numeric tests were separately executed with the same committed source data before writing the SFT. A GitHub Actions execution has not been claimed.
+
 ## Decision and next step
 
-Reject only these source-derived **zero-phase direct additive** transfers from LP1 p05 to the LP2 p0–p2 opening:
+Reject these finite source-derived original-input key/decoder families under the preserved GP29-English register:
 
 - the 13-word prime-sum key and its totient transform;
-- the 179-byte payload under the four fixed byte-to-GP29 maps, repeated four times.
+- the 179-byte payload under the four fixed byte-to-GP29 maps, repeated four times;
+- all unknown secret GP29 substitution alphabets reused at each of 179 phases across four lanes, under original word/rune geometry;
+- eight direct four-share signed GP29 reductions.
 
 Do not rescue the result with arbitrary key offsets, F masks, phase changes, key permutations, or KDFs. Those would add operations not selected by the original artifacts. A future p05-to-LP2 attempt needs a new independent clue that selects a different reversible operation or recipient. The result does not reject other uses of p05, stateful ciphers, an external key, or a non-English register.
 
-**Reproducer:** sims/lp1_p05_opening_chapter_key_gates_sft.cjs.
+**Reproducers:** `sims/lp1_p05_opening_chapter_key_gates_sft.cjs` (direct keys) and `sims/lp1_p05_fourlane179_sharedphase_invariant_sft.cjs` (all-secret phase179 and direct signed folds).

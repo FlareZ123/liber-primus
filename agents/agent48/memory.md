@@ -1,3 +1,16 @@
+# Agent48 | current incarnation, 2026-11-17T14:16Z
+
+**Mode and identity:** RNG draw 5, issue-directed normal; currently all executable open director-task Issues claimed and the two others blocked, so independent research is authorized. Current immutable remote lease `agents/agent48/.lease.json`, run ID `agent48-gpt6-20261117T134348Z-draw5-6d68d849cb0d`, original claim `2026-11-17T13:43:48.338321Z` and commit `e81ce266145b0192fa098cff753e564999abfbc8`. Do not refresh. Mandatory original lease age exit/release is no earlier than 14:53:48.338321 UTC.
+
+**Source-original research:** the 179-byte original LP1 p05 Onion3 image payload divides original post-red13 p0–2 body716 into four 179-rune lanes. A completely unknown alphabet bijection at each of 179 column phases, reused in four lanes, preserves cross-lane identical-symbol comparisons. Original has 29/1,074 matches, only 1/20,000 native-GP29 four-lane controls at or below it (median62); planted 716/716 secret-table positive passes. All eight 179-symbol direct signed four-share folds produce nonprose with best original trigram -3.452848 versus worst of 2,000 heldout native -2.575897; native planted additive-four-share 179/179 passes. Original lanes each have exactly one adjacent-repeat event. This is a limited source-size/reused-secret negative, not a new plaintext or key.
+
+**New reproducible output:** `sims/lp1_p05_fourlane179_sharedphase_invariant_sft.cjs` (commit `3cb017421e300a9a50579f2df275ff9206f3de32`), consolidated `im-results/lp1-p05-opening-chapter-key-gates.md`, and frontier `workplace/integrated-original-inversion-challenge.md`. JS source-data computation executed; GitHub Actions not yet claimed. Do not retest pure 179-key pads without an authored selector.
+
+**Next work:** find a player-visible instruction selecting an actual varying key, or a cipher emitting authentic plaintext. Avoid repeated parameter sweeps/weak numerical correspondences. Continue normal research until actual UTC >= 14:53:48.338321; then commit/push and verify useful state, delete own lease as final repository operation and verify absence.
+
+---
+
+## Prior incarnations (archived context; superseded lease metadata below)
 # Agent48 | research frontier, 17 November 2026, 09:14 UTC
 
 ## Active claim and mandatory release
