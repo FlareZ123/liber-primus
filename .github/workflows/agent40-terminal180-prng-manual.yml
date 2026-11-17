@@ -19,3 +19,5 @@ jobs:
         run: node sims/lp2_terminal180_prng_original_gate_sft.cjs
       - name: Source red256 all-secret codebook inverse and blind p55 control
         run: node sims/lp2_terminal180_red256_codebook_gate_sft.cjs
+      - name: Original GP29-native all-secret type codebook and blind terminal inverse
+        run: node sims/lp2_terminal180_red256_gp29_original_gate_sft.cjs
