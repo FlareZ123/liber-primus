@@ -124,6 +124,25 @@ for (let t = 0; t < 10000; t++) {
 }
 assert.equal(above, 1);
 
+// Source-location specificity: hold the exact 2013 title and key clock
+// fixed, slide one 76-rune window only within genuine original physical pages.
+// This is a source-layout diagnostic, not a global discovery probability.
+const terminalWindowPad=outguessBytes(password,76);
+let originalWindows=0, windowsAtLeast=0, otherMaxIoc=0;
+let otherMaxLocation={page:-1,start:-1};
+for(const page of corpus.pages.filter(p=>p.page<=55&&p.indices.length>=76)){
+  for(let start=0;start+76<=page.indices.length;start++){
+    const plaintext=decode(page.indices.slice(start,start+76),terminalWindowPad);
+    const value=coincidence(plaintext);
+    originalWindows++;
+    windowsAtLeast+=Number(value>=coincidence(first));
+    if(page.page!==55 && value>otherMaxIoc){
+      otherMaxIoc=value;otherMaxLocation={page:page.page,start};
+    }
+  }
+}
+assert.deepEqual([originalWindows,windowsAtLeast],[8840,1]);
+
 // Native GP-English tetragram language check. Use the independently supplied
 // source book, not words selected to fit the candidate.
 const training = read('resources/control/shakespeare_first300k.txt');
@@ -214,6 +233,9 @@ console.log(JSON.stringify({
     nativeP57Gp3gramScorePerRune:sourceClearScore},
   matchedWrongPasswordControl:{trials:10000,seed:'sha256(00000:20261117)..sha256(09999:20261117)',
     countAtLeastCandidate:above,addOneTail:(above+1)/10001,meanIoc:mean/10000,maxIoc:max},
+  originalSourceLocationCheck:{original76RuneWindows:originalWindows,
+    atLeastP55Ioc:windowsAtLeast, otherWindowMaximum:otherMaxIoc,
+    otherWindowLocation:otherMaxLocation},
   simple4x19TransposeAndCaesarBest:best,
   decision: 'Original p55 IoC coincidence is striking but neither GP English nor p54 holdout supports direct plaintext; any second layer lacks a source-selected operation'
 }, null, 2));
