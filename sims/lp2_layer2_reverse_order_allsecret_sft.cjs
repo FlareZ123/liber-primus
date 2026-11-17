@@ -57,10 +57,10 @@ function readOriginal() {
 
 const source = readOriginal();
 const pageGroups = [
-  [0,3], [3,8], [8,15], [15,23], [23,27],
-  [27,33], [33,40], [40,54], [54,56]
+  [0,3], [3,8], [8,15], [15,23], [23,28],
+  [28,32], [32,40], [40,54], [54,56]
 ];
-const sectionLengths = [729,1145,1729,1903,1021,1433,1680,3008,308];
+const sectionLengths = [729,1145,1729,1903,1255,1078,1801,3008,308];
 let cursor = 0;
 const chapters = pageGroups.map(([a, b], index) => {
   const len = gp.pages.slice(a, b).reduce((n, page) => n + page.indices.length, 0);
@@ -233,8 +233,8 @@ for (const name of WORDS) {
 }
 assert.equal(testRows.length, 1080);
 assert.equal(allComplete, 0);
-assert.deepEqual(bestWordPrefix,[285,200,274,234,225,272,349,231,267]);
-assert.deepEqual(bestStrictPrefix,[222,200,208,201,225,201,215,170,220]);
+assert.deepEqual(bestWordPrefix,[285,200,274,234,225,238,200,231,267]);
+assert.deepEqual(bestStrictPrefix,[222,200,208,201,225,158,200,170,220]);
 
 /**
  * Complete exact secret-key enumeration for periods 1..4 with plaintext-F

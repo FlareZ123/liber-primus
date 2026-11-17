@@ -10,9 +10,11 @@ For a last-stage cipher with the authentic Cicada plaintext-Fehu bypass, there i
 
 ## First-party source geometry
 
+**Corrected audit, 17 November 2026:** The initial SFT incorrectly cut the middle chapters at p26/27 and p32/33 rather than the source-mapped p27/28 and p31/32 boundaries. The corrected original-source 2,160-test replay still has zero complete-chapter survivors, and the p40–53 all-secret periods 1–28 witness is unchanged. The three affected chapter lengths and per-chapter maximum feasible prefixes below are the corrected values; the previous p27–32 and p33–39 maxima should not be reused. This is a source-geometry correction, not evidence of new plaintext.
+
 - The canonical GP29 [original corpus](../resources/liber-primus/lp2-corpus.json) contains 12,956 unknown LP2 runes p0–p55. The [rune-level page transcription](../resources/lp2-transcription.txt) reproduces all **13,136** rune indices including solved p56 and clear p57, without any index disagreement.
 - In the transcription, actual `-` and `.` word separators yield exactly **2,896** unknown-page word starts; `/`, physical-page seams, annotation marks and the rune-free p50 numeric page do **not** insert fabricated word boundaries. Thus the experiment grants a no-repeat clock restart at every **actual** word, including page-spanning words.
-- The original visible nine chapter lengths are **729, 1,145, 1,729, 1,903, 1,021, 1,433, 1,680, 3,008 and 308**. The decisive long chapter p40–p53 begins at global unknown-rune offset **9,640** and ends at offset **12,648**. Its 3,008 indices and word-start mask are extracted directly from those canonical files.
+- The original visible nine chapter lengths are **729, 1,145, 1,729, 1,903, 1,255, 1,078, 1,801, 3,008 and 308**, for p0–2, p3–7, p8–14, p15–22, p23–27, p28–31, p32–39, p40–53 and p54–55 respectively. The decisive long chapter p40–p53 begins at global unknown-rune offset **9,640** and ends at offset **12,648**. Its 3,008 indices and word-start mask are extracted directly from those canonical files.
 
 ## All-secret necessary-condition proof
 
@@ -50,13 +52,13 @@ The complete test matrix consists of **30 keywords × 2 signs × 2 Fehu modes ×
 | p3–p7 | 1,145 | 200 |
 | p8–p14 | 1,729 | 274 |
 | p15–p22 | 1,903 | 234 |
-| p23–p26 | 1,021 | 225 |
-| p27–p32 | 1,433 | 272 |
-| p33–p39 | 1,680 | 349 |
+| p23–p27 | 1,255 | 225 |
+| p28–p31 | 1,078 | 238 |
+| p32–p39 | 1,801 | 200 |
 | p40–p53 | 3,008 | 231 |
 | p54–p55 | 308 | 267 |
 
-Some arbitrary configurations admit 150–349-rune prefixes, but none decodes a complete original chapter and none recovers authenticated prose. No n-gram optimization, unknown key offset, learned keyword, dictionary, or scoring threshold was used for this exclusion.
+Some arbitrary configurations admit 150–285-rune prefixes, but none decodes a complete original chapter and none recovers authenticated prose. No n-gram optimization, unknown key offset, learned keyword, dictionary, or scoring threshold was used for this exclusion.
 
 ## Independent positive and limits
 
