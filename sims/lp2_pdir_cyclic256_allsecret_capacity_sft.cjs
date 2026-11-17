@@ -343,4 +343,4 @@ function main() {
   return report;
 }
 if (require.main === module) main();
-module.exports = {main};
+module.exports = {main, originalWords, direction, trace, RULES, GP, Q, N, KEY_STATES};
