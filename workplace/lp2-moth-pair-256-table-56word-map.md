@@ -58,20 +58,24 @@ If the table is a fixed substitution from each numeric byte to a GP29 rune/13-do
 
 For example, the interior numeric value 198 occurs at paired event indices 12 and 25 but aligns to distinct source rune indices 3 and 19. Consequently **no** deterministic stationary byte→rune lookup can explain those aligned original events; even granting a separate arbitrary secret lookup per zone fails. This restriction applies only to the conjectural zero-anchored alignment and **stationary** mapping; an evolving cipher or a differently keyed receiver is still possible.
 
-### 3. The 56 source words as independent physical-page prime starts
+### 3. Literal 56 donor words as page-local repeating Vigenère keys
+
+A simpler reading of the historical **words** clue assigns each donor word to its corresponding physical LP2 page, then repeats its exact GP29 rune values as an ordinary additive GP29 keyword. This is a complete, source-sized family: the 55 rune-bearing original pages × both natural addition/subtraction directions, with no guessed phase or extra key. All **110** source-fixed decoders re-encrypt their inputs exactly, and the *highest* decoded page IoC is only **0.03980716** (p32, subtract), below even 0.04. Every page remains high-entropy/nonprose. The direct 56-word-to-56-page **repeating-key** reading therefore fails, regardless of a missing key word for runeless p50.
+
+### 4. The 56 source words as independent physical-page prime starts
 
 A separate consumer assigns the 40 p53 printed words to p0–p39 and the 16 p55 complete words to p40–p55. Each source word generates one **page-local starting offset** for the **authenticated p56 prime-totient inverse with non-consuming plaintext-F bypass**. Two historically motivated input types were frozen:
 
 1. The sum of GP-prime values in the donor rune-word, used directly as a prime-sequence starting index. Among 55 rune-bearing recipient pages, **52 cannot be decoded even to a syntactically legal F-transparent rune stream**. Only p18, p49 and p55 survive; their best GP IoCs are 0.03558, 0.03776 and 0.03544.
 2. Read the donor rune-word as a BASE29 integer modulo256, use that as a cell address in original row-major p50 table, and use its byte as the starting prime index. **54/55** rune-bearing recipient pages have no legal output. Only p32 survives, with best GP IoC 0.03650.
 
-Legal survivors were enumerated under the original plaintext-F bypass. None reads as GP-native prose. These are two **complete source-sized mechanisms** disproved on unchanged original ciphertext. A key-word model involving a different operation is outside this gate.
+Legal survivors were enumerated under the original plaintext-F bypass. None reads as GP-native prose. These two prime-clock schemes and the preceding keyword Vigenère scheme are **complete source-sized mechanisms** disproved on unchanged original ciphertext. A key-word model involving a different operation is outside this gate.
 
 ## What this changes, and what remains unknown
 
 There is now a **specific source-motivated, internally coherent pairing to investigate**: repeated moth graphics select p53+p55; whole-word handling gives 40+16 possible page tokens and 180+76 original page-level events; p50 supplies matching 180+76 cell zones and two 00 anchors. The paired word/register arithmetic is stronger than an isolated coincidence, because physical artwork picks the two donor pages before their sizes are examined.
 
-Still, **no ciphertext-to-plaintext operation, authenticated key, typed payload, or downstream address follows from these equalities**. The zone clock and zero/sentinel equivalence are inferred, and direct original source input falsifies natural one-layer consumers. A productive successor would find an *independent original-authored instruction* determining a reversible word-to-page routing, a GP29 numeric transfer rule, or a byte decoder that uses the table zones. It should test a complete original passage and specify the success signature before tuning any additional phases. Repeating the arbitrary-pad/menu searches already retired elsewhere is not justified.
+Still, **no ciphertext-to-plaintext operation, authenticated key, typed payload, or downstream address follows from these equalities**. The zone clock and zero/sentinel equivalence are inferred, and direct original source input falsifies natural one-layer consumers. A productive successor would find an *independent original-authored instruction* determining a reversible word-to-page routing, a GP29 numeric transfer rule, or a byte decoder that uses the table zones. It should test a complete original passage and specify the success signature before tuning any additional phases. Repeating the arbitrary-pad/menu searches already retired elsewhere is not justified. A word donor could still designate a route or state rather than a repeated additive key.
 
 ## Reproduction
 
