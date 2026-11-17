@@ -1,0 +1,40 @@
+name: Agent18 LP2 pdir six-section original results reducer
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: Completed six-section 216-shard original run
+        required: true
+        default: "44075903575"
+        type: string
+permissions:
+  contents: read
+  actions: read
+jobs:
+  pdir-sixsection-coverage-reduction:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install atomic lock helper
+        run: python -m pip install filelock
+      - name: Download only completed six-section original and matched-null artifacts
+        uses: actions/download-artifact@v4
+        with:
+          run-id: "${{ inputs.run_id }}"
+          pattern: pdir-sixsections-*
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          path: from-sixsections
+          merge-multiple: false
+      - name: Reject incomplete, duplicate or wrong-engine records
+        run: python sims/lp2_pdir_stage2_sixsection_reduce.py --root from-sixsections --out sixsection-report --run-id "${{ inputs.run_id }}"
+      - name: Preserve source-registered original and matched-null coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-lp2-pdir-sixsection-complete-screen
+          path: sixsection-report/
+          if-no-files-found: warn
