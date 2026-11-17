@@ -1,0 +1,14 @@
+name: Agent 2 literal LP1 Mobius full-LP2 original inverse
+on:
+  workflow_dispatch:
+jobs:
+  original-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test all full-original Mobius source clocks and native positives
+        run: node sims/lp2_global_mobius_divisor_inverse_sft.cjs
