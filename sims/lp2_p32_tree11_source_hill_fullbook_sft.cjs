@@ -2,8 +2,11 @@
 /**
  * Source-anchored original p32 tree 11x11 Hill matrix inverse on all LP2.
  *
- * First row/column GP prime sums are exactly the signed 2016 JPEG
- * dimensions 563 and 569; original 121-symbol matrix determinant is 8
+ * A hypothetical row-major 11x11 reshape of the 121 runes printed
+ * in six ordinary prose lines has row/column GP-prime sums 563/569,
+ * matching the 2016 JPEG dimensions. The printed page is NOT an
+ * 11x11 grid; the reshape is an unverified cipher-key hypothesis.
+ * This numeric matrix has determinant 8
  * mod29 and is invertible. Test its direct forward/inverse and transposed
  * maps against all original unknown pages, with page/book block clocks.
  * Genuine independent native-GP controls must encrypt/decrypt exactly.
