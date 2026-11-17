@@ -46,10 +46,12 @@ All arithmetic is over GF29. Both `A` and `B` have rank **2**; `AB=0` exactly. T
 
 ## Direct original-cipher readouts
 
-Use `K` and its inverse to process consecutive **four-rune column blocks**, always starting at the printed beginning and preserving the source GP29 indices. Test the original table as 256 byte residues reduced mod29, in its actual row-major and conventional column-major orders. As separate natural receivers, test complete original pp33–39 (1,680 runes), pp54–55 (308 runes) and the original short terminal p55 alone (**76 runes = 19 four-rune blocks**). These are **five source-fixed receivers × two opposite directions**, plus the equally conventional row-vector orientation on p55, with no unknown phase, symbol mapping, word reshuffle or language-score parameter.
+Use `K` and its inverse to process consecutive **four-rune column blocks**, always starting at the printed beginning and preserving the source GP29 indices. **Crucial self-consumer:** original p29 has 277 runes (1 mod4), p30 has 263 (3 mod4); their **original word-carried concatenation is exactly 540 runes = 135 complete four-rune blocks**, with no inserted delimiter. Test this natural **p29→p30 source-pair receiver first**, in both column- and row-vector orientations. Test the original table as 256 byte residues reduced mod29 in row-major and column-major orders, then whole pp33–39 (1,680 runes), pp54–55 (308 runes), and the original p55 76-rune terminal body (19 blocks). These are **six source-fixed receivers × two opposite directions**, plus the conventional row-vector orientation on both the 540-rune source pair and p55; no unknown phase, symbol mapping, word reshuffle or fitted language score.
 
 | Original receiver | N | `K·C` IoC | `K^−1·C` IoC |
 | --- | ---: | ---: | ---: |
+| original p29→p30 word-carried pair, column-vector | 540 | **0.03468013** | **0.03455645** |
+| original p29→p30, row-vector | 540 | **0.03437779** | **0.03452209** |
 | table row-major | 256 | 0.03403799 | 0.03492647 |
 | table column-major | 256 | 0.03431373 | 0.03501838 |
 | original chapter p33–39 | 1,680 | 0.03429621 | 0.03482586 |
@@ -61,7 +63,7 @@ Each output is ciphertext-like and begins with nonlinguistic GP symbols; **none 
 
 ## Decision and reproducibility
 
-The **new p30 complementary roots** are a specific, reproducible original-cipher relationship that extends the existing p29/p39/p50 and p15 source algebra. They change which page pair would be worth examining **if** a human-visible source selector for matrix/polynomial operations is independently found. The explicit invertible matrix combined from both pages did **not** directly decode the original table, either tested chapter or p55's independently ink-bounded 76-rune body. It cannot be promoted to a Cicada key merely because it is invertible.
+The **new p30 complementary roots** are a specific, reproducible original-cipher relationship that extends the existing p29/p39/p50 and p15 source algebra. They change which page pair would be worth examining **if** a human-visible source selector for matrix/polynomial operations is independently found. The explicit invertible matrix combined from both pages did **not** directly decode **its own 540-rune concatenated source pages**, the original table residues, either tested chapter or p55's independently ink-bounded 76-rune body. The own-page receiver is more naturally motivated than unrelated chapter applications because the original p29→p30 page break visibly carries one word and their total length fits 135 four-rune blocks; its failure sharply limits the simplest self-decoding interpretation. It cannot be promoted to a Cicada key merely because it is invertible.
 
 Do not repeat the failed raw p29 quotient, whole-chapter H×G factor divisions, p15-only Hill4 transfers or unselected matrix permutations. The necessary next input is an independently authored instruction selecting a consumer of these two complementary page objects, a source-positioned crib that constrains a nonlinear second stage, or a genuinely new test with a locked original-cipher prediction. Without one, this relationship is an intermediate observation and a candidate clue.
 
