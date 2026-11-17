@@ -56,7 +56,8 @@ def main() -> None:
     candidates = record["candidates"]
     assert len(candidates) == record["candidate_count"] > 0
 
-    work = args.external / "work" / "kscreen"
+    external = args.external.resolve()
+    work = external / "work" / "kscreen"
     assert (work / "pdir_verify.py").is_file()
     assert (work / "verify.py").is_file()
     executable = work / "target" / "release" / ("kscreen.exe" if os.name == "nt" else "kscreen")
@@ -74,7 +75,7 @@ def main() -> None:
         assert source.is_file(), ("Missing exact original candidate TSV", source)
         assert abs(score_file(source, conv) - float(entry["ioc"])) < 1e-8
         assert rel.name == entry["vector"]
-        target = args.external / "results" / "kscreen" / "pdir" / tag / conv / "real" / rel.name
+        target = external / "results" / "kscreen" / "pdir" / tag / conv / "real" / rel.name
         target.parent.mkdir(parents=True, exist_ok=True)
         assert (conv, rel.name) not in assembled, ("Duplicate source vector", conv, rel.name)
         shutil.copyfile(source, target)
@@ -85,8 +86,8 @@ def main() -> None:
         env = dict(os.environ, KSCREEN_BIN=str(executable.resolve()))
         subprocess.run([sys.executable, str(work / "pdir_verify.py"),
                         "--conv", conv, "--tag", tag],
-                       cwd=args.external, env=env, check=True)
-        base = args.external / "results" / "kscreen" / "pdir" / tag / conv
+                       cwd=external, env=env, check=True)
+        base = external / "results" / "kscreen" / "pdir" / tag / conv
         summary = (base / "verify_summary.txt").read_text(encoding="utf-8")
         assert "verify failed" not in summary
         for (c, filename), source in sorted(assembled.items()):
