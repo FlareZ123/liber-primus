@@ -36,7 +36,7 @@ Do not silently substitute a paragraph, section, printed line, zero-based index,
 
 ### 3. Direct LP2 page/word coordinates
 
-The alternative reading of the pairs as LP2 page/word addresses was already checked in `im-results/prime-echo-pageword-period7-gate.md`; it selects ciphertext fragments rather than plaintext. Do not retune that interpretation.
+The earlier `im-results/prime-echo-pageword-period7-gate.md` tests a different route: first-line fourth words across p17–p45, then fixed 2014 period-seven / keyed-alphabet / p46 consumers. It does **not** test the exact seal-pair addresses (p17, word 13) and (p55, word 1). The exact pair interpretation is now separately tested in [the cuneiform page:word source gate](lp2-cuneiform-pageword-pairs-source-gate.md): it extracts the original ciphertext words `FREAMEAA` and `NG`, but no Cicada source selects that two-field grammar or supplies a receiver operation. Keep the pair interpretation unverified; do not conflate it with the prime_echo fourth-word route.
 
 ## Decision and scope
 
