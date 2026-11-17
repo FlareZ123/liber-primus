@@ -4,7 +4,7 @@ on:
 permissions:
   contents: read
 jobs:
-  76-carry-key:
+  carry76-key:
     runs-on: windows-latest
     timeout-minutes: 10
     steps:
