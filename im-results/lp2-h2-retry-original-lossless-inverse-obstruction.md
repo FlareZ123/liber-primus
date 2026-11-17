@@ -66,7 +66,24 @@ The first witness is on physical **p0, local rune offset 37**. The original ciph
 
 Thus even under the same publicly fixed cipher table and key, **more than 169 bits of selection ambiguity** remain for the intact complete original ciphertext. Every independent page choice is simultaneously compatible with the exact unchanged source glyphs. No stochastic probabilities were used to count these preimages: all have positive probability at 0<q<1.
 
-The linked Windows Node22/CommonJS SFT enumerates and independently forwards **all 452** alternative original-page inputs and each zero-retry page input through this same explicit public tableau and prime clock. It checks every proposed collision, every accepted output, the unchanged full source ciphertext, site counts, first witness and exact cross-page product. No OCR, dictionary, synthetic ciphertext, secret-table oracle, key guess or source-file mutation is involved.
+**An exact dynamic inverse counts a larger family without a probability model.** Permit at most **one extra rejected prime proposal per rune** and allow that decision at any original rune position, while never changing the authenticated physical-page resets. For previous ciphertext \(C_{i-1}\), current ciphertext \(C_i\) and already accumulated key-pointer drift \(d\), an extra retry can occur precisely when \(C_i\neq C_{i-1}\) and
+
+\[
+C_i-C_{i-1}\equiv r_{i+d+1}-r_{i+d}\pmod{29}.
+\]
+
+The corresponding plaintext rune is \(C_i-r_{i+d+1}\); its first proposal under row \(r_{i+d}\) equals \(C_{i-1}\), and its next proposal under row \(r_{i+d+1}\) equals \(C_i\). The no-retry option always exists and consumes row \(r_{i+d}\). Exact forward dynamic programming with a BigInt counter for each drift state \(d\) enumerates every such permitted skip history over the **complete 12,956 original glyphs**. On each page, two different histories have an earliest differing skip at a non-doublet site; their plaintext runes differ at that position. Consequently each counted path gives a **different complete plaintext tape**, even with the known public key/table.
+
+Multiplying the 55 exact page counts gives:
+
+\[
+\boxed{16811135532895534492764996057203879953200561872340003727516858821507014258189002723862726436359011126509598312329643814812738951904447706717608658151145472000000000000000}
+\approx 2^{562.15526521}.
+\]
+
+This represents **over 562 bits of original-source inverse ambiguity** in the precisely frozen 0-or-1-retry-per-rune H2 submodel. The SFT implements this recurrence and asserts the 170-digit output and 562-bit lower bound, using two eight-rune source-specified exhaustive controls as a separate check. It is a lower bound because retry runs longer than one per glyph, additional keys and other hypothetical states are deliberately excluded. The ~562-bit figure must not be interpreted as a required side-channel length for every possible English-constrained decoder; it measures an unconstrained 29-rune input-domain ambiguity of one fixed cipher.
+
+The linked Windows Node22/CommonJS SFT enumerates and independently forwards **all 452** alternative original-page inputs and each zero-retry page input through this same explicit public tableau and prime clock. It checks every proposed collision, every accepted output, the unchanged full source ciphertext, site counts, first witness, exact cross-page product and the independent dynamic 562-bit count. No OCR, dictionary, synthetic ciphertext, secret-table oracle, key guess or source-file mutation is involved.
 
 ## Consequence and exact limits
 
