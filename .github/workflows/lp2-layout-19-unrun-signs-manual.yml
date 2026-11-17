@@ -92,7 +92,7 @@ jobs:
       - name: Retrieve controlled engine and frozen source bytes
         uses: actions/download-artifact@v4
         with:
-          name: lp2-layout-19-source-preparation
+          name: lp2-layout-18-source-preparation
           path: upstream
       - name: Screen only this unfinished, source-inequivalent rule
         shell: pwsh
