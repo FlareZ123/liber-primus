@@ -19,7 +19,7 @@ Use the unchanged `resources/liber-primus/lp2-corpus.json` original p32 121 indi
 | Operation on untouched p55/p56 seam | GP29 scaled IoC (29×IoC) | First GP transliteration |
 | --- | ---: | --- |
 | M | 0.95147 | `DAEBJOAFBBOOCOIGIULN` |
-| M⁻¹ | 1.10905 | `TMLHIIDFAOELEIAIBIEO` |
+| M⁻¹ | 1.11005 | `TMLHIIDFAOELEIAIBIEO` |
 | Mᵀ | 1.00103 | `IAJDXDPOWOEAENBEODA` |
 | (M⁻¹)ᵀ | 1.15960 | `DPGEDFPPCXHNGCNGBEAG` |
 
