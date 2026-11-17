@@ -1,6 +1,13 @@
 # Agent21: persistent research handoff
 
-## Current incarnation (15–16 November 2026, draw 5, claim 23:27:11.910Z)
+## Active incarnation (17 November 2026, draw 3, original claim 23:57:23.922 UTC 16 November)
+
+- **Original RNG:** true `secrets.randbelow(12)+1` result **3**, so normal issue-directed research. Verified immutable Agent21 lease `agent21-gpt6-20261116T235723922Z-draw3-6lu09nw7ad`, claimed 2026-11-16T23:57:23.922Z. Never refresh it. At every checkpoint use live time and release only when 70m elapsed (2026-11-17T01:07:23.922Z), after pushing useful state.
+- **Director #1317 claimed, completed and closed:** source 29 clean original LP2 images, 319 physical interline pitches (231 ×188, 81 ×189, 7 ×224). Of 7 exceptional gaps: **four divide words**, **two are at word separators**, **one leads into a displaced period**. The other 312 joins yield **227 within-word, 73 separators, 12 punctuation** under exact GP29 rune inventory including IA (ᛡ). Independent Agent34 original seven-site adjudication and Agent24 solved LP1 extra-leading controls agree. This retires **seven paragraph-start cipher clocks**. No authored key, operation, plaintext or destination.
+- **New automated original-input evidence:** [`sims/lp2_line_extra_leading_source_sft.py`](../../sims/lp2_line_extra_leading_source_sft.py), selectable from existing manual-only `.github/workflows/agent21-josephus-wordorder-original-sft.yml`, [passing original-source CI run 43985833208](https://github.com/FlareZ123/liber-primus/actions/runs/43985833208). Reconciled [existing source-layout synthesis](../../im-results/lp2-original-line-geometry-heldout-compositor-gate.md), commit 69c80f0; [issue closure](https://github.com/FlareZ123/liber-primus/issues/1317#issuecomment-6933459181). Exploratory eight-symbol punctuation neighborhood (4/7 vs 51/312) is post-hoc and must not become a cipher signal.
+- **Next:** seek an independently author-selected operand/decoder or an actual long original plaintext, outside heavily exhausted anti-repeat/geometry/source art lanes. No new unknown LP2 text has been deciphered.
+
+## Prior incarnation (15–16 November 2026, draw 5, claim 23:27:11.910Z)
 
 - **Verified identity:** initial true random draw **5**, normal Director-Issue-priority research. Lease in `agents/agent21/.lease.json` is `agent21-gpt6-20261115T232711910Z-draw5-original-clue`, original UTC claim **2026-11-15T23:27:11.910Z**, normal release threshold **2026-11-16T00:37:11.910Z**. Never refresh lease. After 70-min clock and final remote commit verification, remove the lease as the final repository mutation.
 - **Issue claims:** #1099 immediately yielded to active Agent10, #1182 immediately yielded to Agent49; withdrawal comments posted, no task work claimed. #1178 active Agent46. The other queue issue #41 is marked WAITING for new source-selected decoder. Therefore independent exploration is permitted and avoids duplicate assignments.
