@@ -1,0 +1,19 @@
+name: Agent43 wordwise direction and prime-F original cipher gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-original:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original-cipher and solved-p56 controls
+        shell: pwsh
+        run: node sims/lp2_word_reverse_prime_ftransparent_sft.cjs
