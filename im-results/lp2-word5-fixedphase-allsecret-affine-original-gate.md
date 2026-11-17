@@ -41,4 +41,27 @@ Independently sampled native English words with the original word lengths give a
 
 The single original-source and native-positive test is [`sims/lp2_word5_shift_difference_original_sft.cjs`](../sims/lp2_word5_shift_difference_original_sft.cjs). It reads `resources/liber-primus/lp2-corpus.json`, the original printed text transcription and the two source-native language control texts. All critical original counts and inverse invariants are asserted. The original runes are the fixed observation; no source words, keys, or plaintext were learned from them.
 
-A genuinely different original-text attack allowing `a[w,p]` *also to be secret and free per word* uses exact triplet affine consistency to search source-native plaintext candidates for the authentic 57 length-11…14 printed words. It is implemented separately in [`sims/lp2_wordlocal_affine5_allsecret_dictionary_sft.cjs`](../sims/lp2_wordlocal_affine5_allsecret_dictionary_sft.cjs). That broader model has no globally invariant frequency statistic and needs independent plaintext evidence; fitting an arbitrary letter-to-rune map within each short word is insufficient as a historical solve.
+## Stronger word-specific slope model: actual candidate plaintext search
+
+We also test the substantially more permissive cipher `C[w,j]=a[w,j mod5]·P[w,j]+b[w,j mod5]`, with **each of five nonzero slopes and offsets completely independent for every printed word**. This makes the aggregate-IoC exclusion above inapplicable. Even so, for long words, three or more runes from the same phase give an **exact secret-key-independent affine ratio test**. The original manuscript has exactly 57 printed words of GP lengths 11–14: 32 of length11, 18 of length12, four of length13 and three of length14.
+
+We searched every one of these 57 original ciphertext words against two independently supplied whole-word lexicons. A 29,157-entry TextBlob word-frequency dictionary supplies **1,453 native-GP words length11, 772 length12, 382 length13 and 155 length14**. An independently GP-encoded Latin Vulgate text supplies **478 distinct length11, 297 length12, 153 length13 and 77 length14** strings. Each candidate must exactly satisfy all five phase-wise affine constraints for some hidden key, including repeated-rune sites. The test independently encrypts and correctly recovers **400/400 planted English GP words** under random per-word/per-phase affine slopes and offsets.
+
+| GP word length | Original words | English dictionary: zero matches | Latin Vulgate: zero matches |
+|---|---:|---:|---:|
+| 11 | 32 | 1 | 1 |
+| 12 | 18 | 6 | 13 |
+| 13 | 4 | 4 | 4 |
+| 14 | 3 | 3 | 3 |
+
+Across the original **seven 13–14-rune words**, no candidate survives either supplied lexicon, despite unrestricted per-word key freedom. For the original 12-rune words, 12/18 have at least one English candidate, with some merely coincidental isolated strings (e.g. *prerogatives*, *reverberation*, *sardonically*); **none is authenticated plaintext**. Source word positions and all candidate counts are emitted by the SFT.
+
+This excludes the exact word-specific affine coding of those seven long original words **into either finite native reference vocabulary**, provided the original printed word boundaries and GP rune counts are preserved. It does not prove exclusion for unlisted English/Latin words, novel vocabulary, other languages, ciphertext word resegmentation or multiple layers. The highly secret per-word key family may fit many shorter words, so the surviving isolated dictionary hits are insufficient to identify the author’s operation.
+
+The complete original-input candidate inverse, positive controls and Latin sensitivity are [`sims/lp2_wordlocal_affine5_allsecret_dictionary_sft.cjs`](../sims/lp2_wordlocal_affine5_allsecret_dictionary_sft.cjs). This is a second, distinct decision from the aggregate five-phase slope gate.
+
+## Decision and next fork
+
+The direct five-phase affine family now has two complementary negatives: fixed global slopes fail a key-independent whole-corpus invariant even with arbitrary word keys; freely changing slopes fail exact candidate compatibility for all original words of length13–14 within the two specified natural-language dictionaries. An alternative model needs its own independent first-party clue selecting a real key/update rule or a richer encoding register. Repeating unconstrained five-position affine or key-period sweeps will not recover plaintext from these facts alone.
+
+
