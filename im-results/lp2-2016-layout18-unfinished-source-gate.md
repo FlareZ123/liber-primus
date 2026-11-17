@@ -46,6 +46,24 @@ This yields **92,736 independently specified key/rule/convention cells** on the 
 
 The exact independent direct-pointer experiment was executed on original GP-index source data without language-based parameter fitting. A source-native p57 380-rune clear GP positive, independently encrypted by several of the actual pointer conventions, inverts exactly, showing the inverse is sensitive when the hypothetical model is planted. No original whole-window candidate resembles natural native-GP plaintext (clear p57 ≈0.06271). This closes **only** periodic literal-2014-key, skip-free direction-pointer variants. The actual pnotisdev skip/coin and source-key-library searches still matter: a keyless repeat-suppression step can alter pointer positions and cannot be dismissed by this subset.
 
+## Authentic p56 prime-totient/F cipher with source-original physical layout signs: exhaustive opening-729 inverse
+
+A stronger decryption gate retains the genuinely **solved p56 cryptographic operation**, including its asymmetric key-consuming encrypted non-F symbols and **plaintext-F transparency**. It supplements the established `C=P+φ(prime) mod29` with one of the **23 already published original physical page/line/position sign masks**, both arithmetic signs, and any of **5,000** starting prime-totient indices. The first original unknown visual chapter p0–2, **729 uninterrupted authentic GP29 ciphertext runes**, provides an exact legally-decodable holdout beyond the earlier plain unsigned p56 all-start no-go.
+
+The [deterministic no-beam original-input inverse](../sims/lp2_p56_phi_layoutsign_fskip_5000_20752_original_sft.cjs) first checks the exact page/line source and all 12,956 canonical unknown rune values; it then independently recovers the **full authentic p56 85/85** under key start0 and the known plaintext-F skip at local position56 (**84 prime values consumed**). On p0–2 it enumerates each allowed F branch **without ever creating an encrypted plaintext F**: at ciphertext F a plaintext F bypasses without consuming any prime, while an encrypted non-F may consume one; at every other ciphertext rune key consumption is forced. The finite predeclared family has **23 physical signs × two arithmetic directions × 5,000 original prime starts = 230,000 configurations**. The result is:
+
+| Actual opening-chapter inverse, original GP29 | Exact result |
+| --- | ---: |
+| Configurations with any legal full 729-rune decryption | **95 / 230,000** (includes physically equivalent sign masks) |
+| All legal, distinct-path counted full 729-rune inverses | **20,752** |
+| Highest IoC among every complete legal candidate | **0.035714285714** |
+| Highest GP-native Shakespeare unigram log-likelihood ratio per rune | **−0.72545641 nats** |
+| Source-native 20 fixed independent Shakespeare control intervals of 729 GP runes | IoC **0.05657683–0.06453594**; unigram logLR **+0.3587–+0.4444** |
+
+The highest original IoC occurs at `Pg_half_lines`, prime start3,809, negative sign; the highest source-native unigram score occurs at `Po_par`, start4,531, negative sign. They are different, nonlinguistic strings, and their exact GP transliterations are emitted by the SFT. The control's **source tokenization and 20 offsets are fixed independently of the ciphertext**. The 20 controls are a finite observed register reference, not a universal impossibility theorem for exotic non-English plaintext. The 95 surviving configurations show why the simpler statement that the signed-prime layout family is *arithmetically impossible* would be incorrect; legal cryptographic paths and authentic linguistic plaintext are different requirements.
+
+**Decision:** A creator who simply added one of these published physical-layout sign masks to the authentic p56 φ(prime) stream could produce legally invertible opening-729 text at a few tuned prime starts, but **none of the 20,752 complete outputs recovers ordinary native GP29 English**. No new unknown-page plaintext, source-selected sign, key or destination. The bounded model does not permit an alternate key schedule, hidden insertion/deletion, a source-authored nonnative register, or a key pointer that reverses direction. It is a different test from the eight-window skip-free keyword pointer inverse and from the full 581-source-key-library sign screens still in progress.
+
 ## Actual finite experiment
 
 The reproducible manual-only [18-rule Windows Actions workflow](../.github/workflows/lp2-layout-19-unrun-signs-manual.yml) pins the exact external historical source commit and regenerates the original 581 flat-IoC library and all source-text layout vectors, compiles the source Rust decoder, executes its native planted plaintext/control batteries, then searches the original eight long physical-section windows for each of the **nine previously unrun line/position mod3 rules and nine independent page/half rules**. It excludes the four already run rules and the one `Ps_par` duplicate.
