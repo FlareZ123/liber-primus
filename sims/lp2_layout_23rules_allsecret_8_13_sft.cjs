@@ -233,6 +233,14 @@ const historicalLengths = {
   8: [23,10,1,10,9,10,16,26],
   13: [0,10,4,0,1,19,0,18,4,18,9,0,18]
 };
+const sourceClearLP1 = sections[4].runes;
+assert.equal(sourceClearLP1.length, 755,
+  'source LP1 clear THE LOSS OF DIVINITY historical GP29 reference');
+const sourceClearLP1IoC = ioc(sourceClearLP1);
+assert.ok(sourceClearLP1IoC > 0.061 && sourceClearLP1IoC < 0.062,
+  'real LP1 author-composed 755-rune clear GP English reference');
+console.log('INDEPENDENT REAL LP1 SOURCE The Loss of Divinity clear GP IoC:',
+  sourceClearLP1IoC.toFixed(9));
 const sourceClearP57 = canonical.pages[57].indices;
 const sourceCipherP56 = canonical.pages[56].indices;
 assert.equal(sourceClearP57.length, 95);
@@ -261,8 +269,9 @@ for (let wi = 0; wi < windows.length; wi += 1) {
     })).sort((a, b) => b.ceiling - a.ceiling);
     const mostPermissive = frequencyBounds[0];
     const originalClearIoC = ioc(sourceClearP57);
+    const trueClearFloor = Math.min(originalClearIoC, sourceClearLP1IoC);
     if (len === 8 || wi > 0) {
-      assert.ok(mostPermissive.ceiling < originalClearIoC,
+      assert.ok(mostPermissive.ceiling < trueClearFloor,
         'original section unexpectedly reaches the real p57 GP-language IoC');
     }
     console.log('ARBITRARY SECRET GP29 CLASS PERMUTATIONS',
