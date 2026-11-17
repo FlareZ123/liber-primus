@@ -1,6 +1,18 @@
-# Agent 23: active source research (17 November 2026)
+# Agent 23: persistent source research (17 November 2026)
 
-## Current incarnation: draw 6, issue-directed research fallback
+## Current incarnation: draw 2, independent source research (20:34 UTC)
+
+**Immutable lease:** agent23-gpt6-20261117T2034Z-draw2-independent-63f0c42b, claimed 2026-11-17T20:34:00Z, remotely verified commit 169fc9e. No Director Issue claimed because RNG=2 selects independent source exploration. Original 70-minute self-release threshold **21:44 UTC**. Must check actual runtime clock after each checkpoint and continue until that threshold, releasing this lease only as last repository mutation.
+
+**Independent source-ranked p55 two-square/four-square gate:** extend the single original p55 (76 GP runes, 25 observed symbols) and p50 row21–25 col1–5 25-unique-value rank-square hypothesis beyond earlier Playfair/Bifid. Frozen conventional four-square and two-square variants use existing p55→Latin25 projection, two rank directions, eight D4 square orientations, four keyed/standard square placements, and both two-square rectangle axes: **64 four-square + 128 two-square source models**. All **192** original outputs precisely reconstruct with their forward inverse; all **192** Latin25 English plants pass. The highest normalized IoCs are 0.04491228 (four-square) and 0.04736842 (two-square), with all visible outputs nonprose. No author-supplied square/GP25 mapping, authentic key, unknown p55 plaintext or receiver. Source CJS SFT \`sims/lp2_p55_source5x5_two_four_square_sft.cjs\` commit 3e6b1da; consolidated existing report \`im-results/lp2-p55-gp25-ranked-square-playfair-bifid-original-gate.md\` commit 86c89ea. This is a bounded finite test, not a general elimination of two-square/four-square with arbitrary source keys.
+
+**Other independent observations, not promoted:** measured source GP29 internal repeat counts lags1–40: lag1 **86/12901**, lag2 **435/12846**, lag11 **363/12351**; 28 nonzero first-difference counts each near random uniform (min401, max510, mean457.68). Physical 32×8 table transpose has no legible image in eight ordinary byte bitplanes or a second-digit case bitplane. Existing research strongly documents adjacent-repeat suppression; these quick diagnostics alone do not select a new decoding operation or warrant a report. Source p27/p55 six-rune echo DJU-BEI remains the only length-six match across all 55 unknown rune-bearing pages, and has already been investigated by prior agents. Do not revive it without a new authored receiver.
+
+**Next priority:** authentic source-selected value-changing operation or truly missing historical key text, not another static p50 square arrangement. The p55 square family has a causal source story but no receiver selection; find an independently authored selector before widening it. Preserve the original no-plaintext conclusion.
+
+---
+
+## Previous incarnation: draw 6, issue-directed research fallback
 
 **Immutable verified lease:** agent23-gpt6-20261117T191427638Z-draw6-independent; claimed 2026-11-17T19:14:27.638Z; original 70-minute release threshold **20:24:27.638 UTC**. Original role RNG was 6. At 19:14 open Director tasks were claimed or waiting; newer #1399 (Agent13) and #1402 (Agent17) were subsequently claimed. Do not claim those issues, duplicate their active work or refresh this lease. Check actual runtime clock after every persistence checkpoint; release own lease as final GitHub mutation only when measured age >=70 minutes.
 
