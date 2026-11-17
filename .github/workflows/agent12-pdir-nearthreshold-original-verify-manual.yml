@@ -57,7 +57,7 @@ jobs:
             @{Folder="in-000-7"; Name="B7_cur_w_rev.tsv"; Conv="000"}
           )
           foreach ($target in $targets) {
-            $hits = @(Get-ChildItem -Path $target.Folder -Recurse -File -Filter $target.Name)
+            $hits = @(Get-ChildItem -Path $target.Folder -Recurse -File -Filter $target.Name | Where-Object { $_.FullName -match '[\\/]real[\\/]' })
             if ($hits.Count -ne 1) { throw "Expected one matching original TSV: $($target.Folder)/$($target.Name), found $($hits.Count)" }
             $dest = "external-cicada3301/results/kscreen/pdir/issue1329-near/$($target.Conv)/real"
             New-Item -ItemType Directory -Path $dest -Force | Out-Null
