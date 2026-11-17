@@ -85,6 +85,27 @@ The only isolated long matches across all 840 phases occur at phase **94** (`GOI
 
 **Decision:** once the word reversal, zero-step marker swaps, T6-S anchor and fixed p3 trace clock are specified, all possible field phases have been consumed on untouched original input; do not commission further phase hunting under this same fixed construction. A different *source-selected* observation/clock, word morphology or independent cryptographic layer would be necessary. The p3/p39 polynomial and red heading arithmetic are established source facts, while their proposed composition as a cipher is still a hypothesis and does not solve LP2.
 
+## A more economical source-selected field cipher: the 13-dot exponent, H8 pole and GP-P beacon
+
+The preceding bijection forces *GP-S* into T6 by a hidden-symbol swap. There is a more literal reading of the independently printed clues:
+
+- The original page-40 eight-red-rune prime sum is **435 = 29×15**, selecting generator **15** of GF29×. Its last red rune is **H**, GP index **8**, exactly the affine T6 fixed point.
+- The manuscript repeatedly prints a **13-dot** device; the first source-known marker of that size has 13 dots. Exact modular arithmetic gives **15¹³≡27≡−2 (mod29)**.
+- Therefore the source-number expression `8+15¹³*(u−8) mod29` is **24−2u**, identical to the anomalous six-back target, without choosing its slope or intercept again.
+- Assign GP symbol **P** at zero-based index **13** to the 13th exponent; assign GP **H** at index8 to the pole output8; the other **27** plaintext runes are assigned bijectively in ascending GP chart order to the remaining **27** field exponents. The red page-3 GF29² primitive element rotates those 27 ordinary exponents under an 840-phase trace key.
+
+This architecture has a concrete complete forward rule at every output. At source word offset `j≥6`, let `u=C[j−6]`; at earlier offsets set `u=Cprev`, seeded by the last red p40 heading glyph H8. When `u=8`, substitute public anchor `u'=Cprev` if different from8 or `u'=9` otherwise, so a zero field difference never destroys invertibility. For a plaintext rune `p`:
+
+- `p=H8`: publish `C=8`.
+- `p=P13`: publish `C=8+15^13*(u'−8) mod29`.
+- The remaining `p`: let `rank(p)` be its canonical rank in the other 27 source symbols and `e=exponents_except_13[(rank(p)+K_i) mod27]`; publish `C=8+15^e*(u'−8) mod29`, with `K_i=Tr(U^(φ+i)) mod27` for primitive p3 field root U and `φ=0..839`.
+
+The 29 outputs are pairwise distinct for every published history, including H8 input and output, so this model is **exactly bijective** with no repair flags or hypothetical checksum channel. It does **not** assume the initial source plaintext or GP vocabulary. Reverse each resulting decrypted word to allow the human-readable whole-word reading suggested earlier. All original red p3, p39 and p40 input symbols are asserted. An independent planted GP-English corpus of 667 authentic whole words with all exact original word lengths is encrypted and recovered **3,000/3,000**. The original ciphertext at the same offsets re-encrypts exactly under the source fixed rule.
+
+**Original-cipher result:** Exhaustive **840** source-field phases on all untouched black pp40–53, 3,000 GP29 runes in 667 printed words, give at most **54** complete dictionary words total. Only **one** phase (φ=221) yields any English GP word of six or more runes, with precisely the isolated normalized token `FLITTNG` (the GP spelling of *flitting*) at body word53 and nonlinguistic context. All other **839** phases have zero dictionary words of six or more runes. This is a robust negative for the completely specified H-pole/P-dot13 source cipher, **not evidence that flitting is a genuine plaintext fragment**. A version without word reversal and a shortened first-six-rune header/tap variant likewise return no sustained English. See [read-only source-exact CommonJS SFT](../sims/lp2_p3_dot13_p40_pole_p13_source_cipher_sft.cjs).
+
+**Decision:** The p40 header quotient, H fixed point, thirteen-dot exponent and p3 primitive field clock jointly define an unusually compact puzzle-visible reversible operation. A full 840-phase original inversion nonetheless fails. The strongest clue conjunction survives as an *unverified human solve-path hypothesis*, but the exact H-pole/P-13-bijection must be retired as a decoder unless an independent page instruction supplies a materially different hidden state, spacing or output mapping. Its original field arithmetic should not be counted as new independent evidence on top of the pre-existing [p40 prime-gap/13-dot interpretation](red-prime-gap-affine-echo.md).
+
 ## Decision
 
 **Reversed-word native GP source morphology provides a narrow reason to reconsider the previously unpromising S-T6 anchor.** The original p39 red triad offers a compact, source-readable *candidate* for its numbers and roles. But the first fully specified cipher built exclusively from those operands **does not recover any original long English word** in the 3,000-rune blind target. Numeric alignments are not a solution. The remaining missing operand, if this route is historical, is a **source-authenticated changing base alphabet/keystream or a different word/marker state rule** that both reproduces the original and yields contiguous plaintext. Any successor needs an independent source clue choosing that operand, with original printed input, 150 consecutive GP-English runes and exact forward reconstruction.
