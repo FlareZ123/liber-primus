@@ -29,6 +29,7 @@ assert.equal(runeBearingSegments.length, 55);
 let totalRunes = 0;
 let totalWithinPagePairs = 0;
 let originalDoubles = 0;
+let pagewiseMissingBits = 0;
 const punctuationCounts = { '.': 0, '&': 0, '$': 0 };
 const numericGlyphs = [];
 
@@ -48,9 +49,14 @@ for (let pageIndex = 0; pageIndex < originalPages.length; pageIndex++) {
   assert.deepEqual(actual, canonical, `transcription mismatch at rune-bearing page ${pageIndex}`);
   totalRunes += canonical.length;
   totalWithinPagePairs += canonical.length - 1;
+  let pageDoublets = 0;
   for (let i = 1; i < canonical.length; i++) {
-    if (canonical[i] === canonical[i - 1]) originalDoubles++;
+    if (canonical[i] === canonical[i - 1]) {
+      originalDoubles++;
+      pageDoublets++;
+    }
   }
+  pagewiseMissingBits -= Math.log2(uniformGpRepeatTail(canonical.length - 1, pageDoublets));
 }
 
 assert.equal(totalRunes, 12956);
@@ -134,6 +140,9 @@ const minMissingBits = -Math.log2(repeatTail);
 const ternaryCapacity = punctuationPositions * Math.log2(3);
 const unrestrictedGap = minMissingBits - ternaryCapacity;
 const additionalTritsRequired = Math.ceil(unrestrictedGap / Math.log2(3));
+const fourStateCapacity = punctuationPositions * 2;
+const fourStatePagewiseDeficit = pagewiseMissingBits - fourStateCapacity;
+const additionalFourStatePositionsRequired = Math.ceil(fourStatePagewiseDeficit / 2);
 
 const counts = Object.values(punctuationCounts);
 const fixedInventoryCases = factorial(punctuationPositions) /
@@ -145,6 +154,9 @@ assert(Math.abs(minMissingBits - 325.450254) < 0.00001);
 assert.equal(Math.ceil(minMissingBits), 326);
 assert(ternaryCapacity < minMissingBits);
 assert.equal(additionalTritsRequired, 6);
+assert(Math.abs(pagewiseMissingBits - 430.561201) < 0.00001);
+assert.equal(fourStateCapacity, 400);
+assert.equal(additionalFourStatePositionsRequired, 16);
 assert(fixedInventoryBits < ternaryCapacity);
 
 console.log('[source] GP29 rune-bearing unknown pages:', originalPages.length);
@@ -159,6 +171,10 @@ console.log('[theorem] universal no-extra-ciphertext sidecar lower bound bits:',
 console.log('[theorem] independent ternary states at 200 unchanged positions bits:', ternaryCapacity.toFixed(9));
 console.log('[theorem] unrestricted ternary marker deficit bits:', unrestrictedGap.toFixed(9));
 console.log('[theorem] additional independent ternary markers minimally needed:', additionalTritsRequired);
+console.log('[theorem] per-page exact observed repeat budgets: required side bits:', pagewiseMissingBits.toFixed(9));
+console.log('[theorem] 200 independent four-state mark positions: maximum bits:', fourStateCapacity);
+console.log('[theorem] pagewise four-state mark deficit bits:', fourStatePagewiseDeficit.toFixed(9));
+console.log('[theorem] extra independent four-state positions required:', additionalFourStatePositionsRequired);
 console.log('[theorem] fixed punctuation-histogram rearrangement bits:', fixedInventoryBits.toFixed(9));
 console.log('[theorem] fixed punctuation-histogram deficit bits:', fixedInventoryGap.toFixed(9));
-console.log('PASS: 200 fixed-position ternary punctuation states cannot universally inject all 29^12956 plaintexts into LP2-page-shaped outputs with <=86 doubles.');
+console.log('PASS: ternary/global and four-state/pagewise fixed-position punctuation capacity gates both exclude universal fixed-shape anti-repeat encoding.');
