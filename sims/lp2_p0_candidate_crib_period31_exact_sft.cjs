@@ -281,11 +281,16 @@ assert.deepEqual(
 );
 
 const solved = solvePeriod31(cipher, key);
-assert.deepEqual(
-  cribs.map((crib) => render(
-    solved.plain.slice(wordStarts[crib.word], wordStarts[crib.word] + words[crib.word].length))),
-  ["EPIPHANY", "SEEKS", "THE", "DEVOTED"],
-);
+for (const crib of cribs) {
+  assert.deepEqual(
+    solved.plain.slice(
+      wordStarts[crib.word],
+      wordStarts[crib.word] + words[crib.word].length,
+    ),
+    encodeSourceNativeGP(crib.text),
+    `candidate GP crib ${crib.text}`,
+  );
+}
 
 /*
  * Native length-shape controls. These are independent draws with exactly the
