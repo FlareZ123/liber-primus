@@ -264,6 +264,90 @@ let phase = 0;
 const shared1067 = originalWords.map((word) =>
   word.map((value) => mod(value - sharedDigits[phase++ % sharedDigits.length])));
 
+// Source-selected nonperiodic interval-state receiver.
+// The 31 large marks on unknown p0-p55 end 31 consecutive intervals, with the
+// final p55 mark exactly at the end of the 12,956-rune unknown stream.
+// Pair the first31 zero-bracket bytes to those intervals in printed order,
+// use each byte as the initial DH state, and evolve by the selected base2757
+// modulo3301. Test only emit-before-advance / advance-before-emit and both signs.
+const unknownPages = corpus.pages.filter((page) => page.page < 56 && page.indices.length);
+const unknownFlat = unknownPages.flatMap((page) => page.indices);
+assert.equal(unknownFlat.length, 12956);
+
+const pageStarts = new Map();
+let unknownOffset = 0;
+for (const page of unknownPages) {
+  pageStarts.set(page.page, unknownOffset);
+  unknownOffset += page.indices.length;
+}
+
+const unknownLargeMarkEnds = [];
+for (const page of ink.pages.filter((page) => page.page < 56 && pageStarts.has(page.page))) {
+  for (const [offset] of page.large_punctuation || []) {
+    unknownLargeMarkEnds.push(pageStarts.get(page.page) + offset);
+  }
+}
+unknownLargeMarkEnds.sort((a, b) => a - b);
+assert.equal(unknownLargeMarkEnds.length, 31);
+assert.equal(unknownLargeMarkEnds[unknownLargeMarkEnds.length - 1], unknownFlat.length);
+
+const intervalSeeds = bracketBytes.slice(0, 31);
+assert.equal(intervalSeeds.length, 31);
+
+function symbolIoc(values) {
+  const counts = Array(A).fill(0);
+  for (const value of values) counts[value]++;
+  return counts.reduce((sum, count) => sum + count * (count - 1), 0) /
+    (values.length * (values.length - 1));
+}
+
+function adjacentEquals(values) {
+  let matches = 0;
+  for (let i = 0; i + 1 < values.length; i++) {
+    if (values[i] === values[i + 1]) matches++;
+  }
+  return matches;
+}
+
+function intervalDhDecode(sign, advanceFirst) {
+  const out = [];
+  let from = 0;
+  for (let interval = 0; interval < unknownLargeMarkEnds.length; interval++) {
+    let state = intervalSeeds[interval];
+    const to = unknownLargeMarkEnds[interval];
+    for (let i = from; i < to; i++) {
+      if (advanceFirst) state = (state * 2757) % 3301;
+      out.push(mod(unknownFlat[i] + sign * (state % A)));
+      if (!advanceFirst) state = (state * 2757) % 3301;
+    }
+    from = to;
+  }
+  assert.equal(out.length, unknownFlat.length);
+  return out;
+}
+
+const intervalDhVariants = {};
+for (const advanceFirst of [false, true]) {
+  for (const sign of [-1, 1]) {
+    const decoded = intervalDhDecode(sign, advanceFirst);
+    const name = `${advanceFirst ? "advance" : "emit"}_${sign < 0 ? "subtract" : "add"}`;
+    intervalDhVariants[name] = {
+      ioc: symbolIoc(decoded),
+      adjacentEquals: adjacentEquals(decoded)
+    };
+  }
+}
+
+assert.equal(adjacentEquals(unknownFlat), 86);
+assert.ok(Math.abs(intervalDhVariants.emit_subtract.ioc - 0.034477754413626195) < 1e-15);
+assert.equal(intervalDhVariants.emit_subtract.adjacentEquals, 442);
+assert.ok(Math.abs(intervalDhVariants.emit_add.ioc - 0.03447982775534901) < 1e-15);
+assert.equal(intervalDhVariants.emit_add.adjacentEquals, 409);
+assert.ok(Math.abs(intervalDhVariants.advance_subtract.ioc - 0.034493888348641706) < 1e-15);
+assert.equal(intervalDhVariants.advance_subtract.adjacentEquals, 425);
+assert.ok(Math.abs(intervalDhVariants.advance_add.ioc - 0.0344633482633797) < 1e-15);
+assert.equal(intervalDhVariants.advance_add.adjacentEquals, 422);
+
 const result = {
   source: {
     divinityPrimeSum: primeSum(divinity),
@@ -280,6 +364,8 @@ const result = {
     zeroBracketLength: secondZero - outerPrimeSum - 1,
     largePunctuationCount: ink.counts.large,
     dhSolvedGate,
+    unknownLargeMarkCount: unknownLargeMarkEnds.length,
+    intervalDhVariants,
     tupleSeed,
     shared1067Base29: sharedDigits.map((v) => BASE29_DIGITS[v]).join("")
   },
