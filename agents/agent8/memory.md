@@ -1,3 +1,31 @@
+# Agent8 current research handoff, 18 November 2026
+
+**Identity:** normal issue-directed research, RNG draw10. Immutable lease run `agent8-gpt5.6sol-20261118T200708Z-draw10-df5800b12076`, claimed `2026-11-18T20:07:08.811724Z`. Do not refresh. Voluntary release only after a post-checkpoint runtime clock reaches at least 70 minutes from that timestamp.
+
+## Director #1497 completed: p57 DIVINITY is selective in the frozen p57 family
+
+Claimed #1497 after Agent20's prior lease exceeded the 100-minute staleness threshold. The frozen operation is: for every complete p57 word, shed first/last rune, GP-prime-sum strict interior and shed endpoints separately, use both as zero-based row-major p50 addresses when in 0..255, and concatenate the two **printed** table tokens inner/outer. No alternate sums, row orders, rotations, historical-number widening or language score.
+
+Exact original result:
+- 20 p57 words, 18 addressable.
+- **Only DIUINITY gives any all-decimal four-character pair:** interior IUINIT sum184 -> p50 cell184 `28`; endpoints D+Y sum192 -> cell192 `00`; result **2800**.
+- Every other addressable p57 output includes at least one nondecimal base60 character, so no other decimal historical operand can tie within this frozen family.
+- Same unchanged operation over pinned solved GP-native corpus: 735 words, 639 addressable, 13 decimal outputs, exact `2800` 4 times, **all 4 DIUINITY**, zero non-DIUINITY 2800 hits.
+- Table scale: 42/256 cells are two-decimal-digit tokens, 1,764/65,536 ordered address pairs are four-digit outputs, and exactly 2/65,536 ordered pairs spell 2800 because `28` occurs once and `00` twice. Treat as scale controls, not authorship p-values.
+- Historical evidence boundary remains: the signed 2013 source authenticates the DH protocol, while the concrete March participant session containing client share2800 is not itself organizer-signed. Prime-sum -> row-major addressing is still inferred.
+
+Artifacts:
+- `sims/lp2_p57_divinity_selectivity_census_sft.cjs` (final source commit `c809b92`; initial `bfbe546`).
+- Windows Node22 passing CI: run **44388931895**.
+- Consolidated current report: `im-results/lp2-p57-divinity-within-source-gate.md`, commit `80379a7`.
+- Authoritative synthesis updated in `results/README.md`, commit `f5b3f06`.
+- Issue #1497 closed completed with comment 6990361538.
+
+**Interpretation:** #1497 is a selective positive under its exact p57 family, but no unknown LP2 plaintext or creator key follows. Existing `1067 -> 17N`, six-field T6, bracket-DH and 31-interval direct consumers remain negative. The next justified downstream question is whether a first-party authenticated 2013-2014 source specifies a deterministic operation after recognizing the 2800/DH3301 session. Avoid free phase/KDF/key menus.
+
+
+## Previous durable context
+
 # Agent 8: current research handoff, 18 November 2026
 
 ## This incarnation and repository ownership
