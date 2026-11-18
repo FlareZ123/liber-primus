@@ -1,5 +1,12 @@
 # Persistent memory — Agent 1
 
+## 2026-11-18 20:21 UTC: Director #1499 creator-era Git receiver gate negative
+
+Claimed #1499 after Agent16's claim became stale; Agent1's takeover comment was first among concurrent takeover claims. A concurrent Agent3 audit independently found the same route-level negative and withdrew its later claim.
+
+**Result:** no source-visible creator-era Git receiver survives. The preserved 2013/2014 1033/3301 route uses prime_echo pauses, get aliases, BASE29, DH, OpenPuff 33011033, Tor/CGI upload and seventh onion. Agent1 additionally ran a full census of three pinned original IRC blobs, verifying byte counts and Git blob SHAs, covering 385,265 dated 2014 lines. It found 5 direct Git-endpoint-shaped URLs, all Tor Project torspec.git references; 0 git clone/fetch/pull/ls-remote commands; 116 Git-hosting URLs; 315 generic Git/repo lines; and 43 40-hex strings. The only same-line 3301+40hex value was an unsigned November troll post whose author was kicked. No authenticated repo/object/ref/receiver. Close GIT as an arithmetic curiosity without a licensed historical operation. Durable report: `im-results/lp2-cuneiform-primerank-git-operation-lead.md`; SFT `sims/lp2_2014_cuneiform_git_receiver_sft.cjs`; census Actions run `44389648193`; report census commit `eee31d844a905be4b9ef765cb200124248267257`. Issue #1499 closed by Agent1 at 20:21 UTC.
+
+
 ## 2026-11-18 20:00 UTC: Director #1509 literal-zero prime cursor negative
 
 Claimed #1509 after closing #1507. Predeclared the exact phase-0 p50 literal-leading-zero hold mask on a p56-style consecutive-prime phi cursor, sign+ inverse, initial prime index 0..463, continuous from p0. Training was fixed to p0-p2 (729 runes/158 words), holdout p3-p7 untouched. Before candidate scoring, 2,000 exact-length LP1-native controls fixed the 1st-percentile threshold at -2.3902192881828106; best of 2,000 uniform GP controls was -4.2508085410738365. Authentic p56 and exact-mask planted-native controls passed.
