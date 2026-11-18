@@ -8,7 +8,7 @@ The recovered candidate is:
 AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
 ```
 
-The important advance is the selector structure. The first block is the unique four-word run in a deliberately widened source-driven opening family. Blocks 2 and 3 chain geometrically from the previous endpoint. Block 4 was then tested prospectively from the frozen TURNS state across a finite 36-branch family, where the published COLD branch was the unique maximum.
+The important advance is the selector structure. The first block is the unique four-word run in a deliberately widened source-driven opening family. Blocks 2 and 3 chain geometrically from the previous endpoint. Block 4 was then tested prospectively from the frozen TURNS state across a finite 36-branch family. A later locked-LP1 checksum gate now selects the same COLD path and exact four-rune stop without using the dictionary-prefix maximum.
 
 ## Source prerequisites
 
@@ -188,6 +188,16 @@ C - O - L - D - L - P ...
 
 This is a genuinely prospective discriminator: neither the word COLD, its four-rune length, nor its directions were supplied to the selector.
 
+### Locked LP1 checksum removes the block-4 language selector
+
+A separate held-out gate now strengthens the prospective COLD result. Before this repository's source-bounded bootstrap existed, the external route had recorded that its first seven-word passage should total **21 runes, index sum 233, GP sum 825**, paired with the solved-LP1 warning window `YOU KNOW TO BE TRUE TEST THE` (21 runes, index sum 232, GP sum 825) and `phi(233)=232`. The repository independently reproduces that LP1 window and finds it is the only one of 621 encodable seven-word LP1 windows with 21 runes and GP sum 825.
+
+The first three source-bounded blocks `AS I GO THE WEATHER TURNS` contribute 17 runes, index sum 182, GP sum 643. The locked target therefore requires block 4 to contribute exactly **4 runes, index sum 51, GP sum 182**.
+
+Exhaust every positive prefix length of all 36 already frozen block-4 candidates. Two prefixes hit both sums: a five-rune `R F C L OE` string and four-rune `C O L D`. The locked 21-rune passage total excludes the five-rune branch, leaving **COLD as the unique candidate satisfying all three numerical constraints**. No dictionary, word frequency or English-prefix score participates in this selector.
+
+Detailed audit and reproducer: `im-results/lp2-p0-lp1-checksum-block4-selector.md` and `sims/lp2_p0_lp1_checksum_block4_selector_sft.cjs`.
+
 ## Independent p2 artwork discriminator for the block-5 axis
 
 A concurrent original-JPEG census by Agent5 gives independent support for the same branch. Across all 75 scans, the cicada asset occurs only on LP1 p1, p9, p13, p15, p16 and LP2 p2. Its three visual states repeat exactly with the local-page Möbius value:
@@ -292,7 +302,7 @@ It supplies a compact source-driven opening chain with three independent discrim
 1. the opening branch is the unique four-word maximum among 126 widened source-driven candidates;
 2. WEATHER begins at the exact matrix center and terminates when its next rune kills every dictionary continuation;
 3. TURNS is the only cardinal direction from its fixed start that sustains a native word to five runes;
-4. from the frozen TURNS state, COLD is selected by the unique maximum among 36 cardinal ±12 block-4 candidates.
+4. from the frozen TURNS state, a pre-existing LP1 checksum target selects COLD uniquely among all 36 cardinal ±12 candidates and every prefix length by the required 4-rune / index-51 / GP-182 residual, without a language score.
 
 The combined candidate is now:
 
@@ -300,7 +310,7 @@ The combined candidate is now:
 AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
 ```
 
-The first four blocks are selected directly by the source-bounded bootstrap. The later `I MAY CRY NOW THE IDEA` extension is conditionally selected by a frozen continuation family applied symmetrically to competing branches.
+The first three blocks are selected directly by the source-bounded bootstrap, while COLD now has two independent selectors inside the same frozen 36-branch family: the earlier prospective dictionary-prefix maximum and the locked LP1 numerical residual. The later `I MAY CRY NOW THE IDEA` extension is conditionally selected by a frozen continuation family applied symmetrically to competing branches.
 
 This is substantially stronger than choosing one key/path because it looks English. It is still intermediate evidence because several transition operations were learned from the external route and have not yet been derived from an explicit original instruction. In particular, the horizontal endpoint-node construction, Möbius-based key rotation, and block-to-block geometric rules need prospective validation on later untouched blocks.
 
@@ -315,7 +325,7 @@ Run:
 node sims/lp2_p0_27square_source_bootstrap_first3_sft.cjs
 ```
 
-The SFT reads the canonical p0-p2 source, the original delimiter transcription, and the source-native English lexicon. It does not import the external route arrays or expected plaintext strings as candidate selectors.
+The bootstrap SFT reads the canonical p0-p2 source, the original delimiter transcription, and the source-native English lexicon. It does not import the external route arrays or expected plaintext strings as candidate selectors. The separate `sims/lp2_p0_lp1_checksum_block4_selector_sft.cjs` reproduces the LP1 checksum census and selects COLD from the same 36-candidate block-4 family without a language score.
 
 External route credited for the numerical node/transition ideas:
 https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption
