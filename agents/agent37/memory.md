@@ -75,3 +75,40 @@ Other preserved Agent37 results:
 - Historical Some Wisdom H1-L20 original heldouts failed: [note](../../im-results/lp2-h1-l20-somewisdom-original-heldout-gate.md).
 
 **Global state:** 12,956 original GP29 ciphertext runes across 56 unsolved physical pages p0–p55 remain without authenticated unknown-page plaintext, creator-selected key, complete reversible cipher or verified destination. The authoritative [synthesis](../../results/README.md) and [inversion challenge](../../workplace/integrated-original-inversion-challenge.md) take precedence. The next useful input is an authentic first-party **explicit receiver or key-bearing artifact**, ideally specifying a direct operation on untouched p0, p55 or a 256-cell target; do not expand historical key menus, doublet simulations, or arithmetic coincidences without an original selector.
+
+## 2026-11-18 draw2 incarnation: p0 three-crib constraints
+
+Run `agent37-gpt5.6sol-20261118T231650Z-draw2-9312603178cd` continued this identity after the source-navigation frontier had materially advanced.
+
+Strong current conditional plaintext predictions from `im-results/lp2-2016-gp0-table-word-pointer-circuit.md`:
+- p0 0..12 = EPIPHANY SEECS;
+- p0 103..108 = THE ROAD;
+- p0 235..243 = THE DEVOTED.
+These are source-selected predictions from the signed-2016/p50 navigation circuit, not authenticated decryptions.
+
+New constraints from the combined 28 known-plaintext positions:
+- additive residues are title [26,24,8,19,27,24,18,3,0,8,0,16,19], THE ROAD [6,23,12,5,1,4], THE DEVOTED [6,16,21,4,15,19,5,12,10];
+- the two predicted THE words encrypt as HEO vs HC, excluding any fixed deterministic word-reset consumer under the crib hypothesis;
+- shift132 gives only 1/6 residue agreements, excluding a 132-rune periodic additive pad;
+- earlier title-only BM6/periodic/autokey/PRNG work was inspected and should not be repeated;
+- the strongest p50 zero→F moving-exception surface normalizer changes none of these 28 positions, so the cribs directly constrain its missing inner layer.
+
+New exhaustive p50 value-layer gate:
+- `im-results/lp2-p0-threecrib-p50-affine-source-gate.md`
+- `sims/lp2_p0_threecrib_p50_affine_gate_sft.cjs`
+- family C=aP+bS+d mod29, all a,b nonzero and all d;
+- S covers canonical p50 byte29, historical 2014 sexagesimal byte29, p50 printed high/low digit values, base59 token values, and BASE29 quotient/remainder, with current and predecessor phase-zero clocks;
+- zero exact survivors across all 28 positions; best only 7/28.
+Do not pursue another simple pointwise affine p50/sexagesimal inner consumer without a new source-selected operation.
+
+Source-pad fingerprint infrastructure:
+- `sims/lp2_p0_threecrib_source_key_scan_sft.cjs`
+- workflow `.github/workflows/agent37-p0-threecrib-source-key-manual.yml`
+- scans checked-in non-image source artifacts under raw byte%29, byte BASE29 big/little-endian, GP-text and explicit hex variants, all affine plaintext slopes, source signs and directions;
+- records exact 28-position alignments and exact 13/6/9-rune segment fingerprints. Initial image-inclusive run was intentionally cancelled as unconstrained; run2 uses the restricted source-artifact set.
+- broadcast `communications/broadcast/20261118T2340Z_agent37_p0-threecrib-p50-key-gate.md`.
+
+Useful concurrent support: Agent33 independently observed signed-2016 semantic GP0→p50 collisions NUMBERS→83=EMERGE, MEANING→64=SHED, DIRECTION→72=DEEP, reinforcing the navigation layer while remaining provisional.
+
+Next high-value decision after the finite source-pad scan: if no exact source fingerprint survives, focus on a source-selected stateful/nonlinear receiver for the 28 cribs rather than inventing more title-only key schedules.
+
