@@ -165,6 +165,39 @@ const gapResults = chapters.map(([first,last],index) => {
 });
 assert.ok(gapResults.every((x,i) => x.transparentGapReach < results[i].runes));
 
+// The A194954 rule has two remaining primitive numeric streams beyond a(n)
+// and its forward gap: d[n] = popcount(n), and the exact integer multiplier
+// m[n] = gap[n] / d[n]. Test both without offsets, phases or fitted maps.
+const gapDivisors = forwardGaps.map((_,i) => popcount(i+1));
+const gapQuotients = forwardGaps.map((gap,i) => gap / gapDivisors[i]);
+assert.deepEqual(gapDivisors.slice(0,16),[1,1,2,1,2,2,3,1,2,2,3,2,3,3,4,1]);
+assert.deepEqual(gapQuotients.slice(0,11),[1,2,1,4,1,2,2,6,1,3,2]);
+assert.ok(gapQuotients.every(Number.isInteger));
+const expectedDivisorReach = [48,154,8,1,0,80,27,86,5];
+const expectedQuotientReach = [13,6,4,202,0,92,83,43,5];
+function featureResults(key,expectedReach) {
+  return chapters.map(([first,last],index) => {
+    const cipher = corpus.pages.slice(first,last+1).flatMap(p => p.indices);
+    const sub = cipher.map((c,i) => mod29(c-key[i]));
+    const add = cipher.map((c,i) => mod29(c+key[i]));
+    const reachable = fTransparentReach(cipher,key.map(mod29));
+    assert.equal(reachable,expectedReach[index]);
+    assert.ok(ioc(sub) < .04 && ioc(add) < .04);
+    return {pages:`p${first}–${last}`,
+      subtractIoC:Number(ioc(sub).toFixed(7)),
+      addIoC:Number(ioc(add).toFixed(7)),
+      transparentReach:reachable};
+  });
+}
+const divisorResults = featureResults(gapDivisors,expectedDivisorReach);
+const quotientResults = featureResults(gapQuotients,expectedQuotientReach);
+assert.ok(divisorResults.every((x,i) => x.transparentReach < results[i].runes));
+assert.ok(quotientResults.every((x,i) => x.transparentReach < results[i].runes));
+for (const key of [gapDivisors,gapQuotients]) {
+  const planted = encryptNative(knownP56,key.map(mod29));
+  assert.equal(fTransparentReach(planted,key.map(mod29)),knownP56.length);
+}
+
 assert.equal(results.reduce((sum,x) => sum+x.runes,0),12956);
 assert.ok(results.every(x => x.transparentPhiPlusReach < x.runes));
 assert.ok(results.every(x => Object.values(x.noSkipDecodedIoC)
@@ -176,5 +209,6 @@ console.log(JSON.stringify({
   numberOfTerms:13000, lastTerm:special[12999],
   positive:'85/85 authentic p56 known GP plaintext/F-transparent prime-totient encoder',
   keyReset:'first A194954 term at each of nine source-visible chapters',
-  results, forwardGapResults:gapResults, decision:'No original LP2 unknown-page prose or legal full-chapter F-transparent inverse under the frozen transferred mode; no unknown key recovered.'
+  results, forwardGapResults:gapResults, divisorResults, quotientResults,
+  decision:'No original LP2 unknown-page prose or legal full-chapter F-transparent inverse under the frozen A194954 component streams; no unknown key recovered.'
 },null,2));
