@@ -2,7 +2,7 @@
 'use strict';
 const assert=require('node:assert/strict');
 const crypto=require('node:crypto');
-const {gunzipSync,inflateRawSync}=require('node:zlib');
+const {gunzipSync,inflateRawSync,constants}=require('node:zlib');
 
 const SOURCES=[
  {label:'2013 #33012013 IRC log',repo:'neuroretransmit/cicada',commit:'ade9a02889ef8acbc8cde8edbfd0a785c369f4c3',path:'irc-logs/#33012013.freenode.log',sha:'f81e20129fb6dff69e0f614746089b8c6cbc8130',kind:'text'},
@@ -40,7 +40,7 @@ function mboxReport(text){
  const output=[];
  for(const s of SOURCES){
   const b=await download(s);let text,extra={bytes:b.length,gitBlobSha:s.sha};
-  if(s.kind==='mbox'){const inflated=gunzipSync(b);text=inflated.toString('utf8');extra.inflatedBytes=inflated.length;extra.mbox=mboxReport(text);}
+  if(s.kind==='mbox'){let inflated,mode='full',fullError=null;try{inflated=gunzipSync(b);}catch(e){fullError=e.message;try{inflated=gunzipSync(b,{finishFlush:constants.Z_SYNC_FLUSH});mode='partial-Z_SYNC_FLUSH';}catch(e2){extra.gzipError=e2.message;output.push({label:s.label,repo:s.repo,commit:s.commit,path:s.path,...extra});continue;}}text=inflated.toString('utf8');extra.inflatedBytes=inflated.length;extra.decompressionMode=mode;if(fullError)extra.fullGzipError=fullError;extra.mbox=mboxReport(text);}
   else if(s.kind==='docx'){text=xmlText(zipEntry(b,'word/document.xml').toString('utf8'));const core=zipEntry(b,'docProps/core.xml').toString('utf8');extra.created=(core.match(/<dcterms:created[^>]*>(.*?)<\/dcterms:created>/)||[])[1]||null;extra.modified=(core.match(/<dcterms:modified[^>]*>(.*?)<\/dcterms:modified>/)||[])[1]||null;}
   else text=b.toString('utf8');
   extra.textLength=text.length;extra.exactFieldHits=Object.fromEntries(fields.map(f=>[f,hits(text,f)]));
