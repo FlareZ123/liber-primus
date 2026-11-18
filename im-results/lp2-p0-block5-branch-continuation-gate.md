@@ -98,6 +98,6 @@ AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
 
 This is stronger than choosing I MAY from grammatical coherence. The two block-5 branches are judged by the same next-state mechanism and a source-native dictionary gate, and only one supports a nontrivial continuation.
 
-The remaining caveat is upstream: the endpoint-mirror/totient/move families were learned from the published block-6/7 constructions rather than independently named by an original signed instruction. The p0 original artwork's exact 180-degree pairing and the heading's repeated-rune symmetry make mirror operations source-plausible, but they do not uniquely specify this complete transition rule.
+The remaining caveat is upstream: the endpoint-mirror/totient/move families were learned from the published block-6/7/8 constructions rather than independently named by an original signed instruction. The p0 original artwork's exact 180-degree pairing and the heading's repeated-rune symmetry make mirror operations source-plausible, but they do not uniquely specify this complete transition rule.
 
 Reproducer: `sims/lp2_p0_block5_branch_continuation_gate_sft.cjs`.
