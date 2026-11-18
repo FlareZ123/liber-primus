@@ -100,7 +100,7 @@ for (let page = 0; page <= 55; page++) {
       words,
       primeRank: primeRank(runes),
       phi: phi(runes),
-      beginsNumberedItem: /^\s*\d+-/u.test(body)
+      beginsNumberedItem: /^[\s/]*\d+-/u.test(body)
     });
   });
 }
