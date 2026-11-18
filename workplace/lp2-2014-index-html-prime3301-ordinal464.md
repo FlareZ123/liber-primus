@@ -73,11 +73,33 @@ The independently authentic **94-rune clear p57 positive** has GP29 IoC **0.0608
 
 This eliminates this *specific* source-paired Hill2 cipher receiver over intact GP29 rune tape, while retaining the independently printed numbers and prime-index arithmetic as unselected clues.
 
+## Newly identified prime-count table-pointer convergence (Agent28, 18 November 2026)
+
+A literal, *conditional* graph walk now connects the two archived source numbers to **one of the two original printed `00` table cells**. This is a narrower, new navigation hypothesis than the earlier direct additive, Hill2, or prime-totient cipher trials. The historical markup names two numbers and the source already calls primes sacred, but **neither the markup nor the original page explicitly instructs `primepi` or iterative byte-as-address lookup**. These operations are investigator-selected. No unknown plaintext, source-authenticated key, decoder or final destination follows.
+
+Treat the physical LP2 p49–51 table as the 256 row-major, zero-indexed cells in its existing **provisional radix-60 byte interpretation**, `g[i]`. The original 2014 distributor's title and ID provide two independent inputs:
+
+```text
+archived title 133 → primepi(133) = 32   (the original table has 32 rows)
+archived id    331 → primepi(331) = 67
+                          g[67] = 192   (literal cell 67: "3C")
+                         g[192] =   0   (literal cell 192: "00", row24 col0)
+title count 32 → g[32] = 115 → g[115] = 247 → g[247] = 192 → 0
+```
+
+Thus **both prime-count starts reach the same perimeter zero at cell192**, the original `00` nearest the table's outer edge. The other original `00` is cell229 (row28 col5, interior); it has not been selected by this rule. The two `00` addresses were independently identified previously in [the original moth/table source alignment](lp2-moth-pair-256-table-56word-map.md). The `3C` glyph at index67 is visibly present in original 2400×3600 `66.jpg` (p49, printed ninth row, fourth column) and agrees with the registered numeral data. The title/ID also satisfy `133+331=464=primepi(3301)=16×29` as established above; the original p0 first two red-word GP-prime sums 347/315 center on331 and differ by32. This makes the **prime-count-to-32-row mapping** a coherent additional source arithmetic relationship, though it cannot establish authorship.
+
+The table's byte-to-address map contains an 11-node cycle
+`192→0→203→68→199→47→76→114→197→115→247→192`,
+with **252 of 256** starting cell addresses eventually reaching this cycle; only the four-address component `9,158,227,249` does not. Consequently *eventual* convergence to 192 is intrinsically weak evidence. The more specific short routes above deserve preserving as a candidate operational selector, but they were noticed after inspecting original graph structure: the exact joint event is postselected and cannot carry an unadjusted authorship probability. Under the competing **base-59** numeric reading, `3C = 3×59+12 = 189`, so even the shortest pointer link to192 disappears. The source does not resolve that radix ambiguity.
+
+**Research decision:** keep this as a *single source-anchored potential choice of outer `00`*, not as an established cipher fact. The existing 180/76 moth/register and zero-anchor GP29 direct consumers failed; rerunning them with a retroactively preferred outer start would duplicate that work. A genuine advance needs an independent 2014/2016 clue that commands **prime counting followed by a table lookup** or provides a reversible, word-aware cipher consumer that produces original-page plaintext. The [read-only source-gate reproducer](../sims/lp2_2014_html133331_p50_primepointer_sft.cjs) asserts all exact pointers, original red-word arithmetic, graph components and the radix qualification.
+
 ## Decision and bounded next move
 
 The **physical presence of 133/331** and the **prime-index equation** are verifiable. Their construction as an *author-intended key or instruction* remains hypothetical. Neither first-party markup nor the original ciphertext specifies addition as a key-generation step, a 464th-prime start as an unknown-page cipher clock, or how this would act on the 29-rune alphabet.
 
-A direct reapplication of the historically solved p56 prime-totient + transparent-plaintext-F cipher to unknown LP2 pages with **every one of the first 5,000 prime-ordinal starts** is already reported as negative in [the independently source-native 5,000-start page-reset gate](../im-results/lp2-phi-prime-page-local-nativeword-inverse.md); this includes ordinal 464. Do **not** rerun that cipher with the same source input. Additional additive or modulo-29 interpretations of 464 are mathematically possible but currently unselected.
+A direct reapplication of the historically solved p56 prime-totient + transparent-plaintext-F cipher to unknown LP2 pages with **every one of the first 5,000 prime-ordinal starts** is already reported as negative in [the independently source-native 5,000-start page-reset gate](../im-results/lp2-phi-prime-page-local-nativeword-inverse.md); this includes ordinal 464. Do **not** rerun that cipher with the same source input. Additional additive or modulo-29 interpretations of 464 remain unselected. The newly observed 133/331 prime-count table-pointer routes converge on original outer 00 cell192 under radix60, but prime-count lookup and table-as-address dereferencing remain equally unselected. Neither supplies a plaintext receiver.
 
 **Actionable route if independent evidence appears:** identify an *earlier Cicada-authored* clue connecting the original `title` and `id` fields to an actual operand, starting key position, grid address, or navigation operation; freeze its decoder/clock before original ciphertext testing; require at least 150 contiguous unknown-page GP29 plaintext runes and a correct original holdout. In the absence of such a receiver, preserve the finite clue and do not spend compute on postselected 464 variants.
 
