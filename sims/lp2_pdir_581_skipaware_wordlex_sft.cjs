@@ -114,11 +114,10 @@ const mod=x=>(x%29+29)%29;
  * those first-rune possibilities, and even extra first coin behavior.
  * @param {number[]} cipher @param {Uint8Array} K
  * @param {{edge:Int32Array[],ends:string[]}} trie
- * @param {number} start @param {number} sign @param {number} dir
- * @param {number} model
- * @returns {string}
+ * @param {number} sign @param {number} dir @param {number} model
+ * @returns {(start:number)=>string}
  */
-function reach(cipher,K,trie,start,sign,dir,model){
+function buildReacher(cipher,K,trie,sign,dir,model){
   const N=cipher.length,edge=trie.edge,ends=trie.ends,klen=K.length;
   /** @param {number} i @param {number} j @param {number} node @returns {string} */
   function go(i,j,node){
@@ -173,7 +172,7 @@ function reach(cipher,K,trie,start,sign,dir,model){
     }
     return '';
   }
-  return go(0,start,0);
+  return start=>go(0,start,0);
 }
 
 /** @param {number[]} cipher @param {{name:string,key:Uint8Array}[]} streams @returns {object|null} */
@@ -184,8 +183,9 @@ function findPreimage(cipher, streams){
     for(const sign of [1,28]){
       for(const direction of [1,-1]){
         for(const model of [0,1]){
+          const test=buildReacher(cipher,key,trie,sign,direction,model);
           for(let start=0;start<key.length;start++){
-            const word=reach(cipher,key,trie,start,sign,direction,model);
+            const word=test(start);
             if(word)return {word,key:name,sign,direction,model,start};
           }
         }
@@ -217,7 +217,7 @@ for(let start=101;start<2000&&!plant;start++){
   if(hidden>0)plant={cipher,start,hidden};
 }
 assert(plant,'Positive plant must exercise the hidden rejection branch');
-const controlResult=reach(plant.cipher,prime.key,tries.get(control.length),plant.start,1,1,0);
+const controlResult=buildReacher(plant.cipher,prime.key,tries.get(control.length),1,1,0)(plant.start);
 assert.equal(controlResult,'CIRCUMFERENCES','Known source-native hidden-skip plant');
 
 const cases=words.map((w,index)=>({w,index})).filter(x=>x.w.length>=10);
