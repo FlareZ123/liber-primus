@@ -111,6 +111,10 @@ const our = p57Word("OUR");
 const the = p57Word("THE");
 const surface = p57Word("SURFACE");
 const emerge = p57Word("EMERGE");
+const own = p57Word("OWN");
+const to = p57Word("TO");
+const must = p57Word("MUST");
+const shed = p57Word("SHED");
 
 assert.equal(tunnelng.gp0, 94);
 assert.equal(tokens[tunnelng.gp0], "0u");
@@ -201,6 +205,79 @@ assert.deepEqual(tripleHits, [{
   values: [28, 18, 10, 6, 14, 6, 15],
 }]);
 
+/* Prospective OUR/OWN positional holdout: p57 OWN is the next word, 13. */
+assert.equal(own.position, 13);
+const selectedOwn = p55Words[12];
+const ownInterior = selectedOwn.slice(K, -K);
+const ownShell = selectedOwn.slice(0, K).concat(selectedOwn.slice(-K));
+assert.deepEqual(selectedOwn, [18, 15, 12, 2, 2, 18, 15]);
+assert.equal(spell(selectedOwn), "ESEOTHTHES");
+assert.equal(gp0(ownShell), to.prime);
+assert.equal(phi(primeSum(ownShell)), shed.gp0);
+assert.equal(primeSum(ownInterior), must.gp0);
+
+const ownHits = [];
+const adjacentPairHits = [];
+for (let physicalPage = 0; physicalPage <= 55; physicalPage += 1) {
+  if (physicalPage === 50) continue;
+  const words = physicalWords(physicalPage);
+  const isOurCarrier = (word) => {
+    if (word.length < 2 * K + 1) return false;
+    const inner = word.slice(K, -K);
+    const outer = word.slice(0, K).concat(word.slice(-K));
+    return (
+      phi(primeSum(word)) === emerge.prime &&
+      gp0(outer) === surface.gp0 &&
+      primeSum(outer) === surface.prime &&
+      phi(primeSum(inner)) === the.prime
+    );
+  };
+  const isOwnCarrier = (word) => {
+    if (word.length < 2 * K + 1) return false;
+    const inner = word.slice(K, -K);
+    const outer = word.slice(0, K).concat(word.slice(-K));
+    return (
+      gp0(outer) === to.prime &&
+      phi(primeSum(outer)) === shed.gp0 &&
+      primeSum(inner) === must.gp0
+    );
+  };
+  for (let index = 0; index < words.length; index += 1) {
+    if (isOwnCarrier(words[index])) {
+      ownHits.push({
+        page: physicalPage,
+        word: index + 1,
+        text: spell(words[index]),
+        values: words[index],
+      });
+    }
+    if (
+      index + 1 < words.length &&
+      isOurCarrier(words[index]) &&
+      isOwnCarrier(words[index + 1])
+    ) {
+      adjacentPairHits.push({
+        page: physicalPage,
+        firstWord: index + 1,
+        firstText: spell(words[index]),
+        secondText: spell(words[index + 1]),
+      });
+    }
+  }
+}
+assert.deepEqual(ownHits, [{
+  page: 55,
+  word: 13,
+  text: "ESEOTHTHES",
+  values: [18, 15, 12, 2, 2, 18, 15],
+}]);
+assert.deepEqual(adjacentPairHits, [{
+  page: 55,
+  firstWord: 12,
+  firstText: "EAEIGXGS",
+  secondText: "ESEOTHTHES",
+}]);
+
 console.log(JSON.stringify({
   status: "PASS: independently selected p55 + OUR word12 gives a unique K=2 THE/SURFACE/EMERGE carrier",
   upstream: {
@@ -235,5 +312,20 @@ console.log(JSON.stringify({
       shedInteriorPhiTarget: "LIKE",
     },
   },
+  ownWord13: {
+    position: own.position,
+    text: spell(selectedOwn),
+    values: selectedOwn,
+    interior: spell(ownInterior),
+    shell: spell(ownShell),
+    shellGp0: gp0(ownShell),
+    shellGp0Target: "TO:prime",
+    shellPrimeTotient: phi(primeSum(ownShell)),
+    shellPrimeTotientTarget: "SHED:gp0",
+    interiorPrime: primeSum(ownInterior),
+    interiorPrimeTarget: "MUST:gp0",
+  },
   globalTripleHits: tripleHits,
+  globalOwnHits: ownHits,
+  globalAdjacentPairHits: adjacentPairHits,
 }, null, 2));
