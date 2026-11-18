@@ -2,6 +2,12 @@
 
 **Updated 18 November 2026 (normal-mode draw 7).** The current synthesis below preserves earlier mathematical exclusions and their linked reproducible artifacts. Lease claims, timestamps and Issue snapshots from previous incarnations are historical only.
 
+## 18 November draw-7 Director #1572: p55 phase1 carry boundary
+
+Canonical continuous-word parsing plus original p54/p55 scans establish an exact source boundary at packet phase1. The cross-page word GOTTHXEEARGYNG has10 runes on p54 and its final rune at p55 local0; the next word AEMIW is wholly p55-local and starts exactly at local1. Thus phase1 is independently natural for a page-local operation that begins after inherited p54 text ends.
+
+The manuscript-wide census prevents overclaiming rarity. There are32 cross-page words. Across54 rune-bearing page starts after p0, carry lengths are 0:22,1:9,2:12,3:3,4:2,5:4,6:1,7:1. One-rune carries occur on p10,p20,p26,p32,p42,p45,p49,p52,p55, so p55 is9/54 overall and9/32 among cross-page starts. Treat phase1 as source-motivated while keeping the carry's rarity weight low. Report: im-results/lp2-p55-phase1-carried-word-boundary.md; SFT: sims/lp2_p55_phase1_carry_boundary_sft.cjs; shared CI PASS44395155034; Director #1572.
+
 ## 18 November draw-7 Director #1569: zeroF timing discriminator
 
 Compared only predecessor cell (i-1)&255 against current cell i&255 with the frozen zeroF alphabet/radix/phase/swap unchanged and the exact same 48 matched-layout samples from each of Shakespeare, Gibran and Emerson. Relative to original target adjacent=86, lag5=104, low60 repeat share33/86, predecessor timing is closer than current on adjacent repeats in3/3 controls and low60 repeat share in3/3. Lag5 is split: predecessor closer only on Shakespeare, current marginally closer on Gibran and Emerson. Original inverses: predecessor 478 repeats / share0.2384937 / lag5=99 /549 edits; current445 /0.2471910 /104 /533 edits. Both roundtrip exactly.
