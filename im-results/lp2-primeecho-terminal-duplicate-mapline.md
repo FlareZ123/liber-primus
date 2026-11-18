@@ -41,6 +41,19 @@ The complete 41-history accounting separates the endpoint from the discriminant.
 
 Therefore **3301-at-a-line-end is not a boundary300 selector**. The selective condition remains the two-pause chain already frozen by #1506: only starts167/167/168 consume the earlier exceptional pause1033 and later consume3301, and all three then exhaust at boundary300. In those histories 1033 lands at terminal offsets5/6 inside p54's red title, while 3301 lands at offset299 at the p55 line3 end. This distinction rules out treating prime3301 alone as the procedural reason to choose that line break.
 
+### #1557 line-break word-carry census
+
+The boundary300 cut is ordinary in the manuscript's typography rather than a distinctive instruction to treat `CX` as a separate object. A canonical census of every physical break between two rune-bearing printed lines gives:
+
+- **539** physical rune-line breaks in p0-p55;
+- **388/539 (71.99%)** fall inside a canonical complete word;
+- **151/539** coincide with a complete-word boundary;
+- the exact p55 geometry, a six-rune word split **4/2**, occurs **13 times** manuscript-wide, on p6, p8, p9, p11, p17, p28, p32, p37, p43, p45, p47, p52 and p55.
+
+The nine visual-chapter final-line starts used by #1506 are `2/8, boundary, boundary, 1/6, 3/5, 2/3, 1/3, boundary, 4/2`. Thus **6/9** chapter-final line starts also split a carried word. p55 is the only 4/2 member of that nine-case panel, but the same 4/2 typography occurs twelve other times elsewhere in the original source, so that small-panel uniqueness does not supply a source-visible opcode.
+
+Director #1557 therefore follows its negative fork: retain finite `prime_echo` as a selector for the p55 physical line break, while **retiring the carried-word split and `CX` fragment as clues absent independent source evidence**. The canonical consumer must ignore the mere fact that the boundary lands inside `CEAIMCX`. Reproducer: [`sims/lp2_linebreak_wordcarry_census_sft.cjs`](../sims/lp2_linebreak_wordcarry_census_sft.cjs).
+
 ## 2. Canonical word-boundary correction
 
 The earlier report treated each rune span on a physical line as a printed word. That is wrong for this source format. The repository's canonical word parser, already used across word-level research, treats `/` and whitespace as physical wrapping and **does not flush a word at a line or page break**. On p0-p55 it reproduces the established source totals:
