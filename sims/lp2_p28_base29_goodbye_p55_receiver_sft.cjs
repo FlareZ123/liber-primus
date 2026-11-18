@@ -22,6 +22,9 @@ const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const signedProtocol = read("resources/external/2013-tcp-server-signed-source.md");
+const solved = JSON.parse(
+  read("resources/external/relikd-solved-gp29-native-v1.json")
+);
 
 assert.match(
   signedProtocol,
@@ -182,6 +185,76 @@ for (let index = 0; index + 2 < allWords.length; index += 1) {
 assert.equal(allWords.length - 2, 2894);
 assert.equal(tripleHits, 1);
 
+/*
+ * New holdout consequence: SHED -> 55 -> complete word15, while the
+ * adjacent bracket word independently exposes NEXT. P55's first page-local
+ * one-rune fragment continues the preceding p54 word, leaving 16 intact
+ * p55 words. One-based 15 selects DJU and NEXT selects BEI.
+ */
+const p54Words = wordsOnPhysicalPage(54);
+const p55Words = wordsOnPhysicalPage(55);
+assert.deepEqual(p55Words[0], [21]);
+const joined5455 = runeWords(parts[53] + "\n" + parts[54]);
+assert.equal(joined5455.length, p54Words.length + p55Words.length - 1);
+assert.deepEqual(
+  joined5455[p54Words.length - 1],
+  p54Words.at(-1).concat(p55Words[0])
+);
+
+const p55CompleteWords = p55Words.slice(1);
+assert.equal(p55CompleteWords.length, 16);
+const p55Selector = bracket[2].peels[2];
+assert.equal(p55Selector, 15);
+assert.equal(bracket[1].peels[1], nextAddress);
+
+const dju = p55CompleteWords[p55Selector - 1];
+const bei = p55CompleteWords[p55Selector];
+assert.deepEqual(dju, [23, 11, 1]);
+assert.deepEqual(bei, [17, 18, 10]);
+
+const pairHits = [];
+for (let physicalPage = 0; physicalPage <= 55; physicalPage += 1) {
+  if (physicalPage === 50) continue;
+  const words = wordsOnPhysicalPage(physicalPage);
+  for (let index = 0; index + 1 < words.length; index += 1) {
+    if (
+      words[index].length === dju.length &&
+      words[index + 1].length === bei.length &&
+      words[index].every((value, position) => value === dju[position]) &&
+      words[index + 1].every((value, position) => value === bei[position])
+    ) {
+      pairHits.push({
+        page: physicalPage,
+        localWord: index + 1,
+        nextLocalWord: index + 2,
+      });
+    }
+  }
+}
+assert.deepEqual(pairHits, [
+  { page: 27, localWord: 6, nextLocalWord: 7 },
+  { page: 55, localWord: 16, nextLocalWord: 17 },
+]);
+
+/*
+ * Secondary deterministic continuation:
+ * nested 57/6 selects solved p57 word6 TO -> GP0 19;
+ * p50 cell19 is 0X and decodes to 33 in either radix.
+ */
+const p57 = solved.sections.find((section) => section.name === "p57_parable");
+assert.ok(p57);
+const p57Words = runeWords(p57.source_text);
+assert.equal(p57Words.length, 20);
+const p57Word6 = p57Words[5];
+assert.deepEqual(p57Word6, [16, 3]);
+assert.equal(sum(p57Word6), 19);
+assert.equal(table[19], "0X");
+assert.equal(decode59(table[19]), 33);
+const alphabet60 = grid.alphabet;
+const decode60 = (token) =>
+  alphabet60.indexOf(token[0]) * 60 + alphabet60.indexOf(token[1]);
+assert.equal(decode60(table[19]), 33);
+
 console.log(JSON.stringify({
   status: "PASS",
   cuts: {
@@ -200,5 +273,17 @@ console.log(JSON.stringify({
     tripleWindows: allWords.length - 2,
     ordered837464Hits: tripleHits,
     nestedSignatureCounts: signatureCounts,
+  },
+  p55Exit: {
+    selector: p55Selector,
+    word: "DJU",
+    next: "BEI",
+    pairHits,
+  },
+  p33Continuation: {
+    p57Word6: "TO",
+    p57Word6Gp0: 19,
+    p50Token: "0X",
+    page: 33,
   },
 }, null, 2));
