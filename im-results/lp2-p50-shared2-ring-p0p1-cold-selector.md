@@ -201,6 +201,20 @@ The direction bridge was recognized after the repository already contained the w
 
 A genuine promotion to established plaintext still requires a fresh untouched prediction from this combined mechanism, or an original instruction explicitly telling the player to transfer p50 circumference turn directions into the 27x27 state machine.
 
+## Prospective block39 holdout rejects direct vector propagation
+
+The combined ring mechanism was frozen before inspecting the next unresolved transition. The p50 short path supplies the full vector `DOWN6 / LEFT3 / UP6`. Applied to the published block38 source center `(12,13)`, it ends at `(12,10)`.
+
+The untouched block39 forecast independently requires a horizontal non-mirror source node with an even/even center, even radius, phase1 and Möbius signature `(0,+1,0)`. The endpoint is even/even. The only even ring-segment length is6, fixing radius6. The untouched horizontal node at that radius is `L-OE-H`. Both untransformed orientations have the required signature, with phase1 aligned keys `OE-H-L` and `OE-L-H`.
+
+This is a prospective source-key prediction. It was fixed before any block39 output was inspected.
+
+The plaintext gate is negative. The pre-existing block39 rules leave exactly132 legal ciphertext paths. All132 pass the published squarefree-GCD gate for each predicted key orientation. Across the resulting264 fixed key/path combinations, the pinned Shakespeare single-word gate yields **0** complete words and the already pinned 1,465-entry Shakespeare+Gibran frequent-GP vocabulary yields **0** complete full-block segmentations.
+
+**Decision:** reject direct reuse of the `6,3,6` ring vector as a general block-to-block key propagation rule. Preserve the COLD bridge as a local cross-object selector. A later extension requires a new original instruction.
+
+Reproducer: [`sims/lp2_p50_dh_ring_block39_holdout_sft.cjs`](../sims/lp2_p50_dh_ring_block39_holdout_sft.cjs).
+
 ## Reproduction
 
 Run:
