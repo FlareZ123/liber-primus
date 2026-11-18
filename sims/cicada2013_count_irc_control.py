@@ -263,6 +263,22 @@ def main() -> None:
     hello_prefix = recover_hello_prefix(lines)
     hello_text = hello_prefix.decode("ascii")
 
+    # The independently archived complete clearsigned response has 60 bytes
+    # after the 936 complete bytes transmitted in the contemporary IRC log.
+    complete_hello = (
+        args.repo_root / "resources/historical/cicada2013-first-onion-hello.asc"
+    ).read_bytes()
+    expected_tail = bytes.fromhex("75794f360a5a7679627a70347334537a526a6b6b39734d4d360a3d5759564f0a2d2d2d2d2d454e4420504750205349474e41545552452d2d2d2d2d0a")
+    if len(complete_hello) != 996 or complete_hello[:936] != hello_prefix:
+        raise SystemExit("full archived HELLO differs from 2013 IRC 936-byte prefix")
+    if complete_hello[936:] != expected_tail:
+        raise SystemExit("HELLO continuation is not solely the recorded signature tail")
+    signed_lines = hello_text.splitlines()
+    whitespace_counts = (5, 3, 2, 2, 3, 5)
+    for line_number, count in zip((4, 6, 8, 10, 12, 14), whitespace_counts):
+        if signed_lines[line_number - 1] != " " * count:
+            raise SystemExit(f"2013 IRC disagrees on HELLO blank line {line_number}")
+
     output = {
         "source": {
             "pastebin_id": "XQ9rJSad",
@@ -285,6 +301,16 @@ def main() -> None:
             "sha256_prefix": hashlib.sha256(hello_prefix).hexdigest(),
             "second_onion": "xsxnaksict6egxkq.onion",
             "signature_truncated_in_irc": True,
+            "archived_complete_bytes": len(complete_hello),
+            "archived_complete_sha256": hashlib.sha256(complete_hello).hexdigest(),
+            "irc_exact_prefix_of_complete": True,
+            "missing_irc_bytes_are_signature_tail_only": len(expected_tail),
+            "contemporaneous_blank_space_runs": list(whitespace_counts),
+            "witness_limit": (
+                "The independent 2013 participant record preserves the first 936 bytes; "
+                "the complete signed object is a later archive copy. The signature "
+                "does not cryptographically authenticate trailing whitespace."
+            ),
             "signed_message_body": hello_text.split("-----BEGIN PGP SIGNATURE-----", 1)[0],
         },
         "unlisted_command": {
