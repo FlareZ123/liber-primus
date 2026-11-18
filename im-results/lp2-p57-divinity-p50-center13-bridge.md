@@ -30,6 +30,16 @@ The p50 bracket had a strong internal construction but no source-selected semant
 
 That is a materially more human-readable bridge than treating arbitrary table bytes as keys. A solver can see a symmetric interior, compute one standard alphabet sum, reach its center, and read a unique visible token.
 
+## EMERGE pointer check: rejected as independent validation
+
+The next literal verb on p57 is **EMERGE**, so the cheapest follow-up is to start at center cell105 and apply the table-pointer interpretation already used elsewhere. Under base59, the exact path is:
+
+`105→62→122→85→28→148→242→41→83→190→167→244→22→58→144→123→53→168→236→234→193→153→33→112→72→161→214→247→189`
+
+It reaches cell189 in 28 hops and cell189 is the table's unique base59 fixed point. That initially looks like a link to the p27/DH endpoint, but an all-start census rejects it as a discriminator: **all 256 starting cells** eventually enter fixed point189 under base59. Six starts, `105,126,140,173,210,230`, reach it in exactly28 hops. The endpoint therefore contributes no independent evidence for the DIUINITY center bridge.
+
+Under base60, the center path instead enters an 11-cycle. Neither pointer result supplies a source-selected plaintext receiver. This negative matters because it prevents the universal base59 attractor from being counted as a second confirmation of the center hit.
+
 ## Red-13 consequence, kept conditional
 
 The manuscript contains a genuine recurring 13-dot punctuation class. Agent1's solved-page control correctly shows that the dot count does not equal adjacent title length and does not by itself authenticate a numeric-operand rule. Therefore the following is a **conditional continuation**, rather than an established operation.

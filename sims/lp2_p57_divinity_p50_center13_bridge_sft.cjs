@@ -132,6 +132,57 @@ assert.deepEqual(
   []
 );
 
+
+const alphabet59 = grid.alphabet.replace("f", "");
+
+function decodeBase59(token) {
+  const high = alphabet59.indexOf(token[0]);
+  const low = alphabet59.indexOf(token[1]);
+  assert.ok(high >= 0 && low >= 0);
+  return high * 59 + low;
+}
+
+function pointerFate(start) {
+  const path = [];
+  const seen = new Map();
+  let cell = start;
+  while (cell >= 0 && cell < 256 && !seen.has(cell)) {
+    seen.set(cell, path.length);
+    path.push(cell);
+    cell = decodeBase59(tokens[cell]);
+  }
+  if (cell < 0 || cell >= 256) {
+    return { path, exit: cell, cycle: [] };
+  }
+  return { path, exit: null, cycle: path.slice(seen.get(cell)) };
+}
+
+const base59FixedPoints = tokens
+  .map((token, cell) => decodeBase59(token) === cell ? cell : null)
+  .filter((cell) => cell !== null);
+assert.deepEqual(base59FixedPoints, [189]);
+
+const centerFate = pointerFate(payloadCenter);
+assert.deepEqual(centerFate.cycle, [189]);
+assert.deepEqual(centerFate.path, [
+  105, 62, 122, 85, 28, 148, 242, 41, 83, 190,
+  167, 244, 22, 58, 144, 123, 53, 168, 236, 234,
+  193, 153, 33, 112, 72, 161, 214, 247, 189,
+]);
+assert.equal(centerFate.path.indexOf(189), 28);
+
+const allFates = Array.from({ length: 256 }, (_, start) => ({
+  start,
+  fate: pointerFate(start),
+}));
+assert.ok(allFates.every(({ fate }) =>
+  fate.cycle.length === 1 && fate.cycle[0] === 189
+));
+const distance28Starts = allFates
+  .filter(({ fate }) => fate.path.indexOf(189) === 28)
+  .map(({ start }) => start);
+assert.deepEqual(distance28Starts, [105, 126, 140, 173, 210, 230]);
+
 const adjacentRed13 = [];
 for (const page of ink.pages) {
   for (const span of page.red_spans || []) {
@@ -225,6 +276,15 @@ console.log(JSON.stringify({
     center: payloadCenter,
     centerPrintedToken: tokens[payloadCenter],
     centerTokenOccurrences: 1,
+  },
+  emergePointerCheck: {
+    base59FixedPoints,
+    centerPath: centerFate.path,
+    centerHopsTo189: 28,
+    startsReaching189: allFates.length,
+    distance28Starts,
+    decision:
+      "Rejected as independent validation: all 256 base59 starts converge to 189.",
   },
   red13Consequence: {
     adjacentRedSpans: adjacentRed13.length,
