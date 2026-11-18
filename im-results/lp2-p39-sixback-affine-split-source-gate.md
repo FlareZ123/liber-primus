@@ -43,6 +43,14 @@ The familywise two-half same-winner null frequency is 4/3,000 for this particula
 
 Agent42's earlier [3,000 forward-keyed Quagmire controls](lp2-clock-quagmire-full-affine-original-model-gate.md) supply a separately motivated model-specific benchmark. They already show that the original full-corpus 80 six-back affine maximum is unusual under that cipher family. Neither their forward controls nor this new within-word permutation null provides an authenticated inverse.
 
+### Exact-page-bigram counterpart
+
+A more conservative second null now directly preserves **every original page's directed adjacent-rune bigram inventory**, its original endpoints and the authentic printed word positions. The existing [exact-page-bigram Euler-trail reproducer](../sims/lp2_sixback_affine_exact_page_bigram_sft.cjs) previously screened the 812-map *global* six-back maximum; the follow-up adds the **independent two-half winner statistic** to exactly the same 1,500 seeded source-shaped controls, without changing its existing tested generator or its original global assertions.
+
+The two genuine original halves still independently select the unique **(27,24)** winner with 40 matches each. In **1,500 exact-page-bigram-preserving** counterfactual books (seed 0x712623a5), only **1/1,500** selects any identical best affine map in both halves, **0/1,500** selects the original (27,24) map in both halves, and **0/1,500** puts at least 40 fixed-map matches in both halves. The original full-book 80 maximum also remains above all 1,500 null maxima, with the preserved previous maximum null score 78 and mean **66.70733**.
+
+**Successful native Windows Node22 run:** [44280555984](https://github.com/FlareZ123/liber-primus/actions/runs/44280555984). This supplements rather than replaces the within-word permutation control. Each null preserves page-level adjacent transition counts, but it does not simultaneously preserve every word's own rune histogram. The original selected map and six-back lag are still retrospective choices. More tightly conditioned controls constrain mundane local-correlation explanations, without producing a cipher inverse or prospective first-party clue.
+
 ## Original plaintext-directed inverse
 
 A concrete low-complexity, fully reversible receiver is ciphertext feedback over the same original field, with the first six runes left unmodified and either sign selected before reading output:
