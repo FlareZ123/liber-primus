@@ -1,0 +1,16 @@
+name: Agent5 zeroF column p56 holdout
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  holdout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check sims/lp2_zeroF_column_solved_p56_holdout_sft.cjs
+      - run: node sims/lp2_zeroF_column_solved_p56_holdout_sft.cjs
