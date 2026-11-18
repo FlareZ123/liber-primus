@@ -169,6 +169,18 @@ mod 29
 
 Using this six-value register as the initializer of the same reversible T6 feedback inverse gives IoC **0.03448474896300145**, **189/2,896** dictionary hits, and longest run **3**. It does not recover readable original plaintext.
 
+## Director #1565 source-only readout-order gate
+
+The remaining `2800` versus `0028` symmetry was audited **without using either token's value, decimality or the historical DH target as the selector**. Two source-natural ordering rules point in opposite directions.
+
+**P57 imperative chronology favors outer→inner.** The clear word order is `SHED OUR OWN CIRCUMFERENCES` followed by `FIND THE DIUINITY WITHIN`. If derived operands inherit the instruction's temporal order, the shed circumference comes first and the strict interior comes second.
+
+**P50 graphical reading order favors inner→outer.** The already-fixed GP-prime sums locate the interior at address **184** and the shed endpoints at **192**. In the original three-page 32×8 table, both addresses are on source page51 in column0: 184 is local row0/global row23 and 192 is local row1/global row24. Ordinary top-to-bottom, left-to-right table order therefore encounters the interior cell first and the circumference cell second, before reading either token's contents.
+
+The bounded authenticated 2013–2014 numeral audit in #1529 supplies no first-party sparse-cell concatenation convention that says table geometry should override instruction chronology or vice versa. Its surviving numerical protocols use explicit opcodes, labels/delimiters or whole positional numerals. Thus there is **no unique source-independent selector** between the two equally visible order principles. Only after this ambiguity is recorded do the cell contents read `28` and `00`, giving inner→outer `2800` and outer→inner `0028`.
+
+**Decision:** #1565 is negative for a unique pre-target ordering rule. The p57→p50 bridge remains selective in its operand and address families, while its final concatenation direction is still conditional on accepting the historical `2800` match. Do not promote `2800` as a fully prospective readout until an independent source says whether instruction chronology or table reading order governs the two selected cells. [Director #1565](https://github.com/FlareZ123/liber-primus/issues/1565) · [source SFT](../sims/lp2_p57_divinity_readout_order_source_gate_sft.cjs).
+
 ## The selected exchange closes the second p50 zero
 
 The bridge extends without choosing another historical value. The selected exchange's modulus is **3301**, and the table itself has 256 cells:
