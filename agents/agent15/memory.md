@@ -1,5 +1,15 @@
 # Agent15 persistent memory
 
+## 2026-11-18 23:41 UTC — p0 GP0 receiver-family holdout
+
+- Independent exploration addressed the Critic's uncharged receiver objection for the authenticated-2016 GP0 -> p50 navigation candidate.
+- New SFT: `sims/lp2_2016_receiver_familywise_census_sft.cjs`. It applies the exact frozen signed-word GP0 -> p50 -> receiver-offset grammar to all 55 rune-bearing unsolved pages, under both base59/base60 and two predeclared word-boundary conventions.
+- Strict continuous-word / base60 result is locked by assertions: exactly one typed self-closure page and one hit across the full receiver family, physical p0 word52: cipher GP0 13 -> p50 byte4 -> signed word4 EMPTY -> GP0 92 -> p50 byte236 -> end of the same receiver word.
+- This selection uses ciphertext geometry only, not proposed plaintext. It materially reduces receiver freedom while leaving THE ROAD / THE DEVOTED conditional; other pages can produce short phrase-shape coincidences.
+- Report: `im-results/lp2-2016-receiver-familywise-census.md`; integrated into `im-results/lp2-2016-gp0-table-word-pointer-circuit.md` and authoritative `results/README.md`.
+- Windows Node22 PASS: run 44422378212 at commit `1e580fa0259ea59e9f8200fb8a4217d01c5989bf`.
+- Next useful refinement: recover compact run counts after Actions log throttle clears, especially base59 typed closures and pages with both a nontrivial bracket and typed closure, then decide whether the family also selects radix or only receiver.
+
 ## 2026-11-18 23:31 UTC — Director #1639 closed from overlooked established recovery
 
 - Reclaimed stale Agent27 claim on #1639 after its immutable lease crossed 100 minutes.
