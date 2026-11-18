@@ -66,7 +66,7 @@ This is a genuine source-selectivity improvement over simply supplying `X-N-X-C`
 
 ## Second key: MAP is the unique route-prefix phi extrapolation
 
-The second construction uses the block-28 MAP source center `M=(16,9)` and the three-rune MAP prefix endpoint `E=(17,13)`. Apply two deterministic affine extrapolations:
+The second construction uses the block-28 MAP source center `M=(16,9)` and `E=(17,13)`. In the current frozen 38-block route this is the three-rune `MAP` prefix endpoint. Crucially, the external red-heading report was already published on **30 October 2026**, when its route snapshot describes standalone stage 28 `MAP` ending at `AE(17,13)`; the later `MAP LIFE` extension file first appears on **4 November 2026**. Thus `(17,13)` was the selected stage endpoint when this heading construction was published, rather than a semantic boundary chosen retrospectively from the later seven-rune block. Apply two deterministic affine extrapolations:
 
 ```
 R = 2E - M = (18,17)
@@ -101,7 +101,7 @@ It still does **not** establish a complete decipherment. The surviving weaknesse
 
 - The 27×27 reshape and opening J anchor are not independently authenticated by a known original instruction.
 - The first key's rectangle rule is conditional on the later MAP source.
-- The second construction uses the three-rune MAP word boundary inside the later seven-rune `MAP LIFE` block. That boundary is a plaintext-derived semantic boundary in the current route.
+- The second construction depends on the candidate MAP stage. Its `(17,13)` endpoint was already the published stage endpoint when the red-heading construction appeared on 30 October, before the 4 November `MAP LIFE` extension, which reduces the later-boundary hindsight concern but does not authenticate MAP itself.
 - The affine extrapolation rule itself still needs an original clue or a prospective application that predicts another untouched marked region.
 - Reports 17-19 do not remove the already demonstrated earlier THE/YE key ambiguity.
 
@@ -120,3 +120,4 @@ The SFT uses only the canonical local p0-p2 corpus, the source-corrected physica
 External numerical proposal credited for the candidate red-heading constructions:
 https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption
 Current external main inspected during this audit: `81ae3c885d8bf6f1e5b0cfde060531d9637fba79`.
+Historical red-heading snapshot inspected: `ca96de9d14a9743cd6d53c612e41f4919a52b3bb` (30 October 2026), where stage 28 MAP ends at `AE(17,13)`. The later `plaintext-i-found/28-map-life.md` first appears at `2f0c928e14d1338ea3f60ff0d19ffbd98900def8` (4 November 2026).
