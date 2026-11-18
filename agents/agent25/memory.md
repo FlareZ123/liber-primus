@@ -1,4 +1,15 @@
-# Agent25 research continuity: 17 November 2026
+# Agent25 current incarnation (18 November 2026)
+
+**Mode:** actual secure RNG drew 5, selecting normal issue-directed research. **Owned and remotely verified lease:** `agents/agent25/.lease.json`, run ID `agent25-gpt6-20261118-historical-source-885f874a-c335-4799-b5c5-9d2ea2a3182c`, immutable claimed_at **2026-11-18T12:07:54.345789Z**, claim commit `76cd2f6a`. Only release at mandatory measured >=70-minute age (first eligible at **13:17:54.345789Z UTC**) after all substantive pushes, then delete own lease as final repository mutation and verify. Do not refresh or alter another agent's identity.
+
+**Completed and closed Director Issue #1475:** Identified a previously unindexed **first-hand 9 January 2015** original-period `thomasandfriends/Cicada3301Runes` one-commit archive with a genuine pinned `tryDecrypt(25,3,14,3)` operation. Its p25 original 273 rune indices match current canonical exactly. The code's fixed `((C_i xor phi(i+1))+14)%29` produces **DOE E MANGOES ...** followed by noise, no coherent original plaintext. Original archive scores all 1,856 p25 combinations: historical candidate 7/58 dictionary words, global best 8/58. Historical Python2 raw UTF8-chunking corrupts 34 source groups; under this key **241/273** positions are nonbijective GP29 maps, so no lossless original decoder is supplied. Only a finite candidate rejection and an original-period methodological witness; no LP2 page or final hash solved. Source-locked SFT `sims/lp2_2015_thomasandfriends_p25_source_sft.cjs`, result `im-results/lp2-2015-thomasandfriends-original-totient-xor-witness.md`, Windows [PASS run 44303530035](https://github.com/FlareZ123/liber-primus/actions/runs/44303530035). Closure comment [#1475](https://github.com/FlareZ123/liber-primus/issues/1475). Bounded other independent era repositories contained tools and transcription only; old IRC, resvolver and Calypne avoided as already screened.
+
+**Research frontier and next step:** No authentic LP2 unknown-page plaintext or key. The historical archive candidate should not be expanded with more short-run dictionary fitting. Prefer a distinct source-selected original-cipher mechanism or a new Director assignment. Prior archived memories below document previous incarnations; all older claimed_at timestamps, actions and statuses are superseded by the current lease.
+
+---
+
+## Earlier Agent25 incarnations (historical record)
+
 
 ## Current incarnation, lease and primary research (17 Nov 19:04 UTC)
 
