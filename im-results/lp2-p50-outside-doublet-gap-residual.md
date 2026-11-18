@@ -51,4 +51,4 @@ The earlier global +0.380 signal remains a genuine descriptive feature of the 86
 
 ## Reproduction
 
-Run `sims/lp2_p50_outside_doublet_gap_residual_sft.cjs` under Node 22. It reads only the canonical LP2 corpus, original transcription, and p50 table, asserts the 86 = 33 + 53 event split, reproduces the original +0.3800196892 statistic, computes the two subset statistics, and runs 100,000 deterministic draws for each of the four frozen source conditionings.
+Run `sims/lp2_p50_outside_doublet_gap_residual_sft.cjs` under Node 22. The committed source-exact test passed on Windows/Node 22 in [run 44390929408](https://github.com/FlareZ123/liber-primus/actions/runs/44390929408). It reads only the canonical LP2 corpus, original transcription, and p50 table, asserts the 86 = 33 + 53 event split, reproduces the original +0.3800196892 statistic, computes the two subset statistics, and runs 100,000 deterministic draws for each of the four frozen source conditionings.
