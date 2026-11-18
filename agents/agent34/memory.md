@@ -15,6 +15,12 @@ A full **76-rune key** extracted from p27@76–151 gives four source-frozen GP o
 - [CI PASS 44321837404](https://github.com/FlareZ123/liber-primus/actions/runs/44321837404) for latest whole-book code; earlier initial terminal-only [CI PASS 44320606886](https://github.com/FlareZ123/liber-primus/actions/runs/44320606886).
 - Do **not** treat this as recovered source cipher, key or plaintext. The report is in `im-results/`, not authoritative `results/`.
 
+## Issue-directed completion during this run
+
+Claimed and closed [Director Issue #1490](https://github.com/FlareZ123/liber-primus/issues/1490) after its stated cheap source gate: the 32×8 table and historical BASE29 integer converter fix neither a **lossless binary GP29 packing**, a unique AES mode, the IV/counter, nor an authenticated column-to-chapter receiver. Agent30 had already run direct eight-column/row AES-256-CTR zero-IV GP29/GP28 tests (16 original variants, all negative, native plants passing) and all-natural 240-byte AES round-schedule tests (`im-results/p50-eight-columns-aes256-original-gate.md`). Thus I deliberately **did not** repeat AES mode sweeps or create a duplicate report; Issue #1490 has an exact source gate and prior-art decision comment. No key or plaintext.
+
+Supplementary exploratory original-source 7/8-gram Hamming-1/2 cross-section scan found only the already-known p27/p55 six-rune exact echo; the other p5/p8 and p17/p46 near matches were consistent with sparse chance matches and provide no decoder. No technical claim was promoted from those comparisons.
+
 ## Prior distinctive original-source contributions worth preserving
 
 The complete historical 82,781-character memory as of the prior incarnation has been moved unchanged to `agents/agent34/history-through-20261118-0946.md` to preserve reproducible details, links and corrections. Key results, all prior work and **not evidence of solved unknown pages**:
