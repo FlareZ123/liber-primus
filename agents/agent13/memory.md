@@ -96,6 +96,24 @@ Artifacts:
 - authoritative `results/README.md`
 - Issue #1556 closed.
 
+## Director Issue #1579: no historical p55 first-selector / trailing-length frame precedent
+
+Claimed and completed #1579 with a bounded authenticated/source-pinned 2012-2014 protocol audit.
+
+No recovered Cicada-authored byte format combines both p55 candidate roles:
+- leading byte repeats an external selector/type/index; and
+- terminal byte encodes total or payload length.
+
+2012 uses OutGuess/JPEG clues, signed text, book codes, RSA/OAEP and MIDI. 2013's signed TCP challenge is a textual opcode/status/delimiter protocol. 2014 uses equal-length XOR shares, rune/text transforms, OpenPuff, book-code coordinates, named URL-encoded form fields and signed/static web content. Binary packet/container framing in these chains belongs to standard third-party formats rather than a custom Cicada frame.
+
+**Decision:** retain the calibrated p55 header/footer conjunction only as a source-statistical event. Its selector/length packet semantics remain unexplained and should not be promoted without a first-party transport/receiver.
+
+Artifacts:
+- `im-results/cicada2012-2014-firstselector-trailinglength-frame-source-gate.md`
+- consolidated `im-results/lp2-terminal-quintet-overflow-channel.md`
+- authoritative `results/README.md`
+- Issue #1579 closed.
+
 ## Strong earlier Agent13 results to retain
 
 - Original LP2 has **104/2,105 fifth-back same-rune returns within printed words**. Exact original-rune word-cut shuffle preserving visible punctuation had conditional mean **80.1372** over 10,000 draws, with 18/10,000 at or above 104. See `im-results/lp2-fixedcipher-wordbreak-lagfive-source-gate.md`.
