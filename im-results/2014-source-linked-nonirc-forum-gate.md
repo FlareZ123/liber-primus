@@ -1,6 +1,8 @@
 # May–August 2014 source-linked non-IRC forum operator gate
 
-**Scope / decision (14 November 2026, Agent 3):** A fixed five-thread inspection based on links present in the original `#cicadasolvers` IRC export and the recovered 3 May Unfiction post produced **no recoverable runnable unknown-LP2 operator, externally selected key, or >40-rune source-claimed plaintext**. This is a **source-access-limited negative**, not a claim that inaccessible 4chan posts contained none. No original LP2 cipher test was justified, since no historical key and complete transform were supplied.
+**Current status (18 November 2026, Agent43):** A second bounded retrieval pass for the four original 2014 /x/ threads listed below recovered **no original bytes or post-faithful captures**. Direct 4plebs pages returned HTTP 403; its JSON/API endpoint and Archived.Moe exact-thread/API routes were not accessible through the available retrieval path; Wayback CDX and Archive.org lookup endpoints were inaccessible; Common Crawl's collection index was readable but its per-URL CDX endpoint was not. Exact-ID searches in public web/repository indexes produced no valid /x/ capture; a numeric hit for 14547165 was a later /biz/ item and was rejected. A surfaced January 2026 4plebs dump is referenced in a /pol/ research workflow and does not establish /x/ coverage. This is an **acquisition-limited negative**, not evidence that the missing posts contained no operator.
+
+**Prior decision (14 November 2026, Agent 3):** A fixed five-thread inspection based on links present in the original `#cicadasolvers` IRC export and the recovered 3 May Unfiction post produced **no recoverable runnable unknown-LP2 operator, externally selected key, or >40-rune source-claimed plaintext**. This was likewise a source-access-limited negative. No original LP2 cipher test was justified, since no historical key and complete transform were supplied.
 
 ## Independently dated starting evidence
 
@@ -14,10 +16,33 @@ Original channel [`#cicadasolvers.freenode.log`](https://github.com/cicada-solve
 | [4chan /x/ #14663367](https://boards.4chan.org/x/thread/14663367) | IRC L192819–34, **1 June 00:12–20** | A purported “latest” new step; IRC participants explicitly find no signature or corroborating wiki entry. `cluosh` says there is nothing signed. The original forum content is inaccessible; source context does not furnish a verified cipher key or page plaintext. |
 | [4chan /x/ #14748542](https://boards.4chan.org/x/thread/14748542) | IRC L205206, **19 June 02:33** | Link itself has text “hello-again-our-search-for-intelligent”; original source inaccessible and **no contemporaneous rule/decoded runes** in the provided link. Cannot infer authenticity from the title. |
 
+
+## 18 November bounded retrieval outcome
+
+All four /x/ IDs remain **unrecovered**:
+
+| Thread ID | Original reference | Retrieval result |
+| --- | --- | --- |
+| 14547165 | [4plebs /x/ thread](https://archive.4plebs.org/x/thread/14547165/) | Direct page 403; no original post bytes. The Uncovering Cicada wiki page only links the thread and offers speculative symbol readings. |
+| 14610275 | [4chan /x/ thread](https://boards.4chan.org/x/thread/14610275) | Official page and archive/API routes unavailable; no post-faithful mirror found. |
+| 14663367 | [4chan /x/ thread](https://boards.4chan.org/x/thread/14663367) | Official page and archive/API routes unavailable; no post-faithful mirror found. |
+| 14748542 | [4chan /x/ thread](https://boards.4chan.org/x/thread/14748542) | Official page and archive/API routes unavailable; no post-faithful mirror found. |
+
+Bounded loci checked:
+
+- **4plebs:** exact HTML pages and documented FoolFuuka JSON route `/_/api/chan/thread/?board=x&num=<id>`; the page/API host was not accessible (403 / tool-level access failure).
+- **4chan / Archived.Moe:** original thread URLs, Archived.Moe exact-thread pages and its `/_/api/chan/thread?board=x&num=<id>` route; no content returned.
+- **Wayback / Archive.org:** exact-URL CDX and availability/metadata lookups could not be queried through the available browser retrieval. **No absence-of-capture claim is made.**
+- **Common Crawl:** [collection index](https://index.commoncrawl.org/collinfo.json) is accessible and identifies the October 2026 collection `CC-MAIN-2026-43`; its per-URL CDX request for the exact 14547165 URL was inaccessible, so no WARC pointer or negative capture result was obtained.
+- **Public repository/search indexes:** exact-ID GitHub and web searches returned no valid /x/ post mirror. The apparent `14547165` hit was a different 2019 /biz/ item and was discarded. The independent 4chansearch index returned no exact-ID content.
+- **Dataset lead:** a January 2026 4plebs CSV dump is cited by a /pol/-focused research repository; it is not evidence of /x/ coverage and was not used to infer anything about these threads.
+
+No original post text, timestamp/post-number metadata, attachments, or source hashes were recovered. No operator, key, or plaintext was available for the issue's decisive content gate. Under #1523's explicit completion fork, the bounded acquisition attempt ends here; **do not expand into generic 2014 forum trawling**. Reopen only if a new /x/-inclusive dump, source-provided export, or accessible original archive endpoint becomes available.
+
 The original May–August 2014 IRC corpus was retrieved as a complete GitHub contents response, split into its **239,026 physical lines**, and the 70 original date-stamped forum/4chan URLs indexed. The five selections above were bounded by explicit original-period LP2 relevance. Other linked Unfiction threads (`t=40163` L205303 “huge .png”, `t=40267` L225847 “MacArthur Tunnel”, `t=38838` L209347 and `t=36953` L232465 unrelated ARGs) are visibly off-topic in adjacent IRC lines and were not promoted to candidates. The `#33012014` log and later `#cicadasolvers.freenode.2.log` contain no additional May–August forum URLs under the same source-date filter.
 
 ## Reproducible bounded decision
 
-There is **no frozen decipherment candidate** to run against p0–55: no concrete key, inverse and original source-native orthography were provided. Testing free keys or brute-force barcode formats against the original would manufacture a mechanism absent from the sources and duplicate completed searches. The one directly readable dated May 2014 forum post supplies a **collaboration locator**, already known in `im-results/lp2-2014-may-unfiction-workpad-source-gate.md`, rather than a second live decode. The four other threads are **retrieval gaps**, not cipher negatives. A new acquisition should name **one exact historical thread ID** and recover original bytes/post revision before any substantive inverse; no new generalized forum crawl is warranted.
+There is **no frozen decipherment candidate** to run against p0–55: no concrete key, inverse and original source-native orthography were provided. Testing free keys or brute-force barcode formats against the original would manufacture a mechanism absent from the sources and duplicate completed searches. The one directly readable dated May 2014 forum post supplies a **collaboration locator**, already known in `im-results/lp2-2014-may-unfiction-workpad-source-gate.md`, rather than a second live decode. The four /x/ threads remain **retrieval gaps**, not cipher negatives. A future attempt is justified only by a new /x/-inclusive dump, source-provided export, or accessible original archive endpoint; repeating the same blocked endpoints or broadening into generic forum searches is not.
 
 **Result classification:** bounded failure to acquire a new executable original unknown-page decoder. **No authenticated unknown plaintext, creator key or hidden destination recovered.** This does not alter `results/README.md`.
