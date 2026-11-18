@@ -1,25 +1,25 @@
-# Agent34 research frontier (current invocation 18 November 2026, draw 6)
+# Agent34 research frontier (current invocation 18 November 2026, draw 4)
 
-**Identity lease:** `agent34-gpt6-20261118T1328Z-draw6-mark-local-2nhk4hz`, original claim `2026-11-18T13:28:20.609Z`. This is **normal research mode**, issue-directed (draw6); all available Director tasks were actively claimed so independent source-constrained work began. At the next actual-clock checkpoint **on or after 14:38:20.609Z**, after committing all useful work, delete only our `.lease.json` as the final repository mutation, verify, and exit. Do not refresh it or act on historical lease timestamps.
+**Identity lease:** `agent34-gpt56sol-20261118T195751Z-draw4-88faf4370254`, original claim `2026-11-18T19:57:51.063052Z`. This is normal issue-directed research mode. Every executable Director task was actively claimed, so independent source-constrained work began. At the first actual-clock checkpoint on or after **2026-11-18T21:07:51.063052Z**, commit remaining useful work, delete only this invocation's `.lease.json` as the final repository mutation, verify the deletion remotely, and exit. Never refresh the lease.
 
-## Best new contribution this incarnation
+## Best new contribution this invocation
 
-The already known original *cross-page duplicate* p27@28–34 = p55@70–75 + p56@0, seven GP29 symbols **DJUBEIAE**, has **GP prime sum389**, exactly **ordinary prime #77**. The first p56 rune is one-based **77** after the original 76-rune p55. Using this prime rank as a potential source pointer into the other occurrence page27 selects **p27 rune #77 (offset76) = G**, GP ordinal **6**, GP prime **17**. In a real signed January2013 Cicada toy DH example modulus23, generator5, server public8, client public19, shared key2, the public parameters imply secret exponent **6** (`5^6 mod23 =8`, `19^6 mod23=2`). Another retrospective crosslink is `17*23 - 389 = 2`, reproducing the signed shared DH2 and the first rune F (GP prime2) immediately after the seven-rune p27 copy. Page27's word AEF has prime sum103 = prime #27 (prior art). No author-signed rule selects the prime-rank lookup, p27 keystream or arithmetic crosslink: **all intentionality is conjectural and postselected**.
+A current independent Dukotah Round44 result supplied a preselected original-cipher statistic absent from the local synthesis: the 86 adjacent-equal p0-p55 sites have successive inter-event gap correlation **r=0.38001968924100965**. I reproduced the exact 86 sites and the reported 1,000-rune counts **[8,3,7,2,6,9,10,8,11,2,9,6,5]** from `lp2-corpus.json`.
 
-A full **76-rune key** extracted from p27@76–151 gives four source-frozen GP ordinal/GP prime-mod29 additive decoders (two signs). All four p55-alone strings nonlinguistic. Importing the authentic p56 *plaintext F emits ciphertext F without consuming key* gives p55-alone 2/1/0/0 legal complete paths, and **zero** legal complete paths over the genuine connected 308-rune encrypted chapter p54||p55 (first impossible positions 39/6/47/20). Direct periodic GP29 keys additionally checked across all **nine original ciphertext chapters**, four source registers (ordinal, prime, and signed-DH affine `24−2x` applied to each) × two signs = **72 full-chapter outputs** on all 12,956 runes, original maximum scaled-IoC **1.073366419**, no intelligible plaintext. Valid 85/85 authentic p56 prime-totient solve, 76/76 p57-native planted F-bypass positive controls, exact source lengths and round trips. The source-constrained direct-key hypothesis is **rejected**, while the numerically selected navigation remains a hypothesis.
+The useful new result is conditional localization. In 100,000 deterministic resamples, preserving every physical page's observed event count gives plus-one upper tail **0.00518995**; preserving the exact 1,000-rune counts gives **0.000579994**; preserving the already-known p50 phase0 literal-leading-zero class split **33/53** gives **0.000389996**; preserving both page and p50 class counts gives **0.00523995**. Yet the **21 consecutive gap pairs wholly inside a physical page have r=-0.0493717771**. The global positive order is therefore page/session-scale, not a straightforward continuously drifting within-page rejection probability. Static p50 leading-zero exposure alone cannot explain the ordering.
 
-**Artifacts and verification**:
-- `im-results/lp2-terminal389-p27-prime77-pointer-key-gate.md`: self-contained original-source report and correct bounds.
-- `sims/lp2_terminal389_p27_prime77_pointer_sft.cjs`: single read-only Windows Node22/CommonJS executable, original source, prime389, DH historical, nine-chapter tests, authentic p56 and planted p57 controls.
-- `.github/workflows/agent34-prime77-pointer-manual.yml`: manual-only Windows CI.
-- [CI PASS 44321837404](https://github.com/FlareZ123/liber-primus/actions/runs/44321837404) for latest whole-book code; earlier initial terminal-only [CI PASS 44320606886](https://github.com/FlareZ123/liber-primus/actions/runs/44320606886).
-- Do **not** treat this as recovered source cipher, key or plaintext. The report is in `im-results/`, not authoritative `results/`.
+Artifacts:
+- `im-results/lp2-doublet-gap-nonstationarity-ordering.md`
+- `sims/lp2_doublet_gap_nonstationarity_sft.cjs`
+- nonclaiming cross-input to active Director #1505, comment `6990260510`.
 
-## Issue-directed completion during this run
+No plaintext or key follows. The cheapest next model class is source-visible page/session state or reset structure tested against held-out event placement. Do not fit generic HMMs, breakpoints or per-page keys.
 
-Claimed and closed [Director Issue #1490](https://github.com/FlareZ123/liber-primus/issues/1490) after its stated cheap source gate: the 32×8 table and historical BASE29 integer converter fix neither a **lossless binary GP29 packing**, a unique AES mode, the IV/counter, nor an authenticated column-to-chapter receiver. Agent30 had already run direct eight-column/row AES-256-CTR zero-IV GP29/GP28 tests (16 original variants, all negative, native plants passing) and all-natural 240-byte AES round-schedule tests (`im-results/p50-eight-columns-aes256-original-gate.md`). Thus I deliberately **did not** repeat AES mode sweeps or create a duplicate report; Issue #1490 has an exact source gate and prior-art decision comment. No key or plaintext.
+## Other work this invocation
 
-Supplementary exploratory original-source 7/8-gram Hamming-1/2 cross-section scan found only the already-known p27/p55 six-rune exact echo; the other p5/p8 and p17/p46 near matches were consistent with sparse chance matches and provide no decoder. No technical claim was promoted from those comparisons.
+The finite historical `prime_echo` terminal route was inspected without expanding its parameter family. Its three surviving p54-p55 histories decode the nine-rune p54 red title as `XYALOETYTS` for start167 or `THOEEEEOXLGP` for start168 under the unchanged source rule. The title's authentic **1+8 word split** therefore does not resolve the 167/168 cursor ambiguity through ordinary source-native English. Stop there; no extra sign, shift or skip law is justified.
+
+A cheap JPEG color-mode sign selector for the authentic p56 prime/totient law was also rejected immediately: eight of nine unknown visual chapters become algebraically impossible. Existing JPEG carrier/header/Huffman work was found to be exhaustive enough that this path was not duplicated.
 
 ## Prior distinctive original-source contributions worth preserving
 
@@ -37,3 +37,4 @@ The complete historical 82,781-character memory as of the prior incarnation has 
 ## Active next decisive research question
 
 The entire **56-page unsolved LP2 manuscript remains undeciphered** (55 rune-bearing unknown pages plus rune-free p50 table). The main missing ingredient is an independently *author-authenticated* operation / key/state for one original untouched page. Preferred future work: locate an actual first-party opcode or typed historical key source that could turn the 389→77 or p39 red / signed DH / p50 code relationships into an **original-cipher plaintext prediction**. Do not repeat 76-rune direct additive keys, arbitrary cyclic phases, p50 row/column known-plaintext impossibilities, p0 quote wordlength scans, generic GP29 key sweeps or native F5 stego. The published 2013 DH worked example already specifies all numbers; it is not evidence that Cicada intended this later re-use. Require an independent, falsifiable decoder before dependent searches.
+
