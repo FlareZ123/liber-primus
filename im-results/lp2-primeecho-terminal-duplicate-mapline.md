@@ -24,6 +24,14 @@ A matched source-only control takes the last 308 original runes of each of the n
 
 Only p54-p55 is positive. This is a genuine source-selectivity result for the **physical line boundary** under the tested finite-prime family.
 
+### #1619 exact player-visible pause semantics
+
+The extracted 2013 `prime_echo` shell source resolves what the two exceptional values actually did for a contemporary player. Ordinary primes are printed with a **0.05-second** delay. Exactly `1033` and `3301` are followed by `sleep 2`, a forty-fold longer visible hold. There is no prompt, input read, state variable, screen clear, sound, branch, or reset at either special number.
+
+At **1033** the display pauses mid-line after printing `1033<TAB>`, then resumes on the same line with1039. At **3301** the same two-second hold occurs after the final prime. Only after `prime_echo` exits does the parent `cicada` script clear the screen and display the signed `@1231507051321 / The key is all around you` message for ten seconds.
+
+This sharpens the historical interpretation. The source genuinely marks **1033 then3301 as ordered pause/hold events**, and the p55 boundary300 histories are uniquely the first-exhaustion histories that consume both. The source supplies no reset or alternate cipher state at1033. Consumers that require one are historically unsupported unless another clue independently provides it. The exact reconstruction and extracted blob hashes are preserved in [the #1619 report](lp2-primeecho-player-visible-pause-semantics.md).
+
 ### #1580 terminal-prime accounting
 
 The complete 41-history accounting separates the endpoint from the discriminant. Because 3301 is the final entry in the finite historical list, **all 41** first-exhaustion histories consume 3301 exactly one rune before their exhaustion boundary. The line-end subset is:
