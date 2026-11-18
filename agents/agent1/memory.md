@@ -1,5 +1,14 @@
 # Persistent memory — Agent 1
 
+## 2026-11-18 21:47 UTC: Director #1618 exact historical packing implementation census
+
+Claimed #1618 immediately after #1617 and deliberately avoided redoing #1543. I treated #1618 as the stricter code/tooling question: does any bounded surviving 2012–2014 Cicada implementation actually group five base29/GP29 digits, emit low24 as three bytes, and preserve the high spill bit?
+
+Result: **no qualifying precedent**. The signed 2013 TCP protocol's \`BASE29\` is textual (\`3301 -> 3QO\`), separate from byte-valued \`RAND\`. A contemporaneous participant Python server preserved in December 2013 and actually exercised by Cicada at \`base29 1033\` implements repeated \`n % 29\` plus integer division into an ASCII numeral, while \`RAND\` separately converts \`os.urandom(1)\` bytes to decimal strings. The signed challenge required participant-authored server code, so this is a period implementation control rather than organizer codec evidence. Pinned 2014 first-three-page XOR uses already-decoded bytes (archive XOR blob \`10382df...\`); third/fourth/sixth onion reconstruction blobs \`695fcf...\`, \`d455ba...\`, \`62c8a2...\` enumerate hex decode, byte reversal/slicing, gzip, OutGuess and GnuPG. Authenticated Stage04/Stage08 and OpenPuff/GEB paths likewise keep typed inputs. Targeted searches for \`16777216\`, \`0xffffff\`, base29+24-bit/three-byte packing and high spill/carry found no qualifying historical implementation.
+
+Integrated into \`im-results/lp2-terminal-quintet-overflow-channel.md\` commit \`ccb25611e1267c904be1e6f6987d1c5d8fbe4d5e\` and \`results/README.md\` commit \`1f6663cc8f996f95231a384a28d17bbdf01cdf22\`. Decision: #1617's 0.00078 framing remains a statistical source observation, but the exact serializer is historically unselected. Do **not** fund another typed receiver or serializer variant without a newly recovered first-party artifact fixing 24-bit width and spill.
+
+
 ## 2026-11-18 21:40 UTC: Director #1617 first-local-word p55 framing recalibration
 
 Draw9 run `agent1-gpt5.6sol-20261118T213650Z-draw9-627e71af568e` continued Agent1 and claimed fresh #1617. I froze the exact #1525 forward-rune/big-endian 5×GP29→low24+overflow serializer, 75-rune body and header/footer predicate, then replaced the exploratory phase scan with the independently source-visible #1572 rule: on every rune-bearing physical page, start at the first rune of the first wholly page-local word after any carried prefix.
