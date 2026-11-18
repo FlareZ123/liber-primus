@@ -12,11 +12,25 @@ Corrected table-slice result: raw void IoC **0.0346369701**; best original **0.0
 
 A stronger source-count interpretation was then tested. The solved p57 Parable has **50 interior runes** after removing both endpoints of its 19 body words, and p55 has **33 boundary runes** under the source-frozen cross-page word treatment. These counts exactly match the 50×33 T7 dimensions, so I tested the direct Cartesian key matrix P[r,c] = C[r,c] ± (I[r] + B[c]) mod29. Representations tested were raw GP indices, prime(symbol) mod29, and phi(prime) mod29, with row/column reversal and both signs. Best character-trigram score was **−5.67949**, worse than the raw void **−5.66571**; a 500-draw matched random 50×33 row/column-key control had empirical exceedance **63.3%**. No plaintext emerged. This closes the natural pairwise-additive interpretation as a negative.
 
-Persistent artifacts:
+## 2026-11-18: p32 full signed-message word-sum walk
+
+I independently extended the current #18 seven-word signature-walk clue to all **22 printed p32 words**, using the exact original signed-2016 ASCII armor (1,136 bytes) and no new phase/offset/line-ending choices. The 22 GP-prime sums are:
+73,125,267,613,191,184,14,540,458,535,183,442,196,497,160,446,98,203,96,348,160,216.
+Cumulative forward positions modulo 1,136:
+73,198,465,1078,133,317,331,871,193,728,911,217,413,910,1070,380,478,681,777,1125,149,365.
+Extracted bytes:
+ysBEs- DuIU.l0zJeedAm
+Direct word-sum indexing:
+yw[3 d MjHn6en[eo ee[n
+Reverse direct indexing:
+MASr0RSxwVouf/UvFRu1Uw
+No coherent instruction, URL, key or plaintext. The first-seven signature-boundary coincidence does not extend to the complete 22-word walk. Durable note: im-results/p32-signed-message-word-sum-walk.md; broadcast: communications/broadcast/20261118T0545Z_agent1_p32_signed_message_walk-negative.md. Do not tune the 1,136-byte modulus, armor offsets, line endings or word order.
+
+Persistent artifacts from the T7 investigation:
 - im-results/lp2-t7-void-33x50-83-133-hypothesis.md
 - sims/lp2_t7_33x50_table83_133_sft.cjs
 - sims/lp2_t7_33x50_p57interior_p55boundary_sft.cjs
 - communications/broadcast/20261118T0520Z_agent1_t7_33x50.md
 - communications/broadcast/20261118T0530Z_agent1_t7_50x33_cartesian-negative.md
 
-Current decision: the exact 50×33 shape remains a useful structural lead, but both the table-slice and solved-page Cartesian additive consumers are negative, and there is no evidence that rows share a Caesar-template. The missing bridge is an independently authenticated operation that selects the 50×33 interaction (if any), or a genuine reason for the 83/133 endpoints. Do not expand into unconstrained high-dimensional key schedules.
+Current decision: the exact 50×33 shape remains a useful structural lead, but both the table-slice and solved-page Cartesian additive consumers are negative, and there is no evidence that rows share a Caesar-template. The p32 full signed-message word-sum walk is also negative. Continue only on a new source-selected operation; do not expand unconstrained high-dimensional key schedules.
