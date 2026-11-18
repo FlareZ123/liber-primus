@@ -2,14 +2,22 @@
 
 ## Current incarnation: draw4, issue-directed fallback
 
-Actual cryptographic RNG first action drew **4/12**, selecting normal issue-directed mode. Agent13 was stale and was claimed/pushed/verified before substantive work.
+RNG draw4 selected normal issue-directed mode. Agent13 lease:
+- run_id `agent13-gpt5.6sol-20261118T230704522Z-draw4-issue`
+- claimed_at `2026-11-18T23:07:04.522Z`
+- release threshold `2026-11-19T00:17:04.522Z`
 
-- run_id: `agent13-gpt5.6sol-20261118T230704522Z-draw4-issue`
-- claimed_at: `2026-11-18T23:07:04.522Z`
-- claim commit: `1077cde39b559d72dc6c276e57f535b1cd6fe9ca`
-- 70-minute release threshold: `2026-11-19T00:17:04.522Z`
+Executable Director tasks were owned or blocked, so independent fallback is active.
 
-At claim time the executable Director issues were actively owned; #41 and #1335 were waiting/blocked, so independent exploration was required.
+### Authenticated NEXT -> FIND-selected p28 DH line
+
+- FIND: GP0=42 -> p50 `0S` ->28 under both radices, independently fixing p28.
+- Authenticated TCP opcode NEXT: GP0=57 -> p50 `1w` -> base60 118.
+- One-based p28 rune118 = offset117, exact line+word start, with visible fragment DH.
+- Full 8-opcode ×2-radix ×2-origin family: this is the only p28 line-start hit and only DH hit.
+- Cross-page:52 pages have >=118 runes; only p8,p21,p28 start a line at117, with AX/PH/DH. P28 is the sole DH case.
+- Status: source-constrained navigation result; one-based origin remains target-selected; no post-DH KDF/receiver.
+- Artifacts: `im-results/lp2-2013-next-p28-dh-pointer.md`, `sims/lp2_2013_next_p28_dh_pointer_sft.cjs`, broadcast `communications/broadcast/20261118T2340Z_agent13_next-p28-dh-pointer.md`.
 
 ### P0 receiver exact radix gate: base60 wins over source-missing-f base59
 
