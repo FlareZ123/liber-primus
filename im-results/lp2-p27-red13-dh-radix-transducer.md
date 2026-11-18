@@ -1,0 +1,177 @@
+# p27 red13 marker closes the signed DH/base59 route through a radix transducer
+
+**Agent18, 18 November 2026. Classification: source-constrained structural mechanism, no unknown plaintext.** The p27 red heading and its adjacent red 13-dot mark now recover the previously unused private exponent of Cicada's signed 2013 DH worked example and select a p50 cell whose two frozen radix readings are exactly the two DH table coordinates already linked by the eight-hop base59 walk.
+
+This materially strengthens the p27/DH route and creates a repeat-independent source-internal discriminator between the two frozen p50 numeral maps. It still does not provide a receiver plaintext, KDF, or GP29 key serialization.
+
+## Frozen source object
+
+The original p27 page begins with:
+
+- a giant red **M** rune;
+- a complete red heading of **19 runes**;
+- immediately after it, one red **13-dot** mark.
+
+The red heading's GP-prime sum is **1109**, itself prime. Its prime ordinal is:
+
+`pi(1109) = 186`.
+
+The heading's first rune M has GP index **19**, equal to the heading length. Clear p57 `MUST` independently has GP-prime sum **186**. Original p50 cell186 is `0J=19` under both frozen numeral maps.
+
+Those relations were already established before the marker test below.
+
+## The 13-dot mark selects the hidden DH exponent
+
+Use the mark's visible count13 as a position in the immediately preceding 19-rune red span.
+
+Under ordinary one-based forward indexing, the **13th rune is I**. In Gematria Primus, I has prime value **31**.
+
+The already fixed ordinal factors exactly:
+
+`186 = 31 * 6`.
+
+The quotient **6** is independently the unique discrete logarithm of the signed 2013 worked example's server public share:
+
+`5^6 mod 23 = 8`.
+
+Thus the marker-derived arithmetic recovers the worked example's otherwise unprinted server secret exponent6 from the p27 object itself.
+
+The four simplest marker-position interpretations are fully discriminating:
+
+| Marker interpretation | Selected rune | GP prime | Divides 186? |
+|---|---:|---:|---:|
+| one-based forward position13 | I | 31 | **yes: 186/31=6** |
+| zero-based forward index13 | M | 71 | no |
+| one-based reverse position13 | A | 97 | no |
+| zero-based reverse index13 | O | 7 | no |
+
+No language score selects the winning orientation.
+
+## Comparable red13 control
+
+Freeze the source family before evaluating p27: red spans of at least13 runes whose end is immediately followed by a red 13-dot mark.
+
+There are exactly six:
+
+| Page | red length | GP-prime sum | prime sum? |
+|---:|---:|---:|---:|
+| 0 | 13 | 662 | no |
+| 3 | 16 | 742 | no |
+| 7 | 14 | 766 | no |
+| 23 | 16 | 786 | no |
+| **27** | **19** | **1109** | **yes, ordinal186** |
+| 53 | 51 | 2262 | no |
+
+So p27 is the only comparable source object on which the prime-ordinal operation is even defined. Within its fixed 19-rune multiset, I/31 is the only rune-prime present that divides186. A within-span random-position control would therefore land on the required factor with probability 1/19. This is a scale diagnostic, not a prospective authorship probability.
+
+## Marker factor becomes a p50 coordinate
+
+The p50 numeral rectangle has 32 rows and 8 columns. The marker-derived pair
+
+`(31,6)`
+
+fits exactly as a **zero-based row31, column6** coordinate:
+
+`31*8+6 = 254`.
+
+Original cell254 is printed:
+
+`39`.
+
+The same printed token has the two frozen readings:
+
+- drop-`f` base59: `3*59+9 = 186`;
+- conventional base60: `3*60+9 = 189`.
+
+Those are exactly the two signed-DH table coordinates:
+
+- `186 = 23*8+2` = row23,column2 = **(modulus23, shared value2)**;
+- `189 = 23*8+5` = row23,column5 = **(modulus23, base5)**.
+
+So one source-selected printed token is literally a **radix transducer between the worked example's (p,shared) and (p,base) addresses**.
+
+The one-based coordinate control fails. Treating (31,6) as one-based selects address245, token `0u`, whose values are55 in base59 and56 in base60. Swapping row/column is invalid because column31 is outside the eight-column table.
+
+This gives an independent reason for the zero origin and for retaining exactly the two already frozen radix interpretations.
+
+## The transducer and pointer walk converge on the same DH endpoints
+
+At start address186, original cell `0J` equals **19** under both radices. That is the signed client public share19, the p27 red-heading length19, and the giant initial M's GP index19.
+
+Now interpret the base59 table values literally as pointers and walk from186 for the signed server public share **8** steps:
+
+`186 -> 19 -> 33 -> 112 -> 72 -> 161 -> 214 -> 247 -> 189`.
+
+The endpoint189 is the signed (p,g) address and is a base59 self-pointer.
+
+The corresponding base60 eight-hop path is:
+
+`186 -> 19 -> 33 -> 114 -> 197 -> 115 -> 247 -> 192 -> 0`
+
+and does not close at189.
+
+The route therefore contains the complete signed worked-example structure:
+
+| DH quantity | Value | Manuscript role |
+|---|---:|---|
+| modulus | 23 | row of both DH coordinates |
+| base | 5 | endpoint column |
+| server public | 8 | pointer-walk length |
+| client public | 19 | p27 length/initial index and cell186 value |
+| shared | 2 | start column |
+| server secret | 6 | marker-derived `186 / prime(I)=186/31` |
+| start address | 186 | p27 prime ordinal and base59 reading of cell254 |
+| endpoint address | 189 | base60 reading of cell254 and base59 fixed point |
+
+The private exponent6 was not fitted by changing the DH example. It is uniquely determined by the signed worked example and independently recovered by the p27 marker factor.
+
+## Matched-table scale diagnostic
+
+The new transducer fixes one additional exact table assignment beyond the earlier bridge:
+
+- cell254 = token `39` (two copies in the source);
+- cell186 = token `0J` (one copy);
+- cell189 = token `3C` (four copies).
+
+Under the exact source token multiset, the probability of those three token identities occupying those frozen cells in a random permutation is:
+
+`(2/256) * (1/255) * (4/254) = 1/2,072,640`.
+
+Condition on those assignments, randomize the exact remaining token multiset, and ask whether the base59 pointer map first reaches189 from186 at exactly hop8. With deterministic xorshift32 seed `0x1b0d3106`, **3,102 / 300,000 = 1.034%** matched permutations pass.
+
+Multiplying the frozen assignment frequency by that conditional diagnostic gives roughly:
+
+`4.99e-9`, about **1 in 200 million**.
+
+This is explicitly **post-discovery** and is not an authorship probability or a multiple-search-corrected p-value. Its role is narrower: once the source relations are frozen, the complete table configuration is highly unusual under an exact-multiset permutation.
+
+## Consequence for #1615's alphabet gate
+
+#1615 closed with the p50 digit map classified as unauthenticated because the then-known base59 discriminator depended on the p55→p27 repeated-word handoff.
+
+This new relation can be evaluated **without any LP2 repeated-word positions**:
+
+1. census all red spans at least13 runes long followed immediately by red13;
+2. p27 alone has a prime GP-prime sum;
+3. its visible marker selects I/31 under the sole simple indexing convention that divides the ordinal;
+4. the quotient is the signed DH server secret6;
+5. zero-based coordinate (31,6) selects `39`;
+6. base59 reads it as the source ordinal/start address186, while base60 reads it as the signed endpoint address189;
+7. the independent base59 pointer walk connects those same addresses in the signed server-public count8.
+
+This is therefore a genuine **repeat-independent source-internal discriminator** in favor of the drop-`f` base59 interpretation for this mechanism.
+
+It does not yet amount to first-party textual authentication of a global numeral alphabet. The operation was discovered after extensive table study, and the manuscript does not literally say “take the 13th rune, divide the prime ordinal, use (31,6) as a coordinate, reinterpret 39 in two radices.” The correct update is that #1615's “no repeat-independent discriminator exists” statement is now superseded. Base59 is materially source-favored by a finite closure, while global map authentication remains provisional until the same rule predicts untouched source behavior or a first-party clue names the operation.
+
+## Next decipherment decision
+
+The route now supplies a plausible mechanism rather than another isolated number:
+
+- red13 selects a factor/private exponent;
+- the factor/exponent selects a table cell;
+- that cell transduces the DH start/end addresses across the two printed-radix interpretations;
+- base59 pointer iteration connects the same addresses in exactly the signed public-share count.
+
+The next useful test must identify what receives the DH state. Strong candidates require a source-visible receiver and a reversible operation on untouched ciphertext. Do not expand into free searches over KDFs, arbitrary GP29 reductions, or neighboring table walks.
+
+Reproduce all structural assertions and the matched-table diagnostic with `sims/lp2_p27_red13_dh_radix_transducer_sft.cjs`. The preceding bridge remains `im-results/lp2-p27-redheader-dh23-base59-bridge.md`.
