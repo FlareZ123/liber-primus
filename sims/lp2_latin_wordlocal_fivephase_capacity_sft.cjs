@@ -137,6 +137,34 @@ assert.deepEqual(
   ["TURBETUR"]
 );
 
+/* A literal Vulgate passage must preserve neighboring printed word lengths.
+ * Checking *every* Vulgate occurrence of the four source-registered sharp
+ * word signatures gives an exact, key-independent fragment rejection.
+ */
+const sourceNeighborTable = [];
+for (const target of targets) {
+  const w = target.wordIndex;
+  const hits = latin.flatMap((sourceWord, i) =>
+    shape(sourceWord) === inputs[w].shape ? [i] : []);
+  const leftMatches = hits.filter((i) =>
+    i > 0 && latin[i-1].length === inputs[w-1].length).length;
+  const rightMatches = hits.filter((i) =>
+    i+1 < latin.length && latin[i+1].length === inputs[w+1].length).length;
+  const tripleMatches = hits.filter((i) =>
+    i > 0 && i+1 < latin.length &&
+    latin[i-1].length === inputs[w-1].length &&
+    latin[i+1].length === inputs[w+1].length).length;
+  sourceNeighborTable.push({wordIndex:w,hits:hits.length,
+    leftMatches,rightMatches,tripleMatches});
+}
+assert.deepEqual(sourceNeighborTable, [
+  {wordIndex:754,hits:4,leftMatches:0,rightMatches:0,tripleMatches:0},
+  {wordIndex:1353,hits:9,leftMatches:0,rightMatches:0,tripleMatches:0},
+  {wordIndex:1967,hits:0,leftMatches:0,rightMatches:0,tripleMatches:0},
+  {wordIndex:2722,hits:2,leftMatches:2,rightMatches:0,tripleMatches:0}
+]);
+console.log("VULGATE-THREE-WORD-FRAGMENTS",JSON.stringify(sourceNeighborTable));
+
 /*
  * Genuine contiguous-source quote gate: the Vulgate twice prints TURBETUR
  * immediately followed by COR. The original p51 next word has one rune,
