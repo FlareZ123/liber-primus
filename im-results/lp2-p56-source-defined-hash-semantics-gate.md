@@ -10,7 +10,7 @@ This closes the issue by its second fork: preserve the exact target, keep algori
 
 ## Exact target from the original page
 
-Physical LP2 p56 is the original scan `resources/liber-primus/56.jpg` in repository numbering / image 73 in the 75-image full-book archive. The printed hexadecimal lines are lowercase and have lengths 26, 25, 25, 27, 25:
+LP2 internal p56 is the solved “AN END” page; in the repository's 75-image full-book sequence it is original scan `resources/liber-primus/73.jpg` (the Onion7 release named the same page `56.jpg`). The printed hexadecimal lines are lowercase and have lengths 26, 25, 25, 27, 25:
 
 ```text
 36367763ab73783c7af284446c
