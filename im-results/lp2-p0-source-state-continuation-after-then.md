@@ -166,15 +166,23 @@ post hoc from many blocks and has multiple local state formulas. A genuine
 intended mechanism should compress these formulas into a smaller reusable
 state machine or be independently clued by the artifact.
 
-The immediate next test is the post-GO zero-center source candidate:
+The immediate post-GO zero-center source is now source-selected:
 
 - from canonical `G-O-G`, radius3 and `phi(O)=2`;
 - step `r-phi(O)=1`;
 - outer `G-step=5=C`;
 - center `O-r=0=F`;
-- candidate raw source `C-F-C`.
+- raw source `C-F-C`.
 
 Because F has index0, the shared 479-node mirror graph intentionally excludes
-such centers. Direct straight-triple enumeration is required. This is a useful
-test of whether the route's state machine naturally handles the zero rune
-rather than hiding it behind the mirror-graph filter.
+such centers. Direct enumeration of all equally spaced straight triples finds
+two C-F-C placements: radius3 horizontal at center F(4,10), and radius6
+vertical at center F(13,9). Carrying the current GO radius3 uniquely selects
+the horizontal source C(4,7)-F(4,10)-C(4,13).
+
+Reproducer: `sims/lp2_p0_go35_cfc_zero_center_frontier_sft.cjs`.
+
+The remaining open decision is the ciphertext placement from this zero-center
+source. This is a useful test of whether the route's state machine naturally
+handles the zero rune rather than hiding it behind the ordinary mirror-graph
+filter.
