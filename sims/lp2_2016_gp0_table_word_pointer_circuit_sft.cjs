@@ -151,6 +151,37 @@ assert.equal(emptyNumber, 92);
 assert.equal(epiphanyNumber, 121);
 assert.equal(grid.bytes[emptyNumber], 236);
 assert.equal(grid.bytes[epiphanyNumber], 237);
+
+// Independent "two numbers" holdout for EPIPHANY: its zero-based source-word
+// index is congruent to its GP0 sum modulo the 29-rune alphabet, uniquely among
+// all 43 signed words. Those two table addresses are also the only two copies
+// of token 3v / byte237, so both number systems converge on the DEVOTED start.
+const epiphanySourceIndex = message.findIndex(
+  (word) => word.toLowerCase() === "epiphany",
+);
+assert.equal(epiphanySourceIndex, 5);
+assert.equal(epiphanyNumber % 29, epiphanySourceIndex);
+const signedIndexGpResidueMatches = message
+  .map((word, index) => ({
+    index,
+    word: word.toLowerCase(),
+    gp0: sum(gp(word)),
+  }))
+  .filter((row) => row.gp0 % 29 === row.index % 29);
+assert.deepEqual(signedIndexGpResidueMatches, [{
+  index: 5,
+  word: "epiphany",
+  gp0: 121,
+}]);
+assert.equal(tableTokens[epiphanySourceIndex], "3v");
+assert.equal(tableTokens[epiphanyNumber], "3v");
+assert.equal(grid.bytes[epiphanySourceIndex], 237);
+assert.deepEqual(
+  grid.bytes.map((value, index) => value === 237 ? index : -1)
+    .filter((index) => index >= 0),
+  [5, 121],
+);
+
 assert.equal(236, theCandidate.start + theCandidate.length - 1);
 assert.equal(237, devotedCandidate.start);
 assert.ok(emptyNumber >= 84 && emptyNumber <= 126);
@@ -270,6 +301,21 @@ assert.equal(p0[22].length, 4);
 assert.equal(sum(p0[21].indices), 20);
 assert.equal(sum(gp("THE")), 20);
 assert.equal(gp("ROAD").length, 4);
+
+// In the natural 27x27 square formed by p0-p2's 729 runes, the two independently
+// selected body-word endpoints are the only p0 word ends on column0.
+const p0ColumnZeroEnds = p0
+  .filter((word) => (word.start + word.length - 1) % 27 === 0)
+  .map((word) => ({
+    word: word.index,
+    start: word.start,
+    end: word.start + word.length - 1,
+    length: word.length,
+  }));
+assert.deepEqual(p0ColumnZeroEnds, [
+  {word: 22, start: 105, end: 108, length: 4},
+  {word: 53, start: 237, end: 243, length: 7},
+]);
 
 // Original p0 line layout independently marks both body placements.
 // The canonical transcription uses "/" for physical line wraps.
