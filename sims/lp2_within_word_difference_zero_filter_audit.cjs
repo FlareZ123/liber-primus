@@ -6,6 +6,7 @@
  * genuinely nonzero step structure before interpreting any deconvolution as
  * a keystream-step signal.
  */
+const assert = require("assert/strict");
 const fs = require("fs");
 const corpus = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json", "utf8"));
 const text = fs.readFileSync("resources/liber-primus/lp2-transcription.txt", "utf8");
@@ -22,6 +23,69 @@ for (const part of text.split("%").slice(0, 55)) {
   }
 }
 if (cur.length) words.push(cur);
+
+const fullStream = corpus.pages
+  .filter(page => page.page <= 55 && page.indices.length > 0)
+  .flatMap(page => page.indices);
+assert.equal(fullStream.length, 12956);
+
+const externalStepCounts = Array(29).fill(0);
+const previousVsStep = Array.from({length: 29}, () => Array(29).fill(0));
+for (let i = 1; i < fullStream.length; i++) {
+  const previous = fullStream[i - 1];
+  const step = (fullStream[i] - previous + 29) % 29;
+  externalStepCounts[step]++;
+  previousVsStep[previous][step]++;
+}
+assert.deepEqual(externalStepCounts, [
+  86, 459, 504, 440, 438, 446, 430, 470, 426, 510,
+  497, 455, 449, 504, 474, 470, 449, 404, 434, 474,
+  467, 463, 421, 486, 468, 467, 457, 476, 431
+]);
+
+const externalNonzeroN = externalStepCounts.slice(1)
+  .reduce((sum, count) => sum + count, 0);
+const externalNonzeroExpected = externalNonzeroN / 28;
+const externalNonzeroChiSquare = externalStepCounts.slice(1).reduce(
+  (sum, count) =>
+    sum + (count - externalNonzeroExpected) ** 2 / externalNonzeroExpected,
+  0
+);
+
+function independenceChiSquare(table) {
+  const rows = table.map(row => row.reduce((sum, value) => sum + value, 0));
+  const cols = Array(table[0].length).fill(0);
+  for (let row = 0; row < table.length; row++) {
+    for (let col = 0; col < table[row].length; col++) {
+      cols[col] += table[row][col];
+    }
+  }
+  const total = rows.reduce((sum, value) => sum + value, 0);
+  let chiSquare = 0;
+  for (let row = 0; row < table.length; row++) {
+    for (let col = 0; col < table[row].length; col++) {
+      const expected = rows[row] * cols[col] / total;
+      if (expected > 0) {
+        chiSquare += (table[row][col] - expected) ** 2 / expected;
+      }
+    }
+  }
+  return chiSquare;
+}
+
+const externalPreviousStepIndependenceChiSquare =
+  independenceChiSquare(previousVsStep);
+
+const previousVsNonzeroStep = previousVsStep.map(row => row.slice(1));
+const externalNonzeroPreviousStepIndependenceChiSquare =
+  independenceChiSquare(previousVsNonzeroStep);
+
+const reconstructed = [fullStream[0]];
+for (let i = 1; i < fullStream.length; i++) {
+  const step = (fullStream[i] - fullStream[i - 1] + 29) % 29;
+  reconstructed.push((reconstructed[i - 1] + step) % 29);
+}
+assert.deepEqual(reconstructed, fullStream);
 
 const d = Array(29).fill(0);
 for (const w of words)
@@ -67,6 +131,23 @@ for (let r = 0; r < reps; r++) {
 const monteCarlo = { reps, observedChi, meanChi: meanChi / reps, pValue: ge / reps, maxChi };
 
 console.log(JSON.stringify({
+  externalSeptember2026ChainFingerprint: {
+    pinnedExternalCommit: "c0875c8df069245d83d576243696a8d2f0faacc4",
+    fullContinuousTransitions: fullStream.length - 1,
+    stepCounts: externalStepCounts,
+    nonzeroStepChiSquare: externalNonzeroChiSquare,
+    nonzeroStepDegreesOfFreedom: 27,
+    nonzeroStepPValueApprox: 0.03784583245,
+    previousVsStepIndependenceChiSquare:
+      externalPreviousStepIndependenceChiSquare,
+    previousVsStepIndependenceDegreesOfFreedom: 784,
+    previousVsStepIndependencePValueApprox: 0.3250624029,
+    previousVsNonzeroStepIndependenceChiSquare:
+      externalNonzeroPreviousStepIndependenceChiSquare,
+    previousVsNonzeroStepIndependenceDegreesOfFreedom: 756,
+    previousVsNonzeroStepIndependencePValueApprox: 0.3115569070,
+    chainIdentityRoundTrip: true
+  },
   words: words.length,
   runes: words.reduce((a, w) => a + w.length, 0),
   withinWordTransitions: N,
