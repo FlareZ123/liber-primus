@@ -81,11 +81,14 @@ function firstPrimes(count) {
 }
 
 const primeEcho = fs.readFileSync(PRIME_ECHO_PATH, 'utf8');
-const eventPattern = /echo(?:\s+-n)?\s+"(\d+)\\t";\s*sleep\s+([0-9.]+)/g;
-const events = Array.from(primeEcho.matchAll(eventPattern), (match) => ({
-  prime: Number(match[1]),
-  delaySeconds: Number(match[2])
-}));
+const events = primeEcho
+  .split(/\r?\n/)
+  .map((line) => line.match(/echo.*?(\d+).*?sleep\s+([0-9.]+)/))
+  .filter(Boolean)
+  .map((match) => ({
+    prime: Number(match[1]),
+    delaySeconds: Number(match[2])
+  }));
 
 assert.equal(events.length, 464);
 assert.equal(events[0].prime, 2);
