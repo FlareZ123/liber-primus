@@ -82,7 +82,7 @@ function bytes(digits, reverse, fixedCapacity) {
 function signature(input) {
   if (input.subarray(0, 3).toString("ascii") === "BZh") return "BZip2";
   if (input.subarray(0, 2).equals(Buffer.from([0x1f, 0x8b]))) return "gzip";
-  if (input.subarray(0, 4).equals(Buffer.from("PK\\x03\\x04", "binary"))) return "ZIP";
+  if (input.subarray(0, 4).equals(Buffer.from([0x50, 0x4b, 0x03, 0x04]))) return "ZIP";
   if (input.subarray(0, 4).toString("ascii") === "%PDF") return "PDF";
   if (input.length > 1 && input[0] === 0x78 &&
       [1, 0x5e, 0x9c, 0xda].includes(input[1])) return "zlib";
@@ -96,7 +96,7 @@ function signature(input) {
  * @param {"cyclic"|"sorted"} mode
  */
 function positivePlant(mode) {
-  const payload = Buffer.from("BZh9\\x00\\x00\\x01\\xff\\x7a\\x03", "binary");
+  const payload = Buffer.from([0x42,0x5a,0x68,0x39,0x00,0x00,0x01,0xff,0x7a,0x03]);
   let value = BigInt("0x" + payload.toString("hex"));
   const digits = [];
   while (value) {
