@@ -40,7 +40,10 @@ const GP = corpus.prime;
 const translit = corpus.translit;
 const TARGET = Object.freeze({runes: 12, indexSum: 151, gpSum: 553});
 const MAX_REPORT = Number(process.argv[2] ?? 19);
-assert.ok([15, 17, 18, 19].includes(MAX_REPORT), "use report level 15, 17, 18, or 19");
+assert.ok(
+  [10, 11, 12, 13, 14, 15, 17, 18, 19].includes(MAX_REPORT),
+  "use report level 10-15, 17, 18, or 19"
+);
 
 /** @param {number} x */
 const mod29 = x => (x % 29 + 29) % 29;
@@ -384,7 +387,7 @@ function transition(current, previousBeginning, S, a, nextNode, operation, ciphe
   const outer = nextOuter(current, a);
   if (
     operation.phase !== phase ||
-    (operation.phase === 2 && S % 7 === 6) ||
+    (MAX_REPORT >= 11 && operation.phase === 2 && S % 7 === 6) ||
     operation.signature.join(",") !== predictedSignature(phase, outer).join(",")
   ) return null;
 
@@ -410,16 +413,32 @@ function transition(current, previousBeginning, S, a, nextNode, operation, ciphe
     JSON.stringify(expectedRows(current)) !==
     JSON.stringify(observedRows(cipher))
   ) return null;
-  if (rayOffset(leftmost(current.cipher), cipher[0]) !== expectedRay(current)) {
-    return null;
+  const observedRay = rayOffset(leftmost(current.cipher), cipher[0]);
+  if (MAX_REPORT >= 12) {
+    if (observedRay !== expectedRay(current)) return null;
+  } else {
+    const E = current.cipher.at(-1);
+    const allowance = Number(mu(n0(E)) === 0 && mu(n3(E)) === 0);
+    if (observedRay > allowance) return null;
   }
 
   const nextRaw = nextNode.map(at);
   if (Number(nextRaw[0] === nextRaw[2]) !== expectedMirror(current)) return null;
   if (mod2(leftmost(cipher)[1]) !== expectedColumnParity(current)) return null;
   if (!squarefreeGcdOk(center, cipher)) return null;
-  if (keyAxis(nextNode) !== expectedKeyAxis(current)) return null;
-  if (mod2(radius(nextNode)) !== expectedRadiusParity(current)) return null;
+  if (MAX_REPORT >= 13) {
+    const observedAxis = keyAxis(nextNode);
+    const expectedAxis = expectedKeyAxis(current);
+    if (MAX_REPORT >= 14) {
+      if (observedAxis !== expectedAxis) return null;
+    } else if (Math.floor(observedAxis / 2) !== Math.floor(expectedAxis / 2)) {
+      return null;
+    }
+  }
+  if (
+    MAX_REPORT >= 15 &&
+    mod2(radius(nextNode)) !== expectedRadiusParity(current)
+  ) return null;
   if (MAX_REPORT >= 17 && !acceptsReport17(current, center)) return null;
   if (
     MAX_REPORT >= 18 &&
