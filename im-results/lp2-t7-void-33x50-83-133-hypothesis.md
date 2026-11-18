@@ -30,14 +30,11 @@ The 50×33 shape nevertheless gives one finite, source-derived experiment worth 
 Tested both original table numeric interpretations:
 
 - conditional base-60 byte stream;
-- conditional base-59 stream obtained by omitting lowercase `f`.
+- conditional base-59 stream obtained by omitting lowercase f while retaining uppercase F.
 
-For each, tested the fixed source-derived row/column layouts, both additive signs, and reversed key order. No candidate raised the void IoC above the native ciphertext baseline in a meaningful way. The best of the finite tests was base-59, reversed row key, additive +:
+For each, tested the fixed source-derived row/column layouts, both additive signs, and reversed key order. The best original IoC was **0.0348413180**, from the conditional base-59 stream with a reversed column key and additive +. The raw void IoC is **0.0346369701**.
 
-- raw void IoC: **0.0346369701**
-- best tested IoC: **0.0345972766**
-
-The independent language-score screen over the same finite family was likewise flat; it produced no coherent plaintext.
+That apparent lift is not discriminating: a 1000-draw matched random-key control, taking the best of the same 16 row/column/sign/reversal configurations on each draw, had median **0.0346972453**, 90th percentile **0.0348766011**, 99th percentile **0.0350383152**, maximum **0.0352022346**, and empirical exceedance **15.5%** for the observed 0.0348413180. The independent language-score screen over the same finite family was likewise flat and produced no coherent plaintext.
 
 ## Decision
 
