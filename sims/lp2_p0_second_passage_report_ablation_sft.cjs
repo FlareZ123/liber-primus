@@ -729,4 +729,16 @@ console.log(JSON.stringify({
   recordedRouteHits: recordedHits.length,
   recordedPlaintextRunes: recorded.steps.map(step =>
     step.plain.map(value => translit[value])),
+  exactHitDetails: hits.map((candidate, hitIndex) => ({
+    hitIndex,
+    sourceCoordinates: candidate.steps.map(step => step.nextNode),
+    sourceRunes: candidate.steps.map(step =>
+      step.nextNode.map(at).map(value => translit[value])),
+    centerTotient: candidate.steps.map(step => step.operation.transformCenter),
+    keys: candidate.steps.map(step =>
+      step.operation.key.map(value => translit[value])),
+    ciphertext: candidate.steps.map(step => step.cipher),
+    plaintextRunes: candidate.steps.map(step =>
+      step.plain.map(value => translit[value])),
+  })),
 }, null, 2));
