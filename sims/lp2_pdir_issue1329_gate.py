@@ -110,6 +110,8 @@ def run_campaign(local: Path, ext: Path, a: argparse.Namespace, rules: list[str]
     assert a.conv in CONVS
     assert a.shards >= 1 and 0 <= a.shard < a.shards
     selected = [x for i, x in enumerate(rules) if i % a.shards == a.shard]
+    assert a.subshards >= 1 and 0 <= a.subshard < a.subshards
+    selected = [x for i, x in enumerate(selected) if i % a.subshards == a.subshard]
     assert selected
     work = ext / "work/kscreen"
     engine = work / "target/release" / ("kscreen.exe" if os.name == "nt" else "kscreen")
@@ -152,6 +154,8 @@ def main() -> None:
     p.add_argument("--conv", default="000")
     p.add_argument("--shard", type=int, default=0)
     p.add_argument("--shards", type=int, default=1)
+    p.add_argument("--subshards", type=int, default=1)
+    p.add_argument("--subshard", type=int, default=0)
     p.add_argument("--streams", default="6")
     p.add_argument("--windows", default="seg0.7,seg0.8")
     p.add_argument("--null", type=int, default=6)
