@@ -42,7 +42,7 @@ It does not reproduce the original counts exactly. The encoded controls still re
 
 Because the gate passed, the exact deterministic inverse was then applied once to the unchanged 12,956-rune original ciphertext.
 
-The result fails ordinary source-native GP English immediately and globally:
+The result fails ordinary source-native GP English immediately and globally. It also exposes a useful intermediate-state fact: the fixed inverse changes only **549/12,956 = 4.2374%** of rune positions, yet same-page adjacent equalities rise from **86 to 478**. The literal-leading-zero share falls from **33/86 = 0.38372** to **114/478 = 0.23849**, while the within-word five-back count changes only from **104 to 99**. Thus the sparse inverse largely removes the unusual immediate-repeat suppression while preserving the five-back structure, even though it does not recover language.
 
 - original ciphertext IoC: **0.0344783978645**;
 - decoded IoC: **0.0345562435052**;
@@ -64,4 +64,4 @@ This model is the strongest member of this local p50 moving-exception sequence b
 
 Retire the exact **zero→F / nonzero-low3 moving-exception sparse transposition** as a complete decoder. Preserve its structural behavior as a constraint on future mechanisms: a historically viable model may need a similarly sparse changing state to explain the three ciphertext anomalies, while also supplying a distinct value-changing operation or key that actually restores nonuniform native language. Do not tune this transposition's phase, marker set, orientation or exception rates after the blind failure.
 
-The complete source-exact CommonJS reproducer is [`sims/lp2_p50_zeroF_moving_exception_sft.cjs`](../sims/lp2_p50_zeroF_moving_exception_sft.cjs). It freezes the matched-control sums, asserts the full joint gate, applies the original inverse only after that gate passes, checks exact forward reconstruction, and verifies the native-GP dictionary and IoC rejection.
+The complete source-exact CommonJS reproducer is [`sims/lp2_p50_zeroF_moving_exception_sft.cjs`](../sims/lp2_p50_zeroF_moving_exception_sft.cjs). It freezes the matched-control sums, asserts the full joint gate, applies the original inverse only after that gate passes, checks exact forward reconstruction, and verifies the native-GP dictionary and IoC rejection. [Windows Node22 run 44383673469](https://github.com/FlareZ123/liber-primus/actions/runs/44383673469) passed the committed blind-inverse version; the added intermediate-state assertions are rerun below before promotion.
