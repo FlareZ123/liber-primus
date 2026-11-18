@@ -114,6 +114,50 @@ def positive_control() -> None:
     print(f"POSITIVE GZIP bytes={len(compressed)} digits=256 recovered_exactly=yes")
 
 
+
+def direct_quotient_key_gate(values: list[int]) -> None:
+    """Apply the exact source quotient stream as a repeated GP29 additive key."""
+    corpus_path = SOURCE.parent / "lp2-corpus.json"
+    corpus = json.loads(corpus_path.read_text(encoding="utf-8"))
+    pages = [p for p in corpus["pages"] if p["page"] <= 55 and p["indices"]]
+    assert len(pages) == 55 and sum(len(p["indices"]) for p in pages) == 12_956
+    clear_p57 = next(p["indices"] for p in corpus["pages"] if p["page"] == 57)
+    assert len(clear_p57) == 95
+    starts = {0, 3, 8, 15, 23, 27, 33, 40, 54}
+    original = [c for page in pages for c in page["indices"]]
+
+    def collision(data: list[int]) -> float:
+        counts = [data.count(i) for i in range(29)]
+        return sum(x * (x - 1) for x in counts) / (len(data) * (len(data) - 1))
+
+    print(f"CIPHER ORIGINAL rune_count={len(original)} ioc={collision(original):.14f}")
+    maximum = 0.0
+    for reading in ("rows", "columns"):
+        indexes = order(reading, False, False)
+        key = [values[i] // 29 for i in indexes]
+        for scope in ("book", "chapter", "page"):
+            sites = []
+            book_pos = chapter_pos = 0
+            for page in pages:
+                if page["page"] in starts:
+                    chapter_pos = 0
+                for local_pos, c in enumerate(page["indices"]):
+                    phase = {"book": book_pos, "chapter": chapter_pos, "page": local_pos}[scope]
+                    sites.append((c, key[phase % 256]))
+                    book_pos += 1
+                    chapter_pos += 1
+            assert len(sites) == 12_956
+            for sign in (-1, 1):
+                recovered = [(c + sign * k) % 29 for c, k in sites]
+                ic = collision(recovered)
+                maximum = max(maximum, ic)
+                print(f"CIPHER reading={reading} scope={scope} sign={sign:+d} ioc={ic:.14f}")
+                plant_c = [(p - sign * key[i % 256]) % 29 for i, p in enumerate(clear_p57)]
+                assert [(c + sign * key[i % 256]) % 29 for i, c in enumerate(plant_c)] == clear_p57
+    print(f"CIPHER SUMMARY candidates=12 maximum_ioc={maximum:.14f} positive_p57_exact=12/12")
+    assert maximum < 0.04
+
+
 def main() -> None:
     values = json.loads(SOURCE.read_text(encoding="utf-8"))["bytes"]
     assert len(values) == 256 and all(type(x) is int and 0 <= x < 256 for x in values)
@@ -145,6 +189,7 @@ def main() -> None:
           f" readable_decompressions={meaningful} max_ascii={most_printable[0]:.4f}"
           f" max_ascii_mode={most_printable[1]}")
     assert signatures == 0 and meaningful == 0
+    direct_quotient_key_gate(values)
 
 
 if __name__ == "__main__":
