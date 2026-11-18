@@ -19,6 +19,8 @@ for(const page of pages){
 }
 assert.equal(total,12956);
 assert.equal(sites.length,86);
+assert.ok(sites.every((v,i)=>i===0||v-sites[i-1]>1),
+  'Original 86 equalities contain no overlapping triple-run events');
 assert.equal(pools.filter(p=>p.eligible>=0).length,55);
 function corr(s){
   const d=[];
