@@ -28,7 +28,7 @@ J = (13,12)
 
 No candidate plaintext is used to place this anchor.
 
-The original p0, p1, and p2 images also form a conspicuous visual unit: all three repeat the same paired black cross marginalia on left and right, while p2 closes the unit with the cicada illustration and the terminal red 13-dot mark. This visual continuity is independent support for treating the rubrication-selected 729-rune span as one designed section; it does not by itself specify the row-major reshape or transition rules.
+The original p0, p1, and p2 images also form a conspicuous visual unit: all three repeat the same paired black cross marginalia on left and right, while p2 closes the unit with the cicada illustration and the terminal red 13-dot mark. Independent original-image work established that each cross pair is related by the exact page-centered **180-degree half-turn**, and that pp0–2 are the only LP2 pages carrying this high-correlation arrangement. Earlier direct reverse, sum/difference, and prime-totient consumers failed. A narrower consumer now matters here: on the conditional 27×27 square, that already-established half-turn maps the X-OE-X endpoint center directly to the block-3 key center.
 
 ## Blocks 1–3: source-selected opening through the physical p0 end
 
@@ -90,15 +90,23 @@ p0 final cell   (10,19)
 
 The five fixed cells decrypt under `X-X-I` to `W-EA-TH-E-R`, **WEATHER**. The word length is selected by page-boundary geometry rather than dictionary-prefix collapse.
 
-### Block 3: the next cell joins directly to the physical p0 end
+### Block 3: the original cross half-turn selects the TURNS key center
 
-Block 3 begins at the boundary-selected next cell `(14,19)`. Reuse the derived block-2 center `I=10`: `phi(10)=4`. Move four cells in the inherited rightward direction to `(14,23)`; use radius 10 on the perpendicular axis:
+Block 3 begins at the boundary-selected next cell `(14,19)`. The earlier construction reached key center `(14,23)` by reusing derived block-2 center `I=10`, taking `phi(10)=4`, and moving four cells right. The original-image half-turn gives the same center more directly and independently of that reconstructed state update.
+
+The selected endpoint is horizontal `X-OE-X` at `(14,4..6)`, centered on `OE` at **`(14,5)`**. On a 27×27 square, the artwork-selected 180-degree turn about matrix center `(14,14)` is
+
+```
+(r,c) -> (28-r, 28-c)
+```
+
+so the endpoint center maps exactly to **`(14,23)`**. Retain the endpoint's already source-native totient radius, `phi(OE=22)=10`, on the perpendicular axis through that rotated center:
 
 ```
 H(4,23) - NG(14,23) - C(24,23)
 ```
 
-Its `mu(phi(k))` rotation is zero, so the key is `H-NG-C`.
+Its `mu(phi(k))` rotation is zero, so the key is `H-NG-C`. Thus the visible half-turn plus the independently established totient primitive supplies the block-3 key center and radius without the former `I -> phi(I)` center-selection step. The half-turn does **not** itself decrypt rune values; the direct reversal/fold consumers remain rejected.
 
 The block-3 start and the physical p0 final rune already share column 19. Their unique straight source path is:
 
@@ -108,9 +116,9 @@ The block-3 start and the physical p0 final rune already share column 19. Their 
 
 Those five cells decrypt to `T-U-R-N-S`, **TURNS**, ending exactly on the final physical rune of p0.
 
-Thus **blocks 1–3 no longer use English to select their node, start, stop, length or direction**. The grammar remains post-hoc because these node/movement rules were reconstructed after the public route was known; this is source compression rather than creator authentication.
+Thus **blocks 1–3 no longer use English to select their node, start, stop, length or direction**. The cross half-turn now independently source-selects the block-3 key center and its radius, removing one reconstructed transition choice. The remaining node/key grammar was still recognized after the public route was known, and the later blind p0→p1 transfer still fails, so this remains strong intermediate source compression rather than creator-authenticated plaintext.
 
-Reproducer: `sims/lp2_p0_opening_physical_boundary_sft.cjs`.
+Reproducers: `sims/lp2_p0_opening_physical_boundary_sft.cjs` and the independent half-turn consumer `sims/lp2_p0_cross_halfturn_block3_selector_sft.cjs`.
 
 ## All-grid multiplicity control for Blocks 1–3
 

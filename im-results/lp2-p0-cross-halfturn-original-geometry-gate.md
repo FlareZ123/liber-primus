@@ -19,6 +19,18 @@ To alter the original rune values under literal glyph rotation, the solver would
 
 The read-only [original-source SFT](../sims/lp2_p0_cross_halfturn_sft.py) tests pp0–3 pixels, pixel equality of p1/p2 cross artwork, original p0 red13 exclusion, all 716 GP indices, IoC invariance, and lossless page-local reversal. The p3 illustration is a negative control. All source JPEGs and corpus bytes remain untouched.
 
+## Later bounded consumer: half-turn selects the conditional 27×27 TURNS center
+
+The direct-cipher decision above remains intact. A later source-bounded 27×27 opening investigation provides a narrower consumer for this established artwork operation without treating reversal itself as decryption.
+
+That conditional route independently fixes a unique horizontal endpoint node **X-OE-X** at row 14, columns 4–6 of the 27×27 p0–p2 square. Its center is **(14,5)=OE**. The exact source-visible half-turn about matrix center **(14,14)** sends that center to **(14,23)**. Using the same endpoint-center totient already present in the route, **phi(OE=22)=10**, as a perpendicular radius through the rotated center selects cells **(4,23), (14,23), (24,23) = H-NG-C**. This is exactly the previously reconstructed block-3 key node whose fixed ciphertext path decrypts conditionally to **TURNS**.
+
+This matters because the prior bootstrap reached (14,23) through a reconstructed two-step state update, `OE -> I=phi(22)=10 -> phi(10)=4`, followed by a four-cell horizontal move. The original cross half-turn reaches the same center directly and retains radius10 from the original endpoint center. It therefore removes one post-hoc block-3 state-selection choice while adding no value-changing cipher layer.
+
+Scope remains strict: this does **not** turn the half-turn into a whole-chapter decoder, does not authenticate row-major 27×27 as the creator's intended reshape, and does not repair the failed blind p0→p1 successor after TURNS. The earlier reverse, folded-sum/difference, and prime/totient direct-cipher negatives remain valid.
+
+Reproducer: `sims/lp2_p0_cross_halfturn_block3_selector_sft.cjs`.
+
 ## Research decision
 
 Retire the **literal half-turn/ordering** branch as a complete unknown-page decoder. The 180-degree symmetry is real, but no unique value-changing cipher operation or column selector follows from it. Revisit only if a first-party instruction supplies an actual rotated rune alphabet or specifies which original text region to read. The larger LP2 manuscript remains unsolved.
