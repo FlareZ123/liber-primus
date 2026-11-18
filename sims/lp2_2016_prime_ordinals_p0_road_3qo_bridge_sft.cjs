@@ -269,6 +269,28 @@ const base29Value = [...base29Text].reduce((value, digit) => {
 }, 0);
 assert.equal(base29Value, 3301);
 
+// The continuation of the same numeric THE ROAD span selects a unique p50
+// four-cell DH-state run. ROAD occupies p0 offsets105..108; the same integers
+// as one-based p50 cells105..108 have byte/base60 residues a,g,K,b.
+const dhState = {p: 23, g: 5, a: 6, A: 8, B: 19, b: 15, K: 2};
+const roadTableResidues = table.bytes.slice(104, 108).map((value) => value % 29);
+assert.deepEqual(
+  roadTableResidues,
+  [dhState.a, dhState.g, dhState.K, dhState.b]
+);
+const dhValues = new Set(Object.values(dhState));
+const allDhFourRuns = [];
+for (let i = 0; i + 4 <= table.bytes.length; i += 1) {
+  const residues = table.bytes.slice(i, i + 4).map((value) => value % 29);
+  if (residues.every((value) => dhValues.has(value))) {
+    allDhFourRuns.push({oneBasedStart: i + 1, residues});
+  }
+}
+assert.deepEqual(allDhFourRuns, [{
+  oneBasedStart: 105,
+  residues: [6, 5, 2, 15],
+}]);
+
 // Fixed earlier-image control from the same prime-ordinal program.
 assert.deepEqual([nthPrime(96), nthPrime(97)], [503, 509]);
 const controlWord = p0Words.find((word) => word.start <= 96 && word.end >= 97);
@@ -311,6 +333,12 @@ process.stdout.write(JSON.stringify({
     bytes: [table.bytes[102], table.bytes[103]],
     reconstructedBase29: base29Text,
     value: base29Value,
+    roadContinuation: {
+      oneBasedCells: [105, 106, 107, 108],
+      byteResiduesMod29: roadTableResidues,
+      dhLabels: ["a", "g", "K", "b"],
+      allDhFourRuns,
+    },
   },
   earlierImageControl: {
     primeOrdinals: [96, 97],
