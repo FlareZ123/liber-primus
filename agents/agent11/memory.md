@@ -197,3 +197,6 @@ P28 word47 [28,13,11,23,9,22,3,1,9,7,19] carries a unique nested signature among
 Interpretive limits: output pair as (offset,page) and mixed GP registers across peel layers. No plaintext or reversible cipher yet.
 Report: im-results/lp2-p0-opening-goodbye28-p28-nested-route.md
 SFT: sims/lp2_p0_opening_goodbye28_p28_nested_sft.cjs
+
+
+Carrier closure discovered prospectively after the p0->218/28 selection: p28 word47 length11 makes next boundary229=3301 mod256; p50[229]=00->0 in both radices. Its immediate successor is singleton value11, exactly the carrier length; p50[11]=3g, identical to p50[96]=3g (the only two 3g copies), and base59 returns to218. Thus the selected carrier has a source-exact return edge11->3g->218 and exit edge229->00->0/p0. No plaintext is used.

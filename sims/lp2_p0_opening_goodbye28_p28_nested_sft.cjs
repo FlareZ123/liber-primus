@@ -251,6 +251,46 @@ assert.deepEqual(
   }
 );
 
+
+
+// Prospective closure after the carrier: its length is repeated by the successor,
+// that singleton returns through the GOODBYE duplicate token, while the boundary
+// itself is 3301 mod256 and p50[229]=00 -> p0.
+const carrierLength = receiver.word.length;
+const carrierNext = receiver.start + carrierLength;
+assert.equal(carrierLength, 11);
+assert.equal(carrierNext, 229);
+assert.equal(3301 % 256, carrierNext);
+assert.equal(table[carrierNext], "00");
+assert.equal(decode(table[carrierNext], alphabet59), 0);
+assert.equal(decode(table[carrierNext], alphabet60), 0);
+
+const receiverIndex = p28Rows.findIndex((row) => row.number === receiver.number);
+const successor = p28Rows[receiverIndex + 1];
+assert.ok(successor);
+assert.deepEqual(successor.word, [carrierLength]);
+assert.equal(successor.start, carrierNext);
+assert.equal(table[carrierLength], "3g");
+assert.equal(table[96], "3g");
+assert.deepEqual(
+  table.map((token, index) => token === "3g" ? index : null)
+    .filter((index) => index !== null),
+  [11, 96]
+);
+assert.equal(decode(table[carrierLength], alphabet59), receiver.start);
+
+let selfLengthSuccessors = 0;
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  const words = wordsOnPage(page);
+  for (let index = 0; index + 1 < words.length; index += 1) {
+    if (words[index + 1].length === 1 && words[index + 1][0] === words[index].length) {
+      selfLengthSuccessors += 1;
+    }
+  }
+}
+assert.equal(selfLengthSuccessors, 3);
+
 console.log(JSON.stringify({
   status: "PASS: p0 opening uniquely back-links to the p28 GOODBYE endpoint and its nested parable carrier",
   p0Opening: {

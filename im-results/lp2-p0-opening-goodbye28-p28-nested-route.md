@@ -78,6 +78,45 @@ The whole-book holdout is discriminating. Among **641** odd printed words long e
 
 The unique full hit is p28 word47, already selected by the p0 backlink.
 
+
+
+## The selected carrier closes on both its start and the p0 exit
+
+The receiver has a further prospective consequence that was not used to select word47.
+
+Word47 starts at218 and has length **11**, so the next word boundary is:
+
+```
+218 + 11 = 229 = 3301 mod 256.
+```
+
+P50 cell229 is the literal token `00`, which maps to0 in both radices and is the independently used p0 exit.
+
+The immediate successor word at that boundary is a singleton GP value **11**, exactly equal to the carrier length. P50 cell11 is `3g`, the same token printed at authenticated `GOODBYE=96`; these are the only two copies of `3g` in the 256-cell table. Under base59 both decode to **218**, the carrier start.
+
+So the selected object has two exact closures:
+
+```
+successor singleton 11 -> p50[11] = 3g -> base59 218 -> carrier start
+
+carrier end/next boundary 229 = 3301 mod256
+                         -> p50[229] = 00
+                         -> 0 -> p0
+```
+
+Only three adjacent word pairs in p0..p55 have the generic property "next word is a singleton equal to the previous word length"; the p28 carrier is one of them. Its stronger significance comes from the receiver being fixed upstream and the two table closures landing on independently active values218 and0.
+
+This gives a closed original-ciphertext navigation circuit:
+
+```
+p0 opening -> GOODBYE / (218,28)
+           -> p28 word47 nested parable carrier
+           -> 11 -> 3g -> 218  [return]
+           -> 229 -> 00 -> 0   [exit to p0]
+```
+
+No plaintext letters are used in this circuit.
+
 ## Evidence boundary
 
 The source relations and uniqueness are exact. Two interpretive choices remain:
