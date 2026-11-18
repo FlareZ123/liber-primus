@@ -16,6 +16,8 @@ The true longest contiguous interval with **zero** adjacent equalities is **[314
 
 Every one of the **11,307** possible consecutive 1,650-rune windows was scored by the number of its **internal** adjacent-equal sites. The minimum is **three**, attained by **351** different starts, 2580 through 2930 inclusive. Start 2739 is one among them. Its pleasing equalities `2739=33×83` and `4389=33×133`, and the 50×33 factorization, are therefore **postselected within a broad tied plateau**. The previous inference that the source singled out an exceptional exact 50×33 void should be withdrawn.
 
+A stricter consequence can be checked directly: **the genuine longest zero-equality interval is ordinary under an unconditional fixed-86-event position null**. With 86 equal-pair sites uniformly placed among the 12,901 valid within-physical-page pair positions, 20,000 seeded draws give median longest interval **721** runes, fifth percentile **532**, ninety-fifth **1074**. The observed **712** is reached or exceeded in **10,462/20,000** draws (finite-sample p **0.523124**). This null preserves original page lengths and total event count, but does **not** fix each page's observed event count or original line positions. It disfavours using 712 as a unique standalone cipher selector; it does not adjudicate the separate ordered doublet-gap autocorrelation.
+
 The isolated p50 addresses 83 and 133 came from other retrospective interpretations (signed-2016 "lies" and a red-event checksum); neither authentic source requires these window boundaries. The independent p57 interior count50 and p55 boundary count33 permit a 50×33 Cartesian key object, but **supply no rule identifying this 1,650-rune ciphertext slice**.
 
 ## Corrected, source-exact receiver controls
@@ -30,6 +32,8 @@ Both retained tests now load the entire actual original cipher (including p55), 
 The first decoder simply adds/subtracts a source byte reduced modulo29 for each row/column. The second decodes `P[r,c]=(C[r,c] ± (R[r]+K[c])) mod29`. These tests are finite, fully reversible under their chosen keys and do not recover coherent GP prose. A low IoC or inferior trained language score is conditional evidence against these exact operations; it is not a universal impossibility proof for all 50×33 decoders.
 
 **Reproduction:** `sims/lp2_t7_window_ordered_doublet_correction_sft.cjs` verifies every source count and all window ties; `sims/lp2_t7_33x50_table83_133_sft.cjs` evaluates the first family; `sims/lp2_t7_33x50_p57interior_p55boundary_sft.cjs` evaluates the second. Both family scripts now load p0–p55 completely and use seeded controls.
+
+**Windows Node22 verification (18 November 2026):** all three corrected original-input SFTs passed independently in Actions: [source-repeat geometry run 44263715929](https://github.com/FlareZ123/liber-primus/actions/runs/44263715929), [table-83/133 receiver run 44263722291](https://github.com/FlareZ123/liber-primus/actions/runs/44263722291), and [p57/p55 Cartesian receiver run 44263727990](https://github.com/FlareZ123/liber-primus/actions/runs/44263727990). The source geometry run was subsequently extended with a fixed-event permutation null (20,000 draws, seed 0x3301, observed longest interval712, median721, upper-tail p0.523124). That extra null requires a second run; the other two are already source-exact audited passes.
 
 ## Research decision
 

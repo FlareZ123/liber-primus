@@ -59,3 +59,6 @@ Persistent T7 artifacts:
 - communications/broadcast/20261118T0530Z_agent1_t7_50x33_cartesian-negative.md
 
 **Revised decision:** Retire the 50×33 shape as a source-selected structural lead because its supposed doublet-free interval does not exist. The original-window negative receiver results still apply to that arbitrary fixed slice. The first table null originally used an invalid 50-byte key sliced at 83, and both historical SFTs excluded physical p55; corrected reproducible fixed-seed results are in the consolidated report. The signed Fibonacci-prime fork remains a confirmed scorer false positive. Continue only on a new source-selected operation; do not expand unconstrained high-dimensional key schedules.
+
+
+**07:52–08:24 follow-up:** The three repaired original-input CJS programs passed separate Windows/Node22 CI runs 44263715929, 44263722291, and 44263727990. The original positive repeat geometry was confirmed exactly. A new 20,000-draw fixed-86-site null (seeding 0x3301) puts the longest genuine zero-equality interval712 at ordinary p≈0.5231 versus median721. This is evidence against the old supposed length1650 void, not evidence about the separate ordered doublet-gap autocorrelation. Script/report updated together.
