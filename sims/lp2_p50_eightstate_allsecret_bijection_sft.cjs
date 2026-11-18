@@ -162,3 +162,56 @@ console.log('ALL_SECRET_EXACT '+JSON.stringify({maxFullContextIoC:max,
   mathematicalMethod:'sort 29 ciphertext label counts per observed context; align ranks (pairwise rearrangement), exact 29!^232 upper optimum'}));
 console.log('POSITIVE '+JSON.stringify(positive));
 console.log('DECISION: both byte field packings, page/book reset, all initial states and all secret stationary GP29 alphabets per observed prior-cipher-rune and state are insufficient to represent every pinned GP-native English control window. This excludes only the specified observable table-state direct 29-symbol receiver, without claims about unseen adaptive keys or altered registers.');
+
+
+// The 2016 source phrase "words are the map" licenses testing visible word
+// starts as one additional context bit; it does not specify any unknown keys.
+const wordFlags=[];
+const runeMap=new Map(gp.runes.map((r,i)=>[r,i]));
+let first=true;
+for(const ch of read('resources/liber-primus/lp2-transcription.txt')){
+  const index=runeMap.get(ch);
+  if(index!==undefined){
+    if(wordFlags.length===N)break;
+    wordFlags.push(Number(first));
+    first=false;
+  }else if('-.&§'.includes(ch))first=true;
+}
+assert.equal(wordFlags.length,N);
+assert.equal(wordFlags.reduce((sum,v)=>sum+v,0),2896);
+function wordBitBound(packing,initialState,resetPage){
+  const h=Array.from({length:464},()=>new Int32Array(29));
+  let state=initialState,prev=0,k=0;
+  for(const page of pages){
+    if(resetPage){state=initialState;prev=0;}
+    for(const c of page.indices){
+      h[2*(8*prev+state)+wordFlags[k++]][c]++;
+      state=next(packing,state,prev);
+      prev=c;
+    }
+  }
+  assert.equal(k,N);
+  const total=new Int32Array(29);
+  for(const hist of h){
+    const sorted=[...hist].sort((a,b)=>b-a);
+    for(let j=0;j<29;j++)total[j]+=sorted[j];
+  }
+  return total.reduce((s,n)=>s+n*(n-1),0)/(N*(N-1));
+}
+const wordModels=[];
+for(const packing of [0,1])
+  for(const resetPage of [false,true])
+    for(let initialState=0;initialState<8;initialState++)
+      wordModels.push({packing,resetPage,initialState,
+        ceiling:wordBitBound(packing,initialState,resetPage)});
+assert.equal(wordModels.length,32);
+wordModels.sort((a,b)=>b.ceiling-a.ceiling);
+assert(wordModels.every(x=>x.ceiling>=nativeMin));
+console.log('VISIBLE_WORD_BOUNDARY_RIVAL '+JSON.stringify({
+  printedWords:2896,sourceRunes:N,models:wordModels.length,
+  independentlySecretAlphabets:464,
+  bestCeiling:wordModels[0].ceiling,
+  worstCeiling:wordModels.at(-1).ceiling,
+  sourceSelection:'real printed word starts in original transcript, not line/page wraps',
+  interpretation:'One extra source-visible word-initial bit lifts attainable collision above native GP29 English; key remains unknown and no plaintext has been recovered.'
+}));
