@@ -59,8 +59,7 @@ const tokens = [...alphabet.keys()].sort((a, b) => b.length - a.length);
 function encodeReference(text) {
   const out = [];
   for (let word of text.toUpperCase().match(/[A-Z]+/g) || []) {
-    word = word.replaceAll('V', 'U').replaceAll('K', 'C').replaceAll('Z', 'S')
-      .replaceAll('QU', 'CW').replaceAll('ING', 'NG').replaceAll('IO', 'IA');
+    word = word.replaceAll('ING', 'NG');
     const seq = [];
     for (let at = 0; at < word.length;) {
       const token = tokens.find((candidate) => word.startsWith(candidate, at));
