@@ -143,6 +143,52 @@ function matchSource(seq, mask) {
   return {hits, examples};
 }
 
+
+/** Undo a single positive iteration of T(x)=27x+24 over GF29. */
+const inverseT = x => mod(14 * (x - 24));
+
+const wordLocalPosition = Array(original.length).fill(0);
+for (const word of words) {
+  for (let j = 0; j < word.glyphs.length; j++) {
+    wordLocalPosition[word.start + j] = j;
+  }
+}
+
+/**
+ * Given an original ciphertext page and a candidate native-GP plaintext
+ * fragment, grant every arbitrary fixed 29-way secret substitution codebook,
+ * all six starting six-block phases, and two fixed clocks.
+ * Lower bound on edits after removing the original T-rotor. Even a
+ * noninjective hidden alphabet is allowed.
+ *
+ * @param {number[]} ciphertext
+ * @param {number[]} candidate
+ * @param {number} originalStart Absolute book-rune origin
+ */
+function bestStaticLookup(ciphertext, candidate, originalStart) {
+  assert.equal(ciphertext.length, candidate.length);
+  let best = {mismatches: ciphertext.length, clock: '', phase: -1};
+  for (const clock of ['global', 'word']) {
+    for (let phase = 0; phase < 6; phase++) {
+      const rows = Array.from({length: 29}, () => Array(29).fill(0));
+      for (let i = 0; i < ciphertext.length; i++) {
+        let state = ciphertext[i];
+        let steps = Math.floor(((clock === 'global' ? i :
+          wordLocalPosition[originalStart + i]) + phase) / 6);
+        while (steps-- > 0) state = inverseT(state);
+        rows[candidate[i]][state]++;
+      }
+      const mismatches = rows.reduce(
+        (sum, row) => sum + row.reduce((a, b) => a + b, 0) - Math.max(...row),
+        0);
+      if (mismatches < best.mismatches) {
+        best = {mismatches, clock, phase};
+      }
+    }
+  }
+  return best;
+}
+
 const scopes = [
   {name: 'p0', from: 0, to: 1},
   {name: 'p0-p2', from: 0, to: 3},
@@ -184,6 +230,7 @@ function main() {
   let totalNative = 0;
   const sources = [];
   let firstSource = null;
+  const shortCandidateRejects = [];
   for (const sourcePath of sourcePaths) {
     const native = encodeNative(read(sourcePath));
     totalNative += native.length;
@@ -194,7 +241,16 @@ function main() {
       ['reverse', native.slice().reverse()]
     ]) {
       for (const mask of masks) {
-        outcomes[mask.name + '/' + direction] = matchSource(seq, mask);
+        const found = matchSource(seq, mask);
+        outcomes[mask.name + '/' + direction] = found;
+        if (mask.name === 'p0') {
+          assert.equal(found.hits, found.examples.length);
+          for (const at of found.examples) {
+            shortCandidateRejects.push({source: sourcePath, direction,
+              at, ...bestStaticLookup(original.slice(0, mask.len),
+                seq.slice(at, at + mask.len), 0)});
+          }
+        }
       }
     }
     sources.push({name: sourcePath, nativeLength: native.length, outcomes});
@@ -212,6 +268,11 @@ function main() {
   assert(plantedMask.sites.every(site => site.yes === (
     plaintext[site.at] === plaintext[site.at - 6])));
   assert.equal(recovered.hits >= 1, true);
+  assert.equal(bestStaticLookup(planted.slice(0, 729),
+    plaintext.slice(0, 729), 0).mismatches, 0);
+  assert.equal(shortCandidateRejects.length, 3);
+  assert.deepEqual(shortCandidateRejects.map(c => c.mismatches),
+    [209, 211, 213]);
 
   const long = masks.filter(m => m.len >= 700);
   const totalLongHits = sources.reduce((sum, source) =>
@@ -228,6 +289,7 @@ function main() {
     nativeRunes: totalNative,
     directionsPerSource: 2,
     longWindowMatchingOffsets: totalLongHits,
+    originalP0MaskMatches: shortCandidateRejects,
     plant: {sourceOffset: nativeOffset, recoveredExactly: true,
       plantedPairs: plantedMask.sites.length,
       plantedEvents: plantedMask.hits},
@@ -237,4 +299,5 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = {encodeNative, originalMask, matchSource, plantRotor};
+module.exports = {encodeNative, originalMask, matchSource,
+  plantRotor, bestStaticLookup};
