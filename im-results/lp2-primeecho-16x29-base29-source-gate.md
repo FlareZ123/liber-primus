@@ -49,7 +49,7 @@ The reproducer checks the exact 464-event shell source, both held ranks, both BA
 
 It also executes the authentic solved-p56 prime-totient/plaintext-F inverse against the canonical corpus and recovers all **85/85** known plaintext runes. This establishes that the test environment can execute a genuine source-selected LP2 inverse while leaving the BASE29 object without a bridge to the unsolved pages.
 
-Reproducer: `sims/lp2_primeecho_16x29_base29_source_gate_sft.cjs`.
+Reproducer: `sims/lp2_primeecho_16x29_base29_source_gate_sft.cjs`. Windows Node 22 run: https://github.com/FlareZ123/liber-primus/actions/runs/44412623836 (success).
 
 ## Research consequence
 
