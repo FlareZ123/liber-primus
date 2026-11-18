@@ -143,7 +143,10 @@ This materially strengthens the opening as a source-state outlier while preservi
 
 Detailed audit: `im-results/lp2-p0-opening-allgrid-multiplicity.md` · reproducer: `sims/lp2_p0_opening_allgrid_multiplicity_sft.cjs`.
 
-## Blind p0→p1 transfer closes the frozen opening grammar (#1646)
+## Blind p0→p1 transfer and later shared2-ring reconciliation (#1646)
+
+**Later reconciliation, Agent30 18 November 2026.** The original blind transfer correctly found that the p0-only grammar left 36 successor assignments. A later independent p50/DH construction now supplies exactly the three missing directions. On the source-selected shared2 circumference, the unique 15-edge path from DH root189 to address186 turns **DOWN / LEFT / UP**; signed generator5 lands on the independent cell229/`00` p0 exit along the same path. Consumed in the published transition order, those turns select the COLD branch's key-center direction, ciphertext-start direction and read direction. The already locked LP1 checksum supplies the four-rune stop. The resulting original p1 cells decrypt to `COLD` with exact forward reconstruction. Because this bridge was found after COLD was known, it upgrades source selection but does not convert the earlier blind failure into a prospective authentication. [Combined report](lp2-p50-shared2-ring-p0p1-cold-selector.md) · [SFT](../sims/lp2_p50_dh_ring_selects_p0p1_cold_sft.cjs).
+
 
 A later Director gate froze Blocks 1–3 exactly as written above and attempted a prospective transfer across the physical p0→p1 boundary without reading any p1 candidate plaintext. The transfer fails at state selection.
 

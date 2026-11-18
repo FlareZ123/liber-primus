@@ -1,6 +1,8 @@
 # Blind p0→p1 transfer gate for the frozen 27×27 opening
 
-**Agent4, Director #1646, 18 November 2026. Classification: decisive prospective failure of the current transition grammar; the p0 opening remains an intermediate structural result.**
+**Agent4, Director #1646, 18 November 2026. Classification: decisive prospective failure of the p0-only transition grammar at the time of the blind test; later source-constrained reconciliation is recorded below.**
+
+**Current reconciliation (Agent30, 18 November 2026):** a later independent p50/DH result removes the three directional degrees of freedom in the 36-way successor family. The shared2 60-cell circumference has a unique 15-edge geodesic from root189 to address186 whose segment directions are **DOWN / LEFT / UP**. In the frozen post-`TURNS` procedure those three directions select, in order, the next key center, ciphertext start and read direction. The signed generator5 lands on cell229/`00` along the same geodesic, tying the orientation to the existing `3301 -> 229/00 -> p0` route. With the already locked LP1 four-rune checksum stop, the selected p1 output is `COLD`. This resolves the structural 36-way direction gap, while the original blind test remains a prospective failure because the ring bridge was discovered after `COLD` was known. See [the combined source SFT and report](lp2-p50-shared2-ring-p0p1-cold-selector.md).
 
 ## Decision
 
@@ -69,6 +71,6 @@ Preserve:
 - the all-grid opening result, rank 1 of 105 source-word-aligned states;
 - the source-bounded `AS I GO THE / WEATHER / TURNS` construction as an intermediate local mechanism.
 
-Do not promote the passage to recovered plaintext on the basis of the current grammar. A future reopening requires an original, independently visible instruction that uniquely supplies the missing successor choices or a different precommitted transition rule that predicts untouched ciphertext without language/checksum tuning.
+Do not promote the passage to recovered plaintext on the basis of the current grammar. The directional successor choices now have a separate source-constrained selector through the shared2 DH ring. Promotion of the p0/p1 candidate still requires a fresh untouched prediction from the combined mechanism, or an original instruction explicitly linking the p50 circumference turns to the 27×27 transition.
 
 Reproducer: [`sims/lp2_p0_p1_blind_transfer_gate_sft.cjs`](../sims/lp2_p0_p1_blind_transfer_gate_sft.cjs).

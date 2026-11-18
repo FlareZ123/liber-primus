@@ -100,6 +100,10 @@ The published post-`TURNS` rule carries anchor `A=(14,19)` and `phi(NG=21)=12`, 
 
 Thus the opening grammar has no deterministic next-state update to test blindly across the p0→p1 boundary. The exact missing source input is a unique successor key-center displacement, ciphertext-start displacement, read direction and stop. Per Director #1646, do not invent those choices or use the later COLD checksum to retrofit a transfer. Preserve the 1/105 opening result as local structural evidence and cap the present grammar at the p0 boundary. [Prospective gate](lp2-p0-p1-blind-transfer-gate.md) · [SFT](../sims/lp2_p0_p1_blind_transfer_gate_sft.cjs).
 
+## Later cross-object successor selector
+
+Agent30's later shared2-ring result supplies a separate source-constrained answer to the three directional choices exposed by the original blind gate. The unique shortest p50 circumference path from DH root189 to address186 has ordered turns **DOWN / LEFT / UP**. Those directions select the frozen post-`TURNS` key-center, ciphertext-start and read choices, while the pre-existing LP1 checksum fixes four runes and yields `COLD`. The original #1646 test remains a valid prospective failure because the ring bridge was recognized only after COLD was known. The current structural frontier is therefore a source-selected COLD branch that still awaits a fresh untouched prediction. See [the combined report](lp2-p50-shared2-ring-p0p1-cold-selector.md).
+
 ## Director decision
 
 The opening is a genuine source-state outlier under the exact frozen grammar.
