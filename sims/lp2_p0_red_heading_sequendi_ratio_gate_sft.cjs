@@ -131,6 +131,42 @@ const rectangle = rectangles[0];
 assert.deepEqual(rectangle.corners, [[6, 3], [6, 9], [24, 9], [24, 3]]);
 assert.deepEqual(rectangle.key, [idx("X"), idx("N"), idx("X"), idx("C")]);
 
+// Route-internal control for the first-key geometry. Apply the same rule to
+// every frozen vertical three-rune source: use that source's center rune at
+// the rectangle's upper-left and lower-right corners, keep its source column
+// as the right side, strictly span the source, and require equal distance to J.
+const verticalRectangleControls = [];
+for (let block = 0; block < 38; block++) {
+  if (sources[block].length !== 3) continue;
+  const points = sources[block].map(coord);
+  if (!points.every(point => point[1] === points[0][1])) continue;
+  const column = points[0][1];
+  const centerRune = grid[sources[block][1]];
+  const minRow = Math.min(...points.map(point => point[0]));
+  const maxRow = Math.max(...points.map(point => point[0]));
+  const matches = [];
+  for (let top = 1; top < minRow; top++) {
+    for (let bottom = maxRow + 1; bottom <= 27; bottom++) {
+      for (let left = 1; left < column; left++) {
+        const corners = [
+          [top, left],
+          [top, column],
+          [bottom, column],
+          [bottom, left],
+        ];
+        if (runeAt(corners[0]) !== centerRune) continue;
+        if (runeAt(corners[2]) !== centerRune) continue;
+        if (dist2(corners[0], J) !== dist2(corners[2], J)) continue;
+        matches.push(corners);
+      }
+    }
+  }
+  verticalRectangleControls.push({block: block + 1, matches});
+}
+assert.equal(verticalRectangleControls.length, 17);
+const verticalRectangleHits = verticalRectangleControls.filter(x => x.matches.length > 0);
+assert.deepEqual(verticalRectangleHits.map(x => [x.block, x.matches.length]), [[28, 1]]);
+
 const firstCipher = red.slice(0, 8).reverse();
 const firstKey = rectangle.key;
 const firstPlain = subtractRepeating(firstCipher, firstKey);
@@ -208,6 +244,8 @@ console.log(JSON.stringify({
   originalHeadingGroups: [8, 5],
   openingAnchor: J,
   uniqueRectangleCount: rectangles.length,
+  verticalThreeRuneSourcesTested: verticalRectangleControls.length,
+  verticalSourcesWithComparableRectangle: verticalRectangleHits.map(x => x.block),
   rectangleCorners: rectangle.corners,
   firstKey: firstKey.map(x => corpus.translit[x]),
   firstReadingDirection: "red first 8 reversed",
