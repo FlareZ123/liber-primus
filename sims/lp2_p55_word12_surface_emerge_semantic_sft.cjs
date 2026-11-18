@@ -4,9 +4,12 @@
  * Source-selected p55 word12 semantic carrier.
  *
  * Upstream:
- *   p57 TUNNELNG GP0=94 -> p50[94]=0u -> base59=55, selecting p55.
+ *   p55 is independently selected by the terminal/outer-76 research.
  *   p57 OUR is title-inclusive word12 and phi(GP-prime(OUR))=12.
  *   p28 center-line DH23 supplies shared K=2 as the shed depth.
+ * Diagnostic only: TUNNELNG GP0=94 gives p50 token0u, whose base59 value55.
+ * This is not used as the page selector because the source-selected radix
+ * transition keeps the pre-MUST/SHED sentence state in base60.
  *
  * Blind receiver:
  *   canonical p55 word12, after K=2 symmetric shedding.
@@ -112,6 +115,7 @@ const emerge = p57Word("EMERGE");
 assert.equal(tunnelng.gp0, 94);
 assert.equal(tokens[tunnelng.gp0], "0u");
 assert.equal(decode59(tokens[tunnelng.gp0]), 55);
+assert.equal(grid.bytes[tunnelng.gp0], 56);
 
 assert.equal(our.position, 12);
 assert.equal(our.prime, 21);
@@ -198,11 +202,13 @@ assert.deepEqual(tripleHits, [{
 }]);
 
 console.log(JSON.stringify({
-  status: "PASS: TUNNELNG->p55 and OUR->word12 select a unique K=2 THE/SURFACE/EMERGE carrier",
+  status: "PASS: independently selected p55 + OUR word12 gives a unique K=2 THE/SURFACE/EMERGE carrier",
   upstream: {
-    tunnelngGp0: tunnelng.gp0,
-    tableToken: tokens[tunnelng.gp0],
-    base59Page: decode59(tokens[tunnelng.gp0]),
+    p55Selector: "independent terminal/outer76 route",
+    tunnelngDiagnosticGp0: tunnelng.gp0,
+    tunnelngTableToken: tokens[tunnelng.gp0],
+    tunnelngBase59Diagnostic: decode59(tokens[tunnelng.gp0]),
+    tunnelngBase60PreShedState: grid.bytes[tunnelng.gp0],
     ourPosition: our.position,
     ourPrime: our.prime,
     ourTotient: phi(our.prime),
