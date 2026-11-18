@@ -64,7 +64,7 @@ const flat = wordGlyphs.flat().map(glyph => {
   assert(runeIndex.has(glyph));
   return runeIndex.get(glyph);
 });
-const pages = corpus.pages.filter(page => page.page <= 55);
+const pages = corpus.pages.filter(page => page.page <= 55 && page.indices.length > 0);
 assert.equal(pages.length, 55);
 assert.equal(flat.length, 12956);
 assert.deepEqual(flat, pages.flatMap(page => page.indices));
