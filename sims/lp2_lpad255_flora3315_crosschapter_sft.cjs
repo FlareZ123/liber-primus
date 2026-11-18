@@ -191,6 +191,62 @@ for (let i = 0; i < rows12.length; i++) {
 }
 assert.equal(width12RowPartitionMatches, 5);
 assert.equal(width12RowMaxCaesar, 4);
+
+// Key-independent PAD-only capacity. At each inserted cell, a fixed
+// position-independent bijection of the GP29 alphabet preserves all
+// top-k histogram counts, regardless of which secret substitution is used
+// and irrespective of whether the fixed pad rune is F or another rune.
+// Native solved Cicada text supplies a control distribution at the SAME
+// 1869 mask positions over 60 independent cyclic starting offsets.
+const padMask12 = bodyWords.flatMap(w =>
+  Array(ROW12 - w.length).fill(true).concat(Array(w.length).fill(false)));
+assert.equal(padMask12.length, 3000);
+assert.equal(padMask12.filter(Boolean).length, 1869);
+const onlyPadTarget = floralBody.filter((_, i) => padMask12[i]);
+const solvedControl = JSON.parse(fs.readFileSync(path.join(
+  root, 'resources', 'external', 'relikd-solved-gp29-native-v1.json'
+), 'utf8'));
+assert.equal(solvedControl.sections.length, 9);
+const allNative = solvedControl.sections.flatMap(section =>
+  [...section.source_text].filter(glyph =>
+    corpus.runes.includes(glyph)).map(glyph => corpus.runes.indexOf(glyph)));
+assert.equal(allNative.length, 2979);
+/** @param {number[]} items @returns {[number, number, number]} */
+function topKFrequency(items) {
+  const counts = Array(GP).fill(0);
+  for (const value of items) counts[value]++;
+  counts.sort((x, y) => y - x);
+  return [counts[0], counts[0] + counts[1],
+    counts.slice(0, 5).reduce((sum, count) => sum + count, 0)];
+}
+const originalPadTopK = topKFrequency(onlyPadTarget);
+assert.deepEqual(originalPadTopK, [85, 164, 394]);
+assert.deepEqual(topKFrequency(onlyPadTarget.map(v => mod29(v + 17))),
+  originalPadTopK);
+const padNativeControls = [];
+for (let offset = 0; offset < allNative.length; offset += 50) {
+  const matched = [];
+  for (let i = 0; i < padMask12.length; i++) {
+    if (padMask12[i]) matched.push(allNative[(offset + i) % allNative.length]);
+  }
+  assert.equal(matched.length, 1869);
+  padNativeControls.push(topKFrequency(matched));
+}
+assert.equal(padNativeControls.length, 60);
+const nativeMinTopK = [0, 1, 2].map(j =>
+  Math.min(...padNativeControls.map(row => row[j])));
+assert.deepEqual(nativeMinTopK, [219, 376, 767]);
+const padOnlyCapacity = {
+  hypothesis: 'any one fixed bijective 29-symbol substitution at all artificial pad cells',
+  artificialPadCells: onlyPadTarget.length,
+  originalTopK: originalPadTopK,
+  nativeGpControlRunes: allNative.length,
+  nativeGpControlOffsets: padNativeControls.length,
+  minimumNativeTopK: nativeMinTopK,
+  gate: 'original has at most 85 in top1, controls require at least 219',
+  nativeTextRecovered: false
+};
+
 const width12Evidence = {
   sourceWords: bodyWords.length,
   sourceRoughRunes: bodyWords.flat().length,
@@ -202,6 +258,7 @@ const width12Evidence = {
   rawIoc: ioc(floralBody),
   rowPartitionMatches: width12RowPartitionMatches,
   rowCaesarMaximum: width12RowMaxCaesar,
+  padOnlyCapacity,
   inverses: width12Inverses
 };
 
