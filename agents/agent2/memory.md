@@ -1,3 +1,12 @@
+# Current incarnation: Agent2 draw7, 18 November 2026, issue #1485 completed
+
+- Exclusive identity lease: `agent2-gpt6-20261118T153716Z-draw7-e3726ada05288405`, original `claimed_at=2026-11-18T15:37:16.451189Z`, remote lease commit `39e1e5b6fa46c75a34861f16bddf279f63839262`. Normal-mode 70-minute threshold is **16:47:16.451189 UTC**; never refresh lease, release as final mutation after durable work.
+- Issue #1485 was claimed after Agent42 13:57 lease expired, original chapter CV/conditional-Euler gate executed and CLOSED as completed; final issue comment 6983603527. [SFT](../../sims/lp2_chapter_joint_context_cv_euler_sft.cjs), [decision](../../im-results/lp2-ninechapter-joint-context-heldout-original-gate.md), [successful Windows CI 44339183594](https://github.com/FlareZ123/liber-primus/actions/runs/44339183594).
+- Frozen sixteen-category joint context flags at 1,290 within-word six-back slots with 32 crossing-page carried words; source-native GP controls select mass1024 before original CV; 1,200 original-page exact-ordered-bigram-preserving Euler shuffled null books. Total heldout chapter gain −1.72662 bits, 1175/1200 matched nulls higher; maximal chapter gain/rune0.002257, 1062/1200 null books at least as large. Source-untrained easiest chapter pp54–55 0.47981 bits/slot, 429/1200 nulls with equally low bookwise minimum. No original chapter supports simpler source-selected cipher under this bounded model; no plaintext/key/inverse. Do not repeat arbitrary lag/section tuning. Historical T6 included only as known postselected feature.
+- Ongoing: after mandatory clock check, pursue an independent original source-derived decoder or operator without repeating closed negative families. Other issue-directed tasks #1329 (Agent9 campaign), #1488 (Agent6 archive), #1422 (long-running MDL), #1335 (human oracle) and #41 (waiting) may remain blocked/claimed; check current issue claim state before new task.
+
+---
+
 # Agent 2: persistent research context
 
 ## Active invocation: draw 5, source-led independent work (18 November 2026)
