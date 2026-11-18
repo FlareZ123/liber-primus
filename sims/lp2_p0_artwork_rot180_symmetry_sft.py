@@ -1,4 +1,4 @@
-"""SFT: original LP2 p0 artwork contains an exact 180-degree paired illustration and an enlarged F endpoint marker.
+"""SFT: original LP2 p0 artwork contains an exact 180-degree paired illustration and validates the oversized initial S.
 
 Reads only resources/liber-primus/17.jpg (physical LP2 p0).
 Requires numpy, Pillow, opencv-python-headless.
@@ -61,8 +61,9 @@ print({
 })
 print("PASS: p0's two large black illustrations are near-pixel-identical 180-degree counterparts centered on the physical page.")
 
-# The large red sigil at the title's left is a scaled copy of the eighth
-# red title rune. Segment only substantial red components in the title band.
+# The source transcription records the large red glyph as the oversized
+# first S of the 8-rune word. Validate that identification directly against
+# the second red word's ordinary-sized initial S, without using OCR.
 r,g,b=(rgb[:,:,j].astype(np.int16) for j in range(3))
 red=(((r-g)>50)&((r-b)>50)&(r>75)).astype(np.uint8)
 rn,rlabels,rstats,_=cv2.connectedComponentsWithStats(red,8)
@@ -75,32 +76,33 @@ for i in range(1,rn):
         red_components.append((i,x,y,w,h,area))
 red_components.sort(key=lambda v:v[1])
 assert red_components[0][1:6]==(601,667,150,498,32003), red_components[0]
-first_word_components=red_components[1:9]
-assert len(first_word_components)==8
-assert [v[1] for v in first_word_components]==[772,822,881,919,968,1028,1085,1139]
+ordinary=red_components[1:]
+assert [v[1] for v in ordinary]==[772,822,881,919,968,1028,1085,1139,1179,1236,1295,1351]
 
 def red_component_mask(item):
     i,x,y,w,h,_=item
     return (rlabels[y:y+h,x:x+w]==i).astype(np.uint8)
 
-sigil=red_component_mask(red_components[0])
+oversized_s=red_component_mask(red_components[0])
 ious=[]
-for item in first_word_components:
+for item in ordinary:
     glyph=red_component_mask(item)
-    scaled=cv2.resize(glyph,(sigil.shape[1],sigil.shape[0]),interpolation=cv2.INTER_NEAREST)
-    intersection=int(np.logical_and(sigil,scaled).sum())
-    union=int(np.logical_or(sigil,scaled).sum())
+    scaled=cv2.resize(glyph,(oversized_s.shape[1],oversized_s.shape[0]),interpolation=cv2.INTER_NEAREST)
+    intersection=int(np.logical_and(oversized_s,scaled).sum())
+    union=int(np.logical_or(oversized_s,scaled).sum())
     ious.append(intersection/union)
 best=int(np.argmax(ious))
+# ordinary index 7 (x=1139) is the first rune of the second red word, also S.
 assert best==7, ious
-assert ious[7]>0.94, ious
-assert ious[7]-max(ious[:7])>0.40, ious
-# The canonical p0 first word is S H E O G M IA F, so component 8 is F.
+assert ious[best]>0.94, ious
+assert ious[best]-max(v for i,v in enumerate(ious) if i!=best)>0.40, ious
+
 print({
-    "red_sigil_bbox": red_components[0][1:6],
-    "first_word_glyph_x": [v[1] for v in first_word_components],
-    "sigil_iou_by_first_word_position": ious,
-    "best_match_position_one_based": best+1,
-    "best_match_rune": "F",
+    "oversized_initial_bbox": red_components[0][1:6],
+    "ordinary_red_glyph_x": [v[1] for v in ordinary],
+    "oversized_s_iou_by_ordinary_position": ious,
+    "best_match_ordinary_index_zero_based": best,
+    "best_match_x": ordinary[best][1],
+    "best_match_rune": "S (second word initial)",
 })
-print("PASS: p0's large red sigil is an enlarged copy of the first red word's final F rune, marking the reversal endpoint.")
+print("PASS: p0's oversized first S is a scaled match to the second red word's ordinary initial S; it is not a separate endpoint marker.")
