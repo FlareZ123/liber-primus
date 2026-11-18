@@ -23,7 +23,7 @@ A direct path interpretation must satisfy all of the following without fitted st
 3. Use the 51st red value to leave the rectangle, matching “surface / emerge.”
 4. Map residues 0–7 to N, NE, E, SE, S, SW, W, NW. Test only the eight cyclic rotations and two handedness conventions.
 
-This tests both prime-weight mod 8 and rune-ordinal mod 8. As a separate control, the same two numeric streams were tested as relative 45-degree turns, with the initial heading fixed east by the p15 red-arrow direction; both turn polarities were tested.
+This tests both prime-weight mod 8 and rune-ordinal mod 8. A previously assumed p15 heading cue does not survive source inspection: the large red arrow-like initial on p15 is the enlarged GP rune ᛚ at page-local offset 9, the first rune of the annotated 11-rune red span, not a separate arrow. Likewise, the upward-pointing red mark at p53 offset 128 is GP rune ᛏ, the first rune of the 51-rune red span, not a separate arrow. The two original images and `resources/liber-primus/lp2-ink-annotations.json` / `lp2-page53-red-span.json` classify both as runes within red text. A relative 45-degree-turn control was also run from an arbitrary east heading, under both turn polarities; it is exploratory only and is not a source-fixed orientation.
 
 ## Results
 
@@ -57,7 +57,7 @@ This retires the direct one-time-pad/Vigenère interpretation of the 51-cell cor
 
 ## Decision and scope
 
-Retire the direct “51 red values are mod-8 compass directions through the 3×17 inner-51” interpretation, including the tested east-seeded relative-turn variant, and the direct 51-to-51 additive/subtractive GP29 readout using inner rune indices or prime weights. These tests do **not** reject the exact 5×19 / inner-51 structural correspondence, nor every possible use of the p53 red passage. They reject direct compass/turn navigation and direct additive GP29 combination under the source-fixed centre start and exact 51-to-51 alignment.
+Retire the direct “51 red values are mod-8 compass directions through the 3×17 inner-51” interpretation across all tested absolute rotations/handedness, and the direct 51-to-51 additive/subtractive GP29 readout using inner rune indices or prime weights. The east-start relative-turn variant also fails, but its start heading was arbitrary; the p15/p53 arrow-like glyphs are ordinary GP runes, not independent direction markers. These tests do **not** reject the exact 5×19 / inner-51 structural correspondence, nor every possible use of the p53 red passage. They reject the specified direct compass/turn and additive GP29 constructions, not a source-authenticated direction rule.
 
 Do not rescue the path by changing the modulus, start cell, phase, or direction alphabet. A different traversal would require a new independent source instruction.
 
