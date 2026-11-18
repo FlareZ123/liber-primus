@@ -115,7 +115,7 @@ assert.equal(evenLow59.length, 30);
 
 const commonSupportProbability = (252 / 256) ** 256;
 const uniformByteSequenceLogLikelihoodNats = -256 * Math.log(256);
-assert.ok(Math.abs(commonSupportProbability - 0.017746303433497834) < 1e-15);
+assert.ok(Math.abs(commonSupportProbability - 0.017746279621051256) < 1e-15);
 
 console.log(JSON.stringify({
   classification: 'source-only alphabet census; no repeat positions used',
