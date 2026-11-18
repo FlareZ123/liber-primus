@@ -60,6 +60,27 @@ This makes a literal source reading possible:
 
 with the p0 red opening already providing the 8 / 5 `EPIPHANY / SEEKS` shape and the pointer identifying the later 2 / 7 `THE / DEVOTED target shape.
 
+## LIES / EMPTY / EPIPHANY supplies a literal GP29 direction ray
+
+The authenticated signed sentence itself now supplies a source-selected direction before inspecting unknown plaintext. Canonical GP0 sums of the consecutive words `LIES / EMPTY / EPIPHANY` are exactly
+
+```text
+63 -> 92 -> 121
+   +29   +29
+```
+
+A complete scan of all 41 consecutive three-word windows in the 43-word signed message finds this as the **only arithmetic-progression window**, and also the only consecutive triple whose three GP0 sums share one residue modulo29. The step is therefore exactly the GP29 alphabet size rather than a fitted table offset.
+
+On the original 32x8 row-major p50 rectangle, addresses 63, 92 and 121 are coordinates `(7,7), (11,4), (15,1)`. They are two identical `(+4,-3)` moves, each with squared Euclidean length25. The independently source-selected horizontal reflection from the p50 tree artwork, `c -> 7-c`, maps them to `(7,0), (11,3), (15,6)`: two identical **(+4,+3)** 3-4-5 steps. Extending that reflected vector one step backward gives column -3 and one step forward gives column9, so the three signed-word cells are the complete in-bounds straight ray under that direction.
+
+This geometry was not used to obtain the previously reported p0 placement. The original table values at EMPTY/EPIPHANY are conventional-base60 bytes **236/237**, already known to land exactly on the only later complete 2/7 p0 word boundary: byte236 is the final rune of the two-rune target and byte237 is the first rune of the seven-rune target. The authenticated clause orders the corresponding lexical target as **THE / DEVOTED**. The new ray therefore makes the wording literal at two levels: the signed words provide a map-space direction, and its EMPTY/EPIPHANY endpoint pair points to the p0 THE|DEVOTED boundary.
+
+A fixed-multiset calibration supports treating +29 as selective while avoiding an authorship probability claim. Among all `43*42*41=74,046` ordered triples of distinct signed-word instances, only eight have two successive +29 GP0 steps. A random reordering of the fixed 43-word multiset would therefore contain `41*8/74046 = 0.0044296788` expected +29 windows. This is a narrow calibration for the frozen +29 consequence, not a familywise p-value over possible numerologies.
+
+The first ray cell, LIES=63, has table byte51, which currently lands inside p0 ciphertext word10 and has no independently typed role. That is the clean unresolved continuation. Also, the most literal attempt to reinterpret the +29 ray as an additive p50-byte keystream is rejected by the source-selected p0 cribs: starting at LIES and stepping +29, conventional-base60 values give 0/28 exact crib symbols under `P=C-K` and 1/28 under `P=C+K`; base59 gives 1/28 under either sign. Preserve +29 / reflected (+4,+3) as a navigation direction, not as an additive cipher key.
+
+Reproducer: `sims/lp2_2016_lies_empty_epiphany_direction_sft.cjs`.
+
 ## The zero-based EMPTY closure
 
 The two-rune target word itself gives a stronger typed loop:
