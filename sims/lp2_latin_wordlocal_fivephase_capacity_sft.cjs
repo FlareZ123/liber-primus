@@ -137,6 +137,29 @@ assert.deepEqual(
   ["TURBETUR"]
 );
 
+/*
+ * Genuine contiguous-source quote gate: the Vulgate twice prints TURBETUR
+ * immediately followed by COR. The original p51 next word has one rune,
+ * not three. No length-preserving wordwise secret key repairs this mismatch.
+ */
+const turbetur = latin.reduce((found,word,i) => {
+  if (word === "G14HIG14") found.push(i);
+  return found;
+}, []);
+assert.deepEqual(turbetur, [22014,22468]);
+assert.equal(inputs[2721].length, 3);
+assert.equal(inputs[2722].length, 8);
+assert.equal(inputs[2723].length, 1);
+for (const sourceIndex of turbetur) {
+  assert.equal(latin[sourceIndex-1], "939"); // NON
+  assert.equal(latin[sourceIndex+1], "534"); // COR
+}
+console.log("VULGATE-CONTIGUOUS-CRIB", JSON.stringify({
+  sourceWordIndices:turbetur,
+  originalNextWordLength:inputs[2723].length,
+  sourceNextWords:turbetur.map((i) => readable(latin[i+1]))
+}));
+
 /* Independent secret permutations: synthetic genuine-Latin positive. */
 let seed = 0x5f3759df;
 const random = () => {
