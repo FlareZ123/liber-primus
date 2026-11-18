@@ -1,0 +1,26 @@
+name: Agent1 2013 DH3301 client witness census
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout research repository
+        uses: actions/checkout@v4
+        with:
+          path: research
+      - name: Checkout pinned 2013 historical archive
+        uses: actions/checkout@v4
+        with:
+          repository: cicada-solvers/neuroretransmit-cicada
+          ref: ade9a02889ef8acbc8cde8edbfd0a785c369f4c3
+          path: research/external-cicada
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run bounded client witness census
+        working-directory: research
+        run: node sims/lp2_2013_dh3301_client_witness_census_sft.cjs external-cicada
