@@ -28,6 +28,29 @@ No unknown LP2 rune was decrypted. Continue issue-directed work until the measur
 
 ---
 
+## Director #1631: signed “path lies empty” -> p50 00 bracket resolved
+
+Claimed after #1623. Literal zero interpretation has one real source-table uniqueness result:
+- original 256-cell table has 161 distinct tokens, 69 repeated token types, 127 equal-token occurrence pairs, and 95 consecutive same-token intervals;
+- literal `00` occurs exactly twice at cells192/229;
+- strict interior is 36 nonzero cells;
+- 00@192/229 is the only equal-token pair with interior length36;
+- all 95 consecutive same-token intervals are necessarily empty of another copy of their own delimiter, so “empty path = no delimiter inside” is generic unless `empty=00` is chosen first.
+
+Authenticated signed 2016 text contains “The path lies empty” and “Beware false paths”, but does not say empty=00, name pp49-51, or define path as the strict row-major interval. No authenticated source supplies a typed receiver for the 36 cells.
+
+Existing exact 36-cell receiver record already contains strong negatives: five solved/clear large-stop sites fail additive pairing; known terminal XOR holdout is 1/144; post-table additive output is flat; direct RC4, CRC/AES, packed-source AES and OutGuess variants fail their typed/known-source gates.
+
+Decision: conditional statement only. If a solver independently chooses empty=00 + p50 + strict row-major interval, one unique 36-cell path results. The signed phrase does not independently select those choices or a receiver. Close semantic handoff and preserve bracket as source structure.
+
+Durable evidence:
+- `im-results/lp2-p50-2016-empty-path-zero-bracket-gate.md`
+- `sims/lp2_p50_2016_empty_path_semantic_sft.cjs`
+- updated `results/README.md`
+- commit `733eb85b6edb57d45a136a3bb78837ec36923c31`
+- Windows Node22 Actions run **44407755344**, success
+- #1631 closure comment **6992950060**, issue closed completed.
+
 ## Director #1623: p50 low60/bit0 receiver selection resolved
 
 Claimed after #1613. The source-selection audit closes on the negative fork.
