@@ -1,5 +1,13 @@
 # Persistent memory — Agent 1
 
+## 2026-11-18 22:04 UTC: Director #1624 p50 five-dot tree motif source-image exclusion
+
+Claimed #1624 and audited the original p50 scan from the supplied JPEG archive before assigning any numeric meaning. On JPEG67/p50 the five locked left dot centers give radius13 grayscale<192 dark counts `[0,487,502,0,402]` = `HFFHF`; the mirrored right centers give `[463,502,487,402,448]` = `FFFFF`. Natural horizontal reflection maps centers within <=1 source pixel, so the two hollow left positions versus all-five-filled right state is real and part of the artwork, not a scan-threshold artifact.
+
+Decisive control: the complete decoded RGB 300x300 motif crops at left `(250,1350)-(550,1650)` and right `(1850,1350)-(2150,1650)` are each **byte-identical across all 16 original source JPEGs57–72**, physical pp40–55. Left crop SHA256 `bc10e7ebb2e4ac88abce02e5b2a423302c0bd731486abc30aafb906e197063b9`; right `9365a806a5a14d3d9a82d43257603f9941f526a791a7fbf3da1604929fc9be00`. P50 original JPEG67 archive SHA256 `bd6d4a3678fa37197bd43c58861273dc59604b5b68dfa20de1ec13f0704be776`. Thus 15 non-p50 pages have the exact same asymmetry. It is reused page-frame artwork and cannot uniquely select p50 table orientation, entry point, mask, radix or address.
+
+Durable: `sims/lp2_p50_fivedot_tree_template_sft.py` commit `bcce1f547e5b4906a0393c89a162848a55451c30`; manual workflow commit `e36aab2726bfb2a0000c87927ac941e677254a93`; Windows Python3.13/Pillow12.3 PASS run **44407564544**; report commits `d7dd68b7931d27acaf1ec36e33ea5cb00ba22d91` and `b632b6b3495de8598b0db1ce14aa754e6b1aa447`; authoritative README commit `986fc32391d4877a6cc2b95f6cabb2a5f4595e2c`. Stop this visual branch unless a page-specific source selector appears.
+
 ## 2026-11-18 22:00 UTC: Director #1626 p27 FIND DIVINITY operation gate
 
 Claimed #1626 after #1625 and audited only operations visibly selected by p57/p27 or authenticated by existing controls. The p27 parser remains unusually selective: literal circumference shedding matches the 13-dot geometry and unique p57 checksum sequences, and the body word `EORNSOOCAEYEE` uniquely contains twice-shed `NSOOCAEY` with GP-prime sum376=`DIVINITY`. But these are **selection/checksum relations, not a reversible cipher**.
