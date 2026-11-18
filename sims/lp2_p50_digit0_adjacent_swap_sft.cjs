@@ -107,7 +107,8 @@ function pairStats(input) {
 
 const originalFlat = pages.flatMap((page) => page.indices);
 const decoded = transform(pages);
-assert.deepEqual(transform(decoded).map((page) => ({page: page.page, indices: page.indices})),\n  pages.map((page) => ({page: page.page, indices: page.indices})));
+assert.deepEqual(transform(decoded).map((page) => ({page: page.page, indices: page.indices})),
+  pages.map((page) => ({page: page.page, indices: page.indices})));
 assert.deepEqual(pairStats(pages), {
   opportunities: 12901,
   selectedOpportunities: 3025,
