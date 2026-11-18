@@ -89,6 +89,15 @@ assert.deepEqual(cells, [
 ]);
 assert.equal(primeRank(bytes[83]), 44);
 assert.equal(primeRank(bytes[248]), 30);
+assert.equal(primeRank(bytes[248]), 32 - 2); // 30 interior grid rows
+const base59 = grid.alphabet.replace('f', '');
+assert.equal(base59.length, 59);
+const readBase59 = token => base59.indexOf(token[0]) * 59 + base59.indexOf(token[1]);
+assert.equal(readBase59(tokens[83]), 190);
+assert.equal(readBase59(tokens[248]), 111);
+assert.equal(prime(190), false);
+assert.equal(prime(111), false);
+
 const repeated193 = bytes.flatMap((v, i) => v === 193 ? [i] : []);
 const repeated113 = bytes.flatMap((v, i) => v === 113 ? [i] : []);
 assert.deepEqual(repeated193, [83, 127]);
@@ -124,6 +133,7 @@ console.log(JSON.stringify({
   RSA_inverse_selected_addresses:cells,
   paired_193_cells:repeated193, primeOrdinal193:primeRank(193),
   other_red_headings_out_of_grid:unreachable,
+  base59_selected_cells: [readBase59(tokens[83]), readBase59(tokens[248])],
   original_p55_runes:rim,
   solved_p56_plus_clear_p57_runes:interior,
   warning:'Exploratory postselected inter-artifact alignment, no recovered plaintext or author-selected cipher'
