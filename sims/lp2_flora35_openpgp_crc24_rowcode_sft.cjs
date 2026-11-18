@@ -76,7 +76,10 @@ function main() {
     return first.concat(crcBytes(openPgpCrc24(first), false));
   });
   assert.equal(audit(positive, false, false).matches, 32);
-  assert.equal(audit(positive.map(row=>row.slice().reverse()), true, true).matches, 32);
+  assert.equal(audit(rows.map(row => {
+    const payload = row.slice(0, 5);
+    return crcBytes(openPgpCrc24(payload), true).concat(payload);
+  }), true, true).matches, 32);
   positive[7][7] ^= 1;
   assert.equal(audit(positive, false, false).matches, 31);
 
