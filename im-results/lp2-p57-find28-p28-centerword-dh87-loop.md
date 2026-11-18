@@ -79,6 +79,24 @@ The p27 red object closes the state again: its heading has length19, its red 13-
 
 Focused reproducer: `sims/lp2_p28_dh23_onion_factor_selector_sft.cjs`.
 
+## Line6 numerically self-encodes the DH server state
+
+A later complete physical-line census strengthens the source-native DH interpretation. The literal line-start runes `D H` have GP indices **23,8**. Line6 itself has **23 runes** and exactly **5 visible rune fragments**, and its one-based page line number is6. Therefore its source-visible values satisfy the standard DH server equation
+
+```
+p = 23
+g = 5
+a = 6
+A = 8
+5^6 mod23 = 8
+```
+
+This makes the visible word `DH` simultaneously an operation label and a numerical encoding of `p=23,A=8`. The five-fragment count independently repeats the selected word's length5, so generator5 is present twice before any discrete logarithm. The independently selected word's local start19 then supplies peer public `B=19`; its two nested shell sums both supply shared `K=2`.
+
+Across all604 physical p0..p55 rune lines,594 contain at least two runes. Twenty-four have first GP index equal to line length; six satisfy the prime-line relation `second = fragment_count^line_number mod line_length`; **p28 line6 is the only line satisfying both**. Its tuple is exactly `(23,5,6,23,8)` and its first fragment is literally `DH`.
+
+This census is mechanistic reinforcement rather than a discovery-adjusted significance claim. It compresses the already selected p28 geometry into the same standard DH equation. See `lp2-p28-dh-line-selfencoding.md` and `../sims/lp2_p28_dh_line_selfencoding_sft.cjs`.
+
 ## Shedding the selected word's circumferences
 
 The same solved instruction says to shed our own circumferences. Applying the literal minimal peel to the selected five-rune word removes its two outer runes:
