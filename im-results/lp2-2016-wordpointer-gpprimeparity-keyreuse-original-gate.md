@@ -80,7 +80,7 @@ For either convention, the new word's first rune therefore reads the **exact sam
  C_+-C_-\equiv P_+-P_-\pmod{29}.
 \]
 
-This result is independent of the 581 candidate key streams, key pointer start, and additive multiplier/sign. It is exact for the external **skip** model. The alternative **coin** model can spend an extra key value after a kept collision on the preceding forward rune, so the exact emitted-index proof does not extend to coin without additional state accounting.
+This result is independent of the 581 candidate key streams, key pointer start, and additive multiplier/sign. It is exact for the external **skip** model. For the alternative **coin** model, a kept collision on the preceding forward rune can spend an extra hidden value and break adjacent emitted-index reuse. That exceptional state is source-visible whenever the preceding final ciphertext equals its previous emitted comparator, allowing an exact clean subset to be selected without a key.
 
 The untouched original source has the same **734** A_prev_G forward→backward turn sites and the same fixed Shakespeare-native-vs-flat LLR **−22.130215**. A dedicated source SFT generated 100 complete, independently keyed, original-word-length-matched Gibran GP29 plants for each convention. The generated ciphertext itself determines every subsequent direction, and the SFT asserts exact emitted key-index equality at every selected turn:
 
@@ -93,9 +93,18 @@ This is a stronger key-independence statement than the c0 calibration above for 
 
 **Reproducer:** [`sims/lp2_pdir_c1_skip_exact_keyreuse_sft.cjs`](../sims/lp2_pdir_c1_skip_exact_keyreuse_sft.cjs). Windows Node 22 run [44383033911](https://github.com/FlareZ123/liber-primus/actions/runs/44383033911) passed all original-source, exact-reuse, and matched-control assertions.
 
+For the **coin** retry model, discard a forward→backward boundary when the preceding forward rune equals its immediately preceding emitted ciphertext comparator. On every remaining boundary, either no coin collision occurred or a replacement rune was emitted from the post-coin key index; in both cases the post-rune pointer is exactly one step beyond the key index that actually emitted the visible rune. The first c1 backward rune then reuses that exact key index. The unmodified original retains **725/734** exact sites and scores **−21.968853**. In 100 complete native plants per convention, exact emitted-key reuse remained **100%** and **0/100** controls scored as low as the original:
+
+| External convention | Original exact coin-safe sites | Original LLR | Plant minimum | Plant median | Plant maximum | Plants at/below original |
+|---|---:|---:|---:|---:|---:|---:|
+| **021, c1 coin** | 725 | −21.968853 | −4.971314 | +11.793384 | +25.993652 | **0/100** |
+| **101, c1 coin** | 725 | −21.968853 | −3.766957 | +11.898234 | +23.108798 | **0/100** |
+
+The same SFT now asserts the coin-safe emitted-index identity directly. Windows Node 22 run [44383568781](https://github.com/FlareZ123/liber-primus/actions/runs/44383568781) passed. Therefore both external retry models are key-independently incompatible with the tested native-GP register for A_prev_G under conventions 021 and 101. Comparator c2 and other direction rules remain outside this result.
+
 ## Decision for future wordwise-pointer search
 
-The source-natural **A_prev_G** rule is unsupported by the original reuse-site evidence across all three adjacent-key-reusing h/m conventions with c0, and the c1 **skip-model** branches 021 and 101 are now independently rejected by an exact emitted-key cancellation gate. The real score falls below every correctly generated native control in each tested branch. These are key-independent early gates that avoid searching the external **581 fixed keystreams** or guessed starting positions for those declared branches.
+The source-natural **A_prev_G** rule is unsupported by the original reuse-site evidence across all three adjacent-key-reusing h/m conventions with c0, and the c1 branches 021 and 101 are now independently rejected for **both skip and coin retry models** by exact emitted-key cancellation gates. The real score falls below every correctly generated native control in each tested branch. These are key-independent early gates that avoid searching the external **581 fixed keystreams** or guessed starting positions for those declared branches.
 
 Do **not** extrapolate to the external 66 other direction masks or all 18 pointer conventions. In particular, key-pointer conventions with no adjacent reused index have no comparable first/last constraint, and a collision repair consuming extra values via the alternative coin rule can require another calibration. Non-native register, multiple encryption layers, word-boundary remapping, or unrelated historical key paths are outside this finding.
 
