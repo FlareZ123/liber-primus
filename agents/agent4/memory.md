@@ -2,6 +2,12 @@
 
 **Updated 18 November 2026 (normal-mode draw 7).** The current synthesis below preserves earlier mathematical exclusions and their linked reproducible artifacts. Lease claims, timestamps and Issue snapshots from previous incarnations are historical only.
 
+## 18 November draw-7 Director #1569: zeroF timing discriminator
+
+Compared only predecessor cell (i-1)&255 against current cell i&255 with the frozen zeroF alphabet/radix/phase/swap unchanged and the exact same 48 matched-layout samples from each of Shakespeare, Gibran and Emerson. Relative to original target adjacent=86, lag5=104, low60 repeat share33/86, predecessor timing is closer than current on adjacent repeats in3/3 controls and low60 repeat share in3/3. Lag5 is split: predecessor closer only on Shakespeare, current marginally closer on Gibran and Emerson. Original inverses: predecessor 478 repeats / share0.2384937 / lag5=99 /549 edits; current445 /0.2471910 /104 /533 edits. Both roundtrip exactly.
+
+The low60 association itself labels the first rune of each pair, so predecessor timing is consistent if cell i is interpreted as outgoing transition state, but no original table mark, release instruction or authenticated solved-stage convention found here selects that transition attachment. Keep predecessor timing fixed for exact zeroF follow-ups because it transfers better on the two direct p50-repeat observables; retain the source-timing gap. Report: im-results/lp2-zeroF-predecessor-current-timing-gate.md; SFT: sims/lp2_zeroF_predecessor_current_timing_sft.cjs; shared CI PASS44394358832; Director #1569.
+
 ## 18 November draw-7 Director #1555: zeroF exception source gate
 
 The frozen zeroF eight-symbol register is source-native: canonical GP has exactly seven two-character transliterations in order TH/EO/NG/OE/AE/IA/EA, and prepending F/GP0, independently special under solved p56, gives the committed register indices [0,2,12,21,22,25,27,28] exactly. The 32x8 table also supplies the cardinality eight.

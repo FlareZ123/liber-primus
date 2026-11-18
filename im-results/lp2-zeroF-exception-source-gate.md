@@ -45,7 +45,7 @@ This gate therefore preserves the **eight-symbol register** as a source-motivate
 
 `sims/lp2_zeroF_exception_source_gate_sft.cjs` derives the special set from the canonical GP transliteration, asserts its exact order, checks the original 32x8 table geometry, compares value-mod8 to physical-column indexing, and compares base60-mod8 to drop-f-base59-mod8.
 
-The test does not decode unknown LP2 text and does not vary the zeroF transform.
+The test does not decode unknown LP2 text and does not vary the zeroF transform. Shared CI PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44394358832
 
 ## Consequence
 
