@@ -74,6 +74,22 @@ The relation was treated as an instruction candidate rather than permission for 
 
 These negatives materially narrow the interpretation: the closure behaves more like a **routing or semantic hint** than a direct stationary LP2 key.
 
+## A manuscript receiver now exists
+
+The same A194954 clue source-selects the pre-existing adjacent-repeat WWW motif inside the unknown manuscript.
+
+Across pp0–55, concatenate the printed rune stream and extract one symbol for every identical-adjacent pair. There are **86** such events. The A194954 terms no larger than 86 are exactly
+
+`2,3,5,7,11,13,17,23,29,31,37,43,47,53,59,67,71,73,79`.
+
+There are **19** terms, matching the uniquely omitted prime 19 from the 2014 whitespace display. The next A194954 term is 97, so 79 is the final admissible selector. The next three one-based manuscript events, **80–82**, are exactly **W W W**, on pp47, 48 and 51.
+
+This boundary is materially different from searching the event stream for an attractive motif after seeing it. The historical A194954 clue fixes the last usable position first; WWW begins immediately after it. Under the existing 250,000-trial chapter-inventory permutation control, an isolated W triple beginning at exactly this zero-based boundary 79 appears **122 / 250,000** times, add-one tail **0.000491998**. This conditional tail is a selection diagnostic rather than a probability of author intent.
+
+Two obvious consumers are negative. Selecting the 19 A194954 event positions gives `X EA L S N J X M EA G U E EO N TH OE OE AE P`; taking the rune immediately after each of the three physical WW pairs gives `IA OE P`. The useful result is therefore the **marker placement**, not decoded payload.
+
+Full event-channel analysis and reproduction: [`lp2-mortlach-www-event-channel-url-crib-gate.md`](lp2-mortlach-www-event-channel-url-crib-gate.md) and [`sims/lp2_doublet_www_url_crib_sft.cjs`](../sims/lp2_doublet_www_url_crib_sft.cjs).
+
 ## Relation to the new cuneiform GIT readout
 
 Agent20 independently recovered the recent candidate **GIT** from the two manuscript cuneiform integers through their prime ranks:
@@ -85,9 +101,9 @@ primepi(3301) = 464 = 16*29
 GP indices 6,10,16 = G,I,T
 ```
 
-The A194954 closure supplies a separate **WWW** readout from the historical Onion7 handoff. `GIT + WWW` therefore has an obvious modern interpretation, but no creator-authored Git repository, exposed Onion7 `.git` endpoint, or other historical Git receiver has been identified. Searches for the exact Onion7 address paired with `.git/HEAD`, `info/refs`, or Git-repository language returned no evidence.
+The A194954 closure supplies a separate **WWW** readout from the historical Onion7 handoff, and the event-boundary result now supplies an internal manuscript receiver for that marker. The conjunction `GIT + WWW` also admits the period-appropriate reading **gitweb**, a standard Git web interface available before 2014. Searches of surviving Cicada 2014 archives found no creator-authored Git repository, Onion7 `.git` endpoint, `gitweb.cgi`, `info/refs`, or other authenticated Git receiver.
 
-Do not redirect effort into arbitrary GitHub repositories. The only justified continuation is historical receiver discovery: an author-era archive or request log showing an actual Git endpoint associated with Onion7 would convert this from a semantic coincidence into an executable route.
+Do not redirect effort into arbitrary GitHub repositories. External Git remains a secondary hypothesis pending historical evidence. The stronger current route is internal: determine whether another original clue specifies what the independently selected WWW marker does at the pp47–51 / numeral-table boundary.
 
 ## Reproduction
 
@@ -104,4 +120,4 @@ Existing supporting work:
 
 The whitespace channel has a known authenticity limitation: OpenPGP cleartext canonicalization does not authenticate all trailing-space detail, and archived copies have differed in whitespace preservation. The repository's pinned copy and contemporaneous Git history establish that this exact sequence circulated during the 2014 solve, while they do not prove every space was author-selected.
 
-Accordingly, the arithmetic closure is best classified as a **strong candidate design relation** and a constrained routing clue. Promotion to an established puzzle mechanism requires an independent receiver or an operation that yields reproducible unknown-page plaintext.
+Accordingly, the arithmetic closure is best classified as a **strong candidate design relation** and a constrained routing clue. An independent manuscript receiver now exists at the A194954/event boundary. Promotion to an established puzzle mechanism still requires a source-selected operation that turns this marker into reproducible unknown-page plaintext, key material, or a destination.
