@@ -161,6 +161,11 @@ assert.deepEqual(depthSixAddresses, [26, 33, 44, 76, 84, 100, 147, 208, 212, 239
 const p57DepthSix = words.filter((word) => depths[word.address] === dh.serverSecret);
 assert.deepEqual(p57DepthSix.map((word) => [word.position, word.name, word.primeSum, word.address]),
   [[20, 'EMERGE', 300, 44]]);
+const p57SelfLengthDepth = words.filter((word, i) => depths[word.address] === runeLengths[i]);
+assert.deepEqual(
+  p57SelfLengthDepth.map((word, i) => [word.position, word.name, word.primeSum, word.address]),
+  [[20, 'EMERGE', 300, 44]],
+);
 
 // Conventional base60 does not reproduce the closure. Address44 enters an
 // 11-cycle and never reaches the base59 DH root.
@@ -194,6 +199,7 @@ process.stdout.write(JSON.stringify({
   fixedGraphControl: {
     depthSixAddresses,
     p57WordsAtDepthSix: p57DepthSix.map((word) => word.name),
+    p57WordsWhoseOwnRuneLengthEqualsDepth: p57SelfLengthDepth.map((word) => word.name),
     fixedAddressFraction: depthSixAddresses.length / 256,
   },
   base60Control: {
