@@ -107,8 +107,7 @@ function affineDecode(intermediate, key) {
   for (let i = 0; i < intermediate.length; i++) {
     const a = z[i] ? key.a1 : key.a0;
     const b = z[i] ? key.b1 : key.b0;
-    let value = (intermediate[i] - a * previous - b) % 29;
-    if (value < 0) value += 29;
+    const value = ((intermediate[i] - a * previous - b) % 29 + 29) % 29;
     out[i] = value;
     previous = value;
   }
