@@ -1,6 +1,6 @@
 # p57 DIVINITY-within source gate
 
-**18 November 2026, Agent30 original bridge; Agent8 Director #1497 selectivity completion. Classification: source-selective inside the frozen p57 circumference → GP-prime-sum → zero-based row-major p50 family, while still a conditional historical bridge because the address interpretation is inferred and the concrete 2800 DH session is participant-recorded rather than organizer-signed. No unknown LP2 plaintext or authentic downstream cipher key recovered.**
+**18 November 2026, Agent30 original bridge; Agent8 Director #1497 selectivity and #1540 convention discrimination. Classification: source-selective inside the frozen p57 circumference → GP-prime-sum → p50 family. Zero-based row-major is now uniquely selected among the frozen source-natural address grammars by decimality; exact 2800 selects inner→outer order. The address operation itself remains inferred, and the concrete 2800 DH session is participant-recorded rather than organizer-signed. No unknown LP2 plaintext or authentic downstream cipher key recovered.**
 
 ## Literal p57 operation
 
@@ -104,8 +104,27 @@ Two exact finite controls bound the observation without changing the operation:
 
 Reproducer: [`sims/lp2_p57_divinity_selectivity_census_sft.cjs`](../sims/lp2_p57_divinity_selectivity_census_sft.cjs). It asserts the full 20-word census, the unique p57 decimal result, the solved-corpus control and the exact table-level counts.
 
+## Frozen #1540 address-convention discrimination
 
-This is an exact historical correspondence under the stated address convention. The retained **participant transcript** records a March-2013 `DH 3301` exchange with base **2757**, server secret **331**, server public share **1264**, client public share **2800**, and returned shared value **1067**. The signed 2013 TCP challenge authenticates the DH protocol, but it does **not** sign the surrounding participant exchange or make these concrete session values organizer-fixed. Earlier source audits correctly rejected the historical exchange as an LP2 handoff because no LP2-side selector for that transcript had been identified. The p57/p50 construction gives a fixed pointer to **2800** once GP-prime sums are interpreted as zero-based row-major p50 addresses. Director #1497 now establishes that, under this frozen operation, DIUINITY is the **only p57 word producing any all-decimal printed pair**, so no other p57 word can match a decimal historical operand. This resolves the within-p57 selectivity objection while leaving the prime-sum→address convention and the participant-session provenance as separate limitations.
+Director #1540 keeps the same 20 p57 words and the same shed/interior GP-prime sums, then enumerates only the eight source-natural readouts of the printed 32×8 p50 object: zero/one-based row-major and zero/one-based column-major, each with inner→outer and outer→inner literal-token concatenation. No wrapping, reflection, rotation, phase shift or radix reinterpretation is allowed.
+
+| address convention | order | valid words | decimal outputs | DIUINITY output |
+| --- | --- | ---: | ---: | --- |
+| row-major, zero-based | inner→outer | 18 | **1** | **2800** |
+| row-major, zero-based | outer→inner | 18 | **1** | **0028** |
+| row-major, one-based | inner→outer | 13 | 0 | 1L0X |
+| row-major, one-based | outer→inner | 13 | 0 | 0X1L |
+| column-major, zero-based | inner→outer | 18 | 0 | 1t26 |
+| column-major, zero-based | outer→inner | 18 | 0 | 261t |
+| column-major, one-based | inner→outer | 13 | 0 | 3C0a |
+| column-major, one-based | outer→inner | 13 | 0 | 0a3C |
+
+This resolves most of the address-grammar ambiguity. **Zero-based row-major is the only address convention that produces any all-decimal DIUINITY readout at all**, and under either token order DIUINITY is the sole decimal p57 word. Decimality by itself leaves one remaining orientation ambiguity: inner→outer prints `2800`, while outer→inner prints `0028`. The independently preserved March-2013 DH3301 participant session contains client share **2800**, so accepting that historical bridge fixes inner→outer. Exact `2800` occurs under no other frozen convention.
+
+This does not prove that GP-prime sums were intended as p50 addresses in the first place. It shows that, conditional on the address idea, zero-based row-major is internally distinguished without target-tuning, while the historical target participates only in choosing the final concatenation direction. Full report: [`im-results/lp2-p57-divinity-address-conventions-gate.md`](lp2-p57-divinity-address-conventions-gate.md). Reproducer: [`sims/lp2_p57_divinity_address_conventions_sft.cjs`](../sims/lp2_p57_divinity_address_conventions_sft.cjs), Windows Node22 CI [44392347982](https://github.com/FlareZ123/liber-primus/actions/runs/44392347982).
+
+
+This is an exact historical correspondence under the stated address convention. The retained **participant transcript** records a March-2013 `DH 3301` exchange with base **2757**, server secret **331**, server public share **1264**, client public share **2800**, and returned shared value **1067**. The signed 2013 TCP challenge authenticates the DH protocol, but it does **not** sign the surrounding participant exchange or make these concrete session values organizer-fixed. Earlier source audits correctly rejected the historical exchange as an LP2 handoff because no LP2-side selector for that transcript had been identified. The p57/p50 construction gives a fixed pointer to **2800** once GP-prime sums are treated as p50 addresses. Director #1497 establishes that DIUINITY is the **only p57 word producing any all-decimal printed pair** under zero-based row-major. Director #1540 further shows that zero-based row-major is the **only** frozen source-natural address grammar that yields any decimal DIUINITY result; the reverse token order yields the unique alternative `0028`, while exact `2800` occurs only in inner→outer order. This resolves the row/column and zero/one-based ambiguity, while leaving the address operation itself, the final order's dependence on the historical 2800 target, and participant-session provenance as explicit limitations.
 
 A separate numerical coincidence remains weaker: the **184** inner prime sum also equals the exact rune count of the retained solved `A WARNING` section. That is a possible secondary source pointer, but it currently supplies no reversible receiver and is not needed for the stronger 2800 identification.
 
@@ -190,6 +209,6 @@ DIVINITY
  -> exact 36-byte zero bracket -> 36 large stops
 ```
 
-The all-p57 census removes the specific objection that another p57 word might generate an equally natural historical numeral under the same rule: **none does**. It does **not** independently prove that GP-prime sums were intended as zero-based p50 addresses, and it does **not** promote the concrete DH tuple to organizer-signed key material. The direct consumers already tested remain negative: `BASE29(1067)=17N`, the six-field tuple as a T6 initializer, selected-DH transforms of the 36 bracket bytes, and the fixed nonperiodic 31-interval state receiver recover no original prose.
+The all-p57 census removes the objection that another p57 word might generate an equally natural historical numeral under the same rule: **none does**. The #1540 convention census also removes the choice among zero/one-based row-major and column-major addressing: only zero-based row-major produces a decimal DIUINITY readout. It does **not** independently prove that GP-prime sums were intended as p50 addresses, and decimality alone cannot choose between `2800` and reversed `0028`; the historical DH value supplies that final orientation. It also does **not** promote the concrete DH tuple to organizer-signed key material. The direct consumers already tested remain negative: `BASE29(1067)=17N`, the six-field tuple as a T6 initializer, selected-DH transforms of the 36 bracket bytes, and the fixed nonperiodic 31-interval state receiver recover no original prose.
 
 The next causal question is therefore narrower: **what first-party authenticated operation, if any, tells a 2014 solver what to do after recognizing the 2800/DH3301 session?** A successor should search for one fixed operation or receiver, not reopen key/phase/KDF menus. Until such a source exists, preserve this as a selective historical bridge with negative direct receivers, not as an LP2 decryption or recovered key.
