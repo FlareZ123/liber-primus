@@ -189,6 +189,24 @@ function main() {
   assert.equal(a194954Through(97).at(-1), 97);
   assert.deepEqual(cipher.slice(a[a.length - 1], a[a.length - 1] + 3), [W, W, W]);
 
+  // Read the source sequence as successive one-based jumps. The first eight
+  // terms remain inside 86 events, landing at 2,5,10,17,28,41,58,81.
+  // The ninth jump exits at 110. The final reachable event is the middle W of
+  // the independently selected WWW triplet.
+  const cumulative = [];
+  let position = 0;
+  for (const step of a) {
+    if (position + step > events.length) break;
+    position += step;
+    cumulative.push(position);
+  }
+  assert.deepEqual(cumulative, [2, 5, 10, 17, 28, 41, 58, 81]);
+  assert.equal(cumulative.reduce((_, value) => value, 0), 81);
+  assert.equal(a.slice(0, cumulative.length).reduce((sum, value) => sum + value, 0), 81);
+  assert.equal(events[80].page, 48);
+  assert.equal(cipher[80], W);
+  assert.equal(81 + a[cumulative.length], 110);
+
   const t = (value) => [...value].map((letter) => source.translit.indexOf(letter));
   assert.equal(fixedBijectionCompatible(cipher.slice(75, 79), t("HTTP")), false);
   assert.equal(fixedBijectionCompatible(cipher.slice(82, 86), t("HTTP")), false);
@@ -267,6 +285,8 @@ function main() {
   assert.equal(calibration.terminalWWW, 274);
   assert.equal(calibration.exactBoundaryWWW, 122);
   console.log("A194954 boundary: 19 terms <=86, last=79, events80-82=WWW");
+  console.log("A194954 cumulative jumps: " + JSON.stringify(cumulative) +
+    " final reachable event=81 (middle W), next=110 exits");
   console.log("Chapter-inventory permutation results: " + JSON.stringify(calibration));
   console.log("Terminal WWW one-sided exploratory tail: " +
     ((calibration.terminalWWW + 1) / (calibration.rounds + 1)).toFixed(9));
