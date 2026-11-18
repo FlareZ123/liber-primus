@@ -27,6 +27,8 @@ OUT.mkdir(parents=True, exist_ok=True)
 SOURCES = [
     ("shadow-code-http-zip", "http://shadow-code.org/onion7.zip"),
     ("shadow-code-https-zip", "https://shadow-code.org/onion7.zip"),
+    ("shadow-code-www-http-zip", "http://www.shadow-code.org/onion7.zip"),
+    ("shadow-code-www-https-zip", "https://www.shadow-code.org/onion7.zip"),
     ("shadow-code-http-root", "http://shadow-code.org/"),
     ("tinyurl-http-2014onion7", "http://tinyurl.com/2014onion7"),
     ("tinyurl-https-2014onion7", "https://tinyurl.com/2014onion7"),
@@ -86,7 +88,7 @@ def compare_zip(zip_path: Path) -> dict:
     with zipfile.ZipFile(zip_path) as zf:
         names = set(zf.namelist())
         for page in range(58):
-            candidate = next((n for n in names if Path(n).name.lower() == f"{page}.jpg"), None)
+            candidate = next((n for n in names if Path(n).suffix.lower() == ".jpg" and Path(n).stem.isdigit() and int(Path(n).stem) == page), None)
             if candidate is None:
                 rows.append({"page": page, "status": "missing-in-archive"})
                 continue
@@ -178,6 +180,7 @@ def main() -> int:
         "sources": [],
     }
     candidates = []
+    redirect_candidates = []
     for label, target in SOURCES:
         wayback = cdx_query(CDX, target, "exact")
         arquivo = cdx_query(ARQUIVO, target, "exact")
@@ -187,17 +190,20 @@ def main() -> int:
         }
         report["sources"].append(item)
         for row in wayback.get("rows", []):
-            if row.get("statuscode") == "200" and (
-                "onion7.zip" in row.get("original", "").lower()
-                or "imgur.com/a/8xnwx" in row.get("original", "").lower()
+            original = row.get("original", "").lower()
+            statuscode = row.get("statuscode", "")
+            if statuscode == "200" and (
+                "onion7.zip" in original or "imgur.com/a/8xnwx" in original
             ):
                 candidates.append((label, row))
+            if "tinyurl.com/2014onion7" in original and statuscode in {"200", "301", "302", "303", "307", "308"}:
+                redirect_candidates.append((label, row))
     # Also inspect all 2014-2016 captures under the named mirror host, then keep only
     # the ZIP, its HTML index, or numbered image paths.
     domain = cdx_query(CDX, "shadow-code.org/*", "domain")
     domain_rows = [
         r for r in domain.get("rows", [])
-        if re.search(r"(onion7\\.zip|(?:^|/)index\\.html|/\\d+\\.jpg)$", r.get("original", ""), re.I)
+        if re.search(r"(onion7\.zip|(?:^|/)index\.html|/\d+\.jpg)$", r.get("original", ""), re.I)
     ]
     report["shadow_code_domain_census"] = {
         "status": domain.get("status"), "error": domain.get("error"),
@@ -206,7 +212,7 @@ def main() -> int:
     # Replay one distinct capture per exact source URL, preferring earliest 2014 capture.
     replayed = []
     seen = set()
-    for label, row in sorted(candidates, key=lambda x: (x[0], x[1].get("timestamp", ""))):
+    for label, row in sorted(candidates + redirect_candidates, key=lambda x: (x[0], x[1].get("timestamp", ""))):
         key = (label, row.get("timestamp"), row.get("original"))
         if key in seen:
             continue
