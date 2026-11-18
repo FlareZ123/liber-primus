@@ -39,6 +39,6 @@ One incidental continuous-LF cycle has length **76**, matching source p55's 76 r
 
 The independent positive begins with the **authentic 95-rune clear p57 PARABLE text**, tiled into 729 native GP runes. The source-native text undergoes genuine circular BWT → MTF → RUNA/RUNB encoding → synthetic prime/difference cipher inversion. The same exact decoder recovers the genuine last column, then BWT inverts **729/729 native source GP runes** and yields one 729-cycle. All original source arrays and both original decrypt/reencrypt operations are asserted; the SFT reads source only and writes no files.
 
-[Executable Windows Node22 CommonJS SFT](../sims/lp2_2015_primeD_bzip2_rle0_bwt_sft.cjs) · [Passing original-input CI run 44328157721](https://github.com/FlareZ123/liber-primus/actions/runs/44328157721) (the 76-cycle additional assertion was committed after that run and requires a later fresh run).
+[Executable Windows Node22 CommonJS SFT](../sims/lp2_2015_primeD_bzip2_rle0_bwt_sft.cjs) · [Passing original-input CI run 44328934503](https://github.com/FlareZ123/liber-primus/actions/runs/44328934503).
 
 **Retire the one specified RLE2→MTF→circular-BWT route on the published 2015 D.** A different bzip2 packet, added symbol framing, or a different register is outside this result, but requires a distinct original instruction or an independently recognizable packet signature before more parameter tuning. This conditional exclusion does not update the [authoritative decrypted-text synthesis](../results/README.md).
