@@ -189,6 +189,87 @@ assert.deepEqual(chapterDivisibility.map((x) => x.minimum),
   [13, 21, 34, 36, 18, 30, 34, 75, 2]);
 assert.ok(chapterDivisibility.every((x) => x.minimum > 1));
 assert.equal(primeDivisibilityMinimum(plant).minimum, 0);
+assert.equal(secretPermutationPrimeMinimum(plant), 0);
+
+
+/**
+ * 29x29 minimum-cost phase-symbol assignment. This gives the smallest
+ * possible count of mandatory prime29 sites when an unknown STATIC,
+ * bijective GP29 output alphabet is also allowed. With nonzero slope b,
+ * the affine map j -> b*j+a permutes all 29 phase labels; an arbitrary
+ * secret alphabet then permits ANY bijective phase-to-symbol assignment.
+ * This is an intentionally generous key-independent necessary condition.
+ *
+ * @param {number[][]} costs
+ * @returns {number}
+ */
+function minBijectionCost(costs) {
+  const n = costs.length;
+  const u = Array(n + 1).fill(0);
+  const v = Array(n + 1).fill(0);
+  const match = Array(n + 1).fill(0);
+  const previous = Array(n + 1).fill(0);
+  for (let i = 1; i <= n; i++) {
+    match[0] = i;
+    let column = 0;
+    const remaining = Array(n + 1).fill(Infinity);
+    const used = Array(n + 1).fill(false);
+    do {
+      used[column] = true;
+      const row = match[column];
+      let delta = Infinity;
+      let nextColumn = 0;
+      for (let j = 1; j <= n; j++) {
+        if (used[j]) continue;
+        const cost = costs[row - 1][j - 1] - u[row] - v[j];
+        if (cost < remaining[j]) {
+          remaining[j] = cost;
+          previous[j] = column;
+        }
+        if (remaining[j] < delta) {
+          delta = remaining[j];
+          nextColumn = j;
+        }
+      }
+      for (let j = 0; j <= n; j++) {
+        if (used[j]) {
+          u[match[j]] += delta;
+          v[j] -= delta;
+        } else {
+          remaining[j] -= delta;
+        }
+      }
+      column = nextColumn;
+    } while (match[column] !== 0);
+    do {
+      const nextColumn = previous[column];
+      match[column] = match[nextColumn];
+      column = nextColumn;
+    } while (column !== 0);
+  }
+  let minimum = 0;
+  for (let j = 1; j <= n; j++) {
+    minimum += costs[match[j] - 1][j - 1];
+  }
+  return minimum;
+}
+
+/** @param {number[]} tape @returns {number} */
+function secretPermutationPrimeMinimum(tape) {
+  const costs = Array.from({ length: 29 }, () => Array(29).fill(0));
+  for (let i = 0; i < tape.length; i++) {
+    costs[i % 29][tape[i]]++;
+  }
+  return minBijectionCost(costs);
+}
+
+const wholeSecretPermutation = secretPermutationPrimeMinimum(original);
+const chapterSecretPermutation = physicalChapters.map(([first, last]) =>
+  secretPermutationPrimeMinimum(corpus.pages
+    .filter((p) => p.page >= first && p.page <= last)
+    .flatMap((p) => p.indices)));
+assert.equal(wholeSecretPermutation, 251);
+assert.deepEqual(chapterSecretPermutation, [0, 0, 1, 2, 0, 0, 1, 15, 0]);
 
 // Exact original-source and independently generated control assertions.
 assert.equal(sourceSteps[0], 86);
@@ -211,6 +292,11 @@ console.log(JSON.stringify({
   allStartAllAffineOrdinalPrimeDivisibility: {
     full: fullDivisibility, chapters: chapterDivisibility,
     fixedPrimePlant: primeDivisibilityMinimum(plant)
+  },
+  unknownStaticPermutation: {
+    fullMinimumPrime29Sites: wholeSecretPermutation,
+    chapterMinima: chapterSecretPermutation,
+    realPrimePlantMinimum: secretPermutationPrimeMinimum(plant)
   }
 }, null, 2));
 console.log('PASS: every direct affine-ordinal prime generator is impossible on each original chapter, independent of prime start.');
