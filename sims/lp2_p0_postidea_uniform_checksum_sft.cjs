@@ -583,6 +583,48 @@ function solveMin(stage,endpoint,usedIds,runes,indexSum,gpSum,cipherSum,keySum,w
 
 const minimum=solveMin(0,startEndpoint,[],0,0,0,0,0,0);
 assert.ok(minimum);
+
+// The source-only recurrence from IDEA now fixes OF and THE before this
+// parser is consulted. Their combined contribution is:
+// 4 runes, index 23, GP 81, ciphertext 71, key 77, one wrap.
+// The endpoint after THE is J(19,16), with J-D-J and OE-J-OE already used.
+const fixedPrefix={
+  words:["of","the"],
+  endpoint:[19,16],
+  usedKeyIds:[338,383],
+  runes:4,
+  indexSum:23,
+  gpSum:81,
+  cipherSum:71,
+  keySum:77,
+  wraps:1,
+};
+assert.deepEqual(mirrors[338].raw.map(value=>T[value]),["J","D","J"]);
+assert.deepEqual(mirrors[383].raw.map(value=>T[value]),["OE","J","OE"]);
+const fixedSuffix=solve(
+  2,
+  fixedPrefix.endpoint,
+  fixedPrefix.usedKeyIds,
+  fixedPrefix.runes,
+  fixedPrefix.indexSum,
+  fixedPrefix.gpSum,
+  fixedPrefix.cipherSum,
+  fixedPrefix.keySum,
+  fixedPrefix.wraps,
+);
+assert.ok(fixedSuffix.kind>0);
+const fixedSuffixMinimum=solveMin(
+  2,
+  fixedPrefix.endpoint,
+  fixedPrefix.usedKeyIds,
+  fixedPrefix.runes,
+  fixedPrefix.indexSum,
+  fixedPrefix.gpSum,
+  fixedPrefix.cipherSum,
+  fixedPrefix.keySum,
+  fixedPrefix.wraps,
+);
+assert.ok(fixedSuffixMinimum);
 console.log(JSON.stringify({
   status:result.kind===1
     ?"unique common-word plaintext under uniform widened post-IDEA grammar"
@@ -599,6 +641,18 @@ console.log(JSON.stringify({
   routeCount:result.routeCount,
   uniquePlaintext:result.kind===1?result.text:null,
   example:result.example,
+  fixedSourcePrefix:{
+    prefix:fixedPrefix.words.join(" "),
+    endpoint:fixedPrefix.endpoint,
+    remainingRouteCount:fixedSuffix.routeCount,
+    remainingUniquePlaintext:fixedSuffix.kind===1?fixedSuffix.text:null,
+    remainingExample:fixedSuffix.example,
+    minimumCost:fixedSuffixMinimum.cost,
+    minimumRouteCount:fixedSuffixMinimum.routeCount,
+    minimumTexts:[...fixedSuffixMinimum.texts].sort(),
+    minimumUniqueText:fixedSuffixMinimum.texts.size===1?[...fixedSuffixMinimum.texts][0]:null,
+    minimumExample:fixedSuffixMinimum.example,
+  },
   minimumLocalRoute:{
     cost:minimum.cost,
     routeCount:minimum.routeCount,
