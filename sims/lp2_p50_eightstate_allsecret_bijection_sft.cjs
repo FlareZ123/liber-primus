@@ -92,7 +92,7 @@ function minNativeWindow(corpus){
 const textSources=[
  ['gibran','resources/control/gibran_prophet_58585.txt'],
  ['shakespeare','resources/control/shakespeare_first300k.txt'],
- ['emerson','resources/control/emerson_essays_360k.txt']
+ ['emerson','resources/control/emerson_essays_2944.txt']
 ];
 const control=textSources.map(([name,p])=>({name,...minNativeWindow(read(p))}));
 const nativeMin=Math.min(...control.map(x=>x.minIoC));
