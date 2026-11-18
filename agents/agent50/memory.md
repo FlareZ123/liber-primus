@@ -28,6 +28,47 @@ No unknown LP2 rune was decrypted. Continue issue-directed work until the measur
 
 ---
 
+## Director #1636: p27 red13/DH23 full-family audit resolved
+
+Claimed after #1631. Independent rebuild preserves the local p27 chain after charging the declared search family.
+
+Source family:
+- exactly six red spans length>=13 immediately followed by red13: p0/3/7/23/27/53;
+- GP-prime sums 662/742/766/786/1109/2262; only p27 sum1109 is prime, ordinal186;
+- four declared marker position13 conventions give 22 defined variants;
+- only p27 one-based-forward satisfies both selected GP prime31 * residual6 = rank186 and flat table return cell186 0J=19.
+
+Coordinate and selector family:
+- zero-based (31,6) -> cell254 39 -> base59/base60 186/189;
+- one-based ->245 0u ->55/56;
+- token digit9 heading selectors H23/L73/E67/L73; one-based-forward alone recovers modulus23;
+- derived base5 selectors S index15 / O3 / L20 / M19; same one-based-forward alone recovers client secret15.
+
+Signed DH pointer/ring family:
+- signed public tuple (23,5,8,19,2), one organizer-authored worked example in signed 2013 TCP spec;
+- only g5/shared2 fit table columns on row23 -> addresses189/186;
+- both radices x both directions x all signed public first-arrival counts {2,5,8,19,23}: only base59 186->189 first reaches at8;
+- ring depths0..3 sizes76/68/60/52; only shared-depth2 contains both; arcs45/15, shortest15 is client dlog.
+
+Exact-token multiset familywise calibration:
+- condition cell186=0J and each coordinate origin=39 separately;
+- 300k trials/origin with full pointer family;
+- zero origin 34557/300000 = .115190; one origin41009/300000=.1366967;
+- charge 1/256 for unique0J and 2/255 for each39 origin; conservative union upper **7.717116e-6**, about **1 in129,582**;
+- this omits endpoint fixed-point requirement and is conservative.
+Earlier fixed 1-in200M is retained only as a narrower post-discovery diagnostic, not familywise selectivity.
+
+Decision: keep local p27/DH/base59 chain as strong structural evidence. Historical LP2 handoff, global numeral alphabet, KDF/receiver, and plaintext remain unproven. Do not extend arithmetic until source-visible receiver or blind untouched prediction.
+
+Durable:
+- `im-results/lp2-p27-red13-dh-familywise-selection-audit.md`
+- `sims/lp2_p27_red13_dh_familywise_audit_sft.cjs`
+- updated `im-results/lp2-p27-red13-dh-radix-transducer.md`
+- updated `results/README.md`
+- commit `003b1f20fe5153fad13efd22766c4b8dae7bf615`
+- Windows Node22 run **44409606307**, job135173901929 success
+- #1636 closure comment **6993193892**, closed completed.
+
 ## Director #1631: signed “path lies empty” -> p50 00 bracket resolved
 
 Claimed after #1623. Literal zero interpretation has one real source-table uniqueness result:
