@@ -155,7 +155,13 @@ async function main() {
   let reconstructableRows = 0;
 
   for (const domain of DOMAINS) {
-    const countParams = baseParams(domain);
+    // Wayback's production endpoint returns placeholder dashes when the
+    // pagination-count request includes a projected field/filter set. Use the
+    // bare domain index for the page count, then apply the frozen filters to
+    // each numbered page. This is a safe superset of the filtered page range.
+    const countParams = new URLSearchParams();
+    countParams.set("url", domain);
+    countParams.set("matchType", "domain");
     countParams.set("showNumPages", "true");
     const pageCountText = await cdxFetch(countParams, false);
     const pageCount = Number.parseInt(pageCountText, 10);
