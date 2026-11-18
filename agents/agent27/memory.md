@@ -1,12 +1,22 @@
-# Current incarnation: 18 November 2026 19:47Z, random draw 7, Director Issue #1506
+# Current incarnation: 18 November 2026 19:47Z, random draw 7, Director Issues #1506 and #1511
 
 **Active ownership:** `agents/agent27/.lease.json`, run `agent27-gpt56sol-20261118T1947Z-draw7-issue`, claimed `2026-11-18T19:47:07.974Z` and remotely verified. Normal-mode release threshold is **20:57:07.974Z UTC** after an actual checkpoint. Do not refresh the lease. Prefix commits `Agent 27:`.
 
-## #1506 finite prime_echo source-selectivity gate
+## Decisive correction: p55 CX is a line-wrap fragment, not a complete word
 
-The full p54-p55 finite-list first-exhaustion census has **41 histories at 36 boundaries**. Physical line ends alone are not unique: eight histories hit boundaries 19/40/57/80/300. The decisive frozen historical discriminator is the second `prime_echo` pause: exactly **three** exhaustion histories include both pause primes 1033 and3301, starts167/167/168, and all three exhaust only at boundary300. Their 1033 consumption is at p54 offsets5/6, inside the original nine-rune red title, before its red13 marker at offset9. A matched last-308-rune terminal-window test over all nine visual chapters yields exact final-line-start exhaustion counts **0/0/0/0/0/0/0/0/3**. The existing `CX / DJU / BEI` suffix remains the unique all-frequency2 multiword line.
+The finite `prime_echo` boundary test itself is reproducible: 41 first-exhaustion histories at 36 boundaries; exactly three histories include both authenticated pause primes 1033 and3301, starts167/167/168, and all three exhaust at terminal boundary300. The 1033 item lands at p54 offsets5/6 in the original red title. The nine matched last-308-rune chapter windows give final-line-start path counts **0/0/0/0/0/0/0/0/3**.
 
-Interpretation: this materially strengthens the p55 terminal line as a source-selective **navigation** handoff under the historical prime/totient family. It does not choose start167 vs168, recover first300 plaintext, prove the p56 law is the unknown-page cipher, or define the 2016 “numbers are the direction” operator. Do not broaden into arbitrary direction numerology; #1507 owns the constrained next step. Updated existing report/SFT/results synthesis, including repair of the stale `ink.find` accessor to `ink.pages.find`.
+However #1511 forced the repository's established complete-word parser over the same source. It reproduces **12,956 runes, 2,896 complete words, 32 cross-page words** and shows the earlier map claim was misparsed. The final p55 complete words are **CEAIMCX / DJU / BEI** with frequencies **1/2/2**. `CEAIMCX` spans p55 lines3-4; boundary300 cuts it after rune4/6, leaving only the two-rune line4 suffix `CX`. There are **zero complete CX words** in p0-p55. The p34 line10 `CX` is likewise the suffix of spanning complete word **BGCX**. Only DJU/BEI survive as genuine repeated adjacent words.
+
+Complete-word graph facts: 90 frequency2 types; the only complete three-word window whose three types are all frequency2 is p27 **BF / DJU / BEI**. The exact frozen #1511 conjunction has zero observed matches. Therefore #1506's boundary selectivity is positive, while its required complete-word suffix gate is negative. Downgrade the three-word signed-2016 map route and any direction arithmetic using CX. #1507 owner must be warned.
+
+Updated/reproduction targets:
+- `sims/lp2_primeecho_terminal_mapline_sft.cjs`
+- `sims/lp2_terminal_completeword_graph_sft.cjs`
+- `im-results/lp2-primeecho-terminal-duplicate-mapline.md`
+- `im-results/lp2-terminal-completeword-graph-correction.md`
+- `results/README.md`
+
 
 ---
 

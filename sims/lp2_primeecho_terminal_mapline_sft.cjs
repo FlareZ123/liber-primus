@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Source-frozen p54-p55 prime_echo terminal-line handoff.
+ * Source-frozen p54-p55 prime_echo line-boundary gate with canonical word correction.
  * Read-only SFT. No language scoring and no repository writes.
  *
  * Run from repository root:
@@ -129,31 +129,32 @@ assert.deepEqual(paths, [
   { start: 168, startPrime: 1009, j: 464, skips: [41, 65, 195, 247] }
 ]);
 
-// Reconstruct strict physical words and lines from the canonical transcription.
+// Reconstruct physical line-local rune fragments. A printed line wrap is
+// source-visible but is not, by itself, a canonical word delimiter.
 const parts = transcription.split(/^%$/m);
 assert.equal(parts.length, 57);
-const wordFreq = new Map();
+const lineFragmentFreq = new Map();
 const pages = [];
 
 for (let page = 0; page <= 55; page++) {
   if (page === 50) continue;
   const body = parts[page < 50 ? page : page - 1];
-  const words = [...body.matchAll(/[ᚠ-ᛡ]+/gu)].map((match) => match[0]);
-  pages.push({ page, body, words });
-  for (const word of words) {
-    wordFreq.set(word, (wordFreq.get(word) || 0) + 1);
+  const fragments = [...body.matchAll(/[ᚠ-ᛡ]+/gu)].map((match) => match[0]);
+  pages.push({ page, body, fragments });
+  for (const fragment of fragments) {
+    lineFragmentFreq.set(fragment, (lineFragmentFreq.get(fragment) || 0) + 1);
   }
 }
 
-const targetWords = ['ᚳᛉ', 'ᛞᛄᚢ', 'ᛒᛖᛁ']; // CX / DJU / BEI
-assert.deepEqual(targetWords.map((word) => wordFreq.get(word)), [2, 2, 2]);
+const targetFragments = ['ᚳᛉ', 'ᛞᛄᚢ', 'ᛒᛖᛁ']; // CX / DJU / BEI
+assert.deepEqual(targetFragments.map((fragment) => lineFragmentFreq.get(fragment)), [2, 2, 2]);
 
 /**
  * @param {number} pageNumber
  * @param {string} target
- * @returns {{page:number,wordIndex0:number,wordIndex1:number,localRune:number,line:number}[]}
+ * @returns {{page:number,fragmentIndex0:number,fragmentIndex1:number,localRune:number,line:number}[]}
  */
-function occurrences(pageNumber, target) {
+function lineFragmentOccurrences(pageNumber, target) {
   const page = pages.find((item) => item.page === pageNumber);
   assert(page);
   const matches = [...page.body.matchAll(/[ᚠ-ᛡ]+/gu)];
@@ -166,8 +167,8 @@ function occurrences(pageNumber, target) {
     const line = 1 + (before.match(/\//g) || []).length;
     out.push({
       page: pageNumber,
-      wordIndex0: i,
-      wordIndex1: i + 1,
+      fragmentIndex0: i,
+      fragmentIndex1: i + 1,
       localRune,
       line
     });
@@ -175,59 +176,179 @@ function occurrences(pageNumber, target) {
   return out;
 }
 
-assert.deepEqual(occurrences(34, targetWords[0]), [
-  { page: 34, wordIndex0: 55, wordIndex1: 56, localRune: 200, line: 10 }
+assert.deepEqual(lineFragmentOccurrences(34, targetFragments[0]), [
+  { page: 34, fragmentIndex0: 55, fragmentIndex1: 56, localRune: 200, line: 10 }
 ]);
-assert.deepEqual(occurrences(55, targetWords[0]), [
-  { page: 55, wordIndex0: 16, wordIndex1: 17, localRune: 68, line: 4 }
+assert.deepEqual(lineFragmentOccurrences(55, targetFragments[0]), [
+  { page: 55, fragmentIndex0: 16, fragmentIndex1: 17, localRune: 68, line: 4 }
 ]);
-assert.deepEqual(occurrences(27, targetWords[1]), [
-  { page: 27, wordIndex0: 6, wordIndex1: 7, localRune: 28, line: 2 }
+assert.deepEqual(lineFragmentOccurrences(27, targetFragments[1]), [
+  { page: 27, fragmentIndex0: 6, fragmentIndex1: 7, localRune: 28, line: 2 }
 ]);
-assert.deepEqual(occurrences(27, targetWords[2]), [
-  { page: 27, wordIndex0: 7, wordIndex1: 8, localRune: 31, line: 2 }
+assert.deepEqual(lineFragmentOccurrences(27, targetFragments[2]), [
+  { page: 27, fragmentIndex0: 7, fragmentIndex1: 8, localRune: 31, line: 2 }
 ]);
 
 const p55Body = pages.find((item) => item.page === 55).body;
 const p55Lines = p55Body.split('/\n')
   .map((line) => [...line.matchAll(/[ᚠ-ᛡ]+/gu)].map((match) => match[0]))
-  .filter((words) => words.length > 0);
+  .filter((fragments) => fragments.length > 0);
 assert.deepEqual(p55Lines.map((line) =>
-  line.reduce((sum, word) => sum + [...word].length, 0)), [24, 22, 22, 8]);
-assert.deepEqual(p55Lines[3], targetWords);
+  line.reduce((sum, fragment) => sum + [...fragment].length, 0)), [24, 22, 22, 8]);
+assert.deepEqual(p55Lines[3], targetFragments);
 const p55Ink = ink.pages.find((page) => page.page === 55);
 assert(p55Ink);
 assert.deepEqual(p55Ink.large_punctuation, [[76, 13, 'red']]);
 
-// Manuscript-wide line inventory: p55 line4 is the only >=2-word physical line
-// for which every constituent word type occurs exactly twice in p0-p55.
+// The old line-local census remains true only for line fragments.
 let physicalLines = 0;
-const allTwiceLines = [];
+const allTwiceFragmentLines = [];
 for (const page of pages) {
   const lines = page.body.split('/\n');
   for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
-    const words = [...lines[lineIndex].matchAll(/[ᚠ-ᛡ]+/gu)]
+    const fragments = [...lines[lineIndex].matchAll(/[ᚠ-ᛡ]+/gu)]
       .map((match) => match[0]);
-    if (words.length === 0) continue;
+    if (fragments.length === 0) continue;
     physicalLines++;
-    if (words.length >= 2 && words.every((word) => wordFreq.get(word) === 2)) {
-      allTwiceLines.push({
+    if (fragments.length >= 2 &&
+        fragments.every((fragment) => lineFragmentFreq.get(fragment) === 2)) {
+      allTwiceFragmentLines.push({
         page: page.page,
         line: lineIndex + 1,
-        words
+        fragments
       });
     }
   }
 }
 assert.equal(physicalLines, 594);
-assert.deepEqual(allTwiceLines, [
-  { page: 55, line: 4, words: targetWords }
+assert.deepEqual(allTwiceFragmentLines, [
+  { page: 55, line: 4, fragments: targetFragments }
 ]);
 
-assert.deepEqual(targetWords.map(primeSum), [60, 129, 159]);
-assert.equal(targetWords.map(primeSum).reduce((a, b) => a + b, 0), 348);
-assert.equal(348, 6 * 58);
+// Canonical printed words ignore physical line/page wrapping as a delimiter.
+// This is the repository-wide 12,956-rune / 2,896-word convention.
+const alphabet = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const unknownSource = transcription.split('%').slice(0, 55).join('%');
+const canonicalWords = [];
+let canonicalFragment = [];
+let rawPage = 0;
+let currentLine = 1;
+let startRawPage = -1;
+let endRawPage = -1;
+let startLine = -1;
+let endLine = -1;
+let canonicalRuneCount = 0;
+let wordStartRune = -1;
+const physicalPage = (page) => page >= 50 ? page + 1 : page;
 
+function finishCanonicalWord() {
+  if (!canonicalFragment.length) return;
+  canonicalWords.push({
+    indices: canonicalFragment,
+    runes: canonicalFragment.map((index) => corpus.runes[index]).join(''),
+    translit: canonicalFragment.map((index) => corpus.translit[index]).join(''),
+    startPage: physicalPage(startRawPage),
+    endPage: physicalPage(endRawPage),
+    startLine,
+    endLine,
+    startRune: wordStartRune,
+    endRune: canonicalRuneCount
+  });
+  canonicalFragment = [];
+}
+
+for (const char of unknownSource) {
+  if (alphabet.has(char)) {
+    if (!canonicalFragment.length) {
+      startRawPage = rawPage;
+      startLine = currentLine;
+      wordStartRune = canonicalRuneCount;
+    }
+    canonicalFragment.push(alphabet.get(char));
+    endRawPage = rawPage;
+    endLine = currentLine;
+    canonicalRuneCount++;
+  } else if (char === '%') {
+    rawPage++;
+    currentLine = 1;
+  } else if (char === '/') {
+    currentLine++;
+  } else if (/\s/u.test(char)) {
+    // Printed wrapping/whitespace does not terminate a word.
+  } else {
+    finishCanonicalWord();
+  }
+}
+finishCanonicalWord();
+
+assert.equal(canonicalRuneCount, 12956);
+assert.equal(canonicalWords.length, 2896);
+assert.equal(canonicalWords.filter((word) => word.startPage !== word.endPage).length, 32);
+
+const canonicalFreq = new Map();
+const canonicalOccurrences = new Map();
+for (let i = 0; i < canonicalWords.length; i++) {
+  const word = canonicalWords[i];
+  canonicalFreq.set(word.runes, (canonicalFreq.get(word.runes) || 0) + 1);
+  if (!canonicalOccurrences.has(word.runes)) canonicalOccurrences.set(word.runes, []);
+  canonicalOccurrences.get(word.runes).push(i);
+}
+assert.equal([...canonicalFreq.values()].filter((count) => count === 2).length, 90);
+
+// Critical #1511 correction: CX is a line-start continuation fragment, not a
+// complete printed word at either p55 or p34.
+assert.equal(canonicalFreq.get(targetFragments[0]) || 0, 0);
+const terminalWords = canonicalWords.slice(-3);
+assert.deepEqual(terminalWords.map((word) => word.translit), ['CEAIMCX', 'DJU', 'BEI']);
+assert.deepEqual(terminalWords.map((word) => canonicalFreq.get(word.runes)), [1, 2, 2]);
+assert.deepEqual(
+  terminalWords.map((word) => [word.startPage, word.startLine, word.endLine]),
+  [[55, 3, 4], [55, 4, 4], [55, 4, 4]]
+);
+
+const terminalSpanningWord = terminalWords[0];
+assert.equal(terminalSpanningWord.runes, 'ᚳᛠᛁᛗᚳᛉ');
+assert.equal(terminalSpanningWord.startRune, 12944);
+assert.equal(terminalSpanningWord.endRune, 12950);
+const boundaryGlobalRune = canonicalRuneCount - terminalChapter.length + 300;
+assert.equal(boundaryGlobalRune, 12948);
+assert.equal(boundaryGlobalRune - terminalSpanningWord.startRune, 4);
+assert.equal(terminalSpanningWord.endRune - boundaryGlobalRune, 2);
+
+const p34SpanningWord = canonicalWords.find((word) =>
+  word.startPage === 34 && word.startLine === 9 && word.endLine === 10 &&
+  word.runes.endsWith(targetFragments[0]));
+assert(p34SpanningWord);
+assert.equal(p34SpanningWord.translit, 'BGCX');
+
+// DJU / BEI remain genuine complete words and form the repeated adjacent pair.
+assert.deepEqual(
+  canonicalOccurrences.get(targetFragments[1]).map((index) => [
+    canonicalWords[index].startPage, canonicalWords[index].startLine
+  ]),
+  [[27, 2], [55, 4]]
+);
+assert.deepEqual(
+  canonicalOccurrences.get(targetFragments[2]).map((index) => [
+    canonicalWords[index].startPage, canonicalWords[index].startLine
+  ]),
+  [[27, 2], [55, 4]]
+);
+
+// Across all complete three-word windows, the only all-frequency-2 window is
+// BF / DJU / BEI at p27. The p55 terminal material is not such a window.
+const allFreq2Windows = [];
+for (let i = 0; i + 2 < canonicalWords.length; i++) {
+  const window = canonicalWords.slice(i, i + 3);
+  if (window.every((word) => canonicalFreq.get(word.runes) === 2)) {
+    allFreq2Windows.push({ index: i, translit: window.map((word) => word.translit) });
+  }
+}
+assert.deepEqual(allFreq2Windows, [
+  { index: 1461, translit: ['BF', 'DJU', 'BEI'] }
+]);
+
+assert.deepEqual(targetFragments.map(primeSum), [60, 129, 159]);
 
 /**
  * Enumerate the first point at which the finite historical prime list is
@@ -371,7 +492,7 @@ for (const [firstPage, lastPage] of visualChapters) {
 assert.deepEqual(matchedTerminalPathCounts, [0, 0, 0, 0, 0, 0, 0, 0, 3]);
 
 // The untouched line is exactly the last eight original p55 runes.
-const targetIndices = targetWords.join('').split('')
+const targetIndices = targetFragments.join('').split('')
   .map((rune) => corpus.runes.indexOf(rune));
 assert.deepEqual(p55.indices.slice(68), targetIndices);
 
@@ -381,9 +502,10 @@ for (const state of paths) {
   console.log(`  start=${state.start} prime=${state.startPrime} skips=[${state.skips.join(',')}] -> pointer464`);
 }
 console.log('BOUNDARY: p55 local67 ends printed line3 exactly as prime3301 is consumed');
-console.log('UNTOUCHED LINE4: CX / DJU / BEI (8 runes), then red 13-dot mark at offset76');
-console.log('WORD COUNTS: CX=2, DJU=2, BEI=2 across p0-p55');
-console.log('OTHER COPIES: CX=p34 word56 line10; DJU/BEI=p27 words7/8 line2');
-console.log('LINE INVENTORY: 594 physical rune lines; p55 line4 is the sole >=2-word line whose every word occurs exactly twice');
-console.log('GP PRIME SUMS: CX=60, DJU=129, BEI=159, total=348=6*58');
-console.log('INTERPRETATION: finite navigation handoff candidate only; no plaintext/key claimed');
+console.log('UNTOUCHED LINE4 FRAGMENTS: CX / DJU / BEI (8 runes), then red 13-dot mark at offset76');
+console.log('CANONICAL WORD BOUNDARY: CX is the final 2 runes of CEAIMCX, spanning p55 lines3-4');
+console.log('BOUNDARY300 CUT: after 4/6 runes of CEAIMCX; the untouched suffix does NOT begin at a complete-word boundary');
+console.log('P34 MATCH: its line10 CX is likewise the suffix of spanning canonical word BGCX');
+console.log('COMPLETE WORDS: CX count=0; DJU/BEI each count=2 and repeat adjacently at p27 line2');
+console.log('GRAPH CHECK: only complete all-frequency-2 triple is BF / DJU / BEI at p27');
+console.log('VERDICT: finite prime_echo selects a physical line break, but the three-word map interpretation is rejected');
