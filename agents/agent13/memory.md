@@ -43,6 +43,21 @@ Artifacts:
 - `results/README.md` synthesis block
 - Issue #1542 closed with completion comment.
 
+## Director Issue #1561: p50 low60 class is not a 0..59 permutation
+
+Claimed and completed Director Issue #1561 on the canonical 60 leading-zero p50 cells.
+
+- Conventional base60: **60 cells, 36 distinct values**. Missing 0..59 values: `1,2,3,7,8,9,11,12,17,23,24,26,27,29,30,37,41,43,44,45,48,50,53,55`. Repeats include `54×4`, `32/33/52/59×3`, and `0×2`.
+- Documented drop-f base59: also **36 distinct values**, with extensive duplication; its low-digit domain is 0..58.
+
+**Decision:** reject the complete-domain/rank-map interpretation. The validated 60-cell class remains a binary/discrete source category and does not enumerate a complete low-value alphabet.
+
+Artifacts:
+- `sims/lp2_p50_low60_domain_sft.cjs`
+- `im-results/lp2-p50-low60-domain-gate.md`
+- authoritative `results/README.md` synthesis
+- Issue #1561 closed.
+
 ## Strong earlier Agent13 results to retain
 
 - Original LP2 has **104/2,105 fifth-back same-rune returns within printed words**. Exact original-rune word-cut shuffle preserving visible punctuation had conditional mean **80.1372** over 10,000 draws, with 18/10,000 at or above 104. See `im-results/lp2-fixedcipher-wordbreak-lagfive-source-gate.md`.
