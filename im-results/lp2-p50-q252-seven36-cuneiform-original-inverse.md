@@ -16,10 +16,10 @@ Partition its 252 symbols into exactly seven 36-value rows (contiguous), or seve
 
 | Frozen key layout | GP inverse sign | Direct GP29 page-stratified IoC across 1,680 ciphertext runes | First impossible source index under authentic plaintext-F skip (p33–39 respectively) |
 | --- | --- | ---: | --- |
-| 7 contiguous rows | − | 0.034301418703 | 64, 80, 24, 10, 0, 51, 31 |
-| 7 contiguous rows | + | 0.034281611330 | 1, 111, 9, 50, 15, 20, 22 |
-| 7 interleaved columns | − | 0.035519572161 | 2, 5, 118, 33, 23, 5, 67 |
-| 7 interleaved columns | + | 0.034222189210 | 69, 9, 13, 29, 2, 24, 2 |
+| 7 contiguous rows | − | 0.034301418703 | 1, 111, 9, 50, 15, 20, 22 |
+| 7 contiguous rows | + | 0.034281611330 | 64, 80, 24, 10, 0, 51, 31 |
+| 7 interleaved columns | − | 0.035519572161 | 69, 9, 13, 29, 2, 24, 2 |
+| 7 interleaved columns | + | 0.034222189210 | 2, 5, 118, 33, 23, 5, 67 |
 
 These four direct outputs are frequency-flat, comparable to untouched source IoC **0.034573770086**, far from the independently solved original English-GP register (typically ≳0.055 on long passages). Each direct inverse exactly reconstructs all 1,680 original source runes when re-encrypted.
 

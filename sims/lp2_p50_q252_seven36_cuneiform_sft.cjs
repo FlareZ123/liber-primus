@@ -105,10 +105,10 @@ assert.equal(book.pages[50].indices.length,0);
 assert.equal(book.pages[57].indices.length,95);
 
 const expected={
-  'rows:-1':[64,80,24,10,0,51,31],
-  'rows:1':[1,111,9,50,15,20,22],
-  'columns:-1':[2,5,118,33,23,5,67],
-  'columns:1':[69,9,13,29,2,24,2]
+  'rows:-1':[1,111,9,50,15,20,22],
+  'rows:1':[64,80,24,10,0,51,31],
+  'columns:-1':[69,9,13,29,2,24,2],
+  'columns:1':[2,5,118,33,23,5,67]
 };
 const all=[];
 for(const orientation of ['rows','columns']){
