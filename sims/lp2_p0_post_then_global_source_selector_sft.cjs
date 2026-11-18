@@ -627,11 +627,36 @@ console.log(JSON.stringify({
 /** @type {{runes:number,indexSum:number,gpSum:number}} */
 const POST_THEN_TARGET = Object.freeze({runes: 11, indexSum: 122, gpSum: 429});
 
+const POST_THEN_SOURCE_OPERATIONS = [];
+for (let row = 1; row <= 27; row++) {
+  for (let column = 1; column <= 27; column++) {
+    for (const [dr, dc] of [[0, 1], [1, 0], [1, 1], [1, -1]]) {
+      for (let radiusValue = 1; radiusValue <= 26; radiusValue++) {
+        const first = [row - dr * radiusValue, column - dc * radiusValue];
+        const last = [row + dr * radiusValue, column + dc * radiusValue];
+        if (
+          first[0] < 1 || first[0] > 27 ||
+          first[1] < 1 || first[1] > 27 ||
+          last[0] < 1 || last[0] > 27 ||
+          last[1] < 1 || last[1] > 27
+        ) break;
+        if (at(first) !== at(last)) continue;
+
+        const node = [first, [row, column], last];
+        if (node.some(cell => at(cell) === 0)) continue;
+        for (const operation of keyVariants(node)) {
+          POST_THEN_SOURCE_OPERATIONS.push({node, operation});
+        }
+      }
+    }
+  }
+}
+
 /** @param {object} current @param {number} S @param {number} a */
 function sourceOperationsReport06(current, S, a) {
   const predictedPhase = expectedPhase(current.cipher, S);
   const outer = nextOuter(current, a);
-  const signature = predictedSignature(predictedPhase, outer);
+  const signatureId = predictedSignature(predictedPhase, outer).join(",");
   const centerParity = {
     row: mod2(
       1 + current.cipher[0][1] + current.cipher.at(-1)[0] +
@@ -641,44 +666,16 @@ function sourceOperationsReport06(current, S, a) {
       current.node[1][0]),
   };
 
-  const out = [];
-  for (let row = 1; row <= 27; row++) {
-    for (let column = 1; column <= 27; column++) {
-      if (mod2(row) !== centerParity.row || mod2(column) !== centerParity.column) {
-        continue;
-      }
+  const rows = POST_THEN_SOURCE_OPERATIONS.filter(({node, operation}) =>
+    mod2(node[1][0]) === centerParity.row &&
+    mod2(node[1][1]) === centerParity.column &&
+    operation.phase === predictedPhase &&
+    operation.signature.join(",") === signatureId);
 
-      for (const [dr, dc] of [[0, 1], [1, 0], [1, 1], [1, -1]]) {
-        for (let radiusValue = 1; radiusValue <= 26; radiusValue++) {
-          const first = [row - dr * radiusValue, column - dc * radiusValue];
-          const last = [row + dr * radiusValue, column + dc * radiusValue];
-          if (
-            first[0] < 1 || first[0] > 27 ||
-            first[1] < 1 || first[1] > 27 ||
-            last[0] < 1 || last[0] > 27 ||
-            last[1] < 1 || last[1] > 27
-          ) break;
-          if (at(first) !== at(last)) continue;
-
-          const node = [first, [row, column], last];
-          // Report 00's source alphabet excludes rune index 0.
-          if (node.some(cell => at(cell) === 0)) continue;
-
-          for (const operation of keyVariants(node)) {
-            if (
-              operation.phase === predictedPhase &&
-              operation.signature.join(",") === signature.join(",")
-            ) {
-              out.push({node, operation});
-            }
-          }
-        }
-      }
-    }
-  }
-
-  return {outer, predictedPhase, rows: out};
+  return {outer, predictedPhase, rows};
 }
+
+const POST_THEN_SEGMENTS = allStraightSegments(3);
 
 /** @param {object} current @param {number} S */
 function ciphertextCandidatesReport06(current, S) {
@@ -690,7 +687,7 @@ function ciphertextCandidatesReport06(current, S) {
   const rayAllowance = Number(mu(n0(E)) === 0 && mu(n3(E)) === 0);
   const out = [];
 
-  for (const cipher of allStraightSegments(3)) {
+  for (const cipher of POST_THEN_SEGMENTS) {
     const observedBoundary = observedAxisBoundary(cipher);
     if (
       observedBoundary.axis !== expectedBoundary.axis ||
