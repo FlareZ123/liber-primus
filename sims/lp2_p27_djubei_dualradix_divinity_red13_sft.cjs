@@ -304,8 +304,58 @@ assert.deepEqual(nontrivialDual, [{
 
 // P57 semantic recognition on the fixed carrier.
 const instar = p57Word("INSTAR");
+const tunnelng = p57Word("TUNNELNG");
+const surface = p57Word("SURFACE");
+const we = p57Word("WE");
+const our = p57Word("OUR");
+const own = p57Word("OWN");
 const divinity = p57Word("DIUINITY");
+const within = p57Word("WITHIN");
+const emerge = p57Word("EMERGE");
 const like = p57Word("LICE"); // canonical GP transliteration of LIKE
+
+// The solved p57 vocabulary explains the navigation registers themselves.
+assert.equal(primeSum(our.indices), 21);
+assert.equal(phi(primeSum(our.indices)), 12);
+assert.equal(phi(primeSum(our.indices)), carrier.indices.length);
+
+assert.equal(primeSum(own.indices), 55);
+assert.equal(phi(primeSum(own.indices)), 40);
+assert.deepEqual(
+  [d60.intermediateAddress, b60.intermediateAddress].sort((a, b) => a - b),
+  [phi(primeSum(own.indices)), primeSum(own.indices)]
+);
+assert.equal(tableTokens[40], "1K");
+assert.equal(tableTokens[55], "1K");
+assert.equal(tokenValue(tableTokens[40], alphabet59), carrier.start);
+assert.equal(tokenValue(tableTokens[55], alphabet59), carrier.start);
+
+assert.equal(gp0(tunnelng), 94);
+assert.equal(tokenValue(tableTokens[gp0(tunnelng)], alphabet59), primeSum(own.indices));
+assert.equal(tokenValue(tableTokens[primeSum(own.indices)], alphabet59), carrier.start);
+
+assert.equal(primeSum(surface.indices), 246);
+assert.equal(primeSum(emerge.indices), 300);
+assert.equal(phi(primeSum(surface.indices)), 80);
+assert.equal(phi(primeSum(emerge.indices)), 80);
+assert.equal(d60.second, phi(primeSum(surface.indices)));
+assert.equal(b60.second, phi(primeSum(emerge.indices)));
+
+assert.equal(primeSum(we.indices), 86);
+assert.equal(phi(primeSum(we.indices)), gp0(find));
+
+// Base59 continues from the carrier start to the exact left edge of the
+// DIVINITY interior. WITHIN independently supplies the right edge.
+const innerLeft = tokenValue(tableTokens[carrier.start], alphabet59);
+const innerRight = phi(primeSum(within.indices));
+assert.equal(innerLeft, 81);
+assert.equal(innerRight, 88);
+assert.equal(innerLeft, carrier.start + 2);
+assert.equal(innerRight, carrier.start + carrier.indices.length - 3);
+const p27Runes = corpus.pages.find((page) => page.page === 27).indices;
+const selectedInner = p27Runes.slice(innerLeft, innerRight + 1);
+assert.deepEqual(selectedInner, carrier.indices.slice(2, -2));
+assert.equal(primeSum(selectedInner), 376);
 
 const carrierPrime = primeSum(carrier.indices);
 assert.equal(carrierPrime, 562);
@@ -447,6 +497,20 @@ process.stdout.write(JSON.stringify({
     wholeTotient: phi(carrierPrime),
     instarPrimeSum: primeSum(instar.indices),
     uniqueShedMatch: shedMatches[0],
+    sourceSelectedInner: {
+      left: innerLeft,
+      right: innerRight,
+      primeSum: primeSum(selectedInner),
+    },
+    semanticRegisters: {
+      ourTotient: phi(primeSum(our.indices)),
+      ownPrime: primeSum(own.indices),
+      ownTotient: phi(primeSum(own.indices)),
+      tunnelngGp0: gp0(tunnelng),
+      surfaceTotient: phi(primeSum(surface.indices)),
+      emergeTotient: phi(primeSum(emerge.indices)),
+      weTotient: phi(primeSum(we.indices)),
+    },
     divinityPrimeSum: primeSum(divinity.indices),
     divinityTotient: phi(primeSum(divinity.indices)),
     likePrimeSum: primeSum(like.indices),
