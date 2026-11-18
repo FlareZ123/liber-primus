@@ -125,6 +125,23 @@ for(const m of wordList.matchAll(/^([a-z]+)\s+\d+$/gm)){
   if(w.length===12)dictionary.push({word:m[1],indices:w});
 }
 assert.equal(dictionary.length,772);
+
+const expandedDictionary = new Map(dictionary.map(({word,indices})=>[word,indices]));
+for (const sourcePath of [
+  'resources/control/gibran_prophet_58585.txt',
+  'resources/control/shakespeare_first300k.txt',
+  'resources/control/emerson_essays_2944.txt'
+]) {
+  for(const match of read(sourcePath).matchAll(/[A-Za-z]+/g)) {
+    const spelling = match[0].toLowerCase();
+    if(expandedDictionary.has(spelling))continue;
+    const indices=nativeWord(spelling);
+    if(indices.length===12) expandedDictionary.set(spelling,indices);
+  }
+}
+assert.equal(expandedDictionary.size,872); // 100 additional independent native words
+const allDictionary = [...expandedDictionary].map(([word,indices])=>({word,indices}));
+
 const masks=[];
 for(const sign of [1,-1])for(let phase=0;phase<13;phase++){
   const options=dictionary.filter(({indices:w}) =>
@@ -147,7 +164,7 @@ assert.equal(masks.filter(x=>x.words.length===0).length,12);
  * @returns {number}
  */
 function countOriginalAffineWordFits() {
-  const fingerprints = new Set(dictionary.map(({indices:w}) =>
+  const fingerprints = new Set(allDictionary.map(({indices:w}) =>
     w.slice(1).map(v=>mod(v-w[0])).join(',')));
   let hits=0;
   for(const sign of [1,-1])for(let phase=0;phase<13;phase++)
@@ -173,7 +190,7 @@ function countOriginalStaticWordPermutations() {
   let options=0;
   const differences=witness.slice(1).map((v,i)=>mod(v-witness[i]));
   for(const sign of [1,-1])for(let phase=0;phase<13;phase++)
-    for(const {indices:w} of dictionary){
+    for(const {indices:w} of allDictionary){
       const inputToOutput=new Map([[0,0]]);
       const outputToInput=new Map([[0,0]]);
       let possible=true;
@@ -191,7 +208,7 @@ function countOriginalStaticWordPermutations() {
     }
   return options;
 }
-assert.equal(countOriginalStaticWordPermutations(),0); // 26 clocks x 772 native words
+assert.equal(countOriginalStaticWordPermutations(),0); // 26 clocks x 872 native words
 
 
 assert.deepEqual(encrypt(decrypt(witness,1,0),1,0),witness);
