@@ -282,6 +282,28 @@ assert.deepEqual(
   [3]
 );
 
+
+// The recovered inner-shell label has a typed page exit under the same
+// post-SHED numeral state. Base59 selects the final unsolved physical page;
+// the pre-transition base60 control selects solved p56 instead.
+assert.equal(tokens[tunnel.gp0], "0u");
+assert.equal(decode(tokens[tunnel.gp0], alphabet59), 55);
+assert.equal(decode(tokens[tunnel.gp0], alphabet60), 56);
+
+const p57PageLandings59 = p57Rows
+  .map((word) => ({
+    text: word.text,
+    address: word.gp0,
+    value: decode(tokens[word.gp0], alphabet59),
+  }))
+  .filter((row) => row.value >= 0 && row.value <= 57);
+assert.deepEqual(
+  p57PageLandings59
+    .filter((row) => row.value >= 54)
+    .map((row) => ({ text: row.text, value: row.value })),
+  [{ text: "TUNNELNG", value: 55 }]
+);
+
 // "TUNNELNG TO THE SURFACE": SURFACE's GP0 address is on the inner ring.
 // Under the newly selected base59 pointer, it jumps in one edge to the
 // exposed depth2 ring, at the global fixed point.
@@ -363,6 +385,11 @@ console.log(
         innerLength: shells[3].length,
         innerShedSum: shells[3].shedSum,
         innerLabel: "TUNNELNG",
+        tunnelPageExit59: decode(tokens[tunnel.gp0], alphabet59),
+        tunnelPageControl60: decode(tokens[tunnel.gp0], alphabet60),
+        terminalPageLandings59: p57PageLandings59.filter(
+          (row) => row.value >= 54
+        ),
       },
       surfacePointer: {
         address: surface.gp0,
@@ -383,7 +410,7 @@ console.log(
           "post-discovery scale diagnostic only; shared2 is independently fixed, while the radix-difference shell statistic was discovered in this invocation",
       },
       interpretation:
-        "After WE MUST SHED selects the 60->59 transition, value60-value59 is the literal amount shed at each p50 cell. Independent DH shared2 removes two outer circumferences. The resulting 28x4 core has phi(GP-prime(SHED))=112 cells. Its exposed 60-cell circumference has shed-sum GP0(DIUINITY)=105, while the only circumference within has shed-sum GP0(TUNNELNG)=94. GP0(SURFACE)=67 lies on that inner ring and its base59 pointer moves in one edge to fixed point189 on the exposed DIVINITY ring. No unknown plaintext is recovered.",
+        "After WE MUST SHED selects the 60->59 transition, value60-value59 is the literal amount shed at each p50 cell. Independent DH shared2 removes two outer circumferences. The resulting 28x4 core has phi(GP-prime(SHED))=112 cells. Its exposed 60-cell circumference has shed-sum GP0(DIUINITY)=105, while the only circumference within has shed-sum GP0(TUNNELNG)=94. GP0(SURFACE)=67 lies on that inner ring and its base59 pointer moves in one edge to fixed point189 on the exposed DIVINITY ring. The recovered TUNNELNG address94 then maps under the selected base59 state to physical p55; base60 would map to p56, and TUNNELNG is the only p57 word whose base59 value lands in terminal pages54-57. No unknown plaintext is recovered.",
     },
     null,
     2
