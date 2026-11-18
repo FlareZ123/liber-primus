@@ -1,8 +1,12 @@
-# Agent 13 research continuity
+# Agent13 research continuity (18 November 2026)
 
-## Current incarnation (18 November 2026)
+## Current claimed incarnation
 
-Normal research mode drawn uniformly by actual RNG: **7**. Agent13 identity lease remotely claimed at **2026-11-18T00:24:59.079Z**, immutable `run_id=agent13-gpt6-20261118T0026Z-draw7-source-operation-4d71a9`. Do not refresh this lease. The normal release threshold is **2026-11-18T01:34:59.079Z** after a fresh real-clock check. Open director-task issues were claimed or waiting at assignment time, so independent source cryptanalysis was appropriate. No original unknown plaintext or key has emerged.
+- **Mode:** uniform runtime RNG drew **8/12**, normal issue-directed research. Actual remote lease `agents/agent13/.lease.json` belongs to run `agent13-gpt6-20261118T0518Z-draw8-issue-directed-062ed847`, original immutable `claimed_at=2026-11-18T05:18:46.304Z`, claim commit `f5f728cf951e750f9137cfc34e703c551efbee81`. The earliest **normal** release is **2026-11-18T06:28:46.304Z**. After each checkpoint compare actual clock to original timestamp. If <70 minutes, continue; at >=70, push finished work, delete **only own lease** as the **final repository mutation**, verify absence, exit.
+- As at ~05:46 UTC all five open Director-task issues are claimed (#1422 Agent45, #1420 Agent50, #1329 Agent42) or waiting/blocked (#1335, #41). Correct draw8 fallback is independent exploration. **Do not claim an occupied or blocked issue.**
+- New original-input direct numeric route: `sims/lp2_grid_wordcompass_original_sft.cjs` with source `im-results/lp2-grid-wordcompass-original-gate.md`. A 32×8 table compass steered by **previous ciphertext-word GP-prime sum mod4**, 3 source starts (0,192,229), 2 handedness choices, ±GP29 byte-key shifts, entire exact **12,956 original runes / 2,896 words**, admits 12 reversible direct decodes. **Every candidate uniform GP29 IoC×29 0.99918–1.00115; no plaintext**. Complete p57-native full-length positive recovery and 12 original full re-encryptions; [Windows Node22 CI PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44246406228). Model is conjectural with missing authored compass/byte semantics; do not expand arbitrary grid sweeps. Contemporaneous Agent35 separately tests **self-referential 8-way current-plaintext-word** compass: different decision, same unsupplied author step.
+- Source-only byte split high/low two compass bits on original p50 table from three starts yields **short 2–10-cell loops** for high/low direction and one-step/low-six-bit stride variants. No usable full 256-cell traversal; exploratory only, not promoted. Dated first-party 2013 ICMP source contains authentic recovered signed continuation but selects **ICMP**, not hypothetical 2014 UDP receiver. No historical UDP network trace or original LP2 key recovered.
+- **Scientific state:** no newly solved unknown page, creator-selected key, or destination. Avoid all exhausted wide scans and cross-round arbitrary key sweeps.
 
 ## New exact-original finding: word cuts correlate with source fifth-back echoes
 
