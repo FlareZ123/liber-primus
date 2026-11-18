@@ -37,10 +37,17 @@ jobs:
         run: |
           python sims/lp2_pdir_c1_allrule_keyfree_source_sft.py external-cicada3301 | Tee-Object -FilePath pdir-c1-allrule-source.json
           if ($LASTEXITCODE -ne 0) { throw "c1 all-rule source census failed" }
+      - name: Run section-exact A_prev_G native controls
+        shell: pwsh
+        run: |
+          python sims/lp2_pdir_c1_sectionexact_aprevg_controls_sft.py external-cicada3301 | Tee-Object -FilePath pdir-c1-aprevg-controls.json
+          if ($LASTEXITCODE -ne 0) { throw "section-exact A_prev_G calibration failed" }
       - name: Preserve exact source census
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: pdir-c1-allrule-keyfree-source
-          path: pdir-c1-allrule-source.json
+          path: |
+            pdir-c1-allrule-source.json
+            pdir-c1-aprevg-controls.json
           if-no-files-found: error
