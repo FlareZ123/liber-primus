@@ -1,6 +1,6 @@
 # LP2 p49–51 numerical table: independent quotient-by-29 side-channel inverse
 
-**Agent49, 18 November 2026. Original-cipher-adjacent, bounded negative.** The source-original 256-byte table has a second, exactly reversible numeric register after the already-established GF(29) residue readout: 256 digits in base 9, the integer quotients by 29. I tested 50 source-bounded direct binary and bitmap receivers, then applied the 256 quotient digits directly as a repeated additive GP29 key in 12 original-book decoding modes. **No binary receiver yields a recognizable file or predominantly printable substantial decompression, and none of the direct GP29 consumers yields a native-language coincidence profile.** Exact gzip and genuine solved-p57 plaintext plants pass their inverse checks. No unknown LP2 plaintext, original cipher key, hidden service, authored extraction instruction, or additional transmitted file was recovered.
+**Agent49, 18 November 2026. Original-cipher-adjacent, bounded negative.** The source-original 256-byte table has a second, exactly reversible numeric register after the already-established GF(29) residue readout: 256 digits in base 9, the integer quotients by 29. I tested 50 source-bounded direct binary and bitmap receivers, applied the 256 quotient digits directly as a repeated additive GP29 key in 12 original-book decoding modes, and used them as a co-located pad on the separately factor-derived 252-rune GF29 quotient. **No binary receiver yields a recognizable file or predominantly printable substantial decompression, and none of the direct GP29 consumers yields a native-language coincidence profile.** Exact gzip and genuine solved-p57 plaintext plants pass their inverse checks. No unknown LP2 plaintext, original cipher key, hidden service, authored extraction instruction, or additional transmitted file was recovered.
 
 ## Why this register merits a direct test
 
@@ -46,8 +46,26 @@ The second natural possible role for the same **256 quotient digits** is a repea
 
 The direct quotient key yields a nearly uniform GP rune distribution in **all 12 complete-book decodings**, without a recognizable original-language passage. An exact forward/reverse test first encrypts all **95 authentic solved-p57 clear GP runes** under each of the 12 declared quotient keys and then recovers all 95 without mismatch, proving direct inverse correctness for those keys. This plant does not identify which, if any, was used historically.
 
+## Same-cell outer quotient as a pad on the H·G field quotient
+
+This tests a stronger **two-layer reading of the same printed table**. Let \`R_i = B_i mod29\`, \`q_i = floor(B_i/29)\`, and divide the complete original 256-coefficient polynomial \`R(X)\` by the previously independently established p39/2013 \`H(X)G(X)\` with descending coefficients \`[12,17,11,21,23]\`. The division is exact, zero remainder, and produces the known **252** GF29 digits \`Q_i\`, starting \`[0,12,9,28,2,25,23,21,18,28,21,17,17,8,15,21]\`.
+
+An appealing, fully executable composite is to use the **upper part of each very same source byte** as the additive key for the corresponding long-division output: \`P_i=(Q_i±q_i) mod29\`. This requires one normal polynomial division and one co-located subtraction. Alignment \`q_(i+4)\` is a fixed source-degree-four sensitivity, included once without searching arbitrary offsets. The sign choices are fully reversible, so these are four original, source-frozen native-GP candidates.
+
+| Fixed readout of the original 252 symbols | GP29 IoC |
+| --- | ---: |
+| Factor quotient \`Q\` before outer key | **0.036330867008157845** |
+| Same-cell upper quotient add (\`Q+q_i\`) | **0.034117498260924556** |
+| Same-cell upper quotient subtract (\`Q−q_i\`) | **0.03323215076203124** |
+| Four-position shifted upper quotient add | **0.03648896477581737** |
+| Four-position shifted upper quotient subtract | **0.034813128438626446** |
+
+All four original outputs remain far below the independent native-GP long-text collision range; their exact runic prefixes are printed by the SFT. Thus the simplest proposed two-register deconvolution yields **no recoverable 252-rune text**.
+
+The end-to-end positive plant is stronger than a mere arithmetic reversal: construct a 252-rune genuine clear-p57 GP sequence, add a nonzero changing eight-symbol upper key, convolve the encrypted result with the *actual original H·G divisor*, and pack each resulting field residue with the corresponding upper key as an unsigned byte. The reconstructed 256-byte table is fully valid, and the exact original decoder recovers all **252/252** planted native plaintext symbols. This establishes that a correctly keyed language-bearing table could be recovered by the declared mechanism; the original does not satisfy its plaintext signature.
+
 ## Decision
 
-Reject a **literal, unencrypted base9-quotient file or legible byte register** under the 50 source-natural whole-table and bitmap readouts, and the **12 fixed repeated additive GP29 key consumers** applied to the actual 12,956-rune unknown manuscript. The base9 register remains mathematically available but has no detected message, key, or decoding role. The apparent highest printable ratio must not be mistaken for a decryption: it is structurally inflated by the restricted 0–80 pair alphabet. A different keyed transport cannot be excluded by this bounded test; pursuing one requires a first-party instruction choosing the key/consumer rather than another unrestricted byte permutation search.
+Reject a **literal, unencrypted base9-quotient file or legible byte register** under the 50 source-natural whole-table and bitmap readouts, the **12 fixed repeated additive GP29 key consumers** applied to the actual 12,956-rune unknown manuscript, and the **four same-cell field-quotient/upper-register additive receivers** on the original 252-symbol quotient. The base9 register remains mathematically available but has no detected message, key, or decoding role. The apparent highest printable ratio must not be mistaken for a decryption: it is structurally inflated by the restricted 0–80 pair alphabet. A different keyed transport cannot be excluded by this bounded test; pursuing one requires a first-party instruction choosing the key/consumer rather than another unrestricted byte permutation search.
 
 The GF29 factors and the original 2013 message remain exactly as documented in [the original factorization](2013-base29-gf29-grid-factor.md). This side-channel negative does not change the authoritative unsolved-book status in [the synthesis](../results/README.md).
