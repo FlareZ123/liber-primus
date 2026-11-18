@@ -104,6 +104,91 @@ assert.equal(oldResult.misses.length, 23);
 assert(oldResult.misses.some((w) => w.index === 2722 && w.page === 51));
 assert(oldResult.misses.some((w) => w.index === 1967 && w.page === 36));
 
+/**
+ * Exact iid source-token conditional null for the already established
+ * *printed within-word lag-five* equality statistic. Sampling one native
+ * word with replacement at each original word-length slot preserves every
+ * authentic original word length. This null is independent of secret keys:
+ * all five-phase bijections preserve these within-word equalities.
+ * @param {string[]} reference Source-native words.
+ * @returns {{usedWords:number,missingLengths:number,observed:number,
+ * expected:number,variance:number,leftTailProbability:number}}
+ */
+function lagFiveSourceNull(reference) {
+  /** @param {string} w @returns {number} */
+  const equalAtFive = (w) => {
+    let count = 0;
+    for (let j = 0; j + 5 < w.length; j++) {
+      if (w[j] === w[j + 5]) count++;
+    }
+    return count;
+  };
+
+  /** @type {Map<number,number[]>} */
+  const histogramByLength = new Map();
+  for (const w of reference) {
+    if (!histogramByLength.has(w.length)) {
+      histogramByLength.set(w.length, []);
+    }
+    const histogram = histogramByLength.get(w.length);
+    const n = equalAtFive(w);
+    histogram[n] = (histogram[n] ?? 0) + 1;
+  }
+  const selected = inputs.filter((w) => histogramByLength.has(w.length));
+  const observed = selected.reduce((total, w) => total + equalAtFive(w.runes), 0);
+  const dp = new Float64Array(observed + 1);
+  dp[0] = 1;
+  let expected = 0;
+  let variance = 0;
+  for (const w of selected) {
+    const hist = histogramByLength.get(w.length);
+    const total = hist.reduce((sum, value) => sum + (value ?? 0), 0);
+    const mean = hist.reduce(
+      (sum, value, i) => sum + (value ?? 0) * i, 0) / total;
+    const varOne = hist.reduce(
+      (sum, value, i) => sum + (value ?? 0) * (i - mean) ** 2, 0) / total;
+    expected += mean;
+    variance += varOne;
+    const next = new Float64Array(observed + 1);
+    for (let n = 0; n < hist.length; n++) {
+      const probability = (hist[n] ?? 0) / total;
+      if (probability === 0) continue;
+      for (let old = 0; old + n <= observed; old++) {
+        next[old + n] += dp[old] * probability;
+      }
+    }
+    dp.set(next);
+  }
+  return {
+    usedWords:selected.length, missingLengths:inputs.length - selected.length,
+    observed, expected, variance,
+    leftTailProbability:dp.reduce((sum, p) => sum + p, 0)
+  };
+}
+
+const latinLagFive = lagFiveSourceNull(latin);
+const beowulfLagFive = lagFiveSourceNull(beowulf);
+assert.equal(latinLagFive.usedWords, 2896);
+assert.equal(latinLagFive.missingLengths, 0);
+assert.equal(latinLagFive.observed, 104);
+assert.equal(beowulfLagFive.usedWords, 2893);
+assert.equal(beowulfLagFive.missingLengths, 3);
+assert.equal(beowulfLagFive.observed, 102);
+for (const [actual, want] of [
+  [latinLagFive.expected, 133.8635671326803],
+  [latinLagFive.variance, 130.55962310369944],
+  [latinLagFive.leftTailProbability, 0.003969680159542658],
+  [beowulfLagFive.expected, 139.42216701529767],
+  [beowulfLagFive.variance, 113.83254354372973],
+  [beowulfLagFive.leftTailProbability, 0.0001536882434937424]
+]) {
+  assert(Math.abs(actual - want) < 1e-8);
+}
+console.log("EXACT-IID-SOURCE-CONDITIONAL-FIVE-BACK", JSON.stringify({
+  latin:latinLagFive, correctedOldEnglish:beowulfLagFive
+}));
+
+
 const alphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
 const roman = ["F","U","TH","O","R","C","G","W","H","N","I","J",
   "EO","P","X","S","T","B","E","M","L","NG","OE","D",
