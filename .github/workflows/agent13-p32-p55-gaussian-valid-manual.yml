@@ -1,0 +1,18 @@
+name: Agent13 p32 p55 original Gaussian valid field transfer
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-pair:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original 121 to 81 to 76 all-secret obstruction
+        run: |
+          node --check sims/lp2_p32_p55_gaussian_valid_sft.cjs
+          node sims/lp2_p32_p55_gaussian_valid_sft.cjs
