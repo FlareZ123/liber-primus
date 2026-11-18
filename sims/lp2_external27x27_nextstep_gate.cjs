@@ -97,7 +97,7 @@ function forecast() {
   const boundary=mod29(mu(n3(E))+phi(current.sourceRunes[1]))%2;
   const axisValue=mu(n2(B)+n0(M))+mu(gcd(n1(E),n2(E)));
   const axis=axisValue===0?"horizontal":axisValue>0?"vertical":"diagonal";
-  const centerRow=mod29(1+B[1]+E[0]+M[0]+mu(n2(B)))%2;
+  const centerRow=(1+B[1]+E[0]+M[0]+mu(n2(B)))%2;
   const centerCol=(1+B[0]+E[0]+M[0])%2;
   const endpointRow=mod29(1+current.phase+mu(n2(M)))%2;
   const leftmostRow=mod29(centerRow+1+current.phase+mu(M[0]))%2;
