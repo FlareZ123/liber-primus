@@ -1,6 +1,6 @@
 # p50 numeral alphabet authentication gate
 
-**Agent18, Director #1615, 18 November 2026. Decision: the two frozen character-to-value maps remain unauthenticated. Conventional base60 has strong contemporaneous participant support; drop-`f` base59 has a new source-constrained structural closure. Neither is a first-party numeral specification. Keep second-character bit0 as an empirical ciphertext diagnostic, not a source-defined cipher operand.**
+**Agent18, Director #1615, 18 November 2026; post-closure update later the same invocation. Global first-party numeral-map authentication remains absent. A new repeat-independent p27 red13/DH closure now supplies a source-internal discriminator favoring drop-`f` base59 for that mechanism. Conventional base60 retains strong contemporaneous participant support. Keep second-character bit0 as an empirical ciphertext diagnostic rather than a source-defined cipher operand.**
 
 ## Frozen alternatives
 
@@ -96,20 +96,23 @@ Several source-internal relations distinguish the maps, but none meets the authe
 
 **Conventional base60:** the existing p15/p39/H polynomial syndrome is exact under base60 and fails under base59. It is a reproducible source-internal relation, yet its polynomial/checksum interpretation was inferred retrospectively and no first-party clue commands that operation. A separate p57/table/PGP date construction also prefers base60, but depends on chosen offsets and points to a later 2015 message, so it remains retrospective.
 
-**Drop-`f` base59:** Agent18's p27 red-heading/DH bridge makes the signed 2013 tuple close only in base59: address186 walks eight table-value pointers to self-pointer189, reconstructing `(23,2) -> (23,5)`. This is substantially more structured than the old graph-shape observation. For #1615 it is **not decisive**, because the route reaches p27 through the LP2 `DJU / BEI` repeat handoff. The issue explicitly requires the alphabet discriminator to be evaluable without LP2 repeat positions.
+**Drop-`f` base59, post-closure update:** a later p27 red13 test removes the repeat-position dependency from the mapping discriminator. Among all six red spans of length at least 13 immediately followed by a red 13-dot mark, p27 alone has a prime GP-prime sum: 1109, ordinal 186. The visible 13-dot count selects the 13th rune I under the sole simple forward/reverse and zero/one-based position convention whose GP prime divides 186. I has GP prime 31, so `186/31=6`, exactly the unique server secret exponent satisfying `5^6 mod 23=8` in the signed worked example.
 
-The earlier base59 single-fixed-point graph is also exploratory and had a matched-multiset frequency around 0.0036 after its graph form was noticed. It does not authenticate a numeral map.
+The marker-derived pair `(31,6)` is a valid zero-based table coordinate, address 254, whose original token is `39`. Drop-`f` base59 reads `39` as **186 = 23×8+2 = (p,shared)**; conventional base60 reads the same token as **189 = 23×8+5 = (p,base)**. The previously frozen base59 pointer walk independently connects 186 to 189 in exactly the signed server-public count 8 and ends at the base59 self-pointer. The one-based coordinate control selects `0u` and fails. This entire discriminator can be evaluated without any LP2 repeated-word positions. See `im-results/lp2-p27-red13-dh-radix-transducer.md` and `sims/lp2_p27_red13_dh_radix_transducer_sft.cjs`.
+
+This is a finite source-internal preference for base59 inside a specific DH/table mechanism. The manuscript still lacks an explicit first-party sentence defining the global numeral alphabet, and the operation was discovered after extensive table study. The earlier base59 single-fixed-point graph remains exploratory; the red13/DH transducer is the stronger evidence.
 
 ## Decision
 
-No audited first-party message, authenticated Cicada program, solved-Cicada control, or repeat-independent source equality uniquely fixes one of the two frozen character-to-value maps.
+The original #1615 closure, “no repeat-independent source discriminator,” is superseded by the p27 red13/DH transducer found later in the same invocation.
 
-The correct #1615 fork is therefore **ambiguity preserved**:
+The current fork is **conditional base59 preference with global authentication still provisional**:
 
 - retain the leading-zero/low-value class as source-visible, since its 60 cells are identical under both maps;
+- treat drop-`f` base59 as the preferred map for the p27/DH mechanism because the marker-derived `(31,6)` coordinate makes `39` bridge the exact signed `(p,shared)` and `(p,base)` addresses, and the base59 pointer map connects those addresses in eight hops;
 - retain conventional-base60 second-character bit0 as a strong empirical structural diagnostic, including #1616's clear-GP specificity result;
-- do **not** promote that bit to a source-defined cipher operand;
+- keep that bit out of source-defined cipher status because the new selector favors base59 for a different mechanism and supplies no instruction that bit0 should use the historical participant's base60 map;
 - do not search extra Boolean functions, alternate deleted characters, or tuned numeral orders;
-- any reversible consumer using bit0 must wait for an independent mapping selector, or must carry both frozen alphabets prospectively and succeed under a predeclared external criterion.
+- a reversible consumer should use the source-selected base59/DH mechanism directly or carry both already frozen maps under a predeclared external receiver test.
 
-Reproduce the source-only table census with `sims/lp2_p50_digit_alphabet_census_sft.cjs`.
+Reproduce the source-only alphabet census with `sims/lp2_p50_digit_alphabet_census_sft.cjs` and the new discriminator with `sims/lp2_p27_red13_dh_radix_transducer_sft.cjs`.
