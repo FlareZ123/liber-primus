@@ -16,6 +16,12 @@ const CELLS = TOKENS.map((t,i) => t[0] === '0' ? i : -1).filter(i => i >= 0);
 const SLOT = new Map(CELLS.map((cell,i) => [cell,i]));
 const N = PAGES.reduce((s,p) => s + p.indices.length, 0);
 const ALL = Array.from({length:9}, (_,i) => i);
+const VALUES = CELLS.map(cell => grid.bytes[cell]);
+const UNIQUE_VALUES = [...new Set(VALUES)].sort((a,b) => a-b);
+const VALUE_SLOT = new Map(UNIQUE_VALUES.map((value,i) => [value,i]));
+const VALUE_GROUPS = VALUES.map(value => VALUE_SLOT.get(value));
+const IDENTITY_GROUPS = CELLS.map((_,i) => i);
+const GROUP_TRIALS = 100000;
 assert.equal(N, 12956);
 assert.equal(CELLS.length, 60);
 
@@ -90,6 +96,47 @@ function score(inv,kappa) {
   return {common,hetero,gain:hetero-common,gains,positive:gains.filter(x=>x>0).length};
 }
 
+/**
+ * Score a source-defined grouping of the 60 selected cells.
+ * @param {{opp:Int32Array[],hit:Int32Array[]}} inv
+ * @param {number} kappa
+ * @param {number[]} groups
+ * @returns {{common:number,model:number,gain:number,gains:number[],positive:number}}
+ */
+function scoreGroups(inv,kappa,groups) {
+  const groupCount=Math.max(...groups)+1;
+  let common=0, model=0;
+  const gains=[];
+  for (let hold=0;hold<9;hold++) {
+    const train=aggregate(inv, ALL.filter(c => c !== hold));
+    const held=aggregate(inv,[hold]);
+    const n=[...train.opp].reduce((a,b)=>a+b,0);
+    const h=[...train.hit].reduce((a,b)=>a+b,0);
+    const p0=(h+0.5)/(n+1);
+    const trainOpp=new Int32Array(groupCount);
+    const trainHit=new Int32Array(groupCount);
+    const heldOpp=new Int32Array(groupCount);
+    const heldHit=new Int32Array(groupCount);
+    for (let j=0;j<60;j++) {
+      const g=groups[j];
+      trainOpp[g]+=train.opp[j];
+      trainHit[g]+=train.hit[j];
+      heldOpp[g]+=held.opp[j];
+      heldHit[g]+=held.hit[j];
+    }
+    let c=0,m=0;
+    for (let g=0;g<groupCount;g++) {
+      c+=logBernoulli(heldHit[g],heldOpp[g],p0);
+      const pg=(trainHit[g]+kappa*p0)/(trainOpp[g]+kappa);
+      m+=logBernoulli(heldHit[g],heldOpp[g],pg);
+    }
+    common+=c;
+    model+=m;
+    gains.push(m-c);
+  }
+  return {common,model,gain:model-common,gains,positive:gains.filter(x=>x>0).length};
+}
+
 /** @param {number} seed @returns {() => number} */
 function xorshift32(seed) {
   let state=seed>>>0;
@@ -133,6 +180,38 @@ function concentrationNull(exposures) {
   return {trials:TRIALS,top1Ge4:p(a),top5Ge14:p(b),occupiedLe22:p(c),top1AndTop5:p(d)};
 }
 
+/**
+ * Test whether the actual equality classes of the 36 raw values predict more
+ * than an arbitrary 36-group coarsening with the same multiplicities.
+ * @param {{opp:Int32Array[],hit:Int32Array[]}} inv
+ * @param {number} kappa
+ * @returns {{trials:number,observedGain:number,meanGain:number,sdGain:number,pGainGe:number}}
+ */
+function valueGroupingNull(inv,kappa) {
+  const observed=scoreGroups(inv,kappa,VALUE_GROUPS);
+  const random=xorshift32(0x33011572);
+  let sum=0,sum2=0,ge=0;
+  for (let trial=0;trial<GROUP_TRIALS;trial++) {
+    const groups=VALUE_GROUPS.slice();
+    for (let i=groups.length-1;i>0;i--) {
+      const j=Math.floor((random()/0x100000000)*(i+1));
+      [groups[i],groups[j]]=[groups[j],groups[i]];
+    }
+    const candidate=scoreGroups(inv,kappa,groups).gain;
+    sum+=candidate;
+    sum2+=candidate*candidate;
+    if (candidate>=observed.gain-1e-12) ge++;
+  }
+  const mean=sum/GROUP_TRIALS;
+  return {
+    trials:GROUP_TRIALS,
+    observedGain:observed.gain,
+    meanGain:mean,
+    sdGain:Math.sqrt(sum2/GROUP_TRIALS-mean*mean),
+    pGainGe:(ge+1)/(GROUP_TRIALS+1)
+  };
+}
+
 const root=path.resolve(__dirname,'..');
 const shakespeare=fs.readFileSync(path.join(root,'resources/control/shakespeare_first300k.txt'),'utf8');
 const native=encodeSourceNativeGP(shakespeare);
@@ -146,6 +225,13 @@ const calibration=KAPPAS.map(kappa=>({
 })).sort((a,b)=>b.heteroTotal-a.heteroTotal||a.kappa-b.kappa);
 const chosenKappa=calibration[0].kappa;
 assert.equal(chosenKappa,256);
+const valueCalibration=KAPPAS.map(kappa=>({
+  kappa,
+  modelTotal:controls.reduce((sum,inv)=>sum+scoreGroups(inv,kappa,VALUE_GROUPS).model,0),
+  gainTotal:controls.reduce((sum,inv)=>sum+scoreGroups(inv,kappa,VALUE_GROUPS).gain,0)
+})).sort((a,b)=>b.modelTotal-a.modelTotal||a.kappa-b.kappa);
+const valueKappa=valueCalibration[0].kappa;
+assert.equal(valueKappa,256);
 
 const original=inventory(PAGES.flatMap(p=>p.indices));
 const all=aggregate(original,ALL);
@@ -164,6 +250,9 @@ const totalOpp=rows.reduce((s,r)=>s+r.opportunities,0);
 const totalHits=rows.reduce((s,r)=>s+r.hits,0);
 const hitCells=rows.filter(r=>r.hits>0).length;
 const originalScore=score(original,chosenKappa);
+const valueScore=scoreGroups(original,valueKappa,VALUE_GROUPS);
+const identityScore=scoreGroups(original,chosenKappa,IDENTITY_GROUPS);
+const valueGroupingCalibration=valueGroupingNull(original,valueKappa);
 const nullCalibration=concentrationNull(rows.map(r=>r.opportunities));
 
 assert.equal(totalOpp,3025);
@@ -173,6 +262,10 @@ assert.equal(ranked[0].hits,4);
 assert.equal(ranked.slice(0,5).reduce((s,r)=>s+r.hits,0),14);
 assert.ok(Math.abs(originalScore.gain-2.5735253455981706)<1e-12);
 assert.equal(originalScore.positive,7);
+assert.ok(Math.abs(valueScore.gain-3.5487788113474323)<1e-12);
+assert.equal(valueScore.positive,7);
+assert.ok(Math.abs(valueScore.model-identityScore.model-0.9752534657493186)<1e-12);
+assert.ok(Math.abs(valueGroupingCalibration.pGainGe-0.12055879441205589)<1e-12);
 
 console.log(JSON.stringify({
   source:{selectedCells:60,selectedOpportunities:totalOpp,selectedRepeats:totalHits,hitCells,zeroHitCells:60-hitCells},
@@ -183,8 +276,19 @@ console.log(JSON.stringify({
     top5Share:ranked.slice(0,5).reduce((s,r)=>s+r.hits,0)/totalHits,
     topCells:ranked.slice(0,7)
   },
-  sourceNativeRegularization:{windows:controlCount,kappaGrid:KAPPAS,chosenKappa,calibration},
+  sourceNativeRegularization:{
+    windows:controlCount,
+    kappaGrid:KAPPAS,
+    physicalCell:{chosenKappa,calibration},
+    rawValue:{chosenKappa:valueKappa,calibration:valueCalibration}
+  },
   originalNineChapterLoco:originalScore,
+  rawValueReplication:{
+    distinctValues:UNIQUE_VALUES.length,
+    score:valueScore,
+    valueMinusPhysicalCell:valueScore.model-identityScore.model,
+    valueGroupingNull:valueGroupingCalibration
+  },
   conditionalCommonEffectConcentrationNull:nullCalibration,
   perCell:rows
 },null,2));

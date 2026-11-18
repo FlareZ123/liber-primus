@@ -92,10 +92,20 @@ On unchanged original ciphertext, the common selected-class model scores **-182.
 
 The gain is modest in absolute size and transfers across most chapters while each chapter is withheld from cell-rate fitting. A single chapter containing the busiest cells therefore does not explain the entire improvement.
 
+## Raw-value replication follow-up
+
+The 60 selected cells contain only **36 distinct raw values**, so equal-value cells provide a source-defined replication test that is cheaper than inventing another decoder. I compared a 36-group raw-value model against the 60-group physical-cell model under the same nine chapter holdouts. Each model uses the identical shrinkage grid selected solely on the same eight source-native controls; both select **kappa=256**.
+
+The raw-value model scores **-178.755872** held-out nats, a gain of **+3.548779** over the one-rate common model and **+0.975253** over the physical-cell model. It is positive relative to the common model in **7/9** held-out chapters. This means repeated printed values can compress the observed heterogeneity at least as well as separate physical positions.
+
+That predictive advantage does not by itself authenticate raw value as the operand. A deterministic **100,000-permutation grouping null** preserves the exact 36-group multiplicity pattern while shuffling those group labels across the 60 physical cells. The actual equality grouping's gain of +3.548779 is exceeded by **p=0.120559** of those regroupings (null mean +1.806040 nats, SD 1.472720). The observed same-value grouping is therefore not selective enough to distinguish value semantics from an arbitrary lower-dimensional coarsening.
+
+This follow-up materially narrows the #1571 interpretation: the robust result is **nonuniform repeat propensity within the low-60 class**. The current data do not source-select physical position over raw value, and they do not source-select the actual raw-value equality classes over arbitrary groupings of the same complexity.
+
 ## Decision
 
-The low-60 association should not be treated as a perfectly uniform one-bit state. Physical cell identity carries additional held-out predictive information, and the selected hits are more concentrated than the common-effect exposure model usually produces. The strongest reproducible physical-cell candidates are **192, 188 and 210**; the two-hit tier remains tied.
+The low-60 association should not be treated as a perfectly uniform one-bit state. A source-native-regularized heterogeneous model transfers across chapters, and the descriptive hit concentration is stronger than the common-effect exposure model usually produces.
 
-This downgrades an exclusive binary-class decoder architecture while preserving the established broader 60-cell association. Future p50 mechanisms should retain physical cell identity long enough to test whether specific cells encode distinct operations or transition permissions. The other 57 cells should remain in scope unless an independent source selector justifies pruning them or merging repeated raw values.
+The follow-up prevents promotion of the busiest physical cells as authentic operands. Pooling by the 36 repeated raw values predicts slightly better than 60 separate positions, while the actual value grouping is ordinary against multiplicity-preserving regroupings. **Operand identity remains underselected.** Future p50 mechanisms should preserve enough information to distinguish physical cell, repeated raw value and the broader low-60 class, then seek an independent source rule or a reversible blind consequence that selects among them. Cells 192/188/210 remain useful diagnostics because they carry the largest observed counts, not because their positions have been authenticated as cipher operands.
 
 Reproducer: [`sims/lp2_p50_low60_cell_concentration_sft.cjs`](../sims/lp2_p50_low60_cell_concentration_sft.cjs).
