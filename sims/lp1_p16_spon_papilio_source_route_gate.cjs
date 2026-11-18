@@ -2,10 +2,10 @@
 'use strict';
 
 const fs = require('node:fs');
-
 const corpus = JSON.parse(fs.readFileSync('resources/liber-primus/lp2-corpus.json', 'utf8'));
 const annotations = JSON.parse(fs.readFileSync('resources/liber-primus/lp2-ink-annotations.json', 'utf8'));
 const grid = JSON.parse(fs.readFileSync('resources/liber-primus/base60-grid.json', 'utf8'));
+const stage11Html = fs.readFileSync('resources/external/cicada2014-stage11-onion7-original-index.html', 'utf8');
 const translit = corpus.translit;
 const gpIndex = {
   A:24, B:17, C:5, D:23, E:18, F:0, G:6, H:8, I:10, J:11,
@@ -20,6 +20,12 @@ const p53 = corpus.pages.find(p => p.page === 53);
 const p53Ann = annotations.pages.find(p => p.page === 53);
 const redSpan = p53Ann.red_spans[0];
 const p53Red = p53.indices.slice(redSpan.start, redSpan.start + redSpan.length);
+const p48 = corpus.pages.find(p => p.page === 48);
+const p49 = corpus.pages.find(p => p.page === 49);
+const p51 = corpus.pages.find(p => p.page === 51);
+const p52 = corpus.pages.find(p => p.page === 52);
+const preTable = [...p48.indices.slice(-72), ...p49.indices];
+const postTable = [...p51.indices, ...p52.indices.slice(0,78)];
 const fPositions55 = p55.indices.map((v,i) => v === 0 ? i : -1).filter(i => i >= 0);
 const skip55 = new Set([0, ...fPositions55]);
 const p55Core = p55.indices.filter((_,i) => !skip55.has(i));
@@ -59,8 +65,30 @@ function phiPrimeDecode(startPrimeIndex, sign, skipF) {
   }
   return { invalidAt, consumed: k-startPrimeIndex, text: render(out) };
 }
+function relativeWalk(start, values) {
+  let cell = start;
+  const seen = new Map();
+  const path = [];
+  while (!seen.has(cell)) {
+    seen.set(cell, path.length);
+    path.push(cell);
+    const b = values[cell];
+    const row = cell >> 3;
+    const col = cell & 7;
+    cell = ((((row + (b >> 3)) & 31) << 3) | ((col + (b & 7)) & 7));
+  }
+  return { path, transient: seen.get(cell), cycle: path.length-seen.get(cell), repeatCell: cell };
+}
+function decodeWithWalk(seq, walk, values, sign, start=0) {
+  const {path, transient, cycle} = walk;
+  return seq.map((c,i) => {
+    const n = start + i;
+    const at = n < path.length ? n : transient + ((n-transient) % cycle);
+    return translit[mod(c + sign * (values[path[at]] % 29), 29)];
+  }).join('');
+}
 
-const wordData = latinWords.map((word,i) => {
+const wordData = latinWords.map((word) => {
   const vals = [...word].map((ch,j) => ch === 'V' && word === 'VOLITET' && j === 0 ? gpIndex.W : gpIndex[ch]);
   return { word, length: word.length, primeSum: vals.reduce((s,v) => s + gpPrimes[v], 0) };
 });
@@ -75,18 +103,29 @@ function blockRead(order, reverseEach=false) {
 }
 const asc = wordData.map((_,i) => i).sort((a,b) => wordData[a].primeSum - wordData[b].primeSum);
 const desc = [...asc].reverse();
+const values = grid.byte_rows.flat();
 const row7 = grid.byte_rows[6];
 const fiveCells = row7.slice(3,8);
 const b64 = Buffer.from(fiveCells).toString('base64').replace(/=/g,'').replace(/\+/g,'~').replace(/\//g,'-');
-const p53First = p53Red[0];
-const p53FirstPrime = gpPrimes[p53First];
-const primes = primesUpToCount(100);
-const prime59Index = primes.indexOf(59);
+const stage11Numbers = [...stage11Html.matchAll(/(?:src|href)=["'][^"']*?(\d{1,2})\.jpg["']/gi)].map(m => Number(m[1]));
+const stage11Unique = [...new Set(stage11Numbers)].sort((a,b) => a-b);
+const sourceStartCell = 6*8+3; // one-based printed row 7, column 4
+const sourceWalk = relativeWalk(sourceStartCell, values);
+const primeList = primesUpToCount(100);
+const prime59Index = primeList.indexOf(59);
 const fiftyNinthPrimeIndex = 58;
+const p53First = p53Red[0];
 
 const result = {
   source: 'Jacob Spon, Miscellanea eruditae antiquitatis (1685), Art. III, p.7, Table IV',
-  page_table_address_hypothesis: { page:7, table:4, concatenated_archive_index:74, next_table_archive_index:75 },
+  numbering: {
+    naivePageTableConcatenation: 74,
+    originalStage11ImageCount: stage11Unique.length,
+    originalStage11Min: stage11Unique[0],
+    originalStage11Max: stage11Unique.at(-1),
+    nativeStage11Image74Exists: stage11Unique.includes(74),
+    nativeStage11Image75Exists: stage11Unique.includes(75)
+  },
   p55: {
     runeCount: p55.indices.length,
     firstRuneIndex: p55.indices[0],
@@ -107,19 +146,33 @@ const result = {
       ascendingReverseEach: render(blockRead(asc, true))
     }
   },
-  p50_coordinate: {
+  p50Coordinate: {
+    printedRow: 7,
+    printedColumn: 4,
+    flatCellZeroBased: sourceStartCell,
+    byteAtStart: values[sourceStartCell],
     row7Bytes: row7,
     row7Columns4to8: fiveCells,
     modifiedBase64: b64,
     chkExtraSecondByteValid: [2,3].includes(fiveCells[1]),
-    firstCellEqualsTPrime: fiveCells[0] === 59
+    firstCellEqualsTPrime: fiveCells[0] === 59,
+    relativeWalk: {
+      transient: sourceWalk.transient,
+      cycle: sourceWalk.cycle,
+      distinctCells: sourceWalk.path.length,
+      firstCells: sourceWalk.path.slice(0,20),
+      p53RedMinus: decodeWithWalk(p53Red,sourceWalk,values,-1),
+      p53RedPlus: decodeWithWalk(p53Red,sourceWalk,values,1),
+      preTableMinus: decodeWithWalk(preTable,sourceWalk,values,-1),
+      postTableMinusContinuous: decodeWithWalk(postTable,sourceWalk,values,-1,preTable.length)
+    }
   },
   p53: {
     redSpanStart: redSpan.start,
     redSpanLength: redSpan.length,
     firstFiveRunes: render(p53Red.slice(0,5)),
-    firstRunePrimeWeight: p53FirstPrime,
-    startsWithTPrime59: p53First === 16 && p53FirstPrime === 59,
+    firstRunePrimeWeight: gpPrimes[p53First],
+    startsWithTPrime59: p53First === 16 && gpPrimes[p53First] === 59,
     fPositionsInRedSpan: p53Red.map((v,i) => v === 0 ? i : -1).filter(i => i >= 0),
     phiPrimeStart59: {
       minus_skipF: phiPrimeDecode(prime59Index,-1,true),
@@ -133,7 +186,7 @@ const result = {
     }
   }
 };
-if (latinLetters.length !== 72 || p55.indices.length !== 76 || p55Core.length !== 72 || p53Red.length !== 51) {
-  throw new Error('Source-count gate failed; inspect the canonical corpus/annotation versions.');
+if (latinLetters.length !== 72 || p55.indices.length !== 76 || p55Core.length !== 72 || p53Red.length !== 51 || stage11Unique.length !== 58 || stage11Unique[0] !== 0 || stage11Unique.at(-1) !== 57) {
+  throw new Error('Source-count gate failed; inspect canonical corpus, annotation, or Stage11 index versions.');
 }
 console.log(JSON.stringify(result, null, 2));
