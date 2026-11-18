@@ -97,6 +97,27 @@ mod 29
 
 Using this six-value register as the initializer of the same reversible T6 feedback inverse gives IoC **0.03448474896300145**, **189/2,896** dictionary hits, and longest run **3**. It does not recover readable original plaintext.
 
+## The selected exchange closes the second p50 zero
+
+The bridge extends without choosing another historical value. The selected exchange's modulus is **3301**, and the table itself has 256 cells:
+
+```text
+3301 mod 256 = 229
+grid[229]     = 00
+```
+
+Cells **192** and **229** are the table's only literal `00` cells. There are exactly **36** original cells strictly between them, matching the independently annotated count of **36 large punctuation marks** across p0-p57. This supplies a new p57-rooted route to the already-studied 36-byte zero bracket without using the separate p39-root route that originally selected cell192.
+
+A second internal check uses the table's byte-as-next-address graph. Starting at the p57-inner address184 and following the literal table bytes reaches the p57-circumference address192 along the inclusive path
+
+```text
+184 -> 128 -> 201 -> 74 -> 205 -> 76 -> 114 -> 197 -> 115 -> 247 -> 192
+```
+
+which contains **11 cells**. The same preserved DH3301 exchange independently constrains the client's exponent to **e = 11 mod 550**. This is an exact alignment, but it is weaker than the 2800 cell match because 192 lies in a large pointer basin and 11 is an exponent residue class rather than a uniquely preserved client secret. Treat it as corroborating structure, not an authenticated opcode.
+
+The p57-rooted chain therefore reaches the exact source object already studied in [the two-zero/36-mark gate](lp2-grid-two-zero-address-36-punctuation-bridge.md). That report's direct one-byte-per-mark, cyclic additive, quotient, CRC/AES and OutGuess consumers remain negative. The present result strengthens **selection of the bracket**, not any failed consumer.
+
 ## Decision
 
 The literal p57 instruction now supplies a reproducible LP2-side route to the historical **2800** DH3301 exchange:
@@ -108,6 +129,8 @@ DIVINITY
  -> adjacent p50 first-column cells 192 / 184
  -> printed 00 / 28
  -> 2800 historical client share
+ -> historical modulus 3301 -> cell229 = 00
+ -> exact 36-byte zero bracket -> 36 large stops
 ```
 
 This materially strengthens the historical-source connection because it supplies the missing LP2 selector for the preserved `DH 3301` transcript. It still does **not** specify how the historical exchange becomes the unknown LP2 cipher. The two cheapest protocol-native consumers, returned secret `1067 -> 17N` and the six-field DH tuple as the existing T6 initializer, both fail on the complete original ciphertext.
