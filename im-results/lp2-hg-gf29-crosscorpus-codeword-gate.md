@@ -15,7 +15,7 @@ Read the immutable [GP29 LP2 corpus](../resources/liber-primus/lp2-corpus.json) 
 - P(24) and P'(24), both zero iff G divides P.
 - The two coefficients of P mod (X²+18X+11), both zero iff H divides P.
 
-The [single-file original-source CommonJS reproducer](../sims/lp2_hg_gf29_crosscorpus_codeword_original_sft.cjs) asserts the source table's **four exact zero coordinates**, the historical 252-digit quotient prefix, and a positive control in which multiplication by HG followed by polynomial division recovers **95/95 authentic clear p57 GP29 symbols**.
+The [single-file original-source CommonJS reproducer](../sims/lp2_hg_gf29_crosscorpus_codeword_original_sft.cjs) **passed the original Windows Node22 run** [44258959548](https://github.com/FlareZ123/liber-primus/actions/runs/44258959548). It asserts the source table's **four exact zero coordinates**, the historical 252-digit quotient prefix, and a positive control in which multiplication by HG followed by polynomial division recovers **95/95 authentic clear p57 GP29 symbols**.
 
 | Frozen source input or operation | Exact observed outcome |
 | --- | --- |
