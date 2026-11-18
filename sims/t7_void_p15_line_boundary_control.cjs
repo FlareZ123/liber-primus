@@ -2,6 +2,7 @@
 // Reproduce the external T7/p15-axis structural observation and its
 // printed-line-boundary control without language scoring.
 const fs=require("fs");
+const assert=require("node:assert/strict");
 const corpus=JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8"));
 const transcription=fs.readFileSync("resources/liber-primus/lp2-transcription.txt","utf8");
 const pages=corpus.pages.filter(p=>p.page<=55).sort((a,b)=>a.page-b.page);
@@ -20,6 +21,7 @@ const lineBoundaries=[];
 let global=0;
 const pageStarts=[];
 for(let p=0;p<pageTexts.length;p++){
+  pageStarts.push(global); // beginning of physical page, including rune-free p50
   let first=true;
   for(const line of pageTexts[p].split("\n")){
     const n=(line.match(/[\u16A0-\u16FF]/g)||[]).length;
@@ -27,10 +29,9 @@ for(let p=0;p<pageTexts.length;p++){
     if(!first) lineBoundaries.push(global-0.5);
     first=false; global+=n;
   }
-  pageStarts.push(global);
 }
 const p15Lines=pageTexts[15].split("\n");
-let p15Start=pageStarts[14], p15FirstLineRunes=0;
+let p15Start=pageStarts[15], p15FirstLineRunes=0;
 for(const line of p15Lines){const n=(line.match(/[\u16A0-\u16FF]/g)||[]).length;if(n){p15FirstLineRunes=n;break;}}
 const p15Axis=p15Start+p15FirstLineRunes-0.5;
 
@@ -63,6 +64,8 @@ const dists=lineBoundaries.map(b=>Math.abs(b-fullMid)).sort((a,b)=>a-b);
 const rank=dists.findIndex(d=>d>=Math.abs(p15Axis-fullMid))+1;
 const pageStartDistances=pages.map((p,i)=>({page:p.page,start:pageStarts[i],distance:Math.abs(pageStarts[i]-fullMid)})).sort((a,b)=>a.distance-b.distance);
 const p15PageStartRank=pageStartDistances.findIndex(x=>x.page===15)+1;
+assert.equal(pageStarts[15],3603); // source-native p15 coordinate
+assert.equal(p15PageStartRank,1); // p15 is closest to T7 full-span midpoint
 function pageFor(x){let start=0;for(const p of pages){const end=start+p.runic_count;if(x>=start&&x<end)return{page:p.page,offset:x-start};start=end;}return null;}
 console.log(JSON.stringify({
  corpus_runes:stream.length,doublet_count:doublets.length,t7_cluster:t7,
