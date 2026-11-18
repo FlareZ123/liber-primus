@@ -2,7 +2,7 @@
 
 The source-selected 2013 telnet missing-180 line-of-work now has a **key-independent contradiction** under the exact, known p56 encryption architecture. Original p55 has ciphertext `F` at offsets `[15,25,41]`. In the authenticated solved p56 method, a true plaintext `F` is emitted literally as ciphertext `F` and **does not advance the prime clock**. Therefore all eight subsets of the three original p55 ciphertext-`F` offsets are the complete set of possible transparent-`F` bypass placements. In every other position, any derived plaintext `F` is impossible.
 
-Using the 2013 `number` command's reverse-primality sign as ± and exact φ(prime), I exhaustively checked each bypass subset on original p55 for (a) **76 exposed primes** #1–#20 + #201–#256 and (b) the **76 immediate postgap primes** #201–#276. Both whole-page decoder signs checked. **All 32?** There are 4 schedule/sign cases × 8 masks = **32** masks total, and **all 32 fail**:
+Using the 2013 `number` command's reverse-primality sign as ± and exact φ(prime), I exhaustively checked each bypass subset on original p55 for (a) **76 exposed primes** #1–#20 + #201–#256 and (b) the **76 immediate postgap primes** #201–#276. Both whole-page decoder signs checked. There are 4 schedule/sign cases × 8 masks = **32** masks total, and **all 32 fail**:
 - exposed76, decrypt sign −: first contradictions at offsets 25,37,42,47, twice each;
 - exposed76, sign +: failures 24×4,25×2,45,63;
 - next76, sign −: all eight fail at offset9;
