@@ -164,6 +164,51 @@ assert.equal(grid.bytes[13], 4);
 assert.equal(message[4].toLowerCase(), "empty");
 assert.equal(grid.bytes[sum(gp(message[4]))], 236);
 
+// Source quantities from solved p57 plus the authenticated p50 bracket
+// reconstruct both original red-title ciphertext word sums.
+assert.equal(sum(gp("FIND")), 42);
+assert.equal(sum(gp("EMERGE")), 83);
+assert.equal(sum(gp("DIVINITY")), 105);
+const strictInteriorLength = 127 - 83 - 1;
+assert.equal(strictInteriorLength, 43);
+assert.equal(tableTokens[105], "13");
+const centerTokenValue = grid.bytes[105];
+assert.equal(centerTokenValue, 63); // byte value; the printed decimal-looking token is "13".
+const printedCenterDirection = 13;
+assert.equal(sum(p0[0].indices), 96);
+assert.equal(sum(p0[1].indices), 85);
+assert.equal(sum(gp("EMERGE")) + printedCenterDirection, 96);
+assert.equal(sum(gp("FIND")) + strictInteriorLength, 85);
+
+const adjacentTitleSumPairs = [];
+for (let i = 0; i < p0.length - 1; i += 1) {
+  if (sum(p0[i].indices) === 96 && sum(p0[i + 1].indices) === 85) {
+    adjacentTitleSumPairs.push(i);
+  }
+}
+assert.deepEqual(adjacentTitleSumPairs, [0]);
+
+const byte28Cells = grid.bytes
+  .map((value, index) => value === 28 ? index : null)
+  .filter((index) => index !== null);
+assert.deepEqual(byte28Cells, [42, 85]);
+assert.equal(tableTokens[42], "0S");
+assert.equal(tableTokens[85], "0S");
+assert.equal(85 - 42, strictInteriorLength);
+
+const duplicatePairsAt43 = [];
+for (let i = 0; i + strictInteriorLength < tableTokens.length; i += 1) {
+  const j = i + strictInteriorLength;
+  if (tableTokens[i] === tableTokens[j]) {
+    duplicatePairsAt43.push({i, j, token: tableTokens[i]});
+  }
+}
+assert.deepEqual(duplicatePairsAt43, [
+  {i: 33, j: 76, token: "1s"},
+  {i: 42, j: 85, token: "0S"},
+  {i: 69, j: 112, token: "1D"},
+]);
+
 // Holdout discovered only after the EMPTY/EPIPHANY boundary had selected the
 // later 2/7 target: the original second red-title ciphertext word itself points
 // through the signed message to THE and then to GP0(DEVOTED).
@@ -281,6 +326,14 @@ console.log(JSON.stringify({
       candidateSourceWords: ["THE", "DEVOTED"],
     },
     typedClosureCensus: {candidates: typedCandidates.length, closures: typedClosures.length},
+    p57TitleSumBridge: {
+      titleCiphertextGp0: [sum(p0[0].indices), sum(p0[1].indices)],
+      emergePlusCenter13: sum(gp("EMERGE")) + printedCenterDirection,
+      findPlusWithin43: sum(gp("FIND")) + strictInteriorLength,
+      findDuplicateCells: byte28Cells,
+      duplicatePairsAt43,
+      orderedTitlePairOccurrences: adjacentTitleSumPairs,
+    },
     titleHoldout: {
       ciphertextGp0: sum(p0[1].indices),
       signedWordIndex: grid.bytes[85],

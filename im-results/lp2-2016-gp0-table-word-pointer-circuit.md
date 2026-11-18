@@ -76,6 +76,45 @@ A broader source-preserving census admits every p0 word whose GP0 table byte is 
 
 The visible token `04` therefore supplies a human-readable rendering of a relationship that already survives the broader byte-based census.
 
+## p57 bracket quantities reconstruct the two red-title ciphertext sums
+
+The solved p57 instruction and the independently authenticated p50 bracket now reproduce both original red-title **ciphertext word sums** without using proposed title letters.
+
+The p57 GP0 values are:
+
+- `FIND = 42`
+- `EMERGE = 83`
+- `DIUINITY = 105`
+
+The p50 bracket supplies two independent quantities:
+
+- its strict interior length is **43**;
+- its exact center, selected by `DIUINITY=105`, is the printed token **13**.
+
+Use those numbers as row-major directions from the two solved p57 addresses:
+
+`FIND 42 + within-length 43 = 85`
+
+`EMERGE 83 + center-token 13 = 96`
+
+The original p0 red title has ciphertext GP0 word sums exactly:
+
+`[96, 85]`.
+
+Across all 58 adjacent p0 word pairs, **word0 / word1 is the only pair with the ordered sum vector `[96,85]`**. Each individual sum occurs elsewhere on p0, so the adjacency is material: 96 also occurs at word36 and 85 at word10, while only the red title places them together in the required order.
+
+The FIND leg has a further exact table invariant. Original cells42 and85 are the only two cells whose base60 byte is28:
+
+`T[42] = T[85] = 28`
+
+and their address separation is exactly43. Of the three duplicate-token pairs anywhere in p50 separated by43 cells, **42 / 85 is the only pair whose left endpoint is the GP0 number of a solved p57 word**. Thus the operation `FIND + the 43 symbols within` lands on a same-token duplicate at address85, independently equal to the second red-title ciphertext sum.
+
+The EMERGE leg is weaker operationally: moving by the center's printed value13 from address83 lands at96, but unlike the FIND leg it does not preserve the table token. It should therefore be treated as a source-coherent directional reconstruction rather than an authenticated second pointer.
+
+This convergence supplies a plausible reading of the signed 2016 instruction that “their numbers are the direction”: p57 words provide starting addresses, while source-selected p50 numbers supply displacements. It also makes the proposed title **EPIPHANY / SEEKS** semantically coherent with the p57 verbs **EMERGE / FIND**, but semantic affinity is supporting interpretation rather than cryptographic proof.
+
+A caveat is important: the natural p57 sentence order derives 85 before96, whereas the title is 96 then85. No first-party source currently instructs that reversal. The exact numeric reconstruction is therefore preserved as a constrained title bridge, not promoted to a complete title decryption.
+
 ## Red-title ciphertext -> THE -> DEVOTED holdout
 
 The original p0 red title supplies a second, letter-level test that was **not used to select the later 2 / 7 target**. The target had already been fixed by the EMPTY / EPIPHANY boundary circuit above.
