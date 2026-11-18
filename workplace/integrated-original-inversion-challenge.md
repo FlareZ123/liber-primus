@@ -53,13 +53,13 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 
 ### Highest-value live decisions
 
-- **p27/DH23 route:** #1634 independently audits the full red13/transducer selection family; #1638–#1640 test distinct first-party Stage10/prime_echo leads; #1641 tests the two-shed p50 core; #1642 tests the p27 echo6→three-76 temporal receiver. The signed protocol itself has no payload receiver (#1625).
+- **p27/DH23 route:** #1634 independently audits the full red13/transducer selection family; #1638–#1640 test distinct first-party Stage10/prime_echo leads; #1641 tests the two-shed p50 core. #1642 is closed at source selection: the exact echo6→3×76 geometry supplies no lane serialization, initial state, temporal clock or reversible update, so no temporal family may be fitted to p55 without a new first-party opcode. The signed protocol itself has no payload receiver (#1625).
 - **p27 original structure:** the 5+4+4 stencil shape is generic across all 31 marks (#1633); do not count it as independent confirmation. The signed DH tuple is visible but has no independent LP2 instruction linking it to the manuscript (#1635).
 - **p50 word-address and bracket:** row-major traversal is source-selected (#1632), but #1621's 58-page word-address grammar and #1627's 43-token receiver both failed their source-selection gates. #1644 is a finite standard-JPEG byte-structure audit; no arbitrary bit-plane search.
 - **p0 27×27:** #1646 is the prospective p0→p1 transfer justified by the 1/105 opening census. Do not extend the post-KEY Blocks20–24 family: #1622 found no genuine temporal holdout.
 - **p27 red13 factor route:** #1611's frozen matched calibration is selective; #1610's exact historical-host search remains the independent discriminator. Do not test neighboring divisors or alternate Tor encodings.
 - **Historical human path:** #1643 is a blind cold-start attempt; #1628's source-backed historical method catalogue is complete. #1639 seeks only the three exact Stage10 image files; #1630 found no CGI handler.
-- **Prime and page-boundary clues:** #1640 tests the 1033/3301 prime-rank quotients; #1642 tests the 3×76 temporal receiver. Do not add arbitrary key schedules or lane permutations.
+- **Prime and page-boundary clues:** #1640 tests the 1033/3301 prime-rank quotients. #1642 closes the 3×76 temporal successor because the source does not select a lane serialization, state, clock or update. Do not add arbitrary key schedules or lane permutations.
 - **DH3301:** #1550 is subsumed by #1576; #1620 found no contextual response to the second public236/base19 exchange. Six exponent representatives remain.
 - **P55:** #1551 rejects a unique p55→p56 cipher-mode switch; #41 still requires one complete source-selected 76-rune decoder. #1335 remains blocked on a genuinely unaffiliated naive human oracle. #1329's long wordwise key-pointer campaign must be judged from completed source shards, not interim counts.
 
