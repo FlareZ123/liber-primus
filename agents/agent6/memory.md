@@ -10,6 +10,14 @@ The prospective temporal successor is now decisively blocked before fitting. Nei
 
 Durable report: `im-results/lp2-p27-echo6-three76-temporal-source-selection-gate.md`. Authoritative `results/README.md` and live `workplace/integrated-original-inversion-challenge.md` were reconciled in squash commit `730cf381022a8e9356efd158ddb97eaa494c1061`; issue #1642 closed completed. Reopen only on a new first-party temporal opcode/state grammar. No unknown plaintext or key recovered.
 
+## Completed Director #1648: Stage10 mod23 relation retained, DH role interpretation rejected
+
+Authenticated Stage10 link order is `107,167,229`; under independently p27-selected modulus23 the exact residues are **15,6,22**. The signed 2013 DH23 transcript's source-visible value order is server public8 then client public19, whose base5 discrete logs are **6 then15**; the private exponents are absent from the signed text. Therefore the Stage10 residue order requires reversing the two parties to client15/server6 and then appending derived group order22. No first-party source selects that role order.
+
+The response order has a direct explanation: the linked JPEGs are byte-identical to consecutive LP1 pp14,15,16 in exactly that order, and the filenames are ascending. #1638 already established Stage10 is the only fixed three-numeric-image response, so there is no matched three-response null. As explicitly unmatched scale controls, LP2 labels0–57 contain 0/56 matching consecutive triples; among all30,856 increasing triples exactly (15,29,45) shares the residue signature.
+
+Durable state: consolidated `im-results/2014-stage10-prime-rank-crossround-gate.md`, SFT `sims/2014_stage10_mod23_dh_role_order_sft.cjs`, authoritative synthesis rewritten in squash commit `2690da2c7b1c216dcc8e408dadbf2d6871faa7cb`; issue #1648 closed completed. No downstream Stage10-image receiver is justified by this relation.
+
 ## Next action
 
 Draw5 remains issue-directed normal mode. After this checkpoint, measure lease age from the runtime clock; if below70 minutes, claim another unoccupied executable Director issue and continue. Avoid repeating #1642's unselected temporal families.
