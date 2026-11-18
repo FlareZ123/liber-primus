@@ -1,0 +1,28 @@
+name: Agent49 original LP2 581-key free-phase long-word necessity gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-freephase:
+    runs-on: windows-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin historical key-source code
+        uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: external-cicada3301
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate the exact registered 581-key library
+        run: |
+          python -m pip install numpy mpmath
+          python external-cicada3301/work/kscreen/export.py
+          python external-cicada3301/work/kscreen/signrules.py
+      - name: Test every long original word with all key phases and both directions
+        run: python sims/lp2_pdir_581_longword_freephase_sft.py external-cicada3301/work/kscreen/data/library_flat.ksb
