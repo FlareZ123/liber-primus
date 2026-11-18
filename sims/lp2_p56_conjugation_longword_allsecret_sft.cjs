@@ -214,3 +214,67 @@ for(const [len,sameLengthWords] of [[14,wordNumbers],[13,wordNumbers]]){
 }
 assert.equal(globalCount,7,"expected 3 original 14-rune and 4 original 13-rune words");
 console.log("STATUS all-secret wordwise source-lexicon feasibility complete; evidence is necessary only.");
+
+
+/**
+ * STRICTER ORIGINAL PAGE-RESET CLOCK NECESSITY: a word at physical-page-local
+ * offset j can have consumed between j - (# preceding marker occurrences)
+ * and j primes. This bound holds for EVERY prior bypass history and every
+ * shared pi. It is a smaller set than an arbitrary start0..463.
+ */
+const runePages=gp.pages.filter(p=>p.page<=55&&p.indices.length);
+let global=0;
+const offsets=[];
+for(const p of runePages){offsets.push(global);global+=p.indices.length;}
+assert.equal(global,12956);
+let wordStart=0;
+let constrained=0;
+for(let w=0;w<words.length;w++){
+  const cipherWord=wordNumbers[w], len=cipherWord.length;
+  const currentGlobalStart=wordStart;wordStart+=len;
+  if(len<12)continue;
+  const section=words[w].startPage;
+  if(words[w].endPage!==section)continue;
+  const page=runePages[section];
+  assert(page,"word local physical page mismatch");
+  const start=currentGlobalStart-offsets[section];
+  assert(start>=0&&start+len<=page.indices.length);
+  const prefix=page.indices.slice(0,start);
+  let positives=0;
+  let witnesses=[];
+  const possibilities=dictionary[len];
+  candidateLoop:for(const candidate of possibilities){
+    const P=candidate.nums;
+    for(const sign of [1,-1]){
+      // Original physically printed F is always a candidate bypass marker.
+      let count=prefix.filter(x=>x===0).length;
+      for(let phase=start-count;phase<=start;phase++){
+        if(compatible(cipherWord,P,phase,sign,0,false)){
+          positives++;
+          if(witnesses.length<3)witnesses.push({word:candidate.word,marker:"literal F",phase,sign});
+          continue candidateLoop;
+        }
+      }
+      // Alternatively transparent F in the hidden alphabet pi(0) can be
+      // any one source rune; pi^-1(marker)=0 is enforced by the graph checker.
+      for(let marker=0;marker<29;marker++){
+        count=prefix.filter(x=>x===marker).length;
+        for(let phase=start-count;phase<=start;phase++){
+          if(compatible(cipherWord,P,phase,sign,marker,true)){
+            positives++;
+            if(witnesses.length<3)witnesses.push({word:candidate.word,marker,phase,sign});
+            continue candidateLoop;
+          }
+        }
+      }
+    }
+  }
+  console.log("ORIGINAL_PAGE_RESET_WORD",JSON.stringify({
+    index:w,physicalPage:page.page,offset:start,len,
+    lexiconWords:possibilities.length,compatibleWords:positives,
+    witnesses
+  }));
+  constrained++;
+}
+assert.ok(constrained>=20,"expected ≥20 intact original words length≥12");
+console.log("SOURCE_PAGE_RESET_WORD_COUNT",constrained);
