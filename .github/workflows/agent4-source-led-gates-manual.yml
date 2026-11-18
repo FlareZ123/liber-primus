@@ -41,5 +41,7 @@ jobs:
           /tmp/lp2_jpeg_sft resources/liber-primus
       - name: Run p50 low60 original-source selector gate
         run: node sims/lp2_p50_low60_source_selector_sft.cjs
+      - name: Run zeroF exception source gate
+        run: node sims/lp2_zeroF_exception_source_gate_sft.cjs
       - name: Test exact physical page-boundary root enrichment under chapter-wise familywise null
         run: node sims/lp2_page_roots_original_boundary_sft.cjs
