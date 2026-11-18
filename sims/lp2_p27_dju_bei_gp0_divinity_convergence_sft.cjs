@@ -23,7 +23,7 @@ const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
  * @returns {{index:number,start:number,length:number,indices:number[]}[]}
  */
 function parsePageWords(pageNumber) {
-  const source = transcription.split(/\n%\n/)[pageNumber];
+  const source = transcription.split(/\r?\n%\r?\n/)[pageNumber];
   const words = [];
   let current = [];
   let offset = 0;
