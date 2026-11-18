@@ -136,24 +136,26 @@ function countPaths(ciphertext,sign) {
 function enumerate(ciphertext,histories,end) {
   const out=[];
   const backwards=[];
-  function visit(i,j,skips) {
+  function visit(i,j,skips,positions) {
     if (i<0) {
-      out.push({start:j,plain:[...backwards].reverse(),skips});
+      out.push({start:j,plain:[...backwards].reverse(),skips,skipIndices:[...positions].reverse()});
       return;
     }
     const c=ciphertext[i];
     if (j>0&&histories[i][j-1]&&mod(c-key[j-1])!==0) {
       backwards.push(mod(c-key[j-1]));
-      visit(i-1,j-1,skips);
+      visit(i-1,j-1,skips,positions);
       backwards.pop();
     }
     if (c===0&&histories[i][j]) {
       backwards.push(0);
-      visit(i-1,j,skips+1);
+      positions.push(i);
+      visit(i-1,j,skips+1,positions);
+      positions.pop();
       backwards.pop();
     }
   }
-  visit(ciphertext.length-1,end,0);
+  visit(ciphertext.length-1,end,0,[]);
   return out;
 }
 
@@ -210,6 +212,18 @@ function main() {
         assert.equal(candidates.length,3);
         assert.deepEqual(candidates.map(c=>c.start),[167,167,168]);
         assert.deepEqual(candidates.map(c=>c.skips),[3,3,4]);
+        assert.deepEqual(candidates.map(c=>c.skipIndices),[
+          [41,195,247],[65,195,247],[41,65,195,247]
+        ]);
+        const p55=candidates[0].plain.slice(-76);
+        assert.equal(p55.length,76);
+        assert.equal(ioc(p55),0.03508771929824561);
+        for (const candidate of candidates) {
+          assert.deepEqual(candidate.plain.slice(-76),p55);
+          assert.deepEqual(candidate.skipIndices.filter(i=>i>=232).map(i=>i-232),[15]);
+        }
+        assert.deepEqual(original.pages[55].indices
+          .map((p,i)=>p===0?i:-1).filter(i=>i>=0),[15,25,41]);
         for (const candidate of candidates) {
           const sent=encrypt(candidate.plain,candidate.start,1);
           assert.deepEqual(sent.ciphertext,cipher);
@@ -222,6 +236,9 @@ function main() {
           surviving_complete_plaintext_paths:3,
           survivor_initial_starts:candidates.map(x=>x.start),
           survivor_skip_counts:candidates.map(x=>x.skips),
+          survivor_skip_indices:candidates.map(x=>x.skipIndices),
+          unique_p55_shared_transliteration:p55.map(i=>original.translit[i]).join(' '),
+          unique_p55_IoC:ioc(p55),
           candidate_GP29_IoCs:candidates.map(x=>ioc(x.plain))
         }));
       }
