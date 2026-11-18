@@ -357,14 +357,15 @@ assert.deepEqual(targetFragments.map(primeSum), [60, 129, 159]);
  *
  * @param {number[]} cipher
  * @param {number[]} primeList
- * @returns {{start:number,j:number,skips:number[],at1033:number|null,boundary:number}[]}
+ * @returns {{start:number,j:number,skips:number[],at1033:number|null,at3301:number|null,boundary:number}[]}
  */
 function firstExhaustions(cipher, primeList) {
   let states = primeList.map((unused, start) => ({
     start,
     j: start,
     skips: [],
-    at1033: null
+    at1033: null,
+    at3301: null
   }));
   const exhausted = [];
 
@@ -378,7 +379,8 @@ function firstExhaustions(cipher, primeList) {
           start: state.start,
           j: state.j,
           skips: state.skips.concat(i),
-          at1033: state.at1033
+          at1033: state.at1033,
+          at3301: state.at3301
         });
       }
 
@@ -390,7 +392,8 @@ function firstExhaustions(cipher, primeList) {
             start: state.start,
             j: state.j + 1,
             skips: state.skips,
-            at1033: state.j === 173 ? i : state.at1033
+            at1033: state.j === 173 ? i : state.at1033,
+            at3301: state.j === primeList.length - 1 ? i : state.at3301
           };
           if (advanced.j === primeList.length) {
             exhausted.push({ ...advanced, boundary: i + 1 });
@@ -412,6 +415,9 @@ function firstExhaustions(cipher, primeList) {
 const allExhaustions = firstExhaustions(terminalChapter, primes);
 assert.equal(allExhaustions.length, 41);
 assert.equal(new Set(allExhaustions.map((state) => state.boundary)).size, 36);
+assert(allExhaustions.every((state) =>
+  state.at3301 === state.boundary - 1
+), 'every finite-list exhaustion must consume terminal prime3301 on its final keyed rune');
 
 let terminalOffset = 0;
 const terminalLineEnds = [];
@@ -437,18 +443,37 @@ assert.deepEqual(
   [...new Set(lineEndExhaustions.map((state) => state.boundary))],
   [19, 40, 57, 80, 300]
 );
+assert.deepEqual(
+  lineEndExhaustions.map((state) => ({
+    start: state.start,
+    startPrime: primes[state.start],
+    at3301: state.at3301,
+    boundary: state.boundary
+  })),
+  [
+    { start: 445, startPrime: 3137, at3301: 18, boundary: 19 },
+    { start: 424, startPrime: 2953, at3301: 39, boundary: 40 },
+    { start: 407, startPrime: 2801, at3301: 56, boundary: 57 },
+    { start: 385, startPrime: 2663, at3301: 79, boundary: 80 },
+    { start: 386, startPrime: 2671, at3301: 79, boundary: 80 },
+    { start: 167, startPrime: 997, at3301: 299, boundary: 300 },
+    { start: 167, startPrime: 997, at3301: 299, boundary: 300 },
+    { start: 168, startPrime: 1009, at3301: 299, boundary: 300 }
+  ]
+);
 
 const bothPauseExhaustions = allExhaustions.filter((state) => state.at1033 !== null);
 assert.deepEqual(
   bothPauseExhaustions.map((state) => ({
     start: state.start,
     boundary: state.boundary,
-    at1033: state.at1033
+    at1033: state.at1033,
+    at3301: state.at3301
   })),
   [
-    { start: 167, boundary: 300, at1033: 6 },
-    { start: 167, boundary: 300, at1033: 6 },
-    { start: 168, boundary: 300, at1033: 5 }
+    { start: 167, boundary: 300, at1033: 6, at3301: 299 },
+    { start: 167, boundary: 300, at1033: 6, at3301: 299 },
+    { start: 168, boundary: 300, at1033: 5, at3301: 299 }
   ]
 );
 
@@ -501,6 +526,8 @@ console.log('KEYED PREFIX: p54-p55 runes 0..299; 3 exact historical-list paths')
 for (const state of paths) {
   console.log(`  start=${state.start} prime=${state.startPrime} skips=[${state.skips.join(',')}] -> pointer464`);
 }
+console.log('3301 LINE-END CENSUS: 8/41 histories, boundaries 19/40/57/80/300; terminal3301 alone does not select300');
+console.log('BOTH PAUSES: only starts167/167/168 consume1033 and3301; all three exhaust at boundary300');
 console.log('BOUNDARY: p55 local67 ends printed line3 exactly as prime3301 is consumed');
 console.log('UNTOUCHED LINE4 FRAGMENTS: CX / DJU / BEI (8 runes), then red 13-dot mark at offset76');
 console.log('CANONICAL WORD BOUNDARY: CX is the final 2 runes of CEAIMCX, spanning p55 lines3-4');
