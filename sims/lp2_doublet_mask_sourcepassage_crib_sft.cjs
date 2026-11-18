@@ -173,10 +173,17 @@ function main() {
     {name: 'p0', window: originalWindow(0, 1)},
     {name: 'p0-p2', window: originalWindow(0, 3)},
     {name: 'p0-p2-black', window: originalWindow(0, 3, 13)},
-    {name: 'p3-p7', window: originalWindow(3, 8)}
+    {name: 'p3-p7', window: originalWindow(3, 8)},
+    {name: 'p19', window: originalWindow(19, 20)},
+    {name: 'p24', window: originalWindow(24, 25)},
+    {name: 'p27', window: originalWindow(27, 28)},
+    {name: 'p29', window: originalWindow(29, 30)},
+    {name: 'p44', window: originalWindow(44, 45)}
   ];
   assert.deepEqual(cases.map(c => c.window.runes.length),
-    [262, 729, 716, 1145]);
+    [262, 729, 716, 1145, 271, 270, 234, 277, 273]);
+  assert.deepEqual(cases.slice(4).map(c => c.window.events.length),
+    [5, 5, 5, 4, 4]);
   assert.equal(cases[1].window.events.length, 4);
   assert.deepEqual(cases[1].window.events, [122, 207, 456, 653]);
   const results = [];
@@ -198,7 +205,9 @@ function main() {
     results.push(answer);
   }
 
-  const long = ['p0-p2', 'p0-p2-black', 'p3-p7'];
+  const long = [
+    'p0-p2', 'p0-p2-black', 'p3-p7', 'p19', 'p24', 'p27', 'p29', 'p44'
+  ];
   for (const row of results) {
     for (const scope of long) {
       assert.equal(row.matches[scope + '/forward'], 0, row.source + ' ' + scope);
