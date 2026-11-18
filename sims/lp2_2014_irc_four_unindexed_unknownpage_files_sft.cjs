@@ -82,6 +82,17 @@ async function main(){
       const fetched=await get(u);
       const {buf,...result}=fetched;
       console.log('ORIGINAL_ATTEMPT '+JSON.stringify({id:item.id,route:name,requested:u,...result}));
+      if(name==='live' && item.id.startsWith('neocities') && buf && fetched.status===200){
+        const markup=buf.toString('utf8');
+        const inline=[...markup.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)];
+        const scriptLinks=[...markup.matchAll(/<script\b[^>]*src\s*=\s*['\"]?([^\s'\">]+)/gi)].map(x=>x[1]);
+        const code=inline.map(x=>x[1]).join('\n');
+        const structural=code.split(/\r?\n/).map(x=>x.trim()).filter(x=>
+          /\bfunction\b|\b(?:var|let|const)\b|\.replace\(|(?:substring|indexOf|charCodeAt|fromCharCode)\(/i.test(x)).slice(0,70);
+        console.log('ORIGINAL_LIVE_HTML_MECHANISM '+JSON.stringify({id:item.id,scriptLinks,
+          scriptCount:inline.length,scriptChars:code.length,structure:structural,
+          firstJS:code.slice(0,9000)}));
+      }
       if(name==='live'&&buf&&fetched.status===200&&buf.length>100&&buf.length<=1e6
          &&!/^\s*(?:<!doctype|<html)/i.test(buf.toString('utf8',0,100))
          &&!/Access Denied|Cloudflare|captcha|404 Not Found/i.test(buf.toString('utf8',0,500))){
