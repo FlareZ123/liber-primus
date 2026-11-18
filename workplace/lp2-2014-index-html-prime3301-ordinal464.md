@@ -28,6 +28,17 @@ The 29-symbol GP alphabet gives the last factorization an obvious thematic assoc
 
 Among properly three-digit digit-reversal pairs `n, reverse3(n)` whose sum is 464, the only possibilities are `133 + 331`, `331 + 133`, and the trivial palindrome `232 + 232`. To see this, let `n=100h+10t+u` with `h,u≥1`; then `n+reverse3(n)=101(h+u)+20t=464`. The only decimal `t` with a divisible remainder is `t=3`, forcing `h+u=4`. This describes the exact arithmetic rather than evidence that the author selected it intentionally.
 
+## Independent physical p0 crosslink, with a clear caveat
+
+The **actual two initial red words on original LP2 p0** contain 8 and 5 runes, with independently inventoried GP-prime sums **347** and **315** ([original-image and source arithmetic](../im-results/p0-dh23-red-heading-exchange.md)). Their arithmetic mean is precisely **331**:
+
+```text
+(347 + 315) / 2 = 331       (the archived delivery-page container ID)
+347 - 315 = 32             (the number of rows in the p49–51 numeric table)
+```
+
+This second, physically printed two-word source route reaches the delivery-page `id="331"` without using the `title` value. The table's independently visible **32 rows** supplies a further geometric correspondence. Because this red pair and table shape were known independently before the HTML-prime-index observation, they make 331 a candidate *cross-artifact signpost* worth communicating, but the **mean** and **difference** operations were selected retrospectively; they are not proof of author intent, a decrypting key or a causal direction for reading the table. The earlier full [p0 red-pair/table arithmetic gate](../im-results/p0-dh23-red-heading-exchange.md) and the [row27 direct DES receiver test](../sims/lp2_p0_row27_des8_source_sft.cjs) produced no plaintext and must not be repeated as if new.
+
 ## Decision and bounded next move
 
 The **physical presence of 133/331** and the **prime-index equation** are verifiable. Their construction as an *author-intended key or instruction* remains hypothetical. Neither first-party markup nor the original ciphertext specifies addition as a key-generation step, a 464th-prime start as an unknown-page cipher clock, or how this would act on the 29-rune alphabet.
