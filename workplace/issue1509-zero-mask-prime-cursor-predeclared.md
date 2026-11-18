@@ -29,3 +29,21 @@ First assert the repository's authentic p56 phi-prime decoder reproduces all 85 
 Then score all 464 starts. A candidate is inspected only if its p0-p2 score meets the frozen threshold. Any survivor must decode at least 150 contiguous coherent runes on untouched p3-p7 under the same start and continuous clock and reencrypt exactly.
 
 If no start clears the native threshold, close the exact transfer. Do not rescue it with shifted phase, reversed mask, alternate sign, resets, radix, literal-F bypass, or new skip laws.
+
+
+## Frozen control-derived numeric threshold
+
+The predeclared controls were executed before any candidate score was computed. All p0-p2 source word lengths 1..11 have at least one LP1 native control.
+
+For 2,000 deterministic exact-length native controls, score summary was:
+- min -2.4356195147448316
+- 1st percentile (nearest rank 20/2000) **-2.3902192881828106**
+- median -2.309426305228258
+- max -2.1800985134856092
+
+For 2,000 uniform-GP29 controls with the same word-length pattern:
+- min -4.67471502029415
+- median -4.515023514029358
+- max **-4.2508085410738365**
+
+Therefore the candidate inspection threshold is frozen at **score/rune >= -2.3902192881828106**. It will not be changed after candidate scores are seen.
