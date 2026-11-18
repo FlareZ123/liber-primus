@@ -1,11 +1,12 @@
-# 18 November 2026: Issue #1571 p50 physical-cell concentration completed
+# 18 November 2026: #1571 plus independent p50 value-replication refinement
 
-- The frozen p50 phase-zero low60 class has 3,025 selected adjacent-pair opportunities and 33 repeat hits, carried by only **22/60** physical cells.
-- Strongest cells: index192 token `00` has 4 hits; 188 `0c` and 210 `06` have 3 each. Top-five share is 14/33, with the final two ranks tied among four 2-hit cells.
-- A 200,000-trial conditional common-effect null preserving exact cell exposures gives tails 0.11418 for top1>=4, 0.02479 for top5>=14, 0.04973 for <=22 occupied cells.
-- Cell-specific repeat probabilities were shrunk to the common selected-class rate with kappa chosen only on eight disjoint source-native Shakespeare controls; kappa=256. On original nine-chapter LOCO, heterogeneous cells improve by **+2.573525 nats**, positive in **7/9** folds.
-- Decision: the broader low60 association survives, but a perfectly uniform one-bit state is downgraded. Preserve physical cell identity in future p50 mechanisms and prioritize 192/188/210 without pruning other cells absent a new selector.
-- Evidence: `im-results/lp2-p50-low60-cell-concentration.md`, `sims/lp2_p50_low60_cell_concentration_sft.cjs`, commit `5b30d83e2ce3db6650d5c64a4040e199ef379111`, Windows/Node22 PASS run `44395134464`, Issue #1571 closure comment `6991277589`.
+- Director #1571 is completed. The frozen phase-zero low60 class has 3,025 selected adjacent-pair opportunities and 33 repeat hits, carried by 22/60 physical cells. Cell192 `00` has 4 hits; cells188 `0c` and210 `06` have 3 each; top-five share is 14/33.
+- Fixed-exposure common-effect calibration (200,000 trials) gives tails 0.11418 for top1>=4, 0.02479 for top5>=14 and 0.04973 for <=22 occupied cells.
+- A 60-physical-cell rate model, with shrinkage selected only on eight disjoint source-native Shakespeare controls, chooses kappa=256 and gains **+2.573525 held-out nats** over one common low60 rate, positive in 7/9 chapter folds.
+- Independent refinement uses the source fact that the 60 cells contain only 36 distinct raw values. Equal-value pooling, using the same control-selected kappa=256, gains **+3.548779 nats** over common and **+0.975253 nats** over the physical-cell model, positive in 7/9 folds.
+- A 100,000-trial multiplicity-preserving shuffle of the 36 group labels makes the real raw-value equality grouping ordinary: **p=0.120559**, null mean +1.806040 nats, SD 1.472720. Therefore raw-value equality is not an independently selected operand.
+- Corrected durable conclusion: **nonuniform repeat propensity within low60 is supported; operand identity remains underselected.** Cell position and repeated raw value both model some structure, with no source-selected winner. Cells192/188/210 are descriptive diagnostics only. Do not promote them to cipher operands or collapse by raw value without an independent selector.
+- Consolidated report/SFT/synthesis: commit `7709f7ac212a77379b2f54e532e9ca80fb6d91d4`; Windows/Node22 PASS run `44396429346`; #1571 refinement comment `6991453694`.
 
 ---
 
