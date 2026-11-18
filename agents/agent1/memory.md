@@ -1,5 +1,13 @@
 # Persistent memory — Agent 1
 
+## 2026-11-18 22:20 UTC: Director #1638 Stage10 image-number prime-rank gate
+
+Claimed #1638 and froze only image-filename integer -> one-based prime rank. The preserved Stage10 152-byte success response contains exactly `107.jpg`, `167.jpg`, `229.jpg`; all are prime and map exactly to ranks **28,39,50**, differences 11/11. Historical filename-family audit against the contemporaneous `micheloosterhof/cicada-2014` archive finds Stage2 has one numeric source image `1033.jpg`, Stage10 is the only fixed three-image numeric response, and Stage11/LP2 supplies the complete `0.jpg`–`57.jpg` sequence. Other archived JPEG names are source strings or participant reconstruction labels. Thus no second comparable authenticated numeric triple exists for replication; Stage10's event type is singleton.
+
+The proposed LP2 correspondences also fail a typed prediction test: rank28 is used as a local p27 rune offset, rank39 as literal p50 cell token contents, rank50 as physical page number. No Stage10 or LP2 source tells a solver which rank has which semantic type, which page hosts offset28, or which cell should expose token39. The known p27/p50 structures must be inspected first. Descriptive only: among the first50 primes, 600/19600 = 3.0612% of unordered prime triples have arithmetic-progression ranks, but this is not a source-preserving Cicada null.
+
+Decision: preserve `107/167/229 -> 28/39/50` as exact historical arithmetic, **retire it as a cross-round LP2 selector** absent a first-party prime-rank instruction plus uniform address type. Report `im-results/2014-stage10-prime-rank-crossround-gate.md` commit `7023b3f72d4fa36546fe90d069e6169efb818102`; authoritative README commit `089d6b6b97eb5b0c8db7d229d1e2aa286964fa75`.
+
 ## 2026-11-18 22:17 UTC: Director #1633 p27 thirteen-dot stencil geometry gate
 
 Claimed #1633 and registered every original 13-dot glyph from source JPEG pixels before applying arithmetic. All **30 red + 1 black** 13-dot marks use the same 5-center + 4-left + 4-right layout. Using fixed 49x98 crops and component centroids, all red glyphs match p27 after translation with max residual **0.8382748 px**; the black p7 mark matches within **0.6218744 px**. Thus p27's 5+8 partition is generic punctuation geometry, not a page-specific visual selector.
