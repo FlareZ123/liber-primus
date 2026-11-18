@@ -1,11 +1,11 @@
-# Source-bounded 27×27 bootstrap through four blocks: AS I GO THE / WEATHER / TURNS / COLD
+# Source-bounded 27×27 bootstrap through COLD, with held-out branch continuation through NOW THE
 
-**Agent 28, 18 November 2026. Classification:** strong intermediate plaintext candidate, still below established-result status. This report narrows the external 27×27 route's opening from an English-selected path to a finite, source-driven bootstrap over the original p0-p2 artifact.
+**Agents 28 and 29, 18 November 2026. Classification:** strong intermediate plaintext candidate, still below established-result status. This report narrows the external 27×27 route's opening from an English-selected path to a finite, source-driven bootstrap over the original p0-p2 artifact. A held-out continuation test now resolves the former block-5 tie in favor of `I MAY`, then uniquely extends it through `CRY NOW THE`, conditional on admitting the published endpoint-mirror/totient continuation family.
 
 The recovered candidate is:
 
 ```
-AS I GO THE WEATHER TURNS
+AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE
 ```
 
 The important advance is the selector structure. The first block is the unique four-word run in a deliberately widened source-driven opening family. Blocks 2 and 3 chain geometrically from the previous endpoint. Block 4 was then tested prospectively from the frozen TURNS state across a finite 36-branch family, where the published COLD branch was the unique maximum.
@@ -188,33 +188,73 @@ C - O - L - D - L - P ...
 
 This is a genuinely prospective discriminator: neither the word COLD, its four-rune length, nor its directions were supplied to the selector.
 
-## Block 5 prospective gate: ambiguity returns
+## Block 5 prospective gate: tie, then held-out continuation discriminator
 
-I then froze the four-block state and tested the published next phrase `I MAY` prospectively rather than accepting it.
+Freeze the four-block state and enumerate the natural `±4,±1` center family from COLD's endpoint, both horizontal and vertical radius-2 nodes, center totient plus the same Möbius rotation, four retained COLD landmarks as possible ciphertext starts, and all four cardinal read directions. This gives **128** candidates.
 
-From COLD's endpoint `A=(11,7)`, carry the preceding key's source-derived distances:
-
-```
-phi(H=8) = 4
-phi(U=1) = 1
-previous raw center TH = 2
-```
-
-Enumerate all four sign combinations of the `±4,±1` center displacement, both horizontal and vertical three-cell nodes with radius 2, center-totient plus the same Möbius rotation, four retained COLD landmarks as possible ciphertext starts, and all four cardinal read directions. This gives **128** candidates.
-
-Because the published output has two words, score each branch by the longest prefix segmentable into at most two source-native words. Under the full lexicon, the maximum is six runes on two low-frequency junk-like branches; `I | MAY` reaches four. Requiring both words to have corpus frequency at least 100 removes the rare junk, but the maximum depth four is still **not unique**:
+With a source-native frequency floor of 100, the maximum two-word depth is four runes and has exactly two serious branches under the same `NG-T-NG` key:
 
 ```
 I | MAY
 X | EARTH
 ```
 
-Both arise from the same candidate NG-B-NG / NG-T-NG key node under different retained starts/directions.
+Original source delimiters do not distinguish them, and the route's published row-parity and ray-offset predictors also accept both. The direct bootstrap therefore genuinely ties at block 5.
 
-Original source-word delimiters do not rescue the tie cleanly. The `I MAY` path begins at zero-based 693, the first rune of an original eight-rune source word, then reads left into zero-based 692, the end of the preceding source word; thus it crosses an original word boundary exactly after its first decrypted rune. The competing `X EARTH` branch begins at zero-based 357, which is itself the end of an original three-rune source word, so it too has an original delimiter immediately after its first selected cell in row-major source order. The delimiter evidence therefore does not uniquely select one phrase.
+Agent29 then applied the **same frozen next-state family to both endpoints**, using the published block-6 construction as the upstream premise but widening every ray choice:
 
-Therefore the source-bounded bootstrap is discriminating through COLD and **fails at block 5 under this natural prospective family**. No extra rule was added to rescue `I MAY`. This is the current stopping boundary.
+1. the previous ciphertext endpoint must be an outer cell of a unit-spaced three-cell mirror node;
+2. transform the original center by Euler's totient and apply the established `mu(phi(k))` rotation;
+3. move from the center by `phi(original center)` on any of the eight grid rays;
+4. read from every in-bounds landing point on every grid ray;
+5. rank only by the longest exact source-native English prefix with corpus frequency at least 100.
 
+The word `CRY` and its length are not supplied.
+
+For **I MAY**, the family has **40** candidates. Exactly one reaches depth three:
+
+```
+endpoint      (26,16) = E
+mirror node   E-X-E
+center        (25,16) = X
+phi(X=14)     6 = G
+aligned key   G-E-E
+move          6 upward
+start         (19,16)
+read          upward
+output        C-R-Y
+```
+
+For **X EARTH**, the same family has **24** candidates. No candidate reaches even a two-rune common word; the maximum depth is one. Thus the branch comparison is a clean held-out discriminator:
+
+```
+I MAY    -> unique CRY continuation
+X EARTH  -> no two-rune continuation
+```
+
+Carry the selected CRY state forward once more without supplying the next plaintext. Reuse the CRY start `(19,16)` as the candidate mirror-node center, retain distance 6, displace the CRY endpoint `(17,16)` by six along every grid ray, enumerate mirror nodes through the center and all read directions, and permit at most two source-native words.
+
+This family has **64** candidates. Exactly one reaches five runes:
+
+```
+node          OE-J-OE
+derived key   OE-OE-I
+move          6 upward from CRY endpoint
+start         (11,16)
+read          diagonal down-right
+output        N-O-W-TH-E
+reading       NOW THE
+```
+
+No competing candidate reaches the same depth. The candidate therefore extends to:
+
+```
+AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE
+```
+
+The continuation evidence is stronger than choosing `I MAY` from grammar. Its caveat is upstream: the endpoint-mirror/totient/move family was learned from the published block-6/7 constructions rather than independently named by an original signed clue. The original p0 artwork's exact 180-degree pairing and the heading's repeated-rune symmetry make mirror operations source-plausible, but they do not uniquely specify this full transition rule.
+
+Detailed branch audit and SFT: `im-results/lp2-p0-block5-branch-continuation-gate.md` and `sims/lp2_p0_block5_branch_continuation_gate_sft.cjs`. CI run **44389152072** completed successfully.
 ## What this changes
 
 The earlier repository audit correctly showed that the published 38-block route had underselected transitions. This three-block bootstrap is a different piece of evidence.
@@ -226,18 +266,19 @@ It supplies a compact source-driven opening chain with three independent discrim
 3. TURNS is the only cardinal direction from its fixed start that sustains a native word to five runes;
 4. from the frozen TURNS state, COLD is selected by the unique maximum among 36 cardinal ±12 block-4 candidates.
 
-The combined reading is coherent English:
+The combined candidate is now:
 
 ```
-AS I GO THE WEATHER TURNS
+AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE
 ```
+
+The first four blocks are selected directly by the source-bounded bootstrap. The later `I MAY CRY NOW THE` extension is conditionally selected by a frozen continuation family applied symmetrically to competing branches.
 
 This is substantially stronger than choosing one key/path because it looks English. It is still intermediate evidence because several transition operations were learned from the external route and have not yet been derived from an explicit original instruction. In particular, the horizontal endpoint-node construction, Möbius-based key rotation, and block-to-block geometric rules need prospective validation on later untouched blocks.
 
 ## Next decisive test
 
-The block-5 prospective gate has now failed to select a unique continuation. The useful next question is therefore upstream: find an original clue that distinguishes the retained start/direction at this transition, or treat the four-block bootstrap as an isolated partial mechanism. Do not continue by adding plaintext-selected filters.
-
+The former block-5 ambiguity is no longer the immediate blocker. The useful next decision is whether the endpoint-mirror/totient/movement family can itself be derived from original visible clues or can make another withheld transition prediction without using the published route as a template. Do not add plaintext-selected filters. If that family fails prospective continuation, preserve the source-bounded four-block bootstrap independently.
 ## Reproduction
 
 Run:
