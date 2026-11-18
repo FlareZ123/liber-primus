@@ -18,7 +18,7 @@ const path = require("node:path");
  */
 function finderGate(input, size) {
   assert.equal(input.length, size * size);
-  const counts = Array.from({ length: 29 }, () => [0, 0]);
+  const counts = Array.from({ length: Math.max(...input) + 1 }, () => [0, 0]);
   const c = (size - 1) / 2;
   const groups = [];
   for (let dy = -4; dy <= 4; dy++) {
@@ -26,7 +26,7 @@ function finderGate(input, size) {
       const radius = Math.max(Math.abs(dx), Math.abs(dy));
       const dark = radius % 2 === 0 ? 1 : 0;
       const source = input[(c + dy) * size + c + dx];
-      assert.ok(Number.isInteger(source) && source >= 0 && source < 29);
+      assert.ok(Number.isInteger(source) && source >= 0 && source < counts.length);
       counts[source][dark]++;
       groups.push([source, dark]);
     }
@@ -97,6 +97,29 @@ for (const item of cases) {
     console.log(item.label, k === 0 ? "raw" : "GP29 delta", JSON.stringify(result));
   }
 }
+
+/** @param {Tape} source @returns {Tape} */
+function center11x11(source) {
+  assert.equal(source.length, 729);
+  const core = [];
+  for (let y = 8; y <= 18; y++) {
+    for (let x = 8; x <= 18; x++) core.push(source[y * 27 + x]);
+  }
+  assert.equal(core.length, 121);
+  return core;
+}
+
+const embeddedCore = center11x11(opening);
+// Cicada actually used bitwise XOR of byte shares in 2014. This tests only the
+// explicit five-bit GP-ordinal transfer, with no fitted operation or key.
+const joined = embeddedCore.map((v, i) => v ^ tree[i]);
+const joinedGate = finderGate(joined, 11);
+assert.equal(joinedGate.errors, 14);
+assert.equal(joinedGate.conflicts, 11);
+assert.equal(Math.max(...joinedGate.digitScores), 49);
+console.log("p0-p2 core XOR p32 in native 5-bit GP index:", JSON.stringify(joinedGate));
+
 console.log("The native 9x9 finder plant has zero mismatches in both source sizes.");
+console.log("Even a native five-bit XOR of the 121-sample source tree with the source center fails all stationary binary maps.");
 console.log("Every fixed 29->binary color mapping fails on the untouched original 9x9 cores.");
 console.log("No new LP2 plaintext, missing binary-layer opcode, or actual Aztec symbol is asserted. PASS");
