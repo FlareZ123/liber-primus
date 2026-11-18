@@ -16,3 +16,5 @@ jobs:
         run: node sims/lp2_p50_distinct161_terminal95_duplicate_sft.cjs
       - name: Test the p0-p32 five-bit triple-share to p55 76-byte original register
         run: node sims/lp2_p0_p32_three_share_p55_76byte_sft.cjs
+      - name: Test p57 36-rune zero bracket against the original known terminal 180
+        run: node sims/lp2_zero192_229_parable36_known180_xor_sft.cjs
