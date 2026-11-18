@@ -1,20 +1,21 @@
 "use strict";
 
 /**
- * Source-crib fixed-period affine gate for LP2 p0.
+ * Dual physically anchored p0 crib gate for fixed-period affine GP29 schedules.
  *
  * Training plaintext:
- *   - p0 runes 0..12:  EPIPHANY SEEKS
- *   - p0 runes 13..29: AS I GO THE WEATHER TURNS
+ *   p0 runes 0..12: EPIPHANY SEEKS
  *
  * Held-out plaintext:
- *   - p0 runes 235..243: THE DEVOTED
+ *   p0 runes 235..243: THE DEVOTED
  *
  * Family:
  *   C_i = a * P_i + K[i mod d] (mod 29), a in 1..28.
  *
- * The key residues are learned only from the training positions. The later
- * nine-rune phrase is never used to choose a, d, or any learned key residue.
+ * Only key residues touched by the opening title are learned. A period remains
+ * compatible with the later phrase exactly when every held-out position whose
+ * residue was already learned is predicted correctly; untouched residues are
+ * allowed to remain free.
  */
 
 const assert = require("node:assert/strict");
@@ -59,152 +60,163 @@ function gp(text) {
 /**
  * @param {number} period
  * @param {number} slope
- * @param {number[]} plain
- * @param {number[]} cipher
- * @param {number} start
- * @returns {Map<number, number> | null}
+ * @returns {{key: Map<number, number>} | null}
  */
-function fit(period, slope, plain, cipher, start) {
+function fitTitle(period, slope) {
   const key = new Map();
-  for (let i = 0; i < plain.length; i += 1) {
-    const residue = (start + i) % period;
-    const value = mod29(cipher[i] - slope * plain[i]);
+  for (let i = 0; i < titlePlain.length; i += 1) {
+    const residue = i % period;
+    const value = mod29(titleCipher[i] - slope * titlePlain[i]);
     if (key.has(residue) && key.get(residue) !== value) return null;
     key.set(residue, value);
   }
-  return key;
+  return { key };
 }
 
 /**
  * @param {number} period
  * @returns {{
  *   period:number,
- *   trainSurvivors:number,
- *   survivingSlopes:number[],
- *   maxComparable:number,
+ *   trainingSurvivors:number,
+ *   comparable:number,
  *   bestMatches:number,
- *   fullyPredictive:number,
- *   exactFullMatches:number
+ *   compatibleSlopes:number[]
  * }}
  */
 function testPeriod(period) {
-  const survivors = [];
+  const rows = [];
   for (let slope = 1; slope <= 28; slope += 1) {
-    const key = fit(period, slope, trainPlain, trainCipher, 0);
-    if (!key) continue;
+    const fitted = fitTitle(period, slope);
+    if (!fitted) continue;
 
     let comparable = 0;
     let matches = 0;
     for (let i = 0; i < holdoutPlain.length; i += 1) {
       const residue = (holdoutStart + i) % period;
-      if (!key.has(residue)) continue;
+      if (!fitted.key.has(residue)) continue;
       comparable += 1;
-      const predicted = mod29(slope * holdoutPlain[i] + key.get(residue));
+      const predicted = mod29(slope * holdoutPlain[i] + fitted.key.get(residue));
       if (predicted === holdoutCipher[i]) matches += 1;
     }
-    survivors.push({ slope, comparable, matches });
+    rows.push({ slope, comparable, matches });
   }
 
-  const maxComparable = survivors.reduce(
-    (best, item) => Math.max(best, item.comparable),
-    0
-  );
-  const bestMatches = survivors
-    .filter((item) => item.comparable === maxComparable)
-    .reduce((best, item) => Math.max(best, item.matches), 0);
-  const fullyPredictive = survivors.filter(
-    (item) => item.comparable === holdoutPlain.length
-  ).length;
-  const exactFullMatches = survivors.filter(
-    (item) =>
-      item.comparable === holdoutPlain.length &&
-      item.matches === holdoutPlain.length
-  ).length;
+  const comparable = rows.length ? rows[0].comparable : 0;
+  assert.ok(rows.every((row) => row.comparable === comparable));
+  const bestMatches = rows.reduce((best, row) => Math.max(best, row.matches), 0);
+  const compatibleSlopes = rows
+    .filter((row) => row.matches === row.comparable)
+    .map((row) => row.slope);
 
   return {
     period,
-    trainSurvivors: survivors.length,
-    survivingSlopes: survivors.map((item) => item.slope),
-    maxComparable,
+    trainingSurvivors: rows.length,
+    comparable,
     bestMatches,
-    fullyPredictive,
-    exactFullMatches,
+    compatibleSlopes,
   };
 }
 
 assert.equal(p0.length, 262);
 
 const titlePlain = gp("EPIPHANY SEEKS");
-const openingPlain = gp("AS I GO THE WEATHER TURNS");
-const holdoutPlain = gp("THE DEVOTED");
-
-assert.equal(titlePlain.length, 13);
-assert.equal(openingPlain.length, 17);
-assert.equal(holdoutPlain.length, 9);
-
-const trainPlain = titlePlain.concat(openingPlain);
-const trainCipher = p0.slice(0, trainPlain.length);
+const titleCipher = p0.slice(0, 13);
 const holdoutStart = 235;
+const holdoutPlain = gp("THE DEVOTED");
 const holdoutCipher = p0.slice(holdoutStart, holdoutStart + holdoutPlain.length);
 
-assert.equal(trainPlain.length, 30);
+assert.equal(titlePlain.length, 13);
+assert.equal(holdoutPlain.length, 9);
+assert.deepEqual(titleCipher, [15, 8, 18, 3, 6, 19, 27, 0, 15, 26, 18, 21, 5]);
 assert.deepEqual(holdoutCipher, [8, 5, 15, 22, 16, 22, 21, 1, 4]);
 
-const sourcePeriods = [13, 27, 29, 32, 43, 58, 60, 76, 229];
-const rows = sourcePeriods.map(testPeriod);
+const periods = [13, 27, 29, 32, 43, 58, 60, 76, 229];
+const rows = periods.map(testPeriod);
 const byPeriod = new Map(rows.map((row) => [row.period, row]));
 
-assert.equal(byPeriod.get(13).trainSurvivors, 0);
-assert.equal(byPeriod.get(27).trainSurvivors, 0);
+assert.deepEqual(byPeriod.get(13), {
+  period: 13,
+  trainingSurvivors: 28,
+  comparable: 9,
+  bestMatches: 1,
+  compatibleSlopes: [],
+});
+
+assert.deepEqual(byPeriod.get(27), {
+  period: 27,
+  trainingSurvivors: 28,
+  comparable: 1,
+  bestMatches: 1,
+  compatibleSlopes: [21],
+});
 
 assert.deepEqual(byPeriod.get(29), {
   period: 29,
-  trainSurvivors: 1,
-  survivingSlopes: [17],
-  maxComparable: 9,
-  bestMatches: 1,
-  fullyPredictive: 1,
-  exactFullMatches: 0,
+  trainingSurvivors: 28,
+  comparable: 9,
+  bestMatches: 2,
+  compatibleSlopes: [],
 });
 
-for (const [period, best] of [
-  [32, 2],
-  [43, 1],
-  [58, 2],
-  [76, 2],
-  [229, 1],
-]) {
-  const row = byPeriod.get(period);
-  assert.equal(row.trainSurvivors, 28);
-  assert.equal(row.maxComparable, 9);
-  assert.equal(row.fullyPredictive, 28);
-  assert.equal(row.bestMatches, best);
-  assert.equal(row.exactFullMatches, 0);
-}
+assert.deepEqual(byPeriod.get(32), {
+  period: 32,
+  trainingSurvivors: 28,
+  comparable: 2,
+  bestMatches: 1,
+  compatibleSlopes: [],
+});
+
+assert.deepEqual(byPeriod.get(43), {
+  period: 43,
+  trainingSurvivors: 28,
+  comparable: 0,
+  bestMatches: 0,
+  compatibleSlopes: Array.from({ length: 28 }, (_, index) => index + 1),
+});
+
+assert.deepEqual(byPeriod.get(58), {
+  period: 58,
+  trainingSurvivors: 28,
+  comparable: 9,
+  bestMatches: 2,
+  compatibleSlopes: [],
+});
 
 assert.deepEqual(byPeriod.get(60), {
   period: 60,
-  trainSurvivors: 28,
-  survivingSlopes: Array.from({ length: 28 }, (_, index) => index + 1),
-  maxComparable: 4,
+  trainingSurvivors: 28,
+  comparable: 4,
   bestMatches: 1,
-  fullyPredictive: 0,
-  exactFullMatches: 0,
+  compatibleSlopes: [],
+});
+
+assert.deepEqual(byPeriod.get(76), {
+  period: 76,
+  trainingSurvivors: 28,
+  comparable: 6,
+  bestMatches: 1,
+  compatibleSlopes: [],
+});
+
+assert.deepEqual(byPeriod.get(229), {
+  period: 229,
+  trainingSurvivors: 28,
+  comparable: 7,
+  bestMatches: 1,
+  compatibleSlopes: [],
 });
 
 console.log(JSON.stringify({
   status:
-    "PASS: fixed-period affine GP29 schedules selected by the current p0 route fail the independent THE DEVOTED holdout",
+    "PASS: physically anchored p0 crib islands reject most source-period affine schedules; d=27 remains underdetermined at slope21 and d=43 has no residue overlap",
   model: "C_i = a*P_i + K[i mod d] (mod 29), a=1..28",
   training: {
-    offsets: [0, 29],
-    plaintext: "EPIPHANY SEEKS AS I GO THE WEATHER TURNS",
-    runes: trainPlain.length,
+    offsets: [0, 12],
+    plaintext: "EPIPHANY SEEKS",
   },
   holdout: {
     offsets: [235, 243],
     plaintext: "THE DEVOTED",
-    runes: holdoutPlain.length,
   },
   rows,
 }, null, 2));

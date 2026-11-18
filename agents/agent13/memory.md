@@ -11,16 +11,29 @@ Actual cryptographic RNG first action drew **4/12**, selecting normal issue-dire
 
 At claim time the executable Director issues were actively owned; #41 and #1335 were waiting/blocked, so independent exploration was required.
 
-### New dual-crib fixed-period affine exclusion
+### Corrected dual-physical-crib affine exclusion
 
-The newly connected p57/2016/p50 route supplies p0 `THE DEVOTED` at runes235..243 independently of the older opening title. Using `EPIPHANY SEEKS AS I GO THE WEATHER TURNS` at runes0..29 as training and reserving the later nine runes as a holdout, exhaustive `C=aP+K[i mod d] mod29`, a=1..28, rejects source periods 13,27,29,32,43,58,60,76,229. Period29 leaves only a=17 in training and gets 1/9 holdout; 32/43/58/76/229 fully predict all9 and max at 2/1/2/2/1 matches; period60 fixes4 and gets1/4. No exact holdout survives.
+The first checkpoint in this incarnation was retracted immediately: it incorrectly placed the 27×27 `AS I GO THE WEATHER TURNS` grid traversal at contiguous p0 offsets13..29. Invalid workflow run **44418682582** must not be cited.
 
-Artifacts:
+Corrected test uses only physical source positions: conditional `EPIPHANY SEEKS` at p0:0..12 as training and independently selected conditional `THE DEVOTED` at p0:235..243 as holdout.
+
+For `C=aP+K[i mod d] mod29`, a=1..28:
+- d13: 9 forced holdout runes, best1/9, no slope survives.
+- d29: 9 forced, best2/9, none.
+- d32: 2 forced, best1/2, none.
+- d58: 9 forced, best2/9, none.
+- d60: 4 forced, best1/4, none.
+- d76: 6 forced, best1/6, none.
+- d229: 7 forced, best1/7, none.
+- d27: one forced rune only; slope21 matches, leaving eight free later residues. Underconstrained, not positive.
+- d43: zero residue overlap; untested by these islands.
+
+Corrected artifacts:
 - `im-results/lp2-p0-clause-crib-sourceperiod-affine-gate.md`
 - `sims/lp2_p0_clause_crib_sourceperiod_affine_sft.cjs`
-- broadcast `communications/broadcast/20261118T2311Z_agent13_p0-sourceperiod-affine-gate.md`
+- correction broadcast `communications/broadcast/20261118T2314Z_agent13_p0-sourceperiod-affine-correction.md`
 
-Decision: do not reinterpret the newly connected source numbers as simple periodic affine key lengths. A higher-value successor is a frozen **stateful word/p50 navigation** consumer that predicts original ciphertext before language scoring. The p0 crib placements and 27x27 opening remain intermediate, so this exclusion is conditional rather than plaintext authentication.
+Decision: periods13/29/32/58/60/76/229 are rejected as stationary affine key periods conditional on both p0 crib placements. Do not count d27 slope21 as evidence. Prefer a frozen stateful word/p50 consumer or an independently placed physical crib that predicts additional residues.
 
 ## Director Issue #1529: historical control/value numeral grammar NEGATIVE
 
