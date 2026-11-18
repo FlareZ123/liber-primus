@@ -26,7 +26,7 @@ Directions \`0..7\` are N, NE, E, SE, S, SW, W, NW, each a step in row/column co
 
 Check whether the resulting plaintext word's *own* prime sum modulo8 equals the presumed direction. There are eight tested source-shaped variants: two original zero anchors × two reading conventions × two additive signs. All **eight possible compass directions** are exhaustively enumerated as part of the inverse, not fitted from English. The direction automatically resets independently per printed word. No crib, English frequency, unknown key or free word-specific offset enters the test.
 
-For any candidate that satisfies the word's self-consistency, the explicit forward rule \`C_i=(P_i-s*b[r_i,c_i]) mod29\` exactly reconstructs its original ciphertext. This verifies implementation, but many keys can reencrpyt their own outputs and this fact alone would not authenticate plaintext.
+For any candidate that satisfies the word's self-consistency, the explicit forward rule \`C_i=(P_i-s*b[r_i,c_i]) mod29\` exactly reconstructs its original ciphertext. This verifies implementation, but many keys can reencrypt their own outputs and this fact alone would not authenticate plaintext.
 
 ## Original-input decision
 
@@ -47,6 +47,23 @@ The source-positive test uses **all 95 physically clear p57 GP29 runes** with th
 
 This is a stronger stop than a low index of coincidence: *there is no candidate output at all* for hundreds of authentic words if the proposed direct receiver is complete. It says nothing about navigation based on preceding/printed ciphertext words, independently moving start points, a source-authored different byte reduction, hidden state, or a non-additive cipher. Introducing word-specific start points or secret exceptions to rescue zero-fixed-point words would change the mechanism and require independent source evidence.
 
+## Independent source-sized 255-word address extension
+
+The original p3–7 chapter has **exactly 255** complete words and 1,145 GP29 runes; its four independently verified red initial runes spell **LPAD**. This offers a direct start-position alternative to reusing a 00 cell: assign the chapter's successive **255** printed words to table row-major positions 1–255, leaving the unique index0 as a reserved slot. Test the conventional zero-based indexing as a separate model. Each complete word again independently selects its own unknown 8-way compass heading by the resulting plaintext GP-prime sum modulo8, with the same two source-shaped direct additive signs and two read-before-step conventions. No unknown base address, language-selected direction or adjustable heading enters the eight models.
+
+| Word address | Sign | Anchor read first? | Chapter words without any valid heading | Unique | Multiple |
+|:---|:---:|:---:|---:|---:|---:|
+| j−1, 0-based | C−K | No | **85** | 106 | 64 |
+| j−1, 0-based | C−K | Yes | **73** | 112 | 70 |
+| j−1, 0-based | C+K | No | **90** | 99 | 66 |
+| j−1, 0-based | C+K | Yes | **74** | 120 | 61 |
+| j, 1-based | C−K | No | **88** | 101 | 66 |
+| j, 1-based | C−K | Yes | **90** | 103 | 62 |
+| j, 1-based | C+K | No | **81** | 110 | 64 |
+| j, 1-based | C+K | Yes | **77** | 111 | 67 |
+
+Every row totals **255 authentic chapter words**. At least **73** words fail for even the most generous read, so this *genuinely source-matched 255-word/256-cell address rule* likewise cannot decode the complete original chapter under the specified self-referential cipher. Independently clear native p57 words were encoded with these same address rules and recovered exactly, ensuring that the contradiction does not come from self-reference alone. The old p3–7→p50→p55 *byte-to-word* study uses the mapping in the opposite direction and does not cover this result. The chapter test continues to depend on an unprinted analyst choice of toroidal compass directions, GP29 byte reduction, direct additive cipher, and plaintext-based compass selector. A different authentic receiver remains possible.
+
 ## Research decision
 
-Retire the **self-referential per-word GP-prime-sum modulo8 → one constant p50 compass direction → source-zero-anchored direct GP29 additive read**. The signed “numbers” clue does not, by itself, make the table an invertible keystream. A productive successor requires an original Cicada instruction that supplies a different reversible state update, directional operand, or authentic key. Do not multiply unsourced compass variants against the same original.
+Retire the **self-referential per-word GP-prime-sum modulo8 → one constant p50 compass direction → direct GP29 additive read** under both original-zero and 255-word-matched chapter addresses. The signed “numbers” clue does not, by itself, make the table an invertible keystream. A productive successor requires an original Cicada instruction that supplies a different reversible state update, directional operand, or authentic key. Do not multiply unsourced compass variants against the same original.
