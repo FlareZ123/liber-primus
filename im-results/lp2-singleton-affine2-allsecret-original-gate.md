@@ -1,6 +1,6 @@
 # LP2 all-coefficient affine-two-state key exclusion from printed one-rune words
 
-**Decision, 18 November 2026 (Agent26):** Under the explicit hypothesis that the unknown manuscript preserves ordinary English words and directly encrypts GP29 rune symbols by a continuously advanced affine second-order additive keystream, **none of the complete 29^5 = 20,511,149 possible secret parameter sets can produce the original ciphertext**. Giving each of the nine illustrated chapters an independently chosen recurrence, offset, initial state and clock restart still fails in **six distinct original chapters**. This is a genuine whole-family exclusion with a source-original planted-language positive. **No previously unknown LP2 plaintext, authentic key, or final destination is recovered.** The manuscript does not identify this recurrence as its intended cipher.
+**Decision, 18 November 2026 (Agent26):** Under the explicit hypothesis that the unknown manuscript preserves ordinary English words and directly encrypts GP29 rune symbols by a continuously advanced affine second-order additive keystream, **none of the complete 29^5 = 20,511,149 possible secret parameter sets can produce the original ciphertext**. The result survives an **entirely unknown stationary permutation of the 29 plaintext symbol identities**: all 83 one-rune words require a fourth different decoded symbol by word ten. Giving each of the nine illustrated chapters an independently chosen recurrence, offset, initial state and clock restart still fails under literal A/I/O in **six distinct original chapters**, and even under an independently unknown substituted alphabet in **four original chapters**. This is a genuine whole-family exclusion with a source-original planted-language positive. **No previously unknown LP2 plaintext, authentic key, or final destination is recovered.** The manuscript does not identify this recurrence as its intended cipher.
 
 ## Human-observable source and cryptanalytic premise
 
@@ -51,14 +51,35 @@ Chapter 1 (p0–2) has five such words, chapter 5 (p23–26) has five, and chapt
 
 The stricter A/I-only branch also has **zero** survivors in the global and all six excluded chapter scopes; allowing O does not rescue the family. All source bytes, original line/page joins, physical rune orders and chapter boundaries are asserted independently against the checked-in original corpus in the reproducer.
 
+## Stronger result: arbitrary secret alphabet, no identity assumptions
+
+A possible objection to the literal-A/I/O constraint is that an unknown **global 29-symbol permutation** precedes the additive keystream. Grant that entire secret alphabet freely. The only necessary condition on 83 original single-rune words is that their 83 recovered intermediate GP29 symbol values occupy **at most three distinct symbol identities**. An arbitrary invertible secret permutation can map any such three identities to source-native A, I and O. This condition is strictly weaker than prescribing their literal GP ordinals; it does not require finding or specifying the secret 29! permutation.
+
+For **every** candidate affine second-order key's 83 decoded singletons in source order, track the first three different recovered values, then stop at the *fourth* different value. Exhaust the complete 29^5 keys with this property. The unmodified original complete book has **zero** candidate keys admitting at most three decoded singleton symbol identities; the longest three-symbol-compatible prefix is **nine words**. **Every** secret key therefore forces a *fourth distinct decoded single-rune value by the 10th original singleton*. This is an exact all-secret exclusion against arbitrary stationary output/plaintext symbol relabeling, independent of English unigram scores and individual rune letter assignments.
+
+For the independent illustrated-chapter reset clock, grant **fresh unrelated 29-symbol alphabet permutations for each chapter**, in addition to independently arbitrary coefficients/seeds/affine offsets. The exact full-model outcomes are:
+
+| Original illustrated chapter | One-rune words | Secret affine2 keys preserving ≤3 distinct decoded symbols | Longest compatible three-symbol prefix |
+| --- | ---: | ---: | ---: |
+| p3–7 | 8 | **667** | 8 |
+| p8–14 | 11 | **0** | 10 |
+| p15–22 | 18 | **0** | 9 |
+| p27–32 | 12 | **0** | 9 |
+| p33–39 | 9 | **145** | 9 |
+| p40–53 | 13 | **0** | 9 |
+
+Chapters p0–2, p23–26 and p54–55 have only 5, 5 and 2 singletons and were deliberately omitted from this stronger independent constraint, rather than asserted impossible. The two shorter tested chapters p3–7 and p33–39 **admit hundreds of key hypotheses** under arbitrary unknown alphabet relabeling; their earlier *literal* A/I/O negative does not imply a secret-alphabet negative. Four independently longer chapters remain logically impossible under the full five-secret-parameter affine2 model **even if every chapter has its own entirely unknown secret alphabet**.
+
+This stronger alphabet-blind gate is implemented as a separate exhaustive consumer in the same SFT. It closes arbitrary stationary symbol renaming of this entire affine2 model. It does not close nonstationary output alphabets, nonuniform nulls, an independently changing state/reset clock inside each chapter or a different plaintext word alphabet exceeding three types.
+
 ## Original-language positive and reproducibility
 
 The source-original 95 GP29 runes of solved p57 **PARABLE** are encrypted under an independently defined affine recurrence with a=2, b=3, c=5 and starting key values (7,11). The inverse recovers **95/95** original solved runes. Separately, at the **same 83 original source singleton offsets**, a hidden cyclic sequence of A/I/O rune values is encrypted with that recurrence. The *same full-model search* detects a compatible key after **1,493,941** enumerated parameter sets, with **83/83** planted singleton constraints satisfied. The positive is a synthetic original-shaped gate validation, not an LP2 unknown-page decryption.
 
-The read-only, single-file [Node22/CommonJS original-input reproducer](../sims/lp2_singleton_affine2_allsecret_sft.cjs) implements the full enumeration, source assertions, native-language positives and independent chapter restarts. It passed on actual original files under [Windows Node.js 22 CI run 44260954868](https://github.com/FlareZ123/liber-primus/actions/runs/44260954868) via [manual-only workflow](../.github/workflows/agent26-singleton-affine2-manual.yml). The run logs print each exhausted model count and each chapter's exact earliest forced contradiction.
+The read-only, single-file [Node22/CommonJS original-input reproducer](../sims/lp2_singleton_affine2_allsecret_sft.cjs) implements the full enumeration, source assertions, native-language positives and independent chapter restarts. The initial literal-A/I/O run passed on actual original files under [Windows Node.js 22 CI run 44260954868](https://github.com/FlareZ123/liber-primus/actions/runs/44260954868); the extended all-secret alphabet run is tracked in the same [manual-only workflow](../.github/workflows/agent26-singleton-affine2-manual.yml). The run logs print each exhausted model count and each chapter's exact earliest forced contradiction.
 
 ## Research decision
 
-Retire **direct GP29 full-consumption affine order-two additive keystreams** for ordinary native-English LP2 under the continuous whole-book key clock and under independent starts at each of the nine illustrated chapters. The exclusion is complete even if the recurrence coefficients, seed, offset and sign were entirely secret; no further low-order coefficient sweeps can rescue this exact architecture.
+Retire **direct GP29 full-consumption affine order-two additive keystreams**, including **every stationary secret alphabet permutation**, for ordinary native-English LP2 under the continuous whole-book key clock. Under independent starts and arbitrary new secret alphabet per illustrated chapter, four chapters independently exclude the complete model; two additional chapters fail only under canonical literal A/I/O. The exclusion is complete even if the recurrence coefficients, seed, offset and sign were entirely secret; no further low-order coefficient sweeps can rescue this exact architecture.
 
 The evidence **does not** address higher-order secret generators, literal-plaintext-F skips of the kind used on solved p56, arbitrary key resets inside chapters, altered word boundaries or language, transposition, or a non-additive cipher. The original manuscript does not instruct using an order-two affine generator, so discovering a first-party actual key-selection and cipher operation remains the productive priority. Do not attempt to refit this negative by introducing unconstrained local resets or speculative nulls solely to recover its excluded parameters.
