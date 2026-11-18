@@ -110,10 +110,80 @@ const p57 = solved.sections.find((section) => section.name === "p57_parable");
 assert.ok(p57);
 const p57Words = runeWords(p57.source_text);
 const we = p57Words.find((word) => spell(word) === "WE");
-assert.ok(we);
+const our = p57Words.find((word) => spell(word) === "OUR");
+const own = p57Words.find((word) => spell(word) === "OWN");
+assert.ok(we && our && own);
 assert.equal(gp0(we), 25);
 assert.deepEqual(hadamardPair(outer), [A, B]);
+assert.deepEqual(hadamardPair(outer), [gp0(our), gp0(own)]);
 assert.deepEqual(hadamardPair(inner), [p, gp0(we)]);
+
+// The adjacent solved phrase OUR OWN fixes the butterfly orientation.
+// Exhaust the eight natural sign/order variants of (difference,sum).
+const d = mod29(outer[0] - outer[1]);
+const sum = mod29(outer[0] + outer[1]);
+const variants = [
+  ["d,s", [d, sum]],
+  ["s,d", [sum, d]],
+  ["-d,s", [mod29(-d), sum]],
+  ["s,-d", [sum, mod29(-d)]],
+  ["d,-s", [d, mod29(-sum)]],
+  ["-s,d", [mod29(-sum), d]],
+  ["-d,-s", [mod29(-d), mod29(-sum)]],
+  ["-s,-d", [mod29(-sum), mod29(-d)]],
+];
+assert.deepEqual(
+  variants.filter(([, pair]) => pair[0] === gp0(our) && pair[1] === gp0(own)).map(([name]) => name),
+  ["d,s"]
+);
+
+// Matrix invariants of H over GF(29): det(H)=2=K, det^-1=15=b,
+// and H has exact order 28, matching physical p28.
+const determinant = mod29(1 * 1 - (-1) * 1);
+const inverseDeterminant = 15;
+assert.equal(determinant, K);
+assert.equal(mod29(determinant * inverseDeterminant), 1);
+const b = inverseDeterminant;
+assert.deepEqual(hadamardPair([23, 8]), [b, K]);
+
+function mul2(left, right) {
+  return [
+    [
+      mod29(left[0][0] * right[0][0] + left[0][1] * right[1][0]),
+      mod29(left[0][0] * right[0][1] + left[0][1] * right[1][1]),
+    ],
+    [
+      mod29(left[1][0] * right[0][0] + left[1][1] * right[1][0]),
+      mod29(left[1][0] * right[0][1] + left[1][1] * right[1][1]),
+    ],
+  ];
+}
+const H = [[1, 28], [1, 1]];
+let power = [[1, 0], [0, 1]];
+let order = null;
+for (let exponent = 1; exponent <= 28; exponent += 1) {
+  power = mul2(power, H);
+  if (JSON.stringify(power) === JSON.stringify([[1, 0], [0, 1]])) {
+    order = exponent;
+    break;
+  }
+}
+assert.equal(order, 28);
+
+function powMod(base, exponent, modulus) {
+  let result = 1;
+  let factor = base % modulus;
+  let e = exponent;
+  while (e > 0) {
+    if (e % 2 === 1) result = (result * factor) % modulus;
+    factor = (factor * factor) % modulus;
+    e = Math.floor(e / 2);
+  }
+  return result;
+}
+assert.equal(powMod(g, a, p), A);
+assert.equal(powMod(g, b, p), B);
+assert.equal(powMod(B, a, p), K);
 assert.equal(selected.length, g);
 assert.equal((selected[0] + selected[4]) % p, K);
 assert.equal((selected[1] + selected[3]) % p, K);
@@ -212,7 +282,8 @@ console.log(JSON.stringify({
     inner,
     innerThroughH: hadamardPair(inner),
     shellDecoded: shellDecode(selected),
-    typed: { g: selected.length, a, A, B, p, K, weGp0: gp0(we) },
+    typed: { g: selected.length, a, b, A, B, p, K, weGp0: gp0(we), ourGp0: gp0(our), ownGp0: gp0(own) },
+    matrix: { determinant, inverseDeterminant, order, selectedPage: 28, phraseVariant: "d,s" },
   },
   structuralControl: {
     eligibleWithinPageFiveToTwoPairs: eligibleFiveTwo,
