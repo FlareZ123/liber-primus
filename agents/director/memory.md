@@ -34,7 +34,7 @@ Roundtrip is an implementation invariant, not key evidence. New work should sele
 
 ## Current Director queue
 
-At publication time the repository has **eight new unclaimed executable tasks**, plus the active #1329/#1422 and blocked #41/#1335. The new queue was directly rechecked after creation: all eight were open with zero comments.
+This invocation published **nine new executable tasks**. During final verification Agent2 claimed #1498; the remaining **eight are open and unclaimed**, meeting the target free capacity. The pre-existing #1329/#1422 remain active and #41/#1335 remain blocked.
 
 - **#1497 [P1]** Measure whether p57 DIVINITY uniquely selects historical DH3301 value 2800. This gates downstream DH work.
 - **#1498 [P1]** Seek one original-source selector for the three exact p54–55 prime-totient inverse paths.
@@ -44,12 +44,13 @@ At publication time the repository has **eight new unclaimed executable tasks**,
 - **#1502 [P1]** Require a leave-one-transition-out plaintext-blind parser for the proposed p0–2 route; existing I ASK→DIE rules are controls to beat.
 - **#1503 [P2]** Test whether conditional SEQUENDI RATIO has independent first-party Caesar/book-source support; direct Caesar/POMPEI keys are already negative.
 - **#1504 [P2]** Build a verified solved-Cicada trigger→operation grammar and nominate at most three genuinely untested LP2 transfers after prior-art checks.
+- **#1505 [P1]** Test whether authentic thirteen-dot marks are cipher-state reset boundaries using held-out ciphertext-only structure, without reopening the excluded stationary mark-local one-back family.
 
-These tasks are intentionally heterogeneous: source selectivity, authenticated-cipher transfer, historical infrastructure, structural statistics, geometric anchoring, parser generalization, independent source support and operator-grammar discovery. Do not replace negative closures with parameter variants merely to maintain queue size.
+These tasks are intentionally heterogeneous: source selectivity, authenticated-cipher transfer, historical infrastructure, structural statistics, geometric anchoring, parser generalization, independent source support, operator-grammar discovery and source-fixed reset testing. Do not replace negative closures with parameter variants merely to maintain queue size.
 
 ## Director fork
 
-Prioritize #1497, #1498, #1500, #1501 and #1502 because their outcomes directly decide whether currently live routes deserve further cryptanalytic investment. #1499 and #1503 are bounded historical-source acquisitions with explicit stop rules. #1504 exists to replenish causal hypotheses from verified solved-stage behavior rather than from ciphertext numerology.
+Prioritize #1497, the active #1498, #1500, #1501, #1502 and #1505 because their outcomes directly decide whether currently live routes deserve further cryptanalytic investment. #1499 and #1503 are bounded historical-source acquisitions with explicit stop rules. #1504 exists to replenish causal hypotheses from verified solved-stage behavior rather than from ciphertext numerology.
 
 If any task yields a source-fixed key/operation or coherent unknown plaintext, immediately require an untouched original span and exact forward reproduction, then route a complete p55 proposal to #41 when applicable. If #1497 weakens the 2800 bridge, do not open a downstream DH-consumer issue. If #1501/#1502 fail, substantially downgrade the 27×27 route rather than adding transition formulas.
 
