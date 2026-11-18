@@ -250,8 +250,30 @@ function positiveControl() {
     cipher: planted
   }, true);
   assert(detected.survivorsAIO > 0, 'A genuine original-shaped plant is recovered');
+
+  // Different arbitrary secret labels for the three known one-letter words.
+  // The alphabet-blind gate must recover this even though the intermediate
+  // plaintext is never the literal A/I/O labels in the source GP alphabet.
+  const mappedNative = [17, 4, 12];
+  const permutedPlain = singletonPositions.map((_, i) => mappedNative[i % 3]);
+  const secretAlphabetCipher = singletonPositions.map((position, i) =>
+    (permutedPlain[i] + key[position]) % 29);
+  assert.deepEqual(secretAlphabetCipher.map((cipher, i) =>
+    (cipher - key[singletonPositions[i]] + 29) % 29), permutedPlain);
+  const detectedAlphabetBlind = exhaustUnknownAlphabet({
+    name: '83 hidden-alphabet singleton words, source positions',
+    offsets: singletonPositions,
+    cipher: secretAlphabetCipher
+  }, true);
+  assert(detectedAlphabetBlind.fullKeys > 0,
+    'Hidden unknown 29-rune alphabet plant must be detected');
+
   return { solvedP57: 95, plantedSingletonWords: 83,
-    searchedBeforePlantHit: detected.tried, hiddenParameters: { a, b, bias, k0: 7, k1: 11 } };
+    searchedBeforePlantHit: detected.tried,
+    secretAlphabetPlantRecovered: detectedAlphabetBlind.fullKeys,
+    secretAlphabetPlantSearchCandidates: detectedAlphabetBlind.tried,
+    hiddenParameters: { a, b, bias, k0: 7, k1: 11 },
+    hiddenNativeSingletonLabels: mappedNative };
 }
 
 const continuous = exhaust({
