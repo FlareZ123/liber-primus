@@ -1,4 +1,4 @@
-# Six-back GP29 orbit-log transport: all stationary alphabet keys fail original native-English suffixes
+# Six-back GP29 orbit-log transport: stationary global, page and chapter keys fail native-English suffixes
 
 **18 November 2026 · Agent 9 · original-input full-key negative.** This is one bounded, invertible proposed cipher architecture. It recovers **no** unknown LP2 plaintext, key, or destination. The original-source CommonJS program passed [Windows Node 22 workflow 44294285989](https://github.com/FlareZ123/liber-primus/actions/runs/44294285989) after a complete positive source-native encryption/decryption check.
 
@@ -46,8 +46,35 @@ Controls are **conditional reference-distribution comparisons**, not a language-
 
 Each of the three actual English source plants was **fully encoded and recovered 12,956/12,956**, with exact forward replay and independent positive validation of all 1,290 decoded suffixes. The source SFT locks the observed original numeric values, key-family invariance, source lengths and positive controls: [`sims/lp2_t6_lag6_dlog_allkey_original_sft.cjs`](../sims/lp2_t6_lag6_dlog_allkey_original_sft.cjs). Reproduce from repository root on Windows Node.js 22: `node sims/lp2_t6_lag6_dlog_allkey_original_sft.cjs`.
 
+## Stronger original-input test: independent alphabet key on every page or chapter
+
+The stationary global permutation is an unnecessarily strong restriction. Under the same T6 orbit-log emitter, the secret 29-symbol plaintext→code bijection may change **independently on each physical page**. An arbitrary word may cross a page boundary: the key switches at the exact physical rune and the six-rune ciphertext-feedback predecessor stays word-local. Likewise, the secret permutation can instead change independently on each of the **nine original printed chapters**. A hidden page or chapter key changes which labels occur in its stratum, yet **cannot change collisions of the recovered suffix symbols within that stratum**.
+
+The new source-exact [read-only per-page/chapter full-key SFT](../sims/lp2_t6_lag6_dlog_pagekeys_original_sft.cjs) computes the sum of within-stratum collision pairs, excluding pairs that cross an unknown key change. The original 1,290 six-back outputs yield:
+
+| Scope of independently arbitrary 29-way alphabet keys | Original eligible suffix symbol pairs | Same-code collisions | Key-invariant pooled IoC |
+| --- | ---: | ---: | ---: |
+| One secret alphabet for the entire book | 831,405 | 29,529 | **0.0355230002225149** |
+| Nine independent chapter alphabets | 115,568 | 4,165 | **0.036039388065900596** |
+| Fifty-five independent physical-page alphabets | 16,875 | 628 | **0.03721481481481481** |
+
+The single-alphabet first-row exact collision numerator 29,529 is inferred from the exact original IoC and 831,405 pairs; independent page/chapter rows are asserted directly by their source-original SFT. Of 55 physical pages, 54 contain at least two suffix symbols, with runeless p50 contributing none. The free key space now includes **all `(29!)^55` possible page-wise alphabets**, and separately all `(29!)^9` chapter-wise alphabets. The security argument is a mathematical invariance: the secret permutations can be entirely unknown and different from each other without changing the observed collision totals.
+
+Calibrate against 800 source-native GP English 12,956-rune books *per control source*, with every printed word length fixed as in the original. Each reference book is sampled as 2,896 complete words, retaining natural within-word repeats and the exact original page/chapter assignment of each output position.
+
+| Source | Per-page native controls: minimum / mean IoC | Per-chapter native controls: minimum / mean IoC |
+| --- | --- | --- |
+| Gibran | **0.074370 / 0.086662** | **0.080360 / 0.090807** |
+| Shakespeare | **0.079230 / 0.089071** | **0.084591 / 0.092982** |
+| Emerson | **0.074844 / 0.085206** | **0.080559 / 0.089392** |
+| **Original LP2** | **0.037215** | **0.036039** |
+
+None of **2,400 page-key controls or 2,400 chapter-key controls** scores as low as the untouched original book. This exclusion is still conditional on source-like native-English plaintext and faithful original word boundaries. A non-English source, transformed plaintext register, per-word key changes, or another feedback opcode is outside it.
+
+**Constructive all-55-page-key positive:** independently give each physical page `p` an invertible `π_p(P)=11P+7p+3 (mod29)`; use the exact same six-back emission including the H interrupt. On the first genuinely source-native sampled book from **each** of Gibran, Shakespeare and Emerson, the full decoder recovers exactly **12,956/12,956 plaintext GP runes**, including 32 page-crossing printed words. It re-encrypts the result exactly. The decoded within-page suffix collision count is identical to the original planted plaintext's count at every page, which confirms the key-independence on a positive nonstationary-key example. All assertions passed in [Windows Node22 CI run 44294986153](https://github.com/FlareZ123/liber-primus/actions/runs/44294986153).
+
 ## Decision for future decryptors
 
-The p39/2013-inspired **six-back discrete-log incremental interpretation with one global stationary plaintext-code permutation** fails to explain even the suffix distribution of ordinary source-native English. It is not rescued by changing the secret alphabet or the word's first-six-symbol IV. The prior distinct **adjacent** (`j−1`) orbit-ratio experiment is [Agent 31's separate negative](lp1-p40-cayley-t6-logratio-inverse.md); this report specifically tests j−6 and fully covers the stationary-secret-alphabet family.
+The p39/2013-inspired **six-back discrete-log incremental interpretation with any globally stationary, page-stationary or chapter-stationary plaintext-code permutations** fails to explain the suffix collision distribution of ordinary source-native English. It is not rescued by independently changing every page's secret alphabet or the word's first-six-symbol IV. The prior distinct **adjacent** (`j−1`) orbit-ratio experiment is [Agent 31's separate negative](lp1-p40-cayley-t6-logratio-inverse.md); this report specifically tests j−6 and fully covers the stationary-secret-alphabet family.
 
 The source T6 echo remains an observed statistic without an author-licensed operation. Its survival could instead reflect another stateful emitter, a repair process or selection bias from the 812-map and lag search. These possibilities require an independently selected state/clock/repair rule before new key searches. **No unknown manuscript plaintext or new source-authenticated key was recovered.**
