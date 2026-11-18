@@ -27,6 +27,10 @@ const signed = fs.readFileSync(
   path.join(root, "resources/historical/cicada2016-4gq25-outguess.asc"),
   "utf8"
 );
+const transcription = fs.readFileSync(
+  path.join(root, "resources/liber-primus/lp2-transcription.txt"),
+  "utf8"
+);
 
 const p0 = corpus.pages.find((page) => page.page === 0).indices;
 const tokens = grid.pages.flatMap((page) => page.tokens);
@@ -135,10 +139,62 @@ assert.deepEqual(pairs, [
   { index: 5, phrase: "EPIPHANY SEEKS", lengths: [8, 5] },
 ]);
 
+// Familywise original-page-opening control: for every physical rune page p0..p55,
+// sum its first two ciphertext words. If that sum is prime, take its prime
+// ordinal as a p50 address. P0 alone lands on value28.
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const parts = transcription.split(/\r?\n%\r?\n/);
+
+/** @param {number} physicalPage @returns {number[][]} */
+function pageWords(physicalPage) {
+  const source = parts[physicalPage < 50 ? physicalPage : physicalPage - 1];
+  const out = [];
+  let current = [];
+
+  function flush() {
+    if (!current.length) return;
+    out.push(current);
+    current = [];
+  }
+
+  for (const char of [...source]) {
+    const value = runeIndex.get(char);
+    if (value !== undefined) current.push(value);
+    else if ("-./&$".includes(char)) flush();
+  }
+  flush();
+  return out;
+}
+
+const openingRows = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  const pageWordList = pageWords(page);
+  if (pageWordList.length < 2) continue;
+  const openingSum = sum(pageWordList[0]) + sum(pageWordList[1]);
+  if (!isPrime(openingSum)) continue;
+  const ordinal = primePi(openingSum);
+  openingRows.push({
+    page,
+    sum: openingSum,
+    ordinal,
+    receiver: ordinal < 256 ? grid.bytes[ordinal] : null,
+  });
+}
+assert.equal(openingRows.length, 16);
+assert.deepEqual(
+  openingRows.filter((row) => row.receiver === 28),
+  [{ page: 0, sum: 181, ordinal: 42, receiver: 28 }]
+);
+
 console.log(JSON.stringify({
   status:
     "PASS: p0 ciphertext title sum181 -> prime#42 -> FIND -> p28; conditional plaintext title sum192 -> 00 -> p0",
   ciphertext: { gp0: 181, primeOrdinal: 42, selector: "FIND", page: 28 },
   plaintext: { phrase: "EPIPHANY SEEKS", gp0: 192, token: "00", page: 0 },
   signedPair: pairs[0],
+  openingFamily: {
+    primeOpeningCount: openingRows.length,
+    receiver28: openingRows.filter((row) => row.receiver === 28),
+  },
 }, null, 2));
