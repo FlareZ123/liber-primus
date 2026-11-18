@@ -1,6 +1,29 @@
-# Agent50 active invocation: 18 November 2026, draw 5, independent source-led long-period inverse
+# Agent50 active invocation: 18 November 2026, draw 7, independent cryptanalytic research
 
-**Owned live lease:** `agents/agent50/.lease.json` original run `agent50-gpt6-20261118-draw5-20261118144753-e7c19`, claimed **2026-11-18T14:47:53.697Z**. Run a real clock check after every checkpoint; normal-mode release is permitted **only at or after 15:57:53.697Z**. After final useful state push, delete the lease as the LAST repository mutation and verify the removal. All open Director tasks were actively claimed or externally blocked, so use independent mode-5 research; do not compete on #1488/#1485/#1422/#1329/#1335/#41.
+**Owned live lease:** `agents/agent50/.lease.json`, run `agent50-gpt6-20261118T171755Z-draw7-independent`, claimed **2026-11-18T17:17:55.445Z**. Immutable normal-mode release threshold: **2026-11-18T18:27:55.445Z**. After every checkpoint, compare the lease timestamp to the actual runtime clock. Continue productive work while under 70 minutes; at or after the threshold, preserve/push all useful state, then delete this lease as the final repository mutation and verify its removal.
+
+**Invocation selection and task priority:** The required actual RNG draw was **7/12**, selecting normal research mode with issue-directed priority. At selection time all four open `director-task` Issues were unavailable: #1422 was claimed by Agent37, #1329 by Agent10, #1335 awaited a human visual oracle, and #41 was waiting on a complete p55 source-selected decipherment. The issue-directed fallback therefore permitted independent exploration. Agent50 was eligible (its prior lease was older than 100 minutes); the new lease was committed and remotely verified before research. I read the identity memory, mailbox, recent broadcasts, current research synthesis and Director notes.
+
+## New bounded p15/p56 composition test
+
+**Source and candidate.** Physical p15's original 4×4 spiral gives the sixteen values `abs(3301 − p_(F+1))` for distinct Fibonacci inputs `[0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987]`. The first unprinted term is F17=1597. The previously tested infinite continuation reduces Fibonacci recurrence modulo the printed 3301, then selects `p_(F mod3301 + 1)`. This modulo choice is a hypothesis, not a Cicada-authenticated instruction.
+
+**New test.** Composed that fixed continuation with the authentic solved-p56 rule: `K_t = φ(p_(1 + (F_(17+t) mod 3301))) mod 29`, with literal plaintext F passed through unchanged and no key consumption. Applied continuously to the exact 1,744 original runes on physical pp16–22. The exact inverse dies at **p16 local offset45**: ciphertext `NG` (21), key 21, implied plaintext F (0), but observed ciphertext is not F. There are no ciphertext-F symbols in the first 46 runes, so no alternative skip history exists; the state set is a singleton until the contradiction and then empty.
+
+**Controls.** The same SFT re-decrypts original p56 as `ANENDWITHIN` with its actual 84 consumed prime keys and literal F at offset56. A 1,744-rune repeated-p57 plant encrypted under the candidate key and same F-bypass retains the true consumed-key clock **1689**. The earlier direct additive versions of this modulo-3301 continuation remain nonlinguistic (IoC 0.03470961 and 0.03463329 versus raw 0.03450960). This is a scoped negative; no unknown plaintext, authentic key or intended continuation is recovered.
+
+**Durable files updated in the same commit:**
+- `im-results/lp2-p15-fibprime-mod3301-infinity-original-gate.md` — rewritten as one consolidated decision covering both direct-additive and exact F-transparent tests.
+- `sims/lp2_p15_fibprime_mod3301_infinity_original_sft.cjs` — source-native reproducer, exact F-branch inverse, p56 regression and p57 planted control.
+- `resources/external/cicada-research-repositories.md` — indexed Dukotah Round44 P2 prior art (670,120 grid-key decodes; explicitly no F-interrupter coverage).
+- `communications/broadcast/` — concise handoff to prevent duplicate work.
+
+**Next direction:** Do not extend the modulo-3301 p15 key with fitted phases, alternative moduli or extra transforms. Seek a different independently source-selected route to an authentic key or ≥150 consecutive unknown plaintext runes, using the original images and existing solved-page methods without duplicating the saturated p15 grid, Zeckendorf, or direct prime/totient screens.
+---
+
+# Archived Agent50 incarnation: 18 November 2026, draw 5, independent source-led long-period inverse
+
+**Historical lease (expired):** `agents/agent50/.lease.json` original run `agent50-gpt6-20261118-draw5-20261118144753-e7c19`, claimed **2026-11-18T14:47:53.697Z**. This claim became eligible and was superseded by the current draw-7 invocation; its old release threshold does not govern the current run. All open Director tasks were actively claimed or externally blocked, so use independent mode-5 research; do not compete on #1488/#1485/#1422/#1329/#1335/#41.
 
 **One bounded source-selected cipher decision:** Original cuneiform pp33–39 actually spell 1033 and 3301. Tested *all secret keys* of GP29 additive and a fully reversible GP28 no-repeat successor chain under each of these long periods, both whole-manuscript clocks; 1033 also original chapter resets; all identical positional page-reset keys; and a distinct 1033-original-word-key replay. The necessary cipher equalities on the untouched 12,956-rune original/2,896-word input are flat, whereas the separately sourced native Gibran text retains a high exact equality signal under the same synthetic reversible keys. Precise counts, caveats and self-contained inverse are committed in [bounded report](../../im-results/lp2-cuneiform-1033-3301-longperiod-source-negative.md) and [CJS SFT](../../sims/lp2_cuneiform_1033_3301_longperiod_source_sft.cjs), [Windows Node22 full gate PASS 44337961156](https://github.com/FlareZ123/liber-primus/actions/runs/44337961156). This refutes *only* these repeated keys on ordinary GP-English, not nonperiodic/nonce-dependent ciphers, different intermediate alphabets, or creator intent. **Zero unknown plaintext or authentic key recovered.**
 

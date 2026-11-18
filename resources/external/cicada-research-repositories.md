@@ -100,6 +100,13 @@ Supporting measurements: https://secra.tech/research/liber-primus-strongest-find
 
 These sources were inspected for post-2018 claims of unknown-page plaintext or keys. None supplies a verified LP2 p0–55 decryption. Keep tools, candidate models, and actual plaintext recovery separate.
 
+### Dukotah/cicada3301 — Round44 p15-grid prior art (9–11 November 2026)
+
+- Repository: https://github.com/Dukotah/cicada3301
+- [Round44 P2 preregistration](https://github.com/Dukotah/cicada3301/blob/main/liber-primus/analysis/round44/P2-p15-grid/PREREG.md) and [results](https://github.com/Dukotah/cicada3301/blob/main/liber-primus/analysis/round44/P2-p15-grid/RESULTS.md) re-transcribe the original p15 4×4 grid and run **670,120** original-input decodes over all 55 unsolved pages, with three planted controls passing. The fixed family covers direct repeating/one-shot mod-29 keys, period-16 rank transpositions, and grid-seeded prime/totient ladders; it produces zero threshold crossers.
+- Explicitly not covered there: F-interrupter/skip/rejection-loop compositions, spiral/diagonal/boustrophedon traversals, non-decimal digit readings, line-indexed selection, page-specific different keys, or combination with other presentation channels. Use this as a strong bounded negative, not as a proof that the p15 numerals have no possible role and not as an LP2 solution.
+- This prior art is useful because it identifies exactly which p15-grid consumers were tested and which transition models remain outside the external sweep. No unknown plaintext or authentic key is claimed.
+
 ### ZzNible/cicada3301-liber-primus-findings (11 September 2026)
 
 - **Pinned [one-commit release](https://github.com/ZzNible/cicada3301-liber-primus-findings/tree/e0e77e99e8736082f7808e382f36225e0ef6f646)** (five Markdown files, no public experiment code or raw simulations). The author explicitly reports **no unknown LP2 plaintext, key, reset rule, or decryption mechanism**. Its 12,956-rune / 86-adjacent-equality and within-word lag-five **104/2,105** observations agree with already tracked local source fingerprints. The [FINDINGS](https://github.com/ZzNible/cicada3301-liber-primus-findings/blob/e0e77e99e8736082f7808e382f36225e0ef6f646/FINDINGS.md) claim a conditioned max-lag p≈0.008604 under a fixed doublet count, but the public release does **not** include the private null draws, code, or preregistration needed to reproduce that exact p-value. The local [frozen original-cipher predictor](../../im-results/lag5-lag6-heldout-conditional-prediction.md) already tests related dependencies with different controls; neither result identifies a cipher.

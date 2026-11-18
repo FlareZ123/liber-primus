@@ -56,11 +56,15 @@ assert.equal(firstPrimes(1598)[1597], 13477);
 const modulus = 3301;
 let previous = 987; let current = 1597;
 const indexKey = [];
+const totientKey = [];
 for (let i = 0; i < ciphertext.length; i++) {
-  indexKey.push(primes[current % modulus] % 29);
+  const selectedPrime = primes[current % modulus];
+  indexKey.push(selectedPrime % 29);
+  totientKey.push((selectedPrime - 1) % 29);
   [previous, current] = [current, (previous + current) % modulus];
 }
 assert.equal(indexKey[0], 13477 % 29);
+assert.equal(totientKey[0], (13477 - 1) % 29);
 
 /** @param {number[]} values */
 function indexOfCoincidence(values) {
@@ -75,6 +79,42 @@ function change(values, sign) {
   return values.map((v, i) => (v + sign * indexKey[i] + 2900) % 29);
 }
 
+/**
+ * Exact inverse of the authenticated p56 plaintext-F-transparent rule.
+ * A ciphertext F may be either a transparent plaintext F (no key consumed)
+ * or an ordinary encrypted non-F (one key consumed); retain both branches.
+ * @param {number[]} values
+ * @param {number[]} key
+ */
+function inverseTransparentF(values, key) {
+  let clocks = new Set([0]);
+  let maxStates = 1;
+  for (let i = 0; i < values.length; i++) {
+    const c = values[i];
+    const next = new Set();
+    for (const consumed of clocks) {
+      if (c === 0) next.add(consumed);
+      const inferred = (c - key[consumed] + 29) % 29;
+      if (inferred !== 0) next.add(consumed + 1);
+    }
+    if (next.size === 0) return { firstFailure: i, finalClocks: [], maxStates };
+    clocks = next;
+    maxStates = Math.max(maxStates, clocks.size);
+  }
+  return { firstFailure: null, finalClocks: [...clocks].sort((a, b) => a - b), maxStates };
+}
+
+/** @param {number[]} values @param {number[]} key */
+function encryptTransparentF(values, key) {
+  let consumed = 0;
+  const ciphertext = [];
+  for (const p of values) {
+    if (p === 0) ciphertext.push(0);
+    else { ciphertext.push((p + key[consumed]) % 29); consumed++; }
+  }
+  return { ciphertext, consumed };
+}
+
 const sourceIoc = indexOfCoincidence(ciphertext);
 const outputs = {};
 for (const sign of [-1, 1]) {
@@ -85,6 +125,41 @@ for (const sign of [-1, 1]) {
   };
   assert.deepEqual(change(recovered, -sign), ciphertext);
 }
+// Source-faithful p56 regression: prime-totient shifts with the literal
+// plaintext F at rune 56 passing through without consuming a prime.
+const p56 = corpus.pages.find((p) => p.page === 56);
+assert.equal(p56.indices.length, 85);
+assert.equal(p56.indices[56], 0);
+let p56Clock = 0;
+const p56Plain = p56.indices.map((c, i) => {
+  if (i === 56) return 0;
+  const inferred = (c - (primes[p56Clock] - 1) + 29) % 29;
+  assert.notEqual(inferred, 0, `p56 unexpected plaintext F at ciphertext offset ${i}`);
+  p56Clock++;
+  return inferred;
+});
+assert.equal(p56Clock, 84);
+assert.equal(p56Plain.slice(0, 10).map((v) => corpus.translit[v]).join(''), 'ANENDWITHIN');
+
+// New composition: p15 Fibonacci-prime continuation with authentic p56 F bypass.
+const transparentOriginal = inverseTransparentF(ciphertext, totientKey);
+assert.equal(transparentOriginal.firstFailure, 45);
+assert.equal(transparentOriginal.maxStates, 1);
+assert.equal(ciphertext.slice(0, 46).filter((v) => v === 0).length, 0);
+const contradiction = {
+  offset: 45, page: 16, pageLocalOffset: 45,
+  ciphertextIndex: ciphertext[45],
+  ciphertextRune: corpus.translit[ciphertext[45]],
+  keyIndex: totientKey[45],
+  impliedPlaintextIndex: (ciphertext[45] - totientKey[45] + 29) % 29,
+  impliedPlaintextRune: corpus.translit[(ciphertext[45] - totientKey[45] + 29) % 29],
+};
+assert.deepEqual(contradiction, {
+  offset: 45, page: 16, pageLocalOffset: 45,
+  ciphertextIndex: 21, ciphertextRune: 'NG',
+  keyIndex: 21, impliedPlaintextIndex: 0, impliedPlaintextRune: 'F',
+});
+
 const known = corpus.pages.find((p) => p.page === 57).indices;
 assert.ok(known.length >= 90);
 const control = Array.from({ length: ciphertext.length }, (_, i) => known[i % known.length]);
@@ -93,6 +168,15 @@ for (const sign of [-1, 1]) {
   assert.deepEqual(change(syntheticCiphertext, -sign), control);
 }
 assert.ok(indexOfCoincidence(control) > 0.045);
+
+const transparentPlant = Array.from(
+  { length: ciphertext.length }, (_, i) => known[i % known.length]
+);
+const transparentEncrypted = encryptTransparentF(transparentPlant, totientKey);
+const transparentDecoded = inverseTransparentF(transparentEncrypted.ciphertext, totientKey);
+assert.equal(transparentEncrypted.consumed, 1689);
+assert(transparentDecoded.finalClocks.includes(transparentEncrypted.consumed));
+assert.deepEqual(transparentDecoded.finalClocks, [1689, 1690, 1691, 1695, 1696]);
 console.log(JSON.stringify({
   hypothesis: 'p15 distinct Fibonacci prime-index continuation, mod3301 before prime selection',
   sourceGridMatches: 16,
@@ -104,5 +188,21 @@ console.log(JSON.stringify({
   firstDerivedKeystreamPrime: 13477,
   outputByAdditiveSign: outputs,
   authenticP57ControlIoc: indexOfCoincidence(control),
-  conclusion: 'these exact two direct additive inverses are text-like only if decoded IoC rises toward solved plaintext',
+  p56FTransparentRegression: {
+    decodedPrefix: p56Plain.slice(0, 10).map((v) => corpus.translit[v]).join(''),
+    p56Runes: p56.indices.length, consumedPrimeKeys: p56Clock, literalFOffset: 56,
+  },
+  p56FTransparentComposition: {
+    keyRule: 'phi(prime((Fibonacci mod 3301) + 1)) mod 29',
+    firstUnprintedFibonacciTerm: 1597,
+    original: transparentOriginal,
+    contradiction,
+    ciphertextFCountBeforeFailure: 0,
+    positivePlant: {
+      runes: transparentPlant.length, consumedKeys: transparentEncrypted.consumed,
+      finalClocks: transparentDecoded.finalClocks,
+      trueClockRetained: transparentDecoded.finalClocks.includes(transparentEncrypted.consumed),
+    },
+  },
+  conclusion: 'direct additive variants are nonlinguistic; the exact p56 F-transparent composition is impossible on original pp16-22 at rune 46',
 }, null, 2));
