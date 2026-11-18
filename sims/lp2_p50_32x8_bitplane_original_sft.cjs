@@ -60,7 +60,7 @@ function extract(source, bit, reverseColumns) {
 }
 
 // Positive: a known typed 32-byte payload planted into one selected bit plane.
-const planted = Buffer.from("ORIGINAL-TYPED-BITPLANE-CONTROL!!", "ascii");
+const planted = Buffer.from("ORIGINAL-TYPED-BITPLANE-CONTROL!", "ascii");
 assert.equal(planted.length, 32);
 const artificial = Buffer.alloc(256);
 for (let row = 0; row < 32; row++)
