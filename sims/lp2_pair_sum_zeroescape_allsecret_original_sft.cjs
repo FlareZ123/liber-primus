@@ -206,13 +206,33 @@ function independentPassages(plainTexts) {
   };
 }
 const native=refs.map(f=>nativeGP(read(f)));
-assert.deepEqual(native.map(x=>x.length),[62492,217106,321327]);
+// Independent pre-existing Latin-Vulgate word-preserving GP corpus.
+const latinDigits='0123456789ABCDEFGHIJKLMNOPQRS';
+const latin=read('resources/control/latin-vulgate-gp-wholewords.txt')
+  .split(/\r?\n/).filter(s=>/^[0-9A-S]+$/.test(s))
+  .flatMap(s=>Array.from(s).map(c=>latinDigits.indexOf(c)));
+assert.equal(latin.length,204802);
+assert.ok(latin.every(x=>x>=0&&x<29));
+native.push(latin);
+// Independent corrected Beowulf Old-English rune register. Its base29
+// serialization is alphabetically indexed A-Z,a-c, not ASCII 0-9,A-S.
+const beowulf=JSON.parse(read('resources/control/beowulf_oe_gp_profile_corrected.json'));
+assert.equal(beowulf.positiveControlAlphabet,'ABCDEFGHIJKLMNOPQRSTUVWXYZabc');
+const oldEnglish=Array.from(beowulf.sourceGpBase29)
+  .map(c=>beowulf.positiveControlAlphabet.indexOf(c));
+assert.equal(oldEnglish.length,48012);
+assert.ok(oldEnglish.every(x=>x>=0&&x<29));
+const oldCounts=Array.from({length:29},()=>0);
+for(const x of oldEnglish)oldCounts[x]++;
+assert.deepEqual(oldCounts,beowulf.allGpCounts);
+native.push(oldEnglish);
+assert.deepEqual(native.map(x=>x.length),[62492,217106,321327,204802,48012]);
 const scans=native.map(allKeys);
-assert.deepEqual(scans.map(x=>x.windows),[49537,204151,308372]);
-assert.deepEqual(scans.map(x=>x.minimum),[138,129,140]);
-assert.deepEqual(scans.map(x=>x.start),[41265,29470,224755]);
-assert.deepEqual(scans.map(x=>x.compatible),[0,0,0]);
-const sourceControls=independentPassages(native);
+assert.deepEqual(scans.map(x=>x.windows),[49537,204151,308372,191847,35057]);
+assert.deepEqual(scans.map(x=>x.minimum),[138,129,140,100,119]);
+assert.deepEqual(scans.map(x=>x.start),[41265,29470,224755,71107,5275]);
+assert.deepEqual(scans.map(x=>x.compatible),[0,0,0,0,0]);
+const sourceControls=independentPassages(native.slice(0,3));
 assert.equal(sourceControls.minimum,136);
 assert.equal(sourceControls.q01,151);
 assert.equal(sourceControls.median,176);
@@ -227,7 +247,9 @@ console.log(JSON.stringify({
     originalSections:group+1,spans:spans.length,eligible,
     repeated:originalEquals},
   family:'C[i]=C[i-1] iff plaintext predecessor SUM is a section-fixed GP29 residue; each other successor is arbitrarily permutable',
-  scans:scans.map((row,i)=>({file:refs[i],...row})),
+  scans:scans.map((row,i)=>({file:[...refs,
+    'resources/control/latin-vulgate-gp-wholewords.txt',
+    'resources/control/beowulf_oe_gp_profile_corrected.json'][i],...row})),
   totalNativeWindows:scans.reduce((s,row)=>s+row.windows,0),
   independentPassages:sourceControls,
   positive:{originalLengthNativeRunes:plant.length,
