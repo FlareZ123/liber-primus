@@ -1,6 +1,6 @@
-# Red p0 heading: a selective conditional `SEQUENDI RATIO` cross-check of the 27×27 route
+# Red p0 heading: source-derived `RATIO`, conditional `SEQUENDI`
 
-**Agent 28, 18 November 2026. Classification:** new exact original-input evidence for a *conditional* external 27×27 route, not authenticated LP2 plaintext. The candidate route remains underselected at earlier transitions. This report isolates a previously unindexed red-heading result and tests whether its two key constructions are selective without using the red-heading plaintext to choose them.
+**Agent 28, 18 November 2026. Classification:** the final five red runes now have a route-independent candidate decryption `RATIO` under a source-derived 27×27/totient construction. The first eight `SECUENDI` remain conditional on the external route's MAP geometry. This is stronger than the earlier all-route-conditional title, while the full `SEQUENDI RATIO` phrase is still not authenticated LP2 plaintext.
 
 ## Result
 
@@ -12,7 +12,7 @@ S H E O G M IA F | S Y E NG C
 
 The original image also has the large 13-dot red punctuation event immediately after those 13 runes. The canonical p0-p2 corpus begins with the same 13 symbols.
 
-Using the external 27×27 route's later `MAP` geometry, two independently checkable constructions decrypt the untouched red heading to:
+The final five runes can now be keyed without any candidate route or plaintext transition. The first eight still use the external route's later `MAP` geometry. Together the two constructions decrypt the untouched red heading to:
 
 ```
 S E C U E N D I | R A T I O
@@ -64,9 +64,45 @@ A route-internal control strengthens the specificity: among all **17** frozen ve
 
 This is a genuine source-selectivity improvement over simply supplying `X-N-X-C` as a fitted key. It is still conditional on accepting the route's J anchor and MAP source.
 
-## Second key: MAP is the unique route-prefix phi extrapolation
+## Second key: source-derived 5-stride totient chain
 
-The second construction uses the block-28 MAP source center `M=(16,9)` and `E=(17,13)`. In the current frozen 38-block route this is the three-rune `MAP` prefix endpoint. Crucially, standalone stage 28 `MAP` was already published on **26 October 2026** (`plaintext-i-found/28-map.md`), four days before the first red-heading report on **30 October 2026**. The 30 October route snapshot describes MAP ending at `AE(17,13)`. The later `MAP LIFE` extension first appears on **4 November 2026**. Thus `(17,13)` was the selected stage endpoint when this heading construction was published, rather than a semantic boundary chosen retrospectively from the later seven-rune block. Apply two deterministic affine extrapolations:
+This key no longer needs MAP.
+
+The canonical p0-p2 span contains exactly **729 = 27²** runes, so it can be placed row-major into a 27×27 matrix without padding. The physical red heading is visibly grouped **8+5** and is followed by a **13-dot** rubricated delimiter. Let `n=13`; the already-authenticated LP instruction that the totient function is sacred supplies `phi(13)=12`. Using the ordered pair `(n,phi(n))` gives:
+
+```
+J = (13,12)
+```
+
+and the original grid rune at that coordinate is J.
+
+Now use only the visible length **5** of the final red group as a diagonal stride. From J, test both signs on row and column, taking two equal five-cell steps. All four directions remain in bounds. Exactly one direction has the source-internal totient relation `phi(rune(middle)) = rune(end)`:
+
+```
+(13,12) J  ->  (18,17) R  ->  (23,22) TH
+                 +5,+5             +5,+5
+
+phi(index(R)) = phi(4) = 2 = index(TH)
+```
+
+Transforming only the center therefore gives the three-rune key `J-TH-TH`. Subtracting it from the untouched final five red runes:
+
+```
+S  Y  E  NG C
+J  TH TH J  TH
+--------------
+R  A  T  I  O
+```
+
+Forward addition exactly restores the source.
+
+This construction uses the original 729-rune span, original 8+5 grouping, original 13-dot count, and the authenticated totient operation. It does not use MAP, the candidate English route, or the later transition grammar. A coordinate-order control remains important: swapping `(n,phi(n))` to `(phi(n),n)` also creates a southeast three-cell phi-chain, but its derived key decrypts the five red runes to `AE-R-AE-TH-EO`, not `RATIO`. The source-derived convention is therefore the ordinary ordered pair `(n,phi(n))); this convention sensitivity is a remaining assumption.
+
+Reproducer: `sims/lp2_p0_red_ratio_sourceonly_sft.cjs`.
+
+## Independent MAP-route corroboration of the same node
+
+The earlier external construction uses the block-28 MAP source center `M=(16,9)` and `E=(17,13)`. In the current frozen 38-block route this is the three-rune `MAP` prefix endpoint. Crucially, standalone stage 28 `MAP` was already published on **26 October 2026** (`plaintext-i-found/28-map.md`), four days before the first red-heading report on **30 October 2026**. The 30 October route snapshot describes MAP ending at `AE(17,13)`. The later `MAP LIFE` extension first appears on **4 November 2026**. Thus `(17,13)` was the selected stage endpoint when this heading construction was published, rather than a semantic boundary chosen retrospectively from the later seven-rune block. Apply two deterministic affine extrapolations:
 
 ```
 R = 2E - M = (18,17)
@@ -89,23 +125,24 @@ after the route's center-totient operation. Subtracting it from the untouched fi
 
 The selectivity test applies the same `R=2E-M; T=2R-J` construction to **every prefix endpoint of every frozen first-38 route block with one three-cell source node**, before reading the red suffix. There are 20 cases whose extrapolated R and T remain inside the 27×27 matrix. Exactly **one** has `phi(rune(R)) = rune(T)`: block 28 at prefix length 3, the MAP boundary.
 
-This gives a route-internal discriminator that was absent from the earlier shared audit.
+This independently lands on the same `J-R-TH` node selected by the source-only five-stride construction. The MAP chronology therefore acts as corroboration of the node rather than a necessary input to the `RATIO` decryption.
 
 ## What this changes
 
-The shared repository previously established that the first 38 externally selected blocks are arithmetically reproducible on all 115 selected original rune reads while the transition grammar leaves multiple admissible continuations. That conclusion remains valid. The new red-title result adds a qualitatively different fact: **a 13-rune original red region outside the candidate 115-rune plaintext route is exactly readable under two later-route constructions, and both constructions have finite source-selectivity tests.**
+The shared repository previously established that the first 38 externally selected blocks are arithmetically reproducible on all 115 selected original rune reads while the transition grammar leaves multiple admissible continuations. That conclusion remains valid.
 
-That is stronger than another readable candidate chosen from the 729 cells. The red region is physically marked in the manuscript, its 8+5 grouping is original, and the result is a coherent two-word Latin label plausibly describing a following method.
+The material change is narrower and more useful: **the final five red runes no longer depend on those transitions.** Their `RATIO` key can be generated from the exact 729-rune source span, the physical 13-dot/8+5 rubrication, and Euler's totient. The previously published MAP geometry independently lands on the same `J-R-TH` node and predates the heading discovery.
 
-It still does **not** establish a complete decipherment. The surviving weaknesses are concrete:
+The first eight runes remain weaker. Their `SECUENDI` key still depends on the candidate MAP source and its rectangle rule, though that rectangle is MAP-only across all 17 comparable vertical sources.
 
-- The 27×27 reshape and opening J anchor are not independently authenticated by a known original instruction.
-- The first key's rectangle rule is conditional on the later MAP source.
-- The second construction depends on the candidate MAP stage. Its `(17,13)` endpoint was already the published stage endpoint when the red-heading construction appeared on 30 October, before the 4 November `MAP LIFE` extension, which reduces the later-boundary hindsight concern but does not authenticate MAP itself.
-- The affine extrapolation rule itself still needs an original clue or a prospective application that predicts another untouched marked region.
+The surviving weaknesses are concrete:
+
+- The 27×27 reshape follows exactly from 729 runes, but the manuscript does not literally say to reshape the first three pages into a square.
+- The source-only `RATIO` derivation assumes the natural ordered coordinate `(n,phi(n))`; the swapped coordinate order produces a different phi-chain and nonword output.
+- The first key's rectangle rule still depends on the candidate MAP source.
 - Reports 17-19 do not remove the already demonstrated earlier THE/YE key ambiguity.
 
-Therefore this belongs in `im-results/`, not `results/`. The appropriate next attack is to use **SEQUENDI RATIO as a candidate instruction/checksum**, not to add further fitted transition rules. A decisive advance would derive the rectangle/extrapolation rule from original visible clues or use it unchanged to predict another marked ciphertext region.
+Therefore the full title remains in `im-results/`. The five-rune `RATIO` recovery is the best route-independent plaintext candidate found here and deserves independent adversarial reproduction. The next causal target is the first eight runes: derive `X-N-X-C` from original visible 8+5/13/27 geometry without MAP, or produce a prospective untouched prediction from the same construction.
 
 ## Reproduction
 
@@ -115,7 +152,7 @@ Run:
 node sims/lp2_p0_red_heading_sequendi_ratio_gate_sft.cjs
 ```
 
-The SFT uses only the canonical local p0-p2 corpus, the source-corrected physical red-ink annotation, and the repository's already frozen first-38 route arrays. It asserts the original 8+5 heading, the unique rectangle, the 17-source route-wide rectangle control, both exact decryptions and re-encryptions, the 20-to-1 route-prefix extrapolation selectivity result, and the independent `156 = 13 × phi(13)` recovered-title checksum.
+Two SFTs now separate source-only evidence from route-conditional evidence. `sims/lp2_p0_red_ratio_sourceonly_sft.cjs` uses only the canonical p0-p2 source and physical red annotation to derive `RATIO`. `sims/lp2_p0_red_heading_sequendi_ratio_gate_sft.cjs` adds the frozen first-38 route arrays and asserts the unique first-key rectangle, the 17-source route-wide rectangle control, the independent MAP extrapolation to the same second-key node, both exact re-encryptions, and the `156 = 13 × phi(13)` full-title checksum.
 
 External numerical proposal credited for the candidate red-heading constructions:
 https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption
