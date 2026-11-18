@@ -41,7 +41,7 @@ For each of the 1,863 pairs of words whose source indices differ by 1033, inspec
 | --- | ---:| ---:| ---:|
 | Identical first rune among 1,863 word pairs | **76** | **76** | **122** |
 | Identical aligned rune in all overlapping word positions | **228 / 5,940 (3.84%)** | **220 / 5,940 (3.70%)** | **463 / 5,221 (8.87%)** |
-| Identical last rune, **scalar-word key only** | **63** | **60** | **110** |
+| Identical last rune, **scalar-word key only** | **63** | **60** | **181** |
 
 Control word boundaries are those in the independent source Gibran passage and therefore have a different total number of aligned character pairs. Both exact inverses recover every native GP rune and reproduce all original control word positions. The 1033-word replay does not restore the expected reuse signal on the unknown manuscript. This is conditional on original printed word breaks and an unaltered English GP plaintext register, and does not rule out a nonrepeating key derived from each word's number or content.
 
@@ -54,4 +54,4 @@ The calculation **cannot** test a fresh unknown independent 3301-digit key at ev
 To progress beyond them, source evidence would have to identify **how** the large cuneiform numbers address a typed historical key or reversible operation, then generate a continuous unknown-page GP29 plaintext and an untouched independent prediction. No independently selected alternate operation, source secret, unknown plaintext, or destination was recovered by this experiment.
 
 
-**Executable Windows evidence:** [Node 22 original-source PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44335985648) on the long-period portion. The extended code includes independently encrypted word-index controls; [latest word-clock CI execution](https://github.com/FlareZ123/liber-primus/actions/runs/44337961156) checks the corrected final-character invariant.
+**Executable Windows evidence:** [Node 22 original-source PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44335985648) on the long-period portion. The extended code includes independently encrypted word-index controls, with a fully [successful Windows Node 22 execution](https://github.com/FlareZ123/liber-primus/actions/runs/44337961156) validating the corrected final-character invariant.
