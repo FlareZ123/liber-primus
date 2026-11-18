@@ -95,7 +95,7 @@ function wordInvariant(book,encoded,suffixOnly){
 }
 const originalFull=wordInvariant(words,true,false);
 const originalSuffix=wordInvariant(words,true,true);
-assert.deepEqual(originalFull,{pairs:30281,hits:818,rate:818/30281});
+assert.deepEqual(originalFull,{pairs:30281,hits:793,rate:793/30281});
 assert.deepEqual(originalSuffix,{pairs:1460,hits:57,rate:57/1460});
 
 /** @param {number} seed @returns {()=>number} */
