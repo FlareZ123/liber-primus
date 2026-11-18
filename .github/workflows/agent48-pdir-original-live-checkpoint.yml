@@ -31,6 +31,12 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "File lock dependency failed" }
           python sims/lp2_pdir_sixsection_key_recurrence_sft.py raw-shards --out cross-section/lp2-pdir-sixsection-key-recurrence.json
           if ($LASTEXITCODE -ne 0) { throw "Original cross-section key recurrence gate failed" }
+      - name: Test source key identity across changing original section pointer rules
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          python sims/lp2_pdir_crossrule_historical_key_sft.py raw-shards --out cross-section/lp2-pdir-crossrule-historical-key.json
+          if ($LASTEXITCODE -ne 0) { throw "Cross-rule historical source key gate failed" }
       - name: Assemble exact score ZIPs and reject incomplete original parts
         shell: pwsh
         run: |
@@ -56,4 +62,5 @@ jobs:
           path: |
             score-zips/checkpoint.json
             cross-section/lp2-pdir-sixsection-key-recurrence.json
+            cross-section/lp2-pdir-crossrule-historical-key.json
           if-no-files-found: warn
