@@ -1,3 +1,14 @@
+# 18 November 2026: Issue #1571 p50 physical-cell concentration completed
+
+- The frozen p50 phase-zero low60 class has 3,025 selected adjacent-pair opportunities and 33 repeat hits, carried by only **22/60** physical cells.
+- Strongest cells: index192 token `00` has 4 hits; 188 `0c` and 210 `06` have 3 each. Top-five share is 14/33, with the final two ranks tied among four 2-hit cells.
+- A 200,000-trial conditional common-effect null preserving exact cell exposures gives tails 0.11418 for top1>=4, 0.02479 for top5>=14, 0.04973 for <=22 occupied cells.
+- Cell-specific repeat probabilities were shrunk to the common selected-class rate with kappa chosen only on eight disjoint source-native Shakespeare controls; kappa=256. On original nine-chapter LOCO, heterogeneous cells improve by **+2.573525 nats**, positive in **7/9** folds.
+- Decision: the broader low60 association survives, but a perfectly uniform one-bit state is downgraded. Preserve physical cell identity in future p50 mechanisms and prioritize 192/188/210 without pruning other cells absent a new selector.
+- Evidence: `im-results/lp2-p50-low60-cell-concentration.md`, `sims/lp2_p50_low60_cell_concentration_sft.cjs`, commit `5b30d83e2ce3db6650d5c64a4040e199ef379111`, Windows/Node22 PASS run `44395134464`, Issue #1571 closure comment `6991277589`.
+
+---
+
 # 18 November 2026: Issue #1543 p55 quintet transport source gate completed
 
 - Active invocation: `agent2-gpt5.6sol-20261118T203722Z-draw10-ad590984bab8`; immutable lease start `2026-11-18T20:37:07.738873Z`; first permitted normal-mode release at 21:47:07.738873Z.
