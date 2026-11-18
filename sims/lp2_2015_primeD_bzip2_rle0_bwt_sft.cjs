@@ -46,10 +46,10 @@ function mod29(value) { return (value % 29 + 29) % 29; }
  * @returns {number[]}
  */
 function primeDifference(original) {
-  const primes = primesUpToCount(original.length);
+  const primes = primesUpToCount(original.length + 1);
   let precedingShifted = 27; // historical S[-1] = -2 modulo29
   return original.map((value, i) => {
-    const shifted = mod29(value - primes[i]);
+    const shifted = mod29(value - primes[i + 1]);
     const difference = mod29(shifted - precedingShifted);
     precedingShifted = shifted;
     return difference;
@@ -57,12 +57,12 @@ function primeDifference(original) {
 }
 /** @param {number[]} differences @returns {number[]} */
 function reversePrimeDifference(differences) {
-  const primes = primesUpToCount(differences.length);
+  const primes = primesUpToCount(differences.length + 1);
   let precedingShifted = 27;
   return differences.map((difference, i) => {
     const shifted = mod29(precedingShifted + difference);
     precedingShifted = shifted;
-    return mod29(shifted + primes[i]);
+    return mod29(shifted + primes[i + 1]);
   });
 }
 
@@ -210,11 +210,11 @@ const D = primeDifference(ciphertext);
 assert.deepEqual(reversePrimeDifference(D), ciphertext);
 assert.equal(D.reduce((n, x, i) => n + Number(i > 0 && x === D[i-1]), 0), 40);
 const continuous = decodeRunaRunbMtf(D);
-assert.equal(continuous.lastColumn.length, 786);
-assert.equal(continuous.runGroups, 44);
-assert.equal(continuous.totalZeroRanks, 106);
+assert.equal(continuous.lastColumn.length, 750);
+assert.equal(continuous.runGroups, 42);
+assert.equal(continuous.totalZeroRanks, 63);
 assert.deepEqual(lfDecomposition(continuous.lastColumn).lengths,
-  [322, 137, 133, 83, 52, 25, 19, 9, 4, 2]);
+  [247, 206, 152, 76, 62, 4, 3]);
 assert.deepEqual(encodeRunaRunbMtf(continuous.lastColumn), D);
 
 const pageDecodes = [];
@@ -228,9 +228,10 @@ for (const page of pages) {
     lastColumnLength:decoded.lastColumn.length, lfCycles:cycles});
   cursor += page.indices.length;
 }
-assert.deepEqual(pageDecodes.map(p => p.lastColumnLength), [300, 278, 208]);
+assert.deepEqual(pageDecodes.map(p => p.lastColumnLength), [267, 275, 208]);
 assert.deepEqual(pageDecodes.map(p => p.lfCycles), [
-  [284, 9, 5, 2], [123, 121, 17, 15, 1, 1], [153, 37, 16, 1, 1]
+  [228, 10, 10, 6, 5, 3, 2, 1, 1, 1],
+  [160, 75, 30, 9, 1], [152, 23, 16, 9, 4, 3, 1]
 ]);
 
 // Source-GP positive: the already-clear 95-rune p57 passage repeated to
