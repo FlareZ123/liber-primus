@@ -47,9 +47,22 @@ function encode(word){
   }
   return out;
 }
-const dictionary=Array.from(new Set(dictRows)).map(s=>({word:s,nums:encode(s)}))
+const extraSources=[
+  "resources/control/gibran_prophet_58585.txt",
+  "resources/control/emerson_essays_2944.txt",
+  "resources/control/shakespeare_first300k.txt",
+  "resources/liber-primus/lp1-plaintext-reference.txt"
+];
+const extraWords=extraSources.flatMap(file=>
+  read(file).toUpperCase().match(/[A-Z]+/g)||[]);
+const dictionary=Array.from(new Set([...dictRows,...extraWords]))
+  .map(s=>({word:s,nums:encode(s)}))
   .filter(x=>x.nums&&x.nums.length===14);
-assert.equal(dictionary.length,155);
+assert(dictionary.length>=155);
+console.log("FULL_PINNED_GP14_LEXICON",JSON.stringify({
+  total:dictionary.length,textblobBaseline:155,
+  additionalSourceWords:dictionary.length-155
+}));
 const pgs=gp.pages.filter(p=>p.page<=55&&p.indices.length);
 const starts=[];
 let cursor=0;
@@ -67,6 +80,8 @@ const source=selected.map(w=>{
   const local=wordStart[w]-starts[p];
   assert(local>=0);
   assert(local+14<=pgs[p].indices.length);
+  assert.deepEqual(pgs[p].indices.slice(local,local+14),wnums[w],
+    "authentic source: physical glyphs must equal transcript");
   return {wordIndex:w,physicalPage:pgs[p].page,
     original:wnums[w],local,
     prefix:pgs[p].indices.slice(0,local)};
@@ -206,3 +221,55 @@ console.log("MODES_SEARCHED",totalModes,"PAIR_TRACE_MATCHES",totalPair);
 console.log("DECISION",triple
   ?"At least one shared π relation graph survives three whole source words; this is only a lexical feasibility witness, not a complete paragraph/key."
   :"No ONE global π can explain three original long words under pinned lexicon, all page-local marker skip histories and either sign for every fully explored mode.");
+
+
+/**
+ * Independently planted pair under a REAL shared pi: a random global
+ * permutation, two different physical-page-local starting offsets, original
+ * phi(prime) clocks, and actual skip semantics. This prevents vacuous pair
+ * contradiction from an inverted sign or incorrect component-cover logic.
+ */
+const nativeTokens=gp.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
+function encodeText(text){
+  return Array.from(text.toUpperCase().match(/[A-Z]+/g)||[])
+    .flatMap(w=>encode(w)||[]);
+}
+const book=encodeText(read("resources/control/gibran_prophet_58585.txt"));
+assert(book.length>1000);
+let seed=0x33012014|0;
+function next(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return(seed>>>0)/4294967296;}
+const pi=Array.from({length:29},(_,i)=>i);
+for(let j=28;j>0;j--){const i=Math.floor(next()*(j+1));[pi[j],pi[i]]=[pi[i],pi[j]];}
+const alpha=new Uint8Array(29);pi.forEach((x,i)=>{alpha[x]=i;});
+function nativePlant(pageIndex,lexWord,marker){
+  const item=source[pageIndex];
+  const plain=book.slice(pageIndex*250,pageIndex*250+item.local)
+    .concat(lexWord.nums);
+  assert.equal(plain.length,item.local+14);
+  let consumed=0;
+  const ciphertext=plain.map(P=>{
+    if(P===marker)return marker;
+    const out=pi[mod(alpha[P]+SHIFT[consumed])];
+    consumed++;
+    return out;
+  });
+  const wordCipher=ciphertext.slice(item.local);
+  const preceding=ciphertext.slice(0,item.local).filter(x=>x===marker).length;
+  const phase=item.local-preceding;
+  const edges=relations(wordCipher,lexWord.nums,phase,1,marker);
+  assert(edges);
+  assert(valid(edges,marker===0?-1:marker));
+  return {edges,phase,ciphertext:wordCipher,preceding};
+}
+for(const variant of ["literal","underlying"]){
+  const marker=variant==="literal"?0:pi[0];
+  const first=nativePlant(0,dictionary[0],marker);
+  const second=nativePlant(1,dictionary[1],marker);
+  assert(valid(first.edges.concat(second.edges),variant==="literal"?-1:marker),
+    "genuine two-page common pi + native English must satisfy exact pairing");
+  console.log("POSITIVE_PLANTED_COMMON_PI",JSON.stringify({
+    variant,marker,words:[dictionary[0].word,dictionary[1].word],
+    sourcePageLocalPhases:[first.phase,second.phase],
+    sharedPiConstraintsSatisfiable:true
+  }));
+}
