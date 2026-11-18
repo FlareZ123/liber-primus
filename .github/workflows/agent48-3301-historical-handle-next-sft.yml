@@ -1,0 +1,15 @@
+name: Agent48 3301 historical handle NEXT closure SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sft:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run 3301 historical handle NEXT closure SFT
+        run: node sims/lp2_3301_historical_handle_next_p28_sft.cjs
