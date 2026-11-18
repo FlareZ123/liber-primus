@@ -42,3 +42,5 @@ Run:
 `node sims/t7_void_p15_line_boundary_control.cjs`
 
 No external dependencies or language model are used.
+
+Among all 56 physical page starts, p15 at 3603 is the **nearest page boundary** to the T7 full-span midpoint 3564.5 (38.5 runes); p14 is 98.5 away and p16 is 197.5 away. The reproducer now reports this page-start ranking as well as the line-boundary control.
