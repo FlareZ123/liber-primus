@@ -89,10 +89,11 @@ function digits(value, radix) {
 
 /** @param {string} message @returns {number[]} */
 function whitespaceRuns(message) {
-  const contentStart = message.indexOf("\n\n");
-  const contentEnd = message.indexOf("-----BEGIN PGP SIGNATURE-----");
+  const normalized = message.replace(/\r\n/g, "\n");
+  const contentStart = normalized.indexOf("\n\n");
+  const contentEnd = normalized.indexOf("-----BEGIN PGP SIGNATURE-----");
   assert.ok(contentStart > 0 && contentEnd > contentStart);
-  const lines = message.slice(contentStart + 2, contentEnd).split(/\r?\n/);
+  const lines = normalized.slice(contentStart + 2, contentEnd).split("\n");
   const runs = [];
   for (const line of lines) {
     const leading = (line.match(/^ */) || [""])[0].length;
