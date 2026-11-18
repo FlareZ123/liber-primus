@@ -26,7 +26,7 @@ To grant an even more favorable reset, let the cipher restart at *each printed w
 
 `[26,11,19,16,24,23,7,16,7,4]`
 
-with equality pattern `[0,1,2,3,4,5,6,3,6,7]`. An independently secret permutation **on this single word** must preserve this ten-rune suffix equality. This is a stronger concession than sharing one key over a whole page or chapter.
+with equality pattern `[0,1,2,3,4,5,6,3,6,7]`. An independently secret permutation **on this single word** must preserve this ten-rune suffix equality. This is a stronger concession than sharing one key over a whole page or chapter. The original 13-rune word has its single literal ciphertext **F at p55@25**, within those three deliberately unrestricted positions. Consequently the word-reset obstruction already permits any treatment of that glyph as a copied F or an encrypted symbol under the separate solved-p56 convention; no assumption about a hidden F clock is needed for this word-local necessary condition.
 
 ## Exhaustive source-native English gate
 
