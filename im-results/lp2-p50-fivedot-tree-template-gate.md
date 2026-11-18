@@ -44,3 +44,5 @@ The obvious source-natural readings of the asymmetry are `3 filled / 2 hollow` v
 Searching arbitrary bit orders, treating every decorative dot as a table bit, or tuning a relation to a desired p50 cell would add freedom after the source has already supplied a decisive negative control. Classify the motif as **deliberate reused border artwork / underdetermined decoration for table purposes** and stop this branch.
 
 Reproducer: [`sims/lp2_p50_fivedot_tree_template_sft.py`](../sims/lp2_p50_fivedot_tree_template_sft.py).
+
+Windows Python 3.13 / Pillow 12.3.0 source-image CI: **PASS 44407564544**.
