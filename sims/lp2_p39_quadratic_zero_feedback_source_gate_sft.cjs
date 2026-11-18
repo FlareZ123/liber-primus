@@ -209,7 +209,6 @@ function main() {
     allSecretNonzero28WayOutputsPermitted: true,
     positiveOriginalFormatNativePlantExact: true,
     exactOriginalCipherForwardRoundtrip: true,
-    originalSecretRotation13DecryptIsNonprose: true,
     originalLengthControlWindows: controls.reduce((n, x) => n + x.windows, 0),
     controls
   }, null, 2));
