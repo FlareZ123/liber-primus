@@ -20,10 +20,10 @@ This exact dynamic program permits arbitrary plaintext and *all* competing trans
 | --- | ---: | ---: | ---: |
 | Physical p0 including red13 | 262 | **0 / 29** | **243** (TH) |
 | p0 black body alone, from physical offset13 | 249 | **0 / 29** | **205** (P) |
-| p55 separately, exploratory control | 76 | **8 / 29** | Not applicable |
+| p55 separately, exploratory control | 76 | **6 / 29** | Not applicable |
 | p56 genuine known-positive | 85 | **7 / 29**, including F | Not applicable |
 
-All first-impossible offsets are zero-based within the named interval. On p0 the authentic **F** marker survives until offset235, original 2014 missing-prime19 **W** only until offset5; the most persistent candidate **TH** fails at offset243. Under the red13-excluded body start, F fails already at offset43 while P lasts until offset205. The eight complete p55 *feasibility-only* markers are TH, C, I, X, M, NG, AE and IA. The seven complete p56 feasibility-only markers are F, H, J, L, NG, AE and IA; the known solved plaintext independently selects F. **Feasibility is not evidence of a new decoded message**, as the multiple p56 survivors demonstrate.
+All first-impossible offsets are zero-based within the named interval. On p0 the authentic **F** marker survives until offset235, original 2014 missing-prime19 **W** only until offset5; the most persistent candidate **TH** fails at offset243. Under the red13-excluded body start, F fails already at offset43 while P lasts until offset205. The six complete p55 *feasibility-only* markers are TH, C, I, X, M and NG. The seven complete p56 feasibility-only markers are F, H, J, L, NG, AE and IA; the known solved plaintext independently selects F. **Feasibility is not evidence of a new decoded message**, as the multiple p56 survivors demonstrate.
 
 ## Correctness of the complete inverse
 

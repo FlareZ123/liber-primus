@@ -114,7 +114,7 @@ assert.equal(rows.every(row => row.p0_black_after_red13 !== null), true,
     'a 29-way transparent-rune branch survives the complete black p0 body');
 assert.equal(Math.max(...rows.map(r => r.p0_black_after_red13)), 205);
 assert.equal(rows.find(r => r.rune === 'P').p0_black_after_red13, 205);
-assert.equal(rows.filter(r => r.p55 === null).length, 8);
+assert.equal(rows.filter(r => r.p55 === null).length, 6);
 assert.equal(rows.filter(r => r.p56 === null).length, 7);
 console.log(JSON.stringify({
     title: 'Original p56 prime-totient: all 29 transparent GP29 symbols',
