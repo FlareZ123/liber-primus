@@ -29,7 +29,7 @@ Do not describe this as "the PDF does not exist." The accurate result is: **no p
 
 ## Decisive next action
 
-Stop generic PDF hunting. The highest-value next action is one narrow, owner-authorized request to the interviewer first: the public interview identifies a direct contact route, and the interviewer had contact with gHOST.
+Stop generic PDF hunting. The highest-value next action is one narrow, maintainer-approved request to the interviewer first: the public interview identifies a direct contact route, and the interviewer had contact with gHOST.
 
 ### Verified contact route (18 November 2026)
 
@@ -48,7 +48,7 @@ The interview's separate constellation comment is not a fresh decoder assignment
 
 ## Test if the file is obtained
 
-1. Hash and preserve the untouched file. Record metadata and any embedded text/images before conversion.
+1. Hash and preserve the untouched file. Record metadata and any embedded text/images before conversion. Compute SHA-512 for the raw PDF and each original embedded page/image payload, and compare each exact byte sequence with the p56 target `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`. A match would be decisive; a non-match would not disprove the precursor claim.
 2. Determine whether its pages match, overlap, or predate the canonical 58 LP2 pages; establish exact page correspondence rather than assuming the 37-page count maps to physical page numbers.
 3. Transcribe the runes from the PDF independently and apply the historically defined Gematria Primus transliteration, including the alphabet's digraph values. Do not tune an alternate alphabet to make it read.
 4. If it is genuinely pre-encryption rune text, direct transliteration should produce coherent language without an invented cipher layer. Compare any overlap against solved source text and the canonical LP2 images.
