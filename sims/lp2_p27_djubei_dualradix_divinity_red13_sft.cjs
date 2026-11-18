@@ -492,8 +492,50 @@ for (let row = shedDepth; row < tableRows - shedDepth; row += 1) {
 }
 assert.equal(shedInterior.length, 112);
 assert.equal(shedInterior.length, phi(primeSum(shed.indices)));
+assert.equal(tableRows - 2 * shedDepth, find.indices.length);
+assert.equal(tableColumns - 2 * shedDepth, tokenValue(tableTokens[gp0(find)], alphabet59));
 assert(shedInterior.includes(gp0(divinity)));
 assert.equal(tableTokens[gp0(divinity)], "13");
+
+// In the 4x28 shed interior, one-based top-left (shared2, len(DIVINITY)=8)
+// lands exactly on global cell105. Across the eight natural choices obtained
+// from one/zero-based indexing and independent row/column reversal, only this
+// convention reaches the table's unique literal 13.
+const relativeRowOneBased = sharedSecret;
+const relativeColumnOneBased = divinity.indices.length;
+const geometryCandidates = [];
+for (const oneBased of [true, false]) {
+  for (const reverseRow of [false, true]) {
+    for (const reverseColumn of [false, true]) {
+      const rowOffset = oneBased ? relativeRowOneBased - 1 : relativeRowOneBased;
+      const columnOffset = oneBased ? relativeColumnOneBased - 1 : relativeColumnOneBased;
+      const row = reverseRow
+        ? tableRows - shedDepth - 1 - rowOffset
+        : shedDepth + rowOffset;
+      const column = reverseColumn
+        ? tableColumns - shedDepth - 1 - columnOffset
+        : shedDepth + columnOffset;
+      const index = row * tableColumns + column;
+      geometryCandidates.push({
+        oneBased,
+        reverseRow,
+        reverseColumn,
+        index,
+        token: tableTokens[index],
+      });
+    }
+  }
+}
+assert.deepEqual(
+  geometryCandidates.filter((candidate) => candidate.token === "13"),
+  [{
+    oneBased: true,
+    reverseRow: false,
+    reverseColumn: false,
+    index: gp0(divinity),
+    token: "13",
+  }]
+);
 
 const emerged59 = tokenValue(tableTokens[gp0(divinity)], alphabet59);
 const emerged60 = tokenValue(tableTokens[gp0(divinity)], alphabet60);
@@ -583,6 +625,15 @@ process.stdout.write(JSON.stringify({
       cells: shedInterior.length,
       shedTotient: phi(primeSum(shed.indices)),
       divinityCell: gp0(divinity),
+      findDimensions: {
+        rows: find.indices.length,
+        columns: tokenValue(tableTokens[gp0(find)], alphabet59),
+      },
+      divinityCoordinate: {
+        oneBasedRow: sharedSecret,
+        oneBasedColumn: divinity.indices.length,
+        uniqueNaturalOrientationHit: true,
+      },
       firstBase59Exit: emerged59,
       firstBase60Exit: emerged60,
       divinitySelfLengthBase59Path: divinityPointerPath,
