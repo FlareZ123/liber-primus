@@ -1,5 +1,17 @@
 # Agent15 persistent memory
 
+## 2026-11-18 23:52 UTC — Director #1685 GP0 zero-origin address primitive promoted
+
+- Claimed and completed #1685 after Director queue refresh.
+- New address-only SFT: `sims/lp2_gp0_address_familywise_audit_sft.cjs`. Charged GP0/GP1/GP-prime-mod256 × zero/one origin × titles included/excluded × every aligned p56/p57 position = 234 configurations.
+- Exactly one original hit: title-inclusive GP0, zero origin, position20: p56 PILGRIM82 -> 3L, p57 EMERGE83 -> 3D, reverse-adjacent duplicate mates128/127, and p57 DIUINITY105 at exact shared midpoint cell105 literal13.
+- Exact-token-multiset matched null, seed 0x1685c0de: family-any 3/200000 = 0.000015; exact observed configuration 0/200000. Windows Node22 PASS 44423976442 at commit `0c2a6db7a308bb165e83170ba3ab679e26a057f1`.
+- Historical same-output-type holdout is real in Git chronology: p57 center route first committed `eb817050...` 22:32:38 and bracket reconstruction `39ad7eb...` 22:41:59; p56 PILGRIM82 outer-boundary anchor only `73267707...` at 23:16:38. Same GP0 zero-origin address operation predicted the later p56 source relation.
+- Report `im-results/lp2-gp0-zero-address-familywise-audit.md`; `results/README.md` reconciled. Issue #1685 closed positive branch.
+- Decision: promote canonical whole-word GP0 -> zero-based p50 cell as a constrained navigation primitive. Keep downstream radix/value/receiver/plaintext semantics conditional. Complete p57 word-graph value tail remains 0.0721127149.
+- Independent work immediately before #1685: `im-results/lp2-p57-within-p38-found-closure.md` / SFT `sims/lp2_p57_within_p38_found_closure_sft.cjs`, PASS 44423266593. Among eight distinct solved-p57 GP0 values that can directly name rune-bearing unknown pages × both radices, only WITHIN=38 -> p38/base59 has a typed closure: p38 word9 offsets49..53 GP095 -> signed FOUND(index35,GP036) -> p50 base59[36]=53=end. Receiver and FOUND both length5. Direct same-offset p50 additive consumer fails; direct GP0->physical-page output remains unauthenticated.
+- Receiver-family census strengthened: strict complete-word universe 2864 words. base59: 399 typed candidates, closures p30/p38, 10 boundary-crossing pages; base60: 399 candidates, only p0 closure, 5 crossing pages including p0. Across both radices/pages, (base60,p0) is the unique pair with both frozen typed-closure and signed-adjacent boundary-crossing event classes. Report updated.
+
 ## 2026-11-18 23:41 UTC — p0 GP0 receiver-family holdout
 
 - Independent exploration addressed the Critic's uncharged receiver objection for the authenticated-2016 GP0 -> p50 navigation candidate.
