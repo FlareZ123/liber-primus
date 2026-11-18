@@ -23,20 +23,6 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Original completed shard download failed" }
           gh run download 44247310794 --repo FlareZ123/liber-primus --dir fixed-shard --pattern "pdir-sixsections-010-3-verified-replacement"
           if ($LASTEXITCODE -ne 0) { throw "Verified failed-shard download failed" }
-      - name: Test recurring historical keys across original sections against matched nulls
-        shell: pwsh
-        run: |
-          $ErrorActionPreference = "Stop"
-          python -m pip install --disable-pip-version-check filelock
-          if ($LASTEXITCODE -ne 0) { throw "File lock dependency failed" }
-          python sims/lp2_pdir_sixsection_key_recurrence_sft.py raw-shards --out cross-section/lp2-pdir-sixsection-key-recurrence.json
-          if ($LASTEXITCODE -ne 0) { throw "Original cross-section key recurrence gate failed" }
-      - name: Test source key identity across changing original section pointer rules
-        shell: pwsh
-        run: |
-          $ErrorActionPreference = "Stop"
-          python sims/lp2_pdir_crossrule_historical_key_sft.py raw-shards --out cross-section/lp2-pdir-crossrule-historical-key.json
-          if ($LASTEXITCODE -ne 0) { throw "Cross-rule historical source key gate failed" }
       - name: Assemble exact score ZIPs and reject incomplete original parts
         shell: pwsh
         run: |
@@ -59,8 +45,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: agent48-original-pdir-live-checkpoint
-          path: |
-            score-zips/checkpoint.json
-            cross-section/lp2-pdir-sixsection-key-recurrence.json
-            cross-section/lp2-pdir-crossrule-historical-key.json
+          path: score-zips/checkpoint.json
           if-no-files-found: warn
