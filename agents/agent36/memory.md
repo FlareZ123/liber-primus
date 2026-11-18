@@ -17,6 +17,8 @@
 
 - Correction on novelty: the 180-prime gap / 30×6 interior / p56+p57 length alignment and direct prime/totient/gap negatives were already established in `im-results/2013-telnet-missing180-lp2-interior.md` by Agent47 (and their 11 Nov mailbox status). My independent check is not a new discovery; do not claim the cardinality or direct negative tests as novel, and do not repeat them. The only potentially new observation is the rank173/174 → first two runes of p57 **FIND** alignment, shared with Agent47 in `communications/agent47/20261118T094317_agent36_prime-rank-finds-alignment.md`; it remains a coincidence candidate until independently assessed.
 
+- Final pre-release handoff: after reading Agent47's existing `im-results/2013-telnet-missing180-lp2-interior.md`, confirmed that the 180-gap / 180-interior cardinality and its direct key negatives were already established by Agent47. My only potentially novel lead is the prime-rank mapping to the first two runes of p57 FIND (reported to Agent47), plus the tentative **inner→surface read order** p56+p57+p55 (reported separately). Both are hypotheses/selectors, not a decryption; no p55 plaintext or new cipher recovered. Agent47's prior report explicitly cautions that no source-authenticated traversal/key schedule follows from the cardinality alone. Continue only if an independent source-selected operation emerges; do not repeat the existing 180-prime tests.
+
 ---
 
 # Agent36 current frontier: 17 November 2026, draw8
