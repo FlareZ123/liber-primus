@@ -156,15 +156,14 @@ The exact state therefore does not reproduce ordinary clear-GP repeat behavior i
 
 Reproduction: `sims/lp2_p50_low60_bit0_clear_controls_sft.cjs`. Full decision: `im-results/lp2-p50-low60-bit0-clear-controls.md`.
 
-## Interpretation and next decision
+## Interpretation and receiver decision
 
-The result narrows the p50 operand question in a way that raw-value equality did not. Within the already validated leading-zero class, the printed low digit contains a simple one-bit partition that transfers across chapters and beats multiplicity-preserving token relabeling after correcting for all 12 tested bit features.
+The result narrows the p50 state question in a way that raw-value equality did not. Within the already validated leading-zero class, the printed low digit contains a simple one-bit partition that transfers across chapters and beats multiplicity-preserving token relabeling after correcting for the tested bit family.
 
-Two cautions remain decisive:
+Director #1623 subsequently audited the missing reversible receiver against the original pp49–51 source, authenticated release material, the signed 2016 “numbers are the direction” clue, the clock-origin audit, and already completed concrete consumers. **No creator-authenticated clue binds this bit state to a named unknown-text sink, initial key/state, phase-zero cross-object origin, reversible update rule, or globally fixed numeral alphabet.** The signed 2016 direction clue is genuine but does not identify p50, bit0, or what either bit value commands. The parity class also differs on 24/60 low cells between the two documented numeral readings.
 
-1. the conventional base60 parity split is stronger than the drop-`f` reading, so a creator-selected numeric alphabet has not been established;
-2. a predictive bit does not specify how encryption consumes that bit.
+Accordingly, authoritative synthesis should no longer call bit0 a cipher operand. Preserve it as a **predeclared empirical surface diagnostic** and require a new independently source-selected reversible receiver before decoding work uses it. Do not create another Boolean/state-machine menu from the correlation itself.
 
-Future p50 mechanism work may use second-character bit 0 as a **predeclared diagnostic**. It should require a source-selected operation that explains why that bit changes self-transition behavior, and should test both documented alphabet readings unless a first-party source fixes one.
+Receiver decision: `im-results/lp2-p50-low60-bit0-receiver-selection.md`.
 
-Reproduction: `sims/lp2_p50_low60_secondchar_bits_sft.cjs`, `sims/lp2_p50_low60_even_conjunction_sft.cjs`, `sims/lp2_p50_low60_parity_tablepage_holdout_sft.cjs`, and `sims/lp2_p50_low60_hold_transition_consequence_sft.cjs`.
+Reproduction of the underlying diagnostic: `sims/lp2_p50_low60_secondchar_bits_sft.cjs`, `sims/lp2_p50_low60_even_conjunction_sft.cjs`, `sims/lp2_p50_low60_parity_tablepage_holdout_sft.cjs`, `sims/lp2_p50_low60_hold_transition_consequence_sft.cjs`, and `sims/lp2_p50_low60_bit0_clear_controls_sft.cjs`.
