@@ -240,6 +240,81 @@ function originalLag(pages, lag) {
   return n;
 }
 
+/**
+ * Original-p0 all-key ambiguity certificate for the collision-skip receiver.
+ *
+ * The p0 ciphertext contains every nonzero GP29 predecessor difference.
+ * Every 29-element key permutation has key[1] != key[0]. Choose a p0
+ * transition with ciphertext difference key[1]-key[0] (mod 29), and choose
+ * the source initial phase that puts key state zero at that transition.
+ *
+ * A direct emission and a rejected-collision+retry emission then reproduce
+ * the SAME entire, untouched p0 ciphertext from DIFFERENT plaintext strings
+ * with the SAME secret key and initial phase. All later outputs are reproduced
+ * using direct emissions, so the entire suffix cannot disambiguate the skip.
+ * Both histories have positive probability whenever 0 < rejection < 1.
+ *
+ * @param {number[]} key
+ * @param {number[]} page
+ * @returns {object}
+ */
+function originalSourceAmbiguity(key, page) {
+  assert.equal(new Set(key).size, M);
+  const difference = (key[1] - key[0] + M) % M;
+  assert.notEqual(difference, 0);
+  let position = -1;
+  for (let i = 1; i < page.length; i++) {
+    if ((page[i] - page[i - 1] + M) % M === difference) {
+      position = i;
+      break;
+    }
+  }
+  assert.ok(position > 0);
+  const initialPhase = (M - (position % M)) % M;
+
+  /**
+   * @param {number} optionalSkipAt
+   * @returns {number[]}
+   */
+  function decodeWithFixedTrace(optionalSkipAt) {
+    let phase = initialPhase;
+    let previous = -1;
+    const plain = [];
+    for (let i = 0; i < page.length; i++) {
+      const skip = i === optionalSkipAt;
+      const p = ((skip ? previous : page[i]) - key[phase] + M) % M;
+      let emitted = (p + key[phase]) % M;
+      phase = (phase + 1) % M;
+      if (skip) {
+        assert.equal(emitted, previous);
+        emitted = (p + key[phase]) % M;
+        phase = (phase + 1) % M;
+        assert.notEqual(emitted, previous);
+      }
+      assert.equal(emitted, page[i]);
+      plain.push(p);
+      previous = emitted;
+    }
+    return plain;
+  }
+
+  const direct = decodeWithFixedTrace(-1);
+  const rejected = decodeWithFixedTrace(position);
+  assert.notDeepEqual(direct, rejected);
+  assert.notEqual(direct[position], rejected[position]);
+  return {
+    originalPage: 0,
+    ciphertextOffset: position,
+    keyDifference: difference,
+    initialPhase,
+    cipherPrevious: page[position - 1],
+    cipherCurrent: page[position],
+    directPlainRune: direct[position],
+    rejectedPlainRune: rejected[position],
+    differingPlainRunes: direct.filter((v, i) => v !== rejected[i]).length
+  };
+}
+
 /** Run the prespecified full original-input Monte Carlo challenge. */
 function study() {
   const { cdf, ac, count } = nativeReference();
@@ -258,10 +333,12 @@ function study() {
   let smallestJoint = Infinity;
   let smallestR29 = Infinity;
   let totalRepeats = 0;
-  const means = [];
   const schedules = [];
+  let slope4Ambiguity = null;
 
   function batch(kind, label, key, reps) {
+    const sourceWitness = originalSourceAmbiguity(key, original[0]);
+    if (kind === 'arithmetic' && label === '4') slope4Ambiguity = sourceWitness;
     const { preCollision, rejection } = calibratedReject(key, ac);
     let sumR1 = 0;
     let sumR28 = 0;
@@ -305,6 +382,14 @@ function study() {
   assert.equal(trials, 28 * SLOPE_SAMPLES + RANDOM_KEYS * RANDOM_KEY_SAMPLES);
   assert.equal(atOrBelow, 0);
   assert.equal(atOrBelowMatchedRepeats, 0);
+  assert.deepEqual({ offset: slope4Ambiguity.ciphertextOffset,
+    initialPhase: slope4Ambiguity.initialPhase,
+    cipherPrevious: slope4Ambiguity.cipherPrevious,
+    cipherCurrent: slope4Ambiguity.cipherCurrent,
+    directPlainRune: slope4Ambiguity.directPlainRune,
+    rejectedPlainRune: slope4Ambiguity.rejectedPlainRune },
+  { offset: 17, initialPhase: 12, cipherPrevious: 25,
+    cipherCurrent: 0, directPlainRune: 0, rejectedPlainRune: 25 });
   assert.ok(Math.abs(totalRepeats / trials - obs.r1) < 5);
   const top = [...schedules].sort((a, b) => a.meanJoint - b.meanJoint);
   return {
@@ -321,6 +406,12 @@ function study() {
       ],
       freshUnrestrictedPermutationKeys: RANDOM_KEYS,
       completeArithmeticPermutationKeys: M - 1
+    },
+    originalAllSecretPermutationNoninjectivity: {
+      proof: 'Each arbitrary permutation has a nonzero adjacent key difference; original p0 contains all 28 nonzero ciphertext differences. Choose the aligned initial key phase. One direct rune and one rejected candidate+retry produce the same original whole-page ciphertext with different plaintext and positive probability. The invisible skip trace is needed for deterministic decryption.',
+      testedKeySchedules: schedules.length,
+      slope4Example: slope4Ambiguity,
+      caveat: 'This is an information-loss proof for the proposed cipher without a sidecar; additional authenticated side-information or a uniquely defining plaintext constraint would change the model.'
     },
     monteCarlo: {
       seed: RNG_SEED, trials, targetJoint, atOrBelow, smallestJoint,
@@ -339,4 +430,5 @@ function study() {
 }
 if (require.main === module) console.log(JSON.stringify(study(), null, 2));
 module.exports = { nativeReference, rng, shuffledKey, slopeKey,
-  calibratedReject, plant, assertPlantInverse, originalLag, study };
+  calibratedReject, plant, assertPlantInverse, originalLag,
+  originalSourceAmbiguity, study };
