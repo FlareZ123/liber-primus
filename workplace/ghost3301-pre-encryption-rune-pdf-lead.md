@@ -36,7 +36,7 @@ Stop generic PDF hunting. The highest-value next action is one narrow, owner-aut
 - The [Samizdat About page](https://therealsamizdat.com/about-samizdat/) identifies Estéban Trujillo de Gutiérrez and says he can be securely contacted through Keybase. Its Keybase link resolves to **[ma91c1an](https://keybase.io/ma91c1an)**.
 - The interviewee's public profile under the handle **[ghost3301](https://keybase.io/ghost3301)** is also reachable. This gives the maintainer a concrete route to ask the interviewer to confirm the claim or forward a question to gHOST. These profile handles are contact routes, not independent proof of identity, Cicada membership, or possession of the files.
 - The original [2019 interview](https://therealsamizdat.com/2019/08/30/cicada-files-ghost3301-interview/) still links no 37-page PDF, filename, or attachment. No message has been sent and no file has been recovered.
-- **Do not contact either person without explicit maintainer authorization.** Issue #784 records the existing owner-authorization boundary for external outreach.
+- No message was sent in this run. Issue #784 concerns two separate archive-custodian inquiries; it does not itself authorize or prohibit this independent Keybase outreach. Do not cite #784 as a blanket rule for contacting Trujillo or gHOST. Obtain maintainer direction before any account-mediated message.
 
 Suggested request, to send only after authorization:
 
