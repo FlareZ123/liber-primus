@@ -87,6 +87,48 @@ function decodeWithWalk(seq, walk, values, sign, start=0) {
     return translit[mod(c + sign * (values[path[at]] % 29), 29)];
   }).join('');
 }
+function keypadWalk(start, values) {
+  const dirs = {1:[1,-1],2:[1,0],3:[1,1],4:[0,-1],5:[0,0],6:[0,1],7:[-1,-1],8:[-1,0],9:[-1,1]};
+  let cell = start;
+  const seen = new Map();
+  const path = [];
+  while (cell >= 0 && cell < 256 && !seen.has(cell)) {
+    seen.set(cell, path.length);
+    const b = values[cell];
+    const q = Math.floor(b / 29);
+    const r = b % 29;
+    const dir = q + 1;
+    path.push({cell:cell+1,byte:b,q,r,dir});
+    const [dr,dc] = dirs[dir];
+    const nr = (cell >> 3) + dr;
+    const nc = (cell & 7) + dc;
+    if (nr < 0 || nr >= 32 || nc < 0 || nc >= 8) {
+      return {path,boundary:true,cycleStart:null,cycleLength:0,repeatCell:null};
+    }
+    cell = nr * 8 + nc;
+  }
+  return {path,boundary:false,cycleStart:seen.get(cell),cycleLength:path.length-seen.get(cell),repeatCell:cell+1};
+}
+function directPointerWalk(start, values) {
+  let cell = start;
+  const seen = new Map();
+  const path = [];
+  while (!seen.has(cell)) {
+    seen.set(cell, path.length);
+    const b = values[cell];
+    path.push({cell:cell+1,byte:b,key:b%29,rune:translit[b%29]});
+    cell = b;
+  }
+  return {path,cycleStart:seen.get(cell),cycleLength:path.length-seen.get(cell),repeatCell:cell+1};
+}
+function decodeWithPointer(seq, walk, sign, start=0) {
+  const {path,cycleStart,cycleLength} = walk;
+  return seq.map((c,i) => {
+    const n = start + i;
+    const at = n < path.length ? n : cycleStart + ((n-cycleStart) % cycleLength);
+    return translit[mod(c + sign * path[at].key, 29)];
+  }).join('');
+}
 
 const wordData = latinWords.map((word) => {
   const vals = [...word].map((ch,j) => ch === 'V' && word === 'VOLITET' && j === 0 ? gpIndex.W : gpIndex[ch]);
@@ -111,6 +153,8 @@ const stage11Numbers = [...stage11Html.matchAll(/(?:src|href)=["'][^"']*?(\d{1,2
 const stage11Unique = [...new Set(stage11Numbers)].sort((a,b) => a-b);
 const sourceStartCell = 6*8+3; // one-based printed row 7, column 4
 const sourceWalk = relativeWalk(sourceStartCell, values);
+const sourceKeypadWalk = keypadWalk(sourceStartCell, values);
+const sourcePointerWalk = directPointerWalk(sourceStartCell, values);
 const primeList = primesUpToCount(100);
 const prime59Index = primeList.indexOf(59);
 const fiftyNinthPrimeIndex = 58;
@@ -165,6 +209,26 @@ const result = {
       p53RedPlus: decodeWithWalk(p53Red,sourceWalk,values,1),
       preTableMinus: decodeWithWalk(preTable,sourceWalk,values,-1),
       postTableMinusContinuous: decodeWithWalk(postTable,sourceWalk,values,-1,preTable.length)
+    },
+    keypadWalk: {
+      path: sourceKeypadWalk.path,
+      boundary: sourceKeypadWalk.boundary,
+      cycleStart: sourceKeypadWalk.cycleStart,
+      cycleLength: sourceKeypadWalk.cycleLength,
+      repeatCell: sourceKeypadWalk.repeatCell,
+      emittedRunes: sourceKeypadWalk.path.map(x => translit[x.r]).join('')
+    },
+    directPointerWalk: {
+      path: sourcePointerWalk.path,
+      transient: sourcePointerWalk.cycleStart,
+      cycle: sourcePointerWalk.cycleLength,
+      repeatCell: sourcePointerWalk.repeatCell,
+      key: sourcePointerWalk.path.map(x => x.key),
+      p53RedMinus: decodeWithPointer(p53Red,sourcePointerWalk,-1),
+      p53RedPlus: decodeWithPointer(p53Red,sourcePointerWalk,1),
+      p55Minus: decodeWithPointer(p55.indices,sourcePointerWalk,-1),
+      preTableMinus: decodeWithPointer(preTable,sourcePointerWalk,-1),
+      postTableMinusContinuous: decodeWithPointer(postTable,sourcePointerWalk,-1,preTable.length)
     }
   },
   p53: {
