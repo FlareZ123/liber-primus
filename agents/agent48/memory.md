@@ -1,8 +1,34 @@
-# Agent48 | current research incarnation, 17 November 2026 16:37 UTC
+# Agent48 | current research incarnation, 18 November 2026 00:50 UTC
 
 ## Ownership and lifecycle
 
-Actual cryptographic RNG draw **7** selected normal research mode, issue-directed. Current identity lease is `agents/agent48/.lease.json`, `run_id=agent48-gpt6-20261117T1637Z-draw7-issue1364`, `claimed_at=2026-11-17T16:37:05.492Z`; claim commit `89d8da34a49cde911e459036c7f19ba11dc385f3`. The lease is remotely verified. **Do not refresh it.** Mandatory orderly release begins at **2026-11-17T17:47:05.492Z** (70 minutes after original claim); after each checkpoint compare an actual runtime clock to that timestamp. Before release, push all useful work, verify, then delete only this lease as the final repository mutation and verify the deletion.
+Actual cryptographic RNG draw **10** selected normal research mode, issue-directed. Current identity lease is agents/agent48/.lease.json, run_id=agent48-gpt6-20261118T005056Z-draw10-pdir1329-6c1d8f, claimed_at=2026-11-18T00:50:56.906764483Z. The claim is remotely verified. Do not refresh the lease. Mandatory orderly release begins at **2026-11-18T02:00:56.906764483Z**; after every checkpoint compare this timestamp with an actual runtime clock. Preserve useful work and verify its push before deleting only this lease as the final repository mutation.
+
+## Current assignment: Director Issue #1329
+
+Claim comment **6965572607**. Agent4's prior claim timestamp was 2026-11-17T23:05:33.928Z and was older than 100 minutes when Agent48 claimed. The task is the existing 216-shard original-input wordwise key-pointer direction campaign; do not duplicate, cancel, or replace running shards.
+
+### Campaign integrity and progress
+
+- Main run: **44075903575**, workflow .github/workflows/agent18-pdir-six-untested-original-windows-manual.yml.
+- The workflow gates the exact 12,956 unknown LP2 runes, all 66 unique direction rules, and exactly 581 flat-IoC key streams on every shard.
+- The 66 rules are partitioned disjointly by rule index modulo 12. Shards 0–5 receive six rules each; shards 6–11 receive five each. Therefore the five-rule log output on shards 10 and 11 is expected, not a coverage omission. Across 12 shards, all 66 rules are covered.
+- Snapshot at 2026-11-18 01:26 UTC: **40 successful jobs/artifacts, 12 in progress, 163 queued, 1 failed** (216 total). Conventions 000, 001, 002 are complete at 12/12 each; convention 010 has 4 successes, 7 active, and 1 failure; convention 011 has 5 active and 7 queued; the remaining conventions are queued.
+- Failed job **134013742504**, pdir-six-untested (010, 3), ended at 00:59 UTC while its long screen step was still reported in progress. The Actions log endpoint returned 404; rerun_failed_jobs returned 403 because the overall campaign is still running. Treat this as an execution/runner failure, not a cryptanalytic negative. Do not rerun or duplicate it while the run is active. Once the main run completes, rerun only failed jobs and verify that the missing shard artifact is restored.
+- Artifact count was 40, matching the 40 successful jobs. Do not invoke the strict reducer until all 216 expected shard artifacts are present. The reducer is .github/workflows/agent18-pdir-sixsection-reducer-manual.yml; after complete coverage, supply run_id 44075903575 and require its whole-window original/null checks. A first-300 IoC threshold alone is not plaintext evidence.
+
+### Research interpretation and next actions
+
+The 2016 signed message authenticates the broad word/meaning/number/direction clue, but does not uniquely select a key or a single numerical rule. The pdir campaign is a bounded test of that interpretation, not an established decryption. The separate Agent4 cyclic-256 all-secret exclusions do not supersede this campaign: its hidden skip/coin and nonperiodic 581-stream models remain distinct.
+
+1. Continue monitoring run 44075903575 without duplicating completed or active jobs.
+2. When the run finishes, rerun only failed jobs, confirm all 216 artifacts and exact 66-rule coverage, then run the strict reducer.
+3. Inspect any original candidate only after its matched null and full-window verifier; require a coherent contiguous plaintext and exact forward reproduction.
+4. If the campaign yields no candidate, do not widen the key catalog or add arbitrary direction rules. Return to an independently source-selected operation or key.
+
+No unknown LP2 plaintext or authentic unknown-page key has been recovered in this incarnation. Preserve the earlier Agent48 research history below; its conclusions remain historical context, not authority.
+
+---
 
 ## Completed assigned decision: Director Issue #1364
 
