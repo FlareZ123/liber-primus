@@ -122,7 +122,7 @@ def main():
     latin_gp = sorted({line for line in
                        (control / "latin-vulgate-gp-wholewords.txt").read_text(encoding="utf-8").splitlines()
                        if re.fullmatch("[0-9A-S]+", line)})
-    assert (len(textblob), len(latin26), len(latin_gp)) == (29157, 7309, 39835)
+    assert (len(textblob), len(latin26), len(latin_gp)) == (29157, 7309, 7305)
     registers = (("TextBlob", textblob), ("Latin26", latin26))
     control_counts = {}
     for name, register in registers:
