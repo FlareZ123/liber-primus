@@ -114,8 +114,8 @@ assert.equal(gp0(we), 25);
 assert.deepEqual(hadamardPair(outer), [A, B]);
 assert.deepEqual(hadamardPair(inner), [p, gp0(we)]);
 assert.equal(selected.length, g);
-assert.equal(mod29(selected[0] + selected[4]) % p, K);
-assert.equal(mod29(selected[1] + selected[3]) % p, K);
+assert.equal((selected[0] + selected[4]) % p, K);
+assert.equal((selected[1] + selected[3]) % p, K);
 
 const shellLinks = [];
 let eligibleFiveTwo = 0;
