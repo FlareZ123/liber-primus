@@ -66,7 +66,7 @@ This is a genuine source-selectivity improvement over simply supplying `X-N-X-C`
 
 ## Second key: MAP is the unique route-prefix phi extrapolation
 
-The second construction uses the block-28 MAP source center `M=(16,9)` and `E=(17,13)`. In the current frozen 38-block route this is the three-rune `MAP` prefix endpoint. Crucially, the external red-heading report was already published on **30 October 2026**, when its route snapshot describes standalone stage 28 `MAP` ending at `AE(17,13)`; the later `MAP LIFE` extension file first appears on **4 November 2026**. Thus `(17,13)` was the selected stage endpoint when this heading construction was published, rather than a semantic boundary chosen retrospectively from the later seven-rune block. Apply two deterministic affine extrapolations:
+The second construction uses the block-28 MAP source center `M=(16,9)` and `E=(17,13)`. In the current frozen 38-block route this is the three-rune `MAP` prefix endpoint. Crucially, standalone stage 28 `MAP` was already published on **26 October 2026** (`plaintext-i-found/28-map.md`), four days before the first red-heading report on **30 October 2026**. The 30 October route snapshot describes MAP ending at `AE(17,13)`. The later `MAP LIFE` extension first appears on **4 November 2026**. Thus `(17,13)` was the selected stage endpoint when this heading construction was published, rather than a semantic boundary chosen retrospectively from the later seven-rune block. Apply two deterministic affine extrapolations:
 
 ```
 R = 2E - M = (18,17)
@@ -120,4 +120,4 @@ The SFT uses only the canonical local p0-p2 corpus, the source-corrected physica
 External numerical proposal credited for the candidate red-heading constructions:
 https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption
 Current external main inspected during this audit: `81ae3c885d8bf6f1e5b0cfde060531d9637fba79`.
-Historical red-heading snapshot inspected: `ca96de9d14a9743cd6d53c612e41f4919a52b3bb` (30 October 2026), where stage 28 MAP ends at `AE(17,13)`. The later `plaintext-i-found/28-map-life.md` first appears at `2f0c928e14d1338ea3f60ff0d19ffbd98900def8` (4 November 2026).
+Historical chronology inspected: standalone `plaintext-i-found/28-map.md` first appears at `d6d82764bae48db306fd779c0d555f15260f8343` (26 October 2026); the red-heading snapshot `ca96de9d14a9743cd6d53c612e41f4919a52b3bb` is from 30 October and uses MAP ending at `AE(17,13)`; `plaintext-i-found/28-map-life.md` first appears at `2f0c928e14d1338ea3f60ff0d19ffbd98900def8` (4 November 2026).
