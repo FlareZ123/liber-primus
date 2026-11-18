@@ -86,10 +86,53 @@ One historically demonstrated *distinct* operation remained from the 2014 Stage0
 
 Results on the entire original source-oriented p7 (208 runes) and p23 (213 runes) have IoC **0.035395763657** and **0.034148285942**, respectively, with no readable plaintext. The same key exactly round-trips an authentic p57 GP-text plant of length 213, and forward-masking both candidate outputs reproduces every original source-oriented rune. [One-file SFT](../sims/lp2_dot_triad_solved_p56_plaintext_key_sft.cjs). This excludes this single historically motivated solved-text-key interpretation, **not** other possible uses of the geometric motif. The 2014 solved-text-key precedent does not establish that the authors intended this motif to select that operation.
 
+### Music-symmetry interpretation and literal-F gate (18 November 2026)
+
+A later, **noncanonical** 2019 solver claim preserved by Samizdat describes Liber Primus as "a musical notebook in part", tells solvers to look at the five-dot pages 7, 23 and 56, and says to use the totient function. The article itself identifies the claimant as a solver rather than an authenticated pre-2014 puzzle author, so this is a hypothesis selector only. It cannot authenticate a solution.
+
+The exact original-source geometry nevertheless makes one sharply bounded interpretation possible. Read x-position as time and vertical rank as pitch. The p23 five-dot contour has ordinal ranks **3-1-5-2-4**. Relative to p23, the three source copies are exactly the standard four-way melodic symmetry family with one member absent:
+
+| Source figure | Geometric transform from p23 | Musical symmetry |
+| --- | --- | --- |
+| p23 | identity | prime |
+| p7 | vertical reflection | inversion |
+| p56 | 180-degree rotation | retrograde-inversion |
+| absent fourth copy | horizontal reflection | retrograde |
+
+This interpretation does not depend on fitting a constellation, pitch scale, staff spacing or star catalogue. The complete 75-image census above independently establishes that the horizontal-only fourth stencil is absent.
+
+That symmetry can be transferred to the one genuine cipher operator in the triad without inventing a key. Solved p56 decrypts with consecutive prime-totient shifts `k_i=(prime_i-1) mod29`, subtraction sign, and literal plaintext F written as ciphertext F without consuming the prime clock. Relative to solved p56, p7 is **retrograde**, selecting the same subtraction sign with the consumed prime schedule reversed. P23 is **retrograde-inversion**, selecting the reversed prime schedule with the sign inverted.
+
+The literal-F rule gives a language-independent rejection test. For each page, enumerate every possible total count of consumed primes allowed by its ciphertext-F count, reverse exactly that many consecutive prime-totient shifts, and at every ciphertext position allow both authentic possibilities for ciphertext F: literal-F bypass or ordinary encrypted non-F. A non-F ciphertext rune that maps to plaintext F kills that state because authentic p56 would have emitted F literally.
+
+P7 has one ciphertext F, so both possible totals are exhausted:
+
+| p7 consumed primes | Literal-F bypasses | First zero-valid-state offset |
+| ---: | ---: | ---: |
+| 207 | 1 | **81** |
+| 208 | 0 | **67** |
+
+P23 has seven ciphertext F runes, so all eight possible totals are exhausted:
+
+| p23 consumed primes | Literal-F bypasses | First zero-valid-state offset |
+| ---: | ---: | ---: |
+| 206 | 7 | **24** |
+| 207 | 6 | **36** |
+| 208 | 5 | **26** |
+| 209 | 4 | **88** |
+| 210 | 3 | **94** |
+| 211 | 2 | **9** |
+| 212 | 1 | **29** |
+| 213 | 0 | **70** |
+
+**No admissible path survives either source-selected operator.** This is stronger than the earlier IoC negatives because it fails a structural invariant of the authentic solved p56 cipher before language scoring. It closes this specific musical-symmetry reading of the five-dot triad plus the p56 prime-totient mechanism. It does not exclude another musical use of the contour, a different key stream, or a noncanonical 2019 claim being unrelated to the original puzzle.
+
+Reproducer: [`sims/lp2_fivedot_music_symmetry_totient_gate_sft.cjs`](../sims/lp2_fivedot_music_symmetry_totient_gate_sft.cjs).
+
 ## Decision for the next solve path
 
 **Established:** these three five-dot source drawings are linked by precise, mutually consistent axial reflections. Earlier work recognized the first mirror; solved p56 supplies a genuinely new third anchor. A contemporary viewer could discover the complete motif by comparing original pages, and this is a reusable visual cross-reference.
 
-**Unsupported:** that their reflection dictates any rune-reading order, key exchange, or reuse of p56's prime-totient schedule. The two most literal source-oriented p56 transfers failed to expose plaintext. The near-identical motif geometry is entirely compatible with a reused illustration.
+**Unsupported:** that their reflection dictates any rune-reading order, key exchange, or reuse of p56's prime-totient schedule. The two earlier literal source-oriented transfers fail linguistically, and the music-symmetry-specific reversed prime schedules now fail the authentic literal-F invariant under every possible skip count. The near-identical motif geometry remains compatible with a reused illustration.
 
 Do not reuse the p7/p23-centred 16-page Fibonacci, p56 prime-start search or the many unconstrained additive/key-skip tests. The useful reopening gate is an **independently source-visible instruction identifying why the p56 version of the figure is a control rather than decoration**, together with a reversible operation and a prediction on a previously unseen original page or text interval. A new clue about the drawing's identity, or a source-specified reflection operating on a different carrier, would justify one bounded inverse. Until then retain the triad as intermediate original-artifact evidence.
