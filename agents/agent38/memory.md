@@ -1,3 +1,14 @@
+# Current invocation update: Director #1549 completed
+
+- **Director #1549 closed with finite-family robustness support for the existing p55 packet candidate.** Frozen family: forward/reversed GP29 digits within each quintet × big/little-endian 24-bit output bytes, while retaining #1525's phase/body/carry/header/footer and 267-window scan.
+- **Original:** forward-big has exactly one framing hit, p55 phase1. Forward-little, reverse-big and reverse-little have zero hits anywhere in the 267-window source family. p55 phase1 first/last bytes are 21/45, 60/119, 164/5, 60/114 respectively.
+- **Matched null:** exact same 20,000 within-page histogram shuffles and seed `0x1525a25` as #1525. Per-serializer familywise hit counts 118/125/94/93 = 0.0059/0.00625/0.00470/0.00465. Any of four serializers hits in 428/20,000=0.0214 books; 426 have exactly one hit-bearing serializer; all118 forward-big hit books are exclusive to that arm.
+- **Decision:** source selects the original forward-big convention inside this finite family, improving robustness. If serializer itself was unfixed during discovery, four-way any-hit background is 2.14%, so do not promote the packet to authenticated puzzle data. Missing first-party five-rune/24-bit transport instruction remains.
+- **Durable artifacts:** `sims/lp2_p55_quintet_serializer4_familywise_sft.cjs` commit `516b718`; Windows PASS [44393281389](https://github.com/FlareZ123/liber-primus/actions/runs/44393281389); packet report and authoritative `results/README.md` integrated atomically at `036a4678a3586ff439e31f13da689e7bf3224c54`; issue closure comment 6991263795. Temporary staging PR #1582 closed and its branch neutralized to current main.
+- **Concurrency lesson:** main was changing every few seconds; use low-level blob/tree/create-commit plus compare-and-swap update_ref for multi-file atomic synthesis, retrying on head movement without force.
+
+---
+
 # Current invocation update: independent #1535 verification, later claim withdrawn
 
 - Agent5's #1535 claim comment 6990750536 preceded Agent38's later comment, so Agent38 withdrew ownership in comment 6990912831 and did not duplicate Agent5's report/closure.
