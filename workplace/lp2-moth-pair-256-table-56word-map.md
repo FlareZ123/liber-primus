@@ -73,6 +73,24 @@ Convert each two-symbol cell to a base60 byte, take its residue modulo29, and de
 
 The best p55 output, despite a slight IoC increase, is still an unstructured Latin-GP transliteration, beginning \`HOEEHXYABEAIAEOPIOEMRBNIAFFNOEEAE...\`. No recoverable GP-English words or key/instruction appear. This retires the **direct zero-anchored ± base60-byte GP29 pad**, not the entire motif relation.
 
+
+### Zero-anchored Euler/prime-ordinal and original historical XOR tests (Agent10, 18 November 2026)
+
+The moth pair's **originally printed terminal red 13-dot marks** can occupy the unique zero cell in each proposed p50 table zone: p53's **179** GP runes occupy the other **179 interior cells**, and p55's **75 complete-body** runes occupy the other **75 perimeter cells**. The previously fixed original addressing starts immediately after each zero and ends at its zero marker. It removes the undefined `φ(0)` input that blocked the earlier clockwise-top-left p55 totient attempt. A repeated moth on LP1 p05 accompanies the author's explicit **Euler totient** clue; Cicada's solved p56 cipher uses prime-totient shifts, and the 2013 challenge uses bytewise XOR. Those historical mechanisms motivated the following genuinely executable direct consumers. They still require conjectural source-to-address and byte-to-key interpretations.
+
+On **every original rune in both independently selected pages**, subtract and add (mod 29) either `φ(table byte)` or `φ(p_table-byte)`, with `p_1=2` and the table's nonzero byte read as a **one-based** prime ordinal. No start, phase, token boundary, exception or free alphabet was fitted. Complete direct inverses exactly reconstruct original ciphertext and recover independently encrypted solved-p57 native-rune plants, but the original outputs remain uniformly distributed:
+
+| Original moth text | Source GP29 IoC | φ(byte), minus/plus | φ(indexed prime), minus/plus |
+| --- | ---: | ---: | ---: |
+| p53, 179 runes | 0.033520 | **0.033959 / 0.033394** | **0.032955 / 0.032327** |
+| p55 body, 75 runes | 0.038559 | **0.032793 / 0.031351** | **0.033514 / 0.030991** |
+
+All eight rune outputs are nonprose. This is a direct failure of the **source-zero-anchored Euler additive receiver**, rather than a rejection of the moth relationship or every possible totient cipher.
+
+A separate authentic-history-motivated **bytewise XOR** uses each mapped rune's GP prime value, GP ordinal or GP prime's totient as a full 8-bit source key, and maps each physical terminal marker to the value **0 or its literal thirteen dots, 13**. This exactly covers all **256** table cells with no invented filler or repeated key positions. The six decoded outputs have **97, 99, 104, 106, 97, 99 printable bytes of 256**, respectively, against **106 printable bytes of 256** in the original table; none begins with a recognizable ordinary file header, and every XOR re-encodes byte-for-byte. These outputs provide no readable original content or authenticated typed object. A compressed or further encrypted payload cannot be excluded by an ASCII check.
+
+**Decision:** retire only the eight direct zero-aligned Euler GP29 inverses and six simple prime/ordinal binary-XOR receivers. Their address mapping is itself hypothetical; no authentic unknown LP2 plaintext, creator key, or destination was recovered. [Single-file read-only Windows-compatible CJS reproducer](../sims/lp2_moth_zerocell_phi_xor_original_sft.cjs) contains exact original-input counts, source-zero addressing, positive roundtrips and numeric assertions. Neither report nor the broader p53/p55 image relation should promote a cipher claim from these negatives.
+
 ### 2. All-secret, fixed byte-to-rune lookup
 
 If the table is a fixed substitution from each numeric byte to a GP29 rune/13-dot event, the *same* byte must always correspond to the *same* event. This is a necessary condition independent of any undisclosed substitution table. On the fixed source-anchored alignment:

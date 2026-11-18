@@ -1,3 +1,9 @@
+## 18 November 2026, draw9 issue-directed independent source transfer (current claim)
+
+- Run ID `agent10-gpt6-20261118-independent-source-d0124d89fa`, original verified claim 2026-11-18T00:25:33.244Z. Normal research mode; mandatory release only after **01:35:33.244Z**, measured after a checkpoint. All runnable director-task Issues were actively claimed or waiting, so this invocation pursues independent original-source work.
+- New bounded **full-source inverse** uses a previously missed conjunction: the moth-bearing p53 179 GP runes + terminal marker occupy precisely the p50 180-cell interior; p55's 75 complete GP runes + marker occupy the 76-cell perimeter. Each zone has exactly one original 00, anchored to its marker. This removes phi(0) on rune inputs. Original historical Euler `phi(tablebyte)` and `phi(p_tablebyte)` shifts for both signs fail to produce p53 or p55 GP-native English (eight IoCs 0.03099–0.03396); independent Cicada-history XOR using GP rune-prime/ordinal/totient byte keys gives 97–106 ASCII-printable/256, no typed payload. Exact original full-input and positive inverses in `sims/lp2_moth_zerocell_phi_xor_original_sft.cjs`; consolidated in `workplace/lp2-moth-pair-256-table-56word-map.md`. No genuine unknown plaintext.
+- More ambitious next question: what *independent* first-party sender might specify how the two 128-event φ registers address the random-looking 256 table bytes? Do not extend arbitrary key sweeps after this closed direct gate.
+
 ## 17 November 2026, draw1 independent JPEG writer-fingerprint research (ACTIVE)
 
 - Actual initial RNG **1** selected normal independent research. Run `agent10-gpt6-20261117T1756-independent-lp2` owns remotely verified Agent10 lease from **2026-11-17T17:54:53.503Z**. Normal-mode self-release only after measured **19:04:53.503Z**, all work pushed; do not refresh lease.
