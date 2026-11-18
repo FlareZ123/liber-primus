@@ -139,6 +139,87 @@ assert.equal(repeated,4);
 assert.equal(bothFixedTop,0);
 assert.equal(both40,0);
 assert.equal(fixed80,0);
+
+/**
+ * Independent plaintext-directed receiver after freezing T6:
+ * full-stream ciphertext feedback P_i=C_i ± T(C_(i-6)), first six
+ * runes in the clear. This is a complete reversible model, in contrast
+ * to recognizing only the 80 original six-back matches.
+ */
+const allCipher=corpus.pages.filter(p=>p.page<56).flatMap(p=>p.indices);
+assert.equal(allCipher.length,12956);
+const lexicon=new Map(corpus.translit.map((str,index)=>[str,index]));
+/** @param {string} text */
+function nativeGP(text){
+ const result=[];
+ for(let word of text.toUpperCase().match(/[A-Z]+/g)||[]){
+  word=word.replace(/QU/g,'CW').replace(/V/g,'U')
+    .replace(/K/g,'C').replace(/Z/g,'S');
+  for(let i=0;i<word.length;){
+   let symbol,span=0;
+   for(const width of [3,2,1]){
+    const v=lexicon.get(word.slice(i,i+width));
+    if(v!==undefined){symbol=v;span=width;break}
+   }
+   if(symbol!==undefined)result.push(symbol);
+   i+=span||1;
+  }
+ }
+ return result;
+}
+const shakespeare=nativeGP(read('resources/control/shakespeare_first300k.txt'));
+const trainEnd=Math.floor(shakespeare.length*.75);
+const c3=new Float64Array(MOD*MOD*MOD).fill(.1);
+const c2=new Float64Array(MOD*MOD).fill(2.9);
+for(let i=2;i<trainEnd;i++){
+ const code=(shakespeare[i-2]*MOD+shakespeare[i-1])*MOD+shakespeare[i];
+ c3[code]++;c2[Math.floor(code/MOD)]++;
+}
+/** @param {number[]} a */
+function nativeScore(a){
+ let score=0;
+ for(let i=2;i<a.length;i++){
+  const k=(a[i-2]*MOD+a[i-1])*MOD+a[i];
+  score+=Math.log(c3[k]/c2[Math.floor(k/MOD)]);
+ }
+ return score/(a.length-2);
+}
+/** @param {number[]} a */
+function nativeIoC(a){
+ const hist=Array(MOD).fill(0);
+ for(const symbol of a)hist[symbol]++;
+ return hist.reduce((sum,v)=>sum+v*(v-1),0)/(a.length*(a.length-1));
+}
+const heldout=[];
+for(let i=trainEnd;i+400<=shakespeare.length;i+=400)
+ heldout.push(nativeScore(shakespeare.slice(i,i+400)));
+assert(heldout.length>=100);
+const nativePlant=Array.from({length:allCipher.length},(_,i)=>
+ corpus.pages[57].indices[i%corpus.pages[57].indices.length]);
+const feedback=[];
+for(const sign of [-1,1]){
+ const inverse=allCipher.map((c,i)=>
+  i<6?c:mod(c+sign*map(allCipher[i-6])));
+ const synthesized=nativePlant.slice(0,6);
+ for(let i=6;i<nativePlant.length;i++)
+  synthesized.push(mod(nativePlant[i]-sign*map(synthesized[i-6])));
+ assert.deepEqual(synthesized.map((c,i)=>
+  i<6?c:mod(c+sign*map(synthesized[i-6]))),nativePlant);
+ const score=nativeScore(inverse);
+ feedback.push({sign,score,IoC:nativeIoC(inverse),
+  p0First160:inverse.slice(0,160).map(i=>corpus.translit[i]).join(''),
+  originalSymbolsReconstructed:inverse.length,plantedSymbolsRecovered:nativePlant.length});
+}
+const nativeFeedback={
+ original:feedback,
+ heldoutMin400:Math.min(...heldout),
+ heldoutMax400:Math.max(...heldout),
+ heldoutWindows:heldout.length,
+ scoreMeasure:'mean interpolated native GP29 trigram log probability',
+ directGlobalCiphertextFeedbackRecoverPlaintext:false,
+};
+assert(feedback.every(x=>x.score<nativeFeedback.heldoutMin400));
+
 console.log(JSON.stringify({
  source:{
   p39RedIndices:redIndices,GHighFirst:G,root:24,doubleRoot:true,
@@ -161,6 +242,7 @@ console.log(JSON.stringify({
   fixedTotal80:fixed80,highestNullHalfMax:highest,
   firstThree:nullExamples,
   syntheticSixbackPlant:true,
+  nativeFeedback,
  },
  interpretation:'Unusual stable six-back affine correspondence, not a plaintext or authenticated creator-selected reversible cipher'
 },null,2));
