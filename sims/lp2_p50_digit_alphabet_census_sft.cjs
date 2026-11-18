@@ -113,8 +113,9 @@ const evenLow59 = low59.filter(({token}) => (BASE59.indexOf(token[1]) & 1) === 0
 assert.equal(evenLow60.length, 36);
 assert.equal(evenLow59.length, 30);
 
-const iidByteSequenceLikelihood = 256 ** -256;
-assert.equal((252 / 256) ** 256, (252 / 256) ** 256);
+const commonSupportProbability = (252 / 256) ** 256;
+const uniformByteSequenceLogLikelihoodNats = -256 * Math.log(256);
+assert.ok(Math.abs(commonSupportProbability - 0.017746303433497834) < 1e-15);
 
 console.log(JSON.stringify({
   classification: 'source-only alphabet census; no repeat positions used',
@@ -131,7 +132,9 @@ console.log(JSON.stringify({
     base59Only: only59,
     observedBase60Only: 0,
     observedBase59Only: 0,
-    sequenceLikelihoodUnderUniformBytesEachModel: iidByteSequenceLikelihood
+    commonSupportProbabilityUnderUniformBytes: commonSupportProbability,
+    sequenceLogLikelihoodNatsUnderEitherUniformByteModel:
+      uniformByteSequenceLogLikelihoodNats
   },
   decodedValues: {
     base60Range: [Math.min(...values60), Math.max(...values60)],
