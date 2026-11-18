@@ -1,8 +1,29 @@
 # LP2 p0–2: source-derived central self-crib, provisional reading, and non-unique continuation
 
-**Research state, 18 November 2026.** The geometric center self-crib and proposed WEATHER reading are reproducible source arithmetic. The external route has since been extended through a proposed block 39 **DIE**, but a new original-input census shows that the fixed Reports 00–19 still leave **966 physical post-I-ASK geometries and 1,088 distinct GP29 outputs**. Earlier Reports 17–19 also permit **two complete English readings of precisely the same post-THEN ciphertext cells under different original mirror keys**. No authenticated unknown-page plaintext, creator key or uniquely selected reading order has been recovered.
+**Research state, 18 November 2026.** The geometric center self-crib and proposed WEATHER reading are reproducible source arithmetic. A new independent audit confirms one stronger conditional result: after granting the selected route through **AS**, the external author's frozen retrospective pair of 3301-linked arithmetic criteria reduces the exact Reports00–15 next-block pool **21,342→48/15→1**, uniquely recovering the rune sequence **I·A·S·C/K** on the documented source and ciphertext. This is a real finite conditional recovery, while the criteria were identified after the candidate route and do not authenticate the earlier prefix. The later proposed block39 **DIE** remains underdetermined: Reports00–19 leave **966 physical post-I-ASK geometries and 1,088 distinct GP29 outputs**. No creator-authenticated unknown-page plaintext, author key or complete deterministic reading order has been recovered.
 
 [Original map self-crib SFT](../sims/lp2_p0_27square_center_selfcrib_source_sft.cjs) · [New Reports 17–19 original-source all-candidate SFT](../sims/lp2_p0_27square_reports17_19_ambiguity_sft.cjs) · [External original hypothesis](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption).
+
+## Stronger conditional result: two frozen 3301 totals uniquely recover I ASK after AS
+
+The external project also publishes a source-independent endpoint test from its fixed block37 **AS** placement. This deserved a separate audit because, unlike the later DIE choice, it claims to select the next source and ciphertext without supplying an English word or block length.
+
+Grant the external Reports00–15 state after AS. The resulting outgoing geometry is fixed: phase/signature **0 / (0,0,0)**; vertical non-mirror source centered on even row / odd column with odd radius; vertical ciphertext read downward with bottommost endpoint = leftmost; endpoint row even and column odd; exact eight-ray deviation1 from the previous leftmost cell. Enumerating the unchanged 729-rune p0–2 source gives exactly the published search sizes:
+
+| Fixed-AS endpoint stage | Assignments |
+| --- | ---: |
+| Reports00–15 baseline | **21,342** |
+| Require next-block plaintext GP = **194** | **48** |
+| Require source-position sum + full derived-key GP + plaintext index sum = **1,223** | **15** |
+| Require both | **1** |
+
+The unique joint survivor is the original vertical source **T–M–EA** at **(11,13),(12,13),(13,13)**, radius1, used directly. It decrypts ciphertext **Y–X–X–NG** at **(5,17)→(8,17)** to GP indices **(10,24,15,5)** = **I·A·S·C/K**, conventionally read **I ASK**. Its last-block values are plaintext GP **194**, plaintext-index sum **54**, source-position sum **930**, and full key GP **239**; therefore **930+239+54=1,223**.
+
+The two target values come from the proposed branch's 3301 accounting after the preceding selected GO/DO/AS blocks: the branch plaintext GP is required to equal **π(3301)=464**, so the final block contributes **464−270=194**; the composite source/key/plaintext total is required to equal **3301**, so the final block contributes **3301−2,004−74=1,223**. The published eleven-prime sensitivity check is also exactly reproducible: replacing 3301 by each of the five neighboring primes on either side and updating both targets gives zero joint survivors in all ten controls; only **3301=p₄₆₄** gives one.
+
+**Interpretation:** this is materially stronger than selecting an English-looking output from a large pool. Given the selected AS prefix and the two frozen arithmetic criteria, I ASK is an exact, unique, reversible consequence of the original ciphertext. The remaining weakness is causal: both criteria were discovered retrospectively after the route was chosen, and the prefix through AS remains semantically selected. This result therefore upgrades **I ASK** to a *conditionally recovered* endpoint inside the external model, while stopping short of creator-authenticated LP2 plaintext.
+
+**Reproduction:** [standalone CommonJS SFT](../sims/lp2_p0_27square_iask_3301_endpoint_sft.cjs) asserts the exact **21,342 / 48 / 15 / 1** counts, full reencryption, unique geometry/key, and all eleven neighboring-prime outcomes.
 
 ## Fresh external block 39 DIE remains geometry-underdetermined
 
