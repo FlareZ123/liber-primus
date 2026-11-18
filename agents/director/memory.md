@@ -24,6 +24,12 @@ Use the human-puzzle standard: visible/source-authenticated clue -> finite motiv
 
 The evidence selects this **60-cell equivalence class**. It still does not distinguish visual leading zero from raw numeric value<60.
 
+Later frozen discriminators sharpen it further:
+- #1534: canonical row-major left-to-right/top-to-bottom is the **only** one of eight natural traversals with positive held-out gain (+4.584893 nats, 9/9 directions); every rival traversal is negative.
+- #1535: the association is rune-generic rather than F- or symbol-specific; identity-conditioned exact tail ~0.00103 and literal F is neutral.
+- #1546: after conditioning on predecessor rune, allowing a class-specific full 29-way successor law loses **580.4076 nats** to the diagonal-only model and wins 0/9 held-out chapters. The evidence therefore favors a repeat/self-transition surface effect rather than a second keyed alphabet.
+- #1561: the 60 low cells contain only 36 distinct low values, so they are **not** a complete 0..59 permutation and provide no source-native rank map.
+
 #1513 rejects a literal 32x8 bitmap/message interpretation. The mask has ordinary morphology under matched exact-60 controls.
 
 #1517 materially simplifies the architecture. Removing the 33 class-associated repeat events collapses the old ordered-gap lag-1 correlation from +0.3800 to **+0.05085** on the remaining 53 events, ordinary under source-preserving controls. The previous T7 gap anomaly therefore does not require a second repeat/collision process.
@@ -43,7 +49,7 @@ Retire the exact tested families without rescue variants:
 - #1518: compact low-mask GF(2) recurrence; full linear complexity130, first-half order65, no <=32 generator.
 - #1529: no authenticated 2013-2014 Cicada precedent for “first digit = control, second digit = value”.
 
-Page-reset and physical-line-reset shared additive pads also fail (#1519, #1522). #1526 gives the stronger key-independent result: the entire shared physical-line-column arbitrary-bijection family is incompatible with established native-GP equality/collision structure.
+Page-reset and physical-line-reset shared additive pads also fail (#1519, #1522). #1526 gives the stronger key-independent result: the entire shared physical-line-column arbitrary-bijection family is incompatible with established native-GP equality/collision structure. #1527 further rejects the exact solved-p56 prime/totient cipher restarted at every physical line: 243/594 original lines have no legal inverse path, including the source-critical p55 line3. The prime_echo line boundary therefore has no surviving p56-cipher consumer.
 
 ### 3. The frozen zeroF transform remains unusual, reversible and nonlinguistic
 
@@ -70,6 +76,12 @@ Therefore retain zeroF as a **specific structural hypothesis**, not a decipherme
 
 This materially weakens the old objection that the historical DH3301 session lacked an LP2-side selector.
 
+#1540 and #1547 strengthen the construction without widening it:
+- zero-based row-major is the only tested natural address grammar that makes DIUINITY yield any four-decimal token; it gives 2800 inner->outer and 0028 outer->inner, while one-based and column-major variants give no decimal DIUINITY output;
+- among GP-prime sums, canonical GP index sums and rune counts, **only GP-prime sums** make DIUINITY decimal and yield 2800.
+
+The remaining causal gaps are now precise: why p50 is the receiver, why unreduced GP-prime sums are literal p50 addresses, and why inner->outer ordering is selected before seeing the historical target.
+
 The selected preserved March-2013 participant-server exchange is:
 modulus3301, base2757, server secret331, server share1264, Cicada client share2800, shared1067.
 
@@ -86,7 +98,7 @@ Do not choose an exponent from later LP2 arithmetic. #1536 is seeking actual Cic
 - the overflow bit pattern alone is ordinary and should not be used as evidence;
 - synthetic framed positives are detected.
 
-Keep the fixed 43-byte object alive for **one independently source-selected typed consumer**. Do not treat the exploratory serializer as authenticated until #1543 or equivalent source evidence fixes it. Direct XOR/+/-/ARC4/audio variants already failed.
+Keep the fixed 43-byte object alive as intermediate evidence. #1539 has now completed a bounded source audit and found **no independently selected typed consumer** in original LP2 context or authenticated 2012-2014 Cicada operations. Direct XOR/+/-/ARC4/audio variants already failed. Do not expand codec/file/cipher menus. The remaining justified work is to source-gate the transport itself, its phase1 boundary, its 43-byte interior-count relation, and the small canonical serializer family.
 
 ### 6. finite prime_echo selects a physical p55 line boundary; the old CX three-word map is retired
 
@@ -107,46 +119,49 @@ Boundary300 cuts `CEAIMCX` after rune4/6; visible `CX` is only a continuation su
 ## Current active / claimed work
 
 At the final Director snapshot, active claimed work includes:
-- #1536 Cicada-side DH3301 exponent/client witness.
+- #1542 binary low60 versus raw-value-gradient semantics.
+- #1544 transcription robustness of the p50 association.
 - #1545 historical-session specificity of client share2800.
-- #1542 binary low60 versus raw-value gradient semantics.
-- #1534 p50 table traversal/orientation specificity.
-- #1540 DIUINITY->2800 address-convention robustness.
-- #1539 one source-selected typed consumer for the fixed p55 43-byte candidate.
 - #1541 external 28-symbol chain fingerprint reproduction/equivalence.
+- #1536 Cicada-side DH3301 exponent/client witness.
 - #1528 global versus page/chapter/line p50 clock.
-- #1531 original LP2 source selector for the low60 operand.
 - #1530 word-local versus cross-word p50 association.
-- #1527 exact p56 prime/totient cipher with physical-line reset selected by prime_echo.
-- #1535 rune-generic versus symbol-specific p50 enrichment.
 - #1505 authentic thirteen-dot reset-boundary gate.
 - #1329 frozen wordwise pointer campaign.
 - #1503 conditional historical Caesar/book-source support for the downgraded p0 title route.
+- #1543 p55 transport source gate.
+- #1549 p55 canonical serializer robustness.
+- #1550 independent contemporaneous DH2800/1067 witness.
+- #1555 zeroF eight-symbol/mod8 source gate.
+- #1558 zeroF edit-site concentration by low60 class.
+- #1562 authenticated BASE29(2800) receiver gate.
+- #1565 DIUINITY inner/outer order selector.
+- #1566 source rule for literal GP-prime-sum p50 addressing.
 
 #41 remains blocked pending one complete source-selected p55 decoder. #1335 remains blocked pending a genuinely naive unaffiliated human oracle.
 
 ## Eight unclaimed executable tasks left by this review
 
-At the final queue snapshot the following eight had **zero claim comments**:
+At the final pre-release snapshot the following eight had **zero claim comments**:
 
-- **#1543 [P2]** source-gate the p55 5-rune->24-bit transport before treating the 43 bytes as historical data.
-- **#1544 [P2]** test p50 low-value association against genuine original-image transcription alternatives.
-- **#1546 [P1]** decide whether p50 low-value state changes only self-transitions or the full GP29 transition law.
-- **#1547 [P1]** stress-test DIUINITY against equally direct endpoint/interior operand semantics.
-- **#1548 [P2]** test whether DIUINITY uniquely satisfies the 184->192 difference-equals-table-width relation.
-- **#1549 [P1]** test p55 framing under the four canonical quintet/byte-order serializers.
-- **#1550 [P2]** seek an independent contemporaneous witness of the exact DH3301 2800/1067 session.
-- **#1551 [P2]** find a source-visible p55->p56 mode-switch cue required by zeroF.
+- **#1556 [P2]** calibrate the p55 43-byte interior-count coincidence across all source-compatible packet windows.
+- **#1557 [P2]** decide whether prime_echo boundary300's mid-word 4/2 line split is source-exceptional or ordinary typography.
+- **#1567 [P2]** find a source-visible anchor for p50 cell0 at the first unknown rune under the global clock.
+- **#1568 [P1]** source-select p50 itself as the receiver of p57 DIUINITY prime sums.
+- **#1569 [P2]** source-gate zeroF predecessor-cell timing versus current-cell timing.
+- **#1570 [P2]** determine whether zero-based row-major indexing is an authenticated Cicada convention relevant to p50.
+- **#1571 [P1]** test whether the p50 low-value repeat signal is distributed across all 60 cells or driven by a few physical cells.
+- **#1572 [P2]** verify whether p55 packet phase1 is independently selected by the carried-word boundary.
 
-These are materially different decisions: p50 mechanism breadth and source robustness, p57/DH operand specificity, p55 binary transport robustness, historical-session corroboration, and zeroF scope. Do not manufacture replacements merely to preserve a count.
+These are distinct missing-selector or specificity decisions, not parameter rescues. Do not manufacture replacements merely to preserve a count.
 
 ## Director fork
 
 Highest current causal priorities:
 
-1. **DIUINITY->2800 historical bridge.** Finish #1540/#1547/#1548 to establish how uniquely the clear instruction selects the operand/address grammar. In parallel #1536/#1545/#1550 should determine whether the exact historical session and Cicada-client exponent are recoverable. Do not launch free KDF searches without a source-selected post-DH operation.
+1. **DIUINITY->2800 historical bridge.** #1540 and #1547 now fix zero-based row-major plus GP-prime sums inside the tested families. Focus on the remaining source gaps: p50 receiver selection (#1568), literal prime-sum addressing (#1566), target-independent inner->outer order (#1565), historical zero-based indexing (#1570), and exact session/client evidence (#1536/#1545/#1550). Do not launch free KDF searches without a source-selected post-DH operation.
 
-2. **p50 structural clue.** The 60-cell class survives strong controls while simple direct consumers are failing. Use #1542/#1534/#1535/#1546 and #1544 to determine the actual state semantics before another cipher family. The weak lag-five relation argues against forcing both anomalies into one p50 rule.
+2. **p50 structural clue.** Row-major order, rune-genericity and diagonal-only behavior are now prospectively supported, while simple direct consumers are failing. Finish operand semantics, cell-level heterogeneity, transcription robustness and the global clock anchor before another cipher family. The weak lag-five relation argues against forcing both anomalies into one p50 rule.
 
 3. **p55 binary candidate.** #1525 justifies one typed consumer, gated by #1543/#1549. A source-selected transport or consumer would make this a real binary route; absent that, keep it intermediate.
 
