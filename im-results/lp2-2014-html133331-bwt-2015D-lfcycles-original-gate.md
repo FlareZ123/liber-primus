@@ -63,7 +63,7 @@ A **genuine source-native Gibran GP29 passage of 729 runes** is forward-encoded 
 
 A separate deliberately periodic three-symbol GP sequence of length 729 yields **243 equal LF cycles, each of length 3**, and the circular inverse again reconstructs all 729 symbols. This distinguishes legitimate periodic multiple cycles from the source input's impossible **five unequal** cycles.
 
-All original and plant assertions **passed** on the repository's Windows Node.js 22 workflow: [CI run 44302775563](https://github.com/FlareZ123/liber-primus/actions/runs/44302775563) (successful `source-test` job). The SFT prints every full original output, primary index, step count, LF census and plant status for independent reproduction. Its inputs remain the original [LP2 rune corpus](../resources/liber-primus/lp2-corpus.json) and the independent pinned original-era prime-D first-stage formula.
+The original direct-BWT assertions **passed** on Windows Node.js 22 [CI run 44302775563](https://github.com/FlareZ123/liber-primus/actions/runs/44302775563); the consolidated exact four-MTF-variant and full staged positive assertions **also passed** on [CI run 44304197235](https://github.com/FlareZ123/liber-primus/actions/runs/44304197235) (successful `source-test` job). The SFT prints every full original output, primary index, step count, LF census and plant status for independent reproduction. Its inputs remain the original [LP2 rune corpus](../resources/liber-primus/lp2-corpus.json) and the independent pinned original-era prime-D first-stage formula.
 
 ## The historically motivated MTF→BWT receiver is also invalid
 
