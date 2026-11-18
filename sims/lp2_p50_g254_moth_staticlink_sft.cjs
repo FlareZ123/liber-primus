@@ -79,6 +79,23 @@ function fixedLookup(x, y) {
   return {mismatch, equalHistogram, agreeingPairs, inputPairs, mi};
 }
 
+/**
+ * Exact minimum number of changed symbols after allowing an arbitrary
+ * permutation of all positions and any secret fixed bijective GP29 alphabet.
+ * Sorting both occurrence-count vectors minimizes L1 assignment cost.
+ * @param {number[]} source
+ * @param {number[]} target
+ * @returns {number}
+ */
+function minChangesAfterReorderAndRelabel(source, target) {
+  assert.equal(source.length, target.length);
+  const counts = sequence => Array.from({length: 29}, (_, value) =>
+    sequence.filter(x => x === value).length).sort((a, b) => a - b);
+  const a = counts(source);
+  const b = counts(target);
+  return a.reduce((sum, count, i) => sum + Math.abs(count - b[i]), 0) / 2;
+}
+
 /** @param {number} x @returns {number} */
 function inv(x) {
   for (let i = 1; i < 29; i++) if (mod(i * x) === 1) return i;
@@ -156,6 +173,7 @@ assert.deepEqual(quotient.slice(0, 12),
 const planted = quotient.map(q => mod(7 * q + 3));
 assert.equal(fixedLookup(quotient, planted).mismatch, 0);
 assert.equal(fixedLookup(quotient, planted).equalHistogram, true);
+assert.equal(minChangesAfterReorderAndRelabel(quotient, planted.slice().reverse()), 0);
 
 // Positive: an order-two register satisfies the original G recurrence.
 const plantK = [24, 21];
@@ -177,6 +195,8 @@ for (const [name, target, expected] of [
   ];
   const key = quotient.map((q, i) => mod(q - target[i]));
   assert.equal(direct.mismatch, expected.global);
+  assert.equal(direct.equalHistogram, false);
+  assert.equal(minChangesAfterReorderAndRelabel(quotient, target), 10);
   assert.deepEqual(byPage.map(b => b.mismatch), expected.blocks);
   assert.equal(linearComplexity(key), expected.bm);
   assert.equal(gRecurrenceMatches(key), expected.matches);
@@ -193,6 +213,8 @@ for (const [name, target, expected] of [
   console.log(JSON.stringify({
     direction: name,
     fixedLookupMinMismatches: direct.mismatch,
+    allSecretRelabeledTranspositionMinSymbolChanges:
+      minChangesAfterReorderAndRelabel(quotient, target),
     perPageMinMismatches: byPage.map(b => b.mismatch),
     equalityPairsMatched: direct.agreeingPairs,
     equalityPairsOnQuotient: direct.inputPairs,
