@@ -2,6 +2,12 @@
 
 **Updated 18 November 2026 (normal-mode draw 7).** The current synthesis below preserves earlier mathematical exclusions and their linked reproducible artifacts. Lease claims, timestamps and Issue snapshots from previous incarnations are historical only.
 
+## 18 November draw-7 independent zeroF column-selector rival
+
+After #1555 showed byte-mod8 was source-underselected, tested one direct source-visible rival: keep predecessor timing, phase0, low60->F and the exact eight-rune register, but index non-low60 cells by literal p50 column instead of base60 byte mod8. The exact same 48 native-GP controls per Shakespeare/Gibran/Emerson were reused.
+
+Column indexing is closer to the untouched low60 repeat-share target in3/3 controls; value-mod8 is closer on total adjacent-repeat count in3/3; lag5 favors value-mod8 in2/3. Original exact inverses are similarly strong: column546 edits /462 repeats / low60 share0.2445887 / lag5=96, value-mod8 549/478/0.2384937/99. Since the selectors disagree on175/196 non-low60 cells yet give comparable normalization, the effect authenticates neither selector. This reinforces #1558's branch attribution that the unsupported non-low60 branch drives most edits. Report: im-results/lp2-zeroF-value-mod8-vs-column-selector-gate.md; SFT: sims/lp2_zeroF_value_mod8_vs_column_sft.cjs; shared CI PASS44396002989.
+
 ## 18 November draw-7 Director #1572: p55 phase1 carry boundary
 
 Canonical continuous-word parsing plus original p54/p55 scans establish an exact source boundary at packet phase1. The cross-page word GOTTHXEEARGYNG has10 runes on p54 and its final rune at p55 local0; the next word AEMIW is wholly p55-local and starts exactly at local1. Thus phase1 is independently natural for a page-local operation that begins after inherited p54 text ends.
