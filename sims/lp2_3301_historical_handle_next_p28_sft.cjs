@@ -158,7 +158,8 @@ const sourceNumbers = [
   { name: "terminal3301", value: 3301n },
   { name: "nextScreenHandle", value: handle },
 ].map((row) => ({
-  ...row,
+  name: row.name,
+  value: row.value.toString(),
   mod256: Number(row.value % 256n),
 }));
 const opcodeGp0 = new Set(opcodeRows.map((row) => row.gp0));
