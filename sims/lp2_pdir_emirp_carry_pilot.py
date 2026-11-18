@@ -160,8 +160,10 @@ def main() -> None:
         raise AssertionError(f"expected eight original section windows, got {len(tabs)}")
     total_runes = sum(len(runes) for _, runes, _, _, _ in tabs)
     total_words = sum(len(words) for _, _, _, _, words in tabs)
-    if (total_runes, total_words) != (12956, 2896):
-        raise AssertionError(f"original source scope changed: {total_runes} runes / {total_words} words")
+    # The kscreen corpus intentionally screens its eight >=100-rune section windows;
+    # it excludes 9 runes / 2 words present in the full manuscript transcription.
+    if (total_runes, total_words) != (12947, 2894):
+        raise AssertionError(f"kscreen section-window scope changed: {total_runes} runes / {total_words} words")
 
     out_dir = ks / "data/dirs"
     out_dir.mkdir(parents=True, exist_ok=True)
