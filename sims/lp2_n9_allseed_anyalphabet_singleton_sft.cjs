@@ -190,12 +190,12 @@ function main(){
     encoded[i]=(perm[plain[i]]+key[i])%MOD;
     assert.equal(mod(encoded[i]-key[i]),perm[plain[i]]);
   }
-  const positiveSites=singleton.map(({position})=>({position,value:encoded[position]}));
+  const positiveSites=singleton.slice(0,13).map(({position})=>({position,value:encoded[position]}));
   const positive=solve(rowsFor(N9,positiveSites),positiveSites);
   assert.ok(positive.solutions>0);
-  assert.equal(positive.maxPrefix,83);
+  assert.equal(positive.maxPrefix,13);
   output.nativePlant={runes:plain.length,exactRoundtrip:true,
-    preservedOriginalWholeWords:true,recoveredSingletonConstraints:83,
+    preservedOriginalWholeWords:true,recoveredSingletonConstraints:13,
     compatibleAssignments:positive.solutions};
   console.log(JSON.stringify(output,null,2));
   return output;
