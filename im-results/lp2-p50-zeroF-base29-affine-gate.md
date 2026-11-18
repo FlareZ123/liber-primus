@@ -44,4 +44,4 @@ Retire this exact affine completion. It changes within-word difference signature
 
 Together with the remainder-only additive rejection, the all-secret per-word Caesar exclusion and the authenticated p56 prime/F exclusion, the structurally successful zero→F surface transform still lacks a source-selected value operation that recovers plaintext. Further progress on this branch needs a materially new clue-selected mechanism rather than another fitted interpretation of the same table values.
 
-The complete CommonJS reproducer is [`sims/lp2_p50_zeroF_base29_affine_sft.cjs`](../sims/lp2_p50_zeroF_base29_affine_sft.cjs).
+The complete CommonJS reproducer is [`sims/lp2_p50_zeroF_base29_affine_sft.cjs`](../sims/lp2_p50_zeroF_base29_affine_sft.cjs). [Windows Node22 run 44386611641](https://github.com/FlareZ123/liber-primus/actions/runs/44386611641) passed the exact original rejection and complete layered positive.
