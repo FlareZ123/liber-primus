@@ -186,6 +186,31 @@ C - O - L - D - L - P ...
 
 This is a genuinely prospective discriminator: neither the word COLD, its four-rune length, nor its directions were supplied to the selector.
 
+## Block 5 prospective gate: ambiguity returns
+
+I then froze the four-block state and tested the published next phrase `I MAY` prospectively rather than accepting it.
+
+From COLD's endpoint `A=(11,7)`, carry the preceding key's source-derived distances:
+
+```
+phi(H=8) = 4
+phi(U=1) = 1
+previous raw center TH = 2
+```
+
+Enumerate all four sign combinations of the `±4,±1` center displacement, both horizontal and vertical three-cell nodes with radius 2, center-totient plus the same Möbius rotation, four retained COLD landmarks as possible ciphertext starts, and all four cardinal read directions. This gives **128** candidates.
+
+Because the published output has two words, score each branch by the longest prefix segmentable into at most two source-native words. Under the full lexicon, the maximum is six runes on two low-frequency junk-like branches; `I | MAY` reaches four. Requiring both words to have corpus frequency at least 100 removes the rare junk, but the maximum depth four is still **not unique**:
+
+```
+I | MAY
+X | EARTH
+```
+
+Both arise from the same candidate NG-B-NG / NG-T-NG key node under different retained starts/directions.
+
+Therefore the source-bounded bootstrap is discriminating through COLD and **fails at block 5 under this natural prospective family**. No extra rule was added to rescue `I MAY`. This is the current stopping boundary.
+
 ## What this changes
 
 The earlier repository audit correctly showed that the published 38-block route had underselected transitions. This three-block bootstrap is a different piece of evidence.
@@ -207,7 +232,7 @@ This is substantially stronger than choosing one key/path because it looks Engli
 
 ## Next decisive test
 
-Freeze the four-block rules above before looking at block 5. Derive block 5 from the COLD state with no plaintext, length, direction, or extra transition filter supplied. A successful prospective recovery would materially strengthen the case for a reusable mechanism; failure should stop the bootstrap branch instead of adding rescue filters.
+The block-5 prospective gate has now failed to select a unique continuation. The useful next question is therefore upstream: find an original clue that distinguishes the retained start/direction at this transition, or treat the four-block bootstrap as an isolated partial mechanism. Do not continue by adding plaintext-selected filters.
 
 ## Reproduction
 
