@@ -1,3 +1,19 @@
+## 2026-11-18/19 major candidate: p28 center boundary decodes READ OUT
+
+- Derived a fresh source-constrained GP29 operation from the already selected p28 DH23 tuple. With `p=23,g=5,a=6,B=19,b=15,A=8,K=2`, exponent `e=g-K=a/K=3`. In GF29: `K=2 -> A=8 -> B=19 -> b=15` by cubing. Continued cubing has exact 6-cycle `[2,8,19,15,11,26]`, equal in length to a=6; all six are primitive roots. Cubing is bijective on all29 GP values with inverse exponent19. Exact fixed-group census over all484 secret pairs p23/g5 finds only (a,b)=(6,15) satisfies the same three-step cross-field chain. SFT `sims/lp2_p28_dh23_gp29_cube_bridge_sft.cjs`; report `im-results/lp2-p28-dh23-gp29-cube-bridge.md`.
+- This operation applied to the already selected exact p28 center boundary yields a candidate unknown plaintext:
+  - p28 exact center offset134 is `N=9`;
+  - word28 starts immediately at135 and is `EA A I U L=[28,24,10,1,20]`;
+  - source span = `N EA A I U L`;
+  - single center rune has1 layer -> cube exponent3;
+  - five-rune selected word has3 nested layers -> 3 cube iterations -> exponent27;
+  - output indices `[4,28,23,3,1,16]` = `R EA D O U T` = **READ OUT**.
+  - inverse exponents reconstruct all six original runes exactly.
+- Post-discovery family control: all318 five-rune unknown-page words,314 with predecessor rune. Apply exact frozen transform predecessor^3 + each word rune^27. Full repository source-native lexicon union has32853 entries (32550 min3). Sole one/two-word phrase hit with both words >=3 letters is p28 word28 **READ / OUT**.
+- Windows Node22 CI run 44424577221 PASS on live main. Candidate SFT `sims/lp2_p28_readout_cube_layer_candidate_sft.cjs`; report `im-results/lp2-p28-readout-cube-layer-candidate.md`; broadcast `communications/broadcast/20261118T2357Z_agent1_p28-readout-candidate.md`.
+- Classification: candidate plaintext breakthrough, not yet established. The layer-count rule and READ OUT were found in this same investigation; post-discovery census is selective but not an untouched prediction. Next work must freeze a literal READ OUT downstream operation before examining output. Do not tune exponents, boundaries, or cube phases around the hit.
+- First prospective checks already made and negative: applying intrinsic cube-by-layer independently to surrounding p28 words produces no continuing prose; applying uniform cube/inverse maps to p27 red heading and twice-shed NSOOCAEY interior is nonlinguistic. Avoid retreading those.
+
 ## 2026-11-18 continuation: evolving rank28/p50 state family closed
 
 - The book-wide differential signature is sharply first-order: same-page lag1 equality is 86/12901 = 0.006666, while lag2 immediately returns to 435/12846 = 0.033863 and other short lags are near 1/29. A five-rune-block explanation fails because the 86 doublets are spread across all five global residues [18,21,16,11,20] and page-reset residues [18,20,22,15,11].
