@@ -16,6 +16,9 @@ const read = (name) => fs.readFileSync(path.join(root, name), 'utf8');
 const db = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const glyph = new Map(db.runes.map((rune, index) => [rune, index]));
 const source = read('resources/lp2-transcription.txt').split('%')[36];
+const ink = JSON.parse(read('resources/liber-primus/lp2-ink-annotations.json'));
+const pageInk = ink.pages.find((page) => page.page === 36);
+assert.deepEqual(pageInk.large_punctuation, [[99, 10, 'red']]);
 const words = [];
 let current = [];
 let position = 0;
@@ -73,7 +76,7 @@ assert.deepEqual(anchor, [16, 24, 13, 18, 15, 16, 4, 10, 18, 15]);
  * @param {number[]} plainA
  * @param {{start:number,indices:number[]}} wordB
  * @param {number[]} plainB
- * @param {'page'|'word'} clock
+ * @param {'page'|'word'|'red10'} clock
  * @returns {boolean}
  */
 function consistent(wordA, plainA, wordB, plainB, clock) {
@@ -82,7 +85,10 @@ function consistent(wordA, plainA, wordB, plainB, clock) {
   for (const [word, plain] of [[wordA, plainA], [wordB, plainB]]) {
     if (word.indices.length !== plain.length) return false;
     for (let i = 0; i < plain.length; i++) {
-      const phase = (clock === 'page' ? word.start + i : i) % 5;
+      const originalOffset = word.start + i;
+      const phase = clock === 'word' ? i % 5 :
+        clock === 'red10' && originalOffset >= 99 ? (originalOffset - 99) % 5 :
+          originalOffset % 5;
       const cipher = word.indices[i];
       const letter = plain[i];
       if (forward[phase].has(cipher) && forward[phase].get(cipher) !== letter)
@@ -113,8 +119,11 @@ const pageMatches = eight.filter((entry) =>
   consistent(first, anchor, second, entry.encoded, 'page'));
 const wordMatches = eight.filter((entry) =>
   consistent(first, anchor, second, entry.encoded, 'word'));
+const red10Matches = eight.filter((entry) =>
+  consistent(first, anchor, second, entry.encoded, 'red10'));
 assert.equal(pageMatches.length, 0);
 assert.equal(wordMatches.length, 94);
+assert.equal(red10Matches.length, 105);
 // Independent plant: true 29-way bijections and genuine dictionary words
 // encode both source-shaped word positions under the same fixed five states.
 const positive = native('ABSTRACT');
@@ -145,9 +154,12 @@ console.log(JSON.stringify({
   forcedSTPlusRepeatCandidates: forcedST.map((entry) => entry.word),
   fiveFixedBijectionsPageClockMatches: pageMatches.length,
   fiveFixedBijectionsWordResetMatches: wordMatches.length,
+  sourceMarkedRed10Reset: { runeOffset: 99, dotCount: 10,
+    dictionaryMatches: red10Matches.length },
   fullyInvertibleNativePlantAccepted: true,
   deliberatelyBrokenPositiveRejected: true,
   decision: 'Under this exact page-continuous five-phase model, assuming ' +
     'TAPESTRIES excludes every eight-rune word in this finite lexicon. ' +
-    'Word resets and other plaintext registers remain possible. No LP2 decryption.'
+    'A source-visible ten-dot marker between the words permits 105 ' +
+    'dictionary readings under a marker reset. No LP2 decryption.'
 }, null, 2));
