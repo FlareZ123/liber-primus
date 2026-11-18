@@ -1,6 +1,6 @@
 # p0 red heading: raw 13-rune geometry, MAP-free first-key narrowing, and the Latin-register blocker
 
-**Agents 28 and 29, 18 November 2026. Classification:** intermediate evidence only. A source-selected 27×27/totient construction reproducibly yields the five-rune sequence `R-A-T-I-O` from the final red group. Agent29 adds a finite MAP-free family that narrows the first-word rectangle to the same `X-N-X-C` geometry once the five-rune output is provisionally treated as an instruction to inspect a ratio. The complete raw candidate becomes `S-E-C-U-E-N-D-I | R-A-T-I-O`, with exact forward reconstruction under both keys. Authenticated solved-LP English spelling would encode the proposed Latin reading in 12 runes, while one coherent direct Latin-letter register encodes exactly these 13 runes. No authenticated runic Latin sample selects that register, and the ratio-to-rectangle interpretation remains inferred, so the full title is still conjectural rather than recovered plaintext.
+**Agents 28 and 29, 18 November 2026. Classification:** intermediate evidence with a substantially stronger internal checksum structure. A source-selected 27×27/totient construction reproducibly yields the final five raw runes `R-A-T-I-O`. Agent29 found that the physical 13-dot mark's **4-5-4** stencil supplies a length ladder `3,4,5,8,13` matching the second key, first key, second word, first word, and full title. The GP-index sums of those same five objects are `15,42,57,99,156`, an exact additive recurrence, with the final 156 independently closing as `13*phi(13)`. This recurrence selects the same `X-N-X-C` first-key rectangle from a finite anchor-symmetry family without MAP and without a numeric 3:1 aspect guess. Exact forward reconstruction yields the raw 13-rune candidate `S-E-C-U-E-N-D-I | R-A-T-I-O`. The Latin reading remains blocked by source-English GP orthography, although one coherent direct Latin-letter register matches all 13 raw runes. No authenticated runic Latin control yet selects that register, so plaintext status remains unproved.
 
 ## Original marked region
 
@@ -111,31 +111,83 @@ Treat the raw rune output as stronger evidence than its linguistic interpretatio
 
 Reproducer: `sims/lp2_p0_red_heading_raw13_register_geometry_sft.cjs`.
 
-## First eight: a finite MAP-free rectangle family
+## First eight: anchor symmetry plus an additive checksum chain
 
-The original-image punctuation census, `sims/lp2_original_color_dots_census_sft.py`, establishes that all 31 physical 13-dot marks use the same **4-5-4** column stencil. At p0 the two outer columns contain **8** dots total and the center column contains **5**, exactly matching the red title's visible **8+5** grouping.
-
-Provisionally treat the already-derived five-rune output `R-A-T-I-O` as the instruction word `RATIO`. The mark has three columns, so test the smallest integer rectangle aspect ratio it supplies, **3:1**, while retaining the independently source-derived anchor `J=(13,12)`. Across the complete original 27×27 grid, enumerate every axis-aligned 3:1 or 1:3 rectangle for which one opposite-corner pair carries the same original rune and those equal corners are equidistant from J. Admit either diagonal.
-
-Exactly **nine** structural candidates survive, with UL-UR-LR-LL corner runes:
+The original-image punctuation census, `sims/lp2_original_color_dots_census_sft.py`, establishes that every physical 13-dot mark uses the same **4-5-4** column stencil. At p0 that gives five natural counts:
 
 ```
-U-G-P-G
-U-B-IA-B
-P-Y-P-S
-M-N-A-N
-X-N-X-C
-AE-W-C-W
-N-X-N-EA
-G-H-G-OE
-B-W-B-L
+3  = number of columns
+4  = one outer-column height
+5  = center-column height
+8  = both outer columns together
+13 = all dots
 ```
 
-The source does not specify a corner start, traversal direction, ciphertext direction, or arithmetic sign. Exhausting all small choices gives **288 configurations** and **144 distinct eight-rune outputs**. Exactly two symmetry-equivalent configurations produce raw `SECUENDI`; both use rows 6..24, columns 3..9, repeating key `X-N-X-C`, reversed first-word ciphertext, and GP29 subtraction. The duplicate only names the start at the other identical X corner. Forward addition exactly reconstructs the reversed original first word.
+Those counts exactly match the primitive object lengths in the candidate construction:
 
-The source scalar `13*phi(13)=156` adds a later finite checksum. The five-rune raw output has GP-index sum57, so a full-title sum156 requires first-word sum99. Across all 288 configurations, exactly **eight** satisfy sum99 and every one belongs to the `X-N-X-C` rectangle; all use subtraction. Complete-word recognition then chooses `SECUENDI` from the remaining symmetric orientations.
+```
+3  = J-TH-TH second key
+4  = X-N-X-C first key
+5  = final red word
+8  = first red word
+13 = complete red title
+```
 
-This removes MAP as a prerequisite for locating the first-key rectangle. It does not authenticate the mechanism. The `RATIO` interpretation, the marker's three columns as a 3:1 instruction, and the 156 checksum were recognized after the candidate heading existed, so they are finite discriminators rather than independent first-party instructions.
+This correspondence is source-visible and removes the earlier need to interpret `RATIO` as a literal numeric 3:1 rectangle instruction.
+
+Use only the source-derived anchor `J=(13,12)` and the mark's bilateral symmetry. Enumerate every pair of equal original runes that can serve as opposite corners of an axis-aligned rectangle and are at equal squared distance from J. Across the complete 27×27 p0-p2 source grid there are exactly **72** such symmetric rectangles.
+
+The final-five source derivation already fixes two numerical objects before the first word is touched:
+
+```
+sum(J-TH-TH) = 15
+sum(R-A-T-I-O) = 57
+```
+
+The visible title itself has the additive length relation `5+8=13`, so test the corresponding backward additive sum rule. If the second plaintext sum is the sum of the two key sums, the first-key corner sum must be:
+
+```
+57 - 15 = 42
+```
+
+Only **two of the 72** symmetric rectangles have corner sum42:
+
+```
+rows 6..24, cols 3..9   -> X-N-X-C
+rows 9..14, cols 5..20  -> G-H-G-OE
+```
+
+Continue the same recurrence one term. The first plaintext must then have sum:
+
+```
+42 + 57 = 99
+```
+
+For those two rectangles, exhaust every corner start, clockwise/counter-clockwise traversal, forward/reversed first ciphertext, and plus/minus GP29 arithmetic. This is 64 configurations. Exactly **eight** have plaintext sum99, and **all eight use the X-N-X-C rectangle with subtraction**. They collapse to four distinct rune sequences:
+
+```
+SECUENDI
+IDNEUCES
+UORDNGXPL
+LPXNGDROU
+```
+
+Exactly two symmetry-equivalent configurations give `SECUENDI`; both reverse the original first-word ciphertext and use the same repeating `X-N-X-C` key. Forward addition exactly reconstructs the source.
+
+The selection above does **not** use the full-title sum. After selecting X-N-X-C and the sum99 first-word family, the resulting complete candidate closes on:
+
+```
+15, 42, 57, 99, 156
+    15+42=57
+       42+57=99
+          57+99=156
+
+156 = 13 * phi(13)
+```
+
+Thus `156=13*12` is now a held-out closure of the recurrence rather than the selector that found the rectangle.
+
+The remaining premise is geometric: why should equal-rune opposite corners equidistant from the source anchor define the first key? The symmetric 4-5-4 mark and the already-source-derived J anchor motivate that finite family, while no signed Cicada instruction explicitly states the rule. This is materially stronger than the previous 3:1 interpretation, but it remains intermediate evidence until the same mechanism predicts untouched original ciphertext or a source clue names the symmetry operation.
 
 ## Independent MAP corroboration of the same second-key node
 
@@ -156,27 +208,40 @@ Chronology reduces hindsight concerns:
 
 Thus MAP and its endpoint predate the red-heading construction. This corroborates the geometry while leaving the route's earlier transition ambiguity unresolved.
 
-## Full-title checksum: selective but post hoc
+## Full-title checksum: held-out recurrence closure
 
-The complete raw 13-rune candidate has GP29 index sum:
+The complete raw candidate has GP29 index sum156. In the strengthened construction, 156 is not used to select a rectangle or first-word sum. The recurrence is driven backward from the independently derived second key and second raw word:
 
 ```
-156 = 13 * phi(13) = 13 * 12
+K2 = 15
+P2 = 57
+K1 = P2 - K2 = 42
+P1 = K1 + P2 = 99
 ```
 
-This equality was not used to derive the five-rune `J-TH-TH` key. Inside the later MAP-free 3:1 rectangle family it selects the `X-N-X-C` rectangle through the first-word target sum99. Because the equality was noticed after the candidate title and the 3:1 family itself is conditional on a `RATIO` interpretation, it remains an internal checksum rather than independent plaintext validation.
+Only after those choices are made does the full title give:
+
+```
+P1 + P2 = 156 = 13 * phi(13)
+```
+
+The exact closure is therefore a genuine internal cross-check of the declared recurrence family. The recurrence itself was discovered after the candidate heading existed, so it still requires prospective validation before it can authenticate plaintext.
 
 ## Current decision
 
-The useful advances are structural:
+The strongest current chain is:
 
 1. original rubrication uniquely selects the 729-rune p0-p2 square-sized span;
-2. original counts plus totient give a selective `J-R-TH` diagonal and exact `R-A-T-I-O` output;
-3. a finite MAP-free 3:1 rectangle family narrows the first key to the same `X-N-X-C` geometry, with exact `S-E-C-U-E-N-D-I` output under the complete-word orientation;
-4. the older MAP route independently corroborates the same geometry;
-5. authenticated solved-LP English orthography rejects the straightforward source-native spelling of the candidate Latin phrase, while one coherent direct Latin-letter register matches all 13 raw runes exactly.
+2. original counts plus totient give the selective `J-R-TH` diagonal and exact five-rune output `R-A-T-I-O`;
+3. the physical 4-5-4 mark yields the object-length ladder `3,4,5,8,13`;
+4. the corresponding objects have sums `15,42,57,99,156`, an exact additive recurrence;
+5. inside all 72 equal-rune/equidistant-J rectangle symmetries, the recurrence first reduces the first key to two sum42 rectangles and then uniquely selects the `X-N-X-C` rectangle through the required first-word sum99;
+6. complete-word orientation yields exact raw `S-E-C-U-E-N-D-I` and exact forward reconstruction;
+7. the full-title sum closes independently at `156=13*phi(13)`;
+8. the older MAP route independently lands on the same geometry;
+9. source-English GP orthography still rejects the straightforward Latin spelling, while one coherent direct Latin-letter register matches all 13 raw runes exactly.
 
-The strongest current object is the **raw 13-rune candidate and its geometry**, not authenticated Latin plaintext. The next causal test should find an independent source for the direct Latin register or make a prospective untouched ciphertext prediction from the title geometry. More retrospective English route continuation does not resolve the register or selector problem.
+The raw 13-rune construction is now substantially more constrained and internally self-consistent. The remaining decisive gaps are the geometric symmetry rule and the Latin spelling register. A prospective untouched-cipher prediction or authenticated runic-Latin control is required before calling the title solved.
 
 ## Reproduction
 
@@ -189,7 +254,7 @@ node sims/lp2_p0_red_heading_sequendi_ratio_gate_sft.cjs
 python sims/lp2_original_color_dots_census_sft.py
 ```
 
-The first script derives the five-rune raw output and square selector. The new Agent29 script enumerates the MAP-free rectangle family, all 288 orientation/sign choices, the post-hoc checksum gate, the source-native English encoding conflict, the direct Latin-register fit, and exact forward reconstruction. The third preserves MAP-route corroboration. The image census independently establishes the physical 4-5-4 stencil for all 13-dot marks.
+The first script derives the five-rune raw output and square selector. The Agent29 script now enumerates all 72 source-anchor symmetric rectangles, proves the `15,42,57,99,156` additive chain, selects X-N-X-C without a 3:1 aspect assumption, verifies the held-out `13*phi(13)` closure, checks exact reencryption, and reproduces the source-native/direct-Latin register split. The third preserves MAP-route corroboration. The image census independently establishes the physical 4-5-4 stencil.
 
 External numerical proposal credited for the candidate heading constructions:
 https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption
