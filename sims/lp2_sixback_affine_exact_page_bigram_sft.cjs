@@ -146,9 +146,41 @@ function verifyEdges(first,second) {
   assert.ok(diff.every(v=>v===0));
 }
 
+/**
+ * New independent-half statistic evaluated under the same exact original-page
+ * bigram-preserving null. The whole-book winner was retrospectively selected.
+ * We test whether the winner of each disjoint original-source half agrees.
+ * @param {number[]} book
+ */
+function splitRank(book){
+ const counts=[new Uint16Array(812),new Uint16Array(812)];
+ const pairsByHalf=[0,0];
+ for(const [past,current] of pairs){
+  const half=Number(current>=6478);
+  pairsByHalf[half]++;
+  const c=counts[half],x=book[past],y=book[current];
+  for(let a=1;a<=28;a++)
+   c[(a-1)*29+mod(y-a*x)]++;
+ }
+ return counts.map((c,i)=>{
+  let max=-1,winner=-1,ties=0;
+  for(let k=0;k<c.length;k++){
+   if(c[k]>max){max=c[k];winner=k;ties=1;}
+   else if(c[k]===max)ties++;
+  }
+  return {pairs:pairsByHalf[i],max,
+   a:Math.floor(winner/29)+1,b:winner%29,
+   winner,ties,sourceFixed:c[(27-1)*29+24]};
+ });
+}
+const observedSplit=splitRank(original);
+assert.deepEqual(observedSplit.map(s=>({pairs:s.pairs,max:s.max,a:s.a,b:s.b,ties:s.ties})),
+ [{pairs:644,max:40,a:27,b:24,ties:1},{pairs:646,max:40,a:27,b:24,ties:1}]);
+
 const count = 1500;
 let sum = 0, squares = 0, fixedSum = 0, maximum = -1, minimum = Infinity;
 let exceed = 0, fixedExceed = 0;
+let sameSplitWinner=0, bothSourceWinner=0, bothFixed40=0;
 for (let trial = 0; trial < count; trial++) {
   const candidate = [];
   for (const g of graphs) {
@@ -157,6 +189,10 @@ for (let trial = 0; trial < count; trial++) {
     candidate.push(...page);
   }
   const s = score(candidate);
+  const halves = splitRank(candidate);
+  if(halves[0].winner===halves[1].winner) sameSplitWinner++;
+  if(halves.every(h=>h.winner===(27-1)*29+24)) bothSourceWinner++;
+  if(halves.every(h=>h.sourceFixed>=40)) bothFixed40++;
   sum += s.best; squares += s.best*s.best; fixedSum += s.fixedT6;
   maximum = Math.max(maximum,s.best); minimum = Math.min(minimum,s.best);
   if (s.best >= 80) exceed++;
@@ -216,6 +252,14 @@ console.log(JSON.stringify({
   nRunes:original.length,wordLocalLag6Pairs:pairs.length,
   family:'all invertible GP29 affine six-back maps, 28*29=812',
   observed:score(original),
+  sourceHalfReplication:{
+   observed:observedSplit,
+   nullSameWinner:sameSplitWinner,
+   nullBothSourceWinner:bothSourceWinner,
+   nullBothSourceFixedAtLeast40:bothFixed40,
+   nullTrials:count,
+   nullConditioning:'Exact original-page directed bigrams',
+  },
   originalSourceChapters:chapterCounts,
   originalWholeStreamSixBack:wholeSix,
   null:'uniform original-page labeled-edge Euler trails; exact per-page ordered bigrams, original endpoints and printed words',
