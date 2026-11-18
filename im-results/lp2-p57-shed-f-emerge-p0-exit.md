@@ -124,6 +124,40 @@ Under that receiver type, the exit value0 naturally selects **physical p0**, an 
 
 That target is independently interesting because the authenticated 2016 signed-word map has its strongest current boundary structure on p0, including the conditional `EPIPHANY SEEKS`, `THE ROAD`, and `THE DEVOTED` placements. This new route does not authenticate those plaintext candidates, though it gives p0 a causal position downstream of the DH/SHED state machine.
 
+## Conditional recovery of the p0 opening phrase
+
+The restored-state exit contains one further locked value before the page number:
+
+```
+189 -> 192 -> 0
+      ^     ^
+      |     physical p0
+      candidate phrase number
+```
+
+The intermediate **192** is exactly:
+
+`GP0(EPIPHANY SEEKS) = 192`.
+
+Charge that value against the complete authenticated 2016 signed message. It has43 canonical words and42 adjacent word pairs. Exactly **one** adjacent pair has combined GP0 sum192:
+
+```
+EPIPHANY SEEKS
+```
+
+Its GP rune lengths are exactly **8,5**.
+
+Now charge that shape against the original LP2 pages. Among all55 physical rune pages in p0..p55, excluding the p50 numeral table, **p0 alone** begins with words of lengths8 and5.
+
+So the exit candidate makes a two-part typed prediction without using p0 rune values as a language score:
+
+1. intermediate value192 uniquely selects authenticated phrase **EPIPHANY SEEKS**;
+2. terminal value0 selects physical **p0**, whose unique opening geometry is **8,5**.
+
+Conditional on the EMERGE radix-reset interpretation, this recovers the p0 opening phrase as **EPIPHANY SEEKS** from independent source material and page geometry. The original p0 first13 ciphertext runes themselves are not used to choose the phrase, except for the already visible two-word boundary lengths.
+
+This also strengthens the pre-existing p0 title crib enough to use it as a fixed cryptanalytic holdout. It still does not identify the reversible cipher that maps those plaintext runes to the original p0 ciphertext.
+
 ## Evidence boundary
 
 Every numeric relation through the base59 fixed point is reproducible from original artifacts and solved p57 text. The new interpretive step is:
