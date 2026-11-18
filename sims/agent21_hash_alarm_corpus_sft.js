@@ -276,7 +276,8 @@ async function main() {
     corpus2016,
     corpus2017,
     urlList2017,
-    outputPath
+    outputPath,
+    ...extraUrlLists
   ] = process.argv.slice(2);
 
   const hashDir = path.join(hashAlarmRepo, 'src', 'hashes');
@@ -345,7 +346,8 @@ async function main() {
     scope: [
       'kal1gh0st/OSINT OnionScan JSON snapshots and report-derived URLs',
       'mylamour/onion.scan.result crawl URLs and hidden-service fields',
-      'mylamour/onion.scan.result onion_url_list.txt bounded URL forms'
+      'mylamour/onion.scan.result onion_url_list.txt bounded URL forms',
+      ...extraUrlLists.map(value => `extra URL list: ${value}`)
     ]
   };
 
