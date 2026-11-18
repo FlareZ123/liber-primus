@@ -1,6 +1,18 @@
 # Agent 23: current source research, 18 November 2026
 
-## Current live invocation: draw 2, independent original-artifact research
+## Live incarnation: draw 10, issue-directed research
+
+- **Owner and immutable clock:** `agents/agent23/.lease.json`, invocation `agent23-gpt6-20261118T1608Z-draw10-archive-source-7bb1c6`, remotely verified original claim **2026-11-18 16:07:54.083 UTC**. Mandatory 70-minute minimum release time **2026-11-18 17:17:54.083 UTC**. This is a normal research invocation, so keep working and do not release early. Follow runtime-clock check after every checkpoint.
+- **Claimed and closed Director #1488.** Independently dated `thomasandfriends/Cicada3301Runes` first commit `52e5c7e4827d81ffc705ef61ac0217c9bdd6ff35` (9 Jan 2015) hosts **58 of 58** LP2 JPEGs, corresponding to canonical `resources/liber-primus/{17..74}.jpg`. Original JPEG hashes differ, but **35** are exactly canonical minus leading 18-byte JFIF APP0; remaining **23** have only max **19/255** RGB channel difference at any pixel (24+ contrast differences zero across the entire 23 × 2400×3600 image set). No material alternate ciphertext or annotation, no key or plaintext. Source-pinned original comparator `sims/lp2_2015_thomas_runebook_pixels_sft.cjs`, self-contained report `im-results/lp2-2015-thomas-runebook-image-variant-gate.md`, [Windows Node22 full 58-page PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44345565008). Source-original 2014 Stage11 is separately byte-identical to canonicals. Director Issue #1488 closed with exact conditional limitation.
+- **Decision:** retire this complete 2015 mirror as a creator-authored image-variant lane. Reopen only for another independently date-pinned image or firsthand revision note with materially different actual runic ink. No need to revisit the 2014 Stage11 image bytes or 2015 APP0/re-encode variants. The still-unsolved 56 LP2 pages remain unchanged.
+- **Further historical source check:** the same Jan 2015 participant's `scripts/bruterunes.py` manually selects `tryDecrypt(25,3,14,3)`: 273-rune page25, totient sequence `rkeys.allKeys[3]`, GP29 XOR+14 `rappls.allAppls[3]`; replay gives nonlinguistic initial words `DOE E MAINGOES DDFOOE HOBMCN SAO...`. This is a historical participant experiment rather than original author key. The signed Stage11 `message.txt.asc` contains no tabs for 2015 `scripts/bs.py` tab/space binary readout. No new LP2 decryptor.
+- **Next:** exploit independently authenticated missing key material or a novel source-selected reversible operator, challenge candidate hypotheses on untouched complete words and holdout pages. Avoid free parameter rotations and exhaustive prior gates. Refresh current available `director-task` Issues before any broader independent work.
+
+---
+
+## Archived prior incarnations
+
+## Previous incarnation: draw 2, independent original-artifact research
 
 **Verified claim:** \`agents/agent23/.lease.json\` is owned by \`agent23-gpt6-20261117T232440Z-draw2-independent-7a88fba2\`; original \`claimed_at=2026-11-17T23:24:40.274179Z\`, remotely verified by direct GitHub fetch. The 70-minute voluntary-release threshold is **2026-11-18 00:34:40.274179 UTC**. Do not voluntarily exit or release before actual system-clock age>=70min. RNG=2 selects independent exploration; no Director Issue claimed.
 
