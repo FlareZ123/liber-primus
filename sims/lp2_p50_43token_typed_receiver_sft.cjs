@@ -159,6 +159,35 @@ assertArrayEqual(
   'base59 interior bytes'
 );
 
+function mirrorXor(bytes) {
+  assertEqual(bytes.length, 43, 'mirror XOR input length');
+  const left = bytes.slice(0, 21);
+  const right = bytes.slice(22).reverse();
+  return left.map((value, index) => value ^ right[index]);
+}
+
+const mirrorXor60 = mirrorXor(base60);
+assertArrayEqual(
+  mirrorXor60,
+  [14,8,98,119,133,49,236,137,207,255,14,212,27,25,1,81,115,93,46,20,101],
+  'mirror XOR output'
+);
+assertEqual(mirrorXor60.filter((value) => value >= 32 && value <= 126).length, 8, 'mirror XOR printable count');
+assertEqual(mirrorXor60.filter((value) => value < 29).length, 7, 'mirror XOR direct GP29 count');
+assertEqual(mirrorXor60.every((value) => value < 29), false, 'mirror XOR full GP29 stream');
+assertEqual(firstOpenPgpPacket(mirrorXor60).validHeader, false, 'mirror XOR OpenPGP header');
+
+const plantedMirrorPlain = Array.from(Buffer.from('CICADA-MIRROR-XOR-TEST', 'ascii'));
+assertEqual(plantedMirrorPlain.length, 21, 'planted mirror plaintext length');
+const plantedLeft = Array.from({length: 21}, (_, index) => (index * 37 + 11) & 0xff);
+const plantedRightMirrored = plantedLeft.map((value, index) => value ^ plantedMirrorPlain[index]);
+const plantedInterior = [
+  ...plantedLeft,
+  0x13,
+  ...plantedRightMirrored.reverse(),
+];
+assertArrayEqual(mirrorXor(plantedInterior), plantedMirrorPlain, 'planted mirror XOR recovery');
+
 const pgp60 = firstOpenPgpPacket(base60);
 const pgp59 = firstOpenPgpPacket(base59);
 
@@ -201,4 +230,5 @@ console.log('PASS p50 43-token typed-receiver audit');
 console.log(`  base60 first8: ${hexPrefix(base60, 8)}; OpenPGP tag ${pgp60.tag}, length ${pgp60.length}, remaining ${pgp60.remaining}, fits=${pgp60.fits}`);
 console.log(`  base59 first8: ${hexPrefix(base59, 8)}; OpenPGP tag ${pgp59.tag}, length ${pgp59.length}, remaining ${pgp59.remaining}, fits=${pgp59.fits}`);
 console.log('  bzip2/gzip/zip/png/jpeg magic: absent under both byte interpretations');
+console.log(`  mirror XOR base60: ${hexPrefix(mirrorXor60, mirrorXor60.length)}; printable=8/21; direct-GP29=7/21`);
 console.log('  planted old-format OpenPGP literal packet and bzip2 signature: detected');

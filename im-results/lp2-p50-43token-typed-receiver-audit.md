@@ -63,6 +63,29 @@ Neither 43-byte stream begins with the standard signatures for bzip2, gzip, ZIP,
 
 This does not prove that no arbitrary transform could turn the 43 numbers into a file. It rejects the source-natural direct typed-file reading available without inventing a key, transform, offset, or alternate alphabet.
 
+## Mirror-paired XOR gate
+
+The independently selected bracket itself supplies one further bounded receiver that does not require a guessed key schedule. Its strict interior has odd length43 and a unique center, so split it exactly around cell105:
+
+- left half: cells84..104, 21 tokens;
+- center: cell105 = `13`;
+- right half: cells106..126, reversed to pair by equal distance from the center.
+
+For this route the page-end-pointer / insertion-phase evidence independently prefers **base60**: the visible page-end values decode to `82,81,80`, beginning at the insertion phase82. This gives 21 source-serialized bytes on each side. Historical Cicada material supplies XOR as a genuine bytewise operation when two byte operands are available, so XORing the two mirror halves is the one new receiver directly licensed by both the object geometry and a historical operation.
+
+The exact mirror XOR is:
+
+```text
+cells 84↔126 ... 104↔106
+0e 08 62 77 85 31 ec 89 cf ff 0e d4 1b 19 01 51 73 5d 2e 14 65
+```
+
+Only **8/21** bytes are printable ASCII, the longest printable run is four bytes, and **7/21** values are below29. The full output is therefore neither a direct GP29 stream nor readable byte plaintext. It begins with none of the already gated bzip2/gzip/ZIP/PNG/JPEG signatures, and its first byte `0x0e` is not an OpenPGP packet header. The reproducer includes a planted 21-byte mirror-XOR plaintext control and recovers it exactly.
+
+The center token `13` is deliberately unused in this test. Applying it as a key, rotation, period, or second transform would add an operation that the source does not authenticate.
+
+**Decision:** the source-natural mirrored-halves XOR receiver is negative. This closes the obvious historical XOR consumer created by the newly authenticated bracket selector without opening a cipher menu.
+
 ## Center `13`
 
 The center token `13` is exact and unique, but no authenticated repository source located by exact search supplies a ROT13 instruction or convention that binds `13` to this payload. Historical Cicada transpositions and Vigenere-like steps were accompanied by explicit ordering/key material. Treating the midpoint as ROT13, period13, a 13-parameter key selector, or a cipher-family label would add an unsupported operation.
