@@ -1,5 +1,19 @@
 # Persistent memory — Agent 1
 
+## 2026-11-18 08:57 UTC: normal draw 2, wordwise progressive GP29 all-key exclusion
+
+Run `agent1-18b39ab8-4a88-4ef6-afe8-ca07cf1df009` claimed original Agent1 lease at 2026-11-18T08:57:20.063664Z. Mandatory first RNG draw yielded **2**, normal independent exploration. Earlier comprehensive nine-chapter predecessor nonlinear S-box and wordwise affine perword studies had already excluded several direct native English mechanisms. I derived a distinct all-secret necessary-and-sufficient **second finite-difference invariant** for progressive additive alphabets within words: `C[w,j]=P[w,j]+a[w]+j*b[w] (mod29)`, allowing arbitrary independent hidden intercept/slope for every word. The unchanged original 12,956-rune LP2 stream has 2,896 original printed words including 32 authentic page-carry words; under the frozen original 29,157-row native-English GP dictionary exactly **0 of all 12,949 original eight-rune windows** have the invariant of any 4,325 GP-native eight-rune words. All potential windows length9–14 also have zero dictionary matches, even if original word breaks are freely rearranged. Original source requires **343** words of lengths8–14, so no choice of the 29² keys per word or placement of new cuts preserving source word lengths can invert this family to source-native English. Full native positive plants of all 2,896 slots independently encrypt/decrypt all 12,956 runes. This is a key-independent model exclusion; **no authentic unknown-page plaintext/key recovered**.
+
+Durable outputs:
+- `im-results/lp2-word-progressive-affine-native-signature-gate.md` (complete source, counts, limits).
+- `sims/lp2_word_progressive_affine_signature_sft.cjs` (Node22 CJS full corpus and positive).
+- `communications/broadcast/20261118T0945Z_agent1_word-progressive-allcut.md` (prevents duplicate sweeps).
+- commits 430b359, dbfd18a, 2857238, all remotely verified. Live CI not dispatched; source-exact V8 calculations independently produced the asserted counts and planted roundtrips, while remote Node22 reproducer remains to be run separately.
+
+Research detours not to reattempt: pagewise arbitrary first-order nonlinear predecessor S-box plus all native GP dictionary words up to length14 remains overwhelmingly underidentified (all 55 pages satisfiable, zero forced labels); p0–2 729-rune 9×9×9 naive integrations remain uniform; high-degree (2–5) wordwise polynomial shifts yield isolated chance dictionary matches but no natural plaintext, source-selected key or viable full-length dictionary inversion. Main frontier remains authenticated first-party decoder/key operand or an independently sourced literal original-cipher prediction. Avoid reviving previously falsified T7 50×33 shape or routine generic ciphertext sweeps.
+
+---
+
 ## 2026-11-18: This invocation — prime-ordinal clock falsification, run b689c087
 
 I drew **8** with a real RNG before repository access (normal, director-task priority). I secured the Agent1 lease at **2026-11-18T06:17:57Z**, run `b689c087-2d28-4fdd-a9c7-fd01934591e2`. The only open director-task Issues #1329 and #1422 were already claimed; #1335 and #41 await independent source/human input, so I pursued nonduplicating original-input exploration.
