@@ -67,45 +67,47 @@ The original third result for h1/m0 remains unchanged; the new two conventions e
 
 
 
-## Exact c=1 skip-retry extension: conventions 021 and 101
+## Exact c=1 extension on the actual eight #1329 windows
 
-The external reference defines comparator **c=1** so that the first rune of a backward word has **no collision comparator**. Under the **skip retry model**, the pointer after a forward word's final emitted rune is exactly one forward step beyond the key index that actually emitted that rune, even if earlier candidate keys at that rune were skipped. This makes two further pointer conventions algebraically key-free on every forward→backward turn:
+The external reference defines comparator **c=1** so that the first rune of a backward word has **no collision comparator**. Under the **skip** retry model, the pointer after a forward word's final emitted rune is exactly one forward step beyond the key index that actually emitted that rune. This remains true when the final rune required skip retries. Two pointer conventions therefore cancel the hidden key exactly at every forward-to-backward turn:
 
 - **021**: m=2 moves one step in the new backward direction before the first read.
 - **101**: h=1 performs the backward pre-read step with no interword movement.
 
-For either convention, the new word's first rune therefore reads the **exact same emitted key index** as the preceding forward word's last rune. Because c=1 disables collision checking on that first backward rune, no retry can alter the new read. The key cancels exactly:
+For either convention, the new word's first rune reads the exact same emitted key index as the preceding forward word's last rune. Because c=1 disables collision checking on that first backward rune,
 
 \[
  C_+-C_-\equiv P_+-P_-\pmod{29}.
 \]
 
-This result is independent of the 581 candidate key streams, key pointer start, and additive multiplier/sign. It is exact for the external **skip** model. For the alternative **coin** model, a kept collision on the preceding forward rune can spend an extra hidden value and break adjacent emitted-index reuse. That exceptional state is source-visible whenever the preceding final ciphertext equals its previous emitted comparator, allowing an exact clean subset to be selected without a key.
+The identity is independent of the 581 screened key streams, pointer start and additive multiplier.
 
-The untouched original source has the same **734** A_prev_G forward→backward turn sites and the same fixed Shakespeare-native-vs-flat LLR **−22.130215**. A dedicated source SFT generated 100 complete, independently keyed, original-word-length-matched Gibran GP29 plants for each convention. The generated ciphertext itself determines every subsequent direction, and the SFT asserts exact emitted key-index equality at every selected turn:
+The first calibration treated p0-p55 as one continuous word stream and found 734 exact skip sites. Issue #1329's frozen external engine instead evaluates **eight section windows totaling 12,947 runes**, excludes the 9-rune seg0.10, and resets previous-word rule state at each section. The section-exact rerun supersedes the continuous figures for campaign decisions. It reproduces the external tables and 66 kept direction rules at pinned source commit 15200c67abee106913ba01ff504c5b6e88d16cc7.
 
-| External convention | Original exact sites | Original LLR | Plant minimum | Plant median | Plant maximum | Plants at/below original | Exact emitted-key reuse |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| **021, c1 skip** | 734 | −22.130215 | −5.144944 | +11.186735 | +23.092016 | **0/100** | **100%** |
-| **101, c1 skip** | 734 | −22.130215 | −1.097824 | +12.298737 | +27.158536 | **0/100** | **100%** |
+For **A_prev_G forward**, the untouched eight-window source has **732** exact skip sites with Shakespeare-native-vs-flat boundary LLR **-21.940161**. Complete original-word-length-matched Gibran GP plants recompute direction from generated ciphertext after every word and reset at the same eight section boundaries:
 
-This is a stronger key-independence statement than the c0 calibration above for these two skip-model branches: the selected source sites do not merely *usually* reuse a key index; they do so exactly under the declared external mechanics. The native-GP language inference remains conditional on the plaintext register. No unknown plaintext or historical key is recovered.
+| External convention | Original exact skip sites | Original LLR | Plant minimum | Plant median | Plant maximum | Plants at/below original |
+|---|---:|---:|---:|---:|---:|---:|
+| **021, c1 skip** | 732 | -21.940161 | -5.118512 | +10.550947 | +29.035035 | **0/100** |
+| **101, c1 skip** | 732 | -21.940161 | -2.237925 | +12.518621 | +29.211071 | **0/100** |
 
-**Reproducer:** [`sims/lp2_pdir_c1_skip_exact_keyreuse_sft.cjs`](../sims/lp2_pdir_c1_skip_exact_keyreuse_sft.cjs). Windows Node 22 run [44383033911](https://github.com/FlareZ123/liber-primus/actions/runs/44383033911) passed all original-source, exact-reuse, and matched-control assertions.
-
-For the **coin** retry model, discard a forward→backward boundary when the preceding forward rune equals its immediately preceding emitted ciphertext comparator. On every remaining boundary, either no coin collision occurred or a replacement rune was emitted from the post-coin key index; in both cases the post-rune pointer is exactly one step beyond the key index that actually emitted the visible rune. The first c1 backward rune then reuses that exact key index. The unmodified original retains **725/734** exact sites and scores **−21.968853**. In 100 complete native plants per convention, exact emitted-key reuse remained **100%** and **0/100** controls scored as low as the original:
+For the **coin** retry model, a kept collision on the preceding forward rune can spend an extra hidden value. That exceptional state is visible when the preceding final ciphertext equals its previous emitted comparator. Discarding those boundaries leaves an exact key-cancellation subset. The eight-window source retains **723** such sites and scores **-21.778799**:
 
 | External convention | Original exact coin-safe sites | Original LLR | Plant minimum | Plant median | Plant maximum | Plants at/below original |
 |---|---:|---:|---:|---:|---:|---:|
-| **021, c1 coin** | 725 | −21.968853 | −4.971314 | +11.793384 | +25.993652 | **0/100** |
-| **101, c1 coin** | 725 | −21.968853 | −3.766957 | +11.898234 | +23.108798 | **0/100** |
+| **021, c1 coin** | 723 | -21.778799 | -4.210337 | +11.545065 | +37.324508 | **0/100** |
+| **101, c1 coin** | 723 | -21.778799 | -6.187651 | +10.686815 | +25.275735 | **0/100** |
 
-The same SFT now asserts the coin-safe emitted-index identity directly. Windows Node 22 run [44383568781](https://github.com/FlareZ123/liber-primus/actions/runs/44383568781) passed. Therefore both external retry models are key-independently incompatible with the tested native-GP register for A_prev_G under conventions 021 and 101. Comparator c2 and other direction rules remain outside this result.
+Every selected planted site asserted exact emitted-key-index equality. Windows Node 22/Python 3.12 run **44385358924** passed the source identity gate and all four 100-plant calibrations. Reproducers are [`sims/lp2_pdir_c1_sectionexact_aprevg_controls_sft.py`](../sims/lp2_pdir_c1_sectionexact_aprevg_controls_sft.py) and [`sims/lp2_pdir_c1_allrule_keyfree_source_sft.py`](../sims/lp2_pdir_c1_allrule_keyfree_source_sft.py). The earlier continuous-book CommonJS reproducer remains useful as an independent algebra check, while its 734/725 site counts are not the #1329 campaign geometry.
+
+The same section-exact source census evaluates all **132 direction vectors** without any secret key. Only **3/132** have positive raw native boundary LLR under either exact c=1 subset. The two larger-support observations are **B7_prev_G reversed**, at +0.169724 over 718 skip sites and +0.816327 over 712 coin-safe sites, and the A_prev_G result above is strongly negative. **C_cur_wp** supplies the other positive values, but only 48 selected sites. These all-rule values are a triage signal until each survivor is calibrated under its own ciphertext-driven selection rule; they are not plaintext claims.
+
+The section-exact A_prev_G result therefore rejects conventions 021 and 101 for both published retry models under the tested native-GP register without searching a source key. Comparator c2, other direction rules and non-native plaintext registers remain outside this result.
 
 ## Decision for future wordwise-pointer search
 
-The source-natural **A_prev_G** rule is unsupported by the original reuse-site evidence across all three adjacent-key-reusing h/m conventions with c0, and the c1 branches 021 and 101 are now independently rejected for **both skip and coin retry models** by exact emitted-key cancellation gates. The real score falls below every correctly generated native control in each tested branch. These are key-independent early gates that avoid searching the external **581 fixed keystreams** or guessed starting positions for those declared branches.
+The source-natural **A_prev_G** rule is unsupported by the original reuse-site evidence across all three adjacent-key-reusing h/m conventions with c0. On the exact eight #1329 windows, c1 conventions 021 and 101 are independently rejected for **both skip and coin retry models** by exact emitted-key cancellation gates. The real score falls below every correctly generated native control in each tested branch. These are key-independent early gates that avoid searching the external **581 fixed keystreams** or guessed starting positions for those declared branches.
 
-Do **not** extrapolate to the external 66 other direction masks or all 18 pointer conventions. In particular, key-pointer conventions with no adjacent reused index have no comparable first/last constraint, and a collision repair consuming extra values via the alternative coin rule can require another calibration. Non-native register, multiple encryption layers, word-boundary remapping, or unrelated historical key paths are outside this finding.
+Do **not** extrapolate the calibrated A_prev_G negative to the other direction masks or all 18 pointer conventions. The key-free all-rule census identifies B7_prev_G reversed as the only positive c1 vector with hundreds of selected sites, so that vector is the next discriminating calibration target. In particular, key-pointer conventions with no adjacent reused index have no comparable first/last constraint, and a collision repair consuming extra values via the alternative coin rule can require another calibration. Non-native register, multiple encryption layers, word-boundary remapping, or unrelated historical key paths are outside this finding.
 
 **Reproducer:** [original-source Node.js 22 CommonJS SFT](../sims/lp2_pdir_gpprimeparity_keyreuse_original_sft.cjs); uses only pinned original LP2 corpus/transcription and Gibran/Shakespeare external control files already retained in the repository, prints exact original and 100 matched-length positive scores, and never writes any files. The original real words, 734 reuse sites and source positive recovery are independently asserted. This is immediately usable as a cheap decision test before expensive full keystream-key campaigns.
