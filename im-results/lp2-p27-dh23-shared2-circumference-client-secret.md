@@ -5,6 +5,20 @@ closure. This conditionally recovers the signed worked example's missing client
 private exponent 15 from original LP2 geometry. It does not recover unknown
 LP2 plaintext or specify a GP29 receiver.**
 
+## Evidentiary status
+
+The original p49-p51 typography independently authenticates the table's
+continuous row-major reading order. It does not authenticate zero-based
+addresses, the dual-radix interpretation, or the DH mapping itself.
+
+The circumference result below should therefore be read conditionally: **given
+the existing p27/DH interpretation**, the clear p57 instruction supplies a
+simple geometric operation whose output exactly reproduces the missing client
+exponent15 and later predicts FIND. The bridge "shared value2 = number of
+circumferences to shed" remains inferred. The signed historical DH tuple was
+known during discovery, so this is a strong structural closure rather than a
+prospective proof of intended mechanism.
+
 ## Frozen upstream state
 
 This test begins only after the existing p27 red13/DH/base59 route has fixed:

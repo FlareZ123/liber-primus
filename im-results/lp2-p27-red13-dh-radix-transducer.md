@@ -4,6 +4,33 @@
 
 This materially strengthens the p27/DH route and creates a repeat-independent source-internal discriminator between the two frozen p50 numeral maps. It still does not provide a receiver plaintext, KDF, or GP29 key serialization.
 
+## Evidentiary status after original-layout audit
+
+The original p49-p51 images now independently select the table's continuous
+**left-to-right, top-to-bottom row-major order**: 10/13/9 horizontal rows of
+eight cells, with both page seams on row boundaries and no restart marker.
+That part of the table representation is source-visible.
+
+The rest of this circuit remains a structural candidate assembled from several
+inferred bridges. In particular, the manuscript does not explicitly command:
+
+- multiplying the marker-selected rune prime by the residual rune count;
+- using that pair as a **zero-based** numeric table coordinate;
+- interpreting the selected token simultaneously in base59 and base60;
+- treating base59 cell values as pointers;
+- interpreting the known DH shared value2 as a count of circumferences to shed.
+
+The signed DH worked tuple was known before these links were evaluated. Exact
+DH matches therefore provide strong cross-checks of a reproducible route rather
+than prospective authentication of every joining operation. The matched-table
+permutation diagnostic below is post-discovery and does not correct for
+selection of the formulas, coordinates, or radix roles.
+
+The strongest current human-path claim is accordingly: **original p27 visual
+features and the source-selected p50 row order participate in an unusually
+coherent DH-shaped circuit whose remaining address/radix/operation bridges are
+still inferred.** A receiver or new prediction must be independently selected.
+
 ## Frozen source object
 
 The original p27 page begins with:
