@@ -13,11 +13,12 @@ assert.deepStrictEqual(unknown,canonical);assert.strictEqual(words.length,2896);
 function firstPrimes(count){const out=[];for(let n=2;out.length<count;n++){let ok=true;for(let d=2;d*d<=n;d++)if(n%d===0){ok=false;break;}if(ok)out.push(n);}return out;}
 const key=firstPrimes(10000).map(p=>(p-1)%Q);
 function isPrime(n){if(n<2)return false;if(n%2===0)return n===2;for(let d=3;d*d<=n;d+=2)if(n%d===0)return false;return true;}
+function reverseDecimal(n){return Number(String(n).split("").reverse().join(""));}
 function mobius(n){let x=n,mu=1;for(let d=2;d*d<=x;d++)if(x%d===0){x/=d;mu=-mu;if(x%d===0)return 0;while(x%d===0)x/=d;}if(x>1)mu=-mu;return mu;}
 function wordSum(w){return w.reduce((s,x)=>s+corpus.prime[x],0);}
-function direction(sum,rule,polarity){if(rule==="prime")return (isPrime(sum)===polarity)?1:-1;const m=mobius(sum);return m===0?0:m*(polarity?1:-1);}
+function direction(sum,rule,polarity){if(rule==="prime")return (isPrime(sum)===polarity)?1:-1;if(rule==="emirp"){if(!isPrime(sum))return 0;return (isPrime(reverseDecimal(sum))===polarity)?1:-1;}const m=mobius(sum);return m===0?0:m*(polarity?1:-1);}
 function mod(n){return ((n%Q)+Q)%Q;}
-function decode(source,rule,polarity,sign){
+function decode(source,rule,polarity,sign,feedback="plain"){
  let pointer=0,dir=1,at=0,min=Infinity,max=-Infinity,out=[];
  for(let wi=0;wi<words.length;wi++){
   const plainWord=[];
@@ -26,11 +27,11 @@ function decode(source,rule,polarity,sign){
    plainWord.push(mod(source[at]-sign*key[pointer]));min=Math.min(min,pointer);max=Math.max(max,pointer);pointer+=dir;at++;
   }
   out.push(...plainWord);
-  if(wi+1<words.length)dir=direction(wordSum(plainWord),rule,polarity);
+  if(wi+1<words.length){const selectorSum=feedback==="cipher"?wordSum(words[wi]):wordSum(plainWord);const nextDirection=direction(selectorSum,rule,polarity);if(rule==="emirp"){if(nextDirection!==0)dir=nextDirection;}else dir=nextDirection;}
  }
  return {valid:true,out,pointer,min,max};
 }
-function encrypt(plain,rule,polarity,sign){
+function encrypt(plain,rule,polarity,sign,feedback="plain"){
  let pointer=0,dir=1,at=0,out=[];
  for(let wi=0;wi<words.length;wi++){
   const plainWord=[],cipherWord=[];
@@ -39,7 +40,7 @@ function encrypt(plain,rule,polarity,sign){
    plainWord.push(plain[at]);cipherWord.push(mod(plain[at]+sign*key[pointer]));pointer+=dir;at++;
   }
   out.push(...cipherWord);
-  if(wi+1<words.length)dir=direction(wordSum(plainWord),rule,polarity);
+  if(wi+1<words.length){const selectorSum=feedback==="cipher"?wordSum(cipherWord):wordSum(plainWord);const nextDirection=direction(selectorSum,rule,polarity);if(rule==="emirp"){if(nextDirection!==0)dir=nextDirection;}else dir=nextDirection;}
  }
  return {valid:true,out,pointer};
 }
@@ -58,15 +59,24 @@ const cases=[
  {rule:"mobius",polarity:true,sign:1,valid:false,word:21,offset:103,pointer:-1},
  {rule:"mobius",polarity:true,sign:-1,valid:false,word:5,offset:28,pointer:-1},
  {rule:"mobius",polarity:false,sign:1,valid:false,word:5,offset:33,pointer:-1},
- {rule:"mobius",polarity:false,sign:-1,valid:true,score:-4.612581630475879,max:557,final:555}
+ {rule:"mobius",polarity:false,sign:-1,valid:true,score:-4.612581630475879,max:557,final:555},
+ {rule:"emirp",polarity:true,sign:1,feedback:"plain",valid:false,word:38,offset:175,pointer:-1},
+ {rule:"emirp",polarity:true,sign:-1,feedback:"plain",valid:false,word:7,offset:41,pointer:-1},
+ {rule:"emirp",polarity:false,sign:1,feedback:"plain",valid:false,word:594,offset:2707,pointer:-1},
+ {rule:"emirp",polarity:false,sign:-1,feedback:"plain",valid:false,word:24,offset:113,pointer:-1},
+ {rule:"emirp",polarity:true,sign:1,feedback:"cipher",valid:false,word:9,offset:47,pointer:-1},
+ {rule:"emirp",polarity:true,sign:-1,feedback:"cipher",valid:false,word:9,offset:47,pointer:-1},
+ {rule:"emirp",polarity:false,sign:1,feedback:"cipher",valid:false,word:3,offset:17,pointer:-1},
+ {rule:"emirp",polarity:false,sign:-1,feedback:"cipher",valid:false,word:3,offset:17,pointer:-1}
 ];
 const results=[],controls=[];
 for(const c of cases){
- const r=decode(unknown,c.rule,c.polarity,c.sign);
+ const feedback=c.feedback||"plain";
+ const r=decode(unknown,c.rule,c.polarity,c.sign,feedback);
  assert.strictEqual(r.valid,c.valid);
  if(!c.valid){assert.deepStrictEqual({word:r.word,offset:r.runeOffset,pointer:r.pointer},{word:c.word,offset:c.offset,pointer:c.pointer});results.push({...c,valid:false,underflow:{word:r.word,runeOffset:r.runeOffset,pointer:r.pointer}});continue;}
- const logL=score(r.out);assert(Math.abs(logL-c.score)<1e-12);assert.strictEqual(r.max,c.max);assert.strictEqual(r.pointer,c.final);const reencrypted=encrypt(r.out,c.rule,c.polarity,c.sign);assert(reencrypted.valid&&reencrypted.out.every((x,i)=>x===unknown[i]));
- const re=encrypt(r.out,c.rule,c.polarity,c.sign);
+ const logL=score(r.out);assert(Math.abs(logL-c.score)<1e-12);assert.strictEqual(r.max,c.max);assert.strictEqual(r.pointer,c.final);const reencrypted=encrypt(r.out,c.rule,c.polarity,c.sign,feedback);assert(reencrypted.valid&&reencrypted.out.every((x,i)=>x===unknown[i]));
+ const re=encrypt(r.out,c.rule,c.polarity,c.sign,feedback);
  assert(re.valid&&re.out.every((x,i)=>x===unknown[i]));
  results.push({...c,valid:true,trigramLogLikelihood:logL,minPointer:r.min,maxPointer:r.max,finalPointer:r.pointer,reencryptsOriginal:true});
  if(c.rule==="prime"){
@@ -74,4 +84,4 @@ for(const c of cases){
   assert(enc.valid&&dec.valid&&dec.out.every(x=>x===0));controls.push({rule:c.rule,polarity:c.polarity,sign,constantZeroPlantExact:true});
  }else controls.push({rule:c.rule,polarity:c.polarity,sign,candidateReencryptsOriginal:true});
 }
-console.log(JSON.stringify({test:"p56 prime-totient stream with causal previous-plaintext-word direction",keyDefinition:"K[i]=(prime(i+1)-1) mod 29, first key symbol uses prime 2; no wrap",keySymbols:10000,wordCount:words.length,unknownRunes:unknown.length,sourceTrigramLogLikelihood:score(unknown),shakespeareTrain:score(reference),shakespeareHoldout:score(heldout),uniformMeanLogLikelihood:-Math.log(Q),results,controls},null,2));
+console.log(JSON.stringify({test:"p56 prime-totient stream with causal word-direction selectors",keyDefinition:"K[i]=(prime(i+1)-1) mod 29, first key symbol uses prime 2; no wrap",keySymbols:10000,wordCount:words.length,unknownRunes:unknown.length,sourceTrigramLogLikelihood:score(unknown),shakespeareTrain:score(reference),shakespeareHoldout:score(heldout),uniformMeanLogLikelihood:-Math.log(Q),results,controls,sourceNote:"The emirp selector tests both conflicting 2013 count-marker legends; composite sums carry the prior direction. Plaintext-feedback is causal; ciphertext-feedback is a solver-visible proxy."},null,2));
