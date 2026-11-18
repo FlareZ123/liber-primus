@@ -112,6 +112,28 @@ Thus the sequence uses two independently fixed counts:
 
 The route therefore supplies a plausible source-authored escape from the closed p27/p28/p50/p57 navigation network.
 
+## The two literal `00` cells are independently saturated
+
+The original p50 table contains exactly two literal `00` tokens, at addresses **192** and **229**.
+
+The earlier p27 serializer route independently recovers literal3301 and then uses the frozen 256-cell reduction:
+
+```
+3301 mod256 = 229
+p50[229] = 00
+00 -> 0
+```
+
+The new EMERGE reset selects the **other** literal-zero cell:
+
+```
+base60(p50[189]=3C) = 192
+p50[192] = 00
+00 -> 0
+```
+
+So two materially different source routes land on the complete two-element set of original `00` cells and both converge to value0. This does not prove the page receiver by itself, while it makes the 192 stopping point substantially less arbitrary.
+
 ## Why value0 is a typed receiver candidate
 
 The same solved grammar already establishes a page-number receiver:
