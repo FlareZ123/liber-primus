@@ -16,6 +16,27 @@ The 56 donor words have a potentially meaningful target: the **56 unsolved physi
 
 Independently, original p49–51's 32-row by eight-column numerical table has **256** two-symbol cells. Its one-cell **outer perimeter contains 76 cells**, leaving exactly **180 interior cells**. The two duplicated-moth registers therefore match the table's inner/outer geometry *including their own printed terminal marks*, and their **40+16 word count** also matches the unknown page inventory. Physical pages p53+p55 are the **only unordered pair of the 55 rune-bearing unknown pages with exactly 255 total runes** (179+76); that less precise 255 count includes the p54 carried rune and excludes both terminal marks.
 
+## Original red-ink boundary yields two equal 28-word, 128-event registers
+
+A stronger *within-page* separator is already drawn in **70.jpg**. The black prefix of p53 contains exactly **28 complete words and 128 GP runes**, ending precisely where the original ink changes to red. That red suffix has **12 complete words and 51 GP runes**. Combining it with p55's **16 complete body words and 75 GP runes** gives a second set of **28 words and 126 GP runes**, and the two original terminal red 13-dot marks provide exactly two more events:
+
+| Source-selected side | Complete words | Runes | Terminal-mark events | Total events |
+| --- | ---: | ---: | ---: | ---: |
+| p53 black prefix, ending at original red-ink boundary | **28** | **128** | 0 | **128** |
+| p53 red suffix + p55 complete body | **12+16 = 28** | **51+75 = 126** | **2** | **128** |
+| Total | **56** | **254** | **2** | **256** |
+
+Unlike the inferred interior/perimeter mapping, the first **128-runic red-ink separator is an actual original source mark**, and it lands exactly on a printed word boundary after word28. This gives a second, independent *structural framing* for the same moth-pair source, with **28+28 word slots** and **128+128 events**. It could nominate a two-register operation, an explicit AES-128/256-bit key interpretation, or a 28-state alphabet, but no authored bit conversion, cipher family, polarity, key/IV or event order is yet supplied.
+
+Two elementary original-cipher reductions were tried without fitting parameters:
+
+- Pair the two natural 128-event streams in order (or reverse the second), interpreting both original red 13-dot marks as GP index 0 or13. The eight GP29 additive **sum and difference** folds all have IoC **0.03137–0.03531**, with no ordinary GP text. The 128-event pairing reconstructs exactly, making this a bounded negative for the direct two-share receiver.
+- A typed block-cipher check converted **56 printed donor words into a 56-bit DES key** using parity of either each word's GP prime sum, GP ordinal sum or rune length, inserted standard DES odd parity bits, and applied DES-ECB against the **256 original table bytes =32 blocks×8 bytes**. Three source-derived keys were tested in both encryption and decryption directions. All six outputs are nontext (only 80–112 of256 bytes printable, no recognized file signature). Separately, using one original GP-ordinal parity bit per **256 event** generates a 256-bit AES-256 key or two 128-bit AES-128 keys for the two 128-byte table halves; both fixed ECB decryptions remain nontext (104 and91 of256 bytes printable). GP-prime parity and ordinal-bit4 produce the same result under these two frozen AES modes. **DES and AES are independent analyst-selected ciphers**, so the tests retire only these direct parity-key examples, not all cryptographic uses of the matching bit counts.
+
+The natural 128+128 source partition strengthens the inference that the two moth pages deserve joint inspection. It **does not establish cryptographic intent** without a reversible source-selected operation and identifiable plaintext or structured payload.
+
+---
+
 All four correspondences are mechanically checkable on original ciphertext and layout. Taken together, they nominate a **possible key-sharing and table-traversal route** that earlier isolated 180/76 hypotheses did not single out. This is not proof of deliberate encoding. It would require an independent authored rule about the event-to-cell map and how numeric cells transform runes.
 
 The clear p57 PARABLE says to shed *circumferences*, followed by finding divinity *within*; the signed 2016 text says the book's words are the map and their numbers are the direction. Those are context for considering perimeter, interior and word inventories. Neither text explicitly commands this alignment.
