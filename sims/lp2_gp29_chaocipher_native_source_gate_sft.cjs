@@ -120,6 +120,49 @@ for (const nadir of [13, 14, 15]) {
 }
 assert.deepEqual(results.map((r) => r.minimum), [397, 411, 407]);
 assert.deepEqual(results.map((r) => r.maximum), [509, 520, 515]);
+
+/** @param {number[]} source */
+function coincidence(source) {
+  const f = new Array(29).fill(0);
+  for (const value of source) f[value]++;
+  const n = source.length;
+  return f.reduce((sum, count) => sum + count * (count - 1), 0) / (n * (n - 1));
+}
+
+// Direct, fully original-cipher inverses: only two alphabet orders visible
+// in the authentic GP29 chart (printed and completely reversed). The
+// Chaocipher operation is still hypothetical; this tests what its
+// lowest-description-length wheel keys literally do to the unknown book.
+const gpOrder = Array.from({ length: 29 }, (_, i) => i);
+const gpReversed = gpOrder.slice().reverse();
+const originalInversions = [];
+for (const nadir of [13, 14, 15]) {
+  for (const [leftName, left] of [
+    ['gpPrinted', gpOrder],
+    ['gpReverse', gpReversed],
+  ]) {
+    for (const [rightName, right] of [
+      ['gpPrinted', gpOrder],
+      ['gpReverse', gpReversed],
+    ]) {
+      const recovered = chaocipher(original, left, right,
+        nadir, 'decrypt');
+      const rescrambled = chaocipher(recovered, left, right,
+        nadir, 'encrypt');
+      assert.deepEqual(rescrambled, original);
+      originalInversions.push({
+        nadir,
+        leftName,
+        rightName,
+        coincidence: coincidence(recovered),
+        first25RuneIndices: recovered.slice(0, 25),
+      });
+    }
+  }
+}
+assert(originalInversions.every((r) =>
+  r.coincidence > 0.034 && r.coincidence < 0.035));
+
 console.log(JSON.stringify({
   cipher: 'Chaocipher, exact 26-letter reference plus 29-rune 13/14/15 nadir adaptations',
   originalUnknownRuneCount: original.length,
@@ -130,5 +173,6 @@ console.log(JSON.stringify({
   keyGenerator: 'xorshift32, seed 3301, Fisher-Yates on both GP29 alphabets',
   exactReversibilityControls: 144,
   simulations: results,
+  originalSourceWheelInversions: originalInversions,
   validConclusion: 'Direct 29-symbol Chaocipher as specified fails sampled-original-repeat profile; no claim of exhaustive all-key impossibility or historical author opcode',
 }, null, 2));
