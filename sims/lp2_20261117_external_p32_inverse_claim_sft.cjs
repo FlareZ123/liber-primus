@@ -69,6 +69,30 @@ const inverseFlat = original.inverse.flat();
 assert.equal(inverseFlat.length, 121);
 const primeRegister = matrixInverse(p32.map((x) => corpus.prime[x] % 29));
 assert.equal(primeRegister.det, 21);
+
+// The post also links generator 11 and Fibonacci period 14, so check the
+// smallest plausible direct matrix period predictions without tuning a key.
+const matrix = Array.from({length:11}, (_, r) => p32.slice(r * 11, r * 11 + 11));
+const identity = Array.from({length:11}, (_, r) =>
+  Array.from({length:11}, (_, c) => +(r === c)));
+/** @param {number[][]} a @param {number[][]} b @returns {number[][]} */
+const multiply = (a, b) => Array.from({length:11}, (_, r) =>
+  Array.from({length:11}, (_, c) =>
+    mod(a[r].reduce((sum, value, k) => sum + value * b[k][c], 0))));
+/** @param {number[][]} a @param {number[][]} b @returns {number} */
+const differingCells = (a, b) => a.reduce((sum, row, r) =>
+  sum + row.filter((value, c) => value !== b[r][c]).length, 0);
+let power = identity;
+let order14Difference = 0;
+let order28Difference = 0;
+for (let i = 1; i <= 28; i++) {
+  power = multiply(power, matrix);
+  if (i === 14) order14Difference = differingCells(power, identity);
+  if (i === 28) order28Difference = differingCells(power, identity);
+}
+assert.equal(order14Difference, 120);
+assert.equal(order28Difference, 114);
+
 const inverseTranslit = inverseFlat.map((x) => corpus.translit[x]).join("");
 assert.equal(inverseTranslit.slice(0, 19), "NGTHOILPEONWPEOEAFF");
 assert.equal(inverseTranslit.slice(-26), "WITHSTOIAENYHAEOXSUOOEFNUJ"); // output lock
@@ -104,5 +128,7 @@ console.log(JSON.stringify({
   randomMatrixProbabilityOfInvertibility:invertibleNullProbability,
   assertedMod29PrimitiveRoot:11,
   assertedMod29FibonacciPeriod:period,
+  matrix14PowerDifferentFromIdentityCells:order14Difference,
+  matrix28PowerDifferentFromIdentityCells:order28Difference,
   authenticUnknownPagePlaintextRecovered:false
 }, null, 2));
