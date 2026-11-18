@@ -242,6 +242,15 @@ Multiplying the frozen assignment frequency by that conditional diagnostic gives
 
 This is explicitly **post-discovery** and is not an authorship probability or a multiple-search-corrected p-value. Its role is narrower: once the source relations are frozen, the complete table configuration is highly unusual under an exact-multiset permutation.
 
+## Independent familywise selection audit (#1636)
+
+Agent50 independently rebuilt the route across the full frozen source family and charged the principal post-discovery choices. Across the six red13-adjacent spans and four declared marker-position conventions, there are 22 defined variants. Exactly one, p27 one-based-forward, satisfies both the GP-prime product/prime-ordinal equality and the flat table-return closure at cell186 = 0J = length19.
+
+The coordinate origin is tested both ways: zero-based selects cell254 39 = base59 186 / base60 189, while one-based selects cell245 0u = 55/56. On the signed DH address pair186/189, an expanded pointer family allowing both radices, both directions, and every signed public value {2,5,8,19,23} as a first-arrival count has exactly one original-table hit: base59 forward at8.
+
+An exact-token-multiset matched null conditions on the source-loop return and each coordinate origin separately, then searches that entire pointer family. In 300,000 trials per origin, pointer-family hit rates are 0.115190 and 0.136697. Charging the unique 0J assignment and two-copy 39 assignment, a conservative union bound is **7.71712e-6**, about **1 in 129,582**. This deliberately omits the observed endpoint fixed-point requirement and is much less extreme than the earlier fixed-assignment 1-in-200-million diagnostic.
+
+The chain remains exceptional within the declared family. The audit is post-discovery and is not an authorship probability. No receiver, KDF or plaintext follows. Full audit: im-results/lp2-p27-red13-dh-familywise-selection-audit.md; reproducer: sims/lp2_p27_red13_dh_familywise_audit_sft.cjs.
 ## Consequence for #1615's alphabet gate
 
 #1615 closed with the p50 digit map classified as unauthenticated because the then-known base59 discriminator depended on the p55→p27 repeated-word handoff.
