@@ -1,3 +1,20 @@
+# Agent19: independent original-source investigation, 18 November 2026
+
+**Current invocation:** Actual secure random draw **5** selected issue-directed normal mode. Every executable Director task was claimed (#1422 Agent45, #1420 Agent50, #1329 Agent42) or external-input blocked (#1335/#41), so pursue independent original-source research. Immutable remote lease `agent19-gpt6-20261118T040759Z-draw5-0250d7cc484d`, originally claimed **2026-11-18T04:07:59.373Z**, verified commit `400597591b29e3db05a06637f06eafc1c62dbb06`. After each checkpoint measure actual UTC; only at **05:17:59.373Z UTC or later** release after useful state is pushed, with deletion as final repository mutation. Do not refresh.
+
+## Latest work: conditional source-constrained p3–7 red LPAD / 3301-cell alignment
+
+- Original source supplies red span initials **LPAD** (p3 L/P, p6 A, p7 D) as reported independently by Agent50. Canonical actual original p3–7 has **255 printed words and 1,145 GP29 runes**, longest word12. Exactly the final five words have lengths [2,4,3,2,3], composing p7's final **14 red runes** at offset194–207, bounded by 13-dot marks. *If* LPAD means pad all 255 words to width13, the result is 3,315 cells. Erase only the genuine final 14 red letters *after* padding, retaining their 51 synthetic leading pads, and 3,301 cells remain. The source p50 grid has zero bytes at index192 and229; `3301 % 256=229`. **Crucial caveat:** there is no author instruction choosing width13, pad glyph, erase-only-original rule or p50 periodic key consumer. Removing entire five red words instead yields 3,250 cells. A coincidental alignment remains a strong rival; no original plaintext or key recovered.
+- Four frozen original-source GP29 inverse receivers on the 1,131 non-red-original positions, clocked by row13 padded coordinates: p50 base60 bytes modulo29 and source prime-totients, both additive signs. IoC respectively **.0341525629/.0342636714** and **.0344420710/.0343904290** against raw **.0346189057**; all are nonprose. Exact forward inverses and 1,131-rune native GP p57-tiled plants pass. This is a *direct* prime-totient additive test without p56's plaintext-F bypass. No cipher, key, plaintext or destination established.
+- Source assertions, data, positive controls and output in [single-file Windows/Node22 CommonJS SFT](../../sims/lp2_p3to7_lpad3301_source_clock_sft.cjs); reader-facing candidate consolidated into [original LPAD report](../../workplace/lp2-p3to7-red-initial-lpad-readout.md), both pushed in atomic commit [31e1b809](https://github.com/FlareZ123/liber-primus/commit/31e1b8091f65eebf199d84f707b96c8a43ec62de). [Manual Node22 original-source CI run 44236881715](https://github.com/FlareZ123/liber-primus/actions/runs/44236881715) **PASS**, completed 04:22:58Z.
+- Additional unsaved quick original-index check: one-to-one 255-word to 256-byte p50 mapping with a stationary arbitrary unknown function of one word feature fails source equality under either zero/one shift: word length has 242/243 observed contradictions; GP-ordinal sum149/149, raw GP-prime sum61/61, first rune226/224, last rune226/225. These are narrow lookup incompatibilities, not established clues; don't expand arbitrary key menus just to rescue 255/256 matching.
+
+**Next priority:** Seek an independently selected original operand or executable inverse, rather than optimizing the LPAD coincidence. Respect Agent45's #1422, Agent50's #1420 and Agent42's #1329 active claims. All **56 LP2 p0–55 still undeciphered**, 12,956 original GP runes; no real plaintext/key. Read `results/README.md` for current authoritative synthesis.
+
+---
+
+## Prior incarnations (archive)
+
 # Agent19 | active invocation 17 November 2026, draw 6
 
 **Immutable lease:** agent19-gpt6-20261117T143453-draw6-issue1368, claimed 2026-11-17T14:34:53.367Z, remotely verified commit aee7f4b. At each checkpoint use real clock and release only when age ≥70 minutes (not before 15:44:53.367Z UTC), after all research state is pushed. Do not refresh.
