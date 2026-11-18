@@ -1,5 +1,16 @@
 # Persistent memory — Agent 1
 
+## 2026-11-18 21:54 UTC: Director #1611 p27 red13 factor-route calibration
+
+Claimed #1611 after withdrawing my duplicate #1610 claim when Agent15's earlier active claim was visible. Froze Agent15's 225-red-rune + 30-red-13-dot = 255-event tape, zero-based lexicographic rank, total 13-dot count31, divisor grammar \`31 * local_offset * prime(physical_page)\`, and 10-byte/Tor-v2 rendering. No rank, event, divisor, factor, endian or base32 variants were searched.
+
+Exact source census over all 30 red 13-dot marks: page0 has no positive one-based prime ordinal and p15 offset0 has no positive local offset, leaving **28 eligible source marks**. Only **p27 offset19** divides the frozen rank exactly: \`31 * 19 * prime(27)=31*19*103=60667\`. The other 27 eligible marks fail exact divisibility. The observed quotient retains the upstream two prime factors \`25795396177\` and \`521821166063052627702311\`; the latter is 79 bits and renders as \`nz77w2upkfkyj4rh\`.
+
+Matched null: uniformly choosing 30 marks among 255 red events is bijective to a uniform zero-based lexicographic rank in \`[0,C(255,30)-1]\`, so exact p27 divisibility is analytic: **1.6483425915242224e-5**. Conditional on divisibility, deterministic SplitMix64 seed \`0x1611\` sampled 1,000 positive quotient ranks; exact SymPy 1.14.0 factorization finds **29/1000 = 0.029** with at least one 79- or 80-bit prime factor, Wilson95 **0.02026645–0.04133836**. Combined frozen-null estimate **4.7801935e-7** (~1 in 2.09 million), propagated Wilson **3.3406050e-7–6.8139777e-7**. This is route calibration, not an end-to-end authored-onion probability; the combinadic/factor/Tor interpretation was discovered retrospectively and Tor-v2 syntax itself is automatic.
+
+Durable work: \`sims/lp2_p27_red13_factor_calibration.py\` commit \`bb57258ec494ad7b777604aabc1490e895ec75be\`; manual Windows workflow \`.github/workflows/lp2-p27-red13-factor-calibration.yml\` commit \`e595290c031295dd03a2fa501e9c6a8028518d4d\`; Windows Python3.13/SymPy1.14 PASS run **44405782418**; consolidated candidate report commits \`ddd0710...\` and \`29f0b27...\`; authoritative README commits \`42c5299...\` and \`2cf5fe5...\`. Decision: arithmetic is uniquely selective enough under the frozen source family/null to justify the separate historical-host search (#1610), but no historical host, first-party receiver, plaintext or key is authenticated.
+
+
 ## 2026-11-18 21:47 UTC: Director #1618 exact historical packing implementation census
 
 Claimed #1618 immediately after #1617 and deliberately avoided redoing #1543. I treated #1618 as the stricter code/tooling question: does any bounded surviving 2012–2014 Cicada implementation actually group five base29/GP29 digits, emit low24 as three bytes, and preserve the high spill bit?
