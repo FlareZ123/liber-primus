@@ -35,6 +35,8 @@ for(let t=1;t<=27;t++)for(let b=t+1;b<=27;b++)for(let l=1;l<=27;l++)for(let r=l+
  for(const diag of[[0,2],[1,3]]){const[a,z]=diag;if(vals[a]===vals[z]&&ds[a]===ds[z])rects.push({t,b,l,r,vals,diag})}
 }
 assert.equal(rects.length,72);
+const ratio3Rects=rects.filter(x=>{const h=x.b-x.t,w=x.r-x.l;return h===3*w||w===3*h});
+assert.equal(ratio3Rects.length,9);
 
 // Test the title-visible additive rule backward through key/plain sums.
 // K2 sum15 and P2 sum57 are already fixed by the source-only final-five
@@ -47,6 +49,7 @@ assert.deepEqual(keyCandidates.map(x=>[x.t,x.b,x.l,x.r,...x.vals.map(tr)]),[
  [6,24,3,9,"X","N","X","C"],
  [9,14,5,20,"G","H","G","OE"]
 ]);
+assert.ok(keyCandidates.every(x=>{const h=x.b-x.t,w=x.r-x.l;return h===3*w||w===3*h}));
 
 // The next recurrence term requires P1 sum = K1 + P2 = 99.
 // Exhaust all traversal starts/directions, ciphertext direction and sign.
@@ -86,7 +89,9 @@ console.log(JSON.stringify({
  markerLadder,
  objectLengths:[secondKey.length,wordHits[0].key.length,secondPlain.length,firstPlain.length,raw.length],
  symmetricRectangles:rects.length,
+ ratio3SymmetricRectangles:ratio3Rects.length,
  keySumTarget:targetK1,
+ keySumCandidatesAllRatio3:keyCandidates.every(x=>{const h=x.b-x.t,w=x.r-x.l;return h===3*w||w===3*h}),
  keySumCandidates:keyCandidates.map(x=>x.vals.map(tr)),
  firstPlainSumTarget:targetP1,
  recurrenceHits:hits.length,
