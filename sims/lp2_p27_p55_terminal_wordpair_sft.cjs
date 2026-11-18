@@ -134,6 +134,9 @@ assert.deepEqual(page55, {
 const pageLengthConditionedProbability =
   page27.orderedPairProbability * page55.orderedPairProbability;
 assert.equal(pageLengthConditionedProbability, 1 / 78);
+const sameOrderInBothPagesEitherWay =
+  2 * pageLengthConditionedProbability;
+assert.equal(sameOrderInBothPagesEitherWay, 1 / 39);
 
 
 assert.ok(Math.abs(expectedRepeatedBigrams - 0.01250011927594729) < 1e-12);
@@ -156,6 +159,8 @@ console.log("Page/word-length conditional p27 3-rune slots:", page27);
 console.log("Page/word-length conditional p55 3-rune slots:", page55);
 console.log("Exactly conditioned ordered pair on both pages:",
   pageLengthConditionedProbability.toPrecision(14), "=1/78");
+console.log("Either order, with the same ordered pair on both pages:",
+  sameOrderInBothPagesEitherWay.toPrecision(14), "=1/39");
 console.log("The earlier global word-shuffle baseline is not a calibrated",
   "discovery-corrected significance or plausible prose-generating null.");
 console.log("No cipher, plaintext, or creator-origin explanation is inferred.");
