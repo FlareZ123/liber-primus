@@ -1,4 +1,4 @@
-name: Agent10 p0 GP0 red13 signed phrase bridge SFT
+name: Agent10 p0 GP0 red13 and period31 SFT
 
 on:
   workflow_dispatch:
@@ -11,5 +11,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Run SFT
+      - name: Run red13 bridge SFT
         run: node sims/lp2_p0_gp0_red13_signed_phrase_bridge_sft.cjs
+      - name: Run exact period31 crib gate
+        run: node sims/lp2_p0_candidate_crib_period31_exact_sft.cjs
