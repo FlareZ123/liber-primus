@@ -21,7 +21,7 @@ Higher-order context **adds 598.2172 bits** of predictive loss relative to the o
 
 ## Exact first-order-conditional original test
 
-Use the repository's [uniform original-page Euler-trail sampler](../sims/lp2_exact_page_bigram_euler_sft.cjs) implementation pattern: directed cycle popping samples a labeled-edge last-exit arborescence, followed by uniform outgoing-edge shuffles. Generate **400** independent random heldout books, using seed `0x610e527f`, keeping the 23 original heldout page lengths, endpoints and **every original per-page ordered GP29 bigram count** exactly. Original training remains fixed. Verify every directed edge count and endpoints in the first synthetic book. Every trial is scored through the identical frozen predictor and original page sequence. No null trial changes the original p0–32 training counts.
+Use the repository's [uniform original-page Euler-trail sampler](../sims/lp2_exact_page_bigram_euler_sft.cjs) implementation pattern: directed cycle popping samples a labeled-edge last-exit arborescence, followed by uniform outgoing-edge shuffles. Generate **400** independent random heldout books, using seed `0x610e527f`, keeping the 22 rune-bearing heldout page lengths (the p50 table is rune-free), endpoints and **every original per-page ordered GP29 bigram count** exactly. Original training remains fixed. Verify every directed edge count and endpoints in the first synthetic book. Every trial is scored through the identical frozen predictor and original page sequence. No null trial changes the original p0–32 training counts.
 
 | Original-minus-null diagnostic | Outcome |
 | --- | --- |
@@ -38,7 +38,7 @@ A striking original fifth-back return anomaly can therefore coexist with *lack o
 
 The same script builds a seeded length-12,956 second-order process: 94% of the time `x[i]=(x[i−1]+x[i−2]) mod29`, otherwise sample a uniform GP29 symbol. Train its frozen model on the first 7,960 generated symbols and evaluate its remaining 4,996. The order-four model wins **17,659.7072 bits**, predicts **4,639/4,996** correctly versus **130/4,996** for order one. Thus the chosen method has ample power to detect a genuinely compact near-deterministic state law. An independently seeded uniform-29 stream gives **−508.4878 bits** gain and top-1 counts 176 versus 178. All controls use the original data split lengths.
 
-Reproducibility: [read-only Node 22 CommonJS SFT](../sims/lp2_context4_heldout_pagebigram_sft.cjs), with exact input, fixed smoothing and random seeds. [First successful Windows CI execution](https://github.com/FlareZ123/liber-primus/actions/runs/44318492003) demonstrates original, exact-null, plant and uniform checks. The additional p57 clear-page scoring is included in the latest same script.
+Reproducibility: [read-only Node 22 CommonJS SFT](../sims/lp2_context4_heldout_pagebigram_sft.cjs), with exact input, fixed smoothing and random seeds. [First successful Windows CI execution](https://github.com/FlareZ123/liber-primus/actions/runs/44318492003) demonstrates original, exact-null, plant and uniform checks. [Final Windows Node22 run](https://github.com/FlareZ123/liber-primus/actions/runs/44319048340) passes the updated script including authentic clear p57.
 
 ## Decision and limitation
 
