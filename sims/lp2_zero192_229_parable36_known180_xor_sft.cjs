@@ -35,6 +35,23 @@ for (let n = 2; ordinal < 50; n++) {
 assert.equal(prime50, 229);
 assert.equal(table[prime50], 0);
 
+// Another concrete original-key consumer: use prime(physical page50)=229 as
+// the first totient-key prime for p55, with p56's verified F-transparent rule.
+// Before p55's first printed F at local15, this decoder has no skip choice.
+const primeSequence = [];
+for (let n = 2; primeSequence.length < 150; n++) {
+  let good = true;
+  for (let d = 2; d * d <= n; d++) if (n % d === 0) good = false;
+  if (good) primeSequence.push(n);
+}
+const forcedPrefix = p55.slice(0, 10).map((c, i) =>
+  ((c - (primeSequence[49 + i] - 1)) % 29 + 29) % 29);
+assert.equal(p55.slice(0, 10).includes(0), false);
+assert.equal(primeSequence[58], 277);
+assert.equal(p55[9], 15); // ciphertext S, distinct from printed F
+assert.equal(forcedPrefix[9], 0); // would require encrypted F
+
+
 /** @param {number[]} a */
 const sum = a => a.reduce((acc, v) => acc + v, 0);
 /** @param {number[]} a */
@@ -236,6 +253,8 @@ assert.ok(Math.max(...wheel76.map(x => x.ioc)) < 0.04);
 console.log(JSON.stringify({
   status: "PASS", source: "original LP2 table and terminal source pages",
   zeroCells: [192, 229], primeOfTablePage50: prime50,
+  seededTotientP55: {firstPrime: 229, impossibleAtLocalRune: 9,
+    forbiddenCipherSForPlainF: true},
   clearAddressPair: [193, 191],
   gapBytes: 36, gapByteXor: 95, parableRunes: p57.length,
   neighboringByteXors: [186, 229],
