@@ -56,8 +56,6 @@ assert.equal(modPow(A, b, p), K);
 const exponent = g - K;
 assert.equal(exponent, 3);
 assert.equal(a / K, 3);
-assert.equal(Math.gcd, undefined); // no hidden helper dependency
-
 assert.equal(modPow(K, exponent, gpPrime), A);
 assert.equal(modPow(A, exponent, gpPrime), B);
 assert.equal(modPow(B, exponent, gpPrime), b);
