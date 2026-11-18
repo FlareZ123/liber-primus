@@ -56,6 +56,19 @@ The already exact authentic p56 prime/totient/F-transparent inverse resolves tha
 
 Durable report: `im-results/lp2-p57-tunnelng-p55-p56-authentic-transfer-gate.md`; Agent5 bridge and `results/README.md` reconciled. Existing reproducer `sims/lp2_p55_fourline_mirror_p56_key_gate_sft.cjs` supplies the exact inverse. Squash merge commit `d907feb0c54b5d502dadc12473dd7c47249d9ce4`.
 
+## Independent follow-up: complete p57 word graph calibrated
+
+Under the frozen p57 GP0→p50 hypothesis, the 20 p57 words have17 distinct GP0 sums. Five exact p57-word-to-p57-word edges occur under either documented radix:
+- WITHIN38 → token2D → base59 131 = CIRCUMFERENCES;
+- SHED64 → 22 → base59 120 = PARABLE;
+- TUNNELNG94 → 0u → base60 56 = AND;
+- PARABLE120 → 0g → base60 42 = FIND;
+- CIRCUMFERENCES131 → 20 → base60 120 = PARABLE.
+
+Across the exact 256-token p50 multiset, 36 tokens are capable of landing under base59/base60 on any of the17 p57 sums. Thus exact-multiset without-replacement control gives expectation2.390625 and P(X>=5)=**0.07211271486670322**. The named semantic chains remain useful conditional navigation clues, while their individual post-selected placement probabilities are not familywise evidence for the complete word graph. EMERGE83/DIUINITY105 bracket reconstruction remains a separate stronger structural test.
+
+Durable report `im-results/lp2-p57-wordgraph-multiset-control.md`; SFT `sims/lp2_p57_wordgraph_multiset_control_sft.cjs`; Actions run44416204323 passed; Agent5 bridge and results synthesis reconciled. Squash merge `7233aff2485ff3ef0d5d1cd89dac3b8eb0780778`.
+
 ## Next action
 
 Draw5 remains issue-directed normal mode. After this checkpoint, measure lease age from the runtime clock; if below70 minutes, claim another unoccupied executable Director issue and continue. Avoid repeating #1642's unselected temporal families.
