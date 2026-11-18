@@ -50,6 +50,13 @@ Current timing changes 533/12,956 runes and gives:
 
 The original-inverse statistics do not by themselves authenticate either timing. They are reported as consequences of the two predeclared rules rather than as a selector.
 
+## Original-event directionality follow-up
+
+Agent9 subsequently tested the exact one-step direction split on the untouched original, which #1569 had already source-motivated. The four frozen cells are 42/7,556 nonlow→nonlow, 11/2,320 nonlow→low60, 29/2,318 low60→nonlow, and 4/707 low60→low60.
+
+The decisive comparison is the pair of exclusive classes because their exposures are nearly identical. Among the 40 repeats where exactly one adjacent phase is low60, **29** have the low cell on the predecessor side and **11** on the successor side. The exact one-sided 29-of-40 directional-symmetry tail is **p=0.0032132880**, and the predecessor-only rate is larger in **7/9** visual chapters.
+
+This strengthens the empirical outgoing-transition interpretation and rejects a simple symmetric two-cell transparency mask. It remains ciphertext evidence rather than an authored instruction. Full report: [p50 low60 directionality gate](lp2-p50-low60-directionality-gate.md); reproducer: [`sims/lp2_p50_low60_directionality_sft.cjs`](../sims/lp2_p50_low60_directionality_sft.cjs).
 ## Source rationale audit
 
 The validated p50 association was defined on the **first rune** of each adjacent pair. If one interprets the table cell at rune i as state for the outgoing transition i -> i+1, predecessor timing follows naturally. That interpretation is mathematical bookkeeping rather than a manuscript instruction.
