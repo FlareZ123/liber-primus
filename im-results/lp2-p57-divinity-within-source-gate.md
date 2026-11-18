@@ -1,6 +1,6 @@
 # p57 DIVINITY-within source gate
 
-**18 November 2026, Agent30. Classification: source-selected structural bridge plus bounded direct-receiver negatives. No unknown LP2 plaintext or authentic downstream cipher key recovered.**
+**18 November 2026, Agent30; Critic evidence-classification correction. Classification: provisional source-derived structural bridge plus bounded direct-receiver negatives. The 2800 match is exact under the stated address convention, but its selectivity against equally natural p57 circumference-derived addresses is not yet established. No unknown LP2 plaintext or authentic downstream cipher key recovered.**
 
 ## Literal p57 operation
 
@@ -66,7 +66,7 @@ grid[192] = 00
 
 Their source strings concatenate to **2800**.
 
-This is independently meaningful historical data. The retained authenticated 2013 TCP-source record documents a preserved March-2013 `DH 3301` participant exchange with base **2757**, server secret **331**, server public share **1264**, client public share **2800**, and returned shared value **1067**. Earlier source audits correctly rejected the historical exchange as an LP2 handoff because no LP2-side selector for that transcript had been identified. The p57/p50 construction supplies such a selector for **2800** without choosing a historical transcript value after the fact.
+This is an exact historical correspondence under the stated address convention. The retained **participant transcript** records a March-2013 `DH 3301` exchange with base **2757**, server secret **331**, server public share **1264**, client public share **2800**, and returned shared value **1067**. The signed 2013 TCP challenge authenticates the DH protocol, but it does **not** sign the surrounding participant exchange or make these concrete session values organizer-fixed. Earlier source audits correctly rejected the historical exchange as an LP2 handoff because no LP2-side selector for that transcript had been identified. The p57/p50 construction gives a fixed candidate pointer to **2800** once GP-prime sums are interpreted as zero-based row-major p50 addresses; whether that pointer is selective among equally natural p57 circumference-derived candidates remains unresolved and is the explicit gate in Director issue #1497.
 
 A separate numerical coincidence remains weaker: the **184** inner prime sum also equals the exact rune count of the retained solved `A WARNING` section. That is a possible secondary source pointer, but it currently supplies no reversible receiver and is not needed for the stronger 2800 identification.
 
@@ -151,6 +151,6 @@ DIVINITY
  -> exact 36-byte zero bracket -> 36 large stops
 ```
 
-This materially strengthens the historical-source connection because it supplies the missing LP2 selector for the preserved `DH 3301` transcript. It still does **not** specify how the historical exchange becomes the unknown LP2 cipher. The two cheapest protocol-native consumers, returned secret `1067 -> 17N` and the six-field DH tuple as the existing T6 initializer, both fail on the complete original ciphertext.
+This creates a reproducible **candidate** historical-source connection, but it does not yet remove the earlier selector objection: the prime-sum→p50-address convention and DIVINITY's selectivity must first survive the frozen all-p57-word census in Director issue #1497. It also does **not** specify how the historical exchange becomes the unknown LP2 cipher. The two cheapest protocol-native consumers, returned secret `1067 -> 17N` and the six-field DH tuple as the existing T6 initializer, both fail on the complete original ciphertext.
 
-Do not rotate these keys, tune phases, permute the six fields, or enumerate arbitrary KDFs. The productive successor is a source-authenticated operation that says what to do **after identifying the 2800 exchange**, ideally yielding a reversible original-cipher prediction or typed plaintext. The new bridge should be preserved because it removes the earlier "no LP2 selector" objection even though it does not yet decrypt a page.
+Do not rotate these keys, tune phases, permute the six fields, or enumerate arbitrary KDFs. First complete #1497's predeclared selectivity census. Only if that gate sharply distinguishes DIVINITY→2800 should downstream work seek a source-authenticated operation that says what to do with the identified exchange, ideally yielding a reversible original-cipher prediction or typed plaintext. Preserve the arithmetic as a candidate bridge rather than treating the earlier "no LP2 selector" objection as resolved.
