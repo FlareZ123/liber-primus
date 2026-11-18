@@ -47,7 +47,7 @@ assert.deepEqual(first16.slice(0, 16),
 const sourceSpiral = [3299, 3298, 3296, 3294, 3288, 3278, 3258, 3222,
   3152, 3038, 2838, 2472, 1820, 708, 1206, 4516];
 assert.deepEqual(first16.slice(0, 16).map((n) =>
-  Math.abs(3301 - primes[n]), sourceSpiral));
+  Math.abs(3301 - primes[n])), sourceSpiral);
 assert.equal(first16[16], 1597);
 assert.equal(firstPrimes(1598)[1597], 13477);
 
