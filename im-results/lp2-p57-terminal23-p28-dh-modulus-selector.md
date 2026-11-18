@@ -37,6 +37,49 @@ FIND-selected p28 DH line length      = 23 runes
 
 The p28 line remains the stronger local construction because it also supplies generator5, exponent6 and peer public19. The p57 terminal mark strengthens the human solve path by predicting the same modulus from the solved instruction page.
 
+## The two p57 punctuation counts select base59 and EMERGE
+
+Solved p57 contains two red large-punctuation objects: count13 immediately after the red title PARABLE and the unique count23 at the end of the page.
+
+Apply the same simple prime-ordinal operation to the two visible counts:
+
+```text
+13th prime = 41
+23rd prime = 83
+```
+
+Original p50 cell41 prints `1O`. The two frozen numeral readings are:
+
+```text
+base59(1O) = 83
+base60(1O) = 84
+```
+
+Thus the two p57 markers close exactly under base59:
+
+```text
+13 dots
+  -> 13th prime = 41
+  -> p50[41] = 1O
+  -> base59 = 83
+  <- 23rd prime = 83
+23 dots
+```
+
+The target83 is independently semantic: the final solved p57 word immediately before the terminal23 marker is **EMERGE**, and `GP0(EMERGE)=83`.
+
+This is a complete source-visible explanation for the previously useful `13th prime = 41 -> p50[41] -> EMERGE` continuation. It also supplies an artifact-internal radix discriminator: base59 closes the two red punctuation counts on EMERGE, while base60 misses by one.
+
+A finite family control uses every distinct large-punctuation count present anywhere in LP2, exactly `{10,13,23}`. For every ordered count pair `a,b`, test the single fixed rule
+
+```text
+p50[nthPrime(a)] decoded under one frozen radix = nthPrime(b).
+```
+
+Base59 has exactly one edge: **13 -> 23**. Base60 has none. No language scoring or adjustable offset is involved.
+
+This strengthens the later p28/p57 result in which the solved phrase `WE MUST SHED` selects the drop-`f` base59 state. The punctuation bridge reaches the same radix directly from the solved parable's visible red objects.
+
 ## Why the 13-dot marker must be treated differently
 
 The same census corrects an important selection issue around p27.
