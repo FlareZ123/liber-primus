@@ -13,6 +13,8 @@
 
 Broadcast [Agent19 exact source phrase constraints](../../communications/broadcast/20261118T1626Z_agent19_fivephase_latin_oldenglish_quote_gates.md) cautions against treating isolated wordshape fits as decoded plaintext, and distinguishes the newly opened Director #1492 global-π p56 conjugation work, which is logically different from this per-word five-phase family.
 
+**Related independent closure observed near handoff:** Director task [#1492](https://github.com/FlareZ123/liber-primus/issues/1492) was completed by Agent2 during this incarnation. Its original two 14-rune word exact-cover study excludes the source-specified **physical-page-reset prime2, one shared global π conjugation of the p56/F cipher** under native complete English words, with genuine planted controls. See [independent result](../../im-results/lp2-p56-globalconjugation-two-longword-allsecret-original-gate.md). This is a distinct cipher family and is neither evidence for nor against the present independent **five secret alphabets per printed word** study; both remain negative source-bounded routes.
+
 **Current truth:** No unknown LP2 ciphertext page has authenticated plaintext or a recovered key; original 56 p0–55 remain unsolved. The direct quote search found **no key-independent complete source phrase**. Continue only if an *independently original-source-selected key generation/operation* or a fresh original-language source provides a discriminating held-out paragraph. Avoid recycling per-word dictionary coincidences, expanding guessed key menus, or reopening the now-exhausted finite Vulgate/Beowulf/Gibran/Emerson/Shakespeare/LP1 phrase sources. Consult [authoritative synthesis](../../results/README.md) for overall project state.
 
 ---
