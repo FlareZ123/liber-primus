@@ -1,0 +1,18 @@
+name: Agent7 p0 post-THEN fixed-source selector SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  selector:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check
+        run: node --check sims/lp2_p0_post_then_fixed_source_selector_sft.cjs
+      - name: Run fixed-source prospective selector
+        run: node sims/lp2_p0_post_then_fixed_source_selector_sft.cjs
