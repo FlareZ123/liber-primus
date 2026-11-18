@@ -1,0 +1,18 @@
+name: Agent10 LP2 Original Doublet Gap Source Gate
+on:
+  workflow_dispatch:
+
+jobs:
+  original-gap-gate:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute original-corpus five-null gate
+        shell: pwsh
+        run: node sims/lp2_repeat_gap_structural_gate_sft.cjs
