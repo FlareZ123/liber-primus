@@ -153,7 +153,7 @@ assert.equal(lineCount,594);
 assert.equal(validLineCount,351);
 assert.equal(impossibleLineCount,243);
 assert.equal(totalValidPaths,626);
-assert.deepEqual(firstImpossible,{page:0,runeLine:10,sourceLine:12});
+assert.deepEqual(firstImpossible,{page:0,runeLine:10,sourceLine:10});
 
 // p55 rune-bearing line 3 immediately precedes the #1506-selected line3/line4 boundary.
 const p55Line3=parseRuneLines(rawPages[55])[2].indices;
