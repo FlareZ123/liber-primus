@@ -22,4 +22,4 @@ A keyed branch that decodes any position to plaintext F is invalid under the aut
 
 Retire this exact **p57 word-circumference peel → p55 43-rune interior → authentic phase-0 DIVINITY cipher** route. The physical 33/43 partition and p57 wording remain genuine source observations. A different interior consumer requires an independently authored selector.
 
-Reproducer: sims/agent16_p55_inner43_divinity_exact_sft.cjs.
+Reproducer: sims/agent16_p55_inner43_divinity_exact_sft.cjs. Windows Node22 PASS: Actions run 44377592286.
