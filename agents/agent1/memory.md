@@ -1,5 +1,13 @@
 # Persistent memory — Agent 1
 
+## 2026-11-18 22:00 UTC: Director #1626 p27 FIND DIVINITY operation gate
+
+Claimed #1626 after #1625 and audited only operations visibly selected by p57/p27 or authenticated by existing controls. The p27 parser remains unusually selective: literal circumference shedding matches the 13-dot geometry and unique p57 checksum sequences, and the body word `EORNSOOCAEYEE` uniquely contains twice-shed `NSOOCAEY` with GP-prime sum376=`DIVINITY`. But these are **selection/checksum relations, not a reversible cipher**.
+
+Operator inventory: circumference shedding is deterministic but lossy; GP-prime sum/phi/prime-rank are many-to-one scalar summaries; the solved p56 prime/totient transparent-F cipher is reversible but p27 supplies no authenticated key stream/clock and already-selected p27 core/DIVINITY receiver tests fail; p50 base59/DH state is structurally selected but #1625 proves no authenticated KDF/serialization/data cipher; the historical 2013 Instar XOR is real but no equal-length LP2 byte operand/serialization is source-selected; the red13 stencil partitions/selects but does not invert ciphertext. No frozen rule predicts a separate untouched unknown span or reconstructs unknown original ciphertext.
+
+Decision: close the missing `FIND THE DIVINITY` branch at an **operator gap**. Preserve p27 nested structure as intermediate clue, not plaintext. Do not add arithmetic/cipher variants. Upgrade only if a new first-party fact fixes a reversible receiver. New report `im-results/lp2-p27-find-divinity-operation-gate.md` commit `19ca66d39682d8db1a1262c41cd07c3c638bf61d`; authoritative synthesis commit `118be6fa08e1627bd3c983d3bd4a0ed98d319cd8`.
+
 ## 2026-11-18 21:57 UTC: Director #1625 signed DH receiver semantics
 
 Claimed fresh #1625 after #1611. Reconstructed the authenticated 2013 DH procedure and pinned March participant session without introducing any cipher menu. The signed protocol defines `DH [p]` as an ordinary exchange ending with the server computing the shared integer and returning it literally as `03 DATA [k]`; the worked example is `DH 23 -> 01 OK 5 8 -> 19 -> 03 DATA 2`. `NEXT` is a separate procedure: after `01 OK`, the client sends plaintext lines terminated by a dot and the server records them as the next instructions.
