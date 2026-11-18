@@ -70,6 +70,12 @@ Base59 lands exactly on the first rune at79. Base60 lands on the next rune at80.
 
 A complete local family control over all51 adjacent p27 word pairs finds two pairs that converge on one target word under both numeral alphabets. The other pair already collides on the same first hop. `DJU / BEI` is the **only** pair whose distinct first hops reconverge under both alphabets.
 
+## Later source transition fixes base59 for the post-SHED continuation
+
+A subsequent independent p28/p57 result removes the strongest numeral-state ambiguity for this branch. The selected p28 object supplies a second DH instance with modulus151, generator35 and OUR/OWN prime-sum exponents21/55. Its public value66 maps to clear p57 `WE` under both radices. The solved sequence continues `WE MUST SHED`; `phi(GP-prime(MUST))=60`, while `GP0(MUST)=51` addresses p50 token `0x`, whose conventional base60 value is59. Because lowercase `f` is the sole unused digit in the 60-symbol table alphabet, `SHED` now selects the drop-`f` base59 alphabet. Only after that switch does the DH151 shared value87 decode to `GP0(SHED)=64`.
+
+This means the p27 continuation should use base59 once SHED has been reached. The fact that DJU/BEI also reconverges on the same carrier under base60 remains a robustness observation; base59 is the source-selected downstream state. See [the independent selector report](lp2-p28-successor-must-base59-selector.md).
+
 ## P57 explains the otherwise opaque intermediate numbers
 
 The solved p57 vocabulary supplies exact meanings for the key registers of this path.
