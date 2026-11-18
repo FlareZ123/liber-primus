@@ -1,0 +1,27 @@
+name: Cicada 2014 Stage4 derived hash gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cicada2014-stage4-derived-hash-gate
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify and hash Stage4-derived candidates
+        run: node sims/cicada2014_stage4_derived_hash_gate.cjs
+      - name: Upload reproducible hash report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cicada2014-stage4-derived-hash-gate
+          path: im-results/cicada2014-stage4-derived-hash-gate.json
