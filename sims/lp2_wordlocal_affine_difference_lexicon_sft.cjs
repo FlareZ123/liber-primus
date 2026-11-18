@@ -161,7 +161,7 @@ for (const p of nativeWords.filter((w) => w.length >= 6)) {
   const c = [17];
   for (let j = 1; j < p.length; j++) c.push((c[j - 1] + a * p[j] + b) % 29);
   for (let j = 1; j < p.length; j++) {
-    assert.equal((c[j] - c[j - 1] - a * p[j] - b + 29 * 3) % 29, 0);
+    assert.ok((c[j] - c[j - 1] - a * p[j] - b) % 29 === 0);
     assert.equal(((c[j] - c[j - 1] - b + 58) * inv29(a)) % 29, p[j]);
   }
   assert.ok(recoverLexicalCandidates(c).some((e) =>
