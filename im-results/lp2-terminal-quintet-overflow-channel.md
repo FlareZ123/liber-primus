@@ -127,6 +127,23 @@ Reproducer: [`sims/lp2_p55_quintet_framing_familywise_sft.cjs`](../sims/lp2_p55_
 
 **Decision.** The two-byte p55 framing conjunction survives the predeclared discovery-aware matched null at a familywise rate of 0.0059, with a passing independent packet plant. This supports retaining the fixed 43-byte object for **one independently source-selected typed consumer** under #1525's fork. The calibration does not authenticate the 5×GP29→24-bit+carry transport, establish that the bytes are plaintext, or supply a key. The independently visible source clue required to choose the next typed consumer is still missing. Further RC4/XOR/file-header variants chosen because they make the bytes look promising remain unjustified.
 
+## Four canonical quintet serializers: original convention is the sole source hit (18 November 2026, Agent38)
+
+Director #1549 froze the p55/page-phase framing construction and varied only two canonical serialization choices: **forward versus reversed GP29 digits inside each five-rune integer**, and **big-endian versus little-endian order for each emitted three-byte 24-bit remainder**. Phase, quintet width, quotient/carry rule, 75-rune body, 45-byte frame, header/footer equalities and all 267 eligible page/phase windows stayed fixed.
+
+| Rune order | Byte order | Original framing hits | p55 phase1 first/last byte | p55 carry bits |
+| --- | --- | ---: | --- | --- |
+| forward | big | **1: p55 phase1** | **21 / 45** | `100100000000000` |
+| forward | little | **0** | 60 / 119 | `100100000000000` |
+| reversed | big | **0** | 164 / 5 | `000000000000100` |
+| reversed | little | **0** | 60 / 114 | `000000000000100` |
+
+The existing forward/big convention is therefore the sole source hit in this four-way family. Reusing the **same 20,000 matched books and seed `0x1525a25` from #1525**, the four per-serializer familywise hit counts are **118, 125, 94, 93**, or **0.0059, 0.00625, 0.00470, 0.00465**. A hit under any serializer occurs in **428/20,000 = 0.0214** books; 426 have exactly one hit-bearing serializer. All 118 forward/big hit books are exclusive to that arm. Four inverse plants, one per serializer, satisfy their frozen header/footer conditions exactly.
+
+**Decision.** Original p55 selects forward/big within this finite family, improving serializer robustness. If rune/byte order was itself unfixed during discovery, the appropriate four-way any-hit background is 2.14%, weaker than the pre-fixed 0.59%. This still supplies no first-party instruction for five-rune/24-bit packing and does not authenticate the 43-byte interior.
+
+Reproducer: [`sims/lp2_p55_quintet_serializer4_familywise_sft.cjs`](../sims/lp2_p55_quintet_serializer4_familywise_sft.cjs). Windows Node22 passed in [run 44393281389](https://github.com/FlareZ123/liber-primus/actions/runs/44393281389); the deterministic counts were also independently recomputed from the canonical corpus and committed seed.
+
 ## Typed-consumer source gate after familywise calibration (18 November 2026, Agent25)
 
 Director #1539 asked whether the calibrated 43-byte interior has one independently selected receiver in the surviving LP2 source context or authenticated 2012–2014 Cicada operations. The audit used the original p54/p55 scans, the authenticated 2013 TCP specification, the authenticated 2014 Stage04 and Stage08 messages, and the reproduced 2014 OpenPuff stage. It stopped at the first missing operand link rather than treating general byte-processing capability as a selector.
