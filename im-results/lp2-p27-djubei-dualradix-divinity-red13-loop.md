@@ -218,39 +218,31 @@ EORNSOOCAEYEE
 
 The separate p50 DH geometry had already selected circumference depth2 from the same shared secret. The new route makes that depth a holdout confirmation of the p57/p27 DIVINITY interval.
 
-## Shared2 also selects an exact SHED receiver on p50
+## Correct p50 geometry: shared2 fixes a 28×4 SHED core and DIVINITY lies on ring2
 
-The same shared secret2 has a literal geometric consequence on the original 32×8 p50 rectangle. Removing two complete outer layers leaves:
+The physical p50 object is **32 rows × 8 columns**, split as 10+13+9 rows across the three source pages. The same shared secret2 therefore has a literal geometric consequence: removing two complete outer circumferences leaves
 
 ```text
 (32 - 4) × (8 - 4) = 28 × 4 = 112 cells.
 ```
 
-That count is independently named by the solved instruction word:
+Three independently selected p57 quantities describe that exact residual geometry:
 
 ```text
+FIND p50 output = 28      # remaining row count
+rune length(FIND) = 4     # remaining column count
 GP-prime(SHED) = 232
-phi(232)       = 112
+phi(232) = 112            # remaining cell count
 ```
 
-Thus the DH value and the p57 verb agree on the same exact p50 interior size without choosing a depth after inspection.
+This is a source-constrained cross-check on the shared-secret shedding depth.
 
-The literal `13` at global cell105, reached by `GP0(DIUINITY)=105`, lies inside this depth-2 interior. Decoding that printed token as the next p50 pointer immediately leaves the shed rectangle under both frozen numeral systems:
+The unique literal `13` is at global cell105. In the correct 32×8 orientation, cell105 has zero-based physical coordinate `(row13,column1)`. Its one-based circumference ordinal is therefore **2**: it lies on the second physical ring, exactly the independently recovered DH shared value. It is removed by the second peel and does **not** lie inside the final 112-cell core.
 
-```text
-base59(13) = 62   # outside the 28×4 interior
-base60(13) = 63   # outside the 28×4 interior
-```
+That corrected placement matters. The earlier 8×32 interpretation of the flat token array was a geometry error and is explicitly rejected here. The surviving holdout is narrower and exact: shared2 selects the second circumference containing the DIVINITY/literal13 cell, while two complete sheds leave a 28×4 core whose dimensions and area are independently named by FIND and SHED.
 
-This is a literal source-compatible realization of `FIND THE DIUINITY WITHIN AND EMERGE`: DIVINITY identifies a cell within the shared2/SHED interior, and the next pointer exits it. The two radices disagree on the exterior destination, so this does not yet select the downstream path by itself.
+The p28 center-line result supplies the DH tuple independently of the p27 red13 parser: p28 line6 gives `p=23,g=5,a=6,B=19`, hence `A=8,K=2`. Thus the ring2 placement of cell105 can be checked before p27 red13 is used to reconstruct the same tuple.
 
-A supporting base59 relation continues from cell105 for exactly the eight-rune length of DIVINITY and lands on83, which is `GP0(EMERGE)`:
-
-```text
-105 → 62 → 122 → 85 → 28 → 148 → 242 → 41 → 83
-```
-
-This self-length relation is not unique across the complete p57 vocabulary: MUST also reaches LIKE after its own four-rune length, and CIRCUMFERENCES also reaches EMERGE after14 steps. It is therefore retained only as supporting graph structure, not a selector.
 
 ## Rival interpretation retained
 
