@@ -91,6 +91,11 @@ assert.equal(raw.map(tr).join(" "),"S E C U E N D I R A T I O");
 // Register gate.
 const sourceNative=encodeSourceNativeGP("SEQUENDI RATIO");assert.equal(sourceNative.length,12);
 assert.equal(sourceNative.map(tr).join(" "),"S E C W E N D I R A T IA");assert.notDeepEqual(sourceNative,raw);
+const sourceNativeFirst=encodeSourceNativeGP("SEQUENDI"),sourceNativeSecond=encodeSourceNativeGP("RATIO");
+assert.deepEqual([sourceNativeFirst.length,sourceNativeSecond.length,sourceNative.length],[8,4,12]);
+assert.deepEqual([sum(sourceNativeFirst),sum(sourceNativeSecond),sum(sourceNative)],[105,71,176]);
+assert.notDeepEqual([secondKey.length,naturalKey.length,sourceNativeSecond.length,sourceNativeFirst.length,sourceNative.length],markerLadder);
+assert.notDeepEqual([sumK2,targetK1,sum(sourceNativeSecond),sum(sourceNativeFirst),sum(sourceNative)],[15,42,57,99,156]);
 const aliases=new Map([["Q","C"],["K","C"],["V","U"],["Z","S"]]);
 const directLatin="SEQUENDI RATIO".replace(/[^A-Z]/g,"").split("").map(ch=>{const i=corpus.translit.indexOf(aliases.get(ch)||ch);assert.ok(i>=0);return i});
 assert.deepEqual(directLatin,raw);
@@ -113,6 +118,9 @@ console.log(JSON.stringify({
  sumChain:[sumK2,targetK1,sumP2,sumP1,sumAll],
  heldOutClosure:"156 = 13*phi(13)",
  sourceNativePhrase:sourceNative.map(tr),
+ sourceNativeLengths:[sourceNativeFirst.length,sourceNativeSecond.length,sourceNative.length],
+ sourceNativeSums:[sum(sourceNativeFirst),sum(sourceNativeSecond),sum(sourceNative)],
  directLatinPhrase:directLatin.map(tr),
+ directLatinPreservesMarkerAndRecurrence:true,
  caveat:"equal-rune/equidistant rectangle symmetry and direct-Latin register remain hypotheses"
 },null,2));
