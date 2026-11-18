@@ -55,6 +55,23 @@ function audit(rows, parityFirst, reverse) {
   return {matches: matchingRows.length, matchingRows, comparisons:rows.length};
 }
 
+/**
+ * Compare a visible 16-character printed row against the four RFC4880
+ * radix-64 characters encoding CRC24 of its other 12 ASCII characters.
+ * @param {string} printed Exactly sixteen original source characters.
+ * @param {boolean} crcFirst Whether the four CRC characters precede data.
+ * @returns {boolean} Exact match with the original, unmodified characters.
+ */
+function armorChecksumMatches(printed, crcFirst) {
+  assert.equal(printed.length, 16);
+  const data = crcFirst ? printed.slice(4) : printed.slice(0, 12);
+  const checksum = crcFirst ? printed.slice(0, 4) : printed.slice(12);
+  const value = openPgpCrc24([...Buffer.from(data, "ascii")]);
+  const base64 = Buffer.from(crcBytes(value, false)).toString("base64");
+  assert.equal(base64.length, 4);
+  return base64 === checksum;
+}
+
 function main() {
   const original = JSON.parse(fs.readFileSync(path.join(__dirname, "..",
     "resources", "liber-primus", "base60-grid.json"), "utf8"));
@@ -102,6 +119,24 @@ function main() {
       }));
     }
   }
+  const visible = original.rows.map(row => row.join(""));
+  assert(visible.every(row => row.length === 16));
+  const firstArmorMatches = [];
+  const lastArmorMatches = [];
+  for (let i = 0; i < visible.length; i++) {
+    if (armorChecksumMatches(visible[i], true)) firstArmorMatches.push(i);
+    if (armorChecksumMatches(visible[i], false)) lastArmorMatches.push(i);
+  }
+  assert.equal(firstArmorMatches.length, 0);
+  assert.equal(lastArmorMatches.length, 0);
+  for (const originalRow of visible) {
+    const data = originalRow.slice(0, 12);
+    const expected = Buffer.from(crcBytes(openPgpCrc24([...Buffer.from(data, "ascii")]), false)).toString("base64");
+    assert(armorChecksumMatches(data + expected, false));
+    assert(armorChecksumMatches(expected + data, true));
+  }
+  console.log("Literal source printed 16 characters per row: direct RFC4880 4-character radix-64 CRC matches are 0/32 in either position");
+  console.log("All 64 positive literal 12-character data + 4-character checksum row controls pass");
   assert.equal(observedHits, 0, "Expected exact original fixed-layout CRC matches");
   console.log("PASS original base60 32x8 source: zero of 128 possible five-byte/three-byte OpenPGP CRC24 rows match");
   console.log("RFC4880 123456789 check, 32/32 planted source-data checksum positives, flipped-byte negative all passed");
