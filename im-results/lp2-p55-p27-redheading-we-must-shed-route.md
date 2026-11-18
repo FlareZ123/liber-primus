@@ -1,100 +1,118 @@
-# p55 -> p27 red-heading instruction chain: WE / MUST / SHED
+# p55 -> p27 Instar-parable parser
 
-**Agent14, 18 November 2026. Status: intermediate source-constrained route. No unknown LP2 plaintext, creator-supplied key, or complete inverse is recovered.**
+**Agent14, 18 November 2026. Status: strong intermediate solve-path candidate. No unknown LP2 plaintext or complete inverse is recovered.**
 
-## Upstream selector
+## Independent destination selector
 
-This investigation starts only after the already-established finite-source terminal handoff. The 2013 \`prime_echo\` exhaustion family selects p55 boundary300, and the first intact complete-word pair after that boundary is \`DJU / BEI\`. It is the sole repeated adjacent complete-word pair in p0-p55 and its only other occurrence is p27 line2. The calibrated evidence therefore selects **p27** independently of the red-heading arithmetic below. See [the corrected terminal report](lp2-primeecho-terminal-duplicate-mapline.md).
+The pre-existing finite 2013 \`prime_echo\` exhaustion family selects p55 boundary **300**. The first intact complete-word pair after that boundary is \`DJU / BEI\`. That adjacent pair occurs exactly twice in p0-p55, and its only other occurrence is p27 line2. This selects p27 before any arithmetic below. See [the corrected terminal handoff](lp2-primeecho-terminal-duplicate-mapline.md).
 
-The maintainer's human-puzzle criterion is important here: once p27 is selected, inspect the conspicuous source-visible objects on that page before inventing another cipher.
+This matters because p57 \`EMERGE\` has GP-prime sum **300**. The clear parable's final verb therefore lands on the already-selected p55 boundary.
 
-## Exact p27 source object
+## The selected p27 red heading
 
-Original p27 begins with one red span of **19 runes**, split into three printed words of lengths **3 / 12 / 4**:
+Original p27 begins with one red 19-rune span, printed as three words of lengths **3 / 12 / 4**:
 
 \`MPY / LSOAAEHLEEOIML / LSCP\`
 
-The span is immediately followed by a red **13-dot** mark. Its first rune is **M**, GP29 index **19**.
+A red 13-dot stencil follows it immediately. The first rune is M, GP index **19**.
 
-Using the manuscript's published GP prime values, the complete 19-rune heading has prime sum
-
-\[
-1109,
-\]
-
-and 1109 is the **186th prime**. Clear p57 \`MUST\` has GP-prime sum **186**. The same value is a valid zero-based row-major p50 address: cell186 prints \`0J\`, whose source-adjudicated byte value is **19**. Thus the same route returns both the heading length and its first-rune index:
+The complete heading has GP-prime sum **1109**, the **186th prime**. Clear p57 \`MUST\` has GP-prime sum **186**. Zero-based p50 cell186 has byte **19**, returning both the heading length and its first-rune index:
 
 \[
-\operatorname{rank}_p(\Sigma_p(H)) = 186 = \Sigma_p(\text{MUST}),\qquad
-T[186] = 19 = |H| = \operatorname{GP}(M).
+\operatorname{rank}_p(\Sigma_p(H))=186=\Sigma_p(\text{MUST}),\qquad
+T[186]=19=|H|=\operatorname{GP}(M).
 \]
 
-Across all **18** original red spans, p27 is the only span whose full prime sum has a prime ordinal equal to any p57 complete-word prime sum, and it is also the only span for which the resulting p50 byte equals both the span length and first-rune index.
+Across all 18 original red spans, p27 alone has a full prime-sum ordinal equal to any p57 complete-word sum, and p27 alone also satisfies the p50/length/first-rune self-check.
 
-## Literal circumference shedding
+## First parable sentence inside the printed words
 
-The p57 sentence begins \`WE MUST SHED OUR OWN CIRCUMFERENCES\`. Apply the literal word operation to the selected p27 red heading: remove the first and last rune of each of its three printed words.
+The 12-rune middle word is \`LSOAAEHLEEOIML\`.
 
-The remaining lengths are **1 / 10 / 2**, totaling **13 runes**, exactly the size of the immediately following 13-dot mark. The survivor is:
+Apply the same literal circumference operation p57 describes, taking a word's inner runes and its two-rune outer shell. Using the authenticated GP prime values and totient:
+
+- once-shed 10-rune interior: prime sum 564, \(\varphi(564)=184=\Sigma_p(\text{LICE})\);
+- outer shell \`LL\`: prime sum146, \(\varphi(146)=72=\Sigma_p(\text{THE})\);
+- whole 12-rune word: prime sum710, \(\varphi(710)=280=\Sigma_p(\text{INSTAR})\).
+
+Reading from the inside outward gives **LICE THE INSTAR**, exactly the first three words after \`PARABLE\`.
+
+This is manuscript-wide selective. The p0-p55 canonical complete-word corpus contains **18** words of length12. Under this fixed inside / shell / whole totient rule, p27's red middle word is the **only** one that yields any consecutive p57 three-word sequence.
+
+The third heading word \`LSCP\` continues the same construction:
+
+- shed interior \`SC\`: prime sum **66 = TO**;
+- whole word: prime sum182, \(\varphi(182)=72 = THE\).
+
+Among all **513** complete four-rune words in p0-p55, \`LSCP\` is the **only** word whose fixed interior-sum / whole-totient pair equals any consecutive p57 pair.
+
+The intervening clear words \`TUNNELNG\` and \`SURFACE\` are a plausible description of the traversal, because the extraction moves from nested interior to outer surface. That interpretation remains a hypothesis until it selects a further operation.
+
+## Second sentence: shed the heading
+
+Shed the first and last rune of each of the three heading words. The remaining lengths are **1 / 10 / 2**, totaling **13**, exactly the size of the following red 13-dot stencil. The survivor is:
 
 \`PSOAAEHLEEOIMSC\`
 
-Its GP-prime sum is **673**, the **122nd prime**. Original p50 cell122 prints \`1Q\`, byte **86**, and clear p57 \`WE\` has GP-prime sum **86**:
+Its GP-prime sum is **673**, the **122nd prime**. P50 cell122 has byte **86**, equal to the p57 prime sum of \`WE\`.
+
+Shed those three surviving parts once more. The removed five-rune shell is \`PSMSC\`, prime sum **233**, and:
 
 \[
-T[\operatorname{rank}_p(673)] = T[122] = 86 = \Sigma_p(\text{WE}).
+\varphi(233)=232=\Sigma_p(\text{SHED}).
 \]
 
-Across all 18 red spans, p27 is the only span whose once-shed interior has prime sum with a p50-at-prime-rank byte equal to any p57 complete-word prime sum. It is also the only marked red span whose shed-interior rune count equals the size of the following large mark.
+The full heading already supplies \`MUST=186\`. These objects therefore hit **WE / MUST / SHED**. Their arithmetic evaluation order does not itself spell that sentence order. A cleaner human reading is to enter the clear p57 instruction at the already-selected \`MUST\` and execute **MUST SHED OUR OWN CIRCUMFERENCES** on the visible heading.
 
-Shed the circumference of those three surviving parts once more. The five runes removed on this second step are:
+A broad discovery-aware null preserves the 3/12/4 geometry, shuffles the exact multiset of 225 original red rune identities, permits prime sum, index sum, totient, prime ordinal, one p50 lookup, and all six object orders. Ten of 200,000 trials hit some consecutive p57 triple. Zero also satisfy the p27 full-heading 19 self-check. This calibrates the scale of the aggregate pattern; it is not an authorship p-value.
 
-\`PSMSC\`
+## Third sentence signals
 
-Their GP-prime sum is **233**. Because 233 is prime, the solved-p56 authenticated totient operation gives
+Repeatedly tunnel into the 12-rune middle word until its deepest even center, \`HL\`. Its prime sum is96, \(\varphi(96)=32\), and p50 cell32 has byte **115**, equal to the p57 prime sum of \`WITHIN\`.
 
-\[
-\varphi(233)=232,
-\]
+The p27 black body after the selected 19-rune heading contains exactly **215 runes**. P57 \`AND\` has GP-prime sum **215**. Among the nine p0-p55 pages with an initial red span, p27 alone leaves a 215-rune body after removing that initial red span.
 
-and clear p57 \`SHED\` has GP-prime sum **232**.
+The handoff's p55 boundary is **300**, equal to the p57 prime sum of \`EMERGE\`.
 
-The three exact p57 values are therefore **86 / 186 / 232 = WE / MUST / SHED**.
+This gives a source-shaped tail:
 
-## Ordering limitation
+\`... WITHIN / AND / EMERGE\`
 
-The arithmetic does **not** yet author the output order. Natural structural evaluation of full heading, first shed, then second shell gives \`MUST / WE / SHED\`. Matching the p57 sentence uses the order first-shed / full-heading / second-shell, yielding \`WE / MUST / SHED\`.
+The missing \`FIND THE DIVINITY\` operation is still unresolved.
 
-That inner-before-outer choice is currently an underselected convention. Do not label the three words recovered plaintext. Their value is that the independently selected p27 source object lands repeatedly on an already-clear Cicada instruction under operations already present in the manuscript.
+## The 13-dot stencil
 
-## Discovery-aware control
+Direct inspection of the original p27 image fixes the stencil geometry as five center dots and four staggered left/right pairs, for 5 center + 8 side dots. Mapping the 13 shed-survivor runes top-to-bottom through that printed geometry gives:
 
-The reproducer conditions on the independently selected p27 **3/12/4** word geometry and randomizes only the exact multiset of the **225 original red rune identities** across red slots. To account for post-discovery flexibility, each of the three geometric objects is allowed a broad finite operator grammar:
+- center-five GP index sum **72 = THE**;
+- side-eight GP index sum **115 = WITHIN**;
+- center-five GP-prime sum257, whose prime ordinal is **55 = OWN**.
 
-- GP prime sum;
-- GP index sum;
-- \(\varphi\) of prime sum;
-- prime ordinal of prime sum;
-- one zero-based row-major p50 lookup applied to any of those scalars when addressable.
+Among all \(\binom{13}{5}=1287\) possible five-of-thirteen subsets, six satisfy the joint center-index72 / complement-index115 / center-prime-rank55 condition. The printed geometry selects one of those six. Treat this as supporting structure rather than a standalone decode.
 
-All six permutations of the three objects are allowed, and any consecutive p57 three-word sum sequence counts as a hit.
+## Historical solve-path context
 
-With deterministic seed \`0x6d2b79f5\`, **10 / 200,000** shuffled headings hit some consecutive p57 triple under this broad grammar. **0 / 200,000** also satisfy the original full-heading self-check \`T[rank(sum)] = 19 = first-rune index\`. This is a matched scale control, not an authorship p-value. The operator family was developed from the observed object, so the result supports prioritization rather than proving intent.
+The p57 text is the 2013 \`761.mp3\` "Instar Emergence" parable. In the documented 2013 puzzle, that audio was also XORed byte-for-byte with the Twitter-derived binary to recover the Gematria Primus image. Historical source: [neuroretransmit 2013 Twitter reconstruction](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/003-twitter/README.md).
 
-## Direct receiver gate
+This makes the p27 parable match historically meaningful. The 2013 XOR operation still lacks a source-selected LP2 binary operand, so no free XOR alignment search is justified.
 
-The once-shed 13-rune survivor is an obvious candidate key, but its simplest same-page receiver fails immediately under an authenticated solved-LP convention. Use the black p27 body after the red heading, phase zero, repeating GP29 additive key, and plaintext-F transparency. Under the standard subtract direction, a non-F ciphertext would have to decrypt to forbidden plaintext F at body offset **5**. The opposite sign dies at offset **61**.
+## Receiver gates already closed
 
-Therefore the 13-rune survivor is **not** a direct solved-style transparent-F Vigenere key for the p27 body in either sign. Do not widen phases, reversals, or unrelated ciphers without a new source selector.
+Several obvious receivers were tested and rejected:
+
+- the once-shed 13-rune survivor as a repeating GP29 key on p27 and p55;
+- the twice-shed eight-rune core as a repeating GP29 key;
+- the known solved \`DIVINITY\` key under all eight cyclic phases with WELCOME-style F interrupter freedom on p27; every p27 phase fails algebraically;
+- direct p56 prime/totient interpretation of the eight-rune core as \`DIVINITY\`;
+- p56 clocks seeded by the historical Instar numbers and line sums; survival is common and the selected outputs are low-IoC nonprose;
+- reversed Gematria on the fixed nested heading objects; it supplies none of the missing parable words.
+
+These exclusions prevent the strong p27 parser from becoming a license for unconstrained cipher search.
 
 ## Decision
 
-This route materially strengthens the existing p55 -> p27 handoff. The selected destination contains a unique red-heading structure that repeatedly closes against p50, p56, and clear p57:
+The p55 -> p27 handoff now has a coherent human-facing reason to exist. The destination contains manuscript-wide unique nested matches to **LICE THE INSTAR** and **TO THE**, a literal 13-rune circumference shed matching the printed 13-dot mark, repeated p57 numeric closures, a unique **AND=215** body length, and an upstream **EMERGE=300** boundary.
 
-1. full heading: \`1109 -> prime rank 186 = MUST\`, with p50 returning the self-value 19;
-2. first literal circumference shed: 13 survivors matching the printed 13-dot mark, then \`673 -> rank122 -> p50 byte86 = WE\`;
-3. second shed shell: \`233 -> phi = 232 = SHED\`.
+The productive missing step is narrow: recover a source-authored **FIND THE DIVINITY** operation or receiver that acts on the selected p27 structure and produces unknown plaintext or a genuine key. Until that selector appears, keep this in \`im-results/\` rather than promoting it to established plaintext.
 
-The productive missing step is now **a source-authored ordering/receiver rule** that turns this validated instruction chain into a reversible operation on unknown ciphertext. The direct 13-rune Vigenere receiver is excluded. Preserve the chain as an intermediate solve-path candidate and use it to constrain the next receiver rather than as license for a free cipher search.
-
-Reproduce with [the single-file Node.js test](../sims/lp2_p27_redheading_we_must_shed_sft.cjs).
+Reproduce the source arithmetic and manuscript-wide controls with [the SFT](../sims/lp2_p27_redheading_we_must_shed_sft.cjs).

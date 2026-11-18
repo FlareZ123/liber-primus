@@ -275,6 +275,116 @@ for (let trial = 0; trial < trials; trial++) {
 assert.equal(broadHits, 10);
 assert.equal(broadSelfHits, 0);
 
+
+// Fixed nested-word parser. The p27 middle and third heading words map to
+// consecutive p57 text under source-authenticated GP prime sums and phi.
+const middle = headingWords[1].inds;
+const third = headingWords[2].inds;
+const middleInterior = middle.slice(1, -1);
+const middleShell = [middle[0], middle.at(-1)];
+assert.deepEqual(
+  [phi(primeSum(middleInterior)), phi(primeSum(middleShell)), phi(primeSum(middle))],
+  [184, 72, 280]
+);
+assert.deepEqual(
+  p57.slice(1, 4).map(word => word.sum),
+  [184, 72, 280]
+);
+assert.deepEqual(
+  [primeSum(third.slice(1, -1)), phi(primeSum(third))],
+  [66, 72]
+);
+assert.deepEqual(
+  p57.slice(5, 7).map(word => word.sum),
+  [66, 72]
+);
+
+// The deepest even-length center of the 12-rune middle word is HL.
+// Its phi value addresses p50 byte 115, equal to p57 WITHIN.
+let deepest = middle.slice();
+while (deepest.length > 2) deepest = deepest.slice(1, -1);
+assert.equal(translit(deepest), "HL");
+assert.equal(phi(primeSum(deepest)), 32);
+assert.equal(grid.bytes[32], 115);
+assert.equal(p57.find(word => word.name === "WITHIN").sum, 115);
+
+// Canonical complete-word census across p0-p55. Percent page breaks, slash
+// line breaks, and whitespace preserve a word; punctuation terminates it.
+const unknownSource = rawPages.slice(0, 55).join("%");
+const completeWords = [];
+let complete = [];
+const finishComplete = () => {
+  if (!complete.length) return;
+  completeWords.push(complete);
+  complete = [];
+};
+for (const ch of unknownSource) {
+  if (alphabet.has(ch)) {
+    complete = [...complete, alphabet.get(ch)];
+  } else if (ch === "%" || ch === "/" || /\s/u.test(ch)) {
+    // Preserve cross-page, cross-line and whitespace-separated canonical words.
+  } else {
+    finishComplete();
+  }
+}
+finishComplete();
+assert.equal(completeWords.length, 2896);
+
+const p57Triples = new Set(
+  p57.slice(0, -2).map((_, i) =>
+    [p57[i].sum, p57[i + 1].sum, p57[i + 2].sum].join(",")
+  )
+);
+const p57Pairs = new Set(
+  p57.slice(0, -1).map((_, i) =>
+    [p57[i].sum, p57[i + 1].sum].join(",")
+  )
+);
+
+const twelve = completeWords.filter(word => word.length === 12);
+const twelveHits = twelve.filter(word => {
+  const values = [
+    phi(primeSum(word.slice(1, -1))),
+    phi(primeSum([word[0], word.at(-1)])),
+    phi(primeSum(word)),
+  ];
+  return p57Triples.has(values.join(","));
+});
+assert.equal(twelve.length, 18);
+assert.equal(twelveHits.length, 1);
+assert.equal(translit(twelveHits[0]), translit(middle));
+
+const four = completeWords.filter(word => word.length === 4);
+const fourHits = four.filter(word => {
+  const values = [
+    primeSum(word.slice(1, -1)),
+    phi(primeSum(word)),
+  ];
+  return p57Pairs.has(values.join(","));
+});
+assert.equal(four.length, 513);
+assert.equal(fourHits.length, 1);
+assert.equal(translit(fourHits[0]), translit(third));
+
+// The selected red heading leaves a 215-rune black body. Among all LP2 pages
+// with an initial red span, p27 alone has that body length. p57 AND sums to 215.
+assert.equal(body.length, 215);
+assert.equal(p57.find(word => word.name === "AND").sum, 215);
+const initialRedBody215 = annotations.pages
+  .filter(page => page.page <= 55)
+  .filter(page => (page.red_spans || []).some(red => red.start === 0))
+  .filter(page => {
+    const red = page.red_spans.find(candidate => candidate.start === 0);
+    const sourcePage = corpus.pages.find(candidate => candidate.page === page.page);
+    return sourcePage.indices.length - red.length === 215;
+  })
+  .map(page => page.page);
+assert.deepEqual(initialRedBody215, [27]);
+
+// The upstream p55 route independently lands at boundary 300. This SFT does
+// not recompute that historical exhaustion, but it locks the clear p57 checksum.
+assert.equal(p57.find(word => word.name === "EMERGE").sum, 300);
+
 console.log(JSON.stringify({
   status: "candidate instruction chain only; no unknown plaintext",
   heading: {fullSum, fullRank, tableByte: grid.bytes[fullRank], firstIndex: heading[0]},
