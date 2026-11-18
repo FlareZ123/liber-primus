@@ -107,7 +107,7 @@ assert.deepEqual(p57Decimal, [{
 // The target historical value is present in the retained participant exchange.
 // The same source explicitly distinguishes the signed protocol from the
 // participant-recorded concrete session tuple.
-assert.ok(historical2013.includes("client public share **2800**"));
+assert.match(historical2013, /client public share[^\n]*2800/);
 assert.ok(historical2013.includes("concrete exchange values remain participant-recorded session data"));
 
 // Because 2800 is the only all-decimal printed pair in the full p57 census,
