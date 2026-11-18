@@ -70,6 +70,18 @@ A layered positive wraps the complete valid p0–56 source stream in the fixed s
 
 This **rejects the universal/book-wide outer-layer interpretation** of the zero→F transform. Its p0–55 repeat normalization remains a reproducible statistical/state-model observation, and an unknown-section-local use is logically possible, but the solved adjacent page does not support a common outer layer. [Held-out SFT](../sims/lp2_p50_zeroF_solved_p56_holdout_sft.cjs).
 
+## Printed second-digit value layer: frozen negative
+
+Director #1521 asked for one genuinely new source-selected operation beneath the frozen surface intermediate. The table is visibly printed as two base60 characters per cell, and #1508 independently selected the first-character/lowest-60 class. Before unknown-language scoring, Agent31 therefore froze the complementary visible operand: for cell `i mod256`, let `l_i` be the **second printed base60 digit**, then decode the #1422 intermediate by
+
+`P_i = M_i - (l_i mod29) mod29`
+
+under the unchanged global phase-zero clock. The subtraction sign is inherited from solved p56. No phase, reset, sign, gating, digit recombination or fitted parameter is searched. The predeclared wrong-clue control performs the same subtraction with the **first printed digit** instead.
+
+The candidate is negative. Across the intact 12,956-rune p0-p55 interval it gives IoC **0.0344781834**, **178/2,896** dictionary hits, **zero** hits of GP length >=5, and maximum consecutive dictionary run **8 runes**. The first-digit wrong-clue control is similarly uniform: IoC **0.0344809359**, 190 short hits, zero length>=5 hits, maximum run4. A complete layered positive repeats solved p57 native GP to 12,956 runes, applies the second-digit inner encoder plus the frozen #1422 outer encoder, and recovers **12,956/12,956** exactly.
+
+This closes the exact **second printed digit as additive value operand**. Its source path was stronger than an arbitrary byte mapping, but it does not recover a 150-rune coherent span or separate from its visible-digit control. Do not rescue it with another sign, phase or digit combination. [Director gate #1521](https://github.com/FlareZ123/liber-primus/issues/1521) · [SFT](../sims/lp2_p50_zeroF_second_printed_digit_sft.cjs) · [Windows Node22 PASS 44390311367](https://github.com/FlareZ123/liber-primus/actions/runs/44390311367).
+
 ## Decision
 
 This model is the strongest member of this local p50 moving-exception sequence because it passes the prospectively frozen ciphertext-structure criterion in three independent source-native registers. The blind inverse still fails decisively as plaintext.
