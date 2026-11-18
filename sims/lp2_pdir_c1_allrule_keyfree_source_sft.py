@@ -117,7 +117,7 @@ def main() -> None:
 
     tabs = signrules.section_tables()
     assert len(tabs) == 8
-    assert sum(len(runes) for _head, runes, _lens, _spans, _words in tabs) == 12956
+    assert sum(len(runes) for _head, runes, _lens, _spans, _words in tabs) == 12947
 
     base = signrules.build_rules()
     extras = dirrules.extra_rules()
@@ -163,7 +163,7 @@ def main() -> None:
     ranked_skip = sorted(rows, key=lambda row: row["skip_llr"], reverse=True)
     ranked_coin = sorted(rows, key=lambda row: row["coin_safe_llr"], reverse=True)
     summary = {
-        "source_runes": 12956,
+        "screened_source_runes": 12947,
         "section_windows": [head for head, *_rest in tabs],
         "kept_rules": len(names),
         "direction_vectors": len(rows),
