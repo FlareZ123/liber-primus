@@ -14,7 +14,9 @@ the next jump gives 110 and exits the event stream. Event81 is the middle W of t
 
 The same historical handoff also gives a literal direction. A194954 term210 is 3301, and `210 = 77` in base29, giving GP **WW**. A194954 term42 is the destination HTML id331, and `42 = [1,13]` in base29, giving GP **UP**. Together with the uniquely omitted prime19 -> W, the historical readout is **WWW UP**. The third WWW event is the p51 page-start WW directly below the numerical table.
 
-Following that literal physical direction reaches the bottom-left table token `1r`. Under the canonical base60 reading it is value **113 = A194954(23)**. Under the live base59 alternative it is 111. Straight upward GP-remainder reads and broader A194954-valued-cell scans are opaque, so this currently supports the entry geometry and base60 branch rather than a plaintext claim.
+The literal direction points toward the table region, but the original image does not force the bottom-left cell. On scan 68.jpg the page-start WW pair is horizontally left of the first numeric column: the Ws occupy approximately x=601–670, while bottom-left token `1r` occupies approximately x=707–773. The following P overlaps the first-column range, yet no source instruction licenses changing the origin from WW to P. Under a conditional lower-left-entry reading, `1r` is base60 value **113 = A194954(23)** and base59 value111; this remains a checksum candidate rather than a radix decision. Straight upward reads are opaque.
+
+The stronger consequence is independent fixation of **address81** itself. The A194954 jump walk reaches 81 before WWP is interpreted, and WWP's GP-prime sum independently repeats 81. The later `q4/stay -> Y-prime103` reroute remains provisional.
 
 This materially strengthens the original **WWP -> 81** entry while leaving the later `q4/stay -> Y-prime103` reroute provisional. Reproduction is consolidated in [the A194954 closure report](../im-results/cicada2014-a194954-3301-www-closure.md), [its SFT](../sims/cicada2014_a194954_3301_www_closure_sft.cjs), and [the adjacent-repeat event SFT](../sims/lp2_doublet_www_url_crib_sft.cjs).
 
