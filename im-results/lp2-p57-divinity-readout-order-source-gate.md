@@ -1,71 +1,25 @@
-# DIUINITY inner→outer order is independently selected by p50 physical reading order
+# p57 DIUINITY readout-order source gate
 
-**Director task:** #1565  
-**Classification:** positive source-order discriminator inside the still-conditional GP-prime-sum→p50-address route. No unknown plaintext or new key recovered.
+**Director task #1565, reconciled by Agent9, 18 November 2026. Classification: negative for a unique target-blind ordering selector. No unknown plaintext or new key recovered.**
 
-The remaining symmetry from #1540 was `2800` versus `0028`. Both use the same already-fixed zero-based row-major addresses, but prior synthesis chose inner→outer because the retained 2013 participant transcript contains the historical value 2800. That made the final ordering target-assisted.
+The remaining symmetry from #1540 is inner→outer `2800` versus outer→inner `0028`. This gate excludes token contents, decimality, the historical DH value 2800, and downstream success from choosing between them.
 
-The original p50 layout supplies an independent graphical order.
+## Competing source-visible orders
 
-## Source-only geometry
+**P57 instruction chronology favors outer→inner.** The clear sequence is `SHED OUR OWN CIRCUMFERENCES` followed by `FIND THE DIUINITY WITHIN`. If derived operands inherit action order, the shed endpoints precede the strict interior.
 
-The fixed DIUINITY operands are:
+**P50 graphical reading order favors inner→outer.** Under the already-selected zero-based row-major grammar, strict-interior sum184 is row23/column0 and shed-endpoint sum192 is row24/column0. They are consecutive first-column cells on original p50 source page51, so ordinary top-to-bottom table reading reaches 184 before192.
 
-- strict-interior GP-prime sum: **184**;
-- shed-endpoint GP-prime sum: **192**.
+Both rules are source-natural and they conflict. The authenticated 2013–2014 convention audit in #1529 supplies no first-party sparse-cell concatenation rule that makes receiver geometry outrank instruction chronology, or the reverse. Its surviving numerical protocols use explicit operations, labels/delimiters, or complete positional numerals rather than an applicable two-cell convention.
 
-With the already-discriminated zero-based row-major 32×8 address grammar:
-
-- address **184 = row23, column0**, token **`28`**;
-- address **192 = row24, column0**, token **`00`**.
-
-They are therefore in the **same first column on consecutive printed rows**. More strongly, these are the first two rows of original physical image **68.jpg**:
-
-```text
-28 2a 0J 1L 0c 3C 2o 0X
-00 2Z 2d 1T 2u 1t 1j 0l
-...
-```
-
-No token meaning is needed to choose their order. Ordinary top-to-bottom reading of two vertically adjacent table cells selects address184 before address192 and therefore produces:
-
-```text
-28
-00
-=> 2800
-```
-
-The reverse `0028` requires reading this two-cell vertical pair bottom-to-top.
-
-This selector exists entirely in the original LP2 object and is visible before consulting the March-2013 DH transcript.
-
-## Relation to the p57 wording
-
-The clear source text ends:
-
-```text
-WE MUST SHED OUR OWN CIRCUMFERENCES
-FIND THE DIVINITY WITHIN AND EMERGE
-```
-
-That sentence motivates constructing the shed circumference and strict interior. Its **action sequence** names shedding before finding the interior, so the prose alone does not justify inner→outer numeric concatenation and should not be cited as doing so. In fact, if action order were mechanically converted into output order it would point the other way.
-
-The order selector instead comes from the **receiver object**: once the two already-fixed addresses land on p50, their physical table geometry gives a canonical top-to-bottom readout. This is stronger than forcing the prose to order two derived numeric operands it never explicitly presents.
+Only after recording this ambiguity do the cell contents enter: `grid[184]=28` and `grid[192]=00`, so the two orders yield `2800` and `0028`.
 
 ## Decision
 
-**Positive for #1565.** Conditional on the still-unproven step “use the two GP-prime sums as literal zero-based row-major p50 addresses,” the final token order no longer needs the historical target:
+**#1565 is negative.** No unique source-independent rule selects inner→outer before the historical target is consulted. The route remains selective in its word, operand family, address grammar, and width geometry, while the final token order remains conditional on accepting the historical `2800` correspondence.
 
-1. inner sum184 selects the first cell of original image68 row1;
-2. outer sum192 selects the first cell of the immediately following row;
-3. ordinary top-to-bottom reading yields `28 00`;
-4. only after that source-fixed readout is formed does the historical participant transcript provide the independent `2800` match.
-
-This removes the target-assisted **ordering** objection from the DIUINITY bridge. It does **not** remove the larger causal gap identified by #1566: no source rule has yet proved that unreduced GP-prime sums should be treated as p50 addresses at all.
+Do not treat `2800` as a fully prospective readout unless a new independent source establishes which ordering principle controls the two derived cells. The larger causal gap is already separately negative under #1568: no first-party source nominates p50 as the receiver of the p57-derived quantities.
 
 ## Reproduction
 
-- `sims/lp2_p57_divinity_readout_order_source_sft.cjs`
-- `.github/workflows/agent5-divinity-readout-order-manual.yml`
-- successful CI: https://github.com/FlareZ123/liber-primus/actions/runs/44394125492
-- source inputs: `resources/liber-primus/lp2-grid-256.json`, `resources/liber-primus/lp1-plaintext-reference.txt`, original `68.jpg` / `74.jpg` from the project source corpus.
+`sims/lp2_p57_divinity_readout_order_source_gate_sft.cjs` asserts both source orders from the canonical p57 transcription and p50 table and returns `AMBIGUOUS`. The separate positive-geometry SFT establishes the p50 ordering fact only; it does not resolve the conflict with p57 chronology.
