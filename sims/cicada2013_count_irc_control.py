@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 
 EXPECTED_BYTES = 399_787
@@ -51,6 +52,22 @@ OBSERVATIONS = [
     ("b", 61, "+", "heldout-repeat", 5081),
 ]
 
+# Date-stamped participant-reported service observations, not daemon bytes.
+# These are independent of the COUNT suffix samples above.
+NUMBER_TRACE_PAIRS = [
+    (10, "2 5", 3768, 3769),
+    (20, "2 2 5", 3770, 3771),
+    (3301, "+", 3726, 3727),
+    (1033, "+", 3777, 3778),
+    (4007, "2 2 17 103", 3970, 3972),
+    (1595277641, "1031 1229 1259", 4000, 4001),
+    (691, "2 2 7 7", 4042, 4043),
+]
+NUMBER_INLINE_REPORTS = [
+    (23, "2 2 2 2 2", 5062),
+    (61, "2 2 2 2", 5116),
+]
+
 def is_prime(n: int) -> bool:
     if n < 2:
         return False
@@ -74,6 +91,48 @@ def expected_marker(n: int) -> str:
 def git_blob_sha1(raw: bytes) -> str:
     header = b"blob " + str(len(raw)).encode("ascii") + b"\0"
     return hashlib.sha1(header + raw).hexdigest()
+
+def prime_factors(n: int) -> list[int]:
+    factors: list[int] = []
+    d = 2
+    while d * d <= n:
+        while n % d == 0:
+            factors.append(d)
+            n //= d
+        d = 3 if d == 2 else d + 2
+    if n > 1:
+        factors.append(n)
+    return factors
+
+def numeric_command_prediction(n: int) -> str:
+    # Inferred from distinct first-hand observations. A composite is factored
+    # directly; a prime is reversed first, then factored (or returns '+').
+    selected = reverse_decimal(n) if is_prime(n) else n
+    if is_prime(selected):
+        return "+"
+    return " ".join(map(str, prime_factors(selected)))
+
+def recover_hello_prefix(lines: list[str]) -> bytes:
+    # IRC participants transmitted 65-byte chunks of a hex-dumped PGP reply.
+    # The last line is half-byte truncated; only complete bytes are recovered.
+    recorded = bytearray()
+    for line_number in range(3669, 3689):
+        match = re.search(r" ([0-9a-f]{7}): ([0-9a-f]+)$", lines[line_number - 1])
+        if match is None:
+            continue
+        offset = int(match.group(1), 16)
+        if offset != len(recorded):
+            raise SystemExit(f"HELLO hex stream offset {offset} != {len(recorded)}")
+        hex_part = match.group(2)
+        recorded.extend(bytes.fromhex(hex_part[:len(hex_part) // 2 * 2]))
+    text = recorded.decode("ascii")
+    if (len(recorded) != 936
+        or not text.startswith("-----BEGIN PGP SIGNED MESSAGE-----\n")
+        or "\nxsxnaksict6egxkq.onion\n" not in text
+        or "-----BEGIN PGP SIGNATURE-----" not in text
+        or "-----END PGP SIGNATURE-----" in text):
+        raise SystemExit("HELLO reply reconstruction does not match IRC witness")
+    return bytes(recorded)
 
 def load_tokens(root: Path) -> list[tuple[str, int]]:
     corpus = json.loads(
@@ -161,6 +220,44 @@ def main() -> None:
             }
         )
 
+    numeric_checked = []
+    for operand, expected, input_line, output_line in NUMBER_TRACE_PAIRS:
+        if (f"> {operand}" not in lines[input_line - 1]
+            or f"> {expected}" not in lines[output_line - 1]):
+            raise SystemExit(f"NUMBER trace changed: {operand}, {input_line}-{output_line}")
+        prediction = numeric_command_prediction(operand)
+        if prediction != expected:
+            raise SystemExit(f"NUMBER({operand}) expected {expected!r}, got {prediction!r}")
+        numeric_checked.append({
+            "input": operand,
+            "result": expected,
+            "lines": [input_line, output_line],
+            "input_prime": is_prime(operand),
+            "tested_integer": reverse_decimal(operand) if is_prime(operand) else operand,
+        })
+    for operand, expected, line in NUMBER_INLINE_REPORTS:
+        source_line = lines[line - 1]
+        if str(operand) not in source_line or expected not in source_line:
+            raise SystemExit(f"NUMBER inline report changed: {line}")
+        prediction = numeric_command_prediction(operand)
+        if prediction != expected:
+            raise SystemExit(f"NUMBER inline ({operand}) expected {expected!r}, got {prediction!r}")
+        numeric_checked.append({
+            "input": operand, "result": expected,
+            "lines": [line], "input_prime": is_prime(operand),
+            "tested_integer": reverse_decimal(operand) if is_prime(operand) else operand,
+        })
+
+    help_lines = lines[3605:3613]
+    if not all(any(word in item for item in help_lines)
+               for word in ("[number]", "count [phrase]", "hello", "help", "quit")):
+        raise SystemExit("historical HELP grammar changed")
+    if "unlisted command: primes" not in lines[5132]:
+        raise SystemExit("historical unlisted PRIMES observation changed")
+
+    hello_prefix = recover_hello_prefix(lines)
+    hello_text = hello_prefix.decode("ascii")
+
     output = {
         "source": {
             "pastebin_id": "XQ9rJSad",
@@ -172,6 +269,24 @@ def main() -> None:
         "status": "participant-reported IRC observations; not raw TCP bytes or daemon code",
         "baseline_source": "separate AfndPJa0 participant Pastebin",
         "independent_heldout_observations": checked,
+        "number_command": {
+            "scope": "participant-reported inferred service behavior, not original daemon",
+            "inferred_rule": "composite: factor input; prime: reverse decimal digits then factor, or '+' if reverse is prime",
+            "observations": numeric_checked,
+        },
+        "hello_command": {
+            "response": "hex-encoded PGP signed-message prefix",
+            "complete_recovered_bytes": len(hello_prefix),
+            "sha256_prefix": hashlib.sha256(hello_prefix).hexdigest(),
+            "second_onion": "xsxnaksict6egxkq.onion",
+            "signature_truncated_in_irc": True,
+            "signed_message_body": hello_text.split("-----BEGIN PGP SIGNATURE-----", 1)[0],
+        },
+        "unlisted_command": {
+            "name": "primes",
+            "IRC_line": 5133,
+            "status": "participants saw a primes listing; no LP2 instruction",
+        },
         "ambiguous_j_exchange": {
             "lines": [5117, 5118, 5119, 5120],
             "reports": [lines[n - 1] for n in (5117, 5118, 5119, 5120)],
