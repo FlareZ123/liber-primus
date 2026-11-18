@@ -32,12 +32,18 @@ The **literal-F skip-aware decoder** is mathematically impossible on complete p2
 | GP rune index | **11 / 22** | **11 / 14** |
 | GP-prime residue mod29 | **202 / 76** | **23 / 22** |
 
-The strongest possible source-derived skip-history reaches only **202 of the original 270** p24 runes. This is an exact finite algebraic failure, independent of natural-language scores, candidate cribs, or parameter fitting.
+The strongest **zero-phase** source-derived skip-history reaches only **202 of the original 270** p24 runes. This is an exact finite algebraic failure of the unrotated key, independent of natural-language scores. We then granted the entire 95-position donor rotation family, rather than proposing additional unmotivated offsets:
+
+- **760** complete decoder hypotheses (95 cyclic source-key phases × GP/prime register × mirrored/forward × ±) were exhausted with every ambiguous ciphertext F history retained independently.
+- **18/760 phase assignments** permit any complete 270-rune original inverse, with **89** distinct complete plaintext/key-clock histories; 742 phases are impossible even before scoring.
+- The **maximum normalized original plaintext IoC is 1.050916** (GP-index reversed donor, sign−, phase58), versus **1.818589** for independently known clear GP p57. Every possible original completion remains near uniform and nonlinguistic. A native-GP planted 270-rune skip-aware decoder passes, so this result bounds the fixed-key source pairing without assuming skip positions.
+
+The phase-complete result is a frequency/legibility rejection under ordinary GP-native prose, **not** a proof of algebraic impossibility for all phases and not an exclusion of languages or registers with near-uniform rune frequencies.
 
 ## Reproduction and decision
 
-[Complete standalone Node22 CommonJS SFT](../sims/lp2_p24_p57_mayfly_keygate_sft.cjs) reads unchanged `resources/liber-primus/lp2-corpus.json`, prints all original outcomes and asserts finite rejections. It passes locally under Node22 using the exact GP-index values of source pp24/56/57, a **270/270** planted direct-key inverse, **175/175** planted inferred-crib-key holdout inverse, and a **270/270** planted literal-F bypass feasibility positive. All three controls separate implementation correctness from a claim of historical plaintext.
+[Complete standalone Node22 CommonJS SFT](../sims/lp2_p24_p57_mayfly_keygate_sft.cjs) reads unchanged `resources/liber-primus/lp2-corpus.json`, prints all original outcomes and asserts finite rejections. It passes locally under Node22 using the exact GP-index values of source pp24/56/57, a **270/270** planted direct-key inverse, **175/175** planted inferred-crib-key holdout inverse, and a **270/270** planted literal-F bypass feasibility positive. It additionally asserts 760 source-derived phase tests, 18 viable phases, 89 distinct legal full histories, and maximum original output IoC below 1.06. All three controls separate implementation correctness from a claim of historical plaintext.
 
-**Decision:** The direct GP ordinal, prime-residue additive transfer, full period95 secret-pad crib, and historically authentic literal-F-transparent receiver with these eight fixed donor keys are rejected. Retire only these original-source consumers. The image pairing does not establish a key, an original editor's private image layer, a changing-state cipher, or any ciphertext-derived map to decoded runes. Independently specified nonlinear operations or recovered original editing assets could justify a different experiment. No p24 plaintext or final destination was discovered.
+**Decision:** The direct GP ordinal, prime-residue additive transfer, full period95 secret-pad crib, and historically authentic literal-F-transparent receiver over every 95-position original donor phase are rejected as ordinary GP-native plaintext decoders. Retire only these original-source consumers. The image pairing does not establish a key, an original editor's private image layer, a changing-state cipher, or any ciphertext-derived map to decoded runes. Independently specified nonlinear operations or recovered original editing assets could justify a different experiment. No p24 plaintext or final destination was discovered.
 
 The artwork provenance predates this run. The new work is limited to these original ciphertext decipherment tests.
