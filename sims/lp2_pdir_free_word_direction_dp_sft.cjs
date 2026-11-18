@@ -80,10 +80,10 @@ const source = [
   read('resources/liber-primus/lp1-plaintext-reference.txt'),
   read('resources/external/2013-book-of-law-I.txt'),
   read('resources/external/2013-book-of-law-II.txt'),
-  read('resources/external/2013-book-of-law-III.txt'),
   read('resources/external/cicada2012-blake-marriage-gutenberg45315.txt'),
   read('resources/external/kjv-passion-gospels-2014.txt'),
 ];
+const holdoutText = read('resources/external/2013-book-of-law-III.txt');
 const native = [];
 const dictionary = new Map();
 for (const document of source) {
@@ -96,6 +96,13 @@ for (const document of source) {
   }
 }
 assert(native.length > 10000, 'native GP language reference');
+const holdoutByLength = new Map();
+for (const match of holdoutText.matchAll(/\b[A-Za-z]+\b/g)) {
+  const w = encode(match[0]);
+  if (!w.length || w.length > 15) continue;
+  if (!holdoutByLength.has(w.length)) holdoutByLength.set(w.length, []);
+  holdoutByLength.get(w.length).push({w, frequency:1});
+}
 const byLength = new Map();
 for (const [key, frequency] of dictionary) {
   const w = key.split(',').map(Number);
@@ -198,12 +205,12 @@ function viterbi(cipherWords, key) {
  * @param {number[]} lengths
  * @returns {{cipher:number[][],plain:number[][],states:{start:number,dir:number}[]}}
  */
-function positive(lengths) {
+function positive(lengths, selection = byLength) {
   let position = 73;
   const cipher = [], plain = [], states = [];
   let direction = 1;
   for (let i = 0; i < lengths.length; i++) {
-    const list = byLength.get(lengths[i]);
+    const list = selection.get(lengths[i]) || byLength.get(lengths[i]);
     assert(list?.length > 0, 'native GP word coverage length ' + lengths[i]);
     const selected = list[(i * 17 + 5) % list.length].w;
     plain.push(selected);
@@ -225,6 +232,9 @@ function doublets(a) {
 }
 const plant = positive(words.map(w=>w.length));
 const recovered = viterbi(plant.cipher, KEY);
+const holdoutPlant = positive(words.map(w=>w.length), holdoutByLength);
+const holdoutRecovered = viterbi(holdoutPlant.cipher, KEY);
+const holdoutHits = holdoutRecovered.plaintext.reduce((a,w,i)=>a + Number(w.join(',') === holdoutPlant.plain[i].join(',')),0);
 const hits = recovered.plaintext.reduce((a,w,i)=>a + Number(w.join(',') === plant.plain[i].join(',')),0);
 const original = viterbi(words, KEY);
 const percent = (n,den)=> (100*n/den).toFixed(2)+'%';
@@ -234,6 +244,8 @@ console.log('Native dictionary word tokens=' + native.length + ', distinct=' + d
 console.log('Original doublets=' + doublets(words) + ', planted doublets=' + doublets(plant.cipher));
 console.log('Planted free-direction DP average logscore=' + recovered.average.toFixed(6) +
   ', exact words=' + hits + '/158 (' + percent(hits,158) + ')');
+console.log('Source-held-out BookIII DP average logscore=' + holdoutRecovered.average.toFixed(6) +
+  ', exact words=' + holdoutHits + '/158 (' + percent(holdoutHits,158) + ')');
 console.log('Original free-direction DP average logscore=' + original.average.toFixed(6) +
   ', exact native-dictionary hits=' + sourceWordHits + '/158, seed=' + original.seed);
 console.log('Original top 70 decoded GP words:');
