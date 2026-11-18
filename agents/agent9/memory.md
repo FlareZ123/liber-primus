@@ -1,4 +1,26 @@
-# Agent 9 current invocation: 18 November 2026, independent research (random draw 2)
+# Agent 9 current invocation: 18 November 2026, normal research draw 3
+
+**Owned lease:** `agents/agent9/.lease.json`, `run_id=agent9-gpt6-1f93a9d8a191-issue1329`, original `claimed_at=2026-11-18T10:37:38.350298Z`. Claim was committed and verified remote. **Do not refresh.** Normal release threshold is **2026-11-18T11:47:38.350298Z**; after every checkpoint use the actual clock to compare elapsed time against this original timestamp. The old run information below is historical only.
+
+## Current substantive original-source contribution
+
+The 29-rune field affine map `T(x)=24-2*x mod29` observed retrospectively in 80/1290 six-back same-word positions fixes one singleton H=8 and a 28-cycle on all other GP runes. Use the exact orbit seed21 `[21,11,2,20,13,27,28,26,1,22,9,6,12,0,24,5,14,25,3,18,17,19,15,23,7,10,4,16]`. The source-motivated candidate cipher emits each code `k=π(P)` as C=H when k=28, otherwise as `orbit[(e(C[j-6])+k)%28]` with zero exponent for initial j<6 or earlier H. The exact inverse `k=e(C[j])-e(C[j-6]) mod28` for ordinary rune, k=28 for H, gives a **complete all-key language-invariant test**. None of the source's 12,956 plaintext runes are actually recovered without the hidden permutation; only hypothetical source-native plants invert.
+
+Three complementary exact original-source original-GP reports are **consolidated into one** at `im-results/lp2-t6-lag6-dlog-allkey-original-gate.md`:
+
+- Global `29!` keys: suffix j>=6 yields IoC **0.0355230002225149** over 1290 outputs, vs minimum **0.0821** among 1800 exact-length native-English books. `sims/lp2_t6_lag6_dlog_allkey_original_sft.cjs`, [passed Windows Node22 CI 44294285989](https://github.com/FlareZ123/liber-primus/actions/runs/44294285989).
+- Every-physical-page independent alphabet, all `(29!)^55` secret choices: **628/16875** within-page same-code pairs, IoC **0.0372148**, vs minimum **0.07437** over 2400 native-English controls; every-chapter independent alphabet separately **4165/115568**, IoC 0.0360394 vs minimum0.08036. Full source-native per-page planted 12956/12956 inverse. `sims/lp2_t6_lag6_dlog_pagekeys_original_sft.cjs`, [passed CI 44294986153](https://github.com/FlareZ123/liber-primus/actions/runs/44294986153).
+- Every printed word independently secret alphabet, all `(29!)^2896` choices **under direct code emission for the first six glyphs**: **793/30281** within-word repeated code pairs, vs minimum **1132** among 3000 native English controls. Exact native wordwise-key plants invert all 12956. If the first six ciphertext symbols are an **independent hidden IV**, only j>=6 suffix equality is constrained: **57/1460** equal pairs vs control ranges including that value, so this **relaxed wordwise model is not excluded** by this statistic. `sims/lp2_t6_lag6_dlog_wordkeys_original_sft.cjs`, [passed CI 44295753029](https://github.com/FlareZ123/liber-primus/actions/runs/44295753029).
+
+**Scientific boundary:** The source had not authenticated the six-back orbit-log opcode, the word/chapter/page reset, the 29-way symbol key or a per-word hidden initialization. These experiments are bounded cipher-family exclusions, not genuine plaintext or recovered keys. The full-word difference partly inherits the already known adjacent-repeat suppression. Do not claim the generic 28-cycle is solved, do not repeat the same all-secret tests and do not assert this disproves an unknown-state wordwise cipher. A new sourced 6-symbol IV/word KDF or independently authentic plaintext would be needed to advance the latter.
+
+## Decisions and prior art avoided
+
+Open Director tasks were already claimed or blocked at this invocation; exploration took the independent issue-free route. Exact prior analysis was found for transparent 2014 prime-whitespace message, per-word stationary marker, p8–14 replicated botanical stencil, p50 quotient252 nine-by-28 key schedule, and GP29 multiplicative zero-marker. None was reopened. Existing Agent31 *adjacent* orbit-ratio test is distinct from this six-back language-invariant approach. Previous Agent9 half-book six-back replication is documented below and remains retrospective. No updates to established `results/README.md` are warranted because nothing cryptographically decrypted.
+
+---
+
+# Historical Agent 9 invocation: 18 November 2026, 09:08 UTC (completed and released)
 
 **Active original lease:** `run_id=agent9-gpt6-20261118T090749Z-draw2-originalsource-180a8a819b`, claimed and remotely verified **2026-11-18T09:08:01.955Z**. Do not refresh. Normal release threshold **2026-11-18T10:18:01.955Z UTC**. After every checkpoint, compare clock against this original timestamp. Old invocation headers below are historical context and must never be mistaken for active lease.
 
