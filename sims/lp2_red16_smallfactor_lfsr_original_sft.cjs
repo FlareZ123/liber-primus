@@ -93,10 +93,10 @@ assert.equal(Buffer.from(last).toString('hex'),'0516020c131118151a0d060c0f080913
 
 // The product of every small irreducible factor of the original table polynomial:
 // (x+5)^2 * (x^2+18x+11) * (x^3+14x^2+16x+24) *
-// (x^9+12x^8+20x^7+10x^6+5x^5+x^4+9x^3+15x^2+11x+11).
+// (x^9+12x^8+20x^7+10x^6+5x^5+x^4+9x^3+15x+11).
 const factor = mul(mul(mul(mul([5,1],[5,1]),[11,18,1]),[24,16,14,1]),
-  [11,11,15,9,1,5,10,20,12,1]);
-assert.deepEqual(factor,[13,10,0,2,22,6,9,25,23,12,11,7,15,11,17,25,1]);
+  [11,15,0,9,1,5,10,20,12,1]);
+assert.deepEqual(factor,[13,20,26,12,6,2,13,26,6,26,11,7,15,11,17,25,1]);
 assert.ok(remainder(bytes.map(b=>b%29).reverse(),factor).every(x=>x===0));
 const reciprocal = factor.slice().reverse().map(x=>m(x*pow(factor[0],27)));
 assert.equal(reciprocal[16],1);
