@@ -90,7 +90,7 @@ function gp(word) {
 
 /** @returns {{index:number,start:number,end:number,length:number}[]} */
 function p0Words() {
-  const source = transcription.split(/\n%\n/)[0];
+  const source = transcription.split(/\r?\n%\r?\n/)[0];
   const words = [];
   let current = [];
   let offset = 0;
