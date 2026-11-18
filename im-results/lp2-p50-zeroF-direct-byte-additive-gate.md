@@ -39,4 +39,4 @@ Retire this exact composite. The fixed zero→F surface normalization cannot be 
 
 Together with the all-secret word-Caesar exclusion and the exact authenticated-p56 prime/F exclusion, this leaves a clear #1422 gap: the outer rule has a prospective structural effect, while every tested low-description value layer beneath it remains nonlinguistic or algebraically impossible.
 
-The complete reproducer is [`sims/lp2_p50_zeroF_direct_byte_additive_sft.cjs`](../sims/lp2_p50_zeroF_direct_byte_additive_sft.cjs).
+The complete reproducer is [`sims/lp2_p50_zeroF_direct_byte_additive_sft.cjs`](../sims/lp2_p50_zeroF_direct_byte_additive_sft.cjs). [Windows Node22 run 44386183948](https://github.com/FlareZ123/liber-primus/actions/runs/44386183948) passed; the job log identifies this SFT explicitly and reproduces both signs plus the exact layered positive.
