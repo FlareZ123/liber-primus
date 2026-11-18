@@ -44,6 +44,28 @@ const z = d.slice(1).map((o, i) => ({
   z: (o - expectedNonzero) / Math.sqrt(expectedNonzero)
 })).sort((a, b) => Math.abs(b.z) - Math.abs(a.z));
 
+// Matched null: uniform base differences with the observed zero-suppression rate.
+// A deterministic xorshift is sufficient because this is only a Monte Carlo null calibration.
+let seed = 0x9e3779b9 >>> 0;
+const rnd = () => { seed ^= seed << 13; seed ^= seed >>> 17; seed ^= seed << 5; return (seed >>> 0) / 4294967296; };
+const reps = 10000, observedChi = nonzeroChi;
+let ge = 0, meanChi = 0, maxChi = 0;
+for (let r = 0; r < reps; r++) {
+  const c = Array(28).fill(0);
+  for (let i = 0; i < N; i++) {
+    let x = Math.floor(rnd() * 29);
+    if (x === 0 && rnd() < repairFraction) x = 1 + Math.floor(rnd() * 28);
+    if (x !== 0) c[x - 1]++;
+  }
+  const nz = c.reduce((a, b) => a + b, 0), e = nz / 28;
+  let chi = 0;
+  for (const o of c) chi += (o - e) ** 2 / e;
+  meanChi += chi;
+  if (chi >= observedChi) ge++;
+  if (chi > maxChi) maxChi = chi;
+}
+const monteCarlo = { reps, observedChi, meanChi: meanChi / reps, pValue: ge / reps, maxChi };
+
 console.log(JSON.stringify({
   words: words.length,
   runes: words.reduce((a, w) => a + w.length, 0),
@@ -55,6 +77,7 @@ console.log(JSON.stringify({
     retainedFraction: observedZeroFraction,
     inferredSuppression: repairFraction
   },
+  monteCarlo,
   nonzero: {
     observedTotal: nonzeroN,
     expectedPerDifferenceUnderUniformCollisionRepair: expectedNonzero,
