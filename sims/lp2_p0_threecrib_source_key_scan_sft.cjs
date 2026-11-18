@@ -135,6 +135,7 @@ function shouldScan(rel, size) {
   if (!rel.startsWith("resources/")) return false;
   if (rel.startsWith("resources/control/")) return false;
   if (size > 15000000) return false;
+  if (/\\.(jpg|jpeg|png|gif|webp)$/i.test(rel)) return false;
   const circular = new Set([
     "resources/liber-primus/lp2-corpus.json",
     "resources/liber-primus/lp2-transcription.txt",
