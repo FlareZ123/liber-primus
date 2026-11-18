@@ -1,0 +1,85 @@
+name: Agent14 p27 Instar XOR gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-xor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Byte-zero XOR selected LP images with historical 761.mp3
+        shell: python
+        run: |
+          import math
+          import pathlib
+          import urllib.request
+
+          url = "https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/002-3301/3301-contents/audio/761.mp3"
+          audio_path = pathlib.Path("/tmp/761.mp3")
+          urllib.request.urlretrieve(url, audio_path)
+          audio = audio_path.read_bytes()
+
+          signatures = {
+              "jpeg": bytes.fromhex("ffd8ff"),
+              "png": bytes.fromhex("89504e470d0a1a0a"),
+              "gif87": b"GIF87a",
+              "gif89": b"GIF89a",
+              "zip": b"PK\x03\x04",
+              "gzip": bytes.fromhex("1f8b08"),
+              "bzip2": b"BZh",
+              "xz": bytes.fromhex("fd377a585a00"),
+              "pdf": b"%PDF-",
+              "elf": bytes.fromhex("7f454c46"),
+              "sqlite": b"SQLite format 3\x00",
+              "pgp_ascii": b"-----BEGIN PGP",
+          }
+
+          def entropy(data):
+              if not data:
+                  return 0.0
+              counts = [0] * 256
+              for value in data:
+                  counts[value] += 1
+              total = len(data)
+              return -sum((n / total) * math.log2(n / total) for n in counts if n)
+
+          def longest_printable(data):
+              best = current = 0
+              for value in data:
+                  if 32 <= value <= 126 or value in (9, 10, 13):
+                      current += 1
+                      best = max(best, current)
+                  else:
+                      current = 0
+              return best
+
+          print(f"audio_size={len(audio)}")
+          for image_name in ("44.jpg", "72.jpg"):
+              image_path = pathlib.Path("resources/liber-primus") / image_name
+              image = image_path.read_bytes()
+              n = min(len(image), len(audio))
+              xor = bytes(image[i] ^ audio[i] for i in range(n))
+              head = xor[:32]
+              sample = xor[:65536]
+              detected = [name for name, magic in signatures.items() if xor.startswith(magic)]
+              embedded = {
+                  name: xor[:65536].find(magic)
+                  for name, magic in signatures.items()
+                  if xor[:65536].find(magic) >= 0
+              }
+              printable = sum(
+                  1 for value in sample
+                  if 32 <= value <= 126 or value in (9, 10, 13)
+              ) / max(1, len(sample))
+              print(f"image={image_name}")
+              print(f"image_size={len(image)} xor_size={n}")
+              print(f"head32={head.hex()}")
+              print(f"signature_at_zero={detected}")
+              print(f"signature_offsets_first64k={embedded}")
+              print(f"entropy_first64k={entropy(sample):.6f}")
+              print(f"printable_ratio_first64k={printable:.6f}")
+              print(f"longest_printable_run_first64k={longest_printable(sample)}")
