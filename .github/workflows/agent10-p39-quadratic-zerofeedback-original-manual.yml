@@ -1,0 +1,14 @@
+name: Agent10 p39 quadratic plaintext-feedback zero-event original gate
+on:
+  workflow_dispatch:
+jobs:
+  p39-quadratic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original 12956-rune bounded nonlinear feedback test
+        run: node sims/lp2_p39_quadratic_zero_feedback_source_gate_sft.cjs
