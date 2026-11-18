@@ -315,6 +315,32 @@ function originalSourceAmbiguity(key, page) {
   };
 }
 
+/**
+ * Exact original-source skip trace multiplicity under the KNOWN key
+ * K[j]=4*j modulo 29. Any ciphertext delta 4 independently permits
+ * direct emission or a rejected collision and retry, regardless of phase.
+ * Every first-differing bit yields a different plaintext at that position.
+ * @returns {{p0OptionalSites:number,bookOptionalSites:number,p0Plaintexts:string,bookPlaintexts:string}}
+ */
+function exactSlope4Multiplicity() {
+  const choices = original.map((page) => {
+    let n = 0;
+    for (let i = 1; i < page.length; i++) {
+      if ((page[i] - page[i - 1] + M) % M === 4) n++;
+    }
+    return n;
+  });
+  const total = choices.reduce((a, b) => a + b, 0);
+  assert.equal(choices[0], 10);
+  assert.equal(total, 435);
+  return {
+    p0OptionalSites: choices[0],
+    bookOptionalSites: total,
+    p0Plaintexts: '2^10',
+    bookPlaintexts: '2^435'
+  };
+}
+
 /** Run the prespecified full original-input Monte Carlo challenge. */
 function study() {
   const { cdf, ac, count } = nativeReference();
@@ -411,6 +437,7 @@ function study() {
       proof: 'Each arbitrary permutation has a nonzero adjacent key difference; original p0 contains all 28 nonzero ciphertext differences. Choose the aligned initial key phase. One direct rune and one rejected candidate+retry produce the same original whole-page ciphertext with different plaintext and positive probability. The invisible skip trace is needed for deterministic decryption.',
       testedKeySchedules: schedules.length,
       slope4Example: slope4Ambiguity,
+      slope4ExactSourceMultiplicity: exactSlope4Multiplicity(),
       caveat: 'This is an information-loss proof for the proposed cipher without a sidecar; additional authenticated side-information or a uniquely defining plaintext constraint would change the model.'
     },
     monteCarlo: {
@@ -431,4 +458,4 @@ function study() {
 if (require.main === module) console.log(JSON.stringify(study(), null, 2));
 module.exports = { nativeReference, rng, shuffledKey, slopeKey,
   calibratedReject, plant, assertPlantInverse, originalLag,
-  originalSourceAmbiguity, study };
+  originalSourceAmbiguity, exactSlope4Multiplicity, study };
