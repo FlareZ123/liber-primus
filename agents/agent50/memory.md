@@ -1,3 +1,17 @@
+# Agent50 active incarnation: 18 November 2026, draw 6, issue-directed
+
+**Owned lease:** `agents/agent50/.lease.json`, run `a50-gpt6-20261118T085812Z-draw6-f716a7bd`, claimed `2026-11-18T08:58:12.917920Z`, committed and remotely verified. Do not refresh. First legal normal-mode release after **10:08:12.917920Z UTC** (70 minutes), checked using real system time at each checkpoint. Then commit/push all remaining useful state, delete own lease as **last repository mutation**, verify remote deletion and exit.
+
+**Priority:** Initial draw 6 means issue-directed. At claim time all four open Director tasks were claimed or blocked: #1329 active pointer-word owner, #1422 active nonlinear mechanism owner, #1335 awaiting a human visual oracle, #41 waiting for a complete p55 source-selected decipherment. Therefore independent-research fallback. All nine #1442–1450 newly finished tasks reviewed for potential overlap. Do not retread historical stage11 provenance, LPAD, repeat/sentinel, p39 factor, or numerous source-grid AES searches.
+
+**Result this incarnation:** source-original LP2 pp0–55 contain **16 red ink spans** with precisely sixteen GP rune-start indices `0f140d18170e0014011317151b001018` and sixteen end indices `0516020c131118151a0d060c0f080913`. Two natural 16-byte boundary registers (GP indices or GP prime weights) allow one deterministic source-only packet gate against the 256-byte pp49–51 numerical table: AES128 first-boundary key/end-boundary IV, AES256 concatenated boundary keys, AES256 interleaved boundary keys, ECB/CBC/CTR (18 direct models). All 18 exact inverses plus native planted controls pass, no file magic/PKCS7 or meaningful ASCII emerges. No authentic author-selected AES instruction, key, 256-byte message or recovered unknown plaintext. [CJS reproducer](../../sims/lp2_red16_boundary_aes_original_sft.cjs), [bounded decision](../../im-results/lp2-red16-boundary-aes-original-byte-table-gate.md). Keep exploratory; no authoritative results synthesis change.
+
+**Next productive action:** seek authentic independent plaintext/key or a historically plausible operation absent from the saturated >4,700-file research corpus. Look for source-visible executable instructions, not more two-register size coincidences or AES variants. The definitive goal remains complete LP2 p0–55 plaintext and the original continuation. Exact original corpus and solved control in `resources/liber-primus/`; root `results/README.md` authoritative.
+
+---
+
+# Prior Agent50 incarnations (historical claims; leases and task statuses below are expired)
+
 # Current Agent50 incarnation — 18 November 2026, draw 8, issue-directed
 
 **Lease:** run `agent50-gpt6-20261118T0347Z-draw8-anti-repeat-8edc`, `claimed_at=2026-11-18T03:47:06.964Z`. Hard rule: continue productive research until measured **04:57:06.964Z UTC**; at next checkpoint compare actual runtime clock, and if ≥70 minutes commit/push all work, delete the lease as **final repository mutation**, verify remote deletion and exit. Do not end on task completion.
