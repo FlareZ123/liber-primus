@@ -281,6 +281,51 @@ def secret_nine_alphabet_entropy_gate(values: list[int]) -> None:
     print(f"ALLSECRET SUMMARY models=6 min_required_original_H(P)={minimum:.12f} bits/rune")
 
 
+
+def secret_quotient_feedback_entropy_gate(values: list[int]) -> None:
+    """All (9*29) secret bijections with state (q_i, preceding ciphertext)."""
+    corpus = json.loads((SOURCE.parent / "lp2-corpus.json").read_text(encoding="utf-8"))
+    pages = [p for p in corpus["pages"] if p["page"] <= 55 and p["indices"]]
+    starts = {0, 3, 8, 15, 23, 27, 33, 40, 54}
+    n = sum(len(p["indices"]) - 1 for p in pages)
+    assert n == 12_901
+
+    def conditional(samples: list[tuple[int, int, int]]) -> float:
+        matrix = [[0] * 29 for _ in range(261)]
+        for value, previous, key in samples:
+            matrix[29 * key + previous][value] += 1
+        total = len(samples)
+        return sum(
+            (sum(row) / total) *
+            (-sum((x / sum(row)) * math.log2(x / sum(row)) for x in row if x) if sum(row) else 0)
+            for row in matrix
+        )
+
+    minimum = 10.0
+    for major in ("rows", "columns"):
+        q = [values[i] // 29 for i in order(major, False, False)]
+        for scope in ("book", "chapter", "page"):
+            book_pos = chapter_pos = 0
+            original_samples = []
+            for page in pages:
+                if page["page"] in starts:
+                    chapter_pos = 0
+                previous = None
+                for local_pos, cipher in enumerate(page["indices"]):
+                    phase = {"book": book_pos, "chapter": chapter_pos, "page": local_pos}[scope]
+                    if previous is not None:
+                        original_samples.append((cipher, previous, q[phase % 256]))
+                    previous = cipher
+                    book_pos += 1
+                    chapter_pos += 1
+            assert len(original_samples) == n
+            h = conditional(original_samples)
+            assert h > 4.30
+            minimum = min(minimum, h)
+            print(f"FEEDBACK reading={major} scope={scope} H(C|q,Cprev)={h:.12f}")
+    print(f"FEEDBACK SUMMARY states=261 scopes=6 min_required_H(P)={minimum:.12f} bits/rune")
+
+
 def main() -> None:
     values = json.loads(SOURCE.read_text(encoding="utf-8"))["bytes"]
     assert len(values) == 256 and all(type(x) is int and 0 <= x < 256 for x in values)
@@ -315,6 +360,7 @@ def main() -> None:
     direct_quotient_key_gate(values)
     gf29_quotient_highregister_gate(values)
     secret_nine_alphabet_entropy_gate(values)
+    secret_quotient_feedback_entropy_gate(values)
 
 
 if __name__ == "__main__":
