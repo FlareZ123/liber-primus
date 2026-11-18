@@ -2,6 +2,13 @@
 
 **Decision (18 November 2026):** A direct, independent additive polynomial in each plaintext word cannot explain the intact original GP29 ciphertext as ordinary English with the repository's pinned native-GP word register, even if its coefficients are arbitrary independent secrets and all word boundaries are moved. This is an exact source-language exclusion of the specified family, **not an unknown-page decryption or proof against other registers**.
 
+
+## Stronger arbitrary secret per-word affine scale extension (18 November)
+
+The p39-red-polynomial word hypothesis now grants each word **an arbitrary nonzero secret multiplier** `scale[w]`: `C[w,j] = scale[w]·P[w,j] + Σ a[w,k]·j^k (mod29)`. The `(d+1)`th finite difference cancels every secret polynomial coefficient. Normalizing that vector by its first nonzero entry eliminates all **28 possible hidden nonzero scales** as well. Against all original 12,956 GP29 rune windows and 32,021 pinned source-native GP English words, there are **zero compatible windows of length n≥11** for degrees **2 and 3**, or **n≥12** for degrees **4 and 5**, through n14. Respectively **57/57/25/25** original printed word slots require one of those unavailable lengths. Shorter windows yield real incidental hits, so the gate is discriminating. Planted native-GP affine-poly controls pass. [Updated standalone SFT](../sims/lp2_polynomial_wordshift_allsecret_sft.cjs) · [Windows Node22 PASS 44305457452](https://github.com/FlareZ123/liber-primus/actions/runs/44305457452).
+
+**Decision:** The no-go now covers every secret nonzero multiplicative word scale with polynomial shifts of degrees 2–5, in the stated native-English original-word family. No recovered plaintext or authentic key follows.
+
 ## Why investigate this operation
 
 The manuscript contains an original red quadratic expression on physical p39, and the Cicada-signed 2016 message emphasizes words and their numbers. A natural but *unselected* implementation is a polynomial shift in each printed word's rune position. Prior independent research excluded constant, affine and linear-ramp per-word shifts. The quadratic operation and extensions through degree seven test the wider finite-difference family without guessing coefficients. The original expression does **not** specify this operation or the reset clock.
