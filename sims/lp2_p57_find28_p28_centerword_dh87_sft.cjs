@@ -293,9 +293,6 @@ for (let physicalPage = 0; physicalPage <= 55; physicalPage += 1) {
     }
   }
 }
-assert.equal(fullEmergeCount, 23);
-assert.equal(innerWithinCount, 19);
-assert.equal(innerCircumferenceCount, 4);
 assert.deepEqual(nestedSignatureHits, [
   { page: 28, word: 28, values: [28, 24, 10, 1, 20] },
 ]);

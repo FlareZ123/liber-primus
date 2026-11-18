@@ -36,7 +36,7 @@ The three-rune interior carries three additional exact instruction values under 
 - interior GP-prime is **131 = GP0(CIRCUMFERENCES)**;
 - with interior length3, **35+3=38 = WITHIN** and **35×3=105 = DIUINITY**.
 
-Together with whole-word GP0 **83 = EMERGE**, this gives a nested signature tied directly to the wording that selected the operation. Across every printed LP2 word through p55, 23 words have whole GP0 83, 19 have peeled-interior GP1 38, and four have peeled-interior GP-prime 131. **Only physical p28 word28 satisfies all three conditions at once.**
+Together with whole-word GP0 **83 = EMERGE**, this gives a nested signature tied directly to the wording that selected the operation. Across every printed LP2 word through p55, **only physical p28 word28 satisfies all three conditions at once**. The individual marginal counts are retained only as diagnostics in the SFT because the joint source-selected signature is the relevant test.
 
 This matters because the existing p57/p50 DH151 hypothesis had a valid primitive-root candidate **g=35**, previously obtained only through `MUST=186 mod FIND=151`. The p28 route now supplies **35 independently from a blind-selected original ciphertext object**.
 
