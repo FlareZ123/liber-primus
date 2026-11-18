@@ -1,48 +1,36 @@
-# T7 doublet-free void: 33×50 structural bridge tests
+# Postselected 50×33 original-rune window: corrected repeat inventory and finite negative inverses
 
-**Classification:** intermediate structural hypothesis; no plaintext or key recovered.
+**Status (18 November 2026): corrected original-source decision.** The previous description of the 1,650-rune segment as a *doublet-free T7 void* was false. The fixed segment and its finite additive inverses remain useful as evidence of what was tested; its numeric alignment is **not a source-selected cipher target**. No plaintext or key was recovered.
 
-## Observation
+## Actual source geometry and why the 50×33 premise fails
 
-Using the canonical LP2 rune corpus, the longest contiguous interval with no adjacent equal ciphertext symbols identified by the external T7 work is the inclusive original-stream interval **2739..4388**, i.e. **1650 runes**. The corresponding half-open boundary is 2739..4389.
+Concatenating the **56 original physical pages p0–p55** (p50 contains zero runes) in `resources/liber-primus/lp2-corpus.json` yields **12,956 GP29 runes** and **86 adjacent-equal sites**. The historically proposed half-open interval **[2739,4389)** contains **1,650 runes and three internal adjacent-equal sites**:
 
-The two boundaries have an exact factorization:
+| Global index of second equal rune | GP29 transliteration |
+|---:|---|
+| 2740 | U |
+| 3140 | AE |
+| 3852 | G |
 
-- 2739 = 33 × 83
-- 4389 = 33 × 133
-- therefore the interval is exactly **50 × 33** when laid out row-major.
+The true longest contiguous interval with **zero** adjacent equalities is **[3140,3852)**, only **712 runes**. Other long zero-repeat intervals include [8934,9596) (662), [1038,1591) (553), and [3852,4389) (537). All offsets are global zero-based ciphertext-rune indices; the interval may include a single rune from an adjacent doubled pair at either endpoint.
 
-The void is inside LP2 pages 11–18, around the tree sequence and p15 Fibonacci-prime grid. In the 50×33 layout, horizontal equality is only 3/1600 = 0.1875%, while vertical equality is 63/1617 = 3.896% and the two main diagonals are 60/1568 = 3.827% and 41/1568 = 2.615%. These latter rates are near the native 1/29 baseline and do **not** reveal an independent 2-D plaintext structure.
+Every one of the **11,307** possible consecutive 1,650-rune windows was scored by the number of its **internal** adjacent-equal sites. The minimum is **three**, attained by **351** different starts, 2580 through 2930 inclusive. Start 2739 is one among them. Its pleasing equalities `2739=33×83` and `4389=33×133`, and the 50×33 factorization, are therefore **postselected within a broad tied plateau**. The previous inference that the source singled out an exceptional exact 50×33 void should be withdrawn.
 
-As a further matrix-structure control, I measured the best circular GP29 Caesar shift between every pair of the 50 rows. The mean best-shift agreement is **0.11349**, essentially the matched hard-no-repeat random null (**p=0.57**); the maximum is **0.24242**, also null-like (**p=0.38**). Thus the rows do not behave like shifted copies of a common 33-rune template.
+The isolated p50 addresses 83 and 133 came from other retrospective interpretations (signed-2016 "lies" and a red-event checksum); neither authentic source requires these window boundaries. The independent p57 interior count50 and p55 boundary count33 permit a 50×33 Cartesian key object, but **supply no rule identifying this 1,650-rune ciphertext slice**.
 
-## Two source-connected interpretations of the 50×33 shape
+## Corrected, source-exact receiver controls
 
-### 1. Retrospective 83→133 address interpretation
+Both retained tests now load the entire actual original cipher (including p55), assert the three repeat sites, and use deterministic 0x3301-seeded matched-null generators. The earlier scripts contained invalid corpus-range checks (they excluded physical p55); the second also pointed to an absent transcription path, and the first null supplied 50 random key bytes to a decoder that sliced offsets 83–132. Those historical runner versions could not independently reproduce their reported null distributions. The corrected tests and independently computed outputs are:
 
-Two numbers already discussed elsewhere in the repository are:
+| Frozen finite test on unchanged [2739,4389) | Result |
+|---|---|
+| Table p50 bytes83–132 as 50 row keys or bytes83–115 as 33 column keys, base60/base59, both signs and reversal (16 candidates) | Raw IoC **0.0346369701**. Best **0.0348413180** (base59, reversed table, column, add). Among **1,000** seeded matched complete-256-byte random keys, **195** have a best score at least this high (empirical p **0.195804**). |
+| P57 fifty genuine interior runes × p55 thirty-three genuine boundary runes, additive GP-index/prime/totient representations, two signs and row/column reversals (24 candidates) | Raw Latin-trigram score **−5.66570990**; best source-selected test **−5.67949320** (totient, both reversals, add), **worse than raw**. Among **500** seeded random source-sized row/column keys, **298** equal or exceed the best source score (empirical p **0.596806**). |
 
-- **83**: the zero-based p50 table cell selected by the signed-2016 "lies" address route.
-- **133**: the terminal state of the 256-red-event checksum construction.
+The first decoder simply adds/subtracts a source byte reduced modulo29 for each row/column. The second decodes `P[r,c]=(C[r,c] ± (R[r]+K[c])) mod29`. These tests are finite, fully reversible under their chosen keys and do not recover coherent GP prose. A low IoC or inferior trained language score is conditional evidence against these exact operations; it is not a universal impossibility proof for all 50×33 decoders.
 
-If those were independently selected as stream boundaries, the T7 void would be the 50-row interval between them. This is **not authenticated**: the 83/133 connections are themselves clue-level observations, and 33 is not yet independently selected as the matrix width.
+**Reproduction:** `sims/lp2_t7_window_ordered_doublet_correction_sft.cjs` verifies every source count and all window ties; `sims/lp2_t7_33x50_table83_133_sft.cjs` evaluates the first family; `sims/lp2_t7_33x50_p57interior_p55boundary_sft.cjs` evaluates the second. Both family scripts now load p0–p55 completely and use seeded controls.
 
-A finite table-slice experiment therefore used p50 bytes **83..132** (exactly 50 bytes) as one key per row of the 50×33 void, or the first 33 as column keys. Both conditional table codecs were tested (base60 and base59, omitting only lowercase f), with both signs and key reversal.
+## Research decision
 
-Best original IoC: **0.0348413180** (base59, reversed column key, +). Raw void IoC: **0.0346369701**. A 1000-draw matched random-key best-of-16 control gave median **0.0346972453**, 90th percentile **0.0348766011**, 99th percentile **0.0350383152**, maximum **0.0352022346**, and empirical exceedance **15.5%**. No coherent language output was obtained.
-
-### 2. More source-grounded 50×33 Cartesian-product interpretation
-
-The p57 Parable has **19 body words / 88 GP runes**; removing the first and last rune of each word leaves exactly **50 interior runes**. The p55 page contributes exactly **33 boundary runes** under the source-frozen cross-page word treatment. These counts are already established in im-results/instar-circumference-edge-strip.md.
-
-That gives a stronger reason to form a 50×33 object without relying on the retrospective 83/133 endpoints: pair one p57 interior rune with one p55 boundary rune for each cell of the T7 rectangle. The most direct source-compatible consumer is additive GP29:
-P[r,c] = C[r,c] ± (I[r] + B[c]) mod 29,
-with no fitted offset.
-
-I tested the raw rune-index representation and the clue-motivated prime-mod-29 and totient-mod-29 representations, with both row/column reversals and both signs. The best character-trigram score among the 24 source-derived variants was **−5.67949** (totient representation, both keys reversed, +), while the raw void is **−5.66571**. A 500-draw matched random 50×33 row/column-key control, taking the best of the same sign/reversal family, had empirical exceedance **63.3%** for the source-derived best. No plaintext emerged.
-
-## Decision
-
-The exact 50×33 shape is worth preserving because it is simultaneously compatible with the observed T7 void and with solved-page source counts. However, neither the p50 83..132 row/column key nor the p57-interior × p55-boundary additive matrix produces plaintext, and the rows do not show a shared Caesar-template structure.
-
-Do **not** expand this into arbitrary KDFs, AES modes, offsets, fitted matrix permutations, or other high-dimensional key schedules. The missing ingredient is a source-visible operation that independently selects how the 50 and 33 source streams interact (if they interact at all), or a genuine reason for the 83/133 addressing. If that selector appears, the 50×33 void is a sharply testable target.
+**Retire the “doublet-free 50×33 void” premise.** Any further decoding of this specific shape requires an independent original-authored reason to choose the starting rune, width, key source and operation. Preserve the limited negative results above; do not promote the factorization, postselected addresses or the 50×33 product alone into an authentic decryption path.

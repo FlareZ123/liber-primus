@@ -2,7 +2,7 @@
 "use strict";
 
 /*
- * Bounded T7 33x50 / table-83..132 hypothesis.
+ * Retained, postselected 50x33 table-83..132 negative test (not a doublet-free void).
  *
  * Source inputs:
  *   resources/liber-primus/lp2-corpus.json
@@ -37,14 +37,22 @@ const START = 2739;
 const END = 4389; // half-open; inclusive endpoint is 4388
 const ROWS = 50;
 const COLS = 33;
-if (END - START !== ROWS * COLS) throw new Error("void size mismatch");
+if (END - START !== ROWS * COLS) throw new Error("window size mismatch");
 
 const stream = corpus.pages
-  .slice(0, 55)
+  .slice(0, 56)
   .flatMap(p => p.indices);
 if (stream.length !== N) throw new Error("canonical LP2 length mismatch");
 
 const voidStream = stream.slice(START, END);
+const repeats = [];
+for (let i = 1; i < voidStream.length; i++) {
+  if (voidStream[i] === voidStream[i - 1]) repeats.push(START + i);
+}
+if (repeats.join(',') !== '2740,3140,3852') {
+  throw new Error('original interval repeat inventory mismatch');
+}
+
 
 function ioc(a) {
   const counts = new Array(29).fill(0);
@@ -111,8 +119,16 @@ for (const [codec, key] of [["base60", bytes60], ["base59", bytes59]]) {
 }
 tested.sort((a, b) => b.ioc - a.ioc);
 
+// Fixed null seed and a complete 256-byte key; the earlier 50-byte null
+// was sliced at offset 83 and therefore never supplied valid keys.
+let rngState = 0x3301;
+function uniform() {
+  rngState = (Math.imul(rngState, 1664525) + 1013904223) >>> 0;
+  return rngState / 4294967296;
+}
+
 function randomBest() {
-  const key = Array.from({length: 50}, () => Math.floor(Math.random() * 256));
+  const key = Array.from({length: 256}, () => Math.floor(uniform() * 256));
   let best = -Infinity;
   for (const axis of ["row", "col"]) {
     for (const reversed of [false, true]) {
@@ -131,7 +147,7 @@ const target = tested[0].ioc;
 const ge = random.filter(x => x >= target).length;
 
 console.log(JSON.stringify({
-  interval: { start: START, endInclusive: END - 1, length: END - START },
+  interval: { start: START, endInclusive: END - 1, length: END - START, internalAdjacentEquals: repeats },
   shape: { rows: ROWS, cols: COLS },
   endpoints: { start: START / COLS, end: END / COLS },
   raw_ioc: ioc(voidStream),

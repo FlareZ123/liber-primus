@@ -8,7 +8,7 @@ const corpus = JSON.parse(fs.readFileSync(
   path.join(ROOT, "resources", "liber-primus", "lp2-corpus.json"), "utf8"
 ));
 const transcription = fs.readFileSync(
-  path.join(ROOT, "resources", "lp2-transcription.txt"), "utf8"
+  path.join(ROOT, "resources", "liber-primus", "lp2-transcription.txt"), "utf8"
 );
 const wordFreq = fs.readFileSync(
   path.join(ROOT, "resources", "control", "english_wordfreq_textblob.txt"), "utf8"
@@ -39,10 +39,17 @@ if (p57Interior.length !== 50) throw new Error("p57 interior count");
 if (p55Words.flat().length !== 76) throw new Error("p55 rune count");
 if (p55Boundary.length !== 33) throw new Error("p55 boundary count");
 
-const stream = corpus.pages.filter(p => p.page <= 54).flatMap(p => p.indices);
+const stream = corpus.pages.filter(p => p.page <= 55).flatMap(p => p.indices);
 if (stream.length !== 12956) throw new Error("LP2 length");
 const target = stream.slice(2739, 4389);
-if (target.length !== 1650) throw new Error("T7 void length");
+if (target.length !== 1650) throw new Error("50x33 window length");
+const repeats = [];
+for (let i = 1; i < target.length; i++) {
+  if (target[i] === target[i - 1]) repeats.push(2739 + i);
+}
+if (repeats.join(',') !== '2740,3140,3852') {
+  throw new Error('original interval repeat inventory mismatch');
+}
 
 const primes = corpus.prime;
 const reps = {
@@ -129,10 +136,16 @@ for (const [representation, [rows, cols]] of Object.entries(reps)) {
 results.sort((a, b) => b.charScore - a.charScore);
 
 const rawScore = charScore(target);
+// Deterministic matched null; prior unseeded results were not repeatable.
+let rngState = 0x3301;
+function uniform() {
+  rngState = (Math.imul(rngState, 1664525) + 1013904223) >>> 0;
+  return rngState / 4294967296;
+}
 const randomBest = [];
 for (let draw = 0; draw < 500; draw++) {
-  const rows = Array.from({length: 50}, () => Math.floor(Math.random() * 29));
-  const cols = Array.from({length: 33}, () => Math.floor(Math.random() * 29));
+  const rows = Array.from({length: 50}, () => Math.floor(uniform() * 29));
+  const cols = Array.from({length: 33}, () => Math.floor(uniform() * 29));
   randomBest.push(bestFor(rows, cols).charScore);
 }
 randomBest.sort((a, b) => a - b);
@@ -140,7 +153,7 @@ const targetScore = results[0].charScore;
 const ge = randomBest.filter(x => x >= targetScore).length;
 
 console.log(JSON.stringify({
-  t7_interval: {start: 2739, endInclusive: 4388, length: 1650, shape: [50, 33]},
+  interval: {start: 2739, endInclusive: 4388, length: 1650, shape: [50, 33], internalAdjacentEquals: repeats},
   source_lengths: {p57Interior: 50, p55Boundary: 33},
   raw: {ioc: ioc(target), charScore: rawScore},
   results,
