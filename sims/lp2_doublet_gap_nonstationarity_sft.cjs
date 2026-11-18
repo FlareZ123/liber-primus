@@ -21,7 +21,8 @@ const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
 const master = fs.readFileSync(path.join(
-  root, "resources", "transcriptions", "liber_primus_master.txt"), "utf8");
+  root, "resources", "transcriptions", "liber_primus_master.txt"), "utf8")
+  .replace(/\\r\\n/g, "\\n");
 const corpus = JSON.parse(fs.readFileSync(path.join(
   root, "resources", "liber-primus", "lp2-corpus.json"), "utf8"));
 const grid = JSON.parse(fs.readFileSync(path.join(
