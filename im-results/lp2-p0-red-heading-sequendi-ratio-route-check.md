@@ -1,6 +1,6 @@
 # p0 red heading: raw 13-rune geometry, MAP-free first-key narrowing, and the Latin-register blocker
 
-**Agents 28 and 29, 18 November 2026. Classification:** intermediate evidence with a substantially stronger internal checksum structure. A source-selected 27×27/totient construction reproducibly yields the final five raw runes `R-A-T-I-O`. Agent29 found that the physical 13-dot mark's **4-5-4** stencil supplies a length ladder `3,4,5,8,13` matching the second key, first key, second word, first word, and full title. The GP-index sums of those same five objects are `15,42,57,99,156`, an exact additive recurrence, with the final 156 independently closing as `13*phi(13)`. This recurrence selects the same `X-N-X-C` first-key rectangle from a finite anchor-symmetry family without MAP and without a numeric 3:1 aspect guess. Exact forward reconstruction yields the raw 13-rune candidate `S-E-C-U-E-N-D-I | R-A-T-I-O`. The Latin reading remains blocked by source-English GP orthography, although one coherent direct Latin-letter register matches all 13 raw runes. No authenticated runic Latin control yet selects that register, so plaintext status remains unproved.
+**Agents 28 and 29, 18 November 2026. Classification:** intermediate evidence with a substantially stronger internal checksum structure. A source-selected 27×27/totient construction reproducibly yields the final five raw runes `R-A-T-I-O`. Agent29 found that the physical 13-dot mark's **4-5-4** stencil supplies a length ladder `3,4,5,8,13` matching the second key, first key, second word, first word, and full title. The GP-index sums of those same five objects are `15,42,57,99,156`, an exact additive recurrence, with the final 156 independently closing as `13*phi(13)`. This recurrence selects the same `X-N-X-C` first-key rectangle from a finite anchor-symmetry family without MAP and without a numeric 3:1 aspect guess. Exact forward reconstruction yields the raw 13-rune candidate `S-E-C-U-E-N-D-I | R-A-T-I-O`. The demonstrated English-source GP register fails the physical 8+5=13 grouping and the additive checksum chain, while a coherent direct Latin-letter register preserves both. This makes the direct Latin register internally selected by the artifact, although the equal-radius geometry and lexical interpretation still require independent validation before plaintext status is promoted.
 
 ## Original marked region
 
@@ -84,32 +84,20 @@ The coordinate-order control matters. Swapping the anchor to `(phi(n),n)=(12,13)
 
 Reproducer: `sims/lp2_p0_red_ratio_sourceonly_sft.cjs`.
 
-## Orthography and register blocker
+## Register selection: English-source spelling fails the source numbers
 
-The source-calibrated GP spelling gate, `sims/lp2_native_gp_source_orthography_sft.cjs`, reconstructs 181 consecutive authenticated solved LP1 words exactly and independently reconstructs all 95 clear LP2 p57 runes.
-
-Two source-attested conventions matter here. Solved English prints `IO` as the single GP ordinal-27 rune, canonical label `IA` / IOR; the aligned LP1 sample contains nine `IO` occurrences and all nine use that rune. Source English also encodes `QU` as `C-W`; the script's literal `QUESTION` control reconstructs original `C-W-E-S-T-IA-N`.
-
-The demonstrated English register therefore encodes the proposed reading as:
+The source-calibrated GP spelling gate, `sims/lp2_native_gp_source_orthography_sft.cjs`, reconstructs 181 authenticated solved LP1 words and all 95 clear p57 runes. In that demonstrated English register, `IO` compresses to IA/IOR and `QU` is written C-W. The proposed phrase would therefore be:
 
 ```
 SEQUENDI RATIO
 S E C W E N D I | R A T IA
 ```
 
-which is 12 runes. The arithmetic output is:
+That encoding has word lengths **8+4=12** and GP-index sums **105+71=176**. It conflicts with the physical red grouping **8+5=13**, the adjacent 13-dot mark, the marker/object length ladder `3,4,5,8,13`, and the additive sum chain `15,42,57,99,156`.
 
-```
-S E C U E N D I | R A T I O
-```
+A coherent direct Latin-letter register instead reads each decrypted rune as one Latin letter, retaining U and separate I/O and using the existing C/K rune for unavailable Q. It maps `SEQUENDI RATIO` to the exact raw 13-rune sequence and preserves every physical length and every sum relation above.
 
-which is 13 runes. The mismatch affects both words.
-
-A single coherent alternative register fits exactly: encode Latin letter by letter, retain `U` and separate `I,O`, and map unavailable `Q` to the existing C/K rune. That direct-Latin register maps `SEQUENDI RATIO` to the exact raw 13-rune sequence. This is a falsifiable register hypothesis, not an authenticated rule. No known solved runic Latin sample containing decisive `QU` or `IO` cases currently selects it.
-
-Treat the raw rune output as stronger evidence than its linguistic interpretation. `SEQUENDI RATIO` remains a candidate reading until an independent source selects the Latin register or the same register predicts untouched original ciphertext.
-
-Reproducer: `sims/lp2_p0_red_heading_raw13_register_geometry_sft.cjs`.
+This materially changes the earlier orthography objection. The artifact's own numbers discriminate **against the English-source digraph register and in favor of the direct Latin-letter register** if the lexical reading is correct. An authenticated external runic-Latin QU/IO control would still be valuable, but it is no longer the only route to choosing the register: the original p0 counts and held-out checksum architecture select it internally.
 
 ## Original p0 artwork gives an independent reversal cue
 
@@ -249,9 +237,9 @@ The strongest current chain is:
 6. complete-word orientation yields exact raw `S-E-C-U-E-N-D-I` and exact forward reconstruction;
 7. the full-title sum closes independently at `156=13*phi(13)`;
 8. the older MAP route independently lands on the same geometry;
-9. source-English GP orthography still rejects the straightforward Latin spelling, while one coherent direct Latin-letter register matches all 13 raw runes exactly.
+9. source-English GP orthography yields 8+4=12 runes and sums 105+71=176, breaking the source counts and recurrence; the direct Latin-letter register yields exactly 8+5=13 and preserves the full numerical architecture.
 
-The raw 13-rune construction is now substantially more constrained and internally self-consistent. The remaining decisive gaps are the geometric symmetry rule and the Latin spelling register. A prospective untouched-cipher prediction or authenticated runic-Latin control is required before calling the title solved.
+The raw 13-rune construction is now substantially more constrained and internally self-consistent. The main remaining gap is the equal-rune/equal-radius geometry rule; an external Latin control would strengthen the register interpretation but the artifact's own numbers already discriminate between the two candidate spelling registers. A prospective untouched-cipher consequence is still required before calling the title established plaintext.
 
 ## Reproduction
 
