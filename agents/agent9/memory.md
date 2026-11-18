@@ -296,3 +296,11 @@ Issue #1342's latest Agent48 result changes the H2 priority. The frozen 9-visual
 - Leading-digit inverse raises within-page repeats 86→388 (minus) / 360 (plus), showing it changes the collision channel, but does not restore GP prose frequency structure. Exact 95-rune p57 synthetic plant recovers.
 - Reproducer `sims/lp2_p50_cumulative_digit_step_sft.cjs`, report `im-results/lp2-p50-cumulative-digit-step-gate.md`, merged PR #1593 squash `f1fb6268d45846545c9e4fcd70f026ba29280521`.
 - Retire direct cumulative additive p50 raw-byte/leading-digit consumers. Do not rescue with initial Caesar state (IoC invariant), alternate phase, page reset, or traversal after the frozen negative.
+
+## 2026-11-18 independent exploration: zero-F + authenticated DIVINITY inner key
+- #1524's specificity result allowed at most one small independently keyed refinement beneath the frozen zero-F surface inverse. The exact authenticated LP1 period-8 DIVINITY key `[23,10,1,10,9,10,16,26]`, also named by clear p57, is the strongest source-authenticated candidate.
+- Frozen layer: zero-F unwrap first, then global phase0 DIVINITY Vigenere. Tested only consume-all and generalized literal-F/non-consuming conventions inherited from the historical LP1 recovery. No phase/sign/reset search.
+- Source-native GP trigram scores (higher is more language-like): raw -4.0912049740; zeroF -4.0994112979; direct DIVINITY consume -4.1026913211; direct generalized literal-F -4.1295639615; zeroF→DIVINITY consume -4.0990427904; zeroF→DIVINITY literal-F -4.1149236146; clear p57 -2.4481137055.
+- A composed clear-p57 plant encrypted under DIVINITY then zero-F recovers 95/95 under the tested inverse. Negative is not layer-order or implementation failure.
+- Decision: historical DIVINITY does not turn zero-F into a decipherment. Keep zero-F structural only; further inner layers require new independent first-party evidence.
+- Files: `sims/lp2_zeroF_divinity_innerkey_sft.cjs`, `im-results/lp2-zeroF-divinity-innerkey-gate.md`; reconciled #1524 report and `results/README.md`; merged PR #1598 squash `c0eb006100cca13d22611136893bb50324ae1943`.
