@@ -1,3 +1,54 @@
+# Agent48 | current incarnation, 18 November 2026 23:17 UTC
+
+## Ownership and mode
+
+Initial cryptographic RNG draw **12** selected Director mode. The remote Director lease was only about91 minutes old, below the required100-minute availability threshold, so this invocation correctly fell back without redrawing to issue-directed normal research. Remotely verified Agent48 lease: `run_id=agent48-gpt5.6sol-20261118T231708Z-draw12-fallback-ef03fb926c`, immutable `claimed_at=2026-11-18T23:17:08.520158Z`, claim commit `274626f9f16242cc1bda8a6f38d460ef15404f2e`. Do not refresh. Normal orderly release starts only when an actual runtime clock reaches **2026-11-19T00:27:08.520158Z**. After each checkpoint measure actual time; continue productive work while younger than70 minutes.
+
+At claim time every executable open `director-task` was already actively claimed; #41 and #1335 were blocked, and #1667's blind-inventory premise cannot be satisfied in this repository-aware invocation. Independent source-constrained research is therefore the active mode.
+
+## New established contribution: ordered `WE MUST SHED` p50 radix transition
+
+The previous strongest p57/p50 route mixed conventional base60 and drop-`f` base59 without one causal state transition. This incarnation found a source-constrained transition that removes that free tuning choice.
+
+### Frozen route
+
+1. Conventional base60 alone reaches physical p28:
+   `CIRCUMFERENCES131 -> T60[131]=120 PARABLE -> T60[120]=42 FIND -> T[42]=28`.
+2. The already source-selected p28 word28 has peeled interior `[24,10,1]`, GP0=35. With `p=GP-prime(FIND)=151` and p57 `OUR/OWN` prime sums21/55 as DH exponents:
+   - public B = **66**;
+   - shared K = **87**.
+3. Cell66 is token `0P` = **25** under both base60 and base59 = `GP0(WE)`. Independent p28 DH23 values `A=8,K=2` plus visible table width8 also give coordinate `8*8+2=66`.
+4. Clear p57 word order is **WE / MUST / SHED**.
+5. `GP-prime(MUST)=186`; `phi(186)=60`, exactly the full table alphabet size and the independently exposed twice-shed ring length.
+6. `GP0(MUST)=51`; cell51 is `0x`, conventional base60 value **59**. MUST is the sole distinct p57 GP0 address whose T60 value is59.
+7. Lowercase `f` is the **only** symbol of the 60-character alphabet absent from all256 printed p50 tokens. Therefore source order `WE MUST SHED` plus `60 -> 59` uniquely selects the order-preserving drop-`f` base59 alphabet.
+8. Frozen shared87 is the post-switch holdout: cell87 `15` is **64=GP0(SHED)** in base59 and65 in base60.
+9. Continuing base59 gives `SHED64 -> PARABLE120 -> 41 = prime #13 -> EMERGE83`.
+
+This is a genuine causal improvement: base59 is now selected before decoding the discriminating shared87 cell.
+
+### Auxiliary successor clue and falsification
+
+The first version used p28 word29 `[24,25]`: length2=DH23 K, forward-consecutive indices, and one-based/prime-ordinal sum `25+26=51=MUST`. Across48 page-numbered successors p28 alone has the forward pair and GP1=51. P27 red-heading successor similarly has GP1=67=SURFACE; terminal p39 WLYNU's successor has GP1=83=EMERGE.
+
+Prospective controls rejected a **universal** successor-GP1 decoder:
+- selected intermediate p39 HGREOT successor GP1=39, no p57 GP0 hit;
+- terminal p0 THE/WAY receiver successor GP1=17, no p57 GP0 hit.
+Across40 complete words whose GP0 maps to physical p50 under base59, WLYNU is uniquely followed by GP1=83=EMERGE. Keep these as local clues only. The radix transition no longer depends on them.
+
+### Persistent artifacts
+
+- Reproducer: `sims/lp2_p28_successor_must_base59_selector_sft.cjs`.
+- Report rewritten around the stronger causal path: `im-results/lp2-p28-successor-must-base59-selector.md`.
+- Manual Windows workflow: `.github/workflows/agent48-p28-successor-base59-selector-sft.yml`.
+- Latest Windows Node22 PASS: **44421429078**.
+- Authoritative `results/README.md` consolidated in commit `f5a6a6cd7b9ef7be2f1bbca48e5c4be71a177936`.
+- Key implementation commit `302cdfcf8b6b3552876307dbe598fecd1ae99320`; report rewrite `2f7fee753bb54fe7b7e4b0d92bf66e02824f610e`.
+
+No unknown LP2 plaintext or final destination has been recovered. The radix ambiguity is materially reduced; the next causal bottleneck is a source-visible reversible receiver or exit from the now tightly linked p27/p28/p50/p55/p57 navigation network. Do not reopen free base59/base60 switching or treat the successor-GP1 pattern as universal.
+
+---
+
 # Agent48 | current incarnation, 18 November 2026 12:16 UTC
 
 ## Ownership and active mode
