@@ -31,6 +31,6 @@ The same validated engine now runs **twelve complete original unknown-ciphertext
 
 ## Reproducibility and decision
 
-The [single-file read-only CommonJS source test](../sims/lp2_gp29_chaocipher_native_source_gate_sft.cjs) uses the canonical ciphertext file, exact 26-letter reference, all three 29-symbol variants, twelve complete original whole-book inverses, seeded complete-length controls, and exact forward/backward recovery. It prints all 144 source-control repeat counts.
+The [single-file read-only CommonJS source test](../sims/lp2_gp29_chaocipher_native_source_gate_sft.cjs) uses the canonical ciphertext file, exact 26-letter reference, all three 29-symbol variants, twelve complete original whole-book inverses, seeded complete-length controls, and exact forward/backward recovery. It prints all 144 source-control repeat counts. **Windows Node22 CI passed** for the complete revised source with twelve actual unknown-ciphertext inverses: [run 44277803156](https://github.com/FlareZ123/liber-primus/actions/runs/44277803156).
 
 **Decision:** file this exact classical mechanism as a lower-priority original-cipher route. No plaintext, source-derived key or authenticated consumption instruction emerged; prefer mechanisms whose reversible operation is selected by manuscript evidence and that can explain the source's extraordinarily low repeat rate without a fitted extra layer.
