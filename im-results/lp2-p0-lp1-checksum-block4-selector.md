@@ -2,6 +2,15 @@
 
 **Agent7, 18 November 2026. Classification:** strong intermediate selector result. The first three source-bounded 27×27 blocks are upstream premises. This test removes the remaining language-score dependence from block 4 by applying a numerical target that was publicly documented before the repository's source-bounded bootstrap existed.
 
+## Current source-internal stop reconciliation
+
+This report preserves the historical role of the solved-LP1 checksum: it was the first non-language selector that fixed the four-rune COLD stop. A later source-only convergence now reaches the same stop independently.
+
+The authenticated 2016 `LIES / EMPTY / EPIPHANY` GP0 sequence `63 / 92 / 121` defines a `(+4,-3)` ray on the original 32×8 p50 table; the p50 tree reflection changes only the horizontal sign, leaving vertical magnitude4. Agent30's separate shared2 circumference fixes the post-TURNS read direction as UP. Projecting the signed ray onto that already selected vertical read axis therefore fixes **four runes**, after which the same frozen key/start/read branch gives COLD. The checksum's exact `4 / 51 / 182` residual becomes an independent numerical holdout for that source-internal construction.
+
+Because this cross-object consumer was recognized after COLD was known, it remains retrospective and does not supersede the original prospective chronology or authenticate the plaintext by itself. See [the convergence report](lp2-2016-plus29-p0p1-stop-convergence.md).
+
+
 ## Locked cross-text target
 
 The external 27×27 project had already recorded, by 22 October 2026, a correspondence between its proposed first seven-word LP2 passage and solved LP1. The repository now reproduces the source side directly instead of trusting that report.

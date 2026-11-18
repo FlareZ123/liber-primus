@@ -133,7 +133,19 @@ The selected ciphertext start is `(14,7)`, and the ring selects reading upward.
 
 No dictionary or p1 word score is used for these choices.
 
-## The locked checksum supplies the stop
+## Signed +29 ray supplies the stop without solved-LP1 material
+
+A separate first-party source now supplies the same four-rune stop. The authenticated 2016 consecutive words `LIES / EMPTY / EPIPHANY` have GP0 sums `63 / 92 / 121`, the signed message's unique consecutive arithmetic progression. On the original p50 32×8 table those addresses move twice by `(+4,-3)`; the independently selected horizontal tree reflection changes this to `(+4,+3)`. The vertical component magnitude is therefore fixed at **4** under either source orientation.
+
+The shared2 circumference above already fixes the post-TURNS read direction as **UP**, so take the signed direction component along that selected axis. Its magnitude4 supplies a four-cell stop without consulting p1 plaintext or the solved-LP1 checksum. The same DOWN key center, LEFT start, UP read and `U-H-H` key then decrypt the four original cells to **COLD** and reconstruct them exactly.
+
+This is a retrospective convergence because the axis-component consumer was formulated after COLD was known. It does not retroactively pass #1646. It does, however, remove the LP1 checksum as a necessary mechanical stop input in this one construction. The checksum's residual `4 runes / index51 / GP-prime182` becomes an independent numerical confirmation.
+
+The rule should not be generalized: the later source-selected I MAY block is four runes on a horizontal read, while the same signed ray has horizontal magnitude3. A future promotion requires a fresh untouched transition whose receiver/read axis is source-fixed before applying this stop logic.
+
+[Dedicated report](lp2-2016-plus29-p0p1-stop-convergence.md) · [SFT](../sims/lp2_2016_plus29_p0p1_stop_convergence_sft.cjs).
+
+## The locked checksum independently confirms the stop
 
 The earlier LP1 gate supplies the independent numerical stop condition.
 

@@ -94,6 +94,17 @@ The first ray cell, LIES=63, has table byte51, which currently lands inside p0 c
 
 Reproducer: `sims/lp2_2016_lies_empty_epiphany_direction_sft.cjs`.
 
+## Retrospective p0→p1 four-rune stop consumer
+
+The +29 ray has a second bounded consumer once combined with the independently reconstructed shared2 DH circumference. That ring fixes the frozen post-TURNS directions as **DOWN / LEFT / UP**, with UP the ciphertext read axis. The signed-word ray is `(+4,-3)` on the source 32×8 table and `(+4,+3)` under the source-selected horizontal tree reflection, so its vertical component magnitude is invariant at **4**. Using the component along the already selected UP axis therefore fixes a four-rune stop before reading p1 letter values.
+
+With the ring-selected DOWN key center, LEFT start and UP read, the four cells decrypt under the frozen `U-H-H` key to **C-O-L-D** and re-encrypt exactly. Their index sum51 and GP-prime sum182 independently match the pre-existing solved-LP1 checksum residual. This makes that checksum corroboration rather than a mechanical stop dependency for this construction.
+
+The assignment was recognized after COLD was already known, so it is retrospective source convergence rather than the prospective blind test requested by #1646. It is also not a universal block-length rule: the later source-selected I MAY branch is four runes on a horizontal read, whereas this ray's horizontal magnitude is3.
+
+[Full convergence report](lp2-2016-plus29-p0p1-stop-convergence.md) · [SFT](../sims/lp2_2016_plus29_p0p1_stop_convergence_sft.cjs).
+
+
 ## The zero-based EMPTY closure
 
 The two-rune target word itself gives a stronger typed loop:
