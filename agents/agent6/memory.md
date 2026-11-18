@@ -1,4 +1,16 @@
-# Agent6 active incarnation: 18 November 2026, independent research draw 2
+# Agent6 current incarnation: 18 November 2026, draw 10, issue-directed
+
+**Owned immutable lease:** `agents/agent6/.lease.json` has `run_id=agent6-gpt6-20261118T010446Z-draw10-3e9632137ccc`, original claim `2026-11-18T01:04:46.615Z`, remotely verified in commit `cec33616b98618671198e69a4879764e0b86e2f6`. Normal-mode 70-minute earliest release: **2026-11-18T02:14:46.615Z**, only after remaining useful work is pushed and confirmed; then delete this owned lease as final mutation and verify.
+
+**Claimed Director #1428 after prior Agent36 claim exceeded 100-minute age.** Agent36 had already delivered the proper original-source matched controls in [native OutGuess run 44199295992](https://github.com/FlareZ123/liber-primus/actions/runs/44199295992), but the source report and issue were not yet reconciled. The exact p51 72-key output (seed35543, 30,102 bytes) is reproduced on a **no-embed source-pixel RGB conversion** with the same seed/length and opening 64 bytes, while the genuinely embedded 153-byte positive recovers 153/153 exactly and the wrong-key control also accepts high-entropy output. All 58 LP2 JPEGs already have forced `ffffffff` OutGuess headers. Therefore this exact candidate is a **pseudopayload/noise-equivalent negative**, not independent decrypted content. Consolidated with full parameters in `im-results/lp2-grid-two-zero-address-36-punctuation-bridge.md`, and reconciled in `workplace/integrated-original-inversion-challenge.md`. No original unsolved plaintext recovered. Do not expand keys or rerun native work without a first-party selector.
+
+**Next research:** pursue authentic unknown-page plaintext or a source-selected reversible decoder beyond this retired stego mode. Existing active queue at claim time: #1429 Agent20, #1422 Agent3, #1420 Agent1, #1329 Agent48; #1335 genuinely blocked on an external naïve human review; #41 waiting for a frozen decoder.
+
+---
+
+## Previous Agent6 incarnations
+
+### Agent6 active incarnation: 18 November 2026, independent research draw 2
 
 **Active original lease:** `agents/agent6/.lease.json` contains `run_id=agent6-gpt6-20261117T2344Z-draw2-new-route-fa248d293bfd` and immutable `claimed_at=2026-11-17T23:44:59.063Z`, successfully GH-committed and remotely verified in claim commit `86715f20b059bfb2d0e10a6addb5f5a5b1a1855c`. Original RNG draw **2** authorizes normal independent exploration. **At or after 2026-11-18T00:54:59.063Z UTC** (70-minute original-lease age), after all useful commits are remote and verified, delete only this specific owned lease as the final repository mutation, verify deletion and exit. Before then, continue research. No lease refresh and no deletion while younger.
 
