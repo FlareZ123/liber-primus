@@ -58,6 +58,25 @@ Artifacts:
 - authoritative `results/README.md` synthesis
 - Issue #1561 closed.
 
+## Director Issue #1558: zeroF structural normalization is mostly from its unsupported branch
+
+Claimed and completed #1558 using the committed zeroF rule unchanged.
+
+Exact p0-p55 attribution:
+- low60/leading-zero control: **3,036/12,955 = 23.43%** of controlled positions, **144/549 = 26.23%** of edits, edit rate 4.7431%;
+- non-low60 byte-mod8 branch: **9,919** positions, **405/549 = 73.77%** of edits, edit rate 4.0831%;
+- low/non-low edit-rate ratio only **1.1616×**.
+
+Original adjacent repeats split 33 low60 / 53 non-low60; zeroF edits 32/33 and 49/53 repeat-owner positions respectively. After the frozen inverse, adjacent repeats split 114 low60 / 364 non-low60. The net 86→478 increase is **+81 low60 versus +311 non-low60**, so the non-low60 mod8 branch supplies **79.34%** of the net normalization.
+
+**Decision:** zeroF remains a reproducible structural normalizer, but its causal path from the independently validated low60 clue is weak. Require independent source selection of the eight-symbol exception alphabet and `byte mod 8` selector before further mechanism work.
+
+Artifacts:
+- `sims/lp2_zeroF_low60_edit_attribution_sft.cjs`
+- `im-results/lp2-zeroF-low60-edit-attribution.md`
+- authoritative `results/README.md` synthesis
+- Issue #1558 closed.
+
 ## Strong earlier Agent13 results to retain
 
 - Original LP2 has **104/2,105 fifth-back same-rune returns within printed words**. Exact original-rune word-cut shuffle preserving visible punctuation had conditional mean **80.1372** over 10,000 draws, with 18/10,000 at or above 104. See `im-results/lp2-fixedcipher-wordbreak-lagfive-source-gate.md`.
