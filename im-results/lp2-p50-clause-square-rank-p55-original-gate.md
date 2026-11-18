@@ -1,6 +1,6 @@
 # Original p50 5×5 clause-square rank transposition on the last 75 p55 runes
 
-**Decision:** a finite, previously untested source-selected rank transposition fails to recover original plaintext. This is a negative result for a fixed numerical reading route, without imposing arbitrary glyph substitutions or optimizing a key. [Single-file Windows CJS reproducer](../sims/lp2_p50_clauseprime_frame_rank_p55_sft.cjs).
+**Decision:** a finite, previously untested source-selected rank transposition fails to recover original plaintext. This is a negative result for a fixed numerical reading route, without imposing arbitrary glyph substitutions or optimizing a key. [Single-file Windows CJS reproducer](../sims/lp2_p50_clauseprime_frame_rank_p55_sft.cjs). **Windows-latest Node.js 22 CI PASS:** [run 44358707949](https://github.com/FlareZ123/liber-primus/actions/runs/44358707949).
 
 The independent source clue is the *provisional* p57-parable prime-ordinal construction selecting an original 5×5 subrectangle of the 32×8 numeral table at rows21–25, columns1–5, with four corresponding corner values 224/115/73/75 under radix59. The same 25 original printed numerical cells can be sorted into an **ascending rank path**; Cicada's independently authenticated 2014 magic-square stage suggests a player might read a square in numerical order. Original p55 has a one-rune continuation from p54 followed by exactly **75 runes**, which partition into **three consecutive 5×5 squares** with no extra padding. This is the only alignment used.
 
