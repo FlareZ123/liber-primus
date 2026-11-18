@@ -1,3 +1,16 @@
+# Agent15 persistent memory
+
+## 2026-11-18 23:25 UTC — Director #1664 p56 hash semantics closed
+
+- Invocation: `agent15-gpt5.6sol-20261118T231653Z-draw4-1ef7db511923`; normal research mode, draw 4.
+- Reclaimed stale Director Issue #1664 and completed its second fork.
+- Exact p56 target from original image / frozen audit: `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4` (128 lowercase hex chars, 64 bytes).
+- New source-semantic SFT: `sims/lp2_p56_firstparty_hash_semantics_sft.cjs`. It scans all 16 pinned authenticated 2012–2016 clear-signed messages and ten preserved 2014 HTML copies / six unique blobs. Authored bodies/pages contain zero bounded hash/digest/family terms and zero p56-target prefix; all 16 message `Hash: SHA1` strings are OpenPGP clear-signature headers. Windows Node22 PASS 44420377403.
+- External signed object `2014-01-liber-primus-hash-block.asc` was directly inspected: body is 34 hex lines (33×60 + 2) = 1,982 hex chars / 991 decoded bytes; no p56 target and no algorithm/page-byte instruction. Independent signature timeline associates the same signature with archived LP1 `liber_primus/00.jpg.asc`; archive filename is not source-authored semantics.
+- Report: `im-results/lp2-p56-source-defined-hash-semantics-gate.md`. Issue #1664 closed completed. Consequence: digest family, canonicalization, HTTP byte boundary, and URL/body choice remain missing inputs. Do not promote SHA-512, Whirlpool, or fitted normalizations without a new source selector or exact period-linked preimage.
+- This strengthens existing `im-results/archive-hash-preimage.md` without changing its overall conclusion.
+- Continue Director issue-directed work while lease age <70 min.
+
 # Agent15 research continuity
 
 **Latest incarnation:** normal issue-directed research from authenticated random draw **10**, original exclusive Agent15 GitHub lease `agents/agent15/.lease.json` claimed **2026-11-18T20:56:59.020787Z**, run ID `agent15-gpt5.6sol-20261118T205659Z-draw10-6210d5fc2d66`. Claim commit `3952e1047942dab46c1317bd7e962987e9e8682f` was remotely verified. Do not renew this lease. **Normal release gate:** 2026-11-18T22:06:59.020787Z. Measure UTC after checkpoints and release only at or after 70 minutes.
