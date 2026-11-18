@@ -85,6 +85,25 @@ Its failure to outperform value-mod8 consistently means source simplicity alone 
 
 Shared CI PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44396002989
 
+
+## Solved-p56 holdout: the source-visible selector does not rescue a universal layer
+
+The physical-column rival was then carried unchanged into the authenticated solved p56 holdout. This is a stronger discriminator than the p0-p55 normalization statistics because p56 has a unique complete historical path in the repository's prime/totient decoder family.
+
+Under the continuous predecessor-cell clock, the physical-column surface inverse changes exactly the same four p56 ciphertext positions as the value-mod8 selector:
+
+`[16, 18, 25, 74]`.
+
+The untouched p56 source has exactly one 85/85 historical solution:
+
+`phi, sign -, start 0, literal-F mask 8`.
+
+After the physical-column inverse there are **zero** 85/85 paths. The best candidate remains `phi, sign -, start 0`, but reaches only **81/85** and mismatches exactly those four changed positions; its altered displayed-F mask is 16. An exact planted outer-layer roundtrip restores the source and recovers the unique 85/85 historical path, so this failure is caused by the source evidence rather than implementation mismatch.
+
+This closes the obvious selector escape hatch. The two surviving source-simple nonzero selectors, `base60 byte mod8` and literal physical column, disagree on 175/196 non-leading-zero table cells and have similar p0-p55 structural effects, yet **both destroy the same four authenticated p56 positions and the same unique solved-page path**. The universal/book-wide zeroF interpretation is therefore rejected independently of this selector ambiguity. Any historical use would still need an independently visible p55→p56 mode switch or be section-local.
+
+Reproduction: `sims/lp2_zeroF_column_solved_p56_holdout_sft.cjs`. CI PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44396834415
+
 ## Consequence
 
-Keep the eight-symbol register as source-motivated. Treat the nonzero selector as unresolved. Do not choose between value-mod8 and physical-column indexing from the current structural effect, and do not expand to a larger selector menu without a new source clue.
+Keep the eight-symbol register as source-motivated. Treat the nonzero selector as unresolved. Do not choose between value-mod8 and physical-column indexing from the p0-p55 structural effect, and do not expand to a larger selector menu without a new source clue. The authenticated p56 holdout now shows that **neither** of these two source-simple selectors supports a universal/book-wide surface layer; selector choice cannot be used to rescue that interpretation.
