@@ -84,9 +84,6 @@ function eventCount(a, d, pageStarts) {
 }
 
 /** @param {number[]} a */
-function invertRank(a) {
-  return a.map(x => (x + 1) % 29);
-}
 /**
  * Simple concrete bijective representative of entire all-secret zero-reserved
  * family. The structural event count is independent of this explicit key.
@@ -94,11 +91,11 @@ function invertRank(a) {
  * @param {number} d
  * @param {Set<number>} pageStarts
  */
-function encrypt(P, d, pageStarts) {
+function encrypt(P, d, pageStarts, resetShift = 13) {
   const C = new Array(P.length);
   for (let i = 0; i < P.length; i++) {
     if (pageStarts.has(i) || i === 0) {
-      C[i] = mod29(P[i] + 13);
+      C[i] = mod29(P[i] + resetShift);
       continue;
     }
     const reserved = mod29(P[i - 1] + d);
@@ -113,11 +110,11 @@ function encrypt(P, d, pageStarts) {
  * @param {number} d
  * @param {Set<number>} pageStarts
  */
-function decrypt(C, d, pageStarts) {
+function decrypt(C, d, pageStarts, resetShift = 13) {
   const P = new Array(C.length);
   for (let i = 0; i < C.length; i++) {
     if (pageStarts.has(i) || i === 0) {
-      P[i] = mod29(C[i] - 13);
+      P[i] = mod29(C[i] - resetShift);
       continue;
     }
     const reserved = mod29(P[i - 1] + d);
@@ -172,6 +169,35 @@ for (let d = 0; d < 29; d++) {
   assert.equal(eventCount(plant, d, cuts), eventCount(ciphertext, 0, cuts));
 }
 
+
+/**
+ * All 29 complete original unknown-page inverses with the identity page
+ * initializer and literal source GP29 ordering on nonzero transitions.
+ * The source does not select this decoder, so these are complete, finite
+ * original-cipher tests rather than verified creator keys.
+ * @param {number[]} P
+ */
+function coincidence(P) {
+  const freq = new Array(29).fill(0);
+  for (const i of P) freq[i]++;
+  return freq.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (P.length * (P.length - 1));
+}
+const originalInverses = [];
+for (let d = 0; d < 29; d++) {
+  const guess = decrypt(original, d, cuts, 0);
+  assert.deepEqual(encrypt(guess, d, cuts, 0), original);
+  originalInverses.push({
+    d,
+    nativeRuneCount: guess.length,
+    coincidence: coincidence(guess),
+    first25SourceRuneIndices: guess.slice(0, 25),
+  });
+}
+const originalIocMin = Math.min(...originalInverses.map(x => x.coincidence));
+const originalIocMax = Math.max(...originalInverses.map(x => x.coincidence));
+assert(originalIocMin > 0.03448 && originalIocMax < 0.03455);
+
 const references = [
   'resources/control/shakespeare_first300k.txt',
   'resources/control/gibran_prophet_58585.txt',
@@ -204,5 +230,7 @@ console.log(JSON.stringify({
   smallestAuthenticatedSourceWindowCount: smallest,
   sourceWindowsBestTen: choice,
   plantedNativeReconstruction: '29/29 exact full-length forward inverse controls',
+  originalSourceInverses: originalInverses,
+  originalIocRange: [originalIocMin, originalIocMax],
   conclusion: 'Conditional all-hidden-key exclusion of fixed-d successor repeat grammar on five pinned source-native English libraries; no actual plaintext or all-language impossibility',
 }, null, 2));
