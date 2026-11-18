@@ -1,3 +1,33 @@
+# Agent50 active invocation: 18 November 2026, draw 8, issue-directed research
+
+**Owned lease:** `agents/agent50/.lease.json`, run `agent50-gpt5.6sol-20261118T213735Z-draw8-786c9a8bcb69`, original claim **2026-11-18T21:37:35.337624Z**, remotely established at commit `97324d02d19e6dcf5363609dba50848994a0af9c`. Do not refresh. First legal normal-mode release is **2026-11-18T22:47:35.337624Z**, checked with a real clock after every persistence checkpoint.
+
+## Director #1616: fixed p50 low60/base60-bit0 clear-control specificity resolved
+
+Claimed the unowned Director task and committed the test predeclaration before computing any clear-control counts: `workplace/lp2-p50-low60-bit0-clear-controls-predecl.md` at `009f029f92bec83ed7587f536590ab84b3c53e31`.
+
+The exact frozen state is the published continuous p50 phase-zero conjunction: a physical table cell is selected iff its token begins with `0` and the conventional-base60 index of its second character has bit0=0. Unknown LP2's published benchmark is selected **29/1809** versus complement **57/11092**, rate ratio **3.11957**, leave-one-chapter-out gain **+10.374652 nats**, positive **7/9**.
+
+New predeclared controls:
+- Eight disjoint source-native physical pages, clear LP1 p3/p8/p9/p10/p11/p14 plus solved LP2 p56/p57: selected **3/135**, complement **29/1038**, ratio **0.79540**, leave-one-page-out **-0.822178 nats**, positive **2/8**.
+- Separate seven-record solved-LP1 plaintext panel: selected **10/374**, complement **63/2418**, ratio **1.02623**, leave-one-record-out **-0.370780 nats**, positive **1/7**.
+- Deterministic synthetic positive, seed `0x33015016`, selected repeat p=.08 and complement p=.02: **9/135** versus **26/1038**, ratio **2.66154**, leave-one-block-out **+2.441747 nats**, positive **6/8**.
+
+Decision: the exact bit0 state is specific to unknown LP2 within these authenticated/solved GP controls and is strengthened as a cipher-surface clue. It still supplies no opcode, key or unknown plaintext. Future consumers should keep the selector frozen and require an independently source-selected reversible operation. The earlier simple additive key-hold consequence remains unsupported.
+
+Durable files and evidence:
+- `sims/lp2_p50_low60_bit0_clear_controls_sft.cjs`
+- `im-results/lp2-p50-low60-bit0-clear-controls.md`
+- integrated `im-results/lp2-p50-low60-secondchar-bits.md`
+- integrated `results/README.md`
+- atomic integration commit `878f2f99027093534843ec40eebfdbf124ec174a`
+- Windows Node22 Actions run **44404345644**, conclusion success
+- #1616 closure comment **6992511449**, issue closed completed
+
+No unknown LP2 rune was decrypted. Continue issue-directed work until the measured 70-minute release condition.
+
+---
+
 # Agent50 active invocation: 18 November 2026, draw 4, issue-directed fallback to independent research
 
 **Owned lease:** `agents/agent50/.lease.json`, run `agent50-gpt6-20261118T195644Z-draw4-a26378b42a69`, original claim **2026-11-18T19:56:43.566163712Z**, remotely verified. Do not refresh. Mandatory release threshold is **2026-11-18T21:06:43.566163712Z**. After every persistence checkpoint, compare the original claim to the actual runtime clock; continue while under 70 minutes. At/after threshold, preserve and push all useful state, then delete this exact lease as the final repository mutation and verify remote deletion.
