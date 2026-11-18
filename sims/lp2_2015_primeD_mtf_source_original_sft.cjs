@@ -101,22 +101,74 @@ const englishControls=[
   ['Shakespeare','resources/control/shakespeare_first300k.txt'],
   ['Emerson','resources/control/emerson_essays_2944.txt']
 ];
+/**
+ * Every inverse Burrows-Wheeler transform is a permutation of the given
+ * last-column tape. Its choice of primary row changes order, never the 29
+ * symbol counts. The same invariant applies if BWT follows MTF processing.
+ * @param {number[]} values
+ * @returns {number[]}
+ */
+function symbolCounts(values){
+  const counts=Array(29).fill(0);
+  for(const v of values)counts[v]++;
+  return counts;
+}
+/**
+ * Minimum single-rune substitutions required to reconcile two multisets;
+ * every substitution decrements one bucket and increments another.
+ * @param {number[]} left
+ * @param {number[]} right
+ * @returns {number}
+ */
+function substitutionFloor(left,right){
+  return left.reduce((total,x,j)=>total+Math.abs(x-right[j]),0)/2;
+}
+const bwtCandidates=[
+  {name:'historical D',values:d},
+  ...(['decode','encode'].flatMap(mode=>[false,true].map(pageReset=>({
+    name:mode+(pageReset?' per-page':' chapter'),
+    values:mtf(d,mode,pageReset)
+  }))))
+];
+const bwtHistograms=bwtCandidates.map(c=>symbolCounts(c.values));
+for(const c of bwtCandidates)assert.equal(c.values.length,729);
 const benchmark=[];
 for(const [name,file] of englishControls){
   const native=encodeSourceNativeGP(read(file));
   const scores=[];
-  for(let i=0;i+729<=native.length;i+=113) scores.push(ioc(native.slice(i,i+729)));
+  const minimumSubstitutions=Array(bwtCandidates.length).fill(Infinity);
+  for(let i=0;i+729<=native.length;i+=113){
+    const sample=native.slice(i,i+729);
+    scores.push(ioc(sample));
+    const histogram=symbolCounts(sample);
+    for(let j=0;j<bwtCandidates.length;j++){
+      minimumSubstitutions[j]=Math.min(minimumSubstitutions[j],
+        substitutionFloor(histogram,bwtHistograms[j]));
+    }
+  }
   assert(scores.length>0);
   scores.sort((a,b)=>a-b);
   benchmark.push({name,windows:scores.length,min:scores[0],
-    median:scores[Math.floor(scores.length/2)],max:scores.at(-1)});
+    median:scores[Math.floor(scores.length/2)],max:scores.at(-1),
+    minSymbolSubstitutionsForAnyBWTPrimary:minimumSubstitutions});
 }
+assert.deepEqual(benchmark.map(x=>x.minSymbolSubstitutionsForAnyBWTPrimary),[
+  [243,252,239,245,242],
+  [225,242,228,244,240],
+  [235,248,227,247,244]
+]);
 console.log(JSON.stringify({
   status:'Original Feb2015 p0-2 prime-delta first-stage preserved; no direct standard MTF plaintext',
   originalD:{count:d.length,adjacentRepeat:adjacent(d),ioc:ioc(d),
     first29:d.slice(0,29)},
   frozenMTF:specimens,
   nativeGPWindows:benchmark,
+  allPrimaryBWTConstraint:{
+    statement:'Inverse BWT of a fixed last-column tape only permutes symbols; its primary index cannot change the full 729-symbol histogram or IoC',
+    candidates:bwtCandidates.map((c,j)=>({name:c.name,
+      wholeChapterIoc:ioc(c.values),
+      nativeECount:bwtHistograms[j][18]}))
+  },
   sourceNative729Plant:true,
   authenticUnknownPlaintextRecovered:false
 },null,2));
