@@ -118,6 +118,24 @@ function matchedEnglish(sourceWords, slots) {
     return pool[at % pool.length];
   });
 }
+/** Single-rune words: number of different D values for each exact prev length. */
+function singletonSpectrum(cipher,words) {
+  const groups=new Map(); let at=0;
+  for(let w=0;w<words.length;w++){
+    if(words[w].length===1&&at>0){
+      const prev=words[w-1].length;
+      if(!groups.has(prev))groups.set(prev,new Set());
+      groups.get(prev).add(mod(cipher[at]-cipher[at-1]));
+    }
+    at+=words[w].length;
+  }
+  return Object.fromEntries([...groups].map(([k,v])=>[k,v.size]));
+}
+function singletonPlainValues(plain,words) {
+  const values=new Set();let at=0;
+  for(const w of words){if(w.length===1)values.add(plain[at]);at+=w.length;}
+  return [...values];
+}
 function main() {
   const parsed = parseLP2Words(read("resources/liber-primus/lp2-transcription.txt"), 55);
   const words = parsed.words.map(w => [...w.runes].map(r => {
@@ -129,6 +147,11 @@ function main() {
   assert.deepEqual([words.length, cipher.length, parsed.crossPageWords], [2896,12956,32]);
   const repeat = cipher.slice(1).filter((n, j) => n === cipher[j]).length;
   assert.equal(repeat, 86);
+  const singleton=singletonSpectrum(cipher,words);
+  assert.equal(words.filter(w=>w.length===1).length,83);
+  assert.equal(singleton["2"],12);
+  assert.equal(singleton["3"],14);
+  assert.equal(Math.max(...Object.values(singleton)),14);
   const expected = {
     len:[14,1.0454393691130948],
     pos:[14,1.041502784295366],
@@ -155,22 +178,28 @@ function main() {
     assert.equal(plain.length, cipher.length);
     const actualIoC = scaledIoC(plain);
     const plantedCipher = plant(plain, info, "prev-mod5");
+    const single=singletonPlainValues(plain,words);
+    assert.ok(Math.max(...Object.values(singletonSpectrum(plantedCipher,words)))<=single.length);
     assert.ok(capacity(plantedCipher, info, "prev-mod5").maxScaledIoC + 1e-9
       >= actualIoC);
-    return {reference:file, scaledIoC:actualIoC, exactPositive:true};
+    return {reference:file, scaledIoC:actualIoC, exactPositive:true,
+      singletonGlyphs:single.map(i=>GP.translit[i])};
   });
   const min = Math.min(...controls.map(c => c.scaledIoC));
   assert.ok(Math.abs(min - 1.7605515160477245) < 1e-9);
   assert.ok(bounds["prev-mod5"].maxScaledIoC < min);
   assert.ok(bounds["prev-exact"].maxScaledIoC > min);
+  assert.equal(Math.max(...controls.map(c=>c.singletonGlyphs.length)),6);
   const output = {original:{runes:cipher.length, words:words.length,
     crossingWords:parsed.crossPageWords, adjacentRepeats:repeat},
-    allSecretMaximum29TimesIoC:bounds, matchedEnglishControls:controls,
-    decision:"six coarser word-clock families fail pinned GP-English " +
-      "register; exact preceding-word length survives frequency gate only",
+    allSecretMaximum29TimesIoC:bounds, observedSingletonDifferences:singleton,
+    matchedEnglishControls:controls,
+    decision:"all seven word-clock families fail GP-native English: " +
+      "exact-predecessor variant fails singleton-word injectivity",
     authenticatedUnknownPlaintext:false};
   console.log(JSON.stringify(output,null,2));
   return output;
 }
 if (require.main === module) main();
-module.exports = {main,state,capacity,metadata,permutation,plant,matchedEnglish};
+module.exports = {main,state,capacity,metadata,permutation,plant,matchedEnglish,
+  singletonSpectrum,singletonPlainValues};
