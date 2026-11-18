@@ -66,7 +66,18 @@ assert.ok(hits.every(x=>x.sign===-1));
 const distinct=[...new Set(hits.map(x=>x.text))].sort();assert.deepEqual(distinct,["IDNEUCES","LPXNGDROU","SECUENDI","UORDNGXPL"].sort());
 const wordHits=hits.filter(x=>x.text==="SECUENDI");assert.equal(wordHits.length,2);
 assert.ok(wordHits.every(x=>x.reverse&&x.key.map(tr).join("-")==="X-N-X-C"));
-const firstPlain=wordHits[0].plain;
+
+// Source-motivated fixed orientation, checked without a language scorer:
+// p0's original artwork independently demonstrates 180-degree reversal;
+// retain the same subtraction sign as the source-only second word;
+// use the ordinary UL->UR->LR->LL clockwise rectangle convention.
+const naturalKey=keyCandidates[0].vals;
+assert.deepEqual(naturalKey.map(tr),["X","N","X","C"]);
+const naturalCipher=[...words[0].gp_indices].reverse();
+const naturalPlain=naturalCipher.map((v,i)=>mod(v-naturalKey[i%4]));
+assert.equal(sum(naturalPlain),targetP1);
+assert.equal(naturalPlain.map(tr).join(""),"SECUENDI");
+const firstPlain=naturalPlain;
 assert.deepEqual(firstPlain.map((v,i)=>mod(v+wordHits[0].key[i%4])),[...words[0].gp_indices].reverse());
 
 // Held-out closure: selection above did not use the full-title target.
@@ -97,6 +108,7 @@ console.log(JSON.stringify({
  recurrenceHits:hits.length,
  recurrenceRectangle:keyCandidates[0].vals.map(tr),
  recurrenceOutputs:distinct,
+ sourceConvention:{ciphertext:"reverse",sign:"subtract",cornerOrder:"UL-UR-LR-LL",plaintext:naturalPlain.map(tr)},
  rawTitle:raw.map(tr),
  sumChain:[sumK2,targetK1,sumP2,sumP1,sumAll],
  heldOutClosure:"156 = 13*phi(13)",
