@@ -25,9 +25,9 @@ This remains a visual correlation. It does not establish that the author intende
 
 ## Plausible human solve path
 
-A solver could notice the repeated asset, compare its orientation states, then calculate μ for the page numbers. The six occurrences form two repetitions of the three visual states: +1 quarter-turn pair, 0 identity, −1 horizontal reflection. The 2016 signed instruction that numbers supply direction makes a directional interpretation plausible. The original source still does not specify whether to read the visual facing, the sign of μ, or the inverse of the reflected orientation as the direction.
+A solver could notice the repeated asset, compare its orientation states, then calculate μ for the page numbers. The six occurrences form two repetitions of the three visual states: +1 quarter-turn pair, 0 identity, −1 horizontal reflection. The archived 2016 signed payload says: “Its words are the map, their meaning is the road, and their numbers are the direction.” Grammatically, “their” most directly refers to “words,” not pages. This supports investigating word-associated numbers (indices, lengths, GP-prime sums, or another source-defined value), but it does not authenticate μ(page) as a direction. Do not use this sentence as evidence for page-number direction without an independent clue.
 
-The p2 page is physically part of the p0–p2 27×27 bootstrap. A later source-only physical-boundary test selects the westward I MAY branch, which agrees with the signed-μ→west reading, but the boundary grammar was recognized after the public candidate route. This convergence is conditional corroboration, not authentication of the Möbius direction rule.
+The p2 page is physically part of the p0–p2 27×27 bootstrap. A later source-only physical-boundary test selects the westward I MAY branch. This happens to agree with interpreting μ(2)=−1 as west, but the 2016 signed message's “their numbers” refers most directly to words, not page numbers; it is therefore not independent source support for μ(page) direction. The boundary grammar was recognized after the public candidate route and remains intermediate.
 
 ## Bounded μ tests
 
@@ -58,6 +58,7 @@ This selector is independent of μ(2): the SFT uses μ only inside its local mir
 - Neither the infinity-like mark nor the reflected insect proves a Möbius strip, wraparound, or a toroidal grid.
 - The direct μ-turn and μ-signed word-jump tests are negative.
 - The p0 physical-boundary chain is post-hoc and does not authenticate the visual μ-direction convention.
+- The 2016 signed payload's “their numbers” grammatically refers to words, not pages; it does not source-authenticate μ(page) as a direction.
 - The p55 three-value mapline direction interpretation is withdrawn because CX is not a complete word.
 - No unknown plaintext, author key, cipher architecture, or intended destination has been recovered from this artwork.
 
