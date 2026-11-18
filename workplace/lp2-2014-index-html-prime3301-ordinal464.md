@@ -49,6 +49,30 @@ For a human who encounters the `133` (HTML title) and `331` (HTML ID) separately
 
 The [read-only single-file original-input CommonJS SFT](../sims/lp2_html133331_mod331_original_sft.cjs) uses the original registered table and planted field positives; it passed [Windows Node22 manual CI run 44250316122](https://github.com/FlareZ123/liber-primus/actions/runs/44250316122). The result **rejects only this literal 133/331 prime-field-to-byte consumer**, leaving the candidate historical ordinal breadcrumb and any independently selected alternative cipher semantics unproven.
 
+## Fixed four-source-value 2×2 Hill receiver: exact original inverse, no English
+
+The newly observed crosslink provides a second concrete typed GP29 operation. Arrange the original p0 first two red-word prime sums as the first row and the two archived HTML values in printed `title`, `id` order as the second row:
+
+```text
+M = [[347,315],[133,331]] mod29 = [[28,25],[17,12]]
+det(M) = 27 mod29
+M^(-1) = [[23,27],[23,15]] mod29
+```
+
+This has four literal source operands and an invertible determinant without searching or guessing secret letters. The **Hill2 choice and arrangement are hypotheses**, as the puzzle does not direct a matrix layout. I froze both ordinary encipher/decipher orientations and applied the resulting full inverse to the untouched original ciphertext, discarding the initial red rubric where appropriate, with exact forward reconstruction:
+
+| Original source region | Ciphertext GP29 runes | Source IoC | Hill inverse IoC | Opposite-direction IoC |
+| --- | ---: | ---: | ---: | ---: |
+| p0–2 after 13-rune heading | 716 | 0.034102 | **0.034309** | 0.034668 |
+| p40–53 after 8-rune rubric | 3,000 | 0.034544 | **0.034472** | 0.034740 |
+| p55 terminal complete | 76 | 0.037895 | **0.040351** | 0.039649 |
+
+The independently authentic **94-rune clear p57 positive** has GP29 IoC **0.060856** and round-trips losslessly after encryption with the same matrix. The original candidate decodes are uniformly nonlinguistic; the p0–2 first 40 GP letters begin `AHULWLWFFCYPJIFDEMXDCPEOIADEACRHORONIBOEBYMAE`. No plaintext, key beyond the explicitly source-constructed trial matrix, or unexplained new language signal follows.
+
+[Standalone reproducible Windows CommonJS test](../sims/lp2_html133331_redword_hill2_original_sft.cjs) · [Windows Node22 PASS run 44251007204](https://github.com/FlareZ123/liber-primus/actions/runs/44251007204).
+
+This eliminates this *specific* source-paired Hill2 cipher receiver over intact GP29 rune tape, while retaining the independently printed numbers and prime-index arithmetic as unselected clues.
+
 ## Decision and bounded next move
 
 The **physical presence of 133/331** and the **prime-index equation** are verifiable. Their construction as an *author-intended key or instruction* remains hypothetical. Neither first-party markup nor the original ciphertext specifies addition as a key-generation step, a 464th-prime start as an unknown-page cipher clock, or how this would act on the 29-rune alphabet.
