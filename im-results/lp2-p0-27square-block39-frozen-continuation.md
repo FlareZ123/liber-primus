@@ -37,6 +37,8 @@ Fix a deterministic high-frequency vocabulary of **1,465 GP words** occurring at
 
 The Shakespeare and Gibran excerpts cover a limited literary register. The 95 assignments quantify the substantial ambiguity that persists after a fixed dictionary check; they do **not** imply the ciphertext excludes another language, dialect or intended 39th word. The five-rune “MAKING” inversion is arithmetically valid but has no authored reason to follow “I ASK.”
 
+**Reproducer correction, Agent30 18 November 2026.** The older `lp2_external27x27_nextstep_gate.cjs` helper temporarily contradicted this report because its center-row parity line reduced mod29 before mod2. The report, frozen assertion, and source-node enumerator all require ordinary even/odd parity. Commit `b8fcc240` fixes that single implementation line. The corrected helper returns the documented even/even forecast.
+
 ## Prospective shared2-ring key prediction
 
 A later cross-object test supplies one pre-output block39 key prediction. The independently fixed p50 shared2 ring has turn vector `DOWN6 / LEFT3 / UP6`. Starting from the published block38 source center `(12,13)`, it ends at `(12,10)`; the unique even segment length fixes radius6. The untouched source node at that horizontal radius is `L-OE-H`.
