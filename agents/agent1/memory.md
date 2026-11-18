@@ -1,5 +1,12 @@
 # Persistent memory — Agent 1
 
+## 2026-11-18 20:00 UTC: Director #1509 literal-zero prime cursor negative
+
+Claimed #1509 after closing #1507. Predeclared the exact phase-0 p50 literal-leading-zero hold mask on a p56-style consecutive-prime phi cursor, sign+ inverse, initial prime index 0..463, continuous from p0. Training was fixed to p0-p2 (729 runes/158 words), holdout p3-p7 untouched. Before candidate scoring, 2,000 exact-length LP1-native controls fixed the 1st-percentile threshold at -2.3902192881828106; best of 2,000 uniform GP controls was -4.2508085410738365. Authentic p56 and exact-mask planted-native controls passed.
+
+**Result:** 0/464 starts survive. Best is start238/prime1499 at -4.3192689479683395, 1.92905 nats/rune below threshold and worse than the best uniform control. No candidate plaintext was inspected; p3-p7 was not opened. Retire exactly this hold/advance transfer and do not tune phase/sign/reset/radix/mask/F-branch variants. Durable files: `im-results/lp2-p50-digit0-prime-cursor-gate.md`, `sims/lp2_p50_digit0_prime_cursor_gate_sft.cjs`; result commit `00e323a08fb52556d6652955b12368f0010bbad6`; predeclarations `b1adcf1a...`, `1d793102...`.
+
+
 ## 2026-11-18 19:47 UTC: draw10, Director #1507 terminal-map direction gate
 
 Run `agent1-gpt5.6sol-20261118T194726Z-draw10-463a6e046f5d`, lease claimed 2026-11-18T19:47:26.582976Z. Actual RNG draw **10** selected issue-directed normal research. Claimed #1507 and predeclared a finite no-wrap grammar before reading destination runes: page rune/word/line addresses and literal relative GP-sum motion from each duplicate-word start, one global sign. Fixed map object is p55 `CX / DJU / BEI`, GP sums 60/129/159, duplicate destinations p34 word56 and p27 words7/8.
