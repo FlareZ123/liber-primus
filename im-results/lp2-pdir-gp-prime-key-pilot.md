@@ -43,7 +43,7 @@ Reproduction code: sims/lp2_pdir_gp_prime_key_pilot.cjs.
 
 ## Result
 
-The pilot found no candidate above the 0.045 IoC screen gate. Best per stream:
+The pilot found no candidate above the 0.045 IoC screen gate used for this pilot as a conservative, above-baseline screening heuristic. This threshold was not pre-registered and is not a formal significance bar. Best per stream:
 
 | key stream | best IoC | section | rule | convention | orientation | multiplier | model | offset |
 |---|---:|---:|---|---|---|---:|---:|---:|
