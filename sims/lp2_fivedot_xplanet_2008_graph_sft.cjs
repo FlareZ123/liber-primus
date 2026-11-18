@@ -36,7 +36,12 @@ const stars = {
   beta:  {name:'beta', ra:19.9217,dec:6.3999},
   delta: {name:'delta',ra:19.4252,dec:3.0997},
   eta:   {name:'eta',  ra:19.8744,dec:1.0027},
-  iota:  {name:'iota', ra:19.6116,dec:-1.2834}
+  iota:  {name:'iota', ra:19.6116,dec:-1.2834},
+  epsilon:{name:'epsilon',ra:18.9932,dec:15.0688},
+  zeta:   {name:'zeta',ra:19.0902,dec:13.8484},
+  aql15:  {name:'aql15',ra:19.1039,dec:-4.8644},
+  aql12:  {name:'aql12',ra:19.0279,dec:-5.7353},
+  aql66:  {name:'aql66',ra:20.1884,dec:-0.8193}
 };
 
 /** @param {Point[]} pts @returns {Point[]} */
@@ -101,6 +106,40 @@ assert.ok(Math.abs(postselected.normalizedRms-0.18798638870931958)<1e-8);
 assert.deepEqual(historicalPath.sourceLeftToRight,['iota','eta','alpha','beta','gamma']);
 assert.deepEqual(postselected.sourceLeftToRight,['gamma','alpha','delta','eta','iota']);
 
+
+// Exhaust the complete five-node simple walks of the old source's Aquila arcs.
+// Edges are transcribed directly from the period Xplanet constellation file.
+// A path and its reverse describe the same five source stars.
+const sourceArcs = [
+  ['epsilon','zeta'],['zeta','gamma'],['gamma','alpha'],
+  ['alpha','beta'],['beta','eta'],['eta','iota'],
+  ['iota','aql15'],['aql15','aql12'],
+  ['aql66','eta'],['eta','delta']
+];
+/** @type {Record<string,string[]>} */
+const adjacency=Object.fromEntries(Object.keys(stars).map(name=>[name,[]]));
+for(const [from,to] of sourceArcs){
+  adjacency[from].push(to);
+  adjacency[to].push(from);
+}
+/** @type {Map<string,string[]>} */
+const uniquePaths=new Map();
+/** @param {string[]} path */
+function walk(path){
+  if(path.length===5){
+    const forward=path.join('|'), reverse=path.slice().reverse().join('|');
+    uniquePaths.set(forward<reverse?forward:reverse,path.slice());
+    return;
+  }
+  for(const to of adjacency[path[path.length-1]])if(!path.includes(to))walk([...path,to]);
+}
+for(const name of Object.keys(stars))walk([name]);
+const pathFits=[...uniquePaths.values()].map(evaluate)
+  .sort((a,b)=>a.normalizedRms-b.normalizedRms);
+assert.equal(pathFits.length,9);
+assert.ok(Math.abs(pathFits[0].normalizedRms-0.26099664723361377)<1e-8);
+assert.deepEqual([...pathFits[0].catalogue].sort(),['aql12','aql15','delta','eta','iota']);
+
 // A genuine chart silhouette, transformed by arbitrary similarity and
 // reflection, must fit to numerical roundoff under this exact fitter.
 const original=project(['gamma','alpha','beta','eta','iota'].map(x=>stars[x]));
@@ -110,4 +149,5 @@ assert.ok(closestFit(original,planted).residual<1e-7);
 console.log(JSON.stringify({originalScanSha256:hash,source:'Xplanet 1.2.0-6 (Debian lenny, pre-2014)',
   path:historicalPath,alternativeSubset:postselected,
   ratio:historicalPath.normalizedRms/postselected.normalizedRms,
+  sourcePathCount:pathFits.length, bestHistoricalPath:pathFits[0], allHistoricalPaths:pathFits,
   positiveControl:'PASS',ciphertextRecovered:0},null,2));
