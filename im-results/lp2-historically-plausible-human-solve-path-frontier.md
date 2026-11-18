@@ -63,9 +63,11 @@ The selected token and the same one-based-forward heading orientation reconstruc
 
 **Visible prompt.** Original rubrication gives a p0-title-to-next-red13 span of 729 runes, so a 27×27 inspection is source-motivated.
 
-**Weakest assumption.** Axis/origin choices and subsequent node grammar were reconstructed after candidate language appeared. The five-sign `R-A-T-I-O` branch conflicts with demonstrated GP spelling, where RATIO uses the dedicated IA/IO rune. The source-bounded opening grammar remains post-hoc even where English scoring has been removed.
+**Weakest assumption.** Axis/origin choices and subsequent node grammar were reconstructed after candidate language appeared. The five-sign `R-A-T-I-O` branch conflicts with demonstrated GP spelling, where RATIO uses the dedicated IA/IO rune. The source-bounded opening is a genuine all-grid outlier, but its state update does not cross the first physical page boundary deterministically.
 
-**Decision.** Keep the 729-square as a real structural clue. Treat the proposed plaintext as provisional until all-grid multiplicity or a blind untouched prediction fixes the geometry independently.
+**Prospective gate.** The all-grid opening has one all-native survivor among 105 source-word-aligned states and reaches TURNS on the exact final p0 rune `(10,19)`. Director #1646 freezes that terminal state before looking at p1. The published successor rule supplies only `phi(NG)=12`, leaving three in-bounds key-center displacements, three independent ciphertext-start displacements and four read directions, **36 assignments**. P1 begins at `(10,20)`, which is outside those distance-12 choices.
+
+**Decision.** Keep the 729-square and 1/105 opening as real local structural evidence. The current grammar fails the requested blind p0→p1 transfer because it lacks a source-selected successor center, start, direction and stop. Cap this route at the p0 boundary unless an original clue supplies that missing state update; do not use later language or checksum selectors as retrospective repair ([gate](lp2-p0-p1-blind-transfer-gate.md)).
 
 ### 5. p50 printed-token bracket / 58-page word-address route
 

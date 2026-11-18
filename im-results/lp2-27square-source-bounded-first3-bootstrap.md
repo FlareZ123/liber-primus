@@ -135,6 +135,14 @@ This materially strengthens the opening as a source-state outlier while preservi
 
 Detailed audit: `im-results/lp2-p0-opening-allgrid-multiplicity.md` · reproducer: `sims/lp2_p0_opening_allgrid_multiplicity_sft.cjs`.
 
+## Blind p0→p1 transfer closes the frozen opening grammar (#1646)
+
+A later Director gate froze Blocks 1–3 exactly as written above and attempted a prospective transfer across the physical p0→p1 boundary without reading any p1 candidate plaintext. The transfer fails at state selection.
+
+The `TURNS` path ends on the final p0 rune `(10,19)`; p1 begins at `(10,20)`. The only published successor family carries `A=(14,19)` and `phi(NG=21)=12`, then independently chooses one in-bounds cardinal distance-12 next key center, one in-bounds cardinal distance-12 ciphertext start, and one of four cardinal read directions. The in-bounds distance-12 positions are only `(2,19)`, `(26,19)`, and `(14,7)`, leaving **36 assignments**. P1's physical start `(10,20)` is not in that family.
+
+Therefore the frozen opening has no unique post-boundary state update. The COLD selector below remains a conditional local extension because its locked LP1 checksum chooses one member after the 36-member family exists; it is not a blind p0→p1 transfer rule. Preserve Blocks 1–3 as intermediate source-bounded structure and do not promote them to authenticated plaintext without a new original instruction that fixes the missing successor choices. [Gate](lp2-p0-p1-blind-transfer-gate.md) · [SFT](../sims/lp2_p0_p1_blind_transfer_gate_sft.cjs).
+
 ## Block 4: prospective finite-family recovery of COLD
 
 This test was defined after the first-three-block rules were frozen and before accepting the published block-4 plaintext.

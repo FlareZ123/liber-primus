@@ -92,6 +92,14 @@ Thus all candidates that reach the same endpoint inherit the same Block-2/3 geom
 
 This correction matters scientifically: the opening has one strong all-grid discriminator, followed by deterministic source-boundary confirmation.
 
+## Blind p0→p1 transfer gate (#1646)
+
+The requested prospective transfer fails before any p1 output is inspected. The source-bounded `TURNS` path ends on the exact final p0 rune `(10,19)`; the first p1 rune is the adjacent row-major cell `(10,20)`.
+
+The published post-`TURNS` rule carries anchor `A=(14,19)` and `phi(NG=21)=12`, then independently chooses a cardinal distance-12 next key center, a cardinal distance-12 ciphertext start, and a cardinal read direction. Only up `(2,19)`, down `(26,19)`, and left `(14,7)` remain in bounds, so the frozen rule opens **3×3×4=36 assignments**. The physical p1 start `(10,20)` is not one of those distance-12 choices.
+
+Thus the opening grammar has no deterministic next-state update to test blindly across the p0→p1 boundary. The exact missing source input is a unique successor key-center displacement, ciphertext-start displacement, read direction and stop. Per Director #1646, do not invent those choices or use the later COLD checksum to retrofit a transfer. Preserve the 1/105 opening result as local structural evidence and cap the present grammar at the p0 boundary. [Prospective gate](lp2-p0-p1-blind-transfer-gate.md) · [SFT](../sims/lp2_p0_p1_blind_transfer_gate_sft.cjs).
+
 ## Director decision
 
 The opening is a genuine source-state outlier under the exact frozen grammar.
