@@ -230,6 +230,66 @@ const transducer60 = decodeToken(base60Alphabet, transducerToken);
 assert.equal(transducer59, 186);
 assert.equal(transducer60, 189);
 
+// The source-selected token and the same one-based-forward indexing convention
+// reconstruct the remaining DH fields directly from p27.
+const transducerDigits = [...transducerToken].map(ch => base60Alphabet.indexOf(ch));
+assert.deepEqual(transducerDigits, [3, 9]);
+const modulusSelector = transducerDigits[1];
+const modulusSelections = [
+  {name:'one-based-forward', entry:p27.values[modulusSelector - 1]},
+  {name:'zero-based-forward', entry:p27.values[modulusSelector]},
+  {name:'one-based-reverse', entry:p27.values[p27.values.length - modulusSelector]},
+  {name:'zero-based-reverse', entry:p27.values[p27.values.length - 1 - modulusSelector]},
+];
+assert.deepEqual(modulusSelections.map(row => ({name:row.name,gp:row.entry.gp,prime:row.entry.prime})), [
+  {name:'one-based-forward',gp:'H',prime:23},
+  {name:'zero-based-forward',gp:'L',prime:73},
+  {name:'one-based-reverse',gp:'E',prime:67},
+  {name:'zero-based-reverse',gp:'L',prime:73},
+]);
+const sourceModulus = modulusSelections[0].entry.prime;
+const tableWidth = grid.rows[0].length;
+const sourceStartAddress = transducer59;
+const sourceEndAddress = transducer60;
+assert.equal(Math.floor(sourceStartAddress / tableWidth), sourceModulus);
+assert.equal(Math.floor(sourceEndAddress / tableWidth), sourceModulus);
+const sourceShared = sourceStartAddress % tableWidth;
+const sourceBase = sourceEndAddress % tableWidth;
+assert.equal(sourceShared, 2);
+assert.equal(sourceBase, 5);
+assert.equal(selectedPrime % corpus.runes.length, sourceShared);
+
+// The derived base5 selects position5 of the same red heading. Under the
+// same one-based-forward convention it is S, whose GP index15 is the
+// client secret exponent. All three rival index orientations fail15.
+const clientSecretSelections = [
+  {name:'one-based-forward', entry:p27.values[sourceBase - 1]},
+  {name:'zero-based-forward', entry:p27.values[sourceBase]},
+  {name:'one-based-reverse', entry:p27.values[p27.values.length - sourceBase]},
+  {name:'zero-based-reverse', entry:p27.values[p27.values.length - 1 - sourceBase]},
+];
+assert.deepEqual(clientSecretSelections.map(row => ({name:row.name,gp:row.entry.gp,index:row.entry.index})), [
+  {name:'one-based-forward',gp:'S',index:15},
+  {name:'zero-based-forward',gp:'O',index:3},
+  {name:'one-based-reverse',gp:'L',index:20},
+  {name:'zero-based-reverse',gp:'M',index:19},
+]);
+const sourceServerSecret = residualRuneCount;
+const sourceClientSecret = clientSecretSelections[0].entry.index;
+const sourceServerPublic = modPow(sourceBase, sourceServerSecret, sourceModulus);
+const sourceClientPublic = modPow(sourceBase, sourceClientSecret, sourceModulus);
+const sourceSharedServer = modPow(sourceClientPublic, sourceServerSecret, sourceModulus);
+const sourceSharedClient = modPow(sourceServerPublic, sourceClientSecret, sourceModulus);
+assert.equal(sourceServerPublic, tableWidth);
+assert.equal(sourceClientPublic, p27.length);
+assert.equal(sourceClientPublic, p27.values[0].index);
+assert.equal(sourceSharedServer, sourceShared);
+assert.equal(sourceSharedClient, sourceShared);
+assert.deepEqual({
+  p:sourceModulus, g:sourceBase, serverPublic:sourceServerPublic,
+  clientPublic:sourceClientPublic, shared:sourceShared,
+  serverSecret:sourceServerSecret, clientSecret:sourceClientSecret,
+}, {p:23,g:5,serverPublic:8,clientPublic:19,shared:2,serverSecret:6,clientSecret:15});
 // Those two radix readings are exactly the signed DH (p,shared) and (p,g)
 // addresses in the table's 8-column row-major geometry.
 const start = dh.p * 8 + dh.shared;
@@ -343,6 +403,14 @@ console.log(JSON.stringify({
     directProductClosure: selectedPrime * residualRuneCount,
   },
   signedDh: {...dh, serverSecretExponent: serverExponents[0], clientSecretExponent: clientExponents[0]},
+  sourceDerivedDhCircuit: {
+    modulusSelector, modulus:sourceModulus, base:sourceBase,
+    serverSecret:sourceServerSecret, clientSecret:sourceClientSecret,
+    serverPublic:sourceServerPublic, clientPublic:sourceClientPublic,
+    shared:sourceShared,
+    sharedCheck:[sourceSharedServer, sourceSharedClient],
+    consistentIndexing:'one-based-forward for red13, token digit9, and derived base5',
+  },
   markerDerivedTableCoordinate: {
     row: selectedPrime,
     column: selectedQuotient,
