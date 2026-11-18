@@ -26,6 +26,10 @@ assert.equal(lengths.reduce((a, b) => a + b), 729);
 assert.deepEqual(words.map(w => w.startPage)
   .reduce((counts, page) => (counts[page]++, counts), [0, 0, 0]), [59, 62, 37]);
 assert.deepEqual(sums.slice(0, 2), [347, 315]);
+assert.equal(sums[1], 2 * words.length - 1); // 315 = 2*158 - 1
+assert.equal(sums[0] - sums[1], sums[0] % words.length + 1); // 32
+assert.deepEqual(sums.flatMap((value, index) =>
+  value === sums[1] ? [index + 1] : []), [2, 109]); // second exact match is body cell109
 
 /** @param {number} seed @param {number[]} f @returns {{transient:number[],cycle:number[]}} */
 function walk(seed, f) {
@@ -63,6 +67,7 @@ const seeds = sums.slice(0, 2).map(v => v % 158);
 assert.deepEqual(seeds, [31, 157]);
 const first = walk(seeds[0], next), second = walk(seeds[1], next);
 assert.deepEqual(first.transient.map(i => i + 1), [32, 116, 75, 109, 158, 54, 56]);
+assert.equal(sums[first.transient[3]], sums[1]); // body cell109 repeats the heading sum
 assert.deepEqual(first.cycle.map(i => i + 1), [148, 15, 127, 64, 83]);
 assert.deepEqual(second.transient.map(i => i + 1), [158, 54, 56]);
 assert.deepEqual(second.cycle, first.cycle);
@@ -170,6 +175,9 @@ console.log(JSON.stringify({
   firstTransientCells1: first.transient.map(x => x + 1),
   secondTransientCells1: second.transient.map(x => x + 1),
   commonFiveCycleCells1: first.cycle.map(x => x + 1),
+  title158SelfIndex: {bodyWordCount: words.length, red2PrimeSum: sums[1],
+    equation: "315 = 2 * 158 - 1", redSumDifference: sums[0] - sums[1],
+    bodyCellsWithSameGPPrimeSumAsRed2: [109]},
   cycleSums, cycleLengths, key,
   receivers,
   sourceWindowTransfer: transfer,
