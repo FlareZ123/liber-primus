@@ -166,3 +166,13 @@ The same state predicts the p50 pointer: cell186 returns B=19 under both radices
 The frozen red-only combinadic rank factorization is 19*31*103*q35*q79. The route now labels all five roles: 19=B, 31=center-I prime, 103=duplicate-39 gap/DIVINITY GP0, bitlen(q35)=35=shed p28 interior GP0, bitlen(q79)=79=selected p27 DIVINITY-carrier start. This removes the residual-factor ambiguity within the frozen onion candidate, while combinadic ranking and Tor-v2 interpretation remain unauthenticated and the exact host still has no historical occurrence.
 
 Focused SFT: sims/lp2_p28_dh23_onion_factor_selector_sft.cjs.
+
+
+### Continuation: original title133 selects fixed-weight rank family
+
+The authentic 2014 onion7 index literally has <title>133</title>. The complete type-consistent 13-dot event object is31 marks among256 red-rune/13-dot events; C(256,31)-1 has bit length133 exactly. This supplies an author-era clue to fixed-weight enumerative coding.
+
+For the already selected red-only 30-of255 positions, I compared eight canonical variants: forward/reverse lex and colex, each zero/one-based. Only zero-based forward lex has all route-selected small factors19,31,103 and exact q35*q79 residual; every alternative fails the complete factor set. The original image list itself is forward 0.jpg..57.jpg. This materially constrains the combinadic convention while still not literally naming rank.
+
+New report: im-results/lp2-red13-rank-convention-selector.md
+New SFT: sims/lp2_red13_rank_convention_selector_sft.cjs

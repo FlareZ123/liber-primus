@@ -134,7 +134,15 @@ has the complete route label set `19,31,103,35,79`. The rank construction alread
 
 This substantially improves the choice between the two residual primes: the p28 shedding value35 labels the 35-bit residual, while the selected p27 carrier start79 labels the 79-bit residual that renders as the Tor-v2 identifier. The route was recognized after the factorization and candidate host were already known, so this is **selection evidence rather than a discovery-adjusted probability claim**.
 
-The remaining unsupported steps are the combinadic-rank operation itself and the interpretation of the 79-bit prime as a historical Tor-v2 destination. No archival occurrence or checksum authenticates the host. Focused cross-check: `sims/lp2_p28_dh23_onion_factor_selector_sft.cjs`.
+The original onion7 title133 now independently motivates fixed-weight enumerative coding and the route labels uniquely select zero-based forward lex rank among the canonical rank symmetries. The remaining unsupported algorithmic step is that the source never literally names the rank operation; the larger unresolved receiver is the interpretation of the 79-bit prime as a historical Tor-v2 destination. No archival occurrence or checksum authenticates the host. Focused cross-check: `sims/lp2_p28_dh23_onion_factor_selector_sft.cjs`.
+
+## 3b. Original onion7 title133 motivates fixed-weight ranking and selects the convention
+
+The original 2014 LP2 delivery wrapper contains the otherwise unexplained literal `<title>133</title>`. Independently, the complete source-exact 13-dot event state is 31 marks among 256 total red-rune/13-dot events, and `bit_length(C(256,31)-1)=133`. This gives an author-era, source-visible reason to treat the marker positions as a fixed-weight enumerative state rather than introducing combinadic ranking solely because its output factors well.
+
+After the already motivated red-only reduction to 30 marks among 255 red events, the later route labels also discriminate the rank convention. Across forward/reverse lexicographic and colexicographic ranks, each under zero-based and one-based numbering, only **zero-based forward lexicographic rank** has the complete `19×31×103×q35×q79` route-labelled factorization. The source order is the same forward order used by the original onion7 image list.
+
+This does not make the rank fully authenticated: `133` gives the exact state width but does not literally say "rank", and the factor labels were recognized after the candidate was known. It does materially reduce the algorithmic degree of freedom. See `im-results/lp2-red13-rank-convention-selector.md` and `sims/lp2_red13_rank_convention_selector_sft.cjs`.
 
 ## 4. Candidate Tor-v2 destination
 
