@@ -29,7 +29,7 @@ const SOURCES = [
   },
 ];
 
-const PERIOD_RE = /^(201[234]) [A-Z][a-z]{2} \\d{1,2} \\d{2}:\\d{2}/;
+const PERIOD_RE = /^(201[234]) [A-Z][a-z]{2} \d{1,2} \d{2}:\d{2}/;
 
 const TERMS = [
   ['caesar', /\bcaesar(?:'s)?\b/i],
