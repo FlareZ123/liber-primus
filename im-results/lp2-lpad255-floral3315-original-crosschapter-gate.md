@@ -1,46 +1,52 @@
-# An exact 255×13 cross-chapter alignment, and the original-input inverse it does not support
+# Original LPAD and two exact cross-chapter shapes: the stronger 250×12 and the weaker 255×13
 
-**Agent14 · 18 November 2026 · exploratory source correlation, with bounded original negative.** No unknown LP2 plaintext, authentic creator key, decoding operation or Cicada destination is recovered by this study. The independently authored basis is four red-span initials on physical pp3–7 and the manuscript's visibly separate final floral chapter. The width, pad character, record boundary and cross-chapter relationship remain proposed interpretations.
+**Agent14, 18 November 2026 · exploratory physical alignment with bounded original-cipher negatives.** The source-size relations below are exact. The alleged instruction, padding operand, cipher, linkage and intended plaintext are not authenticated by Cicada. **No unknown Liber Primus plaintext, creator key or deep-web destination was recovered.** This consolidated account supersedes the report's initial narrower 255×13 emphasis.
 
-## Original-source alignment
+## Independent original clues and the two competing receivers
 
-The already documented [p3–7 red-span readout](../workplace/lp2-p3to7-red-initial-lpad-readout.md) is exactly **LPAD**, in printed page order at p3 offset0, p3 offset119, p6 offset71 and p7 offset194. The full five-page ornamental chapter has **255 genuine printed words**, containing **1,145 GP29 runes**, with longest word length **12**. To obtain equal-size records, hypothetically apply the historically available `LPAD(word,13,'F')` to each printed word, using `F` as GP29 index0. The resulting matrix has **255×13=3,315** rune cells, of which **2,170 are artificially inserted F** and **26 original F glyphs** already existed. Both the width13 and the padding `F` are *solver-selected*. The original four red initials do not state the two LPAD operands.
+The already established physical p3–7 ornamental chapter has **255 original complete printed words**, longest printed word **12 GP29 runes**, across **1,145 genuine runes**. Four red passages' chronological first runes are exactly **L, P, A, D** (physical p3 offset0, p3 offset119, p6 offset71, p7 offset194), forming `LPAD`. A 2014-era SQL programmer could recognize the historically existing function `LPAD(text,length,padtext)`, but the source never identifies SQL or supplies the two operands. The p7 red terminal passage is **14 authentic runes / five complete words** of lengths `2,4,3,2,3`; it begins after a 13-dot marker. The original rune/word annotation and colored JPEG agree.
 
-An independently bounded physical chapter p40–55 has exactly **3,316 GP29 runes**. Its initial source glyph is a large red **ᚠ / F** on p40, which begins an actual eight-rune red passage, rather than a separately printed one-rune header. **Discarding this single authentic F** leaves **3,315** original runes. Thus the proposed source-to-cipher alignment is arithmetically exact:
+**A. Stronger, complete-red-object 250×12 correspondence.** Exclude those five terminal red words **as whole genuine words**, leaving **250 source words containing 1,131 original runes**. A standard lossless `LPAD(word,12,'F')`, where 12 is the *actual maximum printed source word length*, makes **250×12 = 3,000** positions. Original recipient p40–53 contains exactly **3,008** runes, with an independent complete **eight-rune red heading at p40's start**. Excluding that *entire actual heading* leaves exactly **3,000 original target runes**. This counterpart can be selected from original physical colored objects without deleting part of any colored span:
 
 ```text
-source p3–7: 255 original words → LPAD(width13,F) → 3,315 cells
-target p40–55: 3,316 original runes → remove first red F → 3,315 cells
+p3–7: 255 genuine words − 5 complete red-colophon words = 250 words
+candidate source: LPAD each remaining word to natural max-width 12 → 3,000 cells
+p40–53: 3,008 runes − complete initial eight-red-rune heading → 3,000 runes
 ```
 
-These chapters are visually distinct. The count alignment itself does **not** give an author-specified mapping between their source bytes, nor explain why the other seven red p40 prefix runes would be treated as ordinary ciphertext. The separate printed numerical insert p50 has **256** cells, one more than the 255 source words, but no original source selects a 255-to-256 table address clock from this pair.
+The table at physical p50 is an actual **256-number**, zero-GP-rune insert along the recipient's span. The recipient's other marked red passage, **51 runes on p53**, remains *inside* the proposed 3,000-rune ciphertext. Thus source and target boundary behavior is **not** perfectly symmetric, and the printed insert could interrupt an authorially intended cryptographic clock. The original `LPAD` initials identify **no padding symbol**: using rune F/GP0 is the researcher's natural GP special-rune guess, independently significant in the solved p56 transparent-F cipher. The original 12-width alignment does not itself say the two chapters were encrypted together.
 
-## Exact original-input test
+**B. Weaker full 255×13 correspondence.** Keep all **255** p3–7 words, pad to **13** (the original book has 13-dot ornaments, but there is no direct length declaration) with speculative F, obtaining **3,315** cells. Original p40–55 contains **3,316** runes, whose very first glyph is one **red F** inside the *eight-rune red heading*. Removing only that glyph yields **3,315** recipient runes. This is exact arithmetic, but removes **one actual colored rune** from an eight-rune title, while retaining its other seven. The previous version of this report examined this weaker variant first; the new full-heading/full-colophon selection in A better respects original colored object boundaries.
 
-Inputs are the original-section text, GP29 rune indices, and independent red-ink annotations in `resources/liber-primus/`; reconstruct actual printed words across page/line continuations. Define source array `K` by fixed row-major left padding to width13. Define target `C` as p40–55's 3,316 original runes excluding the first red F.
+## Complete, frozen original GP29 additive inverses
 
-**Two fully specified, reversible direct GP29 candidate inverses** use `P[i]=(C[i]±K[i]) mod29`, with original positions unchanged. No fitted phase or parameter, custom dictionary, intermediate shift or extra stream layer is introduced.
+For each source shape, form actual left-padded row-major GP29 array `K`, with zero/F inserted on the left of each source word. Use the untouched original recipient rune array `C` selected above. Apply exactly `P_i=(C_i−K_i) mod29` and `P_i=(C_i+K_i) mod29`, without offset, key fitting, hidden skip, word shift or additional layer. For the 250×12 model, also test its one ordinary matrix readout, **columns read top-to-bottom in printed left-to-right order**, again under both signs.
 
-| Original measurement | Result |
-| --- | ---: |
-| Padded-source cells | 3,315 |
-| Target cells after first F | 3,315 |
-| Identical symbols at aligned positions | 109 |
-| Unmodified target GP29 IoC | 0.03445995826 |
-| Subtract-source inverse IoC | **0.03440115566** |
-| Add-source inverse IoC | **0.03439259925** |
-| Native-GP p57 solved control plaintext recovery | **3,315/3,315** both signs, after synthetic encryption |
+| Original test | Source / target cells | Source-matched cells | Original recipient IoC | Minus IoC | Plus IoC |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| **A: width12, 250 words, row-major** | 3,000 | 110 | 0.034544404 | **0.034477270** | **0.034589974** |
+| A: width12, same source, natural column-major | 3,000 | — | 0.034544404 | **0.034491497** | **0.034576192** |
+| **B: width13, 255 words, row-major** | 3,315 | 109 | 0.034459958 | **0.034401156** | **0.034392599** |
 
-Both candidate original outputs are near the uniform 29-symbol baseline and show no coherent GP-native language. Each exactly reencrypts the original by construction; that round trip confirms implementation correctness and cannot identify a real key. The 3,315/3,315 native solved-p57 repetition-positive checks confirm the source pad can invert a deliberately encrypted control, not that it is the 2014 cipher.
+All six output distributions remain close to GP29 uniform **1/29 ≈ 0.034483**. The directly decrypted initial strings have no coherent source-native plaintext, even under the strongest A alignment. **Every original rune reencrypts exactly**, which establishes implementation inversion only. Each construction independently encrypts and recovers a full recipient-length synthetic plaintext tiled from *actual solved p57 GP runes*, **3,000/3,000** or **3,315/3,315** positions per case. These planted-positive results demonstrate that the exact operation would have recovered a genuine text if this explicitly proposed cipher had generated it.
 
-A stronger **key-independent row-local obstruction** needs no language model. A permutation of the thirteen positions in a row preserves that row's symbol multiplicity counts. Any *bijective* permutation of the entire GP29 output alphabet, even secret and independently chosen **for each row**, also preserves the sorted multiplicities. For all **255** aligned original-row pairs, the padded p3–7 source row's multiplicity partition differs from the corresponding p40–55 target row: **0/255 match**. As a weaker orientation check, 29 arbitrary GP29 Caesar shifts per independently selected row achieve at most **4/13 equal symbols on any row**, at most **557/3,315 matches across the entire alignment**. The original LPAD source has at least five copies of one symbol in **241/255** rows (often the inserted F), incompatible with this simple secret per-row position/alphabet-bijection receiver.
+The key-independent multiplicity obstruction extends beyond these six shift choices. Any permutation of positions *within a row* and any *bijective relabeling* of its 29 symbols, even an arbitrary unknown one independently selected for every row, must preserve that row's sorted frequencies of equal symbols. Comparing each source padded row to its actual recipient row gives:
 
-The multiplicity contradiction excludes *all* fixed-row positional transpositions combined with rowwise GP29 monoalphabetic substitution, irrespective of the secret permutations. It does **not** exclude position-dependent additive pads, stream ciphers, cross-row mixing, or source-defined nonlinear compressors. Crucially, those richer operations have no printed selector on the evidence presently available.
+| Alignment | Rows | Exact matching row-multiplicity patterns | Consequence |
+| --- | ---: | ---: | --- |
+| **A width12** | 250 | **5** | 245 rows contradict *every* possible row-local permutation + arbitrary alphabet-bijection decoder |
+| **B width13** | 255 | **0** | All 255 rows contradict that family |
 
-## Decision
+Under even the best independently chosen Caesar shift for *each* aligned row, at most **4 out of12/13** corresponding symbols match in any row. This excludes the entire fixed-row permutation/bijective-substitution family for **both complete modelled recipients**. It does not exclude position-dependent streams, arbitrary mixing across rows, nonlinear byte operations or a separately acquired original key. No current original clue selects those richer constructions.
 
-Preserve the exact physical count relationship as a **low-confidence source-shape lead**. Retire the two direct additive decoders and every row-local permutation-plus-secret-bijection decoder for this exact alignment. A credible next route would require an independent 2014-era Cicada instruction specifying width13, padding F, skipping p40's initial F, and an actual inter-chapter receiver, or a recovered authentic plaintext prediction that survives a withheld chapter. The count match alone cannot justify tuning another cipher or deleting genuine runes.
+## Decision and reproducibility
 
-**Reproduce:** [Original-source single-file CJS SFT](../sims/lp2_lpad255_flora3315_crosschapter_sft.cjs). The SFT asserts the canonical source counts and red glyphs, completes both exact original GP29 inverses and planted native-GP positives, and computes the 255 independent row-multiplicity obstructions. **Original-input Windows Node 22 PASS:** [GitHub Actions run 44247129620](https://github.com/FlareZ123/liber-primus/actions/runs/44247129620) executed the committed SFT against source bytes on the repository's main branch and passed all assertions.
+**Preserve A (250×12) as the more human-plausible shape hypothesis**, because width12 comes from the actual longest printed source word and both exclusions remove complete, visibly colored spans. Preserve B (255×13) as the weaker 13-dot alternative. The two exact length equalities and first-party red `LPAD` readout are real observations; inferring one chapter is a key/decoder for another remains **low-confidence conjecture**.
 
-**Related but distinct earlier work:** [p3–7 LPAD source study](../workplace/lp2-p3to7-red-initial-lpad-readout.md) already tested source p3–7 LPAD word endpoints against the 256 table and authentic p56 transparent-F decoding of a padded column read. It did not test this exact p40–55 target. The new test has no bearing on that earlier campaign's correctly bounded negatives.
+**Retire** the six direct additive decoders, and any row-confined transposition followed by a secret GP29 symbol bijection for these exact 12- or 13-wide originals. Further arbitrary AES, prime, step, phase and pad-search variants are unwarranted without a separate contemporaneous instruction selecting a receiver. A high-value positive would be a first-party rule for cross-chapter pairing, a full key or an independently predicted and authenticated original plaintext.
+
+**Single complete original-source test:** [`sims/lp2_lpad255_flora3315_crosschapter_sft.cjs`](../sims/lp2_lpad255_flora3315_crosschapter_sft.cjs), Node22/CJS. It loads actual canonical rune, original word/punctuation and red-span sources; asserts all 250/255-word, 3,000/3,315 recipient counts and colored boundaries; executes the six original inverses, exact original recipher checks, source-native solved-p57 positive plants, and both row-multiplicity obstructions.
+
+**CI:** [Windows/Node22 run 44247129620](https://github.com/FlareZ123/liber-primus/actions/runs/44247129620) passed the original B/3315 test before the A/3000 extension. The expanded-script run should be independently checked before describing the new four A inverses as externally CI-certified.
+
+**Prior independent work:** [p3–7 red LPAD source gate](../workplace/lp2-p3to7-red-initial-lpad-readout.md), which bounded direct LPAD keying, 255-word endpoints paired to 256 table bytes and prime-totient padded-column reading *within p3–7*. Those negatives remain separate. The present study uses original p40–55 and p40–53 as new recipients.
