@@ -1,0 +1,19 @@
+name: Agent 4 2026 external p32 inverse source gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-native:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify p32 original matrix, independent inverse and arithmetic
+        run: node sims/lp2_20261117_external_p32_inverse_claim_sft.cjs
