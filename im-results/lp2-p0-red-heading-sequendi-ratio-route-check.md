@@ -60,6 +60,8 @@ S E  C U E N D I
 
 Forward addition reconstructs the exact original eight red runes.
 
+A route-internal control strengthens the specificity: among all **17** frozen vertical three-rune source nodes in the first 38 blocks, apply the same rule with each node's own center rune at the two opposite corners. **Only block 28 (MAP) admits any such rectangle**, and it admits exactly the one above.
+
 This is a genuine source-selectivity improvement over simply supplying `X-N-X-C` as a fitted key. It is still conditional on accepting the route's J anchor and MAP source.
 
 ## Second key: MAP is the unique route-prefix phi extrapolation
@@ -113,7 +115,7 @@ Run:
 node sims/lp2_p0_red_heading_sequendi_ratio_gate_sft.cjs
 ```
 
-The SFT uses only the canonical local p0-p2 corpus, the source-corrected physical red-ink annotation, and the repository's already frozen first-38 route arrays. It asserts the original 8+5 heading, the unique rectangle, both exact decryptions and re-encryptions, the 20-to-1 route-prefix extrapolation selectivity result, and the independent `156 = 13 × phi(13)` recovered-title checksum.
+The SFT uses only the canonical local p0-p2 corpus, the source-corrected physical red-ink annotation, and the repository's already frozen first-38 route arrays. It asserts the original 8+5 heading, the unique rectangle, the 17-source route-wide rectangle control, both exact decryptions and re-encryptions, the 20-to-1 route-prefix extrapolation selectivity result, and the independent `156 = 13 × phi(13)` recovered-title checksum.
 
 External numerical proposal credited for the candidate red-heading constructions:
 https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption
