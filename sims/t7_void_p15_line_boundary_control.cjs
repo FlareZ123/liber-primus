@@ -33,6 +33,30 @@ const p15Lines=pageTexts[15].split("\n");
 let p15Start=pageStarts[14], p15FirstLineRunes=0;
 for(const line of p15Lines){const n=(line.match(/[\u16A0-\u16FF]/g)||[]).length;if(n){p15FirstLineRunes=n;break;}}
 const p15Axis=p15Start+p15FirstLineRunes-0.5;
+
+// Source-authentic p15 4x4 numerical display. Test only the finite relation
+// suggested by the new T7 observation: does the mechanically selected maximum
+// three-gap span equal half of one printed p15 value?
+const p15Values=[3258,3222,3152,3038,3278,3299,3298,2838,3288,3294,3296,2472,4516,1206,708,1820];
+const p15HalfTargets=new Set(p15Values.filter(v=>v%2===0).map(v=>v/2));
+const observedThreeGapSpan=t7.span;
+const exactP15Matches=p15Values.filter(v=>v===2*observedThreeGapSpan);
+
+// Conservative null: preserve every page's exact rune multiset, shuffle only
+// within pages, and recompute the maximum three-gap span. Fixed xorshift seed
+// makes the 2000-trial control reproducible without an external RNG package.
+let rngState=0x12345678>>>0;
+function rnd(){rngState^=rngState<<13;rngState^=rngState>>>17;rngState^=rngState<<5;return(rngState>>>0)/4294967296;}
+function shuffle(a){const x=a.slice();for(let i=x.length-1;i>0;i--){const k=Math.floor(rnd()*(i+1));[x[i],x[k]]=[x[k],x[i]];}return x;}
+function maxThreeGap(arr){const ds=[];for(let i=1;i<arr.length;i++)if(arr[i]===arr[i-1])ds.push(i);let best=0;for(let k=0;k+3<ds.length;k++)best=Math.max(best,ds[k+3]-ds[k]);return best;}
+let nullExact=0,nullGE=0;
+const nullTrials=2000;
+for(let t=0;t<nullTrials;t++){
+  const shuffled=pages.flatMap(p=>shuffle(p.indices));
+  const m=maxThreeGap(shuffled);
+  if(p15HalfTargets.has(m))nullExact++;
+  if(m>=observedThreeGapSpan)nullGE++;
+}
 const fullMid=(t7.sites[0]+t7.sites[3])/2;
 const largestMid=(t7.sites[1]+t7.sites[2])/2;
 const dists=lineBoundaries.map(b=>Math.abs(b-fullMid)).sort((a,b)=>a-b);
