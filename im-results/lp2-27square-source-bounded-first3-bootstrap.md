@@ -269,7 +269,7 @@ AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
 
 The continuation evidence is stronger than choosing `I MAY` from grammar. Its caveat is upstream: the endpoint-mirror/totient/move family was learned from the published block-6/7 constructions rather than independently named by an original signed clue. The original p0 artwork's exact 180-degree pairing and the heading's repeated-rune symmetry make mirror operations source-plausible, but they do not uniquely specify this full transition rule.
 
-Detailed branch audit and SFT: `im-results/lp2-p0-block5-branch-continuation-gate.md` and `sims/lp2_p0_block5_branch_continuation_gate_sft.cjs`. CI run **44389152072** completed successfully.
+Detailed branch audit and SFT: `im-results/lp2-p0-block5-branch-continuation-gate.md` and `sims/lp2_p0_block5_branch_continuation_gate_sft.cjs`. Latest continuation CI run **44389737681** completed successfully.
 ## What this changes
 
 The earlier repository audit correctly showed that the published 38-block route had underselected transitions. This three-block bootstrap is a different piece of evidence.
@@ -293,7 +293,7 @@ This is substantially stronger than choosing one key/path because it looks Engli
 
 ## Next decisive test
 
-The former block-5 ambiguity is no longer the immediate blocker. The useful next decision is whether the endpoint-mirror/totient/movement family can itself be derived from original visible clues or can make another withheld transition prediction without using the published route as a template. Do not add plaintext-selected filters. If that family fails prospective continuation, preserve the source-bounded four-block bootstrap independently.
+The former block-5 ambiguity is no longer the immediate blocker. A first attempt to widen the next connected-mirror topology after IDEA does **not** give a unique depth maximum: several two-rune words survive, with the published `OF` branch winning only by corpus frequency. Treat IDEA as the current held-out stopping boundary. The useful next decision is whether the endpoint-mirror/totient/movement family can itself be derived from original visible clues or can make another withheld transition prediction with a genuinely structural selector. Do not add plaintext-selected filters. If that family fails prospective continuation, preserve the source-bounded four-block bootstrap independently.
 ## Reproduction
 
 Run:
