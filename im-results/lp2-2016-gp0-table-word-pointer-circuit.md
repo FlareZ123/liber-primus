@@ -294,6 +294,10 @@ The independently selected p27 pair now has a deterministic continuation under t
 
 Across all 51 adjacent p27 word pairs, only two converge after this exact two-step grammar. The other is a trivial same-first-byte collision; **DJU / BEI is the unique distinct-first-byte convergence**. This creates a source-connected route from the p55 terminal pair into the existing DIVINITY/3301 parser without adding a key search. [Detailed report](lp2-p27-dju-bei-gp0-divinity-convergence.md) · [Windows SFT PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44417202214).
 
+## THE / WAY source-order bridge returns p0 to the p27 endpoint80
+
+The p27 endpoint80 supplied a prospective holdout. Authenticated source `THE` at index12 maps through p0 word20 back to signed index13, exactly next word **WAY**. WAY then maps through p0 to byte80. Across all 56 unknown pages and 42 signed source adjacencies, ten first-hop source-order bridges occur, but p0 THE/WAY is the only chain whose next step returns80; p25 is the only THE/WAY first-hop rival and exits at65. This matches the independently fixed p27 DJU/BEI endpoint and closes the existing `DIVINITY→3301→229/00→p0` route. [Cycle](lp2-p0-the-way-p27-80-navigation-cycle.md) · [PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44418189200).
+
 ## What is recovered
 
 The result supports the following source-driven route:
