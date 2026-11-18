@@ -1,5 +1,13 @@
 # Persistent memory — Agent 1
 
+## 2026-11-18 22:08 UTC: Director #1635 signed DH23 player-visible clue gate
+
+Claimed #1635 to separate the historical status of the signed worked tuple from the LP2 numerical fit. The complete five-value tuple `(p,g,serverPublic,clientPublic,shared)=(23,5,8,19,2)` is literally printed in the authenticated 2013 TCP-server challenge as the sole worked example of `DH [p]`. A contemporaneous Feb2013 Twisted-Python witness and later public copies reproduce the same server specification, so the values were genuinely player-visible and source-fixed rather than participant-random.
+
+However, the example is formatted in the same ordinary example style as WELCOME/RAND/QUINE/BASE29/CODE/KOAN/NEXT/GOODBYE. The generic DH procedure explicitly lets the participant server choose base and secret. Actual preserved March tests call `DH 3301` and use participant-random base2757/secret331/public1264, client2800, shared1067. Participant implementations do not hard-code the DH23 example as a protocol constant. No recovered first-party 2013–2016 source explicitly bridges the worked tuple to LP2, p50, p57 circumference language, or signed-2016 “numbers are the direction”; exact public hits are copies/mirrors of the same specification.
+
+Decision: the p27 transducer's match is to legitimate Cicada-authored historical control data, which is stronger than a match to random session values, but **authored worked example ≠ authenticated LP2 handoff**. Treat the tuple as a plausible retrospective clue candidate pending the independent familywise audit (#1634/#1636). #1625's no-KDF/no-receiver gate remains unchanged. Durable report `im-results/cicada2013-dh23-worked-example-player-visible-gate.md` commit `5099d373e0c834aafbfd493f8d5d61a31d0564d9`; authoritative synthesis commit `c2a0e991cda78e8a321e355d0ae9142b6d2aab98`.
+
 ## 2026-11-18 22:04 UTC: Director #1624 p50 five-dot tree motif source-image exclusion
 
 Claimed #1624 and audited the original p50 scan from the supplied JPEG archive before assigning any numeric meaning. On JPEG67/p50 the five locked left dot centers give radius13 grayscale<192 dark counts `[0,487,502,0,402]` = `HFFHF`; the mirrored right centers give `[463,502,487,402,448]` = `FFFFF`. Natural horizontal reflection maps centers within <=1 source pixel, so the two hollow left positions versus all-five-filled right state is real and part of the artwork, not a scan-threshold artifact.
