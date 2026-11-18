@@ -216,6 +216,105 @@ const nullModel = conditionalMoments(1);
 assert(Math.abs(conditionalOddsRatio - 2.4256189442937726) < 1e-12);
 assert(Math.abs(fitted.expected - observedMasked) < 1e-12);
 
+
+/*
+ * Stronger role-composition control without saturating every boundary event.
+ * Keep the exact 85 event-bearing word/page groups and each group's k, and
+ * additionally condition only on the source-wide observed role totals:
+ * 23 word-initial, 19 word-final, 44 interior. Which fixed word contributes
+ * each role remains free. Track (initial, final, masked) exactly.
+ */
+const wordStarts = new Int32Array(wordGlyphs.length);
+let startCursor = 0;
+for (let wordId = 0; wordId < wordGlyphs.length; wordId++) {
+  wordStarts[wordId] = startCursor;
+  startCursor += wordGlyphs[wordId].length;
+}
+/** @param {number} position @returns {0|1|2} */
+function wordRole(position) {
+  const wordId = wordIdAt[position];
+  const offset = position - wordStarts[wordId];
+  if (offset === 0) return 0;
+  if (offset === wordGlyphs[wordId].length - 1) return 1;
+  return 2;
+}
+const observedRoles = [0, 0, 0];
+for (const position of eventPositions) observedRoles[wordRole(position)]++;
+assert.deepEqual(observedRoles, [23, 19, 44]);
+
+/** @param {number} n @param {number} k @returns {number[][]} */
+function combinations(n, k) {
+  if (k === 0) return [[]];
+  if (k === 1) return Array.from({length:n}, (_, i) => [i]);
+  assert.equal(k, 2);
+  const out = [];
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) out.push([i, j]);
+  }
+  return out;
+}
+
+let roleDp = new Map([["0,0,0", 1]]);
+for (const group of eventGroups) {
+  const choices = combinations(group.positions.length, group.eventCount);
+  const local = new Map();
+  for (const choice of choices) {
+    let initial = 0;
+    let final = 0;
+    let masked = 0;
+    for (const index of choice) {
+      const position = group.positions[index];
+      const role = wordRole(position);
+      if (role === 0) initial++;
+      else if (role === 1) final++;
+      if (leadingZero[(position - 1) & 255]) masked++;
+    }
+    const key = initial + "," + final + "," + masked;
+    local.set(key, (local.get(key) || 0) + 1 / choices.length);
+  }
+
+  const next = new Map();
+  for (const [leftKey, leftProbability] of roleDp) {
+    const [leftInitial, leftFinal, leftMasked] =
+      leftKey.split(",").map(Number);
+    for (const [rightKey, rightProbability] of local) {
+      const [rightInitial, rightFinal, rightMasked] =
+        rightKey.split(",").map(Number);
+      const initial = leftInitial + rightInitial;
+      const final = leftFinal + rightFinal;
+      if (initial > observedRoles[0] || final > observedRoles[1]) continue;
+      const masked = leftMasked + rightMasked;
+      const key = initial + "," + final + "," + masked;
+      next.set(key, (next.get(key) || 0) +
+        leftProbability * rightProbability);
+    }
+  }
+  roleDp = next;
+}
+
+let roleConditioningMass = 0;
+let roleUpperMass = 0;
+let roleMaskedMeanNumerator = 0;
+let roleMaskedSecondNumerator = 0;
+for (const [key, probability] of roleDp) {
+  const [initial, final, masked] = key.split(",").map(Number);
+  if (initial !== observedRoles[0] || final !== observedRoles[1]) continue;
+  roleConditioningMass += probability;
+  roleMaskedMeanNumerator += masked * probability;
+  roleMaskedSecondNumerator += masked * masked * probability;
+  if (masked >= observedMasked) roleUpperMass += probability;
+}
+const roleConditionalMean = roleMaskedMeanNumerator / roleConditioningMass;
+const roleConditionalVariance =
+  roleMaskedSecondNumerator / roleConditioningMass -
+  roleConditionalMean * roleConditionalMean;
+const roleConditionalUpperTail = roleUpperMass / roleConditioningMass;
+assert(Math.abs(roleConditionalMean - 20.884180192118528) < 1e-12);
+assert(Math.abs(Math.sqrt(roleConditionalVariance) -
+  3.568536392843084) < 1e-12);
+assert(Math.abs(roleConditionalUpperTail -
+  0.0007855471783517414) < 1e-15);
+
 console.log(JSON.stringify({
   status: "PASS",
   sourceRunes: flat.length,
@@ -232,6 +331,16 @@ console.log(JSON.stringify({
     exactUpperTailAtLeastObserved: exactUpperTail
   },
   descriptiveCommonConditionalOddsRatio: conditionalOddsRatio,
+  globalWordRoleConditionalNull: {
+    observedRoleTotals: {
+      initial: observedRoles[0],
+      final: observedRoles[1],
+      interior: observedRoles[2]
+    },
+    expectedMaskedEvents: roleConditionalMean,
+    standardDeviation: Math.sqrt(roleConditionalVariance),
+    exactUpperTailAtLeastObserved: roleConditionalUpperTail
+  },
   conditionalLikelihoodRatio:
     2 * (fitted.logLikelihood - nullModel.logLikelihood),
   interpretation:
