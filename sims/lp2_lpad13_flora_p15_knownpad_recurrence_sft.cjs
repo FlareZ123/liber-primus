@@ -151,5 +151,55 @@ for (const mode of modes) {
   assert.equal(planted.filter((_, i) => !padMask[i]).length, 1145);
   console.log('  exact 3315-symbol original-layout planted recovery: 2170 known F key slots and 1145 source-native text slots PASS');
 }
+
+/**
+ * A p50-sized 256-symbol additive key, even with all 256 secret entries,
+ * must agree wherever the original known-F mask revisits the same phase.
+ * A global phase offset only relabels the same equivalence classes.
+ */
+const periodicCases = [];
+for (let period = 1; period <= 256; period++) {
+  const seen = new Map();
+  let contradictions = 0;
+  let firstConflict = null;
+  for (let i = 0; i < padMask.length; i++) {
+    if (!padMask[i]) continue;
+    const phase = i % period;
+    const prior = seen.get(phase);
+    if (prior === undefined) seen.set(phase, { index: i, value: target[i] });
+    else if (prior.value !== target[i]) {
+      contradictions++;
+      if (firstConflict === null) firstConflict = { earlier: prior.index, later: i,
+        phase, before: prior.value, after: target[i] };
+    }
+  }
+  assert.ok(contradictions > 0, 'no original repeat-key period may fit');
+  periodicCases.push({ period, contradictions, firstConflict });
+}
+assert.equal(Math.min(...periodicCases.map(item => item.contradictions)), 1835);
+assert.deepEqual(periodicCases[12], { period: 13, contradictions: 2073,
+  firstConflict: { earlier: 0, later: 13, phase: 0, before: 9, after: 28 } });
+assert.deepEqual(periodicCases[255], { period: 256, contradictions: 1849,
+  firstConflict: { earlier: 5, later: 261, phase: 5, before: 25, after: 16 } });
+const periodicKey = Array.from({ length: 256 }, (_, j) => mod(3 * j + 7));
+const solved = corpus.pages.find(page => page.page === 57).indices;
+let pointer = 0;
+const periodicPlain = padMask.map(pad => pad ? 0 : solved[(pointer++) % solved.length]);
+assert.equal(pointer, 1145);
+const periodicCipher = periodicPlain.map((value, i) => mod(value + periodicKey[i % 256]));
+const inferredKey = new Map();
+for (let i = 0; i < padMask.length; i++) if (padMask[i]) {
+  const phase = i % 256;
+  if (inferredKey.has(phase)) assert.equal(inferredKey.get(phase), periodicCipher[i]);
+  else inferredKey.set(phase, periodicCipher[i]);
+}
+assert.equal(inferredKey.size, 256);
+assert.deepEqual(periodicCipher.map((value, i) =>
+  mod(value - inferredKey.get(i % 256))), periodicPlain);
+console.log('All 1..256 secret additive key periods fail the original 2170 known F-pad sites.');
+console.log('Original period13/period256 contradictions=' +
+  periodicCases[12].contradictions + '/' + periodicCases[255].contradictions +
+  '; fully secret period256 planted key and 1145 p57-native runes recovered exactly.');
+
 console.log('Actual floral ciphertext IoC=' + ioc(target).toFixed(12) +
   '; candidate is incompatible with either full-secret-initial-state source matrix recurrence.');
