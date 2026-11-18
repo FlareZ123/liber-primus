@@ -151,7 +151,7 @@ def replay_capture(row: dict, label: str) -> dict:
     try:
         status, final_url, body = fetch(replay, timeout=120)
         digest = sha256(body)
-        suffix = ".zip" if body.startswith(b"PK\x03\x04") else ".bin"
+        suffix = ".zip" if body.startswith(b"PK\x03\x04") else (".jpg" if body.startswith(b"\xff\xd8") else ".bin")
         dest = OUT / f"{label}-{timestamp}{suffix}"
         dest.write_bytes(body)
         result = {
@@ -209,6 +209,9 @@ def main() -> int:
         "status": domain.get("status"), "error": domain.get("error"),
         "all_rows": len(domain.get("rows", [])), "relevant_rows": domain_rows,
     }
+    for row in domain_rows:
+        if row.get("statuscode") == "200":
+            candidates.append(("shadow-code-domain", row))
     # Replay one distinct capture per exact source URL, preferring earliest 2014 capture.
     replayed = []
     seen = set()
