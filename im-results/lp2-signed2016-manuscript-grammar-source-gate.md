@@ -58,10 +58,20 @@ which does not provide English, a key, a command or a destination. Reversing the
 
 [Single-file original-input CJS test](../sims/lp2_2016_p57_tree_coordinates_sft.cjs) freezes the signed sentence, p32 121-cell image-dimension checksums, original 95 p57 runes, all twenty word sums, the ten candidate pixel locations, and the full nineteen-rune p32 readout. It requires no new dictionary or language-score fitting.
 
+## 18 November 2026 follow-up: a distinct GP0→p50 word-navigation grammar now survives
+
+The completion statement below is superseded only where it said the 2016 sentence had no executable word-number traversal. A later source route uses a **different numeric codec and map object** from the GP-prime/p32 grammars tested above: canonical word GP0 sum → zero-based original p50 address → table byte/token.
+
+Solved p57 gives `EMERGE=83` and `DIUINITY=105`, reconstructing the nested p50 circumference bracket and its center; `WITHIN=38` reaches `CIRCUMFERENCES=131` in base59; `CIRCUMFERENCES=131` reaches `PARABLE=120` in base60; `PARABLE=120` reaches `FIND=42`; and `FIND=42` returns byte28. Separately, authenticated 2016 words `EMPTY / EPIPHANY` are the unique adjacent signed pair whose GP0-table bytes are consecutive236/237, landing exactly on p0's unique later 2/7 word boundary and forming a typed closure through zero-based signed word4 `EMPTY`.
+
+For the older p55→p27 handoff, finite historical `prime_echo` exhaustion independently selects p27 through the unique repeated intact pair `DJU / BEI`, while `FIND→28` independently selects its exact p27 rune offset28. The retrospective sum/difference coordinate transform is therefore no longer needed.
+
+This does not recover unknown plaintext or a complete cipher inverse. It establishes a concrete navigation layer that the earlier p32/GP-prime gates did not test. See [the GP0 table circuit](lp2-2016-gp0-table-word-pointer-circuit.md) and [the p57 bracket reconstruction](lp2-p57-divinity-p50-center13-bridge.md).
+
 ## Completion and next causal decision
 
-**Both earlier literal grammars remain underdetermined, and the separately frozen solved-p57 word-map transfer supplies no message.** Direct cell addresses and bare compass digits fail an exact original-data capacity gate. A complete direction/road grammar cannot be frozen without adding unsupported conversion, origin, selection, stop and output rules. Therefore no speculative decoder+encoder was run, and no original plaintext was recovered. These results close the two literal *unreduced* transfers and the specific p57 pixel-pair/modulo121 route only, without excluding a map-based solution or missing external state.
+**Both earlier GP-prime/p32 literal grammars remain underdetermined, and the separately frozen solved-p57 p32 coordinate transfer supplies no message.** Direct cell addresses and bare compass digits fail an exact original-data capacity gate. A complete direction/road grammar cannot be frozen without adding unsupported conversion, origin, selection, stop and output rules. Therefore no speculative decoder+encoder was run, and no original plaintext was recovered. These results close the two literal *unreduced* transfers and the specific p57 pixel-pair/modulo121 route only, without excluding a map-based solution or missing external state.
 
-An actionable successor needs a primary source that fixes **which complete word sequence**, **which numeric codec**, **how to map a number to direction/coordinate**, **the start and stop**, and **what original symbols to output**. An independently decrypted passage providing these rules would also suffice. No successor based solely on this source sentence is warranted.
+An actionable successor needs a primary source that fixes **which complete word sequence**, **which numeric codec**, **how to map a number to direction/coordinate**, **the start and stop**, and **what original symbols to output**. An independently decrypted passage providing these rules would also suffice. Those exact GP-prime/p32 successors remain unwarranted. The later GP0→p50 word-navigation grammar above is a distinct mechanism with independent source receivers and should now carry the 2016 clue forward.
 
 [Single-file CommonJS original-input SFT](../sims/lp2_signed2016_word_map_grammar_gate_sft.cjs) reproduces the exact signed sentence, source blob, GP-prime image row/column sums, full p33/p55 word-sum vectors, p54→55 carry and finite numerical bounds. This is a capacity/grammar test rather than a solved cipher.

@@ -37,6 +37,8 @@ Across all 20 complete p57 words, the only GP0 sums that hit the five bracket-sp
 
 ## The same frozen GP0 addressing exposes a word-level instruction chain
 
+The authenticated 2016 Cicada message says: `Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.` The route below directly instantiates that grammar: solved **word meanings** select actions such as EMERGE, WITHIN, CIRCUMFERENCES, SHED and FIND, while canonical GP0 **word numbers** select p50 addresses and table values supply navigation outputs.
+
 Once GP0→p50 address is fixed by EMERGE/DIUINITY, the remaining p57 words provide an independent table prediction.
 
 - `WITHIN` has GP0 sum38. Cell38 is `2D`; base59 gives **131**, exactly the GP0 sum of `CIRCUMFERENCES`. Base60 gives133, so the p57-word hit selects base59.
@@ -71,7 +73,23 @@ These are conditional selectivity diagnostics, not universal familywise p-values
 
 The resulting **28** is a concrete blind destination. A page-number reading is natural in the original 2014 release because the distributed LP2 files were literally named `0.jpg` through `57.jpg`; source `28.jpg` is physical p28, mirrored locally as archive `45.jpg`. A second page-number control exists: `TUNNELNG` (GP0=94) lands on p50 cell94 `0u`, whose two frozen radix readings are **55 and56**, exactly the final unknown p55 / solved p56 pair.
 
-## FIND → p28 → π(269) = 57 closes the instruction loop
+## Independent receiver now types FIND → 28 as p27 offset28
+
+A concurrent independent source route materially sharpens terminal byte28. Historical `prime_echo` exhaustion at p55 selects the intact repeated pair `DJU / BEI`; its only other adjacent occurrence is on **p27**, so that finite source independently supplies the receiver page.
+
+Under the same GP0→p50 byte grammar:
+
+`FIND = 42 → T[42] = 28`.
+
+Original p27 rune offset28 is exactly the start of `DJU`, followed immediately by `BEI` at offset31. The canonical p27 slice at offsets28..33 transliterates `D J U / B E I`.
+
+Page27 and offset28 now come from independent source-selected routes: finite `prime_echo` exhaustion and duplicate-word geometry select p27, while p57/2016 GP0-table navigation selects offset28. The older retrospective `(x+y,x-y) mod29=(27,28)` mnemonic is no longer needed.
+
+Agent23 independently reproduced the same operator on authenticated 2016 words, including the unique `EMPTY / EPIPHANY → 236 / 237` p0 boundary circuit, in [the signed-2016 GP0 table circuit](lp2-2016-gp0-table-word-pointer-circuit.md).
+
+## Secondary page-number reading: FIND → p28 → π(269) = 57
+
+The byte28 now has a stronger typed receiver at p27:28. A page-number reading remains a coherent secondary interpretation because the original distribution used filenames `0.jpg` through `57.jpg`, and it closes a source-selected loop. It should not displace the independently selected p27 receiver.
 
 The earlier player-first p28–p31 audit had already established an unusual source fact before this route existed: physical pp28–31 are the **only consecutive four-page window in p0–p55 whose four rune counts are all prime**. Their counts are:
 
@@ -144,9 +162,11 @@ This preserves the 55/56 page-pair alignment while excluding direct transfer of 
 
 Promote the **p57 EMERGE/DIUINITY → p50 nested bracket** route as a leading intended-solve-path hypothesis. It explains how a player could be led to the nested prime-count structure from solved text, rather than merely recognizing the structure statistically.
 
-The **FIND → 28** blind prediction now has a source-fixed consequence: p28 contains269 runes and the bracket-selected prime-count operation returns57. This closes a reproducible p57→p50→p28→p57 instruction loop and resolves the earlier p28–p31 study's missing page/operation selector.
+The primary typed continuation is now **FIND → 28 → p27:28 DJU / BEI**, because p27 is independently selected by the historical `prime_echo` handoff. This replaces the older weak retrospective sum/difference coordinate support with an independent offset selector.
 
-The loop still does not decrypt unknown runes. Any next p28 experiment must use a further source-visible instruction supplied by this route; arbitrary p28 keys, phases, transpositions, or cipher menus remain unjustified.
+The page-number interpretation remains a secondary closed loop: p28 contains269 runes and the bracket-selected prime-count operation returns57. It is useful corroborative structure, though it is less tightly typed than the p27 receiver.
+
+Neither continuation decrypts unknown runes. Further work should exploit the now-replicated GP0 word/table navigation grammar to select a reversible operation or a new untouched receiver.
 
 The printed center `13` → red13 continuation is promising but still one inference short of authentication. The universal base59 attractor189 must not be counted as corroboration.
 

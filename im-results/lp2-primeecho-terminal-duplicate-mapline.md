@@ -137,6 +137,20 @@ the direction.”
 The three-word object is still invalid. The line-local `CX` repetition is a repetition of **word-ending fragments created by physical wrapping**. A separate wrap census gives 74 two-rune continuation fragments and four repeated types, so `CX` has no unique status in that layout class. The surviving navigation candidate is therefore the **complete two-word pair p55 → p27**, with p34 removed. The signed 2016 phrase “Its words are the map” is compatible with this pair-level observation, while it does not specify the subsequent numerical direction rule.
 
 
+### Independent GP0-table offset28 removes the retrospective coordinate dependency
+
+A later, independently reproduced navigation grammar supplies the p27 offset without using the postselected sum/difference transform above.
+
+Solved p57 has canonical GP0 `FIND=42`. Original p50 cell42 is `0S`, whose base60 and base59 readings are both **28**. A separate signed-2016 GP0-table circuit reproduces the same operation on authenticated 2016 words. Since finite `prime_echo` exhaustion already selects **p27** through the unique repeated intact pair `DJU / BEI`, the two source routes combine as:
+
+`prime_echo terminal pair → p27`
+
+`p57/2016 FIND → table byte28 → p27 rune offset28`.
+
+Original p27 offset28 is exactly the start of `DJU`, followed immediately by `BEI` at offset31. The older `(x+y,x-y)=(27,28)` arithmetic remains retrospective and should stay classified as a weak mnemonic.
+
+This materially strengthens the **p55 → p27:28** handoff while still stopping short of plaintext recovery or a reversible unknown-rune decoder. See [p57/p50 bridge](lp2-p57-divinity-p50-center13-bridge.md) and [signed-2016 GP0 table circuit](lp2-2016-gp0-table-word-pointer-circuit.md).
+
 ### Provisional continuation to the p50 printed-token bracket
 
 A new follow-up applies the already-frozen 2016 GP-prime / 58-page word-address hypothesis to the **source-selected intact pair**, without changing its arithmetic. On the p27 copy, `DJU=129` maps to p13:w2 `NAEWG`, whose sum166 maps to the rune-free **p50 local index2**. The adjacent `BEI=159` branch takes 14 word-map steps before merging into the same p27 `DJU` node and therefore reaches the same p50 index2. Across all 2,916 adjacent page-local segment pairs, only three have the broader topology "second eventually reaches first and first terminates on p50"; all three are nested on this trajectory, so convergence itself is not treated as rare evidence.
