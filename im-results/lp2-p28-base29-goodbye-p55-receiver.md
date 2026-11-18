@@ -71,6 +71,35 @@ Thus the same nested object supplies the radix-independent chain:
 
 Physical p33 is the first page of the cuneiform-number chapter whose original pages repeatedly display1033 and3301. This matters because the bracket itself carries BASE29, and the authenticated 2013 protocol defines `BASE29 1033 → 16I` while its worked example gives `BASE29 3301 → 3QO`. Earlier work rejected applying BASE29 to those 2014 numerals because no LP2 source selected the command or receiver. The p28 object now supplies a source-internal command/page selector, but the resulting `16I` / `3QO` numerals still lack a reversible 1,680-rune consumer. Treat p33 as a newly motivated continuation, not a decryption.
 
+## BASE29 output closure for the p33 numerals
+
+The p33 continuation gains a direct historical positive control once the visible cuneiform value **1033** is consumed by the authenticated command:
+
+`BASE29 1033 → 16I`.
+
+The output decomposes into two already selected LP2 objects:
+
+- the literal radix in **BASE29** supplies address **29**;
+- original p50 cell29 is the unique printed token **`16`** in the 256-cell table;
+- the twice-shed center of the independently selected p28 word28 is the literal rune **I**.
+
+Therefore the historical output closes exactly as:
+
+`p50[29] || p28-center = 16 || I = 16I = BASE29(1033)`.
+
+This is a checksum/route closure. It uses the printed token literally and the selected rune's transliteration literally. Converting that rune's GP index as a base29 digit would be a different convention.
+
+The construction has a matched partner already present in the leading DH23 route. The selected p27 DIVINITY interior has GP0 **103**, p50 cell103 is the unique token **`3Q`**, and the source-selected sixth interior rune supplies `O` under the established BASE29 serialization, giving **`3QO = 3301`**. Thus the two cuneiform chapter values have parallel source objects:
+
+| decimal | authenticated BASE29 | unique p50 prefix | LP2 suffix source |
+|---:|---|---|---|
+| **1033** | `16I` | `p50[29] = 16` | p28 twice-shed center `I` |
+| **3301** | `3QO` | `p50[103] = 3Q` | established p27/DH23 selected `O` |
+
+The 1033 row is reproduced in the present SFT. The 3301 row remains independently reproduced by `sims/lp2_p28_dh23_onion_factor_selector_sft.cjs`.
+
+This materially changes the old p33–39 TCP-command gate: the missing **command/page selector** is now supplied internally by the p28 object and the p57/p50 p33 pointer. The remaining blocker is narrower: neither `16I` nor `3QO` specifies a reversible consumer for the 1,680 p33–39 ciphertext runes.
+
 ## Why this is stronger than a free word-sum search
 
 The object is selected before reading those three sums by two authenticated historical opcodes routed through the already established p50/base59 grammar. The bounds are exact canonical word cuts, and the operation applied inside the bounds is the already solved manuscript instruction to shed circumferences. No key, phase, alphabet permutation, or language-scoring threshold is fitted.
