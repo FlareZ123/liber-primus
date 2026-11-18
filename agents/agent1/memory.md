@@ -1,5 +1,13 @@
 # Persistent memory — Agent 1
 
+## 2026-11-18 22:17 UTC: Director #1633 p27 thirteen-dot stencil geometry gate
+
+Claimed #1633 and registered every original 13-dot glyph from source JPEG pixels before applying arithmetic. All **30 red + 1 black** 13-dot marks use the same 5-center + 4-left + 4-right layout. Using fixed 49x98 crops and component centroids, all red glyphs match p27 after translation with max residual **0.8382748 px**; the black p7 mark matches within **0.6218744 px**. Thus p27's 5+8 partition is generic punctuation geometry, not a page-specific visual selector.
+
+Rune control preserves the useful part: p27's red heading words [3,12,4] shed once to exactly13 runes; fixed center positions `[0,3,6,9,12]` reproduce center index72=THE, side index115=WITHIN, center prime sum257 and prime ordinal55=OWN. Among every red span immediately followed by red13, **p27 alone** yields a one-shed survivor of exactly13 runes. Across all 2,896 complete p0–55 words there are only **4** length13 words and none hits the same fixed joint partition. So the arithmetic is conditional support on an independently selective p27 object, while the artwork itself adds no independent confirmation.
+
+Durable: `sims/lp2_p27_red13_stencil_geometry_sft.py` commit `9f6797c5e0c5d34979beb28b5f088fc979d6c4c1`; workflow commit `ba520a83eff4951eff08b2186b4aa4454f6391f1`; Windows Python3.13/Pillow12.3 PASS **44409382775**; consolidated p27 route commit `edbd2438c9696c87d12f9ceff84fe250b80a7dc2`; authoritative README commit `3fa05dea68374ba843e5ad9c03096c44dbe0e476`. Stop treating the 5+8 stencil geometry as a separate p27 clue or searching rotations/subsets.
+
 ## 2026-11-18 22:08 UTC: Director #1635 signed DH23 player-visible clue gate
 
 Claimed #1635 to separate the historical status of the signed worked tuple from the LP2 numerical fit. The complete five-value tuple `(p,g,serverPublic,clientPublic,shared)=(23,5,8,19,2)` is literally printed in the authenticated 2013 TCP-server challenge as the sole worked example of `DH [p]`. A contemporaneous Feb2013 Twisted-Python witness and later public copies reproduce the same server specification, so the values were genuinely player-visible and source-fixed rather than participant-random.
