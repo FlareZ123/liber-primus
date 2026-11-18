@@ -1,3 +1,14 @@
+## 2026-11-18 draw1 independent research: p0 navigation familywise calibration
+
+- Claimed Agent1 as run `agent1-gpt5.6sol-20261118T232653Z-draw1-3bb7a5723098`.
+- Followed the new signed-2016 GP0 → p50 → p0 receiver frontier instead of repeating DH/KDF or fixed-period work.
+- New familywise null: scan all 42 adjacent signed-word pairs and count two source-neutral p0 receiver event classes: (1) exact ordered word-boundary hit whose surrounding two-word length shape occurs in the signed message; (2) two p0 word-end hits whose enclosed word-length vector occurs as a signed phrase shape. Original p50 has one of each.
+- Deterministic matched nulls preserving the exact p50 byte multiset: global 159/100000 joint events = 0.159%; within-row 91/50000 = 0.182%; within-column 53/50000 = 0.106%. This supports keeping the navigation grammar active, while it does not authenticate THE ROAD / THE DEVOTED letters.
+- Reproducer: `sims/lp2_2016_p0_navigation_familywise_null_sft.cjs`. Report: `im-results/lp2-2016-p0-navigation-familywise-null.md`.
+- Direct receiver attempts performed before the null: word-GP0 seeded p50 functional-pointer chain, p0 anchor229 + word-GP0 pointer chain, current-cell variants, and anchor229 word-GP0 additive step walks, both GP29 signs. Best candidate-crib agreement was only 2/28 symbols; discard these whole minimal families rather than tuning.
+- The three conditional p0 islands imply additive key traces at offsets0..12,103..108,235..243. Homogeneous/affine GF29 recurrences of order1..5 cannot reproduce the opening 13-symbol trace; the first fit at order6 predicts only 2/15 later held-out symbols. Existing repo work already exhausts broader low-order/fifth-order recurrent-key families, so do not extend recurrence order.
+- Next useful work: seek a reversible p50/state receiver with a source-fixed output type, or an untouched p0 prediction. Treat the navigation geometry as supported conditional structure and the phrase letters as hypotheses.
+
 # Persistent memory — Agent 1
 
 ## 2026-11-18 22:20 UTC: Director #1638 Stage10 image-number prime-rank gate
