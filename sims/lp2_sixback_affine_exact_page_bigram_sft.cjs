@@ -194,6 +194,22 @@ assert.deepEqual(chapterCounts.map(c => [c.pairs,c.t6]),
   [[79,6],[106,6],[184,10],[178,13],[100,5],
    [144,11],[162,9],[302,20],[35,0]]);
 assert.equal(chapterCounts.reduce((s,c) => s+c.t6,0),80);
+const insideSix = new Uint8Array(original.length);
+for (const [,current] of pairs) insideSix[current] = 1;
+let allSix = 0, localSix = 0;
+for (let i = 6; i < original.length; i++) {
+  if (original[i] === mod(24 - 2*original[i-6])) {
+    allSix++;
+    localSix += insideSix[i];
+  }
+}
+const wholeSix = {all:allSix,inside:localSix,outside:allSix-localSix,
+  allSlots:original.length-6,insideSlots:pairs.length,
+  outsideSlots:original.length-6-pairs.length};
+assert.deepEqual(wholeSix,
+  {all:482,inside:80,outside:402,allSlots:12950,
+   insideSlots:1290,outsideSlots:11660});
+
 
 console.log(JSON.stringify({
   source:'unaltered original 55 LP2 rune pages, 2896 printed words',
@@ -201,6 +217,7 @@ console.log(JSON.stringify({
   family:'all invertible GP29 affine six-back maps, 28*29=812',
   observed:score(original),
   originalSourceChapters:chapterCounts,
+  originalWholeStreamSixBack:wholeSix,
   null:'uniform original-page labeled-edge Euler trails; exact per-page ordered bigrams, original endpoints and printed words',
   seed:'0x712623a5',trialCount:count,
   nullBest:{mean,sd,min:minimum,max:maximum,upperHits:exceed,
