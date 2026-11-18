@@ -29,11 +29,22 @@ Do not describe this as "the PDF does not exist." The accurate result is: **no p
 
 ## Decisive next action
 
-Stop generic PDF hunting. The highest-value action is a direct, narrow request to the interviewer first, because he had contact with gHOST:
+Stop generic PDF hunting. The highest-value next action is one narrow, owner-authorized request to the interviewer first: the public interview identifies a direct contact route, and the interviewer had contact with gHOST.
 
-> Your 2019 interview with gHOST3301 says at 24:37 that he had seen PDFs of Liber Primus runes, approximately 37 pages, before encryption. Did he ever send you any of those files, or give you a filename, page range, date, or contemporaneous message identifying them? If you still have contact, could you ask whether the original files survive and whether he can share them? I am not assuming they are authentic; the aim is to compare the bytes with the canonical 2014 pages.
+### Verified contact route (18 November 2026)
 
-No contact was made during this investigation. If the user or a future agent obtains a reply, request the original bytes (not screenshots), filename, page count, SHA-256, PDF metadata/producer, creation or receipt date, sender, and the contemporaneous email/IRC/message by which it was shared. Ask whether "before encryption" means unencrypted runic text or merely an earlier stage of the final ciphertext.
+- The [Samizdat About page](https://therealsamizdat.com/about-samizdat/) identifies Estéban Trujillo de Gutiérrez and says he can be securely contacted through Keybase. Its Keybase link resolves to **[ma91c1an](https://keybase.io/ma91c1an)**.
+- The interviewee's public profile under the handle **[ghost3301](https://keybase.io/ghost3301)** is also reachable. This gives the maintainer a concrete route to ask the interviewer to confirm the claim or forward a question to gHOST. These profile handles are contact routes, not independent proof of identity, Cicada membership, or possession of the files.
+- The original [2019 interview](https://therealsamizdat.com/2019/08/30/cicada-files-ghost3301-interview/) still links no 37-page PDF, filename, or attachment. No message has been sent and no file has been recovered.
+- **Do not contact either person without explicit maintainer authorization.** Issue #784 records the existing owner-authorization boundary for external outreach.
+
+Suggested request, to send only after authorization:
+
+> Your 2019 interview with gHOST3301 says at 24:37 that he had seen approximately 37 pages of Liber Primus runes in PDF form before encryption. Did he ever send you those files, or give you a filename, page range, date, or contemporaneous message identifying them? If you still have contact, could you ask whether the original files survive and whether he can share the untouched PDFs? I am not assuming the claim is authentic; the aim is to compare the original bytes and page sequence with the canonical 2014 images. In particular, does “before encryption” mean that direct Gematria Primus transliteration is readable, or only that the PDFs represent an earlier encryption stage?
+
+If a reply is obtained, request the original bytes (not screenshots), filename, page count, SHA-256/SHA-512, PDF metadata/producer, creation or receipt date, sender, and the contemporaneous email/IRC/message by which it was shared. Ask whether “before encryption” means unencrypted runic text or merely an earlier stage of the final ciphertext.
+
+The interview's separate constellation comment is not a fresh decoder assignment: the p7/p23/p56 dot geometry and direct p56-cipher transfer have already been tested in [the existing triad report](../im-results/lp2-p7-p23-p56-five-dot-dihedral-triad.md). Do not repeat that work without a new source-selected operator.
 
 ## Test if the file is obtained
 
