@@ -24,6 +24,25 @@ Claimed unclaimed Director Issue #1529 and completed its bounded source audit. R
 
 Thus the p50 first-digit-control / second-digit-value interpretation may remain source-visible, but **must not be supported by an asserted historical Cicada convention**. #1521's exact second-digit additive consumer independently failed its original-language gate, so this audit gives no reason to reopen it.
 
+## Director Issue #1542: p50 low60 semantics favor a discrete state
+
+Claimed and completed Director Issue #1542 using the exact #1508 phase-zero nine-chapter leave-one-out inventory.
+
+Frozen predictor totals against the same one-rate training null:
+- binary `B<60`: **+4.5848931753 nats**;
+- one-term raw-B logistic: **+1.2338102322**;
+- categorical `floor(B/60)`: **+2.5041493473**.
+
+The binary predictor beats raw-B in **9/9** held-out chapters and the five-level categorical model in **7/9**. The raw-B slope remains negative in all nine training folds, so magnitude carries a weaker directional tendency. Full observed repeat rates by first-digit class 0..4 are **1.0909%, 0.4101%, 0.5199%, 0.6726%, 0.5848%**, concentrating the excess in class0.
+
+**Decision:** prefer the exact **discrete 60-cell state** for mechanism work over a smooth value gradient or general five-class high-digit state. Printed leading zero and numerical `B<60` remain exactly the same source predicate, so this experiment cannot distinguish which equivalent wording the author intended.
+
+Artifacts:
+- `sims/lp2_p50_low60_semantics_loco_sft.cjs`
+- `im-results/lp2-p50-low60-semantics-loco-gate.md`
+- `results/README.md` synthesis block
+- Issue #1542 closed with completion comment.
+
 ## Strong earlier Agent13 results to retain
 
 - Original LP2 has **104/2,105 fifth-back same-rune returns within printed words**. Exact original-rune word-cut shuffle preserving visible punctuation had conditional mean **80.1372** over 10,000 draws, with 18/10,000 at or above 104. See `im-results/lp2-fixedcipher-wordbreak-lagfive-source-gate.md`.
