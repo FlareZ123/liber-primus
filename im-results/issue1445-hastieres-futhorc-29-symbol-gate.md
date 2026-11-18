@@ -22,7 +22,7 @@ Source: https://resources.metmuseum.org/resources/metpublications/pdf/The_Metrop
 
 ## Why it does not give a GP29 mapping
 
-The historical operation is defined for 24 Latin letters, not for the 29 distinct symbols in Gematria Primus. It uses only 24 rune correspondences from a 33-rune Futhorc; it supplies no rule for the other GP29 symbols or for the five phonemic extensions. Extending the mapping by inventing a fourth block, assigning unused runes, or collapsing digraph runes would not be the documented operation and would lose distinctions.
+The historical operation is defined for 24 Latin letters, not for the 29 distinct symbols in Gematria Primus. It uses only 24 rune correspondences from a 33-rune Futhorc, so at least five GP29 symbols lie outside its output set. The GP29 also includes five additional Old English rune symbols (A, AE, Y, IA, EA), but the Hastières source gives no 29-symbol extension or rule for assigning these additional symbols. Extending the mapping by inventing a fourth block, assigning unused runes, or collapsing distinctions would not be the documented operation.
 
 The only potentially selecting visible feature is that LP2 uses an Anglo-Saxon-derived runic alphabet. That identifies the broad tradition, not this particular 3×8 partition or its 1/3/4-position offsets. LP2 shows no corresponding block labels, boundary marks, or rune-to-Latin correspondence table. The 2016 wording about words, meanings, and numbers does not select these specific offsets.
 
