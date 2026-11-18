@@ -222,7 +222,7 @@ function main() {
   assert.equal(rankPrime(planted29, 29).rank, 5);
   assert.equal(rankPrime(planted29, 29, true).rank, 5);
   planted29[0][7] = (planted29[0][7] + 1) % 29;
-  assert.equal(rank29(planted29).rank, 6);
+  assert.equal(rankPrime(planted29, 29).rank, 6);
 
   for (const prime of [2, 3, 5]) {
     assert.equal(rankPrime(matrix, prime).rank, 8);
