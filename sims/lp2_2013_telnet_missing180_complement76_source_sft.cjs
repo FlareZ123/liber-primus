@@ -170,6 +170,97 @@ assert.deepEqual(p55Word1229.map(row => row.ioc), [
   0.036491228070175435, 0.03368421052631579
 ]);
 
+
+/*
+ * Stronger complete original-cipher rejection under the exact solved-p56
+ * plaintext-F transparency rule: plaintext F must be ciphertext F and
+ * consumes no prime, whereas ciphertext F may be either transparent or keyed
+ * non-F. Enumerate all 2^3 actual ciphertext-F masks at original p55.
+ * This test uses no English scoring or unknown-page plaintext hypothesis.
+ */
+/** @param {number[]} primes @returns {number[]} */
+function reversiblePrimeSigns(primes) {
+  return primes.map(n => isPrime(Number(String(n).split("").reverse().join(""))) ? 1 : -1);
+}
+/**
+ * @param {number[]} cipher
+ * @param {number[]} sourcePrime
+ * @param {-1|1} decryptSign
+ * @param {Set<number>} bypass
+ */
+function decodeTransparentF(cipher, sourcePrime, decryptSign, bypass) {
+  const signs = reversiblePrimeSigns(sourcePrime);
+  const plain = [];
+  let used = 0;
+  for (let i = 0; i < cipher.length; i++) {
+    const c = cipher[i];
+    if (bypass.has(i)) {
+      if (c !== 0) return {failedAt:i,used};
+      plain.push(0);
+      continue;
+    }
+    const p = mod(c + decryptSign * signs[used] * (sourcePrime[used] - 1));
+    if (p === 0) return {failedAt:i,used};
+    plain.push(p);
+    used++;
+  }
+  return {failedAt:null,used,plain};
+}
+/**
+ * Authentic transparent-F encryption plant. Returns actual literal-F sites.
+ * @param {number[]} plain
+ * @param {number[]} sourcePrime
+ * @param {-1|1} decryptSign
+ */
+function encryptTransparentF(plain, sourcePrime, decryptSign) {
+  const signs = reversiblePrimeSigns(sourcePrime);
+  const cipher = [], bypass = new Set();
+  let used = 0;
+  for (let i = 0; i < plain.length; i++) {
+    const p = plain[i];
+    if (p === 0) {
+      cipher.push(0);
+      bypass.add(i);
+      continue;
+    }
+    cipher.push(mod(p - decryptSign * signs[used] * (sourcePrime[used] - 1)));
+    used++;
+  }
+  return {cipher,bypass,used};
+}
+const originalFSites = c55.flatMap((v, i) => v === 0 ? [i] : []);
+assert.deepEqual(originalFSites, [15, 25, 41]);
+const strictFOutcomes = [];
+for (const [name, sourcePrime] of [
+  ["2013-visible-76", exposed],
+  ["2013-postgap-76", first.slice(200, 276)]
+]) for (const decryptSign of [-1, 1]) {
+  const frequencies = new Map();
+  for (let mask = 0; mask < 8; mask++) {
+    const bypass = new Set(originalFSites.filter((_,j) => (mask & (1 << j)) !== 0));
+    const candidate = decodeTransparentF(c55, sourcePrime, decryptSign, bypass);
+    assert.notEqual(candidate.failedAt, null, "original complete mask unexpectedly legal");
+    frequencies.set(candidate.failedAt, (frequencies.get(candidate.failedAt) || 0) + 1);
+  }
+  const plant = encryptTransparentF(p57.slice(0, 76), sourcePrime, decryptSign);
+  assert.equal(plant.cipher.length, 76);
+  const decoded = decodeTransparentF(plant.cipher, sourcePrime, decryptSign, plant.bypass);
+  assert.equal(decoded.failedAt, null);
+  assert.deepEqual(decoded.plain, p57.slice(0, 76));
+  const failureHistogram = [...frequencies].sort((a,b) => a[0] - b[0]);
+  strictFOutcomes.push({name,decryptSign,
+    originalFSites,
+    allEightOriginalMasksRejected:true,
+    failureHistogram,
+    nativeP57TransparentFPlant:true});
+}
+assert.deepEqual(strictFOutcomes.map(x => x.failureHistogram), [
+  [[25,2],[37,2],[42,2],[47,2]],
+  [[24,4],[25,2],[45,1],[63,1]],
+  [[9,8]],
+  [[32,4],[39,2],[45,1],[59,1]]
+]);
+
 console.log(JSON.stringify({
   status:"PASS",
   source:"2013 telnet prime omission (retrospective archive) + original LP2",
@@ -182,5 +273,6 @@ console.log(JSON.stringify({
   inner180XorPrimeWeights:primeWeightXor,
   inner180XorGpIndices:gpIndexXor,
   p55Row1229WholeWordKey:p55Word1229,
+  p55AuthenticTransparentFNoLegalInverse:strictFOutcomes,
   result:"No original unknown plaintext or table-key relation; these locked transfers fail."
 },null,2));
