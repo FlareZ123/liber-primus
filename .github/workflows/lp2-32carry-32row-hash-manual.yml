@@ -1,0 +1,16 @@
+name: LP2 32 page-carry words to 32 table rows (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  wordhash:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test original source carry-word dictionary SHA-family digests with positive control
+        run: python sims/lp2_32carry_32row_hash_original_sft.py
