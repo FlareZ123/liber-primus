@@ -86,6 +86,10 @@ assert.equal(189, 23 * 8 + 5);
 const firstLeg = walk(186, A59, serverPublic);
 assert.deepEqual(firstLeg, [186, 19, 33, 112, 72, 161, 214, 247, 189]);
 assert.equal(value(A59, tokens[189]), 189);
+const base59FixedPoints = tokens
+  .map((token, cell) => value(A59, token) === cell ? cell : null)
+  .filter((cell) => cell !== null);
+assert.deepEqual(base59FixedPoints, [189]);
 
 // EMERGE from the base59 fixed point by reading the same printed token
 // in the other already-frozen radix.
@@ -108,6 +112,12 @@ assert.notEqual(secondLegBase60.at(-1), oneBasedCoordinate);
 assert.equal(tokens[oneBasedCoordinate], '0u');
 assert.equal(value(A59, tokens[oneBasedCoordinate]), 55);
 assert.equal(value(A60, tokens[oneBasedCoordinate]), 56);
+const pagePairCells = tokens
+  .map((token, cell) => (
+    value(A59, token) === 55 && value(A60, token) === 56 ? cell : null
+  ))
+  .filter((cell) => cell !== null);
+assert.deepEqual(pagePairCells, [94, 245]);
 assert.ok(corpus.pages.some((page) => page.page === 55));
 assert.ok(corpus.pages.some((page) => page.page === 56));
 
@@ -129,7 +139,8 @@ console.log(JSON.stringify({
   dhWalk: {
     hops: serverPublic,
     base59: firstLeg,
-    fixedPoint: firstLeg.at(-1)
+    fixedPoint: firstLeg.at(-1),
+    allBase59FixedPoints: base59FixedPoints
   },
   emerge: {
     fixedPointToken: tokens[189],
@@ -142,7 +153,8 @@ console.log(JSON.stringify({
     token: tokens[oneBasedCoordinate],
     base59: value(A59, tokens[oneBasedCoordinate]),
     base60: value(A60, tokens[oneBasedCoordinate]),
-    meanings: ['LP2 p55', 'solved LP2 p56']
+    meanings: ['LP2 p55', 'solved LP2 p56'],
+    allCellsWith55to56RadixPair: pagePairCells
   },
   decision:
     'The marker-derived coordinate pair closes twice: zero-based form enters the signed-DH table route; after the p27-derived EMERGE radix switch and the same eight-hop count, the walk lands on the one-based form, whose two radix readings are pages55/56.'
