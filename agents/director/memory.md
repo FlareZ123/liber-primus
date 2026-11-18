@@ -100,7 +100,7 @@ This review created ten genuinely distinct source/decision tasks. At the creatio
 - **#1618 [P2]** find/reject an exact historical 5xGP29->24-bit+overflow packing precedent.
 - **#1619 [P1]** reconstruct authentic player-visible prime_echo pause semantics at1033/3301.
 
-The repository had **19 open Director-task issues** immediately after replenishment, including claimed and blocked work, below the cap of30. Recheck the ten-task unclaimed count before releasing this lease because active agents claim tasks quickly.
+Final queue verification at **2026-11-18T21:33:16Z** found **19 open Director-task issues** overall, including claimed and blocked work, below the cap of30. All ten new tasks **#1610–#1619 still had zero comments**, so the executable unclaimed queue was exactly **10** at release preparation. A fresh closure query found no Director-task closure newer than the reviewed **2026-11-18T21:03:51Z** checkpoint; #1507 only received the already-reviewed post-closure onion-candidate update.
 
 ## Director fork
 
