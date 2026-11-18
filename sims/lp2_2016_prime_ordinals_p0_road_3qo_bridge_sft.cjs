@@ -200,6 +200,56 @@ assert.deepEqual(
   [103, 104]
 );
 
+// The image-selected THE also supplies a value-changing cryptographic holdout.
+// Derive the native-GP plaintext from the authenticated signed word rather than
+// spelling it rune by rune.
+const plainThe = encodeWord("THE");
+assert.deepEqual(plainThe, [2, 18]);
+assert.deepEqual(selectedThe.values, [8, 12]);
+const additiveKey = selectedThe.values.map(
+  (cipher, index) => (cipher - plainThe[index] + 29) % 29
+);
+assert.deepEqual(additiveKey, [6, 23]);
+
+// Independently re-derive the manuscript's DH p/a values from the already
+// source-selected p28 physical object. FIND points to page/word 28; physical
+// line6 is 23 runes long and ends with word28, so a=6 and p=23.
+assert.equal(gp0("FIND"), 42);
+assert.equal(table.bytes[42], 28);
+const physicalParts = transcription.split(/^\s*%\s*$/m);
+const p28Text = physicalParts[28];
+const p28Lines = p28Text.trim().split("/").filter((line) => line.trim().length > 0);
+const p28Words = (p28Text.replace(/\/\s*/gu, "").match(/[\u16A0-\u16FF]+/gu) || []);
+assert.equal(p28Words.length, 59);
+const selectedP28Word = [...p28Words[27]].map((rune) => runeIndex.get(rune));
+assert.equal(selectedP28Word.length, 5);
+const selectedP28LineNumber = 6;
+const selectedP28LineRunes = [...p28Lines[selectedP28LineNumber - 1]]
+  .map((rune) => runeIndex.get(rune))
+  .filter((value) => value !== undefined);
+const dhA = selectedP28LineNumber;
+const dhP = selectedP28LineRunes.length;
+assert.deepEqual([dhA, dhP], [6, 23]);
+assert.deepEqual(additiveKey, [dhA, dhP]);
+
+// Finite manuscript control: [H,EO] is the sole complete two-rune word across
+// unsolved p0..p55. It occurs at this already selected p0 receiver.
+const completeTwoRuneMatches = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  const part = physicalParts[page];
+  const words = (part.replace(/\/\s*/gu, "").match(/[\u16A0-\u16FF]+/gu) || []);
+  let localOffset = 0;
+  for (const word of words) {
+    const wordValues = [...word].map((rune) => runeIndex.get(rune));
+    if (wordValues.length === 2 && wordValues[0] === 8 && wordValues[1] === 12) {
+      completeTwoRuneMatches.push({page, start: localOffset});
+    }
+    localOffset += wordValues.length;
+  }
+}
+assert.deepEqual(completeTwoRuneMatches, [{page: 0, start: 103}]);
+
 // The same integer ordinals, used as one-based p50 cells as in the established
 // cross-release route, reconstruct the signed 2013 BASE29 example 3QO=3301.
 const cell103 = table.pages.flatMap((page) => page.tokens)[102];
@@ -248,6 +298,11 @@ process.stdout.write(JSON.stringify({
   p0PredictedThe: {
     wordIndex: selectedThe.index,
     offsets: [selectedThe.start, selectedThe.end],
+    cipher: selectedThe.values.map((value) => translit[value]),
+    plaintext: plainThe.map((value) => translit[value]),
+    additiveKey,
+    independentlyDerivedDH: {a: dhA, p: dhP},
+    completeTwoRuneCipherMatches: completeTwoRuneMatches,
   },
   p50OrdinalCells: {
     oneBased: [103, 104],
