@@ -68,6 +68,16 @@ An actual source-selected plaintext phrase would be stronger evidence than a sin
 
 In particular **not one nine-word uninterrupted phrase** of the fixed Latin or Old English source survives anywhere in the entire original LP2 word transcript, even though the proposed cipher may choose a completely independent five-alphabet key for every word. The LP1 original-rune stream also supplies no contiguous match of eight or more words. The LP1 control includes historically encrypted sections; this row is a full-original-rune stream constraint, **not** an assertion that all 694 runes words are clear English. The original Vulgate maximum spans are mostly short words whose signatures carry little beyond word length, and eight-word matches do **not** authenticate a quote.
 
+The same source-word detector has now been applied to three additional **historically plausible, independently pinned English reference texts** using the repository's existing **writer-native GP29 transliteration** (longest-first ING, TH, EO, OE, AE, IO, EA with the historical V/K/Z/Q aliases and QU→CW). Their complete ordered reference streams give:
+
+| Native writer-GP reference | Exact source words | Longest contiguous LP2 matching original five-phase word signatures |
+| --- | ---: | ---: |
+| Kahlil Gibran, *The Prophet* | **15,733** | **9** |
+| Ralph Waldo Emerson, *Essays, First Series* | **77,932** | **8** |
+| Shakespeare, project-pinned first 300,000 characters | **55,407** | **9** |
+
+These are **exact-source, whole-corpus no-ten-word verbatim quotation limits** under the specified **per-word five-phase bijection model**, independent of any secret key and without selecting candidate quotations after seeing ciphertext. Source files contain their published prefatory matter as part of the fixed reference stream; including it cannot invalidate a negative claim of no ten-word match. The English sources are one author's/native transliteration convention; alternate spellings and an authored paraphrase remain outside the test.
+
 A **12-consecutive-word genuine Vulgate plant**, encrypted under independently randomized unknown 29-symbol bijections for each of five phases in each word, is recovered as an exact **12-word match with correct source start index1000** by the same suffix-automaton detector. The previous **12,956-rune native Latin positive** also recovers its plaintext exactly under the true secret mappings. This proves the source-wide quote search can identify a long, truly encoded phrase **if it matches its declared wordwise model**. The original provides no such phrase in these pinned corpora. This does not exclude a paraphrase, an isolated source word, an original Latin or Old English composition, a different encoding of word boundaries, or an untested historical text.
 
 ## Independent aggregate language-shape test: exact original source-conditioned tails
