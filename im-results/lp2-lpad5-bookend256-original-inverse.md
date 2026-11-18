@@ -29,6 +29,14 @@ Use the printed row-major grid's conventional base60 byte reading, modulo29. Sub
 
 Neither is native GP-English as a complete unchanged six-rune phrase, and neither supplies a new key or an independently recognizable continuation. The direct arithmetic alone provides no basis for selecting an additional operation.
 
+## Stronger seventh-rune known-plaintext holdout
+
+The source's six-rune `DJU-BEI` echo actually has a seventh matching rune across the physical **p55→p56** page seam. P27 local34 and p56 local0 both print **AE**. Crucially, p56 has been independently solved by the original prime-totient/F-transparent algorithm: its first ciphertext **AE** is authentic plaintext **A** (GP index24), requiring a direct subtractive shift of **1 modulo29**.
+
+The proposed LPAD-five key clock addresses table slot **161** at this seventh source position. The original table supplies `byte[161] mod29 = 14`, yielding **J** with the subtractive interpretation or **I** with the additive interpretation, versus the independently solved **A**. Thus **both signs fail a genuine known-plaintext test at 1/1 separately held-out rune**, and the seventh symbol cannot corroborate this putative shared direct table key.
+
+This is a narrow exact obstruction to extending **this same table-pad mechanism across the p55/p56 seam**. The original p56 is known to use a different cipher method, so the observed mismatch does **not** exclude a p55-only cipher or other structural meanings of the repeat. The broader source-seven-rune boundary and authentic-p56 restart tests already existed in [the independent seam report](lp2-p27-terminal-bookend-p56-prime-restart-gate.md); the contribution here is specifically the original LPAD5/256-byte key's failure on that established seam.
+
 ## Full original-page test and decision
 
 Keep the absolute original rune clock for p27, and advance the same clock five extra positions for p55, without changing any original ciphertext or printed word boundaries. Two possible conventional GP29 additive signs produce the following **complete-page** results. Each is exactly reversible by the specified inverse; those round-trips are implementation controls only.
@@ -42,4 +50,4 @@ The numerical values stay near ciphertext-like rather than the much higher IoC o
 
 **Decision:** the original first-party artifacts admit a compact, reproducible **LPAD-five-step 6400/256 echo registration**, but do not select the clock-insertion operation. Its natural direct page-key consumer fails on the full original ciphertext. Retire this specified additive inverse. Future work on an equivalent alignment needs independent authorial selection of a value-changing operation, source-origin time clock, or a blind original-page plaintext prediction. An arbitrary re-keyed decoder fitted to the bookend alone would have no discriminating evidence.
 
-[Standalone original-source Windows Node.js 22 SFT](../sims/lp2_lpad5_bookend256_original_inverse_sft.cjs) verifies the literal original LPAD red initials, two unmodified echo positions, 6395/6400 clock geometry, all six source key residues, original readouts, and exact forward reencryption. [Successful Windows Node22 GitHub Actions run 44252226574](https://github.com/FlareZ123/liber-primus/actions/runs/44252226574), job `134625413922`.
+[Standalone original-source Windows Node.js 22 SFT](../sims/lp2_lpad5_bookend256_original_inverse_sft.cjs) verifies the literal original LPAD red initials, two unmodified echo positions, the seventh cross-page AE rune and independently solved A, 6395/6400 clock geometry, all seven source key residues, original readouts, and exact forward reencryption. [Successful Windows Node22 GitHub Actions run 44252226574](https://github.com/FlareZ123/liber-primus/actions/runs/44252226574), job `134625413922`.
