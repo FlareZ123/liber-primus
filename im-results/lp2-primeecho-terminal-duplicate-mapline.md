@@ -9,7 +9,10 @@ The pinned 2013 Cicada OS `prime_echo` artifact supplies exactly **464 ordinary 
 - p54-p55 contains 308 runes;
 - exhaustive source-bounded first-exhaustion over all 464 initial cursors and both authentic ciphertext-F branches gives **41 path histories at 36 distinct rune boundaries**;
 - eight histories hit physical line ends, at five distinct boundaries: **19, 40, 57, 80, 300**;
+- every one of the 41 exhaustion histories consumes terminal prime **3301** on its final keyed rune, so 3301 consumption itself is tautological within this first-exhaustion sample;
+- restricting to cases where 3301 lands on a **physical line end** still leaves eight histories at those five boundaries, so “consume3301 on the last rune of a line, then exhaust” does **not** uniquely select boundary300;
 - exactly **three** histories ever consume both historical pause values 1033 and 3301;
+- those three alone carry the earlier pause1033 as well; their 3301 positions are all terminal-chapter rune299, immediately before boundary300;
 - those three are starts167/167/168 and all first exhaust at **boundary300**, immediately after p55 printed line3;
 - their 1033 item is consumed at p54 offsets **5/6**, inside the original nine-rune red title.
 
@@ -20,6 +23,23 @@ A matched source-only control takes the last 308 original runes of each of the n
 ```
 
 Only p54-p55 is positive. This is a genuine source-selectivity result for the **physical line boundary** under the tested finite-prime family.
+
+### #1580 terminal-prime accounting
+
+The complete 41-history accounting separates the endpoint from the discriminant. Because 3301 is the final entry in the finite historical list, **all 41** first-exhaustion histories consume 3301 exactly one rune before their exhaustion boundary. The line-end subset is:
+
+| start index | start prime | 3301 consumed at terminal offset | exhaustion boundary |
+| ---: | ---: | ---: | ---: |
+| 445 | 3137 | 18 | 19 |
+| 424 | 2953 | 39 | 40 |
+| 407 | 2801 | 56 | 57 |
+| 385 | 2663 | 79 | 80 |
+| 386 | 2671 | 79 | 80 |
+| 167 | 997 | 299 | 300 |
+| 167 | 997 | 299 | 300 |
+| 168 | 1009 | 299 | 300 |
+
+Therefore **3301-at-a-line-end is not a boundary300 selector**. The selective condition remains the two-pause chain already frozen by #1506: only starts167/167/168 consume the earlier exceptional pause1033 and later consume3301, and all three then exhaust at boundary300. In those histories 1033 lands at terminal offsets5/6 inside p54's red title, while 3301 lands at offset299 at the p55 line3 end. This distinction rules out treating prime3301 alone as the procedural reason to choose that line break.
 
 ## 2. Canonical word-boundary correction
 
@@ -105,7 +125,7 @@ This correction is stronger than a rarity estimate because it removes the target
 
 ## 5. Reproduction
 
-- `sims/lp2_primeecho_terminal_mapline_sft.cjs` reproduces the finite-prime exhaustion census, 1033/3301 holdout, matched chapter control, and the canonical boundary-inside-word correction.
+- `sims/lp2_primeecho_terminal_mapline_sft.cjs` reproduces the full 41-history finite-prime exhaustion census, exact 1033/3301 consumption offsets, the eight-history/five-boundary 3301 line-end accounting from #1580, matched chapter control, and the canonical boundary-inside-word correction.
 - `sims/lp2_terminal_completeword_graph_sft.cjs` reconstructs all 2,896 complete printed words and asserts the p55/p34 wrap behavior, complete-word frequencies, the unique all-frequency2 triple, and zero frozen #1511 matches.
 - `sims/lp2_primeecho_intact_pair_handoff_sft.cjs` enumerates all 36 finite-list exhaustion boundaries, proves boundary300 is the sole boundary whose first two intact complete words form an adjacent pair repeated elsewhere at p27, and runs the frozen p27:28 sum/difference coordinate gate plus its 12-transform signed family check.
 - Source transcription: `resources/liber-primus/lp2-transcription.txt`.
