@@ -28,6 +28,21 @@ The total lag5 surplus is **+23.6493** above the fixed-cipher length-shuffle nul
 
 The surplus appears in both major halves of the manuscript. Using 0-based rune-bearing page indices, p0–26 have **56** original enclosed fifth-back events versus **43.120** simulated mean (upper tail ≈0.0137); p27–55 (p50 omitted) have **48** versus **37.231** (≈0.0340), measured on the **same 10,000 permutations**. Under literal physical-page parity, odd pages show **57** versus **41.489** (tail ≈0.0032); even pages show **47** versus **38.861** (tail ≈0.0844). These descriptive split checks are neither new independent discoveries nor blind validation.
 
+## Hard-punctuation-anchor sensitivity: actual sentence/paragraph cuts retained
+
+An additional original-input challenge addresses the page-local shuffle's most obvious missing condition: the **literal positions of period and paragraph/section punctuation**. It treats the original period, ampersand, dollar, section, and any other nonhyphen explicit word-ending marks as **hard segmentation anchors**. Only hyphen-delimited whole-word lengths are shuffled within each contiguous original block between those anchors, physical page boundaries, and the 32 frozen page-crossing words. Every original rune, page, hard-marked word ending, and each **block's exact length multiset** remain unchanged. The 2,896 source words contain **176 hard-boundary-ending words**; the stronger conditioning produces **219 blocks**, **213** with more than one possible complete word. It changes no source symbol or hard punctuation offset and makes no grammatical reinterpretation.
+
+| Word-enclosed fifth-back statistic | Original | Hard-anchor-fixed null mean ± SD | Draws ≥ source / 10,000 | Add-one upper tail |
+|---|---:|---:|---:|---:|
+| Total returns | **104** | **80.1372 ± 7.6545** | **18** | **0.00189981** |
+| Adjacent paired returns | **9** | **4.1835 ± 1.6292** | **81** | **0.00819918** |
+| S returns | **11** | **5.4555 ± 1.7535** | **34** | **0.00349965** |
+
+The original word-break alignment survives **even when every nonhyphen punctuation/sentence/section anchor is held fixed**. The S return contrast becomes smaller (from original +7.30 above random to +5.54), an important restriction on any interpretation of S as an independently coded marker. Both controls are still exploratory because lag5/S were historically selected and the marks treated as hard were chosen by visible punctuation classes. Further post hoc conditioning is unlikely to yield a decoder without an original clue.
+
+The [hard-punctuation fixed-cipher SFT](../sims/lp2_fixedcipher_sentenceword_lagfive_sft.cjs) uses the exact original runes, all 176 preserved hard cuts and 10,000 deterministic shuffles, asserting the original and sampled counts.
+
+
 ## First-party unencrypted comparison
 
 Use **six unencrypted first-release GP passages** from [the original canonical LP1 transcript](../resources/transcriptions/lp1_wulfic_canonical.txt), original section indices 3,8,9,10,11,14, preserving all physical ampersand page wraps, and the complete original unencrypted LP2 p57 (95 runes). They require no newly constructed English-to-GP transcription.
