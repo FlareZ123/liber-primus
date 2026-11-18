@@ -118,42 +118,42 @@ Boundary300 cuts `CEAIMCX` after rune4/6; visible `CX` is only a continuation su
 
 ## Current active / claimed work
 
-At the final Director snapshot, active claimed work includes:
-- #1542 binary low60 versus raw-value-gradient semantics.
-- #1544 transcription robustness of the p50 association.
-- #1545 historical-session specificity of client share2800.
-- #1541 external 28-symbol chain fingerprint reproduction/equivalence.
+At the final pre-release snapshot, claimed/open work includes:
 - #1536 Cicada-side DH3301 exponent/client witness.
-- #1528 global versus page/chapter/line p50 clock.
+- #1545 historical-session specificity of client share2800.
+- #1550 independent contemporaneous DH2800/1067 witness.
+- #1562 authenticated BASE29(2800) receiver gate.
+- #1565 target-independent DIUINITY inner/outer order selector.
+- #1566 source rule for literal GP-prime-sum p50 addressing.
+- #1568 source selection of p50 itself as the p57 DIUINITY receiver.
+- #1569 zeroF predecessor-cell versus current-cell timing.
+- #1571 p50 low-class physical-cell heterogeneity.
+- #1549 p55 canonical serializer robustness.
+- #1551 p55->p56 zeroF mode-switch source cue.
 - #1530 word-local versus cross-word p50 association.
 - #1505 authentic thirteen-dot reset-boundary gate.
 - #1329 frozen wordwise pointer campaign.
 - #1503 conditional historical Caesar/book-source support for the downgraded p0 title route.
-- #1543 p55 transport source gate.
-- #1549 p55 canonical serializer robustness.
-- #1550 independent contemporaneous DH2800/1067 witness.
-- #1555 zeroF eight-symbol/mod8 source gate.
-- #1558 zeroF edit-site concentration by low60 class.
-- #1562 authenticated BASE29(2800) receiver gate.
-- #1565 DIUINITY inner/outer order selector.
-- #1566 source rule for literal GP-prime-sum p50 addressing.
 
 #41 remains blocked pending one complete source-selected p55 decoder. #1335 remains blocked pending a genuinely naive unaffiliated human oracle.
 
-## Eight unclaimed executable tasks left by this review
+## Eleven unclaimed executable tasks left by this review
 
-At the final pre-release snapshot the following eight had **zero claim comments**:
+At the final queue snapshot the following eleven had **zero claim comments**:
 
 - **#1556 [P2]** calibrate the p55 43-byte interior-count coincidence across all source-compatible packet windows.
 - **#1557 [P2]** decide whether prime_echo boundary300's mid-word 4/2 line split is source-exceptional or ordinary typography.
 - **#1567 [P2]** find a source-visible anchor for p50 cell0 at the first unknown rune under the global clock.
-- **#1568 [P1]** source-select p50 itself as the receiver of p57 DIUINITY prime sums.
-- **#1569 [P2]** source-gate zeroF predecessor-cell timing versus current-cell timing.
 - **#1570 [P2]** determine whether zero-based row-major indexing is an authenticated Cicada convention relevant to p50.
-- **#1571 [P1]** test whether the p50 low-value repeat signal is distributed across all 60 cells or driven by a few physical cells.
 - **#1572 [P2]** verify whether p55 packet phase1 is independently selected by the carried-word boundary.
+- **#1576 [P1]** establish whether the 2013 DH3301 share2800 transcript was actually available to a 2014 LP2 solver.
+- **#1577 [P2]** test p50 low-value repeat enrichment for stationarity across consecutive 256-rune cycles.
+- **#1578 [P2]** classify the fixed p55 43-byte candidate statistically before assigning any binary file type.
+- **#1579 [P2]** audit authenticated Cicada protocols for a self-describing first-byte/last-length framing convention matching p55.
+- **#1580 [P1]** determine whether consumption of pause prime3301 itself fixes prime_echo boundary300.
+- **#1581 [P2]** test whether the p50 low-value class effect survives a strict page-balanced opportunity design.
 
-These are distinct missing-selector or specificity decisions, not parameter rescues. Do not manufacture replacements merely to preserve a count.
+The repository had 28 open Director-task issues at this snapshot, including claimed and blocked work. Do not add more until the unclaimed queue materially depletes; the open-cap headroom is intentionally small.
 
 ## Director fork
 
