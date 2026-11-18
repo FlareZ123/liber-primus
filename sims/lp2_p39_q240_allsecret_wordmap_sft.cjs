@@ -254,6 +254,104 @@ const plantedPhase = q240.map((v, i) => modulo(v + 3 * (i % 16) + 7));
 assert.deepEqual(arbitraryPhaseBijection(q240, plantedPhase, 16),
   { period: 16, contradictoryPhases: 0, contradictedPairs: 0 });
 
+
+/**
+ * Returns row rank over GF29; the parameter-free rank mismatch is an
+ * impossibility certificate for all secret coefficients of the model.
+ * @param {number[][]} matrix
+ * @returns {number}
+ */
+function gfRank(matrix) {
+  const rows = matrix.map((line) => line.slice());
+  let pivotRow = 0;
+  for (let column = 0; column < rows[0].length && pivotRow < rows.length; column += 1) {
+    let pick = pivotRow;
+    while (pick < rows.length && rows[pick][column] === 0) pick += 1;
+    if (pick === rows.length) continue;
+    [rows[pivotRow], rows[pick]] = [rows[pick], rows[pivotRow]];
+    const pivotInverse = inverse(rows[pivotRow][column]);
+    for (let j = column; j < rows[pivotRow].length; j += 1) {
+      rows[pivotRow][j] = modulo(rows[pivotRow][j] * pivotInverse);
+    }
+    for (let i = pivotRow + 1; i < rows.length; i += 1) {
+      const factor = rows[i][column];
+      if (factor === 0) continue;
+      for (let j = column; j < rows[i].length; j += 1) {
+        rows[i][j] = modulo(rows[i][j] - factor * rows[pivotRow][j]);
+      }
+    }
+    pivotRow += 1;
+  }
+  return pivotRow;
+}
+
+/**
+ * Necessary and sufficient linear consistency condition for ANY unknown
+ * 2*order + 1 coefficients in the time-invariant two-stream state equation:
+ *
+ *   C[i] = d + sum(a[j]*C[i-j-1], j=0..order-1)
+ *            + sum(b[j]*Q[i-j], j=0..order-1) mod29.
+ *
+ * The independent coefficient d and ALL a,b values are granted freely.
+ * @param {number[]} register
+ * @param {number[]} target
+ * @param {number} order
+ */
+function unknownLinearState(register, target, order) {
+  const rows = [];
+  for (let i = order; i < target.length; i += 1) {
+    rows.push([
+      ...Array.from({ length: order }, (_, j) => target[i - j - 1]),
+      ...Array.from({ length: order }, (_, j) => register[i - j]),
+      1,
+    ]);
+  }
+  return {
+    order,
+    coefficientRank: gfRank(rows),
+    augmentedRank: gfRank(rows.map((row, i) => [...row, target[order + i]])),
+    equations: rows.length,
+  };
+}
+const stateOrders = [1, 2, 4, 8, 16];
+const stateGate = {
+  printed: stateOrders.map((n) => unknownLinearState(q240, p39, n)),
+  reverse: stateOrders.map((n) => unknownLinearState(q240.slice().reverse(), p39, n)),
+  p15Spiral16: stateOrders.map((n) => unknownLinearState(qSpiral, p39, n)),
+};
+for (const value of Object.values(stateGate)) {
+  for (let i = 0; i < stateOrders.length; i += 1) {
+    assert.equal(value[i].coefficientRank, 2 * stateOrders[i] + 1);
+    assert.equal(value[i].augmentedRank, 2 * stateOrders[i] + 2);
+    assert.equal(value[i].equations, 240 - stateOrders[i]);
+  }
+}
+
+// Hard positive: the complete GF29 source-shaped 256-entry source polynomial
+// can encode 240 ACTUAL solved-p57 GP runes under an independent 16-stage
+// all-secret affine feedback. Recover the exact 240 original-length register
+// by dividing the planted table by the same source factor16.
+const p57Native = corpus.pages.find((p) => p.page === 57).indices;
+const messageNative = Array.from({ length: 240 }, (_, i) => p57Native[i % p57Native.length]);
+const tapA = [10, 3, 20, 22, 1, 22, 21, 25, 11, 17, 19, 7, 8, 12, 12, 22];
+const tapB = [1, ...factor16.slice(1, 16)];
+assert.equal(tapB.length, 16);
+const plantQ = q240.slice(0, 16);
+const d = 24;
+for (let i = 16; i < 240; i += 1) {
+  let rest = d;
+  for (let j = 0; j < 16; j += 1) rest += tapA[j] * messageNative[i - 1 - j];
+  for (let j = 1; j < 16; j += 1) rest += tapB[j] * plantQ[i - j];
+  plantQ.push(modulo(messageNative[i] - rest));
+}
+const plant256 = multiply(factor16, plantQ);
+assert.equal(plant256.length, 256);
+const plantedTransfer = divide(plant256, factor16);
+assert.deepEqual(plantedTransfer.quotient, plantQ);
+assert.ok(plantedTransfer.remainder.every((v) => v === 0));
+assert.deepEqual(unknownLinearState(plantedTransfer.quotient, messageNative, 16),
+  { order: 16, coefficientRank: 33, augmentedRank: 33, equations: 224 });
+
 console.log(JSON.stringify({
   register: 'untouched p39, complete 256-cell table / source F16',
   sourceRunes: 240,
@@ -262,6 +360,7 @@ console.log(JSON.stringify({
   sourceFactorDegree: 16,
   original,
   phaseGate,
-  planted: '256-residue GF29 convolution; 55 independent secret word-affine keys; 16 independent secret phase shifts: PASS',
+  stateGate,
+  planted: '256-residue GF29 convolution; 55 independent secret word-affine keys; 16 independent secret phase shifts; secret 16-stage feedback on genuine 240-rune GP-native prose via factor16 convolution: PASS',
   authenticUnknownPlaintextRecovered: false,
 }, null, 2));
