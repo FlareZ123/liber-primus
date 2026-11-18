@@ -168,6 +168,31 @@ assert.equal(strictF.columnReadOnlyOriginalCells.failure, 61);
 assert.equal(strictF.columnReadWithLiteralFCells.failure, 3258);
 assert.equal(strictF.rowPaddedWithLiteralFCells.failure, null);
 
+
+// The 255 original words + 256 printed p50 byte cells give a separate,
+// natural one-to-one word-endpoint readout. Freeze source first/last endpoint,
+// row-major byte0 for word0, both additive directions, no fitted phase.
+// This test is a narrowly specified receiver, not a claimed Cicada command.
+const wordEndpointConsumers = [];
+for (const endpoint of ['first', 'last']) {
+  const cipher = words.map(w => endpoint === 'first' ? w[0] : w[w.length - 1]);
+  assert.equal(cipher.length, 255);
+  const rawIoc = ioc(cipher);
+  for (const sign of [-1, 1]) {
+    const decoded = cipher.map((x, i) => mod29(x + sign * bytes[i]));
+    assert(cipher.every((x, i) => mod29(decoded[i] - sign * bytes[i]) === x));
+    const nativePositive = Array.from({length:255}, (_, i) => native[i % native.length]);
+    const planted = nativePositive.map((x, i) => mod29(x - sign * bytes[i]));
+    assert.deepEqual(planted.map((x, i) => mod29(x + sign * bytes[i])), nativePositive);
+    wordEndpointConsumers.push({
+      endpoint, direction: sign < 0 ? 'subtract' : 'add',
+      sourceWordCount: cipher.length, sourceGridByteCount: bytes.length,
+      nativePositiveRecovered: 255, rawIoc, decodedIoc: ioc(decoded),
+      prefix: decoded.slice(0, 45).map(x => corpus.translit[x]).join('')
+    });
+  }
+}
+
 console.log(JSON.stringify({
   status: 'no authentic plaintext or independently selected receiver',
   sourcePages: 'p3-p7', redInitials: starts.join(''),
@@ -177,5 +202,6 @@ console.log(JSON.stringify({
   omittedColophonPaddingRetained: WIDTH * 5 - red.length,
   nextCyclicTableAddress: 3301 % 256, knownTableZeroIndices: [192, 229],
   directConsumers: tests, baselineIoc: ioc(positions.map(x => x.cipher)),
-  authenticPrimeF13ColumnGate: strictF
+  authenticPrimeF13ColumnGate: strictF,
+  sourceWordEndpointVs256ByteTable: wordEndpointConsumers
 }, null, 2));
