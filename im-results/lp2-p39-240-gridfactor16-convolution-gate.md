@@ -94,8 +94,35 @@ For the apparently strongest source period, `k=16`, all sixteen phases independe
 
 This gate does not exclude a keyed operation whose alphabet changes *within a phase period*, a nonperiodic state machine, a change to the 240-slot alignment, a cipher that derives its keystream from Q240 rather than directly relabeling it, or a different printed-page receiver. The original art has not authenticated the 16-block spiral as a decoding order. **No unknown plaintext or secret is recovered.**
 
+## All-secret first- through sixteen-stage changing-state transfer (Agent10, 18 November)
+
+The printed **p15 4×4 16-number square**, the **source table's degree-16 factor**, and the exact **Q240/p39 240:240 registration** motivate a more flexible alternative to the foregoing wordwise and periodic-static alphabets. The same source quotient could be an input to a **time-invariant 16-stage affine feedback system**, whose ciphertext at time `i` depends on both the previous sixteen ciphertext runes and the current/previous fifteen quotient values. This has genuine nonperiodic dependence on the original ciphertext; its coefficients are completely unspecified by the source. Rather than fit a handful of secret coefficients and score language, this test grants the adversary **every possible secret coefficient in GF29** and asks whether *any* such system can reproduce the whole untouched p39 source.
+
+For a stage count `k` let the hypothetical source relation be
+
+```text
+C[i] = d + a1*C[i-1] + ... + ak*C[i-k]
+         + b0*Q[i] + ... + b(k-1)*Q[i-k+1]  (mod 29)
+```
+
+The `2k+1` intercept and memory/input coefficients are completely free and unknown. Retain exactly the physical source alignment, and three predeclared quotient readouts: printed high-first, complete reverse, and independent printed-p15 spiral traversal of each consecutive 16-coefficient group. For every `k in {1,2,4,8,16}`, build all `240-k` linear constraints on these parameters and compare the exact GF29 coefficient-matrix rank with the augmented matrix rank. Unlike language scoring, **rank mismatch makes the complete model mathematically impossible under every possible secret coefficient assignment.**
+
+| Stages | Number of original equations | Coefficient rank, all three orientations | Augmented rank, all three |
+| ---: | ---: | ---: | ---: |
+| 1 | 239 | 3 | **4** |
+| 2 | 238 | 5 | **6** |
+| 4 | 236 | 9 | **10** |
+| 8 | 232 | 17 | **18** |
+| **16** | **224** | **33** | **34** |
+
+Thus **even an arbitrary secret 16-stage affine state transition cannot map Q240 to the original 240-rune p39 ciphertext under these fixed source orders**. The k=16 case includes every lower-order linear recurrence by setting extra coefficients to zero. The source p15 grid and table degree select a defensible upper bound, but the maker has never instructed the player to apply this equation.
+
+A complete source-shaped positive uses the genuinely clear GP29 p57 PARABLE runes repeated to 240 positions as the target, freezes **sixteen independent secret ciphertext-feedback taps**, **sixteen independent quotient taps**, and a nonzero offset, then solves the input quotient successively so this same original-sized recurrence holds. Multiplying that quotient by the **exact original factor16** generates a new 256-cell GF29 table-shaped source; dividing it recovers all **240/240** quotient coefficients, and the rank condition passes **33=33**. The [existing original-source CommonJS SFT](../sims/lp2_p39_q240_allsecret_wordmap_sft.cjs) now runs all 15 original rank tests and this complete planted control, with [Windows Node22 successful run 44284806712](https://github.com/FlareZ123/liber-primus/actions/runs/44284806712).
+
+**Bounded decision:** Retire the entire secret linear time-invariant 16-stage Q240→p39 **feedback architecture**, including the eight- and four-stage special cases. This leaves nonlinear changes of state, time-varying keys, transformations across other source registers, and the possibility that Q240 serves as independent key material rather than a direct ciphertext antecedent. No unknown p39 plaintext or authentic author key is recovered. A new successor needs a first-party nonlinear opcode/key or a genuinely different consumer, not more guessed linear taps.
+
 ## Consequence for the solve path
 
-The 240-slot/240-rune coincidence identifies **one named target page** from the full grid factorization without searching every target and phase. The marked red polynomial supplies a plausible reason to consider it. However, the full direct-additive, all-secret stationary lookup, all-secret convolution, and both the **word-local arbitrary-bijection plus arbitrary within-word transposition** and **source-geometric, periodic all-secret alphabet** transfers are excluded. A meaningful successor must supply an **independent original-source operation** linking the quotient to p39 through a state changing *within words* or across original word boundaries, or explain the red factor and page match by a different route. Direct additive, static lookup, convolutional, pointwise GF(841) multiply/divide, and the four fixed reversible GP28 nonrepeat-step readings are now bounded negatives. An arbitrary further key/phase search is not justified by the observed lengths.
+The 240-slot/240-rune coincidence identifies **one named target page** from the full grid factorization without searching every target and phase. The marked red polynomial supplies a plausible reason to consider it. However, the full direct-additive, all-secret stationary lookup, all-secret convolution, and both the **word-local arbitrary-bijection plus arbitrary within-word transposition** **source-geometric, periodic all-secret alphabet**, and **all-secret linear changing-state feedback through order16** transfers are excluded. A meaningful successor must supply an **independent original-source operation** linking the quotient to p39 through a state changing *within words* or across original word boundaries, or explain the red factor and page match by a different route. Direct additive, static lookup, convolutional, pointwise GF(841) multiply/divide, and the four fixed reversible GP28 nonrepeat-step readings are now bounded negatives. An arbitrary further key/phase search is not justified by the observed lengths.
 
 **Reproduction:** [\`sims/lp2_p39_240_gridfactor16_convolution_sft.cjs\`](../sims/lp2_p39_240_gridfactor16_convolution_sft.cjs). [Manual Actions execution passed on original repo inputs](https://github.com/FlareZ123/liber-primus/actions/runs/43290960341). The script verifies the original byte SHA-256; the unique p39 page length and red indices; complete factor multiplication, division and leading-zero accounting; four IoCs; both exact arbitrary-codebook conflict bounds; the original coprimality; and a full positive synthetic factor-product and affine lookup.
