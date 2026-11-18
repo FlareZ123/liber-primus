@@ -1,0 +1,48 @@
+name: Agent48 LP2 pdir original failed shard rescue aggregate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  aggregate-original-shard-010-3:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Retrieve all three successful original-source rescue fragments
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          gh run download 44239236615 --repo FlareZ123/liber-primus --dir rescue-extracted --pattern "pdir-sixsections-rescue-010-3-*"
+          if ($LASTEXITCODE -ne 0) { throw "Rescue source artifact download failed" }
+      - name: Reconstruct exact original shard with independent score and rule coverage gates
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          New-Item -ItemType Directory -Path rescue-zips -Force | Out-Null
+          foreach ($part in 0..2) {
+            $name = "pdir-sixsections-rescue-010-3-part${part}of3"
+            $folder = Join-Path "rescue-extracted" $name
+            if (-not (Test-Path -Path $folder -PathType Container)) { throw "Missing original shard fragment: $name" }
+            Compress-Archive -Path (Join-Path $folder "*") -DestinationPath (Join-Path rescue-zips "$name.zip") -CompressionLevel Optimal
+          }
+          python sims/lp2_pdir_1329_rescue_merge.py rescue-zips 010 3
+          if ($LASTEXITCODE -ne 0) { throw "Exact rescue disjointness/score/coverage gate failed" }
+          python sims/lp2_pdir_1329_incremental_artifact_gate.py rescue-zips | Out-File -FilePath rescue-zips/partial-gate.json -Encoding utf8
+          if ($LASTEXITCODE -ne 0) { throw "Strict original ciphertext rescue gate failed" }
+          Get-Content rescue-zips/partial-gate.json
+      - name: Preserve one reproducible replacement for the failed original job
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdir-sixsections-010-3-verified-replacement
+          path: |
+            rescue-zips/pdir-sixsections-010-3.zip
+            rescue-zips/partial-gate.json
+          if-no-files-found: error
