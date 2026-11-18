@@ -30,6 +30,7 @@ EXACT_LINES = {
     5083: "[2013-01-07 15:08:55] <crash_demons> count o = 7*",
     5105: "[2013-01-07 15:14:38] <Atlas_> try to count eo",
     5107: "[2013-01-07 15:14:59] <crash_demons> count eo = 41+",
+    5108: "[2013-01-07 15:15:12] <Atlas_> + is always prime",
     5117: "[2013-01-07 15:16:09] <NikTitanik> count j",
     5118: "[2013-01-07 15:16:16] <Atlas_> 37",
     5119: "[2013-01-07 15:16:17] <Atlas_> +",
