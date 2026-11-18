@@ -1,0 +1,50 @@
+# Fixed original ciphertext, shuffled printed-word boundaries: fifth-back concentration
+
+**18 November 2026 · Agent 13 · independent source-geometry experiment.** The 56 unknown LP2 pages remain undeciphered. **No unknown plaintext, key, author-selected cipher, or destination is recovered.** This experiment establishes an additional conditional constraint on how the manuscript's fifth-back symbol returns relate to its actual word divisions. It is separate from Agent 11's exact per-page-bigram Euler-trail randomization: that earlier test fixes the original word locations while shuffling rune order; this test fixes every original rune and its position while changing only the complete-word segmentation.
+
+## Distinguishing question and candidate solve path
+
+The original unknown LP2 rune stream has **104 within-word fifth-back equalities** among **2,105** eligible within-word comparisons, including **9 consecutive paired returns** and **11 returns of GP S**. An exact-source page-bigram-preserving null already reports within-word expectations 72.54/1.60/2.37 for these three statistics, but preserves original word boundaries by construction. Thus it cannot distinguish a five-tap ciphertext emitter from the author's original placement of word breaks around pre-existing fifth-back repeats.
+
+A human puzzler can see the printed delimiters, including normal word punctuation and line wraps, and the 2016 signed Cicada message explicitly calls attention to the book's *words*. A reversible word-sensitive sender is conceivable; its independently sourced alphabet, state, key and inverse remain missing. Before building any such cipher, ask whether the **actual delimiter alignment carries information beyond the rune sequence and the original word-length histogram**.
+
+## Frozen source and conditioning
+
+Inputs: exact [original transcription](../resources/lp2-transcription.txt) (first 55 rune-bearing unsolved segments, physical p50 absent) and independent [numeric corpus](../resources/liber-primus/lp2-corpus.json); the SFT asserts all **12,956 rune identities in order**, **2,896 complete original words**, **55 original rune-bearing page segments**, and **32 cross-page words**. A word continues through original whitespace, line slash and physical-page boundaries; literal hyphen, period and other non-rune punctuation delimit words. No transcription position, character spelling, rune value, or page is repaired or reinterpreted.
+
+For each of the 55 original rune-bearing page segments, keep the complete original contiguous ciphertext sequence **unchanged**, including every n-gram, ordered bigram, doublet and local fifth-back equality. Preserve all **32 page-crossing words** in their exact positions with their original contents and lengths; these contribute **[4 fifth-back, 1 paired, 0 S]** in every draw. Keep the original count and multiset of lengths of fully page-contained words, shuffling only the order of those lengths. Page-local complete words form contiguous blocks between carried-word fragments. This moves the word delimiters while retaining every such block's starting and ending rune and total span.
+
+Count fifth-back equality within each word (position j at least 5), paired equality at j−1 and j−6 (for j at least 6), and repeated rune S. Use **10,000 seeded Fisher–Yates shuffles**, xorshift32 state **0x33011807**. The uniform 32-bit remainder has negligible finite-modulus discrepancy from mathematical uniformity; these exploratory conditional tails are uncalibrated for the wider historical hypothesis search. **The positions and classes of individual punctuation marks are not preserved.** No plaintext prior or cipher model is fitted.
+
+## Exact original result
+
+| Enclosed fifth-back statistic | Original | Conditional mean ± SD | Null draws ≥ original / 10,000 | Add-one upper tail |
+|---|---:|---:|---:|---:|
+| Total lag-five returns | **104** | **80.3507 ± 7.68296** | **16** | **0.00169983** |
+| Paired adjacent lag-five returns | **9** | **4.0198 ± 1.64390** | **78** | **0.00789921** |
+| GP S→S lag-five returns | **11** | **3.6991 ± 1.70937** | **2** | **0.00029997** |
+
+The total lag5 surplus is **+23.6493** above the fixed-cipher length-shuffle null. It cannot arise from changes in ciphertext bigram inventory or rune-order pattern, because those are identical in every null trial. The actual printed word cuts are aligned with existing five-position echoes more often than random permutations of the same page's word lengths.
+
+The surplus appears in both major halves of the manuscript. Using 0-based rune-bearing page indices, p0–26 have **56** original enclosed fifth-back events versus **43.120** simulated mean (upper tail ≈0.0137); p27–55 (p50 omitted) have **48** versus **37.231** (≈0.0340), measured on the **same 10,000 permutations**. Under literal physical-page parity, odd pages show **57** versus **41.489** (tail ≈0.0032); even pages show **47** versus **38.861** (tail ≈0.0844). These descriptive split checks are neither new independent discoveries nor blind validation.
+
+## First-party unencrypted comparison
+
+Use **six unencrypted first-release GP passages** from [the original canonical LP1 transcript](../resources/transcriptions/lp1_wulfic_canonical.txt), original section indices 3,8,9,10,11,14, preserving all physical ampersand page wraps, and the complete original unencrypted LP2 p57 (95 runes). They require no newly constructed English-to-GP transcription.
+
+| Authentic clear register | Source runes / words | Enclosed lag5 original | Fixed-rune shuffled mean | Null upper tail |
+|---|---:|---:|---:|---:|
+| LP1 six clear sections | **1,001 / 231** | **7** | **9.2121** | **0.8422** |
+| LP2 clear p57 | **95 / 20** | **2** | approximately **0.80** | approximately **0.17** |
+
+The clear LP1 control does not exhibit the LP2 encrypted manuscript's surplus under the same boundary-shuffle construction. Clear p57 is too short to adjudicate a fifth-back mechanism. The first-party clear corpus is much smaller than LP2 and has a different length/genre distribution, so this is an instructive source-native control rather than a comprehensive ordinary-prose null.
+
+## Interpretation and discriminating next move
+
+Two complementary conditional experiments now matter: fixed-word-boundary **rune shuffles** (Agent11, exact per-page ordered-bigram Euler trails) and fixed-**rune** word-length shuffles (this report). Both find an enclosed fifth-back excess under distinct nulls. The strongest defensible inference is **an alignment of five-rune returns with original word cuts**, after conditioning separately on first-order rune inventories and actual ciphertext rune order. The two nominal tail probabilities are not independent, and lag5/S were selected historically after examining the source. This is **not proof of a hidden word codec**.
+
+A source-visible instruction might identify a word-local reset/copy/state operation and a key; only then would a reversible decoder with at least 150 coherent original plaintext runes and an untrained chapter become persuasive. The current boundary correlation cannot select among native word morphology, copy editing, word-local cipher clocks or deliberate formatting.
+
+**Research fork:** communicate this new source condition to the owner of [Director task #1429](https://github.com/FlareZ123/liber-primus/issues/1429). Do not run another lag sweep or retune punctuation classes until an independently authored operation or an original plaintext prediction justifies it.
+
+**Reproducer:** [fixed-cipher wordbreak fifth-back SFT](../sims/lp2_fixed_cipher_wordbreak_lagfive_sft.cjs), Windows-compatible Node22 CommonJS without third-party dependencies. Reads the original corpus and clear controls, asserts exact source counts and original null exceedances, and prints the entire fixed-seed result.
