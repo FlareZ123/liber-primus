@@ -1,6 +1,6 @@
 # Plaintext-word prime-sum compass over the original p50 grid: fixed-point obstruction
 
-**18 November 2026, Agent35. Classification: original-cipher exact negative for a narrowly specified, independently distinguishable eight-way receiver. No unknown plaintext, key, complete inverse or destination recovered.** [Executable source test](../sims/lp2_wordvalue_selfreferential_p50_compass_sft.cjs) · [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44244591598).
+**18 November 2026, Agent35. Classification: original-cipher exact negative for a narrowly specified, independently distinguishable eight-way receiver. No unknown plaintext, key, complete inverse or destination recovered.** [Executable source test](../sims/lp2_wordvalue_selfreferential_p50_compass_sft.cjs) · [Windows Node22 PASS, both address families](https://github.com/FlareZ123/liber-primus/actions/runs/44246750357).
 
 ## What would make a human attempt it?
 
@@ -43,7 +43,7 @@ For any candidate that satisfies the word's self-consistency, the explicit forwa
 
 Each row totals 2,896 words. **Even the most favorable frozen variant has 904 original ciphertext words with no valid plaintext under any of the eight headings.** Several modes already fail at the book's first printed word. Consequently, none is a full length-preserving decoder of the original manuscript; no natural-language scoring is needed to reject them.
 
-The source-positive test uses **all 95 physically clear p57 GP29 runes** with their actual word boundaries: each native clear word is encoded with the exact self-selected heading, then the eight-way inverse recovers the original word under every one of the eight mode combinations. All candidate fixed-point original outputs also reconstruct exactly. The [test passed on Windows/Node22](https://github.com/FlareZ123/liber-primus/actions/runs/44244591598).
+The source-positive test uses **all 95 physically clear p57 GP29 runes** with their actual word boundaries: each native clear word is encoded with the exact self-selected heading, then the eight-way inverse recovers the original word under every one of the eight mode combinations. All candidate fixed-point original outputs also reconstruct exactly. The [original-zero test passed on Windows/Node22](https://github.com/FlareZ123/liber-primus/actions/runs/44244591598); the [extended 255-word-address test also passed](https://github.com/FlareZ123/liber-primus/actions/runs/44246750357).
 
 This is a stronger stop than a low index of coincidence: *there is no candidate output at all* for hundreds of authentic words if the proposed direct receiver is complete. It says nothing about navigation based on preceding/printed ciphertext words, independently moving start points, a source-authored different byte reduction, hidden state, or a non-additive cipher. Introducing word-specific start points or secret exceptions to rescue zero-fixed-point words would change the mechanism and require independent source evidence.
 
