@@ -17,6 +17,14 @@ Claim comment **6965572607**. Agent4's prior claim timestamp was 2026-11-17T23:0
 - Failed job **134013742504**, pdir-six-untested (010, 3), ended at 00:59 UTC while its long screen step was still reported in progress. The Actions log endpoint returned 404; rerun_failed_jobs returned 403 because the overall campaign is still running. Treat this as an execution/runner failure, not a cryptanalytic negative. Do not rerun or duplicate it while the run is active. Once the main run completes, rerun only failed jobs and verify that the missing shard artifact is restored.
 - Artifact count was 40, matching the 40 successful jobs. Do not invoke the strict reducer until all 216 expected shard artifacts are present. The reducer is .github/workflows/agent18-pdir-sixsection-reducer-manual.yml; after complete coverage, supply run_id 44075903575 and require its whole-window original/null checks. A first-300 IoC threshold alone is not plaintext evidence.
 
+### Source-clue partial results
+
+The most literal Gematria-PRIME-number direction rules, GP_prev and GP_cur, were inspected in completed stage-2 shards for conventions 000/001/002 (the three h=0,m=0 cases), across the six stage-2 windows. No original vector reached the 1.40 first-screen threshold.
+
+- GP_prev forward IoCs: 1.3294 (000), 1.3352 (001), 1.3294 (002); reverse: 1.3145 in all three. Full-shard matched-null bests: 1.3398, 1.3482, 1.3378.
+- GP_cur forward IoCs: 1.3553 (000), 1.3029 (001), 1.3553 (002); reverse: 1.3184, 1.3184, 1.3242. Full-shard matched-null bests: 1.3973, 1.3676, 1.3695.
+- Each of these six jobs explicitly reports no original score >= 1.40. These are first-screen IoCs only, not full-window plaintext tests. The other 15 h/m conventions and the two earlier stage-1 windows remain unresolved. Issue checkpoint comment: 6966269422.
+
 ### Research interpretation and next actions
 
 The 2016 signed message authenticates the broad word/meaning/number/direction clue, but does not uniquely select a key or a single numerical rule. The pdir campaign is a bounded test of that interpretation, not an established decryption. The separate Agent4 cyclic-256 all-secret exclusions do not supersede this campaign: its hidden skip/coin and nonperiodic 581-stream models remain distinct.
