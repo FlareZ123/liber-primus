@@ -46,6 +46,7 @@ function finishWord() {
     runes: fragment.map((index) => corpus.runes[index]).join(''),
     translit: fragment.map((index) => corpus.translit[index]).join(''),
     primeSum: fragment.reduce((sum, index) => sum + corpus.prime[index], 0),
+    length: fragment.length,
     localRune: startPageRune,
     startPage: physicalPage(startRawPage),
     endPage: physicalPage(endRawPage),
@@ -286,6 +287,105 @@ assert.deepEqual(
   {page: 'x+y', offset: 'x-y', count: 1}
 );
 
+
+
+// Discovery-aware null for the post-hoc coordinate transform family.
+// Shuffle complete word identities only within their original physical page
+// and exact rune length, so every slot keeps page, local rune start and length.
+// Recompute repeated adjacent pairs and ask whether any repeated pair is also
+// a self-coordinate under any of the 12 signed sum/difference transforms.
+const shuffleGroups = new Map();
+for (let i = 0; i < words.length; i++) {
+  const key = words[i].startPage + '|' + words[i].length;
+  if (!shuffleGroups.has(key)) shuffleGroups.set(key, []);
+  shuffleGroups.get(key).push(i);
+}
+const shuffleGroupList = [...shuffleGroups.values()];
+const identityOrder = words.map((unused, index) => index);
+
+function repeatedPairCoordinateStats(order) {
+  const pairCounts = new Map();
+  for (let i = 0; i + 1 < order.length; i++) {
+    const first = words[order[i]];
+    const second = words[order[i + 1]];
+    const key = first.runes + '\0' + second.runes;
+    pairCounts.set(key, (pairCounts.get(key) || 0) + 1);
+  }
+
+  let repeatedTypes = 0;
+  for (const count of pairCounts.values()) {
+    if (count > 1) repeatedTypes++;
+  }
+
+  let repeatedSelf = 0;
+  for (const slot of coordinateEligible) {
+    const first = words[order[slot]];
+    const second = words[order[slot + 1]];
+    const pairKey = first.runes + '\0' + second.runes;
+    if (pairCounts.get(pairKey) <= 1) continue;
+
+    const x = first.primeSum % 29;
+    const y = second.primeSum % 29;
+    const targetPage = words[slot].startPage;
+    const targetOffset = words[slot].localRune;
+
+    for (const [pageIndex, offsetIndex] of [
+      [0, 1], [0, 2], [0, 3],
+      [1, 0], [1, 2], [1, 3],
+      [2, 0], [2, 1], [2, 3],
+      [3, 0], [3, 1], [3, 2]
+    ]) {
+      if (signedLinear[pageIndex].fn(x, y) === targetPage &&
+          signedLinear[offsetIndex].fn(x, y) === targetOffset) {
+        repeatedSelf++;
+      }
+    }
+  }
+
+  return { repeatedTypes, repeatedSelf };
+}
+
+assert.deepEqual(
+  repeatedPairCoordinateStats(identityOrder),
+  { repeatedTypes: 1, repeatedSelf: 1 }
+);
+
+let prngState = 0x6d2b79f5;
+function randomUnit() {
+  prngState ^= prngState << 13;
+  prngState ^= prngState >>> 17;
+  prngState ^= prngState << 5;
+  return (prngState >>> 0) / 4294967296;
+}
+
+const nullTrials = 10000;
+let exactlyOneRepeated = 0;
+let exactlyOneRepeatedAndSelf = 0;
+
+for (let trial = 0; trial < nullTrials; trial++) {
+  const order = identityOrder.slice();
+
+  for (const group of shuffleGroupList) {
+    const values = group.map((index) => order[index]);
+    for (let i = values.length - 1; i > 0; i--) {
+      const j = Math.floor(randomUnit() * (i + 1));
+      [values[i], values[j]] = [values[j], values[i]];
+    }
+    for (let i = 0; i < group.length; i++) {
+      order[group[i]] = values[i];
+    }
+  }
+
+  const stats = repeatedPairCoordinateStats(order);
+  if (stats.repeatedTypes === 1) {
+    exactlyOneRepeated++;
+    if (stats.repeatedSelf > 0) exactlyOneRepeatedAndSelf++;
+  }
+}
+
+assert.equal(exactlyOneRepeated, 379);
+assert.equal(exactlyOneRepeatedAndSelf, 66);
+
 console.log('CANONICAL WORD GRAPH: 2,896 words, 2,895 adjacent windows');
 console.log('GLOBAL REPEATED ADJACENT PAIRS: exactly one type, DJU / BEI at p27 and p55');
 console.log('FINITE PRIME_ECHO: 41 exhaustion histories at 36 distinct boundaries');
@@ -294,5 +394,6 @@ console.log('BOUNDARY300: cuts CEAIMCX after 4/6 runes; first intact words are D
 console.log('DESTINATION: the pair\'s only other occurrence is p27 line2 at local rune offset28');
 console.log('PAIR NUMBERS: GP-prime sums129/159 -> residues13/14 -> (x+y,x-y)=(27,28) mod29');
 console.log('BOOK-WIDE COORDINATE GATE: 1/195 eligible adjacent pairs hits; target only');
-console.log('SIGNED SUM/DIFFERENCE FAMILY: 1/12 transforms has any hit, target transform only');
-console.log('INTERPRETATION: source-constrained p55 -> p27:28 navigation candidate; transform remains historically unauthenticated');
+console.log('SIGNED SUM/DIFFERENCE FAMILY: 1/12 transforms has any original hit, target transform only');
+console.log('DISCOVERY-AWARE NULL: 66/379 matched books with exactly one repeated pair let it self-locate under some family transform');
+console.log('INTERPRETATION: p55 -> p27 pair handoff is strong; p27:28 sum/difference arithmetic is only weak incremental evidence');
