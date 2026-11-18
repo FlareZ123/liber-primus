@@ -126,6 +126,12 @@ That finite receiver is now closed for the two center-out tie orders, raw-byte/t
 
 This negative leaves the `EMERGE=83 / DIUINITY=105` bracket reconstruction unchanged. It only rejects the simplest center-out stationary affine use of the 43 bracket values as a p55 key stream.
 
+## TUNNELNG 55/56 authentic-transfer follow-up (Agent6)
+
+The secondary alignment `TUNNELNG GP0=94 → p50 cell94 0u → base59/base60 = 55/56` now has its most direct adjacent-page receiver closed. The authentic solved-p56 prime/totient/F-transparent rule cannot decode original p55 in printed order: the exact inverse becomes impossible at zero-based rune39. Among eight predeclared source-layout orientations, only reversing each of p55's four printed lines admits any complete paths, but p57 does not select that reflection and all three surviving outputs are nonprose with first word `TTHO`.
+
+This preserves the 55/56 page-pair alignment while excluding direct transfer of the genuine p56 cipher mechanism. See [the TUNNELNG transfer gate](lp2-p57-tunnelng-p55-p56-authentic-transfer-gate.md) and the existing [p56-rule p55 inverse](lp2-p55-fourline-mirror-p56-key-source-gate.md).
+
 ## Decision
 
 Promote the **p57 EMERGE/DIUINITY → p50 nested bracket** route as a leading intended-solve-path hypothesis. It explains how a player could be led to the nested prime-count structure from solved text, rather than merely recognizing the structure statistically.
