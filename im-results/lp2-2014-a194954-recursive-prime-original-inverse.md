@@ -1,6 +1,6 @@
 # Archived 2014 A194954 recurrence as an LP2 running prime key
 
-**Decision (16 November 2026): negative for this exact, original-cipher transfer.** The full independently specified OEIS A194954 sequence, including its defining forward-prime-gap stream, yields no unknown plaintext under direct additive GP29 keys with a fresh clock at each of the nine source-visible unknown chapters. Its p56-style positive-φ transparent-F decoder becomes algebraically impossible on all nine original chapters, generally within their first 112 runes. No source-selected unknown-page key, plaintext, or continuation is recovered.
+**Decision (18 November 2026): negative for these exact, original-cipher transfers.** The full independently specified OEIS A194954 recurrence has now been decomposed into its four directly exposed numeric streams: selected primes, forward prime gaps, binary-popcount divisors, and integral gap/divisor quotients. Used as source-fixed additive GP29 keys with a fresh clock at each of the nine source-visible unknown chapters, all four fail to recover unknown plaintext. Under the historically authenticated p56-style positive-key transparent-F rule, every chapter becomes algebraically impossible for every tested component stream. No source-selected unknown-page key, plaintext, or continuation is recovered.
 
 ## Why test this distinct route?
 
@@ -53,9 +53,31 @@ The prime sequence is selected by a divisibility condition on **forward prime ga
 
 These original inputs remain flat under both literal gap signs; all nine full-chapter F-transparent transfers are impossible under the complete dynamic program. This retires the source's directly defined forward-gap key alongside its underlying prime/totient stream under the bounded operations. A generic alternate seed/clock, other word arithmetic or undisclosed generator could evade the negative, but none is historically selected by this archive. Exact source-gap reproduction and all nine chapter assertions are added to the existing SFT.
 
+## Remaining primitive recurrence streams: binary weight and normalized gap
+
+The A194954 definition exposes two additional scalar streams without inventing a new parameter. For forward gap `g[n]=a[n+1]-a[n]`, define `d[n]=popcount(n)` and the exact integer multiplier `m[n]=g[n]/d[n]`. The first divisor values are `1,1,2,1,2,2,3,1,2,2,3,2,3,3,4,1`; the first eleven quotient values are `1,2,1,4,1,2,2,6,1,3,2`. These are the two primitive recurrence operands not covered by the earlier prime-value and raw-gap tests.
+
+Keep the same source-visible chapter restarts and freeze the consumer before looking at outputs: direct `C-d` / `C+d` and `C-m` / `C+m` modulo 29, plus the exact positive-key p56 plaintext-F-transparent state machine. There are no phase scans, fitted offsets, word clocks, alphabet permutations or semantic selectors.
+
+| Chapter | `C−d` IoC | `C+d` IoC | d F-reach | `C−m` IoC | `C+m` IoC | m F-reach |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| p0–2 | 0.034655 | 0.034105 | 48/729 | 0.034003 | 0.034071 | 13/729 |
+| p3–7 | 0.034225 | 0.034589 | 154/1145 | 0.034847 | 0.034423 | 6/1145 |
+| p8–14 | 0.034842 | 0.034232 | 8/1729 | 0.034484 | 0.034459 | 4/1729 |
+| p15–22 | 0.034278 | 0.034425 | 1/1903 | 0.034293 | 0.034626 | 202/1903 |
+| p23–26 | 0.034290 | 0.034445 | 0/1021 | 0.034199 | 0.034178 | 0/1021 |
+| p27–32 | 0.034484 | 0.034466 | 80/1433 | 0.034643 | 0.034347 | 92/1433 |
+| p33–39 | 0.034382 | 0.034531 | 27/1680 | 0.034410 | 0.034444 | 83/1680 |
+| p40–53 | 0.034512 | 0.034618 | 86/3008 | 0.034402 | 0.034440 | 43/3008 |
+| p54–55 | 0.034244 | 0.033737 | 5/308 | 0.034139 | 0.033737 | 5/308 |
+
+All direct readings remain near the uniform GP29 baseline. More decisively, the authentic transparent-F transfer fails on all nine chapters for both new streams; the longest surviving prefix is 202 of 1,903 runes. The SFT also creates synthetic plaintext under each new key and verifies full inverse reachability, so these contradictions are failures of the untouched LP2 source under the exact transferred mode rather than a state-machine implementation gap.
+
+This completes the direct additive decomposition of the A194954 recurrence under the already authenticated p56 transition model: `a[n]`, `a[n]-1`, raw `g[n]`, `popcount(n)`, and `g[n]/popcount(n)` are all bounded negatives at the manuscript's original chapter boundaries. Further arithmetic on the sequence now needs an independent source instruction specifying that arithmetic.
+
 ## Evidence scope and next decision
 
-This closes only the deterministic **source-extended A194954 prime/totient additive stream at natural chapter starts**, with no-skip and one historically authenticated F-transparent positive-φ rule. It does not rule out alternate stateful ciphers, original-source selected traversal or a changed key clock supplied independently. In particular it would be misleading to claim the archival spaces are themselves authenticated cryptographic key instructions.
+This closes only the deterministic **source-extended A194954 component streams as direct additive keys at natural chapter starts**, with no-skip readings and one historically authenticated positive-key F-transparent rule. It does not rule out alternate stateful ciphers, original-source selected traversal or a changed key clock supplied independently. In particular it would be misleading to claim the archival spaces are themselves authenticated cryptographic key instructions.
 
 Do **not** expand this into arbitrary starts, inserted periodic resets, 41/316 key phases or keyword composites in the absence of a source selector. Existing 41×316 per-class capacity results and hundreds of direct source-key tests already discourage parameter tuning without a plaintext bridge.
 
