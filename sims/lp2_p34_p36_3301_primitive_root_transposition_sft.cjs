@@ -52,6 +52,10 @@ function order(g) {
 
 assert.equal(G, 104);
 assert.equal(order(G), 138);
+const H = 1033 % P;
+assert.equal(H, 60);
+assert.equal(order(H), 46);
+assert.equal(modPow(G, 39), H);
 
 const forwardResidues = Array.from({length: 138}, (_, k) => modPow(G, k));
 assert.equal(new Set(forwardResidues).size, 138);
@@ -125,10 +129,37 @@ function score(values) {
   return ll / Math.max(values.length - 2, 1);
 }
 
+/**
+ * The second printed header number H=1033 mod139 has order46. Since G is a
+ * primitive root, the group splits into the three canonical cosets
+ * H, G*H, G^2*H. Enumerate cosets by c=0,1,2 and powers e=0..45.
+ * @param {boolean} reverseCosets
+ * @param {boolean} reversePowers
+ */
+function cosetResidues(reverseCosets, reversePowers) {
+  const cosets = reverseCosets ? [2, 1, 0] : [0, 1, 2];
+  const exponents = Array.from({length: 46}, (_, i) =>
+    reversePowers && i > 0 ? 46 - i : i
+  );
+  const out = [];
+  for (const coset of cosets) {
+    for (const exponent of exponents) {
+      out.push((modPow(G, coset) * modPow(H, exponent)) % P);
+    }
+  }
+  assert.equal(out.length, 138);
+  assert.equal(new Set(out).size, 138);
+  return out;
+}
+
 const candidates = [
   {name: 'source-order', values: clause34},
   {name: '3301-power-forward', values: gather(clause34, forwardResidues)},
-  {name: '3301-power-reverse', values: gather(clause34, reverseResidues)}
+  {name: '3301-power-reverse', values: gather(clause34, reverseResidues)},
+  {name: '1033-cosets-forward', values: gather(clause34, cosetResidues(false, false))},
+  {name: '1033-cosets-power-reverse', values: gather(clause34, cosetResidues(false, true))},
+  {name: '1033-cosets-order-reverse', values: gather(clause34, cosetResidues(true, false))},
+  {name: '1033-cosets-both-reverse', values: gather(clause34, cosetResidues(true, true))}
 ].map((row) => ({
   name: row.name,
   scorePerTrigram: score(row.values),
@@ -167,9 +198,11 @@ console.log(JSON.stringify({
   source: {
     modulusFromP36ItemRunes: P,
     totientAndP34ClauseRunes: 138,
-    repeatedCuneiformHeaderValue: HEADER,
-    residue: G,
-    multiplicativeOrder: order(G),
+    repeatedCuneiformHeaderValues: [1033, HEADER],
+    residues: [H, G],
+    orders: [order(H), order(G)],
+    relation: '3301^39 mod139 = 1033 mod139',
+    cosets: 3,
     coversAllNonzeroResidues: new Set(forwardResidues).size === 138
   },
   original: {
