@@ -128,6 +128,36 @@ function nextFromCryFamily(){
   return rows;
 }
 
+function afterNowTheFamily(){
+  const previous=[[11,16],[12,17],[13,18],[14,19],[15,20]];
+  const endpoint=previous[previous.length-1],rows=[],seen=new Set();
+  for(const center of previous){
+    for(const [dr,dc] of directions){
+      for(let radius=1;radius<=13;radius++){
+        const p1=[center[0]-dr*radius,center[1]-dc*radius];
+        const p2=[center[0]+dr*radius,center[1]+dc*radius];
+        if([...p1,...p2].some(v=>v<1||v>27))break;
+        const canonical=[p1.join(','),p2.join(',')].sort().join('|')+'|'+center.join(',');
+        if(seen.has(canonical))continue; seen.add(canonical);
+        const raw=[at(...p1),at(...center),at(...p2)];
+        if(raw[0]!==raw[2]||raw[1]===0)continue;
+        const derived=[raw[0],phi(raw[1]),raw[2]];
+        const rotation=((derived.reduce((sum,v)=>sum+mu(phi(v)),0)%3)+3)%3;
+        const key=derived.slice(rotation).concat(derived.slice(0,rotation));
+        for(const [rdr,rdc] of directions){
+          const stream=[];let r=endpoint[0],c=endpoint[1];
+          for(let i=0;i<12;i++){
+            if(r<1||r>27||c<1||c>27)break;
+            stream.push(mod(at(r,c)-key[i%3]));r+=rdr;c+=rdc;
+          }
+          rows.push({center,radius,nodeDirection:[dr,dc],raw,key,readDirection:[rdr,rdc],stream,...bestPrefix(stream)});
+        }
+      }
+    }
+  }
+  rows.sort((a,b)=>b.depth-a.depth||b.frequency-a.frequency);
+  return rows;
+}
 const imay=continuationFamily(branches[0].cells.at(-1));
 const xearth=continuationFamily(branches[1].cells.at(-1));
 assert.equal(imay.length,40);
@@ -156,6 +186,18 @@ assert.deepEqual(afterCry[0].moveDirection,[-1,0]);
 assert.deepEqual(afterCry[0].readDirection,[1,1]);
 assert.deepEqual(afterCry[0].stream.slice(0,5).map(i=>T[i]),["N","O","W","TH","E"]);
 
+const afterNowThe=afterNowTheFamily();
+assert.equal(afterNowThe.length,56);
+assert.equal(afterNowThe[0].depth,3);
+assert.equal(afterNowThe.filter(x=>x.depth===3).length,1);
+assert.equal(afterNowThe[0].word,"idea");
+assert.deepEqual(afterNowThe[0].center,[11,16]);
+assert.equal(afterNowThe[0].radius,3);
+assert.deepEqual(afterNowThe[0].raw.map(i=>T[i]),["A","TH","A"]);
+assert.deepEqual(afterNowThe[0].key.map(i=>T[i]),["U","A","A"]);
+assert.deepEqual(afterNowThe[0].readDirection,[1,-1]);
+assert.deepEqual(afterNowThe[0].stream.slice(0,3).map(i=>T[i]),["I","D","EA"]);
+
 console.log(JSON.stringify({
  status:"block-5 tie resolved conditionally by frozen endpoint-mirror continuation family",
  block5Branches:branches.map(b=>({name:b.name,cells:b.cells,plaintext:decryptCells(b.cells,key5).map(i=>T[i])})),
@@ -164,6 +206,7 @@ console.log(JSON.stringify({
    xearth:{candidates:xearth.length,maxDepth:xearth[0].depth,bestWords:[...new Set(xearth.filter(x=>x.depth===xearth[0].depth).map(x=>x.word))]},
  },
  afterCry:{candidates:afterCry.length,uniqueMaxDepth:afterCry[0].depth,words:afterCry[0].words,node:afterCry[0].raw.map(i=>T[i]),key:afterCry[0].key.map(i=>T[i]),start:afterCry[0].start,readDirection:afterCry[0].readDirection},
- combinedCandidate:"AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE",
+ afterNowThe:{candidates:afterNowThe.length,uniqueMaxDepth:afterNowThe[0].depth,word:afterNowThe[0].word,center:afterNowThe[0].center,radius:afterNowThe[0].radius,node:afterNowThe[0].raw.map(i=>T[i]),key:afterNowThe[0].key.map(i=>T[i]),readDirection:afterNowThe[0].readDirection},
+ combinedCandidate:"AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA",
  caveat:"The endpoint-mirror/totient/move rule is inherited from the published block-6 construction and is not yet independently specified by a signed original clue."
 },null,2));
