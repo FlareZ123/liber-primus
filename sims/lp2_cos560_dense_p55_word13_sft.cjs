@@ -9,7 +9,8 @@ const gp = JSON.parse(fs.readFileSync(path.join(root, 'resources', 'liber-primus
 const lexiconText = fs.readFileSync(path.join(root, 'resources', 'control', 'english_wordfreq_textblob.txt'), 'utf8');
 
 const padPath = process.argv[2];
-assert(padPath, 'usage: node sims/lp2_cos560_dense_p55_word13_sft.cjs <_560.00>');
+const builderName = process.argv[3] || 'mod29';
+assert(padPath, 'usage: node sims/lp2_cos560_dense_p55_word13_sft.cjs <_560.00> [builder]');
 const pad = fs.readFileSync(padPath);
 assert.equal(pad.length, 3992970, 'authoritative _560.00 byte length');
 
@@ -27,6 +28,27 @@ assert.equal(targetCipher.length, 13);
 function mod29(x) {
   const r = x % MOD;
   return r < 0 ? r + MOD : r;
+}
+
+/** @param {Uint8Array|Buffer} raw @param {string} name @returns {Uint8Array} */
+function buildKey(raw, name) {
+  const out = new Uint8Array(raw.length);
+  const primes = [];
+  for (let x = 2; primes.length < 29; x += 1) {
+    if (primes.every((p) => x % p !== 0)) primes.push(x);
+  }
+  const primeIndex = new Map(primes.map((p, i) => [p, i]));
+
+  for (let i = 0; i < raw.length; i += 1) {
+    const value = raw[i];
+    if (name === 'mod29') out[i] = value % 29;
+    else if (name === 'prime_to_idx') out[i] = primeIndex.get(value) ?? (value % 29);
+    else if (name === 'hi_nibble') out[i] = (value >> 4) % 29;
+    else if (name === 'lo_nibble') out[i] = (value & 0x0f) % 29;
+    else if (name === 'byte_scaled') out[i] = Math.floor(value * 29 / 256);
+    else throw new Error('unknown builder: ' + name);
+  }
+  return out;
 }
 
 const translitTokens = gp.translit.map((text, index) => ({text, index}))
@@ -96,10 +118,8 @@ for (const entry of entries) {
  * @param {number} maxSkip
  * @returns {Array<object>}
  */
-function denseScan(rawPad, sign, maxSkip = 3) {
-  const n = rawPad.length;
-  const key = new Uint8Array(n);
-  for (let i = 0; i < n; i += 1) key[i] = rawPad[i] % MOD;
+function denseScan(key, sign, maxSkip = 3) {
+  const n = key.length;
 
   const hits = [];
   const maxStart = n - targetCipher.length * (maxSkip + 1) - 1;
@@ -202,7 +222,7 @@ function denseScan(rawPad, sign, maxSkip = 3) {
  * @param {1|-1} sign
  * @returns {{cipher:number[], skips:number[], end:number}}
  */
-function plant(rawPad, plain, start, sign) {
+function plant(key, plain, start, sign) {
   const cipher = [];
   const skips = [];
   let accepted = start - 1;
@@ -210,22 +230,23 @@ function plant(rawPad, plain, start, sign) {
   for (let i = 0; i < plain.length; i += 1) {
     let acc = accepted + 1;
     let dsk = 0;
-    if (i > 0 && mod29(plain[i] - sign * (rawPad[acc] % MOD)) === cipher[i - 1]) {
+    if (i > 0 && mod29(plain[i] - sign * key[acc]) === cipher[i - 1]) {
       acc += 1;
       dsk = 1;
     }
-    cipher.push(mod29(plain[i] - sign * (rawPad[acc] % MOD)));
+    cipher.push(mod29(plain[i] - sign * key[acc]));
     skips.push(dsk);
     accepted = acc;
   }
   return {cipher, skips, end: accepted};
 }
 
+const key = buildKey(pad, builderName);
 const controlEntry = entries[0];
 let control = null;
 for (let start = 0; start < 100000 && !control; start += 1) {
   for (const sign of [-1, 1]) {
-    const candidate = plant(pad, controlEntry.encoded, start, sign);
+    const candidate = plant(key, controlEntry.encoded, start, sign);
     if (candidate.skips.some((value) => value > 0)) {
       control = {start, sign, ...candidate};
       break;
@@ -238,16 +259,16 @@ assert(control, 'failed to create forced-skip positive control');
 // local trie containing only the control word.
 const savedCipher = targetCipher.slice();
 for (let i = 0; i < 13; i += 1) targetCipher[i] = control.cipher[i];
-const controlHits = denseScan(pad.subarray(0, Math.min(pad.length, control.start + 1000)), control.sign, 3)
+const controlHits = denseScan(key.subarray(0, Math.min(key.length, control.start + 1000)), control.sign, 3)
   .filter((hit) => hit.start === control.start && hit.word === controlEntry.word);
 for (let i = 0; i < 13; i += 1) targetCipher[i] = savedCipher[i];
 assert(controlHits.length > 0, 'forced-skip control was not recovered');
 
-const forwardMinus = denseScan(pad, -1, 3);
-const forwardPlus = denseScan(pad, 1, 3);
-const reversed = Buffer.from(pad).reverse();
-const reverseMinus = denseScan(reversed, -1, 3);
-const reversePlus = denseScan(reversed, 1, 3);
+const forwardMinus = denseScan(key, -1, 3);
+const forwardPlus = denseScan(key, 1, 3);
+const reversedKey = buildKey(Buffer.from(pad).reverse(), builderName);
+const reverseMinus = denseScan(reversedKey, -1, 3);
+const reversePlus = denseScan(reversedKey, 1, 3);
 
 const all = [
   ...forwardMinus.map((hit) => ({direction: 'forward', ...hit})),
@@ -258,6 +279,7 @@ const all = [
 
 console.log('RESULT_JSON ' + JSON.stringify({
   padBytes: pad.length,
+  builder: builderName,
   p55WordStart: wordStart,
   p55WordLength: 13,
   dictionaryTypes: entries.length,
