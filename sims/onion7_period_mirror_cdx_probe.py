@@ -162,7 +162,7 @@ def replay_capture(row: dict, label: str) -> dict:
             result["zip_comparison"] = compare_zip(dest)
         elif body[:1000].lstrip().lower().startswith((b"<!doctype html", b"<html")):
             html = body.decode("utf-8", "replace")
-            result["html_imgur_urls"] = sorted(set(re.findall(r"https?://(?:i\\.)?imgur\\.com/[^\\s\\"'<>]+", html, re.I)))
+            result["html_imgur_urls"] = sorted(set(re.findall(r"https?://(?:i\.)?imgur\.com/[^\s\"'<>]+", html, re.I)))
         return result
     except Exception as exc:
         return {"replay": replay, "error": f"{type(exc).__name__}: {exc}"}
