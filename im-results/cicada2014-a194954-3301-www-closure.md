@@ -26,9 +26,18 @@ A194954(210) = 3301
 GP index 7 = W
 ```
 
-Thus the A194954 term index of 3301 is exactly the two-symbol GP/base-29 repdigit **WW**, while the omitted prime 19 independently identifies **W**. The compact source-level readout is therefore **W + WW = WWW**.
+Thus the A194954 term index of 3301 is exactly the two-symbol GP/base-29 repdigit **WW**, while the omitted prime 19 independently identifies **W**.
 
-This does not specify a cipher. It gives a plausible human-facing meta-instruction consistent with a web-delivered puzzle and the solved p56 deep-web destination.
+The destination HTML adds a second inverse-sequence instruction:
+
+```text
+A194954(42) = 331
+42 = 1*29 + 13 = [U,P] in GP/base 29
+```
+
+So the source-fixed sequence maps the signed-message number **3301** to **WW** and the destination-page id **331** to **UP**. With the omitted 19 supplying the first W, the compact historical readout is **WWW UP**. Among the other first-party numbers checked in this route, including 761, 1033, 133, 103, 142, 81, 312, 464, 174 and 290, none is an A194954 term.
+
+This does not yet specify a cipher. It supplies a literal human-facing direction whose physical receiver is now identifiable inside the manuscript.
 
 ## Why this is stronger than an isolated coincidence
 
@@ -86,7 +95,19 @@ There are **19** terms, matching the uniquely omitted prime 19 from the 2014 whi
 
 This boundary is materially different from searching the event stream for an attractive motif after seeing it. The historical A194954 clue fixes the last usable position first; WWW begins immediately after it. Under the existing 250,000-trial chapter-inventory permutation control, an isolated W triple beginning at exactly this zero-based boundary 79 appears **122 / 250,000** times, add-one tail **0.000491998**. This conditional tail is a selection diagnostic rather than a probability of author intent.
 
-Two obvious consumers are negative. Selecting the 19 A194954 event positions gives `X EA L S N J X M EA G U E EO N TH OE OE AE P`; taking the rune immediately after each of the three physical WW pairs gives `IA OE P`. The useful result is therefore the **marker placement**, not decoded payload.
+Two obvious payload consumers are negative. Selecting the 19 A194954 event positions gives `X EA L S N J X M EA G U E EO N TH OE OE AE P`; taking the rune immediately after each of the three physical WW pairs gives `IA OE P`.
+
+A direction-style consumer is different. Treat the A194954 terms as successive one-based jumps through the 86-event channel. The first eight jumps remain inside the stream:
+
+```text
+steps:       2, 3, 5, 7, 11, 13, 17, 23
+positions:   2, 5, 10, 17, 28, 41, 58, 81
+next:        81 + 29 = 110  -> outside the 86-event stream
+```
+
+The final reachable position is **event 81**, the middle W of the selected WWW triplet. Its cumulative displacement is also **81**. Independently, p51 begins immediately below the numerical table with the complete word **W W P**, whose GP-prime sum is **19+19+43=81**. Existing table research had already noticed that 81 is the first cell of the runeless central physical table page p50. The A194954 walk now fixes that same 81 before using the WWP sum, removing one of the main post-hoc choices in that route.
+
+The historical inverse-index instruction **WWW UP** then supplies the literal physical direction: the p51 WWW marker terminates at the page-start WW directly below the 32x8 numerical table. Following UP into the table first encounters the bottom-left table token `1r`; under the canonical base60 reading its value is **113 = A194954(23)**, while the competing base59 reading gives 111. This is a source-aligned checksum and a candidate radix discriminator. Straight upward remainder reads, whole-table A194954-value extraction and first-hit-per-column reads remain opaque, so no plaintext is claimed from those broader consumers.
 
 Full event-channel analysis and reproduction: [`lp2-mortlach-www-event-channel-url-crib-gate.md`](lp2-mortlach-www-event-channel-url-crib-gate.md) and [`sims/lp2_doublet_www_url_crib_sft.cjs`](../sims/lp2_doublet_www_url_crib_sft.cjs).
 
@@ -101,13 +122,13 @@ primepi(3301) = 464 = 16*29
 GP indices 6,10,16 = G,I,T
 ```
 
-The A194954 closure supplies a separate **WWW** readout from the historical Onion7 handoff, and the event-boundary result now supplies an internal manuscript receiver for that marker. The conjunction `GIT + WWW` also admits the period-appropriate reading **gitweb**, a standard Git web interface available before 2014. Searches of surviving Cicada 2014 archives found no creator-authored Git repository, Onion7 `.git` endpoint, `gitweb.cgi`, `info/refs`, or other authenticated Git receiver.
+The cuneiform **GIT** candidate remains interesting, and `GIT + WWW` admits the period-appropriate reading **gitweb**, a standard Git web interface available before 2014. Searches of surviving Cicada 2014 archives found no creator-authored Git repository, Onion7 `.git` endpoint, `gitweb.cgi`, `info/refs`, or other authenticated Git receiver.
 
-Do not redirect effort into arbitrary GitHub repositories. External Git remains a secondary hypothesis pending historical evidence. The stronger current route is internal: determine whether another original clue specifies what the independently selected WWW marker does at the pp47–51 / numeral-table boundary.
+The newly recovered **UP** instruction makes the internal manuscript route more causal than the external Git hypothesis. Do not redirect effort into arbitrary GitHub repositories. External Git remains secondary pending historical evidence; the active receiver is the p51 WWW/table junction.
 
 ## Reproduction
 
-The standalone SFT [`sims/cicada2014_a194954_3301_www_closure_sft.cjs`](../sims/cicada2014_a194954_3301_www_closure_sft.cjs) extracts the preserved whitespace runs and HTML fields from pinned repository resources, checks the GP mapping, reproduces `A194954(210)=3301`, verifies `primepi(3301)=464`, and exhausts the 1,432-pair finite null family.
+The standalone SFT [`sims/cicada2014_a194954_3301_www_closure_sft.cjs`](../sims/cicada2014_a194954_3301_www_closure_sft.cjs) extracts the preserved whitespace runs and HTML fields from pinned repository resources, checks the GP mapping, reproduces `A194954(210)=3301 -> WW` and `A194954(42)=331 -> UP`, verifies `primepi(3301)=464`, and exhausts the 1,432-pair finite null family. The event-channel SFT independently fixes the cumulative jump landing at event81 and the exact WWW boundary.
 
 Existing supporting work:
 
@@ -120,4 +141,4 @@ Existing supporting work:
 
 The whitespace channel has a known authenticity limitation: OpenPGP cleartext canonicalization does not authenticate all trailing-space detail, and archived copies have differed in whitespace preservation. The repository's pinned copy and contemporaneous Git history establish that this exact sequence circulated during the 2014 solve, while they do not prove every space was author-selected.
 
-Accordingly, the arithmetic closure is best classified as a **strong candidate design relation** and a constrained routing clue. An independent manuscript receiver now exists at the A194954/event boundary. Promotion to an established puzzle mechanism still requires a source-selected operation that turns this marker into reproducible unknown-page plaintext, key material, or a destination.
+Accordingly, the combined relation is a **strong candidate navigation mechanism**: the historical handoff yields **WWW UP**, the manuscript event walk independently lands on 81 inside WWW, and the physical UP direction enters the numerical table at an A194954-valued base60 cell. The route still stops short of unknown-page plaintext, key material, or a destination. The next discriminating step must continue from that fixed table entry without tuning a new traversal after reading its output.
