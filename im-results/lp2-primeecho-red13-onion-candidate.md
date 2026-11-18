@@ -110,6 +110,32 @@ This local match is materially stronger than defining a divisor from generic
 page-level numbers after seeing the factorization. All three small factors can
 be read from the selected red-marked line and its immediately adjacent words.
 
+## 3a. Later p28/p27 route labels the complete factorization
+
+A later source-selected route materially reduces the residual-factor ambiguity without changing the frozen rank, factorization, or Tor encoding.
+
+The p28 center-line DH23 construction and its p27 continuation independently supply labels for every factor role in the complete factorization:
+
+| rank factor / property | source-selected route value |
+|---|---|
+| `19` | p28 DH public value `B=19`; also the p27 red-heading length |
+| `31` | GP-prime of the p28 center `I`; reproduced by the 13th p27 red-heading rune |
+| `103` | gap between the two p50 `39` cells, 254−151; also GP0 of the selected p27 DIVINITY interior |
+| `bitlen(25795396177)=35` | GP0 of the once-shed p28 word interior |
+| `bitlen(521821166063052627702311)=79` | zero-based start of the selected p27 DIVINITY carrier |
+
+Thus
+
+```
+R = 19 × 31 × 103 × q35 × q79
+```
+
+has the complete route label set `19,31,103,35,79`. The rank construction already uses bit capacity through `floor(log2 C(255,30))=129`, so reading residual prime bit lengths stays inside the representation family already frozen by this candidate.
+
+This substantially improves the choice between the two residual primes: the p28 shedding value35 labels the 35-bit residual, while the selected p27 carrier start79 labels the 79-bit residual that renders as the Tor-v2 identifier. The route was recognized after the factorization and candidate host were already known, so this is **selection evidence rather than a discovery-adjusted probability claim**.
+
+The remaining unsupported steps are the combinadic-rank operation itself and the interpretation of the 79-bit prime as a historical Tor-v2 destination. No archival occurrence or checksum authenticates the host. Focused cross-check: `sims/lp2_p28_dh23_onion_factor_selector_sft.cjs`.
+
 ## 4. Candidate Tor-v2 destination
 
 The larger residual prime is **79 bits**, fitting in the 80-bit identifier used
@@ -250,8 +276,7 @@ were fixed before the candidate emerged:
 The remaining unsupported steps are substantial. The red-only combinadic rank
 operation was motivated earlier but has not been authenticated by the
 manuscript. The floor-capacity match 129 is only corroborative because the
-rank itself needs 130 bits. The final choice to interpret the 79-bit residual
-prime as a Tor-v2 payload still needs an external receiver or historical hit.
+rank itself needs 130 bits. The later p28/p27 route now supplies an internal 79-bit selector for the larger residual prime. Interpreting that selected prime as a Tor-v2 payload still needs an external receiver or historical hit.
 
 ## 8. Decisive next tests
 
@@ -261,10 +286,7 @@ Treat this as a high-priority candidate continuation, not a solution.
    frozen rank convention.
 2. Search preserved 2014–2017 Tor/onion crawl indexes for the exact host
    `nz77w2upkfkyj4rh.onion`.
-3. Seek an independent cue that selects the **79-bit residual factor** as the
-   Tor payload or supplies a receiver for the remaining 35-bit prime. The
-   three small factors now have direct p27-local matches; the unresolved
-   selection is which residual factor is the destination payload.
+3. The later p28/p27 route now selects the **79-bit residual factor** by a source-derived bit-length label and assigns 35 to the other residual. The decisive remaining test is an independent cue for the combinadic-rank/Tor-v2 interpretation or a historical occurrence of the exact host.
 4. Do **not** search alternate rank conventions, punctuation subsets, factor
    combinations, byte orders, or base encodings merely to obtain more
    address-like strings.

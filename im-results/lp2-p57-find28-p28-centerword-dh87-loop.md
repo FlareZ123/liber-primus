@@ -49,6 +49,36 @@ This changes the historical interpretation. The exact toy tuple predates Cicada 
 
 Focused reproducer: `sims/lp2_p28_centerline_dh23_sft.cjs`.
 
+## DH23 state predicts p50, p27 DIVINITY, and the signed BASE29 modulus
+
+The direct DH23 state does more than reproduce the historical toy tuple. It predicts a typed p50 object from quantities already fixed on p28.
+
+Shedding both literal circumferences from p28 word28 leaves the central `I`, whose GP prime value is **31**. Using the independently printed table width `A=8` and the line-number exponent `a=6` as the row and column gives zero-based cell
+
+```
+31×8 + 6 = 254.
+```
+
+Cell254 is token `39`. Its base59 reading is **186 = 23×8+2 = (p,K)**, while its base60 reading is **189 = 23×8+5 = (p,g)**. Independently, `GP-prime(FIND)=151`, and cell151 is the only other copy of token `39` in the 256-cell table. Their address gap is therefore fixed:
+
+```
+254 - 151 = 103.
+```
+
+The already selected p27 carrier `EORNSOOCAEYEE` begins at zero-based rune offset **79**. Shedding its two outer rune pairs leaves `NSOOCAEY`, whose GP0 sum is exactly **103**. P50 cell103 is the literal token `3Q`. The p28 exponent `a=6` selects the sixth rune of that interior, GP index24, which is digit `O` in the signed 2013 BASE29 alphabet. The source-selected object therefore serializes as
+
+```
+p50[103] || BASE29(interior[6]) = 3Q || O = 3QO = 3301.
+```
+
+This creates an LP2-native `DH 3301` operation/modulus pair. It does **not** authorize importing the preserved 2013 live-session base2757, server share1264, client share2800, shared1067, or any session exponent. Those values remain participant/session-specific.
+
+The same p28 tuple predicts the previously observed p50 pointer structure. Cell186 is `0J` and decodes to **B=19** under both candidate radices. Under base59, exactly **A=8** pointer steps first reach cell189, which is a base59 self-pointer; base60 does not reach189 at eight steps. The exact base59 path is `186→19→33→112→72→161→214→247→189`. This gives the mixed-radix transition a DH-state role without turning the graph into an unknown-page cipher.
+
+The p27 red object closes the state again: its heading has length19, its red 13-dot mark follows immediately, the 13th heading rune is `I` with prime31, and `19−13=6`. Thus the p28 values `B=19`, center `I=31`, and `a=6` are all reproduced by the source-selected p27 receiver before the 103/3QO serialization.
+
+Focused reproducer: `sims/lp2_p28_dh23_onion_factor_selector_sft.cjs`.
+
 ## Shedding the selected word's circumferences
 
 The same solved instruction says to shed our own circumferences. Applying the literal minimal peel to the selected five-rune word removes its two outer runes:
@@ -160,7 +190,7 @@ A separate p31-only p56 transfer is also closed. Because `K=87=pi(449)` and p31'
 
 ## Decision
 
-Promote the **FIND→28 → p28 word28 / line6 DH23 → p27 red19+13** construction as the leading intended-navigation hypothesis.
+Promote the **FIND→28 → p28 word28 / line6 DH23 → p50 token39 → p27 red19+13 / DIVINITY103 → 3QO=3301** construction as a leading intended-navigation hypothesis.
 
 The decisive new source facts are all on the already selected original p28 object: line6 uniquely begins with `DH` across all604 physical LP2 rune lines; it has23 runes; the five-rune selected word occupies positions19..23; and the line number is6. These values directly instantiate `p=23, g=5, a=6, B=19`, which uniquely gives `b=15, A=8, K=2`. Both nested circumferences of the selected word independently sum to2 modulo23, and no other five-rune LP2 word does so twice.
 

@@ -155,3 +155,14 @@ The source geometry directly supplies standard DH `p=23, g=5, a=6, B=19`. The un
 The p50 DIUINITY center token13 also closes by the already selected prime family: 13th prime=41 and p50[41] base59=83=EMERGE. More importantly, p28 B=19 paired with red13 predicts the unique p27 red span length19 followed by a red13 mark; 19−13=6 repeats the p28 private exponent. This creates a direct p57→p28→p27 DH23 intended-route hypothesis and removes the earlier need to import the 2013 DH worked tuple without an LP2-native selector.
 
 No unknown plaintext, KDF or receiver inverse yet. Next productive work should consume a source-selected DH23/p27 output on untouched ciphertext; do not reopen arbitrary DH groups or broad p28 cipher menus.
+
+
+### Continuation: p50 duplicate-39, 3QO=3301, and residual-factor selector
+
+The direct p28 DH23 state predicts cell254 from center-I prime31, table width A=8, and a=6. Cell254 token39 reads base59=186=(23,2) and base60=189=(23,5). FIND's independent GP-prime151 selects the only other token39, so the exact gap is103. The selected p27 carrier EORNSOOCAEYEE begins at offset79 and its twice-shed DIVINITY interior NSOOCAEY has GP0=103. P50[103]=3Q; p28 a=6 selects the sixth interior rune index24=BASE29 O; hence 3QO=3301. This creates an LP2-native DH/3301 operation-modulus pair while leaving the historical live-session g/A/B/K values quarantined as session-specific.
+
+The same state predicts the p50 pointer: cell186 returns B=19 under both radices, and base59 first reaches cell189 in exactly A=8 hops; base60 does not. P27 independently reproduces B19, I-prime31, and a6 through its red19+13 object.
+
+The frozen red-only combinadic rank factorization is 19*31*103*q35*q79. The route now labels all five roles: 19=B, 31=center-I prime, 103=duplicate-39 gap/DIVINITY GP0, bitlen(q35)=35=shed p28 interior GP0, bitlen(q79)=79=selected p27 DIVINITY-carrier start. This removes the residual-factor ambiguity within the frozen onion candidate, while combinadic ranking and Tor-v2 interpretation remain unauthenticated and the exact host still has no historical occurrence.
+
+Focused SFT: sims/lp2_p28_dh23_onion_factor_selector_sft.cjs.

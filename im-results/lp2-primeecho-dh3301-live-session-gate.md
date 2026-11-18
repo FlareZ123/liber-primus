@@ -46,12 +46,20 @@ Within the ordinary exponent range1–3299 this leaves exactly six representativ
 
 Every one gives `1264^x mod3301 = 1067`. The transcript therefore does **not** identify one unique client private exponent. Selecting11, 561, 1111, 1661, 2211 or2761 for LP2 would require another source rule.
 
+## Later LP2-native selector for the opcode/modulus pair
+
+Subsequent p57/p28/p27 work changes one part of this gate. The conditional `FIND→28` route selects a p28 physical line whose first visible fragment is uniquely `DH`; the line geometry fixes the complete DH23 state. That state selects p50 cell254, whose duplicated token `39` pairs with `GP-prime(FIND)=151` to give address gap103. The selected p27 DIVINITY interior has GP0=103, p50[103] is `3Q`, and the p28 exponent6 selects its sixth rune as BASE29 digit `O`. Hence LP2 now supplies a manuscript-internal serialization `3QO=3301` downstream of a literal `DH` operation cue.
+
+The corrected conclusion is therefore narrower than the original gate: LP2 now has a plausible source-selected **`DH 3301` opcode/modulus pair**. The preserved live-session values remain unusable as LP2 key material because the signed protocol makes the participant server choose its own base and secret, and the archived organizer share is session-specific. No KDF, byte/rune serialization of the returned shared integer, or ciphertext receiver follows from the protocol.
+
+Reproducer for the later manuscript route: `sims/lp2_p28_dh23_onion_factor_selector_sft.cjs`.
+
 ## Receiver gate
 
 The source boundary is the same one established for the p23 worked example, and is even stronger here because the live shared value is session-specific. The signed `DH` protocol returns the shared integer as `03 DATA [k]`; it does not specify any subsequent data cipher. `NEXT` is an independent plaintext-upload command.
 
-`prime_echo` likewise supplies only a terminal pause/hold at3301. It does not say to feed3301 into DH, retain the shared result, select one private exponent representative, serialize a shared integer into GP29, or apply a reversible operation to Liber Primus.
+`prime_echo` by itself supplies only a terminal pause/hold at3301. The later LP2 route now couples a literal DH cue to BASE29 3QO=3301, while still supplying no rule to retain a live-session shared result, choose a session exponent, serialize that result into GP29, or apply a reversible operation to unknown ciphertext.
 
-No concrete original LP2 span and exact reversible receiver are source-selected by the combined evidence. The Director fork therefore closes on **cross-service reuse, no receiver**.
+A concrete LP2 navigation span now source-selects the DH/3301 pairing, but no exact reversible unknown-cipher receiver is selected. Preserve the historical live-session values as controls and continue to reject their use as keys absent a manuscript-selected KDF or receiver.
 
 Reproducer: [`sims/lp2_primeecho_dh3301_live_session_sft.cjs`](../sims/lp2_primeecho_dh3301_live_session_sft.cjs). Windows Node22 CI: **PASS 44412383904**. Source controls: [`resources/historical/cicada2013-os-original-prime-echo.sh`](../resources/historical/cicada2013-os-original-prime-echo.sh), [`resources/external/2013-tcp-live-test-vectors.json`](../resources/external/2013-tcp-live-test-vectors.json), and [`resources/external/2013-tcp-server-signed-source.md`](../resources/external/2013-tcp-server-signed-source.md).
