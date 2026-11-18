@@ -51,6 +51,27 @@ So the red-title graph yields the semantic chain
 
 This strengthens the candidate red-title reading **EPIPHANY SEEKS** and the independently proposed later **THE DEVOTED** crib without claiming that either has yet been recovered by a reversible ciphertext inverse.
 
+## Source-order four-word census
+
+The four labels are not an unordered vocabulary hit. In the authenticated 43-word 2016 message they occur as the exact consecutive source window
+
+`EPIPHANY SEEKS THE DEVOTED`
+
+at zero-based word indices 5..8.
+
+A census of all 40 consecutive four-word windows used four frozen predicates:
+
+1. the first two words have GP-rune lengths 8/5, matching the original p0 red title shape;
+2. the second word has GP0 sum 71, the red-seed graph's 13-cycle-union rune count;
+3. prime-count of that second GP0 sum equals the third word's GP0 sum;
+4. conventional p50 byte at the third word's GP0 sum equals the fourth word's GP0 sum.
+
+Only the window at index 5 satisfies any of these predicates, and it alone satisfies all four:
+
+`[8,5,2,7] ; [121,71,20,102] ; pi(71)=20 ; T[20]=102`.
+
+This is a stronger source-order connection than selecting four matching English words after inspection. It remains evidence for a navigation/crib hypothesis until a reversible ciphertext transform reproduces those words.
+
 ## Controls and scope
 
 The cycle-count fact is not unique among arbitrary p0 adjacent pairs. Twelve of the 58 adjacent pairs enter both realized attractors and therefore inherit the same 13-word/71-rune union. The red title is distinguished before this calculation by original red ink and the immediately following 13-dot marker, so the relevant seeds are not selected from those twelve after inspection.
