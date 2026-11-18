@@ -59,6 +59,8 @@ EA A I U L  →  A I U
 
 The remaining GP0 sum is **24+10+1 = 35**. One further peel leaves the single rune **I**.
 
+The removed outer pair is itself instruction-bearing. Its values are **28 and20**. Their absolute difference is **8 = GP0(OUR)** and their sum modulo29 is **19 = GP0(OWN)** in this sentence context. Those two symmetric equations have the unique unordered GP29 solution {20,28}, so the literal circumference selects OUR/OWN before the DH exponents are chosen. In the original p28 scan the selected word is also the final word on physical line6 of12, placing it at the page's visual half as well as immediately after its exact rune midpoint.
+
 The three-rune interior carries three additional exact instruction values under standard Gematria measures:
 
 - interior GP1 is **38 = GP0(WITHIN)**;
@@ -151,8 +153,8 @@ A second peel leaves the central **I**, whose GP prime value is31. Treating31 as
 
 The same31 also supplies a natural opposite page endpoint to the already selected p28. Physical p28–p31 have prime rune counts `[269,277,263,269]`, exactly12 printed lines each and period counts `[3,4,5,6]`. The four pages contain1078 runes, and `pi(1078)=180`. One literal peel of the 32×8 p50 table leaves a30×6 interior of exactly180 cells. This creates a source-selected 180-to-180 frontier: prime-position runes of p28–p31 against the once-shed p50 interior.
 
-Two direct consumers are closed. A row-major additive pad from the 180 p50 values fails native-GP language. The route-supplied DH151 family
-`key_i = base^(tableValue_i) mod151 mod29`, with `base ∈ {35,107,66,87}`, both table radices and both additive signs, also fails. Its best trigram score is **−3.3751244733**, versus **−2.4681447142** for solved p57 and **−2.4541132344** for a planted control. Preserve the alignment while rejecting these exact formulas.
+Several direct consumers are closed. A row-major additive pad from the 180 p50 values fails native-GP language. The route-supplied DH151 family
+`key_i = base^(tableValue_i) mod151 mod29`, with `base ∈ {35,107,66,87}`, both table radices and both additive signs, also fails. Its best trigram score is **−3.3751244733**, versus **−2.4681447142** for solved p57 and **−2.4541132344** for a planted control. The 12 p57 instruction words align naturally with the 12 physical lines of each p28–p31 page, but direct per-line Caesar shifts fail under both canonical GP0 values and the mechanism-derived 12-number schedule; the best mechanism-derived score is **−3.3884247610**. Direct periodic GP29 keys from the full centered word, its shed interior [24,10,1], or scalar35 also fail; best score is **−3.3964782482**. Preserve the alignment while rejecting these exact formulas.
 
 A separate p31-only p56 transfer is also closed. Because `K=87=pi(449)` and p31's exact center is F, I tested the authentic p56 F-transparent mechanism starting at prime449 on the whole page and the source-natural center-out rays, under both signs. Every automaton becomes impossible before finishing its input.
 
