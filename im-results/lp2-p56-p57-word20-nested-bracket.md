@@ -46,18 +46,29 @@ These are secondary observations under the same frozen GP0-address map:
 
 The existing p57 report already records `WITHIN→CIRCUMFERENCES→PARABLE→FIND→28`, `SHED→PARABLE`, and the p28 `π(269)=57` return. This report adds the p56 cross-page anchors; it does not independently validate the later p28 receiver work.
 
+## Source selector from the signed 2016 message
+
+The authenticated 2016 clear-signed message says: “The path lies empty; epiphany seeks the devoted,” then “Its words are the map, their meaning is the road, and their numbers are the direction.” The antecedent of “their” is grammatically **words**, supporting a word-level number/address hypothesis rather than a page-number direction rule.
+
+The first sentence plausibly selects p57 `DIUINITY=105` (epiphany/divinity) and p56 `PILGRIM=82` (the devoted/pilgrim). These are semantic correspondences, not numeric equalities: the signed-message words `EPIPHANY` and `DEVOTED` have GP0 sums121 and102.
+
+The explicit instruction words give a bounded test: `ITS=41` → cell41 `1O` → base59 83 = p57 `EMERGE=83`; `MEANING=87` → cell87 `15` → base59 64 = p57 `SHED=64`; `NUMBERS=83` → cell83 `3D` (base60 193), exactly the same GP0 address as `EMERGE`; and `DIRECTION=98` → cell98 `1C` → base60 72 = p56 `DEEP=72`. `WORDS`, `MAP`, and `ROAD` do not produce equally distinctive targets.
+
+The strongest exact echo is `NUMBERS=83`: it directly repeats the GP0 address of `EMERGE` and selects p50 cell83 `3D`. The `ITS`, `MEANING`, and `DIRECTION` edges require choosing base59 or base60 and are not independently source-authenticated.
+
+Calibration: the signed payload has **43 alphabetic words** after removing the PGP hash header and 8-hex verification fingerprint; the p50 strict interior is also **43 cells** (84..126). The obvious one-to-one row-major map fails: the 43 message GP0 sums are neither sequence-equal nor multiset-equal to the 43 interior token values under base59 or base60; overlaps are15/43 and19/43. Also, **22 of43** signed-message words have at least one direct/base59/base60 output matching some p56/p57 GP0 word sum, so collisions are common. The count match and extra word edges are suggestive, not proof of a one-to-one receiver. Reproduction: `sims/lp2_signed2016_word_map_sft.cjs`.
 ## Plausible human solve path
 
-1. The clear p56 instruction says that every pilgrim must seek out the page; p57 is a 20-word parable whose final word is EMERGE.
-2. Treat the visible p57 word count as an index and read word20 on both solved pages: PILGRIM and EMERGE.
-3. Their GP0 sums 82 and83 select the forward adjacent occurrences of the only mirrored nested duplicate structure in the 256-token table.
-4. The p57 instruction to shed circumferences motivates the duplicate-pair reading; both pairs converge on cell105.
-5. The p57 phrase to find divinity within is independently reflected by DIUINITY's GP0 sum105 and the unique printed `13` at that cell.
+1. Read the signed 2016 message as a word-level clue: “epiphany seeks the devoted” plausibly selects p57 DIVINITY and p56 PILGRIM.
+2. Their GP0 word sums are105 and82; p57 also supplies EMERGE=83. These addresses select the p50 center and nested boundaries.
+3. The signed message's NUMBERS=83 exactly repeats EMERGE=83; MEANING and DIRECTION give candidate SHED and DEEP edges through p50.
+4. The p57 instruction to shed circumferences and find divinity within explains the duplicate-pair and center reading.
+5. The aligned p56/p57 word20 pair is an additional check, not the primary selector, because it depends on counting titles.
 
-This is a plausible reconstruction of a player-visible sequence, not proof of creator intent. The 2016 signed sentence about words being a map and their numbers giving direction motivates a word-number route, but does not explicitly state the exact GP0-sum/address operation.
-
+This is a plausible player-visible sequence, not proof of creator intent. The signed-message word map has many collisions and does not fully specify the arithmetic.
 ## Strongest caveats and falsifiers
 
+- **Signed-message collisions are substantial.** 22/43 words in the full signed payload have at least one direct/base59/base60 match to p56/p57 GP0 word sums; the key-term subset is source-selected but not exclusive. The 43-word/43-cell count does not yield a direct row-order or multiset receiver.
 - **Title inclusion is essential.** The alignment counts the visible titles `AN END` and `PARABLE` as words, matching the title-inclusive segmentation used in the existing p57 map. If titles are excluded, p56 has23 body words and p57 has19; the 19th body words are `TO=19` and `EMERGE=83`, which do not select the bracket. The p56 hexadecimal digest is not counted as a GP word.
 - **The arithmetic is inferred.** The clue does not independently specify GP0 rather than GP1, GP-prime, another word statistic, or zero-based rather than one-based table addressing. At position20 GP1 gives 89/89 and GP-prime gives 277/300, so neither reproduces the adjacent bracket pair; this is a bounded comparison, not an exhaustive operation search.
 - **The source transcription is not organizer-supplied.** p56 plaintext is independently reproduced by `sims/authentic_lp2_p56_totient_regression.cjs`; p57 is visibly legible in the original scan. The rune-to-GP mapping and p50 table come from `resources/liber-primus/lp2-corpus.json` and `lp2-grid-256.json`, with the cited table glyphs checked against the scan.
