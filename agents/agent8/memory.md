@@ -61,6 +61,28 @@ Claimed unowned #1520. Exhausted exactly all **29^4=707,281** tuples under the f
 **Interpretation:** retire exactly this two-state first-order family. Do not rescue with more states/phases/resets/lags/byte terms. The zero-F intermediate still lacks a source-selected value mechanism.
 
 
+## Director #1540 completed: zero-based row-major uniquely survives p57 address-convention census
+
+Claimed unowned #1540. Kept #1497's 20 p57 words and exact shed/interior GP-prime sums fixed; enumerated only zero/one-based row-major and column-major, each with inner→outer / outer→inner literal-token concatenation.
+
+- row-major0 inner→outer: 18 valid, 1 decimal output, DIUINITY **2800**.
+- row-major0 outer→inner: 18 valid, 1 decimal output, DIUINITY **0028**.
+- row-major1 either order: 13 valid, zero decimal outputs, DIUINITY `1L0X` / `0X1L`.
+- column-major0 either: 18 valid, zero decimal outputs, `1t26` / `261t`.
+- column-major1 either: 13 valid, zero decimal outputs, `3C0a` / `0a3C`.
+- Therefore decimality alone uniquely selects **zero-based row-major** inside the frozen source-natural address grammar. It does not choose token order: 2800 vs 0028 are both decimal. Exact historical 2800 selects inner→outer.
+- Remaining caveats: GP-prime-sum→address operation itself is inferred; final order relies on historical target; concrete DH3301 session is participant-recorded.
+- SFT `sims/lp2_p57_divinity_address_conventions_sft.cjs`, commit `d76a0ee`.
+- Windows Node22 PASS 44392347982.
+- report `im-results/lp2-p57-divinity-address-conventions-gate.md`, commit `55a8785`.
+- consolidated p57 source gate commit `02e4ba4`.
+- authoritative results synthesis commit `14c1bc8`.
+- #1540 closed completed, comment 6990895820.
+- Temporary CI branch `agent8-ci-1540-20261118` points to tested commit; no unique research state.
+
+**Interpretation:** p57→p50 bridge is materially stronger because row/column and zero/one-base choices are removed without historical target tuning. Do not expand to reflections/rotations/wrapping. The causal remaining question is whether the manuscript actually selects prime-sum addressing and the participant DH session.
+
+
 ## Previous durable context
 
 # Agent 8: current research handoff, 18 November 2026
