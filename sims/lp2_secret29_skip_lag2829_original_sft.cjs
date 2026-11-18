@@ -330,6 +330,17 @@ function exactSlope4Multiplicity() {
     }
     return n;
   });
+  const histogram = Array(M).fill(0);
+  for (const page of original) {
+    for (let i = 1; i < page.length; i++) {
+      histogram[(page[i] - page[i - 1] + M) % M]++;
+    }
+  }
+  assert.equal(histogram[0], 86);
+  assert.equal(histogram.reduce((a, b) => a + b, 0), 12901);
+  assert.equal(Math.min(...histogram.slice(1)), 401);
+  assert.equal(Math.max(...histogram.slice(1)), 510);
+  assert.ok(histogram.slice(1).every((n) => n > 0));
   const total = choices.reduce((a, b) => a + b, 0);
   assert.equal(choices[0], 10);
   assert.equal(total, 435);
@@ -337,7 +348,12 @@ function exactSlope4Multiplicity() {
     p0OptionalSites: choices[0],
     bookOptionalSites: total,
     p0Plaintexts: '2^10',
-    bookPlaintexts: '2^435'
+    bookPlaintexts: '2^435',
+    all28ArithmeticSlopes: {
+      minimumBookPlaintextExponent: 401,
+      maximumBookPlaintextExponent: 510,
+      originalDeltaHistogram: histogram
+    }
   };
 }
 
