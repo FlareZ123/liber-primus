@@ -49,4 +49,4 @@ The fixed zero→F surface-normalization transform cannot sit outside the solved
 
 The result sharpens the surface-transform interpretation. Its restoration of ordinary-scale adjacent equality is real and reproducible, yet a historically authenticated LP2 value mechanism fails beneath it algebraically before language scoring. Further #1422 work should use a materially different source-selected state/value operation rather than widening prime starts or F branches.
 
-The complete reproducer is [`sims/lp2_p50_zeroF_prime_totient_allstart_sft.cjs`](../sims/lp2_p50_zeroF_prime_totient_allstart_sft.cjs).
+The complete reproducer is [`sims/lp2_p50_zeroF_prime_totient_allstart_sft.cjs`](../sims/lp2_p50_zeroF_prime_totient_allstart_sft.cjs). [Windows Node22 run 44385637781](https://github.com/FlareZ123/liber-primus/actions/runs/44385637781) passed the complete original and layered-positive assertions.
