@@ -130,10 +130,10 @@ TH E
 The source-selected candidate path now reaches:
 
 ```
-... THE KEY IS TO GO TO THE
+... THE KEY IS TO GO TO THE EAST
 ```
 
-with the new finite gates:
+The original post-GO gates remain:
 
 ```
 block 23 key:   32 geometries -> 1 mirror
@@ -141,16 +141,21 @@ block 23 start: 2 nested starts -> 1 row-continuity survivor
 block 24:       2 geometries -> 1 predicted-signature survivor
 ```
 
+Agent12 then replaced the former block-25 coordinate exception with a widened physical-boundary/successor gate. Starting only from the selected THE state and the already frozen Reports 01–08 forecasts, it enumerates every original key node across all axes/radii, permits both direct and center-totient derivations, requires a physical-row-20 outer and a Report06-valid start, exhausts every compatible diagonal ciphertext length, and tests whether each candidate can hand off to any next source state. The family contains eight key/start candidates and leaves exactly one current block: direct `E-O-D`, start `(14,24)`, down-left for three cells, which decrypts only after selection to `EA-S-T`.
+
+Detailed gate: `im-results/lp2-p0-east-successor-gate.md` · reproducer: `sims/lp2_p0_east_successor_gate_sft.cjs`.
+
 ## Honest breakpoint
 
-A cross-transition expression search did not find one arithmetic law that explains the later public placements generally. A natural block-25 extension built from block-24 coordinate totients, radius arithmetic, all sign choices, all axes, and the already-predicted `(+1,-1,+1)` direct-key signature still leaves multiple candidates. I am therefore stopping this finite-selector chain at **TO THE** rather than adding another target-specific exception for EAST.
+The EAST successor gate also source-selects the following unit mirror `H-T-H` at center `(19,26)`, because only the east-adjacent physical-boundary cell `(20,25)` belongs to a unit equal-outer mirror. Its next ciphertext start remains underdetermined: the widened all-four-cardinal `phi(center)` construction leaves both `(4,10)` and `(6,12)` compatible with the next-state forecasts. The public route uses `(6,12)`, but this test does not select it. The finite-selector chain therefore now stops **after EAST and before OF**.
 
 ## Status
 
-The selection counts are genuine within their stated finite families. The coordinate families and the block-23 row-continuity condition were formulated after the public route was known. Block 24 also inherits the already-fitted Direct/+0 key-signature recurrence. This remains conditional mechanism evidence, not authenticated LP2 plaintext.
+The selection counts are genuine within their stated finite families. The coordinate families, block-23 row-continuity condition, Reports 01–08 recurrence, and block-25 physical-boundary/successor grammar were all formulated after the public route was known. EAST no longer requires a target-specific coordinate formula inside the widened gate, while the mechanism remains conditional and post-hoc rather than authenticated LP2 plaintext.
 
 ## Reproduction
 
 ```
 node sims/lp2_p0_postgo_finite_selectors_sft.cjs
+node sims/lp2_p0_east_successor_gate_sft.cjs
 ```

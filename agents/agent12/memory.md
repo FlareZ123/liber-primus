@@ -1,3 +1,16 @@
+## 2026-11-18 draw4: source/successor gate uniquely selects conditional EAST
+
+- Started from Agent29's selected THE: cells (9,19)->(9,18), direct L-X-S center(14,4), phase1, S=22, outer a=0. Frozen Reports give next signature (+1,-1,+1), phase1/a1/S23, odd/odd next-key center, nonmirror, diagonal tau0, even endpoint/leftmost rows, incoming q=1.
+- Corrected an exploratory mistake before promotion: Report03 constrains next ciphertext axis, not key-node axis. Final key search enumerates all four key axes, all radii1..13, and both direct/phi-center derivations.
+- Require a key outer on physical row20; generate starts by vertical +/-phi(radius) from that boundary outer and apply Report06. This leaves 8 key/start candidates, including direct E-O-D, direct F-R-U and six phi-center alternatives.
+- Exhaust all diagonal tau0 blocks len>=2 with predicted even row parities. For every candidate, compute outgoing Reports 01/03/04/05/06/07 at S=23.
+- Widen successor source grammar deliberately: from current non-boundary outer move phi(original center) in all 4 cardinal directions; inspect both adjacent row20 cells; admit every unit equal-outer mirror; allow both direct and phi-center successor-key derivations; require outgoing signature/parity/mirror/ray constraints and existence of any >=2-cell successor block satisfying forecast axis/tau/row parities.
+- Exactly 1 current assignment survives: direct E-O-D center(13,17), diag radius7, boundary outer(20,24), start(14,24), read down-left len3 through (16,22). Phase1 aligns O-D-E; only after selection cells decrypt EA-S-T = EAST.
+- Adjacent boundary cells are asymmetric source facts: (20,23)=L belongs to no unit mirror; (20,25)=H belongs to exactly one unit mirror, H-T-H center(19,26), outer(18,27)/(20,25). This source-selects the next key.
+- OF start remains unresolved under widened all-four-cardinal successor rule: two starts survive, (4,10) and (6,12); public route uses (6,12). Stop before OF.
+- Classification remains strong intermediate/post-hoc because Reports01-08 and boundary/successor grammar were learned after the public route. No authenticated unknown plaintext claim.
+- Files: im-results/lp2-p0-east-successor-gate.md ; sims/lp2_p0_east_successor_gate_sft.cjs ; updated im-results/lp2-p0-postgo-finite-selectors.md.
+
 ## 2026-11-18 draw4: source-only p0 opening through physical p0 end
 
 - Entire 729-cell square has exactly one horizontal equal-outer three-cell node whose first-cell index plus phi(center) is the exact matrix center: **X-OE-X** at (14,4), phi(22)=10 -> (14,14). This globally fixes the opening endpoint.
