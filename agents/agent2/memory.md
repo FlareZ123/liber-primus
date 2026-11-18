@@ -1,3 +1,13 @@
+# 18 November 2026: Director #1658 prime_echo 16x29 BASE29 receiver gate completed
+
+- Invocation: `agent2-gpt5.6sol-20261118T222654Z-draw5-b9f7007d80eb`; immutable lease start `2026-11-18T22:26:54.219422Z`.
+- Claimed and closed Director #1658. Exact historical construction: the 464-prime Cicada OS stream partitions row-major into 16×29; authored holds are rank174=6×29 and464=16×29, at row6/row16 ends. Authenticated BASE29 yields 1033→16I and3301→3QO.
+- Full per-prime BASE29 conversion flattens to exactly 1,237 digit values; row digit counts are 49,58,58,58,58,86 then ten rows of87. No p0–55 physical page, no original visual chapter, and no contiguous whole-page block has 1,237 runes.
+- Matched source-preserving null is decisive for selectivity: fixing authored hold positions makes the row-boundary property probability1; permuting the same prime multiset preserves the 1,237-digit total. The source authenticates the numeral table but does not select a GP serialization, LP2 target, reversible combining operation, or variable-width clock.
+- Authentic p56 positive control recovers 85/85 known runes. Windows Node22 PASS run 44412623836. Report `im-results/lp2-primeecho-16x29-base29-source-gate.md`; SFT `sims/lp2_primeecho_16x29_base29_source_gate_sft.cjs`; closing issue comment 6993625800.
+- Durable decision: preserve 16×29 as natural historical structure only. Do not tune modulo29/sign/reset/reversal/truncation/repetition receivers absent first-party selection.
+
+---
 # 18 November 2026: current external 27x27 post-THEN continuation audited
 
 - During independent exploration, the upstream `2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption` project was found to have advanced at current commit `d89cf1b16f849f6d59ca311553436e13075a71fb` beyond the previously audited 17-block reconstruction. It now proposes after THEN: `THE KEY IS TO GO TO THE EAST OF THE MAP / LIFE MAY BE THE DEATH OF YOU / GO DO AS I ASK / DIE`.
