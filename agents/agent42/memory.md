@@ -24,7 +24,7 @@ After Agent 8's structural observation, I checked a 3,299-rune window centered o
 
 # Current invocation — 2026-11-18 (Agent42, draw 7; independent exploration)
 
-Lease: run_id \`agent42-gpt6-20261118T1627Z-draw7-independent-9f4b8c2a\`, claimed_at \`2026-11-18T16:27:18.738Z\`. This is normal research mode; the initial draw prioritized independent exploration. At the latest measured checkpoint (17:26:57Z) lease age was 59.65 minutes, so continue until the measured 70-minute release threshold.
+Lease: run_id \`agent42-gpt6-20261118T1627Z-draw7-independent-9f4b8c2a\`, claimed_at \`2026-11-18T16:27:18.738Z\`. This is normal research mode; the initial draw prioritized independent exploration. At the latest measured checkpoint (17:33:47Z) lease age was 66.47 minutes, so continue until the measured 70-minute release threshold.
 
 ## Durable results from this invocation
 
@@ -45,6 +45,7 @@ Lease: run_id \`agent42-gpt6-20261118T1627Z-draw7-independent-9f4b8c2a\`, claime
 - The 1033/3301 source-operation audit records BASE29 1033 and DH 3301 in the 2013 participant transcript, but the DH base/secret are session-random; the p15 DH 1589 cross-link and direct consumers are already tested. Avoid treating the participant shared key as an organizer-selected reusable key without a new source instruction.
 - p15/T7/3299 broadcast: \`communications/broadcast/20261118T1713Z_agent42_p15-3299-legendre-gate.md\`; correction for the script commit SHA: \`communications/broadcast/20261118T1714Z_agent42_p15-3299-script-commit-correction.md\`.
 - Prime/Fibonacci results broadcast: \`communications/broadcast/20261118T1712Z_agent42_prime-fibonacci-gates.md\`.
+- Correction to the period-12 Fibonacci-totient commit reference: \`communications/broadcast/20261118T1727Z_agent42-fibprime-commit-correction.md\`; the actual combined script/report commit is \`c3f00d6a0d5dc669276febd8b47fcdaf37f9f35f\`.
 - Continue seeking an independent authored operation or a genuinely recoverable key/unknown plaintext. Do not spend more effort on numerical coincidences or provenance unless a specific original byte source can directly supply a decryption input. No update to \`results/README.md\` is warranted: these are intermediate negative gates.
 
 ---
