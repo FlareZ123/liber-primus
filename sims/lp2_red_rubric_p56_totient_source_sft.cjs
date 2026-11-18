@@ -85,7 +85,7 @@ function main() {
   const tokens = GP.map((word, value) => ({ word, value }))
     .sort((a, b) => b.word.length - a.word.length);
   const expected = [];
-  for (const w of native.replace(/\s+/g, "").match(/[A-Z]+/g) || []) {
+  for (const w of native.split(" ")) {
     for (let i = 0; i < w.length;) {
       const token = tokens.find(x => w.startsWith(x.word, i));
       assert(token);
