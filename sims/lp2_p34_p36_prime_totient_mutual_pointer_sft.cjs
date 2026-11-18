@@ -201,7 +201,7 @@ console.log(JSON.stringify({
   },
   uniquePair: {
     p36: {
-      unit: 'numbered item 1',
+      unit: 'numbered item 1 after red 10-square separator at rune offset 99',
       words: p36.words,
       runes: p36.runes,
       relation: '139 is the 34th prime',
