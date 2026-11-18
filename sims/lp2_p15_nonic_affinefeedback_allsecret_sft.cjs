@@ -215,12 +215,35 @@ function recover(cipher, v) {
  * @param {number} alpha
  * @param {number} beta
  */
-function encrypt(plain, rows, seed, alpha, beta) {
+function encrypt(plain, rows, seed, alpha, beta, skipRepeat = false) {
   let previous = title[n - 1];
-  return plain.map((p, i) => {
-    const c = mod(alpha * previous + p + dot(rows[i], seed) + beta);
+  let keyTime = 0;
+  return plain.map(p => {
+    const c = mod(alpha * previous + p + dot(rows[keyTime], seed) + beta);
+    if (!skipRepeat || c !== previous) keyTime++;
     previous = c;
     return c;
+  });
+}
+
+/**
+ * Recover the key row time solely from *visible ciphertext* repeats.
+ * In the skip-repeat model the key advances on every nonrepeat event.
+ * This is a hypothesis motivated by the source's unusual repeat deficit.
+ * It is not a claim that Cicada's solved p56 plaintext-F bypass did this.
+ *
+ * @param {number[]} cipher
+ * @param {number[][]} rows
+ * @returns {number[][]}
+ */
+function visibleSkipRows(cipher, rows) {
+  let previous = title[n - 1];
+  let keyTime = 0;
+  return cipher.map(c => {
+    const active = rows[keyTime];
+    if (c !== previous) keyTime++;
+    previous = c;
+    return active;
   });
 }
 
@@ -243,35 +266,55 @@ function decrypt(cipher, rows, seed, alpha, beta) {
 const native = corpus.pages.find(p => p.page === 57).indices;
 assert.equal(native.length, 95);
 const seed = [4, 1, 7, 2, 9, 5, 11, 3, 6];
-for (const [direction, polynomialCoefficients, expectedDet, plantDet] of [
-  ['forward', nonic, 2, 20],
-  ['reciprocal', reciprocal, 10, 25]
+for (const [direction, polynomialCoefficients, directDet, directPlantDet,
+  skipDet, skipPlantDet, skipBestCount, plantedRepeatCount] of [
+  ['forward', nonic, 2, 20, 24, 16, 1, 74],
+  ['reciprocal', reciprocal, 10, 25, 6, 24, 2, 68]
 ]) {
-  const rows = stateRows(polynomialCoefficients, source.length);
-  const original = recover(source, rows);
-  assert.equal(original.candidates, 177147);
-  assert.deepEqual(original.pair, [746, 862]);
-  assert.equal(original.det, expectedDet);
-  assert.equal(original.maximum, 17);
-  assert.equal(original.atMaximum, 2);
-  assert.equal(original.solutions.length, 0);
-
+  const rawRows = stateRows(polynomialCoefficients, source.length);
   const plain = Array.from({length: source.length}, (_, i) => native[i % native.length]);
   singles.forEach((position, i) => { plain[position] = smallWords[i % 3]; });
-  const planted = encrypt(plain, rows, seed, 13, 24);
-  const recovered = recover(planted, rows);
-  assert.deepEqual(recovered.pair, [746, 862]);
-  assert.equal(recovered.det, plantDet);
-  assert.equal(recovered.solutions.length, 1);
-  assert.equal(recovered.solutions[0].alpha, 13);
-  assert.equal(recovered.solutions[0].beta, 24);
-  assert.deepEqual(recovered.solutions[0].seed, seed);
-  assert.deepEqual(decrypt(planted, rows, seed, 13, 24), plain);
-  assert.deepEqual(encrypt(decrypt(planted, rows, seed, 13, 24), rows,
-    seed, 13, 24), planted);
-  console.log(direction, 'original: 177147 eleven-crib key candidates,',
-    original.solutions.length, 'valid 18-word solutions;',
-    original.maximum + '/18', 'maximum on', original.atMaximum, 'candidates');
-  console.log(direction, 'native positive: unique eleven-parameter key,',
-    plain.length + '/' + plain.length, 'GP symbols recovered');
+
+  for (const [clock, expectedDet, plantDet, expectedBestCount] of [
+    ['every', directDet, directPlantDet, 2],
+    ['skip-repeat', skipDet, skipPlantDet, skipBestCount]
+  ]) {
+    const skip = clock === 'skip-repeat';
+    const originalRows = skip ? visibleSkipRows(source, rawRows) : rawRows;
+    const original = recover(source, originalRows);
+    assert.equal(original.candidates, 177147);
+    assert.deepEqual(original.pair, [746, 862]);
+    assert.equal(original.det, expectedDet);
+    assert.equal(original.maximum, 17);
+    assert.equal(original.atMaximum, expectedBestCount);
+    assert.equal(original.solutions.length, 0);
+
+    const planted = encrypt(plain, rawRows, seed, 13, 24, skip);
+    if (skip) {
+      let prior = title[n - 1];
+      const repeatCount = planted.reduce((count, c) => {
+        const same = c === prior;
+        prior = c;
+        return count + Number(same);
+      }, 0);
+      assert.equal(repeatCount, plantedRepeatCount);
+    }
+    const plantRows = skip ? visibleSkipRows(planted, rawRows) : rawRows;
+    const recovered = recover(planted, plantRows);
+    assert.deepEqual(recovered.pair, [746, 862]);
+    assert.equal(recovered.det, plantDet);
+    assert.equal(recovered.solutions.length, 1);
+    assert.equal(recovered.solutions[0].alpha, 13);
+    assert.equal(recovered.solutions[0].beta, 24);
+    assert.deepEqual(recovered.solutions[0].seed, seed);
+    assert.deepEqual(decrypt(planted, plantRows, seed, 13, 24), plain);
+    assert.deepEqual(encrypt(decrypt(planted, plantRows, seed, 13, 24),
+      rawRows, seed, 13, 24, skip), planted);
+    console.log(direction, clock, 'original: 177147 eleven-crib states,',
+      original.solutions.length, 'solutions; maximum',
+      original.maximum + '/18 on ' + original.atMaximum + ' candidates');
+    console.log(direction, clock, 'independent native-GP positive: unique',
+      'hidden eleven-variable key and ' + plain.length + '/' +
+      plain.length + ' plaintext runes recovered');
+  }
 }
