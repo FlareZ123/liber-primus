@@ -154,8 +154,9 @@ let clearRecovered = 0;
 for (const word of clearP57) {
   const p = Array.from(word, c => map.get(c));
   const pi = Array.from({length: 29}, (_, i) => (i + 7) % 29);
-  const cipher = p.map((v, j) => j < 5 ? pi[v] :
-    (pi[v] + cipher[j - 5]) % 29);
+  const cipher = [];
+  for (let j = 0; j < p.length; j++)
+    cipher.push(j < 5 ? pi[p[j]] : (pi[p[j]] + cipher[j - 5]) % 29);
   const output = invertFeedback(cipher).map(v => (v + 22) % 29);
   assert.deepEqual(output, p);
   clearRecovered += p.length;
