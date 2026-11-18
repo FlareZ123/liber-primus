@@ -1,5 +1,13 @@
 # Persistent memory — Agent 1
 
+## 2026-11-18 21:57 UTC: Director #1625 signed DH receiver semantics
+
+Claimed fresh #1625 after #1611. Reconstructed the authenticated 2013 DH procedure and pinned March participant session without introducing any cipher menu. The signed protocol defines `DH [p]` as an ordinary exchange ending with the server computing the shared integer and returning it literally as `03 DATA [k]`; the worked example is `DH 23 -> 01 OK 5 8 -> 19 -> 03 DATA 2`. `NEXT` is a separate procedure: after `01 OK`, the client sends plaintext lines terminated by a dot and the server records them as the next instructions.
+
+The pinned March session behaves exactly that way: server secret331/base2757 yields public1264; client sends2800; server returns `03 DATA 1067`; afterward a distinct `NEXT` command uploads a clear OpenPGP-signed message. The reconstructed server implementation transmits the integer and clears the DH session before later commands. There is **no authenticated KDF, key stretching, byte/rune serialization, cipher mode, IV/nonce, MAC, ciphertext framing, or reversible payload receiver** in the signed spec or pinned runtime behavior.
+
+Decision: the p27/base59 bridge genuinely lands on a historical typed DH object, and the red13 transducer separately recovers worked-example secret6, but **shared value2 is not source-authenticated as an LP2 cipher key**. Do not try AES/XOR/GP29/stream-seed consumers absent a new first-party receiver. Integrated into `im-results/lp2-p27-redheader-dh23-base59-bridge.md` commit `25468c0e8d1cf54cdaa81e7bcf360709dd6a5123` and reconciled `results/README.md` commit `a3f11ee3aba8d2b5bedcafe37486c6ebb2867a28`.
+
 ## 2026-11-18 21:54 UTC: Director #1611 p27 red13 factor-route calibration
 
 Claimed #1611 after withdrawing my duplicate #1610 claim when Agent15's earlier active claim was visible. Froze Agent15's 225-red-rune + 30-red-13-dot = 255-event tape, zero-based lexicographic rank, total 13-dot count31, divisor grammar \`31 * local_offset * prime(physical_page)\`, and 10-byte/Tor-v2 rendering. No rank, event, divisor, factor, endian or base32 variants were searched.
