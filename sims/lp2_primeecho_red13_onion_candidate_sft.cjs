@@ -235,27 +235,89 @@ assert.equal(dju.primeSum, Math.floor(log2Capacity));
 const rank = lexRank(255, 30, redPositions);
 assert.equal(rank, 816613232064430740393939040116034006349n);
 
-// p27 is independently selected by the duplicate-pair handoff.
-// Its red 13-dot mark is at local rune offset 19.
-const p27Red13 = ink.pages
-  .find(page => page.page === 27)
-  .large_punctuation
+// p27 is independently selected by the duplicate-pair handoff. Parse its
+// physical word layout so the small prime factors can be checked against the
+// selected neighborhood without inventing a divisor after factorization.
+const p27Ink = ink.pages.find(page => page.page === 27);
+assert.equal(p27Ink.red_spans.length, 1);
+assert.equal(p27Ink.red_spans[0].start, 0);
+assert.equal(p27Ink.red_spans[0].length, 19);
+const p27Red13 = p27Ink.large_punctuation
   .filter(([offset, dots, color]) => dots === 13 && color === "red")
   .map(([offset]) => offset);
 assert.deepEqual(p27Red13, [19]);
-assert.equal(nthPrime(27), 103);
 
-// Total 13-dot count, p27 red-mark offset, and prime(page number).
-const routeDivisor = 31n * 19n * 103n;
+const p27Words = [];
+let p27Offset = 0;
+let p27Line = 1;
+let p27Current = [];
+let p27Start = null;
+const flushP27 = () => {
+  if (!p27Current.length) return;
+  p27Words.push({
+    line: p27Line,
+    start: p27Start,
+    end: p27Offset,
+    translit: p27Current.map(index => corpus.translit[index]).join(""),
+    primeSum: p27Current.reduce((sum, index) => sum + corpus.prime[index], 0)
+  });
+  p27Current = [];
+  p27Start = null;
+};
+for (const ch of transcription.split("%")[27]) {
+  if (runeIndex.has(ch)) {
+    if (p27Start === null) p27Start = p27Offset;
+    p27Current.push(runeIndex.get(ch));
+    p27Offset++;
+  } else if (ch === "/") {
+    p27Line++;
+  } else if (/\s/u.test(ch)) {
+    // Printed wraps do not terminate a hyphen-delimited word.
+  } else {
+    flushP27();
+  }
+}
+flushP27();
+
+const p27Dju = p27Words.find(word => word.translit === "DJU");
+const p27Bei = p27Words.find(word => word.translit === "BEI");
+const p27Aef = p27Words.find(word =>
+  word.line === 2 && word.start === 34 && word.translit === "AEF");
+assert.deepEqual(
+  [p27Dju.line, p27Dju.start, p27Dju.end, p27Dju.primeSum],
+  [2, 28, 31, 129]
+);
+assert.deepEqual(
+  [p27Bei.line, p27Bei.start, p27Bei.end, p27Bei.primeSum],
+  [2, 31, 34, 159]
+);
+assert.deepEqual(
+  [p27Aef.line, p27Aef.start, p27Aef.end, p27Aef.primeSum],
+  [2, 34, 36, 103]
+);
+
+// Factor R first. Its three small prime factors independently reappear in the
+// selected p27 layout:
+//   19  = red heading length / red-13 line boundary,
+//   31  = local start of BEI, the second anchor word,
+//   103 = GP-prime sum of AEF, immediately following the anchor pair.
+// Secondary echoes: 31 is also the total 13-dot count, and 103 is prime(27).
+const smallLayoutFactors = [19n, 31n, 103n];
+const routeDivisor = smallLayoutFactors.reduce((product, factor) => product * factor, 1n);
 assert.equal(routeDivisor, 60667n);
 assert.equal(rank % routeDivisor, 0n);
+assert.equal(events.filter(event => event.kind === "dot13").length, 31);
+assert.equal(nthPrime(27), 103);
 
 const residual = rank / routeDivisor;
 assert.equal(residual, 13460583712140549893581997463465047n);
 
 const smallFactor = 25795396177n;
 const onionFactor = 521821166063052627702311n;
-assert.equal(smallFactor * onionFactor, residual);
+assert.equal(
+  rank,
+  19n * 31n * 103n * smallFactor * onionFactor
+);
 assert.ok(strongProbablePrime(smallFactor));
 assert.ok(strongProbablePrime(onionFactor));
 assert.equal(onionFactor.toString(2).length, 79);
@@ -285,12 +347,14 @@ console.log(JSON.stringify({
     floorCapacityBits: Math.floor(log2Capacity),
     rank: rank.toString()
   },
-  route: {
-    p27Red13Offset: 19,
-    prime27: nthPrime(27),
-    totalDot13: 31,
-    divisor: routeDivisor.toString(),
-    exactDivisibility: true
+  p27LocalConfirmation: {
+    redHeadingLength: p27Ink.red_spans[0].length,
+    red13Boundary: p27Red13[0],
+    dju: {start: p27Dju.start, end: p27Dju.end, primeSum: p27Dju.primeSum},
+    bei: {start: p27Bei.start, end: p27Bei.end, primeSum: p27Bei.primeSum},
+    followingAef: {start: p27Aef.start, end: p27Aef.end, primeSum: p27Aef.primeSum},
+    matchedSmallPrimeFactors: smallLayoutFactors.map(String),
+    secondaryEchoes: {totalDot13: 31, prime27: nthPrime(27)}
   },
   factorization: {
     residual: residual.toString(),
