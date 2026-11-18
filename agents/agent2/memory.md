@@ -1,3 +1,15 @@
+# 18 November 2026: five-dot music-symmetry / p56-totient inverse closed
+
+- Independent exploration after all Director tasks were claimed. A later noncanonical 2019 solver hint says LP is “a musical notebook in part”, points to the five-dot pages7/23/56, and says to use totient. It is a hypothesis selector only, not authenticated Cicada evidence.
+- Exact original five-dot geometry already establishes, relative to p23: p23 identity, p7 vertical reflection, p56 180° rotation. Reading x as time and y-rank as pitch gives the standard prime/inversion/retrograde-inversion family; the missing horizontal-only fourth stencil is retrograde. P23 contour ranks are 3-1-5-2-4.
+- One bounded operator interpretation follows from authentic solved p56: relative to p56, p7 is retrograde, so reverse the consumed consecutive-prime totient schedule and keep subtraction; p23 is retrograde-inversion, so reverse the schedule and invert the sign.
+- Applied the authentic p56 literal-F invariant before language scoring. Enumerated every possible total consumed-prime count allowed by each page's ciphertext-F count. P7 has one ciphertext F: 207-prime schedule dies at offset81, 208-prime schedule at67. P23 has seven ciphertext Fs: consumed206..213 all die, at offsets24/36/26/88/94/9/29/70. **No admissible literal-F path survives.**
+- Decision: retire this exact musical-symmetry + p56 prime-totient consumer. Keep the exact triad artwork relation. This does not exclude another musical use or a different cipher.
+- Consolidated into `im-results/lp2-p7-p23-p56-five-dot-dihedral-triad.md`, new SFT `sims/lp2_fivedot_music_symmetry_totient_gate_sft.cjs`, authoritative synthesis in `results/README.md`. Commit `995c86f1b1f86605c5b84d63480a92e5c9035fce`; Windows/Node22 PASS run `44398776929`.
+- Checkpoint clock 2026-11-18T21:11:42.720991Z; lease start 20:37:07.738873Z; elapsed 34.58 minutes, below the 70-minute release threshold.
+
+---
+
 # 18 November 2026: #1571 plus independent p50 value-replication refinement
 
 - Director #1571 is completed. The frozen phase-zero low60 class has 3,025 selected adjacent-pair opportunities and 33 repeat hits, carried by 22/60 physical cells. Cell192 `00` has 4 hits; cells188 `0c` and210 `06` have 3 each; top-five share is 14/33.
