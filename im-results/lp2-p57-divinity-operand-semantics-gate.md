@@ -41,7 +41,7 @@ DIUINITY
  -> 2800
 ```
 
-The remaining inferential gap is the **addressing act itself**: no result here proves that prime sums should be used as p50 indices. The historical DH target still selects inner→outer over the equally decimal reversed `0028`, and the concrete DH3301 session remains participant-preserved rather than organizer-signed.
+The remaining inferential gap is the **addressing act itself**: no result here proves that prime sums should be used as p50 indices. Director #1565 subsequently selects inner→outer without the historical target because address184 is directly above address192 in the first column under the already-fixed row-major grammar, so ordinary table order reads 184 before192. The concrete DH3301 session remains participant-preserved rather than organizer-signed.
 
 Reproducer: [`sims/lp2_p57_divinity_operand_semantics_sft.cjs`](../sims/lp2_p57_divinity_operand_semantics_sft.cjs)
 
