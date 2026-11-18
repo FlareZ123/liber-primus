@@ -1,6 +1,6 @@
 # p50 table as stationary GP29 tableau selector: exact all-secret gates
 
-**Decision (18 November 2026; source-preserving and solved-control stress tests):** five stationary GP29 alphabet-selection models from the p49–51 numeric table fail exact key-independent language-histogram gates. A separate leading-zero-table-cell and adjacent-doublet association persists within all nine illustrated chapters under one global 256-rune clock, survives table-geometry-preserving nulls, and is absent at phase zero in the fixed solved/clear Cicada controls tested below. It still supplies no authentic cipher inverse or plaintext.
+**Decision (18 November 2026; source-preserving, solved-control and literal-bitmap gates):** five stationary GP29 alphabet-selection models from the p49–51 numeric table fail exact key-independent language-histogram gates. A separate leading-zero-table-cell and adjacent-doublet association persists within all nine illustrated chapters under one global 256-rune clock, survives table-geometry-preserving nulls, and is absent at phase zero in the fixed solved/clear Cicada controls tested below. The same 60-cell class does not form an exceptional literal 32×8 bitmap under fixed source-natural morphology tests. The statistical association remains, but it still supplies no authentic cipher inverse or plaintext.
 
 ## Candidate and frozen models
 
@@ -135,6 +135,55 @@ These are **post-discovery conditional robustness tests**, not discovery-wide si
 The matched diagnostic null is the complete set of **256 circular alignments of the same mask** on each fixed source. Phase zero is never replaced by a better alignment. Unknown LP2 is the unique maximum under its own 256-shift comparison. The two substantial LP1 controls sit near or below their circular baselines: encrypted LP1 has phase-zero tail **170/256** and printed-clear LP1 **247/256**. The p56/p57 samples contain only two and one adjacent doublets respectively, so their zero phase-zero ratios are weak individually and their circular comparisons are degenerate; they are retained as exact controls rather than treated as strong exclusions.
 
 The same exposure-adjusted direction is positive in **9/9 unknown LP2 chapters**. Under physical-page blocks it is positive in only **4/9 encrypted LP1 pages** and **1/6 printed-clear LP1 pages**; p56 and p57 are nonpositive at phase zero. This makes the association materially more specific to the unknown LP2 ciphertext under the tested fixed controls. It does not authenticate the global p50 clock, prove that leading zero is a cipher bit, or supply an inverse. The result strengthens the case for a clue-constrained causal mechanism while leaving the operation and key unresolved. [Director gate #1512](https://github.com/FlareZ123/liber-primus/issues/1512) · [standalone CommonJS reproducer](../sims/lp2_p50_digit0_control_specificity_sft.cjs) · [Windows Node22 PASS 44384842095](https://github.com/FlareZ123/liber-primus/actions/runs/44384842095).
+
+**Director #1513 literal 32×8 bitmap gate (Agent31, 18 November 2026).** Before assigning cipher state to the same class, the source-visible binary object was frozen as a 32-row × 8-column matrix with one exactly when the printed token's first character is literal `0`. No radix conversion, byte value, threshold, phase shift, OCR parameter, reordering or ciphertext statistic enters this test. The original physical page split is **10+13+9 rows**, carrying **15, 26 and 19** marked cells.
+
+The printed bitmap is:
+
+```text
+........
+.....#..
+..##..#.
+...#....
+...##..#
+..#.....
+###.....
+.......#
+..#.....
+......#.
+.#...#..
+...#..##
+...#..#.
+..#.#.#.
+....#.#.
+#..###..
+........
+#..#.#..
+........
+.##.#...
+.....#..
+...#...#
+.....#..
+..#.#..#
+#......#
+.......#
+#.#.....
+...####.
+.#...#..
+.....#..
+..#.##..
+.....#..
+```
+
+Its fixed morphology is sparse and fragmented. The row sums are **0,1,3,1,3,1,3,1,1,1,2,3,2,3,2,4,0,3,0,3,1,2,1,3,2,1,2,4,2,1,3,1** and the column sums are **4,4,9,10,8,11,7,7**. Four-neighbor morphology gives **33 connected components**, largest size **9**; eight-neighbor morphology gives **23**, largest size **15**. There are **three blank printed rows** and **16 repeated-row pairs**, but no repeated columns.
+
+Transposing to the only equally natural 8×32 text-like orientation exposes the physical-width divisor directly. The four fixed **8×8** cells contain **13,18,13,16** marks and respectively **6,9,12,7** four-neighbor components, with largest components **5,5,2,9**. The eight fixed 8×4 cells likewise remain fragmented, with component counts **3,4,6,5,5,7,5,3**. No segment is a single connected glyph, and the original 10+13+9 page cuts do not coincide with a clean glyph-cell grammar.
+
+A deterministic matched null uses **50,000 uniformly sampled exact-60-of-256 masks** (xorshift32 plus rejection-sampled partial Fisher-Yates, seed `0x3301c1ca`). Every pre-specified simple morphology statistic is ordinary: random masks have at most the source's 33 four-neighbor components in **16,937/50,000** cases, largest component at least9 in **7,613/50,000**, at most23 eight-neighbor components in **37,393/50,000**, largest eight-neighbor component at least15 in **10,703/50,000**, at least16 duplicate-row pairs in **12,382/50,000**, column-projection squared deviation at least46 in **17,561/50,000**, and four-8×8-block imbalance at most the source's 18 in **17,845/50,000**. None is close to a discriminating visual-message feature.
+
+The four natural 8×8 cells also fail a frozen repeated-motif test. After granting each second block its best square D4 rotation/reflection, the six pairwise Hamming distances are **17,18,19,19,18,17**. In a separate 50,000 exact-60-mask run (seed `0x1513cafe`), **43,931/50,000** masks have a minimum pair distance no larger than the source's17, while **7,053/50,000** have a six-pair distance sum no larger than the source's108. Thus the apparent block similarities are not unusually motif-like.
+
+All eight rectangle D4 presentations are rotations/reflections/transposes of this same sparse component structure; none yields a clean orientation-stable direction symbol or fixed equal-cell glyph string under the source-supplied divisors. This **closes the literal-bitmap interpretation in #1513**. It does not weaken the independently measured phase-zero doublet association, because that association uses the binary class as a clocked selector rather than as a picture. Future mechanism work should therefore require an independently authored clock or operation instead of extracting further graphics from this mask. [Director gate #1513](https://github.com/FlareZ123/liber-primus/issues/1513) · [standalone CommonJS reproducer](../sims/lp2_p50_digit0_bitmap_morphology_sft.cjs).
 
 **Literal `00` source-cell test (Agent 41, 15 November).** A narrower exact-token hypothesis was checked rather than introducing a new table traversal. The **only** printed `00` cells occupy phases **192 and 229**, and their 256-rune repetitions cover **100/12,901** within-page successor pairs. They coincide with **five of the 86** actual equal-rune pairs: **four** at phase 192 and one at 229. Exact page-level event counts and opportunities are held fixed in [the Windows Node22 source-input SFT](../sims/lp2_p50_literal00_doublet_source_sft.cjs), [run 43738819854](https://github.com/FlareZ123/liber-primus/actions/runs/43738819854). Among 70,000 seeded matched-position randomizations, a **preselected** literal `00` mask reaches five or more in **0.0005143** plus-one proportion (null expectation **0.66658** hits). But the token was recognized **after** studying the broader low-value collision enrichment: scanning **all 161 distinct printed token masks** and comparing their page-conditioned standardized anomalies, the family-maximum probability is **0.04493**; the `00` mask ranks first only retrospectively. The single 256-phase peak at phase 192 contains four repeats, yet scanning **all 256 phases** has matched-null probability **0.08640** of reaching at least four. Moreover the literal `00` mask has **two** equally successful table-clock rotations (0 and 37), and **95/100** encounters of those cells do not yield a repeat. The literal event-glyph readout, in manuscript order, is **`YOUAX`** (four glyphs `Y O U A` at phase192 and an `X` at phase229). Phase192 is physically **row24, column0 on the outer 76-cell perimeter**, whereas phase229 is **row28, column5 in the inner 180 cells**. Selecting only that perimeter cell gives the English-looking prefix **`YOUA`**, but this is four retrospectively chosen glyphs from a sparse event channel, with no independently fixed continuation, original instruction to read identical-adjacent glyphs, or complete deciphered page. It is therefore preserved as a potential selector test, **not** authenticated plaintext. This confirms a narrowly concentrated numerical association while withholding any claim of a deterministic zero-step opcode, exact cipher alignment, recovered key, or plaintext. It does **not** give a second independent positive for the existing digit-zero class because the events and masks overlap.
 
