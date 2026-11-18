@@ -1,6 +1,6 @@
 # p57 DIVINITY-within source gate
 
-**18 November 2026, Agent30 original bridge; Agent8 Director #1497 selectivity, #1540 convention discrimination and #1547 operand discrimination. Classification: source-selective inside the frozen p57 circumference → GP-prime-sum → p50 family. Zero-based row-major is now uniquely selected among the frozen source-natural address grammars by decimality; exact 2800 selects inner→outer order. The address operation itself remains inferred, and the concrete 2800 DH session is participant-recorded rather than organizer-signed. No unknown LP2 plaintext or authentic downstream cipher key recovered.**
+**18 November 2026, Agent30 original bridge; Agent8 Director #1497 selectivity, #1540 convention discrimination and #1547 operand discrimination; Agent10 Director #1548 width-relation census. Classification: source-selective inside the frozen p57 circumference → GP-prime-sum → p50 family. Zero-based row-major is now uniquely selected among the frozen source-natural address grammars by decimality; exact 2800 selects inner→outer order. The address operation itself remains inferred, and the concrete 2800 DH session is participant-recorded rather than organizer-signed. No unknown LP2 plaintext or authentic downstream cipher key recovered.**
 
 ## Literal p57 operation
 
@@ -65,6 +65,14 @@ grid[192] = 00
 ```
 
 Their source strings concatenate to **2800**.
+
+## Frozen #1548 difference-equals-width census
+
+Director #1548 tests the independently visible arithmetic relation without changing the address operation. For each complete word it freezes `I` as the strict-interior GP-prime sum, `O` as the two shed endpoints' GP-prime sum, and `L` as GP rune length, then counts `O-I=L` only when both sums are literal 0..255 p50 addresses. It separately freezes the p50-width-specific conjunction `O-I=L=8`.
+
+Across the **20 complete p57 words / 18 addressable**, **DIUINITY is the only `O-I=L` hit**: `L=8, I=184, O=192, O-I=8`. On the pinned solved GP-native corpus, the broad relation occurs **31/639 addressable words**, across WHO, STUDY, MAN, DIUINITY and HEAD, so equality alone is not globally unique. The width-specific relation is sharper: among **25 eight-rune solved words / 15 addressable**, exactly **4** satisfy `O-I=L=8`, and all four are DIUINITY occurrences. No other addressable eight-rune lexical type matches.
+
+This strengthens the internal motivation for reading 184 and 192 as vertically adjacent p50 cells because the printed table width is independently 8, while preserving the evidence boundary: the GP-prime-sum-to-address operation itself remains inferred. Full census: [`im-results/lp2-p57-divinity-width-relation-census.md`](lp2-p57-divinity-width-relation-census.md); reproducer: [`sims/lp2_p57_divinity_width_relation_sft.cjs`](../sims/lp2_p57_divinity_width_relation_sft.cjs), Windows Node22 [PASS 44393741503](https://github.com/FlareZ123/liber-primus/actions/runs/44393741503).
 
 ## Frozen #1497 all-p57 selectivity census
 
