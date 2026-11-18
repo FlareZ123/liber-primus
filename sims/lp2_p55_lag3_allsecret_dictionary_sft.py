@@ -111,6 +111,38 @@ def main():
             counts[(mode, folding)] = len(matches)
             assert not matches, (mode, folding, matches[:12])
 
+    # Independent, already pinned word registers; no new downloaded vocabulary.
+    control = ROOT / "resources" / "control"
+    textblob = sorted({line.split()[0].upper()
+                       for line in (control / "english_wordfreq_textblob.txt").read_text(encoding="utf-8").splitlines()
+                       if line and not line.startswith(";") and re.fullmatch("[A-Za-z]+", line.split()[0])})
+    latin26 = sorted(set(re.findall("[A-Z]+", " ".join(
+        line for line in (control / "latin-vulgate-latin26-wholewords.txt").read_text(encoding="utf-8").splitlines()
+        if not line.startswith("#")))))
+    latin_gp = sorted({line for line in
+                       (control / "latin-vulgate-gp-wholewords.txt").read_text(encoding="utf-8").splitlines()
+                       if re.fullmatch("[0-9A-S]+", line)})
+    assert (len(textblob), len(latin26), len(latin_gp)) == (29157, 7309, 39835)
+    registers = (("TextBlob", textblob), ("Latin26", latin26))
+    control_counts = {}
+    for name, register in registers:
+        candidates = [w for w in register if 13 <= len(w) <= 28]
+        for mode in ("global", "word-local"):
+            wanted = whole_pattern if mode == "global" else inner_pattern
+            start = 0 if mode == "global" else 3
+            matches = [w for w in candidates if
+                       matches_syllabified_word(w, wanted, start, False) or
+                       matches_syllabified_word(w, wanted, start, True)]
+            control_counts[(name, mode)] = len(matches)
+            assert not matches, (name, mode, matches[:12])
+    for mode in ("global", "word-local"):
+        wanted = whole_pattern if mode == "global" else inner_pattern
+        start = 0 if mode == "global" else 3
+        matches = [w for w in latin_gp if
+                   len(w) == 13 and pattern(w[start:]) == wanted]
+        control_counts[("LatinGP", mode)] = len(matches)
+        assert not matches, (mode, matches[:12])
+
     # Actual native-English dictionary-word positive with a hidden permutation.
     plaintext = "DETERMINATION"
     assert plaintext in words and len(plaintext) == 13
@@ -133,7 +165,8 @@ def main():
     print("Global lag3 differences:", whole, "pattern", whole_pattern)
     print("Word-local lag3 suffix:", inner, "pattern", inner_pattern)
     print("CMUdict 1.1.3 alphabetic words:", len(words), "length-eligible:", len(candidates))
-    print("Matches under any bijective GP29 alphabet:", counts)
+    print("CMU matches under any bijective GP29 alphabet:", counts)
+    print("Independent TextBlob/Latin registers:", control_counts)
     print("Planted 13-rune English word:", plaintext, "exact recovery: 13/13")
     print("Decision: no CMUdict-native p55 lag3 + secret substitution word under either reset.")
 
