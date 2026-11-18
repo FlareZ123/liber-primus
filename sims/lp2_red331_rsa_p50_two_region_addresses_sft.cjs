@@ -101,11 +101,29 @@ assert.equal(corpus.pages.find(x=>x.page===55).runic_count, rim);
 assert.equal(corpus.pages.find(x=>x.page===56).runic_count +
   corpus.pages.find(x=>x.page===57).runic_count, interior);
 
+// Adversarial scope check: the same source-fixed operation cannot be a
+// universal 256-cell address for all marked red headings.
+const annotations = JSON.parse(read('resources/liber-primus/lp2-ink-annotations.json'));
+const otherRed = annotations.pages.filter(p => p.page > 0).flatMap(p =>
+  (p.red_spans || []).map(span => ({
+    page:p.page, start:span.start,
+    sourceSum:gpPrimeSum(span.runes),
+    address:modPow(gpPrimeSum(span.runes), d, n)
+  }))
+);
+assert.equal(otherRed.length, 17);
+const unreachable = otherRed.filter(x => x.address > 255);
+assert.deepEqual(unreachable, [
+  {page:6, start:71, sourceSum:661, address:330},
+  {page:15, start:9, sourceSum:430, address:286}
+]);
+
 console.log(JSON.stringify({
   original_html: {publicExponent:e, primeModulus:n, inverseExponent:d},
   original_p0_red_prime_sums:wordSums,
   RSA_inverse_selected_addresses:cells,
   paired_193_cells:repeated193, primeOrdinal193:primeRank(193),
+  other_red_headings_out_of_grid:unreachable,
   original_p55_runes:rim,
   solved_p56_plus_clear_p57_runes:interior,
   warning:'Exploratory postselected inter-artifact alignment, no recovered plaintext or author-selected cipher'
