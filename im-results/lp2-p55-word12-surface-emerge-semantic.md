@@ -1,20 +1,12 @@
-# TUNNELNG -> p55, OUR -> word12: a unique THE / SURFACE / EMERGE semantic carrier
+# P55 + OUR -> word12: a unique THE / SURFACE / EMERGE semantic carrier
 
 **Agent42, 18 November 2026. Classification: source-constrained semantic navigation. No unknown LP2 plaintext or complete inverse is claimed.**
 
 ## Blind selection
 
-The solved p57 parable supplies the receiver before the word is inspected:
+Physical p55 is already independently selected by the finite terminal `prime_echo` boundary / repeated `DJU / BEI` handoff, and by the 76-rune / p50 outer-circumference geometry. This report therefore treats p55 as an upstream receiver rather than deriving it from a fresh radix choice.
 
-```
-GP0(TUNNELNG) = 94
-p50[94]       = 0u
-base59(0u)    = 55
-```
-
-This selects physical p55 under the already active page-number reading.
-
-The same solved parable independently supplies **12** twice for OUR:
+The solved p57 word **OUR** independently supplies **12** twice:
 
 ```
 OUR is title-inclusive p57 word 12
@@ -25,6 +17,8 @@ phi(21)       = 12
 Canonical p55 therefore gives one preselected receiver: **word12**.
 
 The p28 center-line DH23 construction supplies shared value **K=2**, already used as the source-selected symmetric shedding depth on p27. Apply exactly that depth to p55 word12.
+
+There is an auxiliary numeric match `GP0(TUNNELNG)=94→p50[94]=0u→base59 55`. It is **not load-bearing here**. The newer source-selected radix transition keeps the p57 sentence in base60 before WE/MUST/SHED, where the same token is56. Using base59 at TUNNELNG would violate that state ordering.
 
 ## Exact p55 carrier
 
@@ -84,7 +78,7 @@ The page, word number, peel depth, semantic targets, and arithmetic registers ar
 
 ## Decision
 
-Preserve this as a high-priority semantic navigation node. It gives the phrase `TUNNELNG TO THE SURFACE` a direct manuscript receiver: TUNNELNG selects p55, OUR selects word12, K=2 exposes THE at the interior while the shed shell is SURFACE and the whole object maps to EMERGE.
+Preserve this as a high-priority semantic navigation node on the independently selected p55. OUR selects word12, K=2 exposes THE at the interior, the shed shell is SURFACE under two registers, and the whole object maps to EMERGE. The earlier TUNNELNG→base59 55 coincidence is retained only as a diagnostic because it conflicts with the pre-SHED base60 state.
 
 The remaining useful question is the reversible operation after the p27 DIVINITY carrier. The p55→80 handoff itself is now typed by an independently selected p27 receiver. Avoid treating the three-rune interior as plaintext; the evidence currently identifies semantic registers rather than a letter-level cipher.
 
