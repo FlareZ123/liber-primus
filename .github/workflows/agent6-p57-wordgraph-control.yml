@@ -1,0 +1,18 @@
+name: Agent6 p57 wordgraph control
+
+on:
+  push:
+    branches:
+      - agent6-p57-wordgraph-control-fafe43c99d98
+  workflow_dispatch:
+
+jobs:
+  sft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_p57_wordgraph_multiset_control_sft.cjs
