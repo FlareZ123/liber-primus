@@ -43,6 +43,35 @@ Enumerate exactly the 29 slopes `b` and count occurrences of each residue `a`. T
 
 This argument does **not** exclude encryption involving an added unknown plaintext term, nonlinear/state-dependent position weights, symbol-specific remappings, skips or inserted values. Those are distinct mechanisms that need independently supplied source instructions; this theorem excludes the entire *direct consecutive-prime residue plus affine index* architecture. It supersedes the weaker conditional claim that only the fixed 1e9 prime-start stream is excluded.
 
+### Extension: unknown static 29-symbol alphabet
+
+Permit an entirely secret fixed bijection `π` applied to the generator output, independently rekeyed at each original chapter:
+
+```
+C[i] = π((q[s+i] + b*i + a) mod29).
+```
+
+If `b=0`, one output symbol `π(a)` must occur at most once, but every symbol appears at least four times even in the shortest 308-rune original chapter. If `b≠0`, the map of the 29 phases `i mod29` to the output symbols `π(b*i+a)` is an arbitrary *bijection*. Whenever the observed `C[i]` equals this phase's assigned forbidden symbol, the inferred `q[s+i]` must equal prime29. There can be **at most one** such coincidence on any true distinct-prime tape.
+
+Without enumerating 29! alphabets, construct the **29×29 original phase/symbol count matrix** and compute its minimum-cost bijective assignment, where each chosen cell costs its observed original occurrence count. The assignment is an exact best-case lower bound allowing **every** secret static permutation, any nonzero slope and any offset. A real 1e9 prime+2i positive plant has cost **0**.
+
+| Original interval | Best possible prime29-site count with secret π |
+| --- | ---: |
+| Full p0–55, continuous alphabet and clock | **251** |
+| p0–2 | 0 |
+| p3–7 | 0 |
+| p8–14 | 1 |
+| p15–22 | **2** |
+| p23–26 | 0 |
+| p27–32 | 0 |
+| p33–39 | 1 |
+| p40–53 | **15** |
+| p54–55 | 0 |
+
+The source completely excludes the **globally stationary secret-alphabet version** (minimum251), and excludes the separate **p15–22 and p40–53 chapters** even with independently secret static bijections per chapter. The seven remaining chapters' assignment lower bounds of zero or one are **necessary-condition survivors**, not recovered alphabets or plaintext. A secret alphabet that varies within chapters, non-affine clocks or a plaintext term remains outside this theorem. This sharper scope prevents incorrectly claiming that arbitrary secret permutations are excluded on all nine chapters.
+
+
+
 
 
 ## Original versus a fixed prime-stream plant
@@ -87,6 +116,6 @@ In five independent actual consecutive-prime controls starting near **3,301, 10^
 
 ## Reproducibility and decision
 
-The self-contained, dependency-free [read-only CommonJS SFT](../sims/lp2_prime_residue_ordinal2_original_sft.cjs) independently reads the exact original corpus, checks the theorem on the full manuscript and all nine original chapters, verifies a real consecutive-prime positive control, and retains the earlier prime-start, fifth-back, 29-bin first-difference and mod3 gap tests. Its first version succeeded on Windows Node.js 22 in [Actions run 44256006472](https://github.com/FlareZ123/liber-primus/actions/runs/44256006472); the enhanced all-affine theorem was committed as [45297cc](https://github.com/FlareZ123/liber-primus/commit/45297cc09c3da1598c5c49cd599f9a4fe44d08f3) and is tested by [Actions run 44257341671](https://github.com/FlareZ123/liber-primus/actions/runs/44257341671).
+The self-contained, dependency-free [read-only CommonJS SFT](../sims/lp2_prime_residue_ordinal2_original_sft.cjs) independently reads the exact original corpus, checks the theorem on the full manuscript and all nine original chapters, verifies a real consecutive-prime positive control, adds the 29×29 minimum-cost assignment gate for every arbitrary static secret GP29 alphabet, and retains the earlier prime-start, fifth-back, 29-bin first-difference and mod3 gap tests. Its first version succeeded on Windows Node.js 22 in [Actions run 44256006472](https://github.com/FlareZ123/liber-primus/actions/runs/44256006472); the enhanced all-affine theorem was committed as [45297cc](https://github.com/FlareZ123/liber-primus/commit/45297cc09c3da1598c5c49cd599f9a4fe44d08f3) and passed [Actions run 44257341671](https://github.com/FlareZ123/liber-primus/actions/runs/44257341671). The static-secret-alphabet extension is [commit fd2277e](https://github.com/FlareZ123/liber-primus/commit/fd2277e406df2551e7df75bf93e3a9c7328b574f) with [Actions run 44258299915](https://github.com/FlareZ123/liber-primus/actions/runs/44258299915).
 
 **Research decision:** Retire **all direct consecutive-prime GP29 residue generators with arbitrary affine-index slope and offset**, including all original chapter-local starts. The universal divisibility obstruction makes further prime-start/linear-index tuning logically unnecessary. Prime-derived **keys combined with unknown plaintext** are outside this exclusion and remain conditional on a creator-visible key/clock operation. The 76-versus-86 doublet near-match is expressly superseded by this exact mathematical impossibility; no original plaintext was recovered.
