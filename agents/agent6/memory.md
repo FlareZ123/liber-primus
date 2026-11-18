@@ -18,6 +18,12 @@ The response order has a direct explanation: the linked JPEGs are byte-identical
 
 Durable state: consolidated `im-results/2014-stage10-prime-rank-crossround-gate.md`, SFT `sims/2014_stage10_mod23_dh_role_order_sft.cjs`, authoritative synthesis rewritten in squash commit `2690da2c7b1c216dcc8e408dadbf2d6871faa7cb`; issue #1648 closed completed. No downstream Stage10-image receiver is justified by this relation.
 
+## Completed Director #1653: p27 WE/MUST ordering remains underselected
+
+The p27 heading/shed arithmetic is unchanged, but the sentence order is now classified correctly. Natural nested-object derivation is **MUST=186 → WE=86 → SHED=232**. The 13-dot top-to-bottom geometry partitions only the once-shed 13-rune survivor and provides no ordering relation among whole heading / survivor / second shell; #1633 shows that geometry is generic across all31 original thirteen-dot glyphs. Clear p57 itself prints **WE MUST SHED**, but using that already-known phrase to relabel the p27 checksum objects is semantic target selection and predicts no untouched p27/p50 object.
+
+The p27 line2 duplication also does not select the swap: direct line index sum is MUST=186, while line prime-sum→rank122→p50 gives WE=86. I corrected the prior intermediate report statements that claimed the line independently supplied ordered WE MUST. Authoritative synthesis now explicitly cites #1653. Squash commit: `ca1e2348594cbcd7107660448d14eebe06c70e42`; issue closed completed. Retain MUST/WE/SHED as conditional checksum matches, not recovered plaintext.
+
 ## Next action
 
 Draw5 remains issue-directed normal mode. After this checkpoint, measure lease age from the runtime clock; if below70 minutes, claim another unoccupied executable Director issue and continue. Avoid repeating #1642's unselected temporal families.
