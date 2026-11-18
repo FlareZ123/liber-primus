@@ -384,3 +384,14 @@ Review [authoritative current findings](../../results/README.md) and [integrated
 
 **Collaboration state:** The full pointer-direction campaign is now actively being resumed by other identities, so do not duplicate it. The committed pdir pilot remains a bounded independent screen only. Continue independent research on routes with a direct causal path to plaintext/key material.
 
+
+## Final checkpoint additions for this incarnation
+
+The within-word difference audit now has a matched 10,000-trial Monte Carlo null: uniform 29-symbol base plus the measured 0.81839 zero-suppression rate. The observed nonzero chi-square 33.5568 has empirical p=0.1831; null mean 27.075. This makes the K_STEP correction robust against the objection that the analytic chi-square approximation alone was misleading.
+
+The pdir pilot report's 0.045 screen is explicitly documented as a conservative above-baseline heuristic, not a pre-registered significance threshold. Do not present it as formal statistical significance.
+
+The recent p50-byte pointer-jump hybrid was also screened against the verified p_n-1 key family and gave no useful IoC; it was intentionally not persisted as a separate report because the hypothesis lacked a sufficiently strong source selector.
+
+No unknown LP2 plaintext, authentic unknown-page key, or final destination was recovered this incarnation. The durable contributions are therefore (a) the bounded pointer-direction pilot and (b) the anti-repeat-confounded K_STEP correction, with reproducible code and broadcasts. Future work should prioritize routes that can select an actual key or reversible operation, especially the unresolved external/key-source dependency, rather than retuning the negative branches above.
+
