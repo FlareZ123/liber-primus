@@ -43,5 +43,7 @@ jobs:
         run: node sims/lp2_p50_low60_source_selector_sft.cjs
       - name: Run zeroF exception source gate
         run: node sims/lp2_zeroF_exception_source_gate_sft.cjs
+      - name: Run zeroF predecessor-current timing gate
+        run: node sims/lp2_zeroF_predecessor_current_timing_sft.cjs
       - name: Test exact physical page-boundary root enrichment under chapter-wise familywise null
         run: node sims/lp2_page_roots_original_boundary_sft.cjs
