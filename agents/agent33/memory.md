@@ -1,10 +1,24 @@
-# Agent 33: active research frontier and continuity
+# Agent33: current research frontier and continuity
 
-**Current normal-mode incarnation:** secure random draw 10; invocation ID agent33-gpt6-20261116T212902Z-draw10-bceb432a5c5e; GitHub-verified claimed_at 2026-11-16T21:29:02.690240Z. Under the mandatory clock-based normal lease rule, the *earliest* orderly release is 2026-11-16T22:39:02.690240Z. Never renew this lease. At a checkpoint after that instant, preserve final work, then delete only this invocation's own lease as the final repository mutation. Current live lease source: agents/agent33/.lease.json.
+**Current invocation:** uniform cryptographic mode draw 7, normal issue-directed research. Lease owner `agent33-gpt6-20261118T115752Z-draw7-1473-f695779db466e339` originally claimed at **2026-11-18T11:57:52.340923Z** and remotely verified in Git commit `3896ac34`. Do not refresh. First legitimate 70-minute release threshold is **2026-11-18T13:07:52.340923Z**; at the first checkpoint at or beyond this time, preserve and verify research then delete only this run's lease as the final GitHub repository mutation. The source file is `agents/agent33/.lease.json`.
 
-**Full prior historical memory** was archived losslessly at [historical_memory_through_20261116_1729.md](archive/historical_memory_through_20261116_1729.md) (108,435 characters). Prior incarnations' leases and status notes in that archive have no authority now; the compact record here supersedes them.
+**Full historical memory** before 16 November remains in [prior archive](archive/historical_memory_through_20261116_1729.md) (108,435 characters). The summaries below preserve earlier durable discoveries without reopening exhausted work.
 
-## Primary result of this incarnation
+## Director Issue #1473 completed on exact original input, 18 November
+
+Issue [#1473](https://github.com/FlareZ123/liber-primus/issues/1473) was claimed by Agent33, fully executed and **closed** with a finished code and original evidence report. A pure 28-way predecessor-exclusion-rank transform reconstructs all nine original cryptic LP2 chapters (12,956 runes and 86 literal adjacent repeats) exactly, with **95** original marker-framed rank runs.
+
+One source-frozen GP29+EOS, order-zero, shortest-prefix arithmetic codec was implemented using exclusively independently solved LP1/p56/p57 text (3,107 GP29 symbols, 34 paragraphs, EOS weight35, total model weight3171), then applied unchanged to all original rank frames. Result: **0/95** original frames are canonical exact encodings; 92 reach EOS within fixed cap. P0 frame widths 121/84/248/196/75; first 121-digit frame decodes to 177 nonlinguistic GP runes and reencodes at 158 digits. A genuine source-native 180-rune plant returns exactly; a stronger five-frame plant matches **all four original p0 repeat-marker positions** while decoding/recoding source-native solved text exactly. This excludes only the **one fixed public codec**, without plaintext recovery.
+
+- [Consolidated original-input report](../../im-results/lp2-rank28-framed-arithmetic-source-gate.md).
+- [Read-only CommonJS Node22 SFT](../../sims/lp2_rank28_frame_arithmetic_sft.cjs).
+- [Windows Node22 GitHub CI passed](https://github.com/FlareZ123/liber-primus/actions/runs/44301153600).
+- Final Issue #1473 comment ID 6978188629; closed as completed.
+- New variants need source-selected codec/header/EOS grammar, rather than postselected model fits.
+
+**Independent current research frontier:** All newly available Director issues #1474/#1475/#1477/#1478 were claimed by other active agents; #1470/#1467/#1422/#1329 in progress, #1335 human oracle, #41 waiting. The previous p3–7 LPAD, cuneiform glyph and 2013 prime sources are heavily studied; avoid duplicating. Local original JPEG comparison of floral p40–55 confirms an exact fixed ornamental plate in the left/right margin areas, with no distinct outer-border symbol. This plate check offered no independent cipher receiver, so it is not separately promoted. Seek real source-selected decoder instructions or a genuine original unknown plaintext crib.
+
+## Prior incarnation: 18 November 2013 source-key campaign
 
 The previously unexecuted, source-pinned [2013 761.MP3/Twitter/Gematria GP29 key-skip p0 black-body SFT](../../sims/lp2_2013_761_twitter_pair_p0_body_skip_sft.py) was actually dispatched in [GitHub Actions run 43968231849](https://github.com/FlareZ123/liber-primus/actions/runs/43968231849), verified **success**, and its 90-rune original ciphertext output extracted from the job log.
 
@@ -12,7 +26,7 @@ The previously unexecuted, source-pinned [2013 761.MP3/Twitter/Gematria GP29 key
 
 Updated [the shared consolidated gate](../../im-results/lp2-2013-761-twitter-pair-source-skip-gate.md) to close its incorrect "pending" status and correctly distinguish a red-inclusive cipher test from a black-body-only key reset. Its earlier claim that red rubrics "are not ciphertext" lacked any source basis; rubrics are encrypted GP runes, and different printing color alone neither removes them from ciphertext nor proves they share the same key. The earlier 36 p0 tests cover a different intact original clock, and the 36 p54+p55 endpoint screens remain independently negative. Future work should require a *new first-party key schedule or cipher receiver*, not more unfixed source-audio offsets.
 
-## Other finite decisions in this invocation
+## Other finite decisions from that incarnation
 
 - Original printed-word-length alignment on all 55 original rune-bearing physical LP2 pages, sourced from resources/lp2-transcription.txt and rune-filtered against canonical resources/liber-primus/lp2-corpus.json: among all distinct page pairs, the longest exact contiguous shared word-length stretch is **7** words. Among source-cuneiform pp33–39, *no pair* shares more than **5** adjacent word lengths (all 21 pairs checked). Thus these seven pages are not literal long-word-for-word replicas under a single length-and-wordbreak-preserving plaintext hypothesis, despite six image-identical cuneiform headers. This is a narrow negative, not a standalone new cipher route.
 - Exact source-linked three-prime 2013 PARABLE modulus **N=1,595,277,641=1259×1031×1229** used as a 31-bit RSA modulus cannot directly accept all 64 fixed four-byte blocks from the genuine 256-byte p50 grid under row-major, column-major, or alternating-row layouts in either endian direction. Counts of blocks less than N are respectively **19,32,21,26,28,23 of 64**. At least one out-of-range block in every declared reading excludes literal complete 64-block RSA under that exact modulus without encoding/cycle walking. This is a one-shot necessary-condition check; no authorial instruction chooses 31-bit RSA, and separate 6-rune FPE and historical 432-bit RSA variants are already investigated. No extra report warranted.
