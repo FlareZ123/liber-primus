@@ -55,6 +55,49 @@ With seed `0x33011313` and **20,000** trials:
 
 The parity feature is therefore selective within this exact finite family, while remaining weaker than a decipherment mechanism.
 
+## Binary low60-even conjunction
+
+A simpler book-wide selector follows from the same bit result: classify a position as repeat-permitting only when its p50 control cell is in the already validated leading-zero class **and** its second printed character has bit0 = 0. All remaining positions form one pooled complement.
+
+Under the conventional base60 reading this compact selector has:
+
+- selected state: **29/1,809 = 1.6031%** repeats;
+- complement: **57/11,092 = 0.5139%** repeats;
+- nine-chapter held-out gain over one common book-wide rate: **+10.374652 nats**;
+- positive held-out chapters: **7/9**.
+
+Under the drop-`f` reading the analogous selector has:
+
+- selected state: **23/1,510 = 1.5232%**;
+- complement: **63/11,391 = 0.5531%**;
+- held-out gain: **+6.833298 nats**;
+- positive held-out chapters: **7/9**.
+
+The conventional selected-state repeat rate is close to the low end of the author's established clear-GP section rates, while the complement remains far below the aggregate clear-GP baseline. This is compatible with a repeat-permitting versus repeat-suppressing state, though it does not prove a key-hold mechanism.
+
+### Corrected finite-family calibration
+
+Because the favorable bit state was chosen after inspecting parity direction, the conjunction receives its own larger correction family. Each null trial permutes the 60 observed low60 token labels across the 60 fixed low60 physical cells, preserving ciphertext, physical-cell exposures, chapter structure, and the exact token multiset. The statistic is the maximum held-out gain across:
+
+- 6 bit positions;
+- 2 documented alphabets;
+- both bit states as the selected low60 subset.
+
+This is **24** selectors per null book.
+
+With seed `0x33011314` and **10,000** trials:
+
+- observed maximum: **+10.374652 nats**;
+- null mean maximum: **+6.491097 nats**;
+- null 95th percentile: **+9.546734**;
+- null 99th percentile: **+11.310878**;
+- exceedances: **213/10,000**;
+- add-one familywise **p = 0.0213979**.
+
+The conjunction survives the enlarged post-choice correction. It remains an intermediate diagnostic because the p50 numeric alphabet is not creator-authenticated and no reversible operation has been selected.
+
+Reproduction: `sims/lp2_p50_low60_even_conjunction_sft.cjs`.
+
 ## Interpretation and next decision
 
 The result narrows the p50 operand question in a way that raw-value equality did not. Within the already validated leading-zero class, the printed low digit contains a simple one-bit partition that transfers across chapters and beats multiplicity-preserving token relabeling after correcting for all 12 tested bit features.
@@ -66,4 +109,4 @@ Two cautions remain decisive:
 
 Future p50 mechanism work may use second-character bit 0 as a **predeclared diagnostic**. It should require a source-selected operation that explains why that bit changes self-transition behavior, and should test both documented alphabet readings unless a first-party source fixes one.
 
-Reproduction: `sims/lp2_p50_low60_secondchar_bits_sft.cjs`.
+Reproduction: `sims/lp2_p50_low60_secondchar_bits_sft.cjs` and `sims/lp2_p50_low60_even_conjunction_sft.cjs`.
