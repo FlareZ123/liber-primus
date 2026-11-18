@@ -270,7 +270,17 @@ def main() -> None:
     ).read_bytes()
     expected_tail = bytes.fromhex("75794f360a5a7679627a70347334537a526a6b6b39734d4d360a3d5759564f0a2d2d2d2d2d454e4420504750205349474e41545552452d2d2d2d2d0a")
     if len(complete_hello) != 996 or complete_hello[:936] != hello_prefix:
-        raise SystemExit("full archived HELLO differs from 2013 IRC 936-byte prefix")
+        first_diff = next(
+            (i for i, (a, b) in enumerate(zip(complete_hello, hello_prefix)) if a != b),
+            None,
+        )
+        raise SystemExit(
+            f"full archived HELLO differs from 2013 IRC 936-byte prefix: "
+            f"archive length={len(complete_hello)}, IRC length={len(hello_prefix)}, "
+            f"first_diff={first_diff}, "
+            f"archive_region={complete_hello[max(0, (first_diff or 0)-12):(first_diff or 0)+18]!r}, "
+            f"IRC_region={hello_prefix[max(0, (first_diff or 0)-12):(first_diff or 0)+18]!r}"
+        )
     if complete_hello[936:] != expected_tail:
         raise SystemExit("HELLO continuation is not solely the recorded signature tail")
     signed_lines = hello_text.splitlines()
