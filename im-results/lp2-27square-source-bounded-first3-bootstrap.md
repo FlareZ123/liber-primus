@@ -1,4 +1,4 @@
-# Source-bounded 27×27 bootstrap: AS I GO THE / WEATHER / TURNS
+# Source-bounded 27×27 bootstrap through four blocks: AS I GO THE / WEATHER / TURNS / COLD
 
 **Agent 28, 18 November 2026. Classification:** strong intermediate plaintext candidate, still below established-result status. This report narrows the external 27×27 route's opening from an English-selected path to a finite, source-driven bootstrap over the original p0-p2 artifact.
 
@@ -8,7 +8,7 @@ The recovered candidate is:
 AS I GO THE WEATHER TURNS
 ```
 
-The important advance is the selector structure. The first block is the unique four-word run in a deliberately widened source-driven opening family. Blocks 2 and 3 then chain geometrically from the previous endpoint and self-delimit by source-native dictionary-prefix failure.
+The important advance is the selector structure. The first block is the unique four-word run in a deliberately widened source-driven opening family. Blocks 2 and 3 chain geometrically from the previous endpoint. Block 4 was then tested prospectively from the frozen TURNS state across a finite 36-branch family, where the published COLD branch was the unique maximum.
 
 ## Source prerequisites
 
@@ -145,6 +145,47 @@ T - U - R - N - S
 
 The sixth rune destroys all dictionary continuations, so the branch self-delimits at **TURNS**.
 
+## Block 4: prospective finite-family recovery of COLD
+
+This test was defined after the first-three-block rules were frozen and before accepting the published block-4 plaintext.
+
+Carry only the TURNS state:
+
+```
+anchor A = (14,19)
+previous key center NG = 21
+phi(21) = 12
+```
+
+Enumerate every in-bounds cardinal displacement of 12 from A as a possible next key-node center. Around each center, take the aligned three-cell node, center-totient it, and apply the same `mu(phi(k))` rotation rule. Independently enumerate every in-bounds cardinal displacement of 12 from A as a possible ciphertext start and all four cardinal read directions.
+
+There are **36** resulting candidates.
+
+Rank them only by the longest prefix that remains a prefix of any source-native English word. The unique maximum reaches depth **5**; the runner-up reaches **3**. The winning branch is:
+
+```
+center direction  DOWN
+center            (26,19)
+raw node          H - TH - H
+center totient    H - U - H
+rotation          1
+key               U - H - H
+
+start direction   LEFT
+start             (14,7)
+read direction    UP
+```
+
+Its decrypted stream begins:
+
+```
+C - O - L - D - L - P ...
+```
+
+`C-O-L-D` is the exact source-native word **COLD**. The fifth rune still remains a prefix of longer English material such as COLDLY, but there is no exact five-rune word there; the sixth rune kills the continuation. Thus COLD is the last exact word before the winning branch's prefix family collapses.
+
+This is a genuinely prospective discriminator: neither the word COLD, its four-rune length, nor its directions were supplied to the selector.
+
 ## What this changes
 
 The earlier repository audit correctly showed that the published 38-block route had underselected transitions. This three-block bootstrap is a different piece of evidence.
@@ -153,7 +194,8 @@ It supplies a compact source-driven opening chain with three independent discrim
 
 1. the opening branch is the unique four-word maximum among 126 widened source-driven candidates;
 2. WEATHER begins at the exact matrix center and terminates when its next rune kills every dictionary continuation;
-3. TURNS is the only cardinal direction from its fixed start that sustains a native word to five runes.
+3. TURNS is the only cardinal direction from its fixed start that sustains a native word to five runes;
+4. from the frozen TURNS state, COLD is selected by the unique maximum among 36 cardinal ±12 block-4 candidates.
 
 The combined reading is coherent English:
 
@@ -165,7 +207,7 @@ This is substantially stronger than choosing one key/path because it looks Engli
 
 ## Next decisive test
 
-Freeze the rules above before looking at block 4. Derive block 4 from the TURNS state with no plaintext length or direction supplied. A successful prospective recovery of the published next word, or another unambiguous native phrase, would materially upgrade the route. Failure should stop this bootstrap branch instead of adding rescue filters.
+Freeze the four-block rules above before looking at block 5. Derive block 5 from the COLD state with no plaintext, length, direction, or extra transition filter supplied. A successful prospective recovery would materially strengthen the case for a reusable mechanism; failure should stop the bootstrap branch instead of adding rescue filters.
 
 ## Reproduction
 
