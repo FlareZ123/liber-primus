@@ -1,6 +1,6 @@
 # LP1 p16: beetle, reclining figure and magic square
 
-**Current decision, 16 November 2026 (Agent4 consolidating the earlier source report):** The original LP1 p16 image has a specific **pre-2014 source candidate independently raised by community investigators in 2019**: C. G. Jung's *The Red Book* (2009) contains a section explicitly titled **Liber Primus**. Its chapter V pairs a slain human hero, a black beetle and a red sun in one narrated scene. The original Cicada LP1 p16 shows a beetle-like animal *above* its 3301 magic square and a horizontal human figure *below* the square. This is a previously published, historically accessible **hypothesis about iconography**, not an author-authenticated Jung citation or a decrypted key. No original unknown LP2 plaintext is recovered.
+**Current decision (18 November 2026, revised after Agent24's image SFT):** The p16 Jung/Red Book resemblance remains contextual, not an LP2 key. A new source-only comparison shows that the same cicada artwork is reused on LP1 pages 9, 13, 15, 16 and LP2 page 2, with identity, reflection and quarter-turn states aligning with the page numbers' Möbius values. This is a plausible visual direction clue, especially the right-facing LP2 p2 instance, but the five-page sample does not authenticate a cipher rule. The 3301 magic square still has no demonstrated LP2 consumer. Two natural direct readings of μ as a path operation failed; the only live cryptanalytic use is a bounded test of whether the p2 right-facing marker selects the eastward branch in the p0–p2 27×27 bootstrap.
 
 ## Actual source and strongest competing explanation
 
@@ -11,6 +11,31 @@ Jung's **Liber Primus**, chapter V, *Descent into Hell in the Future*, appears i
 This lead **is prior art**. A [21 August 2019 /r/cicada discussion](https://www.reddit.com/r/cicada/comments/ctonqu/source_of_laying_man_source_of_cicada_logo/) had already identified Jung's *Red Book*, Cicada's original image filenames 107.jpg, 167.jpg and 229.jpg, and the alignment of the 2009 book's **p.229 prologue** with the LP1 `229.jpg` image filename. The [11 February 2020 source comparison by Frank G. Bosman](https://frankgbosman.wordpress.com/2020/02/11/cicada-3301-the-book-of-daniel/) also compares a Jung original red-and-blue reclining-figure image, folio 44 (2009 edition **p.281**), to the LP1 drawings. Primary [2009 contents](https://toc.library.ethz.ch/objects/pdf/z01_978-0-393-06567-1_01.pdf) corrects an important error in the 2020 post: Jung **Liber Primus** starts on p.227, its **prologue** on p.229; p.281 is chapter IX of **Liber Secundus**. The p.281 figure depicts a small horizontal human silhouette within a larger blue landscape, so its resemblance is thematic rather than a verified exact graphic trace. The three LP1 filename numbers 107, 167, 229 are themselves prime and have gaps 60, 62, so a p229 title coincidence requires a historically selected address rule before being elevated to a book code. This 2019–2020 coverage means neither the figure association nor the filename match is a new result from this invocation. The narrow new test here is the fixed 36-word quotation-length exclusion.
 
 The strongest rival is decorative thematic overlap: beetles and dead people are recurrent Egyptian funerary imagery; Cicada's own solved pages discuss emergence, mortality and transformation; *Liber Primus* means "first book". No independently authenticated Cicada statement selects Jung, and no exact image-to-image match, source word index, key extractor or cipher is known. Calling the insect a scarab or the human a mummy remains conjectural.
+
+## LP1/LP2 cicada asset recurrence and candidate Möbius direction code (Agent24, 18 November 2026)
+
+The original scans contain the same cicada artwork in five locations. A fixed-crop, grayscale-thresholded, 8-connected-component SFT compares the silhouettes without OCR, resizing, language scoring or cipher fitting. Reproducer: sims/lp1_lp2_cicada_mobius_sft.py. Full intermediate evidence: im-results/lp1-lp2-cicada-mobius-visual-selector.md.
+
+| Physical page | Original image | μ(page) | ω(page) | Observed copy |
+|---|---:|---:|---:|---|
+| LP1 p9 | 09.jpg | 0 | 1 | One base-orientation cicada |
+| LP1 p13 | 13.jpg | −1 | 1 | One horizontal reflection |
+| LP1 p15 | 15.jpg | +1 | 2 | Two 90°-turned copies, one additionally mirrored |
+| LP1 p16 | 16.jpg | 0 | 1 | One base-orientation cicada |
+| LP2 p2 | 19.jpg | −1 | 1 | One horizontal reflection |
+
+Here μ is the standard Möbius function and ω counts distinct prime factors. The number of copies equals ω(page) for all five observed pages. After thresholding grayscale below 140 and retaining 8-connected components of at least 500 pixels, p9 and p16 are identical; p13 is an exact horizontal flip of p16. LP2 p2 and each p15 insect differ by only 35 pixels from the corresponding transformed p16 mask, with intersection-over-union above 0.999. The original pages are 2400×3600 pixels; crop coordinates and assertions are pinned in the SFT.
+
+This is a striking **visual correlation**: μ=0 accompanies the base asset, μ=−1 the horizontal reflection, and μ=+1 the paired quarter-turns. It is compatible with the 2016 signed instruction that “their numbers are the direction”; the small infinity-like mark below the LP2 p2 insect is also compatible with a Möbius hint. Neither establishes that the author intended μ(page), and the small sample leaves decorative layout choices as a live rival. Do not promote the mapping to a cipher rule.
+
+Two cheap, source-motivated direct interpretations were tested and failed:
+
+- Treat the 25 values in the LP1 p16 3301 magic square as a row-major μ-turn sequence: −1 = left, 0 = straight, +1 = right; start at the center of the p0–p2 27×27 square heading east, then read after each move. The 25-step path stays in bounds, ends at zero-based (14,11), does not close, and reads “W EA J H M G P EA P L E X L AE A M IA IA Y S EO H EA O T”. Toroidal wrapping makes no difference because the path never reaches an edge. This rejects the simplest direct turn-sequence reading, not other uses of μ.
+- Treat each word's GP-prime sum S as a signed jump, next(i) = (i + μ(S)S) mod N. On the correctly joined original 2,896-word / 12,956-rune LP2 corpus, word 0 SHEOGMIAF (S=347, μ=−1) jumps to word 2549 EOEANGAE (S=427, μ=+1), then to word 80 THP (S=48, μ=0), which is a fixed point; the graph has 1,116 cycles. The solved p57 control follows PARABLE → OUR → OWN → SURFACE → LICE, then fixes at LICE. This direct word-jump interpretation is not a plaintext decoder. The p55 line-4 mapline sums 60, 129, 159 have μ values 0, +1, +1; a usable coordinate model is still missing.
+
+The actionable test is narrower. In the current p0–p2 block-5 tie, the I | MAY candidate at source index 693 reads west, while X | EARTH at index 357 reads east (inferred from the original word-boundary crossing after its first output rune). LP2 p2's cicada faces right and has μ(2)=−1; **if** it is a direction marker, it favors the eastward X | EARTH branch. Agent28 has been asked to confirm the exact path coordinates and test this without language scoring. Require forward re-encryption and continuation under the same frozen operation before accepting it. If the next block fails, reject the selector rather than rescuing it with a new rule.
+
+The Jung resemblance and the magic-square transfer remain hypotheses. The recurring cicada asset weakens the claim that p16's insect alone is a unique Jung-specific clue; the p16 human figure and 3301 square remain separate evidence and still have no demonstrated LP2 receiver.
 
 ## One frozen source-text consequence
 
@@ -36,4 +61,6 @@ Both the *selection of Jung as key source* and this receiver/key phase are analy
 
 ## Cryptanalytic next decision
 
-The direct 19-word Liber Secundus running-key consumer above is strictly contradictory on p55. If a previously unrecognized Cicada first-party phrase or original diagram connects the p16 artwork to Jung's *Liber Primus* with a **specific source-word index/key, reversible GP29 operation, clock and LP2 receiver**, freeze those selections before inspecting decrypted output. Require a held-out, independently reproducible unknown-rune plaintext and exact forward reencryption. If no such selector is present, retain the Jung connection as a targeted historical-text lead while **retiring unsourced scarab/Mars symbolism and arbitrary 25-number or Jung-key sweeps**. No cryptographic consumer or continuation has yet been recovered.
+The direct 19-word Jung phrase/key alignment remains a strict contradiction: the source phrase has 19 words but the p16 page has 17 printed segments, and the independently transcribed GP29 words do not match the proposed positions. Do not continue searching the Jung text for a key without a newly identified source instruction.
+
+The only new, testable use of the p16/p2 art is the **LP2 p2 Möbius-direction selector** described above. Agent28 has the exact block-5 tie and has been asked to confirm the east/west geometry. If the source-fixed p2 orientation independently selects east, continue the X | EARTH branch with no English scoring, then demand exact forward re-encryption and a successful next-block prediction. If the branch does not continue under the same operation, retire the selector. The p55 line-4 word-sum μ values may be tested only if Agent2 supplies a fixed map coordinate model. The visual μ/ω pattern is intermediate historical evidence, not recovered plaintext or an authenticated cipher.
