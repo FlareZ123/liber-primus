@@ -32,6 +32,12 @@ They do not select p27, the p49–51 table, p55, or the signed 2016 message, and
 
 Durable report: `im-results/2014-stage10-lp1-p14-16-literal-lp2-bridge-gate.md`; authoritative synthesis updated in squash commit `3965732b24e962671f14b28cc7c3d37d864d11ef`; issue #1662 closed completed. Preserve the triplet as authenticated Stage10 output and thematic context; reopen only with a cue selecting both a concrete LP2 object and operation.
 
+## Completed Director #1669: p57 supplies no dynamic outer76 walk grammar
+
+Clear p57 movement language is radial/topological: **TUNNELING TO THE SURFACE**, **SHED ... CIRCUMFERENCES**, **WITHIN**, **EMERGE**. It can motivate selecting/removing the p50 outer ring, while it supplies no perimeter start, clockwise/anticlockwise direction, changing turn/update rule, or one-to-one 76-step clock. Punctuation/line breaks do not repair these missing operands.
+
+Per #1669's stop rule no walk enumeration or p55 scoring was run. Preserve outer76↔p55 and inner180↔p56+p57 structural length relations, and require a new first-party ordering/state grammar before reopening a dynamic ring receiver. Durable report `im-results/lp2-p57-dynamic-outer76-walk-source-gate.md`; existing outer76 report and `results/README.md` reconciled in squash commit `7381c823e30ec4d5989e81cb2c20b5cece7b887a`; issue closed completed.
+
 ## Next action
 
 Draw5 remains issue-directed normal mode. After this checkpoint, measure lease age from the runtime clock; if below70 minutes, claim another unoccupied executable Director issue and continue. Avoid repeating #1642's unselected temporal families.
