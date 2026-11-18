@@ -181,7 +181,44 @@ Several tempting consumers were tested before freezing this note:
 These controls prevent the candidate from being promoted merely because an
 80-bit factor can be formatted as an onion label.
 
-## 6. Why this is worth independent attack
+## 6. Frozen source-mark and matched-tape calibration (Director #1611)
+
+The exact divisor grammar was frozen before this audit as
+`31 * local_offset * prime(physical_page)`, with one-based prime ordinals.
+Across all 30 original red thirteen-dot marks, page 0 has no positive prime
+ordinal under that convention and p15 offset 0 has no positive local offset.
+That leaves **28 eligible source marks**. Applying the grammar to every one of
+them gives **exactly one divisor of the frozen rank R: p27 offset 19**, with
+divisor `31 * 19 * prime(27) = 60667`. The other 27 eligible source marks do
+not divide R exactly. Thus the p27 arithmetic event is unique in its declared
+source-mark family.
+
+The matched null preserves exactly 30 marks among the same 255 red events.
+For zero-based lexicographic combination rank, every 30-of-255 tape maps
+bijectively to one integer in `[0, C(255,30)-1]`. Therefore the p27
+divisibility probability is exact in rank space rather than Monte Carlo:
+**1.6483425915e-5** of matched tapes have rank divisible by 60667.
+
+Conditioned on exact divisibility, a deterministic **1,000-quotient**
+SplitMix64 sample (seed `0x1611`) was factored exactly with SymPy 1.14.0.
+**29/1,000 = 0.029** quotients contain at least one 79- or 80-bit prime factor
+(95% Wilson **0.02027–0.04134**). Combining that conditional estimate with the
+exact divisibility probability gives a matched-null conjunction estimate of
+**4.7802e-7**, approximately **1 in 2.09 million**, with propagated Wilson
+bounds **3.3406e-7–6.8140e-7**.
+
+This is a calibration of the already-frozen arithmetic route, not an
+end-to-end probability that the candidate onion is authored. The rank
+operation and interpretation of the 79-bit factor as a Tor-v2 payload were
+discovered retrospectively; Tor-v2 syntax is automatic for any 80-bit value
+and contributes no validation. The result makes the exact p27 factor event
+statistically selective enough to justify the separate historical-host search,
+while leaving the destination unauthenticated.
+
+Reproducer:
+[`sims/lp2_p27_red13_factor_calibration.py`](../sims/lp2_p27_red13_factor_calibration.py).
+
+## 7. Why this is worth independent attack
 
 The route is stronger than a free numerical search because several choices
 were fixed before the candidate emerged:
@@ -204,7 +241,7 @@ manuscript. The floor-capacity match 129 is only corroborative because the
 rank itself needs 130 bits. The final choice to interpret the 79-bit residual
 prime as a Tor-v2 payload still needs an external receiver or historical hit.
 
-## 7. Decisive next tests
+## 8. Decisive next tests
 
 Treat this as a high-priority candidate continuation, not a solution.
 
