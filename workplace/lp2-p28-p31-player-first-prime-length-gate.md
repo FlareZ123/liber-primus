@@ -28,10 +28,22 @@ This uses the known historical GP29 additive family as a *conditional comparison
 
 **Result:** The original equal-length p28/p31 pairing is inconsistent with the simplest identical-global-keystream/no-bypass additive GP29 model if both unknown plaintexts have the independently observed native-GP English frequency register. A page-specific offset, plaintext-F key-clock skipping, changing state, nonadditive cipher or different underlying plaintext register is outside this gate. Retuning offsets or operations until a promising score emerges would remove the only original-source motivation.
 
-## Why this is not a decoder
+## 18 November follow-up: the missing selector is now supplied by the p57/p50 route
 
-An observer cannot infer from four prime lengths **which key values** to apply, **what readout** to recognize, or **which original clue** authorizes a particular modular traversal. The text itself is the only accessible operand. Neither route fixes a reversible transformation before inspecting candidate linguistic output; therefore neither qualifies for the issue's required **100 unknown-rune prediction plus separate 40-rune plaintext holdout**. The blocker is a **missing human-visible rule/key selector**, not compute capacity.
+The original conclusion above was correct for the page range in isolation: pp28–31 do not print their own operation. A later independent source route now changes the selection diagnosis.
 
-**Decision:** Close this bounded player-first issue without declaring any plaintext or key. Preserve the prime-length anomaly as a lower-confidence source cue for future source-selected instructions. Do not commission a family of arbitrary prime-step transpositions or page-offset/key-schedule searches from this observation alone.
+Solved p57 reconstructs the p50 nested prime-count bracket under canonical GP0 word-sum addressing. In that same frozen mapping, `PARABLE → FIND → 28`, where the table token at FIND's address decodes to28 in both base59 and base60. The 2014 source distribution names LP2 files `0.jpg` through `57.jpg`, so `28` is a player-visible page identifier rather than a repository-only label.
+
+This independently selects physical **p28**. Its already-established rune count is **269**. The p50 bracket independently selects prime counting through `44=π(193)` and `46=π(201)`; applying the same operation gives **π(269)=57**, returning to the solved p57 instruction page. The whole unique prime-length run maps as `[269,277,263,269] → [57,59,56,57]`.
+
+This resolves the earlier **page/operation selector** blocker for the p28 count. It does **not** supply a reversible cipher for the 269 p28 runes. The fixed-keystream negative in this document remains valid and should not be rerun. Further p28 decryption work still requires a source-selected reversible operation beyond “count the runes and take π.”
+
+The consolidated current route is documented in [the p57/p50 bridge report](../im-results/lp2-p57-divinity-p50-center13-bridge.md) and reproduced by [its CommonJS SFT](../sims/lp2_p57_divinity_p50_center13_bridge_sft.cjs).
+
+## Why this is still not a decoder
+
+The new p57/p50 route now authorizes selecting p28 and applying π to its rune count. It still supplies no key values or reversible rune transformation for the 269 ciphertext glyphs. The earlier identical-keystream test remains a bounded negative and does not become a decoder because the page selection improved.
+
+**Decision:** Preserve the prime-length anomaly as part of the now-reproducible p57→p50→p28→p57 instruction loop. Continue to reject arbitrary prime-step transpositions, page-offset sweeps, and key schedules unless a further source instruction fixes a reversible operation on the p28 ciphertext.
 
 **Reproduce:** [single-file original-corpus SFT](../sims/lp2_p28_p31_prime_length_sft.cjs). Run it with Node.js from the repository root. The SFT checks the complete p0–p55 page lengths, correct runeless p50 transcription offset, 12-line eligibility, exact permutation null, frozen difference sites, native GP frequency calibration and planted common-key positive control. It passed on original repository inputs with Node 22 / Windows in [manual CI run 43645516931](https://github.com/FlareZ123/liber-primus/actions/runs/43645516931) (job step 5).

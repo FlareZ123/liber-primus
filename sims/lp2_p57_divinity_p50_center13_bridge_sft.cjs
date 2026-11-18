@@ -11,7 +11,8 @@
  *   the immediately outer duplicate pair is the second circumference;
  *   both pairs share center105;
  *   DIUINITY=105 selects that center, whose printed token is unique "13";
- *   the same GP0 addressing exposes SHED/CIRCUMFERENCES -> PARABLE -> FIND -> 28;
+ *   the same GP0 addressing exposes WITHIN -> CIRCUMFERENCES -> PARABLE -> FIND -> 28;
+ *   FIND -> physical p28 -> primePi(269)=57 closes back to solved p57;
  *   base59 pointer convergence to189 is universal and therefore non-discriminating.
  *
  * Run:
@@ -142,6 +143,7 @@ const tunnel = word("TUNNELNG");
 const shed = word("SHED");
 const circumferences = word("CIRCUMFERENCES");
 const find = word("FIND");
+const within = word("WITHIN");
 const divinity = word("DIUINITY");
 const emerge = word("EMERGE");
 
@@ -152,6 +154,7 @@ assert.deepEqual(
     shed: shed.gp0,
     circumferences: circumferences.gp0,
     find: find.gp0,
+    within: within.gp0,
     divinity: divinity.gp0,
     emerge: emerge.gp0,
   },
@@ -161,6 +164,7 @@ assert.deepEqual(
     shed: 64,
     circumferences: 131,
     find: 42,
+    within: 38,
     divinity: 105,
     emerge: 83,
   }
@@ -212,6 +216,10 @@ assert.deepEqual(
 );
 
 // Same frozen GP0 addressing: source-privileged word graph.
+assert.equal(tokens[within.gp0], "2D");
+assert.equal(decode59(tokens[within.gp0]), circumferences.gp0);
+assert.notEqual(decode60(tokens[within.gp0]), circumferences.gp0);
+
 assert.equal(tokens[shed.gp0], "22");
 assert.equal(decode59(tokens[shed.gp0]), parable.gp0);
 assert.notEqual(decode60(tokens[shed.gp0]), parable.gp0);
@@ -230,6 +238,43 @@ assert.equal(
 assert.equal(tokens[find.gp0], "0S");
 assert.equal(decode59(tokens[find.gp0]), 28);
 assert.equal(decode60(tokens[find.gp0]), 28);
+
+// FIND -> physical p28; bracket-selected prime counting closes to solved p57.
+const p28Page = corpus.pages.find((page) => page.page === 28);
+assert.ok(p28Page);
+assert.equal(p28Page.indices.length, 269);
+assert.ok(isPrime(p28Page.indices.length));
+assert.equal(primePi(p28Page.indices.length), 57);
+
+const p28to31Counts = [28, 29, 30, 31].map((pageNumber) => {
+  const page = corpus.pages.find((candidate) => candidate.page === pageNumber);
+  assert.ok(page);
+  return page.indices.length;
+});
+assert.deepEqual(p28to31Counts, [269, 277, 263, 269]);
+assert.ok(p28to31Counts.every(isPrime));
+assert.deepEqual(p28to31Counts.map(primePi), [57, 59, 56, 57]);
+
+const fourPrimeStarts = [];
+for (let start = 0; start <= 52; start += 1) {
+  const counts = [0, 1, 2, 3].map((delta) => {
+    const page = corpus.pages.find((candidate) => candidate.page === start + delta);
+    assert.ok(page);
+    return page.indices.length;
+  });
+  if (counts.every(isPrime)) fourPrimeStarts.push(start);
+}
+assert.deepEqual(fourPrimeStarts, [28]);
+
+const pagesClosingTo57 = corpus.pages
+  .filter((page) => page.page <= 55 && primePi(page.indices.length) === 57)
+  .map((page) => page.page);
+assert.deepEqual(pagesClosingTo57, [20, 24, 28, 31, 45, 46]);
+
+const gp28OccurrencesOnP28 = p28Page.indices
+  .map((value, index) => value === 28 ? index : null)
+  .filter((index) => index !== null);
+assert.equal(gp28OccurrencesOnP28.length, 14);
 
 // Secondary page-pair alignment.
 assert.equal(tokens[tunnel.gp0], "0u");
@@ -364,6 +409,7 @@ console.log(JSON.stringify({
     strictInteriorLength: 43,
   },
   wordGraph: {
+    within: { address: 38, token: tokens[38], base59: decode59(tokens[38]), target: "CIRCUMFERENCES" },
     shed: { address: 64, token: tokens[64], base59: decode59(tokens[64]), target: "PARABLE" },
     circumferences: { address: 131, token: tokens[131], base60: decode60(tokens[131]), target: "PARABLE" },
     parable: { address: 120, token: tokens[120], base60: decode60(tokens[120]), target: "FIND" },
@@ -371,6 +417,16 @@ console.log(JSON.stringify({
     tunnel: { address: 94, token: tokens[94], base59: 55, base60: 56 },
     conditionalExactObservedInverse: 1 / exactObservedProbability,
     conditionalEitherRadixInboundInverse: 1 / eitherRadixInboundProbability,
+  },
+  find28Closure: {
+    selectedPhysicalPage: 28,
+    runeCount: p28Page.indices.length,
+    primeOrdinal: primePi(p28Page.indices.length),
+    uniqueFourPrimeRunStart: fourPrimeStarts[0],
+    runCounts: p28to31Counts,
+    runPrimeOrdinals: p28to31Counts.map(primePi),
+    pagesWithPrimePiCount57: pagesClosingTo57,
+    gpRune28OccurrencesOnP28: gp28OccurrencesOnP28.length,
   },
   emergePointerNegative: {
     fixedPoints59,
@@ -388,5 +444,5 @@ console.log(JSON.stringify({
     p27Closure: "31 * 6 = 186",
   },
   interpretation:
-    "The solved p57 verbs and noun reconstruct a plausible human route into p50: EMERGE=83 selects the inner duplicate boundary, the immediately outer pair supplies the second circumference, and DIUINITY=105 lands at their common center. The same frozen GP0 addressing gives a low-multiplicity SHED/CIRCUMFERENCES -> PARABLE -> FIND -> 28 table chain. Page28 and the printed center 13 remain predictions requiring source-fixed follow-up; the universal base59 attractor189 is explicitly rejected as corroboration.",
+    "The solved p57 verbs and noun reconstruct a plausible human route into p50: EMERGE=83 selects the inner duplicate boundary, the immediately outer pair supplies the second circumference, and DIUINITY=105 lands at their common center. The same frozen GP0 addressing gives WITHIN -> CIRCUMFERENCES -> PARABLE -> FIND -> 28. Physical p28 then supplies269 runes, and the bracket-selected prime-count operation returns57, closing to the solved instruction page. The printed center13 remains conditional; the universal base59 attractor189 is explicitly rejected as corroboration.",
 }, null, 2));

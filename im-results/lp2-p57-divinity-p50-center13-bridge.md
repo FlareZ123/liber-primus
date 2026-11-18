@@ -39,16 +39,19 @@ Across all 20 complete p57 words, the only GP0 sums that hit the five bracket-sp
 
 Once GP0→p50 address is fixed by EMERGE/DIUINITY, the remaining p57 words provide an independent table prediction.
 
-- `SHED` has GP0 sum64. Cell64 is `22`; under the already documented base59 alphabet, `22` = **120**, exactly the GP0 sum of the title `PARABLE`.
-- `CIRCUMFERENCES` has GP0 sum131. Cell131 is `20`; under base60, `20` = **120**, independently converging on `PARABLE`.
-- `PARABLE` has GP0 sum120. Cell120 is `0g`; base60 gives **42**, exactly the GP0 sum of `FIND`. No token in the source table decodes to42 under base59.
+- `WITHIN` has GP0 sum38. Cell38 is `2D`; base59 gives **131**, exactly the GP0 sum of `CIRCUMFERENCES`. Base60 gives133, so the p57-word hit selects base59.
+- `SHED` has GP0 sum64. Cell64 is `22`; base59 gives **120**, exactly the GP0 sum of the title `PARABLE`. Base60 gives122.
+- `CIRCUMFERENCES` has GP0 sum131. Cell131 is `20`; base60 gives **120**, independently converging on `PARABLE`. Base59 gives118.
+- `PARABLE` has GP0 sum120. Cell120 is `0g`; base60 gives **42**, exactly the GP0 sum of `FIND`. No source token decodes to42 under base59.
 - `FIND` has GP0 sum42. Cell42 is `0S`; both base59 and base60 decode it as **28**.
 
-So the source-privileged chain is:
+The connected source-word path is:
 
-`SHED --base59--> PARABLE <--base60-- CIRCUMFERENCES`
+`WITHIN --base59--> CIRCUMFERENCES --base60--> PARABLE --base60--> FIND --> 28`
 
-`PARABLE --base60--> FIND --> 28`
+A second inbound edge independently gives:
+
+`SHED --base59--> PARABLE`
 
 The radix split is semantically coherent at the first edge: SHED uses the alphabet with one symbol removed. It is also mechanically forced by the actual source tokens if the target is PARABLE=120: `22` reaches120 only in base59, while `20` reaches120 only in base60.
 
@@ -66,7 +69,36 @@ If either base59 or base60 is allowed independently at the two inbound PARABLE e
 
 These are conditional selectivity diagnostics, not universal familywise p-values over every possible word subset, numerical convention, or semantic interpretation. Their value is that the GP0 addressing convention was identified independently by the EMERGE/DIUINITY bracket reconstruction before this complete p57-word graph was enumerated.
 
-The resulting **28** is now a concrete blind destination candidate. A page-number reading is plausible because another source word, `TUNNELNG` (GP0=94), lands on p50 cell94 `0u`, whose two frozen radix readings are **55 and56**, exactly the final unknown p55 / solved p56 page pair. This secondary alignment should remain conditional until a source-fixed operation on p28 succeeds.
+The resulting **28** is a concrete blind destination. A page-number reading is natural in the original 2014 release because the distributed LP2 files were literally named `0.jpg` through `57.jpg`; source `28.jpg` is physical p28, mirrored locally as archive `45.jpg`. A second page-number control exists: `TUNNELNG` (GP0=94) lands on p50 cell94 `0u`, whose two frozen radix readings are **55 and56**, exactly the final unknown p55 / solved p56 pair.
+
+## FIND → p28 → π(269) = 57 closes the instruction loop
+
+The earlier player-first p28–p31 audit had already established an unusual source fact before this route existed: physical pp28–31 are the **only consecutive four-page window in p0–p55 whose four rune counts are all prime**. Their counts are:
+
+`[269, 277, 263, 269]`.
+
+That work stopped because the pages themselves supplied no instruction to select the window or apply prime counting. The present route supplies both missing ingredients independently:
+
+1. `PARABLE → FIND → 28` selects original source page `28.jpg` before its length is inspected.
+2. The p50 nested bracket has already selected the prime-counting function π twice, through separations `44=π(193)` and `46=π(201)`.
+
+Physical p28 contains exactly **269 runes**. It is prime, and:
+
+`π(269) = 57`.
+
+Thus the route returns directly to the solved page that supplied the instruction:
+
+`p57 instruction → p50 bracket/word graph → FIND 28 → p28 length269 → π(269)=57 → p57`.
+
+Applying the already selected π operation to the entire unique p28–p31 prime-length run gives prime ordinals:
+
+`[57, 59, 56, 57]`.
+
+The p28 closure is the relevant blind consequence because page28 was selected first. The other values are retained as context, especially the appearance of 59 beside solved pp56/57, but they do not by themselves establish a further operation.
+
+This closure is selective at the route level rather than at the raw page-count level. Six LP2 pages have rune counts269 or270 and therefore π(count)=57: pp20,24,28,31,45,46. The evidential point is that **FIND has already selected p28 before the count is taken**. No choice among those six is made after observing the result.
+
+The alternative reading of 28 as GP rune index28 is weak here: rune28 (`EA`) occurs **14 times** on p28 and supplies no unique object or source-selected continuation. The source-file/page reading is therefore the first interpretation that produces a deterministic, clue-constrained closure without adding a cipher search.
 
 ## EMERGE pointer walk is not independent evidence
 
@@ -98,7 +130,9 @@ This negative leaves the `EMERGE=83 / DIUINITY=105` bracket reconstruction uncha
 
 Promote the **p57 EMERGE/DIUINITY → p50 nested bracket** route as a leading intended-solve-path hypothesis. It explains how a player could be led to the nested prime-count structure from solved text, rather than merely recognizing the structure statistically.
 
-The strongest next blind prediction is **FIND → 28** under the same frozen GP0/table convention. Work on p28 should remain narrow: use only source-fixed selectors supplied by this route, and require a reversible plaintext or a new original-artifact prediction. Do not broaden into arbitrary p28 key searches.
+The **FIND → 28** blind prediction now has a source-fixed consequence: p28 contains269 runes and the bracket-selected prime-count operation returns57. This closes a reproducible p57→p50→p28→p57 instruction loop and resolves the earlier p28–p31 study's missing page/operation selector.
+
+The loop still does not decrypt unknown runes. Any next p28 experiment must use a further source-visible instruction supplied by this route; arbitrary p28 keys, phases, transpositions, or cipher menus remain unjustified.
 
 The printed center `13` → red13 continuation is promising but still one inference short of authentication. The universal base59 attractor189 must not be counted as corroboration.
 
