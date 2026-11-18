@@ -78,6 +78,28 @@ const alternatives = [
 ];
 for (const edit of alternatives)
   assert.equal(tokens[edit.index], edit.old);
+/**
+ * Remainder of descending coefficients by an ascending GP29 polynomial.
+ * @param {number[]} coefficients
+ * @param {number[]} divisor
+ */
+function remainder(coefficients, divisor) {
+  const values = coefficients.slice().reverse().map(mod);
+  const inverse = Array.from({length:29}, (_, v) => v)
+    .find((v) => mod(v * divisor.at(-1)) === 1);
+  assert.ok(inverse > 0);
+  for (let index = values.length - 1; index >= divisor.length - 1; index--) {
+    const factor = mod(values[index] * inverse);
+    for (let j = 0; j < divisor.length; j++) {
+      const at = index - divisor.length + 1 + j;
+      values[at] = mod(values[at] - factor * divisor[j]);
+    }
+  }
+  return values.slice(0, divisor.length - 1);
+}
+assert.deepEqual(remainder(original, [3, 26, 24]), [0, 0]);
+assert.deepEqual(remainder(original, [27, 5, 15]), [0, 0]);
+const factors = [];
 const rows = [];
 for (let mask = 0; mask < (1 << alternatives.length); mask++) {
   const bytes = original.slice();
@@ -89,6 +111,11 @@ for (let mask = 0; mask < (1 << alternatives.length); mask++) {
   }
   const result = evaluate(bytes, 24);
   rows.push({mask, ...result});
+  factors.push({
+    mask,
+    historicalBase29: remainder(bytes, [3, 26, 24]),
+    originalRedTriad: remainder(bytes, [27, 5, 15])
+  });
 }
 const surviving = rows.filter((row) => row.value === 0 && row.derivative === 0)
   .map((row) => row.mask);
@@ -105,6 +132,14 @@ assert.deepEqual(individual, [
   {mask: 8, value: 18, derivative: 26},
   {mask: 16, value: 12, derivative: 19}
 ]);
+assert.deepEqual(
+  factors.filter((item) => item.historicalBase29.every((v) => v === 0) &&
+    item.originalRedTriad.every((v) => v === 0)).map((item) => item.mask),
+  [0, 4]
+);
+assert.deepEqual(factors[31], {
+  mask: 31, historicalBase29: [8, 12], originalRedTriad: [17, 5]
+});
 assert.equal(decode('0l') - decode('0I'), 29);
 console.log(JSON.stringify({
   sourceScans: ['66.jpg', '67.jpg', '68.jpg'],
@@ -115,5 +150,9 @@ console.log(JSON.stringify({
   fiveToggleVariant: rows[31],
   testedCaseAssignments: rows.length,
   doubleRootPreservingAssignments: surviving,
+  dualSourceQuadraticPreservingAssignments:
+    factors.filter((item) => item.historicalBase29.every((v) => v === 0) &&
+      item.originalRedTriad.every((v) => v === 0)).map((item) => item.mask),
+  bothFactorRemaindersIfAllFiveChanged: factors[31],
   conclusion: 'Four of five case alternatives affect the exact double root; index165 differs by a multiple of29. Conditional clue checksum only. No LP2 unknown plaintext or key.'
 }, null, 2));
