@@ -44,6 +44,11 @@ for (const page of pages) {
   offset += page.indices.length;
 }
 const trainEnd = pageStarts.get(3);
+const trainingPages = [
+  {name: "p0", from: 0, to: pageStarts.get(1)},
+  {name: "p1", from: pageStarts.get(1), to: pageStarts.get(2)},
+  {name: "p2", from: pageStarts.get(2), to: pageStarts.get(3)}
+];
 const holdoutAStart = pageStarts.get(40);
 const holdoutBStart = pageStarts.get(54);
 assert.equal(trainEnd, 729);
@@ -138,36 +143,39 @@ for (let ab = 0; ab < contexts.length; ab++) {
       Math.log((triCounts[ab * 29 + c] + 0.5) / denominator);
   }
 }
-const triEligible = new Uint8Array(trainEnd);
-for (let i = 2; i < trainEnd; i++) {
+const triEligible = new Uint8Array(original.length);
+for (let i = 2; i < original.length; i++) {
   triEligible[i] = Number(
     wordIdAt[i] === wordIdAt[i - 1] && wordIdAt[i] === wordIdAt[i - 2]);
 }
 
-function scoreKey(intermediate, a0, a1, b0, b1) {
+function scoreKey(intermediate, a0, a1, b0, b1, scoreFrom, scoreTo) {
   let p2 = 0;
   let p1 = 0;
   let score = 0;
-  for (let i = 0; i < trainEnd; i++) {
+  for (let i = 0; i < scoreTo; i++) {
     const a = z[i] ? a1 : a0;
     const b = z[i] ? b1 : b0;
-    let p = (intermediate[i] - a * p1 - b) % 29;
-    if (p < 0) p += 29;
-    if (triEligible[i]) score += triLog[(p2 * 29 + p1) * 29 + p];
+    const p = ((intermediate[i] - a * p1 - b) % 29 + 29) % 29;
+    if (i >= scoreFrom && triEligible[i]) {
+      score += triLog[(p2 * 29 + p1) * 29 + p];
+    }
     p2 = p1;
     p1 = p;
   }
   return score;
 }
 
-function exhaustiveTop64(intermediate) {
+function exhaustiveTop64(intermediate, scoreFrom, scoreTo) {
   const top = [];
   for (let a0 = 0; a0 < 29; a0++) {
     for (let a1 = 0; a1 < 29; a1++) {
       for (let b0 = 0; b0 < 29; b0++) {
         for (let b1 = 0; b1 < 29; b1++) {
-          const candidate = {score: scoreKey(intermediate, a0, a1, b0, b1),
-            a0, a1, b0, b1};
+          const candidate = {
+            score: scoreKey(intermediate, a0, a1, b0, b1, scoreFrom, scoreTo),
+            a0, a1, b0, b1
+          };
           if (top.length < 64 || candidate.score > top[top.length - 1].score) {
             let at = top.length;
             while (at > 0 && candidate.score > top[at - 1].score) at--;
@@ -200,22 +208,42 @@ const plantedPlain = words.flatMap((word) => {
   pick++;
   return selected;
 });
-const plantedKey = {a0: 7, a1: 19, b0: 11, b1: 3};
-const plantedIntermediate = affineEncode(plantedPlain, plantedKey);
-const plantedCipher = zeroFEncrypt(plantedIntermediate);
-assert.deepEqual(zeroFDecrypt(plantedCipher), plantedIntermediate);
-assert.deepEqual(affineDecode(plantedIntermediate, plantedKey), plantedPlain);
-assert.deepEqual(zeroFEncrypt(affineEncode(plantedPlain, plantedKey)), plantedCipher);
-const plantedTop = exhaustiveTop64(plantedIntermediate);
-const plantedRank = plantedTop.findIndex((candidate) =>
-  candidate.a0 === plantedKey.a0 && candidate.a1 === plantedKey.a1 &&
-  candidate.b0 === plantedKey.b0 && candidate.b1 === plantedKey.b1) + 1;
-assert.ok(plantedRank > 0 && plantedRank <= 64);
+let randomState = 0x33011033;
+function nextRandom29() {
+  randomState ^= randomState << 13;
+  randomState ^= randomState >>> 17;
+  randomState ^= randomState << 5;
+  randomState >>>= 0;
+  return randomState % 29;
+}
+const plantedKeys = Array.from({length: 3}, () => ({
+  a0: nextRandom29(),
+  a1: nextRandom29(),
+  b0: nextRandom29(),
+  b1: nextRandom29()
+}));
+const plantedResults = plantedKeys.map((plantedKey) => {
+  const plantedIntermediate = affineEncode(plantedPlain, plantedKey);
+  const plantedCipher = zeroFEncrypt(plantedIntermediate);
+  assert.deepEqual(zeroFDecrypt(plantedCipher), plantedIntermediate);
+  assert.deepEqual(affineDecode(plantedIntermediate, plantedKey), plantedPlain);
+  assert.deepEqual(zeroFEncrypt(affineEncode(plantedPlain, plantedKey)), plantedCipher);
+  const plantedTop = exhaustiveTop64(plantedIntermediate, 0, trainEnd);
+  const plantedRank = plantedTop.findIndex((candidate) =>
+    candidate.a0 === plantedKey.a0 && candidate.a1 === plantedKey.a1 &&
+    candidate.b0 === plantedKey.b0 && candidate.b1 === plantedKey.b1) + 1;
+  assert.ok(plantedRank > 0 && plantedRank <= 64);
+  return {key: plantedKey, exhaustiveTop64Rank: plantedRank, exactRoundtrip: true};
+});
 
 const intermediate = zeroFDecrypt(original);
 assert.deepEqual(zeroFEncrypt(intermediate), original);
-const top = exhaustiveTop64(intermediate);
+const top = exhaustiveTop64(intermediate, 0, trainEnd);
 assert.equal(top.length, 64);
+const splitWinners = trainingPages.map((slice) => ({
+  ...slice,
+  winner: exhaustiveTop64(intermediate, slice.from, slice.to)[0]
+}));
 
 const dictionaryByLength = new Map();
 for (const line of read("resources/control/english_wordfreq_textblob.txt").split(/\r?\n/)) {
@@ -232,8 +260,10 @@ function dictionaryStats(decoded, from, to) {
   let eligibleWords = 0;
   let hits = 0;
   let longHits = 0;
-  let longestRun = 0;
-  let run = 0;
+  let longestRunWords = 0;
+  let longestRunRunes = 0;
+  let runWords = 0;
+  let runRunes = 0;
   for (let w = 0; w < words.length; w++) {
     if (wordStart[w] < from || wordEnd[w] > to) continue;
     eligibleWords++;
@@ -242,20 +272,23 @@ function dictionaryStats(decoded, from, to) {
     if (hit) {
       hits++;
       if (candidate.length >= 5) longHits++;
-      run++;
-      longestRun = Math.max(longestRun, run);
+      runWords++;
+      runRunes += candidate.length;
+      longestRunWords = Math.max(longestRunWords, runWords);
+      longestRunRunes = Math.max(longestRunRunes, runRunes);
     } else {
-      run = 0;
+      runWords = 0;
+      runRunes = 0;
     }
   }
-  return {eligibleWords, hits, longHits, longestRun};
+  return {eligibleWords, hits, longHits, longestRunWords, longestRunRunes};
 }
 
 function render(values) {
   return values.map((value) => corpus.translit[value]).join("");
 }
 
-const evaluated = top.slice(0, 16).map((candidate, rank0) => {
+const evaluated = top.map((candidate, rank0) => {
   const key = {a0: candidate.a0, a1: candidate.a1,
     b0: candidate.b0, b1: candidate.b1};
   const decoded = affineDecode(intermediate, key);
@@ -265,16 +298,26 @@ const evaluated = top.slice(0, 16).map((candidate, rank0) => {
     ...candidate,
     holdoutP40P53: dictionaryStats(decoded, holdoutAStart, holdoutBStart),
     holdoutP54P55: dictionaryStats(decoded, holdoutBStart, decoded.length),
-    p40Prefix: render(decoded.slice(holdoutAStart, holdoutAStart + 96)),
-    p54Prefix: render(decoded.slice(holdoutBStart, holdoutBStart + 96))
+    p40Prefix: rank0 < 4 ? render(decoded.slice(holdoutAStart, holdoutAStart + 96)) : undefined,
+    p54Prefix: rank0 < 4 ? render(decoded.slice(holdoutBStart, holdoutBStart + 96)) : undefined
   };
 });
+const blindSummary = {
+  candidatesEvaluated: evaluated.length,
+  maxP40P53LongHits: Math.max(...evaluated.map((row) => row.holdoutP40P53.longHits)),
+  maxP54P55LongHits: Math.max(...evaluated.map((row) => row.holdoutP54P55.longHits)),
+  maxP40P53DictionaryRunRunes: Math.max(...evaluated.map(
+    (row) => row.holdoutP40P53.longestRunRunes)),
+  maxP54P55DictionaryRunRunes: Math.max(...evaluated.map(
+    (row) => row.holdoutP54P55.longestRunRunes))
+};
 
 console.log(JSON.stringify({
   familySize: 29 ** 4,
   training: {pages: "p0-p2", runes: trainEnd,
     score: "native-GP within-word trigram log likelihood"},
-  plantedPositive: {key: plantedKey, exhaustiveTop64Rank: plantedRank,
-    exactRoundtrip: true},
-  originalTop16: evaluated
+  plantedPositive: plantedResults,
+  independentTrainingPageWinners: splitWinners,
+  blindSummary,
+  originalTop16: evaluated.slice(0, 16)
 }, null, 2));
