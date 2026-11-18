@@ -25,6 +25,9 @@ const signedProtocol = read("resources/external/2013-tcp-server-signed-source.md
 const solved = JSON.parse(
   read("resources/external/relikd-solved-gp29-native-v1.json")
 );
+const liveVectors = JSON.parse(
+  read("resources/external/2013-tcp-live-test-vectors.json")
+);
 
 assert.match(
   signedProtocol,
@@ -73,6 +76,18 @@ function decode59(token) {
   const low = alphabet59.indexOf(token[1]);
   assert.ok(high >= 0 && low >= 0);
   return high * 59 + low;
+}
+
+/** @param {string} encoded */
+function decodeBase29(encoded) {
+  const alphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
+  let value = 0;
+  for (const character of encoded) {
+    const digit = alphabet.indexOf(character);
+    assert.ok(digit >= 0);
+    value = value * 29 + digit;
+  }
+  return value;
 }
 
 /** @param {string} text */
@@ -255,6 +270,44 @@ const decode60 = (token) =>
   alphabet60.indexOf(token[0]) * 60 + alphabet60.indexOf(token[1]);
 assert.equal(decode60(table[19]), 33);
 
+/*
+ * BASE29 1033 -> 16I closes onto the selected LP2 objects.
+ * The literal radix supplies address29; p50[29] is the unique token16;
+ * the already selected p28 word28 leaves a literal center I after two peels.
+ */
+const testVector = liveVectors.stableOrganizerTestVector;
+assert.deepEqual(testVector, {
+  base29Request: 1033,
+  base29Response: "16I",
+  dhModulus: 3301,
+});
+assert.equal(decodeBase29(testVector.base29Response), testVector.base29Request);
+
+assert.equal(table[29], "16");
+assert.deepEqual(
+  table.map((token, index) => token === "16" ? index : null)
+    .filter((index) => index !== null),
+  [29]
+);
+
+const p28CenterWord = p28Rows[27];
+assert.deepEqual(p28CenterWord.values, [28, 24, 10, 1, 20]);
+const p28CenterRune = p28CenterWord.values.slice(2, 3);
+assert.deepEqual(p28CenterRune, [10]);
+assert.equal(corpus.translit[p28CenterRune[0]], "I");
+const reconstructed1033 = table[29] + corpus.translit[p28CenterRune[0]];
+assert.equal(reconstructed1033, testVector.base29Response);
+assert.equal(decodeBase29(reconstructed1033), 1033);
+
+// Matched prefix control for the independently reproduced 3QO=3301 route.
+assert.equal(table[103], "3Q");
+assert.deepEqual(
+  table.map((token, index) => token === "3Q" ? index : null)
+    .filter((index) => index !== null),
+  [103]
+);
+assert.equal(decodeBase29("3QO"), testVector.dhModulus);
+
 console.log(JSON.stringify({
   status: "PASS",
   cuts: {
@@ -285,5 +338,16 @@ console.log(JSON.stringify({
     p57Word6Gp0: 19,
     p50Token: "0X",
     page: 33,
+    base29_1033: {
+      address: 29,
+      p50Prefix: table[29],
+      p28Suffix: corpus.translit[p28CenterRune[0]],
+      reconstructed: reconstructed1033,
+    },
+    base29_3301_control: {
+      address: 103,
+      p50Prefix: table[103],
+      encoded: "3QO",
+    },
   },
 }, null, 2));
