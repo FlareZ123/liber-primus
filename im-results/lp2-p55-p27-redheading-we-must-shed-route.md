@@ -131,6 +131,12 @@ The p57 text is the 2013 `761.mp3` "Instar Emergence" parable. In the documented
 
 Director #1650 tightens the relevance of that precedent. The p27 INSTAR relation is a **scalar checksum identification**: the 12-rune middle word has prime sum710 and `phi(710)=280`, equal to the GP-prime sum of INSTAR. It does not literally recover the six INSTAR runes or supply a GP29-to-byte serialization, equal-length LP2 byte operand, MP3 offset/clock, or target. The historical XOR opcode is validated by the recovered JPEG, while the surviving archive presents it as solver reconstruction rather than a signed command. One exact LP2 receiver has already been tested without alignment search: original p27 `44.jpg` and p55 `72.jpg` were XORed byte-for-byte from offset zero with preserved `761.mp3`; both outputs remained near-max-entropy binary data with no recognized payload. The direct Instar→XOR bridge is therefore closed until a first-party LP2 byte contract appears ([#1650 source gate](lp2-p27-instar-2013-xor-source-gate.md); [historical contract](../resources/external/2013-instar-xor-source.md)).
 
+## GP0 handoff pair now enters the DIVINITY carrier
+
+The later replicated signed-2016 GP0→p50 byte grammar now supplies the missing continuation from the independently selected `DJU / BEI` pair. The two source words map as `35→39` and `45→107`; those bytes land on the last rune of two separate three-rune p27 words. Their GP0 sums are40 and55, and both map to byte **80**. Offset80 is exactly the first rune after one circumference is shed from the 12-rune body word beginning79 whose twice-shed interior is the manuscript-unique **DIVINITY=376** object below.
+
+Among all 51 adjacent p27 pairs, only two produce a second-step convergence; the other is already a same-byte collision at the first step. DJU / BEI is therefore the unique **distinct-branch** convergence under the frozen operator. This makes the route causal from the p55 handoff into the DIVINITY/3301 parser rather than leaving the pair as a terminal landmark. [Source-exact report](lp2-p27-dju-bei-gp0-divinity-convergence.md) · [Windows PASS 44417202214](https://github.com/FlareZ123/liber-primus/actions/runs/44417202214).
+
 ## Terminal-prime serializer candidate
 
 The selected eight-rune \`DIVINITY\` interior now yields a typed historical value without applying another generic cipher.

@@ -185,6 +185,12 @@ This is a second concrete receiver for the same word-number/table-byte grammar. 
 
 The newly reported p57 bridge `DIUINITY -> GP0 105 -> p50 cell105 -> visible token 13` uses the same GP0 table-address grammar while reading the literal printed token at a different typed receiver. It supports the address convention without being counted as a byte-offset replication.
 
+## Selected DJU / BEI pair continues into the p27 DIVINITY carrier
+
+The independently selected p27 pair now has a deterministic continuation under the same operator. `DJU=35 → T[35]=39` and `BEI=45 → T[45]=107`; both bytes land on the final rune of separate three-rune p27 words. Those intermediate words have GP0 sums **40** and **55**, and the same table operation gives `T[40]=T[55]=80`. Offset80 is the first rune of the once-shed interior of the already selected 12-rune p27 carrier whose twice-shed core has GP-prime sum **376=DIVINITY** and whose whole-word totient gives **INSTAR=280**.
+
+Across all 51 adjacent p27 word pairs, only two converge after this exact two-step grammar. The other is a trivial same-first-byte collision; **DJU / BEI is the unique distinct-first-byte convergence**. This creates a source-connected route from the p55 terminal pair into the existing DIVINITY/3301 parser without adding a key search. [Detailed report](lp2-p27-dju-bei-gp0-divinity-convergence.md) · [Windows SFT PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44417202214).
+
 ## What is recovered
 
 The result supports the following source-driven route:
