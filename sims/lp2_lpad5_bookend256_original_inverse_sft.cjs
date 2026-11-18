@@ -45,6 +45,29 @@ const echoAdd = echo.map((x, i) => mod29(x + echoKey27[i]));
 assert.deepEqual(echoSubtract.map((v) => corpus.translit[v]), ['IA', 'B', 'J', 'F', 'TH', 'N']);
 assert.deepEqual(echoAdd.map((v) => corpus.translit[v]), ['M', 'C', 'L', 'C', 'C', 'J']);
 
+// The p55 terminal phrase actually continues for one more rune at the
+// start of the independently solved p56. This is the source-original
+// seven-rune seam, whose seventh plaintext rune is known to be A.
+const printedP56 = corpus.pages[56].indices;
+assert.equal(corpus.translit[printedP56[0]], 'AE');
+assert.equal(corpus.translit[unknown[a + 6]], 'AE');
+assert.deepEqual(unknown.slice(a, a + 7), [...unknown.slice(b, b + 6), printedP56[0]]);
+const seventhIndex = (a + 6) % 256;
+assert.equal(seventhIndex, (b + 6 + padding) % 256);
+assert.equal(seventhIndex, 161);
+const seventhKey = keyAt(seventhIndex);
+const authenticPlain = corpus.translit.indexOf('A');
+assert.equal(seventhKey, 14);
+assert.equal(authenticPlain, 24);
+assert.equal(mod29(printedP56[0] - authenticPlain), 1);
+const seventhSub = mod29(printedP56[0] - seventhKey);
+const seventhAdd = mod29(printedP56[0] + seventhKey);
+assert.equal(corpus.translit[seventhSub], 'J');
+assert.equal(corpus.translit[seventhAdd], 'I');
+assert.notEqual(seventhSub, authenticPlain);
+assert.notEqual(seventhAdd, authenticPlain);
+
+
 const starts = new Map();
 let runes = 0;
 for (const page of corpus.pages) {
@@ -85,6 +108,7 @@ assert(Math.abs(results[1].p55Ioc - 0.04105263157894737) < 1e-14);
 console.log(JSON.stringify({
   sourceClues: { acrostic: redStarts.join(''), fiveDots: padding, lag: b - a, tableSize: table.length, alignedLag: b - a + padding },
   echo: { cipher: echo.map((v) => corpus.translit[v]), key: echoKey27, subtract: echoSubtract.map((v) => corpus.translit[v]), add: echoAdd.map((v) => corpus.translit[v]) },
+  seventhSeam: { sourceRune: 'AE', independentlySolvedRune: 'A', requiredSubtractKey: 1, actualKey: seventhKey, subtract: corpus.translit[seventhSub], add: corpus.translit[seventhAdd] },
   originalInverse: results,
   decision: 'The forced echo-key alignment does not recover readable original GP prose.'
 }, null, 2));
