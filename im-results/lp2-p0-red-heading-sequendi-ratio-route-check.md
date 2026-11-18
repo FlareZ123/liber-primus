@@ -157,6 +157,8 @@ rows 6..24, cols 3..9   -> X-N-X-C
 rows 9..14, cols 5..20  -> G-H-G-OE
 ```
 
+A useful held-out property appears here: **both** sum42 survivors have exact 3:1 aspect ratios, even though aspect ratio was not used to construct the 72-rectangle family or to select sum42. Only 9 of the 72 symmetric rectangles are 3:1. Thus the earlier `RATIO -> 3:1` observation reappears downstream as a consequence rather than an input.
+
 Continue the same recurrence one term. The first plaintext must then have sum:
 
 ```
