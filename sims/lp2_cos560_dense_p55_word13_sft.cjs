@@ -10,7 +10,9 @@ const lexiconText = fs.readFileSync(path.join(root, 'resources', 'control', 'eng
 
 const padPath = process.argv[2];
 const builderName = process.argv[3] || 'mod29';
-assert(padPath, 'usage: node sims/lp2_cos560_dense_p55_word13_sft.cjs <_560.00> [builder]');
+const relationName = process.argv[4] || 'exact';
+assert(['exact', 'pair'].includes(relationName), 'relation must be exact or pair');
+assert(padPath, 'usage: node sims/lp2_cos560_dense_p55_word13_sft.cjs <_560.00> [builder] [relation]');
 const pad = fs.readFileSync(padPath);
 assert.equal(pad.length, 3992970, 'authoritative _560.00 byte length');
 
@@ -118,11 +120,12 @@ for (const entry of entries) {
  * @param {number} maxSkip
  * @returns {Array<object>}
  */
-function denseScan(key, sign, maxSkip = 3) {
+function denseScan(key, sign, relation, maxSkip = 3) {
   const n = key.length;
 
   const hits = [];
-  const maxStart = n - targetCipher.length * (maxSkip + 1) - 1;
+  const stride = relation === 'pair' ? 2 : 1;
+  const maxStart = n - targetCipher.length * (1 + stride * maxSkip) - 1;
   const pa = new Int32Array(4096);
   const nodes = new Int32Array(4096);
   const npa = new Int32Array(4096);
@@ -151,7 +154,7 @@ function denseScan(key, sign, maxSkip = 3) {
         const node = curNodes[s];
 
         for (let dsk = 0; dsk <= maxSkip; dsk += 1) {
-          const acc = previousAccepted + 1 + dsk;
+          const acc = previousAccepted + 1 + stride * dsk;
           if (acc >= n) break;
 
           const plain = mod29(cipher + sign * key[acc]);
@@ -159,7 +162,8 @@ function denseScan(key, sign, maxSkip = 3) {
           if (child < 0) continue;
 
           let valid = true;
-          for (let m = previousAccepted + 1; m < acc; m += 1) {
+          for (let rejected = 0; rejected < dsk; rejected += 1) {
+            const m = previousAccepted + 1 + stride * rejected;
             if (mod29(plain - sign * key[m]) !== prevCipher) {
               valid = false;
               break;
@@ -222,7 +226,7 @@ function denseScan(key, sign, maxSkip = 3) {
  * @param {1|-1} sign
  * @returns {{cipher:number[], skips:number[], end:number}}
  */
-function plant(key, plain, start, sign) {
+function plant(key, plain, start, sign, relation) {
   const cipher = [];
   const skips = [];
   let accepted = start - 1;
@@ -231,7 +235,7 @@ function plant(key, plain, start, sign) {
     let acc = accepted + 1;
     let dsk = 0;
     if (i > 0 && mod29(plain[i] - sign * key[acc]) === cipher[i - 1]) {
-      acc += 1;
+      acc += relation === 'pair' ? 2 : 1;
       dsk = 1;
     }
     cipher.push(mod29(plain[i] - sign * key[acc]));
@@ -246,7 +250,7 @@ const controlEntry = entries[0];
 let control = null;
 for (let start = 0; start < 100000 && !control; start += 1) {
   for (const sign of [-1, 1]) {
-    const candidate = plant(key, controlEntry.encoded, start, sign);
+    const candidate = plant(key, controlEntry.encoded, start, sign, relationName);
     if (candidate.skips.some((value) => value > 0)) {
       control = {start, sign, ...candidate};
       break;
@@ -259,16 +263,16 @@ assert(control, 'failed to create forced-skip positive control');
 // local trie containing only the control word.
 const savedCipher = targetCipher.slice();
 for (let i = 0; i < 13; i += 1) targetCipher[i] = control.cipher[i];
-const controlHits = denseScan(key.subarray(0, Math.min(key.length, control.start + 1000)), control.sign, 3)
+const controlHits = denseScan(key.subarray(0, Math.min(key.length, control.start + 1000)), control.sign, relationName, 3)
   .filter((hit) => hit.start === control.start && hit.word === controlEntry.word);
 for (let i = 0; i < 13; i += 1) targetCipher[i] = savedCipher[i];
 assert(controlHits.length > 0, 'forced-skip control was not recovered');
 
-const forwardMinus = denseScan(key, -1, 3);
-const forwardPlus = denseScan(key, 1, 3);
+const forwardMinus = denseScan(key, -1, relationName, 3);
+const forwardPlus = denseScan(key, 1, relationName, 3);
 const reversedKey = buildKey(Buffer.from(pad).reverse(), builderName);
-const reverseMinus = denseScan(reversedKey, -1, 3);
-const reversePlus = denseScan(reversedKey, 1, 3);
+const reverseMinus = denseScan(reversedKey, -1, relationName, 3);
+const reversePlus = denseScan(reversedKey, 1, relationName, 3);
 
 const all = [
   ...forwardMinus.map((hit) => ({direction: 'forward', ...hit})),
@@ -280,6 +284,7 @@ const all = [
 console.log('RESULT_JSON ' + JSON.stringify({
   padBytes: pad.length,
   builder: builderName,
+  relation: relationName,
   p55WordStart: wordStart,
   p55WordLength: 13,
   dictionaryTypes: entries.length,
