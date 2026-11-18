@@ -50,7 +50,7 @@ function divide(numerator, monic) {
 // (x^9+12x^8+20x^7+10x^6+5x^5+x^4+9x^3+15x+11).
 const factor16 = [
   [1, 10, 25], [1, 18, 11], [1, 14, 16, 24],
-  [1, 12, 20, 10, 5, 1, 0, 9, 15, 11],
+  [1, 12, 20, 10, 5, 1, 9, 0, 15, 11],
 ].reduce(multiply, [1]);
 assert.equal(factor16.length, 17);
 assert.deepEqual(factor16, [1, 25, 17, 11, 15, 7, 11, 26, 6, 26, 13, 2, 6, 12, 26, 20, 13]);
@@ -171,8 +171,8 @@ const positive = divide(plantedTable, factor16);
 assert.ok(positive.remainder.every((x) => x === 0));
 assert.deepEqual(positive.quotient, plantedKeyed);
 assert.deepEqual(matches(plantedPlain, positive.quotient), {
-  shift: 2, affine: 55, arbitraryBijection: 55,
-  longShift: 0, longAffine: 25, longBijection: 25,
+  shift: 4, affine: 55, arbitraryBijection: 55,
+  longShift: 1, longAffine: 25, longBijection: 25,
 });
 
 console.log(JSON.stringify({
