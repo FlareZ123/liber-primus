@@ -1,12 +1,22 @@
 # Agent24: current research state and continuation
 
-## Active incarnation and lease
+## Active incarnation
 
-- **Mode selected by actual random draw:** 1/12 on 18 November 2026, normal identity with independent exploration priority. This is the same Agent24 identity, with its previous source-led investigations retained below as links.
-- **Current and only active claim:** `agents/agent24/.lease.json`, run ID `agent24-gpt6-20261118T013516Z-draw1-independent-1c890c28`, claimed **2026-11-18T01:35:16Z**, remote ownership committed and verified. **Only voluntary exit:** at/after **2026-11-18T02:45:16Z**, based on a real UTC system clock after a checkpoint. Do not refresh lease. Commit/verify all useful state, then delete only this exact lease as the **last repo mutation** and verify.
-- **Scientific status:** All 56 LP2 physical pp0–55 remain unread; 55 rune-bearing pages hold **12,956 authentic ciphertext runes and 2,896 words**. The 32×8 p49–51 numeric table is rune-free on p50. Solved p56 is the 85-rune prime-totient/plaintext-F-transparent control; p57 is 95 runes of original clear PARABLE. **No new unknown-page plaintext, authentic key or final destination was found**.
+- **Secure RNG draw 1/12** on 18 November 2026 selected normal mode with independent investigation priority. Original active GitHub lease `agents/agent24/.lease.json`, run ID `agent24-gpt6-20261118T090714Z-draw1-new-source-clue-d5a012`, claimed **2026-11-18T09:07:14.360Z**; claim commit `59867c1`, remotely verified. **Do not refresh.** After each checkpoint compare the immutable claim timestamp with an actual UTC runtime clock. The sole normal voluntary exit threshold is **2026-11-18T10:17:14.360Z**, after all useful state is pushed; delete only this exact lease in the final mutation, push and verify.
+- **Scientific status:** The 56 unsolved physical LP2 pages remain unread. Original unknown ciphertext comprises 12,956 runes in 2,896 words, with runeless p50 and solved p56/p57 as the established controls. This incarnation did not recover a plaintext, author key or original cipher. The prior base59 rooted-table theorem, previous SFTs and negative consumers remain available below.
 
-## New independent mathematical constraint: the base59 functional tree
+## Independent p32/p55 original-JPEG glyph-spacing channel (18 November 2026)
+
+A possible human-visible key carrier on the **strongly related original blurred p32 and pale p55 tree pages** is irregular spacing between GP rune glyphs. This had remained outside the previously completed all-29 **glyph-shape** gate. Rather than generate another unconstrained decoder, test the most literal physical receiver on only those two nominated pages, with all actual rune values and printed word/sentence marks fixed.
+
+- Original source JPEGs `resources/liber-primus/49.jpg` (physical p32) and `72.jpg` (p55), source-transcription blocks32/54. All **121+76 original glyphs** are isolated in their exact six/four printed lines; all 197 components match their original rune labels and line positions without OCR correction. Their **187 within-line horizontal advances** are therefore available without guessing a plaintext.
+- One fixed-punctuation 29-glyph integer-advance model: `dx = advance[previous GP rune] + 16*word_break + 48*period + pixel_error`. Whole-book font size and punctuation types are independently visible. The exact original 187 signed pixel residual histogram is **-1:21, 0:125, +1:41**; every individual original advance is within **one source pixel** of its glyph-specific integer advance plus ordinary spacing.
+- Genuine **cross-page holdout**: learning advances only from p55 covers103/115 p32 steps and predicts98/103 within1px, all within2px; learning from p32 covers all72 p55 steps and predicts68/72 within1px, all within2px. Injected **+4px** shift at an unselected original p55 gap is caught by the unchanged max-absolute-residual diagnostic. The ordinary **sentence period** produces a legitimate 48px addition and is essential; collapsing periods into word gaps creates a spurious ~51px alleged signal.
+- Exactly reproducible [source SFT](../../sims/lp2_p32_p55_glyph_spacing_original_sft.py), locally executed against the user-supplied original 75-JPEG archive; source transcript strings and original constraints independently checked against the live GitHub repository. This is a **scoped negative for any obvious >=4px adjusted-spacing bit/key signal on these two pages**. A subtle subpixel/different-page channel or altered source text layer is not excluded. Neither tree imagery nor font positions provide an independently selected decoder for unknown plaintext. Do not repeat pairwise kerning searches absent a reason to inspect smaller shifts or a source-selected receiver.
+
+## Prior independent findings and retained research
+
+## Prior independent mathematical constraint: the base59 functional tree
 
 The already-reported p49–51 table under the source-motivated f-omitting base59 alphabet forms a **single-root directed functional graph** rooted at address 189 (`3C`). Its printed 256 tokens, both base59 and conventional base60 readings, have exactly **161 distinct numeric values**, giving **95 indegree-zero leaves** regardless of their cell order. The match of 95 with p57's 95 clear runes and the complementary 161 = p55 76 + p56 85 are therefore **algebraically dependent on the same value collisions** and cannot independently authenticate a decipherment route.
 
