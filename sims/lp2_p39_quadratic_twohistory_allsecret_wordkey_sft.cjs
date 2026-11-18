@@ -152,7 +152,7 @@ function countAllSecret(cipher, a, b, fifth) {
     if (!lex[w.length].has(sig)) continue;
     total++;
     if (w.start < 729) firstChapter++;
-    if (w.start >= 9716 && w.start < 12724) lastChapter++;
+    if (w.start >= 9640 && w.start < 12648) lastChapter++;
   }
   return {total, firstChapter, lastChapter};
 }
