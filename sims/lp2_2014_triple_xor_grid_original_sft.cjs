@@ -94,7 +94,7 @@ assert.equal(prefixResult.hex32, 'c5417d2aea31bbd78fbec5b6ab23e6d8c9169647f72064
 assert.equal(zeroResult.hex32, prefixResult.hex32);
 const signatures = [
   Buffer.from('-----BEGIN PGP SIGNED MESSAGE-----'),
-  Buffer.from('PK0304', 'hex'),
+  Buffer.from('504b0304', 'hex'),
   Buffer.from('ffd8ff', 'hex'),
   Buffer.from('%PDF-'),
   Buffer.from('1f8b', 'hex'),
