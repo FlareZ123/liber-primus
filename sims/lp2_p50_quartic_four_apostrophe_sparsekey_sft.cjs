@@ -196,9 +196,81 @@ for(const [direction,taps] of [["F-forward",forward],["F-reciprocal",reciprocal]
     plantedSecretRecovered:plantedKey
   });
 }
+
+// Separate original-page-reset model: the marked plaintext word itself
+// supplies consecutive key-state samples. Four-rune contractions fix all
+// four states; three-rune contractions leave exactly one free GF29 state,
+// exhaustively enumerated over all 29 choices before pagewide decoding.
+/**
+ * @param {number[]} text Source page cipher
+ * @param {number} start Source-page-local contraction start
+ * @param {number[]} guessed Complete conditional known contraction
+ * @param {number[]} taps Original or reciprocal source quartic
+ * @param {number|null} freeFourth Secret fourth key state after 3-rune crib
+ * @returns {number[]} Decrypted whole original page
+ */
+function localInverse(text,start,guessed,taps,freeFourth) {
+  assert.ok(guessed.length===3 || guessed.length===4);
+  const k=Array(text.length).fill(0);
+  for(let j=0;j<guessed.length;j++)k[start+j]=mod(text[start+j]-guessed[j]);
+  if(guessed.length===3){
+    assert.ok(Number.isInteger(freeFourth) && freeFourth>=0 && freeFourth<29);
+    k[start+3]=freeFourth;
+  }
+  for(let t=start+4;t<k.length;t++)
+    k[t]=mod(-taps.reduce((sum,a,j)=>sum+a*k[t-4+j],0));
+  let inv=1;
+  while(mod(inv*taps[0])!==1)inv++;
+  for(let t=start-1;t>=0;t--)
+    k[t]=mod(-(k[t+4]+taps[3]*k[t+3]+taps[2]*k[t+2]+taps[1]*k[t+1])*inv);
+  return text.map((c,i)=>mod(c-k[i]));
+}
+const pageLocalResults=[];
+for(const [direction,taps] of [["F-forward",forward],["F-reciprocal",reciprocal]]) {
+  for(const spec of specs){
+    const actual=gp.pages[spec.page].indices;
+    const origin=gp.pages.filter(p=>p.page<spec.page).reduce((s,p)=>s+(p.indices?.length||0),0);
+    const localStart=spec.start-origin;
+    const hypotheses=[];
+    for(const candidate of spec.candidates){
+      const extras=candidate.indices.length===3
+        ? Array.from({length:29},(_,x)=>x) : [null];
+      for(const freeFourth of extras){
+        const plaintext=localInverse(actual,localStart,candidate.indices,taps,freeFourth);
+        assert.deepEqual(plaintext.slice(localStart,localStart+candidate.indices.length),
+          candidate.indices);
+        const untrained=plaintext.filter((_,i)=>i<localStart||i>=localStart+candidate.indices.length);
+        hypotheses.push({word:candidate.name,freeFourth,ioc:ioc(untrained)});
+      }
+    }
+    hypotheses.sort((a,b)=>b.ioc-a.ioc);
+    assert.equal(hypotheses.length,spec.candidates[0].indices.length===3?174:13);
+    assert.ok(hypotheses[0].ioc<0.04);
+    pageLocalResults.push({direction,page:spec.page,modelCount:hypotheses.length,
+      maxHeldoutIoC:hypotheses[0].ioc,bestGuessedWord:hypotheses[0].word,
+      bestFreeFourth:hypotheses[0].freeFourth});
+
+    // Blind source-native positive for every source page and both polynomials.
+    const text=Array.from({length:actual.length},(_,i)=>gp.pages[57].indices[i%95]);
+    const selected=spec.candidates[0];
+    for(let j=0;j<selected.indices.length;j++)text[localStart+j]=selected.indices[j];
+    const plantedKey=Array(actual.length).fill(0);
+    [3,7,11,19].forEach((x,j)=>{plantedKey[j]=x;});
+    for(let t=4;t<actual.length;t++)
+      plantedKey[t]=mod(-taps.reduce((sum,a,j)=>sum+a*plantedKey[t-4+j],0));
+    const cipher=text.map((x,i)=>mod(x+plantedKey[i]));
+    const recovered=localInverse(cipher,localStart,selected.indices,taps,
+      selected.indices.length===3?plantedKey[localStart+3]:null);
+    assert.deepEqual(recovered,text);
+  }
+}
+assert.equal(pageLocalResults.reduce((s,x)=>s+x.modelCount,0),748);
+
 console.log(JSON.stringify({
   sourceTableQuartic:"X^4+28X^3+13X^2+9X+14",
   sourceTablePolynomialRemainder:rem,
+  pageLocalAllSecretCandidateCount:748,
+  pageLocalResults,
   sourceMarkedWords:["MXI'W","AEO'Y","PE'T","XLJ'C"],
   result:"No source-consistent S/D/T assignment yields even the first complete apostrophe word under either fixed quartic recurrence",
   tests
