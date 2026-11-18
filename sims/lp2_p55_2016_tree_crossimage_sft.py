@@ -61,7 +61,8 @@ def main() -> None:
     p55 = image("resources/liber-primus/72.jpg")
     year2016 = image("resources/historical/cicada2016-4gq25.jpg")
     p8 = image("resources/liber-primus/25.jpg")
-    if p55.shape != (3600, 2400) or p8.shape != (3600, 2400):
+    p50 = image("resources/liber-primus/67.jpg")
+    if p55.shape != (3600, 2400) or p8.shape != (3600, 2400) or p50.shape != (3600, 2400):
         raise AssertionError("Source image dimensions unexpectedly changed")
     if year2016.shape != (569, 563):
         raise AssertionError("Original 2016 dimension witness changed")
@@ -71,9 +72,18 @@ def main() -> None:
     tree16 = prepared(year2016[85:515, 80:485], "dark")
     tree16raw = year2016[85:515, 80:485]
     branch8 = prepared(p8[650:2950, 0:530], "light")
+    # Fixed source-page crops covering the large mirrored botanical trees while excluding the numeric table.
+    tree50_left = prepared(p50[650:3050, 0:650], "light")
+    tree50_right = prepared(p50[650:3050, 1750:2400], "light")
     data = {
         "p55_self_affine_positive": compare(tree55, warped(tree55)),
         "p8_different_tree_negative": compare(tree55, branch8),
+        "p50_left_self_affine_positive": compare(tree50_left, warped(tree50_left)),
+        "p50_left_vs_right_mirrored_page_art": compare(tree50_left, tree50_right),
+        "p50_left_vs_2016_dark_normalized": compare(tree50_left, tree16),
+        "p50_right_vs_2016_dark_normalized": compare(tree50_right, tree16),
+        "p50_left_vs_2016_raw": compare(tree50_left, tree16raw),
+        "p50_right_vs_2016_raw": compare(tree50_right, tree16raw),
         "p55_vs_2016_dark_normalized": compare(tree55, tree16),
         "p55_vs_2016_raw": compare(tree55, tree16raw),
         "2016_self_affine_feature_control": compare(tree16, warped(tree16)),
@@ -81,7 +91,9 @@ def main() -> None:
     }
     print(json.dumps(data, indent=2))
     if data["p55_self_affine_positive"]["ransac_inliers"] < 15:
-        raise AssertionError("Image-registration positive control failed")
+        raise AssertionError("p55 image-registration positive control failed")
+    if data["p50_left_self_affine_positive"]["ransac_inliers"] < 15:
+        raise AssertionError("p50 image-registration positive control failed")
 
 
 if __name__ == "__main__":
