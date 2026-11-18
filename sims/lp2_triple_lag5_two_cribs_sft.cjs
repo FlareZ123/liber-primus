@@ -114,6 +114,29 @@ const matches = expected.map((item, index) => {
 /** @param {number[]} indices @returns {string} */
 function namesOf(indices) { return indices.map((index) => names[index]).join("-"); }
 
+// A stronger, key-independent necessary-and-sufficient condition for any
+// additive period-five key is equality of all fifth-back differences between
+// ciphertext and candidate plaintext. The p36 conditional TAPESTRIES fails
+// this condition (even though its equality mask matches).
+/**
+ * @param {number[]} a
+ * @returns {number[]}
+ */
+function lagFiveDifferences(a) {
+  return a.slice(5).map((rune, at) => (rune - a[at] + 29) % 29);
+}
+const p36 = triple[0].indices;
+const p36Plain = native("tapestries");
+assert.deepEqual(lagFiveDifferences(p36), [0, 9, 2, 0, 0]);
+assert.deepEqual(lagFiveDifferences(p36Plain), [0, 9, 26, 0, 0]);
+assert.notDeepEqual(lagFiveDifferences(p36), lagFiveDifferences(p36Plain));
+const additiveCandidates = triple.map(({ indices }) => entries
+  .filter(({ indices: candidate }) => candidate.length === indices.length &&
+    lagFiveDifferences(candidate).every((delta, at) =>
+      delta === lagFiveDifferences(indices)[at]))
+  .map((entry) => entry.word));
+assert.deepEqual(additiveCandidates, [[], ["mesdames"]]);
+
 // The p51 conditional word fixes exactly one additive period-5 key. Its
 // word-reset and continuous-clock extensions fail on neighboring source words.
 const crib = triple[1].indices;
@@ -186,9 +209,12 @@ console.log(JSON.stringify({
   wordLocalLagFiveEchoes: allFiveBack,
   wordsWithAtLeastTwoEchoes: echoes.length,
   wordsWithAtLeastThreeEchoes: matches,
+  p36CiphertextLag5Differences: lagFiveDifferences(p36),
+  p36ConditionalCribLag5Differences: lagFiveDifferences(p36Plain),
+  fullAdditiveFivePeriodLexicalCandidates: additiveCandidates,
   conditionalP51AdditiveKey: key,
   originalP51NeighborWordReset: resetSummary,
   originalP51NeighborContinuous: continuousSummary,
   plantedNativeGPControl: "25/25 words pass both period-5 clocks",
-  conclusion: "Two dictionary-unique conditional word shapes exist; no authenticated cipher or unknown plaintext follows. The p51 MESDAMES-derived fixed additive key does not decode its held-out neighbor words.",
+  conclusion: "Both source words are shape-compatible with single five-phase substitution alphabets, but p36 has no TextBlob-compatible additive period-five inverse under any secret key; the p51 crib-derived additive key does not decode held-out neighbors. No unknown plaintext is recovered.",
 }, null, 2));
