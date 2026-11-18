@@ -75,5 +75,70 @@ function main() {
     controlCiphertext:ct.toString('hex'),solvedTextPlantBytes:256,modes,
     conclusion:'No plain ASCII or recognizable file header. Source selects no DES opcode; no unknown manuscript plaintext.'},null,2));
 }
-if(require.main===module)main();
-module.exports={cipher,describe,main};
+
+/** @param {number[]} a @returns {number} */
+function ioc29(a) {
+  const hist=Array(29).fill(0);
+  for(const v of a)hist[v]++;
+  return hist.reduce((s,n)=>s+n*(n-1),0)/(a.length*(a.length-1));
+}
+/** @param {Buffer} key @param {'ofb'|'ctr'} mode @param {Buffer} iv @param {number} length @returns {Buffer} */
+function desStream(key,mode,iv,length){
+  const triple=Buffer.concat([key,key,key]);
+  if(mode==='ofb'){
+    const cipher=crypto.createCipheriv('des-ede3-ofb',triple,iv);
+    return Buffer.concat([cipher.update(Buffer.alloc(length)),cipher.final()]);
+  }
+  const cipher=crypto.createCipheriv('des-ede3-ecb',triple,null);
+  cipher.setAutoPadding(false);
+  const blocks=Math.ceil(length/8),input=Buffer.alloc(blocks*8);
+  for(let b=0;b<blocks;b++)input.writeBigUInt64BE(iv.readBigUInt64BE()+BigInt(b),b*8);
+  return Buffer.concat([cipher.update(input),cipher.final()]).subarray(0,length);
+}
+/**
+ * Bounded single-key extension: the same row27 may point to a key for
+ * the 729-runic opening p0-p2, rather than to a table-on-itself DES block.
+ * No post-hoc key adjustments, only historical DES OFB/CTR keystreams.
+ * @returns {void}
+ */
+function gpMain(){
+  const root=path.join(__dirname,'..');
+  const read=name=>JSON.parse(fs.readFileSync(path.join(root,'resources','liber-primus',name),'utf8'));
+  const corpus=read('lp2-corpus.json'),grid=read('lp2-grid-256.json');
+  const first=corpus.pages.filter(p=>p.page>=0&&p.page<=2);
+  assert.deepEqual(first.map(p=>p.indices.length),[262,266,201]);
+  const original=first.flatMap(p=>p.indices),plainControl=corpus.pages.find(p=>p.page===57).indices;
+  assert.equal(original.length,729);
+  assert.equal(plainControl.length,95);
+  const key=Buffer.from(grid.bytes.slice(27*8,28*8));
+  assert.equal(key.toString('hex'),'8edb943b3a343397');
+  const mod29=x=>(x%29+29)%29;
+  const cases=[];
+  for(const mode of ['ofb','ctr'])
+    for(const ivType of ['zero','rowkey'])
+      for(const reduction of ['mod','scaled'])
+        for(const sign of [-1,1]){
+          const iv=ivType==='zero'?Buffer.alloc(8):key;
+          const pad=desStream(key,mode,iv,original.length);
+          const digits=Array.from(pad,x=>reduction==='mod'?x%29:Math.floor(x*29/256));
+          const decoded=original.map((c,i)=>mod29(c+sign*digits[i]));
+          assert.deepEqual(decoded.map((p,i)=>mod29(p-sign*digits[i])),original);
+          const plantedCipher=plainControl.map((p,i)=>mod29(p-sign*digits[i]));
+          assert.deepEqual(plantedCipher.map((c,i)=>mod29(c+sign*digits[i])),plainControl);
+          cases.push({mode,ivType,reduction,sign,openingIoc:ioc29(decoded),
+            blackBodyIoc:ioc29(decoded.slice(13)),
+            first24:decoded.slice(0,24).map(c=>corpus.translit[c]).join(' ')});
+        }
+  assert.equal(cases.length,16);
+  cases.sort((a,b)=>b.blackBodyIoc-a.blackBodyIoc);
+  console.log(JSON.stringify({
+    sourceOriginal:'p0-p2, 729 GP29 runes',
+    titleKeyHex:key.toString('hex'),maxFirstChapterIoc:cases[0].openingIoc,
+    maxBlackBodyIoc:cases[0].blackBodyIoc,
+    originalIoc:ioc29(original),solvedP57Ioc:ioc29(plainControl),
+    variants:cases, eachVariantNativeGPPlant:95,
+    conclusion:'Source-selected row27 direct DES OFB/CTR GP29-pad hypotheses do not recover coherent original text.'},null,2));
+}
+
+if(require.main===module){main();gpMain();}
+module.exports={cipher,describe,main,gpMain};
