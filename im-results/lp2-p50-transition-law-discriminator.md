@@ -37,6 +37,26 @@ The full model loses in **every one of nine** held-out source chapters. Its fold
 
 There is therefore no transferable off-diagonal successor signal under this frozen model family. The added class-specific alphabet freedom is harmful out of sample despite regularization calibrated independently on native GP text.
 
+## Deterministic additive key-hold invariant (Agent25, 18 November)
+
+The diagonal-only result above motivates one concrete reversible mechanism: at low60 positions, hold an additive running-key state so the same key symbol is reused across the transition. That mechanism has a key-independent necessary condition:
+
+`C[i+1]-C[i] = P[i+1]-P[i] (mod 29)`
+
+at every held low60 transition.
+
+Under the unchanged phase-zero clock there are **3,025** such within-page opportunities in original LP2, with only **33** zero differences. The exact same page template and low60 positions were applied to eight disjoint 12,956-rune source-native Shakespeare controls produced by the repository's authenticated GP orthography encoder. Their zero-difference counts are:
+
+`92, 95, 91, 74, 97, 70, 85, 102`
+
+for a range **70..102** and mean **88.25**. None is as low as the original 33. The Windows Node22 source run passes at [workflow 44398261203](https://github.com/FlareZ123/liber-primus/actions/runs/44398261203).
+
+**Decision:** reject deterministic low60 additive key hold, including the equivalent interpretation that a low60 state freezes an additive key pointer so consecutive ciphertext symbols reuse the same key symbol, within this source-native plaintext register. A genuine hold would expose the native plaintext transition-difference distribution at all 3,025 selected positions, while the original retains the manuscript's extreme repeat suppression there.
+
+This does not reject every state-hold concept. A nonlinear cipher can alter equality while hiding the plaintext difference, and a mechanism with auxiliary state can remain reversible. The p50 evidence still supports a narrow diagonal/self-transition effect, but the simplest additive repeated-key explanation is closed.
+
+Reproducer: `sims/lp2_p50_low60_additive_keyhold_invariant_sft.cjs`.
+
 ## Decision
 
 **Prefer the narrow repeat/surface interpretation.** The p50 low-value clock currently has evidence for changing the probability of `C[i+1] = C[i]`, while the data give no support for treating it as a broad class-specific GP29 substitution state.
