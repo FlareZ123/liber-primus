@@ -384,8 +384,122 @@ assert.deepEqual(
   ["T", "U", "R", "N", "S"],
 );
 
+
+// Block 4 prospective finite family. Freeze only state carried from TURNS:
+// anchor A=(14,19), previous key-center NG=21, distance phi(21)=12.
+// Enumerate every in-bounds cardinal center displacement by 12, build the
+// aligned three-cell node around that center, center-totient and rotate by the
+// same mu(phi(k)) rule. Independently enumerate every in-bounds cardinal
+// ciphertext start displacement by 12 and every cardinal read direction.
+// Score only longest native-dictionary prefix depth; do not supply COLD.
+const anchor4 = [14, 19];
+assert.equal(translit[at(anchor4)], "A");
+const priorCenter4 = translit.indexOf("NG");
+const distance4 = phi(priorCenter4);
+assert.equal(distance4, 12);
+
+const block4Family = [];
+for (const [centerDir, centerDr, centerDc] of directions) {
+  const center = [
+    anchor4[0] + distance4 * centerDr,
+    anchor4[1] + distance4 * centerDc,
+  ];
+  if (center.some(value => value < 1 || value > 27)) continue;
+
+  const nodePoints = [
+    [center[0] - centerDr, center[1] - centerDc],
+    center,
+    [center[0] + centerDr, center[1] + centerDc],
+  ];
+  if (nodePoints.flat().some(value => value < 1 || value > 27)) continue;
+  const rawNode = nodePoints.map(at);
+  if (rawNode[1] === 0) continue;
+  const derivedNode = [rawNode[0], phi(rawNode[1]), rawNode[2]];
+  const rotation = ((derivedNode.reduce(
+    (sum, value) => sum + mu(phi(value)), 0,
+  ) % 3) + 3) % 3;
+  const key = derivedNode.slice(rotation).concat(derivedNode.slice(0, rotation));
+
+  for (const [startDir, startDr, startDc] of directions) {
+    const start = [
+      anchor4[0] + distance4 * startDr,
+      anchor4[1] + distance4 * startDc,
+    ];
+    if (start.some(value => value < 1 || value > 27)) continue;
+
+    for (const [readDir, readDr, readDc] of directions) {
+      const stream = [];
+      let row = start[0];
+      let column = start[1];
+      for (let i = 0; i < 20; i++) {
+        if (row < 1 || row > 27 || column < 1 || column > 27) break;
+        stream.push(mod29(at([row, column]) - key[i % 3]));
+        row += readDr;
+        column += readDc;
+      }
+
+      let lastPrefix = 0;
+      const exact = [];
+      for (let length = 1; length <= stream.length; length++) {
+        const prefix = stream.slice(0, length);
+        let prefixCount = 0;
+        for (const signature of nativeWords.keys()) {
+          const encoded = signature.split(",").map(Number);
+          if (encoded.length >= length
+            && prefix.every((value, i) => encoded[i] === value)) {
+            prefixCount++;
+          }
+        }
+        if (prefixCount) lastPrefix = length;
+        const matches = dictionaryMatches(prefix);
+        if (matches.length) exact.push({length, matches});
+      }
+
+      block4Family.push({
+        centerDir,
+        center,
+        nodePoints,
+        rawNode,
+        derivedNode,
+        rotation,
+        key,
+        startDir,
+        start,
+        readDir,
+        stream,
+        lastPrefix,
+        exact,
+      });
+    }
+  }
+}
+assert.equal(block4Family.length, 36);
+block4Family.sort((a, b) => b.lastPrefix - a.lastPrefix);
+assert.equal(block4Family[0].lastPrefix, 5);
+assert.equal(block4Family[1].lastPrefix, 3);
+assert.equal(block4Family.filter(row => row.lastPrefix === 5).length, 1);
+
+const fourth = block4Family[0];
+assert.equal(fourth.centerDir, "down");
+assert.deepEqual(fourth.center, [26, 19]);
+assert.deepEqual(fourth.rawNode.map(i => translit[i]), ["H", "TH", "H"]);
+assert.deepEqual(fourth.derivedNode.map(i => translit[i]), ["H", "U", "H"]);
+assert.equal(fourth.rotation, 1);
+assert.deepEqual(fourth.key.map(i => translit[i]), ["U", "H", "H"]);
+assert.equal(fourth.startDir, "left");
+assert.deepEqual(fourth.start, [14, 7]);
+assert.equal(fourth.readDir, "up");
+assert.deepEqual(
+  fourth.stream.slice(0, 6).map(i => translit[i]),
+  ["C", "O", "L", "D", "L", "P"],
+);
+const cold = fourth.exact.find(row => row.length === 4);
+assert(cold);
+assert.equal(cold.matches[0].word, "cold");
+assert.equal(fourth.exact.some(row => row.length === 5), false);
+
 console.log(JSON.stringify({
-  status: "source-bounded three-block bootstrap candidate; route still requires independent selector validation",
+  status: "source-bounded four-block bootstrap candidate; route still requires independent selector validation",
   openingFamilyCandidates: openingFamily.length,
   openingUniqueMaxRun: first.run.length,
   openingRunnerUpRun: openingFamily[1].run.length,
@@ -413,5 +527,18 @@ console.log(JSON.stringify({
     directionPrefixDepths: Object.fromEntries(directionResults.map(row => [row.name, row.lastPrefix])),
     word: "TURNS",
   },
-  combinedReading: "AS I GO THE WEATHER TURNS",
+  block4: {
+    familyCandidates: block4Family.length,
+    uniqueMaxPrefixDepth: fourth.lastPrefix,
+    runnerUpPrefixDepth: block4Family[1].lastPrefix,
+    centerDirection: fourth.centerDir,
+    center: fourth.center,
+    key: fourth.key.map(i => translit[i]),
+    startDirection: fourth.startDir,
+    start: fourth.start,
+    readDirection: fourth.readDir,
+    decryptedPrefix: fourth.stream.slice(0, 6).map(i => translit[i]),
+    word: "COLD",
+  },
+  combinedReading: "AS I GO THE WEATHER TURNS COLD",
 }, null, 2));
