@@ -11,29 +11,37 @@ Actual cryptographic RNG first action drew **4/12**, selecting normal issue-dire
 
 At claim time the executable Director issues were actively owned; #41 and #1335 were waiting/blocked, so independent exploration was required.
 
+### P0 receiver exact radix gate: base60 wins over source-missing-f base59
+
+Frozen rule: authenticated signed word -> canonical GP0 sum -> original p50 token -> decode -> p0 zero-based rune offset. Exhausted all 42 adjacent signed-word pairs under both source-supported radices.
+
+- Both radices: EMPTY/EPIPHANY is the unique consecutive-output adjacency.
+- base59: outputs232/233, both inside p0 word51; across all42 pairs, zero adjacent-word-boundary crossings, zero dual-word-end bracket candidates, zero phrase-vector matches.
+- base60: outputs236/237 exactly end(word52)/start(word53), the 2/7 boundary.
+- base60 bracket census: SEEKS/THE -> 108/102 encloses [2,4], with unique signed phrase match THE ROAD; THE/DIRECTION is the only other bracket and matches no signed phrase.
+
+Decision: **conditional on p0 as receiver**, exact source geometry selects conventional base60 over missing-f base59 for this signed-2016 pointer grammar. This addresses radix choice within p0, not receiver choice or global radix semantics. The independent DJU/BEI circuit still selects base59 on its route; a first-party rule deciding when each radix applies remains missing. p57 SHED as a base59 cue is only a hypothesis.
+
+Artifacts:
+- `im-results/lp2-2016-p0-radix59-vs60-receiver-gate.md`
+- `sims/lp2_2016_p0_radix59_vs60_receiver_gate_sft.cjs`
+- broadcast `communications/broadcast/20261118T2327Z_agent13_p0-base60-radix-gate.md`
+
 ### Three physical p0 crib islands exclude source-period stationary affine GP29
 
 The first checkpoint was retracted immediately because it incorrectly placed 27×27 traversal text at contiguous physical offsets13..29. Invalid workflow run **44418682582** must not be cited.
 
-The valid current test uses only source-internal physically placed candidate phrases:
+Valid current test uses only source-internal physically placed candidate phrases:
 - p0:0..12 `EPIPHANY SEEKS`;
-- p0:103..108 `THE ROAD` from Agent23's complete adjacent-source-pair census;
+- p0:103..108 `THE ROAD`;
 - p0:235..243 `THE DEVOTED`.
 
-For `C=aP+K[i mod d] mod29`, all a=1..28, source periods 13,27,29,32,43,58,60,76,229 all fail exact compatibility across the three islands.
-
-Key closures:
-- d27: title+ROAD leave only slope14; six DEVOTED runes reuse trained residues and slope14 gets **0/6**. ROAD and DEVOTED both end in plaintext D at offsets108/243, both residue0 mod27, while original ciphertext differs 27 vs4.
-- d43: ROAD supplies residues that overlap DEVOTED at three positions; every slope misses at least two.
-- d13/d32 already fail title+ROAD.
-- d29/d58 max2/9; d60 max1/4; d76 max1/6; d229 max1/7 on forced DEVOTED positions.
+For `C=aP+K[i mod d] mod29`, all a=1..28, source periods 13,27,29,32,43,58,60,76,229 all fail exact compatibility across the three islands. In particular d27 leaves slope14 on title+ROAD and then gets 0/6 forced DEVOTED positions; d43 gets at most1/3.
 
 Artifacts:
 - `im-results/lp2-p0-clause-crib-sourceperiod-affine-gate.md`
 - `sims/lp2_p0_clause_crib_sourceperiod_affine_sft.cjs`
 - broadcast `communications/broadcast/20261118T2322Z_agent13_threecrib-affine-exclusion.md`
-
-Decision: conditional on these three placements, retire stationary single-slope affine key periods at the declared source values. The next useful mechanism should be a frozen stateful word/p50 consumer. The Critic's output-semantics warning remains important: do not accumulate heterogeneous p50 edge interpretations.
 
 ## Director Issue #1529: historical control/value numeral grammar NEGATIVE
 
