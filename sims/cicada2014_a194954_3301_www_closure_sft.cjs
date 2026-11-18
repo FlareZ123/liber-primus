@@ -80,6 +80,13 @@ function reverse3(value) {
   return Number(String(value).padStart(3, "0").split("").reverse().join(""));
 }
 
+/** @param {number} value @param {number} radix @returns {number[]} */
+function digits(value, radix) {
+  const out = [];
+  for (let x = value; x > 0; x = Math.floor(x / radix)) out.unshift(x % radix);
+  return out.length ? out : [0];
+}
+
 /** @param {string} message @returns {number[]} */
 function whitespaceRuns(message) {
   const contentStart = message.indexOf("\n\n");
@@ -136,6 +143,15 @@ const sequenceToTerm = a194954(termIndex);
 const cicadaPrime = sequenceToTerm[termIndex - 1];
 assert.equal(cicadaPrime, 3301);
 
+// The Onion7 HTML id is itself an A194954 term. Inverse indexing through the
+// already source-selected sequence gives 42, whose GP/base-29 digits are U,P.
+const divIdTermIndex = sequenceToTerm.indexOf(divId) + 1;
+assert.equal(divIdTermIndex, 42);
+assert.deepEqual(digits(divIdTermIndex, q), [1, 13]);
+assert.deepEqual(digits(divIdTermIndex, q).map((i) => corpus.translit[i]), ["U", "P"]);
+assert.deepEqual(digits(termIndex, q), [7, 7]);
+assert.deepEqual(digits(termIndex, q).map((i) => corpus.translit[i]), ["W", "W"]);
+
 const primesTo2000 = firstPrimes(2000);
 const primeOrdinal = primesTo2000.indexOf(cicadaPrime) + 1;
 assert.equal(primeOrdinal, 464);
@@ -190,14 +206,19 @@ console.log(JSON.stringify({
   gpRune: corpus.translit[gpIndex],
   htmlTitle: title,
   htmlDivId: divId,
+  divIdTermIndex,
+  divIdTermIndexBase29: digits(divIdTermIndex, q),
+  divIdTermIndexGP: digits(divIdTermIndex, q).map((i) => corpus.translit[i]).join(""),
   termIndex,
-  termIndexBase29: [Math.floor(termIndex / q), termIndex % q],
+  termIndexBase29: digits(termIndex, q),
   a194954AtTermIndex: cicadaPrime,
   primeOrdinal,
-  sourceReadout: corpus.translit[gpIndex] + corpus.translit[gpIndex] + corpus.translit[gpIndex],
+  sourceReadout: corpus.translit[gpIndex] +
+    digits(termIndex, q).map((i) => corpus.translit[i]).join("") +
+    digits(divIdTermIndex, q).map((i) => corpus.translit[i]).join(""),
   finiteNull: {
     testedThreeDigitTitlePrimePairs: testedPairs,
     closureHits: closurePairs
   },
-  interpretation: "Exact source-level arithmetic closure; no LP2 plaintext recovered"
+  interpretation: "Exact source-level arithmetic closure reads WWWUP; no LP2 plaintext recovered"
 }, null, 2));
