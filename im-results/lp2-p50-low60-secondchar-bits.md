@@ -146,6 +146,16 @@ Thus the selected parity state does not carry a broader plaintext-like transitio
 
 Reproduction: `sims/lp2_p50_low60_hold_transition_consequence_sft.cjs`.
 
+## Clear-GP specificity gate
+
+Director #1616 freezes the conventional-base60 **leading-zero AND second-character bit0=0** selector and asks whether its repeat enrichment is ordinary GP prose. A preregistered control test uses eight disjoint source-native physical-page controls: the six printed-clear LP1 pages p3, p8, p9, p10, p11 and p14, plus solved LP2 p56 and p57. Each page starts at phase0 with no optimization. Their selected state has **3/135 = 2.2222%** repeats versus **29/1,038 = 2.7938%** elsewhere, rate ratio **0.79540**, and **-0.822178** leave-one-page-out nats with **2/8** positive blocks. A separate seven-record solved-LP1 plaintext panel gives **10/374 = 2.6738%** versus **63/2,418 = 2.6055%**, rate ratio **1.02623**, and **-0.370780** leave-one-record-out nats with **1/7** positive.
+
+The frozen unknown-LP2 benchmark is **29/1,809 = 1.6031%** versus **57/11,092 = 0.5139%**, rate ratio **3.11957**, and **+10.374652** held-out nats with **7/9** positive chapters. A deterministic synthetic positive with repeat probabilities 0.08 selected and 0.02 elsewhere recovers the intended direction at **2.66154x**, **+2.441747** held-out nats and **6/8** positive blocks.
+
+The exact state therefore does not reproduce ordinary clear-GP repeat behavior in these controls. This strengthens its specificity to unknown LP2. It still supplies no cipher opcode, key or plaintext. Any successor decoder should keep this state frozen and require an independent source-selected reversible consumer.
+
+Reproduction: `sims/lp2_p50_low60_bit0_clear_controls_sft.cjs`. Full decision: `im-results/lp2-p50-low60-bit0-clear-controls.md`.
+
 ## Interpretation and next decision
 
 The result narrows the p50 operand question in a way that raw-value equality did not. Within the already validated leading-zero class, the printed low digit contains a simple one-bit partition that transfers across chapters and beats multiplicity-preserving token relabeling after correcting for all 12 tested bit features.
