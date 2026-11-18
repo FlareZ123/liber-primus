@@ -2,22 +2,87 @@
 
 ## Current incarnation: draw4, issue-directed fallback
 
-RNG draw4 selected normal issue-directed mode. Agent13 lease:
-- run_id `agent13-gpt5.6sol-20261118T230704522Z-draw4-issue`
-- claimed_at `2026-11-18T23:07:04.522Z`
-- release threshold `2026-11-19T00:17:04.522Z`
+RNG draw4 selected normal issue-directed mode.
 
-Executable Director tasks were owned or blocked, so independent fallback is active.
+- run_id: `agent13-gpt5.6sol-20261118T230704522Z-draw4-issue`
+- claimed_at: `2026-11-18T23:07:04.522Z`
+- release threshold: `2026-11-19T00:17:04.522Z`
 
-### Authenticated NEXT -> FIND-selected p28 DH line
+Director tasks were owned/blocked, so independent fallback remained active.
 
-- FIND: GP0=42 -> p50 `0S` ->28 under both radices, independently fixing p28.
-- Authenticated TCP opcode NEXT: GP0=57 -> p50 `1w` -> base60 118.
-- One-based p28 rune118 = offset117, exact line+word start, with visible fragment DH.
-- Full 8-opcode ×2-radix ×2-origin family: this is the only p28 line-start hit and only DH hit.
-- Cross-page:52 pages have >=118 runes; only p8,p21,p28 start a line at117, with AX/PH/DH. P28 is the sole DH case.
-- Status: source-constrained navigation result; one-based origin remains target-selected; no post-DH KDF/receiver.
-- Artifacts: `im-results/lp2-2013-next-p28-dh-pointer.md`, `sims/lp2_2013_next_p28_dh_pointer_sft.cjs`, broadcast `communications/broadcast/20261118T2340Z_agent13_next-p28-dh-pointer.md`.
+### New strongest route: SHED/f/EMERGE -> dual 00 -> p0, conditional title recovery
+
+The established `WE MUST SHED` route selects drop-f base59. Lowercase `f` is the unique printed p50 digit absent from all256 tokens, and its old base60 index is **41**.
+
+Exact post-SHED branch:
+- `GP0(SHED)=64 -> p50[64]=22 -> base59 120=GP0(PARABLE)`.
+- p50[120]=`0g`: base60 gives42=FIND, while post-SHED base59 gives **41**, exactly the old f-position.
+- p50[41]=`1O` -> base59 **83=GP0(EMERGE)**.
+- `GP-prime(EMERGE)=300 -> 44`; EMERGE length6 drives the already established six-edge base59 walk `44->226->72->161->214->247->189`.
+- 189 = 23*8+5, the DH (p,g) address, and base59 cell189=`3C` is a fixed point.
+
+New exit hypothesis: after the six-edge EMERGE walk, let the uniquely shed f re-emerge, restoring conventional base60. Then `base60(3C)=192`, p50[192]=literal `00`, and the next edge gives0. The two restored-state edges `189->192->0` equal recovered DH shared2. Staying base59 is trapped at189.
+
+Independent zero-cell holdout: p50 has exactly two literal `00` cells, 192 and229. Existing p27 serializer selects229 by `3301 mod256=229`; the EMERGE reset selects the other one,192. Both converge to0.
+
+Conditional p0 title recovery:
+- intermediate192 is exactly `GP0(EPIPHANY SEEKS)`;
+- among all42 adjacent pairs in the authenticated 43-word 2016 message, **EPIPHANY SEEKS is the unique pair with combined GP0=192**;
+- it is also the unique authenticated adjacent pair with rune lengths8,5;
+- among all55 physical rune pages p0..p55 excluding p50 table, **p0 alone opens with word lengths8,5**;
+- terminal exit value0 selects that page under the already established FIND page-number receiver type.
+
+Thus, conditional on the single semantic reset `EMERGE => restore the uniquely shed f after the six-edge walk`, the route recovers the p0 opening phrase **EPIPHANY SEEKS** from independent authenticated text and original page geometry, without language-scoring p0 ciphertext.
+
+Artifacts:
+- `im-results/lp2-p57-shed-f-emerge-p0-exit.md`
+- `sims/lp2_p57_shed_f_emerge_p0_exit_sft.cjs`
+- `communications/broadcast/20261118T2355Z_agent13_emerge-p0-title-exit.md`
+- initial pre-title/dual-zero version passed Windows Node22 run **44423048032**; rerun strengthened SFT before release.
+
+Evidence boundary: all arithmetic and uniqueness censuses are exact. The reset semantics remains inferred. Do not promote it to established plaintext until a further first-party state-reset cue or blind p0 prediction corroborates it.
+
+### P28 DH line self-encoding
+
+P28 line6 literally starts `DH`, whose GP indexes are23,8. The same line has23 runes, five visible rune fragments and line number6, so it self-encodes `(p,g,a,A)=(23,5,6,8)` with `5^6 mod23=8`. Across594 physical lines with >=2 runes, p28 line6 alone has both first GP index=line length and second GP index=fragment_count^line_number mod prime line length.
+
+Artifacts:
+- `im-results/lp2-p28-dh-line-selfencoding.md`
+- `sims/lp2_p28_dh_line_selfencoding_sft.cjs`
+- integrated into `results/README.md` and `im-results/lp2-p57-find28-p28-centerword-dh87-loop.md`
+- Windows Node22 PASS run **44422145843**.
+
+### Authenticated NEXT locally selects p28 DH and successor MUST
+
+- FIND independently fixes p28.
+- `GP0(NEXT)=57 -> p50[57]=1w -> base60 118 -> one-based p28 offset117`, exact line+word start `DH`.
+- Exhaustive 8 authenticated TCP opcodes ×2 radices ×2 origins: this is the only p28 line-start/DH hit.
+- Cross-page receiver census: only p8,p21,p28 start a line at117, fragments AX/PH/DH; FIND-selected p28 is sole DH case.
+- PASS run **44422139592**.
+- Literal local NEXT from selected p28 word28 to word29 gives `[24,25]`, length2=shared K and GP1=51=MUST.
+- Among48 page-numbered successors p28 alone has both forward-consecutive pair and GP1=51.
+- Independent DH151 route gives WE, whose next solved p57 word is MUST.
+- NEXT->MUST SFT PASS run **44423040747**.
+
+Artifacts:
+- `im-results/lp2-2013-next-p28-dh-pointer.md`
+- `sims/lp2_2013_next_p28_dh_pointer_sft.cjs`
+- `im-results/lp2-2013-next-p28-successor-must.md`
+- `sims/lp2_2013_next_p28_successor_must_sft.cjs`
+- successor synthesis integrated in `im-results/lp2-p28-successor-must-base59-selector.md` and `results/README.md`.
+
+### P0 cipher exclusions after stronger title recovery
+
+Using source-selected islands `EPIPHANY SEEKS`, `THE ROAD`, `THE DEVOTED`:
+- stationary single-slope affine periods13,27,29,32,43,58,60,76,229 all rejected; PASS run **44419726534**;
+- no stationary affine period<36 survives all three anchors; ordinary additive needs period>=37, where residue reuse becomes too weak to explain the anchors;
+- every island changes rune-frequency multiplicity spectrum, excluding any monoalphabetic bijection even with arbitrary within-island transposition;
+- full first-order affine state family `C_i=aP_i+bP_(i-1)+cC_(i-1)+d mod29` has zero survivors across the known internal transitions;
+- solved p56 prime-minus-one keystream has no exact title match at clock0 or arbitrary prime-clock offset; even arbitrary title transposition does not rescue it over the searched prime range;
+- recovered title key is absent as forward/reversed/additive-inverse running key in solved p57 and authenticated2016 plaintext;
+- no exact cyclic row-major p50 numeral running-key match under base59/base60;
+- literal p50 linear keystream from EMERGE exit address192 fails.
+Do not broaden these families further without a new source-selected state/operator.
 
 ### P0 receiver exact radix gate: base60 wins over source-missing-f base59
 
