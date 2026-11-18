@@ -1,4 +1,4 @@
-# T7 doublet-free void: 33×50 / table-83→133 hypothesis
+# T7 doublet-free void: 33×50 structural bridge tests
 
 **Classification:** intermediate structural hypothesis; no plaintext or key recovered.
 
@@ -12,32 +12,35 @@ The two boundaries have an exact factorization:
 - 4389 = 33 × 133
 - therefore the interval is exactly **50 × 33** when laid out row-major.
 
-The void is inside LP2 pages 11–18 (the physical pages containing the tree sequence and p15's Fibonacci-prime grid). In the 50×33 layout, horizontal equality is only 3/1600 = 0.1875%, as expected from the deliberately doublet-free linear interval. Vertical equality is 63/1617 = 3.896%, and the two main diagonals are 60/1568 = 3.827% and 41/1568 = 2.615%; these are near the native 1/29 baseline and do **not** reveal an independent 2-D plaintext structure.
+The void is inside LP2 pages 11–18, around the tree sequence and p15 Fibonacci-prime grid. In the 50×33 layout, horizontal equality is only 3/1600 = 0.1875%, while vertical equality is 63/1617 = 3.896% and the two main diagonals are 60/1568 = 3.827% and 41/1568 = 2.615%. These latter rates are near the native 1/29 baseline and do **not** reveal an independent 2-D plaintext structure.
 
-## Source-connected address hypothesis
+## Two source-connected interpretations of the 50×33 shape
 
-There are two retrospective numbers already present in the repository's cross-artifact work:
+### 1. Retrospective 83→133 address interpretation
 
-- **83** is the zero-based p50 table cell selected by the signed-2016 "lies" address route.
-- **133** is the terminal state of the 256-red-event checksum construction.
+Two numbers already discussed elsewhere in the repository are:
 
-If those numbers were independently selected as stream boundaries, the T7 void would naturally be the 50-row interval between table positions 83 and 133. This is **not authenticated**: the 83/133 connections are themselves clue-level observations, and 33 is not yet independently selected as the matrix width.
+- **83**: the zero-based p50 table cell selected by the signed-2016 "lies" address route.
+- **133**: the terminal state of the 256-red-event checksum construction.
 
-The 50×33 shape nevertheless gives one finite, source-derived experiment worth recording. The p50 table has 256 bytes, so cells 83..132 inclusive are exactly **50 bytes**. That permits a no-offset hypothesis: use those 50 bytes as one row key for each of the 50 rows of the void, with the native GP29 additive operation; alternatively use the first 33 of them as a column key.
+If those were independently selected as stream boundaries, the T7 void would be the 50-row interval between them. This is **not authenticated**: the 83/133 connections are themselves clue-level observations, and 33 is not yet independently selected as the matrix width.
 
-## Frozen test
+A finite table-slice experiment therefore used p50 bytes **83..132** (exactly 50 bytes) as one key per row of the 50×33 void, or the first 33 as column keys. Both conditional table codecs were tested (base60 and base59, omitting only lowercase f), with both signs and key reversal.
 
-Tested both original table numeric interpretations:
+Best original IoC: **0.0348413180** (base59, reversed column key, +). Raw void IoC: **0.0346369701**. A 1000-draw matched random-key best-of-16 control gave median **0.0346972453**, 90th percentile **0.0348766011**, 99th percentile **0.0350383152**, maximum **0.0352022346**, and empirical exceedance **15.5%**. No coherent language output was obtained.
 
-- conditional base-60 byte stream;
-- conditional base-59 stream obtained by omitting lowercase f while retaining uppercase F.
+### 2. More source-grounded 50×33 Cartesian-product interpretation
 
-For each, tested the fixed source-derived row/column layouts, both additive signs, and reversed key order. The best original IoC was **0.0348413180**, from the conditional base-59 stream with a reversed column key and additive +. The raw void IoC is **0.0346369701**.
+The p57 Parable has **19 body words / 88 GP runes**; removing the first and last rune of each word leaves exactly **50 interior runes**. The p55 page contributes exactly **33 boundary runes** under the source-frozen cross-page word treatment. These counts are already established in im-results/instar-circumference-edge-strip.md.
 
-That apparent lift is not discriminating: a 1000-draw matched random-key control, taking the best of the same 16 row/column/sign/reversal configurations on each draw, had median **0.0346972453**, 90th percentile **0.0348766011**, 99th percentile **0.0350383152**, maximum **0.0352022346**, and empirical exceedance **15.5%** for the observed 0.0348413180. The independent language-score screen over the same finite family was likewise flat and produced no coherent plaintext.
+That gives a stronger reason to form a 50×33 object without relying on the retrospective 83/133 endpoints: pair one p57 interior rune with one p55 boundary rune for each cell of the T7 rectangle. The most direct source-compatible consumer is additive GP29:
+P[r,c] = C[r,c] ± (I[r] + B[c]) mod 29,
+with no fitted offset.
+
+I tested the raw rune-index representation and the clue-motivated prime-mod-29 and totient-mod-29 representations, with both row/column reversals and both signs. The best character-trigram score among the 24 source-derived variants was **−5.67949** (totient representation, both keys reversed, +), while the raw void is **−5.66571**. A 500-draw matched random 50×33 row/column-key control, taking the best of the same sign/reversal family, had empirical exceedance **63.3%** for the source-derived best. No plaintext emerged.
 
 ## Decision
 
-This is a **useful structural lead, not a decryption**. The exact 50×33 factorization is worth preserving because it links a large nonstationary-generation anomaly to two independently discussed source numbers and to the solved-page 33/50 interior/exterior counts. But the immediate table-slice row/column Caesar interpretation is negative.
+The exact 50×33 shape is worth preserving because it is simultaneously compatible with the observed T7 void and with solved-page source counts. However, neither the p50 83..132 row/column key nor the p57-interior × p55-boundary additive matrix produces plaintext.
 
-Do **not** expand this into arbitrary 50-byte key schedules, offsets, KDFs, AES modes, or fitted matrix permutations without a new source-visible operation. The unresolved question is specifically whether any authenticated clue independently selects (a) width 33, (b) endpoints 83 and 133, and (c) a role for table cells 83..132. If that bridge is found, the 50×33 void becomes a sharply testable target.
+Do **not** expand this into arbitrary KDFs, AES modes, offsets, fitted matrix permutations, or other high-dimensional key schedules. The missing ingredient is a source-visible operation that independently selects how the 50 and 33 source streams interact (if they interact at all), or a genuine reason for the 83/133 addressing. If that selector appears, the 50×33 void is a sharply testable target.
