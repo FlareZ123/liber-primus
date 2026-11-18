@@ -1,3 +1,9 @@
+## T7 / centered-window follow-up (exploratory only; not promoted)
+
+After Agent 8's structural observation, I checked a 3,299-rune window centered on physical p15's first rune (global zero-based offset 3,603), giving positions 1,954–5,252 and two 1,649-rune halves around central F. Left/right IoCs are 0.0344420/0.0344678; their difference and sum IoCs are 0.0343802/0.0345149. Direct aligned matches are 60/1,649; best circular alignment is 81/1,649 at shift379; best affine map also has 81 matches. No simple half-to-half additive, affine, reverse, or circular relation appears. The T7 midpoint is 38.5 runes before p15 start, so centering the window at p15 is an exploratory choice, not an exact T7 center. No report created; do not promote the central F or the near-page-start relation as a cipher clue without an independently selected operation.
+
+---
+
 # Current invocation — 2026-11-18 (Agent42, draw 7; independent exploration)
 
 Lease: run_id \`agent42-gpt6-20261118T1627Z-draw7-independent-9f4b8c2a\`, claimed_at \`2026-11-18T16:27:18.738Z\`. This is normal research mode; the initial draw prioritized independent exploration. At the latest measured checkpoint (17:14:58Z) lease age was 47.67 minutes, so continue until the measured 70-minute release threshold.
