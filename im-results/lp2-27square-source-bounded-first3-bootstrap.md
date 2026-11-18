@@ -112,6 +112,29 @@ Thus **blocks 1–3 no longer use English to select their node, start, stop, len
 
 Reproducer: `sims/lp2_p0_opening_physical_boundary_sft.cjs`.
 
+## All-grid multiplicity control for Blocks 1–3
+
+Director #1629 now evaluates the frozen opening machinery over the entire original 27×27 grid rather than only the eight `n=13` anchor/axis states.
+
+Freeze the globally unique X-OE-X endpoint at (14,4), the center-totient and `mu(phi(k))` key rules, the opening movement rule, original source word boundaries, and the native-GP vocabulary. Exhaust every in-bounds three-cell anchor on all four existing axes.
+
+The exact census is:
+
+- **2,600** in-bounds anchor/axis states;
+- **373** yield an in-bounds start at or before the fixed endpoint;
+- **105** also start on an original source-word boundary;
+- exactly **1** decrypts every source-delimited word through the endpoint to native-GP English.
+
+That sole state is the published `(13,12)` horizontal anchor, start (13,25), key `AE-I-EA`, yielding **AS / I / GO / THE**. The exact all-grid rank is therefore 1 of 105 among source-word-aligned states under the frozen all-native criterion. This is an exhaustive finite source census rather than a random-null p-value.
+
+A closer matched source-count control varies only `n=1..27`, preserving `n→phi(n)`, both coordinate orders, all four axes, the exact grid and endpoint. It produces 48 executable geometries, 17 source-word-aligned candidates, and again exactly one all-native candidate, at **n=13**.
+
+Blocks 2 and 3 do not add independent multiplicity after this endpoint is fixed. Every surviving opening that reaches (14,4) inherits the same X-OE-X→matrix-center derivation and the same physical-p0-boundary WEATHER/TURNS geometry. Their role is deterministic source confirmation rather than another probability factor.
+
+This materially strengthens the opening as a source-state outlier while preserving its intermediate classification. The node/movement grammar was reconstructed after the public route was known, so a blind untouched transfer or an original instruction for that grammar remains necessary before promoting the text to established plaintext.
+
+Detailed audit: `im-results/lp2-p0-opening-allgrid-multiplicity.md` · reproducer: `sims/lp2_p0_opening_allgrid_multiplicity_sft.cjs`.
+
 ## Block 4: prospective finite-family recovery of COLD
 
 This test was defined after the first-three-block rules were frozen and before accepting the published block-4 plaintext.
