@@ -1,6 +1,6 @@
 # Terminal DJU/BEI handoff selects the p50 printed-token bracket
 
-**Agent16, 18 November 2026. Status: source-constrained conditional navigation result. The finite 2013 `prime_echo` exhaustion independently selects the intact terminal pair `DJU / BEI`, whose only other adjacent occurrence is p27. Under the already-frozen, still-provisional GP-prime / 58-page word-address rule, both words converge on p50 local cell2. The authenticated 2016 word `lies` independently selects adjacent p50 local cell3 under the same rule. Those two source-selected cells begin the table's unique printed-token bracket `3L 3D [43 tokens] 3D 3L`. The bracket has the table's unique token `13` at its exact center. Conventional base60 additionally sends the first enclosed token `2r=173` to clear p57 word THE and then to FOLD. The address rule and radix remain provisional, and no unknown LP2 plaintext or key is recovered.**
+**Agent16 with Agent8 #1621 authentication gate, 18 November 2026. Status: conditional source geometry with the 58-page address grammar retired as underselected. The finite 2013 `prime_echo` exhaustion independently selects the intact terminal pair `DJU / BEI`, whose only other adjacent occurrence is p27. The frozen GP-prime / 58-page formula sends that pair recursively to p50 local cell2 and the authenticated 2016 word `lies` to adjacent cell3, exposing the table's unique printed-token bracket `3L 3D [43 tokens] 3D 3L`. A complete census of the 43 alphabetic words in the signed 2016 message finds `lies` as the sole word that lands on p50 under this formula. No first-party instruction or solved-stage control selects GP-prime sums, modulo58/quotient decomposition, or the required zero-based origins. The bracket remains useful conditional structure, while downstream expansion of this address grammar is closed. No unknown LP2 plaintext or key is recovered.**
 
 ## 1. Independent starting evidence
 
@@ -120,17 +120,17 @@ Second, the already recovered historical 13-rune key `FIRFUMFERENFE` was applied
 
 ## 7. Decision
 
-Preserve the following as one conditional navigation junction:
+Preserve the printed bracket as a conditional structural observation:
 
 ```text
 2013 finite prime_echo
   -> terminal intact DJU / BEI
   -> unique duplicate at p27
-  -> frozen GP-prime / 58-page recursion
+  -> [underselected GP-prime / 58-page recursion]
   -> p50 local2 = 3L
 
 signed 2016 "lies"
-  -> same frozen map
+  -> [same underselected map]
   -> p50 local3 = 3D
 
 3L 3D [43 printed tokens] 3D 3L
@@ -138,9 +138,29 @@ signed 2016 "lies"
               center 13
 ```
 
-Under conventional base60, the first enclosed token adds the finite route `THE -> FOLD -> SB -> END`.
+Under conventional base60, the first enclosed token conditionally adds the finite route `THE -> FOLD -> SB -> END`. The source record does not authorize continued word-map expansion from this route.
 
-The next useful step needs an independently motivated interpretation of the **43 printed-token payload** or an independent source that authenticates the 58-page address grammar. Generic cipher menus, alternative phases, and arbitrary uses of the center `13` would weaken the causal chain.
+## 8. Address-rule authentication gate (#1621)
+
+The exact frozen grammar is:
+
+```text
+S = GP-prime sum(word)
+page = S mod 58
+word index = floor(S / 58)
+```
+
+The authentication gate is negative. The byte-verified 2016 message says that the words are the map and their numbers are the direction, yet it does not define a rune-number function, modulo58 decomposition, quotient-as-word-index semantics, or coordinate origins. The bounded historical audit in #1570 likewise found no preserved authenticated 2012–2014 Cicada instruction or creator implementation using this zero-based row-major address grammar. Its positive controls use explicit human coordinate fields, including one-based book coordinates and the 2014 named GEB chapter/exchange/word/letter receiver.
+
+A complete census of the signed 2016 message's **43 alphabetic words** strengthens the conditional observation without authenticating its mechanism. Applying the frozen formula unchanged gives exactly one p50 destination:
+
+```text
+lies -> GP-prime sum 224 -> p50:w3
+```
+
+The other 42 signed words land on other pages. The terminal pair starts at `DJU=129 -> p13:w2` and `BEI=159 -> p43:w2`; reaching p50:w2 requires repeated application of the same unauthenticated rule through ciphertext words. The p50 adjacency is therefore downstream of the rule being tested and does not independently select it.
+
+**Decision:** close the GP-prime/mod58/quotient/zero-based word-address grammar as underselected. Preserve the unique printed `3L 3D [43] 3D 3L` bracket and center `13` as conditional table geometry. Future work may revisit the route only if a newly recovered first-party source independently specifies the address grammar or predicts a previously unused original destination before the table outcome is inspected.
 
 ## Reproduction
 

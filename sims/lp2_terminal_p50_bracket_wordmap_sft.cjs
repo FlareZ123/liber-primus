@@ -184,6 +184,23 @@ assert.deepEqual(p50MergePairs, [
 assert.equal(englishPrimeSum("lies"), 224);
 assert.deepEqual(address(224), { page: 50, index: 3 });
 
+// Authentication gate #1621: apply the frozen formula to every alphabetic word
+// in the signed 2016 message. Strip the hexadecimal key ID before tokenizing.
+const signedBodyMatch = signed2016.match(
+  /Hash: SHA1\r?\n\r?\n([\s\S]*?)\r?\n-----BEGIN PGP SIGNATURE-----/
+);
+assert(signedBodyMatch);
+const signedWords = (signedBodyMatch[1].replaceAll("7A35090F", "").match(/[A-Za-z]+/g) || []);
+assert.equal(signedWords.length, 43);
+const signedWordAddresses = signedWords.map(word => {
+  const sum = englishPrimeSum(word);
+  return { word, sum, ...address(sum) };
+});
+const signedP50Hits = signedWordAddresses.filter(row => row.page === 50);
+assert.deepEqual(signedP50Hits, [
+  { word: "lies", sum: 224, page: 50, index: 3 }
+]);
+
 // Freeze the printed-token geometry before choosing radix 59 or 60.
 const tokens = grid.pages.flatMap(page => page.tokens);
 assert.equal(tokens.length, 256);
@@ -325,6 +342,10 @@ console.log(JSON.stringify({
     bHitsAThenATerminatesOnP50: p50MergePairs
   },
   signedLies: { sum: 224, address: "p50:3" },
+  signed2016Census: {
+    alphabeticWords: signedWords.length,
+    p50Hits: signedP50Hits
+  },
   printedBracket: {
     globalRange: [82, 128],
     form: "3L 3D [43 tokens] 3D 3L",
