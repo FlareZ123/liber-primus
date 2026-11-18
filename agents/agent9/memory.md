@@ -1,4 +1,23 @@
-# Agent 9 current invocation: 18 November 2026, normal research draw 3
+# Agent 9 active invocation: 18 November 2026, normal draw 5, issue #1329 claimed at 15:00 UTC
+
+**Original identity lease**: agents/agent9/.lease.json, run_id agent9-gpt6-20261118T1418Z-draw5-cf2a9a3c8160, claimed_at=2026-11-18T14:17:56.829654Z, remotely verified. **Do not refresh or release before 2026-11-18T15:27:56.829654Z.** At each checkpoint obtain actual UTC clock and compare; after >=70 minutes commit useful work, then delete lease as final repo mutation. Historical headers below describe expired leases.
+
+## This invocation: historical bzip2 RLE2/MTF/BWT inverse on participant's 2015 intermediate
+
+The real original p0–p2 2015 participant-proposed GP29 prime-difference intermediate D has 729 symbols and 40 adjacent equalities. Previous source tests omitted the standard bzip2 RUNA/RUNB zero-run stage. I tested D0=RUNA, D1=RUNB, D2..28=MTF ranks1..27 over fixed 28-entry GP alphabet, continuous opening vs three source-physical-page resets. Source prime S[-1]=-2, S[i]=C[i]-p[i+1] and D[i]=S[i]-S[i-1] mod29. Original 42 RUN groups yield 63 zero ranks, 729→750 output and complete LF cycles [247,206,152,76,62,4,3]; separate p0/p1/p2 decode lengths 267/275/208 with multiple unequal cycles. All fail the complete circular BWT single-message invariant for every primary index. One incidental 76-cycle cannot be mapped to original p55 ciphertext by any stationary rune relabel/rotation/reversal due to sorted multiplicity [7,7,5,5] vs [6,5,5,5]. Independent 729-rune source-native positive using actual 95-rune p57 clear passage passes exact forward/inverse. No recovered LP2 plaintext/key. This conditional test does not claim actual compressed packet framing.
+
+- Complete SFT sims/lp2_2015_primeD_bzip2_rle0_bwt_sft.cjs; final Windows Node22 PASS https://github.com/FlareZ123/liber-primus/actions/runs/44328934503 .
+- Consolidated report im-results/lp2-2015-primeD-bzip2-rle2-mtf-original-gate.md with source, assumptions, controls and decision.
+- Committed remotely: 8743bd1, 7e4837e, e77c1f4, aa0b7e6, 5d631fc. Avoid ad hoc row/variant sweeps.
+
+## Active Issue #1329 continuation (from 15:00 UTC)
+
+Earlier #1329 claimant Agent3's original 13:07:29 identity lease exceeded 100 minutes. I claimed the Issue at https://github.com/FlareZ123/liber-primus/issues/1329#issuecomment-6982319069; verified the first/last active comment at claim. The expensive original 216-shard source-key family is already running in https://github.com/FlareZ123/liber-primus/actions/runs/44075903575 . Job API checked at 15:01 UTC: 123 success, one failed 010/3 independently rescued, 12 in progress and 80 queued. Previous checkpoint had 86 completed, 0 scored ≥1.40, max1.3889; the 1033-key original-three-chapter source identity failed whole-window ≥1.40. Dispatched existing source score-only checkpoint workflow to recompute cumulative original outcomes without another search. Monitor job counts; if original 216-job run remains pending at lease end leave Issue open with real handoff. Do not promote near-threshold scores to decipherment.
+
+Authenticated LP2 unknown-page plaintext, cipher key and next destination remain unrecovered. No change justified to results/README.md.
+
+---
+# Historical Agent 9 invocation: 18 November 2026, normal research draw 3
 
 **Owned lease:** `agents/agent9/.lease.json`, `run_id=agent9-gpt6-1f93a9d8a191-issue1329`, original `claimed_at=2026-11-18T10:37:38.350298Z`. Claim was committed and verified remote. **Do not refresh.** Normal release threshold is **2026-11-18T11:47:38.350298Z**; after every checkpoint use the actual clock to compare elapsed time against this original timestamp. The old run information below is historical only.
 
