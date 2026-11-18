@@ -56,6 +56,21 @@ The p51 source example is especially clear: genuine Vulgate occurrences of `TURB
 
 The Old English finite reference gives **23 unmatched positions**, including p13, p25, p36 and p51. Its short corpus and morphological coverage prevent interpreting that count as a universal exclusion of Old English.
 
+## Independent aggregate language-shape test: exact original source-conditioned tails
+
+The finite-lexicon incompatibility above depends on particular wordforms. A second, less brittle discriminator asks whether an independently written *native* Latin or Old English paragraph would produce the **same count of fifth-back equal-rune pairs**, which every word-local five-phase substitution preserves under all secret keys. The original physical manuscript has **104** such pairs among 2,105 eligible original within-word positions. This fifth-back statistic was discovered earlier and selected retrospectively; its role here is a preexisting fixed comparison feature, not a fresh a priori discovery.
+
+Hold the **actual 2,896 original physical printed word lengths fixed**. At each word slot, independently sample one source-native word token of exactly its length, with replacement from the pinned source; count its lag-five equalities. The exact source-token histogram per length yields an independent categorical distribution for each original slot. A finite dynamic-programming convolution gives the exact left-tail probability of observing no more equalities than the genuine original, without Monte Carlo uncertainty or fitted secret substitution keys:
+
+| Source-native control | Comparable original word slots | Original fifth-back matches | Conditional expected count | Conditional SD | Exact source-token left tail |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Latin Vulgate NT | **2,896** | **104** | **133.863567** | **11.4263** | **0.00396968016** |
+| Corrected Old English *Beowulf* | **2,893** | **102** | **139.422167** | **10.6692** | **0.000153688243** |
+
+For Old English the three original length-14 word slots have no counterpart in this 10,885-token source and are necessarily omitted for a *strict matched-length* comparison; their original two fifth-back equalities are excluded from the old-English 102 count. Each expected count, variance and probability is asserted in the same reusable CommonJS SFT. The Latin source's full 39,835 token pool covers all original lengths.
+
+This result makes the **independently changing five-phase substitutions applied to ordinary source-matched Vulgate or Beowulf** less plausible *even when all wordwise secret keys are granted*. It is a conditional original-language model comparison, **not an absolute mathematical impossibility** for other Latin or Old English authors, a source-free significance estimate for all possible tested cipher families, or a demonstration that the book is not in either language. Source word tokens are sampled independently, while a real text contains grammatical context and unequal topical frequencies. Moreover the lag-five feature and language alternatives were considered after examining the manuscript, so these conditional tails must **not** be advertised as discovery-wide p-values. The exact zero three-word anchored corpus matches above are a separate stronger **verbatim-source quotation gate**; both lines of evidence warrant prioritizing **an actual source-selected per-word key schedule and heldout coherent text**, rather than fitting more individual lexical words.
+
 ## Verification, limitation and research decision
 
 The [read-only Windows-compatible SFT](../sims/lp2_latin_wordlocal_fivephase_capacity_sft.cjs) asserts the original exact corpus shape, the source word counts, the two Latin exceptions, the 23 Old English exceptions, the full four-word candidate counts and the literal Latin reading `TURBETUR`. A **genuinely source-native 12,956-rune Latin plant**, with an independently randomized five-alphabet bijection at each one of the original 2,896 word positions, is encoded and inverted exactly **12,956/12,956**, preserving every within-word phase equality. Its automated GitHub Actions run [44342815068](https://github.com/FlareZ123/liber-primus/actions/runs/44342815068) completed successfully on Node 22 / Windows.
