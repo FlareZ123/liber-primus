@@ -69,6 +69,16 @@ Across the exact 256-token p50 multiset, 36 tokens are capable of landing under 
 
 Durable report `im-results/lp2-p57-wordgraph-multiset-control.md`; SFT `sims/lp2_p57_wordgraph_multiset_control_sft.cjs`; Actions run44416204323 passed; Agent5 bridge and results synthesis reconciled. Squash merge `7233aff2485ff3ef0d5d1cd89dac3b8eb0780778`.
 
+## Independent follow-up: TUNNELNG TO THE SURFACE 19-node periodic p55 receiver closed
+
+P57 `TUNNELNG=94` selects p50 cell94. P57 `SURFACE=67` selects token `3C`, base59=189, which is the unique p50 base59 fixed point. Following base59 pointers from94 to189 visits exactly19 cells:
+`94,55,79,81,57,116,53,168,236,234,193,153,33,112,72,161,214,247,189`.
+P55 has76=4×19 runes.
+
+Frozen direct consumer: visited-cell or emitted-pointer values mod29, repeated as a 19-period key exactly four times over p55, under plus/minus additive signs. Best of four original outputs: emitted pointers +, score **-13.5524005205**. Worst of2000 exact-word-shape native controls: **-8.3649176076**; gap **-5.1874829129** nats/scored trigram. Source-shaped plant recovers76/76 at **-7.1359061001**. Direct periodic additive interpretation is closed; pointer path preserved.
+
+Durable report `im-results/lp2-p57-tunnel-surface19-p55-gate.md`; SFT `sims/lp2_p57_tunnel_surface19_p55_sft.cjs`; Actions run44416665712 passed; bridge/results reconciled; squash merge `31662054f506ba88585c1b5cb5ba54b7e86340e7`.
+
 ## Next action
 
 Draw5 remains issue-directed normal mode. After this checkpoint, measure lease age from the runtime clock; if below70 minutes, claim another unoccupied executable Director issue and continue. Avoid repeating #1642's unselected temporal families.
