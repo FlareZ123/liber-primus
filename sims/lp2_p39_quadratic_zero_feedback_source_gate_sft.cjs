@@ -21,6 +21,13 @@ const inputs = [
   'resources/external/cicada2012-blake-marriage-gutenberg45315.txt',
   'resources/external/kjv-passion-gospels-2014.txt'
 ];
+const chapterInputs = [
+  ...inputs,
+  'resources/external/2013-book-of-law-I.txt',
+  'resources/external/2013-book-of-law-II.txt',
+  'resources/external/2013-book-of-law-III.txt',
+  'resources/external/tennyson-lady-of-shalott-1842-gutenberg8601.txt'
+];
 const sourceTokens = gp.translit.map((s, i) => ({s, i}))
   .sort((a, b) => b.s.length - a.s.length);
 const mod = (x, m) => (x % m + m) % m;
@@ -200,6 +207,41 @@ function main() {
   assert.deepEqual(controls.map(x => x.min), [440, 369, 372, 372, 467]);
   assert(controls.every(x => x.min > repeats));
 
+  // Stronger independent-chapter null: each of the nine source-visible
+  // chapters may select a different text AND an unrestricted offset.
+  const chapters = [[0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+    [27, 32], [33, 39], [40, 53], [54, 55]].map(([start, end]) => {
+    const ps = pages.filter(p => p.page >= start && p.page <= end);
+    let totalRunes = 0;
+    let exactOriginal = 0;
+    const starts = [];
+    for (const page of ps) {
+      starts.push(totalRunes);
+      totalRunes += page.indices.length;
+      for (let j = 1; j < page.indices.length; j++)
+        exactOriginal += Number(page.indices[j] === page.indices[j - 1]);
+    }
+    return {id: 'p' + start + '-' + end, n: totalRunes,
+      cuts: starts, original: exactOriginal,
+      min: Infinity, source: null, offset: null};
+  });
+  for (const input of chapterInputs) {
+    const source = nativeGP(read(input));
+    for (const chapter of chapters) {
+      const found = sourceWindowCounts(source, chapter.cuts, chapter.n);
+      if (found.min !== null && found.min < chapter.min) {
+        chapter.min = found.min;
+        chapter.source = input;
+        chapter.offset = found.bestOffset;
+      }
+    }
+  }
+  assert.deepEqual(chapters.map(x => x.original),
+    [4, 6, 9, 10, 11, 13, 12, 18, 3]);
+  assert.deepEqual(chapters.map(x => x.min),
+    [9, 17, 34, 38, 15, 22, 32, 65, 0]);
+  assert.equal(chapters.reduce((a, x) => a + x.min, 0), 232);
+
   console.log(JSON.stringify({
     status: 'bounded original negative, no authentic plaintext or key',
     originalRunes: n,
@@ -210,6 +252,9 @@ function main() {
     positiveOriginalFormatNativePlantExact: true,
     exactOriginalCipherForwardRoundtrip: true,
     originalLengthControlWindows: controls.reduce((n, x) => n + x.windows, 0),
+    independentNineChapterBestPossibleSourceHits: 232,
+    independentNineChapterOriginalEvents: 86,
+    chapters,
     controls
   }, null, 2));
 }
