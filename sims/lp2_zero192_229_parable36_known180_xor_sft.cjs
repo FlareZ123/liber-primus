@@ -209,6 +209,39 @@ assert.ok(strongest76 < ioc(plainControl));
 assert.deepEqual(p55.slice(0, 2), [21, 25]);
 assert.deepEqual(p55.slice(-2), [18, 10]);
 
+// The unique original zero on the full 32x8 table's 76-cell outer border
+// provides an independently selected starting cell for a perimeter key.
+// Unlike corner-anchored perimeter tests, its clock begins at cell 192.
+const border = [];
+for (let c = 0; c < 8; c++) border.push(c);
+for (let row = 1; row < 32; row++) border.push(8 * row + 7);
+for (let c = 6; c >= 0; c--) border.push(8 * 31 + c);
+for (let row = 30; row >= 1; row--) border.push(8 * row);
+assert.equal(border.length, 76);
+assert.deepEqual(border.filter(i => table[i] === 0), [192]);
+const borderOffset = border.indexOf(192);
+const seededClockwise = border.slice(borderOffset).concat(border.slice(0, borderOffset));
+const seededCounterclockwise = [seededClockwise[0], ...seededClockwise.slice(1).reverse()];
+assert.equal(seededClockwise[0], 192);
+assert.equal(seededCounterclockwise[0], 192);
+const originalRim76 = [];
+for (const [order, ids] of [["clockwise", seededClockwise],
+  ["counterclockwise", seededCounterclockwise]]) {
+  const key = ids.map(i => table[i] % 29);
+  for (const sign of [-1, 1]) {
+    const deciphered = p55.map((v, i) => mod29(v + sign * key[i]));
+    const plantEncrypted = plainControl.map((v, i) => mod29(v - sign * key[i]));
+    const planted = plantEncrypted.map((v, i) => mod29(v + sign * key[i]));
+    assert.deepEqual(planted, plainControl);
+    originalRim76.push({order, sign, ioc: ioc(deciphered),
+      first20: deciphered.slice(0, 20).map(v => gp.translit[v]).join("")});
+  }
+}
+assert.equal(originalRim76.length, 4);
+assert.equal(Math.max(...originalRim76.map(x => x.ioc)), 0.0431578947368421);
+assert.ok(originalRim76.every(x => x.ioc < ioc(plainControl)));
+
+
 // Source-motivated alternative decoder for the ciphertext's strong doublet
 // depletion. F (index0) is represented by a repeated ciphertext rune, and
 // 1..28 by the 28 nonrepeat steps. This preserves 29-symbol invertibility.
@@ -263,6 +296,7 @@ console.log(JSON.stringify({
   closedZeroBracket: {tokens: 38, printedDigits: digitKey.length,
     terminalP55Runes: p55.length, directAdditiveMaxIoc: strongest76,
     knownP57First76Ioc: ioc(plainControl), direct76,
+    sourceZero192AnchoredRim76: originalRim76,
     nonrepeatGp28Wheel: wheel76},
   control: "Both 256/256 original-sized planted terminals recovered"
 }, null, 2));
