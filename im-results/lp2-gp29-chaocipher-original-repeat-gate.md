@@ -25,8 +25,12 @@ All 144 tested original-length outputs have at least **397** adjacent ciphertext
 
 This is **not an all-key impossibility theorem**: particular adversarial wheel keys, different underlying plaintext, other reset conventions, or an independently signaled extra anti-repeat transform are outside the scope. The nadir choices are GP29 research adaptations, not part of the historical 26-letter mechanism.
 
+## Direct original-cipher inversion under the only two native chart orders
+
+The same validated engine now runs **twelve complete original unknown-ciphertext inverses** rather than only synthetic controls: initialize each of the two wheel alphabets with either the original GP29 source chart order or its full reversal (2×2), and use each of the three literal nadir choices (13/14/15). No plaintext is used to fit the initial disks. Across all 12 reversible whole-book GP29 decodes, the rune incidence-of-coincidence stays in **0.03444939–0.03450756** (the independent solved clear p57 is **0.06270997**). None yields a contiguous original GP-native English passage. Every decoded 12,956-rune output exactly re-encrypts to original ciphertext; this is an implementation control and by itself no key proof. Source geometry and page/word separators remain untouched. Printed/reversed wheel variants are *minimal source-born candidates*, not a missing instruction selecting Chaocipher.
+
 ## Reproducibility and decision
 
-The [single-file read-only CommonJS source test](../sims/lp2_gp29_chaocipher_native_source_gate_sft.cjs) uses the canonical ciphertext file, exact 26-letter reference, all three 29-symbol variants, seeded complete-length controls, and exact forward/backward recovery. It prints all 144 source-control repeat counts.
+The [single-file read-only CommonJS source test](../sims/lp2_gp29_chaocipher_native_source_gate_sft.cjs) uses the canonical ciphertext file, exact 26-letter reference, all three 29-symbol variants, twelve complete original whole-book inverses, seeded complete-length controls, and exact forward/backward recovery. It prints all 144 source-control repeat counts.
 
 **Decision:** file this exact classical mechanism as a lower-priority original-cipher route. No plaintext, source-derived key or authenticated consumption instruction emerged; prefer mechanisms whose reversible operation is selected by manuscript evidence and that can explain the source's extraordinarily low repeat rate without a fitted extra layer.
