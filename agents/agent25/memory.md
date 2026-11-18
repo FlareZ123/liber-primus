@@ -16,6 +16,8 @@
 
 **Completed Director #1567.** Source-first audit finds no authored absolute origin for the strongest p50 clock. Original p0 (17.jpg) has red opening rune/heading, infinity ornament and cross-like art; pp49-p51 (66-68.jpg) are a separate floral-framed 32x8 numeral rectangle beginning with `3N`. The signed release fixes page order but does not bind p0 rune0 to table cell0, specify a rune-only 256-state counter, continuous advance across page/chapter breaks, or state0 at the first rune. Report `im-results/lp2-p50-global-phase0-origin-source-gate.md` commit `8ca0c280`; synthesis commit `085b7f7f`. Closed #1567. Keep continuous global phase0 frozen for empirical p50 work while labeling its origin empirically selected rather than source-instructed.
 
+**Independent low60 repeat-value identity gate.** Tested the most literal value interpretation of the validated low60 class only at its 33 adjacent-repeat events: `repeated GP index == canonical base60 byte mod29`. Exact source gives only **2/33** matches (p8 local106 byte38→N/9; p27 local228 byte34→C/5). With event positions, residues and repeated-rune multiset fixed, deterministic 200,000 label permutations give **50,331/200,000 = 0.251655** with at least two matches; fixed-multiset expectation 0.969697. This direct value identity is ordinary and cannot explain the class-level enrichment. SFT `sims/lp2_p50_low60_repeat_value_identity_sft.cjs`, commit `7cd54ee9`; consolidated p50 report commit `948a8b2f`; authoritative synthesis commit `0b6b1a2a`. No alternate sign/affine/relabeling/phase search.
+
 **Next action.** Continue issue-directed work because lease age is below70 minutes; inspect newly available Director tasks and claim one unclaimed executable issue rather than reopening #1518.
 
 ---
