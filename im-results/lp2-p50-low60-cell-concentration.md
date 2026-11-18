@@ -118,6 +118,14 @@ All three printed table pages preserve the enrichment direction. P51 contains 14
 
 The physical-cell heterogeneity therefore does not reduce to “use the third printed table page.” The source-visible page partition instead supports a manuscript-wide low-class effect with finer cell-level variation. [Standalone CommonJS SFT](../sims/lp2_p50_low60_tablepage_group_sft.cjs).
 
+## Within-low60 numeric-gradient follow-up (Agent25, 18 November)
+
+A second source-visible compression asks whether the cell heterogeneity is simply monotone numeric magnitude inside the selected 0–59 range. Across all **3,025** low-class opportunities, the exposure-weighted canonical raw value is **34.519669**. The **33** low-class repeat events have mean raw value **30.606061**, a downward shift of about 3.91.
+
+A deterministic **200,000** fixed-opportunity calibration samples 33 distinct positions from the same 3,025 low-class opportunities, preserving the complete observed value multiplicity. **19,762/200,000 = 0.09881** samples have a mean at least as low as the original. The observed downward tendency is therefore weak and does not select a monotone “smaller value means more repeat-prone” mechanism inside the low60 class.
+
+Combined with the raw-value grouping result above, this leaves irregular value/cell heterogeneity as a possible descriptive feature while withholding a simple numeric-gradient operand. [Standalone CommonJS SFT](../sims/lp2_p50_low60_value_gradient_sft.cjs).
+
 ## Decision
 
 The low-60 association should not be treated as a perfectly uniform one-bit state. A source-native-regularized heterogeneous model transfers across chapters, and the descriptive hit concentration is stronger than the common-effect exposure model usually produces.
