@@ -122,6 +122,89 @@ assert.equal(maxBestCaesarMatch, 4);
 assert.equal(sumBestCaesarMatches, 557);
 assert.equal(paddedRowsWithAtLeastFiveCopies, 241);
 
+
+// More physical-boundary-constrained competitor: p3–7 excludes its five
+// terminal RED colophon words; p40–53 excludes its whole eight-RED title.
+// Each side then has a natural 250×12 record shape, without deleting
+// individual runes from inside a colored span. The original 51-red-rune
+// passage on p53 remains INSIDE this target; that is a major ambiguity.
+const colophon = ink.pages.find(p => p.page === 7).red_spans[0];
+assert.equal(colophon.start, 194);
+assert.equal(colophon.length, 14);
+assert.deepEqual(words.slice(-5).map(w => w.length), [2, 4, 3, 2, 3]);
+assert.deepEqual(words.slice(-5).flat(),
+  [...colophon.runes].map(r => corpus.runes.indexOf(r)));
+const bodyWords = words.slice(0, -5);
+assert.equal(bodyWords.length, 250);
+assert.equal(bodyWords.flat().length, 1131);
+assert.equal(Math.max(...bodyWords.map(w => w.length)), 12);
+const ROW12 = 12;
+const rows12 = bodyWords.map(w => Array(ROW12 - w.length).fill(0).concat(w));
+const pad12Row = rows12.flat();
+const pad12Column = Array.from({length: ROW12}, (_, j) =>
+  rows12.map(row => row[j])).flat();
+const floral = corpus.pages.filter(p => p.page >= 40 && p.page <= 53)
+  .flatMap(p => p.indices);
+assert.equal(floral.length, 3008);
+assert.deepEqual(floral.slice(0, 8),
+  [...p40Ink.red_spans[0].runes].map(r => corpus.runes.indexOf(r)));
+const red53 = ink.pages.find(p => p.page === 53).red_spans[0];
+assert.equal(red53.length, 51);
+const floralBody = floral.slice(8);
+assert.equal(floralBody.length, 3000);
+assert.equal(pad12Row.length, floralBody.length);
+assert.equal(pad12Column.length, floralBody.length);
+assert.equal(pad12Row.filter(v => v === 0).length, 1895);
+assert.equal(floralBody.filter((v, i) => v === pad12Row[i]).length, 110);
+assert(Math.abs(ioc(floralBody) - 0.03454440369011893) < 1e-12);
+
+const width12Inverses = [];
+for (const [order, key] of [['row-major', pad12Row], ['column-major', pad12Column]]) {
+  for (const sign of [-1, 1]) {
+    const plain = floralBody.map((v, i) => mod29(v + sign * key[i]));
+    assert.deepEqual(plain.map((v, i) => mod29(v - sign * key[i])), floralBody);
+    const plant = floralBody.map((_, i) => native[i % native.length]);
+    const plantedCipher = plant.map((v, i) => mod29(v - sign * key[i]));
+    assert.deepEqual(plantedCipher.map((v, i) => mod29(v + sign * key[i])), plant);
+    width12Inverses.push({
+      order, sign, ioc: ioc(plain), nativePositive: plant.length,
+      prefix: render(plain.slice(0, 75))
+    });
+  }
+}
+assert(Math.abs(width12Inverses[0].ioc - 0.03447727020117817) < 1e-12);
+assert(Math.abs(width12Inverses[1].ioc - 0.034589974435923085) < 1e-12);
+assert(Math.abs(width12Inverses[2].ioc - 0.034491497165721904) < 1e-12);
+assert(Math.abs(width12Inverses[3].ioc - 0.03457619206402134) < 1e-12);
+let width12RowPartitionMatches = 0;
+let width12RowMaxCaesar = 0;
+for (let i = 0; i < rows12.length; i++) {
+  const x = rows12[i], y = floralBody.slice(i * ROW12, (i + 1) * ROW12);
+  if (multiplicitySignature(x) === multiplicitySignature(y)) {
+    width12RowPartitionMatches++;
+  }
+  let best = 0;
+  for (let shift = 0; shift < GP; shift++) {
+    best = Math.max(best, x.filter((v, j) => mod29(v + shift) === y[j]).length);
+  }
+  width12RowMaxCaesar = Math.max(width12RowMaxCaesar, best);
+}
+assert.equal(width12RowPartitionMatches, 5);
+assert.equal(width12RowMaxCaesar, 4);
+const width12Evidence = {
+  sourceWords: bodyWords.length,
+  sourceRoughRunes: bodyWords.flat().length,
+  paddedWidth: ROW12,
+  paddedCells: pad12Row.length,
+  targetRegion: 'p40-53 after whole eight-red-rune p40 title',
+  targetRunes: floralBody.length,
+  targetContainsP53Red51: true,
+  rawIoc: ioc(floralBody),
+  rowPartitionMatches: width12RowPartitionMatches,
+  rowCaesarMaximum: width12RowMaxCaesar,
+  inverses: width12Inverses
+};
+
 console.log(JSON.stringify({
   source: {
     p3to7Words: words.length,
@@ -148,5 +231,6 @@ console.log(JSON.stringify({
     sumBestRowCaesarMatches: sumBestCaesarMatches,
     sourceRowsWithAtLeastFiveEqualSymbols: paddedRowsWithAtLeastFiveCopies
   },
+  width12ToFloral3000: width12Evidence,
   status: 'No unknown plaintext or author-selected cross-chapter decoder'
 }, null, 2));
