@@ -186,6 +186,74 @@ assert.deepEqual(matches(plantedPlain, positive.quotient), {
   longShift: 1, longAffine: 25, longBijection: 25, longPermutedBijection: 25,
 });
 
+
+/**
+ * An arbitrary independent monoalphabetic 29-rune bijection at each phase
+ * cannot contradict two observed pairs occupying that same phase.
+ * This tests exact source-visible period4/8/16/32 dimensions without fitting
+ * a key, Caesar shifts, a guessed plaintext or a lexical score.
+ *
+ * @param {number[]} source
+ * @param {number[]} target
+ * @param {number} period
+ * @returns {{period: number, contradictoryPhases: number, contradictedPairs: number}}
+ */
+function arbitraryPhaseBijection(source, target, period) {
+  assert.equal(source.length, target.length);
+  const forward = Array.from({ length: period }, () => new Map());
+  const backward = Array.from({ length: period }, () => new Map());
+  const failed = new Set();
+  let contradictedPairs = 0;
+  for (let i = 0; i < source.length; i += 1) {
+    const r = i % period;
+    const a = source[i];
+    const b = target[i];
+    if ((forward[r].has(a) && forward[r].get(a) !== b)
+      || (backward[r].has(b) && backward[r].get(b) !== a)) {
+      failed.add(r);
+      contradictedPairs += 1;
+    }
+    forward[r].set(a, b);
+    backward[r].set(b, a);
+  }
+  return { period, contradictoryPhases: failed.size, contradictedPairs };
+}
+
+// The separately printed p15 4x4 spiral uniquely selects these 16 cell
+// coordinates, but does not say to rearrange the Q240 table by them.
+const p15Spiral16 = [5, 6, 10, 9, 8, 4, 0, 1, 2, 3, 7, 11, 15, 14, 13, 12];
+const qSpiral = q240.map((_, i) =>
+  q240[16 * Math.floor(i / 16) + p15Spiral16[i % 16]]);
+const phasePeriods = [4, 8, 16, 32];
+const phaseGate = {
+  printed: phasePeriods.map((k) => arbitraryPhaseBijection(q240, p39, k)),
+  reverse: phasePeriods.map((k) => arbitraryPhaseBijection(q240.slice().reverse(), p39, k)),
+  p15Spiral16: phasePeriods.map((k) => arbitraryPhaseBijection(qSpiral, p39, k)),
+};
+assert.deepEqual(phaseGate, {
+  printed: [
+    { period: 4, contradictoryPhases: 4, contradictedPairs: 174 },
+    { period: 8, contradictoryPhases: 8, contradictedPairs: 142 },
+    { period: 16, contradictoryPhases: 16, contradictedPairs: 92 },
+    { period: 32, contradictoryPhases: 28, contradictedPairs: 45 },
+  ],
+  reverse: [
+    { period: 4, contradictoryPhases: 4, contradictedPairs: 185 },
+    { period: 8, contradictoryPhases: 8, contradictedPairs: 145 },
+    { period: 16, contradictoryPhases: 16, contradictedPairs: 87 },
+    { period: 32, contradictoryPhases: 26, contradictedPairs: 45 },
+  ],
+  p15Spiral16: [
+    { period: 4, contradictoryPhases: 4, contradictedPairs: 178 },
+    { period: 8, contradictoryPhases: 8, contradictedPairs: 141 },
+    { period: 16, contradictoryPhases: 16, contradictedPairs: 93 },
+    { period: 32, contradictoryPhases: 28, contradictedPairs: 44 },
+  ],
+});
+const plantedPhase = q240.map((v, i) => modulo(v + 3 * (i % 16) + 7));
+assert.deepEqual(arbitraryPhaseBijection(q240, plantedPhase, 16),
+  { period: 16, contradictoryPhases: 0, contradictedPairs: 0 });
+
 console.log(JSON.stringify({
   register: 'untouched p39, complete 256-cell table / source F16',
   sourceRunes: 240,
@@ -193,6 +261,7 @@ console.log(JSON.stringify({
   fivePlusWords: 25,
   sourceFactorDegree: 16,
   original,
-  planted: '256-residue GF29 convolution and 55 independent secret affine word keys: PASS',
+  phaseGate,
+  planted: '256-residue GF29 convolution; 55 independent secret word-affine keys; 16 independent secret phase shifts: PASS',
   authenticUnknownPlaintextRecovered: false,
 }, null, 2));
