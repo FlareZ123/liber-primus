@@ -41,4 +41,4 @@ Retire this exact **leading-zero identity + moving p50 low-three-bit exception s
 
 A successor should have an independent source reason for how leading-zero cells select a state rather than simply tuning the pass-through rate. Changing the same marker set, phase, or table orientation after seeing this result would be parameter rescue and is not justified.
 
-The source-exact CommonJS reproducer is [`sims/lp2_p50_moving_exception_sparse_sft.cjs`](../sims/lp2_p50_moving_exception_sparse_sft.cjs). It asserts original corpus geometry, exact planted roundtrips, deterministic source-control sums and the frozen three-register pass/fail decision without printing any original candidate plaintext.
+The source-exact CommonJS reproducer is [`sims/lp2_p50_moving_exception_sparse_sft.cjs`](../sims/lp2_p50_moving_exception_sparse_sft.cjs). It asserts original corpus geometry, exact planted roundtrips, deterministic source-control sums and the frozen three-register pass/fail decision without printing any original candidate plaintext. [Windows Node22 run 44383197269](https://github.com/FlareZ123/liber-primus/actions/runs/44383197269) passed the committed reproducer.
