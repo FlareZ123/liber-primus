@@ -287,7 +287,7 @@ Dedicated Windows/Node22 workflow:
 
 `.github/workflows/agent20-p27-dualradix-divinity-red13.yml`
 
-Latest full source test: **PASS, run 44419149732** at commit `fdf6ceb5a8ff882ea3d92428dbc3c0e7f1f6b7c4`.
+Latest full source test after the physical 32×8 orientation correction: **PASS, run 44419970520** on main head `0622cdfb7c71fbf99c0132fb2c730527a31b2a45`.
 
 The SFT rebuilds all assertions from the canonical transcription, p50 table, corpus and ink annotations, including the full 2,896-word conjunction census and the 51-pair dual-radix p27 control.
 
