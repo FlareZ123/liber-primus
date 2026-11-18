@@ -134,8 +134,12 @@ assert.deepEqual(originalWords[1476].g,
 
 // One first-party GP29 source-word dictionary gate, without a tuned key.
 const dictionaryByLength = new Map();
+const seenNativeWords = new Set();
 for (const match of dictionary.matchAll(/^([a-z]+)\s+\d+$/gm)) {
   const g = nativeWord(match[1]);
+  const signature = g.join(',');
+  if (seenNativeWords.has(signature)) continue;
+  seenNativeWords.add(signature);
   if (!dictionaryByLength.has(g.length)) dictionaryByLength.set(g.length, []);
   dictionaryByLength.get(g.length).push({name:match[1], g});
 }
