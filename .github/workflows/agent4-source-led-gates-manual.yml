@@ -33,5 +33,9 @@ jobs:
         run: node sims/p55_wisdom5_hill75_sft.cjs
       - name: Run exact original-page and chapter GF29 shared-factor exclusion
         run: node sims/lp2_crosspage_gf29_gcd_sft.cjs
+      - name: Run original JPEG compressed-domain gate
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra -pedantic sims/lp2_jpeg_libjpeg_canonical_and_lsb_sft.cpp -ljpeg -o /tmp/lp2_jpeg_sft
+          /tmp/lp2_jpeg_sft resources/liber-primus
       - name: Test exact physical page-boundary root enrichment under chapter-wise familywise null
         run: node sims/lp2_page_roots_original_boundary_sft.cjs
