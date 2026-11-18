@@ -72,13 +72,30 @@ function ioc(x){
  const hist=Array(29).fill(0);for(const c of x)hist[c]++;
  return hist.reduce((s,c)=>s+c*(c-1),0)/(x.length*(x.length-1));
 }
+/**
+ * Within-page collision rate is unchanged even if each original page has
+ * its own wholly secret 29-rune alphabet.
+ * @param {number[]} values
+ */
+function pageIoC(values){
+ let off=0,hits=0,pairs=0;
+ for(const p of corpus.pages.filter(x=>x.page<56)){
+  const hist=Array(29).fill(0);
+  for(let i=0;i<p.indices.length;i++)hist[values[off+i]]++;
+  hits+=hist.reduce((n,k)=>n+k*(k-1),0);
+  pairs+=p.indices.length*(p.indices.length-1);
+  off+=p.indices.length;
+ }
+ assert.equal(off,values.length);
+ return hits/pairs;
+}
 const original=[];
 for(const clock of ['global','page','word']){
  for(const sign of [-1,1]){
   for(let phase=0;phase<6;phase++){
    const plaintext=rotate(ciphertext,clock,sign,phase,false);
    assert.deepEqual(rotate(plaintext,clock,sign,phase,true),ciphertext);
-   original.push({clock,sign,phase,ioc:ioc(plaintext),
+   original.push({clock,sign,phase,ioc:ioc(plaintext),pageIoC:pageIoC(plaintext),
     first80:plaintext.slice(0,80).map(x=>corpus.translit[x]).join('')});
   }
  }
@@ -149,7 +166,21 @@ for(const {name,dict} of controls){
   const dec=rotate(enc,'global',-1,0,false);
   assert.deepEqual(dec,plain);
   assert.equal(ioc(plain),ioc(runes));
-  positive.push({name,ioc:ioc(dec),sixBackSamePlain:events});
+  const pageMapped=[];
+  let start=0;
+  for(const p of corpus.pages.filter(p=>p.page<56)){
+   const key=permutation();
+   for(let i=0;i<p.indices.length;i++)
+    pageMapped.push(key[runes[start+i]]);
+   start+=p.indices.length;
+  }
+  assert.equal(start,runes.length);
+  const pageCipher=rotate(pageMapped,'page',-1,0,true);
+  const pageRecovered=rotate(pageCipher,'page',-1,0,false);
+  assert.deepEqual(pageRecovered,pageMapped);
+  assert.equal(pageIoC(pageRecovered),pageIoC(runes));
+  positive.push({name,ioc:ioc(dec),pageIoC:pageIoC(pageRecovered),
+   sixBackSamePlain:events});
  }
 }
 const results={};
@@ -157,6 +188,7 @@ for(const name of controls.map(c=>c.name)){
  const rows=positive.filter(x=>x.name===name);
  results[name]={
   n:rows.length,IoC:[Math.min(...rows.map(x=>x.ioc)),Math.max(...rows.map(x=>x.ioc))],
+  pageIoC:[Math.min(...rows.map(x=>x.pageIoC)),Math.max(...rows.map(x=>x.pageIoC))],
   sixBack:[Math.min(...rows.map(x=>x.sixBackSamePlain)),Math.max(...rows.map(x=>x.sixBackSamePlain))],
   sixBackMean:rows.reduce((s,v)=>s+v.sixBackSamePlain,0)/rows.length
  };
@@ -164,6 +196,9 @@ for(const name of controls.map(c=>c.name)){
 const best=[...original].sort((a,b)=>b.ioc-a.ioc);
 const worstPositive=Math.min(...positive.map(x=>x.ioc));
 assert(best[0].ioc<worstPositive);
+const minPagePositive=Math.min(...positive.map(x=>x.pageIoC));
+const maxPageOriginal=Math.max(...original.map(x=>x.pageIoC));
+assert(maxPageOriginal<minPagePositive);
 assert(original.every(x=>x.ioc<0.04));
 assert(results.Shakespeare.sixBack[0]<=80&&results.Shakespeare.sixBack[1]>=80);
 console.log(JSON.stringify({
@@ -176,9 +211,13 @@ console.log(JSON.stringify({
  },
  originalDeRotatedIoC:{n:36,best:best.slice(0,6),
   min:Math.min(...original.map(x=>x.ioc)),
-  max:best[0].ioc},
+  max:best[0].ioc,
+  pageWiseIoCRange:[Math.min(...original.map(x=>x.pageIoC)),maxPageOriginal]},
  plantedGP:{n:positive.length,sourceShapedByWordLength:true,
   arbitraryHiddenBaseAlphabet:true,sourceSummaries:results,
-  minNativeIoC:worstPositive,exactAllPlanted:true},
+  minNativeIoC:worstPositive,
+  minNativePageWiseIoC:minPagePositive,
+  pageSecretAlphabetPlantsExact:positive.length,
+  exactAllPlanted:true},
  completeOriginalPlaintextRecovered:false
 },null,2));
