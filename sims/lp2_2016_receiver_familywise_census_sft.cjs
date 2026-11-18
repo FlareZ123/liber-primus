@@ -320,6 +320,20 @@ for (const [boundaryConvention, pages] of Object.entries({
       pagesWithTypedClosures: rows.filter((row) => row.typedClosures.length)
         .map((row) => ({page:row.physicalPage,hits:row.typedClosures})),
       receiverPageCount: rows.length,
+      totalReceiverWords: rows.reduce((n, row) => n + row.wordCount, 0),
+      totalBoundaryCrossings: rows.reduce(
+        (n, row) => n + row.boundaryCrossings.length, 0),
+      totalBracketCandidates: rows.reduce(
+        (n, row) => n + row.bracketCandidates.length, 0),
+      totalBracketPhraseMatches: rows.reduce(
+        (n, row) => n + row.bracketPhraseMatches.length, 0),
+      totalNontrivialBracketPhraseMatches: rows.reduce(
+        (n, row) => n + row.bracketPhraseMatches
+          .filter((hit) => hit.vector.length >= 2).length, 0),
+      totalTypedCandidates: rows.reduce(
+        (n, row) => n + row.typedCandidates.length, 0),
+      totalTypedClosures: rows.reduce(
+        (n, row) => n + row.typedClosures.length, 0),
     };
   }
 }
@@ -355,6 +369,13 @@ for (const [boundaryConvention, byRadix] of Object.entries(result)) {
     const typedPages = row.pagesWithTypedClosures.map((pageRow) => pageRow.page);
     compact[boundaryConvention][radix] = {
       receiverPageCount: row.receiverPageCount,
+      totalReceiverWords: row.totalReceiverWords,
+      totalBoundaryCrossings: row.totalBoundaryCrossings,
+      totalBracketCandidates: row.totalBracketCandidates,
+      totalBracketPhraseMatches: row.totalBracketPhraseMatches,
+      totalNontrivialBracketPhraseMatches: row.totalNontrivialBracketPhraseMatches,
+      totalTypedCandidates: row.totalTypedCandidates,
+      totalTypedClosures: row.totalTypedClosures,
       boundaryCrossingPages: row.pagesWithBoundaryCrossings.map((pageRow) => ({
         page: pageRow.page,
         hitCount: pageRow.hits.length,
