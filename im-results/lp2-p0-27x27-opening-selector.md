@@ -21,6 +21,23 @@ This uses the observed word-length difference to support node length 3; it does 
 
 **Independent source-only node locator, tested against the entire matrix:** Gematria Primus has two two-letter transliteration pairs with reversed spellings, **AE↔EA** and **EO↔OE**. Enumerate all 27×27 adjacent, collinear, radius-one three-rune nodes in the four standard undirected axes (horizontal, vertical and two diagonals), and retain nodes whose outer GP transliterations are two-letter reversals. There are exactly **10** such original source nodes. Among the **24** literal J-index11 cells in the complete matrix, **only one** lies at the center of such a reversed-name node: the same **AE–J–EA** at row13, column12, positions334–336, oriented horizontally. Thus the opening-phrase-derived 11=J and the source's GP transliteration symmetries can jointly reproduce that key-node address *without imposing* the earlier row13/φ13 coordinate derivation. This is a conditional key-location operation, not proof that Cicada intended reversed GP-letter labels as an instruction; the criterion was noticed after the node's publication. [Exhaustive original-source SFT](../sims/lp2_27x27_opening_wordboundaries_sft.cjs), [successful CI run](https://github.com/FlareZ123/liber-primus/actions/runs/43056341817).
 
+**Complete orientation/anchor equivalence (18 November original-only follow-up).** The 729 original runes permit eight exactly lossless 27×27 square dihedral orientations (identity, row reflection, column reflection, half-turn, transpose and its three reflected variants). All eight preserve **exactly one J-centered two-letter reversal AE–J–EA or EA–J–AE** among every radius-one horizontal/vertical/diagonal source node. The eight corresponding one-based centers are:
+
+| Orientation | Sole reversal-J center | Axis |
+|---|---|---|
+| Original row-major | (13,12) | horizontal |
+| Row-reflected | (15,12) | horizontal |
+| Column-reflected | (13,16) | horizontal |
+| Half-turned | (15,16) | horizontal |
+| Transposed | (12,13) | vertical |
+| Transposed, row-reflected | (16,13) | vertical |
+| Transposed, column-reflected | (12,15) | vertical |
+| Transposed, half-turned | (16,15) | vertical |
+
+The original printed **13** and source-authentic **φ(13)=12** can naturally supply either ordered anchor (13,12) or (12,13), and treating the same coordinates as zero-based gives (14,13) and (13,14). In this frozen **8 orientations × 4 coordinate conventions = 32 original-only settings**, **exactly two** contain the reversal-J node at their candidate anchor: **original row-major with (13,12)** and **transpose with (12,13)**. The zero-based conventions and all other dihedral cases fail that exact original node condition. The two survivors are transform-equivalent: the exact original key symbols AE–J–EA and any ciphertext read transformed covariantly are unchanged, so the short proposed English output is **not** two independent cryptographic confirmations. Original linear reading order makes row-major a sensible default, but the manuscript does not independently specify that a hypothetical *map* must adopt this coordinate axis rather than the transposed axis. The original red-title numeral/key constructions depend on the unchanged 13-rune title, so they also cannot discriminate the two orientations.
+
+This is an exact source-only **nonuniqueness certificate for the full orientation/coordinate interpretation**, rather than proof that the external route is false. The conditional row-major node itself is distinctive; it still does not determine the cipher operation, segment length or a blind transition beyond the opening. Do not infer an authored 27×27 grid decoder from the retrospective (13,12) fit alone. [New standalone source-only CommonJS SFT](../sims/lp2_p0_square27_anchor_symmetry_original_sft.cjs).
+
 ## First ciphertext block
 
 The p0 segment immediately after the large red 13-dot title marker is the first black body segment and has **7 runes**, selecting the candidate block length. The later candidate ciphertext block at positions 348–354 is a separate seven-rune occurrence. The key node begins at position 334 and the candidate ciphertext path begins at position 348:
