@@ -36,6 +36,8 @@ function shuffle(values, next) {
 
 function main() {
   const pages = corpus.pages.filter((page) => page.page <= 55);
+  const tokens = grid.pages.flatMap((page) => page.tokens);
+  assert.equal(tokens.length, 256);
   const events = [];
   let globalRune = 0;
 
@@ -50,6 +52,7 @@ function main() {
         local,
         phase,
         byte,
+        token: tokens[phase],
         residue: byte % 29,
         rune: page.indices[local],
       });
@@ -100,6 +103,8 @@ function main() {
       events: events.length,
       matches: originalMatches,
       expectedMatchesUnderFixedMultisets: expectedMatches,
+      literalSecondCharacterReadout: events.map((event) => event.token[1]).join(''),
+      repeatedRuneReadout: events.map((event) => corpus.translit[event.rune]).join(''),
       matchingEvents: events
         .filter((event) => event.rune === event.residue)
         .map((event) => ({
