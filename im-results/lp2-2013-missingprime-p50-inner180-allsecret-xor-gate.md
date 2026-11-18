@@ -24,12 +24,12 @@ The p56 authentic `p-1` consecutive-prime inverse skips **only the literal ciphe
 
 | Printed-cell decoder | Omitted-prime order | GF(2) rank | Contradictory equations of 180 | First impossible site |
 |---|---|---:|---:|---|
-| base60 | forward | 58 | **120** | interior offset13, residual byte242 |
-| base60 | reversed | 58 | **122** | offset13, residual byte12 |
-| base59 | forward | 58 | **122** | offset13, residual byte247 |
-| base59 | reversed | 58 | **122** | offset13, residual byte9 |
+| base60 | forward | 57 | **121** | interior offset13, residual byte242 |
+| base60 | reversed | 57 | **123** | offset13, residual byte12 |
+| base59 | forward | 57 | **123** | offset13, residual byte247 |
+| base59 | reversed | 57 | **123** | offset13, residual byte9 |
 
-Four synthetic original-length register controls are generated under independently nonconstant rune→byte, row, and column assignments for these four prime-order/radix gates. The same elimination accepts every synthetic plant with **zero** contradictions and rank58, proving the family is satisfiable and the original failures are attributable to the data.
+Four synthetic original-length register controls are generated under independently nonconstant rune→byte, row, and column assignments for these four prime-order/radix gates. The same elimination accepts every synthetic plant with **zero** contradictions and rank57, proving the family is satisfiable and the original failures are attributable to the data.
 
 **Decision.** All four predeclared XOR-whitened interpretations of the original 180 cells fail **even with entirely free hidden rune-byte codebook and independent per-row/per-column XOR pads**. In particular, fitting an unobserved 29-rune codebook or one additional row/column key after the actual missing-prime mask cannot rescue this operation. This stops a specific proposed direct bridge between the independently observed 2013 prime omission and p50's otherwise tempting 76+180 interior/outer geometry. It leaves stateful or different key schedules, other traversals, other literal table radices, and the independent original-p55 ciphertext unconstrained. There is **no** source-selected operation, unknown plaintext, recovered key or positive continuation.
 
