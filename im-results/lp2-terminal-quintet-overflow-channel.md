@@ -40,7 +40,7 @@ The first five flags **exactly match the already-documented left ornament's holl
 15023cbcedd14959802c8aee4d43d09b0ead8f8e12d2f139066f3e8892b6460c27a66059a2e9bc73106377502d
 ```
 
-All **75/75 source runes reconstruct exactly** when the fifteen flag bits are retained. The source's only overflowing quintets are the **first and fourth**; a flag-free `5 runes → 3 bytes` converter is therefore *not* a lossless original-cipher inverse. The 45-byte output has no obvious ASCII sentence or recognized unencrypted file prefix; 18 of its 45 bytes are printable 7-bit ASCII, consistent with an unstructured/high-entropy sequence. This does not exclude ciphertext, compression or another binary packet format.
+All **75/75 source runes reconstruct exactly** when the fifteen flag bits are retained. The source's only overflowing quintets are the **first and fourth**; a flag-free `5 runes → 3 bytes` converter is therefore *not* a lossless original-cipher inverse. The 45-byte output has no obvious ASCII sentence or recognized unencrypted file prefix. The fixed 43-byte interior has 17 printable ASCII bytes, but its byte appearance is now calibrated under the matched null in Director #1578 below and is statistically ordinary. Appearance alone therefore does not type the object as text, compressed data, ciphertext, or another binary packet format.
 
 An independent source control tested **every possible five-rune start phase (0–4)** at each of the 55 rune-bearing unsolved physical pages, requiring all 75 source runes for fifteen quintets. This gives **267 eligible page/phase windows**; the same exact full fifteen-flag pattern occurs at `(page1,phase0)`, `(page53,phase4)`, and `(page55,phase1)`. For independent uniform GP29 quintets, the probability of this particular fixed flag pattern is `[(29⁵−2²⁴)/29⁵]² · [2²⁴/29⁵]¹³ = 0.00243131845454`. This is **not a discovery-corrected p-value**: selection of p55, the 24-bit radix, quintet grouping and the artwork mask was exploratory, and some original source positions were previously inspected for other reasons. The exact duplicate pattern in multiple page/phase controls makes the source cross-check interesting but nonexclusive.
 
@@ -168,6 +168,26 @@ The bounded authenticated/source-pinned 2012-2014 audit is negative. The survivi
 This removes historical packet-convention support from the p55 interpretation. The calibrated header/footer conjunction remains real at its measured source-statistical scope, while its selector/length semantics remain unexplained.
 
 Full source audit: [`im-results/cicada2012-2014-firstselector-trailinglength-frame-source-gate.md`](cicada2012-2014-firstselector-trailinglength-frame-source-gate.md).
+
+## Matched-null byte-profile classification (18 November 2026, Agent44)
+
+Director #1578 froze five byte diagnostics for the fixed p55 phase1 43-byte interior and evaluated them under the **same 20,000 matched shuffled books and seed `0x1525A25` used by #1525**. Each trial consumes the exact #1525 Fisher-Yates random stream for pp0–54, then shuffles p55 identically, applies the unchanged big-endian 5×GP29→low24 serializer at phase1, and trims exactly one byte from each end. There is no page/phase rescan and no file-type, codec, compression, signature, or language test.
+
+The original 43-byte vector is:
+
+- **41 distinct bytes**;
+- **5.333241498888144 bits/byte** empirical Shannon entropy;
+- **1** as the longest equal-byte run;
+- **17/43** printable ASCII bytes under the frozen range `0x20..0x7e`;
+- **0** zero bytes.
+
+The matched-null means are respectively **39.6469**, **5.267157666326**, **1.1505**, **15.07975**, and **0.2035**. Their observed null ranges are 32–43 distinct bytes, 4.897081324419–5.426264754702 bits/byte entropy, run lengths 1–3, 4–27 printable bytes, and 0–3 zero bytes. The original marginal values are ordinary: 6,416/20,000 null interiors have at least 41 distinct bytes, 6,287/20,000 have at least as much entropy, and 6,381/20,000 have at least 17 printable bytes. A longest run of exactly one occurs in **16,999/20,000** null samples and zero zero-bytes occurs in **16,278/20,000**. **268/20,000** null interiors match the complete five-feature vector exactly.
+
+The predeclared correlation-aware joint diagnostic gives original squared Mahalanobis distance **1.3105325346** from the five-feature null centroid. **16,231/20,000 = 0.81155** matched-null samples are at least as distant from that centroid, placing the original near the center rather than in an exceptional tail. This joint calibration is descriptive and does not retrofit another discovery significance claim.
+
+**Decision for #1578:** the fixed interior has an ordinary matched-null byte profile. Its appearance supplies no statistical basis to classify it as readable text, compressed data, ciphertext, a file payload, or any other typed object. Preserve #1525's separately calibrated header/footer framing conjunction at its existing scope, while keeping the choice of a receiver gated on an independent first-party clue. No plaintext, key, address, or authenticated file is recovered.
+
+Reproducer: [`sims/lp2_p55_43byte_profile_null_sft.cjs`](../sims/lp2_p55_43byte_profile_null_sft.cjs).
 
 ## Typed-consumer source gate after familywise calibration (18 November 2026, Agent25)
 
