@@ -1,24 +1,26 @@
 'use strict';
 
 /**
- * SFT: source-only DEATH -> SEE boundary handoff on the original p0-p2 27x27 square.
+ * SFT: source-only DEATH -> SEE boundary bridge on the original p0-p2 27x27 square.
  *
- * Starting state is only the already selected stage-13 DEATH ciphertext endpoint
- * E(26,1). The selector never scores candidate plaintext.
+ * Upstream frozen state is Agent7's source-derived DEATH block:
+ *   current key mirror J-B-J, radius 4
+ *   ciphertext endpoint E(26,1), read direction west
  *
- * Boundary rule tested:
- * 1. At a left/right physical boundary, iterate phi on the non-boundary row.
- * 2. At each iterate, enumerate mirror nodes touching the endpoint's in-bounds
- *    8-neighborhood whose radius equals that iterate; stop at the first
- *    nonempty iterate.
- * 3. If exactly one node survives, use the neighboring incidence as anchor.
- * 4. Derive the ordinary center-totient/Mobius-phase key from that node.
- * 5. Move from the anchor along the node axis toward its center by
- *    phi(center)+phi^2(center) cells.
- * 6. Read from that landing cell on the diagonal quadrant pointing toward the
- *    prior endpoint, stopping at the physical matrix boundary.
+ * The selector below never reads candidate plaintext:
+ * 1. At the dead-end boundary cell, inspect the in-bounds 8-neighborhood for
+ *    mirror incidences whose radius equals the current key-mirror radius.
+ * 2. Exactly one survives: EA(25,2), an outer of EA-J-EA radius 4.
+ * 3. Derive the normal center-totient/Mobius-phase key from that mirror.
+ * 4. Traverse from the neighboring outer through the mirror to its far outer,
+ *    then continue on the same axis. Select the first later cell whose sole
+ *    mirror incidence is perpendicular to the current axis.
+ * 5. From that start, read the diagonal quadrant pointing toward the prior
+ *    endpoint until the physical matrix boundary.
  *
- * The resulting plaintext is inspected only after all source cells are fixed.
+ * Only then decrypt. A negative transfer control applies the same radius-
+ * neighborhood primitive at the resulting endpoint and records that it selects
+ * a different branch, so this is not promoted as a universal boundary law.
  *
  * Run:
  *   node sims/lp2_p0_death_see_boundary_totient_firsthit_sft.cjs
@@ -73,6 +75,11 @@ function signVector(vector) {
   return [Math.sign(vector[0]), Math.sign(vector[1])];
 }
 
+/** @param {number[]} first @param {number[]} second @returns {number} */
+function dot(first, second) {
+  return first[0] * second[0] + first[1] * second[1];
+}
+
 const axes = [[1, 0], [0, 1], [1, 1], [1, -1]];
 const mirrors = [];
 for (let row = 1; row <= 27; row += 1) {
@@ -106,23 +113,28 @@ for (let row = 1; row <= 27; row += 1) {
 }
 assert.equal(mirrors.length, 479);
 
-const deathEndpoint = [26, 1];
-assert.equal(corpus.translit[at(deathEndpoint)], 'E');
-
-const neighbors = [];
-for (let dr = -1; dr <= 1; dr += 1) {
-  for (let dc = -1; dc <= 1; dc += 1) {
-    if (dr === 0 && dc === 0) continue;
-    const cell = [deathEndpoint[0] + dr, deathEndpoint[1] + dc];
-    if (inBounds(cell)) neighbors.push(cell);
-  }
+/** @param {number[]} cell @returns {object[]} */
+function touching(cell) {
+  return mirrors.filter(node =>
+    same(cell, node.center) || same(cell, node.first) || same(cell, node.second)
+  );
 }
 
 /**
+ * @param {number[]} endpoint
  * @param {number} radius
  * @returns {Array<{node:object, anchor:number[], role:string}>}
  */
-function neighboringRadiusHits(radius) {
+function neighboringRadiusHits(endpoint, radius) {
+  const neighbors = [];
+  for (let dr = -1; dr <= 1; dr += 1) {
+    for (let dc = -1; dc <= 1; dc += 1) {
+      if (dr === 0 && dc === 0) continue;
+      const cell = [endpoint[0] + dr, endpoint[1] + dc];
+      if (inBounds(cell)) neighbors.push(cell);
+    }
+  }
+
   const hits = [];
   for (const node of mirrors) {
     if (node.radius !== radius) continue;
@@ -133,32 +145,37 @@ function neighboringRadiusHits(radius) {
       if (role !== null) hits.push({ node, anchor: cell, role });
     }
   }
-
-  const unique = new Map();
-  for (const hit of hits) {
-    const key = JSON.stringify([
-      hit.node.center,
-      hit.node.first,
-      hit.node.second,
-      hit.anchor,
-      hit.role,
-    ]);
-    if (!unique.has(key)) unique.set(key, hit);
-  }
-  return [...unique.values()];
+  return hits;
 }
 
-const firstPhi = phi(deathEndpoint[0]);
-const secondPhi = phi(firstPhi);
-assert.equal(firstPhi, 12);
-assert.equal(secondPhi, 4);
+/** @param {{raw:number[]}} node @returns {number[]} */
+function deriveKey(node) {
+  const derived = [node.raw[0], phi(node.raw[1]), node.raw[2]];
+  const rotation = mod(
+    derived.reduce((sum, value) => sum + mu(phi(value)), 0)
+  ) % 3;
+  return derived.slice(rotation).concat(derived.slice(0, rotation));
+}
 
-const radius12 = neighboringRadiusHits(firstPhi);
-const radius4 = neighboringRadiusHits(secondPhi);
-assert.equal(radius12.length, 0);
-assert.equal(radius4.length, 1);
+// Frozen upstream state from the source-derived END/IS/DEATH recurrence.
+const deathEndpoint = [26, 1];
+const deathReadDirection = [0, -1];
+const deathKeyMirror = {
+  center: [23, 12],
+  first: [19, 16],
+  second: [27, 8],
+  radius: 4,
+};
+assert.equal(corpus.translit[at(deathEndpoint)], 'E');
+assert.equal(touching(deathEndpoint).length, 0);
+assert.deepEqual(deathReadDirection, [0, -1]);
 
-const selected = radius4[0];
+// Carry the already selected key radius across the dead-end boundary. This is
+// the same radius-matching primitive already used upstream in Agent7's END
+// bridge, now applied only to the endpoint neighborhood.
+const radiusHits = neighboringRadiusHits(deathEndpoint, deathKeyMirror.radius);
+assert.equal(radiusHits.length, 1);
+const selected = radiusHits[0];
 assert.equal(selected.role, 'outer');
 assert.deepEqual(selected.anchor, [25, 2]);
 assert.deepEqual(selected.node.center, [25, 6]);
@@ -170,57 +187,73 @@ assert.deepEqual(
   ['EA', 'J', 'EA']
 );
 
-// Derive the standard route key: transform center by phi, then rotate left by
-// the sum of mu(phi(keyRune)) modulo 3.
-const derived = [
-  selected.node.raw[0],
-  phi(selected.node.raw[1]),
-  selected.node.raw[2],
-];
+const key = deriveKey(selected.node);
 assert.deepEqual(
-  derived.map(value => corpus.translit[value]),
+  key.map(value => corpus.translit[value]),
   ['EA', 'I', 'EA']
 );
-const rotation = mod(
-  derived.reduce((sum, value) => sum + mu(phi(value)), 0)
-) % 3;
-assert.equal(rotation, 0);
-const key = derived.slice(rotation).concat(derived.slice(0, rotation));
-assert.deepEqual(key, derived);
 
-// The selected neighboring outer determines axis orientation toward the center.
-const axisTowardCenter = signVector([
+// Orient along the selected mirror from the neighboring outer toward its center,
+// then traverse through to the far outer.
+const forward = signVector([
   selected.node.center[0] - selected.anchor[0],
   selected.node.center[1] - selected.anchor[1],
 ]);
-assert.deepEqual(axisTowardCenter, [0, 1]);
+assert.deepEqual(forward, [0, 1]);
+const farOuter = same(selected.anchor, selected.node.first)
+  ? selected.node.second
+  : selected.node.first;
+assert.deepEqual(farOuter, [25, 10]);
 
-const centerIndex = selected.node.raw[1];
-const movementDistance = phi(centerIndex) + phi(phi(centerIndex));
-assert.equal(centerIndex, 11);
-assert.equal(phi(centerIndex), 10);
-assert.equal(phi(phi(centerIndex)), 4);
-assert.equal(movementDistance, 14);
-
-const start = [
-  selected.anchor[0] + axisTowardCenter[0] * movementDistance,
-  selected.anchor[1] + axisTowardCenter[1] * movementDistance,
-];
+// Continue along the same source axis. The first later cell whose complete
+// mirror incidence is a singleton and perpendicular to the current axis is X.
+// EO(25,14) is an earlier singleton, but its sole mirror is parallel and is
+// rejected without consulting plaintext.
+const scan = [];
+let start = null;
+for (
+  let cell = [farOuter[0] + forward[0], farOuter[1] + forward[1]];
+  inBounds(cell);
+  cell = [cell[0] + forward[0], cell[1] + forward[1]]
+) {
+  const incidences = touching(cell);
+  const perpendicularSingleton =
+    incidences.length === 1 && dot(incidences[0].axis, selected.node.axis) === 0;
+  scan.push({
+    cell: [...cell],
+    rune: corpus.translit[at(cell)],
+    incidenceCount: incidences.length,
+    perpendicularSingleton,
+  });
+  if (perpendicularSingleton) {
+    start = [...cell];
+    break;
+  }
+}
 assert.deepEqual(start, [25, 16]);
 assert.equal(corpus.translit[at(start)], 'X');
-
-// The landing cell has a unique perpendicular mirror-center role, E-X-E.
-const startCentered = mirrors.filter(node => same(node.center, start));
-assert.equal(startCentered.length, 1);
 assert.deepEqual(
-  startCentered[0].raw.map(value => corpus.translit[value]),
+  scan.filter(row => row.incidenceCount === 1).map(row => [
+    row.cell,
+    row.rune,
+    row.perpendicularSingleton,
+  ]),
+  [
+    [[25, 14], 'EO', false],
+    [[25, 16], 'X', true],
+  ]
+);
+const startMirror = touching(start)[0];
+assert.deepEqual(
+  startMirror.raw.map(value => corpus.translit[value]),
   ['E', 'X', 'E']
 );
-assert.equal(startCentered[0].radius, 1);
-assert.deepEqual(startCentered[0].axis, [1, 0]);
+assert.deepEqual(startMirror.axis, [1, 0]);
+assert.equal(startMirror.radius, 1);
 
-// Choose the diagonal quadrant pointing from the landing cell toward the prior
-// endpoint. Read until the matrix edge; no plaintext length is supplied.
+// Reuse the upstream "toward the prior endpoint" orientation. From the selected
+// start this fixes the diagonal quadrant as down-left. The physical bottom edge
+// supplies the stop, so no plaintext word length is injected.
 const readDirection = signVector([
   deathEndpoint[0] - start[0],
   deathEndpoint[1] - start[1],
@@ -228,11 +261,12 @@ const readDirection = signVector([
 assert.deepEqual(readDirection, [1, -1]);
 
 const ciphertextCells = [];
-for (let cell = start; inBounds(cell); cell = [
-  cell[0] + readDirection[0],
-  cell[1] + readDirection[1],
-]) {
-  ciphertextCells.push(cell);
+for (
+  let cell = [...start];
+  inBounds(cell);
+  cell = [cell[0] + readDirection[0], cell[1] + readDirection[1]]
+) {
+  ciphertextCells.push([...cell]);
 }
 assert.deepEqual(ciphertextCells, [[25, 16], [26, 15], [27, 14]]);
 
@@ -249,33 +283,52 @@ assert.deepEqual(
   ciphertext
 );
 
+// Immediate transfer control: blindly carrying the same radius-4 neighborhood
+// primitive from the new boundary endpoint does have a unique result, but it is
+// A-C-A at A(27,13). Therefore the radius-neighborhood step is not a universal
+// boundary law and requires an independently motivated state/mode condition
+// before reuse.
+const seeEndpoint = ciphertextCells.at(-1);
+assert.deepEqual(seeEndpoint, [27, 14]);
+assert.equal(touching(seeEndpoint).length, 0);
+const transferHits = neighboringRadiusHits(seeEndpoint, selected.node.radius);
+assert.equal(transferHits.length, 1);
+assert.deepEqual(transferHits[0].anchor, [27, 13]);
+assert.deepEqual(
+  transferHits[0].node.raw.map(value => corpus.translit[value]),
+  ['A', 'C', 'A']
+);
+assert.equal(transferHits[0].node.radius, 4);
+
 console.log(JSON.stringify({
   status: 'PASS',
   source: 'original LP2 p0-p2 27x27 grid',
-  priorState: {
-    plaintextLabelUsedOnlyForReporting: 'DEATH',
+  frozenPriorState: {
     endpoint: deathEndpoint,
     endpointRune: corpus.translit[at(deathEndpoint)],
+    currentKeyRadius: deathKeyMirror.radius,
   },
-  boundarySelector: {
-    phiOrbitFromRow: [deathEndpoint[0], firstPhi, secondPhi],
-    radius12NeighborHits: radius12.length,
-    radius4NeighborHits: radius4.length,
+  sourceSelection: {
+    sameRadiusNeighborHits: radiusHits.length,
     selectedAnchor: selected.anchor,
     selectedNode: selected.node.raw.map(value => corpus.translit[value]),
-    selectedRadius: selected.node.radius,
-  },
-  key: key.map(value => corpus.translit[value]),
-  movement: {
-    centerIndex,
-    movementDistance,
+    key: key.map(value => corpus.translit[value]),
+    farOuter,
+    forwardScan: scan,
     start,
-    startRune: corpus.translit[at(start)],
-    uniqueStartMirror: startCentered[0].raw.map(value => corpus.translit[value]),
+    startMirror: startMirror.raw.map(value => corpus.translit[value]),
     readDirection,
     ciphertextCells,
   },
   decryptedOnlyAfterSelection: plaintext.map(value => corpus.translit[value]),
+  immediateTransferControl: {
+    endpoint: seeEndpoint,
+    sameRadiusNeighborHits: transferHits.length,
+    selectedAnchor: transferHits[0].anchor,
+    selectedNode: transferHits[0].node.raw.map(value => corpus.translit[value]),
+    decision:
+      'The same radius-neighborhood rule does not transfer as a universal boundary law.',
+  },
   decision:
-    'The first matching totient-radius in the boundary neighborhood uniquely selects EA-J-EA and, with the node-derived 14-cell move plus boundary ray toward the prior endpoint, recovers SEE before language scoring. The rule remains a candidate until it transfers to another untouched boundary transition or is independently clued.',
+    'Existing radius matching plus source-incidence and prior-endpoint orientation deterministically extends the frozen DEATH state by one block to SEE without language scoring. The transition remains post-hoc and mode-specific because blind reuse at the next boundary selects another branch.',
 }, null, 2));
