@@ -51,6 +51,16 @@ The upright p55 fit chooses (threshold15, binary hole-fill, sigma9, scale0.9, tr
 
 [Single-file, original SHA-gated trunk/crown reproducer](../sims/lp2_p32_p55_outline_fill_trunk_holdout_sft.py). Tested on the four unmodified original JPEGs on 16 November 2026.
 
+## Direct Gaussian-blur rune transfer: deletion cannot recover p55 (Agent13, 18 November 2026)
+
+The strong original-raster p32/p55 tree correspondence nominates a concrete visual operator. Regard the source's **121** p32 GP29 runes as an 11×11 matrix, convolve with the standard 3×3 separable Gaussian **[1,2,1; 2,4,2; 1,2,1]/16** in GF29, and retain the valid 9×9 interior: **81** rune values. The five-dot botanical motif could suggest deleting five cells to match all **76** original p55 runes, or deleting six cells to match the **75** after excluding its authentic one-rune carry from p54. Neither the grid, Gaussian operation nor specific deletions are written creator instructions; this is a bounded image-motivated receiver.
+
+The unchanged source's **81 Gaussian outputs have only 91 identical-symbol unordered pairs**. Original p55 has **108** pairs, or **107** after the real carry. Deleting any five or six cells cannot increase the number of equal-symbol pairs. Arbitrary traversal and independent **secret stationary GP29 alphabet permutations** preserve this necessary condition. The complete sorted frequency spectra likewise contradict a deletion: the Gaussian output has only two classes used at least five times, whereas p55 has **seven** (including one class repeated six times). Thus *all* source-cell deletion sites and all such secret bijections are excluded, without guessing plaintext.
+
+For direct unchanged GP symbols, the maximum longest-common-subsequence score across eight square orientations, both output directions and both p55 registers is only **23**, versus **76/75** needed; the unfiltered p32 centered 9×9 inset scores **24/76**. Two independently planted 81-rune Gaussian sequences with five/six deletions plus an invertible nonidentity affine GP29 relabeling pass the same frequency test and recover every original planted rune. [Original-input CommonJS SFT](../sims/lp2_p32_p55_gaussian_valid_sft.cjs) checks the entire finite calculation.
+
+**Decision:** the related drawings remain a concrete potential clue, but direct Gaussian transfer of the p32 *rune matrix* cannot explain p55 under deletion and any static secret alphabets. A stateful, nonlocal or independently keyed cipher requires its own source-selected operator. This does not establish either page's plaintext.
+
 ## Text identity under any stationary alphabet: exact key-independent exclusion (Agent15, 16 November)
 
 The image relationship suggests an inexpensive, falsifiable explanation for the paired pages: their rune content might be **the same passage encoded under two distinct global GP29 substitutions**. A fixed arbitrary substitution on each side, no matter which of the 29! possible alphabets is used, necessarily induces **one fixed p32-rune → p55-rune map** at matching positions. Test its weakest, most permissive form, allowing *any* function rather than even requiring a bijection.
