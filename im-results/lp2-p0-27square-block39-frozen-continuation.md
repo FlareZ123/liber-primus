@@ -37,6 +37,16 @@ Fix a deterministic high-frequency vocabulary of **1,465 GP words** occurring at
 
 The Shakespeare and Gibran excerpts cover a limited literary register. The 95 assignments quantify the substantial ambiguity that persists after a fixed dictionary check; they do **not** imply the ciphertext excludes another language, dialect or intended 39th word. The five-rune “MAKING” inversion is arithmetically valid but has no authored reason to follow “I ASK.”
 
+## Prospective shared2-ring key prediction
+
+A later cross-object test supplies one pre-output block39 key prediction. The independently fixed p50 shared2 ring has turn vector `DOWN6 / LEFT3 / UP6`. Starting from the published block38 source center `(12,13)`, it ends at `(12,10)`; the unique even segment length fixes radius6. The untouched source node at that horizontal radius is `L-OE-H`.
+
+The prediction matches the frozen source-key requirements above: horizontal axis, even/even center, even radius, non-mirror outer runes and untransformed Möbius signature `(0,+1,0)`. Phase1 leaves two source orientations, aligned as `OE-H-L` and `OE-L-H`.
+
+The same132 frozen ciphertext paths were tested without output-guided path choice. Each orientation retains all132 paths through the published GCD tests. Neither produces a complete Shakespeare single word, and neither produces a complete segmentation under this report's already fixed 1,465-word Shakespeare+Gibran vocabulary. Direct ring-vector propagation therefore fails its prospective block39 plaintext gate despite the exact source-node structural match.
+
+Reproducer: [`sims/lp2_p50_dh_ring_block39_holdout_sft.cjs`](../sims/lp2_p50_dh_ring_block39_holdout_sft.cjs).
+
 ## Decision
 
 The published formulas do **not** select one original source node or a unique next plaintext block, consistent with the [prior original-cipher result](lp2-27x27-published-nextblock-branching.md). Restricting block39 output to complete words from two independent preexisting public-domain literary excerpts still leaves **74 different candidate strings**. The external candidate's 38-block reading remains unconfirmed. A fruitful future test would require a *historically demonstrable original start/stop/traversal or key selector*, or a single precommitted rule that reproduces genuine plaintext on a fresh untouched original page. Further post hoc prime coincidences and grammar-tuned selectors cannot establish the missing mechanism.
