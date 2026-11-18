@@ -244,7 +244,7 @@ console.log("GLOBAL_TRIPLE_WITNESS",JSON.stringify(triple));
 console.log("MODES_SEARCHED",totalModes,"PAIR_TRACE_MATCHES",totalPair);
 console.log("DECISION",triple
   ?"At least one shared π relation graph survives three whole source words; this is only a lexical feasibility witness, not a complete paragraph/key."
-  :"No ONE global π can explain three original long words under pinned lexicon, all page-local marker skip histories and either sign for every fully explored mode.");
+  :"No ONE global π can explain three original long words under pinned lexicon, all chapter-local marker skip histories and either sign for every fully explored mode.");
 
 
 /**

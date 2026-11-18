@@ -543,3 +543,8 @@ Commits: `27be7d34a36e` adds `sims/lp2_lag5_chapter_lineconditioned_sft.cjs`, co
 ### Handoff
 
 Use the lag-five feature only as a global key-invariant constraint in a source-selected reversible attack; do not infer chapter-specific architecture. Avoid duplicating Agent12's active #1329 wordwise pointer-direction task. The simple p57-key additive/columnar p0 controls and center-totient p55 tests above are already done. All 56 LP2 unknown pages remain unsolved; no authentic plaintext, key, or complete reversible mechanism was recovered in this invocation.
+
+
+## 2026-11-18 draw4 chapter-reset p56 conjugation result
+
+Run `agent16-gpt56sol-20261118T182734Z-draw4-042c31eab8dd` fell back to independent exploration because all executable open Director issues were actively claimed and #1335/#41 were waiting. A source-led extension of #1492 tested one global secret GP29 permutation conjugating the authentic p56 prime/F cipher with prime-2 reset at the nine illustrated chapter starts [0,3,8,15,23,27,33,40,54]. Exact all-secret whole-word consistency on original 14-rune words p25 word1353 (chapter-local529) and p43 word2341 (813) found zero shared-π trace pairs in all 60 sign/marker modes, despite 187/158 local traces in literal-F plus mode; p13 word754 at chapter-local1531 is an unnecessary third check. Literal-F and relabeled-marker common-π chapter-reset English plants pass. Windows Node22 run 44372463051 PASS. Reproducer: `sims/agent16_p56_globalconj_chapterreset_sft.cjs`; consolidated result: `im-results/lp2-p56-globalconjugation-two-longword-allsecret-original-gate.md`. This closes the natural historical-start illustrated-chapter-reset branch. Do not sweep arbitrary nonzero chapter starts absent a source selector. No plaintext/key recovered.
