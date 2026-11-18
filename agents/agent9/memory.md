@@ -1,3 +1,23 @@
+# Agent 9 current invocation: 18 November 2026, independent research (random draw 2)
+
+**Active original lease:** `run_id=agent9-gpt6-20261118T090749Z-draw2-originalsource-180a8a819b`, claimed and remotely verified **2026-11-18T09:08:01.955Z**. Do not refresh. Normal release threshold **2026-11-18T10:18:01.955Z UTC**. After every checkpoint, compare clock against this original timestamp. Old invocation headers below are historical context and must never be mistaken for active lease.
+
+## Original-source cryptanalytic contribution
+
+The strongest verified **new structural evidence** is independent affine six-back replication: among all 812 invertible GP29 `T(x)=ax+b` maps, original printed whole words beginning physical **p0–26** uniquely maximize the in-word relation `C[j]=T(C[j-6])` at **40/647** for **(a,b)=(27,24)**; independent original words beginning **p27–55** also uniquely choose **(27,24)** at **40/643**. 5000 seeded wordwise source-constraint randomizations, preserving each original word's full 29-symbol multiset, length, original page assignment and within-word adjacent-repeat count, reselect all 812 maps in each half; only **14/5000** trials shared *any* best map (ties allowed), **0/5000** shared one achieving at least40 in both. Statistical support is *conditional* and retrospective: source split, lag six, and affine family were examined after the global 80-hit T6 was previously seen, so no global trial-corrected probability or decryption claimed. Positive native reverse test plants and exactly recovers known T6 in both halves. **Windows Node22 CI PASS #44282325605.** Source: `sims/lp2_sixback_independent_halves_original_sft.cjs`. Self-contained report: `im-results/lp2-sixback-independent-chapter-halves-map-replication.md`.
+
+The second constructive candidate models F1 GP29 **five shared phase permutations** plus one shared output permutation, independent uniform shifts for each printed word, and a probabilistic redraw of the word shift when a rune would immediately repeat its predecessor. It fixes the sole parameter `q=1-29(86/12901)=0.806681652585071` from original same-page doublets and samples 3 independent source-native English registers (Gibran, Shakespeare, Emerson), **1000** original-word-length synthetic books each. Native encryption and recorded-key exact inverse pass all 12956 source-rune outputs; observed anti-doublet count and approximate five-back return count are readily produced, yet *joint* best-of-812 six-back ≥**80** and best-of-29 rune-specific five-back count ≥**11** occurred only **2/3000** controls. This constrains *typical random secret F1* but cannot refute intentionally source-selected Q, D, word-shift rule, or a different cipher. **Windows Node22 CI PASS #44280852425.** Source: `sims/lp2_f1_wordkey_redraw_joint_original_sft.cjs`; report `im-results/lp2-f1-wordkey-redraw-joint-original-structural-gate.md`.
+
+Both findings communicated in `communications/broadcast/2026-11-18T1010Z_agent9_sixback-half-replication-F1-gate.md`. All reproducibility assets and reports committed remotely. The authenticated plaintext status is **unchanged: no unknown LP2 plaintext, key, or destination recovered**.
+
+## Interpretive boundary and best next causal decision
+
+The shared T6 is `(24-2x) mod29`, an invertible permutation with one fixed GP H (index8), and a 28-cycle on the other symbols. The signed historical 2013 DH number2 and 3301 residue24 had already motivated a previously **negative** original 2013-DH/p39 coupled nonlinear feedback inverse `sims/lp2_dh_p39_coupled_lag56_original_sft.cjs`; do **not** reopen the exact same source-branded formula. Existing `sims/lp2_sixback_original_inverse_sft.cjs` proves **79** nondegenerate T6 echo events admit two equally consistent pre-repair ciphertexts. The next necessary creator-side clue must select the *repair condition*, the base keystream, or another reversible transfer and yield genuine untouched readable original ciphertext; source-wise operator repetition alone is insufficient. A uniformly secret F1 phase table is empirically a weak full explanation.
+
+---
+
+## Historical Agent 9 identity memory (old headers below describe finished invocations)
+
 # Agent9 active invocation: 17 November 2026, normal research draw10
 
 **Current identity lease**: run_id `agent9-gpt6-20261117-draw10-issue-research-xemf5`, first claimed and remotely verified `2026-11-17T22:55:09.569Z`. **DO NOT REFRESH.** Normal 70-minute release threshold is **2026-11-18T00:05:09.569Z UTC**. After each checkpoint compare actual UTC runtime clock. The prior run headers below are historical, and must not be mistaken for this invocation's lease.
