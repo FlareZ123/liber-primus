@@ -68,6 +68,38 @@ There are exactly six:
 
 So p27 is the only comparable source object on which the prime-ordinal operation is even defined. Within its fixed 19-rune multiset, I/31 is the only rune-prime present that divides186. A within-span random-position control would therefore land on the required factor with probability 1/19. This is a scale diagnostic, not a prospective authorship probability.
 
+## Exact local red13 loop across the comparable family
+
+The marker and red-span counts support a simpler forward construction than dividing the ordinal.
+
+For each of the six comparable red13 objects, freeze the same local rule:
+
+1. `gap = red_length - 13`;
+2. take the **13th rune** of that red span;
+3. use that rune's GP prime value `r`;
+4. form table address `a = r * gap`;
+5. if `a < 256`, read original table cell `a`.
+
+| Page | length | gap | 13th rune / prime | address | table token | base59 / base60 value | returns length? |
+|---:|---:|---:|---|---:|---|---|---|
+| 0 | 13 | 0 | C / 13 | 0 | `3N` | 200 / 203 | no |
+| 3 | 16 | 3 | H / 23 | 69 | `1D` | 72 / 73 | no |
+| 7 | 14 | 1 | EA / 109 | 109 | `34` | 181 / 184 | no |
+| 23 | 16 | 3 | T / 59 | 177 | `2B` | 129 / 131 | no |
+| **27** | **19** | **6** | **I / 31** | **186** | **`0J`** | **19 / 19** | **yes** |
+| 53 | 51 | 38 | J / 37 | 1406 | out of range | — | no |
+
+P27 is the **only** comparable red13 object whose local construction closes back to its own red-span length. The same address186 is independently derived from the whole p27 heading because its GP-prime sum1109 is prime #186. Thus two source computations converge before the DH interpretation is applied:
+
+`whole-heading prime ordinal = 186`
+
+`prime(13th rune) * (red length - 13) = 31 * 6 = 186`
+
+and original table cell186 returns:
+
+`0J = 19 = red length`.
+
+This gives a closed source loop **19 → 6 and I/31 → 186 → 19**. It is a stronger human-solve-path motivation than the backward quotient `186/31=6`: the visible 19-rune span and 13-dot mark supply 6 directly, then multiplication agrees with the independently obtained prime ordinal.
 ## Marker factor becomes a p50 coordinate
 
 The p50 numeral rectangle has 32 rows and 8 columns. The marker-derived pair
@@ -123,7 +155,7 @@ The route therefore contains the complete signed worked-example structure:
 | server public | 8 | pointer-walk length |
 | client public | 19 | p27 length/initial index and cell186 value |
 | shared | 2 | start column |
-| server secret | 6 | marker-derived `186 / prime(I)=186/31` |
+| server secret | 6 | visible `19−13`; independently `prime(I)×6 = 31×6 = 186` |
 | start address | 186 | p27 prime ordinal and base59 reading of cell254 |
 | endpoint address | 189 | base60 reading of cell254 and base59 fixed point |
 
@@ -157,13 +189,13 @@ This new relation can be evaluated **without any LP2 repeated-word positions**:
 
 1. census all red spans at least13 runes long followed immediately by red13;
 2. p27 alone has a prime GP-prime sum;
-3. its visible marker selects I/31 under the sole simple indexing convention that divides the ordinal;
-4. the quotient is the signed DH server secret6;
+3. its visible marker selects I/31, while the red length minus marker count gives `19−13=6`;
+4. `31×6=186`, independently reproducing the whole-heading prime ordinal, and 6 is the signed DH server secret;
 5. zero-based coordinate (31,6) selects `39`;
 6. base59 reads it as the source ordinal/start address186, while base60 reads it as the signed endpoint address189;
 7. the independent base59 pointer walk connects those same addresses in the signed server-public count8.
 
-This is therefore a genuine **repeat-independent source-internal discriminator** in favor of the drop-`f` base59 interpretation for this mechanism.
+This is therefore a genuine **repeat-independent source-internal discriminator** for the dual-radix DH mechanism: base59 is selected for the pointer traversal, while the same source-selected token `39` uses both frozen readings to expose the DH start and endpoint.
 
 It does not yet amount to first-party textual authentication of a global numeral alphabet. The operation was discovered after extensive table study, and the manuscript does not literally say “take the 13th rune, divide the prime ordinal, use (31,6) as a coordinate, reinterpret 39 in two radices.” The correct update is that #1615's “no repeat-independent discriminator exists” statement is now superseded. Base59 is materially source-favored by a finite closure, while global map authentication remains provisional until the same rule predicts untouched source behavior or a first-party clue names the operation.
 
