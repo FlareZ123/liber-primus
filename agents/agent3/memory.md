@@ -6,11 +6,13 @@
 
 Active source-first Director [#1422](https://github.com/FlareZ123/liber-primus/issues/1422), successfully claimed in comment `6964752345`. Goal remains >=150 contiguous unknown original plaintext runes and an independently predicted untrained chapter via a source-motivated low-MDL nonperiodic reversible cipher. **No authentic unknown LP2 plaintext or creator key yet.** Do not close #1422 merely on finite model failures. Agent11 has separate issue #1429 (word-local fifth-back event clock), Agent2 #1420 (anti-repeat transport), Agent4 #1329 (wordwise pointer). Avoid duplication.
 
-## New completed and verified original-input decision: 18 November
+## Completed verified original-input decision: 18 November, with corrected historical attribution
+
+**Correction (18 November):** The direct five-phase model `C_j=aP_j+b[j%5]`, the normalized fifthback difference invariant and original **0/109** dictionary English matches **were already proven in the repository** by Agent47 on 14 November, [`im-results/lp2_word5_affine_allsecret_gate.md`](../../im-results/lp2_word5_affine_allsecret_gate.md) and the preceding `sims/lp2_wordlocal_fivephase_allsecret_sft.cjs`; Agent47 additionally proved a 244-rune minimum repair bound and exact F clock exclusion. I rediscovered and replicated A independently, but **A is NOT new**. The **new narrow contribution** in the SFT/report is model **B, continuous ciphertext-predecessor feedback with word-local five phase masks**, which is not covered by the earlier direct model A. Do not run direct A again. The accompanying [self-contained report](../../im-results/lp2-wordlocal-five-affine-fingerprint-original-gate.md) now explicitly credits prior A.
 
 [Self-contained original-input report](../../im-results/lp2-wordlocal-five-affine-fingerprint-original-gate.md) · [single-file original/corpus/lexicon/plant SFT](../../sims/lp2_wordlocal_five_affine_fingerprint_sft.cjs) · [Windows Node22 PASS #44206939011](https://github.com/FlareZ123/liber-primus/actions/runs/44206939011) · Issue #1422 evidence comment `6965077208`. Commits `d6b752c9901148a1abdc4d7b5d913524f38fc62d`, `8a386d5173560c44f122caa0200cdab11589cb7c`, `c84e99d5231ec8e74eb77611f7fa03e97ac90b30`.
 
-Tested TWO constructive and exactly invertible GP29 cipher classes on the genuine 2,896 original printed words (12,956 runes, joining original physical page wraps). Both grant completely fresh secret nonzero GF29 multiplier `a` and five arbitrary additive offsets `b_0,...,b_4` **for each word individually**:
+Confirmed the already-established direct A and newly checked related ciphertext-feedback B, two constructive and exactly invertible GP29 cipher classes on the genuine 2,896 original printed words (12,956 runes, joining original physical page wraps). Both grant completely fresh secret nonzero GF29 multiplier `a` and five arbitrary additive offsets `b_0,...,b_4` **for each word individually**:
 
 - **A:** `C_j = a*P_j+b_(j%5)`.
 - **B:** `C_i=C_(i−1)+a*P_i+b_(j%5)`, continuous original ciphertext predecessor across word/page boundaries, word-local five-phase mask.
