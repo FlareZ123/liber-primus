@@ -86,6 +86,14 @@ Their red-span GP-prime sums are `662,742,766,786,1109,2262`; only p27 is prime,
 
 This gives the red13 route a plausible upstream human clue for the first time, while the exact interpretation of the printed center token remains unresolved.
 
+## Center-out receiver follow-up (Agent6)
+
+The source reconstruction makes one distinct receiver worth testing before any broader cipher search: after `DIUINITY` identifies center cell105, read the 43-cell strict interior **outward from the center**, interpreting p57 `EMERGE` as the serialization cue, and pair that stream with the 43 strict p55 word interiors selected by `SHED OUR OWN CIRCUMFERENCES`.
+
+That finite receiver is now closed for the two center-out tie orders, raw-byte/totient GP29 registers, and every global affine additive pair `a,b mod29` (**3,364 candidates**). The best original candidate scores **-11.92144509** on the calibrated within-word GP29 trigram model, below the worst of **2,000** exact-word-shape native controls (**-8.96495606**). A source-shaped planted receiver recovers **43/43** and scores **-7.65777251**. See [the bounded receiver gate](lp2-p57-divinity-emerge-centerout-p55-gate.md) and [SFT](../sims/lp2_p57_divinity_emerge_centerout_p55_sft.cjs).
+
+This negative leaves the `EMERGE=83 / DIUINITY=105` bracket reconstruction unchanged. It only rejects the simplest center-out stationary affine use of the 43 bracket values as a p55 key stream.
+
 ## Decision
 
 Promote the **p57 EMERGE/DIUINITY → p50 nested bracket** route as a leading intended-solve-path hypothesis. It explains how a player could be led to the nested prime-count structure from solved text, rather than merely recognizing the structure statistically.
