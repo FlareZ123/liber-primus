@@ -172,6 +172,10 @@ const nativeChapters = chapters.map((c) => {
   return part;
 });
 const planted1033Chapter = chaptersAt(nativeChapters, 1033);
+assert.deepEqual(chaptersAt(nativeChapters.map((p) => additiveEncode(p, 1033)), 1033), planted1033Chapter);
+assert.deepEqual(chaptersAt(nativeChapters.map((p) => constrainedEncode(p, 1033)), 1033, rankSteps),
+  planted1033Chapter);
+for (const part of nativeChapters) assert.deepEqual(constrainedDecode(constrainedEncode(part, 1033), 1033), part);
 assert.deepEqual([original1033Chapter, original1033ChapterRank, planted1033Chapter],
   [{ pairs: 4700, equal: 181 }, { pairs: 4700, equal: 180 }, { pairs: 4700, equal: 269 }]);
 
@@ -184,6 +188,10 @@ const nativePages = originalPages.map((p) => {
   return part;
 });
 const plantedPageAligned = pageAlignedPairs(nativePages);
+assert.deepEqual(pageAlignedPairs(nativePages.map((p) => additiveEncode(p, 1033))), plantedPageAligned);
+assert.deepEqual(pageAlignedPairs(nativePages.map((p) => rankSteps(constrainedEncode(p, 1033)))),
+  plantedPageAligned);
+for (const part of nativePages) assert.deepEqual(constrainedDecode(constrainedEncode(part, 1033), 1033), part);
 assert.deepEqual([originalPageAligned, originalPageRank, plantedPageAligned],
   [{ pairs: 311132, equal: 10751 }, { pairs: 311132, equal: 11058 }, { pairs: 311132, equal: 18657 }]);
 
