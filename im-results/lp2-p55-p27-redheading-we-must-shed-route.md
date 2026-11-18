@@ -115,6 +115,26 @@ The p57 text is the 2013 \`761.mp3\` "Instar Emergence" parable. In the document
 
 This makes the p27 parable match historically meaningful. One exact historical receiver was tested without an alignment search: original p27 `44.jpg` and p55 `72.jpg` were each XORed byte-for-byte from offset zero with the preserved `761.mp3`, matching the 2013 XOR convention. Both outputs remained near-max-entropy binary data, with no recognized file signature at byte zero or within the first 64 KiB. That exact image-level receiver is closed; offset searches are not source-selected.
 
+## Terminal-prime serializer candidate
+
+The selected eight-rune \`DIVINITY\` interior now yields a typed historical value without applying another generic cipher.
+
+Its GP-index sum is **103**, and original p50 cell103 is the literal token **\`3Q\`**. The red13/DH circuit independently reconstructs the server private exponent **6** from \(19-13\). The **sixth rune** of \`NSOOCAEY\` has GP index **24**. In the documented 2013 server's BASE29 alphabet, digit24 is **\`O\`**.
+
+Therefore the source-derived serialization is:
+
+\[
+T[103]\;||\;\mathrm{BASE29digit}(24)=\texttt{3Q}||\texttt{O}=\texttt{3QO}.
+\]
+
+The documented 2013 server protocol gives the explicit example **\`BASE29 3301 -> 3QO\`**, so this reconstructs the terminal Cicada prime **3301**.
+
+A widened manuscript control keeps the same serializer and scans every contiguous eight-rune window inside all 2,896 complete p0-p55 words. There are **731** such windows. \`NSOOCAEY\` is the **only** one that serializes to \`3QO\`.
+
+This is still a post-discovery construction because combining a p50 two-character token with one BASE29 digit was discovered from the selected object. Its strength is the convergence of independently fixed ingredients: the manuscript-unique DIVINITY interior, p50 address103, the DH-derived secret6, and an exact historical protocol output.
+
+The concurrent p27/DH \`EMERGE\` circuit independently routes the table walk to the p55/p56 page pair. That creates an obvious receiver test: apply the authenticated p56 prime/totient cipher to p55 beginning at recovered prime3301. In the p56 clock, prime3301 is zero-based prime index463. The exact F-transparent inverse becomes impossible after **11/76** p55 runes. Using historical pause prime1033, index173, fails after **59/76**. Thus neither 3301 nor 1033 is a direct p56 clock for p55 under the solved forward orientation.
+
 ## Receiver gates already closed
 
 Several obvious receivers were tested and rejected:
@@ -133,6 +153,6 @@ These exclusions prevent the strong p27 parser from becoming a license for uncon
 
 The p55 -> p27 handoff now has a coherent human-facing reason to exist. The exact handoff line uniquely supplies **WE MUST**; nested heading words uniquely supply **LICE THE INSTAR** and **TO THE**; literal circumference shedding matches the 13-dot mark; the body contains a manuscript-unique **DIVINITY** interior selected by the same operation; the remaining structure closes on **WITHIN**, **AND=215**, and the upstream **EMERGE=300** boundary.
 
-The remaining cryptanalytic gap is the receiver after that instruction. The selected \`NSOOCAEY\` object has prime sum376, while direct solved-style Vigenere, p56-prime, and exact historical image-XOR receivers fail. The next useful work must identify what **EMERGE** does to that selected object, or connect it to an independently authored receiver. Keep this in \`im-results/\` until the route produces unknown plaintext, an authentic key application, or another independently verifiable destination.
+The selected `NSOOCAEY` object now reconstructs terminal prime **3301** through p50, DH secret6 and the historical BASE29 protocol. The p27/DH `EMERGE` circuit also routes to p55/p56. A direct p56 clock beginning at prime3301 is algebraically excluded on p55, so the next useful work is to determine what 3301 selects **before** the p55/p56 receiver, or whether the page-pair route defines a different authenticated data operation. Keep this in `im-results/` until the circuit recovers unknown plaintext, an authentic key application, or another independently verifiable destination.
 
 Reproduce the source arithmetic and manuscript-wide controls with [the SFT](../sims/lp2_p27_redheading_we_must_shed_sft.cjs).

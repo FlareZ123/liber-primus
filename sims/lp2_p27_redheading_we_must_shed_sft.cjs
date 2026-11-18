@@ -527,6 +527,99 @@ assert.deepEqual(
   [[27, 5]]
 );
 
+
+// Terminal-prime serializer candidate. The documented 2013 server protocol
+// explicitly gives BASE29 3301 -> 3QO. The selected DIVINITY interior has
+// index-sum103, and p50 cell103 literally prints 3Q. The independently
+// reconstructed DH server secret is headingLength-markerDots = 6; the sixth
+// rune of the DIVINITY interior has GP index24, which is digit O in BASE29.
+const p50Tokens = grid.pages.flatMap(page => page.tokens);
+assert.equal(p50Tokens.length, 256);
+const base29Alphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
+const dhServerSecret = heading.length - marker[1];
+assert.equal(dhServerSecret, 6);
+assert.equal(indexSum(divinityWithin), 103);
+assert.equal(p50Tokens[103], "3Q");
+assert.equal(divinityWithin[dhServerSecret - 1], 24);
+assert.equal(base29Alphabet[24], "O");
+const terminalSerialized =
+  p50Tokens[indexSum(divinityWithin)] +
+  base29Alphabet[divinityWithin[dhServerSecret - 1]];
+assert.equal(terminalSerialized, "3QO");
+/** @param {string} encoded */
+function decodeBase29(encoded) {
+  let value = 0;
+  for (const ch of encoded) {
+    const digit = base29Alphabet.indexOf(ch);
+    assert.ok(digit >= 0);
+    value = value * 29 + digit;
+  }
+  return value;
+}
+assert.equal(decodeBase29(terminalSerialized), 3301);
+
+// Discovery-width control: under this exact serializer, NSOOCAEY is the sole
+// hit across every contiguous eight-rune window inside all 2,896 complete
+// unknown words.
+let eightWindows = 0;
+const terminalHits = [];
+for (const word of completeWords) {
+  for (let start = 0; start + 8 <= word.length; start++) {
+    const window = word.slice(start, start + 8);
+    eightWindows++;
+    const address = indexSum(window);
+    if (address >= 256) continue;
+    const encoded =
+      p50Tokens[address] + base29Alphabet[window[dhServerSecret - 1]];
+    if (encoded === "3QO") terminalHits.push(translit(window));
+  }
+}
+assert.equal(eightWindows, 731);
+assert.deepEqual(terminalHits, ["NSOOCAEY"]);
+
+// The p27/DH EMERGE table circuit lands on p55/p56. A literal transfer of the
+// solved p56 cipher to p55 beginning at the recovered prime 3301 is impossible
+// after 11 runes, so 3301 is not a p56 clock under that direct reading.
+function firstPrimes(count) {
+  const result = [];
+  for (let candidate = 2; result.length < count; candidate++) {
+    let prime = true;
+    for (let d = 2; d * d <= candidate; d++) {
+      if (candidate % d === 0) {
+        prime = false;
+        break;
+      }
+    }
+    if (prime) result.push(candidate);
+  }
+  return result;
+}
+const receiverPrimes = firstPrimes(600);
+assert.equal(receiverPrimes[463], 3301);
+assert.equal(receiverPrimes[173], 1033);
+const receiverKeys = receiverPrimes.map(prime => (prime - 1) % 29);
+/** @param {number[]} cipher @param {number} start */
+function p56Reach(cipher, start) {
+  let states = new Set([0]);
+  for (let i = 0; i < cipher.length; i++) {
+    const ciphertext = cipher[i];
+    const next = new Set();
+    for (const used of states) {
+      const plain =
+        (ciphertext - receiverKeys[start + used] + 58) % 29;
+      if (plain !== 0) next.add(used + 1);
+      if (ciphertext === 0) next.add(used);
+    }
+    if (!next.size) return i;
+    states = next;
+  }
+  return cipher.length;
+}
+const p55Cipher = corpus.pages.find(page => page.page === 55).indices;
+assert.equal(p55Cipher.length, 76);
+assert.equal(p56Reach(p55Cipher, 463), 11);
+assert.equal(p56Reach(p55Cipher, 173), 59);
+
 console.log(JSON.stringify({
   status: "candidate instruction chain only; no unknown plaintext",
   heading: {fullSum, fullRank, tableByte: grid.bytes[fullRank], firstIndex: heading[0]},
