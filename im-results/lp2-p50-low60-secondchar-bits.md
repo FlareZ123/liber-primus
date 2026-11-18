@@ -98,6 +98,29 @@ The conjunction survives the enlarged post-choice correction. It remains an inte
 
 Reproduction: `sims/lp2_p50_low60_even_conjunction_sft.cjs`.
 
+## Unseen printed-table-page transfer
+
+The chapter holdouts reuse the same 60 physical p50 cells in every fold. To ask whether parity is a transferable property of the printed low digit rather than a feature tied to already-seen cells, a second holdout trains on two of the three original table pages and predicts the third.
+
+Using only leading-zero cells and one two-rate parity model:
+
+- conventional base60 bit0: **+4.142355 nats** summed over the three source-page holdouts, positive on p50 and p51; individual gains are **−0.087661, +0.852980, +3.377036**;
+- drop-`f` bit0: **−0.108779 nats**, positive on only one of three pages.
+
+Across the full 12-feature family of six bits under each documented alphabet, conventional base60 bit0 is the strongest source-page transfer feature. A 10,000-trial token-label permutation null takes the maximum across all 12 features in every trial:
+
+- observed family maximum: **+4.142355 nats**;
+- null mean maximum: **+1.509556**;
+- 95th percentile: **+4.341709**;
+- exceedances: **581/10,000**;
+- add-one familywise **p = 0.0581942**.
+
+This source-page test weakly favors the conventional base60 ordering over the drop-`f` alternative, while remaining just outside the project's conventional 0.05 calibration threshold. Treat base60 as the preferred working parser for the parity diagnostic, not as an authenticated creator-selected radix.
+
+A literal ASCII-code parity control fails: inside the same 60 low cells it scores **−1.618456 held-out nats**, so the effect is tied to the historical numeric ordering rather than the printed glyph's ASCII least significant bit.
+
+Reproduction: `sims/lp2_p50_low60_parity_tablepage_holdout_sft.cjs`.
+
 ## Hold-state consequence: negative
 
 The strong repeat contrast suggests one natural mechanism-level interpretation: the selected parity state could mean **hold an additive key/state**, so ciphertext equality there would preserve plaintext equality. That interpretation predicts more than a delta-zero spike. After removing every repeat event, the remaining 28 ciphertext-difference frequencies at the selected cells should also resemble authentic clear-GP plaintext transition differences more closely.
@@ -134,4 +157,4 @@ Two cautions remain decisive:
 
 Future p50 mechanism work may use second-character bit 0 as a **predeclared diagnostic**. It should require a source-selected operation that explains why that bit changes self-transition behavior, and should test both documented alphabet readings unless a first-party source fixes one.
 
-Reproduction: `sims/lp2_p50_low60_secondchar_bits_sft.cjs` and `sims/lp2_p50_low60_even_conjunction_sft.cjs`.
+Reproduction: `sims/lp2_p50_low60_secondchar_bits_sft.cjs`, `sims/lp2_p50_low60_even_conjunction_sft.cjs`, `sims/lp2_p50_low60_parity_tablepage_holdout_sft.cjs`, and `sims/lp2_p50_low60_hold_transition_consequence_sft.cjs`.
