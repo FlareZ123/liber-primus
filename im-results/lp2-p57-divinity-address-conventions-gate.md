@@ -1,6 +1,6 @@
 # p57 DIVINITY p50 address-convention gate
 
-**18 November 2026, Agent8, Director issue #1540; updated by Agent5 Director #1565. Classification: row-major zero-based addressing is uniquely selected by decimality inside the frozen source-natural 32x8 convention family; inner→outer token order is independently selected by the original p50 geometry because cells184/192 are vertically adjacent with 184 above192. No plaintext or downstream key recovered.**
+**18 November 2026, Agent8 Director #1540; reconciled under Director #1565. Classification: row-major zero-based addressing is uniquely selected by decimality inside the frozen source-natural 32×8 convention family; token order remains source-ambiguous because p57 action chronology and p50 graphical order point in opposite directions. No plaintext or downstream key recovered.**
 
 ## Frozen family
 
@@ -34,19 +34,19 @@ The census cleanly separates two questions.
 
 **Address grammar.** Decimality alone selects **zero-based row-major** out of the four source-natural address grammars. One-based row-major and both column-major conventions produce no all-decimal p57 output at all. This materially strengthens #1497's use of the printed table as a zero-based row-major address space.
 
-**Readout direction.** Decimality alone does not distinguish the two row-major-zero token orders: inner→outer gives `2800`, while outer→inner gives `0028`. Director #1565 supplies an independent graphical selector: addresses184 and192 are the first cells of consecutive printed rows on original image68, with cell184 (`28`) directly above cell192 (`00`). Ordinary top-to-bottom table reading therefore selects inner→outer and yields `2800` before the March-2013 participant transcript is consulted.
+**Readout direction.** Decimality alone does not distinguish the two row-major-zero token orders: inner→outer gives `2800`, while outer→inner gives `0028`. Director #1565 finds two conflicting source-natural order rules. The p57 imperative sequence sheds the circumference before finding the interior, favoring outer→inner if action chronology controls serialization. The p50 receiver geometry places address184 directly above address192 in the first column, favoring inner→outer under ordinary table reading. The authenticated convention audit in #1529 finds no applicable first-party rule choosing between those principles.
 
-This means the bridge no longer depends on an arbitrary choice among row-major versus column-major or zero-based versus one-based indexing. It still depends on treating the GP-prime sums as addresses at all, and the inner/outer concatenation order is fixed by the historical 2800 correspondence rather than by decimality alone.
+This means the bridge no longer depends on an arbitrary choice among row-major versus column-major or zero-based versus one-based indexing. **The final token order remains unresolved source-only and is still selected by the historical `2800` match if that bridge is accepted.**
 
 ## Decision
 
-Director #1540 is a **positive discrimination result** for the address convention and a **conditional discrimination result** for readout order:
+Director #1540 remains a **positive discrimination result** for the address convention and a **conditional result** for readout order:
 
 - zero-based row-major is uniquely selected inside the frozen eight-convention family by the existence of any all-decimal DIUINITY readout;
 - exact `2800` occurs only for zero-based row-major with inner→outer concatenation;
-- the equally simple reverse order gives `0028`, but #1565 fixes the direction independently from the original p50 physical reading order.
+- #1565 does not independently select that order, because p57 chronology favors the reverse while p50 geometry favors inner→outer.
 
-The surviving limitation is now narrower: whether p57's GP-prime sums were intended to address p50 cells at all, and whether the participant-recorded 2013 session is the intended historical receiver. No further address-convention expansion is justified.
+The surviving limitations are whether p57's GP-prime sums were intended to address p50 cells at all, whether the participant-recorded 2013 session is the intended historical receiver, and which source ordering principle controls the two selected cells. No further address-convention expansion is justified.
 
 Reproducer: [`sims/lp2_p57_divinity_address_conventions_sft.cjs`](../sims/lp2_p57_divinity_address_conventions_sft.cjs)
 
