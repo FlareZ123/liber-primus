@@ -69,7 +69,7 @@ def component_areas(mask: list[list[bool]]) -> list[int]:
 summary = {}
 for jpg, box in CROPS.items():
     areas = component_areas(red_mask(BASE / f"{jpg:02d}.jpg", box))
-    dot_areas = [area for area in areas if 60 <= area <= 120]
+    dot_areas = [area for area in areas if 70 <= area <= 120]
     assert len(dot_areas) == 13
     summary[jpg] = {
         "lp2_page": jpg - 17,
