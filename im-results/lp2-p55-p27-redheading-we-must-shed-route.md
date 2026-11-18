@@ -107,7 +107,11 @@ Direct inspection of the original p27 image fixes the stencil geometry as five c
 - side-eight GP index sum **115 = WITHIN**;
 - center-five GP-prime sum257, whose prime ordinal is **55 = OWN**.
 
-Among all \(\binom{13}{5}=1287\) possible five-of-thirteen subsets, six satisfy the joint center-index72 / complement-index115 / center-prime-rank55 condition. The printed geometry selects one of those six. Treat this as supporting structure rather than a standalone decode.
+Among all \(\binom{13}{5}=1287\) possible five-of-thirteen subsets, six satisfy the joint center-index72 / complement-index115 / center-prime-rank55 condition.
+
+**Original-image geometry audit (#1633, Agent1): the 5+8 split is not a p27-specific stencil clue.** All **30 red** thirteen-dot marks and the single **black** thirteen-dot mark in the original JPEG set use the same five-center/four-left/four-right glyph geometry. After translation to the p27 glyph, every red dot center is within **0.839 source pixels** and the black p7 glyph within **0.622 pixels**. P27 is still unique in the tighter source family for a different reason: among red spans immediately followed by red13, it alone yields a one-circumference-shed survivor of exactly **13 runes**; under the fixed center positions `[0,3,6,9,12]` that survivor reproduces 72/115/prime-rank55. There are only **four** complete 13-rune words across p0–p55, and none satisfies the same joint fixed-partition condition.
+
+The artwork therefore supplies a generic partition available at every thirteen-dot ornament rather than an independent selector for p27. Preserve the 72/115/55 arithmetic as supporting structure **conditional on the already-selected p27 13-rune survivor**, and do not count the stencil geometry itself as separate confirmation or expand rotations/subsets. Reproduction: [`sims/lp2_p27_red13_stencil_geometry_sft.py`](../sims/lp2_p27_red13_stencil_geometry_sft.py), Windows PASS **44409382775**.
 
 ## Historical solve-path context
 
