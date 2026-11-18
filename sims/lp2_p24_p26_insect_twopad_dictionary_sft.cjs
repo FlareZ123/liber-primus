@@ -235,3 +235,111 @@ function xorMain() {
   console.log('PASS: all shared five-bit XOR pad keys contradict eight original word overlaps within pinned dictionary');
 }
 xorMain();
+
+
+/** Print-line positions for the two original 12-line illustrated pages. */
+function physicalLines(page) {
+  const lines=transcript.split('%')[page].split(/\r?\n/);
+  let start=0;
+  const out=[];
+  for(const line of lines){
+    const n=[...line].filter(x=>runeCode.has(x)).length;
+    if(!n)continue;
+    out.push({start,len:n,end:start+n});
+    start+=n;
+  }
+  assert.equal(start,corpus.pages[page].indices.length);
+  return out;
+}
+
+/** All original four-plus-rune word overlaps at the same visible print line+column. */
+function rowPadGate(a,b,wa,wb,la,lb,byLen,kind){
+  const result=[];
+  assert.equal(la.length,lb.length);
+  for(let r=0;r<la.length;r++){
+    const al=la[r],bl=lb[r],N=Math.min(al.len,bl.len);
+    for(const wA of wa)for(const wB of wb){
+      const lo=Math.max(0,wA.start-al.start,wB.start-bl.start);
+      const hi=Math.min(N,wA.end-al.start,wB.end-bl.start);
+      const n=hi-lo;
+      if(n<4)continue;
+      const offsetA=al.start+lo-wA.start,offsetB=bl.start+lo-wB.start;
+      const D=Array.from({length:n},(_,i)=>kind==='xor'
+        ? (a[al.start+lo+i]^b[bl.start+lo+i])
+        : (a[al.start+lo+i]-b[bl.start+lo+i]+29)%29);
+      const allowed=new Set((byLen.get(wB.len)||[])
+        .map(w=>w.symbols.slice(offsetB,offsetB+n).join(',')));
+      let count=0;
+      for(const w of byLen.get(wA.len)||[]){
+        const v=w.symbols.slice(offsetA,offsetA+n).map((x,j)=>
+          kind==='xor'?(x^D[j]):(x-D[j]+29)%29).join(',');
+        if(allowed.has(v))count++;
+      }
+      result.push({row:r,lo,hi,n,offA:al.start+lo,offB:bl.start+lo,
+        aLen:wA.len,bLen:wB.len,count});
+    }
+  }
+  return result.sort((x,y)=>y.n-x.n||x.row-y.row||x.lo-y.lo);
+}
+
+function rowMain(){
+  const byLen=dictionary(),wa=words(24),wb=words(26);
+  const la=physicalLines(24),lb=physicalLines(26);
+  assert.deepEqual(la.map(x=>x.len),[22,24,21,24,23,21,22,23,23,22,22,23]);
+  assert.deepEqual(lb.map(x=>x.len),[20,22,23,22,24,23,24,21,19,24,23,20]);
+  const a=corpus.pages[24].indices,b=corpus.pages[26].indices;
+  assert.equal(la.reduce((s,x,i)=>s+Math.min(x.len,lb[i].len),0),255);
+  const add=rowPadGate(a,b,wa,wb,la,lb,byLen,'add');
+  const xor=rowPadGate(a,b,wa,wb,la,lb,byLen,'xor');
+  assert.equal(add.length,17);assert.equal(xor.length,17);
+  const sig=xs=>xs.filter(x=>x.count===0).map(x=>[x.row,x.lo,x.hi,x.n]);
+  assert.deepEqual(sig(add),[[4,4,10,6],[7,4,10,6],[2,13,18,5],
+    [9,3,8,5],[11,0,5,5]]);
+  assert.deepEqual(sig(xor),[[4,4,10,6],[7,4,10,6],[2,13,18,5],
+    [4,17,22,5],[9,3,8,5],[11,0,5,5],[11,15,20,5]]);
+  console.log('Source row-local clock: 12 lines, 255 shared positions');
+  console.log('Native-word zero overlaps: additive',sig(add).length,
+    '/17; ordinal XOR',sig(xor).length,'/17');
+  for(const x of add)console.log('ROW_ADD',JSON.stringify(x));
+  for(const x of xor)console.log('ROW_XOR',JSON.stringify(x));
+
+  // Two full genuine dictionary-English plaintexts in the exact original
+  // 64/59 word slots. Emit both with the identical source-row clock and key.
+  const pa=syntheticPlaintext(24,wa,byLen),pb=syntheticPlaintext(26,wb,byLen);
+  const aAdd=[],bAdd=[],aXor=[],bXor=[],seenKeys=new Set();
+  const order=Array.from({length:32},(_,i)=>(i*7+5)%32);
+  for(let r=0;r<la.length;r++){
+    const count=Math.max(la[r].len,lb[r].len);
+    for(let j=0;j<count;j++){
+      const aa=j<la[r].len?pa[la[r].start+j]:undefined;
+      const bb=j<lb[r].len?pb[lb[r].start+j]:undefined;
+      const key=(7*r*r+11*j+3)%29;
+      const xorKey=order.find(k=>
+        ((aa===undefined||(aa^k)<29)&&(bb===undefined||(bb^k)<29)));
+      assert.ok(Number.isInteger(xorKey));
+      seenKeys.add(xorKey);
+      if(aa!==undefined){
+        aAdd[la[r].start+j]=(aa+key)%29;
+        aXor[la[r].start+j]=aa^xorKey;
+        assert.equal((aAdd[la[r].start+j]-key+29)%29,aa);
+        assert.equal(aXor[la[r].start+j]^xorKey,aa);
+      }
+      if(bb!==undefined){
+        bAdd[lb[r].start+j]=(bb+key)%29;
+        bXor[lb[r].start+j]=bb^xorKey;
+        assert.equal((bAdd[lb[r].start+j]-key+29)%29,bb);
+        assert.equal(bXor[lb[r].start+j]^xorKey,bb);
+      }
+    }
+  }
+  assert.ok(seenKeys.size>1);
+  assert.equal(aAdd.length,270);assert.equal(bAdd.length,265);
+  assert.ok(aXor.every(v=>v>=0&&v<29));
+  assert.ok(bXor.every(v=>v>=0&&v<29));
+  assert.equal(rowPadGate(aAdd,bAdd,wa,wb,la,lb,byLen,'add')
+    .filter(x=>x.count===0).length,0);
+  assert.equal(rowPadGate(aXor,bXor,wa,wb,la,lb,byLen,'xor')
+    .filter(x=>x.count===0).length,0);
+  console.log('PASS source row-local all-key exclusions and 17/17 native-positive controls for both operators');
+}
+rowMain();
