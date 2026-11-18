@@ -6,7 +6,7 @@
 
 Jacob Spon's 1685 *Miscellanea eruditae antiquitatis* has an Art. III contents entry on printed page 7: “Nuptiae Cupidinis & Psyches, Papilio animae symbolum.” Its plate contains numbered figures III–IX. Spon's Table III commentary describes the butterfly's repeated worm-to-butterfly metamorphosis. For Table IV he says the depicted butterfly is the soul of a deceased man flying away. Table V describes a bird catching the butterfly as transmigration of souls from humans into animals; Table VI describes Cupid fastening the soul to a tree with a nail so it cannot ascend. The primary-source pointer is recorded in `resources/external/spon-1685-miscellanea-eruditae-antiquitatis.md`.
 
-The LP1 p16 / LP2 p22 reused corpse-and-butterfly figure is strongly consistent with Spon's Table IV subject and explanation. This is a likely iconographic source, not a pixel-level proof of the exact crop or engraving lineage. The p57 instar/emergence parable has a meaningful thematic parallel to Spon's metamorphosis explanation. The p53/p55 moth illustrations are not claimed to be copies of Tables V/VI.
+The LP1 p16 / LP2 p22 reused corpse-and-butterfly figure is strongly consistent with Spon's Table IV subject and explanation. This is a likely iconographic source, not a pixel-level proof of the exact crop or engraving lineage. The p57 instar/emergence wording also directly echoes solved LP1 p3/4, which already says to journey deep within and arrive outside and that the instar emerges only through going within. Spon therefore supplies historical iconographic context, not a necessary source for the wording. The p53/p55 moth illustrations are not claimed to be copies of Tables V/VI.
 
 ## Original numbering correction: retire 74/75
 
