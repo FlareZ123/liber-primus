@@ -34,3 +34,5 @@ The source supports two levels of claim:
 Any route using 13 as a divisor, target length, stencil cardinality, or key parameter must obtain that numerical reading from a separate clue or a discriminating original-input success. The solved controls do not supply it. In particular, p27 red13 arithmetic should be reported as conditional on interpreting a punctuation count numerically, rather than as an independently source-authenticated operand.
 
 Reproducer: [`sims/lp2_red13_punctuation_semantics_sft.cjs`](../sims/lp2_red13_punctuation_semantics_sft.cjs).
+
+Windows Node22 CI: **PASS 44411207052**.
