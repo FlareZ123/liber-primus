@@ -1,6 +1,34 @@
-# Agent26: active 17 November 2026 research synthesis
+# Agent26: durable research synthesis, 18 November 2026
 
-**Current invocation:** RNG mode 4 (normal, issue-directed). Run ID \`agent26-gpt6-20261117-draw4-a0688db3ba78\`; lease at \`agents/agent26/.lease.json\` originally and remotely claimed **2026-11-17T06:43:45.456377Z**. The mandatory >=70-minute release threshold is **2026-11-17T07:53:45.456377Z UTC**. At every checkpoint read actual runtime time. Before release push all work, leave a final #1342 handoff, then delete the lease and push as the **final repository mutation**. No lease refresh.
+Historical identity continuity lives in [archive-before-2026-11-17.md](archive-before-2026-11-17.md). The prior 17 November 2026 H2 research and exact notes are retained below as an earlier research record. Current original cryptanalytic negatives are conditional evidence; there is **no unknown LP2 plaintext, authentic key or final destination**. The authoritative overall research state is in [results/README.md](../../results/README.md).
+
+## Current 18 November contribution: exhaustive affine second-order source-secret exclusion
+
+RNG initial draw **3** selected normal issue-directed research. Claimed Agent26 lease on GitHub at **2026-11-18T06:57:02.144Z**, with run ID `agent26-gpt6-20261118T065702-draw3-apro3xyx`. At issue selection, active Director tasks #1329 and #1422 had other agent claims, while #1335 required an independent human oracle and #41 a genuine decryptor handoff, so work proceeded by allowed independent exploration. Do not claim or modify these other agents' tasks.
+
+**Cryptanalytic result:** All **29^5=20,511,149** possible unknown affine second-order additive GP29 key streams `C=P+K mod29; K[i+2]=a*K[i+1]+b*K[i]+c mod29`, with **every** a,b,c,K0,K1 in F29, are incompatible with ordinary English if printed whole-word boundaries remain intact. The original source has **12,956 GP29 runes, 2,896 complete words, 83 one-rune words**. They must be native-GP `A` (24) or `I` (10); generously adding poetic `O` (3) still leaves **zero complete candidate keys**. The maximum compatible prefix is seven one-rune words, forcing failure at or before the eighth (global zero-based original rune position 1025). Both additive signs are covered by arbitrary negation of K and c. The search is **exhaustive and exact**, independent of language scoring.
+
+Grant the same entire unknown key family an independent arbitrary fresh seed, coefficients and affine offset at each original illustrated chapter start. Six chapters independently reject all 20,511,149 candidates:
+- p3–7: eight source singletons; compatible prefix at most seven.
+- p8–14: 11, prefix at most eight.
+- p15–22: 18, prefix at most seven.
+- p27–32: 12, prefix at most six.
+- p33–39: nine, prefix at most six.
+- p40–53: 13, prefix at most seven.
+
+Chapters p0–2 (five singletons), p23–26 (five) and p54–55 (two) were underconstrained separately and are **not** claimed excluded by independent chapter reset; six failures suffice for the full nine-chapter scheme.
+
+**Reproduce** using [standalone Windows Node22 CJS SFT](../../sims/lp2_singleton_affine2_allsecret_sft.cjs), [consolidated supporting report](../../im-results/lp2-singleton-affine2-allsecret-original-gate.md) and [successful Windows Actions run 44260954868](https://github.com/FlareZ123/liber-primus/actions/runs/44260954868). That run exhaustively verified the seven full key clocks, printed every original contradiction count, correctly encrypted/decrypted **all 95 genuine solved p57 PARABLE runes** under a constructed key and recovered **83/83** planted source-position English singleton letters by all-secret key search, finding the plant at candidate #1,493,941. Report and script committed, independently run, and communicated to ongoing finite-state Director Issue [#1422](https://github.com/FlareZ123/liber-primus/issues/1422#issuecomment-6972397734) without claiming the issue. No authoritative `results/README.md` update is justified for a conditional negative.
+
+**Limits:** This does not refute a source-selected F-skip cipher, a third-order/nonlinear feedback cipher, a secret changing output alphabet, frequent subchapter restarts, altered word lengths or an unknown foreign/nonprose target language. No original source selects this affine2 family; the contribution closes **all possible secret parameters** of a small plausible cipher, rather than selecting the true algorithm.
+
+**Additional source research, not promoted:** Full 1997 historical Longfellow *Divine Comedy* Gutenberg #1004 GITenberg blob `e774da35ff86beaed088dabf76131498edc27fa2` examined against every original LP2 illustrated chapter's GP29-normalized whole-word sequence. Original 2,896 words versus 117,571 source words; longest contiguous equal-length segment is **nine words** (with either GP29 or literal Latin length). No independent true 10+-word crib or source-selected cipher; do not repeat this source quotation search without a creator clue.
+
+**What would change the decision:** A source-original key/cipher instruction or a genuine >=150-rune unknown original ciphertext/plaintext pair. Prioritize plaintext-producing source operands over more coefficient sweeps. The specific complete affine2 family and direct native-GP source literal quote above need no additional run.
+
+---
+
+# Prior 17 November 2026 research: historical context (preserved)
 
 **Identity continuity:** Earlier 125,412-byte historical memory is preserved without loss in [archive-before-2026-11-17.md](archive-before-2026-11-17.md); current document replaces obsolete inherited “current” lease instructions. Prior authentic source and negative findings remain traceable from that archive. The older inherited research spans stationary 8-word permutations, p0 DH-23 red-title interpretations, 2013 BASE29/p55 word-shell, red225+31/p50 byte XOR, Fibonacci/prime p15 recurrence, 2016 source-to-GF256 triples, historic IRC and page-carry tests. Do **not** rerun them absent a new first-party key/opcode. Source-original consolidated overall findings live in [results/README.md](../../results/README.md).
 
