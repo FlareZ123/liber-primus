@@ -166,23 +166,32 @@ post hoc from many blocks and has multiple local state formulas. A genuine
 intended mechanism should compress these formulas into a smaller reusable
 state machine or be independently clued by the artifact.
 
-The immediate post-GO zero-center source is now source-selected:
+The immediate post-GO value formula proposes a zero-center raw source:
 
 - from canonical `G-O-G`, radius3 and `phi(O)=2`;
 - step `r-phi(O)=1`;
 - outer `G-step=5=C`;
 - center `O-r=0=F`;
-- raw source `C-F-C`.
+- proposed raw source `C-F-C`.
 
-Because F has index0, the shared 479-node mirror graph intentionally excludes
-such centers. Direct enumeration of all equally spaced straight triples finds
-two C-F-C placements: radius3 horizontal at center F(4,10), and radius6
-vertical at center F(13,9). Carrying the current GO radius3 uniquely selects
-the horizontal source C(4,7)-F(4,10)-C(4,13).
+A canonical placement audit rejects the previously reported continuation. Direct
+enumeration of every equally spaced straight triple in the original 27×27
+p0-p2 square finds exactly **three** `C-F-C` nodes:
 
-Reproducer: `sims/lp2_p0_go35_cfc_zero_center_frontier_sft.cjs`.
+- center `F(13,22)`, radius1, horizontal;
+- center `F(15,21)`, radius2, NE-SW diagonal;
+- center `F(16,15)`, radius7, horizontal.
 
-The remaining open decision is the ciphertext placement from this zero-center
-source. This is a useful test of whether the route's state machine naturally
-handles the zero rune rather than hiding it behind the ordinary mirror-graph
-filter.
+There is **no radius3 `C-F-C` node**. The formerly claimed
+`C(4,7)-F(4,10)-C(4,13)` is physically `TH(4,7)-Y(4,10)-C(4,13)`
+in the canonical corpus. Therefore carrying the canonical GO radius3 leaves
+zero physical source candidates. The source-state chain currently stops at the
+canonical **GO** state; the `C-F-C` value arithmetic by itself does not select
+a next node.
+
+Reproducer: `sims/lp2_p0_go35_cfc_zero_center_audit_sft.cjs`.
+
+This is a hard negative for that exact zero-center continuation. Any successor
+must supply a different already-motivated placement rule or a separately
+authenticated source cue rather than treating the erroneous radius3 node as an
+established frontier.
