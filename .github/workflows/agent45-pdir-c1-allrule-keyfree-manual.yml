@@ -42,6 +42,11 @@ jobs:
         run: |
           python sims/lp2_pdir_c1_sectionexact_aprevg_controls_sft.py external-cicada3301 | Tee-Object -FilePath pdir-c1-aprevg-controls.json
           if ($LASTEXITCODE -ne 0) { throw "section-exact A_prev_G calibration failed" }
+      - name: Calibrate all positive c1 source-census vectors
+        shell: pwsh
+        run: |
+          python sims/lp2_pdir_c1_sectionexact_survivor_controls_sft.py external-cicada3301 | Tee-Object -FilePath pdir-c1-survivor-controls.json
+          if ($LASTEXITCODE -ne 0) { throw "c1 survivor calibration failed" }
       - name: Preserve exact source census
         if: always()
         uses: actions/upload-artifact@v4
@@ -50,4 +55,5 @@ jobs:
           path: |
             pdir-c1-allrule-source.json
             pdir-c1-aprevg-controls.json
+            pdir-c1-survivor-controls.json
           if-no-files-found: error
