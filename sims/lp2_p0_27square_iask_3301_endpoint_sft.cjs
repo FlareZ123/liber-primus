@@ -258,6 +258,56 @@ assert.deepEqual(
   [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]
 );
 
+
+/*
+ * Broader same-form control: let the target prime q vary wherever the two
+ * retrospective equations themselves are simultaneously satisfiable.
+ *
+ *   pi(q) = plaintextGp + 270
+ *   q = sourcePositionSum + keyGp + plaintextIndexSum + 2078
+ *
+ * This asks whether the algebra isolates 3301 without restricting attention
+ * to its ten nearest prime neighbors.
+ */
+const maxCandidateQ = Math.max(
+  ...assignments.map(item =>
+    item.sourcePositionSum + item.keyGp + item.plaintextIndexSum + 2078
+  )
+);
+for (let value = primes[primes.length - 1] + 1; value <= maxCandidateQ; value += 1) {
+  if (isPrime(value)) primes.push(value);
+}
+const primeOrdinal = new Map(primes.map((value, index) => [value, index + 1]));
+const familyHits = [];
+for (const item of assignments) {
+  const q = item.sourcePositionSum + item.keyGp + item.plaintextIndexSum + 2078;
+  const ordinal = primeOrdinal.get(q);
+  if (ordinal === undefined || ordinal !== item.plaintextGp + 270) continue;
+  familyHits.push({
+    q,
+    ordinal,
+    plaintext: item.plaintext,
+    text: item.plaintext.map(value => corpus.translit[value]).join(''),
+    ciphertextStart: item.segment.start,
+    ciphertextEnd: item.segment.end,
+    sourceCenter: item.source.center,
+    sourceRadius: item.source.radius,
+    originalKey: item.source.raw,
+  });
+}
+familyHits.sort((first, second) => first.q - second.q);
+
+assert.deepEqual(
+  familyHits.map(item => item.q),
+  [2657, 3301, 3557]
+);
+assert.deepEqual(
+  familyHits.map(item => item.text),
+  ['BS', 'IASC', 'EUAB']
+);
+assert.equal(new Set(familyHits.map(item => item.q)).size, 3);
+assert.equal(familyHits.filter(item => item.q === 3301).length, 1);
+
 console.log(JSON.stringify({
   source: 'unchanged LP2 pp0-2, 729 GP29 runes',
   fixedPrefix: 'external selected route through block37 AS',
@@ -274,5 +324,6 @@ console.log(JSON.stringify({
     originalKey: winner.source.raw.map(value => corpus.translit[value]),
   },
   neighboringPrimeSensitivity: sensitivity,
+  sameFormPrimeFamily: familyHits,
   decision: 'The frozen retrospective G+C pair uniquely recovers I ASK from the fixed AS prefix. This does not independently authenticate the selected prefix or prove the criteria were author-specified.',
 }, null, 2));
