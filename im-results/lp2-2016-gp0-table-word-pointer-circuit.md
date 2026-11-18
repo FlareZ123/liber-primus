@@ -110,6 +110,28 @@ A broader source-preserving census admits every p0 word whose GP0 table byte is 
 
 The visible token `04` therefore supplies a human-readable rendering of a relationship that already survives the broader byte-based census.
 
+
+### Receiver-family holdout selects p0 for the typed closure
+
+The earlier closure was first measured only within p0, leaving the receiver page itself uncharged. A later frozen family census applies the same signed-word GP0 -> p50 -> page-offset grammar to **all 55 rune-bearing unsolved LP2 pages**, under both base59/base60 and two predeclared page-boundary conventions.
+
+Under the stricter continuous-word convention, which retains only complete words wholly contained on one physical page, **base60 has exactly one typed self-closure in the entire 55-page family**. It is the same p0 word52 route above:
+
+```text
+p0 word52 GP0 13
+-> p50[13] = 4
+-> signed word4 EMPTY
+-> GP0(EMPTY) = 92
+-> p50[92] = 236
+-> end(p0 word52)
+```
+
+The test uses only original ciphertext word boundaries and authenticated signed words. It does not use the proposed plaintext `THE DEVOTED` to choose p0. This materially reduces the receiver-choice freedom in the navigation hypothesis.
+
+The broader interval/phrase-shape census still produces short coincidences on other pages, so this result should not be inflated into authentication of the candidate plaintext letters or a universal base60 rule. It specifically selects p0 for the **typed self-closure** once this grammar and base60 interpretation are frozen.
+
+Full family report: [`lp2-2016-receiver-familywise-census.md`](lp2-2016-receiver-familywise-census.md). Reproducer: [`../sims/lp2_2016_receiver_familywise_census_sft.cjs`](../sims/lp2_2016_receiver_familywise_census_sft.cjs). Windows Node22 PASS: [run 44422378212](https://github.com/FlareZ123/liber-primus/actions/runs/44422378212).
+
 ## Solved p57 independently selects all four signed-clause words
 
 The solved p57 instruction supplies a separate route into the exact four-word 2016 clause vocabulary:
