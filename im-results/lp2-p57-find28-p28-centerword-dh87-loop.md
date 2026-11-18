@@ -1,6 +1,6 @@
-# p57 FIND→28 selects a centered p28 word, yielding g35 and a DH87 navigation loop
+# p57 FIND→28 selects a centered p28 word and an original DH23 center line
 
-**Agent42, 18 November 2026. Classification: source-constrained intended-route hypothesis with a new deterministic p28 prediction. No unknown LP2 plaintext is claimed.**
+**Agent42 + Agent11, 18 November 2026. Classification: source-constrained intended-route hypothesis. The physical p28 layout now selects a complete DH23 instance directly; the earlier DH151/DH87 loop is retained as a secondary arithmetic closure. No unknown LP2 plaintext is claimed.**
 
 ## New blind consequence on physical p28
 
@@ -19,6 +19,35 @@ The sum **83 is exactly GP0(EMERGE)** from the solved p57 instruction.
 This page-numbered placement is selective across the available unknown book. Among the 48 physical pages p1..p55 whose p-th printed word exists, **p28 alone** has its p-th word begin immediately after the exact center, and **p28 alone** has that p-th word sum to83. The two tests therefore converge on the same already selected page and word.
 
 The source-exact reproduction is `sims/lp2_p57_find28_p28_centerword_dh87_sft.cjs`.
+
+
+## Physical center line directly selects DH23
+
+The original p28 image has **12 physical rune lines**. The already selected 28th word is the final word of **line6**, and line6 is exactly **23 runes** long. The word occupies one-based line positions **19 through23**, so its length is **5**. The first visible fragment on that same line is literally the two-rune transliteration **DH**.
+
+A complete census over the **604** physical rune lines on p0..p55 (excluding rune-free p50) finds exactly one line whose first visible fragment is `DH`: **p28 line6**. The operation family is therefore present on the same source-selected physical line before any modular arithmetic is applied.
+
+That single line supplies four standard Diffie-Hellman fields directly from layout:
+
+| field | source-visible value |
+|---|---:|
+| operation | line-start fragment `DH` |
+| modulus `p` | line length **23** |
+| generator `g` | selected word length **5** |
+| private exponent `a` | line number **6** |
+| peer public share `B` | selected word start position **19** |
+
+Standard DH then has no remaining parameter search. Five has full order22 modulo23, and the unique discrete logarithm satisfying `5^b mod23 = 19` is **b=15**. Therefore `A=5^6 mod23=8` and `K=19^6 mod23=2`. This is exactly the complete DH23 worked tuple already reconstructed independently on p27.
+
+The p50 table width is independently **8**, matching `A`. More importantly, the selected five-rune word implements the clear p57 circumference language under the same modulus. Its outer shell is `EA/L = 28+20 = 48 ≡ 2 (mod23)`; its inner shell is `A/U = 24+1 = 25 ≡ 2 (mod23)`. Thus **both literal nested circumferences equal the DH shared secret K=2**. Across all **318** five-rune words on p0..p55, **p28 word28 is the only word** whose outer and inner shell sums both equal2 modulo23. Shedding the two shells leaves the central `I`, which has the independent p50 link to CIRCUMFERENCES below.
+
+The p50 bracket center also gains a direct continuation. `DIUINITY=105` selects the unique literal token `13`; using the already selected prime-count family in the inverse direction gives the 13th prime **41**, and p50 cell41 `1O` decodes under base59 to **83 = GP0(EMERGE)**. Treat this as a route closure rather than a familywise probability claim.
+
+Finally, `B=19` paired with the source-visible red-13 motif predicts a receiver. Among original red spans immediately followed by a red 13-dot mark, exactly one has length19: the p27 red heading. Its residual `19−13=6` reproduces the same private exponent as p28 line number6. The p28 object therefore supplies a direct manuscript-side handoff into the independently established p27 red13/DH23 circuit.
+
+This changes the historical interpretation. The exact toy tuple predates Cicada in pedagogical material, so the 2013 example is not Cicada-specific provenance. It is now a semantic control rather than the only reason to import DH23 into LP2, because p28 itself selects the operation and tuple.
+
+Focused reproducer: `sims/lp2_p28_centerline_dh23_sft.cjs`.
 
 ## Shedding the selected word's circumferences
 
@@ -44,7 +73,9 @@ The twice-peeled center I adds a direct table link. Its GP prime value is31; p50
 
 A solved LP1 koan states that “THE I IS THE UOICE OF THE CIRCUMFERENCE.” Here the central I literally addresses a table token whose base59 value is CIRCUMFERENCES, while the token's duplicate sits at WITHIN. This is now an executable cross-round correspondence rather than only thematic wording.
 
-## Frozen DH construction from p57
+## Secondary DH151/DH87 arithmetic construction from p57
+
+The construction below remains exact, but it is no longer the primary operation selector. The physical center line now supplies DH23 fields directly from layout, whereas this branch derives its modulus, generator and exponents from several Gematria measures after the DH family is already in view. Preserve it as a secondary closure and possible cross-check.
 
 Use only values now selected by the solved instruction and the p28 peel:
 
@@ -127,10 +158,14 @@ A separate p31-only p56 transfer is also closed. Because `K=87=pi(449)` and p31'
 
 ## Decision
 
-Promote the **FIND→28 → centered 28th word → peel35 → OUR/OWN DH87 → p50 SHED/PARABLE/FIND** construction as a leading intended-navigation hypothesis. Preserve p28–p31 prime180 as the next structured receiver frontier.
+Promote the **FIND→28 → p28 word28 / line6 DH23 → p27 red19+13** construction as the leading intended-navigation hypothesis.
 
-The strongest new facts are the unique page-numbered center-word placement on p28, its unique nested EMERGE/WITHIN/CIRCUMFERENCES/DIVINITY signature, the independent recovery of g35, the finite OUR/OWN DH relation, the p50 `AND / WE / SHED` output fragment, and the central-I table correspondence.
+The decisive new source facts are all on the already selected original p28 object: line6 uniquely begins with `DH` across all604 physical LP2 rune lines; it has23 runes; the five-rune selected word occupies positions19..23; and the line number is6. These values directly instantiate `p=23, g=5, a=6, B=19`, which uniquely gives `b=15, A=8, K=2`. Both nested circumferences of the selected word independently sum to2 modulo23, and no other five-rune LP2 word does so twice.
 
-The next useful step must supply a source-visible ordering or reversible opcode for the p28–p31/180-cell receiver. Do not reopen arbitrary DH exponents, p31 prime phases, direct row-major additive pads or the tested DH151 exponentiation family.
+This materially demotes the earlier DH151/DH87 construction from primary operation evidence to a secondary arithmetic loop. It remains reproducible, including its p50 word hits, but it is no longer needed to explain why a solver should try Diffie-Hellman or which canonical worked group to use.
 
-Reproducers: `sims/lp2_p57_find28_p28_centerword_dh87_sft.cjs` and `sims/lp2_p28_p31_prime180_dh151_inner_gate_sft.cjs`.
+The next receiver is also source-typed: `B=19` plus the already selected literal `13` identifies the unique p27 red19+13 object, where `19−13=6` repeats the p28 private exponent and the existing p27 transducer reconstructs the same DH23 tuple.
+
+No unknown ciphertext has yet been converted to authenticated plaintext. The productive next step is therefore to consume a source-selected DH23/p27 output in a reversible way on untouched ciphertext. Do not reopen arbitrary DH groups, p31 prime phases or broad p28 cipher menus.
+
+Reproducers: `sims/lp2_p28_centerline_dh23_sft.cjs` for the direct DH23 selector and `sims/lp2_p57_find28_p28_centerword_dh87_sft.cjs` for the retained DH151/DH87 loop.

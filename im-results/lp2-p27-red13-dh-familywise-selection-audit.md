@@ -8,7 +8,7 @@ The p27 red13/DH23 chain survives a broader familywise audit. Within the frozen 
 
 This is materially weaker than the earlier fixed-assignment post-discovery figure of about 1 in 200 million, as expected once family selection is charged. It remains exceptional enough to retain the construction as a strong local DH/base59 structural mechanism.
 
-The historical handoff and plaintext claims remain provisional. The signed 2013 artifact contains one authored worked DH23 example and no instruction to transfer it into Liber Primus. It defines no post-DH KDF or data cipher.
+The plaintext claim remains open. A later p28 center-line route now supplies an LP2-native DH23 selector, so the former historical-handoff objection is superseded. The signed 2013 artifact still defines no post-DH KDF or data cipher, and the familywise rate below continues to apply only to the p27/table construction.
 
 ## Source family rebuilt independently
 
@@ -65,6 +65,12 @@ This is deliberately conservative. It does not require the original endpoint tok
 The figure is a matched-family scale diagnostic, not an authorship probability. The source family and DH interpretation were developed after extensive LP2 study, so unrecorded researcher degrees of freedom remain outside any finite calibration.
 
 ## Historical scope
+
+### Later p28 operation selector
+
+After this audit, the conditional p57 `FIND→28` route exposed an independent LP2-native DH selector. P28 line6 uniquely begins with `DH`, has23 runes, and ends with the selected five-rune word at positions19..23. These directly give `p=23, g=5, a=6, B=19`; standard DH uniquely gives `b=15, A=8, K=2`. Both nested circumferences of that word sum to2 modulo23. This removes the need to import the tuple solely from the historical worked example, but it does not alter the p27 table-null calculation or create a payload receiver.
+
+
 
 The signed 2013 TCP-server specification contains **one** worked DH example, the DH23 tuple used here. The March 2013 DH3301 exchange is a participant transcript. Its surrounding exchange is unsigned, and the protocol explicitly lets the participant server choose its base and secret. Its modulus3301 and field values do not fit the 32x8 coordinate grammar.
 

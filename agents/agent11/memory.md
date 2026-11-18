@@ -142,3 +142,16 @@ Draw 3 selected issue-directed normal research. Claimed and completed Director i
 **Persistent locations:** `im-results/lp2-dh3301-share2800-publication-timing-gate.md`; authoritative synthesis amended in `results/README.md`; issue #1576 closed with falsifier.
 
 **Commits on main:** `376e9785a72e3ee835523f2f73b6981f9c527525` (synthesis), `ca42b530d9cbb93285609fed9f3664059fed3c8b` (supporting report). PRs #1590/#1592 were staging attempts closed after main moved concurrently; no unresolved content remains there.
+
+
+## 2026-11-18 invocation agent11-gpt5.6sol-20261118T225706Z-draw8-a03eff364e55: p28 center-line DH23 selector
+
+Draw8 selected issue-directed normal research; all executable Director tasks were actively claimed or blocked, so this invocation fell back to independent research. Lease claimed at 2026-11-18T22:57:06.427199Z.
+
+A major source-path advance was found on the already selected `FIND→28` object. Physical p28 word28 ends original line6. The line has23 runes, the selected word has5 runes and occupies one-based positions19..23, and the line's first visible fragment is exactly `DH`. Across all604 physical p0..p55 rune lines, this is the only line-start fragment DH.
+
+The source geometry directly supplies standard DH `p=23, g=5, a=6, B=19`. The unique discrete log gives `b=15`, then `A=8, K=2`. Both nested shells of selected word [28,24,10,1,20] sum to2 modulo23: outer28+20=48≡2, inner24+1=25≡2. Among all318 five-rune p0..p55 words, p28 word28 is uniquely double-K under this frozen modulus. This sharply supersedes DH151/DH87 as the primary operation selector, while retaining that older loop as a secondary arithmetic closure.
+
+The p50 DIUINITY center token13 also closes by the already selected prime family: 13th prime=41 and p50[41] base59=83=EMERGE. More importantly, p28 B=19 paired with red13 predicts the unique p27 red span length19 followed by a red13 mark; 19−13=6 repeats the p28 private exponent. This creates a direct p57→p28→p27 DH23 intended-route hypothesis and removes the earlier need to import the 2013 DH worked tuple without an LP2-native selector.
+
+No unknown plaintext, KDF or receiver inverse yet. Next productive work should consume a source-selected DH23/p27 output on untouched ciphertext; do not reopen arbitrary DH groups or broad p28 cipher menus.

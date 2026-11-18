@@ -6,6 +6,18 @@ This materially strengthens the p27/DH route and creates a repeat-independent so
 
 ## Evidentiary status after original-layout audit
 
+
+## Independent p28 manuscript selector for the same DH23 tuple
+
+A later source-selected route removes the largest historical-handoff weakness in this report. Solved p57 word/table navigation gives `FIND → 28`, and physical p28 word28 is independently selected by its exact midpoint placement. That word ends original **line6**, the only one of all604 physical p0..p55 rune lines whose first visible fragment is exactly `DH`.
+
+The same line directly exposes a complete standard-DH instance from layout: line length **23** gives `p`; selected-word length **5** gives `g`; line number **6** gives one private exponent; and the word begins at one-based line position **19**, giving the peer public share. Standard DH uniquely recovers `b=15`, `A=8`, and shared `K=2`.
+
+Both literal nested circumference sums of the selected five-rune word equal2 modulo23, and it is the only one of318 five-rune p0..p55 words with that double property. LP2 itself therefore selects the same `23/5/6/15/8/19/2` tuple. The 2013 worked example remains useful for recognizing the tuple, while no longer being required to import DH into the manuscript.
+
+The p28 public share19 also predicts this page's visible receiver when paired with the independently selected p50 center token13: among original red spans immediately followed by a red13 mark, p27 alone has length19, and `19−13=6` reproduces the p28 line-number exponent. See `im-results/lp2-p57-find28-p28-centerword-dh87-loop.md` and `sims/lp2_p28_centerline_dh23_sft.cjs`.
+
+
 The original p49-p51 images now independently select the table's continuous
 **left-to-right, top-to-bottom row-major order**: 10/13/9 horizontal rows of
 eight cells, with both page seams on row boundaries and no restart marker.
@@ -20,9 +32,7 @@ inferred bridges. In particular, the manuscript does not explicitly command:
 - treating base59 cell values as pointers;
 - interpreting the known DH shared value2 as a count of circumferences to shed.
 
-The signed DH worked tuple was known before these links were evaluated. Exact
-DH matches therefore provide strong cross-checks of a reproducible route rather
-than prospective authentication of every joining operation. The matched-table
+The signed DH worked tuple was known before these links were evaluated. The later p28 center-line selector now derives the same tuple from LP2 geometry itself, materially strengthening the manuscript-side operation choice. Exact DH matches still provide cross-checks of a reproducible route rather than prospective authentication of every joining operation. The matched-table
 permutation diagnostic below is post-discovery and does not correct for
 selection of the formulas, coordinates, or radix roles.
 
@@ -298,7 +308,7 @@ It does not yet amount to first-party textual authentication of a global numeral
 
 ### Historical provenance correction
 
-The exact toy group recovered here is not unique to Cicada material. A surviving cryptography course deck self-dated **17 April 2012** already gives the full values `p=23, g=5, a=6, b=15, A=8, B=19, shared=2` (https://aulavirtualsi.cibertec.edu.pe/aula_virtual/DocumentosC/21247520120516163518.pdf). Cicada's signed January 2013 server specification later printed the same public exchange. This strengthens the interpretation as recognizable Diffie-Hellman semantics while removing the tuple's existence as independent evidence for a Cicada-specific cross-year handoff. The table/red13 closure must stand on its manuscript-side selectivity and any fresh receiver, not on presumed originality of the DH23 example.
+The exact toy group recovered here is not unique to Cicada material. That historical fact no longer creates the former handoff gap because the p28 center-line route independently reconstructs the same tuple from LP2 itself. A surviving cryptography course deck self-dated **17 April 2012** already gives the full values `p=23, g=5, a=6, b=15, A=8, B=19, shared=2` (https://aulavirtualsi.cibertec.edu.pe/aula_virtual/DocumentosC/21247520120516163518.pdf). Cicada's signed January 2013 server specification later printed the same public exchange. This strengthens the interpretation as recognizable Diffie-Hellman semantics while removing the tuple's existence as independent evidence for a Cicada-specific cross-year handoff. The table/red13 closure must stand on its manuscript-side selectivity and any fresh receiver, not on presumed originality of the DH23 example.
 
 ## Shared-secret circumference closure and next decipherment decision
 

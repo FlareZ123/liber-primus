@@ -6,9 +6,17 @@
 
 The tuple `(p,g,serverPublic,clientPublic,shared)=(23,5,8,19,2)` is genuinely **player-visible and source-fixed** in the Cicada-signed 2013 TCP-server specification. A stronger provenance check now shows that the complete toy exchange predates that specification: a surviving Cibertec cryptography course deck self-dated **17 April 2012** prints `p=23`, `g=5`, private exponents `a=6` and `b=15`, public values `8` and `19`, and shared value `2` (https://aulavirtualsi.cibertec.edu.pe/aula_virtual/DocumentosC/21247520120516163518.pdf).
 
-The signed Cicada text therefore reused an already circulating pedagogical Diffie-Hellman example. The five public transcript values remain authentic historical control data because Cicada deliberately included them in material sent to participants. Their existence does not supply independent Cicada-specific evidence for a 2013-to-LP2 handoff.
+The signed Cicada text therefore reused an already circulating pedagogical Diffie-Hellman example. The five public transcript values remain authentic historical control data because Cicada deliberately included them in material sent to participants. Their existence does not supply independent Cicada-specific evidence for a 2013-to-LP2 handoff. A later LP2-native p28 selector now supplies the handoff from the manuscript side.
 
-No recovered first-party 2013–2016 source tells a solver to carry the worked example into Liber Primus, the p50 table, the p57 circumference instruction, or the signed-2016 “numbers are the direction” clue. The p27/p50 circuit should consequently be classified as a strong structural match to **generic DH toy semantics** pending the separate familywise audit, rather than as an established intended historical route.
+No recovered external first-party 2013–2016 source tells a solver to carry the worked example into Liber Primus. That external-source negative remains true, but it is no longer the decisive handoff question: physical p28 now contains an LP2-native DH23 selector. The p27/p50 circuit should still be classified as structural rather than as plaintext because no post-DH receiver or KDF is selected.
+
+## Later LP2-native selector supersedes the handoff negative
+
+Subsequent p57/p28 work changes one conclusion of this historical gate without changing the provenance result. The conditional `FIND→28` route selects physical p28 word28. That word ends original line6, the only one of all604 physical p0..p55 rune lines whose first visible fragment is exactly `DH`. The line is23 runes; the selected word is5 runes, begins at one-based line position19, and lies on line6. Those source-visible quantities directly instantiate `p=23, g=5, a=6, B=19`; standard DH uniquely gives `b=15, A=8, K=2`.
+
+LP2 therefore now has a manuscript-native selector for the same tuple. The 2012 deck still proves that the tuple itself is generic pedagogical DH rather than Cicada-specific historical evidence. The corrected distinction is: **the operation/tuple is now source-selected inside LP2, while its existence in the 2013 specification is only semantic control and still supplies no KDF or payload receiver.**
+
+See `lp2-p57-find28-p28-centerword-dh87-loop.md` and `../sims/lp2_p28_centerline_dh23_sft.cjs`.
 
 ## What a 2013 participant could see
 
@@ -55,7 +63,7 @@ The example also sits in the specification beside analogous examples for WELCOME
 
 The bounded first-party material gives no explicit bridge from this example to LP2:
 
-- the 2014 Liber Primus source prints no `DH` instruction tied to the numerical table;
+- later physical-layout analysis finds the only exact line-start fragment `DH` in p0..p55 on the source-selected p28 center line; that line also supplies 23/5/6/19 and therefore supersedes this earlier negative;
 - p57's clear Instar parable supplies circumference language without naming Diffie-Hellman or the 2013 server example;
 - the signed 2016 clue says that words are the map, their meaning is the road, and their numbers are the direction, without naming DH, the worked tuple, p50, or a cross-year replay;
 - #1625 independently establishes that the signed DH procedure ends by returning the shared integer and supplies no KDF or LP2 payload receiver.
