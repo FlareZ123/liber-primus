@@ -47,6 +47,18 @@ The doublet-count means **89–90** demonstrate that the proposed model produces
 
 The **six-back-affine family maximum**, by contrast, is unusually high under each of three source-native references and 1,000 fresh hidden keys. It is the distinct original-cipher feature that the published model leaves unexplained.
 
+## Key-independent cycle-type obstacle to a literal six-back clock explanation
+
+An additional *analytical* constraint explains why the original T6 affine pattern is not naturally a five-phase Quagmire substitution relation. In the exact model, every alphabet is a conjugate of an additive rotation of the 29-symbol prime field: `alpha[k] = K ∘ (+S_k) ∘ K^-1`. Throughout one printed word, the secret outer disk `base` is fixed. For **the same GP plaintext rune repeated at two different positions within that word**, their two visible ciphertext symbols are related by
+
+`R = base ∘ alpha[k_new] ∘ alpha[k_old]^-1 ∘ base^-1`.
+
+The unknown `K` and `base` simply conjugate the underlying additive rotation by `S_new-S_old`. Since 29 is prime, whenever these cumulative offsets differ, `R` is a **single 29-cycle without any fixed rune**. If the phase offsets coincide, `R` is the identity, fixing **all 29 runes**. This stays true when collision-dodge skips have changed the phases, because only their final realized phases enter `R`.
+
+By contrast, the original-selected `T6(x)=24−2x (mod29)` has **one fixed point at GP index8 (H)** and a **single cycle of the remaining 28**. Therefore no choice of any of the proposal's 29-letter secret permutations, five offsets or sigma can make **a fixed six-back same-plaintext phase relation equal T6 on all 29 symbols**. The ordinary no-skip case has phase displacement `6 mod5=1`; it is a 29-cycle or identity as well.
+
+This is a *universal cycle-type impossibility for a full-map equality*, stronger in scope than the random-key plant observation. It **does not exclude a sparse coincidence** at some of the 1,290 observed pairs, especially when the plaintext runes differ or phase skips intervene. The 3,000 keyed forward plants remain necessary to assess the *observed count of 80* rather than a hypothetical exact alphabet identity. A different ciphertext-feedback mechanism could still create T6 without the relation being an alphabet phase transition.
+
 ## Inference and decision
 
 **Deprioritize this exact clock-dependent cumulative-word Quagmire dodge as a sufficient original LP2 cipher mechanism.** A reason to reconsider it would be an independent original-manuscript clue selecting a specially structured key, a non-English plaintext register, changed word segmentation, or an added source-derived transformation that predicts the strong six-back affine relation on *unfitted* ciphertext.
