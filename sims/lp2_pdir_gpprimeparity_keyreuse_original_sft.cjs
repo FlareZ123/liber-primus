@@ -225,3 +225,126 @@ console.log(JSON.stringify({
     originalScoresImpossibleUnderPlantedSample:true},
   interpretation:'Conditional source-native key-independent obstruction; not an exclusion of all direction rules/conventions or non-English plaintext'
 },null,2));
+
+
+/**
+ * Independent additional key-index reuse conventions from the external
+ * pdir reference. For initial direction +1 and any subsequent word d:
+ * first key index of new word = prior-after-key-pointer + move,
+ * move = m=0?0 : m=1?priorDir : m=2?d, then one extra -1 when h=1
+ * and d=-1. Reuse occurs exactly when move=-priorDir.
+ * Thus h0,m2: BOTH turn directions reuse; h1,m2: backward->forward
+ * turns only. c=0 uses prior emitted rune to govern optional retry.
+ * @param {number[][]} text
+ * @param {number[]} weights
+ * @param {number} h
+ * @param {number} m
+ */
+function extendedTurnScore(text,weights,h,m) {
+  let prior=1,n=0,score=0;
+  const hist=Array(29).fill(0);
+  for(let i=1;i<text.length;i++) {
+    const d=gpSum(text[i-1])%2===0?1:-1;
+    const move=(m===2?d:m===1?prior:0)-(h&&d<0?1:0);
+    if(move===-prior) {
+      const delta=(text[i][0]-text[i-1].at(-1)+29)%29;
+      hist[delta]++;score+=weights[delta];n++;
+    }
+    prior=d;
+  }
+  return {n,score,hist};
+}
+
+/**
+ * Separate native word-length-preserving exact pointer forward plant.
+ * Resolves direction from previously EMITTED ciphertext, not future clear.
+ * Independent hidden 50k-symbol pad. Keeps real key index of every emitted
+ * rune to measure the exact collision-repair degradation.
+ * @param {number[][]} nativeWords
+ * @param {number} seed
+ * @param {number} h
+ * @param {number} m
+ */
+function extendedPlant(nativeWords,seed,h,m) {
+  const rng=random(seed);
+  const key=Uint8Array.from({length:50000},()=>Math.floor(rng()*29));
+  let pointer=20000,previous=null,oldDir=null,oldKey=null;
+  let turns=0,reuses=0;
+  const cipher=[];
+  for(let i=0;i<nativeWords.length;i++) {
+    const dir=i===0?1:(gpSum(cipher[i-1])%2===0?1:-1);
+    if(i>0)pointer+=(m===2?dir:m===1?oldDir:0);
+    if(h&&dir<0)pointer--;
+    const word=[],used=[];
+    for(const plain of nativeWords[i]) {
+      let c,keyIndex,attempts=0;
+      do {
+        keyIndex=pointer;
+        assert.ok(keyIndex>=0&&keyIndex<key.length);
+        c=(plain+key[keyIndex])%29;
+        pointer+=dir;
+        attempts++;
+      }while(c===previous&&rng()<0.81&&attempts<6);
+      assert.equal(c,(plain+key[keyIndex])%29);
+      used.push(keyIndex);
+      word.push(c);
+      previous=c;
+    }
+    if(i>0) {
+      const move=(m===2?dir:m===1?oldDir:0)-(h&&dir<0?1:0);
+      if(move===-oldDir) {
+        turns++;
+        if(used[0]===oldKey)reuses++;
+      }
+    }
+    cipher.push(word);
+    oldDir=dir;oldKey=used.at(-1);
+  }
+  return {cipher,turns,reuses};
+}
+
+for(const [h,m,expectedN,expectedScore,controlMin,controlMedian,
+          controlMax,controlReuse] of [
+  [0,2,1467,-38.22941541442499,13.95088530254557,
+   30.62744235486372,55.234906969316995,0.9684420292319307],
+  [1,2,733,-16.09920024896299,5.882728761991377,
+   17.48831315374574,33.62812379595917,0.9705545246152166]
+]) {
+  const actual=extendedTurnScore(source,weights,h,m);
+  assert.equal(actual.n,expectedN);
+  assert.ok(Math.abs(actual.score-expectedScore)<1e-8);
+  const controls=[];
+  for(let trial=0;trial<100;trial++) {
+    const used=new Map();
+    const native=source.map(sourceWord=>{
+      const n=sourceWord.length;
+      const options=byLength.get(n);
+      assert.ok(options&&options.length);
+      const ordinal=used.get(n)||0;
+      used.set(n,ordinal+1);
+      return options[(ordinal*67+trial*131)%options.length];
+    });
+    const planted=extendedPlant(native,0x423301+trial*271,h,m);
+    const scored=extendedTurnScore(planted.cipher,weights,h,m);
+    assert.equal(scored.n,planted.turns);
+    controls.push({score:scored.score,n:scored.n,turns:planted.turns,
+      reuses:planted.reuses});
+  }
+  const sorted=controls.map(x=>x.score).sort((a,b)=>a-b);
+  const reuse=controls.reduce((a,b)=>a+b.reuses,0)/
+    controls.reduce((a,b)=>a+b.turns,0);
+  assert.ok(Math.abs(sorted[0]-controlMin)<1e-8);
+  assert.ok(Math.abs(sorted[49]-controlMedian)<1e-8);
+  assert.ok(Math.abs(sorted[99]-controlMax)<1e-8);
+  assert.ok(Math.abs(reuse-controlReuse)<1e-9);
+  assert.equal(controls.filter(x=>x.score<=actual.score).length,0);
+  console.log('Additional exact pdir key-reuse convention',JSON.stringify({
+    conv:String(h)+String(m)+'0',
+    original:actual,
+    independentHiddenKeyNativePlants:controls.length,
+    originalLengthMatchedWords:source.length,
+    controls:{minimum:sorted[0],median:sorted[49],maximum:sorted[99],
+      atOrBelowOriginal:0,trueReusedKeyFraction:reuse},
+    scope:'Only exact causal previous-GP-sum parity and specified pointer convention; plaintext native-GP conditional'
+  },null,2));
+}
