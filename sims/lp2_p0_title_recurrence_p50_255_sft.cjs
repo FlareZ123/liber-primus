@@ -45,6 +45,17 @@ assert.equal(tokens.length, 256);
 assert.equal(grid.bytes.length, 256);
 
 const addresses = [...fixed, next];
+const octalAddresses = addresses.map((address) => address.toString(8).padStart(3, '0'));
+assert.deepEqual(octalAddresses, ['017', '052', '071', '143', '234', '377']);
+const rowMajorCoordinates = addresses.map((address) => [
+  Math.floor(address / 8),
+  address % 8,
+]);
+assert.deepEqual(rowMajorCoordinates, [[1,7],[5,2],[7,1],[12,3],[19,4],[31,7]]);
+assert.equal(next, 255);
+assert.equal(next, grid.byte_count - 1);
+assert.notEqual(next, grid.byte_count);
+
 const readout = addresses.map((address) => ({
   address,
   token: tokens[address],
@@ -80,6 +91,9 @@ console.log(JSON.stringify({
   recurrenceExtension: next,
   gridCells: grid.byte_count,
   terminalZeroBasedIndex: grid.byte_count - 1,
+  oneBasedTerminalIndex: grid.byte_count,
+  octalAddresses,
+  rowMajorCoordinates,
   directRowMajorReadout: readout,
   directGpResidues: readout.map((x) => x.gp).join('-'),
   recurrenceValuesLocatedAsTableBytes: valuePositions,
