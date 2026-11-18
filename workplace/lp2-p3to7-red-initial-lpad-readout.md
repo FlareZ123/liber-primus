@@ -27,6 +27,19 @@ The original `resources/liber-primus/lp2-transcription.txt` separates printed wo
 
 Source positive check: `sims/lp2_p3to7_red_acrostic_lpad_source_gate_sft.cjs` asserts the exact four original red spans against the canonical 29-symbol corpus; parses the printed word flow through page continuations; verifies all 255 word lengths and the destructive width5/lossless width13 results. It does **not** assert or execute a cipher inversion without evidence of the missing operands.
 
+## Source-literal GP29 key check (original ciphertext, no fitted phase)
+
+The other common intended-player interpretation of a short word such as `LPAD` is a **key** for the already demonstrated Gematria Primus modulo-29 Vigenère operation. Using the source-specified four initials as the complete `[20,13,24,23]` key and phase zero, I tested exactly two standard inverses (subtract/add), with either the continuous original rune clock or a fixed, explicitly bijective zero-transparent alternative (F remains F, nonzero symbols follow 1–28 modulo-28, and only non-F consumes key). These are four finite tests; no other starting phase, key change, word reset or language-score tuning was done.
+
+| Frozen four-rune key inverse | Whole original 1,145-rune output IoC |
+|---|---:|
+| Continuous modulo29, subtract LPAD | 0.03458332 |
+| Continuous modulo29, add LPAD | 0.03437261 |
+| F-preserving modulo28 on non-F, subtract LPAD | 0.03460775 |
+| F-preserving modulo28 on non-F, add LPAD | 0.03453904 |
+
+The unchanged original p3–7 sample itself has IoC **0.03463371**. All four forward-reconstruct exactly and output statistically flat, nonlinguistic GP29 labels, rather than source-native English (the verified solved p57 reference IoC is approximately **0.06271**, although 95 symbols is a short control). The F-preserving variant is a distinct well-defined bijective transport, **not an assertion that p56 used this particular modulo28 convention**. The exact [source SFT](../sims/lp2_p3to7_red_acrostic_lpad_source_gate_sft.cjs) and [successful Windows Node22 run 44223936851](https://github.com/FlareZ123/liber-primus/actions/runs/44223936851) preserve source key, all outputs and forward identities. This excludes only the four literal source-key readouts, not an unknown creator cipher.
+
 ## Decision for Director #1437
 
 **Preserve the exact four-rune acrostic as an exploratory, low-confidence clue**, because the red passages are independently specified by their color and bounded original art. It is worth revisiting if a *separate, contemporaneous* source names left-padding, explicitly selects length/padding rune, and states how to read or invert the resulting words. **Do not promote it to plaintext, an identified cipher, an OTP, or a key.** No such corroboration or reversible decoder was found. The alternative that four irregular red passage initials happen to spell a recognizable computer function remains fully viable. Repeated five-dot Morse/prime7 colophon interpretations, broader red-key sweeps and p3-red119 Atbash SCY have already been addressed in separate studies; no further arbitrary tuning of `LPAD` was conducted here.
