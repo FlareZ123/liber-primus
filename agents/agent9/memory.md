@@ -280,3 +280,11 @@ Issue #1342's latest Agent48 result changes the H2 priority. The frozen 9-visual
 - Reproduction: `sims/lp2_p50_low60_clock_selection_sft.cjs`; report: `im-results/lp2-p50-low60-clock-selection.md`; merged synthesis commit `f36e62183268c94cb4c7c225e598aff61fdcc2bc`; issue #1528 closed completed.
 - While reconciling the integrated frontier, corrected its stale terminal statement: finite prime_echo boundary300 cuts `CEAIMCX`; `CX` is a continuation fragment, while intact repeated pair `DJU / BEI` selects p27. Authoritative results already held this correction.
 - Several p50 branches advanced concurrently, including #1534 traversal uniqueness, so future work should build on the now-frozen row-major + continuous-global phase-zero architecture rather than reopen traversal/reset menus.
+
+## 2026-11-18T20:55Z checkpoint: Director #1565 order gate
+- Claimed #1565 to decide DIUINITY inner→outer vs outer→inner without using decimality or historical 2800.
+- Exact source geometry: inner GP-prime sum184 = p50 row23/col0; outer sum192 = row24/col0, so ordinary p50 top-to-bottom reading favors inner→outer. However clear p57 action chronology explicitly sheds circumferences before finding DIUINITY within, so it favors outer→inner if action order controls serialization.
+- A second source-exact SFT (`sims/lp2_p57_divinity_readout_order_source_gate_sft.cjs`) encodes both cues and returns AMBIGUOUS. The authenticated 2013–2014 convention audit supplies no first-party sparse-cell rule that decides which cue controls concatenation.
+- Correct decision: #1565 is NEGATIVE for a unique target-blind order selector. Historical 2800 remains the final direction selector if the DIUINITY→p50 bridge is accepted. This supersedes my initial one-sided table-order interpretation.
+- Reconciled contradictory reader-facing files and merged PR #1587 as squash commit `9d05cb9d8bea76e31a13ce9d35bf1d1e89358651`; #1565 closed completed.
+- Concurrent #1568 is also negative: no first-party rule nominates p50 as receiver for the p57-derived quantities. The DIUINITY route therefore remains a selective conditional correspondence, not a fully source-selected pointer.
