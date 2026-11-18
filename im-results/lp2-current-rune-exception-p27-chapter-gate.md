@@ -4,6 +4,8 @@
 
 ## Reversible proposal and independent reason to test
 
+**Relation to prior work:** The book-global fixed-current-rune marker was previously rejected by the [all-29 whole-book word-shape gate](lp2-all29-zero-step-wordshape-gate.md) and [earlier fixed-marker controls](lp2-fixedmarker-original-wordshape-allsecret-gate.md). The new decision here is stronger in a distinct direction: granting a fresh designated rune at every *visual chapter* still fails in physical pp27–32 alone, conditional on the independently frozen 12-rune lexical witness and ordinary source-native English. It does not establish a new original mechanism.
+
 The original unsolved 55 rune-bearing LP2 pages contain 12,956 runes with only **86 adjacent equalities** among 12,901 same-page comparisons. A source-visible physical p27 word has **two spatially separate doublets**. A simpler historical class to try before invented null side channels is a differential alphabet where every current plaintext GP29 symbol maps to one of the 29 possible ciphertext successor differences.
 
 Let \(P_i,C_i\in\mathbb{Z}_{29}\) and let \(f_i\) be a permutation of all 29 symbols. A single designated plaintext rune \(r\) is fixed for a whole visual chapter, while \(f_i(r)=0\) for every position \(i\) in that chapter. The remaining 28 images of \(f_i\) may form an **arbitrary fresh secret permutation at every rune position**. The lossless forward channel for consecutive runes within a physical page is
@@ -57,6 +59,8 @@ Across those controls, symbol-specific minima after the six page starts were:
 These are exhaustive *overlapping* windows, not 596,629 statistically independent trials. This is a deterministic finite-control exclusion, with no Monte Carlo p-value. A full original 12,956-rune whole-book search would only impose additional obligations; the single source-visible p27 chapter already fails this architecture under the three native source models.
 
 ## Reproducibility and exact interpretation
+
+The exact original-source Windows/Node22 execution passed syntax, all fixture assertions and all **596,629** complete overlapping control windows in [manual CI run 44211628148](https://github.com/FlareZ123/liber-primus/actions/runs/44211628148), job `original-current-rune-exception`.
 
 The [SFT](../sims/lp2_current_rune_exception_chapter_sft.cjs) reads the original canonical corpus, pre-existing spelling dictionary and all three unchanged source texts. It asserts the exact p27 witness, candidate word and symbol counts, source page cuts, original chapter repeat total, all native text rune lengths and window counts, all three minima and the absence of a single compatible window. It includes an invertible changing-permutation plant on COMMUNICATION, exact original p27 ciphertext decode/re-encrypt, and the 95-rune clear solved-page plant.
 
