@@ -125,7 +125,7 @@ This correction is stronger than a rarity estimate because it removes the target
 
 ## 5. Reproduction
 
-- `sims/lp2_primeecho_terminal_mapline_sft.cjs` reproduces the full 41-history finite-prime exhaustion census, exact 1033/3301 consumption offsets, the eight-history/five-boundary 3301 line-end accounting from #1580, matched chapter control, and the canonical boundary-inside-word correction.
+- `sims/lp2_primeecho_terminal_mapline_sft.cjs` reproduces the full 41-history finite-prime exhaustion census, exact 1033/3301 consumption offsets, the eight-history/five-boundary 3301 line-end accounting from #1580, matched chapter control, and the canonical boundary-inside-word correction. Windows Node22 [PASS 44394714513](https://github.com/FlareZ123/liber-primus/actions/runs/44394714513).
 - `sims/lp2_terminal_completeword_graph_sft.cjs` reconstructs all 2,896 complete printed words and asserts the p55/p34 wrap behavior, complete-word frequencies, the unique all-frequency2 triple, and zero frozen #1511 matches.
 - `sims/lp2_primeecho_intact_pair_handoff_sft.cjs` enumerates all 36 finite-list exhaustion boundaries, proves boundary300 is the sole boundary whose first two intact complete words form an adjacent pair repeated elsewhere at p27, and runs the frozen p27:28 sum/difference coordinate gate plus its 12-transform signed family check.
 - Source transcription: `resources/liber-primus/lp2-transcription.txt`.
