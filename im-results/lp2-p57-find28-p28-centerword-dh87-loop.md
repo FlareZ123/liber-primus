@@ -75,6 +75,14 @@ The already selected geometry supplies `g=5` from word length and `a=6` from lin
 
 The transform has two additional algebraic locks. Its determinant is **2=K**, the determinant inverse is **15=b**, and the matrix `[[1,-1],[1,1]]` has exact order **28 modulo29**, equal to the already selected physical page number.
 
+The independently selected p27 red receiver supplies a cross-object operation selector. Its red heading has length **19=B** and is immediately followed by the literal red **13**-dot mark. Applying the already frozen H gives
+
+```
+H(19,13) = [6,3].
+```
+
+The first output is the known DH exponent **a=6**. The second is exactly **e=3**, where `e=g-K=5-2=a/K`. That exponent selects the reversible GP29 cube permutation `x -> x^3 mod29`, which sends `K=2 -> A=8 -> B=19 -> b=15`. This is a cross-object prediction because the p27 red19+13 receiver was selected independently before the H relation was introduced. Across all **16** original red spans immediately followed by a red 13-dot mark, p27 is the only object whose `H(length,13)` output is `[6,3]`. The cube bridge therefore now has a manuscript-derived exponent selector rather than relying only on the internal identities `g-K=3` and `a/K=3`.
+
 The source-local successor relation is selective. Across all **42** within-page original LP2 adjacencies in which a five-rune word is followed by a two-rune word, **p28 word28→word29 is the only pair** satisfying `H(successor)=current outer shell`. In the page-numbered successor family only p28 satisfies it; p38 is the only other length-eligible page and fails. This is a structural control rather than a discovery-adjusted p-value.
 
 The same operation was tested without tuning as a manuscript-wide wordwise shell decoder on all **12,956** unknown original runes. It does not recover prose: source-native LP1 trigram score changes only from **−3.41742255** raw to **−3.41475036**, far from solved p57 **−2.46814471**, and the independently predicted p0 opening decodes to `SSIGEAHYN / ILCEE` rather than `EPIPHANY / SEECS`. The source-selected H→cube composition also misses that p0 holdout. Therefore H is currently a **local reversible field/instruction decoder**, not the global LP2 cipher inverse.

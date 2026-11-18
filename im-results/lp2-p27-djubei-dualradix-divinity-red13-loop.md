@@ -195,6 +195,24 @@ On the already selected p27 receiver, the source ink annotations give exactly:
 
 The established p27 red13 construction is therefore reached by a literal source token from the newly selected DIVINITY semantic value.
 
+### The red19+13 object selects the GP29 cube exponent
+
+A reversible circumference transform was independently fixed on the p28 object:
+
+```
+H(x,y) = (x-y, x+y) mod29.
+```
+
+Its sign/order convention is fixed there by the clear phrase **OUR OWN**, because the p28 outer shell `[28,20]` maps to `[8,19]=[GP0(OUR),GP0(OWN)]`. Applying that same frozen H to this already selected p27 red receiver gives
+
+```
+H([19,13]) = [6,3].
+```
+
+The first coordinate is the DH private exponent `a=6` already repeated by `19-13`. The second coordinate is a new typed output: `3=g-K=a/K`, exactly the exponent of the reversible GP29 cube permutation from the p28 DH state. Under cubing modulo29, `2 -> 8 -> 19 -> 15`, so `K -> A -> B -> b`.
+
+This is selective within the source-visible red13 family. There are **16** original red spans whose end is immediately followed by a red 13-dot mark; only p27's length19 span gives `H(length,13)=[6,3]`. The red receiver therefore supplies a source-derived cube exponent and connects the p27 shedding loop to the independently found GP29 value-changing operation.
+
 The local red13 arithmetic remains:
 
 ```text
