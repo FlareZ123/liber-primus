@@ -11,7 +11,7 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { parseSharedCorpus, physicalLP2Page } = require("./lp2_word_pages.cjs");
+const { parseSharedCorpus, parseLP2Words, physicalLP2Page } = require("./lp2_word_pages.cjs");
 
 const root = path.join(__dirname, "..", "resources", "control");
 const native = parseSharedCorpus();
@@ -391,13 +391,23 @@ function sourcePhraseGate(source, query) {
 const originalFullWords = inputs.map((w) => w.runes);
 const latinPhrase = sourcePhraseGate(latin, originalFullWords);
 const oldPhrase = sourcePhraseGate(beowulf, originalFullWords);
+const sourceLP1 = fs.readFileSync(path.join(__dirname, "..", "resources",
+  "transcriptions", "lp1_wulfic_canonical.txt"), "utf8");
+const originalLP1Words = parseLP2Words(sourceLP1, 55)
+  .words.map((w) => w.runes);
+assert.equal(originalLP1Words.length, 694);
+const lp1Phrase = sourcePhraseGate(originalLP1Words, originalFullWords);
+assert.equal(lp1Phrase.longest, 7);
+assert.deepEqual(lp1Phrase.hits.map((h) => h.originalStart),
+  [318,1386]);
 assert.equal(latinPhrase.longest, 8);
 assert.deepEqual(latinPhrase.hits.map((h) => h.originalStart),
   [1020,1318,2024]);
 assert.equal(oldPhrase.longest, 8);
 assert.deepEqual(oldPhrase.hits.map((h) => h.originalStart),
   [366,1568,1704]);
-for (const [source,result] of [[latin,latinPhrase],[beowulf,oldPhrase]]) {
+for (const [source,result] of [[latin,latinPhrase],
+  [beowulf,oldPhrase],[originalLP1Words,lp1Phrase]]) {
   for (const hit of result.hits) {
     for (let j = 0; j < result.longest; j++) {
       assert.equal(
@@ -408,7 +418,8 @@ for (const [source,result] of [[latin,latinPhrase],[beowulf,oldPhrase]]) {
   }
 }
 console.log("FULL-BOOK-CONTIGUOUS-SOURCE-QUOTE-GATE", JSON.stringify({
-  latin:latinPhrase, correctedOldEnglish:oldPhrase
+  latin:latinPhrase, correctedOldEnglish:oldPhrase,
+  originalLP1Source:lp1Phrase
 }));
 
 /* True source-native 12-word encoded phrase, independent secret alphabet
