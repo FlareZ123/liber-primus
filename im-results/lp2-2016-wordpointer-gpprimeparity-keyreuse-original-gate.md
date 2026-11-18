@@ -1,4 +1,4 @@
-# Signed-2016 word-number direction: three key-independent turn-reuse discriminators
+# Signed-2016 word-number direction: key-independent turn-reuse discriminators
 
 **18 November 2026, Agent45. Status: new source-anchored original-input negative for one exact wordwise pointer model; no recovered plaintext or authenticated key.** A pointer whose direction follows the *previous ciphertext word's GP prime-sum parity* necessarily reuses key symbols at word-direction changes under three source-defined read/movement conventions. These produce key-independent ciphertext-to-plaintext difference relations. The exact original LP2 is inconsistent with all 300 full-original-length native-English forward plants across those conventions. This is a potential shortcut to expensive external direction-model key sweeps: **the secret key cannot hide the plaintext-difference relation at the reused index**. On original LP2 the predicted reuse-site difference distribution contradicts all 100 native-GP length-matched positive plants in the reported finite sample, subject to the model's stated register assumptions.
 
@@ -49,7 +49,7 @@ This is a finite empirical source-native-language discrimination, not a universa
 
 The external pointer family has two independent controls: h, whether a backward word takes one step before its first read, and m, interword pointer movement (0 none, 1 previous direction, 2 new direction). If a word's preceding direction is \(d_{\mathrm{old}}\) and its new direction is \(d_{\mathrm{new}}\), the last emitted key index of the previous word is one old-direction step behind its post-word pointer. The new word's first attempted key position is the post-word pointer plus \(m_{\mathrm{move}}-(h\land d_{\mathrm{new}}<0)\), where \(m_{\mathrm{move}}\) is 0, old direction, or new direction. Therefore **the two adjacent rune positions use exactly the same hidden key symbol if and only if the first-read interword move equals \(-d_{\mathrm{old}}\)**, before optional collision retries.
 
-This fixes **all convention classes that can immediately reuse a key index at a direction change** within the external six h/m choices, assuming comparator c0: h0/m2 reuses at both direction changes; h1/m0 reuses at forward→backward turns; h1/m2 reuses at backward→forward turns. h0/m0, h0/m1 and h1/m1 have **no** direct neighbor key-index reuse from the defined pointer movements, so this exact *adjacent-pair* discriminator cannot screen them. The external other two comparator choices c1/c2 require correctly modeled retry evidence and are not classified by these plants.
+This fixes **all convention classes that can immediately reuse a key index at a direction change** within the external six h/m choices, assuming comparator c0: h0/m2 reuses at both direction changes; h1/m0 reuses at forward→backward turns; h1/m2 reuses at backward→forward turns. h0/m0, h0/m1 and h1/m1 have **no** direct neighbor key-index reuse from the defined pointer movements, so this exact *adjacent-pair* discriminator cannot screen them. Comparator c2 and the c1 coin-retry model still require separately modeled retry evidence. The c1 skip-retry case is classified exactly below because a backward word's first rune has no collision comparator.
 
 Run 100 **separately keyed** 2,896-word Gibran-GP **original word-length-preserving** complete forward plants for each newly checked convention, with the previously frozen independent Shakespeare GP-native log-likelihood weights, a new hidden 50k-GP pad per control, and the previous-emitted-rune comparator c0 with retry probability 0.81. The ciphertext-driven direction is recomputed after encoding each word. The actual emitted key-index pairs are tracked, and the exact same algebraic cancellation is applied to the original source and the controls.
 
@@ -66,9 +66,36 @@ The original third result for h1/m0 remains unchanged; the new two conventions e
 **Limit:** No authentic plaintext is available for the unsolved pages, so this is a *finite source-native-English incompatibility*, not a logical theorem that a ciphertext cannot be constructed under arbitrary non-English or encoded registers. The original source's key-reuse premise also depends on the actual collision-retry law, which may differ from the calibrated c0 0.81 hypothesis. The campaign's other 66 direction rules and pointer cases with no reused adjacent index remain separate questions.
 
 
+
+## Exact c=1 skip-retry extension: conventions 021 and 101
+
+The external reference defines comparator **c=1** so that the first rune of a backward word has **no collision comparator**. Under the **skip retry model**, the pointer after a forward word's final emitted rune is exactly one forward step beyond the key index that actually emitted that rune, even if earlier candidate keys at that rune were skipped. This makes two further pointer conventions algebraically key-free on every forward→backward turn:
+
+- **021**: m=2 moves one step in the new backward direction before the first read.
+- **101**: h=1 performs the backward pre-read step with no interword movement.
+
+For either convention, the new word's first rune therefore reads the **exact same emitted key index** as the preceding forward word's last rune. Because c=1 disables collision checking on that first backward rune, no retry can alter the new read. The key cancels exactly:
+
+\[
+ C_+-C_-\equiv P_+-P_-\pmod{29}.
+\]
+
+This result is independent of the 581 candidate key streams, key pointer start, and additive multiplier/sign. It is exact for the external **skip** model. The alternative **coin** model can spend an extra key value after a kept collision on the preceding forward rune, so the exact emitted-index proof does not extend to coin without additional state accounting.
+
+The untouched original source has the same **734** A_prev_G forward→backward turn sites and the same fixed Shakespeare-native-vs-flat LLR **−22.130215**. A dedicated source SFT generated 100 complete, independently keyed, original-word-length-matched Gibran GP29 plants for each convention. The generated ciphertext itself determines every subsequent direction, and the SFT asserts exact emitted key-index equality at every selected turn:
+
+| External convention | Original exact sites | Original LLR | Plant minimum | Plant median | Plant maximum | Plants at/below original | Exact emitted-key reuse |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| **021, c1 skip** | 734 | −22.130215 | −5.144944 | +11.186735 | +23.092016 | **0/100** | **100%** |
+| **101, c1 skip** | 734 | −22.130215 | −1.097824 | +12.298737 | +27.158536 | **0/100** | **100%** |
+
+This is a stronger key-independence statement than the c0 calibration above for these two skip-model branches: the selected source sites do not merely *usually* reuse a key index; they do so exactly under the declared external mechanics. The native-GP language inference remains conditional on the plaintext register. No unknown plaintext or historical key is recovered.
+
+**Reproducer:** [`sims/lp2_pdir_c1_skip_exact_keyreuse_sft.cjs`](../sims/lp2_pdir_c1_skip_exact_keyreuse_sft.cjs). Windows Node 22 run [44383033911](https://github.com/FlareZ123/liber-primus/actions/runs/44383033911) passed all original-source, exact-reuse, and matched-control assertions.
+
 ## Decision for future wordwise-pointer search
 
-The source-natural **A_prev_G across all three adjacent-key-reusing h/m pointer conventions with c0** is **not supported** by the original's reuse-site evidence; the real score falls below all correctly generated controls. This is a **key-independent early gate** that avoids searching the external **581 fixed keystreams** or guessed starting positions for this one word-direction/convention pair.
+The source-natural **A_prev_G** rule is unsupported by the original reuse-site evidence across all three adjacent-key-reusing h/m conventions with c0, and the c1 **skip-model** branches 021 and 101 are now independently rejected by an exact emitted-key cancellation gate. The real score falls below every correctly generated native control in each tested branch. These are key-independent early gates that avoid searching the external **581 fixed keystreams** or guessed starting positions for those declared branches.
 
 Do **not** extrapolate to the external 66 other direction masks or all 18 pointer conventions. In particular, key-pointer conventions with no adjacent reused index have no comparable first/last constraint, and a collision repair consuming extra values via the alternative coin rule can require another calibration. Non-native register, multiple encryption layers, word-boundary remapping, or unrelated historical key paths are outside this finding.
 
