@@ -127,11 +127,13 @@ function shuffled(values, random) {
 const originalGaps = gapLengths(originalSites);
 const observedAc1 = ac1(originalGaps);
 const observedThree = maximumThreeGaps(originalGaps);
+const observedSingle = Math.max(...originalGaps);
 assert.equal(totalLength, 12956);
 assert.equal(originalSites.length, 86);
 assert.equal(originalGaps.length, 85);
 assert.ok(gapSix(originalSites));
 assert.deepEqual(observedThree, { maximum: 1649, index: 17 });
+assert.equal(observedSingle, 712);
 assert.deepEqual(originalSites.slice(17, 21), [2739, 3139, 3851, 4388]);
 assert.ok(Math.abs(observedAc1 - 0.38001968924100965) < 1e-12);
 
@@ -218,18 +220,23 @@ function trial(name, draw, n, seed) {
   const random = rng(seed);
   let acExceed = 0;
   let spanExceed = 0;
+  let singleExceed = 0;
   let acSum = 0;
   let spanSum = 0;
+  let singleSum = 0;
   for (let i = 0; i < n; i++) {
     const sample = draw(random);
     assert.equal(sample.length, 86);
     const sampleGaps = gapLengths(sample);
     const sampleAc = ac1(sampleGaps);
     const sampleSpan = maximumThreeGaps(sampleGaps).maximum;
+    const sampleSingle = Math.max(...sampleGaps);
     if (sampleAc >= observedAc1) acExceed++;
     if (sampleSpan >= observedThree.maximum) spanExceed++;
+    if (sampleSingle >= observedSingle) singleExceed++;
     acSum += sampleAc;
     spanSum += sampleSpan;
+    singleSum += sampleSingle;
   }
   return {
     null: name,
@@ -238,7 +245,9 @@ function trial(name, draw, n, seed) {
     meanAc1: acSum / n,
     ac1UpperTail: (acExceed + 1) / (n + 1),
     meanMaxThreeGaps: spanSum / n,
-    maxThreeGapsUpperTail: (spanExceed + 1) / (n + 1)
+    maxThreeGapsUpperTail: (spanExceed + 1) / (n + 1),
+    meanMaxSingleGap: singleSum / n,
+    maxSingleGapUpperTail: (singleExceed + 1) / (n + 1)
   };
 }
 
@@ -248,6 +257,7 @@ const output = {
     eventCount: originalSites.length,
     observedAc1,
     largestThreeGapSpan: observedThree.maximum,
+    largestIndividualGap: observedSingle,
     siteOffsets: originalSites.slice(17, 21),
     internalRepeatedPairs: [originalSites[18], originalSites[19]],
     chapterCounts: chapters.map((chapter) => chapter.count)
