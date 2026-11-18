@@ -45,9 +45,9 @@ The repository also contains three source-pinned word registers independent of C
 |---|---:|---:|---:|
 | TextBlob English word-frequency list, optional GP contractions | **29,157** | **0** | **0** |
 | Eight-book Latin Vulgate raw Latin26, optional GP contractions | **7,309** | **0** | **0** |
-| Eight-book Latin Vulgate pre-encoded GP29 whole words | **39,835** | **0** | **0** |
+| Eight-book Latin Vulgate pre-encoded GP29 whole words | **7,305** | **0** | **0** |
 
-The Latin GP29 file contains all word occurrences and duplicates are removed for this test; its independent known-vocabulary equality profiles directly match the source alphabet. The lexical exclusion now covers two English word sources and Latin Vulgate, within their documented bounded registers. It still does not rule out arbitrary invented words or all languages.
+The Latin GP29 file contains **39,835 word occurrences**, representing **7,305 distinct GP29 word types** after duplicate removal; its independent known-vocabulary equality profiles directly match the source alphabet. The lexical exclusion now covers two English word sources and Latin Vulgate, within their documented bounded registers. It still does not rule out arbitrary invented words or all languages.
 
 This is a **complete all-secret-key exclusion** *conditional on* the frozen cipher family, original printed word boundaries, and this English vocabulary. Even granting a fresh unknown bijection separately for the 13-rune word cannot overcome the missing lexical equality pattern. It does not exclude a non-dictionary proper name, foreign-language text, a separate transposition or an independently selected different cipher.
 
