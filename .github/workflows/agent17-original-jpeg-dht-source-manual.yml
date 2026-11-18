@@ -1,0 +1,23 @@
+name: LP2 original JPEG lossless DHT source gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-dht-compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out exact archival JPEG source
+        uses: actions/checkout@v4
+      - name: Compile libjpeg coefficient-preserving DHT SFT
+        shell: bash
+        run: |
+          gcc -std=c11 -O2 -Wall -Wextra -Werror sims/lp2_original_jpeg_dht_reopt_sft.c -ljpeg -o "$RUNNER_TEMP/lp2_dht_source_gate"
+      - name: Test all 75 original JPEGs, including LP1 controls
+        shell: bash
+        run: |
+          "$RUNNER_TEMP/lp2_dht_source_gate" resources/liber-primus
