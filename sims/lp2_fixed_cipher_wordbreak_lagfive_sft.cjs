@@ -222,6 +222,19 @@ assert.equal(clearLP1.words.length, 231);
 const clear = experiment(clearLP1);
 assert.deepEqual(clear.original, [7, 0, 0]);
 
+// First-party historically enciphered LP1 groups: genuine prior Cicada
+// cryptograms with their original printed delimiters and source pagination.
+// These are not a random-English stand-in or unknown LP2 pages.
+const encryptedLP1 = concatenate([0, 1, 2, 4, 5, 6, 7, 12, 13]
+  .map(i => parse(lp1Parts[i], '&')));
+assert.equal(encryptedLP1.runes.length, 1796);
+assert.equal(encryptedLP1.words.length, 467);
+const priorCipher = experiment(encryptedLP1);
+assert.deepEqual(priorCipher.original, [13, 0, 1]);
+assert.deepEqual(priorCipher.conditional.map(x => x.exceedances),
+  [4375, 10000, 2108]);
+assert.equal(+priorCipher.conditional[0].mean.toFixed(4), 12.0892);
+
 const p57 = parse(read('resources/lp2-transcription.txt').split('%')[56], '%');
 assert.equal(p57.runes.length, 95);
 assert.equal(p57.words.length, 20);
@@ -229,4 +242,5 @@ const ending = experiment(p57);
 assert.deepEqual(ending.original, [2, 0, 0]);
 
 console.log(JSON.stringify({seed: SEED, trials: TRIALS,
-  original, clearLP1: clear, clearP57: ending}, null, 2));
+  original, clearLP1: clear, encryptedLP1: priorCipher,
+  clearP57: ending}, null, 2));
