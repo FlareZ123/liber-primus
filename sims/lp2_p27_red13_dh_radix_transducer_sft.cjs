@@ -125,11 +125,46 @@ for (const page of ink.pages) {
 assert.deepEqual(comparable.map(row => row.page), [0, 3, 7, 23, 27, 53]);
 assert.deepEqual(comparable.filter(row => row.primeSum).map(row => row.page), [27]);
 
+// A fully local red13 construction independently reaches the same address.
+// For every comparable span: gap = red length - 13; select the 13th rune;
+// multiply its GP prime by the gap; if the address fits the table, read it.
+// P27 is the sole member whose table value returns the source red length.
+const localLoopControls = comparable.map(row => {
+  const gap = row.length - 13;
+  const rune13 = row.values[12];
+  const address = rune13.prime * gap;
+  const inRange = address >= 0 && address < tokens.length;
+  return {
+    page: row.page,
+    length: row.length,
+    gap,
+    rune13: rune13.gp,
+    rune13Prime: rune13.prime,
+    address,
+    token: inRange ? tokens[address] : null,
+    value59: inRange ? decodeToken(base59Alphabet, tokens[address]) : null,
+    value60: inRange ? decodeToken(base60Alphabet, tokens[address]) : null,
+  };
+});
+assert.deepEqual(localLoopControls, [
+  {page:0,length:13,gap:0,rune13:'C',rune13Prime:13,address:0,token:'3N',value59:200,value60:203},
+  {page:3,length:16,gap:3,rune13:'H',rune13Prime:23,address:69,token:'1D',value59:72,value60:73},
+  {page:7,length:14,gap:1,rune13:'EA',rune13Prime:109,address:109,token:'34',value59:181,value60:184},
+  {page:23,length:16,gap:3,rune13:'T',rune13Prime:59,address:177,token:'2B',value59:129,value60:131},
+  {page:27,length:19,gap:6,rune13:'I',rune13Prime:31,address:186,token:'0J',value59:19,value60:19},
+  {page:53,length:51,gap:38,rune13:'J',rune13Prime:37,address:1406,token:null,value59:null,value60:null},
+]);
+assert.deepEqual(localLoopControls.filter(row =>
+  row.value59 === row.length && row.value60 === row.length).map(row => row.page), [27]);
 const p27 = comparable.find(row => row.page === 27);
 assert(p27);
 assert.equal(p27.length, 19);
 assert.equal(p27.sum, 1109);
 assert.equal(p27.rank, 186);
+assert.equal(p27.length - 13, 6);
+assert.equal(p27.values[12].prime * (p27.length - 13), p27.rank);
+assert.equal(decodeToken(base59Alphabet, tokens[p27.rank]), p27.length);
+assert.equal(decodeToken(base60Alphabet, tokens[p27.rank]), p27.length);
 assert.equal(p27.values[0].gp, 'M');
 assert.equal(p27.values[0].index, 19);
 
@@ -290,6 +325,7 @@ console.log(JSON.stringify({
     primeSum: row.primeSum,
     primeOrdinal: row.rank,
   })),
+  localRed13Loops: localLoopControls,
   p27: {
     redLength: p27.length,
     firstRune: p27.values[0].gp,
