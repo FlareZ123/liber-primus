@@ -307,6 +307,15 @@ const decoded = decrypt(original);
 assert.deepEqual(encrypt(decoded), original);
 assert.ok(Math.abs(ioc(original) - 0.03447839786450569) < 1e-15);
 assert.ok(Math.abs(ioc(decoded) - 0.034556243505167686) < 1e-15);
+const decodedStructure = counts(decoded);
+assert.equal(decodedStructure.adjacent, 478);
+assert.equal(decodedStructure.leadingZeroAdjacent, 114);
+assert.ok(Math.abs(decodedStructure.leadingZeroShare - 114 / 478) < 1e-15);
+assert.equal(decodedStructure.lag5, 99);
+assert.equal(decodedStructure.sLag5, 12);
+const changedPositions = decoded.reduce(
+  (sum, value, index) => sum + Number(value !== original[index]), 0);
+assert.equal(changedPositions, 549);
 
 // Build the same source-native English dictionary register used by the project's
 // lexical gates, then compare complete printed words without changing boundaries.
@@ -377,6 +386,9 @@ console.log(JSON.stringify({
     exactForwardReencryption: true,
     originalIoC: ioc(original),
     decodedIoC: ioc(decoded),
+    decodedStructure,
+    changedPositions,
+    changedFraction: changedPositions / decoded.length,
     exactNativeDictionaryWords: exactHits,
     hitLengths: Object.fromEntries(hitLengths),
     wordsLengthAtLeast5: 0,
