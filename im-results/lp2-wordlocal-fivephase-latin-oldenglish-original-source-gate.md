@@ -43,7 +43,16 @@ The same original four ciphertext words have considerably different candidate av
 
 `TURBETUR` is a real wordform in the independent Vulgate corpus and is an exact GP29 equality-pattern match for p51's ciphertext `ᛋᛞᛝᚷᛚᛋᛞᛝ`. Thus the earlier English-only `MESDAMES` forced-word observation cannot be generalized into an all-language exclusion of a word-local five-phase permutation. Neither `TURBETUR` nor any of the other candidates is recovered plaintext: the secret alphabet has **not** been selected, and the group of five permutations is independent per word.
 
-**Original contiguous-source veto for a tempting literal quote:** the Vulgate source contains `TURBETUR` twice, at original Latin word indices **22014** and **22468**. Each occurrence is immediately preceded by `NON` and followed by `COR`, giving the observed source phrase **`NON TURBETUR COR`** with word lengths **3,8,3**. LP2 physical p51 instead prints word indices **2721–2723** of lengths **3,8,1**. Its word immediately following the putative `TURBETUR` has **one** GP rune, not `COR`'s three. Since the word-local substitution model preserves original word lengths, **no choice of any of the five secret alphabets can make that original p51 span a verbatim instance of either historical Vulgate phrase.** This exact source-token veto does not exclude a genuinely different Latin sentence containing `TURBETUR` or another source outside this finite corpus. The SFT now asserts the two source contexts and the original three-word length discrepancy.
+**Original contiguous-source veto, across all four candidate anchors:** The SFT scans **all** occurrences of every one of these four invariant signatures in the pinned Vulgate corpus, preserving the target's immediate previous and next *original physical word lengths*. Its exhaustive result is:
+
+| Original anchor | Vulgate exact-pattern tokens | Matching immediate predecessor length | Matching immediate successor length | Matching **both** neighbors |
+| ---: | ---: | ---: | ---: | ---: |
+| p13 #754 | 4 | **0** | **0** | **0** |
+| p25 #1353 | 9 | **0** | **0** | **0** |
+| p36 #1967 | 0 | **0** | **0** | **0** |
+| p51 #2722 | 2 | **2** | **0** | **0** |
+
+The p51 source example is especially clear: genuine Vulgate occurrences of `TURBETUR` at original Latin indices **22014** and **22468** each occur as **`NON TURBETUR COR`** with lengths **3,8,3**. The physical manuscript has lengths **3,8,1** around its matching eight-rune word. It therefore **cannot** be either literal source phrase under any word-length-preserving substitution key. Likewise, the p13 and p25 source-matching 14-rune words are each immediately flanked by the wrong source lengths on both sides. This is a strict original-word **verbatim Vulgate-fragment exclusion** at four preselected anchored places; it does not reject an independently authored Latin passage or a non-Vulgate plaintext source.
 
 The Old English finite reference gives **23 unmatched positions**, including p13, p25, p36 and p51. Its short corpus and morphological coverage prevent interpreting that count as a universal exclusion of Old English.
 
