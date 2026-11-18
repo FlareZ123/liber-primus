@@ -50,9 +50,10 @@ Use **six unencrypted first-release GP passages** from [the original canonical L
 | Authentic clear register | Source runes / words | Enclosed lag5 original | Fixed-rune shuffled mean | Null upper tail |
 |---|---:|---:|---:|---:|
 | LP1 six clear sections | **1,001 / 231** | **7** | **9.2121** | **0.8422** |
+| LP1 nine historically encrypted sections | **1,796 / 467** | **13** | **12.0892** | **0.4376** |
 | LP2 clear p57 | **95 / 20** | **2** | approximately **0.80** | approximately **0.17** |
 
-The clear LP1 control does not exhibit the LP2 encrypted manuscript's surplus under the same boundary-shuffle construction. Clear p57 is too short to adjudicate a fifth-back mechanism. The first-party clear corpus is much smaller than LP2 and has a different length/genre distribution; the full-length source-native controls below address this limitation separately.
+Neither the original clear LP1 passages nor the nine genuine earlier Cicada-encrypted LP1 passages exhibit the unknown LP2 book's directional word-break surplus under the same fixed-rune/page/word-length shuffle construction. The historically encrypted LP1 controls use the original sections 0,1,2,4,5,6,7,12,13, retaining all 15 original page fragments and original punctuation; only unknown LP2 has the strong effect. This gives a useful **first-party cipher-side negative comparator**, beyond ordinary English prose. Clear p57 is too short to adjudicate a fifth-back mechanism. The first-party clear corpus is much smaller than LP2 and has a different length/genre distribution; the full-length source-native controls below address this limitation separately.
 
 
 ## Independently encoded, source-native English control books
@@ -78,4 +79,4 @@ A source-visible instruction might identify a word-local reset/copy/state operat
 
 **Research fork:** communicate this new source condition to the owner of [Director task #1429](https://github.com/FlareZ123/liber-primus/issues/1429). Do not run another lag sweep or retune punctuation classes until an independently authored operation or an original plaintext prediction justifies it.
 
-**Reproducers and executed CI:** [fixed-cipher wordbreak fifth-back SFT](../sims/lp2_fixed_cipher_wordbreak_lagfive_sft.cjs) passed [Windows Node22 run 44211328829](https://github.com/FlareZ123/liber-primus/actions/runs/44211328829); [matched native-English control](../sims/lp2_fixedcipher_wordbreak_native_sft.cjs) passed [Windows Node22 run 44211336030](https://github.com/FlareZ123/liber-primus/actions/runs/44211336030). Both use the existing manually dispatched source SFT runner; source counts and all fixed-seed outputs were checked on 18 November 2026.
+**Reproducers and executed CI:** [fixed-cipher wordbreak fifth-back SFT](../sims/lp2_fixed_cipher_wordbreak_lagfive_sft.cjs) passed [Windows Node22 run 44212469551](https://github.com/FlareZ123/liber-primus/actions/runs/44212469551), including genuine encrypted LP1 comparison; original initial run [44211328829](https://github.com/FlareZ123/liber-primus/actions/runs/44211328829); [matched native-English control](../sims/lp2_fixedcipher_wordbreak_native_sft.cjs) passed [Windows Node22 run 44211336030](https://github.com/FlareZ123/liber-primus/actions/runs/44211336030). Both use the existing manually dispatched source SFT runner; source counts and all fixed-seed outputs were checked on 18 November 2026.
