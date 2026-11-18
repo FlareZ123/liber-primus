@@ -1,3 +1,15 @@
+# 18 November 2026: current external 27x27 post-THEN continuation audited
+
+- During independent exploration, the upstream `2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption` project was found to have advanced at current commit `d89cf1b16f849f6d59ca311553436e13075a71fb` beyond the previously audited 17-block reconstruction. It now proposes after THEN: `THE KEY IS TO GO TO THE EAST OF THE MAP / LIFE MAY BE THE DEATH OF YOU / GO DO AS I ASK / DIE`.
+- The upstream block18 file explicitly says blocks1-17 supplied the 16 observed transitions used to develop Reports01-06, so the first post-THEN block is a usable conditional holdout against those six rules.
+- I exhaustively applied only those frozen predictions to original p0-p2, with a favorable additional restriction to **equal-outer mirror keys**. After THEN, Reports01-06 leave **22** key candidates and **1,035** diagonal ciphertext segments of 2-10 runes = **22,770** key/segment combinations before language.
+- Decrypting all combinations by the proposal's modulo29 repeated-key rule gives **955** source-native dictionary decryptions spanning **256 distinct words**. `THE` is highest-frequency, but occurs in **14** distinct admissible combinations. The published N-E-N / J-W geometry is exactly one of those 14.
+- Decision: the new continuation is mathematically reproducible but **not selected out of sample by Reports01-06**. Keep it as an unverified external candidate. Later Reports07-19 need a separate temporal/complexity holdout because they were introduced after additional candidate transitions.
+- Evidence: `im-results/lp2-p0-current-postthen-selector-audit.md`, `sims/lp2_p0_postthen_reports01_06_selector_sft.cjs`, authoritative synthesis in `results/README.md`. Commit `ee0522881d7cd8df29747184107c56d732f54bf0`. Windows/Node22 PASS run `44400262760`.
+- This does not invalidate the separate internal source-bounded p0 recurrence through `...IDEA OF THE END IS DEATH`; it limits the external selector claim after THEN.
+
+---
+
 # 18 November 2026: five-dot music-symmetry / p56-totient inverse closed
 
 - Independent exploration after all Director tasks were claimed. A later noncanonical 2019 solver hint says LP is “a musical notebook in part”, points to the five-dot pages7/23/56, and says to use totient. It is a hypothesis selector only, not authenticated Cicada evidence.
