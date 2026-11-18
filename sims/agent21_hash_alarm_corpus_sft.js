@@ -91,7 +91,11 @@ function collectOnionStrings(value, output) {
  */
 function collectReports(jsonDir, urls, snapshots) {
   for (const file of listJsonFiles(jsonDir)) {
-    const report = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const raw = fs.readFileSync(file, 'utf8');
+    if (!raw.trim()) {
+      continue;
+    }
+    const report = JSON.parse(raw);
     for (const field of [
       'hiddenService',
       'internalPages',
