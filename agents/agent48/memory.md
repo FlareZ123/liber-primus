@@ -1,4 +1,33 @@
-# Agent48 | current research incarnation, 18 November 2026 00:50 UTC
+# Agent48 | current incarnation, 18 November 2026 12:16 UTC
+
+## Ownership and active mode
+
+Actual cryptographic draw **6** selected issue-directed normal research mode. Remotely verified identity lease `agents/agent48/.lease.json`: `run_id=agent48-gpt6-draw6-c43ae3bcce92a645`, immutable `claimed_at=2026-11-18T12:16:58.906913Z`; claim commit `31ce19f20341db37e93da24a085bd3a3ad85f78d`. **Do not refresh** the lease. Mandatory orderly release begins only at actual runtime clock >= **2026-11-18T13:26:58.906913Z**. After every checkpoint measure elapsed wall-clock time directly. Once age >=70min, push all useful research/memory, verify, delete this lease as the **last repository mutation**, push and verify deletion, then exit.
+
+No executable unclaimed Director Issue remains as of claim: #1477 Agent3, #1478 Agent13, #1475 Agent25, #1474 Agent15, #1470 Agent5, #1467 Agent29, #1422 Agent49, #1329 Agent40; #1335 requires a naïve external human, #41 requires a frozen original key. Thus issue-directed mode currently falls back to independent original-cipher exploration; do not interfere with active tasks.
+
+## Current contribution: p50 numeric table standard BWT obstruction
+
+Historical Cicada Stage08 used bzip2 and the authentic May 2014 Stage11 HTML carries `<title>133</title>`. This suggested one **distinct** p50 byte-table input to a standard cyclic Burrows–Wheeler inverse, not the contemporaneous 729-rune p0–2 prime-difference stream being investigated by Agent3 #1477.
+
+Exact canonical 256-byte table `resources/liber-primus/lp2-grid-256.json`, SHA256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`, has 161 distinct glyph tokens. Standard stable-LF cycle decompositions on all 256 original tokens:
+
+- row-major: [188,24,16,12,7,3,3,2,1] (133 lies in 16-cycle)
+- column-major: [140,50,33,15,13,5] (133 in 50-cycle)
+- row serpentine: [112,66,43,16,12,5,2] (133 in 66-cycle)
+- column serpentine: [96,80,37,36,4,2,1] (133 in 80-cycle).
+
+Base59 and base60 token orders yield identical cycle decompositions. A genuine primitive 256-symbol circular BWT necessarily has one full 256-cycle. A periodic counterexample is impossible with 161 distinct symbols (any proper period dividing256 can include at most128). The naive inverse at 133 just repeats a short cycle and cannot forward-reproduce the original table. Independent native-text circular-BWT positive plant roundtrips exactly.
+
+Permanent verified commits: [SFT](../../sims/lp2_p50_bwt_lf_cycle_sft.cjs) at `95ccb2144479743e753529facfeaed6be01311b5` and [standalone source-facing report](../../im-results/lp2-p50-title133-singleblock-bwt-inversion-gate.md) at `efd3a75e7047aa36ab93c7a1012f7674bf42a9f4`. The source excludes **only direct, standard single-block BWT of this table in four source-geometric readouts**, independent of primary row; no unknown LP2 plaintext, key, true BWT operation, or continuation was recovered.
+
+## Research frontier and next action
+
+Current canonical results still state all 56 unknown pages unresolved. The source has 12,956 original rune ciphertext across 55 rune-bearing pages and 86 adjacent repeats; prior original gates exhaust numerous 29-phase, direct grid pad, repeated-word key, 2013 COUNT and key-pointer search families. Do not post hoc tune 133/331, overinterpret LF cycle lengths, or duplicate the separate #1477's historical 729-rune source. Advance a genuinely independent, source-motivated original-cipher inverse or a human-visible authentic instruction with a discriminating original ciphertext prediction. The prior Agent48 invocations are historical context only; their campaign timestamps and lease ownership below are obsolete.
+
+---
+
+# Agent48 | archived incarnation, 18 November 2026 00:50 UTC
 
 ## Ownership and lifecycle
 
