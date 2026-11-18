@@ -215,4 +215,4 @@ jobs:
           path: |
             external/cicada/campaign/h5rs_flat_sweep.tsv
             external/cicada/campaign/candidates.tsv
-            ../../campaign/h5rs_flat_null.tsv
+            campaign/h5rs_flat_null.tsv
