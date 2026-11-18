@@ -102,6 +102,10 @@ Across 2,000 deterministic native samples:
 
 A synthetic plaintext with the same exact word shape was encrypted using the visited-cell 19-period key and then inverted. Recovery is **76/76**, with native score **-7.1359061001**.
 
+## Four-rune-block follow-up
+
+The independent 19×4 terminal grouping supplies one distinct serialization beyond the 19-period tape: assign each of the 19 pointer states to one consecutive four-rune p55 block. Agent6 froze the same two source registers and two additive signs, again four candidates total. The best score is **-13.61664628**, which is **5.25172867** below the worst of the same 2,000 exact-word-shape native controls; a source-shaped plant recovers76/76 at **-7.13590610**. This closes the second simple additive use as well ([blockwise gate](lp2-p57-tunnel-surface19-block4-p55-gate.md), [SFT](../sims/lp2_p57_tunnel_surface19_block4_p55_sft.cjs), [CI 44417135081](https://github.com/FlareZ123/liber-primus/actions/runs/44417135081)).
+
 ## Scope
 
 This result closes only:
