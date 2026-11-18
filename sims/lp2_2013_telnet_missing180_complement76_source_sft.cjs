@@ -34,12 +34,13 @@ function isPrime(n) {
   return true;
 }
 const first = [];
-for (let n = 2; first.length < 256; n++) if (isPrime(n)) first.push(n);
+for (let n = 2; first.length < 276; n++) if (isPrime(n)) first.push(n);
 assert.equal(first[19], 71);
 assert.equal(first[20], 73);
 assert.equal(first[199], 1223);
 assert.equal(first[200], 1229);
 assert.equal(first[255], 1619);
+assert.equal(first[275], 1783);
 const omitted = first.slice(20, 200);
 const exposed = first.slice(0, 20).concat(first.slice(200, 256));
 assert.equal(omitted.length, 180);
