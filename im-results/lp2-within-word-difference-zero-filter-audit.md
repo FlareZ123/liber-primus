@@ -14,7 +14,7 @@ There are **10,060 within-word transitions**. Their difference counts (mod 29) a
 
 Under a uniform 29-symbol stream, difference 0 would occur **346.90** times. Only **63** are observed. The retained zero-transition fraction is therefore **0.18161**, i.e. an inferred **0.81839 suppression**. This is the same order as the established anti-repeat/collision-filter anomaly.
 
-Now remove difference 0 and test the remaining 28 bins against the natural equal-mass collision-repair expectation. There are **9,997 nonzero transitions**, giving **357.04 expected observations per nonzero difference**. The Pearson statistic is **33.5568 on 27 df**, with chi-square survival probability about **0.179**. The largest standardized deviation is difference 17 at **−2.33σ**. No nonzero difference is remotely comparable to the zero deficit.
+Now remove difference 0 and test the remaining 28 bins against the natural equal-mass collision-repair expectation. There are **9,997 nonzero transitions**, giving **357.04 expected observations per nonzero difference**. The Pearson statistic is **33.5568 on 27 df**, with chi-square survival probability about **0.179**. The largest standardized deviation is difference 17 at **−2.33σ**. A matched 10,000-trial Monte Carlo null using a uniform 29-symbol base plus the measured zero-suppression rate gives mean nonzero chi-square **27.075** and empirical p≈**0.1831** for a statistic at least this large (maximum simulated 71.20). No nonzero difference is remotely comparable to the zero deficit.
 
 ## Consequence for the proposed K_STEP route
 
