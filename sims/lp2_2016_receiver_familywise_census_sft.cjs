@@ -338,6 +338,17 @@ for (const [boundaryConvention, pages] of Object.entries({
   }
 }
 
+// Receiver-family holdout: under the stricter continuous-word convention,
+// base60 has exactly one typed self-closure across all 55 rune-bearing
+// unsolved pages, and it is the published p0 word52 -> EMPTY -> end236 loop.
+const strictBase60Closures = result.containedOnly.base60.pagesWithTypedClosures;
+assert.equal(strictBase60Closures.length, 1);
+assert.equal(strictBase60Closures[0].page, 0);
+assert.equal(strictBase60Closures[0].hits.length, 1);
+assert.equal(strictBase60Closures[0].hits[0].receiverWord, 52);
+assert.equal(strictBase60Closures[0].hits[0].signedWord, "EMPTY");
+assert.equal(strictBase60Closures[0].hits[0].destination, 236);
+
 // Lock the already-published p0 base60 behavior so the familywise extension
 // cannot silently drift from the current receiver grammar.
 const p0 = result.pageLocal.base60;
