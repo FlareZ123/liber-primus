@@ -30,122 +30,87 @@ No candidate plaintext is used to place this anchor.
 
 The original p0, p1, and p2 images also form a conspicuous visual unit: all three repeat the same paired black cross marginalia on left and right, while p2 closes the unit with the cicada illustration and the terminal red 13-dot mark. This visual continuity is independent support for treating the rubrication-selected 729-rune span as one designed section; it does not by itself specify the row-major reshape or transition rules.
 
-## Block 1: unique maximum in a widened opening family
+## Blocks 1–3: source-selected opening through the physical p0 end
 
-Around both natural coordinate orders `(13,12)` and `(12,13)`, enumerate:
+The original bootstrap used English dictionary depth to choose the opening branch, stop `WEATHER`, and choose the `TURNS` direction. Those language gates are no longer needed once two original source boundaries are incorporated: the **exact matrix center** and the **physical end of p0**.
 
-- four axes through the anchor;
-- unchanged or center-totient three-rune keys;
-- all three cyclic key rotations;
-- left, center, or right node origin;
-- both signs of a 13-rune row-major displacement;
-- only starts that land on an original source-word boundary.
+### Block 1: eight natural nodes -> one admissible start -> one global endpoint
 
-This creates **126** source-driven candidates.
+The red-13/totient premise gives:
 
-For each candidate, keep key phase continuous and decrypt successive complete original source-word segments until the first segment that has no source-native English dictionary match.
+```
+n = 13
+phi(13) = 12
+```
 
-Exactly one candidate reaches **four** consecutive words. The runner-up reaches three:
+Take both coordinate orders `(13,12)` and `(12,13)`, and the four grid axes through each anchor. This gives **eight** natural three-cell nodes.
+
+For each node, apply the same fixed opening construction recorded by the public route:
+
+1. replace only the center rune by its Euler totient;
+2. align the three-rune key by the frozen `mu(phi(k))` cyclic rule;
+3. from the first outer cell, move in the positive node-axis direction by `phi(original center) + phi(transformed center)`.
+
+Independently scan the entire 27x27 square for a row-major equal-outer three-cell node whose first cell plus `phi(center)` lands exactly on the matrix center `(14,14)`.
+
+There is exactly **one** such endpoint in all 729 cells:
+
+```
+(14,4)  X - OE - X
+phi(OE=22) = 10
+(14,4) + 10 row-major cells = (14,14)
+```
+
+Apply the opening movement rule to all eight natural anchor/axis nodes and retain starts that are in bounds and do not lie after that independently selected endpoint. Exactly **one** survives:
 
 ```
 anchor       (13,12)
 axis         horizontal
 source node  AE - J - EA
-center phi   AE - I - EA
+derived key  AE - I - EA
 rotation     0
-origin       center J
-move         +13
-start        zero-based 348 = (13,25)
-
-source cells 348-349 -> AS
-             350     -> I
-             351-352 -> GO
-             353-354 -> THE
+distance     phi(J=11) + phi(I=10) = 10 + 4 = 14
+start        (13,25)
+endpoint     (14,4)
 ```
 
-Under the same `AE-I-EA` key, independently resetting at each of all **182** original source-word starts in the 729-rune section yields only one run of four or more native words: this same start.
+No English score, word frequency, candidate plaintext length, or source-word dictionary match participates in these choices. Only after the key, start and stop are fixed, the seven selected ciphertext cells decrypt to `A-S-I-G-O-TH-E`. The original source delimiters phrase this as the conditional candidate **AS I GO THE**.
 
-The original ciphertext delimiter types are not being claimed as plaintext punctuation. In particular, a source clause mark occurs after the first two runes. The selector here uses original word-segment lengths only; punctuation semantics remain unresolved.
+### Block 2: the unique endpoint mirror lands at the matrix center
 
-## Block 2: endpoint node to matrix center, self-delimiting WEATHER
+The selected endpoint begins `X-OE-X`. Center totient plus the frozen rotation rule gives `X-I-X`, rotation 2, final key `X-X-I`. The same `phi(OE)=10` displacement lands exactly at the matrix center `(14,14)`. That move is rightward, so carry the source direction and read right from the exact center.
 
-Block 1 ends at zero-based cell 354, coordinate `(14,4)`, original rune X.
-
-Take the three horizontal cells beginning at that endpoint:
+The original physical p0 page contains **262 runes**, so its final rune is grid cell **(10,19)**. Along the inherited rightward ray from `(14,14)`, exactly one prefix ends immediately before the first cell sharing that physical boundary's column:
 
 ```
-X - OE - X
+selected cells  (14,14) ... (14,18)
+next cell       (14,19)
+p0 final cell   (10,19)
 ```
 
-Apply center totient:
+The five fixed cells decrypt under `X-X-I` to `W-EA-TH-E-R`, **WEATHER**. The word length is selected by page-boundary geometry rather than dictionary-prefix collapse.
+
+### Block 3: the next cell joins directly to the physical p0 end
+
+Block 3 begins at the boundary-selected next cell `(14,19)`. Reuse the derived block-2 center `I=10`: `phi(10)=4`. Move four cells in the inherited rightward direction to `(14,23)`; use radius 10 on the perpendicular axis:
 
 ```
-phi(OE index 22) = 10 = I
-X - I - X
+H(4,23) - NG(14,23) - C(24,23)
 ```
 
-The route's `mu(phi(k))` signature gives rotation 2, producing:
+Its `mu(phi(k))` rotation is zero, so the key is `H-NG-C`.
+
+The block-3 start and the physical p0 final rune already share column 19. Their unique straight source path is:
 
 ```
-X - X - I
+(14,19) (13,19) (12,19) (11,19) (10,19)
 ```
 
-Move from the endpoint/node-left cell by `phi(22)=10` positions to:
+Those five cells decrypt to `T-U-R-N-S`, **TURNS**, ending exactly on the final physical rune of p0.
 
-```
-(14,14)
-```
+Thus **blocks 1–3 no longer use English to select their node, start, stop, length or direction**. The grammar remains post-hoc because these node/movement rules were reconstructed after the public route was known; this is source compression rather than creator authentication.
 
-which is the exact center of the 27×27 matrix.
-
-Reading right from that fixed start under `X-X-I` gives:
-
-```
-W - EA - TH - E - R - X ...
-```
-
-The first five runes are the source-native encoding of **WEATHER**. After five runes the dictionary still permits WEATHER and WEATHERCOCK as continuations; the sixth decrypted rune X eliminates **every** native dictionary continuation. Thus the block self-delimits at WEATHER without supplying its length.
-
-## Block 3: next cell, previous-center geometry, unique cardinal direction
-
-The next row-major cell after WEATHER is:
-
-```
-(14,19) = A
-```
-
-Use the previous derived center `I=10`:
-
-```
-phi(10) = 4
-```
-
-From A move 4 columns right to `(14,23)=NG`. From that center move 10 rows up and down:
-
-```
-(4,23)  H
-(14,23) NG
-(24,23) C
-```
-
-This gives key `H-NG-C`; its Möbius/totient signature requires no rotation.
-
-Now test all four cardinal read directions from the fixed A start. Their maximum surviving native-dictionary prefix depths are:
-
-```
-UP    5
-DOWN  1
-LEFT  2
-RIGHT 2
-```
-
-Only **UP** reaches five runes:
-
-```
-T - U - R - N - S
-```
-
-The sixth rune destroys all dictionary continuations, so the branch self-delimits at **TURNS**.
+Reproducer: `sims/lp2_p0_opening_physical_boundary_sft.cjs`.
 
 ## Block 4: prospective finite-family recovery of COLD
 
@@ -244,7 +209,7 @@ The combined candidate is now:
 AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
 ```
 
-The first three blocks are selected directly by the source-bounded bootstrap, while COLD now has two independent selectors inside the same frozen 36-branch family: the earlier prospective dictionary-prefix maximum and the locked LP1 numerical residual. The entire `I MAY CRY NOW THE IDEA` phase is now selected by the physical p2 boundary plus equal-outer mirror geometry without a language score.
+The first three blocks are now selected without a dictionary by the natural-node movement family, the globally unique X-OE-X -> matrix-center endpoint, and the physical p0 end. COLD is selected inside its frozen 36-branch family by the locked LP1 numerical residual. The entire `I MAY CRY NOW THE IDEA` phase is selected by the physical p2 boundary plus equal-outer mirror geometry without a language score.
 
 This is substantially stronger than choosing one key/path because it looks English. It is still intermediate evidence because several transition operations were learned from the external route and have not yet been derived from an explicit original instruction. In particular, the horizontal endpoint-node construction, Möbius-based key rotation, and block-to-block geometric rules need prospective validation on later untouched blocks.
 
@@ -254,13 +219,31 @@ The immediate block-5 language tie is no longer the blocker. The source-selected
 
 ## Reproduction
 
-Run:
+Primary source-only opening/boundary SFT:
+
+```
+node sims/lp2_p0_opening_physical_boundary_sft.cjs
+```
+
+It reads only the canonical p0-p2 corpus and does not load an English dictionary or expected plaintext strings as selectors.
+
+The older widened lexical bootstrap remains as an independent control:
 
 ```
 node sims/lp2_p0_27square_source_bootstrap_first3_sft.cjs
 ```
 
-The bootstrap SFT reads the canonical p0-p2 source, the original delimiter transcription, and the source-native English lexicon. It does not import the external route arrays or expected plaintext strings as candidate selectors. The separate `sims/lp2_p0_lp1_checksum_block4_selector_sft.cjs` reproduces the LP1 checksum census and selects COLD from the same 36-candidate block-4 family without a language score.
+COLD is independently reproduced by:
 
-External route credited for the numerical node/transition ideas:
+```
+node sims/lp2_p0_lp1_checksum_block4_selector_sft.cjs
+```
+
+Block 5 through IDEA is reproduced by:
+
+```
+node sims/lp2_p0_block5_p2_boundary_chain_sft.cjs
+```
+
+External route credited for the original numerical node/transition ideas:
 https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption

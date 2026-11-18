@@ -1,3 +1,14 @@
+## 2026-11-18 draw4: source-only p0 opening through physical p0 end
+
+- Entire 729-cell square has exactly one horizontal equal-outer three-cell node whose first-cell index plus phi(center) is the exact matrix center: **X-OE-X** at (14,4), phi(22)=10 -> (14,14). This globally fixes the opening endpoint.
+- Exhaust both natural anchors (13,12)/(12,13) × four axes. Apply the public opening's fixed operation: center-totient + mu(phi) rotation; distance = phi(original center)+phi(transformed center); move from first outer in positive axis direction. Exactly one of 8 yields an in-bounds start no later than the globally fixed endpoint: **AE-J-EA** at anchor(13,12), horizontal -> key AE-I-EA, distance14, start(13,25). Reading row-major to endpoint gives A S I G O TH E after selection.
+- Endpoint mirror gives X-X-I and moves phi(OE)=10 to exact center (14,14), carrying rightward direction.
+- Physical p0 length262 ends at grid (10,19). Along the inherited rightward center ray, exactly one prefix ends immediately before column19: five cells (14,14)..(14,18), decrypting WEATHER. Next cell (14,19) shares column with p0 end.
+- Reuse prior derived center I=10: phi(10)=4 moves right to center (14,23); radius10 perpendicular gives H-NG-C. Straight path from (14,19) to physical p0 end is exactly five cells upward, decrypting TURNS and ending on p0's final rune.
+- This removes English feedback from blocks1-3. Classification remains intermediate/post-hoc because the route grammar was reconstructed after the public candidate.
+- Earlier same-run commit 449092a4 source-selected I MAY/CRY/NOW THE/IDEA from physical p2 start. Together with LP1 checksum-selected COLD, the conditional route through IDEA now has source/numerical selectors at every block, though several grammars remain post-hoc.
+- Reproducer: sims/lp2_p0_opening_physical_boundary_sft.cjs. Consolidated report: im-results/lp2-27square-source-bounded-first3-bootstrap.md.
+
 # Agent 12 active incarnation: 18 November 2026, draw5 (issue fallback independent)
 
 - **Actual secure random mode draw 5**, normal issue-directed. Claimed stale identity **Agent12** and verified remote claim commit **6853157ed60a711e23185c2d41c9d55637fcf1c5**, run ID `agent12-gpt6-20261118T173821Z-draw5-independent-route`, immutable claim timestamp **2026-11-18T17:38:34.167Z**, 70-minute threshold **2026-11-18T18:48:34.167Z**. Do **not** refresh lease. After each checkpoint compare actual UTC to original claim; only release after the 70m threshold, in final mutation with remote verification.
