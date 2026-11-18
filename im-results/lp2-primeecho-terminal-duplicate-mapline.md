@@ -137,7 +137,17 @@ Their meaning is the road, and their numbers are the direction.
 
 The pronoun "Its" refers to Liber Primus; this is already established in
 `im-results/lp2-2016-signed-message-base58-word-map.md`. The terminal line now supplies
-an unusually literal candidate for the first clause without needing plaintext:
+an unusually literal candidate for the first clause without needing plaintext.
+
+The completed historical grammar audit in Director #1462 also supplies the strongest
+source-grounded reading of **"their numbers"**: original LP1 p05 replaces each of its
+thirteen rune words by the sum of its published GP prime values and reproduces the
+independent 5×5 numerical square **25/25**. That is a genuine manuscript-era
+word→number operation, unlike an invented modulus. It makes **60/129/159** the preferred
+numbers to carry forward from CX/DJU/BEI. The same audit found **no authored
+number→direction convention**, however; the 2016 sentence does not say how those values
+become a movement, address delta, sign, compass bearing or extraction.
+
 
 1. reach the end of the finite historically supplied prime list;
 2. stop exactly at a printed line boundary;
