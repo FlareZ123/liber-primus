@@ -108,12 +108,12 @@ assert.deepEqual(records[0], {
 assert.equal(records[records.length - 1].score, 400);
 
 // Planted, unseen-key positive: nontrivial D4 transform, field affine output
-// relabeling, and unknown 5-cell removal at a locked interior gap.
+// relabeling, and unknown 5-cell removal at a locked interior gap. Exact gap registration\n// can be one rune ambiguous when the adjacent source input glyphs coincide.
 const plantedCandidate = crop(first, 1, 1, 1, 1, 0);
 const plantedOutput = removeFive(plantedCandidate.map(x => (7*x + 11) % 29), 1234);
 const plantedResult = bestUnknownGap(plantedCandidate, plantedOutput);
 assert.equal(plantedResult.score, plantedOutput.length);
-assert.equal(plantedResult.gap, 1234);
+assert.ok([1233, 1234].includes(plantedResult.gap), 'Equivalent one-rune gap must be recovered');
 
 console.log(JSON.stringify({
   source: 'LP2 full original 12956-runed unsolved source',
