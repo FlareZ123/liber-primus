@@ -22,6 +22,14 @@ The GP C/K rune gives the literal canonical transliteration **SECUENDI RATIO**; 
 
 The important new evidence is selectivity. The two keys are not arbitrary keys reverse-engineered directly from the heading in the reproducer below.
 
+There is also a previously undocumented arithmetic checksum on the recovered title itself. Its 13 plaintext rune indices sum to **156**, exactly
+
+\`\`\`
+156 = 13 × phi(13) = 13 × 12.
+\`\`\`
+
+Thus the source-visible title length, the opening coordinate \`J=(13,12)\`, and the recovered title's complete index sum all reuse the same 13/12 pair. This equality was not used to derive either key or to choose the candidate Latin reading.
+
 ## First key: unique rectangle under the published geometry
 
 The red count gives the route's opening coordinate `J=(13,phi(13))=(13,12)`. Block 28's frozen original source is the vertical three-cell node:
@@ -105,7 +113,7 @@ Run:
 node sims/lp2_p0_red_heading_sequendi_ratio_gate_sft.cjs
 ```
 
-The SFT uses only the canonical local p0-p2 corpus, the source-corrected physical red-ink annotation, and the repository's already frozen first-38 route arrays. It asserts the original 8+5 heading, the unique rectangle, both exact decryptions and re-encryptions, and the 20-to-1 route-prefix extrapolation selectivity result.
+The SFT uses only the canonical local p0-p2 corpus, the source-corrected physical red-ink annotation, and the repository's already frozen first-38 route arrays. It asserts the original 8+5 heading, the unique rectangle, both exact decryptions and re-encryptions, the 20-to-1 route-prefix extrapolation selectivity result, and the independent `156 = 13 × phi(13)` recovered-title checksum.
 
 External numerical proposal credited for the candidate red-heading constructions:
 https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption
