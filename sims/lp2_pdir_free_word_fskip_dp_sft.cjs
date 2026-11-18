@@ -269,10 +269,49 @@ const outOfSample=plant(words.map(w=>w.length),holdoutByLength);
 const a=viterbi(inSample.cipher);
 const b=viterbi(outOfSample.cipher);
 const result=viterbi(words);
+// Stronger optimistic lexical necessary screen. Each original word gets an
+// independently chosen 464-state start, sign and all F-skip branch choices.
+// It therefore cannot miss a globally consistent phrase solely because of
+// the word-to-word pointer continuity constraints imposed by Viterbi.
+const lexicalSources=[
+  ...source,holdoutText,
+  read('resources/control/shakespeare_first300k.txt'),
+  read('resources/control/gibran_prophet_58585.txt')
+];
+const lexicon=new Set();
+for(const text of lexicalSources)for(const hit of text.matchAll(/\b[A-Za-z]+\b/g)){
+  const w=encode(hit[0]);
+  if(w.length>0&&w.length<=15) lexicon.add(w.join(','));
+}
+/** @param {number[]} word */
+function anyLexicalPreimage(word){
+  for(let start=0;start<N;start++)for(const dir of [-1,1]){
+    let matched=false;
+    enumerate(word,start,dir,(plain)=>{
+      if(lexicon.has(plain.join(',')))matched=true;
+    });
+    if(matched)return true;
+  }
+  return false;
+}
+const thresholds=[5,6,7,8,9];
+const lexStats=thresholds.map(threshold=>{
+  const originalLong=words.filter(w=>w.length>=threshold);
+  const positiveLong=outOfSample.plain.filter(w=>w.length>=threshold);
+  return {
+    minimumLength:threshold,
+    originalWords:originalLong.length,
+    originalAnyLexical:originalLong.filter(anyLexicalPreimage).length,
+    positiveWords:positiveLong.length,
+    positiveAuthentic:positiveLong.filter(w=>lexicon.has(w.join(','))).length
+  };
+});
+
 console.log('Original 729-runic opening, '+words.length+' authentic words; phi(prime) p56 F-transparent key');
 console.log('Full all-key start phases='+N+', all +/- word directions, all zero/F inverse branches');
 console.log('Authentic solved p56 exact ciphertext forward regression: 85/85 PASS');
-console.log('Native reference dictionary '+dictionary.size+' distinct words');
+console.log('Native reference dictionary '+dictionary.size+' distinct words; independent broad lexicon='+lexicon.size);
+console.log('Optimistic independent word-all-phase lexical necessity: '+JSON.stringify(lexStats));
 console.log('Original adjacent doublets='+doublets(words)+
   ', in-sample plant='+doublets(inSample.cipher)+
   ', external heldout plant='+doublets(outOfSample.cipher));
