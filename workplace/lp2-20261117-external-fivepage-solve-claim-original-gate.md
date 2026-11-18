@@ -20,7 +20,7 @@ This is a valid *inverse matrix*, with no coherent unknown-page prose. No extra 
 
 The public reference to "page71" cannot independently establish a new solution: original LP2 p56 (physical `73.jpg`) was already authentically decrypted by the prime-totient/transparent-F rule, and page numbering schemes differ. Establishing an *unknown-page* result requires identifying the exact original scan, showing each recovered GP29 rune and a source-constrained inverse/re-encryption.
 
-**Reproduction:** [one-file Windows-compatible CommonJS original-source test](../sims/lp2_20261117_external_p32_inverse_claim_sft.cjs) asserts the original printed line counts, determinant 8, prime-value determinant21, full inverse identity, published modular arithmetic facts and matrix nonsingularity baseline. No source bytes are edited. **Scope:** this is a bounded check of one precise posted algebraic claim, not an assessment of any unavailable external files or proof that every reported correction is false.
+**Reproduction:** [Windows Node.js 22 GitHub Actions PASS, run 44241583861](https://github.com/FlareZ123/liber-primus/actions/runs/44241583861), executing the [one-file Windows-compatible CommonJS original-source test](../sims/lp2_20261117_external_p32_inverse_claim_sft.cjs) asserts the original printed line counts, determinant 8, prime-value determinant21, full inverse identity, published modular arithmetic facts and matrix nonsingularity baseline. No source bytes are edited. **Scope:** this is a bounded check of one precise posted algebraic claim, not an assessment of any unavailable external files or proof that every reported correction is false.
 
 ## Next decisive input
 
