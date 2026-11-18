@@ -39,6 +39,16 @@ The **actual two initial red words on original LP2 p0** contain 8 and 5 runes, w
 
 This second, physically printed two-word source route reaches the delivery-page `id="331"` without using the `title` value. The table's independently visible **32 rows** supplies a further geometric correspondence. Because this red pair and table shape were known independently before the HTML-prime-index observation, they make 331 a candidate *cross-artifact signpost* worth communicating, but the **mean** and **difference** operations were selected retrospectively; they are not proof of author intent, a decrypting key or a causal direction for reading the table. The earlier full [p0 red-pair/table arithmetic gate](../im-results/p0-dh23-red-heading-exchange.md) and the [row27 direct DES receiver test](../sims/lp2_p0_row27_des8_source_sft.cjs) produced no plaintext and must not be repeated as if new.
 
+## Frozen original-input consumer: prime-field exponentiation fails as a byte decoder
+
+For a human who encounters the `133` (HTML title) and `331` (HTML ID) separately, a concrete historically familiar reading would be field exponentiation modulo the prime **331** by **133**. Since `gcd(133,330)=1`, the inverse exponent is **67**: `133·67≡1 (mod 330)`. The p49–51 original 32×8 numerical table is a naturally available **256-byte typed receiver** if its two-character tokens are read in conventional base60. Freeze this one recipient and test both exact inverse directions on the unchanged 256 source bytes.
+
+- `x → x^133 mod 331`: **49/256** results exceed 255, and only **83/256** fall within printable ASCII.
+- `x → x^67 mod 331`: **56/256** results exceed 255, and only **78/256** fall within printable ASCII.
+- Both field directions **exactly reconstruct all 256 input values** when reversed with the complementary exponent. This checks mathematical implementation only; no plaintext or original byte payload is recovered. Reducing outputs modulo256 would destroy the proven inverse and is not supplied by any source.
+
+The [read-only single-file original-input CommonJS SFT](../sims/lp2_html133331_mod331_original_sft.cjs) uses the original registered table and planted field positives; it passed [Windows Node22 manual CI run 44250316122](https://github.com/FlareZ123/liber-primus/actions/runs/44250316122). The result **rejects only this literal 133/331 prime-field-to-byte consumer**, leaving the candidate historical ordinal breadcrumb and any independently selected alternative cipher semantics unproven.
+
 ## Decision and bounded next move
 
 The **physical presence of 133/331** and the **prime-index equation** are verifiable. Their construction as an *author-intended key or instruction* remains hypothetical. Neither first-party markup nor the original ciphertext specifies addition as a key-generation step, a 464th-prime start as an unknown-page cipher clock, or how this would act on the 29-rune alphabet.
