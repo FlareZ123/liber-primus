@@ -52,7 +52,7 @@ The boundary300 cut is ordinary in the manuscript's typography rather than a dis
 
 The nine visual-chapter final-line starts used by #1506 are `2/8, boundary, boundary, 1/6, 3/5, 2/3, 1/3, boundary, 4/2`. Thus **6/9** chapter-final line starts also split a carried word. p55 is the only 4/2 member of that nine-case panel, but the same 4/2 typography occurs twelve other times elsewhere in the original source, so that small-panel uniqueness does not supply a source-visible opcode.
 
-Director #1557 therefore follows its negative fork: retain finite `prime_echo` as a selector for the p55 physical line break, while **retiring the carried-word split and `CX` fragment as clues absent independent source evidence**. The canonical consumer must ignore the mere fact that the boundary lands inside `CEAIMCX`. Reproducer: [`sims/lp2_linebreak_wordcarry_census_sft.cjs`](../sims/lp2_linebreak_wordcarry_census_sft.cjs).
+Director #1557 therefore follows its negative fork: retain finite `prime_echo` as a selector for the p55 physical line break, while **retiring the carried-word split and `CX` fragment as clues absent independent source evidence**. The canonical consumer must ignore the mere fact that the boundary lands inside `CEAIMCX`. Reproducer: [`sims/lp2_linebreak_wordcarry_census_sft.cjs`](../sims/lp2_linebreak_wordcarry_census_sft.cjs), Windows Node22 [PASS 44395318808](https://github.com/FlareZ123/liber-primus/actions/runs/44395318808).
 
 ## 2. Canonical word-boundary correction
 
