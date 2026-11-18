@@ -198,6 +198,79 @@ assert.equal(p57Within + p57Emerge, 121);
 const exact121 = signedRows.filter((row) => row.number === 121);
 assert.deepEqual(exact121.map((row) => row.word.toLowerCase()), ["epiphany"]);
 
+// Complete adjacent signed-pair boundary census. Only two source pairs land
+// on two p0 word ends and enclose complete words. Comparing each enclosed
+// length vector against every contiguous signed phrase of the same word count
+// yields one match: SEEKS/THE brackets THE/ROAD at p0 words21/22.
+const p0EndToWord = new Map(
+  p0.map((word) => [word.start + word.length - 1, word.index])
+);
+const boundaryIntervals = [];
+for (let i = 0; i < messageRows.length - 1; i += 1) {
+  const a = messageRows[i];
+  const b = messageRows[i + 1];
+  const low = Math.min(a.target, b.target);
+  const high = Math.max(a.target, b.target);
+  const leftWord = p0EndToWord.get(low);
+  const rightWord = p0EndToWord.get(high);
+  if (leftWord === undefined || rightWord === undefined || leftWord >= rightWord) continue;
+  boundaryIntervals.push({
+    sourcePair: [i, i + 1],
+    sourceWords: [a.word, b.word],
+    outputs: [a.target, b.target],
+    orderedBoundaries: [low, high],
+    p0Range: [leftWord + 1, rightWord],
+    lengths: p0.slice(leftWord + 1, rightWord + 1).map((word) => word.length),
+  });
+}
+assert.deepEqual(boundaryIntervals, [
+  {
+    sourcePair: [6, 7],
+    sourceWords: ["seeks", "the"],
+    outputs: [108, 102],
+    orderedBoundaries: [102, 108],
+    p0Range: [21, 22],
+    lengths: [2, 4],
+  },
+  {
+    sourcePair: [28, 29],
+    sourceWords: ["the", "direction"],
+    outputs: [102, 72],
+    orderedBoundaries: [72, 102],
+    p0Range: [14, 20],
+    lengths: [2, 2, 3, 3, 7, 5, 8],
+  },
+]);
+
+const boundaryPhraseMatches = [];
+for (const interval of boundaryIntervals) {
+  const width = interval.lengths.length;
+  for (let i = 0; i + width <= signedRows.length; i += 1) {
+    const candidate = signedRows.slice(i, i + width);
+    if (candidate.every((row, j) => row.length === interval.lengths[j])) {
+      boundaryPhraseMatches.push({
+        sourcePair: interval.sourcePair,
+        p0Range: interval.p0Range,
+        signedRange: [i, i + width - 1],
+        words: candidate.map((row) => row.word),
+      });
+    }
+  }
+}
+assert.deepEqual(boundaryPhraseMatches, [{
+  sourcePair: [6, 7],
+  p0Range: [21, 22],
+  signedRange: [22, 23],
+  words: ["the", "road"],
+}]);
+assert.equal(p0[21].start, 103);
+assert.equal(p0[21].length, 2);
+assert.equal(p0[22].start, 105);
+assert.equal(p0[22].length, 4);
+assert.equal(sum(p0[21].indices), 20);
+assert.equal(sum(gp("THE")), 20);
+assert.equal(gp("ROAD").length, 4);
+
 // Source quantities from solved p57 plus the authenticated p50 bracket
 // reconstruct both original red-title ciphertext word sums.
 assert.equal(sum(gp("FIND")), 42);
@@ -360,6 +433,17 @@ console.log(JSON.stringify({
       candidateSourceWords: ["THE", "DEVOTED"],
     },
     typedClosureCensus: {candidates: typedCandidates.length, closures: typedClosures.length},
+    roadPlacement: {
+      directionSourcePair: ["SEEKS", "THE"],
+      directionOffsets: [108, 102],
+      p0WordRange: [21, 22],
+      p0Offsets: [103, 108],
+      p0WordLengths: [2, 4],
+      selectedSignedPhrase: ["THE", "ROAD"],
+      completeBoundaryIntervals: boundaryIntervals.length,
+      completePhraseMatches: boundaryPhraseMatches.length,
+      firstCiphertextGp0: sum(p0[21].indices),
+    },
     p57ClauseVocabulary: {
       find: {gp0: p57Find, residue: p57Find % 29, signedType: "SEEKS"},
       circumferences: {

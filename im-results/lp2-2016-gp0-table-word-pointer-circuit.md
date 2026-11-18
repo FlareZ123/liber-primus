@@ -1,6 +1,6 @@
 # Signed-2016 GP0 table word-pointer circuit into p0 and p27
 
-**Agent23, 18 November 2026. Classification: high-priority source-internal navigation mechanism that independently selects the four-word signed clause `EPIPHANY SEEKS THE DEVOTED` from solved p57 numbers and places its 8 / 5 and 2 / 7 halves on original p0. The route does not yet recover the full p0 cipher.**
+**Agent23, 18 November 2026. Classification: high-priority source-internal navigation mechanism that independently selects the four-word signed clause `EPIPHANY SEEKS THE DEVOTED` from solved p57 numbers and places its 8 / 5 and 2 / 7 halves on original p0. The same frozen pointer grammar also selects `THE ROAD` at p0 offsets103..108 through a complete adjacent-pair census. The route does not yet recover the full p0 cipher.**
 
 ## Decision
 
@@ -123,6 +123,44 @@ These four numerical selections were derived from the independently solved p57 t
 The strongest caveat is ordering. Reading the relevant p57 operands in their physical order would associate CIRCUMFERENCES before FIND/THE and WITHIN/EMERGE later, so p57 alone does not emit the 2016 clause in final reading order. The authenticated 2016 sentence supplies that order. The result therefore establishes an independent **vocabulary selection and placement route**, while the 2016 clue remains necessary as the ordering map.
 
 This materially strengthens both p0 plaintext placements: **EPIPHANY SEEKS** is now selected numerically from solved p57 before matching the 8 / 5 red heading, and **THE DEVOTED** is selected independently by the title/table holdout and the p0 2 / 7 pointer boundary.
+
+## SEEKS / THE directions bracket a unique THE ROAD placement
+
+The established signed-word pointer grammar makes another finite prediction on original p0.
+
+For the authenticated adjacent source pair **SEEKS / THE**:
+
+`GP0(SEEKS)=71 -> T[71]=108`
+
+`GP0(THE)=20 -> T[20]=102`.
+
+Both returned offsets are exact **ends of complete p0 words**. Sorted as boundaries, 102 and108 enclose exactly p0 words21 and22:
+
+| p0 word | start | end | length | ciphertext GP0 sum |
+| --- | ---: | ---: | ---: | ---: |
+| word21 | 103 | 104 | 2 | **20** |
+| word22 | 105 | 108 | 4 | 76 |
+
+Their word-length vector is therefore **2 / 4**.
+
+This was tested by a complete source-preserving census rather than by searching only for THE ROAD. Across all 42 adjacent signed-word pairs, only **two** pairs have table-byte outputs that both land on p0 complete-word ends and enclose one or more complete words:
+
+- SEEKS / THE: boundaries102 / 108, interior word lengths `[2,4]`;
+- THE / DIRECTION: boundaries72 / 102, interior word lengths `[2,2,3,3,7,5,8]`.
+
+For each resulting interval, compare its complete word-length vector against **every contiguous signed-message phrase of exactly the same word count**. There is exactly **one match in the entire census**:
+
+`SEEKS / THE -> p0 [2,4] <-> signed THE / ROAD`.
+
+The authenticated source itself contains the exact contiguous phrase **“the road”**, matching the 2 / 4 GP lengths. This is especially source-constrained because the same signed instruction says that the words' **meaning is the road** and their numbers are the **direction**: the numbers of SEEKS and THE supply the two direction endpoints, and the unique phrase shape between them is literally THE ROAD.
+
+A post-selection holdout strengthens the first word: original p0 word21 has ciphertext GP0 sum **20**, exactly equal to canonical `GP0(THE)=20`. No sum-preservation assumption was used to select the interval.
+
+This supports a third source-selected p0 plaintext placement:
+
+`p0 offsets103..108 = THE ROAD`
+
+with word21 / word22 corresponding to **THE / ROAD**. As with the other placements, this is a reproducible navigation-derived plaintext prediction rather than a recovered global letterwise cipher.
 
 ## p57 bracket quantities reconstruct the two red-title ciphertext sums
 
