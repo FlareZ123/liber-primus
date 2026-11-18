@@ -256,6 +256,39 @@ for (const [order, ids] of [["clockwise", seededClockwise],
 assert.equal(sourceRimWheel76.length, 4);
 assert.equal(Math.max(...sourceRimWheel76.map(x => x.ioc)), 0.03543859649122807);
 
+// The second original table zero is the unique zero on concentric ring 2,
+// whose 60 cells pair with p56 final17 and p57 initial43 known rune positions.
+const middleRing = [];
+for (let c = 2; c <= 5; c++) middleRing.push(2 * 8 + c);
+for (let row = 3; row <= 29; row++) middleRing.push(row * 8 + 5);
+for (let c = 4; c >= 2; c--) middleRing.push(29 * 8 + c);
+for (let row = 28; row >= 3; row--) middleRing.push(row * 8 + 2);
+assert.equal(middleRing.length, 60);
+assert.deepEqual(middleRing.filter(i => table[i] === 0), [229]);
+const middleOrigin = middleRing.indexOf(229);
+const midClockwise = middleRing.slice(middleOrigin)
+  .concat(middleRing.slice(0, middleOrigin));
+const midCounterclockwise = [midClockwise[0], ...midClockwise.slice(1).reverse()];
+const known60Printed = c56.slice(68).concat(p57.slice(0, 43));
+const known60Clear = plain56.slice(68).concat(p57.slice(0, 43));
+assert.deepEqual([known60Printed.length, known60Clear.length], [60, 60]);
+const midKnown = [];
+for (const [order, ids] of [["clockwise", midClockwise],
+  ["counterclockwise", midCounterclockwise]]) {
+  const direct = ids.map(i => table[i] % 29);
+  const directMatches = direct.filter((v, i) => v === known60Clear[i]).length;
+  for (const sign of [-1, 1]) {
+    const decoded = known60Printed.map((v, i) => mod29(v + sign * direct[i]));
+    midKnown.push({order, sign, directMatches,
+      exactClear: decoded.filter((v, i) => v === known60Clear[i]).length,
+      nonzeroP57Pad: direct.slice(17).filter(v => v !== 0).length});
+  }
+}
+assert.deepEqual(midKnown.map(x => x.exactClear), [3, 2, 3, 0]);
+assert.deepEqual(midKnown.map(x => x.directMatches), [3, 3, 1, 1]);
+assert.deepEqual(midKnown.map(x => x.nonzeroP57Pad), [42, 42, 43, 43]);
+
+
 
 
 // Source-motivated alternative decoder for the ciphertext's strong doublet
@@ -314,6 +347,7 @@ console.log(JSON.stringify({
     knownP57First76Ioc: ioc(plainControl), direct76,
     sourceZero192AnchoredRim76: originalRim76,
     sourceZero192AnchoredRimGp28: sourceRimWheel76,
+    zero229Middle60Known: midKnown,
     nonrepeatGp28Wheel: wheel76},
   control: "Both 256/256 original-sized planted terminals recovered"
 }, null, 2));
