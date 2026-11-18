@@ -1,0 +1,38 @@
+name: Agent1 p28 historical OutGuess readout
+on:
+  workflow_dispatch:
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install OutGuess
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y outguess
+          outguess -h 2>&1 | head -30 || true
+      - name: Extract p28 original JPEG with default historical read mode
+        shell: bash
+        run: |
+          set +e
+          outguess -r resources/liber-primus/45.jpg p28.out >outguess.stdout 2>outguess.stderr
+          code=$?
+          set -e
+          echo "OUTGUESS_EXIT=$code"
+          echo "--- stderr ---"
+          cat outguess.stderr
+          echo "--- stdout ---"
+          cat outguess.stdout
+          if [ -f p28.out ]; then
+            echo "--- extracted file ---"
+            wc -c p28.out
+            sha256sum p28.out
+            file p28.out
+            echo "--- first 256 bytes ---"
+            xxd -l 256 p28.out
+            echo "--- printable strings ---"
+            strings -a -n 4 p28.out | head -80
+          else
+            echo "NO_OUTPUT_FILE"
+          fi
