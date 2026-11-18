@@ -43,10 +43,29 @@ The original 54 physical page-edge transitions are **excluded**, so chapter/page
 
 The **smallest** native-control hit count 369 still exceeds the exact required 86 by **283**. This entire discrepancy is **independent of all 28-way keys**, including arbitrary key changes at every ciphertext rune. The 2013 *Book of the Law* chapters, which are shorter than the original 12,956-rune corpus, were omitted from this specific full-book rolling-window calculation rather than being treated as nonexistent source matches.
 
-The SFT independently tests the literal original count and 55 page lengths, the polynomial's `G(24)=0` root and `G(0)=27`, source orthography, all source-window minima, exact algebraic inversion on a native Shakespeare source-shaped positive, and complete source ciphertext reencryption. It runs using read-only repository artifacts and no packages on Node22.
+## Stronger independence control: nine separate authored chapters
+
+A single contiguous 12,956-rune source excerpt might be too restrictive if the LP2 author deliberately concatenated different prose passages. The original drawings and section breaks give nine independently recognized visual chapters. For each chapter, **independently choose any of nine pre-existing source books, any native-GP contiguous passage of that exact chapter length, and any source offset**. This also permits all three 2013 *Book of the Law* volumes and Tennyson for the shorter chapters. Exclude the true physical page starts *inside* each chapter, preserving all actual 54 page-edge omissions. The result is an exact optimistic minimum over more source choices than any single coherent novel:
+
+| Original visual chapter | GP runes | Original repeats | Lowest possible source-quadratic markers |
+| --- | ---: | ---: | ---: |
+| p0–2 | 729 | 4 | 9 |
+| p3–7 | 1,145 | 6 | 17 |
+| p8–14 | 1,729 | 9 | 34 |
+| p15–22 | 1,903 | 10 | 38 |
+| p23–26 | 1,021 | 11 | 15 |
+| p27–32 | 1,433 | 13 | 22 |
+| p33–39 | 1,680 | 12 | 32 |
+| p40–53, with rune-free p50 | 3,008 | 18 | 65 |
+| p54–55 | 308 | 3 | 0 |
+| **Total** | **12,956** | **86** | **232** |
+
+Even this freely composed, chapterwise excerpt model requires **at least 232** zero-event markers against **86** actual repeats, an excess of 146. The minima are independently optimized for each chapter and can overlap freely in a source book, so the summed 232 is a lower bound for any more restrictive selection of actual passages from those nine books. This substantially reduces the long-contiguous-quotation caveat. It is still a *finite supplied-source native GP register* exclusion; a new original manuscript or altered encoding remains possible.
+
+The SFT independently tests the literal original count and 55 page lengths, the polynomial's `G(24)=0` root and `G(0)=27`, source orthography, all source-window minima, the **nine independently chosen exact original-chapter source minima**, exact algebraic inversion on a native Shakespeare source-shaped positive, and complete source ciphertext reencryption. It runs using read-only repository artifacts and no packages on Node22.
 
 ## Decision
 
-**The particular p39-`G` plaintext-feedback reserved-rune receiver fails the strongest clue-preserving full-book native-prose comparison**, even with completely unknown nonzero GP28 keys, falsified original word-boundary assumptions, and page initial states free. This does **not** disprove the mathematical construction or every possible English manuscript: an independently composed short passage in each chapter, other languages, nonlinear multistep functions or an external key stream can differ from these long source passages. Source-contiguous length-matched controls are a finite test population, and the p39 red polynomial's use as a feedback marker remains an interpretation.
+**The particular p39-`G` plaintext-feedback reserved-rune receiver fails both the full-book contiguous and the independently recomposed nine-chapter native-prose comparisons**, even with completely unknown nonzero GP28 keys, falsified original word-boundary assumptions, and page initial states free. This does **not** disprove the mathematical construction or every possible English manuscript: an independently composed short passage in each chapter, other languages, nonlinear multistep functions or an external key stream can differ from these long source passages. Source-contiguous length-matched controls are a finite test population, and the p39 red polynomial's use as a feedback marker remains an interpretation.
 
 No selected inverse decrypts 150 consecutive authentic unsolved GP29 runes into independently verifiable plaintext. The next productive step would require an **independently printed state rule or external key pointer** that specifies a different marker function, rather than fitting coefficients after seeing low repeat counts.
