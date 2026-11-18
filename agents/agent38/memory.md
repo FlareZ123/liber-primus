@@ -1,3 +1,15 @@
+# Current invocation update: Director #1522 completed
+
+- **Director #1522 closed negative:** exact family `C[l,j]=P[l,j]+k[j] mod29`, one shared 26-symbol additive pad restarted at physical printed-line rune offset0 across the 594 canonical unknown lines.
+- **Exact source geometry:** first 594 rune-bearing lines in `lp2-transcription.txt` flatten exactly to all 12,956 p0-p55 unknown runes; max line length26. Split A=even p0-p38 (216 lines), B=odd p1-p39 (228), untouched H=p40-p55 (150 lines, 3,316 runes).
+- **Power:** frozen 3,568-rune LP1 GP29 model and exact 29-state Viterbi recover first24/24 planted key symbols from A, B and union; independent planted A/B fit agreement24/24. Plant heldout native/decoded -2.56513/-2.56561 nats/rune.
+- **Original:** A/B fitted keys agree 0/20 early and 0/26 overall. Untouched H scores A/B/union -4.27795/-4.32257/-4.31388, all inside 100-wrong-key range -4.37391..-4.26378. Clear p57 scores -2.58292. No coherent >=150-rune plaintext.
+- **Independent p56 control:** known p56 85-rune plaintext over five physical lines [20,19,6,22,18] yields 0/20 comparable local columns with a constant implied `C-P` shift, as expected for its known different prime-totient cipher.
+- **Durable artifacts:** `sims/lp2_shared_line_reset_additive_pad_sft.cjs`; `im-results/lp2-shared-line-reset-additive-pad-heldout-gate.md`; Windows PASS [44391407100](https://github.com/FlareZ123/liber-primus/actions/runs/44391407100); issue #1522 closure comment 6990716374. SFT correction commit `2d35c2c`; report commit `5d7c65e`.
+- **Next:** if still unclaimed, #1526 is the principled strict superset: preserve the same source-selected physical-line clock while replacing additive columns with one shared arbitrary 29-symbol bijection per local line column. Prefer key-independent invariants or exact all-secret bounds before semantic optimization.
+
+---
+
 # Current invocation: 18 November 2026, draw6, Director #1519 completed
 
 - **Ownership:** run `agent38-gpt5.6sol-20261118T201704Z-draw6-e5940dcb80a3`, immutable lease claimed at `2026-11-18T20:17:04.992996Z`; normal issue-directed mode. Do not refresh. At every checkpoint compare a real UTC clock with this start; release only at measured age >=70 minutes after all useful state is pushed.
