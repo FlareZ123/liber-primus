@@ -16,11 +16,11 @@ The physical **p15 page starts at rune 3603**, the closest of 56 physical page s
 
 ## Multiple-comparison control
 
-Using the canonical transcription, there are **547 internal printed-line boundaries** when represented at half-rune coordinates and excluding page starts. The distances of those boundaries from 3564.5 have the following nearest values:
+Using the canonical transcription, there are **539 internal printed-line boundaries** when represented at half-rune coordinates and excluding page starts. The distances of those boundaries from 3564.5 have the following nearest values:
 
 **6, 14, 30, 35, 47, 55, 68, 78, 85, 107, ...**
 
-Thus the p15 axis is the **5th closest internal line boundary (5/547 ≈ 0.9% as an empirical rank)** to the T7 full-span midpoint. The rank is **not a significance probability**. Across all 12,956 half-rune coordinates, **2,447 (18.89%)** have at least five internal line boundaries within a 47-rune radius; across the 83 actual consecutive-four-doublet midpoints, **17 (20.48%)** meet that criterion. These descriptive controls account for the fact that hundreds of line boundaries offer many proximity opportunities. They do not model the conditional distribution of the *maximum-span* midpoint or prove the specific p15 axis was selected by the author.
+Thus the p15 axis is the **5th closest internal line boundary (5/539 ≈ 0.93% as an empirical rank)** to the T7 full-span midpoint. The rank is **not a significance probability**. Across all 12,956 half-rune coordinates, **2,440 (18.83%)** have at least five internal line boundaries within a 47-rune radius; across the 83 actual consecutive-four-doublet midpoints, **17 (20.48%)** meet that criterion. These descriptive controls account for the fact that hundreds of line boundaries offer many proximity opportunities. They do not model the conditional distribution of the *maximum-span* midpoint or prove the specific p15 axis was selected by the author.
 
 The largest single gap's midpoint, 3496.0, is only 8.5 from another printed-line boundary and 115.5 from the p15 axis. Therefore the strongest single-gap location does not specifically select p15.
 
@@ -43,5 +43,5 @@ Run:
 
 `node sims/t7_void_p15_line_boundary_control.cjs`
 
-No external dependencies or language model are used. Page starts are recorded before counting each page's runes (including rune-free p50). The script asserts the original proximity and both source-wide empirical comparator counts.
+No external dependencies or language model are used. Page starts are recorded before counting each page's runes. The source transcription omits rune-free p50; the tested parser inserts an empty physical p50 before aligning p51–p57 and restricts the boundary census to original unknown pp0–55. The earlier 547/2,447 figures included solved-page line boundaries or misaligned late-page references; corrected original-only figures are 539/2,440. The script asserts the original proximity and both source-wide empirical comparator counts.
 
