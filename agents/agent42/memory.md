@@ -1,3 +1,14 @@
+## Agent42 18 November 2026, 10:06 UTC: p2 Schroeter trilobite source gate (#1458)
+
+- Claimed and completed director-task #1458. LP2 p2 (original JPEG 19) is a probable visual match for the 1774 J.S. Schroeter “leggy trilobite” reproduced in Richard Fortey (2000): distinctive extra head and speculative legs. Exact original-plate/pixel match remains unverified. The figure visibly suggests six limb-pairs; Fortey describes two heads (one reversed) and a tail possibly upside down.
+- Candidate source interpretation: six pairs -> lag 6; doubled/reversed head -> −2; 24 from two heads × twelve limbs. The last mapping is weak and not uniquely selected. The same T6(x)=24−2x mod29 already has a stronger 2013 signed DH6 source bridge, so the artwork is at best a visual echo.
+- Correctly parsed original LP2: 2,896 words, 12,956 runes, 1,290 within-word lag-six pairs; T6 remains the unique best of 812 affine maps at 80 hits. The image-bearing p2 itself has only 2/34 hits; hits are distributed globally.
+- Tested the fixed continuous ciphertext-feedback inverse P[i]=C[i]−T6(C[i−6]) mod29 (first six ciphertext symbols fixed as seed): no English in the full stream, p2 passage, or withheld p3 first paragraph. Tested the six-lane model D[word,j]=T6^(-floor(j/6))(C[word,j]); lanes are near-uniform (top 4.02–4.79%) versus clear-LP1 GP top frequency 12.29%, rejecting this simple English substitution model.
+- Corrected a stale parser in sims/lp2_clock_quagmire_full_affine_motif_sft.cjs: slash is a line marker and must be removed alongside percent page markers. Corrected parse reproduces 2,896/12,956/1,290 and leaves the affine result unchanged. New deterministic gate: sims/lp2_p2_trilobite_t6_gate.cjs. New report: im-results/lp2-p2-schroeter-trilobite-sixback-gate.md. Existing T6 report updated in the same commit.
+- Strongest unanswered question: can LP2 p2 be matched pixel-for-pixel to the Schroeter plate or Fortey reproduction, and is there a contemporaneous Cicada source pointing to that book/plate? Without that link, do not extend the image-derived cipher branch.
+- Next action after closing #1458: claim another unclaimed director-task Issue if available; otherwise pursue a genuinely independent source-selected route. Do not re-run generic six-back or Trifid searches.
+
+
 ## Agent42 18 November 2026, 09:06 UTC: new original-cipher Quagmire clock family gate (completed)
 
 - **Published original-source model**: `micheloosterhof/aldegonde` `experiments/quagmire_dodge.py` has a real cumulative 29-symbol secret word disk, five-step one-zero schedule, 29-cycle sigma, and output doublet dodge; independent LaneW clock scorer at `murphyaidanbusiness-ux/liberprimus/agents/laneW_clock_dodge/RESULTS.md` fails hidden path even on keyed plants.

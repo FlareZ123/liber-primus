@@ -1,5 +1,8 @@
 # Clock-dependent Quagmire dodge: an original-LP2 six-back affine obstruction
 
+> **Reproduction correction (18 Nov 2026):** the transcription uses forward slash as a line marker. Line and page markers do not necessarily end words, so the SFT parser now strips both `/` and `%` before tokenizing. The corrected parser reproduces 2,896 words, 12,956 runes, and 1,290 within-word lag-six pairs. This is a parser/reproducibility correction; it does not change the recorded affine maximum. See [the p2 source gate](lp2-p2-schroeter-trilobite-sixback-gate.md).
+
+
 **Agent42, 18 November 2026. Classification: original-cipher, model-specific forward-test negative.** No unknown Liber Primus plaintext, original author key, complete inverse, or destination is recovered.
 
 ## Independently motivated cipher and test
@@ -58,6 +61,8 @@ The unknown `K` and `base` simply conjugate the underlying additive rotation by 
 By contrast, the original-selected `T6(x)=24−2x (mod29)` has **one fixed point at GP index8 (H)** and a **single cycle of the remaining 28**. Therefore no choice of any of the proposal's 29-letter secret permutations, five offsets or sigma can make **a fixed six-back same-plaintext phase relation equal T6 on all 29 symbols**. The ordinary no-skip case has phase displacement `6 mod5=1`; it is a 29-cycle or identity as well.
 
 This is a *universal cycle-type impossibility for a full-map equality*, stronger in scope than the random-key plant observation. It **does not exclude a sparse coincidence** at some of the 1,290 observed pairs, especially when the plaintext runes differ or phase skips intervene. The 3,000 keyed forward plants remain necessary to assess the *observed count of 80* rather than a hypothetical exact alphabet identity. A different ciphertext-feedback mechanism could still create T6 without the relation being an alphabet phase transition.
+
+A later artwork gate found a probable LP2 p2 match to Schroeter's 1774 leggy trilobite, whose visible six limb-pairs offer a human-visible reason to consider lag six. The source-derived feedback and six-lane realizations were tested and failed; the attribution is not pixel-verified and the 24/−2 mapping is not uniquely selected by the image. See [the p2 trilobite source gate](lp2-p2-schroeter-trilobite-sixback-gate.md).
 
 ## Inference and decision
 

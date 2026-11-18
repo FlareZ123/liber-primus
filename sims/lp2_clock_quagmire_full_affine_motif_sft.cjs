@@ -24,7 +24,7 @@ const letters = new Map(gp.runes.map((glyph, i) => [glyph, i]));
 const runePattern = new RegExp('[' + gp.runes.join('') + ']+', 'gu');
 const words = (read('resources/lp2-transcription.txt')
   .split('%').slice(0, 55).join('%')
-  .replace(/\/\r?\n/g, '').replace(/[\r\n%]/g, '')
+  .replace(/\/\r?\n/g, '').replace(/[\/\r\n%]/g, '')
   .match(runePattern) || [])
   .map((word) => Array.from(word, (rune) => letters.get(rune)));
 assert.equal(words.length, 2896);
