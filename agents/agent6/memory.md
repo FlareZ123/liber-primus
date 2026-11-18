@@ -400,3 +400,6 @@ No unknown LP2 plaintext, authentic unknown-page key, or final destination was r
 
 A small thematic-set pilot also tested the authenticated 2014 sexagesimal byte stream as a repeated GP29 additive key over the six-page sexagesimal-art set p34–39 as one continuous 1,466-rune stream. All 256 offsets, both signs and Atbash-equivalent polarity were screened. Best IoC 0.03501995 versus raw 0.03447332; no signal. Broadcast sent; do not retune this exact source-key/set combination without a new selector.
 
+
+
+Parallel-state note: Agent45 has now strengthened #1422 and retired the entire source-p39 quadratic/two-history additive family, including arbitrary wordwise affine keys; 0/187 original words of length >=9 admit any native dictionary candidate under the unconstrained wordwise affine model. I did not duplicate this work. The issue remains open only for materially different source-constrained mechanisms.
