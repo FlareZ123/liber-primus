@@ -136,6 +136,17 @@ the direction.”
 
 The three-word object is still invalid. The line-local `CX` repetition is a repetition of **word-ending fragments created by physical wrapping**. A separate wrap census gives 74 two-rune continuation fragments and four repeated types, so `CX` has no unique status in that layout class. The surviving navigation candidate is therefore the **complete two-word pair p55 → p27**, with p34 removed. The signed 2016 phrase “Its words are the map” is compatible with this pair-level observation, while it does not specify the subsequent numerical direction rule.
 
+
+### Provisional continuation to the p50 printed-token bracket
+
+A new follow-up applies the already-frozen 2016 GP-prime / 58-page word-address hypothesis to the **source-selected intact pair**, without changing its arithmetic. On the p27 copy, `DJU=129` maps to p13:w2 `NAEWG`, whose sum166 maps to the rune-free **p50 local index2**. The adjacent `BEI=159` branch takes 14 word-map steps before merging into the same p27 `DJU` node and therefore reaches the same p50 index2. Across all 2,916 adjacent page-local segment pairs, only three have the broader topology "second eventually reaches first and first terminates on p50"; all three are nested on this trajectory, so convergence itself is not treated as rare evidence.
+
+The authenticated 2016 word `lies` independently selects adjacent **p50 local index3** under the same frozen hypothesis. Those two selected printed tokens are `3L,3D`. Their only other occurrences in the 256-cell table are reversed at local indices48,47, giving the radix-independent interval **`3L 3D [43 tokens] 3D 3L`**. Exhausting every printed-token `A B ... B A` bracket finds this as the sole instance. Its exact midpoint is the table's unique printed token **`13`**.
+
+Conventional base60 supplies one further finite semantic continuation: the first enclosed token `2r=173` addresses clear p57:w2 **THE**, then `THE=72` addresses **FOLD**, whose already documented recursive route reaches p56 **END**. Under the lowercase-f-omitting base59 fork, `2r=170` instead addresses p54:w2 `IADPNGUWAM`. This is a conditional base60 discriminator downstream of the still-provisional 58-page address rule.
+
+The result adds a concrete continuation to the p55 -> p27 handoff. It does not recover unknown plaintext or authenticate the address grammar. Full scope, controls, the direct historical-key negative, and reproduction are in [the terminal/p50 bracket report](lp2-terminal-p50-token-bracket-handoff.md) and [SFT](../sims/lp2_terminal_p50_bracket_wordmap_sft.cjs), Windows Node22 [PASS 44403562261](https://github.com/FlareZ123/liber-primus/actions/runs/44403562261).
+
 ## 4. Director decisions for #1506 and #1511
 
 For **#1506**, the original three-word completion gate fails because exhaustion cuts `CEAIMCX`. The follow-up complete-word test recovers a narrower positive: boundary300 alone exposes the repeated intact pair `DJU / BEI`, selecting p27 as a source-constrained navigation candidate. p34 and all `CX`-based arithmetic remain retired.
