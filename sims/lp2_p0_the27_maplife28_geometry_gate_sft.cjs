@@ -21,11 +21,17 @@
  * 4. Length is prior raw center G=6 plus selected radius1 = 7 cells.
  *
  * Operation gate:
- * - direct EO-X-I has phase1 and decrypts the seven selected cells to MAPLIFE;
- * - center-phi EO-G-I has phase2 and decrypts a different sequence.
- * - prior phase is 0, so the phase-preservation gate used one block earlier
- *   does not transfer. Geometry is source-selected; operation choice remains
- *   unresolved by this local grammar.
+ * - direct EO-X-I has phase1; center-phi EO-G-I has phase2. The prior phase0
+ *   does not select either, so one-block phase preservation fails here.
+ * - Use each candidate aligned key to prospectively generate the next raw
+ *   source from the frozen endpoint O=3:
+ *     [k0+phi(O), k1+k2, k1+k2+O].
+ * - Direct predicts T-OE-AE. At radius O=3 there are two placements, and
+ *   exactly one is physically linked to the frozen seven-cell ciphertext at
+ *   AE(17,13).
+ * - Center-phi predicts EO-E-NG, which does not occur anywhere as an equally
+ *   spaced straight triple.
+ * This next-source existence/link gate selects direct before plaintext scoring.
  */
 
 const assert = require('node:assert/strict');
@@ -262,6 +268,70 @@ function decrypt(key) {
 const directPlaintext = decrypt(direct.aligned);
 const transformedPlaintext = decrypt(transformed.aligned);
 
+// Prospective next-source gate. The endpoint is frozen O=3.
+const endpointValue = at(ciphertextCells.at(-1));
+assert.equal(endpointValue, 3);
+assert.equal(corpus.translit[endpointValue], 'O');
+
+/** @param {number[]} alignedKey @returns {number[]} */
+function nextRawFromAlignedKey(alignedKey) {
+  const center = mod29(alignedKey[1] + alignedKey[2]);
+  return [
+    mod29(alignedKey[0] + phi(endpointValue)),
+    center,
+    mod29(center + endpointValue),
+  ];
+}
+
+/** @param {number[]} raw @returns {object[]} */
+function straightMatches(raw) {
+  return triples.filter(node =>
+    node.raw[0] === raw[0] &&
+    node.raw[1] === raw[1] &&
+    node.raw[2] === raw[2]
+  );
+}
+
+const directNextRaw = nextRawFromAlignedKey(direct.aligned);
+const transformedNextRaw = nextRawFromAlignedKey(transformed.aligned);
+
+assert.deepEqual(
+  directNextRaw.map(value => corpus.translit[value]),
+  ['T', 'OE', 'AE']
+);
+assert.deepEqual(
+  transformedNextRaw.map(value => corpus.translit[value]),
+  ['EO', 'E', 'NG']
+);
+
+const directNextMatches = straightMatches(directNextRaw);
+const transformedNextMatches = straightMatches(transformedNextRaw);
+assert.equal(directNextMatches.length, 3);
+assert.equal(transformedNextMatches.length, 0);
+
+const directRadiusMatches = directNextMatches.filter(
+  node => node.radius === endpointValue
+);
+assert.equal(directRadiusMatches.length, 2);
+
+const directLinkedRadiusMatches = directRadiusMatches.filter(node =>
+  ciphertextCells.some(cell =>
+    same(cell, node.first) ||
+    same(cell, node.center) ||
+    same(cell, node.second)
+  )
+);
+assert.equal(directLinkedRadiusMatches.length, 1);
+
+const nextSource = directLinkedRadiusMatches[0];
+assert.deepEqual(nodeRunes(nextSource), ['T', 'OE', 'AE']);
+assert.deepEqual(nextSource.first, [11, 13]);
+assert.deepEqual(nextSource.center, [14, 13]);
+assert.deepEqual(nextSource.second, [17, 13]);
+assert.equal(nextSource.radius, 3);
+assert.deepEqual(nextSource.axis, [1, 0]);
+assert.ok(ciphertextCells.some(cell => same(cell, nextSource.second)));
+
 assert.deepEqual(
   direct.aligned.map(value => corpus.translit[value]),
   ['X', 'I', 'EO']
@@ -333,7 +403,26 @@ console.log(JSON.stringify({
       },
     ],
     phasePreservationTransfers: false,
+    prospectiveNextSourceGate: {
+      endpointValue,
+      directPrediction: directNextRaw.map(value => corpus.translit[value]),
+      directStraightMatches: directNextMatches.length,
+      directRadiusMatches: directRadiusMatches.length,
+      directLinkedRadiusMatches: directLinkedRadiusMatches.length,
+      selectedNextSource: nodeRunes(nextSource),
+      selectedNextSourceCoordinates: {
+        first: nextSource.first,
+        center: nextSource.center,
+        second: nextSource.second,
+        radius: nextSource.radius,
+      },
+      transformedPrediction: transformedNextRaw.map(
+        value => corpus.translit[value]
+      ),
+      transformedStraightMatches: transformedNextMatches.length,
+      selectedOperation: 'direct',
+    },
   },
   decision:
-    'The source state fixes EO-X-I, its radius-1 placement, and a seven-cell up-right ciphertext independently of plaintext. Direct EO-X-I decrypts that frozen geometry to MAPLIFE. The local grammar does not yet select direct over center-phi: the prior phase-preservation selector fails immediately, so operation choice remains unresolved.',
+    'The source state fixes EO-X-I, its radius-1 placement, and a seven-cell up-right ciphertext. The immediately following source provides an independent operation gate: direct predicts the uniquely linked radius-3 T-OE-AE node, while center-phi predicts a nonexistent EO-E-NG triple. Direct EO-X-I is therefore source-selected before plaintext scoring and decrypts the frozen seven cells to MAPLIFE. The earlier phase-preservation selector is explicitly rejected as non-transferable.',
 }, null, 2));
