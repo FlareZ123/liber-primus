@@ -37,9 +37,10 @@ function parseWords(blocks) {
 const unknownWords = parseWords(physicalBlocks.slice(0, 55));
 const knownWords = parseWords(physicalBlocks.slice(55));
 
-const headerEnd = master.indexOf("\n\n");
-if (headerEnd < 0) throw new Error("Could not locate transcription delimiter header");
-const targetLines = master.slice(headerEnd + 2).split(/\r?\n/)
+const headerMatch = master.match(/\r?\n\r?\n/);
+if (!headerMatch) throw new Error("Could not locate transcription delimiter header");
+const bodyStart = headerMatch.index + headerMatch[0].length;
+const targetLines = master.slice(bodyStart).split(/\r?\n/)
   .map(line => line.trim())
   .filter(line => line && !["&", "$", "%", "§"].includes(line))
   .map(line => line.endsWith("/") ? line.slice(0, -1) : line);
