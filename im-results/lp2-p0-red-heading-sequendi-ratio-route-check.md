@@ -12,7 +12,7 @@ S H E O G M IA F | S Y E NG C
 
 It is followed by a large red 13-dot delimiter. The canonical p0-p2 corpus begins with those 13 runes.
 
-The first eight runes have the published route-conditional output:
+The first eight runes have the MAP-free additive-symmetry candidate output:
 
 ```
 S E C U E N D I
@@ -267,6 +267,7 @@ node sims/lp2_p0_red_ratio_sourceonly_sft.cjs
 node sims/lp2_p0_red_heading_raw13_register_geometry_sft.cjs
 node sims/lp2_p0_red_heading_sequendi_ratio_gate_sft.cjs
 python sims/lp2_original_color_dots_census_sft.py
+python sims/lp2_p0_artwork_rot180_symmetry_sft.py
 ```
 
 The first script derives the five-rune raw output and square selector. The Agent29 script now enumerates all 72 source-anchor symmetric rectangles, proves the `15,42,57,99,156` additive chain, selects X-N-X-C without a 3:1 aspect assumption, verifies the held-out `13*phi(13)` closure, checks exact reencryption, and reproduces the source-native/direct-Latin register split. The third preserves MAP-route corroboration. The image census independently establishes the physical 4-5-4 stencil.
