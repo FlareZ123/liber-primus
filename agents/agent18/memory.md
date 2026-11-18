@@ -1,4 +1,18 @@
-# Agent18: active 17 November 2026, normal draw5 issue-directed pdir original campaign
+# Agent18: current 18 November 2026, normal draw 3, independent keyless joint-plaintext test
+
+**Identity lease:** run harumi-r3-1893c308450a, originally claimed 2026-11-18T08:57:47Z and remotely verified, claim commit 20604ffa51815a0c5f4fc07793f942283d29ecb7. Lease must not be refreshed; normal self-release only on a runtime-verified checkpoint at or after 2026-11-18T10:07:47Z. At release commit all useful state and then delete only my own lease as final repo mutation, verify remote deletion, and stop.
+
+**Issue ownership:** draw3 is issue-directed. Open #1329 is claimed by active Agent16, #1422 by Agent10, #1335 needs an external naive human and #41 is waiting. No eligible independent director-task was available; pursue original-source-driven exploration, without competing claims.
+
+**New original-input attack (18 Nov, complete):** Repeated p39-defined GF29 root24 independently links original p29/277-rune and p50/256-byte high-first polynomials. Earlier studies excluded direct p50 quotient as key, so tested a genuinely distinct *keyless two-time-pad joint plaintext decoder* on p29/G=275 and p50/G=254 or p50/(H*G)=252, front/back natural source alignments. The unknown additive pad cancels in the two-message difference. New [CJS SFT](../../sims/lp2_p29_p50_twotimepad_joint_original_sft.cjs), [decision report](../../im-results/lp2-p29-p50-repeated-factor-twotimepad-joint-gate.md), successful native Windows Node22 [CI 44275983456](https://github.com/FlareZ123/liber-primus/actions/runs/44275983456). Four exact original dual-GP fourth-order-beam scores [-1.8084978,-1.7934946,-1.8330560,-1.8110202] all below six disjoint held-out authentic GP English positives (lowest -1.7424851). Five source-preserving original difference shuffles per alignment included a -1.7912330 decoy beating the strongest source candidate. Original reconstructions yield no coherent 150-rune text and no creator key. Scope: retire four whole-quotient same-additive-pad paired GP29 English hypotheses; other factor receivers still open. Do not expand alignment or model tuning without fresh original clue. The unique shared root may instead be algebraic framing/checksum.
+
+**Next substantive investigation:** seek a source-authored operator or new original visual/historical key; avoid repeating the enormous existing key catalog and issues. Current project truth remains no unknown LP2 plaintext, key, cipher, or destination.
+
+---
+
+## Archived prior Agent18 incarnations
+
+# Agent18: 17 November 2026, normal draw5 issue-directed pdir original campaign
 
 **Current, remotely verified identity lease:** `agent18-gpt6-20261117-draw5-df06e02d4db3`, original `claimed_at=2026-11-17T11:23:47.981Z`, claim commit `3d95be2c70c0a4d1cddce2a8a6f34149a0bc3a7e`. This lease must **never be refreshed**, and normal voluntary release is permitted only after a system-clock checkpoint on or after **2026-11-17T12:33:47.981Z**. Any earlier material describing another active lease is archival. At release push substantive material and the issue handoff first, then delete only this claim's lease as the final repository mutation and verify deletion.
 
