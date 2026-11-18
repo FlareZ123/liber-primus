@@ -90,6 +90,22 @@ function decodeBase29(encoded) {
   return value;
 }
 
+/** @param {number} limit @returns {number[]} */
+function primesBelow(limit) {
+  const composite = new Uint8Array(limit);
+  const primes = [];
+  for (let value = 2; value < limit; value += 1) {
+    if (composite[value]) continue;
+    primes.push(value);
+    if (value * value < limit) {
+      for (let multiple = value * value; multiple < limit; multiple += value) {
+        composite[multiple] = 1;
+      }
+    }
+  }
+  return primes;
+}
+
 /** @param {string} text */
 function runeWords(text) {
   const normalized = text.replace(/\/\s*/gu, "");
@@ -308,6 +324,23 @@ assert.deepEqual(
 );
 assert.equal(decodeBase29("3QO"), testVector.dhModulus);
 
+/*
+ * The older cuneiform arithmetic had prime ranks 174=6*29 and 464=16*29.
+ * The p28 object now selects both quotients directly.
+ */
+const primes = primesBelow(4000);
+const base29Center = bracket[1].peels[2];
+assert.equal(base29Center, 6);
+const literalTablePrefix = Number(table[29]);
+assert.equal(literalTablePrefix, 16);
+const cuneiformPrimeOperands = [
+  primes[base29Center * 29 - 1],
+  primes[literalTablePrefix * 29 - 1],
+];
+assert.deepEqual(cuneiformPrimeOperands, [1033, 3301]);
+assert.equal(primes.indexOf(1033) + 1, 174);
+assert.equal(primes.indexOf(3301) + 1, 464);
+
 console.log(JSON.stringify({
   status: "PASS",
   cuts: {
@@ -348,6 +381,12 @@ console.log(JSON.stringify({
       address: 103,
       p50Prefix: table[103],
       encoded: "3QO",
+    },
+    primeRankOperands: {
+      quotient1033: base29Center,
+      quotient3301: literalTablePrefix,
+      radix: 29,
+      operands: cuneiformPrimeOperands,
     },
   },
 }, null, 2));
