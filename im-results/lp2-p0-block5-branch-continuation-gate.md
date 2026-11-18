@@ -67,13 +67,32 @@ output        N-O-W-TH-E
 reading       NOW THE
 ```
 
-No competing candidate reaches the same five-rune depth. Thus the source-bounded candidate now extends to:
+No competing candidate reaches the same five-rune depth.
+
+## Third held-out continuation: NOW THE -> IDEA
+
+Freeze the selected `NOW THE` ciphertext cells `(11,16)` through `(15,20)`. Without supplying the next word, enumerate every previous-path cell as a possible center, every in-bounds symmetric mirror radius on all grid axes, derive and rotate each key by the same totient/Möbius rule, start at the frozen `NOW THE` endpoint, and read along all eight grid rays.
+
+This family has **56** candidates. Exactly one reaches a three-rune common word:
 
 ```
-AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE
+center        (11,16) = TH
+radius        3 diagonal steps
+mirror node   A-TH-A
+derived key   U-A-A
+start         previous endpoint (15,20)
+read          diagonal down-left
+output        I-D-EA
+reading       IDEA
 ```
 
-Neither `CRY` nor `NOW THE` is supplied to the search.
+No competing candidate reaches depth three. The source-bounded candidate now extends to:
+
+```
+AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
+```
+
+`CRY`, `NOW THE`, and `IDEA` are not supplied to their continuation searches.
 
 ## Scope
 
