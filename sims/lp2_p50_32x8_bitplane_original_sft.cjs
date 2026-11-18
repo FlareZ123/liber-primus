@@ -82,6 +82,46 @@ for (let bit = 0; bit < 8; bit++)
     });
   }
 
+
+/**
+ * A second literal bit-register interpretation lets each printed column
+ * choose its corresponding bit significance rather than one common plane.
+ * @param {Buffer} source
+ * @param {boolean} descending
+ * @param {boolean} reverseColumns
+ * @returns {Buffer}
+ */
+function diagonalExtract(source, descending, reverseColumns) {
+  assert.equal(source.length, 256);
+  const decoded = Buffer.alloc(32);
+  for (let row = 0; row < 32; row++) {
+    let value = 0;
+    for (let column = 0; column < 8; column++) {
+      const bit = descending ? 7 - column : column;
+      value |= ((source[row * 8 + column] >>> bit) & 1) <<
+        (reverseColumns ? column : 7 - column);
+    }
+    decoded[row] = value;
+  }
+  return decoded;
+}
+
+const diagonals = [];
+for (const descending of [false, true])
+  for (const reverseColumns of [false, true]) {
+    const candidate = diagonalExtract(bytes, descending, reverseColumns);
+    diagonals.push({
+      bitColumnOrder: descending ? "7..0" : "0..7",
+      byteDirection: reverseColumns ? "right-to-left" : "left-to-right",
+      printableAscii: [...candidate].filter((c) => c >= 32 && c <= 126).length,
+      hex: candidate.toString("hex"),
+      sha512MatchesPrintedTarget: sha512(candidate) === knownPrintedTarget
+    });
+  }
+assert.equal(diagonals.length, 4);
+assert.equal(diagonals.filter((x) => x.sha512MatchesPrintedTarget).length, 0);
+assert.ok(diagonals.every((x) => x.printableAscii <= 14));
+
 assert.equal(results.length, 16);
 assert.equal(results.filter((x) => x.sha512MatchesPrintedTarget).length, 0);
 assert.equal(Math.max(...results.map((x) => x.printableAscii)), 18);
@@ -97,6 +137,7 @@ console.log(JSON.stringify({
   matchedPrinted512BitTargetUnderSha512: false,
   originalWholeTableSha512Match: false,
   results,
+  diagonalColumnBitReads: diagonals,
   conclusion: "No direct printable 32-byte text or exact p56 target preimage in this finite geometry"
 }, null, 2));
-console.log("PASS: 16 source-fixed original table bit-plane reads and typed positive");
+console.log("PASS: 20 source-fixed original table bit-register reads and typed positive");
