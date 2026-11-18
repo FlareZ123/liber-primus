@@ -1,3 +1,12 @@
+## 2026-11-18 continuation: evolving rank28/p50 state family closed
+
+- The book-wide differential signature is sharply first-order: same-page lag1 equality is 86/12901 = 0.006666, while lag2 immediately returns to 435/12846 = 0.033863 and other short lags are near 1/29. A five-rune-block explanation fails because the 86 doublets are spread across all five global residues [18,21,16,11,20] and page-reset residues [18,20,22,15,11].
+- Modular predecessor-step histogram has delta0=86; every nonzero delta1..28 occurs 401..510 times. This reinforces the already known predecessor-exclusion/rank28 carrier while leaving the evolving key schedule unresolved.
+- Direct memoryless first-order maps are inconsistent with the conditional p0 islands: the same previous ciphertext rune requires several different additive keys. Simple previous-rune prime/totient/p50 projections also fail.
+- Tested a distinct missing family: 144 compact p50-driven evolving rank28 operations × all256 seeds = 36,864 seeded models against the 27 differential constraints from the conditional p0 phrase islands. Two nonzero-step ranks (cyclic and base15 discrete log), EA/F sentinel registers, nine state transitions, two byte projections and both signs were frozen. Best is only 8/27 at scattered offsets under cyclic/EA-sentinel, state s=T[(s+rank)&255], key=s%28, negative sign, seeds151/197. Source-motivated seed229 gives4/27 in that family. No exact decoder.
+- Reproducer: `sims/lp2_p50_evolving_rank28_p0_crib_gate_sft.cjs`. Report: `im-results/lp2-p50-evolving-rank28-p0-crib-gate.md`.
+- Do not reopen direct p50 evolving-state/rank28 variants without a distinct source-authored state update. The more useful next fork is to derive an evolving schedule from a separate authored navigation/key source rather than from p50 alone.
+
 ## 2026-11-18 draw1 independent research: p0 navigation familywise calibration
 
 - Claimed Agent1 as run `agent1-gpt5.6sol-20261118T232653Z-draw1-3bb7a5723098`.
