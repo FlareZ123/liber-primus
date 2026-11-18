@@ -161,6 +161,39 @@ function countOriginalAffineWordFits() {
 }
 assert.equal(countOriginalAffineWordFits(),0); // 26 clocks x 28 invertible slopes
 
+/**
+ * A more general static per-word 29! substitution, with a source-red
+ * positional subtraction before applying the same secret alphabet.
+ * Every observed equal/different pattern in the original p27 successor
+ * differences must agree exactly with the input-relative differences
+ * for a candidate native GP word, independent of the secret table.
+ * @returns {number}
+ */
+function countOriginalStaticWordPermutations() {
+  let options=0;
+  const differences=witness.slice(1).map((v,i)=>mod(v-witness[i]));
+  for(const sign of [1,-1])for(let phase=0;phase<13;phase++)
+    for(const {indices:w} of dictionary){
+      const inputToOutput=new Map([[0,0]]);
+      const outputToInput=new Map([[0,0]]);
+      let possible=true;
+      for(let j=1;j<w.length;j++){
+        const x=mod(w[j]-w[0]-offset(j,sign,phase));
+        const y=differences[j-1];
+        if((inputToOutput.has(x)&&inputToOutput.get(x)!==y)||
+            (outputToInput.has(y)&&outputToInput.get(y)!==x)){
+          possible=false;break;
+        }
+        inputToOutput.set(x,y);
+        outputToInput.set(y,x);
+      }
+      options+=Number(possible);
+    }
+  return options;
+}
+assert.equal(countOriginalStaticWordPermutations(),0); // 26 clocks x 772 native words
+
+
 assert.deepEqual(encrypt(decrypt(witness,1,0),1,0),witness);
 const solved=gp.pages.find(p=>p.page===57).indices;
 assert.deepEqual(decrypt(encrypt(solved,-1,7),-1,7),solved);
