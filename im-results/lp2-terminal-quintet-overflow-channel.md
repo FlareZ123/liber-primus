@@ -173,6 +173,20 @@ This narrower human-visible family therefore reduces the matched familywise back
 
 Reproducer: [`sims/lp2_p55_firstlocalword_framing_sft.cjs`](../sims/lp2_p55_firstlocalword_framing_sft.cjs). Windows Node22 CI: run 44403758497.
 
+## Exact historical packing implementation census (18 November 2026, Agent1; Director #1618)
+
+Director #1618 tightened the earlier source gate to the exact representation primitive rather than the surrounding packet semantics. The frozen target is specifically: five ordered GP29 digits interpreted big-endian as one base-29 integer, the low 24 bits emitted as three bytes, and the quotient above \(2^{24}\) retained as the candidate's one-bit overflow channel. No quintet width, radix, endianness, truncation, or spill variant was admitted.
+
+The bounded 2012–2014 implementation audit found **no exact precedent or directly specified equivalent**.
+
+- The cryptographically valid 2013 TCP specification defines \`BASE29 n\` as a **textual numeral conversion** and gives \`3301 -> 3QO\`; \`RAND n\` separately returns decimal integers in 0–255. A contemporaneous participant Python server preserved from December 2013 implements the same separation: \`handle_base29\` repeatedly takes \`n % 29\`, prepends a character, and integer-divides by 29, while \`RAND\` converts one \`os.urandom(1)\` byte to a decimal string. Cicada's preserved client log actually exercised \`base29 1033\` against that server. Because the signed challenge required each participant to write their own server, this implementation is a useful period control rather than organizer-authored codec evidence. [Protocol source boundary](../resources/external/2013-tcp-server-signed-source.md) · [contemporaneous participant implementation](https://gist.github.com/navinpai/7837596).
+- The source-pinned 2014 first-three-page path converts hex to bytes and XORs equal byte positions before verifying the resulting signed message. The archive's implementation is a plain byte-array XOR (Git blob \`10382dfc7908a1732f38ffda39e2ee9e45838821\`); no GP29-to-byte packing intervenes. [Historical chain](../workplace/historical-solve-path-to-original-lp2.md).
+- The later recovered 2014 path keeps representations typed: hex is decoded with \`xxd\`, compressed payloads are handled as gzip/bzip2, JPEGs are sliced as byte files, OutGuess extracts payloads, GnuPG verifies/decrypts signed material, and OpenPuff v4.00 extracts a named file from the MP3 carrier. The pinned reconstruction scripts for the third, fourth, and sixth onions have Git blobs \`695fcfec37e939861b55f92f855e49b0cdf57f60\`, \`d455baf99bb04f967ddd6184b817f5e5f853face\`, and \`62c8a249bcc26d57af637d17bd9614531279bd62\`. These scripts are archival solver reconstructions, so they are used only to enumerate the historically attested typed operations. The authenticated Stage04/Stage08 messages themselves likewise specify GP29 Vigenère/text guidance and a GEB book code, not a radix-to-24-bit bridge. [Signed-source gate](cicada2014-stage04-stage08-pgp-original-source-gate.md).
+
+A targeted public-source search for the exact constants or idioms (\`16777216\`, \`0xffffff\`, base29 combined with 24-bit/three-byte packing, or a high spill/carry bit) found no qualifying 2012–2014 Cicada implementation. This is an absence claim only for the bounded surviving corpus above, not proof that no lost private code ever used such a representation.
+
+**Decision:** the strengthened p55 framing calibration from #1617 survives as a source-statistical observation, but the five-rune→low24+overflow serializer remains **historically unselected**. No typed receiver test is justified by #1618. Stop expanding serializer variants unless a new first-party artifact independently fixes the 24-bit width and spill rule.
+
 ## Historical framing-precedent gate (18 November 2026, Agent13)
 
 Director #1579 asked whether Cicada itself had previously used the exact semantic pair suggested by the fixed p55 frame: a leading byte echoing an external selector/type/index and a terminal byte encoding total or payload length.
