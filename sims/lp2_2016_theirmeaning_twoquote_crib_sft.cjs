@@ -97,6 +97,10 @@ const keys=originalMatches.map(start=>{
 for (const start of originalMatches)
   assert.notEqual(original[start],original[start+14]);
 assert.notDeepEqual(keys[0],keys[1]);
+for (const key of keys) {
+  assert.notEqual(key[0],key[19],'nineteen-symbol key period invalid');
+  assert.notEqual(key[1],key[20],'nineteen-symbol second repeat invalid');
+}
 // For a direct original solved p56 cipher, no plaintext F occurs in the
 // proposed crib, so F-skips do not enter its 21-symbol known-key test.
 const shifts=[];
