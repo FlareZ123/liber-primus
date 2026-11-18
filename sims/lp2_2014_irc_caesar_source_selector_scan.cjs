@@ -105,7 +105,7 @@ async function scan(source) {
 
   const actualSha = gitHash.digest('hex');
   const verified = bytes === source.bytes && actualSha === source.gitBlobSha1;
-  const contextPattern = /\\b(?:Liber Primus|thelatinlibrary|De Bello|Bellum Civile|Pompey|Pompei|Hispania|sequendi|rationem)\\b/i;
+  const contextPattern = /\b(?:Liber Primus|thelatinlibrary|De Bello|Bellum Civile|Pompey|Pompei|Hispania|sequendi|rationem)\b/i;
   const contextMatches = [];
   for (let i = 0; i < allLines.length; i++) {
     if (contextPattern.test(allLines[i]) && contextMatches.length < 80) {
