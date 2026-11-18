@@ -1,6 +1,6 @@
 # LP2 p0–2: source-derived central self-crib, provisional reading, and non-unique continuation
 
-**Research state, 18 November 2026.** The geometric center self-crib and proposed WEATHER reading are reproducible source arithmetic. A new independent audit confirms one stronger conditional result: after granting the selected route through **AS**, the external author's frozen retrospective pair of 3301-linked arithmetic criteria reduces the exact Reports00–15 next-block pool **21,342→48/15→1**, uniquely recovering the rune sequence **I·A·S·C/K** on the documented source and ciphertext. This is a real finite conditional recovery, while the criteria were identified after the candidate route and do not authenticate the earlier prefix. The later proposed block39 **DIE** remains underdetermined: Reports00–19 leave **966 physical post-I-ASK geometries and 1,088 distinct GP29 outputs**. No creator-authenticated unknown-page plaintext, author key or complete deterministic reading order has been recovered.
+**Research state, 18 November 2026.** The geometric center self-crib and proposed WEATHER reading are reproducible source arithmetic. After granting the selected route through **AS**, the external author's frozen retrospective 3301 criteria reduce the exact Reports00–15 next-block pool **21,342→48/15→1**, uniquely recovering **I·A·S·C/K**. A newly identified plaintext-blind handoff from that fixed four-rune anchor then reduces the later Reports00–19 post-I-ASK pool **966 geometries → 12 → 6 → 4 → 2 → 1** and selects the published `D·I·E` placement before reading its plaintext. The handoff was discovered after DIE was public, so it is a concrete candidate parser rather than creator authentication. No complete deterministic reading order for the earlier prefix has been established.
 
 [Original map self-crib SFT](../sims/lp2_p0_27square_center_selfcrib_source_sft.cjs) · [New Reports 17–19 original-source all-candidate SFT](../sims/lp2_p0_27square_reports17_19_ambiguity_sft.cjs) · [External original hypothesis](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption).
 
@@ -27,22 +27,25 @@ A broader same-form control tempers that local sensitivity result. Let the targe
 
 **Reproduction:** [standalone CommonJS SFT](../sims/lp2_p0_27square_iask_3301_endpoint_sft.cjs) asserts the exact **21,342 / 48 / 15 / 1** counts, full reencryption, unique geometry/key, and all eleven neighboring-prime outcomes.
 
-## Fresh external block 39 DIE remains geometry-underdetermined
+## I ASK-derived plaintext-blind handoff conditionally selects DIE
 
-The external 27×27 repository now continues its selected route beyond **I ASK** with block39 **DIE**. The proposed original source is horizontal non-mirror `C/K–D–IA` at **(18,10), (18,14), (18,18)**, radius4. It is used directly; signature `(0,+1,0)` gives phase1 and aligned key `D–IA–C/K` = **(23,27,5)**. The original ciphertext **B–H–D** at **(3,22)→(4,23)→(5,24)** subtracts to **D–I–E** exactly.
+The external 27×27 repository continues its selected route beyond **I ASK** with block39 **DIE**. Reports00–19 alone do not select it: the exact original-source census leaves **966 physical geometries, 1,116 aligned-key assignments, 19 ordered ciphertext segments, 1,088 GP29 outputs, and all 39 admissible source centers**. The literal rune string DIE occurs once inside that pool, which by itself is only semantic selection.
 
-This arithmetic is reproducible, and the placement passes the external outgoing forecast from I ASK. It does **not** resolve the route-selection problem. Starting from the unchanged 729-rune p0–2 source, an independent census admits both Report00 operations (direct and center-totient), deduplicates identical aligned keys on the same physical source, and applies the frozen post-I-ASK source/segment conditions before reading any plaintext:
+A new arithmetic handoff found from the conditionally recovered I ASK anchor sharply changes the local decision. It uses only the accepted current source/ciphertext/plaintext indices and the unchanged next-grid geometry:
 
-| Frozen post-I-ASK stage | Distinct aligned-key assignments | Physical source/segment geometries | Ordered ciphertext segments | Distinct GP29 outputs |
-| --- | ---: | ---: | ---: | ---: |
-| Through Report18 | **1,246** | **1,080** | **21** | **1,216** |
-| Add Report19 | **1,116** | **966** | **19** | **1,088** |
+1. The current source center is **(12,13)**, row-major **n₀=310**. The trailing three-rune period of the recovered four-rune block is **A·S·C/K**, with GP **97+53+13=163**. Therefore **310+163=473**, exactly **n₀(18,14)**, the center of the proposed DIE source.
+2. The current I ASK ciphertext runes are **Y·X·X·NG = (26,14,14,21)**, whose rune-index sum is **75**. Therefore **75+1=76**, exactly **n₀(3,22)**, the proposed next ciphertext beginning.
+3. Holding those two cells fixed and reapplying the frozen Reports00–19 conditions leaves just **12** assignments: source radii **4 or 8**, three admissible straight segments, and direct/center-totient variants.
+4. Set the next source radius to the current **four-rune block length**. This leaves **6** assignments and selects original source **C/K–D–IA** at radius4.
+5. Read one complete **three-rune key period**. This leaves **4** assignments.
+6. The selected source center moved from row12 to row18, so use the diagonal whose row sign follows that displacement, **down-right**. This leaves **2** assignments.
+7. Resolve direct versus center-totient without a dictionary by requiring the **original source-center rune to self-crib at the first plaintext position**, reusing the source-visible self-crib motif that motivated the opening p0 investigation. The direct center D=23 satisfies **B17−D23 ≡ D23 (mod29)**; the transformed center does not. Exactly **1** assignment remains.
 
-The **1,080 / 21** Report18 counts exactly reproduce the external repository's published source-independent geometry census, providing an independent implementation check. Report19 fixes the allowed beginnings to **(1,24), (3,22), (5,20), (7,18), (9,18)** but still leaves all **39** admissible physical key centers represented. The literal rune string **DIE** occurs exactly once in this frozen pool, at the published source and ciphertext. That uniqueness is conditional on asking for the word DIE; the geometry leaves 1,087 other rune strings.
+Only after these selections are frozen does the code decrypt the three original ciphertext runes **B–H–D** with aligned direct key **D–IA–C/K**, yielding **D·I·E**.
 
-A cheap geometric rival also fails to select DIE: the nearest admissible source center to the current I ASK center **(12,13)** is **(12,14)** at Chebyshev distance1, while the DIE center **(18,14)** is distance6. Thus proximity does not supply the missing authorial selector.
+This handoff is locally selective in another useful sense. Auditing the external selected route encoded in its live map, the equality **next source-center n₀ = current source-center n₀ + GP(current trailing word)** holds in only **1 of 29** transitions for which the needed centers and plaintext are available, and the equality **next ciphertext-start n₀ = current ciphertext rune-index sum + 1** holds in only **1 of 34** complete transitions. In both censuses the sole hit is **I ASK → DIE**. These are finite route counts, not discovery-adjusted probabilities.
 
-**Decision:** retain DIE as a fully reproducible candidate continuation, not authenticated plaintext. Its terminality under the external Report19 search is conditional on first selecting DIE from the 966 surviving geometries. The decisive missing evidence remains a manuscript-selected rule that chooses its source/segment before semantic inspection, or a blind prediction on genuinely withheld ciphertext. [Exact original-source CommonJS census](../sims/lp2_p0_27square_after_iask_die_ambiguity_sft.cjs).
+**Decision:** DIE now has a reproducible **plaintext-blind conditional selector** from the fixed I ASK anchor, substantially stronger than recognizing DIE inside 966 outputs. The rule stack is still post-hoc because it was found after the public DIE candidate, and it has no later unknown block on which to make a blind prediction. Treat it as a high-value terminal-parser hypothesis, not established creator plaintext. [Standalone CommonJS handoff SFT](../sims/lp2_p0_27square_iask_to_next_handoff_sft.cjs) freezes the **12→6→4→2→1** selection and decrypts only after the unique candidate is fixed. [The broader all-candidate SFT](../sims/lp2_p0_27square_after_iask_die_ambiguity_sft.cjs) preserves the 966-geometry baseline.
 
 ## New decision: later Reports 17–19 leave an exact English ambiguity
 
