@@ -1,0 +1,27 @@
+name: Onion7 period-linked mirror recovery (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  period-mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install image comparison dependency
+        run: python -m pip install --disable-pip-version-check pillow
+      - name: Query 2014-2016 archive indexes and replay source-linked captures
+        run: python sims/onion7_period_mirror_cdx_probe.py
+      - name: Preserve CDX metadata and recovered raw mirrors
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent6-onion7-period-mirror-captures
+          path: |
+            im-results/onion7-period-mirror-cdx.json
+            ${{ runner.temp }}/onion7-period-mirror/**
+          if-no-files-found: warn
