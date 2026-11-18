@@ -420,6 +420,169 @@ function solve(stage,endpoint,usedIds,runes,indexSum,gpSum,cipherSum,keySum,wrap
 
 const result=solve(0,startEndpoint,[],0,0,0,0,0,0);
 assert.ok(result.kind>0);
+
+// A second pass asks a narrower, precommitted human-route question.
+// Each ciphertext start pays its minimum number of local operations from the
+// selected key mirror. Key selection costs are: direct endpoint incidence 0,
+// a mirror sharing the center of an incident mirror 1, and perpendicular reuse
+// of an already-used key 2. The route minimizes the sum of those costs.
+const closureCostCache=new Map();
+function closureCosts(mirrorId){
+  if(closureCostCache.has(mirrorId))return closureCostCache.get(mirrorId);
+  const mirror=mirrors[mirrorId];
+  const queue=[];
+  const seenState=new Set();
+  const best=new Map();
+  for(const point of [mirror.a,mirror.center,mirror.b]){
+    queue.push({point,orthSteps:0,steps:0});
+    seenState.add(coordKey(point)+"|0|0");
+    best.set(coordKey(point),0);
+  }
+  for(let q=0;q<queue.length;q++){
+    const state=queue[q];
+    const pk=coordKey(state.point);
+    if(!best.has(pk)||state.steps<best.get(pk))best.set(pk,state.steps);
+    if(state.steps===2)continue;
+    const edges=mirrorEdges.get(pk);
+    if(edges){
+      for(const point of edges.values()){
+        const sk=coordKey(point)+"|"+state.orthSteps+"|"+(state.steps+1);
+        if(seenState.has(sk))continue;
+        seenState.add(sk);
+        queue.push({point,orthSteps:state.orthSteps,steps:state.steps+1});
+      }
+    }
+    if(state.orthSteps===0){
+      for(const [dr,dc] of [[-1,0],[1,0],[0,-1],[0,1]]){
+        const point=[state.point[0]+dr,state.point[1]+dc];
+        if(point.some(value=>value<1||value>27))continue;
+        const sk=coordKey(point)+"|1|"+(state.steps+1);
+        if(seenState.has(sk))continue;
+        seenState.add(sk);
+        queue.push({point,orthSteps:1,steps:state.steps+1});
+      }
+    }
+  }
+  closureCostCache.set(mirrorId,best);
+  return best;
+}
+
+function candidateKeyCosts(endpoint,usedIds){
+  const costs=new Map();
+  const offer=(id,cost)=>{
+    if(!costs.has(id)||cost<costs.get(id))costs.set(id,cost);
+  };
+  for(const bridgeId of incident.get(coordKey(endpoint))||[]){
+    offer(bridgeId,0);
+    const bridge=mirrors[bridgeId];
+    for(const mirrorId of centered.get(coordKey(bridge.center))||[])offer(mirrorId,1);
+  }
+  for(const mirrorId of centered.get(coordKey(endpoint))||[]){
+    const bridge=mirrors[mirrorId];
+    const [dr,dc]=bridge.axis;
+    const perpendicular=[-dc,dr];
+    for(const sign of [-1,1]){
+      const targetCenter=[
+        endpoint[0]+sign*bridge.radius*perpendicular[0],
+        endpoint[1]+sign*bridge.radius*perpendicular[1],
+      ];
+      for(const usedId of usedIds){
+        if(coordKey(mirrors[usedId].center)===coordKey(targetCenter))offer(usedId,2);
+      }
+    }
+  }
+  return [...costs.entries()].sort((a,b)=>a[0]-b[0]);
+}
+
+const minMemo=new Map();
+let minCalls=0;
+let minMemoHits=0;
+function solveMin(stage,endpoint,usedIds,runes,indexSum,gpSum,cipherSum,keySum,wraps){
+  minCalls++;
+  const remaining=target.words-stage;
+  const residual=
+    (target.runes-runes)+"|"+
+    (target.indexSum-indexSum)+"|"+
+    (target.gpSum-gpSum);
+  if(!reachable[remaining].has(residual))return null;
+  if(cipherSum>target.cipherSum||keySum>target.keySum||wraps>target.wraps)return null;
+  if(stage===target.words){
+    if(runes===target.runes&&indexSum===target.indexSum&&gpSum===target.gpSum&&
+       cipherSum===target.cipherSum&&keySum===target.keySum&&wraps===target.wraps){
+      return {cost:0,routeCount:1,texts:new Set([""]),example:[]};
+    }
+    return null;
+  }
+  const used=[...new Set(usedIds)].sort((a,b)=>a-b);
+  const memoKey=[
+    stage,coordKey(endpoint),used.join(","),
+    runes,indexSum,gpSum,cipherSum,keySum,wraps,
+  ].join("|");
+  if(minMemo.has(memoKey)){minMemoHits++;return minMemo.get(memoKey);}
+
+  let best=null;
+  for(const [keyId,keyCost] of candidateKeyCosts(endpoint,used)){
+    const nextUsed=[...new Set(used.concat(keyId))].sort((a,b)=>a-b);
+    const startCosts=closureCosts(keyId);
+    for(const candidate of commonPaths(keyId)){
+      const startCost=startCosts.get(coordKey(candidate.start));
+      if(startCost===undefined)continue;
+      const nr=runes+candidate.runes;
+      const ni=indexSum+candidate.indexSum;
+      const ng=gpSum+candidate.gpSum;
+      const nc=cipherSum+candidate.cipherSum;
+      const nk=keySum+candidate.keySum;
+      const nw=wraps+candidate.wraps;
+      if(nr>target.runes||ni>target.indexSum||ng>target.gpSum||
+         nc>target.cipherSum||nk>target.keySum||nw>target.wraps)continue;
+      const remWords=target.words-(stage+1);
+      const remKey=
+        (target.runes-nr)+"|"+
+        (target.indexSum-ni)+"|"+
+        (target.gpSum-ng);
+      if(!reachable[remWords].has(remKey))continue;
+      const child=solveMin(stage+1,candidate.end,nextUsed,nr,ni,ng,nc,nk,nw);
+      if(!child)continue;
+      const cost=keyCost+startCost+child.cost;
+      const texts=new Set();
+      for(const tail of child.texts){
+        texts.add(candidate.word+(tail?" "+tail:""));
+        if(texts.size>20)break;
+      }
+      const entry={
+        cost,
+        routeCount:child.routeCount,
+        texts,
+        example:[{
+          keyId,
+          keyClassCost:keyCost,
+          startCost,
+          keyRunes:mirrors[keyId].raw.map(value=>T[value]),
+          keyCenter:mirrors[keyId].center,
+          word:candidate.word,
+          plaintextRunes:candidate.plain.map(value=>T[value]),
+          start:candidate.start,
+          end:candidate.end,
+          direction:candidate.direction,
+        },...child.example],
+      };
+      if(!best||entry.cost<best.cost){
+        best=entry;
+      }else if(entry.cost===best.cost){
+        best.routeCount=Math.min(ROUTE_CAP,best.routeCount+entry.routeCount);
+        for(const text of entry.texts){
+          best.texts.add(text);
+          if(best.texts.size>20)break;
+        }
+      }
+    }
+  }
+  minMemo.set(memoKey,best);
+  return best;
+}
+
+const minimum=solveMin(0,startEndpoint,[],0,0,0,0,0,0);
+assert.ok(minimum);
 console.log(JSON.stringify({
   status:result.kind===1
     ?"unique common-word plaintext under uniform widened post-IDEA grammar"
@@ -436,4 +599,14 @@ console.log(JSON.stringify({
   routeCount:result.routeCount,
   uniquePlaintext:result.kind===1?result.text:null,
   example:result.example,
+  minimumLocalRoute:{
+    cost:minimum.cost,
+    routeCount:minimum.routeCount,
+    texts:[...minimum.texts].sort(),
+    uniqueText:minimum.texts.size===1?[...minimum.texts][0]:null,
+    calls:minCalls,
+    memoStates:minMemo.size,
+    memoHits:minMemoHits,
+    example:minimum.example,
+  },
 },null,2));
