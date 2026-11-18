@@ -385,6 +385,55 @@ assert.deepEqual(initialRedBody215, [27]);
 // not recompute that historical exhaustion, but it locks the clear p57 checksum.
 assert.equal(p57.find(word => word.name === "EMERGE").sum, 300);
 
+
+// Literal FIND THE DIVINITY WITHIN chain in the p27 black body.
+// Repeatedly shed every printed body word five times. Only four rune-centers
+// remain; their GP prime sum is THE=72.
+const bodyWordsForFind = pageWords(27).filter(word => word.start >= 19);
+let bodyLayers = bodyWordsForFind.map(word => word.inds.slice());
+for (let depth = 0; depth < 5; depth++) {
+  bodyLayers = shed(bodyLayers).inner;
+}
+const deepestBody = bodyLayers.flat();
+assert.equal(translit(deepestBody), "OCEOR");
+assert.equal(primeSum(deepestBody), 72);
+assert.equal(p57.find(word => word.name === "THE").sum, 72);
+
+// Exactly two p27 body words survive to that fifth layer. Of those, one is
+// itself an INSTAR checksum and contains DIVINITY exactly two layers within.
+const bodyLength12 = bodyWordsForFind.filter(word => word.inds.length === 12);
+assert.equal(bodyLength12.length, 2);
+const divinityWordHits = bodyLength12.filter(word =>
+  phi(primeSum(word.inds)) === 280 &&
+  primeSum(word.inds.slice(2, -2)) === 376
+);
+assert.equal(divinityWordHits.length, 1);
+const divinityWord = divinityWordHits[0];
+const divinityWithin = divinityWord.inds.slice(2, -2);
+assert.equal(translit(divinityWord.inds), "EORNSOOCAEYEE");
+assert.equal(translit(divinityWithin), "NSOOCAEY");
+assert.equal(primeSum(divinityWithin), 376);
+assert.equal(p57.find(word => word.name === "DIUINITY").sum, 376);
+assert.equal(phi(primeSum(divinityWord.inds)), 280);
+assert.equal(p57.find(word => word.name === "INSTAR").sum, 280);
+
+// The outermost circumference of the same word supplies 36, the prime ordinal
+// of FIND=151. This is supporting structure; the literal FIND verb already
+// selects the search for the unique 376-sum interior.
+const divinityOuterShell = [divinityWord.inds[0], divinityWord.inds.at(-1)];
+assert.equal(primeSum(divinityOuterShell), 108);
+assert.equal(phi(primeSum(divinityOuterShell)), 36);
+assert.equal(p57.find(word => word.name === "FIND").sum, 151);
+assert.equal(primeRank(151), 36);
+
+// Manuscript-wide control: only one of all 18 complete 12-rune p0-p55 words
+// has a twice-shed eight-rune interior summing to DIVINITY=376.
+const manuscriptDivinityHits = twelve.filter(
+  word => primeSum(word.slice(2, -2)) === 376
+);
+assert.equal(manuscriptDivinityHits.length, 1);
+assert.equal(translit(manuscriptDivinityHits[0]), translit(divinityWord.inds));
+
 console.log(JSON.stringify({
   status: "candidate instruction chain only; no unknown plaintext",
   heading: {fullSum, fullRank, tableByte: grid.bytes[fullRank], firstIndex: heading[0]},

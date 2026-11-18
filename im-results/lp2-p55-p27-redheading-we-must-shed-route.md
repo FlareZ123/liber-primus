@@ -66,19 +66,41 @@ The full heading already supplies \`MUST=186\`. These objects therefore hit **WE
 
 A broad discovery-aware null preserves the 3/12/4 geometry, shuffles the exact multiset of 225 original red rune identities, permits prime sum, index sum, totient, prime ordinal, one p50 lookup, and all six object orders. Ten of 200,000 trials hit some consecutive p57 triple. Zero also satisfy the p27 full-heading 19 self-check. This calibrates the scale of the aggregate pattern; it is not an authorship p-value.
 
-## Third sentence signals
+## Third sentence: FIND THE DIVINITY WITHIN
 
-Repeatedly tunnel into the 12-rune middle word until its deepest even center, \`HL\`. Its prime sum is96, \(\varphi(96)=32\), and p50 cell32 has byte **115**, equal to the p57 prime sum of \`WITHIN\`.
+The same circumference operation applied to every printed black-body word gives a deterministic endpoint. After five shedding layers, only four rune-centers remain:
 
-The p27 black body after the selected 19-rune heading contains exactly **215 runes**. P57 \`AND\` has GP-prime sum **215**. Among the nine p0-p55 pages with an initial red span, p27 alone leaves a 215-rune body after removing that initial red span.
+\`OC / EOR\`
 
-The handoff's p55 boundary is **300**, equal to the p57 prime sum of \`EMERGE\`.
+Their combined GP-prime sum is **72 = THE**.
 
-This gives a source-shaped tail:
+Exactly two p27 body words survive to that fifth layer, both length12. One of them is:
 
-\`... WITHIN / AND / EMERGE\`
+\`EORNSOOCAEYEE\`
 
-The missing \`FIND THE DIVINITY\` operation is still unresolved.
+Its whole-word prime sum is562, and \(\varphi(562)=280 = INSTAR\). This makes it the body counterpart of the red heading's 12-rune \`INSTAR\` word.
+
+Shed that body word exactly two layers. Its eight-rune interior is:
+
+\`NSOOCAEY\`
+
+and its GP-prime sum is **376**, exactly the p57 prime sum of \`DIUINITY\`.
+
+This is manuscript-wide unique. Across all **18** complete 12-rune words in p0-p55, this p27 line5 word is the **only** one whose twice-shed eight-rune interior has prime sum376. The only two 12-rune words whose whole-word totient is **280 = INSTAR** are the red p27 heading word and this p27 body word. The heading therefore selects an \`INSTAR\` class whose only other manuscript member contains \`DIVINITY\` within.
+
+The outermost circumference of the same body word supplies a supporting \`FIND\` checksum. Its two outer runes have prime sum108, \(\varphi(108)=36\), and **151 = FIND** is the 36th prime. This ordinal relation is secondary evidence because the literal verb \`FIND\` already tells the solver to search for the unique inner 376 object.
+
+The relation now reads literally: **FIND THE DIVINITY WITHIN**.
+
+The p27 black body after the red heading contains exactly **215 runes**, equal to the p57 GP-prime sum of \`AND\`. Among the nine p0-p55 pages with an initial red span, p27 alone leaves a 215-rune body after removing that initial red span.
+
+The upstream p55 handoff boundary is **300**, equal to the p57 GP-prime sum of \`EMERGE\`.
+
+This closes the tail as a source-shaped instruction:
+
+\`FIND / THE / DIVINITY / WITHIN / AND / EMERGE\`
+
+Here \`WITHIN\` is literal containment; the 13-dot stencil independently supplies 115 as described below. \`EMERGE\` also returns the route to the p55 boundary that selected p27.
 
 ## The 13-dot stencil
 
@@ -101,7 +123,8 @@ This makes the p27 parable match historically meaningful. The 2013 XOR operation
 Several obvious receivers were tested and rejected:
 
 - the once-shed 13-rune survivor as a repeating GP29 key on p27 and p55;
-- the twice-shed eight-rune core as a repeating GP29 key;
+- the twice-shed red-heading eight-rune core as a repeating GP29 key;
+- the newly found `NSOOCAEY` DIVINITY-sum interior as a phase-zero transparent-F key: it dies after 68 runes on the forward p27 receiver and after 9 runes on p55;
 - the known solved \`DIVINITY\` key under all eight cyclic phases with WELCOME-style F interrupter freedom on p27; every p27 phase fails algebraically;
 - direct p56 prime/totient interpretation of the eight-rune core as \`DIVINITY\`;
 - p56 clocks seeded by the historical Instar numbers and line sums; survival is common and the selected outputs are low-IoC nonprose;
