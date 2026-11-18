@@ -1,0 +1,15 @@
+name: Agent8 original p27/p55 seven-rune seam dual-language inverse
+on:
+  workflow_dispatch:
+
+jobs:
+  source-anchored-seam-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Reconstruct source seam and held-out shared suffix English
+        run: node sims/lp2_p27_p55_seam_boundaryfree_viterbi_sft.cjs
