@@ -49,16 +49,36 @@ I MAY    -> unique depth-3 continuation CRY
 X EARTH  -> maximum depth 1
 ```
 
-Within this frozen continuation family, the block-5 tie is decisively resolved in favor of **I MAY**, and the source-bounded candidate extends to:
+Within this frozen continuation family, the block-5 tie is decisively resolved in favor of **I MAY**.
+
+## One more held-out continuation: CRY -> NOW THE
+
+Carry the selected branch forward once more without supplying the next words. The CRY start `(19,16)` is reused as a candidate mirror-node center, the same movement distance **6** is retained, and the CRY endpoint `(17,16)` is displaced by six cells along each of the eight grid rays. For every mirror node through the center, enumerate all eight read directions and score at most two source-native words.
+
+This family has **64** candidates. Exactly **one** reaches a five-rune two-word prefix:
 
 ```
-AS I GO THE WEATHER TURNS COLD I MAY CRY
+node          OE-J-OE centered at (19,16)
+derived key   OE-OE-I
+move          6 upward from CRY endpoint (17,16)
+start         (11,16)
+read          diagonal down-right
+output        N-O-W-TH-E
+reading       NOW THE
 ```
+
+No competing candidate reaches the same five-rune depth. Thus the source-bounded candidate now extends to:
+
+```
+AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE
+```
+
+Neither `CRY` nor `NOW THE` is supplied to the search.
 
 ## Scope
 
 This is stronger than choosing I MAY from grammatical coherence. The two block-5 branches are judged by the same next-state mechanism and a source-native dictionary gate, and only one supports a nontrivial continuation.
 
-The remaining caveat is upstream: the endpoint-mirror/totient/move family was learned from the published block-6 proposal rather than independently named by an original signed instruction. The p0 original artwork's exact 180-degree pairing and the heading's repeated-rune symmetry make mirror operations source-plausible, but they do not uniquely specify this complete transition rule.
+The remaining caveat is upstream: the endpoint-mirror/totient/move families were learned from the published block-6/7 constructions rather than independently named by an original signed instruction. The p0 original artwork's exact 180-degree pairing and the heading's repeated-rune symmetry make mirror operations source-plausible, but they do not uniquely specify this complete transition rule.
 
 Reproducer: `sims/lp2_p0_block5_branch_continuation_gate_sft.cjs`.
