@@ -162,6 +162,23 @@ This supports a third source-selected p0 plaintext placement:
 
 with word21 / word22 corresponding to **THE / ROAD**. As with the other placements, this is a reproducible navigation-derived plaintext prediction rather than a recovered global letterwise cipher.
 
+## Original line layout independently marks both recovered body phrases
+
+The canonical transcription preserves the original printed line wraps with `/`, and the original p0 image confirms those physical breaks.
+
+Both source-selected body placements fall exactly across line boundaries:
+
+- p0 word21 / word22, candidate **THE / ROAD**, is the unique line break with word lengths **2 / 4**;
+- p0 word52 / word53, candidate **THE / DEVOTED**, is the unique line break with word lengths **2 / 7**.
+
+Across the twelve internal p0 line breaks, the complete end/start length pairs are:
+
+`3/3, 4/3, 6/11, 3/7, 2/4, 3/4, 4/6, 7/3, 4/5, 4/3, 2/7, 4/1`.
+
+Thus neither recovered phrase shape has a second line-break competitor anywhere on the page. The THE / DEVOTED break is at rune boundary236/237, exactly the EMPTY / EPIPHANY table outputs. The THE / ROAD break is at104/105, inside the independently bracketed direction interval102..108.
+
+This is a visual-layout holdout: the numerical pointer mechanism was derived from GP sums and p50, while the printed line-break geometry is an independent property of the original p0 artifact. It supports the interpretation that these body phrases were intended to be recognized as units.
+
 ## p57 bracket quantities reconstruct the two red-title ciphertext sums
 
 The solved p57 instruction and the independently authenticated p50 bracket now reproduce both original red-title **ciphertext word sums** without using proposed title letters.

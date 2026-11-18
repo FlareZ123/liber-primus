@@ -271,6 +271,65 @@ assert.equal(sum(p0[21].indices), 20);
 assert.equal(sum(gp("THE")), 20);
 assert.equal(gp("ROAD").length, 4);
 
+// Original p0 line layout independently marks both body placements.
+// The canonical transcription uses "/" for physical line wraps.
+const p0Source = transcription.split(/\n%\n/)[0];
+const layoutWords = [];
+let layoutCurrent = [];
+let layoutOffset = 0;
+let layoutStart = 0;
+let layoutLine = 0;
+const flushLayoutWord = () => {
+  if (!layoutCurrent.length) return;
+  layoutWords.push({
+    index: layoutWords.length,
+    line: layoutLine,
+    start: layoutStart,
+    end: layoutStart + layoutCurrent.length - 1,
+    length: layoutCurrent.length,
+  });
+  layoutCurrent = [];
+};
+for (const ch of [...p0Source]) {
+  const value = runeIndex.get(ch);
+  if (value !== undefined) {
+    if (!layoutCurrent.length) layoutStart = layoutOffset;
+    layoutCurrent.push(value);
+    layoutOffset += 1;
+  } else if (ch === "-" || ch === ".") {
+    flushLayoutWord();
+  }
+  if (ch === "/") layoutLine += 1;
+}
+flushLayoutWord();
+assert.equal(layoutWords.length, p0.length);
+
+const lineBreakPairs = [];
+for (let i = 0; i < layoutWords.length - 1; i += 1) {
+  const left = layoutWords[i];
+  const right = layoutWords[i + 1];
+  if (left.line !== right.line) {
+    lineBreakPairs.push({
+      left: left.index,
+      right: right.index,
+      lengths: [left.length, right.length],
+      boundary: [left.end, right.start],
+    });
+  }
+}
+assert.equal(lineBreakPairs.filter((row) =>
+  row.lengths[0] === 2 && row.lengths[1] === 4).length, 1);
+assert.equal(lineBreakPairs.filter((row) =>
+  row.lengths[0] === 2 && row.lengths[1] === 7).length, 1);
+assert.deepEqual(
+  lineBreakPairs.find((row) => row.lengths[0] === 2 && row.lengths[1] === 4),
+  {left: 21, right: 22, lengths: [2, 4], boundary: [104, 105]}
+);
+assert.deepEqual(
+  lineBreakPairs.find((row) => row.lengths[0] === 2 && row.lengths[1] === 7),
+  {left: 52, right: 53, lengths: [2, 7], boundary: [236, 237]}
+);
+
 // Source quantities from solved p57 plus the authenticated p50 bracket
 // reconstruct both original red-title ciphertext word sums.
 assert.equal(sum(gp("FIND")), 42);
@@ -433,6 +492,13 @@ console.log(JSON.stringify({
       candidateSourceWords: ["THE", "DEVOTED"],
     },
     typedClosureCensus: {candidates: typedCandidates.length, closures: typedClosures.length},
+    layoutHoldout: {
+      lineBreakCount: lineBreakPairs.length,
+      uniqueTwoFour: lineBreakPairs.find((row) =>
+        row.lengths[0] === 2 && row.lengths[1] === 4),
+      uniqueTwoSeven: lineBreakPairs.find((row) =>
+        row.lengths[0] === 2 && row.lengths[1] === 7),
+    },
     roadPlacement: {
       directionSourcePair: ["SEEKS", "THE"],
       directionOffsets: [108, 102],
