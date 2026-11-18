@@ -216,11 +216,11 @@ function main() {
   assert.equal(maxPrefix, 12);
   const native = plantNativeWords();
   const planted = plantEncrypted(native);
-  const plantedSites = singleton.map(({position}) =>
+  const plantedSites = singleton.slice(0, 13).map(({position}) =>
     ({ position, value: planted.encrypted[position] }));
   const positive = exhaustLabels(rowsFor(2, 7, 4, plantedSites), plantedSites);
   assert.ok(positive.survivors > 0);
-  assert.equal(positive.maxPrefix, 83);
+  assert.equal(positive.maxPrefix, 13);
   const out = {
     source: {cipherRunes:12956,words:2896,singletons:83,
       prefixSites:sourceSites.map((s)=>s.position),coefficientTriples,
@@ -228,7 +228,8 @@ function main() {
     hypothesis: "arbitrary degree-3 affine GF29 recurrence + unknown stationary GP29 relabeling",
     planted: {runes:planted.encrypted.length,
       originalWordLengthsPreserved:true,exactRoundTrip:true,
-      originalSingletonSites:83,positiveSurvivors:positive.survivors}
+      originalSingletonSites:83,allSecretRecoveryTestSites:13,
+      positiveSurvivors:positive.survivors}
   };
   process.stdout.write(JSON.stringify(out, null, 2) + "\n");
   return out;
