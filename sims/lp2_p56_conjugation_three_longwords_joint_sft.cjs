@@ -101,7 +101,7 @@ function primes(count){
   }
   return out;
 }
-const SHIFT=primes(520).map(p=>(p-1)%29);
+const SHIFT=primes(800).map(p=>(p-1)%29);
 function popcount(x){let n=0;while(x){x&=x-1;n++;}return n;}
 /** Exact consistency of all partial modular equalities with 29 distinct α. */
 function valid(equations,pin=-1){
@@ -243,7 +243,7 @@ function next(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return(seed>>>0)/42
 const pi=Array.from({length:29},(_,i)=>i);
 for(let j=28;j>0;j--){const i=Math.floor(next()*(j+1));[pi[j],pi[i]]=[pi[i],pi[j]];}
 const alpha=new Uint8Array(29);pi.forEach((x,i)=>{alpha[x]=i;});
-function nativePlant(pageIndex,lexWord,marker){
+function nativePlant(pageIndex,lexWord,marker,startPrimeIndex=0){
   const item=source[pageIndex];
   const plain=book.slice(pageIndex*250,pageIndex*250+item.local)
     .concat(lexWord.nums);
@@ -251,14 +251,14 @@ function nativePlant(pageIndex,lexWord,marker){
   let consumed=0;
   const ciphertext=plain.map(P=>{
     if(P===marker)return marker;
-    const out=pi[mod(alpha[P]+SHIFT[consumed])];
+    const out=pi[mod(alpha[P]+SHIFT[startPrimeIndex+consumed])];
     consumed++;
     return out;
   });
   const wordCipher=ciphertext.slice(item.local);
   const preceding=ciphertext.slice(0,item.local).filter(x=>x===marker).length;
-  const phase=plain.slice(0,item.local).filter(x=>x!==marker).length;
-  assert(phase>=item.local-preceding&&phase<=item.local,
+  const phase=startPrimeIndex+plain.slice(0,item.local).filter(x=>x!==marker).length;
+  assert(phase>=startPrimeIndex+item.local-preceding&&phase<=startPrimeIndex+item.local,
     "real transparent skips lie within ciphertext-marker prefix bound");
   const edges=relations(wordCipher,lexWord.nums,phase,1,marker);
   assert(edges);
@@ -287,7 +287,7 @@ for(const variant of ["literal","underlying"]){
  */
 let alternativeOffsetsWithPairs=0;
 const offsetSummaries=[];
-for(let initialPrimeOffset=1;initialPrimeOffset<29;initialPrimeOffset++){
+for(let initialPrimeOffset=1;initialPrimeOffset<464;initialPrimeOffset++){
   let alternatives=0;
   let witness=null;
   for(const sign of [1,-1]){
@@ -310,5 +310,17 @@ for(let initialPrimeOffset=1;initialPrimeOffset<29;initialPrimeOffset++){
   if(alternatives>0)alternativeOffsetsWithPairs++;
   offsetSummaries.push({initialPrimeOffset,pairedTraces:alternatives,witness});
 }
-console.log("ALTERNATIVE_P56_STARTS_1_TO_28",JSON.stringify(offsetSummaries));
+console.log("ALTERNATIVE_P56_STARTS_1_TO_463",JSON.stringify(offsetSummaries));
 console.log("OTHER_STARTS_WITH_ANY_LEXICAL_PAIR",alternativeOffsetsWithPairs);
+
+
+for(const variant of ["literal","underlying"]){
+  const marker=variant==="literal"?0:pi[0];
+  const first=nativePlant(0,dictionary[0],marker,227);
+  const second=nativePlant(1,dictionary[1],marker,227);
+  assert(valid(first.edges.concat(second.edges),variant==="literal"?-1:marker),
+    "true one-pi two-page native control with historical nonzero prime start227");
+  console.log("POSITIVE_OFFSET227_SHARED_PI",JSON.stringify({
+    variant,marker,starts:[first.phase,second.phase],pass:true
+  }));
+}
