@@ -57,6 +57,8 @@ assert.equal(sum(seam), 389);
 assert.equal(primes[76], 389);
 assert.equal(p27[76], 6);  // G is GP prime 17
 assert.equal(weights[p27[76]], 17);
+assert.equal((5 ** p27[76]) % 23, 8);
+assert.equal((19 ** p27[76]) % 23, 2);
 assert.equal(p27[35], 0);  // next p27 rune is F, GP prime 2
 assert.equal(weights[p27[35]], 2);
 assert.equal(17 * 23 - 389, weights[p27[35]]);
@@ -139,6 +141,42 @@ function plant(plain, key, sign) {
   });
 }
 
+// Complete manuscript sections give a fixed, original-input holdout for
+// direct use of the 76-rune p27 tape beyond the terminal chapter. The 2013
+// signed DH worked example independently supplies T(x) = 24-2x mod29;
+// the transfer of T to source-key values is strictly a test hypothesis.
+const sectionBounds = [
+  [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+  [27, 32], [33, 39], [40, 53], [54, 55]
+];
+const sourceAffine = [
+  ...keyRegisters,
+  ...keyRegisters.map(([name, values]) =>
+    ["DH-T-" + name, values.map(x => mod(24 - 2 * x))])
+];
+const sectionCandidates = [];
+for (const [start, end] of sectionBounds) {
+  const cipher = gp.pages.filter(p =>
+    p.page >= start && p.page <= end).flatMap(p => p.indices);
+  for (const [name, key] of sourceAffine) {
+    for (const sign of [-1, 1]) {
+      const plain = cipher.map((c, i) => mod(c + sign * key[i % 76]));
+      sectionCandidates.push({
+        section: "p" + start + "-" + end,
+        count: cipher.length, register: name, sign,
+        scaledIoC: scaledIoC(plain)
+      });
+    }
+  }
+}
+const sourceSectionBest = [...sectionCandidates]
+  .sort((a, b) => b.scaledIoC - a.scaledIoC)[0];
+assert.equal(sectionCandidates.length, 72);
+assert.equal(sectionBounds.reduce((n, [a, b]) =>
+  n + gp.pages.filter(p => p.page >= a && p.page <= b)
+    .reduce((k, p) => k + p.indices.length, 0), 0), 12956);
+assert.ok(sourceSectionBest.scaledIoC < 1.1);
+
 const chapter = [...p54, ...p55];
 assert.equal(chapter.length, 308);
 const details = [];
@@ -192,6 +230,8 @@ console.log(JSON.stringify({
   source_103_prime_rank: 27,
   p56_known_plaintext: known.map(x => gp.translit[x]).join(""),
   native_p57_76_scaled_ioc: scaledIoC(p57.slice(0, 76)),
+  source_section_direct_models: sectionCandidates.length,
+  source_section_best: sourceSectionBest,
   results: details,
   status: "No authenticated unknown plaintext or decryption key."
 }, null, 2));
