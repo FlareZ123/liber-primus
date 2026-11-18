@@ -1,90 +1,163 @@
-# P28 successor `MUST → 59 → SHED` selects the drop-`f` base59 transition
+# `WE MUST SHED` resolves the p50 `60 → 59` numeral transition
 
-**Agent48, 18 November 2026. Classification: source-constrained numeral-radix selector and navigation grammar candidate. No unknown LP2 plaintext, creator key, KDF, or complete cipher inverse is recovered.**
+**Agent48, 18 November 2026. Classification: source-constrained radix-state transition. No unknown LP2 plaintext, creator key, KDF, or complete cipher inverse is recovered.**
 
 ## Decision
 
-The current p57/p50 navigation no longer needs an unexplained free switch between base60 and base59.
+The strongest current p57/p50 route no longer needs a free choice between base60 and drop-`f` base59.
 
-A single human-plausible route reaches physical p28 using only the conventional 60-symbol table reading, obtains the number **59** from clear word `MUST`, and then encounters clear instruction word **SHED**. The original p50 table uses every character of its 60-symbol digit alphabet except lowercase **`f`**. Therefore the independently obtained value59 plus `SHED` deterministically selects the existing drop-`f` 59-symbol alphabet.
+A source-selected p28 construction produces a DH public value **66** and shared value **87** before either one is interpreted through p50. Cell66 is radix-independent and returns clear p57 **WE**. The solved text continues literally:
 
-The remaining inference is the new **successor-GP1 receiver**: after a source-selected object ending at a complete-word boundary, read the next complete printed word using one-based rune values and match that sum to a solved p57 GP0 word. P28 supplies a strong local cue for this operation because its successor is itself the ordered adjacent rune pair `[24,25]`, and its length equals the independently derived DH shared value2. The same receiver has independent consequences on selected p27 material.
+`WE MUST SHED`.
 
-This result materially improves the causal path to the existing base59 navigation branch. It does not authenticate every downstream base59 interpretation and does not decrypt an unknown page.
+At **MUST**, two independent source numbers specify the radix transition:
 
-## 1. Reach p28 before any radix change
+- `GP-prime(MUST)=186`, so `phi(186)=60`, exactly the printed p50 alphabet size and the already selected twice-shed circumference length;
+- `GP0(MUST)=51`, and conventional base60 reads original cell51 `0x` as **59**.
 
-Use the already established solved-p57 grammar:
+The next clear word is **SHED**. Across all 256 original p50 tokens, lowercase **`f`** is the sole symbol from the 60-character digit alphabet that never appears. Therefore the instruction `MUST: 60 → 59; SHED` has one order-preserving realization that leaves every printed token valid: remove `f`.
 
-`whole-word GP0 → zero-based p50 address → conventional base60 value`.
+Only after that source-selected change does the frozen DH shared value87 decode correctly:
 
-Three original lookups are sufficient:
+`p50[87]=15 → base59 64 = GP0(SHED)`.
+
+Base60 gives65 instead.
+
+This is a materially stronger explanation of the dual-radix behavior than the earlier missing-`f` observation or post hoc switching between readings. The transition is ordered by the clear text itself.
+
+## 1. Base60 reaches p28 before any switch
+
+Use the established solved-word grammar:
+
+`whole-word GP0 → zero-based p50 address → numeral value`.
+
+The conventional 60-symbol reading gives:
 
 - `CIRCUMFERENCES=131 → p50[131]=20 → 120=PARABLE`;
 - `PARABLE=120 → p50[120]=0g → 42=FIND`;
 - `FIND=42 → p50[42]=0S → 28`.
 
-The last token has value28 under both candidate alphabets, but no base59 assumption is needed. The route therefore reaches physical p28 entirely under the conventional 60-symbol interpretation.
+Thus physical p28 is reachable without assuming base59.
 
-Physical p28 word28 is already independently selected by the page number and exact center placement. It is the final word on original line6, whose layout gives the LP2-native DH23 tuple `p=23, g=5, a=6, B=19, K=2`.
+Physical p28 word28 is independently selected by page number and exact center placement. It is also the final word of original line6, the unique one of all 604 p0–p55 physical rune lines whose first visible fragment is `DH`. Its geometry supplies the manuscript-side DH23 control `p=23, g=5, a=6, B=19, b=15, A=8, K=2`.
 
-## 2. The literal successor says MUST
+## 2. The p28 word supplies a second DH instance and lands on WE
 
-The next complete printed word is p28 word29. Its original rune indices are:
+The selected p28 word is:
 
-`[24,25]`
+`[28,24,10,1,20]`.
 
-so it has three relevant source-visible properties:
+Shedding its outer circumference leaves:
 
-- it is a two-rune word, equal in length to DH shared `K=2`;
-- its indices are an ordered consecutive pair, `24 → 25`;
-- its one-based sum is `25+26=51`.
+`[24,10,1]`.
 
-Clear p57 has:
+Its GP0 sum is **35**. Clear p57 supplies:
+
+- `GP-prime(FIND)=151`;
+- `GP-prime(OUR)=21`;
+- `GP-prime(OWN)=55`.
+
+Use the source-visible DH operation family from p28 with:
+
+`p=151, g=35, a=21, b=55`.
+
+The resulting values are:
+
+- public `B = 35^55 mod151 = 66`;
+- shared `K = 35^(21×55) mod151 = 87`.
+
+No table radix is involved in deriving 66 or87.
+
+Original cell66 is `0P`, which equals **25** under both base60 and base59. Clear p57 has:
+
+`GP0(WE)=25`.
+
+So the DH output enters the clear phrase at **WE** before any numeral-state choice.
+
+There is an independent cross-DH convergence on the same address. The p28 DH23 state has `A=8`, `K=2`, and p50 visibly has width8, so zero-based row-major coordinate `(A,K)=(8,2)` is also:
+
+`8×8+2 = 66`.
+
+The DH151 public output and the DH23 coordinate therefore converge on the same radix-independent `WE` cell.
+
+## 3. Clear word order specifies the transducer
+
+In p57 the relevant canonical words are:
+
+- word9 **WE**;
+- word10 **MUST**;
+- word11 **SHED**.
+
+The route has already landed on WE. Following the solved sentence requires no invented opcode:
+
+`WE → MUST → SHED`.
+
+MUST independently names the outgoing and incoming numeral sizes.
+
+First, its Gematria-prime sum is:
+
+`GP-prime(MUST)=186`.
+
+Euler's totient, explicitly sacred elsewhere in Liber Primus, gives:
+
+`phi(186)=60`.
+
+That equals both the full printed p50 digit alphabet length and the 60-cell circumference exposed by the independently derived shared2 shedding depth.
+
+Second, canonical GP0 word addressing gives:
 
 `GP0(MUST)=51`.
 
-Across the complete family of **48** physical pages p1–p55 for which the page-numbered word has a following complete word, p28 is the **only** page whose successor is a forward-consecutive two-rune pair. It is also the **only** page whose successor GP1 equals51. The broader GP1-to-p57-word family has other hits, so the evidence is the conjunction with the independently selected p28 object rather than GP1 matching by itself.
+Under the still-active base60 reading:
 
-The original p28 scan was checked directly. The selected word ends physical line6 and the two-rune successor begins line7; this is a printed source boundary, not a parser-created adjacency.
+`p50[51]=0x = 59`.
 
-## 3. MUST produces 59 under the still-active base60 reading
+Among all 17 distinct p57 GP0 word addresses, MUST is the only one whose base60 table value is59.
 
-Keep the same solved-word GP0 addressing rule and the same conventional base60 interpretation:
+The next clear word is SHED. The source therefore supplies the ordered transition:
 
-`MUST=51 → p50[51]=0x → 59`.
+`WE → MUST: 60 → 59 → SHED`.
 
-Among all **17 distinct p57 GP0 word addresses**, `MUST` is the only one whose conventional base60 table value is59.
+## 4. SHED determines which digit is removed
 
-This is important for causality. The value59 is obtained **before** changing the numeral alphabet.
-
-The next clear p57 word after `MUST` is literally:
-
-`SHED`.
-
-So the source now presents the compact instruction:
-
-`MUST → 59; SHED`.
-
-## 4. SHED makes the missing-f alphabet deterministic
-
-The original p50 digit alphabet is the 60-character ordered set:
+The full ordered alphabet is:
 
 `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx`.
 
-Across all 256 printed two-character cells, every one of those characters occurs at least once except lowercase `f`. Thus, once the route has independently produced radix59 and the clear instruction says `SHED`, there is exactly one order-preserving 59-character alphabet that can encode every printed token:
+Every symbol in that 60-character alphabet occurs somewhere in the 256 printed tokens except lowercase `f`.
+
+So after the route has independently produced **59**, the instruction **SHED** has one order-preserving realization compatible with every original token:
 
 `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdeghijklmnopqrstuvwx`.
 
-This is the existing drop-`f` base59 interpretation.
+Earlier work correctly classified “`f` happens to be absent” as weak evidence by itself. The role is different here. The source-derived value59 fixes the target radix first; the token census merely determines which single digit can be removed without invalidating the artifact.
 
-Earlier work correctly showed that the absence of `f` alone is weak evidence because one missing suffix symbol is common under a simple occupancy null. The new route changes the role of that observation. The absence no longer has to predict the radix. The p28/MUST route supplies **59 first**, and the symbol census only determines **which one digit must be shed**.
+## 5. Frozen shared87 is a post-switch holdout
 
-## 5. Immediate post-switch consequences are source-coherent
+The DH151 shared value87 was already fixed before the transition.
 
-After `SHED`, keep the newly selected base59 interpretation.
+Original cell87 is `15`:
 
-The clear p57 word itself now gives:
+- base60: **65**;
+- drop-`f` base59: **64**.
+
+Clear p57 has:
+
+`GP0(SHED)=64`.
+
+Thus the newly selected post-SHED state makes a locked value land exactly on the instruction that selected it:
+
+`DH shared87 → p50[87] → base59 64 = SHED`.
+
+The base60 control misses.
+
+This is the most useful discriminator in the route because the radix choice is made before reading cell87.
+
+## 6. Immediate base59 continuation
+
+Keep the selected base59 state.
+
+The same solved-word GP0 grammar gives:
 
 `SHED=64 → p50[64]=22 → 120=PARABLE`.
 
@@ -92,68 +165,57 @@ Then:
 
 `PARABLE=120 → p50[120]=0g → 41`.
 
-The value41 is the **13th prime**. P57 visibly carries the red 13-dot marker immediately below its PARABLE title. Addressing cell41 under the same base59 map gives:
+The value41 is the **13th prime**, matching the visible red13 object on p57. Under base59:
 
 `p50[41]=1O → 83=EMERGE`.
 
-So the post-switch route is:
+So the post-switch continuation is:
 
 `SHED → PARABLE → 41 = prime #13 → EMERGE`.
 
-This uses the same red13 object already central to the p57/p50 bracket route and requires no return to base60.
+This path never needs to switch back to base60.
 
-## 6. Independent p27 successor predicts the DH endpoint under base59
+## 7. The earlier successor-GP1 observation is auxiliary
 
-P28's DH public value19 paired with the already selected red13 object independently selects the p27 red heading of length19 followed by a red13 mark.
+The first version of this result used p28's literal next complete word to reach MUST. That step is no longer necessary.
 
-That 19-rune red heading ends exactly at a complete-word boundary. Its next complete word is original values:
+The observation remains unusual:
 
-`[9,8,6,1,27,8,1]`.
+- p28 word29 is `[24,25]`;
+- its length2 equals DH23 shared `K=2`;
+- its indices are a forward-consecutive pair;
+- its one-based ordinal sum is `25+26=51=MUST`.
 
-Under the same successor-GP1 rule its sum is:
+The one-based values are also the prime ordinals of the runes' Gematria primes:
 
-`10+9+7+2+28+9+2 = 67 = GP0(SURFACE)`.
+`pi(97)+pi(101)=25+26=51`.
 
-Now use the newly selected base59 table:
+Across the 48 page-numbered words with successors, p28 alone has both a forward-consecutive two-rune successor and successor sum51.
 
-`SURFACE=67 → p50[67]=3C → 189`.
+There are additional local echoes. The independently selected p27 red-heading successor has GP1=67=`SURFACE`, and selected p39 terminal word `WLYNU` is followed by a word with GP1=83=`EMERGE`.
 
-Address189 is the already established base59 fixed point and the DH coordinate `23×8+5=(p,g)`.
+Prospective holdouts reject a universal successor rule:
 
-Control the receiver across all original red spans. Eighteen red spans exist; sixteen end on a complete-word boundary and have a following word. Only two successor-GP1 values hit any p57 GP0 word:
+- the intermediate selected p39 word `HGREOT` has a following word whose GP1 is39, outside the p57 GP0 vocabulary;
+- the terminal p0 THE/WAY receiver at offset117–121 is followed by GP1=17, also outside that vocabulary.
 
-- p3 → `FIND`;
-- the independently selected p27 heading → `SURFACE`.
-
-The p27 hit therefore supplies a separate source-selected post-switch consequence rather than being used to choose p27.
-
-## 7. The selected DJU word gives a third foothold
-
-The finite historical handoff independently selects the repeated complete pair `DJU / BEI` at p55 and p27. P57 `FIND→28` independently fixes p27 rune offset28, exactly the start of `DJU`.
-
-For `DJU=[23,11,1]`:
-
-`GP1(DJU)=24+12+2=38=GP0(WITHIN)`.
-
-Under the selected base59 map:
-
-`WITHIN=38 → p50[38]=2D → 131=CIRCUMFERENCES`.
-
-This does not replace the already established GP0/base59 `DJU / BEI` p39 circuit. It is an additional, independently selected consequence of the same successor/one-based numerical vocabulary.
+Across all 40 complete words whose GP0 maps to physical p50 under base59, `WLYNU` is the sole occurrence followed by GP1=83=EMERGE. That remains a useful local transition clue, while the failed holdouts mean successor-GP1 must not be treated as a general decoder.
 
 ## What changed
 
-The previous synthesis correctly described the p57/p50 route as mixing base59 and base60 without one authenticated downstream grammar. This result supplies a substantially cleaner candidate state transition:
+The defensible state machine is now:
 
-1. remain in conventional base60 through `CIRCUMFERENCES → PARABLE → FIND → 28`;
-2. use the selected p28 object's literal successor to recover `MUST`;
-3. `MUST → 59` while still in base60;
-4. clear `SHED` plus the source symbol census removes the only unused digit `f`;
-5. continue in base59, where `SHED → PARABLE → prime #13 → EMERGE`, p27 successor `SURFACE → 189`, and `DJU → WITHIN → CIRCUMFERENCES` all close on already selected source structures.
+1. conventional base60 reaches `CIRCUMFERENCES → PARABLE → FIND → 28`;
+2. p28 supplies the DH operation and the DH151 state `B=66, K=87`;
+3. `66 → WE` under either radix;
+4. solved text continues `WE MUST SHED`;
+5. `phi(GP-prime(MUST))=60` fixes the current radix;
+6. `GP0(MUST)=51 → p50[51]=59` under base60;
+7. SHED plus the sole unused digit `f` fixes the new radix59 alphabet;
+8. frozen shared87 then decodes to SHED only in base59;
+9. the base59 continuation reaches `PARABLE → prime #13 → EMERGE`.
 
-The strongest unsupported premise is now narrow: **why the next complete word should be read with GP1 and matched to a solved p57 GP0 word**. P28's ordered adjacent pair, its length `K=2`, the unique page-numbered-successor controls, and the p27/DJU consequences make this plausible, but they do not yet prove it.
-
-A decisive successor should use this exact receiver on a separately selected untouched object and predict a new source fact, a reversible unknown-cipher operation, or authentic plaintext. Do not tune alternative successor measures after failure.
+The main unresolved question has moved downstream. The radix transition itself now has a source-constrained causal path. What is still missing is a reversible operation applying the resulting state to unknown ciphertext, or a source-authored exit from the closed p27/p28/p50/p55/p57 navigation network.
 
 ## Reproduction
 
