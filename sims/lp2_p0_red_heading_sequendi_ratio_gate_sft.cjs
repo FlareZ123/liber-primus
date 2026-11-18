@@ -47,7 +47,7 @@ function phi(n) {
 
 /** @param {string} name */
 function parseStringArray(name) {
-  const match = auditSource.match(new RegExp("const " + name + "=\\\\[(.*?)\\\\];", "s"));
+  const match = auditSource.match(new RegExp("const " + name + "=\\[(.*?)\\];", "s"));
   assert(match, "missing frozen route array " + name);
   return [...match[1].matchAll(/"([^"]*)"/g)].map(row =>
     row[1].split(",").map(Number));
