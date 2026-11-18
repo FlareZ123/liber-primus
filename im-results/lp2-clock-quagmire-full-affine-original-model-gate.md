@@ -71,4 +71,4 @@ The experiment is valuable because it directly changes the priority of an otherw
 
 - [Full stand-alone Windows-compatible Node.js 22 SFT](../sims/lp2_clock_quagmire_full_affine_motif_sft.cjs), reading already committed original corpus and three English references, with source count and native orthography assertions. It performs no network requests or file writes.
 - [Windows GitHub Actions successful run 44272748320](https://github.com/FlareZ123/liber-primus/actions/runs/44272748320), containing every original count and all 3,000 keyed plant statistics. The standalone test itself executed in about 5 seconds of the successful job.
-- [Reusable read-only SFT workflow](../.github/workflows/research-sft-readonly-manual.yml) with a validated path and read-only checkout permissions, created for future direct source tests in place of a separate workflow for every test.
+- [Existing reusable read-only Node22 SFT workflow](../.github/workflows/manual-node22-sft-runner.yml) with a validated path and read-only checkout permissions; the duplicate one-run workflow used in the recorded successful execution is retired.
