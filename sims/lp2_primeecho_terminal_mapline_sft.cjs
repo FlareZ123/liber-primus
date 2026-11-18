@@ -16,6 +16,8 @@ const transcription = fs.readFileSync(
   path.join(root, 'resources', 'liber-primus', 'lp2-transcription.txt'), 'utf8');
 const corpus = JSON.parse(fs.readFileSync(
   path.join(root, 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'));
+const ink = JSON.parse(fs.readFileSync(
+  path.join(root, 'resources', 'liber-primus', 'lp2-ink-annotations.json'), 'utf8'));
 
 /** @param {number} n @returns {boolean} */
 function isPrime(n) {
@@ -193,6 +195,9 @@ const p55Lines = p55Body.split('/\n')
 assert.deepEqual(p55Lines.map((line) =>
   line.reduce((sum, word) => sum + [...word].length, 0)), [24, 22, 22, 8]);
 assert.deepEqual(p55Lines[3], targetWords);
+const p55Ink = ink.find((page) => page.page === 55);
+assert(p55Ink);
+assert.deepEqual(p55Ink.large_punctuation, [[76, 13, 'red']]);
 
 // Manuscript-wide line inventory: p55 line4 is the only >=2-word physical line
 // for which every constituent word type occurs exactly twice in p0-p55.
@@ -234,7 +239,7 @@ for (const state of paths) {
   console.log(`  start=${state.start} prime=${state.startPrime} skips=[${state.skips.join(',')}] -> pointer464`);
 }
 console.log('BOUNDARY: p55 local67 ends printed line3 exactly as prime3301 is consumed');
-console.log('UNTOUCHED LINE4: CX / DJU / BEI (8 runes)');
+console.log('UNTOUCHED LINE4: CX / DJU / BEI (8 runes), then red 13-dot mark at offset76');
 console.log('WORD COUNTS: CX=2, DJU=2, BEI=2 across p0-p55');
 console.log('OTHER COPIES: CX=p34 word56 line10; DJU/BEI=p27 words7/8 line2');
 console.log('LINE INVENTORY: 594 physical rune lines; p55 line4 is the sole >=2-word line whose every word occurs exactly twice');
