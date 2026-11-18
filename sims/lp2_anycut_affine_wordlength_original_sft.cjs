@@ -137,6 +137,56 @@ assert.equal(matches[3].manuscriptWordCount, 156);
 assert.equal(matches[9].manuscriptWordCount, 3);
 assert.equal(matches[9].arbitraryPermutationMatches, 32);
 
+/**
+ * Full unknown per-word 29! bijection gate in the source-defined pp23–26
+ * page group. Equality patterns are exactly invariant under a fixed secret
+ * permutation within each word. The complete scan permits arbitrary movement
+ * of the word's start without changing source rune order or group boundary.
+ */
+const pageStarts = new Map();
+let cumulativeRunes = 0;
+for (const page of book.pages.filter((p) => p.page <= 55)) {
+  pageStarts.set(page.page, cumulativeRunes);
+  cumulativeRunes += page.indices.length;
+}
+assert.equal(cumulativeRunes, sourceTape.length);
+const groupStart = pageStarts.get(23);
+const groupEnd = pageStarts.get(27);
+assert.equal(groupEnd - groupStart, 1021);
+const groupFourteenWordStarts = [];
+let printedOffset = 0;
+for (const word of originalWords) {
+  if (printedOffset >= groupStart && printedOffset + word.length <= groupEnd &&
+      word.length === 14) groupFourteenWordStarts.push(printedOffset);
+  printedOffset += word.length;
+}
+assert.deepEqual(groupFourteenWordStarts, [6035]);
+
+let groupFourteenPossibleWindows = 0;
+for (let offset = groupStart; offset + 14 <= groupEnd; offset += 1) {
+  if (arbitrarySubstitutionShape[14].has(
+    equalityPattern(sourceTape.slice(offset, offset + 14)))) {
+    groupFourteenPossibleWindows += 1;
+  }
+}
+assert.equal(groupFourteenPossibleWindows, 0);
+
+// A genuine GP-native 14-rune word remains recognizable under a hidden,
+// independently selected bijection with a nonaffine symbol swap.
+const nativeFourteen = wordsByLength.get(14)[0];
+const plantedSecretAlphabet = Array.from({ length: 29 },
+  (_, index) => mod29(7 * index + 5));
+[plantedSecretAlphabet[0], plantedSecretAlphabet[1]] =
+  [plantedSecretAlphabet[1], plantedSecretAlphabet[0]];
+assert.equal(new Set(plantedSecretAlphabet).size, 29);
+const codedFourteen = nativeFourteen.map((index) => plantedSecretAlphabet[index]);
+assert.equal(equalityPattern(codedFourteen), equalityPattern(nativeFourteen));
+assert(arbitrarySubstitutionShape[14].has(equalityPattern(codedFourteen)));
+const decodeAlphabet = Array.from({ length: 29 }, () => -1);
+plantedSecretAlphabet.forEach((value, index) => { decodeAlphabet[value] = index; });
+assert.deepEqual(codedFourteen.map((index) => decodeAlphabet[index]),
+  nativeFourteen);
+
 // Strong positive plant: every original word length occurs exactly once, but
 // the printed length order is permuted; independently keyed affine ciphertext
 // stays contiguous within words. Every word must pass the same signature oracle.
@@ -170,11 +220,18 @@ console.log(JSON.stringify({
   originalWords: originalWords.length,
   scanningIncludesOriginalPunctuationAndPageSeams: true,
   matches,
+  arbitraryWordPermutationPageGroup: {
+    pages: '23–26',
+    runes: groupEnd - groupStart,
+    retainedPrintedLength14WordStarts: groupFourteenWordStarts,
+    everyPossibleLength14WindowCompatibleWithPinnedEnglish: groupFourteenPossibleWindows,
+    secretAlphabetPlant: '29/29 exact arbitrary-bijection inverse'
+  },
   positive: {
     keying: 'distinct per-word a and b; permuted original word-length sequence',
     exactCipherInverseRunes: recovered,
     exactLengthMultisetWords: seenOriginalLengthIndices.size
   },
-  conclusion: 'No length-8..14 source window admits an affine image of a reference English word. Every unchanged original-length-multiset segmentation therefore fails, while arbitrary per-word permutations and rune transpositions remain outside this gate.'
+  conclusion: 'Original length-8..14 windows exclude per-word affine source-native English under every cut. In physical pp23–26, even arbitrary secret per-word 29! bijections with freely moved cuts fail the pinned native-English 14-rune word requirement. Other language registers, changed group lengths and within-word rearrangements remain outside these gates.'
 }, null, 2));
 console.log('PASS: all-cut all-key GP29 affine-word structural exclusion and exact independent native-GP positive.');
