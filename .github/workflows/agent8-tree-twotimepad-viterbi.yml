@@ -1,0 +1,15 @@
+name: Agent8 source-tree two-time-pad joint language inverse
+on:
+  workflow_dispatch:
+
+jobs:
+  source-shaped-joint-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Exact original cipher and held-out English pairs
+        run: node sims/lp2_tree_twotimepad_boundaryfree_viterbi_sft.cjs
