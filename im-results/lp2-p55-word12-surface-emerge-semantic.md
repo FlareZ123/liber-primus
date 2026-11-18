@@ -47,6 +47,7 @@ Using the authenticated GP-prime/totient register gives:
 whole GP-prime       = 341
 phi(341)             = 300 = GP-prime(EMERGE)
 
+shell GP0            = 67  = GP0(SURFACE)
 shell GP-prime       = 246 = GP-prime(SURFACE)
 phi(246)             = 80
 
@@ -60,6 +61,8 @@ Thus the selected object reads naturally from inside outward as:
 THE -> SURFACE -> EMERGE
 ```
 
+The shed shell therefore identifies SURFACE under **both** GP0 and GP-prime, while the whole word identifies EMERGE through the authenticated totient register.
+
 The outer semantic values also converge numerically:
 
 ```
@@ -67,7 +70,7 @@ phi(GP-prime(SURFACE)) = 80
 phi(GP-prime(EMERGE))  = 80
 ```
 
-The number80 is already active independently as the base60 p27 carrier convergence point and in the p0 THE/WAY navigation cycle, so it is a concrete continuation candidate rather than a free new number.
+That output is already independently typed on p27. Offset80 lies inside the uniquely selected 12-rune carrier `EORNSOOCAEYEE` at offsets79–90. With the same K=2 peel, its frozen prime/totient ledger gives whole → INSTAR, shed shell → MUST, exposed interior → DIVINITY, and interior totient → LIKE. Thus the p55 object rejoins the existing p27 navigation at a pre-existing receiver rather than introducing a new free address.
 
 ## Global holdout
 
@@ -83,6 +86,6 @@ The page, word number, peel depth, semantic targets, and arithmetic registers ar
 
 Preserve this as a high-priority semantic navigation node. It gives the phrase `TUNNELNG TO THE SURFACE` a direct manuscript receiver: TUNNELNG selects p55, OUR selects word12, K=2 exposes THE at the interior while the shed shell is SURFACE and the whole object maps to EMERGE.
 
-The remaining useful question is whether the common output80 supplies a uniquely typed receiver on the independently selected p27 page or elsewhere. Avoid treating the three-rune interior as plaintext; the evidence currently identifies semantic registers rather than a letter-level cipher.
+The remaining useful question is the reversible operation after the p27 DIVINITY carrier. The p55→80 handoff itself is now typed by an independently selected p27 receiver. Avoid treating the three-rune interior as plaintext; the evidence currently identifies semantic registers rather than a letter-level cipher.
 
 Reproducer: `sims/lp2_p55_word12_surface_emerge_semantic_sft.cjs`.
