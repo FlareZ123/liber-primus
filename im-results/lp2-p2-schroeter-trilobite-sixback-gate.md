@@ -58,6 +58,15 @@ There is also a stronger, independent historical explanation for the same affine
 
 The 24 = 2 × 12 interpretation is vulnerable to post-selection. The source image does not uniquely specify the intercept, affine operation, state update, or initial key. The two tested realizations fail. Do not rescue this branch by adding another feedback layer or searching more offsets.
 
+
+## Textual source check: the surrounding Fortey passage is not a direct p2 crib
+
+The p2 page contributes 201 runes across 38 page-local word fragments; the first fragment is only the final two runes of a word begun on p1, leaving 37 complete words. Their lengths are:
+
+2, 1, 2, 7, 3, 6, 7, 3, 5, 4, 7, 10, 7, 2, 7, 7, 5, 4, 7, 6, 9, 3, 2, 1, 8, 9, 6, 10, 4, 3, 8, 8, 3, 2, 2, 10, 2, 9.
+
+The paragraph beginning “Without their limbs these wonderful fossils were geological cyphers” is 48 words, not 38. Comparing the 37 complete p2 lengths with contiguous 37-word windows in the OCR-extracted passage surrounding the figure (ordinary whitespace tokenization; hyphenated compounds split) produced no exact match; the best window matched only 10/37 lengths. This rejects a simple word-preserving quotation of that nearby passage. It does not rule out Fortey as a key text, but no source-selected starting point or extraction rule is established. Do not expand this into an unconstrained book-walk search.
+
 ## Strongest unanswered source question
 
 Can the exact LP2 p2 drawing be matched pixel-for-pixel to the Schroeter plate or to the reproduction in Fortey (2000), and is there any contemporaneous Cicada source that points a solver to that book, plate, or caption? Until that link is established, the figure should be treated as a likely art-source attribution, not a cryptographic instruction.
