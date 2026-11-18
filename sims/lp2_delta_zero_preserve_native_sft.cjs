@@ -110,7 +110,7 @@ function exactPlant(words) {
     const delta = (plaintext[i] - plaintext[i - 1] + 29) % 29;
     cipher.push((cipher[i - 1] + a * delta) % 29);
   }
-  const decoded = [plaintext[0]];
+  const decoded = [(cipher[0] - 17 + 29) % 29];
   for (let i = 1; i < cipher.length; i++) {
     const a = 1 + (13 * i + 7 * Math.floor(i / 29)) % 28;
     const delta = (cipher[i] - cipher[i - 1] + 29) % 29;
