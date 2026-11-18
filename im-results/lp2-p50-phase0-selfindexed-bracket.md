@@ -44,6 +44,23 @@ It does not use the provisional 58-page addressing map, the p50 numeral radix, p
 
 The chronology and post-selection caveat still matter. The phase-zero clock and bracket were both discovered during broad exploratory research, and this self-indexing relation was noticed retrospectively. Treat it as an independent structural consistency check, not as a calibrated authorship probability.
 
+## Independent convergence with the physical page-end pointers
+
+A previously established source-local feature gives this phase match a second, independently visible consequence. The final numeric tokens on physical p49, p50 and p51 are `1M, 1L, 1K`. Under conventional base60 they decode to **82, 81, 80**, exactly the first three cell addresses of the middle numeric page in reverse order. Under drop-`f` base59 they decode to **81, 80, 79** instead.
+
+The global rune calculation above fixes the insertion phase at **82 without decoding any table numeral**. Therefore:
+
+- base60: the first physical page-end pointer value is **82**, exactly the independently derived insertion phase, and the full page-end triple addresses middle-page cells82,81,80;
+- base59: the first value is81, so the insertion-phase match disappears, and the three values address81,80,79 instead.
+
+This supplies a source-internal radix discriminator for the **page-end-pointer / self-indexed-bracket route**. It does not establish that one radix must govern every other p50 mechanism. In particular, other current routes may prefer base59 for independent reasons and should be audited on their own evidence.
+
+The convergence is especially concrete because middle-page cell82 is `3L`, the unique bracket start selected above. The resulting route is:
+
+`global rune insertion phase82` + `base60 page-end value82` -> `cell82 = 3L` -> unique 43-token bracket.
+
+The earlier page-end-pointer report already calibrated the `82,81,80` triple under table-value permutations and warned that its pointer interpretation was postnoticed. This new phase match was also noticed retrospectively. The combination is therefore a stronger causal solve-path hypothesis, not a discovery-wide probability statement.
+
 ## Additional boundary contacts
 
 Two other physical page boundaries land on notable bracket cells under the same clock:
