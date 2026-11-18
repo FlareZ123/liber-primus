@@ -95,6 +95,43 @@ console.log(JSON.stringify({
 }, null, 2));
 
 assert.deepEqual(headerCounts, { SHA1: 16 });
+assert.equal(authoredSemanticHits.length, 0, "unexpected authored hash-semantic term in authenticated message body");
 assert.equal(targetHits.length, 0, "p56 target unexpectedly appears in a pre-2017 signed message body");
 
-console.log("PASS: authenticated 2012-2016 source bodies were censused separately from OpenPGP Hash: metadata.");
+const htmlFiles = [
+  "cicada2014-onion7-index.html",
+  "external/2014-stage03-index.html",
+  "external/2014-stage04-index.html",
+  "external/2014-stage10-post-square-response.html",
+  "external/cicada2014-stage11-index-archived.html",
+  "external/cicada2014-stage11-onion7-original-index.html",
+  "historical/cicada2014-onion2-20140107-170byte.html",
+  "historical/cicada2014-onion2-20140107-201byte.html",
+  "historical/cicada2014-onion7-index.html",
+  "historical/stage11-2014-index.html"
+];
+
+/** @type {Array<{file:string, semanticTerms:string[], targetPrefixPresent:boolean}>} */
+const htmlRows = [];
+for (const relative of htmlFiles) {
+  const source = fs.readFileSync(path.join(root, "resources", relative), "utf8");
+  htmlRows.push({
+    file: relative,
+    semanticTerms: [...source.matchAll(semanticPattern)].map((match) => match[0]),
+    targetPrefixPresent: source.toLowerCase().includes(targetHex.slice(0, 26))
+  });
+}
+
+const htmlSemanticHits = htmlRows.filter((row) => row.semanticTerms.length > 0);
+const htmlTargetHits = htmlRows.filter((row) => row.targetPrefixPresent);
+assert.equal(htmlSemanticHits.length, 0, "unexpected hash-semantic term in preserved 2014 HTML source");
+assert.equal(htmlTargetHits.length, 0, "p56 target unexpectedly appears in preserved 2014 HTML source");
+
+console.log(JSON.stringify({
+  preserved2014HtmlCopies: htmlRows.length,
+  preserved2014HtmlSemanticHits: htmlSemanticHits,
+  preserved2014HtmlTargetHits: htmlTargetHits,
+  htmlRows
+}, null, 2));
+
+console.log("PASS: authenticated 2012-2016 message bodies and preserved 2014 HTML were censused separately from OpenPGP Hash: metadata.");
