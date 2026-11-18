@@ -330,6 +330,22 @@ function exactSlope4Multiplicity() {
     }
     return n;
   });
+  // Across all original pages, every local position residue mod29 contains
+  // every nonzero predecessor difference. Hence any fixed COMMON page-start
+  // phase and any secret permutation admits a source-matched skip branch.
+  const phaseDifferenceCoverage = Array.from(
+    { length: M }, () => new Uint16Array(M)
+  );
+  for (const page of original) {
+    for (let i = 1; i < page.length; i++) {
+      const d = (page[i] - page[i - 1] + M) % M;
+      phaseDifferenceCoverage[i % M][d]++;
+    }
+  }
+  const minNonzeroPhaseCell = Math.min(...phaseDifferenceCoverage.flatMap(
+    (row) => [...row].slice(1)
+  ));
+  assert.ok(minNonzeroPhaseCell > 0);
   const histogram = Array(M).fill(0);
   for (const page of original) {
     for (let i = 1; i < page.length; i++) {
@@ -352,7 +368,12 @@ function exactSlope4Multiplicity() {
     all28ArithmeticSlopes: {
       minimumBookPlaintextExponent: 401,
       maximumBookPlaintextExponent: 510,
-      originalDeltaHistogram: histogram
+      originalDeltaHistogram: histogram,
+      fixedKnownPagePhaseAllKeyCoverage: {
+        phaseClasses: M,
+        nonzeroDeltaClassesPerPhase: 28,
+        minimumObservedCellCount: minNonzeroPhaseCell
+      }
     }
   };
 }
