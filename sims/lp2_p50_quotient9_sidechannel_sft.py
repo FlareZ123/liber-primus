@@ -158,6 +158,62 @@ def direct_quotient_key_gate(values: list[int]) -> None:
     assert maximum < 0.04
 
 
+
+def gf29_quotient_highregister_gate(values: list[int]) -> None:
+    """Decrypt the field-29 H*G codeword using its co-located base-9 upper register."""
+    divisor = [12, 17, 11, 21, 23]
+    inverse = pow(divisor[0], -1, 29)
+
+    def divide(residues: list[int]) -> list[int]:
+        work = residues[:]
+        quotient = []
+        for i in range(252):
+            digit = work[i] * inverse % 29
+            quotient.append(digit)
+            for j, coef in enumerate(divisor):
+                work[i + j] = (work[i + j] - digit * coef) % 29
+        assert work == [0] * 256
+        return quotient
+
+    field_quotient = divide([b % 29 for b in values])
+    upper = [b // 29 for b in values]
+    assert field_quotient[:16] == [0, 12, 9, 28, 2, 25, 23, 21,
+                                   18, 28, 21, 17, 17, 8, 15, 21]
+
+    def collision(data: list[int]) -> float:
+        n = len(data)
+        counts = [data.count(i) for i in range(29)]
+        return sum(k * (k - 1) for k in counts) / (n * (n - 1))
+
+    print(f"COUPLED Q252 original_ioc={collision(field_quotient):.14f}")
+    maximum = 0.0
+    for shift in (0, 4):
+        for sign in (-1, 1):
+            decoded = [(field_quotient[i] + sign * upper[i + shift]) % 29 for i in range(252)]
+            score = collision(decoded)
+            maximum = max(maximum, score)
+            print(f"COUPLED original upper_shift={shift} sign={sign:+d} ioc={score:.14f}"
+                  f" gp_prefix={decoded[:12]}")
+    assert maximum < 0.04
+
+    corpus = json.loads((SOURCE.parent / "lp2-corpus.json").read_text(encoding="utf-8"))
+    p57 = next(page["indices"] for page in corpus["pages"] if page["page"] == 57)
+    plaintext = [p57[i % len(p57)] for i in range(252)]
+    planted_upper = [i % 8 for i in range(256)]
+    planted_q = [(plaintext[i] + planted_upper[i]) % 29 for i in range(252)]
+    planted_r = [
+        sum(divisor[j] * planted_q[i - j] for j in range(5)
+            if 0 <= i - j < len(planted_q)) % 29
+        for i in range(256)
+    ]
+    planted_b = [29 * planted_upper[i] + planted_r[i] for i in range(256)]
+    assert all(0 <= b < 256 for b in planted_b)
+    recovered_q = divide([b % 29 for b in planted_b])
+    recovered_plaintext = [(recovered_q[i] - planted_b[i] // 29) % 29 for i in range(252)]
+    assert recovered_plaintext == plaintext
+    print("COUPLED POSITIVE source-native-252-rune H*G codeword + co-located quotient-pad exact=252/252")
+
+
 def main() -> None:
     values = json.loads(SOURCE.read_text(encoding="utf-8"))["bytes"]
     assert len(values) == 256 and all(type(x) is int and 0 <= x < 256 for x in values)
@@ -190,6 +246,7 @@ def main() -> None:
           f" max_ascii_mode={most_printable[1]}")
     assert signatures == 0 and meaningful == 0
     direct_quotient_key_gate(values)
+    gf29_quotient_highregister_gate(values)
 
 
 if __name__ == "__main__":
