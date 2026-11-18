@@ -296,6 +296,10 @@ This is therefore a genuine **repeat-independent source-internal discriminator**
 
 It does not yet amount to first-party textual authentication of a global numeral alphabet. The operation was discovered after extensive table study, and the manuscript does not literally say “take the 13th rune, divide the prime ordinal, use (31,6) as a coordinate, reinterpret 39 in two radices.” The correct update is that #1615's “no repeat-independent discriminator exists” statement is now superseded. Base59 is materially source-favored by a finite closure, while global map authentication remains provisional until the same rule predicts untouched source behavior or a first-party clue names the operation.
 
+### Historical provenance correction
+
+The exact toy group recovered here is not unique to Cicada material. A surviving cryptography course deck self-dated **17 April 2012** already gives the full values `p=23, g=5, a=6, b=15, A=8, B=19, shared=2` (https://aulavirtualsi.cibertec.edu.pe/aula_virtual/DocumentosC/21247520120516163518.pdf). Cicada's signed January 2013 server specification later printed the same public exchange. This strengthens the interpretation as recognizable Diffie-Hellman semantics while removing the tuple's existence as independent evidence for a Cicada-specific cross-year handoff. The table/red13 closure must stand on its manuscript-side selectivity and any fresh receiver, not on presumed originality of the DH23 example.
+
 ## Shared-secret circumference closure and next decipherment decision
 
 The clear p57 instruction to shed circumferences gives the signed shared value2

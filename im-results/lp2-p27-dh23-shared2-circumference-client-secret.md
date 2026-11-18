@@ -151,6 +151,11 @@ for the focused navigation-loop reproduction.
 
 ## Controls and evidentiary boundary
 
+### Pedagogical-provenance control
+
+The exact seven-value DH toy example predates the Cicada message. A surviving Cibertec course deck self-dated **17 April 2012** prints `23,5,6,15,8,19,2` as a worked Diffie-Hellman exchange (https://aulavirtualsi.cibertec.edu.pe/aula_virtual/DocumentosC/21247520120516163518.pdf). The geometry here therefore predicts the private exponent15 of a generic, already-circulating toy example. Cicada later made the same public exchange player-visible, so it remains a valid historical control. The tuple match itself supplies no independent evidence that LP2 intentionally refers back to the 2013 TCP-server challenge.
+
+
 The new client-exponent result has no ring-start or clockwise choice: shortest
 path distance on a cycle is invariant under rotation and reflection. The
 alternative arc is45 and fails the public-share check
