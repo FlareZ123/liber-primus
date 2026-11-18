@@ -28,6 +28,19 @@ assert.equal(p53Words.length, 40);
 assert.equal(p55WordFragments.length, 17);
 assert.equal(p55WordFragments[0], 'ᛝ');
 assert.equal(p53Words.length + p55WordFragments.length - 1, 56);
+const runesIn = group => group.reduce((n,w)=>n+[...w].length,0);
+const blackWords = p53Words.slice(0,28);
+const redWords = p53Words.slice(28);
+const completeP55Words = p55WordFragments.slice(1);
+assert.equal(blackWords.length,28);
+assert.equal(redWords.length+completeP55Words.length,28);
+assert.equal(redWords.length,12);
+assert.equal(completeP55Words.length,16);
+assert.equal(runesIn(blackWords),128);
+assert.equal(runesIn(redWords),51);
+assert.equal(runesIn(completeP55Words),75);
+assert.equal(runesIn(redWords)+runesIn(completeP55Words)+2,128);
+
 
 const alphabet = grid.alphabet;
 const tokens = grid.pages.flatMap(page => page.tokens);
@@ -40,6 +53,8 @@ const page = n => corpus.pages.find(p => p.page === n);
 const p53 = page(53).indices;
 const p55 = page(55).indices;
 assert.equal(p53.length, 179);
+assert.deepEqual(ink.pages.find(p=>p.page===53).red_spans.map(s=>[s.start,s.length]),[[128,51]]);
+
 assert.equal(p55.length, 76);
 assert.equal(p55[0], 21); // NG: carried final glyph of a word from p54
 const p55Body = p55.slice(1);
@@ -132,6 +147,33 @@ assert.deepEqual(byteLookup, {
   outer:{distinctBytes:68,repeats:8,conflicts:8},
   joint:{distinctBytes:161,repeats:95,conflicts:90}
 });
+// Picture+ink-split two 128-event potential ciphertext shares.
+// No original instruction selects a numeric value for 13-dot marks.
+const paired128 = {
+  first:p53.slice(0,128),
+  rest:[...p53.slice(128),13,...p55Body,13]
+};
+assert.equal(paired128.first.length,128);
+assert.equal(paired128.rest.length,128);
+const folds128 = [];
+for (const markerValue of [0,13]) {
+  const event = [...paired128.rest];
+  event[51]=markerValue;
+  event[127]=markerValue;
+  for (const reverse of [false,true]) {
+    const right = reverse?[...event].reverse():event;
+    for (const sign of [-1,1]) {
+      const decoded = paired128.first.map((v,i) =>
+        mod(v+sign*right[i]));
+      const reconstructed = decoded.map((v,i) =>
+        mod(v-sign*right[i]));
+      assert.deepEqual(reconstructed,paired128.first);
+      folds128.push({markerValue,reverse,sign,
+        decoded_ioc:ioc(decoded),first80_gp:gp(decoded.slice(0,80))});
+    }
+  }
+}
+assert.ok(folds128.every(f => f.decoded_ioc<0.04));
 const outcomes = [];
 for (const t of treatments) {
   assert.equal(t.order.length, t.runes.length + 1);
@@ -158,6 +200,10 @@ console.log(JSON.stringify({
   unique_255_rune_page_pair:exactPairs,
   structured_event_counts:{p53:180,p55_body:76,combined:256},
   donor_words:{p53:40,p55_complete:16,total:56,coverage:'physical p0..p55'},
+  natural_color_cut:{black_28_words_128_runes:128,
+    other_28_words_126_runes_plus_2_marks:128,
+    black_red_boundary:128,red_word_count:12,red_rune_count:51},
+  paired_128_event_direct_folds:folds128,
   table:{shape:[32,8],perimeter:outer.length,interior:inner.length,
     zero_positions:zeros.map(i=>({index:i,row:Math.floor(i/8),col:i%8,
       zone:outer.includes(i)?'outer':'inner'}))},
