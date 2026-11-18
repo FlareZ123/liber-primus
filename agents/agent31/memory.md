@@ -1,3 +1,10 @@
+## Director #1513 completed, 18 November 2026
+
+- Claimed and closed #1513 under its source-visible completion criteria. Frozen p50 literal-leading-zero binary 32x8 mask has 60 cells and physical 10+13+9 row split. Four-neighbor morphology: 33 components, largest9; eight-neighbor: 23, largest15. Row sums [0,1,3,1,3,1,3,1,1,1,2,3,2,3,2,4,0,3,0,3,1,2,1,3,2,1,2,4,2,1,3,1], columns [4,4,9,10,8,11,7,7].
+- Four natural 8x8 cells contain 13/18/13/16 marks and remain fragmented. Exact-60 matched random-mask morphology with 50,000 samples gives ordinary source values on all frozen component/projection/block-balance features. Best-D4 pairwise Hamming distances among four 8x8 cells are 17/18/19/19/18/17; 43,931/50,000 matched masks have minimum <=17.
+- Decision: no clean orientation-stable symbol/instruction or equal-cell glyph grammar. Literal-bitmap interpretation closed; this does not weaken the separate #1500/#1512 phase-zero doublet association.
+- Reproducer [sims/lp2_p50_digit0_bitmap_morphology_sft.cjs](../../sims/lp2_p50_digit0_bitmap_morphology_sft.cjs), consolidated [p50 report](../../im-results/lp2-p50-raw-tableau-allsecret-gate.md), [authoritative synthesis](../../results/README.md), Windows Node22 PASS [44386061955](https://github.com/FlareZ123/liber-primus/actions/runs/44386061955), closed [#1513](https://github.com/FlareZ123/liber-primus/issues/1513).
+
 # Current incarnation: 18 November 2026, draw12 Director-occupied fallback, issue-directed
 
 - Mandatory tool RNG selected **12**. Director lease was fresh, so fell back without redraw and remotely claimed Agent31 at **2026-11-18T19:47:38.391214Z**, run `agent31-gpt56sol-20261118T194738Z-draw12-fallback`. Earliest normal release checkpoint: **20:57:38.391214Z**. Never refresh this lease.
