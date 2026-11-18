@@ -6,6 +6,7 @@ This is an *art-source* test, not an inferred cryptographic operation.
 """
 from __future__ import annotations
 
+from base64 import b64encode
 from io import BytesIO
 from urllib.request import Request, urlopen
 
@@ -50,6 +51,7 @@ def main() -> None:
         binary = response.read(6_000_001)
     if len(binary) > 6_000_000:
         raise ValueError("Image exceeds six-megabyte source limit")
+    print("SOURCE_IMAGE_BASE64 " + b64encode(binary).decode("ascii"))
     source = Image.open(BytesIO(binary)).convert("L")
     page = Image.open(LP2_IMAGE).convert("L")
     # The original p2 insect occupies approximately x=870..1610, y=2630..2930.
