@@ -137,6 +137,30 @@ assert.deepEqual(masks.find(x=>x.sign===1&&x.phase===0).words, ['complacently'])
 assert.deepEqual(masks.find(x=>x.sign===-1&&x.phase===0).words,
   ['intelligence','intelligible']);
 assert.equal(masks.filter(x=>x.words.length===0).length,12);
+
+/**
+ * Entire finite source-red13 additive GF29 differential consumer with
+ * a single nonzero secret slope per word:
+ * P_j - P_0 = slope*(C_j-C_(j-1)) + sign*RED[(j+phase)%13].
+ * The 12-rune original p27 unknown-word fingerprint must be exactly a
+ * pinned native GP dictionary word modulo the unknown first rune.
+ * @returns {number}
+ */
+function countOriginalAffineWordFits() {
+  const fingerprints = new Set(dictionary.map(({indices:w}) =>
+    w.slice(1).map(v=>mod(v-w[0])).join(',')));
+  let hits=0;
+  for(const sign of [1,-1])for(let phase=0;phase<13;phase++)
+    for(let slope=1;slope<Q;slope++){
+      const differences=witness.slice(1).map((v,i)=>mod(v-witness[i]));
+      const fingerprint=differences.map((delta,i)=>
+        mod(slope*delta+offset(i+1,sign,phase))).join(',');
+      hits+=Number(fingerprints.has(fingerprint));
+    }
+  return hits;
+}
+assert.equal(countOriginalAffineWordFits(),0); // 26 clocks x 28 invertible slopes
+
 assert.deepEqual(encrypt(decrypt(witness,1,0),1,0),witness);
 const solved=gp.pages.find(p=>p.page===57).indices;
 assert.deepEqual(decrypt(encrypt(solved,-1,7),-1,7),solved);
