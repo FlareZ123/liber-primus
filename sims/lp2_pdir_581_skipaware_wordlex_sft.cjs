@@ -34,6 +34,7 @@ const original=gp.pages.filter(p=>p.page<=55).flatMap(p=>p.indices);
 assert.deepEqual(words.flat(),original);
 const sourceKeyFile=process.argv[2];
 const shard=Number(process.argv[3]||0), shards=Number(process.argv[4]||1);
+const expectedKeyCount=Number(process.argv[5]||581);
 assert(sourceKeyFile && Number.isInteger(shard) && Number.isInteger(shards) &&
   shards>0 && shard>=0 && shard<shards);
 
@@ -41,7 +42,7 @@ assert(sourceKeyFile && Number.isInteger(shard) && Number.isInteger(shards) &&
 function parseLibrary(data){
   assert.equal(data.toString('ascii',0,4),'KSB1');
   let n=data.readUInt32LE(4),pos=8;
-  assert.equal(n,581);
+  assert.equal(n,expectedKeyCount);
   const streams=[];
   for(let i=0;i<n;i++){
     const labelSize=data.readUInt16LE(pos);pos+=2;
@@ -54,6 +55,7 @@ function parseLibrary(data){
   assert.equal(pos,data.length);
   return streams;
 }
+assert([581,1439].includes(expectedKeyCount));
 const keys=parseLibrary(fs.readFileSync(sourceKeyFile));
 const tok=gp.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
 /** @param {string} raw @returns {number[]} */
@@ -234,7 +236,7 @@ for(const {w,index} of portion){
 console.log(JSON.stringify({
   gate:'PASS',original_runes:original.length,original_words:words.length,
   source_library:keys.length,source_keystream_values:keys.reduce((a,x)=>a+x.key.length,0),
-  family:'All historical key sources, all independent per-word phases, signs, pointer directions, both exact 0-2 rejection models; arbitrary first-rune collision comparator',
+  family:'All registered source keys in the supplied library, all independent per-word phases, signs, pointer directions, both exact 0-2 rejection models; arbitrary first-rune collision comparator',
   subset_shard:shard,shards,original_long_words_in_shard:portion.length,
   native_dictionary_by_rune_length:Object.fromEntries([...lexByLength].map(([n,m])=>[n,m.size])),
   planted_native_hidden_rejections:plant.hidden,planted_source_key:'primes',
