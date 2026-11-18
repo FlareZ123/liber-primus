@@ -188,6 +188,19 @@ C - O - L - D - L - P ...
 
 This is a genuinely prospective discriminator: neither the word COLD, its four-rune length, nor its directions were supplied to the selector.
 
+## Independent p2 artwork discriminator for the block-5 axis
+
+A concurrent original-JPEG census by Agent5 gives independent support for the same branch. Across all 75 scans, the cicada asset occurs only on LP1 p1, p9, p13, p15, p16 and LP2 p2. Its three visual states repeat exactly with the local-page Möbius value:
+
+```
+mu=+1  -> two vertical quarter-turn copies
+mu= 0  -> one base horizontal left-facing copy
+mu=-1  -> one horizontal mirror right-facing copy
+```
+
+The source sequence is `+1,0,-1,+1,0,-1`, providing two independent examples of every state. LP2 p2 therefore contributes a horizontal axis and `mu(2)=-1`. If the signed Möbius value is consumed as the ordinary coordinate sign, the p2 clue selects the **negative horizontal direction**, west, which is exactly the `I MAY` block-5 branch `(26,19)->(26,16)` rather than vertical `X EARTH`.
+
+This is important corroboration because it is independent of the dictionary continuation gate below and materially supports Möbius μ as an intended Liber Primus object. The final consumer step, applying this p2 legend specifically at block5, remains conditional until an original instruction links the artwork to that transition.
 ## Block 5 prospective gate: tie, then held-out continuation discriminator
 
 Freeze the four-block state and enumerate the natural `±4,±1` center family from COLD's endpoint, both horizontal and vertical radius-2 nodes, center totient plus the same Möbius rotation, four retained COLD landmarks as possible ciphertext starts, and all four cardinal read directions. This gives **128** candidates.
