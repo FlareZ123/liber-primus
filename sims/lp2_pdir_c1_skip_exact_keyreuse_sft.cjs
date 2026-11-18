@@ -343,3 +343,202 @@ console.log(JSON.stringify({
   result: results,
   scope: 'Exact for skip retries in conventions 021 and 101; coin retries and other direction rules remain outside this gate'
 }, null, 2));
+
+
+/**
+ * Score the exact c=1 coin-model subset. A coin collision on the preceding
+ * forward rune can break emitted-key reuse only when that rune's initial
+ * ciphertext equals its comparator. If the final visible ciphertext differs
+ * from the preceding emitted ciphertext, then either no collision occurred or
+ * a replacement emitted from a later key index; in both cases the post-rune
+ * pointer is exactly one step after the key that actually emitted the rune.
+ *
+ * @param {number[][]} ciphertextWords
+ * @param {number[]} weights
+ */
+function coinSafeTurnScore(ciphertextWords, weights) {
+  const histogram = Array(29).fill(0);
+  let previousDirection = 1;
+
+  for (let index = 1; index < ciphertextWords.length; index++) {
+    const direction = gpSum(ciphertextWords[index - 1]) % 2 === 0 ? 1 : -1;
+    if (previousDirection === 1 && direction === -1) {
+      const previousWord = ciphertextWords[index - 1];
+      const previousFinal = previousWord[previousWord.length - 1];
+      const priorEmitted = previousWord.length >= 2
+        ? previousWord[previousWord.length - 2]
+        : ciphertextWords[index - 2][ciphertextWords[index - 2].length - 1];
+
+      if (previousFinal !== priorEmitted) {
+        const residue = (
+          ciphertextWords[index][0] - previousFinal + 29
+        ) % 29;
+        histogram[residue]++;
+      }
+    }
+    previousDirection = direction;
+  }
+
+  const count = histogram.reduce((sum, value) => sum + value, 0);
+  const score = histogram.reduce(
+    (sum, occurrences, residue) => sum + occurrences * weights[residue],
+    0
+  );
+  return { count, score, histogram };
+}
+
+/**
+ * External c=1 coin-retry planter. A repeated initial ciphertext consumes one
+ * extra key value as the coin. With probability 0.81 it then emits a
+ * replacement using the following key value.
+ *
+ * @param {number[][]} nativeWords
+ * @param {number} seed
+ * @param {number} h
+ * @param {number} m
+ */
+function plantCoin(nativeWords, seed, h, m) {
+  const rng = random(seed);
+  const key = Uint8Array.from(
+    { length: 50000 },
+    () => Math.floor(rng() * 29)
+  );
+
+  let pointer = 20000;
+  let previousCipher = null;
+  let previousDirection = null;
+  let previousLastKey = null;
+  const cipherWords = [];
+  let exactSelectedTurns = 0;
+  let exactSelectedReuses = 0;
+
+  for (let wordIndex = 0; wordIndex < nativeWords.length; wordIndex++) {
+    const direction = wordIndex === 0
+      ? 1
+      : (gpSum(cipherWords[wordIndex - 1]) % 2 === 0 ? 1 : -1);
+
+    let priorFinal = null;
+    let priorComparator = null;
+    if (wordIndex > 0) {
+      const priorWord = cipherWords[wordIndex - 1];
+      priorFinal = priorWord[priorWord.length - 1];
+      priorComparator = priorWord.length >= 2
+        ? priorWord[priorWord.length - 2]
+        : cipherWords[wordIndex - 2][cipherWords[wordIndex - 2].length - 1];
+    }
+
+    if (previousDirection !== null) {
+      pointer += m === 2 ? direction : (m === 1 ? previousDirection : 0);
+    }
+    if (direction < 0 && h === 1) {
+      pointer--;
+    }
+
+    /** @type {number[]} */
+    const cipherWord = [];
+    /** @type {number[]} */
+    const emittedKeyIndices = [];
+
+    for (let runeIndex = 0; runeIndex < nativeWords[wordIndex].length; runeIndex++) {
+      const plain = nativeWords[wordIndex][runeIndex];
+      const comparator = direction > 0
+        ? previousCipher
+        : (runeIndex === 0 ? null : previousCipher);
+
+      let keyIndex = pointer;
+      assert.ok(keyIndex >= 0 && keyIndex < key.length);
+      let cipher = (plain + key[keyIndex]) % 29;
+      pointer += direction;
+
+      if (comparator !== null && cipher === comparator) {
+        pointer += direction; // spend the coin key value
+        if (rng() < 0.81) {
+          keyIndex = pointer;
+          assert.ok(keyIndex >= 0 && keyIndex < key.length);
+          cipher = (plain + key[keyIndex]) % 29;
+          pointer += direction;
+        }
+      }
+
+      assert.equal(cipher, (plain + key[keyIndex]) % 29);
+      cipherWord.push(cipher);
+      emittedKeyIndices.push(keyIndex);
+      previousCipher = cipher;
+    }
+
+    if (
+      previousDirection === 1 &&
+      direction === -1 &&
+      priorFinal !== priorComparator
+    ) {
+      exactSelectedTurns++;
+      assert.equal(
+        emittedKeyIndices[0],
+        previousLastKey,
+        'coin-safe c=1 turn must reuse the exact emitted key index'
+      );
+      exactSelectedReuses++;
+    }
+
+    cipherWords.push(cipherWord);
+    previousDirection = direction;
+    previousLastKey = emittedKeyIndices[emittedKeyIndices.length - 1];
+  }
+
+  return {
+    cipherWords,
+    exactSelectedTurns,
+    exactSelectedReuses
+  };
+}
+
+const coinOriginal = coinSafeTurnScore(source, weights);
+const coinResults = [];
+for (const convention of [
+  { name: '021', h: 0, m: 2 },
+  { name: '101', h: 1, m: 0 }
+]) {
+  const scores = [];
+  let reuses = 0;
+  let turns = 0;
+
+  for (let trial = 0; trial < 100; trial++) {
+    const native = matchedNativeWords(trial);
+    const planted = plantCoin(
+      native,
+      0x733101 + trial * 313 + convention.h * 110003 + convention.m * 90001,
+      convention.h,
+      convention.m
+    );
+    const scored = coinSafeTurnScore(planted.cipherWords, weights);
+    assert.equal(scored.count, planted.exactSelectedTurns);
+    assert.equal(planted.exactSelectedReuses, planted.exactSelectedTurns);
+    scores.push(scored.score);
+    reuses += planted.exactSelectedReuses;
+    turns += planted.exactSelectedTurns;
+  }
+
+  scores.sort((a, b) => a - b);
+  coinResults.push({
+    convention: convention.name,
+    comparator: 'c=1',
+    retryModel: 'coin',
+    exactVisibleCondition: 'preceding forward final ciphertext differs from its comparator',
+    original: {
+      exactKeyCancellationSites: coinOriginal.count,
+      nativeVsFlatLLR: coinOriginal.score
+    },
+    matchedNativePlants: {
+      count: scores.length,
+      minimum: scores[0],
+      median: scores[49],
+      maximum: scores[99],
+      atOrBelowOriginal: scores.filter(score => score <= coinOriginal.score).length,
+      exactEmittedKeyReuseFraction: reuses / turns
+    }
+  });
+}
+console.log(JSON.stringify({
+  hypothesis: 'A_prev_G c=1 coin-model exact visible-clean key cancellation',
+  result: coinResults
+}, null, 2));
