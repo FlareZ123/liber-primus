@@ -309,6 +309,8 @@ const instar = p57Word("INSTAR");
 const tunnelng = p57Word("TUNNELNG");
 const surface = p57Word("SURFACE");
 const we = p57Word("WE");
+const must = p57Word("MUST");
+const shed = p57Word("SHED");
 const our = p57Word("OUR");
 const own = p57Word("OWN");
 const divinity = p57Word("DIUINITY");
@@ -455,6 +457,8 @@ const headingPrimeSum = primeSum(heading);
 assert.equal(headingPrimeSum, 1109);
 assert.equal(primeOrdinal(headingPrimeSum), 186);
 assert.equal(31 * residual, 186);
+assert.equal(primeSum(must.indices), 186);
+assert.equal(phi(primeSum(shed.indices)), 112);
 
 // This is the already established local DH/base59 transducer entered from the
 // newly supplied p57/p27 selector.
@@ -465,6 +469,9 @@ assert.equal(tokenValue(tableTokens[coordinate], alphabet59), 186);
 assert.equal(tokenValue(tableTokens[coordinate], alphabet60), 189);
 assert.equal(186, 23 * 8 + 2);
 assert.equal(189, 23 * 8 + 5);
+const sharedSecret = 186 - 23 * 8;
+assert.equal(sharedSecret, 2);
+assert.deepEqual(selectedInner, carrier.indices.slice(sharedSecret, -sharedSecret));
 assert.equal(modPow(5, residual, 23), 8);
 assert.equal(tableTokens[186], "0J");
 assert.equal(tokenValue(tableTokens[186], alphabet59), 19);
@@ -531,6 +538,10 @@ process.stdout.write(JSON.stringify({
     headingPrimeOrdinal: primeOrdinal(headingPrimeSum),
     coordinate,
     coordinateToken: tableTokens[coordinate],
+    mustPrimeSum: primeSum(must.indices),
+    shedTotient: phi(primeSum(shed.indices)),
+    sharedSecret,
+    sharedSecretConfirmsSymmetricShedDepth: sharedSecret,
     base59CoordinateValue: tokenValue(tableTokens[coordinate], alphabet59),
     base60CoordinateValue: tokenValue(tableTokens[coordinate], alphabet60),
   },
