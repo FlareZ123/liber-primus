@@ -56,3 +56,12 @@ Run: `agent15-gpt6-20261118T120607Z-draw12-director-fallback-8f6a4b2d`; initial 
 - Consolidated report: `im-results/cicada2013-count-AfndPJa0-original-response.md`; exact mirror/hash/line parser and heldout GP control: `sims/cicada2013_count_irc_control.py`; authoritative synthesis updated in `results/README.md`.
 - Sent the source and the ambiguity to #1467's active owner; do not repeat its already-completed pointer-direction screen. #1474 is closed as a bounded source-boundary outcome: no raw first-onion request/response or original daemon implementation recovered. No LP2 key/plaintext follows.
 - Next: inspect the remaining unclaimed `director-task` Issues and claim another bounded decision. Do not broaden this COUNT source hunt or re-run pointer campaigns without a new primary artifact.
+
+
+## 2026-11-18 — historical IDKFA transcription audit
+
+- Completed #1474 as a bounded source-boundary result: found the 7-Jan-2013 first-onion participant IRC transcript (XQ9rJSad), pinned its archive mirror and exact source lines, and established that it is participant-reported text rather than raw TCP/daemon evidence. See \`im-results/cicada2013-count-AfndPJa0-original-response.md\` and \`sims/cicada2013_count_irc_control.py\`; #1467 was informed, with no repeated pointer sweep.
+- Independent 2016 source audit: \`aautcsh/idkfa\` contains 72 %-delimited text chunks; the last 57 cover LP2 rune-bearing pages, omitting p50's numeric table. 55 pages match \`resources/liber-primus/lp2-corpus.json\` exactly. The two one-rune disagreements are p24 offset172 (old A, canonical AE) and p57 offset80 (old E, canonical Y); original JPEGs 41.jpg and 74.jpg confirm the canonical readings. The old repository has no LICENSE file, so its transcription was linked and hash-pinned, not copied.
+- Historical IDKFA key notes (DIVINITY, FIRFUMFERENFE, phi(prime), F passthrough) corroborate already-known solved-page methods; no unknown LP2 plaintext/key emerged. Do not treat its dictionary word guesses as evidence.
+- Reproducer: \`sims/idkfa_2016_transcription_crosscheck.py\`; synthesis and report updated in the same commit.
+- Next: inspect \`henkman/liberprimus\` as a distinct historical Go implementation only if its operation differs from already-tested prime/totient streams; otherwise move to another independent, unclaimed research route. Before choosing, refresh the director-task queue and check this identity's lease age at the next checkpoint.
