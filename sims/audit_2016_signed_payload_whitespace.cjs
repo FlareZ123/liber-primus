@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 
-// Compare the original OutGuess extraction with the Jan 19, 2016 forum repost.
+// Compare the original OutGuess extraction with the Jan 19, 2016 forum repost, and
+// audit the 2017 signed warning. The parser handles both LF and CRLF cleartext headers.
 // OpenPGP cleartext canonicalization strips trailing spaces/tabs and normalizes
 // line endings; internal repeated spaces remain signed. The body here has no
 // dash-escaped lines, so that part of the RFC 4880 canonicalization is moot.
@@ -15,6 +16,7 @@ const root = path.resolve(__dirname, '..');
 const files = {
   original: path.join(root, 'resources/historical/cicada2016-4gq25-outguess.asc'),
   forum: path.join(root, 'im-results/2016-forum-witness-extract.asc'),
+  warning2017: path.join(root, 'resources/historical/cicada2017-yEiTHhvF.asc'),
 };
 
 function sha256(bytes) {
@@ -22,12 +24,12 @@ function sha256(bytes) {
 }
 
 function parseClearSigned(text, label) {
-  const separator = text.indexOf('\n\n');
+  const separator = /\r?\n\r?\n/.exec(text);
   const signatureStart = text.indexOf('-----BEGIN PGP SIGNATURE-----');
-  if (separator < 0 || signatureStart < 0 || signatureStart <= separator) {
+  if (!separator || signatureStart < 0 || signatureStart <= separator.index) {
     throw new Error(label + ': malformed clear-signed message');
   }
-  const body = text.slice(separator + 2, signatureStart);
+  const body = text.slice(separator.index + separator[0].length, signatureStart);
   if (body.split(/\r\n|\n|\r/).some(line => line.startsWith('-'))) {
     throw new Error(label + ': dash-escaped body line needs explicit handling');
   }
@@ -67,6 +69,23 @@ function lineEndingAudit(text) {
   };
 }
 
+function logicalBodyLines(body) {
+  const lines = body.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
+  if (lines[lines.length - 1] === '') lines.pop();
+  return lines;
+}
+
+function doubleSpaceRuns(body) {
+  return logicalBodyLines(body).flatMap((line, i) =>
+    [...line.matchAll(/ {2,}/g)].map(match => ({
+      line: i + 1,
+      column: match.index + 1,
+      length: match[0].length,
+      trailing: match.index + match[0].length === line.length,
+    }))
+  );
+}
+
 const raw = Object.fromEntries(
   Object.entries(files).map(([name, file]) => [name, fs.readFileSync(file)])
 );
@@ -78,6 +97,11 @@ const parsed = Object.fromEntries(
 );
 const originalCanonical = canonicalBody(parsed.original.body);
 const forumCanonical = canonicalBody(parsed.forum.body);
+const warning2017Lines = logicalBodyLines(parsed.warning2017.body);
+const warning2017BlankLines = warning2017Lines
+  .map((line, i) => line === '' ? i + 1 : null)
+  .filter(x => x !== null);
+const warning2017Runs = doubleSpaceRuns(parsed.warning2017.body);
 
 const result = {
   byteLengths: Object.fromEntries(Object.entries(raw).map(([k, v]) => [k, v.length])),
@@ -92,6 +116,17 @@ const result = {
   lineEndings: {
     original: lineEndingAudit(text.original),
     forumExtract: lineEndingAudit(text.forum),
+  },
+  warning2017: {
+    byteLength: raw.warning2017.length,
+    rawSha256: sha256(raw.warning2017),
+    normalizedBodySha256: sha256(canonicalBody(parsed.warning2017.body)),
+    bodyLines: warning2017Lines,
+    blankLineNumbers: warning2017BlankLines,
+    doubleSpaceRuns: warning2017Runs,
+    whitespace: lineAudit(parsed.warning2017.body),
+    tabs: (parsed.warning2017.body.match(/\\t/g) || []).length,
+    lineEndings: lineEndingAudit(text.warning2017),
   },
 };
 
@@ -114,6 +149,16 @@ const checks = {
     && JSON.stringify(result.whitespace.forum.internalDoubleSpaceLines) === '[5,16]',
   trailingSpaceOnlyInOriginal: JSON.stringify(result.whitespace.original.trailingWhitespaceLines) === '[5]'
     && result.whitespace.forum.trailingWhitespaceLines.length === 0,
+  warning2017Bytes: result.warning2017.byteLength === 970,
+  warning2017CRLFOnly: result.warning2017.lineEndings.crlf === 23
+    && result.warning2017.lineEndings.lf === 0 && result.warning2017.lineEndings.cr === 0,
+  warning2017DoubleSpaceRuns: JSON.stringify(result.warning2017.doubleSpaceRuns) === JSON.stringify([
+    { line: 1, column: 20, length: 2, trailing: false },
+    { line: 1, column: 64, length: 2, trailing: true },
+  ]),
+  warning2017BlankLines: JSON.stringify(result.warning2017.blankLineNumbers) === '[2,4]',
+  warning2017Footer: result.warning2017.bodyLines[2] === '3301',
+  warning2017NoTabs: result.warning2017.tabs === 0,
 };
 result.checks = checks;
 result.pass = Object.values(checks).every(Boolean);
