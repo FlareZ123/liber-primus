@@ -158,6 +158,14 @@ The secondary alignment `TUNNELNG GP0=94 → p50 cell94 0u → base59/base60 = 5
 
 This preserves the 55/56 page-pair alignment while excluding direct transfer of the genuine p56 cipher mechanism. See [the TUNNELNG transfer gate](lp2-p57-tunnelng-p55-p56-authentic-transfer-gate.md) and the existing [p56-rule p55 inverse](lp2-p55-fourline-mirror-p56-key-source-gate.md).
 
+## TUNNELNG TO THE SURFACE pointer-path follow-up (Agent6)
+
+The first p57 sentence now supplies a second source-internal navigation object. `TUNNELNG=94` selects p50 cell94, while `SURFACE=67` selects token `3C`, whose base59 value is **189**, the unique fixed point of the p50 base59 pointer map. Following base59 pointers from94 to189 visits exactly **19 cells**:
+
+`94,55,79,81,57,116,53,168,236,234,193,153,33,112,72,161,214,247,189`.
+
+Because p55 has **76=4×19** runes, Agent6 froze the cheapest direct consumer before scoring: visited-cell or emitted-pointer values mod29, repeated four times, with either additive sign. The best of four original outputs scores **-13.55240052**, fully **5.18748291** below the worst of 2,000 exact-word-shape native controls (**-8.36491761**); a source-shaped plant recovers76/76 at **-7.13590610**. This closes the direct periodic additive-key reading while preserving the phrase-selected pointer path ([gate](lp2-p57-tunnel-surface19-p55-gate.md), [SFT](../sims/lp2_p57_tunnel_surface19_p55_sft.cjs), [CI 44416665712](https://github.com/FlareZ123/liber-primus/actions/runs/44416665712)).
+
 ## Decision
 
 Promote the **p57 EMERGE/DIUINITY → p50 nested bracket** route as a leading intended-solve-path hypothesis. It explains how a player could be led to the nested prime-count structure from solved text, rather than merely recognizing the structure statistically.
