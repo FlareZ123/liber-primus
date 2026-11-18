@@ -1,6 +1,6 @@
 # p50 zero→F moving-exception sparse transposition
 
-**Agent18, 18 November 2026. Classification: source-motivated reversible model that passes the predeclared ciphertext-structure gate and fails the blind original-language inverse. No unknown plaintext, key or historical cipher was recovered.**
+**Agent18, 18 November 2026. Classification: source-motivated reversible p0–55 surface normalizer that passes a predeclared structural gate, fails the blind original-language inverse, and fails the solved-p56 held-out test as a universal/book-wide outer layer. No unknown plaintext, key or historical cipher was recovered.**
 
 ## Source path and frozen rule
 
@@ -58,10 +58,22 @@ The opening twelve decoded words are:
 
 They do not form prose, and the complete stream's IoC confirms this is not a local opening anomaly. Exact forward encryption reconstructs **12,956/12,956** original runes.
 
+## Solved-p56 held-out test
+
+After #1422 closed, the fixed transform received a stronger untrained check on solved page56. The model was left unchanged: global continuous predecessor-cell p50 clock, literal-leading-zero→F, nonzero low-three-bit special selector, and the same sparse swap.
+
+The authenticated source p56 ciphertext begins at global rune **12,956**, phase **156** of the 256-cell clock. Applying the fixed outer inverse across p0–56 changes exactly **4/85** p56 ciphertext runes, at local positions **16, 18, 25 and 74**.
+
+The repository's complete solved-p56 regression family was then run on that altered 85-rune stream: prime or totient key, both arithmetic signs, starts 0–28, and every legal displayed-F literal/nonconsuming branch. On the untouched source p56 there is exactly one 85/85 historical path, `phi`, sign−, start0, the established literal-F choice. After the zero→F surface inverse there are **zero 85/85 paths**. The best candidate is still the authenticated `phi`, sign−, start0 rule, but it recovers only **81/85** runes; its four mismatches are exactly the four positions changed by the surface inverse.
+
+A layered positive wraps the complete valid p0–56 source stream in the fixed surface encoder, removes that wrapper, and restores the unique authenticated p56 path. Thus the rejection is caused by the original p56 evidence rather than an implementation mismatch.
+
+This **rejects the universal/book-wide outer-layer interpretation** of the zero→F transform. Its p0–55 repeat normalization remains a reproducible statistical/state-model observation, and an unknown-section-local use is logically possible, but the solved adjacent page does not support a common outer layer. [Held-out SFT](../sims/lp2_p50_zeroF_solved_p56_holdout_sft.cjs).
+
 ## Decision
 
 This model is the strongest member of this local p50 moving-exception sequence because it passes the prospectively frozen ciphertext-structure criterion in three independent source-native registers. The blind inverse still fails decisively as plaintext.
 
-Retire the exact **zero→F / nonzero-low3 moving-exception sparse transposition** as a complete decoder. Preserve its structural behavior as a constraint on future mechanisms: a historically viable model may need a similarly sparse changing state to explain the three ciphertext anomalies, while also supplying a distinct value-changing operation or key that actually restores nonuniform native language. Do not tune this transposition's phase, marker set, orientation or exception rates after the blind failure.
+Retire the exact **zero→F / nonzero-low3 moving-exception sparse transposition** as a complete decoder and as a universal LP2 outer layer. Preserve its p0–55 structural behavior as a bounded statistical constraint: a historically viable unknown-section mechanism may need a similarly sparse changing state to explain the three ciphertext anomalies, while the solved-p56 holdout requires any such mechanism to be section-local or otherwise different at the solved boundary. Do not tune this transposition's phase, marker set, orientation or exception rates after the blind and held-out failures.
 
 The complete source-exact CommonJS reproducer is [`sims/lp2_p50_zeroF_moving_exception_sft.cjs`](../sims/lp2_p50_zeroF_moving_exception_sft.cjs). It freezes the matched-control sums, asserts the full joint gate, applies the original inverse only after that gate passes, checks exact forward reconstruction, and verifies the native-GP dictionary and IoC rejection. [Windows Node22 run 44384599720](https://github.com/FlareZ123/liber-primus/actions/runs/44384599720) passed the updated committed reproducer, including the intermediate-state assertions. The run was dispatched while another agent's concurrent commit was the branch head; its job log prints this script's full zero→F control and inverse output.
