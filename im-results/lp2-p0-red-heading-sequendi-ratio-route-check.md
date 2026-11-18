@@ -225,6 +225,23 @@ P1 + P2 = 156 = 13 * phi(13)
 
 The exact closure is therefore a genuine internal cross-check of the declared recurrence family. The recurrence itself was discovered after the candidate heading existed, so it still requires prospective validation before it can authenticate plaintext.
 
+## Plausible intended solve path
+
+The mechanism now has a human-visible causal sequence rather than a collection of fitted cipher layers.
+
+1. The p0 red title is visibly **8+5 runes** followed by **13 dots**. The red13 delimiter system uniquely makes the p0-p2 span **729=27²**, inviting a square.
+2. The manuscript explicitly treats the totient as sacred. The visible 13 gives `phi(13)=12`, so the ordered source coordinate **(13,12)** selects J. The visible five-rune second word supplies stride5; testing the four finite sign directions gives one `J -> R -> TH` phi-chain and exact raw `R-A-T-I-O`.
+3. The same original p0 page visibly demonstrates **180° reversal**: its two large black illustrations are near-pixel-identical rotated counterparts centered on the physical page. This supplies an independent reason to reverse the first red word and to inspect opposite-pair geometry.
+4. The physical 13-dot mark is **4-5-4**. Its natural counts `3,4,5,8,13` match the two key lengths, two word lengths and full-title length.
+5. The signed 2016 Cicada message says that Liber Primus's **words are the map, their meaning is the road, and their numbers are the direction**, while warning against false paths. Once the second raw word reads as `RATIO`, using the title's source numbers as a selector is therefore historically motivated rather than arbitrary.
+6. Around the source-selected J anchor, the page's reversal/symmetry cue defines the bounded equal-rune/equal-radius opposite-corner family. The independently fixed sums15 and57 force first-key sum42. Only two of 72 symmetric rectangles survive, and both unexpectedly have held-out 3:1 aspect. The next additive term99 leaves only X-N-X-C.
+7. Keep the page-indicated reversal and the already-fixed subtraction direction; read the rectangle by the ordinary UL→UR→LR→LL perimeter convention. The first word becomes raw `SECUENDI`, with exact forward reconstruction.
+8. The final title sum closes held out at `156 = 13*phi(13)`. The demonstrated English GP spelling would destroy the physical and numerical structure; the direct Latin-letter register preserves all of it and reads the candidate as **SEQUENDI RATIO**, approximately “method/plan of following.”
+
+This route is consistent with known Cicada design practice inside Liber Primus. The solved LP1 “Some Wisdom” artifact contains a 5×5 numerical square with exact 180° rotational symmetry and common row/column/diagonal sums, and its JPEG is itself byte-palindromic around a hidden reversed-hex center payload. Symmetry plus sum invariants are therefore demonstrated creator-facing validation devices, although that prior artifact does not prove this p0 construction.
+
+The unresolved point is now narrow: the page does not literally state “choose equal-rune opposite corners equidistant from J.” The visual 180° pairing and signed number-direction hint motivate it, while a prospective untouched-cipher consequence would authenticate it. Direct 3:1 body interleaving, 3:1 diagonal repeating keys, 180° grid sum/difference, recurrence-position reads, and immediate Fibonacci-length body checks have all been tested and remain ciphertext-like, so those simple continuations are retired.
+
 ## Current decision
 
 The strongest current chain is:
