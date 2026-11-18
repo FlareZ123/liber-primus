@@ -1,0 +1,14 @@
+# Agent24: one new, exact source-selected table entry from original HTML and p0 red title
+
+**18 November 2026, exploratory original-source route.** [Consolidated source report](../../im-results/lp2-2014-index331-p0-red-primesum-original-crossclue.md#red-title-as-an-rsa-address-rather-than-a-table-cipher-key-18-november-2026) · [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44281344619) · [strictly original-input SFT](../../sims/lp2_red331_rsa_p50_two_region_addresses_sft.cjs).
+
+The author-era 2014 Stage11 HTML has literal `title=133`, `div id=331`. Independently original p0 red heading has GP-prime sums **347** and **315** in visually separated 8|5 rune words. The already documented candidate RSA exponent inverse is **67** because 133×67≡1 (mod330). **New receiver order:** exponentiate the **two red sums as source addresses**, instead of exponentiating the 256 table bytes as an additive key (which was decisively negative).
+
+- `347^67 mod331=83`, `315^67 mod331=248`, both valid zero-based p50 32×8 cell addresses.
+- **83 = row10,col3**, original printed `3D` ⇒ **193 in base60**, first of only two 3D cells. **193 is prime44**; next identical 3D occurs exactly **44** table cells later at127, leaving **43** intervening bytes, a previously investigated 43-slot terminal object.
+- **248 = row31,col0**, original printed `1r` ⇒ **113** base60, unique in table and located at its **bottom-left outer corner**. The grid rim has **76** cells, equal to p55's 76 source runes; its interior has **180**, equal to already-known p56+p57 85+95 runes.
+- **Radix implication conditional on selector:** base59 parses the same `3D` as190 (composite), losing the exact self-referential prime44 step. If the independently sourced RSA address is genuinely intended, it would now select base60 over an otherwise viable base59 interpretation.
+
+**Skeptical constraint:** Because red sums total 2×331 and exponent67 is odd, **248=331−83 follows algebraically**. These are one numerical output and one dependent complement, not two independent discoveries. Prime-modulus RSA, numerical sum→address semantics, zero-based indexing and ciphertext readout remain author-unselected. The p50 table's 44-distance prime duplicate by itself has an existing ~14.8% fixed-multiset chance of at least one such pair. No plaintext/key is recovered, and old p50 direct-key exhaustive consumers must not be rerun.
+
+**Suggested fork:** A real human-readable original instruction that directs a solver from the recovered pair **83/248** to one fixed **symbol-changing** map on original table regions would justify a fresh test, starting with **p56/p57 known 180-rune controls** and then p55. Without that instruction, retain this as a candidate pointer, not a Director dependency or an asserted code.
