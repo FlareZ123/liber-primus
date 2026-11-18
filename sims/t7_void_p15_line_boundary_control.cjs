@@ -66,6 +66,23 @@ const pageStartDistances=pages.map((p,i)=>({page:p.page,start:pageStarts[i],dist
 const p15PageStartRank=pageStartDistances.findIndex(x=>x.page===15)+1;
 assert.equal(pageStarts[15],3603); // source-native p15 coordinate
 assert.equal(p15PageStartRank,1); // p15 is closest to T7 full-span midpoint
+// Empirical baselines: a nearest page start and a fifth-nearest line boundary
+// are common even when neither p15 nor this axis was selected in advance.
+const nearestStartDistance = x => Math.min(...pageStarts.map(start=>Math.abs(start-x)));
+const lineBoundariesIn47 = x => lineBoundaries.reduce((n,b)=>n+(Math.abs(b-x)<=47?1:0),0);
+const quadMidpoints=clusters.map(c=>(c.sites[0]+c.sites[3])/2);
+const quadNearAnyStart=quadMidpoints.filter(x=>nearestStartDistance(x)<=38.5).length;
+const quadWithAtLeastFiveLines=quadMidpoints.filter(x=>lineBoundariesIn47(x)>=5).length;
+let halfRuneNearAnyStart=0, halfRuneWithAtLeastFiveLines=0;
+for(let x=0.5;x<stream.length;x++){
+  if(nearestStartDistance(x)<=38.5)halfRuneNearAnyStart++;
+  if(lineBoundariesIn47(x)>=5)halfRuneWithAtLeastFiveLines++;
+}
+assert.equal(quadMidpoints.length,83);
+assert.equal(quadNearAnyStart,30);
+assert.equal(quadWithAtLeastFiveLines,17);
+assert.equal(halfRuneNearAnyStart,4239);
+assert.equal(halfRuneWithAtLeastFiveLines,2447);
 function pageFor(x){let start=0;for(const p of pages){const end=start+p.runic_count;if(x>=start&&x<end)return{page:p.page,offset:x-start};start=end;}return null;}
 console.log(JSON.stringify({
  corpus_runes:stream.length,doublet_count:doublets.length,t7_cluster:t7,
@@ -73,6 +90,11 @@ console.log(JSON.stringify({
  p15_axis_distance_from_full_midpoint:Math.abs(p15Axis-fullMid),
  internal_line_boundaries:lineBoundaries.length,nearest_line_boundary_distances:dists.slice(0,10),
  p15_axis_rank_by_distance:rank,p15_axis_empirical_rank:rank/lineBoundaries.length,
+ empirical_baselines:{four_doublet_windows:quadMidpoints.length,windows_near_any_page_start:quadNearAnyStart,
+   half_rune_positions:stream.length,positions_near_any_page_start:halfRuneNearAnyStart,
+   windows_with_five_lines_in_axis_radius:quadWithAtLeastFiveLines,
+   positions_with_five_lines_in_axis_radius:halfRuneWithAtLeastFiveLines,
+   axis_radius_runes:47,page_start_radius_runes:38.5},
  nearest_page_starts:pageStartDistances.slice(0,8),p15_page_start_rank:p15PageStartRank,
  full_midpoint_page:pageFor(fullMid),void_start_page:pageFor(t7.sites[0]),void_end_page:pageFor(t7.sites[3])
 },null,2));
