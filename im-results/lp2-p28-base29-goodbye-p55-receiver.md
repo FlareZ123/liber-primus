@@ -41,6 +41,36 @@ The values are route-typed rather than generic numerology:
 
 This changes the downstream frontier. The p28 route now has a source-constrained **p55 receiver candidate**: authenticated `GOODBYE` closes immediately after a word labelled SHED whose first literal peel yields55. Independently, the same object recovers the previously reconstructed DH client secret15. That does not define how to transform p55's 76 ciphertext runes.
 
+## P55 + 15 + NEXT predicts the terminal DJU / BEI handoff
+
+The value55 is actionable as a physical page number. Physical p55 begins with one one-rune fragment `NG` that continues the final word from p54; after that carry there are exactly **16 complete p55 words**.
+
+Use the second peel of the SHED word as a one-based index into those complete words:
+
+- p55 complete word **15** is `DJU`, GP indices `[23,11,1]`;
+- the p28 BASE29 word independently exposes **NEXT=57** on its first peel;
+- the **next** complete p55 word is `BEI`, GP indices `[17,18,10]`.
+
+So the new p28 object predicts the intact pair **DJU / BEI** without the historical `prime_echo` boundary300 selector.
+
+That is a genuine holdout consequence. `DJU / BEI` is the manuscript's sole repeated adjacent complete-word pair type: the p55 terminal occurrence has exactly one other adjacent occurrence, on **p27 line2**. The source-visible carried fragment matters: counting the 16 intact p55 words makes15 land on DJU; NEXT then lands on BEI.
+
+This materially simplifies the leading navigation path:
+
+`p28 authenticated opcode bracket → SHED → p55 → word15 DJU → NEXT BEI → p27`.
+
+The pair was known before this construction, so it is not newly discovered plaintext. What is new is an independent, source-constrained route that predicts it from p28 and removes the earlier need to use finite historical `prime_echo` exhaustion to expose the pair.
+
+## Secondary cross-page consequence: p57 word6 → p50 cell19 → p33
+
+The middle bracket word has peel sequence **74 → 57 → 6**. Treating57 as physical p57 and6 as a one-based word index selects clear p57 word6, **TO**, whose GP0 sum is **19**. The first bracket word independently has peel sequence **83 → 50 → 19**. Address19 on physical p50 is token `0X`, whose value is **33 under both base59 and base60**.
+
+Thus the same nested object supplies the radix-independent chain:
+
+`p57 word6 TO → 19 → p50[19] = 33`.
+
+Physical p33 is the first page of the cuneiform-number chapter whose original pages repeatedly display1033 and3301. This matters because the bracket itself carries BASE29, and the authenticated 2013 protocol defines `BASE29 1033 → 16I` while its worked example gives `BASE29 3301 → 3QO`. Earlier work rejected applying BASE29 to those 2014 numerals because no LP2 source selected the command or receiver. The p28 object now supplies a source-internal command/page selector, but the resulting `16I` / `3QO` numerals still lack a reversible 1,680-rune consumer. Treat p33 as a newly motivated continuation, not a decryption.
+
 ## Why this is stronger than a free word-sum search
 
 The object is selected before reading those three sums by two authenticated historical opcodes routed through the already established p50/base59 grammar. The bounds are exact canonical word cuts, and the operation applied inside the bounds is the already solved manuscript instruction to shed circumferences. No key, phase, alphabet permutation, or language-scoring threshold is fitted.
@@ -49,8 +79,8 @@ The strongest mundane rival is still coincidence from a heavily studied navigati
 
 ## BASE29 scope
 
-The signed 2013 protocol defines `BASE29 n` as decimal-integer → base29 numeral conversion, with `3301 → 3QO`; it does not define a GP29-rune ciphertext inverse or byte serialization. The newly bracketed runes therefore do not license a free base29-to-bytes decoder. The useful result is the command-bounded object and its deterministic circumference-peel values.
+The signed 2013 protocol defines `BASE29 n` as decimal-integer → base29 numeral conversion, with `3301 → 3QO`; it does not define a GP29-rune ciphertext inverse or byte serialization. The newly bracketed runes therefore do not license a free base29-to-bytes decoder. The useful result is the command-bounded object, its deterministic circumference-peel values, the p55 word15/NEXT prediction of `DJU / BEI`, and the independent p57-word6 → p50[19] → p33 continuation.
 
 ## Reproduction
 
-`sims/lp2_p28_base29_goodbye_p55_receiver_sft.cjs` checks the authenticated command vocabulary against the local signed-protocol reference, reconstructs both p50 cut coordinates from original tokens, verifies the exact p28 word bounds and nested peel sums, and exhausts all canonical 2,896 unknown-page words for the three individual signatures and the ordered three-word GP0 sequence.
+`sims/lp2_p28_base29_goodbye_p55_receiver_sft.cjs` checks the authenticated command vocabulary against the local signed-protocol reference, reconstructs both p50 cut coordinates from original tokens, verifies the exact p28 word bounds and nested peel sums, exhausts all canonical 2,896 unknown-page words for the three individual signatures and the ordered three-word GP0 sequence, verifies p55 complete-word15 + NEXT = `DJU / BEI` and its only other page-local occurrence on p27, and verifies p57 word6 `TO` → GP0 19 → p50 cell19 → 33.
