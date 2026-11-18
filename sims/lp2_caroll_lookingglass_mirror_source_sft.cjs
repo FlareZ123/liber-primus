@@ -21,7 +21,7 @@ const ROOT = path.resolve(__dirname, "..");
 const corpus = JSON.parse(fs.readFileSync(path.join(ROOT,
   "resources/liber-primus/lp2-corpus.json"), "utf8"));
 const master = fs.readFileSync(path.join(ROOT,
-  "resources/transcriptions/liber_primus_master.txt"), "utf8");
+  "resources/transcriptions/liber_primus_master.txt"), "utf8").replace(/\r\n/g, "\n");
 const pageTape = corpus.pages.filter(p => p.page <= 55).flatMap(p => p.indices);
 assert.equal(pageTape.length, 12956);
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
