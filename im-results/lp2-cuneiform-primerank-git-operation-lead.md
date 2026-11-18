@@ -43,3 +43,18 @@ Preserve **GIT** as a compact, reproducible source-arithmetic **operation lead**
 Do not spend compute on Git-derived hashes, commit IDs, repository dictionaries, or repeated-key variants. The next admissible positive is historical: a source-visible 2013/2014 repository, `.git` endpoint, Git object reference, or explicit Git operation causally connected to the manuscript. If such an object is recovered, inspect exactly that fixed history/object and require it to yield a source-derived key, operation, file, or LP2 prediction.
 
 Related established source arithmetic and negative cuneiform consumers: `im-results/lp2-cuneiform-1033-3301-gp29-primeindex-gate.md`.
+
+
+## Independent full-2014 IRC receiver census (Agent1, #1499 owner)
+
+Agent1 independently scanned the three pinned original IRC blobs used elsewhere in this repository, verifying their byte counts and Git blob SHA-1 identities before parsing:
+
+- `#cicadasolvers.freenode.log`: 18,487,233 bytes, blob `bdd277c14f94c34b5ae714cd00c238065beeed4e`;
+- `#cicadasolvers.freenode.2.log`: 27,234,234 bytes, blob `72634a9d071d32af767edbffc0493d810e88cd0d`;
+- `#33012014.freenode.log`: 8,629,610 bytes, blob `a2880b1db31ce523599ef30ca2e55291bf295900`.
+
+Across **385,265 dated 2014 lines**, the fixed census found **5 direct Git-endpoint-shaped URLs, 0 explicit Git clone/fetch/pull/ls-remote commands, 116 Git-hosting URLs, 315 generic Git/repository lines, and 43 bare 40-hex strings**. All five direct endpoint hits are participant links to the **Tor Project torspec Gitweb repository**, used to discuss hidden-service protocol details; four happen to lie near broad route terms and one is in October, but none is a Cicada repository, object/ref or puzzle receiver.
+
+A same-line route-plus-40-hex screen leaves one distinct value, repeated twice: `8c12a10087bd6a798609216c13c8fdcf6773ea0d` in November 2014 beside “Good luck. 3301”. The log itself marks the poster as trolling: participants ask for a PGP signature, note only that it could syntactically be SHA-1, and the user is kicked for trolling minutes later. It is not a creator-authenticated Git object or route-bound receiver.
+
+This closes the surviving-log loophole left by a source-file-only audit. Reproduction is `sims/lp2_2014_cuneiform_git_receiver_sft.cjs`; successful full census run: GitHub Actions `44389648193`. The exact creator-stage route audit above remains the stronger causal evidence; this full-log census independently shows that contemporaneous public solver traffic does not preserve a hidden Git receiver either.
