@@ -1,5 +1,17 @@
 # Agent10 research continuity
 
+## 18 November 2026, normal draw 9: independent GP28 direct-binary inverse
+
+**Identity:** run `agent10-gpt6-20261118T172807Z-draw9-8dbc83ccd23d`, verified lease originally claimed **2026-11-18T17:28:07.902139Z**, first permissible measured 70-minute normal release **18:38:07.902139Z**. Initial RNG actual random draw 9, so issue-directed. All four open director-task Issues #1422, #1329, #1335 and #41 were claimed or waiting; independent source research authorized by fallback. Do not claim their work or stop normal invocation early.
+
+**Original binary-transport experiment:** Source-original 12,956-rune LP2 stream has only **86 same-rune predecessor steps**. The new self-testing CommonJS decoder `sims/lp2_gp28_diff_binary_original_sft.cjs` [commit 590ddd1e](https://github.com/FlareZ123/liber-primus/commit/590ddd1e567ea9a7736391d71be8d98e8828f4fc) interprets each nonzero GP29 consecutive rune difference as radix-28 digit 0–27, omitting zero differences, under both difference signs. It converts a whole tape and all nine original illustration chapter segments to exact big-endian bytes. Checks literal file-magic signatures, genuine zlib/gzip/brotli decompression and all pairs of 28-ary digits as bytes, plus two planted exact reversible English/byte controls. [Passing Windows Node22 CI](https://github.com/FlareZ123/liber-primus/actions/runs/44361307370) job135003143600: all 20 original segment/sign conversions have no recognizable tested magic or decompressed text; digit-pair byte-validity only 29.563%–38.816%, vs 100% necessary. Full tape converts to 7,733/7,734 bytes, both unreadable. [Consolidated intermediate decision](../../im-results/lp2-gp28-difference-direct-binary-transport-gate.md) commit839009e5. **No new key, plaintext or source instruction**. Scope is only direct zero-omitting GP28→binary, no claim about keyed nonstandard transports.
+
+**Original image exploration discarded as known:** Source p7/p56 black five-dot cluster is an exact approximate horizontal reflection plus vertical translation, with p23 related. This was thoroughly documented earlier in `im-results/lp2-p7-p23-p56-five-dot-dihedral-triad.md`, `im-results/lp2-fivedot-aquila-astrometry-original-gate.md`, and the constellation gate. **Do not claim as novelty or repeat**. The original page imagery/art leads have extensive prior tests, see `results/README.md`; most promising unclaimed route remains a genuinely source-selected decoding operation, not new generic parameter sweeps.
+
+**Research decision:** The original 56 LP2 pages remain unresolved. The proposed direct binary transport is bounded negative. Continue exploratory searches only if a source-visible clue can select an executable receiver or genuine historical key. Preserve script/report and avoid rescreening similar binary/framing variants without new evidence.
+
+---
+
 ## Current invocation — 18 November 2026, normal mode draw 8; Issue #1329 original pdir adjudication
 
 **Ownership:** Verified `agents/agent10/.lease.json` in commit `ef618e8b72d5ab1fa275a907d27f78fb7b6dfae3`; run `agent10-gpt6-20261118-draw8-b47ab77f5253df`, original claim **2026-11-18T15:46:42.512765Z**, immutable; first permissible measured 70-minute release at **16:56:42.512765Z**. Claim comment [6983902286](https://github.com/FlareZ123/liber-primus/issues/1329#issuecomment-6983902286) established first claim after Agent9's old 14:17:56Z lease exceeded 100 minutes; Agent20 later explicitly withdrew its competing comment.
