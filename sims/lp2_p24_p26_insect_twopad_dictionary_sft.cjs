@@ -171,3 +171,67 @@ function main() {
 }
 
 main();
+
+function testXor(a, b, wordsA, wordsB, byLength) {
+  const out = [];
+  for (const wa of wordsA) for (const wb of wordsB) {
+    const lo = Math.max(wa.start, wb.start);
+    const hi = Math.min(wa.end, wb.end);
+    if (hi - lo < 4) continue;
+    const n = hi - lo, offA = lo - wa.start, offB = lo - wb.start;
+    const delta = Array.from({length:n}, (_,i) => (a[lo+i] ^ b[lo+i]));
+    const candidatesB = new Map();
+    for (const wbType of byLength.get(wb.len) || []) {
+      const key = wbType.symbols.slice(offB, offB+n).join(',');
+      if (!candidatesB.has(key)) candidatesB.set(key, wbType.word);
+    }
+    let count = 0, example = null;
+    for (const waType of byLength.get(wa.len) || []) {
+      const key = waType.symbols.slice(offA, offA+n)
+        .map((x,i) => (x ^ delta[i])).join(',');
+      const matched = candidatesB.get(key);
+      if (matched) {
+        count++;
+        if (!example) example = waType.word + '/' + matched;
+      }
+    }
+    out.push({lo,hi,n,aLen:wa.len,bLen:wb.len,count,example});
+  }
+  return out.sort((x,y) => y.n-x.n || x.lo-y.lo);
+}
+
+
+/** Historical Cicada XOR alternative, separate original-corpus all-key gate. */
+function xorMain() {
+  const byLen=dictionary();
+  const wa=words(24),wb=words(26);
+  const a=corpus.pages[24].indices,b=corpus.pages[26].indices;
+  const observed=testXor(a,b,wa,wb,byLen);
+  assert.equal(observed.length,20);
+  const missing=observed.filter(x=>x.count===0);
+  assert.deepEqual(missing.map(x=>[x.lo,x.hi,x.n]),
+    [[27,33,6],[109,115,6],[162,168,6],[211,217,6],
+     [86,91,5],[203,208,5],[245,250,5],[72,76,4]]);
+  console.log('XOR original shared-key zero pair overlaps:',missing.length);
+  for(const item of observed) console.log('XOR',JSON.stringify(item));
+  const pa=syntheticPlaintext(24,wa,byLen);
+  const pb=syntheticPlaintext(26,wb,byLen);
+  const padChoices=Array.from({length:32},(_,i)=>(i*7+5)%32);
+  const key=pa.map((x,i)=>{
+    const eligible=padChoices.find(k=>
+      ((x^k)<29 && (i>=pb.length || (pb[i]^k)<29)));
+    assert.ok(Number.isInteger(eligible));
+    return eligible;
+  });
+  assert.ok(new Set(key).size>1);
+  const ea=pa.map((x,i)=>x^key[i]),eb=pb.map((x,i)=>x^key[i]);
+  assert.ok(ea.every(x=>x>=0&&x<29));assert.ok(eb.every(x=>x>=0&&x<29));
+  assert.deepEqual(ea.map((x,i)=>x^key[i]),pa);
+  assert.deepEqual(eb.map((x,i)=>x^key[i]),pb);
+  const planted=testXor(ea,eb,wa,wb,byLen);
+  assert.equal(planted.length,20);
+  assert.equal(planted.filter(x=>x.count===0).length,0);
+  console.log('XOR plant PASS:',planted.length,'/20 native GP word overlaps');
+  console.log('PASS: all shared five-bit XOR pad keys contradict eight original word overlaps within pinned dictionary');
+}
+xorMain();
