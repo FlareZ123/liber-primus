@@ -84,3 +84,12 @@ The signed 2013 protocol defines `BASE29 n` as decimal-integer → base29 numera
 ## Reproduction
 
 `sims/lp2_p28_base29_goodbye_p55_receiver_sft.cjs` checks the authenticated command vocabulary against the local signed-protocol reference, reconstructs both p50 cut coordinates from original tokens, verifies the exact p28 word bounds and nested peel sums, exhausts all canonical 2,896 unknown-page words for the three individual signatures and the ordered three-word GP0 sequence, verifies p55 complete-word15 + NEXT = `DJU / BEI` and its only other page-local occurrence on p27, and verifies p57 word6 `TO` → GP0 19 → p50 cell19 → 33.
+
+
+## P0 opening returns to the GOODBYE endpoint
+
+A later holdout finds an independent original-ciphertext backlink to this bracket. P0's first two printed ciphertext words have GP0 sums **96,85**. Under the already selected base59 p50 grammar they map to **218,28**: the exact GOODBYE cut endpoint on this page and physical page28. Base60 gives222,28 and misses a word boundary. The typed condition is unique across all2,873 adjacent LP2 word pairs.
+
+Offset218 begins p28 word47. Successive literal circumference peels of that already selected word uniquely hit clear p57 semantic values for `CIRCUMFERENCES`, `TUNNELNG`, `INSTAR`, and `EMERGE`. This creates a plaintext-independent return edge from p0 to the object immediately after the authenticated BASE29/GOODBYE bracket.
+
+See `im-results/lp2-p0-opening-goodbye28-p28-nested-route.md` and `sims/lp2_p0_opening_goodbye28_p28_nested_sft.cjs`.

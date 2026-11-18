@@ -186,3 +186,14 @@ This creates a causal human path SURFACE -> 67 -> prime(67)=331 -> original wrap
 
 Report: im-results/lp2-surface331-title133-red13-receiver.md
 SFT: sims/lp2_surface331_title133_red13_sft.cjs
+
+
+### Continuation: p0 opening -> GOODBYE cut218 / p28 -> nested parable carrier
+
+Original p0 words1-2 have GP0 sums96,85. GP0 96 is authenticated GOODBYE. Under the active base59 p50 grammar, 96->218 and85->28; base60 gives222,28. Across all2873 adjacent original LP2 word pairs, the exact typed condition first GP0=96 and second table-output=28 occurs once, at p0 opening; exact sum pair96/85 also occurs once. P28 offset218 is the authenticated GOODBYE cut and starts word47; offset222 is not a word boundary.
+
+P28 word47 [28,13,11,23,9,22,3,1,9,7,19] carries a unique nested signature among641 eligible odd words: whole GP0 145=GP1(CIRCUMFERENCES), first-peel GP-prime339=GP-prime(TUNNELNG), second-peel GP0 78=GP0(INSTAR), final-center GP-prime83=GP0(EMERGE). Partial counts are6->1->1->1. This yields a plaintext-independent p0→p28 backlink and compact inside-out parable object.
+
+Interpretive limits: output pair as (offset,page) and mixed GP registers across peel layers. No plaintext or reversible cipher yet.
+Report: im-results/lp2-p0-opening-goodbye28-p28-nested-route.md
+SFT: sims/lp2_p0_opening_goodbye28_p28_nested_sft.cjs

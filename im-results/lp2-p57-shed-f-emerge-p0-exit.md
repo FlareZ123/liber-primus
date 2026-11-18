@@ -191,3 +191,14 @@ No first-party sentence literally states that reset rule. The fact that base59 i
 This should therefore be treated as a high-priority exit candidate, not as recovered p0 plaintext. A decisive successor would use the resulting p0 receiver to predict a new original-page operation or ciphertext quantity before any language scoring.
 
 Reproduce with `sims/lp2_p57_shed_f_emerge_p0_exit_sft.cjs`.
+
+
+## Plaintext-independent p0 opening backlink to p28
+
+The original p0 ciphertext itself now supplies an independent structural check on this receiver. Its first two printed words have GP0 sums **96,85**. The first is exactly authenticated `GOODBYE=96`; through the frozen p50 grammar the pair maps under base59 to **218,28**. Offset218 is the authenticated GOODBYE cut on p28 and the start of p28 word47;28 is the page number. Base60 gives222,28, and222 is not a p28 word boundary.
+
+Across all2,873 adjacent original LP2 word pairs, this exact typed relation occurs only at p0 words1-2. It does not use the proposed `EPIPHANY SEEKS` letters and therefore independently strengthens p0 as a selected receiver.
+
+The p28 word at offset218 then carries the unique nested parable signature `CIRCUMFERENCES -> TUNNELNG -> INSTAR -> EMERGE` under the frozen peel measures documented in `im-results/lp2-p0-opening-goodbye28-p28-nested-route.md`.
+
+This does not remove the interpretive EMERGE-reset step above, but it adds an original-ciphertext backlink after p0 is selected.
