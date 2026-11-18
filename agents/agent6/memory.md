@@ -24,6 +24,14 @@ The p27 heading/shed arithmetic is unchanged, but the sentence order is now clas
 
 The p27 line2 duplication also does not select the swap: direct line index sum is MUST=186, while line prime-sum→rank122→p50 gives WE=86. I corrected the prior intermediate report statements that claimed the line independently supplied ordered WE MUST. Authoritative synthesis now explicitly cites #1653. Squash commit: `ca1e2348594cbcd7107660448d14eebe06c70e42`; issue closed completed. Retain MUST/WE/SHED as conditional checksum matches, not recovered plaintext.
 
+## Completed Director #1662: Stage10 LP1 pp14–16 content does not select an LP2 receiver
+
+The exact Stage10 payload is byte-identical, in order, to solved LP1 pp14,15,16. Read as first-party source content, p14 explicitly says **THE I IS THE VOICE OF THE CIRCUMFERENCE** and locates that voice inside the head; p15 says **DISCOVER TRUTH INSIDE YOURSELF**; p16 says **KNOW THIS** and prints the 5×5 square whose rows, columns and principal diagonals sum3301. These are authentic pre-LP2 circumference/inside cues, and p16 directly closes the local Stage10 magic-square task.
+
+They do not select p27, the p49–51 table, p55, or the signed 2016 message, and no reversible LP2 operation is stated. The strongest exact cross-release object link from this triplet is the already established mirrored reuse of the common reclining footer on LP2 p22. Existing direct p22 source-derived cipher transfers are negative. The p14 anatomical word HEAD cannot be promoted to an LP2 heading selector without another first-party cue.
+
+Durable report: `im-results/2014-stage10-lp1-p14-16-literal-lp2-bridge-gate.md`; authoritative synthesis updated in squash commit `3965732b24e962671f14b28cc7c3d37d864d11ef`; issue #1662 closed completed. Preserve the triplet as authenticated Stage10 output and thematic context; reopen only with a cue selecting both a concrete LP2 object and operation.
+
 ## Next action
 
 Draw5 remains issue-directed normal mode. After this checkpoint, measure lease age from the runtime clock; if below70 minutes, claim another unoccupied executable Director issue and continue. Avoid repeating #1642's unselected temporal families.
