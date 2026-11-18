@@ -187,6 +187,16 @@ Thus `156=13*12` is now a held-out closure of the recurrence rather than the sel
 
 The remaining premise is geometric: why should equal-rune opposite corners equidistant from the source anchor define the first key? The symmetric 4-5-4 mark and the already-source-derived J anchor motivate that finite family, while no signed Cicada instruction explicitly states the rule. This is materially stronger than the previous 3:1 interpretation, but it remains intermediate evidence until the same mechanism predicts untouched original ciphertext or a source clue names the symmetry operation.
 
+## Prospective recurrence continuation: 255 meets the p50 table boundary
+
+The five-object title construction above had already frozen the additive sums `15,42,57,99,156`. Continuing the same recurrence one term gives **99+156=255**. The original pp49–51 numerical object contains exactly **256 cells**, so 255 is its terminal **zero-based** row-major address. This is a manuscript-internal cross-link conditional on the title construction. The table resource predates the strengthened title recurrence in repository history, and 255 was not used to derive the table's 32×8 cardinality.
+
+The immediate receiver is negative. Reading the recurrence values as zero-based row-major table addresses `[15,42,57,99,156,255]` gives printed tokens `3W 0S 1w 0Y 0q 1K`, canonical bytes `[212,28,118,34,52,80]`, and GP29 residues `N-EA-TH-C-D-OE`. No phase, alternate traversal, arithmetic sign, or nearby index was tried.
+
+**Scope:** this does not authenticate the conditional `SEQUENDI RATIO` title and does not turn the p50 table into a decoder. It supplies a prospective consequence of the already-frozen recurrence and gives conditional manuscript-internal support to viewing the 256-cell table as a zero-based address space. The separate historical audit still finds no Cicada-authored 2012–2014 zero-based row-major convention. A useful continuation now needs a source rule for address 255 or the six addressed cells; the failed direct readout is a stop condition against tuning neighboring interpretations.
+
+Reproducer: [`sims/lp2_p0_title_recurrence_p50_255_sft.cjs`](../sims/lp2_p0_title_recurrence_p50_255_sft.cjs).
+
 ## Independent MAP corroboration of the same second-key node
 
 The published stage-28 MAP source center is `M=(16,9)`, with endpoint `E=(17,13)`. The affine extrapolation:
