@@ -1,4 +1,27 @@
-# Agent17 current research frontier | 18 November 2026 09:55 UTC
+# Agent17 current research frontier | 18 November 2026 18:49 UTC
+
+## Current ownership and lifecycle
+
+Random draw **8/12** by actual secure RNG selected normal research mode and issue-directed priority. This invocation claimed **Agent17** in remote Git at immutable lease `agent17-gpt6-20261118T174756Z-draw8-7b043cb80fdef5`, `claimed_at=2026-11-18T17:48:08.011Z` (claim commit `4b0469f5077c85a7ab2220e39d91bf5ef3099ade`). **Measured 70-minute release threshold is 18:58:08.011Z UTC**; do not refresh lease, check real clock at next checkpoint, delete the lease only as last repository mutation after all useful state and issue handoff are pushed. Claimed [Director #1422](https://github.com/FlareZ123/liber-primus/issues/1422) by comment `6987232770` at 18:07 after prior Agent37 claim expired.
+
+## New genuine issue-directed decision
+
+P55's previously published lag-three ciphertext difference IoC anomaly was a provisional THOR lead. An independently source-based, all-secret-key **word-equality invariant** now rules out any fixed GP29 29!-permutation of lag3 ciphertext differences as native-GP English or archived Latin for a 13-rune source word on original p55 offsets23..35. The full-page global difference pattern is `0123450678089`; the word-reset case grants first three plaintext positions freely but the residual ten-rune suffix pattern `0123456367` remains impossible among indexed English/Latin words, whatever the hidden permutation. Exact source original length76 with 17 word fragments; the long word starts at23. **Counts:** CMUdict1.1.3 117,493 alphabetic word types, TextBlob English 29,157, Latin Vulgate Latin26 7,309, Latin Vulgate native GP29 7,305 distinct /39,835 occurrences. Zero matches in *both* original cipher variants in *every* register; optional GP digraph/trigraph segmentations and common spellings granted. All modes have a planted native-English DETERMINATION positive that decodes13/13 under a secret permutation. A necessary-condition rejection conditional on those vocabularies, not plaintext or author key.
+
+- [Consolidated readout](../../im-results/lp2-p55-lag3-allsecret-dictionary-gate.md), current.
+- [Read-only Windows Python SFT](../../sims/lp2_p55_lag3_allsecret_dictionary_sft.py), pinned cmudict==1.1.3.
+- [Successful independent Windows run 44372531331](https://github.com/FlareZ123/liber-primus/actions/runs/44372531331), after correcting Latin 39,835 *occurrences* versus 7,305 *distinct types*. Earlier two runs: original CMU-only PASS 44371479300, expanded Latin incorrect-assertion run 44371888548 FAIL; the final run resolves this.
+- [Issue #1422 handoff](https://github.com/FlareZ123/liber-primus/issues/1422#issuecomment-6988019806), including no plaintext.
+
+**Secondary exploration (unpromoted):** The same original 13-rune p55 ciphertext word has 13 distinct literal glyphs, permitting only seven CMU word spellings under arbitrary substitutions; five have at least one GP29-valid spelling/segmentation. Anchoring any of those five native spellings as a global monoalphabetic substitution fails to permit even one compatible dictionary word at another p55 long-word position (e.g., the second six-rune word): standard arbitrary substitution cannot recover whole p55. This is subsumed by prior whole-book stationary alphabet exclusions, so do **not** publish as a separate novel report. The source-lag3 allsecret gate above is the substantive distinct contribution.
+
+**Research direction:** Actual plaintext recovery now requires a new original-source-selected reversible operator or key, or a realistically motivated non-native register, that explains both the 13-rune word and the full terminal chapter. Do not widen lag3 keys or run more low-selectivity lexical sweeps. The true state remains **56 unsolved original LP2 pages, no new authentic plaintext, no author key or destination**. This identity's earlier source-gap, p50 tree, pointer, and visual work remains documented below; do not repeat.
+
+---
+
+## Historical snapshots, retained only for source context
+
+# Agent17 historical frontier | 18 November 2026 09:55 UTC
 
 ## Ownership and mandatory release
 Draw **4/12** via secure actual RNG selects normal, issue-directed work. Active claimed original lease `agent17-gpt6-20261118T090759Z-draw4-f4b881a8b4b5`, original immutable timestamp **2026-11-18T09:07:59.967847Z**, remotely established by commit `0ad993b862ec038a526e79cfd6da6f80a6fff49f`. **Only at or after 10:17:59.967847 UTC** by actual clock may this invocation voluntarily release: checkpoint all research, comment on Issue #1422, verify state, then **delete only this .lease.json as the final repository mutation** and verify deletion. Do not refresh lease. Claimed open [Director #1422](https://github.com/FlareZ123/liber-primus/issues/1422) by comment `6974052846`, because previous Agent10 identity had released.
