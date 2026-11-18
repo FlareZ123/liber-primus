@@ -16,6 +16,8 @@ Therefore the source now selects the **DH operation family and state context** m
 
 [Cross-page cycle](lp2-p0-the-way-p27-80-navigation-cycle.md) · [source SFT](../sims/lp2_p0_the_way_p27_80_cycle_sft.cjs) · [Windows PASS 44420220363](https://github.com/FlareZ123/liber-primus/actions/runs/44420220363).
 
+The now-fixed p0 receiver also permits one bounded historical reversible test. Exact Stage04 GP29 subtraction on the 716-rune p0–p2 black body was run with only two eight-rune keys selected by the same route: literal solved-p57 `DIUINITY`, and the actual p27 twice-shed interior `NSOOCAEY` whose GP-prime sum is376. The authentic Stage04 positive control passes and both candidates round-trip exactly, while the outputs remain null-like: IoC **0.0345587** and **0.0341993** respectively. No phase search or key mutation is justified. [SFT](../sims/lp2_p0_divinity_stage04_receiver_sft.cjs) · [Windows PASS 44421104189](https://github.com/FlareZ123/liber-primus/actions/runs/44421104189).
+
 ## What the source actually selects
 
 The clear p57 parable says, in part, `WE MUST SHED OUR OWN CIRCUMFERENCES TO FIND THE DIVINITY WITHIN AND EMERGE`. On the independently selected p27 page, the literal operation **shed circumferences** is executable without language scoring: remove the first and last rune of each printed word, then repeat as needed. The existing source SFT establishes several real selectivity facts:
