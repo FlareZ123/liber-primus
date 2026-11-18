@@ -116,6 +116,20 @@ assert.equal(Math.max(...rows.map(r => r.p0_black_after_red13)), 205);
 assert.equal(rows.find(r => r.rune === 'P').p0_black_after_red13, 205);
 assert.equal(rows.filter(r => r.p55 === null).length, 6);
 assert.equal(rows.filter(r => r.p56 === null).length, 7);
+
+// The source has mirrored double-cross page art; the sole backwards-p0
+// algebraic survivor must be checked against a disjoint physical page.
+const reverseP0 = [...pages.get(0)].reverse();
+const reverseBody = pages.get(0).slice(13).reverse();
+const reverseSurvivors = gp.filter((rune, marker) =>
+    inverseAllHistories(reverseP0, marker).failure === null);
+assert.deepEqual(reverseSurvivors, ['NG']);
+assert.deepEqual(gp.filter((rune, marker) =>
+    inverseAllHistories(reverseBody, marker).failure === null), ['NG']);
+assert.deepEqual(inverseAllHistories(reverseP0, 21).possibleClocks, [253, 254]);
+const reverseP1NgFailure =
+    inverseAllHistories([...pages.get(1)].reverse(), 21).failure;
+assert.equal(reverseP1NgFailure, 37);
 console.log(JSON.stringify({
     title: 'Original p56 prime-totient: all 29 transparent GP29 symbols',
     source: 'resources/liber-primus/lp2-corpus.json',
@@ -126,6 +140,9 @@ console.log(JSON.stringify({
         Math.max(...rows.map(r => r.p0_black_after_red13)),
     all29_full_p0_original: false,
     all29_p0_body_after_red13_original: false,
+    reverse_p0_surviving_markers: reverseSurvivors,
+    reverse_p0_NG_final_key_clocks: [253, 254],
+    reverse_p1_NG_first_failure: reverseP1NgFailure,
     synthetic_full_p0_positive_count: gp.length,
     full_p55_survivors: rows.filter(r => r.p55 === null).map(r => r.rune),
     full_p56_survivors: rows.filter(r => r.p56 === null).map(r => r.rune),
