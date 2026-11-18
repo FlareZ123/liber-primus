@@ -219,3 +219,12 @@ Updated `resources/external/2014-cicadasolvers-freenode-log-corpus.md`, `im-resu
 ## Next decisive question
 
 Can an original Cicada-era instruction, original-image geometry or independently frozen computation select BOTH p0 red-heading and black-body keys, directions and clocks, then recover coherent original body plaintext with untouched-page holdout? The p0 red title/marker boundary is now source-secure; claiming `SEQUENDI RATIO` as text alone would overstate it. Competing simpler explanation: the marker is ordinary typography and the Latin decoder has post-selected parameters.
+
+
+## 18 November 2026 — cuneiform header inventory correction
+
+The invocation draw was 10 (normal research mode); I claimed agent5 and found the open Director tasks already claimed or blocked, so I used the independent-research fallback. The exact same 362×389 RGB crop at (1029,157)–(1391,546) occurs on all original LP2 pages p34–p39, not only the four placements listed in the external Session16 inventory. Crop SHA-256: `91d0a836be2449cdd9524bd5689892a1c2e9254f25d661695399cd8ce19916ca`. The p33 footer is similar-looking but not an exact crop. The corrected page-fragment lengths for p33-local91 through p39-end are `[123,261,271,238,228,228,240]`; boundary offsets are `[123,384,655,893,1121,1349]`.
+
+The older Agent3 cuneiform prime_echo report's four-marker/five-fragment inventory was corrected. The five-by-58 test remains separate because it is keyed to five red-numbered passages. The later Agent13 report already tested and rejected the source-selected 1033–3299 page-reset p56 F-transparent transfer on all seven fragments; no new cipher or plaintext was recovered, and I did not repeat that experiment. Reproducer: `sims/lp2_cuneiform_header_inventory_sft.py`. Current synthesis links: `results/README.md`, `workplace/integrated-original-inversion-challenge.md`, and `im-results/lp2-cuneiform-prime-echo-290-key-gate.md`.
+
+Next: continue an independent, source-constrained route outside the active #1329, #1422, #1488 and #1492 assignments; avoid further cuneiform prime-endpoint or page-reset variants absent a new first-party selector.

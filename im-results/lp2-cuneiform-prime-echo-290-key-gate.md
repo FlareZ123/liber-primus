@@ -4,7 +4,7 @@
 
 ## Why this was worth one bounded test
 
-An independent reading of the repeated Babylonian-numeral motif on LP2 physical pages 33, 35, 38 and 39 gives the values **1033** and **3301**. The four motif placements and the marked p33–p39 interval are documented in [Cicada Notebook Session 09](https://cicadanotebook.com/sessions/9.html) and the later full-page correction in [Session 16](https://cicadanotebook.com/sessions/16.html). These are community transcriptions, not an author-issued cipher specification.
+The community's conventional reading of the two-row mark is **1033** and **3301**. A direct crop comparison of the original JPEGs corrects the four-placement inventory in [Cicada Notebook Session 16](https://cicadanotebook.com/sessions/16.html): the exact same 362×389 RGB crop at coordinates (1029,157)–(1391,546) occurs on **every LP2 page p34–p39** (physical scans 51.jpg–56.jpg; raw crop SHA-256 `91d0a836be2449cdd9524bd5689892a1c2e9254f25d661695399cd8ce19916ca`). The listed absences on p34, p36 and p37 are therefore incorrect for this crop. The p33 footer contains a similar-looking mark, but it is not counted as an exact crop. Treat the repeated image as a running page header, not four isolated marker boundaries. Reproduce the exact inventory with [header inventory SFT](../sims/lp2_cuneiform_header_inventory_sft.py). The conventional numeral reading remains a community transcription, not an author-issued cipher specification.
 
 The repository's recovered 2013 CicadaOS source audit independently records that the original prime_echo program emits the 464 primes through 3301 and pauses at **1033** and **3301** ([source audit](2013-os-wisdom-folly-source-classification.md)). The two endpoints therefore select a concrete part of an existing Cicada artifact rather than an arbitrary prime range.
 
@@ -15,7 +15,7 @@ A separate cross-round check gives an exact length match: transferring the priva
 
 ## Locked target and key construction
 
-The target is the marked interval beginning at zero-based rune offset 91 of physical LP2 p33 and ending at the final rune of p39. The local corpus gives page lengths [214, 261, 271, 238, 228, 228, 240], hence the five motif-delimited block lengths [123, 261, 737, 228, 240], marker offsets [123, 384, 1121, 1349], and **1,589 runes** total. This is 5 complete 290-symbol key periods plus 139 runes.
+The target is the interval beginning at zero-based rune offset 91 of physical LP2 p33 and ending at the final rune of p39. The local corpus gives page lengths [214, 261, 271, 238, 228, 228, 240], so the seven page fragments are [123, 261, 271, 238, 228, 228, 240], with page-boundary offsets [123, 384, 655, 893, 1121, 1349] and **1,589 runes** total. The earlier five-block grouping [123, 261, 737, 228, 240] and four offsets [123, 384, 1121, 1349] omit the exact header copies on p34, p36 and p37 and must not be used as a motif-delimited segmentation. The five-by-58 experiment below is separate: it uses the five visible red-numbered passages, not the page-header boundaries. This remains 5 complete 290-symbol key periods plus 139 runes.
 
 The key is the 290-prime continuation after the 1033 pause through the 3301 pause, with no fitted phase or reordering. It is repeated continuously from the first rune of the marked interval. The tested GP29 consumers were:
 
@@ -61,7 +61,7 @@ The model's full algorithm is reproduced by [one-file CommonJS original-input re
 
 ### Source-constrained hypothesis
 
-The cuneiform header selects the 290-prime continuation 1039–3301. The enclosed body has **five explicitly red-numbered passages**, and the manuscript has **58 physical LP2 pages** over a **29-symbol GP alphabet**. Thus the selected 290 primes admit a particularly economical 5×58 arrangement: 290 = 5×58, while 58 = 2×29 and also equals the total page count. Assign one 58-prime block to each numbered passage, repeat that block within its passage, and reset at the printed red numeral. The source-authenticated p56 operator supplies the narrow consumer: φ(prime) mod29, with literal plaintext-F transparency and no key advance on F.
+The conventional 1033/3301 reading together with the recovered 2013 prime_echo source selects the 290-prime continuation 1039–3301. The enclosed body has **five explicitly red-numbered passages**, and the manuscript has **58 physical LP2 pages** over a **29-symbol GP alphabet**. The five passage boundaries are independent of the repeated p34–p39 page header. Thus the selected 290 primes admit a particularly economical 5×58 arrangement: 290 = 5×58, while 58 = 2×29 and also equals the total page count. Assign one 58-prime block to each numbered passage, repeat that block within its passage, and reset at the printed red numeral. The source-authenticated p56 operator supplies the narrow consumer: φ(prime) mod29, with literal plaintext-F transparency and no key advance on F.
 
 The weakest premise is the unprinted 5×58 key schedule. The visible five labels, the 58-page artifact, and the 29-rune alphabet motivate the rectangle, but do not state row-major or column-major order, period-58 reuse, or a p56 cipher transfer. Only the two conventional rectangular layouts and the two global additive signs were tested; no phase, reversal, per-passage orientation, or per-passage sign was fitted.
 
@@ -88,7 +88,7 @@ Reproduction: [five-by-58 original-input SFT](../sims/lp2_cuneiform_290prime_fiv
 
 ## Consolidated decision
 
-**Reject the tested direct 290-period GP29 additive, multiplicative and p/φ affine consumers, the GP28 predecessor-excluding source-key composition, and the fixed 5×58 row/column partition across the five numbered passages.** The cuneiform-to-prime_echo endpoint connection remains an interesting source-selection hypothesis, but it does not establish an operative receiver or clock. Do not extend this branch into prime gaps, fitted phases, further marker/page resets, per-passage sign changes, or arbitrary transpositions without a new independent clue.
+**Reject the tested direct 290-period GP29 additive, multiplicative and p/φ affine consumers, the GP28 predecessor-excluding source-key composition, and the fixed 5×58 row/column partition across the five numbered passages.** The cuneiform-to-prime_echo endpoint connection remains an interesting source-selection hypothesis, but it does not establish an operative receiver or clock. The distinct page-reset transfer on the 1033–3299 interval with the authentic p56 F-bypass has already been tested and rejected across pp33–39 ([Agent13's original-input gate](lp2-cuneiform-1033-3301-gp29-primeindex-gate.md)); the exact header crop on every page p34–p39 is not a reason to repeat it. Do not add fitted phases, per-page signs, alternative endpoints, or arbitrary transpositions without a new independent source clue.
 
 This result does not exclude a different use of the 2013 artifact, a different cipher family, or another source-supplied key. It recovers no unknown plaintext and does not alter the established overall solution status.
 
@@ -102,4 +102,4 @@ The script reads the original LP2 corpus and pinned Shakespeare control, asserts
 
 Nonlinear independent test: [GP28 successor source-key SFT](../sims/lp2_cuneiform_290prime_gp28_successor_sft.cjs).\n\nFive-by-58 passage partition: [original-input F-transparent SFT](../sims/lp2_cuneiform_290prime_five58_ftransparent_sft.cjs).
 
-Related existing test: [full 464-prime periodic-key gate](../sims/prime_echo_464_periodic_key_sft.cjs). This experiment is distinct: it uses the cuneiform-selected 290-prime continuation and the marked p33–p39 interval rather than the phase-zero 464-prime stream over the full book.
+Original image inventory: [exact repeated-header crop SFT](../sims/lp2_cuneiform_header_inventory_sft.py). Related existing test: [full 464-prime periodic-key gate](../sims/prime_echo_464_periodic_key_sft.cjs). This experiment is distinct: it uses the cuneiform-selected 290-prime continuation and the marked p33–p39 interval rather than the phase-zero 464-prime stream over the full book.
