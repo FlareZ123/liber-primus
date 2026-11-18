@@ -3,8 +3,6 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { gcd } = require('node:math');
-
 const corpus = JSON.parse(fs.readFileSync(
   path.resolve(__dirname, '..', 'resources', 'liber-primus', 'lp2-corpus.json'),
   'utf8'
