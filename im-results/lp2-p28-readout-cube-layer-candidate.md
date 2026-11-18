@@ -20,6 +20,8 @@ with GP indices:
 
 `[9,28,24,10,1,20]`.
 
+This span is also a physical source object independent of the word parser. P28 line6 has exactly **23 runes**. The page-center rune is line6 position18, and word28 occupies positions19..23. The six-rune candidate span is therefore exactly the **rightward suffix from the page center through the physical line edge**.
+
 ## The DH23 state selects a reversible GP29 operation
 
 The same source-selected DH state has the cross-field relation documented separately in `lp2-p28-dh23-gp29-cube-bridge.md`:
@@ -33,6 +35,8 @@ and independently
 In GF(29), cubing sends the DH values
 
 `K=2 -> A=8 -> B=19 -> b=15`.
+
+A concurrent source-local result now selects the same exponent without relying on that arithmetic chain. Authenticated `NEXT` selects p28 word29 `[24,25]`; the separately frozen reversible shell map `H(x,y)=(x-y,x+y) mod29` sends that successor exactly to word28's outer shell `[28,20]`, uniquely among the 42 within-page five-rune→two-rune adjacencies. With H fixed by that source geometry, the independently selected p27 red19+13 receiver gives `H(19,13)=[6,3]=[a,e]`. Thus **e=3** is also emitted directly by a separate manuscript receiver.
 
 Cubing is an invertible permutation on all29 GP indices because `gcd(3,28)=1`; exponent19 is its inverse on nonzero residues and zero is fixed.
 
@@ -91,6 +95,8 @@ No other eligible five-rune word produces a comparable dictionary phrase.
 
 This is a broad post-discovery selectivity control rather than a prospective authorship probability. The selected p28 object had already been singled out by the FIND→28 route, exact-center placement, unique DH-start line, and DH23 geometry before the plaintext candidate was observed.
 
+A complete six-state cube-orbit calibration also grants every pair of cube iterates `{1,3,9,27,25,19}` independently to the predecessor and five-rune word. Across all36 exponent pairs ×314 boundaries, the source-selected `(3,27)` pair still has exactly one phrase hit, `READ / OUT`. Eleven other exponent pairs have a single dictionary split elsewhere, so the lexicon alone does not select the exponents; the source selection of exponent3 and the three-layer word rule remain essential.
+
 ## Why the candidate is plausible as an intended solve step
 
 The operation has a compact human path:
@@ -103,7 +109,7 @@ The operation has a compact human path:
 6. the object is visibly nested in three layers, so the cube map is iterated once per layer;
 7. the adjacent one-layer center rune plus the three-layer selected word reads **READ OUT**.
 
-The output is itself an instruction rather than a prose fragment. That matters because a short imperative can naturally hand a solver to the next source operation.
+The output is itself an instruction rather than a prose fragment. It is also geometrically self-descriptive: the decoded runes are the exact center-to-right-edge suffix of line6. A frozen equal-length ray taken from the same center in the opposite direction and decoded with the same exponents gives `RTHYIFP`, so the positive result does not arise from a bidirectional center transform.
 
 ## Remaining acceptance gate
 
