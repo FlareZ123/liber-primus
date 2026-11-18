@@ -31,7 +31,21 @@ The z display is descriptive relative to independent uniform GP29 symbols, p=1/2
 
 All three reset clocks have positive forward encoders/reversible inverses in the [CommonJS SFT](../sims/lp2_cuneiform_1033_3301_longperiod_source_sft.cjs). The source asserts the original 55 nonempty pages, exactly 12,956 GP symbols, exact chapter lengths, all compared pair totals, exact counts, unbroken 2,896 original words and the planted inversions. It never learns a secret from original ciphertext.
 
-NaN## Decision and next original input that could change it
+## The separately source-motivated 1,033-word key replay
+
+The independently signed 2016 Cicada clue refers to the book's **words**, their meanings, and their numbers as direction. That permits a distinct, small candidate: the source-printed 1033 might be the period of a reusable **per-word** key rather than a rune count. The unchanged source transcription has 2,896 complete words, including 32 physical-page carries. It combines the first 55 rune-bearing records and asserts all 12,956 rune values against the original numeric corpus. The original words remain in printed order.
+
+For each of the 1,863 pairs of words whose source indices differ by 1033, inspect equalities at the first character and corresponding character positions. Any additive or 28-ary no-repeat chain with a separately secret *per-position* key repeated every 1033 words must preserve these equalities. If the key is instead a single scalar applied to every rune of that word, equality of the final character also must be preserved; **final-character equality is not a valid invariant for independently keyed character positions when word lengths differ**. Two separate forward encoders with exact GP29 inverse and another two corresponding chained-code encoders prove both propositions on native English.
+
+| Key-invariant observation | Original raw words | Original 28-ary no-repeat step classes | English native control with replayed key |
+| --- | ---:| ---:| ---:|
+| Identical first rune among 1,863 word pairs | **76** | **76** | **122** |
+| Identical aligned rune in all overlapping word positions | **228 / 5,940 (3.84%)** | **220 / 5,940 (3.70%)** | **463 / 5,221 (8.87%)** |
+| Identical last rune, **scalar-word key only** | **63** | **60** | **110** |
+
+Control word boundaries are those in the independent source Gibran passage and therefore have a different total number of aligned character pairs. Both exact inverses recover every native GP rune and reproduce all original control word positions. The 1033-word replay does not restore the expected reuse signal on the unknown manuscript. This is conditional on original printed word breaks and an unaltered English GP plaintext register, and does not rule out a nonrepeating key derived from each word's number or content.
+
+## Decision and next original input that could change it
 
 **Neither 1033 nor 3301 behaves as a globally shared periodic GP29 additive key, or as a globally shared 28-ary nonrepeat-chain key with the sole EA exception, on ordinary GP-English source.** The source 1033 also fails the same necessary-condition test if reset at the nine authentic chapter boundaries. An identical page-initialized position key (any long period) fails a much stronger across-page collision comparison. The 1033-word-index key replay similarly fails for both direct GP29 and its reversible anti-repeat counterpart. Large secret-key hunts in these narrowly stated families are therefore unwarranted.
 
@@ -40,4 +54,4 @@ The calculation **cannot** test a fresh unknown independent 3301-digit key at ev
 To progress beyond them, source evidence would have to identify **how** the large cuneiform numbers address a typed historical key or reversible operation, then generate a continuous unknown-page GP29 plaintext and an untouched independent prediction. No independently selected alternate operation, source secret, unknown plaintext, or destination was recovered by this experiment.
 
 
-**Executable Windows evidence:** [Node 22 original-source CI PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44335985648) for the original rung of the reproducible gate; the word-clock extension is included in the same maintained SFT and is dispatched separately.
+**Executable Windows evidence:** [Node 22 original-source PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44335985648) on the long-period portion. The extended code includes independently encrypted word-index controls; [latest word-clock CI execution](https://github.com/FlareZ123/liber-primus/actions/runs/44337961156) checks the corrected final-character invariant.
