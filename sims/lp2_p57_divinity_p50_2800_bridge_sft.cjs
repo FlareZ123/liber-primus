@@ -114,6 +114,66 @@ assert.equal(path184to192[path184to192.length - 1], outerPrimeSum);
 assert.equal(path184to192.length, 11);
 assert.deepEqual(path184to192, [184,128,201,74,205,76,114,197,115,247,192]);
 
+// The 36-byte zero bracket is now source-selected by 192/229.
+const bracketBytes = gridBytes.slice(outerPrimeSum + 1, secondZero);
+assert.equal(bracketBytes.length, 36);
+
+/** @param {number} base @param {number} exponent @param {number} modulus @returns {number} */
+function modPow(base, exponent, modulus) {
+  let b = BigInt(base);
+  let e = BigInt(exponent);
+  const m = BigInt(modulus);
+  let out = 1n;
+  b %= m;
+  while (e > 0n) {
+    if (e & 1n) out = (out * b) % m;
+    b = (b * b) % m;
+    e >>= 1n;
+  }
+  return Number(out);
+}
+
+// Two literal DH roles for the source bracket bytes:
+// 1. each byte is a client share handled by the selected server secret331;
+// 2. each byte is an exponent of the selected base2757.
+const serverShareKeys = bracketBytes.map((b) => modPow(b, 331, 3301) % A);
+const exponentKeys = bracketBytes.map((b) => modPow(2757, b, 3301) % A);
+
+// The final five large marks are on solved p56/p57 and therefore form a fixed gate.
+const p56Cipher = corpus.pages.find((page) => page.page === 56).indices;
+const p57Cipher = corpus.pages.find((page) => page.page === 57).indices;
+const p56Plain = parseRuneWords(
+  solved.sections.find((section) => section.name === "p56_an_end").source_text).flat();
+const p57Plain = parseRuneWords(
+  solved.sections.find((section) => section.name === "p57_parable").source_text).flat();
+assert.equal(p56Cipher.length, 85);
+assert.equal(p57Cipher.length, 95);
+assert.equal(p56Plain.length, 85);
+assert.equal(p57Plain.length, 95);
+
+const solvedMarkCipher = [p56Cipher[4], p56Cipher[44], p56Cipher[84], p57Cipher[6], p57Cipher[94]];
+const solvedMarkPlain = [p56Plain[4], p56Plain[44], p56Plain[84], p57Plain[6], p57Plain[94]];
+assert.deepEqual(solvedMarkCipher, [4,25,15,18,18]);
+assert.deepEqual(solvedMarkPlain, [23,3,18,18,18]);
+
+function solvedMarkMatches(keys, sign) {
+  const tail = keys.slice(-5);
+  return solvedMarkCipher.reduce((count, value, i) =>
+    count + (mod(value + sign * tail[i]) === solvedMarkPlain[i] ? 1 : 0), 0);
+}
+const dhSolvedGate = {
+  serverShareByteSubtract: solvedMarkMatches(serverShareKeys, -1),
+  serverShareByteAdd: solvedMarkMatches(serverShareKeys, 1),
+  exponentByteSubtract: solvedMarkMatches(exponentKeys, -1),
+  exponentByteAdd: solvedMarkMatches(exponentKeys, 1)
+};
+assert.deepEqual(dhSolvedGate, {
+  serverShareByteSubtract: 0,
+  serverShareByteAdd: 0,
+  exponentByteSubtract: 1,
+  exponentByteAdd: 1
+});
+
 const BASE29_DIGITS = "0123456789ABCDEFGHIJKLMNOPQRS";
 /** @param {number} value @returns {number[]} */
 function base29Digits(value) {
@@ -219,6 +279,7 @@ const result = {
     secondZero,
     zeroBracketLength: secondZero - outerPrimeSum - 1,
     largePunctuationCount: ink.counts.large,
+    dhSolvedGate,
     tupleSeed,
     shared1067Base29: sharedDigits.map((v) => BASE29_DIGITS[v]).join("")
   },
