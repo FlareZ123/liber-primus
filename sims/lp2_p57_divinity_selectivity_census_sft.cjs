@@ -55,7 +55,14 @@ function translit(word) {
 }
 
 function analyzeWord(word) {
-  assert.ok(word.length >= 2);
+  if (word.length < 2) {
+    return {
+      word: translit(word),
+      length: word.length,
+      addressable: false,
+      ineligible: "length<2"
+    };
+  }
   const innerAddress = primeSum(word.slice(1, -1));
   const outerAddress = primeSum([word[0], word[word.length - 1]]);
   const addressable = innerAddress >= 0 && innerAddress < cells.length &&
