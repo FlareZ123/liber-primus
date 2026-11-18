@@ -109,7 +109,7 @@ const middle=["I","MAY","CRY","NOW"];
 const second=["THE","IDEA","OF","THE","END","IS","DEATH"];
 const next=["SEE","YOU","SOON"];
 assert.deepEqual(phraseMetrics(opening),{words:7,runes:21,indexSum:233,gpSum:825});
-assert.deepEqual(phraseMetrics(middle),{words:4,runes:10,indexSum:126,gpSum:484});
+assert.deepEqual(phraseMetrics(middle),{words:4,runes:10,indexSum:133,gpSum:484});
 assert.deepEqual(phraseMetrics(second),{words:7,runes:17,indexSum:232,gpSum:854});
 assert.deepEqual(phraseMetrics(next),{words:3,runes:10,indexSum:111,gpSum:396});
 
