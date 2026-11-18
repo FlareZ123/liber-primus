@@ -139,8 +139,14 @@ candidate 80-bit payload, and an arbitrary 80-bit value can be rendered as a
 
 No exact occurrence of the label, the onion address, or either residual factor
 was found in repository search or ordinary web search during this invocation.
-The repository's bounded public 2017 Tor-graph supplement probe has been
-extended to check this exact host and dispatched separately.
+
+The bounded public 2017 Tor-graph supplement probe completed successfully on
+GitHub Actions run **44401023454**. The candidate is absent from all three
+published node inventories: 12,833 rows (22 Feb 2017), 25,308 rows (10 Apr
+2017), and 17,460 rows (22 May 2017). The authentic 2014 Cicada onion and the
+historical missing continuation are absent from the same inventories, so this
+is only a bounded archival miss; it does not exclude a short-lived 2014
+service.
 
 ## 5. Selection controls and rejected consumers
 
@@ -163,12 +169,14 @@ Several tempting consumers were tested before freezing this note:
    `13d15abca01d46b0f5b9932c67b63513`. Direct AES-ECB, first-block-IV CBC,
    AES-counter generation, and repeated-XOR consumers against p50 were
    negative. No AES route is promoted.
-5. **Leave-one-mark check.** Across the 31 possible single-mark omissions,
-   13 reduced ranks are divisible by 31. Three consecutive omissions around
-   the p6/p7 run of adjacent 13-dot events produce the same `13...13`
-   quotient because they delete one bit from an uninterrupted run of ones.
-   The black mark is visually unique and therefore motivates the red-only
-   class, but the quotient framing is not independently unique.
+5. **Leave-one-mark check.** The 31 possible single-13-dot omissions collapse
+   to 17 distinct 30-of-255 ranks because deleting different positions inside
+   an uninterrupted run of ones can give the same reduced bit pattern. Only
+   **one of those 17 distinct ranks** is divisible by all three p27-local
+   factors `19 × 31 × 103`. The black mark deletion lands on that rank. Its
+   two neighboring red-mark deletions yield the same bit pattern, so the
+   arithmetic does not distinguish those three physical omissions; the unique
+   black color is still the source cue that selects the red-only tape.
 
 These controls prevent the candidate from being promoted merely because an
 80-bit factor can be formatted as an onion label.
@@ -213,3 +221,8 @@ Treat this as a high-priority candidate continuation, not a solution.
    address-like strings.
 
 **Reproducer:** `sims/lp2_primeecho_red13_onion_candidate_sft.cjs`.
+
+GitHub Actions run **44401658912** executed the strengthened reproducer on
+Node 22 and passed every assertion, including the p27 local offsets, prime
+sums, complete factorization, residual probable-prime checks, and the final
+Tor-v2 base32 label.
