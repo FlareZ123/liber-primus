@@ -102,6 +102,9 @@ function collectReports(jsonDir, urls, snapshots) {
       'linkedSites',
       'relatedOnionServices',
       'relatedOnionDomains',
+      'pageReferencedDirectories',
+      'interestingFiles',
+      'openDirectories',
       'crawls'
     ]) {
       collectOnionStrings(report[field], urls);
