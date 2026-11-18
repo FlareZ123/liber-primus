@@ -229,6 +229,70 @@ for (let trial = 0; trial < TRIALS; trial++) {
   }
 }
 
+
+/**
+ * Entirely independent codebooks may also be keyed by the *length* of a
+ * printed word. The 720 actual three-rune words supply 720 paired suffix
+ * differences, with two arbitrary independent codebooks for positions 1,2.
+ * The fixed length=3 class must satisfy its own data-processing inequality.
+ * This isolates an otherwise underpowered pooled (length,phase) MI bound.
+ * @param {number[][]} twoSymbolPairs
+ * @returns {number}
+ */
+function pairedMI(twoSymbolPairs) {
+  const joint = new Uint16Array(841);
+  const left = new Uint16Array(29);
+  const right = new Uint16Array(29);
+  const count = twoSymbolPairs.length;
+  assert.ok(count > 0);
+  for (const pair of twoSymbolPairs) {
+    assert.equal(pair.length, 2);
+    const [a, b] = pair;
+    joint[29 * a + b]++;
+    left[a]++;
+    right[b]++;
+  }
+  let bits = 0;
+  for (let a = 0; a < 29; a++) {
+    for (let b = 0; b < 29; b++) {
+      const n = joint[29 * a + b];
+      if (n) bits += n / count * Math.log2(n * count / (left[a] * right[b]));
+    }
+  }
+  return bits;
+}
+const threeRuneDiffs = actualDiffs.filter((word) => word.length === 2);
+assert.equal(threeRuneDiffs.length, 720);
+const threeRuneOriginalBits = pairedMI(threeRuneDiffs);
+assert.ok(Math.abs(threeRuneOriginalBits - 0.8960592839082184) < 1e-10);
+const threeRunePlantPlain = plantPlain.filter((word) => word.length === 3)
+  .map((word) => word.slice(1));
+const threeRunePlantDiff = plantDiff.filter((word) => word.length === 2);
+assert.ok(Math.abs(pairedMI(threeRunePlantPlain) -
+  pairedMI(threeRunePlantDiff)) < 1e-10);
+let threeRuneMinControl = Infinity;
+let threeRuneMaxControl = -Infinity;
+const threeRuneControlValues = [];
+for (let trial = 0; trial < TRIALS; trial++) {
+  const sample = Array.from({length: 720},
+    () => buckets[3][next() % buckets[3].length].slice(1));
+  const bits = pairedMI(sample);
+  threeRuneMinControl = Math.min(threeRuneMinControl, bits);
+  threeRuneMaxControl = Math.max(threeRuneMaxControl, bits);
+  threeRuneControlValues.push(bits);
+}
+assert.ok(threeRuneMinControl > threeRuneOriginalBits);
+threeRuneControlValues.sort((a, b) => a - b);
+const threeRuneLengthPhase = {
+  originalWords: 720,
+  secretCodebooksAllowed: "independent arbitrary maps for length3 positions1 and2",
+  observedUpperBoundBits: +threeRuneOriginalBits.toFixed(9),
+  sourceControlMinBits: +threeRuneMinControl.toFixed(9),
+  sourceControlMedianBits: +threeRuneControlValues[Math.floor(TRIALS / 2)].toFixed(9),
+  sourceControlMaxBits: +threeRuneMaxControl.toFixed(9),
+  controlsAtOrBelowOriginal: 0
+};
+
 const summary = observed.map((item) => {
   const sorted = item.controlValues.sort((a, b) => a - b);
   const result = {
@@ -258,7 +322,8 @@ console.log(JSON.stringify({
     seed: INITIAL_SEED
   },
   summary,
+  threeRuneLengthPhase,
   plantedKnownKeyRecovery: "PASS for all 10060 suffix runes",
-  decision: "Fixed and short word-local phase GP29 difference-symbol maps do not produce Shakespeare-like native English. Stateful or external-key decoders remain open."
+  decision: "Fixed, word-local phase, and word-length-dependent phase codebooks fail source-like GP English under the specified original-input necessary conditions. Stateful or external-key decoders remain open."
 }, null, 2));
 console.log("PASS: source-original differential necessary-condition test");
