@@ -29,6 +29,8 @@ This evidence **does not** invalidate the square, the perimeter/word cardinality
 
 ## Inputs and verification
 
+The complete script passed independently on Windows-latest with Node.js 22: [successful CI execution 44357070029](https://github.com/FlareZ123/liber-primus/actions/runs/44357070029). The execution printed all eight original-branch results, and all original and planted reencryption assertions passed.
+
 - Exactly 256 printed original p49–51 tokens in `resources/liber-primus/lp2-grid-256.json`, with the declared base60 and explicitly conditional radix59.
 - Exact original physical p55 76-rune sequence, and 16 complete 75-rune word sequence, from `resources/liber-primus/lp2-transcription.txt` and independently cross-checked against `lp2-corpus.json`.
 - Independently clear p57's original 95-rune GP text for all eight planted encrypt/decrypt controls.
