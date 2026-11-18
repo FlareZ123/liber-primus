@@ -1,7 +1,7 @@
 'use strict';
 /**
  * Original LP2 p39 / numerical-grid factor-16 quotient: eliminate all independent
- * word-local GP29 alphabet bijections, including unknown wordwise affine keys.
+ * word-local GP29 alphabet bijections and free within-word transpositions.
  * Read-only, deterministic Windows/Node.js 22 single-file test.
  *
  * Inputs are original physical p39 rune indices, its genuine printed word spans,
@@ -91,7 +91,10 @@ assert.equal(spans.reduce((sum, [a, b]) => sum + b - a, 0), 240);
  * independent unknown Caesar, affine, or unrestricted bijective 29-rune key.
  */
 function matches(plaintext, register) {
-  const result = { shift: 0, affine: 0, arbitraryBijection: 0, longShift: 0, longAffine: 0, longBijection: 0 };
+  const result = {
+    shift: 0, affine: 0, arbitraryBijection: 0, permutedBijection: 0,
+    longShift: 0, longAffine: 0, longBijection: 0, longPermutedBijection: 0,
+  };
   for (const [start, end] of spans) {
     const length = end - start;
     const b = modulo(plaintext[start] - register[start]);
@@ -121,6 +124,13 @@ function matches(plaintext, register) {
       forward.set(from, to);
       backward.set(to, from);
     }
+    const spectrum = (data) => {
+      const counts = new Map();
+      for (let i = start; i < end; i += 1) counts.set(data[i], (counts.get(data[i]) ?? 0) + 1);
+      return [...counts.values()].sort((a, b) => a - b).join(',');
+    };
+    const permutedBijection = spectrum(plaintext) === spectrum(register);
+    result.permutedBijection += Number(permutedBijection);
     result.shift += Number(shift);
     result.affine += Number(affine);
     result.arbitraryBijection += Number(bijection);
@@ -128,6 +138,7 @@ function matches(plaintext, register) {
       result.longShift += Number(shift);
       result.longAffine += Number(affine);
       result.longBijection += Number(bijection);
+      result.longPermutedBijection += Number(permutedBijection);
     }
   }
   return result;
@@ -148,9 +159,9 @@ const original = {
   reversedEachWord: matches(p39, reverseWords(q240)),
 };
 assert.deepEqual(original, {
-  printed: { shift: 2, affine: 7, arbitraryBijection: 34, longShift: 0, longAffine: 0, longBijection: 8 },
-  reversedFull: { shift: 3, affine: 7, arbitraryBijection: 35, longShift: 0, longAffine: 0, longBijection: 8 },
-  reversedEachWord: { shift: 2, affine: 7, arbitraryBijection: 34, longShift: 0, longAffine: 0, longBijection: 8 },
+  printed: { shift: 2, affine: 7, arbitraryBijection: 34, permutedBijection: 39, longShift: 0, longAffine: 0, longBijection: 8, longPermutedBijection: 13 },
+  reversedFull: { shift: 3, affine: 7, arbitraryBijection: 35, permutedBijection: 38, longShift: 0, longAffine: 0, longBijection: 8, longPermutedBijection: 10 },
+  reversedEachWord: { shift: 2, affine: 7, arbitraryBijection: 34, permutedBijection: 39, longShift: 0, longAffine: 0, longBijection: 8, longPermutedBijection: 13 },
 });
 
 // A planted register with independent secret word multipliers and offsets.
@@ -171,8 +182,8 @@ const positive = divide(plantedTable, factor16);
 assert.ok(positive.remainder.every((x) => x === 0));
 assert.deepEqual(positive.quotient, plantedKeyed);
 assert.deepEqual(matches(plantedPlain, positive.quotient), {
-  shift: 4, affine: 55, arbitraryBijection: 55,
-  longShift: 1, longAffine: 25, longBijection: 25,
+  shift: 4, affine: 55, arbitraryBijection: 55, permutedBijection: 55,
+  longShift: 1, longAffine: 25, longBijection: 25, longPermutedBijection: 25,
 });
 
 console.log(JSON.stringify({
