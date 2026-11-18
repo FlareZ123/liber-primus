@@ -349,6 +349,24 @@ assert.equal(strictBase60Closures[0].hits[0].receiverWord, 52);
 assert.equal(strictBase60Closures[0].hits[0].signedWord, "EMPTY");
 assert.equal(strictBase60Closures[0].hits[0].destination, 236);
 
+// Joint receiver/radix discriminator. Charge both event classes that were
+// already part of the frozen p0 grammar: a signed-adjacent output landing on an
+// exact receiver word boundary, and a typed receiver-word self-closure.
+// Across every page and both source-supported radices, only base60/p0 has both.
+for (const [boundaryConvention, byRadix] of Object.entries(result)) {
+  const joint = [];
+  for (const [radix, row] of Object.entries(byRadix)) {
+    const boundaryPages = new Set(row.pagesWithBoundaryCrossings.map((x) => x.page));
+    for (const closurePage of row.pagesWithTypedClosures) {
+      if (boundaryPages.has(closurePage.page)) {
+        joint.push({radix, page: closurePage.page});
+      }
+    }
+  }
+  assert.deepEqual(joint, [{radix: "base60", page: 0}],
+    boundaryConvention + ": receiver/radix conjunction drifted");
+}
+
 // Lock the already-published p0 base60 behavior so the familywise extension
 // cannot silently drift from the current receiver grammar.
 const p0 = result.pageLocal.base60;
