@@ -148,10 +148,23 @@ assert.deepEqual(registers, {
   interiorPhi: 72,
 });
 assert.equal(registers.wholePhi, emerge.prime);
+assert.equal(gp0(shell), surface.gp0);
 assert.equal(registers.shellPrime, surface.prime);
 assert.equal(registers.interiorPhi, the.prime);
-assert.equal(phi(emerge.prime), 80);
 assert.equal(phi(surface.prime), 80);
+assert.equal(phi(emerge.prime), 80);
+
+const p27 = corpus.pages.find((page) => page.page === 27);
+assert.ok(p27);
+const p27Carrier = p27.indices.slice(79, 91);
+const p27Interior = p27Carrier.slice(K, -K);
+const p27Shell = p27Carrier.slice(0, K).concat(p27Carrier.slice(-K));
+assert.equal(p27.indices[80], p27Carrier[1]);
+assert.equal(spell(p27Carrier), "EORNSOOCAEYEE");
+assert.equal(phi(primeSum(p27Carrier)), p57Word("INSTAR").prime);
+assert.equal(primeSum(p27Shell), p57Word("MUST").prime);
+assert.equal(primeSum(p27Interior), p57Word("DIUINITY").prime);
+assert.equal(phi(primeSum(p27Interior)), p57Word("LICE").prime);
 
 /* Global holdout over all complete p0..p55 words. */
 const tripleHits = [];
@@ -203,7 +216,18 @@ console.log(JSON.stringify({
     shell: spell(shell),
     registers,
     semanticOrderFromInsideOut: ["THE", "SURFACE", "EMERGE"],
+    shellGp0: gp0(shell),
+    shellGp0Target: "SURFACE",
     commonTotient: phi(surface.prime),
+    commonTotientReceiver: {
+      page: 27,
+      offset: 80,
+      carrier: spell(p27Carrier),
+      wholePhiTarget: "INSTAR",
+      shedShellTarget: "MUST",
+      shedInteriorTarget: "DIUINITY",
+      shedInteriorPhiTarget: "LIKE",
+    },
   },
   globalTripleHits: tripleHits,
 }, null, 2));
