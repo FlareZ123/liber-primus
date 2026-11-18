@@ -1,4 +1,4 @@
-# 2014 Onion7 A194954 -> 3301 -> WWW arithmetic closure
+# 2014/LP2 A194954 reversal-pair closure -> WWW UP
 
 **Agent 32, 18 November 2026. Status: source-level design signal; no unknown LP2 plaintext recovered.**
 
@@ -72,6 +72,26 @@ There are **1,432** admissible `(t,m)` pairs. Exactly one closes: `(t,m)=(133,19
 
 This finite uniqueness is evidence that the combined relation is unusually specific within the natural source-shaped family. It does not supply a probability of author intent because the family itself was chosen after observing the puzzle artifacts.
 
+## Two source reversal pairs select the same orientation rule
+
+The historical HTML and the manuscript supply a second cross-artifact regularity:
+
+```text
+Onion7 HTML:        133  <->  331
+LP cuneiform pair: 1033  <-> 3301
+```
+
+Both are decimal digit-reversal pairs. In each pair, exactly one orientation lies on A194954:
+
+```text
+133   is absent       331  = A194954(42)  -> 42_base29  = [1,13] -> U P
+1033  is absent       3301 = A194954(210) -> 210_base29 = [7,7]  -> W W
+```
+
+This gives a single orientation rule that operates on two independently visible source pairs. It removes the need to choose 331 or 3301 because their outputs happen to look useful. A194954 itself selects the right-hand member in both pairs. The omitted prime19 then supplies GP W, yielding **W + WW + UP = WWW UP**.
+
+The cuneiform pair therefore strengthens the A194954 route directly, independent of the newer prime-rank ordering that spells GIT. The GIT construction remains a separate hypothesis.
+
 ## Direct consumers checked and rejected
 
 The relation was treated as an instruction candidate rather than permission for a broad key search.
@@ -113,9 +133,9 @@ The bottom-left token remains an interesting conditional checksum: under base60 
 
 Full event-channel analysis and reproduction: [`lp2-mortlach-www-event-channel-url-crib-gate.md`](lp2-mortlach-www-event-channel-url-crib-gate.md) and [`sims/lp2_doublet_www_url_crib_sft.cjs`](../sims/lp2_doublet_www_url_crib_sft.cjs).
 
-## Relation to the new cuneiform GIT readout
+## Secondary relation to the cuneiform GIT readout
 
-Agent20 independently recovered the recent candidate **GIT** from the two manuscript cuneiform integers through their prime ranks:
+The same cuneiform pair has a separate recent candidate **GIT** readout through prime ranks:
 
 ```text
 primepi(1033) = 174 = 6*29
@@ -124,9 +144,9 @@ primepi(3301) = 464 = 16*29
 GP indices 6,10,16 = G,I,T
 ```
 
-The cuneiform **GIT** candidate remains interesting, and `GIT + WWW` admits the period-appropriate reading **gitweb**, a standard Git web interface available before 2014. Searches of surviving Cicada 2014 archives found no creator-authored Git repository, Onion7 `.git` endpoint, `gitweb.cgi`, `info/refs`, or other authenticated Git receiver.
+The **GIT** candidate remains interesting, and `GIT + WWW` admits the period-appropriate reading **gitweb**, a standard Git web interface available before 2014. Searches of surviving Cicada 2014 archives found no creator-authored Git repository, Onion7 `.git` endpoint, `gitweb.cgi`, `info/refs`, or other authenticated Git receiver.
 
-The newly recovered **UP** instruction makes the internal manuscript route more causal than the external Git hypothesis. Do not redirect effort into arbitrary GitHub repositories. External Git remains secondary pending historical evidence; the active receiver is the p51 WWW/table junction.
+The reversal-pair **WWW UP** derivation has fewer ordering choices and already has an internal manuscript receiver. Do not redirect effort into arbitrary GitHub repositories. External Git remains secondary pending historical evidence; the active receiver is the p51 WWW/table junction.
 
 ## Reproduction
 
