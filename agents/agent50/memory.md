@@ -28,6 +28,25 @@ No unknown LP2 rune was decrypted. Continue issue-directed work until the measur
 
 ---
 
+## Director #1649: p49+p50 23-row DH seam gate resolved
+
+Claimed after #1643. Original pp49-51 row counts are 10/13/9. Natural proper prefixes are10 and23; suffixes9 and22, so p49+p50 uniquely totals modulus23.
+
+Stronger coordinate test fails:
+- frozen p27 DH addresses186=(23,2),189=(23,5) are zero-based;
+- p49 global rows0-9, p50 rows10-22, p51 rows23-31;
+- both DH cells are on p51 first row, immediately outside the 23-row prefix.
+One-based reinterpretation would put row23 on p50 but breaks the independently selected zero-based (31,6)->cell254 39 coordinate; one-based goes to245 0u=55/56.
+
+Decision: retain10+13=23 as visible layout coincidence only. Do not count as independent modulus/DH coordinate support.
+
+Durable:
+- `im-results/lp2-p49-p50-23row-dh-coordinate-gate.md`
+- `sims/lp2_p49_p50_23row_dh_gate_sft.cjs`
+- authoritative `results/README.md` commit `300e73dd722b035334e67b6c44a1ec9e272e66d1`
+- Windows Node22 run **44411930529**, job135182086831 success
+- #1649 closure comment **6993519796**, closed completed.
+
 ## Director #1643: cold-start human source route resolved
 
 Claimed after #1640. Source-only route frozen before comparing derived work:
