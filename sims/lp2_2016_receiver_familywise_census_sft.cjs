@@ -342,7 +342,46 @@ assert.equal(p0Bracket.hits.length, 1);
 assert.equal(p0Bracket.hits[0].pair, "SEEKS / THE");
 assert.equal(p0Bracket.hits[0].phrase, "THE ROAD");
 
+const compact = {};
+for (const [boundaryConvention, byRadix] of Object.entries(result)) {
+  compact[boundaryConvention] = {};
+  for (const [radix, row] of Object.entries(byRadix)) {
+    const nontrivialBracketPages = row.pagesWithBracketPhraseMatches
+      .map((pageRow) => ({
+        page: pageRow.page,
+        hits: pageRow.hits.filter((hit) => hit.vector.length >= 2),
+      }))
+      .filter((pageRow) => pageRow.hits.length);
+    const typedPages = row.pagesWithTypedClosures.map((pageRow) => pageRow.page);
+    compact[boundaryConvention][radix] = {
+      receiverPageCount: row.receiverPageCount,
+      boundaryCrossingPages: row.pagesWithBoundaryCrossings.map((pageRow) => ({
+        page: pageRow.page,
+        hitCount: pageRow.hits.length,
+        pairs: pageRow.hits.map((hit) => hit.pair),
+      })),
+      nontrivialBracketPhrasePages: nontrivialBracketPages.map((pageRow) => ({
+        page: pageRow.page,
+        hitCount: pageRow.hits.length,
+        examples: pageRow.hits.slice(0, 4).map((hit) => ({
+          sourcePair: hit.pair,
+          vector: hit.vector,
+          phrase: hit.phrase,
+        })),
+      })),
+      typedClosurePages: row.pagesWithTypedClosures.map((pageRow) => ({
+        page: pageRow.page,
+        hitCount: pageRow.hits.length,
+        hits: pageRow.hits,
+      })),
+      pagesWithBothTypedClosureAndNontrivialBracket:
+        nontrivialBracketPages.map((pageRow) => pageRow.page)
+          .filter((page) => typedPages.includes(page)),
+    };
+  }
+}
+
 console.log(JSON.stringify({
   status:"PASS: full receiver-family census completed without changing the frozen GP0->p50 grammar",
-  result,
+  compact,
 }, null, 2));
