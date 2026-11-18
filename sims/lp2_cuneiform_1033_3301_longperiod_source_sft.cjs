@@ -195,6 +195,69 @@ for (const part of nativePages) assert.deepEqual(constrainedDecode(constrainedEn
 assert.deepEqual([originalPageAligned, originalPageRank, plantedPageAligned],
   [{ pairs: 311132, equal: 10751 }, { pairs: 311132, equal: 11058 }, { pairs: 311132, equal: 18657 }]);
 
+/* Distinct word-index 1033 clock: the 2016 signed clue explicitly mentions words
+ * and numbers. The source transcription has no % separator for rune-free p50. */
+const originalText = fs.readFileSync(path.join(root, 'resources', 'liber-primus', 'lp2-transcription.txt'), 'utf8');
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const flattenedUnknown = originalText.split('%').slice(0, 55).join('').replace(/[/%\s]/g, '');
+const originalWords = flattenedUnknown.split(/[-.]/).map((word) =>
+  Array.from(word).map((rune) => runeIndex.get(rune)).filter((index) => index !== undefined))
+  .filter((word) => word.length > 0);
+assert.equal(originalWords.length, 2896);
+assert.deepEqual(originalWords.flat(), original);
+const nativeWords = (gibran.slice(proseStart).match(/[A-Za-z]+/g) || [])
+  .map(nativeEnglish).filter((word) => word.length > 0).slice(0, originalWords.length);
+assert.equal(nativeWords.length, 2896);
+
+/** Word-index clock; individual letters can use separate secret positions. */
+function wordLag(words, period) {
+  let first = 0;
+  let last = 0;
+  let pairs = 0;
+  let equal = 0;
+  for (let i = period; i < words.length; i++) {
+    const a = words[i];
+    const b = words[i - period];
+    if (a[0] === b[0]) first++;
+    if (a[a.length - 1] === b[b.length - 1]) last++;
+    for (let j = 0; j < Math.min(a.length, b.length); j++) {
+      pairs++;
+      if (a[j] === b[j]) equal++;
+    }
+  }
+  return { words: words.length - period, first, last, pairs, equal };
+}
+
+const originalWordLag = wordLag(originalWords, 1033);
+const originalWordChainLag = wordLag(originalWords.map(rankSteps), 1033);
+const plantedWordLag = wordLag(nativeWords, 1033);
+assert.deepEqual(originalWordLag, { words: 1863, first: 76, last: 63, pairs: 5940, equal: 228 });
+assert.deepEqual(originalWordChainLag, { words: 1863, first: 76, last: 60, pairs: 5940, equal: 220 });
+assert.deepEqual(plantedWordLag, { words: 1863, first: 122, last: 181, pairs: 5221, equal: 463 });
+
+const wordWidth = 64;
+assert(nativeWords.every((word) => word.length <= wordWidth));
+const wordKey29 = fixedKey(1033 * wordWidth, 29);
+const wordKey28 = fixedKey(1033 * wordWidth, 28);
+const wordCipher = nativeWords.map((word, i) => word.map((symbol, j) =>
+  (symbol + wordKey29[(i % 1033) * wordWidth + j]) % 29));
+assert.deepEqual(wordLag(wordCipher, 1033), plantedWordLag);
+assert.deepEqual(wordCipher.map((word, i) => word.map((symbol, j) =>
+  (symbol - wordKey29[(i % 1033) * wordWidth + j] + 29) % 29)), nativeWords);
+
+const wordChain = nativeWords.map((word, i) => {
+  let prior = 0;
+  return word.map((symbol, j) => {
+    const key = wordKey28[(i % 1033) * wordWidth + j];
+    const step = symbol === 28 ? 0 : 1 + (symbol + key) % 28;
+    prior = (prior + step) % 29;
+    return prior;
+  });
+});
+assert.deepEqual(wordLag(wordChain.map(rankSteps), 1033), plantedWordLag);
+assert.deepEqual(wordChain.map((word, i) => rankSteps(word).map((symbol, j) =>
+  symbol === 28 ? 28 : (symbol - wordKey28[(i % 1033) * wordWidth + j] + 28) % 28)), nativeWords);
+
 console.log(JSON.stringify({
   schema: 1,
   corpusRunes: original.length,
@@ -209,6 +272,12 @@ console.log(JSON.stringify({
     originalRaw: { ...original1033Chapter, z: zUniform(original1033Chapter) },
     originalNoRepeatRank: { ...original1033ChapterRank, z: zUniform(original1033ChapterRank) },
     nativePositive: { ...planted1033Chapter, z: zUniform(planted1033Chapter) },
+  },
+  wordIndexPeriod1033: {
+    originalRaw: originalWordLag,
+    originalNoRepeatRank: originalWordChainLag,
+    nativePositive: plantedWordLag,
+    nativeExactWordRecovery: '2896/2896 for each fixed word-period model',
   },
   pageResetSharedKey: {
     originalRaw: { ...originalPageAligned, z: zUniform(originalPageAligned) },
