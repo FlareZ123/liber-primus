@@ -64,9 +64,21 @@ assert.deepEqual(instruction.map(row => row.text), [
   "FIND", "THE", "DIUINITY", "WITHIN", "AND", "EMERGE",
 ]);
 assert.equal(instruction.length, 12);
-const key = instruction.map(row => mod29(row.gp0));
-assert.deepEqual(key, [25, 22, 6, 8, 19, 15, 13, 20, 18, 9, 27, 25]);
+const gp0Key = instruction.map(row => mod29(row.gp0));
+assert.deepEqual(gp0Key, [25, 22, 6, 8, 19, 15, 13, 20, 18, 9, 27, 25]);
 
+/*
+ * Route-derived numeric witnesses in sentence order:
+ * WE=B66, MUST=p151, SHED=K87, OUR=shell difference8,
+ * OWN=shell sum mod29=19, CIRCUMFERENCES=inner prime131,
+ * FIND=GP0(FIND)42, THE=20, DIVINITY=35*3=105,
+ * WITHIN=35+3=38, AND=A107, EMERGE=whole GP0 83.
+ */
+const routeNumbers = [66, 151, 87, 8, 19, 131, 42, 20, 105, 38, 107, 83];
+const routeKey = routeNumbers.map(mod29);
+assert.deepEqual(routeKey, [8, 6, 0, 8, 19, 15, 13, 20, 18, 9, 20, 25]);
+
+const keyFamilies = { gp0: gp0Key, route: routeKey };
 const candidates = [];
 for (const physicalPage of [28, 29, 30, 31]) {
   const lines = physicalLines(physicalPage);
@@ -75,17 +87,20 @@ for (const physicalPage of [28, 29, 30, 31]) {
   assert.ok(page);
   assert.deepEqual(lines.flat(), page.indices);
 
-  for (const [direction, sign] of [["subtract", -1], ["add", 1]]) {
-    const decodedLines = lines.map((line, lineIndex) =>
-      line.map(rune => mod29(rune + sign * key[lineIndex]))
-    );
-    const plain = decodedLines.flat();
-    candidates.push({
-      page: physicalPage,
-      direction,
-      score: model.scoreChapters(decodedLines).mean,
-      prefix: model.spell(plain.slice(0, 120)),
-    });
+  for (const [keyName, key] of Object.entries(keyFamilies)) {
+    for (const [direction, sign] of [["subtract", -1], ["add", 1]]) {
+      const decodedLines = lines.map((line, lineIndex) =>
+        line.map(rune => mod29(rune + sign * key[lineIndex]))
+      );
+      const plain = decodedLines.flat();
+      candidates.push({
+        page: physicalPage,
+        keyName,
+        direction,
+        score: model.scoreChapters(decodedLines).mean,
+        prefix: model.spell(plain.slice(0, 120)),
+      });
+    }
   }
 }
 
@@ -94,10 +109,10 @@ const controlLines = Array.from({ length: 12 }, (_, i) =>
   model.training.slice(i * 20, i * 20 + 20)
 );
 const planted = controlLines.map((line, i) =>
-  line.map(rune => mod29(rune + key[i]))
+  line.map(rune => mod29(rune + routeKey[i]))
 );
 const recovered = planted.map((line, i) =>
-  line.map(rune => mod29(rune - key[i]))
+  line.map(rune => mod29(rune - routeKey[i]))
 );
 assert.deepEqual(recovered, controlLines);
 const controlScore = model.scoreChapters(recovered).mean;
@@ -106,7 +121,9 @@ assert.ok(controlScore > -2.7);
 candidates.sort((a, b) => b.score - a.score);
 console.log(JSON.stringify({
   instruction: instruction.map(row => ({ word: row.text, gp0: row.gp0 })),
-  key,
+  gp0Key,
+  routeNumbers,
+  routeKey,
   best: candidates,
   controls: {
     solvedP57: model.p57Score,
