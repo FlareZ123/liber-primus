@@ -143,6 +143,53 @@ const plantedLag5 = withinWordFiveBack(plant);
 const sourceLarge = minimumLargePrimeGaps(original);
 const plantedLarge = minimumLargePrimeGaps(plant);
 
+
+/**
+ * Every prime except 29 is nonzero modulo29. Under C[i] =
+ * (prime[start+i] + slope*i + offset) mod29, the inferred prime residue is
+ * zero exactly where C[i]-slope*i equals offset modulo29. There can be at
+ * most ONE such occurrence in an unbroken consecutive-prime tape.
+ *
+ * Return the fewest forced zero residues across ALL 29 slopes and
+ * ALL 29 additive offsets, independent of the prime starting index.
+ * A result greater than one is an exact all-parameter impossibility.
+ *
+ * @param {number[]} tape
+ * @returns {{minimum: number, slope: number, offset: number}}
+ */
+function primeDivisibilityMinimum(tape) {
+  let best = { minimum: Infinity, slope: 0, offset: 0 };
+  for (let slope = 0; slope < 29; slope++) {
+    const counts = Array(29).fill(0);
+    for (let i = 0; i < tape.length; i++) {
+      counts[mod29(tape[i] - slope * i)]++;
+    }
+    for (let offset = 0; offset < 29; offset++) {
+      if (counts[offset] < best.minimum) {
+        best = { minimum: counts[offset], slope, offset };
+      }
+    }
+  }
+  return best;
+}
+
+const physicalChapters = [
+  [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+  [27, 32], [33, 39], [40, 53], [54, 55]
+];
+const fullDivisibility = primeDivisibilityMinimum(original);
+const chapterDivisibility = physicalChapters.map(([first, last]) => ({
+  pages: `p${first}-${last}`,
+  ...primeDivisibilityMinimum(corpus.pages
+    .filter((p) => p.page >= first && p.page <= last)
+    .flatMap((p) => p.indices))
+}));
+assert.equal(fullDivisibility.minimum, 389);
+assert.deepEqual(chapterDivisibility.map((x) => x.minimum),
+  [13, 21, 34, 36, 18, 30, 34, 75, 2]);
+assert.ok(chapterDivisibility.every((x) => x.minimum > 1));
+assert.equal(primeDivisibilityMinimum(plant).minimum, 0);
+
 // Exact original-source and independently generated control assertions.
 assert.equal(sourceSteps[0], 86);
 assert.equal(plantedSteps[0], 76);
@@ -160,6 +207,10 @@ console.log(JSON.stringify({
   repeated: { original: sourceSteps[0], plant: plantedSteps[0] },
   transitions: { original: sourceSteps, plant: plantedSteps, totalVariation: distance },
   fifthBackWithinWords: { original: sourceLag5, plant: plantedLag5 },
-  minimumNecessaryPrimeGapsOver58: { original: sourceLarge, plant: plantedLarge }
+  minimumNecessaryPrimeGapsOver58: { original: sourceLarge, plant: plantedLarge },
+  allStartAllAffineOrdinalPrimeDivisibility: {
+    full: fullDivisibility, chapters: chapterDivisibility,
+    fixedPrimePlant: primeDivisibilityMinimum(plant)
+  }
 }, null, 2));
-console.log('PASS: tempting prime-clock rate match fails original transition/word structure.');
+console.log('PASS: every direct affine-ordinal prime generator is impossible on each original chapter, independent of prime start.');
