@@ -65,7 +65,7 @@ assert.equal(gp.pages[53].indices.length,179);
 assert.equal(gp.pages[55].indices.length,76);
 assert.equal(gp.pages[55].indices[0],21); // carried NG from p54
 for(const [page,ending] of [[53,179],[55,76]]) {
-  const marks=ink.pages[page].large_punctuation.filter(e=>e[0]===ending && e[1]===13);
+  const marks=ink.pages.find(p=>p.page===page).large_punctuation.filter(e=>e[0]===ending && e[1]===13);
   assert.equal(marks.length,1);
 }
 assert.equal(grid.bytes.length,256);
