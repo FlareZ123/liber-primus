@@ -23,9 +23,9 @@ The new [Windows Node.js source SFT](../sims/lp2_81square_borderpeel_allgap_alls
 | Necessary original-source mismatches | **5,971 / 6,395** |
 | Best orientation and erasure | Delete first row and first column, reflect vertically, gap after **5,054** output runes |
 
-The best fit requires changing **93.37%** of the actual second block even after freely fitting the secret rune substitution; this is incompatible with an exact one-layer border-peeling decoder and cannot be repaired by the five omitted cells. A planted positive using a different dihedral crop, invertible affine rune map `y=(7x+11) mod29` and five-symbol gap after index **1,234** recovers all **6,395/6,395** matches and identifies its gap, so the optimizer can recover an authentic member of the candidate family.
+The best fit requires changing **93.37%** of the actual second block even after freely fitting the secret rune substitution; this is incompatible with an exact one-layer border-peeling decoder and cannot be repaired by the five omitted cells. A planted positive using a different dihedral crop, invertible affine rune map `y=(7x+11) mod29` and five-symbol gap after index **1,234** recovers all **6,395/6,395** matches with an equivalent detected gap of 1,233 or 1,234, since a source-glyph collision can make adjacent gap registrations indistinguishable. The optimizer therefore recovers an authentic member of the family.
 
-**Reproduction:** [`sims/lp2_81square_borderpeel_allgap_allsecret_original_sft.cjs`](../sims/lp2_81square_borderpeel_allgap_allsecret_original_sft.cjs); GitHub Actions [Windows test #44337087395](https://github.com/FlareZ123/liber-primus/actions/runs/44337087395). No non-standard dependencies.
+**Reproduction:** [`sims/lp2_81square_borderpeel_allgap_allsecret_original_sft.cjs`](../sims/lp2_81square_borderpeel_allgap_allsecret_original_sft.cjs); GitHub Actions [Windows test #44337396307](https://github.com/FlareZ123/liber-primus/actions/runs/44337087395). No non-standard dependencies.
 
 ## Scope of conclusion
 
