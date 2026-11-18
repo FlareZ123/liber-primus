@@ -1,0 +1,18 @@
+name: Agent6 TUNNELNG surface19 block4 p55
+
+on:
+  push:
+    branches:
+      - agent6-tunnel-surface19-block4-fafe43c99d98
+  workflow_dispatch:
+
+jobs:
+  sft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_p57_tunnel_surface19_block4_p55_sft.cjs
