@@ -69,34 +69,45 @@ reading       NOW THE
 
 No competing candidate reaches the same five-rune depth.
 
-## Third held-out continuation: NOW THE -> IDEA
+## Plaintext-blind IDEA selector: path overlap plus the next physical page start
 
-Freeze the selected `NOW THE` ciphertext cells `(11,16)` through `(15,20)`. Without supplying the next word, enumerate every previous-path cell as a possible center, every in-bounds symmetric mirror radius on all grid axes, derive and rotate each key by the same totient/Möbius rule, start at the frozen `NOW THE` endpoint, and read along all eight grid rays.
+The earlier version selected `IDEA` because it was the unique three-rune common word among the 56 frozen post-`NOW THE` candidates. A stronger local selector now removes that English gate.
 
-This family has **56** candidates. Exactly one reaches a three-rune common word:
-
-```
-center        (11,16) = TH
-radius        3 diagonal steps
-mirror node   A-TH-A
-derived key   U-A-A
-start         previous endpoint (15,20)
-read          diagonal down-left
-output        I-D-EA
-reading       IDEA
-```
-
-No competing candidate reaches depth three. The source-bounded candidate now extends to:
+The original p0-p2 rune counts are **262 / 266 / 201**, so row-major reflow of the source-selected 729-rune span puts the first p2 rune at **(20,16)**. Freeze the already selected `NOW THE` ciphertext path:
 
 ```
-AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
+(11,16) (12,17) (13,18) (14,19) (15,20)
 ```
 
-`CRY`, `NOW THE`, and `IDEA` are not supplied to their continuation searches.
+Enumerating every equal-outer mirror centered on one of those five cells yields **seven** source nodes. Exactly one node contains **two** cells of the preceding ciphertext path rather than only its center:
+
+```
+A(8,13) - TH(11,16) - A(14,19)
+```
+
+That uniquely selects `A-TH-A` at radius 3. The established center-totient/Möbius alignment gives **U-A-A**.
+
+Now start at the frozen endpoint **(15,20)** and enumerate all eight straight rays with every in-bounds prefix length. For each candidate endpoint, require a plaintext-blind incidence chain: the endpoint centers a mirror; one outer of that mirror centers a second mirror; an outer of the second mirror is the **next physical page start (20,16)**.
+
+Only the down-left ray satisfies this. It has hits at lengths **3** and **9**. Taking the first source-valid stop selects:
+
+```
+(15,20) -> (16,19) -> (17,18)
+```
+
+Decrypting those three already-selected cells under `U-A-A` gives `I-D-EA`, hence **IDEA**, without dictionary scoring, English-prefix scoring, or the downstream 12-rune checksum.
+
+The physical-boundary control is clean. From the same start, p0 end **(10,19)**, p1 start **(10,20)**, p1 end **(20,15)**, and matrix end **(27,27)** produce **zero** such two-mirror hits. The p2 start alone produces the two down-left hits above.
+
+The selected endpoint also exposes the exact local structure used by the post-IDEA work: **D(17,18)** centers exactly one mirror, `J-D-J`; only its **J(19,16)** outer is a mirror center; that J centers `OE-J-OE`, whose lower outer is the physical p2 start **(20,16)**. Agent29's separate broad post-IDEA mirror family therefore starts from a source-selected endpoint rather than an English-selected one.
+
+This materially reduces plaintext feedback at block 8. The overlap-plus-next-page-boundary rule was still recognized after the public candidate route was known, so it remains an intermediate local mechanism until it predicts untouched material or an original clue independently instructs the same operation.
+
+Reproducer: `sims/lp2_p0_idea_pageboundary_selector_sft.cjs`.
 
 ## Scope
 
-This is stronger than choosing I MAY from grammatical coherence. The two block-5 branches are judged by the same next-state mechanism and a source-native dictionary gate, and only one supports a nontrivial continuation.
+This is stronger than choosing I MAY from grammatical coherence. The block-5 tie and the CRY/NOW THE steps still use the frozen source-native lexical gate, while the IDEA step now has an independent local geometry selector using previous-path overlap and the next physical page start.
 
 The remaining caveat is upstream: the endpoint-mirror/totient/move families were learned from the published block-6/7/8 constructions rather than independently named by an original signed instruction. The p0 original artwork's exact 180-degree pairing and the heading's repeated-rune symmetry make mirror operations source-plausible, but they do not uniquely specify this complete transition rule.
 
