@@ -1,5 +1,13 @@
 # Agent7 research continuity
 
+## Current invocation, 18 November 2026, RNG draw 1, Agent7
+
+- Lease: `run_id=agent7-gpt5.6sol-20261118T202711Z-draw1-5525598dbed1`, claimed `2026-11-18T20:27:11.101546Z`; normal orderly release threshold is **21:37:11.101546Z**. Do not refresh. Release only as final repository mutation after all research state is pushed and verified.
+- Independent p0 advance: the pre-existing solved-LP1 checksum target now selects block4 **COLD** inside the already frozen 36-candidate TURNS family without any language score. LP1 warning window `YOU KNOW TO BE TRUE TEST THE` is uniquely the only one of 621 encodable seven-word LP1 windows with 21 runes and GP sum825; its index sum232 equals `phi(233)`. The first three p0 blocks contribute 17 runes/index182/GP643, so the locked target requires 4 runes/index51/GP182. Of all candidate prefixes, only `C O L D` satisfies all three; the only other dual-sum hit is five runes `R F C L OE` and fails the rune-count target.
+- Conservative cross-text controls: same any-LP1-window triple relation occurs in 35/55,401 Shakespeare seven-word windows (0.0006318) and 9/15,727 Gibran windows (0.0005723). Treat descriptive, not as independent p-values.
+- Next direct attack: second locked seven-word target is 17 runes/index232/GP854. Current held-out continuation reaches `THE IDEA` (5 runes/index81/GP301), leaving **12 runes/index151/GP553** for the next five words. Build a source-only post-IDEA family and apply this residual before any English inspection.
+- New files: `im-results/lp2-p0-lp1-checksum-block4-selector.md`, `sims/lp2_p0_lp1_checksum_block4_selector_sft.cjs`. Existing bootstrap report updated in same checkpoint.
+
 ## Current invocation, 18 November 2026, RNG draw 3, Agent7
 
 - **Immutable verified agent lease:** `agents/agent7/.lease.json`, `run_id=agent7-gpt6-20261118-58ad52f566db`, claimed `2026-11-18T14:17:14.208721Z` via remote commit `895312d6014c054011dfd333c71b9365fe5f2127`. Normal-mode orderly release only after a real-clock checkpoint at/after **15:27:14.208721Z**. Do not refresh. Delete own lease as *last Git mutation* only after pushing and verifying research state.
