@@ -235,13 +235,42 @@ assert.deepEqual(originalWordLag, { words: 1863, first: 76, last: 63, pairs: 594
 assert.deepEqual(originalWordChainLag, { words: 1863, first: 76, last: 60, pairs: 5940, equal: 220 });
 assert.deepEqual(plantedWordLag, { words: 1863, first: 122, last: 181, pairs: 5221, equal: 463 });
 
+/* End-of-word equality is invariant only when the key repeats at a single
+ * shift per WORD; a separate shift at each character changes the last-key slot
+ * whenever the two words have different lengths. */
+const wordScalarKey29 = fixedKey(1033, 29);
+const scalarWordCipher = nativeWords.map((word, i) => word.map((symbol) =>
+  (symbol + wordScalarKey29[i % 1033]) % 29));
+assert.deepEqual(wordLag(scalarWordCipher, 1033), plantedWordLag);
+assert.deepEqual(scalarWordCipher.map((word, i) => word.map((symbol) =>
+  (symbol - wordScalarKey29[i % 1033] + 29) % 29)), nativeWords);
+
+const wordScalarKey28 = fixedKey(1033, 28);
+const scalarWordChain = nativeWords.map((word, i) => {
+  const key = wordScalarKey28[i % 1033];
+  let previous = 0;
+  return word.map((symbol) => {
+    const step = symbol === 28 ? 0 : 1 + (symbol + key) % 28;
+    previous = (previous + step) % 29;
+    return previous;
+  });
+});
+assert.deepEqual(wordLag(scalarWordChain.map(rankSteps), 1033), plantedWordLag);
+assert.deepEqual(scalarWordChain.map((word, i) => rankSteps(word).map((symbol) =>
+  symbol === 28 ? 28 : (symbol - wordScalarKey28[i % 1033] + 28) % 28)), nativeWords);
+
+/** End-of-word equality is *not* invariant for an independently keyed position. */
+function alignedOnly(stats) {
+  return { words: stats.words, first: stats.first, pairs: stats.pairs, equal: stats.equal };
+}
+
 const wordWidth = 64;
 assert(nativeWords.every((word) => word.length <= wordWidth));
 const wordKey29 = fixedKey(1033 * wordWidth, 29);
 const wordKey28 = fixedKey(1033 * wordWidth, 28);
 const wordCipher = nativeWords.map((word, i) => word.map((symbol, j) =>
   (symbol + wordKey29[(i % 1033) * wordWidth + j]) % 29));
-assert.deepEqual(wordLag(wordCipher, 1033), plantedWordLag);
+assert.deepEqual(alignedOnly(wordLag(wordCipher, 1033)), alignedOnly(plantedWordLag));
 assert.deepEqual(wordCipher.map((word, i) => word.map((symbol, j) =>
   (symbol - wordKey29[(i % 1033) * wordWidth + j] + 29) % 29)), nativeWords);
 
@@ -254,7 +283,7 @@ const wordChain = nativeWords.map((word, i) => {
     return prior;
   });
 });
-assert.deepEqual(wordLag(wordChain.map(rankSteps), 1033), plantedWordLag);
+assert.deepEqual(alignedOnly(wordLag(wordChain.map(rankSteps), 1033)), alignedOnly(plantedWordLag));
 assert.deepEqual(wordChain.map((word, i) => rankSteps(word).map((symbol, j) =>
   symbol === 28 ? 28 : (symbol - wordKey28[(i % 1033) * wordWidth + j] + 28) % 28)), nativeWords);
 
