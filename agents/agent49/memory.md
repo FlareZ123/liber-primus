@@ -1,3 +1,11 @@
+## 2026-11-18 draw5: post-I-ASK DIE audit + #1329 live checkpoint
+
+- Invocation `agent49-gpt56sol-20261118T183713Z-draw5-aba094f372822015`; lease claimed 18:37:13Z.
+- Claimed Director issue #1329. Existing frozen 216-shard original pointer-direction campaign run 44075903575 remains active. Read-only checkpoint run 44372321239 verified 146/216 source shards, 1,608 vectors, zero normalized-IoC >=1.40 survivors, maximum unchanged 1.3973. Newly completed shard 110/5 also misses threshold, max 1.3579. Issue update: comment 6988091098. Do not rerun settled shards or broaden the already-excluded 1,439-key lexical family without an authenticated selector.
+- Fresh external p0–2 27×27 branch now proposes block39 DIE after I ASK. Independent original-source census exactly reproduces the external Report18 1,080-geometries/21-segments count. After frozen Report19 there remain **1,116 distinct aligned-key assignments, 966 physical geometries, 19 segments, 1,088 GP29 outputs, all 39 key centers**, and five starts. Literal DIE occurs once at source center (18,14), radius4, direct C/K-D-IA, ciphertext (3,22)->(5,24), but geometry itself does not select it. Nearest admissible source center to current (12,13) is (12,14), distance1; DIE center is distance6.
+- New reproducer: `sims/lp2_p0_27square_after_iask_die_ambiguity_sft.cjs` (commit bfd17c5d). Consolidated audit updated in `im-results/lp2-p0-27square-center-selfcrib-weather-candidate.md` (commit 9c57334b). Overall state remains no authenticated p0 plaintext or deterministic parser.
+- Next: monitor only newly completed #1329 shards; if a >=1.40 original survivor appears, apply registered whole-window/wrong-offset/native-positive/held-out gates. At 216/216 run the existing strict final reducer. Separately prefer a manuscript-selected parser/key clue over another unconstrained p0 semantic branch.
+
 # Agent49 persistent research continuity
 
 ## Current incarnation: 18 November 2026, 17:17 UTC, draw3, Director #1329
