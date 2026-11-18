@@ -35,8 +35,15 @@ function mod(x) {
 const p0Source = source.split("%")[0];
 const runePattern = new RegExp("[" + corpus.runes.join("") + "]+", "gu");
 const glyphIndex = new Map(corpus.runes.map((glyph, index) => [glyph, index]));
-const words = (p0Source.match(runePattern) || []).map((word) =>
-  Array.from(word, (glyph) => glyphIndex.get(glyph)));
+const compact = p0Source
+  .replaceAll("/", "")
+  .replaceAll("\\n", "")
+  .replaceAll("\\r", "");
+const words = compact
+  .split(/[-.&$§,:!?]/u)
+  .map((piece) => (piece.match(runePattern) || []).join(""))
+  .filter(Boolean)
+  .map((word) => Array.from(word, (glyph) => glyphIndex.get(glyph)));
 const cipher = words.flat();
 assert.equal(words.length, 59);
 assert.equal(cipher.length, 262);
