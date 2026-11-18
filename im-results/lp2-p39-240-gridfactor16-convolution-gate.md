@@ -1,6 +1,6 @@
 # Original p39 as the unique 240-rune consumer of the 256-cell grid's factor-16 quotient
 
-**Agent46 (12 November 2026); GF(841) extension by Agent21 (14 November); all-secret printed-word transfer by Agent10 (18 November). Classification: source-exact arithmetic and bounded original-cipher exclusions. No unknown LP2 plaintext, authentic key, or intended decoding instruction recovered.**
+**Agent46 (12 November 2026); GF(841) extension by Agent21 (14 November); all-secret printed-word and source-geometric phase transfer by Agent10 (18 November). Classification: source-exact arithmetic and bounded original-cipher exclusions. No unknown LP2 plaintext, authentic key, or intended decoding instruction recovered.**
 
 ## Why this is a distinct test
 
@@ -78,8 +78,24 @@ The [standalone original-source CJS SFT](../sims/lp2_p39_q240_allsecret_wordmap_
 
 **Decision:** p39 and the quotient cannot be two literal word-by-word encodings of the same 240 symbols under an arbitrary position-invariant monoalphabet per word, even with completely unconstrained inside-word letter reordering. This says nothing about a cipher whose alphabet changes *within a word*, transfers information across words, changes segmentation, or uses the quotient as a key rather than another rendering of p39. No unknown plaintext is recovered.
 
+## Periodic all-secret alphabets, with the printed p15 spiral (Agent10, 18 November)
+
+The original p15 **4×4** numerical spiral names sixteen ordered source cells, and the p50 table has **8 columns** and **32 rows**. The 240-slot p50 quotient can be read as fifteen rows of sixteen cells. Before introducing language scoring or secret keys, ask whether the quotient and actual p39 240-rune inscription are related by an arbitrary **phase-specific 29-symbol alphabet bijection**, repeated with period `k` over those exact printed runes. Grant an unrelated unknown key for **every phase**. Any single phase whose same source rune would have to map to two different original p39 runes, or two different source runes to one original p39 rune, falsifies all 29! phase-key choices.
+
+The [same source-exact SFT](../sims/lp2_p39_q240_allsecret_wordmap_sft.cjs) tests only the **originally present** matrix dimensions `k=4,8,16,32`, with three fixed quotient readings: original source order, full reverse, and applying the original p15 center-start spiral `[5,6,10,9,8,4,0,1,2,3,7,11,15,14,13,12]` independently in each successive sixteen-coefficient block. No fitted phase start, altered page, symbol re-labeling or score-based sorting enters the calculation.
+
+| Quotient readout | k=4 conflicting phases | k=8 | k=16 | k=32 |
+| --- | ---: | ---: | ---: | ---: |
+| Original printed | **4/4** | **8/8** | **16/16** | **28/32** |
+| Fully reversed | **4/4** | **8/8** | **16/16** | **26/32** |
+| Printed p15 spiral inside 16-blocks | **4/4** | **8/8** | **16/16** | **28/32** |
+
+For the apparently strongest source period, `k=16`, all sixteen phases independently contradict the existence of *any* one-to-one alphabet, even with every alphabet secret and freely chosen. This eliminates the source-defined **periodic positionwise substitution** itself rather than just the simple Caesar/affine special cases. A distinct positive plants sixteen independent arbitrary modular shifts on the exact 240 table coefficients and recognizes **zero** contradictory phases, demonstrating what compatible keyed data would look like.
+
+This gate does not exclude a keyed operation whose alphabet changes *within a phase period*, a nonperiodic state machine, a change to the 240-slot alignment, a cipher that derives its keystream from Q240 rather than directly relabeling it, or a different printed-page receiver. The original art has not authenticated the 16-block spiral as a decoding order. **No unknown plaintext or secret is recovered.**
+
 ## Consequence for the solve path
 
-The 240-slot/240-rune coincidence identifies **one named target page** from the full grid factorization without searching every target and phase. The marked red polynomial supplies a plausible reason to consider it. However, the full direct-additive, all-secret stationary lookup, all-secret convolution, and the new complete **word-local arbitrary-bijection plus arbitrary within-word transposition** interpretations are excluded. A meaningful successor must supply an **independent original-source operation** linking the quotient to p39 through a state changing *within words* or across original word boundaries, or explain the red factor and page match by a different route. Direct additive, static lookup, convolutional, pointwise GF(841) multiply/divide, and the four fixed reversible GP28 nonrepeat-step readings are now bounded negatives. An arbitrary further key/phase search is not justified by the observed lengths.
+The 240-slot/240-rune coincidence identifies **one named target page** from the full grid factorization without searching every target and phase. The marked red polynomial supplies a plausible reason to consider it. However, the full direct-additive, all-secret stationary lookup, all-secret convolution, and both the **word-local arbitrary-bijection plus arbitrary within-word transposition** and **source-geometric, periodic all-secret alphabet** transfers are excluded. A meaningful successor must supply an **independent original-source operation** linking the quotient to p39 through a state changing *within words* or across original word boundaries, or explain the red factor and page match by a different route. Direct additive, static lookup, convolutional, pointwise GF(841) multiply/divide, and the four fixed reversible GP28 nonrepeat-step readings are now bounded negatives. An arbitrary further key/phase search is not justified by the observed lengths.
 
 **Reproduction:** [\`sims/lp2_p39_240_gridfactor16_convolution_sft.cjs\`](../sims/lp2_p39_240_gridfactor16_convolution_sft.cjs). [Manual Actions execution passed on original repo inputs](https://github.com/FlareZ123/liber-primus/actions/runs/43290960341). The script verifies the original byte SHA-256; the unique p39 page length and red indices; complete factor multiplication, division and leading-zero accounting; four IoCs; both exact arbitrary-codebook conflict bounds; the original coprimality; and a full positive synthetic factor-product and affine lookup.
