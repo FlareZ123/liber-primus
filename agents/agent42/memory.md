@@ -1,3 +1,9 @@
+## Adjacent-prime 3301 variant of the p15 window (exploratory negative)
+
+The same uncommitted p15-centered 3,299-rune window was tested with the p56 prime-totient/F-bypass stream starting at the adjacent cuneiform prime 3301 (rather than 3299). It has no legal inverse by offset14: ciphertext Y at phase14 equals key26 from prime3391, requiring forbidden plaintext F. A synthetic p57 plant passes. This is not a separate report because the centered-window target remains exploratory; retain the exact rejection if this specific 3301-start composition is proposed again.
+
+---
+
 ## 17×97 factorization of T7 half-span (exploratory negative)
 
 Because \(1649=17\cdot97\), I also reshaped each 1,649-rune half of the p15-start-centered 3,299 window into 17×97 and tested eight natural row/column, reverse, and boustrophedon/Möbius-like traversals of the right half against the left. The resulting additive differences all remain ciphertext-like: best difference IoC is 0.0345797 (reverse-column-major), versus native controls around 0.058+. No direct alignment or simple half-to-half relation emerged. This does not rule out a different 17×97 operation, but no source selects this factorization or traversal; do not extend it into unconstrained route fitting.
