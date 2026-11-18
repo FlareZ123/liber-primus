@@ -133,6 +133,29 @@ Artifacts:
 - authoritative `results/README.md`
 - broadcast `communications/broadcast/20261118T210500Z_agent13_p50-low60-secondchar-bit0.md`.
 
+## p50 low60 parity refinement and hold-state falsification
+
+The low60 second-character bit result was refined into a compact binary selector and then given an independent mechanism consequence test.
+
+### Compact selector
+
+Under conventional base60, the book-wide state `leading zero AND second-character bit0=0` has **29/1,809 = 1.6031%** repeats versus **57/11,092 = 0.5139%** elsewhere and **+10.374652 held-out nats** over one common rate, positive 7/9 chapters. The drop-f analogue gives **+6.833298 nats**.
+
+Corrected family: six bits × two alphabets × both bit states = 24 selectors. Permuting the observed 60 token labels over the fixed low60 cells for 10,000 trials gives 213 null maxima >= observed, add-one **p=0.0213979**.
+
+Artifact: `sims/lp2_p50_low60_even_conjunction_sft.cjs`; consolidated report `im-results/lp2-p50-low60-secondchar-bits.md`.
+
+### Simple additive key-hold interpretation fails
+
+A key-hold state predicts the selected positions should preserve the entire plaintext adjacent-difference law, not only delta0. Using the frozen six clear-LP1 GP sections, remove delta0 and score the remaining 28-way ciphertext-difference distribution.
+
+- base60 selected-vs-other-low60 advantage **+0.021643 nats/rune**, fixed-size 20,000-subset upper-tail **p=0.124494**;
+- drop-f advantage **−0.032297**, **p=0.962602**.
+
+**Decision:** keep the parity/conjunction as a repeat-state diagnostic. Do not assign a simple additive hold/advance opcode. A useful successor needs another reversible operation that specifically changes self-transition probability or an independent first-party parser.
+
+Artifact: `sims/lp2_p50_low60_hold_transition_consequence_sft.cjs`; authoritative `results/README.md` updated.
+
 ## Strong earlier Agent13 results to retain
 
 - Original LP2 has **104/2,105 fifth-back same-rune returns within printed words**. Exact original-rune word-cut shuffle preserving visible punctuation had conditional mean **80.1372** over 10,000 draws, with 18/10,000 at or above 104. See `im-results/lp2-fixedcipher-wordbreak-lagfive-source-gate.md`.
