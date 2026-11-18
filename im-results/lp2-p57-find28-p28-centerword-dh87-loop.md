@@ -114,25 +114,23 @@ This creates a closed, reproducible route through the solved instruction, the or
 
 The route still does not expose unknown plaintext. Its present value is selecting an operation and its parameters from source-visible objects with substantially less freedom than the prior DH73 construction.
 
-## Recursive center-I continuation: p31 prime/totient transfer rejected
+## Center-I continuation and p28–p31 block
 
-A natural follow-up is to peel the p28 word again to its central **I**, whose GP prime value is31. Physical p31 is a tempting receiver because it also contains269 runes and its exact center is **F**, the special transparent plaintext rune in the solved p56 prime/totient cipher.
+A second peel leaves the central **I**, whose GP prime value is31. Treating31 as a p50 address gives token `2D`; that token occurs only at cells31 and38, where38 is GP0(WITHIN), and base59 decodes both copies to131=GP0(CIRCUMFERENCES). This gives the earlier LP1 koan, "the I is the voice of the circumference," an executable table correspondence.
 
-The DH shared value87 is also `pi(449)`, so a p56-style running key would have a source-selected start at the 87th prime, **449**. I therefore tested exactly that transfer without any phase search:
+The same31 also supplies a natural opposite page endpoint to the already selected p28. Physical p28–p31 have prime rune counts `[269,277,263,269]`, exactly12 printed lines each and period counts `[3,4,5,6]`. The four pages contain1078 runes, and `pi(1078)=180`. One literal peel of the 32×8 p50 table leaves a30×6 interior of exactly180 cells. This creates a source-selected 180-to-180 frontier: prime-position runes of p28–p31 against the once-shed p50 interior.
 
-- whole physical p31, both additive signs;
-- rightward ray from the center, both signs;
-- leftward ray from the center, both signs;
-- alternating right/left center-out traversal, both signs.
+Two direct consumers are closed. A row-major additive pad from the 180 p50 values fails native-GP language. The route-supplied DH151 family
+`key_i = base^(tableValue_i) mod151 mod29`, with `base ∈ {35,107,66,87}`, both table radices and both additive signs, also fails. Its best trigram score is **−3.3751244733**, versus **−2.4681447142** for solved p57 and **−2.4541132344** for a planted control. Preserve the alignment while rejecting these exact formulas.
 
-Every exact F-transparent automaton becomes impossible before completing its input. This rejects that bounded p31 continuation. It does not weaken the p28/DH87 loop.
+A separate p31-only p56 transfer is also closed. Because `K=87=pi(449)` and p31's exact center is F, I tested the authentic p56 F-transparent mechanism starting at prime449 on the whole page and the source-natural center-out rays, under both signs. Every automaton becomes impossible before finishing its input.
 
 ## Decision
 
-Promote the **FIND→28 → centered 28th word → peel35 → OUR/OWN DH87 → p50 SHED/PARABLE/FIND** construction as a leading intended-navigation hypothesis.
+Promote the **FIND→28 → centered 28th word → peel35 → OUR/OWN DH87 → p50 SHED/PARABLE/FIND** construction as a leading intended-navigation hypothesis. Preserve p28–p31 prime180 as the next structured receiver frontier.
 
-The strongest new facts are the unique page-numbered center-word placement on p28, the independent recovery of g35, the unique OUR/OWN DH pair relation inside the frozen p57 vocabulary, and the three DH-output p50 word hits that select base59 at two addresses.
+The strongest new facts are the unique page-numbered center-word placement on p28, its unique nested EMERGE/WITHIN/CIRCUMFERENCES/DIVINITY signature, the independent recovery of g35, the finite OUR/OWN DH relation, the p50 `AND / WE / SHED` output fragment, and the central-I table correspondence.
 
-The next useful step should consume a source-selected output from this loop in a reversible way on untouched ciphertext. Do not reopen arbitrary DH exponents, p31 prime phases, or broad p28 cipher menus. The p31 prime449/p56 transfer tested here is closed.
+The next useful step must supply a source-visible ordering or reversible opcode for the p28–p31/180-cell receiver. Do not reopen arbitrary DH exponents, p31 prime phases, direct row-major additive pads or the tested DH151 exponentiation family.
 
-Reproducer: `sims/lp2_p57_find28_p28_centerword_dh87_sft.cjs`.
+Reproducers: `sims/lp2_p57_find28_p28_centerword_dh87_sft.cjs` and `sims/lp2_p28_p31_prime180_dh151_inner_gate_sft.cjs`.
