@@ -265,9 +265,11 @@ def main() -> None:
 
     # The independently archived complete clearsigned response has 60 bytes
     # after the 936 complete bytes transmitted in the contemporary IRC log.
+    # Git's Windows checkout may rewrite 31 LF bytes to CRLF (1027 worktree
+    # bytes). Normalize only that transport effect to recover the 996 Git blob.
     complete_hello = (
         args.repo_root / "resources/historical/cicada2013-first-onion-hello.asc"
-    ).read_bytes()
+    ).read_bytes().replace(b"\\r\\n", b"\\n")
     expected_tail = bytes.fromhex("75794f360a5a7679627a70347334537a526a6b6b39734d4d360a3d5759564f0a2d2d2d2d2d454e4420504750205349474e41545552452d2d2d2d2d0a")
     if len(complete_hello) != 996 or complete_hello[:936] != hello_prefix:
         first_diff = next(
