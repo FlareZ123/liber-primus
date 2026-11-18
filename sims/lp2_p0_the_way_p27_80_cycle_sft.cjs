@@ -231,6 +231,95 @@ assert.deepEqual(dhEndpoint80, [[0, 12], [28, 3]]);
 assert.deepEqual(sourceOrderDh, [[0, 12]]);
 assert.deepEqual(sourceOrderDhEndpoint80, [[0, 12]]);
 
+// Prospective p2 receiver selected from the source-natural 27x27 p0-p2 square.
+// After p0 ROAD and DEVOTED were fixed independently, a complete p0-p2 census
+// leaves one additional word ending on global column0: p2 word9. Reuse the
+// already frozen source->GP0->table-byte->receiver->GP0->table-byte grammar
+// against every signed source adjacency. GOOD is the sole exact family hit
+// when receiver length, exact endpoint, next-source index, and byte80 are all
+// required.
+const p2 = parsePageWords(2);
+const p0p1Length =
+  corpus.pages.find((page) => page.page === 0).indices.length +
+  corpus.pages.find((page) => page.page === 1).indices.length;
+const p2Good = bridge(p2, message, 36);
+assert.ok(p2Good);
+assert.equal(message[36].toLowerCase(), "good");
+assert.equal(message[37].toLowerCase(), "luck");
+assert.equal(sum(gp("GOOD")), 35);
+assert.equal(p2Good.offset, 39);
+assert.equal(p2Good.word.index, 9);
+assert.equal(p2Good.word.start, 36);
+assert.equal(p2Good.word.length, 4);
+assert.equal(p2Good.word.start + p2Good.word.length - 1, 39);
+assert.equal(p0p1Length + 39, 567);
+assert.equal((p0p1Length + 39) % 27, 0);
+assert.equal(p2Good.cipherGp0, 37);
+assert.equal(p2Good.cipherGp0, 37); // zero-based signed index of LUCK
+assert.equal(p2Good.next, 80);
+
+const p0p2ColumnZeroEnds = [];
+let p0p2Base = 0;
+for (let page = 0; page <= 2; page += 1) {
+  const words = parsePageWords(page);
+  for (const word of words) {
+    const end = word.start + word.length - 1;
+    if ((p0p2Base + end) % 27 === 0) {
+      p0p2ColumnZeroEnds.push({
+        page,
+        word: word.index,
+        start: word.start,
+        end,
+        length: word.length,
+        globalEnd: p0p2Base + end,
+      });
+    }
+  }
+  p0p2Base += corpus.pages.find((row) => row.page === page).indices.length;
+}
+assert.deepEqual(p0p2ColumnZeroEnds, [
+  {page: 0, word: 22, start: 105, end: 108, length: 4, globalEnd: 108},
+  {page: 0, word: 53, start: 237, end: 243, length: 7, globalEnd: 243},
+  {page: 2, word: 9, start: 36, end: 39, length: 4, globalEnd: 567},
+]);
+
+const goodLuckFamilyHits = [];
+for (let page = 0; page <= 55; page += 1) {
+  const words = parsePageWords(page);
+  if (!words.length) continue;
+  for (let i = 0; i < message.length - 1; i += 1) {
+    const step = bridge(words, message, i);
+    if (!step) continue;
+    const receiverEnd = step.word.start + step.word.length - 1;
+    const sourceLength = gp(message[i]).length;
+    if (
+      step.offset === receiverEnd &&
+      step.word.length === sourceLength &&
+      step.cipherGp0 === i + 1 &&
+      step.next === 80
+    ) {
+      goodLuckFamilyHits.push({
+        page,
+        index: i,
+        from: message[i].toLowerCase(),
+        to: message[i + 1].toLowerCase(),
+        offset: step.offset,
+        receiverWord: step.word.index,
+        receiverGp0: step.cipherGp0,
+      });
+    }
+  }
+}
+assert.deepEqual(goodLuckFamilyHits, [{
+  page: 2,
+  index: 36,
+  from: "good",
+  to: "luck",
+  offset: 39,
+  receiverWord: 9,
+  receiverGp0: 37,
+}]);
+
 // Independently reproduce the p27 DJU / BEI endpoint80 from original inputs.
 const p27 = parsePageWords(27);
 const dju = p27.find((word) => word.start === 28);
@@ -310,6 +399,22 @@ process.stdout.write(JSON.stringify({
     dhAndEndpoint80Pairs: dhEndpoint80.length,
     sourceOrderDhPairs: sourceOrderDh.length,
     sourceOrderDhEndpoint80,
+  },
+  p2ProspectiveGood: {
+    sourcePair: [message[36], message[37]],
+    sourceGp0: sum(gp(message[36])),
+    tableByte: p2Good.offset,
+    receiverWord: [
+      p2Good.word.start,
+      p2Good.word.start + p2Good.word.length - 1,
+    ],
+    receiverGp0: p2Good.cipherGp0,
+    nextSignedIndex: 37,
+    endpoint: p2Good.next,
+    exactFamilyHits: goodLuckFamilyHits,
+    p0p2ColumnZeroEnds,
+    classification:
+      "prospective conditional plaintext candidate GOOD; value-changing cipher still unknown",
   },
   p27Holdout: {
     pairStarts: [28, 31],
