@@ -28,7 +28,7 @@ jobs:
       - name: Genuine LP2 JPEG F5 extraction and planted-control gate
         shell: pwsh
         env:
-          F5_ALL: "0"
+          F5_ALL: "1"
         run: |
           node sims/lp2_f5_original_jpeg_gate_sft.cjs
           if ($LASTEXITCODE -ne 0) { throw "F5 original/jpeg-gate failed" }
