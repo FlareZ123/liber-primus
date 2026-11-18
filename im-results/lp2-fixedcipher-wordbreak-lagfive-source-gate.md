@@ -40,7 +40,7 @@ An additional original-input challenge addresses the page-local shuffle's most o
 
 The original word-break alignment survives **even when every nonhyphen punctuation/sentence/section anchor is held fixed**. The S return contrast becomes smaller (from original +7.30 above random to +5.54), an important restriction on any interpretation of S as an independently coded marker. Both controls are still exploratory because lag5/S were historically selected and the marks treated as hard were chosen by visible punctuation classes. Further post hoc conditioning is unlikely to yield a decoder without an original clue.
 
-The [hard-punctuation fixed-cipher SFT](../sims/lp2_fixedcipher_sentenceword_lagfive_sft.cjs) uses the exact original runes, all 176 preserved hard cuts and 10,000 deterministic shuffles, asserting the original and sampled counts.
+The [hard-punctuation fixed-cipher SFT](../sims/lp2_fixedcipher_sentenceword_lagfive_sft.cjs) uses the exact original runes, all 176 preserved hard cuts and 10,000 deterministic shuffles, asserting the original and sampled counts; [Windows Node22 source CI #44211935660](https://github.com/FlareZ123/liber-primus/actions/runs/44211935660) passed with the exact expected means [80.1372, 4.1835, 5.4555].
 
 
 ## First-party unencrypted comparison
