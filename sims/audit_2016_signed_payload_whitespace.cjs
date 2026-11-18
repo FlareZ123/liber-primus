@@ -125,7 +125,7 @@ const result = {
     blankLineNumbers: warning2017BlankLines,
     doubleSpaceRuns: warning2017Runs,
     whitespace: lineAudit(parsed.warning2017.body),
-    tabs: (parsed.warning2017.body.match(/\\t/g) || []).length,
+    tabs: lineAudit(parsed.warning2017.body).tabs,
     lineEndings: lineEndingAudit(text.warning2017),
   },
 };
