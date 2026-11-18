@@ -36,10 +36,10 @@ function multiplicativeOrder(base, modulus) {
   throw new Error('order not found');
 }
 
-const special = [...primeEcho.matchAll(/echo -n "(\d+)\\t"; sleep 2/g)]
+const special = [...primeEcho.matchAll(/echo -n "(\\d+)(?:\\\\t|\t)"; sleep 2/g)]
   .map((match) => Number(match[1]));
 assert.deepEqual(special, [1033, 3301]);
-assert.match(primeEcho, /echo -n "3301\\t"; sleep 2\s*$/);
+assert.match(primeEcho, /echo -n "3301(?:\\\\t|\t)"; sleep 2\s*$/);
 
 const observed = live.sources.find(
   (source) => source.role === 'full participant server transcript of a later Cicada test'
