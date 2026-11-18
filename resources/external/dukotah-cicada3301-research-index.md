@@ -1,6 +1,6 @@
 # Independent Liber Primus research index: Dukotah/cicada3301
 
-**Snapshot inspected:** 2026-11-16T20:25:27.421Z. Repository HEAD: `9087dc36b5aa64c1786428e32180261ab9420c29` (2026-11-12T05:54:21Z).
+**Snapshot inspected:** 2026-11-18T10:25:00Z. Dukotah HEAD: `6b945291ed298c14ccf8c73603f695a28f6a7e35` (2026-11-17T21:54:18Z). Independent njloof HEAD: `bbc190529ad1da23f7f2930933a6ba88ee41cd8a` (2026-11-18T02:03:41Z).
 **Source:** https://github.com/Dukotah/cicada3301  
 **License:** MIT covers the repository's original code and documentation; the license explicitly does not purport to license the underlying Cicada artifacts reproduced for research. No code was copied here.
 
@@ -8,7 +8,7 @@ This is a large, actively maintained research programme with a versioned falsifi
 
 ## Round 44 findings relevant here
 
-- **T7 — non-stationary anti-repeat slip rate.** Across 13 consecutive 1,000-rune blocks, the reported doublet counts are `[8,3,7,2,6,9,10,8,11,2,9,6,5]`; gap autocorrelation is +0.380, battery p=0.0010, and an independent permutation null gives p=0.00025. The authors classify this as measured, not certified. This independently matches the current repository's Agent44 page-conditioned doublet work; it is corroboration, not a new lead. See `im-results/lp2-doublet-block-marginal-control.md` and the Agent44 broadcast.
+- **T7 — non-stationary anti-repeat slip rate.** Dukotah R44 reports 86 page-local adjacent-equality sites, 13-bin counts `[8,3,7,2,6,9,10,8,11,2,9,6,5]`, gap autocorrelation +0.380, battery p=0.0010 and a gap-permutation tail p=0.00025. njloof campaign #10 independently replicated the gap statistic (p=0.0006 under its hard-core null). This does **not** establish generator memory: the local repository's stronger source-boundary analysis finds the gap signal is largely inherited from the selection of the 85 event-bearing words (word-index gap correlation +0.38545; exact word-identity conditional upper tail p=0.259137). See `im-results/lp2-doublet-block-marginal-control.md` and `im-results/lp2-doublet-gap-source-boundary-conditional-gate.md`. **Correction to njloof #10 wording:** its “1,649-rune doublet-free void” was corrected in campaign #18; the span is sparse, not zero-event. Exact first-rune 1-based sites are 2740, 3140, 3852, 4389 (gaps 400, 712, 537), leaving two internal sites. It lies within decoration group P4; group-containment test p=0.27. Follow-ups report p15-axis alignment p=0.0168, post-hoc p15-grid containment p≈2.6e-4, but the 16-number pointer readout has 0/16 hits (p=1.0). These are structural observations, not plaintext or a key.
 - **R1 — page/line/section key resets on the p27/p54 boundary-crossing 7-gram.** The external lane tests 51 fixed source-derived keys, 30 offsets, six configurations, three reset modes, and 55 rune-bearing pages (about 1.5 million cells). It reports zero crossers. Its same-plaintext 7-gram constraint excludes every swept key at offsets up to 200; the different-plaintext interpretation remains open. This is broader than the current repository's simple p27/p55 periodic-key gate and is a useful independent negative. It does not exclude reset mechanisms outside those 51 keys/configurations.
 - **p27:93 glyph adjudication.** The external audit resolves the glyph as U, agreeing with the current canon. A competing B label came from one mislabelled singleton exemplar caused by a merged C+B glyph on p13. No canon change was made. This is a useful source-side cross-check, not plaintext recovery.
 - **p50 256-byte payload.** The external resolved `canon_256.hex` is byte-for-byte identical across all 256 bytes to this repository's `resources/liber-primus/lp2-grid-256.json`. The current p50 table therefore already contains the external three-byte resolution; no re-transcription is needed.
@@ -38,7 +38,7 @@ Use the latest handoff and live ledger for any newer work. The upstream scope is
 
 ## Recommended use
 
-- Do not repeat the already replicated T7 block-count test, the p27/p54 51-key reset family, or the p50/p27:93 source adjudications.
+- Do not repeat the T7 block-count or gap-autocorrelation tests, or treat the 1,649 span as a zero-event void. The local word-identity conditional gate explains most of the gap correlation; a new T7 task would need to predict the identities of event-bearing words or a source-selected reversible encoder, not merely remeasure the span. Also do not repeat the p27/p54 51-key reset family or p50/p27:93 source adjudications.
 - Do not repeat R9-DIRECTION or R37–R39 numeric/position/length/semantic-position sweeps.
 - Reopen the signed 2016 map/road/direction clue only when an original source supplies a determinate semantic per-word index or an independently supported LP1 codebook order.
 - Treat remaining measured-ceiling gaps as a coverage map, not a task list. Select work only where an original clue supplies the missing key, operation, or discriminating prediction.
@@ -50,7 +50,11 @@ Use the latest handoff and live ledger for any newer work. The upstream scope is
 - Current measured ceiling (R37–R39): https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/liber-primus/MEASURED-CEILING.md
 - Pinned current handoff: https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/liber-primus/PICKUP-HERE.md
 - Repository overview: https://github.com/Dukotah/cicada3301
-- Current handoff: https://github.com/Dukotah/cicada3301/blob/master/liber-primus/PICKUP-HERE.md
+- Current handoff: https://github.com/Dukotah/cicada3301/blob/6b945291ed298c14ccf8c73603f695a28f6a7e35/liber-primus/PICKUP-HERE.md
+- Current measured ceiling: https://github.com/Dukotah/cicada3301/blob/6b945291ed298c14ccf8c73603f695a28f6a7e35/liber-primus/MEASURED-CEILING.md
+- njloof independent T7 replication (#10): https://github.com/njloof/cicada-lp2-sweeps/blob/bbc190529ad1da23f7f2930933a6ba88ee41cd8a/sweeps/2026-11-t7-replication/REPORT.md
+- njloof sparse-span correction (#18): https://github.com/njloof/cicada-lp2-sweeps/blob/bbc190529ad1da23f7f2930933a6ba88ee41cd8a/sweeps/2026-11-segments/results/REPORT.md
+- njloof p15-axis/grid follow-ups (#19–22): https://github.com/njloof/cicada-lp2-sweeps/blob/bbc190529ad1da23f7f2930933a6ba88ee41cd8a/docs/LEDGER.md
 - Measured ceiling: https://github.com/Dukotah/cicada3301/blob/master/liber-primus/MEASURED-CEILING.md
 - Round 44 campaign plan: https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round44/CAMPAIGN-PLAN.md
 - R1 reset results: https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round44/R1-key-resets/RESULTS.md
