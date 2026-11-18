@@ -62,6 +62,23 @@ A separate necessary-condition obstruction applies to any *unkeyed stationary* t
 
 **No immediate ASCII payload from source-written XOR keys.** To test whether the 36 enclosed original bytes are instead a standalone typed text packet, XOR their raw bytes against one repeated historical/source-visible ASCII key, with start phase fixed at the first enclosed byte. The exact words `MUST`, `PARABLE`, `DIVINITY`, `CIRCUMFERENCES` are already printed on clear p57, and `3301` is the signed 2013 numeral. Across the 36 decoded bytes the 7-bit printable ASCII counts are respectively **14, 12, 14, 14, 13** in that listed order (`3301` is last), and none yields meaningful text or a recognized typed header. The single-byte XOR key **186** selected by the table's visible `33 XOR155` and p57 MUST's GP sum produces **12/36** printable ASCII. This is a finite failed original-typed-readout, not a test of unspecified passwords, non-ASCII packets or arbitrary extraction tools. The candidates and expected outputs are source-constrained but the decision to try ASCII XOR is an exploratory inference.
 
+## The first zero is the unique zero on the 76-cell outer circumference
+
+The original 32×8 table's **outer perimeter contains precisely 76 distinct cells**, independently matching the **76 original p55 ciphertext runes**. Crucially the first zero `T[192]=00`, reached conditionally from the p39 double root or signed historical DH pointer, is **the unique zero-valued byte on that outer circumference**. The other zero `T[229]=00` is strictly interior. This gives one source-addressed *perimeter start cursor*, rather than the arbitrary northwest-corner start employed by earlier geometric receiver families. The p57 clear instruction `SHED OUR OWN CIRCUMFERENCES` provides a plausible human-facing cue to read a border and work inward. None of these source facts fixes an encryption operation; it does fix a nonarbitrary start and a uniquely sized p55 key register.
+
+Freeze the perimeter walk at cell192 and read its original 76 printed base60 bytes clockwise or counterclockwise, beginning with the unique zero. Test the fully reversible native GP29 additive inverses `P_i = C_i ± (B[perimeter_i] mod29)` on **all 76 original p55 runes**. Both reading directions and both signs are the four directly source-facing models, with no key training or language-optimized phase:
+
+| Outer-rim zero192 start, source direction | Original 76-rune GP29 coincidence |
+| --- | ---: |
+| Clockwise, addition | **0.0431579** |
+| Clockwise, subtraction | **0.0371930** |
+| Counterclockwise, addition | **0.0378947** |
+| Counterclockwise, subtraction | **0.0284211** |
+
+All four original complete outputs remain nonlinguistic, below the independently clear original p57 76-rune reference. Each corresponding synthetic source-length test encrypts and decrypts all **76/76 actual clear p57 runes** under the precise rim key. Thus the first-zero perimeter is a better *source-determined address/clock* than an arbitrary corner, but direct additive masking by these uniquely selected original rim bytes does not recover p55 plaintext.
+
+A stronger **GP28 nonrepeat-difference/F-transparent wheel** driven by the same two unique-zero-anchored rim sequences was also tested, with the actual p54 final ciphertext rune as predecessor state and the key advanced only on non-F output. All four original outputs remain nonprose with GP29 coincidences **0.0329825–0.0354386**, even further from genuine clear p57 language concentration. These four source-key models therefore also fail. The still unproven step is an authentic keyed receiver associated with this outer-border operation, not the ring's starting cell.
+
 ## Decision and relationship to the existing frontier
 
 **Retire exactly the constant period-36 XOR pad on the original terminal256 row-major alignment and the direct 76-digit additive pad, the GP28 anti-repeat receiver, and the prime229-seeded p56-style totient receiver on original p55**, using either source-native GP index or GP prime encoding. Do not retune offsets, register order, symbols or periods to rescue a failed holdout without a new clue. The newly noticed p57 marker-address correspondence and straddling source sums remain *unverified hypotheses*. A nonperiodic, stateful or authenticated external-key cipher is outside the tested model, and the earlier [36 physical punctuation marker route](lp2-grid-two-zero-address-36-punctuation-bridge.md) has its own unsolved map/receiver gaps.
