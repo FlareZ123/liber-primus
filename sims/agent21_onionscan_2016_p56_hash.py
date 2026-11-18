@@ -1,9 +1,10 @@
-"""Scan preserved July 2016 OnionScan front-page snapshots for the LP2 p56 target.
+"""Scan preserved July 2016 OnionScan material for the LP2 p56 target.
 
 The corpus is external and public: kal1gh0st/OSINT/onionrunner/onion_result.
-Each OnionScan JSON report can contain the exact front-page snapshot plus the
-SHA-1 that OnionScan computed from that snapshot.  We require the stored SHA-1
-to validate byte reconstruction before treating a snapshot as hash-testable.
+OnionScan reports can preserve a front-page snapshot and its historical SHA-1.
+The scan checks every preserved non-empty snapshot, records whether the stored
+SHA-1 validates its reconstructed bytes, and also checks source-derived .onion
+URL strings because the community hash alarm explicitly hashes request URLs.
 """
 
 from __future__ import annotations
@@ -15,6 +16,7 @@ import os
 from pathlib import Path
 import subprocess
 import tempfile
+from typing import Any
 
 import gostcrypto
 import skein
@@ -48,6 +50,36 @@ def digests(data: bytes) -> dict[str, str]:
         "streebog512": gostcrypto.gosthash.new("streebog512", data=data).hexdigest(),
         "whirlpool": whirlpool(data),
     }
+
+
+def onion_url_candidates(value: str) -> set[str]:
+    """Return bounded request-string forms for one report-derived .onion value."""
+    candidate = value.strip()
+    if ".onion" not in candidate.lower():
+        return set()
+
+    out = {candidate}
+    if candidate.startswith(("http://", "https://")):
+        if candidate.lower().endswith(".onion"):
+            out.add(candidate + "/")
+        return out
+
+    out.add("http://" + candidate)
+    if candidate.lower().endswith(".onion"):
+        out.add("http://" + candidate + "/")
+    return out
+
+
+def collect_onion_strings(value: Any) -> set[str]:
+    """Collect .onion strings from the few report fields that describe pages."""
+    if isinstance(value, str):
+        return onion_url_candidates(value)
+    if isinstance(value, list):
+        result: set[str] = set()
+        for item in value:
+            result.update(collect_onion_strings(item))
+        return result
+    return set()
 
 
 def write_json_locked_atomic(path: Path, payload: dict[str, object]) -> None:
@@ -95,10 +127,14 @@ def main() -> None:
         "reports_with_stored_sha1": 0,
         "sha1_validated": 0,
         "sha1_mismatch": 0,
-        "hash_testable_snapshots": 0,
+        "snapshot_digest_inputs": 0,
+        "validated_snapshot_digest_inputs": 0,
+        "unvalidated_snapshot_digest_inputs": 0,
+        "unique_url_digest_inputs": 0,
     }
     matches: list[dict[str, object]] = []
     mismatches: list[dict[str, object]] = []
+    url_inputs: set[str] = set()
 
     for path in sorted(args.corpus.rglob("*.json")):
         counts["json_files"] += 1
@@ -109,25 +145,38 @@ def main() -> None:
             mismatches.append({"file": str(path), "error": type(exc).__name__})
             continue
 
+        for field in (
+            "hiddenService",
+            "internalPages",
+            "linkedSites",
+            "relatedOnionServices",
+        ):
+            url_inputs.update(collect_onion_strings(report.get(field)))
+
         snapshot = report.get("snapshot")
         if not isinstance(snapshot, str):
             continue
         counts["string_snapshots"] += 1
-        if snapshot:
-            counts["nonempty_snapshots"] += 1
+        if not snapshot:
+            continue
+        counts["nonempty_snapshots"] += 1
 
         body = snapshot.encode("utf-8")
+        body_sha1 = hashlib.sha1(body).hexdigest()
         stored_hashes = {
             value.lower()
             for value in (report.get("hashes") or [])
             if isinstance(value, str) and len(value) == 40
         }
+
+        validation = "no_stored_sha1"
         if stored_hashes:
             counts["reports_with_stored_sha1"] += 1
-            body_sha1 = hashlib.sha1(body).hexdigest()
             if body_sha1 in stored_hashes:
+                validation = "stored_sha1_match"
                 counts["sha1_validated"] += 1
             else:
+                validation = "stored_sha1_mismatch"
                 counts["sha1_mismatch"] += 1
                 if len(mismatches) < 20:
                     mismatches.append({
@@ -137,20 +186,36 @@ def main() -> None:
                         "stored_sha1": sorted(stored_hashes),
                         "snapshot_bytes": len(body),
                     })
-                continue
-        else:
-            continue
 
-        counts["hash_testable_snapshots"] += 1
+        counts["snapshot_digest_inputs"] += 1
+        if validation == "stored_sha1_match":
+            counts["validated_snapshot_digest_inputs"] += 1
+        else:
+            counts["unvalidated_snapshot_digest_inputs"] += 1
+
         for algorithm, value in digests(body).items():
             if value == TARGET:
                 matches.append({
+                    "input_kind": "snapshot",
                     "file": str(path.relative_to(args.corpus)),
                     "hidden_service": report.get("hiddenService"),
                     "algorithm": algorithm,
                     "snapshot_bytes": len(body),
-                    "snapshot_sha1": hashlib.sha1(body).hexdigest(),
+                    "snapshot_sha1": body_sha1,
+                    "snapshot_validation": validation,
                     "response_date": (report.get("responseHeaders") or {}).get("DATE"),
+                    "target": TARGET,
+                })
+
+    counts["unique_url_digest_inputs"] = len(url_inputs)
+    for url in sorted(url_inputs):
+        data = url.encode("utf-8")
+        for algorithm, value in digests(data).items():
+            if value == TARGET:
+                matches.append({
+                    "input_kind": "report_derived_onion_url",
+                    "url": url,
+                    "algorithm": algorithm,
                     "target": TARGET,
                 })
 
@@ -169,9 +234,17 @@ def main() -> None:
         "counts": counts,
         "exact_matches": matches,
         "first_sha1_mismatches_or_parse_errors": mismatches,
-        "validation_rule": (
-            "A snapshot is hash-testable only when SHA1(snapshot UTF-8 bytes) "
-            "matches one of the SHA-1 values stored in the same OnionScan report."
+        "snapshot_interpretation": (
+            "Every non-empty preserved snapshot is checked. stored_sha1_match "
+            "marks snapshots whose reconstructed UTF-8 bytes reproduce an OnionScan "
+            "SHA-1; other snapshots remain exact-match candidates but carry lower "
+            "byte-fidelity confidence."
+        ),
+        "url_interpretation": (
+            "URL candidates come only from report fields describing onion services "
+            "or pages, with the stored string plus bounded http:// and trailing-slash "
+            "forms. This mirrors the community 3301-hash-alarm practice of hashing "
+            "request URLs as well as response bytes."
         ),
     }
     write_json_locked_atomic(args.output, payload)
@@ -179,7 +252,7 @@ def main() -> None:
     if matches:
         print("EXACT P56 TARGET MATCH FOUND")
     else:
-        print("NO EXACT P56 TARGET MATCH IN SHA1-VALIDATED ONIONSCAN SNAPSHOTS")
+        print("NO EXACT P56 TARGET MATCH IN PRESERVED SNAPSHOTS OR REPORT-DERIVED ONION URLS")
 
 
 if __name__ == "__main__":
