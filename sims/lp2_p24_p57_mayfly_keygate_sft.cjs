@@ -158,6 +158,67 @@ for (const [name, sequence] of donors) {
   }
 }
 
+/**
+ * Every cyclic phase of the complete source-defined 95-rune donor is checked.
+ * Paths preserve the plaintext and key position separately; histories that
+ * merge to the same clock state are not silently discarded.
+ * @param {number[]} cipher
+ * @param {number[]} key
+ * @param {number} sign
+ * @param {number} start
+ * @returns {number[][]}
+ */
+function fTransparentFullPaths(cipher, key, sign, start) {
+  let histories = [{ clock: start, plain: [] }];
+  for (const symbol of cipher) {
+    const next = [];
+    for (const history of histories) {
+      const ordinary = wrap(symbol - sign * key[history.clock % key.length], 29);
+      if (ordinary !== 0) {
+        next.push({ clock: history.clock + 1, plain: [...history.plain, ordinary] });
+      }
+      if (symbol === 0) {
+        next.push({ clock: history.clock, plain: [...history.plain, 0] });
+      }
+    }
+    histories = next;
+    if (!histories.length) break;
+  }
+  return histories.map(history => history.plain).filter(plain => plain.length === cipher.length);
+}
+
+let legalSourceKeyPhases = 0;
+let legalSourcePaths = 0;
+let maximalLegalPlainIoC = 0;
+for (const [name, sequence] of donors) {
+  for (const direction of ['forward', 'reverse']) {
+    const key = direction === 'forward' ? sequence : [...sequence].reverse();
+    for (const sign of [-1, 1]) {
+      let viablePhases = 0;
+      let viablePaths = 0;
+      let high = 0;
+      for (let phase = 0; phase < key.length; phase += 1) {
+        const paths = fTransparentFullPaths(source, key, sign, phase);
+        if (paths.length) viablePhases += 1;
+        viablePaths += paths.length;
+        for (const plain of paths) high = Math.max(high, ioc(plain));
+      }
+      legalSourceKeyPhases += viablePhases;
+      legalSourcePaths += viablePaths;
+      maximalLegalPlainIoC = Math.max(maximalLegalPlainIoC, high);
+      console.log('[ALL-PHASE-F-SKIP]', name, direction, 'sign', sign,
+        'viable of 95 phases', viablePhases, 'complete histories', viablePaths,
+        'maximum normalized IoC', high.toFixed(6));
+    }
+  }
+}
+assert.equal(legalSourceKeyPhases, 18);
+assert.equal(legalSourcePaths, 89);
+assert.ok(maximalLegalPlainIoC < 1.06);
+console.log('[ALL-PHASE-F-SKIP] exact full source-p57 donor phases 760,',
+  'viable phases', legalSourceKeyPhases, 'complete histories', legalSourcePaths,
+  'max normalized IoC', maximalLegalPlainIoC.toFixed(6));
+
 const transparentPlant = fTransparentEncrypt(
   Array.from({ length: source.length }, (_, i) => i % 11 === 0 ? 0 : solved[(i + 17) % solved.length] || 1),
   solved,
