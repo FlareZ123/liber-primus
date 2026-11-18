@@ -217,6 +217,7 @@ while leaving the destination unauthenticated.
 
 Reproducer:
 [`sims/lp2_p27_red13_factor_calibration.py`](../sims/lp2_p27_red13_factor_calibration.py).
+Windows Python 3.13 / SymPy 1.14.0 CI: **PASS 44405782418**.
 
 ## 7. Why this is worth independent attack
 
