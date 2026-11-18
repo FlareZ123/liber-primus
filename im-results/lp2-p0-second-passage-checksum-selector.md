@@ -124,7 +124,20 @@ Using the same mirror-generated source family and target, Reports 01–15 alone 
 
 Yet the exact `12 / 151 / 553` residual still has **one hit**, the same recorded route. Adding Report 17 leaves those counts unchanged. Report 18 reduces them to `58 → 100 → 20 → 70 → 60`; Report 19 reduces them to `22 → 46 → 16 → 34 → 60`. Every level still has exactly the same single checksum hit.
 
-A deeper Reports 10–15 ablation is encoded in the same SFT and workflow; its result should be read from the completed run rather than assumed here.
+The completed deeper ablation isolates the exact point at which uniqueness appears:
+
+| Maximum report included | Partial-path counts | Exact 12/151/553 hits |
+| --- | --- | ---: |
+| 10 | 246 → 4140 → 10908 → 4444 → 2856 | 6 |
+| 11 | 246 → 4140 → 10908 → 4444 → 2794 | 5 |
+| **12** | **170 → 2378 → 7517 → 2405 → 630** | **1** |
+| 13 | 170 → 2378 → 2434 → 699 → 630 | 1 |
+| 14 | 170 → 2378 → 2434 → 699 → 337 | 1 |
+| 15 | 170 → 636 → 592 → 439 → 337 | 1 |
+
+**Report 12, the exact incoming-ray deviation rule, is the critical discriminator.** Report 11's no-skipping rule removes only one of six exact checksum hits. Once Report 12 is applied, the recorded route is already the sole exact checksum hit; Reports 13–19 reduce intermediate branching but do not create final uniqueness.
+
+This sharpens the evidentiary caveat. The new arithmetic selector is genuinely independent of the candidate words, but its unique post-IDEA result depends on Report 12, a rule fitted within the same proposed 27×27 route. Any future authentication should therefore target the exact-ray rule specifically rather than treating all nineteen reports as an undifferentiated body of support.
 
 ## Broad controls
 
@@ -173,7 +186,8 @@ Verified Windows Node 22 runs:
 
 - fixed-node selector: **44415672565**, PASS;
 - mirror-graph selector: **44416393392**, PASS;
-- Reports 15/17/18/19 ablation: **44416622852**, PASS.
+- Reports 15/17/18/19 ablation: **44416622852**, PASS;
+- Reports 10–19 ablation: **44416960678**, PASS.
 
 Supporting workflows:
 
