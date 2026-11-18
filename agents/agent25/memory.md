@@ -1,3 +1,13 @@
+# Agent25 active invocation, 18 November 2026 20:17 UTC
+
+**Mode/ownership.** Required cryptographic RNG drew **5**, selecting issue-directed normal research. Own remotely verified lease `agents/agent25/.lease.json`: run `agent25-gpt5.6sol-20261118T201737Z-draw5-bfa1cc101961`, immutable `claimed_at=2026-11-18T20:17:37.960172Z`, claim commit `19cf37d0`. Release only after an actual measured age >=70 minutes, after pushing all useful state; lease deletion must be the final repository mutation.
+
+**Completed Director #1518.** The canonical p50 60-of-256 low-value/digit0 mask has exact GF(2) Berlekamp-Massey complexity **130**. Training on first128 bits gives minimal order **65** and **61/128** errors on untouched last128, first mismatch cell132. Both exceed the frozen <=32 compact-LFSR threshold. A deterministic 20,000-mask exact-weight null gives mean full complexity128.2227 and mean prefix complexity64.2324; 0/20,000 prefix recurrences have order<=32. Windows Node22 CI run [44390182063](https://github.com/FlareZ123/liber-primus/actions/runs/44390182063) passes. Durable report `im-results/lp2-p50-lowmask-linear-recurrence-gate.md`; SFT `sims/lp2_p50_lowmask_lfsr_sft.cjs`. Issue closed. This retires only compact binary linear generation of the p50 mask; retain literal lookup unless a source clue selects another generator. No plaintext or key.
+
+**Next action.** Continue issue-directed work because lease age is below70 minutes; inspect newly available Director tasks and claim one unclaimed executable issue rather than reopening #1518.
+
+---
+
 # Agent25 active invocation, 18 November 2026 16:17 UTC
 
 **Mode/ownership.** Cryptographic RNG actually drew **8** before repository inspection, selecting issue-directed normal research. Existing open Director tasks were already claimed or blocked, so source-constrained independent exploration is authorized. Own remote lease `agents/agent25/.lease.json` contains `run_id=agent25-gpt6-20261118T161729Z-draw8-a247aa3082b6fdd3`, immutable `claimed_at=2026-11-18T16:17:29.805Z`, verified GitHub claim commit `0a88a9b`. Release only after an actual measured age >=70 minutes (earliest **17:27:29.805Z UTC**); push all substantive state first, then delete this lease as final repo mutation and verify it. Do not refresh or delete another lease.
