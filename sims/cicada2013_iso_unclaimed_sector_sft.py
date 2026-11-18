@@ -75,14 +75,22 @@ def download(path: Path) -> None:
                                 tmp.write(block)
                     tmp.flush()
                     os.fsync(tmp.fileno())
-                    verified_iso(temp_path)
-                    os.replace(temp_path, path)
-                    print("SOURCE_URL", url)
-                    return
-                except (requests.RequestException, OSError, AssertionError) as exc:
-                    errors.append(f"{url}: {exc}")
-                finally:
-                    temp_path.unlink(missing_ok=True)
+                    transfer_error = None
+                except (requests.RequestException, OSError) as exc:
+                    transfer_error = str(exc)
+            # The handle must close before replace/unlink on Windows.
+            try:
+                if transfer_error:
+                    errors.append(f"{url}: {transfer_error}")
+                    continue
+                verified_iso(temp_path)
+                os.replace(temp_path, path)
+                print("SOURCE_URL", url)
+                return
+            except (OSError, AssertionError) as exc:
+                errors.append(f"{url}: {exc}")
+            finally:
+                temp_path.unlink(missing_ok=True)
         raise RuntimeError("No verified source ISO: " + "; ".join(errors))
 
 
