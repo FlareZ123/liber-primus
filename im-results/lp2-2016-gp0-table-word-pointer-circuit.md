@@ -54,6 +54,19 @@ Those outputs land exactly on the boundary of the page's sole later 2 / 7 pair:
 
 `... [word52 ends at 236] | [word53 begins at 237] ...`
 
+### EPIPHANY's two independent numbers converge
+
+The authenticated source supplies a second natural number for each word: its zero-based word index. **EPIPHANY is source word5 and GP0(EPIPHANY)=121; 121 mod29=5. It is the only one of all 43 signed words whose zero-based index equals its GP0 residue modulo29.**
+
+The original p50 table turns that congruence into a pointer holdout:
+
+- cell5 is printed token `3v`, byte237;
+- cell121 is also printed token `3v`, byte237;
+- byte237 occurs exactly twice in the table, at addresses5 and121;
+- byte237 is the already selected start of p0 word53, the seven-rune DEVOTED target.
+
+Thus the two independently defined numbers attached to EPIPHANY, its signed-source ordinal and its GP0 sum, select the same printed table token and the same p0 receiver. Conditional on the already established `T[121]=237` pointer and the exact table byte multiset, the second copy at fixed address5 is a 1/255 holdout. The unconditional exact collision rate for an arbitrary fixed pair of table addresses under the fixed byte multiset is `254 / (256*255) = 127/32640`; those calibrations do not include the prior selection of EPIPHANY or the target.
+
 This makes a literal source reading possible:
 
 `EPIPHANY seeks THE DEVOTED`
@@ -182,6 +195,17 @@ This supports a third source-selected p0 plaintext placement:
 `p0 offsets103..108 = THE ROAD`
 
 with word21 / word22 corresponding to **THE / ROAD**. As with the other placements, this is a reproducible navigation-derived plaintext prediction rather than a recovered global letterwise cipher.
+
+### Natural 27x27 p0-p2 geometry marks both body-word endpoints
+
+The combined p0-p2 rune count is exactly `729 = 27^2`, giving a source-natural 27x27 square without padding. In zero-based row-major coordinates, the selected final runes are:
+
+- ROAD ends at p0 offset108 = row4, column0;
+- DEVOTED ends at p0 offset243 = row9, column0.
+
+A complete census of all 59 p0 word ends finds **exactly two** whose offsets are congruent to0 modulo27: word22 at108 and word53 at243. These are precisely the independently selected ROAD and DEVOTED target words. Equivalently, both recovered body phrases cross a 27-column row boundary and place their final plaintext D on column0.
+
+This geometry was not used by the GP0/table pointer mechanism or by the original line-break holdout below. It therefore supplies an additional structural check on the two body placements. It does not identify the value-changing cipher.
 
 ## Original line layout independently marks both recovered body phrases
 
