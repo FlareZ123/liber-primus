@@ -32,6 +32,14 @@ const grid = JSON.parse(
 const solved = JSON.parse(
   fs.readFileSync(path.join(root, "resources/external/relikd-solved-gp29-native-v1.json"), "utf8")
 );
+const signed2016 = fs.readFileSync(
+  path.join(root, "resources/historical/cicada2016-4gq25-outguess.asc"),
+  "utf8"
+);
+const transcription = fs.readFileSync(
+  path.join(root, "resources/liber-primus/lp2-transcription.txt"),
+  "utf8"
+);
 
 const tokens = grid.pages.flatMap((page) => page.tokens);
 const alphabet60 = grid.alphabet;
@@ -189,6 +197,61 @@ assert.equal(tokens[find.gp0], "0S");
 assert.equal(decode(tokens[find.gp0], alphabet60), 28);
 assert.ok(corpus.pages.some((page) => page.page === 0));
 
+// The restored-state intermediate 192 uniquely names an authenticated 2016
+// adjacent word pair, and that pair's 8/5 rune lengths uniquely match p0's
+// physical page opening among p0..p55.
+const signedBody = signed2016
+  .split("-----BEGIN PGP SIGNATURE-----")[0]
+  .replace(/^-----BEGIN PGP SIGNED MESSAGE-----[\\s\\S]*?Hash: SHA1\\s*/, "")
+  .replace(/\\b3301\\b/g, "")
+  .replace(/\\b[0-9A-F]{8,}\\b/g, "");
+const signedWords = (signedBody.match(/[A-Za-z]+/g) || []).map((text, index) => {
+  const values = gpText(text);
+  return { index, text: text.toUpperCase(), gp0: gp0(values), length: values.length };
+});
+assert.equal(signedWords.length, 43);
+
+const pair192 = [];
+for (let i = 0; i < signedWords.length - 1; i += 1) {
+  const left = signedWords[i];
+  const right = signedWords[i + 1];
+  if (left.gp0 + right.gp0 === 192) {
+    pair192.push({
+      index: i,
+      phrase: left.text + " " + right.text,
+      lengths: [left.length, right.length],
+    });
+  }
+}
+assert.deepEqual(pair192, [
+  { index: 5, phrase: "EPIPHANY SEEKS", lengths: [8, 5] },
+]);
+assert.equal(gp0(gpText("EPIPHANY")) + gp0(gpText("SEEKS")), 192);
+
+const parts = transcription.split(/\\r?\\n%\\r?\\n/);
+const openingRows = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  const source = parts[page < 50 ? page : page - 1];
+  const wordLengths = [];
+  let current = 0;
+  for (const char of [...source]) {
+    if (runeIndex.has(char)) current += 1;
+    else if ("-./&$".includes(char) && current > 0) {
+      wordLengths.push(current);
+      current = 0;
+    }
+  }
+  if (current > 0) wordLengths.push(current);
+  if (wordLengths.length >= 2) {
+    openingRows.push({ page, first: wordLengths[0], second: wordLengths[1] });
+  }
+}
+assert.deepEqual(
+  openingRows.filter((row) => row.first === 8 && row.second === 5),
+  [{ page: 0, first: 8, second: 5 }]
+);
+
 console.log(JSON.stringify({
   status:
     "PASS: post-SHED base59 PARABLE selects the shed f position, then EMERGE; restoring f at the EMERGE root exits to page value0 in shared2 steps",
@@ -211,4 +274,9 @@ console.log(JSON.stringify({
   },
   restoredShared2Walk: restored,
   candidateReceiver: "physical p0 via value0",
+  conditionalTitleRecovery: {
+    exitValue: 192,
+    uniqueSignedPair: pair192[0],
+    uniquePhysicalOpening: { page: 0, lengths: [8, 5] },
+  },
 }, null, 2));
