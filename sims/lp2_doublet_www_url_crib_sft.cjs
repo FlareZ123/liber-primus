@@ -3,6 +3,32 @@ const assert = require("node:assert/strict");
 const source = require("../resources/liber-primus/lp2-corpus.json");
 const mod = (n, k = 29) => ((n % k) + k) % k;
 
+/** @param {number} value @returns {boolean} */
+function prime(value) {
+  if (value < 2) return false;
+  for (let d = 2; d * d <= value; d++) if (value % d === 0) return false;
+  return true;
+}
+
+/** @param {number} value @returns {number} */
+function popcount(value) {
+  let count = 0;
+  for (let x = value; x > 0; x = Math.floor(x / 2)) count += x % 2;
+  return count;
+}
+
+/** Generate A194954 terms no larger than maxValue. */
+function a194954Through(maxValue) {
+  const values = [2];
+  for (let n = 2; ; n++) {
+    const step = popcount(n - 1);
+    let candidate = values[values.length - 1] + step;
+    while (!prime(candidate)) candidate += step;
+    if (candidate > maxValue) return values;
+    values.push(candidate);
+  }
+}
+
 /** Extract the repeated-rune successor symbols without resetting between pages. */
 function extract() {
   let prior = -1;
@@ -83,7 +109,7 @@ function chapterControl(events, rounds) {
     seed ^= seed << 5;
     return (seed >>> 0) / 0x100000000;
   }
-  let onlyTriple = 0, terminalWWW = 0;
+  let onlyTriple = 0, terminalWWW = 0, exactBoundaryWWW = 0;
   for (let trial = 0; trial < rounds; trial++) {
     const values = start.slice();
     for (const chunk of chunks) {
@@ -95,8 +121,14 @@ function chapterControl(events, rounds) {
     const result = motif(values);
     onlyTriple += Number(result.onlyTriple);
     terminalWWW += Number(result.terminalWWW);
+    exactBoundaryWWW += Number(
+      result.onlyTriple &&
+      values[79] === source.translit.indexOf("W") &&
+      values[80] === source.translit.indexOf("W") &&
+      values[81] === source.translit.indexOf("W")
+    );
   }
-  return {rounds, onlyTriple, terminalWWW};
+  return {rounds, onlyTriple, terminalWWW, exactBoundaryWWW};
 }
 
 
@@ -146,6 +178,16 @@ function main() {
   assert.deepEqual(cipher.slice(79, 82), [W, W, W]);
   assert.deepEqual(events.slice(79, 82).map((event) => event.page), [47, 48, 51]);
   assert.deepEqual(motif(cipher), {onlyTriple: true, terminalWWW: true});
+
+  // The independently preserved 2014 whitespace clue identifies A194954.
+  // Exactly 19 terms fit inside this 86-event channel; the last is 79 and
+  // the next term is 97. The manuscript's WWW begins at the next event.
+  const a = a194954Through(events.length);
+  assert.deepEqual(a, [2,3,5,7,11,13,17,23,29,31,37,43,47,53,59,67,71,73,79]);
+  assert.equal(a.length, 19);
+  assert.equal(a[a.length - 1], 79);
+  assert.equal(a194954Through(97).at(-1), 97);
+  assert.deepEqual(cipher.slice(a[a.length - 1], a[a.length - 1] + 3), [W, W, W]);
 
   const t = (value) => [...value].map((letter) => source.translit.indexOf(letter));
   assert.equal(fixedBijectionCompatible(cipher.slice(75, 79), t("HTTP")), false);
@@ -221,10 +263,15 @@ function main() {
     }
   }
   const calibration = chapterControl(events, 250000);
-  assert.ok(calibration.terminalWWW > 100 && calibration.terminalWWW < 600);
+  assert.equal(calibration.onlyTriple, 2938);
+  assert.equal(calibration.terminalWWW, 274);
+  assert.equal(calibration.exactBoundaryWWW, 122);
+  console.log("A194954 boundary: 19 terms <=86, last=79, events80-82=WWW");
   console.log("Chapter-inventory permutation results: " + JSON.stringify(calibration));
   console.log("Terminal WWW one-sided exploratory tail: " +
     ((calibration.terminalWWW + 1) / (calibration.rounds + 1)).toFixed(9));
+  console.log("Exact A194954-boundary WWW tail: " +
+    ((calibration.exactBoundaryWWW + 1) / (calibration.rounds + 1)).toFixed(9));
   console.log("PASS");
 }
 main();
