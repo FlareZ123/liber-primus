@@ -105,6 +105,10 @@ These observations already reject several simple reusable decoders.
 
 Thus the new navigation structure does not collapse into the obvious Vigenere, autokey, affine-feedback, cyclic-table, or literal word-addressed cardinal-table cipher.
 
+The shortest repeated tabula-recta period compatible with all 22 conditional crib symbols is 31. An exact dynamic program solved the nine unfixed period-31 key phases under the repository's source-native GP trigram model. The best Vigenere/Variant completion scores **-544.7514** and the best Beaufort completion **-532.8604**. Across 1,000 independent source-native controls with the exact original p0 word-length shape, the worst control is **-320.1538** and the median **-268.9936**. Both exact period-31 candidates therefore fall below every control. The latest Windows/Node 22 workflow run passes these assertions.
+
+As an extra holdout, the frozen signed-word receiver maps source words `LIES`, `GOOD`, and `LUCK` to p0 ciphertext words of matching GP length. The exact Vigenere period-31 completion decodes those receivers as `ECCI`, `HNNJ`, and `LXPW`, respectively. This is another direct rejection of that cipher family, while the plaintext-assignment interpretation of those receivers remains only a test hypothesis.
+
 ## Interpretation
 
 This result materially strengthens one candidate plaintext relation: the original p0 red title and the signed phrase `EPIPHANY SEEKS THE DEVOTED` are connected by a deterministic GP0/table graph whose selected cycle union reconstructs SEEKS and then, through already motivated prime-count/table steps, THE and DEVOTED.
