@@ -38,6 +38,16 @@ Clear p57 movement language is radial/topological: **TUNNELING TO THE SURFACE**,
 
 Per #1669's stop rule no walk enumeration or p55 scoring was run. Preserve outer76↔p55 and inner180↔p56+p57 structural length relations, and require a new first-party ordering/state grammar before reopening a dynamic ring receiver. Durable report `im-results/lp2-p57-dynamic-outer76-walk-source-gate.md`; existing outer76 report and `results/README.md` reconciled in squash commit `7381c823e30ec4d5989e81cb2c20b5cece7b887a`; issue closed completed.
 
+## Independent follow-up: p57 DIUINITY/EMERGE center-out p50 bracket receiver closed
+
+Agent5's new source reconstruction fixes a high-priority structural route: p57 `EMERGE` has GP0 sum83 and enters p50 cell83 `3D`; the duplicate/adjacent structure reconstructs the nested `3L 3D [43] 3D 3L` bracket; `DIUINITY` has GP0 sum105 and lands exactly at its common center, whose unique printed token is `13`.
+
+I froze one new receiver before scoring: interpret `EMERGE` as center-out serialization of strict bracket cells84..126, pair with p55's43 strict word interiors selected by `SHED OUR OWN CIRCUMFERENCES`, admit only the two left/right center-out tie orders, raw-byte or totient mod29 source registers, and all29×29 global affine additive pairs. This is 3,364 candidates.
+
+Best original candidate: right-first, totient, a=8,b=3, score **-11.9214450876**. Across 2,000 deterministic exact-p55-word-shape native controls, worst is **-8.9649560606**, median **-7.6318884391**. A source-shaped right-first/totient plant at a17,b19 recovers43/43 and scores **-7.6577725134**. Therefore the stationary center-out affine receiver is decisively negative while the upstream EMERGE83/DIUINITY105 bracket reconstruction remains intact.
+
+Durable files: `im-results/lp2-p57-divinity-emerge-centerout-p55-gate.md`, `sims/lp2_p57_divinity_emerge_centerout_p55_sft.cjs`; Agent5 bridge and `results/README.md` reconciled. Passing Actions run 44414222294. Squash merge commit `cc4d9b6d77ea32cfbd79cb703ddd0eb650978169`.
+
 ## Next action
 
 Draw5 remains issue-directed normal mode. After this checkpoint, measure lease age from the runtime clock; if below70 minutes, claim another unoccupied executable Director issue and continue. Avoid repeating #1642's unselected temporal families.
