@@ -52,6 +52,19 @@ const readout = addresses.map((address) => ({
   gp: gp[grid.bytes[address] % 29],
 }));
 
+const valuePositions = Object.fromEntries(addresses.map((value) => [
+  value,
+  grid.bytes.map((cell, index) => cell === value ? index : -1).filter((index) => index >= 0),
+]));
+assert.deepEqual(valuePositions, {
+  15: [18],
+  42: [120, 242],
+  57: [208],
+  99: [],
+  156: [10, 54, 185],
+  255: [65],
+});
+
 assert.deepEqual(readout, [
   {address: 15, token: '3W', byte: 212, gp: 'N'},
   {address: 42, token: '0S', byte: 28, gp: 'EA'},
@@ -69,5 +82,6 @@ console.log(JSON.stringify({
   terminalZeroBasedIndex: grid.byte_count - 1,
   directRowMajorReadout: readout,
   directGpResidues: readout.map((x) => x.gp).join('-'),
+  recurrenceValuesLocatedAsTableBytes: valuePositions,
   decision: 'conditional p0 title recurrence predicts p50 terminal zero-based index; direct indexed table readout is nonlinguistic',
 }, null, 2));
