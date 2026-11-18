@@ -188,6 +188,8 @@ function run() {
           const inferred = cells.map((cell, i) =>
             inferMask(bytes[cell], knownTarget[i], operator));
           attempts.push({corner, reverse, register: name, operator,
+            source13_31Matches: inferred.slice(1).reduce((sum, value, i) =>
+              sum + Number(((13 * inferred[i] + 31) & 255) === value), 0),
             ...bestLCG(inferred)});
         }
     }
@@ -196,13 +198,15 @@ function run() {
   const min = Math.min(...attempts.map(a => a.matches));
   assert.equal(max, 6);
   assert.equal(min, 4);
+  const source13_31Max = Math.max(...attempts.map(a => a.source13_31Matches));
+  assert.equal(source13_31Max, 3);
   assert(attempts.every(a => a.matches < 179));
   return {sources: 'Original table 256 printed bytes and known p56+p57 180 runes',
     sourceSHA256: crypto.createHash('sha256')
       .update(Buffer.from(bytes)).digest('hex'),
     models: attempts.length, transitionsPerModel: 179,
     possibleSecretsPerModel: 256, maxAdjacentMatches: max,
-    minBestAdjacentMatches: min,
+    minBestAdjacentMatches: min, source13_31MaxAdjacentMatches: source13_31Max,
     bestExamples: attempts.filter(a => a.matches === max),
     positive: positivePlant(),
     decision: 'All 96 source-shaped complete 8-bit LCG keystream models impossible; no p55 plaintext recovered'};
