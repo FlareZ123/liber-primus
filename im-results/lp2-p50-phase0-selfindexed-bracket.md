@@ -61,6 +61,19 @@ The convergence is especially concrete because middle-page cell82 is `3L`, the u
 
 The earlier page-end-pointer report already calibrated the `82,81,80` triple under table-value permutations and warned that its pointer interpretation was postnoticed. This new phase match was also noticed retrospectively. The combination is therefore a stronger causal solve-path hypothesis, not a discovery-wide probability statement.
 
+## Nested prime-count rule on the bracket itself
+
+A separate source-only scan now gives the selected bracket a second arithmetic invariant. Under conventional base60:
+
+- outer `3L` at cells82/128 has value201 and physical separation46; `pi(201)=46`;
+- inner `3D` at cells83/127 has value193 and physical separation44; `pi(193)=44`.
+
+Exhaustively scanning every duplicate pair in all256 cells finds exactly these **two** base60 cases where duplicate separation equals the prime-count function `pi(value)`. They are the adjacent outer and inner layers of the same bracket. Under the live drop-`f` base59 interpretation the table has **zero** duplicate pairs satisfying this rule.
+
+The complete nested condition was calibrated by deterministic 100,000-state shuffles of the original value multiset: it appeared anywhere in 8 global shuffles,25 within-row shuffles, and12 within-column shuffles. These are retrospective structural diagnostics rather than discovery probabilities.
+
+This strengthens the route-specific base60 reading and provides a simple human-checkable reason to recognize the bracket after reaching cell82. It still does not define what operation consumes the 43 interior values. Full report and reproducer: `im-results/lp2-p50-nested-primecount-bracket.md` and `sims/lp2_p50_nested_primecount_bracket_sft.cjs`.
+
 ## Additional boundary contacts
 
 Two other physical page boundaries land on notable bracket cells under the same clock:
