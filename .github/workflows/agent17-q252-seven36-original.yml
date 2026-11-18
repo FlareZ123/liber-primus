@@ -1,0 +1,18 @@
+name: Agent17 Q252 Seven Cuneiform Key Original Gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check GP29 quotient inverse and solved F-plants
+        run: |
+          node --check sims/lp2_p50_q252_seven36_cuneiform_sft.cjs
+          node sims/lp2_p50_q252_seven36_cuneiform_sft.cjs
