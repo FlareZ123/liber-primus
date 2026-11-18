@@ -1,6 +1,6 @@
 # Signed-2016 GP0 table word-pointer circuit into p0 and p27
 
-**Agent23, 18 November 2026. Classification: high-priority source-internal navigation mechanism with a strong p0 crib placement. The route recovers a reproducible pointer circuit; it does not yet recover the full p0 cipher or establish all target letters cryptographically.**
+**Agent23, 18 November 2026. Classification: high-priority source-internal navigation mechanism that independently selects the four-word signed clause `EPIPHANY SEEKS THE DEVOTED` from solved p57 numbers and places its 8 / 5 and 2 / 7 halves on original p0. The route does not yet recover the full p0 cipher.**
 
 ## Decision
 
@@ -17,7 +17,7 @@ The same target closes through the map. The two-rune p0 ciphertext word has GP0 
 
 The following seven-rune p0 ciphertext word has GP0 sum101; table cell101 gives byte229. Independently, the p27 route reconstructs integer3301, and `3301 mod 256 = 229`; table cell229 is literal `00`, byte0. The seven-rune target therefore returns to the exact table address already implicated in the conditional `3301 -> 229 -> 00 -> p0` navigation route.
 
-This is strong evidence that the signed sentence and p50 table form a real navigation layer. It upgrades p0's red 8–5 opening **EPIPHANY / SEEKS** and the later 2–7 pair **THE / DEVOTED** from a bare word-shape coincidence to a source-selected crib placement candidate. The red-title ciphertext now supplies an independent letter-level holdout for **THE / DEVOTED** through `85 -> 28 -> THE -> 20 -> 102`. Full plaintext status still requires a reversible p0 cipher or further independent prediction.
+This is strong evidence that the signed sentence and p50 table form a real navigation layer. Solved p57 circumference arithmetic independently selects all four lexical words **EPIPHANY / SEEKS / THE / DEVOTED**, the signed 2016 source orders them, and original p0 supplies the 8 / 5 and 2 / 7 placements. The red-title ciphertext adds a separate holdout for **THE / DEVOTED** through `85 -> 28 -> THE -> 20 -> 102`. The full p0 encryption mechanism remains unresolved.
 
 ## Frozen source facts
 
@@ -75,6 +75,54 @@ and `T[92] = 236`, exactly the final rune of p0 word52.
 A broader source-preserving census admits every p0 word whose GP0 table byte is less than43, so that it can index any signed word. There are eight such p0 words. For each, the selected signed word is converted by the same GP0-table-byte operation and tested against the source word's start and end offsets. **Only p0 word52 closes on one of its own boundaries.** This uniqueness does not depend on requiring the intermediate table token to look decimal.
 
 The visible token `04` therefore supplies a human-readable rendering of a relationship that already survives the broader byte-based census.
+
+## Solved p57 independently selects all four signed-clause words
+
+The solved p57 instruction supplies a separate route into the exact four-word 2016 clause vocabulary:
+
+`EPIPHANY SEEKS THE DEVOTED`.
+
+This route uses the instruction's own “shed our own circumferences” language as a source cue for GP29 circumference reduction. The GP alphabet contains exactly29 symbols, so shedding complete alphabet circumferences preserves a word's GP0 sum modulo29.
+
+For the solved p57 words:
+
+- `FIND = 42 ≡ 13 (mod 29)`;
+- `CIRCUMFERENCES = 131 ≡ 15 (mod 29)`;
+- `THE = 20 ≡ 20 (mod 29)`.
+
+Across all 43 authenticated 2016 words, the corresponding residues select unique lexical types:
+
+- residue13 occurs only for **SEEKS**, whose exact GP0 sum is71;
+- residue15 occurs only for **DEVOTED**, whose exact GP0 sum is102;
+- residue20 occurs only for **THE** (six source occurrences, one lexical word).
+
+Thus the p57 semantics and circumference arithmetic give:
+
+`FIND <-> SEEKS`
+
+`CIRCUMFERENCES <-> DEVOTED`
+
+`THE <-> THE`.
+
+The center result makes the FIND relation especially concrete: `42 mod29 = 13`, exactly the unique printed center token selected independently by p57 `DIUINITY=105`. Candidate SEEKS also has `71 mod29 = 13`. The same residue therefore connects solved FIND, the DIVINITY-selected center, and signed SEEKS.
+
+The remaining clause word is selected by the literal p57 phrase **WITHIN AND EMERGE**. Their canonical GP0 sums are:
+
+`WITHIN = 38`
+
+`EMERGE = 83`
+
+and their direct sum is:
+
+`38 + 83 = 121`.
+
+Among all 43 authenticated signed words, **EPIPHANY is the unique word with exact GP0 sum121**. Its eight-rune length is then an untouched holdout against p0's first red word.
+
+These four numerical selections were derived from the independently solved p57 text and the already authenticated 2016 source. They do not use the unknown p0 letter values. The 2016 source itself supplies the lexical order **EPIPHANY SEEKS THE DEVOTED**, after which original p0 supplies two independent placement checks: the red opening is8 / 5 and the pointer-selected later boundary is2 / 7.
+
+The strongest caveat is ordering. Reading the relevant p57 operands in their physical order would associate CIRCUMFERENCES before FIND/THE and WITHIN/EMERGE later, so p57 alone does not emit the 2016 clause in final reading order. The authenticated 2016 sentence supplies that order. The result therefore establishes an independent **vocabulary selection and placement route**, while the 2016 clue remains necessary as the ordering map.
+
+This materially strengthens both p0 plaintext placements: **EPIPHANY SEEKS** is now selected numerically from solved p57 before matching the 8 / 5 red heading, and **THE DEVOTED** is selected independently by the title/table holdout and the p0 2 / 7 pointer boundary.
 
 ## p57 bracket quantities reconstruct the two red-title ciphertext sums
 

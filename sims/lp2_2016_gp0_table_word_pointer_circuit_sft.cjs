@@ -164,6 +164,40 @@ assert.equal(grid.bytes[13], 4);
 assert.equal(message[4].toLowerCase(), "empty");
 assert.equal(grid.bytes[sum(gp(message[4]))], 236);
 
+// Independently solved p57 vocabulary plus GP29 circumference reduction selects
+// all four lexical words of the authenticated 2016 clause.
+const p57Find = sum(gp("FIND"));
+const p57Circumferences = sum(gp("CIRCUMFERENCES"));
+const p57The = sum(gp("THE"));
+const p57Within = sum(gp("WITHIN"));
+const p57Emerge = sum(gp("EMERGE"));
+assert.equal(p57Find, 42);
+assert.equal(p57Circumferences, 131);
+assert.equal(p57The, 20);
+assert.equal(p57Within, 38);
+assert.equal(p57Emerge, 83);
+
+const signedRows = message.map((word, index) => ({
+  index,
+  word,
+  length: gp(word).length,
+  number: sum(gp(word)),
+  residue: sum(gp(word)) % 29,
+}));
+const lexicalTypesAtResidue = (residue) =>
+  [...new Set(signedRows.filter((row) => row.residue === residue)
+    .map((row) => row.word.toLowerCase()))];
+
+assert.deepEqual(lexicalTypesAtResidue(p57Find % 29), ["seeks"]);
+assert.deepEqual(lexicalTypesAtResidue(p57Circumferences % 29), ["devoted"]);
+assert.deepEqual(lexicalTypesAtResidue(p57The % 29), ["the"]);
+assert.equal(p57Find % 29, 13);
+assert.equal(sum(gp("SEEKS")) % 29, 13);
+assert.equal(p57Circumferences % 29, sum(gp("DEVOTED")) % 29);
+assert.equal(p57Within + p57Emerge, 121);
+const exact121 = signedRows.filter((row) => row.number === 121);
+assert.deepEqual(exact121.map((row) => row.word.toLowerCase()), ["epiphany"]);
+
 // Source quantities from solved p57 plus the authenticated p50 bracket
 // reconstruct both original red-title ciphertext word sums.
 assert.equal(sum(gp("FIND")), 42);
@@ -326,6 +360,20 @@ console.log(JSON.stringify({
       candidateSourceWords: ["THE", "DEVOTED"],
     },
     typedClosureCensus: {candidates: typedCandidates.length, closures: typedClosures.length},
+    p57ClauseVocabulary: {
+      find: {gp0: p57Find, residue: p57Find % 29, signedType: "SEEKS"},
+      circumferences: {
+        gp0: p57Circumferences,
+        residue: p57Circumferences % 29,
+        signedType: "DEVOTED",
+      },
+      the: {gp0: p57The, residue: p57The % 29, signedType: "THE"},
+      withinPlusEmerge: {
+        gp0: p57Within + p57Emerge,
+        signedType: exact121[0].word,
+      },
+      orderedByAuthenticated2016Source: ["EPIPHANY", "SEEKS", "THE", "DEVOTED"],
+    },
     p57TitleSumBridge: {
       titleCiphertextGp0: [sum(p0[0].indices), sum(p0[1].indices)],
       emergePlusCenter13: sum(gp("EMERGE")) + printedCenterDirection,
