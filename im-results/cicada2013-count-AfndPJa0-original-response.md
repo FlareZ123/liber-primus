@@ -46,7 +46,7 @@ The transcript records participants connecting to `emiwp4muu2ktwknf.onion:80` an
 | 5105–5107 | `count eo = 41+` | 41 | 14 | prime; reverse composite |
 | 5081 | repeat `count b = 61+` | 61 | 16 | prime; reverse composite |
 
-The independent `ae`, `o`, and `eo` observations are held-out checks against the simple arithmetic rule; `ab`, `norwell`, and `bob` are composite controls. The values match the canonical GP29 alphabet with greedy multisymbol tokens.
+All unambiguous IRC observations are an independent holdout relative to the separate AfndPJa0 Pastebin. The `ae`, `o`, and `eo` reports provide additional prime/reversal examples; `ab`, `norwell`, and `bob` are composite controls. The values match the canonical GP29 alphabet with greedy multisymbol tokens.
 
 **Ambiguous observation, excluded from calibration:** lines 5117–5120 show `count j`, then Atlas_ posting `37` and `+`, while crash_demons separately reports `count j=37*`. The log does not preserve enough command/response association to decide whether these are conflicting COUNT outputs or a COUNT plus a separate number-command result. Do not silently resolve this in favor of either marker. Lines 5108, 5125 and 5128 contain participant interpretations ("+ is always prime" and searching for numbers prime in both directions); these are interpretations, not daemon documentation.
 

@@ -2,8 +2,8 @@
 """Verify first-onion COUNT observations in the 2013 IRC archive mirror.
 
 The transcript is a participant chat log, not a raw TCP capture or daemon
-source. This script checks exact mirrored bytes and a small, predeclared set
-of 7-Jan-2013 COUNT reports against the canonical GP29 alphabet.
+source. This script checks exact mirrored bytes and a fixed set of 7-Jan-2013 COUNT
+reports as an independent holdout against the separate AfndPJa0 Pastebin.
 
 Usage:
   python sims/cicada2013_count_irc_control.py /path/to/full-log.txt
@@ -40,14 +40,15 @@ EXACT_LINES = {
 }
 
 OBSERVATIONS = [
-    ("a", 97, "*", "training", 3940),
-    ("b", 61, "+", "training", 3940),
-    ("ab", 158, "", "training", 3940),
+    ("a", 97, "*", "heldout", 3940),
+    ("b", 61, "+", "heldout", 3940),
+    ("ab", 158, "", "heldout", 3940),
     ("norwell", 279, "", "heldout", 3990),
     ("ae", 101, "*", "heldout", 4034),
     ("bob", 129, "", "heldout", 5079),
     ("o", 7, "*", "heldout", 5083),
     ("eo", 41, "+", "heldout", 5105),
+    ("b", 61, "+", "heldout-repeat", 5081),
 ]
 
 def is_prime(n: int) -> bool:
@@ -169,8 +170,8 @@ def main() -> None:
             "lines": len(lines),
         },
         "status": "participant-reported IRC observations; not raw TCP bytes or daemon code",
-        "training_observations": [x for x in checked if x["role"] == "training"],
-        "heldout_observations": [x for x in checked if x["role"] == "heldout"],
+        "baseline_source": "separate AfndPJa0 participant Pastebin",
+        "independent_heldout_observations": checked,
         "ambiguous_j_exchange": {
             "lines": [5117, 5118, 5119, 5120],
             "reports": [lines[n - 1] for n in (5117, 5118, 5119, 5120)],
