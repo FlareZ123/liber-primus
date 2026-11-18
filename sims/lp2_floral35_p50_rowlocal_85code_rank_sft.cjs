@@ -113,17 +113,18 @@ function rank256(source, polynomial, center = false) {
 }
 
 /**
- * Exact Gaussian elimination over native GP29.
- * @param {number[][]} source M-by-eight byte matrix; reduced mod29 internally.
- * @param {boolean} center Subtract first row modulo29.
+ * Exact Gaussian elimination over any prime modulus.
+ * @param {number[][]} source M-by-eight integer matrix.
+ * @param {number} prime Prime modulus (including original sexagesimal factors 2,3,5).
+ * @param {boolean} center Subtract first row modulo prime.
  * @returns {{rank:number,pivots:number[]}} Column rank.
  */
-function rank29(source, center = false) {
-  const rows = source.map(row => row.map(v => v % 29));
+function rankPrime(source, prime, center = false) {
+  const rows = source.map(row => row.map(v => v % prime));
   if (center) {
     const origin = rows[0].slice();
     for (const row of rows) for (let c = 0; c < 8; c++) {
-      row[c] = (row[c] - origin[c] + 29) % 29;
+      row[c] = (row[c] - origin[c] + prime) % prime;
     }
   }
   let rank = 0;
@@ -133,15 +134,15 @@ function rank29(source, center = false) {
     while (pivot < rows.length && rows[pivot][c] === 0) pivot++;
     if (pivot === rows.length) continue;
     [rows[pivot], rows[rank]] = [rows[rank], rows[pivot]];
-    const inverse = Array.from({length: 28}, (_, i) => i + 1)
-      .find(value => (rows[rank][c] * value) % 29 === 1);
+    const inverse = Array.from({length: prime - 1}, (_, i) => i + 1)
+      .find(value => (rows[rank][c] * value) % prime === 1);
     assert.notEqual(inverse, undefined);
-    for (let j = c; j < 8; j++) rows[rank][j] = rows[rank][j] * inverse % 29;
+    for (let j = c; j < 8; j++) rows[rank][j] = rows[rank][j] * inverse % prime;
     for (let i = 0; i < rows.length; i++) {
       if (i === rank || rows[i][c] === 0) continue;
       const factor = rows[i][c];
       for (let j = c; j < 8; j++) {
-        rows[i][j] = (rows[i][j] - factor * rows[rank][j] % 29 + 29) % 29;
+        rows[i][j] = (rows[i][j] - factor * rows[rank][j] % prime + prime) % prime;
       }
     }
     pivots.push(c);
@@ -211,26 +212,41 @@ function main() {
     planted[0][7] ^= 1;
     assert.equal(rank256(planted, polynomial).rank, 6);
   }
-  const native = rank29(matrix);
-  const nativeAffine = rank29(matrix, true);
+  const native = rankPrime(matrix, 29);
+  const nativeAffine = rankPrime(matrix, 29, true);
   assert.equal(native.rank, 8);
   assert.equal(nativeAffine.rank, 8);
   assert.deepEqual(native.pivots, [0, 1, 2, 3, 4, 5, 6, 7]);
 
   const planted29 = plantGF29(matrix);
-  assert.equal(rank29(planted29).rank, 5);
-  assert.equal(rank29(planted29, true).rank, 5);
+  assert.equal(rankPrime(planted29, 29).rank, 5);
+  assert.equal(rankPrime(planted29, 29, true).rank, 5);
   planted29[0][7] = (planted29[0][7] + 1) % 29;
   assert.equal(rank29(planted29).rank, 6);
+
+  for (const prime of [2, 3, 5]) {
+    assert.equal(rankPrime(matrix, prime).rank, 8);
+    assert.equal(rankPrime(matrix, prime, true).rank, 8);
+    const example = matrix.map(row => {
+      const [a, b, c, d, e] = row.map(byte => byte % prime);
+      return [a, b, c, d, e,
+        (a + c) % prime, (b + d) % prime, (c + e) % prime];
+    });
+    assert.equal(rankPrime(example, prime).rank, 5);
+    assert.equal(rankPrime(example, prime, true).rank, 5);
+    example[0][7] = (example[0][7] + 1) % prime;
+    assert.equal(rankPrime(example, prime).rank, 6);
+  }
 
   console.log("Source: 32 rows x 8 base60 bytes; exact byte XOR = 0x94");
   console.log("Independent visual cue: three filled left dots / five filled right dots");
   console.log("GF256: 30/30 irreducible 8-bit field polynomials give rank 8, centered rank 8");
   console.log("GF256 moduli:", moduli.map(v => v.toString(16)).join(","));
+  console.log("Base60 ring factors modulo 2, 3 and 5: rank 8, centered rank 8");
   console.log("GF29 (original byte residues): rank 8, centered rank 8");
   console.log("Positive native (8,5) codes: rank 5; one corrupted parity: rank 6");
   console.log("PASS: original grid excludes every shared row-local affine (8,5) linear code",
-    "over the tested 30 GF256 representations and native GP29.");
+    "over 30 GF256 representations, native GP29 and sexagesimal mod 2/3/5.");
   console.log("No original plaintext or hidden source-selected parity grammar recovered.");
 }
 
