@@ -56,7 +56,7 @@ const d = inverse(e, n - 1);
 assert.equal(d, 67);
 assert.equal(primeRank(n), 67);
 
-const titleMatch = transcript.split('%')[0].trim().match(/^([ᚠ-ᛠ]+)-([ᚠ-ᛠ]+)\./u);
+const titleMatch = transcript.split('%')[0].trim().match(/^([^-\.\r\n]+)-([^-\.\r\n]+)\./u);
 assert.ok(titleMatch);
 const runeIndices = new Map(corpus.runes.map((r, i) => [r, i]));
 /** @param {string} word @returns {number} */
