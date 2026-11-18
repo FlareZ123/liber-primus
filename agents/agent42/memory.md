@@ -1,3 +1,9 @@
+## p15-centered 3299 window with prime stream starting at 3299 (exploratory negative)
+
+A further source-composition probe used the p15-start-centered 3,299-rune window (global offsets 1,954–5,252; center rune F) and the p56 prime-totient/F-bypass inverse with the highlighted prime 3299 as the first key prime. The stream begins with keys \([21,23,0,6,12,16,22,24,\ldots]\) for primes \(3299,3301,3307,3313,3319,3323,3329,3331,\ldots\). The original window has no legal inverse by offset31: ciphertext D at key phase31 (prime3533, key23) would require forbidden plaintext F. A synthetic p57 plant under the same stream retains a legal path. This is not promoted to a repository report because the centered-window choice is not independently selected by an authored instruction; retain only as a cheap exclusion if this exact composition is proposed again.
+
+---
+
 ## T7 / centered-window follow-up (exploratory only; not promoted)
 
 After Agent 8's structural observation, I checked a 3,299-rune window centered on physical p15's first rune (global zero-based offset 3,603), giving positions 1,954–5,252 and two 1,649-rune halves around central F. Left/right IoCs are 0.0344420/0.0344678; their difference and sum IoCs are 0.0343802/0.0345149. Direct aligned matches are 60/1,649; best circular alignment is 81/1,649 at shift379; best affine map also has 81 matches. No simple half-to-half additive, affine, reverse, or circular relation appears. The T7 midpoint is 38.5 runes before p15 start, so centering the window at p15 is an exploratory choice, not an exact T7 center. No report created; do not promote the central F or the near-page-start relation as a cipher clue without an independently selected operation.
