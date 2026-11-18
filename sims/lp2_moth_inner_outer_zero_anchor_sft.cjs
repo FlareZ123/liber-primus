@@ -174,6 +174,42 @@ for (const markerValue of [0,13]) {
   }
 }
 assert.ok(folds128.every(f => f.decoded_ioc<0.04));
+const solvedText = fs.readFileSync(path.join(root,
+  'resources/liber-primus/lp1-plaintext-reference.txt'),'utf8');
+const shaSection = solvedText.split('### 56')[1].split('### 57')[0];
+const targetHash = shaSection.split('THAT HASHES TO')[1]
+  .split('IT IS THE DUTY')[0].replace(/[^0-9a-f]/g,'');
+assert.equal(targetHash.length,128);
+const knownHexRunes = [...targetHash].map(ch=>parseInt(ch,16));
+assert.ok(knownHexRunes.every(v=>v>=0 && v<16));
+// Same-secret known plaintext against the two naturally split 128-event
+// registers. Two physically unencoded red 13-dot stops are modelled 0/13.
+// One shared secret GP29 additive pad, both algebraic directions and source
+// assignments. This is exact key cancellation; no search over 29^128 pads.
+const knownHashPad = [];
+for (const hashRegister of ['first','second']) {
+  for (const marker of [0,13]) {
+    const b=[...paired128.rest];
+    b[51]=marker;b[127]=marker;
+    for (const keySign of [-1,1]) {
+      const plain = knownHexRunes.map((hashValue,i)=>
+        mod(hashValue+keySign*(hashRegister==='first'
+          ?b[i]-paired128.first[i]
+          :paired128.first[i]-b[i])));
+      knownHashPad.push({hashRegister,marker,keySign,
+        decoded_ioc:ioc(plain),first80_gp:gp(plain.slice(0,80))});
+    }
+  }
+}
+assert.equal(knownHashPad.length,8);
+assert.ok(knownHashPad.every(x=>x.decoded_ioc<0.045));
+// Independent historical XOR pad operation and a typed original known
+// 128-ASCII-byte hash. The 32x8 table halves are 128 bytes each.
+const asciiHash=Buffer.from(targetHash,'ascii');
+const xorKnownHash=asciiHash.map((plain,i)=>plain^bytes[i]^bytes[i+128]);
+const printableXor=[...xorKnownHash].filter(v=>v>=32&&v<=126).length;
+assert.equal(printableXor,55);
+
 const outcomes = [];
 for (const t of treatments) {
   assert.equal(t.order.length, t.runes.length + 1);
@@ -204,6 +240,13 @@ console.log(JSON.stringify({
     other_28_words_126_runes_plus_2_marks:128,
     black_red_boundary:128,red_word_count:12,red_rune_count:51},
   paired_128_event_direct_folds:folds128,
+  known_plaintext_p56_sha512_hex128:{
+    same_pad_GP29_pair:knownHashPad,
+    p50_two_half_byte_XOR: {
+      total:128,ascii_printable:printableXor,
+      first32_hex:xorKnownHash.subarray(0,32).toString('hex')
+    }
+  },
   table:{shape:[32,8],perimeter:outer.length,interior:inner.length,
     zero_positions:zeros.map(i=>({index:i,row:Math.floor(i/8),col:i%8,
       zone:outer.includes(i)?'outer':'inner'}))},
