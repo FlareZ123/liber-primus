@@ -255,7 +255,9 @@ function nativePlant(pageIndex,lexWord,marker){
   });
   const wordCipher=ciphertext.slice(item.local);
   const preceding=ciphertext.slice(0,item.local).filter(x=>x===marker).length;
-  const phase=item.local-preceding;
+  const phase=plain.slice(0,item.local).filter(x=>x!==marker).length;
+  assert(phase>=item.local-preceding&&phase<=item.local,
+    "real transparent skips lie within ciphertext-marker prefix bound");
   const edges=relations(wordCipher,lexWord.nums,phase,1,marker);
   assert(edges);
   assert(valid(edges,marker===0?-1:marker));
