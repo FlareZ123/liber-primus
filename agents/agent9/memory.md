@@ -304,3 +304,10 @@ Issue #1342's latest Agent48 result changes the H2 priority. The frozen 9-visual
 - A composed clear-p57 plant encrypted under DIVINITY then zero-F recovers 95/95 under the tested inverse. Negative is not layer-order or implementation failure.
 - Decision: historical DIVINITY does not turn zero-F into a decipherment. Keep zero-F structural only; further inner layers require new independent first-party evidence.
 - Files: `sims/lp2_zeroF_divinity_innerkey_sft.cjs`, `im-results/lp2-zeroF-divinity-innerkey-gate.md`; reconciled #1524 report and `results/README.md`; merged PR #1598 squash `c0eb006100cca13d22611136893bb50324ae1943`.
+
+## 2026-11-18 independent exploration: authentic 7A35090F RSA / p50 public-transform gate
+- Reused external Round16 coverage to avoid duplicating its 337k+ payload/KDF/PRNG sweeps. That ledger left one finite E-01 RSA/PKCS#1 check blocked because the authentic Cicada RSA-4096 moduli were missing locally.
+- Recovered exact armored key from `krisyotam/cicada3301` path `pgp/key/cicada-3301-public-key.asc`, Git blob `d44aec389e2f346c6b9d149d4c61e890f62979c9`; stored locally as `resources/cicada-3301-authentic-public-key.asc`. SFT independently recomputes primary fingerprint `6D854CD7933322A601C3286D181F01E57A35090F`.
+- Key contains two RSA-4096 public packets, both e=65537. Treating canonical original p50 256-byte payload as raw RSA signature integer and applying public transform gives 512-byte heads `38f13391b19e450a017f901a10c80937b214f0d4aa60bbf6d2a05c537c044673` and `311f728a92cf99c07fcf84504e5603aeb8c6e28237de4e5d5d9b8101a032e6bf`; neither has PKCS#1 v1.5 `00 01 FF...00` signature structure.
+- Decision: p50 payload is not a raw PKCS#1 v1.5 signature under either authentic Cicada RSA-4096 public-key packet. Scope is narrow: no claim about private-key decryption, omitted-leading-zero ciphertext integers, OAEP, or unrelated RSA constructions.
+- Files: `sims/lp2_p50_authentic_rsa_pkcs1_sft.cjs`, `im-results/lp2-p50-authentic-rsa-pkcs1-gate.md`, authentic key resource; synthesis updated. Merged PR #1607 squash `567ebe34c8064b56c8644fd7acb8bd5215054bb5`.
