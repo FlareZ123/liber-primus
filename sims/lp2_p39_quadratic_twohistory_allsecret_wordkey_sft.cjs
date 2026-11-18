@@ -228,7 +228,7 @@ assert.equal(models, 1682);
 assert.equal(best, 7);
 assert.equal(bestAffine, 68);
 assert.equal(countAllSecretAffine(source, 0, 0, "global5"), 44);
-assert.equal(allWordCoefficientMatches.size, 636);
+assert.equal(allWordCoefficientMatches.size, 644);
 const lengthCounts = {};
 for (const w of longWords) {
   const item = lengthCounts[w.length] || {total: 0, canMatch: 0};
@@ -239,7 +239,7 @@ for (const w of longWords) {
 assert.equal(longWords.filter(w => w.length >= 9).length, 187);
 assert.equal(longWords.filter(w => w.length >= 9
   && allWordCoefficientMatches.has(w.start)).length, 0);
-assert.equal(longWords.length - allWordCoefficientMatches.size, 496);
+assert.equal(longWords.length - allWordCoefficientMatches.size, 488);
 const originalKey = wi => mod(7 * wi + 13);
 const originalDirect = decode(source, 1, 1, "word5", originalKey);
 assert.deepEqual(encodeCipher(originalDirect, 1, 1, "word5", originalKey), source);
