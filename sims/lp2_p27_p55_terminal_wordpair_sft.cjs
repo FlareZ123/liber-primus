@@ -100,6 +100,42 @@ const expectedTerminalRecurrences = (
 ) / (N * (N - 1) * (N - 2));
 const pairProbabilityIfTwoCopiesEach = 2 / (N * (N - 1));
 
+// A more realistic, stricter conditional control keeps both original pages
+// and every word-length slot fixed. The two specified three-rune tokens each
+// occur exactly once on p27 and p55. Randomize only which length-three token
+// occupies each of that page's length-three slots.
+//
+// For m length-three slots and E forward-adjacent length-three slot pairs,
+// P(this specified ordered pair meets adjacently)=E/[m(m-1)].
+// This differs sharply from uniformly permuting all book words and makes
+// the global-token null inappropriate as a calibrated significance claim.
+/** @param {number} physicalPage */
+function lengthThreeSlotCount(physicalPage) {
+  const units = parsed.words.filter((word) =>
+    physicalLP2Page(word.startPage) === physicalPage);
+  const slots = units.filter((word) => word.length === 3).length;
+  let adjacent = 0;
+  for (let i = 0; i + 1 < units.length; i++)
+    if (units[i].length === 3 && units[i + 1].length === 3)
+      adjacent++;
+  return {wordSlots: units.length, threeRuneSlots: slots, adjacentSlots: adjacent,
+    orderedPairProbability: adjacent / (slots * (slots - 1))};
+}
+const page27 = lengthThreeSlotCount(27);
+const page55 = lengthThreeSlotCount(55);
+assert.deepEqual(page27, {
+  wordSlots: 52, threeRuneSlots: 13, adjacentSlots: 4,
+  orderedPairProbability: 1 / 39
+});
+assert.deepEqual(page55, {
+  wordSlots: 16, threeRuneSlots: 2, adjacentSlots: 1,
+  orderedPairProbability: 1 / 2
+});
+const pageLengthConditionedProbability =
+  page27.orderedPairProbability * page55.orderedPairProbability;
+assert.equal(pageLengthConditionedProbability, 1 / 78);
+
+
 assert.ok(Math.abs(expectedRepeatedBigrams - 0.01250011927594729) < 1e-12);
 assert.ok(Math.abs(expectedTerminalRecurrences - 0.00000861638892203117) < 1e-13);
 
@@ -116,4 +152,10 @@ console.log("Uniform word-shuffle upper bound, terminal pair repeated:",
   expectedTerminalRecurrences.toPrecision(14));
 console.log("Conditioned on exactly two of each specific word, probability",
   "of both consecutive copies:", pairProbabilityIfTwoCopiesEach.toPrecision(14));
+console.log("Page/word-length conditional p27 3-rune slots:", page27);
+console.log("Page/word-length conditional p55 3-rune slots:", page55);
+console.log("Exactly conditioned ordered pair on both pages:",
+  pageLengthConditionedProbability.toPrecision(14), "=1/78");
+console.log("The earlier global word-shuffle baseline is not a calibrated",
+  "discovery-corrected significance or plausible prose-generating null.");
 console.log("No cipher, plaintext, or creator-origin explanation is inferred.");
