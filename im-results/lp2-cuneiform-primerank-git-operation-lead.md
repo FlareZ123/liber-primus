@@ -1,6 +1,6 @@
 # Cuneiform prime ranks spell GIT under the source-natural low/gap/high readout
 
-**Agent20 · 18 November 2026. Classification: intermediate source-arithmetic lead, unresolved receiver. No unknown LP2 plaintext, creator key, or final destination is recovered.**
+**Agent20 arithmetic; Agent3 historical receiver closure · 18 November 2026. Classification: reproducible source arithmetic with a bounded negative receiver audit. No historically reachable Git receiver, unknown LP2 plaintext, creator key, or final destination is recovered.**
 
 The existing cuneiform report establishes the unusually strong source fact that the printed reversible primes 1033 and 3301 have one-indexed prime ranks 174 and 464, both divisible by the GP29 alphabet size, with rank gap 290 = 10×29. This note records one additional low-description readout that was not present in that report:
 
@@ -24,11 +24,27 @@ The new readout is instead a candidate **operation word**. If intentional, a con
 
 ## Receiver audit
 
-I searched the currently indexed creator-era primary-artifact corpus for `git`, `.git`, `github`, and `gist`; no Git target occurs there. I also searched preserved 2014 archive/walkthrough material for an exact Git endpoint associated with the cuneiform numbers or the historical onion route.
+Director #1499 fixed the admissible receiver before the search: a creator-era or contemporaneous 2013–2014 `.git` endpoint, Git smart-HTTP URL, repository address, Git object/ref, explicit clone/fetch instruction, or version-control target causally connected to the 1033/3301 route. Modern solver repositories, archive commit IDs and arbitrary hash matches were excluded.
 
-The Git/GitHub/Gist strings that do occur in broad community archives are later solver infrastructure and mirrors, including modern GitHub repositories and solver transcriptions. They do not establish a creator-authored Git receiver. No preserved first-party URL, onion path, or downloaded artifact found in this audit tells a 2014 player to clone, fetch, inspect history, or request a `.git` object.
+The preserved route is unusually explicit, and every surviving receiver uses a different operation:
 
-This audit is bounded by the indexed surviving corpus. It does not prove that a vanished 2014 service never exposed Git metadata.
+| Era / source | Source-visible use of 1033/3301 or next receiver | Git receiver? |
+| --- | --- | --- |
+| 2013 boot image `prime_echo` | emits ordinary primes and pauses at 1033 and 3301 | no |
+| 2013 first onion service | `get 1033` and `get 3301` are accepted message aliases | no |
+| 2013 fourth onion service/test log | `BASE29 1033`, then repeated `DH 3301` | no |
+| 2014 fifth-onion path | the two recovered columns sum to 1033 and 3301; period reconstruction uses `33011033` as the OpenPuff password that extracts `magicsquares.txt` | no |
+| 2014 sixth-onion signed form | submit magic squares to `/cgi-bin/squares`; provide a Tor hidden-service URL whose public key is at `/key.asc` and upload handler at `/cgi-bin/upload` | no |
+| 2 May 2014 hidden-service contact | Cicada performs `GET /key.asc` and `POST /cgi-bin/upload`, delivering `ky2khlqdf7qdznac.onion` | no |
+| 2014 seventh onion | serves the Liber Primus material; preserved HTML exposes no Git transport, object/ref or repository target | no |
+
+Repository-local source pins used for the 2014 half are `resources/external/2014-stage04-index.html`, `2014-stage05-three-onion-hex-blocks.txt`, `cicada2014-onion6-magic-form-and-response.json`, `2014-stage10-post-square-response.html`, `cicada2014-stage11-index-archived.html`, `cicada2014-stage11-onion7-original-index.html` and the period host inventory. The preserved 2013 operator chain is indexed in `resources/external/1033-3301-historical-operator-chain.json`.
+
+The period-original May 2014 IRC extraction in `resources/external/2014-cicadasolvers-freenode-log-corpus.md` independently records the human route: solvers identify the pp49–51 field as base60/256 bytes and explicitly connect the cuneiform to 1033/3301. Its route-bound URLs are solver pads/onions. GitHub links and Git blob identifiers in that research file describe later archival preservation of the 2014 logs; they were not source-visible puzzle receivers in 2014.
+
+A second archive check of the fixed 2013 stages confirms the same operation chain: `prime_echo`, `get 1033/3301`, `BASE29`, and `DH`. No preserved first-party command surface adds Git verbs, `.git`, `git-upload-pack`, `git-receive-pack`, `/objects/`, `/refs/`, clone/fetch instructions or a repository URL.
+
+This is a bounded surviving-corpus negative. It cannot prove that a vanished service never exposed unpreserved metadata, but it removes the only admissible next step under #1499 from the material currently available to a reproducible solve.
 
 ## Cheap misuse gate: GIT is not a repeating additive GP29 key
 
@@ -38,8 +54,10 @@ This test is intentionally narrow. Its purpose is to reject the obvious key misu
 
 ## Decision
 
-Preserve **GIT** as a compact, reproducible source-arithmetic **operation lead**, because it follows directly from the already exceptional prime-rank divisibility and a natural endpoint/gap ordering. Do not promote it to an authored instruction until a creator-era Git receiver is recovered.
+Director #1499 closes **negative**. The low/gap/high prime-rank arithmetic `6,10,16 = G,I,T` remains reproducible, but the preserved creator-era route supplies no Git receiver for that operation word. The route already gives explicit consumers for the same numbers: prime pauses, message aliases, BASE29, DH, OpenPuff, CGI/Tor upload and the seventh onion. Adding Git after those source-defined operations would require a missing external target.
 
-Do not spend compute on Git-derived hashes, commit IDs, repository dictionaries, or repeated-key variants. The next admissible positive is historical: a source-visible 2013/2014 repository, `.git` endpoint, Git object reference, or explicit Git operation causally connected to the manuscript. If such an object is recovered, inspect exactly that fixed history/object and require it to yield a source-derived key, operation, file, or LP2 prediction.
+Accordingly, do not spend compute on Git-derived hashes, commit IDs, repository dictionaries, arbitrary historical GitHub repositories or repeated-key variants. Reopen this branch only if a dated 2013/2014 source is recovered that itself exposes a repository, `.git` endpoint, Git object/ref or clone/fetch instruction causally tied to the route.
+
+The arithmetic observation is retained as a historical curiosity and possible mnemonic, not as a source-selected LP2 operation. No unknown plaintext, key or continuation is recovered.
 
 Related established source arithmetic and negative cuneiform consumers: `im-results/lp2-cuneiform-1033-3301-gp29-primeindex-gate.md`.
