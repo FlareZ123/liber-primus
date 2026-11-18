@@ -208,6 +208,80 @@ assert.equal(periodicLengths.length,243);
 assert.ok(periodicLengths.every(x=>x===3));
 assert.deepEqual(lfWalk(periodicBWT.last,periodicLF,periodicBWT.primary).out, periodic);
 
+
+/**
+ * The bzip2-motivated upstream alternative: historical D supplies
+ * GP29 move-to-front ranks, whose decoded symbols are BWT's last
+ * column. The opposite MTF interpretation is retained solely because
+ * #1468 pre-registered it before inspecting English scores.
+ * @param {number[]} input
+ * @param {'decode'|'encode'} mode
+ * @param {boolean} pageReset
+ * @returns {number[]}
+ */
+function mtf(input, mode, pageReset) {
+  const state = Array.from({length:29}, (_, i) => i);
+  const out = [];
+  for (let i = 0; i < input.length; i++) {
+    if (i === 0 || pageReset && (i === 262 || i === 528)) {
+      for (let j = 0; j < 29; j++) state[j] = j;
+    }
+    const rank = mode === 'decode' ? input[i] : state.indexOf(input[i]);
+    assert.ok(rank >= 0 && rank < 29);
+    const value = state[rank];
+    out.push(mode === 'decode' ? value : rank);
+    state.splice(rank, 1);
+    state.unshift(value);
+  }
+  return out;
+}
+
+const mtfBwtCandidates = [];
+const expectedMtfCycles = [
+  [336,187,176,26,2,1,1],
+  [432,274,15,5,3],
+  [531,114,68,5,4,4,3],
+  [342,288,61,28,4,2,2,2]
+];
+for (const mode of ['decode','encode']) for (const pageReset of [false,true]) {
+  const last = mtf(D, mode, pageReset);
+  const originalRankTape = mtf(last, mode === 'decode' ? 'encode' : 'decode', pageReset);
+  assert.deepEqual(originalRankTape, D);
+  const lf = lastToFirst(last);
+  const orbits = permutationCycles(lf).lengths.slice().sort((a,b) => b-a);
+  const candidate = mtfBwtCandidates.length;
+  assert.deepEqual(orbits, expectedMtfCycles[candidate]);
+  assert.ok(orbits.length > 1 && orbits.some(len => len !== orbits[0]));
+  for (const row of [133,331]) {
+    const walk = lfWalk(last,lf,row);
+    const fwd = cyclicBWT(walk.out);
+    assert.ok(walk.returnRow !== row || fwd.primary !== row ||
+      !fwd.last.every((x,i)=>x === last[i]));
+  }
+  mtfBwtCandidates.push({
+    mode, pageReset, originalDReconstituted: true,
+    cyclesSorted: orbits, validFullCircularBWT: false,
+    any2014HTMLPrimaryRowValid: false,
+    outputIndexSha256: crypto.createHash('sha256').update(Buffer.from(last)).digest('hex')
+  });
+}
+
+// End-to-end true 729-source-GP positive: a known passage through
+// native circular BWT, MTF rank encoding, then original-primeD recipher.
+const mtfBwtPlants = [];
+for (const pageReset of [false,true]) {
+  const plantedRanks = mtf(planted.last, 'encode', pageReset);
+  const syntheticCipher = reversePrimeDifference(plantedRanks);
+  assert.deepEqual(historicalPrimeDifference(syntheticCipher), plantedRanks);
+  const reconstructedLast = mtf(historicalPrimeDifference(syntheticCipher),'decode',pageReset);
+  assert.deepEqual(reconstructedLast,planted.last);
+  const regenerated = lfWalk(reconstructedLast,lastToFirst(reconstructedLast),planted.primary);
+  assert.deepEqual(regenerated.out,english);
+  assert.equal(regenerated.returnRow,planted.primary);
+  mtfBwtPlants.push({pageReset, recoveredNative729:true,
+    sourcePrimeDifferenceRecipher:true, one729LFcycle:true});
+}
+
 console.log(JSON.stringify({
   hypothesis:"2014 Stage11 HTML rows 133 or 331 as unmarked circular-BWT index of exact Feb2015 prime-D (729)",
   historicalFirstStage:{sourceRuneCount:source.length, reconstructedAll729:true,
@@ -217,8 +291,10 @@ console.log(JSON.stringify({
     invalidCircularBWTForAnyOriginalPrimary:true,
     reason:"LF cycles 320,288,91,22,8 are unequal, whereas a primitive BWT input has a single n-cycle and a periodic input has equal primitive-length cycles"},
   frozen2014Rows:choices,
+  sourceFrozenMtfThenCircularBWT:mtfBwtCandidates,
+  sourceNativeMtfBwtPlants:mtfBwtPlants,
   positive:{nativeGp729PrimitiveRoundTrip:true, plantedPrimary:planted.primary,
     plantedLFcycles:[729], periodic729BwtCycles:periodicLengths.length,
     periodicPrimitiveLength:3, periodicRoundTrip:true},
-  conclusion:"Neither source row can give a valid reversible 729-rune circular BWT inverse on the original 2015 D; no plaintext or typed second-stage receiver recovered."
+  conclusion:"Neither source row can give a valid reversible 729-rune circular BWT inverse on the original 2015 D; all four independently pre-registered GP29 MTF interpretations of D also fail the exact LF cycle criterion; no plaintext or typed second-stage receiver recovered."
 },null,2));
