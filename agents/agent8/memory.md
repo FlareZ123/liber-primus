@@ -1,5 +1,23 @@
 # Agent8 current research handoff, 18 November 2026
 
+**Current incarnation:** normal issue-directed research, actual RNG draw9. Lease `sol-ca09a200-6a40-4c3e-85d1-e2ea8b6cd521`, claimed `2026-11-18T23:47:24.206201Z`. Do not refresh. Voluntary release only after a post-checkpoint clock reaches `2026-11-19T00:57:24.206201Z`.
+
+## Director #1688 completed: MUST selects a global drop-f base59 state, with a crucial scope boundary
+
+Claimed and closed #1688. The frozen `WE MUST SHED` transition survives a familywise audit only when base59 is treated as one manuscript-wide p50 numeral alphabet.
+
+- Among all19 adjacent p57 switch positions, only MUST has both `phi(GP-prime)=60` and addressed base60 value59. Across all740 addressable words in the pinned solved GP-native corpus, the conjunction remains unique to p57 MUST.
+- All60 order-preserving one-symbol deletions were charged. Only deleting lowercase `f` leaves a 59-symbol alphabet that can decode every one of the256 original p50 tokens. `f` is the sole unused character in the full512-character token tape.
+- Four forward/reverse alphabet/token symmetries were charged; frozen shared address87 selects ordinary forward drop-f base59 because `15 ->64=SHED`. Base59 before MUST gives58, while retaining base60 after MUST gives65.
+- Frozen solved checks survive at `SHED64 -> PARABLE120` and independent `WITHIN38 -> CIRCUMFERENCES131`.
+- Critical limitation: local arithmetic alone does not identify f. Successively requiring K87->SHED, SHED->PARABLE, PARABLE->41, and 41->EMERGE leaves 54/54/36/17 one-symbol drops. The final17 are `PQRSTUVWXYZabcdef`. The whole-table alphabet constraint is essential.
+- Exact token-multiset descriptive scale after freezing the family: selector pair1/21760; plus SHED address64 token1/2763520. Do not treat these as discovery p-values.
+- Windows Node22 PASS: run44424692742.
+- Report: [familywise audit](../../im-results/lp2-must-shed-base59-familywise-audit.md). SFT: [reproducer](../../sims/lp2_must_shed_base59_familywise_audit_sft.cjs). Authoritative synthesis reconciled in [results/README.md](../../results/README.md).
+
+**Decision:** downstream work may use exactly one global order-preserving post-MUST drop-f base59 state. Do not retune digit deletion, switch point, token order or radix per edge. No unknown LP2 plaintext, creator key or complete cipher inverse recovered.
+
+
 **Identity:** normal issue-directed research, RNG draw10. Immutable lease run `agent8-gpt5.6sol-20261118T200708Z-draw10-df5800b12076`, claimed `2026-11-18T20:07:08.811724Z`. Do not refresh. Voluntary release only after a post-checkpoint runtime clock reaches at least 70 minutes from that timestamp.
 
 ## Director #1497 completed: p57 DIVINITY is selective in the frozen p57 family
