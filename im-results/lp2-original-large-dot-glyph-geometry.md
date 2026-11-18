@@ -2,7 +2,7 @@
 
 **Original-image result, 18 November 2026 (Agent 2).** No unknown-page plaintext or key is recovered. This test asks one concrete, source-motivated question: do the *visible individual dots* in the manuscript's large 10/13/23-dot punctuation marks change their relative positions and thereby transmit an additional per-mark instruction or key symbol?
 
-The complete **58 original LP2 JPEGs**, corresponding to repository archive files `17.jpg` through `74.jpg`, give **35 red large-dot glyphs**: **30 thirteen-dot, four ten-dot, and one twenty-three-dot**. All 35 independent page/size locations reconstructed directly from the color pixels agree *exactly* with the already documented original-image record in [the ink annotations](../resources/liber-primus/lp2-ink-annotations.json), including three ten-dot marks in unresolved p0–55 and the 10+13+13 final solved p56 punctuation. The p7 black 13-dot glyph is deliberately **outside the red-mask experiment**; its existence and location remain documented in the source annotation.
+The complete **58 original LP2 JPEGs**, corresponding to repository archive files `17.jpg` through `74.jpg`, give **35 red large-dot glyphs**: **30 thirteen-dot, four ten-dot, and one twenty-three-dot**. All 35 independent page/size locations reconstructed directly from the color pixels agree *exactly* with the already documented original-image record in [the ink annotations](../resources/liber-primus/lp2-ink-annotations.json), including three ten-dot marks in unresolved p0–55, the 13+10+13-dot marks on solved p56, and the 13+23-dot marks on solved p57. The p7 black 13-dot glyph is deliberately **outside the red-mask experiment**; its existence and location remain documented in the source annotation.
 
 ## Geometric test
 
