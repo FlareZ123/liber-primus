@@ -68,7 +68,7 @@ assert.equal(pageStarts[15],3603); // source-native p15 coordinate
 assert.equal(p15PageStartRank,1); // p15 is closest to T7 full-span midpoint
 // Empirical baselines: a nearest page start and a fifth-nearest line boundary
 // are common even when neither p15 nor this axis was selected in advance.
-const nearestStartDistance = x => Math.min(...pageStarts.map(start=>Math.abs(start-x)));
+const nearestStartDistance = x => Math.min(...pageStarts.slice(0,pages.length).map(start=>Math.abs(start-x)));
 const lineBoundariesIn47 = x => lineBoundaries.reduce((n,b)=>n+(Math.abs(b-x)<=47?1:0),0);
 const quadMidpoints=clusters.map(c=>(c.sites[0]+c.sites[3])/2);
 const quadNearAnyStart=quadMidpoints.filter(x=>nearestStartDistance(x)<=38.5).length;
