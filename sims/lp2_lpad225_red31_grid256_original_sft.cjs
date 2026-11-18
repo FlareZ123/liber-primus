@@ -114,7 +114,7 @@ function main() {
     source: {
       redRunes: red.length,
       mark13: mark13.length,
-      13DotInkCounts: {
+      dot13InkCounts: {
         red: mark13.filter(m=>m.ink==="red").length,
         black: mark13.filter(m=>m.ink==="black").length
       },
