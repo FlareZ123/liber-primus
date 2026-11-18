@@ -262,7 +262,7 @@ assert.equal(Math.max(...sourceRimWheel76.map(x => x.ioc)), 0.03543859649122807)
 // depletion. F (index0) is represented by a repeated ciphertext rune, and
 // 1..28 by the 28 nonrepeat steps. This preserves 29-symbol invertibility.
 /** @param {number} x */
-const mod28 = x => ((x % 28) + 28) % 28;
+function mod28(x) { return ((x % 28) + 28) % 28; }
 /** @param {number[]} key @param {number} sign @param {number[]} cipher */
 function rank28Inverse(key, sign, cipher) {
   let prev = pages.get(54).at(-1);
