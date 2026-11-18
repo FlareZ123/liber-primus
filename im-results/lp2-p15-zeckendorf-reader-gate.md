@@ -38,7 +38,8 @@ The exact result is:
 | Complete five-bit groups | 56 |
 | Remaining terminal bits | 11 |
 | Groups in GP29 range 0–28 | 56/56 |
-| Distinct GP29 symbols in output | 22/29 |
+| GP29-range property under **every possible ordering** of the 16 source codewords | **Guaranteed**, by exhaustive local-boundary proof |
+| Distinct GP29 symbols in spiral-order output | 22/29 |
 
 The 56-symbol stream, in canonical GP transliteration, is:
 
@@ -46,7 +47,9 @@ The 56-symbol stream, in canonical GP transliteration, is:
 R B TH P TH R N T H B G I TH R A T H M U I TH X R H N NG R U G U N H EA TH B O F H H EO NG U J R I T EA H H Y L L EO TH C F
 ~~~
 
-A physical row-major read, used only as an ordering control, also gives 282 bits, 56 groups, a final 11, and 56/56 GP29-range values (maximum 25). Reversing the spiral also passes the same range check (maximum 28). Therefore, the fact that all groups fall in 0–28 does **not** authenticate the spiral order or establish a unique key. This is distinct from #276's whole-corpus GP29-to-five-bit packing, but the five-bit width itself is not new; only the 16-number Zeckendorf input is source-specific.
+**Stronger exact any-order correction (18 November, Agent37):** The apparent five-bit GP29 compatibility is an automatic property of these sixteen Zeckendorf codewords, **for every possible one of the 16! source-number orderings**. Their total length is 282 regardless of ordering, and every Fibonacci codeword ends in the delimiter `11`, forcing 56 complete five-bit groups and the remaining terminal `11`. The only forbidden values for a GP29 symbol are 29–31, whose five-bit encodings are `11101`, `11110`, and `11111`. Every complete source codeword has a Zeckendorf payload with no adjacent ones; its only adjacent `11` is the final terminator. At concatenation boundaries where three ones occur, the next codeword must begin `100` (the only three source codewords beginning in 1 all do), so the longest relevant run is `11100` (28), never an invalid five-bit word. All sixteen source codewords are at least 15 bits long; thus every five-bit window lies inside one codeword or spans one ordered pair. The updated SFT checks **all 256 possible ordered codeword pairs** and every five-bit window within each pair, with zero invalid values. This is a finite proof for arbitrary permutations, independent of statistical sampling.
+
+A physical row-major reading yields maximum GP29 group value 25, and reversing the spiral yields maximum 28; both were already known to pass. The new proof shows that **any permutation also passes**. Consequently, neither the exact 56-token count, the two-bit `11` terminator, nor the all-values-in-GP29-range criterion selects an authorial spiral order, page key, or intended rune encoding. The spiral order remains independently indicated by the printed Fibonacci-prime arithmetic, but GP29 compatibility supplies no additional support. This is distinct from #276's whole-corpus GP29-to-five-bit packing; only the particular sixteen source values are manuscript-specific.
 
 The output is a reproducible typed stream. It is **not** 56 runes of recovered chapter plaintext: it has only 56 symbols, contains 22 distinct symbols, and omits seven alphabet values. The two terminal bits are the final Fibonacci-code terminator, not an independently discovered ciphertext instruction.
 
@@ -94,7 +97,7 @@ Thus the direct one-symbol-per-page Caesar interpretation cannot repair the orig
 
 ## Decision
 
-The source-selected Zeckendorf encoding produces a complete, reproducible 56-symbol GP29 stream, but it does not specify how those symbols invert the 1,903-rune chapter. The infinity symbol motivates the simplest repeated-key interpretation, which fails on the untouched original chapter. The one-symbol-per-page Caesar reading also fails its exact within-page invariant.
+The proposed Zeckendorf conversion produces a reproducible 56-symbol GP29 stream, but its length, terminal bits, and GP29-range validity follow automatically from these fixed codewords in **any** ordering. No original clue specifies Zeckendorf serialization or a matching inverse for the 1,903-rune chapter. The infinity symbol motivates the simplest repeated-key interpretation, which fails on the untouched original chapter. The one-symbol-per-page Caesar reading also fails its exact within-page invariant.
 
 No additional offsets, pads, alphabet permutations, or cipher layers were searched: those would be unselected parameters. The required missing input is a first-party instruction identifying the role of the 56-symbol stream and a reversible GP29 receiver. No candidate met the 150-rune plaintext and independent-holdout gate.
 
@@ -108,4 +111,4 @@ Run from the repository root:
 node sims/lp2_p15_zeckendorf_reader_sft.cjs
 ~~~
 
-The script asserts the original p15 JPEG SHA-256, the fixed prime/difference sequence, all sixteen Zeckendorf decodings, the self-delimiting concatenation, the 56 valid GP29 groups, exact original-cipher forward reconstruction for both additive signs, the 56-page schedule invariant, and a 190-rune native-GP positive plant from p57.
+The script asserts the original p15 JPEG SHA-256, the fixed prime/difference sequence, all sixteen Zeckendorf decodings, the self-delimiting concatenation, all 256 ordered codeword-boundary tests proving GP29-range validity for every permutation, the 56 valid groups, exact original-cipher forward reconstruction for both additive signs, the 56-page schedule invariant, and a 190-rune native-GP positive plant from p57.
