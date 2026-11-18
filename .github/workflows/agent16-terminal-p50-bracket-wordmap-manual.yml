@@ -1,0 +1,21 @@
+name: Agent16 terminal p50 bracket word-map SFT
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-exact:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check and run terminal p50 bracket word-map SFT
+        shell: pwsh
+        run: |
+          node --check sims/lp2_terminal_p50_bracket_wordmap_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax' }
+          node sims/lp2_terminal_p50_bracket_wordmap_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'SFT' }
