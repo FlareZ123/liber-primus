@@ -72,8 +72,7 @@ function encode(word) {
   }
   return a;
 }
-assert.deepEqual(encode('FUNCTION'), [0, 0].slice(0, 0).concat(encode('FUNCTION')),
-  'encoder remains deterministic');
+assert.equal(encode('FUNCTION').map(i => gp.runes[i]).join(''), 'ᚠᚢᚾᚳᛏᛡᚾ');
 
 /** @param {number[]} a @returns {string} */
 const spell = a => a.map(i => gp.translit[i]).join('');
@@ -82,6 +81,8 @@ const source = [
   read('resources/external/2013-book-of-law-I.txt'),
   read('resources/external/2013-book-of-law-II.txt'),
   read('resources/external/2013-book-of-law-III.txt'),
+  read('resources/external/cicada2012-blake-marriage-gutenberg45315.txt'),
+  read('resources/external/kjv-passion-gospels-2014.txt'),
 ];
 const native = [];
 const dictionary = new Map();
