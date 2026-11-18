@@ -81,6 +81,53 @@ function continuationFamily(endpoint){
   return rows;
 }
 
+function bestTwoPrefix(stream,minFrequency=100){
+  let best={depth:0,words:[]};
+  for(const a of words){
+    if(a.frequency<minFrequency||a.runes.length>stream.length)continue;
+    if(!a.runes.every((v,i)=>v===stream[i]))continue;
+    if(a.runes.length>best.depth)best={depth:a.runes.length,words:[a.word]};
+    for(const b of words){
+      if(b.frequency<minFrequency)continue;
+      const off=a.runes.length;
+      if(off+b.runes.length>stream.length)continue;
+      if(b.runes.every((v,i)=>v===stream[off+i])&&off+b.runes.length>best.depth){
+        best={depth:off+b.runes.length,words:[a.word,b.word]};
+      }
+    }
+  }
+  return best;
+}
+
+function nextFromCryFamily(){
+  const center=[19,16],endpoint=[17,16],distance=6,rows=[],seen=new Set();
+  for(const [dr,dc] of directions){
+    const p1=[center[0]-dr,center[1]-dc],p2=[center[0]+dr,center[1]+dc];
+    const canonical=[p1.join(","),p2.join(",")].sort().join("|");
+    if(seen.has(canonical))continue; seen.add(canonical);
+    if([...p1,...p2].some(v=>v<1||v>27))continue;
+    const raw=[at(...p1),at(...center),at(...p2)];
+    if(raw[0]!==raw[2]||raw[1]===0)continue;
+    const derived=[raw[0],phi(raw[1]),raw[2]];
+    const rotation=((derived.reduce((sum,v)=>sum+mu(phi(v)),0)%3)+3)%3;
+    const key=derived.slice(rotation).concat(derived.slice(0,rotation));
+    for(const [mdr,mdc] of directions){
+      const start=[endpoint[0]+distance*mdr,endpoint[1]+distance*mdc];
+      if(start.some(v=>v<1||v>27))continue;
+      for(const [rdr,rdc] of directions){
+        const stream=[];let r=start[0],c=start[1];
+        for(let i=0;i<12;i++){
+          if(r<1||r>27||c<1||c>27)break;
+          stream.push(mod(at(r,c)-key[i%3]));r+=rdr;c+=rdc;
+        }
+        rows.push({raw,derived,rotation,key,start,moveDirection:[mdr,mdc],readDirection:[rdr,rdc],stream,...bestTwoPrefix(stream)});
+      }
+    }
+  }
+  rows.sort((a,b)=>b.depth-a.depth);
+  return rows;
+}
+
 const imay=continuationFamily(branches[0].cells.at(-1));
 const xearth=continuationFamily(branches[1].cells.at(-1));
 assert.equal(imay.length,40);
@@ -97,6 +144,18 @@ assert.deepEqual(imay[0].stream.slice(0,3).map(i=>T[i]),["C","R","Y"]);
 assert.equal(xearth[0].depth,1);
 assert.equal(xearth.some(x=>x.depth>=2),false);
 
+const afterCry=nextFromCryFamily();
+assert.equal(afterCry.length,64);
+assert.equal(afterCry[0].depth,5);
+assert.equal(afterCry.filter(x=>x.depth===5).length,1);
+assert.deepEqual(afterCry[0].words,["now","the"]);
+assert.deepEqual(afterCry[0].raw.map(i=>T[i]),["OE","J","OE"]);
+assert.deepEqual(afterCry[0].key.map(i=>T[i]),["OE","OE","I"]);
+assert.deepEqual(afterCry[0].start,[11,16]);
+assert.deepEqual(afterCry[0].moveDirection,[-1,0]);
+assert.deepEqual(afterCry[0].readDirection,[1,1]);
+assert.deepEqual(afterCry[0].stream.slice(0,5).map(i=>T[i]),["N","O","W","TH","E"]);
+
 console.log(JSON.stringify({
  status:"block-5 tie resolved conditionally by frozen endpoint-mirror continuation family",
  block5Branches:branches.map(b=>({name:b.name,cells:b.cells,plaintext:decryptCells(b.cells,key5).map(i=>T[i])})),
@@ -104,6 +163,7 @@ console.log(JSON.stringify({
    imay:{candidates:imay.length,uniqueMaxDepth:imay[0].depth,word:imay[0].word,node:imay[0].raw.map(i=>T[i]),key:imay[0].key.map(i=>T[i]),start:imay[0].start,readDirection:imay[0].readDirection},
    xearth:{candidates:xearth.length,maxDepth:xearth[0].depth,bestWords:[...new Set(xearth.filter(x=>x.depth===xearth[0].depth).map(x=>x.word))]},
  },
- combinedCandidate:"AS I GO THE WEATHER TURNS COLD I MAY CRY",
+ afterCry:{candidates:afterCry.length,uniqueMaxDepth:afterCry[0].depth,words:afterCry[0].words,node:afterCry[0].raw.map(i=>T[i]),key:afterCry[0].key.map(i=>T[i]),start:afterCry[0].start,readDirection:afterCry[0].readDirection},
+ combinedCandidate:"AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE",
  caveat:"The endpoint-mirror/totient/move rule is inherited from the published block-6 construction and is not yet independently specified by a signed original clue."
 },null,2));
