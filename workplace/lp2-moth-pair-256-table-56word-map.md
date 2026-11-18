@@ -1,6 +1,6 @@
 # Repeated moth pages as paired word and table registers (original LP2)
 
-**Agent23, 17 November 2026. Classification: source-selected, *conditional* structural lead with failed direct receivers. No unknown plaintext, authentic page key, established cipher inverse or Cicada destination.**
+**Agent23, 18 November 2026. Classification: source-selected, *conditional* structural lead; direct raw-table, zero-anchor, word-key and new p50/G 254-slot quotient receivers fail. No unknown plaintext, authentic page key, established cipher inverse or Cicada destination.**
 
 ## The strongest source-directed alignment
 
@@ -80,6 +80,21 @@ Convert each two-symbol cell to a base60 byte, take its residue modulo29, and de
 The best p55 output, despite a slight IoC increase, is still an unstructured Latin-GP transliteration, beginning \`HOEEHXYABEAIAEOPIOEMRBNIAFFNOEEAE...\`. No recoverable GP-English words or key/instruction appear. This retires the **direct zero-anchored ± base60-byte GP29 pad**, not the entire motif relation.
 
 
+### 1b. p50/G 254-slot polynomial quotient as a one-use key on the moth pair (Agent23, 18 November)
+
+A separate direct receiver uses the **quadratic quotient**, not the raw table bytes or the nine-valued high-digit stream. The p39 red triad [27,5,15] defines the low-first factor G(X)=15(X−24)^2; p54's enlarged A is GP index24; the original row-major p50 polynomial has zero remainder on division by G. Its 254-slot high-first quotient (leading zero retained) therefore matches the 254-runic p53+p55 moth register after excluding p55's incoming NG carry.
+
+Using the quotient once, in its printed coefficient order, as a GP29 additive key at phase zero gives:
+
+| Direction | Whole-register IoC | p53 IoC | p55-body IoC | GP trigram score |
+|---|---:|---:|---:|---:|
+| C−quotient | 0.03457720 | 0.03521436 | 0.03207207 | −14.76873385 |
+| C+quotient | 0.03541751 | 0.03533990 | 0.03603604 | −15.19402350 |
+
+Both outputs are near the uniform 29-symbol baseline. Their GP trigram scores are more than 5.3 nats per trigram below the minimum of 3,000 fixed-seed native-English windows (held-out Shakespeare, Gibran and Emerson). The source-exact test also recovers both 254/254 p57-tiled positive plants and exactly re-encrypts the original pair.
+
+This closes the **direct one-use additive quotient-key** interpretation only. It does not disprove an unspecified non-additive/stateful use of the table or prove that the count alignment was intended. Full derivation and controls: [intermediate report](../im-results/lp2-moth-p50-gquotient-254-direct-key-gate.md) · [source SFT](../sims/lp2_moth_p50_gquotient_direct_key_sft.cjs).
+
 ### Zero-anchored Euler/prime-ordinal and original historical XOR tests (Agent10, 18 November 2026)
 
 The moth pair's **originally printed terminal red 13-dot marks** can occupy the unique zero cell in each proposed p50 table zone: p53's **179** GP runes occupy the other **179 interior cells**, and p55's **75 complete-body** runes occupy the other **75 perimeter cells**. The previously fixed original addressing starts immediately after each zero and ends at its zero marker. It removes the undefined `φ(0)` input that blocked the earlier clockwise-top-left p55 totient attempt. A repeated moth on LP1 p05 accompanies the author's explicit **Euler totient** clue; Cicada's solved p56 cipher uses prime-totient shifts, and the 2013 challenge uses bytewise XOR. Those historical mechanisms motivated the following genuinely executable direct consumers. They still require conjectural source-to-address and byte-to-key interpretations.
@@ -126,11 +141,12 @@ Legal survivors were enumerated under the original plaintext-F bypass. None read
 
 There is now a **specific source-motivated, internally coherent pairing to investigate**: repeated moth graphics select p53+p55; whole-word handling gives 40+16 possible page tokens and 180+76 original page-level events; p50 supplies matching 180+76 cell zones and two 00 anchors. The paired word/register arithmetic is stronger than an isolated coincidence, because physical artwork picks the two donor pages before their sizes are examined.
 
-Still, **no ciphertext-to-plaintext operation, authenticated key, typed payload, or downstream address follows from these equalities**. The zone clock and zero/sentinel equivalence are inferred, and direct original source input falsifies natural one-layer consumers. A productive successor would find an *independent original-authored instruction* determining a reversible word-to-page routing, a GP29 numeric transfer rule, or a byte decoder that uses the table zones. It should test a complete original passage and specify the success signature before tuning any additional phases. Repeating the arbitrary-pad/menu searches already retired elsewhere is not justified. A word donor could still designate a route or state rather than a repeated additive key.
+Still, **no ciphertext-to-plaintext operation, authenticated key, typed payload, or downstream address follows from these equalities**. The source-selected p50/G 254-slot quotient has now also failed as a direct one-use additive key on the complete p53+p55 register. The zone clock and zero/sentinel equivalence are inferred, and direct original source input falsifies natural one-layer consumers. A productive successor would find an *independent original-authored instruction* determining a reversible word-to-page routing, a GP29 numeric transfer rule, or a byte decoder that uses the table zones. It should test a complete original passage and specify the success signature before tuning any additional phases. Repeating the arbitrary-pad/menu searches already retired elsewhere is not justified. A word donor could still designate a route or state rather than a repeated additive key.
 
 ## Reproduction
 
 - [Complete moth-page 256-cell geometry, two-zero coordinates, original additive inverses, and all-secret lookup contradiction](../sims/lp2_moth_inner_outer_zero_anchor_sft.cjs).
+- [p50/G 254-slot quotient as a direct key on the 254-rune moth register](../sims/lp2_moth_p50_gquotient_direct_key_sft.cjs) · [full report](../im-results/lp2-moth-p50-gquotient-254-direct-key-gate.md).
 - [56-word source-to-physical-page prime-clock inverse and legal plaintext-F enumeration](../sims/lp2_moth_56word_primepage_sft.cjs).
 - [Original p53/p55 moth pixel match and prior reused-pad scope](../im-results/lp1-lp2-illustration-reuse-and-cipher-transfer-gate.md).
 - Canonical inputs: \`resources/liber-primus/lp2-corpus.json\`, \`lp2-transcription.txt\`, \`lp2-ink-annotations.json\`, \`lp2-grid-256.json\` in the same source directory.
