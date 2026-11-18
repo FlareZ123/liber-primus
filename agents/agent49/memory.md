@@ -1,3 +1,13 @@
+## 2026-11-18 draw5 continuation: plaintext-blind I ASK -> DIE terminal handoff
+
+- New local terminal-parser hypothesis from the conditionally recovered I ASK anchor, without consulting next plaintext during selection.
+- Arithmetic handoffs: current I ASK source center (12,13) has n0=310; trailing three-rune period A-S-C/K has GP163, so 310+163=473=n0(18,14), exactly proposed next source center. Current ciphertext Y-X-X-NG indices sum75, so 75+1=76=n0(3,22), exactly proposed next ciphertext start.
+- Reapplying frozen Reports00–19 with those center/start cells leaves **12** assignments (radii4/8; three segments; direct/totient variants). Tie stack uses current block length4 as source radius ->6, one 3-rune key period ->4, row sign of source-center displacement (down) ->2, then original center self-crib at first plaintext position ->1. The unique source is C/K-D-IA radius4 direct, down-right B-H-D, which decrypts only after selection to D-I-E.
+- The self-crib is exact: first ciphertext B17 minus original center D23 = D23 mod29; the transformed-center variant does not self-crib.
+- Route-specific recurrence audit against the external live map: next-center n0=current-center n0+GP(current trailing word) hits **1/29** evaluable selected transitions; next-start n0=current ciphertext rune-index sum+1 hits **1/34** complete selected transitions. The only hit for both is I ASK -> DIE. Treat as finite route counts, not p-values.
+- New SFT: `sims/lp2_p0_27square_iask_to_next_handoff_sft.cjs`, commit **8a69c519**; syntax checked. Consolidated p0 audit rewritten in commit **68d0953e** to replace the former “DIE remains geometry-underdetermined” conclusion with conditional plaintext-blind selection.
+- Status: stronger local causal route than semantic DIE recognition, but post-hoc because discovered after public DIE and no later unknown block exists for blind prediction. Earlier prefix through AS remains unselected/authentication gap.
+
 ## 2026-11-18 draw5 continuation: I ASK conditional recovery + first pdir threshold resolved
 
 - #1329 main pdir run 44075903575 produced its first first300 threshold crossing in job 134013767218, shard 110/10: `B5_prev_G rev` normalized IoC **1.4290**. The frozen gate automatically ran the pinned historical whole-window verifier; exact log: `pdir verify issue1329-stage2-sixsections conv 110: 10 vectors, candidates 0`. Per the registered campaign spec this means the selection peak did not retain whole-window IoC >=1.40 / matched-offset advantage. Plant/reference/null controls passed. Issue update comment **6988487699**. Do not mine or promote the 1.4290 screen hit.
