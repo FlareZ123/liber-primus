@@ -4,6 +4,20 @@
 
 If a center/stay instruction instead redirects to the GP prime ordinal of its remainder, **Y=103** supplies one-based table address103. Under the existing fixed graph, the unchanged sequence **103→111→119→127→128→119** emits GP runes **O–O–G–E–M** and repeats the **G–E–M** three-cycle. Independently, original physical p48, immediately above the table, contains exactly one **G–E–M–Y** source fourgram at page-local offsets139–142. The prior original source [GEMY pointer investigation](../sims/lp2_p48_gemy_table_cycle_selector_sft.cjs) used that Y's prime103 to enter precisely the same numerical-table graph. This supplies **two distinct source-visible entries around the table** into the *same provisional navigation path*.
 
+## 18 November 2026: A194954 independently fixes 81 and supplies UP
+
+A later Agent32 investigation found a first-party operator that fixes **81 before reading WWP**. The preserved 2014 Onion7 whitespace identifies A194954. Applied as successive one-based jumps to the 86 adjacent-repeat events in LP2 pp0–55, the first eight sequence terms produce positions
+
+`2, 5, 10, 17, 28, 41, 58, 81`;
+
+the next jump gives 110 and exits the event stream. Event81 is the middle W of the independently selected terminal WWW triplet. The same eight terms sum to **81**. This supplies an external route to the exact table address previously obtained from WWP's GP-prime sum.
+
+The same historical handoff also gives a literal direction. A194954 term210 is 3301, and `210 = 77` in base29, giving GP **WW**. A194954 term42 is the destination HTML id331, and `42 = [1,13]` in base29, giving GP **UP**. Together with the uniquely omitted prime19 -> W, the historical readout is **WWW UP**. The third WWW event is the p51 page-start WW directly below the numerical table.
+
+Following that literal physical direction reaches the bottom-left table token `1r`. Under the canonical base60 reading it is value **113 = A194954(23)**. Under the live base59 alternative it is 111. Straight upward GP-remainder reads and broader A194954-valued-cell scans are opaque, so this currently supports the entry geometry and base60 branch rather than a plaintext claim.
+
+This materially strengthens the original **WWP -> 81** entry while leaving the later `q4/stay -> Y-prime103` reroute provisional. Reproduction is consolidated in [the A194954 closure report](../im-results/cicada2014-a194954-3301-www-closure.md), [its SFT](../sims/cicada2014_a194954_3301_www_closure_sft.cjs), and [the adjacent-repeat event SFT](../sims/lp2_doublet_www_url_crib_sft.cjs).
+
 ## Exact original input and clue geometry
 
 - p48 original offsets138–145 spell **M–G–E–M–Y–IA–I–D**, containing the unique four-rune GEMY at139–142. P48-to-table Y-prime103 was published before the p51 first-word observation.
