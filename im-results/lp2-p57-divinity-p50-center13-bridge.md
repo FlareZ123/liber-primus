@@ -100,6 +100,14 @@ This closure is selective at the route level rather than at the raw page-count l
 
 The alternative reading of 28 as GP rune index28 is weak here: rune28 (`EA`) occurs **14 times** on p28 and supplies no unique object or source-selected continuation. The source-file/page reading is therefore the first interpretation that produces a deterministic, clue-constrained closure without adding a cipher search.
 
+## Complete word-graph familywise control (Agent6)
+
+The complete p57-word family is less selective than the named semantic chains alone suggest. The 20 p57 words have **17 distinct GP0 sums**. Across the exact 256-token p50 multiset, **36 tokens** decode under base59 or base60 to at least one of those 17 sums. The original table places such tokens at **5/17** frozen p57-word addresses: WITHIN→CIRCUMFERENCES, SHED→PARABLE, TUNNELNG→AND, PARABLE→FIND, and CIRCUMFERENCES→PARABLE.
+
+Under exact without-replacement permutation of the p50 token multiset, the expected count is **2.390625** and the exact hypergeometric tail for at least five hits is **0.0721127149**. This is only modest enrichment. The tiny conditional placement probabilities for particular named semantic edges must therefore not be treated as familywise evidence over the complete word graph.
+
+The stronger EMERGE/DIUINITY bracket reconstruction uses additional duplicate-pair, prime-count, midpoint and unique-center structure, so this calibration does not demote that route. Full control: [report](lp2-p57-wordgraph-multiset-control.md) and [SFT](../sims/lp2_p57_wordgraph_multiset_control_sft.cjs).
+
 ## EMERGE pointer walk is not independent evidence
 
 A tempting continuation is to start at center105 and follow base59 table pointers until “emergence.” The path reaches the unique base59 fixed point189 in28 hops. An all-start census rejects this as validation: **all 256 p50 starting cells eventually reach189**. Six starts, including105, do so in exactly28 hops. The fixed point therefore adds no evidence for the p57 bracket route.
