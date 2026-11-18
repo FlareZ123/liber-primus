@@ -39,6 +39,22 @@ The original uninterrupted pp49–51 table has precisely **10+13+9 =32 rows, eig
 
 The complete source-pointer assertions (p49 red-dot glyph and location, unique floral ten-dot mark, p15 source ordinals, original all-red prime sum, exact 32×8 table dimensions) are included in the [original-input Node22 test](../sims/lp2_p15_flora_p50_prime463_keyroute_sft.cjs). The possible next action remains unspecified: simply knowing a table's 256-cell count does not say how to consume its bytes.
 
+## Terminal six-rune echo gives an independent 3310-register route (Agent46, 18 November)
+
+Restoring p15's final two pre-absolute **generating primes** yields `p611=4507` and `p988=7817` at spiral indices14 and15. Their exact difference is **3310**. Under the same sixteen-page botanical grouping, the complete original p40–55 runic register has **3316** glyphs. Its last **six** are the precisely documented terminal `DJU-BEI`, the **unique repeated contiguous six-rune sequence** of the complete original 12,956-rune unknown LP2 ciphertext, also printed p27 local28–33. Removing **only that original six-rune terminal echo** leaves **3310** glyphs. This creates a source-visible possible *end sentinel*, but the author never instructs a solver to discard it, and its previously known seventh-rune continuation across the solved p56 seam remains important ([source echo study](lp2-p27-p55-terminal-two-word-echo.md)).
+
+A separate first-party release-envelope relation gives the same length: the archived May2014 [distribution HTML](../resources/cicada2014-onion7-index.html) contains the exact `div id="331"`; the single **red ten-dot glyph within floral pp40–55** occurs at **p49**, precisely the **tenth botanical page** and the transition into the 256-cell numerical table. **331 × 10 = 3310**. The two independently literal operands suggest one **10×331 or 331×10 receiver register** when combined with the source-printed ending echo and the p15 last-prime difference. They do **not** independently select a row order, a decoder, a cipher key, a key clock, a padding rule, or even the deletion of the terminal echo.
+
+```text
+p15 last two prime generators:   7817 − 4507 = 3310
+original p40–55 rune register:   3316 − 6    = 3310
+2014 original HTML and p49 mark: 331 × 10    = 3310
+```
+
+The [read-only exact original-artifact SFT](../sims/lp2_flora3310_p15gap_2014html_p55echo_sft.cjs) asserts every number from the archived HTML, original full rune tape, original ink annotation and computed first-party Fibonacci-prime rule, including the terminal echo's exact unique positions **6555** and **12950**. It passed [Windows Node22 CI run 44266274567](https://github.com/FlareZ123/liber-primus/actions/runs/44266274567).
+
+**Critical cipher decision:** the trimmed actual **3310-rune register's IoC is 0.03445843**, compared with **0.06270997** for genuinely clear solved p57. Every simple lossless column/row read-order or permutation of these 3310 runes exactly preserves its unigram IoC, so a **bare 10×331 transposition cannot recover GP-native English plaintext**. A candidate intended route would require an independently supported additional alphabet-changing transformation, source-selected extractive readout, or non-GP-native plaintext payload. Both the 3310 equality and the preceding 14+2 sign flip are post-observation crosslinks sharing the same unproven p15→floral alignment; multiplying the number of overlapping equalities does not provide an authorship probability. Preserve the source register as a discriminating clue for a future **typed decipherment**, and do not spend cycles on arbitrary grid-direction/key sweeps without a source-selected consumer.
+
 ## A second same-index source checksum on p53
 
 The same *spiral-order to floral-page* alignment makes a specific prediction at index **j=13 → physical p53**, one of the three florally framed pages with red runes. The original p53 has a source-delineated **51-rune terminal red stanza** (original page-local offsets128–178), whose standard Gematria-prime weights total **2262**. The independently archived **2014 seven-by-seven magic square** has the literal center **331**, and the p15 spiral's fourteenth displayed value (zero-based index13) is **708**. Without changing any original glyph, numeral, word boundary or index, their source values satisfy
