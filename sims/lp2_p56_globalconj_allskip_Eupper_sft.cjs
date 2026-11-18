@@ -118,10 +118,11 @@ console.log("NATIVE_ENGLISH_E",JSON.stringify(native.map(x=>({name:x.name,count:
  * @param {number} start
  * @returns {number[][]}
  */
-function allSkipUpper(tape,start){
+function allSkipUpper(tape,start,budgets=null){
   const fCount=tape.filter(x=>x===F).length;
   const W=fCount+1;
-  const U=Array.from({length:29},()=>Array(29).fill(0));
+  const requests=budgets||[fCount];
+  const outputs=requests.map(()=>Array.from({length:29},()=>Array(29).fill(0)));
   const BAD=-16000;
   for(let c=0;c<29;c++){
     const dp=new Int16Array(29*W);dp.fill(BAD);
@@ -149,12 +150,18 @@ function allSkipUpper(tape,start){
       }
     }
     for(let r=0;r<29;r++){
-      let best=0;
-      for(let d=0;d<=skips;d++)best=Math.max(best,dp[r*W+d]);
-      U[c][r]=best;
+      let best=0,nextD=0;
+      for(let j=0;j<requests.length;j++){
+        const limit=Math.min(requests[j],skips);
+        while(nextD<=limit){
+          best=Math.max(best,dp[r*W+nextD]);
+          nextD++;
+        }
+        outputs[j][c][r]=best;
+      }
     }
   }
-  return U;
+  return budgets?outputs:outputs[0];
 }
 /** Hungarian assignment maximum for one global permutation, row E forced r0. */
 function maxPermutation(U){
@@ -248,3 +255,17 @@ for(const config of configs){
   }));
 }
 console.log("SCOPE","Row-cell skip paths are independently optimized, making every output an upper bound; source-selected global pi, clock start and plaintext register remain unknown.");
+
+const allBudgets=Array.from({length:source.filter(x=>x===F).length+1},(_,i)=>i);
+const Ubudget=allSkipUpper(source,0,allBudgets);
+const englishMinimum=Math.min(...native.map(x=>x.E));
+const profile=Ubudget.map((matrix,b)=>({skips:b,upper:maxPermutation(matrix).total}));
+for(const b of [0,1,2,4,8,16,32,64,80,96,112,128,160,192,224,256,320,384,458])
+  console.log("SKIP_BUDGET",JSON.stringify(profile[b]));
+const threshold=profile.find(x=>x.upper>=englishMinimum);
+console.log("ALLSECRET_MIN_SKIP_NECESSITY",JSON.stringify({
+  originalFPositions:allBudgets.length-1,referenceMinE:englishMinimum,
+  threshold:threshold||null,atP56OneInFiveF:profile[Math.floor((allBudgets.length-1)/5)]
+}));
+for(let i=1;i<profile.length;i++)
+  assert(profile[i].upper>=profile[i-1].upper,"budget E upper must be monotone");
