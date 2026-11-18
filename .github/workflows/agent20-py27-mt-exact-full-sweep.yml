@@ -1,16 +1,15 @@
-name: Agent20 full Py2.7-MT exact S2 panel-R36 sweep
+name: Agent20 Py2.7-MT exact S2 panel-R36 smoke gate
 
 on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "Smoke-test 65,536 seeds or sweep the complete 2^32 exact-relation space"
+        description: "Smoke-test 65,536 seeds. Full rerun is disabled pending Director Issue #1495."
         required: true
         default: smoke
         type: choice
         options:
           - smoke
-          - full
 
 permissions:
   contents: read
@@ -30,7 +29,9 @@ jobs:
           import json
           import os
           mode = os.environ["MODE"]
-          shards = [0] if mode == "smoke" else list(range(256))
+          if mode != "smoke":
+              raise SystemExit("full 2^32 rerun disabled pending Director Issue #1495")
+          shards = [0]
           print("shards=" + json.dumps(shards, separators=(",", ":")))
           PY
 
@@ -80,7 +81,7 @@ jobs:
 
           mode = os.environ["MODE"]
           shard = int(os.environ["SHARD"])
-          step = 65536 if mode == "smoke" else (1 << 24)
+          step = 65536
           start = shard * step
           end = (shard + 1) * step
           lane = f"S2_{mode}_{shard:03d}"
@@ -118,7 +119,7 @@ jobs:
           CLAIM_BAR = 7.6341931878728095
           mode = os.environ["MODE"]
           shard = int(os.environ["SHARD"])
-          step = 65536 if mode == "smoke" else (1 << 24)
+          step = 65536
           start = shard * step
           end = (shard + 1) * step
           lane = f"S2_{mode}_{shard:03d}"
@@ -180,74 +181,3 @@ jobs:
             external/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/panel-gate.txt
             external/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/engine-self-test.txt
 
-  aggregate:
-    if: ${{ always() && inputs.mode == 'full' }}
-    needs: sweep
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download all completed shard evidence
-        uses: actions/download-artifact@v4
-        with:
-          pattern: agent20-s2-full-*
-          path: evidence
-          merge-multiple: true
-
-      - name: Prove complete disjoint 2^32 coverage and collect hits
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-
-          files = sorted(Path("evidence").glob("summary-*.json"))
-          assert len(files) == 256, f"expected 256 shard summaries, got {len(files)}"
-          rows = sorted((json.loads(p.read_text(encoding="utf-8")) for p in files),
-                        key=lambda x: x["shard"])
-          assert [r["shard"] for r in rows] == list(range(256))
-          cursor = 0
-          hits = []
-          best = None
-          total = 0
-          for row in rows:
-              assert row["mode"] == "full"
-              assert row["start"] == cursor, (row["shard"], row["start"], cursor)
-              assert row["end"] > row["start"]
-              assert row["seeds_done"] == row["end"] - row["start"]
-              assert row["workers_done"] and row["lane_completed"]
-              cursor = row["end"]
-              total += row["seeds_done"]
-              hits.extend({"shard": row["shard"], **h} for h in row["claim_hits"])
-              if best is None or row["best_pmax"] > best["pmax"]:
-                  best = {
-                      "pmax": row["best_pmax"],
-                      "seed": row["best_seed"],
-                      "shard": row["shard"]
-                  }
-
-          assert cursor == 1 << 32, cursor
-          assert total == 1 << 32, total
-          aggregate = {
-              "relation": "exact",
-              "reducer": "random29",
-              "offset": 0,
-              "external_commit": "6b945291ed298c14ccf8c73603f695a28f6a7e35",
-              "claim_bar": 7.6341931878728095,
-              "shards": 256,
-              "total_seeds": total,
-              "coverage_fraction": 1.0,
-              "best": best,
-              "claim_hits": hits
-          }
-          Path("agent20-s2-full-aggregate.json").write_text(
-              json.dumps(aggregate, indent=2) + "\n", encoding="utf-8")
-          print(json.dumps(aggregate, indent=2))
-          PY
-
-      - name: Upload aggregate evidence
-        uses: actions/upload-artifact@v4
-        with:
-          name: agent20-s2-full-aggregate
-          if-no-files-found: error
-          retention-days: 30
-          path: agent20-s2-full-aggregate.json
