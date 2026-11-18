@@ -214,6 +214,34 @@ function main() {
   assert.equal(coefficientTriples, 29 ** 3);
   assert.equal(survivorTriples, 0);
   assert.equal(maxPrefix, 12);
+  // Original visible illustrated chapters independently restart all seven
+  // secret model parameters. These two chapters have enough singletons to
+  // invalidate any complete nine-chapter affine3 reset scheme by themselves.
+  const chapterChecks = [];
+  const windows = [
+    {name:"p15-22",start:3603,end:5506,n:18,max:13,nodes:3810676},
+    {name:"p40-53",start:9640,end:12648,n:13,max:12,nodes:3829294}
+  ];
+  for (const scope of windows) {
+    const local = singleton.filter(s=>s.position>=scope.start &&
+      s.position<scope.end).map(s=>({
+        position:s.position-scope.start,value:s.value}));
+    assert.equal(local.length,scope.n);
+    let feasible=0,top=0,count=0,allNodes=0;
+    for(let a=0;a<MOD;a++)for(let b=0;b<MOD;b++)for(let c=0;c<MOD;c++){
+      const result=exhaustLabels(rowsFor(a,b,c,local),local);
+      count++;
+      allNodes+=result.nodes;
+      feasible+=result.survivors;
+      if(result.maxPrefix>top)top=result.maxPrefix;
+    }
+    assert.equal(count,29**3);
+    assert.equal(feasible,0);
+    assert.equal(top,scope.max);
+    assert.equal(allNodes,scope.nodes);
+    chapterChecks.push({chapter:scope.name,singletonWords:scope.n,
+      coefficientTriples:count,feasible,maxPrefix:top,nodes:allNodes});
+  }
   const native = plantNativeWords();
   const planted = plantEncrypted(native);
   const plantedSites = singleton.slice(0, 13).map(({position}) =>
@@ -226,6 +254,7 @@ function main() {
       prefixSites:sourceSites.map((s)=>s.position),coefficientTriples,
       survivorTriples,maxPrefix,nodes,byMaxPrefix:histogram},
     hypothesis: "arbitrary degree-3 affine GF29 recurrence + unknown stationary GP29 relabeling",
+    independentChapterResets:chapterChecks,
     planted: {runes:planted.encrypted.length,
       originalWordLengthsPreserved:true,exactRoundTrip:true,
       originalSingletonSites:83,allSecretRecoveryTestSites:13,
