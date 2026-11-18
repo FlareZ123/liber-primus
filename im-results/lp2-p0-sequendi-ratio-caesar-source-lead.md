@@ -1,6 +1,6 @@
 # `SEQUENDI RATIO` and Caesar, *De Bello Civili* I.30.1
 
-**Agent 28, 18 November 2026. Classification:** source-motivated follow-up to the conditional red-heading result. The external textual association is exact enough to preserve as a lead; the two cheapest direct cipher interpretations are rejected on the original p0 body.
+**Agents 28 and 44, 18 November 2026. Classification:** bounded source-motivated follow-up to the conditional red-heading result. The classical textual association is exact enough to record, but Director #1503 found no independent 2012–2014 Cicada-authored selector for Caesar, *De Bello Civili* I.30.1, Pompey, Hispania, `sequendi`, or `rationem`. The two cheapest direct cipher interpretations are also rejected on the original p0 body. Treat the Caesar/Civil-War association as a post-hoc literary coincidence candidate unless new first-party evidence supplies the missing selector.
 
 ## Source lead
 
@@ -31,6 +31,24 @@ Stable source texts:
 
 This is a **hypothesis lead**, not evidence that Caesar's text is the missing LP2 key.
 
+## Independent historical source-selection audit (#1503)
+
+The source gate asks whether anything available independently of the candidate red reading would lead a 2012–2014 solver to Julius Caesar's *De Bello Civili* I.30.1, Pompey/Hispania, or the exact `sequendi rationem` phrase.
+
+The preserved authenticated/original-era text corpus was searched directly for `Caesar`, `Pompei/Pompey`, `Hispania`, `Bellum Civile`, `De Bello`, `sequendi`, and `rationem`. The first-party material includes the preserved signed 2012–2014 messages, original onion/stage text, signed 2013 server material, the 2014 May reply, Stage04/Stage11 source text, and other byte-pinned historical files already indexed in `resources/`. No first-party source contains a pointer to the Civil War work, Book I chapter 30, Pompey/Hispania, or the target phrase.
+
+There is one genuine historical Caesar precedent: the 2012 opening artifact exposes `TIBERIVS CLAVDIVS CAESAR` and thereby motivates an ASCII Caesar shift by four. The byte-pinned source note preserves that operation. This demonstrates that Cicada used a Caesar clue as an operation selector, but it does not select Julius Caesar as an author, a particular classical work, or *De Bello Civili* I.30.1.
+
+As a contemporaneous-community control, `sims/lp2_2014_irc_caesar_source_selector_scan.cjs` scans three exact Git-blob-verified solver IRC exports while accepting only timestamped 2012–2014 lines. Windows Node22 run [44397268478](https://github.com/FlareZ123/liber-primus/actions/runs/44397268478) passed all byte-identity checks. Across 54,351,077 source bytes it finds:
+
+- `#cicadasolvers.freenode.log`: 57 `caesar` mentions, 13 `Pompei/Pompey` regex hits, and zero `Hispania`, `Bellum Civile`, `De Bello`, `sequendi`, or `rationem`;
+- `#cicadasolvers.freenode.2.log`: 28 `caesar` mentions and zero for every other target term;
+- `#33012014.freenode.log`: 18 `caesar` mentions and zero for every other target term.
+
+The 13 first-log `Pompei/Pompey` hits are unrelated uses such as Pompeii and the SATOR square. One especially relevant solver-authored line on 8 January 2014 links “Another Liber Primus” to Caesar's *De Bello Gallico* Book I. That line shows that contemporary solvers were already generating many Latin “Book I” associations from the title; it points to a different Caesar work and has no Cicada-authored provenance. A later `De Bello` bot hit seen in an unrestricted pilot was dated 2016 and disappears under the required 2012–2014 period gate.
+
+**Decision:** no independent first-party selector for *De Bello Civili* I.30.1 survives the bounded audit. The literary near-match remains worth recording as context for the conditional title, while it cannot select a Caesar book-code, `POMPEI` key, running-text offset, or ciphertext target. Reopening this branch requires new Cicada-authored or contemporaneous source evidence that fixes the work/location independently of the candidate reading.
+
 ## Cheapest direct interpretations fail
 
 The most obvious omitted word adjacent to the recovered phrase is `POMPEI`. I tested the original p0 body after the 13 red heading under:
@@ -48,11 +66,11 @@ For `POMPEI`:
 
 These remain random-like and do not support a direct whole-body Caesar/Vigenere interpretation.
 
-## What remains worth testing
+## Current scope after the source audit
 
-The source lead remains interesting only in more clue-faithful forms that differ materially from the rejected direct keys. In particular, Caesar I.30.1 may identify a **book/source reference** rather than a repeating key. The chapter's immediate continuation also says Caesar abandons following Pompey and goes to Hispania, so a useful future test must derive a deterministic selector, coordinate, or running source from the visible puzzle rather than trying arbitrary Caesar-text offsets.
+Director #1503 closes the Caesar/*De Bello Civili* source-selection branch at the current evidence boundary. Do not search arbitrary Caesar-text offsets, derive `POMPEI` variants, or use the classical phrase to choose among underselected 27×27 coordinate conventions. The red-heading geometry remains a separate conditional result and still needs an independently authored rule or a prospective consequence on untouched original ciphertext.
 
-The red-heading geometry remains the stronger result. This Caesar association should not be used to rescue underselected 27×27 transitions unless it predicts untouched original ciphertext.
+A future Caesar/book-source test becomes justified only if a newly recovered first-party artifact independently identifies Julius Caesar, the Civil War text, Book I chapter 30, Pompey/Hispania, or an equivalent deterministic source coordinate.
 
 ## Reproduction
 
