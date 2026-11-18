@@ -281,6 +281,26 @@ assert.deepEqual(
 );
 
 const solved = solvePeriod31(cipher, key);
+
+/*
+ * Beaufort is distinct once the plaintext cribs are frozen: P = K - C.
+ * With C' = -C and K' = -K, this is P = C' - K', so the same exact DP
+ * can optimize the remaining nine key phases without adding a search family.
+ */
+const beaufortStream = cipher.map((value) => mod(-value));
+const beaufortKey = Array(PERIOD).fill(null);
+for (const crib of cribs) {
+  const plain = encodeSourceNativeGP(crib.text);
+  const start = wordStarts[crib.word];
+  for (let j = 0; j < plain.length; j += 1) {
+    const phase = (start + j) % PERIOD;
+    const value = mod(beaufortStream[start + j] - plain[j]);
+    if (beaufortKey[phase] !== null) assert.equal(beaufortKey[phase], value);
+    beaufortKey[phase] = value;
+  }
+}
+const beaufort = solvePeriod31(beaufortStream, beaufortKey);
+
 for (const crib of cribs) {
   assert.deepEqual(
     solved.plain.slice(
@@ -343,12 +363,24 @@ assert.equal(offset, solved.plain.length);
 const longHits = decodedWords.filter((row) => row.length >= 5 && row.hit).length;
 const totalHits = decodedWords.filter((row) => row.hit).length;
 
+assert.ok(
+  solved.score < controlScores[0],
+  "Vigenere/Variant period31 candidate stays below every native-shape control",
+);
+assert.ok(
+  beaufort.score < controlScores[0],
+  "Beaufort period31 candidate stays below every native-shape control",
+);
+
 console.log(JSON.stringify({
   candidateCribs: cribs,
   fixedKeyPhases: 22,
   optimizedPhases: [13,14,15,16,17,27,28,29,30],
   exactKey: solved.key,
   score: solved.score,
+  beaufortKey: beaufort.key,
+  beaufortScore: beaufort.score,
+  beaufortRendered: render(beaufort.plain),
   rawCipherScore: scorePlain(cipher),
   nativeShapeControls: {
     samples: controlScores.length,
