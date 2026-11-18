@@ -100,14 +100,29 @@ For the **coin** retry model, a kept collision on the preceding forward rune can
 
 Every selected planted site asserted exact emitted-key-index equality. Windows Node 22/Python 3.12 run **44385358924** passed the source identity gate and all four 100-plant calibrations. Reproducers are [`sims/lp2_pdir_c1_sectionexact_aprevg_controls_sft.py`](../sims/lp2_pdir_c1_sectionexact_aprevg_controls_sft.py) and [`sims/lp2_pdir_c1_allrule_keyfree_source_sft.py`](../sims/lp2_pdir_c1_allrule_keyfree_source_sft.py). The earlier continuous-book CommonJS reproducer remains useful as an independent algebra check, while its 734/725 site counts are not the #1329 campaign geometry.
 
-The same section-exact source census evaluates all **132 direction vectors** without any secret key. Only **3/132** have positive raw native boundary LLR under either exact c=1 subset. The two larger-support observations are **B7_prev_G reversed**, at +0.169724 over 718 skip sites and +0.816327 over 712 coin-safe sites, and the A_prev_G result above is strongly negative. **C_cur_wp** supplies the other positive values, but only 48 selected sites. These all-rule values are a triage signal until each survivor is calibrated under its own ciphertext-driven selection rule; they are not plaintext claims.
+The same section-exact source census evaluates all **132 direction vectors** without any secret key. Only **3/132** have positive raw native boundary LLR under either exact c=1 subset. All three positive vectors were then calibrated under their own forward-computable selectors.
 
-The section-exact A_prev_G result therefore rejects conventions 021 and 101 for both published retry models under the tested native-GP register without searching a source key. Comparator c2, other direction rules and non-native plaintext registers remain outside this result.
+The only positive vector with hundreds of sites, **B7_prev_G reversed**, has +0.169724 over 718 skip sites and +0.816327 over 712 coin-safe sites on the original. In 100 complete matched native plants per mechanic, the original remains at the extreme low tail:
+
+| Convention / retry | Native controls at or below original | Control median LLR |
+|---|---:|---:|
+| **021 / skip** | **1/100** | +13.574086 |
+| **021 / coin** | **1/100** | +13.390818 |
+| **101 / skip** | **1/100** | +13.182693 |
+| **101 / coin** | **0/100** | +12.402882 |
+
+Thus the apparent raw positive is not a native-language rescue for this selector. The frozen six-new-section key campaign independently gives only **1.3165** first300 IoC for B7_prev_G reversed under 021 and **1.3178** under 101, both well below the predeclared 1.40 whole-window verification gate.
+
+The remaining raw-positive selector is **C_cur_wp** in both orientations. It contributes only 48 exact skip sites. Its original LLR is statistically ordinary under matched controls: 52-68 of 100 controls score at or below the source depending on orientation and retry mechanic. The key-free discriminator therefore has too little leverage to accept or reject it. The corresponding six-section key screens also remain below the frozen gate: forward best IoC is **1.3301** under 021 and **1.3417** under 101; the reversed cases abort every screened path and report 0.0000.
+
+Windows run **44386618983** is the corrected survivor calibration with independent pad and retry PRNG streams. Reproducer: [`sims/lp2_pdir_c1_sectionexact_survivor_controls_sft.py`](../sims/lp2_pdir_c1_sectionexact_survivor_controls_sft.py).
+
+The section-exact evidence therefore strongly disfavors A_prev_G and B7_prev_G reversed for c1 conventions 021/101 under the tested native-GP register. C_cur_wp remains a sparse, low-information structural case whose actual key screen is negative at the frozen threshold. Comparator c2, other direction rules and non-native plaintext registers remain outside this result.
 
 ## Decision for future wordwise-pointer search
 
 The source-natural **A_prev_G** rule is unsupported by the original reuse-site evidence across all three adjacent-key-reusing h/m conventions with c0. On the exact eight #1329 windows, c1 conventions 021 and 101 are independently rejected for **both skip and coin retry models** by exact emitted-key cancellation gates. The real score falls below every correctly generated native control in each tested branch. These are key-independent early gates that avoid searching the external **581 fixed keystreams** or guessed starting positions for those declared branches.
 
-Do **not** extrapolate the calibrated A_prev_G negative to the other direction masks or all 18 pointer conventions. The key-free all-rule census identifies B7_prev_G reversed as the only positive c1 vector with hundreds of selected sites, so that vector is the next discriminating calibration target. In particular, key-pointer conventions with no adjacent reused index have no comparable first/last constraint, and a collision repair consuming extra values via the alternative coin rule can require another calibration. Non-native register, multiple encryption layers, word-boundary remapping, or unrelated historical key paths are outside this finding.
+Do **not** extrapolate the calibrated A_prev_G negative to the other direction masks or all 18 pointer conventions. The key-free all-rule census and survivor calibration no longer leave a broad-support positive c1 vector: B7_prev_G reversed falls in the 0-1% native-control tail, while C_cur_wp has only 48 sites and no key-screen crossing. In particular, key-pointer conventions with no adjacent reused index have no comparable first/last constraint, and a collision repair consuming extra values via the alternative coin rule can require another calibration. Non-native register, multiple encryption layers, word-boundary remapping, or unrelated historical key paths are outside this finding.
 
 **Reproducer:** [original-source Node.js 22 CommonJS SFT](../sims/lp2_pdir_gpprimeparity_keyreuse_original_sft.cjs); uses only pinned original LP2 corpus/transcription and Gibran/Shakespeare external control files already retained in the repository, prints exact original and 100 matched-length positive scores, and never writes any files. The original real words, 734 reuse sites and source positive recovery are independently asserted. This is immediately usable as a cheap decision test before expensive full keystream-key campaigns.
