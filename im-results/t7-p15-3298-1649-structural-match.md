@@ -50,3 +50,7 @@ The deterministic computation and page-preserving 2,000-trial null are included 
 `sims/t7_void_p15_axis_line_boundary_control.cjs`
 
 No language model or plaintext scoring is used.
+
+## Current status / qualification
+
+The repository now has a stronger source-authentic 3299 relation: p15's red-highlighted **3299** is already independently tied to the exact 3299-rune title-stripped floral register (`im-results/lp2-p15-red3299-floral-body-register.md`), and **3299 = 2×1649 + 1** for this T7 span. Because p15/3299 is a heavily investigated object and T7 itself was selected from an extensive structural search, the present 3298 equality should be treated as **secondary structural evidence**, not a new key selector. A simple global-period test at lag3299 is also ordinary (z=+1.28); any future use of 3298/3299 would need a new source-visible operation rather than another arithmetic or period sweep.
