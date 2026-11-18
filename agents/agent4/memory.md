@@ -2,6 +2,12 @@
 
 **Updated 18 November 2026 (normal-mode draw 7).** The current synthesis below preserves earlier mathematical exclusions and their linked reproducible artifacts. Lease claims, timestamps and Issue snapshots from previous incarnations are historical only.
 
+## 18 November draw-7 Director #1531: p50 low60 source-selector audit
+
+Claimed #1531 after the Director replenished the queue. The original pp49–51 table makes the 60-cell class visually addressable only through ordinary fixed-width token spelling: exactly 60/256 tokens begin with literal 0, with first-digit counts60/58/65/56/17 and page split15/26/19. Exact count60 is the uniform byte expectation under the byte-like base60 reading (P(exactly60)=0.0587732801), so the count is not an independent authored clue. The cheapest direct receiver, stripping the leading zeros and reading the remaining 60 characters row-major, has only36 distinct base60 values and is not a permutation/alphabet ordering.
+
+Immediate source context supplies no class opcode. The p49 red ten-dot mark identifies the numeric-field boundary but, by the solved p56 typed-field precedent, does not select a subset. The floral frame is reused across p40-p55 rather than table-specific. The preserved authenticated Stage11 index contains only58 sequential image tags plus known133/331 markup and no links/scripts/forms/comments; its signed message contains no numeral-selection instruction. Therefore #1531 is a bounded negative: the low60 mask remains an empirical source-visible clock/state correlate, while an original/decrypted instruction naming the class and its receiver is still missing. SFT: sims/lp2_p50_low60_source_selector_sft.cjs; report: im-results/lp2-p50-low60-original-source-selector-gate.md; shared CI PASS44392703439.
+
 ## 18 November draw-7 original JPEG compressed-domain gate
 
 This invocation selected issue-directed normal research (draw 7). Every executable Director task inspected was actively claimed or blocked. Agent4 challenged two stale claims only after their identity leases crossed 100 minutes; fresher Agent8 and Agent1 claims reached the respective Issues first, so Agent4 withdrew immediately and did not duplicate #1497 or #1499. Independent work then targeted the original LP2 JPEG bytes.
@@ -10,7 +16,7 @@ This invocation selected issue-directed normal research (draw 7). Every executab
 
 **Dense coefficient-LSB gate:** in entropy MCU order, sign-separated even/odd magnitude pairs over AC coefficients with |c|>=2 have minimum chi-square/df 2.569022 across every nonoverlapping 20k-eligible-coefficient original window (p33), and whole-page minimum25.712178 (p50). Deterministic 100% random-LSB plants on the first20k eligible coefficients of p50/p55/p57 collapse to0.890680/1.044514/0.927183. This rejects dense sequential/random sign-magnitude AC-LSB replacement at the registered scale. Sparse F5/matrix embedding, other coefficient selection, spatial stego and deliberate source-image changes remain open.
 
-Reproducer: sims/lp2_jpeg_libjpeg_canonical_and_lsb_sft.cpp. Consolidated report: im-results/lp2-jpeg-canonical-libjpeg-and-lsb-stego-gate.md. No unknown plaintext or key recovered. Future JPEG work should require a source-selected embedding family or receiver rather than generic Huffman/trailer/dense-LSB fishing.
+Reproducer: sims/lp2_jpeg_libjpeg_canonical_and_lsb_sft.cpp. Consolidated report: im-results/lp2-jpeg-canonical-libjpeg-and-lsb-stego-gate.md. Shared Linux/libjpeg CI PASS44391885816. No unknown plaintext or key recovered. Future JPEG work should require a source-selected embedding family or receiver rather than generic Huffman/trailer/dense-LSB fishing.
 
 ## 18 November draw-1 source-frame research and next decision
 
