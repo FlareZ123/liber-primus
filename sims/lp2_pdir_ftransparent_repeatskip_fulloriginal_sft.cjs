@@ -333,10 +333,39 @@ const expected='AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT
 assert.deepEqual(encryptRejection(expected.split(' ').flatMap(encode),0,1,-1,()=>false).out,p56);
 assert.deepEqual(anyLexicalFast(words[26],words.slice(0,26).at(-1).at(-1)),
   anyLexicalPreimage(words[26],words.slice(0,26).at(-1).at(-1)));
+
+// Independently encrypted full-manuscript-shaped native GP plant. The decoder
+// is not told either the actual cursor, the direction sequence, the source
+// words, or which repeat events were rejected. No candidate English words
+// were read from original ciphertext to create this control.
+let pos=73,dir=1,lastC=-1,nativeLong=0,nativeRecovered=0;
+for(let i=0;i<all.length;i++){
+  const len=all[i].word.length;
+  const available=[...(broadByLength.get(len)?.values()||[])];
+  assert(available.length>0,'native plant covers original word length '+len);
+  const plain=available[(i*17+5)%available.length];
+  const before=lastC;
+  const e=encryptRejection(plain,pos,dir,lastC,(at,skipped)=>
+    (i*7+at+skipped)%5!==0);
+  pos=e.cursor;
+  lastC=e.previousC;
+  if(len>=6){
+    nativeLong++;
+    if(anyLexicalFast(e.out,before).hits>0)nativeRecovered++;
+  }
+  const sum=plain.reduce((a,p)=>a+gp.prime[p],0);
+  let prime=sum>1;
+  for(let d=2;d*d<=sum;d++)if(sum%d===0){prime=false;break;}
+  dir=prime?1:-1;
+}
+assert.equal(nativeLong,815);
+assert.equal(nativeRecovered,815);
+
 console.log('Canonical input: 12,956 original runes / 2,896 whole printed words / 32 original page carries');
 console.log('Source-pinned original solved p56 transparent-F φ(prime): 85/85 exact forward');
 console.log('Independent starting key phase every source word, any +/- sign, 0..3 repeated-output rejections per nonF rune');
 console.log('Broad source GP-native lexicon size '+lexsize+'; original >=6-word exact preimage counts: '+JSON.stringify(sums));
 console.log('Per-page exact >=6 original preimage stats: '+JSON.stringify(summary));
+console.log('Held-out original-length full native GP source plant, positive exact lexical reachability '+nativeRecovered+'/'+nativeLong);
 console.log('All genuine original long-word lexical candidates: '+JSON.stringify(exact.slice(0,100)));
 console.log('PASS: original whole-corpus finite necessary input, no unsupported plaintext');
