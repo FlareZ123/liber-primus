@@ -121,3 +121,122 @@ assert(original.score<0);
 assert(original.score<positive.score-6000);
 assert(control.score<positive.score-6000);
 console.log('PASS: planted full phase recovery; no original shared cyclic-pad signal.');
+
+
+/**
+ * Stronger, NONADDITIVE model: every one of 256 key positions uses an
+ * independent arbitrary 29-symbol bijection. Aligned C equalities are
+ * exactly the unknown plaintext equalities, regardless of all secret keys.
+ * The likelihood uses Bernoulli equal-vs-unequal scores and penalizes the
+ * varying number of overlapped positions for each page-offset hypothesis.
+ */
+/** @param {number[][]} corpus */
+function allSecretMatrices(corpus) {
+  const qCollision = freq.reduce((sum, p) => sum + p * p, 0);
+  const equalGain = Math.log(qCollision * 29);
+  const unequalGain = Math.log((1 - qCollision) / (28 / 29));
+  const m = Array.from({length: 55}, () => Array(55).fill(null));
+  for (let p = 0; p < 55; p++) {
+    for (let t = p + 1; t < 55; t++) {
+      const a = corpus[p], b = corpus[t], row = new Float32Array(256);
+      for (let shift = 0; shift < 256; shift++) {
+        let equal = 0, compared = 0;
+        for (let j = 0; j < a.length; j++) {
+          const at = (j + shift) & 255;
+          if (at < b.length) {
+            compared++;
+            if (a[j] === b[at]) equal++;
+          }
+          if (at + 256 < b.length) {
+            compared++;
+            if (a[j] === b[at + 256]) equal++;
+          }
+        }
+        row[shift] = equal * equalGain + (compared - equal) * unequalGain;
+      }
+      m[p][t] = row;
+    }
+  }
+  return m;
+}
+
+/** @param {number[][]} corpus
+ * @param {{int:(n:number)=>number}} rng
+ * @param {number} starts
+ * @param {number} passes
+ */
+function fitAllSecret(corpus, rng, starts, passes) {
+  const m = allSecretMatrices(corpus);
+  let top = -Infinity, topPhase = [];
+  for (let start = 0; start < starts; start++) {
+    const phase = Array.from({length: 55}, () => start ? rng.int(256) : 0);
+    for (let iteration = 0; iteration < passes; iteration++) {
+      let moves = 0;
+      for (let p = 0; p < 55; p++) {
+        let best = -Infinity, bestPhase = phase[p];
+        for (let x = 0; x < 256; x++) {
+          let score = 0;
+          for (let t = 0; t < 55; t++) {
+            if (t < p) score += m[t][p][(phase[t] - x + 256) & 255];
+            else if (t > p) score += m[p][t][(x - phase[t] + 256) & 255];
+          }
+          if (score > best) { best = score; bestPhase = x; }
+        }
+        if (bestPhase !== phase[p]) { phase[p] = bestPhase; moves++; }
+      }
+      if (!moves) break;
+    }
+    let score = 0;
+    for (let p = 0; p < 55; p++) {
+      for (let t = p + 1; t < 55; t++) {
+        score += m[p][t][(phase[p] - phase[t] + 256) & 255];
+      }
+    }
+    if (score > top) { top = score; topPhase = phase.slice(); }
+  }
+  return {score: top, phase: topPhase};
+}
+
+const arbitraryRng = prng(23001288);
+const allSecretKey = Array.from({length: 256}, () => {
+  const values = Array.from({length: 29}, (_, i) => i);
+  for (let i = 28; i > 0; i--) {
+    const j = arbitraryRng.int(i + 1);
+    const hold = values[i]; values[i] = values[j]; values[j] = hold;
+  }
+  return values;
+});
+const allSecretOffsets = Array.from({length: 55}, () => arbitraryRng.int(256));
+const arbitraryPlant = pages.map((p, page) =>
+  Array.from({length: p.length}, (_, j) =>
+    allSecretKey[(j + allSecretOffsets[page]) & 255][arbitraryRng.gp()]
+  )
+);
+const arbitraryPositive = fitAllSecret(arbitraryPlant, arbitraryRng, 10, 24);
+const arbitraryCommon = (allSecretOffsets[0] - arbitraryPositive.phase[0] + 256) & 255;
+const arbitraryRecovered = allSecretOffsets.filter((offset, i) =>
+  ((offset - arbitraryPositive.phase[i] + 256) & 255) === arbitraryCommon
+).length;
+assert.equal(arbitraryRecovered, 55, 'Arbitrary permutation plant alignment failed');
+const arbitraryOriginal = fitAllSecret(pages, arbitraryRng, 8, 20);
+const arbitraryNull = pages.map(p => {
+  const a = p.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = arbitraryRng.int(i + 1);
+    const hold = a[i]; a[i] = a[j]; a[j] = hold;
+  }
+  return a;
+});
+const arbitraryNullResult = fitAllSecret(arbitraryNull, arbitraryRng, 8, 20);
+console.log('Arbitrary secret 29-symbol alphabet per key phase:', JSON.stringify({
+  alphabetChoices: '(29!)^256',
+  qCollision: freq.reduce((sum, p) => sum + p * p, 0),
+  positive: arbitraryPositive.score,
+  recoveredRelativeOffsets: arbitraryRecovered,
+  original: arbitraryOriginal.score,
+  shuffledControl: arbitraryNullResult.score
+}));
+assert(arbitraryPositive.score > 2000, 'Nonlinear positive was not detected');
+assert(arbitraryOriginal.score < -300, 'Original unexpected positive');
+assert(arbitraryNullResult.score < -300, 'No-reuse control unexpected positive');
+console.log('PASS: additive and arbitrary-bijection cyclic-256 page-offset key-reuse gates.');

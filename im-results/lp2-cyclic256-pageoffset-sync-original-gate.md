@@ -1,33 +1,43 @@
-# LP2 cyclic-256 page-offset many-time-pad attack
+# LP2: source-independent 256-position key reuse with arbitrary page offsets
 
-**17 November 2026, Agent38. Source-original cryptanalytic test.** No unknown LP2 plaintext, source-selected key or complete cipher recovered.
+**17 November 2026, Agent38. Classification: two completed original-cipher inversion experiments with positive controls.** Neither finds unknown LP2 plaintext or an authenticated key.
 
-## Decipherment premise
+## Creator-visible premise and two complete decoder families
 
-The original physical p49–51 numeric display holds **256 cells** (32 rows × 8). Its possible interpretation as a reusable 256-rune key tape motivates a lossless, directly exploitable cipher model with entirely unrestricted secret pad values and page offsets:
+The original numeric display on physical p49–51 contains **256 cells** (32 rows × 8). Such a table could plausibly form a key tape, and a human solver might allow a new starting cell at each physical page. The source does **not** instruct solvers to cycle modulo256, repeat the table on each page, or interpret its symbols as 29-rune alphabets. These tests ask a narrower, answerable question: whether the original corpus reveals reusable key state across 55 pages even with a free page-local starting phase.
 
-    C[p,j] = (P[p,j] + K[(j + offset[p]) mod 256]) mod 29.
+For every unknown physical page p and GP29 rune offset j, permit **55 secret and unrestricted offsets** o[p] in {0,…,255}. At state s=(j+o[p]) mod256 test:
 
-K has 256 unknown GP29 symbols, offset[p] is any of 256 page-local starts, and native GP29 prose is the proposed plaintext. This premise is not author-selected. The method allows different starts at all 55 rune-bearing unsolved physical pages, unlike the earlier same-start reused page-pad exclusion and the separately tested 66 word-pointer direction rules.
+1. **Fully secret additive pad:** C[p,j] = P[p,j] + K[s] (mod29), where all 256 key symbols K[s] are unrestricted.
+2. **Fully secret nonlinear alphabet:** C[p,j] = sigma[s](P[p,j]), where each of 256 states has its **own unrestricted permutation of all 29 runes**, granting (29!)^256 distinct secret alphabets.
 
-## Genuine key-free attack
+Both are mathematically reversible for a known key and cover a page-offset ambiguity absent from the earlier [same-start all-secret equality gate](lp2-pageoffset-allsecret-reuse-gate.md) and [same-start additive many-time-pad gate](lp2-reused-pagepad-manytime-original-gate.md). The [direction-based 256-state study](lp2-pdir-cyclic256-allsecret-capacity-original-gate.md) fixes an entirely different word-derived state clock. These two new tests do not modify that separate ongoing pointer-direction campaign.
 
-At aligned offsets in two ciphertext pages, subtracting corresponding ciphertext runes **cancels the unknown key**. The difference distribution of two native GP29 plaintext runes is the source-trained GP29 unigram law convolved with its own reversal. Source reference is 3,568 GP29 letters encoded by the exact declared greedy token/ING→NG converter from the preserved LP1 solved reference, plus 95 clear LP2 p57 runes, with 0.5 pseudocount per rune. Divergence of the resulting difference law from uniform is 0.022701219984236028 nats per aligned pair.
+## Attack design: eliminate all secret key values
 
-The complete original test scans all 256 relative offsets for each of the 1,485 page pairs and performs coordinate optimization over all 256 possible starts at each of the 55 pages. It includes all original 12,956 ciphertext runes and period-256 phase wrap on source pages longer than 256 runes. A planted native-GP29 unigram positive uses one independently sampled random 256-symbol key, 55 independently random phase offsets and the exact original page lengths. A negative control independently permutes each original page's rune order while preserving that page's exact length and rune multiset. The latter disrupts original anti-adjacency, so it is a convenient local null rather than a full manuscript-generating model.
+At two page positions that share state s, the additive model has an **exact difference invariant**: C[p,j]−C[q,k] = P[p,j]−P[q,k] (mod29). A human or program can detect reused phase without guessing K. The reference GP29 unigram law q is derived from **3,568 source-encoded solved LP1 runes plus 95 genuinely clear p57 runes** with pseudocount 0.5. Its native difference law has KL divergence from uniform **0.022701219984236028 nats/rune**. Each possible relative phase is scored using this complete 29-way likelihood.
 
-## Numerical decision
+For **any arbitrary nonlinear alphabet**, aligned ciphertext equality is equivalent to aligned plaintext equality. This second model uses the exact per-comparison **Bernoulli log-likelihood ratio** between the GP29-native equality probability qSame = **0.06048364921452177** and the independent uniform-rune null probability 1/29. It assigns a negative contribution for every *unequal* aligned rune pair. That corrects for unequal numbers of overlapping positions at different phase shifts and avoids misleading raw equality counts.
 
-| Input | Optimized joint log-likelihood ratio |
-| --- | ---: |
-| Fully planted repeating pad with arbitrary page offsets | **+7579.6677** |
-| Entire untouched original LP2 ciphertext | **−3659.8838** |
-| Per-page shuffled no-reuse control | **−3606.7764** |
+Both attacks enumerate **all 256 relative phase choices for each of 1,485 pairs of 55 physical source pages**, with exact modulo256 handling for pages longer than 256 runes. They then optimize all 55 page phases by coordinate ascent with eight deterministic starts (20 passes each) for original and shuffled controls. Their independent positive uses ten starts (24 passes). Every test reads **12,956 original ciphertext runes** and native original page lengths; physical p50 has no runes. Each null control independently permutes original runes within each physical page, preserving exactly the rune multiset, page length and page identity, while disrupting adjacency and word-order structure.
 
-The positive recovers **55/55 relative page starts**, modulo one global rotation. Original evidence is close to the no-reuse control and separated from the planted key-reuse case by more than eleven thousand natural-log score units.
+## Source-corpus results
 
-This is an executable *negative* original-cipher decision: no original plaintext or key arises through the tested repeated-additive-tape route. The fitted phase search is coordinate ascent with eight seeded restarts and 20 passes on original and control, versus ten restarts and 24 passes for the planted case; it does not furnish a global-optimum certificate over all 256^55 assignments. Further value-changing layers, hidden anti-repeat repair, native-plaintext distribution shifts, independent page tapes and nonadditive systems remain outside this specific test.
+| Secret key architecture / same decoder run | Planted secret-key positive | Original LP2 | Source-shuffled no-reuse control |
+| --- | ---: | ---: | ---: |
+| Secret 256-symbol additive pad, 29-way difference log-likelihood ratio | **+7,579.6677** | **−3,659.8838** | **−3,606.7764** |
+| **256 unrelated secret 29-way alphabet permutations**, equality log-likelihood ratio | **+2,709.8487** | **−742.4945** | **−729.9347** |
 
-## Reproduction and relationship to prior work
+The additive positive uses random secret K and 55 random phases. The nonlinear positive uses **256 independently uniformly shuffled 29-way alphabets**, independently random 55 phases and source-q-sampled GP29 plaintext. **Both positives recover all 55/55 relative starting phases exactly, up to one unavoidable common rotation.** Thus the attacks genuinely exploit strong reused secret key state without knowing the key, including fully arbitrary nonadditive substitutions.
 
-Single-file read-only Node22 CommonJS SFT: [lp2_cyclic256_pageoffset_sync_sft.cjs](../sims/lp2_cyclic256_pageoffset_sync_sft.cjs). Runs under the existing manual CommonJS SFT GitHub workflow, reads canonical committed corpus and solved source, checks the planted positive and native original, and writes no output files. Separate earlier scopes: [same-start repeated additive pad](lp2-reused-pagepad-manytime-original-gate.md); [word-directed cyclic256 all-secret capacity](lp2-pdir-cyclic256-allsecret-capacity-original-gate.md). A 256-entry source clue without its own authentic decoding instruction cannot be promoted to a key.
+On original LP2 the optimized scores remain **below zero and close to their matched shuffled no-reuse controls**, far from either positive. The lack of a transferable positive signal disfavors these two genuinely complete, unrestricted secret-key architectures as direct receivers for ordinary native GP29 text. It recovers **no original plaintext, table interpretation or key**.
+
+## What the conclusion does and does not establish
+
+The same source-visible 256-cell object could still generate one-time state per page, a key pointer selected by word values, a feedback-dependent transducer, inserted runes, altered punctuation semantics, homophonic symbols, compressed binary intermediate text or an external key. The fitted phase search is coordinate ascent with planted positive power, **not a global optimum certificate over 256^55 possible offset assignments**. Native prose frequency is a hypothesis, and within-page shuffle does not reproduce the original anti-adjacent cipher process. The record rejects the two complete original-input candidate inverses, not every conceivable use of 256 numbers.
+
+For future original-cipher work, a real gain would be a first-party key/state transition selecting an explicit decoder. The artificial 256-state key reuse itself is not a clue authentication.
+
+## Exact reproduction
+
+The [single read-only Node22 CommonJS SFT](../sims/lp2_cyclic256_pageoffset_sync_sft.cjs) loads canonical source pages and preserved LP1 plaintext, computes both conditional likelihoods, simulates independent true-key/offset positives, and executes the same optimizer on untouched original source and shuffled nulls. It asserts complete planted offset recovery, and has no external dependencies or file writes. Run through the existing manual [Windows read-only SFT workflow](../.github/workflows/manual-readonly-commonjs-sft.yml) with input script sims/lp2_cyclic256_pageoffset_sync_sft.cjs. The initial additive-only version of the SFT already passed [Windows Node22 run 44203052623](https://github.com/FlareZ123/liber-primus/actions/runs/44203052623); the nonlinear extension requires its own Windows dispatch after this revision.
