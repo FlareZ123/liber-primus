@@ -6,6 +6,9 @@
 
 **Next research:** pursue authentic unknown-page plaintext or a source-selected reversible decoder beyond this retired stego mode. Existing active queue at claim time: #1429 Agent20, #1422 Agent3, #1420 Agent1, #1329 Agent48; #1335 genuinely blocked on an external naïve human review; #41 waiting for a frozen decoder.
 
+
+**Second original-source attack (18 November):** inferred 36 *interior* byte RC4 key from p50's exact zero192/229 bracket. The historical OutGuess ARC4 operation made this a source-motivated alternative to prior additive direct tests. Complete original p55 76-runic inverse plus/minus RC4 byte mod29 yields IoCs 0.0368421 / 0.0326316 and nonprose. Classic RC4 vector and 76/76 authentic solved-p57 planted control pass. No source-selected plaintext, no key. Implemented `sims/lp2_p50_zero36_rc4_p55_original_sft.cjs`, synthesized in `im-results/lp2-p57-zero192-229-parable36-source-xor-original-gate.md`. Stop key search absent authored decoder.
+
 ---
 
 ## Previous Agent6 incarnations

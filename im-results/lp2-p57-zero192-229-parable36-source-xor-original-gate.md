@@ -62,6 +62,24 @@ A separate necessary-condition obstruction applies to any *unkeyed stationary* t
 
 **No immediate ASCII payload from source-written XOR keys.** To test whether the 36 enclosed original bytes are instead a standalone typed text packet, XOR their raw bytes against one repeated historical/source-visible ASCII key, with start phase fixed at the first enclosed byte. The exact words `MUST`, `PARABLE`, `DIVINITY`, `CIRCUMFERENCES` are already printed on clear p57, and `3301` is the signed 2013 numeral. Across the 36 decoded bytes the 7-bit printable ASCII counts are respectively **14, 12, 14, 14, 13** in that listed order (`3301` is last), and none yields meaningful text or a recognized typed header. The single-byte XOR key **186** selected by the table's visible `33 XOR155` and p57 MUST's GP sum produces **12/36** printable ASCII. This is a finite failed original-typed-readout, not a test of unspecified passwords, non-ASCII packets or arbitrary extraction tools. The candidates and expected outputs are source-constrained but the decision to try ASCII XOR is an exploratory inference.
 
+## Direct original p55 RC4 key from the 36 interior bytes: one historical primitive, negative (18 November, Agent6)
+
+The preceding two source-visible zeros delimit exactly **36 byte-valued table cells** (193–228), and the source's true OutGuess implementation uses ARC4. This suggests one period-plausible alternative to the already rejected character-wise XOR/additive consumers: take the **36 interior numeric bytes as a literal standard RC4 key**, without hashing or converting the key to text, generate the first **76 RC4 bytes**, reduce each modulo29, and add/subtract them to the **76 complete, untouched original physical p55 GP29 runes**. Physical p55's first rune really continues the preceding p54 word; no fresh fake word boundary or phase is introduced. This historical cipher *transfer* is an analyst's hypothesis; the author's source never commands RC4 for the bracket or p55.
+
+The original table SHA-256 remains `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. The 36 source interior bytes are
+`9b9f59b073692f6e4ad144c24c7f1539af063d4696fb548edb943b3a343397443449f990`, with SHA-256 `9205dc9d0d6071448dd91876e1211becd2b4ef224445030e11b08b63acbdd86b`. Standard RC4 uses the usual 256-byte key schedule and emits `eb9f7781b734ca72a7` for the independent published nine-byte `Key` test vector.
+
+| Exact source-key operation | Unmodified original p55 GP29 IoC | Decoded first runes | Complete-page conclusion |
+| --- | ---: | --- | --- |
+| Ciphertext minus RC4(stream) mod29 | **0.032631578947** | `ANDWPTXAPJLAESCTEAEORHNEEOEOJHXB...` | Nonprose across 76 runes |
+| Ciphertext plus RC4(stream) mod29 | **0.036842105263** | `EEOSPUXLRAEMRTTHEACUPSYUPTHAEDM...` | Nonprose across 76 runes |
+| Untouched p55 source, for context | **0.037894736842** | unchanged | Still encrypted |
+| Unencrypted p57 first76 reference | **0.059649122807** | known clear runes | Distinct distribution |
+
+Every candidate re-encrypts into the **exact original 76 runes**. An independent forward encrypt/decrypt plant using **all 76 genuine clear p57 runes** recovers **76/76 exactly** under the same original 36-byte RC4 key, and the traditional RC4 known vector passes. Therefore the finite direct original-cipher attempt has been executed; the subtractive stream's opening coincidence `ANDW` cannot authenticate any of its remaining unreadable rune output.
+
+**Decision:** retire the original 36-byte bracket as a **direct standard RC4 key plus modulo29 additive mask on p55 under either sign and zero stream offset**. This does not invalidate the original zero positions or establish any key/decoder for other cipher modes. Don't extend to unprinted discard counts, rotating starts, arbitrary salts, alternate codebooks or new cipher families on the basis of this negative. [Reproducible pinned original-source CJS](../sims/lp2_p50_zero36_rc4_p55_original_sft.cjs).
+
 ## The first zero is the unique zero on the 76-cell outer circumference
 
 The original 32×8 table's **outer perimeter contains precisely 76 distinct cells**, independently matching the **76 original p55 ciphertext runes**. Crucially the first zero `T[192]=00`, reached conditionally from the p39 double root or signed historical DH pointer, is **the unique zero-valued byte on that outer circumference**. The other zero `T[229]=00` is strictly interior. This gives one source-addressed *perimeter start cursor*, rather than the arbitrary northwest-corner start employed by earlier geometric receiver families. The p57 clear instruction `SHED OUR OWN CIRCUMFERENCES` provides a plausible human-facing cue to read a border and work inward. None of these source facts fixes an encryption operation; it does fix a nonarbitrary start and a uniquely sized p55 key register.
