@@ -39,13 +39,26 @@ The key-independent multiplicity obstruction extends beyond these six shift choi
 
 Under even the best independently chosen Caesar shift for *each* aligned row, at most **4 out of12/13** corresponding symbols match in any row. This excludes the entire fixed-row permutation/bijective-substitution family for **both complete modelled recipients**. It does not exclude position-dependent streams, arbitrary mixing across rows, nonlinear byte operations or a separately acquired original key. No current original clue selects those richer constructions.
 
+## Key-independent original 1,869-slot padding obstruction
+
+The hypothetical `LPAD(word,12,'F')` creates **1,869 new artificial rune positions**. Any receiver that treats the one fixed pad symbol with **a single stationary bijection of all 29 GP symbols at those sites** has a necessary key-independent consequence: the hidden plaintext's frequency-multiplicity pattern on those 1,869 sites equals the original target pattern, regardless of what its unknown secret substitution actually is. The substitution could operate only at padding positions and be entirely independent of the model for real word positions.
+
+The original p40–53 recipient has, at the exact 1,869 pad-mask positions, top-one/top-two/top-five GP29 frequency counts **85 / 164 / 394**. These remain exactly unchanged under every GP29 permutation. The independent source-native control is **2,979 authentic, separately published solved GP rune characters**, from nine source-attributed solved-Cicada records at [`resources/external/relikd-solved-gp29-native-v1.json`](../resources/external/relikd-solved-gp29-native-v1.json). Apply precisely the *same 3,000-site mask* to this solved native text at 60 unfitted cyclic starts **0,50,100,...,2950**. The separately smallest top-one/top-two/top-five across these controls are **219 / 376 / 767**, despite giving each coordinate its independently most favorable starting position.
+
+| Sample at identical 1,869 original-source pad positions | Top 1 | Top 2 | Top 5 |
+| --- | ---: | ---: | ---: |
+| Original p40–53 unchanged | **85** | **164** | **394** |
+| Smallest of 60 independent solved-GP controls | **219** | **376** | **767** |
+
+Thus every stationary padding-site bijection, including an unknown complete secret `29!` alphabet permutation, is excluded **for this particular 250×12 placement and independently observed natural Cicada GP-English register**. No hidden key can turn the original top-one count85 into the solved controls' minimum219 because bijections preserve every symbol's multiplicity. The SFT confirms the original counts and a deliberately different known GP alphabet shift preserving the counts, alongside all 60 control samples. This is a **conditional all-secret receiver exclusion**, stronger than checking a few additive signs. Position-dependent stream keys, cross-row mixing, plaintext that is not GP-native prose and a fundamentally different source/receiver alignment are outside its scope; no creator clue selects them.
+
 ## Decision and reproducibility
 
 **Preserve A (250×12) as the more human-plausible shape hypothesis**, because width12 comes from the actual longest printed source word and both exclusions remove complete, visibly colored spans. Preserve B (255×13) as the weaker 13-dot alternative. The two exact length equalities and first-party red `LPAD` readout are real observations; inferring one chapter is a key/decoder for another remains **low-confidence conjecture**.
 
 **Retire** the six direct additive decoders, and any row-confined transposition followed by a secret GP29 symbol bijection for these exact 12- or 13-wide originals. Further arbitrary AES, prime, step, phase and pad-search variants are unwarranted without a separate contemporaneous instruction selecting a receiver. A high-value positive would be a first-party rule for cross-chapter pairing, a full key or an independently predicted and authenticated original plaintext.
 
-**Single complete original-source test:** [`sims/lp2_lpad255_flora3315_crosschapter_sft.cjs`](../sims/lp2_lpad255_flora3315_crosschapter_sft.cjs), Node22/CJS. It loads actual canonical rune, original word/punctuation and red-span sources; asserts all 250/255-word, 3,000/3,315 recipient counts and colored boundaries; executes the six original inverses, exact original recipher checks, source-native solved-p57 positive plants, and both row-multiplicity obstructions.
+**Single complete original-source test:** [`sims/lp2_lpad255_flora3315_crosschapter_sft.cjs`](../sims/lp2_lpad255_flora3315_crosschapter_sft.cjs), Node22/CJS. It loads actual canonical rune, original word/punctuation and red-span sources; asserts all 250/255-word, 3,000/3,315 recipient counts and colored boundaries; executes the six original inverses, exact original recipher checks, source-native solved-p57 positive plants, both row-multiplicity obstructions and the key-independent 1,869-site source-native capacity exclusion.
 
 **Windows/Node22 CI:** [expanded-original-input run 44249194791](https://github.com/FlareZ123/liber-primus/actions/runs/44249194791) passed **both A/3000 and B/3315 source branches**, including all six exact original inverses, solved-native positive plants, full source-boundary assertions and both original row-multiplicity obstructions. [Earlier 3315-only run 44247129620](https://github.com/FlareZ123/liber-primus/actions/runs/44247129620) remains independently retained.
 
