@@ -234,6 +234,39 @@ assert.deepEqual(pageDecodes.map(p => p.lfCycles), [
   [160, 75, 30, 9, 1], [152, 23, 16, 9, 4, 3, 1]
 ]);
 
+// The incidental 76-row cycle is not a stationary GP29 relabeling of the
+// printed 76-rune terminal p55 ciphertext, under any rotation or reversal.
+// A bijection preserves the entire sorted multiplicity signature.
+const permutation = lfDecomposition(continuous.lastColumn).lf;
+const visited = new Uint8Array(permutation.length);
+const orbits = [];
+for (let start = 0; start < permutation.length; start++) {
+  if (visited[start]) continue;
+  const members = [];
+  let row = start;
+  while (!visited[row]) {
+    visited[row] = 1;
+    members.push(continuous.lastColumn[row]);
+    row = permutation[row];
+  }
+  orbits.push(members);
+}
+const member76 = orbits.find(o => o.length === 76);
+assert(member76);
+const p55 = corpus.pages.find(p => p.page === 55).indices;
+assert.equal(p55.length, 76);
+/** @param {number[]} values @returns {number[]} */
+function sortedMultiplicity(values) {
+  const counts = new Int32Array(29);
+  for (const symbol of values) counts[symbol]++;
+  return [...counts].sort((a, b) => b - a);
+}
+const cyclic76Signature = sortedMultiplicity(member76);
+const p55Signature = sortedMultiplicity(p55);
+assert.deepEqual(cyclic76Signature.slice(0, 4), [7, 7, 5, 5]);
+assert.deepEqual(p55Signature.slice(0, 4), [6, 5, 5, 5]);
+assert.notDeepEqual(cyclic76Signature, p55Signature);
+
 // Source-GP positive: the already-clear 95-rune p57 passage repeated to
 // a 729-rune primitive text. It never uses GP index28, matching the exact
 // twenty-eight-symbol alphabet of this particular packet-free receiver.
@@ -259,7 +292,8 @@ console.log(JSON.stringify({
     runGroups: continuous.runGroups,
     expandedZeroRanks: continuous.totalZeroRanks,
     cycles: lfDecomposition(continuous.lastColumn).lengths,
-    pageDecodes
+    pageDecodes,
+    incidental76CycleSameAsP55: false
   },
   nativePositive: {
     originalGpRunes: native.length,
