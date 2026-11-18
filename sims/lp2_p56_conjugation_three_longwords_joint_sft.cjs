@@ -10,7 +10,8 @@
  * SHARED across all three intact 14-rune words, on different pages.
  *
  * A lexical candidate fully fixes whether each printed marker is transparent:
- * P==marker iff C==marker and that position skips the prime. Normal emissions
+ * P==marker implies C==marker and skips the prime; the converse fails,
+ * since an encrypted non-marker may also emit C==marker. Normal emissions
  * obey α(C)-α(P)=±φ(prime_t) mod29 under unknown injective α=π^-1.
  * Exact component-potential and 29-state exact-cover checks certify the
  * existence of at least one global α for any accumulated word equations.
