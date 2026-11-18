@@ -1,4 +1,4 @@
-"""SFT: original LP2 p0 artwork contains an exact 180-degree paired illustration.
+"""SFT: original LP2 p0 artwork contains an exact 180-degree paired illustration and an enlarged F endpoint marker.
 
 Reads only resources/liber-primus/17.jpg (physical LP2 p0).
 Requires numpy, Pillow, opencv-python-headless.
@@ -60,3 +60,47 @@ print({
     "page_center_double": [rgb.shape[1]-1,rgb.shape[0]-1],
 })
 print("PASS: p0's two large black illustrations are near-pixel-identical 180-degree counterparts centered on the physical page.")
+
+# The large red sigil at the title's left is a scaled copy of the eighth
+# red title rune. Segment only substantial red components in the title band.
+r,g,b=(rgb[:,:,j].astype(np.int16) for j in range(3))
+red=(((r-g)>50)&((r-b)>50)&(r>75)).astype(np.uint8)
+rn,rlabels,rstats,_=cv2.connectedComponentsWithStats(red,8)
+red_components=[]
+for i in range(1,rn):
+    x=int(rstats[i,cv2.CC_STAT_LEFT]); y=int(rstats[i,cv2.CC_STAT_TOP])
+    w=int(rstats[i,cv2.CC_STAT_WIDTH]); h=int(rstats[i,cv2.CC_STAT_HEIGHT])
+    area=int(rstats[i,cv2.CC_STAT_AREA])
+    if area>1000 and y<800:
+        red_components.append((i,x,y,w,h,area))
+red_components.sort(key=lambda v:v[1])
+assert red_components[0][1:6]==(601,667,150,498,32003), red_components[0]
+first_word_components=red_components[1:9]
+assert len(first_word_components)==8
+assert [v[1] for v in first_word_components]==[772,822,881,919,968,1028,1085,1139]
+
+def red_component_mask(item):
+    i,x,y,w,h,_=item
+    return (rlabels[y:y+h,x:x+w]==i).astype(np.uint8)
+
+sigil=red_component_mask(red_components[0])
+ious=[]
+for item in first_word_components:
+    glyph=red_component_mask(item)
+    scaled=cv2.resize(glyph,(sigil.shape[1],sigil.shape[0]),interpolation=cv2.INTER_NEAREST)
+    intersection=int(np.logical_and(sigil,scaled).sum())
+    union=int(np.logical_or(sigil,scaled).sum())
+    ious.append(intersection/union)
+best=int(np.argmax(ious))
+assert best==7, ious
+assert ious[7]>0.94, ious
+assert ious[7]-max(ious[:7])>0.40, ious
+# The canonical p0 first word is S H E O G M IA F, so component 8 is F.
+print({
+    "red_sigil_bbox": red_components[0][1:6],
+    "first_word_glyph_x": [v[1] for v in first_word_components],
+    "sigil_iou_by_first_word_position": ious,
+    "best_match_position_one_based": best+1,
+    "best_match_rune": "F",
+})
+print("PASS: p0's large red sigil is an enlarged copy of the first red word's final F rune, marking the reversal endpoint.")
