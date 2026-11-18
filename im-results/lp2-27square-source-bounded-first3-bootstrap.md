@@ -211,88 +211,22 @@ mu=-1  -> one horizontal mirror right-facing copy
 The source sequence is `+1,0,-1,+1,0,-1`, providing two independent examples of every state. LP2 p2 therefore contributes a horizontal axis and `mu(2)=-1`. If the signed Möbius value is consumed as the ordinary coordinate sign, the p2 clue selects the **negative horizontal direction**, west, which is exactly the `I MAY` block-5 branch `(26,19)->(26,16)` rather than vertical `X EARTH`.
 
 This is important corroboration because it is independent of the dictionary continuation gate below and materially supports Möbius μ as an intended Liber Primus object. The final consumer step, applying this p2 legend specifically at block5, remains conditional until an original instruction links the artwork to that transition.
-## Block 5 prospective gate: tie, then held-out continuation discriminator
+## Block 5: physical p2 boundary removes the language tie through IDEA
 
-Freeze the four-block state and enumerate the natural `±4,±1` center family from COLD's endpoint, both horizontal and vertical radius-2 nodes, center totient plus the same Möbius rotation, four retained COLD landmarks as possible ciphertext starts, and all four cardinal read directions. This gives **128** candidates.
+The original 128-member block-5 family is now source-selected without comparing English words. Its eight radius-2 key nodes contain exactly one equal-outer mirror, **NG-B-NG** at `(15,8)`, deriving `NG-T-NG`.
 
-With a source-native frequency floor of 100, the maximum two-word depth is four runes and has exactly two serious branches under the same `NG-T-NG` key:
+The original p0/p1/p2 lengths 262/266/201 place physical p2 start at **(20,16)=OE**. Exhaust every in-bounds prefix of all four retained COLD landmarks and all four cardinal rays, then require a unit-mirror/totient continuation to that physical boundary. Exactly one path survives: `(26,19)->(26,16)` west for four cells. Only after selection it decrypts to **I MAY**.
 
-```
-I | MAY
-X | EARTH
-```
+That endpoint selects unit mirror **E-X-E**, `phi(X)=6`, and key `G-E-E`. Exhausting all eight distance-6 moves leaves one that lands at **OE-J-OE** centered `(19,16)` with p2 start as an outer; center through opposite outer plus one cell fixes three cells decrypting to **CRY**.
 
-Original source delimiters do not distinguish them, and the route's published row-parity and ray-offset predictors also accept both. The direct bootstrap therefore genuinely ties at block 5.
+Retaining distance 6, an exhaustive all-eight-move geometry search from the CRY endpoint over every centered mirror, both axis directions and every in-bounds prefix has exactly one terminal outer-chain back to p2 start. It selects **A-TH-A** at start `(11,16)`, a five-cell down-right path to `(15,20)`, and chain **J-D-J -> OE-J-OE -> p2**. Under the active `OE-OE-I` key the path reads **NOW THE**. A-TH-A supplies `U-A-A`; entering J-D-J from `(15,20)` to center `(17,18)` fixes three cells decrypting to **IDEA**.
 
-Agent29 then applied the **same frozen next-state family to both endpoints**, using the published block-6 construction as the upstream premise but widening every ray choice:
+Thus `I MAY CRY NOW THE IDEA` is now selected without a dictionary, word-frequency threshold or downstream checksum inside this local phase. The older lexical gate remains an independent control and reaches the same cells.
 
-1. the previous ciphertext endpoint must be an outer cell of a unit-spaced three-cell mirror node;
-2. transform the original center by Euler's totient and apply the established `mu(phi(k))` rotation;
-3. move from the center by `phi(original center)` on any of the eight grid rays;
-4. read from every in-bounds landing point on every grid ray;
-5. rank only by the longest exact source-native English prefix with corpus frequency at least 100.
+The grammar was recognized after the public route was known, so this remains a strong intermediate source selector. A direct COLD-endpoint transfer gives zero hits, which limits the rule to this local phase.
 
-The word `CRY` and its length are not supplied.
+Detailed source-only gate: `im-results/lp2-p0-block5-branch-continuation-gate.md` · reproducer: `sims/lp2_p0_block5_p2_boundary_chain_sft.cjs`.
 
-For **I MAY**, the family has **40** candidates. Exactly one reaches depth three:
-
-```
-endpoint      (26,16) = E
-mirror node   E-X-E
-center        (25,16) = X
-phi(X=14)     6 = G
-aligned key   G-E-E
-move          6 upward
-start         (19,16)
-read          upward
-output        C-R-Y
-```
-
-For **X EARTH**, the same family has **24** candidates. No candidate reaches even a two-rune common word; the maximum depth is one. Thus the branch comparison is a clean held-out discriminator:
-
-```
-I MAY    -> unique CRY continuation
-X EARTH  -> no two-rune continuation
-```
-
-Carry the selected CRY state forward once more without supplying the next plaintext. Reuse the CRY start `(19,16)` as the candidate mirror-node center, retain distance 6, displace the CRY endpoint `(17,16)` by six along every grid ray, enumerate mirror nodes through the center and all read directions, and permit at most two source-native words.
-
-This family has **64** candidates. Exactly one reaches five runes:
-
-```
-node          OE-J-OE
-derived key   OE-OE-I
-move          6 upward from CRY endpoint
-start         (11,16)
-read          diagonal down-right
-output        N-O-W-TH-E
-reading       NOW THE
-```
-
-No competing candidate reaches the same depth.
-
-Carry the selected `NOW THE` state forward once more. Freeze its five ciphertext cells, enumerate every previous-path cell as a possible symmetric-node center, every in-bounds mirror radius, the same center-totient/Möbius key derivation, and every read ray from the frozen endpoint. This creates **56** candidates. Exactly one reaches a three-rune common word:
-
-```
-center        (11,16) = TH
-radius        3 diagonal steps
-mirror node   A-TH-A
-derived key   U-A-A
-start         (15,20), the NOW THE endpoint
-read          diagonal down-left
-output        I-D-EA
-reading       IDEA
-```
-
-Thus the candidate extends to:
-
-```
-AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
-```
-
-The continuation evidence is stronger than choosing `I MAY` from grammar. Its caveat is upstream: the endpoint-mirror/totient/move family was learned from the published block-6/7 constructions rather than independently named by an original signed clue. The original p0 artwork's exact 180-degree pairing and the heading's repeated-rune symmetry make mirror operations source-plausible, but they do not uniquely specify this full transition rule.
-
-Detailed branch audit and SFT: `im-results/lp2-p0-block5-branch-continuation-gate.md` and `sims/lp2_p0_block5_branch_continuation_gate_sft.cjs`. Latest continuation CI run **44389737681** completed successfully.
 ## What this changes
 
 The earlier repository audit correctly showed that the published 38-block route had underselected transitions. This three-block bootstrap is a different piece of evidence.
@@ -310,13 +244,14 @@ The combined candidate is now:
 AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
 ```
 
-The first three blocks are selected directly by the source-bounded bootstrap, while COLD now has two independent selectors inside the same frozen 36-branch family: the earlier prospective dictionary-prefix maximum and the locked LP1 numerical residual. The later `I MAY CRY NOW THE IDEA` extension is conditionally selected by a frozen continuation family applied symmetrically to competing branches.
+The first three blocks are selected directly by the source-bounded bootstrap, while COLD now has two independent selectors inside the same frozen 36-branch family: the earlier prospective dictionary-prefix maximum and the locked LP1 numerical residual. The entire `I MAY CRY NOW THE IDEA` phase is now selected by the physical p2 boundary plus equal-outer mirror geometry without a language score.
 
 This is substantially stronger than choosing one key/path because it looks English. It is still intermediate evidence because several transition operations were learned from the external route and have not yet been derived from an explicit original instruction. In particular, the horizontal endpoint-node construction, Möbius-based key rotation, and block-to-block geometric rules need prospective validation on later untouched blocks.
 
 ## Next decisive test
 
-The former block-5 ambiguity is no longer the immediate blocker. A first attempt to widen the next connected-mirror topology after IDEA does **not** give a unique depth maximum: several two-rune words survive, with the published `OF` branch winning only by corpus frequency. Treat IDEA as the current held-out stopping boundary. The useful next decision is whether the endpoint-mirror/totient/movement family can itself be derived from original visible clues or can make another withheld transition prediction with a genuinely structural selector. Do not add plaintext-selected filters. If that family fails prospective continuation, preserve the source-bounded four-block bootstrap independently.
+The immediate block-5 language tie is no longer the blocker. The source-selected IDEA endpoint feeds Agent29's separate post-IDEA mirror-incidence family, where a precommitted 12-rune / index-151 / GP-553 residual selects the cells yielding `OF THE END IS DEATH` from 66 complete assignments. The decisive next step is a genuinely prospective transfer or an original visible instruction for the physical-boundary/mirror grammar. Failure there should preserve this local selector while preventing promotion to authenticated plaintext.
+
 ## Reproduction
 
 Run:
