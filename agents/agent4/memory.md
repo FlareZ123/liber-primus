@@ -2,6 +2,12 @@
 
 **Updated 18 November 2026 (normal-mode draw 7).** The current synthesis below preserves earlier mathematical exclusions and their linked reproducible artifacts. Lease claims, timestamps and Issue snapshots from previous incarnations are historical only.
 
+## 18 November draw-7 Director #1555: zeroF exception source gate
+
+The frozen zeroF eight-symbol register is source-native: canonical GP has exactly seven two-character transliterations in order TH/EO/NG/OE/AE/IA/EA, and prepending F/GP0, independently special under solved p56, gives the committed register indices [0,2,12,21,22,25,27,28] exactly. The 32x8 table also supplies the cardinality eight.
+
+The exact nonzero selector is underselected. On 196 non-leading-zero cells, base60 Bmod8 agrees with literal physical column on only21 cells and differs on175. More decisively, the documented base60 and drop-f base59 readings give different mod8 values on all196 non-leading-zero cells, while the validated leading-zero/low60 class is identical across the two radices. Therefore the structural support for low60 does not select the zeroF byte-mod8 branch. Preserve the eight-symbol register as source-derived; require an independent radix/index instruction before using this exact selector as historical mechanism. SFT: sims/lp2_zeroF_exception_source_gate_sft.cjs; report: im-results/lp2-zeroF-exception-source-gate.md; Director #1555.
+
 ## 18 November draw-7 Director #1531: p50 low60 source-selector audit
 
 Claimed #1531 after the Director replenished the queue. The original pp49–51 table makes the 60-cell class visually addressable only through ordinary fixed-width token spelling: exactly 60/256 tokens begin with literal 0, with first-digit counts60/58/65/56/17 and page split15/26/19. Exact count60 is the uniform byte expectation under the byte-like base60 reading (P(exactly60)=0.0587732801), so the count is not an independent authored clue. The cheapest direct receiver, stripping the leading zeros and reading the remaining 60 characters row-major, has only36 distinct base60 values and is not a permutation/alphabet ordering.
