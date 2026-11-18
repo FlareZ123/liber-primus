@@ -93,6 +93,7 @@ assert.deepEqual(next, [24, 25]);
 const outer = [selected[0], selected[4]];
 const inner = [selected[1], selected[3]];
 assert.deepEqual(hadamardPair(next), outer);
+assert.deepEqual(hadamardPair([23, 8]), [15, 2]);
 assert.deepEqual(hadamardPair(outer), [8, 19]);
 assert.deepEqual(hadamardPair(inner), [23, 25]);
 assert.deepEqual(shellDecode(selected), [8, 19, 23, 25, 10]);
@@ -204,6 +205,8 @@ console.log(JSON.stringify({
     word28: selected,
     word29: next,
     nextThroughH: hadamardPair(next),
+    dhLiteral: [23, 8],
+    dhLiteralThroughH: hadamardPair([23, 8]),
     outer,
     outerThroughH: hadamardPair(outer),
     inner,
@@ -226,5 +229,5 @@ console.log(JSON.stringify({
     p0ConditionalTitleMatches: p0TitleMatches,
   },
   interpretation:
-    "The p28 NEXT successor and the selected five-rune word determine H(x,y)=(x-y,x+y) mod29. H(next word29) equals word28 outer circumference; H of that circumference is DH public (A,B)=(8,19); H of the inner circumference is (p,WE)=(23,25). The relation is unique in the within-page five-rune to two-rune adjacency census. The same transform is tested without tuning as a wordwise decoder on all 12956 original unknown runes and against the conditional p0 title holdout.",
+    "The p28 NEXT successor and the selected five-rune word determine H(x,y)=(x-y,x+y) mod29. H(literal DH indices 23,8)=(b,K)=(15,2); H(next word29) equals word28 outer circumference; H of that circumference is DH public (A,B)=(8,19); H of the inner circumference is (p,WE)=(23,25). The relation is unique in the within-page five-rune to two-rune adjacency census. The same transform is tested without tuning as a wordwise decoder on all 12956 original unknown runes and against the conditional p0 title holdout.",
 }, null, 2));
