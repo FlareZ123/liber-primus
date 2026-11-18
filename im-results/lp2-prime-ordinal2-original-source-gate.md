@@ -1,6 +1,6 @@
-# Consecutive-prime residue with twice-ordinal clock: original LP2 gate
+# All-start affine-ordinal prime residue: exact LP2 divisibility obstruction
 
-**Status, 18 November 2026 (Agent 1):** A new concrete prime-number mechanism reproduces two easy LP2 observables approximately, but its exact original-cipher transition and word-local constraints decisively disagree. No authentic unknown-page plaintext, key, or decipherment was recovered. Preserve the model as a scoped, rejected arithmetic generator rather than a promising LP2 key.
+**Status, 18 November 2026 (Agent 1):** The entire source-simple direct generator family `C[i] = (q[i] + b*i + a) mod 29`, where `q[i]` is a sequence of distinct consecutive primes and `a,b` are arbitrary modulo-29 constants, is **algebraically impossible on the full original 12,956-rune unknown corpus and separately on each of its nine source-visible visual chapters**, even when the constants and prime starting indices change independently between chapters. This requires no brute-force prime starting-index search and no English-language guess. The simpler fixed `b=2,a=0` generator gives a misleading doublet count resemblance but fails far stronger exact tests. This is a scoped exclusion of a direct prime-residue **generator**, not of a genuine plaintext-dependent prime-derived cipher. No unknown-page plaintext, key or destination was recovered.
 
 ## Motivation, original source and competing explanation
 
@@ -13,6 +13,37 @@ C[i] = (q[i] + 2*i) mod 29
 The `+2*i` is a **trial hypothesis**, not an author-selected instruction. The leading numeral `2` is the first GP prime, but no authenticated LP2 source says to add it per position or chooses the starting prime. This formula describes a *generator*, not a lossless plaintext cipher. The strongest rival is an arithmetic coincidence arising because prime gaps have a highly structured distribution.
 
 The original controls are the complete physical p0–55 transcription: 12,956 GP29 runes and 2,896 actual printed words, preserving the p50 rune-free page and page-carry words. References: `resources/liber-primus/lp2-corpus.json`, `resources/liber-primus/lp2-transcription.txt`, and original scans in `resources/liber-primus/`.
+
+## Exact all-start, all-affine prime divisibility theorem
+
+Permit more freedom than the trial: for each original chapter independently, let `C[i]=(q[s+i]+b*i+a) mod29`, with completely unknown prime-start index `s`, **all 29 values of offset `a`**, and **all 29 values of slope `b`**. There are 841 affine-ordinal choices per chapter, and no bound on `s`.
+
+For fixed `a,b`, every position satisfying `(C[i]-b*i) mod29 = a` requires `q[s+i] ≡ 0 (mod29)`. **The only prime divisible by 29 is 29 itself.** An unbroken consecutive-prime tape can therefore have **at most one** such position, independently of the starting prime and any other statistics. Define
+
+```
+N(a,b) = count of positions i with (C[i]-b*i) mod29 = a.
+```
+
+Enumerate exactly the 29 slopes `b` and count occurrences of each residue `a`. The minimum over all **841** choices is a source-exact finite statistic:
+
+| Source-original original-rune segment | Length | Minimum N(a,b) among all 841 choices |
+| --- | ---: | ---: |
+| Entire p0–55 unknown stream, continuous clock | 12,956 | **389** |
+| p0–2 | 729 | **13** |
+| p3–7 | 1,145 | **21** |
+| p8–14 | 1,729 | **34** |
+| p15–22 | 1,903 | **36** |
+| p23–26 | 1,021 | **18** |
+| p27–32 | 1,433 | **30** |
+| p33–39 | 1,680 | **34** |
+| p40–53 | 3,008 | **75** |
+| p54–55 | 308 | **2** |
+
+**Every minimum exceeds one**, so **every** chapter independently contradicts the generator for every start `s`, slope `b` and offset `a`. Even the shortest p54–55 chapter fails. The unchanged positive plant generated from primes beginning 1,000,000,007 and `b=2,a=0` has minimum **0**, as expected. A particularly compact original counterexample for the literal `b=2,a=0` full-book clock occurs at contiguous zero-based offsets **57 and 58**, both forcing the prime 29 at different positions. The same conclusion holds if the model is given an unknown chapter-local affine clock, since the nine separate minima remain greater than one.
+
+This argument does **not** exclude encryption involving an added unknown plaintext term, nonlinear/state-dependent position weights, symbol-specific remappings, skips or inserted values. Those are distinct mechanisms that need independently supplied source instructions; this theorem excludes the entire *direct consecutive-prime residue plus affine index* architecture. It supersedes the weaker conditional claim that only the fixed 1e9 prime-start stream is excluded.
+
+
 
 ## Original versus a fixed prime-stream plant
 
@@ -56,6 +87,6 @@ In five independent actual consecutive-prime controls starting near **3,301, 10^
 
 ## Reproducibility and decision
 
-The self-contained, dependency-free [read-only CommonJS SFT](../sims/lp2_prime_residue_ordinal2_original_sft.cjs) independently reads the exact repository corpus, generates consecutive primes using a deterministic divisor sieve, asserts the original/plant repeat counts and word-local fifth-back measurements, and reproduces the finite-state lower bound and 29-bin transition discrepancy. The same file ran successfully under Windows Node.js 22 in [manual GitHub Actions run 44256006472](https://github.com/FlareZ123/liber-primus/actions/runs/44256006472), from commit [3241425](https://github.com/FlareZ123/liber-primus/commit/32414254d389ae6144f0a3cc842c5d40693e00a5).
+The self-contained, dependency-free [read-only CommonJS SFT](../sims/lp2_prime_residue_ordinal2_original_sft.cjs) independently reads the exact original corpus, checks the theorem on the full manuscript and all nine original chapters, verifies a real consecutive-prime positive control, and retains the earlier prime-start, fifth-back, 29-bin first-difference and mod3 gap tests. Its first version succeeded on Windows Node.js 22 in [Actions run 44256006472](https://github.com/FlareZ123/liber-primus/actions/runs/44256006472); the enhanced all-affine theorem was committed as [45297cc](https://github.com/FlareZ123/liber-primus/commit/45297cc09c3da1598c5c49cd599f9a4fe44d08f3) and is tested by [Actions run 44257341671](https://github.com/FlareZ123/liber-primus/actions/runs/44257341671).
 
-**Research decision:** Do not promote the attractive 76-versus-86 equality as a key or solution. Reject the literal `q[i]+2*i` direct prime-residue model at the frozen starting-prime scale. A future prime-derived hypothesis needs a *creator-visible index/clock operator* and must predict the original nonzero-step distribution and within-word fifth-back events before attempting a plaintext inverse. Do not tune the prime starting order to rescue a model that already fails on those untouched observables.
+**Research decision:** Retire **all direct consecutive-prime GP29 residue generators with arbitrary affine-index slope and offset**, including all original chapter-local starts. The universal divisibility obstruction makes further prime-start/linear-index tuning logically unnecessary. Prime-derived **keys combined with unknown plaintext** are outside this exclusion and remain conditional on a creator-visible key/clock operation. The 76-versus-86 doublet near-match is expressly superseded by this exact mathematical impossibility; no original plaintext was recovered.
