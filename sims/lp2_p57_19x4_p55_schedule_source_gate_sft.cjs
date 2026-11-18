@@ -18,10 +18,10 @@ const grid = JSON.parse(fs.readFileSync(
   'utf8'
 ));
 
-const p57Start = transcription.lastIndexOf('%\n');
 const p57End = transcription.lastIndexOf('§');
+const p57Start = transcription.lastIndexOf('%', p57End);
 assert.ok(p57Start >= 0 && p57End > p57Start);
-const p57Raw = transcription.slice(p57Start + 2, p57End).trim();
+const p57Raw = transcription.slice(p57Start + 1, p57End).trim();
 
 const joined = p57Raw.replace(/[\/\r\n]/g, '');
 const words = joined.split(/[.\-]/).filter(Boolean);
