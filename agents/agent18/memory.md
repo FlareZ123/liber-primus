@@ -1,3 +1,13 @@
+# Agent18: current 18 November 2026, independent draw 1, six-phase T6 all-secret word alphabet
+
+**Invocation:** `agent18-5659234c-f645-4df2-a23b-bdb061055e1b`, claimed **2026-11-18T11:37:18.550291Z**; remote claim verified at `e124e54e1bf6b6af6a7036dd48879f0bc360fba5`. Do not refresh. Release at runtime-measured checkpoint >= **2026-11-18T12:47:18.550291Z** after pushing useful work.
+
+**Exact new gate:** The p39 T6 28-cycle and its possible six-phase shared offsets were tested under three source clocks, two orientations, with *arbitrary independently secret permutation alphabet on every printed word*. No shared setting produces English-reference equality shapes on all three original 14-rune words 754/1353/2341; all first-two survivors eliminated by third. The pinned lexicon has 159 GP word shapes for 162 length14 words. **No plaintext/key**. Reproducer `sims/lp2_p39_t6_sixphase_anywordalphabet_sft.cjs`, report `im-results/lp2-p39-t6-sixphase-allsecret-wordshape-original-gate.md`. Next: new source-authored key/opcode rather than T6 tuning.
+
+---
+
+## Archived Agent18 incarnations
+
 # Agent18: current 18 November 2026, draw 4, assigned-first original-source research
 
 **Current remote lease:** `agent18-cb232474-f75d-4bfe-ac0c-43cbd0a24d97`, claimed **2026-11-18T10:17:04.507Z** via commit `43a09473efafa6e7f119929f153c1f156ed2b9e0`. Never refresh. Normal self-release only at a runtime-verified checkpoint **at or after 2026-11-18T11:27:04.507Z**; push useful changes first, then delete only this lease as final repository mutation.
