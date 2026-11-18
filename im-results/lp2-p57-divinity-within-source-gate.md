@@ -1,6 +1,6 @@
 # p57 DIVINITY-within source gate
 
-**18 November 2026, Agent30; Critic evidence-classification correction. Classification: provisional source-derived structural bridge plus bounded direct-receiver negatives. The 2800 match is exact under the stated address convention, but its selectivity against equally natural p57 circumference-derived addresses is not yet established. No unknown LP2 plaintext or authentic downstream cipher key recovered.**
+**18 November 2026, Agent30 original bridge; Agent8 Director #1497 selectivity completion. Classification: source-selective inside the frozen p57 circumference → GP-prime-sum → zero-based row-major p50 family, while still a conditional historical bridge because the address interpretation is inferred and the concrete 2800 DH session is participant-recorded rather than organizer-signed. No unknown LP2 plaintext or authentic downstream cipher key recovered.**
 
 ## Literal p57 operation
 
@@ -66,7 +66,46 @@ grid[192] = 00
 
 Their source strings concatenate to **2800**.
 
-This is an exact historical correspondence under the stated address convention. The retained **participant transcript** records a March-2013 `DH 3301` exchange with base **2757**, server secret **331**, server public share **1264**, client public share **2800**, and returned shared value **1067**. The signed 2013 TCP challenge authenticates the DH protocol, but it does **not** sign the surrounding participant exchange or make these concrete session values organizer-fixed. Earlier source audits correctly rejected the historical exchange as an LP2 handoff because no LP2-side selector for that transcript had been identified. The p57/p50 construction gives a fixed candidate pointer to **2800** once GP-prime sums are interpreted as zero-based row-major p50 addresses; whether that pointer is selective among equally natural p57 circumference-derived candidates remains unresolved and is the explicit gate in Director issue #1497.
+## Frozen #1497 all-p57 selectivity census
+
+Director #1497 freezes the operation before comparison: for **every complete p57 word**, remove the first and last rune, GP-prime-sum the strict interior and the shed endpoints separately, use those sums as unchanged zero-based row-major p50 addresses when both are in 0..255, then concatenate the two **printed** two-character table tokens in inner/outer order. No GP sums, row order, token parsing or historical target is altered per word.
+
+The complete census contains **20 p57 words**, of which **18** have both addresses in range. Exactly **one** addressable word yields an all-decimal four-character printed pair:
+
+| p57 word | inner sum | shed-endpoint sum | p50 printed pair |
+| --- | ---: | ---: | --- |
+| PARABLE | 339 | 110 | out of range |
+| LICE | 44 | 140 | `3o45` |
+| THE | 0 | 72 | `3N2i` |
+| INSTAR | 238 | 42 | `290S` |
+| TUNNELNG | 201 | 138 | `1E3r` |
+| TO | 0 | 66 | `3N0P` |
+| THE | 0 | 72 | `3N2i` |
+| SURFACE | 126 | 120 | `2h0g` |
+| WE | 0 | 86 | `3N1p` |
+| MUST | 56 | 130 | `4E1Q` |
+| SHED | 90 | 142 | `3I2e` |
+| OUR | 3 | 18 | `360F` |
+| OWN | 19 | 36 | `0X0s` |
+| CIRCUMFERENCES | 385 | 66 | out of range |
+| FIND | 60 | 91 | `1k0n` |
+| THE | 0 | 72 | `3N2i` |
+| **DIUINITY** | **184** | **192** | **`2800`** |
+| WITHIN | 67 | 48 | `3C4D` |
+| AND | 29 | 186 | `160J` |
+| EMERGE | 166 | 134 | `4A1C` |
+
+This resolves the exact historical-number comparison without requiring a fragile hand-curated number whitelist. Under the frozen rule, **2800 is the only p57 output that is even a decimal numeral**. Every other addressable output contains at least one non-decimal base60 token character, so enlarging or shrinking any comparison set of decimal historical protocol operands cannot create a second p57 hit. The retained March-2013 participant transcript does contain 2800 as the client public share, while the signed challenge authenticates only the DH protocol and not the concrete session tuple.
+
+Two exact finite controls bound the observation without changing the operation:
+
+- On the pinned solved GP-native corpus, the same operation covers **735 complete words**, **639** addressable words and **13** all-decimal outputs. Exact `2800` occurs **4** times, and **all 4 are the word DIUINITY**; no other solved word maps to 2800. The mapping is therefore a stable lexical consequence of that word under this rule rather than a p57-only row-choice accident.
+- The unchanged p50 table contains **42/256** two-decimal-digit cells, hence **1,764/65,536** ordered address pairs produce four decimal digits. Only **2/65,536** ordered address pairs produce `2800`: the unique `28` cell followed by either of the two literal `00` cells. These are scale checks rather than authorship p-values because p57-derived addresses are structured, not uniform random draws.
+
+Reproducer: [`sims/lp2_p57_divinity_selectivity_census_sft.cjs`](../sims/lp2_p57_divinity_selectivity_census_sft.cjs). It asserts the full 20-word census, the unique p57 decimal result, the solved-corpus control and the exact table-level counts.
+
+
+This is an exact historical correspondence under the stated address convention. The retained **participant transcript** records a March-2013 `DH 3301` exchange with base **2757**, server secret **331**, server public share **1264**, client public share **2800**, and returned shared value **1067**. The signed 2013 TCP challenge authenticates the DH protocol, but it does **not** sign the surrounding participant exchange or make these concrete session values organizer-fixed. Earlier source audits correctly rejected the historical exchange as an LP2 handoff because no LP2-side selector for that transcript had been identified. The p57/p50 construction gives a fixed pointer to **2800** once GP-prime sums are interpreted as zero-based row-major p50 addresses. Director #1497 now establishes that, under this frozen operation, DIUINITY is the **only p57 word producing any all-decimal printed pair**, so no other p57 word can match a decimal historical operand. This resolves the within-p57 selectivity objection while leaving the prime-sum→address convention and the participant-session provenance as separate limitations.
 
 A separate numerical coincidence remains weaker: the **184** inner prime sum also equals the exact rune count of the retained solved `A WARNING` section. That is a possible secondary source pointer, but it currently supplies no reversible receiver and is not needed for the stronger 2800 identification.
 
@@ -138,7 +177,7 @@ Do not tune the multiplier, modulus, bracket phase, mark assignment or reset loc
 
 ## Decision
 
-The literal p57 instruction now supplies a reproducible LP2-side route to the historical **2800** DH3301 exchange:
+Director #1497 is **positive under its frozen family**. The literal p57 instruction now supplies a reproducible, internally selective route:
 
 ```text
 DIVINITY
@@ -146,11 +185,11 @@ DIVINITY
  -> GP-prime sums 192 / 184
  -> adjacent p50 first-column cells 192 / 184
  -> printed 00 / 28
- -> 2800 historical client share
+ -> 2800 historical participant-session client share
  -> historical modulus 3301 -> cell229 = 00
  -> exact 36-byte zero bracket -> 36 large stops
 ```
 
-This creates a reproducible **candidate** historical-source connection, but it does not yet remove the earlier selector objection: the prime-sum→p50-address convention and DIVINITY's selectivity must first survive the frozen all-p57-word census in Director issue #1497. It also does **not** specify how the historical exchange becomes the unknown LP2 cipher. The two cheapest protocol-native consumers, returned secret `1067 -> 17N` and the six-field DH tuple as the existing T6 initializer, both fail on the complete original ciphertext.
+The all-p57 census removes the specific objection that another p57 word might generate an equally natural historical numeral under the same rule: **none does**. It does **not** independently prove that GP-prime sums were intended as zero-based p50 addresses, and it does **not** promote the concrete DH tuple to organizer-signed key material. The direct consumers already tested remain negative: `BASE29(1067)=17N`, the six-field tuple as a T6 initializer, selected-DH transforms of the 36 bracket bytes, and the fixed nonperiodic 31-interval state receiver recover no original prose.
 
-Do not rotate these keys, tune phases, permute the six fields, or enumerate arbitrary KDFs. First complete #1497's predeclared selectivity census. Only if that gate sharply distinguishes DIVINITY→2800 should downstream work seek a source-authenticated operation that says what to do with the identified exchange, ideally yielding a reversible original-cipher prediction or typed plaintext. Preserve the arithmetic as a candidate bridge rather than treating the earlier "no LP2 selector" objection as resolved.
+The next causal question is therefore narrower: **what first-party authenticated operation, if any, tells a 2014 solver what to do after recognizing the 2800/DH3301 session?** A successor should search for one fixed operation or receiver, not reopen key/phase/KDF menus. Until such a source exists, preserve this as a selective historical bridge with negative direct receivers, not as an LP2 decryption or recovered key.
