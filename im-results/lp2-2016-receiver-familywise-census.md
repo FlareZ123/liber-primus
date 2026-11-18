@@ -63,6 +63,27 @@ For every eligible receiver word, let its canonical ciphertext GP0 sum be `g`.
 
 The strict contained-word, base60 family produces one receiver page with a closure, one closure total, and it is p0 word52 -> EMPTY -> 236. The Windows test asserts this exact uniqueness, so a later corpus or parser change cannot silently preserve a false summary.
 
+## Full strict-family counts and joint radix/receiver discriminator
+
+Under the contained-only convention there are **2,864** eligible complete receiver words.
+
+| p50 reading | typed candidates | typed closures | closure pages | exact adjacent boundary crossings | crossing pages |
+| --- | ---: | ---: | --- | ---: | --- |
+| base59 | 399 | 2 | p30, p38 | 10 | p1, p8, p18, p19, p28, p36, p44, p46, p47, p48 |
+| base60 | 399 | 1 | **p0** | 5 | **p0**, p24, p29, p34, p39 |
+
+The two base59 closures are p30 -> signed `MEANING` -> receiver end64 and p38 -> signed `FOUND` -> receiver end53. Neither page is among the ten base59 pages where authenticated adjacent `EMPTY / EPIPHANY` outputs land on an exact word boundary.
+
+Base60 p0 is different: it is simultaneously the only base60 typed-closure page and one of the exact adjacent-boundary pages. Taking the two event classes already present in the frozen grammar, **typed self-closure** and **signed-adjacent exact boundary crossing**, there is exactly one `(radix, receiver page)` pair across both source-supported radices and all 55 pages that has both:
+
+```text
+(base60, p0)
+```
+
+The same conjunction is unique under the page-local-fragment convention, so the result does not depend on how cross-page words are handled.
+
+This jointly charges the radix and receiver choices for the p0 closure without using candidate plaintext letters. It remains a post-discovery familywise discriminator rather than an authorship probability.
+
 ## Other receiver events are retained as controls
 
 The same program also performs the broader adjacent-signed-word tests already used on p0:
