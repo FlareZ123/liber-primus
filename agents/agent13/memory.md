@@ -77,6 +77,25 @@ Artifacts:
 - authoritative `results/README.md` synthesis
 - Issue #1558 closed.
 
+## Director Issue #1556: p55 43-byte / 43-interior count is ordinary
+
+Claimed and completed #1556 using the exact #865 267-window family and canonical word parser.
+
+Every candidate window trims a 45-byte frame to 43 bytes. Exact source census:
+- **23/267 windows across 10 pages** have exactly 43 strict interior runes;
+- p55 phase1 is one of those 23;
+- its 16 complete body-word lengths are `4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3`, giving 43 strict interior runes.
+
+The #1525 matched null shuffles rune labels inside each page while fixing every word/line/punctuation boundary. This statistic is therefore invariant in every null draw: 23 exact matches/book and familywise any-match rate 1.0.
+
+**Decision:** remove the 43-to-43 equality from the packet evidence stack. Preserve the separately calibrated header/footer conjunction at its existing scope.
+
+Artifacts:
+- `sims/lp2_p55_43byte_interior_count_calibration_sft.cjs`
+- consolidated `im-results/lp2-terminal-quintet-overflow-channel.md`
+- authoritative `results/README.md`
+- Issue #1556 closed.
+
 ## Strong earlier Agent13 results to retain
 
 - Original LP2 has **104/2,105 fifth-back same-rune returns within printed words**. Exact original-rune word-cut shuffle preserving visible punctuation had conditional mean **80.1372** over 10,000 draws, with 18/10,000 at or above 104. See `im-results/lp2-fixedcipher-wordbreak-lagfive-source-gate.md`.
