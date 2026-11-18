@@ -22,30 +22,34 @@ Those relations were already established before the marker test below.
 
 ## The 13-dot mark selects the hidden DH exponent
 
-Use the mark's visible count13 as a position in the immediately preceding 19-rune red span.
+The visible count13 has two direct roles on the immediately preceding 19-rune red span.
 
-Under ordinary one-based forward indexing, the **13th rune is I**. In Gematria Primus, I has prime value **31**.
+First, ordinary one-based forward position13 selects **I**, whose Gematria Primus prime value is **31**.
 
-The already fixed ordinal factors exactly:
+Second, the same visible count leaves exactly **6** runes after that position:
 
-`186 = 31 * 6`.
+`19 - 13 = 6`.
 
-The quotient **6** is independently the unique discrete logarithm of the signed 2013 worked example's server public share:
+That residual count is independently the unique discrete logarithm of the signed 2013 worked example's server public share:
 
 `5^6 mod 23 = 8`.
 
-Thus the marker-derived arithmetic recovers the worked example's otherwise unprinted server secret exponent6 from the p27 object itself.
+The two source-derived quantities also close on the already fixed prime ordinal:
 
-The four simplest marker-position interpretations are fully discriminating:
+`31 * 6 = 186`.
 
-| Marker interpretation | Selected rune | GP prime | Divides 186? |
+Thus the coordinate later used on p50 is available directly as **(31,6)** from the marker-indexed rune and the residual span length. The older quotient statement `186/31=6` is the same equality read backward, so division is no longer needed as a separate operation.
+
+The four simplest marker-position interpretations remain fully discriminating when the residual count6 is held fixed:
+
+| Marker interpretation | Selected rune | GP prime | prime × 6 equals 186? |
 |---|---:|---:|---:|
-| one-based forward position13 | I | 31 | **yes: 186/31=6** |
+| one-based forward position13 | I | 31 | **yes: 31×6=186** |
 | zero-based forward index13 | M | 71 | no |
 | one-based reverse position13 | A | 97 | no |
 | zero-based reverse index13 | O | 7 | no |
 
-No language score selects the winning orientation.
+No language score selects the winning orientation. This formulation also better matches a human solve path: count the red span, use the visible 13-dot number as a position, and retain the six-rune remainder.
 
 ## Comparable red13 control
 

@@ -161,8 +161,12 @@ assert.deepEqual(markerSelections.map(row => ({
 
 const selectedPrime = markerSelections[0].entry.prime;
 const selectedQuotient = markerSelections[0].quotient;
+const markerCount = 13;
+const residualRuneCount = p27.length - markerCount;
 assert.equal(selectedPrime, 31);
-assert.equal(selectedQuotient, 6);
+assert.equal(residualRuneCount, 6);
+assert.equal(selectedPrime * residualRuneCount, p27.rank);
+assert.equal(selectedQuotient, residualRuneCount);
 
 // The same quotient is the hidden server exponent in the signed 2013 worked DH example.
 const dh = {p: 23, g: 5, serverPublic: 8, clientPublic: 19, shared: 2};
@@ -298,6 +302,9 @@ console.log(JSON.stringify({
       gpPrime: row.entry.prime,
       quotient: row.quotient,
     })),
+    markerCount,
+    residualRuneCount,
+    directProductClosure: selectedPrime * residualRuneCount,
   },
   signedDh: {...dh, serverSecretExponent: serverExponents[0], clientSecretExponent: clientExponents[0]},
   markerDerivedTableCoordinate: {
