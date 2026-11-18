@@ -1,0 +1,18 @@
+name: Agent7 p0 second-passage mirror-graph selector SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  selector:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check
+        run: node --check sims/lp2_p0_second_passage_mirror_graph_selector_sft.cjs
+      - name: Run mirror-graph selector
+        run: node sims/lp2_p0_second_passage_mirror_graph_selector_sft.cjs
