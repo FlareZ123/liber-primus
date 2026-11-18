@@ -30,6 +30,8 @@ let rawPage = 0;
 let line = 1;
 let startRune = -1;
 let runeOffset = 0;
+let pageRuneOffset = 0;
+let startPageRune = -1;
 let startRawPage = -1;
 let endRawPage = -1;
 let startLine = -1;
@@ -43,6 +45,8 @@ function finishWord() {
     endRune: runeOffset,
     runes: fragment.map((index) => corpus.runes[index]).join(''),
     translit: fragment.map((index) => corpus.translit[index]).join(''),
+    primeSum: fragment.reduce((sum, index) => sum + corpus.prime[index], 0),
+    localRune: startPageRune,
     startPage: physicalPage(startRawPage),
     endPage: physicalPage(endRawPage),
     startLine,
@@ -55,6 +59,7 @@ for (const char of unknown) {
   if (alphabet.has(char)) {
     if (!fragment.length) {
       startRune = runeOffset;
+      startPageRune = pageRuneOffset;
       startRawPage = rawPage;
       startLine = line;
     }
@@ -62,9 +67,11 @@ for (const char of unknown) {
     endRawPage = rawPage;
     endLine = line;
     runeOffset++;
+    pageRuneOffset++;
   } else if (char === '%') {
     rawPage++;
     line = 1;
+    pageRuneOffset = 0;
   } else if (char === '/') {
     line++;
   } else if (/\s/u.test(char)) {
@@ -205,10 +212,87 @@ assert.equal(cutWord.translit, 'CEAIMCX');
 assert.equal(boundary300Global - cutWord.startRune, 4);
 assert.equal(cutWord.endRune - boundary300Global, 2);
 
+
+// Previously observed number-coordinate rule, now tested book-wide after the
+// pair itself has been selected independently by finite-source exhaustion.
+// Reduce each word's GP-prime sum mod29: x=129 mod29=13, y=159 mod29=14.
+// The ordered Hadamard transform (x+y, x-y) mod29 predicts (page, rune offset).
+const coordinateEligible = [];
+const coordinateHits = [];
+
+for (let i = 0; i + 1 < words.length; i++) {
+  const first = words[i];
+  const second = words[i + 1];
+  if (first.startPage !== second.startPage) continue;
+  if (first.startPage >= 29 || first.localRune >= 29) continue;
+
+  coordinateEligible.push(i);
+  const page = (first.primeSum + second.primeSum) % 29;
+  const offset = (first.primeSum - second.primeSum + 29 * 1000) % 29;
+
+  if (page === first.startPage && offset === first.localRune) {
+    coordinateHits.push({
+      index: i,
+      page,
+      offset,
+      pair: [first.translit, second.translit],
+      sums: [first.primeSum, second.primeSum]
+    });
+  }
+}
+
+assert.equal(coordinateEligible.length, 195);
+assert.deepEqual(coordinateHits, [{
+  index: 1462,
+  page: 27,
+  offset: 28,
+  pair: ['DJU', 'BEI'],
+  sums: [129, 159]
+}]);
+
+const signedLinear = [
+  {name: 'x+y', fn: (x, y) => (x + y) % 29},
+  {name: 'x-y', fn: (x, y) => (x - y + 29) % 29},
+  {name: 'y-x', fn: (x, y) => (y - x + 29) % 29},
+  {name: '-x-y', fn: (x, y) => (29 - ((x + y) % 29)) % 29}
+];
+
+const familyCounts = [];
+for (const pageFn of signedLinear) {
+  for (const offsetFn of signedLinear) {
+    if (pageFn.name === offsetFn.name) continue;
+    let count = 0;
+    for (const i of coordinateEligible) {
+      const first = words[i];
+      const second = words[i + 1];
+      const x = first.primeSum % 29;
+      const y = second.primeSum % 29;
+      if (pageFn.fn(x, y) === first.startPage &&
+          offsetFn.fn(x, y) === first.localRune) {
+        count++;
+      }
+    }
+    familyCounts.push({
+      page: pageFn.name,
+      offset: offsetFn.name,
+      count
+    });
+  }
+}
+
+assert.equal(familyCounts.filter((entry) => entry.count > 0).length, 1);
+assert.deepEqual(
+  familyCounts.find((entry) => entry.count > 0),
+  {page: 'x+y', offset: 'x-y', count: 1}
+);
+
 console.log('CANONICAL WORD GRAPH: 2,896 words, 2,895 adjacent windows');
 console.log('GLOBAL REPEATED ADJACENT PAIRS: exactly one type, DJU / BEI at p27 and p55');
 console.log('FINITE PRIME_ECHO: 41 exhaustion histories at 36 distinct boundaries');
 console.log('FIRST-INTACT-PAIR HANDOFFS: only boundary300 yields a pair repeated elsewhere');
 console.log('BOUNDARY300: cuts CEAIMCX after 4/6 runes; first intact words are DJU / BEI');
-console.log('DESTINATION: the pair\'s only other occurrence is p27 line2');
-console.log('INTERPRETATION: source-constrained p55 -> p27 navigation candidate; no direction rule or plaintext');
+console.log('DESTINATION: the pair\'s only other occurrence is p27 line2 at local rune offset28');
+console.log('PAIR NUMBERS: GP-prime sums129/159 -> residues13/14 -> (x+y,x-y)=(27,28) mod29');
+console.log('BOOK-WIDE COORDINATE GATE: 1/195 eligible adjacent pairs hits; target only');
+console.log('SIGNED SUM/DIFFERENCE FAMILY: 1/12 transforms has any hit, target transform only');
+console.log('INTERPRETATION: source-constrained p55 -> p27:28 navigation candidate; transform remains historically unauthenticated');

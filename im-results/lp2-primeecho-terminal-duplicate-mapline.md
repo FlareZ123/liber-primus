@@ -57,6 +57,39 @@ Three source-constrained observations survive:
 2. `DJU` and `BEI` are genuine complete words. They occur exactly twice and remain adjacent at both p27 line2 and p55 line4.
 3. A frozen follow-up over **all 36 distinct finite-list exhaustion boundaries** takes the first two complete words whose starts lie at or after each boundary, thereby discarding any partial word cut by exhaustion. Exactly **one** boundary yields a pair repeated elsewhere in the canonical 2,895 adjacent-word windows: **boundary300 → DJU / BEI**, whose only other occurrence is **p27 line2**. The canonical graph itself has exactly one repeated adjacent-word pair type, also `DJU / BEI`.
 
+### Number-coordinate holdout for the surviving pair
+
+The earlier p55→p27 navigation report had already noticed, after finding the duplicate, that
+the complete-word GP-prime sums are `DJU=129` and `BEI=159`. Modulo29 these are
+`x=13` and `y=14`, and the ordered sum/difference transform gives:
+
+```text
+page   = x + y = 27 (mod29)
+offset = x - y = 28 (mod29)
+```
+
+Those are exactly the other occurrence's **physical page p27 and zero-based rune start28**.
+That arithmetic was originally retrospective, so it was not independent evidence.
+
+The finite-`prime_echo` exhaustion now selects `DJU / BEI` **before** consulting this
+coordinate relation. With the transform therefore held fixed, an all-book source census
+tests every adjacent complete-word start for which a mod29 page/offset coordinate is
+possible: **195** pairs have physical page<29 and local rune start<29. Exactly **one**
+satisfies both equations, **DJU / BEI at p27:28**.
+
+As a local operation-family check, replace the two coordinate rows by every ordered pair
+of distinct signed sum/difference forms from `{x+y, x-y, y-x, -x-y}`. There are
+**12** transforms. Eleven have zero manuscript hits; only the previously observed
+`(x+y, x-y)` transform has a hit, and that hit is again p27 `DJU / BEI`.
+
+This materially upgrades the coordinate relation from an isolated arithmetic curiosity
+to a source-selective **candidate direction readout** following an independently selected
+word pair. The remaining objection is historical rather than computational: no recovered
+first-party instruction explicitly says to take the two word prime sums modulo29 and
+apply this Hadamard-like sum/difference transform. Treat p55→p27:28 as a strong candidate
+human solve step, while keeping the transform provisional until an independent clue or
+subsequent locked prediction validates it.
+
 The three-word object is still invalid. The line-local `CX` repetition is a repetition of **word-ending fragments created by physical wrapping**. A separate wrap census gives 74 two-rune continuation fragments and four repeated types, so `CX` has no unique status in that layout class. The surviving navigation candidate is therefore the **complete two-word pair p55 → p27**, with p34 removed. The signed 2016 phrase “Its words are the map” is compatible with this pair-level observation, while it does not specify the subsequent numerical direction rule.
 
 ## 4. Director decisions for #1506 and #1511
@@ -71,7 +104,7 @@ This correction is stronger than a rarity estimate because it removes the target
 
 - `sims/lp2_primeecho_terminal_mapline_sft.cjs` reproduces the finite-prime exhaustion census, 1033/3301 holdout, matched chapter control, and the canonical boundary-inside-word correction.
 - `sims/lp2_terminal_completeword_graph_sft.cjs` reconstructs all 2,896 complete printed words and asserts the p55/p34 wrap behavior, complete-word frequencies, the unique all-frequency2 triple, and zero frozen #1511 matches.
-- `sims/lp2_primeecho_intact_pair_handoff_sft.cjs` enumerates all 36 finite-list exhaustion boundaries and proves boundary300 is the sole boundary whose first two intact complete words form an adjacent pair repeated elsewhere, at p27.
+- `sims/lp2_primeecho_intact_pair_handoff_sft.cjs` enumerates all 36 finite-list exhaustion boundaries, proves boundary300 is the sole boundary whose first two intact complete words form an adjacent pair repeated elsewhere at p27, and runs the frozen p27:28 sum/difference coordinate gate plus its 12-transform signed family check.
 - Source transcription: `resources/liber-primus/lp2-transcription.txt`.
 - Original p55 image: `resources/liber-primus/72.jpg`.
 
