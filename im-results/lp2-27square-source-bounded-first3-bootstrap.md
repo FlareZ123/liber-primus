@@ -28,6 +28,8 @@ J = (13,12)
 
 No candidate plaintext is used to place this anchor.
 
+The original p0, p1, and p2 images also form a conspicuous visual unit: all three repeat the same paired black cross marginalia on left and right, while p2 closes the unit with the cicada illustration and the terminal red 13-dot mark. This visual continuity is independent support for treating the rubrication-selected 729-rune span as one designed section; it does not by itself specify the row-major reshape or transition rules.
+
 ## Block 1: unique maximum in a widened opening family
 
 Around both natural coordinate orders `(13,12)` and `(12,13)`, enumerate:
