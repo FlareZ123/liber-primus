@@ -172,6 +172,137 @@ for(const displacement of [0,42]) {
     matchedAfter:after.matches,positions:after.opportunities});
 }
 
+
+/**
+ * A sign-mirrored rival: paired pages may share the same secret random pad,
+ * while the second page emits -P+K instead of P+K. Let D=C1-C2 mod29.
+ * Then the pad vanishes and D is either P1-P2 or P1+P2; the complete
+ * 29-residue histogram is a key-independent plaintext witness.
+ *
+ * Score both analytically predicted GP-English convolutions relative to an
+ * iid uniform difference distribution. Select each pair's sign on its first
+ * floor(n/2) original matched sites and evaluate the remaining sites, with
+ * no access to their signs during selection.
+ */
+const pool = [
+  "resources/control/shakespeare_first300k.txt",
+  "resources/control/gibran_prophet_58585.txt"
+].flatMap((file)=>encodeEnglish(read(file)));
+const gpCounts=Array(29).fill(1);
+for(const x of pool)gpCounts[x]++;
+const gpMass=gpCounts.reduce((a,b)=>a+b,0);
+const gpFrequency=gpCounts.map(x=>x/gpMass);
+const convolutions=Array.from({length:2},()=>Array(29).fill(0));
+for(let a=0;a<29;a++)for(let b=0;b<29;b++){
+  convolutions[0][(a-b+29)%29]+=gpFrequency[a]*gpFrequency[b];
+  convolutions[1][(a+b)%29]+=gpFrequency[a]*gpFrequency[b];
+}
+const modelLog=convolutions.map(row=>row.map(x=>Math.log(29*x)));
+
+/**
+ * @param {number[][]} pages
+ * @param {0|42} displacement
+ * @returns {{training:number,heldout:number,postSelectedWhole:number,pairCount:number}}
+ */
+function blindSignedPairScore(pages,displacement) {
+  let training=0;
+  let heldout=0;
+  let postSelectedWhole=0;
+  let pairCount=0;
+  for(let p=0;p<28;p++) {
+    const differences=[];
+    const left=pages[p];
+    const right=pages[p+28];
+    for(let i=0;i<left.length;i++) {
+      const j=i+displacement;
+      if(j>=right.length) continue;
+      if(displacement===42 && p===27 && i>=28 && i<34) continue;
+      differences.push((left[i]-right[j]+29)%29);
+    }
+    if(!differences.length)continue;
+    pairCount++;
+    const firstHalf=Math.floor(differences.length/2);
+    const train=[0,0],test=[0,0],full=[0,0];
+    for(let i=0;i<differences.length;i++)
+      for(let candidate=0;candidate<2;candidate++) {
+        const increment=modelLog[candidate][differences[i]];
+        full[candidate]+=increment;
+        if(i<firstHalf)train[candidate]+=increment;
+        else test[candidate]+=increment;
+      }
+    const selected=train[0]>=train[1]?0:1;
+    training+=train[selected];
+    heldout+=test[selected];
+    postSelectedWhole+=Math.max(...full);
+  }
+  return {training,heldout,postSelectedWhole,pairCount};
+}
+
+/**
+ * A genuine fully encoded positive with a pair-specific nonperiodic shared
+ * additive pad, and inverted plaintext on every second target page pair.
+ * @param {number[][]} plainPages
+ * @param {0|42} displacement
+ * @returns {number[][]}
+ */
+function encryptWithMixedSigns(plainPages,displacement) {
+  const rnd=randomSource();
+  const pads=plainPages.map(page=>page.map(()=>rnd()%29));
+  for(let p=0;p<28;p++)
+    for(let i=0;i<plainPages[p].length;i++) {
+      const j=i+displacement;
+      if(j>=plainPages[p+28].length)continue;
+      pads[p+28][j]=pads[p][i];
+    }
+  return plainPages.map((page,p)=>page.map((rune,i)=>{
+    const sign=(p>=28 && (p-28)%2===0)?-1:1;
+    return (sign*rune+pads[p][i]+29)%29;
+  }));
+}
+
+const originalSigned = {
+  same:blindSignedPairScore(original,0),
+  echoOffset42:blindSignedPairScore(original,42)
+};
+assert.equal(originalSigned.same.pairCount,27);
+assert.equal(originalSigned.echoOffset42.pairCount,27);
+assert.ok(Math.abs(originalSigned.same.heldout+32.7927)<0.01);
+assert.ok(Math.abs(originalSigned.echoOffset42.heldout+49.164)<0.01);
+
+const signedControls=[];
+for(const [source,file] of [
+  ["Shakespeare","resources/control/shakespeare_first300k.txt"],
+  ["Gibran","resources/control/gibran_prophet_58585.txt"]
+]) {
+  const tape=encodeEnglish(read(file));
+  for(let offset=0;offset+12956<=tape.length;offset+=12956) {
+    const plain=pagesFromTape(tape.slice(offset,offset+12956));
+    const one={source,offset};
+    for(const displacement of [0,42]) {
+      const label=displacement===0?"same":"echoOffset42";
+      const unaltered=encryptSharedPad(plain,displacement);
+      const mixed=encryptWithMixedSigns(plain,displacement);
+      one[label]={
+        originalSignBlind:blindSignedPairScore(unaltered,displacement).heldout,
+        mixedSignBlind:blindSignedPairScore(mixed,displacement).heldout
+      };
+    }
+    signedControls.push(one);
+  }
+}
+assert.equal(signedControls.length,20);
+for(const label of ["same","echoOffset42"])
+  for(const type of ["originalSignBlind","mixedSignBlind"])
+    assert.ok(signedControls.every(item=>item[label][type]>0),
+      label+" "+type+" native language holdout must beat uniform");
+assert.ok(originalSigned.same.heldout<0 && originalSigned.echoOffset42.heldout<0);
+const signedControlMinima=Object.fromEntries(["same","echoOffset42"].map(label=>[
+  label, Object.fromEntries(["originalSignBlind","mixedSignBlind"].map(type=>[
+    type,Math.min(...signedControls.map(item=>item[label][type]))
+  ]))
+]));
+
+
 const pairs = controls.map(({source,offset,same,echoOffset42})=>({
   source,offset,same:same.matches,
   echoOffset42:echoOffset42.matches
@@ -191,6 +322,7 @@ console.log(JSON.stringify({
   controls:{total:controls.length,
     same:summarize("same"),echoOffset42:summarize("echoOffset42"),pairs},
   reusedArbitraryNonperiodicGP29PadPlant:planted,
-  conclusion:"Direct same-offset or +42 source-echo-offset additive GP29 key reuse across every p,p+28 pair fails a key-independent original-cipher plaintext-coincidence necessity test in the studied source-native GP-English register; no original plaintext or key recovered"
+  signedReusedPad:{original:originalSigned,controlHoldoutMinimum:signedControlMinima,sourceWindows:signedControls.length},
+  conclusion:"Source-shape original GP29 ciphertext fails both direct same-pad equality invariants and first-half-selected blind second-half 29-residue English likelihoods for either sign in each paired page; all twenty true shared-pad native GP-English controls, including alternating inverted pages, pass. No LP2 plaintext or key."
 },null,2));
 console.log("PASS: original 28-page pair key-reuse necessity and native plaintext positive plants");
