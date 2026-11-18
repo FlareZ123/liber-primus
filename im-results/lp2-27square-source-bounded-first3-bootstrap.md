@@ -287,7 +287,7 @@ The combined candidate is now:
 AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
 ```
 
-The first four blocks are selected directly by the source-bounded bootstrap. The later `I MAY CRY NOW THE` extension is conditionally selected by a frozen continuation family applied symmetrically to competing branches.
+The first four blocks are selected directly by the source-bounded bootstrap. The later `I MAY CRY NOW THE IDEA` extension is conditionally selected by a frozen continuation family applied symmetrically to competing branches.
 
 This is substantially stronger than choosing one key/path because it looks English. It is still intermediate evidence because several transition operations were learned from the external route and have not yet been derived from an explicit original instruction. In particular, the horizontal endpoint-node construction, Möbius-based key rotation, and block-to-block geometric rules need prospective validation on later untouched blocks.
 
