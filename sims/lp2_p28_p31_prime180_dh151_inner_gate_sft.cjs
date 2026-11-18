@@ -21,7 +21,7 @@ const root = path.resolve(__dirname, "..");
 const read = (name) => fs.readFileSync(path.join(root, name), "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
-const referenceText = read("resources/transcriptions/lp1_wulfic_canonical.txt");
+const referenceText = read("resources/liber-primus/lp1-plaintext-reference.txt");
 const model = buildSourceNativeTrigramModel({ corpus, referenceText });
 
 /** @param {number} n */
