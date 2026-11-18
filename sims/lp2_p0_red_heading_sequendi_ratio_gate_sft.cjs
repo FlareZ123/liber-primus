@@ -193,6 +193,15 @@ const secondPlain = subtractRepeating(secondCipher, secondKey);
 assert.equal(secondPlain.map(x => corpus.translit[x]).join("-"), "R-A-T-I-O");
 assert.deepEqual(addRepeating(secondPlain, secondKey), secondCipher);
 
+// Independent arithmetic checksum on the recovered 13-rune title. The same
+// source-visible count that gives J=(13,phi(13)) also predicts the complete
+// recovered title's ordinary GP29-index sum.
+const titlePlain = firstPlain.concat(secondPlain);
+const titleIndexSum = titlePlain.reduce((sum, value) => sum + value, 0);
+assert.equal(titlePlain.length, red.length);
+assert.equal(titleIndexSum, red.length * phi(red.length));
+assert.equal(titleIndexSum, 156);
+
 console.log(JSON.stringify({
   status: "conditional held-out red-heading cross-check; route still unverified",
   originalHeadingRunes: red.map(x => corpus.translit[x]),
@@ -217,6 +226,8 @@ console.log(JSON.stringify({
   secondOriginalNode: secondOriginalNode.map(x => corpus.translit[x]),
   secondKey: secondKey.map(x => corpus.translit[x]),
   secondPlaintextRunes: secondPlain.map(x => corpus.translit[x]),
+  titleIndexSum,
+  countTimesCountTotient: red.length * phi(red.length),
   canonicalReading: "SECUENDI RATIO",
   latinizedCKReading: "SEQUENDI RATIO",
   forwardReencryption: true,
