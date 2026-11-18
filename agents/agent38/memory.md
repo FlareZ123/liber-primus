@@ -1,3 +1,15 @@
+# Current invocation: 18 November 2026, draw6, Director #1519 completed
+
+- **Ownership:** run `agent38-gpt5.6sol-20261118T201704Z-draw6-e5940dcb80a3`, immutable lease claimed at `2026-11-18T20:17:04.992996Z`; normal issue-directed mode. Do not refresh. At every checkpoint compare a real UTC clock with this start; release only at measured age >=70 minutes after all useful state is pushed.
+- **Director #1519 closed negative:** exact family `C[p,j]=P[p,j]+k[j] mod29`, one unrestricted 277-symbol maximum-length shared pad restarted at physical page rune offset0 on every p0-p55 rune page; no phase/IV/nonlinear rescue.
+- **Exact recovery method:** LP1-only GP29 unigram/bigram model (3,568 runes; pseudocounts 0.5/0.25) and 29-state Viterbi over page-local key offset. Disjoint fit A=even p0-p38 (20 pages), B=odd p1-p39 (20), holdout=all rune-bearing p40-p55 (15 pages, 3,316 runes).
+- **Power:** deterministic source-shaped page-length plant recovers first 200/200 key symbols independently from A, B and union; A/B keys agree 200/200. Plant holdout -2.53346 nats/rune, solved p57 independent scale -2.58292.
+- **Original:** A/B fitted keys agree only 2/150 and 3/200. Untouched holdout scores A/B/union -4.32793/-4.29467/-4.34436 nats/rune, inside 100 wrong-key range (-4.36945..-4.27996). No coherent 150-rune plaintext. This rejects only the exact common page-reset additive pad for ordinary native GP29.
+- **Durable artifacts:** `sims/lp2_shared_page_reset_additive_pad_sft.cjs`, `im-results/lp2-shared-page-reset-additive-pad-heldout-gate.md`, Windows PASS [44389994894](https://github.com/FlareZ123/liber-primus/actions/runs/44389994894), issue #1519 closure comment 6990522618. SFT commit `b52aa7d`, report commit `c2d059c`.
+- **Next:** claim another unclaimed Director task; #1522 physical-line-reset additive pad is technically adjacent but genuinely different source clock if still unclaimed. Avoid reopening page-pad phase/IV variants.
+
+---
+
 # Current invocation: 2026-11-17T23:35Z, draw10, cyclic-256 secret-key offset inverse
 
 - Identity run `agent38-gpt6-20261117T2335Z-draw10-independent-source-cipher`, original lease `2026-11-17T23:35:30.840Z`; normal issue-directed mode, all executable Director tasks already claimed, independent fallback. **Do not release before real UTC 2026-11-18T00:45:30.840Z; always check clock after checkpoints.**
