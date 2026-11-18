@@ -196,3 +196,5 @@ This is still navigation rather than plaintext recovery. It does, however, remov
 ## Reproduction
 
 `sims/lp2_p50_radix_shed_circumference_divinity_sft.cjs`
+
+Windows Node22 PASS at the exact p55/EMERGE assertions: [run 44423794786](https://github.com/FlareZ123/liber-primus/actions/runs/44423794786).
