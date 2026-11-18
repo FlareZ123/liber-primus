@@ -21,6 +21,7 @@ const directEndpoint = /(?:\bgit:\/\/\S+|https?:\/\/\S*(?:\.git(?:[/?#\s]|$)|\/i
 const command = /\bgit\s+(?:clone|fetch|pull|ls-remote|checkout|log|show|cat-file|rev-parse|remote)\b/i;
 const hosting = /https?:\/\/(?:www\.)?(?:github\.com|gitlab\.com|bitbucket\.org|gist\.github\.com)\/\S+/i;
 const genericGit = /\b(?:git|github|gitlab|bitbucket|gist|repository|repo)\b/i;
+const object40 = /(?<![0-9a-f])[0-9a-f]{40}(?![0-9a-f])/i;
 const route = /\b(?:1033|3301|cuneiform|babylon(?:ian)?|sexagesimal|base\s*60|magic\s*square|openpuff|liber\s+primus)\b|(?:q4utgdi2n4m4uim5|ut3qtzbrvs7dtvzp|avowyfgl5lkzfj3n|auowyfgl5lkzfj3n|fv7lyucmeozzd5j4)\.onion/i;
 
 /** @param {Buffer} bytes @returns {string} */
@@ -68,7 +69,7 @@ async function main() {
   const total = {
     dated2014:0, directEndpoints:0, commands:0, hostingUrls:0,
     genericGitLines:0, routeLines:0, routeNearDirect:0, routeNearCommand:0,
-    routeNearHosting:0, routeNearGeneric:0
+    routeNearHosting:0, routeNearGeneric:0, object40Lines:0, routeNearObject40:0
   };
   const selected = [];
 
@@ -82,7 +83,7 @@ async function main() {
     assert.equal(blobHash(bytes), origin.sha, 'Git blob SHA ' + origin.name);
 
     const lines = bytes.toString('latin1').split(/\r?\n/);
-    const counts = {dated2014:0,directEndpoints:0,commands:0,hostingUrls:0,genericGitLines:0,routeLines:0};
+    const counts = {dated2014:0,directEndpoints:0,commands:0,hostingUrls:0,genericGitLines:0,routeLines:0,object40Lines:0};
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
       if (!dated2014.test(line)) continue;
@@ -99,18 +100,21 @@ async function main() {
       if (flags.direct) {counts.directEndpoints++; total.directEndpoints++;}
       if (flags.command) {counts.commands++; total.commands++;}
       if (flags.hosting) {counts.hostingUrls++; total.hostingUrls++;}
+      const hasObject40 = object40.test(line);
       if (flags.generic) {counts.genericGitLines++; total.genericGitLines++;}
+      if (hasObject40) {counts.object40Lines++; total.object40Lines++;}
 
-      if (!(flags.direct || flags.command || flags.hosting || flags.generic)) continue;
+      if (!(flags.direct || flags.command || flags.hosting || flags.generic || hasObject40)) continue;
       const near = routeNear(lines, i, 120);
       if (near && flags.direct) total.routeNearDirect++;
       if (near && flags.command) total.routeNearCommand++;
       if (near && flags.hosting) total.routeNearHosting++;
       if (near && flags.generic) total.routeNearGeneric++;
+      if (near && hasObject40) total.routeNearObject40++;
 
-      if (flags.direct || flags.command || flags.hosting || near) {
+      if (flags.direct || flags.command || hasObject40) {
         selected.push({
-          source:origin.name, line:i + 1, nearRoute:near, flags,
+          source:origin.name, line:i + 1, nearRoute:near, flags, hasObject40,
           text:line.slice(0, 900),
           context: near ? context(lines, i, 3) : undefined
         });
@@ -120,9 +124,8 @@ async function main() {
   }
 
   console.log('TOTAL ' + JSON.stringify(total));
-  console.log('SELECTED_COUNT ' + selected.length);
-  for (const item of selected.slice(0, 350)) console.log('HIT ' + JSON.stringify(item));
-  if (selected.length > 350) console.log('TRUNCATED ' + (selected.length - 350));
+  console.log('FOCUSED_HIT_COUNT ' + selected.length);
+  for (const item of selected) console.log('FOCUSED ' + JSON.stringify(item));
 }
 
 main().catch((error) => {
