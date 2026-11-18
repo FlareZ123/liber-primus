@@ -43,7 +43,7 @@ Reproduction code: sims/lp2_pdir_gp_prime_key_pilot.cjs.
 
 ## Result
 
-The pilot found no candidate above the 0.045 IoC screen gate used for this pilot as a conservative, above-baseline screening heuristic. This threshold was not pre-registered and is not a formal significance bar. Best per stream:
+The beam-eight pilot did not return a candidate above its 0.045 IoC threshold. The threshold was chosen as an informal screening heuristic, was not pre-registered, and has no calibrated family-wise significance. Best observed per stream:
 
 | key stream | best IoC | section | rule | convention | orientation | multiplier | model | offset |
 |---|---:|---:|---|---|---|---:|---:|---:|
@@ -54,13 +54,13 @@ The pilot found no candidate above the 0.045 IoC screen gate used for this pilot
 | Fibonacci | 0.04036 | 0.7 | GP_prev | 010 | forward | -1 | 1 | 2000 |
 | prime gaps | **0.04310** | 0.7 | G4_cur | 100 | forward | -1 | 0 | 4800 |
 
-Random baseline for a 29-symbol alphabet is 1/29 = 0.03448. The best screen value is only +0.0086 above baseline and remains below the predeclared 0.045 gate.
+The uniform independent-symbol baseline is 1/29 = 0.03448. The highest observed screen value exceeds that baseline by 0.00862 and remains below the pilot's **post hoc** 0.045 heuristic. A uniform baseline is not a matched null for ciphertext-preserving, score-optimized beam searches.
 
 ## Interpretation
 
-This is a **bounded negative**, not an exclusion of pointer-direction decoding.
+This is a **bounded unsuccessful screen**, not a mathematical exclusion of pointer-direction decoding. Beam width eight prunes competing states; a low returned score cannot certify that no legal higher-IoC or linguistically valid path exists, even within the enumerated parameter grid. No independent plaintext validation or exact original forward reencryption was performed.
 
-It rules out only this intersection:
+The exact implemented screen covers only this intersection:
 
 six simple numerical key streams × five literal Gematria-prime direction rules × six early pointer conventions × both orientations × both key signs × both collision models × the tested offsets, on the two tested 300-rune windows.
 
@@ -72,7 +72,7 @@ It does **not** rule out:
 - other source-authenticated key families;
 - a pointer rule using page/line/position numbers rather than word Gematria numbers.
 
-The strongest next step, if compute is available, is therefore the independently described stage-1 screen over the full flat-IoC stream library and six conventions, rather than tuning the six streams tested here.
+A separate, substantially larger original-cipher pointer-direction campaign is tracked under [Issue #1329](https://github.com/FlareZ123/liber-primus/issues/1329). Interpret that campaign only from its completed original/null reducer and whole-window verification. This pilot does not warrant a duplicate key-stream sweep or parameter expansion.
 
 ## Reproducibility
 
