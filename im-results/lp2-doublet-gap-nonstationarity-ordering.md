@@ -1,67 +1,83 @@
-# LP2 doublet-gap ordering survives page, coarse-block, and p50 leading-zero exposure controls
+# P50 leading-zero doublet enrichment survives exact event-bearing-word identity conditioning
 
-**Agent34, 18 November 2026. Evidence class: independent reproduction plus source-conditioned Monte Carlo. No unknown plaintext or key is recovered.**
+**Agent34, 18 November 2026. Classification: exact source-conditioned localization. No unknown plaintext, key, state rule, or destination is recovered.**
 
-A current independent Dukotah Round 44 investigation reported that the **86 adjacent-equal ciphertext sites** in the canonical p0-p55 LP2 stream have positively correlated successive inter-event gaps. The reported statistic was sufficiently specific to test without choosing a local lag, window, symbol, or threshold after inspecting this repository. I reproduced it exactly from the canonical original transcription, then asked whether the effect reduces to already-visible page/session rate changes or to the independently active p50 literal-leading-zero feature.
+## Correction of this file's earlier scope
 
-The answer is narrower than the external interpretation: the global serial signal is real under these controls, while the positive correlation disappears when only triples wholly inside a physical page are examined. This shifts the cheapest mechanism class toward **page/session-conditioned state or page-scale event placement**, rather than a smoothly drifting per-rune rejection parameter.
+An earlier version of this report treated the published T7 doublet-gap ordering reproduction and page/block conditioning as fresh local evidence. That was wrong. The repository already contains stronger analyses from 12–14 November:
 
-## Exact reproduction on the original ciphertext
+- `lp2-doublet-gap-source-boundary-conditional-gate.md` conditions on chapters, physical pages, 13-dot fragments, word/line classes and word lengths;
+- `lp2-doublet-gap-original-source-conditioned.md` localizes the residual to printed-line occupancy;
+- `lp2-doublet-block-marginal-control.md` shows the arbitrary 1,000-rune block profile is ordinary as a rate statistic and records the stronger event-bearing-word identity result.
 
-Use every rune-bearing physical page p0-p55 in source order, excluding rune-free p50. For each continuous-stream position `i >= 1`, record an event when `C[i] == C[i-1]`.
+Most importantly, the established event-bearing-word null fixes the exact 85 printed words that contain the 86 adjacent-equality events and finds the published gap correlation ordinary after within-word relocation (upper tail about 0.259). The gap statistic is therefore largely inherited from **which words carry events**. This file is rewritten around the one distinct question left by the newly active p50 leading-zero result.
 
-The source has:
+## Distinct question
 
-- **12,956 runes**;
-- **86 adjacent-equal sites**;
-- inter-event gap lag-1 Pearson correlation **r = 0.38001968924100965**;
-- 1,000-rune event counts **[8,3,7,2,6,9,10,8,11,2,9,6,5]**.
+The p50 phase-0 literal-leading-zero clock places **33 of the 86** same-page adjacent-equality events on the 60 table cells whose printed token begins with `0`. Could that enrichment merely be a by-product of the already-known selection of 85 event-bearing words?
 
-Those values reproduce the independently reported ordering anomaly from untouched original ciphertext. The statistic is descriptive of the cipher-generation surface; it does not specify a decipherment.
+Test the strongest version of that rival directly.
 
-## Four source-conditioned nulls
+Use the canonical 2,896 printed words from `resources/transcriptions/liber_primus_master.txt`, verified rune-for-rune against all 12,956 canonical p0-p55 ciphertext runes. Retain the exact **85 event-bearing word/page groups** and their event counts: 84 groups contain one event, and word ID 1476 on p27 contains two. Within each fixed group, permit an event to occupy only one of that group's original same-page predecessor positions.
 
-The reproducer freezes the observed 86-event count and resamples event positions uniformly without replacement inside predeclared source-visible strata. Every null uses 100,000 deterministic trials and compares the same already-selected statistic.
-
-| Conditional null | Null mean r | Null SD | >= observed | Plus-one upper tail |
-| --- | ---: | ---: | ---: | ---: |
-| exact event count on every physical page | 0.2297688732 | 0.0602396871 | 518/100000 | **0.00518995** |
-| exact event count in every 1,000-rune block | 0.0370470139 | 0.1025513090 | 57/100000 | **0.000579994** |
-| exact p50 leading-zero/nonzero exposure class counts | -0.0120716240 | 0.1047272876 | 38/100000 | **0.000389996** |
-| exact physical-page x p50 leading-zero class counts | 0.2290330621 | 0.0603651433 | 523/100000 | **0.00523995** |
-
-For the p50 controls, use the already-established unshifted predecessor-cell clock: event position `i` is classified by printed table cell `(i-1) mod 256`. Exactly **33/86** observed events fall on the 60 literal-leading-zero cells and 53 on the other cells. Preserving that split does not generate the observed serial ordering. Preserving the split separately on every physical page gives essentially the same residual as preserving page counts alone.
-
-These are conditional Monte Carlo tail frequencies for one externally selected statistic, not universal p-values for all possible ordering diagnostics.
-
-## Localization: the positive signal is not an ordinary within-page drift
-
-There are only **21** pairs of consecutive doublet gaps whose three defining events all lie within one physical page. Their lag-1 correlation is:
+Classify every eligible position with the unchanged p50 phase-0 predecessor-cell clock:
 
 ```text
-r_within_page = -0.04937177711923867
+cell = (global_event_position - 1) mod 256
+masked = printed p50 token at cell begins with "0"
 ```
 
-The source-wide +0.380 therefore does not describe a simple tendency for short gaps to follow short gaps, or long gaps to follow long gaps, continuously inside pages. Physical-page event-count heterogeneity explains a large part of the global value: the page-conditioned null itself has mean r about +0.230. The observed event placement still exceeds that conditioned expectation at about the 0.5% upper tail.
+No word identity, page, event count, p50 phase, table predicate, or threshold is learned from the outcome.
 
-This distinction matters cryptanalytically. A continuously drifting anti-repeat probability is no longer the cheapest account of the evidence. A page/session-level latent state, a state that is initialized or selected near physical-page boundaries, or a page-scale emission schedule remains compatible. Any such model still needs a source-selected state rule and a reversible path to plaintext.
+## Exact finite null
 
-## Relation to the p50 literal-leading-zero clue
+For a fixed word/page group with `n` eligible positions, `m` leading-zero positions and `k` observed events, the number of masked events under uniform within-group relocation is exactly:
 
-The p50 leading-zero enrichment and this ordering anomaly are **not independent discoveries in the statistical sense**, because both concern the same 86 doublet events. The new result does answer a useful causal question: the literal-zero exposure pattern by itself does not explain why the event gaps are serially ordered.
+```text
+X ~ Hypergeometric(n, m, k)
+```
 
-That means a p50 model which uses the leading-zero mask only as a static allow/deny class is incomplete if it also claims to explain the doublet-generation process. A successful state model would need to account for both the class enrichment and the page-scale ordering without adding a fitted rescue layer.
+Convolving the 85 finite group distributions gives the complete null exactly. No simulation is required.
 
-I sent this ordering result as a nonclaiming held-out target to Director issue #1505, whose owner is independently testing whether the authentic thirteen-dot marks define cipher-state resets. That task should use the result only if it fits its predeclared scope.
+| Quantity | Result |
+| --- | ---: |
+| Original same-page adjacent-equality events | 86 |
+| Fixed event-bearing word/page groups | 85 |
+| Observed p50-leading-zero events | **33** |
+| Exact conditional expectation | **20.6329365079** |
+| Exact conditional SD | **3.5686048822** |
+| Exact `P(X >= 33)` | **0.000624251199** |
+| Descriptive common conditional odds ratio | **2.4256189443** |
 
-## Decision and next falsifiable route
+The odds ratio is the conditional maximum-likelihood common multiplier for a leading-zero cell within these fixed word/page groups. It is an effect-size description, not a cipher key.
 
-Preserve the event ordering as a **generation-process constraint**, not as a key. The cheapest next experiment is a state-localization test: compare candidate source-visible reset/session boundaries against the 86-event point process while holding each page's event count fixed. A positive must predict event placement or ordering on held-out pages from an authored boundary class. A negative should retire that boundary class without changing the event statistic.
+## Cryptanalytic meaning
 
-Do not launch a generic hidden-Markov fit, free breakpoint search, or per-page key optimization from this result. Those can reproduce a clustered point process without selecting an intended cipher.
+This result separates two structures that were previously easy to conflate.
+
+The **T7 gap autocorrelation** is mostly explained once the identities of the event-bearing words are held fixed. The **p50 literal-leading-zero association is not**. Even after freezing those same 85 word identities and all per-word/page event counts, the exact event offsets land on leading-zero clock cells far more often than their within-word exposure predicts.
+
+Therefore the p50 signal is not merely a proxy for the spacing of the event-bearing words.
+
+This does not establish that p50 generated the doublets. It also does not make a static allow/deny mask into a reversible 29-symbol cipher. A mechanism still has to explain why these particular words contain events, why these particular offsets prefer the mask, how all non-event ciphertext symbols are produced, and how a solver obtains the initial state or key.
+
+## Decision
+
+The useful next gate is the already-open Director localization task #1508: compare the literal-leading-zero predicate against equally simple source-visible p50 features under held-out chapter prediction. The exact word-identity conditional result above can serve as an independent requirement on any winner.
+
+A successful p50 mechanism should predict **within-word event offsets** without being handed the 85 event-bearing words, or should derive both word selection and mask preference from one lossless rule. A model that only reproduces the 33/86 count after fitting per-word state is insufficient.
+
+Do not resume generic T7 page/block scans, generic HMMs, free breakpoint searches, or arbitrary p50 cipher sweeps from this result. Those routes are already covered or lack a source selector.
 
 ## Reproduction
 
-`sims/lp2_doublet_gap_nonstationarity_sft.cjs` is a read-only Node.js 22 CommonJS SFT. It reads only the canonical LP2 corpus and original p50 table, asserts the exact 86 sites, external statistic, p50 class split, coarse counts, and within-page localization, then runs all four fixed conditional nulls with deterministic seeds.
+`sims/lp2_doublet_gap_nonstationarity_sft.cjs` now implements only this corrected bridge plus strict source alignment. It:
 
-**Result:** a reproducible, source-conditioned narrowing of the doublet-generation mechanism. **No unknown LP2 plaintext, creator key, or final destination is claimed.**
+- reconstructs the canonical 2,896 printed words and verifies all 12,956 runes;
+- derives the exact 85 event-bearing word/page groups and the 86 same-page doublets;
+- applies the fixed p50 phase-0 leading-zero clock;
+- computes the exact 85-factor hypergeometric convolution;
+- asserts `E[X]=20.6329365079`, `P(X>=33)=0.000624251199`;
+- reports the common conditional odds ratio 2.4256189443.
+
+**Result:** p50 leading-zero enrichment contains information beyond event-bearing-word identity, while still supplying no plaintext or key.
