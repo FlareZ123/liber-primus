@@ -37,6 +37,8 @@ const fullMid=(t7.sites[0]+t7.sites[3])/2;
 const largestMid=(t7.sites[1]+t7.sites[2])/2;
 const dists=lineBoundaries.map(b=>Math.abs(b-fullMid)).sort((a,b)=>a-b);
 const rank=dists.findIndex(d=>d>=Math.abs(p15Axis-fullMid))+1;
+const pageStartDistances=pages.map((p,i)=>({page:p.page,start:pageStarts[i],distance:Math.abs(pageStarts[i]-fullMid)})).sort((a,b)=>a.distance-b.distance);
+const p15PageStartRank=pageStartDistances.findIndex(x=>x.page===15)+1;
 function pageFor(x){let start=0;for(const p of pages){const end=start+p.runic_count;if(x>=start&&x<end)return{page:p.page,offset:x-start};start=end;}return null;}
 console.log(JSON.stringify({
  corpus_runes:stream.length,doublet_count:doublets.length,t7_cluster:t7,
@@ -44,5 +46,6 @@ console.log(JSON.stringify({
  p15_axis_distance_from_full_midpoint:Math.abs(p15Axis-fullMid),
  internal_line_boundaries:lineBoundaries.length,nearest_line_boundary_distances:dists.slice(0,10),
  p15_axis_rank_by_distance:rank,p15_axis_empirical_rank:rank/lineBoundaries.length,
+ nearest_page_starts:pageStartDistances.slice(0,8),p15_page_start_rank:p15PageStartRank,
  full_midpoint_page:pageFor(fullMid),void_start_page:pageFor(t7.sites[0]),void_end_page:pageFor(t7.sites[3])
 },null,2));
