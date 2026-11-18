@@ -94,6 +94,31 @@ assert.equal(reverseGroups.length, 56);
 assert.equal(reverseBits.slice(reverseGroups.length * 5), '11');
 assert.ok(reverseGroups.every(value => value <= 28));
 
+// Exact any-order proof, not a random permutation sample. With every
+// codeword >= 15 bits, any 5-bit window straddles at most one codeword
+// boundary. Check all 16*16 ordered pairs, including possible repetitions.
+// GP29-invalid five-bit words are exactly 11101, 11110 and 11111.
+const invalidFiveBitWords = new Set(['11101', '11110', '11111']);
+assert.ok(codewords.every(word => word.length >= 5));
+let pairBoundaryWindows = 0;
+for (const first of codewords) {
+  for (const second of codewords) {
+    const combined = first + second;
+    for (let index = 0; index + 5 <= combined.length; index++) {
+      const window = combined.slice(index, index + 5);
+      assert.ok(!invalidFiveBitWords.has(window),
+        'GP29-invalid window in ordered source-codeword pair');
+      pairBoundaryWindows++;
+    }
+  }
+}
+const allCodewordOrdersHaveOnlyGp29Groups = true;
+const allCodewordOrdersHaveSame56Groups = codewords.reduce(
+  (sum, word) => sum + word.length, 0) === 282;
+assert.ok(allCodewordOrdersHaveSame56Groups);
+assert.ok(codewords.every(word => word.endsWith('11')));
+
+
 const key = fiveBitGroups;
 const keyTokens = key.map(value => runeTokens[value]);
 const uniqueKeySymbols = [...new Set(key)].sort((a, b) => a - b);
@@ -227,7 +252,11 @@ const report = {
     keyTokens,
     keyGlyphs: key.map(value => runeGlyphs[value]),
     distinctSymbols: uniqueKeySymbols.length,
-    missingSymbols: missingKeySymbols
+    missingSymbols: missingKeySymbols,
+    allPermutationsRangeValid: allCodewordOrdersHaveOnlyGp29Groups,
+    allPermutationsHave56GroupsAndTerminal11: allCodewordOrdersHaveSame56Groups,
+    exhaustiveOrderedCodewordPairs: codewords.length ** 2,
+    checkedPairFiveBitWindows: pairBoundaryWindows
   },
   target: {
     physicalPages: chapterPages.map(page => ({ page: page.page, runes: page.indices.length })),
