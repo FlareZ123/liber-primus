@@ -1,11 +1,11 @@
-# Source-bounded 27×27 bootstrap through COLD, with held-out continuation through IDEA
+# Source-bounded 27×27 bootstrap through COLD, with source-state continuation through DEATH
 
-**Agents 28 and 29, 18 November 2026. Classification:** strong intermediate plaintext candidate, still below established-result status. This report narrows the external 27×27 route's opening from an English-selected path to a finite, source-driven bootstrap over the original p0-p2 artifact. A held-out continuation test now resolves the former block-5 tie in favor of `I MAY`, then uniquely extends it through `CRY NOW THE IDEA`, conditional on admitting the published endpoint-mirror/totient continuation family.
+**Agents 28 and 29, 18 November 2026. Classification:** strong intermediate plaintext candidate, still below established-result status. This report narrows the external 27×27 route's opening from an English-selected path to a finite, source-driven bootstrap over the original p0-p2 artifact. A held-out continuation test resolves the former block-5 tie in favor of `I MAY` and extends it through `CRY NOW THE IDEA`. A newer source-state recurrence then carries the original square from the IDEA endpoint through `OF THE END IS DEATH` using finite mirror handoffs, key reuse, and boundary termination.
 
 The recovered candidate is:
 
 ```
-AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
+AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA OF THE END IS DEATH
 ```
 
 The important advance is the selector structure. The first block is the unique four-word run in a deliberately widened source-driven opening family. Blocks 2 and 3 chain geometrically from the previous endpoint. Block 4 was then tested prospectively from the frozen TURNS state across a finite 36-branch family. A later locked-LP1 checksum gate now selects the same COLD path and exact four-rune stop without using the dictionary-prefix maximum.
@@ -293,30 +293,77 @@ AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
 The continuation evidence is stronger than choosing `I MAY` from grammar. Its caveat is upstream: the endpoint-mirror/totient/move family was learned from the published block-6/7 constructions rather than independently named by an original signed clue. The original p0 artwork's exact 180-degree pairing and the heading's repeated-rune symmetry make mirror operations source-plausible, but they do not uniquely specify this full transition rule.
 
 Detailed branch audit and SFT: `im-results/lp2-p0-block5-branch-continuation-gate.md` and `sims/lp2_p0_block5_branch_continuation_gate_sft.cjs`. Latest continuation CI run **44389737681** completed successfully.
+
+## Source-state recurrence after IDEA: OF THE END IS DEATH
+
+The next five blocks can now be reconstructed from the frozen IDEA endpoint and read direction without consulting the downstream dictionary or the held-out 12-rune passage checksum.
+
+The recurrence starts at:
+
+```
+IDEA endpoint       D (17,18)
+IDEA read direction (+1,-1)
+```
+
+It then uses five source predicates:
+
+1. a unique equal-outer mirror centered on the current endpoint;
+2. a unique secondary mirror centered on one outer, with the nearer outer and inherited perpendicular fixing the OF branch;
+3. radius- and axis-matched mirror bridges to determine the END start and direction;
+4. a same-center equal-totient-signature handoff to determine the END stop and the IS key;
+5. a perpendicular-radius bridge to an already used key center, followed by the shortest fresh mirror and a boundary-terminated read for DEATH.
+
+The resulting blocks are:
+
+```
+OF
+THE
+END
+IS
+DEATH
+```
+
+Important finite discriminators include:
+
+- `D (17,18)` centers exactly one `J-D-J` mirror.
+- Only one outer of that mirror centers another equal-outer mirror, `OE-J-OE`.
+- Along the full END ray, only `I (21,23)` permits a same-center matching-signature transition: `I-R-I -> H-R-H`.
+- Along the full IS ray, only `D (21,10)` has a centered mirror whose perpendicular-radius displacement lands on the center of a previously used key.
+- From the reused `J-B-J` key's forward outer `J (27,8)`, the shortest fresh mirror is uniquely `J-C-J`; the following `C-OE-C` bridge reaches a leftward boundary read.
+
+The recovered 12-rune continuation has rune-index sum **151**. That value exactly matches the previously locked residual for the second seven-word passage, while the checksum is absent from the selector. CI run **44398871654** reproduces the full recurrence.
+
+Detailed report and SFT: `im-results/lp2-p0-source-only-of-the-recurrence.md` and `sims/lp2_p0_source_only_of_the_sft.cjs`.
+
+### Exhausted broad selectors after IDEA
+
+A deliberately wider post-IDEA wrammar is useful as a negative control. The five-word residual `12 runes / index 151 / GP 553` admits **1,119,297** common-word routes. Adding the locked raw modular totals `cipher sum 169 / key sum 163 / five wraps` leaves **6,500** routes. Fixing the source-derived `OF THE` prefix leaves **7** routes.
+
+A local-operation minimization rule also fails as a semantic selector. Its unique optimum over the full family is `KING AT FEW BOY UP`; after fixing `OF THE`, the minimum suffix is `them st bed`. These controls retire aggregate checksum and geometric-shortness objectives as standalone plaintext selectors for this branch.
+
 ## What this changes
 
-The earlier repository audit correctly showed that the published 38-block route had underselected transitions. This three-block bootstrap is a different piece of evidence.
-
-It supplies a compact source-driven opening chain with three independent discriminators:
-
-1. the opening branch is the unique four-word maximum among 126 widened source-driven candidates;
-2. WEATHER begins at the exact matrix center and terminates when its next rune kills every dictionary continuation;
-3. TURNS is the only cardinal direction from its fixed start that sustains a native word to five runes;
-4. from the frozen TURNS state, a pre-existing LP1 checksum target selects COLD uniquely among all 36 cardinal ±12 candidates and every prefix length by the required 4-rune / index-51 / GP-182 residual, without a language score.
-
-The combined candidate is now:
+The current candidate through the second seven-word passage is:
 
 ```
-AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
+AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA OF THE END IS DEATH
 ```
 
-The first three blocks are selected directly by the source-bounded bootstrap, while COLD now has two independent selectors inside the same frozen 36-branch family: the earlier prospective dictionary-prefix maximum and the locked LP1 numerical residual. The later `I MAY CRY NOW THE IDEA` extension is conditionally selected by a frozen continuation family applied symmetrically to competing branches.
+Evidence quality varies by segment. The first three blocks come from the source-bounded opening bootstrap. COLD has the prospective 36-branch result plus the locked LP1 checksum selector. `I MAY CRY NOW THE IDEA` comes from the frozen continuation family and the independent p2 artwork axis evidence. From the frozen IDEA state, `OF THE END IS DEATH` now follows a finite source-state recurrence whose downstream index-151 residual succeeds only after the route is fixed.
 
-This is substantially stronger than choosing one key/path because it looks English. It is still intermediate evidence because several transition operations were learned from the external route and have not yet been derived from an explicit original instruction. In particular, the horizontal endpoint-node construction, Möbius-based key rotation, and block-to-block geometric rules need prospective validation on later untouched blocks.
+This remains intermediate research. Several transition predicates were reconstructed from the external proposed route rather than from an explicit Cicada instruction. The strongest next question is whether those predicates can be derived from original visible clues or can make a genuinely forward prediction on untouched material.
+
+The broad post-IDEA checksum family and local-operation minimum have been tested and should not be reused as plaintext selectors. Their large route counts and nonsense minima show that the productive information lies in specific structural handoffs.
 
 ## Next decisive test
 
-The former block-5 ambiguity is no longer the immediate blocker. A first attempt to widen the next connected-mirror topology after IDEA does **not** give a unique depth maximum: several two-rune words survive, with the published `OF` branch winning only by corpus frequency. Treat IDEA as the current held-out stopping boundary. The useful next decision is whether the endpoint-mirror/totient/movement family can itself be derived from original visible clues or can make another withheld transition prediction with a genuinely structural selector. Do not add plaintext-selected filters. If that family fails prospective continuation, preserve the source-bounded four-block bootstrap independently.
+Freeze the source-state recurrence through DEATH and seek one of two upgrades:
+
+1. an original-art or historical clue that independently motivates the same mirror-handoff predicates; or
+2. a prospective continuation on material that was not consulted while reconstructing the state machine.
+
+The current invocation already inspected the external SEE construction, so SEE cannot honestly serve as a held-out forward test here. A later untouched transition or an independently sourced clue is the cleaner discriminator.
+
 ## Reproduction
 
 Run:
