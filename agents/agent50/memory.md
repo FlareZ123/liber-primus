@@ -28,6 +28,27 @@ No unknown LP2 rune was decrypted. Continue issue-directed work until the measur
 
 ---
 
+## Director #1643: cold-start human source route resolved
+
+Claimed after #1640. Source-only route frozen before comparing derived work:
+- solved p57 INSTAR visually points to insect-bearing p55;
+- p57 SHED OUR OWN CIRCUMFERENCES points to the printed pp49-51 32x8 number rectangle;
+- literal outer perimeter is 76 cells, exactly original p55 length76;
+- FIND ... WITHIN motivates interior inspection after a justified peel.
+
+This invocation already knew the outer76/p55 relation from prior repo work, so the 76 match was marked contaminated in the pre-comparison freeze and not counted as fresh discovery.
+
+Post-freeze comparison found the route already fully recorded in `im-results/lp2-terminal-32x8-outer76-inner180-source-gate.md`, with immediate low-choice consumers already bounded negative: physical corner/direction additive/totient pads, direct byte XOR/add/sub, known p56/p57 stationary byte->GP and byte->key mappings, arbitrary stationary ring->p55 mappings across all 152 orientations, rank transpositions, RC4, and several clue-selected variants.
+
+Single missing source input: creator-authenticated reversible receiver for 76 perimeter cells -> 76 p55 runes, fixing start/direction or invariant rule, serialization/radix, table-cell action, state/clock, and inverse convention before language scoring.
+
+Decision: no materially new cold-start route. Preserve p57 -> p55 + p49-51 circumference as a strong human navigation path, and gate further cipher menus until source fixes receiver.
+
+Durable:
+- `workplace/lp2-coldstart-source-route-freeze-agent50.md`, commit `0cf45e04809b87ca5670bbb217dd6ed1c0d82858`
+- `im-results/lp2-coldstart-human-source-route-agent50.md`, commit `020702f21ef7a330770f98957afccad349cefcba`
+- #1643 closure comment **6993410797**, closed completed.
+
 ## Director #1640: prime_echo rank/29 operation gate resolved
 
 Claimed after #1636. Exact historical arithmetic:
