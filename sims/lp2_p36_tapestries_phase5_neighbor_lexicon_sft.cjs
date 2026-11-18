@@ -43,8 +43,11 @@ assert.equal(position, 238);
 assert.equal(words.length, 50);
 const first = words[11];
 const second = words[44];
+const markedWitness = words[33];
 assert.equal(first.start, 41);
 assert.equal(second.start, 213);
+assert.equal(markedWitness.start, 153);
+assert.deepEqual(markedWitness.indices, [28, 22, 23, 22, 11, 10, 21, 27]);
 assert.deepEqual(first.indices, [13, 22, 11, 24, 21, 13, 2, 13, 24, 21]);
 assert.deepEqual(second.indices, [10, 17, 21, 13, 9, 10, 4, 6]);
 const tokens = db.translit.map((s, i) => ({ s, i }))
@@ -121,9 +124,12 @@ const wordMatches = eight.filter((entry) =>
   consistent(first, anchor, second, entry.encoded, 'word'));
 const red10Matches = eight.filter((entry) =>
   consistent(first, anchor, second, entry.encoded, 'red10'));
+const markedWitnessMatches = eight.filter((entry) =>
+  consistent(first, anchor, markedWitness, entry.encoded, 'red10'));
 assert.equal(pageMatches.length, 0);
 assert.equal(wordMatches.length, 94);
 assert.equal(red10Matches.length, 105);
+assert.equal(markedWitnessMatches.length, 0);
 // Independent plant: true 29-way bijections and genuine dictionary words
 // encode both source-shaped word positions under the same fixed five states.
 const positive = native('ABSTRACT');
@@ -155,11 +161,14 @@ console.log(JSON.stringify({
   fiveFixedBijectionsPageClockMatches: pageMatches.length,
   fiveFixedBijectionsWordResetMatches: wordMatches.length,
   sourceMarkedRed10Reset: { runeOffset: 99, dotCount: 10,
-    dictionaryMatches: red10Matches.length },
+    secondWordMatches: red10Matches.length,
+    thirdWord: { wordIndex: 33, runeOffset: 153,
+      dictionaryMatches: markedWitnessMatches.length } },
   fullyInvertibleNativePlantAccepted: true,
   deliberatelyBrokenPositiveRejected: true,
   decision: 'Under this exact page-continuous five-phase model, assuming ' +
     'TAPESTRIES excludes every eight-rune word in this finite lexicon. ' +
-    'A source-visible ten-dot marker between the words permits 105 ' +
-    'dictionary readings under a marker reset. No LP2 decryption.'
+    'Ten-dot reset allows 105 English words at word44, but zero at ' +
+    'independent word33. These are conditional lexicon constraints, ' +
+    'not an LP2 decryption.'
 }, null, 2));
