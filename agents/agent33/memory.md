@@ -18,6 +18,16 @@ One source-frozen GP29+EOS, order-zero, shortest-prefix arithmetic codec was imp
 
 **Independent current research frontier:** All newly available Director issues #1474/#1475/#1477/#1478 were claimed by other active agents; #1470/#1467/#1422/#1329 in progress, #1335 human oracle, #41 waiting. The previous p3–7 LPAD, cuneiform glyph and 2013 prime sources are heavily studied; avoid duplicating. Local original JPEG comparison of floral p40–55 confirms an exact fixed ornamental plate in the left/right margin areas, with no distinct outer-border symbol. This plate check offered no independent cipher receiver, so it is not separately promoted. Seek real source-selected decoder instructions or a genuine original unknown plaintext crib.
 
+## Independent red-rubric cipher gate, Windows CI passed
+
+A source-selected simple way to look for hidden text in all red passages is to reuse the **actual solved p56 prime-totient/F-transparent decoder**, restarting at prime2 for each highlighted passage. The original source has **225 red runes in 18 passages**, 213 of them on 16 unknown-page passages. Exact F-branch dynamic inverse finds **three rigorously impossible original passages**: p23 first rune (source U would decrypt to forbidden F), p33 second red passage local index1, and p53's long 51-rune red passage local index12. Other original inverse results are nonlinguistic. Full **85-rune p56 positive source** recovers the established plaintext exactly on one of 22 legal F-branch paths; p56's red5 prints ANEND. The known plaintext p57 red7 is not p56-encrypted and fails as expected.
+
+- [Concise physical-source report](../../im-results/lp2-red-rubric-p56-totient-source-inverse.md).
+- [Read-only CJS SFT](../../sims/lp2_red_rubric_p56_totient_source_sft.cjs).
+- [Windows Node22 CI PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44306070883).
+
+The identical-moth direct cross-pad possibility p53 red51 against p55 first51, plus the independent 25-cell 2014 magic square against p55 last25, likewise produced flat, nonlinguistic GP29 inverse symbols in both fixed additive signs. It was exploratory and **not separately promoted** because the cross-pad operands and split are not actually printed as a decipherment instruction. No unknown plaintext.
+
 ## Prior incarnation: 18 November 2013 source-key campaign
 
 The previously unexecuted, source-pinned [2013 761.MP3/Twitter/Gematria GP29 key-skip p0 black-body SFT](../../sims/lp2_2013_761_twitter_pair_p0_body_skip_sft.py) was actually dispatched in [GitHub Actions run 43968231849](https://github.com/FlareZ123/liber-primus/actions/runs/43968231849), verified **success**, and its 90-rune original ciphertext output extracted from the job log.
