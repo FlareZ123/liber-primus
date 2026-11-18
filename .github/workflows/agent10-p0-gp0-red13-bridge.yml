@@ -11,6 +11,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Run 2016 GP0 pointer circuit SFT
+        run: node sims/lp2_2016_gp0_table_word_pointer_circuit_sft.cjs
       - name: Run red13 bridge SFT
         run: node sims/lp2_p0_gp0_red13_signed_phrase_bridge_sft.cjs
       - name: Run exact period31 crib gate
