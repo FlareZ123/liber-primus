@@ -68,7 +68,9 @@ This is a genuine source-selectivity improvement over simply supplying `X-N-X-C`
 
 This key no longer needs MAP.
 
-The canonical p0-p2 span contains exactly **729 = 27²** runes, so it can be placed row-major into a 27×27 matrix without padding. The physical red heading is visibly grouped **8+5** and is followed by a **13-dot** rubricated delimiter. Let `n=13`; the already-authenticated LP instruction that the totient function is sacred supplies `phi(13)=12`. Using the ordered pair `(n,phi(n))` gives:
+The 27×27 span is now source-selected by the book's own rubrication rather than by choosing three pages after seeing a square. Across LP2, there are **8** page-start red title spans immediately followed by a red 13-dot mark. For each, measure from that title start to the **next** red 13-dot mark. Exactly one span has a perfect-square rune count: **p0 title start through p2's terminal red 13-dot mark = 729 = 27² runes**. The other seven candidate spans are 119, 20, 1021, 1433, 91, 308, and 85 runes.
+
+Thus the original delimiter system independently selects the p0-p2 27×27 matrix. The physical p0 red heading is visibly grouped **8+5** and is followed by its opening **13-dot** rubricated delimiter. Let `n=13`; the already-authenticated LP instruction that the totient function is sacred supplies `phi(13)=12`. Using the ordered pair `(n,phi(n))` gives:
 
 ```
 J = (13,12)
@@ -137,7 +139,7 @@ The first eight runes remain weaker. Their `SECUENDI` key still depends on the c
 
 The surviving weaknesses are concrete:
 
-- The 27×27 reshape follows exactly from 729 runes, but the manuscript does not literally say to reshape the first three pages into a square.
+- The delimiter system now selects p0-p2 uniquely among 8 comparable rubricated title-to-next-red13 spans as the only perfect square. The remaining assumption is that this uniquely selected square span is intended to be reshaped row-major.
 - The source-only `RATIO` derivation assumes the natural ordered coordinate `(n,phi(n))`; the swapped coordinate order produces a different phi-chain and nonword output.
 - The first key's rectangle rule still depends on the candidate MAP source.
 - Reports 17-19 do not remove the already demonstrated earlier THE/YE key ambiguity.
@@ -152,7 +154,7 @@ Run:
 node sims/lp2_p0_red_heading_sequendi_ratio_gate_sft.cjs
 ```
 
-Two SFTs now separate source-only evidence from route-conditional evidence. `sims/lp2_p0_red_ratio_sourceonly_sft.cjs` uses only the canonical p0-p2 source and physical red annotation to derive `RATIO`. `sims/lp2_p0_red_heading_sequendi_ratio_gate_sft.cjs` adds the frozen first-38 route arrays and asserts the unique first-key rectangle, the 17-source route-wide rectangle control, the independent MAP extrapolation to the same second-key node, both exact re-encryptions, and the `156 = 13 × phi(13)` full-title checksum.
+Two SFTs now separate source-only evidence from route-conditional evidence. `sims/lp2_p0_red_ratio_sourceonly_sft.cjs` uses the canonical LP2 corpus plus complete red-ink annotations to source-select the unique 729-rune rubricated square span, then derives `RATIO` without any candidate route. `sims/lp2_p0_red_heading_sequendi_ratio_gate_sft.cjs` adds the frozen first-38 route arrays and asserts the unique first-key rectangle, the 17-source route-wide rectangle control, the independent MAP extrapolation to the same second-key node, both exact re-encryptions, and the `156 = 13 × phi(13)` full-title checksum.
 
 External numerical proposal credited for the candidate red-heading constructions:
 https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption
