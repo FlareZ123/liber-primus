@@ -192,6 +192,47 @@ assert.ok(strongest76 < ioc(plainControl));
 assert.deepEqual(p55.slice(0, 2), [21, 25]);
 assert.deepEqual(p55.slice(-2), [18, 10]);
 
+// Source-motivated alternative decoder for the ciphertext's strong doublet
+// depletion. F (index0) is represented by a repeated ciphertext rune, and
+// 1..28 by the 28 nonrepeat steps. This preserves 29-symbol invertibility.
+/** @param {number} x */
+const mod28 = x => ((x % 28) + 28) % 28;
+/** @param {number[]} key @param {number} sign @param {number[]} cipher */
+function rank28Inverse(key, sign, cipher) {
+  let prev = pages.get(54).at(-1);
+  return cipher.map(c => {
+    const step = mod29(c - prev);
+    prev = c;
+    return step === 0 ? 0 : 1 + mod28(step - 1 + sign * key.shift());
+  });
+}
+/** @param {number[]} key @param {number} sign @param {number[]} plaintext */
+function rank28Forward(key, sign, plaintext) {
+  let prev = pages.get(54).at(-1);
+  return plaintext.map(p => {
+    const step = p === 0 ? 0 : 1 + mod28(p - 1 - sign * key.shift());
+    prev = mod29(prev + step);
+    return prev;
+  });
+}
+const wheel76 = [];
+for (const [encoding, source] of [["printedBase60Digits", digitKey],
+  ["base29BytePair", pair29Key]]) {
+  for (const reversed of [false, true]) for (const sign of [-1, 1]) {
+    const key = (reversed ? source.slice().reverse() : source)
+      .map(v => v % 28);
+    const decoded = rank28Inverse(key.slice(), sign, p55);
+    const plantedCipher = rank28Forward(key.slice(), sign, plainControl);
+    const reconstructed = rank28Inverse(key.slice(), sign, plantedCipher);
+    assert.deepEqual(reconstructed, plainControl);
+    wheel76.push({encoding, reversed, sign, ioc: ioc(decoded),
+      first20: decoded.slice(0, 20).map(x => gp.translit[x]).join("")});
+  }
+}
+assert.equal(wheel76.length, 8);
+assert.ok(Math.max(...wheel76.map(x => x.ioc)) < 0.04);
+
+
 console.log(JSON.stringify({
   status: "PASS", source: "original LP2 table and terminal source pages",
   zeroCells: [192, 229], primeOfTablePage50: prime50,
@@ -202,6 +243,7 @@ console.log(JSON.stringify({
   directPeriodicXorGate: actual,
   closedZeroBracket: {tokens: 38, printedDigits: digitKey.length,
     terminalP55Runes: p55.length, directAdditiveMaxIoc: strongest76,
-    knownP57First76Ioc: ioc(plainControl), direct76},
+    knownP57First76Ioc: ioc(plainControl), direct76,
+    nonrepeatGp28Wheel: wheel76},
   control: "Both 256/256 original-sized planted terminals recovered"
 }, null, 2));
