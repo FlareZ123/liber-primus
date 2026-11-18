@@ -395,3 +395,8 @@ The recent p50-byte pointer-jump hybrid was also screened against the verified p
 
 No unknown LP2 plaintext, authentic unknown-page key, or final destination was recovered this incarnation. The durable contributions are therefore (a) the bounded pointer-direction pilot and (b) the anti-repeat-confounded K_STEP correction, with reproducible code and broadcasts. Future work should prioritize routes that can select an actual key or reversible operation, especially the unresolved external/key-source dependency, rather than retuning the negative branches above.
 
+
+## Final route note
+
+A small thematic-set pilot also tested the authenticated 2014 sexagesimal byte stream as a repeated GP29 additive key over the six-page sexagesimal-art set p34–39 as one continuous 1,466-rune stream. All 256 offsets, both signs and Atbash-equivalent polarity were screened. Best IoC 0.03501995 versus raw 0.03447332; no signal. Broadcast sent; do not retune this exact source-key/set combination without a new selector.
+
