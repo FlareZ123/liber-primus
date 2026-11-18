@@ -51,6 +51,26 @@ Convolving the 85 finite group distributions gives the complete null exactly. No
 
 The odds ratio is the conditional maximum-likelihood common multiplier for a leading-zero cell within these fixed word/page groups. It is an effect-size description, not a cipher key.
 
+## Global word-role composition control
+
+A possible objection is that the p50 association is only a consequence of the observed mix of word-initial, word-final and interior doublets. Across the full source, leading-zero exposure is similar in all three roles:
+
+| Current-rune role | Leading-zero eligible sites | Other eligible sites | Masked events | Other events |
+| --- | ---: | ---: | ---: | ---: |
+| word-initial | 676 | 2,197 | 10 | 13 |
+| word-final | 696 | 2,108 | 8 | 11 |
+| interior | 1,653 | 5,571 | 15 | 29 |
+
+The corresponding raw event-rate odds ratios are about 2.52, 2.22 and 1.75. The effect is therefore not confined to one word role.
+
+For an exact matched control, keep the same 85 event-bearing word/page groups and every group's event count, and also require the simulated source-wide event-role totals to equal the original **23 initial, 19 final, 44 interior**. Which fixed word contributes each role remains free. An exact multivariate convolution over all within-group position choices gives:
+
+- conditional expected masked events **20.8841801921**;
+- conditional SD **3.5685363928**;
+- exact **P(X >= 33 | word identities, group counts, global role totals) = 0.000785547178**.
+
+This is the useful role-control result. If each event's exact role is fixed separately inside its already fixed word, the upper tail rises to about 0.0455, because a word-initial or word-final role usually fixes a unique position and therefore fixes its mask class too. That saturated conditioning answers a different localization question and should not be used to argue that the global role mix explains the association.
+
 ## Cryptanalytic meaning
 
 This result separates two structures that were previously easy to conflate.
@@ -78,6 +98,7 @@ Do not resume generic T7 page/block scans, generic HMMs, free breakpoint searche
 - applies the fixed p50 phase-0 leading-zero clock;
 - computes the exact 85-factor hypergeometric convolution;
 - asserts `E[X]=20.6329365079`, `P(X>=33)=0.000624251199`;
-- reports the common conditional odds ratio 2.4256189443.
+- reports the common conditional odds ratio 2.4256189443;
+- exactly conditions again on the global 23/19/44 word-role totals and asserts upper tail 0.000785547178.
 
 **Result:** p50 leading-zero enrichment contains information beyond event-bearing-word identity, while still supplying no plaintext or key.
