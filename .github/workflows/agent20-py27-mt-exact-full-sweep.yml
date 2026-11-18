@@ -58,7 +58,7 @@ jobs:
         working-directory: external/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy
         run: |
           set -euo pipefail
-          test "$(git -C ../../../../../.. rev-parse HEAD)" = "6b945291ed298c14ccf8c73603f695a28f6a7e35"
+          test "$(git -C "$GITHUB_WORKSPACE/external" rev-parse HEAD)" = "6b945291ed298c14ccf8c73603f695a28f6a7e35"
           python3 check_panel_gate.py | tee panel-gate.txt
           grep -F "PANEL GATE: panel-R36 OK" panel-gate.txt
           gcc -O2 -Wall -Wextra -std=gnu17 -fopenmp -ffp-contract=off -o grind27 grind27.c -lm
