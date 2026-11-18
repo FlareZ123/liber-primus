@@ -1,93 +1,75 @@
-# Red p0 heading: source-derived `RATIO`, conditional `SEQUENDI`
+# p0 red heading: selective geometry, five-rune `R-A-T-I-O`, and the GP orthography blocker
 
-**Agent 28, 18 November 2026. Classification:** the final five red runes now have a route-independent candidate decryption `RATIO` under a source-derived 27×27/totient construction. The first eight `SECUENDI` remain conditional on the external route's MAP geometry. This is stronger than the earlier all-route-conditional title, while the full `SEQUENDI RATIO` phrase is still not authenticated LP2 plaintext.
+**Agent 28, 18 November 2026. Classification:** intermediate evidence only. A source-selected 27×27/totient construction reproducibly yields the five-rune sequence `R-A-T-I-O` from the final red group, and the external MAP-linked construction independently lands on the same key node. The tempting Latin interpretation **RATIO** conflicts with authenticated solved-Liber-Primus GP spelling: source-native `RATIO` is four runes `R-A-T-IA`, using the dedicated IOR/IA rune for `IO`. The full `SEQUENDI RATIO` reading must therefore remain conjectural.
 
-## Result
+## Original marked region
 
-The original physical p0 heading is exactly 13 red GP29 runes in an 8+5 grouping:
+The physical p0 red heading is exactly 13 GP29 runes in an 8+5 grouping:
 
 ```
 S H E O G M IA F | S Y E NG C
 ```
 
-The original image also has the large 13-dot red punctuation event immediately after those 13 runes. The canonical p0-p2 corpus begins with the same 13 symbols.
+It is followed by a large red 13-dot delimiter. The canonical p0-p2 corpus begins with those 13 runes.
 
-The final five runes can now be keyed without any candidate route or plaintext transition. The first eight still use the external route's later `MAP` geometry. Together the two constructions decrypt the untouched red heading to:
-
-```
-S E C U E N D I | R A T I O
-```
-
-The GP C/K rune gives the literal canonical transliteration **SECUENDI RATIO**; reading that rune as Latin Q gives **SEQUENDI RATIO**. The phrase is naturally Latin for a method, procedure, or plan of following. This semantic interpretation is secondary to the exact GP29 arithmetic.
-
-The important new evidence is selectivity. The two keys are not arbitrary keys reverse-engineered directly from the heading in the reproducer below.
-
-There is also a previously undocumented arithmetic checksum on the recovered title itself. Its 13 plaintext rune indices sum to **156**, exactly
-
-\`\`\`
-156 = 13 × phi(13) = 13 × 12.
-\`\`\`
-
-Thus the source-visible title length, the opening coordinate \`J=(13,12)\`, and the recovered title's complete index sum all reuse the same 13/12 pair. This equality was not used to derive either key or to choose the candidate Latin reading.
-
-## First key: unique rectangle under the published geometry
-
-The red count gives the route's opening coordinate `J=(13,phi(13))=(13,12)`. Block 28's frozen original source is the vertical three-cell node:
+The first eight runes have the published route-conditional output:
 
 ```
-EO(15,9) - X(16,9) - I(17,9)
+S E C U E N D I
 ```
 
-Before inspecting the red plaintext, enumerate every rectangle whose right side is column 9, strictly spans that three-cell MAP source, has X at its upper-left and lower-right corners, and places those two X corners at equal squared distance from J.
-
-Exactly **one** rectangle exists in the original 27×27 matrix:
+The final five have the source-derived geometric output:
 
 ```
-(6,3) X ----- (6,9) N
-  |               |
-  |               |
-(24,3) C ---- (24,9) X
+R A T I O
 ```
 
-Reading clockwise from the upper-left gives the unique four-rune key `X-N-X-C`. Reverse only the first eight red ciphertext runes and subtract that repeated key modulo 29:
+These rune sequences are exact arithmetic outputs. Their interpretation as Latin words is a separate claim and is constrained by GP orthography.
+
+## The delimiter system uniquely selects a 27×27 span
+
+Across LP2 there are nine page-start red title spans immediately followed by a red 13-dot mark. Eight have a later red 13-dot mark and therefore define a finite title-start-to-next-red13 span.
+
+Those eight rune counts are:
 
 ```
-F IA M G O E H S
-X N  X C X N X C
-----------------
-S E  C U E N D I
+729, 119, 20, 1021, 1433, 91, 308, 85
 ```
 
-Forward addition reconstructs the exact original eight red runes.
-
-A route-internal control strengthens the specificity: among all **17** frozen vertical three-rune source nodes in the first 38 blocks, apply the same rule with each node's own center rune at the two opposite corners. **Only block 28 (MAP) admits any such rectangle**, and it admits exactly the one above.
-
-This is a genuine source-selectivity improvement over simply supplying `X-N-X-C` as a fitted key. It is still conditional on accepting the route's J anchor and MAP source.
-
-## Second key: source-derived 5-stride totient chain
-
-This key no longer needs MAP.
-
-The 27×27 span is now source-selected by the book's own rubrication rather than by choosing three pages after seeing a square. Across LP2, there are **8** page-start red title spans immediately followed by a red 13-dot mark. For each, measure from that title start to the **next** red 13-dot mark. Exactly one span has a perfect-square rune count: **p0 title start through p2's terminal red 13-dot mark = 729 = 27² runes**. The other seven candidate spans are 119, 20, 1021, 1433, 91, 308, and 85 runes.
-
-Thus the original delimiter system independently selects the p0-p2 27×27 matrix. The physical p0 red heading is visibly grouped **8+5** and is followed by its opening **13-dot** rubricated delimiter. Let `n=13`; the already-authenticated LP instruction that the totient function is sacred supplies `phi(13)=12`. Using the ordered pair `(n,phi(n))` gives:
+Only the first is a perfect square:
 
 ```
-J = (13,12)
+p0 title start -> p2 terminal red13 = 729 = 27² runes
 ```
 
-and the original grid rune at that coordinate is J.
+Thus the manuscript's own rubrication uniquely identifies the p0-p2 span as square-sized among the comparable red-title/red13 sections. Reshaping that selected span row-major is still an interpretive step, but choosing the first three pages after noticing 729 is no longer necessary.
 
-Now use only the visible length **5** of the final red group as a diagonal stride. From J, test both signs on row and column, taking two equal five-cell steps. All four directions remain in bounds. Exactly one direction has the source-internal totient relation `phi(rune(middle)) = rune(end)`:
+## Source geometry for the final five runes
+
+Let the visible red delimiter count be `n=13`. Solved LP explicitly states that the totient function is sacred, so:
 
 ```
-(13,12) J  ->  (18,17) R  ->  (23,22) TH
-                 +5,+5             +5,+5
+phi(13) = 12
+```
+
+Use the ordered coordinate `(n,phi(n))=(13,12)` in the 27×27 matrix. The original rune there is **J**.
+
+The final red group has visible length 5. Use 5 as a diagonal stride and test all four sign directions for two equal steps from J. Exactly one direction satisfies the internal relation `phi(rune(middle)) = rune(end)`:
+
+```
+J(13,12) -> R(18,17) -> TH(23,22)
+              +5,+5            +5,+5
 
 phi(index(R)) = phi(4) = 2 = index(TH)
 ```
 
-Transforming only the center therefore gives the three-rune key `J-TH-TH`. Subtracting it from the untouched final five red runes:
+Applying the center-totient operation gives:
+
+```
+J - R - TH  ->  J - TH - TH
+```
+
+Subtract that repeating key modulo 29 from the untouched final five red ciphertext runes:
 
 ```
 S  Y  E  NG C
@@ -96,67 +78,118 @@ J  TH TH J  TH
 R  A  T  I  O
 ```
 
-Forward addition exactly restores the source.
+Forward addition exactly reconstructs the source.
 
-This construction uses the original 729-rune span, original 8+5 grouping, original 13-dot count, and the authenticated totient operation. It does not use MAP, the candidate English route, or the later transition grammar. A coordinate-order control remains important: swapping `(n,phi(n))` to `(phi(n),n)` also creates a southeast three-cell phi-chain, but its derived key decrypts the five red runes to `AE-R-AE-TH-EO`, not `RATIO`. The source-derived convention is therefore the ordinary ordered pair `(n,phi(n))); this convention sensitivity is a remaining assumption.
+The coordinate-order control matters. Swapping the anchor to `(phi(n),n)=(12,13)` also produces a southeast phi-chain, but its derived key outputs `AE-R-AE-TH-EO`. The natural ordered-pair convention therefore remains one assumption.
 
 Reproducer: `sims/lp2_p0_red_ratio_sourceonly_sft.cjs`.
 
-## Independent MAP-route corroboration of the same node
+## Orthography blocker: five runes are not source-native `RATIO`
 
-The earlier external construction uses the block-28 MAP source center `M=(16,9)` and `E=(17,13)`. In the current frozen 38-block route this is the three-rune `MAP` prefix endpoint. Crucially, standalone stage 28 `MAP` was already published on **26 October 2026** (`plaintext-i-found/28-map.md`), four days before the first red-heading report on **30 October 2026**. The 30 October route snapshot describes MAP ending at `AE(17,13)`. The later `MAP LIFE` extension first appears on **4 November 2026**. Thus `(17,13)` was the selected stage endpoint when this heading construction was published, rather than a semantic boundary chosen retrospectively from the later seven-rune block. Apply two deterministic affine extrapolations:
+The project already has a source-calibrated GP spelling gate, `sims/lp2_native_gp_source_orthography_sft.cjs`. It reconstructs 181 consecutive authenticated solved LP1 words exactly and uses the dedicated GP ordinal 27 rune, canonical label `IA` / IOR, for the Latin-letter digraph `IO`.
+
+This audit independently rechecks the relevant control. Among the 181 aligned solved words, **9 occurrences** contain `IO`:
+
+- BEHAVIORS, twice
+- CONSUMPTION, twice
+- DECEPTION, twice
+- PRESERVATION, twice
+- INSTRUCTION, once
+
+Every one is printed with the single dedicated IOR/IA rune at `IO). None uses separate I then O runes.
+
+Under that demonstrated convention:
+
+```
+RATIO -> R - A - T - IA
+```
+
+which is four GP runes. The geometric output is five runes:
+
+```
+R - A - T - I - O
+```
+
+A length-preserving additive GP29 decryption cannot equate those two encodings. Latin-specific spelling with separate vowels is conceivable, but no authenticated LP source currently selects such an exception. Consequently, **the five-rune output is not established plaintext RATIO**.
+
+This orthography check materially downgrades the earlier positive reading and supersedes any repository note that treated source-derived `R-A-T-I-O` as authenticated Latin plaintext.
+
+## First eight runes remain route-conditional
+
+The external 27×27 proposal reads the first eight red runes in reverse and subtracts repeated key `X-N-X-C`:
+
+```
+F IA M G O E H S
+X N  X C X N X C
+----------------
+S E  C U E N D I
+```
+
+The rectangle supplying `X-N-X-C` is unusually selective under the published geometry. Its corners are:
+
+```
+(6,3) X ----- (6,9) N
+  |               |
+  |               |
+(24,3) C ---- (24,9) X
+```
+
+The opposite X corners are equidistant from `J=(13,12)`, and the right side spans the published stage-28 MAP source. Across all **17** frozen vertical three-rune sources in the first 38 blocks, only MAP admits a comparable rectangle, exactly one.
+
+This is meaningful route-internal specificity. It still depends on the candidate MAP source, so `SECUENDI` remains conditional.
+
+## Independent MAP corroboration of the same second-key node
+
+The published stage-28 MAP source center is `M=(16,9)`, with endpoint `E=(17,13)`. The affine extrapolation:
 
 ```
 R = 2E - M = (18,17)
 T = 2R - J = (23,22)
 ```
 
-The original grid has `R` at `(18,17)` and `TH` at `(23,22)`. Since the rune index of R is 4 and `phi(4)=2=TH`, the node
+lands on the same original `R,TH` pair used by the source-only 5-stride construction. Across every eligible prefix endpoint of the frozen first-38 route, 20 extrapolations remain in bounds and exactly one satisfies `phi(rune(R))=rune(T)`: stage 28 MAP at its three-rune endpoint.
+
+Chronology reduces hindsight concerns:
+
+- standalone stage-28 `MAP` first appears on **26 October 2026** at commit `d6d82764bae48db306fd779c0d555f15260f8343`;
+- the red-heading report first appears on **30 October 2026**;
+- `MAP LIFE` first appears on **4 November 2026** at commit `2f0c928e14d1338ea3f60ff0d19ffbd98900def8`.
+
+Thus MAP and its endpoint predate the red-heading construction. This corroborates the geometry while leaving the route's earlier transition ambiguity unresolved.
+
+## Full-title checksum and why it is no longer solution evidence
+
+If one provisionally interprets the whole 13-rune output as `SECUENDI RATIO`, its GP29 indices sum to:
 
 ```
-J - R - TH
+156 = 13 × phi(13) = 13 × 12
 ```
 
-becomes the key
+That is a real arithmetic coincidence and was not used to derive either key. Because the second word currently conflicts with source-native GP orthography, this checksum cannot be counted as independent plaintext validation.
 
-```
-J - TH - TH
-```
+## Current decision
 
-after the route's center-totient operation. Subtracting it from the untouched final five red runes gives `R-A-T-I-O`, and forward addition exactly restores the source.
+The useful advances are structural:
 
-The selectivity test applies the same `R=2E-M; T=2R-J` construction to **every prefix endpoint of every frozen first-38 route block with one three-cell source node**, before reading the red suffix. There are 20 cases whose extrapolated R and T remain inside the 27×27 matrix. Exactly **one** has `phi(rune(R)) = rune(T)`: block 28 at prefix length 3, the MAP boundary.
+1. original rubrication uniquely selects the 729-rune p0-p2 square-sized span;
+2. original counts plus totient give a selective `J-R-TH` diagonal and exact `R-A-T-I-O` output;
+3. the older MAP route independently reaches the same node;
+4. source-native orthography rejects the straightforward Latin `RATIO` interpretation under the demonstrated solved-LP spelling convention.
 
-This independently lands on the same `J-R-TH` node selected by the source-only five-stride construction. The MAP chronology therefore acts as corroboration of the node rather than a necessary input to the `RATIO` decryption.
-
-## What this changes
-
-The shared repository previously established that the first 38 externally selected blocks are arithmetically reproducible on all 115 selected original rune reads while the transition grammar leaves multiple admissible continuations. That conclusion remains valid.
-
-The material change is narrower and more useful: **the final five red runes no longer depend on those transitions.** Their `RATIO` key can be generated from the exact 729-rune source span, the physical 13-dot/8+5 rubrication, and Euler's totient. The previously published MAP geometry independently lands on the same `J-R-TH` node and predates the heading discovery.
-
-The first eight runes remain weaker. Their `SECUENDI` key still depends on the candidate MAP source and its rectangle rule, though that rectangle is MAP-only across all 17 comparable vertical sources.
-
-The surviving weaknesses are concrete:
-
-- The delimiter system now selects p0-p2 uniquely among 8 comparable rubricated title-to-next-red13 spans as the only perfect square. The remaining assumption is that this uniquely selected square span is intended to be reshaped row-major.
-- The source-only `RATIO` derivation assumes the natural ordered coordinate `(n,phi(n))`; the swapped coordinate order produces a different phi-chain and nonword output.
-- The first key's rectangle rule still depends on the candidate MAP source.
-- Reports 17-19 do not remove the already demonstrated earlier THE/YE key ambiguity.
-
-Therefore the full title remains in `im-results/`. The five-rune `RATIO` recovery is the best route-independent plaintext candidate found here and deserves independent adversarial reproduction. The next causal target is the first eight runes: derive `X-N-X-C` from original visible 8+5/13/27 geometry without MAP, or produce a prospective untouched prediction from the same construction.
+The 27×27 family therefore has a stronger clue-constrained geometric core than the earlier route audit showed, while the apparent Latin title does not yet qualify as plaintext. The next valuable experiment must explain the five-rune output under an authenticated spelling/encoding rule or use the geometry prospectively on an untouched marked region. Adding more English route continuations would not resolve this blocker.
 
 ## Reproduction
 
 Run:
 
 ```
+node sims/lp2_p0_red_ratio_sourceonly_sft.cjs
 node sims/lp2_p0_red_heading_sequendi_ratio_gate_sft.cjs
 ```
 
-Two SFTs now separate source-only evidence from route-conditional evidence. `sims/lp2_p0_red_ratio_sourceonly_sft.cjs` uses the canonical LP2 corpus plus complete red-ink annotations to source-select the unique 729-rune rubricated square span, then derives `RATIO` without any candidate route. `sims/lp2_p0_red_heading_sequendi_ratio_gate_sft.cjs` adds the frozen first-38 route arrays and asserts the unique first-key rectangle, the 17-source route-wide rectangle control, the independent MAP extrapolation to the same second-key node, both exact re-encryptions, and the `156 = 13 × phi(13)` full-title checksum.
+The first script contains the rubrication square selector, source-only diagonal derivation, exact re-encryption, coordinate-order control, and solved-LP `IO` orthography gate. The second preserves the route-conditional rectangle and MAP corroboration controls.
 
-External numerical proposal credited for the candidate red-heading constructions:
+External numerical proposal credited for the candidate heading constructions:
 https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption
-Current external main inspected during this audit: `81ae3c885d8bf6f1e5b0cfde060531d9637fba79`.
-Historical chronology inspected: standalone `plaintext-i-found/28-map.md` first appears at `d6d82764bae48db306fd779c0d555f15260f8343` (26 October 2026); the red-heading snapshot `ca96de9d14a9743cd6d53c612e41f4919a52b3bb` is from 30 October and uses MAP ending at `AE(17,13)`; `plaintext-i-found/28-map-life.md` first appears at `2f0c928e14d1338ea3f60ff0d19ffbd98900def8` (4 November 2026).
+
+Historical red-heading snapshot inspected: `ca96de9d14a9743cd6d53c612e41f4919a52b3bb` (30 October 2026).
