@@ -1,0 +1,15 @@
+name: Agent48 p28 READ OUT reversible exponent family audit
+
+on:
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run p28 READ OUT exponent-family audit
+        run: node sims/lp2_p28_readout_reversible_exponent_family_audit_sft.cjs
