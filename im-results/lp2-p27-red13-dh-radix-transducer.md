@@ -154,8 +154,9 @@ The route therefore contains the complete signed worked-example structure:
 | base | 5 | endpoint column |
 | server public | 8 | pointer-walk length |
 | client public | 19 | p27 length/initial index and cell186 value |
-| shared | 2 | start column |
+| shared | 2 | start column and literal p57 circumference-shedding depth |
 | server secret | 6 | visible `19−13`; independently `prime(I)×6 = 31×6 = 186` |
+| **client secret** | **15** | **geodesic between addresses186 and189 on the twice-shed 60-cell circumference** |
 | start address | 186 | p27 prime ordinal and base59 reading of cell254 |
 | endpoint address | 189 | base60 reading of cell254 and base59 fixed point |
 
@@ -199,15 +200,29 @@ This is therefore a genuine **repeat-independent source-internal discriminator**
 
 It does not yet amount to first-party textual authentication of a global numeral alphabet. The operation was discovered after extensive table study, and the manuscript does not literally say “take the 13th rune, divide the prime ordinal, use (31,6) as a coordinate, reinterpret 39 in two radices.” The correct update is that #1615's “no repeat-independent discriminator exists” statement is now superseded. Base59 is materially source-favored by a finite closure, while global map authentication remains provisional until the same rule predicts untouched source behavior or a first-party clue names the operation.
 
-## Next decipherment decision
+## Shared-secret circumference closure and next decipherment decision
 
-The route now supplies a plausible mechanism rather than another isolated number:
+The clear p57 instruction to shed circumferences gives the signed shared value2
+a source-visible, non-KDF role. Removing exactly two complete circumferences
+from the 32x8 p50 rectangle exposes a 28x4 rectangle with a **60-cell**
+circumference. This is the only shedding depth that places both signed DH
+addresses `186=(23,2)` and `189=(23,5)` on the exposed ring, and its length
+independently equals `phi(MUST=186)=60`.
 
-- red13 selects a factor/private exponent;
-- the factor/exponent selects a table cell;
-- that cell transduces the DH start/end addresses across the two printed-radix interpretations;
-- base59 pointer iteration connects the same addresses in exactly the signed public-share count.
+The shortest ring distance between those two exposed addresses is **15**.
+That recovers the other hidden exponent of the signed worked example:
+`5^15 mod23=19` and `8^15 mod23=2`. The route therefore now closes both
+private exponents conditionally on the p27/DH/base59 interpretation. See
+[`lp2-p27-dh23-shared2-circumference-client-secret.md`](lp2-p27-dh23-shared2-circumference-client-secret.md)
+and its SFT.
 
-The next useful test must identify what receives the DH state. Strong candidates require a source-visible receiver and a reversible operation on untouched ciphertext. Do not expand into free searches over KDFs, arbitrary GP29 reductions, or neighboring table walks.
+The remaining productive question is the receiver. Strong candidates must
+supply a source-visible reversible operation on untouched ciphertext or another
+fresh prediction. The signed 2013 protocol defines no KDF or payload cipher, so
+free searches over GP29 reductions, PRNGs, or neighboring table walks remain
+unjustified.
 
-Reproduce all structural assertions and the matched-table diagnostic with `sims/lp2_p27_red13_dh_radix_transducer_sft.cjs`. The preceding bridge remains `im-results/lp2-p27-redheader-dh23-base59-bridge.md`.
+Reproduce the red13/transducer assertions with
+`sims/lp2_p27_red13_dh_radix_transducer_sft.cjs`, and the circumference/client
+secret closure with
+`sims/lp2_p27_dh23_shared2_circumference_client_secret_sft.cjs`.

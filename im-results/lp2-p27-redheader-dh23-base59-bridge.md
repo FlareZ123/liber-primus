@@ -131,6 +131,22 @@ The p55 -> p27 handoff and Agent14's red-heading instruction chain now have a co
 
 This makes **Diffie-Hellman, zero-based row-major addressing, and base59** materially better motivated as an intended route than they were in the previous table-only analyses. It also gives the existing p57 `FIND/MUST` DH151/base59 construction a new independent reason to test the DH operation family and base59 interpretation.
 
-The route still stops before a reversible unknown-page decryption. The next productive decision should use the now-selected DH/base59 state to identify a receiver, private exponent, public share, or key-serialization rule from source-visible material. Free searches over unrelated ciphers would discard the strongest new constraint.
+A subsequent source-visible circumference test closes the remaining private
+exponent without introducing a KDF. The signed shared value **2** is used as
+the literal number of p50 circumferences to shed, as instructed by clear p57.
+The resulting 28x4 rectangle has circumference **60 =
+phi(MUST=186)** and uniquely exposes both DH addresses186 and189 on its
+boundary. Their shortest perimeter distance is **15**, exactly the unique
+client secret satisfying `5^15 mod23=19` and `8^15 mod23=2`. See
+[`lp2-p27-dh23-shared2-circumference-client-secret.md`](lp2-p27-dh23-shared2-circumference-client-secret.md).
 
-Reproduce with `sims/lp2_p27_redheader_dh23_base59_bridge_sft.cjs`.
+The route still stops before a reversible unknown-page decryption. Both hidden
+private exponents are now conditionally source-recovered, so the next
+productive decision is narrower: identify a source-visible receiver or
+serialization rule for the complete DH state. Free searches over unrelated
+ciphers would discard the strongest new constraint.
+
+Reproduce the original bridge with
+`sims/lp2_p27_redheader_dh23_base59_bridge_sft.cjs` and the circumference
+closure with
+`sims/lp2_p27_dh23_shared2_circumference_client_secret_sft.cjs`.
