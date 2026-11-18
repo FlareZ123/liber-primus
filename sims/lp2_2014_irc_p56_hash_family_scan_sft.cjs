@@ -94,7 +94,7 @@ function context(lines, index, radius) {
 }
 
 (async () => {
-  const familyPattern = /whirlpool|sha[- ]?512|sha2\b|sha[- ]?3|blake|skein|streebog|digest/i;
+  const familyPattern = /whirlpool|sha[- ]?512|sha2(?:24|56|384|512)?\\b|sha[- ]?3|blake2|blake[- ]?512|skein|streebog|digest/i;
   const p56Pattern = /page\s*56\b|page56\b|\bp56\b|36367763ab73783c|hashes\s+to|deep[- ]?web/i;
   const onionPattern = /[a-z2-7]{16}\.onion|[a-z2-7]{56}\.onion/i;
 
@@ -114,7 +114,9 @@ function context(lines, index, radius) {
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
-      if (!/^2014 [A-Z][a-z]{2} \d\d /.test(line)) continue;
+      const date = line.match(/^2014 ([A-Z][a-z]{2}) \\d\\d /);
+      if (!date) continue;
+      if (!["May", "Jun", "Jul", "Aug", "Sep"].includes(date[1])) continue;
 
       if (familyPattern.test(line)) {
         family.push({ line: i + 1, text: line.slice(0, 650) });
