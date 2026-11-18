@@ -92,9 +92,9 @@ A different short, reversible transmitter tests whether original adjacent equali
 
 | Pre-existing GP-native English reference | Original-length windows | Minimum possible doublet sites under any 29 section keys |
 | --- | ---: | ---: |
-| Gibran, *The Prophet* | 49,537 | **128** |
-| Shakespeare | 204,151 | **122** |
-| Emerson | 308,372 | **131** |
+| Gibran, *The Prophet* | 49,537 | **138** |
+| Shakespeare | 204,151 | **129** |
+| Emerson | 308,372 | **140** |
 | **Total** | **562,060** | **Zero** compatible windows at or below **86** |
 
 An independent **10,000-trial** xorshift32-seeded control (seed 0x3301) draws one independent genuine-GP prose excerpt per marked section, retaining each original page-edge mask and optimizing the 29 section keys independently. Its minimum is **136**, first percentile **151**, median **176**, mean **175.8596**, with **zero** samples at or below 86. This directly tests the rival that the 29 marked sections are separate prose sources.
@@ -105,6 +105,6 @@ The [standalone read-only Node22 SFT](../sims/lp2_pair_sum_zeroescape_allsecret_
 
 ## Consolidated research decision
 
-The mathematical design is genuinely reversible and survives p27's disjoint doublets, with no inserted nulls or unrecorded side information. Its tested **13-step/p50** original decoder remains nonlinguistic. Both distinct all-secret families, one with a fixed predecessor **difference** and one with a fixed predecessor **SUM**, fail all 562,060 original-length source-native English windows after granting independent arbitrary exceptional residue choices at **all 29 original punctuated sections** and arbitrary secret 28-way nonzero output permutations. The difference-family minima are **111/122/124**, and the SUM-family minima are **128/122/131**, all above the original **86**. A GP29 predecessor-difference marker fixed for the whole book, each of nine visual chapters, or each of 29 author-punctuated sections is therefore a poor original-LP2 cipher hypothesis under the three fixed ordinary GP-English controls.
+The mathematical design is genuinely reversible and survives p27's disjoint doublets, with no inserted nulls or unrecorded side information. Its tested **13-step/p50** original decoder remains nonlinguistic. Both distinct all-secret families, one with a fixed predecessor **difference** and one with a fixed predecessor **SUM**, fail all 562,060 original-length source-native English windows after granting independent arbitrary exceptional residue choices at **all 29 original punctuated sections** and arbitrary secret 28-way nonzero output permutations. The difference-family minima are **111/122/124**, and the SUM-family minima are **138/129/140**, all above the original **86**. A GP29 predecessor-difference marker fixed for the whole book, each of nine visual chapters, or each of 29 author-punctuated sections is therefore a poor original-LP2 cipher hypothesis under the three fixed ordinary GP-English controls.
 
 What remains genuinely open is a creator-specified **changing zero-step or state-dependent rejection code** with a lossless inverse, historically recoverable key clock and independently readable unknown original plaintext. Direct 13-dot/p50 fixed-step is retired. Do not proliferate similar keyed 28-way rotations or weaken source word segmentation merely to rescue the synthetic family. Both exclusion tests remain in supporting im-results; no authentic unknown plaintext has been recovered.
