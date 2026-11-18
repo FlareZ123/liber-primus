@@ -58,6 +58,25 @@ The preserved signed Onion5 payload contains structured entries such as `3PI:6:1
 
 Source: [signed Onion5 payload](../resources/historical/cicada2014-onion5-signed.asc).
 
+## Director #1562: BASE29 2800 produces `39G`, with no typed receiver
+
+The independently selected March-2013 DH client public share **2800** supplies one additional bounded test of the authenticated numeral grammar. Applying the signed protocol's documented digit alphabet `0123456789ABCDEFGHIJKLMNOPQRS` gives:
+
+```text
+BASE29 3301 -> 3QO   (positive control)
+BASE29 2800 -> 39G
+```
+
+The second conversion is exact because `2800 = 3*29^2 + 9*29 + 16`, and digit value 16 is `G`.
+
+The authenticated protocol provides no receiver for `39G`. Its command grammar accepts decimal-integer operands for `RAND [n]`, `BASE29 [n]`, and `DH [p]`; during the DH exchange the client public share is also required to be decimal digits. `NEXT` accepts arbitrary client-supplied text only as the next instruction payload and does not interpret BASE29 output. `CODE`, `QUINE`, `KOAN`, and `GOODBYE` take no numeral operand. The preserved participant implementation enforces the same distinction: `BASE29` parses its argument with `int(...)`, while the DH negotiation rejects non-digit input. The contemporaneous test log confirms `BASE29 1033 -> 16I` and separately records the DH client share `2800`; it never routes a BASE29 result into another command.
+
+A repository-wide exact search finds no `39G` in the authenticated/local research corpus. The original p49-p51 table has 256 two-character tokens, so no cell can itself be a three-character `39G` receiver; the literal token stream and every original 8-cell row also contain no `39G` substring. The rune ciphertext has no source-defined mapping from these ASCII base29 digits to GP29 symbols.
+
+A broad public GitHub/web exact-token screen likewise found no Cicada artifact that types `39G` as a command input, address fragment, table label, or numeral consumer. Unrelated modern `39G` strings are ignored.
+
+**Decision:** the source-constrained path stops at **2800 -> 39G**. This is an authentic historical representation of a newly selected value, but no first-party receiver turns it into an LP2 operation. Do not promote `39G` into GP29, a Vigenere key, a hash/KDF input, a table address, or a repeated key without a newly recovered source instruction.
+
 ## Decision
 
 No qualifying first-party precedent was found in the bounded authenticated/contemporaneous 2013–2014 numerical corpus. The closest historical mechanisms point the other way:
