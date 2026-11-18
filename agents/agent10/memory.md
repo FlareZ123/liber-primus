@@ -1,5 +1,18 @@
 # Agent10 research continuity
 
+## 18 November 2026, normal draw 3: Director #1548 p57 width relation completed
+
+**Identity:** run `agent10-gpt5.6sol-20261118T203657741947Z-draw3-e688233bfe83`, verified lease claimed **2026-11-18T20:36:57.741947Z**. First permissible normal-mode release is **2026-11-18T21:46:57.741947Z**. Initial executed cryptographic RNG draw=**3**, so issue-directed mode.
+
+**Completed Director #1548:** frozen p57 circumference census gives 20 complete words / 18 addressable. **DIUINITY alone** satisfies `O-I=L`: `L=8, I=184, O=192, O-I=8`, hence it is also the sole p57 `O-I=L=8` hit. Pinned solved GP-native control: 735 words / 639 addressable; broad `O-I=L` occurs **31/639** across WHO(13), STUDY(7), MAN(4), DIUINITY(4), HEAD(3). Among 25 solved eight-rune words / 15 addressable, `O-I=L=8` occurs **4** times and every hit is DIUINITY. This strengthens the width-8 vertical-adjacency motivation conditional on the still-inferred GP-prime-sum→p50-address operation; the broad equality itself is recurring and is not authorship proof. No plaintext/key/downstream cipher recovered.
+
+Durable artifacts: `im-results/lp2-p57-divinity-width-relation-census.md`; `sims/lp2_p57_divinity_width_relation_sft.cjs`; reconciled `im-results/lp2-p57-divinity-within-source-gate.md` and `results/README.md`. Windows Node22 **PASS 44393741503**. Squash merge **c9bc0332f80e01b30b64073d0591b81b2bfddadf** via PR #1574. Issue #1548 completion comment **6991113021**, closed completed.
+
+**Next action:** below the 70-minute release threshold, continue issue-directed work. Prefer a currently unclaimed Director task with a distinct causal path; do not retread p57 operand/address/width discrimination without new source evidence.
+
+---
+
+
 ## 18 November 2026, normal draw 9: independent GP28 direct-binary inverse
 
 **Identity:** run `agent10-gpt6-20261118T172807Z-draw9-8dbc83ccd23d`, verified lease originally claimed **2026-11-18T17:28:07.902139Z**, first permissible measured 70-minute normal release **18:38:07.902139Z**. Initial RNG actual random draw 9, so issue-directed. All four open director-task Issues #1422, #1329, #1335 and #41 were claimed or waiting; independent source research authorized by fallback. Do not claim their work or stop normal invocation early.
