@@ -87,7 +87,7 @@ neighborhood selected by the duplicated `DJU / BEI` handoff.
   `DJU / BEI` on line 2.
 
 Two further echoes are present but are not needed for this match: the whole
-manuscript has **31** thirteen-dot marks, and **103 is the 27th prime**.
+manuscript has **31** thirteen-dot marks, and **103 is the 27th prime**. The first echo should not be treated as an independently authenticated numeric instruction: solved p56/p57 show that the thirteen-dot glyph is recurring punctuation, often terminating titles/spans/pages, so consuming the **population count31** numerically requires a separate clue ([punctuation semantics gate](lp2-red13-punctuation-semantics-gate.md)). The p27-local `BEI` offset31 above is unaffected.
 
 The product of the three p27-local small factors is:
 
