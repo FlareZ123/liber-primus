@@ -158,12 +158,13 @@ def plant_section(
     selector: str,
     orientation: int,
 ) -> tuple[list[list[int]], list[int], int]:
-    rng = random.Random(seed)
+    key_rng = random.Random(seed)
+    retry_rng = random.Random(seed ^ 0x9E3779B97F4A7C15)
     key: dict[int, int] = {}
 
     def key_at(index: int) -> int:
         if index not in key:
-            key[index] = rng.randrange(N)
+            key[index] = key_rng.randrange(N)
         return key[index]
 
     pointer = 0
@@ -222,7 +223,7 @@ def plant_section(
                 while (
                     comparator is not None
                     and cipher == comparator
-                    and rng.random() >= KEEP
+                    and retry_rng.random() >= KEEP
                     and attempts < 5
                 ):
                     key_index = pointer
@@ -233,7 +234,7 @@ def plant_section(
                 assert model == "coin"
                 if comparator is not None and cipher == comparator:
                     pointer += direction
-                    if rng.random() >= KEEP:
+                    if retry_rng.random() >= KEEP:
                         key_index = pointer
                         cipher = (plain + key_at(key_index)) % N
                         pointer += direction
