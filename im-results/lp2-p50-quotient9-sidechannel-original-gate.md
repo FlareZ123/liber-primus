@@ -64,8 +64,31 @@ All four original outputs remain far below the independent native-GP long-text c
 
 The end-to-end positive plant is stronger than a mere arithmetic reversal: construct a 252-rune genuine clear-p57 GP sequence, add a nonzero changing eight-symbol upper key, convolve the encrypted result with the *actual original H·G divisor*, and pack each resulting field residue with the corresponding upper key as an unsigned byte. The reconstructed 256-byte table is fully valid, and the exact original decoder recovers all **252/252** planted native plaintext symbols. This establishes that a correctly keyed language-bearing table could be recovered by the declared mechanism; the original does not satisfy its plaintext signature.
 
+## All-secret quotient-addressed GP29 substitutions: exact entropy obstruction
+
+A more permissive cipher than the twelve tested *additive* pads would choose an entirely unknown GP29 alphabet **for each** of the nine observed quotient values. Freeze one of the six source-natural reading/clock conventions above; let its public key index at position \`i\` be \`k_i=q[phase(i) mod256]\`. The hypothetical encoder uses arbitrary fixed bijections \`C_i=π_(k_i)(P_i)\`, independently selecting any of the **(29!)⁹** possible families of nine substitution tables. Every coefficient of each secret table is free.
+
+For each fixed quotient state, a bijection merely relabels the observed output histogram. This proves the **exact, secret-independent finite-data identity** \`H_emp(P|k)=H_emp(C|k)\`. Since conditional entropy cannot exceed the observed plaintext's empirical marginal entropy, every possible key must satisfy \`H_emp(P)≥H_emp(C|k)\`. This bounds the *plain alphabet distribution* without searching one secret symbol.
+
+The source-original 12,956 rune symbols produce empirical \`H_emp(C)=4.856503613708271\` bits/rune. The new direct 9-state counts yield:
+
+| Quotient traversal and clock | Exact source-original \`H_emp(C|k)\`, bits/rune |
+| --- | ---: |
+| Row-major, continuous book | **4.843601542494023** |
+| Row-major, restart at nine visual chapters | **4.843558599857221** |
+| Row-major, restart at each physical page | **4.845164464587372** |
+| Column-major, continuous book | **4.845209072455934** |
+| Column-major, restart at nine visual chapters | **4.843598547642064** |
+| Column-major, restart at each physical page | **4.844059371224885** |
+
+Thus all nine hidden alphabets, whatever their assignments, would force **at least 4.84355860 bits/rune** of marginal entropy in any recovered GP29 plaintext. The highest **4.28909395 bits/rune** among the 89 independently pinned source-native Shakespeare/Gibran/Emerson windows in the prior [full original entropy calibration](lp2-cipher-feedback-conditional-entropy-gate.md) is smaller by **at least 0.55446 bits/rune**. This is a powerful **native-GP-English-register exclusion** of the complete nine-state fixed secret-permutation family. It assumes preserved rune count and order and uses independent English controls, not a language-universal impossibility claim.
+
+The SFT plants a full original-length source-native clear-p57 rune stream encrypted with **nine genuinely different unknown affine bijections** \`π_k(p)=(k+1)p+3k+7 (mod29)\`; it exactly decrypts all **12,956/12,956** positions in each of six source clocks and checks the empirical conditional-entropy identity to numerical precision. The all-secret invariant is strictly stronger than the previous additive-only IoC observations, since it includes arbitrary secret permutations at all nine quotient addresses.
+
+**Decision:** The source-visible radix9 upper register does not plausibly act as the *sole, fixed nine-way substitution selector* for ordinary native-GP English on the unsolved manuscript, even granting all secret mappings. Page-dependent secret tables, a hidden evolving state, dynamically different key clocks (including a real plaintext-dependent F skip), and any additional preprocessing fall outside this exact exclusion. No plaintext was recovered.
+
 ## Decision
 
-Reject a **literal, unencrypted base9-quotient file or legible byte register** under the 50 source-natural whole-table and bitmap readouts, the **12 fixed repeated additive GP29 key consumers** applied to the actual 12,956-rune unknown manuscript, and the **four same-cell field-quotient/upper-register additive receivers** on the original 252-symbol quotient. The base9 register remains mathematically available but has no detected message, key, or decoding role. The apparent highest printable ratio must not be mistaken for a decryption: it is structurally inflated by the restricted 0–80 pair alphabet. A different keyed transport cannot be excluded by this bounded test; pursuing one requires a first-party instruction choosing the key/consumer rather than another unrestricted byte permutation search.
+Reject a **literal, unencrypted base9-quotient file or legible byte register** under the 50 source-natural whole-table and bitmap readouts, the **12 fixed repeated additive GP29 key consumers** applied to the actual 12,956-rune unknown manuscript, the **four same-cell field-quotient/upper-register additive receivers** on the original 252-symbol quotient, and an **exact all-secret nine-alphabet family** ruled out for native-GP English by conditional-entropy invariance. The base9 register remains mathematically available but has no detected message, key, or decoding role. The apparent highest printable ratio must not be mistaken for a decryption: it is structurally inflated by the restricted 0–80 pair alphabet. A different keyed transport cannot be excluded by this bounded test; pursuing one requires a first-party instruction choosing the key/consumer rather than another unrestricted byte permutation search.
 
 The GF29 factors and the original 2013 message remain exactly as documented in [the original factorization](2013-base29-gf29-grid-factor.md). This side-channel negative does not change the authoritative unsolved-book status in [the synthesis](../results/README.md).
