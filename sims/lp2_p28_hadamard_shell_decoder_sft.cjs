@@ -12,6 +12,7 @@ function read(relative) {
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const solved = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
+const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const lp1Reference = read("resources/liber-primus/lp1-plaintext-reference.txt");
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
@@ -184,6 +185,40 @@ function powMod(base, exponent, modulus) {
 assert.equal(powMod(g, a, p), A);
 assert.equal(powMod(g, b, p), B);
 assert.equal(powMod(B, a, p), K);
+
+// Independently selected p27 red19+red13 receiver fixes the GP29 cube exponent.
+// H(19,13) = (6,3) = (a,e), with e = g-K = a/K = 3.
+const cubeExponent = g - K;
+assert.equal(cubeExponent, a / K);
+assert.equal(cubeExponent, 3);
+assert.deepEqual(hadamardPair([B, 13]), [a, cubeExponent]);
+assert.equal(powMod(K, cubeExponent, 29), A);
+assert.equal(powMod(A, cubeExponent, 29), B);
+assert.equal(powMod(B, cubeExponent, 29), b);
+
+const immediateRed13 = [];
+for (const page of ink.pages) {
+  for (const span of page.red_spans || []) {
+    const end = span.start + span.length;
+    for (const mark of page.large_punctuation || []) {
+      if (mark[0] !== end || mark[1] !== 13 || mark[2] !== "red") continue;
+      immediateRed13.push({
+        page: page.page,
+        start: span.start,
+        length: span.length,
+        markCount: mark[1],
+        throughH: hadamardPair([span.length, mark[1]]),
+      });
+    }
+  }
+}
+assert.equal(immediateRed13.length, 16);
+assert.deepEqual(
+  immediateRed13
+    .filter((row) => row.throughH[0] === a && row.throughH[1] === cubeExponent)
+    .map((row) => ({ page: row.page, start: row.start, length: row.length })),
+  [{ page: 27, start: 0, length: 19 }]
+);
 assert.equal(selected.length, g);
 assert.equal((selected[0] + selected[4]) % p, K);
 assert.equal((selected[1] + selected[3]) % p, K);
@@ -284,11 +319,14 @@ console.log(JSON.stringify({
     shellDecoded: shellDecode(selected),
     typed: { g: selected.length, a, b, A, B, p, K, weGp0: gp0(we), ourGp0: gp0(our), ownGp0: gp0(own) },
     matrix: { determinant, inverseDeterminant, order, selectedPage: 28, phraseVariant: "d,s" },
+    p27Bridge: { redLength: B, redDots: 13, throughH: hadamardPair([B, 13]), cubeExponent },
   },
   structuralControl: {
     eligibleWithinPageFiveToTwoPairs: eligibleFiveTwo,
     exactShellLinks: shellLinks,
     pageNumberedEligible: pageNumbered,
+    immediateRed13Count: immediateRed13.length,
+    p27CubeSelectorHits: immediateRed13.filter((row) => row.throughH[0] === a && row.throughH[1] === cubeExponent),
   },
   wholeBookDecoder: {
     runes: rawRuneCount,
@@ -300,5 +338,5 @@ console.log(JSON.stringify({
     p0ConditionalTitleMatches: p0TitleMatches,
   },
   interpretation:
-    "The p28 NEXT successor and the selected five-rune word determine H(x,y)=(x-y,x+y) mod29. H(literal DH indices 23,8)=(b,K)=(15,2); H(next word29) equals word28 outer circumference; H of that circumference is DH public (A,B)=(8,19); H of the inner circumference is (p,WE)=(23,25). The relation is unique in the within-page five-rune to two-rune adjacency census. The same transform is tested without tuning as a wordwise decoder on all 12956 original unknown runes and against the conditional p0 title holdout.",
+    "The p28 NEXT successor and selected five-rune word determine H(x,y)=(x-y,x+y) mod29. H(literal DH indices 23,8)=(b,K)=(15,2); H(next word29) equals word28 outer circumference; H of that circumference is DH public (A,B)=(8,19); H of the inner circumference is (p,WE)=(23,25). Independently selected p27 red19 plus red13 maps through the same frozen H to (a,e)=(6,3), source-selecting the reversible GP29 cube exponent e=3. The relation is unique in the within-page five-rune to two-rune adjacency census. The same transform is tested without tuning as a wordwise decoder on all 12956 original unknown runes and against the conditional p0 title holdout.",
 }, null, 2));
