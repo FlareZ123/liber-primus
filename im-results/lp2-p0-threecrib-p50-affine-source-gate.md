@@ -44,9 +44,16 @@ The best member of the entire tested family explains only **7/28** crib position
 
 A planted 28-rune positive under the same affine consumer is recovered exactly, so the exclusion is not caused by an implementation inability to represent the target family.
 
+
+### DH23 shared-secret-2 traversal extension
+
+The independent p27/p28 navigation routes now reconstruct the same DH23 shared secret **2**. Treating that recovered value as a possible table-walk step gives a second source-selected p50 consumer: visit circular cells `start ± 2i (mod 256)`, allow every one of the 256 starts, and apply the same complete affine `C=aP+bS+d` family. All nine source projections above are tested.
+
+This extension also has **zero exact survivors**. Its best member explains only **8/28** crib positions. Thus the recovered DH value 2 does not rescue the straightforward p50-as-keystream interpretation through an unknown start or direction.
+
 ## Consequence
 
-Conditional on the three source-navigation plaintext predictions, the missing p0 inner value layer is **not** a fixed affine use of the obvious p50 or 2014 sexagesimal pointwise values at the independently motivated phase-zero/current-or-predecessor clocks. This removes a broad source-natural bridge from the navigation circuit directly into a Caesar/affine GP29 inverse.
+Conditional on the three source-navigation plaintext predictions, the missing p0 inner value layer is **not** a fixed affine use of the obvious p50 or 2014 sexagesimal pointwise values at the independently motivated phase-zero/current-or-predecessor clocks, nor the same affine family under a circular ±2 traversal selected by the recovered DH23 shared secret. This removes a broad source-natural bridge from the navigation circuit directly into a Caesar/affine GP29 inverse.
 
 The result does not authenticate the three plaintext predictions. It also does not exclude a nonlinear/stateful p50 operation, a source-selected traversal that changes which table cells are consumed, an external high-entropy pad, or another cipher family whose state is carried across words. Those alternatives now have to explain why the two predicted `THE` words share their first ciphertext mapping and diverge on the second rune.
 
@@ -55,5 +62,7 @@ The result does not authenticate the three plaintext predictions. It also does n
 Run:
 
 `node sims/lp2_p0_threecrib_p50_affine_gate_sft.cjs`
+
+The same SFT now reproduces both the phase-zero/current-or-predecessor gate and the exhaustive DH2 ±2 circular-traversal extension.
 
 The SFT reads only the canonical original p0 corpus, canonical p50 table and archived 2014 sexagesimal source, asserts all 28 source positions, exhausts the declared family, verifies the zero-survivor result and includes a planted exact positive.
