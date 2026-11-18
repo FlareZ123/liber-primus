@@ -107,13 +107,64 @@ index sum      30
 
 Thus the previously ambiguous final-word metric is resolved as **SOON** inside this widened source-state key family.
 
-## Result and limitation
+## Conditional SOON → THEN source-state completion
 
-Conditional on the held-out post-DEATH numerical prediction, the original square plus the cube and endpoint-coordinate constraints select:
+A source-state completion can be tested from the already selected SOON state without supplying the expected next plaintext.
+
+Freeze the selected SOON block exactly as above:
 
 ```text
-SEE YOU SOON
+key         EA-L-R
+ciphertext  X(25,16) D(25,17) W(25,18) H(25,19)
+plaintext   S O O N
+endpoint    H(25,19)
+read ray    RIGHT
 ```
+
+The endpoint coordinates provide two retained second-totient distances:
+
+```text
+phi^2(25) = 8
+phi^2(19) = 6
+```
+
+Continue on the carried rightward ray. Those two source distances delimit the three-cell segment from distance6 through distance8 inclusive:
+
+```text
+L(25,25) -> T(25,26) -> W(25,27)
+```
+
+The nearer distance6 has an exact midpoint at distance3, `IA(25,22)`. That midpoint touches two equal-outer mirrors:
+
+```text
+IA-H-IA    diagonal radius1
+IA-IA-IA  vertical radius1
+```
+
+Only the vertical mirror is perpendicular to the carried horizontal read ray, so source geometry resolves the tie before decryption. Its standard center-totient/Mobius derivation is:
+
+```text
+raw      IA-IA-IA
+derived  IA-E-IA
+phase    1
+key      E-IA-IA
+```
+
+Decrypting the already fixed `L-T-W` segment then gives:
+
+```text
+TH-E-N
+```
+
+The exact inverse reconstructs `L-T-W`.
+
+This is a deterministic conditional continuation once the SOON state and the **midpoint/perpendicular-mirror continuation rule** are granted. It does not independently authenticate `THEN`: the rule was reconstructed after the public 27x27 route was already known, so it remains a post-hoc state-machine hypothesis. Its value is narrower: no dictionary or target rune is needed after the rule is frozen, and the midpoint ambiguity is resolved geometrically rather than linguistically.
+
+Reproducer: [`sims/lp2_p0_soon_to_then_source_state_sft.cjs`](../sims/lp2_p0_soon_to_then_source_state_sft.cjs).
+
+## Result and limitation
+
+Conditional on the held-out post-DEATH numerical prediction, the original square plus the cube and endpoint-coordinate constraints select `SEE YOU SOON`. A further source-state continuation from the selected SOON endpoint conditionally fixes `THEN` before decryption, provided the midpoint/perpendicular-mirror rule is granted.
 
 The strongest part is the layered discrimination: 522 first transitions become 27 predicted-YOU hits, the GP-free cube constraint leaves one SEE/YOU geometry, and a 42-key source-state permutation family leaves one final four-rune completion, SOON.
 
