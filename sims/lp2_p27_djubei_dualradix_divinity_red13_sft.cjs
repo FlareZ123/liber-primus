@@ -212,12 +212,12 @@ assert.equal(gp0(bei), 45);
  */
 function branch(source, alphabet) {
   const sourceAddress = gp0(source);
-  assert(sourceAddress < 256);
+  if (sourceAddress >= 256) return null;
   const first = tokenValue(tableTokens[sourceAddress], alphabet);
   const intermediate = p27Containing(first);
-  assert(intermediate);
+  if (!intermediate) return null;
   const intermediateAddress = gp0(intermediate);
-  assert(intermediateAddress < 256);
+  if (intermediateAddress >= 256) return null;
   const second = tokenValue(tableTokens[intermediateAddress], alphabet);
   const target = p27Containing(second);
   return {
@@ -234,6 +234,7 @@ const d60 = branch(dju, alphabet60);
 const b60 = branch(bei, alphabet60);
 const d59 = branch(dju, alphabet59);
 const b59 = branch(bei, alphabet59);
+assert(d60 && b60 && d59 && b59);
 
 assert.deepEqual(
   [d60.first, b60.first, d59.first, b59.first],
@@ -275,6 +276,7 @@ for (let i = 0; i < p27Words.length - 1; i += 1) {
   const right60 = branch(p27Words[i + 1], alphabet60);
   const left59 = branch(p27Words[i], alphabet59);
   const right59 = branch(p27Words[i + 1], alphabet59);
+  if (!left60 || !right60 || !left59 || !right59) continue;
   if (!left60.target || !right60.target || !left59.target || !right59.target) continue;
   const targetStarts = [
     left60.target.start, right60.target.start,
