@@ -69,9 +69,11 @@ async function scan(source) {
   let bytes = 0;
   let lineNumber = 0;
   let pending = '';
+  const allLines = [];
 
   function inspect(line) {
     lineNumber++;
+    allLines.push(line);
     for (const [name, re] of TERMS) {
       if (re.test(line)) {
         counts[name]++;
@@ -103,6 +105,13 @@ async function scan(source) {
 
   const actualSha = gitHash.digest('hex');
   const verified = bytes === source.bytes && actualSha === source.gitBlobSha1;
+  const contextPattern = /\\b(?:Liber Primus|thelatinlibrary|De Bello|Bellum Civile|Pompey|Pompei|Hispania|sequendi|rationem)\\b/i;
+  const contextMatches = [];
+  for (let i = 0; i < allLines.length; i++) {
+    if (contextPattern.test(allLines[i]) && contextMatches.length < 80) {
+      contextMatches.push({line:i+1, context:allLines.slice(Math.max(0,i-2),Math.min(allLines.length,i+3))});
+    }
+  }
   return {
     source: source.name,
     bytes,
@@ -113,6 +122,7 @@ async function scan(source) {
     sourceVerified: verified,
     termCounts: counts,
     examples,
+    contextMatches,
   };
 }
 
