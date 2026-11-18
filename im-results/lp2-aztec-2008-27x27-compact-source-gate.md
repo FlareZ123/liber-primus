@@ -32,7 +32,7 @@ To grant the candidate maximum decoding freedom, at each 9×9 center count the o
 
 No orientation/reflection or complement repairs these contradictions: a centered concentric target has the same dark/light ring classes under all square dihedral symmetries. The result is **key-independent** for the entire class of stationary GP29 rune-to-single-binary-module renderers, raw or direct GP29 first difference. An independently planted 9×9 finder on both sizes yields **0** mismatches under the same evaluator.
 
-[Original-corpus Node.js 22 single-file test](../sims/lp2_aztec_compact_27x27_finder_original_sft.cjs) explicitly asserts all page lengths, 256-table size, 608-bit data capacity, every impossibility count and two positive patterns. It uses the repository's original-source canonical ordinal transcriptions. No new imaging, hidden watermark, or source-selected binary preprocessing is asserted.
+[Original-corpus Node.js 22 single-file test](../sims/lp2_aztec_compact_27x27_finder_original_sft.cjs) explicitly asserts all page lengths, 256-table size, 608-bit data capacity, every impossibility count and two positive patterns. It uses the repository's original-source canonical ordinal transcriptions. [Successful Windows-latest Node.js 22 CI run 44220535188](https://github.com/FlareZ123/liber-primus/actions/runs/44220535188) ran the complete original corpus SFT, asserted all five bounds, and printed the expected positive-control passes. No new imaging, hidden watermark, or source-selected binary preprocessing is asserted.
 
 ### A single source-selected layered escape: the actual 2014 XOR operation
 
