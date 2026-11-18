@@ -14,6 +14,7 @@ on:
           - terminal-hill6
           - ring-erasure
           - current-rune-exception
+          - prevword-prime-exception
 
 permissions:
   contents: read
@@ -76,3 +77,17 @@ jobs:
         run: node --check sims/lp2_current_rune_exception_chapter_sft.cjs
       - name: Exhaust all source-native chapter windows
         run: node sims/lp2_current_rune_exception_chapter_sft.cjs
+
+  original-prevword-prime-exception:
+    if: ${{ inputs.suite == 'prevword-prime-exception' }}
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax-check causal previous-word exception SFT
+        run: node --check sims/lp2_previous_cipherword_prime_zero_exception_sft.cjs
+      - name: Test causal wordwise exception and 10000 native matched plants
+        run: node sims/lp2_previous_cipherword_prime_zero_exception_sft.cjs
