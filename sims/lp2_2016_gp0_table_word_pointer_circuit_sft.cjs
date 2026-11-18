@@ -1,0 +1,273 @@
+"use strict";
+
+/**
+ * SFT: authenticated 2016 words -> GP0 address -> original p50 table byte ->
+ * original p0/p27 rune offset.
+ *
+ * This reproduces the EMPTY/EPIPHANY boundary circuit on p0 and the
+ * independent FIND -> p27:28 handoff replication. It does not assume a
+ * global p0 plaintext or fit a key.
+ *
+ * Run: node sims/lp2_2016_gp0_table_word_pointer_circuit_sft.cjs
+ */
+
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+
+const root = path.resolve(__dirname, "..");
+const read = (relative) => fs.readFileSync(path.join(root, relative), "utf8");
+const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+const transcription = read("resources/liber-primus/lp2-transcription.txt");
+const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const tableTokens = grid.pages.flatMap((page) => page.tokens);
+
+const gpTokens = corpus.translit
+  .map((symbol, value) => ({symbol, value}))
+  .sort((a, b) => b.symbol.length - a.symbol.length);
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+
+/** @param {string} word @returns {number[]} */
+function gp(word) {
+  const normalized = word.toUpperCase()
+    .replace(/K/g, "C")
+    .replace(/V/g, "U")
+    .replace(/Q/g, "C")
+    .replace(/Z/g, "S");
+  const out = [];
+  for (let i = 0; i < normalized.length;) {
+    const token = gpTokens.find((item) => normalized.startsWith(item.symbol, i));
+    assert.ok(token, "unmapped GP spelling at " + word + ":" + i);
+    out.push(token.value);
+    i += token.symbol.length;
+  }
+  return out;
+}
+
+/** @param {number[]} values @returns {number} */
+function sum(values) {
+  return values.reduce((total, value) => total + value, 0);
+}
+
+/**
+ * Parse page-local complete words while treating slash-newline as physical
+ * wrapping only. Hyphen and full stop are word terminators in this source.
+ * @param {number} pageNumber
+ * @returns {{index:number,start:number,length:number,indices:number[]}[]}
+ */
+function parsePageWords(pageNumber) {
+  const pages = transcription.split(/\n%\n/);
+  const source = pages[pageNumber];
+  assert.ok(source, "missing transcription page " + pageNumber);
+  const words = [];
+  let current = [];
+  let offset = 0;
+  let start = 0;
+  const flush = () => {
+    if (!current.length) return;
+    words.push({index: words.length, start, length: current.length, indices: current});
+    current = [];
+  };
+  for (const ch of [...source]) {
+    const value = runeIndex.get(ch);
+    if (value !== undefined) {
+      if (!current.length) start = offset;
+      current.push(value);
+      offset += 1;
+    } else if (ch === "-" || ch === ".") {
+      flush();
+    }
+  }
+  flush();
+  assert.equal(offset, corpus.pages.find((page) => page.page === pageNumber).indices.length);
+  return words;
+}
+
+function signedWords() {
+  const clear = signed2016
+    .split("-----BEGIN PGP SIGNATURE-----")[0]
+    .split(/\r?\n\r?\n/)
+    .slice(1)
+    .join("\n");
+  return clear.split(/[^A-Za-z0-9]+/)
+    .filter((token) => /^[A-Za-z]+$/.test(token));
+}
+
+assert.equal(grid.bytes.length, 256);
+assert.equal(tableTokens.length, 256);
+
+const message = signedWords();
+assert.equal(message.length, 43);
+assert.deepEqual(message.slice(0, 9).map((word) => word.toLowerCase()),
+  ["hello", "the", "path", "lies", "empty", "epiphany", "seeks", "the", "devoted"]);
+
+const p0 = parsePageWords(0);
+const p27 = parsePageWords(27);
+assert.equal(p0.length, 59);
+assert.equal(p0[0].start, 0);
+assert.equal(p0[0].length, 8);
+assert.equal(p0[1].start, 8);
+assert.equal(p0[1].length, 5);
+
+const later27 = [];
+for (let i = 2; i < p0.length - 1; i += 1) {
+  if (p0[i].length === 2 && p0[i + 1].length === 7) later27.push(i);
+}
+assert.deepEqual(later27, [52]);
+const theCandidate = p0[52];
+const devotedCandidate = p0[53];
+assert.deepEqual(
+  {start: theCandidate.start, length: theCandidate.length},
+  {start: 235, length: 2}
+);
+assert.deepEqual(
+  {start: devotedCandidate.start, length: devotedCandidate.length},
+  {start: 237, length: 7}
+);
+assert.equal(gp("THE").length, 2);
+assert.equal(gp("DEVOTED").length, 7);
+assert.equal(gp("EPIPHANY").length, 8);
+assert.equal(gp("SEEKS").length, 5);
+
+const messageRows = message.map((word, index) => {
+  const number = sum(gp(word));
+  assert.ok(number < 256, "signed word GP0 exceeds table address: " + word);
+  return {index, word, number, target: grid.bytes[number]};
+});
+const consecutiveTargets = [];
+for (let i = 0; i < messageRows.length - 1; i += 1) {
+  if (Math.abs(messageRows[i + 1].target - messageRows[i].target) === 1) {
+    consecutiveTargets.push([messageRows[i], messageRows[i + 1]]);
+  }
+}
+assert.equal(consecutiveTargets.length, 1);
+assert.equal(consecutiveTargets[0][0].word.toLowerCase(), "empty");
+assert.equal(consecutiveTargets[0][1].word.toLowerCase(), "epiphany");
+
+const emptyNumber = sum(gp("EMPTY"));
+const epiphanyNumber = sum(gp("EPIPHANY"));
+assert.equal(emptyNumber, 92);
+assert.equal(epiphanyNumber, 121);
+assert.equal(grid.bytes[emptyNumber], 236);
+assert.equal(grid.bytes[epiphanyNumber], 237);
+assert.equal(236, theCandidate.start + theCandidate.length - 1);
+assert.equal(237, devotedCandidate.start);
+assert.ok(emptyNumber >= 84 && emptyNumber <= 126);
+assert.ok(epiphanyNumber >= 84 && epiphanyNumber <= 126);
+
+// The selected two-rune word closes through literal table token 04 and the
+// zero-based signed-word map entry EMPTY, then returns to its final rune.
+assert.equal(sum(theCandidate.indices), 13);
+assert.equal(tableTokens[13], "04");
+assert.equal(grid.bytes[13], 4);
+assert.equal(message[4].toLowerCase(), "empty");
+assert.equal(grid.bytes[sum(gp(message[4]))], 236);
+
+// The selected seven-rune word points to the already salient table address229.
+assert.equal(sum(devotedCandidate.indices), 101);
+assert.equal(grid.bytes[101], 229);
+assert.equal(3301 % 256, 229);
+assert.equal(tableTokens[229], "00");
+assert.equal(grid.bytes[229], 0);
+
+// Broader typed closure census: every p0 word whose GP0 table byte is a valid
+// zero-based index into the 43 signed words is admitted. Only the selected
+// two-rune word returns, through that signed word's GP0 table byte, to one of
+// its own boundaries.
+const typedCandidates = [];
+const typedClosures = [];
+for (const word of p0) {
+  const cipherNumber = sum(word.indices);
+  if (cipherNumber >= 256) continue;
+  const signedIndex = grid.bytes[cipherNumber];
+  if (signedIndex >= message.length) continue;
+  const signedWord = message[signedIndex];
+  const signedNumber = sum(gp(signedWord));
+  if (signedNumber >= 256) continue;
+  const destination = grid.bytes[signedNumber];
+  const row = {
+    p0Word: word.index,
+    start: word.start,
+    end: word.start + word.length - 1,
+    length: word.length,
+    cipherNumber,
+    signedIndex,
+    signedWord,
+    signedNumber,
+    destination,
+  };
+  typedCandidates.push(row);
+  if (destination === row.start || destination === row.end) typedClosures.push(row);
+}
+assert.equal(typedCandidates.length, 8);
+assert.deepEqual(typedClosures, [{
+  p0Word: 52,
+  start: 235,
+  end: 236,
+  length: 2,
+  cipherNumber: 13,
+  signedIndex: 4,
+  signedWord: "empty",
+  signedNumber: 92,
+  destination: 236,
+}]);
+
+// Independent same-operator replication: solved p57 FIND -> 42 -> byte28,
+// which is the exact original p27 start of the independently selected DJU/BEI pair.
+assert.equal(sum(gp("FIND")), 42);
+assert.equal(grid.bytes[42], 28);
+const p27At28 = p27.find((word) => word.start === 28);
+assert.ok(p27At28);
+assert.equal(p27At28.indices.map((value) => corpus.translit[value]).join(""), "DJU");
+const p27Next = p27[p27At28.index + 1];
+assert.equal(p27Next.start, 31);
+assert.equal(p27Next.indices.map((value) => corpus.translit[value]).join(""), "BEI");
+
+// Existing p57 DIVINITY bridge uses the same GP0 address grammar and reads the
+// visible table token at the independently established 43-cell bracket center.
+assert.equal(sum(gp("DIVINITY")), 105);
+assert.equal(tableTokens[105], "13");
+
+console.log(JSON.stringify({
+  status: "PASS: source-word GP0 table pointers close an EMPTY/EPIPHANY p0 boundary circuit and replicate FIND->p27:28",
+  signedMessageWords: message.length,
+  uniqueAdjacentConsecutiveOutputPair: {
+    sourceWords: ["EMPTY", "EPIPHANY"],
+    gp0Addresses: [emptyNumber, epiphanyNumber],
+    tableBytes: [236, 237],
+  },
+  p0: {
+    openingWordLengths: [p0[0].length, p0[1].length],
+    onlyLaterTwoSevenPair: {
+      wordIndices: [52, 53],
+      starts: [theCandidate.start, devotedCandidate.start],
+      lengths: [theCandidate.length, devotedCandidate.length],
+      boundary: [236, 237],
+      candidateSourceWords: ["THE", "DEVOTED"],
+    },
+    typedClosureCensus: {candidates: typedCandidates.length, closures: typedClosures.length},
+    twoRuneCircuit: {
+      ciphertextGp0: sum(theCandidate.indices),
+      tableToken: tableTokens[13],
+      signedWordIndex: 4,
+      signedWord: message[4],
+      signedWordGp0: emptyNumber,
+      returnedRuneOffset: grid.bytes[emptyNumber],
+    },
+    sevenRuneReturn: {
+      ciphertextGp0: sum(devotedCandidate.indices),
+      tableByte: grid.bytes[101],
+      matches3301Modulo256: 3301 % 256,
+      destinationToken: tableTokens[229],
+    },
+  },
+  independentReplication: {
+    sourceWord: "FIND",
+    gp0Address: 42,
+    tableByte: 28,
+    destination: "p27:28 DJU / BEI",
+  },
+  interpretation:
+    "The signed words define a source-selected navigation circuit. THE/DEVOTED is a strongly supported p0 crib placement, pending recovery of the page cipher or another independent letter-level check.",
+}, null, 2));
