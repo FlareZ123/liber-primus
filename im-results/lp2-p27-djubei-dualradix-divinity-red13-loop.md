@@ -218,6 +218,40 @@ EORNSOOCAEYEE
 
 The separate p50 DH geometry had already selected circumference depth2 from the same shared secret. The new route makes that depth a holdout confirmation of the p57/p27 DIVINITY interval.
 
+## Shared2 also selects an exact SHED receiver on p50
+
+The same shared secret2 has a literal geometric consequence on the original 32×8 p50 rectangle. Removing two complete outer layers leaves:
+
+```text
+(32 - 4) × (8 - 4) = 28 × 4 = 112 cells.
+```
+
+That count is independently named by the solved instruction word:
+
+```text
+GP-prime(SHED) = 232
+phi(232)       = 112
+```
+
+Thus the DH value and the p57 verb agree on the same exact p50 interior size without choosing a depth after inspection.
+
+The literal `13` at global cell105, reached by `GP0(DIUINITY)=105`, lies inside this depth-2 interior. Decoding that printed token as the next p50 pointer immediately leaves the shed rectangle under both frozen numeral systems:
+
+```text
+base59(13) = 62   # outside the 28×4 interior
+base60(13) = 63   # outside the 28×4 interior
+```
+
+This is a literal source-compatible realization of `FIND THE DIUINITY WITHIN AND EMERGE`: DIVINITY identifies a cell within the shared2/SHED interior, and the next pointer exits it. The two radices disagree on the exterior destination, so this does not yet select the downstream path by itself.
+
+A supporting base59 relation continues from cell105 for exactly the eight-rune length of DIVINITY and lands on83, which is `GP0(EMERGE)`:
+
+```text
+105 → 62 → 122 → 85 → 28 → 148 → 242 → 41 → 83
+```
+
+This self-length relation is not unique across the complete p57 vocabulary: MUST also reaches LIKE after its own four-rune length, and CIRCUMFERENCES also reaches EMERGE after14 steps. It is therefore retained only as supporting graph structure, not a selector.
+
 ## Rival interpretation retained
 
 Agent5 independently found a different, strong reading of the same first outputs under base59:
@@ -260,6 +294,8 @@ Primary reproducer:
 Dedicated Windows/Node22 workflow:
 
 `.github/workflows/agent20-p27-dualradix-divinity-red13.yml`
+
+Latest full source test: **PASS, run 44419149732** at commit `fdf6ceb5a8ff882ea3d92428dbc3c0e7f1f6b7c4`.
 
 The SFT rebuilds all assertions from the canonical transcription, p50 table, corpus and ink annotations, including the full 2,896-word conjunction census and the 51-pair dual-radix p27 control.
 
