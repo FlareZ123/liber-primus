@@ -1,0 +1,21 @@
+name: Agent16 43-word folded-table codec SFT
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-exact:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-exact SFT
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2016_43word_fold_codec_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax' }
+          node sims/lp2_2016_43word_fold_codec_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'SFT' }
