@@ -52,6 +52,35 @@ A wider control over all **1,931 valid** page × authenticated-source-adjacency 
 
 This upgrades the route from a navigation-only coincidence to a source-selected **DH operation-family pointer**. It does not add a KDF, block/stream cipher, rune serialization, or post-DH payload opcode, so it still does not decrypt unknown LP2 runes.
 
+## Prospective p2 GOOD receiver from the same byte80 grammar
+
+The natural `27x27` square formed by original p0-p2 contains exactly three complete-word ends on global column0: p0 word22 at108, p0 word53 at243, and p2 word9 at567. The first two were already selected independently as candidate **ROAD** and **DEVOTED** endpoints. This leaves p2 word9 as a locked prospective receiver before consulting the authenticated source vocabulary.
+
+Apply the same source-word bridge used above:
+
+`source word -> GP0 -> p50 byte -> containing receiver word -> receiver GP0 -> p50 byte`.
+
+For authenticated source **GOOD** at zero-based word index36:
+
+- `GP0(GOOD)=35`;
+- `T[35]=39`, exactly the final rune of p2 word9 at local offsets36..39;
+- GOOD has four GP runes and the receiver has exactly four ciphertext runes;
+- the receiver ciphertext GP0 sum is **37**;
+- 37 is exactly the zero-based source index of the next authenticated word **LUCK**;
+- `T[37]=80`, the independently frozen p27 DIVINITY endpoint.
+
+So the source-order relation is
+
+`GOOD -> 35 -> 39 -> p2 word9 -> 37 = index(LUCK) -> 80`.
+
+A complete census over all 56 unknown pages and all 42 authenticated source adjacencies required, simultaneously: the first table byte is the exact receiver-word end, receiver length equals source GP length, receiver GP0 equals the next authenticated source index, and the receiver GP0 table byte equals80. **The only hit is p2 GOOD / LUCK.**
+
+This is a prospective plaintext prediction:
+
+`p2 word9, local offsets36..39 = GOOD`.
+
+It uses the already frozen navigation grammar and an independently selected 27x27 receiver. It remains conditional until a reversible value-changing cipher reproduces the four letters or another independent artifact feature confirms them. LUCK is a navigation-state label here, rather than a claim that the following p2 word plaintext is LUCK.
+
 ## Full source-family control
 
 The exact grammar was applied to all **56 unknown pages p0–p55** and all **42 adjacent authenticated 2016 word pairs**. A first-hop hit requires the first source word to bridge through the page to the actual zero-based index of the next signed word.
