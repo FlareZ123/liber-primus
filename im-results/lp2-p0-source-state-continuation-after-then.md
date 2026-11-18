@@ -11,9 +11,7 @@ remains conditional on the upstream post-hoc grammar through
 The main advance is that the continuation no longer depends on the external
 Reports 01-06 coordinate fitter. Several operation choices are selected by the
 existence and geometry of the *next* source before the current plaintext is
-inspected. At the later YOU/GO transition, the external route becomes
-inconsistent with the canonical 729-rune corpus; this report rejects those
-coordinates and derives replacement canonical placements.
+inspected. At YOU, a replacement three-rune candidate is source-placed. A later attempted GO extension was then checked against the canonical corpus and rejected; this report records that rejection, and the post-THEN chain stops at YOU.
 
 Canonical source: `resources/liber-primus/lp2-corpus.json`, pages 0-2
 concatenated as the established 27x27 square.
@@ -39,7 +37,7 @@ concatenated as the established 27x27 square.
 | DEATH | TH-G-OE | G-OE-TH, direct | F(10,10), NG(11,9), R(12,8) | Retained MAY/BE state selects TH-G-OE; source radius gives three-cell geometry. |
 | OF | AE-H-C | C-AE-R, center-phi | H(12,18), AE(12,17) | DEATH source values generate AE-H-C at radius equal endpoint R=4. Next radius-5 source gate rejects direct H-H-H and selects unique H-R-H. |
 | YOU | H-R-H | TH-H-H | **EA(6,11), J(6,12), N(6,13)** | Canonical correction. OF state fixes start/direction/length. EA,J,N is globally unique as an adjacent straight triple and decrypts to Y,O,U. |
-| GO | G-O-G | G-G-TH | **EO(17,19), N(18,18)** | Canonical correction. H-R-H state source-generates unique valid G-O-G at center(21,21); source geometry selects one of five EO,N pairs. |
+| attempted GO | G-O-G (rejected) | — | — | Canonical grid has zero G-O-G nodes; alleged source cells are P-I-H and alleged ciphertext cells are C-IA. No GO plaintext. |
 
 ## Key-source and placement results
 
@@ -130,68 +128,73 @@ This is stronger than merely finding another plaintext fit: the previous
 external coordinates are directly falsified against the canonical corpus and
 the replacement ciphertext is globally unique under the source-selected key.
 
-## Canonical correction at GO
+## Rejected GO continuation (18 November canonical audit)
 
-The next external GO report claims a `G-O-G` source centered at `(26,18)`,
-radius3, which implies a second outer at row29. A 27x27 artifact has no row29,
-so that placement is impossible.
+The attempted replacement GO candidate is false on the canonical source, not
+merely on the external report's out-of-bounds row-29 placement.
 
-The corrected YOU state source-generates the same raw key family without using
-the invalid placement:
+A fresh exhaustive scan of the canonical 27×27 p0–p2 grid, over all four
+unoriented straight axes and every in-bounds radius, finds **zero**
+G-O-G source triples. The alleged replacement source coordinates
+(18,21), (21,21), (24,21) contain **P-I-H**, not G-O-G. The alleged GO
+ciphertext coordinates (17,19), (18,18) contain **C-IA**, not EO-N.
+Consequently the claimed G-G-TH key alignment and plaintext GO have no valid
+original-cipher input and must be withdrawn.
 
-- current source center R=4, `phi(R)=2`;
-- outer `R+phi(R)=6=G`;
-- center `radius5-phi(R)=3=O`;
-- therefore `G-O-G`.
+The earlier external placement centered at (26,18), radius3 is independently
+out of bounds because its second outer would be on row29. The later attempted
+canonical replacement at (21,21) does not repair that error.
 
-There is exactly one valid `G-O-G` mirror in the canonical graph, centered at
-`O(21,21)`, radius3, vertical.
+The preceding YOU candidate remains a separate, three-rune conditional result:
+the H-R-H source at center (21,22), radius5 selects aligned key TH-H-H; the
+source-derived geometry places EA,J,N at (6,11)–(6,13), which decrypts to
+Y,O,U in sims/lp2_p0_death32_of33_you34_canonical_sft.cjs. This is not an
+authenticated LP2 plaintext: its upstream post-hoc source-state grammar
+remains the dominant objection.
 
-Its own source geometry fixes ciphertext `EO(17,19),N(18,18)`. Standard
-mirror alignment gives `G-G-TH`, which decrypts those cells to `G,O`.
+## Bounded sign-family alternative, not a decoder
 
-Reproducer:
-`sims/lp2_p0_you34_go35_canonical_sft.cjs`.
+From the same H-R-H state, raw center R has GP index4, phi(4)=2, and the
+radius is5. The four literal sign combinations of those two source terms
+produce the following exhaustive canonical mirror counts:
+
+| Candidate source | Count |
+|---|---:|
+| G-O-G | 0 |
+| G-W-G | 0 |
+| TH-O-TH | 0 |
+| TH-W-TH | 1 |
+
+The sole TH-W-TH node is first (11,22), center (15,18), second
+(19,14), radius4 on axis [1,-1]. This is only a surviving raw-source node in
+a four-member family. No independent clue selects its sign combination, no
+ciphertext placement is derived, and no key stream or reversible operation
+has been established. Do not treat it as a successor plaintext or expand it
+into another geometry menu.
+
+## The dependent C-F-C continuation is retired
+
+The earlier C-F-C arithmetic was derived from the now-rejected G-O-G state, so
+it is not a live successor. Independently, the canonical grid contains exactly
+three C-F-C straight triples, at radii1,2,7; none has radius3. The previously
+claimed (4,7)–(4,10)–(4,13) triple is physically TH-Y-C, not C-F-C.
+
+The updated rejection reproducer is
+sims/lp2_p0_you34_go35_canonical_sft.cjs. It asserts the original
+ciphertext values, the zero G-O-G count, the four-way sign-family result, and
+the C-F-C counterexample without scoring language.
 
 ## Current frontier and strongest objection
 
-The continuation is materially stronger than the original fitted route because
-many node values, node placements, ciphertext placements, lengths, and key
-operations are selected from prior source state before decryption. It also
-makes two concrete canonical corrections where the external route is
-impossible.
+This source-state continuation stops at the provisional YOU candidate. The
+earlier post-THEN transitions remain intermediate constructions, not an
+authenticated decipherment. The repository-wide temporal and all-grid audits
+in results/README.md show why: the post-hoc transition grammar leaves many
+admissible source/cipher choices and does not uniquely select unseen original
+transitions before language scoring.
 
-The strongest objection remains that the transition grammar was reconstructed
-post hoc from many blocks and has multiple local state formulas. A genuine
-intended mechanism should compress these formulas into a smaller reusable
-state machine or be independently clued by the artifact.
-
-The immediate post-GO value formula proposes a zero-center raw source:
-
-- from canonical `G-O-G`, radius3 and `phi(O)=2`;
-- step `r-phi(O)=1`;
-- outer `G-step=5=C`;
-- center `O-r=0=F`;
-- proposed raw source `C-F-C`.
-
-A canonical placement audit rejects the previously reported continuation. Direct
-enumeration of every equally spaced straight triple in the original 27×27
-p0-p2 square finds exactly **three** `C-F-C` nodes:
-
-- center `F(13,22)`, radius1, horizontal;
-- center `F(15,21)`, radius2, NE-SW diagonal;
-- center `F(16,15)`, radius7, horizontal.
-
-There is **no radius3 `C-F-C` node**. The formerly claimed
-`C(4,7)-F(4,10)-C(4,13)` is physically `TH(4,7)-Y(4,10)-C(4,13)`
-in the canonical corpus. Therefore carrying the canonical GO radius3 leaves
-zero physical source candidates. The source-state chain currently stops at the
-canonical **GO** state; the `C-F-C` value arithmetic by itself does not select
-a next node.
-
-Reproducer: `sims/lp2_p0_go35_cfc_zero_center_audit_sft.cjs`.
-
-This is a hard negative for that exact zero-center continuation. Any successor
-must supply a different already-motivated placement rule or a separately
-authenticated source cue rather than treating the erroneous radius3 node as an
-established frontier.
+Do not continue the local edge/totient grammar unless a new original LP2 or
+authenticated first-party Cicada clue fixes the transition, key/state, and
+ciphertext placement before plaintext inspection, and produces a blind
+held-out prediction. No unknown plaintext, authentic key, or complete
+original-cipher inverse is recovered.

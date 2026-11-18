@@ -203,90 +203,57 @@ All **56 unsolved physical LP2 pages** remain without authenticated plaintext/ke
 
 The original signed Stage11 handoff is now a bounded negative for *linked companion material*; do not search for an imagined extra file. The only concrete external dependency still worth pursuing is the p56 SHA-512 target's original hidden-service page/descriptor or equivalent historical capture, coordinated with Agent1's Searchlight/Owenson custodian inquiry rather than duplicating it. Otherwise prioritize genuinely new instructions visible inside the 58 original pages or an independently authenticated signed follow-up. Keep the provisional p55 Tor-v2 locator explicitly unverified. Require exact forward reencryption and a frozen held-out plaintext challenge for any candidate.
 
-## 2026-11-18 source-state continuation and canonical correction
+## 2026-11-18 canonical YOU/GO audit — corrected in this invocation
 
-Primary durable report:
-`im-results/lp2-p0-source-state-continuation-after-then.md`.
+Invocation: agent49-gpt6-20261118T230859Z-draw9-b7ebc04e
+(identity claim 2026-11-18T23:08:59.085972Z; draw 9, issue-directed normal mode
+fell back to independent exploration because every open director-task was
+claimed, waiting, or blocked).
 
-### What changed
+Primary report:
+im-results/lp2-p0-source-state-continuation-after-then.md.
 
-Built a source-state continuation from Agent29's post-DEATH THEN frontier through
-`THE C/K-E-Y IS TO GO TO THE EAST OF THE MAPLIFE MAY BE THE DEATH OF YOU GO`.
-This remains an intermediate, post-hoc reconstructed grammar, but it no longer
-uses the external Reports01-06 coordinate fitter for these blocks. Many current
-operation choices are selected prospectively by the existence/placement of the
-next source before current plaintext inspection.
+### Canonical correction
 
-Important reproducer chain:
-- `sims/lp2_p0_then_nmn_endpoint_totient_selector_sft.cjs`
-- `sims/lp2_p0_then_the_source_state_sft.cjs`
-- `sims/lp2_p0_the_key_source_state_sft.cjs`
-- `sims/lp2_p0_key_is_source_state_sft.cjs`
-- `sims/lp2_p0_is_to_source_state_sft.cjs`
-- `sims/lp2_p0_to_go_source_state_sft.cjs`
-- `sims/lp2_p0_go_to23_source_state_sft.cjs`
-- `sims/lp2_p0_to23_the24_source_state_sft.cjs`
-- `sims/lp2_p0_the24_east25_source_state_sft.cjs`
-- `sims/lp2_p0_east25_of26_source_state_sft.cjs`
-- `sims/lp2_p0_of26_the27_source_state_sft.cjs`
-- `sims/lp2_p0_the27_maplife28_geometry_gate_sft.cjs`
-- `sims/lp2_p0_maplife28_may29_source_state_sft.cjs`
-- `sims/lp2_p0_may29_be30_source_state_sft.cjs`
-- `sims/lp2_p0_be30_the31_death32_source_state_sft.cjs`
-- `sims/lp2_p0_death32_of33_you34_canonical_sft.cjs`
-- `sims/lp2_p0_you34_go35_canonical_sft.cjs`
-- `sims/lp2_p0_go35_cfc_zero_center_frontier_sft.cjs`
+I re-read the canonical resources/liber-primus/lp2-corpus.json (blob
+054f2a0f780b7d46901acbe3d9bf4f0ac1801165) and independently enumerated
+all straight equal-outer triples in the 27×27 p0–p2 grid.
 
-### Canonical divergence to preserve
+- The preceding YOU candidate remains conditional: source H-R-H at center
+  (21,22), radius5; aligned key TH-H-H; ciphertext EA(6,11), J(6,12),
+  N(6,13); the existing lp2_p0_death32_of33_you34_canonical_sft.cjs
+  reproduces the three-rune YOU output and its unique adjacent ciphertext
+  occurrence. This is not authenticated plaintext because the upstream
+  transition grammar is post-hoc.
+- The proposed GO continuation is rejected. There are zero G-O-G nodes
+  anywhere in the canonical 27×27 grid. The claimed source cells
+  (18,21),(21,21),(24,21) are P-I-H. The alleged ciphertext cells
+  (17,19),(18,18) are C-IA, not EO-N. Therefore no G-G-TH decode or GO
+  plaintext exists.
+- The earlier external G-O-G at center(26,18), radius3 also remains
+  impossible (second outer at row29).
+- The four sign combinations of the H-R-H center/radius terms have counts:
+  G-O-G 0; G-W-G 0; TH-O-TH 0; TH-W-TH 1. The sole TH-W-TH node is
+  first (11,22), center (15,18), second (19,14), radius4, axis [1,-1].
+  It has no independently selected ciphertext placement or reversible
+  consumer; retain only as a raw-source candidate, not a decoder.
+- The dependent C-F-C continuation is retired. Canonical C-F-C has three
+  nodes at radii1,2,7 and none at radius3. The old claimed
+  (4,7)–(4,10)–(4,13) is TH-Y-C.
 
-The external later-YOU placement is false for
-`resources/liber-primus/lp2-corpus.json`:
-- external claims (2,10),(3,10),(4,10) = D,P,L;
-- canonical runes there are G,P,Y.
+The earlier 22:00Z broadcast claiming a canonical G-O-G/GO state is superseded
+by communications/broadcast/20261118T2317Z_agent49_postthen-go-rejection.md.
+The rejection reproducer is
+sims/lp2_p0_you34_go35_canonical_sft.cjs; the YOU candidate's existing
+reproducer remains
+sims/lp2_p0_death32_of33_you34_canonical_sft.cjs.
 
-Corrected source-state YOU:
-- source H-R-H radius5, center (21,22);
-- aligned key TH-H-H;
-- ciphertext EA(6,11), J(6,12), N(6,13);
-- decrypts Y,O,U;
-- EA,J,N is globally unique as an adjacent straight triple in all 8 directions.
+### Research decision
 
-The external next GO source is also impossible: center(26,18), radius3 implies
-a second outer on row29. Corrected canonical GO:
-- H-R-H source-generates unique valid G-O-G at center(21,21), radius3 vertical;
-- ciphertext EO(17,19), N(18,18);
-- aligned key G-G-TH;
-- decrypts G,O.
-
-Broadcast:
-`communications/broadcast/20261118T2200Z_agent49_canonical-you-go-correction.md`.
-
-### Immediate frontier
-
-Canonical GO source-generates zero-center C-F-C:
-- phi(O3)=2;
-- step=3-2=1;
-- outer G6-step=C5;
-- center O3-radius3=F0.
-
-The ordinary 479-node equal-outer graph hides all F=0 centers. Enumerating all
-straight triples finds exactly two C-F-C placements:
-- center F(4,10), radius3 horizontal, C(4,7)-F(4,10)-C(4,13);
-- center F(13,9), radius6 vertical.
-
-Carrying current GO radius3 uniquely selects the horizontal source.
-Reproducer:
-`sims/lp2_p0_go35_cfc_zero_center_frontier_sft.cjs`.
-
-Next research decision: derive the C-F-C ciphertext placement from source state
-without using the already-diverged external downstream coordinates.
-
-### Caution
-
-The local transition formulas are still numerous. A genuine intended solution
-should compress them into a smaller reusable state machine or receive an
-independent clue from the artifact. Do not promote the chain to `results/`
-until that stronger compression/authentication exists. The one-block
-phase-preservation rule used at J-G-U was falsified by the next transition and
-must not be generalized.
-
+Stop extending this local post-THEN edge/totient grammar. The authoritative
+results/README.md already records the post-THEN all-grid and temporal
+holdout objections: no unseen transition is uniquely selected before
+language scoring. Reopen only if an original artifact or authenticated
+first-party source fixes the next source, ciphertext placement, and reversible
+operation before plaintext inspection. Do not reuse the false GO/C-F-C state
+or build another geometry menu around TH-W-TH.
