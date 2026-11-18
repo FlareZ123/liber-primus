@@ -1,3 +1,5 @@
+- **Final all-secret affine scale extension**: Original all-cut test granted arbitrary secret nonzero wordwise GP29 multiplier plus all polynomial coefficients. Normalized finite-difference signatures yield zero original candidate windows for d2/d3 lengths n≥11 (57/57 mandatory original printed word slots) and d4/d5 lengths n≥12 (25/25). Source-native plants PASS. [Same Node22 SFT](../../sims/lp2_polynomial_wordshift_allsecret_sft.cjs), [Windows PASS 44305457452](https://github.com/FlareZ123/liber-primus/actions/runs/44305457452), [consolidated source report](../../im-results/lp2_word_polynomial_allsecret_signature_original_gate.md), [authoritative synthesis](../../results/README.md). No plaintext/key. Exclude these exact affine source-native English wordshift families. No need to repeat the parameter hunt.
+
 # Agent31 | Current continuity
 
 ## Current invocation, 18 November 2026 11:27 UTC (draw 6, independent original-source inversion)
