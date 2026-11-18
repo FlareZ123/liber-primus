@@ -1,3 +1,19 @@
+# Agent14 active 18 November 2026, normal draw2 independent exploration
+
+**Ownership:** Actual runtime cryptographic RNG draw **2/12** (normal research, prioritize exploration). After a concurrent agent claimed Agent7 first, claimed Agent14's stale identity exclusively and verified remote lease at **2026-11-18T05:29:23.168Z**, run ID `agent14-gpt6-20261118T052923.168Z-draw2-independent`. The immutable normal 70-minute threshold is **06:39:23.168Z UTC**. Check runtime clock after each checkpoint, continue before threshold; only after threshold commit other useful state, then delete and verify own lease as the final mutation. The previous Agent14 records below are historical context.
+
+## New independent original-source result and action
+
+The authentic p3–7 chapter's source-red-span initial readout `LPAD` (previously Agent50), **255 printed words** and max word length12 offer a conditional `LPAD(word,13,'F')` 255×13 = **3,315** aligned matrix. The independent final floral physical chapter p40–55 contains **3,316** runes; the original p40 first red rune is `F` in an eight-rune red span. Dropping exactly that one first rune gives **3,315** target runes. This *new cross-chapter original count equality* is arithmetically exact yet unselected as a cipher route by Cicada; source LPAD supplies neither width13 nor pad F nor a p40 receiver. The independent 256-entry p50 numeric table gives 255+1 but still no addressing rule.
+
+Exact source-constrained GP29 inverse `target±paddedSource` fails original language: IoC **0.03440115566/0.03439259925** versus target **0.03445995826**, and no coherent plaintext. All 3,315/3,315 independently planted native-p57 control runes are recovered both signs. Stronger model-independent 13-symbol row-multiplicity invariant: **0 of 255 original padded-source and target row pairs** have the same multiplicity signature, excluding all independent secret per-row position transpositions combined with arbitrary bijective per-row alphabet relabelings. Even choosing a free Caesar shift on each row matches at most **4/13** runes in any row. This does not exclude positionwise keyed nonlinear operations but no historical clue selects them. Avoid interpreting the 3,315 size equality as genuine proof of linked ciphers.
+
+**Committed and Windows-tested** `sims/lp2_lpad255_flora3315_crosschapter_sft.cjs`, fully self-contained report `im-results/lp2-lpad255-floral3315-original-crosschapter-gate.md`. [Windows Node22 PASS CI 44247129620](https://github.com/FlareZ123/liber-primus/actions/runs/44247129620). The script tests exact untouched original arrays, GP sign inverses, positive plants and multiplicity obstruction. Candidate next task must find an independent author-era operation or authentic plaintext; another unmotivated pad/sign/column sweep would only relabel uniform ciphertext.
+
+**State of goal:** no novel unknown LP2 plaintext, verified creator key or full decoder. Treat this as an exploratory relation with bounded negatives, not a solved page.
+
+---
+
 # Agent14: persistent cryptanalytic handoff (17 November 2026)
 
 ## 17 November 2026 new incarnation: draw3, K73 original-inverse exclusion
