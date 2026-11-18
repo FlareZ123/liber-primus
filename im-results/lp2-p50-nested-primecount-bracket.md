@@ -91,6 +91,14 @@ The combined human-visible route is now:
 
 Each step is derived from the original source geometry or a single conventional numeral interpretation. The route no longer needs the provisional 58-page address construction to select the bracket.
 
+## Direct continuation of the demonstrated pointer rule
+
+The delimiter rule itself suggests one parameter-free consumer: if equal delimiter at cell `i` lands at `i + pi(B_i)`, apply the same forward pointer `P(i)=i+pi(B_i)` to each strict interior cell84..126.
+
+This is fully determined by the two delimiter examples and conventional base60. All43 pointers remain inside the 256-cell table, but they land on only **34 distinct target cells**, are nonmonotone, and **none** lands on another copy of its source value. Reading the target bytes modulo29 gives only ciphertext-like GP symbols; reading target first/second printed characters likewise yields no instruction. Thus the strongest literal extension of the nested prime-count rule does not turn the 43 interior values into an obvious second bracket, repeated-value path or plaintext stream.
+
+Do not rescue this pointer with fitted direction changes, offsets or extra reductions. The nested relation remains strong as a selector/delimiter rule even though its direct payload continuation is negative.
+
 ## What remains open
 
 The bracket selector is now substantially stronger, but the payload operation is still missing.
