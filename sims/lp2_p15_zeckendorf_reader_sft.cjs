@@ -78,6 +78,22 @@ assert.ok(fiveBitGroups.every(value => value >= 0 && value <= 28), 'every 5-bit 
 
 const runeTokens = corpus.translit;
 const runeGlyphs = corpus.runes;
+
+const rowMajorPrinted = [3258, 3222, 3152, 3038, 3278, 3299, 3298, 2838, 3288, 3294, 3296, 2472, 4516, 1206, 708, 1820];
+const rowMajorBits = rowMajorPrinted.map(zeckendorfFibonacciCode).join('');
+const rowMajorGroups = Array.from({ length: Math.floor(rowMajorBits.length / 5) }, (_, i) => parseInt(rowMajorBits.slice(i * 5, i * 5 + 5), 2));
+const rowMajorTail = rowMajorBits.slice(rowMajorGroups.length * 5);
+assert.equal(rowMajorBits.length, 282);
+assert.equal(rowMajorGroups.length, 56);
+assert.equal(rowMajorTail, '11');
+assert.ok(rowMajorGroups.every(value => value <= 28));
+const reverseBits = printedSpiral.slice().reverse().map(zeckendorfFibonacciCode).join('');
+const reverseGroups = Array.from({ length: Math.floor(reverseBits.length / 5) }, (_, i) => parseInt(reverseBits.slice(i * 5, i * 5 + 5), 2));
+assert.equal(reverseBits.length, 282);
+assert.equal(reverseGroups.length, 56);
+assert.equal(reverseBits.slice(reverseGroups.length * 5), '11');
+assert.ok(reverseGroups.every(value => value <= 28));
+
 const key = fiveBitGroups;
 const keyTokens = key.map(value => runeTokens[value]);
 const uniqueKeySymbols = [...new Set(key)].sort((a, b) => a - b);
@@ -181,6 +197,22 @@ const report = {
     imageSha256,
     primeValues: primes,
     printedAbsoluteDifferencesInSpiralOrder: printedSpiral
+  },
+  orderControls: {
+    rowMajor: {
+      bitLength: rowMajorBits.length,
+      fiveBitGroups: rowMajorGroups.length,
+      trailingBits: rowMajorTail,
+      allGroupsAreGp29: true,
+      maximumGroup: Math.max(...rowMajorGroups)
+    },
+    reversedSpiral: {
+      bitLength: reverseBits.length,
+      fiveBitGroups: reverseGroups.length,
+      trailingBits: reverseBits.slice(reverseGroups.length * 5),
+      allGroupsAreGp29: true,
+      maximumGroup: Math.max(...reverseGroups)
+    }
   },
   zeckendorf: {
     basis: fib,

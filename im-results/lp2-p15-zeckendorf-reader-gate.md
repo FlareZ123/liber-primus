@@ -46,6 +46,8 @@ The 56-symbol stream, in canonical GP transliteration, is:
 R B TH P TH R N T H B G I TH R A T H M U I TH X R H N NG R U G U N H EA TH B O F H H EO NG U J R I T EA H H Y L L EO TH C F
 ~~~
 
+A physical row-major read, used only as an ordering control, also gives 282 bits, 56 groups, a final 11, and 56/56 GP29-range values (maximum 25). Reversing the spiral also passes the same range check (maximum 28). Therefore, the fact that all groups fall in 0–28 does **not** authenticate the spiral order or establish a unique key. This is distinct from #276's whole-corpus GP29-to-five-bit packing, but the five-bit width itself is not new; only the 16-number Zeckendorf input is source-specific.
+
 The output is a reproducible typed stream. It is **not** 56 runes of recovered chapter plaintext: it has only 56 symbols, contains 22 distinct symbols, and omits seven alphabet values. The two terminal bits are the final Fibonacci-code terminator, not an independently discovered ciphertext instruction.
 
 ## Candidate receivers tested
