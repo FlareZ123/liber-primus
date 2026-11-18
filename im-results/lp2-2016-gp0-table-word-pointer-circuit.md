@@ -17,7 +17,7 @@ The same target closes through the map. The two-rune p0 ciphertext word has GP0 
 
 The following seven-rune p0 ciphertext word has GP0 sum101; table cell101 gives byte229. Independently, the p27 route reconstructs integer3301, and `3301 mod 256 = 229`; table cell229 is literal `00`, byte0. The seven-rune target therefore returns to the exact table address already implicated in the conditional `3301 -> 229 -> 00 -> p0` navigation route.
 
-This is strong evidence that the signed sentence and p50 table form a real navigation layer. It upgrades p0's red 8–5 opening **EPIPHANY / SEEKS** and the later 2–7 pair **THE / DEVOTED** from a bare word-shape coincidence to a source-selected crib placement candidate. Full plaintext status still requires a reversible p0 cipher or another independent letter-level prediction.
+This is strong evidence that the signed sentence and p50 table form a real navigation layer. It upgrades p0's red 8–5 opening **EPIPHANY / SEEKS** and the later 2–7 pair **THE / DEVOTED** from a bare word-shape coincidence to a source-selected crib placement candidate. The red-title ciphertext now supplies an independent letter-level holdout for **THE / DEVOTED** through `85 -> 28 -> THE -> 20 -> 102`. Full plaintext status still requires a reversible p0 cipher or further independent prediction.
 
 ## Frozen source facts
 
@@ -72,9 +72,47 @@ Original table cell13 is printed **`04`** and has byte4. In the authenticated me
 
 and `T[92] = 236`, exactly the final rune of p0 word52.
 
-A broader source-preserving census admits every p0 word whose GP0 table byte is less than43, so that it can index any signed word. There are eight such p0 words. For each, the selected signed word is converted by the same GP0‘table-byte operation and tested against the source word's start and end offsets. **Only p0 word52 closes on one of its own boundaries.** This uniqueness does not depend on requiring the intermediate table token to look decimal.
+A broader source-preserving census admits every p0 word whose GP0 table byte is less than43, so that it can index any signed word. There are eight such p0 words. For each, the selected signed word is converted by the same GP0-table-byte operation and tested against the source word's start and end offsets. **Only p0 word52 closes on one of its own boundaries.** This uniqueness does not depend on requiring the intermediate table token to look decimal.
 
 The visible token `04` therefore supplies a human-readable rendering of a relationship that already survives the broader byte-based census.
+
+## Red-title ciphertext -> THE -> DEVOTED holdout
+
+The original p0 red title supplies a second, letter-level test that was **not used to select the later 2 / 7 target**. The target had already been fixed by the EMPTY / EPIPHANY boundary circuit above.
+
+The original second red title word is five runes:
+
+`[15,26,18,21,5]`
+
+and its ciphertext GP0 sum is **85**. Apply the same typed table operation, but now let the returned byte index the authenticated 43-word message:
+
+`T[85] = 28`
+
+Zero-based signed word28 is **THE**. Continue with the same GP0/table operation:
+
+`GP0(THE) = 20`
+
+and
+
+`T[20] = 102 = GP0(DEVOTED)`.
+
+So the original five-rune title ciphertext itself gives the closed typed path:
+
+`p0 title word1 -> cipher GP0 85 -> T[85]=28 -> signed word28 THE -> GP0 20 -> T[20]=102 -> GP0(DEVOTED)`
+
+This is a genuine within-run holdout against the proposed later plaintext because the 2 / 7 target had already been selected as THE / DEVOTED from the independent EMPTY / EPIPHANY boundary before this title sum was inspected.
+
+A source-preserving finite calibration keeps the exact original p50 byte multiset and uniformly permutes it among the 256 addresses. The signed message contains six occurrences of THE, at zero-based word indices `1,7,12,17,22,28`. Only three bytes in the original table multiset have one of those values: byte22 occurs once and byte28 twice. Byte102 occurs once. At the two fixed, distinct addresses85 and20, the probability of first selecting any signed THE occurrence and then landing on `GP0(DEVOTED)=102` is therefore:
+
+`(3/256) * (1/255) = 3/65280 = 1/21760`.
+
+This is a post-discovery calibration of the exact frozen grammar, not an unconditional probability that Cicada authored the route.
+
+There is also a source-order check inside the authenticated message. Across all 42 adjacent signed-word pairs, **THE / DEVOTED is the only pair** for which conventional-base60 `T[GP0(word_i)]` equals `GP0(word_{i+1})`. The hit is the actual clause occurrence at signed positions7/8:
+
+`THE -> GP0 20 -> T[20]=102 -> GP0(DEVOTED)`.
+
+Together with the earlier EMPTY / EPIPHANY boundary, this independently predicts the same seven-rune target word from the original title ciphertext rather than from its word shape alone.
 
 ## Seven-rune return to the 3301 / `00` address
 
@@ -118,7 +156,7 @@ and independently:
 
 `p57 FIND -> p50 address42 -> byte28 -> p27 DJU / BEI handoff`
 
-Together with the upstream p27-derived3301 route and the exact p0 opening word shape, this is enough to treat **EPIPHANY SEEKS** at p0:0 and **THE DEVOTED** at p0:235 as high-priority plaintext crib placements for subsequent cryptanalysis. The letter values remain candidate plaintext until a reversible encryption mechanism or another source-selected letter-level check confirms them.
+Together with the upstream p27-derived3301 route, the exact p0 opening word shape, and the new title-ciphertext `85 -> THE -> DEVOTED` holdout, this is enough to treat **EPIPHANY SEEKS** at p0:0 and **THE DEVOTED** at p0:235 as high-priority plaintext crib placements for subsequent cryptanalysis. The second phrase now has an independent source-selected letter-level confirmation, while the complete p0 encryption mechanism remains unresolved.
 
 ## Reproduction
 
@@ -126,7 +164,7 @@ Run:
 
 `node sims/lp2_2016_gp0_table_word_pointer_circuit_sft.cjs`
 
-The single-file test reads the canonical LP2 corpus/transcription, original 256-cell table and authenticated 2016 OpenPGP cleartext. It asserts the 43-word source, p0 word geometry, uniqueness of the later 2 / 7 pair, uniqueness of the addacent consecutive-output source pair, the eight-candidate typed closure census, the `101 -> 229 -> 00` return, and `FIND -> 42 -> 28 -> p27:28 DJU / BEI`.
+The single-file test reads the canonical LP2 corpus/transcription, original 256-cell table and authenticated 2016 OpenPGP cleartext. It asserts the 43-word source, p0 word geometry, uniqueness of the later 2 / 7 pair, uniqueness of the adjacent consecutive-output source pair, the eight-candidate typed closure census, the red-title `85 -> 28 -> THE -> 20 -> 102 -> DEVOTED` holdout and its fixed-multiset calibration counts, the `101 -> 229 -> 00` return, and `FIND -> 42 -> 28 -> p27:28 DJU / BEI`.
 
 Related upstream reports:
 

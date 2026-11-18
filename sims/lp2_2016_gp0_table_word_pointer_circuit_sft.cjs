@@ -164,6 +164,40 @@ assert.equal(grid.bytes[13], 4);
 assert.equal(message[4].toLowerCase(), "empty");
 assert.equal(grid.bytes[sum(gp(message[4]))], 236);
 
+// Holdout discovered only after the EMPTY/EPIPHANY boundary had selected the
+// later 2/7 target: the original second red-title ciphertext word itself points
+// through the signed message to THE and then to GP0(DEVOTED).
+assert.deepEqual(p0[1].indices, [15, 26, 18, 21, 5]);
+assert.equal(sum(p0[1].indices), 85);
+assert.equal(grid.bytes[85], 28);
+assert.equal(message[28].toLowerCase(), "the");
+assert.equal(sum(gp(message[28])), 20);
+assert.equal(grid.bytes[20], 102);
+assert.equal(sum(gp("DEVOTED")), 102);
+
+// Across all signed-message source-order adjacencies, THE / DEVOTED is the
+// only pair for which base60 T[GP0(current)] equals GP0(next).
+const directWordEdges = [];
+for (let i = 0; i < message.length - 1; i += 1) {
+  const from = sum(gp(message[i]));
+  const to = sum(gp(message[i + 1]));
+  if (from < 256 && grid.bytes[from] === to) {
+    directWordEdges.push({index: i, from: message[i], to: message[i + 1]});
+  }
+}
+assert.deepEqual(directWordEdges, [{index: 7, from: "the", to: "devoted"}]);
+
+// Fixed-multiset finite calibration for the two-address title holdout.
+const theIndices = message
+  .map((word, index) => word.toLowerCase() === "the" ? index : null)
+  .filter((index) => index !== null);
+assert.deepEqual(theIndices, [1, 7, 12, 17, 22, 28]);
+const theIndexSet = new Set(theIndices);
+const selectableTheBytes = grid.bytes.filter((value) => theIndexSet.has(value));
+assert.deepEqual([...selectableTheBytes].sort((a, b) => a - b), [22, 28, 28]);
+assert.equal(grid.bytes.filter((value) => value === 102).length, 1);
+assert.equal(256 * 255 / 3, 21760);
+
 // The selected seven-rune word points to the already salient table address229.
 assert.equal(sum(devotedCandidate.indices), 101);
 assert.equal(grid.bytes[101], 229);
@@ -230,7 +264,7 @@ assert.equal(sum(gp("DIVINITY")), 105);
 assert.equal(tableTokens[105], "13");
 
 console.log(JSON.stringify({
-  status: "PASS: source-word GP0 table pointers close an EMPTY/EPIPHANY p0 boundary circuit and replicate FIND->p27:28",
+  status: "PASS: source-word GP0 table pointers close EMPTY/EPIPHANY and title->THE->DEVOTED p0 circuits and replicate FIND->p27:28",
   signedMessageWords: message.length,
   uniqueAdjacentConsecutiveOutputPair: {
     sourceWords: ["EMPTY", "EPIPHANY"],
@@ -247,6 +281,16 @@ console.log(JSON.stringify({
       candidateSourceWords: ["THE", "DEVOTED"],
     },
     typedClosureCensus: {candidates: typedCandidates.length, closures: typedClosures.length},
+    titleHoldout: {
+      ciphertextGp0: sum(p0[1].indices),
+      signedWordIndex: grid.bytes[85],
+      signedWord: message[28],
+      signedWordGp0: sum(gp(message[28])),
+      destinationGp0: grid.bytes[20],
+      expectedDestinationWord: "DEVOTED",
+      directSignedAdjacencyEdges: directWordEdges.length,
+      fixedMultisetInverseProbability: 21760,
+    },
     twoRuneCircuit: {
       ciphertextGp0: sum(theCandidate.indices),
       tableToken: tableTokens[13],
