@@ -138,6 +138,30 @@ assert.deepEqual(control, {
   both: 322,
 });
 
+// Cross-section transfer control: retain each chapter's actual word count,
+// and use the same first-two-word GP-sum seed convention throughout. Later
+// chapters need not have two red title words: this is a deliberately generous
+// structural recurrence check, not a claim to physically identical headings.
+const originalChapters = raw.split("$").slice(0, 8);
+const transfer = originalChapters.map((chapter, chapterIndex) => {
+  const chapterWords = parseLP2Words(chapter, 100).words;
+  const count = chapterWords.length;
+  const sectionSums = chapterWords.map(word => [...word.runes]
+    .reduce((total, rune) => total + corpus.prime[runes.get(rune)], 0));
+  const graph = sectionSums.map(sum => sum % count);
+  const a = walk(sectionSums[0] % count, graph);
+  const b = walk(sectionSums[1] % count, graph);
+  return {
+    chapterIndex, count,
+    sameTerminalCycle: a.cycle.some(cell => b.cycle.includes(cell)),
+    cycleLengths: [a.cycle.length, b.cycle.length],
+  };
+});
+assert.deepEqual(transfer.map(x => x.count),
+  [158, 255, 385, 435, 224, 326, 378, 735]);
+assert.deepEqual(transfer.map(x => x.sameTerminalCycle),
+  [true, true, false, false, true, true, true, false]);
+
 console.log(JSON.stringify({
   source: "LP2 pp0-2 original physical 729-rune transcript",
   prior: "2013 COUNT participant report ab=158, hypothesized link",
@@ -148,6 +172,7 @@ console.log(JSON.stringify({
   commonFiveCycleCells1: first.cycle.map(x => x + 1),
   cycleSums, cycleLengths, key,
   receivers,
+  sourceWindowTransfer: transfer,
   shuffleControl: {attempts, pageBoundaryRanges0: bounds, ...control},
   decision: "No authenticated key or original plaintext; count-included map remains speculative",
 }, null, 2));
