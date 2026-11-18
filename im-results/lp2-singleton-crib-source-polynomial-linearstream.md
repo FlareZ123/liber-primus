@@ -1,6 +1,31 @@
-# Original LP2 one-rune crib attack on source-derived GF(29) LFSR keys
+# Original LP2 one-rune crib inversion of source-derived GF(29) LFSR keys
 
-**17 November 2026 · Agent 15. Classification: exact, complete unknown-IV exclusion for six defined linear source-polynomial additive-key families, conditional on intact ordinary English one-rune word boundaries. No previously unknown Liber Primus plaintext, creator-authenticated key, cipher or destination recovered.** This narrows finite families and demonstrates how printed one-rune words can recover *unknown secret initial states* without evaluating all 29^r seeds.
+**Current decision, 18 November 2026:** The six previously source-derived or source-inferred low-order linear polynomials H/G/χ and constant-mode extensions remain **completely excluded** as continuous direct GP29 additive-key generators under ordinary English original word boundaries. A distinct, **fixed genuinely source-derived degree-nine polynomial N9**, appearing as an exact irreducible factor of the manuscript's original p50 numerical table, is now also excluded in *both* natural register-coefficient orientations under **all 29⁹ unknown initial register states** and an entirely hidden **fixed** GP29 plaintext alphabet. This ninth-order result survives a fresh chapter-specific key and alphabet on physical pp15–22. No original unknown plaintext, creator-specified key, underlying cipher, or final destination was recovered. The weakest common premise is unchanged: no original source says its numerical polynomials operate as additive key generators on preserved English words.
+
+## Exact original p50 degree-nine factor: all-state, any fixed hidden alphabet (Agent26, 18 November)
+
+An independently exact original 256-cell table polynomial over GF29 has the irreducible primitive degree-nine factor
+
+\[
+N(X)=X^9+12X^8+20X^7+10X^6+5X^5+X^4+9X^2+15X+11.
+\]
+
+This is a **particular source-fixed, human-visible numeric input**, unlike fitting a ninth-order recurrence to the ciphertext. Its previously tested *red-nine title seed* readings failed direct downstream decoding; this additional test grants **every possible nine-symbol initial secret key**, without requiring the visible red words to be seeds, and grants **any unknown fixed output alphabet permutation**, even though no printed instruction selects LFSR addition. Both ascending-power coefficient order and its reciprocal are tested without tuning their phases.
+
+For each coefficient orientation and each singleton original rune at position \(t\), calculate exactly the nine GF29 linear coefficients of \(K_t\) in an otherwise completely unknown state \((K_0,\ldots,K_8)\) of the recurrence \(N(T)K=0\). Hypothesize only the necessary plain-English fact that each preserved one-rune word is A, I or archaic O. Because any stationary output relabeling is allowed, its unknown pre-output symbol belongs to **at most three field identities** whose actual values are additional unknowns. Branch over every canonical partition into up to three such labels, then use rank-aware GF29 elimination on the **12 unconstrained field variables** (nine seed values and three label values). All singular systems retain their free parameters. This covers all **29⁹ = 14,507,145,975,869** possible initial state *tuples* for each orientation and all 29! fixed alphabet mappings without enumerating them.
+
+| Source-fixed N9 register, exact original cipher | Printed singleton words | Exhaustive consistent-prefix search nodes | Longest compatible prefix | Full secret solutions |
+| --- | ---: | ---: | ---: | ---: |
+| Continuous full-book clock, ascending N9 coefficients | 83 | **137,204** | **17** | **0** |
+| Continuous full-book clock, reciprocal coefficients | 83 | **137,267** | **17** | **0** |
+| Independent chapter pp15–22, fresh arbitrary initial state and alphabet, ascending | 18 | **137,433** | **16** | **0** |
+| Independent chapter pp15–22, reciprocal | 18 | **137,629** | **16** | **0** |
+
+An original full-length **12,956-GP29-rune source-native English plant** preserving all 2,896 physical word lengths is encrypted under a chosen nine-register seed and arbitrary nonidentity fixed alphabet; exact reencryption/decipherment reproduces every source symbol. The independent solver accepts **8,746** consistent parameter/label assignments on the positive's first thirteen singleton constraints (including the planted assignment); the unconstrained positive is deliberately stopped after thirteen anchors to avoid enumerating exponentially many redundant all-secret explanations of genuine language. All 83 original sites are actually tested on the negatives. Reproduction: [source-original Node22/CommonJS SFT](../sims/lp2_n9_allseed_anyalphabet_singleton_sft.cjs), [successful untouched-source Windows CI 44271306771](https://github.com/FlareZ123/liber-primus/actions/runs/44271306771), and the earlier [complete table factorization](lp2-grid-complete-gf29-factorization.md).
+
+**Decision:** The p50 N9 factor *as a fixed order-nine direct additive keystream* has no valid original continuous key or separately reset p15–22 state under preserved English singleton boundaries. This exhausts the entire unknown-initial-state register in both natural coefficient readings and one arbitrary stationary alphabet. It does not invalidate an N9-consuming cipher with changing alphabet, additional plaintext-dependent skip, per-page resets, nonadditive state, resegmented words or external metadata. The factor still exists exactly as arithmetic; its role in a Cicada-authored solve path is **unproven**. Do not continue tuning new seed phases to rescue this direct receiver.
+
+## Previously established six source-polynomial models (Agent15, 17 November)
 
 ## Human-visible evidence and explicit hypothesis
 
