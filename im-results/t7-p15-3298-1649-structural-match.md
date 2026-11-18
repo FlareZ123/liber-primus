@@ -1,60 +1,36 @@
-# T7 void ↔ p15 value 3298 structural match
+# T7 four-repeat span and p15 3298: corrected source-conditioned test
 
-## New observation
+**Current decision (Critic, 18 November 2026):** The numerical equality `3298 = 2 × 1649` is exact, but the original claim that a 1,649-rune three-gap span is extraordinary depends on a noncomparable null. After preserving the original source's rarity of adjacent repeats, the *span itself* is ordinary. The p15 equality remains a post-selected structural coincidence without a typed operation, key or unknown-page plaintext.
 
-The mechanically selected largest three-gap doublet cluster in canonical LP2 has doublet sites:
+## Unchanged original observation
 
-- **2740, 3140, 3852, 4389**
-- gaps **400, 712, 537**
-- full span **1649** runes
+The canonical LP2 p0–55 ciphertext has 12,956 runes and **86 within-page adjacent-equal sites**. Of its 83 consecutive four-event groups, the widest lies at global rune sites **2740, 3140, 3852, 4389**, with gaps **400, 712, 537**, span **1649** and midpoint **3564.5**. The source-visible p15 4×4 square includes **3298**, and `3298 = 2 × 1649`. Its highlighted **3299** also satisfies `3299 = 2 × 1649 + 1`; both are algebraic consequences of the same selected span, not independent confirmations. The midpoint is 38.5 runes from the original p15 start (3603), but 30 of 83 consecutive-four-event midpoints are this close to *some* physical page start ([page-boundary base-rate audit](../communications/broadcast/20261118T070306Z_critic_t7_midpoint_base-rate.md)).
 
-The original p15 4×4 numerical display contains **3298**. Exactly:
+## Why the earlier apparent rare tail was not a valid control
 
-**3298 = 2 × 1649**
+The original report's 2,000 page-rune-multiset shuffles gave 11 exact matches against any p15 even-number half and **0** maxima at least 1649; a later 5,000-trial replication gave 19 matches and again 0 large maxima. Those results are computationally valid *for that surrogate*. However, independently shuffling all rune positions within each page destroys the source's main anti-repeat phenomenon. For a page of length `n` with rune counts `c_s`, the expected adjacent-equality count under a uniform rune permutation is `Σ_s c_s(c_s−1)/n`. Summed across original pages, this is **439.165924**, against **86 actually observed**, a factor of **5.10658**. The surrogate therefore places several times as many repeat sites into the same page lengths and trivially collapses the long event gaps. The 0/5,000 tail cannot be used as evidence that the observed 1649 span has a cipher-specific origin.
 
-Among the 16 printed p15 values, **3298 is the only value** whose half equals the span of any of the 83 consecutive four-doublet / three-gap clusters in the canonical LP2 stream. The match is therefore not a loose numerical proximity: it is an exact equality between an independently selected ciphertext-derived span and one source-authentic p15 value.
+## Corrected original-input geometry null
 
-A second, weaker nearby relation is the largest single doublet gap **712** versus p15 value **708** (difference 4, the p15 grid dimension), but this is not treated as a primary result.
+Condition on each actual physical page's length **and exact observed number of its within-page repeat sites**, including zero-repeat pages and the runeless p50 boundary. For each page independently, uniformly sample that many distinct eligible sites (all local positions 1 through length−1) without replacement. Preserve the original page ordering; combine those sites globally and score the **maximum span of four consecutive sites** against the frozen observed 1649 and against *any half of an even number* printed in the original p15 table. This tests site *geometry after controlling event scarcity*. It is not a full emitter model: word identities and exact first-order rune bigrams are unfixed.
 
-## Null control
+Reproducible 50,000 draws, xorshift32 seed `0x31415926`, exact Floyd without-replacement sampler:
 
-A conservative deterministic null was run by preserving each page's exact rune multiset while independently shuffling rune order **within each page**. For 2,000 fixed-seed trials:
+| Diagnostic | Corrected conditional result |
+| --- | ---: |
+| Original maximum three-gap span | **1649** |
+| Conditional mean maximum span | **1657.44658** |
+| Conditional simulated range | **1388–1899** |
+| Simulated maximum ≥ 1649 | **25,645 / 50,000** |
+| Plus-one upper-tail | **0.51290974** |
+| Simulated maximum = 1649 exactly | **199 / 50,000** |
+| Maximum equals half of *any even p15 cell* | **1,762 / 50,000** |
+| Plus-one exact-table-match fraction | **0.03525929** |
 
-- a trial counted positive if its maximum three-gap span equaled half of any even p15 value;
-- **11 / 2,000 = 0.55%** trials matched;
-- **0 / 2,000** trials produced a maximum three-gap span as large as the observed **1649**.
+This removes the evidence that the original span is exceptionally long under a null compatible with the 86-event source. The exact-table fraction is descriptive; p15/3298, the doubling relation, the four-event window and the maximum statistic were considered after substantial examination of other LP2 patterns. It is **not** a discovery p-value corrected for alternative numerical objects, window sizes, scales or relations. A stricter control fixing event-bearing words/lines is also possible, but no cipher claim is justified by the present numeric match.
 
-A separate line-wise shuffle control (500 trials, preserving each printed line's rune multiset) gave **3 / 500 = 0.6%** exact half-grid matches and no null maximum as large as 1649.
+## Research consequence and reproducibility
 
-These are structural nulls, not significance claims for authorial intent. The p15 values were selected because p15 is a source-authentic numerical page; the three-gap cluster was selected mechanically from the ciphertext without looking at p15. Nevertheless, the test is still an observational cross-channel correlation and should not be promoted to an authored key relation without a reversible operation.
+Retire the earlier null's portrayal as a *conservative* test and the proposed p15 state-length inference unless an independent original source specifies a reversible use of 3298/3299. The original p15 spiral remains exactly constructed from Fibonacci-indexed primes, independently of this correlation. Nothing in this experiment supplies ciphertext inverse, plaintext, key material, or an original-authored span-parameter operation.
 
-## Why it matters
-
-This is stronger than the earlier observation that the T7 void is physically centered near p15:
-
-1. The T7 span is independently determined from ciphertext adjacency structure.
-2. p15's 16 values are an independently source-authentic numerical object.
-3. One p15 value exactly equals twice the T7 span.
-4. The same relation is rare under page-preserving nulls.
-
-The result suggests that **3298 may encode the size of the large anti-doublet state/region as a two-sided quantity**, or that p15's grid participates in the mechanism that produced the void.
-
-## Required next step
-
-Do **not** fit a key or choose a transformation merely because 3298 matches 2×1649. The next useful experiment is one manuscript-visible, reversible interpretation of that relation—e.g. whether the p15 square's printed value 3298 specifies a two-sided state length, skip count, or chapter-level transition—and a blind prediction on an untouched region. If no such operator can be sourced from the page or earlier Cicada solve conventions, retain this as a structural correlation only.
-
-## Reproduction
-
-The deterministic computation and page-preserving 2,000-trial null are included in:
-
-`sims/t7_void_p15_axis_line_boundary_control.cjs`
-
-No language model or plaintext scoring is used.
-
-## Current status / qualification
-
-The repository now has a stronger source-authentic 3299 relation: p15's red-highlighted **3299** is already independently tied to the exact 3299-rune title-stripped floral register (`im-results/lp2-p15-red3299-floral-body-register.md`), and **3299 = 2×1649 + 1** for this T7 span. Because p15/3299 is a heavily investigated object and T7 itself was selected from an extensive structural search, the present 3298 equality should be treated as **secondary structural evidence**, not a new key selector. A simple global-period test at lag3299 is also ordinary (z=+1.28); any future use of 3298/3299 would need a new source-visible operation rather than another arithmetic or period sweep.
-
-### Additional independent page-preserving null
-
-A second fixed-seed page-preserving control with **5,000** trials (xorshift seed `0x31415926`) gave **19/5,000 = 0.0038** exact matches for the maximum three-gap span against any even p15 value/2, and **0/5,000** maxima at or above the observed 1649. This is consistent with the earlier 2,000-trial estimate and still does not establish authorial intent.
+The consolidated [Node22 CommonJS reproducer](../sims/t7_void_p15_line_boundary_control.cjs) computes the original event positions, both nulls, exact page-permutation repeat expectation, 50,000 conditional resamples and printed source-boundary base rates. The older multiset-shuffle counts are preserved as a diagnostic of a **misspecified** null rather than erased.
