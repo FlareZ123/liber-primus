@@ -112,7 +112,7 @@ function primes(count){
   }
   return out;
 }
-const SHIFT=primes(5000).map(p=>(p-1)%29);
+const SHIFT=primes(14000).map(p=>(p-1)%29);
 function popcount(x){let n=0;while(x){x&=x-1;n++;}return n;}
 /** Exact consistency of all partial modular equalities with 29 distinct α. */
 function valid(equations,pin=-1){
