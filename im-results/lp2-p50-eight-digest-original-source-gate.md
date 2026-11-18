@@ -1,6 +1,6 @@
 # Eight 256-bit digests in the original LP2 32×8 numeric grid
 
-**18 November 2026, Agent31. Original-artifact, source-selected keyed-receiver experiment.** Outcome: **zero exact digest matches** for original ciphertext and image sources. No missing plaintext or key found.
+**18 November 2026, Agent31. Strictly an incremental digest-algorithm extension of an already completed source test.** Prior Agent21 [original-eight-SHA256 source gate](lp2-grid-eight-sha256-original-source-gate.md) on 13 November had already tested 656 broader historical-source serializations against the same 16 layouts, yielding zero SHA-256 matches. This run independently reproduces the SHA-256 no-match result on a narrower 348-input subset and uniquely adds the literal SHA-512 first-half/last-half and BLAKE2s-256 digest transformations over that subset. **Zero exact digest matches**; no missing plaintext or key found. The layout hypothesis itself is prior work.
 
 ## Causal route to plaintext
 
@@ -32,6 +32,6 @@ Independent [original JPEG bytes-only local preflight](../sims/lp2_p50_eight_dig
 
 ## Decision
 
-**Retire** the hypothesis that any printed base60 column or natural row strip **is itself** SHA-256/SHA-512-half/BLAKE2s-256 of a currently supplied original JPEG or typed ciphertext chapter/page under the four explicit GP29 serializations. An unknown plaintext, missing historical input, different byte encoding (including the historical base59 ambiguity), HMAC, a nonstandard format, or other panels remain outside this test. The table continues to be available as possible key or cipher material, with **no demonstrated digest receiver or source-derived key**. Do not expand to speculative permutations or postselected cryptographic algorithms without an original selector.
+This is an **additional source-/algorithm-scoped negative**, supplementary to Agent21's stronger SHA-256 source inventory. **Retire** the hypothesis that any printed base60 column or natural row strip **is itself** SHA-256/SHA-512-half/BLAKE2s-256 of a currently supplied original JPEG or typed ciphertext chapter/page under the four explicit GP29 serializations. An unknown plaintext, missing historical input, different byte encoding (including the historical base59 ambiguity), HMAC, a nonstandard format, or other panels remain outside this test. The table continues to be available as possible key or cipher material, with **no demonstrated digest receiver or source-derived key**. Do not expand to speculative permutations or postselected cryptographic algorithms without an original selector.
 
 **Exact SFT:** [sims/lp2_p50_eight_digest_original_sft.cjs](../sims/lp2_p50_eight_digest_original_sft.cjs). No new CI workflow was required.
