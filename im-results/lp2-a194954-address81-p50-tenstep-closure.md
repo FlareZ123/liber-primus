@@ -51,6 +51,37 @@ So repeated inverse indexing gives:
 
 This resolves two previously separate observations in one deterministic chain: the pointer selects bottom-left cell249, and its already documented base60 checksum `113=A194954(23)` is no longer attached to an unselected cell.
 
+## 18 November follow-up: DH-coordinate entry closes the p50 page loop (Agent32)
+
+The preceding A194954 inverse chain returns **23, 8**. These values have a concrete role in the signed 2013 TCP-server worked Diffie–Hellman example: modulus **p=23** and the server's public share **8**. This is not, by itself, a Cicada-specific marker: the same toy tuple is documented in a 17 April 2012 Cibertec teaching deck. Separately, LP2's own p28 line selected by the p57 **FIND 28** route begins with the literal DH instruction, and the p27 red13 route independently reconstructs the same DH state; see [the p28 source route](lp2-p57-find28-p28-centerword-dh87-loop.md), [the p27 red13/DH route](lp2-p27-red13-dh-radix-transducer.md), and [the authenticated 2013 protocol source](../resources/external/2013-tcp-server-signed-source.md).
+
+**Candidate table consumer (not an authenticated opcode):** interpret the returned pair (p, server-public)=(23,8) as a **one-based row and column** in the source-confirmed 32×8 row-major table. Its row-major address is
+
+(23−1)×8+8 = **184**.
+
+The original table pages cover one-based addresses p49 **1–80**, p50 **81–184**, and p51 **185–256**. Thus address184 is the bottom-right/last cell of p50. Its original scan67 token is **1L**. Conventional base60 gives **81**, exactly the first cell of p50; the drop-f base59 interpretation gives **80**, the last cell of p49. Under base60 the DH coordinate therefore makes a page-local wrap:
+
+(p,server-public)=(23,8) → cell184 → 81 = p50:first-cell.
+
+This is consistent with the independently selected A194954/event address81, p51's opening **WWP** prime-sum81, and the WWW UP direction toward the table. The already frozen ten-dot pointer walk then continues:
+
+81 → 142 → 46 → 107 → 31 → 141 → 245 → 22 → 137 → 10 → 249.
+
+At cell249, original token **1r** is base60 **113**. The same sequence gives A194954(23)=113 and A194954(8)=23, so inverse indexing returns **23, 8** and closes the full candidate loop:
+
+(23,8) → 184 → 81 → [ten printed-number transitions] → 249 → 113 → 23 → 8.
+
+The original-image crop audit checked every cell on this route, not only the endpoint. The tokens in address order are **1L, 2M, 0k, 1l, 0V, 2L, 45, 0M, 2H, 0A, 49, 1r**. They were read from the original 2400×3600 scans 66.jpg, 67.jpg and 68.jpg; their Git blob SHA-1s are respectively c5243ea1324cf3b72b79a41366f8d0e434ce3978, f5abe00085811319f5183c2468ea1171d9dbfb82, and 701e47789abf4401d61420ff938c2b72aa03ad2c. The SFT now checks those exact image bytes as well as the canonical transcription and the coordinate/pointer arithmetic.
+
+**Discriminating controls and limits.**
+
+- Holding the DH modulus as row23, the other obvious in-range DH values do not produce the preselected address81: shared2 selects cell178/token2B/value131; generator5 selects cell181/token2O/value144; server-private6 selects cell182/token0e/value40. The client public19 and client private15 are outside the eight-column range.
+- The row23 values contain one 81 in eight cells; column8 contains one 81 in 32 cells; p50 contains one 81 in 104 cells; the whole table contains two 81 values in 256 cells (addresses184 and188). These are conditional diagnostics, not discovery-wide probabilities. In particular, a row-preserving shuffle gives a **1/8** hit rate for this cell, so the coordinate match is not strong standalone statistical evidence.
+- At cell184, base59 gives80, not81; following ten base59 pointer steps from80 ends at46, not249. The base60 route is locally more coherent with the selected p50 start, but this does **not** authenticate base60 for every use of the table.
+- The physical row-major order and page breaks are source-visible; the manuscript does not label rows/columns or explicitly say to map DH fields to them. The (p,server-public) coordinate rule and the ten-dot step count remain hypotheses motivated by the cross-round clues and the signed 2016 “numbers are direction” instruction. The 2013 DH tuple is generic and pre-Cicada; its match is not proof of authorship.
+
+**Decision:** this is a new closed navigation candidate linking the 2014 A194954 route, the DH-shaped LP2 clues, and the p50 table's p50-first/p50-last boundary. It is not a recovered plaintext, cipher key, KDF, URL, or final destination. Do not turn the DH values or the ten visited table values into an unconstrained keystream. The next useful step is a first-party-selected receiver for the remaining 28×4 core or an independently predicted original-cipher output.
+
 ## Natural convention controls
 
 The closure is convention-sensitive in useful ways.
@@ -88,7 +119,7 @@ The A194954 / WWW UP route no longer stops at “address81 with no table consume
 
 This is a meaningful navigation advance because every primary operand was visible before unknown plaintext fitting: address81, table geometry, ten dots, printed base60 numbers, bottom-left cell249, and A194954.
 
-The route still stops before plaintext. Do not turn the ten visited values into arbitrary Vigenere keys, vary the step count, change the pointer phase, or search alternate endpoint transforms. The next useful experiment needs a source-visible consumer for the recovered **23 / 8** or a historical destination that predicts what should happen after the bottom-left closure.
+The route still stops before plaintext. Do not turn the ten visited values into arbitrary Vigenere keys, vary the step count, change the pointer phase, or search alternate endpoint transforms. A candidate consumer has now been tested: the DH pair (23,8) as one-based row/column selects p50 cell184, whose base60 value81 points back to p50's first cell before the ten-step route closes through cell249. This remains a hypothesis because the manuscript does not explicitly specify DH-to-coordinate mapping; the next useful experiment needs a first-party-selected reversible receiver for the 28×4 core or an independently predicted original-cipher output.
 
 ## Reproduction
 

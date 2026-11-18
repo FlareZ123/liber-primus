@@ -19,3 +19,5 @@ jobs:
         run: node sims/cicada2014_a194954_3301_www_closure_sft.cjs
       - name: Run LP2 adjacent-repeat WWW boundary
         run: node sims/lp2_doublet_www_url_crib_sft.cjs
+      - name: Run A194954 address81 ten-step and DH coordinate closure
+        run: node sims/lp2_a194954_address81_p50_tenstep_sft.cjs

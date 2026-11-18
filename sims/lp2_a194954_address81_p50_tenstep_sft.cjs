@@ -2,6 +2,7 @@
 
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
+const crypto = require("node:crypto");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
@@ -10,6 +11,20 @@ const grid = JSON.parse(fs.readFileSync(
 
 const tokens = grid.pages.flatMap((page) => page.tokens);
 assert.equal(tokens.length, 256);
+
+// Lock the three original table scans to their repository Git blob identities.
+// Route tokens were also manually checked in crops from these exact bytes.
+const sourceImageGitBlobSha1 = {
+  66: "c5243ea1324cf3b72b79a41366f8d0e434ce3978",
+  67: "f5abe00085811319f5183c2468ea1171d9dbfb82",
+  68: "701e47789abf4401d61420ff938c2b72aa03ad2c",
+};
+for (const [page, expected] of Object.entries(sourceImageGitBlobSha1)) {
+  const bytes = fs.readFileSync(path.join(root, "resources", "liber-primus", String(page) + ".jpg"));
+  const header = Buffer.concat([Buffer.from("blob " + bytes.length, "utf8"), Buffer.from([0])]);
+  const actual = crypto.createHash("sha1").update(header).update(bytes).digest("hex");
+  assert.equal(actual, expected, "original scan " + page + ".jpg Git blob SHA-1");
+}
 assert.deepEqual(grid.pages.map((page) => page.tokens.length), [80, 104, 72]);
 const WIDTH = 8;
 const START_ADDRESS = 81;
@@ -106,6 +121,64 @@ assert.equal(Math.floor((START_ADDRESS - 1) / WIDTH), 10);
 assert.equal((START_ADDRESS - 1) % WIDTH, 0);
 assert.equal(Math.floor((TARGET_ADDRESS - 1) / WIDTH), 31);
 assert.equal((TARGET_ADDRESS - 1) % WIDTH, 0);
+
+// Candidate cross-round consumer: DH modulus p=23 and server-public share 8
+// as one-based row/column coordinates in the source-confirmed 32x8 array.
+const DH_MODULUS = 23;
+const DH_SERVER_PUBLIC = 8;
+const P49_CELLS = grid.pages[0].tokens.length;
+const P50_CELLS = grid.pages[1].tokens.length;
+const P50_START_ADDRESS = P49_CELLS + 1;
+const P50_END_ADDRESS = P49_CELLS + P50_CELLS;
+const dhCoordinateAddress = (DH_MODULUS - 1) * WIDTH + DH_SERVER_PUBLIC;
+assert.equal(P50_START_ADDRESS, 81);
+assert.equal(P50_END_ADDRESS, 184);
+assert.equal(dhCoordinateAddress, 184);
+assert.equal(dhCoordinateAddress, P50_END_ADDRESS);
+assert.equal(tokens[dhCoordinateAddress - 1], "1L");
+assert.equal(base60[dhCoordinateAddress - 1], P50_START_ADDRESS);
+assert.equal(base59[dhCoordinateAddress - 1], P50_START_ADDRESS - 1);
+assert.equal(Math.floor((dhCoordinateAddress - 1) / WIDTH) + 1, DH_MODULUS);
+assert.equal((dhCoordinateAddress - 1) % WIDTH + 1, DH_SERVER_PUBLIC);
+assert.equal(DH_SERVER_PUBLIC, WIDTH); // one-based last column; zero-based column 8 is invalid.
+
+const dhCoordinateBase60 = base60[dhCoordinateAddress - 1];
+const dhCoordinateBase59 = base59[dhCoordinateAddress - 1];
+const base59FromCoordinate = walkOneBased(base59, dhCoordinateBase59, RED_DOT_STEPS);
+assert.deepEqual(base59FromCoordinate, [80, 81, 140, 13, 243, 41, 79, 45, 226, 51, 46]);
+assert.notEqual(base59FromCoordinate.at(-1), TARGET_ADDRESS);
+
+const dhColumnControls = [
+  {role: "shared", column: 2, address: 178, token: "2B", base60: 131},
+  {role: "generator", column: 5, address: 181, token: "2O", base60: 144},
+  {role: "server-private", column: 6, address: 182, token: "0e", base60: 40},
+  {role: "server-public", column: 8, address: 184, token: "1L", base60: 81},
+];
+for (const control of dhColumnControls) {
+  const address = (DH_MODULUS - 1) * WIDTH + control.column;
+  assert.equal(address, control.address);
+  assert.equal(tokens[address - 1], control.token);
+  assert.equal(base60[address - 1], control.base60);
+}
+const row23Values = base60.slice((DH_MODULUS - 1) * WIDTH, DH_MODULUS * WIDTH);
+const column8Values = base60.filter((_, index) => index % WIDTH === DH_SERVER_PUBLIC - 1);
+const p50Values = base60.slice(P49_CELLS, P49_CELLS + P50_CELLS);
+const value81Counts = {
+  row23: row23Values.filter((value) => value === 81).length,
+  column8: column8Values.filter((value) => value === 81).length,
+  p50: p50Values.filter((value) => value === 81).length,
+  wholeTable: base60.filter((value) => value === 81).length,
+};
+assert.deepEqual(value81Counts, {row23: 1, column8: 1, p50: 1, wholeTable: 2});
+assert.deepEqual(tokens.map((token, index) => token === "1L" ? index + 1 : null).filter(Boolean), [184, 188]);
+
+const coordinatePath = [dhCoordinateAddress, ...sourcePath];
+assert.deepEqual(coordinatePath, [184, 81, 142, 46, 107, 31, 141, 245, 22, 137, 10, 249]);
+const coordinatePathTokens = coordinatePath.map((address) => tokens[address - 1]);
+assert.deepEqual(coordinatePathTokens, ["1L", "2M", "0k", "1l", "0V", "2L", "45", "0M", "2H", "0A", "49", "1r"]);
+assert.equal(base60[coordinatePath.at(-1) - 1], TARGET_VALUE);
+assert.equal(sequence.indexOf(TARGET_VALUE) + 1, DH_MODULUS);
+assert.equal(sequence.indexOf(DH_MODULUS) + 1, DH_SERVER_PUBLIC);
 
 assert.equal(tokens[TARGET_ADDRESS - 1], "1r");
 assert.equal(base60[TARGET_ADDRESS - 1], TARGET_VALUE);
@@ -225,6 +298,21 @@ console.log(JSON.stringify({
     redDotStepCount: RED_DOT_STEPS,
     bottomLeftAddress: TARGET_ADDRESS,
   },
+  sourceImages: sourceImageGitBlobSha1,
+  dhCoordinateLoop: {
+    dhPair: {modulus: DH_MODULUS, serverPublic: DH_SERVER_PUBLIC},
+    oneBasedRowColumn: [DH_MODULUS, DH_SERVER_PUBLIC],
+    address: dhCoordinateAddress,
+    p50AddressRange: [P50_START_ADDRESS, P50_END_ADDRESS],
+    token: tokens[dhCoordinateAddress - 1],
+    base60Value: dhCoordinateBase60,
+    base59Value: dhCoordinateBase59,
+    combinedPointerPath: coordinatePath,
+    base59TenStepFromCoordinate: base59FromCoordinate,
+    pRowControls: dhColumnControls,
+    value81Counts,
+    nestedA194954Inverse: [TARGET_VALUE, DH_MODULUS, DH_SERVER_PUBLIC],
+  },
   base60: {
     path: sourcePath,
     endpointToken: tokens[TARGET_ADDRESS - 1],
@@ -240,5 +328,5 @@ console.log(JSON.stringify({
     zeroBasedPathFromOneBased81: zeroBasedFromAddress81,
   },
   controls,
-  decision: "Source-fixed one-based address81 plus ten number-pointer steps selects bottom-left cell249; base60 cell249=113 -> A194954^-1 23 -> A194954^-1 8, the table width.",
+  decision: "Candidate DH coordinate (23,8) selects p50 last cell184; base60 1L=81 wraps to p50 first cell, then the frozen ten-step pointer path and A194954 inverse return 23,8. This is a navigation loop, not plaintext or a source-authenticated coordinate opcode.",
 }, null, 2));

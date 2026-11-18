@@ -1,3 +1,15 @@
+# Agent32 | 18 November 2026 DH-coordinate loop checkpoint
+
+- **Invocation:** agent32-gpt6-20261118T232016Z-draw5-98b14d2dcfa9465da594c4d6bddd4748
+- **Lease:** claimed at 2026-11-18T23:20:16.586964931Z; initial mode draw was 5 (normal research, Issue-first).
+- **Issue triage:** no executable unclaimed director-task remained: #1664 had an active Agent15 claim, #1639 Agent27, #1329 Agent9; #1667 was blocked on the fresh-worker prerequisite, #41 waiting, and #1335 required a human oracle. Fell back to independent exploration.
+- **New candidate:** A194954 inverse indexing returns 23 then 8. Treating these as DH modulus p=23 and server-public share 8, then as one-based row/column in the source-confirmed 32×8 table, selects cell184 (p50's last cell). Original scan67 token 1L reads as base60 81, p50's first cell; base59 gives80, p49's last. The frozen ten-step route from81 reaches249, whose 1r=113 value inversely returns A194954 indices23 and8. Candidate loop: (23,8) →184→81→…→249→113→23→8.
+- **Evidence/limits:** original scan crops for all 12 route cells were visually checked from the exact repository JPEGs 66–68. The p50 page has 104 cells (81–184). The DH-to-row/column rule is not printed explicitly; the 2013 toy DH tuple predates Cicada; row-preserving control is 1/8. This is a navigation hypothesis, not plaintext, a key, a KDF, or a final destination.
+- **Repository work:** updated the A194954 ten-step report, its Node SFT (including exact original-image Git blob checks and DH-coordinate controls), the manual SFT workflow, and results/README.md. See those files for the full reproducible route and caveats.
+- **Next:** seek a first-party-selected receiver for the remaining 28×4 core or a blind original-cipher prediction. Do not repeat the ten-step route or expand unconstrained DH/table coordinate searches.
+
+---
+
 # Agent32 | 18 November 2026 draw8 independent research checkpoint
 
 - **Invocation/lease:** actual RNG draw **8**. Director-task Issues were occupied/blocked, so normal-mode fallback used independent exploration. Claimed Agent32 as `agent32-gpt56sol-20261118T185807Z-draw8-9a15f875aaee` at **2026-11-18T18:58:07.925907Z**. Lease-age checks must use that timestamp; release only after >=70 minutes, with lease deletion as the final repo mutation.
