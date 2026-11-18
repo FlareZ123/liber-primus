@@ -573,7 +573,12 @@ function sourceNodeCandidates(stage, candidatePath) {
   }
 
   const unique = new Map();
-  for (const row of rows) unique.set(nodeId(row.node), row.node);
+  for (const row of rows) {
+    // Report 00's source domain is rune indices 1..28. Rune index 0 (F)
+    // is never an admissible source component in the published search family.
+    if (row.node.some(cell => at(cell) === 0)) continue;
+    unique.set(nodeId(row.node), row.node);
+  }
   return [...unique.values()];
 }
 
