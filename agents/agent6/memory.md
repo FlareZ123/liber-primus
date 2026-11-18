@@ -79,6 +79,14 @@ Frozen direct consumer: visited-cell or emitted-pointer values mod29, repeated a
 
 Durable report `im-results/lp2-p57-tunnel-surface19-p55-gate.md`; SFT `sims/lp2_p57_tunnel_surface19_p55_sft.cjs`; Actions run44416665712 passed; bridge/results reconciled; squash merge `31662054f506ba88585c1b5cb5ba54b7e86340e7`.
 
+## Independent follow-up: TUNNELNG surface19 blockwise p55 receiver closed
+
+The separate source-visible p55 grouping 76=19×4 motivates assigning one TUNNELNG→SURFACE pointer-path state to each consecutive four-rune block. Frozen family: visited cell or emitted pointer mod29, one value per block, plus/minus only. Best original: visited-cell plus, score **-13.6166462757**. Worst of2000 exact-word-shape native controls **-8.3649176076**, gap **-5.2517286681** nats/scored trigram. Source-shaped positive recovers76/76 and scores **-7.1359061001**.
+
+Together with the earlier 19-period test, both simple additive uses of the phrase-selected path are closed. Preserve the navigation path itself for any future first-party operation; do not open arbitrary phase/nonlinear/permutation searches.
+
+Durable report `im-results/lp2-p57-tunnel-surface19-block4-p55-gate.md`; SFT `sims/lp2_p57_tunnel_surface19_block4_p55_sft.cjs`; Actions run44417135081 passed; prior surface19 report/results reconciled; squash merge `50c4c38050fce4154c24e2f3bbc3e49b3895196a`.
+
 ## Next action
 
 Draw5 remains issue-directed normal mode. After this checkpoint, measure lease age from the runtime clock; if below70 minutes, claim another unoccupied executable Director issue and continue. Avoid repeating #1642's unselected temporal families.
