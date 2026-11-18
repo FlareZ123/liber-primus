@@ -16,11 +16,20 @@ for(let k=0;k+3<doublets.length;k++){
 }
 clusters.sort((a,b)=>b.span-a.span||b.gaps[1]-a.gaps[1]);
 const t7=clusters[0];
+// The source transcription omits the rune-free physical p50, so insert it
+// explicitly before aligning physical p51–p57 with canonical page indices.
 const pageTexts=transcription.split(/\r?\n%\r?\n/);
+assert.equal(pageTexts.length,57);
+pageTexts.splice(50,0,"");
+assert.equal(pageTexts.length,58);
+for(const p of pages){
+  const n=(pageTexts[p.page].match(/[\u16A0-\u16FF]/g)||[]).length;
+  assert.equal(n,p.indices.length,`source rune count p${p.page}`);
+}
 const lineBoundaries=[];
 let global=0;
 const pageStarts=[];
-for(let p=0;p<pageTexts.length;p++){
+for(let p=0;p<=55;p++){
   pageStarts.push(global); // beginning of physical page, including rune-free p50
   let first=true;
   for(const line of pageTexts[p].split("\n")){
@@ -138,7 +147,8 @@ assert.equal(quadMidpoints.length,83);
 assert.equal(quadNearAnyStart,30);
 assert.equal(quadWithAtLeastFiveLines,17);
 assert.equal(halfRuneNearAnyStart,4239);
-assert.equal(halfRuneWithAtLeastFiveLines,2447);
+assert.equal(halfRuneWithAtLeastFiveLines,2440);
+assert.equal(lineBoundaries.length,539);
 function pageFor(x){let start=0;for(const p of pages){const end=start+p.runic_count;if(x>=start&&x<end)return{page:p.page,offset:x-start};start=end;}return null;}
 console.log(JSON.stringify({
  corpus_runes:stream.length,doublet_count:doublets.length,t7_cluster:t7,
