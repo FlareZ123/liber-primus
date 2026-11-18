@@ -708,81 +708,46 @@ function ciphertextCandidatesReport06(current, S) {
   return out;
 }
 
-let postThenPaths = [{
-  current: recorded.current,
-  previousBeginning: recorded.previousBeginning,
-  S: recorded.S,
-  a: recorded.a,
-  runes: 0,
-  indexSum: 0,
-  gpSum: 0,
-  steps: [],
-}];
-
-const postThenCounts = [];
-for (let stage = 0; stage < 5; stage++) {
-  const nextPaths = [];
-  for (const candidatePath of postThenPaths) {
-    const remainingStages = 5 - stage;
-    const maxLength =
-      POST_THEN_TARGET.runes -
-      candidatePath.runes -
-      2 * (remainingStages - 1);
-    if (maxLength < 2) continue;
-
-    const source = sourceOperationsReport06(
-      candidatePath.current,
-      candidatePath.S,
-      candidatePath.a);
-    const ciphers = ciphertextCandidatesReport06(
-      candidatePath.current,
-      candidatePath.S);
-
-    for (const {node, operation} of source.rows) {
-      for (const cipher of ciphers) {
-        if (cipher.length > maxLength) continue;
-
-        const plain = cipher.map((cell, i) =>
-          mod29(at(cell) - operation.key[i % 3]));
-        const runes = candidatePath.runes + plain.length;
-        const indexSum =
-          candidatePath.indexSum + plain.reduce((sum, value) => sum + value, 0);
-        const gpSum =
-          candidatePath.gpSum +
-          plain.reduce((sum, value) => sum + GP[value], 0);
-        if (
-          runes > POST_THEN_TARGET.runes ||
-          indexSum > POST_THEN_TARGET.indexSum ||
-          gpSum > POST_THEN_TARGET.gpSum
-        ) continue;
-
-        nextPaths.push({
-          current: {
-            node,
-            cipher,
-            raw: node.map(at),
-            phase: operation.phase,
-          },
-          previousBeginning: candidatePath.current.cipher[0],
-          S: candidatePath.S + operation.phase,
-          a: source.outer,
-          runes,
-          indexSum,
-          gpSum,
-          steps: candidatePath.steps.concat({node, operation, cipher, plain}),
-        });
+const POST_THEN_REACHABLE = Array.from(
+  {length: POST_THEN_TARGET.runes + 1},
+  () => new Set());
+POST_THEN_REACHABLE[0].add("0|0");
+for (let length = 1; length <= POST_THEN_TARGET.runes; length++) {
+  for (const pair of POST_THEN_REACHABLE[length - 1]) {
+    const [indexSum, gpSum] = pair.split("|").map(Number);
+    for (let rune = 0; rune < 29; rune++) {
+      const nextIndex = indexSum + rune;
+      const nextGp = gpSum + GP[rune];
+      if (
+        nextIndex <= POST_THEN_TARGET.indexSum &&
+        nextGp <= POST_THEN_TARGET.gpSum
+      ) {
+        POST_THEN_REACHABLE[length].add(nextIndex + "|" + nextGp);
       }
     }
   }
-
-  postThenPaths = nextPaths;
-  postThenCounts.push(postThenPaths.length);
 }
 
-const postThenHits = postThenPaths.filter(candidate =>
-  candidate.runes === POST_THEN_TARGET.runes &&
-  candidate.indexSum === POST_THEN_TARGET.indexSum &&
-  candidate.gpSum === POST_THEN_TARGET.gpSum);
+const sourceCache = new Map();
+const cipherCache = new Map();
+
+/** @param {object} current @param {number} S @param {number} a */
+function cachedSourceOperations(current, S, a) {
+  const key = JSON.stringify([current.node, current.cipher, current.phase, S, a]);
+  if (!sourceCache.has(key)) {
+    sourceCache.set(key, sourceOperationsReport06(current, S, a));
+  }
+  return sourceCache.get(key);
+}
+
+/** @param {object} current @param {number} S */
+function cachedCipherCandidates(current, S) {
+  const key = JSON.stringify([current.node, current.cipher, current.phase, S]);
+  if (!cipherCache.has(key)) {
+    cipherCache.set(key, ciphertextCandidatesReport06(current, S));
+  }
+  return cipherCache.get(key);
+}
 
 const expectedPostThenCipher = [
   [[22, 21], [21, 20]],
@@ -792,17 +757,131 @@ const expectedPostThenCipher = [
   [[9, 20], [9, 21]],
 ];
 
-const recordedPostThenHits = postThenHits.filter(candidate =>
-  JSON.stringify(candidate.steps.map(step => step.cipher)) ===
-  JSON.stringify(expectedPostThenCipher));
+let postThenHits = 0;
+let recordedPostThenHits = 0;
+let firstPostThenHit = null;
+const visitedByStage = [0, 0, 0, 0, 0, 0];
+
+/**
+ * @param {number} stage
+ * @param {object} current
+ * @param {number} S
+ * @param {number} a
+ * @param {number} runes
+ * @param {number} indexSum
+ * @param {number} gpSum
+ * @param {Array<object>} steps
+ * @param {boolean} recordedPrefix
+ */
+function searchPostThen(
+  stage,
+  current,
+  S,
+  a,
+  runes,
+  indexSum,
+  gpSum,
+  steps,
+  recordedPrefix
+) {
+  visitedByStage[stage]++;
+
+  if (stage === 5) {
+    if (
+      runes !== POST_THEN_TARGET.runes ||
+      indexSum !== POST_THEN_TARGET.indexSum ||
+      gpSum !== POST_THEN_TARGET.gpSum
+    ) return;
+
+    postThenHits++;
+    if (recordedPrefix) recordedPostThenHits++;
+    if (!firstPostThenHit) {
+      firstPostThenHit = {current, S, a, runes, indexSum, gpSum, steps};
+    }
+    return;
+  }
+
+  const remainingStages = 5 - stage;
+  const maxLength =
+    POST_THEN_TARGET.runes - runes - 2 * (remainingStages - 1);
+  if (maxLength < 2) return;
+
+  const source = cachedSourceOperations(current, S, a);
+  const ciphers = cachedCipherCandidates(current, S);
+
+  for (const {node, operation} of source.rows) {
+    for (const cipher of ciphers) {
+      if (cipher.length > maxLength) continue;
+
+      const plain = cipher.map((cell, i) =>
+        mod29(at(cell) - operation.key[i % 3]));
+      const nextRunes = runes + plain.length;
+      const nextIndex =
+        indexSum + plain.reduce((sum, value) => sum + value, 0);
+      const nextGp =
+        gpSum + plain.reduce((sum, value) => sum + GP[value], 0);
+
+      if (
+        nextRunes > POST_THEN_TARGET.runes ||
+        nextIndex > POST_THEN_TARGET.indexSum ||
+        nextGp > POST_THEN_TARGET.gpSum
+      ) continue;
+
+      const stagesLeft = 4 - stage;
+      const runesLeft = POST_THEN_TARGET.runes - nextRunes;
+      if (runesLeft < 2 * stagesLeft || runesLeft > 3 * stagesLeft) continue;
+
+      const residualKey =
+        (POST_THEN_TARGET.indexSum - nextIndex) + "|" +
+        (POST_THEN_TARGET.gpSum - nextGp);
+      if (!POST_THEN_REACHABLE[runesLeft].has(residualKey)) continue;
+
+      const nextRecordedPrefix =
+        recordedPrefix &&
+        JSON.stringify(cipher) === JSON.stringify(expectedPostThenCipher[stage]);
+
+      searchPostThen(
+        stage + 1,
+        {
+          node,
+          cipher,
+          raw: node.map(at),
+          phase: operation.phase,
+        },
+        S + operation.phase,
+        source.outer,
+        nextRunes,
+        nextIndex,
+        nextGp,
+        steps.concat({node, operation, cipher, plain}),
+        nextRecordedPrefix);
+    }
+  }
+}
+
+searchPostThen(
+  0,
+  recorded.current,
+  recorded.S,
+  recorded.a,
+  0,
+  0,
+  0,
+  [],
+  true);
 
 assert.ok(
-  recordedPostThenHits.length >= 1,
+  recordedPostThenHits >= 1,
   "recorded THE KEY IS TO GO geometry must survive prospective Reports 01-06");
+assert.ok(firstPostThenHit, "at least one exact post-THEN target hit is required");
 
-const postThenRecorded = recordedPostThenHits[0];
+const postThenRecorded = recordedPostThenHits === 1 && postThenHits === 1
+  ? firstPostThenHit
+  : firstPostThenHit;
+
+
 console.log(JSON.stringify({
-  status: postThenHits.length === 1
+  status: postThenHits === 1
     ? "unique 11/122/429 hit under global-source prospective Reports 01-06"
     : "11/122/429 underselects global-source prospective Reports 01-06",
   target: POST_THEN_TARGET,
@@ -812,19 +891,19 @@ console.log(JSON.stringify({
     phase: recorded.current.phase,
     ciphertext: recorded.current.cipher,
   },
-  pathCountsAfterEachStage: postThenCounts,
-  hits: postThenHits.length,
-  recordedHits: recordedPostThenHits.length,
+  pathCountsAfterEachStage: visitedByStage,
+  hits: postThenHits,
+  recordedHits: recordedPostThenHits,
   selected: {
-    sources: postThenRecorded.steps.map(step =>
+    sources: firstPostThenHit.steps.map(step =>
       step.node.map(at).map(value => translit[value])),
-    sourceCoordinates: postThenRecorded.steps.map(step => step.node),
-    ciphertext: postThenRecorded.steps.map(step => step.cipher),
-    plaintextRunes: postThenRecorded.steps.map(step =>
+    sourceCoordinates: firstPostThenHit.steps.map(step => step.node),
+    ciphertext: firstPostThenHit.steps.map(step => step.cipher),
+    plaintextRunes: firstPostThenHit.steps.map(step =>
       step.plain.map(value => translit[value])),
-    keys: postThenRecorded.steps.map(step =>
+    keys: firstPostThenHit.steps.map(step =>
       step.operation.key.map(value => translit[value])),
-    centerTotient: postThenRecorded.steps.map(step =>
+    centerTotient: firstPostThenHit.steps.map(step =>
       step.operation.transformCenter),
   },
 }, null, 2));
