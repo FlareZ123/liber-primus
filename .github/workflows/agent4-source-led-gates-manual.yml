@@ -45,6 +45,8 @@ jobs:
         run: node sims/lp2_zeroF_exception_source_gate_sft.cjs
       - name: Run zeroF predecessor-current timing gate
         run: node sims/lp2_zeroF_predecessor_current_timing_sft.cjs
+      - name: Run zeroF value-mod8 versus physical-column selector gate
+        run: node sims/lp2_zeroF_value_mod8_vs_column_sft.cjs
       - name: Run p55 phase1 carry-boundary gate
         run: node sims/lp2_p55_phase1_carry_boundary_sft.cjs
       - name: Test exact physical page-boundary root enrichment under chapter-wise familywise null
