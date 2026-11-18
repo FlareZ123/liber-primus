@@ -225,6 +225,30 @@ def original_gaps(raw: bytes, mask: bytearray) -> list[dict]:
     return results
 
 
+def original_file_slack(raw: bytes, entries: list[dict]) -> list[dict]:
+    """Read every byte beyond an on-disk file length within its final ISO sector."""
+    results = []
+    for entry in entries:
+        if entry["type"] != "file":
+            continue
+        for offset, length in entry["extents"]:
+            if not length:
+                continue
+            end = offset + length
+            padded_end = ((end + SECTOR - 1) // SECTOR) * SECTOR
+            assert padded_end <= len(raw)
+            if padded_end == end:
+                continue
+            chunk = raw[end:padded_end]
+            results.append({
+                "path": entry["path"],
+                "absolute_start": end,
+                "absolute_end": padded_end,
+                **interesting_stream(chunk, end),
+            })
+    return results
+
+
 def plant_positive() -> None:
     source = bytearray(4 * SECTOR)
     sig = b"-----BEGIN PGP MESSAGE-----\n"
@@ -234,6 +258,11 @@ def plant_positive() -> None:
     assert len(gaps) == 1 and gaps[0]["sector_start"] == 1
     assert any(m["kind"] == "PGP_ASCII" and m["absolute_byte"] == SECTOR + 43
                for m in gaps[0]["markers"])
+    fake = [{"path": "/SLACK.DAT;1", "type": "file", "extents": [(0, SECTOR + 40)]}]
+    slack = original_file_slack(bytes(source), fake)
+    assert len(slack) == 1
+    assert any(m["kind"] == "PGP_ASCII" and m["absolute_byte"] == SECTOR + 43
+               for m in slack[0]["markers"])
     print("POSITIVE_CONTROL", "hidden PGP header at byte", SECTOR + 43)
 
 
@@ -264,6 +293,7 @@ def main() -> None:
     with args.iso.open("rb") as handle:
         raw = handle.read()
     gaps = original_gaps(raw, mask)
+    file_slack = original_file_slack(raw, entries)
     nonzero_gaps = [g for g in gaps if g["nonzero"]]
     result = {
         "source": digest,
@@ -275,6 +305,9 @@ def main() -> None:
         "entries": entries,
         "volume_metadata": metadata,
         "unclaimed_runs": gaps,
+        "file_slack": file_slack,
+        "file_slack_bytes": sum(s["bytes"] for s in file_slack),
+        "nonzero_file_slack_bytes": sum(s["nonzero"] for s in file_slack),
         "nonzero_unclaimed_runs": len(nonzero_gaps),
         "unclaimed_magic": [m for g in gaps for m in g["markers"]],
     }
@@ -288,6 +321,11 @@ def main() -> None:
     for g in nonzero_gaps:
         print("NONZERO_GAP", json.dumps(g)[:3000])
     print("UNCLAIMED_MAGIC", json.dumps(result["unclaimed_magic"]))
+    print("FILE_SLACK_TOTAL", result["file_slack_bytes"],
+          "NONZERO", result["nonzero_file_slack_bytes"])
+    for s in file_slack:
+        if s["nonzero"]:
+            print("NONZERO_FILE_SLACK", json.dumps(s)[:3000])
     print("REPORT", args.report)
 
 
