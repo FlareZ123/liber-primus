@@ -38,7 +38,7 @@ const power=[27,14].map(a=>{
  return out;
 });
 for(let x=0;x<29;x++)for(let k=0;k<28;k++)
- assert.equal(mod(8+power[0][k]*mod(8+power[1][k]*(x-8)-8)-8),x);
+ assert.equal(mod(8+power[0][k]*(mod(8+power[1][k]*(x-8))-8)),x);
 const wordStarts=[],wordPos=new Uint8Array(ciphertext.length);
 let pos=0;
 for(const w of words){wordStarts.push(pos);for(let j=0;j<w.length;j++)wordPos[pos++]=j}
