@@ -30,9 +30,19 @@ EA A I U L  →  A I U
 
 The remaining GP0 sum is **24+10+1 = 35**. One further peel leaves the single rune **I**.
 
-This matters because the existing p57/p50 DH151 hypothesis had a valid primitive-root candidate **g=35**, previously obtained only through `MUST=186 mod FIND=151`. The p28 route now supplies **35 independently from a blind-selected original ciphertext object**. It therefore removes one of that DH hypothesis's weakest source-selection assumptions.
+The three-rune interior carries three additional exact instruction values under standard Gematria measures:
 
-A solved LP1 koan also states that “THE I IS THE UOICE OF THE CIRCUMFERENCE.” The newly exposed central I is compatible with that earlier authored theme. I treat this as corroborative wording rather than a cipher instruction.
+- interior GP1 is **38 = GP0(WITHIN)**;
+- interior GP-prime is **131 = GP0(CIRCUMFERENCES)**;
+- with interior length3, **35+3=38 = WITHIN** and **35×3=105 = DIUINITY**.
+
+Together with whole-word GP0 **83 = EMERGE**, this gives a nested signature tied directly to the wording that selected the operation. Across every printed LP2 word through p55, 23 words have whole GP0 83, 19 have peeled-interior GP1 38, and four have peeled-interior GP-prime 131. **Only physical p28 word28 satisfies all three conditions at once.**
+
+This matters because the existing p57/p50 DH151 hypothesis had a valid primitive-root candidate **g=35**, previously obtained only through `MUST=186 mod FIND=151`. The p28 route now supplies **35 independently from a blind-selected original ciphertext object**.
+
+The twice-peeled center I adds a direct table link. Its GP prime value is31; p50 cell31 is `2D`, whose only other occurrence is cell38, exactly GP0(WITHIN). Under base59, both copies decode to **131 = GP0(CIRCUMFERENCES)**. Base60 gives133 and breaks that target.
+
+A solved LP1 koan states that “THE I IS THE UOICE OF THE CIRCUMFERENCE.” Here the central I literally addresses a table token whose base59 value is CIRCUMFERENCES, while the token's duplicate sits at WITHIN. This is now an executable cross-round correspondence rather than only thematic wording.
 
 ## Frozen DH construction from p57
 
@@ -81,6 +91,8 @@ Treat the three DH outputs as zero-based p50 addresses, matching the already est
 | K=87 | `15` | **64** | GP0(SHED)=64 |
 
 Base60 gives 218, 25 and65, so it destroys the A→AND and K→SHED matches. This supplies a new route-internal discriminator for the previously provisional base59 reading. In the exact base59 table multiset, values215,25,64 occur 1,2,1 times respectively.
+
+Read in DH output order, the three p50 targets are **AND / WE / SHED**. That is a coherent instruction fragment and supplies a natural reason to continue the literal shedding operation to the central I.
 
 The shared secret then rejoins the previously fixed p50 word graph:
 

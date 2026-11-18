@@ -97,6 +97,11 @@ function gp0(word) {
 }
 
 /** @param {number[]} word */
+function gp1(word) {
+  return word.reduce((sum, value) => sum + value + 1, 0);
+}
+
+/** @param {number[]} word */
 function gpPrime(word) {
   return word.reduce((sum, value) => sum + corpus.prime[value], 0);
 }
@@ -158,6 +163,8 @@ const shed = p57Word("SHED");
 const our = p57Word("OUR");
 const own = p57Word("OWN");
 const find = p57Word("FIND");
+const circumferences = p57Word("CIRCUMFERENCES");
+const divinity = p57Word("DIUINITY");
 const within = p57Word("WITHIN");
 const and = p57Word("AND");
 const emerge = p57Word("EMERGE");
@@ -252,8 +259,63 @@ const inner = selected.word.slice(1, -1);
 const centerRune = inner.slice(1, -1);
 assert.deepEqual(inner, [24, 10, 1]);
 assert.equal(gp0(inner), 35);
+assert.equal(gp1(inner), within.gp0);
+assert.equal(gpPrime(inner), circumferences.gp0);
+assert.equal(gp0(inner) + inner.length, within.gp0);
+assert.equal(gp0(inner) * inner.length, divinity.gp0);
 assert.deepEqual(centerRune, [10]);
 assert.equal(translit(centerRune), "I");
+
+/* This three-measure nested signature is unique across every printed LP2 word. */
+const nestedSignatureHits = [];
+let fullEmergeCount = 0;
+let innerWithinCount = 0;
+let innerCircumferenceCount = 0;
+for (let physicalPage = 0; physicalPage <= 55; physicalPage += 1) {
+  if (physicalPage === 50) continue;
+  const words = wordsOnPhysicalPage(physicalPage);
+  for (let index = 0; index < words.length; index += 1) {
+    const word = words[index];
+    if (word.length < 3) continue;
+    const wordInner = word.slice(1, -1);
+    const fullHit = gp0(word) === emerge.gp0;
+    const withinHit = gp1(wordInner) === within.gp0;
+    const circumferenceHit = gpPrime(wordInner) === circumferences.gp0;
+    fullEmergeCount += Number(fullHit);
+    innerWithinCount += Number(withinHit);
+    innerCircumferenceCount += Number(circumferenceHit);
+    if (fullHit && withinHit && circumferenceHit) {
+      nestedSignatureHits.push({
+        page: physicalPage,
+        word: index + 1,
+        values: word,
+      });
+    }
+  }
+}
+assert.equal(fullEmergeCount, 23);
+assert.equal(innerWithinCount, 19);
+assert.equal(innerCircumferenceCount, 4);
+assert.deepEqual(nestedSignatureHits, [
+  { page: 28, word: 28, values: [28, 24, 10, 1, 20] },
+]);
+
+/*
+ * The twice-peeled I has GP-prime31. Using the same p50 address convention,
+ * cell31 is token2D, whose only duplicate is cell38 = GP0(WITHIN), and whose
+ * base59 value is131 = GP0(CIRCUMFERENCES).
+ */
+assert.equal(corpus.prime[centerRune[0]], 31);
+assert.equal(tokens[31], "2D");
+assert.equal(tokens[within.gp0], "2D");
+assert.deepEqual(
+  tokens.map((token, index) => token === "2D" ? index : null)
+    .filter((index) => index !== null),
+  [31, within.gp0]
+);
+assert.equal(decode59(tokens[31]), circumferences.gp0);
+assert.equal(decode59(tokens[within.gp0]), circumferences.gp0);
+assert.notEqual(decode60(tokens[31]), circumferences.gp0);
 
 /* Frozen DH inputs from p57 and the peeled p28 word. */
 const modulus = find.prime;
@@ -360,7 +422,6 @@ assert.equal(decode59(tokens[find.gp0]), 28);
  * but the exact p56 F-transparent cipher with prime449 selected by shared87
  * cannot decode the whole page or the source-natural center-origin rays.
  */
-assert.equal(corpus.prime[centerRune[0]], 31);
 const p31 = page(31);
 assert.equal(p31.length, 269);
 assert.equal(p31[Math.floor(p31.length / 2)], 0);
@@ -432,7 +493,24 @@ console.log(JSON.stringify({
     selectedTarget: "EMERGE",
     peeledInterior: inner,
     peeledGp0: generator,
+    peeledGp1: gp1(inner),
+    peeledPrime: gpPrime(inner),
+    peeledSumPlusLength: gp0(inner) + inner.length,
+    peeledSumTimesLength: gp0(inner) * inner.length,
+    nestedSignatureCounts: {
+      fullEmergeCount,
+      innerWithinCount,
+      innerCircumferenceCount,
+      joint: nestedSignatureHits.length,
+    },
     finalCenter: translit(centerRune),
+    centerIToP50: {
+      address: corpus.prime[centerRune[0]],
+      token: tokens[31],
+      duplicateAddress: within.gp0,
+      base59: decode59(tokens[31]),
+      target: "CIRCUMFERENCES",
+    },
     uniquePageNumberWordStartAfterCenter: [28],
     uniquePageNumberWordGp0Emerge: [28],
   },
