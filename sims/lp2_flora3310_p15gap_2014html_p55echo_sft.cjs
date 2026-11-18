@@ -86,6 +86,11 @@ assert.deepEqual(floralRedTen, [{ page: 49, after: 66, dotCount: 10, ink: 'red' 
 const oneBasedFloralOrdinal = floralRedTen[0].page - 40 + 1;
 assert.equal(oneBasedFloralOrdinal, 10);
 assert.equal(lastGap, Number(htmlId[1]) * oneBasedFloralOrdinal);
+const p54Ink = annotations.pages.find((p) => p.page === 54);
+const originalP54RedHeading = p54Ink.red_spans.find((r) => r.start === 0);
+assert.equal(originalP54RedHeading.length, 9);
+assert.equal(lastGap - 3301, originalP54RedHeading.length);
+
 
 /** @param {number[]} values */
 function ioc(values) {
@@ -156,6 +161,8 @@ console.log(JSON.stringify({
   originalDuplicateSixGlobalPositions: duplicateSix,
   floraExcludingTerminalEcho: bodyWithoutTerminalEcho.length,
   tenTimesArchivedId: oneBasedFloralOrdinal * Number(htmlId[1]),
+  lastPrimeGapMinusCicada3301: lastGap - 3301,
+  sourceP54OpeningRedRuneCountAtSignedFlip: originalP54RedHeading.length,
   trimmedFloraIoc: sourceIoc,
   directSourceShapeBase29: {
     tenRowsOf331NumeralBytes: byteProfile(tenLongRowsBinary),
