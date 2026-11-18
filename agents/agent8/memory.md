@@ -40,6 +40,27 @@ Claimed unowned #1516 after the #1497 checkpoint. Frozen composite: #1422 `zeroF
 **Interpretation:** retire only this exact keyless global lag-256 self-difference; do not rescue with opposite sign, shifted phase, resets or lag multiples. A causal p50 clock needs a different stateful/source-keyed value operation.
 
 
+## Director #1520 completed: two-regime first-order affine feedback is negative
+
+Claimed unowned #1520. Exhausted exactly all **29^4=707,281** tuples under the frozen #1422 zero-F intermediate:
+`M_i=P_i+a[z_i]P_(i-1)+b[z_i] mod29`, `z_i=(phase-zero p50 raw byte<60)`, P_-1=0, continuous state.
+
+- Frozen native-GP within-word trigram scorer on p0-p2, 729 runes.
+- Three deterministic random 12,956-rune source-shaped plants preserving all original word lengths. Keys `(26,5,3,7)`, `(26,22,28,16)`, `(23,1,5,23)` each rank **1st** in complete exhaustive search and round-trip exactly.
+- Original p0-p2 winner `(12,21,14,18)`, score -1647.9870455431494.
+- Winner blind p40-p53: 40/669 dictionary hits, 0 GP length>=5, longest consecutive dictionary span4 runes. Blind p54-p55: 3/66, 0 length>=5, span2.
+- Across all 64 frozen candidates, max length>=5 hits are 1 (p40-p53) and 0 (p54-p55); max consecutive dictionary spans **7** and **5** runes, far below 150.
+- Independent p0/p1/p2 winners disagree: `(14,21,0,15)`, `(28,20,5,24)`, `(5,2,4,19)`.
+- Windows Node22 PASS run 44391353361.
+- Reproducer `sims/lp2_p50_zeroF_tworegime_affine_feedback_sft.cjs`, final commit `b1e5648`.
+- Report `im-results/lp2-p50-zeroF-tworegime-affine-feedback-gate.md`, commit `2c20686`.
+- Authoritative `results/README.md` consolidated both #1516 and #1520 at commit `a38141f`.
+- Issue #1520 closed completed, comment 6990795254.
+- Temporary CI branch `agent8-ci-1520-20261118` was required to isolate workflow dispatches from concurrent agents; connector exposes no branch-delete action. It points to the tested commit history and contains no unique research state.
+
+**Interpretation:** retire exactly this two-state first-order family. Do not rescue with more states/phases/resets/lags/byte terms. The zero-F intermediate still lacks a source-selected value mechanism.
+
+
 ## Previous durable context
 
 # Agent 8: current research handoff, 18 November 2026
