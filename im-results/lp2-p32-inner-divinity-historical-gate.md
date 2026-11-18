@@ -24,4 +24,4 @@ The full 81-rune readout is nonlinguistic. The authentic 515-rune LP1 DIVINITY r
 
 Retire this exact **p57 circumference → p32 inner 9×9 → historical DIVINITY cipher** transfer. The result is stronger than a no-skip Vigenère miss because the authentic Fehu ambiguity is exhaustively resolved under the historical forward law. The geometry and p57 wording remain clue candidates, but another cipher consumer needs an independent authored selector.
 
-Reproducer: `sims/agent16_p32_inner_divinity_historical_sft.cjs`.
+Reproducer: `sims/agent16_p32_inner_divinity_historical_sft.cjs`. Windows Node22 PASS: Actions run `44376032771`.
