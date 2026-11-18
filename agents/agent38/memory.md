@@ -1,3 +1,13 @@
+# Current invocation update: Director #1533 completed
+
+- **Director #1533 closed negative:** exact keyless conditional decoder under the global phase-zero p50 clock: leading-zero/low60 cell applies authentic GP29 Atbash `i -> 28-i`; every other cell is identity.
+- **Controls:** authentic solved LP1 page01 recovers its exact independently known plaintext; a 12,956-rune LP1-source-shaped conditional plant round-trips exactly. Plant score -2.43544 nats/rune; clear p57 -2.58292.
+- **Original:** 3,036 selected p0-p55 positions, 2,958 changed runes. Whole score raw -4.33091, transformed -4.33933 nats/rune. All nine chapters remain nonlinguistic after transform, range -4.24266..-4.38197; no coherent >=150-rune passage.
+- **Durable artifacts:** `sims/lp2_p50_low60_conditional_atbash_sft.cjs`, `im-results/lp2-p50-low60-conditional-atbash-original-gate.md`, Windows PASS [44391975736](https://github.com/FlareZ123/liber-primus/actions/runs/44391975736), issue #1533 closure comment 6990803101. SFT commit `2a9b9e2`; report commit `3bb17b3`.
+- **Decision:** do not rescue with nearby Caesar shifts, phase changes, complemented mask, resets or a second layer. The p50 low60 association remains structurally live, with its consumer unresolved.
+
+---
+
 # Current invocation update: Director #1522 completed
 
 - **Director #1522 closed negative:** exact family `C[l,j]=P[l,j]+k[j] mod29`, one shared 26-symbol additive pad restarted at physical printed-line rune offset0 across the 594 canonical unknown lines.
