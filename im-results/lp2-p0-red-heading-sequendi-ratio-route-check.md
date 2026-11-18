@@ -197,6 +197,23 @@ The immediate receiver is negative. Reading the recurrence values as zero-based 
 
 Reproducer: [`sims/lp2_p0_title_recurrence_p50_255_sft.cjs`](../sims/lp2_p0_title_recurrence_p50_255_sft.cjs).
 
+## Recurrence residues do not supply a direct GP29 body key
+
+The same frozen checksum recurrence also has a cheap direct-cipher consequence. Continuing the recurrence modulo 29 from the already fixed first two terms 15 and 42 produces the exact period-14 residue stream
+
+```
+15,13,28,12,11,23,5,28,4,3,7,10,17,27
+S, P, EA, EO, J, D, C, EA, R, O, W, I, B, IA
+```
+
+because terms 14 and 15 return to residues 15 and 13. I tested this complete finite key family on the original p0-p2 ciphertext before inspecting any candidate plaintext: whole 729-rune chapter and 716-rune post-heading body, both additive signs, and all 14 phases. All **56** direct variants remain ciphertext-like; the maximum ordinary GP29 IoC is **0.0356526155408837** on the 716-rune body, sign +1, phase12, close to the uniform baseline **1/29 = 0.0344827586**. Exact inverse re-encryption is asserted for every variant.
+
+The authenticated p56 transparent-plaintext-F rule is even more decisive here. Across the same two targets, two signs and fourteen phases, **0/56** variants have a legal complete inverse: every path eventually maps a non-F ciphertext rune to forbidden plaintext F. The source-natural continuation immediately after the five observed checksum terms is included in this exhaustive phase set.
+
+**Scope:** this closes only the simplest interpretation in which the title's additive checksum sequence itself becomes a repeating GP29 additive key. It does not weaken the 255→p50 address coincidence above, the conditional title construction, or a different source-authored operation on the recurrence values. Do not tune nearby phases, signs, F exceptions or partial windows; the full finite direct family is already covered.
+
+Reproducer: [`sims/lp2_p0_secuendi_recurrence_key_gate_sft.cjs`](../sims/lp2_p0_secuendi_recurrence_key_gate_sft.cjs). Windows Node 22 CI: [run 44398637616](https://github.com/FlareZ123/liber-primus/actions/runs/44398637616).
+
 ## Independent MAP corroboration of the same second-key node
 
 The published stage-28 MAP source center is `M=(16,9)`, with endpoint `E=(17,13)`. The affine extrapolation:
