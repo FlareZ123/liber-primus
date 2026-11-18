@@ -111,6 +111,12 @@ Treat the raw rune output as stronger evidence than its linguistic interpretatio
 
 Reproducer: `sims/lp2_p0_red_heading_raw13_register_geometry_sft.cjs`.
 
+## Original p0 artwork gives an independent reversal cue
+
+The exact original p0 JPEG (`resources/liber-primus/17.jpg`) contains two very large black illustrations at diagonally opposite page positions. A source-pixel connected-component test isolates them as the only two black components above 100,000 pixels. Their tight boxes are **490×1254** pixels each; their binary masks agree at **0.9858 IoU after a 180° rotation**. Their centroids sum to `(2399.077, 3598.992)`, while the 2400×3600 page's exact 180° center condition is `(2399,3599)`.
+
+Thus the page itself visibly and quantitatively demonstrates a 180° reversal before any candidate plaintext is read. This does not by itself specify a cipher, but it independently motivates two operations used below: pairing opposite rectangle corners and reversing the first eight red ciphertext runes. The result is reproduced directly from original JPEG pixels by `sims/lp2_p0_artwork_rot180_symmetry_sft.py`.
+
 ## First eight: anchor symmetry plus an additive checksum chain
 
 The original-image punctuation census, `sims/lp2_original_color_dots_census_sft.py`, establishes that every physical 13-dot mark uses the same **4-5-4** column stencil. At p0 that gives five natural counts:
@@ -175,6 +181,8 @@ LPXNGDROU
 ```
 
 Exactly two symmetry-equivalent configurations give `SECUENDI`; both reverse the original first-word ciphertext and use the same repeating `X-N-X-C` key. Forward addition exactly reconstructs the source.
+
+The original artwork now removes the ciphertext-direction choice independently: use the demonstrated **180° reversal**. Keep the **subtraction** direction already fixed by the source-only second-word derivation. The remaining conventional rectangle read is upper-left → upper-right → lower-right → lower-left, giving `X-N-X-C` directly. Under these choices, the first eight raw runes are `SECUENDI` without consulting a language score. The only nontrivial geometric premise still needing independent authorship is the equal-rune/equal-radius rectangle-family rule.
 
 The selection above does **not** use the full-title sum. After selecting X-N-X-C and the sum99 first-word family, the resulting complete candidate closes on:
 
