@@ -12,17 +12,17 @@ There are **10,060 within-word transitions**. Their difference counts (mod 29) a
 
 `[63,356,373,354,338,349,325,372,328,397,377,362,343,381,369,365,333,313,349,368,373,366,334,390,371,352,349,380,330]`.
 
-Under a uniform 29-symbol stream, difference 0 would occur **346.90** times. Only **63** are observed. The retained zero-transition fraction is therefore **0.18161**, i.e. an inferred **0.81839 suppression**. This is the same order as the established anti-repeat/collision-filter anomaly.
+Under a uniform 29-symbol stream, difference 0 would occur **346.90** times. Only **63** are observed. The retained zero-transition fraction is **0.18161** under an iid-uniform reference. Thus the observed zero bin is **81.839% below that baseline**. This is an effective difference-frequency deficit, **not an estimate of how often the author rejected a candidate symbol**. Collision-suppression mechanisms can produce such a deficit, but no creator-selected mechanism has been identified.
 
 Now remove difference 0 and test the remaining 28 bins against the natural equal-mass collision-repair expectation. There are **9,997 nonzero transitions**, giving **357.04 expected observations per nonzero difference**. The Pearson statistic is **33.5568 on 27 df**, with chi-square survival probability about **0.179**. The largest standardized deviation is difference 17 at **−2.33σ**. A matched 10,000-trial Monte Carlo null using a uniform 29-symbol base plus the measured zero-suppression rate gives mean nonzero chi-square **27.075** and empirical p≈**0.1831** for a statistic at least this large (maximum simulated 71.20). No nonzero difference is remotely comparable to the zero deficit.
 
 ## Consequence for the proposed K_STEP route
 
-A recent external analysis proposed deconvolving the within-word difference distribution against an English transition distribution to infer a nonuniform keystream-step law. The canonical source data do not support treating that inference as a new key-generator signal without a collision-aware model. A uniform key-value stream followed by a rule that suppresses a fraction of equal adjacent ciphertext symbols naturally produces exactly this shape: a deep hole at difference 0 and approximately equal mass in the 28 nonzero bins if replacements are spread across nonzero symbols.
+A recent external analysis proposed deconvolving the within-word difference distribution against an English transition distribution to infer a nonuniform keystream-step law. The canonical source data do not support treating that inference as a new key-generator signal without a collision-aware model. A uniform keystream followed by a rule that suppresses some adjacent equal ciphertext symbols can produce this broad shape: a deep hole at difference 0 and approximately equal mass in the 28 nonzero bins if replacements are spread across nonzero symbols.
 
 The correct conclusion is therefore narrower and more useful:
 
-1. **The zero-difference deficit is real and already explained by the anti-repeat filter family.**
+1. **The zero-difference deficit is real and compatible with anti-repeat filtering; an author-selected filter remains unproved.**
 2. **The nonzero difference bins do not provide a strong new key-step fingerprint.**
 3. **Any full-histogram Fourier/EM deconvolution that ignores the filter is confounded and should not be used to select a keystream family.**
 4. A future step-distribution attack would need to model the collision/rejection mechanism first and then demonstrate a residual nonzero-step structure that survives a held-out null.

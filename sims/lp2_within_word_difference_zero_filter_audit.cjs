@@ -75,7 +75,7 @@ console.log(JSON.stringify({
     observed: d[0],
     uniformExpected: expectedZero,
     retainedFraction: observedZeroFraction,
-    inferredSuppression: repairFraction
+    effectiveZeroDeficitFromUniform: repairFraction
   },
   monteCarlo,
   nonzero: {
