@@ -86,6 +86,20 @@ assert.deepEqual(floralRedTen, [{ page: 49, after: 66, dotCount: 10, ink: 'red' 
 const oneBasedFloralOrdinal = floralRedTen[0].page - 40 + 1;
 assert.equal(oneBasedFloralOrdinal, 10);
 assert.equal(lastGap, Number(htmlId[1]) * oneBasedFloralOrdinal);
+const beforeP54 = imagesP40To55.filter((p) => p.page <= 53)
+  .reduce((sum, p) => sum + p.indices.length, 0);
+assert.equal(beforeP54, 3008);
+const nineFullRegisterRows = 9 * Number(htmlId[1]);
+assert.equal(nineFullRegisterRows, 2979);
+assert.equal(beforeP54 - nineFullRegisterRows, 29);
+const redP53 = annotations.pages.find((p) => p.page === 53).red_spans[0];
+assert.equal(redP53.length, 51);
+assert.equal(redP53.start, 128);
+const redP53StartInRegister = beforeP54 - redP53.length;
+assert.equal(redP53StartInRegister, 2957);
+assert.equal(nineFullRegisterRows - redP53StartInRegister, 22);
+assert.equal(3299 % 29, 22);
+assert.equal(redP53.length, 22 + 29);
 const p54Ink = annotations.pages.find((p) => p.page === 54);
 const originalP54RedHeading = p54Ink.red_spans.find((r) => r.start === 0);
 assert.equal(originalP54RedHeading.length, 9);
@@ -163,6 +177,10 @@ console.log(JSON.stringify({
   tenTimesArchivedId: oneBasedFloralOrdinal * Number(htmlId[1]),
   lastPrimeGapMinusCicada3301: lastGap - 3301,
   sourceP54OpeningRedRuneCountAtSignedFlip: originalP54RedHeading.length,
+  final331RuneRowStartsAtRegisterOffset: nineFullRegisterRows,
+  p53LastRedStanzaStartAtRegisterOffset: redP53StartInRegister,
+  sourceRed51AtRowSeam: [22, 29],
+  finalRowFirst29RedRunesThenP54Red9: true,
   trimmedFloraIoc: sourceIoc,
   directSourceShapeBase29: {
     tenRowsOf331NumeralBytes: byteProfile(tenLongRowsBinary),
