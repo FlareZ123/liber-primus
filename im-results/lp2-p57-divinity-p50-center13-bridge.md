@@ -137,4 +137,4 @@ The loop still does not decrypt unknown runes. Any next p28 experiment must use 
 The printed center `13` → red13 continuation is promising but still one inference short of authentication. The universal base59 attractor189 must not be counted as corroboration.
 
 Reproducer: `sims/lp2_p57_divinity_p50_center13_bridge_sft.cjs`.
-Windows Node22 passes: **44412420619** (initial center bridge), **44413029291** (global-attractor correction), and **44414174775** (expanded EMERGE/DIUINITY reconstruction plus the frozen p57 word-chain and FIND→28 prediction).
+Windows Node22 passes: **44412420619** (initial center bridge), **44413029291** (global-attractor correction), **44414174775** (expanded EMERGE/DIUINITY reconstruction plus the frozen p57 word-chain), and **44415056582** (WITHIN edge plus FIND→p28→π(269)=57 closure).
