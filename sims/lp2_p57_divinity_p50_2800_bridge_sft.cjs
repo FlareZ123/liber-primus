@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * p57 DIVINITY circumference -> p50 28/00 -> historical DH3301 bridge.
+ * p57 DIVINITY circumference -> p50 28/00 -> historical DH3301 -> zero bracket.
  *
  * Run:
  *   node sims/lp2_p57_divinity_p50_2800_bridge_sft.cjs
@@ -19,6 +19,8 @@ const solved = JSON.parse(fs.readFileSync(
   path.join(root, "resources", "external", "relikd-solved-gp29-native-v1.json"), "utf8"));
 const grid = JSON.parse(fs.readFileSync(
   path.join(root, "resources", "liber-primus", "lp2-grid-256.json"), "utf8"));
+const ink = JSON.parse(fs.readFileSync(
+  path.join(root, "resources", "liber-primus", "lp2-ink-annotations.json"), "utf8"));
 const historical2013 = fs.readFileSync(
   path.join(root, "resources", "external", "2013-tcp-server-signed-source.md"), "utf8");
 const lexiconText = fs.readFileSync(
@@ -57,6 +59,7 @@ const outer = [divinity[0], divinity[divinity.length - 1]];
 const primeSum = (values) => values.reduce((sum, v) => sum + corpus.prime[v], 0);
 const innerPrimeSum = primeSum(inner);
 const outerPrimeSum = primeSum(outer);
+
 assert.equal(primeSum(divinity), 376);
 assert.equal(innerPrimeSum, 184);
 assert.equal(outerPrimeSum, 192);
@@ -65,17 +68,21 @@ assert.equal(divinity.length, 8);
 
 const gridCells = grid.pages.flatMap((page) => page.tokens);
 assert.equal(gridCells.length, 256);
-assert.equal(outerPrimeSum - innerPrimeSum, 8);
 assert.equal(gridCells[innerPrimeSum], "28");
 assert.equal(gridCells[outerPrimeSum], "00");
 assert.equal(gridCells[innerPrimeSum] + gridCells[outerPrimeSum], "2800");
+
+const gridBytes = gridCells.map((cell) =>
+  grid.alphabet.indexOf(cell[0]) * 60 + grid.alphabet.indexOf(cell[1]));
+assert.ok(gridBytes.every((value) => value >= 0 && value <= 255));
 
 for (const needle of [
   "base 2757",
   "server secret 331",
   "server public share 1264",
   "client public share 2800",
-  "returned shared value 1067"
+  "returned shared value 1067",
+  "e ≡ 11 (mod 550)"
 ]) {
   assert.ok(historical2013.includes(needle), "missing historical field: " + needle);
 }
@@ -83,6 +90,29 @@ for (const needle of [
 const historicalTuple = [3301, 2757, 331, 1264, 2800, 1067];
 const tupleSeed = historicalTuple.map((value) => value % A);
 assert.deepEqual(tupleSeed, [24, 2, 12, 17, 16, 23]);
+
+// The selected historical modulus reaches the second and only other literal zero cell.
+const secondZero = 3301 % gridCells.length;
+assert.equal(secondZero, 229);
+assert.equal(gridCells[secondZero], "00");
+assert.deepEqual(
+  gridCells.map((cell, i) => cell === "00" ? i : -1).filter((i) => i >= 0),
+  [192, 229]
+);
+assert.equal(secondZero - outerPrimeSum - 1, 36);
+assert.equal(ink.counts.large, 36);
+
+// The table's own byte-as-next-address graph gives 11 cells from 184 through 192.
+const path184to192 = [];
+const seen = new Set();
+for (let at = innerPrimeSum; !seen.has(at); at = gridBytes[at]) {
+  seen.add(at);
+  path184to192.push(at);
+  if (at === outerPrimeSum) break;
+}
+assert.equal(path184to192[path184to192.length - 1], outerPrimeSum);
+assert.equal(path184to192.length, 11);
+assert.deepEqual(path184to192, [184,128,201,74,205,76,114,197,115,247,192]);
 
 const BASE29_DIGITS = "0123456789ABCDEFGHIJKLMNOPQRS";
 /** @param {number} value @returns {number[]} */
@@ -112,6 +142,7 @@ const originalWords = words.map(wordValues);
 
 const multigraphs = ["ING", "TH", "EO", "NG", "OE", "AE", "IA", "EA"];
 const alias = {K:"C", V:"U", Q:"C", Z:"S"};
+
 function encodeEnglish(word) {
   const input = word.toUpperCase().replace(/[KVQZ]/g, (ch) => alias[ch]);
   const out = [];
@@ -124,6 +155,7 @@ function encodeEnglish(word) {
   }
   return out;
 }
+
 const dictionary = new Set();
 for (const line of lexiconText.split(/\r?\n/)) {
   const m = /^([a-z]+) /.exec(line.trim());
@@ -182,6 +214,11 @@ const result = {
     grid192: gridCells[192],
     selectedPrintedPair: gridCells[184] + gridCells[192],
     historicalTuple,
+    historicalClientExponentClass: 11,
+    path184to192,
+    secondZero,
+    zeroBracketLength: secondZero - outerPrimeSum - 1,
+    largePunctuationCount: ink.counts.large,
     tupleSeed,
     shared1067Base29: sharedDigits.map((v) => BASE29_DIGITS[v]).join("")
   },
