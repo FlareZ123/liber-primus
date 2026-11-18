@@ -25,7 +25,7 @@ These facts make circumference shedding a plausible human-facing **selection/che
 | GP-prime sum / `phi` / prime rank checks | GP values and `phi` are authentic Cicada machinery | Aggregate checksums are non-injective; matching p57 sums does not recover runes |
 | Solved-p56 prime/totient transparent-F cipher | Fully authenticated reversible positive control | p27 supplies no source-selected prime stream, clock or start. Existing p27 selected-core and `DIVINITY`-key receiver tests already fail algebraically or produce nonprose |
 | p50 base59 pointer / DH23 state | p27 red13/table closure strongly selects a historical DH object | #1625 shows the signed DH protocol returns a typed integer only; no authenticated KDF, rune serialization or data cipher consumes shared value2 |
-| 2013 `Instar Emergence` XOR precedent | Historically real use of the same parable/audio in 2013 | XOR requires a second equal-length byte operand and byte serialization. No original p27/p50/p55 source object is selected as that operand |
+| 2013 `Instar Emergence` XOR precedent | Historically real offset-zero bytewise use of `761.mp3`; exact Twitter positive recovers the Gematria JPEG | #1650 confirms the p27 INSTAR match is a scalar `phi(sum)=sum(INSTAR)` identification and supplies no GP29→byte serialization, equal-length LP2 operand, MP3 offset/clock or target. The exact offset-zero p27-JPEG transfer is already negative ([source gate](lp2-p27-instar-2013-xor-source-gate.md)) |
 | Red13 stencil geometry | Original visible 13-dot partition selects center/side subsets | A partition/readout checksum, not a reversible mapping of unknown ciphertext |
 
 ## Blind-consequence requirement
@@ -33,6 +33,10 @@ These facts make circumference shedding a plausible human-facing **selection/che
 The strongest current p27 uniqueness tests compare source objects with **known p57 target sums**. They show that the nested matches are unusual, but the target vocabulary is part of the same clear instruction being interpreted. No rule frozen from one p27 object predicts a separate untouched unknown span's plaintext, and no selected operation outputs a source-derived key whose forward application reconstructs an original unknown ciphertext span.
 
 The closest independent structure is the p27 red13→DH23/base59 closure. It predicts historical DH parameters and a table path rather than unknown plaintext. Director #1625 establishes that this path terminates at the shared integer because the authenticated protocol supplies no payload receiver.
+
+## Historical XOR follow-up (#1650)
+
+The exact 2013 Instar/XOR source chain is now closed as a direct LP2 bridge. The historical byte operation is reproducible and validated by recovery of the Gematria JPEG, but the archived XOR opcode is a successful solver reconstruction rather than a signed text command. More importantly, p27's INSTAR relation supplies only a scalar word checksum and no typed byte receiver. It cannot fill the operator gap without a new first-party serialization/operand rule. See [the source gate](lp2-p27-instar-2013-xor-source-gate.md).
 
 ## Consequence
 
