@@ -21,8 +21,12 @@ function read(relative) {
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
+const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const tableTokens = grid.pages.flatMap((page) => page.tokens);
+const alphabet60 = grid.alphabet;
+const alphabet59 = alphabet60.replace("f", "");
 
 /**
  * Physical page mapping for the canonical transcription, whose rune-free p50
@@ -125,6 +129,80 @@ assert.equal(count13.length, 31);
 assert(count13.some((mark) => mark.page === 27 && mark.start === 19));
 assert(count13.some((mark) => mark.page === 57 && mark.start === 7));
 
+/** @param {number} ordinal @returns {number} */
+function nthPrime(ordinal) {
+  let seen = 0;
+  for (let candidate = 2; ; candidate += 1) {
+    let prime = true;
+    for (let divisor = 2; divisor * divisor <= candidate; divisor += 1) {
+      if (candidate % divisor === 0) {
+        prime = false;
+        break;
+      }
+    }
+    if (!prime) continue;
+    seen += 1;
+    if (seen === ordinal) return candidate;
+  }
+}
+
+/** @param {string} token @param {string} alphabet @returns {number} */
+function tokenValue(token, alphabet) {
+  const high = alphabet.indexOf(token[0]);
+  const low = alphabet.indexOf(token[1]);
+  assert(high >= 0 && low >= 0);
+  return high * alphabet.length + low;
+}
+
+// The two red punctuation counts on solved p57 form a closed radix test.
+assert.equal(nthPrime(13), 41);
+assert.equal(nthPrime(23), 83);
+assert.equal(tableTokens[41], "1O");
+assert.equal(tokenValue(tableTokens[41], alphabet59), 83);
+assert.equal(tokenValue(tableTokens[41], alphabet60), 84);
+
+// Derive the final solved word directly from the p57 source and verify its GP0.
+const p57Words = [];
+let currentWord = [];
+for (const char of physicalPageSource(57)) {
+  const value = runeIndex.get(char);
+  if (value !== undefined) {
+    currentWord.push(value);
+  } else if (currentWord.length && "-.const count13 = marks.filter((mark) => mark.count === 13);
+assert.equal(count13.length, 31);
+assert(count13.some((mark) => mark.page === 27 && mark.start === 19));
+assert(count13.some((mark) => mark.page === 57 && mark.start === 7));
+
+§".includes(char)) {
+    p57Words.push(currentWord);
+    currentWord = [];
+  }
+}
+if (currentWord.length) p57Words.push(currentWord);
+const lastWord = p57Words.at(-1);
+assert(lastWord);
+assert.equal(lastWord.map((value) => corpus.translit[value]).join(""), "EMERGE");
+assert.equal(lastWord.reduce((sum, value) => sum + value, 0), 83);
+
+// Family control over every distinct large-punctuation count present in LP2.
+const distinctCounts = [...new Set(marks.map((mark) => mark.count))].sort((a, b) => a - b);
+assert.deepEqual(distinctCounts, [10, 13, 23]);
+function countPairEdges(alphabet) {
+  const edges = [];
+  for (const from of distinctCounts) {
+    const address = nthPrime(from);
+    const decoded = tokenValue(tableTokens[address], alphabet);
+    for (const to of distinctCounts) {
+      if (decoded === nthPrime(to)) edges.push({from, to, address, decoded});
+    }
+  }
+  return edges;
+}
+assert.deepEqual(countPairEdges(alphabet59), [
+  {from: 13, to: 23, address: 41, decoded: 83},
+]);
+assert.deepEqual(countPairEdges(alphabet60), []);
+
 process.stdout.write(JSON.stringify({
   classification:
     "independent source-visible modulus selector; no unknown plaintext recovered",
@@ -133,6 +211,17 @@ process.stdout.write(JSON.stringify({
     histogram: Object.fromEntries([...histogram.entries()].sort((a, b) => a[0] - b[0])),
     unique23: count23[0],
     count13Total: count13.length,
+    p57RadixBridge: {
+      count13Prime: nthPrime(13),
+      tableToken: tableTokens[nthPrime(13)],
+      base59: tokenValue(tableTokens[nthPrime(13)], alphabet59),
+      base60: tokenValue(tableTokens[nthPrime(13)], alphabet60),
+      count23Prime: nthPrime(23),
+      finalWord: "EMERGE",
+      finalWordGp0: lastWord.reduce((sum, value) => sum + value, 0),
+      base59CountPairEdges: countPairEdges(alphabet59),
+      base60CountPairEdges: countPairEdges(alphabet60),
+    },
   },
   independentDhReceiver: {
     page: 28,
@@ -142,5 +231,5 @@ process.stdout.write(JSON.stringify({
     allDhLineStarts: dhLines,
   },
   decision:
-    "Solved p57 terminates with the only 23-dot large punctuation mark in LP2; independently selected p28 line6 is the only DH-starting unknown line and has length23. Treat terminal23 as an independent source-visible selector for DH modulus p=23, while 13-dot punctuation is common and must be selected locally.",
+    "Solved p57 terminates with the only 23-dot large punctuation mark in LP2. Its own 13-dot and 23-dot marks form the unique punctuation-count edge 13th-prime=41 -> p50[41]=1O -> base59 83 = 23rd-prime = GP0(EMERGE), while base60 fails. Independently selected p28 line6 is the only DH-starting unknown line and has length23. Treat p57 punctuation as an independent prime/radix/modulus selector, while ordinary 13-dot punctuation remains common.",
 }, null, 2) + "\n");
