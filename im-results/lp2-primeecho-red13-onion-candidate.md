@@ -62,37 +62,53 @@ interesting numerical alignment, but it is also the route's clearest selection
 weakness: the actual rank needs 130 bits, so the manuscript does not literally
 say "take a 129-bit rank."
 
-## 3. p27-local factors
+## 3. Prime factorization matches the selected p27 neighborhood
 
-The independently selected destination page p27 has one red thirteen-dot mark
-at local rune offset **19**. The **27th prime is 103**. The whole manuscript
-contains **31** thirteen-dot marks when the lone black mark is restored.
+Factor the red-only rank directly. Its complete factorization is:
 
-Those three source quantities define
+~~~text
+816613232064430740393939040116034006349
+= 19
+× 31
+× 103
+× 25795396177
+× 521821166063052627702311
+~~~
 
-[
-D = 31	imes19	imes103 = 60667.
-]
+The three small prime factors are independently present in the exact p27
+neighborhood selected by the duplicated `DJU / BEI` handoff.
 
-The red-only lexicographic rank is exactly divisible by this value:
+- **19** is the length of p27's red heading and the local rune offset of the
+  red thirteen-dot mark immediately after it. That offset is also the start of
+  line 2.
+- **31** is the local rune offset where `BEI`, the second anchor word, begins.
+  `DJU` occupies offsets 28–30 and `BEI` occupies 31–33.
+- **103** is the GP-prime sum of `AEF`, the word immediately following
+  `DJU / BEI` on line 2.
 
-[
-R = 60667	imes
-13460583712140549893581997463465047.
-]
+Two further echoes are present but are not needed for this match: the whole
+manuscript has **31** thirteen-dot marks, and **103 is the 27th prime**.
 
-The residual factors exactly as
+The product of the three p27-local small factors is:
 
-[
+~~~text
+19 × 31 × 103 = 60667
+~~~
+
+The residual is:
+
+~~~text
 13460583712140549893581997463465047
-= 25795396177
-	imes
-521821166063052627702311.
-]
+= 25795396177 × 521821166063052627702311
+~~~
 
 Both residual factors pass the fixed-base probable-prime checks in the
-reproducer; independent SymPy testing during discovery also classified both as
-prime.
+reproducer. Independent SymPy testing during discovery also classified both
+as prime.
+
+This local match is materially stronger than defining a divisor from generic
+page-level numbers after seeing the factorization. All three small factors can
+be read from the selected red-marked line and its immediately adjacent words.
 
 ## 4. Candidate Tor-v2 destination
 
@@ -169,13 +185,16 @@ were fixed before the candidate emerged:
   convention were frozen by earlier work;
 - the gap 30 selects the red thirteen-dot subclass without choosing an
   arbitrary number of marks;
-- p27 supplies the local red-mark offset 19 and page number 27;
+- the selected p27 line independently reproduces the three small prime factors
+  19, 31, and 103 from its red-heading boundary, `BEI` start, and following
+  `AEF` prime sum;
 - Tor-v2 is historically plausible as a 2014 Cicada destination format.
 
-The weakest unsupported steps are still substantial: using the **floor** of
-the red-only combinatorial capacity to connect 129, multiplying
-`31 × 19 × prime(27)`, and interpreting the 79-bit residual prime as the
-payload rather than treating the factorization as coincidence.
+The remaining unsupported steps are substantial. The red-only combinadic rank
+operation was motivated earlier but has not been authenticated by the
+manuscript. The floor-capacity match 129 is only corroborative because the
+rank itself needs 130 bits. The final choice to interpret the 79-bit residual
+prime as a Tor-v2 payload still needs an external receiver or historical hit.
 
 ## 7. Decisive next tests
 
@@ -185,9 +204,10 @@ Treat this as a high-priority candidate continuation, not a solution.
    frozen rank convention.
 2. Search preserved 2014–2017 Tor/onion crawl indexes for the exact host
    `nz77w2upkfkyj4rh.onion`.
-3. Seek an **independent manuscript cue** that selects the divisor
-   `31 × 19 × 103` or the larger residual factor. A source cue that predicts
-   the same address would materially upgrade the route.
+3. Seek an independent cue that selects the **79-bit residual factor** as the
+   Tor payload or supplies a receiver for the remaining 35-bit prime. The
+   three small factors now have direct p27-local matches; the unresolved
+   selection is which residual factor is the destination payload.
 4. Do **not** search alternate rank conventions, punctuation subsets, factor
    combinations, byte orders, or base encodings merely to obtain more
    address-like strings.
