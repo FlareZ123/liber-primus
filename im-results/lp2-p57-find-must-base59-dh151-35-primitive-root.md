@@ -533,6 +533,31 @@ This rejects the direct ring-value modulo-76 and stable-rank transposition recei
 
 **Reproducer:** [original-source Node SFT](../sims/lp2_p55_k73_outerring_permutation_sft.cjs).
 
+## New independent entry from the p27/DH23 circumference route
+
+The FIND/MUST pair now has an upstream selector that did not exist when this
+branch was first evaluated. The p27/DH23 route recovers client private exponent
+**15** from the geodesic between addresses186 and189 on the twice-shed p50
+circumference. Canonical p57 word15 is **FIND**, immediately after the
+CIRCUMFERENCES clause.
+
+This makes `FIND=151 -> phi(151)=150` causal rather than a free choice among
+p57 words. The same signed shared value2 gives a literal radial traversal
+across successive circumferences:
+
+`cell151 (depth0) -> cell150 (depth1) -> cell149 (depth2)`.
+
+Under base59, cell151=186=MUST, cell150=151=FIND at address
+`phi(151)=150`, and cell149=171 with `171 mod151=20`, selecting p57
+word20 EMERGE. Cell149 is on the 60-cell ring independently selected by
+`phi(MUST=186)=60`; EMERGE's prime sum300 returns to the upstream p55
+boundary. Base60 fails the same verb chain.
+
+This materially strengthens **FIND/MUST/base59 as navigation**. It does not by
+itself authenticate the later DH151 scalar73, its private-exponent choices, or
+any p55 receiver. Those downstream negatives remain valid. See
+[`lp2-p27-dh23-find-emerge-radial-loop.md`](lp2-p27-dh23-find-emerge-radial-loop.md).
+
 ## Assessment and next decision
 
 **Exact original-source observations:** the adjacent base59 FIND/MUST table pair

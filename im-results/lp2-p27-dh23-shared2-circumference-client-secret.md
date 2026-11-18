@@ -111,6 +111,30 @@ exponent15** without searching exponents, KDFs, GP29 shifts, or plaintext.
 This closes both private exponents of the historical worked exchange
 conditionally on the existing p27/DH/base59 interpretation.
 
+## Independent downstream holdouts
+
+The recovered exponent15 now makes two manuscript-side predictions fixed
+independently before this circumference result. P57 has 20 canonical printed
+words and **word15 is FIND**, immediately after word14 CIRCUMFERENCES.
+
+Pair the recovered client secret15 with signed shared value2 in the 32x8 table:
+`15*8+2=122`. Cell122 is token `1Q`; base60 reads **86=WE** while
+base59 reads85. Address122 had already been selected by the independent p27
+red-heading circumference parser: the once-shed 13-rune survivor has prime
+sum673, whose prime ordinal is122, and the same cell returns WE=86.
+
+Following word15 FIND gives a source-only radial continuation. FIND has prime
+sum151 and `phi(151)=150`; base59 cell150 is a 151 self-pointer. The
+immediately outward cell151 is base59 **186=MUST**. Signed shared value2 gives
+two inward circumference steps `151->150->149`; cell149 lies on the selected
+60-ring and has base59 value171, with `171 mod151=20`. P57 word20 is
+**EMERGE**, whose prime sum300 returns to the independently selected p55
+boundary300.
+
+See
+[`lp2-p27-dh23-find-emerge-radial-loop.md`](lp2-p27-dh23-find-emerge-radial-loop.md)
+for the focused navigation-loop reproduction.
+
 ## Controls and evidentiary boundary
 
 The new client-exponent result has no ring-start or clockwise choice: shortest

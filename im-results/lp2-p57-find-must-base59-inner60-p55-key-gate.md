@@ -88,10 +88,36 @@ The two complete 8-bit codebooks are **exactly observationally tied** on the unm
 
 ## Decision and limits
 
-The historical first-party material discussed in the [source-clue review](lp2-p0-red331-row27-phi151-closed-loop-original.md) and [authenticated method synthesis](../workplace/integrated-original-inversion-challenge.md) includes the explicit \`FIND\`, \`WITHIN\`, \`EMERGE\`, \`circumferences\`, \`primes\`, \`totient\`, and 2016 \`words/numbers/direction\` language. **No authenticated dated 2013–2016 command has been identified that chooses the f-omitting radix, an outward-to-p55 mapping, a reversible byte→GP29 operation, a 76-rune key clock, or the plaintext-F skip handling.** Thus the source-selected inverse required by #1357 is missing. This is an evidentiary limitation, not a claim that all undiscovered historical material is absent.
+The original direct-decryption conclusion remains intact: no authenticated
+2013–2016 source specifies an outer-to-p55 byte/rune receiver, a 76-rune key
+clock, or the plaintext-F handling needed to turn the FIND/MUST geometry into
+unknown plaintext. The two tested inner-60 additive consumers and the other
+completed p55 receivers remain exact negatives and should not be rerun.
 
-The previous complete original-p55 inversion already disproves the two exact **base59 inner-60→outer-76 additive** candidates under the p56 subtraction/transparent-F model: raw values mod29 and \`φ(value)\` mod29 with \`φ(0)\` omitted. It finds forced invalid plaintext-F at original offsets5/12 and0/0 respectively and successfully recovers its 76-rune source-native positives. The prior FIND=151 prime-totient and p56+p57 known180 additive consumers are likewise negative. These expensive tests were **not rerun** for #1357.
+The earlier statement that the FIND/MUST address grammar lacked an independent
+source selector is now **superseded for navigation** by the p27/DH23
+circumference route. Independently recovered client private exponent **15**
+selects p57 word15 **FIND** immediately after the circumference clause. Its
+prime sum151 and divinity `phi(151)=150` enter the existing self-pointer at
+cell150. Signed shared value2 gives exactly two inward circumference steps
+from outer cell151 through FIND150 to cell149 on the selected 60-ring. Under
+base59:
 
-**Close the address grammar as an independently justified *decipherment route* until a first-party reversible receiver or a genuinely independent original-page prediction is found.** Retain the underlying observed source words/cell arithmetic in the historical/source-clue reports, but do not use this branch to commission another offset, spiral, residue or key-family sweep. No unknown LP2 plaintext, authentic p55 key, web hash preimage or final Cicada destination has been recovered.
+`151:186=MUST -> 150:151=FIND -> 149:171; 171 mod151=20=EMERGE word position`.
 
-**Reproducers:** [original p55 direct-key gate](../sims/lp2_p57_find_must_base59_inner60_p55_key_sft.cjs) and [source-token/address null SFT](../sims/lp2_p57_find_must_address_null_sft.cjs), seed \`0x6d3fbe21\`, 300,000 trials per family. The latter reads only canonical resource files and makes no repo mutations.
+EMERGE has prime sum300, returning to the independently selected p55
+boundary300. See
+[`lp2-p27-dh23-find-emerge-radial-loop.md`](lp2-p27-dh23-find-emerge-radial-loop.md).
+
+This reopens the address grammar as a **source-constrained navigation loop**,
+while leaving it closed as a p55 decipherment method. It also supplies a new
+base59 discriminator at the radial cells: base60 gives 189,153,174 and does
+not reproduce MUST/FIND/EMERGE. No unknown LP2 plaintext, authentic p55 key,
+web-hash preimage, or final destination follows yet.
+
+**Reproducers:** the original p55 negatives remain
+[`lp2_p57_find_must_base59_inner60_p55_key_sft.cjs`](../sims/lp2_p57_find_must_base59_inner60_p55_key_sft.cjs)
+and
+[`lp2_p57_find_must_address_null_sft.cjs`](../sims/lp2_p57_find_must_address_null_sft.cjs).
+The new navigation continuation is
+[`lp2_p27_dh23_find_emerge_radial_loop_sft.cjs`](../sims/lp2_p27_dh23_find_emerge_radial_loop_sft.cjs).
