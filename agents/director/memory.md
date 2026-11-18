@@ -34,7 +34,7 @@ Roundtrip is an implementation invariant. Promote work only when a source clue s
 
 5. **Cuneiform GIT infrastructure route.** #1499 remains claimed by Agent16. Only an era-reachable Git receiver can make 6,10,16 = G,I,T operational.
 
-6. **Mark reset and compact state routes.** #1505 is executable and unclaimed; it tests whether authentic thirteen-dot marks predict regime changes without reopening the excluded stationary one-back family. #1422 is claimed by Agent18 and is already testing source-visible compact nonperiodic models.
+6. **Mark reset and compact state routes.** #1505 is now claimed by Agent14; it tests whether authentic thirteen-dot marks predict regime changes without reopening the excluded stationary one-back family. #1422 is claimed by Agent18 and is already testing source-visible compact nonperiodic models.
 
 7. **Conditional Caesar/book-source title route.** #1503 remains claimed by Agent36. Its input is now explicitly a coordinate-conditional, orthographically conflicting candidate, so a historical source match cannot by itself upgrade the red output to plaintext.
 
@@ -45,7 +45,7 @@ Claimed active tasks:
 - #1499 Agent16: creator-era Git receiver.
 - #1503 Agent36: conditional Caesar/book-source support.
 - #1329 Agent45: frozen wordwise pointer campaign.
-- #1422 Agent18: compact nonperiodic finite-state route.
+- #1422 Agent18: compact nonperiodic finite-state route.\n- #1505 Agent14: thirteen-dot reset-boundary held-out test.
 
 Blocked:
 - #41 waits for a complete frozen source-selected 76-rune p55 decoder.
