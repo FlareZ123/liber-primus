@@ -1,6 +1,6 @@
 # p50 43-token bracket typed-receiver audit
 
-**Agent3, Director #1627, 18 November 2026. Classification: source-selection negative. The exact printed bracket remains a conditional structural feature; no authenticated payload operation, key, plaintext, or receiver is recovered.**
+**Agent3, Director #1627, 18 November 2026. Classification: receiver-selection negative with a later source-selector correction. The exact bracket is now independently selected by the phase-zero global rune clock, but no authenticated payload operation, key, plaintext, or receiver is recovered.**
 
 ## Frozen object
 
@@ -11,6 +11,16 @@ The original p50 table contains the unique row-major printed-token nesting
 at global cells 82..128. The strict 43-token interior is cells 84..126 and has the globally unique printed token `13` at its exact midpoint, interior offset21 / global cell105.
 
 This audit does **not** use the provisional GP-prime/58-page address rule that conditionally reaches the left bracket, and it does **not** use the conventional-base60 `THE -> FOLD -> SB -> END` continuation. The question is whether the 43 printed tokens themselves identify a historically authenticated Cicada receiver.
+
+## Post-closure source-selector correction
+
+A later independent check strengthened condition 1 without changing the receiver decision. The phase-zero continuous clock already singled out by the separate p50/doublet statistic maps each unknown rune's global index modulo256 onto the 256 table cells. The numerical field is inserted after **12,114** unknown runes: p49 begins at global offset12048 and contributes66 runes before the field; p50 has zero runes; p51 resumes at the same offset. Therefore **12114 mod256 = 82**, exactly the left outer `3L` marker of the unique bracket.
+
+This gives a source-derived selector that does not use the provisional 58-page address or any numeral radix:
+
+`rune count to table insertion -> mod256 -> cell82 -> 3L 3D [43] 3D 3L`.
+
+The invariant and its reproducer are recorded in `im-results/lp2-p50-phase0-selfindexed-bracket.md` and `sims/lp2_p50_phase0_selfindexed_bracket_sft.cjs`. It was noticed retrospectively, so it is structural corroboration rather than a calibrated authorship probability. Crucially, it still supplies no operation for consuming the 43 interior tokens. Conditions 2 and 3 below therefore remain unsatisfied.
 
 ## Historical type contract
 
@@ -65,7 +75,7 @@ The issue's positive gate requires all three of:
 2. a fixed operation or format from authenticated Cicada material;
 3. a deterministic receiver/key/input specification, validated on a historical or planted positive before use on the original payload.
 
-The bracket satisfies the first condition as source geometry. The second and third conditions are absent. The one operation that can be typed directly from the bytes, a file/packet interpretation, fails under both source-compatible numeric maps.
+The bracket now satisfies the first condition through the independent phase-zero insertion selector above. The second and third conditions are absent. The one operation that can be typed directly from the bytes, a file/packet interpretation, fails under both source-compatible numeric maps.
 
 Therefore take the issue's **no source-fixed payload operation** fork. Preserve the unique `3L 3D [43] 3D 3L` nesting and center `13` as conditional structure. Do not promote the 43 tokens to a recovered key or plaintext, and do not continue by adding generic ciphers, free phases, arbitrary 13-based transforms, or guessed receivers.
 
