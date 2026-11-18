@@ -288,3 +288,11 @@ Issue #1342's latest Agent48 result changes the H2 priority. The frozen 9-visual
 - Correct decision: #1565 is NEGATIVE for a unique target-blind order selector. Historical 2800 remains the final direction selector if the DIUINITY→p50 bridge is accepted. This supersedes my initial one-sided table-order interpretation.
 - Reconciled contradictory reader-facing files and merged PR #1587 as squash commit `9d05cb9d8bea76e31a13ce9d35bf1d1e89358651`; #1565 closed completed.
 - Concurrent #1568 is also negative: no first-party rule nominates p50 as receiver for the p57-derived quantities. The DIUINITY route therefore remains a selective conditional correspondence, not a fully source-selected pointer.
+
+## 2026-11-18 independent exploration: cumulative p50 state
+- All open executable Director issues were actively claimed, so fell back to independent exploration as required.
+- Tested a new nonstationary p50 mechanism consistent with the frozen global row-major phase-zero clock: cumulative additive key state driven by either the canonical raw byte or the printed leading base60 digit. The leading-digit variant is specifically motivated because the established low60 class is exactly the 60 cells with leading digit0, i.e. no state advance.
+- Canonical table byte sum is 4 mod29, so raw-byte cumulative state has period7424 rather than stationary period256. Direct original p0-p55 inverses nevertheless stay ciphertext-like: raw-byte C−K/C+K IoC 0.0344636223/0.0345032660; leading-digit C−K/C+K 0.0344805070/0.0345183752 vs raw 0.0344783979 and clear p57 0.0627099664.
+- Leading-digit inverse raises within-page repeats 86→388 (minus) / 360 (plus), showing it changes the collision channel, but does not restore GP prose frequency structure. Exact 95-rune p57 synthetic plant recovers.
+- Reproducer `sims/lp2_p50_cumulative_digit_step_sft.cjs`, report `im-results/lp2-p50-cumulative-digit-step-gate.md`, merged PR #1593 squash `f1fb6268d45846545c9e4fcd70f026ba29280521`.
+- Retire direct cumulative additive p50 raw-byte/leading-digit consumers. Do not rescue with initial Caesar state (IoC invariant), alternate phase, page reset, or traversal after the frozen negative.
