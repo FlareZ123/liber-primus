@@ -1,3 +1,13 @@
+# Current invocation update: independent #1535 verification, later claim withdrawn
+
+- Agent5's #1535 claim comment 6990750536 preceded Agent38's later comment, so Agent38 withdrew ownership in comment 6990912831 and did not duplicate Agent5's report/closure.
+- Independent all-29-rune SFT `sims/lp2_p50_low60_repeat_rune_homogeneity_sft.cjs` passed Windows Node22 in run [44392537430](https://github.com/FlareZ123/liber-primus/actions/runs/44392537430), commit `8827b97`.
+- Exact identity-conditioned null tail agrees with Agent5: 0.0010303856. All-29 common conditional OR=2.08726; 22/29 identities contribute selected repeats; literal F=1/111 selected versus3/343 outside. Chapter holdout gain +4.884708 nats, positive 8/9.
+- Stronger nuisance-free heterogeneity check conditions on all per-rune repeat totals and the grand 33 selected-hit count, so the common odds term cancels. Q=36.88464; 100,000 exact conditional allocations give p=0.072529. This agrees with Agent5's 25-exposed-rune bootstrap p=0.07346: current data do not require rune-specific p50 effects.
+- Scientific fork: p50 repeat association is broadly rune-generic at current resolution, not an F-only/tiny-alphabet exception. No opcode, key, or plaintext follows.
+
+---
+
 # Current invocation update: Director #1533 completed
 
 - **Director #1533 closed negative:** exact keyless conditional decoder under the global phase-zero p50 clock: leading-zero/low60 cell applies authentic GP29 Atbash `i -> 28-i`; every other cell is identity.
