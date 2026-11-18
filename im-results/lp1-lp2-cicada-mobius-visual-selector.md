@@ -1,32 +1,37 @@
-# LP1/LP2 cicada artwork and candidate Möbius direction selector
+# LP1/LP2 cicada artwork and candidate Möbius orientation code
 
-**Status:** intermediate source/visual finding; not a decipherment.
+**Status:** intermediate source/visual evidence; not a decipherment, key recovery, or authenticated directional rule.
 
-## Observation
+## Full 75-image scan
 
-The original scans contain the same cicada artwork in five locations. A fixed-crop, grayscale-thresholded, 8-connected-component SFT compares the silhouettes without OCR, resizing, language scoring or cipher fitting. Reproducer: sims/lp1_lp2_cicada_mobius_sft.py.
+The same cicada-like asset appears in six original LP1/LP2 JPEGs: LP1 p1, p9, p13, p15, p16, and LP2 p2. The full-corpus reproducer is [sims/lp1_lp2_cicada_fullscan_sft.py](../sims/lp1_lp2_cicada_fullscan_sft.py); it uses the original 75 JPEGs, the fixed p16 crop, eight dihedral transforms, quarter-scale normalized template matching, and fixed-crop checks for the already identified pages.
 
-| Physical page | Original image | μ(page) | ω(page) | Observed copy |
+| Physical page | Original image | μ(page) | ω(page) | Observed transform state |
 |---|---:|---:|---:|---|
-| LP1 p9 | 09.jpg | 0 | 1 | One base-orientation cicada |
+| LP1 p1 | 01.jpg | +1 | 0 | Two quarter-turn copies, one additionally mirrored |
+| LP1 p9 | 09.jpg | 0 | 1 | One base-orientation copy |
 | LP1 p13 | 13.jpg | −1 | 1 | One horizontal reflection |
-| LP1 p15 | 15.jpg | +1 | 2 | Two 90°-turned copies, one additionally mirrored |
-| LP1 p16 | 16.jpg | 0 | 1 | One base-orientation cicada |
+| LP1 p15 | 15.jpg | +1 | 2 | Two quarter-turn copies, one additionally mirrored |
+| LP1 p16 | 16.jpg | 0 | 1 | One base-orientation copy |
 | LP2 p2 | 19.jpg | −1 | 1 | One horizontal reflection |
 
-Here μ is the standard Möbius function and ω counts distinct prime factors. The number of copies equals ω(page) for all five observed pages. After thresholding grayscale below 140 and retaining 8-connected components of at least 500 pixels, p9 and p16 are identical; p13 is an exact horizontal flip of p16. LP2 p2 and each p15 insect differ by only 35 pixels from the corresponding transformed p16 mask, with intersection-over-union above 0.999. The original pages are 2400×3600 pixels; exact crop coordinates and assertions are pinned in the SFT.
+The full scan's only pages with best normalized correlation ≥0.60 are exactly [1, 9, 13, 15, 16, 19]. Best scores are p1 0.6507, p9 0.8883, p13 0.8885, p15 0.8803, p16 0.8883, and p2 0.8118. The strongest noncandidate is image49 at 0.2412. Image01 has two distinct non-overlapping quarter-turn matches, 0.6507 and 0.6303, corresponding to the two-copy pattern also present on p15.
 
-This is a striking **visual correlation**: μ=0 accompanies the base asset, μ=−1 the horizontal reflection, and μ=+1 the paired quarter-turns. It is compatible with the 2016 signed instruction that “their numbers are the direction”; the small infinity-like mark below the LP2 p2 insect is also compatible with a Möbius hint. Neither establishes that the author intended μ(page), and the small sample leaves decorative layout choices as a live rival. Do not promote the mapping to a cipher rule.
+The fixed-crop checks retain the earlier exact findings: p9 and p16 masks are identical; p13 is an exact horizontal flip of p16; p2 differs from that reflected mask by 35 pixels with IoU above 0.999; and each p15 copy differs from its corresponding quarter-turn transform by 35 pixels with IoU above 0.999.
+
+The observed transform state correlates with the standard Möbius function of the physical page number: μ=+1 accompanies the paired quarter-turn state (p1, p15), μ=0 the base state (p9, p16), and μ=−1 the horizontal reflection (p13, p2). This is a stronger six-page source pattern than the earlier five-page observation. **The earlier copy-count = ω(page) suggestion is withdrawn:** p1 has two copies but ω(1)=0. Copy count is not a general ω rule.
+
+This remains a visual correlation. It does not establish that the author intended μ(page), or that the transform state is a cipher instruction. The p2 insect's head faces right, while μ(2)=−1. Reading the head literally as an arrow suggests east; interpreting the negative Möbius value as a signed horizontal direction suggests west. No first-party instruction yet chooses between those conventions. The small infinity-like mark below the p2 insect is compatible with a Möbius hint but may be decorative.
 
 ## Plausible human solve path
 
-A solver who recognized the repeated cicada could compare its orientations and then notice the page-number arithmetic. The number-theoretic fit suggests that the page number might control a directional/reflection state. The LP2 p2 instance is horizontally reflected and faces right; μ(2)=−1. The 27×27 bootstrap already uses a Möbius-derived key rotation, so the visual pattern could be an independent clue that μ belongs in the intended directional mechanism. This does not authenticate the totient step or the exact key rotation.
+A solver could notice the repeated asset, compare its orientation states, then calculate μ for the page numbers. The six occurrences form two repetitions of the three visual states: +1 quarter-turn pair, 0 identity, −1 horizontal reflection. The 2016 signed instruction that numbers supply direction makes a directional interpretation plausible. The original source still does not specify whether to read the visual facing, the sign of μ, or the inverse of the reflected orientation as the direction.
 
-The p2 page also carries a small infinity-like mark below the insect. It may be a Möbius/loop hint, but it may be decorative; no inference about toroidal wrapping is justified from that mark alone.
+The p2 page is physically part of the p0–p2 27×27 bootstrap. A later source-only physical-boundary test selects the westward I MAY branch, which agrees with the signed-μ→west reading, but the boundary grammar was recognized after the public candidate route. This convergence is conditional corroboration, not authentication of the Möbius direction rule.
 
-## Bounded tests
+## Bounded μ tests
 
-Two natural direct interpretations of μ as a path operation were tested and failed:
+Two direct interpretations of μ as a path operation were tested and failed:
 
 1. **The p16 3301 magic-square turn sequence.** Take the 25 square values in row-major order, apply μ, and interpret −1 = left, 0 = straight, +1 = right. Start at the center of the p0–p2 27×27 grid, heading east as suggested by the p2 cicada, then read after each move. The 25-step path stays in bounds, ends at zero-based (14,11), does not close, and reads:
 
@@ -36,26 +41,30 @@ Two natural direct interpretations of μ as a path operation were tested and fai
 
 2. **A μ-signed word-prime-sum jump.** Let Sᵢ be the GP-prime sum of original printed word i and define next(i) = (i + μ(Sᵢ)Sᵢ) mod N. On the correctly joined original 2,896-word / 12,956-rune LP2 corpus, word 0 SHEOGMIAF (S=347, μ=−1) jumps to word 2549 EOEANGAE (S=427, μ=+1), then to word 80 THP (S=48, μ=0), which is a fixed point; the graph has 1,116 cycles. The solved p57 control follows PARABLE → OUR → OWN → SURFACE → LICE, then fixes at LICE. This direct word-jump interpretation is not a plaintext decoder.
 
-The p55 line-4 mapline sums 60, 129, 159 have μ values 0, +1, +1. Agent2 has been asked whether a fixed coordinate model exists that makes these direction labels testable; none is currently established.
+## p55 mapline correction
 
-## Actionable block-5 selector hypothesis
+The earlier p55 line-4 proposal CX / DJU / BEI with GP-prime sums 60 / 129 / 159 is invalid as a complete-word interpretation. The finite prime_echo boundary300 cuts the canonical word CEAIMCX after rune4/6, so CX is only a continuation fragment. The first two intact complete words are DJU / BEI, with sums 129 / 159 and μ=+1 for both. The source-selected p55→p27 repeated-pair handoff remains an intermediate structural observation, but it supplies no 0-versus-+1 Möbius direction contrast. See [the corrected p55/p27 word-map report](lp2-p55-p27-wordmap-null.md) and [its source SFT](../sims/lp2_primeecho_intact_pair_handoff_sft.cjs).
 
-In Agent28's current p0–p2 block-5 tie, the I | MAY candidate at source index 693 reads west, while X | EARTH at index 357 reads east (inferred from the original word-boundary crossing after its first output rune). LP2 p2's cicada faces right and has μ(2)=−1; **if** it is a direction marker, it favors the eastward X | EARTH branch.
+## p0 block-5 status: physical boundary selects west, not the cicada alone
 
-Agent28 has been asked to confirm the exact path coordinates and test this without language scoring. Acceptance requires forward re-encryption and continuation into the next block under the same frozen operation. If the next block fails, reject the selector rather than rescuing it with a new rule. X | EARTH is not recovered plaintext.
+The former block-5 tie was I | MAY (west) versus X | EARTH (east). The committed [physical-p2-boundary SFT](../sims/lp2_p0_block5_p2_boundary_chain_sft.cjs) now selects the westward I MAY branch without language scoring: the original page lengths 262 / 266 / 201 place the physical p2 start at grid cell (20,16); the frozen mirror/boundary grammar yields one block-5 boundary hit, then the chain continues through CRY, NOW THE, and IDEA. The report is [lp2-p0-block5-branch-continuation-gate.md](lp2-p0-block5-branch-continuation-gate.md).
+
+This selector is independent of μ(2): the SFT uses μ only inside its local mirror-node key derivation, not on the page number. The mirror/totient/boundary grammar was recognized after the public route was known, so it is still intermediate rather than an authenticated decoder. The p2 artwork's right-facing head and the negative page-number value remain competing visual conventions; the boundary SFT does not resolve which one the creator intended.
 
 ## Limitations and classification
 
-- Five observed pages are a small sample. The transformation-to-μ mapping is an interpretation, not a first-party instruction.
-- The p15 pair's two copies match ω(15)=2, and the other four pages each have one copy matching ω=1, but this may be a deliberate visual flourish rather than a cipher.
-- The p2 infinity-like mark does not prove a Möbius strip, wraparound, or a toroidal grid.
-- The direct μ-turn and μ-signed word-jump tests are negative; they do not falsify every possible use of μ.
-- No plaintext, key, cipher architecture, or destination has been recovered from this observation.
+- The six-page transform/μ correspondence is source-visible and reproducible, but remains a small-sample visual correlation.
+- The p1 addition invalidates the earlier copy-count = ω(page) claim.
+- Neither the infinity-like mark nor the reflected insect proves a Möbius strip, wraparound, or a toroidal grid.
+- The direct μ-turn and μ-signed word-jump tests are negative.
+- The p0 physical-boundary chain is post-hoc and does not authenticate the visual μ-direction convention.
+- The p55 three-value mapline direction interpretation is withdrawn because CX is not a complete word.
+- No unknown plaintext, author key, cipher architecture, or intended destination has been recovered from this artwork.
 
 ## Reproduction
 
 Run from the repository root:
 
-    python sims/lp1_lp2_cicada_mobius_sft.py
+    python sims/lp1_lp2_cicada_fullscan_sft.py
 
-Inputs are the original JPEGs under resources/liber-primus. The script pins the crop coordinates, threshold, component-size cutoff, and μ/ω calculations. The word-jump and magic-square turn tests above are separately specified by their exact formula, ordering, start, direction and output.
+Dependencies: numpy, Pillow, and opencv-python-headless. The script pins the original p16 template crop, grayscale threshold, component cutoff, all eight transforms, quarter-scale matching, candidate threshold, and fixed-crop assertions. The older five-page fixed-crop test remains at sims/lp1_lp2_cicada_mobius_sft.py.
