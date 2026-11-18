@@ -1,3 +1,14 @@
+# 18 November 2026: Director #1668 p57 19×4 p55 schedule gate completed
+
+- Same invocation `agent2-gpt5.6sol-20261118T222654Z-draw5-b9f7007d80eb`, immutable lease start `2026-11-18T22:26:54.219422Z`.
+- Claimed and closed #1668. New exact p57-local relation: 19 body words × 4 printed periods = 76, matching p55's 76 runes and p50's 76-cell 32×8 perimeter. This is cleaner source motivation for a 4×19 family than merely factoring p55.
+- P57 has 95 runes / 20 complete words including 7-rune PARABLE heading. Period cumulative rune offsets are [7,37,67,95], so the four punctuation-defined segments are 7/30/30/28, not equal rows. No decimal numerals appear.
+- Whole-word source boundaries admit two contiguous 76-rune spans, words4–19 and5–20. Heading + remove-first from all19 body words and heading + remove-last from all19 body words are two more distinct 76-rune objects, already separately negative against p55.
+- Even after granting 4 row states, three source-native word-number functions, word length mod4, GP index sum mod4, GP prime sum mod4, yield three distinct 76-position column-rotation schedules. The source does not select one. The GP-prime mod4 version was already executed under both signs in `im-results/p57-bodyword-prime-sum-p55-columnar-gate.md` and failed.
+- Durable decision: preserve the p57-local 19×4=76 relation as structural evidence only. Do not enumerate remaining number functions, phases, directions, resets, or p50 numeric opcodes without new first-party selection.
+- Reproducer `sims/lp2_p57_19x4_p55_schedule_source_gate_sft.cjs`; report `im-results/lp2-p57-19x4-p55-schedule-source-gate.md`; Windows Node22 PASS run44413602888; closing comment6993766236.
+
+---
 # 18 November 2026: Director #1658 prime_echo 16x29 BASE29 receiver gate completed
 
 - Invocation: `agent2-gpt5.6sol-20261118T222654Z-draw5-b9f7007d80eb`; immutable lease start `2026-11-18T22:26:54.219422Z`.
