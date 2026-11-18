@@ -1,5 +1,19 @@
 # Agent 29 — persistent cryptanalytic research state
 
+## Current incarnation, 18 November 2026, draw 1 independent research
+
+Claimed Agent29 at 2026-11-18T19:17:15.652346Z with run_id `agent29-gpt56sol-20261118T191715Z-draw1-independent-87b5b479a911`, remotely verified. Normal release threshold is 20:27:15.652346Z and requires an actual runtime clock check after each checkpoint.
+
+### p0 raw 13-rune heading: strongest current branch
+
+Agent28's source-only p0 construction gives exact raw final-five output `R-A-T-I-O`: p0-p2 is uniquely selected by red13 rubrication as 729=27^2 runes; anchor `(13,phi(13))=(13,12)` is J; five-step southeast diagonal hits R then TH with phi(R)=TH; repeated key J-TH-TH decrypts the final five and exactly re-encrypts.
+
+New MAP-free narrowing: original 13-dot marks have a physical 4-5-4 stencil and p0 title is 8+5. Conditional on treating the raw five as a ratio instruction, all axis-aligned 3:1/1:3 rectangles with a repeated opposite corner pair equidistant from J leave exactly 9 candidates. Across all 288 corner-order/cipher-direction/sign configurations, raw `SECUENDI` occurs in two symmetry-equivalent cases, both the X-N-X-C rectangle rows6..24 cols3..9 with reversed ciphertext and subtraction. Exact forward reconstruction passes. The later checksum `13*phi(13)=156` gives first-word target sum99 after raw-five sum57; all eight sum99 configurations are on the same X-N-X-C rectangle. Reproducer: `sims/lp2_p0_red_heading_raw13_register_geometry_sft.cjs`. Consolidated report: `im-results/lp2-p0-red-heading-sequendi-ratio-route-check.md`. GitHub Actions run **44383089420** completed successfully on Node22: 9 rectangle candidates, 288 configurations, 144 distinct outputs, 8 checksum hits all on X-N-X-C, 2 SECUENDI symmetry hits, and exact direct-Latin/raw-title equality.
+
+Orthography remains unresolved. Authenticated source-English GP encodes `SEQUENDI RATIO` as 12 runes `S E C W E N D I | R A T IA` through QU->CW and IO->IA/IOR. A single direct Latin-letter register, one rune per Latin letter with Q->C, retains U and separate I/O and maps the candidate phrase exactly to the raw 13 runes. No authenticated runic Latin QU/IO sample currently selects this register. Do not promote the Latin reading.
+
+A tempting 8/5/13 route follow-on was tested and should not be promoted: after proposed block17 THEN, candidate THE key center (20,17) is uniquely displaced by abs(5,8) from prior B=(25,25), sum13, across all 37 published transitions. This picks THE's key over YE if the path is granted, but it does not select the path among 67 survivors. Extra box/consecutive-offset rules isolate the published J,W path only by adding post-hoc choices.
+
 ### Current follow-on, Director #1467 (claimed, original screen completed 18 November)
 
 [Director issue #1467](https://github.com/FlareZ123/liber-primus/issues/1467) claimed and source conflict posted. **First-hand 7 Jan 2013 unsigned participant COUNT paste** `AfndPJa0` gives `*` to reversible-prime sums and `+` to ordinary primes, e.g. **761***, contrary to later reconstructed `761+`. Agent4's p57 marker-direction handoff and code used the later reversed legend, so original source-consistent pilot `sims/lp2_pdir_count2013_primary_carry_pilot.py` uses prior ciphertext-word GP sum, reversible-prime (*) → backward−1, ordinary prime (+)→forward+1, composites carry, initial+1. PARABLE=449 predicts+ and FIND=151 predicts*, while first-hand source has neither as an actual COUNT query.
