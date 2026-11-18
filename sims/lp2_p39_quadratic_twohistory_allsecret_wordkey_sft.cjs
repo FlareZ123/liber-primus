@@ -79,6 +79,23 @@ for (const line of read("resources/control/english_wordfreq_textblob.txt")
   lex[values.length].add(signature(values));
   forms[values.length].push(values);
 }
+
+/**
+ * Canonical word shape modulo an arbitrary nonzero GF29 multiplier and
+ * arbitrary GF29 offset. Both completely vanish from this representation.
+ * @param {number[]} runes @returns {string}
+ */
+function affineSignature(runes) {
+  const first = runes[0];
+  const second = runes.findIndex(v => v !== first);
+  if (second < 0) return "C";
+  const delta = mod(runes[second] - first);
+  const inverse = Array.from({length: 29}, (_, i) => i)
+    .find(i => mod(i * delta) === 1);
+  return runes.map(v => String.fromCharCode(
+    65 + mod((v - first) * inverse))).join("");
+}
+const affineLex = forms.map(items => new Set(items.map(affineSignature)));
 const longWords = words.filter(w => w.length >= 5);
 assert.equal(longWords.length, 1132);
 for (const w of words) assert(forms[w.length].length > 0);
@@ -156,13 +173,41 @@ function countAllSecret(cipher, a, b, fifth) {
   }
   return {total, firstChapter, lastChapter};
 }
+
+/**
+ * More permissive variant: every printed word has an arbitrary nonzero
+ * multiplicative key and arbitrary additive key, eliminated by affine shape.
+ * @param {number[]} cipher
+ * @param {number} a
+ * @param {number} b
+ * @param {"word5"|"global5"} fifth
+ * @returns {number}
+ */
+function countAllSecretAffine(cipher, a, b, fifth) {
+  const unshifted = decode(cipher, a, b, fifth, () => 0);
+  let total = 0;
+  for (const w of longWords) {
+    const shape = affineSignature(unshifted.slice(w.start, w.start+w.length));
+    if (affineLex[w.length].has(shape)) total++;
+  }
+  return total;
+}
 let best = -1;
 const top = [];
+const affineTop = [];
+let bestAffine = -1;
 let models = 0;
 for (const fifth of ["global5", "word5"]) {
   for (let a = 0; a < 29; a++) {
     for (let b = 0; b < 29; b++) {
       const result = countAllSecret(source, a, b, fifth);
+      const affine = countAllSecretAffine(source, a, b, fifth);
+      if (affine > bestAffine) bestAffine = affine;
+      if (affineTop.length < 5 || affine > affineTop[affineTop.length - 1].hits) {
+        affineTop.push({fifth, a, b, hits: affine});
+        affineTop.sort((x, y) => y.hits - x.hits || x.a - y.a);
+        affineTop.length = Math.min(affineTop.length, 5);
+      }
       models++;
       if (result.total > best) best = result.total;
       if (top.length < 5 || result.total > top[top.length - 1].total) {
@@ -175,6 +220,8 @@ for (const fifth of ["global5", "word5"]) {
 }
 assert.equal(models, 1682);
 assert.equal(best, 7);
+assert.equal(bestAffine, 68);
+assert.equal(countAllSecretAffine(source, 0, 0, "global5"), 44);
 const originalKey = wi => mod(7 * wi + 13);
 const originalDirect = decode(source, 1, 1, "word5", originalKey);
 assert.deepEqual(encodeCipher(originalDirect, 1, 1, "word5", originalKey), source);
@@ -191,14 +238,83 @@ assert.deepEqual(encodeCipher(recovered, 5, 13, "word5", originalKey),
   plantedCipher);
 const positive = countAllSecret(plantedCipher, 5, 13, "word5");
 assert.equal(positive.total, 1132);
+
+/** @param {number} x @returns {number} */
+function inverse29(x) {
+  const value = Array.from({length: 29}, (_, i) => i)
+    .find(i => mod(i * x) === 1);
+  assert(Number.isInteger(value));
+  return value;
+}
+/**
+ * Encrypt authentic GP words under distinct wordwise multiplicative and
+ * additive secrets with source-derived ciphertext-state feedback.
+ * @param {number[]} plain
+ * @param {number} a
+ * @param {number} b
+ * @param {"word5"|"global5"} fifth
+ * @returns {number[]}
+ */
+function affineEncrypt(plain, a, b, fifth) {
+  const out = new Array(plain.length);
+  for (let wi = 0; wi < words.length; wi++) {
+    const w = words[wi];
+    const multiplier = 1 + wi % 28;
+    const offset = mod(7 * wi + 13);
+    const inverse = inverse29(multiplier);
+    for (let j = 0; j < w.length; j++) {
+      const i = w.start + j;
+      const predecessor = i ? out[i - 1] : 0;
+      const delayed = i >= 5 && (fifth === "global5" || j >= 5)
+        ? out[i - 5] : 0;
+      out[i] = mod(inverse * (plain[i] - offset)
+        + a * quadratic(predecessor) + b * quadratic(delayed));
+    }
+  }
+  return out;
+}
+/**
+ * @param {number[]} cipher
+ * @param {number} a
+ * @param {number} b
+ * @param {"word5"|"global5"} fifth
+ * @returns {number[]}
+ */
+function affineDecrypt(cipher, a, b, fifth) {
+  const stateRemoved = decode(cipher, a, b, fifth, () => 0);
+  const out = new Array(cipher.length);
+  for (let wi = 0; wi < words.length; wi++) {
+    const w = words[wi];
+    const multiplier = 1 + wi % 28;
+    const offset = mod(7 * wi + 13);
+    for (let j = 0; j < w.length; j++) {
+      const i = w.start + j;
+      out[i] = mod(multiplier * stateRemoved[i] + offset);
+    }
+  }
+  return out;
+}
+const plantedAffine = affineEncrypt(knownPlain, 5, 13, "word5");
+const recoveredAffine = affineDecrypt(plantedAffine, 5, 13, "word5");
+assert.deepEqual(recoveredAffine, knownPlain);
+assert.deepEqual(affineEncrypt(recoveredAffine, 5, 13, "word5"),
+  plantedAffine);
+const affinePositive = countAllSecretAffine(plantedAffine, 5, 13, "word5");
+assert.equal(affinePositive, 1132);
+
 console.log(JSON.stringify({
   status: "ORIGINAL GP29 nonlinear quadratic-feedback all-secret word-key gate",
   source: {runes: source.length, printedWords: words.length,
     longWords: longWords.length, redQuadratic: red},
   model: "P_i=C_i-a Q(Cprev)-b Q(C5)-Kword (mod29)",
   original: {models, maximumLongwordMatches: best, bestCandidates: top,
-    exactForwardInverse: originalDirect.length},
+    exactForwardInverse: originalDirect.length,
+    arbitraryPerWordAffine: {secretMultipliers: "28^2896", 
+      secretOffsets: "29^2896", bestOriginalMatches: bestAffine,
+      bestModels: affineTop, baselineMatches: 44}},
   planted: {cipherRunes: recovered.length,
-    dictionaryMatches: positive.total, forwardInverse: true},
+    dictionaryMatches: positive.total, forwardInverse: true,
+    fullSecretAffine: {dictionaryMatches: affinePositive,
+      exactForwardInverseRunes: recoveredAffine.length}},
   conclusion: "No original plaintext/key; scoped negative for intact GP-English"
 }, null, 2));
