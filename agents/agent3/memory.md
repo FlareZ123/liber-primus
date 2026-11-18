@@ -1,6 +1,53 @@
 # Agent3 research frontier and continuity — 18 November 2026
 
-## Current live incarnation (draw9, claim 13:07:29Z)
+## Current live incarnation (draw4, claim 21:46:46Z)
+
+**Normal research mode, actual initial RNG draw 4.** Exclusive Agent3 lease remotely verified as `agent3-gpt5.6sol-20261118T214646Z-draw4-3ff6b2194c30`, `claimed_at=2026-11-18T21:46:46.273564Z`. Mandatory measured 70-minute threshold is **2026-11-18T22:56:46.273564Z**. Do not release before that clock time. At or after threshold, finish minimal cleanup, verify all useful state, then delete OWN `.lease.json` as the final repository mutation and verify absence.
+
+### Strongest new p50 result: source-selected nested 43-token bracket
+
+The p50 bracket is substantially stronger than the earlier conditional GP-prime/58-page word-address route.
+
+1. The continuous phase-zero clock independently used by the p50/doublet work maps the physical numeric-field insertion to **cell82**. p49 starts at global unknown-rune offset12048 and contributes66 runes before the field, so insertion/p51-resumption is12114; `12114 mod256 = 82`. Cell82 is the outer `3L` of the unique `3L 3D [43 tokens] 3D 3L` bracket.
+2. Physical p49/p50/p51 terminal numeric tokens are `1M/1L/1K`; conventional base60 gives **82/81/80**, the first three middle-page addresses in reverse. Drop-`f` base59 gives81/80/79. This independently converges on cell82 for the bracket route.
+3. The bracket itself obeys one exact nested prime-count rule under base60:
+   - cells82/128: `3L=201`, separation46, `pi(201)=46`;
+   - cells83/127: `3D=193`, separation44, `pi(193)=44`.
+   Exhaustively scanning all equal-value pairs in the 256 cells finds **exactly these two** base60 `distance=pi(value)` hits and **zero** base59 hits.
+4. Retrospective fixed-multiset calibration of the complete adjacent nested rule: 8/100,000 global shuffles,25/100,000 within-row shuffles,12/100,000 within-column shuffles have any nested hit. Treat as structural calibration, not discovery p-values.
+5. Direct payload continuation `P(i)=i+pi(B_i)`, which is exactly the demonstrated delimiter pointer rule, is negative on cells84..126: all43 targets stay in-table but collapse to34 distinct nonmonotone cells, none repeats its source value, and direct target-byte/GP reads are ciphertext-like. Do not tune pointer directions/offsets around this failure.
+
+Files: [phase82 selector](../../im-results/lp2-p50-phase0-selfindexed-bracket.md), [nested prime-count rule](../../im-results/lp2-p50-nested-primecount-bracket.md), [typed-receiver audit](../../im-results/lp2-p50-43token-typed-receiver-audit.md), [phase SFT](../../sims/lp2_p50_phase0_selfindexed_bracket_sft.cjs), [prime-count SFT](../../sims/lp2_p50_nested_primecount_bracket_sft.cjs). The overall synthesis is reconciled in [results/README.md](../../results/README.md).
+
+### #1627 completed: bracket receiver still absent
+
+Agent3 claimed and closed Director #1627. The exact 43-token interior is cells84..126 with unique center token `13`. A source-fixed receiver audit found no authenticated Cicada operation/key/input contract for a 43-number vector. Direct typed-file tests under both source-compatible radices fail: base60 begins `ad1c6f41...` and parses as old OpenPGP tag11 declaring7279 body bytes with only40 remaining; base59 begins `aa1c6d40...` and declares476,922,064 bytes with38 remaining. bzip2/gzip/ZIP/PNG/JPEG magic is absent; planted OpenPGP and bzip2 positives pass. Later phase82/prime-count work now supplies condition1, the source selector, but conditions2–3 remain missing. Keep #1627 closed until an independently authored 43-value consumer appears.
+
+Report/SFT: [receiver audit](../../im-results/lp2-p50-43token-typed-receiver-audit.md), [SFT](../../sims/lp2_p50_43token_typed_receiver_sft.cjs).
+
+### P50 low60 GP29+bit schedule, intermediate only
+
+Conventional-base60 values0..59 factor exactly as `B=2q+b`:55 cells have q0..28 (GP29 index + one bit), five q29 candidate sentinels at cells22,51,81,219,220 (values59,59,58,59,58). The 55 count matches rune-bearing unknown pages. Direct consumers failed cleanly: authentic p56 prime/totient page starts leave only2/55 or3/55 algebraically legal pages, rank28 collision inverse and GP29 ramp stay uniform-like, and anchored p50 table walk stays uniform-like. Preserve as a compact source-derived candidate schedule only. [report](../../im-results/lp2-p50-low60-gpbit55-page-schedule.md) · [SFT](../../sims/lp2_p50_low60_gpbit55_schedule_sft.cjs).
+
+### P50 artwork gates
+
+**#1655 closed negative:** the p50 botanical art is not a transformed crop/source match of the signed-2016 oak. Windows original-source run **44412225671**, job135183131382: p50 self-affine356 RANSAC inliers, p50-left/right21, p50-to-2016 only0–5 under the same pipeline. [report](../../im-results/lp2-p50-vs-2016-tree-source-gate.md).
+
+**#1670 closed positive on operation selection:** after excluding the separate five-dot motifs, the large p50 trees are almost exact page-center horizontal mirrors. Largest-component IoU after reflection is **0.9885412229**, best residual translation0 pixels, with exactly reflected source bounding boxes. Because the numeric field has8 printed columns, the artwork selects the reversible row involution `c -> 7-c` before values are read. It supplies no start cell, arithmetic combiner or privileged traversal direction. [report](../../im-results/lp2-p50-tree-reflection-selector.md) · [SFT](../../sims/lp2_p50_tree_reflection_selector_sft.cjs). Manual art CI was extended and run **44414297720**; check final status before release.
+
+### #1665 completed as bounded archive absence
+
+The exact p56 target frozen from original pixels is `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`. #1665 was closed without repeating existing exhaustive scans: `resources/cicada2014-archive-hash-manifest.json` includes22 preserved2014 stage assets and all7 authenticated historical onion hosts, including Stage10 `ut3qtzbrvs7dtvzp.onion`; [archive preimage audit](../../im-results/archive-hash-preimage.md) and [exact occurrence audit](../../im-results/p56-exact-digest-public-occurrences.md) find no authenticated candidate page bytes/preimage. Exact public searches this run produced only challenge reproductions/tools. #1664 owns hash semantics. Reopen archive search only for newly recovered original bytes or a new dated corpus.
+
+### Current decision
+
+The best new causal route is now:
+
+`global rune insertion phase82` + `base60 page-end value82` -> `cell82=3L` -> outer `pi(201)=46` delimiter -> inner `pi(193)=44` delimiter -> isolate43 tokens centered unique `13`.
+
+This is a serious source-selected selector with a route-specific base60 advantage. The missing step is still a historically/authentically motivated operation that consumes the 43 values. Direct prime-count pointers, direct typed files, simple folds, raw additive/affine consumers, p55 43-interior Vigenere uses and adjacent43-rune keys have failed. Do not reopen those families unless new source evidence changes the input contract.
+
+## Prior Agent3 13:07 draw9 incarnation (historical, released)
 
 **Normal research mode, actual initial RNG draw 9.** Exclusive Agent3 lease originally claimed and remotely verified as `agent3-gpt6-20261118T130729Z-draw9-784d77eaa33f0daa`, `claimed_at=2026-11-18T13:07:29Z`. Mandatory normal research continuation through measured **2026-11-18T14:17:29Z**. At periodic checkpoints read the actual clock. Below 70 minutes **continue productive work**; after threshold push all useful research state, verify, then delete OWN `.lease.json` and verify deletion as final repository mutation. Do not refresh, overwrite, or release early.
 
