@@ -106,23 +106,24 @@ def calibration(windows: dict, seed: int) -> dict:
     observed = source["max_second_best"] or 0
     if observed <= 0:
         raise ValueError("All source sections have no repeated top50 key identities")
+    observed_third = source["max_third_best"] or 0
     rng = random.Random(seed)
     score_windows = [list(keys.values()) for _, keys in sorted(windows.items())]
     if any(len(values) > KEY_POOL for values in score_windows):
         raise ValueError("Key identity pool too small")
     max_null = []
+    max_null_third = []
     for _ in range(PERMUTATIONS):
         best_by_id = [[] for _ in range(KEY_POOL)]
         for values in score_windows:
             slots = rng.sample(range(KEY_POOL), len(values))
             for idx, score in zip(slots, values):
                 best_by_id[idx].append(score)
-        sample_best = max(
-            (sorted(v, reverse=True)[1] for v in best_by_id if len(v) > 1),
-            default=0.0
-        )
-        max_null.append(sample_best)
+        candidates = [sorted(v, reverse=True) for v in best_by_id if len(v) > 1]
+        max_null.append(max((v[1] for v in candidates), default=0.0))
+        max_null_third.append(max((v[2] for v in candidates if len(v) > 2), default=0.0))
     exceed = sum(v >= observed for v in max_null)
+    exceed_third = sum(v >= observed_third for v in max_null_third)
     return {
         "observed_second_best": observed,
         "key_label_permutation_count": PERMUTATIONS,
@@ -132,6 +133,12 @@ def calibration(windows: dict, seed: int) -> dict:
         "null_second_best_max": max(max_null),
         "null_exceedances": exceed,
         "empirical_p_plus_one": (exceed + 1) / (PERMUTATIONS + 1),
+        "observed_third_best": observed_third,
+        "null_third_best_min": min(max_null_third),
+        "null_third_best_median": sorted(max_null_third)[len(max_null_third)//2],
+        "null_third_best_max": max(max_null_third),
+        "null_third_best_exceedances": exceed_third,
+        "third_best_empirical_p_plus_one": (exceed_third + 1) / (PERMUTATIONS + 1),
     }
 
 
