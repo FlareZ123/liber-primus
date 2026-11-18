@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install source reader
-        run: python -m pip install pycdlib==1.14.0 filelock==3.20.0 requests==2.32.5
+        run: python -m pip install pycdlib==1.22.0 filelock==3.20.0 requests==2.32.5
       - name: Audit byte-verified original ISO and exact sector complement
         run: python sims/cicada2013_iso_unclaimed_sector_sft.py --iso 3301-2013.iso --report cicada2013-iso-sector-audit.json
       - uses: actions/upload-artifact@v4
