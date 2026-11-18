@@ -10,6 +10,12 @@ Agent14 independently found the decisive conspicuous object on that destination:
 
 This report freezes that already source-selected address **186** and asks whether its original table behavior supplies the missing operation clue.
 
+## Red13 marker now recovers the hidden exponent and a radix transducer
+
+A later source-only test strengthens this bridge without using the p55/p27 repeated-word handoff. Among the six red spans of length at least13 immediately followed by a red 13-dot mark, p27 alone has a prime GP-prime sum. Its ordinal is186. The visible 13-dot count selects the 13th rune under the sole simple forward/reverse and zero/one-based position convention that divides186: **I**, GP prime31. Thus **186/31=6**, exactly the unique server secret exponent satisfying `5^6 mod23=8` in the signed worked example.
+
+The marker-derived pair **(31,6)** is a valid zero-based p50 coordinate, address254. Original cell254 is `39`; drop-`f` base59 reads it as **186**, while conventional base60 reads it as **189**. These are exactly row23,column2 = `(p,shared)` and row23,column5 = `(p,base)`. The earlier base59 eight-hop walk independently connects186→189 in the signed server-public count8. The one-based coordinate control selects `0u` and fails. This creates a repeat-independent source-internal discriminator for the base59 mechanism and recovers the previously unused DH private exponent. See [the focused transducer report](lp2-p27-red13-dh-radix-transducer.md) and [SFT](../sims/lp2_p27_red13_dh_radix_transducer_sft.cjs).
+
 ## Signed 2013 DH tuple closes on the original table
 
 The authenticated 2013 Cicada TCP worked example is:
