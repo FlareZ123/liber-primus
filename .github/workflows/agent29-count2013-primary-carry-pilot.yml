@@ -36,7 +36,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: agent4-emirp-carry-pdir-pilot
+          name: agent29-count2013-primary-carry-pdir-pilot
           path: |
             external-cicada3301/results/kscreen/pdir/agent29-count2013-primary-carry/000/
             external-cicada3301/results/kscreen/agent29-count2013-primary-carry-calibration.json

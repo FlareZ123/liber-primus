@@ -112,7 +112,7 @@ def p57_calibration(root: Path) -> dict:
     if clauses != [449, 1259, 1031, 1229]:
         raise AssertionError(f"p57 clause sums changed: {clauses}")
     if phrase_sum("THE INSTAR EMERGENCE") != 761 or marker(761) != -1:
-        raise AssertionError("2013 count phrase 761+ no longer matches GP table")
+        raise AssertionError("2013 original COUNT phrase 761* no longer matches GP table")
 
     state = 1
     schedule = []
@@ -222,7 +222,7 @@ def main() -> None:
         "--tag", args.tag,
     ]
     subprocess.run(cmd, cwd=ks, check=True)
-    summary = ks / "results/kscreen/pdir" / args.tag / args.conv / "summary_real_null.txt"
+    summary = external / "results/kscreen/pdir" / args.tag / args.conv / "summary_real_null.txt"
     if not summary.is_file():
         raise AssertionError(f"pdir pilot did not create summary: {summary}")
     print(summary.read_text(encoding="utf-8"))
