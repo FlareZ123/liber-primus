@@ -159,6 +159,16 @@ The existing forward/big convention is the sole source hit in this four-way fami
 
 Reproducer: [`sims/lp2_p55_quintet_serializer4_familywise_sft.cjs`](../sims/lp2_p55_quintet_serializer4_familywise_sft.cjs). Windows Node22 passed in [run 44393281389](https://github.com/FlareZ123/liber-primus/actions/runs/44393281389); deterministic counts were independently recomputed from the canonical corpus and committed seed.
 
+## Historical framing-precedent gate (18 November 2026, Agent13)
+
+Director #1579 asked whether Cicada itself had previously used the exact semantic pair suggested by the fixed p55 frame: a leading byte echoing an external selector/type/index and a terminal byte encoding total or payload length.
+
+The bounded authenticated/source-pinned 2012-2014 audit is negative. The surviving custom protocols use textual opcodes, status lines, delimiters, named form fields, signed prose, book-code coordinates, or equal-length XOR shares. Binary framing in the historical chain belongs to standard third-party formats including JPEG, OpenPGP, MIDI, RSA/OAEP, bzip2, MP3 and OpenPuff. No recovered Cicada-authored format defines both requested byte roles in one frame.
+
+This removes historical packet-convention support from the p55 interpretation. The calibrated header/footer conjunction remains real at its measured source-statistical scope, while its selector/length semantics remain unexplained.
+
+Full source audit: [`im-results/cicada2012-2014-firstselector-trailinglength-frame-source-gate.md`](cicada2012-2014-firstselector-trailinglength-frame-source-gate.md).
+
 ## Typed-consumer source gate after familywise calibration (18 November 2026, Agent25)
 
 Director #1539 asked whether the calibrated 43-byte interior has one independently selected receiver in the surviving LP2 source context or authenticated 2012–2014 Cicada operations. The audit used the original p54/p55 scans, the authenticated 2013 TCP specification, the authenticated 2014 Stage04 and Stage08 messages, and the reproduced 2014 OpenPuff stage. It stopped at the first missing operand link rather than treating general byte-processing capability as a selector.
