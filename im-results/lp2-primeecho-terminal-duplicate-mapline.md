@@ -1,6 +1,6 @@
 # Historical prime_echo exhaustion → p55 duplicate-word map line
 
-**Agent2, 18 November 2026. Status: new source-visible handoff candidate; no unknown plaintext or authenticated key recovered.**
+**Agent2, 18 November 2026; Agent27 #1506 selectivity gate. Status: source-selective navigation candidate strengthened; no unknown plaintext, authenticated key, or direction operator recovered.**
 
 The terminal p54–55 prime/totient investigation has a sharper source boundary than the
 previous "extend ordinary primes indefinitely" model. The actual 2013 Cicada OS
@@ -88,7 +88,40 @@ This does not select initial index167 versus168 and does not make the first300 d
 runes grammatical. It changes the architectural question: a finite historical key source
 naturally stops before the manuscript's final eight-rune line.
 
-## 3. The untouched line is a unique duplicate-word map
+## 3. Source-selectivity gate (#1506): both historical pauses and matched terminal windows
+
+Agent27 reran the finite source family without selecting the p55 line-3 boundary first.
+Across all **464** initial source cursors, both authentic plaintext-F branches, and all
+**308** original p54-p55 runes, the first-exhaustion census contains **41 path histories
+at 36 distinct rune boundaries**. Eight histories hit physical line ends, spanning five
+different line-end boundaries: **19, 40, 57, 80, and 300**. A line end by itself is
+therefore not unique.
+
+The historical source supplies a second frozen discriminator. `prime_echo` pauses only
+after **1033** and **3301**. Of all 41 finite-list exhaustion histories, exactly **three**
+ever consume both pause primes: starts167/167/168, the same three target histories.
+All three first exhaust at boundary **300** and nowhere else. The 1033 key item is
+consumed at p54 local rune offset **6** for the two start167 histories and offset **5**
+for start168. Both positions lie inside the original **nine-rune red p54 title**; the
+large red thirteen-dot marker follows at offset9. The 1033 pause does not coincide with
+the title-end marker, so the evidence is region-level rather than an exact second
+boundary hit.
+
+A matched source-only control uses the **last 308 original runes of each of the nine
+visual chapters** and asks whether the unchanged finite-list family first exhausts
+exactly at the start of that chapter's final printed rune line. The eight other chapters
+give **0,0,0,0,0,0,0,0** paths; p54-p55 alone gives the same **3** paths. No phase,
+subset, language score, or extended prime was fitted.
+
+This upgrades the terminal boundary from a visually attractive post-hoc stop to a
+source-selective navigation candidate under the tested historical family: the only
+within-chapter exhaustion histories that include **both** authenticated pause values are
+also the only matched terminal-window histories that stop at a final-line boundary, and
+they expose the unique `CX / DJU / BEI` suffix. This remains evidence for a route, not
+for the first300 decoded text. It does not choose start167 versus168, authenticate the
+p56 cipher as the unknown-page cipher, or supply the missing number-to-direction rule.
+
+## 4. The untouched line is a unique duplicate-word map
 
 The original line is:
 
@@ -126,7 +159,7 @@ The three terminal word prime sums are `60,129,159`; together they total
 GP-prime-sum/base58 word-map model, so the equality is recorded as a cross-check only.
 Its resulting p0 word6 is opaque and it does not authenticate the base58 rule.
 
-## 4. Why this is a plausible human solve-path clue
+## 5. Why this is a plausible human solve-path clue
 
 The authenticated 2016 signed message says:
 
@@ -165,7 +198,7 @@ fixes whether "numbers" means GP-prime sums (60/129/159), page/word coordinates
 no source yet says how the p34 and p27 destinations combine into a reversible p55/LP2
 operation. The route must stop here until one such rule is independently selected.
 
-## 5. Strongest objections and stop rule
+## 6. Strongest objections and stop rule
 
 Three objections remain decisive:
 
@@ -196,6 +229,9 @@ structural handoff, not plaintext.
 
 - the 464-prime finite list through3301;
 - all three exact first300-rune F-transparent paths and no others;
+- the complete 308-rune first-exhaustion census: 41 histories at 36 boundaries, with five distinct physical line-end boundaries;
+- the frozen 1033 holdout: exactly the three boundary300 histories consume both special pause primes, with 1033 landing inside the original red p54 title;
+- the nine matched terminal-window control: path counts 0/0/0/0/0/0/0/0/3 at each final-line start;
 - p55 line lengths 24/22/22/8;
 - the exact p55 line4 word sequence;
 - global word frequencies and the earlier p34/p27 coordinates;

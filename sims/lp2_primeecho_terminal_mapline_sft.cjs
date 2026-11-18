@@ -195,7 +195,7 @@ const p55Lines = p55Body.split('/\n')
 assert.deepEqual(p55Lines.map((line) =>
   line.reduce((sum, word) => sum + [...word].length, 0)), [24, 22, 22, 8]);
 assert.deepEqual(p55Lines[3], targetWords);
-const p55Ink = ink.find((page) => page.page === 55);
+const p55Ink = ink.pages.find((page) => page.page === 55);
 assert(p55Ink);
 assert.deepEqual(p55Ink.large_punctuation, [[76, 13, 'red']]);
 
@@ -227,6 +227,148 @@ assert.deepEqual(allTwiceLines, [
 assert.deepEqual(targetWords.map(primeSum), [60, 129, 159]);
 assert.equal(targetWords.map(primeSum).reduce((a, b) => a + b, 0), 348);
 assert.equal(348, 6 * 58);
+
+
+/**
+ * Enumerate the first point at which the finite historical prime list is
+ * exhausted. Branches stop at exhaustion so later literal-F ciphertext
+ * cannot make an earlier exhaustion look like a later boundary.
+ *
+ * @param {number[]} cipher
+ * @param {number[]} primeList
+ * @returns {{start:number,j:number,skips:number[],at1033:number|null,boundary:number}[]}
+ */
+function firstExhaustions(cipher, primeList) {
+  let states = primeList.map((unused, start) => ({
+    start,
+    j: start,
+    skips: [],
+    at1033: null
+  }));
+  const exhausted = [];
+
+  for (let i = 0; i < cipher.length; i++) {
+    const c = cipher[i];
+    const next = [];
+
+    for (const state of states) {
+      if (c === 0) {
+        next.push({
+          start: state.start,
+          j: state.j,
+          skips: state.skips.concat(i),
+          at1033: state.at1033
+        });
+      }
+
+      if (state.j < primeList.length) {
+        const shift = (primeList[state.j] - 1) % 29;
+        const plain = (c - shift + 29) % 29;
+        if (plain !== 0) {
+          const advanced = {
+            start: state.start,
+            j: state.j + 1,
+            skips: state.skips,
+            at1033: state.j === 173 ? i : state.at1033
+          };
+          if (advanced.j === primeList.length) {
+            exhausted.push({ ...advanced, boundary: i + 1 });
+          } else {
+            next.push(advanced);
+          }
+        }
+      }
+    }
+
+    states = next;
+  }
+
+  return exhausted;
+}
+
+// #1506 source-selectivity gate: enumerate every finite-list exhaustion in
+// the complete p54-p55 chapter instead of selecting the p55 line-3 boundary.
+const allExhaustions = firstExhaustions(terminalChapter, primes);
+assert.equal(allExhaustions.length, 41);
+assert.equal(new Set(allExhaustions.map((state) => state.boundary)).size, 36);
+
+let terminalOffset = 0;
+const terminalLineEnds = [];
+for (const pageNumber of [54, 55]) {
+  const page = pages.find((item) => item.page === pageNumber);
+  assert(page);
+  for (const line of page.body.split('/\n')) {
+    const count = [...line].filter((rune) => corpus.runes.includes(rune)).length;
+    if (count === 0) continue;
+    terminalOffset += count;
+    terminalLineEnds.push(terminalOffset);
+  }
+}
+assert.deepEqual(terminalLineEnds, [
+  19, 40, 57, 80, 102, 124, 145, 168, 189, 211, 232, 256, 278, 300, 308
+]);
+
+const terminalLineEndSet = new Set(terminalLineEnds);
+const lineEndExhaustions = allExhaustions
+  .filter((state) => terminalLineEndSet.has(state.boundary));
+assert.equal(lineEndExhaustions.length, 8);
+assert.deepEqual(
+  [...new Set(lineEndExhaustions.map((state) => state.boundary))],
+  [19, 40, 57, 80, 300]
+);
+
+const bothPauseExhaustions = allExhaustions.filter((state) => state.at1033 !== null);
+assert.deepEqual(
+  bothPauseExhaustions.map((state) => ({
+    start: state.start,
+    boundary: state.boundary,
+    at1033: state.at1033
+  })),
+  [
+    { start: 167, boundary: 300, at1033: 6 },
+    { start: 167, boundary: 300, at1033: 6 },
+    { start: 168, boundary: 300, at1033: 5 }
+  ]
+);
+
+const p54Ink = ink.pages.find((page) => page.page === 54);
+assert(p54Ink);
+assert.deepEqual(p54Ink.red_spans.map((span) => [span.start, span.length]), [[0, 9]]);
+assert.deepEqual(p54Ink.large_punctuation, [[9, 13, 'red']]);
+for (const state of bothPauseExhaustions) {
+  assert(state.at1033 !== null);
+  assert(state.at1033 >= 0 && state.at1033 < 9);
+}
+
+const visualChapters = [
+  [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+  [27, 32], [33, 39], [40, 53], [54, 55]
+];
+
+function finalRuneLineLength(pageNumber) {
+  const page = pages.find((item) => item.page === pageNumber);
+  assert(page);
+  const counts = page.body.split('/\n')
+    .map((line) => [...line].filter((rune) => corpus.runes.includes(rune)).length)
+    .filter((count) => count > 0);
+  return counts[counts.length - 1];
+}
+
+const matchedTerminalPathCounts = [];
+for (const [firstPage, lastPage] of visualChapters) {
+  let chapter = [];
+  for (let pageNumber = firstPage; pageNumber <= lastPage; pageNumber++) {
+    const sourcePage = corpus.pages.find((page) => page.page === pageNumber);
+    if (sourcePage) chapter = chapter.concat(sourcePage.indices);
+  }
+  const window = chapter.slice(Math.max(0, chapter.length - 308));
+  const finalLineLength = finalRuneLineLength(lastPage);
+  const boundary = window.length - finalLineLength;
+  const events = firstExhaustions(window.slice(0, boundary), primes)
+    .filter((state) => state.boundary === boundary);
+  matchedTerminalPathCounts.push(events.length);
+}
+assert.deepEqual(matchedTerminalPathCounts, [0, 0, 0, 0, 0, 0, 0, 0, 3]);
 
 // The untouched line is exactly the last eight original p55 runes.
 const targetIndices = targetWords.join('').split('')

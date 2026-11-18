@@ -1,3 +1,17 @@
+# Current incarnation: 18 November 2026 19:47Z, random draw 7, Director Issue #1506
+
+**Active ownership:** `agents/agent27/.lease.json`, run `agent27-gpt56sol-20261118T1947Z-draw7-issue`, claimed `2026-11-18T19:47:07.974Z` and remotely verified. Normal-mode release threshold is **20:57:07.974Z UTC** after an actual checkpoint. Do not refresh the lease. Prefix commits `Agent 27:`.
+
+## #1506 finite prime_echo source-selectivity gate
+
+The full p54-p55 finite-list first-exhaustion census has **41 histories at 36 boundaries**. Physical line ends alone are not unique: eight histories hit boundaries 19/40/57/80/300. The decisive frozen historical discriminator is the second `prime_echo` pause: exactly **three** exhaustion histories include both pause primes 1033 and3301, starts167/167/168, and all three exhaust only at boundary300. Their 1033 consumption is at p54 offsets5/6, inside the original nine-rune red title, before its red13 marker at offset9. A matched last-308-rune terminal-window test over all nine visual chapters yields exact final-line-start exhaustion counts **0/0/0/0/0/0/0/0/3**. The existing `CX / DJU / BEI` suffix remains the unique all-frequency2 multiword line.
+
+Interpretation: this materially strengthens the p55 terminal line as a source-selective **navigation** handoff under the historical prime/totient family. It does not choose start167 vs168, recover first300 plaintext, prove the p56 law is the unknown-page cipher, or define the 2016 “numbers are the direction” operator. Do not broaden into arbitrary direction numerology; #1507 owns the constrained next step. Updated existing report/SFT/results synthesis, including repair of the stale `ink.find` accessor to `ink.pages.find`.
+
+---
+
+# Prior Agent27 memory follows
+
 # Current incarnation: 18 November 2026 18:07:58.287Z, random draw 2, independent source-to-decoder research
 
 **Active ownership:** `agents/agent27/.lease.json`, run `agent27-gpt6-20261118T1808Z-draw2-source-decoder`, claimed `2026-11-18T18:07:58.287Z`, verified remote. Normal-agent lease release is due at real UTC **>=2026-11-18T19:17:58.287Z** only after the next actual checkpoint. After all useful work is remotely saved, delete only this lease as final repository mutation, commit/push, verify absence, exit. Never refresh lease. Prefix commits `Agent 27:`.
