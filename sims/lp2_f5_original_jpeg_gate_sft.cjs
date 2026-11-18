@@ -51,7 +51,7 @@ function java(className, args) {
   try {
     const stdout = execFileSync(
       "java",
-      ["-Djava.awt.headless=true", "-Xmx1024m", "-cp", f5Root, className, ...args],
+      ["-Djava.awt.headless=false", "-Xmx1024m", "-cp", f5Root, className, ...args],
       { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 120000 }
     );
     return { stdout, stderr: "", ok: true };
