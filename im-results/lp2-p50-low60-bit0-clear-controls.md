@@ -47,13 +47,15 @@ A deterministic GP29 Markov positive used the exact primary block lengths and fi
 
 The same analysis recovers **9/135 = 6.6667%** selected repeats versus **26/1,038 = 2.5048%** elsewhere, rate ratio **2.66154**, total held-out gain **+2.441747 nats**, and **6/8** positive blocks. The modest control-panel size limits predictive gain, while the intended direction and state dependence are recovered.
 
-## Alphabet-authentication dependency (#1615)
+## Alphabet-authentication dependency (#1615, post-closure update)
 
-Agent18's independent #1615 source audit leaves the character-to-value map unresolved. The original 256 tokens are valid canonical byte codewords under both frozen maps: conventional base60 and the existing drop-`f` base59 alternative. Their byte-code sets overlap in 252/256 values, and the source contains none of the four codewords exclusive to either map. The leading-zero/`value < 60` class is the same 60 cells under both maps, but second-character parity differs at **83/256** cells and at **24/60** cells inside that shared low-value class.
+The original 256 tokens remain canonical byte codewords under both frozen maps, conventional base60 and the existing drop-`f` base59 alternative. Their byte-code sets overlap in 252/256 values; the source contains none of the four codewords exclusive to either map. The leading-zero/`value < 60` class is the same 60 cells under both maps, while second-character parity differs at **83/256** cells and **24/60** cells inside that shared low-value class.
 
-A contemporaneous 11 May 2014 participant repository converted the table with conventional base60 (`3N=203`, `4F=255`, `3C=192`, `0J=19`), showing that this interpretation was available to a solver at the time. The preserved Cicada-signed stage message does not define the numeral alphabet or authenticate that conversion. Existing source-internal discriminators for both base60 and base59 depend on retrospectively inferred operations; the new p27/DH base59 closure also depends on an LP2 repeat-position handoff and therefore cannot satisfy #1615's repeat-independent mapping gate.
+A contemporaneous 11 May 2014 participant repository converted the table with conventional base60 (`3N=203`, `4F=255`, `3C=192`, `0J=19`), showing that interpretation was available to a solver at the time. The preserved Cicada-signed stage message does not define the numeral alphabet or authenticate that conversion.
 
-Accordingly, this report's fixed conventional-base60 bit0 state remains a strong **empirical ciphertext-surface diagnostic**. Its clear-GP specificity does not promote bit0 to a source-defined cipher operand. See `im-results/lp2-p50-digit-alphabet-authentication-gate.md` and `sims/lp2_p50_digit_alphabet_census_sft.cjs`.
+A later p27 red13/DH test now supplies a repeat-independent source-internal discriminator favoring base59 for that mechanism. P27 is the only red span of length at least13 immediately followed by red13 whose GP-prime sum is itself prime: 1109, ordinal186. Its visible 13-dot count selects the 13th rune I, GP prime31, and `186/31=6`, the signed DH example's unique server secret exponent. Coordinate `(31,6)` selects original cell254 `39`; base59 reads it as186 `(23,2)`, while base60 reads it as189 `(23,5)`. The independently frozen base59 pointer walk connects those addresses in exactly eight hops. This no longer depends on the p55/p27 repeated-word handoff.
+
+That closure does not define second-character bit0 or instruct the solver to apply the participant-era base60 map to this repeat statistic. Accordingly, this report's fixed conventional-base60 bit0 state remains a strong **empirical ciphertext-surface diagnostic**. Its clear-GP specificity still does not promote bit0 to a source-defined cipher operand. See `im-results/lp2-p50-digit-alphabet-authentication-gate.md`, `im-results/lp2-p27-red13-dh-radix-transducer.md`, and their SFTs.
 
 ## Decision
 
