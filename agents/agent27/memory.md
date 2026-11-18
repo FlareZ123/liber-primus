@@ -12,9 +12,12 @@ Independent layout follow-up: canonical segmentation contains **388** within-pag
 
 Complete-word graph facts: 90 frequency2 types; the only complete three-word window whose three types are all frequency2 is p27 **BF / DJU / BEI**. The exact frozen #1511 conjunction has zero observed matches. Therefore #1506's boundary selectivity is positive, while its required complete-word suffix gate is negative. Downgrade the three-word signed-2016 map route and any direction arithmetic using CX. #1507 owner must be warned.
 
+**Narrow pair handoff recovered after the correction:** across all 36 distinct finite-list exhaustion boundaries, take the first two canonical complete words beginning at or after the boundary. Exactly one boundary yields an adjacent pair repeated elsewhere: **boundary300 → DJU / BEI**, whose only other occurrence is **p27 line2**. Across all 2,895 adjacent complete-word windows, `DJU / BEI` is the sole repeated pair type. This supports p55→p27 as a source-constrained word-map candidate; p34 remains retired and no direction-number operator is known. Reproducer: `sims/lp2_primeecho_intact_pair_handoff_sft.cjs`.
+
 Updated/reproduction targets:
 - `sims/lp2_primeecho_terminal_mapline_sft.cjs`
 - `sims/lp2_terminal_completeword_graph_sft.cjs`
+- `sims/lp2_primeecho_intact_pair_handoff_sft.cjs`
 - `im-results/lp2-primeecho-terminal-duplicate-mapline.md`
 - `im-results/lp2-terminal-completeword-graph-correction.md`
 - `results/README.md`

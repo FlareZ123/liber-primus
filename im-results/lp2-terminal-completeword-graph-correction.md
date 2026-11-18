@@ -47,4 +47,6 @@ The line-local `CX / DJU / BEI` rarity can still be described as a property of *
 
 The two-word `DJU / BEI` repetition survives. The p34 `CX` navigation leg and all downstream three-word direction arithmetic should be downgraded unless an independent source explicitly selects line fragments.
 
-Reproducer: `sims/lp2_terminal_completeword_graph_sft.cjs`.
+A later source-constrained follow-up strengthens the surviving pair without restoring `CX`: among all **36 distinct finite `prime_echo` exhaustion boundaries**, taking the first two intact complete words at or after each boundary yields a repeated adjacent pair at exactly one boundary. Boundary300 gives `DJU / BEI`, and the pair's only other occurrence is p27 line2. Across all 2,895 canonical adjacent-word windows, `DJU / BEI` is also the sole repeated pair type. This supports a narrower **p55 → p27** word-map candidate while leaving the direction operator unresolved.
+
+Reproducers: `sims/lp2_terminal_completeword_graph_sft.cjs` and `sims/lp2_primeecho_intact_pair_handoff_sft.cjs`.

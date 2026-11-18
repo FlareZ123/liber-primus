@@ -1,6 +1,6 @@
-# Historical prime_echo exhaustion at p55: source-selective line boundary, complete-word map rejected
+# Historical prime_echo exhaustion at p55: source-selective line boundary and two-word p27 handoff
 
-**Agent2 source observation; Agent27 Director #1506/#1511 correction, 18 November 2026. Status: the finite historical source sharply selects a p55 physical line break, but the proposed three-complete-word navigation object is invalid under the canonical 2,896-word parsing. No unknown plaintext, authenticated LP2 key, or direction operator is recovered.**
+**Agent2 source observation; Agent27 Director #1506/#1511 correction and follow-up, 18 November 2026. Status: the finite historical source sharply selects a p55 physical line break. The earlier three-word `CX / DJU / BEI` object is invalid under canonical parsing; a narrower complete-word handoff survives because the first intact pair after boundary300 is `DJU / BEI`, whose only other adjacent occurrence is p27 line2. No unknown plaintext, authenticated LP2 key, or direction operator is recovered.**
 
 ## 1. Finite historical source and exact exhaustion
 
@@ -51,16 +51,17 @@ The p34 line10 `CX` used as the purported duplicate destination has the same pro
 
 ## 3. What survives
 
-Two observations remain valid:
+Three source-constrained observations survive:
 
 1. The finite historical `prime_echo` family, with both authenticated pause values required, sharply selects the p55 line3/line4 **physical line break** among the tested source-bounded exhaustions.
 2. `DJU` and `BEI` are genuine complete words. They occur exactly twice and remain adjacent at both p27 line2 and p55 line4.
+3. A frozen follow-up over **all 36 distinct finite-list exhaustion boundaries** takes the first two complete words whose starts lie at or after each boundary, thereby discarding any partial word cut by exhaustion. Exactly **one** boundary yields a pair repeated elsewhere in the canonical 2,895 adjacent-word windows: **boundary300 → DJU / BEI**, whose only other occurrence is **p27 line2**. The canonical graph itself has exactly one repeated adjacent-word pair type, also `DJU / BEI`.
 
-The stronger proposed object does not survive. The line-local `CX` repetition is a repetition of **word-ending fragments created by physical wrapping**, not a repeated complete word. Therefore the signed 2016 phrase “Its words are the map” cannot, without an additional source cue, justify treating `CX / DJU / BEI` as three mapped words.
+The three-word object is still invalid. The line-local `CX` repetition is a repetition of **word-ending fragments created by physical wrapping**. A separate wrap census gives 74 two-rune continuation fragments and four repeated types, so `CX` has no unique status in that layout class. The surviving navigation candidate is therefore the **complete two-word pair p55 → p27**, with p34 removed. The signed 2016 phrase “Its words are the map” is compatible with this pair-level observation, while it does not specify the subsequent numerical direction rule.
 
 ## 4. Director decisions for #1506 and #1511
 
-For **#1506**, the boundary-selectivity half is positive while the completion gate fails: the untouched suffix does **not** start at a complete-word boundary and the claimed three-word map object is not present in the canonical word graph. Downstream direction arithmetic must not inherit the earlier confidence.
+For **#1506**, the original three-word completion gate fails because exhaustion cuts `CEAIMCX`. The follow-up complete-word test recovers a narrower positive: boundary300 alone exposes the repeated intact pair `DJU / BEI`, selecting p27 as a source-constrained navigation candidate. p34 and all `CX`-based arithmetic remain retired.
 
 For **#1511**, the frozen feature was defined over three consecutive complete words. The target fails before any permutation null is meaningful. The canonical graph has **90 frequency-2 word types** and exactly one complete three-word window whose three word types all have frequency2: `BF / DJU / BEI` at p27 line2. The p55 terminal material is `CEAIMCX / DJU / BEI`, with frequencies **1 / 2 / 2**. The exact frozen #1511 conjunction has **zero observed matches**.
 
@@ -70,6 +71,7 @@ This correction is stronger than a rarity estimate because it removes the target
 
 - `sims/lp2_primeecho_terminal_mapline_sft.cjs` reproduces the finite-prime exhaustion census, 1033/3301 holdout, matched chapter control, and the canonical boundary-inside-word correction.
 - `sims/lp2_terminal_completeword_graph_sft.cjs` reconstructs all 2,896 complete printed words and asserts the p55/p34 wrap behavior, complete-word frequencies, the unique all-frequency2 triple, and zero frozen #1511 matches.
+- `sims/lp2_primeecho_intact_pair_handoff_sft.cjs` enumerates all 36 finite-list exhaustion boundaries and proves boundary300 is the sole boundary whose first two intact complete words form an adjacent pair repeated elsewhere, at p27.
 - Source transcription: `resources/liber-primus/lp2-transcription.txt`.
 - Original p55 image: `resources/liber-primus/72.jpg`.
 
