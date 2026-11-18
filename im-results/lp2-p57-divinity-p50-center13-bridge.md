@@ -95,4 +95,4 @@ The strongest next blind prediction is **FIND → 28** under the same frozen GP0
 The printed center `13` → red13 continuation is promising but still one inference short of authentication. The universal base59 attractor189 must not be counted as corroboration.
 
 Reproducer: `sims/lp2_p57_divinity_p50_center13_bridge_sft.cjs`.
-Windows Node22 passes: **44412420619** (initial center bridge) and **44413029291** (global-attractor correction). A fresh run should be used for the expanded EMERGE/word-chain version.
+Windows Node22 passes: **44412420619** (initial center bridge), **44413029291** (global-attractor correction), and **44414174775** (expanded EMERGE/DIUINITY reconstruction plus the frozen p57 word-chain and FIND→28 prediction).
