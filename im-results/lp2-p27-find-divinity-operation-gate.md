@@ -6,6 +6,16 @@
 
 The p55→p27 route contains an unusually selective **instruction parser**, but no source-selected reversible operation has been recovered for the missing `FIND THE DIVINITY` step. Preserve the p27 nested arithmetic and red13/DH structure as intermediate evidence. Do not promote the p57 sentence matches to recovered p27 plaintext and do not launch a new cipher menu from the eight-rune `NSOOCAEY` interior.
 
+## Post-closure DH operation-family selector
+
+A later independent route resolves one part of this gate without changing its payload-cipher conclusion. The authenticated 2016 **THE / WAY** source-order road, evaluated on the newly fixed p0 receiver with the replicated GP0→p50-byte grammar, selects two p0 words with GP0 sums **139** and **37**. Their native GP29 residues are **23,8 = D,H**. The same chain uniquely satisfies authenticated source order and returns to independently frozen p27 byte80 in the full 56-page × 42-adjacency census.
+
+The numeric residues are independently the signed-2013 DH modulus **23** and server public value **8**, both already reconstructed from the p27/p50 route before this readout. A wider 1,931-valid-pair control contains six raw DH residue pairs and two DH+80 pairs, but only p0 THE/WAY is source-order DH and source-order DH+80.
+
+Therefore the source now selects the **DH operation family and state context** more directly than this original gate knew. The remaining gap is narrower: authenticated 2013 DH terminates at a shared integer and still supplies no post-DH KDF, rune serialization, data cipher, target clock, or reversible unknown-rune receiver. Do not reinterpret this update as plaintext recovery.
+
+[Cross-page cycle](lp2-p0-the-way-p27-80-navigation-cycle.md) · [source SFT](../sims/lp2_p0_the_way_p27_80_cycle_sft.cjs) · [Windows PASS 44420220363](https://github.com/FlareZ123/liber-primus/actions/runs/44420220363).
+
 ## What the source actually selects
 
 The clear p57 parable says, in part, `WE MUST SHED OUR OWN CIRCUMFERENCES TO FIND THE DIVINITY WITHIN AND EMERGE`. On the independently selected p27 page, the literal operation **shed circumferences** is executable without language scoring: remove the first and last rune of each printed word, then repeat as needed. The existing source SFT establishes several real selectivity facts:
