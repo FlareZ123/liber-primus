@@ -219,6 +219,9 @@ for (let trial = 0; trial < trials; trial += 1) {
   if (isNestedHit(permuted, positions, observed)) observedConfig += 1;
 }
 
+assert.equal(observedConfig, 0);
+assert.equal(familyAny, 3);
+
 console.log(JSON.stringify({
   status: "PASS: address-only family frozen and audited",
   configCount: configs.length,
