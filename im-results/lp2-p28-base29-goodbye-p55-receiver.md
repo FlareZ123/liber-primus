@@ -100,6 +100,30 @@ The 1033 row is reproduced in the present SFT. The 3301 row remains independentl
 
 This materially changes the old p33–39 TCP-command gate: the missing **command/page selector** is now supplied internally by the p28 object and the p57/p50 p33 pointer. The remaining blocker is narrower: neither `16I` nor `3QO` specifies a reversible consumer for the 1,680 p33–39 ciphertext runes.
 
+## Prime-rank reconstruction of both cuneiform values
+
+An older p33–39 arithmetic result established that the two reversed decimal primes have one-based prime ranks
+
+`π(1033)=174=6×29`
+and
+`π(3301)=464=16×29`.
+
+That report correctly treated the quotients **6** and **16** as underselected after discovery. The p28 BASE29 object now supplies both values before inspecting the cuneiform ciphertext:
+
+- the center of the bracketed BASE29 word is **6**;
+- the literal command radix supplies **29**;
+- original p50 cell29 is the unique literal token **`16`**.
+
+So the route reconstructs both visible p33 operands by the same prime-rank rule:
+
+`prime_(6×29) = prime_174 = 1033`
+
+`prime_(16×29) = prime_464 = 3301`.
+
+This is stronger than merely observing that both ranks are divisible by29. The formerly unexplained quotients are now source-selected by the p28/p50 route. It also explains why the historical test vector couples exactly **BASE29 1033** with **DH 3301**: the same BASE29-selected state generates both operands before any p33–39 decryption is attempted.
+
+The next decisive problem is therefore no longer choosing the two command operands. It is finding the value-changing receiver or state transition that consumes the p33–39 ciphertext after those commands.
+
 ## Why this is stronger than a free word-sum search
 
 The object is selected before reading those three sums by two authenticated historical opcodes routed through the already established p50/base59 grammar. The bounds are exact canonical word cuts, and the operation applied inside the bounds is the already solved manuscript instruction to shed circumferences. No key, phase, alphabet permutation, or language-scoring threshold is fitted.
