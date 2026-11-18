@@ -71,6 +71,7 @@ def main() -> None:
                 known_cicada_hosts = (
                     "ky2khlqdf7qdznac.onion",  # Authentic 2014 Onion7 LP2 index
                     "eq6emgv2ehsrix6t.onion",  # Historical missing continuation
+                    "nz77w2upkfkyj4rh.onion",  # Agent15 p27/red13 factor candidate
                 )
                 for member in members:
                     if not member.isfile() or not member.name.endswith(".nodes"):
