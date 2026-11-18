@@ -93,6 +93,38 @@ Across all 18 original red spans, only six have prime GP-prime sums whose ordina
 
 This control is secondary because the p55 word-map already selected p27 independently. Its value is to show that the p27 red-heading pointer is not a generic property shared by other rubricated spans.
 
+## Authenticated DH receiver semantics gate (Director #1625)
+
+The p27/table bridge reconstructs the signed worked tuple, but the authenticated
+2013 protocol does not define a reusable data cipher after that exchange. The
+signed `DH [p]` procedure ends by requiring the server to compute the shared
+secret and return it literally as `03 DATA [k]`; its worked example is
+`DH 23 -> 01 OK 5 8 -> 19 -> 03 DATA 2`. The next protocol procedure, `NEXT`,
+is independent: the client sends plain text after `01 OK`, terminates it with
+a dot line, and the server records that text as the next instructions.
+
+The pinned March 2013 participant session confirms the same separation at
+runtime. Its server computes shared value1067, sends `03 DATA 1067`, and only
+afterward receives a separate `NEXT` command followed by a clear
+OpenPGP-signed message. The shared integer is not used to transform that
+payload. The reconstructed server implementation likewise transmits the
+integer and clears the DH session; `NEXT` enters a raw text-recording state.
+No KDF, key stretching, byte/rune serialization, IV/nonce, cipher mode,
+message authentication, ciphertext framing, or reversible payload receiver is
+specified by the signed protocol or observed in the pinned session.
+
+Therefore **shared value2 is not source-authenticated as an LP2 cipher key**.
+Turning 2 into GP29 addition, XOR, AES, a stream seed, or any other decoder
+would introduce a new operation absent from the authenticated 2013 material.
+The p27/base59 closure remains a structural bridge to a genuine historical
+Cicada object, while the bridge currently terminates at the typed integer
+`03 DATA 2`.
+
+Source boundary:
+[`resources/external/2013-tcp-server-signed-source.md`](../resources/external/2013-tcp-server-signed-source.md)
+and
+[`resources/external/2013-tcp-live-test-vectors.json`](../resources/external/2013-tcp-live-test-vectors.json).
+
 ## Consequence
 
 The p55 -> p27 handoff and Agent14's red-heading instruction chain now have a concrete operation-level continuation. The p27 header selects address186; that address is simultaneously `MUST`, the signed DH `(23,2)` coordinate, and the unique table value19. The signed DH server share8 then supplies a walk length that reaches the signed `(23,5)` coordinate, which becomes a fixed point only under base59.
