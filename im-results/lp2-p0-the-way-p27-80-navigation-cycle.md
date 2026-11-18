@@ -81,6 +81,14 @@ This is a prospective plaintext prediction:
 
 It uses the already frozen navigation grammar and an independently selected 27x27 receiver. It remains conditional until a reversible value-changing cipher reproduces the four letters or another independent artifact feature confirms them. LUCK is a navigation-state label here, rather than a claim that the following p2 word plaintext is LUCK.
 
+## Shared2 preselects GOOD before the receiver
+
+A later source-state refinement strengthens the prospective GOOD route. The independently reconstructed DH shared value `K=2` uniquely selects **GOOD** from the 42 authenticated source adjacencies under the exact integer equation `GP0(source)+K=index(next signed word)`: `35+2=37=index(LUCK)`. None of the other reconstructed DH23 values `5/6/8/15/19/23` hits any source adjacency. Modulo29 alone is weaker because NUMBERS becomes a second residue hit.
+
+This reverses the search order of the existing receiver result: shared2 selects GOOD first, then `GP0(GOOD)=35 -> p50[35]=39` lands on p2 word9, whose length4 matches GOOD and whose ciphertext GP0 is37, exactly the selected LUCK index; `p50[37]=80` closes to the frozen p27 endpoint. The receiver word-sum excess is therefore exactly `37-35=2=K`.
+
+The relation was noticed after GOOD was already proposed, so it is retrospective source selection rather than prospective authentication. It still supplies no letterwise inverse for original `U TH H Y`. [Dedicated report](lp2-shared2-good-source-selector.md) · [SFT](../sims/lp2_shared2_good_source_selector_sft.cjs).
+
 ## Full source-family control
 
 The exact grammar was applied to all **56 unknown pages p0–p55** and all **42 adjacent authenticated 2016 word pairs**. A first-hop hit requires the first source word to bridge through the page to the actual zero-based index of the next signed word.
