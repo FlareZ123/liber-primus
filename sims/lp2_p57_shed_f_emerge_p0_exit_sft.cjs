@@ -189,6 +189,15 @@ assert.equal(tokens[192], "00");
 assert.equal(decode(tokens[192], alphabet60), 0);
 assert.equal(decode(tokens[192], alphabet59), 0);
 
+// The independent p27 -> 3301 route selects the only other literal 00 cell.
+const zeroCells = tokens
+  .map((token, address) => ({ token, address }))
+  .filter((row) => row.token === "00")
+  .map((row) => row.address);
+assert.deepEqual(zeroCells, [192, 229]);
+assert.equal(3301 % tokens.length, 229);
+assert.equal(tokens[3301 % tokens.length], "00");
+
 // Staying in the shed state cannot leave the root.
 assert.deepEqual(walk(root189, alphabet59, dhShared), [189, 189, 189]);
 
@@ -273,6 +282,11 @@ console.log(JSON.stringify({
     base60: decode(tokens[root189], alphabet60),
   },
   restoredShared2Walk: restored,
+  literalZeroCells: zeroCells,
+  independentZeroSelectors: {
+    p27_3301: 3301 % tokens.length,
+    p57_emergeRestore: restored[1],
+  },
   candidateReceiver: "physical p0 via value0",
   conditionalTitleRecovery: {
     exitValue: 192,
