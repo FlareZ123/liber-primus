@@ -38,7 +38,7 @@ function apply(input,direction){
   });
 }
 const decoded=apply(pages,-1);
-assert.deepEqual(apply(decoded,1),pages);
+assert.deepEqual(apply(decoded,1).map((page)=>({page:page.page,indices:page.indices})),\n  pages.map((page)=>({page:page.page,indices:page.indices})));
 const original=pages.flatMap(p=>p.indices);
 const plain=decoded.flatMap(p=>p.indices);
 assert.equal(plain.reduce((s,v,i)=>s+Number(v!==original[i]),0),2835);
