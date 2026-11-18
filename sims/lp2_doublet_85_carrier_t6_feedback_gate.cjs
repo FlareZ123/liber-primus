@@ -51,7 +51,19 @@ const firstPrimes = count => {
 // Recreate the canonical 2,896 printed words and same-page event carrier
 // exactly as in lp2_doublet_85_eventword_crib_sft.cjs.
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
-const sectionText = master.slice(master.indexOf("\n\n") + 2).split("$").slice(7, 16);
+const normalizedMaster = master.replace(/\r\n/g, "\n");
+const headerBreak = normalizedMaster.indexOf("\n\n");
+const sectionText = normalizedMaster.slice(headerBreak + 2).split("$").slice(7, 16);
+console.log(JSON.stringify({
+  debug: "master-parser",
+  root,
+  masterLength: master.length,
+  headerBreak,
+  sectionCount: sectionText.length,
+  sectionRunes: sectionText.map(s => Array.from(s).filter(r => runeIndex.has(r)).length),
+  sectionWords: sectionText.map(s => s.split(/[-.&§]/u).map(part => Array.from(part).filter(r => runeIndex.has(r))).filter(w => w.length).length),
+  runeAlphabet: runeIndex.size
+}));
 assert.equal(sectionText.length, 9);
 const printedWords = sectionText.flatMap(section => section
   .split(/[-.&§]/u)
