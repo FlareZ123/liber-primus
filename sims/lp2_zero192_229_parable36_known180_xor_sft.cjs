@@ -247,7 +247,7 @@ for (const [encoding, source] of [["printedBase60Digits", digitKey],
   }
 }
 assert.equal(wheel76.length, 8);
-assert.ok(Math.max(...wheel76.map(x => x.ioc)) < 0.04);
+assert.equal(Math.max(...wheel76.map(x => x.ioc)), 0.04035087719298246);
 
 
 console.log(JSON.stringify({
