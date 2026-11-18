@@ -80,6 +80,11 @@ function baseParams(domain) {
   params.set("from", FROM_YEAR);
   params.set("to", TO_YEAR);
   params.append("filter", "statuscode:200");
+  const escaped = domain.replaceAll(".", "\\.");
+  const visibleV2 = domain === "tor2web.org"
+    ? "(?i)^https?://(?:[^./]+\\.)*([a-z2-7]{16})\\." + escaped + "(?::[0-9]+)?(?:/|$).*"
+    : "(?i)^https?://(?:[^./]+\\.)*([a-z2-7]{16})\\.onion\\." + escaped + "(?::[0-9]+)?(?:/|$).*";
+  params.append("filter", "original:" + visibleV2);
   params.set("fl", "timestamp,original,mimetype,statuscode,digest,length");
   params.set("collapse", "urlkey");
   return params;
@@ -101,12 +106,12 @@ function candidateStrings(original) {
   const host = parsed.hostname.toLowerCase();
   let label = null;
   let proxyKind = null;
-  let match = host.match(/^([a-z2-7]{16})\.onion\.(to|link|city|cab|nu)$/);
+  let match = host.match(/^(?:[^.]+\.)*([a-z2-7]{16})\.onion\.(to|link|city|cab|nu)$/);
   if (match) {
     label = match[1];
     proxyKind = "dot_onion_gateway";
   } else {
-    match = host.match(/^([a-z2-7]{16})\.tor2web\.org$/);
+    match = host.match(/^(?:[^.]+\.)*([a-z2-7]{16})\.tor2web\.org$/);
     if (match) {
       label = match[1];
       proxyKind = "tor2web_subdomain";
@@ -196,7 +201,7 @@ async function main() {
           stats.reconstructed_rows += 1;
           try {
             const host = new URL(original).hostname.toLowerCase();
-            const m = host.match(/^([a-z2-7]{16})\.(?:onion\.(?:to|link|city|cab|nu)|tor2web\.org)$/);
+            const m = host.match(/^(?:[^.]+\.)*([a-z2-7]{16})\.(?:onion\.(?:to|link|city|cab|nu)|tor2web\.org)$/);
             if (m) uniqueOnionLabels.add(m[1]);
           } catch {}
         }
