@@ -41,7 +41,7 @@ DIUINITY
  -> 2800
 ```
 
-The remaining inferential gap is the **addressing act itself**: no result here proves that prime sums should be used as p50 indices. The historical DH target still selects inner→outer over the equally decimal reversed `0028`, and the concrete DH3301 session remains participant-preserved rather than organizer-signed.
+The remaining inferential gap is the **addressing act itself**: no result here proves that prime sums should be used as p50 indices, and #1568 independently finds no first-party source nominating p50 as the receiver. Director #1565 also leaves token order source-ambiguous: p57 action chronology favors outer→inner while p50 graphical reading order favors inner→outer, with no authenticated convention deciding between them. The historical DH target therefore still selects inner→outer if the bridge is accepted, and the concrete DH3301 session remains participant-preserved rather than organizer-signed.
 
 Reproducer: [`sims/lp2_p57_divinity_operand_semantics_sft.cjs`](../sims/lp2_p57_divinity_operand_semantics_sft.cjs)
 
