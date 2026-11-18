@@ -240,6 +240,9 @@ assert.equal(longWords.filter(w => w.length >= 9).length, 187);
 assert.equal(longWords.filter(w => w.length >= 9
   && allWordCoefficientMatches.has(w.start)).length, 0);
 assert.equal(longWords.length - allWordCoefficientMatches.size, 488);
+const noCipherFLong = longWords.filter(w => w.length >= 9
+  && !source.slice(w.start, w.start + w.length).includes(0)).length;
+assert.equal(noCipherFLong, 128);
 const originalKey = wi => mod(7 * wi + 13);
 const originalDirect = decode(source, 1, 1, "word5", originalKey);
 assert.deepEqual(encodeCipher(originalDirect, 1, 1, "word5", originalKey), source);
@@ -335,6 +338,7 @@ console.log(JSON.stringify({
         wordsWithNoFit: longWords.length - allWordCoefficientMatches.size,
         allLongWordsNineOrMore: 187,
         nineOrMoreWithAnyFit: 0,
+        nineOrMoreWithNoVisibleCipherF: noCipherFLong,
         byExactWordLength: lengthCounts}}},
   planted: {cipherRunes: recovered.length,
     dictionaryMatches: positive.total, forwardInverse: true,
