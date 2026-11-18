@@ -130,6 +130,66 @@ The one-based coordinate control fails. Treating (31,6) as one-based selects add
 
 This gives an independent reason for the zero origin and for retaining exactly the two already frozen radix interpretations.
 
+## One indexing convention reconstructs the full DH exchange
+
+The source-selected token `39` and the same **one-based forward** indexing convention used by red13 recover the remaining private DH field rather than merely matching the public tuple.
+
+### Modulus from the token's low digit
+
+The selected cell254 token is `39`. Its low digit is **9**. Use 9 as a position in the same 19-rune red heading:
+
+- one-based forward position9 = **H**, GP prime **23**;
+- zero-based forward index9 = L, prime73;
+- one-based reverse position9 = E, prime67;
+- zero-based reverse index9 = L, prime73.
+
+Only the already established one-based-forward orientation yields the signed DH modulus **23**. Thus `39` supplies a selector for `p=23` without importing that field as a target.
+
+### The two radix readings become shared value and base
+
+The original table width is visibly **8** columns. The same token `39` gives:
+
+- base59 value186 = `23×8+2`, hence row23,column **2**;
+- base60 value189 = `23×8+5`, hence row23,column **5**.
+
+With modulus23 recovered above, those columns are exactly the signed worked example's shared value **2** and base **5**. The marker-selected prime also gives the same shared value under the book's native modulus: `31 mod29 = 2`.
+
+### Base5 selects the client secret
+
+Use the now source-derived base **5** as a position in the same red heading, again under the same one-based-forward convention:
+
+- one-based forward position5 = **S**, GP index **15**;
+- zero-based forward index5 = O, index3;
+- one-based reverse position5 = L, index20;
+- zero-based reverse index5 = M, index19.
+
+The one-based-forward value **15** is exactly the worked example's unique client secret exponent because:
+
+`5^15 mod23 = 19`.
+
+That public result19 is already the p27 red-heading length, the giant first rune M's GP index, and original cell186's value.
+
+The red-length/marker gap independently supplied the server secret **6**, and:
+
+`5^6 mod23 = 8`.
+
+The public result8 is exactly the original table width. Both private exponents independently produce the same shared secret:
+
+`19^6 mod23 = 8^15 mod23 = 2`.
+
+So one consistent source convention reconstructs the complete worked exchange, including the two private exponents that the signed example never prints:
+
+| Field | Source-derived value | Source check |
+|---|---:|---|
+| modulus `p` | 23 | token-low-digit9 → heading position9 H → GP prime23 |
+| base `g` | 5 | base60(`39`)=189 → row23,col5 |
+| server secret | 6 | red length19 − marker13 |
+| client secret | 15 | base5 → heading position5 S → GP index15 |
+| server public | 8 | `5^6 mod23`; equals table width8 |
+| client public | 19 | `5^15 mod23`; equals red length/initial M index/cell186 value |
+| shared | 2 | both DH powers; equals base59(`39`) column2 and `31 mod29` |
+
+The three positional selectors involved in this circuit, red13, token digit9, and derived base5, all choose the signed values only under **one-based forward indexing**. No separate orientation is fitted per field.
 ## The transducer and pointer walk converge on the same DH endpoints
 
 At start address186, original cell `0J` equals **19** under both radices. That is the signed client public share19, the p27 red-heading length19, and the giant initial M's GP index19.
@@ -146,7 +206,7 @@ The corresponding base60 eight-hop path is:
 
 and does not close at189.
 
-The route therefore contains the complete signed worked-example structure:
+The route therefore contains the complete signed worked-example structure, and the p27 selectors additionally recover both private exponents:
 
 | DH quantity | Value | Manuscript role |
 |---|---:|---|
@@ -155,12 +215,12 @@ The route therefore contains the complete signed worked-example structure:
 | server public | 8 | pointer-walk length |
 | client public | 19 | p27 length/initial index and cell186 value |
 | shared | 2 | start column and literal p57 circumference-shedding depth |
-| server secret | 6 | visible `19−13`; independently `prime(I)×6 = 31×6 = 186` |
+| server secret | 6 | visible `19−13`; `5^6 mod23=8` equals table width |
 | **client secret** | **15** | **geodesic between addresses186 and189 on the twice-shed 60-cell circumference** |
 | start address | 186 | p27 prime ordinal and base59 reading of cell254 |
 | endpoint address | 189 | base60 reading of cell254 and base59 fixed point |
 
-The private exponent6 was not fitted by changing the DH example. It is uniquely determined by the signed worked example and independently recovered by the p27 marker factor.
+Neither private exponent is supplied by the signed example. The manuscript object recovers server secret6 from `19−13` and client secret15 from the base5-selected fifth rune S, while the resulting public shares return the table width8 and red length19.
 
 ## Matched-table scale diagnostic
 
