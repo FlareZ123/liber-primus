@@ -1,26 +1,43 @@
 # Mayfly artwork bridge: original p24 to known p57
 
-**Status:** bounded negative, 18 November 2026, Agent29. No unknown LP2 plaintext or authenticated key recovered.
+**Status:** bounded original-input negatives, 18 November 2026, Agent29. No unknown LP2 plaintext or authenticated key recovered.
 
-## Source-selected hypothesis
+## Independently selected receiver and donor
 
-Original LP2 page24 (physical 41.jpg, 270 unknown runes) has mirrored mayfly-like insects along its sides. Solved page57 (physical 74.jpg, 95 clear runes) shows a dissolving mayfly below the plaintext PARABLE. Existing original-art analysis already links the artwork through a GIMP forward model ([reproducer](../sims/lp2_p57_gimp_multiscale_source_sft.py); [source-art assessment](lp2-p57-native-layer-master-archive-source-gate.md)). The visual link supplies an independent reason to test page57 as a known-plaintext donor to page24.
+Original LP2 page24 (physical `41.jpg`, 270 unknown runes) has two mayfly-like insects along its text margins. Solved page57 (physical `74.jpg`, 95 clear runes) shows a dissolving mayfly below the plaintext PARABLE. The art relationship was already known from a GIMP forward model ([existing reproducer](../sims/lp2_p57_gimp_multiscale_source_sft.py); [existing source-art assessment](lp2-p57-native-layer-master-archive-source-gate.md)). This connection independently identifies **which unknown ciphertext to test against which known plaintext**. It says nothing by itself about a key transformation.
 
-We first try the 95 clear p57 GP indices and their GP-prime residues mod29 as repeating additive keys on p24. The paired-mirror artwork motivates forward/reverse orientations. A stronger test grants the premise an arbitrary 95-symbol additive key recovered by cribbing p57 cleartext against the first or final 95 symbols of p24. The other **175 symbols** form a genuinely untouched original-ciphertext holdout. The crib interval is not counted as evidence.
+We tested three finite, historically intelligible additive GP29 receivers without optimizing source keys for English:
 
-## Results
+1. Repeating the 95 p57 GP indices and their GP-prime residues modulo29 as an additive/subtractive key on p24. The artwork's left/right reflection motivates both donor orientations.
+2. Granting an **arbitrary 95-symbol secret pad** inferred from an exact known p57 crib at either end of p24, with all 175 uncribbed runes as an untouched holdout. The 95 training symbols do not count as evidence.
+3. Reusing Cicada's **authenticated p56 plaintext-F literal bypass** with the above p57 keys. In this mode, plaintext F emits ciphertext F and consumes *no* key symbol, while a ciphertext F may instead be an encrypted non-F symbol. A complete dynamic program retains every possible key-clock position at each source rune. Decoding is rejected only if **no legal path** remains, regardless of language. This is strictly the specified source-clock model, rather than a generic challenge to skip encodings.
 
-Original GP29 normalized IoC: p24 ciphertext **0.963872**, p57 authentic cleartext **1.818589**. The eight direct transfer outputs all remain unreadable, with normalized IoC **0.963073–1.045326**.
+## Complete original-input outcomes
 
-| Known crib direction | Placement in p24 | Untouched runes | Holdout GP29 IoC |
+Native GP29 normalized IoC: p24 ciphertext **0.963872**, authenticated clear p57 **1.818589**. All eight direct signed/directional key attempts remain unreadable, with normalized IoC **0.963073–1.045326**.
+
+| Clear p57 crib direction | Placement in p24 | Untouched runes | Untouched GP29 IoC |
 |---|---|---:|---:|
 | Forward | First 95 | 175 | 0.967619 |
 | Forward | Final 95 | 175 | 1.030476 |
 | Reversed | First 95 | 175 | 0.994286 |
 | Reversed | Final 95 | 175 | 1.017143 |
 
-The untouched output in all four crib variants remains unreadable and near uniform. The [standalone Node22 positive-controlled test](../sims/lp2_p24_p57_mayfly_keygate_sft.cjs) uses the unchanged original index corpus at resources/liber-primus/lp2-corpus.json. A native-GP planted message verifies direct inversion **270/270** and recovered-pad heldout inversion **175/175**.
+All four arbitrary-key holdouts remain unreadable and have near-uniform symbol frequencies.
 
-**Decision:** The source-art relationship does not authenticate a direct GP ordinal or prime-residue additive transfer, or an arbitrary fixed period95 additive pad from p57 to p24. These bounded routes can be retired. An independently legible nonlinear extraction rule or original layer master would be a different investigation. This outcome does not exclude unbounded external keys, word-specific transformations, or non-additive image channels.
+The **literal-F skip-aware decoder** is mathematically impossible on complete p24 under every one of the eight declared source keys and signs. Each entry below is the number of **complete original p24 runes that admit at least one legal plaintext/key-clock path**, before the next rune kills every path.
 
-The original-image art relationship predates this run; this report preserves only the new, limited plaintext-receiver test.
+| Key register from p57 | Forward key, sign − / + | Reversed key, sign − / + |
+|---|---|---|
+| GP rune index | **11 / 22** | **11 / 14** |
+| GP-prime residue mod29 | **202 / 76** | **23 / 22** |
+
+The strongest possible source-derived skip-history reaches only **202 of the original 270** p24 runes. This is an exact finite algebraic failure, independent of natural-language scores, candidate cribs, or parameter fitting.
+
+## Reproduction and decision
+
+[Complete standalone Node22 CommonJS SFT](../sims/lp2_p24_p57_mayfly_keygate_sft.cjs) reads unchanged `resources/liber-primus/lp2-corpus.json`, prints all original outcomes and asserts finite rejections. It passes locally under Node22 using the exact GP-index values of source pp24/56/57, a **270/270** planted direct-key inverse, **175/175** planted inferred-crib-key holdout inverse, and a **270/270** planted literal-F bypass feasibility positive. All three controls separate implementation correctness from a claim of historical plaintext.
+
+**Decision:** The direct GP ordinal, prime-residue additive transfer, full period95 secret-pad crib, and historically authentic literal-F-transparent receiver with these eight fixed donor keys are rejected. Retire only these original-source consumers. The image pairing does not establish a key, an original editor's private image layer, a changing-state cipher, or any ciphertext-derived map to decoded runes. Independently specified nonlinear operations or recovered original editing assets could justify a different experiment. No p24 plaintext or final destination was discovered.
+
+The artwork provenance predates this run. The new work is limited to these original ciphertext decipherment tests.
