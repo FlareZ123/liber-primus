@@ -30,6 +30,14 @@ p50[192]=00
 
 Across all 42 adjacent word pairs in the authenticated 2016 signed message, **EPIPHANY SEEKS** is the unique pair whose combined GP0 is 192. Its GP rune lengths are 8,5, matching the independently selected p0 opening geometry.
 
+A full original-page-opening control makes the ciphertext side sharper. For each of the 55 physical rune pages p0..p55, excluding p50, sum the first two ciphertext words. Sixteen page openings have prime sums. Taking each prime sum's ordinal as a p50 address, **p0 alone lands on value28**:
+
+```
+p0 opening sum181 -> prime ordinal42 -> p50[42]=28
+```
+
+So the FIND/p28 destination is unique across the complete physical page-opening family under this frozen checksum rule.
+
 The two sides therefore point in opposite directions through already active receiver types:
 
 ```
