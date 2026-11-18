@@ -211,6 +211,8 @@ X | EARTH
 
 Both arise from the same candidate NG-B-NG / NG-T-NG key node under different retained starts/directions.
 
+Original source-word delimiters do not rescue the tie cleanly. The `I MAY` path begins at zero-based 693, the first rune of an original eight-rune source word, then reads left into zero-based 692, the end of the preceding source word; thus it crosses an original word boundary exactly after its first decrypted rune. The competing `X EARTH` branch begins at zero-based 357, which is itself the end of an original three-rune source word, so it too has an original delimiter immediately after its first selected cell in row-major source order. The delimiter evidence therefore does not uniquely select one phrase.
+
 Therefore the source-bounded bootstrap is discriminating through COLD and **fails at block 5 under this natural prospective family**. No extra rule was added to rescue `I MAY`. This is the current stopping boundary.
 
 ## What this changes
