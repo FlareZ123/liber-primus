@@ -7,7 +7,7 @@ const root = path.resolve(__dirname, "..");
 const corpus = JSON.parse(fs.readFileSync(path.join(root,
   "resources/liber-primus/lp2-corpus.json"), "utf8"));
 const master = fs.readFileSync(path.join(root,
-  "resources/transcriptions/liber_primus_master.txt"), "utf8");
+  "resources/transcriptions/liber_primus_master.txt"), "utf8").replace(/\r\n/g, "\n");
 const mod = x => ((x % 29) + 29) % 29;
 const T6 = x => mod(24 - 2 * x);
 const ioc = values => {
@@ -48,22 +48,10 @@ const firstPrimes = count => {
   return out;
 };
 
-// Recreate the canonical 2,896 printed words and same-page event carrier
-// exactly as in lp2_doublet_85_eventword_crib_sft.cjs.
+// Canonical 2,896-word stream. Normalize Windows CRLF before finding the
+// header break; the GitHub Windows runner otherwise shifts the parser.
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
-const normalizedMaster = master.replace(/\r\n/g, "\n");
-const headerBreak = normalizedMaster.indexOf("\n\n");
-const sectionText = normalizedMaster.slice(headerBreak + 2).split("$").slice(7, 16);
-console.log(JSON.stringify({
-  debug: "master-parser",
-  root,
-  masterLength: master.length,
-  headerBreak,
-  sectionCount: sectionText.length,
-  sectionRunes: sectionText.map(s => Array.from(s).filter(r => runeIndex.has(r)).length),
-  sectionWords: sectionText.map(s => s.split(/[-.&§]/u).map(part => Array.from(part).filter(r => runeIndex.has(r))).filter(w => w.length).length),
-  runeAlphabet: runeIndex.size
-}));
+const sectionText = master.slice(master.indexOf("\n\n") + 2).split("$").slice(7, 16);
 assert.equal(sectionText.length, 9);
 const printedWords = sectionText.flatMap(section => section
   .split(/[-.&§]/u)
@@ -77,6 +65,7 @@ const pageStarts = new Set();
 let cursor = 0;
 for (const page of physicalPages) { pageStarts.add(cursor); cursor += page.indices.length; }
 assert.equal(cursor, symbols.length);
+
 let position = 0;
 const eventWords = [];
 const eventSites = [];
@@ -95,17 +84,24 @@ for (let wordId = 0; wordId < printedWords.length; wordId++) {
 assert.equal(position, 12956);
 assert.equal(eventSites.length, 86);
 assert.equal(eventWords.length, 85);
-assert.deepEqual(eventWords.filter(w => w.hits.length > 1).map(w => w.wordId), [1476]);
-const carrier = eventWords.map(w => w.hits[0].rune);
-assert.equal(carrier.length, 85);
-assert.equal(carrier[56], 24);
+assert.deepEqual(eventWords.filter(w => w.hits.length > 1), [{
+  wordId: 1476,
+  hits: [{ site: 6611, rune: 3 }, { site: 6617, rune: 18 }]
+}]);
 
-// Frozen source-selected model: p2 six-pair image suggests lag six; the
-// authenticated 2013 DH6 bridge supplies T6(x)=24-2x mod29. Treat the 85
-// event-word runes as one ciphertext stream, first six symbols fixed as seed.
-const feedbackPlain = carrier.map((c, i) =>
+const firstPerWord = eventWords.map(w => w.hits[0].rune);
+const everyEvent = eventWords.flatMap(w => w.hits.map(h => h.rune));
+assert.equal(firstPerWord.length, 85);
+assert.equal(everyEvent.length, 86);
+
+// Frozen source-selected model: p2's six limb-pairs suggest lag six; the
+// signed 2013 DH6 bridge supplies T6(x)=24-2x mod29. The first six symbols
+// of each candidate carrier are fixed as its seed.
+const decryptT6 = carrier => carrier.map((c, i) =>
   i < 6 ? c : mod(c - T6(carrier[i - 6]))
 );
+const decoded85 = decryptT6(firstPerWord);
+const decoded86 = decryptT6(everyEvent);
 const p56Cipher = corpus.pages[56].indices;
 const p57Cipher = corpus.pages[57].indices.slice(0, 85);
 const p56Plain = tokenizeGP(
@@ -114,8 +110,8 @@ const p56Plain = tokenizeGP(
 assert.equal(p56Cipher.length, 85);
 assert.equal(p56Plain.length, 85);
 
-// Reproduce solved p56 as an authentic positive control; it uses prime
-// totients and a literal-F clock interruption, not T6 feedback.
+// Authentic solved p56 prime-totient positive control; it uses a literal-F
+// key-clock interruption at original p56 rune position 56, not T6 feedback.
 const primes = firstPrimes(85);
 let keyClock = 0;
 const shifts = p56Cipher.map((_, i) => i === 56 ? 0 : (primes[keyClock++] - 1) % 29);
@@ -123,34 +119,45 @@ assert.equal(keyClock, 84);
 const authenticPlain = p56Cipher.map((x, i) => i === 56 ? 0 : mod(x - shifts[i]));
 assert.deepEqual(authenticPlain, p56Plain);
 
-// Synthetic T6 feedback round-trip validates the implementation only.
+// Synthetic T6-feedback round-trip validates the implementation only.
 const syntheticPlain = Array.from({ length: 85 }, (_, i) => mod(7 * i + 3));
 const syntheticCipher = [];
 for (let i = 0; i < syntheticPlain.length; i++) {
   syntheticCipher.push(i < 6 ? syntheticPlain[i] : mod(syntheticPlain[i] + T6(syntheticCipher[i - 6])));
 }
-const syntheticRecovered = syntheticCipher.map((c, i) =>
-  i < 6 ? c : mod(c - T6(syntheticCipher[i - 6]))
-);
-assert.deepEqual(syntheticRecovered, syntheticPlain);
+assert.deepEqual(decryptT6(syntheticCipher), syntheticPlain);
 
 const translit = values => values.map(x => corpus.translit[x]).join("·");
-const output = {
+const first85 = decoded86.slice(0, 85);
+console.log(JSON.stringify({
   source: { words: printedWords.length, runes: symbols.length, adjacentEvents: eventSites.length, eventWords: eventWords.length },
   model: "P[i] = C[i] - (24 - 2*C[i-6]) mod 29; first six carrier symbols are the seed",
-  carrier: translit(carrier),
-  decryptedCarrier: translit(feedbackPlain),
-  carrierIoC: ioc(carrier),
-  decryptedCarrierIoC: ioc(feedbackPlain),
-  decryptedTopFrequencyCount: profile(feedbackPlain)[0],
-  p56PlainIoC: ioc(p56Plain),
-  directMatches: {
-    p56Cipher: agreement(feedbackPlain, p56Cipher),
-    p56Plain: agreement(feedbackPlain, p56Plain),
-    p57CipherFirst85: agreement(feedbackPlain, p57Cipher)
+  firstPerWord: {
+    length: firstPerWord.length,
+    carrier: translit(firstPerWord),
+    decrypted: translit(decoded85),
+    carrierIoC: ioc(firstPerWord),
+    decryptedIoC: ioc(decoded85),
+    topFrequencyCount: profile(decoded85)[0],
+    matches: {
+      p56Cipher: agreement(decoded85, p56Cipher),
+      p56Plain: agreement(decoded85, p56Plain),
+      p57CipherFirst85: agreement(decoded85, p57Cipher)
+    }
+  },
+  everyEvent: {
+    length: everyEvent.length,
+    carrier: translit(everyEvent),
+    decrypted: translit(decoded86),
+    decryptedIoC: ioc(decoded86),
+    topFrequencyCount: profile(decoded86)[0],
+    first85Matches: {
+      p56Cipher: agreement(first85, p56Cipher),
+      p56Plain: agreement(first85, p56Plain),
+      p57CipherFirst85: agreement(first85, p57Cipher)
+    }
   },
   syntheticRoundTripPositiveControl: true,
   authenticP56PrimeTotientPositiveControl: true,
-  result: "No readable plaintext or p56/p57 recovery; the frozen T6 feedback model is rejected on the 85-event-word carrier."
-};
-console.log(JSON.stringify(output, null, 2));
+  result: "Neither the 85 first-per-word carrier nor the 86 all-event carrier yields plaintext under the frozen T6 feedback inverse."
+}, null, 2));

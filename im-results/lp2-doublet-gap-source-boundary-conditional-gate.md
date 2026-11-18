@@ -200,4 +200,13 @@ The frozen operation produces no readable text. The output has GP29 IoC **0.0330
 
 Reproduction: [single-file Node.js gate](../sims/lp2_doublet_85_carrier_t6_feedback_gate.cjs).
 
-**Decision:** retire this *literal 85-symbol p56 crib/key carrier* and its secret-static-alphabet family. The source-motivated T6 lag-six ciphertext-feedback model also fails on this carrier. Other dynamic alphabets and event-to-data mappings remain untested, but require a new independent source selector; do not tune T6 seeds or recurrence variants.
+
+### Source-selected dynamic T6 feedback gate (18 November 2026)
+
+The p2 artwork supplies a plausible lag-six cue (six visible limb-pairs), while the signed 2013 DH6 source bridge independently supplies the affine map T6(x)=24−2x mod29. This selects one simple dynamic-alphabet test: treat the event-word carrier as one ciphertext stream, keep the first six symbols as the seed, and decrypt P[i]=C[i]−T6(C[i−6]) mod29.
+
+Two natural event-to-data readings were tested: (1) the 85-rune carrier taking the first repeat rune from each event-bearing word; and (2) the 86-rune raw event stream retaining both repeats in the one double-hit word, a natural alternative given the image's two heads. Neither produces readable text. The 85-rune output has IoC **0.03305322**, versus **0.07002801** for solved p56 plaintext; it agrees with p56 plaintext in **3/85**, p56 ciphertext in **4/85**, and p57 ciphertext in **3/85** positions. The 86-rune output also remains near-flat and has no p56/p57 alignment. A synthetic T6-feedback round-trip and the authentic p56 prime-totient positive control both pass, so the negative is not an implementation failure. This rejects both simple source-motivated T6 ciphertext-feedback readings on the post-discovery event carrier. Do not tune the seed or switch to plaintext-feedback without a new source clue.
+
+Reproduction: [single-file Node.js gate](../sims/lp2_doublet_85_carrier_t6_feedback_gate.cjs).
+
+**Decision:** retire the literal 85-symbol p56 crib/key carrier and its secret-static-alphabet family. The source-motivated T6 lag-six ciphertext-feedback model also fails on both the 85 first-per-word and 86 all-event carriers. Other event-to-data mappings and dynamic alphabets remain untested, but require a new independent source selector; do not tune T6 seeds or recurrence variants.
