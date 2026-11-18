@@ -71,7 +71,7 @@ Preserve every original source row, decode its eight printed tokens into the can
 | First 3 CRC, last 5 data | RFC 4880 big-endian | **0/32** |
 | First 3 CRC, last 5 data | Three CRC bytes reversed | **0/32** |
 
-The single runnable [OpenPGP original-table CRC-24 test](../sims/lp2_flora35_openpgp_crc24_rowcode_sft.cjs) implements the exact published operation in one readable JSDoc/CJS script. Independent control `CRC24("123456789") = 0x21CF02` passes, as does empty-message initialization `0xB704CE`. It regenerates valid CRCs for the actual original first five bytes of each of the **32 rows** (32/32 full matches), validates the reversed three-byte layout on genuine planted rows, and detects a deliberately flipped check byte (31/32 valid). Full source byte array XOR `0x94` and literal physical table row13/31 byte values are also asserted.
+The single runnable [OpenPGP original-table CRC-24 test](../sims/lp2_flora35_openpgp_crc24_rowcode_sft.cjs), [full source original Windows PASS run 44242816258](https://github.com/FlareZ123/liber-primus/actions/runs/44242816258), implements the exact published operation in one readable JSDoc/CJS script. Independent control `CRC24("123456789") = 0x21CF02` passes, as does empty-message initialization `0xB704CE`. It regenerates valid CRCs for the actual original first five bytes of each of the **32 rows** (32/32 full matches), validates the reversed three-byte layout on genuine planted rows, and detects a deliberately flipped check byte (31/32 valid). Full source byte array XOR `0x94` and literal physical table row13/31 byte values are also asserted.
 
 ### Literal printed-text RFC4880 radix-64 checksum receiver
 
