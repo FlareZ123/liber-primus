@@ -35,6 +35,10 @@ p49:              p50:                           p51:
 
 **Stronger p49 bound:** all conventional source tokens encode bytes 0–255. Thus **any five source cells, no matter where selected, sum to at most 5×255=1275**, strictly below 3301. No page-local permutation can rescue the order-five/3301 square under this numeric domain. This does not exclude other, source-specified non-byte semantics.
 
+## Independent visual-layout follow-up (#1663)
+
+The exact Stage10 response is now known to return LP1 pp14–16 themselves. A separate original-image comparison asks whether those three page layouts, rather than the three magic-square operands, predict the LP2 pp49–51 table geometry. They do not. The returned pages have ordered visible structure of eleven prose lines; five prose lines plus insects; then four prose lines, an insect, a heading and a 5×5 square. LP2 pp49–51 instead form one eight-column table split 10/13/9 rows. Repeated three-page framing is common within LP1, and the Stage10 triplet's exact cross-release footer reuse occurs on LP2 p22, not pp49–51. See [the visual-layout gate](2014-stage10-lp1-triplet-lp2-table-layout-gate.md).
+
 ## Reproducer and controls
 
 [CommonJS original-input SFT](../sims/lp2_stage10_three_square_pp49_51_sft.cjs) loads the full 256-cell canonical source and asserts that every token matches its source byte under the frozen alphabet. It verifies page image names, printed row counts, the locked block positions, all row/column/diagonal sums and the p49 upper bound. It constructs independent genuine order-five and order-seven magic squares (sum 65 and 175) by the Siamese method and confirms that perturbing a cell breaks the magic-square predicate. The source-block arithmetic and positive/negative control calculations were independently executed in the JavaScript tool runtime.
