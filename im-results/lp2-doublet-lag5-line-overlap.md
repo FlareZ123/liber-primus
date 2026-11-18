@@ -58,4 +58,4 @@ This is a useful negative architectural constraint. A **single physical-line on/
 
 This does **not** make either anomaly spurious. The established doublet-gap localization and the independently established lag-five word-boundary/exact-bigram results remain intact. They may arise from different parts of one richer encoder, different state scales, source typography plus cipher effects, or unrelated causes.
 
-Reproducer: [`sims/lp2_doublet_lag5_line_overlap_sft.cjs`](../sims/lp2_doublet_lag5_line_overlap_sft.cjs).
+Reproducer: [`sims/lp2_doublet_lag5_line_overlap_sft.cjs`](../sims/lp2_doublet_lag5_line_overlap_sft.cjs). Windows Node22 [PASS 44397405095](https://github.com/FlareZ123/liber-primus/actions/runs/44397405095).
