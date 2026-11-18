@@ -259,9 +259,10 @@ assert.equal(corpus.translit[at(nextStart)], 'N');
 
 // New key axis is vertical. Preserve the current upward component.
 const nextReadDirection = [
-  Math.sign(currentReadDirection[0]) * nextKeyNode.axis[0],
-  Math.sign(currentReadDirection[0]) * nextKeyNode.axis[1],
+  Math.sign(currentReadDirection[0]),
+  0,
 ];
+assert.deepEqual(nextKeyNode.axis, [1, 0]);
 assert.deepEqual(nextReadDirection, [-1, 0]);
 
 // Stop at the first subsequent singleton-incidence source cell.
