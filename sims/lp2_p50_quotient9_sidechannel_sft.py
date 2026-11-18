@@ -214,6 +214,72 @@ def gf29_quotient_highregister_gate(values: list[int]) -> None:
     print("COUPLED POSITIVE source-native-252-rune H*G codeword + co-located quotient-pad exact=252/252")
 
 
+
+def secret_nine_alphabet_entropy_gate(values: list[int]) -> None:
+    """Exact unknown-key bound for all nine independent GP29 symbol permutations."""
+    corpus = json.loads((SOURCE.parent / "lp2-corpus.json").read_text(encoding="utf-8"))
+    pages = [p for p in corpus["pages"] if p["page"] <= 55 and p["indices"]]
+    p57 = next(p["indices"] for p in corpus["pages"] if p["page"] == 57)
+    assert len(p57) == 95
+    n = sum(len(p["indices"]) for p in pages)
+    assert n == 12_956
+
+    def entropy(counts: list[int]) -> float:
+        total = sum(counts)
+        return -sum((v / total) * __import__("math").log2(v / total)
+                    for v in counts if v) if total else 0.0
+
+    def conditional(stream: list[tuple[int, int]]) -> float:
+        matrix = [[0] * 29 for _ in range(9)]
+        for symbol, key_digit in stream:
+            matrix[key_digit][symbol] += 1
+        return sum(sum(row) / len(stream) * entropy(row) for row in matrix)
+
+    chapters = {0, 3, 8, 15, 23, 27, 33, 40, 54}
+    original = [symbol for page in pages for symbol in page["indices"]]
+    counts = [original.count(i) for i in range(29)]
+    print(f"ALLSECRET ORIGINAL H(C)={entropy(counts):.12f} bits/rune")
+    minimum = 10.0
+    for major in ("rows", "columns"):
+        indexes = order(major, False, False)
+        q = [values[i] // 29 for i in indexes]
+        for scope in ("book", "chapter", "page"):
+            key_at = []
+            book_pos = chapter_pos = 0
+            for page in pages:
+                if page["page"] in chapters:
+                    chapter_pos = 0
+                for local_pos in range(len(page["indices"])):
+                    phase = {"book": book_pos, "chapter": chapter_pos, "page": local_pos}[scope]
+                    key_at.append(q[phase % 256])
+                    book_pos += 1
+                    chapter_pos += 1
+            assert len(key_at) == n
+            exact = conditional(list(zip(original, key_at)))
+            minimum = min(minimum, exact)
+
+            # All nine hidden alphabets are permitted. This secret affine
+            # family is a positive representative of those bijections.
+            planted_plain = [p57[i % len(p57)] for i in range(n)]
+            planted_cipher = [
+                ((1 + k) * p + 3 * k + 7) % 29
+                for p, k in zip(planted_plain, key_at)
+            ]
+            recovered = [
+                ((c - 3 * k - 7) * pow(1 + k, -1, 29)) % 29
+                for c, k in zip(planted_cipher, key_at)
+            ]
+            assert recovered == planted_plain
+            lhs = conditional(list(zip(planted_cipher, key_at)))
+            rhs = conditional(list(zip(planted_plain, key_at)))
+            assert abs(lhs - rhs) < 1e-11
+            assert exact > 4.8
+            print(f"ALLSECRET reading={major} scope={scope}"
+                  f" H(C|q)={exact:.12f} planted_H(P|q)={rhs:.12f}"
+                  f" planted_exact={n}/{n}")
+    print(f"ALLSECRET SUMMARY models=6 min_required_original_H(P)={minimum:.12f} bits/rune")
+
+
 def main() -> None:
     values = json.loads(SOURCE.read_text(encoding="utf-8"))["bytes"]
     assert len(values) == 256 and all(type(x) is int and 0 <= x < 256 for x in values)
@@ -247,6 +313,7 @@ def main() -> None:
     assert signatures == 0 and meaningful == 0
     direct_quotient_key_gate(values)
     gf29_quotient_highregister_gate(values)
+    secret_nine_alphabet_entropy_gate(values)
 
 
 if __name__ == "__main__":
