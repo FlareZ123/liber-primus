@@ -124,6 +124,14 @@ function collectReports(jsonDir, urls, snapshots) {
  * @returns {Promise<vm.Context>}
  */
 async function loadHashAlarmContext(hashDir) {
+  const compatibilityDir = path.join(hashDir, 'hashes');
+  fs.mkdirSync(compatibilityDir, { recursive: true });
+  for (const name of fs.readdirSync(hashDir)) {
+    if (name.endsWith('.wasm')) {
+      fs.copyFileSync(path.join(hashDir, name), path.join(compatibilityDir, name));
+    }
+  }
+
   const context = vm.createContext({
     console,
     process,
@@ -136,6 +144,7 @@ async function loadHashAlarmContext(hashDir) {
     setInterval,
     clearInterval
   });
+  context.global = context;
 
   const scripts = [
     'blake2b.js',
