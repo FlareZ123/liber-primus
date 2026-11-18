@@ -171,7 +171,10 @@ assert.deepEqual(encrypt(alteredPlain, altK), cipher);
 assert.notDeepEqual(alteredPlain.slice(0, 150), originalPlain.slice(0, 150));
 
 const p57 = corpus.pages.find(p => p.page === 57).indices;
-const lp1 = gpText(read('resources/liber-primus/lp1-plaintext-reference.txt'));
+const lp1 = gpText(read('resources/liber-primus/lp1-plaintext-reference.txt')
+  .split(/\r?\n/)
+  .filter(line => /^[A-Z ,.;!?\'\":-]+$/.test(line.trim()) && line.trim())
+  .join(' '));
 const planted = lp1.slice(0, 500);
 assert(planted.length === 500);
 for (const known of [p57, planted]) {
