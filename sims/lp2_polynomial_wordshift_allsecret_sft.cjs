@@ -157,3 +157,59 @@ for (const {degree, minLength, longLength} of expectations) {
 assert.deepEqual(all.map(x => x.printedDemand), [187, 109, 57, 25, 25, 3]);
 console.log(JSON.stringify({status: 'PASS', model: 'independent arbitrary hidden polynomial coefficients per word',
   referenceGPWords: sourceCount, originalRunes: tape.length, originalWords: original.length, all}, null, 2));
+
+/**
+ * New strictly broader original-cipher family:
+ *   C[w,j] = scale[w] * P[w,j] + polynomial[w](j) mod 29,
+ * with arbitrary unknown NONZERO scale per word and independently
+ * arbitrary polynomial coefficients, including all source-oriented cuts.
+ * The (d+1)th difference is proportional to the plaintext difference.
+ * Normalize by the first nonzero difference, removing all 28 scales.
+ * @param {number[]} values @param {number} degree @returns {string}
+ */
+function affineSignature(values,degree) {
+  let v=values.slice();
+  for(let k=0;k<=degree;k++){
+    const next=new Array(v.length-1);
+    for(let j=0;j<next.length;j++)next[j]=mod(v[j+1]-v[j]);
+    v=next;
+  }
+  const pivot=v.findIndex(x=>x!==0);
+  if(pivot<0)return 'ZERO';
+  let inv=0;
+  for(let i=1;i<29;i++)if(i*v[pivot]%29===1){inv=i;break;}
+  assert(inv!==0);
+  return pivot+':'+v.map(x=>String.fromCharCode(65+mod(x*inv))).join('');
+}
+const affineExpectations=[
+  {degree:2,zeroFrom:11,demand:57},
+  {degree:3,zeroFrom:11,demand:57},
+  {degree:4,zeroFrom:12,demand:25},
+  {degree:5,zeroFrom:12,demand:25}
+];
+for(const {degree,zeroFrom,demand} of affineExpectations) {
+  let longOriginal=0;
+  for(let n=degree+3;n<=MAXLEN;n++){
+    const examples=[...dictionary[n].values()];
+    const ref=new Set(examples.map(v=>affineSignature(v,degree)));
+    const sample=examples[Math.floor(examples.length/2)];
+    assert(sample);
+    const transformed=sample.map((x,j)=>{
+      let poly=0,power=1;
+      for(let k=0;k<=degree;k++){poly+=((3+7*k)%29)*power;power=mod(power*j);}
+      return mod(17*x+poly);
+    });
+    assert.equal(affineSignature(transformed,degree),affineSignature(sample,degree));
+    let actual=0;
+    for(let start=0;start<=tape.length-n;start++)
+      if(ref.has(affineSignature(tape.slice(start,start+n),degree)))actual++;
+    if(n>=zeroFrom) {
+      assert.equal(actual,0,'Original source admits affine word polynomial: d='+degree+', n='+n);
+      longOriginal+=original.filter(w=>w.length===n).length;
+    }
+    if(n===zeroFrom-1)assert(actual>0,'model unexpectedly too restrictive near cutoff');
+  }
+  assert.equal(longOriginal,demand);
+  console.log('Affine all-secret degree',degree,'PASS, all-cut exact-zero lengths',
+    zeroFrom+'..14,',demand,'original mandatory word slots');
+}
