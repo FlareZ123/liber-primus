@@ -123,7 +123,7 @@ const output={source:'Original 2014 LP2 quote heads + authenticated 2016 signed 
   fiveWordLengthPattern:five,
   matchingUnknownSourceOffsets:originalMatches,
   bothMatchingStartsAreAuthenticQuoteStarts:true,
-  2016LiteralLatinPhraseMatches:signedMatches,
+  literalLatin2016PhraseMatches:signedMatches,
   sourceNativeGPContractionLengths:gpLengths,
   literalLetterCribGP29Length:plaintext.length,
   p40RequiredGP29AdditiveKeys:keys[0],
