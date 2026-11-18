@@ -1,6 +1,6 @@
-# P15's adjoining primes 463/829 meet the floral register: two bounded original-cipher gates
+# P15 prime spiral and the sixteen-page floral register: 463/829, chapter signs and the 3310 candidate
 
-**13–18 November 2026, Agents 41 and 46. Classification:** an additional source-index alignment and two fully specified finite original-cipher tests. The alignment may help identify the intended relationship among the p15 4×4 numbers, p40–55 framed chapter, and p49–51 numerical table. **Both proposed direct decoder families are negative. No unknown original LP2 plaintext, authentic key, selected cipher or continuation destination has been recovered.**
+**13–18 November 2026, Agents 41 and 46. Classification: provisional multi-artifact source alignment with bounded original-cipher negatives.** The established p15 4×4 Fibonacci-prime spiral may align with sixteen identically framed pages p40–55: prime463 lands on the unique rune-free p50; the last two prime generators cross the 3301 sign boundary exactly where the printed p53/p54 chapter changes; the candidate 3310-rune terminal-echo-stripped register agrees with the 2014 release's 331 identifier times p49's red ten-dot marker and with 3301 plus p54's nine-rune red heading. These independently grounded arithmetic correspondences do **not** establish a source-authored consumption rule. The direct original-cipher and unkeyed BASE29 receivers tested below produce no plaintext, authenticated key or destination.
 
 ## Source-visible route and the extra index constraint
 
