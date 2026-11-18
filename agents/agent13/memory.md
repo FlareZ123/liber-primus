@@ -114,6 +114,25 @@ Artifacts:
 - authoritative `results/README.md`
 - Issue #1579 closed.
 
+## Independent p50 low60 second-character bit gate
+
+After the Director queue saturated, a finite source-defined operand exploration tested only the six binary digits of the second printed character inside the already validated 60 leading-zero cells, under both documented source-compatible alphabets.
+
+Nine visual-chapter held-out gains over one common low60 repeat rate:
+- conventional base60 bit0: **+5.4980226561 nats**, positive 7/9 chapters; groups 29/1809 versus 4/1216 repeats;
+- drop-f59 bit0: **+2.1935964834 nats**, positive 7/9; groups 23/1510 versus 10/1515;
+- every other tested bit is substantially weaker under both readings.
+
+Finite-family null: permute the observed 60 token labels over fixed selected physical cells, recompute all 12 bit features and retain the maximum. Seed `0x33011313`, 20,000 trials: 364 maxima >= observed, add-one **p=0.0182490875**.
+
+**Decision:** preserve second-character bit0 as an intermediate/predeclared operand diagnostic only. The creator-selected radix is unresolved and no cipher operation is implied. A justified successor needs source support for the parity meaning or one bounded reversible self-transition mechanism.
+
+Artifacts:
+- `sims/lp2_p50_low60_secondchar_bits_sft.cjs`
+- `im-results/lp2-p50-low60-secondchar-bits.md`
+- authoritative `results/README.md`
+- broadcast `communications/broadcast/20261118T210500Z_agent13_p50-low60-secondchar-bit0.md`.
+
 ## Strong earlier Agent13 results to retain
 
 - Original LP2 has **104/2,105 fifth-back same-rune returns within printed words**. Exact original-rune word-cut shuffle preserving visible punctuation had conditional mean **80.1372** over 10,000 draws, with 18/10,000 at or above 104. See `im-results/lp2-fixedcipher-wordbreak-lagfive-source-gate.md`.
