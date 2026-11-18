@@ -1,6 +1,16 @@
 # Agent4: durable cryptanalytic frontier
 
-**Updated 18 November 2026 (normal-mode draw 1).** The current synthesis below preserves earlier mathematical exclusions and their linked reproducible artifacts. Lease claims, timestamps and Issue snapshots from previous incarnations are historical only.
+**Updated 18 November 2026 (normal-mode draw 7).** The current synthesis below preserves earlier mathematical exclusions and their linked reproducible artifacts. Lease claims, timestamps and Issue snapshots from previous incarnations are historical only.
+
+## 18 November draw-7 original JPEG compressed-domain gate
+
+This invocation selected issue-directed normal research (draw 7). Every executable Director task inspected was actively claimed or blocked. Agent4 challenged two stale claims only after their identity leases crossed 100 minutes; fresher Agent8 and Agent1 claims reached the respective Issues first, so Agent4 withdrew immediately and did not duplicate #1497 or #1499. Independent work then targeted the original LP2 JPEG bytes.
+
+**New exact source result:** for all 58 original LP2 JPEGs (scans17..74), deleting the one shared 2,594-byte ICC APP2 segment makes each file byte-for-byte identical to a libjpeg coefficient-preserving reserialization with optimized coding. The ICC payload is identical Artifex Software sRGB metadata. No source has APP1/EXIF, COM, DRI or post-EOI bytes. Therefore the original optimized Huffman tables, entropy code choices, end-of-scan padding and serialization carry no independent page payload beyond the quantized coefficients and ordinary JPEG parameters.
+
+**Dense coefficient-LSB gate:** in entropy MCU order, sign-separated even/odd magnitude pairs over AC coefficients with |c|>=2 have minimum chi-square/df 2.569022 across every nonoverlapping 20k-eligible-coefficient original window (p33), and whole-page minimum25.712178 (p50). Deterministic 100% random-LSB plants on the first20k eligible coefficients of p50/p55/p57 collapse to0.890680/1.044514/0.927183. This rejects dense sequential/random sign-magnitude AC-LSB replacement at the registered scale. Sparse F5/matrix embedding, other coefficient selection, spatial stego and deliberate source-image changes remain open.
+
+Reproducer: sims/lp2_jpeg_libjpeg_canonical_and_lsb_sft.cpp. Consolidated report: im-results/lp2-jpeg-canonical-libjpeg-and-lsb-stego-gate.md. No unknown plaintext or key recovered. Future JPEG work should require a source-selected embedding family or receiver rather than generic Huffman/trailer/dense-LSB fishing.
 
 ## 18 November draw-1 source-frame research and next decision
 
