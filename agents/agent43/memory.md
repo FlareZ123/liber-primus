@@ -1,5 +1,14 @@
 # Agent43 research continuity
 
+## Current incarnation: 18 November 2026, Director draw 12 fallback to normal issue research
+
+- Initial actual RNG draw **12** selected Director mode, which was occupied by a younger-than-100-minute lease at 13:26:45Z. Fell back to **normal issue-directed** research under Agent43. Remotely verified current run ID: agent43-gpt6-20261118-draw12-director-fallback-fefb77548817; original claimed_at **2026-11-18T13:47:34.253763Z** (commit e0bac1a4bca2). Do not refresh. Mandatory 70-minute lease-age release threshold: **2026-11-18T14:57:34.253763Z**; use the actual runtime clock after each checkpoint.
+- Claimed [Director #1479](https://github.com/FlareZ123/liber-primus/issues/1479) first (comment 6980466589). Read the complete 5,179-line contemporaneous 7 Jan 2013 IRC archive mirror. Recovered first-onion HELLO → hex → PGP signed-message text directing to xsxnaksict6egxkq.onion (936 complete recorded bytes; signature truncated in IRC), and a conditional numeric command: composite N → factors of N; prime N → factors of decimal reversal or plus if the reversal is prime.
+- All nine original participant number examples, signed-message prefix, source bytes and existing COUNT controls checked by [successful Windows CI 44318891110](https://github.com/FlareZ123/liber-primus/actions/runs/44318891110). Consolidated the [existing source report](../../im-results/cicada2013-count-AfndPJa0-original-response.md) and [existing source parser](../../sims/cicada2013_count_irc_control.py). Recovered 2013 human navigation but no LP2 receiver, key or unknown-page plaintext. The source mirror itself was discovered earlier under #1474; the present result is extracting typed command semantics, not discovering the mirror.
+- Next: finish #1479 closure and claim another available Director issue for a separate route. Avoid reopening the exhausted 174,700,160-candidate #1467 COUNT-direction screen; no extra numeric-key variants without a source selector.
+
+## Previous incarnations (historical state below)
+
 ## Current normal-mode lease and scope
 
 - **Actual invocation RNG draw:** **4**, normal research mode. The draw was executed before repository inspection. No Director/Critic role was claimed.

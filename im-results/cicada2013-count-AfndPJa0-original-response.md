@@ -62,7 +62,7 @@ The same recovered 7 January IRC transcript supplies a **historically player-exe
 
 **Decision for the LP2 attack frontier:** This historical grammar is operational and executable, and it shows 3301 players an explicit way to obtain a signed next destination. It has **no missing LP2 opcode to extract from the archive**: `hello` emits a fixed route, `count` discards nearly all phrase identity in a sum, and `[number]` returns prime-factor classifications. No recorded input or response specifies how to transform any original LP2 rune span into plaintext, apply a key, or address the later p50 table. The 2013 `primes` command by itself also has no such typed receiver. The proper outcome is a historically bounded first-onion handoff and a negative **2013-command→LP2 decoder** decision. Do not manufacture a new COUNT-direction, reversal-offset, or modulo-key screen from these commands. A newly authenticated first-party LP2 instruction would reopen the question.
 
-The existing [source-locked Python reproducer](../sims/cicada2013_count_irc_control.py) now checks this exact `hello` hex-prefix reconstruction, the help and unlisted-command references, and nine independently observed integer-command outputs in addition to all original COUNT controls.
+The existing [source-locked Python reproducer](../sims/cicada2013_count_irc_control.py) now checks this exact `hello` hex-prefix reconstruction, the help and unlisted-command references, and nine independently observed integer-command outputs in addition to all original COUNT controls. **[Windows CI 44318891110 passed](https://github.com/FlareZ123/liber-primus/actions/runs/44318891110)** with the full original archive fetched at its pinned mirror commit.
 
 ## Reconciliation and decision
 
