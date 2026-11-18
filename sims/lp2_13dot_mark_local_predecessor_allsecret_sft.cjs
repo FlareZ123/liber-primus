@@ -526,7 +526,7 @@ const report = {
     fullManuscriptIntervals: fullIntervalLengths.length,
     solvedControlIntervalLengths: solvedControlLengths,
     p0MarkerAfterRunes: p0Override.physical_zero_based.large_punctuation[0].after_runes,
-    13DotAnd10DotAlignment: punctuation.large_mark_alignment.dot_count_distribution,
+    dotCountAlignment: punctuation.large_mark_alignment.dot_count_distribution,
     duplicateLargeMarkOffsets: punctuation.large_mark_alignment.duplicate_rune_offsets
   },
   longIntervalGate: longResults,
