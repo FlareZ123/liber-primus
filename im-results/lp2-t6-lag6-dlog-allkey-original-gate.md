@@ -54,11 +54,11 @@ The new source-exact [read-only per-page/chapter full-key SFT](../sims/lp2_t6_la
 
 | Scope of independently arbitrary 29-way alphabet keys | Original eligible suffix symbol pairs | Same-code collisions | Key-invariant pooled IoC |
 | --- | ---: | ---: | ---: |
-| One secret alphabet for the entire book | 831,405 | 29,529 | **0.0355230002225149** |
+| One secret alphabet for the entire book | 831,405 | 29,534 | **0.0355230002225149** |
 | Nine independent chapter alphabets | 115,568 | 4,165 | **0.036039388065900596** |
 | Fifty-five independent physical-page alphabets | 16,875 | 628 | **0.03721481481481481** |
 
-The single-alphabet first-row exact collision numerator 29,529 is inferred from the exact original IoC and 831,405 pairs; independent page/chapter rows are asserted directly by their source-original SFT. Of 55 physical pages, 54 contain at least two suffix symbols, with runeless p50 contributing none. The free key space now includes **all `(29!)^55` possible page-wise alphabets**, and separately all `(29!)^9` chapter-wise alphabets. The security argument is a mathematical invariance: the secret permutations can be entirely unknown and different from each other without changing the observed collision totals.
+The single-alphabet first-row exact collision numerator 29,534 is inferred from the exact original IoC and 831,405 pairs; independent page/chapter rows are asserted directly by their source-original SFT. Of 55 physical pages, 54 contain at least two suffix symbols, with runeless p50 contributing none. The free key space now includes **all `(29!)^55` possible page-wise alphabets**, and separately all `(29!)^9` chapter-wise alphabets. The security argument is a mathematical invariance: the secret permutations can be entirely unknown and different from each other without changing the observed collision totals.
 
 Calibrate against 800 source-native GP English 12,956-rune books *per control source*, with every printed word length fixed as in the original. Each reference book is sampled as 2,896 complete words, retaining natural within-word repeats and the exact original page/chapter assignment of each output position.
 
