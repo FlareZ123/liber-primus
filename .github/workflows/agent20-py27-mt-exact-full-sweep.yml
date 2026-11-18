@@ -99,7 +99,8 @@ jobs:
           print(f"{lane}: [{start}, {end}) = {end-start} seeds")
           PY
 
-          mkdir -p "run-${SHARD}"\n          ./grind27 --data engine.dat --plan shard_plan.json --threads "$(nproc)" --run-dir "run-${SHARD}"
+          mkdir -p "run-${SHARD}"
+          ./grind27 --data engine.dat --plan shard_plan.json --threads "$(nproc)" --run-dir "run-${SHARD}"
 
       - name: Validate shard coverage and summarize claim-bar hits
         shell: bash
