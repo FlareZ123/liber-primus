@@ -1,13 +1,17 @@
 "use strict";
 
 /**
- * Independent LP2 adjacent-doublet ordering gate.
+ * P50 literal-leading-zero association after exact event-bearing-word
+ * conditioning.
  *
- * Reproduces the externally reported lag-1 autocorrelation of inter-doublet
- * gaps, then conditions it on source-native page boundaries, the exact p50
- * literal-leading-zero mask, and coarse 1000-rune event counts.
+ * This SFT starts from the canonical 86 same-page adjacent-equality events.
+ * Prior repository work already localized their published gap correlation
+ * largely to the identities of the 85 printed words that contain them.
+ * Here we hold those exact word/page groups and event counts fixed and ask
+ * whether the phase-0 p50 literal-leading-zero mask still predicts the
+ * within-word event offset.
  *
- * Read-only SFT. No language scoring and no unknown plaintext claim.
+ * Exact finite convolution, no Monte Carlo, no language score.
  * Node.js 22 CommonJS:
  *   node sims/lp2_doublet_gap_nonstationarity_sft.cjs
  */
@@ -16,250 +20,221 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
-const corpus = JSON.parse(fs.readFileSync(
-  path.join(root, "resources", "liber-primus", "lp2-corpus.json"), "utf8"));
-const grid = JSON.parse(fs.readFileSync(
-  path.join(root, "resources", "liber-primus", "lp2-grid-256.json"), "utf8"));
+const master = fs.readFileSync(path.join(
+  root, "resources", "transcriptions", "liber_primus_master.txt"), "utf8");
+const corpus = JSON.parse(fs.readFileSync(path.join(
+  root, "resources", "liber-primus", "lp2-corpus.json"), "utf8"));
+const grid = JSON.parse(fs.readFileSync(path.join(
+  root, "resources", "liber-primus", "lp2-grid-256.json"), "utf8"));
 
-const pages = corpus.pages.filter(page =>
-  page.page <= 55 && page.indices.length > 0);
-const stream = pages.flatMap(page => page.indices);
-const tokens = grid.pages.flatMap(page => page.tokens);
-const zeroMask = tokens.map(token => token[0] === "0");
-assert.equal(stream.length, 12956);
+const RUNES = /[\u16A0-\u16FF]/gu;
+
+/** @param {string} text @returns {string[][]} */
+function words(text) {
+  return text.split(/[-.&§]/u).map(part => part.match(RUNES)).filter(Boolean);
+}
+
+/** @param {number} n @param {number} k @returns {number} */
+function choose(n, k) {
+  if (k < 0 || k > n) return 0;
+  if (k === 0 || k === n) return 1;
+  k = Math.min(k, n - k);
+  let value = 1;
+  for (let i = 1; i <= k; i++) value = value * (n - k + i) / i;
+  return value;
+}
+
+/**
+ * @typedef {{
+ *   wordId:number,
+ *   page:number,
+ *   positions:number[],
+ *   eventCount:number,
+ *   maskedEventCount:number
+ * }} Group
+ */
+
+const sections = master.slice(master.indexOf("\n\n") + 2).split("$");
+const wordGlyphs = sections.slice(7, 16).flatMap(words);
+assert.equal(wordGlyphs.length, 2896);
+
+const runeIndex = new Map(corpus.runes.map((glyph, index) => [glyph, index]));
+const flat = wordGlyphs.flat().map(glyph => {
+  assert(runeIndex.has(glyph));
+  return runeIndex.get(glyph);
+});
+const pages = corpus.pages.filter(page => page.page <= 55);
 assert.equal(pages.length, 55);
+assert.equal(flat.length, 12956);
+assert.deepEqual(flat, pages.flatMap(page => page.indices));
+
+const wordIdAt = new Int32Array(flat.length);
+let wordCursor = 0;
+for (let wordId = 0; wordId < wordGlyphs.length; wordId++) {
+  const next = wordCursor + wordGlyphs[wordId].length;
+  wordIdAt.fill(wordId, wordCursor, next);
+  wordCursor = next;
+}
+assert.equal(wordCursor, flat.length);
+
+const tokens = grid.pages.flatMap(page => page.tokens);
 assert.equal(tokens.length, 256);
-assert.equal(zeroMask.filter(Boolean).length, 60);
+const leadingZero = tokens.map(token => token[0] === "0");
+assert.equal(leadingZero.filter(Boolean).length, 60);
 
-/** @param {number[]} positions @returns {number} */
-function gapAutocorrelation(positions) {
-  const gaps = [];
-  for (let i = 1; i < positions.length; i++) {
-    gaps.push(positions[i] - positions[i - 1]);
-  }
-  const n = gaps.length - 1;
-  let leftMean = 0;
-  let rightMean = 0;
-  for (let i = 0; i < n; i++) {
-    leftMean += gaps[i];
-    rightMean += gaps[i + 1];
-  }
-  leftMean /= n;
-  rightMean /= n;
-  let cross = 0;
-  let leftSq = 0;
-  let rightSq = 0;
-  for (let i = 0; i < n; i++) {
-    const left = gaps[i] - leftMean;
-    const right = gaps[i + 1] - rightMean;
-    cross += left * right;
-    leftSq += left * left;
-    rightSq += right * right;
-  }
-  return cross / Math.sqrt(leftSq * rightSq);
-}
-
-/**
- * @param {number[]} left
- * @param {number[]} right
- * @returns {number}
- */
-function correlation(left, right) {
-  assert.equal(left.length, right.length);
-  const n = left.length;
-  const leftMean = left.reduce((sum, value) => sum + value, 0) / n;
-  const rightMean = right.reduce((sum, value) => sum + value, 0) / n;
-  let cross = 0;
-  let leftSq = 0;
-  let rightSq = 0;
-  for (let i = 0; i < n; i++) {
-    const a = left[i] - leftMean;
-    const b = right[i] - rightMean;
-    cross += a * b;
-    leftSq += a * a;
-    rightSq += b * b;
-  }
-  return cross / Math.sqrt(leftSq * rightSq);
-}
-
-/** @param {number} seed @returns {() => number} */
-function makeRng(seed) {
-  let state = seed >>> 0;
-  return () => {
-    state ^= state << 13;
-    state ^= state >>> 17;
-    state ^= state << 5;
-    return state >>> 0;
-  };
-}
-
-/**
- * Small-k sampling without replacement. The xorshift modulo reduction has
- * negligible (<3e-6 relative) bias at these pool sizes and is frozen only to
- * make this Monte Carlo exactly repeatable.
- * @param {number[]} pool
- * @param {number} count
- * @param {() => number} random
- * @returns {number[]}
- */
-function sample(pool, count, random) {
-  const chosen = new Set();
-  while (chosen.size < count) chosen.add(random() % pool.length);
-  return [...chosen].map(index => pool[index]);
-}
-
-/**
- * @typedef {{pool:number[], count:number}} Stratum
- */
-
-/**
- * @param {Stratum[]} strata
- * @param {number} seed
- * @param {number} trials
- * @param {number} observed
- */
-function conditionalNull(strata, seed, trials, observed) {
-  const random = makeRng(seed);
-  const values = new Array(trials);
-  let sum = 0;
-  let squared = 0;
-  let atLeastObserved = 0;
-  for (let trial = 0; trial < trials; trial++) {
-    const positions = [];
-    for (const stratum of strata) {
-      positions.push(...sample(stratum.pool, stratum.count, random));
-    }
-    positions.sort((a, b) => a - b);
-    const value = gapAutocorrelation(positions);
-    values[trial] = value;
-    sum += value;
-    squared += value * value;
-    if (value >= observed) atLeastObserved++;
-  }
-  values.sort((a, b) => a - b);
-  const mean = sum / trials;
-  return {
-    seed: "0x" + seed.toString(16),
-    trials,
-    mean,
-    sd: Math.sqrt(squared / trials - mean * mean),
-    q95: values[Math.floor(0.95 * trials)],
-    q99: values[Math.floor(0.99 * trials)],
-    q999: values[Math.floor(0.999 * trials)],
-    atLeastObserved,
-    plusOneTail: (atLeastObserved + 1) / (trials + 1)
-  };
-}
-
-const doublets = [];
-for (let i = 1; i < stream.length; i++) {
-  if (stream[i] === stream[i - 1]) doublets.push(i);
-}
-assert.equal(doublets.length, 86);
-const observed = gapAutocorrelation(doublets);
-assert(Math.abs(observed - 0.38001968924100965) < 1e-15);
-
-const pageStrata = [];
-const pageMaskStrata = [];
-const withinPageLeft = [];
-const withinPageRight = [];
-let offset = 0;
-let maskedEvents = 0;
-let unmaskedEvents = 0;
+/** @type {Map<string, Group>} */
+const allGroups = new Map();
+const eventPositions = [];
+let globalOffset = 0;
 for (const page of pages) {
-  const all = [];
-  const masked = [];
-  const unmasked = [];
-  const localEvents = [];
-  let pageEventCount = 0;
-  let pageMaskedCount = 0;
-  let pageUnmaskedCount = 0;
   for (let local = 1; local < page.indices.length; local++) {
-    const global = offset + local;
-    const isMasked = zeroMask[(global - 1) & 255];
-    all.push(global);
-    (isMasked ? masked : unmasked).push(global);
+    const position = globalOffset + local;
+    const wordId = wordIdAt[position];
+    const key = wordId + ":" + page.page;
+    if (!allGroups.has(key)) {
+      allGroups.set(key, {
+        wordId,
+        page: page.page,
+        positions: [],
+        eventCount: 0,
+        maskedEventCount: 0
+      });
+    }
+    const group = allGroups.get(key);
+    group.positions.push(position);
     if (page.indices[local] === page.indices[local - 1]) {
-      localEvents.push(local);
-      pageEventCount++;
-      if (isMasked) {
-        pageMaskedCount++;
-        maskedEvents++;
-      } else {
-        pageUnmaskedCount++;
-        unmaskedEvents++;
-      }
+      group.eventCount++;
+      eventPositions.push(position);
+      if (leadingZero[(position - 1) & 255]) group.maskedEventCount++;
     }
   }
-  if (pageEventCount) pageStrata.push({pool: all, count: pageEventCount});
-  if (pageMaskedCount) pageMaskStrata.push({pool: masked, count: pageMaskedCount});
-  if (pageUnmaskedCount) {
-    pageMaskStrata.push({pool: unmasked, count: pageUnmaskedCount});
-  }
-  for (let i = 0; i + 2 < localEvents.length; i++) {
-    withinPageLeft.push(localEvents[i + 1] - localEvents[i]);
-    withinPageRight.push(localEvents[i + 2] - localEvents[i + 1]);
-  }
-  offset += page.indices.length;
+  globalOffset += page.indices.length;
 }
-assert.equal(offset, stream.length);
-assert.deepEqual([maskedEvents, unmaskedEvents], [33, 53]);
-assert.equal(withinPageLeft.length, 21);
-const withinPageGapCorrelation = correlation(withinPageLeft, withinPageRight);
-assert(Math.abs(withinPageGapCorrelation - (-0.04937177711923867)) < 1e-15);
+assert.equal(globalOffset, flat.length);
+assert.equal(eventPositions.length, 86);
 
-const blockStrata = [];
-const blockCounts = [];
-for (let start = 1; start < stream.length; start += 1000) {
-  const end = Math.min(stream.length, start + 1000);
-  const pool = [];
-  let count = 0;
-  for (let i = start; i < end; i++) {
-    pool.push(i);
-    if (stream[i] === stream[i - 1]) count++;
+const eventGroups = [...allGroups.values()]
+  .filter(group => group.eventCount > 0)
+  .sort((a, b) => a.wordId - b.wordId || a.page - b.page);
+assert.equal(eventGroups.length, 85);
+assert.equal(eventGroups.filter(group => group.eventCount === 1).length, 84);
+assert.deepEqual(
+  eventGroups.filter(group => group.eventCount === 2)
+    .map(group => [group.wordId, group.page]),
+  [[1476, 27]]
+);
+
+const observedMasked = eventGroups.reduce(
+  (sum, group) => sum + group.maskedEventCount, 0);
+assert.equal(observedMasked, 33);
+
+/*
+ * Exact null:
+ * In every fixed event-bearing word/page group, keep the original event
+ * count k. Relocate the k events uniformly without replacement among that
+ * group's eligible predecessor positions. If n positions contain m phase-0
+ * p50 leading-zero cells, the number X of masked events is Hypergeom(n,m,k).
+ * Convolve all 85 independent finite distributions exactly.
+ */
+let distribution = [1];
+let expectationFormula = 0;
+for (const group of eventGroups) {
+  const n = group.positions.length;
+  const m = group.positions.filter(position =>
+    leadingZero[(position - 1) & 255]).length;
+  const k = group.eventCount;
+  expectationFormula += k * m / n;
+
+  const local = new Array(k + 1).fill(0);
+  const denominator = choose(n, k);
+  for (let x = 0; x <= k; x++) {
+    local[x] = choose(m, x) * choose(n - m, k - x) / denominator;
   }
-  blockCounts.push(count);
-  if (count) blockStrata.push({pool, count});
+
+  const next = new Array(distribution.length + k).fill(0);
+  for (let total = 0; total < distribution.length; total++) {
+    for (let x = 0; x < local.length; x++) {
+      next[total + x] += distribution[total] * local[x];
+    }
+  }
+  distribution = next;
 }
-assert.deepEqual(blockCounts, [8, 3, 7, 2, 6, 9, 10, 8, 11, 2, 9, 6, 5]);
 
-const maskPools = [[], []];
-for (let i = 1; i < stream.length; i++) {
-  maskPools[zeroMask[(i - 1) & 255] ? 0 : 1].push(i);
+const probabilityMass = distribution.reduce((sum, p) => sum + p, 0);
+const exactMean = distribution.reduce((sum, p, x) => sum + x * p, 0);
+const exactVariance = distribution.reduce(
+  (sum, p, x) => sum + (x - exactMean) ** 2 * p, 0);
+const exactUpperTail = distribution.slice(observedMasked)
+  .reduce((sum, p) => sum + p, 0);
+
+assert(Math.abs(probabilityMass - 1) < 2e-15);
+assert(Math.abs(exactMean - expectationFormula) < 2e-14);
+assert(Math.abs(exactMean - 20.632936507936492) < 1e-12);
+assert(Math.abs(Math.sqrt(exactVariance) - 3.568604882225929) < 1e-12);
+assert(Math.abs(exactUpperTail - 0.0006242511989862109) < 1e-15);
+
+/*
+ * Descriptive common conditional odds ratio for a leading-zero cell.
+ * For odds theta, each group's noncentral-hypergeometric mass is
+ * C(m,x) C(n-m,k-x) theta^x. Solve for total expected masked count 33.
+ */
+function conditionalMoments(theta) {
+  let expected = 0;
+  let logLikelihood = 0;
+  for (const group of eventGroups) {
+    const n = group.positions.length;
+    const m = group.positions.filter(position =>
+      leadingZero[(position - 1) & 255]).length;
+    const k = group.eventCount;
+    const observed = group.maskedEventCount;
+    let z = 0;
+    let first = 0;
+    for (let x = 0; x <= k; x++) {
+      const weight = choose(m, x) * choose(n - m, k - x) * theta ** x;
+      z += weight;
+      first += x * weight;
+    }
+    expected += first / z;
+    const observedWeight =
+      choose(m, observed) * choose(n - m, k - observed) *
+      theta ** observed;
+    logLikelihood += Math.log(observedWeight / z);
+  }
+  return {expected, logLikelihood};
 }
-const maskStrata = [
-  {pool: maskPools[0], count: maskedEvents},
-  {pool: maskPools[1], count: unmaskedEvents}
-];
 
-const trials = 100000;
-const controls = {
-  exactPageCounts: conditionalNull(
-    pageStrata, 0x33010001, trials, observed),
-  exactThousandRuneBlockCounts: conditionalNull(
-    blockStrata, 0x33010002, trials, observed),
-  exactLeadingZeroClassCounts: conditionalNull(
-    maskStrata, 0x33010003, trials, observed),
-  exactPageAndLeadingZeroCounts: conditionalNull(
-    pageMaskStrata, 0x33010004, trials, observed)
-};
-
-assert.deepEqual(Object.values(controls).map(x => x.atLeastObserved),
-  [518, 57, 38, 523]);
+let low = 1e-6;
+let high = 1e6;
+for (let i = 0; i < 100; i++) {
+  const middle = Math.sqrt(low * high);
+  if (conditionalMoments(middle).expected < observedMasked) low = middle;
+  else high = middle;
+}
+const conditionalOddsRatio = Math.sqrt(low * high);
+const fitted = conditionalMoments(conditionalOddsRatio);
+const nullModel = conditionalMoments(1);
+assert(Math.abs(conditionalOddsRatio - 2.4256189442937726) < 1e-12);
+assert(Math.abs(fitted.expected - observedMasked) < 1e-12);
 
 console.log(JSON.stringify({
   status: "PASS",
-  sourceRunes: stream.length,
-  doubletSites: doublets.length,
-  observedGapLag1Correlation: observed,
-  withinPageConsecutiveGapPairs: withinPageLeft.length,
-  withinPageGapLag1Correlation: withinPageGapCorrelation,
-  p50LeadingZeroCells: zeroMask.filter(Boolean).length,
-  doubletsByLeadingZeroClass: [maskedEvents, unmaskedEvents],
-  thousandRuneBlockCounts: blockCounts,
-  controls,
+  sourceRunes: flat.length,
+  canonicalPrintedWords: wordGlyphs.length,
+  samePageAdjacentEqualityEvents: eventPositions.length,
+  eventBearingWordPageGroups: eventGroups.length,
+  eventGroupCountHistogram: {oneEvent: 84, twoEvents: 1},
+  p50LiteralLeadingZeroCells: leadingZero.filter(Boolean).length,
+  p50Clock: "(global event position - 1) mod 256",
+  observedMaskedEvents: observedMasked,
+  exactWordIdentityConditionalNull: {
+    expectedMaskedEvents: exactMean,
+    standardDeviation: Math.sqrt(exactVariance),
+    exactUpperTailAtLeastObserved: exactUpperTail
+  },
+  descriptiveCommonConditionalOddsRatio: conditionalOddsRatio,
+  conditionalLikelihoodRatio:
+    2 * (fitted.logLikelihood - nullModel.logLikelihood),
   interpretation:
-    "global doublet ordering survives page/block/p50-mask exposure controls; " +
-    "positive correlation is absent within individual pages",
+    "p50 leading-zero enrichment survives exact event-bearing-word identity conditioning",
   unknownPlaintextOrKeyRecovered: false
 }, null, 2));
