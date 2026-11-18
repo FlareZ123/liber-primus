@@ -27,4 +27,4 @@ The four output IoCs are approximately 0.03210, 0.03827, 0.03333 and 0.03488. Al
 
 Retire only this exact **direct Hill-9** use of the p32 single-peel core as a decoder for p33's 81-rune body. The 81↔81 geometric correspondence remains a source observation. A different consumer requires an independent authored selector; do not tune rotations, offsets, alternative matrices, or extra cipher layers from this failed output.
 
-Reproducer: `sims/agent16_p32core_p33body_hill9_sft.cjs`.
+Reproducer: `sims/agent16_p32core_p33body_hill9_sft.cjs`. Windows Node22 PASS: Actions run `44375489292`.
