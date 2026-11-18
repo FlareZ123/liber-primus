@@ -43,12 +43,13 @@ assert.equal(originalT,778);
  * @returns {{ opportunities:number[], highest:number[], winners:number[][],
  *  commonWinners:number[] }}
  */
-function score(words){
+function score(words, excludeFixedPointH = false){
   const h=[new Int32Array(841),new Int32Array(841)];
   const opportunities=[0,0];
   words.forEach((word,wi)=>{
     const half=originals[wi].half;
     for(let j=6;j<word.length;j++){
+      if (excludeFixedPointH && word[j-6] === 8) continue;
       h[half][29*word[j-6]+word[j]]++;
       opportunities[half]++;
     }
@@ -67,6 +68,14 @@ function score(words){
   return {opportunities,highest,winners,commonWinners};
 }
 const original=score(originals.map(x=>x.c));
+const withoutH=score(originals.map(x=>x.c), true);
+// An independently chosen strength test: H (GP index 8) is the unique fixed
+// point of T. A repetitive fixed-point glyph alone cannot explain the shared
+// full-book operator if removing all H-at-source comparisons preserves it.
+assert.deepEqual(withoutH.opportunities, [624,619]);
+assert.deepEqual(withoutH.highest, [39,39]);
+assert.deepEqual(withoutH.winners, [[originalT],[originalT]]);
+
 assert.deepEqual(original.opportunities,[647,643]);
 assert.deepEqual(original.highest,[40,40]);
 assert.deepEqual(original.winners,[[originalT],[originalT]]);
@@ -150,6 +159,11 @@ console.log(JSON.stringify({
     opportunities:original.opportunities,
     bestScore:original.highest,
     uniqueBestMaps:original.winners.map(ids=>ids.map(i=>[maps[i].a,maps[i].b])),
+    excludingAllHFixedPointSourcePairs:{
+      opportunities:withoutH.opportunities,
+      bestScore:withoutH.highest,
+      uniqueBestMaps:withoutH.winners.map(ids=>ids.map(i=>[maps[i].a,maps[i].b]))
+    },
     map: 'T(x)=27x+24 mod29'
   },
   positive:{
