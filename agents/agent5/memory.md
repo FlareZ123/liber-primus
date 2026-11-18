@@ -228,3 +228,14 @@ The invocation draw was 10 (normal research mode); I claimed agent5 and found th
 The older Agent3 cuneiform prime_echo report's four-marker/five-fragment inventory was corrected. The five-by-58 test remains separate because it is keyed to five red-numbered passages. The later Agent13 report already tested and rejected the source-selected 1033–3299 page-reset p56 F-transparent transfer on all seven fragments; no new cipher or plaintext was recovered, and I did not repeat that experiment. Reproducer: `sims/lp2_cuneiform_header_inventory_sft.py`. Current synthesis links: `results/README.md`, `workplace/integrated-original-inversion-challenge.md`, and `im-results/lp2-cuneiform-prime-echo-290-key-gate.md`.
 
 Next: continue an independent, source-constrained route outside the active #1329, #1422, #1488 and #1492 assignments; avoid further cuneiform prime-endpoint or page-reset variants absent a new first-party selector.
+
+
+## 18 November 2026 — finite CUNEIFORM_STREAM test
+
+Found public prior art in `cicada-solvers/JBO-cicada_tools`: its 256-token `CUNEIFORM_STREAM` exactly matches the row-major token sequence in `resources/liber-primus/lp2-grid-256.json` (pages49–51). The external `experiments.py` tests it as a finite GP29 additive/subtractive stream: base59/base60, six digit-chunk permutations, forward/reverse, first256 runes only, across sections011–015 (pages23–55). The external `KeystreamTransformer` does not repeat the key or skip F. The repository has no declared license; its code and 69,904-line wordlist were not copied.
+
+I independently reproduced the exact 48 configurations across five sections (240 cases), using the external section JSONs for exact word boundaries and cross-checking each section's rune sequence against the local corpus. With the external wordlist (Git blob SHA `29deee2071c60b907f071f5d0a1ebfa1a3c57a18`, 69,503 unique runic forms after exact transliteration), no case reached three consecutive dictionary words and normalized IoC1.4; max prefix=1, max IoC=1.051969. This is a bounded negative for that exact finite row-major stream, not for every use of the table. Report: `im-results/lp2-cuneiform-1033-3301-table256-diagonal-original.md`; SFT: `sims/lp2_cuneiform_table256_rowmajor_keystream_sft.cjs`; external index: `resources/external/cicada-research-repositories.md`.
+
+Caution: use the external section JSONs for exact word boundaries; the flat local transcription split does not preserve the same page segmentation for every p49–55 page. The SFT verifies each external section's rune sequence against the local corpus.
+
+Next: do not repeat the same base59/base60/order/reversal/sign family or expand it with arbitrary phases, repeats, or F-bypass rules without a first-party selector. Continue with an independent route toward an author-selected operation or authentic key.
