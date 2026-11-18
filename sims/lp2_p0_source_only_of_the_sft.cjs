@@ -219,8 +219,201 @@ const endThree=[
 assert.deepEqual(endThree.map(at).map(value=>T[value]),["F","L","I"]);
 assert.deepEqual(decrypt(endThree,endKey).map(value=>T[value]),["E","N","D"]);
 
+// END stop: continue down from the source-derived start. A viable structural
+// handoff is an outer-endpoint mirror that has exactly one distinct mirror at
+// the same center with the same totient signature after center replacement.
+function signature(mirror){
+  const derived=[mirror.raw[0],phi(mirror.raw[1]),mirror.raw[2]];
+  return derived.map(value=>phi(value));
+}
+function signatureTransitions(point){
+  const out=[];
+  for(const base of (incident.get(coord(point))||[]).filter(
+    mirror=>isOuter(mirror,point)
+  )){
+    const sig=JSON.stringify(signature(base));
+    for(const mate of centered.get(coord(base.center))||[]){
+      if(mate.id===base.id)continue;
+      if(JSON.stringify(signature(mate))===sig)out.push({base,mate});
+    }
+  }
+  return out;
+}
+const endRay=[];
+for(let step=1;;step++){
+  const point=[
+    endStart[0]+endRead[0]*step,
+    endStart[1]+endRead[1]*step,
+  ];
+  if(point.some(value=>value<1||value>27))break;
+  endRay.push({step,point,transitions:signatureTransitions(point)});
+}
+const endHandoffs=endRay.filter(row=>row.transitions.length>0);
+assert.equal(endHandoffs.length,1);
+assert.equal(endHandoffs[0].step,2);
+assert.deepEqual(endHandoffs[0].point,[21,23]);
+assert.equal(endHandoffs[0].transitions.length,1);
+const endCells=[
+  endStart,
+  [endStart[0]+endRead[0],endStart[1]+endRead[1]],
+  endHandoffs[0].point,
+];
+const endPlain=decrypt(endCells,endKey);
+assert.deepEqual(endPlain.map(value=>T[value]),["E","N","D"]);
+
+// The unique END handoff is I-R-I -> H-R-H. The latter becomes the IS key.
+const isBase=endHandoffs[0].transitions[0].base;
+const isKeyMirror=endHandoffs[0].transitions[0].mate;
+assert.deepEqual(isBase.raw.map(value=>T[value]),["I","R","I"]);
+assert.deepEqual(isKeyMirror.raw.map(value=>T[value]),["H","R","H"]);
+
+// Select the H outer opposite the END endpoint across the shared center.
+const endEndpoint=endHandoffs[0].point;
+const endpointSide=Math.sign(endEndpoint[1]-isBase.center[1]);
+const isKeyOuter=[isKeyMirror.a,isKeyMirror.b].filter(point=>
+  Math.sign(point[1]-isKeyMirror.center[1])===-endpointSide
+);
+assert.equal(isKeyOuter.length,1);
+assert.deepEqual(isKeyOuter[0],[21,17]);
+
+// Continue through the unique same-axis mirror at that H, then the unique
+// other same-axis mirror centered on the resulting L.
+const hBridges=(incident.get(coord(isKeyOuter[0]))||[]).filter(mirror=>
+  mirror.id!==isKeyMirror.id &&
+  isOuter(mirror,isKeyOuter[0]) &&
+  JSON.stringify(mirror.axis)===JSON.stringify(isKeyMirror.axis)
+);
+assert.equal(hBridges.length,1);
+assert.deepEqual(hBridges[0].raw.map(value=>T[value]),["H","L","H"]);
+const lCenter=hBridges[0].center;
+const eoBridges=(centered.get(coord(lCenter))||[]).filter(mirror=>
+  mirror.id!==hBridges[0].id &&
+  JSON.stringify(mirror.axis)===JSON.stringify(hBridges[0].axis)
+);
+assert.equal(eoBridges.length,1);
+assert.deepEqual(eoBridges[0].raw.map(value=>T[value]),["EO","L","EO"]);
+const traversalSign=Math.sign(lCenter[1]-isKeyOuter[0][1]);
+const isStarts=[eoBridges[0].a,eoBridges[0].b].filter(point=>
+  Math.sign(point[1]-lCenter[1])===traversalSign
+);
+assert.equal(isStarts.length,1);
+const isStart=isStarts[0];
+const isRead=[0,-traversalSign];
+assert.deepEqual(isStart,[21,9]);
+assert.deepEqual(isRead,[0,1]);
+
+// IS stop and DEATH key: scan toward L for the first centered mirror whose
+// perpendicular-radius displacement lands on the center of an already used
+// key. The only such event on the full ray lands on J-B-J's center.
+const usedKeyCenters=new Map([[coord(endKeyMirror.center),endKeyMirror]]);
+function reuseBridges(point){
+  const out=[];
+  for(const mirror of centered.get(coord(point))||[]){
+    const perpendicular=[mirror.axis[1],-mirror.axis[0]];
+    for(const sign of [-1,1]){
+      const target=[
+        point[0]+sign*mirror.radius*perpendicular[0],
+        point[1]+sign*mirror.radius*perpendicular[1],
+      ];
+      const reused=usedKeyCenters.get(coord(target));
+      if(reused)out.push({mirror,target,reused});
+    }
+  }
+  return out;
+}
+const isRay=[];
+for(let step=1;;step++){
+  const point=[
+    isStart[0]+isRead[0]*step,
+    isStart[1]+isRead[1]*step,
+  ];
+  if(point.some(value=>value<1||value>27))break;
+  isRay.push({step,point,bridges:reuseBridges(point)});
+}
+const reuseEvents=isRay.filter(row=>row.bridges.length>0);
+assert.equal(reuseEvents.length,1);
+assert.equal(reuseEvents[0].step,1);
+assert.deepEqual(reuseEvents[0].point,[21,10]);
+assert.equal(reuseEvents[0].bridges.length,1);
+const reuseEvent=reuseEvents[0].bridges[0];
+assert.deepEqual(reuseEvent.mirror.raw.map(value=>T[value]),["E","D","E"]);
+assert.deepEqual(reuseEvent.target,[23,12]);
+assert.equal(reuseEvent.reused.id,endKeyMirror.id);
+
+const isCells=[isStart,reuseEvents[0].point];
+const isKey=deriveKey(isKeyMirror);
+const isPlain=decrypt(isCells,isKey);
+assert.deepEqual(isKey.map(value=>T[value]),["TH","H","H"]);
+assert.deepEqual(isPlain.map(value=>T[value]),["I","S"]);
+
+// Reuse J-B-J for DEATH. Its J at the prior THE/END junction is already
+// consumed, so the opposite outer J(27,8) is the unique forward outer.
+const deathKeyMirror=reuseEvent.reused;
+const deathOuters=[deathKeyMirror.a,deathKeyMirror.b]
+  .filter(point=>coord(point)!==coord(sharedCenter));
+assert.equal(deathOuters.length,1);
+const deathOuter=deathOuters[0];
+assert.deepEqual(deathOuter,[27,8]);
+
+// At that J, exclude the reused key and choose the shortest new equal-outer
+// mirror. J-C-J at radius 1 is the unique minimum.
+const deathNextMirrors=(incident.get(coord(deathOuter))||[]).filter(mirror=>
+  mirror.id!==deathKeyMirror.id && isOuter(mirror,deathOuter)
+);
+const minimumDeathRadius=Math.min(...deathNextMirrors.map(mirror=>mirror.radius));
+const minimumDeathMirrors=deathNextMirrors.filter(
+  mirror=>mirror.radius===minimumDeathRadius
+);
+assert.equal(minimumDeathMirrors.length,1);
+const jcMirror=minimumDeathMirrors[0];
+assert.deepEqual(jcMirror.raw.map(value=>T[value]),["J","C","J"]);
+assert.equal(jcMirror.radius,1);
+const cCenter=jcMirror.center;
+assert.deepEqual(cCenter,[26,7]);
+
+// At C(26,7), exactly one other mirror uses C as an outer endpoint.
+const cBridges=(incident.get(coord(cCenter))||[]).filter(mirror=>
+  mirror.id!==jcMirror.id && isOuter(mirror,cCenter)
+);
+assert.equal(cBridges.length,1);
+assert.deepEqual(cBridges[0].raw.map(value=>T[value]),["C","OE","C"]);
+const deathStart=coord(cBridges[0].a)===coord(cCenter)
+  ? cBridges[0].b
+  : cBridges[0].a;
+assert.deepEqual(deathStart,[26,3]);
+
+// Continue in the same direction from the C-OE-C center through its far outer
+// and onward to the boundary. The boundary fixes the three-rune stop.
+const deathRead=[
+  Math.sign(deathStart[0]-cBridges[0].center[0]),
+  Math.sign(deathStart[1]-cBridges[0].center[1]),
+];
+assert.deepEqual(deathRead,[0,-1]);
+const deathCells=[];
+for(
+  let point=[...deathStart];
+  point.every(value=>value>=1&&value<=27);
+  point=[point[0]+deathRead[0],point[1]+deathRead[1]]
+){
+  deathCells.push([...point]);
+}
+assert.deepEqual(deathCells,[[26,3],[26,2],[26,1]]);
+const deathKey=deriveKey(deathKeyMirror);
+const deathPlain=decrypt(deathCells,deathKey);
+assert.deepEqual(deathKey.map(value=>T[value]),["J","J","T"]);
+assert.deepEqual(deathPlain.map(value=>T[value]),["D","EA","TH"]);
+
+const continuationPlain=[
+  ...ofPlain,...thePlain,...endPlain,...isPlain,...deathPlain,
+];
+assert.equal(continuationPlain.length,12);
+assert.equal(
+  continuationPlain.reduce((sum,value)=>sum+value,0),
+  151
+);
+
 console.log(JSON.stringify({
-  status:"source-only recurrence deterministically extends IDEA through OF THE and fixes the next END key/start/direction",
+  status:"source-only recurrence deterministically extends IDEA through OF THE END IS DEATH",
   idea:{endpoint:ideaEndpoint,readDirection:ideaRead},
   of:{
     primaryMirror:primaryMirror.raw.map(value=>T[value]),
@@ -242,17 +435,54 @@ console.log(JSON.stringify({
     endpoint:sharedCenter,
     readDirection:theRead,
   },
-  nextStage:{
+  end:{
     unusedIncidentKeyCandidates:nextKeys.length,
     keyMirror:endKeyMirror.raw.map(value=>T[value]),
     key:endKey.map(value=>T[value]),
-    bridgeNear,
-    alignedRadiusMatchedBridges:alignedBridge.length,
     bridge:alignedBridge[0].raw.map(value=>T[value]),
     start:endStart,
     readDirection:endRead,
-    threeRuneProbe:endThree.map(at).map(value=>T[value]),
-    threeRunePlaintext:decrypt(endThree,endKey).map(value=>T[value]),
-    stopLengthStatus:"three runes decrypt END, but the recurrence above does not independently derive that stop length",
+    rayHandoffCounts:endRay.map(row=>({
+      point:row.point,
+      count:row.transitions.length,
+    })),
+    endpoint:endEndpoint,
+    ciphertext:endCells.map(at).map(value=>T[value]),
+    plaintext:endPlain.map(value=>T[value]),
+  },
+  is:{
+    baseMirror:isBase.raw.map(value=>T[value]),
+    keyMirror:isKeyMirror.raw.map(value=>T[value]),
+    key:isKey.map(value=>T[value]),
+    start:isStart,
+    readDirection:isRead,
+    reuseBridgeEvents:isRay.map(row=>({
+      point:row.point,
+      count:row.bridges.length,
+    })),
+    endpoint:reuseEvents[0].point,
+    ciphertext:isCells.map(at).map(value=>T[value]),
+    plaintext:isPlain.map(value=>T[value]),
+  },
+  death:{
+    reuseMirror:reuseEvent.mirror.raw.map(value=>T[value]),
+    reusedKeyMirror:deathKeyMirror.raw.map(value=>T[value]),
+    forwardOuter:deathOuter,
+    nextMirrorCandidates:deathNextMirrors.map(mirror=>({
+      runes:mirror.raw.map(value=>T[value]),
+      radius:mirror.radius,
+    })),
+    selectedNextMirror:jcMirror.raw.map(value=>T[value]),
+    cBridge:cBridges[0].raw.map(value=>T[value]),
+    start:deathStart,
+    readDirection:deathRead,
+    ciphertext:deathCells.map(at).map(value=>T[value]),
+    plaintext:deathPlain.map(value=>T[value]),
+  },
+  continuation:{
+    plaintext:continuationPlain.map(value=>T[value]),
+    runes:continuationPlain.length,
+    indexSum:continuationPlain.reduce((sum,value)=>sum+value,0),
+    selectorInputs:"geometry, prior endpoint/read state, mirror signatures, key reuse, boundary; no dictionary or downstream checksum",
   },
 },null,2));
