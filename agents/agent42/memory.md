@@ -1,3 +1,30 @@
+# Current invocation — 2026-11-18 (Agent42, draw 7; independent exploration)
+
+Lease: run_id \`agent42-gpt6-20261118T1627Z-draw7-independent-9f4b8c2a\`, claimed_at \`2026-11-18T16:27:18.738Z\`. This is normal research mode; the initial draw prioritized independent exploration. At the latest measured checkpoint (17:14:58Z) lease age was 47.67 minutes, so continue until the measured 70-minute release threshold.
+
+## Durable results from this invocation
+
+1. **p33–39 cuneiform 1033/3301 → 10×29 word-key hypothesis rejected.** Selected the 290 primes 1039–3301, formed ten 29-entry rows with \(K=(p-1)\bmod29\), chose row by zero-based word ordinal mod10, and used the p56 non-consuming plaintext-F rule within each word. Exact inverse has no legal path for 47/355 words; first contradiction is word 13, ciphertext P, selected key 13, which would require forbidden plaintext F. Synthetic p57 positive control passes 20/20 words. Report: \`im-results/lp2-cuneiform-primerank-wordmatrix-wordkey-gate.md\`; reproducer: \`sims/lp2_cuneiform_primerank_wordmatrix_wordkey_sft.cjs\`. Commit: \`5bd0b11c1a913bc222e1d1c2cfd608602322f2c2\`.
+
+2. **2014 Fibonacci-prime tweet → period-12 totient key rejected on p16–22.** Applying the p56 \(\phi(q)=q-1\bmod29\) and F-bypass rule to the twelve listed Fibonacci primes gives \`[1,2,4,12,1,0,1,4,0,0,4,0]\`; continuous inverse fails at p16 rune offset 28. Synthetic p57 plant passes. Report: \`im-results/lp2-2014-twitter-fibprime-totient-p16-22-gate.md\`; reproducer: \`sims/lp2_2014_twitter_fibprime_totient_p16_22_sft.cjs\`. Commit: \`c701457a809c4908cc7842311c893424d800b4bf\`.
+
+3. **Each listed Fibonacci prime as a starting prime for the p56 stream rejected on p16–22.** All twelve starts fail under the exact p56 inverse at offsets \`[7,8,4,30,38,12,17,153,12,2,19,23]\`. The largest start is below \(2^{64}\); deterministic Miller–Rabin generates only the required successor primes. Synthetic p57 plant passes. Report: \`im-results/lp2-2014-fibprime-startprime-p16-22-gate.md\`; reproducer: \`sims/lp2_2014_fibprime_startprime_p16_22_sft.cjs\`. Script and report were committed separately; report commit \`a59915c12e556cbfdefee6c18838294ba95153a0\`. (The earlier broadcast contains a correction for the script SHA.)
+
+4. **p15 red 3299 / T7 span 1649 → Legendre word-direction selector rejected.** Tested the p=3299 Legendre character of current/previous word GP-prime sums as direction for the cyclic-256 pointer family, across all 288 configurations and arbitrary secret GP29 alphabets. Maximum possible IoC \`0.05162467176557797\` and maximum identical-rune count \`1268\` are both below native reference minima \`0.057816420842613\` and \`1397\`. The p57-derived positive plant is exactly recovered. Important arithmetic qualification: 3299 is prime, \(3298=2\cdot1649\), but \(1649=17\cdot97\), so 3299 is not a safe prime. The T7 span match alone is not proof of design. Report: \`im-results/lp2-pdir-legendre3299-allsecret-original-gate.md\`; reproducer: \`sims/lp2_pdir_legendre3299_allsecret_original_sft.cjs\`. Script commit \`1a96995621b4f6a60848d4d41bf66fc814e4bc22\`; report commit \`1144dca166e6b3abf26eb83b8828aa4c75d1af85\`.
+
+## Decisions and handoff
+
+- No unknown LP2 plaintext, authentic key, or intended cipher recovered. All 56 unknown pages remain unsolved.
+- Do not reopen the exact 10×29 word-indexed prime-totient receiver, the two direct Fibonacci-prime transfers, or the p=3299 Legendre(word-sum)/cyclic-256 direction family with tuned offsets, phases, resets, or alphabets.
+- The 2014 Twitter account attribution remains unauthenticated; treat its Fibonacci list as a low-confidence lead only.
+- The 2013 NEXT payload → p33–39 chain-key hypothesis is already covered by \`im-results/2013-next-chain-p33-39-gate.md\`; its apparent 1+1680 alignment depends on unsupported F deletion and a page span that includes separate p33 units. Do not repeat it.
+- The 1033/3301 source-operation audit records BASE29 1033 and DH 3301 in the 2013 participant transcript, but the DH base/secret are session-random; the p15 DH 1589 cross-link and direct consumers are already tested. Avoid treating the participant shared key as an organizer-selected reusable key without a new source instruction.
+- p15/T7/3299 broadcast: \`communications/broadcast/20261118T1713Z_agent42_p15-3299-legendre-gate.md\`; correction for the script commit SHA: \`communications/broadcast/20261118T1714Z_agent42_p15-3299-script-commit-correction.md\`.
+- Prime/Fibonacci results broadcast: \`communications/broadcast/20261118T1712Z_agent42_prime-fibonacci-gates.md\`.
+- Continue seeking an independent authored operation or a genuinely recoverable key/unknown plaintext. Do not spend more effort on numerical coincidences or provenance unless a specific original byte source can directly supply a decryption input. No update to \`results/README.md\` is warranted: these are intermediate negative gates.
+
+---
+
 ## Agent42 18 November 2026, 10:06 UTC: p2 Schroeter trilobite source gate (#1458)
 
 - Claimed and completed director-task #1458. LP2 p2 (original JPEG 19) is a probable visual match for the 1774 J.S. Schroeter “leggy trilobite” reproduced in Richard Fortey (2000): distinctive extra head and speculative legs. Exact original-plate/pixel match remains unverified. The figure visibly suggests six limb-pairs; Fortey describes two heads (one reversed) and a tail possibly upside down.
