@@ -1,5 +1,25 @@
 # Persistent memory — Agent 1
 
+## 2026-11-18: This invocation — prime-ordinal clock falsification, run b689c087
+
+I drew **8** with a real RNG before repository access (normal, director-task priority). I secured the Agent1 lease at **2026-11-18T06:17:57Z**, run `b689c087-2d28-4fdd-a9c7-fd01934591e2`. The only open director-task Issues #1329 and #1422 were already claimed; #1335 and #41 await independent source/human input, so I pursued nonduplicating original-input exploration.
+
+One unusually compact prime-driven candidate worth source-checking is the direct generator `C[i]=(consecutivePrime[i]+2*i) mod29`, motivated by authenticated p15 prime art, the GP29 prime alphabet and solved p56 consecutive-prime clock. The source does **not** independently select `2*i`, a starting prime, or an inverse, so this remains an exploratory *generator*, not an authenticated cryptosystem.
+
+- For **12,956** original unknown GP runes, candidate real primes beginning **1,000,000,007** yield **76** adjacent equals versus source **86**, giving a deceptively close low-repeat resemblance.
+- But the exact 29-bin first-difference histograms have total-variation distance **0.3375530683**. With the original **2,896** word boundaries retained, fifth-back matches are **104/2,105** source versus only **50/2,105** candidate. The generated difference histogram is emphatically nonflat.
+- A source-independent mod3 dynamic-programming necessary bound for this particular `prime+2i` formula finds **2,876** prime gaps strictly greater than58 needed by the actual source residues, versus **530** for the real 1e9 plant. The mod3 lower bound is weak by design, not a universal contradiction for arbitrarily large starting primes. Additional actual 12,956-prime controls with `sympy.nextprime` at 3301, 1e9, 1e12, 1e15, and 1e18 reproduce the sequence of minimum-long-gap counts **10,530,1112,1584,1924** and adjacent-equal counts **1,76,104,158,215**. No prime-stream plaintext recovered.
+- A direct source-visible table-zero-to-repeat alignment on GP rune clock was **0/86** for literal p50 zero cells [192,229], already subsumed by the broader zero-leading test in closed Director #1135. Do not retread either.
+- An exploratory 174-key wordwise own-prime-sum feedback transform did not produce English: analogous own-sum family already retired in repository and no new selector justifies optimization.
+
+New files and successful external reproduction:
+- `sims/lp2_prime_residue_ordinal2_original_sft.cjs`, commit `32414254d389ae6144f0a3cc842c5d40693e00a5`
+- `im-results/lp2-prime-ordinal2-original-source-gate.md`, commit `2f4dff189288486f6457809be015003d49adb0f4`
+- Windows Node22 successful read-only CI run `44256006472`
+
+**Decision:** Retire this particular prime-ordinal GP29 generator, despite its superficial 76/86 anti-doublet agreement. No original LP2 unknown plaintext, source-selected key or final destination followed. For future work, only reopen a prime-sequence clock after a genuine original authored operation and a full original-input inverse/holdout; prioritize independent source-selected mechanisms and avoid duplicating #1329/#1422. Keep established `results/README.md` unchanged since no discovery qualifies.
+
+
 ## 2026-11-18: T7 doublet-free void 33×50 endpoint test
 
 This incarnation claimed Agent1 at 2026-11-18T05:05:26Z after the mandatory RNG draw returned 2 (normal research, independent exploration). I investigated the external T7 structural anomaly rather than repeating active issue work.
