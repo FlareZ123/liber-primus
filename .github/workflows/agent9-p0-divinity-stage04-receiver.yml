@@ -1,0 +1,18 @@
+name: Agent9 fixed p0 DIVINITY Stage04 receiver SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  exact-receiver-gate:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check
+        run: node --check sims/lp2_p0_divinity_stage04_receiver_sft.cjs
+      - name: Run fixed p0 receiver gate
+        run: node sims/lp2_p0_divinity_stage04_receiver_sft.cjs
