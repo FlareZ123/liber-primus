@@ -22,6 +22,7 @@ const root = path.resolve(__dirname, "..");
 const read = file => fs.readFileSync(path.join(root, file), "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const ink = JSON.parse(read("resources/liber-primus/lp2-p0-physical-ink-override.json"));
+const allInk = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 
 /** @param {number} value */
 function phi(value) {
@@ -40,9 +41,69 @@ function phi(value) {
 /** @param {number} value */
 const mod29 = value => (value % 29 + 29) % 29;
 
+// Original-rubrication control: across LP2, take every page-start red title
+// immediately followed by a red 13-dot mark, then measure from that title
+// start to the next red 13-dot mark. The p0 section is the only perfect square.
+const pageCounts = Array(58).fill(0);
+for (const page of corpus.pages) pageCounts[page.page] = page.indices.length;
+const pagePrefix = [0];
+for (const count of pageCounts) pagePrefix.push(pagePrefix.at(-1) + count);
+
+const red13Markers = [];
+for (const page of allInk.pages) {
+  for (const [afterRunes, dots, color] of page.large_punctuation || []) {
+    if (dots === 13 && color === "red") {
+      red13Markers.push({
+        page: page.page,
+        afterRunes,
+        global: pagePrefix[page.page] + afterRunes,
+      });
+    }
+  }
+}
+red13Markers.sort((a, b) => a.global - b.global);
+
+const rubricatedTitleSpans = [];
+for (const page of allInk.pages) {
+  for (const span of page.red_spans || []) {
+    if (span.start !== 0) continue;
+    const immediate13 = (page.large_punctuation || []).some(
+      mark => mark[0] === span.length && mark[1] === 13 && mark[2] === "red",
+    );
+    if (!immediate13) continue;
+    const globalStart = pagePrefix[page.page];
+    const openingMark = globalStart + span.length;
+    const nextMark = red13Markers.find(mark => mark.global > openingMark);
+    assert(nextMark);
+    const runeSpan = nextMark.global - globalStart;
+    rubricatedTitleSpans.push({
+      page: page.page,
+      titleLength: span.length,
+      nextMarkPage: nextMark.page,
+      nextMarkAfterRunes: nextMark.afterRunes,
+      runeSpan,
+      squareRoot: Math.sqrt(runeSpan),
+    });
+  }
+}
+assert.equal(rubricatedTitleSpans.length, 8);
+const squareRubricatedSpans = rubricatedTitleSpans.filter(
+  span => Number.isInteger(span.squareRoot),
+);
+assert.deepEqual(
+  squareRubricatedSpans.map(span => [
+    span.page,
+    span.nextMarkPage,
+    span.nextMarkAfterRunes,
+    span.runeSpan,
+    span.squareRoot,
+  ]),
+  [[0, 2, 201, 729, 27]],
+);
+
 const grid = corpus.pages.filter(page => page.page <= 2).flatMap(page => page.indices);
-assert.equal(grid.length, 729);
-const side = Math.sqrt(grid.length);
+assert.equal(grid.length, squareRubricatedSpans[0].runeSpan);
+const side = squareRubricatedSpans[0].squareRoot;
 assert.equal(side, 27);
 
 const words = ink.physical_zero_based.red_words;
@@ -143,6 +204,13 @@ assert.notDeepEqual(swappedPlain, plain);
 
 console.log(JSON.stringify({
   status: "source-only candidate plaintext for the final five red runes",
+  rubricatedTitleCandidates: rubricatedTitleSpans.length,
+  perfectSquareRubricatedSpans: squareRubricatedSpans.map(span => ({
+    page: span.page,
+    nextMarkPage: span.nextMarkPage,
+    runeSpan: span.runeSpan,
+    squareRoot: span.squareRoot,
+  })),
   sourceSpanRunes: grid.length,
   gridSide: side,
   physicalRedGroups: words.map(word => word.length),
