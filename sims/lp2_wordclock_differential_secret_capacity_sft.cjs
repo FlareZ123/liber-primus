@@ -136,6 +136,26 @@ function singletonPlainValues(plain,words) {
   for(const w of words){if(w.length===1)values.add(plain[at]);at+=w.length;}
   return [...values];
 }
+/** Over all a in F29, min diversity at singleton after exact previous length. */
+function affineSingletonOriginal(cipher,words){
+  const one=[];let at=0;
+  for(let i=0;i<words.length;i++){
+    if(words[i].length===1&&at>0)
+      one.push({prevLen:words[i-1].length,current:cipher[at],previous:cipher[at-1]});
+    at+=words[i].length;
+  }
+  const rows=[];
+  for(let a=0;a<29;a++){
+    const groups=new Map();
+    for(const event of one){
+      if(!groups.has(event.prevLen))groups.set(event.prevLen,new Set());
+      groups.get(event.prevLen).add(mod(event.current-a*event.previous));
+    }
+    rows.push({a,after2:groups.get(2).size,after3:groups.get(3).size});
+  }
+  return {rows,minAfter2:Math.min(...rows.map(r=>r.after2)),
+    minAfter3:Math.min(...rows.map(r=>r.after3))};
+}
 function main() {
   const parsed = parseLP2Words(read("resources/liber-primus/lp2-transcription.txt"), 55);
   const words = parsed.words.map(w => [...w.runes].map(r => {
@@ -147,6 +167,9 @@ function main() {
   assert.deepEqual([words.length, cipher.length, parsed.crossPageWords], [2896,12956,32]);
   const repeat = cipher.slice(1).filter((n, j) => n === cipher[j]).length;
   assert.equal(repeat, 86);
+  const allAffine=affineSingletonOriginal(cipher,words);
+  assert.equal(allAffine.rows.length,29);
+  assert.deepEqual([allAffine.minAfter2,allAffine.minAfter3],[11,10]);
   const singleton=singletonSpectrum(cipher,words);
   assert.equal(words.filter(w=>w.length===1).length,83);
   assert.equal(singleton["2"],12);
@@ -193,6 +216,8 @@ function main() {
   const output = {original:{runes:cipher.length, words:words.length,
     crossingWords:parsed.crossPageWords, adjacentRepeats:repeat},
     allSecretMaximum29TimesIoC:bounds, observedSingletonDifferences:singleton,
+    minimumOneRuneInputsAcross29AffinePredecessorCoefficients:
+      {precedingLength2:allAffine.minAfter2,precedingLength3:allAffine.minAfter3},
     matchedEnglishControls:controls,
     decision:"all seven word-clock families fail GP-native English: " +
       "exact-predecessor variant fails singleton-word injectivity",
@@ -202,4 +227,4 @@ function main() {
 }
 if (require.main === module) main();
 module.exports = {main,state,capacity,metadata,permutation,plant,matchedEnglish,
-  singletonSpectrum,singletonPlainValues};
+  singletonSpectrum,singletonPlainValues,affineSingletonOriginal};
