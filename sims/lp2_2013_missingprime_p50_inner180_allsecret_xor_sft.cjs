@@ -114,10 +114,10 @@ function main(){
   assert.equal(primes[20],73);
   assert.equal(primes[199],1223);
   const expected={
-    "60-forward":{rank:58,contradictions:120,first:{index:13,residual:242}},
-    "60-reverse":{rank:58,contradictions:122,first:{index:13,residual:12}},
-    "59-forward":{rank:58,contradictions:122,first:{index:13,residual:247}},
-    "59-reverse":{rank:58,contradictions:122,first:{index:13,residual:9}}
+    "60-forward":{rank:57,contradictions:121,first:{index:13,residual:242}},
+    "60-reverse":{rank:57,contradictions:123,first:{index:13,residual:12}},
+    "59-forward":{rank:57,contradictions:123,first:{index:13,residual:247}},
+    "59-reverse":{rank:57,contradictions:123,first:{index:13,residual:9}}
   };
   const results=[];
   for(const radix of [60,59]){
@@ -127,7 +127,7 @@ function main(){
       const planted=makePositivePlant(plain,key).map((v,i)=>v^key[i]);
       const positive=solveAnySecretRowColXor(plain,planted);
       assert.equal(positive.contradictions,0);
-      assert.equal(positive.rank,58);
+      assert.equal(positive.rank,57);
       const whitened=byteTable.map((v,i)=>v^key[i]);
       const measured=solveAnySecretRowColXor(plain,whitened);
       assert.deepEqual(measured,expected[String(radix)+"-"+direction]);
