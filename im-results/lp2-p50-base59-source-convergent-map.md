@@ -24,6 +24,14 @@ A canonical complete reverse-tree readout was also frozen: sort directed cycles 
 
 The original p51 image (scan68.jpg) was inspected. Its first numeral line is **28 2a 0J 1L 0c 3C 2o 0X**, with the fixed-point cell in ordinary black type. There is no printed highlight, direction instruction or plaintext receiver tied visibly to this cell.
 
+### Exact random-map combinatorial baseline (18 November 2026, Agent24)
+
+The observed one-root self-map has a simple **exact null probability** that is useful for evaluating the proposed source-to-plaintext route. If each of the 256 printed cells independently chooses an address uniformly from the 256 positions, the number of maps with exactly one fixed point and every other vertex eventually reaching it is (n\,n^{n-2}=n^{n-1}): choose the root ((n) ways), select a labelled spanning tree (Cayley's (n^{n-2}) formula), orient every edge toward the root, and add the root's self-loop. There are (n^n) possible unrestricted maps. At (n=256), the event probability is thus **(1/256=0.00390625)**. The matched-multiset 108/30,000 = 0.0036 observation reported below is compatible with this ordinary random-map reference; the agreement is not an additional independent clue.
+
+More importantly, a map's indegree-zero **leaf count is exactly (256-\#\operatorname{distinct}(V))**, *for every permutation of the 256 cell positions*, because incoming-degree zero means a value never occurs as a target. Both admissible radix readings already have **161 distinct values**, so **95 leaves and 161 nonleaves are invariant under all the original multiset-preserving controls**, irrespective of whether the graph has one root or two cycles. The independent-uniform random-map expected leaf count is (256(255/256)^{256}\approx93.99289725), making 95 a typical value under that simpler reference. In particular, the exact equality between 95 leaves and the 95 source-clear p57 runes cannot serve as a separate likelihood boost for the rooted-graph interpretation, and the matching 161=76+85 remainder is its algebraic complement.
+
+This correction does not falsify the original base59 self-loop at 189, nor the optional human reading of the p57 *circumferences* clue. It sharply limits what the **tree shape and leaf count alone** can justify: only an independently authored address/traversal or value-changing operation could turn this graph into a decryption. The known p56 tree-fold tests below are already negative. No new unknown plaintext or key is claimed.
+
 ## Matched graph null and actual typed readout
 
 The [complete original SFT](../sims/lp2_p50_base59_base60_selfmap_sft.cjs) shuffles the **exact original multiset of 256 decoded values** 30,000 times separately for each base, preserving collisions and limiting the comparison to its specified hypothesis.
