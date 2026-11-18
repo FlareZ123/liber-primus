@@ -60,7 +60,7 @@ A fixed initial alphabet phase does not affect the count. Any nonzero affine wor
 
 ## Reproduction and scope
 
-- **Exact full-book finite certificate**: [standalone Windows Node22 CommonJS SFT](../sims/lp2_ragbaby_gp29_exact_min_singletons_sft.cjs). It asserts the entire unchanged original ciphertext and word parse, exhausts all small singleton-type rank sets and validates the 29-symbol forward inverse witness.
+- **Exact full-book finite certificate**: [standalone Windows Node22 CommonJS SFT](../sims/lp2_ragbaby_gp29_exact_min_singletons_sft.cjs), [passing Windows CI 44361972578](https://github.com/FlareZ123/liber-primus/actions/runs/44361972578). It asserts the entire unchanged original ciphertext and word parse, exhausts all small singleton-type rank sets and validates the 29-symbol forward inverse witness.
 - **Original three-glyph five-residue quick obstruction**: [shorter independent full-book source SFT](../sims/lp2_ragbaby_gp29_singleton_allkey_sft.cjs), [passing Windows Node22 run](https://github.com/FlareZ123/liber-primus/actions/runs/44355471000). Original glyphs `M,T,P` each require five distinct singletons; the complete proof above strengthens the bound to **12**, using all 83 occurrences.
 
 **The statement excludes:** Any globally shared, lossless GP29 Ragbaby secret alphabet under the historical global word-number clock whenever the intended language has at most **11** distinct legitimate one-rune words. No hidden alphabet permutation, initial phase or nonzero affine clock multiplier rescues it.
