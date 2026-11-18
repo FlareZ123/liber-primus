@@ -131,6 +131,50 @@ const secretInverse = Array.from({length: 29}, (_, k) =>
   secretAlphabet.indexOf(k));
 assert.equal(new Set(secretAlphabet).size, 29);
 const payload = pages.map(p => p.indices);
+
+/**
+ * Exact key-independent IoC ceiling after assigning an arbitrary secret
+ * 29-symbol alphabet independently to every original chapter or page.
+ * Descending histogram alignment is globally optimal by rearrangement.
+ *
+ * @param {'linear'|'cyclic'} mode
+ * @param {'chapter'|'page'} scale
+ * @returns {number}
+ */
+function perSegmentSecretCeiling(mode, scale) {
+  const groups = scale === 'chapter'
+    ? [[0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+      [27, 32], [33, 39], [40, 53], [54, 55]]
+    : pages.map(page => [page.page, page.page]);
+  const histograms = groups.map(() => Array(29).fill(0));
+  let predecessor = 0;
+  let offset = 0;
+  for (const page of pages) {
+    const g = groups.findIndex(bounds =>
+      page.page >= bounds[0] && page.page <= bounds[1]);
+    assert.ok(g >= 0);
+    for (const cur of page.indices) {
+      if (!free.has(offset)) {
+        histograms[g][toRank(cur, predecessor, mode)]++;
+      }
+      predecessor = cur;
+      offset++;
+    }
+  }
+  assert.equal(offset, N);
+  const aligned = Array(29).fill(0);
+  for (const histogram of histograms) {
+    const ordered = [...histogram].sort((a, b) => b - a);
+    for (let i = 0; i < 29; i++) aligned[i] += ordered[i];
+  }
+  const fixed = aligned.reduce((a, b) => a + b, 0);
+  assert.equal(fixed, N - free.size);
+  // Grant *all* page/mark starts to the largest output bin, optimistically.
+  aligned[0] += free.size;
+  return aligned.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (N * (N - 1));
+}
+
 const outcomes = [];
 for (const mode of ['linear', 'cyclic']) {
   // All 29! secret alphabet choices preserve the multiset of ranks and IoC.
@@ -152,6 +196,15 @@ for (const mode of ['linear', 'cyclic']) {
     (most + free.size) * (most + free.size - 1)
   ) / (N * (N - 1));
   assert.ok(upper < 0.036, 'new ordinal-escape candidate: investigate');
+  const chapterCeiling = perSegmentSecretCeiling(mode, 'chapter');
+  const pageCeiling = perSegmentSecretCeiling(mode, 'page');
+  assert.ok(chapterCeiling < 0.037);
+  assert.ok(pageCeiling < 0.04);
+  const expected = mode === 'linear'
+    ? [0.03592034745394232, 0.03926775766543628]
+    : [0.036087990239565104, 0.0394514986388035];
+  assert.ok(Math.abs(chapterCeiling - expected[0]) < 1e-13);
+  assert.ok(Math.abs(pageCeiling - expected[1]) < 1e-13);
 
   for (const pageReset of [false, true]) {
     const decoded = decode(payload, mode, pageReset);
@@ -173,16 +226,18 @@ for (const mode of ['linear', 'cyclic']) {
     assert.ok(ioc(recovered) > 0.07);
     outcomes.push({
       mode, pageReset, sourceIoC: directIoC, arbitrarySecretAlphabetMaxIoC: upper,
+      allNineChapterAlphabetsMaxIoC: chapterCeiling,
+      all55PageAlphabetsMaxIoC: pageCeiling,
       nativePlantIoC: nativeIoC, nativePlantRecovered: N,
     });
   }
 }
 console.log(JSON.stringify({
-  decision: 'stationary ordinal 28+escape cannot yield source-native English unigram profile',
+  decision: 'ordinal 28+escape with even page-local secret alphabets cannot yield native English unigram profile',
   input: 'canonical original LP2 physical pp0-55',
   originalRunes: N, printedPages: pages.length,
   largeAndCommaEvents: marks.length, freeResetsGranted: free.size,
-  secretAlphabetKeysCoveredByIoCInvariant: '29!',
+  secretAlphabetKeysCoveredByIoCInvariant: '29! globally, independently per page or chapter',
   exactForwardReencryption: 'verified; not decryption evidence',
   outcomes,
 }, null, 2));
