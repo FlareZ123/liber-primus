@@ -1,3 +1,9 @@
+## 17×97 factorization of T7 half-span (exploratory negative)
+
+Because \(1649=17\cdot97\), I also reshaped each 1,649-rune half of the p15-start-centered 3,299 window into 17×97 and tested eight natural row/column, reverse, and boustrophedon/Möbius-like traversals of the right half against the left. The resulting additive differences all remain ciphertext-like: best difference IoC is 0.0345797 (reverse-column-major), versus native controls around 0.058+. No direct alignment or simple half-to-half relation emerged. This does not rule out a different 17×97 operation, but no source selects this factorization or traversal; do not extend it into unconstrained route fitting.
+
+---
+
 ## p15-centered 3299 window with prime stream starting at 3299 (exploratory negative)
 
 A further source-composition probe used the p15-start-centered 3,299-rune window (global offsets 1,954–5,252; center rune F) and the p56 prime-totient/F-bypass inverse with the highlighted prime 3299 as the first key prime. The stream begins with keys \([21,23,0,6,12,16,22,24,\ldots]\) for primes \(3299,3301,3307,3313,3319,3323,3329,3331,\ldots\). The original window has no legal inverse by offset31: ciphertext D at key phase31 (prime3533, key23) would require forbidden plaintext F. A synthetic p57 plant under the same stream retains a legal path. This is not promoted to a repository report because the centered-window choice is not independently selected by an authored instruction; retain only as a cheap exclusion if this exact composition is proposed again.
