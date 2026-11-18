@@ -1,8 +1,25 @@
 # LP2 p0–2: source-derived central self-crib, provisional reading, and non-unique continuation
 
-**Research state, 18 November 2026.** The geometric center self-crib and proposed WEATHER reading are reproducible source arithmetic. The external author's later Reports 17–19 have now been subjected to a new exact original-input next-block census. They reduce the finite candidate pool, yet still permit **two complete English readings of precisely the same original ciphertext cells under different original mirror keys**. No authenticated unknown-page plaintext, creator key or uniquely selected reading order has been recovered.
+**Research state, 18 November 2026.** The geometric center self-crib and proposed WEATHER reading are reproducible source arithmetic. The external route has since been extended through a proposed block 39 **DIE**, but a new original-input census shows that the fixed Reports 00–19 still leave **966 physical post-I-ASK geometries and 1,088 distinct GP29 outputs**. Earlier Reports 17–19 also permit **two complete English readings of precisely the same post-THEN ciphertext cells under different original mirror keys**. No authenticated unknown-page plaintext, creator key or uniquely selected reading order has been recovered.
 
 [Original map self-crib SFT](../sims/lp2_p0_27square_center_selfcrib_source_sft.cjs) · [New Reports 17–19 original-source all-candidate SFT](../sims/lp2_p0_27square_reports17_19_ambiguity_sft.cjs) · [External original hypothesis](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption).
+
+## Fresh external block 39 DIE remains geometry-underdetermined
+
+The external 27×27 repository now continues its selected route beyond **I ASK** with block39 **DIE**. The proposed original source is horizontal non-mirror `C/K–D–IA` at **(18,10), (18,14), (18,18)**, radius4. It is used directly; signature `(0,+1,0)` gives phase1 and aligned key `D–IA–C/K` = **(23,27,5)**. The original ciphertext **B–H–D** at **(3,22)→(4,23)→(5,24)** subtracts to **D–I–E** exactly.
+
+This arithmetic is reproducible, and the placement passes the external outgoing forecast from I ASK. It does **not** resolve the route-selection problem. Starting from the unchanged 729-rune p0–2 source, an independent census admits both Report00 operations (direct and center-totient), deduplicates identical aligned keys on the same physical source, and applies the frozen post-I-ASK source/segment conditions before reading any plaintext:
+
+| Frozen post-I-ASK stage | Distinct aligned-key assignments | Physical source/segment geometries | Ordered ciphertext segments | Distinct GP29 outputs |
+| --- | ---: | ---: | ---: | ---: |
+| Through Report18 | **1,246** | **1,080** | **21** | **1,216** |
+| Add Report19 | **1,116** | **966** | **19** | **1,088** |
+
+The **1,080 / 21** Report18 counts exactly reproduce the external repository's published source-independent geometry census, providing an independent implementation check. Report19 fixes the allowed beginnings to **(1,24), (3,22), (5,20), (7,18), (9,18)** but still leaves all **39** admissible physical key centers represented. The literal rune string **DIE** occurs exactly once in this frozen pool, at the published source and ciphertext. That uniqueness is conditional on asking for the word DIE; the geometry leaves 1,087 other rune strings.
+
+A cheap geometric rival also fails to select DIE: the nearest admissible source center to the current I ASK center **(12,13)** is **(12,14)** at Chebyshev distance1, while the DIE center **(18,14)** is distance6. Thus proximity does not supply the missing authorial selector.
+
+**Decision:** retain DIE as a fully reproducible candidate continuation, not authenticated plaintext. Its terminality under the external Report19 search is conditional on first selecting DIE from the 966 surviving geometries. The decisive missing evidence remains a manuscript-selected rule that chooses its source/segment before semantic inspection, or a blind prediction on genuinely withheld ciphertext. [Exact original-source CommonJS census](../sims/lp2_p0_27square_after_iask_die_ambiguity_sft.cjs).
 
 ## New decision: later Reports 17–19 leave an exact English ambiguity
 
