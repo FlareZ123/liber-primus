@@ -113,3 +113,48 @@ assert.ok(planted.every((p) => p.seed_free_best_normalized_ioc > 1.65));
 assert.ok(original.every((o) => o.maximum_of_all_784_seeds_normalized_ioc < 1.05));
 console.log(JSON.stringify({ mechanism: 'GP28 predecessor-excluding Fibonacci two-plaintext-tap with EA zero-step',
   original, planted, verdict: 'No unknown LP2 plaintext recovered under this fixed reversible model.' }, null, 2));
+
+
+// Independent physical-page state resets. Grant both new secret starting
+// plaintext symbols on every one of the 55 original rune-bearing pages.
+// Score within-page ordered equal-symbol pairs, without pooling alphabets
+// across independently optimized pages.
+function pairCount(runes) {
+  const counts = Array(29).fill(0);
+  for (const rune of runes) counts[rune]++;
+  return counts.reduce((s, c) => s + c * (c - 1), 0);
+}
+const resetPageBest = pages.map((page) => {
+  const best = bestStart(page.indices);
+  return { page: page.page, n: page.indices.length, numerator: pairCount(best.decoded),
+    denominator: page.indices.length * (page.indices.length - 1) };
+});
+const weightedPageIoC = (rows) =>
+  29 * rows.reduce((s, row) => s + row.numerator, 0) /
+    rows.reduce((s, row) => s + row.denominator, 0);
+const optimizedResetIoC = weightedPageIoC(resetPageBest);
+assert.ok(Math.abs(optimizedResetIoC - 1.1112753520968237) < 1e-10);
+const firstThreeResetIoC = weightedPageIoC(resetPageBest.filter((p) => p.page <= 2));
+assert.ok(Math.abs(firstThreeResetIoC - 1.1501407255182272) < 1e-10);
+
+function nativeResetIoC(nativeWindow) {
+  let begin = 0, numerator = 0, denominator = 0;
+  for (const page of pages) {
+    const slice = nativeWindow.slice(begin, begin + page.indices.length);
+    begin += page.indices.length;
+    numerator += pairCount(slice);
+    denominator += slice.length * (slice.length - 1);
+  }
+  assert.equal(begin, 12956);
+  return 29 * numerator / denominator;
+}
+const independentNativeWindows = Array.from({ length: 10 }, (_, i) => {
+  const offset = 20000 * i;
+  return { offset, weighted_normalized_ioc: nativeResetIoC(natural.slice(offset, offset + 12956)) };
+});
+assert.ok(independentNativeWindows.every((x) => x.weighted_normalized_ioc > 1.70));
+console.log(JSON.stringify({ additional_scope: 'arbitrary 28^2 plaintext starts at all 55 physical page boundaries',
+  optimized_original_allpage_normalized_ioc: optimizedResetIoC,
+  optimized_original_p0_p2_normalized_ioc: firstThreeResetIoC,
+  independent_native_shakespeare_windows: independentNativeWindows,
+  interpretation: 'The original maximum remains far below all ten native GP-English complete-size control windows.' }, null, 2));
