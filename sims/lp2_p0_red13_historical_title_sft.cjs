@@ -92,7 +92,7 @@ function main() {
       redRuneCount: 13,
       redWordLengths: [8, 5],
       large13DotMarkerAtOffset: 13,
-      firstBlackRunes: corpus.translit.slice(0, 0),
+      firstBlackRunes: roman(p0.slice(13, 20), corpus.translit),
       exactTitleIndices: title,
       exactTitleTransliteration: raw,
       equalityPattern: "ABCDEFGH AICJK",
