@@ -74,4 +74,4 @@ The separate literal-bitmap test in Director #1513 closes the idea that this 60-
 
 ## Reproduction
 
-Run [`sims/lp2_p50_digit0_feature_loco_sft.cjs`](../sims/lp2_p50_digit0_feature_loco_sft.cjs) under Node 22. It uses only repository source JSON and Node built-ins, asserts the original opportunity/event counts, asserts both radix-mask identities, reproduces all six held-out scores above, and reports the residual outside-zero gate.
+Run [`sims/lp2_p50_digit0_feature_loco_sft.cjs`](../sims/lp2_p50_digit0_feature_loco_sft.cjs) under Node 22. The committed source-exact SFT passed on Windows/Node 22 in [run 44386744497](https://github.com/FlareZ123/liber-primus/actions/runs/44386744497). It uses only repository source JSON and Node built-ins, asserts the original opportunity/event counts, asserts both radix-mask identities, reproduces all six held-out scores above, and reports the residual outside-zero gate.
