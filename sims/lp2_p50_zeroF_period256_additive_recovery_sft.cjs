@@ -49,7 +49,7 @@ assert.equal(pageOffset, original.length);
 
 const sourceText = read("resources/liber-primus/lp2-transcription.txt")
   .split("%").slice(0, 55).join("%")
-  .replace(/\\\r?\n/g, "").replace(/[\r\n%]/g, "");
+  .replace(/\/\r?\n/g, "").replace(/[\r\n%]/g, "");
 const runePattern = new RegExp("[" + corpus.runes.join("") + "]+", "gu");
 const glyphIndex = new Map(corpus.runes.map((glyph, index) => [glyph, index]));
 const wordArrays = (sourceText.match(runePattern) || []).map(word =>
