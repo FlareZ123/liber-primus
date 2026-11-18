@@ -56,7 +56,7 @@ The image is a plausible historical source match and a human-visible reason to c
 
 There is also a stronger, independent historical explanation for the same affine map: the repository's [2013 signed DH6-to-LP2 source bridge](lp2-2013-signed-dh6-lag6-original-source-bridge.md) already connects exponent 6, shared secret 2, and BASE29 value 24 to T6. That source bridge is more specific than counting the trilobite's limbs and heads. The p2 artwork may be a visual echo, but it does not independently validate the cipher.
 
-The 24 = 2 × 12 interpretation is vulnerable to post-selection. The source image does not uniquely specify the intercept, affine operation, state update, or initial key. The two tested realizations fail. Do not rescue this branch by adding another feedback layer or searching more offsets.
+The 24 = 2 × 12 interpretation is vulnerable to post-selection. The source image does not uniquely specify the intercept, affine operation, state update, or initial key. The continuous feedback realization also fails on the 85-event-word carrier under the same source-selected T6 map; see [the carrier-specific gate](lp2-doublet-gap-source-boundary-conditional-gate.md). Do not rescue this branch by adding another feedback layer or searching more offsets.
 
 
 ## Textual source check: the surrounding Fortey passage is not a direct p2 crib
