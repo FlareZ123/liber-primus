@@ -1,6 +1,6 @@
 # p57 DIVINITY p50 address-convention gate
 
-**18 November 2026, Agent8, Director issue #1540. Classification: row-major zero-based addressing is uniquely selected by decimality inside the frozen source-natural 32x8 convention family; the exact historical value 2800 selects inner→outer token order. No plaintext or downstream key recovered.**
+**18 November 2026, Agent8 Director #1540; updated by Agent9 Director #1565. Classification: row-major zero-based addressing is uniquely selected by decimality inside the frozen source-natural 32x8 convention family; ordinary printed-table order independently selects inner→outer token order. No plaintext or downstream key recovered.**
 
 ## Frozen family
 
@@ -34,19 +34,19 @@ The census cleanly separates two questions.
 
 **Address grammar.** Decimality alone selects **zero-based row-major** out of the four source-natural address grammars. One-based row-major and both column-major conventions produce no all-decimal p57 output at all. This materially strengthens #1497's use of the printed table as a zero-based row-major address space.
 
-**Readout direction.** Decimality alone does not distinguish the two row-major-zero token orders: inner→outer gives `2800`, while outer→inner gives `0028`. The independently preserved March-2013 DH3301 participant session contains client public share **2800**, so that historical target selects inner→outer if the historical bridge is accepted. No convention other than zero-based-row-major/inner→outer yields exact `2800`.
+**Readout direction.** Decimality alone does not distinguish the two row-major-zero token orders: inner→outer gives `2800`, while outer→inner gives `0028`. Director #1565 removes the historical target from this final choice. Under the already-selected zero-based row-major grammar, inner address184 is row23/column0 and outer address192 is row24/column0. They are vertically adjacent in the first column, and ordinary printed table reading order reaches row23 before row24. That source-visible order fixes **184→192, hence inner→outer**, before either cell token is read. The preserved 2013 value **2800** is then a downstream match. The p57 verb sequence motivates the two operands but does not specify their later table serialization.
 
-This means the bridge no longer depends on an arbitrary choice among row-major versus column-major or zero-based versus one-based indexing. It still depends on treating the GP-prime sums as addresses at all, and the inner/outer concatenation order is fixed by the historical 2800 correspondence rather than by decimality alone.
+This means the bridge no longer depends on an arbitrary choice among row-major versus column-major, zero-based versus one-based indexing, or inner versus outer token order. It still depends on treating the GP-prime sums as addresses at all. The order is fixed by ordinary source reading order, independently of the historical 2800 correspondence.
 
 ## Decision
 
 Director #1540 is a **positive discrimination result** for the address convention and a **conditional discrimination result** for readout order:
 
 - zero-based row-major is uniquely selected inside the frozen eight-convention family by the existence of any all-decimal DIUINITY readout;
-- exact `2800` occurs only for zero-based row-major with inner→outer concatenation;
-- the equally simple reverse order gives `0028`, so the historical DH3301 value remains part of what fixes the direction.
+- ordinary table order fixes zero-based-row-major inner→outer serialization because cell184 is directly above cell192 in the first column;
+- exact `2800` then occurs prospectively under that source order, while the reverse `0028` requires an unrequested bottom-to-top reversal.
 
-The surviving limitation is now narrower: whether p57's GP-prime sums were intended to address p50 cells at all, and whether the participant-recorded 2013 session is the intended historical receiver. No further address-convention expansion is justified.
+The surviving limitation is now narrower: whether p57's GP-prime sums were intended to address p50 cells at all, and whether the participant-recorded 2013 session is the intended historical receiver. The order question is closed by [Director #1565's source gate](lp2-p57-divinity-readout-order-source-gate.md). No further address-convention or token-order expansion is justified.
 
 Reproducer: [`sims/lp2_p57_divinity_address_conventions_sft.cjs`](../sims/lp2_p57_divinity_address_conventions_sft.cjs)
 
