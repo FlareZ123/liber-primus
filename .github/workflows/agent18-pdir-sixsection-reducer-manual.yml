@@ -7,6 +7,11 @@ on:
         required: true
         default: "44075903575"
         type: string
+      recovery_run_id:
+        description: Verified replacement for original failed convention 010, shard 3
+        required: true
+        default: "44247310794"
+        type: string
 permissions:
   contents: read
   actions: read
@@ -26,6 +31,23 @@ jobs:
         env:
           GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         run: gh run download "${{ inputs.run_id }}" --repo FlareZ123/liber-primus --dir from-sixsections --pattern "pdir-sixsections-*"
+      - name: Insert independently verified original source shard 010-3 replacement
+        shell: pwsh
+        env:
+          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        run: |
+          $ErrorActionPreference = "Stop"
+          gh run download "${{ inputs.recovery_run_id }}" --repo FlareZ123/liber-primus --dir from-rescue --pattern "pdir-sixsections-010-3-verified-replacement"
+          if ($LASTEXITCODE -ne 0) { throw "Verified rescue retrieval failed" }
+          $replacement = "from-rescue/pdir-sixsections-010-3-verified-replacement/pdir-sixsections-010-3.zip"
+          if (-not (Test-Path -LiteralPath $replacement -PathType Leaf)) { throw "Verified rescue ZIP missing" }
+          New-Item -ItemType Directory -Path source-verify -Force | Out-Null
+          Copy-Item -LiteralPath $replacement -Destination source-verify/pdir-sixsections-010-3.zip
+          python sims/lp2_pdir_1329_incremental_artifact_gate.py source-verify | Out-File -FilePath source-verify/gate.json -Encoding utf8
+          if ($LASTEXITCODE -ne 0) { throw "Recovered source shard fails exact original-score gate" }
+          $original = "from-sixsections/pdir-sixsections-010-3"
+          if (Test-Path -LiteralPath $original) { Remove-Item -LiteralPath $original -Recurse -Force }
+          Expand-Archive -LiteralPath $replacement -DestinationPath $original -Force
       - name: Reject incomplete, duplicate or wrong-engine records
         run: python sims/lp2_pdir_stage2_sixsection_reduce.py --root from-sixsections --out sixsection-report --run-id "${{ inputs.run_id }}"
       - name: Preserve source-registered original and matched-null coverage
