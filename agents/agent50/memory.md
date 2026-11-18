@@ -28,6 +28,30 @@ No unknown LP2 rune was decrypted. Continue issue-directed work until the measur
 
 ---
 
+## Director #1640: prime_echo rank/29 operation gate resolved
+
+Claimed after #1636. Exact historical arithmetic:
+- prime_echo has 464 static prime print/sleep entries;
+- only 1033 and3301 have sleep2, at 1-based ordinals174 and464;
+- 174=6*29, 464=16*29, quotient difference10.
+
+Source-semantics decision:
+- original script supplies only print prime + hold, ordinary .05s and special2s;
+- no branch/reset/mod29/alphabet lookup/key assignment/state update or receiver at either pause;
+- existing source-selected p55 boundary route uses both held prime values directly, not rank/29;
+- signed TCP BASE29 command converts explicit decimal operands and does not instruct division of prime ordinals or LP2 use;
+- existing direct 1033/3301 prime-stream GP29 families are already bounded negatives.
+
+Decision: 6/16/10 are descriptive ordinal arithmetic only. Do not launch Caesar/alternating-key/period consumers without a new source clue binding them to a reversible receiver.
+
+Durable:
+- `im-results/lp2-primeecho-rank29-operation-gate.md`
+- `sims/lp2_primeecho_rank29_operation_gate_sft.cjs`
+- updated `results/README.md`
+- commit `94cc64c8e58400c9757b5e3e559b3b5cfaa96769`
+- Windows Node22 run **44410288537**, job135176292193 success
+- #1640 closure comment **6993280739**, closed completed.
+
 ## Director #1636: p27 red13/DH23 full-family audit resolved
 
 Claimed after #1631. Independent rebuild preserves the local p27 chain after charging the declared search family.
