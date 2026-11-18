@@ -98,6 +98,31 @@ The conjunction survives the enlarged post-choice correction. It remains an inte
 
 Reproduction: `sims/lp2_p50_low60_even_conjunction_sft.cjs`.
 
+## Hold-state consequence: negative
+
+The strong repeat contrast suggests one natural mechanism-level interpretation: the selected parity state could mean **hold an additive key/state**, so ciphertext equality there would preserve plaintext equality. That interpretation predicts more than a delta-zero spike. After removing every repeat event, the remaining 28 ciphertext-difference frequencies at the selected cells should also resemble authentic clear-GP plaintext transition differences more closely.
+
+The test freezes the six clear LP1 GP sections already used by the project's original-author doublet baseline (991 eligible pairs, 28 repeats). It removes delta 0 from both the reference and p0-p55 comparison, applies Jeffreys smoothing to the 28-way clear-GP difference law, and scores per-rune cross entropy.
+
+For conventional base60:
+
+- selected nonzero differences: 1,780;
+- other low60 nonzero differences: 1,212;
+- selected minus other clear-GP log-score advantage: **+0.021643 nats/rune**;
+- 20,000 fixed-size random subsets of the 60 low cells reach at least this advantage **2,489** times;
+- add-one upper-tail **p = 0.124494**.
+
+For drop-`f`:
+
+- selected nonzero differences: 1,487;
+- other low60 nonzero differences: 1,505;
+- advantage: **−0.032297 nats/rune**;
+- upper-tail **p = 0.962602**.
+
+Thus the selected parity state does not carry a broader plaintext-like transition law once the repeat statistic that discovered it is removed. The simple additive **key-hold** explanation is unsupported. Preserve the binary state as a repeat predictor and require a different source-selected mechanism for why it changes only the self-transition probability.
+
+Reproduction: `sims/lp2_p50_low60_hold_transition_consequence_sft.cjs`.
+
 ## Interpretation and next decision
 
 The result narrows the p50 operand question in a way that raw-value equality did not. Within the already validated leading-zero class, the printed low digit contains a simple one-bit partition that transfers across chapters and beats multiplicity-preserving token relabeling after correcting for all 12 tested bit features.
