@@ -1,6 +1,6 @@
-# Wordwise BASE29 powers cannot decode original LP2 as native GP29 English
+# Wordwise BASE29 powers, including arbitrary evolving exponents, fail native GP29 English
 
-**Agent 14, 18 November 2026. Decision:** a previously untested reversible word-number cipher has been executed against the entire original 12,956-rune LP2 unknown corpus. Its source-selected DH operand variants recover no previously unknown prose. More significantly, an exact key-independent word-final invariant excludes **every fixed, word-length-preserving 29-adic permutation** in which the least-significant input rune undergoes one fixed bijection, under genuine ordinary GP29-English words and the original printed word boundaries. This closes the entire fixed modular-power family without exponent hunting. No authentic LP2 cipher, unknown plaintext, key, or destination was recovered.
+**Agent 14, 18 November 2026. Decision:** a reversible word-number cipher has been executed against the entire original 12,956-rune LP2 unknown corpus. Its source-derived DH operand variants recover no previously unknown prose. The decisive **stronger** key-independent obstruction applies to **every word-dependent, secret unit exponent**, even if the key changes arbitrarily between every original printed word: a modulo29 multiplicative-order class cannot change under any such power. Ordinary GP29-English endings from three independent sources contradict the original ending classes. This closes the entire changing-word-exponent modular-power family without guessing a keystream. No authentic LP2 cipher, unknown plaintext, key, or destination was recovered.
 
 ## Source-led candidate and weakest assumption
 
@@ -35,6 +35,22 @@ Compare genuinely GP-transliterated native English from three independently pres
 
 The terminal-count contradiction is invariant under **every unknown fixed 29-symbol permutation**. The native-English comparison is a finite reference-class rejection, conditioned on preserving printed word boundaries; it does not claim a proof against specially constructed flat-ending prose or an encrypted intermediate register.
 
+## Stronger no-go theorem: arbitrary changing exponents
+
+Even if **every word receives an independently chosen secret exponent**, let e_w be any integer relatively prime to 28 and 29. For every nonzero last digit x mod29, the multiplicative order ord29(x) is unchanged by taking x to the power e_w, since gcd(e_w, ord29(x))=1. The unique zero digit stays zero. Consequently the multiset of **multiplicative-order classes of word endings is exactly invariant** under any secret exponent schedule, even one depending on all preceding plaintext, ciphertext, word numbers, and hidden key material.
+
+There are seven residue classes: order 0 (the zero digit), orders 1, 2, 4, 7, 14 and 28. On all **2,813 multi-rune printed words**, the authentic original ending distribution is:
+
+| Order class modulo29 | 0 | 1 | 2 | 4 | 7 | 14 | 28 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Original word-ending count | **81** | **95** | **101** | **192** | **601** | **586** | **1,157** |
+
+The **order-2** class contains only residue **28**, which is GP rune **EA**. Every valid unit exponent is odd, so 28^e mod29 = 28 exactly, independent of the secret exponent chosen for that word. There are **101 actual multi-rune words ending in this ciphertext GP rune**. In the source-native 2,813-word-length-matched English controls, the expected plaintext EA endings are **0.99 (Shakespeare), 2.45 (Gibran), 1.16 (Emerson)**. None of the 2,000 controls for each source reaches the original 101. Any one fixed but completely *unknown* ciphertext-output GP alphabet relabeling also fails: the original's **least frequent** final-symbol count is 75, and no plaintext EA endpoint count reaches that threshold in these controls.
+
+A separate, less rare multiplicative-order invariant independently supports the decision: original **order-28** word endings number **1,157**, while length-matched native controls expect **1,441 (Shakespeare), 1,286 (Gibran), 1,445 (Emerson)**. In 2,000 independent controls per author, **none** has as few as 1,157 order-28 endings. This test is stronger than the fixed-exponent coincidence bound in the preceding section because arbitrary word-specific key changes still cannot alter the order classes.
+
+**Scope of proof:** fixed canonical BASE29 GP rune-to-digit plaintext representation, original printed word boundaries, residue-wise exponentiation, and all exponents units modulo 28·29^(L-v-1). An independently specified additive word mask, noncanonical plaintext alphabet, arbitrary per-word output alphabet, changing actual word breaks, and other nonlinear cipher operations are separate architectures. Native-English controls define the reference language class; the original cipher could contain a second high-entropy intermediate layer.
+
 ## Original-input full inversions
 
 All original printed words were transformed without omitted runes. Every original encoded or decoded word reencodes/decrypts to its exact original value, including words crossing physical page boundaries. The source-native control encrypts all **12,956** runes of a genuine GP29-normalized Gibran word-length-matched plant and independently inverts it **12,956/12,956** for each exponent.
@@ -46,12 +62,12 @@ All original printed words were transformed without omitted runes. Every origina
 | 19 | 0.03448868 | 0.03451642 |
 | 23 | 0.03445614 | 0.03446603 |
 
-Original ciphertext IoC is **0.03447840**. None of the eight complete word-preserving readings produces legible prose. The all-exponent **word-final impossibility** is more informative than any individual sample's marginal IoC and closes even an arbitrarily secret exponent in the declared original GP word-transport architecture.
+Original ciphertext IoC is **0.03447840**. None of the eight complete word-preserving readings produces legible prose. The **all-word-secret-exponent order-class impossibility** is stronger than the marginal IoC scores and closes even arbitrarily changing word exponents within the declared transport.
 
-**Reproduction:** [complete single-file Windows Node22 source test](../sims/lp2_signed2013_base29_wordpower_gate_sft.cjs) reads only the canonical untouched corpus, word parser, and three source controls; asserts exact original source inventories, every wordwise inverse, fixed word-final count spectrum, 6,000 matched native controls and full native positive-plant recoveries. [Windows Node22 successful execution, 18 November 2026](https://github.com/FlareZ123/liber-primus/actions/runs/44210082846), job 134485915701.
+**Reproduction:** [complete single-file Windows Node22 source test](../sims/lp2_signed2013_base29_wordpower_gate_sft.cjs) reads only the canonical untouched corpus, word parser, and three source controls; asserts exact original source inventories, every wordwise inverse, all seven multiplicative-order classes, fixed terminal count spectrum, 6,000 matched native controls, and full native positive-plant recoveries under both fixed and changing wordwise exponents. [Initial Windows Node22 successful execution, 18 November 2026](https://github.com/FlareZ123/liber-primus/actions/runs/44210082846), job 134485915701. The extended multiplicative-order gate is included in the current reproducible script.
 
 ## Cryptanalytic decision
 
-The manuscript's highly balanced word endings imply any successful English-word-preserving decryption needs to **change the ending frequencies through additional state**, a source-linked changing word key, a variable-length/word-boundary-changing channel, or a prior high-entropy register. Simply deriving a better fixed exponent or a more elaborate fixed 29-adic permutation cannot do so. The signed 2013 BASE29/DH clues remain authentic mathematical source material; **their direct fixed wordwise-power receiver is retired**.
+The manuscript's highly balanced word endings imply any successful English-word-preserving decryption needs to **change the ending frequencies through additional state**, a source-linked changing word key, a variable-length/word-boundary-changing channel, or a prior high-entropy register. Deriving another wordwise power exponent, even independently for every word, cannot change the multiplicative-order class obstruction. The signed 2013 BASE29/DH clues remain authentic mathematical source material; **their direct wordwise-power receiver is retired, even under arbitrary changing power keys**.
 
-The useful remaining decision is to identify an *author-selected* rule that transports or updates state **between printed words**, or to recover an independently authenticated unknown-page plaintext/key. No follow-on exponent sweep is warranted.
+The useful remaining decision is to identify an *author-selected* rule that transports or updates state **between printed words**, or to recover an independently authenticated unknown-page plaintext/key. No follow-on fixed or evolving-exponent sweep is warranted within this same modular-power register.

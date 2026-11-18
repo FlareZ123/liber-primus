@@ -92,6 +92,33 @@ function finalHistogram(sets) {
   for (const s of sets) if (s.length > 1) h[s[s.length - 1]]++;
   return h;
 }
+/**
+ * Raising to any unit exponent, even a different exponent for every word,
+ * preserves multiplicative order of the least-significant residue mod29.
+ * The three special residues 0, 1, 28 are individually fixed.
+ * @param {number} residue @returns {number}
+ */
+function order29(residue) {
+  if (residue === 0) return 0;
+  let x = 1;
+  for (let order = 1; order <= 28; order++) {
+    x = x * residue % 29;
+    if (x === 1) return order;
+  }
+  throw Error("Expected order dividing 28");
+}
+/** @param {number[][]} wordArrays @returns {Record<number,number>} */
+function orderHistogram(wordArrays) {
+  const counts = /** @type {Record<number,number>} */ (
+    {0:0,1:0,2:0,4:0,7:0,14:0,28:0});
+  for (const word of wordArrays) {
+    if (word.length > 1) counts[order29(word[word.length - 1])]++;
+  }
+  return counts;
+}
+const originalOrders = orderHistogram(ciphertextWords);
+assert.deepEqual(originalOrders,
+  {0:81,1:95,2:101,4:192,7:601,14:586,28:1157});
 const final = finalHistogram(ciphertextWords);
 assert.equal(final.reduce((s, x) => s + x, 0), 2813);
 assert.equal(Math.min(...final), 75);
@@ -106,6 +133,12 @@ assert.ok(Math.abs(finalIC - 0.03451234084384682) < 1e-14);
  */
 const exponents = [5, 15, 19, 23];
 const originalOutcomes = [];
+const changingExponentCipher = ciphertextWords.map(
+  (w,i) => transform(w, exponents[i % exponents.length], "encode"));
+assert.deepEqual(orderHistogram(changingExponentCipher), originalOrders);
+assert.deepEqual(changingExponentCipher.map((w,i) =>
+  transform(w, exponents[i % exponents.length], "decode")),
+  ciphertextWords);
 for (const e of exponents) for (const direction of ["encode", "decode"]) {
   const out = ciphertextWords.map(w => transform(w, e,
     /** @type {"encode"|"decode"} */ (direction)));
@@ -169,6 +202,15 @@ for (const [name, filename, seed0] of sources) {
     const pool = /** @type {number[][]} */ (pools.get(size));
     for (const token of pool) expected[token[token.length - 1]] += n / pool.length;
   }
+  const expectedOrders = /** @type {Record<number,number>} */ (
+    {0:0,1:0,2:0,4:0,7:0,14:0,28:0});
+  for (const [size, n] of lengthCounts) {
+    if (size === 1) continue;
+    const pool = /** @type {number[][]} */ (pools.get(size));
+    for (const token of pool) {
+      expectedOrders[order29(token[token.length - 1])] += n / pool.length;
+    }
+  }
   let seed = /** @type {number} */ (seed0);
   /** @returns {number} */
   function random() {
@@ -190,11 +232,25 @@ for (const [name, filename, seed0] of sources) {
     assert.deepEqual(finalHistogram(encrypted).toSorted((a,b) => a-b),
       finalHistogram(nativePlant).toSorted((a,b) => a-b));
   }
+  const evolvingPlant = nativePlant.map(
+    (w,i) => transform(w, exponents[i % exponents.length], "encode"));
+  assert.deepEqual(orderHistogram(evolvingPlant), orderHistogram(nativePlant));
+  assert.deepEqual(evolvingPlant.map((w,i) =>
+    transform(w, exponents[i % exponents.length], "decode")),
+    nativePlant);
   let minimumControlMaximum = Infinity, minimumControlIC = Infinity;
+  let largestControlOrder2 = 0, smallestControlOrder28 = Infinity;
+  let controlsWithOrder2AtLeastOriginal = 0;
+  let controlsWithOrder28AtMostOriginal = 0;
   let atOrBelowObservedMaximum = 0, atOrBelowObservedIC = 0;
   const repeats = 2000;
   for (let k = 0; k < repeats; k++) {
     const sample = makeControl();
+    const orderCounts = orderHistogram(sample);
+    largestControlOrder2 = Math.max(largestControlOrder2, orderCounts[2]);
+    smallestControlOrder28 = Math.min(smallestControlOrder28, orderCounts[28]);
+    if (orderCounts[2] >= originalOrders[2]) controlsWithOrder2AtLeastOriginal++;
+    if (orderCounts[28] <= originalOrders[28]) controlsWithOrder28AtMostOriginal++;
     const h = finalHistogram(sample);
     const max = Math.max(...h);
     const ic = h.reduce((s,n) => s + n*(n-1), 0) / (2813 * 2812);
@@ -203,6 +259,8 @@ for (const [name, filename, seed0] of sources) {
     if (max <= 117) atOrBelowObservedMaximum++;
     if (ic <= finalIC) atOrBelowObservedIC++;
   }
+  assert.equal(controlsWithOrder2AtLeastOriginal, 0);
+  assert.equal(controlsWithOrder28AtMostOriginal, 0);
   assert.equal(atOrBelowObservedMaximum, 0);
   assert.equal(atOrBelowObservedIC, 0);
   sourceOutcomes.push({
@@ -210,6 +268,10 @@ for (const [name, filename, seed0] of sources) {
     mostFrequentExpectedFinalRune:corpus.translit[expected.indexOf(Math.max(...expected))],
     expectedTopFinalCount:Math.max(...expected),
     minimumControlMaximum, minimumControlIC,
+    expectedOrder2Endings:expectedOrders[2],
+    expectedOrder28Endings:expectedOrders[28],
+    largestControlOrder2, smallestControlOrder28,
+    controlsWithOrder2AtLeastOriginal, controlsWithOrder28AtMostOriginal,
     controls:repeats, atOrBelowObservedMaximum, atOrBelowObservedIC
   });
 }
@@ -219,7 +281,8 @@ console.log(JSON.stringify({
   original:{runes:original.length,words:words.words.length,
     carriedWords:words.crossPageWords,eligibleWordEndings:2813,
     finalRuneCountMinimum:Math.min(...final),
-    finalRuneCountMaximum:Math.max(...final), finalRuneIC:finalIC},
-  originalOutcomes,sourceOutcomes,
-  result:"No unknown-page plaintext. All fixed word-power keys fail native GP-English endpoint distribution."
+    finalRuneCountMaximum:Math.max(...final), finalRuneIC:finalIC,
+    multiplicativeOrderCounts:originalOrders},
+  variableWordExponentPositiveControl:"passed",originalOutcomes,sourceOutcomes,
+  result:"No plaintext. All word-varying unit exponent keys preserve a GP29 order-2 word-end invariant incompatible with native English."
 },null,2));
