@@ -170,6 +170,16 @@ The physical p0–p2 repeated facing crosses are 180-degree opposed decorations,
 The published block38 node center is zero-based **(12,13)** and has **radius 1**. The eight square symmetries send (r,c) to pairs composed from r, c, 26-r and 26-c with optional exchange of coordinates. Because 26 is even, reflection preserves parity and transposition exchanges it. The entire D4 orbit of (12,13) has only four distinct centers: **(12,13), (14,13), (13,14), (13,12)**. Every candidate is **even/odd or odd/even**. The already frozen block39 forecast requires an **even/even center** for a horizontal, non-mirrored source key. **None of the eight symmetries can reach one.** Independently, D4 preserves source-node radius **1**, whereas the forecast requires an **even radius**, so the direct symmetry is ruled out twice before inspecting any original-cipher plaintext.
 
 This exact exclusion is conditional on accepting the published block38 node and block39 forecast. It retires only **direct unshifted D4 source-node propagation**, including a literal cross-half-turn rule. A source-selected translation and radius adjustment or an unrelated source node remain logically possible; these additional operations are not supplied by the fixed, repeated pp0–2 artwork. The result neither authenticates the proposed 38-block plaintext nor recovers a new plaintext or key. The source symmetry data already appeared in the earlier Agent42 stave audit; the new contribution is the block39 parity/radius decision.
+## Shared2-ring prospective source-key holdout
+
+Agent30 froze the p50 shared2 circumference vector `DOWN6 / LEFT3 / UP6` before inspecting block39 plaintext. Applied to block38 source center `(12,13)`, the vector predicts center `(12,10)`. Its unique even segment length fixes radius6. The untouched horizontal source node is `L-OE-H`.
+
+This prediction matches every relevant frozen source-side property: even/even center, horizontal non-mirror node, even radius and `mu(phi(rune))=(0,+1,0)`. Both node orientations remain legal, yielding phase1 aligned keys `OE-H-L` and `OE-L-H`.
+
+The plaintext holdout rejects direct propagation. Under each predicted key, all132 already frozen ciphertext paths pass the published GCD gate, yet there are **0** complete Shakespeare single-word hits and **0** complete segmentations under the pre-existing 1,465-entry Shakespeare+Gibran frequent-GP vocabulary.
+
+The source-key prediction is structurally exact and prospectively fixed, while its plaintext receiver fails. Direct ring-vector reuse stops here unless an independent original clue supplies another consumer. [SFT](../sims/lp2_p50_dh_ring_block39_holdout_sft.cjs).
+
 ## Exact exhaustive original-cipher enumeration
 
 | Frozen-search statistic | Observed |
