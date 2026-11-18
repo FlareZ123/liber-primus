@@ -144,7 +144,7 @@ for (const match of dictionary.matchAll(/^([a-z]+)\s+\d+$/gm)) {
   dictionaryByLength.get(g.length).push({name:match[1], g});
 }
 assert.equal([...dictionaryByLength.values()]
-  .reduce((sum, words) => sum + words.length, 0), 29058);
+  .reduce((sum, words) => sum + words.length, 0), 29060);
 const unsupported = [];
 let supported = 0;
 let p27Possibilities = null;
