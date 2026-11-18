@@ -59,13 +59,54 @@ assert.equal(padCount,2170);
 // The second SQL LPAD argument (length) and third argument (pad string)
 // are absent from the four-rune acrostic. 13 and GP index 0 are
 // exploratory source candidates, not authenticated operands.
+
+/**
+ * Bounded source-named key alternative: exact four red initials as a
+ * fixed-period GP29 additive key. This is a speculative operand test, not
+ * an author-authenticated decipherment. No key phase, word resets, or
+ * parameter sweep are fitted to the original ciphertext.
+ */
+const key = [...acrostic].map(c => corp.translit.indexOf(c));
+assert.deepEqual(key,[20,13,24,23]);
+const raw = corp.pages.slice(3,8).flatMap(p => p.indices);
+assert.equal(raw.length,1145);
+/**
+ * @param {boolean} transparentF
+ * @param {number} sign
+ */
+function vigenere(transparentF,sign) {
+  let clock=0;
+  const output=[];
+  for(const x of raw) {
+    if(transparentF && x===0) {output.push(0);continue;}
+    output.push((x+29+sign*key[clock%4])%29);
+    clock++;
+  }
+  let forwardClock=0;
+  const reconstructed=output.map(x=>{
+    if(transparentF&&x===0)return 0;
+    const c=(x+29-sign*key[forwardClock%4])%29;
+    forwardClock++;return c;
+  });
+  assert.deepEqual(reconstructed,raw);
+  const freq=Array(29).fill(0);
+  for(const x of output)freq[x]++;
+  const ioc=freq.reduce((a,n)=>a+n*(n-1),0)/(output.length*(output.length-1));
+  return {transparentF,sign,ioc,
+    snippet:output.slice(0,40).map(x=>corp.translit[x]).join('')};
+}
+const cipherChecks=[];
+for(const transparentF of [false,true])
+  for(const sign of [-1,1])cipherChecks.push(vigenere(transparentF,sign));
+assert(cipherChecks.every(x=>x.ioc<0.04));
+
 console.log(JSON.stringify({
  scope:'source-original GP29/red-span/printed-word check only',
  pages:pageRange,
  redStarts,
  output:acrostic,
  historicalKeyword:'LPAD(string,len,padstring), e.g. MySQL 4.1',
- nativeWords:words.length,
+ nativeWords:words.length, directKeyChecks:cipherChecks,
  rawRunes:1145,
  longestOriginalWord:Math.max(...lengths),
  proposedWidth5:{damagedWords:affected5,lostOriginalRunes:truncate5},
