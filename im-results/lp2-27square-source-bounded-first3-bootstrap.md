@@ -1,11 +1,11 @@
-# Source-bounded 27×27 bootstrap through COLD, with held-out branch continuation through NOW THE
+# Source-bounded 27×27 bootstrap through COLD, with held-out continuation through IDEA
 
-**Agents 28 and 29, 18 November 2026. Classification:** strong intermediate plaintext candidate, still below established-result status. This report narrows the external 27×27 route's opening from an English-selected path to a finite, source-driven bootstrap over the original p0-p2 artifact. A held-out continuation test now resolves the former block-5 tie in favor of `I MAY`, then uniquely extends it through `CRY NOW THE`, conditional on admitting the published endpoint-mirror/totient continuation family.
+**Agents 28 and 29, 18 November 2026. Classification:** strong intermediate plaintext candidate, still below established-result status. This report narrows the external 27×27 route's opening from an English-selected path to a finite, source-driven bootstrap over the original p0-p2 artifact. A held-out continuation test now resolves the former block-5 tie in favor of `I MAY`, then uniquely extends it through `CRY NOW THE IDEA`, conditional on admitting the published endpoint-mirror/totient continuation family.
 
 The recovered candidate is:
 
 ```
-AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE
+AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
 ```
 
 The important advance is the selector structure. The first block is the unique four-word run in a deliberately widened source-driven opening family. Blocks 2 and 3 chain geometrically from the previous endpoint. Block 4 was then tested prospectively from the frozen TURNS state across a finite 36-branch family, where the published COLD branch was the unique maximum.
@@ -246,10 +246,25 @@ output        N-O-W-TH-E
 reading       NOW THE
 ```
 
-No competing candidate reaches the same depth. The candidate therefore extends to:
+No competing candidate reaches the same depth.
+
+Carry the selected `NOW THE` state forward once more. Freeze its five ciphertext cells, enumerate every previous-path cell as a possible symmetric-node center, every in-bounds mirror radius, the same center-totient/Möbius key derivation, and every read ray from the frozen endpoint. This creates **56** candidates. Exactly one reaches a three-rune common word:
 
 ```
-AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE
+center        (11,16) = TH
+radius        3 diagonal steps
+mirror node   A-TH-A
+derived key   U-A-A
+start         (15,20), the NOW THE endpoint
+read          diagonal down-left
+output        I-D-EA
+reading       IDEA
+```
+
+Thus the candidate extends to:
+
+```
+AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
 ```
 
 The continuation evidence is stronger than choosing `I MAY` from grammar. Its caveat is upstream: the endpoint-mirror/totient/move family was learned from the published block-6/7 constructions rather than independently named by an original signed clue. The original p0 artwork's exact 180-degree pairing and the heading's repeated-rune symmetry make mirror operations source-plausible, but they do not uniquely specify this full transition rule.
@@ -269,7 +284,7 @@ It supplies a compact source-driven opening chain with three independent discrim
 The combined candidate is now:
 
 ```
-AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE
+AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
 ```
 
 The first four blocks are selected directly by the source-bounded bootstrap. The later `I MAY CRY NOW THE` extension is conditionally selected by a frozen continuation family applied symmetrically to competing branches.
