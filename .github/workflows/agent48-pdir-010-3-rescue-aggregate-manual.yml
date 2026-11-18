@@ -34,7 +34,9 @@ jobs:
           }
           python sims/lp2_pdir_1329_rescue_merge.py rescue-zips 010 3
           if ($LASTEXITCODE -ne 0) { throw "Exact rescue disjointness/score/coverage gate failed" }
-          python sims/lp2_pdir_1329_incremental_artifact_gate.py rescue-zips | Out-File -FilePath rescue-zips/partial-gate.json -Encoding utf8
+          New-Item -ItemType Directory -Path verified-single-shard -Force | Out-Null
+          Copy-Item -LiteralPath rescue-zips/pdir-sixsections-010-3.zip -Destination verified-single-shard/pdir-sixsections-010-3.zip
+          python sims/lp2_pdir_1329_incremental_artifact_gate.py verified-single-shard | Out-File -FilePath rescue-zips/partial-gate.json -Encoding utf8
           if ($LASTEXITCODE -ne 0) { throw "Strict original ciphertext rescue gate failed" }
           Get-Content rescue-zips/partial-gate.json
       - name: Preserve one reproducible replacement for the failed original job
