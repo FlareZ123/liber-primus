@@ -241,6 +241,22 @@ assert.equal(originalRim76.length, 4);
 assert.equal(Math.max(...originalRim76.map(x => x.ioc)), 0.0431578947368421);
 assert.ok(originalRim76.every(x => x.ioc < ioc(plainControl)));
 
+const sourceRimWheel76 = [];
+for (const [order, ids] of [["clockwise", seededClockwise],
+  ["counterclockwise", seededCounterclockwise]]) {
+  const key = ids.map(i => table[i] % 28);
+  for (const sign of [-1, 1]) {
+    const decoded = rank28Inverse(key.slice(), sign, p55);
+    const plant = rank28Forward(key.slice(), sign, plainControl);
+    const recovered = rank28Inverse(key.slice(), sign, plant);
+    assert.deepEqual(recovered, plainControl);
+    sourceRimWheel76.push({order, sign, ioc: ioc(decoded)});
+  }
+}
+assert.equal(sourceRimWheel76.length, 4);
+assert.equal(Math.max(...sourceRimWheel76.map(x => x.ioc)), 0.03543859649122807);
+
+
 
 // Source-motivated alternative decoder for the ciphertext's strong doublet
 // depletion. F (index0) is represented by a repeated ciphertext rune, and
@@ -297,6 +313,7 @@ console.log(JSON.stringify({
     terminalP55Runes: p55.length, directAdditiveMaxIoc: strongest76,
     knownP57First76Ioc: ioc(plainControl), direct76,
     sourceZero192AnchoredRim76: originalRim76,
+    sourceZero192AnchoredRimGp28: sourceRimWheel76,
     nonrepeatGp28Wheel: wheel76},
   control: "Both 256/256 original-sized planted terminals recovered"
 }, null, 2));
