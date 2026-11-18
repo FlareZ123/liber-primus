@@ -136,3 +136,5 @@ A later failure on a blind receiver should reject that downstream consumer rathe
 ## Reproduction
 
 `sims/lp2_must_shed_base59_familywise_audit_sft.cjs`
+
+Windows Node 22 CI: [PASS 44424692742](https://github.com/FlareZ123/liber-primus/actions/runs/44424692742).
