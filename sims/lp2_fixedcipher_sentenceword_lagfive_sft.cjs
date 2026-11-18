@@ -177,6 +177,6 @@ console.log(JSON.stringify({
   fixedRuneSentenceBlocks: blocks.length,
   blocksWithShufflableHyphenBoundaries:
     blocks.filter(x => x.length > 1).length,
-  seed: state, trials: N, conditional,
+  initialSeed: 0x33011807, trials: N, conditional,
   noOriginalPlaintextOrKey: true
 }, null, 2));
