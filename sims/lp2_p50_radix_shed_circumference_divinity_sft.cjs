@@ -155,6 +155,7 @@ const shed = p57Word("SHED");
 const tunnel = p57Word("TUNNELNG");
 const surface = p57Word("SURFACE");
 const divinity = p57Word("DIUINITY");
+const emerge = p57Word("EMERGE");
 
 assert.deepEqual(
   {
@@ -165,6 +166,7 @@ assert.deepEqual(
     tunnelGp0: tunnel.gp0,
     surfaceGp0: surface.gp0,
     divinityGp0: divinity.gp0,
+    emergePrime: emerge.prime,
   },
   {
     mustGp0: 51,
@@ -174,6 +176,7 @@ assert.deepEqual(
     tunnelGp0: 94,
     surfaceGp0: 67,
     divinityGp0: 105,
+    emergePrime: 300,
   }
 );
 
@@ -304,6 +307,27 @@ assert.deepEqual(
   [{ text: "TUNNELNG", value: 55 }]
 );
 
+
+// The selected p55 receiver contains the manuscript boundary independently
+// named by GP-prime(EMERGE)=300. Physical p54 has232 runes; p55's first
+// three printed rune lines contain24+22+22=68, so the line3/line4 boundary
+// is terminal-chapter offset300. Historical prime_echo independently selects
+// this exact boundary when both authentic pause values are required.
+const p54 = corpus.pages.find((page) => page.page === 54);
+const p55 = corpus.pages.find((page) => page.page === 55);
+assert.ok(p54 && p55);
+assert.equal(p54.runic_count, 232);
+assert.equal(p55.runic_count, 76);
+const p55Lines = parts[54]
+  .trim()
+  .split("/")
+  .map((line) => [...line].filter((rune) => runeIndex.has(rune)).length)
+  .filter((length) => length > 0);
+assert.deepEqual(p55Lines, [24, 22, 22, 8]);
+const p55BoundaryAfterLine3 =
+  p54.runic_count + p55Lines.slice(0, 3).reduce((sum, length) => sum + length, 0);
+assert.equal(p55BoundaryAfterLine3, emerge.prime);
+
 // "TUNNELNG TO THE SURFACE": SURFACE's GP0 address is on the inner ring.
 // Under the newly selected base59 pointer, it jumps in one edge to the
 // exposed depth2 ring, at the global fixed point.
@@ -390,6 +414,8 @@ console.log(
         terminalPageLandings59: p57PageLandings59.filter(
           (row) => row.value >= 54
         ),
+        p55BoundaryAfterLine3,
+        emergePrime: emerge.prime,
       },
       surfacePointer: {
         address: surface.gp0,
@@ -410,7 +436,7 @@ console.log(
           "post-discovery scale diagnostic only; shared2 is independently fixed, while the radix-difference shell statistic was discovered in this invocation",
       },
       interpretation:
-        "After WE MUST SHED selects the 60->59 transition, value60-value59 is the literal amount shed at each p50 cell. Independent DH shared2 removes two outer circumferences. The resulting 28x4 core has phi(GP-prime(SHED))=112 cells. Its exposed 60-cell circumference has shed-sum GP0(DIUINITY)=105, while the only circumference within has shed-sum GP0(TUNNELNG)=94. GP0(SURFACE)=67 lies on that inner ring and its base59 pointer moves in one edge to fixed point189 on the exposed DIVINITY ring. The recovered TUNNELNG address94 then maps under the selected base59 state to physical p55; base60 would map to p56, and TUNNELNG is the only p57 word whose base59 value lands in terminal pages54-57. No unknown plaintext is recovered.",
+        "After WE MUST SHED selects the 60->59 transition, value60-value59 is the literal amount shed at each p50 cell. Independent DH shared2 removes two outer circumferences. The resulting 28x4 core has phi(GP-prime(SHED))=112 cells. Its exposed 60-cell circumference has shed-sum GP0(DIUINITY)=105, while the only circumference within has shed-sum GP0(TUNNELNG)=94. GP0(SURFACE)=67 lies on that inner ring and its base59 pointer moves in one edge to fixed point189 on the exposed DIVINITY ring. The recovered TUNNELNG address94 then maps under the selected base59 state to physical p55; base60 would map to p56, and TUNNELNG is the only p57 word whose base59 value lands in terminal pages54-57. P54's232 runes plus p55's first68 runes give boundary300=GP-prime(EMERGE), the exact boundary independently selected by historical prime_echo. No unknown plaintext is recovered.",
     },
     null,
     2
