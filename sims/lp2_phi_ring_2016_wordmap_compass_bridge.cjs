@@ -162,6 +162,25 @@ function main() {
       finalIndex: row * 11 + col
     };
   }
+  // Trace every unit cell, not just compass endpoints.
+  function walkPath(bytes) {
+    let row = startRow, col = startCol;
+    const cells = [startIndex], tokens = [corpus.translit[p32[startIndex]]], segments = [];
+    for (const byte of bytes) {
+      const distance = byte >> 3, direction = byte & 7, [dr, dc] = DIRECTIONS[direction], segment = [];
+      for (let unit = 0; unit < distance; unit++) {
+        row = mod(row + dr, 11); col = mod(col + dc, 11);
+        const position = row * 11 + col, rune = corpus.translit[p32[position]];
+        cells.push(position); tokens.push(rune); segment.push(rune);
+      }
+      segments.push({ byte, direction, directionName: DIRECTION_NAMES[direction], distance, runes: segment.join(""), endpoint: row * 11 + col });
+    }
+    const seen = new Set(), firstVisit = [];
+    for (const position of cells) if (!seen.has(position)) { seen.add(position); firstVisit.push(position); }
+    const missing = Array.from({ length: 121 }, (_, i) => i).filter(i => !seen.has(i));
+    const read = positions => positions.map(i => corpus.translit[p32[i]]).join("");
+    return { cells, tokens, segments, final: [row, col], finalIndex: row * 11 + col, uniqueCells: seen.size, firstVisit, firstVisitText: read(firstVisit), missing, missingText: read(missing) };
+  }
 
   const selectedRoute = walk(selectedBytes);
   assert.deepEqual(selectedRoute.positions, [35, 47, 36, 37]);
@@ -174,6 +193,32 @@ function main() {
   const existing43Route = walk(grid.bytes.slice(84, 127));
   assert.equal(existing43Route.steps.length, 43);
   assert.equal(existing43Route.finalIndex, 37);
+  // The 2016 sentence calls word meaning the road: trace every unit move.
+  const selectedPath = walkPath(selectedBytes);
+  assert.equal(selectedPath.cells.length - 1, 65);
+  assert.equal(selectedPath.tokens.slice(0, 5).join(""), "HOMEX");
+  assert.equal(selectedPath.segments[0].runes, "OMEXWDSLFDHOMEXWDSLFDHOM");
+  assert.equal(selectedPath.finalIndex, 37);
+  const full43Path = walkPath(grid.bytes.slice(84, 127));
+  assert.equal(full43Path.cells.length - 1, 604);
+  assert.equal(full43Path.uniqueCells, 113);
+  assert.equal(full43Path.missing.length, 8);
+  assert.equal(full43Path.firstVisitText, "HXWHJUNFWBHOBYNGDOIAIATMEOXTHWAETNBEABSBAOTHIAXAXLHTSNGTEAAENDWLIAEOAESRTHXNGIEOEMWOEAGDIASLFMIAWCTHUIAEUTHBGWNGEOJTHWMAUBUSPFPJOHRBEAYWEFTHTD");
+  assert.equal(full43Path.missingText, "WUOENGROELG");
+  const homexMatches = [];
+  for (let start = 0; start < p32.length; start++) {
+    const baseRow = Math.floor(start / 11), baseCol = start % 11;
+    for (let direction = 0; direction < 8; direction++) {
+      const [dr, dc] = DIRECTIONS[direction]; let row = baseRow, col = baseCol;
+      const positions = [start], runes = [corpus.translit[p32[start]]];
+      for (let unit = 0; unit < 4; unit++) {
+        row = mod(row + dr, 11); col = mod(col + dc, 11);
+        const position = row * 11 + col; positions.push(position); runes.push(corpus.translit[p32[position]]);
+      }
+      if (runes.join("") === "HOMEX") homexMatches.push({ start, direction, positions });
+    }
+  }
+  assert.deepEqual(homexMatches, [{ start: 33, direction: 2, positions: [33, 34, 35, 36, 37] }]);
 
   // Sensitivity: one-based cell numbering means sum-1 and does not reach X.
   const oneBasedAddresses = addresses.map(address => address - 1);
@@ -261,6 +306,13 @@ function main() {
       marker,
       start: { row: startRow, col: startCol, position: startIndex, rune: "H" },
       selectedRoute: selectedRoute.steps,
+      intermediatePath: {
+        selectedFourWordSteps: selectedPath.cells.length - 1,
+        selectedFourWordReadout: selectedPath.tokens.join(""),
+        firstLeg: { word: "road", byte: selectedBytes[0], direction: selectedPath.segments[0].directionName, distance: selectedPath.segments[0].distance, runes: selectedPath.segments[0].runes, firstFiveIncludingStart: selectedPath.tokens.slice(0, 5).join("") },
+        uniqueHomexTorusPaths: homexMatches,
+        full43WordPath: { steps: full43Path.cells.length - 1, uniqueCells: full43Path.uniqueCells, missingCells: full43Path.missing, firstVisitReadout: full43Path.firstVisitText, missingReadout: full43Path.missingText }
+      },
       final: { row: 3, col: 4, position: 37, rune: "X" },
       existing43WordCompassRouteFinalIndex: existing43Route.finalIndex,
       outerToInnerRoutePositions: outerToInnerRoute.positions
