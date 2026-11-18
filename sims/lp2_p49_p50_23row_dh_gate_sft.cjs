@@ -1,0 +1,16 @@
+'use strict';
+const assert=require('node:assert/strict');
+const grid=require('../resources/liber-primus/lp2-grid-256.json');
+const rows=grid.pages.map(p=>p.tokens.length/8);
+assert.deepEqual(rows,[10,13,9]);
+const prefixes=[rows[0],rows[0]+rows[1],32];
+const suffixes=[rows[2],rows[1]+rows[2],32];
+assert.deepEqual(prefixes,[10,23,32]);
+assert.deepEqual(suffixes,[9,22,32]);
+const dh=[186,189].map(address=>({address,row:Math.floor(address/8),column:address%8}));
+assert.deepEqual(dh,[{address:186,row:23,column:2},{address:189,row:23,column:5}]);
+assert.ok(dh.every(x=>x.row===23&&x.row>22));
+const cuts=[];for(let a=1;a<=30;a++)for(let b=a+1;b<=31;b++)cuts.push([a,b]);
+const matching=cuts.filter(([a,b])=>a===23||b===23).length;
+assert.equal(cuts.length,465);assert.equal(matching,30);
+console.log(JSON.stringify({rows,prefixes,suffixes,dh,pageRanges:[[49,0,9],[50,10,22],[51,23,31]],randomCutScale:{matching,total:cuts.length,rate:matching/cuts.length},decision:'23-row prefix ends at row22; frozen zero-based DH row23 is first row of p51'},null,2));
