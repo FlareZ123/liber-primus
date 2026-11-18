@@ -14,6 +14,8 @@ The two boundaries have an exact factorization:
 
 The void is inside LP2 pages 11–18, around the tree sequence and p15 Fibonacci-prime grid. In the 50×33 layout, horizontal equality is only 3/1600 = 0.1875%, while vertical equality is 63/1617 = 3.896% and the two main diagonals are 60/1568 = 3.827% and 41/1568 = 2.615%. These latter rates are near the native 1/29 baseline and do **not** reveal an independent 2-D plaintext structure.
 
+As a further matrix-structure control, I measured the best circular GP29 Caesar shift between every pair of the 50 rows. The mean best-shift agreement is **0.11349**, essentially the matched hard-no-repeat random null (**p=0.57**); the maximum is **0.24242**, also null-like (**p=0.38**). Thus the rows do not behave like shifted copies of a common 33-rune template.
+
 ## Two source-connected interpretations of the 50×33 shape
 
 ### 1. Retrospective 83→133 address interpretation
@@ -41,6 +43,6 @@ I tested the raw rune-index representation and the clue-motivated prime-mod-29 a
 
 ## Decision
 
-The exact 50×33 shape is worth preserving because it is simultaneously compatible with the observed T7 void and with solved-page source counts. However, neither the p50 83..132 row/column key nor the p57-interior × p55-boundary additive matrix produces plaintext.
+The exact 50×33 shape is worth preserving because it is simultaneously compatible with the observed T7 void and with solved-page source counts. However, neither the p50 83..132 row/column key nor the p57-interior × p55-boundary additive matrix produces plaintext, and the rows do not show a shared Caesar-template structure.
 
 Do **not** expand this into arbitrary KDFs, AES modes, offsets, fitted matrix permutations, or other high-dimensional key schedules. The missing ingredient is a source-visible operation that independently selects how the 50 and 33 source streams interact (if they interact at all), or a genuine reason for the 83/133 addressing. If that selector appears, the 50×33 void is a sharply testable target.
