@@ -294,6 +294,37 @@ for (let i = 0; i + 1 < signedRows.length; i += 1) {
 }
 assert.deepEqual(adjacent85, [["epiphany", "seeks"]], "unique signed 8/5 adjacency");
 
+const fourWordHits = [];
+for (let i = 0; i + 3 < signedRows.length; i += 1) {
+  const [a, b, c, d] = signedRows.slice(i, i + 4);
+  const shape = a.length === 8 && b.length === 5;
+  const graphCount = b.gp0 === 71;
+  const primeStep = primePi(b.gp0) === c.gp0;
+  const tableStep = c.gp0 < 256 && bytes[c.gp0] === d.gp0;
+  if (shape || graphCount || primeStep || tableStep) {
+    fourWordHits.push({
+      i,
+      words: [a.word, b.word, c.word, d.word].map((word) => word.toLowerCase()),
+      shape,
+      graphCount,
+      primeStep,
+      tableStep,
+    });
+  }
+}
+assert.deepEqual(
+  fourWordHits,
+  [{
+    i: 5,
+    words: ["epiphany", "seeks", "the", "devoted"],
+    shape: true,
+    graphCount: true,
+    primeStep: true,
+    tableStep: true,
+  }],
+  "unique authenticated four-word source-order window",
+);
+
 assert.equal(primePi(71), 20, "pi(71)");
 assert.ok(
   signedRows.some((row) => row.word.toLowerCase() === "the" && row.gp0 === 20),
