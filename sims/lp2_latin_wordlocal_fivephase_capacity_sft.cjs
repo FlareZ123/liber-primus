@@ -422,6 +422,55 @@ console.log("FULL-BOOK-CONTIGUOUS-SOURCE-QUOTE-GATE", JSON.stringify({
   originalLP1Source:lp1Phrase
 }));
 
+/**
+ * Reproduce the existing committed "writer GP" native transliterator:
+ * [ING,TH,EO,OE,AE,IO,EA] are longest-first 29-rune units; V/K/Z/Q
+ * are historical aliases; QU is transliterated as CW before scanning.
+ * @param {string} raw Authoritative pinned Gutenberg source text.
+ * @returns {string[]} One ordered GP29 word for every alphabetic word.
+ */
+function writerNativeWords(raw) {
+  const symbols = ["F","U","TH","O","R","C","G","W","H","N","I","J",
+    "EO","P","X","S","T","B","E","M","L","ING","OE","D",
+    "A","AE","Y","IO","EA"];
+  assert.equal(symbols.length, 29);
+  const order = [...symbols.keys()].sort(
+    (a,b) => symbols[b].length - symbols[a].length);
+  const aliases = {V:1,K:5,Z:15,Q:5};
+  const normalized = raw.normalize("NFKD").replace(/\p{M}/gu, "")
+    .replace(/[^A-Za-z ]/gu, " ").toUpperCase().replace(/QU/g, "CW");
+  const result = [];
+  for (const word of normalized.split(/\s+/u)) {
+    if (!word) continue;
+    let encoded = "";
+    for (let pos = 0; pos < word.length;) {
+      const i = order.find((index) => word.startsWith(symbols[index], pos));
+      const index = i === undefined ? aliases[word[pos]] : i;
+      assert.notEqual(index, undefined);
+      encoded += alphabet[index];
+      pos += i === undefined ? 1 : symbols[i].length;
+    }
+    result.push(encoded);
+  }
+  return result;
+}
+const englishReferenceNames = [
+  ["Gibran_Prophet","gibran_prophet_58585.txt",15733,9],
+  ["Emerson_Essays","emerson_essays_2944.txt",77932,8],
+  ["Shakespeare_First300k","shakespeare_first300k.txt",55407,9]
+];
+const englishPhrases = {};
+for (const [name,filename,expectedWords,expectedLongest] of englishReferenceNames) {
+  const source = writerNativeWords(fs.readFileSync(path.join(root, filename), "utf8"));
+  assert.equal(source.length, expectedWords);
+  const test = sourcePhraseGate(source, originalFullWords);
+  assert.equal(test.longest, expectedLongest);
+  englishPhrases[name] = {sourceWords:source.length,
+    longest:test.longest,hits:test.hits};
+}
+console.log("AUTHOR-RELEVANT-ENGLISH-SOURCE-QUOTE-GATE",
+  JSON.stringify(englishPhrases));
+
 /* True source-native 12-word encoded phrase, independent secret alphabet
  * per word and phase, is recognized without knowing any of its keys.
  */
