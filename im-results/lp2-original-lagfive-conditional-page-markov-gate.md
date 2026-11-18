@@ -1,6 +1,6 @@
 # Original LP2 fifth-back echoes survive fitted first-order page models
 
-**Agent32, 17 November 2026. Original-input structural discrimination; no plaintext or key recovered.** This is intermediate evidence. It changes the architecture gate for candidate ciphers, not the authenticated decryption status.
+**Agent32, 17 November 2026. Original-input structural discrimination; no plaintext or key recovered.** This is intermediate evidence. It changes the architecture gate for candidate ciphers, not the authenticated decryption status. An independent original-source extension now also shows the full 812-map word-local six-back affine maximum survives exact per-page bigram preservation.
 
 ## Question and rival explanations
 
@@ -68,6 +68,25 @@ The original full-stream fifth-back excess is only **34.3081** above its exact-p
 The original fifth-back target and word-sensitive contrast were motivated after observing the manuscript. These Monte Carlo probabilities are **conditional**, share the same 10,000 synthetic books and do not provide independent multiple-testing-adjusted significance. The result cannot distinguish word-initial state reset from deliberate **placement** of printed word boundaries or other dependence on word length; it also leaves open the possibility of a mixed global and word-local cipher. Its useful discrimination is that a proposed historical **continuous five-state operator** must now explain why the fifth-back excess is concentrated inside words while the cross-word fifth-back rate agrees with exact-bigram-preserving randomizations.
 
 The extended [source-exact Windows/Node22 reproducible program](../sims/lp2_exact_page_bigram_euler_sft.cjs) prints the original [104,11,9] counts, unchanged former null means, complete global/inside/outside/localization scores, and page-safe sensitivity, and checks all 55 original ordered-bigram inventories by direct edge counts on the first draw. The exact committed program was executed against the preserved complete source inputs and passed all **10,000** trials.
+
+## Independent six-back affine pattern under the same exact page-bigram null (Agent13, 18 November 2026)
+
+The original word-local six-rune-back coincidence has a **unique best invertible affine map** over GP29, `T6(x)=27x+24` (equivalently `24−2x`), matching **80 of 1,290** within-word six-back pairs. There are **812** candidate invertible affine maps `ax+b mod29`, with `a=1..28`, `b=0..28`. Because `T6` was originally *found* by exploring ciphertext patterns, a credible null must take the **maximum over all 812 maps** on every synthetic book, not score only the selected fixed T6.
+
+A genuinely distinct source-level question is whether the **complete original 55-page 29×29 directed-bigram inventories** already explain that maximal six-back relationship. Reuse the original exact-page-bigram Euler-trail sampler above (directed cycle-popping and last-exit spanning tree) while preserving all **2,896 printed word boundaries, 12,956 rune slots, 55 original page endpoints and every actual same-page adjacent pair count**. With a new independent frozen xorshift32 seed `0x712623a5`, score each of **1,500 original-geometry randomizations** for its *own* best affine map among all 812.
+
+| Statistic | Original | 1,500 exact-bigram null books |
+| --- | ---: | ---: |
+| Best affine six-back map count | **80**, unique `(a,b)=(27,24)` | mean **66.7073**, SD **2.6458** |
+| Best affine count range | **80** | **61–78** |
+| Null books whose *best 812-map score* ≥ original | | **0/1,500**, add-one upper-tail estimate **1/1,501 = 0.0006662** |
+| Selected fixed `T6` count, descriptive only | **80** | mean **44.684**, upper hits **0/1,500** |
+
+This gives an **independent higher-order source-order constraint** beyond the low adjacent-repeat rate. Importantly, the exact page-bigram null *does not* account for the observed 80-match affine-family maximum despite freezing **every** source's first-order transitions. It strengthens the demand that a proposed cipher explains **both** the fifth-back localization and six-back T6 bias. It also explains why Agent42's [full clock-dependent Quagmire plants](lp2-clock-quagmire-full-affine-original-model-gate.md), which match the doublet count yet rarely reach 80 six-back affine hits, are failing a substantive distinct ciphertext fingerprint.
+
+**Selection warning:** an exploratory analyst had already surveyed other lags, substitutions and motifs before naming this exact family. Maximizing all 812 affine maps on each synthetic book corrects *within-family* selection only. The quoted conditional tail is **not** a global discovery-adjusted p-value, a unique authored clue, a plaintext letter assignment or a reversible inverse. The all-secret phase-cycle mismatch documented by Agent42 is consistent with this observation but remains a separate, model-specific gate.
+
+[Exact-original CJS reproducer](../sims/lp2_sixback_affine_exact_page_bigram_sft.cjs) builds both original registers, asserts the 80/1290 unique winning map and checks all 29×29 per-page directed-bigram inventories on the first randomized book; it locks the full simulation moments and positive successful draw bounds to catch regressions. **Decision:** nonperiodic reversible model candidates now need to explain this independent six-back relationship under genuinely original inputs while remaining language-coherent. Do not launch another untargeted lag/affine search from this empirical result.
 
 ## Cipher-selection consequence
 
