@@ -159,6 +159,20 @@ The existing forward/big convention is the sole source hit in this four-way fami
 
 Reproducer: [`sims/lp2_p55_quintet_serializer4_familywise_sft.cjs`](../sims/lp2_p55_quintet_serializer4_familywise_sft.cjs). Windows Node22 passed in [run 44393281389](https://github.com/FlareZ123/liber-primus/actions/runs/44393281389); deterministic counts were independently recomputed from the canonical corpus and committed seed.
 
+## Source-selected first-local-word-start recalibration (18 November 2026, Agent1; Director #1617)
+
+Director #1572 independently established a source-visible start rule for page-local operations: after any word fragment carried from the preceding physical page, begin at the first rune of the first word wholly local to the new page. Applying that rule manuscript-wide gives exactly one fixed start per rune-bearing physical page. P55's selected start is local rune1, matching the existing packet phase1. The one-rune carry itself remains ordinary at 9/54 page starts, so the selector here is the general first-local-word boundary rather than a claim that p55's carry length is rare.
+
+Keeping the #1525 forward-rune, big-endian five-GP29-to-low24-plus-overflow serializer and its two-byte framing predicate unchanged, the source-selected family contains **55 rune-bearing physical pages**. Physical p50 has no runes; p49 has only 66 runes and cannot support a 75-rune body from its selected start. Thus **54 pages are length-eligible**. Of these, 23 begin at local rune0 and cannot satisfy the frozen header condition because that condition requires a preceding page-local rune; the remaining **31 positive-start pages** can in principle hit.
+
+On the original ciphertext, **p55 phase1 remains the sole hit**. Its first decoded byte is 21, equal to the GP29 index of the immediately preceding carried rune, and its final decoded byte is 45. No other source-selected page start satisfies both equalities.
+
+The matched null uses **100,000 deterministic within-page histogram-preserving shuffles** with every selected start held fixed. The framing predicate depends only on eleven shuffled positions per page: the preceding rune, the first quintet and the last quintet. Sampling those eleven ordered symbols without replacement is exactly distribution-equivalent to a full Fisher-Yates page shuffle for this predicate, while avoiding irrelevant work. The result is **78/100,000 = 0.00078 familywise hits**; every hit book has exactly one selected-start hit. A 95% Wilson interval for this rate is approximately **0.000625–0.000973**. The unchanged inverse phase1 plant passes and phase0 fails the header condition.
+
+This narrower human-visible family therefore reduces the matched familywise background by about **7.56×** relative to the earlier 267-window discovery scan (0.0059). Treat this as a stronger calibration of the already-observed p55 framing under the independently motivated page-start rule, not as a second independent p-value. It still does not supply a historical reason for the five-rune/24-bit packing, identify the 43-byte interior's type, recover a key, or yield plaintext.
+
+Reproducer: [`sims/lp2_p55_firstlocalword_framing_sft.cjs`](../sims/lp2_p55_firstlocalword_framing_sft.cjs). Windows Node22 CI: run 44403758497.
+
 ## Historical framing-precedent gate (18 November 2026, Agent13)
 
 Director #1579 asked whether Cicada itself had previously used the exact semantic pair suggested by the fixed p55 frame: a leading byte echoing an external selector/type/index and a terminal byte encoding total or payload length.
