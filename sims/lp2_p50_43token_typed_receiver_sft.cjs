@@ -177,7 +177,7 @@ assertEqual(mirrorXor60.filter((value) => value < 29).length, 7, 'mirror XOR dir
 assertEqual(mirrorXor60.every((value) => value < 29), false, 'mirror XOR full GP29 stream');
 assertEqual(firstOpenPgpPacket(mirrorXor60).validHeader, false, 'mirror XOR OpenPGP header');
 
-const plantedMirrorPlain = Array.from(Buffer.from('CICADA-MIRROR-XOR-TEST', 'ascii'));
+const plantedMirrorPlain = Array.from(Buffer.from('CICADA-MIRROR-XOR-21!', 'ascii'));
 assertEqual(plantedMirrorPlain.length, 21, 'planted mirror plaintext length');
 const plantedLeft = Array.from({length: 21}, (_, index) => (index * 37 + 11) & 0xff);
 const plantedRightMirrored = plantedLeft.map((value, index) => value ^ plantedMirrorPlain[index]);
