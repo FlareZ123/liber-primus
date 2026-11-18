@@ -16,18 +16,18 @@ This is an especially broad **necessary-condition test** for the tempting explan
 
 ## Matched original-input native-language experiment
 
-Use the exact original 2,896 printed word lengths. From each of three independently checked-in English sources, encode to GP29 with the repository's QU/V/K/Z conventions, longest matching two-rune digraphs, and either of two historically used ING conventions. Sample one genuine reference word of **the same GP rune length** independently for every source word slot. Source words and their original GP spelling patterns remain intact; physical LP2 page breaks and word lengths remain unchanged. Draw **2,000 complete 2,896-word native controls per source/spelling**, seeded with xorshift32 `0x3301e011`, and calculate the complete matched-text equality footprint.
+Use the exact original 2,896 printed word lengths. From each of three independently checked-in English sources, encode to GP29 with the repository's QU/V/K/Z conventions, longest matching two-letter GP digraphs, and either of two historically used ING conventions. Sample one genuine reference word of **the same GP rune length** independently for every source word slot. Source words and their original GP spelling patterns remain intact; physical LP2 page breaks and word lengths remain unchanged. Draw **2,000 complete 2,896-word native controls per source/spelling**, seeded with xorshift32 `0x3301e011`, and calculate the complete matched-text equality footprint.
 
 | GP29 reference | ING mode | Mean internal doublets (original 63) | Mean terminal doublets (original 19) | Mean word-boundary doublets (original 23) |
 | --- | --- | ---: | ---: | ---: |
-| Shakespeare (55,407 words) | I+NG | 330.86 | 136.04 | about 118 |
-| Shakespeare | NG | 331.66 | 137.15 | about 118 |
-| Gibran, *The Prophet* (15,733 words) | I+NG | 309.65 | 110.12 | about 116 |
-| Gibran | NG | 317.14 | 114.60 | about 117 |
-| Emerson, *Essays* (77,932 words) | I+NG | 296.92 | 103.26 | about 116 |
-| Emerson | NG | 299.81 | 104.09 | about 116 |
+| Shakespeare (55,407 words) | I+NG | 330.86 | 136.04 | 118.21 |
+| Shakespeare | NG | 331.66 | 137.15 | 118.34 |
+| Gibran, *The Prophet* (15,733 words) | I+NG | 309.65 | 110.12 | 116.09 |
+| Gibran | NG | 317.14 | 114.60 | 116.56 |
+| Emerson, *Essays* (77,932 words) | I+NG | 296.92 | 103.26 | 115.66 |
+| Emerson | NG | 299.81 | 104.09 | 116.04 |
 
-The internal/terminal means above come from the 2,000-draw original run; the boundary means are the exact expectations from length-conditioned source first/last GP rune frequencies. The same source-normalized matched-length operation produces these latter analytic values: Shakespeare **118.04 / 118.46**, Gibran **116.20 / 116.61**, Emerson **115.59 / 115.85**. Under the six complete Monte Carlo control groups, **0/12,000** controls has even one of the three original event counts as low as the actual manuscript. An individual source/spelling control group therefore has an empirical lower-tail resolution at most **1/2001** under this specified matched-word null. The groups share methodology and some natural-language structure; they are not 12,000 independent historical manuscripts.
+All three means above come from the 2,000-draw original run; exact expected boundary counts from length-conditioned source first/last GP rune frequencies are: Shakespeare **118.04 / 118.46**, Gibran **116.20 / 116.61**, Emerson **115.59 / 115.85**. Under the six complete Monte Carlo control groups, **0/12,000** controls has even one of the three original event counts as low as the actual manuscript. An individual source/spelling control group therefore has an empirical lower-tail resolution at most **1/2001** under this specified matched-word null. The groups share methodology and some natural-language structure; they are not 12,000 independent historical manuscripts.
 
 The result is much stronger than comparing just global ciphertext symbol frequencies. For example, ordinary GP English has many doubled L/O/S/etc runes inside words and at word ends, while the actual ciphertext contains only 19 such terminal events. Exact word-length conditioning controls for the manuscript's unusual word-length inventory and is consistent with the 32 carried words.
 
