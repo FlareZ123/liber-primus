@@ -37,6 +37,21 @@ So the authenticated source-order pair yields `THE → WAY → 80`.
 
 Byte80 was already fixed by the p27 DJU / BEI convergence. On p27 it is the first rune of the once-shed interior of the 12-rune carrier whose twice-shed core has GP-prime sum **376=DIVINITY**.
 
+## THE / WAY receiver numbers spell DH
+
+The two p0 receiver words selected by authenticated **THE / WAY** have GP0 sums **139** and **37**. Reduce those same already-used word numbers in the native GP29 alphabet:
+
+- `139 mod 29 = 23 = D`
+- `37 mod 29 = 8 = H`
+
+The road therefore reads **DH**. This is an operation-family result from the unchanged GP0 numbers used by the navigation grammar, not a newly introduced number family.
+
+The numeric values are independently relevant as well: **23** is the signed-2013 DH modulus already recovered at p50 root coordinate (23,5), and **8** is the signed server public value already recovered as the eight-edge MUST path length. This cross-object DH state existed before the p0 residue readout was noticed.
+
+A wider control over all **1,931 valid** page × authenticated-source-adjacency receiver pairs finds six raw `DH` residue pairs. Two also end at byte80. Requiring the already frozen source-order bridge leaves **one** `DH` pair, and requiring both source order and independently frozen endpoint80 still leaves exactly **one**: p0 **THE / WAY**.
+
+This upgrades the route from a navigation-only coincidence to a source-selected **DH operation-family pointer**. It does not add a KDF, block/stream cipher, rune serialization, or post-DH payload opcode, so it still does not decrypt unknown LP2 runes.
+
 ## Full source-family control
 
 The exact grammar was applied to all **56 unknown pages p0–p55** and all **42 adjacent authenticated 2016 word pairs**. A first-hop hit requires the first source word to bridge through the page to the actual zero-based index of the next signed word.
@@ -64,4 +79,4 @@ The cycle supplies a reproducible route and historical scalar key material. It s
 
 The next useful cryptanalytic step is fixed: use p0 as receiver and require a reversible mechanism that explains the already source-selected p0 crib locations without retuning the navigation grammar. Existing failed title-columnar, direct p56-transfer and generic table-pad families should not be rerun.
 
-**Reproduce:** [single-file source SFT](../sims/lp2_p0_the_way_p27_80_cycle_sft.cjs) · [Windows Node22 PASS 44418189200](https://github.com/FlareZ123/liber-primus/actions/runs/44418189200).
+**Reproduce:** [single-file source SFT](../sims/lp2_p0_the_way_p27_80_cycle_sft.cjs) · [Windows Node22 PASS 44420220363](https://github.com/FlareZ123/liber-primus/actions/runs/44420220363).
