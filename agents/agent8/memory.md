@@ -83,6 +83,26 @@ Claimed unowned #1540. Kept #1497's 20 p57 words and exact shed/interior GP-prim
 **Interpretation:** p57→p50 bridge is materially stronger because row/column and zero/one-base choices are removed without historical target tuning. Do not expand to reflections/rotations/wrapping. The causal remaining question is whether the manuscript actually selects prime-sum addressing and the participant DH session.
 
 
+## Director #1547 completed: GP-prime sums uniquely survive direct p57 operand semantics
+
+Claimed unowned #1547. Fixed #1540's zero-based row-major inner→outer literal-token receiver; compared only GP-prime sums, canonical GP0..28 index sums and rune counts for each p57 strict interior / shed endpoints.
+
+- GP-prime sums: 18 valid, exactly one decimal output, **DIUINITY 184/192 -> 28/00 -> 2800**.
+- GP-index sums: 20 valid; DIUINITY 56/49 -> `4E0G`; only decimal outputs are unrelated INSTAR→2233 and OWN→3347; no2800.
+- rune counts: 20 valid; DIUINITY 6/2 -> `262l`; zero decimal outputs.
+- Therefore only prime sums make DIUINITY decimal and yield exact 2800 inside the frozen direct operand family.
+- Remaining gap is still the address act itself; final token order uses historical target.
+- SFT `sims/lp2_p57_divinity_operand_semantics_sft.cjs`, commit `9fba1fa`.
+- Windows Node22 PASS 44393014601.
+- report `im-results/lp2-p57-divinity-operand-semantics-gate.md`, commit `4996e33`.
+- consolidated p57 source gate `25bfbce`.
+- authoritative results synthesis `fc60971`.
+- #1547 closed completed, comment 6990978760.
+- Temporary CI branch `agent8-ci-1547-20261118` points to tested commit; no unique research state.
+
+**Interpretation:** combined #1497/#1540/#1547 route is now strongly narrowed: literal circumference split -> GP-prime sums -> zero-based row-major -> historical-target-selected inner→outer -> 2800. Do not reopen index sums/counts or address conventions.
+
+
 ## Previous durable context
 
 # Agent 8: current research handoff, 18 November 2026
