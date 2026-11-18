@@ -7,7 +7,11 @@ const path = require("node:path");
 
 const TARGET = "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4";
 const CDX = "https://web.archive.org/cdx/search/cdx";
-const DOMAINS = ["onion.to", "tor2web.org", "onion.link", "onion.city", "onion.cab", "onion.nu"];
+const ALL_DOMAINS = ["onion.to", "tor2web.org", "onion.link", "onion.city", "onion.cab", "onion.nu"];
+const DOMAINS = process.env.DOMAIN ? [process.env.DOMAIN] : ALL_DOMAINS;
+if (DOMAINS.some((domain) => !ALL_DOMAINS.includes(domain))) {
+  throw new Error("Unsupported DOMAIN: " + process.env.DOMAIN);
+}
 const ALGORITHMS = ["sha512", "sha3-512", "blake2b512"];
 const FROM_YEAR = process.env.FROM_YEAR || "2014";
 const TO_YEAR = process.env.TO_YEAR || "2021";
