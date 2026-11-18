@@ -169,6 +169,63 @@ function exhaust(scope, firstPositive = false) {
   return { tried, survivorsAI, survivorsAIO, maxAI, maxAIO };
 }
 
+/**
+ * A stronger, letter-identity-free invariant. If any single fixed GP29
+ * substitution alphabet is secret, the original A/I/O words need only
+ * occupy at most THREE distinct decoded rune identities. Their actual
+ * symbols may be chosen adversarially, with no literal A/I/O assumption.
+ * For each of all 29^5 affine-key models, count initial singleton words
+ * until a fourth distinct decrypted symbol is forced.
+ *
+ * @param {{name:string,offsets:number[],cipher:number[]}} scope
+ * @param {boolean} [firstPositive]
+ */
+function exhaustUnknownAlphabet(scope, firstPositive = false) {
+  const n = scope.offsets.length;
+  const u = new Int16Array(n);
+  const v = new Int16Array(n);
+  const w = new Int16Array(n);
+  let tried = 0;
+  let fullKeys = 0;
+  let maximumPrefix = 0;
+  for (let a = 0; a < 29; a++) {
+    for (let b = 0; b < 29; b++) {
+      forms(a, b, scope.offsets, u, v, w);
+      for (let k0 = 0; k0 < 29; k0++) {
+        for (let k1 = 0; k1 < 29; k1++) {
+          for (let bias = 0; bias < 29; bias++) {
+            tried++;
+            let symbol0 = -1;
+            let symbol1 = -1;
+            let symbol2 = -1;
+            let prefix = 0;
+            for (let i = 0; i < n; i++) {
+              const key = (u[i] * k0 + v[i] * k1 +
+                w[i] * bias) % 29;
+              const plaintext = (scope.cipher[i] - key + 29) % 29;
+              if (plaintext !== symbol0 && plaintext !== symbol1 &&
+                plaintext !== symbol2) {
+                if (symbol0 < 0) symbol0 = plaintext;
+                else if (symbol1 < 0) symbol1 = plaintext;
+                else if (symbol2 < 0) symbol2 = plaintext;
+                else break;
+              }
+              prefix++;
+            }
+            if (prefix > maximumPrefix) maximumPrefix = prefix;
+            if (prefix === n) {
+              fullKeys++;
+              if (firstPositive) return { tried, fullKeys, maximumPrefix };
+            }
+          }
+        }
+      }
+    }
+  }
+  assert.equal(tried, 29 ** 5);
+  return { tried, fullKeys, maximumPrefix };
+}
+
 /** Encrypt real solved p57 runes and 83 source-position A/I/O positives. */
 function positiveControl() {
   const a = 2; const b = 3; const bias = 5;
@@ -206,6 +263,27 @@ assert.equal(continuous.survivorsAI, 0);
 assert.equal(continuous.survivorsAIO, 0);
 assert.equal(continuous.maxAIO, 7);
 
+const alphabetBlindWhole = exhaustUnknownAlphabet({
+  name: 'whole-book original with unknown global secret substitution alphabet',
+  offsets: singletonPositions,
+  cipher: singletonPositions.map((p) => sourceCipher[p])
+});
+assert.equal(alphabetBlindWhole.fullKeys, 0);
+assert.equal(alphabetBlindWhole.maximumPrefix, 9);
+
+const alphabetBlindChapters = chapters.map((scope) => {
+  if (scope.offsets.length < 8) {
+    return { scope: scope.name, singletonCount: scope.offsets.length,
+      result: 'underconstrained, shorter chapter not all-secret tested' };
+  }
+  const outcome = exhaustUnknownAlphabet(scope);
+  return { scope: scope.name, singletonCount: scope.offsets.length,
+    models: outcome.tried, keysWithinThreeSymbols: outcome.fullKeys,
+    maximumThreeSymbolPrefix: outcome.maximumPrefix };
+});
+assert.deepEqual(alphabetBlindChapters.map((c) => c.keysWithinThreeSymbols),
+  [undefined, 667, 0, 0, undefined, 0, 145, 0, undefined]);
+
 const chapterDecisions = chapters.map((scope) => {
   if (scope.offsets.length < 8) {
     return { scope: scope.name, singletonCount: scope.offsets.length,
@@ -229,6 +307,8 @@ console.log(JSON.stringify({
   gpEnglishChoices: { A, I, O },
   modelsPerClock: 29 ** 5,
   originalContinuous: continuous,
+  allSecretPlainAlphabetWhole: alphabetBlindWhole,
+  allSecretPlainAlphabetChapters: alphabetBlindChapters,
   chapterResets: chapterDecisions,
   positive,
   conclusion: 'The complete unknown-coefficient affine-order2 direct GP29 cipher fails on original English singleton words under continuous or six independent visual-chapter clocks.'
