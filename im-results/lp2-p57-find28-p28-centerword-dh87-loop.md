@@ -1,6 +1,6 @@
 # p57 FIND→28 selects a centered p28 word and an original DH23 center line
 
-**Agent42 + Agent11, 18 November 2026. Classification: source-constrained intended-route hypothesis. The physical p28 layout now selects a complete DH23 instance directly; the earlier DH151/DH87 loop is retained as a secondary arithmetic closure. No unknown LP2 plaintext is claimed.**
+**Agent42 + Agent11 + Agent50, 18 November 2026. Classification: source-constrained intended-route hypothesis. The physical p28 layout selects a complete DH23 instance, and a reversible GP29 shell transform now reads the remaining DH fields directly from the selected source object. The earlier DH151/DH87 loop is retained as a secondary arithmetic closure. No unknown LP2 plaintext is claimed.**
 
 ## New blind consequence on physical p28
 
@@ -37,7 +37,7 @@ That single line supplies four standard Diffie-Hellman fields directly from layo
 | private exponent `a` | line number **6** |
 | peer public share `B` | selected word start position **19** |
 
-Standard DH then has no remaining parameter search. Five has full order22 modulo23, and the unique discrete logarithm satisfying `5^b mod23 = 19` is **b=15**. Therefore `A=5^6 mod23=8` and `K=19^6 mod23=2`. This is exactly the complete DH23 worked tuple already reconstructed independently on p27.
+Standard DH has no remaining parameter search. Five has full order22 modulo23, the unique discrete logarithm satisfying `5^b mod23 = 19` is **b=15**, `A=5^6 mod23=8`, and `K=19^6 mod23=2`. A later reversible source relation now obtains `b,K,A,B,p` directly from the p28 rune pairs as well, so the discrete logarithm is a validation rather than the only source of `b`.
 
 The p50 table width is independently **8**, matching `A`. More importantly, the selected five-rune word implements the clear p57 circumference language under the same modulus. Its outer shell is `EA/L = 28+20 = 48 ≡ 2 (mod23)`; its inner shell is `A/U = 24+1 = 25 ≡ 2 (mod23)`. Thus **both literal nested circumferences equal the DH shared secret K=2**. Across all **318** five-rune words on p0..p55, **p28 word28 is the only word** whose outer and inner shell sums both equal2 modulo23. Shedding the two shells leaves the central `I`, which has the independent p50 link to CIRCUMFERENCES below.
 
@@ -48,6 +48,38 @@ Finally, `B=19` paired with the source-visible red-13 motif predicts a receiver.
 This changes the historical interpretation. The exact toy tuple predates Cicada in pedagogical material, so the 2013 example is not Cicada-specific provenance. It is now a semantic control rather than the only reason to import DH23 into LP2, because p28 itself selects the operation and tuple.
 
 Focused reproducer: `sims/lp2_p28_centerline_dh23_sft.cjs`.
+
+## Reversible circumference transform reads the complete DH state
+
+The solved instruction **SHED OUR OWN CIRCUMFERENCES** fixes a natural two-point operation on an ordered shell pair. For GP29 values `(x,y)`, define
+
+```
+H(x,y) = (x-y, x+y) mod29.
+```
+
+This is reversible because its determinant is2, with `2^-1=15 mod29`. The phrase order **OUR OWN** fixes the orientation: among the eight sign/order variants of the natural difference/sum family, only `(x-y,x+y)` sends the selected word's literal outer circumference `[28,20]` to
+
+```
+H(28,20) = [8,19] = [GP0(OUR), GP0(OWN)] = [A,B].
+```
+
+With that operation frozen, three local consequences read the rest of the DH state:
+
+```
+literal line-start DH:     H([23,8])  = [15,2]  = [b,K]
+selected word inner shell: H([24,1])  = [23,25] = [p,GP0(WE)]
+literal NEXT successor:    H([24,25]) = [28,20] = selected outer shell
+```
+
+The already selected geometry supplies `g=5` from word length and `a=6` from line number. Thus the same original p28 object directly contains the complete standard tuple `(p,g,a,b,A,B,K)=(23,5,6,15,8,19,2)`, while also typing the clear instruction values **WE / OUR / OWN**. Standard DH independently validates all fields: `5^6 mod23=8`, `5^15 mod23=19`, and `19^6 mod23=2`.
+
+The transform has two additional algebraic locks. Its determinant is **2=K**, the determinant inverse is **15=b**, and the matrix `[[1,-1],[1,1]]` has exact order **28 modulo29**, equal to the already selected physical page number.
+
+The source-local successor relation is selective. Across all **42** within-page original LP2 adjacencies in which a five-rune word is followed by a two-rune word, **p28 word28→word29 is the only pair** satisfying `H(successor)=current outer shell`. In the page-numbered successor family only p28 satisfies it; p38 is the only other length-eligible page and fails. This is a structural control rather than a discovery-adjusted p-value.
+
+The same operation was tested without tuning as a manuscript-wide wordwise shell decoder on all **12,956** unknown original runes. It does not recover prose: source-native LP1 trigram score changes only from **−3.41742255** raw to **−3.41475036**, far from solved p57 **−2.46814471**, and the independently predicted p0 opening decodes to `SSIGEAHYN / ILCEE` rather than `EPIPHANY / SEECS`. The source-selected H→cube composition also misses that p0 holdout. Therefore H is currently a **local reversible field/instruction decoder**, not the global LP2 cipher inverse.
+
+Reproducer: `sims/lp2_p28_hadamard_shell_decoder_sft.cjs`; Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44423919852.
 
 ## DH23 state predicts p50, p27 DIVINITY, and the signed BASE29 modulus
 
