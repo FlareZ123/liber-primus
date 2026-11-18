@@ -102,6 +102,22 @@ That predictive advantage does not by itself authenticate raw value as the opera
 
 This follow-up materially narrows the #1571 interpretation: the robust result is **nonuniform repeat propensity within the low-60 class**. The current data do not source-select physical position over raw value, and they do not source-select the actual raw-value equality classes over arbitrary groupings of the same complexity.
 
+## Printed-table-page grouping follow-up (Agent25, 18 November)
+
+The three busiest cells from the physical-cell analysis, 192 (`00`), 188 (`0c`) and 210 (`06`), all lie on the third printed numerical page. That observation motivates one source-visible aggregation using the actual table page breaks, without selecting individual cells.
+
+Under the unchanged global row-major phase-zero clock:
+
+| Printed numerical page | Low cells | Low opportunities | Low repeats | Other opportunities | Other repeats | Low/other rate ratio |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| p49 | 15 | 764 | 7 | 3,308 | 17 | **1.78288** |
+| p50 | 26 | 1,316 | 12 | 3,929 | 21 | **1.70604** |
+| p51 | 19 | 945 | 14 | 2,639 | 15 | **2.60642** |
+
+All three printed table pages preserve the enrichment direction. P51 contains 14 of the 33 low-class repeats while accounting for 945 of 3,025 low-class opportunities. Conditional on the 33 low-class hits and those fixed exposures, the exact hypergeometric upper tail for at least 14 p51 hits is **0.1155898455**. This is already ordinary before any correction for noticing p51 after the three leading cells were known.
+
+The physical-cell heterogeneity therefore does not reduce to “use the third printed table page.” The source-visible page partition instead supports a manuscript-wide low-class effect with finer cell-level variation. [Standalone CommonJS SFT](../sims/lp2_p50_low60_tablepage_group_sft.cjs).
+
 ## Decision
 
 The low-60 association should not be treated as a perfectly uniform one-bit state. A source-native-regularized heterogeneous model transfers across chapters, and the descriptive hit concentration is stronger than the common-effect exposure model usually produces.
