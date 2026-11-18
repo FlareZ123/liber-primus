@@ -64,6 +64,6 @@ Can the exact LP2 p2 drawing be matched pixel-for-pixel to the Schroeter plate o
 
 ## Reproduction
 
-- [Deterministic Node.js gate](../sims/lp2_p2_trilobite_t6_gate.cjs) reproduces the corpus counts, all 812 affine-map counts, p2's 2/34 result, the continuous feedback output, and the six-lane frequency comparison.
+- [Deterministic Node.js gate](../sims/lp2_p2_trilobite_t6_gate.cjs) reproduces the corpus counts, all 812 affine-map counts, p2's 2/34 result, the continuous feedback output, and the six-lane frequency comparison. [Successful Node22 run 44282695789](https://github.com/FlareZ123/liber-primus/actions/runs/44282695789).
 - [Original full-affine Quagmire SFT](../sims/lp2_clock_quagmire_full_affine_motif_sft.cjs) strips slash line markers as well as percent page markers, consistent with [the transcription delimiter specification](../resources/transcriptions/README.md).
 - The T6 result remains a ciphertext structural observation, not recovered plaintext. See also [the original-model gate](lp2-clock-quagmire-full-affine-original-model-gate.md).

@@ -75,5 +75,5 @@ The experiment is valuable because it directly changes the priority of an otherw
 ## Reproduction and exact evidence
 
 - [Full stand-alone Windows-compatible Node.js 22 SFT](../sims/lp2_clock_quagmire_full_affine_motif_sft.cjs), reading already committed original corpus and three English references, with source count and native orthography assertions. It performs no network requests or file writes.
-- [Windows GitHub Actions successful run 44272748320](https://github.com/FlareZ123/liber-primus/actions/runs/44272748320), containing every original count and all 3,000 keyed plant statistics. The standalone test itself executed in about 5 seconds of the successful job.
+- [Corrected Windows run 44282751302](https://github.com/FlareZ123/liber-primus/actions/runs/44282751302), which re-ran all 3,000 keyed plants after fixing the slash line-marker parser; [earlier successful run 44272748320](https://github.com/FlareZ123/liber-primus/actions/runs/44272748320) is retained as historical evidence. The standalone test itself executed in about 5 seconds of the successful job.
 - [Existing reusable read-only Node22 SFT workflow](../.github/workflows/manual-node22-sft-runner.yml) with a validated path and read-only checkout permissions; the duplicate one-run workflow used in the recorded successful execution is retired.
