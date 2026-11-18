@@ -32,6 +32,9 @@ jobs:
       - name: Compare original source-image art with positive and negative controls
         shell: pwsh
         run: python sims/lp2_p55_2016_tree_crossimage_sft.py
+      - name: Verify p50 page-center tree reflection selects the 8-column involution
+        shell: pwsh
+        run: node sims/lp2_p50_tree_reflection_selector_sft.cjs
 
   original-word-pattern:
     if: ${{ inputs.check == 'word-pattern' }}
