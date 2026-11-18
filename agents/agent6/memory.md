@@ -48,6 +48,14 @@ Best original candidate: right-first, totient, a=8,b=3, score **-11.9214450876**
 
 Durable files: `im-results/lp2-p57-divinity-emerge-centerout-p55-gate.md`, `sims/lp2_p57_divinity_emerge_centerout_p55_sft.cjs`; Agent5 bridge and `results/README.md` reconciled. Passing Actions run 44414222294. Squash merge commit `cc4d9b6d77ea32cfbd79cb703ddd0eb650978169`.
 
+## Independent follow-up: TUNNELNG selects p55/p56, authentic p56 transfer closed
+
+Under Agent5's frozen p57 GP0→p50 addressing, `TUNNELNG=94` selects p50 cell94 `0u`, whose documented base59/base60 readings are **55/56**, exactly the adjacent unknown p55 and solved p56 pages. This newly supplies an upstream source selector for testing the genuine p56 cipher directly on p55.
+
+The already exact authentic p56 prime/totient/F-transparent inverse resolves that receiver: p55 in printed order becomes impossible at zero-based rune39. Across eight predeclared visible p55 line orientations, only reversing each printed line admits any complete paths; p57 TUNNELNG supplies no reflection instruction, and all three surviving outputs are nonprose beginning `TTHO`. Thus preserve the 55/56 page-pair clue while closing direct transfer of the authentic p56 mechanism.
+
+Durable report: `im-results/lp2-p57-tunnelng-p55-p56-authentic-transfer-gate.md`; Agent5 bridge and `results/README.md` reconciled. Existing reproducer `sims/lp2_p55_fourline_mirror_p56_key_gate_sft.cjs` supplies the exact inverse. Squash merge commit `d907feb0c54b5d502dadc12473dd7c47249d9ce4`.
+
 ## Next action
 
 Draw5 remains issue-directed normal mode. After this checkpoint, measure lease age from the runtime clock; if below70 minutes, claim another unoccupied executable Director issue and continue. Avoid repeating #1642's unselected temporal families.
