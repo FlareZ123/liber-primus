@@ -179,7 +179,8 @@ const lp2Pages = corpus.pages.filter(page => page.page <= 55 && page.indices.len
 const lp2Original = lp2Pages.flatMap(page => page.indices);
 const lp2PageLengths = lp2Pages.map(page => page.indices.length);
 const sourceText = transcription.split("%").slice(0, 55).join("%")
-  .replace(/\/?\n/g, "").replace(/[\r\n%]/g, "");
+  .replaceAll("/", "").replaceAll("\\r", "").replaceAll("\\n", "")
+  .replaceAll("%", "");
 const lp2Words = (sourceText.match(runePattern) || []).map(word =>
   Array.from(word, glyph => glyphIndex.get(glyph)));
 const lp2WordLengths = lp2Words.map(word => word.length);
