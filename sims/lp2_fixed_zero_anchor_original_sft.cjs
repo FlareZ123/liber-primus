@@ -72,7 +72,7 @@ function sourceLexicon() {
   /** @type {Map<number,string[][]>} */
   const out = new Map();
   for (const line of read('resources/control/english_wordfreq_textblob.txt').split('\n')) {
-    const match = /^([a-z]+) (\d+)$/.exec(line);
+    const match = /^([a-z]+) (\d+)$/.exec(line.trim());
     if (!match) continue;
     const symbols = gp(match[1]);
     if (!symbols) continue;
