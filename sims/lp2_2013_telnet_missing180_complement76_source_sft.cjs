@@ -160,15 +160,23 @@ for (const sign of [-1, 1]) for (const reversed of [false, true]) {
   const native = p57.slice(0, 76);
   const fake = wordRowTransform(native, -sign, reversed);
   assert.deepEqual(wordRowTransform(fake.out, sign, reversed).out, native);
+  const forbiddenFAtNonzeroCipher = plain.out.flatMap((symbol, i) =>
+    symbol === 0 && c55[i] !== 0 ? [i] : []);
+  assert.ok(forbiddenFAtNonzeroCipher.length > 0,
+    "original wordwise row-byte consumer unexpectedly preserves true-F rule");
   p55Word1229.push({
     sign, reversed,
     ioc: indexOfCoincidence(plain.out),
-    firstEightWords: plain.decodedWords.slice(0, 8).join(" ")
+    firstEightWords: plain.decodedWords.slice(0, 8).join(" "),
+    forbiddenFAtNonzeroCipher
   });
 }
 assert.deepEqual(p55Word1229.map(row => row.ioc), [
   0.03508771929824561, 0.03684210526315789,
   0.036491228070175435, 0.03368421052631579
+]);
+assert.deepEqual(p55Word1229.map(row => row.forbiddenFAtNonzeroCipher), [
+  [2,31], [11,19,36], [3], [12,17,21,75]
 ]);
 
 
