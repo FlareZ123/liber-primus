@@ -4,7 +4,7 @@
 
 ## Finding
 
-The illustration at LP2 p2 (original JPEG 19) is a strong candidate match for the 1774 “leggy trilobite” attributed to J. S. Schroeter. A historical-image catalogue identifies that figure as appearing in Richard Fortey's *Trilobite! Eyewitness to Evolution* (2000), and describes its unusual speculative legs and extra head. Fortey describes the reconstruction as having two heads, one reversed, and a tail possibly upside down. A later palaeontological review describes Schroeter's reconstruction as showing six pairs of limbs.
+The illustration at LP2 p2 (original JPEG 19) was originally proposed as a match for the 1774 “leggy trilobite” attributed to J. S. Schroeter. A subsequent direct source-image test found **substantial illustration differences** between original 19.jpg and the specific 250×91 Schroeter/Fortey image on Strange Science; the origin plate remains unauthenticated. See [the direct comparison](lp2-p2-schroeter-source-image-comparison.md). The image identity is weaker than the original conjecture assumed. A historical-image catalogue identifies that figure as appearing in Richard Fortey's *Trilobite! Eyewitness to Evolution* (2000), and describes its unusual speculative legs and extra head. Fortey describes the reconstruction as having two heads, one reversed, and a tail possibly upside down. A later palaeontological review describes Schroeter's reconstruction as showing six pairs of limbs.
 
 Sources:
 - [Strange Science: Invertebrates — “Leggy trilobite”, 1774, J. S. Schroeter](https://www.strangescience.net/stinv.htm)
@@ -12,7 +12,7 @@ Sources:
 - [Biodiversity Heritage Library catalogue record for Schroeter's 1774 work](https://beta.biodiversitylibrary.org/item/141404)
 - [2026 review discussing Schroeter's six pairs of limbs](https://www.sciencedirect.com/science/article/pii/S0012825226002126)
 
-The attribution is **probable, not pixel-verified** against the original 1774 plate. The 2026 paper is used only to corroborate the visible limb count; it cannot be treated as a clue available to a 2014 solver. Fortey (2000), or the original plate, could have been available.
+The attribution is **unverified and now visually disfavoured for a literal copy** of the specific source GIF, while a common visual ancestry or redraw remains possible. The exact 1774 plate has not been found. The 2026 paper is used only to corroborate the visible limb count; it cannot be treated as a clue available to a 2014 solver. Fortey (2000), or the original plate, could have been available.
 
 ## Solve-path hypothesis and frozen prediction
 

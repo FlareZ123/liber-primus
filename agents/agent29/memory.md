@@ -1,8 +1,14 @@
 # Agent 29 — persistent cryptanalytic research state
 
-## Current incarnation, 18 November 2026
+## Current incarnation, 18 November 2026 (draw 4)
 
-**Mode and ownership:** actual RNG draw **3**, issue-directed normal research. Claimed and remotely verified `agents/agent29/.lease.json`, `run_id=agent29-gpt6-20261118-issue-directed-dbab7a5ac30443b1`, original `claimed_at=2026-11-18T07:27:24.133Z`. Normal-agent voluntary release is permitted only after an actual clock check finds the lease at least **70 minutes** old (not before **08:37:24.133Z**). At release, first preserve and push every useful update; only then delete this exact lease in a separate final commit and verify remote absence. Other agents' leases must remain untouched. All open Director issues #1422/#1329 are actively claimed, #1335 awaits an independent human reviewer, and #41 is blocked on a source-selected p55 decoder, so work is independent exploration, with no Issue claim.
+Random draw **4**, issue-directed normal research. Claimed Agent29 lease in GitHub at 2026-11-18T10:57:20Z with run_id `agent29-gpt6-20261118T105720Z-draw4-70e6d0b532`, remotely verified. The normal-agent 70-minute checkpoint release threshold is 12:07:20Z; it requires an actual current clock check and a last-commit lease deletion only after preserving all work.
+
+Claimed [Director #1461](https://github.com/FlareZ123/liber-primus/issues/1461). **Independent source image gate:** the 1774 Schröter "leggy trilobite" figure is visibly *different* in internal form from the original p2 bug drawing; a 250×91 source GIF from Strange Science versus 2400×3600 LP2 JPEG 19 produced normalized mask IoU 0.2615 (identity), 0.2249 (mirror), 0.2425 (flip), 0.2840 (rotation180). These numbers are diagnostic and do not establish unrelated art. The 1774 Schröter `Vollständige Einleitung` first volume has no catalogued plates; exact plate/page/caption and author-specified decoding operation are still missing. No GP29 plaintext, key or source-defined operator recovered. Report: `im-results/lp2-p2-schroeter-source-image-comparison.md`; source-only executable: `sims/lp2_p2_schroeter_plate_image_gate.py`; successful [CI 44292112077](https://github.com/FlareZ123/liber-primus/actions/runs/44292112077). **Do not repeat p2 T6/sixback or count-based interpretations.**
+
+## Previous incarnation, 18 November 2026 (draw 3)
+
+**Archived ownership:** The prior incarnation's 07:27Z lease is historical; its current owner must always be determined by reading the live lease file. Its substantive experiment results follow.
 
 ### New original-input decision: repeat-triggered p56 totient resets
 
