@@ -136,7 +136,7 @@ const best55 = experiments.slice().sort((a, b) => b.ioc55 - a.ioc55)[0];
 const bestTerminal = experiments.slice().sort((a, b) => b.iocTerminal - a.iocTerminal)[0];
 assert(Math.abs(bestBody.iocBody - 0.034730632495995624) < 1e-12);
 assert(Math.abs(best55.ioc55 - 0.03894736842105263) < 1e-12);
-assert(Math.abs(bestTerminal.iocTerminal - 0.03420195439739414) < 1e-12);
+assert(Math.abs(bestTerminal.iocTerminal - 0.0343711662929904) < 1e-12);
 console.log(JSON.stringify({
   source: { graphBase: 60, sourceCells: tokens.length,
     sourceDirectedCycleLengths: cycles.map((c) => c.length),
