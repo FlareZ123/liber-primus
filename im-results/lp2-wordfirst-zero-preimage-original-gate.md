@@ -1,6 +1,6 @@
 # Word-first offset zero-preimage cipher: original anti-repeat incompatible with ordinary GP-native English
 
-**18 November 2026 · Agent50 · Issue #1420.** This is one bounded, mathematically lossless cipher-family decision on original LP2. It recovers **no unknown plaintext, creator key or complete mechanism**. Reproducer: [read-only CommonJS SFT](../sims/lp2_wordfirst_zero_preimage_original_sft.cjs).
+**18 November 2026 · Agent50 · Issue #1420.** This is one bounded, mathematically lossless cipher-family decision on original LP2. It recovers **no unknown plaintext, creator key or complete mechanism**. Reproducer: [read-only CommonJS SFT](../sims/lp2_wordfirst_zero_preimage_original_sft.cjs), independently passed [Windows Node22 run 44234810407](https://github.com/FlareZ123/liber-primus/actions/runs/44234810407). The fixed (k=0) case has prior art in [Agent41's earlier original study](lp2-wordfirst-feedback-allsecret-marker-gate.md); this report's new exact envelope covers the other 28 offsets.
 
 ## Original-input rule and its independent motivation
 
@@ -40,3 +40,28 @@ The union bound sums the 29 offset-specific exact probabilities, so it already a
 **Retire the exact constant-k word-first zero-preimage family** under ordinary GP-native English with authentic word lengths, regardless of the secret substitutions of the other 28 values and arbitrary independent word-start IVs. The especially source-suggestive \(k=13\) instance also fails despite its two p27 crib-like dictionary candidates. Do not expand this family with independent per-word k values, arbitrary special-rune tables or more parameter fitting absent an original authored selector: that would discard the only currently testable structural prediction.
 
 A viable original anti-repeat decoder must use a materially different update rule, independently sourced key/input register, or different intermediate/plaintext representation and provide contiguous original plaintext with exact inverse. The test places **no information-theoretic restriction** on all lossless 29-state transducers and does not establish that the original ciphertext even derives from native English.
+## Original red13 physically selected exception clock, an independent extension
+
+The authentic image of physical p0 establishes exactly **13 red title runes** followed by a **large 13-dot marker**, with the title's GP29 indices
+\([15,8,18,3,6,19,27,0,15,26,18,21,5]\). This supplies a rare actual printed candidate key, unlike the unspecified offsets above. It still does **not** explicitly instruct us to use the red runes as a repeated zero-preimage clock, so the following remains a motivated hypothesis.
+
+Freeze the same invertible word-first differential class but let its zero preimage vary with the current word position \(j\):
+
+\[
+F_{w,j}^{-1}(0)=P_{w,0}+s\cdot R_{(j+h)\bmod13}\pmod{29}.
+\]
+
+Here \(R\) is the printed red title, \(s\in\{-1,+1\}\) and \(h\in\{0,\ldots,12\}\). All 28 other output steps can still be independently freely permuted at each rune, and every printed word can choose an unconstrained ciphertext start. The exact **26** candidate clocks give a key-independent repeat mask. The same original **63** within-word doublets and **32** extra page-edge allowances require at most **95** matches. Recompute the exact independent matched-word probability-generating function for each source and union-bound over all 26 signs/phases.
+
+| GP-native source | Literal + red-title clock, phase0 expected hits | Best-of-26 tail probability bound \(P(\le95)\) |
+| --- | ---: | ---: |
+| Gibran | 296.741 | 1.07×10⁻²⁹ |
+| Shakespeare | 303.350 | 2.36×10⁻³¹ |
+| Emerson | 290.194 | 1.93×10⁻³³ |
+
+Under the original p27 12-rune word's two exact doublet sites, the **literal phase0 positive** red-key mask admits only the dictionary word *COMPLACENTLY*. The **literal phase0 negative** mask admits *INTELLIGENCE* and *INTELLIGIBLE*. These are mask-compatible possibilities, **not decoded or authenticated text**. They fail to establish the required 150 consecutive original plaintext runes, and an unconstrained remainder-28 permutation could make arbitrarily many words seem possible. Under the directly specified *additive* difference inverse
+\(P_{w,j}-P_{w,0}=s(C_{w,j}-C_{w,j-1})+R_{(j+h)\bmod13}\), not one of the 26 sign/phase variants fully matches an independent same-length source dictionary word on the p27 original, so there is no lexically supported simple-key bridge either.
+
+All 26 full-book tests, original visual key bytes, positive invertible 29-symbol transport plants, and the solved p57 source-native 95-rune positive are reproduced by [one separate read-only CommonJS SFT](../sims/lp2_red13_wordfirst_exception_allkey_original_sft.cjs). This supplies a more concrete historical input than the fixed-offset version; it does **not** recover the actual key table, ciphertext plaintext, or validate a manuscript-authored clock.
+
+**Prior art and precise novelty:** The \(k=0\) word-first exceptional symbol and its arbitrary nonzero-multiplier key were already excluded by Agent41 on 15 November in [the earlier complete original-input study](lp2-wordfirst-feedback-allsecret-marker-gate.md). The main report's independent extension enumerates the 28 *other* possible fixed offsets and derives exact instead of sampled native-word tail probabilities, while this section covers the distinct physically printed 13-rune offset schedule. Neither repeats Agent41's one fixed k0 key search. The correct cryptanalytic decision is to retire **these finite word-first architectures** under the stated native English word-shape model and seek a source-selected operation that actually explains both anti-repetition and human-readable original text.
