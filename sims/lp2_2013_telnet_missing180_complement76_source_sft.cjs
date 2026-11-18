@@ -118,6 +118,58 @@ const primeWeightXor = evaluate(i => (omitted[i] & 255) ^ gp.prime[known[i]]);
 const gpIndexXor = evaluate(i => (omitted[i] & 255) ^ known[i]);
 assert.deepEqual(primeWeightXor, {equal:0,differingBits:694});
 assert.deepEqual(gpIndexXor, {equal:1,differingBits:745});
+
+// The 2013 resumption prime 1229 independently selects exactly one original
+// p50 printed row by its sum. An alternative source-facing consumer of that
+// eight-byte row is the 16 complete words on p55 (two passes of 8 words).
+// The first p55 rune is an incoming p54 carried-word fragment: preserve it.
+const selectedRow = table.slice(29 * 8, 30 * 8);
+assert.deepEqual(selectedRow, [106, 234, 196, 121, 238, 32, 129, 173]);
+assert.equal(selectedRow.reduce((a, b) => a + b, 0), 1229);
+assert.equal(table.filter((_, i) => i % 8 === 0).length, 32);
+const p55PhysicalWordLengths = [1, 4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3];
+assert.equal(p55PhysicalWordLengths.reduce((s, n) => s + n, 0), 76);
+assert.equal(p55PhysicalWordLengths.length - 1, 16);
+/**
+ * Literal whole-word keying with the row. Source page carry is untouched.
+ * @param {number[]} input
+ * @param {-1|1} sign
+ * @param {boolean} reversed
+ */
+function wordRowTransform(input, sign, reversed) {
+  let cursor = 1;
+  const out = [input[0]];
+  const decodedWords = [gp.translit[input[0]]];
+  for (let w = 1; w < p55PhysicalWordLengths.length; w++) {
+    const keyColumn = reversed ? 7 - (w - 1) % 8 : (w - 1) % 8;
+    const key = selectedRow[keyColumn];
+    const decoded = input.slice(cursor, cursor + p55PhysicalWordLengths[w])
+      .map(v => mod(v + sign * key));
+    decodedWords.push(decoded.map(v => gp.translit[v]).join(""));
+    out.push(...decoded);
+    cursor += p55PhysicalWordLengths[w];
+  }
+  assert.equal(cursor, 76);
+  return {out, decodedWords};
+}
+const p55Word1229 = [];
+for (const sign of [-1, 1]) for (const reversed of [false, true]) {
+  const plain = wordRowTransform(c55, sign, reversed);
+  assert.deepEqual(wordRowTransform(plain.out, -sign, reversed).out, c55);
+  const native = p57.slice(0, 76);
+  const fake = wordRowTransform(native, -sign, reversed);
+  assert.deepEqual(wordRowTransform(fake.out, sign, reversed).out, native);
+  p55Word1229.push({
+    sign, reversed,
+    ioc: indexOfCoincidence(plain.out),
+    firstEightWords: plain.decodedWords.slice(0, 8).join(" ")
+  });
+}
+assert.deepEqual(p55Word1229.map(row => row.ioc), [
+  0.03508771929824561, 0.03684210526315789,
+  0.036491228070175435, 0.03368421052631579
+]);
+
 console.log(JSON.stringify({
   status:"PASS",
   source:"2013 telnet prime omission (retrospective archive) + original LP2",
@@ -129,5 +181,6 @@ console.log(JSON.stringify({
   signedPhi76WholePage:inverseOutcomes,
   inner180XorPrimeWeights:primeWeightXor,
   inner180XorGpIndices:gpIndexXor,
+  p55Row1229WholeWordKey:p55Word1229,
   result:"No original unknown plaintext or table-key relation; these locked transfers fail."
 },null,2));
