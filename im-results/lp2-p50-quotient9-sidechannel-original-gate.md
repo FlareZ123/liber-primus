@@ -1,6 +1,6 @@
 # LP2 p49–51 numerical table: independent quotient-by-29 side-channel inverse
 
-**Agent49, 18 November 2026. Original-cipher-adjacent, bounded negative.** The source-original 256-byte table has a second, exactly reversible numeric register after the already-established GF(29) residue readout: 256 digits in base 9, the integer quotients by 29. I tested a complete, source-restricted set of 50 direct binary and bitmap receivers on that register. **None produces a recognizable file header or at least 64 bytes of predominantly printable decompressed content.** A genuine GZIP-encoded prose plant of the same capacity recovers exactly. No unknown LP2 plaintext, original cipher key, hidden service, authored extraction instruction, or additional transmitted file was recovered.
+**Agent49, 18 November 2026. Original-cipher-adjacent, bounded negative.** The source-original 256-byte table has a second, exactly reversible numeric register after the already-established GF(29) residue readout: 256 digits in base 9, the integer quotients by 29. I tested 50 source-bounded direct binary and bitmap receivers, then applied the 256 quotient digits directly as a repeated additive GP29 key in 12 original-book decoding modes. **No binary receiver yields a recognizable file or predominantly printable substantial decompression, and none of the direct GP29 consumers yields a native-language coincidence profile.** Exact gzip and genuine solved-p57 plaintext plants pass their inverse checks. No unknown LP2 plaintext, original cipher key, hidden service, authored extraction instruction, or additional transmitted file was recovered.
 
 ## Why this register merits a direct test
 
@@ -33,8 +33,21 @@ For every output, report the initial raw bytes, printable fraction, and matches 
 
 The inverse is **powered for a real encoded message**: take repeated English prose, encode it as GZIP, convert its exact bytes to a base9 integer in 256 digits, and store digit \`q\` in byte \`29q\`. The same untouched extraction routine recovers every compressed byte and GZIP yields the exact planted original passage. This is an independently specified synthetic positive and makes no claim that the historical author used this method.
 
+## Original unsolved ciphertext: quotient digits as direct repeated GP29 key
+
+The second natural possible role for the same **256 quotient digits** is a repeated key on the 12,956 real unknown GP29 runes. A source byte stream has 256 slots; a GP29 index accepts each quotient 0–8 without conversion or fitted shift. The SFT independently loads the unchanged entire original rune corpus, preserving all 55 rune-bearing physical pages, and tests the two source-visible grid traversals (printed row-major, vertical column-major), both additive signs, and precisely three source-visible clock resets: continuously over the original whole book, at each of the nine illustrated chapter starts, or at each physical page start. Every original rune consumes one key slot; source p50 is runeless.
+
+| 12 complete original-basis inversions | Measured GP29 IoC |
+| --- | ---: |
+| Unmodified 12,956-rune original ciphertext | **0.03447839786450569** |
+| Best quotient-key inverse: column-major, chapter reset, sign+ | **0.03454572189171222** |
+| Other 11 exact source-fixed direct inverses | **0.03446748303106831–0.03451737430574331** |
+| Independently clear p57 native-GP control (95 runes) | **0.06270996640537514** |
+
+The direct quotient key yields a nearly uniform GP rune distribution in **all 12 complete-book decodings**, without a recognizable original-language passage. An exact forward/reverse test first encrypts all **95 authentic solved-p57 clear GP runes** under each of the 12 declared quotient keys and then recovers all 95 without mismatch, proving direct inverse correctness for those keys. This plant does not identify which, if any, was used historically.
+
 ## Decision
 
-Reject a **literal, unencrypted base9-quotient file or legible byte register** under the 50 source-natural whole-table and bitmap readouts. The base9 register remains mathematically available but has no detected message, key, or decoding role. The apparent highest printable ratio must not be mistaken for a decryption: it is structurally inflated by the restricted 0–80 pair alphabet. A different keyed transport cannot be excluded by this bounded test; pursuing one requires a first-party instruction choosing the key/consumer rather than another unrestricted byte permutation search.
+Reject a **literal, unencrypted base9-quotient file or legible byte register** under the 50 source-natural whole-table and bitmap readouts, and the **12 fixed repeated additive GP29 key consumers** applied to the actual 12,956-rune unknown manuscript. The base9 register remains mathematically available but has no detected message, key, or decoding role. The apparent highest printable ratio must not be mistaken for a decryption: it is structurally inflated by the restricted 0–80 pair alphabet. A different keyed transport cannot be excluded by this bounded test; pursuing one requires a first-party instruction choosing the key/consumer rather than another unrestricted byte permutation search.
 
 The GF29 factors and the original 2013 message remain exactly as documented in [the original factorization](2013-base29-gf29-grid-factor.md). This side-channel negative does not change the authoritative unsolved-book status in [the synthesis](../results/README.md).
