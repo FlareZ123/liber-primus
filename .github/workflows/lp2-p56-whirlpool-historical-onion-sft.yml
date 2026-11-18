@@ -1,0 +1,25 @@
+name: LP2 p56 Whirlpool historical onion-source SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-pinned-whirlpool:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify OpenSSL 3 legacy-provider availability
+        run: |
+          openssl version
+          openssl list -digest-algorithms -provider legacy | grep -i whirlpool
+      - name: Fetch exact 15 September 2014 onion directory
+        run: |
+          curl --fail --location --silent --show-error \
+            "https://raw.githubusercontent.com/kenorb/cicada-2014/2e0cb5ace2f4172cda402489201bbbe27dd19999/stage11/scripts/onions-list.txt" \
+            --output "$RUNNER_TEMP/onions-list.txt"
+      - name: Run Whirlpool source-pinned original-input gate
+        run: python3 sims/lp2_p56_whirlpool_historical_onion_sft.py "$RUNNER_TEMP/onions-list.txt"
