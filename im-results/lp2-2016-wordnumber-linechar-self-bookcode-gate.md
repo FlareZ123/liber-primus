@@ -26,13 +26,13 @@ The word segmentation and prime sums follow the existing canonical parser in `si
 
 **2,870 / 2,896** unknown-page pointers are in range (99.10%). This high coverage is mechanical: the full book has 797 lines and the character coordinates are only 1–14. It is not evidence of a correct key.
 
-The selected unknown-page characters comprise 2,197 GP runes, 559 hyphens, 45 periods, and 67 other characters. After GP transliteration, the output begins:
+The selected unknown-page characters comprise 2,197 GP runes, 559 hyphens, 45 periods, and 69 other characters. After GP transliteration, the output begins:
 
 ```text
-MOEGEE EA PHOIA PWX EAUPA ATHBNGLHO WMOE NG T ELWLAET PNDG ELTIOE
+MOEGEE  EA  PHOIA PWX EAUPA   ATHBNGLHO WMOE NG T EL G AEXJUE SBLJWNGU JOEEWOCIA EAJTHBOETH FYBTH O AENUTMITHM L WSAUDEUMW  AELOEIAEEA EX  NGLGL  UH AEGEI OEL NYXF THI PYIAIEHS EXCOPBONGDIU OIA F HWLFJXXM   AN IAN WSNGSNNGF  EOU THF   JIAAE
 ```
 
-The fixed English quadgram score is **−14.58854**. In 1,000 deterministic nulls that independently shuffle the line and character coordinates while preserving both marginal distributions, the mean is **−14.41061**, SD **0.06146**; the observed score is **z = −2.90**, with only **2/1,000** nulls scoring as low or lower (0.002 lower tail). The known p56/p57 words are also nonlinguistic under the same mapping: 45/45 valid, score **−14.6532**.
+The fixed English quadgram score is **−14.58854**. In 1,000 deterministic nulls that independently shuffle the line and character coordinates while preserving both marginal distributions, the mean is **−14.41061**, SD **0.06146**; the observed score is **z = −2.90**, with only **2/1,000** nulls scoring as low or lower (0.002 lower tail). The null replicates average **98.61%** valid coverage, so their score comparison is not driven by a material coverage difference. The known p56/p57 words are also nonlinguistic under the same mapping: 45/45 valid, score **−14.6532**. The checked-in script reproduced these figures under Node 22.23.4 in GitHub Actions run [#415](https://github.com/FlareZ123/liber-primus/actions/runs/44332585024).
 
 ## Interpretation
 
