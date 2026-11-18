@@ -129,6 +129,42 @@ function score(words, dictionary) {
   return {long, lengths};
 }
 
+/**
+ * Predecessor-feedback model: C[i] = C[i-1] + a * P[i] + b[wordPosition % 5]
+ * with the same independent five-phase mask and nonzero word multiplier.
+ * The ciphertext first difference is an ordinary five-phase affine word;
+ * no secret key or initial state is required to compute that difference.
+ * @param {number[][]} words
+ */
+function predecessorDifferences(words) {
+  let predecessor = 0;
+  return words.map((word) => word.map((x) => {
+    const delta = (x - predecessor + 29) % 29;
+    predecessor = x;
+    return delta;
+  }));
+}
+
+/** Verify a continuous, lossless ciphertext-feedback positive control. */
+function feedbackPlant(plain, multiplier, mask) {
+  let prev = 0;
+  const encrypted = plain.map((word) => word.map((x, j) => {
+    prev = (prev + multiplier * x + mask[j % 5]) % 29;
+    return prev;
+  }));
+  assert.deepEqual(predecessorDifferences(encrypted).map(fingerprint),
+    plain.map(fingerprint), "feedback preserves difference fingerprints");
+  prev = 0;
+  const decrypted = encrypted.map((word) => word.map((x, j) => {
+    const delta = (x - prev + 29) % 29;
+    prev = x;
+    return inv[multiplier] * ((delta - mask[j % 5] + 29) % 29) % 29;
+  }));
+  assert.deepEqual(decrypted, plain, "feedback cipher inverse");
+  return {ciphertextRunes: encrypted.flat().length,
+    exactInverse: true, sourceWordBoundariesPreserved: true};
+}
+
 function checkPositiveControl() {
   const solved = read("resources/liber-primus/lp1-plaintext-reference.txt")
     .split("### 57\n")[1].trim();
@@ -145,12 +181,14 @@ function checkPositiveControl() {
   assert.deepEqual(ciphertext.map(fingerprint), source.map(fingerprint),
     "every word preserves its normalized five-back fingerprint");
   return {runes: 95, keyPerWordAllowed: true, exactInverse: true,
-    exactForwardReproduction: true};
+    exactForwardReproduction: true,
+    feedback: feedbackPlant(source, multiplier, mask)};
 }
 
 function main() {
   const {english, latin} = lexicons();
   const original = originalWords();
+  const originalFeedbackDeltas = predecessorDifferences(original);
   const sourceTexts = [
     ["Shakespeare", "resources/control/shakespeare_first300k.txt"],
     ["Gibran", "resources/control/gibran_prophet_58585.txt"],
@@ -167,12 +205,16 @@ function main() {
     selection: "five-back enrichment is observed source data, not an authenticated authorial opcode",
     original: {english: score(original, english),
       latin: score(original, latin)},
+    feedbackOriginal: {english: score(originalFeedbackDeltas, english),
+      latin: score(originalFeedbackDeltas, latin)},
     referenceEnglishLongWords: controls,
     lexiconFingerprintCounts: {english: english.size, latin: latin.size},
     nativePositive: checkPositiveControl()
   };
   assert.deepEqual(result.original.english.long, {n: 109, matched: 0});
   assert.deepEqual(result.original.latin.long, {n: 109, matched: 0});
+  assert.deepEqual(result.feedbackOriginal.english.long, {n: 109, matched: 0});
+  assert.deepEqual(result.feedbackOriginal.latin.long, {n: 109, matched: 0});
   assert.deepEqual(controls.Shakespeare, {n: 778, matched: 591});
   assert.deepEqual(controls.Gibran, {n: 306, matched: 262});
   assert.equal(result.nativePositive.exactInverse, true);
@@ -180,4 +222,5 @@ function main() {
   console.log("PASS: exact source alignment, whole-word affine fingerprint, solved-page plant, and matched native references");
 }
 if (require.main === module) main();
-module.exports = {originalWords, encodeNativeGP, fingerprint, score, main};
+module.exports = {originalWords, encodeNativeGP, fingerprint,
+  predecessorDifferences, score, main};
