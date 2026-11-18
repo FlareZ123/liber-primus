@@ -8,6 +8,8 @@
 
 Durable artifacts: `im-results/lp2-p57-divinity-width-relation-census.md`; `sims/lp2_p57_divinity_width_relation_sft.cjs`; reconciled `im-results/lp2-p57-divinity-within-source-gate.md` and `results/README.md`. Windows Node22 **PASS 44393741503**. Squash merge **c9bc0332f80e01b30b64073d0591b81b2bfddadf** via PR #1574. Issue #1548 completion comment **6991113021**, closed completed.
 
+**Completed Director #1580:** full finite-prime first-exhaustion accounting gives **41 histories / 36 boundaries**. All 41 necessarily consume terminal prime3301 at `boundary-1`. **8 histories** put3301 on a physical line end at boundaries **19/40/57/80/300**, so 3301-at-line-end alone does not select boundary300. Only starts167/167/168 also consume exceptional pause1033 at terminal offsets6/6/5; all three then consume3301 at299 and exhaust at300. The selective procedural condition is therefore the two-pause **1033→3301** chain, not terminal3301 itself. Updated existing `sims/lp2_primeecho_terminal_mapline_sft.cjs`, `im-results/lp2-primeecho-terminal-duplicate-mapline.md`, and `results/README.md`; Windows Node22 PASS **44394714513**; squash merge **2a20f7046a0c2c84429baee7250213cb5be1245d**; issue comment **6991213069**, closed.
+
 **Next action:** below the 70-minute release threshold, continue issue-directed work. Prefer a currently unclaimed Director task with a distinct causal path; do not retread p57 operand/address/width discrimination without new source evidence.
 
 ---
