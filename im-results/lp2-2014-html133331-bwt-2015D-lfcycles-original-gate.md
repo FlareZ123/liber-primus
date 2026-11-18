@@ -65,6 +65,25 @@ A separate deliberately periodic three-symbol GP sequence of length 729 yields *
 
 All original and plant assertions **passed** on the repository's Windows Node.js 22 workflow: [CI run 44302775563](https://github.com/FlareZ123/liber-primus/actions/runs/44302775563) (successful `source-test` job). The SFT prints every full original output, primary index, step count, LF census and plant status for independent reproduction. Its inputs remain the original [LP2 rune corpus](../resources/liber-primus/lp2-corpus.json) and the independent pinned original-era prime-D first-stage formula.
 
+## The historically motivated MTF→BWT receiver is also invalid
+
+The prior [Director #1468](lp2-2015-primeD-gp29-mtf-original-gate.md) predeclared four standard **29-symbol GP MTF** views on the same 2015 D register, in a source-natural chapter-wide clock or a reset at exactly the original 262/528 rune page cuts. The actual bzip2-inspired path takes D as **MTF ranks**, reverses standard MTF, then asks if the resulting last column is a BWT of a single 729-rune message. The previously pre-registered rival interprets D as symbols and *encodes* to ranks. No hidden secret GP order is introduced.
+
+Apply precisely the **same 729-cell stable LF permutation criterion** to those four already-fixed MTF outputs. Every candidate has unequal cycle lengths:
+
+| Frozen MTF interpretation of original D | Original physical-page resets | Exact complete LF cycle lengths | Valid 729-symbol circular BWT last column? |
+| --- | --- | --- | --- |
+| Decode D as ranks | No | **336, 187, 176, 26, 2, 1, 1** | No |
+| Decode D as ranks | Yes, 262/528 | **432, 274, 15, 5, 3** | No |
+| Encode D as symbols | No | **531, 114, 68, 5, 4, 4, 3** | No |
+| Encode D as symbols | Yes, 262/528 | **342, 288, 61, 28, 4, 2, 2, 2** | No |
+
+Every MTF tape is exactly invertible back to historical D and all 729 original source runes, but none is itself a **valid complete** circular BWT last column. In particular, the two primary rows 133 and 331 cannot repair the invalid LF cycle decomposition. This result is key-independent and does not depend on guessing English phrases or using the low original global IoC.
+
+The **expanded same SFT** now constructs a true 729-rune native-GP positive: Gibran text → genuine circular BWT → 29-symbol MTF ranks → exact inverse historical prime-D recipher into synthetic source-shaped ciphertext. It then reconstructs historical D, reverses MTF and circular BWT to recover **729/729 planted native-GP runes** with one 729-cycle, under both source-frozen original-page-reset conventions. This is a full staged positive for the tested cipher route, with source-original negative input completely separate from the planted data.
+
+This new exact extension closes the remaining four *pre-registered* direct MTF/BWT paths from #1468. It leaves all bzip2-framing, Huffman and run-length operations outside scope. Since the 2014 HTML does not select that missing packet framing, do not guess one to force a plaintext. The original source has neither an independently typed compressed packet nor a source-selected BWT last column.
+
 ## Decision and surviving paths
 
 For the frozen complete-original **729-rune** D register, primary rows 133/331 are unnecessary to rule out ordinary circular BWT: the complete LF-cycle decomposition is already impossible for **every** zero-based primary row. No additional primary-row sweep is warranted. An alternative interpretation using an *incomplete* last column, a genuine bzip2 container with additional symbol/state transformations, a separately provided sentinel, or a different original register is outside this exact proof. Neither the original HTML nor the 2015 participant witness selects one of those alternatives. This scoped result complements the earlier [all-primary-row BWT histogram/native-English exclusion](lp2-2015-primeD-gp29-mtf-original-gate.md) without repeating its language comparisons.
