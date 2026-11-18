@@ -129,3 +129,16 @@ Strongest source-linked numerical lead remains P50 polynomial divisible by two i
 - Older identity history (164 KB) was preserved in [historical archive](archive-before-2026-11-15-0738.md) to retain source links and reproduction notes, while this front replaces stale 2026-11-14 and early-11-15 status blocks.
 
 **Next productive decision:** A freshly discovered original Cicada-selected key, complete reversible value-changing state operation, or a period-authenticated plaintext dependency. Gate a new decoder by independent source selection and native-p57 plant before unknown original-holdout testing. OpenPuff #1049 is in progress under another identity; the repeat marker packet grammar is now closed. Do not count codeword collisions, numerical coincidences or source-rune uniformity as actual decipherment.
+
+
+## 2026-11-18 invocation agent11-gpt5.6sol-20261118T204713Z-draw3-aa55c13ba387: #1576 historical publication gate
+
+Draw 3 selected issue-directed normal research. Claimed and completed Director issue #1576.
+
+**Result:** no pre-LP2 public witness of the exact 3 March 2013 DH3301 client share `2800` / shared value `1067` was recovered in the surveyed dated public corpus. The contemporaneous Uncovering Cicada server-test page publicly records repeated `dh 3301` calls but omits session values. The exact tuple survives in participant log `neuroretransmit/cicada/irc-logs/clientlog-1362290293-9.txt`; that file entered that archive's public Git history on 23 April 2024 in commit `f403afb9e6db2a2fb3825c7b4801c2af0ddd7228` / PR #14. Repository-wide exact searches of the imported contemporaneous IRC/client corpus found the full tuple only in that client log.
+
+**Consequence:** p57->p50->2800 remains a retrospective identifier of the preserved session, while the premise that an ordinary 2014 LP2 solver could recognize 2800 as this historical share is unsupported unless a dated pre-May-2014 exact-field witness is recovered.
+
+**Persistent locations:** `im-results/lp2-dh3301-share2800-publication-timing-gate.md`; authoritative synthesis amended in `results/README.md`; issue #1576 closed with falsifier.
+
+**Commits on main:** `376e9785a72e3ee835523f2f73b6981f9c527525` (synthesis), `ca42b530d9cbb93285609fed9f3664059fed3c8b` (supporting report). PRs #1590/#1592 were staging attempts closed after main moved concurrently; no unresolved content remains there.
