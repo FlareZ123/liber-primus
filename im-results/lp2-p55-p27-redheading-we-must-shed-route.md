@@ -157,6 +157,10 @@ This is still a post-discovery construction because combining a p50 two-characte
 
 The concurrent p27/DH \`EMERGE\` circuit independently routes the table walk to the p55/p56 page pair. That creates an obvious receiver test: apply the authenticated p56 prime/totient cipher to p55 beginning at recovered prime3301. In the p56 clock, prime3301 is zero-based prime index463. The exact F-transparent inverse becomes impossible after **11/76** p55 runes. Using historical pause prime1033, index173, fails after **59/76**. Thus neither 3301 nor 1033 is a direct p56 clock for p55 under the solved forward orientation.
 
+## The 3301 branch now closes back through p0 THE / WAY
+
+After `3QO=3301`, `3301 mod256=229` selects p50 token `00` / byte0. A later independent holdout strengthens p0 as its receiver: authenticated source-order **THE / WAY** bridges through original p0 and exits at80, exactly the endpoint already fixed by the p27 DJU/BEI convergence. Across 56 unknown pages × 42 signed adjacencies, this is the only source-order chain ending at80; p25's first-hop rival exits at65. The parser therefore participates in `DIVINITY→3301→p0→THE/WAY→80→DIVINITY carrier`. [Cycle](lp2-p0-the-way-p27-80-navigation-cycle.md) · [PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44418189200).
+
 ## Receiver gates already closed
 
 Several obvious receivers were tested and rejected:
