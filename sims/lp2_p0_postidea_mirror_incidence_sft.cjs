@@ -388,10 +388,119 @@ const aggregate={
 };
 assert.deepEqual(aggregate,{runes:12,indexSum:151,gpSum:553});
 
+// Broad branch-family gate. The deterministic shortest-radius path above is a
+// compact representative, but it is not needed as a selector here. Keep every
+// locally role-valid mirror handoff in the same walk grammar, then apply the
+// previously locked aggregate only after source-cell selection.
+const isOuter=(node,q)=>same(node.p1,q)||same(node.p2,q);
+const broadFamily=[];
+const stage11Bounces=touching(entry11)
+  .filter(n=>isOuter(n,entry11))
+  .map(n=>({node:n,opposite:same(n.p1,entry11)?n.p2:n.p1}))
+  .filter(x=>{
+    const delta=sub(x.opposite,entry11);
+    return delta[0]*direction10[0]+delta[1]*direction10[1]<0;
+  });
+
+for(const bounce of stage11Bounces){
+  const candidate11=rayUntil(
+    bounce.opposite,
+    direction11,
+    (q,cells)=>cells.length>1&&touching(q).length===1
+  );
+  const candidateEnd11=candidate11.at(-1);
+  if(touching(candidateEnd11).length!==1)continue;
+
+  const entryMirror=touching(candidateEnd11)[0];
+  const entryCenter=entryMirror.center;
+  for(const candidateNode12 of centered(entryCenter).filter(n=>n!==entryMirror)){
+    for(const outer12 of [candidateNode12.p1,candidateNode12.p2]){
+      const handoffs12=touching(outer12).filter(n=>n!==candidateNode12&&isOuter(n,outer12));
+      for(const handoff12 of handoffs12){
+        const handoffCenter=handoff12.center;
+        for(const exitMirror12 of centered(handoffCenter).filter(n=>n!==handoff12)){
+          const chainDirection=sign(sub(handoffCenter,outer12));
+          const starts12=[exitMirror12.p1,exitMirror12.p2].filter(q=>{
+            const delta=sub(q,handoffCenter);
+            return delta[0]*chainDirection[0]+delta[1]*chainDirection[1]>0;
+          });
+          for(const candidateStart12 of starts12){
+            const candidateDirection12=[-chainDirection[0],-chainDirection[1]];
+            const traversed=new Set([entryMirror,candidateNode12,handoff12,exitMirror12]);
+            const candidate12=rayUntil(
+              candidateStart12,
+              candidateDirection12,
+              (q,cells)=>cells.length>1&&centered(q).some(n=>!traversed.has(n))
+            );
+            if(candidate12.length<2)continue;
+            const candidateEnd12=candidate12.at(-1);
+
+            for(const pivot of centered(candidateEnd12)){
+              const perpendicular=[pivot.axis[1],-pivot.axis[0]];
+              const pivotDestinations=[
+                [
+                  candidateEnd12[0]+perpendicular[0]*pivot.radius,
+                  candidateEnd12[1]+perpendicular[1]*pivot.radius
+                ],
+                [
+                  candidateEnd12[0]-perpendicular[0]*pivot.radius,
+                  candidateEnd12[1]-perpendicular[1]*pivot.radius
+                ]
+              ].filter(inBounds);
+
+              for(const destination of pivotDestinations){
+                for(const candidateNode13 of centered(destination)){
+                  for(const junction13 of [candidateNode13.p1,candidateNode13.p2]){
+                    const handoffs13=touching(junction13)
+                      .filter(n=>n!==candidateNode13&&isOuter(n,junction13));
+                    for(const handoff13 of handoffs13){
+                      const cCenterCandidate=handoff13.center;
+                      const exits13=touching(cCenterCandidate)
+                        .filter(n=>n!==handoff13&&isOuter(n,cCenterCandidate));
+                      for(const exit13 of exits13){
+                        const candidateStart13=same(exit13.p1,cCenterCandidate)?exit13.p2:exit13.p1;
+                        const candidateDirection13=sign(sub(candidateStart13,cCenterCandidate));
+                        const candidate13=rayUntil(candidateStart13,candidateDirection13,()=>false);
+                        const plaintext=[
+                          ...decrypt(cells09,deriveKey(node09)),
+                          ...decrypt(cells10,deriveKey(node10)),
+                          ...decrypt(candidate11,deriveKey(node11)),
+                          ...decrypt(candidate12,deriveKey(candidateNode12)),
+                          ...decrypt(candidate13,deriveKey(candidateNode13))
+                        ];
+                        broadFamily.push({
+                          cells:[cells09,cells10,candidate11,candidate12,candidate13],
+                          plaintext,
+                          runes:plaintext.length,
+                          indexSum:plaintext.reduce((a,b)=>a+b,0),
+                          gpSum:plaintext.reduce((a,b)=>a+GP[b],0)
+                        });
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+assert.equal(broadFamily.length,66);
+const broadLength12=broadFamily.filter(x=>x.runes===12);
+assert.equal(broadLength12.length,7);
+const broadExact=broadLength12.filter(x=>x.indexSum===151&&x.gpSum===553);
+assert.equal(broadExact.length,1);
+assert.deepEqual(broadExact[0].cells,outputs.map(x=>x.cells));
+assert.deepEqual(broadExact[0].plaintext,allPlain);
+
 console.log(JSON.stringify({
   status:"post-hoc source-only parser candidate reproduces stages 09-13 without plaintext feedback",
   mirrorNodeCount:mirrors.length,
   stages:outputs,
   aggregate,
+  broadFamilyGate:{completeAssignments:broadFamily.length,length12Assignments:broadLength12.length,exactChecksumAssignments:broadExact.length},
   caveat:"The rules were reverse-engineered after the public route was known. The exact output and locked checksum are regression/confirmation checks, not selector inputs. A genuinely prospective passage or independent original clue is still required before treating this as authenticated Cicada plaintext."
 },null,2));

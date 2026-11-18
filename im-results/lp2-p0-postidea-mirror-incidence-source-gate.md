@@ -1,29 +1,27 @@
-# p0 post-IDEA mirror-walk parser candidate
+# p0 post-IDEA mirror-walk branch gate
 
-**Agent 29, 18 November 2026. Classification: substantial post-hoc source-only parser candidate, not yet authenticated plaintext.**
+**Agent 29, 18 November 2026. Classification: substantial post-hoc source-geometry selector, not yet authenticated plaintext.**
 
-The source-bounded p0-p2 bootstrap conditionally reaches `IDEA` on original cells `(15,20) -> (16,19) -> (17,18)` under key `U-A-A`. The last source cell is `D (17,18)`. Starting from that frozen state, the original 27x27 rune grid contains a compact mirror-incidence walk that reconstructs the next five public-route blocks **without consulting their plaintext while selecting cells**.
+The conditional p0-p2 bootstrap reaches `IDEA` on source cells `(15,20) -> (16,19) -> (17,18)`. Starting only from that frozen state and the untouched 27x27 rune grid, a mirror-incidence walk reconstructs the next five public-route blocks. The important new result is stronger than a single fitted path: when the local branch choices are deliberately broadened, the already-locked aggregate selects exactly one complete assignment.
 
-This materially narrows the earlier underselection result. It does not erase the central caveat: the walk rules below were reverse-engineered after the public route was already known, so they still require a prospective or independently authored confirmation.
+## Forced key-node chain
 
-## 1. Source mirror graph
+Enumerating every horizontal, vertical, and 45-degree equal-outer three-cell mirror gives **479** source nodes.
 
-Enumerate every horizontal, vertical, or 45-degree three-cell node whose outer runes are equal and equally spaced. The untouched p0-p2 matrix contains **479** such mirror nodes.
+At the `IDEA` endpoint `D (17,18)`:
 
-At the conditional `IDEA` endpoint:
+- D is the center of exactly one mirror, `J-D-J`, radius 2.
+- Only one of its J outers is itself a mirror center: `J (19,16)`.
+- That J centers exactly one mirror, `OE-J-OE`, radius 1.
+- Removing those two incidences leaves exactly one further mirror touching the same J: `J-B-J`, radius 4.
 
-- `D (17,18)` is the center of exactly one mirror: `J-D-J`, radius 2.
-- Of its two outer `J` cells, only `J (19,16)` is itself a mirror center.
-- That center has exactly one mirror: `OE-J-OE`, radius 1.
-- The same shared `J (19,16)` touches exactly one further mirror after those two are removed: `J-B-J`, radius 4.
-
-Thus the next three key-source nodes are fixed by local source incidence:
+The resulting first three key sources are therefore locally fixed:
 
 ```
 J-D-J  ->  OE-J-OE  ->  J-B-J
 ```
 
-Their ordinary center-totient/Mobius-phase keys are respectively:
+The existing center-totient/Mobius phase operation gives aligned keys:
 
 ```
 J-OE-J
@@ -31,134 +29,90 @@ OE-OE-I
 J-J-T
 ```
 
-## 2. One reusable geometric tie-break
+## Local walk grammar
 
-The new walk uses **smallest mirror radius** whenever the stipulated local continuation family has more than one candidate. The same rule makes four later choices:
+The parser uses source roles rather than English:
 
-- at `F (19,15)`, forward horizontal alternatives have radii 4 and 5, selecting `F-X-F` radius 4;
-- after the END endpoint, the two H-side same-axis continuations have radii 6 and 11, selecting `H-L-H`;
-- from the D pivot, the two perpendicular mirror centers are `B (23,12)` with radius-4 `J-B-J` and `U (19,8)` with radius-7 `F-U-F`, selecting B;
-- from the two `J-B-J` endpoints, the shortest outer-role alternatives have radii 1 and 2, selecting the `J-C-J` side.
+1. At the first junction, reflect the unit direction toward the old mirror center across the new mirror axis. Enter the nearest cell of the new mirror.
+2. Propagate the ciphertext direction by mirror reflection at the next key axis.
+3. When a read reaches a cell with exactly one mirror incidence, enter that mirror and follow center/outer handoffs.
+4. At the next pivot center, move one mirror radius perpendicular to that pivot and continue through outer-role handoffs.
+5. A terminal ray stops at the physical matrix boundary.
 
-No English score, dictionary, checksum, or desired word participates in those choices.
+A minimum-radius tie-break happens to recover the published route directly, but the decisive experiment below **does not require it**.
 
-## 3. Deterministic reconstruction of stages 09-13
+## Broad branch-family enumeration
 
-### Stage 09
+Keep every locally role-valid alternative in that grammar:
 
-At shared `J (19,16)`, reflect the unit direction toward the old `J-D-J` center across the vertical `OE-J-OE` axis. This maps NE to NW, giving start `X (18,15)`. The Manhattan-nearest cell of `OE-J-OE` is its upper `OE (18,16)`.
+- every stage-11 mirror bounce from the reflected entry cell that crosses to the opposite side;
+- every centered-mirror and outer-role handoff after the unique stage-11 endpoint;
+- every centered pivot reached by the bounced stage-12 ray;
+- both perpendicular radius destinations;
+- every mirror center at those destinations;
+- every subsequent outer-role handoff to the final boundary ray.
 
-With key `J-OE-J`:
+No axis-equality restriction, minimum-radius rule, plaintext score, dictionary, word identity, index sum, or GP sum is used while generating candidates.
 
-```
-X OE -> O F
-```
-
-### Stage 10
-
-Reflect the previous eastward read direction across the vertical `OE-J-OE` axis, giving west. The next key node `J-B-J` shares `J (19,16)`, so the minimum two-rune approach is:
-
-```
-A (19,17) -> J (19,16)
-```
-
-With key `OE-OE-I`:
+The exhaustive family contains:
 
 ```
-A J -> TH E
+66 complete source-geometry assignments
+7 assignments with exactly 12 decrypted runes
+1 assignment with 12 runes, index sum 151, and GP-prime sum 553
 ```
 
-### Stage 11
+That unique assignment is:
 
-Reflect west across the `J-B-J` diagonal, giving south. Continue one cell west from the previous endpoint to `F (19,15)`. Among horizontal mirror bounces crossing to the opposite side, the minimum-radius choice is `F-X-F` radius 4, whose opposite F is `(19,23)`.
+| Stage | Source key | Cipher cells | Decrypted GP runes |
+| --- | --- | --- | --- |
+| 09 | `J-D-J -> J-OE-J` | `(18,15) (18,16)` | `O F` |
+| 10 | `OE-J-OE -> OE-OE-I` | `(19,17) (19,16)` | `TH E` |
+| 11 | `J-B-J -> J-J-T` | `(19,23) (20,23) (21,23)` | `E N D` |
+| 12 | `H-R-H -> TH-H-H` | `(21,9) (21,10)` | `I S` |
+| 13 | `J-B-J -> J-J-T` | `(26,3) (26,2) (26,1)` | `D EA TH` |
 
-Read south until the first post-start cell with exactly one mirror incidence:
-
-```
-F (19,23) -> L (20,23) -> I (21,23)
-```
-
-The final I belongs to exactly one mirror, `I-R-I`. With key `J-J-T`, the block decrypts to:
-
-```
-E N D
-```
-
-### Stage 12
-
-Enter the unique `I-R-I` and switch at its R center to the only other same-axis centered mirror, `H-R-H`. Both H outers offer a same-axis continuation; the minimum-radius rule selects the left `H-L-H` radius 6 over right `H-O-H` radius 11. At its L center, the only other same-axis centered mirror is `EO-L-EO`. Continue left to `EO (21,9)`, then bounce east.
-
-The first new mirror center encountered outside that traversed chain is immediately `D (21,10)`:
-
-```
-EO (21,9) -> D (21,10)
-```
-
-With the `H-R-H` derived key `TH-H-H`, this decrypts to:
-
-```
-I S
-```
-
-### Stage 13
-
-At `D (21,10)`, the shortest centered mirror not parallel to the incoming eastward read is `E-D-E`, radius 2. Moving one radius perpendicular to it lands on two mirror centers:
-
-```
-B (23,12): J-B-J radius 4
-U (19,8):  F-U-F radius 7
-```
-
-The same minimum-radius rule selects B. At the two `J-B-J` endpoints, the shortest alternative outer-role mirrors have radii 1 and 2, selecting `J (27,8) -> J-C-J` radius 1. Its center `C (26,7)` is an outer of exactly one other mirror, `C-OE-C`, which carries the walk to `C (26,3)`.
-
-Continue away from that C center to the physical matrix boundary:
-
-```
-C (26,3) -> I (26,2) -> E (26,1)
-```
-
-Reusing the selected `J-B-J` key `J-J-T` gives:
-
-```
-D EA TH
-```
-
-The final source cell at `(26,1)` has no mirror incidence, and the read is physically stopped by the left matrix boundary.
-
-## 4. Locked aggregate check
-
-Only after all five blocks are selected and decrypted, combine their output runes:
+Concatenated:
 
 ```
 O F | TH E | E N D | I S | D EA TH
 ```
 
-The aggregate is exactly:
+The aggregate is exactly the previously locked post-`THE IDEA` residual:
 
 ```
 12 runes
-rune-index sum 151
+index sum 151
 GP-prime sum 553
 ```
 
-Those values match the already-locked post-`THE IDEA` five-word residual. The parser does not use those values to choose any node, cell, direction, or stopping point.
+The other six 12-rune branch-family assignments miss at least one numerical target.
 
-This is stronger than the earlier one-ray test: the simple single-key 12-rune family had **0/105** checksum hits, whereas the mirror walk produces the exact five-block residual through source geometry.
+## What is genuinely new
 
-## 5. Scientific status
+Earlier local work showed that a single straight 12-rune post-IDEA continuation fails: **0/105** direct-ray candidates hit the locked aggregate. The branch-family experiment instead gives a finite multi-transition family in which **1/66** complete source assignments, and **1/7** length-matched assignments, hits the full target.
 
-This is the first local post-IDEA construction in this repository that selects the exact published stage-09 through stage-13 ciphertext cells without reading their English during selection. It also replaces several apparently unrelated public-route movements with one source graph, reflection operations, unique-incidence pivots, physical boundary stopping, and one repeated minimum-radius tie-break.
+This means the post-IDEA public route is no longer merely one arbitrary English-looking continuation inside the tested local mirror family. The source geometry plus the precommitted aggregate selects its exact five ciphertext blocks uniquely within that family.
 
-The result remains **post-hoc**. The public cells were known before this parser was formulated, so the rule set may encode them indirectly. Do not promote `OF THE END IS DEATH` to established LP2 plaintext yet.
+The exact ending is also structurally clean: `D EA TH` runs from `C (26,3)` left to `E (26,1)`, the physical matrix edge; that terminal E has no mirror incidence.
 
-The decisive next test is a genuinely prospective passage transition or an independent original clue that selects these walk primitives before its target cells are inspected. A failure there should retire or simplify this parser rather than add another local exception.
+## Remaining caveat
+
+The walk grammar itself was reverse-engineered after the public route was known. The locked aggregate existed before this parser was formulated, but it ultimately originated from the same external candidate passage, so it is a temporal holdout rather than independent creator authentication.
+
+Accordingly, this result should remain in `im-results/`. The next decisive requirement is either:
+
+- a source-visible instruction that independently selects the reflection/role/perpendicular walk primitives, or
+- a genuinely prospective transition where the frozen grammar predicts the exact source cells before the target route is inspected.
+
+A failure there should retire or simplify the grammar rather than add another local exception.
 
 ## Reproduction
 
-Run the committed CommonJS SFT:
+Run:
 
 ```
 node sims/lp2_p0_postidea_mirror_incidence_sft.cjs
 ```
 
-It reads only `resources/liber-primus/lp2-corpus.json`, enumerates all 479 mirrors, derives stages 09-13 from the frozen IDEA state without plaintext feedback, asserts the exact selected source cells, decrypts them, and checks the aggregate only at the end.
+The CommonJS SFT reads only `resources/liber-primus/lp2-corpus.json`. It enumerates all 479 mirrors, reproduces the source-selected stages, then exhausts the broad branch family and asserts the counts `66 -> 7 -> 1` before reporting the unique output.
