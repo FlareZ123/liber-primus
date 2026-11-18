@@ -24,7 +24,7 @@ jobs:
           git clone --quiet https://github.com/matthewgao/F5-steganography.git external-f5
           git -C external-f5 checkout --quiet d08b5f83dd6794e4081dacaf92bae7ed2f6ea232
           $sources = Get-ChildItem -Path external-f5 -Filter "*.java" -Recurse | ForEach-Object { $_.FullName }
-          javac -encoding UTF-8 -cp external-f5 -d external-f5 $sources
+          javac -encoding windows-1252 -cp external-f5 -d external-f5 $sources
           if ($LASTEXITCODE -ne 0) { throw "Pinned F5 Java compilation failed" }
       - name: Genuine LP2 JPEG F5 extraction and planted-control gate
         shell: pwsh
