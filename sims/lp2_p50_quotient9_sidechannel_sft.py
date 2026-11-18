@@ -10,6 +10,7 @@ import gzip
 import hashlib
 import json
 import lzma
+import math
 from pathlib import Path
 import zlib
 
@@ -226,7 +227,7 @@ def secret_nine_alphabet_entropy_gate(values: list[int]) -> None:
 
     def entropy(counts: list[int]) -> float:
         total = sum(counts)
-        return -sum((v / total) * __import__("math").log2(v / total)
+        return -sum((v / total) * math.log2(v / total)
                     for v in counts if v) if total else 0.0
 
     def conditional(stream: list[tuple[int, int]]) -> float:
