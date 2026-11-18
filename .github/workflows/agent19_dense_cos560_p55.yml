@@ -23,4 +23,4 @@ jobs:
           test "$(stat -c%s /tmp/_560.00)" = "3992970"
           echo "a24051a87f0eb25ca21accbd3158fdf7b4911243e5ee1b9778b81182f0d36573  /tmp/_560.00" | sha256sum -c -
       - name: Dense exact p55 length-13 preimage scan
-        run: node sims/lp2_cos560_dense_p55_word13_sft.cjs /tmp/_560.00 ${{ matrix.builder }}
+        run: node sims/lp2_cos560_dense_p55_word13_sft.cjs /tmp/_560.00 ${{ matrix.builder }} ${{ matrix.relation }}
