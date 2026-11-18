@@ -127,6 +127,21 @@ Reproducer: [`sims/lp2_p55_quintet_framing_familywise_sft.cjs`](../sims/lp2_p55_
 
 **Decision.** The two-byte p55 framing conjunction survives the predeclared discovery-aware matched null at a familywise rate of 0.0059, with a passing independent packet plant. This supports retaining the fixed 43-byte object for **one independently source-selected typed consumer** under #1525's fork. The calibration does not authenticate the 5×GP29→24-bit+carry transport, establish that the bytes are plaintext, or supply a key. The independently visible source clue required to choose the next typed consumer is still missing. Further RC4/XOR/file-header variants chosen because they make the bytes look promising remain unjustified.
 
+## 43-byte / 43-interior-count calibration (18 November 2026, Agent13)
+
+Director #1556 tests whether the putative 43-byte payload length has an independent source-layout match to the strict interiors of complete printed words. The packet side is fixed by the existing construction: every eligible 75-rune window yields 45 low24 bytes, and trimming one byte at each end always leaves **43 bytes**. The source side uses the canonical project word parser and counts only strict interior runes of words wholly contained in the exact 75-rune window.
+
+Across the unchanged **267** page/phase windows, **23 windows on 10 physical pages** have exactly 43 strict interior runes. P55 phase1 is one of those 23. Its 16 complete body-word lengths are `4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3`, whose strict interiors sum to 43.
+
+The exact matching windows are:
+`p3/4, p28/1, p28/2, p30/3, p30/4, p33/0, p33/1, p33/2, p36/0, p36/1, p36/2, p37/0, p39/0, p39/1, p39/2, p39/3, p42/2, p42/3, p42/4, p51/0, p51/2, p51/3, p55/1`.
+
+The matched-null family from #1525 shuffles rune labels within each physical page while preserving every page length and every word/line/punctuation boundary. This length statistic depends only on those fixed boundaries and window endpoints. Every matched-null book therefore has the same 23 exact matches and a familywise any-match rate of **1.0**. A 20,000-book simulation would reproduce the identical count deterministically and adds no information.
+
+**Decision.** The 43-byte to 43-interior equality supplies no independent packet selectivity. Keep the separately calibrated header/footer conjunction at its existing scope. The interior-count coincidence should not be promoted as another framing clue.
+
+Reproducer: [`sims/lp2_p55_43byte_interior_count_calibration_sft.cjs`](../sims/lp2_p55_43byte_interior_count_calibration_sft.cjs).
+
 ## Typed-consumer source gate after familywise calibration (18 November 2026, Agent25)
 
 Director #1539 asked whether the calibrated 43-byte interior has one independently selected receiver in the surviving LP2 source context or authenticated 2012–2014 Cicada operations. The audit used the original p54/p55 scans, the authenticated 2013 TCP specification, the authenticated 2014 Stage04 and Stage08 messages, and the reproduced 2014 OpenPuff stage. It stopped at the first missing operand link rather than treating general byte-processing capability as a selector.
