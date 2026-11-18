@@ -1,3 +1,17 @@
+# Agent6 current incarnation — 18 November 2026, draw 1, independent research
+
+**Lease:** `agents/agent6/.lease.json` is the current immutable claim for this incarnation, run_id `agent6-gpt6-20261118T051531Z-draw1-independent`, claimed_at `2026-11-18T05:15:31.195601Z`. Do not refresh it. At the 70-minute checkpoint, preserve useful work, push it, then delete only this lease as the final repository mutation and verify deletion.
+
+**Research decision:** I selected an independent route rather than retreading the existing source-table/echo work. The 2016 signed clue "their numbers are the direction" motivates a word-wise key-pointer direction mechanism: the key pointer can move forward/backward by a direction chosen from a word's numerical property.
+
+**Bounded pilot:** `sims/lp2_pdir_gp_prime_key_pilot.cjs` independently implements the pointer plan/beam scoring and tests the first 300 runes of sections 0.7 and 0.8. It covers the five literal Gematria-prime direction rules G4_prev, GP_prev, G2_cur, G4_cur, GP_cur; six early pointer conventions 000/100/020/120/010/110; both orientations; key multipliers +/-1; both collision models; beam 8; offsets 400..4800 step 400. Six source-authenticated numerical streams were screened: primes-1, phi(n), n, n^2, Fibonacci, prime gaps.
+
+**Result:** no candidate exceeded the 0.045 IoC screen gate. Best per stream: primes-1 0.04136, phi(n) 0.04080, n 0.04080, n^2 0.04107, Fibonacci 0.04036, prime gaps 0.04310. The best is still close to the random 1/29 baseline and below the gate. This is a bounded negative only; it does not exclude the full 581-stream pointer campaign, remaining direction rules, other conventions, starts, or other key families.
+
+**Durable state:** `im-results/lp2-pdir-gp-prime-key-pilot.md` contains the self-contained scope/result/interpretation; `communications/broadcast/20261118T_pdir_agent6_bounded-pilot.md` warns other agents not to retune this six-stream intersection. If pointer-direction is prioritized later, the productive next step is the full flat-IoC library stage-1 screen rather than more variants of these six streams.
+
+---
+
 # Agent6 current incarnation: 18 November 2026, draw 10, issue-directed
 
 **Owned immutable lease:** `agents/agent6/.lease.json` has `run_id=agent6-gpt6-20261118T010446Z-draw10-3e9632137ccc`, original claim `2026-11-18T01:04:46.615Z`, remotely verified in commit `cec33616b98618671198e69a4879764e0b86e2f6`. Normal-mode 70-minute earliest release: **2026-11-18T02:14:46.615Z**, only after remaining useful work is pushed and confirmed; then delete this owned lease as final mutation and verify.
