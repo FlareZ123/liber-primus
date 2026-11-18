@@ -1,22 +1,24 @@
 # P15's adjoining primes 463/829 meet the floral register: two bounded original-cipher gates
 
-**13 November 2026, Agent 41. Classification:** an additional source-index alignment and two fully specified finite original-cipher tests. The alignment may help identify the intended relationship among the p15 4×4 numbers, p40–55 framed chapter, and p49–51 numerical table. **Both proposed direct decoder families are negative. No unknown original LP2 plaintext, authentic key, selected cipher or continuation destination has been recovered.**
+**13–18 November 2026, Agents 41 and 46. Classification:** an additional source-index alignment and two fully specified finite original-cipher tests. The alignment may help identify the intended relationship among the p15 4×4 numbers, p40–55 framed chapter, and p49–51 numerical table. **Both proposed direct decoder families are negative. No unknown original LP2 plaintext, authentic key, selected cipher or continuation destination has been recovered.**
 
 ## Source-visible route and the extra index constraint
 
 The original p15 image (32.jpg) has one red numeral 3299 and a conspicuous 4×4 Fibonacci-indexed-prime spiral. Its established red-starting traversal gives sixteen differences from 3301, and the corresponding sixteen prime values:
 
-| Original spiral index, zero-based | p15 printed value | Recover 3301−value | Paired botanical page |
-| ---: | ---: | ---: | ---: |
-| **0** | **3299 (red)** | **2** | **p40** |
-| 9 | 3038 | 263 | p49 (first numeric-table section) |
-| **10** | **2838** | **463** | **p50 (unique rune-free page)** |
-| 11 | 2472 | 829 | p51 (last numeric-table section) |
-| **13** | **708** | **2593** | **p53 (51-rune red stanza)** |
-| 14 | 1206 | 4507 | p54 (nine-rune red opening) |
-| 15 | 4516 | 7817 | p55 |
+| Spiral index, zero-based | p15 printed magnitude | Recovered prime | Signed `3301 − prime` | Paired botanical page |
+| ---: | ---: | ---: | ---: | ---: |
+| **0** | **3299 (red)** | **2** | +3299 | **p40** |
+| 9 | 3038 | 263 | +3038 | p49 (first numeric-table section) |
+| **10** | **2838** | **463** | +2838 | **p50 (unique rune-free page)** |
+| 11 | 2472 | 829 | +2472 | p51 (last numeric-table section) |
+| **13** | **708** | **2593** | +708 | **p53 (51-rune red stanza)** |
+| **14** | **1206** | **4507** | **−1206** | **p54 (nine-rune red opening)** |
+| 15 | 4516 | 7817 | **−4516** | p55 |
 
-Physical pp40–55 carry **sixteen identical printed floral borders**, including **p50**, which consists entirely of the middle portion of the original 256-cell numeral table and has **zero GP runes**. Aligning the p15 spiral's sixteen **source-ordered** numbers to these sixteen pages therefore places **its eleventh recovered prime, 463, on the unique runeless page p50**. The following arithmetic equalities then close onto the already independent red p15 number:
+Physical pp40–55 carry **sixteen identical printed floral borders**, including **p50**, which consists entirely of the middle portion of the original 256-cell numeral table and has **zero GP runes**.
+
+**Additional original-boundary alignment (Agent46, 18 November).** The exact p15 square hides the sign of `3301−prime(F+1)` by printing its **absolute magnitude**. For its first **fourteen** spiral cells (indices 0–13), all generating primes are below 3301; on **exactly the last two** cells (14–15), the generating primes exceed 3301, so the signed differences change from `+708` at index13 to `−1206` at index14 and remain negative at index15. Under the already provisional sixteen-page p15-to-floral alignment, the single sign change falls **exactly at the source-visible p53/p54 chapter boundary**: p53 closes the fourteen-page p40–53 botanical chapter with a 51-rune red stanza, while p54 opens the two-page p54–55 chapter with a distinct red nine-rune rubric. This is a precise, reproducible 14+2 structural coincidence with a possible *direction-switch* role, consonant with the later signed instruction that the book's numbers are its direction. The original source does **not** say whether the sign should change reading orientation, cipher direction, or anything else. The coincidence is conditional on the prior, **unproven** p15-index0→p40 alignment, cannot be counted as an independent statistical validation of it, and gives no plaintext by itself. Treat an actual source-selected reversible rule with independent plaintext as the necessary next evidence. Aligning the p15 spiral's sixteen **source-ordered** numbers to these sixteen pages therefore places **its eleventh recovered prime, 463, on the unique runeless page p50**. The following arithmetic equalities then close onto the already independent red p15 number:
 
 - **The 463rd ordinary prime is 3299**, the p15 red start.
 - The original p40–55 text has 3316 GP runes; omitting only its **p40 red8** and **p54 red9** opening rubrics gives **3316−17 = 3299** runes. This body-size relation was already established in [the p15/floral register report](lp2-p15-red3299-floral-body-register.md).
