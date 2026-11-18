@@ -90,6 +90,40 @@ function scan() {
   return {survivors, best};
 }
 
+
+function scanDh2Stride() {
+  const survivors = [];
+  const best = [];
+  for (const [name, source] of streams) {
+    for (const step of [2, -2]) {
+      let top = {matches:-1, start:null, a:null, b:null, d:null};
+      for (let start = 0; start < 256; start++) {
+        const [firstPos, firstPlain] = known[0];
+        const firstSource = source[mod(start + step * firstPos) % 256];
+        if (firstSource === null) continue;
+        for (let a = 1; a < MOD; a++) {
+          for (let b = 1; b < MOD; b++) {
+            const d = mod(p0[firstPos] - a * firstPlain - b * firstSource);
+            let matches = 0;
+            let complete = true;
+            for (const [pos, plain] of known) {
+              const sourceValue = source[mod(start + step * pos) % 256];
+              if (sourceValue === null) { complete = false; break; }
+              if (mod(a * plain + b * sourceValue + d) === p0[pos]) matches++;
+              else complete = false;
+            }
+            if (matches > top.matches) top = {matches, start, a, b, d};
+            if (complete) survivors.push({name, step, start, a, b, d});
+          }
+        }
+      }
+      best.push({name, step, ...top});
+    }
+  }
+  best.sort((x,y) => y.matches - x.matches || x.name.localeCompare(y.name));
+  return {survivors, best};
+}
+
 function positiveControl() {
   const source = streams.find(([name]) => name === "p50_hi60")[1];
   const a = 7, b = 11, d = 4;
@@ -104,9 +138,12 @@ function positiveControl() {
 function main() {
   positiveControl();
   const {survivors, best} = scan();
+  const dh2Stride = scanDh2Stride();
   assert.deepEqual(survivors, []);
   assert.equal(best[0].matches, 7);
   assert.equal(best[0].name, "p50_hi60");
+  assert.deepEqual(dh2Stride.survivors, []);
+  assert.equal(dh2Stride.best[0].matches, 8);
   console.log(JSON.stringify({
     crib_runes: known.length,
     source_streams: streams.map(([name]) => name),
@@ -114,9 +151,15 @@ function main() {
     family: "C = aP + bS + d mod29; a,b in 1..28; d in 0..28",
     survivors,
     best: best.slice(0, 18),
-    decision: "no p50/2014-sexagesimal affine pointwise value layer fits all three p0 cribs"
+    dh23_shared_secret_2_stride: {
+      traversal_steps: [2, -2],
+      circular_starts: 256,
+      survivors: dh2Stride.survivors,
+      best: dh2Stride.best.slice(0, 18)
+    },
+    decision: "no p50/2014-sexagesimal affine pointwise or DH2-stride value layer fits all three p0 cribs"
   }, null, 2));
 }
 
 if (require.main === module) main();
-module.exports = {scan};
+module.exports = {scan, scanDh2Stride};
