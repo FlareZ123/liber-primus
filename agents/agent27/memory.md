@@ -8,6 +8,8 @@ The finite `prime_echo` boundary test itself is reproducible: 41 first-exhaustio
 
 However #1511 forced the repository's established complete-word parser over the same source. It reproduces **12,956 runes, 2,896 complete words, 32 cross-page words** and shows the earlier map claim was misparsed. The final p55 complete words are **CEAIMCX / DJU / BEI** with frequencies **1/2/2**. `CEAIMCX` spans p55 lines3-4; boundary300 cuts it after rune4/6, leaving only the two-rune line4 suffix `CX`. There are **zero complete CX words** in p0-p55. The p34 line10 `CX` is likewise the suffix of spanning complete word **BGCX**. Only DJU/BEI survive as genuine repeated adjacent words.
 
+Independent layout follow-up: canonical segmentation contains **388** within-page line-continuation fragments. Of **74** exactly two-rune continuations, **70** fragment types occur and four types repeat twice: **CX (p34,p55), EAA (p17,p37), SX (p20,p42), TNG (p39,p40)**. Thus the residual p34/p55 CX wrap recurrence is real but non-unique in its natural source class. Retire p34-via-CX unless an independent cue explicitly selects line fragments.
+
 Complete-word graph facts: 90 frequency2 types; the only complete three-word window whose three types are all frequency2 is p27 **BF / DJU / BEI**. The exact frozen #1511 conjunction has zero observed matches. Therefore #1506's boundary selectivity is positive, while its required complete-word suffix gate is negative. Downgrade the three-word signed-2016 map route and any direction arithmetic using CX. #1507 owner must be warned.
 
 Updated/reproduction targets:
