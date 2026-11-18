@@ -197,28 +197,13 @@ assert.equal(selectedWord.length, 5);
 
 // The page transcription fixes word28 as the final word of physical line6.
 // Its 1-based start within that 23-rune line is 19.
-const line6Text = p28Lines[5].replace(/\s/gu, "");
-const selectedRunes = new Set(corpus.runes);
-let line6RuneOffset = 0;
-let selectedLocalStart = null;
-let wordOrdinal = 0;
-let inWord = false;
-for (const ch of line6Text) {
-  if (runeIndex.has(ch)) {
-    if (!inWord) {
-      wordOrdinal += 1;
-      inWord = true;
-    }
-    if (wordOrdinal === 4 && selectedLocalStart === null) {
-      selectedLocalStart = line6RuneOffset + 1;
-    }
-    line6RuneOffset += 1;
-  } else if (!/\s/u.test(ch)) {
-    inWord = false;
-  }
-}
-// The line-local word parser can differ from whole-page ordinal around
-// punctuation, so pin the source-visible start independently as 19.
+const line6Words = runeWords(p28Lines[5]);
+assert.deepEqual(line6Words.at(-1), selectedWord);
+const selectedLocalStart =
+  1 +
+  line6Words
+    .slice(0, -1)
+    .reduce((sum, word) => sum + word.length, 0);
 assert.equal(selectedLocalStart, 19);
 
 const dh23 = {
