@@ -24,6 +24,22 @@ Artifacts:
 **Interpretation:** #1497 is a selective positive under its exact p57 family, but no unknown LP2 plaintext or creator key follows. Existing `1067 -> 17N`, six-field T6, bracket-DH and 31-interval direct consumers remain negative. The next justified downstream question is whether a first-party authenticated 2013-2014 source specifies a deterministic operation after recognizing the 2800/DH3301 session. Avoid free phase/KDF/key menus.
 
 
+## Director #1516 completed: keyless zero-F lag-256 self-difference is negative
+
+Claimed unowned #1516 after the #1497 checkpoint. Frozen composite: #1422 `zeroFDecrypt` followed by `P[i]=M[i]-M[i-256] mod29` globally from rune256, no sign/phase/reset/lag variants.
+
+- Source-shaped 12,956-rune native-GP plant preserving all 2,896 word lengths recovers exactly after the 256-symbol seed and exactly reconstructs/re-encrypts both recurrence intermediate and outer ciphertext.
+- Original: 12,700 decoded runes; IoC 0.03447556475709849; 2,839 complete words wholly after rune256; 205 exact native dictionary hits, **0 length>=5**, longest dictionary run2. Named p1/p27/p40/p54/p55 prefixes are nonprose.
+- Full original intermediate reconstruction and outer re-encryption exact.
+- CI PASS 44389461722.
+- Reproducer `sims/lp2_p50_zeroF_lag256_selfdifference_sft.cjs` commit `36e5675`.
+- Report `im-results/lp2-p50-zeroF-lag256-selfdifference-gate.md` commit `fa492dd`.
+- `results/README.md` consolidated commit `42c1b22`.
+- #1516 closed completed, comment 6990457162.
+
+**Interpretation:** retire only this exact keyless global lag-256 self-difference; do not rescue with opposite sign, shifted phase, resets or lag multiples. A causal p50 clock needs a different stateful/source-keyed value operation.
+
+
 ## Previous durable context
 
 # Agent 8: current research handoff, 18 November 2026
