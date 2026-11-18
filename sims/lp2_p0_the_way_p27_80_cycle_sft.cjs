@@ -138,6 +138,15 @@ assert.equal(wayStep.word.start + wayStep.word.length - 1, 121);
 assert.equal(wayStep.cipherGp0, 37);
 assert.equal(wayStep.next, 80);
 
+// The two receiver-word GP0 sums reduce in the native GP29 alphabet to
+// 23,8 = D,H. This supplies an operation-family readout from the exact
+// authenticated source-order road, before consulting the independent p27
+// DH23 reconstruction.
+assert.equal(theStep.cipherGp0 % 29, 23);
+assert.equal(wayStep.cipherGp0 % 29, 8);
+assert.equal(corpus.translit[theStep.cipherGp0 % 29], "D");
+assert.equal(corpus.translit[wayStep.cipherGp0 % 29], "H");
+
 // Full source-family census. A hit requires an authenticated adjacent signed
 // pair to bridge in source order on one original unknown page, followed by
 // the second source word exiting at independently frozen byte80.
@@ -188,6 +197,39 @@ assert.deepEqual(theWayPages, [0, 25]);
 const p25Way = bridge(parsePageWords(25), message, 13);
 assert.ok(p25Way);
 assert.equal(p25Way.next, 65);
+
+// Wider null: ignore the source-order requirement and inspect every page ×
+// adjacent signed-word pair for a two-receiver GP29 readout of D,H.
+let validReceiverPairs = 0;
+const dhPairs = [];
+const dhEndpoint80 = [];
+const sourceOrderDh = [];
+const sourceOrderDhEndpoint80 = [];
+for (let page = 0; page <= 55; page += 1) {
+  const words = parsePageWords(page);
+  if (!words.length) continue;
+  for (let i = 0; i < message.length - 1; i += 1) {
+    const first = bridge(words, message, i);
+    const second = bridge(words, message, i + 1);
+    if (!first || !second) continue;
+    validReceiverPairs += 1;
+    const isDh =
+      first.cipherGp0 % 29 === 23 &&
+      second.cipherGp0 % 29 === 8;
+    const isSourceOrder = first.next === i + 1;
+    if (isDh) dhPairs.push([page, i]);
+    if (isDh && second.next === 80) dhEndpoint80.push([page, i]);
+    if (isDh && isSourceOrder) sourceOrderDh.push([page, i]);
+    if (isDh && isSourceOrder && second.next === 80) {
+      sourceOrderDhEndpoint80.push([page, i]);
+    }
+  }
+}
+assert.equal(validReceiverPairs, 1931);
+assert.equal(dhPairs.length, 6);
+assert.deepEqual(dhEndpoint80, [[0, 12], [28, 3]]);
+assert.deepEqual(sourceOrderDh, [[0, 12]]);
+assert.deepEqual(sourceOrderDhEndpoint80, [[0, 12]]);
 
 // Independently reproduce the p27 DJU / BEI endpoint80 from original inputs.
 const p27 = parsePageWords(27);
@@ -259,6 +301,15 @@ process.stdout.write(JSON.stringify({
     exactEndpoint80Chains: endpoint80Chains,
     theWayFirstHopPages: theWayPages,
     p25RivalEndpoint: p25Way.next,
+    receiverGp29Readout: [
+      corpus.translit[theStep.cipherGp0 % 29],
+      corpus.translit[wayStep.cipherGp0 % 29],
+    ],
+    allValidReceiverPairs: validReceiverPairs,
+    allDhPairs: dhPairs.length,
+    dhAndEndpoint80Pairs: dhEndpoint80.length,
+    sourceOrderDhPairs: sourceOrderDh.length,
+    sourceOrderDhEndpoint80,
   },
   p27Holdout: {
     pairStarts: [28, 31],
