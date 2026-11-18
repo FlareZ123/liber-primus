@@ -310,6 +310,133 @@ for (let w = 0; w < inputs.length; w++) {
 }
 assert.equal(plantedRunes, 12956);
 
+/**
+ * Longest exact original-word-signature phrase shared with a full source
+ * corpus. A suffix automaton makes the full contiguous passage test O(N),
+ * with no guesses about any secret GP29 alphabet.
+ *
+ * @param {string[]} source Authentic source words, original order.
+ * @param {string[]} query Ciphertext words, printed order.
+ * @returns {{longest:number, hits:Array<{originalStart:number,sourceStart:number}>,
+ * states:number}}
+ */
+function sourcePhraseGate(source, query) {
+  const states = [{len:0, link:-1, edges:new Map(), sourceEnd:-1}];
+  let last = 0;
+  for (let pos = 0; pos < source.length; pos++) {
+    const character = shape(source[pos]);
+    const current = states.length;
+    states.push({
+      len:states[last].len + 1, link:0, edges:new Map(), sourceEnd:pos
+    });
+    let parent = last;
+    while (parent >= 0 && !states[parent].edges.has(character)) {
+      states[parent].edges.set(character, current);
+      parent = states[parent].link;
+    }
+    if (parent >= 0) {
+      const existing = states[parent].edges.get(character);
+      if (states[parent].len + 1 === states[existing].len) {
+        states[current].link = existing;
+      } else {
+        const clone = states.length;
+        states.push({
+          len:states[parent].len + 1,
+          link:states[existing].link,
+          edges:new Map(states[existing].edges),
+          sourceEnd:states[existing].sourceEnd
+        });
+        while (parent >= 0 && states[parent].edges.get(character) === existing) {
+          states[parent].edges.set(character, clone);
+          parent = states[parent].link;
+        }
+        states[existing].link = clone;
+        states[current].link = clone;
+      }
+    }
+    last = current;
+  }
+  let state = 0;
+  let length = 0;
+  let longest = 0;
+  let hits = [];
+  for (let pos = 0; pos < query.length; pos++) {
+    const character = shape(query[pos]);
+    while (state > 0 && !states[state].edges.has(character)) {
+      state = states[state].link;
+      length = states[state].len;
+    }
+    if (states[state].edges.has(character)) {
+      state = states[state].edges.get(character);
+      length++;
+    } else {
+      state = 0;
+      length = 0;
+    }
+    if (length >= longest && length > 0) {
+      const hit = {
+        originalStart:pos - length + 1,
+        sourceStart:states[state].sourceEnd - length + 1
+      };
+      if (length > longest) {
+        longest = length;
+        hits = [hit];
+      } else {
+        hits.push(hit);
+      }
+    }
+  }
+  return {longest,hits,states:states.length};
+}
+const originalFullWords = inputs.map((w) => w.runes);
+const latinPhrase = sourcePhraseGate(latin, originalFullWords);
+const oldPhrase = sourcePhraseGate(beowulf, originalFullWords);
+assert.equal(latinPhrase.longest, 8);
+assert.deepEqual(latinPhrase.hits.map((h) => h.originalStart),
+  [1020,1318,2024]);
+assert.equal(oldPhrase.longest, 8);
+assert.deepEqual(oldPhrase.hits.map((h) => h.originalStart),
+  [366,1568,1704]);
+for (const [source,result] of [[latin,latinPhrase],[beowulf,oldPhrase]]) {
+  for (const hit of result.hits) {
+    for (let j = 0; j < result.longest; j++) {
+      assert.equal(
+        shape(originalFullWords[hit.originalStart+j]),
+        shape(source[hit.sourceStart+j])
+      );
+    }
+  }
+}
+console.log("FULL-BOOK-CONTIGUOUS-SOURCE-QUOTE-GATE", JSON.stringify({
+  latin:latinPhrase, correctedOldEnglish:oldPhrase
+}));
+
+/* True source-native 12-word encoded phrase, independent secret alphabet
+ * per word and phase, is recognized without knowing any of its keys.
+ */
+const trueSourcePhrase = latin.slice(1000, 1012);
+assert.equal(trueSourcePhrase.length, 12);
+const secretEncodedPhrase = trueSourcePhrase.map((word) => {
+  const substitutions = Array.from({length:5}, () => {
+    const permutation = Array.from({length:29}, (_, i) => i);
+    for (let i = 28; i > 0; i--) {
+      const j = random() % (i+1);
+      [permutation[i],permutation[j]] = [permutation[j],permutation[i]];
+    }
+    return permutation;
+  });
+  return [...word].map((symbol, i) =>
+    alphabet[substitutions[i%5][alphabet.indexOf(symbol)]]).join("");
+});
+const positiveQuote = sourcePhraseGate(latin, secretEncodedPhrase);
+assert.equal(positiveQuote.longest, 12);
+assert.equal(positiveQuote.hits[0].sourceStart, 1000);
+console.log("CONTIGUOUS-QUOTE-PLANT", JSON.stringify({
+  trueSourceWords:trueSourcePhrase.length,
+  recoveredWords:positiveQuote.longest,
+  sourceStart:positiveQuote.hits[0].sourceStart
+}));
+
 console.log("ORIGINAL", JSON.stringify({
   runes:native.runeCount, words:inputs.length, crossPage:native.crossPageWords,
   latin:latinResult, oldEnglish:oldResult,
