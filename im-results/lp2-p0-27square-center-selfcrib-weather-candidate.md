@@ -1,10 +1,38 @@
 # LP2 p0–2: source-derived central self-crib, provisional reading, and non-unique continuation
 
-**Research state, 17 November 2026.** Agent10's original-source geometric self-crib and candidate WEATHER are reproducible. Agent29's independently reproduced post-THEN transition shows that the external author's complete Reports 00–16 still admit different original-cipher key nodes and intact English words for the next block. These data preserve a possible human route, but **no authenticated unknown-page plaintext, complete source-selected reading order, or unique fixed inter-block transition law has been recovered**.
+**Research state, 18 November 2026.** The geometric center self-crib and proposed WEATHER reading are reproducible source arithmetic. The external author's later Reports 17–19 have now been subjected to a new exact original-input next-block census. They reduce the finite candidate pool, yet still permit **two complete English readings of precisely the same original ciphertext cells under different original mirror keys**. No authenticated unknown-page plaintext, creator key or uniquely selected reading order has been recovered.
 
-[All-input CommonJS SFT](../sims/lp2_p0_27square_center_selfcrib_source_sft.cjs) · [successful original GitHub Actions run](https://github.com/FlareZ123/liber-primus/actions/runs/43810073761) · [independent prior claim and worked route](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption) · [external audit of the earlier shorter route](https://secra.tech/research/liber-primus-strongest-findings/).
+[Original map self-crib SFT](../sims/lp2_p0_27square_center_selfcrib_source_sft.cjs) · [New Reports 17–19 original-source all-candidate SFT](../sims/lp2_p0_27square_reports17_19_ambiguity_sft.cjs) · [External original hypothesis](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption).
 
-## Current decisive limit: Reports 00–16 do not select a unique next block
+## New decision: later Reports 17–19 leave an exact English ambiguity
+
+**Upstream premise:** Treat the 729 unmodified GP29 ciphertext runes on original physical pp0–2 as one 27×27 row-major square and grant the external author's *proposed* first 17 blocks, ending at THEN. The original authors have not authenticated that proposed grid cipher. Apply every previously implemented applicable constraint of the external Reports 00–16, then the subsequently published [Report17](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/blob/main/Start-reading-here/17-xor-next-key-center-column.md), [Report18](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/blob/main/Start-reading-here/18-predicting-next-ciphertext-start-and-end.md), and [Report19](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/blob/main/Start-reading-here/19-predicting-next-ciphertext-start-distance.md) without using a dictionary to select source nodes or plaintext.
+
+The original THEN block's key node is (25,22)–(27,22) with midpoint (26,22). Its ciphertext occupies (25,25)–(25,27), with preceding SOON beginning at (25,16). Report17 supplies \`n3(M)=161\`; its XOR-Möbius test accepts all **four** original source-key centers surviving the earlier constraints. Report18 predicts exactly (endpoint sector, endpoint Möbius sign, start-side) = **(1,0,0)**. Report19 predicts the next start must be at Chebyshev distance at most seven from both the previous beginning and leftmost source cell. These are the author's fixed published formulas; none is reoptimized for this test.
+
+| Original-source conditional candidate stage | Distinct source-key/segment assignments |
+| --- | ---: |
+| Exact Report 00–16 baseline (independent preceding census) | **1,104** |
+| Add Report17 | **1,104** |
+| Add all three Report18 predicates | **604** |
+| Add Report19 distance test | **268** |
+
+The final 268 assignments comprise **67 different physical ciphertext segments, with all four source key nodes still admissible on every segment**. Thus even when all later filters are granted, they do not supply a unique next source node, segment or GP29 plaintext.
+
+An exact **same-cell, complete-word witness** is more decisive than a generic candidate count. Read the original ciphertext J at **(22,21)**, GP index11, and W at **(21,20)**, GP index7, in the published upward-left direction:
+
+| Next original mirror key source | Derived GP29 key aligned to the two ciphertext runes | Exact subtraction mod29 | Complete English word |
+| --- | --- | --- | --- |
+| N–M–N at (17,17), (20,17), (23,17), with φ(M=19)=18=E | N–E, indices (9,18) | (11−9, 7−18) mod29 = (2,18) | **THE** (TH–E) |
+| X–M–X at (5,25), (8,25), (11,25), with φ(M=19)=18=E | X–E, indices (14,18) | (11−14, 7−18) mod29 = (26,18) | **YE** (Y–E) |
+
+Both witnesses pass all enumerated constraints in Reports 00–19 with the exact same ciphertext path. **YE** is a genuine English word, albeit far less common than THE; the frozen TextBlob source lexicon \`resources/control/english_wordfreq_textblob.txt\` contains both (frequency 8 versus 80,030). A grammatical preference for THE or a particular intended genre may be valuable hypothesis selection, but it does not constitute an author-specified key-node selector. The earlier distinct-cell **MY** and **OF** competing witnesses fail the *new* Report19 near-distance test, so they are retained below only as a correct audit of the previous Report00–16 scope.
+
+**Decision:** Retire any assertion that adding Reports17–19 turns the proposed p0–2 geometry into a deterministic decipherment. The next useful progress would require a genuinely manuscript-selected source-key locator, a precommitted independent next-step prediction, or a reversible path accounting for much more of the 729 input runes without semantic choices. The external Reports17–19 were explicitly fitted retrospectively to an already chosen English route; all-prior-route fit alone does not validate the route. This is a new finite ambiguity certificate, not recovered plaintext.
+
+**Reproduction:** [standalone CommonJS SFT](../sims/lp2_p0_27square_reports17_19_ambiguity_sft.cjs) asserts the four original mirror keys, exact original source cells, all stage counts, every reencryption, 67×4 multiplicity and the two divergent GP29 words. It needs only the unchanged canonical \`lp2-corpus.json\`.
+
+## Previous exact limit: Reports 00–16 do not select a unique next block
 
 The external [27×27 map author's 17-block proposal](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption) ends at **THEN**. The complete original first chapter has **729 GP29 runes**, read row-major in 27×27. Its final proposed source node **IA–IA–IA** is at (25,22)–(27,22), centered at (26,22); its ciphertext **L–T–W** occupies (25,25)–(25,27). The published source phases of blocks 1–17 sum to **18**, selecting Report11's reflected/+1 next-key prediction.
 
