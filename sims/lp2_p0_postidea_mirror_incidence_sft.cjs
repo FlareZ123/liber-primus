@@ -1,15 +1,13 @@
 "use strict";
 
 /**
- * SFT: source-only mirror-incidence topology immediately after the conditional
- * p0-p2 IDEA candidate.
+ * SFT: post-IDEA mirror-walk parser candidate on the original p0-p2 27x27 grid.
  *
- * This does not select OF/THE plaintext. It proves two narrower facts:
- * 1. the IDEA ciphertext endpoint D(17,18) belongs to exactly one equal-outer
- *    mirror node, J-D-J, and only its lower-left J is itself the center of
- *    another mirror, OE-J-OE;
- * 2. treating the locked post-IDEA five-word checksum residual as one straight
- *    12-rune block fails across a widened prior-path mirror-center family.
+ * The selector below never inspects candidate plaintext or checksum values while
+ * choosing stages 09-13. It starts only from the already-conditional IDEA end
+ * state and the original rune grid. The parser was reverse-engineered after the
+ * public route was known, so this is a reproducible post-hoc parser candidate,
+ * not yet an authenticated Cicada mechanism.
  *
  * Run: node sims/lp2_p0_postidea_mirror_incidence_sft.cjs
  */
@@ -24,7 +22,13 @@ const grid=corpus.pages.filter(p=>p.page<=2).flatMap(p=>p.indices);
 assert.equal(grid.length,729);
 
 const mod=x=>(x%29+29)%29;
-const at=(r,c)=>grid[(r-1)*27+c-1];
+const at=q=>grid[(q[0]-1)*27+q[1]-1];
+const same=(a,b)=>a[0]===b[0]&&a[1]===b[1];
+const axisEq=(a,b)=>a[0]===b[0]&&a[1]===b[1];
+const add=(a,b)=>[a[0]+b[0],a[1]+b[1]];
+const sub=(a,b)=>[a[0]-b[0],a[1]-b[1]];
+const sign=v=>[Math.sign(v[0]),Math.sign(v[1])];
+const inBounds=q=>q[0]>=1&&q[0]<=27&&q[1]>=1&&q[1]<=27;
 
 /** @param {number} n */
 function phi(n){
@@ -40,14 +44,14 @@ function phi(n){
 
 /** @param {number} n */
 function mu(n){
-  let rest=n,sign=1;
+  let rest=n,signValue=1;
   for(let p=2;p*p<=rest;p++){
     if(rest%p!==0)continue;
     rest/=p;
-    sign=-sign;
+    signValue=-signValue;
     if(rest%p===0)return 0;
   }
-  return rest>1?-sign:sign;
+  return rest>1?-signValue:signValue;
 }
 
 /** @param {number} count */
@@ -61,176 +65,333 @@ function firstPrimes(count){
   return out;
 }
 
-const gp=firstPrimes(29);
-const axes=[[1,0],[0,1],[1,1],[1,-1]];
-const readDirections=[];
-for(let dr=-1;dr<=1;dr++)for(let dc=-1;dc<=1;dc++)if(dr||dc)readDirections.push([dr,dc]);
+/**
+ * @param {[number,number]} vector
+ * @param {[number,number]} axis
+ * @returns {[number,number]}
+ */
+function reflect(vector,axis){
+  const denominator=axis[0]*axis[0]+axis[1]*axis[1];
+  const dot=vector[0]*axis[0]+vector[1]*axis[1];
+  return [
+    Math.round(2*dot*axis[0]/denominator-vector[0]),
+    Math.round(2*dot*axis[1]/denominator-vector[1])
+  ];
+}
 
+const GP=firstPrimes(29);
+const axes=[[1,0],[0,1],[1,1],[1,-1]];
 const mirrors=[];
-for(let r=1;r<=27;r++)for(let c=1;c<=27;c++){
-  for(const [dr,dc] of axes){
-    for(let radius=1;radius<=13;radius++){
-      const p1=[r-dr*radius,c-dc*radius];
-      const p2=[r+dr*radius,c+dc*radius];
-      if([...p1,...p2].some(v=>v<1||v>27))break;
-      const outer1=at(...p1),center=at(r,c),outer2=at(...p2);
-      if(outer1===outer2&&center!==0){
-        mirrors.push({center:[r,c],p1,p2,radius,axis:[dr,dc],raw:[outer1,center,outer2]});
+for(let r=1;r<=27;r++){
+  for(let c=1;c<=27;c++){
+    for(const axis of axes){
+      for(let radius=1;radius<=13;radius++){
+        const p1=[r-axis[0]*radius,c-axis[1]*radius];
+        const p2=[r+axis[0]*radius,c+axis[1]*radius];
+        if(!inBounds(p1)||!inBounds(p2))break;
+        const outer1=at(p1),center=at([r,c]),outer2=at(p2);
+        if(outer1===outer2&&center!==0){
+          mirrors.push({center:[r,c],p1,p2,radius,axis,raw:[outer1,center,outer2]});
+        }
       }
     }
   }
 }
 assert.equal(mirrors.length,479);
 
-const coordKey=q=>q.join(",");
-const same=(a,b)=>a[0]===b[0]&&a[1]===b[1];
-const byCenter=new Map();
-const byTouch=new Map();
-for(const node of mirrors){
-  const ck=coordKey(node.center);
-  if(!byCenter.has(ck))byCenter.set(ck,[]);
-  byCenter.get(ck).push(node);
-  for(const q of [node.center,node.p1,node.p2]){
-    const qk=coordKey(q);
-    if(!byTouch.has(qk))byTouch.set(qk,[]);
-    byTouch.get(qk).push(node);
-  }
-}
-const centered=q=>byCenter.get(coordKey(q))||[];
-const touching=q=>byTouch.get(coordKey(q))||[];
+const centered=q=>mirrors.filter(n=>same(n.center,q));
+const touching=q=>mirrors.filter(n=>same(n.center,q)||same(n.p1,q)||same(n.p2,q));
 
-const ideaCells=[[15,20],[16,19],[17,18]];
-const ideaKey=["U","A","A"].map(x=>T.indexOf(x));
-assert.deepEqual(
-  ideaCells.map((q,i)=>T[mod(at(...q)-ideaKey[i%3])]),
-  ["I","D","EA"]
-);
-
-const ideaEndpoint=[17,18];
-assert.equal(T[at(...ideaEndpoint)],"D");
-assert.equal(touching(ideaEndpoint).length,1);
-assert.equal(centered(ideaEndpoint).length,1);
-
-const jdj=centered(ideaEndpoint)[0];
-assert.deepEqual(jdj.raw.map(i=>T[i]),["J","D","J"]);
-assert.deepEqual(jdj.p1,[15,20]);
-assert.deepEqual(jdj.p2,[19,16]);
-assert.equal(jdj.radius,2);
-assert.deepEqual(jdj.axis,[1,-1]);
-
-const upperJ=jdj.p1;
-const lowerJ=jdj.p2;
-assert.equal(centered(upperJ).length,0);
-assert.equal(centered(lowerJ).length,1);
-
-const oejoe=centered(lowerJ)[0];
-assert.deepEqual(oejoe.raw.map(i=>T[i]),["OE","J","OE"]);
-assert.deepEqual(oejoe.p1,[18,16]);
-assert.deepEqual(oejoe.p2,[20,16]);
-assert.equal(oejoe.radius,1);
-assert.deepEqual(oejoe.axis,[1,0]);
-
-const lowerJTouch=touching(lowerJ);
-assert.equal(lowerJTouch.length,3);
-const other=lowerJTouch.filter(n=>n!==jdj&&n!==oejoe);
-assert.equal(other.length,1);
-const jbj=other[0];
-assert.deepEqual(jbj.raw.map(i=>T[i]),["J","B","J"]);
-assert.deepEqual(jbj.center,[23,12]);
-assert.deepEqual(jbj.p1,[19,16]);
-assert.deepEqual(jbj.p2,[27,8]);
-assert.equal(jbj.radius,4);
-assert.deepEqual(jbj.axis,[1,-1]);
-assert.equal(touching(jbj.center).length,1);
-
+/** @param {{raw:number[]}} node */
 function deriveKey(node){
   const derived=[node.raw[0],phi(node.raw[1]),node.raw[2]];
   const rotation=((derived.reduce((s,v)=>s+mu(phi(v)),0)%3)+3)%3;
+  return derived.slice(rotation).concat(derived.slice(0,rotation));
+}
+
+/**
+ * @param {Array<[number,number]>} cells
+ * @param {number[]} key
+ */
+function decrypt(cells,key){
+  return cells.map((q,i)=>mod(at(q)-key[i%3]));
+}
+
+/**
+ * @param {[number,number]} start
+ * @param {[number,number]} direction
+ * @param {(q:[number,number], cells:Array<[number,number]>)=>boolean} stop
+ */
+function rayUntil(start,direction,stop){
+  const cells=[];
+  for(let q=start;inBounds(q);q=add(q,direction)){
+    cells.push(q);
+    if(stop(q,cells))break;
+  }
+  return cells;
+}
+
+/**
+ * @param {Array<[number,number]>} cells
+ * @returns {{indices:number[], indexSum:number, gpSum:number}}
+ */
+function metrics(cells){
+  const indices=cells.map(at);
   return {
-    derived,
-    rotation,
-    key:derived.slice(rotation).concat(derived.slice(0,rotation))
+    indices,
+    indexSum:indices.reduce((a,b)=>a+b,0),
+    gpSum:indices.reduce((a,b)=>a+GP[b],0)
   };
 }
 
-const jdjKey=deriveKey(jdj);
-assert.deepEqual(jdjKey.key.map(i=>T[i]),["J","OE","J"]);
-assert.equal(jdjKey.rotation,0);
-const oejoeKey=deriveKey(oejoe);
-assert.deepEqual(oejoeKey.key.map(i=>T[i]),["OE","OE","I"]);
-assert.equal(oejoeKey.rotation,2);
+// Frozen incoming state from the independently documented conditional IDEA block.
+const ideaCells=[[15,20],[16,19],[17,18]];
+const ideaKey=["U","A","A"].map(x=>T.indexOf(x));
+assert.deepEqual(decrypt(ideaCells,ideaKey).map(i=>T[i]),["I","D","EA"]);
+const ideaEndpoint=ideaCells.at(-1);
+assert.equal(T[at(ideaEndpoint)],"D");
 
-// Widened direct 12-rune continuation control.
-// Use every unique ciphertext cell already selected through IDEA as a possible
-// mirror center, every equal-outer mirror through that center, and all eight
-// straight read directions from the IDEA source endpoint. This intentionally
-// grants far more key choices than the local topology above.
-const previousPath=[
-  [13,25],[13,26],[13,27],[14,1],[14,2],[14,3],[14,4],
-  [14,14],[14,15],[14,16],[14,17],[14,18],
-  [14,19],[13,19],[12,19],[11,19],[10,19],
-  [14,7],[13,7],[12,7],[11,7],
-  [26,19],[26,18],[26,17],[26,16],
-  [19,16],[18,16],[17,16],
-  [11,16],[12,17],[13,18],[14,19],[15,20],
-  [16,19],[17,18]
+// Stage 09 key node: the IDEA endpoint is the center of exactly one mirror.
+assert.equal(centered(ideaEndpoint).length,1);
+const node09=centered(ideaEndpoint)[0];
+assert.deepEqual(node09.raw.map(i=>T[i]),["J","D","J"]);
+
+// Exactly one outer of J-D-J is itself a mirror center. That fixes the junction
+// and the stage-10 key node.
+const outerCenters=[node09.p1,node09.p2].map(q=>({q,nodes:centered(q)}));
+const junctionChoice=outerCenters.filter(x=>x.nodes.length===1);
+assert.equal(junctionChoice.length,1);
+const junction=junctionChoice[0].q;
+const node10=junctionChoice[0].nodes[0];
+assert.deepEqual(junction,[19,16]);
+assert.deepEqual(node10.raw.map(i=>T[i]),["OE","J","OE"]);
+
+// The shared junction has exactly one further mirror incidence. That fixes the
+// stage-11 key node.
+const remainingAtJunction=touching(junction).filter(n=>n!==node09&&n!==node10);
+assert.equal(remainingAtJunction.length,1);
+const node11=remainingAtJunction[0];
+assert.deepEqual(node11.raw.map(i=>T[i]),["J","B","J"]);
+
+// Stage 09 ciphertext. Reflect the unit direction from the junction toward the
+// old node center across the new mirror axis. Start one cell there, then enter
+// the nearest cell of the new mirror by Manhattan distance.
+const towardOldCenter=sign(sub(node09.center,junction));
+const reflected09=reflect(towardOldCenter,node10.axis);
+const start09=add(junction,reflected09);
+const node10Cells=[node10.p1,node10.center,node10.p2];
+const distances09=node10Cells.map(q=>({q,d:Math.abs(q[0]-start09[0])+Math.abs(q[1]-start09[1])})).sort((a,b)=>a.d-b.d);
+assert.notEqual(distances09[0].d,distances09[1].d);
+const end09=distances09[0].q;
+const direction09=sign(sub(end09,start09));
+const cells09=[start09,end09];
+assert.deepEqual(cells09,[[18,15],[18,16]]);
+
+// Stage 10 ciphertext. Reflect the previous read direction across the current
+// key-node axis. The next mirror shares the junction, so use the minimum
+// two-rune approach into that junction.
+const direction10=reflect(direction09,node10.axis);
+const end10=junction;
+const start10=sub(end10,direction10);
+const cells10=[start10,end10];
+assert.deepEqual(cells10,[[19,17],[19,16]]);
+
+// Stage 11 direction is the same reflection rule across J-B-J.
+const direction11=reflect(direction10,node11.axis);
+assert.deepEqual(direction11,[1,0]);
+
+// Continue one cell in the old direction. Among mirrors that use that cell as
+// an outer, are perpendicular to the new read direction, and cross to the
+// opposite side, choose the smallest radius.
+const entry11=add(end10,direction10);
+const perpendicularAxis11=[direction11[1],direction11[0]];
+const bounce11=touching(entry11)
+  .filter(n=>axisEq(n.axis,perpendicularAxis11)&&(same(n.p1,entry11)||same(n.p2,entry11)))
+  .map(n=>({node:n,opposite:same(n.p1,entry11)?n.p2:n.p1}))
+  .filter(x=>{
+    const delta=sub(x.opposite,entry11);
+    return delta[0]*direction10[0]+delta[1]*direction10[1]<0;
+  })
+  .sort((a,b)=>a.node.radius-b.node.radius);
+assert.ok(bounce11.length>=1);
+assert.ok(bounce11.length===1||bounce11[0].node.radius<bounce11[1].node.radius);
+assert.deepEqual(bounce11[0].node.raw.map(i=>T[i]),["F","X","F"]);
+assert.equal(bounce11[0].node.radius,4);
+const start11=bounce11[0].opposite;
+
+// Stop at the first post-start cell with a unique mirror incidence.
+const cells11=rayUntil(start11,direction11,(q,cells)=>cells.length>1&&touching(q).length===1);
+assert.deepEqual(cells11,[[19,23],[20,23],[21,23]]);
+const end11=cells11.at(-1);
+
+// Stage 12 key/start walk. The END endpoint has one mirror. At its center,
+// switch to the other same-axis centered mirror.
+assert.equal(touching(end11).length,1);
+const entryMirror12=touching(end11)[0];
+const center12=entryMirror12.center;
+const centeredSameAxis12=centered(center12).filter(n=>axisEq(n.axis,entryMirror12.axis)&&n!==entryMirror12);
+assert.equal(centeredSameAxis12.length,1);
+const node12=centeredSameAxis12[0];
+assert.deepEqual(node12.raw.map(i=>T[i]),["H","R","H"]);
+
+// Both H outers have a same-axis continuation. The reusable tie-break is
+// smallest continuation radius, which selects H-L-H (6) over H-O-H (11).
+const branch12=[node12.p1,node12.p2]
+  .map(q=>({
+    q,
+    alternatives:touching(q)
+      .filter(n=>n!==node12&&axisEq(n.axis,node12.axis)&&(same(n.p1,q)||same(n.p2,q)))
+      .sort((a,b)=>a.radius-b.radius)
+  }))
+  .filter(x=>x.alternatives.length)
+  .sort((a,b)=>a.alternatives[0].radius-b.alternatives[0].radius);
+assert.ok(branch12.length>=2);
+assert.ok(branch12[0].alternatives[0].radius<branch12[1].alternatives[0].radius);
+const hJunction=branch12[0].q;
+const hLh=branch12[0].alternatives[0];
+assert.deepEqual(hJunction,[21,17]);
+assert.deepEqual(hLh.raw.map(i=>T[i]),["H","L","H"]);
+
+const lCenter=hLh.center;
+const lCenteredAlternatives=centered(lCenter).filter(n=>n!==hLh&&axisEq(n.axis,hLh.axis)).sort((a,b)=>a.radius-b.radius);
+assert.equal(lCenteredAlternatives.length,1);
+const eoLeo=lCenteredAlternatives[0];
+assert.deepEqual(eoLeo.raw.map(i=>T[i]),["EO","L","EO"]);
+
+const chainDirection12=sign(sub(lCenter,hJunction));
+const start12=[eoLeo.p1,eoLeo.p2].find(q=>{
+  const delta=sub(q,lCenter);
+  return delta[0]*chainDirection12[0]+delta[1]*chainDirection12[1]>0;
+});
+assert.ok(start12);
+assert.deepEqual(start12,[21,9]);
+
+// Bounce back from the terminal outer and stop at the first new mirror center
+// outside the just-traversed same-axis chain.
+const direction12=[-chainDirection12[0],-chainDirection12[1]];
+const traversed12=new Set([entryMirror12,node12,hLh,eoLeo]);
+const cells12=rayUntil(start12,direction12,(q,cells)=>{
+  if(cells.length<=1)return false;
+  return centered(q).some(n=>!traversed12.has(n));
+});
+assert.deepEqual(cells12,[[21,9],[21,10]]);
+const end12=cells12.at(-1);
+
+// Stage 13 pivot. At D choose the shortest centered mirror not parallel to the
+// incoming read direction.
+const pivotMirrors13=centered(end12)
+  .filter(n=>!axisEq(n.axis,direction12))
+  .sort((a,b)=>a.radius-b.radius);
+assert.ok(pivotMirrors13.length>=1);
+assert.ok(pivotMirrors13.length===1||pivotMirrors13[0].radius<pivotMirrors13[1].radius);
+const pivot13=pivotMirrors13[0];
+assert.deepEqual(pivot13.raw.map(i=>T[i]),["E","D","E"]);
+assert.equal(pivot13.radius,2);
+
+// Move one pivot radius perpendicular to E-D-E. Both sides land on mirror
+// centers; choose the side whose shortest centered mirror has the smaller
+// radius. This selects B/J-B-J (4) over U/F-U-F (7).
+const perpendicular13=[pivot13.axis[1],-pivot13.axis[0]];
+const perpendicularCandidates13=[
+  [end12[0]+perpendicular13[0]*pivot13.radius,end12[1]+perpendicular13[1]*pivot13.radius],
+  [end12[0]-perpendicular13[0]*pivot13.radius,end12[1]-perpendicular13[1]*pivot13.radius]
+]
+  .filter(inBounds)
+  .map(q=>({q,nodes:centered(q).slice().sort((a,b)=>a.radius-b.radius)}))
+  .filter(x=>x.nodes.length)
+  .sort((a,b)=>a.nodes[0].radius-b.nodes[0].radius);
+assert.equal(perpendicularCandidates13.length,2);
+assert.ok(perpendicularCandidates13[0].nodes[0].radius<perpendicularCandidates13[1].nodes[0].radius);
+assert.deepEqual(
+  perpendicularCandidates13.map(x=>({q:x.q,radius:x.nodes[0].radius,raw:x.nodes[0].raw.map(i=>T[i])})),
+  [
+    {q:[23,12],radius:4,raw:["J","B","J"]},
+    {q:[19,8],radius:7,raw:["F","U","F"]}
+  ]
+);
+const node13=perpendicularCandidates13[0].nodes[0];
+
+// At the J-B-J endpoints, choose the side whose shortest alternative
+// outer-role mirror has the smaller radius: J-C-J radius1 beats J-D-J radius2.
+const branch13=[node13.p1,node13.p2]
+  .map(q=>({
+    q,
+    alternatives:touching(q)
+      .filter(n=>n!==node13&&(same(n.p1,q)||same(n.p2,q)))
+      .sort((a,b)=>a.radius-b.radius)
+  }))
+  .filter(x=>x.alternatives.length)
+  .sort((a,b)=>a.alternatives[0].radius-b.alternatives[0].radius);
+assert.ok(branch13.length>=2);
+assert.ok(branch13[0].alternatives[0].radius<branch13[1].alternatives[0].radius);
+const jJunction13=branch13[0].q;
+const jCj=branch13[0].alternatives[0];
+assert.deepEqual(jJunction13,[27,8]);
+assert.deepEqual(jCj.raw.map(i=>T[i]),["J","C","J"]);
+assert.equal(jCj.radius,1);
+
+// At the new C center, exactly one other mirror uses C as an outer: C-OE-C.
+const cCenter=jCj.center;
+const cOuterMirrors=touching(cCenter)
+  .filter(n=>n!==jCj&&(same(n.p1,cCenter)||same(n.p2,cCenter)));
+assert.equal(cOuterMirrors.length,1);
+const cOeC=cOuterMirrors[0];
+assert.deepEqual(cOeC.raw.map(i=>T[i]),["C","OE","C"]);
+const start13=same(cOeC.p1,cCenter)?cOeC.p2:cOeC.p1;
+assert.deepEqual(start13,[26,3]);
+
+// Continue away from the C center to the physical matrix edge.
+const direction13=sign(sub(start13,cCenter));
+const cells13=rayUntil(start13,direction13,()=>false);
+assert.deepEqual(cells13,[[26,3],[26,2],[26,1]]);
+
+const stages=[
+  {stage:9,node:node09,cells:cells09},
+  {stage:10,node:node10,cells:cells10},
+  {stage:11,node:node11,cells:cells11},
+  {stage:12,node:node12,cells:cells12},
+  {stage:13,node:node13,cells:cells13}
 ];
-const uniqueCenters=[...new Map(previousPath.map(q=>[coordKey(q),q])).values()];
-assert.equal(uniqueCenters.length,34);
 
-const candidateNodes=[];
-for(const center of uniqueCenters){
-  for(const node of centered(center))candidateNodes.push(node);
-}
-assert.equal(candidateNodes.length,35);
+const outputs=stages.map(s=>{
+  const key=deriveKey(s.node);
+  const plaintext=decrypt(s.cells,key);
+  return {
+    stage:s.stage,
+    node:s.node.raw.map(i=>T[i]),
+    key:key.map(i=>T[i]),
+    cells:s.cells,
+    cipher:s.cells.map(q=>T[at(q)]),
+    plaintext:plaintext.map(i=>T[i]),
+    plaintextIndices:plaintext
+  };
+});
 
-const residual={runes:12,indexSum:151,gpSum:553};
-let full12=0;
-const checksumHits=[];
-for(const node of candidateNodes){
-  const {key}=deriveKey(node);
-  for(const [dr,dc] of readDirections){
-    const stream=[];
-    let r=ideaEndpoint[0],c=ideaEndpoint[1];
-    for(let i=0;i<residual.runes;i++){
-      if(r<1||r>27||c<1||c>27)break;
-      stream.push(mod(at(r,c)-key[i%3]));
-      r+=dr;c+=dc;
-    }
-    if(stream.length!==residual.runes)continue;
-    full12++;
-    const indexSum=stream.reduce((s,v)=>s+v,0);
-    const gpSum=stream.reduce((s,v)=>s+gp[v],0);
-    if(indexSum===residual.indexSum&&gpSum===residual.gpSum){
-      checksumHits.push({node,key,readDirection:[dr,dc],stream});
-    }
-  }
-}
-assert.equal(full12,105);
-assert.equal(checksumHits.length,0);
+// These assertions are regression checks only. None of them participates in
+// the selector above.
+assert.deepEqual(outputs.map(x=>x.cells),[
+  [[18,15],[18,16]],
+  [[19,17],[19,16]],
+  [[19,23],[20,23],[21,23]],
+  [[21,9],[21,10]],
+  [[26,3],[26,2],[26,1]]
+]);
+assert.deepEqual(outputs.flatMap(x=>x.plaintext),[
+  "O","F","TH","E","E","N","D","I","S","D","EA","TH"
+]);
+
+const allPlain=outputs.flatMap(x=>x.plaintextIndices);
+const aggregate={
+  runes:allPlain.length,
+  indexSum:allPlain.reduce((a,b)=>a+b,0),
+  gpSum:allPlain.reduce((a,b)=>a+GP[b],0)
+};
+assert.deepEqual(aggregate,{runes:12,indexSum:151,gpSum:553});
 
 console.log(JSON.stringify({
-  status:"post-IDEA source-only mirror topology fixes the next key-source chain but not ciphertext reading",
+  status:"post-hoc source-only parser candidate reproduces stages 09-13 without plaintext feedback",
   mirrorNodeCount:mirrors.length,
-  idea:{
-    cells:ideaCells,
-    plaintext:["I","D","EA"],
-    sourceEndpoint:{coord:ideaEndpoint,rune:T[at(...ideaEndpoint)]}
-  },
-  forcedTopology:{
-    endpointIncidentMirrors:touching(ideaEndpoint).length,
-    firstNode:{raw:jdj.raw.map(i=>T[i]),center:jdj.center,radius:jdj.radius,axis:jdj.axis,key:jdjKey.key.map(i=>T[i])},
-    upperOuterCenteredMirrors:centered(upperJ).length,
-    lowerOuterCenteredMirrors:centered(lowerJ).length,
-    secondNode:{raw:oejoe.raw.map(i=>T[i]),center:oejoe.center,radius:oejoe.radius,axis:oejoe.axis,key:oejoeKey.key.map(i=>T[i])},
-    remainingMirrorAtSharedJ:{raw:jbj.raw.map(i=>T[i]),center:jbj.center,radius:jbj.radius,axis:jbj.axis}
-  },
-  direct12RuneResidualControl:{
-    residual,
-    priorPathCenters:uniqueCenters.length,
-    mirrorNodes:centered.length===undefined?candidateNodes.length:candidateNodes.length,
-    fullLengthCandidates:full12,
-    exactChecksumHits:checksumHits.length
-  },
-  caveat:"This selects source key-node topology only. It does not select the OF/THE ciphertext starts, directions, block lengths, or plaintext."
+  stages:outputs,
+  aggregate,
+  caveat:"The rules were reverse-engineered after the public route was known. The exact output and locked checksum are regression/confirmation checks, not selector inputs. A genuinely prospective passage or independent original clue is still required before treating this as authenticated Cicada plaintext."
 },null,2));
