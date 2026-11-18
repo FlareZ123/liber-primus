@@ -6,13 +6,31 @@
 
 The original 2400×3600 JPEGs `resources/liber-primus/66.jpg`, `67.jpg`, and `68.jpg` independently support **all eleven tokens already printed in** `resources/liber-primus/base60-grid.json`. The six other-value readings left open by the [Dukotah July 2026 three-witness table audit](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/pp49_51/CAMPAIGN-VII-FINDINGS.md) are visually inconsistent with the original images. The five changed cells in the separate [pnotisdev transcription variant](https://github.com/pnotisdev/cicada3301/blob/main/work/ref/lp_master.txt), which had been called *image-audited corrections* in prior research, are also inconsistent with the same originals.
 
-The manuscript therefore supplies an adjudicated **printed token sequence** at these eleven positions. This does not choose between base 59 and base 60 as a numeric decoder; the separate source-level radix ambiguity still applies.
+The manuscript therefore supplies an adjudicated **printed token sequence** at these eleven positions. The image reading alone does not choose the numeric radix. A separately reconstructed GF(29) table polynomial favors radix 60 over radix 59 **conditional on the p39 red-triad factor being intentional**, as tested below. That algebraic relationship does not authenticate the author's numeral encoding or select a cipher receiver.
 
 ## Newly recovered 2014 participant readings (interpretation, not an author instruction)
 
 An independent [2014 Stage11 participant archive](https://github.com/micheloosterhof/cicada-2014/tree/6c3421a4d245596e403c88e037509d162a2afd17/stage11) contains the complete 256 LP2 table tokens as `49.txt`, `50.txt`, `51.txt`, their 256 decimal readings, a literal byte-packing Perl script, and a 256-byte `sexagesimal.bin`. Thus a **base-60 reading was human-accessible and actually attempted in 2014**, rather than only arising from modern reconstruction. This strengthens the historical plausibility of byte interpretation, although it does not prove an author-specified radix or decipherment operation.
 
 An exact alignment with the original-correct grid reveals **10 token disagreements**, **9 decimal-byte disagreements**, **5 internal historical token/decimal inconsistencies**, spread across **12 distinct original cells**. Every one of the **eleven original glyph-dispute coordinates** examined below occurs among those twelve; cell 170 supplies a twelfth typographic error, with its original-correct value already present in the participant's decimal conversion. See [the precise 12-coordinate side-by-side comparison](lp2-2014-stage11-sexagesimal-byte-comparison.md). The old participant 256-byte stream is therefore **nine bytes wrong** relative to the source-adjudicated base-60 interpretation. It cannot serve as an unquestioned original key or independently refute the image-derived character adjudications.
+
+## Conditional original GF(29) double-root checksum over historical case variants (18 November 2026)
+
+**Finding and scope.** A source-anchored consistency test independently selects every one of the **seven ambiguous 2014 capitalizations** after accepting three corrections already identified in that 2014 solver's own numeric table. The relation is algebraically exact on the current original-image-adjudicated 256-token transcription, and it disfavors the alternative omitted-f radix59 reading. The choice of the p39 triad as a checksum is a retrospective puzzle-design hypothesis. This is stronger internal consistency evidence, **not recovered plaintext, an author-authenticated checksum rule, or a cipher key**.
+
+Interpret the original 32×8 table as 256 **high-first polynomial coefficients** in GF(29), each a two-character conventional base60 value reduced modulo29. The separately printed p39 red triad has GP indices [27,5,15]; in low-first order its polynomial is
+
+\[
+G(X)=27+5X+15X^2=15(X-24)^2\pmod{29}.
+\]
+
+Exact divisibility by G is equivalent to the two GF29 checks P(24)=0 and P'(24)=0. A derivative Horner pass over the unmodified canonical table gives **(0,0)**; the earlier 2014 sexagesimal binary gives **(23,26)**. The old archive's three explicitly documented corrections at zero-based positions **165, 170, 172** yield **(24,25)** when applied to its earlier byte stream. Treat those three corrections as fixed independent historical evidence, then enumerate all **128** choices of the remaining old-versus-original readings at **25,45,50,175,182,199,246**. Exactly **one** choice gives (0,0): the one choosing **all seven source-adjudicated original readings**, with bit mask127 in ascending index order. There is no fitted key or language-scoring threshold.
+
+The distinction between fixed and unfixed historical edits matters. If the test is allowed to choose all **ten** differences between the 2014 binary and the original reading, there are **four** of 1,024 satisfying combinations, with masks **131,139,1015,1023** against sorted indices [25,45,50,165,170,172,175,182,199,246]. The twofold ambiguity at index165 is unavoidable because that wrong-vs-correct byte difference equals29 and therefore vanishes modulo29. Without accepting the original 2014 numeric corrections and image pixels, the double-root equation does **not** uniquely reconstruct the full table.
+
+All 256 printed tokens also admit a numerical radix59 interpretation omitting unused lowercase f from the 60-character alphabet. Its reconstructed original-token polynomial gives **(P(24),P'(24))=(20,12)**, versus (0,0) in radix60. If the p39 factor was intended to constrain this table, it is a **specific source-motivated choice of radix60**. The manuscript has not independently identified the polynomial orientation, radix, or downstream receiver in plain language. The factor itself was first noticed through research on this table, so this conditional agreement cannot be assigned an independent chance probability.
+
+**Reproduction:** [one-file CommonJS source test](../sims/lp2_p50_gdouble_root_2014_case_choices_sft.cjs) reads the existing [canonical two-character grid](../resources/liber-primus/lp2-grid-256.json) and [2014 byte witness](../resources/cicada2014-sexagesimal-source.json), checks all ten differences and three syndromes, and exhaustively enumerates both finite choice sets. Local Node.js 22 passed. The original-image glyph audit remains the primary evidence for the seven readings; the polynomial cross-check adds a conditional source-internal constraint.
 
 ## Exact original-image measurements
 
