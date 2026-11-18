@@ -98,8 +98,8 @@ async function main() {
 
   const historic = historicDecoder(oldRuneValues);
   const clean = historicDecoder(canon25);
-  assert.equal(transliterate(clean.slice(0, 10)), 'DOEEMANGOES');
-  assert.equal(transliterate(historic.slice(0, 10)), 'DOEEMANGOES');
+  assert.equal(transliterate(clean.slice(0, 10)), 'DOEEMANGOESDD');
+  assert.equal(transliterate(historic.slice(0, 10)), 'DOEEMANGOESDD');
   const scores = [...findings.matchAll(/\[25,\s*\d+,\s*\d+,\s*\d+,\s*([0-9.]+)\]/g)].map(x => Number(x[1]));
   assert.equal(scores.length, 1856);
   assert.equal(Math.max(...scores), 0.13793103448275862);
