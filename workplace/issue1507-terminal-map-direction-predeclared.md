@@ -1,39 +1,26 @@
-# Issue #1507 predeclared terminal-map direction grammar
+# Issue #1507 predeclaration record: upstream premise later rejected
 
-**Agent1, run `agent1-gpt5.6sol-20261118T194726Z-draw10-463a6e046f5d`. Predeclared before reading any landed p27/p34 rune.**
+**Agent1, run `agent1-gpt5.6sol-20261118T194726Z-draw10-463a6e046f5d`.**
 
-## Fixed upstream inputs
+## Current status
 
-The terminal map words are `CX / DJU / BEI`. Their only other occurrences are fixed before this test:
+This predeclaration was committed as `56dd14aaaf001aa2e99f6c1cfe3933ae7cd172a4` before any landing output was read. A later canonical parser audit showed that its upstream assumption was false: p55 line4 `CX` is the continuation suffix of complete word `CEAIMCX`, and p34 line10 `CX` is the suffix of `BGCX`. There are zero complete `CX` words in p0-p55.
 
-- CX: physical p34, word 56, line 10, local rune start 200.
-- DJU: physical p27, word 7, line 2, local rune start 28.
-- BEI: physical p27, word 8, line 2, local rune start 31.
+Accordingly, the frozen experiment is retained only as an audit record of a test that should **not** have been run from the complete-word premise. Its outputs are not evidence for the signed-2016 "words are the map" instruction.
 
-Use the historically authenticated complete-word number operation from LP1 p05: sum the published Gematria Primus prime values of the word's runes. This gives CX=60, DJU=129, BEI=159. No other word-specific number choice is allowed.
+## Frozen grammar that was tested
 
-The mapped physical page is supplied by duplicate word identity. Operations below use original physical page order only. No modulo, wrap, radix conversion, decimal splitting, page substitution, output scoring, or word-specific mode switch is allowed.
+Before the parser correction, the test incorrectly treated line-local `CX / DJU / BEI` as three complete map words and assigned GP-prime sums 60/129/159. It froze four no-wrap consumers before reading outputs:
 
-## Frozen finite grammar
+1. one-based mapped-page rune address;
+2. one-based mapped-page word address;
+3. one-based mapped-page physical-line address;
+4. exact N-rune motion from the apparent duplicate start under one global sign.
 
-### A. Historical book-code style absolute page address
+Modulo, wrap, radix conversion, decimal splitting, alternate anchors, mixed signs, page substitution, and output scoring were forbidden.
 
-A1. **Rune address:** N means the Nth original rune of the mapped physical page, one-based. This mirrors Cicada's historically explicit character/letter coordinate addressing. The rule survives only if all three N values are in range.
+## Correct disposition
 
-A2. **Word address:** N means the Nth complete printed word of the mapped physical page, one-based. The rule survives only if all three N values are in range.
+The complete-word parser is the gate that should have preceded this arithmetic. The CX leg and all three-word outputs are withdrawn. Only the genuine repeated complete-word pair `DJU / BEI` remains as a separate source fact; no direction operator follows from this note.
 
-A3. **Line address:** N means the Nth physical printed rune line of the mapped page, one-based. The rule survives only if all three N values are in range.
-
-### B. Literal relative direction
-
-B1. Anchor at the first rune of the mapped duplicate word. Move exactly N rune transitions in one shared direction for all three words, either forward or backward in physical page order. No wrap. A sign survives only if every landing remains on its mapped physical page. If exactly one global sign survives, it is selected before rune values are inspected.
-
-No end-of-word anchor, N-1 displacement, mixed signs, or line/chapter/global wrap is in the grammar.
-
-## Predeclared success criterion
-
-First inspect only source-visible landing structure: page/line/word boundary class, rubrication, punctuation or an already authenticated operation trigger. Then reveal the landed rune or word.
-
-A positive requires one surviving grammar to produce the same source-visible cue class for all three mapped words, or a deterministic extracted operand that exactly matches an independently known Cicada token, key, coordinate, or reversible operation without language-model or language-score search. Otherwise the branch closes as underselected.
-
-This note is intentionally result-free so the extraction is auditable after the fact.
+See `im-results/lp2-terminal-completeword-graph-correction.md` and the corrected `im-results/lp2-terminal-map-numbers-direction-gate.md`.

@@ -1,32 +1,111 @@
 'use strict';
-/** Issue #1507 source-only reproduction. */
+
+/**
+ * Director #1507 correction: reject the three-complete-word terminal map premise
+ * using the canonical word parser. Read-only CommonJS / Node 22.
+ */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+
 const root = path.resolve(__dirname, '..');
-const t = fs.readFileSync(path.join(root,'resources','liber-primus','lp2-transcription.txt'),'utf8');
-const c = JSON.parse(fs.readFileSync(path.join(root,'resources','liber-primus','lp2-corpus.json'),'utf8'));
-const parts=t.split(/^%$/m); assert.equal(parts.length,57);
-/** @param {number} p */
-function body(p){return parts[p<50?p:p-1];}
-/** @param {number} p */
-function meta(p){
-  const b=body(p), ms=[...b.matchAll(/[ᚠ-ᛡ]+/gu)];
-  const words=ms.map((m,i)=>{const x=b.slice(0,m.index),s=[...x].filter(r=>c.runes.includes(r)).length,l=[...m[0]].length;return {i:i+1,s,e:s+l-1,l,line:1+(x.match(/\//g)||[]).length,r:m[0]};});
-  let q=0; const lines=[]; for(const [i,x] of b.split('/\n').entries()){const l=[...x].filter(r=>c.runes.includes(r)).length;if(l){lines.push({i:i+1,s:q,e:q+l-1});q+=l;}}
-  return {r:c.pages[p].runic_count,words,lines};
+const source = fs.readFileSync(
+  path.join(root, 'resources', 'liber-primus', 'lp2-transcription.txt'), 'utf8');
+const corpus = JSON.parse(fs.readFileSync(
+  path.join(root, 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'));
+
+const alphabet = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const unknown = source.split('%').slice(0, 55).join('%');
+const words = [];
+let fragment = [];
+let rawPage = 0;
+let line = 1;
+let startPage = -1;
+let endPage = -1;
+let startLine = -1;
+let endLine = -1;
+
+const physicalPage = (page) => page >= 50 ? page + 1 : page;
+
+/** Finish one complete printed word. */
+function finishWord() {
+  if (!fragment.length) return;
+  words.push({
+    runes: fragment.map((index) => corpus.runes[index]).join(''),
+    translit: fragment.map((index) => corpus.translit[index]).join(''),
+    startPage: physicalPage(startPage),
+    endPage: physicalPage(endPage),
+    startLine,
+    endLine
+  });
+  fragment = [];
 }
-/** @param {string} w */
-function sum(w){return [...w].reduce((a,r)=>a+c.prime[c.runes.indexOf(r)],0);}
-/** @param {number} p @param {number} x */
-function at(p,x){const m=meta(p),w=m.words.find(z=>x>=z.s&&x<=z.e),l=m.lines.find(z=>x>=z.s&&x<=z.e),ri=c.pages[p].indices[x];assert(w&&l);return {tr:c.translit[ri],pageEnd:x===m.r-1,lineStart:x===l.s,lineEnd:x===l.e,wordStart:x===w.s,wordEnd:x===w.e};}
-const ws=['ᚳᛉ','ᛞᛄᚢ','ᛒᛖᛁ']; assert.deepEqual(ws.map(sum),[60,129,159]);
-const m=[{p:34,s:200,n:60},{p:27,s:28,n:129},{p:27,s:31,n:159}];
-assert.deepEqual([27,34].map(p=>[meta(p).r,meta(p).words.length,meta(p).lines.length]),[[234,57,11],[261,71,12]]);
-assert.equal(m.every(x=>x.n<=meta(x.p).words.length),false); assert.equal(m.every(x=>x.n<=meta(x.p).lines.length),false);
-const a=m.map(x=>x.n-1); assert.deepEqual(a,[59,128,158]); assert.deepEqual(m.map((x,i)=>at(x.p,a[i]).tr),['S','F','EA']);
-const f=m.map(x=>x.s+x.n), b=m.map(x=>x.s-x.n); assert.deepEqual(f,[260,157,190]); assert.deepEqual(b,[140,-101,-128]);
-assert.equal(m.every((x,i)=>f[i]>=0&&f[i]<meta(x.p).r),true); assert.equal(m.every((x,i)=>b[i]>=0&&b[i]<meta(x.p).r),false);
-const z=m.map((x,i)=>at(x.p,f[i])); assert.deepEqual(z.map(x=>x.tr),['P','W','AE']);
-assert.deepEqual(z.map(x=>[x.pageEnd,x.lineStart,x.lineEnd,x.wordStart,x.wordEnd]),[[true,false,true,false,true],[false,false,false,true,false],[false,true,false,true,false]]);
-console.log('A1: S/F/EA; B1 unique forward: P/W/AE; no shared boundary class.');
+
+let runeCount = 0;
+for (const char of unknown) {
+  if (alphabet.has(char)) {
+    if (!fragment.length) {
+      startPage = rawPage;
+      startLine = line;
+    }
+    fragment.push(alphabet.get(char));
+    endPage = rawPage;
+    endLine = line;
+    runeCount++;
+  } else if (char === '%') {
+    rawPage++;
+    line = 1;
+  } else if (char === '/') {
+    line++;
+  } else if (/\s/u.test(char)) {
+    // Physical wrapping is layout, not a word delimiter.
+  } else {
+    finishWord();
+  }
+}
+finishWord();
+
+assert.equal(runeCount, 12956);
+assert.equal(words.length, 2896);
+assert.equal(words.filter((word) => word.startPage !== word.endPage).length, 32);
+
+const frequency = new Map();
+for (const word of words) {
+  frequency.set(word.runes, (frequency.get(word.runes) || 0) + 1);
+}
+
+const CX = 'ᚳᛉ';
+const DJU = 'ᛞᛄᚢ';
+const BEI = 'ᛒᛖᛁ';
+
+assert.equal(frequency.get(CX) || 0, 0);
+assert.deepEqual(words.slice(-3).map((word) => word.translit),
+  ['CEAIMCX', 'DJU', 'BEI']);
+assert.deepEqual(words.slice(-3).map((word) => frequency.get(word.runes)),
+  [1, 2, 2]);
+
+const p34Suffix = words.find((word) =>
+  word.startPage === 34 && word.startLine === 9 &&
+  word.endLine === 10 && word.runes.endsWith(CX));
+assert(p34Suffix);
+assert.equal(p34Suffix.translit, 'BGCX');
+
+const dju = words
+  .map((word, index) => ({word, index}))
+  .filter(({word}) => word.runes === DJU);
+const bei = words
+  .map((word, index) => ({word, index}))
+  .filter(({word}) => word.runes === BEI);
+assert.equal(dju.length, 2);
+assert.equal(bei.length, 2);
+assert.deepEqual(dju.map(({word}) => [word.startPage, word.startLine]),
+  [[27, 2], [55, 4]]);
+assert.deepEqual(bei.map(({word}) => [word.startPage, word.startLine]),
+  [[27, 2], [55, 4]]);
+assert.ok(dju.every(({index}, i) => bei[i].index === index + 1));
+
+console.log('CORRECTION: CX complete-word count = 0');
+console.log('P55 complete suffix: CEAIMCX / DJU / BEI, frequencies 1 / 2 / 2');
+console.log('P34 visible CX is the line-wrapped suffix of BGCX');
+console.log('SURVIVES: DJU / BEI is a genuine repeated adjacent complete-word pair');
+console.log('DECISION: withdraw the three-word numbers-as-direction experiment');

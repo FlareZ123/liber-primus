@@ -1,17 +1,31 @@
-# Terminal duplicate-word numbers-as-direction gate
+# Terminal numbers-as-direction gate: three-word premise retracted
 
-**Agent1, 18 November 2026, Director #1507. Bounded negative. No unknown LP2 plaintext, authenticated key, direction convention, or destination recovered.**
+**Agent1, corrected 18 November 2026 after the canonical complete-word audit. Director #1507 is negative at its upstream source-parsing gate. No unknown LP2 plaintext, authenticated key, direction convention, or destination was recovered.**
 
-The finite `prime_echo` handoff leaves `CX / DJU / BEI`. Their only earlier copies are fixed at p34 word56 local rune200, p27 word7 local28, and p27 word8 local31. The historically authenticated LP1 p05 word-number operation gives GP-prime sums **60,129,159**.
+## Correction
 
-Before reading any landed p27/p34 rune, commit `56dd14aaaf001aa2e99f6c1cfe3933ae7cd172a4` froze four no-wrap grammars: one-based page rune, word, or line address; and relative motion by exactly N rune transitions from the duplicate-word start under one global sign. Modulo, radix conversion, alternate anchors, mixed signs, output scoring, and rescue layers were forbidden.
+My earlier #1507 report treated the physical p55 line4 display `CX / DJU / BEI` as three complete printed words. That premise is false under the repository's established parser.
 
-Physical capacities are p27 = 234 runes / 57 words / 11 lines and p34 = 261 / 71 / 12. Word and line addressing fail capacity. Rune addressing lands at p34:59, p27:128, p27:158, all ordinary word interiors, then reveals **`S / F / EA`**.
+Physical line and page wrapping do not terminate printed words. The canonical p0-p55 parse reproduces **12,956 runes, 2,896 complete words, and 32 cross-page words**. At the end of p55 the complete words are:
 
-For relative motion, forward lands at p34:260, p27:157, p27:190 and is the only global in-bounds sign; backward gives p34:140, p27:-101, p27:-128. Before rune reveal, the forward landing classes were respectively page-end+word-end, word-start, and line-start+word-start, so there is no common source-visible cue. The frozen runes are **`P / W / AE`**.
+- `CEAIMCX`, frequency1, beginning on line3 and ending on line4;
+- `DJU`, frequency2;
+- `BEI`, frequency2.
 
-Neither exact token matches an independently authenticated Cicada operand, instruction, coordinate, or key. The isolated p34 page-end landing does not authenticate the rule because both p27 landings behave differently.
+The finite `prime_echo` exhaustion at terminal boundary300 cuts `CEAIMCX` after rune4 of6. The visible `CX` is therefore only its two-rune continuation suffix. There are **zero complete words equal to CX** in p0-p55. The apparent p34 line10 `CX` is likewise the continuation suffix of complete word `BGCX`.
 
-**Decision:** retain `CX / DJU / BEI` as a candidate implementation of “Its words are the map,” while the tested source-minimal grammars do not implement “their numbers are the direction.” Per #1507, do not add base58/base60, modulus, N-1 counting, page wrap, prime ranks, factorization, alternate anchors, mixed signs, or language-scored layers. Reopen only with an independent first-party direction/address convention or plaintext that specifies it.
+The corrected source gate is independently preserved in `im-results/lp2-terminal-completeword-graph-correction.md` and `sims/lp2_terminal_completeword_graph_sft.cjs`.
+
+## Consequence for the predeclared direction experiment
+
+Commit `56dd14aaaf001aa2e99f6c1cfe3933ae7cd172a4` predeclared a finite direction grammar before any landing was read. That discipline remains auditable, but its upstream object was wrong: it assigned the signed-2016 word/map instruction to a line fragment and a fragment-matched p34 destination.
+
+The previously reported outputs `S / F / EA` and `P / W / AE` are therefore **withdrawn as evidence about "Its words are the map"**. They are arithmetic consequences of an invalid three-word map construction and must not motivate successor searches.
+
+The two complete words `DJU / BEI` do survive as a genuine repeated adjacent pair at p27 and p55. This correction does not supply a source rule saying that their GP sums are directions, nor does it authorize adapting the failed three-word grammar to two words after seeing the correction.
+
+## Decision
+
+Close #1507 because its stated three-selected-word premise fails before number-to-direction decoding. Preserve the finite-prime physical line-boundary result and the genuine `DJU / BEI` repetition as separate clues. Do not use the withdrawn CX leg, its GP sum60, the p34 fragment destination, or the old landing tokens in downstream cryptanalysis unless an independent first-party source explicitly selects line fragments rather than complete words.
 
 Reproduction: `node sims/lp2_terminal_map_numbers_direction_sft.cjs`.
