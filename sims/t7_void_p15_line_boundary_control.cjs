@@ -43,9 +43,9 @@ const p15HalfTargets=new Set(p15Values.filter(v=>v%2===0).map(v=>v/2));
 const observedThreeGapSpan=t7.span;
 const exactP15Matches=p15Values.filter(v=>v===2*observedThreeGapSpan);
 
-// Conservative null: preserve every page's exact rune multiset, shuffle only
-// within pages, and recompute the maximum three-gap span. Fixed xorshift seed
-// makes the 2000-trial control reproducible without an external RNG package.
+// Diagnostic only: shuffling each page's rune multiset destroys the source's
+// rare-adjacent-repeat constraint. This is NOT a calibrated T7 null: it creates
+// about five times the original number of repeat events. Retain for comparison.
 let rngState=0x12345678>>>0;
 function rnd(){rngState^=rngState<<13;rngState^=rngState>>>17;rngState^=rngState<<5;return(rngState>>>0)/4294967296;}
 function shuffle(a){const x=a.slice();for(let i=x.length-1;i>0;i--){const k=Math.floor(rnd()*(i+1));[x[i],x[k]]=[x[k],x[i]];}return x;}
@@ -58,6 +58,62 @@ for(let t=0;t<nullTrials;t++){
   if(p15HalfTargets.has(m))nullExact++;
   if(m>=observedThreeGapSpan)nullGE++;
 }
+// Appropriate geometry control: hold the EXACT observed doublet count on
+// every physical page and sample the eligible within-page sites uniformly.
+// The shuffle above does not hold this essential observed feature fixed.
+const eventGroups=[];
+let originalEventCount=0,expectedShuffleEvents=0,globalOffset=0;
+for(const p of pages){
+  const arr=p.indices, n=arr.length;
+  let k=0;const freq=new Map();
+  for(let i=0;i<n;i++){freq.set(arr[i],(freq.get(arr[i])||0)+1);if(i&&arr[i]===arr[i-1])k++;}
+  if(n)for(const f of freq.values())expectedShuffleEvents+=f*(f-1)/n;
+  eventGroups.push({start:globalOffset,eligible:Math.max(0,n-1),count:k});
+  globalOffset+=n;originalEventCount+=k;
+}
+assert.equal(originalEventCount,86);
+assert.equal(t7.span,1649);
+assert.ok(Math.abs(expectedShuffleEvents-439.16592408430563)<1e-8);
+let siteRng=0x31415926>>>0;
+function siteRandom(){siteRng^=siteRng<<13;siteRng^=siteRng>>>17;siteRng^=siteRng<<5;return(siteRng>>>0)/4294967296;}
+function siteMaxThreeGap(sites){
+  let m=0;for(let i=0;i+3<sites.length;i++)m=Math.max(m,sites[i+3]-sites[i]);return m;
+}
+const fixedEventTrials=50000;
+let fixedEventGE=0,fixedEventExact=0,fixedEventHalf=0,fixedEventSum=0,fixedEventMin=Infinity,fixedEventMax=0;
+for(let t=0;t<fixedEventTrials;t++){
+  const sites=[];
+  for(const group of eventGroups){
+    const {start,eligible,count}=group;
+    // Floyd's exact-without-replacement sampler for positions 0..eligible-1.
+    const chosen=new Set();
+    for(let j=eligible-count;j<eligible;j++){
+      const r=Math.floor(siteRandom()*(j+1));
+      chosen.add(chosen.has(r)?j:r);
+    }
+    for(const local of chosen)sites.push(start+local+1);
+  }
+  sites.sort((a,b)=>a-b);
+  const m=siteMaxThreeGap(sites);
+  fixedEventSum+=m;
+  fixedEventMin=Math.min(fixedEventMin,m);
+  fixedEventMax=Math.max(fixedEventMax,m);
+  if(m>=observedThreeGapSpan)fixedEventGE++;
+  if(m===observedThreeGapSpan)fixedEventExact++;
+  if(p15HalfTargets.has(m))fixedEventHalf++;
+}
+const geometryNull={
+  controls:"all original within-page doublet counts and physical page lengths",
+  trials:fixedEventTrials,
+  mean_max_three_gap:fixedEventSum/fixedEventTrials,
+  min:fixedEventMin,max:fixedEventMax,
+  max_at_least_1649:fixedEventGE,
+  p_ge_plus_one:(fixedEventGE+1)/(fixedEventTrials+1),
+  exactly_1649:fixedEventExact,
+  max_equals_any_even_p15_half:fixedEventHalf,
+  p_any_half_plus_one:(fixedEventHalf+1)/(fixedEventTrials+1)
+};
+
 const fullMid=(t7.sites[0]+t7.sites[3])/2;
 const largestMid=(t7.sites[1]+t7.sites[2])/2;
 const dists=lineBoundaries.map(b=>Math.abs(b-fullMid)).sort((a,b)=>a-b);
@@ -86,6 +142,8 @@ assert.equal(halfRuneWithAtLeastFiveLines,2447);
 function pageFor(x){let start=0;for(const p of pages){const end=start+p.runic_count;if(x>=start&&x<end)return{page:p.page,offset:x-start};start=end;}return null;}
 console.log(JSON.stringify({
  corpus_runes:stream.length,doublet_count:doublets.length,t7_cluster:t7,
+ null_control_warning:{observed_same_page_repeats:originalEventCount,expected_under_page_rune_shuffle:expectedShuffleEvents,unconditioned_multiset_shuffle:{trials:nullTrials,any_p15_half_matches:nullExact,max_ge_1649:nullGE}},
+ fixed_event_geometry_null:geometryNull,
  full_void_midpoint:fullMid,largest_gap_midpoint:largestMid,p15_axis:p15Axis,p15_page_start:p15Start,
  p15_axis_distance_from_full_midpoint:Math.abs(p15Axis-fullMid),
  internal_line_boundaries:lineBoundaries.length,nearest_line_boundary_distances:dists.slice(0,10),
