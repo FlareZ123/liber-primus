@@ -96,3 +96,10 @@ node sims/lp2_red13_rank_convention_selector_sft.cjs
 ```
 
 The reproducer derives the source event tapes, verifies the original `title133`, computes the fixed-weight state width, enumerates the eight canonical rank variants, and confirms the unique convention result above.
+
+
+## Upstream receiver for title133
+
+The title is no longer an isolated historical number. Clear p57 `SURFACE` has GP0=67, the 67th prime is331, and the original delivery HTML's unique `<div id="331">` wraps all58 book images. Across the clear p57 vocabulary, SURFACE is the only `prime(GP0(word))` hit on the wrapper's structural numbers133/331. The independently selected p55 semantic carrier also exposes SURFACE before the wrapper is inspected.
+
+This supplies a plausible human route into the page where title133 becomes visible. The prime-lift is still an inferred navigation operation, so the rank remains source-motivated rather than authenticated. See `im-results/lp2-surface331-title133-red13-receiver.md`.

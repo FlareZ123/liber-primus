@@ -176,3 +176,13 @@ For the already selected red-only 30-of255 positions, I compared eight canonical
 
 New report: im-results/lp2-red13-rank-convention-selector.md
 New SFT: sims/lp2_red13_rank_convention_selector_sft.cjs
+
+
+### Continuation: SURFACE -> 331 selects original wrapper before title133
+
+Clear p57 SURFACE has GP0=67 and the 67th prime is331. In the authentic 2014 delivery HTML, excluding the explicit 0.jpg..57.jpg sequence leaves only structural decimal literals133 and331; 331 is the unique div id wrapping all58 book images. Across all clear p57 words, SURFACE is the only nthPrime(GP0(word)) hit on either structural wrapper literal. The independently selected p55 word12 semantic carrier already yields THE->SURFACE->EMERGE, so SURFACE is upstream-selected.
+
+This creates a causal human path SURFACE -> 67 -> prime(67)=331 -> original wrapper -> title133 -> fixed-weight red13 state. It strengthens the combinadic/onion candidate while leaving prime-lift as an inferred operation and the exact Tor-v2 host unauthenticated.
+
+Report: im-results/lp2-surface331-title133-red13-receiver.md
+SFT: sims/lp2_surface331_title133_red13_sft.cjs

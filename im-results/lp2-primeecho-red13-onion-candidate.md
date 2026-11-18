@@ -136,6 +136,14 @@ This substantially improves the choice between the two residual primes: the p28 
 
 The original onion7 title133 now independently motivates fixed-weight enumerative coding and the route labels uniquely select zero-based forward lex rank among the canonical rank symmetries. The remaining unsupported algorithmic step is that the source never literally names the rank operation; the larger unresolved receiver is the interpretation of the 79-bit prime as a historical Tor-v2 destination. No archival occurrence or checksum authenticates the host. Focused cross-check: `sims/lp2_p28_dh23_onion_factor_selector_sft.cjs`.
 
+## 3a-2. SURFACE selects the historical wrapper that carries title133
+
+The title133 clue now has an upstream manuscript receiver. Clear p57 `SURFACE` has GP0=67, and the 67th prime is331. The original 2014 delivery wrapper contains exactly one structural `331`: `<div id="331">`, the div carrying all58 LP2 images. Once the sequential image filenames are excluded, its only structural decimal literals are133 and331; among all clear p57 words, only SURFACE prime-lifts from GP0 onto either value.
+
+The independently selected p55 word12 semantic object already carries `THE -> SURFACE -> EMERGE`, which fixes SURFACE before this HTML match is evaluated. The intended-path hypothesis is therefore `SURFACE -> 67 -> prime(67)=331 -> original wrapper -> title133`, after which the fixed-weight rank clue below applies.
+
+This materially improves the causal path to the rank candidate. The new prime-lift is still an inferred operation and must remain distinguishable from an explicit creator instruction.
+
 ## 3b. Original onion7 title133 motivates fixed-weight ranking and selects the convention
 
 The original 2014 LP2 delivery wrapper contains the otherwise unexplained literal `<title>133</title>`. Independently, the complete source-exact 13-dot event state is 31 marks among 256 total red-rune/13-dot events, and `bit_length(C(256,31)-1)=133`. This gives an author-era, source-visible reason to treat the marker positions as a fixed-weight enumerative state rather than introducing combinadic ranking solely because its output factors well.

@@ -86,3 +86,12 @@ Preserve this as a high-priority semantic navigation node. It gives the phrase `
 The remaining useful question is whether the common output80 supplies a uniquely typed receiver on the independently selected p27 page or elsewhere. Avoid treating the three-rune interior as plaintext; the evidence currently identifies semantic registers rather than a letter-level cipher.
 
 Reproducer: `sims/lp2_p55_word12_surface_emerge_semantic_sft.cjs`.
+
+
+## Historical receiver continuation: SURFACE -> 331 -> title133
+
+The semantic carrier now has a concrete historical receiver. Native `GP0(SURFACE)=67`; the 67th prime is **331**. The original 2014 LP2 delivery wrapper contains `<div id="331">` exactly once, and that div carries the complete 58-image book. After image-sequence filenames are removed, the wrapper's only structural decimal literals are133 and331; no other clear p57 word prime-lifts from its GP0 value to either structural number.
+
+Following that selected div exposes the wrapper's `<title>133</title>`. Independently, the complete 31-of-256 thirteen-dot positional state needs exactly133 bits under fixed-weight enumeration. This creates the source-constrained continuation `THE SURFACE EMERGE -> 67 -> 331 -> title133 -> red13 state`.
+
+The prime-lift operation remains inferred. See `im-results/lp2-surface331-title133-red13-receiver.md`.
