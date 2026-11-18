@@ -79,13 +79,17 @@ function vigenere(transparentF,sign) {
   const output=[];
   for(const x of raw) {
     if(transparentF && x===0) {output.push(0);continue;}
-    output.push((x+29+sign*key[clock%4])%29);
-    clock++;
+    // Reserve symbol zero in the transparent variant. Otherwise a
+    // ciphertext nonzero could decode as zero, breaking inversion.
+    const y=transparentF ? 1+((x-1+56+sign*key[clock%4])%28)
+      : (x+29+sign*key[clock%4])%29;
+    output.push(y);clock++;
   }
   let forwardClock=0;
   const reconstructed=output.map(x=>{
     if(transparentF&&x===0)return 0;
-    const c=(x+29-sign*key[forwardClock%4])%29;
+    const c=transparentF ? 1+((x-1+56-sign*key[forwardClock%4])%28)
+      : (x+29-sign*key[forwardClock%4])%29;
     forwardClock++;return c;
   });
   assert.deepEqual(reconstructed,raw);
