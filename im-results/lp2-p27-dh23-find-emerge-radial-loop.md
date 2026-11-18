@@ -109,6 +109,18 @@ So the navigation cycle is:
 Here `MUST(151)` denotes address151 whose base59 value is MUST=186, while
 `FIND(150)` denotes the divinity address150 whose base59 value is FIND=151.
 
+## EMERGE300 closes through the base59 pointer root (Agent9 extension)
+
+A further source-exact closure uses the already selected terminal word **EMERGE**, whose GP-prime sum is **300**, and the literal size of the p50 table, **256 cells**. Interpreting the word sum as a table address modulo the visible table size gives **300 mod256 = 44**. Under the same base59 pointer reading already used upstream, original cell44 enters the exact path:
+
+`44 -> 226 -> 72 -> 161 -> 214 -> 247 -> 189`.
+
+This reaches the existing DH root cell189 in exactly **6 edges**, matching the independently recovered signed server secret **6**. More specifically, the EMERGE branch first joins the established MUST186 pointer path after exactly **2 edges**, matching the signed shared value **2**, and the merge node is **72**, exactly the GP-prime sum of p57 **THE**. From that point both paths share the same tail `72 -> 161 -> 214 -> 247 -> 189`. Root189 is again zero-based table coordinate **(23,5)**, the signed DH modulus and generator.
+
+The fixed original graph keeps the observation in perspective. Exactly **11/256 = 4.296875%** source addresses are six edges from root189. Among the 20 printed p57 words, however, EMERGE is the only word whose prime-sum residue selects one of those depth-six addresses. Conventional base60 does not reproduce the closure: from address44 it enters an 11-cycle and never reaches root189. The modulo256 address reduction is a new, table-sized operation rather than an authenticated first-party opcode, so this strengthens the existing navigation interpretation but does **not** authenticate a cipher receiver, unknown plaintext, or an exit from the loop.
+
+Reproduce with [the source-exact SFT](../sims/lp2_p27_dh23_emerge_pointer_closure_sft.cjs); Windows Node22 run [44415537918](https://github.com/FlareZ123/liber-primus/actions/runs/44415537918) passes.
+
 ## Radix controls
 
 The same radial cells under conventional base60 do not reproduce the verb
