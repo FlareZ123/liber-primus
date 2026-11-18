@@ -478,11 +478,16 @@ assert.equal(tokenValue(tableTokens[186], alphabet59), 19);
 assert.equal(tableTokens[189], "3C");
 assert.equal(tokenValue(tableTokens[189], alphabet59), 189);
 
-// Shared secret 2 gives a literal two-layer circumference shedding on the
-// original 32x8 p50 table. The remaining 28x4 interior has 112 cells, exactly
-// phi(GP-prime(SHED)). The unique literal 13 lies inside this receiver.
-const tableRows = 8;
-const tableColumns = 32;
+// The physical p50 table is 32 rows x 8 columns. Shared secret 2 gives
+// a literal two-layer circumference shedding, leaving 28 x 4 = 112 cells.
+// Those dimensions are independently FIND's table output and rune length,
+// while the area is phi(GP-prime(SHED)).
+const tableRows = grid.pages.reduce((sum, page) => sum + page.rows, 0);
+const tableColumns = grid.pages[0].cols;
+assert.equal(tableRows, 32);
+assert.equal(tableColumns, 8);
+assert(grid.pages.every((page) => page.cols === tableColumns));
+
 const shedDepth = sharedSecret;
 const shedInterior = [];
 for (let row = shedDepth; row < tableRows - shedDepth; row += 1) {
@@ -490,70 +495,34 @@ for (let row = shedDepth; row < tableRows - shedDepth; row += 1) {
     shedInterior.push(row * tableColumns + column);
   }
 }
+const remainingRows = tableRows - 2 * shedDepth;
+const remainingColumns = tableColumns - 2 * shedDepth;
+assert.deepEqual([remainingRows, remainingColumns], [28, 4]);
+assert.equal(remainingRows, tokenValue(tableTokens[gp0(find)], alphabet59));
+assert.equal(remainingColumns, find.indices.length);
 assert.equal(shedInterior.length, 112);
 assert.equal(shedInterior.length, phi(primeSum(shed.indices)));
-assert.equal(tableRows - 2 * shedDepth, find.indices.length);
-assert.equal(tableColumns - 2 * shedDepth, tokenValue(tableTokens[gp0(find)], alphabet59));
-assert(shedInterior.includes(gp0(divinity)));
-assert.equal(tableTokens[gp0(divinity)], "13");
 
-// In the 4x28 shed interior, one-based top-left (shared2, len(DIVINITY)=8)
-// lands exactly on global cell105. Across the eight natural choices obtained
-// from one/zero-based indexing and independent row/column reversal, only this
-// convention reaches the table's unique literal 13.
-const relativeRowOneBased = sharedSecret;
-const relativeColumnOneBased = divinity.indices.length;
-const geometryCandidates = [];
-for (const oneBased of [true, false]) {
-  for (const reverseRow of [false, true]) {
-    for (const reverseColumn of [false, true]) {
-      const rowOffset = oneBased ? relativeRowOneBased - 1 : relativeRowOneBased;
-      const columnOffset = oneBased ? relativeColumnOneBased - 1 : relativeColumnOneBased;
-      const row = reverseRow
-        ? tableRows - shedDepth - 1 - rowOffset
-        : shedDepth + rowOffset;
-      const column = reverseColumn
-        ? tableColumns - shedDepth - 1 - columnOffset
-        : shedDepth + columnOffset;
-      const index = row * tableColumns + column;
-      geometryCandidates.push({
-        oneBased,
-        reverseRow,
-        reverseColumn,
-        index,
-        token: tableTokens[index],
-      });
-    }
-  }
-}
-assert.deepEqual(
-  geometryCandidates.filter((candidate) => candidate.token === "13"),
-  [{
-    oneBased: true,
-    reverseRow: false,
-    reverseColumn: false,
-    index: gp0(divinity),
-    token: "13",
-  }]
+// Correct-orientation holdout: the unique literal 13 selected by DIVINITY is
+// on the second physical circumference of the 32x8 table. Its one-based ring
+// ordinal therefore equals the independently recovered DH shared secret 2.
+// It is shed away by the second peel, so it is not part of the 112-cell core.
+const divinityIndex = gp0(divinity);
+const divinityRow = Math.floor(divinityIndex / tableColumns);
+const divinityColumn = divinityIndex % tableColumns;
+const divinityRingDepth = Math.min(
+  divinityRow,
+  divinityColumn,
+  tableRows - 1 - divinityRow,
+  tableColumns - 1 - divinityColumn
 );
+assert.deepEqual(
+  {row: divinityRow, column: divinityColumn, ringOrdinal: divinityRingDepth + 1},
+  {row: 13, column: 1, ringOrdinal: sharedSecret}
+);
+assert.equal(tableTokens[divinityIndex], "13");
+assert(!shedInterior.includes(divinityIndex));
 
-const emerged59 = tokenValue(tableTokens[gp0(divinity)], alphabet59);
-const emerged60 = tokenValue(tableTokens[gp0(divinity)], alphabet60);
-assert.equal(emerged59, 62);
-assert.equal(emerged60, 63);
-assert(!shedInterior.includes(emerged59));
-assert(!shedInterior.includes(emerged60));
-
-// A supporting, non-unique self-length relation: eight base59 pointer steps
-// from DIVINITY's GP0 address reach GP0(EMERGE).
-let divinityPointer = gp0(divinity);
-const divinityPointerPath = [divinityPointer];
-for (let step = 0; step < divinity.indices.length; step += 1) {
-  divinityPointer = tokenValue(tableTokens[divinityPointer], alphabet59);
-  divinityPointerPath.push(divinityPointer);
-}
-assert.equal(divinityPointer, gp0(emerge));
-assert.deepEqual(divinityPointerPath, [105, 62, 122, 85, 28, 148, 242, 41, 83]);
 
 process.stdout.write(JSON.stringify({
   classification: "source-constrained navigation and DH handoff; NO UNKNOWN PLAINTEXT",
@@ -620,23 +589,16 @@ process.stdout.write(JSON.stringify({
     sharedSecret,
     sharedSecretConfirmsSymmetricShedDepth: sharedSecret,
     shedInterior: {
-      rows: tableRows - 2 * shedDepth,
-      columns: tableColumns - 2 * shedDepth,
+      physicalTable: [tableRows, tableColumns],
+      remaining: [remainingRows, remainingColumns],
       cells: shedInterior.length,
       shedTotient: phi(primeSum(shed.indices)),
-      divinityCell: gp0(divinity),
-      findDimensions: {
-        rows: find.indices.length,
-        columns: tokenValue(tableTokens[gp0(find)], alphabet59),
-      },
-      divinityCoordinate: {
-        oneBasedRow: sharedSecret,
-        oneBasedColumn: divinity.indices.length,
-        uniqueNaturalOrientationHit: true,
-      },
-      firstBase59Exit: emerged59,
-      firstBase60Exit: emerged60,
-      divinitySelfLengthBase59Path: divinityPointerPath,
+      findOutput: tokenValue(tableTokens[gp0(find)], alphabet59),
+      findRuneLength: find.indices.length,
+      divinityCell: divinityIndex,
+      divinityPhysicalCoordinate: [divinityRow, divinityColumn],
+      divinityRingOrdinal: divinityRingDepth + 1,
+      divinitySurvivesSecondShed: shedInterior.includes(divinityIndex),
     },
     base59CoordinateValue: tokenValue(tableTokens[coordinate], alphabet59),
     base60CoordinateValue: tokenValue(tableTokens[coordinate], alphabet60),
