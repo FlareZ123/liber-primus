@@ -175,24 +175,49 @@ For completeness, the first two reconstructed exchanges would give:
 
 The third exchange carries all six-way discrimination.
 
-## Checked blocker
+## Response-side archival recovery (#1620)
 
-The preserved `tclping` leak directory contains only the command-only `ping.txt` plus an empty placeholder. The recovered Go server logs command names but does not log the DH response line read from the client, so the six-way discriminator is absent from that artifact.
+The bounded follow-up searched specifically for the client integer returned after the reconstructed third server response `01 OK 19 236`. No contextual response was recovered. The six target representatives therefore remain
 
-Searches of the checked Cicada GitHub mirrors and corpus did not locate `01 OK 19 236` or a paired third-response value.
+```
+11, 561, 1111, 1661, 2211, 2761
+```
+
+with corresponding third replies `218, 172, 3255, 3083, 3129, 46`.
+
+### What survives
+
+The pinned `cicada-solvers/optimisticninja_cicada3301` `tclping` directory at commit `c895e6b3b43d06dd2071fdab12694f73c2805c12` contains exactly two entries: empty `.gitkeep` and the 1,113-byte command-only `ping.txt`. The log records the three `DH 3301` command timestamps but no server payload, client public share, or shared secret.
+
+The matching Go server source explains the loss. Its DH handler reads the client line into `e2`, computes the shared value, and writes `03 DATA k`, but the logger is called only in the outer command dispatcher. It records `executing 'dh 3301'`; it never records `01 OK b A`, the client `e2`, or `03 DATA k`. Thus the target response cannot be reconstructed from that server log even though the server-side RNG stream fixes `(b,A)=(19,236)`.
+
+Two independent public descendants preserve the same command-only evidence rather than a fuller trace:
+
+- `neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`, `2013/007-fourth-onion/README.md`;
+- the contemporaneous Uncovering Cicada page “NEWS! TCP Servers had been tested!”, which also preserves participant chat around the pings.
+
+Neither contains a DH response integer.
+
+Exact indexed searches for `01 OK 19 236`, the 11:00:29 third-DH timestamp paired with each of the six predicted replies, the loopback endpoint `127.0.0.1:42483`, and the exact command-log signature found no contextual response-side trace in the checked public corpus.
+
+### Exact archive gap
+
+The GitHub mirror is not a historical Git clone. Its sole import commit explicitly says the original `optimisticninja/cicada3301` project came from GitLab and that the commit history was deleted during the 2022 GitHub migration. The referenced original GitLab project was not retrievable through the available public index during this search. Consequently the following source classes remain genuinely uncovered rather than disproven:
+
+1. pre-2022 GitLab history, deleted blobs, attachments, or branches from `optimisticninja/cicada3301`;
+2. the participant's local terminal capture, packet capture, or private logs;
+3. contemporaneous IRC/paste material that was never mirrored or is no longer indexed.
+
+A future recovery from one of these classes must preserve the surrounding server line `01 OK 19 236` or equivalent session/timestamp context. A bare occurrence of one candidate integer is not evidence.
 
 ## Research decision
 
-Do **not** promote any of the six target exponents to established fact.
+**Bounded negative.** No response is present in the checked public corpus, and archive coverage is incomplete in the specific classes above. Preserve all six exponent representatives and stop this exponent branch. Do not rank them from LP2 arithmetic and do not promote the conditional same-secret-reuse hypothesis.
 
-The highest-value archival follow-up is narrowly specified:
-
-> Find any packet capture, client-side transcript, terminal capture, paste, IRC quotation, or alternate server log from the three-DH Go session that preserves the response to the third exchange `base=19, public=236`.
-
-If recovered, compare the client response against exactly:
+If an authentic response-side trace is later recovered, compare exactly against:
 
 ```
 218, 172, 3255, 3083, 3129, 46
 ```
 
-This is a one-value, six-way historical discriminator. It is materially more targeted than further unconstrained DH key hunting.
+Only a contextual match plus evidence that the same client secret or implementation is relevant to the p57-selected `2800` session would justify selecting one exponent.
