@@ -273,6 +273,12 @@ for (let run = 0; run < TRIALS; run++) {
   if (r.gain <= observed.gain) lower++;
 }
 
+// Authentic clear LP2 p57 GP29 source-language out-of-domain check.
+const nativeClear = score(trained, train.slice(-MAX_ORDER),
+  [corpus.pages[57].indices]);
+assert.equal(corpus.pages[57].status, "solved");
+assert.equal(nativeClear.runes, 95);
+
 const wholePlant = planted(0x243f6a88, 12956);
 const modelPlant = trainModel(wholePlant.slice(0, 7960));
 const positive = score(modelPlant, wholePlant.slice(7956, 7960),
@@ -301,7 +307,7 @@ const answer = {
     meanGainBits: mean, sdGainBits: sd, minGainBits: min, maxGainBits: max,
     lowerTailHits: lower, lowerTailPlusOne: (lower + 1) / (TRIALS + 1)
   },
-  controls: { plantedSecondOrder: positive, uniformRandom: negative }
+  controls: { solvedClearP57: nativeClear, plantedSecondOrder: positive, uniformRandom: negative }
 };
 console.log(JSON.stringify(answer, null, 2));
 console.log("PASS: frozen original holdout, exact-bigram null, low-state plant, uniform noise");
