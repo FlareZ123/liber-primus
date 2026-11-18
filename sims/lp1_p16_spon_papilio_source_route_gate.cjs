@@ -143,6 +143,14 @@ const blocks = wordData.map(w => {
 function blockRead(order, reverseEach=false) {
   return order.flatMap(i => reverseEach ? [...blocks[i]].reverse() : blocks[i]);
 }
+function columnarRead(order) {
+  const out = [];
+  const maxHeight = Math.max(...blocks.map(b => b.length));
+  for (let row=0; row<maxHeight; row++) {
+    for (const col of order) if (row < blocks[col].length) out.push(blocks[col][row]);
+  }
+  return out;
+}
 const asc = wordData.map((_,i) => i).sort((a,b) => wordData[a].primeSum - wordData[b].primeSum);
 const desc = [...asc].reverse();
 const values = grid.byte_rows.flat();
@@ -187,7 +195,11 @@ const result = {
       wordPrimeSums: wordData.map(w => w.primeSum),
       ascending: render(blockRead(asc)),
       descending: render(blockRead(desc)),
-      ascendingReverseEach: render(blockRead(asc, true))
+      ascendingReverseEach: render(blockRead(asc, true)),
+      columnarWordOrder: render(columnarRead(wordData.map((_,i) => i))),
+      columnarReverseWordOrder: render(columnarRead([...wordData.map((_,i) => i)].reverse())),
+      columnarPrimeSumAscending: render(columnarRead(asc)),
+      columnarPrimeSumDescending: render(columnarRead(desc))
     }
   },
   p50Coordinate: {
