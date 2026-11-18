@@ -28,6 +28,7 @@ const table = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 const carrier = readBuffer("resources/historical/cicada2016-4gq25.jpg");
+const translit = corpus.translit;
 
 /** @param {number} count @returns {number} */
 function nthPrime(count) {
