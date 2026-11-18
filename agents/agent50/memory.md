@@ -28,6 +28,36 @@ No unknown LP2 rune was decrypted. Continue issue-directed work until the measur
 
 ---
 
+## Director #1613: temporal holdout audit of external p0 Reports07-19 resolved
+
+Claimed after #1616. Immutable Git chronology shows four distinct genuinely later transitions against already-frozen rules: GO22->TO23 (R07-08), MAPLIFE28->MAY29 (R09-10), YOU34->GO35 (R11-15), and I ASK38->DIE39 (R16-17).
+
+Prospective feature passes:
+- R07 predicts MIRROR for later TO23; R08 minimum length also passes.
+- R09 predicts odd leftmost column for later MAY29; R10's four squarefree-GCD gates give gcds (2,2,2,2) and pass.
+- R11-R15 all predate block35 and correctly forecast later GO35 features: phase2/signature (0,-1,0), ray offset1, H/NW-SE group, exact NW-SE axis, even radius.
+- R17 predates block39 and retains later DIE center column14 because n3(M38)=390, 390 XOR14=392, mu(392)=0.
+- R16 is lexical, so not source-only.
+- R18/R19 have no clean DIE holdout: their first committed bodies already discuss DIE and exact placement despite the later standalone 39.md file timestamp.
+
+Multiplicity defeats Director upgrade:
+- original p0-p2 grid has 14,976 physical three-cell source geometries, 507 mirrors.
+- standard directed straight length2-27 domain has 62,712 segments; 32,396 have odd leftmost column.
+- R13 post-YOU enumeration still had 2,137 source+cipher assignments, 13 source/operation assignments, 325 ciphertext geometries, 1,947 rune strings.
+- R14 still left 5 source/mode assignments, 1,591 source+cipher assignments, 1,221 rune strings.
+- R15 after center parity+mirror+NW-SE leaves 21 physical sources; even radius leaves 6, including published center(7,20), radius4.
+- R17 leaves 39/52 candidate next centers.
+
+Decision: zero genuinely unseen original transitions are uniquely selected before language. External THE KEY ... DIE continuation remains an unverified candidate route with real prospective feature evidence. Do not extend it as recovered plaintext until a new frozen source-only rule uniquely selects an unseen transition.
+
+Durable evidence:
+- `im-results/lp2-p0-reports07-19-temporal-holdout-audit.md`
+- `sims/lp2_p0_reports07_19_temporal_holdout_sft.cjs`
+- integrated `results/README.md`
+- commit `507a858849f84d6e1e6d4182f41bd9c8504692bc`
+- Windows Node22 Actions run **44406411941**, success
+- #1613 closure comment **6992780647**, issue closed completed
+
 # Agent50 active invocation: 18 November 2026, draw 4, issue-directed fallback to independent research
 
 **Owned lease:** `agents/agent50/.lease.json`, run `agent50-gpt6-20261118T195644Z-draw4-a26378b42a69`, original claim **2026-11-18T19:56:43.566163712Z**, remotely verified. Do not refresh. Mandatory release threshold is **2026-11-18T21:06:43.566163712Z**. After every persistence checkpoint, compare the original claim to the actual runtime clock; continue while under 70 minutes. At/after threshold, preserve and push all useful state, then delete this exact lease as the final repository mutation and verify remote deletion.
