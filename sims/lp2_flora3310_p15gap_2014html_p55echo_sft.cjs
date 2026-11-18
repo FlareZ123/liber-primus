@@ -101,6 +101,49 @@ assert.ok(ioc(clearP57) > sourceIoc + 0.015);
 assert.equal(ioc([...bodyWithoutTerminalEcho].reverse()), sourceIoc);
 assert.equal(ioc([...bodyWithoutTerminalEcho].sort((a, b) => a - b)), sourceIoc);
 
+/**
+ * One bounded, original-shape direct typed-output attempt. The signed 2013
+ * Cicada TCP protocol documented BASE29 numeral conversion, although it
+ * did not explicitly apply it to the LP2 runes. This is a hypothetical
+ * consumer of the newly source-constrained 10x331 register.
+ * @param {number[]} digits
+ */
+function positionalBase29(digits) {
+  return digits.reduce((value, digit) => value * 29n + BigInt(digit), 0n);
+}
+/** @param {bigint} value @param {number} byteWidth */
+function fixedBigEndian(value, byteWidth) {
+  const bytes = new Array(byteWidth).fill(0);
+  for (let i = byteWidth - 1; i >= 0; i--) {
+    bytes[i] = Number(value & 255n);
+    value >>= 8n;
+  }
+  assert.equal(value, 0n);
+  return bytes;
+}
+/** @param {number[]} bytes */
+function byteProfile(bytes) {
+  return {
+    byteCount: bytes.length,
+    first16Hex: bytes.slice(0, 16).map((b) => b.toString(16).padStart(2, '0')).join(''),
+    printableAscii: bytes.filter((b) => b >= 32 && b <= 126).length,
+  };
+}
+const per331 = Array.from({ length: 10 }, (_, r) =>
+  positionalBase29(bodyWithoutTerminalEcho.slice(r * 331, (r + 1) * 331)));
+const per10 = Array.from({ length: 331 }, (_, r) =>
+  positionalBase29(bodyWithoutTerminalEcho.slice(r * 10, (r + 1) * 10)));
+const tenLongRowsBinary = per331.flatMap((n) => fixedBigEndian(n, 201));
+const threeHundredThirtyOneShortRowsBinary = per10.flatMap((n) => fixedBigEndian(n, 7));
+const tenRuneResiduesMod256 = per10.map((n) => Number(n % 256n));
+const tenRuneResiduesMod331 = per10.map((n) => Number(n % 331n));
+assert.equal(tenLongRowsBinary.length, 2010);
+assert.equal(threeHundredThirtyOneShortRowsBinary.length, 2317);
+assert.equal(tenRuneResiduesMod256.length, 331);
+assert.equal(byteProfile(tenLongRowsBinary).first16Hex, '02ee7f5293dc87184f30c058a3d2d3e3');
+assert.equal(byteProfile(threeHundredThirtyOneShortRowsBinary).first16Hex, '0004683285922100c4ae216d7aca010c');
+assert.equal(byteProfile(tenRuneResiduesMod256).first16Hex, '21ca1921e595d4b283e921321d3743f7');
+
 console.log(JSON.stringify({
   archived2014Html: { title: htmlTitle[1], id: htmlId[1] },
   authenticPrintedTenDot: floralRedTen[0],
@@ -114,6 +157,13 @@ console.log(JSON.stringify({
   floraExcludingTerminalEcho: bodyWithoutTerminalEcho.length,
   tenTimesArchivedId: oneBasedFloralOrdinal * Number(htmlId[1]),
   trimmedFloraIoc: sourceIoc,
+  directSourceShapeBase29: {
+    tenRowsOf331NumeralBytes: byteProfile(tenLongRowsBinary),
+    threeHundredThirtyOneRowsOf10NumeralBytes: byteProfile(threeHundredThirtyOneShortRowsBinary),
+    lowByteOfTenRuneNumeral: byteProfile(tenRuneResiduesMod256),
+    residueModuloHtml331Printable: tenRuneResiduesMod331.filter((n) => n >= 32 && n <= 126).length,
+    residueModuloHtml331Over255: tenRuneResiduesMod331.filter((n) => n > 255).length,
+  },
   clearP57Ioc: ioc(clearP57),
   permutationOnlyDecodeCannotRestoreEnglishIoc: true,
   conclusion: 'Exact multi-source arithmetic alignment; cutting last six, multiplying 10*331, and using a 331x10 decoder are NOT authenticated operations. No plaintext.',
