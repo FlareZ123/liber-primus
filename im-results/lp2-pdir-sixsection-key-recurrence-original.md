@@ -1,6 +1,6 @@
 # Repeated historical-key screen across six original LP2 sections
 
-**Decision (18 November 2026):** A repeated-key signal is absent in the frozen **top-50 screen outputs** of the first three complete pointer conventions of [Director #1329](https://github.com/FlareZ123/liber-primus/issues/1329). In 396 original rule/direction vector screens, no historical key/multiplier/skip-model triple attains a first-300 scaled IoC **≥1.30 in two different original sections**. Matched 581-stream random-key controls do so in **four** vectors. The complete source campaign is still running. This is a bounded original-source decision and recovers no unknown plaintext, key or destination.
+**Decision (18 November 2026, updated after full-window 1033 readout):** A fixed historical key/multiplier/skip-model repeat is absent at first300 scaled IoC **≥1.30 in two different original sections** across 396 original vector screens. Matched 581-stream random-key controls produce four such pairs. A broader second screen, allowing the source's pointer *rule to change by chapter*, singled out the historical SHA256-CTR stream seeded by **1033** with three scored first300 sections; a 2,000-shuffle source-key-label control gave **p=0.0050** in convention 000. **Exact whole-window original decoding eliminates all three:** full scores are **1.069, 1.029 and 1.060**, with zero survivors of the predetermined original I0C and wrong-offset tests. No unknown plaintext, authentic key or destination has been recovered. The 216-shard source campaign remains incomplete.
 
 ## Human-solvable hypothesis and exact falsification criterion
 
@@ -30,4 +30,29 @@ The exact paired discordance tails by convention are **0.5, 1.0 and 1.0**. These
 - In the same source checkpoint, **86/216 completed/rescued shards**, **948 original rule/direction vectors**, **zero** first300 scores ≥1.40 and highest original **1.3889**. **130 shard slots** are still pending or unavailable. Original failed `010/3` is the independently verified rescue.
 - This recurrence gate covers **three complete conventions only** and uses **the top50 offset-ranked rows**, not exhaustive all-offset histories or fully decoded text. It does not exclude a historical key reused below the top50 cutoff, a key shared with different sign/model/rule, a section-specific key, or unseen pointer conventions. Original scored windows have no coherent plaintext claim, and full original forward reconstruction is not independently demonstrated here.
 
-**Research fork:** Because original repeated-key evidence is no stronger than the matched random streams, do **not** expand this same-key coincidence screen or propose new key lists. Complete the existing 216-shard original campaign. Only any prespecified ≥1.40 score from that independent search merits exact whole-window decode with 20 wrong-offset controls and a coherent withheld ≥150-rune plaintext. Independent source-clue recovery remains a distinct stronger lead.
+## A different-rule, same-source-key test, and its original full-window adjudication
+
+**Independent premise:** The original images visibly separate nine chapter sections, so a real historical *source key* could recur even if individual sections select different signed-2016 word-pointer rules, orientations or multipliers. This is a **weaker assumption about shared key material** and a **larger search** than fixing an exact cipher transformation. It is a bounded hypothesis, without a first-party instruction that chapters actually change rules.
+
+The [cross-rule read-only SFT](../sims/lp2_pdir_crossrule_historical_key_sft.py) aggregates all 132 rule/orientation TSVs within each original chapter, retaining the best first300 score for each of 581 exact key-source identifiers. A 2,000-permutation control randomizes key identity **between the six original chapters** while preserving the full observed score profile and within-chapter correlations from 132 rules. The same operation is run on the original 581 matched random streams. One familywise maximum among all 581 keys is used per convention; the three conventions are strongly correlated and cannot be counted as independent replications.
+
+| Source pointer convention | Best real source key | Third-highest distinct-section IoC | Empirical source-identity shuffled p, 2,000 draws | Strongest random stream third score |
+|---|---|---:|---:|---:|
+| 000 | SHA256-CTR, rejection, seed `1033` | 1.3475 | 0.0050 (9 exceedances) | 1.3191 |
+| 001 | same key, but weaker chapter coverage | 1.3107 | 0.9050 (1,810 exceedances) | 1.3204 |
+| 002 | SHA256-CTR, rejection, seed `1033` | 1.3475 | 0.0070 (13 exceedances) | 1.3313 |
+
+The exploratory three-chapter 1033 key is therefore a *source-conditional ranking lead*. Its `000` maxima are original **seg0.13=1.3637, seg0.15=1.3553, seg0.11=1.3475**. The familywise shuffled-identity p-values are measured against this source key library and exact top50 screen; they cannot establish plaintext or account for every alternative hypothesis considered historically.
+
+The key's actual ciphertext inverse was then **frozen to those exact three source records** without score tuning or any new key: [original Windows full-window run **44273381627**, PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44273381627), [artifact 14412943209](https://github.com/FlareZ123/liber-primus/actions/runs/44273381627/artifacts/14412943209), [SFT](../sims/lp2_pdir_source1033_threechapter_wholewindow.py) and [manual Windows workflow](../.github/workflows/agent16-pdir-source1033-threechapter-wholewindow.yml). A pinned independent Rust decoder reconstructs complete untouched original chapters; each input retains the source row's orientation, key offset, model, multiplier, and rule, and compares 20 same-key wrong offsets.
+
+| Original LP2 section | Source-selected pointer rule | Frozen first300 IoC | Whole-window IoC | Highest 20 wrong-offset IoC |
+|---|---|---:|---:|---:|
+| seg0.13 | `A_prev_G` forward | 1.3637 | **1.069** | 1.057 |
+| seg0.15 | `GP_cur` forward | 1.3553 | **1.029** | 1.033 |
+| seg0.11 | `B7_cur_ws` forward | 1.3475 | **1.060** | 1.055 |
+
+The full runes are nonlinguistic, and all three fall far below the preset whole-window 1.40 threshold and offset-control margin 0.15. The source's 1033 symbol has historical associations, but these scores **do not authenticate it as the creator's key**, or exclude unknown other uses of 1033. The entire specifically tested “shared 1033 keystream with independently selected source pointer rules per chapter” original decryption route is rejected.
+
+**Research fork:** Do **not** expand source-key recurrence or tune offsets after these three full-window failures. Continue reducing the already-running original 216-shard campaign and testing independent, source-selected key or receiver operations. A coherent untouched original plaintext followed by exact forward reconstruction remains the needed result.
+
