@@ -11,7 +11,7 @@ It uses ciphertext-word GP sums (the solver-visible proxy), not plaintext
 feedback. That distinction is explicit and remains unresolved.
 
 Run after the pinned external kscreen export/signrules/dirrules setup:
-  python sims/lp2_pdir_emirp_carry_pilot.py external-cicada3301
+  python sims/lp2_pdir_count2013_primary_carry_pilot.py external-cicada3301
 """
 from __future__ import annotations
 
@@ -183,10 +183,10 @@ def main() -> None:
             if len(dline) != len(runes) or set(dline) - {-1, 1}:
                 raise AssertionError(f"{head}: malformed D vector")
             f.write(f"{head}\nR {' '.join(map(str, runes))}\n{lengths}\nD {' '.join(map(str, dline))}\n")
-            marker_counts = {"emirp": 0, "prime_only": 0, "composite": 0}
+            marker_counts = {"reversible_prime": 0, "ordinary_prime": 0, "composite": 0}
             for word in words:
                 m = marker(int(word["G"]))
-                marker_counts["emirp" if m == 1 else ("prime_only" if m == -1 else "composite")] += 1
+                marker_counts["reversible_prime" if m == -1 else ("ordinary_prime" if m == 1 else "composite")] += 1
             window_summary.append({
                 "window": head,
                 "runes": len(runes),
