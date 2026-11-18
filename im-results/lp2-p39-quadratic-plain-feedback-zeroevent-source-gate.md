@@ -19,7 +19,7 @@ The authentic GP29 alphabet has 29 runes, and the complete unchanged unknown cor
 - If `P[i]=r_i`, emit `C[i]=C[i−1]`, a zero modulo29 difference.
 - Otherwise remove `r_i` from the GP29 plaintext alphabet, take its rank in the remaining 28 runes, apply **any invertible changing 28-way secret permutation**, and emit one of the 28 *nonzero* modulo29 ciphertext differences. A representative implementation rotates the 28 ranks by 13, while the invariant below allows every arbitrary secret 28-way map at **every position**.
 
-The exact inverse reads `P[i−1]` to reconstruct `r_i`; if `C[i]=C[i−1]` it emits `r_i`, otherwise applies the inverse 28-way permutation and reinserts `r_i`. This is a lossless, causal finite-state cipher, with no language-dependent mapping needed to forward-encrypt. A 12,956-rune source-native English plant encrypts and decrypts **exactly**, preserving every original physical page cut; an inverse of the unchanged original ciphertext under the example key likewise reencrpyts byte-for-byte. These are algebraic positive controls, not evidence of the historical algorithm.
+The exact inverse reads `P[i−1]` to reconstruct `r_i`; if `C[i]=C[i−1]` it emits `r_i`, otherwise applies the inverse 28-way permutation and reinserts `r_i`. This is a lossless, causal finite-state cipher, with no language-dependent mapping needed to forward-encrypt. A 12,956-rune source-native English plant encrypts and decrypts **exactly**, preserving every original physical page cut; an inverse of the unchanged original ciphertext under the example key likewise reencrypts byte-for-byte. These are algebraic positive controls, not evidence of the historical algorithm.
 
 ## Key-independent original test
 
