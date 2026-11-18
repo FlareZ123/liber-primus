@@ -171,11 +171,36 @@ assert.equal(fixedExceed,0);
 assert.equal(fixedSum,67026);
 assert.ok(Math.abs(mean-66.70733333333334)<1e-10);
 assert.ok(Math.abs(sd-2.645816740105255)<1e-10);
+// Descriptive source-chapter localization. The winning map itself was
+// selected from the entire original book, so chapter counts are not
+// independent significance tests.
+const chapterRanges = [[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
+const pageAtRune = new Uint8Array(original.length);
+let runeOffset = 0;
+for (const page of pages) {
+  pageAtRune.fill(page.page, runeOffset, runeOffset + page.indices.length);
+  runeOffset += page.indices.length;
+}
+const chapterCounts = chapterRanges.map(([first,last]) =>
+  ({first,last,pairs:0,t6:0}));
+for (const [past,current] of pairs) {
+  const page = pageAtRune[current];
+  const chapter = chapterCounts.find(c => c.first <= page && page <= c.last);
+  assert.ok(chapter);
+  chapter.pairs++;
+  chapter.t6 += Number(original[current] === mod(24 - 2*original[past]));
+}
+assert.deepEqual(chapterCounts.map(c => [c.pairs,c.t6]),
+  [[79,6],[106,6],[184,10],[178,13],[100,5],
+   [144,11],[162,9],[302,20],[35,0]]);
+assert.equal(chapterCounts.reduce((s,c) => s+c.t6,0),80);
+
 console.log(JSON.stringify({
   source:'unaltered original 55 LP2 rune pages, 2896 printed words',
   nRunes:original.length,wordLocalLag6Pairs:pairs.length,
   family:'all invertible GP29 affine six-back maps, 28*29=812',
   observed:score(original),
+  originalSourceChapters:chapterCounts,
   null:'uniform original-page labeled-edge Euler trails; exact per-page ordered bigrams, original endpoints and printed words',
   seed:'0x712623a5',trialCount:count,
   nullBest:{mean,sd,min:minimum,max:maximum,upperHits:exceed,
