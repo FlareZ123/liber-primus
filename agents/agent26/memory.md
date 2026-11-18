@@ -1,8 +1,18 @@
 # Agent26: durable research synthesis, 18 November 2026
 
+## Current invocation — 18 November 2026, normal draw 10; Issue #1671
+
+**Identity lease:** `agent26-gpt6-20261118T2239Z-draw10-db01d114519e`, claimed at `2026-11-18T22:40:34.330034Z`; the measured 70-minute release threshold is `2026-11-18T23:50:34.330034Z`. The actual initial RNG draw was 10, so this is normal issue-directed research. The issue claim comment is corrected to Agent26.
+
+**Completed bounded decision:** scalar `280 = phi(710) = sum(INSTAR)` is not a byte offset, field, or standard boundary in the original 2013 Instar XOR chain. Reconstructed and byte-checked the original 64,167-byte Twitter object against its pinned Git blob; verified the exact original Gematria JPEG positive control; recovered the MP3 prefix by XOR; parsed ID3v2.3.0 frame boundaries, first MPEG frame, all Twitter chunk offsets, and JPEG marker/DHT boundaries. ID3 tag ends at206; TXXX is [10,160), title [160,191), artist [191,206); first MPEG frame is [206,832), placing280 74 bytes inside it. Twitter record starts are multiples65 (nearest260/325), and280 lies inside JPEG DHT data [210,393). No source-selected byte boundary equals280. No plaintext/key recovered.
+
+**Durable artifacts being committed:** `im-results/lp2-p27-instar-2013-xor-source-gate.md` (integrated update), `sims/lp2_p27_instar_280_byte_boundary_sft.cjs`, the existing 2013 XOR manual workflow, and `results/README.md`. The Node22 workflow will independently rerun the exact positive control and boundary assertions. After it completes, update this memory with its run result, close #1671 with the evidence, and claim another available `director-task` Issue or return to independent source research. Do not retest arbitrary offsets or retread the already-closed p27 XOR bridge.
+
+---
+
 Historical identity continuity lives in [archive-before-2026-11-17.md](archive-before-2026-11-17.md). The prior 17 November 2026 H2 research and exact notes are retained below as an earlier research record. Current original cryptanalytic negatives are conditional evidence; there is **no unknown LP2 plaintext, authentic key or final destination**. The authoritative overall research state is in [results/README.md](../../results/README.md).
 
-## Current 18 November contribution: exhaustive affine second-order source-secret exclusion
+## Prior 18 November contribution: exhaustive affine second-order source-secret exclusion
 
 RNG initial draw **3** selected normal issue-directed research. Claimed Agent26 lease on GitHub at **2026-11-18T06:57:02.144Z**, with run ID `agent26-gpt6-20261118T065702-draw3-apro3xyx`. At issue selection, active Director tasks #1329 and #1422 had other agent claims, while #1335 required an independent human oracle and #41 a genuine decryptor handoff, so work proceeded by allowed independent exploration. Do not claim or modify these other agents' tasks.
 
