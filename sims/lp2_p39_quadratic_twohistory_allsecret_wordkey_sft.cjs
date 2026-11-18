@@ -181,27 +181,33 @@ function countAllSecret(cipher, a, b, fifth) {
  * @param {number} a
  * @param {number} b
  * @param {"word5"|"global5"} fifth
+ * @param {Set<number>=} matches
  * @returns {number}
  */
-function countAllSecretAffine(cipher, a, b, fifth) {
+function countAllSecretAffine(cipher, a, b, fifth, matches) {
   const unshifted = decode(cipher, a, b, fifth, () => 0);
   let total = 0;
   for (const w of longWords) {
     const shape = affineSignature(unshifted.slice(w.start, w.start+w.length));
-    if (affineLex[w.length].has(shape)) total++;
+    if (affineLex[w.length].has(shape)) {
+      total++;
+      if (matches) matches.add(w.start);
+    }
   }
   return total;
 }
 let best = -1;
 const top = [];
 const affineTop = [];
+const allWordCoefficientMatches = new Set();
 let bestAffine = -1;
 let models = 0;
 for (const fifth of ["global5", "word5"]) {
   for (let a = 0; a < 29; a++) {
     for (let b = 0; b < 29; b++) {
       const result = countAllSecret(source, a, b, fifth);
-      const affine = countAllSecretAffine(source, a, b, fifth);
+      const affine = countAllSecretAffine(source, a, b, fifth,
+        allWordCoefficientMatches);
       if (affine > bestAffine) bestAffine = affine;
       if (affineTop.length < 5 || affine > affineTop[affineTop.length - 1].hits) {
         affineTop.push({fifth, a, b, hits: affine});
@@ -222,6 +228,18 @@ assert.equal(models, 1682);
 assert.equal(best, 7);
 assert.equal(bestAffine, 68);
 assert.equal(countAllSecretAffine(source, 0, 0, "global5"), 44);
+assert.equal(allWordCoefficientMatches.size, 636);
+const lengthCounts = {};
+for (const w of longWords) {
+  const item = lengthCounts[w.length] || {total: 0, canMatch: 0};
+  item.total++;
+  if (allWordCoefficientMatches.has(w.start)) item.canMatch++;
+  lengthCounts[w.length] = item;
+}
+assert.equal(longWords.filter(w => w.length >= 9).length, 187);
+assert.equal(longWords.filter(w => w.length >= 9
+  && allWordCoefficientMatches.has(w.start)).length, 0);
+assert.equal(longWords.length - allWordCoefficientMatches.size, 496);
 const originalKey = wi => mod(7 * wi + 13);
 const originalDirect = decode(source, 1, 1, "word5", originalKey);
 assert.deepEqual(encodeCipher(originalDirect, 1, 1, "word5", originalKey), source);
@@ -311,7 +329,13 @@ console.log(JSON.stringify({
     exactForwardInverse: originalDirect.length,
     arbitraryPerWordAffine: {secretMultipliers: "28^2896", 
       secretOffsets: "29^2896", bestOriginalMatches: bestAffine,
-      bestModels: affineTop, baselineMatches: 44}},
+      bestModels: affineTop, baselineMatches: 44,
+      completelyFreeCoefficientsPerWord: {
+        wordsWithAnyFit: allWordCoefficientMatches.size,
+        wordsWithNoFit: longWords.length - allWordCoefficientMatches.size,
+        allLongWordsNineOrMore: 187,
+        nineOrMoreWithAnyFit: 0,
+        byExactWordLength: lengthCounts}}},
   planted: {cipherRunes: recovered.length,
     dictionaryMatches: positive.total, forwardInverse: true,
     fullSecretAffine: {dictionaryMatches: affinePositive,
