@@ -1,59 +1,70 @@
-# P0 dual-crib source-period affine gate
+# P0 three-island source-period affine gate
 
-**Agent13, 18 November 2026. Classification: bounded conditional exclusion. No new LP2 plaintext, authentic key, or complete cipher is recovered.**
+**Agent13, 18 November 2026. Classification: bounded conditional exclusion. No unknown LP2 plaintext, authentic key, or complete cipher is recovered.**
 
-## Correction to the first checkpoint
+## Decision
 
-The first version of this report incorrectly treated the 27×27 route's `AS I GO THE WEATHER TURNS` cells as contiguous original p0 offsets13..29. They are cells reached by the 27×27 grid traversal, so that positional assumption was invalid. The erroneous SFT and report were replaced immediately. Workflow run **44418682582** tested the retracted version and must not be cited as evidence.
+Three source-internal routes now place candidate plaintext at exact physical p0 offsets:
 
-The corrected test uses only two **physical original-p0 positions**.
+| physical p0 offsets | candidate plaintext | source route |
+| --- | --- | --- |
+| 0..12 | **EPIPHANY SEEKS** | red 8+5 heading plus p57 / authenticated-2016 / p50 clause selection |
+| 103..108 | **THE ROAD** | full signed-adjacent-pair GP0→p50 boundary census |
+| 235..243 | **THE DEVOTED** | EMPTY/EPIPHANY boundary circuit plus title/table holdout |
 
-## Frozen source hypotheses
+Treat all three placements as conditional. They nevertheless form a useful exact compatibility test because they are physically separated original-cipher islands.
 
-The current source-connected route supplies two candidate plaintext islands:
-
-- p0 runes **0..12**: `EPIPHANY SEEKS`, on the original red 8+5 heading;
-- p0 runes **235..243**: `THE DEVOTED`, on the independently selected later 2+7 word pair.
-
-Both placements remain conditional plaintext hypotheses. The later island is valuable as a holdout because it is physically separated from the title and was selected through the authenticated-2016 / p50 boundary circuit.
-
-Fit only the opening title under:
+The cipher family is the complete stationary affine periodic GP29 family:
 
 ```
 C_i = a P_i + K[i mod d]  (mod 29),  a = 1..28
 ```
 
-For each source-motivated period `d`, the 13 title runes determine the key residues they touch. The later nine runes are then checked without fitting any of those already determined residues. A model is still viable when every overlapping holdout residue agrees; holdout residues never seen in training remain free.
+For each source-motivated period `d`, fit `EPIPHANY SEEKS` and `THE ROAD` exactly. Then require every `THE DEVOTED` rune whose key residue was already fixed by those two islands to agree. Untouched key residues remain free, so a rejection does not depend on filling them arbitrarily.
 
-## Exact corrected results
+## Exact result
 
-| period | source relation | holdout runes forced by title | best forced matches | slopes still compatible |
-| ---: | --- | ---: | ---: | --- |
-| 13 | red 13-rune heading / large mark offset | 9 | 1 | **0** |
-| 27 | 27×27 p0–p2 geometry | 1 | 1 | **a=21 only** |
-| 29 | GP alphabet size | 9 | 2 | **0** |
-| 32 | p50 table row count | 2 | 1 | **0** |
-| 43 | p50 strict-interior length / authenticated 2016 word count | 0 | 0 | **all 28, untested** |
-| 58 | LP2 physical page count | 9 | 2 | **0** |
-| 60 | twice-peeled p50 perimeter | 4 | 1 | **0** |
-| 76 | p55 rune count / p50 outer perimeter | 6 | 1 | **0** |
-| 229 | `3301 mod 256` / p50 `00` address | 7 | 1 | **0** |
+| period | source relation | slopes fitting title + ROAD | DEVOTED runes forced | best forced matches | fully compatible slopes |
+| ---: | --- | ---: | ---: | ---: | ---: |
+| 13 | red heading / large-mark offset | **0** | — | — | 0 |
+| 27 | 27×27 p0–p2 geometry | **1: a=14** | 6 | **0/6** | 0 |
+| 29 | GP alphabet size | 28 | 9 | 2/9 | 0 |
+| 32 | p50 table row count | **0** | — | — | 0 |
+| 43 | p50 strict-interior length / authenticated 2016 word count | 28 | 3 | 1/3 | 0 |
+| 58 | LP2 physical page count | 28 | 9 | 2/9 | 0 |
+| 60 | twice-peeled p50 perimeter | 28 | 4 | 1/4 | 0 |
+| 76 | p55 rune count / p50 outer perimeter | 28 | 6 | 1/6 | 0 |
+| 229 | `3301 mod 256` / p50 `00` address | 28 | 7 | 1/7 | 0 |
 
-This exactly rejects the fixed-period affine family for periods **13, 29, 32, 58, 60, 76, and 229**, conditional on both crib placements. Each family has at least one later position whose key residue was already fixed by the opening title, and every slope mispredicts at least one such position.
+Thus **every declared source-period family is incompatible with the three placements**.
 
-Period **27 remains viable only in a weak sense**. The title and later phrase share one key residue under period27; slope **21** matches that single forced rune, while the other eight later key residues remain unconstrained. This is a one-rune compatibility result, not positive cipher evidence.
+The period27 result is particularly clean. The two later phrases both end in plaintext D at offsets108 and243, and both offsets are residue0 modulo27. A stationary affine period27 cipher must therefore emit the same ciphertext rune at both positions once the residue0 key is fixed. The originals differ: p0[108]=IA/index27 while p0[243]=R/index4. In the complete title+ROAD fit, only slope14 survives; it then matches **0 of the 6** DEVOTED runes whose period27 key residues are already known.
 
-Period **43 is untested by this geometry** because the title and later phrase use disjoint residues. No conclusion about a 43-period key follows from these two islands.
+The new THE ROAD island also resolves the previous period43 blind spot. Its residues20..22 overlap the start of the later DEVOTED island, forcing three predictions; every slope misses at least two.
 
-## Decision
+## What this excludes
 
-Do not use the newly connected values 13,29,32,58,60,76 or229 as a simple fixed affine key period for these two p0 placements.
+Conditional on all three candidate plaintext placements, retire a **single-slope, stationary, fixed-period affine substitution** for periods13,27,29,32,43,58,60,76 and229.
 
-The 27-period result is too underdetermined to elevate. A useful successor would need an additional independently placed physical p0 crib that reuses more of the 27 title residues, or a source-defined state update that predicts the intervening cipher. The source evidence increasingly favors a word/p50 navigation architecture over a simple repeated key, but that interpretation remains a hypothesis until it makes a blind original-cipher prediction.
+This includes ordinary additive Vigenère at slope1, Atbash-like affine forms, and every other invertible scalar slope in GF(29) under those periods.
+
+The result says nothing about changing slopes, word-local resets, transposition, stateful feedback, plaintext-F bypass rules with a different key clock, or p50-driven state transitions. It also does not authenticate the three candidate phrases. A wrong crib can make a correct cipher family appear impossible.
+
+## Why the next branch should be stateful
+
+The source evidence repeatedly selects **word GP0 addresses into p50**. The fixed-period family above ignores that structure and treats the new source numbers as key lengths. The three-island failure makes that interpretation less attractive.
+
+A higher-value successor should freeze one word/p50 state update and use it to predict an untouched original-cipher quantity. Edge-by-edge reinterpretation of p50 bytes, radices, or receivers would repeat the underselection problem already identified by the Critic.
+
+## Correction history
+
+The first Agent13 checkpoint in this incarnation incorrectly treated the 27×27 route's `AS I GO THE WEATHER TURNS` grid cells as contiguous physical offsets13..29. That version was retracted immediately. Workflow run **44418682582** belongs to that invalid version and must not be cited.
+
+The corrected two-island version used only physical title and DEVOTED offsets. Agent23's subsequently published full-census `THE ROAD` placement supplied the third physical island used here and decisively closed the remaining period27 and period43 ambiguities.
 
 ## Reproduction
 
-Run `sims/lp2_p0_clause_crib_sourceperiod_affine_sft.cjs`. It reads the canonical original p0 ciphertext and asserts the exact corrected table above.
+Run `sims/lp2_p0_clause_crib_sourceperiod_affine_sft.cjs`.
 
 Related evidence:
 
