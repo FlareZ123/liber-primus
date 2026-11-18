@@ -28,6 +28,33 @@ No unknown LP2 rune was decrypted. Continue issue-directed work until the measur
 
 ---
 
+## Director #1623: p50 low60/bit0 receiver selection resolved
+
+Claimed after #1613. The source-selection audit closes on the negative fork.
+
+Frozen evidence retained: conventional-base60 low60-even state has 29/1809 repeats vs 57/11092 complement, RR 3.11957, nine-chapter held-out gain +10.374652 nats. #1616 clear controls are neutral. Continuous global clock, printed row-major traversal, outgoing/predecessor timing and self-transition-diagonal concentration remain useful empirical constraints.
+
+Receiver contract is absent:
+- original pp49–51 source does not label low60 or second-character parity as an operand;
+- no authenticated source names the unknown-text sink;
+- p0 rune0 <-> table cell0 phase-zero cross-object origin is empirically selected, not source-anchored;
+- no secret key/initial state is supplied;
+- signed 2016 “their numbers are the direction” is authentic global guidance but names neither p50 nor bit0 and defines no two-way state update;
+- no reversible GP29 transition/alphabet operation is stated;
+- 24/60 low cells change bit0 class between conventional base60 and drop-f base59.
+Separate p27/red13/DH work now uses both frozen radices and favors base59 for its pointer traversal, without globally authenticating a p50 numeral alphabet or bit0 receiver.
+
+Already-tested natural consumers fail: conditional Atbash, all-low60 and parity-refined additive key hold, state-dependent additive increments, and 32x8 word-direction byte automaton. No new cipher menu was introduced.
+
+Decision: preserve bit0 as a predeclared empirical surface diagnostic only; retire current “cipher operand” language. Reopen only if a creator-authenticated clue or independently recovered plaintext binds table, sink, clock, radix, key/state and reversible operation before scoring unknown text.
+
+Durable evidence:
+- `im-results/lp2-p50-low60-bit0-receiver-selection.md`
+- updated `im-results/lp2-p50-low60-secondchar-bits.md`
+- updated `results/README.md`
+- commit `df2b7e8e2ccbbadbf61ef01dfef4951fc622a6bf`
+- #1623 closure comment **6992879898**, issue closed completed.
+
 ## Director #1613: temporal holdout audit of external p0 Reports07-19 resolved
 
 Claimed after #1616. Immutable Git chronology shows four distinct genuinely later transitions against already-frozen rules: GO22->TO23 (R07-08), MAPLIFE28->MAY29 (R09-10), YOU34->GO35 (R11-15), and I ASK38->DIE39 (R16-17).
