@@ -79,6 +79,11 @@ def collect_onion_strings(value: Any) -> set[str]:
         for item in value:
             result.update(collect_onion_strings(item))
         return result
+    if isinstance(value, dict):
+        result: set[str] = set()
+        for key in value:
+            result.update(collect_onion_strings(key))
+        return result
     return set()
 
 
@@ -150,6 +155,8 @@ def main() -> None:
             "internalPages",
             "linkedSites",
             "relatedOnionServices",
+            "relatedOnionDomains",
+            "crawls",
         ):
             url_inputs.update(collect_onion_strings(report.get(field)))
 
@@ -221,7 +228,7 @@ def main() -> None:
 
     payload: dict[str, object] = {
         "target": TARGET,
-        "corpus": "kal1gh0st/OSINT onionrunner/onion_result",
+        "corpus": str(args.corpus),
         "candidate_algorithms": [
             "sha512",
             "sha3_512",
