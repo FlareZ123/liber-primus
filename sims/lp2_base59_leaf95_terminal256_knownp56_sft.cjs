@@ -19,7 +19,8 @@ const base = path.join(__dirname, '..', 'resources', 'liber-primus');
 const grid = JSON.parse(fs.readFileSync(path.join(base, 'lp2-grid-256.json'), 'utf8'));
 const corpus = JSON.parse(fs.readFileSync(path.join(base, 'lp2-corpus.json'), 'utf8'));
 const tokens = grid.pages.flatMap((page) => page.tokens);
-const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx'.replace('f', '');
+const alphabet60 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx';
+const alphabet = alphabet60.replace('f', '');
 const n = 256;
 const root = 189;
 
@@ -90,6 +91,26 @@ function encryptAuthenticP56(plain) {
 }
 
 const parent = tokens.map(base59);
+const plain60Values = tokens.map((token) => 60 * alphabet60.indexOf(token[0]) + alphabet60.indexOf(token[1]));
+assert.ok(plain60Values.every((value) => value >= 0 && value < 256));
+assert.equal(new Set(plain60Values).size, 161);
+assert.equal(new Set(parent).size, 161);
+
+// Uniform 256-draw occupancy null: each token value is one of 256 values.
+// This evaluates the *exact* distribution of the distinct-value count.
+let occup = Array(n + 1).fill(0);
+occup[0] = 1;
+for (let draws = 0; draws < n; draws++) {
+  const next = Array(n + 1).fill(0);
+  for (let k = 0; k <= draws; k++) {
+    next[k] += occup[k] * k / n;
+    next[k + 1] += occup[k] * (n - k) / n;
+  }
+  occup = next;
+}
+const expectedDistinct = occup.reduce((sum, value, k) => sum + k * value, 0);
+assert.ok(Math.abs(expectedDistinct - 162.0071027477667) < 1e-10);
+assert.ok(Math.abs(occup[161] - 0.07822643713065443) < 1e-12);
 assert.equal(parent.length, n);
 assert.equal(parent[root], root);
 
@@ -174,12 +195,22 @@ assert.deepEqual(deficits, [
   { rune: 'Y', available: 0, required: 2, deficit: 2 },
 ]);
 assert.equal(deficits.reduce((sum, x) => sum + x.deficit, 0), 15);
+// A single global GP29 output bijection must preserve every p57 leaf symbol;
+// S/E/A/Y all appear in clear p57, so no such global relabeling repairs this.
+const clearP57Histogram = histogram(corpus.pages[57].indices);
+for (const gap of deficits) {
+  const i = corpus.translit.indexOf(gap.rune);
+  assert.ok(clearP57Histogram[i] > 0, gap.rune + ' must already be fixed by leaves');
+}
 
 console.log(JSON.stringify({
   conditionalRadix: 59,
   root, sourceCells: n,
   leaves: leaves.length,
   internals: internals.length,
+  distinctSourceTokensBothRadices: 161,
+  uniformByteNullPExactly161Distinct: occup[161],
+  uniformByteNullExpectedDistinct: expectedDistinct,
   terminalPageLengths: [76, 85, 95],
   frozenLeafAssignment: 'ascending source address <- 95 clear p57 GP rune identities',
   frozenInternalOperation: 'sum all immediate child GP indices modulo29 recursively',
@@ -190,6 +221,7 @@ console.log(JSON.stringify({
   cipherMatchOffsets: matchingCipherOffsets,
   necessaryAllInternalSubsetDeficits: deficits,
   minRequiredSymbolIdentityChanges: 15,
+  globalBijectiveAlphabetWithClearP57Fixed: 'excluded by the S/E/A/Y deficit; internal-only relabeling untested',
   exactPositive: 'original p56 authentic prime-totient + plaintext-F bypass 85/85',
   firstPredictedP55Symbols: predictedP55.slice(0, 20).map((i) => corpus.translit[i]).join(''),
   decision: 'This fixed leaf-to-internal GF29 child-sum receiver fails independently known original p56, even allowing arbitrary interior position permutation without symbol remapping. Other tree rules or bijective output alphabets remain open.',
