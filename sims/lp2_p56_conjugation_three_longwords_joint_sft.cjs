@@ -161,14 +161,15 @@ function relations(cipher,plain,start,sign,marker){
   return edges;
 }
 const cache=new Map();
-function choices(wordNumber,sign,marker,pin){
-  const key=[wordNumber,sign,marker,pin].join("/");
+function choices(wordNumber,sign,marker,pin,initialPrimeOffset=0){
+  const key=[wordNumber,sign,marker,pin,initialPrimeOffset].join("/");
   if(cache.has(key))return cache.get(key);
   const item=source[wordNumber];
   const preceding=item.prefix.filter(x=>x===marker).length;
   const out=[];
   for(const plaintext of dictionary){
-    for(let t=item.local-preceding;t<=item.local;t++){
+    for(let t=initialPrimeOffset+item.local-preceding;
+      t<=initialPrimeOffset+item.local;t++){
       const edges=relations(item.original,plaintext.nums,t,sign,marker);
       if(edges&&valid(edges,pin)){
         out.push({word:plaintext.word,start:t,edges});
@@ -276,3 +277,38 @@ for(const variant of ["literal","underlying"]){
     sharedPiConstraintsSatisfiable:true
   }));
 }
+
+
+/**
+ * Extension: grant the same unknown initial prime-index offset 1..28,
+ * source p56 uses 0. This test is deliberately after the source-start
+ * theorem and may show whether a first-party offset selector is required.
+ * Exactly one offset is shared across BOTH original page resets.
+ */
+let alternativeOffsetsWithPairs=0;
+const offsetSummaries=[];
+for(let initialPrimeOffset=1;initialPrimeOffset<29;initialPrimeOffset++){
+  let alternatives=0;
+  let witness=null;
+  for(const sign of [1,-1]){
+    for(const mode of ["literal","underlying"]){
+      for(const marker of mode==="literal"?[0]:Array.from({length:29},(_,i)=>i)){
+        const pin=mode==="literal"?-1:marker;
+        const A=choices(0,sign,marker,pin,initialPrimeOffset);
+        const B=choices(1,sign,marker,pin,initialPrimeOffset);
+        for(const left of A)for(const right of B){
+          if(valid(left.edges.concat(right.edges),pin)){
+            alternatives++;
+            witness??={sign,mode,marker,
+              words:[left.word,right.word],
+              phases:[left.start,right.start]};
+          }
+        }
+      }
+    }
+  }
+  if(alternatives>0)alternativeOffsetsWithPairs++;
+  offsetSummaries.push({initialPrimeOffset,pairedTraces:alternatives,witness});
+}
+console.log("ALTERNATIVE_P56_STARTS_1_TO_28",JSON.stringify(offsetSummaries));
+console.log("OTHER_STARTS_WITH_ANY_LEXICAL_PAIR",alternativeOffsetsWithPairs);
