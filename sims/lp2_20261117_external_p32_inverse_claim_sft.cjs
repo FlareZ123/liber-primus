@@ -71,7 +71,7 @@ const primeRegister = matrixInverse(p32.map((x) => corpus.prime[x] % 29));
 assert.equal(primeRegister.det, 21);
 const inverseTranslit = inverseFlat.map((x) => corpus.translit[x]).join("");
 assert.equal(inverseTranslit.slice(0, 19), "NGTHOILPEONWPEOEAFF");
-assert.equal(inverseTranslit.slice(-26), "THSTOIAENYHAEOXSUOOEFNUJ".slice(-26)); // explicit output lock
+assert.equal(inverseTranslit.slice(-26), "WITHSTOIAENYHAEOXSUOOEFNUJ"); // output lock
 
 // For uniformly random 11x11 GF(29) matrices, nonzero determinant is the rule.
 const invertibleNullProbability = Array.from({length:11}, (_, k) =>
