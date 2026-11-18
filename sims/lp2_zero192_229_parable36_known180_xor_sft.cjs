@@ -15,7 +15,8 @@ function readJson(relative) {
   return JSON.parse(fs.readFileSync(path.join(root, relative), "utf8"));
 }
 const gp = readJson("resources/liber-primus/lp2-corpus.json");
-const table = readJson("resources/liber-primus/lp2-grid-256.json").bytes;
+const tableSource = readJson("resources/liber-primus/lp2-grid-256.json");
+const table = tableSource.bytes;
 const pages = new Map(gp.pages.map(p => [p.page, p.indices]));
 const p55 = pages.get(55);
 const c56 = pages.get(56);
@@ -150,6 +151,47 @@ for (const encoding of ["index", "prime"]) {
 assert.deepEqual([xor(clearSpan), xor(enclosed)], [19, 95]);
 assert.equal(xor(enclosed) ^ xor(clearSpan), p55.length);
 
+/** Original zero-including 38 base60 tokens yield exactly 76 printed characters. */
+const printedTokens = tableSource.pages.flatMap(p => p.tokens).slice(192, 230);
+assert.equal(printedTokens.length, 38);
+assert.equal(printedTokens[0], "00");
+assert.equal(printedTokens[37], "00");
+const digitKey = Array.from(printedTokens.join(""),
+  letter => tableSource.alphabet.indexOf(letter) % 29);
+/** Alternative no-secret change of base60 byte to a two-GP29-digit key. */
+const pair29Key = table.slice(192, 230)
+  .flatMap(value => [Math.floor(value / 29), value % 29]);
+assert.equal(digitKey.length, p55.length);
+assert.equal(pair29Key.length, p55.length);
+assert.deepEqual(digitKey.slice(0, 2), [0, 0]);
+assert.deepEqual(pair29Key.slice(-2), [0, 0]);
+const plainControl = p57.slice(0, 76);
+/** @param {number[]} a */
+function ioc(a) {
+  const f = Array(29).fill(0);
+  for (const v of a) f[v]++;
+  return sum(f.map(v => v * (v - 1))) / (a.length * (a.length - 1));
+}
+const direct76 = [];
+for (const [encoding, source] of [["printedBase60Digits", digitKey],
+  ["base29BytePair", pair29Key]]) {
+  for (const reversed of [false, true]) for (const sign of [-1, 1]) {
+    const key = reversed ? source.slice().reverse() : source;
+    const decoded = p55.map((c, i) => mod29(c + sign * key[i]));
+    const plantedCipher = plainControl.map((v, i) => mod29(v - sign * key[i]));
+    const recovered = plantedCipher.map((v, i) => mod29(v + sign * key[i]));
+    assert.deepEqual(recovered, plainControl);
+    direct76.push({encoding, reversed, sign, ioc: ioc(decoded),
+      readableHead: decoded.slice(0, 20).map(x => gp.translit[x]).join("")});
+  }
+}
+assert.equal(direct76.length, 8);
+const strongest76 = Math.max(...direct76.map(x => x.ioc));
+assert.equal(strongest76, 0.03824561403508772);
+assert.ok(strongest76 < ioc(plainControl));
+assert.deepEqual(p55.slice(0, 2), [21, 25]);
+assert.deepEqual(p55.slice(-2), [18, 10]);
+
 console.log(JSON.stringify({
   status: "PASS", source: "original LP2 table and terminal source pages",
   zeroCells: [192, 229], primeOfTablePage50: prime50,
@@ -158,5 +200,8 @@ console.log(JSON.stringify({
   neighboringByteXors: [186, 229],
   clear36GpOrdinalXor: 19, masked36GpOrdinalXor: 76,
   directPeriodicXorGate: actual,
+  closedZeroBracket: {tokens: 38, printedDigits: digitKey.length,
+    terminalP55Runes: p55.length, directAdditiveMaxIoc: strongest76,
+    knownP57First76Ioc: ioc(plainControl), direct76},
   control: "Both 256/256 original-sized planted terminals recovered"
 }, null, 2));
