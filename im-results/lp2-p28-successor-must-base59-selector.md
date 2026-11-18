@@ -175,31 +175,26 @@ So the post-switch continuation is:
 
 This path never needs to switch back to base60.
 
-## 7. The earlier successor-GP1 observation is auxiliary
+## 7. Authenticated NEXT locally selects the p28 successor
 
-The first version of this result used p28's literal next complete word to reach MUST. That step is no longer necessary.
+The p28 successor no longer needs a universal successor-GP1 rule.
 
-The observation remains unusual:
+The authenticated 2013 TCP opcode **NEXT** is independently tied to the same DH node: `GP0(NEXT)=57`, p50 cell57 is `1w`, and conventional base60 gives118; as a one-based p28 rune position this is zero-based offset117, the exact line+word start of the unique visible `DH` line. Exhausting all eight authenticated opcodes under both source-supported radices and both ordinary rune origins leaves this as the only p28 line-start/DH hit.
+
+That source word licenses one literal local step from the already selected p28 word28 to its next complete word, word29:
 
 - p28 word29 is `[24,25]`;
 - its length2 equals DH23 shared `K=2`;
 - its indices are a forward-consecutive pair;
-- its one-based ordinal sum is `25+26=51=MUST`.
+- its one-based/GP1 sum is `25+26=51=GP0(MUST)`.
 
-The one-based values are also the prime ordinals of the runes' Gematria primes:
+Across the48 page-numbered words with complete successors, p28 alone has a forward-consecutive two-rune successor and p28 alone has successor GP1=51.
 
-`pi(97)+pi(101)=25+26=51`.
+This now converges independently with the main state machine. DH151 public `B=66` reaches clear **WE** under either radix, and the immediate next solved p57 word is **MUST**. The local p28 NEXT operation reaches the same MUST through an unrelated physical successor.
 
-Across the 48 page-numbered words with successors, p28 alone has both a forward-consecutive two-rune successor and successor sum51.
+The earlier negative holdouts still matter. Intermediate p39 `HGREOT` and the terminal p0 THE/WAY receiver do not support a universal successor-GP1 decoder. The claim is local: the authenticated opcode NEXT selects one successor step at the manuscript-native DH node.
 
-There are additional local echoes. The independently selected p27 red-heading successor has GP1=67=`SURFACE`, and selected p39 terminal word `WLYNU` is followed by a word with GP1=83=`EMERGE`.
-
-Prospective holdouts reject a universal successor rule:
-
-- the intermediate selected p39 word `HGREOT` has a following word whose GP1 is39, outside the p57 GP0 vocabulary;
-- the terminal p0 THE/WAY receiver at offset117–121 is followed by GP1=17, also outside that vocabulary.
-
-Across all 40 complete words whose GP0 maps to physical p50 under base59, `WLYNU` is the sole occurrence followed by GP1=83=EMERGE. That remains a useful local transition clue, while the failed holdouts mean successor-GP1 must not be treated as a general decoder.
+See `lp2-2013-next-p28-successor-must.md` and `../sims/lp2_2013_next_p28_successor_must_sft.cjs`.
 
 ## What changed
 
