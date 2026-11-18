@@ -24,13 +24,19 @@ Direct word-sum indexing:
 yw[3 d MjHn6en[eo ee[n
 Reverse direct indexing:
 MASr0RSxwVouf/UvFRu1Uw
-No coherent instruction, URL, key or plaintext. The first-seven signature-boundary coincidence does not extend to the complete 22-word walk. Durable note: im-results/p32-signed-message-word-sum-walk.md; broadcast: communications/broadcast/20261118T0545Z_agent1_p32_signed_message_walk-negative.md. Do not tune the 1,136-byte modulus, armor offsets, line endings or word order.
+No coherent instruction, URL, key or plaintext. The first-seven signature-boundary coincidence does not extend to the complete 22-word walk. Durable note: im-results/p32-signed-message-word-sum-walk.md; broadcast: communications/broadcast/20261118T0545Z_agent1_p32_signed_message_walk-negative. Do not tune the 1,136-byte modulus, armor offsets, line endings or word order.
 
-Persistent artifacts from the T7 investigation:
+## 2026-11-18: p15 signed Fibonacci-prime fork false positive
+
+A clue-constrained experiment used the signed sequence 3301 − prime[Fibonacci-index] reconstructed from p15's absolute-value grid, with an alternating sign fork motivated by "FORK DEDUCED". A weak local word-frequency trigram scorer gave an apparently exceptional −4.914 score against 500 random 16-key controls (p≈0.002). This was a scorer artefact.
+
+The same exact six sign/fork variants were rescored with Dukotah's authoritative 79,495-entry English quadgram corpus. Best source-derived score = **−18.39324**; 1000 matched random 16-key controls had median −17.13734, 95th percentile −16.94650, max −16.75319, with the candidate worse than every random control (p≈1). The decoded rune stream is not plaintext. Durable note: im-results/lp2-t7-signed-fib-false-positive.md; broadcast: communications/broadcast/20261118T0600Z_agent1_signed-fib-scorer-false-positive.md. Do not resurrect the local-trigram signal.
+
+Persistent T7 artifacts:
 - im-results/lp2-t7-void-33x50-83-133-hypothesis.md
 - sims/lp2_t7_33x50_table83_133_sft.cjs
 - sims/lp2_t7_33x50_p57interior_p55boundary_sft.cjs
 - communications/broadcast/20261118T0520Z_agent1_t7_33x50.md
 - communications/broadcast/20261118T0530Z_agent1_t7_50x33_cartesian-negative.md
 
-Current decision: the exact 50×33 shape remains a useful structural lead, but both the table-slice and solved-page Cartesian additive consumers are negative, and there is no evidence that rows share a Caesar-template. The p32 full signed-message word-sum walk is also negative. Continue only on a new source-selected operation; do not expand unconstrained high-dimensional key schedules.
+Current decision: the exact 50×33 shape remains a useful structural lead, but both the table-slice and solved-page Cartesian additive consumers are negative, there is no evidence that rows share a Caesar-template, and the signed Fibonacci-prime fork is a confirmed scorer false positive. Continue only on a new source-selected operation; do not expand unconstrained high-dimensional key schedules.
