@@ -118,6 +118,24 @@ which contains **11 cells**. The same preserved DH3301 exchange independently co
 
 The p57-rooted chain therefore reaches the exact source object already studied in [the two-zero/36-mark gate](lp2-grid-two-zero-address-36-punctuation-bridge.md). That report's direct one-byte-per-mark, cyclic additive, quotient, CRC/AES and OutGuess consumers remain negative. The present result strengthens **selection of the bracket**, not any failed consumer.
 
+## Nonperiodic 31-interval DH state receiver
+
+The p57-selected zero bracket supplies exactly **31 leading bytes** for the **31 large marks on unknown p0-p55**. In printed order those marks end 31 consecutive intervals; the final p55 mark is exactly at unknown-rune offset **12,956**, so the mapping covers the full unknown register without padding.
+
+A low-description-length state cipher is therefore fixed directly by the selected historical exchange: initialize each interval with its corresponding bracket byte, evolve `state <- 2757*state mod3301`, reduce the state modulo29, and add or subtract that value from the ciphertext. The only tested clock choice is whether the initial state is emitted before or after one update.
+
+| Variant | Full-book IoC | Adjacent equal runes |
+| --- | ---: | ---: |
+| original ciphertext | 0.03447839786450569 | **86** |
+| emit then advance, subtract | 0.034477754413626195 | 442 |
+| emit then advance, add | 0.03447982775534901 | 409 |
+| advance then emit, subtract | 0.034493888348641706 | 425 |
+| advance then emit, add | 0.03446334826337970 | 422 |
+
+The state stream reverses the extreme anti-adjacency symptom, raising adjacent equals into the hundreds. Every output still has near-uniform GP29 symbol concentration and inspected beginnings are nonlinguistic. This exact nonperiodic receiver therefore fails to expose native-GP prose. It is a stronger architecture test than a stationary table substitution because it genuinely changes equality structure.
+
+Do not tune the multiplier, modulus, bracket phase, mark assignment or reset locations. A successor needs another authored operation from the selected historical exchange or manuscript.
+
 ## Decision
 
 The literal p57 instruction now supplies a reproducible LP2-side route to the historical **2800** DH3301 exchange:
