@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * SFT: uniform post-IDEA mirror/checksum parser.
+ * SFT: uniform post-IDEA mirror/full-checksum parser.
  *
  * Starting state is the independently reached IDEA endpoint on the p0-p2
  * 27x27 square. At every one of five next word blocks, use one uniform rule:
@@ -19,7 +19,8 @@
  * 4. Read a straight 8-ray block of two or three runes. Retain only exact
  *    source-native TextBlob words with source frequency >= 100.
  * 5. Across exactly five words, enforce the pre-existing held-out residual
- *    checksum after THE IDEA: 12 runes, index sum 151, GP sum 553.
+ *    checksum after THE IDEA: 12 runes, index sum 151, GP sum 553,
+ *    ciphertext sum 169, key sum 163, and five modular wraps.
  *
  * The uniform key rule is intentionally broader than the published route.
  * This script reports whether the checksum+word constraints select a unique
@@ -37,7 +38,8 @@ const grid=corpus.pages.filter(page=>page.page<=2).flatMap(page=>page.indices);
 const T=corpus.translit;
 assert.equal(grid.length,729);
 
-const target={words:5,runes:12,indexSum:151,gpSum:553};
+const target={words:5,runes:12,indexSum:151,gpSum:553,cipherSum:169,keySum:163,wraps:5};
+assert.equal(target.cipherSum-target.keySum+29*target.wraps,target.indexSum);
 const startEndpoint=[17,18];
 const mod29=value=>(value%29+29)%29;
 const coordKey=point=>point[0]+","+point[1];
@@ -275,6 +277,9 @@ function commonPaths(mirrorId){
           runes:length,
           indexSum:plain.reduce((sum,value)=>sum+value,0),
           gpSum:plain.reduce((sum,value)=>sum+gpPrimes[value],0),
+          cipherSum:cells.reduce((sum,cell)=>sum+at(cell),0),
+          keySum:cells.reduce((sum,cell,i)=>sum+key[i%3],0),
+          wraps:cells.reduce((sum,cell,i)=>sum+(at(cell)<key[i%3]?1:0),0),
         });
       }
     }
@@ -356,7 +361,7 @@ function mergeResult(targetResult,word,child,keyId,pathRow){
   }
 }
 
-function solve(stage,endpoint,usedIds,runes,indexSum,gpSum){
+function solve(stage,endpoint,usedIds,runes,indexSum,gpSum,cipherSum,keySum,wraps){
   calls++;
   const remaining=target.words-stage;
   const residual=
@@ -364,8 +369,9 @@ function solve(stage,endpoint,usedIds,runes,indexSum,gpSum){
     (target.indexSum-indexSum)+"|"+
     (target.gpSum-gpSum);
   if(!reachable[remaining].has(residual))return {kind:0,text:null,routeCount:0,example:null};
+  if(cipherSum>target.cipherSum||keySum>target.keySum||wraps>target.wraps)return {kind:0,text:null,routeCount:0,example:null};
   if(stage===target.words){
-    return runes===target.runes&&indexSum===target.indexSum&&gpSum===target.gpSum
+    return runes===target.runes&&indexSum===target.indexSum&&gpSum===target.gpSum&&cipherSum===target.cipherSum&&keySum===target.keySum&&wraps===target.wraps
       ? {kind:1,text:"",routeCount:1,example:[]}
       : {kind:0,text:null,routeCount:0,example:null};
   }
@@ -373,7 +379,7 @@ function solve(stage,endpoint,usedIds,runes,indexSum,gpSum){
   const used=[...new Set(usedIds)].sort((a,b)=>a-b);
   const memoKey=[
     stage,coordKey(endpoint),used.join(","),
-    runes,indexSum,gpSum,
+    runes,indexSum,gpSum,cipherSum,keySum,wraps,
   ].join("|");
   if(memo.has(memoKey)){memoHits++;return memo.get(memoKey);}
 
@@ -384,7 +390,10 @@ function solve(stage,endpoint,usedIds,runes,indexSum,gpSum){
       const nr=runes+candidate.runes;
       const ni=indexSum+candidate.indexSum;
       const ng=gpSum+candidate.gpSum;
-      if(nr>target.runes||ni>target.indexSum||ng>target.gpSum)continue;
+      const nc=cipherSum+candidate.cipherSum;
+      const nk=keySum+candidate.keySum;
+      const nw=wraps+candidate.wraps;
+      if(nr>target.runes||ni>target.indexSum||ng>target.gpSum||nc>target.cipherSum||nk>target.keySum||nw>target.wraps)continue;
       const remWords=target.words-(stage+1);
       const remKey=
         (target.runes-nr)+"|"+
@@ -398,6 +407,9 @@ function solve(stage,endpoint,usedIds,runes,indexSum,gpSum){
         nr,
         ni,
         ng,
+        nc,
+        nk,
+        nw,
       );
       mergeResult(result,candidate.word,child,keyId,candidate);
     }
@@ -406,7 +418,7 @@ function solve(stage,endpoint,usedIds,runes,indexSum,gpSum){
   return result;
 }
 
-const result=solve(0,startEndpoint,[],0,0,0);
+const result=solve(0,startEndpoint,[],0,0,0,0,0,0);
 assert.ok(result.kind>0);
 console.log(JSON.stringify({
   status:result.kind===1
