@@ -47,6 +47,12 @@ All four correspondences are mechanically checkable on original ciphertext and l
 
 The clear p57 PARABLE says to shed *circumferences*, followed by finding divinity *within*; the signed 2016 text says the book's words are the map and their numbers are the direction. Those are context for considering perimeter, interior and word inventories. Neither text explicitly commands this alignment.
 
+### Related image-source context: Spon (1685)
+
+LP1 p16 / LP2 p22's reused corpse-and-butterfly figure is strongly consistent with Jacob Spon's *Miscellanea eruditae antiquitatis* (1685), Art. III, printed p.7, Table IV, captioned “Papilio animae symbolum.” Spon explains the butterfly as the soul leaving a corpse; adjacent Table V describes a bird catching it (transmigration), and Table VI describes the soul fastened to a tree. This gives p57's instar/emergence language a historically grounded semantic context, but it does **not** supply a cipher operation. The p53/p55 moths are not established copies of Tables V/VI.
+
+A possible navigation hypothesis is page 7 + Table IV → archive image 74 (LP2 p57 PARABLE), with the next Table V → 75, just beyond the 75-image archive. The concatenation is not an established instruction. The source-derived Latin epitaph and a p50 row7/column4 coordinate were tested as direct key/prime-stream candidates; they did not decrypt the relevant text. Full bounded results and the reproduction script are in [the Spon source-route gate](../im-results/lp1-p16-spon-papilio-source-route-gate.md).
+
 ## Two rare 00 anchors, one in each proposed zone
 
 Under the existing **provisional** base60 two-digit interpretation of the table, there are exactly two literal printed \`00\` cells:
