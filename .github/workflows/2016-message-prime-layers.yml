@@ -17,6 +17,7 @@ on:
           - fibonacci-p55-terminal
           - base59-p29
           - signed2016-p53-179
+          - full74-stage10
         default: original
 
 jobs:
@@ -133,3 +134,19 @@ jobs:
           node-version: "22"
       - name: Source-locked canonical signed 2016 179 GP-symbol p53 key inversion
         run: node sims/signed2016_full179_p53_direct_key_sft.cjs
+
+  full74-stage10-map:
+    if: ${{ inputs.probe == 'full74-stage10' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Reproduce full-book 74-page map and Stage10 prime-rank anchors
+        run: node sims/lp2_2016_message_full74_stage10_map.cjs | tee full74-stage10-map.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: full74-stage10-map
+          path: full74-stage10-map.json
