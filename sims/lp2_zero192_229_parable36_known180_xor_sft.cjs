@@ -23,6 +23,16 @@ const p57 = pages.get(57);
 assert.deepEqual([p55.length, c56.length, p57.length], [76, 85, 95]);
 assert.equal(table.length, 256);
 assert.deepEqual(table.flatMap((v, i) => v === 0 ? [i] : []), [192, 229]);
+// The source's original zero-based numeric-table image is LP2 page 50.jpg.
+// The 50th ordinary prime independently indexes the second zero cell.
+let ordinal = 0, prime50 = 0;
+for (let n = 2; ordinal < 50; n++) {
+  let prime = true;
+  for (let d = 2; d * d <= n; d++) if (n % d === 0) prime = false;
+  if (prime) { ordinal++; prime50 = n; }
+}
+assert.equal(prime50, 229);
+assert.equal(table[prime50], 0);
 
 /** @param {number[]} a */
 const sum = a => a.reduce((acc, v) => acc + v, 0);
@@ -142,7 +152,8 @@ assert.equal(xor(enclosed) ^ xor(clearSpan), p55.length);
 
 console.log(JSON.stringify({
   status: "PASS", source: "original LP2 table and terminal source pages",
-  zeroCells: [192, 229], clearAddressPair: [193, 191],
+  zeroCells: [192, 229], primeOfTablePage50: prime50,
+  clearAddressPair: [193, 191],
   gapBytes: 36, gapByteXor: 95, parableRunes: p57.length,
   neighboringByteXors: [186, 229],
   clear36GpOrdinalXor: 19, masked36GpOrdinalXor: 76,
