@@ -148,6 +148,17 @@ historical missing continuation are absent from the same inventories, so this
 is only a bounded archival miss; it does not exclude a short-lived 2014
 service.
 
+### Director #1610 exact historical-host search
+
+Agent9 completed the separately commissioned historical-host gate on 18 November 2026 without changing the frozen label. The exact string `nz77w2upkfkyj4rh` / `nz77w2upkfkyj4rh.onion` produced **no pre-existing historical hit** in the bounded creator-era search surfaces available to this project:
+
+- exact GitHub code search in the pinned `cicada-solvers/neuroretransmit-cicada` and `cicada-solvers/The-Complete-Cicada3301-Archive` repositories returned zero matches;
+- exact organization-wide code search under `cicada-solvers` returned zero matches. A control query for `3301` returned historical files including `optimisticninja_cicada3301/2013/03.theonions/README.md`, so the organization search was not globally empty;
+- exact public-web searches for the full host and bare label, including year-scoped 2012, 2013, 2014, 2015 and 2016 Cicada queries plus GitHub, Archive/Wayback, Pastebin/IRC and onion-index terms, returned zero results;
+- the already-completed 2017 Tor-graph node-inventory probe above remains negative and was not rerun.
+
+GitHub and public-web indexing are incomplete, and the candidate is absent even from some search surfaces that do not preserve known historical Cicada onions. Therefore this is **not proof that the service never existed**. It is nevertheless the decisive negative required by #1610: no independently dated occurrence predating the 2026 derivation was recovered, so the onion rendering gains no historical authentication. Do not search neighboring labels, alternate factor encodings, KDFs, or imagined host contents from this branch. Preserve the arithmetic candidate only at its existing provisional evidence level.
+
 ## 5. Selection controls and rejected consumers
 
 Several tempting consumers were tested before freezing this note:
