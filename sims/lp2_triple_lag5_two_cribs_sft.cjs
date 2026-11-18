@@ -137,6 +137,29 @@ const additiveCandidates = triple.map(({ indices }) => entries
   .map((entry) => entry.word));
 assert.deepEqual(additiveCandidates, [[], ["mesdames"]]);
 
+// Independent Latin Vulgate control: two native-GP occurrences of the word
+// TURBETUR have the same p51 triple-repeat shape. This invalidates any claim
+// that MESDAMES is the unique plausible plaintext across languages.
+const gp29Digits = "0123456789ABCDEFGHIJKLMNOPQRS";
+const latinWords = read("resources/control/latin-vulgate-gp-wholewords.txt")
+  .split(/\r?\n/).map((line) => line.trim())
+  .filter((line) => line.length > 0 && !line.startsWith("#"));
+assert.equal(latinWords.length, 39835);
+const latinByLength = [new Set(latinWords.filter((word) => word.length === 10)),
+  new Set(latinWords.filter((word) => word.length === 8))];
+const latinIndices = (word) => [...word].map((char) => gp29Digits.indexOf(char));
+assert(latinWords.every((word) => [...word].every((char) => gp29Digits.includes(char))));
+const latinShapeCandidates = triple.map(({ indices }, at) =>
+  [...latinByLength[at]].filter((word) =>
+    shape(latinIndices(word)).every((equal, phase) => equal === shape(indices)[phase])));
+assert.deepEqual(latinShapeCandidates, [[], ["G14HIG14"]]);
+assert.equal(latinWords.filter((word) => word === "G14HIG14").length, 2);
+const latinAdditiveCandidates = triple.map(({ indices }, at) =>
+  [...latinByLength[at]].filter((word) =>
+    lagFiveDifferences(latinIndices(word)).every((delta, phase) =>
+      delta === lagFiveDifferences(indices)[phase])));
+assert.deepEqual(latinAdditiveCandidates, [[], ["G14HIG14"]]);
+
 // The p51 conditional word fixes exactly one additive period-5 key. Its
 // word-reset and continuous-clock extensions fail on neighboring source words.
 const crib = triple[1].indices;
@@ -173,6 +196,34 @@ function decryptWindow(clock) {
   assert.equal(result[anchor - left], "mesdames");
   return result;
 }
+// Under TURBETUR as the p51 original plaintext, the fully determined Latin
+// five-shift pad yields no exact Vulgate vocabulary words in its 24 neighbors.
+const latinPlain = latinIndices("G14HIG14");
+const latinKey = crib.slice(0, 5)
+  .map((value, at) => (value - latinPlain[at] + 29) % 29);
+assert.deepEqual(latinKey, [28, 22, 17, 18, 2]);
+assert.deepEqual(crib.map((value, at) => (value - latinKey[at % 5] + 29) % 29),
+  latinPlain);
+const latinLexicon = new Set(latinWords);
+/** @param {"word-reset"|"continuous"} clock */
+function latinHeldoutMatches(clock) {
+  let offset = 0;
+  let count = 0;
+  for (let at = 0; at < window.length; at++) {
+    const word = window[at];
+    const ciphertext = toIndices(word.runes);
+    const decoded = ciphertext.map((rune, inner) => {
+      const absolute = clock === "word-reset" ? inner : offset + inner - beforeAnchor;
+      return (rune - latinKey[((absolute % 5) + 5) % 5] + 29) % 29;
+    }).map((rune) => gp29Digits[rune]).join("");
+    if (at + left !== anchor && latinLexicon.has(decoded)) count++;
+    offset += ciphertext.length;
+  }
+  return count;
+}
+assert.equal(latinHeldoutMatches("word-reset"), 0);
+assert.equal(latinHeldoutMatches("continuous"), 0);
+
 const wordReset = decryptWindow("word-reset");
 const continuous = decryptWindow("continuous");
 const summarize = (candidate) => ({
@@ -212,9 +263,14 @@ console.log(JSON.stringify({
   p36CiphertextLag5Differences: lagFiveDifferences(p36),
   p36ConditionalCribLag5Differences: lagFiveDifferences(p36Plain),
   fullAdditiveFivePeriodLexicalCandidates: additiveCandidates,
+  latinVulgateGP29ShapeCandidates: latinShapeCandidates,
+  latinVulgateGP29AdditiveCandidates: latinAdditiveCandidates,
+  p51LatinConditionalWord: "TURBETUR",
+  conditionalP51LatinAdditiveKey: latinKey,
+  originalP51LatinHeldoutMatches: {wordReset: latinHeldoutMatches("word-reset"), continuous: latinHeldoutMatches("continuous")},
   conditionalP51AdditiveKey: key,
   originalP51NeighborWordReset: resetSummary,
   originalP51NeighborContinuous: continuousSummary,
   plantedNativeGPControl: "25/25 words pass both period-5 clocks",
-  conclusion: "Both source words are shape-compatible with single five-phase substitution alphabets, but p36 has no TextBlob-compatible additive period-five inverse under any secret key; the p51 crib-derived additive key does not decode held-out neighbors. No unknown plaintext is recovered.",
+  conclusion: "Both source words are shape-compatible with five-phase substitution alphabets, but p36 has no TextBlob/Vulgate additive period-five word under any secret key; the p51 alternatives MESDAMES and TURBETUR yield no coherent held-out neighbors. No unknown plaintext is recovered. No unknown plaintext is recovered.",
 }, null, 2));
