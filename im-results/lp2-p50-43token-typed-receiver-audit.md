@@ -1,0 +1,72 @@
+# p50 43-token bracket typed-receiver audit
+
+**Agent3, Director #1627, 18 November 2026. Classification: source-selection negative. The exact printed bracket remains a conditional structural feature; no authenticated payload operation, key, plaintext, or receiver is recovered.**
+
+## Frozen object
+
+The original p50 table contains the unique row-major printed-token nesting
+
+`3L 3D [43 tokens] 3D 3L`
+
+at global cells 82..128. The strict 43-token interior is cells 84..126 and has the globally unique printed token `13` at its exact midpoint, interior offset21 / global cell105.
+
+This audit does **not** use the provisional GP-prime/58-page address rule that conditionally reaches the left bracket, and it does **not** use the conventional-base60 `THE -> FOLD -> SB -> END` continuation. The question is whether the 43 printed tokens themselves identify a historically authenticated Cicada receiver.
+
+## Historical type contract
+
+The authenticated or source-pinned Cicada operations already reconstructed in the repository have concrete input contracts:
+
+- **OutGuess:** an image carrier is named or supplied and the extracted object is then consumed by its own type.
+- **OpenPuff:** a media carrier plus password is supplied.
+- **OpenPGP:** a syntactically valid signed/encrypted packet or clear-signed text is supplied.
+- **2014 Stage04 GP shift:** a rune ciphertext plus the specific historical key phrase is supplied.
+- **2014 Stage05 transposition:** a seven-column ordering is supplied.
+- **2014 GEB book code:** records have the explicit four-field coordinate grammar `title : exchange : word : letter`.
+- **2013 BASE29/DH:** signed protocol commands identify integer fields and modular operations.
+- **XOR:** historical uses have a separately supplied byte operand or carrier context.
+
+The p50 43-token interior supplies only 43 two-character numerals in table order. No signed or source-authenticated instruction binds that interval to one of the contracts above, specifies a key/password, defines a coordinate grammar, serializes the tokens into a GP stream, or identifies a target object. The signed 2016 sentence saying that words are the map, meaning the road, and numbers the direction likewise does not name this bracket or a payload format.
+
+The repository's existing 43-unit work has already rejected direct p50-to-p55 additive/affine keys, GF29 multiplication/division, the 2014 GEB transfer, period44 full-p55 keying, the historical `FIRFUMFERENFE` additive consumer, and multiple square-derived 43-symbol consumers. Those failures remove the obvious value-to-rune interpretations without licensing a new cipher menu.
+
+## Direct typed-file gate under both source-compatible radices
+
+A direct file-payload interpretation is the one historical type test that can be decided from the 43 tokens alone. Decode the exact printed tokens under both source-compatible digit maps already preserved in the repository:
+
+**Conventional base60**
+
+First eight bytes:
+
+`ad 1c 6f 41 d3 dc c6 31`
+
+The first byte is syntactically an old-format OpenPGP packet header, tag11 (Literal Data) with two-octet length. Its declared body length is **7279 bytes**, while only **40 bytes** remain after the packet header. It therefore cannot be a complete direct OpenPGP packet.
+
+**Drop-lowercase-f base59**
+
+First eight bytes:
+
+`aa 1c 6d 40 d0 d9 c3 30`
+
+The first byte is syntactically an old-format OpenPGP header, tag10 with four-octet length. Its declared body length is **476,922,064 bytes**, while only **38 bytes** remain. It likewise cannot be a complete direct OpenPGP packet.
+
+Neither 43-byte stream begins with the standard signatures for bzip2, gzip, ZIP, PNG, or JPEG. The reproducer includes positive controls for a complete old-format OpenPGP Literal Data packet and the bzip2 magic so these negative recognizers are executable rather than visual inspection.
+
+This does not prove that no arbitrary transform could turn the 43 numbers into a file. It rejects the source-natural direct typed-file reading available without inventing a key, transform, offset, or alternate alphabet.
+
+## Center `13`
+
+The center token `13` is exact and unique, but no authenticated repository source located by exact search supplies a ROT13 instruction or convention that binds `13` to this payload. Historical Cicada transpositions and Vigenere-like steps were accompanied by explicit ordering/key material. Treating the midpoint as ROT13, period13, a 13-parameter key selector, or a cipher-family label would add an unsupported operation.
+
+## Decision for #1627
+
+The issue's positive gate requires all three of:
+
+1. a source-visible reason to select the exact bracket;
+2. a fixed operation or format from authenticated Cicada material;
+3. a deterministic receiver/key/input specification, validated on a historical or planted positive before use on the original payload.
+
+The bracket satisfies the first condition as source geometry. The second and third conditions are absent. The one operation that can be typed directly from the bytes, a file/packet interpretation, fails under both source-compatible numeric maps.
+
+Therefore take the issue's **no source-fixed payload operation** fork. Preserve the unique `3L 3D [43] 3D 3L` nesting and center `13` as conditional structure. Do not promote the 43 tokens to a recovered key or plaintext, and do not continue by adding generic ciphers, free phases, arbitrary 13-based transforms, or guessed receivers.
+
+Reproducer: `sims/lp2_p50_43token_typed_receiver_sft.cjs`.
