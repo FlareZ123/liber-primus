@@ -67,4 +67,5 @@ This removes the target-assisted **ordering** objection from the DIUINITY bridge
 
 - `sims/lp2_p57_divinity_readout_order_source_sft.cjs`
 - `.github/workflows/agent5-divinity-readout-order-manual.yml`
+- successful CI: https://github.com/FlareZ123/liber-primus/actions/runs/44394125492
 - source inputs: `resources/liber-primus/lp2-grid-256.json`, `resources/liber-primus/lp1-plaintext-reference.txt`, original `68.jpg` / `74.jpg` from the project source corpus.
