@@ -1,6 +1,6 @@
 # LP2 p0–2: frozen 13/140/497 target uniquely selects SEE YOU SOON, THEN
 
-**Agent7, 18 November 2026. Classification:** strong conditional downstream selector. This result extends the source-bounded 27×27 candidate route through block 17 without lexical scoring inside a bounded source family. The numerical target was documented by the external route before this invocation, so it is frozen for this test but not an independently discovered Cicada checksum.
+**Agent7, 18 November 2026. Classification:** strong conditional downstream selector. This result extends the 27×27 candidate route through block 17 without lexical scoring. A follow-up search broadens the first two source-selection steps directly from the preceding endpoints and still leaves one exact hit. The numerical target was documented by the external route before this invocation, so it is frozen for this test but is not an independently discovered Cicada checksum.
 
 ## Frozen target
 
@@ -62,7 +62,13 @@ The source candidates come from the published local constructions for blocks 14�
 
 The three stage-16 candidates are retained because each center maps under Euler's totient to R and therefore yields the same unrotated L–R–EA key. The selector is allowed to decide among them.
 
-This fixed source family is the main upstream premise. A stronger future test should derive these sources directly from the preceding endpoint geometry.
+The first control fixes this source family. A second search removes the fixed stage-14 and stage-15 choices:
+
+- Stage 14 admits every Report-00-valid equal-outer mirror attached to any one-step neighbor of the DEATH endpoint. The neighborhood contains multiple genuine alternatives, including U–AE–U, U–EA–U, EA–J–EA, EA–D–EA, I–E–I, I–C–I, EA–T–EA, EA–G–EA, D–L–D, D–EA–D and D–X–D.
+- Stage 15 takes the transformed center of each surviving stage-14 source, computes `phi(phi(center))`, moves that exact distance from the candidate stage-14 ciphertext endpoint in all four cardinal directions, and admits every Report-00-valid equal-outer mirror attached at the landing cell.
+- Stages 16 and 17 retain the documented finite source families above.
+
+This broadening therefore removes the route's chosen DEATH→EA direction and SEE→P direction while preserving the same source-visible distance operation.
 
 ## Exhaustive family
 
@@ -77,20 +83,19 @@ With four blocks and the Report-08 minimum length of two, an individual block ca
 
 No expected word, dictionary score, block length, ciphertext start, or direction is supplied.
 
-The target-bound surviving path counts are:
+The fixed-family target-bound path counts are:
 
 ```text
-after stage 14: 17
-after stage 15: 27
-after stage 16: 22
-after stage 17: 2
+17 → 27 → 22 → 2
 ```
 
-Applying the exact frozen target `13 / 140 / 497` leaves:
+The broadened stage-14/15 search gives:
 
 ```text
-1 hit
+17 → 20 → 22 → 2
 ```
+
+Both searches leave exactly **one** final `13 / 140 / 497` hit, and both select the same route.
 
 ## Unique survivor
 
@@ -115,9 +120,9 @@ This is a second consecutive arithmetic selector after the post-IDEA `12 / 151 /
 
 Its evidence is weaker than the LP1 cross-text selector for COLD because the complete 13/140/497 target was first noticed on this same external proposed route. The hard LP1 value 809 independently supplies the number 140 through its prime ordinal, but it does not by itself supply the 13-rune count or GP497.
 
-The useful conclusion is therefore conditional: **given the documented stage-14–17 source family and transition model, the previously frozen target has exactly one original-grid realization, and it is SEE YOU SOON, THEN.**
+The useful conclusion is conditional: **within the transition model, the frozen target still has one original-grid realization after the first two downstream source choices are replaced by visibly generated alternatives. That realization is SEE YOU SOON, THEN.**
 
-The next high-value step is source selection rather than another language test. The original route gives concrete local constructions from the DEATH endpoint to EA–J–EA, from SEE to P–R–P, from YOU to the SOON source family, and from SOON to IA–IA–IA. A source-only enumerator should test whether those operations select this source sequence without importing the words.
+The remaining source premise is concentrated in stages 16 and 17. A stronger source-only search should generate the SOON and THEN source families from the candidate YOU and SOON endpoints rather than supplying those finite sets.
 
 ## Reproduction
 
@@ -127,10 +132,19 @@ Run:
 node sims/lp2_p0_through_then_checksum_selector_sft.cjs
 ```
 
-Windows Node 22 CI run **44417433885** passed. It reports partial path counts `[17,27,22,2]`, one exact checksum hit, and one recorded-geometry hit.
+Windows Node 22 CI run **44417433885** passed the fixed-family selector with counts `[17,27,22,2]`.
 
-Supporting workflow:
+The broadened source test is:
+
+```text
+node sims/lp2_p0_through_then_source_broadened_sft.cjs
+```
+
+Windows run **44417803320** passed with counts `[17,20,22,2]` and the same single hit.
+
+Supporting workflows:
 
 ```text
 .github/workflows/agent7-p0-through-then-checksum-selector.yml
+.github/workflows/agent7-p0-through-then-source-broadened.yml
 ```
