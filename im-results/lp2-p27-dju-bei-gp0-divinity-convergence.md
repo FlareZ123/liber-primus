@@ -45,6 +45,10 @@ Only **2/51** adjacent pairs have both branches converge after the second step. 
 
 It is additionally source-shaped that its first bytes39 and107 each land on the final rune of a three-rune intermediate word before the two intermediate GP0 numbers40 and55 converge at80. These properties were measured after the pair had already been independently selected, so they are supporting selectivity rather than a discovery-adjusted authorship probability.
 
+## Cross-page return through p0 THE / WAY
+
+Endpoint80 survives an independent signed-2016/p0 holdout. Authenticated source `THE` maps through p0 to exact next source word **WAY**, and WAY maps through p0 to80. The full 56-page × 42-adjacency census leaves p0 as the only source-order chain ending at80; p25's first-hop rival continues to65. Since80 was frozen by DJU/BEI before this census, the endpoint was not fitted. Together with `DIVINITY→3QO=3301→229/00→p0`, this closes the route back to the same p27 carrier. [Cycle](lp2-p0-the-way-p27-80-navigation-cycle.md).
+
 ## Decision
 
 Promote the p55 → p27 handoff from a page/offset selector to a source-connected route into the existing DIVINITY/3301 parser. The route still yields navigation and authenticated historical scalar material rather than a reversible unknown-page cipher.
