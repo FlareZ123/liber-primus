@@ -72,7 +72,7 @@ if (exists("all_dat_ass", envir = env, inherits = FALSE)) {
 
 # A same-repository 58,152-byte file named 'thefile' is a possible historical
 # extraction artifact. Identify it before treating it as the missing OutGuess output.
-payload_url <- paste0(source_root, "thefile")
+payload_url <- "https://raw.githubusercontent.com/resvolver/c1cada/00e73d84d9ab4e9b780d77c7316a8915bda42f52/thefile"
 payload <- tempfile()
 download.file(payload_url, payload, mode = "wb", quiet = TRUE)
 stopifnot(file.info(payload)$size == 58152)
