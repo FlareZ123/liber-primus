@@ -16,7 +16,7 @@ for(let k=0;k+3<doublets.length;k++){
 }
 clusters.sort((a,b)=>b.span-a.span||b.gaps[1]-a.gaps[1]);
 const t7=clusters[0];
-const pageTexts=transcription.split(/\n%\n/);
+const pageTexts=transcription.split(/\r?\n%\r?\n/);
 const lineBoundaries=[];
 let global=0;
 const pageStarts=[];
