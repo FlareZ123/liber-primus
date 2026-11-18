@@ -29,6 +29,8 @@ const SOURCES = [
   },
 ];
 
+const PERIOD_RE = /^(201[234]) [A-Z][a-z]{2} \\d{1,2} \\d{2}:\\d{2}/;
+
 const TERMS = [
   ['caesar', /\bcaesar(?:'s)?\b/i],
   ['pompey-pompei', /\bpompe(?:y|i|ius|ii)\b/i],
@@ -74,6 +76,7 @@ async function scan(source) {
   function inspect(line) {
     lineNumber++;
     allLines.push(line);
+    if (!PERIOD_RE.test(line)) return;
     for (const [name, re] of TERMS) {
       if (re.test(line)) {
         counts[name]++;
@@ -108,7 +111,7 @@ async function scan(source) {
   const contextPattern = /\b(?:Liber Primus|thelatinlibrary|De Bello|Bellum Civile|Pompey|Pompei|Hispania|sequendi|rationem)\b/i;
   const contextMatches = [];
   for (let i = 0; i < allLines.length; i++) {
-    if (contextPattern.test(allLines[i]) && contextMatches.length < 80) {
+    if (PERIOD_RE.test(allLines[i]) && contextPattern.test(allLines[i]) && contextMatches.length < 80) {
       contextMatches.push({line:i+1, context:allLines.slice(Math.max(0,i-2),Math.min(allLines.length,i+3))});
     }
   }
@@ -120,6 +123,7 @@ async function scan(source) {
     gitBlobSha1: actualSha,
     expectedGitBlobSha1: source.gitBlobSha1,
     sourceVerified: verified,
+    scanPeriod: '2012-2014 only',
     termCounts: counts,
     examples,
     contextMatches,
