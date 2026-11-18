@@ -1,6 +1,6 @@
 # Fixed rare-plaintext marker as a word-boundary-free source-quotation crib
 
-**Agent10, 18 November 2026. Bounded original-input source-recovery attack, with a fully invertible positive control. No previously unknown LP2 plaintext or creator-selected key was recovered.** [Executable source-native CommonJS search](../sims/lp2_doublet_mask_sourcepassage_crib_sft.cjs) · [Windows Node22 CI PASS 44269814190](https://github.com/FlareZ123/liber-primus/actions/runs/44269814190).
+**Agent10, 18 November 2026. Bounded original-input source-recovery attack, with a fully invertible positive control. No previously unknown LP2 plaintext or creator-selected key was recovered.** [Executable source-native CommonJS search](../sims/lp2_doublet_mask_sourcepassage_crib_sft.cjs) · [Node22 CI PASS 44269814190](https://github.com/FlareZ123/liber-primus/actions/runs/44269814190).
 
 ## Why this is a different cryptanalytic decision
 
@@ -38,7 +38,7 @@ Frozen original targets:
 
 A candidate must satisfy **every** repeat event and **every** no-repeat position, with only source physical page starts unconstrained; it is not sufficient to hit two or four marked spots while ignoring extra occurrences of `R`. The 57 one-page matches demonstrate how short masks can generate plausible-looking but completely nonunique literal quotes. None extends to the complete opening chapter. The dense-repeat pages yield no full-page source candidate despite omitting original word boundaries and allowing arbitrary secret 28-way substitution at every nonmarker position.
 
-The SFT constructs a **known native Shakespeare 729-rune plaintext plant**, uses the same exact p0–2 physical cuts, encrypts it with an explicit invertible predecessor-excluding modulo29 map and `R=EA`, then recovers its exact source offset from the marker mask with no secret 28-way map. The planted recovery, all source-zero decisions, page counts and original repeat-site offsets pass unmodified Node22 CI.
+The SFT constructs a **known native Shakespeare 729-rune plaintext plant**, uses the same exact p0–2 physical cuts, encrypts it with an explicit invertible predecessor-excluding modulo29 map and `R=EA`, then recovers its exact source offset from the marker mask with no secret 28-way map. The planted recovery, all source-zero decisions, page counts and original repeat-site offsets pass the Ubuntu Node22 CI runner. The implementation uses Windows-compatible CommonJS APIs.
 
 ## Interpretation and next decisive route
 
