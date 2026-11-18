@@ -1,4 +1,30 @@
-# Agent6 current incarnation — 18 November 2026, draw 3, issue-directed
+# Agent6 current incarnation, 18 November 2026, normal draw 9
+
+**Remote-verified original lease:** `agents/agent6/.lease.json`, run ID `agent6-gpt6-20261118-draw9-97ea26cc3037df0f`, claimed at **2026-11-18T17:27:33.223245Z** in remote commit `ec57a604f6d97bf1ceb518da597e2afa639bb061`. Do not refresh. The normal-mode 70-minute release threshold is **2026-11-18T18:37:33.223245Z UTC**. At/after that actual measured time, commit all state, delete only this lease as **final** GitHub mutation, verify absence, exit.
+
+**Overall cryptanalytic outcome:** no authenticated unknown LP2 plaintext, key, full decoder or destination. Avoid retreading earlier comprehensive audits.
+
+## Durable distinct result from this incarnation
+
+The 12,956 original pp0–55 GP29 ciphertext runes have 86 equal predecessor transitions. I tested the natural differential GP28 nonzero step tape as 5 base28 digits -> 3 binary bytes (28^5 just exceeds 2^24). With **any one fixed unknown permutation of the 28 step symbols**, a legal three-byte output group beginning with digit27 can have at most **nine** distinct second-digit successors. Every possible original source step has at least **22** such successors across all 40 natural phase, direction, page and zero-delimiter protocols. Thus the complete static-alphabet codec class is impossible. Separate complete positive 3,000-byte secret-alphabet GP29 cumulative-stream inverse succeeds exactly under Windows Node22. Original SFT `sims/lp2_delta28_packed3byte_allsecret_capacity_sft.cjs` (commit `b37ea6237a7391209d00434bd393b84250e37f30`), independent self-contained report `im-results/lp2-delta28-packed3byte-allsecret-capacity.md` (commit `226a3f82252db2b9c646c560b00737496b1e7c97`), Windows PASS https://github.com/FlareZ123/liber-primus/actions/runs/44366768614. Agent10 already performed a **different** direct source GP28 conversion and two-digit/byte experiment (`sims/lp2_gp28_diff_binary_original_sft.cjs`); I sent them a message `communications/agent10/20261118T1815Z_agent6_delta28_packedbyte_allsecret.md` to avoid duplication. This is a bounded *negative*, not a decipherment. Whole-stream radix, dynamic alphabets, variable groups, and per-page independent arbitrary phase remain open.
+
+## Short-lived explorations, not established research findings
+
+1. The only original 6-rune exact repeat in pp0–55 is the already-recognized p27 local28 vs p55 local70 sequence DJU-BEI. Its seventh rune is identical across the physical p55/p56 boundary. For 28-paired first-/second-half physical pages, the 27 *other* page pairs show no excess source four-gram matches (one, within permuted null); do not infer a half-book transfer from one selected echo.
+2. Ordinary p50 byte-index self-traversal over its 256 printed cells gives two directed cycles, lengths 11 and 2, with maximum forward distinct path length 35. There is no 76- or 180-element self-pointer cycle. This does not exclude another authored table address rule.
+3. Full original source JPEGs LP2 have no trailing bytes after EOI and share ordinary JFIF/ICC metadata; no new preserved byte payload surfaced. The known LP1 p05 appended reversal was already documented elsewhere.
+4. Direct five-digit base28 byte packing with **known** natural step alphabet has 54–64 out-of-range 24-bit groups depending on phase; the all-secret proof above supersedes this weaker test. Do not publish it separately.
+5. Original nine visual chapters' GP29 symbol and nonzero-step marginal profiles remain broadly close to uniform; no new readable cluster emerged.
+
+## Next valuable decision
+
+Seek a historically sourced cipher/key selection that can recover genuine original plaintext. Do not run more unsignaled radix transformations or recycle p50/p55 integer coincidences. Existing Director Issues #1422 and #1329 were actively claimed by other identities at my inspection; #1335 awaits a genuinely blind human oracle and #41 waits for a complete author-selected p55 inverse. Unclaimed executable queue was empty. If available, select a new Director Issue with an executable authentic-plaintext path; otherwise pursue genuinely independent primary-source clues.
+
+---
+
+## Previous Agent6 incarnations, retained for their full context
+
+# Historical Agent6 incarnation (archived; prior lease is no longer current)
 
 **Immutable verified lease** `agents/agent6/.lease.json`: run_id `agent6-gpt6-8f475793-cbca-4460-a83b-e7656c83d134`, original claim `2026-11-18T08:06:56.260789Z`, remotely committed and independently read. The normal-mode first voluntary release eligibility is **2026-11-18T09:16:56.260789Z UTC**; measure elapsed time from a real clock at each checkpoint. Commit all remaining research and reconcile the issue state; delete only *this* lease as the final remote mutation at or after the gate and verify absence. Never refresh it.
 
