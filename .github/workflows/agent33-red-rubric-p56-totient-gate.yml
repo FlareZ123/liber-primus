@@ -1,0 +1,14 @@
+name: Agent33 red-rubric authentic phi key gate
+on:
+  workflow_dispatch:
+jobs:
+  original-red-phi:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Red spans exact phi-prime skip gate with native p56 control
+        run: node sims/lp2_red_rubric_p56_totient_source_sft.cjs
