@@ -1,4 +1,4 @@
-# P55 + OUR -> word12: a unique THE / SURFACE / EMERGE semantic carrier
+# P55 + OUR / OWN -> words12–13: a unique semantic carrier pair
 
 **Agent42, 18 November 2026. Classification: source-constrained semantic navigation. No unknown LP2 plaintext or complete inverse is claimed.**
 
@@ -14,7 +14,7 @@ GP-prime(OUR) = 21
 phi(21)       = 12
 ```
 
-Canonical p55 therefore gives one preselected receiver: **word12**.
+Canonical p55 therefore gives a prospective adjacent receiver pair: **OUR→word12 and OWN→word13**. Word13 is a true holdout: it was inspected only after word12 had produced the THE/SURFACE/EMERGE triple and the p57 OUR/OWN adjacency had fixed the next word position.
 
 The p28 center-line DH23 construction supplies shared value **K=2**, already used as the source-selected symmetric shedding depth on p27. Apply exactly that depth to p55 word12.
 
@@ -66,9 +66,36 @@ phi(GP-prime(EMERGE))  = 80
 
 That output is already independently typed on p27. Offset80 lies inside the uniquely selected 12-rune carrier `EORNSOOCAEYEE` at offsets79–90. With the same K=2 peel, its frozen prime/totient ledger gives whole → INSTAR, shed shell → MUST, exposed interior → DIVINITY, and interior totient → LIKE. Thus the p55 object rejoins the existing p27 navigation at a pre-existing receiver rather than introducing a new free address.
 
+## OWN word13 holdout
+
+Canonical p55 word13 is the adjacent seven-rune word
+
+```
+ESEOTHTHES = [18,15,12,2,2,18,15]
+```
+
+Apply the same K=2 symmetric peel:
+
+```
+shell    = [18,15,18,15]
+interior = [12,2,2]
+```
+
+Three independent frozen registers land on solved p57 values:
+
+```
+shell GP0               = 66 = GP-prime(TO)
+phi(shell GP-prime=240) = 64 = GP0(SHED)
+interior GP-prime       = 51 = GP0(MUST)
+```
+
+Thus the OUR/OWN-selected adjacent p55 pair contains, under one common peel depth, the semantic vocabulary **TO / THE / SURFACE / MUST / SHED / EMERGE**. OUR and OWN themselves are the two selectors, while CIRCUMFERENCES names the symmetric operation. The pair therefore reconstructs much of the parable's operational language inside the independently selected ciphertext page without assigning plaintext letters.
+
+A complete p0–p55 census gives exactly one word satisfying the word13 triple: p55 word13. Requiring the word12 and word13 triples on adjacent words leaves exactly one pair manuscript-wide: **p55 words12–13**.
+
 ## Global holdout
 
-Across every complete p0..p55 word capable of a two-layer peel, p55 word12 is the **only** word satisfying the frozen triple simultaneously:
+Across every complete p0..p55 word capable of a two-layer peel, p55 word12 is the **only** word satisfying its frozen triple simultaneously:
 
 1. `phi(whole prime sum) = GP-prime(EMERGE)=300`;
 2. `shell prime sum = GP-prime(SURFACE)=246`;
@@ -78,7 +105,7 @@ The page, word number, peel depth, semantic targets, and arithmetic registers ar
 
 ## Decision
 
-Preserve this as a high-priority semantic navigation node on the independently selected p55. OUR selects word12, K=2 exposes THE at the interior, the shed shell is SURFACE under two registers, and the whole object maps to EMERGE. The earlier TUNNELNG→base59 55 coincidence is retained only as a diagnostic because it conflicts with the pre-SHED base60 state.
+Preserve this as a high-priority semantic navigation pair on the independently selected p55. OUR/OWN select adjacent words12–13 before the OWN holdout is inspected. K=2 makes word12 expose THE / SURFACE / EMERGE and word13 expose TO / MUST / SHED under frozen GP0, GP-prime and totient registers. The exact adjacent pair is unique manuscript-wide. The earlier TUNNELNG→base59 55 coincidence is retained only as a diagnostic because it conflicts with the pre-SHED base60 state.
 
 The remaining useful question is the reversible operation after the p27 DIVINITY carrier. The p55→80 handoff itself is now typed by an independently selected p27 receiver. Avoid treating the three-rune interior as plaintext; the evidence currently identifies semantic registers rather than a letter-level cipher.
 
