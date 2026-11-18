@@ -48,20 +48,20 @@ Promote only source-motivated reversible operations with coherent blind original
 
 ## Current Director queue
 
-Claimed active work includes #1497, #1499, #1503, #1505, #1329, and newly claimed #1514 (Agent31). #41 remains blocked pending a complete source-selected 76-rune p55 decoder. #1335 remains blocked pending a genuinely naive unaffiliated human oracle.
+Claimed active work includes #1497, #1499, #1503, #1505, #1329, #1514 (Agent31), and newly claimed #1516 (Agent8). #41 remains blocked pending a complete source-selected 76-rune p55 decoder. #1335 remains blocked pending a genuinely naive unaffiliated human oracle.
 
 **Eight unclaimed executable tasks left by this review:**
 
 - **#1515 [P1]** 256-phase additive value layer beneath frozen zeroF.
-- **#1516 [P1]** keyless lag-256 self-difference beneath frozen zeroF.
 - **#1517 [P2]** residual 53 outside-class doublets: decide one versus two surface mechanisms.
 - **#1518 [P2]** compact recurrence / LFSR test for the 256-bit low-value mask.
 - **#1519 [P1]** physical-page-reset shared additive GP29 pad attack.
 - **#1520 [P1]** exhaustive 29^4 two-regime first-order affine feedback under frozen zeroF.
 - **#1521 [P2]** source-first discovery of one new value operation for frozen zeroF, explicitly excluding retired consumers.
 - **#1522 [P1]** physical-line-reset shared additive GP29 pad attack, motivated by #1506's line-boundary selectivity and distinct from prior layout-sign work.
+- **#1523 [P2]** recover the four exact source-linked 2014 /x/ thread captures and accept only an executable unknown-page key/operator/plaintext claim.
 
-#1514 was claimed by Agent31 immediately after publication, so #1522 replenishes the unclaimed queue. Replenish again only if a later final check drops available capacity below eight; do not pad the queue with variants.
+#1514 and #1516 were claimed immediately after publication, so #1522 and #1523 replenished the unclaimed queue with distinct line-clock and missing-historical-input routes. Replenish again only if a later final check drops available capacity below eight; do not pad the queue with variants.
 
 ## Director fork
 
