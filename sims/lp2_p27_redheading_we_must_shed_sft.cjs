@@ -434,6 +434,99 @@ const manuscriptDivinityHits = twelve.filter(
 assert.equal(manuscriptDivinityHits.length, 1);
 assert.equal(translit(manuscriptDivinityHits[0]), translit(divinityWord.inds));
 
+
+// Printed-line controls. The actual p55->p27 handoff pair DJU/BEI lands on
+// p27 line2, which independently supplies WE/MUST in sentence order.
+function printedLines() {
+  const rows = [];
+  for (let rawPage = 0; rawPage < 55; rawPage++) {
+    const physicalPage = rawPage >= 50 ? rawPage + 1 : rawPage;
+    const sourceLines = (rawPages[rawPage] || "").split("/");
+    for (let lineIndex = 0; lineIndex < sourceLines.length; lineIndex++) {
+      let current = [];
+      const words = [];
+      const flush = () => {
+        if (!current.length) return;
+        words.push(current);
+        current = [];
+      };
+      for (const ch of sourceLines[lineIndex]) {
+        if (alphabet.has(ch)) {
+          current = [...current, alphabet.get(ch)];
+        } else if (/\s/u.test(ch)) {
+          // Whitespace inside the transcription does not terminate a rune word.
+        } else {
+          flush();
+        }
+      }
+      flush();
+      const flat = words.flat();
+      if (!flat.length) continue;
+      const shell = words.flatMap(word =>
+        word.length === 1 ? word : [word[0], word.at(-1)]
+      );
+      const sum = primeSum(flat);
+      const rank = primeRank(sum);
+      rows.push({
+        page: physicalPage,
+        line: lineIndex + 1,
+        words,
+        flat,
+        shell,
+        primeSum: sum,
+        indexSum: indexSum(flat),
+        primeRank: rank,
+        tableAtRank: rank !== null && rank < 256 ? grid.bytes[rank] : null,
+        shellIndexSum: indexSum(shell),
+      });
+    }
+  }
+  return rows;
+}
+const lines = printedLines();
+assert.equal(lines.length, 594);
+
+const p27Line2 = lines.find(row => row.page === 27 && row.line === 2);
+assert(p27Line2);
+assert.equal(p27Line2.primeSum, 673);
+assert.equal(p27Line2.primeRank, 122);
+assert.equal(p27Line2.tableAtRank, 86);
+assert.equal(p27Line2.indexSum, 186);
+assert.equal(p27Line2.shellIndexSum, 115);
+assert.deepEqual(
+  lines.filter(row => row.indexSum === 186).map(row => [row.page, row.line]),
+  [[27, 2]]
+);
+assert.deepEqual(
+  lines.filter(row => row.tableAtRank === 86).map(row => [row.page, row.line]),
+  [[27, 2]]
+);
+
+// The line containing the manuscript-unique DIVINITY-within word also carries
+// OUR/FIND on direct line/circumference statistics.
+const p27Line5 = lines.find(row => row.page === 27 && row.line === 5);
+assert(p27Line5);
+assert.equal(p27Line5.flat.length, 21);
+assert.equal(p57.find(word => word.name === "OUR").sum, 21);
+assert.equal(p27Line5.shellIndexSum, 151);
+assert.equal(p57.find(word => word.name === "FIND").sum, 151);
+const ourFindLines = lines.filter(
+  row => row.flat.length === 21 && row.shellIndexSum === 151
+);
+assert.deepEqual(
+  ourFindLines.map(row => [row.page, row.line]),
+  [[27, 5], [46, 7]]
+);
+const ourFindDivinityLines = ourFindLines.filter(row =>
+  row.words.some(word =>
+    word.length === 12 && primeSum(word.slice(2, -2)) === 376
+  )
+);
+assert.deepEqual(
+  ourFindDivinityLines.map(row => [row.page, row.line]),
+  [[27, 5]]
+);
+
 console.log(JSON.stringify({
   status: "candidate instruction chain only; no unknown plaintext",
   heading: {fullSum, fullRank, tableByte: grid.bytes[fullRank], firstIndex: heading[0]},

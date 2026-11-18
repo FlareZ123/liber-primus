@@ -50,19 +50,13 @@ The intervening clear words \`TUNNELNG\` and \`SURFACE\` are a plausible descrip
 
 ## Second sentence: shed the heading
 
-Shed the first and last rune of each of the three heading words. The remaining lengths are **1 / 10 / 2**, totaling **13**, exactly the size of the following red 13-dot stencil. The survivor is:
+The handoff itself fixes the sentence entry. The unique repeated pair \`DJU / BEI\` lands on **p27 printed line2**. That line has GP index sum **186 = MUST**. Its GP-prime sum is **673**, prime ordinal122, and p50 cell122 has byte **86 = WE**. Across all **594** printed p0-p55 lines, p27 line2 is uniquely the only line with index sum186 and uniquely the only line whose prime-rank p50 lookup returns86.
 
-\`PSOAAEHLEEOIMSC\`
+Thus the route enters the clear instruction as **WE MUST** on the exact handoff line.
 
-Its GP-prime sum is **673**, the **122nd prime**. P50 cell122 has byte **86**, equal to the p57 prime sum of \`WE\`.
+Execute the next clear verb literally. Shed the first and last rune of each of the three red heading words. The remaining lengths are **1 / 10 / 2**, totaling **13**, exactly the following red 13-dot mark. The survivor is \`PSOAAEHLEEOIMSC\`; its GP-prime sum is673, the 122nd prime, and p50 cell122 again returns **86 = WE**.
 
-Shed those three surviving parts once more. The removed five-rune shell is \`PSMSC\`, prime sum **233**, and:
-
-\[
-\varphi(233)=232=\Sigma_p(\text{SHED}).
-\]
-
-The full heading already supplies \`MUST=186\`. These objects therefore hit **WE / MUST / SHED**. Their arithmetic evaluation order does not itself spell that sentence order. A cleaner human reading is to enter the clear p57 instruction at the already-selected \`MUST\` and execute **MUST SHED OUR OWN CIRCUMFERENCES** on the visible heading.
+Shed those three surviving parts once more. The removed five-rune shell is \`PSMSC\`, prime sum233, and \(\varphi(233)=232 = SHED\). The full heading supplies **MUST=186** through its prime ordinal. The line-selected entry therefore tells the solver what to do rather than relying on a post-hoc word-order choice.
 
 A broad discovery-aware null preserves the 3/12/4 geometry, shuffles the exact multiset of 225 original red rune identities, permits prime sum, index sum, totient, prime ordinal, one p50 lookup, and all six object orders. Ten of 200,000 trials hit some consecutive p57 triple. Zero also satisfy the p27 full-heading 19 self-check. This calibrates the scale of the aggregate pattern; it is not an authorship p-value.
 
@@ -92,6 +86,9 @@ The outermost circumference of the same body word supplies a supporting \`FIND\`
 
 The relation now reads literally: **FIND THE DIVINITY WITHIN**.
 
+The same printed line containing the unique \`DIVINITY\`-within word supplies two additional visible checks. P27 line5 has exactly **21 runes = OUR**, and the GP-index sum of the first/last-rune circumference of each of its five printed words is **151 = FIND**. Across all 594 printed lines, the rune-count21/circumference-index151 conjunction occurs twice, on p27 line5 and p46 line7. Only p27 line5 also contains a 12-rune word whose twice-shed interior sums to376, so the conjunction becomes unique after the DIVINITY selector is applied.
+
+
 The p27 black body after the red heading contains exactly **215 runes**, equal to the p57 GP-prime sum of \`AND\`. Among the nine p0-p55 pages with an initial red span, p27 alone leaves a 215-rune body after removing that initial red span.
 
 The upstream p55 handoff boundary is **300**, equal to the p57 GP-prime sum of \`EMERGE\`.
@@ -116,7 +113,7 @@ Among all \(\binom{13}{5}=1287\) possible five-of-thirteen subsets, six satisfy 
 
 The p57 text is the 2013 \`761.mp3\` "Instar Emergence" parable. In the documented 2013 puzzle, that audio was also XORed byte-for-byte with the Twitter-derived binary to recover the Gematria Primus image. Historical source: [neuroretransmit 2013 Twitter reconstruction](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/003-twitter/README.md).
 
-This makes the p27 parable match historically meaningful. The 2013 XOR operation still lacks a source-selected LP2 binary operand, so no free XOR alignment search is justified.
+This makes the p27 parable match historically meaningful. One exact historical receiver was tested without an alignment search: original p27 `44.jpg` and p55 `72.jpg` were each XORed byte-for-byte from offset zero with the preserved `761.mp3`, matching the 2013 XOR convention. Both outputs remained near-max-entropy binary data, with no recognized file signature at byte zero or within the first 64 KiB. That exact image-level receiver is closed; offset searches are not source-selected.
 
 ## Receiver gates already closed
 
@@ -134,8 +131,8 @@ These exclusions prevent the strong p27 parser from becoming a license for uncon
 
 ## Decision
 
-The p55 -> p27 handoff now has a coherent human-facing reason to exist. The destination contains manuscript-wide unique nested matches to **LICE THE INSTAR** and **TO THE**, a literal 13-rune circumference shed matching the printed 13-dot mark, repeated p57 numeric closures, a unique **AND=215** body length, and an upstream **EMERGE=300** boundary.
+The p55 -> p27 handoff now has a coherent human-facing reason to exist. The exact handoff line uniquely supplies **WE MUST**; nested heading words uniquely supply **LICE THE INSTAR** and **TO THE**; literal circumference shedding matches the 13-dot mark; the body contains a manuscript-unique **DIVINITY** interior selected by the same operation; the remaining structure closes on **WITHIN**, **AND=215**, and the upstream **EMERGE=300** boundary.
 
-The productive missing step is narrow: recover a source-authored **FIND THE DIVINITY** operation or receiver that acts on the selected p27 structure and produces unknown plaintext or a genuine key. Until that selector appears, keep this in \`im-results/\` rather than promoting it to established plaintext.
+The remaining cryptanalytic gap is the receiver after that instruction. The selected \`NSOOCAEY\` object has prime sum376, while direct solved-style Vigenere, p56-prime, and exact historical image-XOR receivers fail. The next useful work must identify what **EMERGE** does to that selected object, or connect it to an independently authored receiver. Keep this in \`im-results/\` until the route produces unknown plaintext, an authentic key application, or another independently verifiable destination.
 
 Reproduce the source arithmetic and manuscript-wide controls with [the SFT](../sims/lp2_p27_redheading_we_must_shed_sft.cjs).
