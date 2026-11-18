@@ -56,6 +56,20 @@ The p51 source example is especially clear: genuine Vulgate occurrences of `TURB
 
 The Old English finite reference gives **23 unmatched positions**, including p13, p25, p36 and p51. Its short corpus and morphological coverage prevent interpreting that count as a universal exclusion of Old English.
 
+## Exhaustive contiguous-source plaintext retrieval with unknown secret alphabets
+
+An actual source-selected plaintext phrase would be stronger evidence than a single compatible word. To seek one, the same source SFT constructs suffix automata over the **entire ordered sequence** of source word signatures `(original word length, all five-phase equality bits)`. It then traverses all **2,896 untouched original ciphertext words in printed order**. Every possible contiguous source phrase is evaluated implicitly, and the test permits **all 29! independent secret phase-wise substitution alphabets per word**. It optimizes no key, cipher sign, page permutation, language model or word index.
+
+| Fixed original source stream | Entire reference length | Longest contiguous same-signature phrase anywhere in LP2 | Original whole-book word starts of tied maxima |
+| --- | ---: | ---: | --- |
+| GP-native Latin Vulgate NT | **39,835** words | **8 words** | **1020, 1318, 2024** |
+| Corrected GP-native Old English *Beowulf* | **10,885** words | **8 words** | **366, 1568, 1704** |
+| Original physical LP1 first-release rune transcription (clear and historically encrypted sections included) | **694** words | **7 words** | **318, 1386** |
+
+In particular **not one nine-word uninterrupted phrase** of the fixed Latin or Old English source survives anywhere in the entire original LP2 word transcript, even though the proposed cipher may choose a completely independent five-alphabet key for every word. The LP1 original-rune stream also supplies no contiguous match of eight or more words. The LP1 control includes historically encrypted sections; this row is a full-original-rune stream constraint, **not** an assertion that all 694 runes words are clear English. The original Vulgate maximum spans are mostly short words whose signatures carry little beyond word length, and eight-word matches do **not** authenticate a quote.
+
+A **12-consecutive-word genuine Vulgate plant**, encrypted under independently randomized unknown 29-symbol bijections for each of five phases in each word, is recovered as an exact **12-word match with correct source start index1000** by the same suffix-automaton detector. The previous **12,956-rune native Latin positive** also recovers its plaintext exactly under the true secret mappings. This proves the source-wide quote search can identify a long, truly encoded phrase **if it matches its declared wordwise model**. The original provides no such phrase in these pinned corpora. This does not exclude a paraphrase, an isolated source word, an original Latin or Old English composition, a different encoding of word boundaries, or an untested historical text.
+
 ## Independent aggregate language-shape test: exact original source-conditioned tails
 
 The finite-lexicon incompatibility above depends on particular wordforms. A second, less brittle discriminator asks whether an independently written *native* Latin or Old English paragraph would produce the **same count of fifth-back equal-rune pairs**, which every word-local five-phase substitution preserves under all secret keys. The original physical manuscript has **104** such pairs among 2,105 eligible original within-word positions. This fifth-back statistic was discovered earlier and selected retrospectively; its role here is a preexisting fixed comparison feature, not a fresh a priori discovery.
