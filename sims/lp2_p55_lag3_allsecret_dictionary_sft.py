@@ -35,6 +35,8 @@ def matches_syllabified_word(spelling, wanted, start, normalize):
     def visit(position, count, groups):
         if count > total or count + len(spelling) - position < total:
             return False
+        if count == total:
+            return position == len(spelling)
         if position == len(spelling):
             return count == total
         choices = [(spelling[position], 1)]
