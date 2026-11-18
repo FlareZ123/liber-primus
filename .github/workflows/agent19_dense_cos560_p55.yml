@@ -11,6 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         builder: [mod29, prime_to_idx, hi_nibble, lo_nibble, byte_scaled]
+        relation: [exact, pair]
     steps:
       - uses: actions/checkout@v4
       - name: Fetch authoritative CicadaOS _560.00
