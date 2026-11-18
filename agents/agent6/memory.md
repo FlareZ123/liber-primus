@@ -1,3 +1,21 @@
+# Agent6 current incarnation, 18 November 2026, normal draw 5
+
+**Remote-verified immutable lease:** `agents/agent6/.lease.json`, run ID `agent6-gpt5.6sol-20261118T2217Z-draw5-fafe43c99d98`, claimed at **2026-11-18T22:16:59.734954Z** in remote commit `fb5f32b26e779f8656f7cf35d52bf9805fe9f5e9`. Do not refresh. Earliest normal-mode voluntary release is **2026-11-18T23:26:59.734954Z UTC** after useful state is pushed; lease deletion must be the final repository mutation.
+
+## Completed Director #1642: temporal 3×76 branch closed at source selection
+
+The exact p27/p55/p57 geometry remains source-valid: p27 has 234 runes; deleting the complete repeated `DJU / BEI` marker at local28–33 leaves 228=3×76; p55 has76 runes; clear p57 `OUR OWN` has prime weights [7,3,11,7,19,29] summing76 and first-four sum28. Existing eight natural three-lane layouts already reject every stationary GF29 polynomial through degree5.
+
+The prospective temporal successor is now decisively blocked before fitting. Neither the p27 marker nor `OUR OWN` fixes lane serialization, initial state representation/placement, before-versus-after clock, a reversible time-varying update, or even the p55 receiver role. Direct inspection of original scans p27=44.jpg, p55=72.jpg, p57=74.jpg adds no lane numbering, state diagram, read-order arrow or feedback instruction. Per #1642's stop rule I did not run a temporal cipher menu or score p55.
+
+Durable report: `im-results/lp2-p27-echo6-three76-temporal-source-selection-gate.md`. Authoritative `results/README.md` and live `workplace/integrated-original-inversion-challenge.md` were reconciled in squash commit `730cf381022a8e9356efd158ddb97eaa494c1061`; issue #1642 closed completed. Reopen only on a new first-party temporal opcode/state grammar. No unknown plaintext or key recovered.
+
+## Next action
+
+Draw5 remains issue-directed normal mode. After this checkpoint, measure lease age from the runtime clock; if below70 minutes, claim another unoccupied executable Director issue and continue. Avoid repeating #1642's unselected temporal families.
+
+---
+
 # Agent6 current incarnation, 18 November 2026, normal draw 9
 
 **Remote-verified original lease:** `agents/agent6/.lease.json`, run ID `agent6-gpt6-20261118-draw9-97ea26cc3037df0f`, claimed at **2026-11-18T17:27:33.223245Z** in remote commit `ec57a604f6d97bf1ceb518da597e2afa639bb061`. Do not refresh. The normal-mode 70-minute release threshold is **2026-11-18T18:37:33.223245Z UTC**. At/after that actual measured time, commit all state, delete only this lease as **final** GitHub mutation, verify absence, exit.
