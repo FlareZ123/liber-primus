@@ -37,7 +37,23 @@ Use **six unencrypted first-release GP passages** from [the original canonical L
 | LP1 six clear sections | **1,001 / 231** | **7** | **9.2121** | **0.8422** |
 | LP2 clear p57 | **95 / 20** | **2** | approximately **0.80** | approximately **0.17** |
 
-The clear LP1 control does not exhibit the LP2 encrypted manuscript's surplus under the same boundary-shuffle construction. Clear p57 is too short to adjudicate a fifth-back mechanism. The first-party clear corpus is much smaller than LP2 and has a different length/genre distribution, so this is an instructive source-native control rather than a comprehensive ordinary-prose null.
+The clear LP1 control does not exhibit the LP2 encrypted manuscript's surplus under the same boundary-shuffle construction. Clear p57 is too short to adjudicate a fifth-back mechanism. The first-party clear corpus is much smaller than LP2 and has a different length/genre distribution; the full-length source-native controls below address this limitation separately.
+
+
+## Independently encoded, source-native English control books
+
+The 1,001-rune clear LP1 baseline is small. A separate model regenerates **600 full 12,956-rune source-native GP English books** using the exact original *individual* 2,896 word lengths, printed word offsets and 32 across-page carries. It uses the repository's [solved-LP1/p57-calibrated native GP spelling](../sims/lp2_native_gp_source_orthography_sft.cjs), selecting each plaintext word with replacement from an independent Gibran, Shakespeare or Emerson corpus **of the same number of GP runes**. Each original-language book is held fixed while **80** shuffled-length layouts are tested on its unmodified rune tape. The original observed surplus **104−80.3507 = +23.6493** was frozen before this separate native source experiment. Seed: **0x13303301**. There are **200 independently sampled books per author**, with a total of 48,000 boundary-only shuffles.
+
+| Source-native English book generator | Original-word enclosed fifth-back mean | Shuffled-layout mean | Surplus mean ± SD | Books with surplus ≥ original LP2 |
+|---|---:|---:|---:|---:|
+| Gibran | **121.920** | **125.431** | **−3.511 ± 9.136** | **1/200** |
+| Shakespeare | **122.895** | **124.169** | **−1.274 ± 10.358** | **1/200** |
+| Emerson | **130.015** | **127.977** | **+2.038 ± 9.228** | **2/200** |
+| **Actual unknown LP2** | **104** | **80.351** | **+23.649** | Comparison target |
+
+Matched-length ordinary GP-English is **not automatically enriched** at its true word boundaries under this same fixed-rune/shuffled-layout diagnostic. Its three text-model means are substantially below the unknown original's +23.65 surplus; only **4 of 600** generated language-register books match/exceed the original, separately **1/200, 1/200 and 2/200**. The three authors are non-independent as English-language models, and the finite controls are draws with replacement from literary vocabularies rather than direct authenticated Cicada plaintext. Interpret these as **conditional empirical source-register contrasts**, not a discovery-wide probability of puzzle design. The larger clear-language controls strengthen the specific word-boundary anomaly without locating any decoding instruction.
+
+[Native control SFT](../sims/lp2_fixedcipher_wordbreak_native_sft.cjs) uses the existing source-calibrated GP29 encoder and exact checked-in control texts; no external language library or guessed unknown plaintext is used.
 
 ## Interpretation and discriminating next move
 
