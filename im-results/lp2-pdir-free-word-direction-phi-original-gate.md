@@ -1,10 +1,10 @@
-# Free wordwise key-direction inference under the authentic p56 prime-totient stream
+# Free wordwise direction and repeat-rejection inference under the authentic p56 prime-totient stream
 
 ## Research question and source premise
 
 The authenticated 2016 Cicada statement, “words are the map, their meaning is the road, and their numbers are the direction,” motivates testing *wordwise traversal direction* as a cipher operation. The established solved LP2 p56 cipher uses consecutive Euler totients of primes in Gematria Primus arithmetic with transparent plaintext-F bypass. These clues suggest, but **do not independently authenticate**, a possible original LP2 ciphertext receiver: retain the prime-totient key while changing key-pointer direction between printed words.
 
-This test asks whether a decoder can recover original unknown-page language **even if the rule for selecting each direction remains totally unknown**. It is deliberately more permissive than the fixed 66 word-number rules in Director Issue [#1329](https://github.com/FlareZ123/liber-primus/issues/1329). It concerns a single documented key register, not all possible historical key streams or word-control interpretations.
+The primary test asks whether a decoder can recover original unknown-page language **even if the rule for selecting each direction remains totally unknown**. A second test admits source-motivated repeated-output key rejection, suggested by the original ciphertext’s very rare identical adjacent runes. It is deliberately more permissive than the fixed 66 word-number rules in Director Issue [#1329](https://github.com/FlareZ123/liber-primus/issues/1329). It concerns a single documented key register, not all possible historical key streams or word-control interpretations.
 
 ## Exact source and finite decoder
 
@@ -50,10 +50,26 @@ The same program constructs an **8,134-type independent broad lexicon** using so
 
 Hence the source-exact family cannot interpret **any of the 56 original printed words of length at least six** as one of these 8,134 historically sourced GP-native words, even by choosing each word's key phase independently. The original long words could logically be outside this finite lexicon, so this is a lexicon-bounded exclusion rather than an exhaustive proof covering every possible English word, proper name, deliberate misspelling or auxiliary encoding. Its failure against an independently calibrated long-word corpus makes this specific straightforward word-direction interpretation unpromising as the general decipherment.
 
+## Stronger key-rejection extension (18 November)
+
+The authentic solved p56 cipher supplies the fixed source key and transparent-F behavior; an unknown-page doublet-suppression layer is an independent, conjectural addition. The original unsolved runes suppress immediate repeated ciphertext symbols (86 repeats among 12,901 within-page consecutive pairs, roughly 0.67%). A plausible operator would refuse a prime-key step if its proposed output repeated the immediately preceding ciphertext rune, thereby consuming extra key positions. In contrast to a unique invented repeat rule, the extension **grants both acceptance and rejection** whenever a proposed output equals the preceding ciphertext rune, permitting **0–3 consecutive rejected steps for every non-F rune**. For plaintext F, the authentic bypass still emits F without consuming any key. The signs remain unconstrained per word, and **each original word may choose any of 464 key starts independently**. Thus absence of a source-lexicon preimage is a stronger exclusion than a constrained whole-book pointer or prescribed word-number rule.
+
+Source code: [exact original repeat-rejection/word-direction reachability](../sims/lp2_pdir_ftransparent_repeatskip_wordlex_sft.cjs). [Windows Node22 passing run 44318796978](https://github.com/FlareZ123/liber-primus/actions/runs/44318796978), source commit `27ec6eb783fdc97aafe74a2ece9a8d25eb7948a9`. The script reproduces solved p56's complete source ciphertext **85/85** as the authentic zero-rejection subcase. It tests a native-source BookIII English plant encrypted with 0–3 actual rejected steps and varying wordwise direction, retaining original p0–2 word lengths.
+
+| Minimum word length | Original printed words | Original with any GP-English lexical preimage after *all* allowed skips, signs, phases | Native English plant exact words reachable |
+| --- | ---: | ---: | ---: |
+| 5 | 69 | **1** | 69/69 |
+| 6 | 56 | **0** | 56/56 |
+| 7 | 38 | **0** | 38/38 |
+| 8 | 21 | **0** | 21/21 |
+| 9 | 12 | **0** | 12/12 |
+
+The sole original long-word match is a five-rune candidate `SURER` at printed word index 26, an isolated dictionary feasibility result without a consistent cipher state or syntactic continuation. **No original printed word length six or greater** matches the frozen 8,134-word GP-native lexicon for this broad cipher family. The decoder cannot identify a coherent English chapter through prime-totient direction reversal rescued by a limited rejection loop; this bound covers both deterministic rejection and probabilistic repeat acceptance, provided the only extra keystream positions are those consumed after proposed repeated ciphertext and the maximum consecutive discarded positions is three. The result does **not** rule out an independently source-selected different key, a skip on nonrepeated symbols, arbitrary numbers of hidden skipped positions, non-English prose, or changing text geometry.
+
 ## Comparison, boundaries and next decision
 
 A separate no-F-skip version, [source-fixed free-direction DP](../sims/lp2_pdir_free_word_direction_dp_sft.cjs), [passing run 44313823247](https://github.com/FlareZ123/liber-primus/actions/runs/44313823247), also recovers the 158-word held-out plant exactly and fails the original opening (best −4.091751/rune and 20/158 training words). Its omission of literal-F does not match authentic p56; the F-transparent test above is the source-respecting stronger one.
 
-The original key register is authenticated only for p56; no Cicada source says the entire encrypted p0–55 uses it, or that direction changes wordwise. Reject **the precise 464-period p56-totient, continuously carried, freely directed wordwise family as a credible decoder of normal original-page language** under calibrated controls. Do not rerun the same 464-phase/word-sign family with new postselected direction rules: every such rule already lies within this tested sign superset. Keep Issue #1329's distinct 581 *other historical key streams*, 18 pointer conventions, skip models and six-section search separate; their 216-shard campaign is unaffected. A new positive lead would require an independently source-identified key/extra state operation and complete held-out original plaintext, not an opportunistic score improvement.
+The original key register is authenticated only for p56; no Cicada source says the entire encrypted p0–55 uses it, or that direction changes wordwise. Reject **the precise 464-period p56-totient, freely directed wordwise family as a credible decoder of ordinary original-page GP-English** under calibrated controls, including both the continuously carried pointer and all independently chosen starts with up to three repeat-triggered key skips per output rune. Do not rerun the same 464-phase/word-sign family with new postselected direction rules: every such rule already lies within this tested sign superset. Keep Issue #1329's distinct 581 *other historical key streams*, 18 pointer conventions, skip models and six-section search separate; their 216-shard campaign is unaffected. A new positive lead would require an independently source-identified key/extra state operation and complete held-out original plaintext, not an opportunistic score improvement.
 
 This is **original-cipher scientific evidence only**; no unknown LP2 plaintext, authentic unknown-page key or final destination is recovered.
