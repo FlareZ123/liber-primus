@@ -15,10 +15,14 @@ import hashlib
 import json
 import re
 from pathlib import Path
+from urllib.request import urlopen
 
 EXPECTED_BYTES = 399_787
 EXPECTED_GIT_BLOB_SHA1 = "2d865faeec179d6b5984643d8b2af7efa3269f73"
 EXPECTED_LINES = 5_179
+MIRROR_URL = ("https://raw.githubusercontent.com/cicada-solvers/"
+    "The-Complete-Cicada3301-Archive/f0f03edcb029e94b519efcacf1bf2511353e17c2/"
+    "2013/additional%20docs/logs/all%20cosmos%20posts%20from%207th%20on%20the%20761%20song%20-%20full%20log.txt")
 
 EXACT_LINES = {
     3940: "[2013-01-07 12:02:53] <soulseekah> count a = 97* count b = 61+ count ab = 158",
@@ -164,7 +168,8 @@ def gematria_sum(word: str, tokens: list[tuple[str, int]]) -> int:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("source", type=Path, help="Exact UTF-8 archive mirror file")
+    parser.add_argument("source", nargs="?", type=Path,
+                        help="Exact UTF-8 archive mirror file; omitted: fetch pinned GitHub mirror")
     parser.add_argument(
         "--repo-root",
         type=Path,
@@ -173,7 +178,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    raw = args.source.read_bytes()
+    raw = args.source.read_bytes() if args.source else urlopen(MIRROR_URL, timeout=40).read()
     if len(raw) != EXPECTED_BYTES:
         raise SystemExit(f"byte length mismatch: {len(raw)} != {EXPECTED_BYTES}")
     actual_blob = git_blob_sha1(raw)
