@@ -105,10 +105,10 @@ function gpEncodeText(text) {
 }
 
 function explicitHexBytes(filePath, bytes) {
-  if (!/hex|hexdump/i.test(filePath)) return null;
-  const text = bytes.toString("utf8");
-  const hex = text.replace(/[^0-9a-fA-F]/g, "");
-  if (hex.length < 2 || hex.length % 2) return null;
+  if (!/hex|hexdump/i.test(filePath) || /\.json$/i.test(filePath)) return null;
+  const chunks = bytes.toString("utf8").match(/[0-9a-fA-F]{16,}/g) || [];
+  const hex = chunks.join("");
+  if (hex.length < 16 || hex.length % 2) return null;
   return Buffer.from(hex, "hex");
 }
 
@@ -119,7 +119,25 @@ function streamVariants(filePath, bytes) {
   variants.push({kind:"raw_byte_base29_be", values:raw.flatMap(x => [Math.floor(x / MOD), x % MOD])});
   variants.push({kind:"raw_byte_base29_le", values:raw.flatMap(x => [x % MOD, Math.floor(x / MOD)])});
   if (/\.(txt|md|json|asc|csv|html?)$/i.test(filePath)) {
-    variants.push({kind:"gp_text", values:gpEncodeText(bytes.toString("utf8"))});
+    const gpValues = gpEncodeText(bytes.toString("utf8"));
+    variants.push({kind:"gp_text", values:gpValues});
+    variants.push({kind:"gp_prime_mod29", values:gpValues.map(v => corpus.prime[v] % MOD)});
+  }
+  if (filePath.endsWith("cicada2014-sexagesimal-source.json")) {
+    const parsed = JSON.parse(bytes.toString("utf8"));
+    const values = parsed.decimal_values;
+    variants.push({kind:"sexagesimal_decimal_mod29", values:values.map(v => v % MOD)});
+    variants.push({kind:"sexagesimal_decimal_base29_be", values:values.flatMap(v => [Math.floor(v / MOD), v % MOD])});
+    variants.push({kind:"sexagesimal_decimal_base29_le", values:values.flatMap(v => [v % MOD, Math.floor(v / MOD)])});
+  }
+  if (filePath.endsWith("cicada2014-outguess-hex.json")) {
+    const parsed = JSON.parse(bytes.toString("utf8"));
+    parsed.sources.forEach((source, i) => {
+      const values = [...Buffer.from(source.hex, "hex")];
+      variants.push({kind:`outguess_hex_${i}_mod29`, values:values.map(v => v % MOD)});
+      variants.push({kind:`outguess_hex_${i}_base29_be`, values:values.flatMap(v => [Math.floor(v / MOD), v % MOD])});
+      variants.push({kind:`outguess_hex_${i}_base29_le`, values:values.flatMap(v => [v % MOD, Math.floor(v / MOD)])});
+    });
   }
   const decoded = explicitHexBytes(filePath, bytes);
   if (decoded) {
