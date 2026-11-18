@@ -190,7 +190,7 @@ assert.deepEqual(lineFragmentOccurrences(27, targetFragments[2]), [
 ]);
 
 const p55Body = pages.find((item) => item.page === 55).body;
-const p55Lines = p55Body.split('/\n')
+const p55Lines = p55Body.split(/\/\r?\n/u)
   .map((line) => [...line.matchAll(/[ᚠ-ᛡ]+/gu)].map((match) => match[0]))
   .filter((fragments) => fragments.length > 0);
 assert.deepEqual(p55Lines.map((line) =>
@@ -204,7 +204,7 @@ assert.deepEqual(p55Ink.large_punctuation, [[76, 13, 'red']]);
 let physicalLines = 0;
 const allTwiceFragmentLines = [];
 for (const page of pages) {
-  const lines = page.body.split('/\n');
+  const lines = page.body.split(/\/\r?\n/u);
   for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
     const fragments = [...lines[lineIndex].matchAll(/[ᚠ-ᛡ]+/gu)]
       .map((match) => match[0]);
@@ -418,7 +418,7 @@ const terminalLineEnds = [];
 for (const pageNumber of [54, 55]) {
   const page = pages.find((item) => item.page === pageNumber);
   assert(page);
-  for (const line of page.body.split('/\n')) {
+  for (const line of page.body.split(/\/\r?\n/u)) {
     const count = [...line].filter((rune) => corpus.runes.includes(rune)).length;
     if (count === 0) continue;
     terminalOffset += count;
@@ -469,7 +469,7 @@ const visualChapters = [
 function finalRuneLineLength(pageNumber) {
   const page = pages.find((item) => item.page === pageNumber);
   assert(page);
-  const counts = page.body.split('/\n')
+  const counts = page.body.split(/\/\r?\n/u)
     .map((line) => [...line].filter((rune) => corpus.runes.includes(rune)).length)
     .filter((count) => count > 0);
   return counts[counts.length - 1];
