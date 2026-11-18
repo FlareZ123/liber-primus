@@ -166,7 +166,7 @@ function exhaust(stepping) {
 }
 
 assert.equal(grid.bytes.length, 256);
-assert.deepEqual(grid.pages.map((p) => p.tokens.length), [80, 80, 80, 16]);
+assert.deepEqual(grid.pages.map((p) => p.tokens.length), [80, 104, 72]);
 
 const words = parseUnknownWords();
 assert.equal(words.length, 2896);
