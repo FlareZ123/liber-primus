@@ -213,6 +213,24 @@ assert.deepEqual(selected.word, [28, 24, 10, 1, 20]);
 assert.equal(selected.text, "EAAIUL");
 assert.equal(selected.gp0, emerge.gp0);
 
+const outer = [selected.word[0], selected.word.at(-1)];
+assert.deepEqual(outer, [28, 20]);
+assert.equal(Math.abs(outer[0] - outer[1]), our.gp0);
+assert.equal((outer[0] + outer[1]) % 29, own.gp0);
+const shellSolutions = [];
+for (let left = 0; left < 29; left += 1) {
+  for (let right = left; right < 29; right += 1) {
+    if (Math.abs(left - right) === our.gp0 && (left + right) % 29 === own.gp0) {
+      shellSolutions.push([left, right]);
+    }
+  }
+}
+assert.deepEqual(shellSolutions, [[20, 28]]);
+const p28PhysicalLines = parts[28].split(/\r?\n/).filter((line) => line.includes("/"));
+assert.equal(p28PhysicalLines.length, 12);
+const selectedRuneText = selected.word.map((value) => corpus.runes[value]).join("");
+assert.ok(p28PhysicalLines[5].trim().endsWith(`${selectedRuneText}-/`));
+
 /* The page-numbered center/sum conjunction is unique in the available book. */
 const pageNumberWordRows = [];
 for (let physicalPage = 1; physicalPage <= 55; physicalPage += 1) {
@@ -488,6 +506,16 @@ console.log(JSON.stringify({
     selectedTranslit: selected.text,
     selectedGp0: selected.gp0,
     selectedTarget: "EMERGE",
+    physicalLine: 6,
+    physicalLineCount: 12,
+    outerShell: {
+      values: outer,
+      difference: Math.abs(outer[0] - outer[1]),
+      differenceTarget: "OUR",
+      sumMod29: (outer[0] + outer[1]) % 29,
+      sumMod29Target: "OWN",
+      uniquePairSolutions: shellSolutions,
+    },
     peeledInterior: inner,
     peeledGp0: generator,
     peeledGp1: gp1(inner),
