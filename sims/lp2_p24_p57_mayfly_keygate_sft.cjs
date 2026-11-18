@@ -98,6 +98,77 @@ for (const direction of ['forward', 'reverse']) {
   }
 }
 
+/**
+ * Exact historical plaintext-F-transparent decoder feasibility:
+ * plaintext 0 produces ciphertext 0 without consuming a key.
+ * A non-F plaintext consumes one key symbol. A ciphertext F is ambiguous.
+ * This DP preserves ALL genuine possibilities; no language model is involved.
+ * @param {number[]} ciphertext
+ * @param {number[]} key
+ * @param {number} sign
+ * @returns {{feasible:boolean, maximumPrefix:number, finalStates:number, peakStates:number}}
+ */
+function fTransparentFeasibility(ciphertext, key, sign) {
+  let positions = new Set([0]);
+  let peakStates = 1;
+  for (let i = 0; i < ciphertext.length; i += 1) {
+    const next = new Set();
+    for (const keyPosition of positions) {
+      const plain = wrap(ciphertext[i] - sign * key[keyPosition % key.length], 29);
+      if (plain !== 0) next.add(keyPosition + 1);
+      if (ciphertext[i] === 0) next.add(keyPosition);
+    }
+    positions = next;
+    peakStates = Math.max(peakStates, positions.size);
+    if (!positions.size) {
+      return { feasible: false, maximumPrefix: i, finalStates: 0, peakStates };
+    }
+  }
+  return { feasible: true, maximumPrefix: ciphertext.length, finalStates: positions.size, peakStates };
+}
+
+/**
+ * @param {number[]} plaintext
+ * @param {number[]} key
+ * @param {number} sign
+ * @returns {number[]}
+ */
+function fTransparentEncrypt(plaintext, key, sign) {
+  let keyPosition = 0;
+  return plaintext.map(plain => {
+    if (plain === 0) return 0;
+    const cipher = wrap(plain + sign * key[keyPosition % key.length], 29);
+    keyPosition += 1;
+    return cipher;
+  });
+}
+
+let longestFTransparentPrefix = 0;
+for (const [name, sequence] of donors) {
+  for (const direction of ['forward', 'reverse']) {
+    const key = direction === 'forward' ? sequence : [...sequence].reverse();
+    for (const sign of [-1, 1]) {
+      const gate = fTransparentFeasibility(source, key, sign);
+      longestFTransparentPrefix = Math.max(longestFTransparentPrefix, gate.maximumPrefix);
+      assert.equal(gate.feasible, false);
+      console.log('[F-SKIP]', name, direction, 'sign', sign,
+        'maximum legal prefix', gate.maximumPrefix, 'of', source.length,
+        'peak concurrent histories', gate.peakStates);
+    }
+  }
+}
+
+const transparentPlant = fTransparentEncrypt(
+  Array.from({ length: source.length }, (_, i) => i % 11 === 0 ? 0 : solved[(i + 17) % solved.length] || 1),
+  solved,
+  1
+);
+const transparentPositive = fTransparentFeasibility(transparentPlant, solved, 1);
+assert.equal(transparentPositive.feasible, true);
+assert.equal(transparentPositive.maximumPrefix, source.length);
+assert.equal(longestFTransparentPrefix, 202);
+console.log('[PLANT] historical literal-F skip-aware positive 270/270 PASS');
+
 // Deterministic native-GP planted controls exercise both actual inversion paths.
 const pad = Array.from({ length: solved.length }, (_, i) => wrap(i * i + 7 * i + 11, 29));
 const englishPlant = Array.from({ length: source.length }, (_, i) => solved[(i + 17) % solved.length]);
