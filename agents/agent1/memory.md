@@ -62,3 +62,5 @@ Persistent T7 artifacts:
 
 
 **07:52–08:24 follow-up:** The three repaired original-input CJS programs passed separate Windows/Node22 CI runs 44263715929, 44263722291, and 44263727990. The original positive repeat geometry was confirmed exactly. A new 20,000-draw fixed-86-site null (seeding 0x3301) puts the longest genuine zero-equality interval712 at ordinary p≈0.5231 versus median721. This is evidence against the old supposed length1650 void, not evidence about the separate ordered doublet-gap autocorrelation. Script/report updated together.
+
+The follow-on geometry SFT also includes a separate 20,000-sample per-page-repeat-count-conditioned null: longest-gap median833, observed712, upper-tail p0.897705 (17,954/20k ge). This retains each page's actual event count; unlike external T7 serial autocorrelation, a single maximum gap is not an anomalous selector.

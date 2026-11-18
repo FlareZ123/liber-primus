@@ -97,6 +97,46 @@ assert.equal(maxGapSamples[9999], 721);
 assert.equal(maxGapSamples[999], 532);
 assert.equal(maxGapSamples[18999], 1074);
 assert.equal(exceed, 10462);
+
+// Condition on all 55 original non-empty page-level repeat counts instead.
+// This is deliberately a separate fixed-seed experiment: page populations
+// and counts are measured from the immutable original ciphertext.
+let pageSeed = 0x3301;
+function pageUniform() {
+  pageSeed = (Math.imul(pageSeed, 1664525) + 1013904223) >>> 0;
+  return pageSeed / 4294967296;
+}
+let cumulative = 0;
+const pagePools = [];
+for (const page of pages) {
+  let count = 0;
+  for (let i = 1; i < page.indices.length; i++) {
+    if (page.indices[i] === page.indices[i - 1]) count++;
+  }
+  pagePools.push({start: cumulative, eligible: page.indices.length - 1,
+    repeats: count});
+  cumulative += page.indices.length;
+}
+assert.equal(pagePools.reduce((sum, p) => sum + p.repeats, 0), equals.length);
+const conditional = [];
+for (let trial = 0; trial < 20000; trial++) {
+  const taken = [];
+  for (const page of pagePools) {
+    const draw = new Set();
+    while (draw.size < page.repeats) {
+      draw.add(1 + Math.floor(pageUniform() * page.eligible));
+    }
+    for (const value of draw) taken.push(page.start + value);
+  }
+  taken.sort((a, b) => a - b);
+  conditional.push(longestOf(taken));
+}
+conditional.sort((a, b) => a - b);
+const conditionalGE = conditional.filter(n => n >= bestLength).length;
+assert.equal(conditional[9999], 833);
+assert.equal(conditional[999], 685);
+assert.equal(conditional[18999], 1014);
+assert.equal(conditionalGE, 17954);
 console.log(JSON.stringify({
   sourceRunes: source.length,
   allAdjacentEqual: equals.length,
@@ -107,5 +147,8 @@ console.log(JSON.stringify({
   tiedMinima: {count: ties.length, firstStart: ties[0], lastStart: ties[ties.length - 1]},
   fixedSiteNull: {draws: 20000, seed: "0x3301", median: maxGapSamples[9999],
     p05: maxGapSamples[999], p95: maxGapSamples[18999],
-    geObserved: exceed, empiricalUpperTail: (exceed + 1) / 20001}
+    geObserved: exceed, empiricalUpperTail: (exceed + 1) / 20001},
+  pageCountConditionalNull: {draws: 20000, seed: "0x3301",
+    median: conditional[9999], p05: conditional[999], p95: conditional[18999],
+    geObserved: conditionalGE, empiricalUpperTail: (conditionalGE + 1) / 20001}
 }, null, 2));
