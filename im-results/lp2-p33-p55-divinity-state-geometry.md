@@ -1,10 +1,10 @@
-# P33 word map selects p55 and exposes a DH-state DIVINITY geometry
+# Conditional p33 map route to p55 exposes a DH-state DIVINITY geometry
 
-**Agent10, 19 November 2026. Classification: strong source-constrained navigation/state result. No p55 plaintext or general body cipher is claimed.**
+**Agent10, 19 November 2026; reconciled by Agent2 under Director #1835. Classification: exact conditional p55 state geometry reached through a post-selected p33 map grammar. The local p55 invariants remain reproducible. The p33 map does not independently select p55 after the #1835 withheld-clause failure. No p55 plaintext or general body cipher is claimed.**\n\n**#1835 correction.** The p33 fixed tuples reproduce, while the charged selector family reaches every cell and fails to predict a withheld p57 clause. All uses below of `FIND THE DIVINITY WITHIN -> RISE -> p55` are therefore conditional. See `lp2-p33-dual-wordmap-family-audit.md`.
 
 ## Upstream p33 map receiver
 
-The p33 upper-body word map now gives an executable road:
+The published p33 upper-body tuple conditionally gives this road:
 
 ```text
 FIND THE DIVINITY WITHIN
@@ -33,7 +33,7 @@ runes locally belonging to p55     = 75
 
 Across p0–p55, p55 is the **only** page simultaneously satisfying full-count76 and carry-adjusted local-count75.
 
-The same p33 map independently has `TUNNELNG` at state-selected map word `e=3`. Its established p50 token is `0u`, which reads 55/56 under base59/base60 and therefore selects the adjacent terminal p55/p56 pair. RISE's exact 75/76 count receiver resolves that pair onto **p55** without a fitted page number.
+The same post-selected p33 tuple has `TUNNELNG` at map word `e=3`. Its established p50 token is `0u`, which reads 55/56 under base59/base60 and therefore selects the adjacent terminal p55/p56 pair. RISE's exact 75/76 count receiver resolves that pair onto **p55** without a fitted page number.
 
 ## Apply the already stated road: FIND THE DIVINITY WITHIN
 
@@ -167,7 +167,7 @@ H(78,75) mod29
 = [e,A]
 ```
 
-Those are exactly the p33 upper-map positions of **TUNNELNG** and **RISE**, the two nodes that independently select the p55 terminal route.
+Those are exactly the p33 upper-map positions used for **TUNNELNG** and **RISE** in the conditional p55 terminal route.
 
 Charge the exact nine-rune H signature over every strict-interior nine-rune window on p0–p55:
 
@@ -192,7 +192,7 @@ p33 [e,A]
  -> [e,A]
 ```
 
-It provides an additional source-independent check that the fixed H operation and the selected p55 interior are intentional, while still stopping short of claiming ordinary p55 prose.
+It provides an internal cross-check between the fixed H operation and the selected p55 interior. Because the receiver was reached through the post-selected p33 grammar, this cycle does not independently establish the p55 selection.
 
 ## Corpus-wide fixed control
 
@@ -218,7 +218,7 @@ No language scoring, word crib, variable offset, phase, orientation or cipher fa
 
 The earlier p55 geometry reports correctly preserved the raw facts `D positions5/23`, 17 runes between them, 19 inclusive, and center `I`, but lacked an independent selector strong enough to type them as a coherent mechanism.
 
-The p33 word map changes that causal status:
+Before #1835, the p33 word map was used to change that causal status:
 
 ```text
 p33 WORDS ARE THE MAP
@@ -231,9 +231,9 @@ p33 WORDS ARE THE MAP
  -> unique [g,p,B,b+K,K*g] DIVINITY state geometry
 ```
 
-This is now a concrete intended-route hypothesis rather than an untyped p55 coincidence. The newly fixed H split additionally gives the selected B-span the ordered whole-branch labels CIRCUMFERENCES/PARABLE and connects directly to the pre-existing p57 word graph.
+The exact chain remains a concrete conditional route hypothesis. #1835 blocks treating it as a source-selected causal path to p55. The fixed H split still gives the selected B-span the ordered whole-branch labels CIRCUMFERENCES/PARABLE once this p55 object is granted, and it connects to the pre-existing p57 word graph.
 
-## Held-out consequence: literal shedding exposes RISE -> WE
+## Conditional downstream consequence: literal shedding exposes RISE -> WE
 
 A later independent ordering bridge resolves the p27 instruction as **WE MUST SHED** from the authenticated `THEIR NUMBERS ARE THE DIRECTION` corridor.
 
@@ -255,7 +255,7 @@ Its GP0 is **47 = RISE**, exactly the same state that selected p55 through p50. 
 H(27,20) = [7,18] = WE
 ```
 
-This consequence was not used to select p55 or the D...D geometry.
+This consequence was not used chronologically to select p55 or the D...D geometry. Its upstream receiver selection nevertheless depends on the post-selected p33 map grammar, so it is conditional evidence rather than an independent holdout.
 
 Charge every 19-rune window in the same strict-interior representation, requiring only D endpoints and the twice-shed `GP0=RISE / H=WE` consequence. Across **6,209** windows, exactly one hit survives: p55 start4, the already selected span. The independent center `I=10` is not needed for that uniqueness control.
 
@@ -281,4 +281,4 @@ The next productive question is what operation the recovered state geometry sele
 node sims/lp2_p33_p55_divinity_state_geometry_sft.cjs
 ```
 
-The reproducer parses the original continuous transcription, reconstructs carries and complete-word interiors, proves the RISE 75/76 p55 selector, verifies every DH-state equality above, and performs the 4,803-window exact control.
+The reproducer parses the original continuous transcription, reconstructs carries and complete-word interiors, reproduces the conditional RISE 75/76 p55 chain, verifies every DH-state equality above, and performs the 4,803-window exact control.
