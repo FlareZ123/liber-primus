@@ -146,6 +146,10 @@ for (const direction of [1, -1]) {
     const key = residues.map((value, index) =>
       modPow29(value, index === 0 ? firstExponent : tailExponent)
     );
+    const directReadout = translit(key);
+    const visibleP55Matches = key.filter((value, index) =>
+      value === p55.indices[index]
+    ).length;
 
     // Synthetic round-trip uses authentic p57 plaintext values as a fixed native-GP plant.
     for (const mode of ["minus", "plus", "beaufort"]) {
@@ -160,6 +164,8 @@ for (const direction of [1, -1]) {
         routeRows.push({
           direction: direction === 1 ? "clockwise" : "counterclockwise",
           order,
+          directReadout,
+          visibleP55Matches,
           mode,
           fMask,
           ioc: ioc(plain),
@@ -189,6 +195,21 @@ const primaryExact = primary.filter((row) => row.exactFooter);
 const controlExact = controls.filter((row) => row.exactFooter);
 const bestPrimaryFooter = Math.max(...primary.map((row) => row.footerMatches));
 const bestControlFooter = Math.max(...controls.map((row) => row.footerMatches));
+assert.equal(bestPrimaryFooter, 2);
+assert.equal(primaryExact.length, 0);
+
+const directPrimary = [...new Map(primary.map((row) => [
+  row.direction,
+  {
+    direction: row.direction,
+    visibleP55Matches: row.visibleP55Matches,
+    readout: row.directReadout,
+  },
+])).values()];
+assert.deepEqual(directPrimary.map((row) => [row.direction, row.visibleP55Matches]), [
+  ["clockwise", 1],
+  ["counterclockwise", 4],
+]);
 
 const topPrimary = [...primary]
   .sort((a, b) => b.ioc - a.ioc || b.footerMatches - a.footerMatches)
@@ -220,6 +241,7 @@ console.log(JSON.stringify({
     registers: ["cipher-key", "cipher+key", "key-cipher"],
     literalFBypassMasks: 8,
   },
+  directSourceOrderReadout: directPrimary,
   conditionalOurOwnGate: {
     bestPrimaryFooterMatches: bestPrimaryFooter,
     exactPrimaryHits: primaryExact.map((row) => ({
