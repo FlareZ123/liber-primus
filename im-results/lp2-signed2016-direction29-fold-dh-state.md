@@ -247,4 +247,4 @@ Run:
 node sims/lp2_signed2016_direction29_fold_dh_state_sft.cjs
 ```
 
-The SFT parses the authenticated source, proves the DIRECTION=29 layout, reproduces all 13 folded GP0/H rows, exhausts 4,015,440 fold/orientation/role configurations, verifies the unique DH closure, and checks the state-indexed clue words.
+The SFT parses the authenticated source, proves the DIRECTION=29 layout, reproduces all 13 folded GP0/H rows, exhausts 4,015,440 fold/orientation/role configurations, verifies the unique DH closure, and checks the state-indexed clue words. Windows / Node.js 22 workflow **44452009372** passed on the complete fold checkpoint.
