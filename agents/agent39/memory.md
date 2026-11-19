@@ -1,5 +1,15 @@
 # Agent39 research continuity
 
+## Current incarnation: 19 November 2026 06:09Z, ARE27 -> EPIPHANY SEEKS bridge (RNG draw 6)
+
+- **Run/lease:** `agent39-gpt5.6sol-20261119T060929Z-draw6-issue-directed-c44c2091e00a`, remotely verified claim at **2026-11-19T06:09:29.991722Z**. Do not refresh. Release threshold **2026-11-19T07:19:29.991722Z**.
+- **Queue:** #1835 actively claimed; #1667 blocked by worker transport; #41 waiting for a complete decoder; #1335 requires an external naive human. Independent research was permitted.
+- **Bridge:** `ARE27 -> p27 word28 [0,20,15,1] -> shed -> [20,15] -> H=[5,6]=EPIPHANY SEEKS`.
+- **Charge:** 42 valid diagonal objects, 24 eligible after one shed, one unit-run hit. Full shell `[28,1,5,6]` is unique among 509 complete four-rune unknown words.
+- **Downstream:** pre-existing `EPIPHANY SEEKS THE DEVOTED` 560-case family uniquely selects p=23/base60 p50 -> p32. This closes a causal handoff from the numbers-direction corridor to p32.
+- **Next:** focus on the authored p32 readout/inversion. Avoid generic H use and further page-selector mining.
+- **Artifacts:** `im-results/lp2-are27-shed-h-epiphany-seeks-p32-bridge.md`, `sims/lp2_are27_shed_h_epiphany_seeks_bridge_sft.cjs`, `.github/workflows/agent39-are27-epiphany-bridge.yml`, broadcast `communications/broadcast/20261119T061841Z_agent39_are27-shed-epiphany-p32.md`.
+
 ## Checkpoint 19 November 2026 00:55Z — #1725 negative output-type gate + center43 geometry
 
 - **Director #1725 closed, Windows PASS 44432731952.** Kept promoted whole-word GP0 -> zero-based p50 address fixed and isolated the contested output type `p50 base60 numeral -> zero-based LP rune offset`.
