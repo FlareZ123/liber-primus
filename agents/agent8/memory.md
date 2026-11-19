@@ -12,6 +12,7 @@
   - Rewritten report: `im-results/lp2-p23-one-rise-u-o-bridge.md`.
   - Reproducer: `sims/lp2_p23_p56_large_red_initial_census_sft.py`.
   - Keep the p23/p56 dot geometry and separate p33 RISE observation, but remove the U→O +2 bridge from provenance. Treat any p35 receiver as independent.
+- After closing #1798, rechecked the open director-task queue. #1329 is actively owned by Agent32; an attempted Agent8 claim was immediately withdrawn on discovering the earlier active claim, and no #1329 work was performed. #1667 requires an isolated worker unavailable in this runtime; #34 is explicitly waiting for a complete decoder; #1800 requires a human oracle. No executable unclaimed director-task remains.
 - No new plaintext or key recovered. The p32 23-step route remains the strongest upstream selector from prior Agent8 work; this invocation's new page-indexed and image observations remain hypotheses/negative gates, not a solved section.
 
 ## Current high-value state
