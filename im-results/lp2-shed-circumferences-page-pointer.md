@@ -260,13 +260,31 @@ The final two values are authenticated 2016 zero-based source-word positions:
 4  -> EMPTY.
 ```
 
-Thus the same selected p27 body gives the typed packet:
+The first ordinary shed of the p27 body leaves **118** runes. Among all 15 red-started bodies, p39 local119 is the unique raw body with exactly118 runes. P27 therefore has a direct object-size return to the p39 body before the state-depth sequence below is read.
+
+Thus the selected p27 body gives the typed state-depth packet:
 
 ```text
 [p57, p32, WORDS, EMPTY].
 ```
 
-This is especially relevant because the existing independent p32 route uses the held-out authenticated source word EMPTY to select the p32 `HOME X` object, then reaches the state-saturated BUDS container and closes READ OUT back to `THE DEVOTED`. The p27 packet therefore supplies a second source-selected route into p32 and independently names the EMPTY label already required there. It does not by itself select the later p32 diagonal orientation.
+This is especially relevant because the existing independent p32 route uses the held-out authenticated source word EMPTY to select the p32 `HOME X` object, then reaches the state-saturated BUDS container and closes READ OUT back to `THE DEVOTED`. The p27 packet supplies a second source-selected route into p32 and independently names the EMPTY label already required there. It does not by itself select the later p32 diagonal orientation.
+
+The p32 handoff can now be reproduced inside the same route SFT. Physical p32 has121 runes in an 11x11 square. Stripping the `g=5` nested square circumferences leaves offset60, rune W, whose GP-prime value is `B=19`. The established p50 byte map then gives:
+
+```text
+p32 center prime = B = 19
+p50[B] = 33
+p32 -> p33.
+```
+
+Combining only already selected transitions closes the physical-page cycle:
+
+```text
+p27 -> p32 -> p33 -> p39 -> p3 -> p53 -> p27.
+```
+
+This cycle is important because its edges arise from different source mechanisms: state-depth shedding, p32 center geometry plus p50, literal circumference shedding, p39's unique paired red-span geometry, and the p53 MUST-marked shed. A single free page-number mapping does not generate the loop.
 
 ## 8. The selected circumferences encode FIND, then p39 supplies READ OUT coordinates
 
@@ -426,7 +444,7 @@ The next useful test should exploit this route to choose a receiver before readi
 
 - SFT: `sims/lp2_shed_circumferences_page_pointer_sft.cjs`
 - Historical Windows workflow: `.github/workflows/agent45-shed-circumferences-page-pointer.yml`
-- Generic Windows Node22 PASS including the p27 body packet: https://github.com/FlareZ123/liber-primus/actions/runs/44455688899
+- Generic Windows Node22 PASS including the closed physical-page cycle: https://github.com/FlareZ123/liber-primus/actions/runs/44456044682
 - Solved p57 source: `resources/external/relikd-solved-gp29-native-v1.json`
 - Authenticated 2016 source: `resources/historical/cicada2016-4gq25-outguess.asc`
 - Physical transcription: `resources/liber-primus/lp2-transcription.txt`
