@@ -1,4 +1,4 @@
-# P40 signed-index PATHS candidate has a unique local DH/HERE inverse
+# P40 signed-index PATHS candidate has a unique local DH inverse
 
 **Agent30, 19 November 2026. Classification: strong local PATHS plaintext candidate with an exact reversible inverse. The authenticated source selects the page and target state before the key family is constructed. The compact key-shell template is recognized retrospectively and is charged as a bounded family.**
 
@@ -53,7 +53,7 @@ PATHS = [13,24,2,15]  length4 GP0=54
 
 So length+GP0 alone cannot distinguish `ROAD` from `PATHS`. The authenticated source label at index40 supplies that distinction. This is unusually apt given the source contrast between `the road` and `false paths`.
 
-## 3. Exact local inverse
+## 3.## 3. Exact local inverse
 
 For the independently assigned PATHS target, the additive subtraction key is:
 
@@ -65,128 +65,44 @@ key = cipher - PATHS mod29
     = [20,20,12,6]
 ```
 
-Forward replay is exact:
+Forward replay is exact. Applying the canonical four-rune H transform gives:
 
 ```text
-[13,24,2,15] + [20,20,12,6] mod29
-= [4,15,14,21]
+H([20,20,12,6]) = [14,8,3,26] = [-b,A,e,-e]
 ```
 
-Apply the canonical four-rune H transform to the key:
+Here `b=15`, `A=8`, `e=3`, and `-e=26 mod29`. The previous p28-derived label for the value26 is unnecessary. This local PATHS inverse has no dependency on the p28 HERE marker.
+
+## 4. Shared-shell family charge
+
+The compact shell was recognized after PATHS was source-assigned, so its serialization remains retrospective. A later p33/p40 audit charges the common skeleton:
 
 ```text
-H([20,20,12,6])
-= [14,8,3,26]
-= [-b, A, e, HERE[p]]
+p33 WILL  -> [ p,A,K,-K]
+p40 PATHS -> [-b,A,e,-e]
+common       [ x,A,y,-y]
 ```
 
-using the independently fixed p28/HERE/DH state:
+Let `x` be either sign of one authenticated state value from `{p,g,a,b,A,B,K,e,q}` and `y` one authenticated state value. Collapsing duplicate numeric x values gives 16×9 = **144 shells**.
+
+Apply them across every complete four-rune word on p33 and p40, the nine distinct authenticated four-rune targets `LIES THEIR MEANING ROAD SEEK WILL GOOD LUCK PATHS`, and both additive directions. Exactly two hits survive:
 
 ```text
-b       = 15  -> -b = 14
-A       = 8
-e       = 3
-HERE[p] = 26
+p33 start132 -> WILL  subtract -> [ p,A,K,-K]
+p40 start71  -> PATHS subtract -> [-b,A,e,-e]
 ```
 
-Thus:
-
-```text
-H^-1([-b,A,e,HERE[p]])
-= [20,20,12,6]
-```
-
-## 4. Retrospective family charge
-
-The shell was recognized after PATHS was source-assigned, so its compactness is not treated as a blind prediction.
-
-Charge the finite family:
-
-```text
-[-v, x, y, LINE[p]]
-```
-
-where:
-
-- `v` ranges over the seven primary DH fields `{p,g,a,b,A,B,K}`;
-- `x,y` independently range over `{p,g,a,b,A,B,K,e,q,0,1}`;
-- `LINE` is `HERE` or `DH`;
-- both additive directions are tested.
-
-This gives 1,694 key-shell configurations.
-
-Apply the family across:
-
-- all 15 complete four-rune p40 words;
-- the nine distinct authenticated signed-message targets whose GP form has four runes:
-  `LIES THEIR MEANING ROAD SEEK WILL GOOD LUCK PATHS`;
-- both signs.
-
-There is exactly one hit:
-
-```text
-p40 start71
-target PATHS
-subtraction
-shell [-b,A,e,HERE[p]]
-key [20,20,12,6]
-```
-
-No other p40 four-rune word / authenticated target / sign is hit by the charged family.
-
+On p40 alone, PATHS at71 is the sole hit. See `im-results/lp2-p33-p40-shared-shell-pair.md` and `sims/lp2_p33_p40_shared_shell_sft.cjs`.
 
 ## 5. Source-visible reconstruction of the shell magnitudes
 
-The compact shell was discovered after the target, so this section is mechanism compression rather than a blind prediction. It nevertheless has a constrained source reading.
-
-The selected signed phrase is:
+The selected signed phrase is `BEWARE FALSE PATHS`. Its canonical GP rune lengths total `15=b`, and its word count is `3=e`. Physical p40 has one red span at its start with canonical length `8=A`. Since `-e=26 mod29`, these source values reconstruct the shell magnitudes directly:
 
 ```text
-BEWARE FALSE PATHS
+[-b,A,e,-e] = [14,8,3,26]
 ```
 
-Its canonical GP rune lengths are:
-
-```text
-BEWARE = 6
-FALSE  = 5
-PATHS  = 4
-total  = 15 = b
-```
-
-The phrase contains exactly three words:
-
-```text
-word count = 3 = e
-```
-
-Physical p40 has one red span at its start whose canonical length is:
-
-```text
-red heading length = 8 = A
-```
-
-The prior p28 HERE state supplies:
-
-```text
-HERE[p] = 26
-```
-
-Therefore the four **magnitudes** of the observed H-shell can be reconstructed from source-visible material as:
-
-```text
-[b, A, e, HERE[p]]
-= [15,8,3,26]
-```
-
-The required shell is:
-
-```text
-[-b,A,e,HERE[p]]
-= [14,8,3,26]
-```
-
-The remaining interpretive step is the sign on `b`. The literal middle word `FALSE` and the large red X on p39 make negation a plausible human instruction, but this sign was not frozen before the inverse was known. Preserve that chronology.
+The outer negative signs and the serialization were recognized after the inverse. The literal word `FALSE` and the large red X on p39 make negation a plausible human cue, while the chronology remains retrospective.
 
 ### Three-word-window control
 
@@ -200,21 +116,11 @@ Charge all contiguous authenticated three-word windows whose total GP-rune lengt
 39..41 FALSE PATHS VERIFY       -> endpoint p41
 ```
 
-At those endpoint pages, the red-span lengths are:
+At those endpoint pages, red-span lengths are p7=14, p31=none, p39=3, p40=8=A, p41=none. Thus `BEWARE FALSE PATHS` is the only `b`-length three-word window whose endpoint page exposes a red span of length `A`.
 
-```text
-p7  -> 14
-p31 -> none
-p39 -> 3
-p40 -> 8 = A
-p41 -> none
-```
+Cross-page typography adds another pairing: across all exact two-word red spans, only p33 start91 and p40 start0 have printed word lengths `[e,g]=[3,5]`. Signed indices33..40 also contain exactly `A=8` words with endpoint rise `g+K=7`.
 
-Thus `BEWARE FALSE PATHS` is the only `b`-length three-word window whose endpoint page exposes a red span of length `A`.
-
-This substantially reduces the field-choice freedom behind the shell. It still does not prospectively establish the first-coordinate minus sign or prove that this serialization transfers to another block.
-
-## 6. Manuscript-wide exact-key control
+ Manuscript-wide exact-key control
 
 Hold the exact key `[20,20,12,6]` fixed.
 
@@ -255,10 +161,9 @@ subtract
 
 The target/page/receiver selection precedes the key-template construction through authenticated index40 and the unique p40 length4/GP0=54 state.
 
-The shell template `[-b,A,e,HERE[p]]` was recognized afterward. Promotion to an established reusable cipher mechanism requires either:
+The shell is `[-b,A,e,-e]`, and p33/p40 share the bounded `[x,A,y,-y]` family. The joint 144-shell charge selects only p33 WILL and p40 PATHS on the source-paired pages. The x/y field roles were still recognized after the local inverses.
 
-- an independent source-visible rule that selects this exact shell serialization before another receiver is opened; or
-- an unchanged transfer of the exact shell/key grammar to a fresh source-assigned block.
+Promotion to a reusable cipher mechanism requires a first-party rule fixing x/y before another receiver is opened, or a prospective transfer to a fresh source-assigned block.
 
 ## Reproduction
 
@@ -268,4 +173,4 @@ Run:
 
 The SFT reconstructs the signed source target, canonical p40 receiver, ROAD/PATHS state collision, exact reversible key, 1,694-case retrospective shell family, and manuscript-wide fixed-key control.
 
-Windows Node22 verification: generic read-only SFT run `44456607530` passed the strengthened source-magnitude controls and all local/global inverse assertions.
+Windows Node22 verification: corrected p40 SFT run `44457839299` passed; joint shared-shell audit run `44457657138` passed.
