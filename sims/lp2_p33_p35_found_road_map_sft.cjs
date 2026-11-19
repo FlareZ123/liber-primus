@@ -467,7 +467,7 @@ assert.equal(labeledStateKeys, 6561);
 assert.equal(uniqueStateKeys.size, 2349);
 assert.deepEqual(stateFamilyHits, [
   {
-    roles: ["B", "b", "p", "g"],
+    roles: ["B", "b", "q", "b"],
     key: foundKey,
     sign: -1,
     target: "FOUND",
@@ -479,7 +479,7 @@ assert.deepEqual(stateFamilyHits, [
     target: "FOUND",
   },
   {
-    roles: ["B", "b", "q", "b"],
+    roles: ["B", "b", "p", "g"],
     key: foundKey,
     sign: -1,
     target: "FOUND",
