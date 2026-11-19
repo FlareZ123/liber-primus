@@ -207,9 +207,9 @@ assert.equal(tailText,"WDSLFD");
 const tailPrimes=tail.map((r)=>corpus.prime[runeIndex.get(r)]);
 const tailResidues=tailPrimes.map((prime)=>prime%19);
 const tailLabels=tailResidues.map((residue)=>parableLabels[residue]);
-assert.deepEqual(tailPrimes,[19,89,53,73,5,89]);
-assert.deepEqual(tailResidues,[0,13,15,16,5,13]);
-assert.deepEqual(tailLabels,["LIKE","FIND","DIVINITY","WITHIN","THE","FIND"]);
+assert.deepEqual(tailPrimes,[19,89,53,73,2,89]);
+assert.deepEqual(tailResidues,[0,13,15,16,2,13]);
+assert.deepEqual(tailLabels,["LIKE","FIND","DIVINITY","WITHIN","INSTAR","FIND"]);
 assert.deepEqual(tailLabels.slice(0,4),["LIKE","FIND","DIVINITY","WITHIN"]);
 
 console.log(JSON.stringify({
