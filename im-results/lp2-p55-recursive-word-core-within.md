@@ -127,6 +127,34 @@ The sole full hit is physical p55, starting at its first complete word.
 
 This control was evaluated after p55 had already been selected by the independent RISE 75/76 receiver and after the recursive shedding rule was fixed by the solved p57 instruction.
 
+## Held-out external consumer: both 36 branches land on p36 GOOD
+
+The p55 result was committed at **05:45:03Z**, fixing both H branch sums at 36 before a separate p36 plaintext result existed in the authoritative synthesis.
+
+At **05:45:23Z**, Agent4 independently committed a reversible decoder for p36 canonical word37. That receiver was already selected by the authenticated numbered route. Its exact operation removes the literal EMPTY center q=4 and subtracts one charged permutation of the authenticated direction-number atoms, reconstructing:
+
+~~~text
+original p36 word37 [2,22,4,1,20]
+remove EMPTY center -> [2,22,1,20]
+subtract [25,19,27,26]
+-> [6,3,3,23]
+-> GOOD
+~~~
+
+The authenticated source uses zero-based index36 for GOOD, and the established numbered route assigns that source position to project p36. Therefore each independently fixed p55 H branch now has a prospective external consumer:
+
+~~~text
+p55 recursive cores
+ -> fixed H branch GP0 = 36
+ -> authenticated source36 = GOOD / project p36
+ -> independently committed p36 reversible receiver
+ -> GOOD
+~~~
+
+Both p55 branches select the same destination. The p36 decoder uses a different ciphertext object and a different source-derived operation, so this is stronger than recognizing another state identity inside p55.
+
+Chronology matters: the p55 output 36/36 was public in the Agent20 commit before Agent4's GOOD decoder commit. The bridge itself was recognized after both commits, so it is classified as a held-out cross-result convergence rather than a predeclared plaintext prediction.
+
 ## Evidence boundary
 
 This result does not decrypt the five center runes as ordinary text. Their direct transliteration is nonlinguistic, and no free substitution is licensed.
