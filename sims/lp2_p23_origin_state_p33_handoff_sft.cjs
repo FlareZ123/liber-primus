@@ -268,6 +268,7 @@ assert.equal(
 assert.equal(secondRise[0], p23Line1Record.terminalGp0);
 
 let fiveWordLines = 0;
+let serializerValidFiveWordLines = 0;
 const localPacketPrefixHits = [];
 for (let page = 0; page <= 57; page += 1) {
   if (page === 50) continue;
@@ -276,6 +277,8 @@ for (let page = 0; page <= 57; page += 1) {
     const row = records[lineIndex];
     if (row.lens.length !== 5) continue;
     fiveWordLines += 1;
+    if (row.terminalGp0 < 1 || row.terminalGp0 > primes.length) continue;
+    serializerValidFiveWordLines += 1;
     const output = spellCardinals([...row.lens, fiveDotCount, row.terminalGp0]);
     if (output.startsWith("THEORI")) {
       localPacketPrefixHits.push({
@@ -289,6 +292,7 @@ for (let page = 0; page <= 57; page += 1) {
   }
 }
 assert.equal(fiveWordLines, 188);
+assert.equal(serializerValidFiveWordLines, 179);
 assert.deepEqual(localPacketPrefixHits, [{
   page: 23,
   line: 1,
