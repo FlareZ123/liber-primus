@@ -1,0 +1,393 @@
+"use strict";
+
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+
+const root = path.resolve(__dirname, "..");
+
+/** @param {string} relative */
+function read(relative) {
+  return fs.readFileSync(path.join(root, relative), "utf8").replace(/\r/g, "");
+}
+
+/** @param {number} n */
+function mod29(n) {
+  return ((n % 29) + 29) % 29;
+}
+
+/** @param {number} x @param {number} y */
+function H(x, y) {
+  return [mod29(x - y), mod29(x + y)];
+}
+
+/** @param {number} base @param {number} exponent @param {number} modulus */
+function powMod(base, exponent, modulus) {
+  let b = BigInt(base);
+  let e = BigInt(exponent);
+  const m = BigInt(modulus);
+  let out = 1n;
+  while (e > 0n) {
+    if (e & 1n) out = (out * b) % m;
+    b = (b * b) % m;
+    e >>= 1n;
+  }
+  return Number(out);
+}
+
+/** @param {number} a @param {number} modulus */
+function inverseMod(a, modulus) {
+  for (let x = 1; x < modulus; x += 1) {
+    if ((a * x) % modulus === 1) return x;
+  }
+  throw new Error("no inverse");
+}
+
+/** @param {string} token @param {string} alphabet */
+function tryDecodeToken(token, alphabet) {
+  const hi = alphabet.indexOf(token[0]);
+  const lo = alphabet.indexOf(token[1]);
+  return hi < 0 || lo < 0 ? null : hi * alphabet.length + lo;
+}
+
+/** @param {string} token @param {string} alphabet */
+function decodeToken(token, alphabet) {
+  const value = tryDecodeToken(token, alphabet);
+  assert.notEqual(value, null, "token is invalid in requested alphabet: " + token);
+  return value;
+}
+
+const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+const transcription = read("resources/liber-primus/lp2-transcription.txt");
+const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
+
+const clear = signed2016.split("-----BEGIN PGP SIGNATURE-----")[0];
+const source = clear
+  .slice(clear.indexOf("Hello."))
+  .split(/[^A-Za-z0-9]+/u)
+  .filter((token) => /^[A-Za-z]+$/u.test(token))
+  .map((word) => word.toUpperCase());
+assert.equal(source.length, 43);
+
+const gpTokens = corpus.translit
+  .map((symbol, value) => ({ symbol, value }))
+  .sort((a, b) => b.symbol.length - a.symbol.length);
+
+/** @param {string} word */
+function gp(word) {
+  const normalized = word
+    .toUpperCase()
+    .replace(/QU/g, "CW")
+    .replace(/V/g, "U")
+    .replace(/[KQ]/g, "C")
+    .replace(/Z/g, "S")
+    .replace(/[^A-Z]/g, "");
+  const out = [];
+  for (let i = 0; i < normalized.length;) {
+    if (normalized.startsWith("ING", i)) {
+      out.push(21);
+      i += 3;
+      continue;
+    }
+    if (normalized.startsWith("IO", i)) {
+      out.push(27);
+      i += 2;
+      continue;
+    }
+    const row = gpTokens.find((candidate) => normalized.startsWith(candidate.symbol, i));
+    assert.ok(row, "unmapped GP spelling at " + normalized.slice(i));
+    out.push(row.value);
+    i += row.symbol.length;
+  }
+  return out;
+}
+
+/** @param {string} word */
+function gp0(word) {
+  return gp(word).reduce((sum, value) => sum + value, 0);
+}
+
+const tape = grid.pages.flatMap((page) => page.tokens);
+const base60 = grid.alphabet;
+const base59 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdeghijklmnopqrstuvwx";
+
+// Reconstruct the state from the authenticated full-integer OPENPGP route.
+const N = 0x7A35090Fn;
+const b = Number(N % 16n);
+const B = Number(N % 60n);
+const p = Number(N % 29n);
+const q = B - b;
+assert.deepEqual([b, B, p, q], [15, 19, 23, 4]);
+assert.deepEqual([source[b], source[B], source[p]], ["WORDS", "THEIR", "ROAD"]);
+
+const possibleG = [];
+for (let candidate = 1; candidate < p; candidate += 1) {
+  if (powMod(candidate, b, p) === B) possibleG.push(candidate);
+}
+assert.deepEqual(possibleG, [5]);
+const g = possibleG[0];
+const e = inverseMod(b, p - 1);
+assert.equal(e, 3);
+
+const triadPacket = ["PRIMUS", "NUMBERS", "OPENPGP"].map((word) => {
+  const token = tape[gp0(word)];
+  return decodeToken(token, base60) % 29;
+});
+assert.deepEqual(triadPacket, [8, 19, 3]);
+const [A] = triadPacket;
+const possibleA = [];
+for (let candidate = 1; candidate < p; candidate += 1) {
+  if (powMod(g, candidate, p) === A) possibleA.push(candidate);
+}
+assert.deepEqual(possibleA, [6]);
+const a = possibleA[0];
+const K = powMod(A, b, p);
+assert.equal(K, 2);
+
+// Reproduce the upstream q-spaced phrase closure that selected pages 21..23.
+/** @param {string} word */
+function sourceImage(word) {
+  return decodeToken(tape[gp0(word)], base60) % 29;
+}
+const roleImage = ["WORDS", "THEIR", "ROAD"].map(sourceImage);
+assert.deepEqual(roleImage, [28, 23, 11]);
+const roleImageWords = roleImage.map((index) => source[index]);
+assert.deepEqual(roleImageWords, ["THE", "ROAD", "IS"]);
+const roadPhrase = roleImageWords.slice(K).concat(roleImageWords.slice(0, K));
+assert.deepEqual(roadPhrase, ["IS", "THE", "ROAD"]);
+assert.deepEqual(source.slice(21, 24), roadPhrase);
+assert.deepEqual([21, 22, 23], [p - K, p - 1, p]);
+
+// Canonical unknown-word parser used by the established double-index SFT.
+// Slash/whitespace can continue a word; punctuation/delimiters terminate one.
+// A word crossing a physical page boundary is excluded.
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const parts = transcription.split(/^\s*%\s*$/m);
+const unknownSegments = parts.slice(0, 55);
+const canonicalPages = unknownSegments.map((text, segment) => ({
+  page: segment >= 50 ? segment + 1 : segment,
+  words: [],
+  offset: 0,
+}));
+let currentWord = [];
+let startSegment = 0;
+let endSegment = 0;
+let startOffset = 0;
+
+function flushCanonicalWord() {
+  if (!currentWord.length) return;
+  if (startSegment === endSegment) {
+    const page = canonicalPages[startSegment];
+    page.words.push({
+      index: page.words.length,
+      start: startOffset,
+      end: startOffset + currentWord.length - 1,
+      values: currentWord.slice(),
+    });
+  }
+  currentWord = [];
+}
+
+for (let segment = 0; segment < unknownSegments.length; segment += 1) {
+  for (const char of [...unknownSegments[segment]]) {
+    const value = runeIndex.get(char);
+    if (value !== undefined) {
+      if (!currentWord.length) {
+        startSegment = segment;
+        startOffset = canonicalPages[segment].offset;
+      }
+      endSegment = segment;
+      currentWord.push(value);
+      canonicalPages[segment].offset += 1;
+    } else if (char === "/" || /\s/u.test(char)) {
+      // source line/page wrap
+    } else {
+      flushCanonicalWord();
+    }
+  }
+}
+flushCanonicalWord();
+
+const wordsByPage = new Map(canonicalPages.map((page) => [page.page, page.words]));
+const pageOffsets = new Map(canonicalPages.map((page) => [page.page, page.offset]));
+
+/** @param {number} page */
+function pageWords(page) {
+  return wordsByPage.get(page) || [];
+}
+
+/** @param {{start:number,end:number}[]} words @param {number} offset */
+function containingWord(words, offset) {
+  return words.find((word) => word.start <= offset && offset <= word.end) || null;
+}
+
+// Prospectively selected p22 holdout. THE fixes the p50 address before p22 is read.
+assert.equal(source[22], "THE");
+assert.equal(gp0("THE"), 20);
+assert.equal(tape[20], "1g");
+const pointer59 = decodeToken("1g", base59);
+const pointer60 = decodeToken("1g", base60);
+assert.deepEqual([pointer59, pointer60], [100, 102]);
+
+const chargedPositions = [pointer59 - 1, pointer59, pointer60 - 1, pointer60]
+  .sort((x, y) => x - y);
+assert.deepEqual(chargedPositions, [99, 100, 101, 102]);
+
+const p22Words = pageWords(22);
+const p22Hits = chargedPositions.map((offset) => containingWord(p22Words, offset));
+assert.ok(p22Hits.every(Boolean));
+assert.ok(p22Hits.every((word) => word.index === p22Hits[0].index));
+const p22Receiver = p22Hits[0];
+
+assert.deepEqual(
+  {
+    index: p22Receiver.index,
+    start: p22Receiver.start,
+    end: p22Receiver.end,
+    values: p22Receiver.values,
+  },
+  {
+    index: 19,
+    start: 99,
+    end: 102,
+    values: [22, 28, 28, 24],
+  }
+);
+assert.deepEqual(
+  chargedPositions,
+  Array.from({ length: p22Receiver.values.length }, (_, i) => p22Receiver.start + i)
+);
+
+const p22RawSum = p22Receiver.values.reduce((sum, value) => sum + value, 0);
+assert.equal(p22RawSum, pointer60);
+assert.equal(p22RawSum % 29, b);
+assert.equal(p22Receiver.index, B);
+assert.equal(source[p22Receiver.index], "THEIR");
+
+// Familywise charge over every authenticated source-index page.
+const collapses = [];
+for (let page = 0; page < source.length; page += 1) {
+  const token = tape[gp0(source[page])];
+  const v59 = tryDecodeToken(token, base59);
+  const v60 = tryDecodeToken(token, base60);
+  if (v59 === null || v60 === null) continue;
+  const positions = [v59 - 1, v59, v60 - 1, v60].sort((x, y) => x - y);
+  const words = pageWords(page);
+  const pageLength = pageOffsets.get(page) || 0;
+  if (positions.some((offset) => offset < 0 || offset >= pageLength)) continue;
+  const hits = positions.map((offset) => containingWord(words, offset));
+  if (hits.some((word) => !word)) continue;
+  if (!hits.every((word) => word.index === hits[0].index)) continue;
+  const receiver = hits[0];
+  const sum = receiver.values.reduce((total, value) => total + value, 0);
+  const completeOffsets = Array.from(
+    { length: receiver.values.length },
+    (_, i) => receiver.start + i
+  );
+  collapses.push({
+    page,
+    sourceWord: source[page],
+    token,
+    v59,
+    v60,
+    positions,
+    word: receiver.index,
+    start: receiver.start,
+    end: receiver.end,
+    sum,
+    exactEnvelope:
+      positions.length === completeOffsets.length &&
+      positions.every((value, i) => value === completeOffsets[i]),
+    selfAddress: sum === v59 || sum === v60,
+  });
+}
+assert.equal(collapses.length, 18);
+assert.deepEqual(
+  collapses.filter((row) => row.exactEnvelope).map((row) => row.page),
+  [22]
+);
+assert.deepEqual(
+  collapses.filter((row) => row.selfAddress).map((row) => row.page),
+  [22]
+);
+
+// P21 was independently established before this route as an IS state object.
+const isValues = gp("IS");
+const isSum = isValues.reduce((sum, value) => sum + value, 0);
+function isStateReceivers(page) {
+  return pageWords(page).filter(
+    (word) =>
+      word.values.length === isValues.length &&
+      word.values.reduce((sum, value) => sum + value, 0) === isSum
+  );
+}
+const p11Is = isStateReceivers(11);
+const p21Is = isStateReceivers(21);
+assert.deepEqual(
+  p11Is.map((word) => [word.index, word.start, word.values]),
+  [[11, 49, [11, 14]]]
+);
+assert.deepEqual(
+  p21Is.map((word) => [word.index, word.start, word.values]),
+  [[33, 170, [24, 1]]]
+);
+const row11 = H(...p11Is[0].values);
+const row21 = H(...p21Is[0].values);
+const col0 = H(row11[0], row21[0]);
+const col1 = H(row11[1], row21[1]);
+const p21Packet = [
+  [col0[0], col1[0]],
+  [col0[1], col1[1]],
+];
+assert.deepEqual(p21Packet, [[3, 0], [20, 21]]);
+assert.equal(p21Packet[0][0], e);
+assert.equal(p21Packet[1][1], p - K);
+
+// P23 was independently established before this route as the state-origin page.
+const p23Line1 = parts[23].split("/")[0];
+const p23LineLengths = [...p23Line1.matchAll(/[\u16A0-\u16FF]+/gu)]
+  .map((match) => [...match[0]].length);
+assert.deepEqual(p23LineLengths, [2, 6, 3, 5, 4]);
+assert.deepEqual(p23LineLengths, [K, a, e, g, q]);
+assert.equal(p, 23);
+assert.equal(powMod(g, a, p), A);
+assert.equal(powMod(g, b, p), B);
+
+// Both the new p22 Bob packet and the older p23 state route fix B=19,
+// whose already-fixed native p50 handoff is physical p33.
+assert.equal(tape[B], "0X");
+const p33 = decodeToken(tape[B], base60);
+assert.equal(p33, 33);
+
+console.log(JSON.stringify({
+  upstream: {
+    key_id: "7A35090F",
+    state: { p, q, g, a, b, A, B, K, e },
+    phrase: roadPhrase.join(" "),
+    page_numbers: [21, 22, 23],
+  },
+  p21_prior_state_packet: p21Packet,
+  p22_prospective_holdout: {
+    source_word: source[22],
+    p50_token: tape[20],
+    base59: pointer59,
+    base60: pointer60,
+    charged_positions: chargedPositions,
+    receiver: {
+      word_index: p22Receiver.index,
+      source_label: source[p22Receiver.index],
+      offsets: [p22Receiver.start, p22Receiver.end],
+      values: p22Receiver.values,
+      raw_sum: p22RawSum,
+      raw_sum_mod29: p22RawSum % 29,
+    },
+    family: {
+      same_word_collapses: collapses.length,
+      exact_envelope_pages: collapses.filter((row) => row.exactEnvelope).map((row) => row.page),
+      self_address_pages: collapses.filter((row) => row.selfAddress).map((row) => row.page),
+    },
+  },
+  p23_prior_line_lengths: p23LineLengths,
+  shared_B_handoff: { B, token: tape[B], page: p33 },
+}, null, 2));
