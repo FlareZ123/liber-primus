@@ -271,6 +271,31 @@ assert.deepEqual(matchedHits, [{
 const broadHits = scanPairs(spans);
 assert.equal(broadHits.length, 26);
 
+
+ const splitPacket = matched.find((span) =>
+   span.page === 0 && span.start === 80 && span.end === 102);
+ const wholePacket = matched.find((span) =>
+   span.page === 0 && span.start === 166 && span.end === 188);
+ assert.ok(splitPacket && wholePacket);
+ const tablePageForAddress = (address) =>
+   address < firstTableBoundary ? 49 :
+     address < secondTableBoundary ? 50 : 51;
+ const selectedPacketCoordinates = [
+   {packet:"split",selector:8,value:splitPacket.stream[7],
+     offset:splitPacket.start+7},
+   {packet:"split",selector:2,value:splitPacket.stream[1],
+     offset:splitPacket.start+1},
+   {packet:"whole",selector:6,value:wholePacket.stream[5],
+     offset:wholePacket.start+5},
+   {packet:"whole",selector:23,value:wholePacket.stream[22],
+     offset:wholePacket.start+22},
+ ].map((row) => ({...row,tablePage:tablePageForAddress(row.offset)}));
+ assert.deepEqual(selectedPacketCoordinates, [
+   {packet:"split",selector:8,value:6,offset:87,tablePage:50},
+   {packet:"split",selector:2,value:23,offset:81,tablePage:50},
+   {packet:"whole",selector:6,value:15,offset:171,tablePage:50},
+   {packet:"whole",selector:23,value:19,offset:188,tablePage:51},
+ ]);
 const selected = matchedHits[0];
 assert.equal(modPow(selected.g, selected.a, selected.p), fixedA);
 assert.equal(modPow(selected.B, selected.a, selected.p), fixedK);
