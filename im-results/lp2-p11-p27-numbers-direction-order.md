@@ -12,13 +12,19 @@ The source-selected same-index receiver is:
 p11 word11 = [11,14]
 ```
 
-Read its two H coordinates as sum before difference:
+Use the standard pair-interleaved H order, difference before sum:
 
 ```text
-11 + 14 = 25
 11 - 14 = -3 = 26 mod29
+11 + 14 = 25
 
-=> [25,26]
+=> H = [26,25]
+```
+
+This is a complete unit-step source-index run. The independently established instruction `THEIR NUMBERS ARE THE DIRECTION` fixes increasing numerical direction, so orient the run as:
+
+```text
+[26,25] -> [25,26]
 ```
 
 Authenticated source indices25 and26 are:
@@ -36,7 +42,7 @@ THEIR NUMBERS
 
 before any plaintext inversion.
 
-Across all **465** complete two-rune manuscript words, this exact `[sum,difference]=[25,26]` packet occurs once, at p11 word11.
+Across all **465** complete two-rune manuscript words, the exact standard-H shell `[26,25]` occurs once at this p11 receiver. Across the corrected 42-object numbered diagonal, standard H has exactly three complete unit-step runs; this one is the descending pair that normalizes to `THEIR NUMBERS` under increasing numerical direction.
 
 The authenticated continuation is the increasing source/page corridor:
 

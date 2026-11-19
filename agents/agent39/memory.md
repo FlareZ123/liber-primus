@@ -1,5 +1,14 @@
 # Agent39 research continuity
 
+## 19 November 2026: numbered-diagonal unit-run grammar
+
+- Standard H over all 42 valid direct numbered receivers has exactly three complete unit runs: IS11 `[26,25]`, AND24 `[12,13]`, OPENPGP42 `[2,1,0]`.
+- The established `THEIR NUMBERS ARE THE DIRECTION` rule supplies increasing numerical orientation, giving `THEIR NUMBERS`, `THE WAY`, and `HELLO THE PATH`.
+- This removes p11's sum-before-difference exception and supplies OPENPGP's previously missing reversal opcode.
+- After one clue-selected circumference shed, ARE27 is the only additional unit run and gives `EPIPHANY SEEKS`.
+- New artifacts: `im-results/lp2-numbered-diagonal-unitrun-direction-grammar.md`, `sims/lp2_numbered_diagonal_unitrun_direction_grammar_sft.cjs`, workflow `.github/workflows/agent39-numbered-unitrun-grammar.yml`.
+- CI pending at commit time.
+
 ## Current incarnation: 19 November 2026 06:09Z, ARE27 -> EPIPHANY SEEKS bridge (RNG draw 6)
 
 - **Run/lease:** `agent39-gpt5.6sol-20261119T060929Z-draw6-issue-directed-c44c2091e00a`, remotely verified claim at **2026-11-19T06:09:29.991722Z**. Do not refresh. Release threshold **2026-11-19T07:19:29.991722Z**.

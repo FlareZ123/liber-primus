@@ -37,14 +37,14 @@ Those are authenticated source indices:
 => PATH THE HELLO.
 ```
 
-Read in the direction of the source opening, the shell is:
+Apply the independently established `THEIR NUMBERS ARE THE DIRECTION` rule to the complete unit-step shell. Increasing numerical direction gives:
 
 ```text
-[0,1,2]
+[2,1,0] -> [0,1,2]
 HELLO THE PATH.
 ```
 
-That is the exact first three words of the same signed source.
+That is the exact first three words of the same signed source, and the orientation is now selected by a shared numbered-diagonal rule.
 
 ## Whole-corpus charge
 
@@ -77,7 +77,7 @@ The source label is itself **OPENPGP**, and the external artifact providing the 
 VERIFY OPENPGP
  -> OPENPGP43 receiver
  -> H shell [2,1,0]
- -> reverse to source order [0,1,2]
+ -> increasing numeric direction [0,1,2]
  -> HELLO THE PATH
  -> signed-source beginning.
 ```
@@ -90,7 +90,7 @@ This does not prove that the entire signed instruction is meant to be traversed 
 
 ## Neighbor controls
 
-Across all numbered objects, reverse-H contiguous-source runs also occur for the two-rune IS12 object, which yields THEIR NUMBERS. OPENPGP is the only three-rune numbered example.
+Across all 42 valid numbered objects, standard H has exactly three complete unit-step runs: IS11 gives `[26,25]`, AND24 gives `[12,13]`, and OPENPGP42 gives `[2,1,0]`. Increasing numeric direction reads them as `THEIR NUMBERS`, `THE WAY`, and `HELLO THE PATH`. After one clue-selected circumference shed, ARE27 is the sole additional unit run and reads `EPIPHANY SEEKS`.
 
 The stronger complete-corpus control avoids choosing the numbered subset after seeing the hit: among all 716 complete three-rune words, OPENPGP43 is the sole descending-consecutive **Hpair** output. See `im-results/lp2-h-serialization-boundary.md` for the Hsplit rival and operation boundary.
 
