@@ -766,6 +766,98 @@ assert.deepEqual(fullPacketGrammarHits, [{
   y: "b",
 }]);
 
+// Discovery-order control: allow all 24 assignments of the four printed
+// words to packet roles W1..W4. For each role assignment, directly solve the
+// implied x1,x3,y and require them to be authenticated state fields. This is
+// equivalent to charging 2699 * 24 * 9^3 = 47,221,704 role/state assignments.
+const packetWordRolePermutations = [];
+for (let w1 = 0; w1 < 4; w1 += 1) {
+  for (let w2 = 0; w2 < 4; w2 += 1) {
+    if (w2 === w1) continue;
+    for (let w3 = 0; w3 < 4; w3 += 1) {
+      if (w3 === w1 || w3 === w2) continue;
+      for (let w4 = 0; w4 < 4; w4 += 1) {
+        if (w4 === w1 || w4 === w2 || w4 === w3) continue;
+        packetWordRolePermutations.push([w1, w2, w3, w4]);
+      }
+    }
+  }
+}
+assert.equal(packetWordRolePermutations.length, 24);
+
+const rolePermutationPacketHits = [];
+for (const window of pageLocalFourWordWindows) {
+  for (const roleOrder of packetWordRolePermutations) {
+    const word1 = window.words[roleOrder[0]];
+    const word2 = window.words[roleOrder[1]];
+    const word3 = window.words[roleOrder[2]];
+    const word4 = window.words[roleOrder[3]];
+    if (
+      word1.length !== 4 ||
+      word2.length !== 1 ||
+      word3.length !== 4 ||
+      word4.length !== 2 ||
+      word2.values[0] !== packetState.B
+    ) {
+      continue;
+    }
+
+    const y = mod29(-word1.values[2]);
+    const x1 = mod29(-word1.values[0]);
+    const x3 = word3.values[0];
+    if (
+      !stateNameByValue.has(y) ||
+      !stateNameByValue.has(x1) ||
+      !stateNameByValue.has(x3)
+    ) {
+      continue;
+    }
+
+    const predictedWord1 = [
+      mod29(-x1),
+      mod29(packetState.K - y),
+      mod29(-y),
+      mod29(packetState.K + y),
+    ];
+    const predictedWord3 = [
+      x3,
+      mod29(-packetState.K),
+      y,
+      mod29(packetState.K + y),
+    ];
+    const predictedWord4 = [
+      mod29(-y),
+      mod29(x3 * packetState.K),
+    ];
+    if (
+      predictedWord1.every((value, index) => value === word1.values[index]) &&
+      predictedWord3.every((value, index) => value === word3.values[index]) &&
+      predictedWord4.every((value, index) => value === word4.values[index])
+    ) {
+      rolePermutationPacketHits.push({
+        page: window.page,
+        windowIndex: window.windowIndex,
+        printedStarts: window.words.map((word) => word.start),
+        roleOrder,
+        roleStarts: [word1.start, word2.start, word3.start, word4.start],
+        x1: stateNameByValue.get(x1),
+        x3: stateNameByValue.get(x3),
+        y: stateNameByValue.get(y),
+      });
+    }
+  }
+}
+assert.deepEqual(rolePermutationPacketHits, [{
+  page: 6,
+  windowIndex: 14,
+  printedStarts: [71, 75, 76, 80],
+  roleOrder: [0, 1, 2, 3],
+  roleStarts: [71, 75, 76, 80],
+  x1: "g",
+  x3: "a",
+  y: "b",
+}]);
+
 // The fourth field K+b is a target-initial selector. Among authenticated
 // six-rune source words it selects BEWARE alone.
 const packetTargetInitial = p6PacketFirstWord[3];
@@ -1202,6 +1294,12 @@ console.log(JSON.stringify({
     fullPacketGrammarAssignments:
       pageLocalFourWordWindows.length * packetFieldEntries.length ** 3,
     fullPacketGrammarHits,
+    wordRolePermutations: packetWordRolePermutations.length,
+    rolePermutationAssignments:
+      pageLocalFourWordWindows.length *
+      packetWordRolePermutations.length *
+      packetFieldEntries.length ** 3,
+    rolePermutationPacketHits,
     targetInitial: packetTargetInitial,
     sixRuneTargetsWithInitial:
       sixRuneTargets.filter((target) => target.values[0] === packetTargetInitial)
@@ -1279,5 +1377,5 @@ console.log(JSON.stringify({
     pass: false,
   },
   classification:
-    "P6 is a source-selected state-packet candidate: its four-word grammar is globally unique across 1,967,571 charged page-window/state assignments; its exact red-title layout encodes [K,-e,g,a]; its first red word is the unique red four-rune instance of [-x,K-y,-y,K+y] and fixes x=g,y=b; the unused K+b field uniquely selects BEWARE among authenticated six-rune targets; all 48 possible field-role/sign assignments leave the exact p38 shell [K-b,-g,p,p-e,0,-b] as the sole hit. The broader p6+p28 family is also manuscript-unique and the p0 VERIFY transfer is zero. Preserve as strong cross-page key-schedule evidence with one retrospective role assignment, not as a universal decoder.",
+    "P6 is a source-selected state-packet candidate: its four-word grammar is globally unique across 1,967,571 printed-order assignments and remains unique after all 24 word-role permutations (47,221,704 charged assignments); its exact red-title layout encodes [K,-e,g,a]; its first red word is the unique red four-rune instance of [-x,K-y,-y,K+y] and fixes x=g,y=b; the unused K+b field uniquely selects BEWARE among authenticated six-rune targets; all 48 possible field-role/sign assignments leave the exact p38 shell [K-b,-g,p,p-e,0,-b] as the sole hit. The broader p6+p28 family is also manuscript-unique and the p0 VERIFY transfer is zero. Preserve as strong cross-page key-schedule evidence with one retrospective role assignment, not as a universal decoder.",
 }, null, 2));
