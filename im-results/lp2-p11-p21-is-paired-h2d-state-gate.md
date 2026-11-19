@@ -1,64 +1,173 @@
-# P11/P21 repeated-IS paired H2D state gate
+# Signed-2016 GP0 collision branch selector: IS paired state gate and WAY/WILL false-path split
 
-**Agent14, 19 November 2026. Classification: source-selected paired ciphertext state packet plus a prospective negative transfer. No unknown plaintext is promoted.** The authenticated repeated word `IS` uniquely selects a same-index two-page receiver pair inside the complete signed-message GP0-collision family. The already fixed two-dimensional H transform maps the original ciphertext block to a compact DH-state packet, and the corresponding source-derived joint key reconstructs `IS` on both selected receivers. The joint key form was recognized after the target and receivers were known. A precommitted unchanged successor transfer to the two following `THE` source words fails immediately on word length, so the page-local keys are retired as transferable decoders.
+**Agent14, 19 November 2026. Classification: source-selected navigation/state advance with one prospective negative transfer. No new unknown plaintext is promoted.** The authenticated signed-message GP0 collision family has exactly two cases in which both source-index pages contain a unique common-length receiver at the shared GP0. One is the repeated `IS` pair p11/p21; its original 2x2 ciphertext block is an exact H/DH state packet and admits a compact source-derived joint inverse, but the first precommitted unchanged-key successor transfer fails. The other is the `WAY/WILL` collision p13/p33. Its shared receiver length selects `WILL`, and the two receiver **word numbers themselves** split the branches: p13 points to authenticated word39 `FALSE`, while p33 points to word34 `BE`, exactly the next signed word after `WILL`. This gives the signed warning about false paths a concrete branch-selection role and strengthens the already independent p33 WILL route without fitting a new p13 key.
 
-## Source-defined pair
+## 1. Complete source-collision receiver census
 
-The authenticated 2016 message contains:
+Use the authenticated 43-word 2016 message, canonical GP29 encoding, and physical pages with the same zero-based index as the signed word.
+
+For every pair of signed words with equal GP0:
+
+1. keep the source pair fixed;
+2. consider only GP-rune lengths that occur in one of the two source words;
+3. on each corresponding physical page, search complete printed words with that shared GP0 and candidate source length;
+4. retain a pair only when **each page has exactly one** such receiver of the same length.
+
+There are 29 equal-GP0 source-pair instances after repeated `THE` combinations are retained. Exactly **two pair/length cases** survive:
+
+```text
+source indices 11 / 21
+source words   IS / IS
+shared GP0     25
+common length  2
+p11 receiver   offsets49..50, local word index11
+p21 receiver   offsets170..171, local word index33
+
+source indices 13 / 33
+source words   WAY / WILL
+shared GP0     57
+source lengths 3 / 4
+common length  4
+p13 receiver   offsets154..157, local word index39
+p33 receiver   offsets132..135, local word index34
+```
+
+For WAY/WILL, length3 has zero state receivers on both p13 and p33; length4 has exactly one on each. The collision therefore chooses the four-rune member `WILL` by source state alone.
+
+This is a bounded family derived directly from authenticated source collisions. It is not a search over arbitrary page pairs or target words.
+
+## 2. WAY/WILL branch split: p13 says FALSE, p33 continues WILL -> BE
+
+Authenticated source:
+
+```text
+13 WAY
+33 WILL
+34 BE
+39 FALSE
+```
+
+The shared GP0 collision is:
+
+```text
+GP0(WAY)  = 57
+GP0(WILL) = 57.
+```
+
+The source-length gate above leaves only common length4, so `WILL` is the collision member whose state can label both receivers.
+
+Now use the source's own instruction that word numbers are directional. Read each selected receiver's **zero-based local printed-word index** as an authenticated signed-word number:
+
+```text
+p13 receiver local index39 -> signed word39 = FALSE
+p33 receiver local index34 -> signed word34 = BE
+```
+
+The p33 result is exact continuation:
+
+```text
+33 WILL -> 34 BE
+```
+
+whereas the collision twin says:
+
+```text
+13 WAY -> 39 FALSE.
+```
+
+This branch test does not inspect either receiver's required decryption key. It uses only authenticated source GP0/length, printed word segmentation, and receiver word number.
+
+The resulting human-readable choice is therefore:
+
+```text
+WAY/WILL collision
+  p13 branch -> FALSE
+  p33 branch -> WILL -> BE
+```
+
+This is directly consonant with the authenticated warning `BEWARE FALSE PATHS`, while avoiding the stronger claim that every word number on every page is a universal plaintext decoder.
+
+### Independent p33 support remains intact
+
+P33 was already selected independently by:
+
+```text
+B=19 -> p50[19]=0X=33
+and signed word33=WILL.
+```
+
+Its unique length4/GP0=57 receiver at offsets132..135 already has the exact local inverse:
+
+```text
+cipher [3,15,17,22]
+key    [25,5,26,2]
+subtract
+-> WILL [7,10,20,20]
+```
+
+with H-shell `[p,A,K,-K]`.
+
+The new collision branch result strengthens the **receiver/navigation selection** for that existing candidate. It does not make the retrospective p33 key-shell ordering prospective.
+
+### P13 is a false branch, not a new WILL plaintext claim
+
+The p13 length4/GP0=57 receiver is:
+
+```text
+offsets154..157
+local word index39
+cipher [15,27,12,3].
+```
+
+Its local index maps to authenticated `FALSE`. Therefore this report does **not** fit or promote a p13 WILL key. The correct use of the collision twin is as a branch discriminator.
+
+A later investigation may test whether p13's ciphertext has an independently instructed decoy/state role, but the current source route already says not to follow it as the WILL continuation.
+
+## 3. Repeated IS pair: unique two-page receiver and H2D state packet
+
+The authenticated repeated word is:
 
 ```text
 11 IS -> 12 THE
 21 IS -> 22 THE
-```
 
-Both `IS` occurrences have canonical GP state:
-
-```text
 IS = [10,15]
 length = 2
-GP0 = 25
+GP0 = 25.
 ```
 
-Under the already active same-number page interpretation, physical p11 and p21 each have exactly one complete word with that state:
+Each same-index page has exactly one length2/GP0=25 receiver:
 
 ```text
 p11 offsets49..50 = [11,14]
-p21 offsets170..171 = [24,1]
+p21 offsets170..171 = [24,1].
 ```
 
-This is not one pair chosen from many successful source collisions. Charge every pair of authenticated 2016 words with equal GP0, including repeated lexical words and distinct-word collisions. There are 29 pair instances after the repeated `THE` combinations are retained. Requiring each source position's physical page to contain exactly one complete word with that source word's own GP length and GP0 leaves exactly one pair:
+The two pages also have the same full transcription signature:
 
 ```text
-11 IS / 21 IS.
-```
-
-The two pages also share the exact physical transcription signature:
-
-```text
-273 runes / 55 complete printed words
+273 runes / 55 complete printed words.
 ```
 
 Among p0..p42, the only duplicated full-page rune/word signatures are p4/p34 = 261/61 and p11/p21 = 273/55. Among the source's exactly-twice lexical pairs, only IS lands on an identical-signature page pair.
 
-These facts are structural selection evidence, not a calibrated authorship probability.
+### Ciphertext-only two-dimensional H packet
 
-## Ciphertext-only two-dimensional H packet
-
-Use the already established pair transform
+Use the established pair operation
 
 ```text
-H(x,y) = (x-y, x+y) mod29.
+H(x,y)=(x-y,x+y) mod29.
 ```
 
-Arrange the selected original ciphertexts in source-index order:
+Arrange the original receivers in source-index order:
 
 ```text
 C =
 [11 14]
-[24  1]
+[24  1].
 ```
 
-Apply H to each row and then apply H vertically to the two resulting columns:
+Apply H across each row and then vertically across corresponding coordinates:
 
 ```text
 row H:
@@ -67,40 +176,39 @@ row H:
 
 vertical H:
 [ 3  0]
-[20 21]
+[20 21].
 ```
 
-The result is exactly
+This is exactly:
 
 ```text
 [e, 0]
 [DH[p], p-K]
 =
-[3,  0]
+[3,0]
 [20,21].
 ```
 
 The labels are independently fixed upstream:
 
 - signed-source collision reconstruction gives `e=3`;
-- p28's literal-DH line has `p=23` runes and its one-based position `p` is value20, so `DH[p]=20`;
-- the independently reconstructed DH state gives `K=2`, hence `p-K=21`.
+- p28's literal-DH line has `p=23` runes and its one-based position p is value20, so `DH[p]=20`;
+- standard DH gives `K=2`, hence `p-K=21`.
 
-Two coordinates have additional algebraic controls. Because the two selected receiver rows both have GP0 25, their row-H sum coordinates must be equal, so the upper-right H2D value is forced to0 and the lower-right value is `2*25 mod29=21`. The nontrivial cross-page values are therefore the upper-left `e=3` and lower-left `DH[p]=20`; the equality `21=p-K` is an independent state echo.
+Because both rows have GP0 25, the upper-right zero and lower-right `2*25 mod29=21` are algebraically forced by the shared state. The nontrivial cross-page values are therefore `e=3` and `DH[p]=20); `21=p-K` is an independent state echo.
 
-## Source-derived joint key compression
+## 4. Source-derived joint IS key compression
 
-The earlier authenticated-source collision reconstruction independently fixed both
+The already independent authenticated-source state reconstruction fixed:
 
 ```text
-e = 3
-a-g = 1.
+e=3
+a-g=1.
 ```
 
-Freeze the joint H2D key shell
+The exact joint key needed for the two selected IS receivers has H2D shell:
 
 ```text
-S =
 [e,   0]
 [a-g, 0]
 =
@@ -108,28 +216,23 @@ S =
 [1,0].
 ```
 
-Invert H vertically and then horizontally:
+H2D inversion gives:
 
 ```text
-K =
-[ 1 28]
-[14 15].
+p11 key [ 1,28]
+p21 key [14,15].
 ```
 
-Subtract the corresponding row key from each selected receiver:
+Subtraction is exact:
 
 ```text
-[11,14] - [ 1,28] = [10,15] = IS
-[24, 1] - [14,15] = [10,15] = IS
+[11,14]-[ 1,28] = [10,15] = IS
+[24, 1]-[14,15] = [10,15] = IS.
 ```
 
-with all arithmetic modulo29. Forward reconstruction is exact.
+The shell form was recognized after the target and receivers were assigned, so it remains retrospective mechanism compression.
 
-This joint shell was recognized after the target and receivers were assigned, so it is mechanism compression rather than a blind key recovery.
-
-### Family controls
-
-Use the compact positive source-derived scalar register
+A bounded source-scalar charge uses:
 
 ```text
 {p,g,a,b,A,B,K,e,q,K*a,K*g,a-g}
@@ -137,72 +240,83 @@ Use the compact positive source-derived scalar register
 {23,5,6,15,8,19,2,3,4,12,10,1}.
 ```
 
-For every ordered pair `x,y` in that set, build
+For every ordered `x,y` in that set, build `[[x,0],[y,0]]`, H2D-invert it, test both signs, and score the distinct authenticated two-GP-rune targets `THE / IS / BE`.
 
-```text
-[[x,0],[y,0]]
-```
-
-as an H2D key shell, invert it, test both additive directions on the fixed p11/p21 block, and score the distinct authenticated two-GP-rune targets `THE / IS / BE`.
-
-There are 288 labeled configurations. Exactly one hits both rows with the same authenticated target:
+There are 288 labeled configurations. Exactly one maps both rows to the same authenticated target:
 
 ```text
 x=e=3
 y=a-g=1
-direction=subtraction
-target=IS.
+subtract
+-> IS / IS.
 ```
 
-If `x,y` are widened to all 29 residues and both signs, there are 1,682 configurations. The only two hits are the same key and its exact sign-negated duplicate:
+If x and y are widened to all residues, the 1,682 configurations have only the exact key and its sign-negated duplicate.
 
-```text
-(3,1, subtract) -> IS
-(26,28, add)    -> IS.
-```
+Across all 14 complete two-rune unknown-page words with raw GP0 25, there are 91 unordered pairs. Exactly one pair needs first-column joint shell `[e,a-g]=[3,1]` to map both rows to IS: p11/p21.
 
-A separate manuscript control holds the target state GP0=25 fixed. There are 14 complete two-rune unknown-page words with raw GP0 25, hence 91 unordered pairs. Compute the forced joint H2D key shell needed to map both rows to `IS). Exactly one pair has first-column shell `[e,a-g]=[3,1]`: the selected p11/p21 pair.
+These controls quantify the compactness but do not erase discovery chronology.
 
-These are finite selectivity controls. They do not erase the retrospective discovery chronology.
+## 5. Precommitted IS -> THE unchanged-key transfer: FAIL
 
-## Precommitted successor transfer: FAIL
-
-Before reading either successor word's values, commit
+Before reading either manuscript successor, commit
 `workplace/agent14-p11-p21-is-paired-h2d-the-precommit.md`
-(commit `66dfbe7c9e8e72c152e2326ec99c7deb1185b4a0`).
+at `66dfbe7c9e8e72c152e2326ec99c7deb1185b4a0`.
 
-The frozen prediction was:
+The frozen prediction required:
 
-- use the immediately following complete word on each page;
-- require it to have exactly two GP runes;
-- subtract the same page-local key;
-- require both outputs to equal the authenticated successor `THE=[2,18]`;
-- reject the transfer if either page fails, with no skip, sign change, key swap, alternate segmentation or target substitution.
+1. immediately following complete word on each page;
+2. exactly two GP runes;
+3. unchanged page-local key;
+4. subtraction to authenticated `THE=[2,18]`;
+5. both pages pass, with no skip, sign change, key swap, truncation or target substitution.
 
 Reveal:
 
 ```text
-p11 successor after offsets49..50:
-offsets51..53, length3, [8,2,14]
+p11 successor offsets51..53
+length3
+[8,2,14]
 
-p21 successor after offsets170..171:
-offsets172..179, length8, [23,8,5,7,20,27,23,12]
+p21 successor offsets172..179
+length8
+[23,8,5,7,20,27,23,12].
 ```
 
-Both fail at the frozen length gate before a two-rune key can even apply.
+Both fail at the two-rune length gate before the fixed keys can apply.
 
-Therefore the exact p11/p21 keys are **not** reusable unchanged local running keys for the next source word. Do not rescue the failure with rotations, repeated keys, truncation, skips or another target.
+Therefore the p11/p21 keys are not transferable unchanged running keys for the next signed word. Do not rescue the failure.
 
-## Decision
+## 6. Decision
 
-Preserve the following new structural fact:
+Preserve two distinct advances.
 
-> The authenticated repeated `IS` collision uniquely selects p11/p21 same-index state receivers, and the original 2x2 ciphertext block maps under the already fixed H2D operation to `[[e,0],[DH[p],p-K]]`. Its exact joint additive keys are compactly represented by the independently source-derived shell `[[e,0],[a-g,0]]`.
+First, the signed GP0 collision family now supplies a **source-only branch discriminator**:
 
-This strengthens the evidence that the signed 2016 word-number structure, H, and the reconstructed DH state interact with original unknown-page ciphertext in a deliberately structured way.
+```text
+WAY/WILL shared GP0=57
+-> common receiver length4 selects WILL
+-> p13 receiver word number39 = FALSE
+-> p33 receiver word number34 = BE
+-> keep p33 WILL->BE branch; treat p13 as the false collision branch.
+```
 
-It does **not** establish either IS as recovered plaintext. The shell was recognized after target assignment, and the first prospective unchanged-key continuation fails. A future promotion requires a fresh source-visible selector that predicts how this paired shell changes for another receiver before its ciphertext is opened.
+This materially strengthens the intended-route interpretation of p33 without introducing a new key fit.
+
+Second, the repeated IS pair remains a strong **paired state object**:
+
+```text
+p11/p21 selected ciphertext
+--H2D-->
+[[e,0],[DH[p],p-K]]
+```
+
+with a compact source-derived joint IS inverse. Its first prospective unchanged-key continuation fails, so do not promote those exact keys as a reusable cipher.
+
+The combined result supports the broader hypothesis that the authenticated 2016 word map is selecting structured state/navigation objects rather than serving as a literal word-for-word plaintext substitution table.
 
 ## Reproduction
 
 SFT: `sims/lp2_p11_p21_is_paired_h2d_state_gate_sft.cjs`.
+
+The reproducer verifies the complete GP0-collision receiver census, the two surviving common-length collision pairs, the WAY/WILL FALSE-vs-BE branch split, the repeated-IS H2D packet and family controls, and the sealed IS-successor failure.
