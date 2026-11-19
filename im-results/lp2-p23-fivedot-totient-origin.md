@@ -73,9 +73,9 @@ Two source facts independently echo the required terminal cardinal 25: the selec
 
 A second semantic observation is that the five source lengths themselves move from the outside of the consecutive set `2..6` inward to its center. That makes the missing suffix `IN` descriptively compatible with the geometry, but it is interpretation rather than a separate cryptographic proof.
 
-## Evidence boundary and next decision
+## Evidence boundary and p50 origin cross-check
 
-The strongest chronology-safe result is:
+The strongest chronology-safe result remains:
 
 ```text
 exact five-dot mirror selector
@@ -84,9 +84,11 @@ exact five-dot mirror selector
 => unique manuscript-wide THEORIG
 ```
 
-The full `THE ORIGIN` is a source-constrained instruction candidate. It should be tested prospectively by freezing one meaning of **origin** before opening a target. Plausible typed meanings include an indexing origin, a spatial origin, or a source/provenance origin; the phrase itself does not yet choose among them. A successful successor must make an untouched source prediction or select a reversible receiver without changing the serializer or cardinal grammar.
+A later cross-object test now gives the full `THE ORIGIN` completion a separately typed consumer. Under the p50 register already selected on solved/source controls, literal table address0 contains `3N = 203`, and native-base60 quotient-first `divmod29(203) = [7,0]`. In the authenticated 2016 signed text, zero-based word7 is `THE`. The canonical origin cell therefore reads exactly `[THE, 0]`, or **THE ORIGIN**. Across all 256 original p50 tokens it is the sole canonical cell whose quotient is any authenticated `THE` position and whose remainder is0. A cyclic token-multiset shift gives 1/256 for that frozen relation. Reopening a conservative 16-way radix/token-order/pair-order/source-origin family weakens the cyclic familywise tail to 14/256.
 
-Do not use this result to reopen the already failed five-dot coordinate-affine, five-column, direct p56-stream-transfer or generic constellation families. The new role for the stencil is narrower: it selects the page/line and contributes a visible cardinal.
+This cross-check is not blind: p50 cell0 was public before the relation was formulated. It therefore strengthens the semantic completion without promoting it to established plaintext. Full details and the exact control are in `im-results/lp2-p23-origin-p50-cell0-crosscheck.md` and `sims/lp2_p23_origin_p50_cell0_crosscheck_sft.cjs`.
+
+The full `THE ORIGIN` should now be treated as a source-constrained hidden instruction candidate with a cross-object p50 consistency check. A future promotion still requires an untouched consequence or reversible receiver selected before target inspection. Do not use this result to reopen the already failed five-dot coordinate-affine, five-column, direct p56-stream-transfer or generic constellation families.
 
 ## Reproduction
 
