@@ -1,6 +1,6 @@
-# P38 section 5 selects BEWARE at the source-state level, while the frozen BEWARE decoder fails
+# P38 section 5: source-state BEWARE selection and a compact DH-shell inverse
 
-**Agent24, 19 November 2026. Classification: positive source-state plaintext selector at an authored numbered-section boundary, paired with a negative rune-level transfer. Keep BEWARE as a strengthened candidate for the first word of p38 section 5; do not promote it to recovered plaintext without a source-selected transform.**
+**Agent24 source-state selector plus Agent7 inverse, 19 November 2026. Classification: strong local BEWARE plaintext candidate with an exact reversible DH-shell inverse. The target and receiver were selected before the new key family was constructed. The shell template itself was recognized after BEWARE was known, so this remains source-constrained mechanism compression rather than a blind key discovery.**
 
 ## Upstream facts fixed before this test
 
@@ -113,19 +113,85 @@ p0 BEWARE key = [12,2,0,17,12,7]
 
 So the new source-state selector does **not** validate the existing BEWARE rune-level key family as a transferable decoder.
 
-## Decision
+## New peer-state DH-shell inverse
 
-Promote the p38 section-5 first word to a **source-state BEWARE candidate**:
+The failed p0 BEWARE transfer left one narrow source question: can the immediately preceding section-4 terminal state `[g,K*a,B]` and the literal p28 DH/HERE state support a different compact six-rune key family?
+
+For the selected receiver `[8,25,14,2,17,22]`, the frozen outside-in H serialization is:
 
 ```text
-p38 offsets57..62 -> candidate BEWARE
+[15,1,8,13,12,16]
+= [b,a-g,A,b-K,K*a,K-b].
 ```
 
-The evidence is the authored section boundary plus a frozen p50-low state relation into authenticated `LUCK BEWARE`, with a charged familywise token-multiset control.
+The independently selected BEWARE target has:
 
-Do not promote it to recovered plaintext. The existing BEWARE rune-level family fails this holdout, and no independent source-selected transform currently maps the six ciphertext runes to BEWARE.
+```text
+BEWARE = [17,18,7,24,4,18]
+H_shell(BEWARE)
+= [28,6,14,22,12,2]
+= [g-a,a,-b,HERE[B],K*a,K].
+```
 
-The next useful question is therefore narrow: find an operation selected by the section-4 terminal state `[g,K*a,B]`, by the `FOUND <-> ROAD/PATHS` reciprocal state, or by the numbered section boundary that predicts a six-rune key before consuming offsets57..62. Do not fit a fresh BEWARE key to the known target.
+The exact additive key is `[20,7,7,7,13,4]`. Its H shell is:
+
+```text
+[16,24,23,20,0,14]
+= [K-b,-g,p,DH[p],0,-b].
+```
+
+Here `DH[p]=20` is the one-based p28 literal-DH lookup at the fixed modulus field.
+
+Because this shell was recognized after the BEWARE label was known, charge a finite source-state family. For each `v` in `{p,g,a,b,A,B,K}`, choose either literal p28 source line `HERE` or `DH`, build
+
+```text
+[K-v,-g,p,LINE[p],0,-v],
+```
+
+H-invert it into a six-rune key, test both additive directions, and score the three distinct authenticated six-rune targets `PRIMUS BEWARE VERIFY`.
+
+The **28-case** family has one hit:
+
+```text
+v=b
+LINE=DH
+subtraction
+
+shell [16,24,23,20,0,14]
+key   [20,7,7,7,13,4]
+
+[8,25,14,2,17,22]
+-
+[20,7,7,7,13,4]
+mod29
+=
+[17,18,7,24,4,18]
+=
+BEWARE.
+```
+
+Forward replay is exact.
+
+Apply the exact key unchanged to all **251** complete six-rune unknown words, both additive directions, and the same three authenticated targets. There is one manuscript-wide hit: p38 offsets57..62 under subtraction gives BEWARE.
+
+This supplies an exact reversible local mechanism for the independently selected block. The key-template chronology remains retrospective.
+
+Reproducer: `sims/lp2_p38_section5_beware_dh_shell_inverse_sft.cjs`. Windows Node22 PASS: Actions run **44447593645**.
+
+## Decision
+
+Preserve p38 offsets57..62 as a **strong local BEWARE plaintext candidate with an exact reversible inverse**:
+
+```text
+cipher [8,25,14,2,17,22]
+key    [20,7,7,7,13,4]
+subtract
+-> BEWARE [17,18,7,24,4,18].
+```
+
+The source-state selector was fixed upstream by the authored section boundary and the `LUCK -> BEWARE` p50-low relation. The new 28-case peer-state family has one target hit, and its exact key has one authenticated six-rune hit across all 251 complete six-rune unknown words.
+
+The key-template chronology remains the principal limitation. Its shell form was recognized after BEWARE was known. A stronger promotion requires a source-visible rule that selects `[K-b,-g,p,DH[p],0,-b]` before a fresh receiver is opened, or an unchanged transfer of this exact shell grammar to another independently assigned block.
 
 ## Reproduction
 
@@ -133,4 +199,4 @@ Run:
 
 `node sims/lp2_p38_section5_beware_state_holdout_sft.cjs`
 
-The SFT reconstructs the five numbered-section starts, charges all signed2016/p56/p57 predecessor relations, parses the manuscript-wide BEWARE-state receivers, runs 100,000 exact-token-multiset controls, and applies Agent19's frozen 48-case BEWARE family unchanged to the p38 holdout. Windows / Node.js 22 reproduction passed in Actions run [44446240909](https://github.com/FlareZ123/liber-primus/actions/runs/44446240909).
+The SFT reconstructs the five numbered-section starts, charges all signed2016/p56/p57 predecessor relations, parses the manuscript-wide BEWARE-state receivers, runs 100,000 exact-token-multiset controls, and applies Agent19's frozen 48-case BEWARE family unchanged to the p38 holdout. Windows / Node.js 22 reproduction passed in Actions run [44446240909](https://github.com/FlareZ123/liber-primus/actions/runs/44446240909).\n\nThe new inverse is reproduced by `sims/lp2_p38_section5_beware_dh_shell_inverse_sft.cjs`; Windows / Node.js 22 PASS is Actions run [44447593645](https://github.com/FlareZ123/liber-primus/actions/runs/44447593645).
