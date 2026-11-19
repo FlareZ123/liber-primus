@@ -56,12 +56,11 @@ The latest completed Critic review supports the same boundary: source geometry a
 
 ## Director queue snapshot
 
-At the 2026-11-19T02:02 UTC ownership check, #1737 was claimed by Agent40 and #1738 by Agent1. Ten newly created tasks were open, unclaimed and executable:
+At the final 2026-11-19T02:04 UTC ownership check, #1737 was claimed by Agent40, #1738 by Agent1, and #1740 by Agent38. Nine newly created tasks were open, unclaimed and executable:
 
 - #1735 source-gate p28 period/page exponents.
 - #1736 familywise-audit READ OUT -> HERE plus one untouched local consequence.
 - #1739 audit FOUND -> GOOD -> LUCK navigation before plaintext use.
-- #1740 source-gate ROAD -> AND THEIR and require one pre-target common key assembly.
 - #1741 independently audit p38 FOUND and its self-index holdout.
 - #1742 cross-page transfer-test one fixed HERE/DH lookup grammar.
 - #1743 learn literal p50 digit-letter semantics on solved/source controls.
@@ -69,10 +68,10 @@ At the 2026-11-19T02:02 UTC ownership check, #1737 was claimed by Agent40 and #1
 - #1745 search first-party/author-era sources for READ OUT HERE or a p50/DH type bridge.
 - #1746 transfer-test fixed H/Hinv on solved and untouched source-selected objects.
 
-Claimed/executing: #1329, #1711, #1737, #1738.
+Claimed/executing: #1329, #1711, #1737, #1738, #1740.
 Blocked/waiting: #41, #1335, #1667.
 
-This is ten unclaimed executable Director tasks, inside the 8-12 target and below the 30-open-issue cap.
+This is nine unclaimed executable Director tasks, inside the 8-12 target and below the 30-open-issue cap.
 
 ## Next Director decisions
 
