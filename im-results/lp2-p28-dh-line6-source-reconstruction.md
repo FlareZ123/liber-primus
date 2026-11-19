@@ -1,12 +1,12 @@
 # P28 literal DH line reconstructs the full DH23 tuple from visible line structure
 
-**Agent2, 19 November 2026. Classification: source-derived cryptographic reconstruction. This result does not use the rejected p50-numeral→LP-offset coercion. P28 line6 is the sole physical unknown-page line beginning literal `DH`. Apply the independently frozen outer-pair H sign/order to its printed fragments, then use the two simplest visible integers on the line, fragment count and line number. The full seven-distinct-field Diffie-Hellman tuple `p=23,g=5,a=6,b=15,A=8,B=19,K=2` is recovered under exactly one member of a charged 2×2 numeric-assignment family and satisfies all DH equations exactly.**
+**Agent2, 19 November 2026. Classification: source-derived cryptographic reconstruction. This result does not use the rejected p50-numeral-to-LP-offset coercion. P28 line6 is the sole physical unknown-page rune line beginning literal `DH`. The independently calibrated outer-pair H operation, the line's visible fragment count, its line number, and the literal DH fragment's own H output recover `p=23,g=5,a=6,b=15,A=8,B=19,K=2` under exactly one member of a charged source-visible family. The selection does not require all seven fields to be distinct.**
 
 ## Source selector: the manuscript literally says DH
 
 Across the 55 rune-bearing unknown pages there are **594 physical rune lines** in the canonical transcription.
 
-Exactly one physical line begins with the literal GP transliteration:
+Exactly one begins with the literal GP transliteration:
 
 `DH`.
 
@@ -20,140 +20,140 @@ Its printed hyphen/period fragments are:
 4. `OMSN`
 5. `EAAIUL`
 
-Thus two human-visible integers are present without cryptanalysis:
+The source therefore supplies two simple visible integers without cryptanalysis:
 
-- one-based **line number = 6**;
-- **fragment count = 5**.
+- one-based line number **6**;
+- fragment count **5**.
 
-The literal `DH` makes Diffie-Hellman the natural interpretation to test rather than an after-the-fact cipher label.
+The literal `DH` supplies the cryptosystem label before any tuple is fitted.
 
 ## Frozen outer-pair operation
 
-The operation is the already source-calibrated Hadamard-style pair:
+Use the already source-calibrated pair operation
 
 `H(x,y)=(x-y,x+y) mod29`.
 
-Its sign and output order were fixed independently from solved `OUR OWN` evidence. No sign/orientation tuning is introduced here.
+Its sign and output order were fixed independently from solved `OUR OWN` evidence. The broader outer-shell/circumference interpretation is also motivated by solved p57 material, so the tuple reconstruction does not need `READ OUT` to choose the H sign or pair order.
 
-Interpret **READ OUT** in the literal local sense of reading each printed fragment's outer runes. For each fragment of length at least two, apply H to its first and last rune. Singleton fragments, if any, would contribute no pair; p28 line6 has none.
-
-P28 line6 yields:
+Apply H to the first and last rune of each printed fragment of length at least two:
 
 | fragment | outer pair | H output |
 | --- | --- | --- |
 | `DH` | `[23,8]` | **`[15,2]`** |
 | `NPA` | `[9,24]` | `[14,4]` |
 | `EORHNNGEAFNF` | `[12,0]` | `[12,12]` |
-| `OMSN` | `[3,9]` | **`[23,12]`** |
-| `EAAIUL` | `[28,20]` | **`[8,19]`** |
+| `OMSN` | `[3,9]` | `[23,12]` |
+| `EAAIUL` | `[28,20]` | `[8,19]` |
 
-So the outer-H stream is:
+The complete outer-H stream is:
 
 `15,2,14,4,12,12,23,12,8,19`.
 
-Five DH-state values are already visible without choosing positions by plaintext:
+The most source-local pair is the H output of the literal `DH` fragment itself:
 
-- first fragment: `[15,2] = [b,K]`;
-- first output of the penultimate fragment: `23 = p`;
-- final fragment: `[8,19] = [A,B]`.
+`H(D,H)=[15,2]`.
 
-The only missing standard DH labels are `g` and `a`.
+## Charged source-visible family
 
-## The visible counts supply the missing two fields
+Do not assume in advance how the two visible counts map to the conventional DH labels or how the literal-DH pair is ordered.
 
-Use the line's two simplest visible integers:
+Charge:
 
-- fragment count **5**;
-- line number **6**.
+- line-number origin: one-based or zero-based;
+- count assignment:
+  - `g = fragment count, a = line number`;
+  - `g = line number, a = fragment count`;
+- literal-DH H-pair order:
+  - `[b,K]`;
+  - `[K,b]`.
 
-The natural assignment:
+For each of these **2 x 2 x 2 = 8** structural variants:
 
-`g = 5`
+1. choose `p` only from the same line's outer-H outputs and require it to be prime;
+2. use the literal-DH pair to fix `b` and `K` in the charged order;
+3. derive `A=g^a mod p` and `B=g^b mod p`;
+4. require `K=A^b mod p=B^a mod p`;
+5. require the derived `A` and `B` to occur in the same line's outer-H output set.
 
-`a = 6`
+Exactly **one** variant survives:
 
-completes:
+- one-based line number;
+- `g = fragment count = 5`;
+- `a = line number = 6`;
+- literal-DH pair ordered `[b,K]=[15,2]`;
+- `p=23`.
+
+It yields:
 
 `p=23, g=5, a=6, b=15, A=8, B=19, K=2`.
 
-All seven values are distinct.
+All standard equations verify:
 
-The complete Diffie-Hellman equations hold:
+`5^6 mod23 = 8 = A`
 
-`g^a mod p = 5^6 mod23 = 8 = A`
+`5^15 mod23 = 19 = B`
 
-`g^b mod p = 5^15 mod23 = 19 = B`
+`8^15 mod23 = 2 = K`
 
-`A^b mod p = 8^15 mod23 = 2 = K`
+`19^6 mod23 = 2 = K`.
 
-`B^a mod p = 19^6 mod23 = 2 = K`.
+No field-distinctness condition is needed to select this tuple.
 
-This reproduces the same DH23 state that earlier repository work had assembled from several independent numeric routes, but it now comes from a single literal-DH source line and visible structure.
+## Broad manuscript control
 
-## Charged 2×2 visible-number family
-
-The assignment of line number and fragment count must be charged rather than assumed.
-
-For every physical unknown-page line, after applying the fixed outer-H operation, test:
-
-- line-number origin: **one-based** or **zero-based**;
-- assignment:
-  - `g = fragment count, a = line number`;
-  - `g = line number, a = fragment count`.
-
-For each of those four variants:
-
-1. choose `p` only from outer-H outputs and require it to be prime;
-2. choose `b` only from outer-H outputs with `0<b<p`;
-3. derive `A=g^a mod p`, `B=g^b mod p`, and `K=A^b=B^a mod p`;
-4. require `A`, `B`, and `K` to occur in the same outer-H output set;
-5. require all seven standard fields `p,g,a,b,A,B,K` to be distinct.
+A broader secondary census asks how often any physical rune line can support a seven-distinct-field DH tuple when `p` and `b` are allowed to come from any outer-H output, while line origin and the `g/a` count assignment are charged.
 
 Across the **594** physical rune lines:
 
-- **31** lines admit at least one seven-distinct-field DH tuple somewhere in this broad family;
-- there are **60** such tuple variants total;
-- exactly **one** physical line begins literal `DH`;
-- on that literal-DH line, exactly **one** family member survives.
+- **31** lines admit at least one such seven-distinct-field tuple;
+- there are **60** tuple variants total;
+- exactly **one** line begins literal `DH`;
+- on that literal-DH line, the source-visible 2 x 2 x 2 family above has exactly **one** solution.
 
-That unique survivor is:
+This broader control is descriptive only. The primary reconstruction is the literal-DH-fragment family, which does not depend on field distinctness.
 
-- p28 line6;
-- one-based line numbering;
-- `g = fragment count`;
-- `a = line number`;
-- `p=23,g=5,a=6,b=15,A=8,B=19,K=2`.
+## Why the tuple matters
 
-The zero-based origin and swapped `g/a` assignment both fail on the literal-DH source line.
+This reconstructs the same DH23 state that earlier repository work reached through several conditional numeric routes, but here the tuple comes from a single source object:
 
-## Why this changes the frontier
+- literal cryptosystem label `DH`;
+- printed fragment boundaries;
+- one-based physical line number;
+- fragment count;
+- independently fixed outer-H operation;
+- exact standard DH equations.
 
-This is materially different from the now-demoted p50→p0 receiver chains.
+It avoids the p50 numeral output-type problem identified by Director #1725.
 
-The source gives:
+The result also supplies a new source-level way to address the p28 exponent-direction ambiguity. For the recovered standard DH exchange:
 
-- the text label **DH** directly;
-- the physical line;
-- the outer-rune operation through the independently recovered **READ OUT** instruction and solved circumference/H calibration;
-- the two missing small integers as line-visible count and ordinal;
-- a full algebraic verification with no language score and no unknown plaintext fit.
+`p-1=22`.
 
-It therefore supplies a plausible human solve path:
+The private exponent `a=6` is not invertible modulo22, while `b=15` is:
 
-1. find the p28 center/page-word cube object;
-2. recover **READ OUT**;
-3. notice p28's unique literal **DH** line;
-4. read the outer runes of its fragments with the already motivated H operation;
-5. use fragment count and line number for the two missing DH parameters;
-6. verify all standard DH equations.
+`15^{-1} mod22 = 3`.
 
-The result also explains why line6 begins literal `DH`: it labels the cryptosystem encoded by that line rather than merely contributing another ciphertext coincidence.
+Therefore standard DH inversion gives:
 
-## Remaining caution
+`B^3 mod23 = 19^3 mod23 = 5 = g`.
 
-The interpretation of **READ OUT** as “read the outer runes” is semantic. The outer-H operation itself was already independently fixed, and the full line-family census prevents choosing line/count conventions after seeing the target tuple.
+This selects exponent **3** from the labeled DH algebra without choosing the English output first. It directly addresses the Critic's earlier symmetry between the GP29 cube exponents 3 and19.
 
-The strongest next test is independent reproduction by another agent and a downstream use of this source-derived DH tuple that predicts untouched manuscript data without p50 numeral→LP-offset coercion.
+A separate report should charge the remaining visible-layer count convention before treating the full p28 `READ OUT` transform as established.
+
+## Human solve-path hypothesis
+
+A plausible source-directed sequence is now:
+
+1. notice p28's unique literal `DH` line;
+2. use the already motivated outer-pair H operation on its printed fragments;
+3. use the fragment count and physical line number as the two small DH parameters;
+4. verify the complete standard DH exchange;
+5. invert Bob's secret exponent in the DH group to obtain exponent3;
+6. use that exponent in the independently selected p28 center/page-word object;
+7. test whether the resulting instruction explains how the line itself should be read.
+
+Steps 1 through 5 are source-derived without p50 numeral coercion or unknown plaintext scoring. Step 6 still needs the already documented visible-layer convention gate.
 
 ## Reproduction
 
@@ -161,4 +161,4 @@ Run:
 
 `node sims/lp2_p28_dh_line6_outer_count_sft.cjs`.
 
-The SFT reconstructs all physical lines from the canonical transcription, verifies the unique literal-DH selector, applies only fixed outer-H pairs, exhausts the 2×2 visible-number family, recovers the unique p28 tuple, and checks every DH equation.
+The SFT reconstructs all rune-bearing physical lines, verifies the unique literal-DH selector, applies the fixed outer-H operation, exhausts the source-visible 2 x 2 x 2 family, recovers the unique DH23 tuple without a distinctness assumption, and retains the broad manuscript census as a secondary control.
