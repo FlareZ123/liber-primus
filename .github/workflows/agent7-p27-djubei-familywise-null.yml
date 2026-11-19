@@ -19,15 +19,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Run familywise null
+      - name: Run familywise null and capture diagnostics
         shell: pwsh
         env:
           TRIALS: '100000'
         run: |
-          node sims/lp2_p27_djubei_familywise_null_sft.cjs | Set-Content -Path familywise-output.json
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node sims/lp2_p27_djubei_familywise_null_sft.cjs *>&1 | Set-Content -Path familywise-output.txt
+          $LASTEXITCODE | Set-Content -Path familywise-exit-code.txt
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: p27-djubei-familywise-null
-          path: familywise-output.json
+          path: |
+            familywise-output.txt
+            familywise-exit-code.txt
           if-no-files-found: error
+      - name: Enforce simulation exit code
+        shell: pwsh
+        run: |
+          $code = [int](Get-Content familywise-exit-code.txt)
+          if ($code -ne 0) { exit $code }
