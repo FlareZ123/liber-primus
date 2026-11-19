@@ -17,6 +17,14 @@ Use the already established one-based source ordinal convention on the supplied 
 
 Across all 34 ordinals for which both a tail rune and a complete tail word exist, **ordinal6 is the only ordinal for which both routes land on a case-insensitive hexadecimal prefix**. There is no phase, key, radix choice, or language score in this census.
 
+The selected word also validates its own ordinal under the already frozen p28 shell transform:
+
+`XH = [14,8]`
+
+`H(XH) = [14−8,14+8] mod29 = [6,22]`.
+
+So the same two-rune object returns **6**, its own selected one-based ordinal, and **22**, its whole-word GP0 sum / p50 address for `0x`. The tail contains five two-rune words; **XH is the only one whose H difference coordinate equals its own ordinal**, and therefore the only self-indexing two-rune word.
+
 The separate p55→`DJU / BEI` handoff selects physical p27. The already frozen p27 receiver is the red heading of length19 immediately followed by a red **13-dot** mark. Under the independently fixed Hadamard shell operation, `H(19,13)=[6,3]`, selecting the DH private exponent6 and GP29 cube exponent3.
 
 Now read the selected punctuation count13 through the same p50 table:
@@ -41,10 +49,11 @@ The weakest interpretive step is reading `NEXT→6` manuscript-natively as “th
 The downstream consequences are unusually discriminating:
 
 1. **Rune/word type robustness.** One-based rune6 and word6 independently give uppercase/lowercase versions of the same `0x` marker.
-2. **DH typing.** Rune6 is **19=B** and word6 has GP0 **22=p−1**, independently matching the selected DH23 state.
-3. **Local uniqueness.** Ordinal6 is the sole double-hex hit across all 34 comparable tail ordinals.
-4. **Punctuation semantics.** The only large-punctuation counts present in the ink annotations are 10, 13, and23. Their p50 tokens are `2a`, `04`, and `1R`; **13 alone** becomes an ASCII control under literal hex, specifically EOT.
-5. **Command closure.** EOT is a direct technical synonym for ending the transmission, matching GOODBYE rather than a generic English association.
+2. **Self-indexing H check.** `H(XH)=[6,22]` recovers both the selected ordinal and the p50 hex-prefix address; no other two-rune tail word self-indexes this way.
+3. **DH typing.** Rune6 is **19=B** and word6 has GP0 **22=p−1**, independently matching the selected DH23 state.
+4. **Local uniqueness.** Ordinal6 is the sole double-hex hit across all 34 comparable tail ordinals.
+5. **Punctuation semantics.** The only large-punctuation counts present in the ink annotations are 10, 13, and23. Their p50 tokens are `2a`, `04`, and `1R`; **13 alone** becomes an ASCII control under literal hex, specifically EOT.
+6. **Command closure.** EOT is a direct technical synonym for ending the transmission, matching GOODBYE rather than a generic English association.
 
 The result therefore supplies a plausible human-recognizable solve-path checkpoint and strengthens the literal-token interpretation of p50 implied by the independently recovered p28 **READ OUT** candidate. It does not yet identify a reversible decoder for the 1,468-rune cuneiform body.
 
