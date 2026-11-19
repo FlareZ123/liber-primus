@@ -51,6 +51,31 @@ function recursiveCore(values) {
 
 /**
  * @param {number[][]} wordValues
+ * @returns {number[]}
+ */
+function hiddenRuneCounts(wordValues) {
+  let active = wordValues.map((word) => word.length);
+  const counts = [active.reduce((sum, length) => sum + length, 0)];
+
+  while (active.length) {
+    const next = [];
+    for (const length of active) {
+      if (length === 1) {
+        // A pre-existing center has already emerged.
+        continue;
+      }
+      const innerLength = length - 2;
+      if (innerLength > 1) next.push(innerLength);
+      // innerLength 1 emerges this round; innerLength 0 vanishes.
+    }
+    active = next;
+    counts.push(active.reduce((sum, length) => sum + length, 0));
+  }
+  return counts;
+}
+
+/**
+ * @param {number[][]} wordValues
  * @returns {{cores:number[],gp0:number,h0:number,h1:number,middle:number|null}}
  */
 function coreSignature(wordValues) {
@@ -122,6 +147,21 @@ assert.equal(p55.cores.length, state.g);
 assert.equal(p55.middle, state.K);
 assert.equal(p55.gp0, WITHIN_GP0);
 
+const p55HiddenCounts = hiddenRuneCounts(p55Words);
+assert.deepEqual(p55HiddenCounts, [75, 41, 23, 7, 5, 3, 0]);
+
+const p55Lengths = p55Words.map((word) => word.length);
+const p55EvenLengthSum = p55Lengths
+  .filter((length) => length % 2 === 0)
+  .reduce((sum, length) => sum + length, 0);
+const p55OddLengthSum = p55Lengths
+  .filter((length) => length % 2 === 1)
+  .reduce((sum, length) => sum + length, 0);
+
+assert.equal(p55Lengths.reduce((sum, length) => sum + length, 0), 75);
+assert.equal(p55EvenLengthSum, 42);
+assert.equal(p55OddLengthSum, 33);
+
 assert.deepEqual(H(p55.cores[0], p55.cores[4]), [12, 19]);
 assert.deepEqual(H(p55.cores[1], p55.cores[3]), [24, 17]);
 assert.equal(p55.h0, GOOD_SOURCE_INDEX);
@@ -159,13 +199,51 @@ assert.deepEqual(
 let chargedWindows = 0;
 let fiveCoreWindows = 0;
 let withinWindows = 0;
+let total75Windows = 0;
+let prefix75To41Windows = 0;
+let prefix75To41To23Windows = 0;
+let fullHiddenSequenceWindows = 0;
+let dualOpenPgpWindows = 0;
+const hiddenSequenceHits = [];
 const exactHits = [];
 
 for (let page = 0; page <= 55; page += 1) {
   const pageWords = completeWordsByPhysicalPage.get(page) || [];
   for (let start = 0; start + 16 <= pageWords.length; start += 1) {
     chargedWindows += 1;
-    const signature = coreSignature(pageWords.slice(start, start + 16));
+    const windowWords = pageWords.slice(start, start + 16);
+    const signature = coreSignature(windowWords);
+    const hiddenCounts = hiddenRuneCounts(windowWords);
+    const lengths = windowWords.map((word) => word.length);
+    const evenLengthSum = lengths
+      .filter((length) => length % 2 === 0)
+      .reduce((sum, length) => sum + length, 0);
+
+    if (hiddenCounts[0] === 75) total75Windows += 1;
+    if (hiddenCounts[0] === 75 && hiddenCounts[1] === 41) {
+      prefix75To41Windows += 1;
+    }
+    if (
+      hiddenCounts[0] === 75
+      && hiddenCounts[1] === 41
+      && hiddenCounts[2] === 23
+    ) {
+      prefix75To41To23Windows += 1;
+    }
+    if (JSON.stringify(hiddenCounts) === JSON.stringify([75, 41, 23, 7, 5, 3, 0])) {
+      fullHiddenSequenceWindows += 1;
+      hiddenSequenceHits.push({
+        physicalPage: page,
+        startWord: start + 1,
+        hiddenCounts,
+        evenLengthSum,
+        coreGp0: signature.gp0,
+      });
+    }
+    if (hiddenCounts[0] === 75 && evenLengthSum === 42) {
+      dualOpenPgpWindows += 1;
+    }
+
     if (signature.cores.length === state.g) fiveCoreWindows += 1;
     if (signature.gp0 === WITHIN_GP0) withinWindows += 1;
     if (
@@ -183,6 +261,18 @@ for (let page = 0; page <= 55; page += 1) {
 assert.equal(chargedWindows, 2039);
 assert.equal(fiveCoreWindows, 116);
 assert.equal(withinWindows, 6);
+assert.equal(total75Windows, 76);
+assert.equal(prefix75To41Windows, 18);
+assert.equal(prefix75To41To23Windows, 2);
+assert.equal(fullHiddenSequenceWindows, 1);
+assert.equal(dualOpenPgpWindows, 4);
+assert.deepEqual(hiddenSequenceHits, [{
+  physicalPage: 55,
+  startWord: 1,
+  hiddenCounts: [75, 41, 23, 7, 5, 3, 0],
+  evenLengthSum: 42,
+  coreGp0: WITHIN_GP0,
+}]);
 assert.deepEqual(exactHits, [{
   physicalPage: 55,
   startWord: 1,
@@ -222,6 +312,12 @@ console.log(JSON.stringify({
     charged16WordWindows: chargedWindows,
     fiveCoreWindows,
     withinWindows,
+    total75Windows,
+    prefix75To41Windows,
+    prefix75To41To23Windows,
+    fullHiddenSequenceWindows,
+    dualOpenPgpWindows,
+    hiddenSequenceHits,
     exactHits,
   },
 }, null, 2));
