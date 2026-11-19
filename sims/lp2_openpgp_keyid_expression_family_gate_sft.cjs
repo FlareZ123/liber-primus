@@ -28,7 +28,7 @@ assert.deepEqual(hShell,[21,22,10,10,23,12,5,5]);
 
 // Frozen source-derived state. It is independently reconstructed from the
 // authenticated signed-word positions and therefore is not fitted here.
-const state={p:23,g:5,a:6,b:15,A:8,B:19,K:2,e:3,q:4};
+const state={p:23,g:5,a:6,b:15,A:8,B:19,K:2};
 const fields=Object.entries(state);
 
 // Bounded issue grammar:
@@ -57,7 +57,7 @@ for(let i=0;i<fields.length;i++){
   }
  }
 }
-assert.equal(expressions.length,180);
+assert.equal(expressions.length,114);
 
 const byValue=new Map();
 for(const expression of expressions){
@@ -78,18 +78,18 @@ for(const row of counts){
 }
 assert.deepEqual(counts.map(x=>[x.value,x.count,x.minComplexity,x.minimalCount]),[
  [21,4,2,4],
- [22,4,1,1],
- [10,7,0,1],
- [23,4,0,1],
- [12,6,2,6],
- [5,8,0,2],
+ [22,3,1,1],
+ [10,5,0,1],
+ [23,3,0,1],
+ [12,3,2,3],
+ [5,4,0,2],
 ]);
 
 const multiply=values=>values.reduce((a,b)=>a*b,1);
 const completeTemplates=multiply(counts.map(x=>x.count));
 const minimumComplexityTemplates=multiply(counts.map(x=>x.minimalCount));
-assert.equal(completeTemplates,21504);
-assert.equal(minimumComplexityTemplates,48);
+assert.equal(completeTemplates,2160);
+assert.equal(minimumComplexityTemplates,24);
 
 const published=[
  ["p-K",21],["p-1",22],["g*K",10],["p",23],["a*K",12],["g",5],
@@ -111,7 +111,7 @@ assert.ok(ten.expressions.some(x=>x.name==="g*K"));
 console.log(JSON.stringify({
  status:"PASS",
  classification:
-  "Director #1786 negative template-selection gate. The authentic 7A35090F H shell is fixed, but the bounded state-expression grammar admits 21,504 complete ordered symbolic templates over its six distinct values. Restricting every coordinate to minimum grammar complexity still leaves 48 templates, and the published K*g label at shell value10 is not minimum-complexity because literal key-ID constant10 is available. No source-visible rule selects one complete ordered template, so the receiver holdout remains sealed.",
+  "Director #1786 negative template-selection gate. The authentic 7A35090F H shell is fixed, but the bounded state-expression grammar admits 2,160 complete ordered symbolic templates over its six distinct values. Restricting every coordinate to minimum grammar complexity still leaves 24 templates, and the published K*g label at shell value10 is not minimum-complexity because literal key-ID constant10 is available. No source-visible rule selects one complete ordered template, so the receiver holdout remains sealed.",
  keyId,nibbles,hShell,
  grammar:{expressions:expressions.length,fields:Object.keys(state),completeTemplates,minimumComplexityTemplates},
  counts:counts.map(x=>({

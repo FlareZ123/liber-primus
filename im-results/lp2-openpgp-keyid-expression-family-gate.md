@@ -31,7 +31,7 @@ The six distinct shell values are:
 The DH tuple used only as a comparison register is independently reconstructed from authenticated 2016 word positions:
 
 ```text
-p=23 g=5 a=6 b=15 A=8 B=19 K=2 e=3 q=4.
+p=23 g=5 a=6 b=15 A=8 B=19 K=2.
 ```
 
 No unknown LP2 plaintext is used.
@@ -45,24 +45,24 @@ Charge exactly the low-description grammar requested by the issue:
 - complexity1: each state field +/-1;
 - complexity2: ordered pairwise state subtraction and unordered pairwise addition/multiplication modulo29.
 
-This gives **180 symbolic expressions**.
+This gives **114 symbolic expressions** over exactly the seven-field DH state named by the issue.
 
 For the six distinct shell values:
 
 | value | matching expressions | minimum complexity | minimum-complexity matches |
 | ---: | ---: | ---: | ---: |
 | 21 | 4 | 2 | 4 |
-| 22 | 4 | 1 | 1 |
-| 10 | 7 | 0 | 1 |
-| 23 | 4 | 0 | 1 |
-| 12 | 6 | 2 | 6 |
-| 5 | 8 | 0 | 2 |
+| 22 | 3 | 1 | 1 |
+| 10 | 5 | 0 | 1 |
+| 23 | 3 | 0 | 1 |
+| 12 | 3 | 2 | 3 |
+| 5 | 4 | 0 | 2 |
 
 Requiring repeated shell values to share one expression leaves:
 
 ```text
-4 * 4 * 7 * 4 * 6 * 8
-= 21,504
+4 * 3 * 5 * 3 * 3 * 4
+= 2,160
 ```
 
 complete ordered symbolic templates.
@@ -70,8 +70,8 @@ complete ordered symbolic templates.
 Even force each coordinate to its **lowest available grammar complexity**:
 
 ```text
-4 * 1 * 1 * 1 * 6 * 2
-= 48
+4 * 1 * 1 * 1 * 3 * 2
+= 24
 ```
 
 complete templates remain.
@@ -104,7 +104,7 @@ Thus coordinate-wise parsimony cannot select the published state interpretation.
 
 The issue requires a **complete source-visible ordered expression template before opening a receiver**.
 
-At least 48 equally minimum-complexity templates survive the declared grammar. No independent source syntax in the key ID states which shell coordinate should be read as `p-K`, `K*g`, `K*a`, `g`, or one of their equally simple rivals.
+At least 24 equally minimum-complexity templates survive even this exact seven-field grammar. Adding derived state quantities can only widen the family. No independent source syntax in the key ID states which shell coordinate should be read as `p-K`, `K*g`, `K*a`, `g`, or one of their equally simple rivals.
 
 Therefore the receiver holdout remains **sealed**. Opening one and choosing the template that predicts it would recreate the post-discovery fitting problem the issue is designed to test.
 
@@ -128,4 +128,4 @@ A future positive requires a new first-party rule that selects the **whole order
 node sims/lp2_openpgp_keyid_expression_family_gate_sft.cjs
 ```
 
-The SFT parses the authenticated key ID, rebuilds the H shell, enumerates all 180 expressions, charges all complete ordered templates and minimum-complexity templates, and verifies that the receiver gate remains sealed.
+The SFT parses the authenticated key ID, rebuilds the H shell, enumerates all 114 expressions over the seven-field DH state, charges all complete ordered templates and minimum-complexity templates, and verifies that the receiver gate remains sealed.
