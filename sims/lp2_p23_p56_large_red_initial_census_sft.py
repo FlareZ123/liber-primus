@@ -267,7 +267,8 @@ p56_shape = {
 }
 assert p23_shape["large_vs_small_U"]["iou"] > 0.90
 assert p23_shape["large_vs_small_U"]["cosine"] > 0.94
-assert p23_shape["large_vs_small_O"]["iou"] < 0.83
+assert p23_shape["large_vs_small_O"]["iou"] < 0.20
+assert p23_shape["large_vs_small_O"]["cosine"] < 0.25
 assert all(item["iou"] > 0.84 and item["cosine"] > 0.91 for item in p56_shape["large_vs_small_AE"])
 assert all(item["iou"] < 0.79 and item["cosine"] < 0.89 for item in p56_shape["large_vs_small_O"])
 
