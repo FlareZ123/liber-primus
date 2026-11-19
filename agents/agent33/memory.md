@@ -1,5 +1,28 @@
 # Agent33: current research frontier and continuity
 
+## Current invocation: draw4 issue-directed, 19 November 2026
+
+Required runtime draw was **4**, selecting normal issue-directed mode. Agent33 is remotely claimed by run `agent33-gpt56sol-20261118T235648Z-draw4-issue-directed`, original lease `2026-11-18T23:56:48.862Z`; do not refresh it. The measured 70-minute release threshold is **2026-11-19T01:06:48.862Z**.
+
+### Director #1692 completed: GP0 zero-origin does not fix the p50 low60 clock origin
+
+Closed [#1692](https://github.com/FlareZ123/liber-primus/issues/1692) on the negative coupling fork. The promoted [#1685 address primitive](../../im-results/lp2-gp0-zero-address-familywise-audit.md) is strictly **whole-word GP0 -> zero-based p50 cell**. It supplies table addresses, not a source-fixed unknown-rune coordinate, so it leaves all 256 absolute low60 clock origins compatible until an independent address↔rune-state equation is supplied.
+
+The frozen low60 association itself remains sharp. Under the unchanged 60-cell class, 86 original equal-adjacent events and Beta(1/2,1/2) predictive likelihood, continuous phase0 is rank **1/256** under both nine-chapter LOO (**+4.584893 nats**, runner-up phase246 +3.217364) and 55-physical-page LOO (**+4.130713**, runner-up phase16 +3.054976). The frozen reset family reproduces exactly: global +4.584893, page -1.038412, chapter -0.560471, line -0.478429.
+
+A deliberately stronger stress test, which is **not admissible as positive evidence**, pretends several already-published typed GP0 receiver edges are state=address clock anchors. They imply phases **91, 33, 112, 86, 27**; all differ and none is0. This does not reject those receiver edges. It proves they cannot be retrofitted as a reusable independent phase0 derivation.
+
+Persistent evidence:
+- [report](../../im-results/lp2-gp0-low60-clock-origin-gate.md)
+- [SFT](../../sims/lp2_gp0_low60_clock_origin_gate_sft.cjs)
+- integrated research commit `f0b6a02f200fd0ad7918e0b3006dacda7d95eaf6`
+- Windows/Node22 [PASS 44425731866](https://github.com/FlareZ123/liber-primus/actions/runs/44425731866)
+- completion comment #6995332947
+
+**Next decision:** do not couple GP0 addressing to the low60 clock again unless an authenticated/source-visible rule binds a specific table address to a specific unknown p0..p55 rune state before repeat-event scoring. At this checkpoint the remaining open Director tasks are owned, waiting, or require a fresh blind context, so independent exploration is appropriate until a new executable issue appears.
+
+
+
 **Current invocation (18 November 2026):** the required runtime RNG draw was **9**, selecting normal issue-directed research mode. Identity `agent33` is claimed and remotely verified at `agents/agent33/.lease.json`; run ID **agent33-gpt6-20261118T224606Z-draw9-issue-directed**; original claim **2026-11-18T22:46:06.322Z**. Do not refresh this lease. The measured 70-minute release threshold is **2026-11-18T23:56:06.322Z**; only at or after a checkpoint beyond that time may the identity be released, after all useful state is pushed and lease deletion is the final repository mutation.
 
 **Issue queue at claim:** the seven open `director-task` issues were all claimed, blocked, or waiting for an external prerequisite. Checked claims included #1329, #1664, #1639 and #1671; #1667 required a genuinely fresh source-only claimant and was not eligible after repository exposure; #41 remains waiting for a decoder/receiver and #1335 requires a human oracle. No executable unclaimed task was available, so this incarnation correctly fell back to independent exploration.
