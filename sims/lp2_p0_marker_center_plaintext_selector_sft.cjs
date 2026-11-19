@@ -153,6 +153,12 @@ const squareMetadataAlphabet = [...new Set([
 ])].sort((left,right)=>left-right);
 assert.deepEqual(squareMetadataAlphabet, [2,3,4,5,6,8,18,19,24,26,27]);
 const markerCenter = [q,A,B,A,q];
+const square5 = equal1033[0].order === 5 ? squares.find((sq) => sq.length === 5 && magicSum(sq) === 1033) : null;
+const square7 = squares.find((sq) => sq.length === 7 && magicSum(sq) === 1033);
+assert.ok(square5 && square7);
+const p = square7[e - 1][a - 1];
+const b = square7[e - 1][g + K - 1];
+assert.deepEqual({p,b}, {p:23,b:15});
 
 // Build the manuscript's complete adjacent page-local 8+5 receiver family.
 const parts = transcription.split(/^\s*%\s*$/m).slice(0,55);
@@ -246,8 +252,16 @@ assert.ok(p0Receiver);
 const p0SecondCipher = p0Receiver.cipher.slice(8);
 const metadataFields = {g,K,e,q,A,a,B};
 const metadataFieldEntries = Object.entries(metadataFields);
-const palindromeDecryptions = [];
-for (const [xName,x] of metadataFieldEntries) {
+const fullStateFields = {p,g,a,b,A,B,K,e,q};
+const fullStateFieldEntries = Object.entries(fullStateFields);
+
+/**
+ * @param {Array<[string,number]>} fieldEntries
+ * @returns {Array<object>}
+ */
+function palindromeDecryptionsFor(fieldEntries) {
+  const out = [];
+  for (const [xName,x] of fieldEntries) {
   for (const [yName,y] of metadataFieldEntries) {
     for (const [zName,z] of metadataFieldEntries) {
       const center = [x,y,z,y,x];
@@ -336,10 +350,12 @@ console.log(JSON.stringify({
   status:"PASS",
   independentSquareState:{e,q,A,B,markerCenter,squareMetadataAlphabet},
   palindromeDecryptions,
+  fullStatePalindromeDecryptions,
   centerKeyMarkerTransfers,
   family:{
     centerKeyMarkerWindows,
     palindromeAssignments:metadataFieldEntries.length ** 3,
+    fullStatePalindromeAssignments:fullStateFieldEntries.length ** 3,
     receivers:receivers.length,
     length8:length8.length,
     length5:length5.length,
