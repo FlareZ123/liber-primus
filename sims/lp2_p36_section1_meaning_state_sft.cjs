@@ -274,6 +274,80 @@ assert.deepEqual(palindromeHits, [{
   output: [19, 28, 9, 21],
 }]);
 
+// Hold the discovered section1/e rule across every complete word in section1.
+// It produces one authenticated source word, the opening MEANING. The next
+// ciphertext word has length3, so the source continuation IS (length2) fails
+// prospectively at the length gate.
+const section1Begin = markers[0].index + markers[0][0].length;
+const section1End = markers[1].index;
+const section1Text = numberedText.slice(section1Begin, section1End);
+const section1Words = [];
+let sectionWord = [];
+let sectionOffset = 0;
+function flushSection1Word() {
+  if (!sectionWord.length) return;
+  section1Words.push({
+    index: section1Words.length,
+    start: sectionOffset - sectionWord.length,
+    values: sectionWord.slice(),
+  });
+  sectionWord = [];
+}
+for (const char of [...section1Text]) {
+  const value = runeIndex.get(char);
+  if (value !== undefined) {
+    sectionWord.push(value);
+    sectionOffset += 1;
+  } else if (char === "/" || /\s/u.test(char)) {
+    // Printed wrap.
+  } else {
+    flushSection1Word();
+  }
+}
+flushSection1Word();
+assert.equal(section1Words.length, 30);
+assert.equal(section1Words[1].values.length, 3);
+assert.equal(gp("IS").length, 2);
+
+const allSourceTargetByValues = new Map();
+for (const word of signedWords) {
+  const values = gp(word);
+  if (!allSourceTargetByValues.has(values.join(","))) {
+    allSourceTargetByValues.set(values.join(","), word);
+  }
+}
+const section1RuleHits = [];
+for (const word of section1Words) {
+  const sectionKey =
+    word.values.length === 1
+      ? [1]
+      : [1, ...Array(word.values.length - 2).fill(state.e), 1];
+  for (const sign of [-1, 1]) {
+    const output = word.values.map((value, index) =>
+      mod29(value + (sign * sectionKey[index]))
+    );
+    const target = allSourceTargetByValues.get(output.join(","));
+    if (target) {
+      section1RuleHits.push({
+        wordIndex: word.index,
+        start: word.start,
+        sign,
+        key: sectionKey,
+        target,
+        output,
+      });
+    }
+  }
+}
+assert.deepEqual(section1RuleHits, [{
+  wordIndex: 0,
+  start: 0,
+  sign: -1,
+  key: [1, 3, 3, 1],
+  target: "MEANING",
+  output: [19, 28, 9, 21],
+}]);
+
 const key = palindromeHits[0].key;
 const meaning = gp("MEANING");
 assert.deepEqual(meaning, [19, 28, 9, 21]);
@@ -371,5 +445,8 @@ console.log(JSON.stringify({
       fourRuneWords.length * targetsByLength.get(4).length * 2,
     fixedKeyHits,
     section2SameRuleOutput: section2Output,
+    section1WordCount: section1Words.length,
+    section1FixedRuleConfigurations: section1Words.length * 2,
+    section1FixedRuleHits: section1RuleHits,
   },
 }, null, 2));
