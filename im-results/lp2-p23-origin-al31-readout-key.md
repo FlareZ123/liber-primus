@@ -143,7 +143,7 @@ Thus AL=31 compresses directly to the exact ordered values already independently
 
 This is particularly economical because the positive field residue `K=2` is not an invertible GP29 power exponent: `gcd(2,28)=2`. Its additive inverse `27` is invertible: `gcd(27,28)=1`. The first residue `3` is also invertible modulo28.
 
-The relation is also internally consistent with the p23 state that created the AL suffix. The same p23 line already carries the authenticated state values `K=2` and `e=3`.
+The AL=31 residue match is numerically consistent with the p23 DH state that accompanies the local packet: the same p23 line carries authenticated state values `K=2` and `e=3`. Those fields do not themselves generate `AL`; the separate p23/p56 page-rise and page-label T-cardinal interpretation supplies that candidate suffix.
 
 ## AL=31 also compresses the p23→p33 state packet
 
@@ -397,7 +397,7 @@ This is a plausible human solve path because each transition is prompted by an o
 
 ## Decision
 
-**Positive, conditionally**, on the issue's historical question: AL=31 is a plausible May 2014 player-visible key lead if the page-label T-cardinal interpretation is intended. A solver who derives the local `THE ORIGIN` packet and accepts the conditional p23→p33 handoff obtains `THE ORIGIN | AL`, then can follow the already-known Liber AL source to III:47 and consult a New Comment publicly printed since 1974/1975. The New Comment explicitly supplies the key value; this is not an arbitrary occult association.
+**Positive, conditionally**, on the issue's historical question: AL=31 is a plausible May 2014 player-visible key lead if the page-label T-cardinal interpretation is intended. A solver who derives the local `THE ORIGIN` packet, notices the p23/p56 half-turn page rise33 and p33 `THEIR RISE`, and accepts the page-label T-cardinal operation obtains candidate `THE ORIGIN | AL`; the separate conditional DH→p50 pointer corroborates p33 but is not required. The solver can then follow the already-known Liber AL source to III:47 and consult a New Comment publicly printed since 1974/1975. The New Comment explicitly supplies the key value; this is not an arbitrary occult association.
 
 The candidate page-rise/T route selects 31 without using p28, p31 or p39 output values, but the use of physical page labels as positive T-cardinals remains an unverified operation. The research chronology is different: this association was recognized after those target results were already known, so the current arithmetic bridge is **post-discovery**, not blind empirical validation. The p50 cell-0 interpretation is a conditional cross-object consumer for `THE ORIGIN`; it does not authenticate the page-label T operation or the p50 radix.
 
@@ -409,4 +409,4 @@ Run:
 
 `node sims/lp2_p23_origin_al31_readout_key_sft.cjs`
 
-The SFT reconstructs the p23 `THE ORIGIN | AL` split, the p23→p33 handoff, AL=31 residues, the p39 `[55,20]` selector and the p28 center/word28 receiver from repository source files. It charges all 40 direct ±31 sign/orientation/cut configurations and the full 1,440 reversible p28 power family. The exact AL-derived winner is `[3,27]`, producing the numerically selected raw output `READ OUT`. The second reproducer, `sims/lp2_p23_al31_p31_and_p33_you_sft.cjs`, uses AL=31 to select p31, derives the p31 key solely from the unique equal-chunk `K`-rise line pair and solved p56, then charges every p31/p33 three-rune word against all authenticated three-rune source targets. It yields exactly p31 `AND` and p33 `YOU` under the unchanged key/sign.
+The SFT reconstructs the p23 local `THE ORIGIN` packet, the DH-derived `B=19→p50[19]=0X→base60 33` convergence, the candidate page-label/T `AL` suffix, AL=31 residues, the p39 `[55,20]` selector and the p28 center/word28 receiver from repository source files. Its p23→p33 leg is the conditional p50 pointer, not the independent p23/p56 page-rise route; the latter is documented separately in `im-results/lp2-p23-p56-p33-their-rise-loop.md`. It charges all 40 direct ±31 sign/orientation/cut configurations and the full 1,440 reversible p28 power family. The exact AL-derived winner is `[3,27]`, producing the numerically selected raw output `READ OUT`. The second reproducer, `sims/lp2_p23_al31_p31_and_p33_you_sft.cjs`, uses AL=31 to select p31, derives the p31 key solely from the unique equal-chunk `K`-rise line pair and solved p56, then charges every p31/p33 three-rune word against all authenticated three-rune source targets. It yields exactly p31 `AND` and p33 `YOU` under the unchanged key/sign.

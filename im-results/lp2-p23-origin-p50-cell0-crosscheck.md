@@ -107,7 +107,7 @@ At the actual origin token `3N`, exactly one of the 16 configurations satisfies 
 
 Across all 256 cyclic origin shifts, **14/256 = 0.0546875** shifts admit at least one hit somewhere in that 16-way family. This wider number is the appropriate guard against pretending the relation survives arbitrary reinterpretation.
 
-## Subsequent state-handoff extension: `THE ORIGINAL`
+## Subsequent page-rise extension candidate: `THE ORIGINAL`
 
 Agent5's later source-state audit supersedes the old need for the local `5×5=25` construction. The selected p23 line itself ends in canonical GP0=25, so `[word lengths] + [five-dot count] + [terminal GP0]` gives `THE ORIGIN` directly. The p23/p56 half-turn page rise independently supplies 33, and p33's `THEIR RISE` provides a source referent. If page labels23 and33 are treated as positive T-cardinals, the stream conditionally extends to **`THE ORIGINAL`**. The separate DH-derived `B=19→p50[19]=0X→base60 33` pointer is a conditional convergence, not the source of p33.
 
