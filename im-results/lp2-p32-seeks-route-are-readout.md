@@ -40,7 +40,7 @@ p = 23
 
 The route is the unique hit in the already charged 560-case authenticated four-word family. Its terminal is physical p32, and p32 contains exactly 121 runes, equal to GP0(EPIPHANY). State92 is the previously held-out interior EMPTY hit at step `g+K=7`.
 
-P32 therefore has a source-selected 11x11 row-major representation. Its source orientation is independently constrained because the first row and first column GP-prime sums are 563 and 569, the authenticated 2016 image dimensions.
+P32 therefore has a source-selected 11x11 row-major representation. The dimensions are tied directly to the reconstructed state: the p50 table width is exactly `A=8`, while p32 has side `11=A+e` and rune count `121=(A+e)^2=GP0(EPIPHANY)`. Its source orientation is independently constrained because the first row and first column GP-prime sums are 563 and 569, the authenticated 2016 image dimensions.
 
 ## A value-free route-window selector
 
@@ -73,13 +73,15 @@ cols   [5,4,6]   -> 15 = b
 
 This selector uses p50 geometry and already reconstructed state only. It does not inspect p32 rune values.
 
-The e-window has a compact state-coordinate description before p32 content is consulted:
+The e-window has a compact state-coordinate description before p32 content is consulted. The p50 row width is not an added base; it is `A=8`.
 
 ```text
-125 -> (row15,col5) = (b,g)
-20  -> (row2,col4)  = (K,K^2)
-102 -> (row12,col6) = (aK,a)
+125 = g^e          = A*b + g       -> (row15,col5) = (b,g)
+20  = GP0(THE)     = p-e = A*K+K^2 -> (row2,col4)  = (K,K^2)
+102 = GP0(DEVOTED) = a(p-a)        -> (row12,col6) = (aK,a)
 ```
+
+The selected route tail can therefore be read as `[g^e, THE, DEVOTED]`, with all three p50 coordinates derived from the already reconstructed DH packet.
 
 Its checksum is therefore algebraic:
 
@@ -90,10 +92,11 @@ cols: g + K^2 + a = 5 + 4 + 6 = b.
 
 ## Reuse the coordinates on the selected 11x11 square
 
-The most literal coordinate transfer preserves the zero-based column and reduces the p50 row modulo11:
+The most literal coordinate transfer preserves the zero-based column and reduces the p50 row by the target side length. Here the target side is itself state-derived:
 
 ```text
-p32 row = p50 row mod 11
+p32 side = A+e = 11
+p32 row = p50 row mod (A+e)
 p32 col = p50 col
 ```
 
@@ -189,7 +192,7 @@ p50[16] = 21(base60) = 121 = rune_count(p32) = GP0(EPIPHANY)
 p50[27] = 0P = 25.
 ```
 
-Across all 43 signed word occurrences and both live radices, index16/base60 is the only occurrence-index p50 value equal to121.
+Across all 43 signed word occurrences and both live radices, index16/base60 is the only occurrence-index p50 value equal to121. In state notation this closes as `p50[A+g+e] = (A+e)^2`.
 
 The selected source context is therefore:
 
@@ -271,7 +274,7 @@ EPIPHANY SEEKS THE DEVOTED
   -> ARE THE MAP reconnects to frozen MAP -> HERE.
 ```
 
-This is a materially tighter human solve path than direct p32 cipher fitting. It extracts a real authenticated instruction word from unknown-page source runes with source-selected navigation and a bounded family. The remaining weakness is the inferred row-mod11 coordinate projection and retrospective discovery history. Do not promote the whole p32 page as decrypted.
+This is a materially tighter human solve path than direct p32 cipher fitting. It extracts a real authenticated instruction word from unknown-page source runes with source-selected navigation and a bounded family. The coordinate moduli are now fixed by source geometry and state, `A=8` for p50 width and `A+e=11` for p32 side. The remaining weakness is that reusing the p50 quotient/remainder coordinates on p32 was recognized retrospectively. Do not promote the whole p32 page as decrypted.
 
 The next useful test should keep this projection completely frozen and seek an independently selected second p32 state/window. Do not add coordinate shifts, alternative modular reductions, or language-optimized paths.
 

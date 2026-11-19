@@ -24,3 +24,5 @@ Artifacts:
 - `sims/lp2_p32_seeks_route_are_readout_sft.cjs`
 
 Frozen audit of every signed-word/DH-depth path ending on p32 finds 14 routes, all base60. The coordinate gate produces no new state set beyond `[146,92]` and `[125,20,102]`; MEANING/FALSE only share the latter tail. No second independent cell set is claimed.
+
+Further compression: p50 width is exactly `A=8`; p32 side is `A+e=11`, with `121=(A+e)^2=EPIPHANY`. The selected tail is `[g^e, GP0(THE), GP0(DEVOTED)] = [125,20,102]`, and its base-A coordinates are the DH tuples above. The source-index closure is `A+g+e=16`, with `p50[16]=121=(A+e)^2`.

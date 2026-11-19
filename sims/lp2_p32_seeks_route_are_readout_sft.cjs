@@ -74,18 +74,19 @@ function gp0(word) {
 }
 
 /**
- * @param {number[]} table
+ * @param {Array<number|null>} table
  * @param {number} start
  * @param {number} steps
- * @returns {number[]}
+ * @returns {number[]|null}
  */
 function walk(table, start, steps) {
   const route = [start];
   let state = start;
   for (let index = 0; index < steps; index += 1) {
-    assert.ok(state >= 0 && state < 256);
-    state = table[state];
-    assert.ok(Number.isInteger(state));
+    if (state < 0 || state >= 256) return null;
+    const next = table[state];
+    if (!Number.isInteger(next)) return null;
+    state = next;
     route.push(state);
   }
   return route;
@@ -108,7 +109,9 @@ assert.deepEqual(
 );
 
 const dh = { p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3 };
+assert.equal(grid.rows[0].length, dh.A);
 const route = walk(base60, gp0("SEEKS"), dh.p);
+assert.ok(route);
 assert.deepEqual(route, [
   71, 108, 14, 183, 81, 58, 146, 92, 236, 238, 129, 179,
   175, 18, 15, 212, 70, 169, 228, 144, 125, 20, 102, 32,
@@ -118,18 +121,23 @@ const p32 = corpus.pages.find((page) => page.page === 32);
 assert.ok(p32);
 assert.equal(p32.indices.length, 121);
 assert.equal(gp0("EPIPHANY"), 121);
+const p32Side = Math.sqrt(p32.indices.length);
+assert.equal(p32Side, dh.A + dh.e);
+assert.equal(p32.indices.length, (dh.A + dh.e) ** 2);
 
 const topPrimeSum = p32.indices
-  .slice(0, 11)
+  .slice(0, p32Side)
   .reduce((sum, rune) => sum + corpus.prime[rune], 0);
-const leftPrimeSum = Array.from({ length: 11 }, (_, row) => p32.indices[row * 11])
-  .reduce((sum, rune) => sum + corpus.prime[rune], 0);
+const leftPrimeSum = Array.from(
+  { length: p32Side },
+  (_, row) => p32.indices[row * p32Side]
+).reduce((sum, rune) => sum + corpus.prime[rune], 0);
 assert.equal(topPrimeSum, 563);
 assert.equal(leftPrimeSum, 569);
 
 /** @param {number} state @returns {{row:number,col:number}} */
 function p50Coordinate(state) {
-  return { row: Math.floor(state / 8), col: state % 8 };
+  return { row: Math.floor(state / dh.A), col: state % dh.A };
 }
 
 /**
@@ -142,9 +150,9 @@ function p50Coordinate(state) {
  */
 function projectNatural(state) {
   const source = p50Coordinate(state);
-  const row = source.row % 11;
+  const row = source.row % p32Side;
   const col = source.col;
-  const offset = row * 11 + col;
+  const offset = row * p32Side + col;
   return { offset, value: p32.indices[offset], row, col };
 }
 
@@ -155,14 +163,14 @@ function projectNatural(state) {
  */
 function projectOriented(state, orientation) {
   const source = p50Coordinate(state);
-  let row = source.row % 11;
+  let row = source.row % p32Side;
   let col = source.col;
 
   if (orientation.swap) [row, col] = [col, row];
-  if (orientation.rowReflect) row = 10 - row;
-  if (orientation.colReflect) col = 10 - col;
+  if (orientation.rowReflect) row = p32Side - 1 - row;
+  if (orientation.colReflect) col = p32Side - 1 - col;
 
-  const offset = row * 11 + col;
+  const offset = row * p32Side + col;
   return { offset, value: p32.indices[offset] };
 }
 
@@ -285,6 +293,14 @@ assert.equal(candidateClosures.filter((row) => row.exact).length, 1);
 const areClosure = candidateClosures.find((row) => row.exact);
 assert.ok(areClosure);
 assert.deepEqual(areClosure.states, [125, 20, 102]);
+assert.equal(areClosure.states[0], dh.g ** dh.e);
+assert.equal(areClosure.states[0], dh.A * dh.b + dh.g);
+assert.equal(areClosure.states[1], gp0("THE"));
+assert.equal(areClosure.states[1], dh.p - dh.e);
+assert.equal(areClosure.states[1], dh.A * dh.K + dh.K ** 2);
+assert.equal(areClosure.states[2], gp0("DEVOTED"));
+assert.equal(areClosure.states[2], dh.a * (dh.p - dh.a));
+assert.equal(areClosure.states[2], dh.A * (dh.a * dh.K) + dh.a);
 assert.deepEqual(areClosure.offsets, [49, 26, 17]);
 assert.deepEqual(areClosure.values, [24, 4, 18]);
 assert.deepEqual(areClosure.containingWordIndices, [8, 5, 3]);
@@ -300,6 +316,7 @@ assert.deepEqual(areClosure.states.map(projectNatural).map((cell) => [cell.row, 
   [dh.K, dh.K ** 2],
   [1, dh.a],
 ]);
+assert.equal(areClosure.sourceIndex, dh.A + dh.g + dh.e);
 assert.equal(areClosure.sourceIndex, 16);
 assert.equal(areClosure.targetWord, "ARE");
 assert.deepEqual(areClosure.targetGp, [24, 4, 18]);
@@ -417,6 +434,7 @@ for (const word of words) {
 assert.deepEqual(occurrencePageClosures, [
   { index: 16, word: "ARE", radix: "base60", token: "21", value: 121 },
 ]);
+assert.equal(base60[dh.A + dh.g + dh.e], (dh.A + dh.e) ** 2);
 
 assert.equal(words[17].word, "THE");
 assert.equal(17 + 1, dh.p - dh.g);
@@ -431,6 +449,7 @@ assert.equal(gp0("HERE"), 48);
 // of any p32-terminating p50 path project to the next source word" fails.
 // ARE index16 itself enters p32 as 16 -> 121 -> 237 -> 32.
 const areIndexRoute = walk(base60, 16, 3);
+assert.ok(areIndexRoute);
 assert.deepEqual(areIndexRoute, [16, 121, 237, 32]);
 const transferProjection = areIndexRoute.slice(0, 3).map(projectNatural);
 assert.deepEqual(
@@ -450,7 +469,7 @@ for (const word of words) {
   for (const [field, depth] of Object.entries(dh)) {
     for (const [radix, table] of Object.entries({ base60, base59 })) {
       const candidateRoute = walk(table, word.gp0, depth);
-      if (candidateRoute.at(-1) !== 32) continue;
+      if (!candidateRoute || candidateRoute.at(-1) !== 32) continue;
       terminalP32Routes.push({
         word: word.word,
         index: word.index,
