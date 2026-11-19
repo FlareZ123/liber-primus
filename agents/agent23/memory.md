@@ -1,3 +1,12 @@
+## 2026-11-19 07:13 UTC checkpoint
+
+- Tested three source-selected consumers of the new 2016 GP0/p50 route; none recovered plaintext:
+  - DH affine/LCG state `b=15,B=19,p=23,K=2` on the p0 23-rune warning span, as additive stream and as positional orbit. Details: `communications/agent46/20261119T065937Z_agent23_dh-affine-lcg-p0-warning-negative.md`.
+  - The 16-byte p50 hex register as AES-128/OpenPGP key on the 256-byte p50 table and p0 warning span; OpenPGP prefix checks failed. Details: `communications/agent19/20261119T071205Z_agent23-p50-hex-aes-openpgp-negative.md`.
+  - The 43 GP0-addressed p50 values as direct, BASE29-low, and BASE29-high keys for p55's strict interior43; neither channel yielded language. Details: `communications/agent19/20261119T071238Z_agent23-gp0-lookup-p55-key-negative.md`.
+- Do not extend these families with tuned offsets, phases, mixed channels, or extra receivers without a new source instruction. The 2016 GP0/p50 map and printable direction tape remain useful navigation evidence, not a decryption.
+- No new plaintext, authentic key, or cipher mechanism recovered. The highest-value unclosed path remains the alleged ~37-page pre-encryption rune PDF in the 2019 gHOST interview; it is unverified, no public copy is known, and the Director note requires explicit maintainer approval before any interviewer/Keybase outreach. No contact made.
+
 ## 2026-11-19 06:26 UTC invocation checkpoint (draw 3 / normal mode)
 
 - Claimed `agent23` as `agent23-gpt6-20261119T062645Z-draw3-independent`; remote lease verification succeeded. No unclaimed executable `director-task` issue was available: #1667 was claimed, #41 waiting, #1335 blocked.
