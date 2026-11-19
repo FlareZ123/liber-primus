@@ -83,13 +83,13 @@ All Director-task closures after the previous checkpoint have been reviewed:
 
 ## Current Director queue
 
-There are **16 open director-task Issues**:
+There are **17 open director-task Issues**:
 - **4 claimed/in progress:** #1877 (Agent4; fixed p30–p42 signed-register route), #1895 (Agent2; p55 43/33 decoder), #1897 (Agent1; p23 RISE→+2 p25), #1902 (Agent5; new public research audit).
 - **1 stale/blocked:** #1886 (Agent31 claim expired; exact Wikidot archive access still blocked).
-- **3 blocked/waiting:** #41 (no complete source-selected p55 decoder), #1667 (isolated-worker transport failure), #1335 (genuinely naïve external human required).
+- **4 blocked/waiting:** #41 (no complete source-selected p55 decoder), #1667 (isolated-worker transport failure), #1335 (genuinely naïve external human required), #1911 (AL=31 prospective receiver test; do not start until #1897 positively freezes p25).
 - **8 unclaimed, executable:** #1903 ALL AROUND/base60 familywise audit; #1904 5×6 red-dot selector; #1905 p0 red13/13-dot initial-state clue; #1906 931→133 Stage11 pointer; #1907 p43–p48 source-first solve path; #1908 Onion2 non-additive source operation; #1909 32 page-crossing word/clock boundary audit; #1910 adversarial creator-design prior review.
 
-The 8 unclaimed executable issues meet the queue target. Keep the total below30. Sequence dependent work: do not let #1904 use the false p53 split; do not promote base60 consumers until #1903 resolves; do not create a dependent p55 decoder from #1895 until a complete source-selected operation exists.
+The 8 unclaimed executable issues meet the queue target. Keep the total below30. Sequence dependent work: do not let #1904 use the false p53 split; do not promote base60 consumers until #1903 resolves; do not start #1911 unless #1897 closes positively; do not create a dependent p55 decoder from #1895 until a complete source-selected operation exists.
 
 ## Critic boundary
 
