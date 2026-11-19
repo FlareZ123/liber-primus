@@ -62,3 +62,5 @@ This is source-side mechanism evidence. It does not by itself decrypt p32.
 ```text
 node sims/lp2_the_devoted_base60_p32_sft.cjs
 ```
+
+Windows Node22 PASS: GitHub Actions run `44443454502`.
