@@ -302,20 +302,20 @@ This is a strong local candidate with target-frozen finite controls, not a unive
 
 See `im-results/lp2-p36-section1-meaning-state-inverse.md` and Windows regression **44465133751**.
 
-## Independent numbered-diagonal loop: BEWARE returns to YOU
+## Independent numbered-diagonal page loop: BEWARE returns to the YOU-labeled p32 exception
 
-Agent1's independently recovered numbered route gives a second interpretation of the packet's p32 result.
-
-The authenticated one-based source ordinal `n` selects physical LP2 page `n`, project page `n−1`, and canonical local word `n`. Across all43 source words the sole direct-coordinate failure is:
+The authenticated one-based source ordinal `n` selects physical LP2 page `n`, project page `n-1`, and requests canonical local word `n`. Across all43 source words the sole direct-word failure is:
 
 ```text
 YOU ordinal33
--> project p32
+-> physical page33 / project p32
 -> requested word33 absent
--> p32 has exactly22=p−1 words.
+-> p32 has exactly21 complete page-local words.
 ```
 
-DIRECTION30 independently recovers `p−1=22`, so the one permitted one-based wrap sends YOU33 to p32 word11. Direct numbering then resumes:
+DIRECTION30 independently recovers group order `p-1=22`, but the corrected canonical page length is21. The earlier modulo22 word wrap is retired: reducing by group order gives word11, reducing by page length gives word12, and the previously cited offset59 packet is canonical word10. No authenticated p32 word receiver for YOU is selected.
+
+The **page** coordinate remains unambiguous because source ordinal33 itself labels physical page33/project p32. Direct word numbering resumes:
 
 ```text
 WILL34   -> project p33
@@ -334,13 +334,7 @@ p37 sections2,3,4
 p38 section5.
 ```
 
-So the independently recovered numbered diagonal enters the red10 packet on the authenticated suffix:
-
-```text
-GOOD -> LUCK -> BEWARE.
-```
-
-The prospectively frozen packet continuation then gives:
+The numbered diagonal therefore enters the red10 packet on the authenticated suffix `GOOD -> LUCK -> BEWARE`. The prospectively frozen packet continuation gives:
 
 ```text
 section n -> word n lengths
@@ -351,22 +345,19 @@ section n -> word n lengths
 -> project p32.
 ```
 
-Project p32 is exactly the unique wrapped YOU page. Therefore two independently developed mechanisms close a page-level cycle:
+Project p32 is the same exceptional page labeled by source ordinal33. The independently developed mechanisms therefore still close a **page-level** cycle:
 
 ```text
-YOU33
- -> unique p32 wrap
+YOU33 labels project p32
  -> WILL34 -> BE35 -> FOUND36
  -> GOOD37 -> LUCK38 -> BEWARE39
  -> p36-p38 red10 numbered packet
  -> frozen packet readout32
- -> p32
- -> YOU33.
+ -> project p32.
 ```
 
-This relation was recognized after the packet continuation and the numbered diagonal had been developed separately. It requires no new key, radix, sign, or offset. The packet's numeric output was already frozen as32; the diagonal had already fixed p32 as the unique YOU exception.
+This relation requires no new key, radix, sign, offset, or word wrap. The packet output was already frozen as32; the diagonal already fixed project p32 as the sole missing direct-word coordinate. The canonical correction narrows the conclusion: the cycle returns to the YOU-labeled **page**, while no p32 plaintext receiver for YOU has been selected.
 
-This is currently the strongest structural consequence of the red10 packet: it does more than quote authenticated source text or point to a previously interesting page. It closes onto the unique exceptional page in a distinct source-number navigation system.
 
 ## Local plaintext evidence along the post-YOU loop
 
@@ -429,7 +420,7 @@ section5 first word length6 / GP0 88
 
 That receiver has a separately charged exact local BEWARE inverse.
 
-So the post-YOU loop contains a ciphertext-bearing bridge before the red10 packet returns to p32:
+So the post-YOU page corridor contains a ciphertext-bearing bridge before the red10 packet returns to p32:
 
 ```text
 ... GOOD37
@@ -439,7 +430,7 @@ So the post-YOU loop contains a ciphertext-bearing bridge before the red10 packe
 -> BEWARE39 / p38 section5 receiver
 -> local BEWARE candidate
 -> red10 numbered packet
--> p32 / YOU.
+-> project p32 / YOU-labeled exception page.
 ```
 
 The former p36 local GOOD inverse is retired because it used a line-wrap pseudo-word; this loop does not depend on it.
