@@ -136,9 +136,21 @@ for (let index = 0; index < signedWords.length; index += 1) {
     cipherLength: receiver.values.length,
     start: receiver.start,
     cipher: receiver.values,
+    gp0: receiver.values.reduce((total, value) => total + value, 0),
   });
 }
 assert.equal(doubleIndexRows.length, 42);
+
+const plusOnePointers = doubleIndexRows.filter(
+  (row) => row.gp0 === row.index + 1
+);
+assert.deepEqual(
+  plusOnePointers.map((row) => [row.index, row.sourceWord, row.gp0]),
+  [
+    [20, "MEANING", 21],
+    [37, "LUCK", 38],
+  ]
+);
 
 const lengthMatches = doubleIndexRows.filter(
   (row) => row.sourceLength === row.cipherLength
@@ -156,6 +168,12 @@ assert.deepEqual(
     [31, "AND", 3, 126],
     [37, "LUCK", 4, 146],
   ]
+);
+assert.deepEqual(
+  lengthMatches
+    .filter((row) => row.gp0 === row.index + 1)
+    .map((row) => [row.index, row.sourceWord, row.gp0]),
+  [[37, "LUCK", 38]]
 );
 
 const p37Word37 = pageWords(37)[37];
@@ -386,6 +404,14 @@ console.log(JSON.stringify({
       length: row.sourceLength,
       start: row.start,
     })),
+    plusOnePointers: plusOnePointers.map((row) => ({
+      index: row.index,
+      word: row.sourceWord,
+      gp0: row.gp0,
+    })),
+    plusOneLengthMatches: lengthMatches
+      .filter((row) => row.gp0 === row.index + 1)
+      .map((row) => ({index: row.index, word: row.sourceWord, gp0: row.gp0})),
   },
   p37: {
     sourceWord: signedWords[37],
@@ -415,5 +441,5 @@ console.log(JSON.stringify({
       doubleIndexDirectHits.filter((row) => row.length >= 4),
   },
   interpretation:
-    "Signed index37 selects physical p37 and printed word37 under the already active zero-based source-number convention. The untouched four-rune receiver has the manuscript-unique H shell [g,p+K,A,a-g]. Across every direct authenticated-state H4 key shell plus zero, every authenticated four-rune target and both signs, [B,0,K,g] with subtraction is the sole hit and yields LUCK. Preserve as a strong local plaintext candidate; the double-index word-within-page selector remains the main route caveat.",
+    "Signed index37 selects physical p37 and printed word37 under the already active zero-based source-number convention. Its raw GP0 is 38, pointing directly to the next authenticated word/page BEWARE; only p20 and p37 have GP0=i+1 among all 42 double-index receivers, and p37 alone also matches its source target length. The untouched four-rune receiver has the manuscript-unique H shell [g,p+K,A,a-g]. Across every direct authenticated-state H4 key shell plus zero, every authenticated four-rune target and both signs, [B,0,K,g] with subtraction is the sole hit and yields LUCK. Preserve as a strong local plaintext candidate; the second use of the source index remains the main route caveat.",
 }, null, 2));
