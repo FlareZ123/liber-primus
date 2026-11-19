@@ -12,12 +12,16 @@
  * - H(x,y)=(x-y,x+y) mod29, with sign/order fixed by solved-page work.
  * - Apply H only to the outer rune pair of each line fragment of length >=2.
  *
- * Bounded numeric family:
+ * Bounded source family:
  * - line number is one- or zero-based;
- * - line number and fragment count may map to (a,g) in either order.
- * For every line/family member, choose p and b only from outer-H outputs, derive
- * A=g^a mod p, B=g^b mod p, K=A^b=B^a mod p, require p prime and all seven DH
- * fields distinct, and require A/B/K to occur in the same outer-H output set.
+ * - line number and fragment count may map to (a,g) in either order;
+ * - on the literal "DH" fragment, its own outer-H pair may be (b,K) or (K,b).
+ * For each family member, choose p only from the same line's outer-H outputs,
+ * derive A, B and K by standard DH algebra, and require the derived public
+ * values to occur in that same output set. This source-visible family does not
+ * require the seven DH fields to be distinct.
+ *
+ * A broader seven-distinct-field census is retained only as a secondary control.
  */
 
 const assert = require("node:assert/strict");
@@ -86,6 +90,47 @@ function lineVariants(page, line, rawLine) {
     parts[0][1] === 8
   );
 
+  const literalPairVariants = [];
+  if (startsDH) {
+    const dhPair = outerH(parts[0]);
+    for (const origin of ["one", "zero"]) {
+      const lineValue = origin === "one" ? line : line - 1;
+      if (lineValue <= 0) continue;
+
+      for (const assignment of ["g=fragments,a=line", "g=line,a=fragments"]) {
+        const g = assignment === "g=fragments,a=line"
+          ? parts.length
+          : lineValue;
+        const a = assignment === "g=fragments,a=line"
+          ? lineValue
+          : parts.length;
+
+        for (const pairOrder of ["bK", "Kb"]) {
+          const [b, K] = pairOrder === "bK"
+            ? dhPair
+            : [dhPair[1], dhPair[0]];
+
+          for (const p of outputSet) {
+            if (!primeValues.has(p) || g <= 0 || g >= p || b <= 0 || b >= p) continue;
+
+            const A = powMod(g, a, p);
+            const B = powMod(g, b, p);
+            const derivedK = powMod(A, b, p);
+            if (derivedK !== K || derivedK !== powMod(B, a, p)) continue;
+            if (!outputSet.has(A) || !outputSet.has(B)) continue;
+
+            literalPairVariants.push({
+              origin,
+              assignment,
+              pairOrder,
+              tuple: { p, g, a, b, A, B, K },
+            });
+          }
+        }
+      }
+    }
+  }
+
   const variants = [];
   for (const origin of ["one", "zero"]) {
     const lineValue = origin === "one" ? line : line - 1;
@@ -131,6 +176,7 @@ function lineVariants(page, line, rawLine) {
     outputs,
     outputText: outputs.map((value) => corpus.translit[value]).join(" "),
     startsDH,
+    literalPairVariants,
     variants,
   };
 }
@@ -170,9 +216,10 @@ assert.deepEqual(target.outputs, [
   8, 19,
 ]);
 
-assert.deepEqual(target.variants, [{
+assert.deepEqual(target.literalPairVariants, [{
   origin: "one",
   assignment: "g=fragments,a=line",
+  pairOrder: "bK",
   tuple: {
     p: 23,
     g: 5,
@@ -184,7 +231,7 @@ assert.deepEqual(target.variants, [{
   },
 }]);
 
-const dh = target.variants[0].tuple;
+const dh = target.literalPairVariants[0].tuple;
 assert.equal(powMod(dh.g, dh.a, dh.p), dh.A);
 assert.equal(powMod(dh.g, dh.b, dh.p), dh.B);
 assert.equal(powMod(dh.A, dh.b, dh.p), dh.K);
@@ -239,6 +286,8 @@ console.log(JSON.stringify({
   numericFamily: {
     lineOriginChoices: ["one", "zero"],
     assignments: ["g=fragments,a=line", "g=line,a=fragments"],
+    literalDhPairOrders: ["bK", "Kb"],
+    literalDhLineSourceFamilySolutions: target.literalPairVariants,
     linesWithAnySevenDistinctDhTuple: valid.length,
     totalSevenDistinctDhTupleVariants: valid.reduce(
       (total, row) => total + row.variants.length, 0
@@ -253,5 +302,5 @@ console.log(JSON.stringify({
     BPowA: powMod(dh.B, dh.a, dh.p),
   },
   classification:
-    "source-derived DH reconstruction: the unique literal-DH line plus fixed outer-H, visible line number, and fragment count reconstructs the full seven-distinct-field DH23 tuple under exactly one member of the charged 2x2 numeric family.",
+    "source-derived DH reconstruction: the unique literal-DH line plus fixed outer-H, visible line number, fragment count, and the literal DH fragment's own H pair reconstruct the full DH23 tuple under exactly one member of the charged 2x2x2 source family, without requiring distinctness as a selection rule.",
 }, null, 2));
