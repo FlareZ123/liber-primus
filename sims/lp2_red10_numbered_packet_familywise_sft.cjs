@@ -232,6 +232,37 @@ assert.equal(gp0('MAP') - dh.A, gp0('HERE'));
 assert.equal(gp0('HERE'), 48);
 assert.equal(source[18], 'MAP');
 
+// Independent numbered-diagonal convergence. Authenticated one-based ordinal n
+// selects physical page n / project page n-1 / canonical word n. Its sole
+// direct-coordinate failure is YOU ordinal33 because project p32 has p-1=22
+// words; the one permitted wrap lands on word11. The post-wrap route then
+// traverses p33..p38, and the last three are exactly the red10 packet pages.
+assert.equal(p32Words.length, dh.p - 1);
+const youOrdinal = 33;
+const wrappedYouWord = ((youOrdinal - 1) % p32Words.length) + 1;
+assert.equal(source[youOrdinal - 1], 'YOU');
+assert.equal(wrappedYouWord, 11);
+
+const postYou = source.slice(33,39).map((word,index) => ({
+  word,
+  ordinal:index + 34,
+  projectPage:index + 33,
+}));
+assert.deepEqual(postYou, [
+  {word:'WILL', ordinal:34, projectPage:33},
+  {word:'BE', ordinal:35, projectPage:34},
+  {word:'FOUND', ordinal:36, projectPage:35},
+  {word:'GOOD', ordinal:37, projectPage:36},
+  {word:'LUCK', ordinal:38, projectPage:37},
+  {word:'BEWARE', ordinal:39, projectPage:38},
+]);
+assert.deepEqual(
+  numericPages.map((row) => row.page),
+  postYou.slice(-3).map((row) => row.projectPage),
+);
+assert.deepEqual(postYou.slice(-3).map((row) => row.word), ['GOOD','LUCK','BEWARE']);
+assert.equal(continuationGp0, youOrdinal - 1);
+
 console.log('PASS lp2_red10_numbered_packet_familywise_sft');
 console.log('red punctuation counts:', Object.fromEntries(byCount));
 console.log('charged arithmetic configurations:', family.length);
@@ -242,3 +273,4 @@ console.log('T(length):', continuationValues, 'GP0=', continuationGp0);
 console.log('independent SEEKS depth-p terminal:', pointer);
 console.log('p32 continuation:', source.slice(16,19).join(' '), 'offsets', p32Offsets, 'containing words', containingWords);
 console.log('MAP opcode:', tokens[56], '=> N; HERE GP0', gp0('HERE'));
+console.log('numbered diagonal loop:', 'YOU33->p32/w11; post-wrap', postYou, 'packet returns', continuationGp0);

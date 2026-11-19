@@ -136,6 +136,64 @@ The sole fully typed hit is the p55 span beginning at strict-interior offset4, e
 
 This supplies an executable **shed/circumference split**, although it still does not reveal ordinary prose for the p55 ciphertext.
 
+## The centered e² shell bridges p57 and the signed 2016 source
+
+There is a second, independently fixed nested object. The p33 map already uses:
+
+```text
+e² = 9
+```
+
+as the word position of **DIVINITY**, while the road says to find it **WITHIN**. Center a nine-rune shell inside p55's already selected 43-rune strict interior. It begins at offset17 and its exact center is:
+
+```text
+15 = b
+```
+
+Apply the same fixed H split. Its branch GP0 sums are:
+
+```text
+difference branch GP0 = 78 = INSTAR
+sum branch GP0        = 75 = OPENPGP
+```
+
+These are two authenticated source words from different parts of the puzzle: **INSTAR** is in clear p57, while **OPENPGP** is the final word of the signed 2016 message whose text supplies **WORDS ARE THE MAP**.
+
+The branch labels also reconstruct state under the same H map:
+
+```text
+H(78,75) mod29
+= [3,8]
+= [e,A]
+```
+
+Those are exactly the p33 upper-map positions of **TUNNELNG** and **RISE**, the two nodes that independently select the p55 terminal route.
+
+Charge the exact nine-rune H signature over every strict-interior nine-rune window on p0–p55:
+
+```text
+6,662 windows total
+difference GP0=78 alone: 68
+sum GP0=75 alone:        88
+ordered pair 78/75:       1
+pair plus center b=15:    1
+```
+
+The sole pair is the centered e² shell of p55.
+
+This closes a state cycle:
+
+```text
+p33 [e,A]
+ -> map words [TUNNELNG, RISE]
+ -> p55
+ -> centered e² H split [INSTAR, OPENPGP]
+ -> H(branch labels)
+ -> [e,A]
+```
+
+It provides an additional source-independent check that the fixed H operation and the selected p55 interior are intentional, while still stopping short of claiming ordinary p55 prose.
+
 ## Corpus-wide fixed control
 
 Charge the exact geometry in the same source object on every unknown page:

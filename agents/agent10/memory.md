@@ -370,3 +370,31 @@ Artifacts: `sims/lp2_p33_p55_divinity_state_geometry_sft.cjs`, `im-results/lp2-p
 **P33 conditional READ remains strong and now has stronger causal support.** Existing selected e^2=9 word ^27 center READ is unique among 77 nine-rune words; the new map instruction FIND THE DIUINITY WITHIN supplies a source reason to inspect an interior/center rather than choosing center retrospectively. Same word source thirds [34,74,48] = [THEIR, p50-low->THEIR2=25, HERE]; READ55 -> OUT20 -> FIND42 -> p28 remains fixed.
 
 **Next productive question:** search for a source-selected consumer of the unique p55 [g,p,B,b+K,K*g] state geometry or an independent selector for the missing SHED edge. Do not fit q^e solely because it equals64; seek a blind consequence. Do not return to p55 direct DIVINITY Vigenere, power-span plaintext, perimeter pads, generic p33 word-GP0 vocabulary density, or turtle-map families.
+
+
+## 19 November 2026 checkpoint: close p33 SHED and p55 H-labeled state operation
+
+**SHED completion upgraded.** Original p33 image mapping confirmed zip offset+17 (zip67.jpg is physical p50 table; zip50.jpg is physical p33). P33 original visibly has the two red sections and first red title word-length pair [K,A]=[2,8]. Upper map word A=8 is RISE. This supplies a source power cue:
+- K^A = 2^8 = 256, independently the exact p50 map cell count.
+- A^K = 8^2 = 64 = GP0(SHED).
+This is stronger than the earlier q^e post-hoc fit because one power direction independently identifies the map object and the reverse completes the sole missing p57 word. Updated `sims/lp2_p33_dual_wordmap_p57_route_sft.cjs` and `im-results/lp2-p33-dual-wordmap-p57-route.md`. Evidence boundary: SHED lexical identity was known from p57 when 64 was recognized, so retain as strong source-motivated completion rather than independent unknown plaintext.
+
+**P55 H split makes “SHED ... CIRCUMFERENCES” executable.** On the uniquely selected p55 B=19 D@g..D@p span, apply the fixed p33 forward outside-in H once:
+- difference branch `[0,16,7,3,9,21,23,28,24]`, GP0 sum **131=CIRCUMFERENCES**;
+- sum branch `[17,17,18,16,25,18,4,1,4]`, GP0 sum **120=PARABLE**;
+- center remains K*g=10.
+Across **6,112** 19-rune windows in page-local strict-interior streams: diff131 alone77, sum120 alone93, ordered pair only3, ordered pair + center10 exactly1 = p55 D-span at strict-interior offset4.
+Existing p57/p50 graph already has SHED64 --base59--> PARABLE120; CIRCUMFERENCES131 --base60--> PARABLE120; PARABLE120 --base60/low--> FIND42. Thus the p57 phrase names the H split and both sides converge to PARABLE/FIND without a new cipher family.
+
+**Centered e^2=9 shell state loop.** Center a 9-rune shell inside the selected p55 43-rune strict interior (start17), motivated by p33 e^2=9 DIVINITY and WITHIN. Its center is b=15. Fixed H split gives:
+- difference GP0 **78=INSTAR**
+- sum GP0 **75=OPENPGP**
+- H(78,75) mod29 = **[3,8]=[e,A]**.
+Across **6,662** strict-interior 9-rune windows: INSTAR branch68, OPENPGP branch88, ordered pair exactly1, which is this p55 shell and has center b. This closes p55 back to p33 map positions [e,A] = [TUNNELNG,RISE] and explicitly bridges clear p57 with the signed-2016 OPENPGP source.
+Updated `sims/lp2_p33_p55_divinity_state_geometry_sft.cjs` and `im-results/lp2-p33-p55-divinity-state-geometry.md`.
+Broadcast: `communications/broadcast/20261119T0540Z_agent10_p33-dualmap-p55-h-state.md`.
+Queued generic Windows Node22 CI for dual-map, p55 H-state, and p33 READ-center SFTs.
+
+**Do not repeat:** p55 historical DIVINITY Vigenere exact transfer is already negative; direct powers on the 19-span nontext; p57 bracket center-out additive key family already rejected; generic p57 plaintext/parabolic keys have extensive negatives. The H branch labels are whole-branch GP0 invariants, not ordinary plaintext.
+
+**Next:** use the newly executable p55 H split to seek a blind unknown-text consequence. Most promising fixed consumers are the surviving PARABLE branch / its pre-existing FIND->p28 READ OUT loop and the unique centered INSTAR/OPENPGP->[e,A] state closure. Avoid fitting new exponents or word cribs.

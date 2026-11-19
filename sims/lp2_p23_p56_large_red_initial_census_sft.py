@@ -81,6 +81,40 @@ def prime_at(index: int) -> int:
     return found[index]
 
 
+def line_components(gray: np.ndarray, y_top: int) -> list[tuple[int, int, int, int, int, np.ndarray]]:
+    crop = np.ascontiguousarray((gray[y_top - 8:y_top + 125, 580:1820] < 128).astype(np.uint8))
+    n, _, stats, _ = cv2.connectedComponentsWithStats(crop, connectivity=8)
+    found = []
+    for x, y, w, h, area in stats[1:]:
+        if 102 <= h <= 125 and 6 <= w <= 135 and area >= 300:
+            found.append((int(x) + 580, int(y) + y_top - 8, int(w), int(h), int(area), crop[y:y + h, x:x + w]))
+    return sorted(found, key=lambda item: item[0])
+
+
+def normalize_mask(mask: np.ndarray, height: int = 128, width: int = 128) -> np.ndarray:
+    mask = np.asarray(mask, dtype=np.uint8)
+    h, w = mask.shape
+    scale = min(height / h, width / w)
+    nh = max(1, int(round(h * scale)))
+    nw = max(1, int(round(w * scale)))
+    resized = cv2.resize(mask, (nw, nh), interpolation=cv2.INTER_AREA)
+    canvas = np.zeros((height, width), dtype=np.uint8)
+    y0 = (height - nh) // 2
+    x0 = (width - nw) // 2
+    canvas[y0:y0 + nh, x0:x0 + nw] = resized
+    return canvas > 0.5
+
+
+def shape_similarity(left: np.ndarray, right: np.ndarray) -> dict:
+    a = normalize_mask(left)
+    b = normalize_mask(right)
+    intersection = int(np.logical_and(a, b).sum())
+    union = int(np.logical_or(a, b).sum())
+    cosine = float((a.astype(float).ravel() @ b.astype(float).ravel()) /
+                   (np.linalg.norm(a) * np.linalg.norm(b)))
+    return {"iou": intersection / union, "cosine": cosine}
+
+
 glyphs = []
 for page in range(58):
     if page == 50:
@@ -210,6 +244,34 @@ ae_prime = prime_at(25)
 o_prime = prime_at(3)
 assert (u_prime, ae_prime, o_prime) == (3, 101, 7)
 
+# Compare the enlarged initials with ordinary-sized same-page glyphs, using
+# only the original scans. Shape masks are centered and fit to a 128x128 canvas.
+p23_image = cv2.imread(str(RESOURCE / "40.jpg"), cv2.IMREAD_GRAYSCALE)
+p56_image = cv2.imread(str(RESOURCE / "73.jpg"), cv2.IMREAD_GRAYSCALE)
+p23_rows = recover_rows(p23_image)
+p56_rows = recover_rows(p56_image)
+p23_u_small = line_components(p23_image, p23_rows[9][0])[0][5].astype(bool)
+p23_o_small = line_components(p23_image, p23_rows[8][0])[0][5].astype(bool)
+p56_row0 = line_components(p56_image, p56_rows[0][0])
+p56_ae_small = [p56_row0[10][5].astype(bool), p56_row0[17][5].astype(bool)]
+p56_o_small = [p56_row0[7][5].astype(bool), p56_row0[9][5].astype(bool)]
+p23_large_mask = p23_image[1155:1155 + 498, 601:601 + 230] < 128
+p56_large_mask = p56_image[668:668 + 498, 601:601 + 150] < 128
+p23_shape = {
+    "large_vs_small_U": shape_similarity(p23_large_mask, p23_u_small),
+    "large_vs_small_O": shape_similarity(p23_large_mask, p23_o_small),
+}
+p56_shape = {
+    "large_vs_small_AE": [shape_similarity(p56_large_mask, item) for item in p56_ae_small],
+    "large_vs_small_O": [shape_similarity(p56_large_mask, item) for item in p56_o_small],
+}
+assert p23_shape["large_vs_small_U"]["iou"] > 0.90
+assert p23_shape["large_vs_small_U"]["cosine"] > 0.94
+assert p23_shape["large_vs_small_O"]["iou"] < 0.20
+assert p23_shape["large_vs_small_O"]["cosine"] < 0.25
+assert all(item["iou"] > 0.84 and item["cosine"] > 0.91 for item in p56_shape["large_vs_small_AE"])
+assert all(item["iou"] < 0.79 and item["cosine"] < 0.89 for item in p56_shape["large_vs_small_O"])
+
 print(json.dumps({
     "method": {
         "red_mask": "R>70 and R>1.35*G and R>1.35*B",
@@ -230,6 +292,7 @@ print(json.dumps({
         "prime_delta_U_to_AE": ae_prime - u_prime,
         "rotated_p23_bbox": rotated_p23_box,
         "p56_large_glyph_bbox": p56_box,
+        "shape_similarity": {"p23": p23_shape, "p56": p56_shape},
     },
     "other_unambiguous_large_glyph_plus2_pairs": plus2_pairs,
     "conclusion": "The stencil half-turn remains a real page-image relation, but the large p23/p56 initials are U/index1 and AE/index25. O/index3 is an ordinary-sized first rune on p56 line 2, not the enlarged p56 glyph. The claimed U->O +2 bridge is rejected.",

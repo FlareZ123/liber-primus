@@ -186,16 +186,49 @@ assert.equal(tableValue(shedGp0, alpha59, 59), parableBranchGp0);
 assert.equal(tableValue(circumferenceBranchGp0, alpha60, 60), parableBranchGp0);
 assert.equal(tableValue(parableBranchGp0, alpha60, 60), 42); // GP0(FIND)
 
+// "WITHIN" plus the already selected e^2=9 size picks the centered nine-rune
+// shell of the 43-rune interior. The same H split yields two authenticated
+// source labels whose H combination reconstructs [e,A].
+const centerNineStart = (p55.interior.length - state.e ** 2) / 2;
+assert.equal(centerNineStart, 17);
+const centerNine = p55.interior.slice(
+  centerNineStart,
+  centerNineStart + state.e ** 2
+);
+assert.equal(centerNine.length, state.e ** 2);
+assert.equal(centerNine[(centerNine.length - 1) / 2], state.b);
+
+const instarBranch = [];
+const openPgpBranch = [];
+for (let index = 0; index < (centerNine.length - 1) / 2; index += 1) {
+  const [difference, sum] = H(
+    centerNine[index],
+    centerNine[centerNine.length - 1 - index]
+  );
+  instarBranch.push(difference);
+  openPgpBranch.push(sum);
+}
+const instarBranchGp0 = instarBranch.reduce((sum, value) => sum + value, 0);
+const openPgpBranchGp0 = openPgpBranch.reduce((sum, value) => sum + value, 0);
+assert.equal(instarBranchGp0, 78); // GP0(INSTAR)
+assert.equal(openPgpBranchGp0, 75); // GP0(OPENPGP)
+assert.deepEqual(H(instarBranchGp0, openPgpBranchGp0), [state.e, state.A]);
+
 // Corpus-wide control in the correct source object: concatenate the strict
 // interiors of complete words on each page, then charge every 43-rune window
 // for the exact [D at g, D at p, center K*g] state geometry.
 let chargedWindows = 0;
 const geometryHits = [];
 let spanWindows = 0;
+let centerNineWindows = 0;
 let circumferenceOnlyHits = 0;
 let parableOnlyHits = 0;
 let branchPairHits = 0;
 const typedSpanHits = [];
+let instarOnlyHits = 0;
+let openPgpOnlyHits = 0;
+let centerNinePairHits = 0;
+const typedCenterNineHits = [];
 for (const page of pageInteriors) {
   for (let start = 0; start + 43 <= page.interior.length; start += 1) {
     chargedWindows += 1;
@@ -244,6 +277,38 @@ for (const page of pageInteriors) {
       }
     }
   }
+
+  for (let start = 0; start + state.e ** 2 <= page.interior.length; start += 1) {
+    centerNineWindows += 1;
+    const candidate = page.interior.slice(start, start + state.e ** 2);
+    const differences = [];
+    const sums = [];
+    for (let index = 0; index < (candidate.length - 1) / 2; index += 1) {
+      const [difference, sum] = H(
+        candidate[index],
+        candidate[candidate.length - 1 - index]
+      );
+      differences.push(difference);
+      sums.push(sum);
+    }
+    const differenceGp0 = differences.reduce((total, value) => total + value, 0);
+    const sumGp0 = sums.reduce((total, value) => total + value, 0);
+    if (differenceGp0 === instarBranchGp0) instarOnlyHits += 1;
+    if (sumGp0 === openPgpBranchGp0) openPgpOnlyHits += 1;
+    if (
+      differenceGp0 === instarBranchGp0
+      && sumGp0 === openPgpBranchGp0
+    ) {
+      centerNinePairHits += 1;
+      if (candidate[(candidate.length - 1) / 2] === state.b) {
+        typedCenterNineHits.push({
+          physicalPage: page.physicalPage,
+          start,
+          center: candidate[(candidate.length - 1) / 2],
+        });
+      }
+    }
+  }
 }
 
 assert.equal(chargedWindows, 4803);
@@ -260,6 +325,15 @@ assert.deepEqual(typedSpanHits, [{
   physicalPage: 55,
   start: state.g - 1,
   center: state.K * state.g,
+}]);
+assert.equal(centerNineWindows, 6662);
+assert.equal(instarOnlyHits, 68);
+assert.equal(openPgpOnlyHits, 88);
+assert.equal(centerNinePairHits, 1);
+assert.deepEqual(typedCenterNineHits, [{
+  physicalPage: 55,
+  start: centerNineStart,
+  center: state.b,
 }]);
 
 console.log(JSON.stringify({
@@ -296,6 +370,19 @@ console.log(JSON.stringify({
         parableBase60ToFind: tableValue(parableBranchGp0, alpha60, 60),
       },
     },
+    centeredESquaredShell: {
+      size: centerNine.length,
+      start: centerNineStart,
+      center: state.b,
+      differenceBranch: instarBranch,
+      differenceGp0: instarBranchGp0,
+      differenceLabel: "INSTAR",
+      sumBranch: openPgpBranch,
+      sumGp0: openPgpBranchGp0,
+      sumLabel: "OPENPGP",
+      branchLabelH: H(instarBranchGp0, openPgpBranchGp0),
+      stateLabels: ["e", "A"],
+    },
     stateReading: {
       positions: ["g", "p"],
       gap: "p-g",
@@ -312,6 +399,11 @@ console.log(JSON.stringify({
     parableBranchHits: parableOnlyHits,
     orderedBranchPairHits: branchPairHits,
     exactTypedSpanHits: typedSpanHits,
+    centeredESquared9Windows: centerNineWindows,
+    instarBranchHits: instarOnlyHits,
+    openPgpBranchHits: openPgpOnlyHits,
+    centeredBranchPairHits: centerNinePairHits,
+    exactTypedCenterNineHits: typedCenterNineHits,
   },
-  decision: "P33's RISE road uniquely selects physical p55 by its 75/76 local/physical rune counts. After the source-instructed circumference peel, p55's 43-rune strict interior uniquely realizes D=p at [g,p]=[5,23] with B=19 and center K*g=10. Applying the already fixed H orientation to that B-span yields ordered nine-rune branches whose GP0 sums are exactly CIRCUMFERENCES=131 and PARABLE=120; among 6,112 strict-interior 19-rune windows, only three have that ordered pair and only this p55 span also has the fixed center10. Existing p50 graph edges SHED64/base59 and CIRCUMFERENCES131/base60 both converge to PARABLE120. This is a source-constrained executable shed/circumference operation, not yet a full p55 plaintext decryption.",
+  decision: "P33's RISE road uniquely selects physical p55 by its 75/76 local/physical rune counts. After the source-instructed circumference peel, p55's 43-rune strict interior uniquely realizes D=p at [g,p]=[5,23] with B=19 and center K*g=10. Applying the already fixed H orientation to that B-span yields ordered nine-rune branches whose GP0 sums are exactly CIRCUMFERENCES=131 and PARABLE=120; among 6,112 strict-interior 19-rune windows, only three have that ordered pair and only this p55 span also has the fixed center10. Existing p50 graph edges SHED64/base59 and CIRCUMFERENCES131/base60 both converge to PARABLE120. The centered e^2=9 shell independently splits to INSTAR78 / OPENPGP75; H of those branch labels is [e,A]=[3,8], closing back to the p33 TUNNELNG/RISE selector positions. The INSTAR/OPENPGP ordered pair is unique among 6,662 strict-interior nine-rune windows. This is a source-constrained executable shed/circumference/state operation, not yet a full p55 plaintext decryption.",
 }, null, 2));

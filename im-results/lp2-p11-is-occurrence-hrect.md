@@ -184,6 +184,79 @@ count(IS) = K = 2.
 
 No new affine coefficient, rune remapping, phase, or key-order search is introduced.
 
+## Plaintext IS itself points into the number-direction clause
+
+The recovered GP plaintext is:
+
+```text
+IS = [10,15]
+```
+
+Apply the same two-rune H map:
+
+```text
+H(IS)
+= [10-15, 10+15] mod29
+= [24,25]
+```
+
+Authenticated source indices24 and25 are:
+
+```text
+AND THEIR
+```
+
+and the continuation is:
+
+```text
+AND THEIR NUMBERS ARE THE DIRECTION
+```
+
+This is selective within the authenticated two-GP-rune vocabulary:
+
+```text
+THE=[2,18] -> H=[13,20] = WAY / MEANING
+IS =[10,15] -> H=[24,25] = AND / THEIR   (consecutive)
+BE =[17,18] -> H=[28,6]  = THE / SEEKS
+```
+
+**IS is the only distinct authenticated two-rune word whose H coordinates are consecutive source indices.**
+
+Thus the two independently recovered IS occurrences share a plaintext-side route into the same number-direction clause even though their local receiver keys remain different.
+
+## Independent recovery of the second IS occurrence
+
+Subsequent Agent45 work independently selected the second authenticated `IS` occurrence at p21 under a different predeclared two-rune navigation family.
+
+That receiver is:
+
+```text
+p21 word21
+start121
+cipher [19,7]
+```
+
+Agent45's held-out ROAD-cycle route selects key `[9,21]`, whose subtraction gives `IS`.
+
+A new cross-check on the untouched p21 ciphertext gives:
+
+```text
+H([19,7])
+= [12,26]
+= source indices THE / NUMBERS
+```
+
+Across all **465** complete two-rune manuscript words, the exact standard-H packet `[12,26]` occurs once, at p21 word21.
+
+The two IS recoveries therefore remain cryptographically distinct while sharing a target-independent source-number signature:
+
+```text
+p11 raw packet -> THEIR NUMBERS
+p21 raw packet -> THE NUMBERS
+```
+
+Do not merge their key schedules. The p11 recovery uses occurrence count `K=2` in an H-rectangle; p21 uses Agent45's ROAD-cycle navigation family. Their agreement is repeated-word validation, not evidence for a universal two-rune additive key.
+
 ## Evidence boundary
 
 Preserve:

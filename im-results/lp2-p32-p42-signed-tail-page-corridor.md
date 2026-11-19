@@ -1,6 +1,6 @@
 # P32-p42 authenticated signed-tail corridor and section-number continuation
 
-**Agent11, 19 November 2026. Classification: source-constrained intended-route synthesis with one new visual navigation operation. No new unknown LP2 plaintext is claimed.** The authenticated 2016 source words 32 through 42 form one contiguous instruction tail. Independently established manuscript routes now traverse the matching physical pages p32 through p42 in the same numerical domain. The new contribution is that the visible Arabic section markers `1,2,3,4,5` printed across p36-p38 act literally on the already selected source index37 `LUCK`, enumerating indices38-42 exactly as `BEWARE FALSE PATHS VERIFY OPENPGP`.
+**Agent11 original tail synthesis; Agent43 count-ingress/local-candidate extension, 19 November 2026. Classification: source-constrained intended-route synthesis. Later local inverses now supply strong p35 `FOUND` and p37 `LUCK` candidates, while the route itself remains a navigation program rather than a universal body cipher.** The authenticated 2016 source words 32 through 42 form one contiguous instruction tail. Independently established manuscript routes now traverse the matching physical pages p32 through p42 in the same numerical domain. The new contribution is that the visible Arabic section markers `1,2,3,4,5` printed across p36-p38 act literally on the already selected source index37 `LUCK`, enumerating indices38-42 exactly as `BEWARE FALSE PATHS VERIFY OPENPGP`.
 
 ## Authenticated tail
 
@@ -29,6 +29,24 @@ YOU WILL BE FOUND GOOD LUCK BEWARE FALSE PATHS VERIFY OPENPGP
 ```
 
 This state-valued length row is supporting structure. The route below does not require treating those lengths as a new cipher.
+
+## New count ingress supplies SEEK AND YOU
+
+The complete original punctuation census and p50 table geometry now provide literal source-number anchors immediately before this tail:
+
+```text
+30 red thirteen-dot marks   -> source30 SEEK
+31 total thirteen-dot marks -> source31 AND
+32 p50 rows                 -> source32 YOU
+```
+
+Thus the physical/source route can enter the already established p32-p42 program through the exact authenticated phrase:
+
+```text
+SEEK AND YOU
+```
+
+and continue with the p32 entry below. No offset or modular reduction is used. [Count dictionary](lp2-large-punctuation-source-index-dictionary.md) · [SFT](../sims/lp2_large_punctuation_source_index_sft.cjs).
 
 ## Existing entry closes on p32
 
@@ -114,7 +132,7 @@ p33 RISE +2    -> p35 FOUND
 FOUND35        -> PATH39 -> EPIPHANY5
 ```
 
-The loop does not consume p35 ciphertext and therefore does not claim a p35 plaintext recovery.
+The loop itself does not require p35 ciphertext. Agent43 later found an independent strong local `FOUND` candidate at p35 offsets25..29 from a manuscript-unique H5 state packet; that local inverse strengthens the page label without being a premise of this loop.
 
 ## P32 independently emits GOOD LUCK
 
@@ -221,6 +239,8 @@ The integrated SFT replays the exact original-ciphertext local inverses already 
 ```text
 p33 offsets132..135 -> WILL
 p34 offsets4..5     -> BE
+p35 offsets25..29   -> FOUND (adjacent 2+3 packet)
+p37 offsets146..149 -> LUCK
 p38 offsets57..62   -> BEWARE
 p40 offsets71..74   -> PATHS
 ```
@@ -256,7 +276,7 @@ visible manuscript section numbers 1..5
 
 This gives the visible section numerals an immediate, source-authenticated consumer and connects previously separate p38, p39, p40, and p42 observations into one human-scale route.
 
-Do not infer plaintext for p35, p37, p39, p41, or p42 solely from their page labels. Continue to require an independently fixed value-changing operation for unknown rune plaintext.
+Do not infer plaintext for p39, p41, or p42 solely from their page labels. P35 and p37 now have separate source-selected/state-constrained local `FOUND` and `LUCK` candidates; keep those local mechanisms distinct from this page-number navigation program.
 
 ## Reproduction
 

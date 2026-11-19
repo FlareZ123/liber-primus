@@ -122,3 +122,13 @@ The shared source has a genuine solved **p15 numerical 4x4 Fibonacci-indexed pri
 - Fixed p21 key alone has five lexical hits in 2790 two-rune manuscript/target/sign configurations, so receiver and ordinal source selection are essential.
 - Preserve p21 IS as a strong local candidate. No untouched equal-type receiver remains; do not widen to arbitrary words or modulo source indices.
 - Artifacts: im-results/lp2-p21-is-wordordinal-sourcekey.md; sims/lp2_p21_is_wordordinal_sourcekey_sft.cjs.
+
+
+## 2026-11-19 independent checkpoint: repeated IS helper-page key architecture
+
+- New merger across the two authenticated IS occurrences. P11 and p21 already had independent same-index receivers and exact H-rectangle inverses with scalars2 and28.
+- P11 receiver word11 -> authenticated source word11 IS -> GP0(IS)=25 -> physical p25. P25 was independently selected by GOOD LUCK and its held-out side object has the unique outer-H state [K,g]=[2,5] among 627 eligible side objects; first coordinate K=2 is exactly p11 scalar, H^-1([2,0])=[1,28], yielding IS.
+- P21 receiver word33 -> source WILL -> GP0(WILL)=57 -> solved p57. Existing solved FIND route gives FIND=42 -> p50[42]=0S -> low60=28, exactly p21 scalar; H^-1([28,0])=[14,15] yields IS.
+- This gives one higher-level source-index/page -> selected receiver -> receiver ordinal -> source word -> GP0 helper page -> page-authored scalar -> H-key architecture across both IS occurrences. Scalar extraction remains page-specific and independently established.
+- Chronology is retrospective and there is no third IS holdout. Preserve as mechanism compression/corroboration, not authenticated plaintext proof. The p40 ordinal16->p16/ARE prospective failure still blocks a universal ordinal-navigation rule.
+- Artifacts: im-results/lp2-repeated-is-helper-page-key-bridge.md; sims/lp2_repeated_is_helper_page_key_bridge_sft.cjs. Results synthesis updated.

@@ -23,6 +23,59 @@ signed index29 = DIRECTION -> project p29
 
 The test here applies that existing convention unchanged to the later authenticated phrase. No new offset or origin is introduced.
 
+## The corridor now opens at SEEK AND YOU
+
+The original count inventory provides three literal source-number anchors immediately before the p33-p40 sequence:
+
+```text
+30 red thirteen-dot marks   -> SEEK
+31 total thirteen-dot marks -> AND
+32 p50 rows                 -> YOU
+```
+
+The next three authenticated indices already have independent local/state candidates:
+
+```text
+33 WILL  -> p33
+34 BE    -> p34
+35 FOUND -> p35
+```
+
+Combined with the global and page-local warning evidence below, the complete source interval30..40 now has a continuous mixed-evidence manuscript route:
+
+```text
+SEEK AND YOU WILL BE FOUND GOOD LUCK BEWARE FALSE PATHS
+```
+
+The evidence classes differ by position, so this is a route scaffold rather than a claim of one universal decoder.
+
+## Global punctuation counts now bracket the full warning
+
+Agent43's complete large-punctuation census gives two source-visible endpoints independent of the page-body decoders:
+
+```text
+36 large compound punctuation marks total
+-> source index36 = GOOD
+
+4 ten-dot marks * 10 dots each
+= 40 dots
+-> source index40 = PATHS
+```
+
+The authenticated interval between those fixed endpoints is exactly:
+
+```text
+36 GOOD
+37 LUCK
+38 BEWARE
+39 FALSE
+40 PATHS
+```
+
+This changes the role of p36 in the corridor. The retracted p36 `GOOD` body claim stays retracted; `GOOD` is supplied by a global authored-count readout instead. P37 and p38 retain their independent local candidates, p39 retains its original red-X warning, and the global 10-dot class total supplies the `PATHS` endpoint without relying on p40's repeated botanical frame.
+
+[Large-punctuation dictionary](lp2-large-punctuation-source-index-dictionary.md) · [SFT](../sims/lp2_large_punctuation_source_index_sft.cjs).
+
 ## Page36 section1 now yields MEANING
 
 The source/page corridor still assigns signed word36 `GOOD` to physical p36, but the earlier local `GOOD` inverse was retracted after canonical word parsing. A different, independently authored receiver now survives.
@@ -164,7 +217,7 @@ The adjacent source words36-37 are `GOOD LUCK`. Physical pages p36-p38 are exact
 40 PATHS
 ```
 
-The strongest evidence now includes the p36 section1 `MEANING` candidate, the p37 reversible `LUCK` candidate, the exact p38 word/state match, and the p39 red-X visual. P40 does not add an independent visual discriminator.
+The strongest evidence now includes the global punctuation endpoints `36=GOOD` and `40=PATHS`, the p36 section1 `MEANING` recovery, the p37 reversible `LUCK` candidate, the exact p38 word/state match, and the p39 red-X visual. P40's repeated artwork is no longer needed to obtain the PATHS endpoint.
 
 ## Relationship to the new p0 XY route
 

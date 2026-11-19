@@ -208,6 +208,195 @@ This joins the numbered packet directly to the authenticated continuation `PRIMU
 
 A deliberately narrow follow-up tested whether MAP itself also appears under the exact p32 state-address/cardinal grammar that produced THE. Keeping the same 49 addresses, all four directions, and extending from two cells to three yields **zero** authenticated three-rune hits on p32 and zero on the matched square page p6. That failure is recorded in `im-results/lp2-p32-state-native-the-readout.md`. Do not tune turns, wraps, or alternate starts to force MAP as local p32 plaintext.
 
+## Independent phrase replication on p15
+
+The packet's six-word authenticated readout is independently reconstructed by a different original-page geometry on p15.
+
+P15 visibly supplies:
+
+```text
+red span lengths 9,11
+red punctuation count13
+physical page15
+```
+
+forming the sole arithmetic progression in the complete manuscript family of pages with two red spans plus red punctuation:
+
+```text
+[9,11,13,15], step2=K.
+```
+
+Under the already fixed zero-based source convention:
+
+```text
+9  LIBER
+11 IS
+13 WAY
+15 WORDS.
+```
+
+The arithmetic midpoints are:
+
+```text
+10 PRIMUS
+12 THE
+14 ITS.
+```
+
+Interleaving terms and midpoints gives:
+
+```text
+LIBER PRIMUS IS THE WAY ITS WORDS.
+```
+
+So p15 independently reproduces the complete six-word packet phrase plus its immediate predecessor `LIBER`, using a different visible number structure.
+
+The numbered diagonal also independently selects p15's canonical word16 / zero-based word15 for authenticated `WORDS`. A separate p15 geometry-key analysis recovers a strong local WORDS candidate at that exact receiver, while retaining a chronology caveat on the key serialization.
+
+This makes `PRIMUS IS THE WAY ITS WORDS` a repeated manuscript-level instruction rather than a phrase obtained from only one numerical layout.
+
+## Independent numbered-diagonal loop: BEWARE returns to YOU
+
+Agent1's independently recovered numbered route gives a second interpretation of the packet's p32 result.
+
+The authenticated one-based source ordinal `n` selects physical LP2 page `n`, project page `n−1`, and canonical local word `n`. Across all43 source words the sole direct-coordinate failure is:
+
+```text
+YOU ordinal33
+-> project p32
+-> requested word33 absent
+-> p32 has exactly22=p−1 words.
+```
+
+DIRECTION30 independently recovers `p−1=22`, so the one permitted one-based wrap sends YOU33 to p32 word11. Direct numbering then resumes:
+
+```text
+WILL34   -> project p33
+BE35     -> project p34
+FOUND36  -> project p35
+GOOD37   -> project p36
+LUCK38   -> project p37
+BEWARE39 -> project p38.
+```
+
+The final three project pages are exactly the physical packet studied here:
+
+```text
+p36 section1
+p37 sections2,3,4
+p38 section5.
+```
+
+So the independently recovered numbered diagonal enters the red10 packet on the authenticated suffix:
+
+```text
+GOOD -> LUCK -> BEWARE.
+```
+
+The prospectively frozen packet continuation then gives:
+
+```text
+section n -> word n lengths
+[4,4,4,2,6]
+-> solved cardinal T
+[6,6,6,2,12]
+-> GP0 32
+-> project p32.
+```
+
+Project p32 is exactly the unique wrapped YOU page. Therefore two independently developed mechanisms close a page-level cycle:
+
+```text
+YOU33
+ -> unique p32 wrap
+ -> WILL34 -> BE35 -> FOUND36
+ -> GOOD37 -> LUCK38 -> BEWARE39
+ -> p36-p38 red10 numbered packet
+ -> frozen packet readout32
+ -> p32
+ -> YOU33.
+```
+
+This relation was recognized after the packet continuation and the numbered diagonal had been developed separately. It requires no new key, radix, sign, or offset. The packet's numeric output was already frozen as32; the diagonal had already fixed p32 as the unique YOU exception.
+
+This is currently the strongest structural consequence of the red10 packet: it does more than quote authenticated source text or point to a previously interesting page. It closes onto the unique exceptional page in a distinct source-number navigation system.
+
+## Local plaintext evidence along the post-YOU loop
+
+The numbered-page cycle also overlaps existing local plaintext work on five of its six post-YOU source words:
+
+```text
+p33 -> strong WILL candidate
+p34 -> strong BE candidate
+p35 -> strong FOUND candidate
+p36 -> GOOD local inverse retired
+p37 -> strong LUCK candidate
+p38 -> strong BEWARE candidate.
+```
+
+The p33-p35 phrase was developed independently: p33 is selected by the DH/p50 state, carries the WILL inverse, and its two authored RISE consumers select p34 and p35 before their BE and FOUND receivers are consumed. The numbered diagonal later reaches the same three project pages as `WILL34 / BE35 / FOUND36`.
+
+The p37 LUCK result is stronger at the receiver-coordinate level: the diagonal's one-based `LUCK38 -> project p37 / word38` is exactly zero-based p37 word37, the receiver independently used by the LUCK double-index analysis.
+
+P38 BEWARE is selected by a different authored object, section5 and the LUCK predecessor state, rather than by the diagonal word ordinal. It is therefore a page/transition convergence rather than an identical local-word coordinate.
+
+This evidence profile is deliberately asymmetric. No replacement GOOD decoder is introduced after the canonical line-wrap correction invalidated the earlier p36 pseudo-word.
+
+## Ciphertext-bearing anchor inside the GOOD / LUCK / BEWARE leg
+
+The numbered loop is not purely page arithmetic. Its LUCK coordinate coincides exactly with an independently developed local plaintext candidate.
+
+Under the one-based numbered diagonal:
+
+```text
+LUCK ordinal38
+-> physical page38
+-> project p37
+-> canonical word38
+-> zero-based p37 word37.
+```
+
+Agent43 independently selected that exact p37 word37 at offsets146..149 under the zero-based double-index convention:
+
+```text
+cipher [3,2,6,27]
+-> strong local LUCK candidate.
+```
+
+Its untouched raw state has the additional source consequence:
+
+```text
+GP0(p37 word37) = 38
+source index38 = BEWARE
+-> project p38.
+```
+
+P38 is independently selected by the authored section5 predecessor gate:
+
+```text
+LUCK GP0 31
+p50[88] low60 = 31
+section5 first word length6 / GP0 88
+-> BEWARE at p38 offsets57..62.
+```
+
+That receiver has a separately charged exact local BEWARE inverse.
+
+So the post-YOU loop contains a ciphertext-bearing bridge before the red10 packet returns to p32:
+
+```text
+... GOOD37
+-> LUCK38 / p37 numbered receiver
+-> local LUCK candidate
+-> raw GP0 38
+-> BEWARE39 / p38 section5 receiver
+-> local BEWARE candidate
+-> red10 numbered packet
+-> p32 / YOU.
+```
+
+The former p36 local GOOD inverse is retired because it used a line-wrap pseudo-word; this loop does not depend on it.
+
 ## Existing downstream continuation from MAP / HERE
 
 The MAP opcode does not terminate at an untyped pointer. Existing independently documented work gives a constrained continuation:

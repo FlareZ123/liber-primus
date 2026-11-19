@@ -287,6 +287,70 @@ This is useful chronological independence: the p37 receiver and local inverse we
 
 Integrated Windows Node22 PASS with this follow-on: **44463756225**.
 
+## Five-rune consumer: p39 FALSE
+
+Director #1784 had already prospectively selected p39 offsets132..136 as the first complete `g=5` word after p39's sole red span, using authenticated zero-based word39 `FALSE` and the red-X route before those rune values were opened. The frozen p38 geometry decoder failed on that receiver, so this is a genuinely different key mechanism rather than a repair of the geometry rule.
+
+The selected ciphertext is:
+
+```text
+[19,7,10,17,23]
+```
+
+and authenticated `FALSE` is:
+
+```text
+[0,24,20,15,18].
+```
+
+The exact subtraction key is therefore `[19,12,19,2,5]`. Its canonical outside-in H5 shell is:
+
+```text
+[14,24,10,14,19]
+= [-b,-g,K*g,-b,B].
+```
+
+Every displayed atom is available from the already established p6 packet: `-b` and `-g` are literal W1 fields, `B` is the singleton W2 value, and `K*g` is a product of two fields exposed by `H(title lengths)=[K,-e,g,a]`. The exact role order was recognized after FALSE was known, so the shell itself is post-discovery evidence.
+
+Agent16 therefore froze a conservative p6-derived five-rune family before counting manuscript hits. Pin the shell center to the p6 singleton `B`; choose repeated `x` and second atom `y` independently from all four W1 fields; choose `z` from every ordered product of the four H(title-length) fields including repeated factors; put repeated `x` in any two of the first four H5 slots; place `y,z` in either order in the remaining slots; and test both additive signs. This is **6,144 labeled shell/sign forms**, collapsing to **1,555 unique shells**.
+
+Across the same **318** page-local five-rune receiver words used by #1784 and all seven distinct authenticated five-rune source targets, there is exactly **one unique hit**: p39 offsets132..136, subtraction, FALSE. Two labeled representations survive only because `K*g` and `g*K` are the same product. The stricter cross-page canonical parser contains 311 five-rune words and yields the same sole hit.
+
+Thus p39 `FALSE` is now a **strong p6-packet-supported local plaintext candidate** with exact replay:
+
+```text
+[19,7,10,17,23] - [19,12,19,2,5]
+= [0,24,20,15,18]
+= FALSE mod29.
+```
+
+The important limitation is discovery order: the five-rune shell-role grammar was inferred after the fixed FALSE target was visible. A fresh receiver/target holdout is still required before this p6 family can be promoted to a reusable five-rune decoder.
+
+Precommit: `workplace/agent16-p6-p39-false-five-rune-family-precommit.md`.
+Reproducer: `sims/lp2_p6_p39_false_five_rune_family_sft.cjs`.
+## Prospective five-rune transfer: numbered WORDS16 fails
+
+After the p39 family was frozen, Agent16 used the established one-based source-number diagonal to choose a fresh transfer without reading receiver runes. Charge every authenticated source occurrence whose GP spelling has five runes. Only one same-number page/word receiver also has length five:
+
+```text
+WORDS16 -> physical page16 / project p15 / canonical word16 / start71.
+```
+
+The other six five-rune source occurrences have numbered-receiver lengths 8, 2, 6, 11, 2, and 3. Thus WORDS16 is the sole length-compatible direct-diagonal holdout.
+
+The receiver and unchanged 6,144-form p6 family were precommitted before reveal at `workplace/agent16-p6-five-rune-numbered-words16-holdout.md` (commit `cfd95b54951772e849eb21d0f446ee3e521577ff`). Opening only that receiver gives:
+
+```text
+p15 word16 start71 = [10,13,8,27,17]
+WORDS               = [7,3,4,23,15]
+```
+
+The frozen family yields **zero WORDS recoveries** and **zero recoveries of any of the seven authenticated five-rune targets** at this receiver. No alternate offset, origin, target, or family extension was tried.
+
+This prospective miss blocks promotion of the p39 five-rune grammar to a reusable decoder. Preserve p39 FALSE as strong local/post-target role compression only. A different source-visible rule must fix a five-rune key before another transfer is attempted.
+
+Report: `im-results/lp2-p6-five-rune-numbered-words16-holdout.md`.
+SFT: `sims/lp2_p6_five_rune_numbered_words16_holdout_sft.cjs`.
 ## Decision
 
 P6's red title is the strongest current source-visible explanation for several previously isolated key shells:
@@ -296,11 +360,12 @@ p6  -> SEEKS locally
 p6  -> p33 WILL shell
 p6  -> p40 PATHS shell
 p6  -> p38 BEWARE shell and target initial
+p6  -> p39 FALSE five-rune shell (post-target role discovery)
 ```
 
 The packet grammar itself is globally unique under a finite, charged family and survives all 24 word-role permutations. The p38 derivation is additionally selective under a 48-role family and under the manuscript-wide six-rune control.
 
-The current boundary is clear. The packet supports local key scheduling across multiple rune lengths. It does not provide a general manuscript cipher, and its prospective two-rune reduction and p0 VERIFY transfer both fail. Future work should seek a fresh receiver whose target and packet-role semantics can be fixed before opening its ciphertext.
+The current boundary is clear. The packet supports local key scheduling across multiple rune lengths. It does not provide a general manuscript cipher, and its prospective two-rune reduction and p0 VERIFY transfer both fail. Future work should seek a fresh receiver whose target and packet-role semantics can be fixed before opening its ciphertext. The p39 FALSE family adds a selective five-rune consumer. The subsequent prospectively selected WORDS16 transfer fails unchanged, so the five-rune family remains local and does not remove that holdout requirement.
 
 ## Reproduction
 
