@@ -49,9 +49,11 @@ function pageWordsWithOffsets(section) {
       if (!values.length) start = offset;
       values.push(runeIndex.get(character));
       offset += 1;
-    } else if (character === "/" || /\s/u.test(character)) {
-      // Slash and newline are line wraps, not word boundaries.
-    } else flush();
+    } else if (character === "-" || character === ".") {
+      flush();
+    } else {
+      // Slash, whitespace, ampersand, and dollar markers do not split words.
+    }
   }
   flush();
   return { words, runeCount: offset };
