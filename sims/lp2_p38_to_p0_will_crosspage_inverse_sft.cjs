@@ -276,6 +276,22 @@ assert.equal(foundReceiver.start, 117);
 assert.equal(foundReceiver.end, 121);
 assert.equal(foundReceiver.values.length, found.values.length);
 
+// Reuse the already frozen p0 FOUND key grammar unchanged. The p38 packet
+// supplies g and K*a; the WILL derivation above has already reconstructed a,A.
+const foundKey = [
+  packet.Ka,
+  mod29(packet.g - aFromPacket),
+  mod29(state.K * packet.g),
+  mod29(aFromPacket - packet.g),
+  AFromPacket,
+];
+assert.deepEqual(foundKey, [12, 28, 10, 1, 8]);
+const foundPlaintext = foundReceiver.values.map((value, index) => mod29(value - foundKey[index]));
+assert.deepEqual(foundPlaintext, found.values);
+assert.deepEqual(foundPlaintext, [0, 3, 1, 9, 23]);
+const foundReplay = foundPlaintext.map((value, index) => mod29(value + foundKey[index]));
+assert.deepEqual(foundReplay, foundReceiver.values);
+
 console.log(JSON.stringify({
   status: "PASS: p38 state packet causally selects and decrypts p0 WILL",
   reciprocalPacket: {
@@ -327,7 +343,11 @@ console.log(JSON.stringify({
     selectedP0Receiver: {
       start: foundReceiver.start,
       end: foundReceiver.end,
+      cipher: foundReceiver.values,
       length: foundReceiver.values.length,
     },
+    foundKey,
+    foundPlaintext,
+    foundForwardReplay: foundReplay,
   },
 }, null, 2));
