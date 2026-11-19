@@ -282,6 +282,30 @@ assert.deepEqual(exactKey, [12, 1, 1, 22]);
 const exactKeyShell = H4(exactKey);
 assert.deepEqual(exactKeyShell, [state.B, 0, state.K, state.g]);
 
+assert.deepEqual(exactKeyShell, [19, 0, 2, 5]);
+assert.deepEqual(
+  p37Word37.values.map((value, index) => mod29(value - exactKey[index])),
+  luck
+);
+
+// Distinct authenticated four-rune source targets.
+const fourRuneTargets = [];
+for (const word of signedWords) {
+  const values = gp(word);
+  if (
+    values.length === 4 &&
+    !fourRuneTargets.some((entry) => entry.word === word)
+  ) {
+    fourRuneTargets.push({word, values});
+  }
+}
+assert.deepEqual(fourRuneTargets.map((entry) => entry.word), [
+  "LIES", "THEIR", "MEANING", "ROAD", "SEEK", "WILL", "GOOD", "LUCK", "PATHS",
+]);
+const targetByValues = new Map(
+  fourRuneTargets.map((entry) => [entry.values.join(","), entry.word])
+);
+
 // LUCK itself independently selects project p31 because GP0(LUCK)=31, and
 // no other authenticated source word has GP0=31.
 const signedGp0Rows = signedWords.map((word, index) => ({
@@ -361,29 +385,6 @@ assert.deepEqual(p31HelperPermutationHits, [{
   target: "LUCK",
   output: [20, 1, 5, 5],
 }]);
-assert.deepEqual(exactKeyShell, [19, 0, 2, 5]);
-assert.deepEqual(
-  p37Word37.values.map((value, index) => mod29(value - exactKey[index])),
-  luck
-);
-
-// Distinct authenticated four-rune source targets.
-const fourRuneTargets = [];
-for (const word of signedWords) {
-  const values = gp(word);
-  if (
-    values.length === 4 &&
-    !fourRuneTargets.some((entry) => entry.word === word)
-  ) {
-    fourRuneTargets.push({word, values});
-  }
-}
-assert.deepEqual(fourRuneTargets.map((entry) => entry.word), [
-  "LIES", "THEIR", "MEANING", "ROAD", "SEEK", "WILL", "GOOD", "LUCK", "PATHS",
-]);
-const targetByValues = new Map(
-  fourRuneTargets.map((entry) => [entry.values.join(","), entry.word])
-);
 
 // Charge all H-shells whose four coordinates are drawn directly from the
 // authenticated DH fields plus zero. This is a complete 10^4 shell family.
