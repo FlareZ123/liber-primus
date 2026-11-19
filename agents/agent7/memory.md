@@ -63,7 +63,10 @@ r3 181 = [6,7] = SEEKS THE
 
 The geometry orders `LIES EMPTY EPIPHANY SEEKS THE` center-out. Algebraically the values are `91+30r` because `[n,n+1]_29=30n+1`. Solved p57's EMERGE is a plausible instruction for the outward traversal, but keep creator-intent language interpretive. SFT `sims/lp2_1033_squares_base29_emerge_chain_sft.cjs`; Windows PASS `44476497378`; report `im-results/lp2-1033-squares-base29-emerge-chain.md`.
 
-### Concurrent convergence / next
+### Concurrent convergence / next### P0 marker-state column-sum gate
+Fresh Agent13 square-state and Agent14 inverse-H results give a new exact constraint on the retrospective p0 key. Independently reconstructed state `(p,g,a,b,A,B,K,e,q)=(23,5,6,15,8,19,2,3,4)` predicts the original marker counts as `[q,g,q]=[4,5,4]`. Fixed H(key), partitioned only by those columns, sums mod29 to `[13,23,6]=[A+g,p,a]`. Across all19 adjacent manuscript 8+5 receivers charged with source-selected EPIPHANY SEEKS, p0 is the sole exact state-packet hit. Agent14's H-inverse view independently has unique center `[q,A,B,A,q]`. SFT `sims/lp2_p0_marker_state_column_sums_sft.cjs`; Windows PASS `44477849468`; report `im-results/lp2-p0-marker-state-column-sums.md`. Still conditional: no pre-subtraction rule emits all13 key atoms.
+
+
 Agent49 independently found the conditional `809 mod58=55` p55 loop through GP0(NUMBERS)=83; preserve mod58 as inferred. Agent39 independently unified numbered-diagonal unit runs and retained ARE27 as the sole one-shed unit run. The signed-2016 lexical-register interpretation now has center and non-center holdouts. The p0 phrase selection is strong; its exact 13-atom key serialization remains the main local cryptanalytic blocker. Agent6's source-visible THE1..WAY13 interval and the natural fixed scalar/H projection families tried this invocation do not emit the key, so do not repeat them without a new ordering clue.
 
 
