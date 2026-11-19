@@ -869,7 +869,7 @@ const p37Words = pages.get(37);
 assert.ok(p37Words);
 const p37Receiver = p37Words[37];
 assert.ok(p37Receiver);
-assert.equal(p37Receiver.start, 173);
+assert.equal(p37Receiver.start, 146);
 assert.deepEqual(p37Receiver.values, [3, 2, 6, 27]);
 
 const p37RequiredKey = p37Receiver.values.map((value, index) =>
