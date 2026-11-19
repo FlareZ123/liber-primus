@@ -1,19 +1,29 @@
 # PARABLE 449th-prime closure across three original LP2 page-line addresses
 
-**Agent 38, 13 November 2026. Classification:** exact original-input numeric correspondence and a bounded failed direct cipher consumer. **No decrypted unknown LP2 rune, historically authenticated page-line instruction, full key, or continuation destination has been found.** Three source-selected physical lines now satisfy an exact prime-index closure. The address grammar remains a candidate, and no cipher has been solved.
+**Agent 38, 13 November 2026; reconciled 19 November. Classification:** exact original-input numeric correspondence with a newly source-selected p13:3 receiver and bounded failed direct cipher consumers. No unknown LP2 rune, full key, or continuation destination has been recovered. The p13:3 branch is now independently selected by the p29-derived WAY word index13 plus fixed p28 exponent e=3, resolving the earlier parser objection for this receiver. The broader three-address PP-L iteration remains provisional.
 
-## Why this particular address is independently selected
+## Why p13 line3 is now independently selected
 
-The archived [May 2014 seventh-onion index](../resources/cicada2014-onion7-index.html) literally specifies `<title>133</title>` and `<div id="331">`, ahead of its zero-indexed `0.jpg` through `57.jpg` LP2 images. The independently solved original p57 PARABLE heading has GP-prime sum **449**. Its three complete body-sentence GP-prime sums are **1259, 1031, 1229**, hence residues modulo 449 of **361, 133, 331**, respectively. Both pairs of historical numbers had already been reported in [the cross-round source study](crossround-361-133-331-source-gate.md); deriving them is not this contribution.
+The archived May 2014 seventh-onion index literally specifies `<title>133</title>` and `<div id="331">`, ahead of its zero-indexed `0.jpg` through `57.jpg` LP2 images. The original 13 November discovery started from title133 and tentatively parsed it as page13, line3. That parser was the route's strongest weakness.
 
-**New original-cipher observation:** read the historical index title `133` under a concrete `PP L` address grammar: two decimal page digits and one 1-based physical line digit, with the published 2014 image indices starting at page zero. Address `133` points to **LP2 p13, printed line 3** (global original compiled scan `30.jpg`). This line contains **23 unchanged GP runes**:
+A later independent source chain now reaches the same receiver without parsing 133. The p28 state fixes `e=3`. The authenticated 2016 number-direction semantics are independently reinforced by the p29/table signed-index packet. Agent17's DIRECTION-selected p29 derivative produces candidate `WAY`, and the authenticated source contains its unique `WAY` at zero-based index13. Hence:
+
+```text
+WAY -> signed index13 -> project p13
+e=3 -> printed line3
+13 || 3 -> 133
+```
+
+Across all six authenticated THE followers, applying the same zero-based follower page, fixed line3 and solved PARABLE modulus449 gives residues `[328,353,331,187,385,234]`; WAY/p13:3 is the unique331 hit. See [the 19 November source-chain closure](lp2-way-p13e-133-331-source-closure.md).
+
+The independently solved original p57 PARABLE heading has GP-prime sum **449**. The now source-selected p13 line3 contains **23 unchanged GP runes**:
 
 ```text
 GP29 indices:
 16 3 14 26 19 0 14 18 3 25 6 26 20 3 12 0 15 25 12 19 27 22 7
 ```
 
-Its **exact GP-prime sum is 1229**, matching the *third* solved-p57 body sentence, which has **28 GP runes**. Applying the independently specified PARABLE heading modulus gives **1229 mod 449 = 331**, exactly the second numeric tag in the original 2014 HTML. Thus one executable, fully original-rune route is **HTML title 133 -> p13 line 3 -> GP-prime sum 1229 -> mod PARABLE heading 449 -> HTML id 331**. The sum and the page-line address are computed without replacing any unknown runes by guessed plaintext.
+Its exact GP-prime sum is **1229**. Applying the independently specified PARABLE heading modulus gives **1229 mod 449 = 331**, exactly the second numeric tag in the original 2014 HTML. The preserved div331 contains the complete `0.jpg` through `57.jpg` LP image set.
 
 For a narrow line-index control, p13 printed lines **2** and **4** yield prime sums **957** and **1142** and residues **59** and **244**, respectively. The same source line's true 23-symbol inventory and the solved parable's 28-symbol inventory are distinct; their equal prime sums do not imply identical text, a reversible substitution, or recovered plaintext.
 
@@ -74,11 +84,11 @@ A second literal peel of every one of the same 18 words leaves **10 runes** (GP-
 
 The GP29 index stream of the 29 survivors is source-fixed and reversible as a repeated additive key. In direct position-zero readings against original p55 76-rune ciphertext, both signs give IoC **0.03157894737** (raw p55 **0.03789473684**), without recognizable text. Exact re-encryption and a solved-source GP native control pass. This motivates preservation of the **29-rune interior register** as a candidate clue-directed key source while ruling out its two obvious literal additive consumers; no authorial rule yet selects which encrypted material to apply the 29 runes to, or whether the three physical lines were intended at all.
 
-## The strongest objection and how far the operation reaches
+## The strongest remaining objection and how far the operation reaches
 
-**Neither original Cicada artifact says to parse 133 as page 13, line 3.** A three-digit numeral can also address a word; the same source `133` could mean p1 word33 or p13 word3. Under a simple local word parse, their GP-prime sums are **569** and **166**, so this result depends on selecting the *line* grammar. The 2016 signed statement about words, meaning and numbers does not uniquely select physical line totals.
+The earlier strongest objection was that no original artifact instructed a solver to parse bare `133` as page13, line3. For p13:3 specifically, that objection is now bypassed: the p29-derived WAY candidate independently supplies page13 through its authenticated zero-based word number, while p28 independently supplies line3 through `e=3`. Their concatenation reproduces title133 after the coordinate is already fixed.
 
-If the author expected the exact same line-sum modulo 449 operation to iterate, `331` would point to p33 line 1, with prime sum **920**, and give `022`. That then points to p2 line 2, sum **1018**, and gives `120`, an invalid three-digit `PP L` address because its final line digit is zero. Under this **strict, 1-based last-digit grammar** the walk stops after three visited lines. Treating a final zero as line ten, or changing the address semantics midstream, would introduce a new rule for which the source supplies no selector. There is no complete authenticated navigation solution.
+This does **not** authenticate the broader iterative PP-L grammar. Reading `331` as p33 line1 still produces the old `022 -> 120` dead end and has no new source selector. The new evidence therefore upgrades exactly the p13:3 receiver and its mod449->331 closure, while leaving the p36:1/p33:1 extension provisional.
 
 One might also take the new 23-rune source line as a literal repeated GP29 key on unknown prose. This is now a bounded original-cipher negative: apply `P[i]=(C[i] +/- K[i mod 23]) mod 29` with the original key `K` above, under book-continuous, physical-page and original nine-visual-chapter clocks. The six full **12,956-rune** source inverses have GP29 IoCs **0.03444710-0.03451945**, versus original **0.03447840** and the native solved-p57 **0.06270997**. For independent 76-rune p55 local-clock candidates the two signs give **0.03719298** and **0.02842105**, again nonlinguistic. Every original cipher candidate is an exact reversible additive mapping; a separate 95-rune solved-p57 GP-native plant recovers 95/95 for both signs. This excludes only the literal repeated-key consumer, not other properly selected uses of the line.
 
@@ -93,22 +103,20 @@ As a narrowly source-selected same-length direct-key consumer, pair the two **un
 
 Neither decodes as ordinary GP-native text, and both exactly re-encode the original core. The original-input reproducer derives the core from the printed p55 words, asserts all sixteen word lengths and the exact 23 source glyphs, then tests these two fixed alignments. This test also fails to select a decipherment. The 23-to-23 fit and the p13 prime-sum link are both source facts, but connecting the former to the latter remains a research hypothesis.
 
-## Historical address grammar gate: why the 64-rune closure still lacks a decoder (Agent16, 13 November 2026)
+## Historical syntax gate after the WAY/index selector update
 
-The new 64-rune/prime(449) closure warrants asking whether a 2014 player would actually read a bare three-digit number as two zero-based LP2 page digits and one one-based printed line digit. An independent original-era comparison gives an **unsatisfied source-syntax requirement**:
+The earlier Agent16 audit correctly noted that authentic Cicada book codes normally print explicit coordinate delimiters, while the preserved 2014 HTML does not explain how to parse `133`. That remains relevant to any attempt to interpret arbitrary three-digit numbers as PP-L coordinates.
 
-- The [2012 Agrippa/Encyclopaedia book-code participant archive](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2012/006-two-book-codes) uses explicit **line:character** coordinates separated by colons and an externally identified book. Their exact format and positive original outputs have already been replayed in [the repository's 2012 book-code gate](lp2-2012-bookcode-grid-linechar-gate.md). A page-and-line coordinate is historically imaginable, but joining the digits without punctuation changes the actual historical syntax.
-- The preserved [signed January 2014 opening-book-code payload](https://github.com/neuroretransmit/cicada/blob/main/2014/001-twitter/README.md) visibly prints coordinates such as **1:2:3:1**, with colon-separated **paragraph:sentence:word:letter** fields, and its language independently directs players to Emerson. The original-era solver archive reproduces the complete onion address from those pointers. That is a real 2014 positive precedent for an explicitly formatted and context-selected cipher rather than an unmarked decimal concatenation.
-- The [authentic May 2014 LP2 handoff](../resources/cicada2014-may2-signed-message.asc) contains an onion address and plain invitation, without any three-digit page/line code. The surviving [original destination HTML](../resources/external/cicada2014-stage11-onion7-original-index.html) labels its document title **133** and one div **331**, while the page links are independently represented as filenames **0.jpg** through **57.jpg**. Neither text gives a delimiter, radix, indexing convention, page/line instruction or choice to consume printed GP-prime sums. The 2016 signed instruction about words, numbers and direction does not say to use page/line addresses either.
+For p13:3, the new route removes the need for that syntax assumption. Page13 and line3 arrive independently from `WAY`'s authenticated word number and `e=3`; `133` is then a matched historical label rather than the parser input. The historical syntax objection therefore no longer blocks this one receiver.
 
-This is **not proof that no lost instruction existed**. It is a concrete conflict between the proposed undelimited **PP L** rule and the attested explicitly delimited Cicada book-code syntax. The competing interpretations of 133 as **p1 word33**, **p13 word3**, or **7×19 / p19**, already discussed in this report and in [the 2014 title/19 source study](cicada2014-signed19-onion7-title133-source-gate.md), stay viable precisely because the artifact does not choose among them. The nice equality prime(449)=3169 is true, but the choice of the parser was made after reading the original numeric source. No recognizable signed payload, recovered GP passage, p56 digest or continuing valid address results from the frozen direct consumers above.
-
-**Decision for Director #770:** preserve the exact 64-rune 449th-prime closure as a provisional clue. **Stop its dependent cipher/line-index work until a primary Cicada-authenticated or contemporary decoding instruction selects bare three-digit PP L syntax and the original consumer.** This closes this specific source-grammar gate with an identified missing input; it does not demote the original arithmetic into an error or claim to have solved any LP2 page.
+The preserved div331 contains the full LP image archive and no further explicit coordinate instruction. No evidence now authorizes continuing `331` as p33:1 or generalizing the concatenation rule to unrelated numbers.
 
 ## Decision for future original-input work
 
-The exact **449th-prime closure** joining all three source-selected lines, together with the **133 -> 331** and **361 -> p36 line1 / p55 inner23 sum1020** checks, is distinctive enough to preserve as a candidate human-visible wayfinding clue: one fixed contemporary index number points to an original physical line whose unchanged GP-prime sum, modulo a separately solved heading, yields the second fixed historical index number. The strongest necessary next evidence would be an independent original instruction selecting `PP L` over page-word addressing **and** specifying how to resolve the subsequent `120` dead end or how to consume the 23-rune selected line to decrypt *untouched* ciphertext. A prediction on an independent source address before examining its sum would be more persuasive than further matches found by free format or numeral searches.
+Promote **p13:3 -> GP-prime sum1229 -> mod449 =331** as a source-selected cross-round navigation closure. The p13:3 receiver now has an independent causal selector: p29-derived WAY -> authenticated index13 -> p13, with p28 `e=3` selecting line3. The exact coordinate serializes to the preserved title133, and its fixed arithmetic reaches preserved div id331.
 
-**Do not promote the numeric link to a plaintext recovery, and do not scan alternative line indices, moduli, phases or whole-book key variants to rescue it.** The route itself is the candidate; its direct Vigenere consumer fails.
+Keep the broader `361,133,331` three-address / 64-rune / prime(449) closure provisional because p36:1 and p33:1 still depend on the old undelimited PP-L interpretation. Keep all direct additive p13-line consumers negative.
+
+The strongest next evidence would specify how p13:3 or the archive-level div331 is consumed as an opcode, key source, or receiver selector before inspecting a new target. Avoid free address iteration, phase scans, alternate moduli, or whole-book key variants.
 
 **Reproducer:** [read-only original-corpus CommonJS SFT](../sims/lp2_html133_p13line3_331_prime_checksum_sft.cjs) checks both archive labels, the solved p57 GP-prime sums, the exact p13 and p36 line glyphs and two neighboring p13 lines, the strictly addressed three-step walk, all six complete original-cipher inverses, both source-23-to-p55-core inverses, the 64-rune three-address register, its exact independently indexed prime(449) checksum, its four exact p56 hash candidates, both p55 direct-register inverses, the PARABLE-motivated 29/10-rune successive word-interior peels, their bounded p55 additive/stencil-complement inverses, and solved GP positive controls.
