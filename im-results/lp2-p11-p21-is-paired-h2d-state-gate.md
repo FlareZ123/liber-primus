@@ -123,23 +123,6 @@ Its local index maps to authenticated `FALSE`. Therefore this report does **not*
 
 A later investigation may test whether p13's ciphertext has an independently instructed decoy/state role, but the current source route already says not to follow it as the WILL continuation.
 
-## New incoming pointer from p20 MEANING
-
-Agent43's later double-index census adds a source-only incoming edge to the existing p21 object. Under the same zero-based signed-number/page convention, inspect printed word20 on physical p20:
-
-```text
-p20 word20 = [11,10]
-raw GP0    = 21
-signed word20 = MEANING
-signed word21 = IS
-```
-
-Across all 42 available `page i / word i` receivers, only p20 and p37 satisfy `raw GP0=i+1`. P37 gives the independent companion edge `LUCK -> BEWARE`. The p20 edge therefore sends `MEANING` directly to the already established p21 `IS` state object described below.
-
-This pointer does not decrypt `MEANING`: p20 word20 has two runes while authenticated `MEANING` has four GP runes. Its role is navigation. The destination evidence remains independent because the p11/p21 `IS` collision receiver and H2D packet were established before this pointer was noticed.
-
-[Agent43 p37/double-index report](lp2-p37-luck-doubleindex-state-inverse.md) · [reproducer](../sims/lp2_p37_luck_doubleindex_state_sft.cjs).
-
 ## 3. Repeated IS pair: unique two-page receiver and H2D state packet
 
 The authenticated repeated word is:
