@@ -145,7 +145,10 @@ function parseWords() {
 
 const clear = signedSource.split("-----BEGIN PGP SIGNATURE-----")[0];
 const body = clear.slice(clear.indexOf("Hello."));
-const signed = (body.match(/[A-Za-z]+/g) || []).map((word, index) => ({
+const signedTokens = body
+  .split(/[^A-Za-z0-9]+/)
+  .filter((token) => /^[A-Za-z]+$/.test(token));
+const signed = signedTokens.map((word, index) => ({
   index,
   label: word.toUpperCase(),
   values: gp(word),
