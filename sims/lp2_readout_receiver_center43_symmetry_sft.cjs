@@ -32,4 +32,22 @@ assert.equal((split+whole)/2,center);assert.equal((whole-split)/2,direction);
 const alt={gpAlphabetSize:29,lp2PageCount:58,p28WordCount:parse(parts[28]).words.length,signedInstructionSentenceWords:16,naiveAlphabeticSubstrings:(m[1].match(/[A-Za-z]+/gu)||[]).length};
 assert.deepEqual(alt,{gpAlphabetSize:29,lp2PageCount:58,p28WordCount:59,signedInstructionSentenceWords:16,naiveAlphabeticSubstrings:45});
 for(const v of Object.values(alt))assert.notDeepEqual([center-v,center+v],[split,whole]);
-console.log(JSON.stringify({status:"PASS",source:{p28RuneCount:p28.runic_count,p28Center:center,signed2016NaturalWords:direction,alternatives:alt},readoutNavigation:{gp0:{READ:readV,OUT:outV,READOUT:allV},base60:{READ:left,OUT:right,READOUT:whole},splitReceiver:{span:[80,102],center:split,words:sw.map(w=>w.number),centerRune:corpus.translit[p0.runes[split]]},wholeReceiver:{span:[166,188],center:whole,words:ww.map(w=>w.number),centerRune:corpus.translit[p0.runes[whole]]}},exactRelation:{equation:"H_integer(134,43)=(91,177)",midpoint:(split+whole)/2,halfDistance:(whole-split)/2},classification:"source-linked geometric echo: receiver pair was independently selected before this relation; 43-word interpretation was recognized afterward and remains provisional"},null,2));
+const five=[center-2*direction,center-direction,center,center+direction,center+2*direction];
+assert.deepEqual(five,[48,91,134,177,220]);
+const p0Ends=new Set(p0.words.map(w=>w.end));
+assert.ok(p0Ends.has(five[0]));assert.equal(p0.runes[five[1]],0);assert.ok(p0Ends.has(five[2]));assert.equal(p0.runes[five[3]],0);assert.ok(p0Ends.has(five[4]));
+const boundaryWords=five.map(pos=>{const w=p0.words.find(x=>pos>=x.start&&pos<=x.end);return{pos,rune:corpus.translit[p0.runes[pos]],word:w.number,wordStart:w.start,wordEnd:w.end,isWordStart:w.start===pos,isWordEnd:w.end===pos}});
+const family=[];
+for(let page=0;page<=55;page++){
+  if(page===50)continue;
+  const parsed=parse(parts[page<=49?page:page-1]);
+  const ends=new Set(parsed.words.map(w=>w.end));
+  for(let c=0;c<parsed.runes.length;c++){
+    for(let d=1;c-2*d>=0&&c+2*d<parsed.runes.length;d++){
+      if(ends.has(c-2*d)&&parsed.runes[c-d]===0&&ends.has(c)&&parsed.runes[c+d]===0&&ends.has(c+2*d))family.push({page,center:c,step:d,positions:[c-2*d,c-d,c,c+d,c+2*d]});
+    }
+  }
+}
+assert.equal(family.length,5);
+assert.deepEqual(family.filter(x=>x.page===0),[{page:0,center:134,step:43,positions:[48,91,134,177,220]}]);
+console.log(JSON.stringify({status:"PASS",source:{p28RuneCount:p28.runic_count,p28Center:center,signed2016NaturalWords:direction,alternatives:alt},readoutNavigation:{gp0:{READ:readV,OUT:outV,READOUT:allV},base60:{READ:left,OUT:right,READOUT:whole},splitReceiver:{span:[80,102],center:split,words:sw.map(w=>w.number),centerRune:corpus.translit[p0.runes[split]]},wholeReceiver:{span:[166,188],center:whole,words:ww.map(w=>w.number),centerRune:corpus.translit[p0.runes[whole]]}},exactRelation:{equation:"H_integer(134,43)=(91,177)",midpoint:(split+whole)/2,halfDistance:(whole-split)/2},prospectiveStep43Holdout:{positions:five,pattern:"WORD_END,F,WORD_END,F,WORD_END",details:boundaryWords,familyHits:family},classification:"source-linked geometric echo with prospective outer-boundary holdout: receiver pair was independently selected; 43-word interpretation was post-observation; outer positions 48/220 were inspected only after the 43-step relation was frozen"},null,2));
