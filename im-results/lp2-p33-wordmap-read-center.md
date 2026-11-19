@@ -104,20 +104,31 @@ Before exponent27 is applied, split the selected source word by the same fixed `
  F  T  E     OE EA A      IA S  G
 ```
 
-The two outer-third GP0 sums are:
+The three source-third GP0 sums are:
 
 ```text
-0+16+18 = 34 = GP0(THEIR)
-27+15+6 = 48 = GP0(HERE)
+left:   0+16+18  = 34 = GP0(THEIR)
+middle: 22+28+24 = 74 -> p50[74]=3P -> low60(P)=25
+right:  27+15+6  = 48 = GP0(HERE)
 ```
 
-Both words are independently recovered clue vocabulary: **THEIR** is the p33 hidden title readout and **HERE** is the independently selected p28 page-start candidate. The exponent27 center then becomes literal **READ**.
+The middle source third therefore points through the already fixed low-digit opcode to **25**, the second signed-2016 THEIR position that generated `MAP -> WORDS -> [e,q]` and selected this 81-rune body in the first place.
 
-Thus one source-selected p33 word carries a three-way cross-object relation:
+Both outer words are independently recovered clue vocabulary: **THEIR** is the p33 hidden title readout and **HERE** is the independently selected p28 page-start candidate. The exponent27 center then becomes literal **READ**.
+
+Thus one source-selected p33 word carries a self-closing cross-object relation:
 
 ```text
-source outer GP0s:  THEIR | ... | HERE
-after ^27 center:          READ
+source thirds:
+THEIR | GP0 74 -> p50-low 25 = THEIR₂ | HERE
+
+THEIR₂ 25
+ -> MAP18 -> WORDS15
+ -> H(18,15)=[e,q]=[3,4]
+ -> selects the 81-rune body and its unique e² word
+
+that same e² word under ^27:
+... | READ | ...
 ```
 
 This is a structural relation, not a license to assign English meanings to arbitrary third sums.
@@ -134,11 +145,13 @@ Charge the exact rule against every complete nine-rune word on unknown physical 
 There are **77** complete nine-rune words. The fixed source-third counts are:
 
 ```text
-left third GP0 = THEIR(34):  2 words
-right third GP0 = HERE(48):  2 words
-both outer identities:       1 word
-center after ^27 = READ:     1 word
-all three conditions:         1 word
+left third GP0 = THEIR(34):       2 words
+middle GP0 low-digit -> 25:        2 words
+right third GP0 = HERE(48):       2 words
+all three source selectors:        1 word
+both outer identities:             1 word
+center after ^27 = READ:           1 word
+selectors + READ jointly:           1 word
 ```
 
 The sole joint hit is:
@@ -169,8 +182,8 @@ The strongest current interpretation is a real conditional plaintext recovery be
 - `e²` selects its unique nine-rune word;
 - p28 independently fixes exponent27 as a word operation;
 - the e-centered block is unique within the selected e² object;
-- the same source word's outer-third GP0 sums independently equal THEIR and HERE;
-- among 77 manuscript nine-rune words, only one has both fixed outer identities, and it is also the unique center READ hit.
+- the same source word's third sums are `[34,74,48]`: THEIR, a low-digit pointer to the risen THEIR position25, and HERE;
+- among 77 manuscript nine-rune words, only one has that complete source-third selector, and it is also the unique center READ hit.
 
 The selection chain was assembled after READ OUT and the p33 state packet were already known, so this should receive independent adversarial reproduction before promotion to established results. It does **not** yet identify the encryption mechanism for the surrounding 78 upper-body runes or the 115-rune lower body.
 
