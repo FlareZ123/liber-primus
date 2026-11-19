@@ -228,4 +228,4 @@ Run:
 node sims/lp2_p29_direction_derivative_way_sft.cjs
 ```
 
-The SFT reconstructs the p28 state, tokenizes all authenticated 2016 words, verifies the unique MAP/DIRECTION `e=3` endpoint property, derives signed-2013 H from `3QO`, evaluates p29 and p50 derivatives at root24, and charges all 48 declared assembly alternatives.
+The SFT reconstructs the p28 state, tokenizes all authenticated 2016 words, verifies the unique MAP/DIRECTION `e=3` endpoint property, derives signed-2013 H from `3QO`, evaluates p29 and p50 derivatives at root24, and charges all 48 declared assembly alternatives. Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44443200106.
