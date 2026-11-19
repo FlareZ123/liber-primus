@@ -1,3 +1,38 @@
+# Agent24 checkpoint: p0 state-only local keygen + DH23/27-square lock | 19 November 2026 07:31 UTC
+
+## Current run
+
+- RNG draw **6/12** selected normal issue-directed mode. Open Director tasks #1667, #41 and #1335 were blocked/non-executable, so this run followed the mandated independent-research fallback.
+- Claimed Agent24 run `agent24-gpt5.6sol-20261119T062752Z-draw6-issue-directed-5f250bdb7939`, original `claimed_at=2026-11-19T06:27:52.879654Z`; mandatory release threshold is **2026-11-19T07:37:52.879654Z**. Do not refresh.
+
+## P0 local plaintext/key breakthrough
+
+- Concurrent Agent11/13 state-only serializer now closes the local p0 8+5 key-generation gate. Authenticated 2014 magic-square metadata independently gives `g=5,K=2,e=3,q=4,A=8,a=6,B=19`; with known DH state also `p=23,b=15`.
+- Original p0 large red punctuation is **13 dots in physical columns 4|5|4**. Agent23's temporary 11-dot objection inspected wrong scan `01.jpg`; LP2 p0 is `17.jpg` per `resources/liber-primus/lp2-p0-physical-ink-override.json`. Agent24 independently inspected uploaded `17.jpg`: red components are x≈1405 with4 dots, x≈1419 with5, x≈1435 with4. Correction sent to Agent23, Agent17, and broadcast in `communications/broadcast/20261119T0725Z_agent24_p0-scan17-marker-correction.md`.
+- State-only rise serializer: `u=q-e=1`, `t=g+K=7`, `w=A+g=13`. Left seed `-q` rises `[e,K*a,-b]=[3,12,14]` -> `[25,28,11,25]`; center seed `q` rises `[q,B-A,A-B,-q]=[4,11,18,25]` -> `[4,8,19,8,4]`; right seed `g+K` rises `[a,g+K,A]=[6,7,8]` -> `[7,13,20,28]`. Concatenate physical 4|5|4 columns and apply outside-in H once to get exact additive key `[26,24,8,19,27,24,18,3,0,8,0,16,19]`; untouched p0 red ciphertext decrypts exactly to **EPIPHANY SEEKS**. Reproducers: `sims/lp2_p0_square_state_rise_key_serializer_sft.cjs` and `sims/lp2_p0_state_only_marker_keygen_sft.cjs`. Grammar chronology remains retrospective, so book-wide cipher reuse still needs a prospective holdout.
+- Agent24 added an independent target-free finite selector: `sims/lp2_p0_marker_state_aggregate_plaintext_selector_sft.cjs`, report `im-results/lp2-p0-marker-state-aggregate-plaintext-selector.md`, Windows PASS **44478573225**. Charge all 19 unknown adjacent 8+5 receivers × 18 solved/authenticated 8-rune words × 38 five-rune words = **12,996** candidates. Requiring state-only marker packets `raw sums=[B,-b,-b]`, `H sums=[A+g,p,a]`, `H^-1 sums=[K,-b,-B]`, center `[q,A,B,A,q]` leaves exactly one survivor: p0 **EPIPHANY SEEKS**. Exact forward replay passes.
+- Independent source-side convergence also selects the same phrase: BASE29 square-cell chain includes `151=[5,6]=EPIPHANY SEEKS`; p0 ciphertext-only `THE / WAY` numbered-direction route selects signed source interval5..13; Agent17's marker-center/square-state family leaves EPIPHANY SEEKS as the sole square-typed candidate.
+
+## Independent p28 DH23 ↔ p0-p2 27×27 state lock
+
+- New Agent24 report `im-results/lp2-p28-dh23-p0-27square-state-lock.md`, SFT `sims/lp2_p28_dh23_p0_27square_state_lock_sft.cjs`; Windows PASS initial **44475834633**, reverse-control **44476173679**; integrated in `results/README.md`.
+- Independently derived p28 state `(p,g,a,b,A,B,K,e,q)=(23,5,6,15,8,19,2,3,4)` fixes p0-p2 geometry: `e^a=3^6=729` equals chapter rune count and `-K mod29=27`, so 27²=729. Physical boundaries: p0 end `(-B,B)=(10,19)`, p1 start `(-B,p-e)=(10,20)`, p1 end `(p-e,b)=(20,15)`, p2 start `(p-e,K-b)=(20,16)`, p2 end `(-K,-K)=(27,27)`.
+- Reverse lock: from visible p=23,g=5 plus untouched opening geometry, side27 -> K2 -> e3; `3^a=729` uniquely gives a6; A8; p0 endpoint gives B19; unique dlog `5^b=19 mod23` gives b15; `19^6 mod23=2` returns K.
+- Existing 27×27 route objects become exact state packets: unique block1 `[-q,B-A,-1]`, totient ladder `B-A=11 -> -B=10 -> q=4`, movement `-b=14`; unique endpoint `[-b,p-1,-b]`; block2 key `[-b,-b,-B]`; block3 `[A,-A,g]`; first p1 source `[A,K,A]`. Frozen paths replay conditional `AS I GO THE WEATHER TURNS COLD`. Agent25 later made genuine prospective block9/block10 source-node predictions from DH state and hit both exactly; block11 prediction failed, rejecting a simple continuation cycle.
+
+## Other bounded results from this run
+
+- P22 square edge SFT `sims/lp2_p22_square_verify_openpgp_edge_sft.cjs`, report `im-results/lp2-p22-square-verify-openpgp-edge.md`, Windows PASS **44473285577**: among all 144 directed 8-neighbor edges × four base60/base59 radix pairs, only base60→base59 has authenticated signed adjacent-word hits, the 180°-duplicated `278->1071` mapping to **VERIFY OPENPGP**. Upstream state is already base59, so a base60 reset remains unauthenticated; keep intermediate.
+- Block39 exploratory GET was a controlled coincidence. Unaligned transformed key `[p-e,-B,A]=[20,10,8]` gives a unique GET under the 132-path two-author vocabulary control, but the frozen route phase is1. Phase-correct forward `[10,8,20]` and reverse `[10,20,8]` produce zero hits. Preserve `sims/lp2_block39_dh_center_phi_exploration_sft.cjs` only as a negative; do not promote GET.
+- Rejected without further expansion: repeating THE DEVOTED p0 key, low-order K13 recurrences, direct p22 13-value key mappings, p27 centered13 key variants, literal H^-1 diamond placement, ordered GP-prime partition readouts, direct p0-body H-sum prose, and exact PGP key-ID byte/halfword p50 continuations.
+
+## Next decisive gate
+
+- Treat p0 **EPIPHANY SEEKS** as a strong locally generated/reversible plaintext recovery with an exact state-only key generator. The remaining scientific gate is **prospective reuse of the same 4|5|4 rise serializer or an independent original clue fixing its rise grammar on untouched material**. Avoid arbitrary state-expression permutation searches.
+- Continue using the DH23/27×27 state lock to make pre-inspection source-node/path/key predictions. Preserve failures such as block11 and frozen-phase block39 as real constraints.
+
+---
+
 # Agent24 checkpoint: p38 section5 BEWARE state selector, decoder holdout negative | 19 November 2026 02:43 UTC
 
 - Authored numbered sections1-5 span p36-p38. Their first-word (length,GP0) values are (4,56),(4,67),(3,37),(7,100),(6,88).
