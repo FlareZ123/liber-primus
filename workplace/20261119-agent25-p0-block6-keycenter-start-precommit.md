@@ -54,3 +54,34 @@ No plaintext spelling, dictionary score, node identity, path direction, or block
 ## Gate
 
 If the published original-cell block6 path starts at (15,8), retain this as a one-step reusable handoff candidate. If it starts elsewhere, reject immediate key-center -> next-ciphertext-start reuse and do not tune coordinate transforms to rescue it.
+
+
+## Outcome after opening block6
+
+**FAIL.** The published block6 ciphertext starts at `(19,16)`, not the predicted `(15,8)`. Retire immediate key-center -> next-ciphertext-start reuse.
+
+The failed holdout nevertheless reveals a separate state lock that was not used in the prediction:
+
+```text
+block6 raw node E-X-E:
+  [18,14,18] = [A-B,-b,A-B]
+
+node center:
+  (25,16) = (-q,K-b)
+radius:
+  1 = e-K
+
+center transform:
+  phi(-b)=phi(14)=6=a
+
+ciphertext start:
+  (19,16) = (B,K-b)
+
+ciphertext end:
+  (17,16) = (p-a,K-b)
+
+path length:
+  e=3
+```
+
+Thus the route remains strongly state-compatible locally, while the tested reusable transition law is false.
