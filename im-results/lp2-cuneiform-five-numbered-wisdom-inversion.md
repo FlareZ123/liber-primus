@@ -158,23 +158,35 @@ This route is not yet a decoder. The selected p49 page is already the known SHED
 
 The numeric derivation is reproduced by [the read-only CommonJS SFT](../sims/lp2_cuneiform_fivepassage_shed_navigation_sft.cjs). The prime-rank context is distinct from the previously rejected floor(rank/58) proposal: here 229 and 271 are themselves prime values whose ordinary one-based ranks are 50 and 58. This remains a candidate navigation layer, not an established decryption.
 
-## Five-symbol p50 packet from the original 2014 number sequence
+## Cross-round five-value packet from the 2014 magic squares and p33 cuneiform
 
-The same sexagesimal page:word → base29 positional word number → p50 row-major cell → base60 token → mod29 rune map applies to the three 2014 square centers in source order **809, 331, 91**, followed by the two p33 cuneiform numerals **1033, 3301**:
+The original 2014 source contains three magic squares:
 
-| Source number | Page:word | Selected word | Base29 value | p50 cell | Token | Base60 → mod29 | Missing-f base59 → mod29 |
-| ---: | ---: | --- | ---: | ---: | --- | --- | --- |
-| 809 | p13:29 | TEI | 13,988 | 164 | 1j | 105 → E | 103 → T |
-| 331 | p5:31 | THYEOTHJTHRU | 50,212,977,392 | 240 | 2O | 144 → EA | 142 → Y |
-| 91 | p1:31 | TXELR | 11,673,664 | 64 | 22 | 122 → G | 120 → R |
-| 1033 | p17:13 | FREAMEAA | 3,528,831 | 127 | 3D | 193 → M | 190 → T |
-| 3301 | p55:1 | NG | 21 | 21 | 2H | 137 → NG | 135 → M |
+| Square in source order | Size | Center | Magic sum |
+| ---: | ---: | ---: | ---: |
+| 1 | 5×5 | 809 | 3301 |
+| 2 | 7×7 | 331 | 1033 |
+| 3 | 5×5 | 91 | 1033 |
 
-In the original source order this yields the five-symbol packet **[E,EA,G,M,NG]**. Its cardinality matches the five red-numbered wisdom passages, but it is not their direct boundary sequence: the passage starts are **[L,N,D,NG,H]** and ends are **[A,B,W,M,C]**. Under the competing missing-f base59 parse, the packet is **[T,Y,R,T,M]**; in particular the cuneiform pair returns **[T,M]**, not the p33 markers **[M,NG]**. The base60 alphabet is not Cicada-authenticated, so the marker loop favors this particular base60 consumer but does not settle the radix. The prior direct ASCII byte-stream test remains negative; this route uses a narrow mod29 projection of the two cuneiform-selected words.
+The p33 cuneiform numerals **1033 and 3301 are exactly the two distinct magic sums**. The signed 2013 message independently uses the explicit BASE29 example **3301→3QO**. Thus 3301 is linked across the 2013 BASE29 instruction, the 2014 magic-square sum, and p33's cuneiform numeral; 1033 is the other 2014 magic sum. This gives a credible human-visible reason to treat the cuneiform numerals as meaningful source values rather than arbitrary large numbers.
 
-Tested the obvious direct uses of this packet on the 553-rune enclosure: one constant additive shift per passage (both signs), a period-5 additive key reset at each passage (both signs), a period-5 additive key over the concatenated passages (both signs), and one multiplicative or inverse coefficient per passage. None produced readable text; their aggregate IoCs remain near the original random-like value **0.03423** (range **0.03367–0.03503**). This rejects these simple consumers, not every possible source-selected use of the packet.
+Applying the sexagesimal page:word → GP base29 positional word number → p50 row-major cell → base60 token → mod29 rune map to the five unique values in **first-seen square order** (center then sum, omitting the repeated 1033) gives:
 
-Keep **[E,EA,G,M,NG]** as a candidate five-symbol state/key vector only. Do not promote it to plaintext or launch unconstrained matrix/period searches. A further consumer needs an independent source clue. Reproduction and metrics are included in `sims/lp2_cuneiform_sexagesimal_wordmap_p50_state_sft.cjs`.
+| Source item | Number | Page:word | Selected word | Base29 value | p50 cell | Token | Base60 → mod29 | Missing-f base59 → mod29 |
+| --- | ---: | ---: | --- | ---: | ---: | --- | --- | --- |
+| Square 1 center | 809 | p13:29 | TEI | 13,988 | 164 | 1j | 105 → E | 103 → T |
+| Square 1 sum | 3301 | p55:1 | NG | 21 | 21 | 2H | 137 → NG | 135 → M |
+| Square 2 center | 331 | p5:31 | THYEOTHJTHRU | 50,212,977,392 | 240 | 2O | 144 → EA | 142 → Y |
+| Square 2 sum | 1033 | p17:13 | FREAMEAA | 3,528,831 | 127 | 3D | 193 → M | 190 → T |
+| Square 3 center | 91 | p1:31 | TXELR | 11,673,664 | 64 | 22 | 122 → G | 120 → R |
+
+This first-seen unique-by-square ordering gives **[E,NG,EA,M,G]** under base60 and **[T,M,Y,T,R]** under missing-f base59. A second natural grouping—three centers followed by the two distinct cuneiform sums, `[809,331,91,1033,3301]`—gives **[E,EA,G,M,NG]** under base60 and **[T,Y,R,T,M]** under base59. The two cuneiform values in their printed p33 order still return **[M,NG]** only under base60; base59 returns **[T,M]**.
+
+Both base60 five-symbol orderings have the same cardinality as the five numbered wisdom passages, but neither is their direct boundary sequence: passage starts are **[L,N,D,NG,H]** and ends **[A,B,W,M,C]**. Tested the obvious direct uses of both base60 packets on the 553-rune enclosure: one constant additive shift per passage (both signs), period-5 additive key reset per passage (both signs), period-5 additive key over the concatenated passages (both signs), and one multiplicative or inverse coefficient per passage. Neither ordering produced readable text; aggregate IoCs remain in the original random-like range **0.03367–0.03562**.
+
+The missing-f base59 parse remains a live alternative because it produces the independent one-root address graph described in `im-results/lp2-p50-base59-source-convergent-map.md`. Conventional base60 is favored here by the p33 marker match and by the conditional GF29 parity model in `im-results/lp2-p50-hg-single-residue-correction.md`, but the alphabet is not author-authenticated. The earlier direct ASCII byte-stream test remains negative; this route uses a narrow mod29 projection of cuneiform-selected words. Do not treat either five-symbol packet as plaintext or a validated key. A further consumer needs an independent source clue.
+
+Reproduction, both natural packet orders, both table radices, and direct-consumer metrics are included in `sims/lp2_cuneiform_sexagesimal_wordmap_p50_state_sft.cjs`.
 
 ## Research decision
 

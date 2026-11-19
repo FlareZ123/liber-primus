@@ -154,11 +154,29 @@ const squareCenters = squareGroups.map((square) => {
   return square[middle][middle];
 });
 assert.deepEqual(squareCenters, [809, 331, 91]);
+const squareSums = squareGroups.map((square) => square[0].reduce((sum, value) => sum + value, 0));
+assert.deepEqual(squareSums, [3301, 1033, 1033]);
+// The signed 2013 BASE29 example 3301 -> 3QO is exact in the 0-9,A-S digit alphabet.
+assert.equal(3 * 29 * 29 + 26 * 29 + 24, 3301);
+assert.deepEqual([...new Set(squareSums)], [3301, 1033]);
 
 // The two cuneiform numerals are read from the p33 original scan.
 const cuneiformNumbers = [1033, 3301];
-const sourceOrderNumbers = [...squareCenters, ...cuneiformNumbers];
-const fivePacket = sourceOrderNumbers.map(selectCoordinate);
+assert.deepEqual(cuneiformNumbers.slice().sort((a, b) => a - b), [...new Set(squareSums)].sort((a, b) => a - b));
+const centerThenSumNumbers = [...squareCenters, ...cuneiformNumbers];
+const fivePacket = centerThenSumNumbers.map(selectCoordinate);
+const seenSquareValues = new Set();
+const squareFirstSeenNumbers = [];
+for (let index = 0; index < squareCenters.length; index += 1) {
+  for (const value of [squareCenters[index], squareSums[index]]) {
+    if (!seenSquareValues.has(value)) {
+      seenSquareValues.add(value);
+      squareFirstSeenNumbers.push(value);
+    }
+  }
+}
+assert.deepEqual(squareFirstSeenNumbers, [809, 3301, 331, 1033, 91]);
+const squareFirstSeenPacket = squareFirstSeenNumbers.map(selectCoordinate);
 assert.deepEqual(fivePacket.map((item) => item.wordText), [
   "TEI", "THYEOTHJTHRU", "TXELR", "FREAMEAA", "NG",
 ]);
@@ -175,6 +193,8 @@ const fiveKey = fivePacket.map((item) => item.output);
 assert.deepEqual(fiveKey, [18, 28, 6, 19, 21]);
 assert.deepEqual(fivePacket.map((item) => item.outputRune), ["E", "EA", "G", "M", "NG"]);
 assert.deepEqual(fivePacket.map((item) => item.base59Rune), ["T", "Y", "R", "T", "M"]);
+assert.deepEqual(squareFirstSeenPacket.map((item) => item.outputRune), ["E", "NG", "EA", "M", "G"]);
+assert.deepEqual(squareFirstSeenPacket.map((item) => item.base59Rune), ["T", "M", "Y", "T", "R"]);
 
 // The final two values alone return the p33 oversized marker pair.
 const selected = fivePacket.slice(3);
@@ -296,6 +316,48 @@ for (const inverse of [false, true]) {
   });
 }
 
+// Repeat the same bounded direct-consumer families for the first-seen-by-square order.
+const squareFirstSeenKey = squareFirstSeenPacket.map((item) => item.output);
+const squareFirstSeenSimpleConsumers = [];
+for (const sign of [-1, 1]) {
+  const constant = passages.map((passage, passageIndex) =>
+    passage.map((value) => mod(value + sign * squareFirstSeenKey[passageIndex], 29)));
+  const period5Reset = passages.map((passage) =>
+    passage.map((value, index) => mod(value + sign * squareFirstSeenKey[index % 5], 29)));
+  const period5Global = passages.flat().map((value, index) =>
+    mod(value + sign * squareFirstSeenKey[index % 5], 29));
+  squareFirstSeenSimpleConsumers.push({
+    operation: "one constant additive symbol per passage",
+    sign,
+    ...summarizePassages(constant, corpus.translit),
+  });
+  squareFirstSeenSimpleConsumers.push({
+    operation: "period-5 additive key reset at each passage",
+    sign,
+    ...summarizePassages(period5Reset, corpus.translit),
+  });
+  squareFirstSeenSimpleConsumers.push({
+    operation: "period-5 additive key over concatenated passages",
+    sign,
+    length: period5Global.length,
+    ioc: indexOfCoincidence(period5Global),
+    adjacentEqual: adjacentEqualCount(period5Global),
+    head: period5Global.slice(0, 80).map((value) => corpus.translit[value]).join(" "),
+  });
+}
+for (const inverse of [false, true]) {
+  const multiplied = passages.map((passage, passageIndex) => {
+    const factor = inverse
+      ? inverseMod(squareFirstSeenKey[passageIndex], 29)
+      : squareFirstSeenKey[passageIndex];
+    return passage.map((value) => mod(value * factor, 29));
+  });
+  squareFirstSeenSimpleConsumers.push({
+    operation: inverse ? "per-passage multiplicative inverse" : "per-passage multiplicative",
+    ...summarizePassages(multiplied, corpus.translit),
+  });
+}
+
 // Direct marker-key consumers on p33's two black bodies.
 const p33Indices = corpus.pages.find((page) => page.page === 33).indices;
 const p33Bodies = [
@@ -347,10 +409,21 @@ for (const inverse of [false, true]) {
 
 console.log(JSON.stringify({
   classification: "retrospective navigation/state-selector candidate; no plaintext or body cipher",
-  sourceOrderNumbers,
-  fiveValuePacket: fivePacket,
+  squareCenters,
+  squareSums,
+  cuneiformNumbers,
+  centerThenSumNumbers,
+  fiveValuePacketCenterThenSums: fivePacket,
+  squareFirstSeenNumbers,
+  fiveValuePacketFirstSeenBySquare: squareFirstSeenPacket,
   cuneiformMarkerPair: selected,
   fiveValuePacketBase59: fivePacket.map((item) => ({
+    number: item.number,
+    byte: item.base59Byte,
+    output: item.base59Output,
+    outputRune: item.base59Rune,
+  })),
+  fiveValuePacketFirstSeenBase59: squareFirstSeenPacket.map((item) => ({
     number: item.number,
     byte: item.base59Byte,
     output: item.base59Output,
@@ -368,7 +441,8 @@ console.log(JSON.stringify({
     ends: passageEnds,
     original: originalPassageStats,
   },
-  simpleFiveKeyConsumers: simpleConsumers,
+  simpleFiveKeyConsumersCenterThenSums: simpleConsumers,
+  simpleFiveKeyConsumersFirstSeenBySquare: squareFirstSeenSimpleConsumers,
   p33MarkerKeyConsumers: {
     bodyLengths: p33Bodies.map((body) => body.length),
     rawIoc: p33RawIoc,
