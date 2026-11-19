@@ -373,3 +373,215 @@ console.log(JSON.stringify({
       'Zero transfer hits. Preserve p32 YOU as a source/layout-selected local candidate; reject [K,0,q] as a general same-index three-rune decoder.',
   },
 }, null, 2));
+
+
+// Chronologically independent p6 master-state packet calibration.
+// The p6 packet predates this p32 investigation. Its title word lengths are
+// [q,1,q,K], their H4 transform is [K,-e,g,a], and the adjacent large GP-zero
+// glyph supplies 0. Charge all coordinate orders from one H(length) scalar,
+// zero, and one distinct title-length scalar before judging the p32 key shell.
+/** @param {number[]} values @returns {number[]} */
+function H4Lengths(values) {
+  assert.equal(values.length, 4);
+  return [
+    mod29(values[0] - values[3]),
+    mod29(values[1] - values[2]),
+    mod29(values[1] + values[2]),
+    mod29(values[0] + values[3]),
+  ];
+}
+
+/** @param {number[]} values @returns {number[][]} */
+function permutations3(values) {
+  return [
+    [values[0], values[1], values[2]],
+    [values[0], values[2], values[1]],
+    [values[1], values[0], values[2]],
+    [values[1], values[2], values[0]],
+    [values[2], values[0], values[1]],
+    [values[2], values[1], values[0]],
+  ];
+}
+
+const p6TitleStarts = new Set([71, 75, 76, 80]);
+const p6Title = wordsByPage
+  .get(6)
+  .filter((word) => p6TitleStarts.has(word.start));
+const p6TitleLengths = p6Title.map((word) => word.values.length);
+assert.deepEqual(p6TitleLengths, [state.q, 1, state.q, state.K]);
+
+const p6LengthShell = H4Lengths(p6TitleLengths);
+assert.deepEqual(p6LengthShell, [state.K, mod29(-state.e), state.g, state.a]);
+
+const p6DistinctLengthScalars = [...new Set(p6TitleLengths)];
+assert.deepEqual(p6DistinctLengthScalars, [state.q, 1, state.K]);
+
+const p6ThreeRuneShells = new Map();
+for (const shellAtom of p6LengthShell) {
+  for (const lengthAtom of p6DistinctLengthScalars) {
+    for (const shell of permutations3([shellAtom, 0, lengthAtom])) {
+      p6ThreeRuneShells.set(shell.join(','), shell);
+    }
+  }
+}
+assert.equal(p6ThreeRuneShells.size, 69);
+
+// On the independently selected p32 receiver, the full p6 role family has one
+// exact authenticated target hit, the same [K,0,q] subtraction.
+const p6SeedHits = [];
+for (const shell of p6ThreeRuneShells.values()) {
+  const key = H3inv(shell);
+  for (const sign of ['sub', 'add']) {
+    const plaintext = cipher.map((value, index) =>
+      sign === 'sub'
+        ? mod29(value - key[index])
+        : mod29(value + key[index])
+    );
+    if (plaintext.join(',') === target.join(',')) {
+      p6SeedHits.push({ shell, key, sign });
+    }
+  }
+}
+assert.deepEqual(p6SeedHits, [{
+  shell: [state.K, 0, state.q],
+  key: [state.e, 0, state.a - state.g],
+  sign: 'sub',
+}]);
+
+// Broader same-index calibration: include every three-rune source target and
+// every complete three-rune receiver on its physical same-index page.
+const p6SameIndexHits = [];
+let p6SameIndexReceiverCount = 0;
+for (let index = 0; index < sourceWords.length; index += 1) {
+  const sourceTarget = gp(sourceWords[index]);
+  if (sourceTarget.length !== 3) continue;
+  const receivers = wordsByPage
+    .get(index)
+    .filter((word) => word.values.length === 3);
+  p6SameIndexReceiverCount += receivers.length;
+
+  for (const shell of p6ThreeRuneShells.values()) {
+    const key = H3inv(shell);
+    for (const sign of ['sub', 'add']) {
+      for (const receiver of receivers) {
+        const plaintext = receiver.values.map((value, runeIndex) =>
+          sign === 'sub'
+            ? mod29(value - key[runeIndex])
+            : mod29(value + key[runeIndex])
+        );
+        if (plaintext.join(',') === sourceTarget.join(',')) {
+          p6SameIndexHits.push({
+            index,
+            source: sourceWords[index],
+            start: receiver.start,
+            shell,
+            key,
+            sign,
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(p6SameIndexReceiverCount, 106);
+assert.deepEqual(p6SameIndexHits, [
+  {
+    index: 31,
+    source: 'AND',
+    start: 76,
+    shell: [0, state.q, mod29(-state.e)],
+    key: [13, state.q, 13],
+    sign: 'add',
+  },
+  {
+    index: 32,
+    source: 'YOU',
+    start: 30,
+    shell: [state.K, 0, state.q],
+    key: [state.e, 0, state.a - state.g],
+    sign: 'sub',
+  },
+]);
+
+// The exact successful atom subset is additionally charged without fixing the
+// successful coordinate order: all six permutations, both signs, all complete
+// three-rune words, and all distinct authenticated three-rune source targets.
+const threeRuneTargets = [...new Map(
+  sourceWords
+    .filter((word) => gp(word).length === 3)
+    .map((word) => [word, gp(word)])
+).entries()].map(([word, values]) => ({ word, values }));
+
+const allThreeRuneReceivers = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  for (const word of wordsByPage.get(page)) {
+    if (word.values.length === 3) {
+      allThreeRuneReceivers.push({ page, ...word });
+    }
+  }
+}
+assert.equal(allThreeRuneReceivers.length, 716);
+
+const successfulAtomShells = new Map();
+for (const shell of permutations3([state.K, 0, state.q])) {
+  successfulAtomShells.set(shell.join(','), shell);
+}
+
+const successfulAtomFamilyHits = [];
+for (const shell of successfulAtomShells.values()) {
+  const key = H3inv(shell);
+  for (const sign of ['sub', 'add']) {
+    for (const receiver of allThreeRuneReceivers) {
+      const plaintext = receiver.values.map((value, index) =>
+        sign === 'sub'
+          ? mod29(value - key[index])
+          : mod29(value + key[index])
+      );
+      for (const sourceTarget of threeRuneTargets) {
+        if (plaintext.join(',') === sourceTarget.values.join(',')) {
+          successfulAtomFamilyHits.push({
+            page: receiver.page,
+            start: receiver.start,
+            target: sourceTarget.word,
+            shell,
+            key,
+            sign,
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(
+  successfulAtomShells.size * 2 *
+    allThreeRuneReceivers.length * threeRuneTargets.length,
+  60144
+);
+assert.deepEqual(successfulAtomFamilyHits, [{
+  page: 32,
+  start: 30,
+  target: 'YOU',
+  shell: [state.K, 0, state.q],
+  key: [state.e, 0, state.a - state.g],
+  sign: 'sub',
+}]);
+
+console.log(JSON.stringify({
+  p6Calibration: {
+    titleLengths: p6TitleLengths,
+    HTitleLengths: p6LengthShell,
+    chargedShells: p6ThreeRuneShells.size,
+    p32ReceiverCases: p6ThreeRuneShells.size * 2,
+    p32Hits: p6SeedHits,
+    sameIndexReceiverCount: p6SameIndexReceiverCount,
+    sameIndexCases: p6SameIndexReceiverCount * p6ThreeRuneShells.size * 2,
+    sameIndexHits: p6SameIndexHits,
+    successfulAtomPermutationCases:
+      successfulAtomShells.size * 2 *
+      allThreeRuneReceivers.length * threeRuneTargets.length,
+    successfulAtomPermutationHits: successfulAtomFamilyHits,
+    chronology:
+      'p6 master packet was established before the p32 YOU investigation; the 69-shell three-channel role family is charged after the p32 target was known.',
+  },
+}, null, 2));
