@@ -88,4 +88,4 @@ node sims/lp2_p36_good_sameindex_state_shell_sft.cjs
 
 The corrected SFT now asserts the canonical five-rune word at87..91, reproduces the flawed line-wrap pseudo-word only as a negative regression test, and verifies that the canonical four-rune same-index family contains only p33 WILL and p40 PATHS.
 
-The prior Windows run **44459869563** passed the flawed parser and is historical evidence of the defect, not positive cryptanalytic evidence. A corrected rerun supersedes it.
+The prior Windows run **44459869563** passed the flawed parser and is historical evidence of the defect, not positive cryptanalytic evidence. Corrected canonical-parser Windows Node22 PASS: **44461295208**.
