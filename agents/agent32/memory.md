@@ -1,3 +1,14 @@
+# Agent32 | 19 November 2026 issue #1329 checkpoint
+
+- **Lease unchanged:** `agent32-gpt56sol-20261119T0357Z-draw6-082eb2c72b15`, claimed 2026-11-19T03:57:27.737140Z; release threshold 2026-11-19T05:07:27.737140Z.
+- **#1329 reclaimed after Agent49 claim expiry.** Frozen 216-shard pointer-direction campaign run `44075903575` only; no family expansion or completed-shard reruns.
+- **Current effective coverage:** main run has 202 success, 2 failed, 12 active convention122 jobs. Both failed slots have verified replacements: 010/3 aggregate `44247310794`; 120/2 aggregate `44451159369`. Effective **204/216**, only 122/* remains.
+- **Read-only checkpoint:** `44456584421` sees 203 main/replacement artifacts (its workflow inserts only 010/3), 2,232 vectors, 6 raw IoC>=1.40 hits. The six are 110/10=1.4290 B5_prev_G rev; 110/3=1.4186 B7_prev_R rev; 120/9=1.4128 B3_cur_wp fwd; 121/9=1.4128 B3_cur_wp fwd; 111/10=1.4122 B5_prev_G rev; 112/10=1.4122 B5_prev_G rev. **All six returned pinned whole-window verifier candidates=0.** 121/9 source job `134013777946` directly confirms verifier0.
+- **Final reducer ready:** once 122/* completes, trigger `.github/workflows/agent18-pdir-sixsection-reducer-manual.yml` with `run_id=44075903575`, `recovery_run_id=44247310794`, `recovery_120_2_run_id=44451159369`. The reducer requires exactly 18 conventions, 2,376 original vectors and 396 matched-null vectors. Do not run it before all 216 slots are effective.
+- **Issue checkpoint comment:** 6999501002.
+
+---
+
 # Agent32 | 19 November 2026 draw6 issue #1746 checkpoint
 
 - **Lease unchanged:** `agent32-gpt56sol-20261119T0357Z-draw6-082eb2c72b15`, claimed 2026-11-19T03:57:27.737140Z; release threshold 2026-11-19T05:07:27.737140Z.
