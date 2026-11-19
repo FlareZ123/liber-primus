@@ -192,3 +192,22 @@ New source-selected structural bridge:
 - This strengthens the p0 189..195 receiver and cross-links it to promoted DH23 independently of plaintext labels. It does not resolve THEIR vs PATHS or yield new rune-level plaintext.
 Artifacts: im-results/lp2-p0-andtheir-word-sum-dh-bridge.md and sims/lp2_p0_andtheir_wordsum_dh_bridge_sft.cjs.
 Next high-value gate: use the DH aggregate checkpoint only if a source instruction selects a consumer beyond H^-1->DH; otherwise return to prospectively predicting an untouched receiver/key rather than fitting further word-sum relations.
+
+
+## 2026-11-19 draw1: DH-grid route now selects NUMBERS, local PATHS inverse, VERIFY
+
+High-value continuation from the sealed p0 [3,4] receiver:
+- p0 words42/43 raw sums -> [15,2]=[b,K]=H(D,H). Critic's 69,120-case source-role audit independently fixes b=WORDS=15 and K=PATH=2.
+- Treat [15,2] as zero-based [row,col] in original 32x8 p50 table: address122=1Q. Native low60(Q)=26, exactly authenticated signed word26 NUMBERS.
+- p50[26]=2r. Full base60(2r)=173, independently reselecting logical warning-packet PATHS start p0[173..176].
+- New retrospective local key mechanism: token components 1Q=(hi1,low26), 2r=(hi2,low53 mod29=24). Shell [low0-hi0, low1-hi1, low1, hi1]=[25,22,24,2]. Pairwise H^-1 gives [9,13,18,13], and p0[173..176]-key=[13,24,2,15]=PATHS with exact replay.
+- Charged 256 labeled nearby serializers (248 distinct shells), both signs, nine authenticated 4-rune targets: exactly one hit, the PATHS configuration. Exact serializer over all256 table starts yields only addresses52/122/130, all duplicate 1Q aliases feeding identical state26/2r/receiver173; upstream DH fixes122.
+- Locked transfer: same serializer on next four canonical low-digit pairs produces zero authenticated targets. Keep it local; it is not a common warning-packet scheduler.
+- Canonical low-digit navigation still continues 122->26->53->51->59->9. First authenticated GP0 hit after intermediates is VERIFY=59. Only rival valid p28 H coordinate [14,4] gives 116->54->36->54 = ROAD/PATHS<->FOUND false-path cycle.
+- Charge radix59/60 x high/low x address-origin0/1 x digit-origin0/1: exactly canonical base60/low/zero/zero has selected first source hit VERIFY plus exact rival false-path cycle.
+- VERIFY itself is globally common (190/256 starts eventually reach59;79/256 first vocabulary hit), so evidence is branch structure, not rarity.
+- Existing unique VERIFY reflection invariant p50[59]=19=B plus source-derived g=5 rejoins existing (g,B)->WILL selector without p38 packet. Do not change WILL's candidate classification.
+- PATHS key values [9,13,18,13] index signed source words LIBER/WAY/MAP/WAY; retain only as post-hoc corroborative structure.
+- Broad p50-full-value-to-LP2-offset architecture remains rejected; receiver173 is local because it was independently fixed by warning-packet geometry.
+Artifacts: im-results/lp2-p0-dh-grid-paths-verify-route.md and sims/lp2_p0_dh_grid_paths_verify_route_sft.cjs. Exact branch SFT executed in-tool against repository inputs: PASS.
+Next best gate: look for an independent first-party reason for the exact PATHS shell serializer or a blind transfer on an independently selected new two-token path. Do not retune later pairs after the locked failure.
