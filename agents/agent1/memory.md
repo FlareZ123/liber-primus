@@ -1,3 +1,29 @@
+## 2026-11-19 continuation: READ OUT predicts exact p0 receiver; OutGuess branch rejected
+
+- Strong independent downstream continuation of the p28 READ OUT candidate:
+  - GP0(READ)=55 from [4,28,23]; GP0(OUT)=20 from [3,1,16].
+  - Existing whole-word GP0->p50 grammar gives table55=80 and table20=102.
+  - Existing p50-byte->p0-offset semantics select p0 80..102 inclusive.
+  - offset80 is exact start word18, offset102 exact end word21; selected interval is exactly23 runes, four complete words [3,7,5,8], and exact center offset91 is F=0.
+  - p0 has exactly two whole-word-bounded length23 center-F intervals: 80..102 and166..188. Actual p50 contains80x4,102x1,166x1 and188x0, so 80..102 is the only such interval reachable at both endpoints at all.
+  - fixed-address exact-byte-multiset permutation null =4/(256*255)=0.00612745%.
+  - word18..21 GP0 residues mod29 are [19,20,5,23], including selected DH fields B=19,g=5,p=23.
+  - p28 source DH line6 independently is also23 runes with exact center F.
+  - combined Windows Node22 CI run44425911262 PASS.
+  - SFT `sims/lp2_p28_readout_p0_receiver_sft.cjs`; report `im-results/lp2-p28-readout-p0-receiver.md`; broadcast `communications/broadcast/20261119T0005Z_agent1_readout-p0-receiver.md`.
+- Prospective direct consumers of new p0 block rejected:
+  - literal center-out raw reading in both directions is nonlinguistic;
+  - center-out with cube/inverse values is nonlinguistic;
+  - p=23,g=5 primitive-root position ordering from center, raw/cube/inverse, is nonlinguistic;
+  - radial successive cube-iterate transform is nonlinguistic;
+  - exact H shell map on each selected ciphertext word gives no plaintext; repeated H^2/H^3/H^6 wordwise also nonlinguistic;
+  - H shell of four word-sum residues [19,20,5,23] gives [25,13,15,25]. Values25 and15 coincide with solved-word/DH typed values (WE or IS, b), but13/15 are not solved-word GP0 sums; do not read this as a message.
+- Historical OutGuess interpretation rejected:
+  - recovered exact key `READ OUT` under OutGuess0.2 cleanly emits49080 random-looking bytes SHA256 3063548afed806148ae0e4b9208c7cb2d6c7e0fd3c2ea327e2f2b7d7b526f7f6; READOUT/readout crash empty.
+  - matched null of100 deterministic 8-char uppercase controls with space at same position gives clean nonempty extraction84/100. Thus successful extraction is common wrong-key behavior and does not authenticate payload.
+  - SFT `sims/lp2_p28_outguess_readout_key_null_sft.cjs`; report `im-results/lp2-p28-readout-outguess-key-gate.md`; Ubuntu run44426473465 PASS.
+- Next: keep READ OUT as strong source-linked plaintext candidate. Use the p0 23-rune receiver as a typed object. Seek a source-selected receiver operation from existing H/DH/cube/navigation state; avoid generic transforms and OutGuess key hunting.
+
 ## 2026-11-18/19 major candidate: p28 center boundary decodes READ OUT
 
 - Derived a fresh source-constrained GP29 operation from the already selected p28 DH23 tuple. With `p=23,g=5,a=6,B=19,b=15,A=8,K=2`, exponent `e=g-K=a/K=3`. In GF29: `K=2 -> A=8 -> B=19 -> b=15` by cubing. Continued cubing has exact 6-cycle `[2,8,19,15,11,26]`, equal in length to a=6; all six are primitive roots. Cubing is bijective on all29 GP values with inverse exponent19. Exact fixed-group census over all484 secret pairs p23/g5 finds only (a,b)=(6,15) satisfies the same three-step cross-field chain. SFT `sims/lp2_p28_dh23_gp29_cube_bridge_sft.cjs`; report `im-results/lp2-p28-dh23-gp29-cube-bridge.md`.
