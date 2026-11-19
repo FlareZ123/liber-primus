@@ -198,6 +198,8 @@ const dhModulus = 23;
 const tableWidth = 8;
 const dhGenerator = 5;
 const dhShared = 2;
+const inverseExponent = 3;
+const publicA = 8;
 const root189 = dhModulus * tableWidth + dhGenerator;
 assert.equal(root189, 189);
 assert.equal(emergeBase59.at(-1), root189);
@@ -235,6 +237,65 @@ assert.equal(word("WE").position, 9);
 assert.equal(word("MUST").position, 10);
 assert.equal(shed.position, 11);
 assert.equal(emerge.position, 20);
+
+// The six-edge EMERGE walk visits seven distinct table columns and leaves
+// exactly e=3 unvisited. The SURFACE cell is the same 3C token in that
+// missing column, so adding SURFACE completes all eight columns exactly once.
+const emergeColumns = emergeBase59.map((address) => address % tableWidth);
+assert.equal(new Set(emergeColumns).size, 7);
+const missingEmergeColumns = Array.from(
+  { length: tableWidth },
+  (_, value) => value
+).filter((value) => !emergeColumns.includes(value));
+assert.deepEqual(missingEmergeColumns, [inverseExponent]);
+assert.equal(surface.gp0 % tableWidth, inverseExponent);
+assert.deepEqual(
+  [...emergeColumns, surface.gp0 % tableWidth].sort((a, b) => a - b),
+  [0, 1, 2, 3, 4, 5, 6, 7]
+);
+
+// Charge this column-completion property against every six-rune word in the
+// complete pinned solved GP-native corpus. Only the prime-sum collision class
+// EMERGE/INSIDE reproduces the seven-column walk, missing e, at the fixed root.
+const solvedSixRuneColumnHits = [];
+let solvedSixRuneCount = 0;
+for (const section of solved.sections) {
+  const sectionWords = runeWords(section.source_text);
+  sectionWords.forEach((values, index) => {
+    if (values.length !== emerge.length) return;
+    solvedSixRuneCount += 1;
+    const start = gpPrime(values) % tokens.length;
+    const candidatePath = walk(start, alphabet59, values.length);
+    const columns = candidatePath.map((address) => address % tableWidth);
+    const uniqueColumns = new Set(columns);
+    const missing = Array.from(
+      { length: tableWidth },
+      (_, value) => value
+    ).filter((value) => !uniqueColumns.has(value));
+    const end = candidatePath.at(-1);
+    if (
+      uniqueColumns.size === 7 &&
+      missing.length === 1 &&
+      missing[0] === inverseExponent &&
+      decode(tokens[end], alphabet59) === end
+    ) {
+      solvedSixRuneColumnHits.push({
+        section: section.name,
+        position: index + 1,
+        text: translit(values),
+        start,
+        end,
+      });
+    }
+  });
+}
+assert.equal(solvedSixRuneCount, 65);
+assert.deepEqual(solvedSixRuneColumnHits, [
+  { section: "0_welcome", position: 95, text: "EMERGE", start: 44, end: 189 },
+  { section: "jpg107-167", position: 38, text: "INSIDE", start: 44, end: 189 },
+  { section: "jpg229", position: 8, text: "INSIDE", start: 44, end: 189 },
+  { section: "p57_parable", position: 20, text: "EMERGE", start: 44, end: 189 },
+]);
 
 // Candidate EMERGE state reset: restoring the uniquely shed f restores base60.
 // Two steps, fixed upstream as the DH shared value, reach zero.
@@ -292,8 +353,6 @@ assert.deepEqual(rootTokenCopies, [
   { address: 247, row: 30, col: 7 },
 ]);
 
-const inverseExponent = 3;
-const publicA = 8;
 const stateColumns = [dhShared, inverseExponent, dhGenerator, dhGenerator + dhShared]
   .sort((a, b) => a - b);
 assert.deepEqual(
@@ -402,6 +461,10 @@ console.log(JSON.stringify({
     base59: decode(tokens[surface.gp0], alphabet59),
     base60: decode(tokens[surface.gp0], alphabet60),
     p57RootTokenWords,
+    emergeColumns,
+    missingEmergeColumns,
+    solvedSixRuneCount,
+    solvedSixRuneColumnHits,
     rootTokenCopies,
     stateColumnTokenClasses,
     rootCopySourceRows,
