@@ -194,11 +194,6 @@ const statePool = Object.freeze({
   zero: 0,
   one: 1,
 });
-const lineAtP = Object.freeze({
-  HEREp: 26,
-  DHp: 20,
-});
-
 // Required subtraction key for the independently assigned PATHS target.
 const cipher = p40StateMatches[0].values;
 const target = signed[40].values;
@@ -212,7 +207,7 @@ const exactShell = [
   mod29(-primaryDh.b),
   primaryDh.A,
   statePool.e,
-  lineAtP.HEREp,
+  mod29(-statePool.e),
 ];
 assert.deepEqual(exactShell, [14, 8, 3, 26]);
 assert.deepEqual(hInverse(exactShell), requiredKey);
@@ -253,21 +248,28 @@ assert.deepEqual(sourceShellWindow, [{
   redSpanLengths: [8],
 }]);
 
-// Retrospective family charge: [-v, x, y, LINE[p]].
+// Retrospective shared-shell charge: [x,A,y,-y].
+// x may be either sign of an authenticated state value; y is one
+// authenticated state value. This family is shared with the p33 WILL audit.
+const stateValues = Object.values({
+  ...primaryDh,
+  e: statePool.e,
+  q: statePool.q,
+});
+const xValues = [...new Set(
+  stateValues.flatMap((value) => [value, mod29(-value)])
+)];
+const yValues = [...new Set(stateValues)];
 const shellFamily = [];
-for (const [vName, v] of Object.entries(primaryDh)) {
-  for (const [xName, x] of Object.entries(statePool)) {
-    for (const [yName, y] of Object.entries(statePool)) {
-      for (const [lineName, line] of Object.entries(lineAtP)) {
-        shellFamily.push({
-          name: "[-" + vName + "," + xName + "," + yName + "," + lineName + "]",
-          shell: [mod29(-v), x, y, line],
-        });
-      }
-    }
+for (const x of xValues) {
+  for (const y of yValues) {
+    shellFamily.push({
+      name: "[" + x + ",A," + y + ",-" + y + "]",
+      shell: [x, primaryDh.A, y, mod29(-y)],
+    });
   }
 }
-assert.equal(shellFamily.length, 1694);
+assert.equal(shellFamily.length, 144);
 
 const p40FourRuneWords = words.filter((word) =>
   word.startPage === 40 &&
@@ -321,7 +323,7 @@ assert.deepEqual(localFamilyHits, [{
   direction: "sub",
   key: [20, 20, 12, 6],
   shell: [14, 8, 3, 26],
-  fits: ["[-b,A,e,HEREp]"],
+  fits: ["[14,A,3,-3]"],
 }]);
 
 // Manuscript-wide exact-key charge.
@@ -380,16 +382,20 @@ console.log(JSON.stringify({
     target,
     key: requiredKey,
     keyShell: h(requiredKey),
-    shellLabels: "[-b,A,e,HERE[p]]",
+    shellLabels: "[-b,A,e,-e]",
   },
   sourceMagnitudeControl: {
     bLengthThreeWordWindows: bLengthWindows,
     uniqueAEndpoint: sourceShellWindow[0],
-    shellMagnitudes: [primaryDh.b, primaryDh.A, statePool.e, lineAtP.HEREp],
-    caveat: "The negative sign on b and serialization were recognized after the PATHS inverse.",
+    shellMagnitudes: [primaryDh.b, primaryDh.A, statePool.e, statePool.e],
+    shell: exactShell,
+    caveat: "The outer negative signs and serialization were recognized after the PATHS inverse.",
   },
   retrospectiveFamily: {
     configurations: shellFamily.length,
+    template: "[x,A,y,-y]",
+    xValues,
+    yValues,
     p40FourRuneWords: p40FourRuneWords.length,
     authenticatedTargets: distinctTargets.length,
     directions: 2,
@@ -400,5 +406,5 @@ console.log(JSON.stringify({
     hits: exactKeyHits,
   },
   classification:
-    "Strong local PATHS plaintext candidate. Target/page/receiver come from signed index40 plus unique p40 length4/GP0=54 state; the compact H-shell family was recognized afterward and is charged retrospectively.",
+    "Strong local PATHS candidate. Target/page/receiver come from signed index40 plus unique p40 length4/GP0=54 state; p40 shell [-b,A,e,-e] is independent of HERE, while the shared [x,A,y,-y] serialization remains retrospective.",
 }, null, 2));
