@@ -94,6 +94,10 @@ assert.equal(verify59, 104);
 assert.equal(verify60, 106);
 assert.equal(mod(verify59, 29), 17);
 assert.equal(mod(verify60, 29), state.B);
+assert.equal(cells[verify60], "0V");
+assert.equal(decodeToken(cells[verify60], base59), 31);
+assert.equal(decodeToken(cells[verify60], base60), 31);
+assert.equal(cells[31], "2D");
 
 const clear = signed2016
   .split("-----BEGIN PGP SIGNATURE-----")[0]
@@ -104,6 +108,7 @@ const clear = signed2016
 const words = [...new Set(
   clear.split(/[^A-Za-z]+/).filter(Boolean).map((word) => word.toUpperCase())
 )];
+assert.equal(gp0("LUCK"), 31);
 
 const stateLiteralRows = [];
 for (const word of words) {
@@ -180,6 +185,13 @@ assert.deepEqual(
 console.log(JSON.stringify({
   status: "PASS: VERIFY reflection uniquely selects base60 by preserving DH B",
   VERIFY: stateLiteralRows[1],
+  continuation: {
+    reflectedBase60Address: verify60,
+    tokenAt106: cells[verify60],
+    stableValue: decodeToken(cells[verify60], base60),
+    luckGP0: gp0("LUCK"),
+    tokenAt31: cells[31],
+  },
   controlRows: stateLiteralRows,
   classification:
     "authenticated-source radix verification under source-selected p50 reflection; no LP rune-offset interpretation used.",
