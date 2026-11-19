@@ -1,6 +1,6 @@
 # The solved circumference instruction yields a source-selected LP2 page route
 
-**Agent45, 19 November 2026. Classification: source-selected navigation and DH/H state mechanism. The route supplies the exact `[3,27]` parameter pair used by the preferred p28 READ OUT inverse. The remaining READ OUT caveat is the operator-class choice of separate GP29 modular powers.**
+**Agent45, 19 November 2026. Classification: source-selected navigation and DH/H state mechanism. The route supplies the exact `[3,27]` parameter pair used by the preferred p28 READ OUT inverse. A separately selected p39 circumference also supplies the numeric READ OUT output coordinates `[55,20]`. Authenticated 2016 source material now selects the GP29 cube operator itself; the main remaining p28-local premise is assigning the fixed power pair separately to the exact center singleton and adjacent five-rune word.**
 
 ## Fixed upstream state
 
@@ -235,28 +235,113 @@ The combined p27 length and nested count packet is unique among annotated red sp
 
 This gives a source path to the p27 `H(19,13)=[a,e]` relation that had previously served only as post-discovery corroboration for the p28 cube exponent.
 
-## 8. Relation to the p28 READ OUT candidate
+## 8. The selected circumferences encode FIND, then p39 supplies READ OUT coordinates
 
-The p28 center-plus-word object was selected independently by its page geometry and DH line. Its preferred exact inverse applies exponent3 to the center rune and exponent27, the GP29 reciprocal exponent, to the following five-rune word:
+The two independently selected 21-word route bodies have a second exact interpretation under the solved instruction.
 
-```text
-[9] + [28,24,10,1,20]
-  -> exponent [3] + [27,27,27,27,27]
-  -> [4,28,23,3,1,16]
-  -> READ OUT.
-```
-
-Before this circumference route, p28 itself supplied the same numerical pair through period count3 and page-minus-one27, while the remaining open gate was why separate GP29 power maps should be the operation.
-
-The new route supplies **the same pair from an external, source-selected chain**:
+For p33 first body:
 
 ```text
-p53 first red pair through H -> e=3
-p53 one circumference shed   -> 27=-K mod29
-p53 -> p27 target             -> H(first2)=[a,e].
+81 total runes
+39 interior runes after one shed
+42 outer runes removed.
 ```
 
-This materially strengthens the parameters and their source provenance. The route still does not contain an explicit first-party sentence saying “raise these GP29 values to these powers.” P28's literal DH marker, prime modulus29, reversible exponentiation, and the independently repeated `[3,27]` packet make that operator increasingly economical, while the operator-class caveat should remain stated until a fresh source consequence specifically requires it.
+For the matched p3 body:
+
+```text
+95 total runes
+53 interior runes after one shed
+42 outer runes removed.
+```
+
+Canonical GP gives `GP0(FIND)=42`. Across all 15 red-started bodies, p33 local0 and p3 local119 are the only bodies with a one-layer outer circumference of exactly42 runes. Their interiors independently point to p39 and p53.
+
+This gives a concrete mechanical reading of the next solved clause:
+
+```text
+FIND THE DIUINITY WITHIN
+outer amount = FIND = 42
+inner amount = next page pointer.
+```
+
+No claim is made that the removed rune sequence itself spells FIND.
+
+On independently selected p39, apply the already frozen forward H to each word's outer circumference. Preserve a one-rune center. The complete transformed outer stream has:
+
+```text
+length = 55
+GP0 sum mod29 = 20.
+```
+
+Across all 15 red-started bodies, p39 local119 alone has the ordered statistic `[55,20]`.
+
+Only after the numeric pair is obtained do the values correspond to:
+
+```text
+GP0(READ)=55
+GP0(OUT)=20.
+```
+
+The dedicated report and SFT charge this pair against the p28 family:
+`im-results/lp2-p39-outer-readout-selector.md` and
+`sims/lp2_p39_outer_readout_selector_sft.cjs`.
+
+## 9. P39's numeric pair selects the p28 raw output without language
+
+The p28 center-plus-word object is independently fixed:
+
+```text
+[9] + [28,24,10,1,20].
+```
+
+Charge every reversible uniform GP29 power pair, both orientations and all five internal output cuts:
+
+```text
+12 center exponents
+* 12 word exponents
+* 2 orientations
+* 5 cuts
+= 1,440 numeric configurations.
+```
+
+Retain only outputs whose left raw GP0 is55 and whose right raw GP0 is20, using the p39 pair above. Exactly two parameter tuples survive:
+
+```text
+(3,27),  forward, cut3
+(17,27), forward, cut3.
+```
+
+Both yield the identical raw six-rune output:
+
+```text
+[4,28,23] | [3,1,16].
+```
+
+The alias is value-specific because source center rune9 has the same image under exponents3 and17. The authenticated state fixes `e=3`, leaving the intended parameter tuple `(3,27)`.
+
+Only after this numeric selection does the raw output transliterate as:
+
+```text
+READ | OUT.
+```
+
+This selector does not use the p50 low-digit transition. That distinction matters because a separate blind GOOD to LUCK gate rejected general promotion of the low-digit rule as a universal navigation opcode.
+
+## 10. Relation to the p28 mechanism
+
+Authenticated 2016 word positions now independently select the GP29 cube map `x -> x^3 mod29`. The circumference route independently supplies the ordered p28 parameter pair:
+
+```text
+p53 H(first2) -> e=3
+p53 first shed -> 27=-K mod29.
+```
+
+P39 separately supplies the output coordinates `[55,20]` that select the exact raw READ OUT sequence across all1,440 reversible power/orientation/cut configurations.
+
+The remaining p28-local premise has therefore narrowed further. The unresolved question is why the fixed source-selected pair should be assigned separately to the exact center singleton and adjacent one-based five-rune word. P28's unique center-plus-word geometry and literal DH line are the strongest local selectors for that split.
+
+The chronology remains explicit: p53/p27 and p39 circumference corroborations were recognized after READ OUT was known. They materially compress the intended route and operator parameters, while a fresh source consequence of the separate two-operand application would provide the cleanest prospective promotion.
 
 ## Full red-body control
 
@@ -300,15 +385,19 @@ solved p57 “WE MUST SHED OUR OWN CIRCUMFERENCES”
     -> p27 held-out DH/H state register
 ```
 
-The next useful test should exploit this route to choose a receiver or operation before reading new ciphertext values. It should especially test whether the p53/p27 parameter packet can prospectively distinguish GP29 exponentiation from other reversible operators, rather than adding another free cipher layer.
+The next useful test should exploit this route to choose a receiver before reading new ciphertext values, or prospectively distinguish the p28 center/word split from other placements of the already selected `[3,27]` power pair. Broad low-digit routing and arbitrary cipher layering should remain retired absent a new source selector.
 
 ## Reproduction
 
 - SFT: `sims/lp2_shed_circumferences_page_pointer_sft.cjs`
-- Windows workflow: `.github/workflows/agent45-shed-circumferences-page-pointer.yml`
+- Historical Windows workflow: `.github/workflows/agent45-shed-circumferences-page-pointer.yml`
 - Windows Node22 PASS through p27 holdout: https://github.com/FlareZ123/liber-primus/actions/runs/44454465089
 - Solved p57 source: `resources/external/relikd-solved-gp29-native-v1.json`
 - Authenticated 2016 source: `resources/historical/cicada2016-4gq25-outguess.asc`
 - Physical transcription: `resources/liber-primus/lp2-transcription.txt`
 - Ink annotations: `resources/liber-primus/lp2-ink-annotations.json`
 - P50 table: `resources/liber-primus/base60-grid.json`
+- P39 READ OUT selector: `im-results/lp2-p39-outer-readout-selector.md`
+- P39 selector SFT: `sims/lp2_p39_outer_readout_selector_sft.cjs`
+- P39 selector Windows PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44455229537
+- Use the repository generic Node22 manual runner for future ordinary CommonJS SFTs; the experiment-specific workflows above are retained only for historical run provenance.
