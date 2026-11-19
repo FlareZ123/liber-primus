@@ -190,14 +190,22 @@ assert.deepEqual(cycleModes, [{
   cycles: [[36, 54]],
 }]);
 
-// Stronger authenticated relation route. The clue sentence explicitly relates
-// WORDS/MAP, MEANING/ROAD and NUMBERS/DIRECTION. Charge those three pairs
-// across the same 16 modes. A hit requires the two nouns to converge after one
-// pointer step and the shared pre-cycle path to contain FIND(42) -> p28.
+// Stronger authenticated relation route. Charge ten obvious semantic pairs
+// from the signed source, including the three parallel noun relations
+// WORDS/MAP, MEANING/ROAD and NUMBERS/DIRECTION, across the same 16 modes.
+// A hit requires the two source terms to converge after one pointer step and
+// the shared pre-cycle path to contain FIND(42) -> p28.
 const relationPairs = [
+  ["PATH", "EMPTY"],
+  ["EPIPHANY", "DEVOTED"],
+  ["LIBERPRIMUS", "WAY"],
   ["WORDS", "MAP"],
   ["MEANING", "ROAD"],
   ["NUMBERS", "DIRECTION"],
+  ["SEEK", "FOUND"],
+  ["GOOD", "LUCK"],
+  ["FALSE", "PATHS"],
+  ["VERIFY", "OPENPGP"],
 ];
 
 function stepForMode(mode, state) {
