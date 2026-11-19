@@ -52,7 +52,9 @@ Established computationally from the canonical corpus and table:
 - Under base59 they decode to 79 and 100, which do not delimit that block.
 - The 23-rune length matches the p28 DH prime.
 
-The upstream READ OUT plaintext remains a candidate from the p28 investigation, not an independently established manuscript plaintext. The receiver selection does not decrypt the 23 runes. Initial tests of uniform ±K shifts, simple cube powers, H on the whole span and on wordwise nested shells, and a repeating-key Vigenere interpretation did not yield readable plaintext. These negative tests do not exclude a different DH-derived reversible operation or the possibility that the block is key material rather than plaintext.
+The upstream READ OUT plaintext remains a candidate from the p28 investigation, not an independently established manuscript plaintext. The receiver selection does not decrypt the 23 runes. Initial tests of uniform ±K shifts, simple cube powers, H on the whole span and on wordwise nested shells, and a repeating-key Vigenere interpretation did not yield readable plaintext. A later direct transfer of the source-supported p28 power roles also fails: the receiver's sole F is its center, so cube3 can be applied to that singleton and exponent27 is a genuine multiplicative reciprocal on all 22 outer runes; the fixed output is `EWSOWJIASNCMFEGHSDYOEOXM`, or `EWS / OWJIASNC / MFEGH / SDYOEOXM` at the preserved word boundaries. These negative tests do not exclude a different DH-derived reversible operation or the possibility that the block is key material rather than plaintext.
+
+See `lp2-readout-p0-center-reciprocal-transfer-gate.md` for the exact transfer and standalone reproducer.
 
 ## Next decisive question
 
