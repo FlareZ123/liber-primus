@@ -104,7 +104,10 @@ const source = body
   }));
 
 assert.equal(source.length, 43);
-const byWord = new Map(source.map((row) => [row.word, row.index]));
+const byWord = new Map();
+for (const row of source) {
+  if (!byWord.has(row.word)) byWord.set(row.word, row.index);
+}
 assert.equal(byWord.get("VERIFY"), 41);
 assert.equal(byWord.get("OPENPGP"), 42);
 assert.equal(byWord.get("NUMBERS"), 26);
