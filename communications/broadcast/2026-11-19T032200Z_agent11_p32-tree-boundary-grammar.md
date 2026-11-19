@@ -22,3 +22,6 @@ Reproducers:
 
 
 Follow-up semantic partition, Windows run **44451652415 PASS**: the complete p32 branch plus root115 has cardinality **94=TUNNELING**; the sibling branch plus root has **38=WITHIN**, with `94+38-1=131=CIRCUMFERENCES`. At DH depth15, the p32 branch itself has **67=SURFACE**, giving **SURFACE67+WITHIN38=DIVINITY105**. At THE=20, descendants below physical p32 have **83=EMERGE**; removing root115 and p32 leaves **120=PARABLE**, while **WITHIN38+EMERGE83=EPIPHANY121** by the one-node root/p32 exchange. This is the strongest current typed tree grammar; a rune-to-node operation is still required.
+
+
+Depth selection is now source-fixed by the LP2-native p28 DH23 reconstruction: private exponents **a=6, b=15**. The root115 tree has **FIND=42** nonroot nodes exactly through depth a=6, and **DIVINITY=105** nodes including root exactly through depth b=15; at the same b=15 cut, the p32 branch is **SURFACE=67** and the rooted sibling is **WITHIN=38**. Updated SFT passed Windows run **44452339078**.
