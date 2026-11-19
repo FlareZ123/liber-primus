@@ -196,3 +196,4 @@ Preserve this as a **strong post-receiver state/navigation compression** consist
 
 - `sims/lp2_their_state80_will_found_bridge_sft.cjs`
 - Windows Node22 workflow: `.github/workflows/agent22-their-state80-will-found.yml`
+- PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44442116235
