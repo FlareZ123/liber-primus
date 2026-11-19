@@ -64,9 +64,45 @@ There are 57 rune-bearing physical page terminals. P28 is the only terminal with
 
 These counts use source geometry only. They do not search alternative serializers, offsets, cipher signs or rune values.
 
+## THERE is the unique unknown-page terminal self-pointer
+
+The `THERE` suffix also has a typed numerical consequence under the already established p57/p50 register:
+
+```text
+GP0(THERE)
+= TH + E + R + E
+= 2 + 18 + 4 + 18
+= 42.
+
+p50[42] = 0S
+native base60(0S) = 28
+```
+
+This is exactly the same p50 address used by solved-p57 `FIND`, because `GP0(FIND)=42`. The fixed solved-page route therefore reads
+
+```text
+FIND  -> address42 -> p28
+THERE -> address42 -> p28
+```
+
+The hidden terminal word does more than resemble an instruction: under a pre-existing source register it points back to the physical page on which it occurs.
+
+Charge the same rule without language over every unknown physical page p0–p55: take the **last four printed words of the page terminal**, serialize their lengths with fixed T, sum the resulting GP29 values to a p50 address, read the native-base60 byte, and ask whether that byte equals the source physical page. Among every terminal with at least four words, there is exactly one self-pointer:
+
+```text
+p28 terminal last four lengths [2,8,3,8]
+  T -> THERE
+  GP0 -> 42
+  p50[42] -> 28.
+```
+
+No other unknown-page terminal last-four vector self-addresses its page under this frozen stack. This control is stronger than the bare lexical uniqueness because the acceptance criterion is numerical and language-free.
+
+Chronology still matters. `THERE` was noticed before this self-pointer census was run, so the self-pointer is a post-discovery cross-operation validation rather than a blind plaintext prediction. The p50 register itself predates this observation and was held out from the cardinal scan.
+
 ## Relation to the local p28 evidence
 
-The p28 page already has a separately recovered, post-discovery local marker **HERE** at its first line under the fixed outer-H readout. The terminal cardinal readout supplies **THERE** at the opposite page boundary under a different independently established operation.
+The p28 page already has a separately recovered, post-discovery local marker **HERE** at its first line under the fixed outer-H readout. The terminal cardinal readout supplies **THERE** at the opposite page boundary under a different independently established operation, and THERE independently closes back onto p28 through the solved-p57 p50 pointer register.
 
 That HERE/THERE opposition is structurally suggestive, especially because the center-derived p28 candidate is **READ OUT**. Chronology matters:
 
