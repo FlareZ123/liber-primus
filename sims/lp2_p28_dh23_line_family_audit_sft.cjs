@@ -299,7 +299,7 @@ console.log(JSON.stringify({
     physicalLines: allLines.length,
     naturalPrimitiveRootDhRows: naturalDhRows.length,
     exactTargetTupleRows: exactNaturalTupleRows,
-    targetTupleMultisetRows,
+    targetTupleMultisetRows: targetMultisetRows,
     uniqueLiteralDhLines: dhFragmentLines,
     twoRuneFirstFragmentLines: twoRuneFragmentLines.length,
     exactLengthStratifiedDhNull: lengthStratifiedDhNull,
