@@ -108,3 +108,5 @@ Run:
 `node sims/lp2_p50_rune_offset_output_type_gate_sft.cjs`
 
 The SFT uses only solved p56/p57 plaintext coordinates, the original p50 table, the authenticated 2016 signed message, and preserved 2014 participant source material.
+
+Windows / Node.js 22 reproduction passed in Actions run [44432731952](https://github.com/FlareZ123/liber-primus/actions/runs/44432731952).
