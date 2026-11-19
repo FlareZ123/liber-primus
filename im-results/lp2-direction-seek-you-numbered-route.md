@@ -138,6 +138,34 @@ This exact ordered packet also occurs once among all 731 canonical three-rune wo
 
 These two objects were selected by source number before their state decompositions were assigned.
 
+## SEEK AND numerically reads THE ROAD
+
+The same two packets have a second source-native interpretation using the independently fixed zero-based signed-word positions. Treat each GP rune value in the selected numbered object as an index into the authenticated 43-word source.
+
+```text
+SEEK31 -> p30 word31 [22,12,22]
+         source[22], source[12], source[22]
+         THE THE THE
+
+AND32  -> p31 word32 [12,23,1]
+         source[12], source[23], source[1]
+         THE ROAD THE
+```
+
+The shared outer lexical value leaves the center transition `THE -> ROAD`, so the consecutive instruction words **SEEK AND** expose **THE ROAD** through their numbered manuscript objects.
+
+Charge the complete diagonal family: inspect every consecutive pair among the 43 numbered objects, require both objects to have exactly three runes, then require the first lexicalized object to be `[X,X,X]` and the next to be `[X,Y,X]` with `Y != X`. Under the independently established zero-based source convention there is exactly one hit:
+
+```text
+SEEK31 -> AND32
+THE THE THE -> THE ROAD THE
+extracted = THE ROAD
+```
+
+Under one-based source indexing the complete family has zero hits. The alternate origin reads these local objects as `IS IS IS` and `IS THE HELLO`, which does not satisfy the frozen transition.
+
+This is a direct source-number readout of authenticated **THE ROAD** and links the numbered route to the existing THE ROAD number-direction branch. The lexical interpretation was recognized after the SEEK/AND packets were available, so retain it as structural route evidence.
+
 ## YOU33 is the sole missing direct coordinate
 
 The next source word is:
@@ -231,10 +259,13 @@ READ OUT THE
 SEEK31
  -> page31 / word31
  -> [p-1,K*a,p-1]
+ -> source indices THE THE THE
 
 AND32
  -> page32 / word32
  -> [K*a,p,1]
+ -> source indices THE ROAD THE
+ -> unique diagonal lexical transition extracts THE ROAD
 
 YOU33
  -> page33 has only p-1=22 words
@@ -257,6 +288,7 @@ Strong points:
 - source numbering is fixed before manuscript values are inspected;
 - DIRECTION30 independently supplies the exact group order used later;
 - the direct diagonal has one missing coordinate across all 43 source words;
+- consecutive SEEK/AND numbered objects uniquely realize `THE THE THE -> THE ROAD THE` under the fixed zero-based source indexing, extracting authenticated `THE ROAD`;
 - that sole missing word is YOU;
 - its page has exactly the recovered group-order number of words;
 - the single natural one-based wrap lands on a manuscript-unique compact state packet;
