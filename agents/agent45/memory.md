@@ -111,3 +111,14 @@ The shared source has a genuine solved **p15 numerical 4x4 Fibonacci-indexed pri
 - Prospective precommit before opening cells: p33 `THEIR RISE=81`, p33 rune count214, independent RISE destination p35 -> predict `[35,81,214]` one duplicate token class. Reveal: p50[35]=0d, p50[81]=0w, p50[214]=4B; all differ. Transfer fails.
 - Decision: retain 2U triple only as sparse corroborative p23/p28 structure. Do not promote duplicate-token identity as alias/navigation opcode or mine more classes absent a new source selector.
 - Artifacts: `im-results/lp2-p23-p28-2u-alias-family-holdout.md`; `sims/lp2_p23_p28_2u_alias_family_sft.cjs`.
+
+
+## 2026-11-19 independent checkpoint: p21 IS word-ordinal source key
+
+- With all executable Director tasks claimed/blocked, independent exploration targeted the only unresolved member of the seven-page same-index `(GP length, GP0)` receiver class: p21 IS.
+- Frozen receiver: authenticated index21 IS -> physical p21 -> unique length2/GP0=25 word at offsets170..171, C=[24,1], zero-based printed ordinal33. Raw H shell [23,25]=[p,p+K]; raw packet and shell each occur once among 465 complete two-rune unknown words.
+- New exact key selector: receiver ordinal33 -> authenticated source word33 WILL -> GP0(WILL)=57 ≡28 mod29 -> H^-1([28,0])=[14,15] -> subtract -> IS=[10,15].
+- Complete same-index receiver family, charging zero/one-based receiver ordinals and both signs, has 28 executable configurations and exactly two target hits: p21 IS and independently known p34 BE. P34 ordinal2 -> PATH, GP0(PATH)=39≡10, H^-1([10,0])=[5,24], addition = subtraction by [24,5], exactly the earlier THEIR-RISE p34 key.
+- Fixed p21 key alone has five lexical hits in 2790 two-rune manuscript/target/sign configurations, so receiver and ordinal source selection are essential.
+- Preserve p21 IS as a strong local candidate. No untouched equal-type receiver remains; do not widen to arbitrary words or modulo source indices.
+- Artifacts: im-results/lp2-p21-is-wordordinal-sourcekey.md; sims/lp2_p21_is_wordordinal_sourcekey_sft.cjs.
