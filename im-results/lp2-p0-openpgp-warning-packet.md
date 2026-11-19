@@ -175,6 +175,30 @@ The candidate packet content is:
 
 The authenticated word **FALSE** is not claimed as recovered plaintext. Its useful clue-level interpretation is operational: the PATHS candidate is obtained only by rejecting the visible internal 3+1 word boundary and reading the four runes as one segment. This is precisely the sort of human-facing warning suggested by “beware false paths,” but that interpretation remains a hypothesis.
 
+## Direction-cycle key for OPENPGP (Agent25)
+
+A later cross-source result now supplies the complete OPENPGP segment key from the frozen authenticated-word direction graph instead of the earlier target-fitted coordinate expression.
+
+The graph rule `s_i = low60(p50[i]) - i - GP_length(word_i) mod29` has exactly two cycles on the first 29 authenticated words:
+
+```text
+HELLO -> MAP -> ROAD -> HELLO
+THE   -> SEEKS -> AND -> THE
+```
+
+Their untouched p50 low digits are respectively `[23,15,27]=[p,b,-K]` and `[1,6,20]=[a-g,a,p-e]`. Using the already frozen H orientation and the p28 source exponent `e=3` gives:
+
+```text
+[H(p,-K), b] || [p-e, a, a^e, a-g]
+= [25,21,15,20,6,13,1]
+```
+
+which is exactly the published OPENPGP H shell. Its H inverse is the exact key `[23,3,24,1,18,17,27]`.
+
+Across the 256 nearby direction-graph arithmetic/length conventions, only the two algebraically identical source modes preserve both semantic cycles; the canonical zero-origin form alone preserves the raw state labels. Charging 288 nearby H/cube serializations leaves one exact shell. Windows Node22 workflow **44448342113** passes the reproducer.
+
+This materially upgrades **OPENPGP only**. The same derived key fails a pre-existing independent seven-rune NUMBERS receiver at p0 offsets228..234, so it is not yet a reusable seven-rune packet key. PATHS, VERIFY and BEWARE still lack a common source-selected scheduler. See [direction-cycle key report](lp2-openpgp-direction-cycle-key.md) and `sims/lp2_openpgp_direction_cycles_key_sft.cjs`.
+
 ## OPENPGP at packet start
 
 Original ciphertext:
