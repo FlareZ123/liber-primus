@@ -216,4 +216,4 @@ Run:
 node sims/lp2_signed2016_gp0_collision_dh_state_sft.cjs
 ```
 
-The SFT reconstructs GP29 word numbers from the authenticated 2016 source, enumerates the complete repeated-word and distinct-GP0 collision families, charges all 672 DH role assignments, proves uniqueness of the exact state closure, verifies the state-indexed clue block and WORDS/THEIR/ROAD anchors, and runs the one-million-control exact-token-multiset positional calibration. Windows / Node.js 22 run 44451118583 passed the initial collision/null version; rerun the current SFT after the semantic-index assertions were added.
+The SFT reconstructs GP29 word numbers from the authenticated 2016 source, enumerates the complete repeated-word and distinct-GP0 collision families, charges all 672 DH role assignments, proves uniqueness of the exact state closure, verifies the state-indexed clue block and WORDS/THEIR/ROAD anchors, and runs the one-million-control exact-token-multiset positional calibration. Windows / Node.js 22 run **44451466805** passed the complete collision, null, and semantic-index checkpoint.
