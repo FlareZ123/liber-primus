@@ -547,7 +547,7 @@ assert.deepEqual(words.slice(epiphanyStart, epiphanyStart + 4), [
 const epiphanyPacket = sequence.slice(epiphanyStart, epiphanyStart + 4);
 assert.deepEqual(epiphanyPacket, [
   state.b,
-  state.p - 1,
+  state.p + 1,
   state.p,
   state.b + state.K,
 ]);
@@ -772,7 +772,7 @@ console.log(JSON.stringify({
   independentEpiphanyTransfer: {
     words: words.slice(epiphanyStart, epiphanyStart + 4),
     raw: epiphanyPacket,
-    rawLabels: ["b", "p-1", "p", "b+K"],
+    rawLabels: ["b", "p+1", "p", "b+K"],
     HShell: epiphanyHShell,
     HShellLabels: ["-K", "e", "a-g", "p-g"],
     chargedFamilyHits: epiphanyFamilyHits.length,
