@@ -454,6 +454,90 @@ assert.deepEqual(nePath.path[2].aliases, []);
 assert.equal(words[9], "LIBER");
 assert.equal(words[10], "PRIMUS");
 
+// Continue from recovered LIBER PRIMUS into the fixed signed-source clause
+// PRIMUS IS THE WAY. Charge the algebraic and geometric rule across every
+// consecutive four-word source window.
+const fixedSignWindows = [];
+const compassGeometryWindows = [];
+
+for (let index = 0; index + 3 < words.length; index += 1) {
+  const a = addresses[index];
+  const b = addresses[index + 1];
+  const c = addresses[index + 2];
+  const d = addresses[index + 3];
+
+  if (a - b + c === d) {
+    fixedSignWindows.push({
+      index,
+      words: words.slice(index,index + 4),
+      addresses: [a,b,c,d],
+    });
+  }
+
+  const distance = Math.abs(b - c);
+  const aRow = Math.floor(a / 8);
+  const aColumn = a % 8;
+  const dRow = Math.floor(d / 8);
+  const dColumn = d % 8;
+  const rowDelta = dRow - aRow;
+  const columnDelta = dColumn - aColumn;
+
+  const cardinalOrDiagonal =
+    distance > 0 &&
+    (
+      (Math.abs(rowDelta) === distance && columnDelta === 0) ||
+      (rowDelta === 0 && Math.abs(columnDelta) === distance) ||
+      (
+        Math.abs(rowDelta) === distance &&
+        Math.abs(columnDelta) === distance
+      )
+    );
+
+  if (cardinalOrDiagonal) {
+    const vertical = rowDelta < 0 ? "N" : rowDelta > 0 ? "S" : "";
+    const horizontal =
+      columnDelta < 0 ? "W" : columnDelta > 0 ? "E" : "";
+    compassGeometryWindows.push({
+      index,
+      words: words.slice(index,index + 4),
+      addresses: [a,b,c,d],
+      distance,
+      direction: vertical + horizontal,
+    });
+  }
+}
+
+assert.deepEqual(fixedSignWindows, [{
+  index:10,
+  words:["PRIMUS","IS","THE","WAY"],
+  addresses:[62,25,20,57],
+}]);
+
+assert.deepEqual(compassGeometryWindows, [
+  {
+    index:10,
+    words:["PRIMUS","IS","THE","WAY"],
+    addresses:[62,25,20,57],
+    distance:5,
+    direction:"W",
+  },
+  {
+    index:22,
+    words:["THE","ROAD","AND","THEIR"],
+    addresses:[20,54,56,34],
+    distance:2,
+    direction:"SW",
+  },
+]);
+
+assert.equal(addresses[11] - addresses[12], 5);
+assert.equal(addresses[24] - addresses[23], 2);
+assert.equal(addresses[11] - addresses[12], 5); // g
+assert.equal(addresses[24] - addresses[23], state.K);
+assert.equal(compassGeometryWindows[1].direction, "SW");
+// Signed inverse -K therefore points to the ordinary opposite direction NE.
+assert.equal(mod29(-state.K), 27);
+
 // Independent p0 DEVOTED zero-based source-number readout outer frame.
 const devoted = [23,18,1,3,16,18,23];
 assert.deepEqual(
@@ -485,7 +569,7 @@ console.log(JSON.stringify({
     length9: cyclicRows.filter((row) => row.string.length === 9).length,
     discoveredShape: cyclicRows.filter((row) => discoveredShape(row.string)),
   },
-  directionTape: {\n    addresses: originalPrintableAddresses,\n    directions: originalDirections,\n    shell: directionShell,\n    cyclicSurvivors: directionControl,\n  },\n  equationDirection: {\n    nValue,\n    nnConcatenated,\n    starValue,\n    starRune: corpus.translit[starValue],\n    rivalStar: algebraicStar,\n    compassPaths,\n    selected: "NE",\n    recoveredSourcePhrase: ["LIBER","PRIMUS"],\n  },\n  devotedOuterFrame: {
+  directionTape: {\n    addresses: originalPrintableAddresses,\n    directions: originalDirections,\n    shell: directionShell,\n    cyclicSurvivors: directionControl,\n  },\n  equationDirection: {\n    nValue,\n    nnConcatenated,\n    starValue,\n    starRune: corpus.translit[starValue],\n    rivalStar: algebraicStar,\n    compassPaths,\n    selected: "NE",\n    recoveredSourcePhrase: ["LIBER","PRIMUS"],\n  },\n  signedClauseGeometry: {\n    fixedSignWindows,\n    compassGeometryWindows,\n    KDirection: "SW",\n    negativeKDirection: "NE",\n  },\n  devotedOuterFrame: {
     sourceWords: devoted.map((index) => words[index]),
     left: "*N",
     right: "N*",
