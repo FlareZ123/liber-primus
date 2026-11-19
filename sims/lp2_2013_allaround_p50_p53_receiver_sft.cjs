@@ -331,6 +331,51 @@ assert.equal(footerRows.length, 24);
 assert.equal(Math.max(...footerRows.map(row => row.matches)), 1);
 assert.equal(footerRows.some(row => row.matches === 6), false);
 
+const typedProjectionRows = [];
+for (const direction of [1, -1]) {
+  const projected = Array.from({length: 76}, (unused, index) => {
+    void unused;
+    const position = (startRingPosition + direction * index + 76 * 10) % 76;
+    const value = tableValues[ring[position]];
+    const quotient = Math.floor(value / 29);
+    const remainder = value % 29;
+    const h = H([quotient, remainder]);
+    const hinv = Hinv([quotient, remainder]);
+    return {
+      quotient,
+      remainder,
+      h0: h[0],
+      h1: h[1],
+      hinv0: hinv[0],
+      hinv1: hinv[1],
+    };
+  });
+
+  for (const field of Object.keys(projected[0])) {
+    const key = projected.map(row => row[field]);
+    for (const [mode, required] of Object.entries(requiredKey)) {
+      for (let bypassCount = 0; bypassCount <= 3; bypassCount += 1) {
+        const consumedBeforeTail = 70 - bypassCount;
+        const keyTail = key.slice(consumedBeforeTail, consumedBeforeTail + 6);
+        const matches = keyTail.filter((value, index) =>
+          value === required[index]
+        ).length;
+        typedProjectionRows.push({
+          direction: direction === 1 ? "clockwise" : "counterclockwise",
+          field,
+          mode,
+          bypassCount,
+          matches,
+        });
+      }
+    }
+  }
+}
+
+assert.equal(typedProjectionRows.length, 144);
+assert.equal(Math.max(...typedProjectionRows.map(row => row.matches)), 2);
+assert.equal(typedProjectionRows.some(row => row.matches === 6), false);
+
 console.log(JSON.stringify({
   status: "PASS",
   historicalSource: {
@@ -380,7 +425,12 @@ console.log(JSON.stringify({
     variants: footerRows.length,
     maxFooterMatches: Math.max(...footerRows.map(row => row.matches)),
     exactOurOwnHits: footerRows.filter(row => row.matches === 6),
+    typedDivmod29ProjectionVariants: typedProjectionRows.length,
+    typedDivmod29ProjectionMaxMatches:
+      Math.max(...typedProjectionRows.map(row => row.matches)),
+    typedDivmod29ExactOurOwnHits:
+      typedProjectionRows.filter(row => row.matches === 6),
   },
   decision:
-    "The authenticated 2013 phrase self-selects p50 outer cell252. Its unique value180 types both the table interior and the known p56+p57 terminal register. Token30 maps through fixed H^-1 to the unique p53 terminal red-span start; its untouched length51=MUST and first shed27 reconnect to p27. The p53 receiver supplies the ordered raw key pair [3,27], which applied in source order to p28's fixed center and word28 operands yields READ OUT; reversing the key order yields PEALXUAE. The same source-selected cell252 phase closes the previously untested direct p50-ring pad start: all 24 base60 direction/sign/F-clock variants miss the conditional OUR OWN footer, so that direct p55 consumer remains retired.",
+    "The authenticated 2013 phrase self-selects p50 outer cell252. Its unique value180 types both the table interior and the known p56+p57 terminal register. Token30 maps through fixed H^-1 to the unique p53 terminal red-span start; its untouched length51=MUST and first shed27 reconnect to p27. The p53 receiver supplies the ordered raw key pair [3,27], which applied in source order to p28's fixed center and word28 operands yields READ OUT; reversing the key order yields PEALXUAE. The same source-selected cell252 phase closes the previously untested direct p50-ring pad start: all 24 raw-remainder and all 144 typed divmod29-projection direction/sign/F-clock variants miss the conditional OUR OWN footer, so that direct p55 consumer remains retired.",
 }, null, 2));
