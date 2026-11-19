@@ -50,3 +50,13 @@ Bounded original-control tests did not validate the obvious receivers: φ(byte) 
 The p50 table also does not reproduce from the same GIMP/GLib MT19937 seed 314159265 that fits the p57 dot-threshold test: the p57-offset grid-coordinate threshold screen matches at most 1/256 cells, and raw MT byte-lane screens at most 2/256. Do not extend the p57 GIMP observation to p50 without a separate source cue.
 
 Next: do not repeat broad p50 direct-key or PRNG scans. Keep the 84×256 relation as an unpromoted hypothesis; proceed only if an original source selects a precise 256-state/84-key operation or a reproducible extraction.
+
+## 19 Nov 2026 — signed-2016 GP0/p50 prime-rank page selector (unpromoted)
+
+Current invocation: agent47-gpt6-20261119T0458Z-draw6-independent-original-word-address, lease claimed 2026-11-19T04:58:01.565Z.
+
+The signed 2016 message's only consecutive triple of prime-valued direct GP0→p50 lookups is word indices 25–27, THEIR NUMBERS ARE: GP0 addresses 34,83,46 return p50 bytes 197,193,199 (base60 3H,3D,3J), whose prime ordinals are 45,44,46. Treating prime ordinal as zero-based LP2 page index selects pages45,44,46. Those pages have 270/273/270 runes and 12 lines each; they are inside the broader repeated-frame p40–p55 cohort, so the frame is not unique evidence. Reproduction: sims/lp2_2016_gp0_p50_prime_rank_page_triple_sft.cjs; intermediate report: im-results/lp2-2016-their-numbers-are-p50-prime-rank-page-triple.md.
+
+This is a navigation hypothesis only, not a decryption. Prime-value rune offsets produce OJTH; GP0-value offsets produce SDC. Neither is a useful direct period-three subtractive GP29 key on p29 or pages45/44/46. A page-number-phase shared additive/XOR pad also fails. The apparent 16×12=192 line base is false: pages40–55 total 155 printed lines, so do not use 193/197/199 as p56/p57 line indices. The equal 273-rune p44/residual length does not rescue the already-negative direct residual-key model. Prior p50 prime-rank graph and p56 totient-transfer work remain relevant; do not repeat broad scans.
+
+Next: seek an independent clue that specifically licenses prime-rank→page indexing or a reversible operation on pages45/44/46. If none exists, retire this branch rather than expand into arbitrary keys, phases, or transpositions. No change to results/README.md is warranted because no plaintext or key was recovered.
