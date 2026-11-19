@@ -104,6 +104,81 @@ p+a29 = DIRECTION
 
 This gives a concrete interpretation of the signed instruction's emphasis on word numbers: state values and small state-derived boundaries are themselves addresses into the authenticated message.
 
+## The visible side count q=4 alone generates the DH state
+
+The marker geometry gives a still smaller parameterization. Each side column contains four dots:
+
+```text
+q = 4
+```
+
+From q alone define:
+
+```text
+K = q-2
+e = q-1
+q = q
+g = q+1
+a = q+2
+A = 2q
+
+b = 4q-1
+B = 5q-1
+p = 6q-1
+```
+
+At q=4 this is exactly:
+
+```text
+K=2
+e=3
+q=4
+g=5
+a=6
+A=8
+b=15
+B=19
+p=23
+```
+
+which is the independently reconstructed DH state.
+
+The marker itself supplies the two source anchors used elsewhere:
+
+```text
+total dots = q + (q+1) + q = 3q+1 = 13 = WAY13
+q+3 = 7 = THE7
+```
+
+so the earlier q/THE/WAY three-anchor state map is equivalent to this one-parameter ladder at the visible q.
+
+### Full q sweep
+
+Charge the same q-only state formula for every:
+
+```text
+q = 2..28
+```
+
+and require all four DH equations:
+
+```text
+g^a mod p = A
+g^b mod p = B
+B^a mod p = K
+A^b mod p = K
+```
+
+Exactly one q passes:
+
+```text
+q=4
+```
+
+Every other q in2..28 fails at least one DH equation or the basic shared-secret range condition.
+
+This is a finite algebraic control independent of p0 ciphertext subtraction. The formula family was recognized after the state values were known, so the q sweep measures selectivity rather than converting the discovery into a blind prediction.
+
 ## Three-anchor reconstruction
 
 The source-visible anchors:
@@ -150,6 +225,6 @@ This makes the source register, DH state, and p0 title recovery one connected me
 
 ## Evidence boundary
 
-The mapping from already fixed state values to already fixed source words is exact. The linear three-anchor state formulas were recognized after both structures were known, so their formula class is retrospective even though THE7 is uniquely selected by the DH equations and by the independent THE1 circumference route.
+The mapping from already fixed state values to already fixed source words is exact. The q-only and three-anchor formula families were recognized after the state structure was known, so their formula classes are retrospective. Their selectivity is nevertheless strong: q=4 is the sole value in2..28 satisfying the q-ladder DH equations, and THE7 is the sole authenticated THE occurrence satisfying the three-anchor DH equations. THE7 is also selected independently by the THE1 circumference route.
 
 A decisive next step is an untouched receiver whose operation is selected from these state-addressed source words before its plaintext or key consequence is examined.
