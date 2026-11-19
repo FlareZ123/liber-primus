@@ -52,6 +52,20 @@ The p6 master-state packet independently exposes the same ingredients, including
 
 ## Source-derived numbered-section key family
 
+The numbered block is also visibly bracketed by matching red 10-dot glyphs on p36 and p38. The independent original-image geometry audit fixes every 10-dot glyph's column signature as:
+
+```text
+(3,4,3)
+```
+
+which is exactly:
+
+```text
+(e,q,e)
+```
+
+under the authenticated state. The two symmetric outer columns therefore source-select repeated `e=3` before plaintext scoring. The center column gives the independently meaningful alternative `q=4`.
+
 The exact key that opens the selected receiver is:
 
 ```text
@@ -94,7 +108,17 @@ section4 [21,11,15,11,19,4,19]     length7
 section5 [ 8,25,14, 2,17,22]       length6
 ```
 
-The full charged family contains **558 configurations**. It has exactly one hit:
+The broad nine-state-field family contains **558 configurations** and has exactly one hit. More importantly, the original 10-dot stencil narrows the interior value before decryption:
+
+```text
+visible column values {3,4} = {e,q}
+all five section starts
+matching-length authenticated targets
+both signs
+= 124 configurations
+```
+
+That bracket-conditioned family still has exactly one hit. Restricting to the repeated symmetric outer columns `e,e` gives **62 configurations**, again with exactly one hit:
 
 ```text
 section = 1
@@ -218,7 +242,7 @@ Preserve p36 offsets99..102 as a **strong local `MEANING` plaintext candidate**.
 
 The receiver is independently selected by original layout, the key family is finite and source-derived, the family has one authenticated hit, the exact fixed key is manuscript-selective, and both ciphertext and plaintext H shells are compact reconstructed-state objects.
 
-The unresolved point is the intended reason to choose `e` inside the palindrome family before seeing the output. The 558-case charge bounds that freedom, while a future independent instruction selecting `e` would upgrade the mechanism further.
+The original 10-dot bracket now supplies an independent reason to choose `e`: its column signature is `(3,4,3)=(e,q,e)`, and the repeated outer columns are exactly the repeated interior value of the successful palindrome key. The remaining interpretive choice is the palindrome construction itself, using the visible section number on both ends and the symmetric outer-column count inside.
 
 ## Reproduction
 
@@ -227,4 +251,6 @@ The unresolved point is the intended reason to choose `e` inside the palindrome 
 - `resources/historical/cicada2016-4gq25-outguess.asc`
 - `resources/liber-primus/lp2-transcription.txt`
 - `resources/liber-primus/lp2-corpus.json`
+- original images: `resources/liber-primus/53.jpg`, `resources/liber-primus/55.jpg`
+- dot geometry: `im-results/lp2-original-large-dot-glyph-geometry.md`
 - p6 state packet: `im-results/lp2-p6-master-state-packet.md`
