@@ -101,7 +101,7 @@ The p32 → THEIR RISE → signed-word-number route now has a plausible downstre
 1. The upward 8-column word-number operation converges on the already reconstructed DH modulus **p=23** from both signed words PATH (index2) and SEEKS (index6). PATH/SEEKS agreement is an internal consistency check, not an independent authentication of p=23.
 2. The p23 packet independently emits **THE ORIGIN | AL**; the pre-2014 printed New Comment supplies the human-visible AL=31 interpretation.
 3. P28's unique literal-DH line independently reconstructs the DH23 tuple and exponent 3. AL=31 gives 31 mod 28 = 3 and 31 mod 29 = 2.
-4. Solved p57's “find the divinity within” plus p28's physical page number select the candidate p28 center-rune + word28 receiver. P28's three printed periods and page number28−1 supply the [3,27] fragment exponent pair.
+4. The second clause is indexed as THEIR(25) NUMBERS(26) ARE(27) THE(28) DIRECTION(29); the word THE at index28 points to physical p28. Solved p57's “find the divinity within” plus p28's physical page number select the candidate p28 center-rune + word28 receiver. P28's three printed periods and page number28−1 supply the [3,27] fragment exponent pair.
 
 The resulting candidate is documented in [the p28 READ OUT/HERE receiver report](lp2-p28-readout-here-page-start.md): central rune + word28, exponent 3 on the center/boundary rune and exponent 27 on word28. Its already-known READ OUT result is **not** a blind validation, and the later local HERE continuation remains negative.
 
