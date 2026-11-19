@@ -117,6 +117,29 @@ The authenticated source independently fixes:
 
 So the manuscript-selected candidates compose into the exact signed suffix `WILL BE FOUND`.
 
+## Independent source-number controls
+
+The existing numbered diagonal reaches the same physical suffix through a different route. Using one-based authenticated source ordinals as physical-page and canonical-word coordinates gives direct objects at every source position except YOU33. After the single DIRECTION-supplied group-order wrap for YOU, direct numbering resumes at:
+
+```text
+WILL34  -> project p33
+BE35    -> project p34
+FOUND36 -> project p35.
+```
+
+This coordinate route was established independently of the p33 RISE consumers. The new result therefore supplies a second authored mechanism selecting the same three consecutive project pages.
+
+A separate p0 source-native route also gives a narrower lexical control. Authenticated `YOU` has GP0=30 and addresses p50 token `2L`; under the local literal/base60 rule it selects a p0 four-rune receiver and a DH-derived inverse recovers `WILL`. A frozen two-hop base60 continuation from GP0(WILL)=57 lands on GP0(BE)=35. The repository-wide literal-token audit does not license that p50 token grammar as a general decoder, so retain it only as an independent local echo of the same source transition.
+
+Together, three independent structures now point at the same suffix order:
+
+```text
+authenticated source: WILL -> BE -> FOUND
+numbered diagonal:     p33  -> p34 -> p35
+p33 authored RISE:     p33  -> p34 and p35
+local inverses:        WILL -> BE  -> FOUND
+```
+
 ## Boundary at p32
 
 The full source sentence is `SEEK AND YOU WILL BE FOUND`. A separate source-selected route reaches physical p32 as `YOU`, but its frozen direct Hill4 transfer does not recover `YOU WILL BE FOUND`. P32 also has no complete canonical word with YOU's exact source state:
