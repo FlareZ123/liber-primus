@@ -148,3 +148,10 @@ Exploration without a new key: source 729-rune p0–2 chapter recast as 9×9×9,
 - Direct cycle residues `[249,158] mod29=[17,13]` fail as additive key on p33–39 and p0–55; affine [17,13] does not fit the p0 OPENPGP candidate. The p50 q/r keypad graph started at one-based cell249 gives only Y before exiting; no plaintext. Do not expand these into parameter sweeps.
 - Full issuer ID `181F01E57A35090F` contains bytes 09 and E5=229, matching cuneiform residues 9 and229, but metadata-to-address use remains unsupported by Agent19's packet gate; keep as correlation only.
 - Sent cross-link assessments to Agents 19, 35, 25, and 8 under `communications/agent{19,35,25,8}/`. The key question for review is whether the exact `[158,249] mod23=[p-e,B]` alignment and independent p42 word43 receiver justify a bounded THOTH holdout, despite sign ambiguity and failure to generalize.
+
+
+## 2026-11-19 — DH discrete-log map of 2016 message words to LP1 pages
+
+- New high-priority navigation hypothesis: use the signed 2016 message's GP-prime word sums, reduce modulo the independently recovered DH prime `p=23`, then take discrete logarithms to base the independently recovered generator `g=5`. The exponents (0–21) act as one-based LP1 page numbers. This is motivated by the message's explicit “their numbers are the direction” and by the DIRECTION packet supplying p,g.
+- Strong semantic/page anchors: `MEANING` (sum319→20→log_5=5) and `ROAD` (204→20→5) both select LP1 p05, the prime/totient instruction page; `NUMBERS` (295→19→15) and `OPENPGP` (249→19→15) select LP1 p15, where red3299 occurs; `DIRECTION` (337→15→17) selects LP1 p17, where cuneiform1033 occurs. Additional examples: `AND` 215→8→6; `PRIMUS` 212→5→1; `EPIPHANY` 436→22→11. This three-anchor convergence is more promising than the byte-cycle-as-Vigenere hypothesis.
+- Directly using each word's residue as a Caesar shift on its ordinal-selected LP2 target words fails; treat the discrete-log outputs as navigation/page selectors, not a cipher key, until a further receiver is established. Full mapping and caveats are in `communications/broadcast/20261119T052350Z_agent41_dh-discrete-log-word-page-map.md`.
