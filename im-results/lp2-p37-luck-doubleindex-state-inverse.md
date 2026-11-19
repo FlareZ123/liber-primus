@@ -49,7 +49,7 @@ The reconstructed authenticated state is
 (23,5,6,15,8,19,2,3,4).
 ```
 
-Across every complete four-rune word on unknown p0..p49 and p51..p55, there are **514** candidates. The exact raw shell `[5,25,8,1]` occurs once:
+Under the canonical cross-page word parser, there are **509** complete four-rune words wholly contained on unknown physical pages. The exact raw shell `[5,25,8,1]` occurs once:
 
 ```text
 p37 word37, offsets146..149.
@@ -67,41 +67,47 @@ GP0([3,2,6,27]) = 38.
 
 Authenticated index38 is `BEWARE`, and physical p38 is already independently selected by the numbered-section-5 `LUCK -> BEWARE` source-state gate.
 
-Charge this rule across every available double-index receiver `page i / word i`. Forty-two receivers exist. Exactly two satisfy:
+Charge this rule across every available canonical double-index receiver `page i / word i`. Forty-two receivers exist. Exactly one satisfies:
 
 ```text
 raw GP0 = i + 1:
-p20 word20: GP0 21 -> MEANING -> IS
 p37 word37: GP0 38 -> LUCK -> BEWARE
 ```
 
-Now intersect with the independent requirement that the receiver length equal the source-assigned target length. Nine double-index receivers meet that length condition. **P37 is the only one that also has `GP0=i+1`.**
+The canonical parser preserves rune words across printed line and physical-page wraps. The earlier apparent p20 `MEANING -> IS` case disappeared under this correction because it had been created by resetting word segmentation at a page boundary.
+
+Seven canonical double-index receivers match their source-assigned target's GP length:
+
+```text
+3  LIES   len4
+11 IS     len2
+14 ITS    len3
+15 WORDS  len5
+21 IS     len2
+31 AND    len3
+37 LUCK   len4
+```
+
+P37 is therefore the **sole** double-index receiver satisfying `GP0=i+1`, and it also meets the independent source-target length requirement.
 
 Thus the p37 receiver is selected by three source/cipher properties before the `LUCK` key is scored:
 
 ```text
-signed index37 -> physical p37 / printed word37
+signed index37 -> physical p37 / canonical printed word37
 source target length = receiver length = 4
 raw receiver GP0 = 38 -> next authenticated index BEWARE
 ```
 
-Both +1 destinations have pre-existing independent source-state receivers:
+The destination was independently established before this pointer was noticed:
 
 ```text
-p20 word20 GP0 21
- -> authenticated word21 IS
- -> p21's unique length2/GP0=25 receiver at offsets170..171
- -> existing paired p11/p21 H2D state object and exact joint IS inverse
-
 p37 word37 GP0 38
  -> authenticated word38 BEWARE
  -> p38 section-5 receiver at offsets57..62
  -> existing LUCK -> BEWARE predecessor-state gate and exact local BEWARE inverse
 ```
 
-The p38 closure is additionally reciprocal at the source-state level: p38's section-5 word has BEWARE's state `length6/GP0=88`, while `p50[88]` has low60 value `31 = GP0(LUCK)`. Thus the adjacent authenticated pair is visible from both objects without transferring the p37 key to p38.
-
-The two raw +1 pointers are therefore better interpreted as a small navigation mechanism than as isolated GP0 coincidences. P20 does not have the source-target length match required for a local `MEANING` decode, so the mechanism should not be promoted into a universal word-for-word cipher.
+The p38 closure is reciprocal at the source-state level: p38's section-5 word has BEWARE's state `length6/GP0=88`, while `p50[88]` has low60 value `31 = GP0(LUCK)`. The adjacent authenticated pair is therefore visible from both objects without transferring the p37 key to p38.
 
 ## Exact reversible inverse
 
@@ -189,10 +195,10 @@ Thus `[B,0,K,g]` is the sole direct authenticated-state H-shell that maps the in
 Hold the exact key `[12,1,1,22]` fixed across:
 
 ```text
-514 complete four-rune unknown words
+509 complete four-rune unknown words
 * 9 authenticated four-rune targets
 * 2 signs
-= 9,252 configurations.
+= 9,162 configurations.
 ```
 
 Again there is one hit:
@@ -205,21 +211,19 @@ p37 word37 -> LUCK.
 
 The double-index rule itself is finite and can be charged across the whole authenticated source.
 
-For each signed index `i=0..42`, inspect physical page `i`, then zero-based printed word `i` when that word exists. Forty-two such receivers exist. Only nine match their signed target's GP length:
+For each signed index `i=0..42`, inspect physical page `i`, then zero-based printed word `i` when that word exists. Forty-two such receivers exist. Only seven match their signed target's GP length:
 
 ```text
 3  LIES   len4
-9  LIBER  len5
 11 IS     len2
 14 ITS    len3
 15 WORDS  len5
 21 IS     len2
-28 THE    len2
 31 AND    len3
 37 LUCK   len4
 ```
 
-Charge the direct-state H-shell target family on these nine receivers. A few 2-3 rune cases admit short direct-state alternatives. Among every length-4-or-longer double-index receiver, **p37 is the only one with any direct-state-shell authenticated target hit**, and that hit is the source-assigned word `LUCK`.
+Charge the direct-state H-shell target family on these seven receivers. A few 2-3 rune cases admit short direct-state alternatives. Among every length-4-or-longer double-index receiver, **p37 is the only one with any direct-state-shell authenticated target hit**, and that hit is the source-assigned word `LUCK`.
 
 This does not prove that “use the same number twice” is the intended universal instruction. It makes p37 materially sharper than a free page-local target fit and identifies a reusable selector to test prospectively on future source-number routes.
 
