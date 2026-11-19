@@ -184,6 +184,50 @@ assert.deepEqual(
   ]
 );
 
+const recursiveSheds = [];
+for (const row of diagonal.filter((candidate) => candidate.object)) {
+  for (let depth = 0; depth * 2 < row.object.values.length; depth += 1) {
+    const core = row.object.values.slice(depth, row.object.values.length - depth);
+    const h = hOutsideIn(core);
+    const interval = completeInterval(h);
+    if (!interval) continue;
+    recursiveSheds.push({
+      sourceIndex: row.sourceIndex,
+      sourceWord: row.sourceWord,
+      page: row.object.page,
+      ordinal: row.object.ordinal,
+      start: row.object.start,
+      values: row.object.values,
+      depth,
+      core,
+      h,
+      interval,
+      words: interval.map((index) => source[index]),
+    });
+  }
+}
+
+assert.deepEqual(
+  recursiveSheds.map((row) => ({
+    sourceIndex: row.sourceIndex,
+    sourceWord: row.sourceWord,
+    page: row.page,
+    ordinal: row.ordinal,
+    depth: row.depth,
+    core: row.core,
+    h: row.h,
+    interval: row.interval,
+    words: row.words,
+  })),
+  [
+    {sourceIndex:1,sourceWord:"THE",page:1,ordinal:2,depth:3,core:[21,15],h:[6,7],interval:[6,7],words:["SEEKS","THE"]},
+    {sourceIndex:11,sourceWord:"IS",page:11,ordinal:12,depth:0,core:[11,14],h:[26,25],interval:[25,26],words:["THEIR","NUMBERS"]},
+    {sourceIndex:24,sourceWord:"AND",page:24,ordinal:25,depth:0,core:[27,15],h:[12,13],interval:[12,13],words:["THE","WAY"]},
+    {sourceIndex:27,sourceWord:"ARE",page:27,ordinal:28,depth:1,core:[20,15],h:[5,6],interval:[5,6],words:["EPIPHANY","SEEKS"]},
+    {sourceIndex:42,sourceWord:"OPENPGP",page:42,ordinal:43,depth:0,core:[16,0,14],h:[2,1,0],interval:[0,1,2],words:["HELLO","THE","PATH"]},
+  ]
+);
+
 console.log(JSON.stringify({
   status: "PASS",
   directionInstruction: source.slice(25, 30),
@@ -202,6 +246,15 @@ console.log(JSON.stringify({
     interval: row.interval,
     words: row.interval.map((index) => source[index]),
   })),
+  recursiveCircumferenceSets: recursiveSheds.map((row) => ({
+    selector: `${row.sourceWord}${row.sourceIndex}`,
+    receiver: `p${row.page} word${row.ordinal}`,
+    depth: row.depth,
+    core: row.core,
+    h: row.h,
+    interval: row.interval,
+    words: row.words,
+  })),
   decision:
-    "Exactly three direct numbered receivers have complete H coordinate sets equal to a consecutive source interval; increasing source numbers read THEIR NUMBERS, THE WAY, HELLO THE PATH. One clue-selected shed adds ARE27 -> EPIPHANY SEEKS. The criterion depends on the coordinate set, so Hpair/Hsplit serialization does not change it.",
+    "Exhausting every recursive outside-in circumference depth on all 42 numbered receivers yields exactly five complete consecutive H coordinate sets. The new depth3 THE1 receiver reads SEEKS THE, alongside the established IS11 THEIR NUMBERS, AND24 THE WAY, ARE27 EPIPHANY SEEKS, and OPENPGP42 HELLO THE PATH. Increasing source numbers give the readout order.",
 }, null, 2));
