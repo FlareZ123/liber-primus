@@ -166,6 +166,92 @@ The first p57 sentence now supplies a second source-internal navigation object. 
 
 Because p55 has **76=4×19** runes, Agent6 froze the cheapest direct consumer before scoring: visited-cell or emitted-pointer values mod29, repeated four times, with either additive sign. The best of four original outputs scores **-13.55240052**, fully **5.18748291** below the worst of 2,000 exact-word-shape native controls (**-8.36491761**); a source-shaped plant recovers76/76 at **-7.13590610**. This closes the direct periodic additive-key reading while preserving the phrase-selected pointer path ([gate](lp2-p57-tunnel-surface19-p55-gate.md), [SFT](../sims/lp2_p57_tunnel_surface19_p55_sft.cjs), [CI 44416665712](https://github.com/FlareZ123/liber-primus/actions/runs/44416665712)).
 
+## Native-base60/base29 DH state register and zero-cycle handoff (Agent6, 19 November)
+
+A stronger reading of the same frozen GP0→p50 grammar is now reproducible without changing the p57 word addresses. Decode each selected p50 token in the table's native base60 alphabet and divide the resulting integer by29:
+
+```
+value60 = 29 * high29 + low29.
+```
+
+The six-word tail gives:
+
+| p57 word | GP0 | p50 | base60 | base29 pair |
+|---|---:|---|---:|---|
+| FIND | 42 | `0S` | 28 | `[0,28]` |
+| THE | 20 | `1g` | 102 | `[3,15]` |
+| DIUINITY | 105 | `13` | 63 | `[2,5]` |
+| WITHIN | 38 | `2D` | 133 | `[4,17]` |
+| AND | 56 | `4E` | 254 | `[8,22]` |
+| EMERGE | 83 | `3D` | 193 | `[6,19]` |
+
+Under the independently recovered p28 DH state these are exactly:
+
+```
+FIND      [0,-1]
+THE       [e,b]
+DIUINITY  [K,g]
+WITHIN    [q,b+K]
+AND       [A,p-1]
+EMERGE    [a,B]
+```
+
+The four central state pairs recover `e=3,b=15,K=2,g=5,q=4,A=8,p=23,a=6,B=19` directly. The remaining pair checks and the DH equations all close:
+
+```
+g^a mod p = A
+g^b mod p = B
+B^a mod p = A^b mod p = K
+b^-1 mod (p-1) = e
+p-B = B-b = a-K = g-1 = q
+```
+
+This is broader than the tail. Every coordinate of all 19 body-word pairs lies in the same compact DH-derived vocabulary `{0,1,K,e,q,g,a,g+K,A,K*g,b,b+K,p-g,B,p-1,p,p+1,p+K,-e,-K,-1}`.
+
+The same native-base60 map also turns several literal p57 meanings into exact graph links when the already recovered shared secret `K=2` is used as the hop count:
+
+```
+CIRCUMFERENCES 131 -> 120 PARABLE -> 42 FIND
+WE              25 -> 198         -> 105 DIUINITY
+DIUINITY        105 -> 63         -> 51 MUST
+SURFACE          67 -> 192        -> 0
+WITHIN            38 -> 133        -> 141
+THE               20 -> 102 DEVOTED -> 32
+```
+
+The `WITHIN` endpoint 141 is exactly the start of the four-rune p0 receiver used by the existing WILL inverse. The `THE` path reproduces the independently source-selected p32 handoff. These observations were recognized after the receiver and p32 route were already known, so they are mechanism compression rather than blind plaintext predictions.
+
+`SURFACE -> 192 -> 0` is especially useful because zero is the entry point of the established native-base60 p50 cycle:
+
+```
+0 -> 203 -> 68 -> 199 -> 47 -> 76 -> 114 -> 197 -> 115 -> 247 -> 192 -> 0
+```
+
+Dividing each emitted next state by29 gives:
+
+```
+[g+K,0]
+[K,K*g]
+[a,p+K]
+[1,p-g]
+[K,p-g]
+[e,-K]
+[a,p]
+[e,-1]
+[A,b]
+[a,p-g]
+[0,0]
+```
+
+so the whole authored zero-cycle is itself a DH-state register under the same serialization. This gives a source-coherent reading of p57's `SURFACE ... EMERGE` language: the solved prose enters and closes a p50 graph whose values repeatedly encode the same state.
+
+A new SFT freezes the complete p57 body packet, direct state recovery, DH equations, the six exact `K=2` graph links above, the zero-cycle pairs, and the p0:141 receiver: `sims/lp2_p57_p50_dh_state_register_sft.cjs`. Windows Node22 run **44450264975** passes.
+
+### Bounded p33 consumer negative
+
+Agent50 independently selected the p33 first 81-rune black body from the p32 center. Because that body is 9×9 and the state has nine canonical fields `[p,g,a,b,A,B,K,e,q]`, the lowest-description direct additive consumer was charged in exactly two geometry-preserving orientations: the nine fields repeated across each row, or one field assigned per row, each under both additive signs. All four outputs remain unreadable; no phase, field permutation or tuned schedule was introduced. Keep the p33 receiver, retire this direct nine-field additive consumer.
+
+
 ## Decision
 
 Promote the **p57 EMERGE/DIUINITY → p50 nested bracket** route as a leading intended-solve-path hypothesis. It explains how a player could be led to the nested prime-count structure from solved text, rather than merely recognizing the structure statistically.
