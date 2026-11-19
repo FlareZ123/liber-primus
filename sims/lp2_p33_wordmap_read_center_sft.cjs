@@ -124,10 +124,21 @@ const blocks = Array.from({ length: e }, (_, block) =>
 assert.deepEqual(blocks[1], readGp);
 assert.deepEqual(blocks.map(spell), ["FLNG", "READ", "XTHC"]);
 
+// Before exponentiation, the two outer e-rune thirds have the canonical GP0
+// sums of the independently recovered clue words THEIR and HERE.
+const THEIR_GP0 = 34;
+const HERE_GP0 = 48;
+assert.equal(selected[0].values.slice(0, e).reduce((sum, value) => sum + value, 0), THEIR_GP0);
+assert.equal(selected[0].values.slice(2 * e).reduce((sum, value) => sum + value, 0), HERE_GP0);
+
 // Manuscript-wide fixed control: every complete nine-rune unknown-page word,
 // same exponent27, same central three-rune extraction.
 let nineRuneWords = 0;
+let leftTheirHits = 0;
+let rightHereHits = 0;
+let bothOuterHits = 0;
 const centerReadHits = [];
+const tripleHits = [];
 for (let physicalPage = 0; physicalPage <= 55; physicalPage += 1) {
   if (physicalPage === 50) continue;
   const words = parseWords(physicalPart(physicalPage));
@@ -137,7 +148,13 @@ for (let physicalPage = 0; physicalPage <= 55; physicalPage += 1) {
     nineRuneWords += 1;
     const output = word.values.map((value) => pow29(value, wordExponent));
     const center = output.slice(e, 2 * e);
-    if (center.every((value, index) => value === readGp[index])) {
+    const leftSum = word.values.slice(0, e).reduce((sum, value) => sum + value, 0);
+    const rightSum = word.values.slice(2 * e).reduce((sum, value) => sum + value, 0);
+    const isRead = center.every((value, index) => value === readGp[index]);
+    if (leftSum === THEIR_GP0) leftTheirHits += 1;
+    if (rightSum === HERE_GP0) rightHereHits += 1;
+    if (leftSum === THEIR_GP0 && rightSum === HERE_GP0) bothOuterHits += 1;
+    if (isRead) {
       centerReadHits.push({
         physicalPage,
         pageWord: wordIndex + 1,
@@ -146,13 +163,28 @@ for (let physicalPage = 0; physicalPage <= 55; physicalPage += 1) {
         transformed: output,
       });
     }
+    if (leftSum === THEIR_GP0 && rightSum === HERE_GP0 && isRead) {
+      tripleHits.push({
+        physicalPage,
+        pageWord: wordIndex + 1,
+        pageOffset: word.start,
+      });
+    }
   }
 }
 assert.equal(nineRuneWords, 77);
+assert.equal(leftTheirHits, 2);
+assert.equal(rightHereHits, 2);
+assert.equal(bothOuterHits, 1);
 assert.deepEqual(
   centerReadHits.map((hit) => [hit.physicalPage, hit.pageWord, hit.pageOffset]),
   [[33, 4, 12]]
 );
+assert.deepEqual(tripleHits, [{
+  physicalPage: 33,
+  pageWord: 4,
+  pageOffset: 12,
+}]);
 
 // Symmetry check only: the p33 lower body has two length-nine words, and
 // neither contains OUT under the analogous central/any-position exponent27
@@ -195,6 +227,14 @@ console.log(JSON.stringify({
   },
   control: {
     completeNineRuneWords: nineRuneWords,
+    sourceOuterThirds: {
+      leftTheirHits,
+      rightHereHits,
+      bothOuterHits,
+      selectedLeftGp0: THEIR_GP0,
+      selectedRightGp0: HERE_GP0,
+    },
+    exactTripleHits: tripleHits,
     exactCenterReadHits: centerReadHits.map((hit) => ({
       physicalPage: hit.physicalPage,
       pageWord: hit.pageWord,
@@ -203,5 +243,5 @@ console.log(JSON.stringify({
     lowerBodyNineRuneWords: lowerNine.length,
     analogousLowerOutHits: 0,
   },
-  decision: "Strong source-constrained p33 upper-body plaintext candidate: the risen-THEIR route recovers [e,q]=[3,4] and selects the 81-rune body; its unique e^2=9 word, under the already authenticated p28 word exponent27, has central e=3 GP runes R-EA-D = READ. The same fixed center rule hits no other complete nine-rune word across p0-p55. Preserve as a conditional plaintext recovery pending independent adjudication; do not infer OUT or a whole-body cipher.",
+  decision: "Strong source-constrained p33 upper-body plaintext candidate: the risen-THEIR route recovers [e,q]=[3,4] and selects the 81-rune body; its unique e^2=9 word has source outer-third GP0s THEIR=34 and HERE=48, and under the already authenticated p28 word exponent27 its central e=3 GP runes are R-EA-D = READ. Across all 77 complete nine-rune words, only two have left THEIR, two have right HERE, one has both outer identities, and that same sole word is the unique center READ hit. Preserve as a conditional plaintext recovery pending independent adjudication; do not infer OUT or a whole-body cipher.",
 }, null, 2));
