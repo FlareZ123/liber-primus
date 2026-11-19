@@ -189,15 +189,52 @@ assert.deepEqual(repeatedEarliestPageLandings, [{
   value: 33,
 }]);
 
-const rise = theirIndices[1] - theirIndices[0];
-assert.equal(rise, 6);
-const destinationPage = bytes[theirIndices[0]] + rise;
-assert.equal(destinationPage, 39);
-assert.equal(signedWords[destinationPage], "FALSE");
+// The word RISE is itself encoded by the ordered lower-title lengths [3,5].
+// Its most literal numeric rise is therefore the difference of the two source
+// numbers that generated it.
+const selfRise = lowerTitleLengths[1] - lowerTitleLengths[0];
+assert.equal(selfRise, 2);
+const foundPage = 33 + selfRise;
+assert.equal(foundPage, 35);
+assert.equal(signedWords[foundPage], "FOUND");
+
+// A second tempting reading takes "THEIR" to mean the two authenticated
+// occurrences of THEIR. That rise is 25-19=6 and lands on p39, whose
+// same-number signed word is literally FALSE. The giant red X on original
+// p39 is an external visual check and intentionally remains outside this
+// text-only SFT.
+const theirRise = theirIndices[1] - theirIndices[0];
+assert.equal(theirRise, 6);
+const falsePage = bytes[theirIndices[0]] + theirRise;
+assert.equal(falsePage, 39);
+assert.equal(signedWords[falsePage], "FALSE");
 assert.deepEqual(
-  signedWords.slice(destinationPage, destinationPage + 4),
+  signedWords.slice(falsePage, falsePage + 4),
   ["FALSE", "PATHS", "VERIFY", "OPENPGP"]
 );
+
+// P40 repeats the same red two-word length pair [3,5]. Under the same forward
+// H + solved prime-totient serializer used for p33's lower title it independently
+// spells RISE again. Its literal +2 rise lands on p42 = OPENPGP, with VERIFY
+// at p41 between them. This is preserved as a warning-corridor echo rather than
+// promoted over the p35 FOUND branch.
+const p40Rows = wordRows(40);
+const p40Ink = ink.pages.find((page) => page.page === 40);
+assert.ok(p40Ink);
+assert.deepEqual(
+  p40Ink.red_spans.map((span) => [span.start, span.length]),
+  [[0, 8]]
+);
+const p40TitleLengths = rowsInSpan(p40Rows, 0, 8).map((row) => row.length);
+assert.deepEqual(p40TitleLengths, [3, 5]);
+const p40Extended = [...p40TitleLengths, ...h(p40TitleLengths)];
+assert.equal(
+  spell(p40Extended.map(totientPrimeOrdinal)),
+  "RISE"
+);
+assert.equal(40 + (p40TitleLengths[1] - p40TitleLengths[0]), 42);
+assert.equal(signedWords[41], "VERIFY");
+assert.equal(signedWords[42], "OPENPGP");
 
 console.log(JSON.stringify({
   status: "PASS",
@@ -205,11 +242,16 @@ console.log(JSON.stringify({
     hiddenText,
     upperTitleLengths,
     lowerTitleLengths,
+    literalRise: selfRise,
+    positiveLanding: {
+      page: foundPage,
+      signedWord: signedWords[foundPage],
+    },
   },
   signedSource: {
     theirIndices,
-    rise,
-    corridor: signedWords.slice(destinationPage, destinationPage + 4),
+    theirRise,
+    falseCorridor: signedWords.slice(falsePage, falsePage + 4),
   },
   p50: {
     firstTheirAddress: theirIndices[0],
@@ -217,15 +259,32 @@ console.log(JSON.stringify({
     fullBase60Value: bytes[theirIndices[0]],
     repeatedEarliestPageLandings,
   },
-  route: {
-    firstTheir: 19,
-    p50Landing: 33,
-    instruction: "THEIR RISE",
-    secondTheir: 25,
-    rise,
-    destinationPage,
-    destinationWord: signedWords[destinationPage],
+  branches: {
+    primary: {
+      instruction: "RISE",
+      sourceNumbers: lowerTitleLengths,
+      rise: selfRise,
+      fromPage: 33,
+      destinationPage: foundPage,
+      destinationWord: signedWords[foundPage],
+    },
+    falseAlternative: {
+      instruction: "THEIR RISE",
+      sourceNumbers: theirIndices,
+      rise: theirRise,
+      fromPage: bytes[theirIndices[0]],
+      destinationPage: falsePage,
+      destinationWord: signedWords[falsePage],
+    },
+    p40Echo: {
+      titleLengths: p40TitleLengths,
+      decoded: "RISE",
+      rise: p40TitleLengths[1] - p40TitleLengths[0],
+      destinationPage: 42,
+      destinationWord: signedWords[42],
+      interveningWord: signedWords[41],
+    },
   },
   interpretation:
-    "The authenticated source word THEIR self-selects p33 through the native full-base60 p50 table. P33 independently yields THEIR RISE; the rise between the two THEIR word numbers is 6, and p33+6 lands on p39, the signed-source FALSE page. The original p39 scan supplies the external visual red-X cue; that visual observation is intentionally outside this text-only SFT.",
+    "P33 independently yields THEIR RISE. The same ordered red lengths [3,5] that generate RISE supply the literal +2 step p33->p35, where authenticated word35 is FOUND. Treating THEIR as its two signed-source occurrences instead gives +6 and lands on p39=FALSE, a built-in false-path diagnostic corroborated visually by p39's red X. P40 repeats [3,5]->RISE and +2->p42=OPENPGP as a secondary warning-corridor echo.",
 }, null, 2));
