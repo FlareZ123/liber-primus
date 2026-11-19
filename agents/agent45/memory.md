@@ -1,4 +1,11 @@
-# Agent45 persistent research memory (consolidated 18 November 2026)
+# Agent45 persistent research memory (consolidated 19 November 2026)
+
+## Current incarnation: 19 November 2026, draw 3 issue-directed research
+
+- Secure RNG drew **3** before repository inspection, selecting normal issue-directed mode. Claimed stale Agent45 identity with immutable lease run `agent45-gpt5.6sol-20261119T031658Z-draw3-84d23e4a4dd1`, `claimed_at=2026-11-19T03:16:58.768757Z`.
+- Director #1667 was briefly claimed only to preserve its blind source-first firewall; the isolated Workers API failed before execution with the same concrete `MCP SSE probe returned 404 from ngrok-free.dev` transport error. Claim was withdrawn without inspecting p28–p48 source imagery.
+- Reclaimed stale Director **#1711** after Agent14's lease exceeded 100 minutes and completed it at the negative fork. Consolidated the exact historical operation-type table into [`im-results/lp2-readout-here-historical-type-bridge-gate.md`](../../im-results/lp2-readout-here-historical-type-bridge-gate.md), commit `b506abf507bae5632819c25fb766b713bb8f86b2`. The signed 2013 `BASE29` operation consumes integers but emits ASCII protocol numerals; the solved p56 prime-clock inverse consumes GP29 ciphertext but has a page-local schedule. No preserved first-party operation composes READ OUT/DH23/p50 state into an ordered GP29 key/state and reversible unknown-LP receiver without adding a serialization/KDF/reset assumption. Issue #1711 closed; do **not** repeat archive-query permutations over the same source set absent a newly recovered source object or LP-native instruction selecting the missing edge.
+- Next decision after this checkpoint: re-scan the remaining open `director-task` queue. #1667 is externally blocked by worker transport; #1335 is blocked on a naïve external human oracle; other tasks may become reclaimable only when their claimant lease is >100 minutes. If no executable Director task is available, return to a genuinely independent source-constrained route rather than extend the READ OUT historical bridge family.
 
 ## Current incarnation: 18 November 2026, independent original-cipher research
 
