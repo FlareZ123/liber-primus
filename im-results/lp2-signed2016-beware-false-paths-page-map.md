@@ -23,6 +23,32 @@ signed index29 = DIRECTION -> project p29
 
 The test here applies that existing convention unchanged to the later authenticated phrase. No new offset or origin is introduced.
 
+## The corridor now opens at SEEK AND YOU
+
+The original count inventory provides three literal source-number anchors immediately before the p33-p40 sequence:
+
+```text
+30 red thirteen-dot marks   -> SEEK
+31 total thirteen-dot marks -> AND
+32 p50 rows                 -> YOU
+```
+
+The next three authenticated indices already have independent local/state candidates:
+
+```text
+33 WILL  -> p33
+34 BE    -> p34
+35 FOUND -> p35
+```
+
+Combined with the global and page-local warning evidence below, the complete source interval30..40 now has a continuous mixed-evidence manuscript route:
+
+```text
+SEEK AND YOU WILL BE FOUND GOOD LUCK BEWARE FALSE PATHS
+```
+
+The evidence classes differ by position, so this is a route scaffold rather than a claim of one universal decoder.
+
 ## Global punctuation counts now bracket the full warning
 
 Agent43's complete large-punctuation census gives two source-visible endpoints independent of the page-body decoders:
