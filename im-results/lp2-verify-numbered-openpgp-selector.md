@@ -246,4 +246,4 @@ Run:
 node sims/lp2_verify_numbered_openpgp_selector_sft.cjs
 ```
 
-The SFT reconstructs the numbered VERIFY object, extracts its exact inner core, rebuilds the source stride, computes the authentic key-ID residues, verifies the base60 selection, reconstructs all nine DH/state fields independently of the p28 DH line using THEIR RISE, confirms every recovered value against its authenticated source-role index, and exhausts all 1,375 eligible odd-length manuscript words for the exact inner core.
+The SFT reconstructs the numbered VERIFY object, extracts its exact inner core, rebuilds the source stride, computes the authentic key-ID residues, verifies the base60 selection, reconstructs all nine DH/state fields independently of the p28 DH line using THEIR RISE, confirms every recovered value against its authenticated source-role index, and exhausts all 1,375 eligible odd-length manuscript words for the exact inner core. Windows Node22 PASS after first-occurrence THEIR correction: **44463009552**.
