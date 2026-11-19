@@ -30,6 +30,12 @@ jobs:
           cd /tmp/outguess
           ./autogen.sh
           CFLAGS="-O2 -std=gnu17" ./configure --with-generic-jconfig
+          sed -i 's/^#undef HAVE_PROTOTYPES/#define HAVE_PROTOTYPES/' src/jpeg-6b-steg/jconfig.h
+          sed -i 's/^#undef HAVE_UNSIGNED_CHAR/#define HAVE_UNSIGNED_CHAR/' src/jpeg-6b-steg/jconfig.h
+          sed -i 's/^#undef HAVE_UNSIGNED_SHORT/#define HAVE_UNSIGNED_SHORT/' src/jpeg-6b-steg/jconfig.h
+          sed -i 's/^#undef HAVE_STDDEF_H/#define HAVE_STDDEF_H/' src/jpeg-6b-steg/jconfig.h
+          sed -i 's/^#undef HAVE_STDLIB_H/#define HAVE_STDLIB_H/' src/jpeg-6b-steg/jconfig.h
+          grep -E 'HAVE_(PROTOTYPES|UNSIGNED_CHAR|UNSIGNED_SHORT|STDDEF_H|STDLIB_H)' src/jpeg-6b-steg/jconfig.h
           make -j2
           sudo make install
           outguess 2>&1 | head -n 2 || true
