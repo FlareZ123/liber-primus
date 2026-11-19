@@ -292,14 +292,68 @@ function subtreeCount(child, allowed) {
   return count;
 }
 
+const selectedDepth15 = new Set(
+  [...tree115.depth.entries()]
+    .filter(([, depth]) => depth <= 15)
+    .map(([node]) => node)
+);
+const completeTreeNodes = new Set(tree115.nodes);
+
+const branch32Full = subtreeCount(32, completeTreeNodes);
+const branch111Full = subtreeCount(111, completeTreeNodes);
+const branch32Depth15 = subtreeCount(32, selectedDepth15);
+const branch111Depth15 = subtreeCount(111, selectedDepth15);
 const branch32Depth20 = subtreeCount(32, selectedDepth20);
 const branch111Depth20 = subtreeCount(111, selectedDepth20);
+
 assert.deepEqual(
-  { branch32Depth20, branch111Depth20 },
-  { branch32Depth20:84, branch111Depth20:37 }
+  {
+    branch32Full,
+    branch111Full,
+    branch32Depth15,
+    branch111Depth15,
+    branch32Depth20,
+    branch111Depth20,
+  },
+  {
+    branch32Full:93,
+    branch111Full:37,
+    branch32Depth15:67,
+    branch111Depth15:37,
+    branch32Depth20:84,
+    branch111Depth20:37,
+  }
 );
+
+// The complete rooted p32 branch plus root is TUNNELING; the sibling branch
+// plus root is WITHIN. They cover the whole CIRCUMFERENCES tree with the root
+// counted in both descriptions.
+assert.equal(1 + branch32Full, gp0("TUNNELING"));
+assert.equal(1 + branch111Full, gp0("WITHIN"));
+assert.equal(
+  gp0("TUNNELING") + gp0("WITHIN") - 1,
+  gp0("CIRCUMFERENCES")
+);
+
+// At DH private exponent b=15, the p32 branch itself is SURFACE and the
+// complementary rooted sibling object is WITHIN, exactly partitioning
+// DIVINITY=105.
+assert.equal(branch32Depth15, gp0("SURFACE"));
+assert.equal(branch111Depth15, branch111Full);
+assert.equal(
+  gp0("SURFACE") + gp0("WITHIN"),
+  gp0("DIVINITY")
+);
+
+// At the authenticated THE=20 cut, the 83 descendants below physical p32
+// equal EMERGE. The selected nonroot receiver minus the p32 node itself is
+// PARABLE=120. Swapping the distinguished p32 node for root115 turns the
+// same 120-node remainder into WITHIN+EMERGE=EPIPHANY by cardinality.
+const belowP32Depth20 = branch32Depth20 - 1;
+const selectedMinusRootAndP32 = branch111Depth20 + belowP32Depth20;
+assert.equal(belowP32Depth20, gp0("EMERGE"));
+assert.equal(selectedMinusRootAndP32, gp0("PARABLE"));
 assert.equal(1 + branch111Depth20, gp0("WITHIN"));
-assert.equal(branch32Depth20 - 1, gp0("EMERGE"));
 assert.equal(gp0("WITHIN") + gp0("EMERGE"), gp0("EPIPHANY"));
 
 console.log(JSON.stringify({
@@ -331,14 +385,32 @@ console.log(JSON.stringify({
       depth20Nonroot_EPIPHANY: prefixRows[20].nonroot,
       depth24IncludingRoot_CIRCUMFERENCES: prefixRows[24].includingRoot,
     },
-    depth20Split: {
-      branch32: branch32Depth20,
-      branch111: branch111Depth20,
-      WITHIN: gp0("WITHIN"),
-      EMERGE: gp0("EMERGE"),
-      EPIPHANY: gp0("EPIPHANY"),
+    semanticBranchGrammar: {
+      complete: {
+        branch32: branch32Full,
+        branch111: branch111Full,
+        TUNNELING: gp0("TUNNELING"),
+        WITHIN: gp0("WITHIN"),
+        CIRCUMFERENCES: gp0("CIRCUMFERENCES"),
+      },
+      depth15: {
+        branch32: branch32Depth15,
+        branch111: branch111Depth15,
+        SURFACE: gp0("SURFACE"),
+        WITHIN: gp0("WITHIN"),
+        DIVINITY: gp0("DIVINITY"),
+      },
+      depth20: {
+        branch32: branch32Depth20,
+        branch111: branch111Depth20,
+        belowP32: belowP32Depth20,
+        PARABLE: gp0("PARABLE"),
+        WITHIN: gp0("WITHIN"),
+        EMERGE: gp0("EMERGE"),
+        EPIPHANY: gp0("EPIPHANY"),
+      },
     },
   },
   decision:
-    "Solved p57 supplies a typed graph instruction: SHED's own GP0/rune-count walk lands root115, whose complete tree size is CIRCUMFERENCES=131. Several further p57/2016 word values equal exact depth-prefix counts; these are structural constraints, not recovered p32 plaintext.",
+    "Solved p57 supplies a typed graph instruction: SHED's own GP0/rune-count walk lands root115, whose complete tree is CIRCUMFERENCES=131. The same tree has exact branch cardinalities TUNNELING/WITHIN at full depth, SURFACE+WITHIN=DIVINITY at depth15, and PARABLE/WITHIN/EMERGE/EPIPHANY relations at the THE=20 cut. These are structural constraints rather than recovered p32 plaintext.",
 }, null, 2));
