@@ -262,6 +262,8 @@ for (const countMode of countModes) {
   }
 }
 assert.equal(family.length, 8);
+const chargedConfigurations = originRows.length * family.length;
+assert.equal(chargedConfigurations, 16);
 assert.deepEqual(
   family.find((row) =>
     row.countMode === "nonempty" &&
@@ -376,6 +378,35 @@ assert.deepEqual(
   [["FIND",28]]
 );
 
+// Manuscript-wide matched geometry census. P28 is the sole exact-center page
+// whose immediately following complete word is odd-length and therefore has a
+// literal single-rune "divinity within" after repeated circumference shedding.
+const centerAdjacentFamily = [];
+for (let page = 0; page <= 57; page += 1) {
+  if (page === 50) continue;
+  const parsed = parsePhysical(physicalPart(page));
+  if (parsed.runes.length % 2 === 0) continue;
+  const center = (parsed.runes.length - 1) / 2;
+  const nextWord = parsed.words.find((word) => word.start === center + 1);
+  if (!nextWord) continue;
+  centerAdjacentFamily.push({
+    page,
+    runes:parsed.runes.length,
+    center,
+    word:nextWord.one,
+    length:nextWord.len,
+    oddWord:nextWord.len % 2 === 1,
+  });
+}
+assert.deepEqual(
+  centerAdjacentFamily.map((row) => [row.page,row.length]),
+  [[3,4],[17,4],[25,4],[28,5],[56,2]]
+);
+assert.deepEqual(
+  centerAdjacentFamily.filter((row) => row.oddWord).map((row) => row.page),
+  [28]
+);
+
 console.log(JSON.stringify({
   status:"PASS",
   classification:
@@ -393,6 +424,7 @@ console.log(JSON.stringify({
       layers:row.layers,sheds:row.sheds,
     })),
     structurallySelectedOrigin:structurallySelected[0].origin,
+    chargedConfigurations,
     actionFamily:family,
     source:p28Source,
     canonicalExponents:[canonical.centerExponent,canonical.wordExponent],
@@ -409,4 +441,5 @@ console.log(JSON.stringify({
     exactMatch:false,
   },
   physicalPointerControls:physicalPointers,
+  centerAdjacentFamily,
 },null,2));
