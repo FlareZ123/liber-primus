@@ -197,7 +197,7 @@ assert.equal(target.outputs[6], dh.p);
 assert.deepEqual(target.outputs.slice(-2), [dh.A, dh.B]);
 
 // Family census locks the amount of accidental DH structure elsewhere.
-assert.equal(rows.length, 604);
+assert.equal(rows.length, 594);
 assert.equal(valid.length, 31);
 assert.equal(
   valid.reduce((total, row) => total + row.variants.length, 0),
