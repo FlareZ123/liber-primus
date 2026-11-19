@@ -77,6 +77,23 @@ therefore HERE^-1(26) = 23 = p
 
 So p6's 26-word lower black body can be typed back to `p=23` without a modulo reduction or free scalar search.
 
+## Target-independent DH structure on the selected p6 object
+
+The selected page and receiver also expose the already established DH23 state before any plaintext scoring:
+
+```text
+red-title word lengths       [4,1,4,2]
+H(lengths)                   [2,26,5,6] = [K,p+e,g,a]
+
+receiver body-word ordinal   10 = K*g
+receiver page-word ordinal   29
+
+H(ciphertext receiver)       [4,24,22,25,24]
+                              [q,-g,p-1,p+K,-g]
+```
+
+Holding that exact ciphertext-state shell fixed across all 318 unknown five-rune words leaves exactly one hit, again p6 offsets128..132. This shell interpretation was recognized after the receiver had been selected, so it is corroboration rather than blind receiver discovery. It materially reduces the chance that the selected p6 object is merely a random same-GP0 word.
+
 ## Exact local inverse
 
 A compact source-local shell is obtained by preserving the red-title order, replacing its singleton title slot by the title's total rune count, then appending the HERE-decoded lower-body count:
@@ -173,4 +190,4 @@ Preserve SEEKS as a **strong local plaintext candidate**. Promotion to recovered
 ## Reproduction
 
 - SFT: `sims/lp2_p6_seeks_sameindex_layout_shell_sft.cjs`
-- Windows Node PASS: `44458576876`
+- Windows Node PASS: `44458950212`
