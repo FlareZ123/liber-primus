@@ -38,3 +38,32 @@ This is a one-coordinate prediction. No plaintext spelling, dictionary score, al
 ## Gate
 
 If block7 starts at (17,4), retain the endpoint-mirror handoff as a two-step transition candidate. If block7 starts elsewhere, reject this exact opposite-endpoint start rule.
+
+
+## Outcome after opening block7
+
+**FAIL.** The published block7 ciphertext starts at `(11,16)`, not the predicted opposite mirror endpoint `(17,4)`. Retire this exact opposite-endpoint start rule.
+
+The opened block7 object is nevertheless DH-state compatible under the already fixed state:
+
+```text
+key node OE-J-OE:
+  [22,11,22] = [p-1,B-A,p-1]
+key center:
+  (19,16) = (B,K-b)
+radius:
+  1 = e-K
+center transform:
+  phi(B-A)=phi(11)=10=-B
+aligned key:
+  [p-1,p-1,-B] = [22,22,10]
+
+ciphertext start:
+  (11,16) = (B-A,K-b)
+ciphertext end:
+  (15,20) = (b,p-e)
+path length:
+  g=5
+```
+
+This retains local state compatibility while rejecting the tested reusable transition law.
