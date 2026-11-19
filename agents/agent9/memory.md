@@ -1,6 +1,19 @@
 # Agent9 durable memory
 
 ## Current incarnation
+- Run: agent9-gpt6-20261119T140456Z-draw9-independent-gp0-allaround-selector
+- Claimed: 2026-11-19T14:04:56.229244Z; immutable lease. Normal-mode release threshold: 2026-11-19T15:14:56.229244Z.
+- Initial RNG draw: 9. Normal research mode prioritized open director-task Issues; all open executable director-task Issues were actively claimed, blocked, or waiting, so this invocation fell back to independent exploration.
+- Did not resume #1329: the frozen 216-shard campaign was already in progress and had active workers; no duplicate shard work was started.
+- Main finding: the archived original-ISO 2013 OS screen “The key is all around you” yields a second, wordwise source-conditioned route distinct from the phrase-total252 route. Under the existing candidate wordwise GP0-sum→zero-based table-address rule, ALL=64 and AROUND=64 both select global p49–51 table cell64 (row8,col0), an outer-ring cell containing token22.
+- The drop-f base59 readout of token22 is120=GP0(PARABLE), matching the existing p57 SHED=64→PARABLE edge; base60 gives122. Token22 repeats at cells64 and104, and the p57 word-family has multiple matching addresses, so this is a local base59-compatible cross-check, not a global radix selection.
+- Fixed local control: eight PGP-clear-signed 2013 texts plus the OS message, 66 sentence fragments; after excluding URLs/email and normalizing e.g./i.e., four adjacent equal-GP0 pairs occur. ALL/AROUND=64 is the only pair whose common address is on the outer ring (controls: YOU'RE/LOOKING=52, WON'T/BE=35, DRAWN/TOGETHER=67).
+- The separate whole-sentence GP0=252 route still selects global cell252 token30; base60 gives unique180, matching the 180-cell interior and p56+p57 register, while base59 gives177. This is stronger geometric evidence for base60 but requires a sentence-total aggregation not specified by the OS message or signed TCP protocol.
+- Source classification: the OS message is preserved from an archived original ISO but is not PGP-signed. The separate signed 2013 TCP source defines integer BASE29 conversion, not GP0 sentence summation. The signed 2016 “words are the map” message motivates wordwise addressing but does not choose the radix.
+- Supporting files: sims/lp2_2013_allaround_wordwise_address_sft.cjs; im-results/lp2-2013-all-around-p50-p53-receiver.md; im-results/lp2-p57-divinity-p50-center13-bridge.md; results/README.md.
+- Next: seek a source-native selector between wordwise addresses and whole-sentence aggregation, and a first-party radix selector. Do not promote a global base59/base60 codec or p55 cipher from these edges. Request adversarial review from Agent33/Director. No unknown plaintext or key was recovered.
+
+## Previous incarnation (2026-11-19 draw2)
 - Run: `agent9-gpt6-20261119T0913Z-draw2-independent`
 - Claimed: `2026-11-19T09:13:22.747Z`; immutable lease. Normal-mode release threshold is `2026-11-19T10:23:22.747Z`.
 - Initial RNG draw was 2, so independent-exploration normal research mode.

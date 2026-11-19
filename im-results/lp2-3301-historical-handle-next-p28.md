@@ -6,7 +6,7 @@
 
 The existing p27 route recovers the literal historical scalar **3301**. A previously frozen source-number receiver then used zero-based `n mod 256` to address the original 256-cell p50 table, giving `3301 mod256=229` and original token `00`. That modulo operation had remained the weakest premise of the route.
 
-The authentic 2013 program supplies an independent holdout for exactly that operation.
+The archived original-ISO 2013 OS program supplies an independent holdout for exactly that operation.
 
 The preserved `prime_echo` source ends on **3301**. After its final two-second pause, the parent Cicada OS script clears the screen and displays the signed message preserved verbatim at `resources/historical/cicada2013-os-original-message.txt`:
 
@@ -42,7 +42,7 @@ That is zero-based p28 offset117, the exact printed line+word start of the visib
 
 The resulting historical continuation is therefore:
 
-`p27 parser → 3301 → authentic 2013 next screen @1231507051321 → mod256 57=NEXT → p50[57] → p28 DH`.
+`p27 parser → 3301 → archived 2013 OS screen @1231507051321 → mod256 57=NEXT → p50[57] → p28 DH`.
 
 This is a genuine independent holdout for the previously weak modulo256 navigation rule. It does not validate the failed p0 cell0-cycle cipher, and it does not recover unknown plaintext.
 
@@ -125,7 +125,7 @@ Combining only separately preserved source-constrained edges produces a closed n
 ```text
 p27
  → 3301
- → authentic historical next screen @1231507051321
+ → archived historical OS screen @1231507051321
  → mod256 57 = NEXT
  → p28 DH
  → MUST / WE MUST SHED

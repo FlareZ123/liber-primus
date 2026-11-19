@@ -42,7 +42,7 @@ The authenticated 2016 Cicada message says: `Liber Primus is the way. Its words 
 Once GP0→p50 address is fixed by EMERGE/DIUINITY, the remaining p57 words provide an independent table prediction.
 
 - `WITHIN` has GP0 sum38. Cell38 is `2D`; base59 gives **131**, exactly the GP0 sum of `CIRCUMFERENCES`. Base60 gives133, so the p57-word hit selects base59.
-- `SHED` has GP0 sum64. Cell64 is `22`; base59 gives **120**, exactly the GP0 sum of the title `PARABLE`. Base60 gives122.
+- `SHED` has GP0 sum64. Cell64 is `22`; base59 gives **120**, exactly the GP0 sum of the title `PARABLE`. Base60 gives122. An independent historical input to this same address is the archived 2013 OS screen “The key is all around you”: its adjacent words ALL and AROUND both have GP0=64. In the fixed local 2013 text corpus (eight PGP-clear-signed messages plus the OS screen), this is the only adjacent equal-GP0 pair whose common address lies on the outer ring. It strengthens the local SHED=64 → PARABLE edge, but does not select base59 globally; token22 repeats at104 and the p57 word-family has multiple matches. See the all-around report and wordwise SFT.
 - `CIRCUMFERENCES` has GP0 sum131. Cell131 is `20`; base60 gives **120**, independently converging on `PARABLE`. Base59 gives118.
 - `PARABLE` has GP0 sum120. Cell120 is `0g`; base60 gives **42**, exactly the GP0 sum of `FIND`. No source token decodes to42 under base59.
 - `FIND` has GP0 sum42. Cell42 is `0S`; both base59 and base60 decode it as **28**.
@@ -55,7 +55,7 @@ A second inbound edge independently gives:
 
 `SHED --base59--> PARABLE`
 
-The radix split is semantically coherent at the first edge: SHED uses the alphabet with one symbol removed. It is also mechanically forced by the actual source tokens if the target is PARABLE=120: `22` reaches120 only in base59, while `20` reaches120 only in base60.
+The radix split is semantically coherent at the first edge: SHED uses the alphabet with one symbol removed, and the 2013 OS ALL/AROUND pair independently selects the same address64. This supports the local base59 edge but does not establish a global base59 codec. It is mechanically forced by the actual source tokens if the target is PARABLE=120: `22` reaches120 only in base59, while `20` reaches120 only in base60.
 
 ### Conditional matched-token diagnostic
 
