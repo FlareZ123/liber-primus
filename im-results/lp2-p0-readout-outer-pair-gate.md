@@ -97,3 +97,5 @@ This limits broad "READ OUT means read a p0 edge" interpretations. It does not a
 ```text
 node sims/lp2_p0_readout_outer_pair_gate_sft.cjs
 ```
+
+Windows/Node22 PASS: workflow run **44464072862**.
