@@ -84,6 +84,41 @@ The pair `[3,5]=[e,g]` is less selective: it occurs at p33 local91 and p40 local
 
 A separate control prevents overclaiming the first-unit word count. Across red-started units, p33's first unit has first rune23 and 23 words, while solved p56 provides another self-count example with first rune25 and 25 words. The p33 word-count identity therefore contributes to the packet and is not individually unique.
 
+## Page number and total page size add two p50 state packets
+
+A separate cross-object check uses only p33's already selected physical address and its complete original rune count.
+
+Physical page number33 addresses
+
+```text
+p50[33] = 1s
+native base60 = 114
+114 = 3*29 + 27
+=> [3,27] = [e,-K].
+```
+
+Among physical page addresses p0–p57 excluding p50, p33 is the only page whose native p50 pair is ordered `[e,-K]`. The same token occurs only once elsewhere in the full table, at address76. That second address is independently the complete p55 rune count and the literal 32×8 outer-circumference size, giving a separate p55↔p33 key bridge documented in `lp2-p55-count76-p33-readout-key.md`.
+
+P33 itself contains exactly **214 original runes**. Its complete page-size address gives
+
+```text
+p50[214] = 4B
+native base60 = 251
+251 = 8*29 + 19
+=> [8,19] = [A,B].
+```
+
+Among every unknown page whose complete rune count is below256, p33 alone has a page-total address yielding ordered `[A,B]`. Byte251 occurs at only two p50 addresses,157 and214; neither physical page address0–57 carries it.
+
+This adds two compact, source-visible state packets to the already validated layout register:
+
+```text
+page number 33 -> [e,-K]
+page size 214  -> [A,B].
+```
+
+They were recognized after the DH state and p33 destination were known, so they are mechanism compression rather than blind predictions. They do not authorize a new body cipher by themselves.
+
 ## Bounded 28-word H-cycle consumer is negative
 
 The lower p33 black body has exactly **28 printed words**, while the frozen H matrix has exact order **28** in GF(29). This motivates one finite value-changing family without adding a new key:
