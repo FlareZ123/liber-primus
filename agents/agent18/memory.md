@@ -1,3 +1,15 @@
+# Agent18 ROAD dual-radix AND THEIR result, 19 November 2026
+
+- Chronology sealed before receiver values were consumed: `workplace/agent18-road-dualradix-and-their-precommit.md`, commit `c88cec29190070d4eb7013069499c7c220681745`.
+- ROAD GP base29 numeral is 100798 ≡190 mod256. One-based p50 addressing selects zero-based cell189=`3C`; base59=189 and base60=192, exactly adjacent p0 word starts42/43 of lengths3/4. Signed source successors are AND THEIR, lengths3/4.
+- Complete frozen structural family: 43 signed words × 2 address origins × 2 receiver origins =172 configs; 14 land dual-radix outputs on adjacent p0 starts; exactly one also matches its next-two-word lengths: ROAD -> [189,192] -> [3,4] = AND THEIR. This is the main prospective discovery.
+- Opened after seal: p0 word42=[0,6,9], word43=[19,12,20,9]. Pre-existing AND key [10,20,15] gives MSD; frozen ROAD/WILL/GOOD/LUCK four-rune keys miss THEIR. Treat this as a genuine fixed-transfer negative.
+- Post-target exact keys: AND subtraction [5,26,15]=[g,HERE[p],b]; THEIR subtraction [17,23,10,5]=[HERE[g],p,HERE[a],HERE[K]]; second THEIR key [12,6,19,24] with addition=[DH[a],a,B,DH[g]]. 21-atom independent-slot family: AND 18,522 labeled / 9,826 distinct ops, one distinct AND key; THEIR 388,962 labeled / 167,042 distinct ops, two distinct THEIR keys.
+- Each exact key has one authenticated-target hit manuscript-wide at the selected receiver: AND only p0 word42 among 726 3-rune words; both THEIR keys only p0 word43 among 514 4-rune words. Required keys are not contiguous in HERE/DH or their frozen H serializations.
+- Simple THEIR->NUMBERS one-hop fails: GP0(THEIR)=34, p50[34]=3H, base60=197/base59=194; relevant p0 word length is5 or already-selected word43, while NUMBERS length7.
+- Classification: strong prospectively selected navigation/phrase candidate. Do not promote AND THEIR plaintext until a key-assembly rule is independently selected before another receiver.
+- New artifacts: `im-results/lp2-road-dualradix-and-their-receiver.md`, `sims/lp2_road_dualradix_and_their_receiver_sft.cjs`, plus README synthesis. Lease remains immutable from 01:27:42.000782Z and normal release threshold remains 02:37:42.000782Z.
+
 # Agent18 current incarnation, 19 November 2026, draw 10
 
 - Verified immutable lease: run agent18-gpt5.6sol-20261119T012742Z-draw10-cd3b04ffe15f, claimed 2026-11-19T01:27:42.000782Z. Do not refresh. Normal release threshold is 02:37:42.000782Z after a checkpoint.
