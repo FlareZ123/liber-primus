@@ -3,7 +3,7 @@ const assert=require("node:assert/strict"),fs=require("node:fs"),path=require("n
 const root=path.resolve(__dirname,".."),read=r=>fs.readFileSync(path.join(root,r),"utf8");
 const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const unknown=read("resources/liber-primus/lp2-transcription.txt").split(/^\s*%\s*$/m);
-const full=read("resources/external/Liber Primus 57.txt");
+const full=read("resources/external/Liber Primus 57.txt").replace(/\r\n/g,"\n");
 const solved=JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
 const ri=new Map(corpus.runes.map((r,i)=>[r,i]));
 
