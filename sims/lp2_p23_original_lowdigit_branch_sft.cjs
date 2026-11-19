@@ -24,6 +24,11 @@ function mod29(value) {
   return ((value % 29) + 29) % 29;
 }
 
+/** @param {number} left @param {number} right @returns {[number, number]} */
+function H(left, right) {
+  return [mod29(left - right), mod29(left + right)];
+}
+
 /** @param {number} base @param {number} exponent @returns {number} */
 function pow29(base, exponent) {
   let result = 1;
@@ -166,6 +171,51 @@ const B = 19;
 assert.equal(tape[B], "0X");
 assert.equal(fullBase60(B), 33);
 
+// The clear p57 word-number convention already used by terminal routes is
+// title-inclusive and one-based. The two low-digit outputs have exact state
+// numbers, and H predicts the second signed-2016 THEIR position.
+const p57Words = [
+  "PARABLE", "LICE", "THE", "INSTAR", "TUNNELNG", "TO", "THE", "SURFACE",
+  "WE", "MUST", "SHED", "OUR", "OWN", "CIRCUMFERENCES", "FIND", "THE",
+  "DIUINITY", "WITHIN", "AND", "EMERGE",
+];
+const findPosition = p57Words.indexOf("FIND") + 1;
+const mustPosition = p57Words.indexOf("MUST") + 1;
+assert.deepEqual([findPosition, mustPosition], [15, 10]);
+
+const stateHandoff = H(findPosition, mustPosition);
+assert.deepEqual(stateHandoff, [5, 25]);
+const g = 5;
+const secondTheirPosition = 25;
+const firstTheirPosition = B;
+const rise = secondTheirPosition - firstTheirPosition;
+assert.equal(stateHandoff[0], g);
+assert.equal(stateHandoff[1], secondTheirPosition);
+assert.equal(rise, 6);
+
+// Charge every ordered pair of the 20 clear p57 word positions. FIND/MUST is
+// the sole pair whose fixed H output is [g, second-THEIR-position].
+const p57PairHits = [];
+for (let left = 1; left <= p57Words.length; left += 1) {
+  for (let right = 1; right <= p57Words.length; right += 1) {
+    if (H(left, right)[0] === g && H(left, right)[1] === secondTheirPosition) {
+      p57PairHits.push({
+        left,
+        right,
+        words: [p57Words[left - 1], p57Words[right - 1]],
+      });
+    }
+  }
+}
+assert.deepEqual(p57PairHits, [{
+  left: 15,
+  right: 10,
+  words: ["FIND", "MUST"],
+}]);
+
+// Existing p33 semantics close the same source positions.
+assert.deepEqual(H(firstTheirPosition, secondTheirPosition), [23, 15]);
+
 // Charge the same token-component family used by READ OUT.
 const chargedModes = [];
 for (const [radix, alphabet] of [[60, alpha60], [59, alpha59]]) {
@@ -217,9 +267,19 @@ console.log(JSON.stringify({
   },
   chargedComponentModes: chargedModes,
   uniqueFourLinkMode: chargedModes[0],
+  p57NumberBridge: {
+    outputs: ["FIND", "MUST"],
+    oneBasedPositions: [findPosition, mustPosition],
+    hOutput: stateHandoff,
+    uniqueOrderedPairHit: p57PairHits[0],
+    firstTheirPosition,
+    secondTheirPosition,
+    rise,
+    theirPairH: H(firstTheirPosition, secondTheirPosition),
+  },
   downstreamControls: {
     p28: translit(p28Plain),
     p33: translit(p33Upper) + " " + translit(p33Lower),
   },
-  decision: "THE ORIGINAL is a source-connected navigation fork under the already selected p50 low-base60 opcode: THE -> FIND -> p28 READ OUT; ORIGINAL -> MUST -> VERIFY -> B -> p33 THEIR RISE. This advances navigation/state structure but is not a body-cipher inverse.",
+  decision: "THE ORIGINAL is a source-connected navigation fork under the already selected p50 low-base60 opcode: THE -> FIND -> p28 READ OUT; ORIGINAL -> MUST -> VERIFY -> B -> p33. The clear-p57 number pair FIND/MUST=[15,10] is uniquely mapped by H to [g,25], while B=19 supplies the first THEIR position; 25-19=6=a predicts the existing p33 THEIR RISE semantic loop. This advances navigation/state structure but is not a body-cipher inverse.",
 }, null, 2));
