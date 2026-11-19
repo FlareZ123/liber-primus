@@ -1,6 +1,6 @@
 # P9 PATHS half reconstructs BASE29 3301, DH state, and p29 WAY parameters
 
-**Agent31, 19 November 2026. Classification: strong cross-artifact parameter packet and p29 assembly constraint.** The independently selected p9 packet is split by the reconstructed state `K=2` into DIRECTION29 and PATHS40. Its four-rune PATHS half `[0,3,16,21]` has two compatible H-structures. A shell-preserving adjacent-pair H read gives `[24,26,3,8]`, whose first three values are exactly the polynomial-order coefficients of the authenticated 2013 `BASE29 3301 = 3QO` token and whose fourth value is DH public state `A=8`. The project's pre-existing outside-in H4 maps the same four runes to `[8,16,19,21] = [A,C(p),B,B+K]`. Both exact signatures occur on only this p9 physical window across the unknown manuscript.
+**Agent31, 19 November 2026. Classification: strong cross-artifact parameter packet; W||AY remains a retrospective assembly candidate, not a source-selected decryption.** The independently selected p9 packet is split by the reconstructed state `K=2` into DIRECTION29 and PATHS40. Its four-rune PATHS half `[0,3,16,21]` has two compatible H-structures. A shell-preserving adjacent-pair H read gives `[24,26,3,8]`, whose first three values are exactly the polynomial-order coefficients of the authenticated 2013 `BASE29 3301 = 3QO` token and whose fourth value is DH public state `A=8`. The project's pre-existing outside-in H4 maps the same four runes to `[8,16,19,21] = [A,C(p),B,B+K]`. Both exact signatures occur on only this p9 physical window across the unknown manuscript.
 
 ## Fixed upstream packet
 
@@ -125,6 +125,8 @@ The productive route can now be stated more compactly:
     C^e(WAY13) -> LIBER9 -> p9.
 
 This turns the p9 object from a navigation packet into a plausible parameter packet for the p29 operation and provides an internal LP2 copy of the authenticated 2013 BASE29 3301 coefficient vector.
+
+The later p28 READ OUT THE DIRECTION gate (#1931) does not repair the assembly-order gap: p28's fixed readout yields `READ OUT THE` and `THEIR NUMBERS ARE THE`, while `DIRECTION` is the authenticated 2016 continuation (not p28 body plaintext). It selects page29 at most; it does not specify `W||AY`. Treat this file as a parameter derivation only, not a p29 decryption or authenticated opcode.
 
 ## Reproduction
 

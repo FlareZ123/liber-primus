@@ -1,6 +1,6 @@
 # Signed MAP/DIRECTION selects e=3 and reconstructs WAY from p29/p50 derivative structure
 
-**Agent17, 19 November 2026. Classification: strong retrospective operation-selector / instruction candidate. The authenticated 2016 words `MAP` and `DIRECTION` uniquely expose the p28 inverse exponent `e=3` in the already fixed outer-H endpoint register. On the independently selected p29/p50 repeated-root structure, derivative order3 yields GP value7 = W; the independently authenticated 2013 BASE29 factor H contributes its positive-degree coefficients `[24,26]=AY`. A charged 48-configuration assembly family has exactly one authenticated three-GP-rune output, `WAY`. The assembly order was recognized retrospectively, so WAY remains a candidate instruction and no p29 ciphertext plaintext is claimed.**
+**Agent17, 19 November 2026; Agent40 source-gate review, 19 November 2026. Classification: conditional navigation-token candidate; the p29 derivative assembly is not source-selected and no p29 ciphertext plaintext is recovered.** The authenticated 2016 words `MAP` and `DIRECTION` expose the p28 inverse exponent `e=3`; the p9 PATHS packet supplies `r=24` and `AY=[24,26]`; the p29/p50 third derivative yields `W=7`. The 48-configuration family has one authenticated three-rune lexical hit, `WAY`, but its `W||AY` assembly was recognized retrospectively. The new p28 `READ OUT THE DIRECTION` bridge selects p29 as a page by the signed-source index, but does not specify the derivative/coefficient concatenation order.**
 
 ## Source-selected derivative order
 
@@ -221,19 +221,34 @@ Agent31 subsequently found that the independently selected p9 PATHS half `[0,3,1
 Under the fixed radial H serialization, `[24,26,3,8]` and its `[24,26,3]` prefix each occur on only p9 offsets137–140 across all 12,791 contiguous four-rune windows. Charging 32 natural pair/orientation variants per window gives 409,312 configurations; every full or prefix hit remains on that same physical p9 window. The outside-in H4 target `[A,C(p),B,B+K]` is likewise unique manuscript-wide.
 
 This packet now supplies `r=24`, derivative order `e=3`, and `AY=[24,26]` before the p29 derivative. Both p29 and the table give third derivative `W=7` at r24. Preserving p9 branch order gives `W||AY = WAY`; among the six compact W-insertion/direction choices, only that assembly is an authenticated signed-source three-rune word. Because the radial serialization and branch-composition rule were recognized after WAY, retain candidate-level wording, while the previous 48-member assembly ambiguity is materially narrowed. See [p9 PATHS H-factor packet](lp2-p9-paths-hfactor-p29-way.md). Windows Node22 PASS: 44457862429.
+## p28 READ OUT THE DIRECTION gate (Issue #1931) — negative
+
+The new bridge is not a complete source instruction. The fixed p28 readout produces the local candidate `READ OUT THE` and the four-word structural result `THEIR NUMBERS ARE THE`; the authenticated 2016 message then continues with `DIRECTION`. These pieces can motivate selecting physical p29 (the signed-source word index is 29), but the whole phrase `READ OUT THE DIRECTION` is not itself a single authenticated or p28-decrypted sentence.
+
+The p28 readout report independently records that `DIRECTION SEEK AND YOU` is **0/2,699** canonical page-local four-word windows and explicitly classifies `DIRECTION` as a signed-source continuation, not p28 body plaintext. It therefore cannot be used as an authored instruction that specifies the p29 polynomial operation.
+
+The remaining assembly gap is unchanged:
+
+- `MAP`/`DIRECTION` source endpoints select `e=3`;
+- the p9 PATHS packet supplies `r=24` and `AY=[24,26]`;
+- the p29/p50 third derivative gives `W=7`;
+- nothing says to place derivative output `W` before the H-derived `AY` pair.
+
+The semantic fact that `WAY` is a synonym for `DIRECTION` is a lexical match, not an ordering rule. The p9 `LIBER` holdout is a retrospective cross-route check, not a p30 consequence.
+
+**Frozen receiver and holdout:** the receiver is the full canonical p29 rune body (original physical image `46.jpg`); the untouched consequence is the full canonical p30 rune body (original physical image `47.jpg`). No ciphertext span was opened. The only nearby `SEEK AND YOU` / `YOU WILL BE FOUND` continuation is already present in the same authenticated 2016 source and belongs to the separate Agent4 p29+p30→p32 precommit; it is not an independent p30 holdout for this assembly.
+
+**Decision:** retain `WAY` only as a conditional navigation-word candidate. Retire the derivative-assembly branch as a p29 cipher/plaintext path. No exact p29 or p30 original-cipher inversion/forward reconstruction exists, and no further roots, derivative orders, coefficient subsets, concatenations or language-fitting variants are authorized.
+
 ## Decision
 
-Preserve:
+Preserve the parameter derivation, not the plaintext claim:
 
 ```text
 P29^(e)(24) + H_{X^2,X}
 = W + AY
-= WAY
+= WAY   # retrospective candidate only
 ```
-
-as the leading bounded p29 operation candidate.
-
-This result supplies a source-motivated derivative order and a compact authenticated instruction output. It still does not decrypt the p29 rune body. A productive successor must use `WAY` prospectively, before opening another target, to select a page, receiver, traversal or reversible operation.
 
 Do not expand derivative orders, coefficient subsets or arbitrary concatenations after seeing output.
 
