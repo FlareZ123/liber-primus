@@ -171,6 +171,7 @@ for (const page of pages) {
       page: page.page,
       ordinal: first.ordinal,
       start: first.start,
+      cipher,
       key,
       inverse,
       columns,
@@ -232,6 +233,71 @@ assert.deepEqual(
   [[0, 1]]
 );
 
+/** @param {number} seed @param {number[]} rises @returns {number[]} */
+function cumulativeRise(seed, rises) {
+  const output = [mod29(seed)];
+  let currentValue = mod29(seed);
+  for (const rise of rises) {
+    currentValue = mod29(currentValue + rise);
+    output.push(currentValue);
+  }
+  return output;
+}
+
+/**
+ * @param {number} q
+ * @param {number} theIndex
+ * @param {number} wayIndex
+ * @returns {{left:number[],center:number[],right:number[],inverse:number[],key:number[]}}
+ */
+function markerRiseGenerator(q, theIndex, wayIndex) {
+  const left = cumulativeRise(-q, [q - 1, wayIndex - 1, wayIndex + 1]);
+  const center = cumulativeRise(q, [
+    q,
+    q + theIndex,
+    q + 2 * theIndex,
+    q + 3 * theIndex,
+  ]);
+  const right = cumulativeRise(theIndex, [theIndex - 1, theIndex, theIndex + 1]);
+  const inverse = [...left, ...center, ...right];
+  return { left, center, right, inverse, key: hOutsideIn(inverse) };
+}
+
+const theIndices = sourceWords
+  .map((word, index) => word === "THE" ? index : null)
+  .filter((index) => index !== null);
+const wayIndices = sourceWords
+  .map((word, index) => word === "WAY" ? index : null)
+  .filter((index) => index !== null);
+
+assert.deepEqual(theIndices, [1,7,12,17,22,28]);
+assert.deepEqual(wayIndices, [13]);
+
+const generated = markerRiseGenerator(4, 7, 13);
+assert.deepEqual(generated.inverse, p0.inverse);
+assert.deepEqual(generated.key, p0.key);
+assert.deepEqual(
+  p0.cipher.map((value, index) => mod29(value - generated.key[index])),
+  plaintext
+);
+
+const generatorAnchorControl = theIndices.map((theIndex) => {
+  const candidate = markerRiseGenerator(4, theIndex, 13);
+  const hits = receivers
+    .filter((row) => row.inverse.join(",") === candidate.inverse.join(","))
+    .map((row) => [row.page, row.ordinal]);
+  return { theIndex, hits };
+});
+
+assert.deepEqual(generatorAnchorControl, [
+  { theIndex: 1, hits: [] },
+  { theIndex: 7, hits: [[0,1]] },
+  { theIndex: 12, hits: [] },
+  { theIndex: 17, hits: [] },
+  { theIndex: 22, hits: [] },
+  { theIndex: 28, hits: [] },
+]);
+
 const transforms = {
   raw: (values) => values,
   H: hOutsideIn,
@@ -283,11 +349,22 @@ console.log(JSON.stringify({
     rightColumnRises: forwardRises(p0.columns.right),
     rightRiseSourceWords: ["SEEKS6", "THE7", "DEVOTED8"],
   },
+  candidateRiseGenerator: {
+    anchors: { q: 4, THE: 7, WAY: 13 },
+    inversePacket: generated.inverse,
+    columns: {
+      left: generated.left,
+      center: generated.center,
+      right: generated.right,
+    },
+    generatedKey: generated.key,
+    sourceTHEAnchorControl: generatorAnchorControl,
+  },
   progressionControl: {
     centerRiseArithmeticProgressionHits: centerRiseProgressions.map((row) => [row.page, row.ordinal]),
     rightConsecutiveRampHits: consecutiveRightRamps.map((row) => [row.page, row.ordinal]),
   },
   orientationControl: transformHits,
   decision:
-    "After independent source selection of EPIPHANY SEEKS, the fixed residual H-inverse aligns with the visible 4|5|4 marker as [25,28,11,25] | [4,8,19,8,4] | [7,13,20,28]. The center is q,A,B,A,q and has rises [4,11,18,25], the sole arithmetic-progression center-rise sequence among all 19 controls. The right rises [6,7,8] = SEEKS6,THE7,DEVOTED8. These two short progression rules constrain nine of thirteen H-inverse key coordinates; the left column remains without an independent serializer.",
+    "After independent source selection of EPIPHANY SEEKS, the residual H-inverse aligns with the visible 4|5|4 marker. A compact cumulative-rise generator using q=4, recovered THE7, and unique WAY13 reproduces all 13 inverse coordinates and therefore the exact additive key. Holding q and WAY fixed while charging all six authenticated THE indices leaves only THE7, and it hits p0 alone among 19 matched 8+5 receivers. The generator was recognized after the residual structure was visible, so it is a candidate key-order provenance rule pending an independent prospective consumer.",
 }, null, 2));
