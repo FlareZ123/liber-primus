@@ -1,4 +1,4 @@
-# THEIR state packet closes a fixed-semantics bridge to WILL and FOUND
+# THEIR and LUCK state packets close a local ROAD -> WILL -> FOUND -> GOOD -> LUCK -> ROAD mechanism cycle
 
 **Agent22, 19 November 2026. Classification: post-receiver state/navigation compression on the prospectively sealed ROAD -> AND THEIR branch. The receiver context is prospective; the H-shell packet and shell-sum consumer were recognized after opening the selected word, so this strengthens mechanism coherence but does not promote plaintext.**
 
@@ -163,6 +163,93 @@ Only **nine** source/mode occurrences survive both word-start requirements. Only
 
 This is familywise selectivity for the discovered recipe, not a prospective p-value.
 
+## LUCK closes back onto ROAD through a second state packet
+
+The complete two-stage charge has another independently meaningful survivor. Canonical LUCK gives:
+
+```text
+GP0(LUCK) = 31
+p50[31] = 2D
+```
+
+Again charge all four live radix/origin conventions. Exactly one lands a p0 word start:
+
+```text
+base59 / zero -> 131
+```
+
+This selects p0 word30, offsets131..134, ciphertext `[23,14,21,7]`. Its H shell is:
+
+```text
+H shell = [16,1,22,6]
+        = [H(K,b)[0], a-g, p-1, a].
+```
+
+The exact four-coordinate shell occurs **once among all 514 complete unknown four-rune words**.
+
+Its ordinary integer coordinate sum is:
+
+```text
+16 + 1 + 22 + 6 = 45
+```
+
+Reuse the **same base59/zero** semantics:
+
+```text
+p50[45] = 1l
+base59(1l) = 105
+zero-based receiver -> p0 offset105
+```
+
+Offset105 is exactly the independently recovered ROAD receiver, ciphertext `[16,8,25,27]`. Its published key `[12,5,1,4]` subtracts to canonical ROAD with exact replay.
+
+Inside the complete two-stage family of nine surviving source/mode cases, **LUCK is the sole source identity whose second receiver is ROAD**.
+
+This gives a second packet leg with the same abstract grammar:
+
+```text
+source word
+  -> GP0 address
+  -> p50 numeral
+  -> the unique radix/origin mode that lands a p0 word start
+  -> H-shell state packet
+  -> ordinary shell-coordinate sum
+  -> p50 again under the same mode
+  -> independently recovered receiver
+```
+
+The two observed instances are:
+
+```text
+THEIR --base60/one--> [p,B,b,p,F] --sum80--> WILL
+LUCK  --base59/zero--> [H(K,b)[0],a-g,p-1,a] --sum45--> ROAD
+```
+
+The second instance was identified while inspecting the complete charged survivor list, so it is not a blind holdout. Its independent value is the exact closure onto the already established ROAD candidate and the unique state-shell ordering at its intermediate receiver.
+
+## Local cycle
+
+Combining this report with the independently documented phrase navigation and H-shell transitions yields a compact local cycle:
+
+```text
+ROAD
+  -> prospectively sealed AND THEIR
+THEIR
+  -> state packet [p,B,b,p,F]
+  -> WILL
+WILL
+  -> FOUND receiver
+FOUND
+  -> H-junction contraction
+GOOD
+  -> GCD-selected H-shell update
+LUCK
+  -> state packet [H(K,b)[0],a-g,p-1,a]
+  -> ROAD
+```
+
+The cycle combines operations discovered by separate routes and has exact forward replay at the recovered word receivers. It remains a **candidate mechanism cycle**, because several transition operators and inverse-key assemblies were recognized after their target words were available.
+
 ## The fixed numeric rule stops at FOUND
 
 The same semantics does **not** manufacture GOOD:
@@ -188,9 +275,10 @@ This report materially narrows the local route:
 - its coordinate sum80, under the **same** base60/one-based semantics, lands the independently recovered WILL receiver;
 - WILL under that same semantics lands the independently recovered FOUND receiver;
 - the complete 43-word × four-mode two-stage charge leaves only THEIR as the source identity reaching WILL;
-- the numeric rule then fails the next GOOD-length prediction, cleanly bounding its scope.
+- the numeric rule then fails the next GOOD-length prediction, cleanly bounding its scope;
+- independently, LUCK has one word-start mode, base59/zero, selecting the unique shell `[H(K,b)[0],a-g,p-1,a]`; shell-sum45 under the same mode lands the recovered ROAD receiver, closing the local candidate cycle.
 
-Preserve this as a **strong post-receiver state/navigation compression** consistent with the human-facing clue “their numbers are the direction.” Do not treat shell-sum80 as creator-authenticated by itself, do not revive a manuscript-wide p50-numeral-to-LP2-offset rule, and do not promote AND/THEIR/WILL/FOUND plaintext beyond the evidence status of their existing inverses.
+Preserve this as a **strong post-receiver state/navigation compression and local candidate-cycle closure** consistent with the human-facing clue “their numbers are the direction.” Do not treat shell-sum80 as creator-authenticated by itself, do not revive a manuscript-wide p50-numeral-to-LP2-offset rule, and do not promote AND/THEIR/WILL/FOUND plaintext beyond the evidence status of their existing inverses.
 
 ## Reproduction
 
