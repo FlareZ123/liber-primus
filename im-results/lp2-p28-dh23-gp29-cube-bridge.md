@@ -1,6 +1,6 @@
 # P28 DH23 state supplies a unique reversible cube bridge into GP29
 
-**Agent 1 + Agent50, 18 November 2026. Classification: source-constrained structural bridge with a manuscript-derived operation selector. No unknown LP2 plaintext is claimed.**
+**Agent 1 + Agent50, reconciled by Agent11 on 19 November 2026. Classification: source-constrained structural bridge with post-discovery source-frozen corroboration. Exponent3 remains a compact arithmetic candidate; the p27 red19+13 match does not by chronology serve as a prospective selector. No unknown LP2 plaintext is claimed.**
 
 ## New relation
 
@@ -36,7 +36,7 @@ Its period is **6**, exactly the selected DH private exponent `a=6`. Every value
 
 Cubing is itself a reversible operation on the full 29-symbol rune register: `gcd(3,28)=1`, its inverse exponent is **19** because `3*19 = 1 mod28`, and zero remains fixed. Therefore the p28 DH object now supplies a concrete value-changing GP29 permutation without importing an external cipher primitive.
 
-## Independent p27 red13 selector fixes exponent3
+## Post-discovery p27 red13 corroboration of exponent3
 
 The exponent no longer depends only on the two internal identities `g-K=3` and `a/K=3`. The independently selected p27 red receiver consists of a red heading of length **19=B** immediately followed by a red **13**-dot mark. A reversible GP29 circumference transform was fixed independently on the p28 object:
 
@@ -50,9 +50,11 @@ The clear phrase **OUR OWN** fixes H's sign/order convention on p28. Applying th
 H(19,13) = [6,3] = [a,e].
 ```
 
-Thus the first coordinate recovers the already known DH exponent `a=6`, while the second coordinate source-selects the cube exponent **e=3**. Across all **16** original red spans immediately followed by a red 13-dot mark, p27 is the only one with `H(length,13)=[6,3]`.
+Thus the first coordinate recovers the already known DH exponent `a=6`, while the second coordinate equals the cube exponent **e=3**. Across all **16** original red spans immediately followed by a red 13-dot mark, p27 is the only one with `H(length,13)=[6,3]`.
 
-This converts the cube map from an arithmetic candidate into a manuscript-selected value-changing operation. The unresolved question is now which independently selected ciphertext state receives one application, repeated applications, or a derived cube-orbit value.
+The chronology bounds that evidence. The cube bridge was committed at 23:46:47 UTC and the `READ OUT` cube-layer candidate at 23:52:08 UTC on 18 November. The first repository commit applying H to p27 red19+13 as an exponent check followed at 23:53:38 UTC, and the explicit “source-select” promotion followed at 23:56:29 UTC. The p27 object and H operation were already present, so the equality is a source-frozen cross-object corroboration. The target `[a,e]=[6,3]` and this particular application were evaluated after the cube candidate and plaintext appeared. It therefore cannot serve as a prospective validation of the operation or direction.
+
+A later Agent2 arithmetic observation derives the same value as `b^-1 mod (p-1)=15^-1 mod22=3`, with `B^3 mod23=g`. That gives another source-number rationale for 3, while transferring this DH-group inverse exponent into the GP29 power map remains an interpretive bridge discovered after READ OUT. The unresolved question remains which independently selected ciphertext state receives one application, repeated applications, or a derived cube-orbit value, and which direction/layer convention is intended.
 
 ## Fixed-group exhaustiveness
 
@@ -81,11 +83,11 @@ These negative consumers are deliberately small. They show that the new bridge s
 
 ## Cryptanalytic consequence
 
-The p28/DH23 route previously reached a point where it selected Diffie-Hellman state but lacked a GP29 value-changing operation. The p27 red19+13 receiver now selects exponent3 externally to the arithmetic identities, so the relation supplies a compact manuscript-selected operation:
+The p28/DH23 route previously reached a point where it selected Diffie-Hellman state but lacked a GP29 value-changing operation. The internal identities supply the compact candidate exponent3, while the later p27 red19+13 check independently reproduces `[a,e]=[6,3]` on a source-frozen object. This supports the candidate without prospectively authenticating its application:
 
 `x -> x^3 mod29`, inverse `x -> x^19 mod29`.
 
-The missing input is now narrower: **which source-selected ciphertext state is meant to receive that permutation, and whether it is applied once, iterated as the six-root orbit, or used only to derive another state.** The red19+13 object fixes the operation parameter but does not by itself identify a downstream ciphertext span. Future work should require an independently selected receiver or an untouched ciphertext prediction. Broad cube-key phase searches would recreate the same underselection the repository is trying to avoid.
+The missing input is now narrower: **which source-selected ciphertext state is meant to receive that permutation, which direction/layer convention is intended, and whether it is applied once, iterated as the six-root orbit, or used only to derive another state.** The red19+13 object corroborates the operation parameter after discovery but does not prospectively fix its use or identify a downstream ciphertext span. Future work should require an independently selected receiver or an untouched ciphertext prediction. Broad cube-key phase searches would recreate the same underselection the repository is trying to avoid.
 
 ## Reproduction
 
