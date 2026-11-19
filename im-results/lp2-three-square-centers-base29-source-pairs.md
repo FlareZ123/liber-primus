@@ -126,4 +126,4 @@ The lexical-register interpretation is strongly supported by the three-object ho
 node sims/lp2_three_square_centers_base29_source_pairs_sft.cjs
 ```
 
-Windows Node22 workflow: pending at report creation.
+Windows Node22 PASS: `44474459983`.
