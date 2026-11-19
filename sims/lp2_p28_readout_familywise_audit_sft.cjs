@@ -39,24 +39,28 @@ function physicalPart(page) {
   return parts[page <= 49 ? page : page - 1];
 }
 
-/** @param {string} text */
-function parseWords(text) {
+/** @param {string} text @param {"physical"|"generic"} mode */
+function parseWords(text, mode = "physical") {
   const words = [];
   const runes = [];
   let current = [];
   let start = 0;
+  const flush = () => {
+    if (!current.length) return;
+    words.push({start, values: current});
+    current = [];
+  };
   for (const char of [...text]) {
     const value = runeIndex.get(char);
     if (value !== undefined) {
       if (current.length === 0) start = runes.length;
       current.push(value);
       runes.push(value);
-    } else if (current.length) {
-      words.push({start, values: current});
-      current = [];
+    } else if (mode === "generic" || char === "-" || char === ".") {
+      flush();
     }
   }
-  if (current.length) words.push({start, values: current});
+  flush();
   return {words, runes};
 }
 
@@ -313,7 +317,7 @@ const solvedControls = [];
 for (const name of ["p56_an_end", "p57_parable"]) {
   const section = solved.sections.find((item) => item.name === name);
   assert.ok(section);
-  const scan = scanParsed(parseWords(section.source_text), name);
+  const scan = scanParsed(parseWords(section.source_text, "generic"), name);
   solvedControls.push({
     name,
     objects: scan.objects.length,
