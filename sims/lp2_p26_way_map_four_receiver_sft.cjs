@@ -247,9 +247,10 @@ assert.deepEqual(p26Four, {
  * State48 occurs exactly once as a word-GP0 receiver, but the already-frozen
  * 4D current-page rune self-index does not transfer to p26.
  */
+const p26NavigationLines = pages[26].trim().split("/");
 const p26State48 = [];
-for (let line = 0; line < p26Lines.length; line += 1) {
-  const lineWords = runeWords(p26Lines[line]);
+for (let line = 0; line < p26NavigationLines.length; line += 1) {
+  const lineWords = runeWords(p26NavigationLines[line]);
   for (let word = 0; word < lineWords.length; word += 1) {
     if (gp0(lineWords[word]) === 48) {
       p26State48.push({
@@ -282,7 +283,7 @@ assert.equal(
  * state56 receiver under +K, but charge the sign and English background before
  * treating it as plaintext.
  */
-const selectedReceiver = p26Line10[2];
+const selectedReceiver = runeWords(p26NavigationLines[9])[2];
 const mod29 = (value) => ((value % 29) + 29) % 29;
 const plusK = selectedReceiver.map((value) => mod29(value + 2));
 const minusK = selectedReceiver.map((value) => mod29(value - 2));
