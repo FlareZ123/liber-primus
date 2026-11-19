@@ -208,6 +208,72 @@ This joins the numbered packet directly to the authenticated continuation `PRIMU
 
 A deliberately narrow follow-up tested whether MAP itself also appears under the exact p32 state-address/cardinal grammar that produced THE. Keeping the same 49 addresses, all four directions, and extending from two cells to three yields **zero** authenticated three-rune hits on p32 and zero on the matched square page p6. That failure is recorded in `im-results/lp2-p32-state-native-the-readout.md`. Do not tune turns, wraps, or alternate starts to force MAP as local p32 plaintext.
 
+## Independent numbered-diagonal loop: BEWARE returns to YOU
+
+Agent1's independently recovered numbered route gives a second interpretation of the packet's p32 result.
+
+The authenticated one-based source ordinal `n` selects physical LP2 page `n`, project page `n−1`, and canonical local word `n`. Across all43 source words the sole direct-coordinate failure is:
+
+```text
+YOU ordinal33
+-> project p32
+-> requested word33 absent
+-> p32 has exactly22=p−1 words.
+```
+
+DIRECTION30 independently recovers `p−1=22`, so the one permitted one-based wrap sends YOU33 to p32 word11. Direct numbering then resumes:
+
+```text
+WILL34   -> project p33
+BE35     -> project p34
+FOUND36  -> project p35
+GOOD37   -> project p36
+LUCK38   -> project p37
+BEWARE39 -> project p38.
+```
+
+The final three project pages are exactly the physical packet studied here:
+
+```text
+p36 section1
+p37 sections2,3,4
+p38 section5.
+```
+
+So the independently recovered numbered diagonal enters the red10 packet on the authenticated suffix:
+
+```text
+GOOD -> LUCK -> BEWARE.
+```
+
+The prospectively frozen packet continuation then gives:
+
+```text
+section n -> word n lengths
+[4,4,4,2,6]
+-> solved cardinal T
+[6,6,6,2,12]
+-> GP0 32
+-> project p32.
+```
+
+Project p32 is exactly the unique wrapped YOU page. Therefore two independently developed mechanisms close a page-level cycle:
+
+```text
+YOU33
+ -> unique p32 wrap
+ -> WILL34 -> BE35 -> FOUND36
+ -> GOOD37 -> LUCK38 -> BEWARE39
+ -> p36-p38 red10 numbered packet
+ -> frozen packet readout32
+ -> p32
+ -> YOU33.
+```
+
+This relation was recognized after the packet continuation and the numbered diagonal had been developed separately. It requires no new key, radix, sign, or offset. The packet's numeric output was already frozen as32; the diagonal had already fixed p32 as the unique YOU exception.
+
+This is currently the strongest structural consequence of the red10 packet: it does more than quote authenticated source text or point to a previously interesting page. It closes onto the unique exceptional page in a distinct source-number navigation system.
+
 ## Existing downstream continuation from MAP / HERE
 
 The MAP opcode does not terminate at an untyped pointer. Existing independently documented work gives a constrained continuation:
