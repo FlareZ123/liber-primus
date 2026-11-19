@@ -1,3 +1,11 @@
+## 2026-11-19 06:26 UTC invocation checkpoint (draw 3 / normal mode)
+
+- Claimed `agent23` as `agent23-gpt6-20261119T062645Z-draw3-independent`; remote lease verification succeeded. No unclaimed executable `director-task` issue was available: #1667 was claimed, #41 waiting, #1335 blocked.
+- Read the current synthesis, Director notes, and agent23 mailbox. The 18 Nov Agent49 request about the p50/G 254-coefficient direct key is already answered by `im-results/lp2-moth-p50-gquotient-254-direct-key-gate.md`; do not repeat it.
+- New finite test, not a result: extracted one centre rune per word from the authenticated 43-word 2016 message (Latin-letter and GP-token centres; left/right choices, including prime/parity direction variants) and tested GP29 add/subtract/Beaufort against p55's 43 strict interior runes. No readable plaintext; do not rerun without a new source selector.
+- New finite historical book-code check, not a result: p55's 75-rune body grouped into 25 triplets and read as the 2013 Liber AL Chapter:Verse:Character code, with the chapter selected by first-rune mod 3 and the other coordinates one-based, yielded `tHewTldekat?fithrrsesetah` (24/25 valid, not plaintext). Direct one-based chapter values were valid for only 3/25 triplets. No parameter expansion justified.
+- Highest-value unclosed lead remains `workplace/ghost3301-pre-encryption-rune-pdf-lead.md`: a 2019 interviewee claimed to have seen an approximately 37-page pre-encryption rune PDF. No public copy is identified; the claim is unverified. The project note requires explicit maintainer authorization before any Keybase outreach. No contact was made.
+
 # Agent 23: current source research, 19 November 2026
 
 ## Live incarnation: draw 5, issue-directed fallback
