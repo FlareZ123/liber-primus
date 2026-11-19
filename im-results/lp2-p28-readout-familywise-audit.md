@@ -11,7 +11,7 @@ A separately frozen Director #1706 receiver audit completed after this transform
 The correct status is therefore:
 
 - preserve `READ OUT` as the leading local interpretation of the p28 center/page-word object;
-- preserve its exact reversible transform and source geometry;
+- preserve its exact reversible transform and exceptional source geometry, while treating the cube-layer direction/count as inferred rather than visually instructed;
 - preserve the independently audited p0 receiver consequence as corroboration;
 - do not promote `READ OUT` to established plaintext while the p50-numeral→LP2-offset output type remains unauthenticated;
 - do not generalize cube-layering into a manuscript-wide cipher.
@@ -67,6 +67,27 @@ word length5
 Thus p28's six-rune input object is unusually constrained by visible manuscript structure.
 
 A second prospective transfer was frozen before its outputs were opened: apply the same layer rule to every **other** page whose one-based page-numbered word starts exactly at center+1, allowing any word length. The census returns **zero candidates**. The exact selector is unique to p28, so it provides no independent object on which to validate the operation.
+
+## Original-image selector gate: object positive, transform negative
+
+Director #1728 examined the exact p28 scan before using any p0/DH receiver, MAP, ROAD, LEAD, NEXT, or language score.
+
+The physical/transcription census first isolates every odd-rune unknown page whose next printed word starts immediately after the exact rune center. There are four:
+
+| Page | Runes | Center line | Successor word | Successor reaches same line edge |
+| --- | ---: | ---: | ---: | --- |
+| p3 | 217 | 6 | word21, length4 | no |
+| p17 | 273 | 7 | word37, length4 | no |
+| p25 | 273 | 6 | word28, length4 | no |
+| p28 | 269 | 6 | word28, length5 | **yes** |
+
+Thus p28 is unique in this matched source family: once the exact rune center is chosen, the center rune plus the immediately following complete word is exactly the six-rune rightward suffix to the physical line edge.
+
+The local pixels do not add a selector for the cube-layer transform. Original p28 is a grayscale JPEG with no dark pixels in the outer x<500 or x>=1900 margins. Its 12 source-image text bands are regularly spaced. Line6 occupies y1616..1728, x601..1757, width1157 pixels; page line-start deltas range185..190 pixels, while the gaps around line6 are188 and187. Page line widths range1138..1193 pixels, and line6 is neither extreme. The exact center rune is ordinary `N`, appearing11 times on p28, and its following delimiter is one of56 ordinary hyphen word separators.
+
+One positive local clue survives. P28 line6 begins `DH`, the sole exact `DH` line-start fragment among all604 physical rune lines p0..p55. This independently identifies the line and the DH semantic family. It supplies no visual instruction to choose the exact center boundary, read right rather than left, treat the five runes as three shells, or iterate cubing to exponent27.
+
+The source-visible conclusion is mixed: **the six-rune input object has exceptional geometry; the local image leaves the exact cube direction and layer count unspecified.** The `(3,27)` transform remains arithmetic/model-selected and must earn support from independent consequences such as the #1721 receiver discrimination.
 
 ## Full pre-output transform family
 
@@ -168,8 +189,8 @@ This consequence is outside the p28 six-rune discovery span and was selected wit
 
 Four facts now coexist:
 
-1. the p28 input object is uniquely and visibly selected;
-2. the exact `(3,27)` transform is reversible and source-motivated;
+1. the p28 input object is uniquely constrained by countable source geometry, and the matched original-image audit confirms the rightward line-edge object;
+2. the exact `(3,27)` transform is reversible and source-motivated, while #1728 finds no local visual cue that independently specifies its cube direction or three-layer repetition;
 3. the full pre-output language family contains alternate phrase hits and the frozen operation has no solved exact transfer;
 4. `READ OUT` has a familywise-exceptional downstream receiver geometry under a separately frozen audit.
 
@@ -183,4 +204,6 @@ The audit therefore satisfies the Director fork for **preserving the leading unk
 - Final Windows Node22 run: [44429462881](https://github.com/FlareZ123/liber-primus/actions/runs/44429462881)
 - Independent exact solved transfer: [`im-results/lp2-p28-readout-solved-transfer-gate.md`](lp2-p28-readout-solved-transfer-gate.md)
 - Independent receiver-family audit: [`im-results/lp2-readout-p0-receiver-familywise-audit.md`](lp2-readout-p0-receiver-familywise-audit.md)
-- Director issue: [#1705](https://github.com/FlareZ123/liber-primus/issues/1705)
+- Original-image selector SFT: [`sims/lp2_p28_visible_selector_gate_sft.py`](../sims/lp2_p28_visible_selector_gate_sft.py)
+- Original-image selector Windows run: [44433297532](https://github.com/FlareZ123/liber-primus/actions/runs/44433297532)
+- Director issues: [#1705](https://github.com/FlareZ123/liber-primus/issues/1705), [#1728](https://github.com/FlareZ123/liber-primus/issues/1728)

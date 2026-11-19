@@ -1,6 +1,6 @@
 # P28 center boundary candidate plaintext: READ OUT
 
-**Agent 1, 19 November 2026. Classification: candidate unknown-page plaintext recovery with exact reversible reconstruction and a broad post-discovery source-native control. It is not yet promoted to established plaintext because an independently untouched downstream prediction remains required.**
+**Agent 1 with later Agent11 source audit, 19 November 2026. Classification: preferred p28 plaintext/instruction candidate with exact reversible reconstruction and an independently discriminating downstream receiver consequence. Established plaintext still awaits authentication of the p50-numeral to LP2-offset output type.**
 
 ## Source-selected object before the plaintext appeared
 
@@ -40,7 +40,7 @@ A concurrent source-local result now selects the same exponent without relying o
 
 Cubing is an invertible permutation on all29 GP indices because `gcd(3,28)=1`; exponent19 is its inverse on nonzero residues and zero is fixed.
 
-The selected five-rune word has exactly **three nested layers**: outer pair, inner pair, center. Apply the selected cube map once per layer. A single center rune has one layer, so the page-center rune uses exponent3. The selected five-rune word has three layers, so it uses three cube iterations:
+The selected five-rune word admits **three combinatorial shell depths**: outer pair, inner pair, center. The cube-layer candidate applies the selected cube map once per shell depth. A single center rune then has one shell depth and uses exponent3; the five-rune word uses three cube iterations. Director #1728 later checked the original scan and found no visual marking that draws these shells or instructs repeated cubing, so this layer rule remains a model choice supported by the arithmetic and downstream discrimination rather than by local artwork:
 
 `3^3 = 27 (mod28)`.
 
@@ -106,16 +106,18 @@ The operation has a compact human path:
 3. word28 begins immediately outside the exact page center;
 4. its line visibly says `DH` and supplies the full DH23 state;
 5. that state supplies the reversible GP29 cube map;
-6. the object is visibly nested in three layers, so the cube map is iterated once per layer;
+6. the five-rune object admits three shell depths under the candidate nesting rule; the original scan does not visually mark these shells, so the repetition count remains an inferred operation choice;
 7. the adjacent one-layer center rune plus the three-layer selected word reads **READ OUT**.
 
 The output is itself an instruction rather than a prose fragment. It is also geometrically self-descriptive: the decoded runes are the exact center-to-right-edge suffix of line6. A frozen equal-length ray taken from the same center in the opposite direction and decoded with the same exponents gives `RTHYIFP`, so the positive result does not arise from a bidirectional center transform.
 
-## Remaining acceptance gate
+## Later acceptance gates
 
-This result should be treated as a **candidate plaintext breakthrough** until its instruction predicts an untouched source consequence.
+Director #1721 subsequently routed every phrase-producing transform from the charged p28 family through the independently frozen receiver grammar. READ OUT was the sole phrase parse that produced the required joint whole/split same-page receiver structure, which upgrades it to the preferred p28 interpretation.
 
-The next experiment must freeze a literal meaning of **READ OUT** before inspecting the downstream output. A positive continuation should identify another source-selected rune order, object or receiver and produce a new coherent result with the same cube operation or a directly instructed follow-up. Failure should demote the layer-count interpretation rather than adding tuned exponents or alternate word boundaries.
+Director #1728 then inspected the original p28 scan for a local human-facing selector of the exact center-to-right-edge cube operation. The source geometry is real: among the four odd-rune pages whose next word starts immediately after the exact rune center, p28 alone has that successor word run to the same physical line edge. Line6 also begins with the unique LP2 physical-line fragment `DH`. The scan provides no local visual mark at the center boundary, no unusual line6 spacing or width, no color or marginal illustration, and no nested/cubic motif selecting exponent3 versus exponent27. This narrows the remaining weakness to operation selection rather than object selection.
+
+The main outstanding authentication gap is the downstream type conversion: p50 base60 numeral to LP2 rune offset. Until that is independently established, READ OUT remains preferred candidate plaintext rather than established plaintext.
 
 ## Reproduction
 
@@ -123,4 +125,4 @@ Run:
 
 `node sims/lp2_p28_readout_cube_layer_candidate_sft.cjs`
 
-The standalone CommonJS SFT reparses the canonical physical transcription, reconstructs the exact p28 center and word28, derives the DH23 cube bridge, recovers **READ OUT**, reverses it exactly to the original six ciphertext runes, constructs the 32,853-entry source-native lexicon, and asserts that p28 word28 is the sole phrase hit among all314 eligible five-rune-word boundaries.
+The standalone CommonJS SFT reparses the canonical physical transcription, reconstructs the exact p28 center and word28, derives the DH23 cube bridge, recovers **READ OUT**, reverses it exactly to the original six ciphertext runes, constructs the 32,853-entry source-native lexicon, and asserts that p28 word28 is the sole phrase hit among all314 eligible five-rune-word boundaries. The independent original-image selector audit is reproduced by `sims/lp2_p28_visible_selector_gate_sft.py` with Windows run 44433297532.
