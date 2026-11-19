@@ -93,7 +93,97 @@ const paths = external.ciphertextCandidates(rule);
 assert.equal(paths.length, 132);
 const dictionary = external.englishDictionary();
 
+const solved = JSON.parse(fs.readFileSync(
+  path.join(root, "resources", "external", "relikd-solved-gp29-native-v1.json"),
+  "utf8"));
+
+/** @param {string} text */
+function normalizeLetters(text) {
+  return text.toUpperCase()
+    .replace(/QU/g, "CW")
+    .replace(/[KQ]/g, "C")
+    .replace(/V/g, "U")
+    .replace(/Z/g, "S")
+    .replace(/[^A-Z]/g, "");
+}
+
+const gpTokens = corpus.translit
+  .map((symbol, value) => ({ symbol, value }))
+  .sort((left, right) => right.symbol.length - left.symbol.length);
+
+/** @param {string} word */
+function wordToGp(word) {
+  const normalized = normalizeLetters(word);
+  const values = [];
+  for (let offset = 0; offset < normalized.length;) {
+    if (normalized.startsWith("ING", offset)) {
+      values.push(21);
+      offset += 3;
+      continue;
+    }
+    if (normalized.startsWith("IO", offset)) {
+      values.push(27);
+      offset += 2;
+      continue;
+    }
+    const token = gpTokens.find((candidate) =>
+      normalized.startsWith(candidate.symbol, offset));
+    if (!token) return null;
+    values.push(token.value);
+    offset += token.symbol.length;
+  }
+  return values;
+}
+
+const vocab = [];
+const seenVocab = new Set();
+for (const entry of dictionary.values()) {
+  const key = entry.values.join(",");
+  if (!seenVocab.has(key)) {
+    seenVocab.add(key);
+    vocab.push({ word: entry.word, values: entry.values, source: "SHAKESPEARE" });
+  }
+}
+for (const section of solved.sections) {
+  for (const word of section.plaintext.match(/[A-Za-z]+/g) || []) {
+    const values = wordToGp(word);
+    if (!values || values.length < 2 || values.length > 8) continue;
+    const key = values.join(",");
+    if (seenVocab.has(key)) continue;
+    seenVocab.add(key);
+    vocab.push({ word: word.toUpperCase(), values, source: "LP1" });
+  }
+}
+
+/** @param {number[]} target */
+function segmentTarget(target) {
+  const memo = new Map();
+  function walk(offset) {
+    if (offset === target.length) return [[]];
+    if (memo.has(offset)) return memo.get(offset);
+    const out = [];
+    for (const item of vocab) {
+      if (item.values.length > target.length - offset) continue;
+      let match = true;
+      for (let i = 0; i < item.values.length; i += 1) {
+        if (item.values[i] !== target[offset + i]) {
+          match = false;
+          break;
+        }
+      }
+      if (!match) continue;
+      for (const rest of walk(offset + item.values.length)) {
+        if (rest.length < 3) out.push([item, ...rest]);
+      }
+    }
+    memo.set(offset, out);
+    return out;
+  }
+  return walk(0).filter((items) => items.length <= 3);
+}
+
 const hits = [];
+const segmentedHits = [];
 for (const span of paths) {
   if (!passesGcd(span)) continue;
   const plain = span.values.map((cipher, index) =>
@@ -108,7 +198,24 @@ for (const span of paths) {
       plain,
     });
   }
+  for (const segmentation of segmentTarget(plain)) {
+    segmentedHits.push({
+      text: segmentation.map((item) => item.word).join(" "),
+      sources: segmentation.map((item) => item.source),
+      B: span.B,
+      E: span.E,
+      length: plain.length,
+      plain,
+    });
+  }
 }
+assert.deepEqual(hits, [{
+  word: "GET",
+  B: [15, 10],
+  E: [17, 12],
+  length: 3,
+  plain: [6, 18, 16],
+}]);
 console.log(JSON.stringify({
   state,
   predictedSourceCenter: [12, 10],
@@ -119,4 +226,6 @@ console.log(JSON.stringify({
   transformedTranslit: transformed.map((value) => corpus.translit[value]),
   paths: paths.length,
   hits,
+  segmentedHitCount: segmentedHits.length,
+  segmentedHits: segmentedHits.slice(0, 50),
 }, null, 2));
