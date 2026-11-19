@@ -48,6 +48,18 @@ B = 19
 p = 23.
 ```
 
+The three residues are themselves an arithmetic progression:
+
+```text
+19 - 15 = 23 - 19 = 4.
+```
+
+So the same route reconstructs `q=4` without another search. Zero-based signed word 4 is **EMPTY**, and its canonical Gematria value closes the product identity:
+
+```text
+GP0(EMPTY) = 92 = 23 * 4 = p*q.
+```
+
 The drop-f base59 rival gives `N mod 59 = 0`, changing the middle landing to `HELLO`. It therefore fails the same independently defined role target.
 
 ## Finite charge
@@ -119,14 +131,32 @@ There are exactly two 16-word hops between `PRIMUS` and `OPENPGP`, giving a sour
 The reconstructed state is therefore:
 
 ```text
-p=23, g=5, a=6, b=15, A=8, B=19, K=2, e=3.
+p=23, q=4, g=5, a=6, b=15, A=8, B=19, K=2, e=3.
 ```
+
+Those reconstructed values regenerate the independently audited signed-source role map directly:
+
+```text
+index/value   source word     role
+2             PATH            K
+3             LIES            e
+4             EMPTY           q
+5             EPIPHANY        g
+6             SEEKS           a
+7             THE             g+K
+8             DEVOTED         A
+15            WORDS           b
+19            THEIR           B
+23            ROAD            p
+```
+
+The first seven values occupy the contiguous source interval 2..8, while the key-ID residue packet selects 15,19,23 with constant step q=4.
 
 This is the same state previously recovered from p28/DH geometry and independently audited signed-message word roles, reached here by a complete source-visible operation rather than coordinate-wise expression fitting to the key-ID nibbles.
 
 ## Why this changes the OPENPGP evidence
 
-The earlier key-ID report correctly downgraded coordinate-by-coordinate descriptions such as `7=g+K` because millions of small-expression assignments can fit the known state. The present mechanism does not use those descriptions. It uses one source-fixed integer, one source-fixed anchor, a source-visible radix stride, three source-selected labels, and a charged radix/origin/parser family.
+The earlier key-ID report and Director #1786 correctly downgraded coordinate-by-coordinate H-shell descriptions such as `7=g+K` because many complete expression templates fit the known state. That negative result remains valid for the H-shell template family. The present mechanism bypasses that family entirely and does not use those coordinate descriptions. It uses one source-fixed integer, one source-fixed anchor, a source-visible radix stride, three source-selected labels, and a charged radix/origin/parser family.
 
 The key ID can therefore be retained as a genuine source of the `(b,B,p)` packet under this modulus-ladder mechanism. The p50 triad independently supplies `(A,B,e)` and closes the remaining DH fields.
 
