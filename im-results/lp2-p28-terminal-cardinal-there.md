@@ -98,6 +98,8 @@ p28 terminal last four lengths [2,8,3,8]
 
 No other unknown-page terminal last-four vector self-addresses its page under this frozen stack. This control is stronger than the bare lexical uniqueness because the acceptance criterion is numerical and language-free.
 
+A wider source-boundary sensitivity check prevents overstating that uniqueness. Charge first/last physical line × first/last four words × forward/reverse order on every unknown page with an eligible boundary. This is 404 configurations. Six configurations self-address numerically: two on p25 and four on p28. P28's hits include the first-line last-four sum42 as well as the terminal THERE sum42, with reversal duplicating each sum. Therefore **the self-pointer is unique only under the terminal-last-four operand rule**, not across every plausible boundary slice. The lexical output THERE is what makes that terminal slice especially suggestive, and that recognition was post-discovery.
+
 Chronology still matters. `THERE` was noticed before this self-pointer census was run, so the self-pointer is a post-discovery cross-operation validation rather than a blind plaintext prediction. The p50 register itself predates this observation and was held out from the cardinal scan.
 
 ## Relation to the local p28 evidence
