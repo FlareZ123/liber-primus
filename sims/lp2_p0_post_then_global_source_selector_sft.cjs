@@ -652,6 +652,23 @@ for (let row = 1; row <= 27; row++) {
   }
 }
 
+/** @param {number} rowParity @param {number} columnParity @param {number} phase @param {string} signatureId */
+function sourceIndexKey(rowParity, columnParity, phase, signatureId) {
+  return rowParity + "|" + columnParity + "|" + phase + "|" + signatureId;
+}
+
+const POST_THEN_SOURCE_INDEX = new Map();
+for (const row of POST_THEN_SOURCE_OPERATIONS) {
+  const key = sourceIndexKey(
+    mod2(row.node[1][0]),
+    mod2(row.node[1][1]),
+    row.operation.phase,
+    row.operation.signature.join(","));
+  const bucket = POST_THEN_SOURCE_INDEX.get(key);
+  if (bucket) bucket.push(row);
+  else POST_THEN_SOURCE_INDEX.set(key, [row]);
+}
+
 /** @param {object} current @param {number} S @param {number} a */
 function sourceOperationsReport06(current, S, a) {
   const predictedPhase = expectedPhase(current.cipher, S);
@@ -666,16 +683,41 @@ function sourceOperationsReport06(current, S, a) {
       current.node[1][0]),
   };
 
-  const rows = POST_THEN_SOURCE_OPERATIONS.filter(({node, operation}) =>
-    mod2(node[1][0]) === centerParity.row &&
-    mod2(node[1][1]) === centerParity.column &&
-    operation.phase === predictedPhase &&
-    operation.signature.join(",") === signatureId);
-
-  return {outer, predictedPhase, rows};
+  const key = sourceIndexKey(
+    centerParity.row,
+    centerParity.column,
+    predictedPhase,
+    signatureId);
+  return {
+    outer,
+    predictedPhase,
+    rows: POST_THEN_SOURCE_INDEX.get(key) || [],
+  };
 }
 
 const POST_THEN_SEGMENTS = allStraightSegments(3);
+
+/** @param {object} boundary @param {object} rows @param {number} leftmostClass */
+function cipherIndexKey(boundary, rows, leftmostClass) {
+  return [
+    boundary.axis,
+    boundary.tau,
+    rows.endpoint,
+    rows.leftmost,
+    leftmostClass,
+  ].join("|");
+}
+
+const POST_THEN_CIPHER_INDEX = new Map();
+for (const cipher of POST_THEN_SEGMENTS) {
+  const key = cipherIndexKey(
+    observedAxisBoundary(cipher),
+    observedRows(cipher),
+    mu(n1(leftmost(cipher))));
+  const bucket = POST_THEN_CIPHER_INDEX.get(key);
+  if (bucket) bucket.push(cipher);
+  else POST_THEN_CIPHER_INDEX.set(key, [cipher]);
+}
 
 /** @param {object} current @param {number} S */
 function ciphertextCandidatesReport06(current, S) {
@@ -685,24 +727,19 @@ function ciphertextCandidatesReport06(current, S) {
   const allowedLeftmostClass = mode.reflected ? [0, -1] : [0, 1];
   const E = current.cipher.at(-1);
   const rayAllowance = Number(mu(n0(E)) === 0 && mu(n3(E)) === 0);
+  const currentLeftmost = leftmost(current.cipher);
   const out = [];
 
-  for (const cipher of POST_THEN_SEGMENTS) {
-    const observedBoundary = observedAxisBoundary(cipher);
-    if (
-      observedBoundary.axis !== expectedBoundary.axis ||
-      observedBoundary.tau !== expectedBoundary.tau
-    ) continue;
-
-    const observedRowParity = observedRows(cipher);
-    if (
-      observedRowParity.endpoint !== expectedRowParity.endpoint ||
-      observedRowParity.leftmost !== expectedRowParity.leftmost
-    ) continue;
-
-    if (rayOffset(leftmost(current.cipher), cipher[0]) > rayAllowance) continue;
-    if (!allowedLeftmostClass.includes(mu(n1(leftmost(cipher))))) continue;
-    out.push(cipher);
+  for (const leftmostClass of allowedLeftmostClass) {
+    const key = cipherIndexKey(
+      expectedBoundary,
+      expectedRowParity,
+      leftmostClass);
+    for (const cipher of POST_THEN_CIPHER_INDEX.get(key) || []) {
+      if (rayOffset(currentLeftmost, cipher[0]) <= rayAllowance) {
+        out.push(cipher);
+      }
+    }
   }
 
   return out;
@@ -729,11 +766,11 @@ for (let length = 1; length <= POST_THEN_TARGET.runes; length++) {
 }
 
 /*
- * The post-THEN search reaches many states only once. Retaining each state's
- * filtered source/cipher arrays made memory grow with the DFS frontier and
- * exhausted the default V8 heap before the registered search completed.
- * Recompute these bounded filters on demand instead. This changes storage
- * only; candidate generation and acceptance predicates are identical.
+ * The post-THEN search reaches many states only once. State-level caches made
+ * memory grow with the DFS frontier. Static source and ciphertext attributes
+ * are indexed once above, while the only state-dependent ray-offset test is
+ * evaluated on demand. Candidate generation and acceptance predicates remain
+ * unchanged.
  */
 
 /** @param {object} current @param {number} S @param {number} a */
