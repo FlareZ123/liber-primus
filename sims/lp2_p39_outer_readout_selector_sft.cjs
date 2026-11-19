@@ -139,6 +139,22 @@ function hOuter(words) {
 }
 
 /**
+ * @param {number[]} word
+ * @returns {number[]}
+ */
+function shedWord(word) {
+  return word.length <= 2 ? [] : word.slice(1, -1);
+}
+
+/**
+ * @param {number[][]} words
+ * @returns {number[]}
+ */
+function shed(words) {
+  return words.flatMap(shedWord);
+}
+
+/**
  * @param {number[]} values
  * @returns {number}
  */
@@ -166,6 +182,24 @@ const p39Selector = {
 };
 assert.deepEqual(p39Selector, { length: 55, gp0Mod29: 20 });
 
+// The two independently selected route bodies before p39/p53 each contain
+// 21 words. One literal shed therefore removes exactly 42 outer runes while
+// the remaining interiors are the already frozen page pointers 39 and 53.
+const p33Body = bodyAfterRedSpan(33, 0);
+const p3Body = bodyAfterRedSpan(3, 119);
+const findGp0 = gp0([0, 10, 9, 23]);
+assert.equal(findGp0, 42);
+assert.deepEqual(
+  [
+    [33, hOuter(p33Body).length, shed(p33Body).length],
+    [3, hOuter(p3Body).length, shed(p3Body).length],
+  ],
+  [
+    [33, findGp0, 39],
+    [3, findGp0, 53],
+  ]
+);
+
 // Charge the same source statistic across every nonempty red-started body.
 const redBodySelectorCensus = [];
 for (const page of ink.pages) {
@@ -192,6 +226,12 @@ assert.deepEqual(
     )
     .map((row) => [row.page, row.start]),
   [[39, 119]]
+);
+assert.deepEqual(
+  redBodySelectorCensus
+    .filter((row) => row.length === findGp0)
+    .map((row) => [row.page, row.start]),
+  [[3, 119], [33, 0]]
 );
 
 // Reconstruct the independently selected p28 center + one-based word28 object.
@@ -295,6 +335,26 @@ assert.notDeepEqual(
 
 console.log(JSON.stringify({
   status: "PASS",
+  circumferenceRoute: {
+    findGp0,
+    selectedBodies: [
+      {
+        page: 33,
+        outerRunes: hOuter(p33Body).length,
+        interiorRunes: shed(p33Body).length,
+        pointer: 39,
+      },
+      {
+        page: 3,
+        outerRunes: hOuter(p3Body).length,
+        interiorRunes: shed(p3Body).length,
+        pointer: 53,
+      },
+    ],
+    allRedBodyOuter42Hits: redBodySelectorCensus
+      .filter((row) => row.length === findGp0)
+      .map((row) => [row.page, row.start]),
+  },
   p39: {
     page: 39,
     sourceBody: { words: p39Body.length, runes: p39Body.flat().length },
@@ -319,5 +379,5 @@ console.log(JSON.stringify({
     transliterationAfterSelection: spell(selectedOutput),
   },
   interpretation:
-    "The independently selected p39 circumference supplies the numeric pair [55,20] as (H-transformed outer-shell length, GP0 mod29). Charging that pair against all 1,440 reversible p28 power/orientation/cut configurations leaves one raw six-rune output, with only the known center-exponent alias 3/17; authenticated e=3 resolves the alias. Only then does the output transliterate as READ OUT. This is post-discovery cross-object corroboration, not a blind plaintext probability.",
+    "The selected p33 and p3 bodies each shed exactly 42=GP0(FIND) outer runes while their interiors point to p39 and p53. On independently selected p39, frozen H applied to the outer circumference supplies [55,20] as (transformed outer-shell length, GP0 mod29). Charging [55,20] against all 1,440 reversible p28 power/orientation/cut configurations leaves one raw six-rune output, with only the known center-exponent alias 3/17; authenticated e=3 resolves it. Only then does the output transliterate as READ OUT. This is post-discovery cross-object corroboration, not a blind plaintext probability.",
 }, null, 2));
