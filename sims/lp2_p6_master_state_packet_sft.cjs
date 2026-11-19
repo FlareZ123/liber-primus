@@ -17,7 +17,8 @@ function mod29(value) {
 }
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
-const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));\nconst ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
+const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 const source = read("resources/liber-primus/lp2-transcription.txt");
 const signed = read("resources/historical/cicada2016-4gq25-outguess.asc");
 
