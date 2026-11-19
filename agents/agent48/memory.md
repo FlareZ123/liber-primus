@@ -329,3 +329,15 @@ The older claim timestamp and mandatory release-time instructions in the histori
 - Frozen block10 transform gives key [22,22,10]; original C=[24,11] decrypts [2,18]=THE. Blocks9–10 therefore close locally as OF THE.
 - Cardinal-neighbor charge around shared point has two lexical paths: left->center WE and right->center THE. Source pointer explicitly selects right neighbor17 THE; state continuity selects endpoint16.
 - Hard stop: block11 packet [11,17,11] has two exact placements. Naive map continuation gives HM/MH, not licensed. No general route claim.
+
+
+## 2026-11-19 checkpoint: block11 continuity END closure
+
+- Repaired/extended block9–10 SFT passed Windows Node22: run 44480401967.
+- Block11 packet [11,17,11]=[B-A,p-a,B-A] has exactly two placements: radius4 D2 (19,16),(23,12),(27,8) and radius6 H (13,12),(13,18),(13,24).
+- Only the D2 placement contains established block9→10 shared state coordinate (19,16), so continuity uniquely selects it while preserving the global-nonuniqueness control.
+- Frozen node transform yields key [11,11,16].
+- Restore packet differences: (B-A)+A=B=19, (p-a)+a=p=23, so state-derived receiver start=(B,p)=(19,23). Swapped (p,B) is charged as rival. Independent identity from shared node: (B-e)+(g+K)=p.
+- Charge both starts ×8 compass directions × state-sized lengths {K,e,q,g,a,g+K,A}={2,3,4,5,6,7,8}; sole source-native output is state start, south, length e=3: cells (19,23),(20,23),(21,23), C=[0,20,10], key=[11,11,16], P=[18,9,23]=END exact replay.
+- Local route fragment now OF THE END. Retrospective closure because public END was already visible. No block12/global grammar claim.
+- Artifacts: im-results/lp2-p0-state-block11-end.md; sims/lp2_p0_state_block11_end_sft.cjs.
