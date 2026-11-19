@@ -151,6 +151,26 @@ assert.deepEqual(indexPair, [12, 5]);
 assert.deepEqual(depthPair, [1, 4]);
 assert.deepEqual(roadKey, [12, 5, 1, 4]);
 
+// Independent manuscript checksum: Agent5/24's already selected p38 reciprocal
+// state word is [g,K*a,B]=[5,12,19]. Its center/first coordinates reproduce
+// the H(index ROAD,index PATHS) pair, while the graph gives a=6 and PATHS
+// depth4. Thus the same key is [K*a,g,a-g,depth(PATHS)].
+const p38Packet = parsePage(parts[38]).find((word) => word.start === 54);
+assert.ok(p38Packet);
+assert.deepEqual(p38Packet.values, [5, 12, 19]);
+assert.deepEqual([p38Packet.values[1], p38Packet.values[0]], indexPair);
+const totalCycleNodes = new Set(
+  traces.flatMap((row) => row.route.slice(row.depth))
+).size;
+assert.equal(totalCycleNodes, 6);
+const packetKey = [
+  p38Packet.values[1],
+  p38Packet.values[0],
+  mod29(totalCycleNodes - p38Packet.values[0]),
+  traces[pathsIndex].depth,
+];
+assert.deepEqual(packetKey, roadKey);
+
 const p0 = parsePage(parts[0]);
 const p0ByStart = new Map(p0.map((word) => [word.start, word]));
 const routeReceiver = p0ByStart.get(105);
