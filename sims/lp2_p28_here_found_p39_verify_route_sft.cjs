@@ -130,6 +130,19 @@ for (let index = 0; index < signed.length - 1; index += 1) {
 
 assert.deepEqual(adjacencyHits, [[33, "WILL", "BE"]]);
 
+// The same fixed T^K operator gives a closed p28 -> p32 -> p28 route.
+// READ itself does not land in the physical-page range, while OUT does.
+assert.equal(gp0("READ"), 55);
+assert.equal(iterate(gp0("READ"), K), 142);
+assert.equal(gp0("OUT"), 20);
+assert.equal(iterate(gp0("OUT"), K), 32);
+
+// The already selected p32 low-digit subset has 42 runes = GP0(FIND);
+// one full-base60 p50 step returns that state to physical p28.
+assert.equal(gp0("FIND"), 42);
+assert.equal(cells[42], "0S");
+assert.equal(T(gp0("FIND")), 28);
+
 // THEIR RISE fixes +6 from the two authenticated THEIR occurrences.
 assert.equal(signed[19].label, "THEIR");
 assert.equal(signed[25].label, "THEIR");
@@ -228,6 +241,12 @@ console.log(JSON.stringify({
   },
   sourceCalibration: {
     tKAdjacentHits: adjacencyHits,
+    p28P32Loop: {
+      readT2: iterate(gp0("READ"), K),
+      outT2: iterate(gp0("OUT"), K),
+      p32Aggregate: gp0("FIND"),
+      findToP28: T(gp0("FIND")),
+    },
     rise,
     foundIndex: 35,
     riseTarget: signed[41].label,
