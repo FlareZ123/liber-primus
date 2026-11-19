@@ -12,7 +12,10 @@ function read(relative) {
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
+const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const parts = transcription.split(/^\s*%\s*$/m);
+const tape = grid.pages.flatMap((page) => page.tokens);
+const alpha60 = grid.alphabet;
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 
 /** @param {number} value @returns {number} */
@@ -66,6 +69,12 @@ function parseWords(source) {
   }
   flush();
   return words;
+}
+
+/** @param {number} address @returns {number|null} */
+function low60(address) {
+  if (!Number.isInteger(address) || address < 0 || address >= tape.length) return null;
+  return alpha60.indexOf(tape[address][1]);
 }
 
 /** @param {number[]} values @returns {string} */
@@ -128,8 +137,14 @@ assert.deepEqual(blocks.map(spell), ["FLNG", "READ", "XTHC"]);
 // sums of the independently recovered clue words THEIR and HERE.
 const THEIR_GP0 = 34;
 const HERE_GP0 = 48;
-assert.equal(selected[0].values.slice(0, e).reduce((sum, value) => sum + value, 0), THEIR_GP0);
-assert.equal(selected[0].values.slice(2 * e).reduce((sum, value) => sum + value, 0), HERE_GP0);
+const sourceThirdSums = Array.from({ length: e }, (_, block) =>
+  selected[0].values.slice(block * e, (block + 1) * e)
+    .reduce((sum, value) => sum + value, 0)
+);
+assert.deepEqual(sourceThirdSums, [34, 74, 48]);
+assert.equal(sourceThirdSums[0], THEIR_GP0);
+assert.equal(sourceThirdSums[2], HERE_GP0);
+assert.equal(low60(sourceThirdSums[1]), 25);
 
 // Manuscript-wide fixed control: every complete nine-rune unknown-page word,
 // same exponent27, same central three-rune extraction.
@@ -137,6 +152,8 @@ let nineRuneWords = 0;
 let leftTheirHits = 0;
 let rightHereHits = 0;
 let bothOuterHits = 0;
+let centerPointer25Hits = 0;
+let fullSourceSelectorHits = 0;
 const centerReadHits = [];
 const tripleHits = [];
 for (let physicalPage = 0; physicalPage <= 55; physicalPage += 1) {
@@ -149,11 +166,17 @@ for (let physicalPage = 0; physicalPage <= 55; physicalPage += 1) {
     const output = word.values.map((value) => pow29(value, wordExponent));
     const center = output.slice(e, 2 * e);
     const leftSum = word.values.slice(0, e).reduce((sum, value) => sum + value, 0);
+    const middleSum = word.values.slice(e, 2 * e).reduce((sum, value) => sum + value, 0);
     const rightSum = word.values.slice(2 * e).reduce((sum, value) => sum + value, 0);
+    const centerPointer = low60(middleSum);
     const isRead = center.every((value, index) => value === readGp[index]);
     if (leftSum === THEIR_GP0) leftTheirHits += 1;
     if (rightSum === HERE_GP0) rightHereHits += 1;
     if (leftSum === THEIR_GP0 && rightSum === HERE_GP0) bothOuterHits += 1;
+    if (centerPointer === 25) centerPointer25Hits += 1;
+    if (leftSum === THEIR_GP0 && centerPointer === 25 && rightSum === HERE_GP0) {
+      fullSourceSelectorHits += 1;
+    }
     if (isRead) {
       centerReadHits.push({
         physicalPage,
@@ -176,6 +199,8 @@ assert.equal(nineRuneWords, 77);
 assert.equal(leftTheirHits, 2);
 assert.equal(rightHereHits, 2);
 assert.equal(bothOuterHits, 1);
+assert.equal(centerPointer25Hits, 2);
+assert.equal(fullSourceSelectorHits, 1);
 assert.deepEqual(
   centerReadHits.map((hit) => [hit.physicalPage, hit.pageWord, hit.pageOffset]),
   [[33, 4, 12]]
@@ -232,7 +257,11 @@ console.log(JSON.stringify({
       rightHereHits,
       bothOuterHits,
       selectedLeftGp0: THEIR_GP0,
+      selectedMiddleGp0: sourceThirdSums[1],
+      selectedMiddleLow60: low60(sourceThirdSums[1]),
       selectedRightGp0: HERE_GP0,
+      centerPointer25Hits,
+      fullSourceSelectorHits,
     },
     exactTripleHits: tripleHits,
     exactCenterReadHits: centerReadHits.map((hit) => ({
@@ -243,5 +272,5 @@ console.log(JSON.stringify({
     lowerBodyNineRuneWords: lowerNine.length,
     analogousLowerOutHits: 0,
   },
-  decision: "Strong source-constrained p33 upper-body plaintext candidate: the risen-THEIR route recovers [e,q]=[3,4] and selects the 81-rune body; its unique e^2=9 word has source outer-third GP0s THEIR=34 and HERE=48, and under the already authenticated p28 word exponent27 its central e=3 GP runes are R-EA-D = READ. Across all 77 complete nine-rune words, only two have left THEIR, two have right HERE, one has both outer identities, and that same sole word is the unique center READ hit. Preserve as a conditional plaintext recovery pending independent adjudication; do not infer OUT or a whole-body cipher.",
+  decision: "Strong source-constrained p33 upper-body plaintext candidate: the risen-THEIR route recovers [e,q]=[3,4] and selects the 81-rune body; its unique e^2=9 word has source third sums [34,74,48] = [THEIR, p50-low->25(second THEIR), HERE], and under the already authenticated p28 word exponent27 its central e=3 GP runes are R-EA-D = READ. Across all 77 complete nine-rune words, only two have left THEIR, two have right HERE, one has both outer identities, and that same sole word is the unique center READ hit. Preserve as a conditional plaintext recovery pending independent adjudication; do not infer OUT or a whole-body cipher.",
 }, null, 2));
