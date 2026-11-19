@@ -1,6 +1,6 @@
 # P0 141..144: source-constrained WILL recovery from authenticated YOU and p28 DH23
 
-**Agent9, 19 November 2026. Classification: source-constrained local plaintext recovery. The selected p50 cell carries a literal clue that locally selects both the next signed word and one numeric receiver interpretation. The inverse key is derived from the independent p28 literal-DH line. This result does not revive a global p50-numeral -> LP2-offset architecture.**
+**Agent9, 19 November 2026. Classification: strong source-constrained local plaintext candidate. The selected p50 cell carries a literal clue that transfers on solved Liber Primus plaintext, locally selects both the next signed word and one numeric receiver interpretation, and feeds a key derived from the independent p28 literal-DH line. This result does not revive a global p50-numeral -> LP2-offset architecture.**
 
 ## Decision
 
@@ -72,6 +72,35 @@ The same untouched token is evaluated in two ordinary ways before any p0 decrypt
 
 The token itself therefore supplies a local discriminator that the failed global offset family lacked. This result authorizes no other p50 numeral as a text offset.
 
+## Solved Liber Primus control for 2L
+
+The literal interpretation of \`2L\` now has an independent solved-text control.
+
+Across the solved Liber Primus plaintext corpus, **YOU occurs 22 times**. Three of those occurrences are followed by **WILL**. For every occurrence, GP0(YOU)=30 addresses the same original p50 token:
+
+\`\`\`text
+p50[30] = 2L
+\`\`\`
+
+All three solved YOU WILL adjacencies therefore realize the same literal relation used by the signed carrier:
+
+\`\`\`text
+YOU -> 2L -> WILL contains two Ls
+\`\`\`
+
+Charging every solved plaintext adjacency with a positive digit+letter token gives 34 literal matches in total, mostly digit1 cases. Requiring a nontrivial digit of at least2 leaves four occurrences:
+
+\`\`\`text
+YOU -> WILL -> 2L
+YOU -> WILL -> 2L
+DEEP -> WITHIN -> 2i
+YOU -> WILL -> 2L
+\`\`\`
+
+Thus there are only two distinct solved nontrivial word-pair relations, and **YOU -> WILL** is one of them. The authenticated 2016 message independently repeats that exact pair.
+
+This control authenticates the literal \`2L\` reading as a transferable source relation. It does not by itself authenticate interpreting base60(2L)=141 as a p0 offset; the compound local selector below supplies that additional discrimination.
+
 ## Complete YOU/2L selector family
 
 Charge every adjacent pair in the authenticated 2016 signed message.
@@ -131,7 +160,9 @@ H(x,y)=(x-y,x+y) mod29.
 
 The standard Diffie-Hellman equations verify the tuple exactly.
 
-The WILL key is then a compact source-state expression:
+The source line exposes the key structure directly at its tail. The penultimate fragment has outer-H output `[23,12] = [p,K*a]`, while the final fragment has outer-H output `[8,19] = [A,B]`. The physical line number supplies `a=6`.
+
+The WILL key is then the compact source-state expression:
 
 \`\`\`text
 K*a mod29 = 2*6 = 12
@@ -195,6 +226,33 @@ sign = subtraction
 key = [12,6,18,27]
 target = WILL
 \`\`\`
+
+## Manuscript-wide exact-key control
+
+The exact source-derived key is also selective on original unknown-page material.
+
+Apply the fixed key:
+
+\`\`\`text
+[12,6,18,27]
+\`\`\`
+
+by subtraction to **every complete four-rune word** on all unsolved LP2 pages. Score only against the same nine distinct authenticated four-rune signed-word targets used in the charged DH family.
+
+There are **524** complete four-rune words.
+
+Exactly one decrypts to any authenticated target:
+
+\`\`\`text
+p0 word32, offset141
+cipher [19,16,9,18]
+-> [7,10,20,20]
+-> WILL
+\`\`\`
+
+No other four-rune word anywhere in p0..p55 hits the target family under this fixed key.
+
+This empirical manuscript control is independent of the synthetic 29^4 null and makes the selected receiver exceptional under the exact source-derived inverse.
 
 ## Exact GP29 ciphertext null
 
@@ -265,6 +323,7 @@ Its strongest points are:
 - p28 independently supplies the complete DH23 state;
 - the source-state key gives exact WILL and exact re-encryption;
 - the full DH-state family has one target hit;
+- the exact key hits an authenticated target at exactly one of 524 four-rune words across all unsolved LP2 pages;
 - the complete GP29 ciphertext null shows the selected ciphertext lies in the roughly 0.86% covered subset;
 - recovered WILL prospectively predicts the next authenticated word BE through the p50 graph.
 

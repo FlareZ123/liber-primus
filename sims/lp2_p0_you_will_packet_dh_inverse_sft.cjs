@@ -29,6 +29,7 @@ const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const solved = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
 
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const gpTokens = corpus.translit
@@ -278,6 +279,78 @@ assert.deepEqual(compoundHits, [{
   ciphertext: [19, 16, 9, 18],
 }]);
 
+
+// Independent solved-LP positive control for the literal 2L reading.
+// Across solved plaintext, count>=2 digit-letter matches are only three
+// repeated YOU->WILL instances plus one DEEP->WITHIN instance.
+const solvedNontrivialHits = [];
+const solvedYouOccurrences = [];
+for (const section of solved.sections) {
+  const sourceWords = (section.source_text.match(/[\u16A0-\u16FF]+/gu) || [])
+    .map((raw, index) => {
+      const values = [...raw].map((rune) => {
+        const value = runeIndex.get(rune);
+        assert.notEqual(value, undefined);
+        return value;
+      });
+      return {
+        index,
+        values,
+        text: translit(values),
+        gp0: sum(values),
+      };
+    });
+
+  for (let index = 0; index < sourceWords.length; index += 1) {
+    const currentWord = sourceWords[index];
+    const nextWord = sourceWords[index + 1];
+
+    if (currentWord.text === "YOU") {
+      solvedYouOccurrences.push({
+        section: section.name,
+        index,
+        next: nextWord ? nextWord.text : null,
+      });
+    }
+
+    if (!nextWord || currentWord.gp0 >= tableTokens.length) continue;
+    const token = tableTokens[currentWord.gp0];
+    const match = token.match(/^([1-9])([A-Za-z])$/);
+    if (!match) continue;
+    const count = Number(match[1]);
+    if (count < 2) continue;
+    const letter = match[2].toUpperCase();
+    const actual = [...nextWord.text.toUpperCase()]
+      .filter((char) => char === letter).length;
+    if (actual === count) {
+      solvedNontrivialHits.push({
+        section: section.name,
+        index,
+        from: currentWord.text,
+        to: nextWord.text,
+        token,
+        count,
+        letter,
+      });
+    }
+  }
+}
+
+assert.equal(solvedYouOccurrences.length, 22);
+assert.equal(
+  solvedYouOccurrences.filter((row) => row.next === "WILL").length,
+  3
+);
+assert.deepEqual(
+  solvedNontrivialHits.map((row) => [row.from, row.to, row.token]),
+  [
+    ["YOU", "WILL", "2L"],
+    ["YOU", "WILL", "2L"],
+    ["DEEP", "WITHIN", "2i"],
+    ["YOU", "WILL", "2L"],
+  ]
+);
+
 const receiver = p0ByStart.get(141);
 assert.ok(receiver);
 assert.deepEqual(receiver.values, [19, 16, 9, 18]);
@@ -313,6 +386,12 @@ assert.equal(powMod(state.g, state.a, state.p), state.A);
 assert.equal(powMod(state.g, state.b, state.p), state.B);
 assert.equal(powMod(state.B, state.a, state.p), state.K);
 assert.equal(powMod(state.A, state.b, state.p), state.K);
+
+
+// The source line also exposes the key structure at its tail.
+// Penultimate outer-H is [p,K*a]; final outer-H is [A,B].
+assert.deepEqual(hPenultimate, [state.p, mod29(state.K * state.a)]);
+assert.deepEqual(hFinal, [state.A, state.B]);
 
 // Compact source-state inverse, with no READOUT packet dependency.
 const exactKey = [
@@ -410,6 +489,45 @@ assert.deepEqual(familyHits, [{
   targets: [{ index: 33, word: "will" }],
 }]);
 
+
+// Manuscript-wide matched control for the exact source-derived key.
+// Apply the fixed key to every complete four-rune word on every unknown page
+// and score only against the same authenticated four-rune signed target set.
+const manuscriptExactHits = [];
+let manuscriptFourRuneWords = 0;
+for (let partIndex = 0; partIndex < parts.length; partIndex += 1) {
+  const page = partIndex <= 49 ? partIndex : partIndex + 1;
+  if (page === 50) continue;
+  const parsed = parsePage(parts[partIndex]);
+  for (const word of parsed.words) {
+    if (word.length !== 4) continue;
+    manuscriptFourRuneWords += 1;
+    const candidate = word.values.map((value, index) =>
+      mod29(value - exactKey[index])
+    );
+    const matched = targets.get(candidate.join(","));
+    if (matched) {
+      manuscriptExactHits.push({
+        page,
+        wordIndex: word.index,
+        start: word.start,
+        ciphertext: word.values,
+        plaintext: candidate,
+        targets: matched,
+      });
+    }
+  }
+}
+assert.equal(manuscriptFourRuneWords, 524);
+assert.deepEqual(manuscriptExactHits, [{
+  page: 0,
+  wordIndex: 32,
+  start: 141,
+  ciphertext: [19, 16, 9, 18],
+  plaintext: [7, 10, 20, 20],
+  targets: [{ index: 33, word: "will" }],
+}]);
+
 // Exact ciphertext-space null for the same frozen family and target set.
 const totalCiphertexts = 29 ** 4;
 const coveredCiphertexts = coverage.size;
@@ -490,6 +608,7 @@ assert.deepEqual(adjacentHopHits, [
 
 console.log(JSON.stringify({
   status: "PASS: source-native YOU -> 2L -> WILL recovery",
+  solvedControl: { youOccurrences: solvedYouOccurrences.length, youFollowedWill: solvedYouOccurrences.filter((row) => row.next === "WILL").length, nontrivialLiteralHits: solvedNontrivialHits },
   selector: {
     literalHits,
     compoundHits,
@@ -509,6 +628,7 @@ console.log(JSON.stringify({
     distinctFourRuneSignedTargets: targets.size,
     hits: familyHits,
   },
+  manuscriptExactKeyControl: { fourRuneWords: manuscriptFourRuneWords, hits: manuscriptExactHits },
   ciphertextNull: {
     totalCiphertexts,
     coveredCiphertexts,
