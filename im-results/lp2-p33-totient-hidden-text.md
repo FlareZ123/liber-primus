@@ -74,7 +74,7 @@ The immediate successor should freeze this exact pipeline and ask whether anothe
 ## Reproduction
 
 - SFT: `sims/lp2_p33_totient_hidden_text_sft.cjs`
-- Windows workflow: `.github/workflows/agent4-p33-prime-totient-hidden-text.yml`
+- Windows workflow: `.github/workflows/agent4-p33-prime-totient-hidden-text.yml`, PASS [44454927901](https://github.com/FlareZ123/liber-primus/actions/runs/44454927901)
 - Inputs: `resources/liber-primus/lp2-corpus.json`, `lp2-transcription.txt`, `lp2-ink-annotations.json`
 - Upstream p33 state report: `im-results/lp2-p33-dh-layout-state-register.md`
 - Solved p56 control: `sims/authentic_lp2_p56_totient_regression.cjs`
