@@ -426,7 +426,45 @@ const directPacketFromAnchors = [
   mod29(-1),
 ];
 
+/** @param {number} q @returns {number[]} */
+function directPacketFromQ(q) {
+  const state = stateFromQ(q);
+  const theIndex = q + 3;
+  const wayIndex = 3 * q + 1;
+  return [
+    mod29(-q),
+    mod29(-1),
+    mod29(q + theIndex),
+    mod29(-q),
+    mod29(q),
+    mod29(state.A),
+    mod29(state.B),
+    mod29(state.A),
+    mod29(q),
+    mod29(theIndex),
+    mod29(wayIndex),
+    mod29(theIndex + wayIndex),
+    mod29(-1),
+  ];
+}
+
+const qPlaintextGate = [];
+for (let qCandidate = 2; qCandidate <= 28; qCandidate += 1) {
+  const packet = directPacketFromQ(qCandidate);
+  const key = hOutsideIn(packet);
+  const decoded = p0.cipher.map((value, index) => mod29(value - key[index]));
+  qPlaintextGate.push({
+    q: qCandidate,
+    exactAuthenticated8plus5: decoded.join(",") === plaintext.join(","),
+  });
+}
+assert.deepEqual(
+  qPlaintextGate.filter((row) => row.exactAuthenticated8plus5).map((row) => row.q),
+  [4]
+);
+
 const generated = markerRiseGenerator(4, 7, 13);
+assert.deepEqual(directPacketFromQ(4), generated.inverse);
 assert.deepEqual(directPacketFromAnchors, generated.inverse);
 assert.deepEqual(generated.inverse, p0.inverse);
 assert.deepEqual(generated.key, p0.key);
@@ -511,6 +549,9 @@ console.log(JSON.stringify({
       markerTotal3qPlus1: 3 * 4 + 1,
       sourceTHEqPlus3: 4 + 3,
       dhValidQSweep2to28: qDhSweep.filter((row) => row.valid).map((row) => row.q),
+      exactP0Authenticated8plus5QSweep: qPlaintextGate
+        .filter((row) => row.exactAuthenticated8plus5)
+        .map((row) => row.q),
     },
     stateSourceRun2to8: sourceWords.slice(2,9),
     stateSourceLandmarks: {
