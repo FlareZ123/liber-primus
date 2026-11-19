@@ -160,7 +160,7 @@ WILL.
 
 Forward replay is exact.
 
-## The recovered state immediately selects the p0 FOUND receiver
+## The recovered state immediately selects and decrypts p0 FOUND
 
 The shared secret is `K=2`. Apply the already documented full-base60 p50 walk from `GP0(WILL)=57` for exactly two hops:
 
@@ -180,12 +180,35 @@ The intermediate value118 lies inside one complete p0 word:
 
 ```text
 p0 offsets117..121
+cipher = [12,2,11,10,2]
 length5.
 ```
 
 The authenticated word immediately after BE is FOUND, also five GP runes.
 
-Thus the p38-selected WILL state prospectively identifies the same p0 five-rune receiver previously associated with FOUND, before those five ciphertext values are used in the FOUND inverse.
+Reuse the already frozen p0 FOUND key grammar unchanged. The p38 packet and WILL derivation have already supplied `g=5`, `K*a=12`, `a=6`, `A=8`, and fixed `K=2`:
+
+```text
+[K*a, g-a, K*g, a-g, A]
+= [12,28,10,1,8].
+```
+
+Only after the K-hop has selected the five-rune receiver do we apply that key:
+
+```text
+[12,2,11,10,2]
+-
+[12,28,10,1,8]
+mod29
+=
+[0,3,1,9,23]
+=
+FOUND.
+```
+
+Forward replay is exact.
+
+The p38-selected state therefore executes two exact p0 plaintext inverses in one chain: WILL, then FOUND.
 
 ## Relation to the p38 FOUND candidate
 
@@ -220,7 +243,7 @@ The important chronological separation is:
 - YOU/2L selects the receiver before its ciphertext values enter the inverse;
 - the packet regenerates the exact WILL key before decryption.
 
-The exact key form `[K*a,a,H(A,B)]` was already known from the earlier p0 WILL investigation, so its regeneration from the later p38 packet is cross-object validation rather than a newly blind key-form discovery.
+The exact WILL key form `[K*a,a,H(A,B)]` and the FOUND key form `[K*a,g-a,K*g,a-g,A]` were already known from earlier p0 investigations. Their regeneration from the later p38 packet is cross-object validation rather than blind discovery of either key grammar.
 
 The p38 upstream closure and low-digit pointer remain source-constrained mechanisms without solved-page positive controls of their complete combined grammar. Therefore this result strengthens the causal architecture and the p0 WILL plaintext substantially, while it does not by itself establish the p38 five-rune plaintext.
 
@@ -234,8 +257,6 @@ Workflow:
 
 `.github/workflows/agent7-p38-to-p0-will-crosspage-inverse.yml`
 
-Windows Node22 PASS:
-
-**44446640689**
+Windows Node22 PASS: initial WILL chain **44446640689**; WILL→FOUND extension **44448785838**
 
 The SFT reparses the canonical unknown stream, proves the p38 reciprocal packet is unique among 2,807 addressable complete words, reconstructs the WILL target and p0 receiver, derives the exact key from the p38 packet, verifies the inverse and forward replay, and executes the K-hop WILL -> BE -> FOUND-receiver continuation.
