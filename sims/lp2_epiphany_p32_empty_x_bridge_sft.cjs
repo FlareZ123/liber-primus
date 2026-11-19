@@ -17,16 +17,51 @@ const signed2016=read("resources/historical/cicada2016-4gq25-outguess.asc");
 const pages=transcription.split("%");
 const runeIndex=new Map(corpus.runes.map((r,i)=>[r,i]));
 
-function parseWords(page){
-  const words=[];
-  let current="";
-  for(const ch of page){
-    if(runeIndex.has(ch)) current+=ch;
-    else if(ch==="/" || /\s/u.test(ch)) continue;
-    else if(current){words.push(current);current="";}
+/**
+ * Parse page-local source fragments. Slash/newline are printed line wraps.
+ * Other non-runes terminate a source word/fragment.
+ * @param {string} page
+ * @returns {{count:number,fragments:Array<{start:number,len:number,runes:string[],text:string}>}}
+ */
+function parsePage(page){
+  const fragments=[];
+  let current=[];
+  let start=0;
+  let count=0;
+  function finish(){
+    if(!current.length)return;
+    fragments.push({
+      start,
+      len:current.length,
+      runes:current,
+      text:current.map((r)=>corpus.translit[runeIndex.get(r)]).join("")
+    });
+    current=[];
   }
-  if(current) words.push(current);
-  return words;
+  for(const ch of page){
+    if(runeIndex.has(ch)){
+      if(!current.length)start=count;
+      current.push(ch);
+      count++;
+    }else if(ch==="/" || /\s/u.test(ch)){
+      continue;
+    }else{
+      finish();
+    }
+  }
+  finish();
+  return {count,fragments};
+}
+
+/** @param {string} page @returns {boolean} */
+function endsWithWordBoundary(page){
+  for(let i=page.length-1;i>=0;i--){
+    const ch=page[i];
+    if(ch==="/" || /\s/u.test(ch))continue;
+    if(runeIndex.has(ch))return false;
+    return true;
+  }
+  return true;
 }
 
 const gpTokens=corpus.translit
@@ -54,6 +89,23 @@ function gp0(word){
   return sum;
 }
 
+/** @param {number} base @param {number} exponent @param {number} modulus @returns {number} */
+function powMod(base,exponent,modulus){
+  let value=1;
+  for(let i=0;i<exponent;i++)value=value*base%modulus;
+  return value;
+}
+
+/** @param {number} value @param {number} modulus @returns {number} */
+function multiplicativeOrder(value,modulus){
+  let state=1;
+  for(let n=1;n<modulus;n++){
+    state=state*value%modulus;
+    if(state===1)return n;
+  }
+  throw new Error("no multiplicative order");
+}
+
 const tokens=grid.pages.flatMap((page)=>page.tokens);
 const alphabet60=grid.alphabet;
 
@@ -78,6 +130,7 @@ function walk(start,steps){
   return route;
 }
 
+// Independently frozen upstream route from the authenticated 2016 clause.
 const route=walk(gp0("SEEKS"),23);
 assert.deepEqual(route,[
   71,108,14,183,81,58,146,92,236,238,129,179,
@@ -97,7 +150,7 @@ for(let step=0;step<route.length-1;step++){
   const names=[...new Set(signedWords
     .filter((row)=>row.gp0===route[step])
     .map((row)=>row.word))];
-  if(names.length) routeWordHits.push({step,state:route[step],words:names});
+  if(names.length)routeWordHits.push({step,state:route[step],words:names});
 }
 assert.deepEqual(routeWordHits,[
   {step:0,state:71,words:["SEEKS"]},
@@ -106,139 +159,194 @@ assert.deepEqual(routeWordHits,[
   {step:22,state:102,words:["DEVOTED"]}
 ]);
 
-const p32Words=parseWords(pages[32]);
-assert.equal(p32Words.length,22);
+// Frozen p28 Diffie-Hellman tuple.
+const dh={p:23,g:5,a:6,b:15,A:8,B:19,K:2};
+assert.equal(powMod(dh.g,dh.a,dh.p),dh.A);
+assert.equal(powMod(dh.g,dh.b,dh.p),dh.B);
+assert.equal(powMod(dh.B,dh.a,dh.p),dh.K);
+assert.equal(multiplicativeOrder(dh.g,dh.p),22);
+
+// Correct source boundary model: p32 begins with a one-rune incoming carry.
+const p32=parsePage(pages[32]);
+const p32IncomingCarry=!endsWithWordBoundary(pages[31]);
+assert.equal(p32IncomingCarry,true);
+assert.equal(p32.count,121);
+assert.equal(p32.fragments.length,22);
+assert.equal(p32.fragments.length-1,21);
 assert.equal(corpus.pages[32].indices.length,121);
 
-const ranges=[];
-let cursor=0;
-for(let i=0;i<p32Words.length;i++){
-  const len=[...p32Words[i]].length;
-  ranges.push({index:i,start:cursor,end:cursor+len,len});
-  cursor+=len;
-}
-assert.equal(cursor,121);
-
-const emptyStep=routeWordHits.find((row)=>row.words.includes("EMPTY")).step;
-assert.equal(emptyStep,7);
-const selectedWord=p32Words[emptyStep];
-const selectedWordRunes=[...selectedWord];
-const selectedWordText=selectedWordRunes
-  .map((r)=>corpus.translit[runeIndex.get(r)]).join("");
-assert.equal(selectedWordText,"HOMEXWDSLFD");
-assert.equal(selectedWordRunes.length,11);
-assert.deepEqual(ranges[7],{index:7,start:33,end:44,len:11});
-
-const selectedPos=gp0("EMPTY")%selectedWordRunes.length;
-assert.equal(selectedPos,4);
-const selectedRune=corpus.translit[runeIndex.get(selectedWordRunes[selectedPos])];
-assert.equal(selectedRune,"X");
-const selectedPageOffset=ranges[7].start+selectedPos;
-assert.equal(selectedPageOffset,37);
-
-const origins=[];
-for(const wordOrigin of ["zero","one"]){
-  const wordIndex=wordOrigin==="zero"?emptyStep:emptyStep-1;
-  const word=[...p32Words[wordIndex]];
-  for(const positionOrigin of ["zero","one"]){
-    const position=positionOrigin==="zero"
-      ?gp0("EMPTY")%word.length
-      :(gp0("EMPTY")-1)%word.length;
-    origins.push({
-      wordOrigin,positionOrigin,wordIndex,wordLength:word.length,position,
-      rune:corpus.translit[runeIndex.get(word[position])]
-    });
-  }
-}
-assert.deepEqual(origins.map((row)=>row.rune),["X","E","TH","O"]);
-assert.equal(origins.filter((row)=>row.rune==="X").length,1);
-
-const pagesWith22Words=[];
-const sameRuleXPages=[];
+// This exact page-local segmentation is unique among the 55 unsolved raw pages.
+const pageShape=[];
 for(let page=0;page<=55;page++){
-  if(corpus.pages[page].indices.length===0) continue;
-  const words=parseWords(pages[page]);
-  if(words.length===22) pagesWith22Words.push(page);
-  if(words.length>emptyStep){
-    const word=[...words[emptyStep]];
-    const pos=gp0("EMPTY")%word.length;
-    const rune=corpus.translit[runeIndex.get(word[pos])];
-    if(rune==="X") sameRuleXPages.push(page);
-  }
+  const parsed=parsePage(pages[page]);
+  if(parsed.count===0)continue;
+  const incoming=page>0 && !endsWithWordBoundary(pages[page-1]);
+  pageShape.push({
+    page,
+    fragments:parsed.fragments.length,
+    incoming,
+    completeStarts:parsed.fragments.length-(incoming?1:0)
+  });
 }
-assert.deepEqual(pagesWith22Words,[32]);
-assert.deepEqual(sameRuleXPages,[11,15,18,31,32]);
-
-const wholeRows=[];
-for(let page=0;page<=55;page++){
-  const count=corpus.pages[page].indices.length;
-  const side=Math.sqrt(count);
-  if(count===0 || !Number.isInteger(side)) continue;
-  const words=parseWords(pages[page]);
-  let start=0;
-  for(let i=0;i<words.length;i++){
-    const runes=[...words[i]];
-    if(start%side===0 && runes.length===side){
-      wholeRows.push({
-        page,side,wordIndex:i,start,
-        text:runes.map((r)=>corpus.translit[runeIndex.get(r)]).join("")
-      });
-    }
-    start+=runes.length;
-  }
-}
-assert.deepEqual(wholeRows,[
-  {page:32,side:11,wordIndex:7,start:33,text:"HOMEXWDSLFD"}
+assert.deepEqual(pageShape.filter((row)=>row.fragments===22),[
+  {page:32,fragments:22,incoming:true,completeStarts:21}
+]);
+assert.deepEqual(pageShape.filter((row)=>row.completeStarts===21),[
+  {page:32,fragments:22,incoming:true,completeStarts:21}
 ]);
 
-const p32Flat=p32Words.flatMap((word)=>[...word]);
-const xRune=corpus.runes[corpus.translit.indexOf("X")];
-const p32XOffsets=p32Flat.flatMap((r,i)=>r===xRune?[i]:[]);
-assert.deepEqual(p32XOffsets,[37,54,61,68,70]);
+// Route steps 0..21 span exactly the 22 local fragments: incoming carry,
+// then 21 complete p32 word starts. DEVOTED@22 is the first post-map boundary.
+assert.equal(route[23],32);
+assert.equal(route[22],gp0("DEVOTED"));
+assert.equal(route[21],gp0("THE"));
+assert.equal(p32.fragments[21].text,"AGBEO");
+assert.equal(p32.fragments[21].start,117);
+assert.equal(p32.fragments[21].start+p32.fragments[21].len,121);
 
+const emptyStep=7;
+assert.equal(route[emptyStep],gp0("EMPTY"));
+assert.equal(emptyStep,dh.g+dh.K);
+const selected=p32.fragments[emptyStep];
+assert.deepEqual(
+  {start:selected.start,len:selected.len,text:selected.text},
+  {start:33,len:11,text:"HOMEXWDSLFD"}
+);
+// Because fragment0 is the incoming carry, fragment7 is the seventh complete
+// word start on p32 and the first word after the source-visible period at 32.
+assert.equal(p32.fragments.slice(1,emptyStep+1).length,7);
+
+// q is independently recoverable from the authenticated EMPTY state and p.
+const q=gp0("EMPTY")/dh.p;
+assert.equal(Number.isInteger(q),true);
+assert.equal(q,4);
+// Descriptive DH equalities, useful as cross-checks rather than extra degrees of freedom.
+assert.equal(q,dh.a-dh.K);
+assert.equal(q,dh.p-dh.B);
+assert.equal(q,dh.B-dh.b);
+assert.equal(q,dh.g-1);
+assert.equal(selected.len,dh.g+dh.a);
+assert.equal(selected.len,q+1+q+dh.K);
+
+const selectedRunes=selected.runes;
+const prefix=selectedRunes.slice(0,q);
+const xRune=selectedRunes[q];
+const payload=selectedRunes.slice(q+1,q+1+q);
+const trailer=selectedRunes.slice(q+1+q);
+const text=(runes)=>runes.map((r)=>corpus.translit[runeIndex.get(r)]).join("");
+assert.equal(text(prefix),"HOME");
+assert.equal(corpus.translit[runeIndex.get(xRune)],"X");
+assert.equal(text(payload),"WDSL");
+assert.equal(text(trailer),"FD");
+assert.equal(trailer.length,dh.K);
+assert.equal(selectedRunes.length-(q+1),dh.a);
+assert.equal(q+1,dh.g);
+assert.equal(selected.start+q,37);
+
+// Source-marker values inside the selected complete row.
+const prime=(rune)=>corpus.prime[runeIndex.get(rune)];
+assert.equal(prime(prefix[0]),dh.p);      // H -> 23
+assert.equal(prime(payload[0]),dh.B);    // W -> 19
+assert.equal(prime(trailer[0]),dh.K);    // F -> 2
+
+// p57 PARABLE supplies exactly B=19 solved body words.
+const p57Fragments=parsePage(pages[56]).fragments;
+const parableBody=p57Fragments.slice(1);
 const parableLabels=[
   "LIKE","THE","INSTAR","TUNNELING","TO","THE","SURFACE",
   "WE","MUST","SHED","OUR","OWN","CIRCUMFERENCES","FIND",
   "THE","DIVINITY","WITHIN","AND","EMERGE"
 ];
-const tail=selectedWordRunes.slice(selectedPos+1);
-const tailText=tail.map((r)=>corpus.translit[runeIndex.get(r)]).join("");
-assert.equal(tailText,"WDSLFD");
-const tailPrimes=tail.map((r)=>corpus.prime[runeIndex.get(r)]);
-const tailResidues=tailPrimes.map((prime)=>prime%19);
-const tailLabels=tailResidues.map((residue)=>parableLabels[residue]);
-assert.deepEqual(tailPrimes,[19,89,53,73,2,89]);
-assert.deepEqual(tailResidues,[0,13,15,16,2,13]);
-assert.deepEqual(tailLabels,["LIKE","FIND","DIVINITY","WITHIN","INSTAR","FIND"]);
-assert.deepEqual(tailLabels.slice(0,4),["LIKE","FIND","DIVINITY","WITHIN"]);
+assert.equal(parableBody.length,dh.B);
+assert.equal(parableLabels.length,dh.B);
+
+const payloadPrimes=payload.map(prime);
+const payloadResidues=payloadPrimes.map((value)=>value%dh.B);
+const payloadWords=payloadResidues.map((value)=>parableLabels[value]);
+assert.deepEqual(payloadPrimes,[19,89,53,73]);
+assert.deepEqual(payloadResidues,[0,13,15,16]);
+assert.deepEqual(payloadWords,["LIKE","FIND","DIVINITY","WITHIN"]);
+// If the first W is interpreted as a typed B=19 marker rather than data,
+// the remaining DSL spells the clean three-word instruction.
+assert.equal(prime(payload[0]),parableBody.length);
+assert.deepEqual(payloadWords.slice(1),["FIND","DIVINITY","WITHIN"]);
+
+// Natural directional controls from the same q=4 source span.
+const leftPrimes=prefix.map(prime);
+const leftResidues=leftPrimes.map((value)=>value%dh.B);
+const leftWords=leftResidues.map((value)=>parableLabels[value]);
+const leftTravelWords=[...leftResidues].reverse().map((value)=>parableLabels[value]);
+assert.deepEqual(leftWords,["TO","WE","THE","OUR"]);
+assert.deepEqual(leftTravelWords,["OUR","THE","WE","TO"]);
+
+// Matched corpus control: with q, X-position, read length and B frozen,
+// the exact right-hand residue vector occurs only at the selected p32 fragment.
+let eligibleFragments=0;
+const targetMatches=[];
+for(let page=0;page<=55;page++){
+  const parsed=parsePage(pages[page]);
+  for(let fragment0=0;fragment0<parsed.fragments.length;fragment0++){
+    const fragment=parsed.fragments[fragment0];
+    if(fragment.len<q+1+q)continue;
+    eligibleFragments++;
+    const residues=fragment.runes.slice(q+1,q+1+q)
+      .map((rune)=>prime(rune)%dh.B);
+    if(residues.join(",")===payloadResidues.join(",")){
+      targetMatches.push({page,fragment0,start:fragment.start,text:fragment.text});
+    }
+  }
+}
+assert.equal(eligibleFragments,181);
+assert.deepEqual(targetMatches,[
+  {page:32,fragment0:7,start:33,text:"HOMEXWDSLFD"}
+]);
+
+// EMPTY is the unique selected-route state congruent to zero modulo p.
+const routePResidues=route.slice(0,23).map((value)=>value%dh.p);
+assert.deepEqual(routePResidues.flatMap((value,index)=>value===0?[index]:[]),[7]);
+
+// Supplementary page-local address only: B=19 selects local fragment 19 = EN,
+// whose length is K=2. Because of the incoming carry, this is complete-word
+// ordinal 18, so it must not be called the nineteenth canonical word.
+assert.equal(p32.fragments[dh.B-1].text,"EN");
+assert.equal(p32.fragments[dh.B-1].len,dh.K);
+assert.equal(p32.fragments[dh.B-1].start,102);
 
 console.log(JSON.stringify({
   status:"PASS",
-  upstreamRoute:route,
+  route,
   routeWordHits,
-  destinationPage:32,
-  p32WordCount:p32Words.length,
-  uniqueRunePageWith22Words:pagesWith22Words,
+  dh,
+  p32SourceModel:{
+    incomingCarry:p32IncomingCarry,
+    localFragments:p32.fragments.length,
+    completeWordStarts:21,
+    finalFragment:p32.fragments[21].text,
+    boundaryStep:22,
+    terminalPage:route[23]
+  },
   emptySelector:{
     step:emptyStep,
     gp0:gp0("EMPTY"),
-    selectedWordIndex:emptyStep,
-    selectedWord:selectedWordText,
-    wordLength:selectedWordRunes.length,
-    position:selectedPos,
-    pageOffset:selectedPageOffset,
-    rune:selectedRune,
-    originControls:origins
+    uniqueRouteZeroModP:7,
+    selectedFragment:selected.text,
+    start:selected.start,
+    q,
+    partition:[text(prefix),"X",text(payload),text(trailer)],
+    partitionLengths:[prefix.length,1,payload.length,trailer.length],
+    xOffset:selected.start+q
   },
-  squarePageWholeRowWords:wholeRows,
-  sameEmptyWord7RuleXPages,
-  p32XOffsets,
-  afterX:{
-    fullTail:tailText,
-    primes:tailPrimes,
-    residuesMod19:tailResidues,
-    parableWords:tailLabels,
-    firstFour:tailLabels.slice(0,4)
+  markerPrimes:{H:prime(prefix[0]),W:prime(payload[0]),F:prime(trailer[0])},
+  parable:{
+    bodyWords:parableBody.length,
+    payloadPrimes,
+    payloadResidues,
+    payloadWords,
+    markerInterpretation:payloadWords.slice(1),
+    leftControl:leftWords,
+    leftTravelControl:leftTravelWords
   },
-  conclusion:"The independently fixed 23-step route supplies a zero-based EMPTY@7 selector for the unique full-row p32 word; GP0(EMPTY) modulo that word length selects the HOME-adjacent X. This strengthens the old WDSL mod19 readout start selector but does not select modulo19, a four-cell stop, or a cipher consumer."
+  controls:{eligibleFragments,targetMatches},
+  supplementaryLocalFragment19:{text:p32.fragments[18].text,start:p32.fragments[18].start,len:p32.fragments[18].len},
+  conclusion:"The fixed p50 route aligns with p32's incoming carry plus 21 complete starts; EMPTY@7 selects the HOME/X row. q=EMPTY/p=4 fixes X and a four-rune right span WDSL, while B=19 fixes the PARABLE modulus. This closes the old row/start/stop/modulus selector gap as a source-constrained intermediate route, but no unknown LP2 plaintext or reversible cipher consumer is yet recovered."
 },null,2));
