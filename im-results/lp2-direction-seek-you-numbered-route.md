@@ -350,17 +350,21 @@ This supplies an independent bypass of the retired p32 wrap: `SEEK AND -> shared
 
 P33 then continues internally under the independently recovered `THEIR RISE`: the YOU receiver is canonical word29 and the existing WILL receiver is word35, so `35-29=6=a`, giving `YOU -> WILL`. Independent p34/p35 local results already provide `BE -> FOUND`.
 
-The bypass closes back onto SEEK under a source-only relation. Charge every consecutive three-word window in the 43-word authenticated source and require the terminal word's GP0 to equal the first word's zero-based index. There is exactly one hit:
+The bypass closes back onto SEEK under a source-only relation. Charge every consecutive three-word window in the 43-word authenticated source and require the terminal word's GP0 to equal the first word's zero-based index. There are exactly two bare source hits:
 
 ```text
+20 MEANING
+21 IS
+22 THE
+GP0(THE)=20
+
 30 SEEK
 31 AND
 32 YOU
-
 GP0(YOU)=30.
 ```
 
-So the source phrase and manuscript route agree on a closed local program:
+Only the SEEK/AND/YOU member currently carries the independently established manuscript continuation p30 -> p31 -> p33, so that member agrees with a closed local program:
 
 ```text
 p30 SEEK
@@ -371,7 +375,7 @@ p30 SEEK
  -> p30 SEEK.
 ```
 
-This return edge uses no p32 receiver and no fitted page constant. It is source-side corroboration of the p31 bypass, not a license to interpret every GP0 value as a page pointer.
+This return edge uses no p32 receiver and no fitted page constant. The second MEANING/IS/THE source hit prevents a uniqueness claim for the bare GP0-backstep rule; the evidential weight comes from the separate manuscript edges already fixed for SEEK/AND/YOU. It is source-side corroboration of the p31 bypass, not a license to interpret every GP0 value as a page pointer.
 
 The route now closes a larger p23 cycle using an edge that predates this investigation. P23's independently charged `THE ORIGINAL` state packet derives `B=19`, and the existing p50 handoff gives `p50[19]=33`, selecting p33. Combining that fixed edge with the new return and the corrected SEEK/AND center change gives:
 
