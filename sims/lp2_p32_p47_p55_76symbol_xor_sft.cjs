@@ -172,6 +172,39 @@ const pageCountChecks = corpus.pages.filter((page) => page.indices.length > 0).m
   return { page: page.page, section: sectionIndex, runes: count };
 });
 
+function pageAggregate(page) {
+  const sectionIndex = sectionIndexForPage(page.page);
+  assert.notEqual(sectionIndex, null);
+  const words = pageWords(sections[sectionIndex]);
+  const selected = words.filter(entersRoadCycle);
+  return {
+    page: page.page,
+    selectedCount: selected.length,
+    selectedRuneLength: selected.reduce((total, word) => total + word.length, 0),
+    selectedGp0: selected.flat().reduce((total, value) => total + value, 0),
+    selectedPrime: selected.flat().reduce((total, value) => total + corpus.prime[value], 0),
+  };
+}
+
+const allPageRows = corpus.pages
+  .filter((page) => page.page <= 55 && page.indices.length > 0)
+  .map(pageAggregate);
+const dualSquareMatches = allPageRows.flatMap((row) => {
+  const root = Math.round(Math.sqrt(row.selectedPrime));
+  return root <= 55 && root * root === row.selectedPrime && row.selectedGp0 === 13 * root
+    ? [{ page: row.page, m: root }]
+    : [];
+});
+assert.deepEqual(dualSquareMatches, [{ page: 32, m: 47 }]);
+assert.deepEqual(
+  allPageRows.find((row) => row.page === 32),
+  { page: 32, selectedCount: 6, selectedRuneLength: 42, selectedGp0: 611, selectedPrime: 2209 }
+);
+assert.deepEqual(
+  allPageRows.find((row) => row.page === 47),
+  { page: 47, selectedCount: 8, selectedRuneLength: 32, selectedGp0: 534, selectedPrime: 2013 }
+);
+
 // Natural bytewise XOR: one GP29 ordinal per byte; the two terminal states
 // remain byte values 54 and 36.
 const xor8 = target.map((value, index) => value ^ key8[index]);
