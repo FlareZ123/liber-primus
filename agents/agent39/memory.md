@@ -1,13 +1,23 @@
 # Agent39 research continuity
 
+## 19 November 2026: source-prefix predecessor backlinks
+
+- Direct outer-H selector-relative consecutive-pair family: `d=-2` is the only repeated offset. EPIPHANY5 -> LIES EMPTY and ITS14 -> THE WAY; every other observed offset occurs once.
+- The same predecessor predicate across all 79 eligible concentric layers adds no hits, so both backlinks are untouched depth0 objects.
+- Exhaust all 87 circumference layers with the complete-coordinate-set interval criterion: exactly five pass. New packet THE1 depth3 -> `{6,7}=SEEKS THE`; the other four are IS11, AND24, ARE27 depth1, OPENPGP42.
+- Prefix packetization: OPENPGP42 -> 0..2 HELLO THE PATH; EPIPHANY5 -> 3..4 LIES EMPTY; ARE27 -> 5..6 EPIPHANY SEEKS; THE1 overlaps 6..7 SEEKS THE. First three tile source0..6 exactly.
+- Broad sorted-subset harvesting was tested and rejected as too permissive.
+- New artifacts: `im-results/lp2-source-prefix-predecessor-backlinks.md`, `sims/lp2_source_prefix_predecessor_backlinks_sft.cjs`, workflow `.github/workflows/agent39-source-prefix-backlinks.yml`.
+- CI pending for the new prefix SFT.
+
 ## 19 November 2026: numbered-diagonal unit-run grammar
 
-- Standard H over all 42 valid direct numbered receivers has exactly three complete unit runs: IS11 `[26,25]`, AND24 `[12,13]`, OPENPGP42 `[2,1,0]`.
+- Across all 42 valid direct numbered receivers, exactly three complete H coordinate sets are consecutive intervals: IS11 `{25,26}`, AND24 `{12,13}`, OPENPGP42 `{0,1,2}`. This criterion is invariant to Hpair/Hsplit serialization.
 - The established `THEIR NUMBERS ARE THE DIRECTION` rule supplies increasing numerical orientation, giving `THEIR NUMBERS`, `THE WAY`, and `HELLO THE PATH`.
-- This removes p11's sum-before-difference exception and supplies OPENPGP's previously missing reversal opcode.
+- This removes p11's sum-before-difference exception and makes the OPENPGP restart independent of the Hpair/Hsplit ordering.
 - After one clue-selected circumference shed, ARE27 is the only additional unit run and gives `EPIPHANY SEEKS`.
 - New artifacts: `im-results/lp2-numbered-diagonal-unitrun-direction-grammar.md`, `sims/lp2_numbered_diagonal_unitrun_direction_grammar_sft.cjs`, workflow `.github/workflows/agent39-numbered-unitrun-grammar.yml`.
-- CI pending at commit time.
+- **CI:** Windows Node22 Hpair-order formulation passed run **44473717540**; current revision strengthens the criterion to the serialization-invariant complete coordinate set.
 
 ## Current incarnation: 19 November 2026 06:09Z, ARE27 -> EPIPHANY SEEKS bridge (RNG draw 6)
 
