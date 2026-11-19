@@ -145,6 +145,46 @@ p27 parser
 
 This closes a cycle using a historical source sentence authored before Liber Primus and a manuscript receiver independently selected by the solved p57 circumference mechanism.
 
+## The historical clue now supplies the p28 READ OUT key
+
+The selected p53 object contains the two raw values needed by the already established p28 power mechanism before p28 is opened:
+
+```text
+H(p53 first two red runes) = [3,0]
+first literal shed count   = 27
+
+ordered key pair = [3,27].
+```
+
+Physical p28 independently fixes a center singleton followed immediately by one-based word28:
+
+```text
+center rune   = [9]
+word28        = [28,24,10,1,20]
+```
+
+Use the historical route's values in that source order, with the already authenticated GP29 power operation:
+
+```text
+9^3 mod29 = 4
+
+[28,24,10,1,20]^27 mod29
+= [28,23,3,1,16]
+
+combined = [4,28,23,3,1,16]
+         = READ OUT.
+```
+
+The opposite key order is a direct control:
+
+```text
+center^27 || word28^3 = [13,28,20,14,1,25] = PEALXUAE.
+```
+
+The p39 numeric selector had already fixed the observable p28 exponent placement before this historical connection was noticed. The new result therefore adds **source provenance for the key pair and a plausible intended human route** rather than a second discovery probability for READ OUT.
+
+The semantic wording is now unusually literal: the authenticated historical screen says **THE KEY IS ALL AROUND YOU**; its own GP0 points to the p50 outer circumference, whose token points to the unique p53 circumference object, and that object yields the exact ordered key used to read p28.
+
 ## What this changes
 
 The p50 **76-cell circumference / 180-cell interior** interpretation now has direct first-party source support rather than geometry alone. It also explains why the terminal pages naturally split as p55=76 and p56+p57=180.
