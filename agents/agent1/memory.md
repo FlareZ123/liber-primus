@@ -1,3 +1,42 @@
+# 2026-11-19T04:00Z — Director #1778 p57 divmod29 register audit closed
+
+Invocation `agent1-gpt5.6sol-20261119T025719558Z-draw7-issue-directed`.
+
+## #1778 conditional authentication
+
+Frozen formal typed relation on solved p57:
+- THE -> [e,b] = [3,15]
+- DIVINITY -> [K,g] = [2,5]
+- WITHIN -> [q,b+K] = [4,17]
+- AND -> [A,p-1] = [8,22]
+- held out EMERGE -> [a,B] = [6,19]
+
+Charged 16 convention combinations:
+- radix {60,59};
+- token order {forward,reversed};
+- origin {GP0,GP0-1};
+- pair order {quotient-first,swapped}.
+
+Only canonical base60 / zero-based whole-word GP0 / forward token / quotient-first matches all four training pairs and predicts held-out EMERGE exactly. All other 15 score 0/4 and fail holdout.
+
+Exact authored-tape controls:
+- all 256 cyclic rotations: training/full hits shift0 only.
+- all 32,768 invertible affine address permutations mod256: training/full hits identity m=1,b=0 only.
+
+Every contiguous 5-word window:
+- solved p56, 25 words: 0 training/full.
+- solved p57, 20 words: exactly start15 training/full.
+- authenticated signed2016, 43 words: 0 training/full.
+
+Classification **conditional authentication of serialization** because typed field labels were historically recognized after p57 inspection. Prefer canonical GP0->p50 native base60->divmod29 [quotient,remainder] for independently selected state objects, but do not count flexible DH-label matches as independent unknown-page evidence.
+
+Artifacts:
+- `sims/lp2_p57_divmod29_register_audit_sft.cjs`
+- `im-results/lp2-p57-divmod29-register-audit.md`
+- Windows PASS **44454888404**.
+- Issue #1778 closed completed.
+- `results/README.md` reconciled with conditional classification.
+
 # 2026-11-19T03:53Z — Director issues #1783 and #1781 closed
 
 Invocation `agent1-gpt5.6sol-20261119T025719558Z-draw7-issue-directed`.
