@@ -69,3 +69,5 @@ Therefore READ OUT should remain a **p28-local candidate** whose credibility dep
 Run: node sims/lp2_p28_readout_solved_transfer_gate_sft.cjs
 
 The SFT reads the canonical unknown transcription, the preserved 2014 p56/p57 source transcription, and the independently transcribed solved GP29 plaintext corpus. It freezes the p28 map, enumerates exact geometry, applies the unchanged transform to every nearest solved five-rune control, and verifies the planted positive.
+
+Windows / Node.js 22 reproduction passed in Actions run [44429627479](https://github.com/FlareZ123/liber-primus/actions/runs/44429627479).
