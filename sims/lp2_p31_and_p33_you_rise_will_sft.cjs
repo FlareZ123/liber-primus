@@ -312,6 +312,28 @@ function H3Inverse(shell) {
 // Solved p56 positive controls used by the existing THEIR RISE serializer.
 assert.deepEqual([2, 8, 5, 3].map(p56T), gp("THEIR"));
 assert.deepEqual([3, 5, 27, 8].map(p56T), gp("RISE"));
+const gp0 = (row) => row.values.reduce((sum, value) => sum + value, 0);
+const equalAdjacentGp0 = [];
+for (let index = 0; index + 1 < source.length; index += 1) {
+  const left = source[index];
+  const right = source[index + 1];
+  if (gp0(left) === gp0(right)) {
+    equalAdjacentGp0.push({
+      index,
+      words: [left.word, right.word],
+      gp0: gp0(left),
+    });
+  }
+}
+assert.deepEqual(equalAdjacentGp0, [{
+  index: 30,
+  words: ["SEEK", "AND"],
+  gp0: 56,
+}]);
+assert.deepEqual(
+  source.filter((row) => gp0(row) === 56).map((row) => [row.index, row.word]),
+  [[18, "MAP"], [24, "AND"], [30, "SEEK"], [31, "AND"]]
+);
 assert.equal(andRow.source.values.reduce((sum, value) => sum + value, 0), 56);
 
 // Original p31 layout. The selected receiver lies on printed line5. The
@@ -567,6 +589,7 @@ console.log(JSON.stringify({
       .map((row) => row.word),
   },
   helperPage56Layout: {
+    sourceSelector: equalAdjacentGp0,
     targetGp0: 56,
     receiverLine: receiverLine.index,
     topLine,
