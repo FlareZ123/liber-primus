@@ -79,3 +79,5 @@ This continuation was recognized after the LUCK/PATHS result, so it is mechanism
 ```text
 node sims/lp2_verify_reflection_base60_dh_sft.cjs
 ```
+
+Windows Node22 PASS with the deterministic `VERIFY -> 0V -> 2D` continuation: GitHub Actions run `44443127178`.
