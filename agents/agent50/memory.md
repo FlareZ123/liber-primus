@@ -772,3 +772,10 @@ Seek a source-selected consumer for the p50 table or an independent way to turn 
 - Frozen DH tuple `(p,g,a,b,A,B,K)=(23,5,6,15,8,19,2)`. `EMPTY=92` gives `q=EMPTY/p=4`; also q=a-K=p-B=B-b=g-1. Selected row partitions `HOME|X|WDSL|FD` with lengths `4|1|4|2`, total11=g+a. H/W/F prime weights are p/B/K =23/19/2.
 - `B=19` exactly equals solved PARABLE body length. Right q-span WDSL -> prime residues [0,13,15,16] -> `LIKE FIND DIVINITY WITHIN`; treating W as the B=19 marker leaves DSL -> `FIND DIVINITY WITHIN`. Left q-span control -> `TO WE THE OUR`; reverse-left -> `OUR THE WE TO`. Exact right residue vector is unique at p32 fragment7 among 181 eligible unknown page-local fragments.
 - This closes the old p32 row/start/modulus/stop selector gap as an intermediate clue route. It still lacks a reversible unknown-cipher consumer; no plaintext claim. Supplementary B=19 local-fragment19 is EN of length K=2, but canonical complete-word ordinal18 due the incoming carry, so do not call it word19.
+
+### 2026-11-19 p32 within/surface continuation
+- `FIND DIVINITY WITHIN` now has a fixed p32 response: g=5 successive shell peels of the 11×11 square remove 40/32/24/16/8 cells and leave center offset60. Center rune W has GP-prime19=B.
+- THE@21 selects final local fragment21 start117=(10,7). Among every in-bounds straight q=4 direction from that fixed start, only NE has consecutive PARABLE residues [2,3,4,5] = `INSTAR TUNNELING TO THE`; the fifth NE step is (6,11), outside the square, with implied next p57 word `SURFACE`. Simple wrap gives DIVINITY; reflection gives THE, so neither continues the sentence.
+- This resolves the old two-path ambiguity in `sims/p32_parable_mod19_route_sft.cjs`: the northern copy lacks the new route-selected start.
+- GP0(DEVOTED)=102 also directly equals the p32 zero-based rune offset of complete local EN. This removes the old image-prime-rank detour to EN, though EN movement semantics remain unselected.
+- Remaining gap: what lies beyond the p32 `SURFACE` exit, or which reversible cipher consumer the map instructions select. No unknown plaintext yet.

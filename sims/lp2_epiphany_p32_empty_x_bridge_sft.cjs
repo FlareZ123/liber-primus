@@ -312,6 +312,109 @@ assert.equal(p32.fragments[dh.B-1].text,"EN");
 assert.equal(p32.fragments[dh.B-1].len,dh.K);
 assert.equal(p32.fragments[dh.B-1].start,102);
 
+
+// "FIND DIVINITY WITHIN" has one source-shaped geometric receiver already
+// present on p32: five g-selected shell peels of the 11x11 square.
+const p32Indices=corpus.pages[32].indices;
+const side=11;
+const primeMatrix=Array.from({length:side},(_,row)=>
+  p32Indices.slice(row*side,(row+1)*side).map((index)=>corpus.prime[index])
+);
+const peeled=new Set();
+const shellSizes=[];
+for(let depth=0;depth<dh.g;depth++){
+  let shell=0;
+  for(let row=depth;row<side-depth;row++){
+    for(let column=depth;column<side-depth;column++){
+      if(row!==depth && row!==side-1-depth &&
+         column!==depth && column!==side-1-depth)continue;
+      peeled.add(row*side+column);
+      shell++;
+    }
+  }
+  shellSizes.push(shell);
+}
+assert.deepEqual(shellSizes,[40,32,24,16,8]);
+assert.equal(peeled.size,120);
+const divinityOffset=60;
+assert.equal(peeled.has(divinityOffset),false);
+const divinityRune=corpus.translit[p32Indices[divinityOffset]];
+const divinityPrime=corpus.prime[p32Indices[divinityOffset]];
+assert.equal(divinityRune,"W");
+assert.equal(divinityPrime,dh.B);
+
+// THE@21 independently fixes the final local fragment, whose start is offset117.
+// Charge every source-shaped straight direction from that fixed cell.
+const residueMatrix=primeMatrix.map((row)=>row.map((value)=>value%dh.B));
+const finalFragment=p32.fragments[21];
+assert.equal(route[21],gp0("THE"));
+assert.equal(finalFragment.start,117);
+const finalStart={
+  row:Math.floor(finalFragment.start/side),
+  column:finalFragment.start%side
+};
+assert.deepEqual(finalStart,{row:10,column:7});
+const directions=[
+  [-1,-1,"NW"],[-1,0,"N"],[-1,1,"NE"],[0,-1,"W"],
+  [0,1,"E"],[1,-1,"SW"],[1,0,"S"],[1,1,"SE"]
+];
+const directionalReads=[];
+for(const [dr,dc,name] of directions){
+  const cells=[];
+  for(let step=0;step<q;step++){
+    const row=finalStart.row+dr*step;
+    const column=finalStart.column+dc*step;
+    if(row<0 || row>=side || column<0 || column>=side){
+      cells.length=0;
+      break;
+    }
+    cells.push({row,column,offset:row*side+column});
+  }
+  if(cells.length!==q)continue;
+  const residues=cells.map(({row,column})=>residueMatrix[row][column]);
+  const consecutive=residues.every((value,index)=>
+    index===0 || value===residues[index-1]+1);
+  const nextRow=finalStart.row+dr*q;
+  const nextColumn=finalStart.column+dc*q;
+  const nextLeaves=nextRow<0 || nextRow>=side ||
+    nextColumn<0 || nextColumn>=side;
+  directionalReads.push({
+    direction:name,
+    offsets:cells.map((cell)=>cell.offset),
+    residues,
+    words:residues.map((value)=>parableLabels[value]),
+    consecutive,
+    next:[nextRow,nextColumn],
+    nextLeaves,
+    impliedNextWord:consecutive && residues[q-1]+1<parableLabels.length
+      ?parableLabels[residues[q-1]+1]:null
+  });
+}
+const consecutiveDirections=directionalReads.filter((row)=>row.consecutive);
+assert.deepEqual(consecutiveDirections,[{
+  direction:"NE",
+  offsets:[117,107,97,87],
+  residues:[2,3,4,5],
+  words:["INSTAR","TUNNELING","TO","THE"],
+  consecutive:true,
+  next:[6,11],
+  nextLeaves:true,
+  impliedNextWord:"SURFACE"
+}]);
+
+// Two simple boundary continuations are fixed controls. Neither continues
+// the PARABLE sequence with SURFACE after the four-cell NE path.
+const wrapOffset=6*side+0;
+const reflectOffset=6*side+9;
+assert.equal(parableLabels[corpus.prime[p32Indices[wrapOffset]]%dh.B],"DIVINITY");
+assert.equal(parableLabels[corpus.prime[p32Indices[reflectOffset]]%dh.B],"THE");
+
+// Supplementary direct-state address: DEVOTED's GP0 value is 102, and p32
+// zero-based rune offset102 begins the complete local EN fragment.
+const devotedOffset=gp0("DEVOTED");
+assert.equal(devotedOffset,102);
+assert.equal(p32.fragments.find((fragment)=>fragment.start===devotedOffset).text,"EN");
+
 console.log(JSON.stringify({
   status:"PASS",
   route,
@@ -348,5 +451,8 @@ console.log(JSON.stringify({
   },
   controls:{eligibleFragments,targetMatches},
   supplementaryLocalFragment19:{text:p32.fragments[18].text,start:p32.fragments[18].start,len:p32.fragments[18].len},
-  conclusion:"The fixed p50 route aligns with p32's incoming carry plus 21 complete starts; EMPTY@7 selects the HOME/X row. q=EMPTY/p=4 fixes X and a four-rune right span WDSL, while B=19 fixes the PARABLE modulus. This closes the old row/start/stop/modulus selector gap as a source-constrained intermediate route, but no unknown LP2 plaintext or reversible cipher consumer is yet recovered."
+  withinGeometry:{shellSizes,divinityOffset,divinityRune,divinityPrime},
+  finalWordDirection:{start:finalStart,directionalReads,consecutiveDirections},
+  devotedDirectOffset:{offset:devotedOffset,fragment:"EN"},
+  conclusion:"The fixed p50 route aligns with p32 source fragments; EMPTY@7 selects and partitions the HOME/X row, B=19 fixes the PARABLE modulus, g=5 reaches the B-valued center, and THE@21 fixes the sole NE consecutive path that exits at SURFACE. The clue chain still lacks a reversible unknown-cipher consumer or an external destination after leaving the square."
 },null,2));
