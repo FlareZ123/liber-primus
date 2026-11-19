@@ -123,6 +123,14 @@ For a manuscript-wide control, take every page-local 8-rune fragment on unknown 
 
 The **sole 8/8 hit is p32 fragment15**, the independently selected HOME→BUDS destination. The three nearest controls score 7/8. This converts the BUDS container from a literal-word coincidence into a uniquely state-saturated receiver under an operation fixed elsewhere.
 
+## Original-page visual corroboration: the p32 tree
+
+The original LP2 page32 source image is archive `resources/liber-primus/49.jpg` under the repository's fixed LP2 mapping `archive index = physical page + 17`. The page visibly carries a large blurred **tree** illustration below the ciphertext.
+
+This visual was not used to select HOME, X, the g=5 diagonal, or the dictionary hit. It is therefore independent corroboration of the selected target **BUDS**, a tree-native word. It also supplies a plausible human-puzzle reason to treat a BUDS landing on this specific page as meaningful rather than as an arbitrary English hit.
+
+The image does not by itself specify the g=5 diagonal, an orientation, or a decryption transform. Preserve it as semantic source evidence, not as a free selector.
+
 ## READ OUT closes the receiver back to THE DEVOTED
 
 The p28 DH branch independently fixes two consumers that were not chosen from this p32 target:
@@ -210,7 +218,7 @@ Across the authenticated signed message, both WAY and WILL have GP0 value57. Wit
 
 The p50 composite previously had one independent solved-text transfer, WELCOME `WAY HERE`, while its own report explicitly asked for a second independently selected state or unknown receiver. The independently selected p32 now supplies exactly that receiver. Its two internal numerical states are labeled by the only two four-letter grid words on p32, and the separately reconstructed DH value g links those words geometrically through the EMPTY-selected X.
 
-The strongest rival remains coincidence in the p32 literal-word layer. The equal-axis move is motivated by the selected X and the adjacent `HOME|X` span length g, yet no first-party text explicitly says "move g cells diagonally." BUDS is a low-frequency dictionary word. The exact offset97=TO cross-route junction, the unique 8/8 fixed-H state shell, and the READ OUT closure back to the pre-specified source suffix THE DEVOTED materially reduce that rival, while the absence of a source-selected reversible full-page plaintext transform still limits the result to receiver/mechanism recovery rather than continuous plaintext.
+The strongest rival remains coincidence in the p32 literal-word layer. The equal-axis move is motivated by the selected X and the adjacent `HOME|X` span length g, yet no first-party text explicitly says "move g cells diagonally." BUDS is a low-frequency dictionary word. The original p32 tree illustration, the exact offset97=TO cross-route junction, the unique 8/8 fixed-H state shell, and the READ OUT closure back to the pre-specified source suffix THE DEVOTED materially reduce that rival, while the absence of a source-selected reversible full-page plaintext transform still limits the result to receiver/mechanism recovery rather than continuous plaintext.
 
 The causal path is now concrete:
 

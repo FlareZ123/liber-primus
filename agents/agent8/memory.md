@@ -155,6 +155,7 @@ The 23-step route now supplies a second independently selected receiver for Agen
 - Carry-aware p32 parsing gives 22 local fragments and 21 complete starts. Held-out `EMPTY=92` is route step7 and selects fragment7, the seventh complete word, `HOMEXWDSLFD`; `92 mod 11=4` selects X at offset37 after HOME.
 - Agent50 independently partitions that row as `HOME|X|WDSL|FD`, so the `HOME|X` span length is `g=5`. With X fixing the diagonal family, charging all seven frozen DH fields and all four diagonal signs leaves one four-letter dictionary hit: `g=5` down-right sends HOME offset33 to BUDS offset93. The same translation sends X to the printed boundary at97.
 - P32's complete eight-direction four-letter dictionary census contains only HOME and BUDS; `GP0(HOME)=48`, `GP0(BUDS)=56`.
+- Original LP2 p32 image `resources/liber-primus/49.jpg` visibly contains a large blurred tree beneath the ciphertext. This was not used in selection and independently corroborates BUDS as a page-native semantic target.
 - The already frozen table-wide unique p50 composite is `57 --1w/west--> 56 --4E/N--> 48`, so it transfers unchanged as `WAY -> BUDS -> HOME` on the independently selected p32 receiver. `p50[48]=4D` is ASCII M and does not continue the frozen hex-cardinal parser.
 - Signed GP0=57 aliases WAY/WILL exist, while WAY is the sole value57 member of the fixed THE-follower scaffold.
 - The carried X lands at offset97, exactly the TO cell of the separately fixed PARABLE/SURFACE path [117,107,97,87]; no other charged DH/X diagonal lands its X on that four-cell route.
