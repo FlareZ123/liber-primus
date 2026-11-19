@@ -528,6 +528,42 @@ assert.deepEqual(firstWordTemplateHits, [{
   predicted: [24, 16, 14, 17],
 }]);
 
+// Stronger manuscript-wide control: the same state grammar is unique among
+// every complete four-rune word on unknown p0-p55.
+const completeFourRuneWords = [...pages.values()]
+  .flat()
+  .filter((word) => word.length === 4);
+assert.equal(completeFourRuneWords.length, 508);
+const firstWordManuscriptHits = [];
+for (const word of completeFourRuneWords) {
+  for (const [xName, x] of packetFieldEntries) {
+    for (const [yName, y] of packetFieldEntries) {
+      const predicted = [
+        mod29(-x),
+        mod29(packetState.K - y),
+        mod29(-y),
+        mod29(packetState.K + y),
+      ];
+      if (predicted.every((value, index) => value === word.values[index])) {
+        firstWordManuscriptHits.push({
+          page: word.page,
+          start: word.start,
+          xName,
+          yName,
+          predicted,
+        });
+      }
+    }
+  }
+}
+assert.deepEqual(firstWordManuscriptHits, [{
+  page: 6,
+  start: 71,
+  xName: "g",
+  yName: "b",
+  predicted: [24, 16, 14, 17],
+}]);
+
 // The fourth field K+b is a target-initial selector. Among authenticated
 // six-rune source words it selects BEWARE alone.
 const packetTargetInitial = p6PacketFirstWord[3];
@@ -855,6 +891,54 @@ for (const familyCase of p6P28Family) {
 }
 assert.deepEqual(p6P28VerifyHits, []);
 
+// The stronger p6-only role family also transfers unchanged to VERIFY and
+// yields no authenticated six-rune target.
+const packetRoleVerifyHits = [];
+let packetRoleVerifyCases = 0;
+for (let targetSlot = 0; targetSlot < 4; targetSlot += 1) {
+  const remaining = [0, 1, 2, 3].filter((index) => index !== targetSlot);
+  for (const d0Slot of remaining) {
+    for (const s0Slot of remaining) {
+      if (s0Slot === d0Slot) continue;
+      for (const s2Slot of remaining) {
+        if (s2Slot === d0Slot || s2Slot === s0Slot) continue;
+        const shell = [
+          p6PacketFirstWord[d0Slot],
+          p6PacketFirstWord[s0Slot],
+          packetState.p,
+          mod29(packetState.p - packetState.e),
+          0,
+          p6PacketFirstWord[s2Slot],
+        ];
+        const key = invertHShell(shell);
+        const admissibleTargets = sixRuneTargets.filter((target) =>
+          target.values[0] === p6PacketFirstWord[targetSlot]
+        );
+        for (const sign of [-1, 1]) {
+          packetRoleVerifyCases += 1;
+          const candidate = verifyReceiver.values.map((value, index) =>
+            mod29(value + sign * key[index])
+          );
+          for (const target of admissibleTargets) {
+            if (candidate.every((value, index) => value === target.values[index])) {
+              packetRoleVerifyHits.push({
+                targetSlot,
+                d0Slot,
+                s0Slot,
+                s2Slot,
+                sign,
+                target: target.word,
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(packetRoleVerifyCases, 48);
+assert.deepEqual(packetRoleVerifyHits, []);
+
 const verifyTransfer = verifyReceiver.values.map((value, index) => mod29(value - exact.key[index]));
 assert.deepEqual(verifyTransfer, [9, 7, 18, 6, 22, 10]);
 assert.notDeepEqual(verifyTransfer, verify.values);
@@ -898,12 +982,18 @@ console.log(JSON.stringify({
     chargedTemplateCases:
       redFourRuneWords.length * packetFieldEntries.length * packetFieldEntries.length,
     hits: firstWordTemplateHits,
+    manuscriptFourRuneWords: completeFourRuneWords.length,
+    manuscriptTemplateCases:
+      completeFourRuneWords.length * packetFieldEntries.length * packetFieldEntries.length,
+    manuscriptHits: firstWordManuscriptHits,
     targetInitial: packetTargetInitial,
     sixRuneTargetsWithInitial:
       sixRuneTargets.filter((target) => target.values[0] === packetTargetInitial)
         .map((target) => target.word),
     roleAssignmentCases: packetRoleCases,
     roleAssignmentHits: packetRoleHits,
+    verifyRoleAssignmentCases: packetRoleVerifyCases,
+    verifyRoleAssignmentHits: packetRoleVerifyHits,
     deterministicShell: [
       p6PacketFirstWord[1],
       p6PacketFirstWord[0],
