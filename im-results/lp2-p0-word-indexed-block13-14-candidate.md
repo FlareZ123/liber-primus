@@ -108,8 +108,8 @@ const mod = x => (x % 29 + 29) % 29;
 const phi = n => { let x=n, out=n; for(let p=2;p*p<=x;p++) if(x%p===0){ while(x%p===0)x/=p; out-=out/p; } if(x>1) out-=out/x; return out; };
 const mu = n => { let x=n, count=0; for(let p=2;p*p<=x;p++) if(x%p===0){ x/=p; count++; if(x%p===0)return 0; while(x%p===0)x/=p; } if(x>1)count++; return count%2 ? -1 : 1; };
 const derive = packet => {
+  const turns = mod(packet.reduce((s,v)=>s+mu(phi(v)),0)) % 3;
   const x = packet.slice(); x[1] = phi(x[1]);
-  const turns = mod(x.reduce((s,v)=>s+mu(phi(v)),0)) % 3;
   return x.slice(turns).concat(x.slice(0,turns));
 };
 const decrypt = (cipher,key) => cipher.map((v,i)=>mod(v-key[i%key.length]));
