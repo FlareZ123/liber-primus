@@ -204,6 +204,15 @@ Together with the independently derived word **FOURTH**, this yields a compact i
 FOURTH D ; H
 ~~~
 
+
+The parse is forced by the untouched p28 rune sequence. P28 contains 13 D runes at zero-based offsets:
+
+~~~text
+7,20,25,48,71,75,93,113,117,197,210,221,241
+~~~
+
+so offset48 is exactly the **fourth D**. P28 contains only **one** adjacent literal `DH` bigram, at offset117. A “fourth DH” does not exist on the page. Thus the packet's executable literal reading is **FOURTH D**, followed by operation **H**.
+
 Apply that literally to the original p28 source under the already frozen consumer:
 
 ~~~text
