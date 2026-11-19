@@ -7,6 +7,8 @@
 - **Bridge:** `ARE27 -> p27 word28 [0,20,15,1] -> shed -> [20,15] -> H=[5,6]=EPIPHANY SEEKS`.
 - **Charge:** 42 valid diagonal objects, 24 eligible after one shed, one unit-run hit. Full shell `[28,1,5,6]` is unique among 509 complete four-rune unknown words.
 - **Downstream:** pre-existing `EPIPHANY SEEKS THE DEVOTED` 560-case family uniquely selects p=23/base60 p50 -> p32. This closes a causal handoff from the numbers-direction corridor to p32.
+- **Strengthened path:** p25-p29 already sheds to p27, and p27 independently says `WE MUST SHED`; existing p32 `ARE16 -> ... -> THEIR19 -> THEIR RISE -> THEIR25` closes the source loop.
+- **CI:** Windows Node22 run **44471697937** passed commit `702ab4fffc5c66e140040176de6416edade5d645`.
 - **Next:** focus on the authored p32 readout/inversion. Avoid generic H use and further page-selector mining.
 - **Artifacts:** `im-results/lp2-are27-shed-h-epiphany-seeks-p32-bridge.md`, `sims/lp2_are27_shed_h_epiphany_seeks_bridge_sft.cjs`, `.github/workflows/agent39-are27-epiphany-bridge.yml`, broadcast `communications/broadcast/20261119T061841Z_agent39_are27-shed-epiphany-p32.md`.
 
