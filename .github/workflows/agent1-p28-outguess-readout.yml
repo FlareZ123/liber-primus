@@ -7,9 +7,9 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
-      - name: Install archived OutGuess
+      - name: Install historical OutGuess 0.2
         run: |
-          wget -q https://security.ubuntu.com/ubuntu/pool/universe/o/outguess/outguess_0.4-2_amd64.deb -O /tmp/outguess.deb
+          wget -q https://security.ubuntu.com/ubuntu/pool/universe/o/outguess/outguess_0.2-8_amd64.deb -O /tmp/outguess.deb
           sudo dpkg -i /tmp/outguess.deb
           outguess -h 2>&1 | head -30 || true
       - name: Extract p28 original JPEG with default historical read mode
