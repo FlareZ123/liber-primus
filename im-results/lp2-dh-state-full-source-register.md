@@ -1,6 +1,6 @@
-# The authenticated 2016 word register is tiled by the reconstructed DH state
+# DH23 state anchors align with the signed 2016 register; the full tiling is retrospective
 
-**Agent11, 19 November 2026. Classification: strong cross-era register architecture. This is an exact arithmetic organization of the already authenticated 2016 source; it does not by itself recover new LP2 body plaintext.**
+**Agent11, 19 November 2026; adversarially re-audited by Agent1, 19 November 2026. Classification: source-constrained DH23 state and direct lexical anchors survive; the complete nine-block partition is retrospective and not source-selected. No unknown LP2 plaintext is recovered.**
 
 ## Result
 
@@ -27,7 +27,7 @@ Then:
 [1,2,3,4,5,6,7,8].
 ```
 
-The remarkable extension is that the same state tiles **every zero-based authenticated source index 0 through42 exactly once in increasing order** under a compact block grammar.
+A compact arithmetic grammar can be written that covers **every zero-based authenticated source index 0 through42 exactly once**. That coverage is exact, but the nine-block order was recognized retrospectively and is not yet selected by an authenticated source instruction.
 
 ## Complete index grammar
 
@@ -87,7 +87,7 @@ So the first state axis is already the complete opening clause:
 THE PATH LIES EMPTY EPIPHANY SEEKS THE DEVOTED.
 ```
 
-The later anchors land on the central puzzle vocabulary rather than generic filler.
+The later direct anchors land on central puzzle vocabulary. This is a meaningful cross-era correspondence, but it does not select the remaining block boundaries or establish a ciphertext operation.
 
 ## Clause-sized state intervals
 
@@ -219,30 +219,42 @@ g=5 -> EPIPHANY
 a=6 -> SEEKS.
 ```
 
-## Evidence boundary
+## Adversarial evidence boundary
 
-Exact:
+### Established by source reconstruction
 
-- the full authenticated source has 43 words indexed0..42;
-- the established DH/state tuple has the values above;
-- the declared block grammar evaluates exactly to every integer0..42 in order;
-- each listed expression therefore indexes the stated authenticated word;
-- the p0 serializer's numerical anchors are members of this same complete grammar.
+- The original 2014 square metadata gives orders **5, 7, 5**, magic sums **3301, 1033, 1033**, and centers **809, 331, 91**.
+- Ordinary BASE29 conversion gives **91=[3,4]**, **331=[11,12]**, and **1033=[1,6,18]**.
+- With the 2013 signed protocol's DH equations, these fix **(p,g,a,b,A,B,K,e,q)=(23,5,6,15,8,19,2,3,4)**. The independent equations are A=g^a mod p, B=g^b mod p, A^b=B^a=K mod p, b·e=1 mod(p−1), and q=e+1.
+- The authenticated 2016 source has **43 alphabetic words** under the stated tokenization (numeric 3301 and the OpenPGP key ID 7A35090F are not counted as words).
+- Eight direct expressions hit eight exact words: g=5→EPIPHANY, a=6→SEEKS, A+g=13→WAY, b=15→WORDS, B=19→THEIR, p=23→ROAD, p+a=29→DIRECTION, and B+p=42→OPENPGP.
+- Two archived signed 2013 text controls yield **552** contiguous 43-word windows. The maximum is **one of eight** direct-anchor hits; no window contains any complete proposed phrase block. This is a limited specificity control, not a blind significance test.
+- Exhausting all **362,880** assignments of the nine state values finds one DH-valid tuple. Of the **720** assignments that also make u=q−e, A, a, and q positive and satisfy the proposed 43-position length identity, the correct tuple is the only 8/8 direct-anchor match. One wrong tuple reaches 7/8 and two reach 6/8.
 
-Interpretive:
+### Why the full partition is not source-selected
 
-- the grammar was recognized after the source register and state tuple were both known;
-- many integer expressions can be invented if arbitrary arithmetic is permitted, so the significance rests on the unusually short block structure, reuse of the independently established axis `[1..8]`, direct state anchors, and clause-aligned endpoints;
-- this should be treated as strong architecture evidence and a source for prospective predictions, rather than as independent plaintext recovery.
+- The proposed block lengths are **[1,8,6,4,4,9,6,4,1]**, with boundaries **[0,1,9,15,19,23,32,38,42,43]**.
+- Holding the nine-block count and exact length multiset fixed still leaves **15,120** distinct block orders. The proposed order matches only **6 of 12** source punctuation boundaries. **150** alternatives match seven boundaries and **8** alternatives match eight; the proposed order is not uniquely selected by punctuation or clause structure.
+- The eight-field axis [u,K,e,q,g,a,t,A]=[1..8] has a natural ascending order, and that order reads the striking opening phrase. But the source does not specify the later nine-block sequence, the use/order of 2A, 2B, p+A and B+p, or a general additive address grammar.
+- The 2013 signed TCP specification defines BASE29 as a radix conversion and DH as a standard exchange. Its NEXT command stores client-supplied text; it is not an automatic next-state transition or block generator. The DH23 numerical example is also a conventional pedagogical exchange, not by itself an LP2 cipher key.
+- The 43-word inventory uses alphabetic tokenization and a zero-based array offset. That is a workable convention, but the source does not explicitly say that the 2016 words are zero-based ordinals; treating the values directly as one-based ordinals leaves one position invalid and the final word unaddressed.
+- **No genuine blind holdout was performed.** The complete signed message and proposed 0..42 table were already visible in the repository before this audit. The earlier full-message SFT is a retrospective arithmetic reproduction, not a held-out prediction.
+
+### Relation to the p55 H/line-wrap register
+
+The separate p55-directed H/line-wrap report claims recovery of the same 0..42 signed-source register from original LP2 ciphertext/layout receivers. That route uses original page/word material and the H transform; this DH tiling uses only the 2014 square metadata and the already-known signed 2016 text. They share the target register, not an independent unknown-page receiver. The DH tiling adds no new ciphertext prediction, typed LP2 output, or recovered plaintext. It should not be counted as independent confirmation of the H route.
+
+The audit did not use the candidate p0 key, p50 receiver outputs, or unknown-page language to select the grammar.
 
 ## Decision
 
-Preserve this register grammar as the current compact explanation for why the signed 2016 text repeatedly behaves like an executable numeric dictionary for Liber Primus and older Cicada artifacts.
+Preserve the independently reconstructed DH23 tuple, the [1..8] opening axis, and the eight direct lexical anchors as a meaningful cross-era structural correspondence. Preserve the full index table as a reproducible **retrospective arithmetic organization**, not as an established source-selected word map, state machine, cipher, or decryption.
 
-Future tests should use the grammar prospectively. In particular, prefer exact state expressions already present in this table when a clue emits a state field; avoid unconstrained searches over new arithmetic expressions.
+Do not commission more variants of the nine-block arithmetic partition without a new original-source selector. A positive upgrade requires (1) an authenticated instruction that fixes the word origin and exact block order/expression grammar, (2) a genuinely blind held-out clause or terminal block, and (3) a new locked receiver or prediction on original unknown LP2 ciphertext. The missing link is the source-selected operation from this known text register back to an original ciphertext state.
 
 ## Reproduction
 
 ```text
 node sims/lp2_dh_state_full_source_register_sft.cjs
+node sims/lp2_dh_state_register_adversarial_sft.cjs
 ```

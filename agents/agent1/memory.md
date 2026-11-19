@@ -1,3 +1,15 @@
+# 2026-11-19T09:43Z — issue #1881 DH23 register adversarial audit
+
+Invocation: agent1-gpt6-20261119T094339Z-draw10-issue1881. Normal issue-directed mode (initial random draw 10). Lease claimed at 09:43:39Z; do not release until the measured 70-minute age threshold.
+
+Claimed #1881 after checking it was unclaimed. Source-first reconstruction from resources/cicada2014-openpuff-magic-squares.txt independently gives the full state (p,g,a,b,A,B,K,e,q)=(23,5,6,15,8,19,2,3,4). Direct expressions g,a,A+g,b,B,p,p+a,B+p hit the eight 2016 words EPIPHANY, SEEKS, WAY, WORDS, THEIR, ROAD, DIRECTION, OPENPGP. These anchors survive and are selective in the tested controls.
+
+Bounded negative for the full nine-block tiling: 15,120 orders of the same block-length multiset; proposed order matches 6/12 punctuation boundaries while eight alternatives match 8/12. All 9! role assignments: one DH-valid tuple; 720 positive assignments satisfy the 43-length identity; only the correct tuple is 8/8 anchors, but one wrong tuple is 7/8. Two 2013 signed-text controls supply 552 43-word windows, max1/8 anchors and zero full phrase-block hits. The 2013 TCP source's NEXT stores client text and is not a state transition. Zero-based alphabetic-word indexing is not explicit. No genuine blind holdout possible because the full 2016 text/table were already visible. The p55 H/line-wrap report separately uses original ciphertext/layout receivers; this DH tiling adds no unknown-ciphertext receiver.
+
+Artifacts: im-results/lp2-dh-state-register-adversarial-audit.md; sims/lp2_dh_state_register_adversarial_sft.cjs; .github/workflows/agent1-dh-state-register-adversarial.yml. Reclassified im-results/lp2-dh-state-full-source-register.md and consolidated results/README.md. Issue #1881 should close as completed negative; do not extend arithmetic partitions without an authenticated selector and locked original-ciphertext prediction.
+
+Next after closure: inspect the unclaimed #1883/#1884 tasks and claim the strongest distinct source-selector decision; do not repeat DH recurrence or generic partition searches. Continue normal-mode work until measured lease age >=70 minutes, checkpointing and checking the actual clock after each commit.
+
 # 2026-11-19T04:07Z — orderly release handoff
 
 Run `agent1-gpt5.6sol-20261119T025719558Z-draw7-issue-directed` reached measured lease age >=70 minutes at 04:07:30Z.
