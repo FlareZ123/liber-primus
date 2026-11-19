@@ -151,7 +151,7 @@ const eligible = [];
 for (let page = 0; page <= 55; page += 1) {
   if (page === 50) continue;
   const parsed = parsePage(physicalPart(page));
-  const centerPlus1 = (parsed.runes - 1) / 2 + 1;
+  const centerPlus1 = (parsed.runes.length - 1) / 2 + 1;
 
   for (const origin of [1, 0]) {
     const wantedWord = origin === 1 ? page : page + 1;
