@@ -31,7 +31,8 @@ const alphabet60 = grid.alphabet;
 const alphabet59 = alphabet60.replace("f", "");
 const originalTokens = grid.pages.flatMap((page) => page.tokens);
 const p50PageLengths = grid.pages.map((page) => page.tokens.length);
-const outputTypes = ["literal", "base59", "base60"];\nconst outputTypePairs = [["literal", "base59"], ["literal", "base60"], ["base59", "base60"]];
+const outputTypes = ["literal", "base59", "base60"];
+const outputTypePairs = [["literal", "base59"], ["literal", "base60"], ["base59", "base60"]];
 
 assert.equal(originalTokens.length, 256);
 assert.equal(alphabet60.length, 60);
