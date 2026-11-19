@@ -138,7 +138,27 @@ subtract [25,5,26,2]
 
 This makes the exact local inverse manuscript-wide selective.
 
-## 6. Evidence boundary
+## 6. Cross-page shell audit with p40 PATHS
+
+Agent2 later observed that p40's exact shell `[14,8,3,26]` does not require the HERE marker: because `e=3`, its last coordinate is simply `-e=26`. The p40 shell is therefore `[-b,A,e,-e]`.
+
+P33 and p40 then share the fixed shell skeleton:
+
+```text
+p33 [ p,A,K,-K]
+p40 [-b,A,e,-e]
+     [ x,A,y,-y]
+```
+
+Charge `x` as either sign of one authenticated state value and `y` as one authenticated state value. After collapsing duplicate numeric x values this gives 16×9 = **144 shells**. Across every complete four-rune word on p33 and p40, the nine distinct authenticated four-rune targets, and both additive directions, exactly two hits survive: this p33 WILL receiver at132 and p40 PATHS at71.
+
+The source also pairs these pages visibly. Across the full ink annotations, p33 start91 and p40 start0 are the only exact two-word red spans with word lengths `[e,g]=[3,5]`. Signed indices33..40 contain exactly `A=8` words, and the endpoint rise is `g+K=7`.
+
+This cross-page compression materially strengthens the shared-mechanism interpretation. The field-role choices `x=p,y=K` here and `x=-b,y=e` on p40 were still recognized after the local inverses, so a prospective third receiver or a first-party selector for x/y remains the promotion gate.
+
+See `im-results/lp2-p33-p40-shared-shell-pair.md` and `sims/lp2_p33_p40_shared_shell_sft.cjs` (Windows Node22 PASS 44457657138).
+
+## 7. Evidence boundary
 
 Preserve:
 

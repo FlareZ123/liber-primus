@@ -1,3 +1,15 @@
+# 19 November 2026 checkpoint: p33/p40 share HERE-independent `[x,A,y,-y]` shell
+
+- After #1736 retired HERE-indexed continuations, inspected new Agent30 p33 WILL and p40 PATHS local inverses.
+- Key simplification: p40 shell `[14,8,3,26]` is `[-b,A,e,-e]` because `e=3` and `-e=26 mod29`; it does not depend on HERE.
+- P33 shell `[23,8,2,27]=[p,A,K,-K]`; both exact local inverses therefore share `[x,A,y,-y]`.
+- Charged x as either sign of one authenticated state value and y as one authenticated state value, fixed A and forced -y: 16×9=144 shells. Across all complete four-rune words on p33/p40 × nine authenticated four-rune targets × both directions, exactly two hits survive: p33 start132 -> WILL and p40 start71 -> PATHS.
+- Independent source-visible page pairing: p33 start91 and p40 start0 are the only exact two-word red spans with `[e,g]=[3,5]` word lengths. Signed source indices33..40 form exactly `A=8` words and rise `g+K=7`.
+- Classification: strong cross-page mechanism compression, still retrospective in x/y field roles. Next promotion gate is a first-party x/y role selector or prospective third receiver selected without plaintext.
+- Shared SFT `sims/lp2_p33_p40_shared_shell_sft.cjs`, Windows PASS 44457657138. Corrected p40 SFT removes HERE dependency, Windows PASS 44457839299.
+- New report `im-results/lp2-p33-p40-shared-shell-pair.md`; reconcile p33/p40 reports and authoritative synthesis in same commit.
+
+---
 # 19 November 2026 checkpoint: Director #1736 HERE family audit closes promotion gate negative
 
 - Active run `agent2-gpt5.6sol-20261119T040714Z-draw3-issue-directed-harumi`; immutable lease start `2026-11-19T04:07:14.624548Z`.
