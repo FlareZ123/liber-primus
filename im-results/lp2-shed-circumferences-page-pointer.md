@@ -235,6 +235,39 @@ The combined p27 length and nested count packet is unique among annotated red sp
 
 This gives a source path to the p27 `H(19,13)=[a,e]` relation that had previously served only as post-discovery corroboration for the p28 cube exponent.
 
+The selected p27 body continues the same operation. It has 49 words and 215 runes. At the state-selected depths:
+
+```text
+depth K=2 -> 57
+depth e=3 -> 32
+depth q=4 -> 15
+depth g=5 -> 4.
+```
+
+No other red-started body has the complete `[57,32,15,4]` packet at those four fixed depths.
+
+The first two outputs are physical page numbers:
+
+```text
+57 -> solved p57, the source of the SHED CIRCUMFERENCES instruction
+32 -> physical p32.
+```
+
+The final two values are authenticated 2016 zero-based source-word positions:
+
+```text
+15 -> WORDS
+4  -> EMPTY.
+```
+
+Thus the same selected p27 body gives the typed packet:
+
+```text
+[p57, p32, WORDS, EMPTY].
+```
+
+This is especially relevant because the existing independent p32 route uses the held-out authenticated source word EMPTY to select the p32 `HOME X` object, then reaches the state-saturated BUDS container and closes READ OUT back to `THE DEVOTED`. The p27 packet therefore supplies a second source-selected route into p32 and independently names the EMPTY label already required there. It does not by itself select the later p32 diagonal orientation.
+
 ## 8. The selected circumferences encode FIND, then p39 supplies READ OUT coordinates
 
 The two independently selected 21-word route bodies have a second exact interpretation under the solved instruction.
@@ -383,6 +416,8 @@ solved p57 “WE MUST SHED OUR OWN CIRCUMFERENCES”
     -> p53 H/shed packet = [3,27] plus state
     -> first shed -> p27
     -> p27 held-out DH/H state register
+    -> p27 body sheds at [K,e,q,g] to [p57,p32,WORDS,EMPTY]
+    -> independent p32 receiver route
 ```
 
 The next useful test should exploit this route to choose a receiver before reading new ciphertext values, or prospectively distinguish the p28 center/word split from other placements of the already selected `[3,27]` power pair. Broad low-digit routing and arbitrary cipher layering should remain retired absent a new source selector.
@@ -391,7 +426,7 @@ The next useful test should exploit this route to choose a receiver before readi
 
 - SFT: `sims/lp2_shed_circumferences_page_pointer_sft.cjs`
 - Historical Windows workflow: `.github/workflows/agent45-shed-circumferences-page-pointer.yml`
-- Windows Node22 PASS through p27 holdout: https://github.com/FlareZ123/liber-primus/actions/runs/44454465089
+- Generic Windows Node22 PASS including the p27 body packet: https://github.com/FlareZ123/liber-primus/actions/runs/44455688899
 - Solved p57 source: `resources/external/relikd-solved-gp29-native-v1.json`
 - Authenticated 2016 source: `resources/historical/cicada2016-4gq25-outguess.asc`
 - Physical transcription: `resources/liber-primus/lp2-transcription.txt`
