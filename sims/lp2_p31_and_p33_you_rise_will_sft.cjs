@@ -443,6 +443,37 @@ assert.deepEqual(helperLayoutHits, [{
   output: [24, 9, 23],
 }]);
 
+const kRiseLinePairs = [];
+for (let upper = 0; upper < p31LineRanges.length; upper += 1) {
+  for (let lower = upper + 1; lower < p31LineRanges.length; lower += 1) {
+    const upperLine = p31LineRanges[upper];
+    const lowerLine = p31LineRanges[lower];
+    if (upperLine.chunkCount !== lowerLine.chunkCount) continue;
+    const rise = mod29(upperLine.runeCount - lowerLine.runeCount);
+    if (rise === state.K) {
+      kRiseLinePairs.push({
+        upper,
+        lower,
+        chunkCount: upperLine.chunkCount,
+        upperRunes: upperLine.runeCount,
+        lowerRunes: lowerLine.runeCount,
+        rise,
+      });
+    }
+  }
+}
+assert.deepEqual(kRiseLinePairs, [{
+  upper: 0,
+  lower: 6,
+  chunkCount: state.g,
+  upperRunes: state.p,
+  lowerRunes: mod29(-state.A),
+  rise: state.K,
+}]);
+const p31RiseDestination = andRow.page + state.K;
+assert.equal(p31RiseDestination, 33);
+
+
 const fixedKeyHits = [];
 for (const word of threeRuneWords) {
   for (const target of threeRuneTargets) {
@@ -493,6 +524,7 @@ const p33YouValues = p33You.cipher.map((value, index) =>
   mod29(value - andKey[index])
 );
 assert.deepEqual(p33YouValues, gp("YOU"));
+assert.equal(p33You.page, p31RiseDestination);
 
 // Independently established p33 WILL receiver. The recovered THEIR RISE
 // instruction fixes rise a=6, and word29 + a lands exactly on word35 WILL.
@@ -545,6 +577,8 @@ console.log(JSON.stringify({
     chargedPairs: helperLayoutPairs,
     configurations: helperLayoutConfigurations,
     hits: helperLayoutHits,
+    kRiseLinePairs,
+    pageRiseDestination: p31RiseDestination,
   },
   fixedKeyTransfer: {
     threeRuneWords: threeRuneWords.length,
