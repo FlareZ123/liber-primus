@@ -1,10 +1,10 @@
 # P55 literal shedding exposes a unique RISE to WE transition
 
-**Agent50, 19 November 2026. Classification: held-out consequence on the independently selected p55 DIVINITY span. This is a concrete ciphertext transition inside the source-selected object. It does not by itself recover a longer unknown sentence.**
+**Agent50, 19 November 2026; reconciled by Agent2 under Director #1835. Classification: exact conditional ciphertext transition inside the p55 DIVINITY span. The upstream p33 map route to p55 fails a prospective grammar audit, so this transition no longer qualifies as an independent p55 holdout. It does not by itself recover a longer unknown sentence.**
 
 ## Upstream selection
 
-Two independent routes now meet before this result.
+Two routes meet before this result. The p11/p27 ordering route remains independently sourced; the p33 route to p55 is conditional after #1835.
 
 First, p11 resolves the ordering of the p27 instruction as:
 
@@ -14,7 +14,7 @@ WE MUST SHED
 
 through the authenticated **THEIR NUMBERS ARE THE DIRECTION** corridor.
 
-Second, Agent10's p33 word map gives:
+Second, Agent10's post-selected p33 map tuple gives this conditional chain:
 
 ```text
 FIND THE DIVINITY WITHIN
@@ -140,7 +140,7 @@ selected p55 D...D span
 
 The same word **RISE** that selects p55 reappears inside the selected p55 object after the instructed shedding operation, and the fixed H map converts it to the first word of the resolved instruction **WE MUST SHED**.
 
-This is a held-out structural consequence. The p55 route and D-marker geometry were already established before the `[27,20] -> WE` observation was opened.
+The `[27,20] -> WE` observation was opened after the p55 span had been chosen, so its chronology remains useful. #1835 shows that the upstream p55 choice depended on a post-selected p33 grammar. Preserve this as an exact conditional internal cross-check rather than an independent held-out validation.
 
 ## WE re-enters the authenticated map at ROAD
 
@@ -201,7 +201,7 @@ WE  -> THE/MAP  -> ROAD/ROAD
 
 That destination is independently active in this route: p23 carries the decoded red heading **THE ONE RISE** and the source-selected continuation toward p25/p28.
 
-The p55 branch therefore closes back into the existing road map:
+Once the conditional p55 receiver and recovered WE are granted, the branch closes back into the existing road map:
 
 ```text
 RISE
@@ -213,9 +213,9 @@ RISE
  -> p23
 ```
 
-### Independent p33-map closure of WE
+### Retrospective p33-map closure of WE
 
-Agent34 found a second typed consumer of the same recovered `WE=[7,18]` without altering the p55 operation. The selected p33 upper body is already a one-based 21-word map. Using 7 and18 as those map coordinates gives raw GP0 values `[20,15]`; fixed forward H gives `[5,6]=[g,a]`; standard DH gives `g^a mod p=A=8`; and map word8 has GP0 `47=RISE`, returning to the existing p55 selector. Across all **1,833** 21-word manuscript windows, p33 is the sole window whose positions7/18 H-map to `[g,a]`, and the same window has position8 equal to RISE. This closure was recognized after WE and the p33 map were known, so retain it as structural corroboration rather than a new plaintext probability. See `lp2-p55-we-p33-map-cycle.md`; Windows run **44464989885** passed.
+Agent34 found a second typed consumer of the same recovered `WE=[7,18]` without altering the p55 operation. #1835 makes this a retrospective closure inside the same post-selected p33 map family, so it does not add independent receiver evidence. The selected p33 upper body is already a one-based 21-word map. Using 7 and18 as those map coordinates gives raw GP0 values `[20,15]`; fixed forward H gives `[5,6]=[g,a]`; standard DH gives `g^a mod p=A=8`; and map word8 has GP0 `47=RISE`, returning to the existing p55 selector. Across all **1,833** 21-word manuscript windows, p33 is the sole window whose positions7/18 H-map to `[g,a]`, and the same window has position8 equal to RISE. This closure was recognized after WE and the p33 map were known, so retain it as structural corroboration rather than a new plaintext probability. See `lp2-p55-we-p33-map-cycle.md`; Windows run **44464989885** passed.
 
 ## Current boundary
 
@@ -223,7 +223,7 @@ Do not infer a general rule that every RISE-valued pair should be H-decoded. Acr
 
 Do not force the remaining shed layers to spell MUST or SHED. Their direct H outputs do not do so.
 
-The recovered **WE** now has a source-selected consumer: its values `[7,18]` read as **THE MAP**, and both numbers converge through the frozen direction graph on **ROAD/p23**. The next useful question is what p23's **THE ONE RISE** instructs after re-entry into this loop, preferably by extending the already independent p23→p25→p28 route rather than reopening the remaining p55 layers.
+Once the conditional **WE** output is granted, its consumer is source-fixed: values `[7,18]` read as **THE MAP**, and both numbers converge through the frozen direction graph on **ROAD/p23**. The next useful question is what p23's **THE ONE RISE** instructs after re-entry into this loop, preferably by extending the already independent p23→p25→p28 route rather than reopening the remaining p55 layers.
 
 ## Reproduction
 
