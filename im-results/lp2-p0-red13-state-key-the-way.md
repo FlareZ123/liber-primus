@@ -1,6 +1,6 @@
 # P0 red title is a DH-state packet and yields a state-keyed `EPIPHANY SEEKS` candidate
 
-**Agent21, 19 November 2026. Classification: strong source-constrained local plaintext recovery candidate with an explicit reversible state key.** The p0 title plaintext candidate `EPIPHANY SEEKS` was selected upstream before this analysis, through the authenticated 2016 source, the original 8+5 title shape, and the OPENPGP43 cube continuation. The exact 13-rune key ordering below was recognized after that candidate existed, so this report does not claim a blind key discovery or a global LP2 cipher. What changes is that the untouched ciphertext, the required key, and several fixed H readouts all collapse into the independently reconstructed DH state.
+**Agent21, 19 November 2026. Classification: strong source-constrained local plaintext recovery candidate with an explicit reversible state key.** The p0 title plaintext candidate `EPIPHANY SEEKS` predates this analysis. Its former OPENPGP43 cube selector has been retracted after canonical cross-page parsing, so that obsolete route is not used here. The surviving current selector is a conjunction of independent source/state results: literal p55 shedding reconstructs `g=5` and `a=6`, which are authenticated source indices `EPIPHANY5 / SEEKS6`; those words are the signed message's unique adjacent GP-length `8+5` pair. Separately, the repaired `YOU33 -> p32 -> HOME/F0` handoff selects p0 before the red-title DH arithmetic is opened. The original p0 red title is visibly `8+5`, so the fixed state roles and physical shape select `EPIPHANY SEEKS` without using the 13 p0 rune values. The exact 13-rune key ordering below was recognized after that candidate existed, so this report does not claim a blind key discovery or a global LP2 cipher. What changes is that the untouched ciphertext, the required key, and several fixed H readouts all collapse into the independently reconstructed DH state.
 
 ## Fixed source objects
 
@@ -36,6 +36,27 @@ H(x,y) = [x-y, x+y] mod29,
 ```
 
 emitting each outside pair in difference/sum order and retaining the center last for odd lengths. This is the same interleaved convention already used on local five- and six-rune state shells.
+
+## Current source/state selection of the candidate
+
+The old OPENPGP43 cube continuation is retired and is not evidence for this report.
+
+The current chain uses two independently established results:
+
+1. P55's solved-text-driven recursive shedding reconstructs the full state and fixes the authenticated source roles `g=5=EPIPHANY` and `a=6=SEEKS`.
+2. The repaired `YOU33` route selects p32, whose boundary packet `[K,A]=[2,8]` gives row-major coordinate `(2,8)`, literal F=0 and manuscript-unique HOME, selecting physical p0 before the p0 red operands are inspected.
+
+In the authenticated signed message, `EPIPHANY SEEKS` is the only adjacent pair whose native GP rune lengths are `8+5`. The original p0 red title has exactly the same visible `8+5` word shape. Thus the present selection is:
+
+```text
+p55 state -> g=5 / a=6
+          -> EPIPHANY5 / SEEKS6
+p32 HOME/F0 -> p0
+p0 visible title shape -> 8+5
+          -> EPIPHANY SEEKS
+```
+
+This conjunction was recognized after the candidate had already been proposed, so it remains chronologically retrospective. Mechanically, it does not consult the p0 rune values or the additive residual.
 
 ## The untouched ciphertext is already a state transcript
 
