@@ -46,6 +46,24 @@ t=g+K=7.
 
 Those are exactly the numeric inputs of the frozen state-only rise serializer. The square-derived DH state independently validates the same typings.
 
+To charge the remaining parameter-role ambiguity without changing the rise-law shape, use the six visible values `{1,2,4,5,7,13}` as the candidate pool for its four roles:
+
+```text
+left   = cumulative(-Q, [Q-S, B-S, B+S])
+center = cumulative( Q, [Q, Q+T, Q+2T, Q+3T])
+right  = cumulative( T, [T-S, T, T+S]).
+```
+
+All `6^4 = 1296` role assignments and both additive signs were charged, **2,592 cases total**. Exactly one yields any pinned two-word title:
+
+```text
+Q=4, B=13, S=1, T=7
+sign = subtraction
+-> EPIPHANY SEEKS.
+```
+
+This makes the source-visible numerical role assignment highly selective inside the already frozen grammar shape. The shape itself was recognized retrospectively, so the chronology caveat still applies.
+
 ## The center column gives an executable five-rune key
 
 The five-dot marker center is the state palindrome
@@ -129,7 +147,19 @@ sole hit: p0 marker, pre-marker window -> SEEKS
 addition lexical hits: 0
 ```
 
-This localizes the key to the same physical marker/title object. It gives no support for unchanged transfer to other red13 markers.
+This localizes the five-rune key to the same physical marker/title object. It gives no support for unchanged transfer to other red13 markers.
+
+The complete generated 13-rune key was also frozen and applied to every valid 13-rune window immediately before and after every red13 marker, under both additive signs:
+
+```text
+valid pre/post 13-rune windows: 44
+complete pinned lexical segmentations: 1
+sole hit: p0 pre-marker -> EPIPHANY SEEKS
+post-marker hits: 0
+opposite-sign hits: 0
+```
+
+So the title key does not continue unchanged into p0 body text or another red13 receiver.
 
 ## Complete 8+5 title family
 
@@ -284,7 +314,7 @@ The unresolved scientific weakness is the discovery order of the full left/cente
 node sims/lp2_p0_marker_center_plaintext_selector_sft.cjs
 ```
 
-Windows Node22 PASS with the full receiver gate, 729-palindrome state family, sign rivals, 48 column views, 32 row views, and 49 marker-adjacent windows: workflow **44480809218**.
+Windows Node22 PASS with the full receiver gate, 729-palindrome state family, sign rivals, 2,592 rise-role rivals, 48 column views, 32 row views, 49 five-rune marker-adjacent windows, and 44 full-key pre/post windows: workflow **44481637576**.
 
 Related state-only serializer:
 
