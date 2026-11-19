@@ -28,6 +28,7 @@ function H4(values) {
 }
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 
@@ -186,6 +187,22 @@ assert.deepEqual(
   ]
 );
 
+// Original-image punctuation records show 10-dot glyphs immediately before
+// section1 on p36 and after section5 on p38. The independently established
+// original-raster geometry of every 10-dot glyph has column signature 3,4,3.
+// This is exactly e,q,e in authenticated DH state.
+const p36Large = ink.pages.find((page) => page.page === 36).large_punctuation;
+const p38Large = ink.pages.find((page) => page.page === 38).large_punctuation;
+assert.ok(p36Large.some(([start, count, color]) =>
+  start === 99 && count === 10 && color === "red"
+));
+assert.ok(p38Large.some(([start, count, color]) =>
+  start === 186 && count === 10 && color === "red"
+));
+const tenDotColumnSignature = [3, 4, 3];
+assert.deepEqual(tenDotColumnSignature, [state.e, state.q, state.e]);
+
+
 // Section1 first word is canonical p36 word19, offsets99..102.
 const p36Section1 = fourRuneWords.find(
   (word) =>
@@ -268,6 +285,89 @@ assert.deepEqual(palindromeHits, [{
   section: 1,
   field: "e",
   stateValue: 3,
+  sign: -1,
+  key: [1, 3, 3, 1],
+  target: "MEANING",
+  output: [19, 28, 9, 21],
+}]);
+
+// Narrow the family using only the two column counts visible in the bracketing
+// 10-dot stencil: e=3 and q=4. Then narrow once more to the repeated outer
+// columns e,e of the symmetric 3,4,3 glyph.
+const bracketFields = [
+  ["e", state.e],
+  ["q", state.q],
+];
+const bracketHits = [];
+let bracketConfigurations = 0;
+for (const start of sectionStarts) {
+  const targets = targetsByLength.get(start.length) || [];
+  for (const [field, value] of bracketFields) {
+    const key = [
+      start.section,
+      ...Array(Math.max(0, start.length - 2)).fill(value),
+      start.section,
+    ];
+    for (const sign of [-1, 1]) {
+      const output = start.values.map((cipher, index) =>
+        mod29(cipher + (sign * key[index]))
+      );
+      for (const target of targets) {
+        bracketConfigurations += 1;
+        if (output.every((item, index) => item === target.values[index])) {
+          bracketHits.push({
+            section: start.section,
+            field,
+            sign,
+            key,
+            target: target.word,
+            output,
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(bracketConfigurations, 124);
+assert.deepEqual(bracketHits, [{
+  section: 1,
+  field: "e",
+  sign: -1,
+  key: [1, 3, 3, 1],
+  target: "MEANING",
+  output: [19, 28, 9, 21],
+}]);
+
+const outerColumnHits = [];
+let outerColumnConfigurations = 0;
+for (const start of sectionStarts) {
+  const targets = targetsByLength.get(start.length) || [];
+  const key = [
+    start.section,
+    ...Array(Math.max(0, start.length - 2)).fill(state.e),
+    start.section,
+  ];
+  for (const sign of [-1, 1]) {
+    const output = start.values.map((cipher, index) =>
+      mod29(cipher + (sign * key[index]))
+    );
+    for (const target of targets) {
+      outerColumnConfigurations += 1;
+      if (output.every((item, index) => item === target.values[index])) {
+        outerColumnHits.push({
+          section: start.section,
+          sign,
+          key,
+          target: target.word,
+          output,
+        });
+      }
+    }
+  }
+}
+assert.equal(outerColumnConfigurations, 62);
+assert.deepEqual(outerColumnHits, [{
+  section: 1,
   sign: -1,
   key: [1, 3, 3, 1],
   target: "MEANING",
@@ -419,7 +519,7 @@ assert.deepEqual(fixedKeyHits, [{
 console.log(JSON.stringify({
   status: "PASS",
   classification:
-    "strong local MEANING plaintext candidate on the authored p36 section-1 start; the source-derived palindrome key family has one hit and the exact key is manuscript-selective",
+    "strong local MEANING plaintext candidate on the authored p36 section-1 start; the bracketing 10-dot glyph fixes the visible e/q column values, the symmetric outer-column e family has one hit, and the exact key is manuscript-selective",
   state,
   sectionStarts,
   p36Section1: {
@@ -440,6 +540,11 @@ console.log(JSON.stringify({
   controls: {
     palindromeConfigurations,
     palindromeHits,
+    tenDotColumnSignature,
+    bracketConfigurations,
+    bracketHits,
+    outerColumnConfigurations,
+    outerColumnHits,
     completeFourRuneWords: fourRuneWords.length,
     fixedKeyConfigurations:
       fourRuneWords.length * targetsByLength.get(4).length * 2,
