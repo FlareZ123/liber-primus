@@ -118,4 +118,4 @@ Run:
 
 `node sims/lp2_p38_found_road_reciprocal_state_sft.cjs`
 
-The SFT reconstructs all 50 authenticated/solved GP0 states, proves the reciprocal low-digit cycle is unique, parses all 2,864 contained unknown words, proves the p38 offsets54..56 realization is unique, and verifies its position immediately before the literal section-5 marker.
+The SFT reconstructs all 50 authenticated/solved GP0 states, proves the reciprocal low-digit cycle is unique, parses all 2,864 contained unknown words, proves the p38 offsets54..56 realization is unique, and verifies its position immediately before the literal section-5 marker. Windows / Node.js 22 reproduction passed in Actions run [44445169282](https://github.com/FlareZ123/liber-primus/actions/runs/44445169282).
