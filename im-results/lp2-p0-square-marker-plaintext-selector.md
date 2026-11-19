@@ -14,7 +14,9 @@ center 5
 right  4
 ```
 
-The center column has five vertically aligned dots; four left/right pairs are staggered between the center levels. This independently agrees with the repository's 13-dot annotation. A concurrent 3|5|3 / 11-dot interpretation came from a visual miscount and was corrected to its author; do not use that 11-dot SHED branch.
+The center column has five vertically aligned dots; four left/right pairs are staggered between the center levels. This independently agrees with the repository's 13-dot annotation. A concurrent 3|5|3 / 11-dot interpretation came from a visual miscount and was retracted after correction; do not use that 11-dot SHED branch.
+
+The same 13-dot geometry is the standard large punctuation glyph on other LP2 pages, so its shape alone does not select p0. The ink layout supplies the missing receiver gate: among all **30 red 13-dot marks**, p0 alone has an immediately preceding **red span of exactly 13 runes**. Thus the 13-rune title / 13-dot marker pairing is source-visible before decryption.
 
 The authenticated 2014 square route independently reconstructs
 
@@ -30,6 +32,19 @@ Thus the visible marker populations themselves are state-typed:
 4|5|4 = q|g|q
 13    = b-K.
 ```
+
+The nine staggered horizontal levels also alternate populations **1,2,1,2,1,2,1,2,1**. Therefore the standard glyph directly exposes the numeric tuple
+
+```text
+u=1
+K=2
+q=4
+g=5
+w=13
+t=g+K=7.
+```
+
+Those are exactly the numeric inputs of the frozen state-only rise serializer. The square-derived DH state independently validates the same typings.
 
 ## The center column gives an executable five-rune key
 
@@ -95,7 +110,7 @@ The result remains exactly one lexical hit:
 [q,A,B,A,q] -> SEEKS.
 ```
 
-So the center result does not depend on omitting the two later state fields.
+Charge the opposite additive sign across both families as well. It produces **zero** lexical hits. So the center result does not depend on omitting the two later state fields, and the subtraction sign is selected by the same finite control.
 
 ## Marker-local transfer control
 
@@ -109,8 +124,9 @@ Apply it with unchanged phase and subtraction sign to every eligible five-rune w
 
 ```text
 eligible marker-adjacent windows: 49
-pinned solved/authenticated lexical hits: 1
+subtraction lexical hits: 1
 sole hit: p0 marker, pre-marker window -> SEEKS
+addition lexical hits: 0
 ```
 
 This localizes the key to the same physical marker/title object. It gives no support for unchanged transfer to other red13 markers.
@@ -217,7 +233,9 @@ all columns top -> bottom
 
 produces a pinned two-word lexical title. Reversing the center is algebraically identical because the center is a palindrome, so the raw output contains two equivalent records for the same physical packet.
 
-This removes a simple orientation ambiguity. It does not erase the chronology caveat on the exact rise formulas, which were recognized after the p0 residual had been inspected.
+A second visual family reads the nine staggered horizontal levels directly. All **32** natural top/bottom and per-pair left/right row traversals were charged; none produces a pinned two-word title. The opposite additive sign also gives zero lexical titles for all 48 column views and all 32 row views.
+
+Thus the sole lexical visual packet is ordinary left-to-right column order with the palindromic center's reversal degeneracy. This removes the simple orientation and sign ambiguities. It does not erase the chronology caveat on the exact rise formulas, which were recognized after the p0 residual had been inspected.
 
 ## Independent plaintext selectors
 
@@ -256,7 +274,7 @@ square state + marker geometry
 -> EPIPHANY SEEKS.
 ```
 
-The five-rune SEEKS inverse has a bounded exhaustive state family and a 49-window marker transfer control. The complete title has source-side plaintext selectors, a target-free same-shape receiver control, and a 48-view visual serialization control.
+The five-rune SEEKS inverse has a bounded exhaustive state family, an explicit sign rival, and a 49-window marker transfer control. The complete title has source-side plaintext selectors, the unique red13-span→red13-marker receiver gate, a target-free same-shape receiver control, 48 column views, and 32 row views.
 
 The unresolved scientific weakness is the discovery order of the full left/center/right rise law. A genuinely prospective reuse or an independent original instruction that fixes those exact rise formulas would upgrade the full 13-rune mechanism further. No continuous p0 body inverse follows from this result.
 
@@ -266,7 +284,7 @@ The unresolved scientific weakness is the discovery order of the full left/cente
 node sims/lp2_p0_marker_center_plaintext_selector_sft.cjs
 ```
 
-Windows Node22 PASS with the full 729-palindrome, 48-traversal and 49-window controls: workflow **44479738077**.
+Windows Node22 PASS with the full receiver gate, 729-palindrome state family, sign rivals, 48 column views, 32 row views, and 49 marker-adjacent windows: workflow **44480809218**.
 
 Related state-only serializer:
 
