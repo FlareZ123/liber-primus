@@ -234,5 +234,7 @@ console.log(JSON.stringify({
     plaintext: reversedPlain,
     text: spell(reversedPlain),
   },
-  classification: "Director #1724 negative semantic gate: LEAD=82 is a reproducible arithmetic echo without an authenticated Cicada chemistry or atomic-number selector; it cannot authenticate THE/ROAD or (8,2)",\n  ordinalFamily,\n  sourceSemanticHits,
+  classification: "Director #1724 negative semantic gate: LEAD=82 is a reproducible arithmetic echo without an authenticated Cicada chemistry or atomic-number selector; it cannot authenticate THE/ROAD or (8,2)",
+  ordinalFamily,
+  sourceSemanticHits,
 }, null, 2));
