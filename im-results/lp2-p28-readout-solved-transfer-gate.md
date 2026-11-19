@@ -29,16 +29,15 @@ Thus there is **no solved page with the exact structural selector** on which the
 
 ## Nearest solved controls
 
-The nearest broader class is every original solved-page five-rune word with a real predecessor rune. There are four:
+The nearest broader class is every original solved-page five-rune word with a real predecessor rune. There are three:
 
 | page | word | start | source six-rune span | frozen output | aligned known plaintext | exact? |
 |---:|---:|---:|---|---|---|---|
 | 56 | 3 | 5 | RMYLOH | GYMTIJ | DWITHIN | no |
-| 56 | 21 | 57 | FAEIRDE | FWOOEANG | FEUERY | no |
-| 56 | 22 | 62 | ESYJEAU | OTHMHEAU | YPILGR | no |
-| 57 | 21 | 81 | YWITHIN | THAEOSOP | YWITHIN | no |
+| 56 | 18 | 57 | FAEIRDE | FWOOEANG | FEUERY | no |
+| 57 | 18 | 81 | YWITHIN | THAEOSOP | YWITHIN | no |
 
-The first two cases match one of six GP29 symbols by chance; the other two match zero. **None recovers its known plaintext exactly.**
+The two p56 cases match one of six GP29 symbols each; the p57 case matches zero. **None recovers its known plaintext exactly.**
 
 The result cannot falsify the p28 local inverse because the exact p28 selector is absent on solved material. It does reject the stronger claim that the same (3,27) cube-layer rule visibly acts on ordinary five-rune boundaries throughout solved Liber Primus.
 
@@ -59,7 +58,7 @@ The original six GP29 symbols are recovered exactly. The SFT also exhaustively c
 The transfer gate is **negative**:
 
 - exact p28 center/five-word geometry has no solved counterpart;
-- the broader solved five-rune class contains four controls;
+- the broader solved five-rune class contains three controls;
 - the frozen p28 transform recovers zero known plaintext spans exactly;
 - implementation correctness is independently demonstrated by a planted positive.
 
