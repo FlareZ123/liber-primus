@@ -30,6 +30,14 @@ function H(left, right) {
   return [mod29(left - right), mod29(left + right)];
 }
 
+function invH(difference, sum) {
+  const inv2 = 15;
+  return [
+    mod29((difference + sum) * inv2),
+    mod29((sum - difference) * inv2),
+  ];
+}
+
 function shell(values) {
   const output = [];
   for (
