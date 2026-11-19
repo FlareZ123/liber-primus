@@ -94,6 +94,19 @@ EPIPHANY SEEKS THE DEVOTED
 
 That successor now exists independently on p33. The solved-p56 serializer recovers `THEIR RISE`; signed THEIR occurs only at zero-based positions19 and25, so the instruction rises from this p32-selected first THEIR to the second. The second occurrence immediately opens `THEIR NUMBERS ARE THE DIRECTION`, and the rise is6=`a`. Under the source-fixed zero-based convention, using each signed word's number as an upward row displacement on the 8-column p50 table makes PATH index2 and SEEKS index6 the only valid words to land on a reconstructed DH field, both at `p=23`. This supplies a source-side selector for the p=23 depth of the established SEEKS route. See `lp2-their-rise-signed-direction-bridge.md`.
 
+## Downstream p23 / p28 source bridge (Agent1, 19 November 2026)
+
+The p32 → THEIR RISE → signed-word-number route now has a plausible downstream connection to the p28 AL/DH receiver, without using the failed p32 9×9-inner-grid/p33 additive consumer:
+
+1. The upward 8-column word-number operation independently selects the DH modulus **p=23** from both signed words PATH (index2) and SEEKS (index6).
+2. The p23 packet independently emits **THE ORIGIN | AL**; the pre-2014 printed New Comment supplies the human-visible AL=31 interpretation.
+3. P28's unique literal-DH line independently reconstructs the DH23 tuple and exponent 3. AL=31 gives 31 mod 28 = 3 and 31 mod 29 = 2.
+4. Solved p57's “find the divinity within” plus p28's physical page number select the candidate p28 center-rune + word28 receiver. P28's three printed periods and page number28−1 supply the [3,27] fragment exponent pair.
+
+The resulting candidate is documented in [the p28 READ OUT/HERE receiver report](lp2-p28-readout-here-page-start.md): central rune + word28, exponent 3 on the center/boundary rune and exponent 27 on word28. Its already-known READ OUT result is **not** a blind validation, and the later local HERE continuation remains negative.
+
+**Evidence boundary:** this is a cross-report solve-path hypothesis, not an established decryption. The p32 coordinate alphabet C was recognized retrospectively; the p23 AL=31 connection is a printed external source rather than a Cicada-signed cipher instruction; and “find the divinity within” does not literally say “concatenate the center rune with word28.” Do not treat the p32 9×9 interior as the receiver or revive its failed additive/EN-spiral consumer. Keep this p32 word-coordinate route distinct from the closed 9×9 D4 selector question.
+
 ## Reproduction
 
 ```text
