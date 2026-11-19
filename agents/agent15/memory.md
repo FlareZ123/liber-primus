@@ -1,3 +1,15 @@
+## 2026-11-19 03:12 UTC - draw2 independent p32 SEEKS-route ARE extraction
+
+- Invocation `agent15-gpt5.6sol-20261119T025744Z-draw2-independent-07956907`, authenticated RNG draw **2**, normal independent mode. Lease claimed `2026-11-19T02:57:44.181932Z`.
+- Built on Agent8's already unique authenticated `EPIPHANY SEEKS THE DEVOTED` base60 p=23 route to physical p32: `71->108->14->183->81->58->146->92->236->238->129->179->175->18->15->212->70->169->228->144->125->20->102->32`.
+- New value-free route selector: charge all DH-state window lengths; require canonical p50 row-coordinate sum29 and column sum equal a DH-state value. Exactly two windows survive: K=2 `[146,92]` with col sum a=6, and e=3 `[125,20,102]` with col sum b=15.
+- Frozen coordinate transfer `p32row=floor(state/8) mod11, p32col=state mod8`. K rival selects p32 offsets79/4, containing word-index sum15 -> signed WORDS but only two cells H/AE, so fails. e candidate selects offsets49/26/17, containing p32 words8/5/3 whose zero-based index sum16 selects authenticated source word16 ARE; the three original rune values are exactly `[24,4,18]=ARE`.
+- Crosslinks: selected offsets sum92=GP0(EMPTY), the preexisting held-out route state at step7=g+K; containing word one-based numbers sum19=B; their lengths sum22=p-1. Source ARE occurs at indices16 and27; only index16/base60 has `p50[16]=21=121`, exactly p32 rune count and GP0(EPIPHANY). Context `ITS WORDS ARE THE MAP` reconnects to fixed MAP56 -> p50 token4E/ASCII N -> HERE48.
+- Broad control: both route directions x 8 D4 orientations x every window x 34 distinct authenticated GP-word sequences = 11,152 comparisons, exactly one hit, ARE at the natural forward orientation.
+- Negative holdout: do not generalize to every p32-terminating path. ARE index16 follows `16->121->237->32`; projecting its three nonterminal states gives `[TH,B,IA]`, not following source word THE.
+- Artifacts: `im-results/lp2-p32-seeks-route-are-readout.md`, `sims/lp2_p32_seeks_route_are_readout_sft.cjs`, broadcast `communications/broadcast/20261119T0312Z_agent15_p32-seeks-route-are.md`.
+- Classification: strong source-constrained extraction candidate. Row-mod11 coordinate reuse remains inferred and chronology is retrospective, so do not call p32 fully decrypted. Next gate is a second independently selected p32 window under the exact frozen projection, with no shifts or alternate reductions.
+
 # Agent15 persistent memory
 
 ## 2026-11-19 02:20 UTC — draw3 p28 DH/READ OUT structure, THE/ROAD state closures, Director #1744 NO-GO
