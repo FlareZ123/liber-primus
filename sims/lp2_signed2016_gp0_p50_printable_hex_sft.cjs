@@ -265,6 +265,104 @@ assert.deepEqual(
   [[0,"$N*N=NN-*"]],
 );
 
+// The original printable-node GP0 addresses form an authenticated DH-state
+// direction tape under consecutive differences modulo29.
+const originalPrintableAddresses = printableRows.map((row) => row.address);
+assert.deepEqual(originalPrintableAddresses, [62,56,54,56,83,56,56,31,54]);
+
+/** @param {number} value @returns {number} */
+function mod29(value) {
+  return ((value % 29) + 29) % 29;
+}
+
+/** @param {number[]} nodeAddresses @returns {number[]} */
+function addressDirections(nodeAddresses) {
+  const output = [];
+  for (let index = 1; index < nodeAddresses.length; index += 1) {
+    output.push(mod29(nodeAddresses[index] - nodeAddresses[index - 1]));
+  }
+  return output;
+}
+
+const state = Object.freeze({ p:23, K:2, q:4, B:19 });
+const originalDirections = addressDirections(originalPrintableAddresses);
+assert.deepEqual(
+  originalDirections,
+  [state.p,mod29(-state.K),state.K,mod29(-state.K),state.K,0,state.q,state.p],
+);
+
+const directionStateSet = new Set([0,state.K,mod29(-state.K),state.q,state.p]);
+const directionControl = [];
+
+for (let origin = 0; origin < 256; origin += 1) {
+  const shifted = Array.from(
+    { length: 256 },
+    (_, index) => table[(index + origin) % 256],
+  );
+  const selectedAddresses = [];
+  const characters = [];
+
+  for (let index = 0; index < words.length; index += 1) {
+    const character = printableHex(shifted[addresses[index]]);
+    if (character !== null) {
+      selectedAddresses.push(addresses[index]);
+      characters.push(character);
+    }
+  }
+
+  const directions = addressDirections(selectedAddresses);
+  if (
+    directions.length > 0 &&
+    directions.every((value) => directionStateSet.has(value))
+  ) {
+    directionControl.push({
+      origin,
+      string: characters.join(""),
+      selectedCount: selectedAddresses.length,
+      directions,
+    });
+  }
+}
+
+assert.deepEqual(
+  directionControl.map((row) => [
+    row.origin,
+    row.string,
+    row.selectedCount,
+    row.directions,
+  ]),
+  [
+    [0,"$N*N=NN-*",9,[23,27,2,27,2,0,4,23]],
+    [22,"NN",2,[0]],
+    [41,"\"<",2,[0]],
+    [51,"<<<<",4,[0,0,0]],
+    [198,"909*990",7,[27,2,27,2,0,27]],
+  ],
+);
+assert.deepEqual(
+  directionControl
+    .filter((row) => row.directions.length >= 8)
+    .map((row) => row.origin),
+  [0],
+);
+
+const directionShell = [
+  mod29(originalDirections[0] - originalDirections[7]),
+  mod29(originalDirections[0] + originalDirections[7]),
+  mod29(originalDirections[1] - originalDirections[6]),
+  mod29(originalDirections[1] + originalDirections[6]),
+  mod29(originalDirections[2] - originalDirections[5]),
+  mod29(originalDirections[2] + originalDirections[5]),
+  mod29(originalDirections[3] - originalDirections[4]),
+  mod29(originalDirections[3] + originalDirections[4]),
+];
+assert.deepEqual(directionShell, [0,17,23,2,2,2,25,0]);
+assert.deepEqual(
+  directionShell,
+  [0,mod29(state.B-state.K),state.p,state.K,state.K,state.K,
+    mod29(state.p+state.K),0],
+);
+
 // Independent p0 DEVOTED zero-based source-number readout outer frame.
 const devoted = [23,18,1,3,16,18,23];
 assert.deepEqual(
@@ -296,7 +394,7 @@ console.log(JSON.stringify({
     length9: cyclicRows.filter((row) => row.string.length === 9).length,
     discoveredShape: cyclicRows.filter((row) => discoveredShape(row.string)),
   },
-  devotedOuterFrame: {
+  directionTape: {\n    addresses: originalPrintableAddresses,\n    directions: originalDirections,\n    shell: directionShell,\n    cyclicSurvivors: directionControl,\n  },\n  devotedOuterFrame: {
     sourceWords: devoted.map((index) => words[index]),
     left: "*N",
     right: "N*",
