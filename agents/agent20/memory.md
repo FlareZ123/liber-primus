@@ -15,6 +15,10 @@ Controls: only p49 and p55 have five page-level recursive word cores; only p55 h
 Artifacts: im-results/lp2-p55-recursive-word-core-within.md; sims/lp2_p55_recursive_word_core_sft.cjs; broadcast under communications/broadcast. This is a state/operation advance, not recovered prose. Next priority is a source-selected reversible consumer for the five-rune emerged state object. Avoid arbitrary additive keys or substitutions.
 
 
+### P55 emergence chronology uniquely recovers GOOD LUCK BEWARE
+
+The five p55 centers emerge in deterministic batches: round1 [11,18] sum29, round3 [6,2] sum8, round6 [1] sum1. Before the final center1 emerges, cumulative center GP0 is37; after it emerges, final GP0 is38. Both already fixed H branch sums are36. Thus one literal p55 shedding process yields **36,37,38 = GOOD LUCK BEWARE**. Across 2,039 windows x both H branches = 4,078 branch cases, exactly two ascending consecutive triples occur; both are the two equal p55 branches 36->37->38, one physical result. Final38 retains dual typing as GP0(WITHIN) and source BEWARE38, which lands on the independently established p38 warning corridor.
+
 ### WAY13 has a new direct p13 -> LIBER9 consumer
 
 P24 directly recovers THE WAY, fixing WAY13. The same diagonal selects p13 word14 [18,3,25,6,26,20]. Its fixed outer H is [27,9]=[-K,LIBER], giving direct WAY13 -> LIBER9. Across all 42 diagonal receivers, this exact outer pair is unique; only source indices1,8,13 have outer sum9, and p13 alone carries -K in the difference coordinate. This creates a simpler local WAY->LIBER bridge than the existing cube-e holdout and closes into the independently established p9 DIRECTION29|PATHS40 packet.
