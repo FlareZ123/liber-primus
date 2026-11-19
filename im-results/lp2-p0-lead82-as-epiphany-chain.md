@@ -137,14 +137,14 @@ The self-index property is exact and selective. Exhausting all **43** authentica
 
 Thus the pre-existing DEVOTED hypothesis makes a new untouched receiver prediction at p0 **141..144** while independently selecting the same base60/zero-offset semantics used by the earlier route.
 
-The selected word has four runes. The next authenticated signed word after YOU is **WILL**, also four GP runes. That is a conditional next-word plaintext hypothesis, not a recovered plaintext claim; no value-changing inverse is asserted here.
+The selected word has four runes. The next authenticated signed word after YOU is **WILL**, also four GP runes. A separate source-state inverse now recovers WILL exactly from p0 141..144 using the frozen split packet and DH/H state. See `lp2-p0-you-will-packet-dh-inverse.md`. This report retains the navigation proof; the companion report carries the value-changing family and its controls.
 
 
 ## Remaining blocker
 
 The upstream ROAD/LEAD chain is still conditional because ROAD itself was known before the LEAD inverse was recognized, and chemistry is not explicitly named by a Cicada-authored clue. This route materially improves the branch by making **82** predict a previously unseen typed cross-artifact path, while it does not supply the missing GP29 value-changing rule for ROAD or DEVOTED.
 
-The next decisive test should consume the newly reselected p0 offset237 using a state or key fixed before reading its ciphertext letters. Repeating semantic interpretations of LEAD, AS, or EPIPHANY would add little.
+The route now reaches the new p0 141..144 WILL recovery through DEVOTED -> YOU. The next decisive test should consume WILL or its fixed key to make another untouched prediction. Repeating semantic interpretations of LEAD, AS, EPIPHANY, or YOU would add little.
 
 ## Reproduction
 
