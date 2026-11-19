@@ -50,6 +50,7 @@ function pageWords(section) {
 
 /** @param {number} start @returns {number[]} */
 function terminalCycle(start) {
+  if (!Number.isInteger(start) || start < 0 || start >= lowDigit.length) return [];
   const seen = new Map();
   const path = [];
   let value = start;
