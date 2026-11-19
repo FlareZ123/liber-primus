@@ -153,6 +153,31 @@ const squareMetadataAlphabet = [...new Set([
 ])].sort((left,right)=>left-right);
 assert.deepEqual(squareMetadataAlphabet, [2,3,4,5,6,8,18,19,24,26,27]);
 const markerCenter = [q,A,B,A,q];
+const u = q - e;
+const t = g + K;
+const w = A + g;
+
+/** @param {number} seed @param {number[]} rises @returns {number[]} */
+function cumulative(seed, rises) {
+  const out = [mod29(seed)];
+  let value = mod29(seed);
+  for (const rise of rises) {
+    value = mod29(value + rise);
+    out.push(value);
+  }
+  return out;
+}
+
+const stateOnlyColumns = {
+  left: cumulative(-q, [q-u, w-u, w+u]),
+  center: cumulative(q, [q, q+t, q+2*t, q+3*t]),
+  right: cumulative(t, [t-u, t, t+u]),
+};
+assert.deepEqual(stateOnlyColumns, {
+  left:[25,28,11,25],
+  center:[4,8,19,8,4],
+  right:[7,13,20,28],
+});
 const square5 = equal1033[0].order === 5 ? squares.find((sq) => sq.length === 5 && magicSum(sq) === 1033) : null;
 const square7 = squares.find((sq) => sq.length === 7 && magicSum(sq) === 1033);
 assert.ok(square5 && square7);
@@ -335,6 +360,40 @@ for (const receiver of receivers) {
   }
 }
 
+const columnNames = ["left","center","right"];
+const columnOrders = [
+  ["left","center","right"], ["left","right","center"],
+  ["center","left","right"], ["center","right","left"],
+  ["right","left","center"], ["right","center","left"],
+];
+const columnTraversalControls = [];
+for (const order of columnOrders) {
+  for (let reverseMask = 0; reverseMask < 8; reverseMask += 1) {
+    const packet = [];
+    for (let columnIndex = 0; columnIndex < order.length; columnIndex += 1) {
+      const values = stateOnlyColumns[order[columnIndex]].slice();
+      if (reverseMask & (1 << columnIndex)) values.reverse();
+      packet.push(...values);
+    }
+    const key = hOutsideIn(packet);
+    const plain = p0Receiver.cipher.map((value,index) => mod29(value-key[index]));
+    const leftWord = length8.find((candidate) =>
+      candidate.values.join(",") === plain.slice(0,8).join(",")
+    );
+    const rightWord = length5.find((candidate) =>
+      candidate.values.join(",") === plain.slice(8).join(",")
+    );
+    columnTraversalControls.push({
+      order,
+      reverseMask,
+      packet,
+      key,
+      lexicalPair:leftWord && rightWord ? [leftWord.label,rightWord.label] : null,
+    });
+  }
+}
+assert.equal(columnTraversalControls.length, 48);
+
 const p0Hits = hits.filter((row) => row.page === 0 && row.ordinal === 1);
 const squareTypedHits = hits.filter((row) =>
   row.residual.slice(0,8).every((value) => squareMetadataAlphabet.includes(value))
@@ -352,6 +411,7 @@ console.log(JSON.stringify({
   palindromeDecryptions,
   fullStatePalindromeDecryptions,
   centerKeyMarkerTransfers,
+  columnTraversalHits:columnTraversalControls.filter((row) => row.lexicalPair),
   family:{
     centerKeyMarkerWindows,
     palindromeAssignments:metadataFieldEntries.length ** 3,
