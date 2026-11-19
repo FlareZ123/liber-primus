@@ -378,7 +378,13 @@ const signedBody = signed2016
   .replace(/\b[0-9A-F]{8,}\b/g, "");
 const signedWords = (signedBody.match(/[A-Za-z]+/g) || []).map((text, index) => {
   const values = gpText(text);
-  return { index, text: text.toUpperCase(), gp0: gp0(values), length: values.length };
+  return {
+    index,
+    text: text.toUpperCase(),
+    values,
+    gp0: gp0(values),
+    length: values.length,
+  };
 });
 assert.equal(signedWords.length, 43);
 
@@ -480,6 +486,79 @@ assert.deepEqual(
   [{ page: 0, first: 8, second: 5 }]
 );
 
+// Original-ciphertext holdout for the conditional p0 opening.
+function firstPageWords() {
+  const source = parts[0];
+  const out = [];
+  let current = [];
+  for (const char of [...source]) {
+    const value = runeIndex.get(char);
+    if (value !== undefined) {
+      current.push(value);
+    } else if ("-./&$".includes(char) && current.length > 0) {
+      out.push(current);
+      current = [];
+    }
+  }
+  if (current.length > 0) out.push(current);
+  return out;
+}
+const p0CipherWords = firstPageWords();
+assert.deepEqual(p0CipherWords.slice(0, 2).map((values) => values.length), [8, 5]);
+const p0Cipher13 = [...p0CipherWords[0], ...p0CipherWords[1]];
+const epiphanySeeksValues = [...signedWords[5].values, ...signedWords[6].values];
+assert.equal(signedWords[5].text, "EPIPHANY");
+assert.equal(signedWords[6].text, "SEEKS");
+assert.equal(epiphanySeeksValues.length, p0Cipher13.length);
+const openingResidual = p0Cipher13.map(
+  (value, index) => (value - epiphanySeeksValues[index] + 29) % 29
+);
+assert.deepEqual(openingResidual, [26, 24, 8, 19, 27, 24, 18, 3, 0, 8, 0, 16, 19]);
+assert.equal(gp0(openingResidual), 192);
+assert.equal(gp0(epiphanySeeksValues), 192);
+
+// Charge every ordered authenticated source-word pair with the same total
+// rune length. Forward residual-sum == plaintext-sum has exactly one hit;
+// the reverse sign has none.
+const forwardChecksumHits = [];
+const reverseChecksumHits = [];
+let sameLengthSourcePairs = 0;
+for (const left of signedWords) {
+  for (const right of signedWords) {
+    const candidate = [...left.values, ...right.values];
+    if (candidate.length !== p0Cipher13.length) continue;
+    sameLengthSourcePairs += 1;
+    const plainSum = gp0(candidate);
+    const forwardSum = gp0(
+      p0Cipher13.map((value, index) => (value - candidate[index] + 29) % 29)
+    );
+    const reverseSum = gp0(
+      p0Cipher13.map((value, index) => (candidate[index] - value + 29) % 29)
+    );
+    if (forwardSum === plainSum) {
+      forwardChecksumHits.push({
+        left: left.index,
+        right: right.index,
+        phrase: left.text + " " + right.text,
+        sum: plainSum,
+      });
+    }
+    if (reverseSum === plainSum) {
+      reverseChecksumHits.push({
+        left: left.index,
+        right: right.index,
+        phrase: left.text + " " + right.text,
+        sum: plainSum,
+      });
+    }
+  }
+}
+assert.equal(sameLengthSourcePairs, 52);
+assert.deepEqual(forwardChecksumHits, [
+  { left: 5, right: 6, phrase: "EPIPHANY SEEKS", sum: 192 },
+]);
+assert.deepEqual(reverseChecksumHits, []);
+
 console.log(JSON.stringify({
   status:
     "PASS: post-SHED base59 PARABLE selects the shed f position, then EMERGE; restoring f at the EMERGE root exits to page value0 in shared2 steps",
@@ -527,5 +606,12 @@ console.log(JSON.stringify({
     exitValue: 192,
     uniqueSignedPair: pair192[0],
     uniquePhysicalOpening: { page: 0, lengths: [8, 5] },
+    originalCipherHoldout: {
+      residual: openingResidual,
+      residualSum: gp0(openingResidual),
+      sameLengthSourcePairs,
+      forwardChecksumHits,
+      reverseChecksumHits,
+    },
   },
 }, null, 2));
