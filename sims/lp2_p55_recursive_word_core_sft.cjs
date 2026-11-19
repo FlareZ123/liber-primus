@@ -19,7 +19,7 @@ const runePattern = /[\u16A0-\u16FF]/u;
 const tape = grid.pages.flatMap((page) => page.tokens);
 const alpha59 = grid.alphabet.replace("f", "");
 
-const state = { g: 5, K: 2, B: 19, b: 15 };
+const state = { p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3, q: 4 };
 const WITHIN_GP0 = 38;
 const GOOD_SOURCE_INDEX = 36;
 const CIRCUMFERENCES_GP0 = 131;
@@ -27,6 +27,15 @@ const CIRCUMFERENCES_GP0 = 131;
 /** @param {number} value @returns {number} */
 function mod29(value) {
   return ((value % 29) + 29) % 29;
+}
+
+/** @param {number} base @param {number} exponent @param {number} modulus @returns {number} */
+function powMod(base, exponent, modulus) {
+  let value = 1;
+  for (let index = 0; index < exponent; index += 1) {
+    value = (value * base) % modulus;
+  }
+  return value;
 }
 
 /** @param {number} left @param {number} right @returns {[number,number]} */
@@ -150,6 +159,42 @@ assert.equal(p55.gp0, WITHIN_GP0);
 const p55HiddenCounts = hiddenRuneCounts(p55Words);
 assert.deepEqual(p55HiddenCounts, [75, 41, 23, 7, 5, 3, 0]);
 
+const pFromHiddenCounts = p55HiddenCounts[2];
+const gPlusKFromHiddenCounts = p55HiddenCounts[3];
+const gFromHiddenCounts = p55HiddenCounts[4];
+const eFromHiddenCounts = p55HiddenCounts[5];
+const KFromHiddenCounts = gPlusKFromHiddenCounts - gFromHiddenCounts;
+
+assert.equal(pFromHiddenCounts, state.p);
+assert.equal(gFromHiddenCounts, state.g);
+assert.equal(eFromHiddenCounts, state.e);
+assert.equal(KFromHiddenCounts, state.K);
+assert.deepEqual([
+  p55HiddenCounts[2] - p55HiddenCounts[3],
+  p55HiddenCounts[3] - p55HiddenCounts[4],
+  p55HiddenCounts[4] - p55HiddenCounts[5],
+  p55HiddenCounts[5] - p55HiddenCounts[6],
+], [16, state.K, state.K, state.e]);
+
+const bSolutions = [];
+for (let candidate = 1; candidate < state.p; candidate += 1) {
+  if ((state.e * candidate) % (state.p - 1) === 1) bSolutions.push(candidate);
+}
+assert.deepEqual(bSolutions, [state.b]);
+
+const BFromHiddenState = powMod(state.g, bSolutions[0], state.p);
+assert.equal(BFromHiddenState, state.B);
+
+const aSolutions = [];
+for (let candidate = 1; candidate < state.p; candidate += 1) {
+  if (powMod(BFromHiddenState, candidate, state.p) === state.K) {
+    aSolutions.push(candidate);
+  }
+}
+assert.deepEqual(aSolutions, [state.a]);
+assert.equal(powMod(state.g, aSolutions[0], state.p), state.A);
+assert.equal(state.e + 1, state.q);
+
 const p55Lengths = p55Words.map((word) => word.length);
 const p55EvenLengthSum = p55Lengths
   .filter((length) => length % 2 === 0)
@@ -202,6 +247,7 @@ let withinWindows = 0;
 let total75Windows = 0;
 let prefix75To41Windows = 0;
 let prefix75To41To23Windows = 0;
+const prefix75To41To23Hits = [];
 let fullHiddenSequenceWindows = 0;
 let dualOpenPgpWindows = 0;
 const hiddenSequenceHits = [];
@@ -229,6 +275,11 @@ for (let page = 0; page <= 55; page += 1) {
       && hiddenCounts[2] === 23
     ) {
       prefix75To41To23Windows += 1;
+      prefix75To41To23Hits.push({
+        physicalPage: page,
+        startWord: start + 1,
+        hiddenCounts,
+      });
     }
     if (JSON.stringify(hiddenCounts) === JSON.stringify([75, 41, 23, 7, 5, 3, 0])) {
       fullHiddenSequenceWindows += 1;
@@ -264,6 +315,18 @@ assert.equal(withinWindows, 6);
 assert.equal(total75Windows, 76);
 assert.equal(prefix75To41Windows, 18);
 assert.equal(prefix75To41To23Windows, 2);
+assert.deepEqual(prefix75To41To23Hits, [
+  {
+    physicalPage: 35,
+    startWord: 14,
+    hiddenCounts: [75, 41, 23, 9, 3, 0],
+  },
+  {
+    physicalPage: 55,
+    startWord: 1,
+    hiddenCounts: [75, 41, 23, 7, 5, 3, 0],
+  },
+]);
 assert.equal(fullHiddenSequenceWindows, 1);
 assert.equal(dualOpenPgpWindows, 4);
 assert.deepEqual(hiddenSequenceHits, [{
@@ -300,6 +363,20 @@ console.log(JSON.stringify({
     hBranchGp0: [p55.h0, p55.h1],
     hBranchSourceLabel: "GOOD",
     hSumBranchState: ["B", "b+K"],
+    hiddenCountState: {
+      counts: p55HiddenCounts,
+      p: pFromHiddenCounts,
+      gPlusK: gPlusKFromHiddenCounts,
+      g: gFromHiddenCounts,
+      K: KFromHiddenCounts,
+      e: eFromHiddenCounts,
+      b: bSolutions[0],
+      B: BFromHiddenState,
+      a: aSolutions[0],
+      A: powMod(state.g, aSolutions[0], state.p),
+      q: state.e + 1,
+      tailDrops: [16, state.K, state.K, state.e],
+    },
     postShedP50: {
       address: WITHIN_GP0,
       token: tape[WITHIN_GP0],
@@ -315,6 +392,7 @@ console.log(JSON.stringify({
     total75Windows,
     prefix75To41Windows,
     prefix75To41To23Windows,
+    prefix75To41To23Hits,
     fullHiddenSequenceWindows,
     dualOpenPgpWindows,
     hiddenSequenceHits,
