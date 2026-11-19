@@ -92,7 +92,7 @@ H(ciphertext receiver)       [4,24,22,25,24]
                               [q,-g,p-1,p+K,-g]
 ```
 
-Holding that exact ciphertext-state shell fixed across all 318 unknown five-rune words leaves exactly one hit, again p6 offsets128..132. This shell interpretation was recognized after the receiver had been selected, so it is corroboration rather than blind receiver discovery. It materially reduces the chance that the selected p6 object is merely a random same-GP0 word.
+Holding that exact ciphertext-state shell fixed across all 317 unknown five-rune words leaves exactly one hit, again p6 offsets128..132. This shell interpretation was recognized after the receiver had been selected, so it is corroboration rather than blind receiver discovery. It materially reduces the chance that the selected p6 object is merely a random same-GP0 word.
 
 ## Exact local inverse
 
@@ -122,9 +122,11 @@ Forward replay is exact.
 
 ## Manuscript-wide fixed-key control
 
+The census uses continuous parsing of the canonical transcription: a line-wrap slash or physical-page boundary does not terminate a printed word. The earlier page-local pass reported **318** because it split some page-carrying words into fragments. The corrected complete-word census is **317**, including six five-rune words that cross a physical-page boundary. The p6 receiver and the sole fixed-key hit are unchanged.
+
 Hold the exact key `[28,21,4,10,24]` fixed across:
 
-- all **318** complete five-rune words on unknown p0-p55;
+- all **317** complete five-rune words on unknown p0-p55;
 - all seven distinct authenticated five-GP-rune source targets `HELLO EMPTY SEEKS LIBER WORDS FOUND FALSE`;
 - both additive signs.
 
@@ -151,7 +153,7 @@ The complete low-description local family varies:
 
 Total: **160 configurations**.
 
-Every configuration is evaluated against all 318 unknown five-rune words and the seven authenticated five-rune targets. Exactly **one** hit exists in the entire family:
+Every configuration is evaluated against all 317 unknown five-rune words and the seven authenticated five-rune targets. Exactly **one** hit exists in the entire family:
 
 ```text
 title order       forward
