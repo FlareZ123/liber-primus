@@ -213,7 +213,18 @@ assert.deepEqual(centerColumn, [q, A, B, A, q]);
 assert.deepEqual(rightRises, [a, g + K, A]);
 
 const markerPacket = [...left, ...centerColumn, ...right];
+
+// The visible marker counts 4|5|4 have exactly one partition matching the
+// adjacent red title's 8+5 word lengths: both side columns (4+4), then center5.
+// Outside-in H makes that physical split algebraically exact.
+const sidePacket = [...left, ...right];
+const firstWordKey = H(sidePacket);
+const secondWordKey = H(centerColumn);
+assert.equal(sidePacket.length, 8);
+assert.equal(centerColumn.length, 5);
+
 const key = H(markerPacket);
+assert.deepEqual(key, [...firstWordKey, ...secondWordKey]);
 assert.deepEqual(markerPacket, [
   25, 28, 11, 25,
   4, 8, 19, 8, 4,
@@ -311,6 +322,14 @@ console.log(JSON.stringify({
     right: {seed: t, rises: rightRises, values: right},
   },
   markerPacket,
+  wordSplitGeometry: {
+    markerCounts: [left.length, centerColumn.length, right.length],
+    titleWordLengths: [8, 5],
+    firstWordFrom: "left+right side columns",
+    secondWordFrom: "center column",
+    firstWordKey,
+    secondWordKey,
+  },
   additiveKey: key,
   p0Plaintext: ["EPIPHANY", "SEEKS"],
   matchedReceiverCount: receivers.length,
