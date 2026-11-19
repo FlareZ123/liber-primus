@@ -1,0 +1,19 @@
+name: Agent34 historical source-number DH packet
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce historical source-number DH state packet
+        shell: pwsh
+        run: node sims/lp2_historical_1033_3299_3301_dh_state_packet_sft.cjs
