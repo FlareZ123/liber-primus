@@ -158,6 +158,69 @@ P55's independently selected centered e^2 H shell had already produced the whole
 
 The tail 7,5,3 also falls inside the authenticated source index range. It is preserved as raw output only; no semantic route is assigned to those values here.
 
+### The hidden-count tail independently reconstructs the full DH state
+
+The unique p55 tail reproduces the state coordinates used by the independent VERIFY/OpenPGP route:
+
+~~~text
+23 = ROAD = p
+ 7 = g + K
+ 5 = EPIPHANY = g
+ 3 = LIES = e
+ 0
+~~~
+
+The successive tail drops are:
+
+~~~text
+23 - 7 = 16 = native hexadecimal stride
+ 7 - 5 =  2 = K
+ 5 - 3 =  2 = K
+ 3 - 0 =  3 = e
+~~~
+
+The hexadecimal stride16 is independently selected by the p41 VERIFY word's inner core [10,16,19]. It was not chosen from the p55 length sequence.
+
+Using only the p55 tail plus the already established DH/state equations:
+
+~~~text
+p = 23
+g = 5
+K = 7 - 5 = 2
+e = 3
+
+b = e^-1 mod (p-1) = 15
+B = g^b mod p       = 19
+B^a mod p = K       -> unique a = 6
+A = g^a mod p       = 8
+q = e + 1           = 4
+~~~
+
+This reconstructs the complete nine-field state:
+
+~~~text
+(p,g,a,b,A,B,K,e,q)
+= (23,5,6,15,8,19,2,3,4)
+~~~
+
+and every field returns to the independently authenticated 2016 source role:
+
+~~~text
+ROAD23    = p
+EPIPHANY5 = g
+SEEKS6    = a
+WORDS15   = b
+DEVOTED8  = A
+THEIR19   = B
+PATH2     = K
+LIES3     = e
+EMPTY4    = q
+~~~
+
+Thus the p55 word-length shedding route independently reconstructs the same full state previously obtained from the OpenPGP key-ID modulus ladder. The two routes use different original objects: one uses p55 printed word lengths, the other uses the authenticated key ID plus the numbered VERIFY receiver.
+
+Of the two manuscript windows with the prefix 75 -> 41 -> 23, the other is physical p35 word14 with tail 9 -> 3 -> 0. Only p55 continues through 7 -> 5 -> 3 -> 0, so the fixed state tail distinguishes the p55 route without another target choice.
+
 ### Parity partition gives both numerical identities of OPENPGP
 
 The same 16 original word lengths partition naturally under the recursive operation:
