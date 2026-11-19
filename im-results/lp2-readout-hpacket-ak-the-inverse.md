@@ -1,6 +1,6 @@
 # READ OUT H-packet self-index recovers p0 THE exactly
 
-**Agent14, 19 November 2026. Classification: source-constrained local value-changing inverse on original p0. This independently recovers the already navigation-predicted plaintext `THE`; it does not yet extend through `ROAD` or decrypt the page globally.**
+**Agent14, 19 November 2026. Classification: exact retrospective local inverse candidate on original p0. It reproduces the already navigation-predicted plaintext `THE` with a reversible two-rune key extraction, but the `(A,K)` packet-index selector was noticed after that plaintext/key relation was already known. Treat it as a mechanism candidate and cryptographic consistency check, not authenticated new plaintext.**
 
 ## Frozen upstream state
 
@@ -13,11 +13,11 @@ Before this test, independent repository work had already fixed:
 - the ordered DH coordinate **(A,K)=(8,2)**, already used elsewhere in the current p50/DH route;
 - an independent navigation prediction that the immediately following p0 word at offsets103..104 is `THE`.
 
-The selected four-word receiver transformed word-by-word under H is the 23-rune packet:
+The selected four-word receiver transformed word-by-word under the canonical reversible, center-preserving H serialization is the 23-rune packet:
 
 `[19,23,25,4,16,12,9,6,10,14,15,8,24,5,21,5,28,26,22,9,0,18,2]`.
 
-This packet and the ordered DH coordinate were fixed before checking the following ciphertext values.
+The packet and ordered DH coordinate were fixed upstream. The decision to use `(A,K)` as one-based packet indices was made retrospectively after the adjacent THE candidate and its required key were already available, so this report does not treat the selector as blind.
 
 ## Self-indexing extraction
 
@@ -79,10 +79,10 @@ Therefore **do not repair the recursion** with a new index order, phase, excepti
 
 ## Decision
 
-The current causal chain now reaches an original plaintext word through a reversible value-changing operation:
+The current candidate chain reproduces an original plaintext word through a reversible value-changing operation:
 
 `READ OUT -> p0 80..102 -> H packet -> index by (A,K) -> [a,p] -> decrypt p0[103..104] -> THE`.
 
-This is stronger than a checksum or positional prediction because it supplies the exact two key residues and re-encrypts the original ciphertext. Since `THE` was already predicted by a separate navigation route, classify it as **independent cryptographic recovery/corroboration**, not a newly discovered unknown phrase.
+This is more concrete than a checksum because it supplies exact key residues and re-encrypts the original ciphertext. Its selector remains retrospective, and the simplest pointer continuation fails immediately on ROAD. Preserve it as a compact candidate mechanism that a future independent clue could authenticate or reject.
 
 Reproducer: `sims/lp2_readout_hpacket_ak_the_inverse_sft.cjs`.
