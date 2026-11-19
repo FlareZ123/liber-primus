@@ -201,6 +201,32 @@ The observation is source-constrained in two ways: the start and length come fro
 
 This does not yet reveal the operation that turns those four DH values into the required additive increments for plaintext `ROAD`, which are `[12,5,1,4]`. Direct subtraction of `[a,g,K,b]` does not spell ROAD. Preserve the exact `a,g,K,b` run as a state/route clue and require a source-visible transform before using it as a keystream.
 
+## ROAD is the unique four-layer inward DH ray
+
+The four selected p50 cells have a literal geometric interpretation in the original 32×8 rectangle. Cells105..108 are row13, columns0..3 in zero-based physical coordinates. Read from left to right, they traverse exactly one cell from each nested layer:
+
+```text
+depth0 -> depth1 -> depth2 -> depth3
+ cell105  cell106  cell107  cell108
+    a        g        K        b
+    6        5        2       15
+```
+
+This matches the manuscript vocabulary unusually well: the authenticated 2016 message says the words are the map, their meaning is the road, and their numbers are the direction; solved p57 explicitly instructs the player to shed circumferences and find DIVINITY within.
+
+A complete physical control contains **56** comparable straight four-cell inward normals through all four nested layers: left/right rays on every row that can reach depth3, plus top/bottom rays on the two columns that can reach depth3. The **105..108 left-inward ray is the only one** whose four byte residues mod29 all belong to the independently reconstructed DH state set.
+
+Its second cell supplies an additional source tie. One-based cell106 is zero-based table address105, the already established `GP0(DIUINITY)=105` receiver, and its printed token is the unique literal **`13`** used by the p27 red13 handoff. Thus the ROAD ray physically crosses the existing DIVINITY landmark one layer in.
+
+The simplest existing consumer was tested and rejected. Reusing the established number→p50-byte pointer grammar on the ray values `[6,5,2,15]` gives residues:
+
+```text
+zero-based addresses: [10,5,22,9]
+one-based cells:      [5,10,28,9]
+```
+
+while the additive increments required to decrypt ROAD are `[12,5,1,4]`. The ray therefore selects state/direction, while the value-changing update remains missing.
+
 ## Why this changes the frontier
 
 Before this result, the p0 `THE ROAD` placement was a navigation prediction whose value-changing cipher remained unspecified.
