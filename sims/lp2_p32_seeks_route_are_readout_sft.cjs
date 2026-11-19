@@ -288,7 +288,18 @@ assert.deepEqual(areClosure.states, [125, 20, 102]);
 assert.deepEqual(areClosure.offsets, [49, 26, 17]);
 assert.deepEqual(areClosure.values, [24, 4, 18]);
 assert.deepEqual(areClosure.containingWordIndices, [8, 5, 3]);
+assert.deepEqual(areClosure.containingWordIndices, [dh.A, dh.g, dh.e]);
 assert.deepEqual(areClosure.containingWordLengths, [6, 5, 11]);
+assert.deepEqual(areClosure.states.map(p50Coordinate), [
+  { row: dh.b, col: dh.g },
+  { row: dh.K, col: dh.K ** 2 },
+  { row: dh.a * dh.K, col: dh.a },
+]);
+assert.deepEqual(areClosure.states.map(projectNatural).map((cell) => [cell.row, cell.col]), [
+  [dh.K ** 2, dh.g],
+  [dh.K, dh.K ** 2],
+  [1, dh.a],
+]);
 assert.equal(areClosure.sourceIndex, 16);
 assert.equal(areClosure.targetWord, "ARE");
 assert.deepEqual(areClosure.targetGp, [24, 4, 18]);
@@ -297,7 +308,11 @@ const kRival = candidateClosures.find((row) => row.lengthField === "K");
 assert.ok(kRival);
 assert.equal(kRival.sourceIndex, 15);
 assert.equal(kRival.targetWord, "WORDS");
+assert.deepEqual(kRival.containingWordIndices, [13, dh.K]);
 assert.equal(kRival.exact, false);
+const dhValueSet = new Set(Object.values(dh));
+assert.ok(areClosure.containingWordIndices.every((value) => dhValueSet.has(value)));
+assert.ok(!kRival.containingWordIndices.every((value) => dhValueSet.has(value)));
 
 assert.equal(areClosure.offsets.reduce((sum, value) => sum + value, 0), 92);
 assert.equal(gp0("EMPTY"), 92);
@@ -427,6 +442,46 @@ assert.notDeepEqual(
   gpIndices("THE")
 );
 
+// Freeze the same route-to-p32 gate over every signed-word/DH-depth path.
+// The only coordinate-gated state sets are the two already seen on SEEKS;
+// MEANING and FALSE merely enter the same [125,20,102] tail.
+const terminalP32Routes = [];
+for (const word of words) {
+  for (const [field, depth] of Object.entries(dh)) {
+    for (const [radix, table] of Object.entries({ base60, base59 })) {
+      const candidateRoute = walk(table, word.gp0, depth);
+      if (candidateRoute.at(-1) !== 32) continue;
+      terminalP32Routes.push({
+        word: word.word,
+        index: word.index,
+        field,
+        depth,
+        radix,
+        route: candidateRoute,
+      });
+    }
+  }
+}
+assert.equal(terminalP32Routes.length, 14);
+assert.ok(terminalP32Routes.every((row) => row.radix === "base60"));
+
+const terminalCoordinateStateSets = new Set();
+for (const terminal of terminalP32Routes) {
+  for (const [, length] of stateLengths) {
+    if (length > terminal.route.length) continue;
+    for (let start = 0; start + length <= terminal.route.length; start += 1) {
+      const states = terminal.route.slice(start, start + length);
+      const coordinates = states.map(p50Coordinate);
+      const rowSum = coordinates.reduce((sum, cell) => sum + cell.row, 0);
+      const colSum = coordinates.reduce((sum, cell) => sum + cell.col, 0);
+      if (rowSum !== 29) continue;
+      if (!Object.values(dh).includes(colSum)) continue;
+      terminalCoordinateStateSets.add(states.join(","));
+    }
+  }
+}
+assert.deepEqual([...terminalCoordinateStateSets].sort(), ["125,20,102", "146,92"]);
+
 console.log(JSON.stringify({
   status: "PASS",
   route,
@@ -442,6 +497,8 @@ console.log(JSON.stringify({
       projected: transferProjection.map((cell) => cell.value),
       expectedNextSourceWord: "THE",
     },
+    terminalP32Routes: terminalP32Routes.length,
+    terminalCoordinateStateSets: [...terminalCoordinateStateSets].sort(),
   },
   continuation: {
     sourceContext: words.slice(14, 19).map((word) => word.word),

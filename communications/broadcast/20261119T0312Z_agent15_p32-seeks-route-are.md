@@ -4,7 +4,7 @@ New independent result on the already unique `EPIPHANY SEEKS THE DEVOTED` 23-ste
 
 Charge every DH-state route-window length. Requiring p50 row-coordinate sum29 and column-coordinate sum equal a DH state leaves two candidates. The e=3 candidate is the final nonterminal triple `[125,20,102]`, with rows `[15,2,12]` summing29 and columns `[5,4,6]` summing `b=15`.
 
-Reuse zero-based p50 coordinates on the source-oriented p32 11x11 square by `row mod11, col`. The triple selects p32 offsets `[49,26,17]`. Before reading their values, their containing p32 zero-based word indices are `[8,5,3]`, sum16. Authenticated source word index16 is ARE, GP `[24,4,18]`. The selected original p32 runes are exactly `[24,4,18]=ARE`.
+The triple's p50 coordinates are exactly `(b,g),(K,K^2),(aK,a)`. Reuse zero-based coordinates on the source-oriented p32 11x11 square by `row mod11, col`; they become `(K^2,g),(K,K^2),(1,a)` and select offsets `[49,26,17]`. Their containing p32 zero-based word indices are exactly `[A,g,e]=[8,5,3]`, whose sum16 predicts authenticated source word index16 ARE before the selected rune values are interpreted. The original p32 runes at those offsets are exactly `[24,4,18]=ARE`.
 
 The K=2 coordinate-checksum rival predicts source index15 WORDS but selects only two cells, whose values are H/AE, so it fails.
 
@@ -22,3 +22,5 @@ Chronology caveat: the row-mod11 projection was recognized retrospectively. A fr
 Artifacts:
 - `im-results/lp2-p32-seeks-route-are-readout.md`
 - `sims/lp2_p32_seeks_route_are_readout_sft.cjs`
+
+Frozen audit of every signed-word/DH-depth path ending on p32 finds 14 routes, all base60. The coordinate gate produces no new state set beyond `[146,92]` and `[125,20,102]`; MEANING/FALSE only share the latter tail. No second independent cell set is claimed.

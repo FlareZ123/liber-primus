@@ -73,6 +73,21 @@ cols   [5,4,6]   -> 15 = b
 
 This selector uses p50 geometry and already reconstructed state only. It does not inspect p32 rune values.
 
+The e-window has a compact state-coordinate description before p32 content is consulted:
+
+```text
+125 -> (row15,col5) = (b,g)
+20  -> (row2,col4)  = (K,K^2)
+102 -> (row12,col6) = (aK,a)
+```
+
+Its checksum is therefore algebraic:
+
+```text
+rows: b + K + aK = 15 + 2 + 12 = 29
+cols: g + K^2 + a = 5 + 4 + 6 = b.
+```
+
 ## Reuse the coordinates on the selected 11x11 square
 
 The most literal coordinate transfer preserves the zero-based column and reduces the p50 row modulo11:
@@ -101,11 +116,26 @@ offset26 -> word5
 offset17 -> word3
 ```
 
-Their index sum is:
+The containing word indices are themselves direct DH fields:
 
 ```text
-8 + 5 + 3 = 16.
+[8,5,3] = [A,g,e].
 ```
+
+After the 11-row reduction, the cell coordinates are also compact state expressions:
+
+```text
+(4,5), (2,4), (1,6)
+= (K^2,g), (K,K^2), (1,a).
+```
+
+Their word-index sum is:
+
+```text
+A + g + e = 8 + 5 + 3 = 16.
+```
+
+The K-window control lands in words `[13,K]`; 13 is not a direct DH field, so only the e-window has every containing word index already present in the reconstructed state.
 
 Authenticated 2016 word index16 is **ARE**, whose canonical GP spelling has exactly three runes:
 
@@ -221,6 +251,8 @@ Applying the frozen coordinate projection to its three nonterminal states gives 
 ```
 
 rather than the following source word THE. This is a clean negative holdout against the obvious generic extension.
+
+A complete terminal-route audit gives 14 signed-word/DH-depth/radix routes ending on p32. All 14 are base60. Applying the frozen row29/column-state gate to every one produces no new coordinate set: the only state sets are `[146,92]` and `[125,20,102]`. MEANING and FALSE reach the latter because their shorter routes share the same tail. The held-out family therefore supplies no second independent cell set yet.
 
 ## Decision
 
