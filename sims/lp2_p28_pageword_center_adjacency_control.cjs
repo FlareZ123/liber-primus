@@ -46,12 +46,16 @@ function parsePage(source) {
   return { runes, words };
 }
 
-const rows = [26, 27, 28, 29].map((page) => {
+// Source-constrained familywise test: physical page p selects its own
+// one-based word p. No rune values are emitted or transformed.
+const rows = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue; // p50 is the numeric table, not a rune page.
   const parsed = parsePage(physicalPart(page));
-  const center = (parsed.runes.length + 1) / 2;
   const selected = parsed.words.find((word) => word.word === page);
-  assert.ok(selected, `p${page} has no page-numbered word`);
-  return {
+  if (!selected) continue;
+  const center = (parsed.runes.length + 1) / 2;
+  rows.push({
     page,
     runeCount: parsed.runes.length,
     wordCount: parsed.words.length,
@@ -60,15 +64,33 @@ const rows = [26, 27, 28, 29].map((page) => {
     selectedWordStartRune: selected.start + 1,
     selectedWordLength: selected.length,
     startMinusCenter: selected.start + 1 - center,
-  };
-});
+  });
+}
 
-assert.deepEqual(rows, [
-  { page: 26, runeCount: 265, wordCount: 59, centerRunePosition: 133, selectedWord: 26, selectedWordStartRune: 117, selectedWordLength: 4, startMinusCenter: -16 },
-  { page: 27, runeCount: 234, wordCount: 52, centerRunePosition: 117.5, selectedWord: 27, selectedWordStartRune: 109, selectedWordLength: 3, startMinusCenter: -8.5 },
-  { page: 28, runeCount: 269, wordCount: 59, centerRunePosition: 135, selectedWord: 28, selectedWordStartRune: 136, selectedWordLength: 5, startMinusCenter: 1 },
-  { page: 29, runeCount: 277, wordCount: 71, centerRunePosition: 139, selectedWord: 29, selectedWordStartRune: 107, selectedWordLength: 2, startMinusCenter: -32 },
-]);
+const centerAdjacent = rows.filter((row) => row.startMinusCenter === 1);
+const fiveRuneCenterAdjacent = centerAdjacent.filter((row) => row.selectedWordLength === 5);
 
-assert.equal(rows.filter((row) => row.startMinusCenter === 1 && row.selectedWordLength === 5).map((row) => row.page).join(","), "28");
-console.log(JSON.stringify({ parser: "hyphen/period only; one-based word numbers", rows }, null, 2));
+assert.equal(rows.length, 48);
+assert.deepEqual(centerAdjacent.map((row) => row.page), [28]);
+assert.deepEqual(fiveRuneCenterAdjacent.map((row) => row.page), [28]);
+assert.deepEqual(
+  rows.find((row) => row.page === 28),
+  {
+    page: 28,
+    runeCount: 269,
+    wordCount: 59,
+    centerRunePosition: 135,
+    selectedWord: 28,
+    selectedWordStartRune: 136,
+    selectedWordLength: 5,
+    startMinusCenter: 1,
+  },
+);
+
+console.log(JSON.stringify({
+  parser: "hyphen/period only; one-based word numbers",
+  rule: "physical page p selects one-based word p",
+  testedPagesWithWord: rows.length,
+  centerAdjacentPages: centerAdjacent,
+  fiveRuneCenterAdjacentPages: fiveRuneCenterAdjacent,
+}, null, 2));
