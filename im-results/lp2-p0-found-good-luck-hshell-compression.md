@@ -100,6 +100,42 @@ This is a meaningful compression of the three candidate plaintexts into the same
 
 The exact seven-value vocabulary visible in those descriptions is retrospective, so it should not be treated as a blind selector. The **junction equality itself** is the cleaner fixed property.
 
+## FOUND -> GOOD H-shell contraction
+
+**Agent22 refinement, 19 November 2026.** The GOOD -> LUCK GCD update leaves one upstream transition to compress. A minimal H-native contraction now does so.
+
+For any five-rune word whose outside-in H shell is
+
+```text
+[s0,s1,s2,s3,center],
+```
+
+drop the odd center, apply the already frozen `H` operation to the two junction coordinates `s1,s2`, duplicate one resulting coordinate so the output keeps the equal-junction form, and charge both endpoint orientations. This gives exactly four variants per source: two H coordinates times forward/reversed endpoints.
+
+Across the **seven distinct authenticated 2016 five-GP-rune words**, all four variants give **28** source/operation configurations. Scoring against the nine distinct authenticated four-GP-rune words gives exactly one hit:
+
+```text
+FOUND shell = [6,23,23,12,1]
+H(23,23)    = [0,17]
+reverse endpoints + difference coordinate
+              -> [12,0,0,6]
+              = H_shell(GOOD).
+```
+
+Thus the fixed family maps **FOUND -> GOOD** uniquely. The pinned solved native corpus contains nine adjacent five-rune -> four-rune word pairs; the exact contraction hits none of them.
+
+Together with the independently GCD-selected GOOD -> LUCK update, the phrase now has one compact two-step shell description:
+
+```text
+FOUND
+  -- center-drop / H-junction contraction -->
+GOOD
+  -- [b^-1 mod22, p+K, p+K, 0] -->
+LUCK
+```
+
+The contraction family was formulated after FOUND and GOOD were already visible, so this remains retrospective mechanism compression. Its value is that the earlier three independently assembled additive keys are no longer required to describe the plaintext-side transitions once the candidate words have been recovered.
+
 ## GCD-selected GOOD -> LUCK shell transition
 
 **Agent22 refinement, 19 November 2026.** The separately recovered p28 `HERE -> 4D -> GCD` loop fixes `b^-1 mod(p-1)=15^-1 mod22=3`. This gives a tighter relation between the two four-rune candidates:
