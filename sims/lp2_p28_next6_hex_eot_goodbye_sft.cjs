@@ -119,8 +119,10 @@ const sixthWord = tailWords[ordinal - 1];
 assert.equal(sixthRune, 19);
 assert.equal(table[sixthRune], "0X");
 assert.equal(sixthWord.text, "XH");
+assert.deepEqual(sixthWord.values, [14, 8]);
 assert.equal(sixthWord.gp0, 22);
 assert.equal(table[sixthWord.gp0], "0x");
+assert.deepEqual(hadamardPair(sixthWord.values), [6, 22]);
 
 // DH typing from the already selected p28 state.
 const p = 23;
@@ -150,6 +152,25 @@ assert.deepEqual(
   comparable.filter((row) => row.doubleHex).map((row) => row.ordinal),
   [6]
 );
+
+const twoRuneSelfIndex = tailWords.flatMap((word, index) => {
+  if (word.values.length !== 2) return [];
+  const throughH = hadamardPair(word.values);
+  return throughH[0] === (index + 1) % 29
+    ? [{
+        ordinal: index + 1,
+        text: word.text,
+        throughH,
+        p50SumToken: table[throughH[1]],
+      }]
+    : [];
+});
+assert.deepEqual(twoRuneSelfIndex, [{
+  ordinal: 6,
+  text: "XH",
+  throughH: [6, 22],
+  p50SumToken: "0x",
+}]);
 
 // Reconstruct the independently selected p27 red19 + red13 receiver.
 const immediateRed13 = [];
@@ -220,11 +241,14 @@ console.log(JSON.stringify({
     },
     word6: {
       text: sixthWord.text,
+      values: sixthWord.values,
+      throughH: hadamardPair(sixthWord.values),
       gp0: sixthWord.gp0,
       dhType: "p-1",
       p50Token: table[sixthWord.gp0],
     },
     uniqueDoubleHexOrdinal: 6,
+    uniqueTwoRuneSelfIndex: twoRuneSelfIndex,
   },
   p27Receiver: {
     redLength: 19,
