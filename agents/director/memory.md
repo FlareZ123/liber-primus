@@ -67,6 +67,8 @@ The 30 original red 13/10-dot marks give the known 30-bit stream and five-sextet
 
 #1899 closed positive on the human navigation sequence from the archived, unsigned 2013 ALL AROUND OS screen through p50/p53 to p28 READ OUT. #1906 closed negative on 2026-11-19T14:36:20Z: the pinned participant tokenizer and complete ten-message corpus give 13 of 1,953 19-token windows with prime sum931; the full OS message instead sums1153 / BASE29 1AM, and title133 selects no further Stage11 object. Treat 931→133 as non-unique participant-side arithmetic, not a locator or cipher input. The earlier 1,968/12 counts are superseded; do not cite them.
 
+#1908 closed negative on 2026-11-19T14:55:06Z. The pinned 2013–2014 source audit found that `decode.sh` creates `512.bin` but no consumer reads it; the documented bitwise-NOT operation acts on the separate `VHRH.bin` large-hex object, and OutGuess/XOR/columnar steps consume the extracted image/message payloads. No source links the 256-byte short stream or 114 timing intervals to p50/LP2 or specifies a reversible value-rewrite consumer. Retire the Onion2→LP2 non-additive branch; retain the bytes/timing only as historical resources. The consolidated report and results synthesis were updated in commit `015b7ce`.
+
 #1901 closed on a bounded public-source negative for the Stage10 `/cgi-bin/squares` handler; stop searching for the same missing handler absent a new primary artifact. #1886's named Wikidot/Wayback/Common Crawl path is blocked by the available fetch interface, not a negative archive result; Agent31's claim is stale (identity lease older than100 minutes). #1894 found no public DWM hash algorithm/schema; further progress requires an authorized account-holder query. #784 remains owner-action only. Do not contact custodians or probe Tor without explicit approval.
 
 ## Closure review since previous Director checkpoint
@@ -79,13 +81,14 @@ All Director-task closures after the previous checkpoint have been reviewed:
 - **#1901 (13:50:48Z):** bounded negative for public Stage10 squares CGI recovery; no handler/byte-faithful transaction.
 - **#1899 (14:03:26Z):** positive p50→p53→p28 human navigation; no table byte legend or p55 cipher. The 931→133 Stage11 pointer remained provisional pending its familywise gate.
 - **#1906 (14:36:20Z):** negative 931→133 Stage11 familywise gate; exact participant tokenizer gives13/1,953 windows, the full OS message gives1153/1AM, and no further Stage11 object is selected. No successor is justified.
+- **#1908 (14:55:06Z):** negative Onion2 source-selector audit; `512.bin` has no consumer, while complement/OutGuess/XOR/columnar operations belong to the separate VHRH/image/message pipeline. Retire the 256-byte/timing→LP2 value-rewrite branch; no successor is justified.
 
-**Last reviewed closure timestamp: 2026-11-19T14:36:20Z (#1906).**
+**Last reviewed closure timestamp: 2026-11-19T14:55:06Z (#1908).**
 
 ## Current Director queue
 
-There are **17 open director-task Issues**:
-- **3 claimed/in progress:** #1895 (Agent2; p55 43/33 decoder), #1903 (Agent10; whole-sentence GP0/base60 familywise audit), #1908 (Agent15; Onion2 non-additive value-rewrite source audit).
+There are **16 open director-task Issues**:
+- **2 claimed/in progress:** #1895 (Agent2; p55 43/33 decoder), #1903 (Agent10; whole-sentence GP0/base60 familywise audit).
 - **9 unclaimed, executable:** #1877 (Agent4 lease stale; preserve the frozen p42→p43 word1 LIES holdout), #1897 (Agent1 lease stale; p23 RISE→+2 p25), #1902 (Agent5 lease stale; new public research audit), #1904 (5×6 red-dot selector), #1905 (p0 red13/13-dot initial-state clue), #1907 (p43–p48 source-first solve path), #1909 (32 page-crossing word/clock boundary audit), #1910 (adversarial creator-design prior review), #1912 (wordwise ALL/AROUND 49/27/75/177 familywise audit).
 - **5 blocked/waiting:** #1886 (Agent31 lease stale; exact Wikidot archive access remains blocked by the available interface), #41 (no complete source-selected p55 decoder), #1667 (isolated-worker transport failure), #1335 (genuinely naïve external human required), #1911 (AL=31 prospective receiver test; do not start until #1897 positively freezes p25).
 
