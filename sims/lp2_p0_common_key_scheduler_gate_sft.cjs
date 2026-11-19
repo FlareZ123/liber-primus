@@ -91,6 +91,10 @@ const hasSequence = (sequence) => {
 };
 assert.ok(hasSequence("ROAD AND THEIR NUMBERS"));
 assert.ok(hasSequence("SEEK AND YOU WILL BE FOUND"));
+const seekWordIndex = sourceWords.indexOf("SEEK");
+assert.equal(seekWordIndex, 30);
+assert.equal(sourceWords[seekWordIndex + 1], "AND");
+assert.equal(seekWordIndex + 2, 32); // one-based position of the AND after SEEK
 
 const alphabet = grid.alphabet;
 const p50 = grid.pages.flatMap((page) => page.tokens);
