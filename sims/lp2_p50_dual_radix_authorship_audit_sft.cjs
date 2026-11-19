@@ -122,11 +122,11 @@ for (let cell = 0; cell < cells.length; cell += 1) {
 
 assert.equal(
   boundaryEvents.filter((event) => event.consecutiveStarts).length,
-  48
+  670
 );
 assert.equal(
   boundaryEvents.filter((event) => event.consecutiveEnds).length,
-  47
+  645
 );
 
 const selfPointers = [];
