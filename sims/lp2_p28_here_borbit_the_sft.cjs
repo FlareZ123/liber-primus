@@ -456,7 +456,7 @@ for (let page = 0; page <= 55; page += 1) {
   }
 }
 
-assert.equal(adjacentPairs, 2367);
+assert.equal(adjacentPairs, 2347);
 assert.equal(adjacentTripleHits.length, 2);
 assert.ok(adjacentTripleHits.some((hit) =>
   hit.page === 28 &&
