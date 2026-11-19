@@ -34,11 +34,13 @@ A quick image test applied Gaussian blur radii 3 and 27 to the tree crop; neithe
 
 A targeted JSteg-style AC-coefficient-LSB readout of the p9 tree crop produced 5,401 bytes with 37.5% printable characters and no coherent ASCII run. This is only a negative for that simple extraction, not a general exclusion of image steganography.
 
+One source-aligned readout was also tested: at each of the 12 recovered text-line centers, count horizontal dark runs in the tree column after blur-3/Otsu. The counts are `[1,6,2,1,4,1,1,1,2,1,3,9]`. Using each count as a 1-based rune offset in its corresponding text line yields `Y-TH-S-OE-M-L-W-EO-R-O-S-NG`; zero-based offsets yield `W-X-TH-IA-C-G-B-OE-EO-EO-F-F`. Neither is plaintext. This is one natural line-aligned test, not an exhaustive search.
+
 ## Decision
 
 Preserve p3 BLUR as a candidate semantic clue because it is the sole exact dictionary hit in the fixed page-indexed family and its GP0 points to the already selected p28 READOUT page. Do not promote it to plaintext or treat the p50 orbit as an authenticated opcode. The p9 tree is a motivated visual target, but no stable branch-count, simple blur, or JSteg readout has yet yielded a message.
 
-The next useful investigation is an independent, human-plausible readout of the p9 tree that is selected by the BLUR / READOUT / DIVINITY route. Avoid arbitrary blur-radius sweeps, branch-count fitting, or pixel-to-GP29 quantization.
+The next useful investigation requires an independent human-plausible readout selected by a creator-era or other source clue; the obvious line-center / horizontal-run selector failed. Avoid arbitrary blur-radius sweeps, branch-count fitting, or pixel-to-GP29 quantization.
 
 ## Reproduction
 
