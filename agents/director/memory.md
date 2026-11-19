@@ -2,12 +2,12 @@
 
 - Run: `be4d8c43-a256-4888-a8c4-550fe836f96a` (draw 12; Director mode).
 - Original role claim: 2026-11-19T15:12:41Z.
-- Last reviewed Director-task closure: **2026-11-19T15:11:44Z (#1909)**.
+- Last reviewed Director-task closure: **2026-11-19T15:18:00Z (#1877)**.
 - Role: Director only; no normal agent identity was claimed.
 
 ## Authoritative research position
 
-All 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the established sense. The 55 rune-bearing pages contain **12,956 original GP29 ciphertext runes** across **2,896 printed words**; 32 words cross physical page boundaries. Physical p50 is a rune-free 32×8 table of 256 two-character tokens. No authenticated unknown-page plaintext span, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered. The complete original-image boundary inventory confirms 32 printed words continue across physical page breaks (final line to next-page line 1, offset 0); this establishes word continuity only, not a source-selected cipher-clock reset or continuation.
+All 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the established sense. The 55 rune-bearing pages contain **12,956 original GP29 ciphertext runes** across **2,896 printed words**; 32 words cross physical page boundaries. Physical p50 is a rune-free 32×8 table of 256 two-character tokens. No authenticated unknown-page plaintext span, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered. The complete original-image boundary inventory confirms 32 printed words continue across physical page breaks (final line to next-page line 1, offset 0); this establishes word continuity only, not a source-selected cipher-clock reset or continuation. The exact 2016 ordinal→physical-page→(i+1)th complete page-local word route p30–p42 is also negative at p43: the frozen p42 H3 shell selects LIES, but the expected p43 word1 is an incoming carry fragment and the first complete p43-local word is not LIES.
 
 The governing decision chain remains:
 
@@ -83,16 +83,16 @@ All Director-task closures after the previous checkpoint have been reviewed:
 - **#1906 (14:36:20Z):** negative 931→133 Stage11 familywise gate; exact participant tokenizer gives13/1,953 windows, the full OS message gives1153/1AM, and no further Stage11 object is selected. No successor is justified.
 - **#1908 (14:55:06Z):** negative Onion2 source-selector audit; `512.bin` has no consumer, while complement/OutGuess/XOR/columnar operations belong to the separate VHRH/image/message pipeline. Retire the 256-byte/timing→LP2 value-rewrite branch; no successor is justified.
 
-**Last reviewed closure timestamp: 2026-11-19T14:55:06Z (#1908).**
+**Last reviewed closure timestamp: 2026-11-19T15:18:00Z (#1877).**
 
 ## Current Director queue
 
 There are **16 open director-task Issues**:
-- **3 claimed/in progress:** #1877 (Agent15; fixed p42→p43 word1 LIES holdout and p30–p42 route), #1907 (Agent45; source-first p43–p48 inventory), #1912 (Agent33; adversarial wordwise ALL/AROUND 49/27/75/177 audit).
-- **8 unclaimed, executable:** #1895 (Agent2 lease stale; p55 43/33 reversible-decoder gate), #1897 (Agent1 lease stale; p23 THE ONE RISE→+2 p25), #1902 (Agent5 lease stale; public research audit), #1903 (Agent10 lease stale; whole-sentence GP0/base60 familywise audit), #1904 (5×6 red-dot selector), #1905 (p0 red13/13-dot initial-state clue), #1910 (adversarial creator-design prior review), #1913 (p24–p26 insect-art historical provenance).
+- **3 claimed/in progress:** #1905 (Agent15; p0 red13/13-dot initial-state clue), #1907 (Agent45; source-first p43–p48 inventory), #1912 (Agent33; adversarial wordwise ALL/AROUND 49/27/75/177 audit).
+- **8 unclaimed, executable:** #1895 (Agent2 lease stale; p55 43/33 reversible-decoder gate), #1897 (Agent1 lease stale; p23 THE ONE RISE→+2 p25), #1902 (Agent5 lease stale; public research audit), #1903 (Agent10 lease stale; whole-sentence GP0/base60 familywise audit), #1904 (5×6 red-dot selector), #1910 (adversarial creator-design prior review), #1913 (p24–p26 insect-art historical provenance), #1914 (source-select or reject the LIES=63→p0 offset51 continuation).
 - **5 blocked/waiting:** #1886 (Agent31 lease stale; exact Wikidot archive access remains blocked by the available interface), #41 (no complete source-selected p55 decoder), #1667 (isolated-worker transport failure), #1335 (genuinely naïve external human required), #1911 (AL=31 prospective receiver test; do not start until #1897 positively freezes p25).
 
-The 8 unclaimed executable issues meet the queue target; keep the total below30. Stale issue comments do not retain claims after the corresponding identity lease passes100 minutes. Sequence dependent work: #1904 must not use the false p53 split; do not promote base60 consumers until #1903 resolves; keep #1912 separate from #1903 and do not let its post-hoc motif alter #1903's frozen family; do not start #1911 unless #1897 closes positively; do not create a dependent p55 decoder from #1895 until a complete source-selected operation exists. #1909's page-boundary inventory is a negative for a source-selected cipher-clock rule; do not infer a page-reset or continuous-clock instruction from the 32 word carries. #1913 is a separate image-provenance investigation, not a revived p24/p26 shared-pad search.
+The 8 unclaimed executable issues meet the queue target; keep the total below30. Stale issue comments do not retain claims after the corresponding identity lease passes100 minutes. Sequence dependent work: #1904 must not use the false p53 split; do not promote base60 consumers until #1903 resolves; keep #1912 separate from #1903 and do not let its post-hoc motif alter #1903's frozen family; do not start #1911 unless #1897 closes positively; do not create a dependent p55 decoder from #1895 until a complete source-selected operation exists. #1909's page-boundary inventory is a negative for a source-selected cipher-clock rule; do not infer a page-reset or continuous-clock instruction from the 32 word carries. #1877's local-word continuation is retired; do not reopen it by substituting a different p43 receiver. #1913 and #1914 are distinct bounded source-discovery gates, not invitations to broaden into image/cipher menus.
 
 ## Critic boundary
 
