@@ -96,4 +96,4 @@ Run:
 node sims/lp2_p28_readout_p0_hadamard_dh_echo_sft.cjs
 ```
 
-The SFT re-derives the READ/OUT p50 endpoints, reparses p0 and p28 from canonical source text, reconstructs the DH23 tuple from p28 geometry, exhaustively verifies `H` invertibility over GP29, performs the selected receiver transform, and enumerates every comparable 23-rune span in the unknown manuscript.
+The SFT re-derives the READ/OUT p50 endpoints, reparses p0 and p28 from canonical source text, reconstructs the DH23 tuple from p28 geometry, exhaustively verifies `H` invertibility over GP29, performs the selected receiver transform, and enumerates every comparable 23-rune span in the unknown manuscript. Windows / Node.js 22 reproduction passed in Actions run [44427354972](https://github.com/FlareZ123/liber-primus/actions/runs/44427354972).
