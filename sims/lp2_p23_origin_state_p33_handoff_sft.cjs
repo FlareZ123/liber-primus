@@ -19,6 +19,8 @@ const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 const parts = transcription.split(/^\s*%\s*$/m);
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const tokens = grid.pages.flatMap((page) => page.tokens);
+const bytes = grid.pages.flatMap((page) => page.bytes);
+const fiveDotCount = 5;
 
 /** @param {number} value @returns {number} */
 function mod29(value) {
@@ -213,8 +215,8 @@ assert.equal(powModulo(state.A, state.b, state.p), state.K);
 assert.equal(powModulo(state.B, state.a, state.p), state.K);
 
 assert.equal(tokens[state.B], "0X");
-assert.equal(grid.bytes[state.B], 33);
-const destinationPage = grid.bytes[state.B];
+assert.equal(bytes[state.B], 33);
+const destinationPage = bytes[state.B];
 assert.equal(spellCardinals([state.p]), "A");
 assert.equal(spellCardinals([destinationPage]), "L");
 assert.equal(
@@ -257,7 +259,6 @@ assert.deepEqual(secondRise, [25, 13]);
 assert.equal(firstRise[0], theirPositions[0]);
 assert.equal(secondRise[0], theirPositions[1]);
 assert.equal(theirPositions[1] - theirPositions[0], state.a);
-const fiveDotCount = 5;
 assert.equal(spellCardinals([fiveDotCount]), "I");
 assert.equal(spellCardinals([p23Line1Record.terminalGp0]), "N");
 assert.equal(
@@ -349,7 +350,7 @@ for (let page = 2; page <= 55; page += 1) {
         b,
         A,
         B,
-        destination: B < grid.bytes.length ? grid.bytes[B] : null
+        destination: B < bytes.length ? bytes[B] : null
       });
     }
   }
