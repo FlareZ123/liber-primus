@@ -103,8 +103,10 @@ The simple property `p50[GP0(word)] base60 = 80` is common by itself: it occurs 
 
 ## Decision
 
-Preserve this as a prospective continuation of the ROAD/LEAD/EA route. It supplies a clean stopping condition for the local loop, fixes the pointer radix as base60 at the return edge, and reciprocally validates the same p=23 packet index used to derive EA.
+The prospective receiver is now consumed by a later source-constrained result. Agent46's follow-up shows that the EA-selected word at109 is more than a p50 return pointer: GP0=40 labels it as signed word PATHS, and the source-only BEWARE FALSE PATHS state pair [b,e]=[15,3] is exactly the additive inverse of its ciphertext [14,26].
 
-Do not invent plaintext for offsets109..110 from the closure. The useful next task is to ask whether the loop is an initialization or key-schedule cycle that can emit a key for the word at109 or the material after110 using only the already selected DH/H/SHED operations.
+Following the next p50/base60 return-to80 branches gives zero-based signed labels PATHS and LUCK. Shedding their outer runes yields interior GP0 word numbers THE and ROAD. The combined PATHS, PATHS, LUCK -> THE ROAD route is unique among all32 return-to80 triples in the unknown manuscript. The base59 rival gives no competing return-to80 triple.
 
-Reproducer: `sims/lp2_p0_ea109_readout_return_sft.cjs`.
+Preserve this report as the positional closure that fixed the downstream start. Use im-results/lp2-p0-ea109-signed-paths-reset.md for the current interpretation of the closed loop. No plaintext is assigned to word109 itself.
+
+Reproducer: sims/lp2_p0_ea109_readout_return_sft.cjs.
