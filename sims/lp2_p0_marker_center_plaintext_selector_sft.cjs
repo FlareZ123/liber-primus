@@ -444,6 +444,52 @@ assert.deepEqual(exactRed13MarkerReceivers, [{
   page:0,start:0,length:13,markerOffset:13,
 }]);
 
+/** @param {number[]} values @returns {string[][]} */
+function segmentLexicon(values) {
+  const memo = new Map();
+  /** @param {number} offset @returns {string[][]} */
+  function walk(offset) {
+    if (offset === values.length) return [[]];
+    if (memo.has(offset)) return memo.get(offset);
+    const out = [];
+    for (const word of words) {
+      if (word.values.length > values.length - offset) continue;
+      if (!word.values.every((value,index) => value === values[offset+index])) continue;
+      for (const rest of walk(offset + word.values.length)) {
+        if (rest.length < 4) out.push([word.label,...rest]);
+      }
+    }
+    memo.set(offset,out);
+    return out;
+  }
+  return walk(0);
+}
+
+const fullKeyMarkerTransfers = [];
+let fullKeyMarkerWindows = 0;
+for (const pageAnnotation of annotations.pages) {
+  const page = corpus.pages.find((candidate) => candidate.page === pageAnnotation.page);
+  assert.ok(page);
+  for (const [offset,dots,color] of pageAnnotation.large_punctuation || []) {
+    if (dots !== 13 || color !== "red") continue;
+    for (const side of ["pre","post"]) {
+      const start = side === "pre" ? offset - 13 : offset;
+      if (start < 0 || start + 13 > page.indices.length) continue;
+      fullKeyMarkerWindows += 1;
+      const cipher = page.indices.slice(start,start+13);
+      for (const sign of [-1,1]) {
+        const plain = cipher.map((value,index) =>
+          mod29(value + sign*geometryKey[index]));
+        const segmentations = segmentLexicon(plain);
+        if (segmentations.length) fullKeyMarkerTransfers.push({
+          page:page.page,offset,color,side,start,sign,
+          segmentations,
+        });
+      }
+    }
+  }
+}
+
 const centerKey = hOutsideIn(markerCenter);
 assert.deepEqual(centerKey, [0,8,0,16,19]);
 const fiveLexicon = new Map(length5.map((word) => [word.values.join(","), word]));
@@ -646,6 +692,7 @@ console.log(JSON.stringify({
   geometryKey,
   riseRoleRivalHits:riseRoleRivals,
   sourceVisibleReceiverGate:{red13MarkerCount,exactRed13MarkerReceivers},
+  fullKeyMarkerTransferGate:{fullKeyMarkerWindows,fullKeyMarkerTransfers},
   palindromeDecryptions,
   palindromeAdditiveDecryptions,
   fullStatePalindromeDecryptions,
