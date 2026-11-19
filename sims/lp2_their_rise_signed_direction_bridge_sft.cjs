@@ -168,6 +168,41 @@ assert.equal(rise, state.a);
 assert.equal(words[rise], "SEEKS");
 assert.deepEqual(words.slice(25, 30), ["THEIR", "NUMBERS", "ARE", "THE", "DIRECTION"]);
 
+// THEIR RISE is also an exact +a translation between the two parallel signed clauses.
+const firstTheirClause = words.slice(theirPositions[0], theirPositions[0] + 5);
+const secondTheirClause = words.slice(theirPositions[1], theirPositions[1] + 5);
+assert.deepEqual(firstTheirClause, ["THEIR", "MEANING", "IS", "THE", "ROAD"]);
+assert.deepEqual(secondTheirClause, ["THEIR", "NUMBERS", "ARE", "THE", "DIRECTION"]);
+assert.equal(words[24], "AND");
+for (let offset = 0; offset < firstTheirClause.length; offset += 1) {
+  assert.equal(words[theirPositions[0] + offset + state.a], secondTheirClause[offset]);
+}
+const clauseGp0Rises = firstTheirClause.map((word, offset) =>
+  gp0(secondTheirClause[offset]) - gp0(word)
+);
+assert.deepEqual(clauseGp0Rises, [0, state.a, state.p - state.K, 0, 2 * 29]);
+assert.equal(words[22], "THE");
+assert.equal(words[22 + state.a], "THE");
+assert.equal(words[state.p], "ROAD");
+assert.equal(words[state.p + state.a], "DIRECTION");
+assert.equal(state.p + state.a, 29);
+
+// The authenticated THE scaffold has exactly two +a boundary jumps.
+// The later one is now selected by the first-THEIR -> second-THEIR translation.
+const thePositions = words.map((word, index) => word === "THE" ? index : -1)
+  .filter((index) => index >= 0);
+assert.deepEqual(thePositions, [1, 7, 12, 17, 22, 28]);
+assert.deepEqual(
+  thePositions.slice(0, -1)
+    .filter((position, index) => thePositions[index + 1] - position === state.a)
+    .map((position, index) => [position, thePositions[thePositions.indexOf(position) + 1]]),
+  [[1, 7], [22, 28]]
+);
+assert.equal(words[2], "PATH");
+assert.equal(words[8], "DEVOTED");
+assert.equal(words[23], "ROAD");
+assert.equal(words[29], "DIRECTION");
+
 // Literal p50 geometry: a word's number supplies upward row count; its GP0 supplies address.
 assert.equal(grid.byte_rows.length, 32);
 assert.ok(grid.byte_rows.every((row) => row.length === state.A));
@@ -229,6 +264,14 @@ console.log(JSON.stringify({
     riseField: "a",
     wordAtRiseIndex: words[rise],
     clauseFromSecondTheir: words.slice(25, 30).join(" "),
+    clauseTranslation: {
+      from: firstTheirClause.join(" "),
+      to: secondTheirClause.join(" "),
+      indexDelta: state.a,
+      gp0Rises: clauseGp0Rises,
+      the: "22 + a = 28",
+      roadToDirection: "p=23 + a=6 = 29",
+    },
   },
   p50Geometry: {
     width: state.A,
