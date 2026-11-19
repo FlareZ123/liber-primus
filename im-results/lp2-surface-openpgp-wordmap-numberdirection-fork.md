@@ -80,7 +80,7 @@ OPENPGP key-ID number 7A35090F
  -> pre-existing THE ORIGINAL checkpoint
 ```
 
-## Scope and missing road leg
+## Meaning/road leg: a concrete local instance
 
 The signed source says:
 
@@ -90,9 +90,29 @@ Their meaning is the road,
 and their numbers are the direction.
 ```
 
-This result instantiates the **word/map** and **number/direction** parts at one source-selected checkpoint. It does **not** assign an independent reversible operation to `their meaning is the road`. Although OPENPGP semantically types the adjacent hexadecimal number as a key identifier and the word branch returns `HELLO THE PATH`, those observations are insufficient to claim a distinct road operator.
+This route now supplies a concrete local reading of all three roles without adding a new cipher family:
 
-The separately sealed full-fingerprint continuation `THE ORIGINAL -> full fingerprint -> mod58 -> p41` failed its predeclared typed-receiver gate and remains retired.
+```text
+meaning/road:
+  SURFACE
+  -> act on the literal outer surface of the already selected square
+  -> OPENPGP
+
+word/map:
+  OPENPGP42
+  -> p42 word43
+  -> HELLO THE PATH
+
+number/direction:
+  OPENPGP semantically types adjacent 7A35090F as a key ID
+  -> conventional hexadecimal integer
+  -> mod58
+  -> physical p23
+```
+
+The literal SURFACE operation was chosen from the source word's ordinary meaning while the p50/base59 consumer was already frozen; the perimeter then produced OPENPGP. OPENPGP's ordinary technical meaning independently fixes the type of the adjacent hexadecimal instead of treating it as an arbitrary digit string. This is a source-constrained **local meaning-as-road implementation**.
+
+The scope remains narrow. It does not establish that every source word has a universal semantic operator, and it does not authorize synonym mining or arbitrary natural-language actions. The separately sealed full-fingerprint continuation `THE ORIGINAL -> full fingerprint -> mod58 -> p41` failed its predeclared typed-receiver gate and remains retired.
 
 ## Reproduction
 
