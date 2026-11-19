@@ -261,6 +261,45 @@ assert.deepEqual(bewareHits, [{
 assert.deepEqual(shell(bewareHits[0].key), bewareHits[0].shell);
 assert.deepEqual(shell(bewareCipher), [4,25,4,7,24,19]);
 
+const verifyCipher = p0Words[40].values;
+assert.deepEqual(verifyCipher, [0,14,25,13,6,14]);
+const verifyTransferHits = [];
+for (const role of roles) {
+  for (const [sName, stateValue] of [["g",state.g],["e",state.e],["K",state.K]]) {
+    for (const firstSign of [-1, 1]) {
+      for (const secondSign of [-1, 1]) {
+        const keyShell = [
+          stateValue,
+          role.V,
+          role.V,
+          mod29(role.U + (firstSign * role.u)),
+          mod29(state.K * role.u),
+          mod29(role.v + (secondSign * state.K)),
+        ];
+        const key = hInverse(keyShell);
+        for (const sign of [-1, 1]) {
+          const plain = verifyCipher.map((value, index) =>
+            mod29(value + (sign * key[index]))
+          );
+          const target = targetMaps.get(6).get(plain.join(","));
+          if (target) {
+            verifyTransferHits.push({
+              role:role.name,
+              s:sName,
+              firstSign,
+              secondSign,
+              sign,
+              key,
+              target,
+            });
+          }
+        }
+      }
+    }
+  }
+}
+assert.deepEqual(verifyTransferHits, []);
+
 console.log(JSON.stringify({
   status:"PASS",
   classification:
@@ -282,5 +321,6 @@ console.log(JSON.stringify({
     rawShell:shell(bewareCipher),
     configs:48,
     hits:bewareHits,
+    siblingVerifyTransfer:{ cipher:verifyCipher, configs:48, hits:verifyTransferHits, result:"FAIL" },
   },
 }, null, 2));
