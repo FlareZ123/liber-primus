@@ -316,6 +316,104 @@ assert.deepEqual(hits, [
 const uniqueOutputs = new Set(hits.map((hit) => hit.output.join(",")));
 assert.equal(uniqueOutputs.size, 1);
 
+// Widen the input partition itself. Charge every one of the five contiguous
+// input cuts, keeping the same reversible exponent/orientation/output-cut
+// family. Only cuts after positions1 or2 survive, and both produce the same
+// raw output because source rune28=-1 is fixed by every reversible odd power.
+const inputSplitHits = [];
+for (let inputCut = 1; inputCut < 6; inputCut += 1) {
+  const leftInput = [p28Runes[centerOffset], ...selectedWord.values].slice(0, inputCut);
+  const rightInput = [p28Runes[centerOffset], ...selectedWord.values].slice(inputCut);
+  for (const leftExponent of reversibleExponents) {
+    for (const rightExponent of reversibleExponents) {
+      for (const orientation of ["forward", "reverse"]) {
+        let output = [
+          ...leftInput.map((value) => modPow(value, leftExponent)),
+          ...rightInput.map((value) => modPow(value, rightExponent)),
+        ];
+        if (orientation === "reverse") output = output.slice().reverse();
+        for (let cut = 1; cut < output.length; cut += 1) {
+          if (
+            gp0(output.slice(0, cut)) === p39Selector.length &&
+            gp0(output.slice(cut)) === p39Selector.gp0Mod29
+          ) {
+            inputSplitHits.push({
+              inputCut,
+              leftExponent,
+              rightExponent,
+              orientation,
+              cut,
+              output,
+            });
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(5 * reversibleExponents.length * reversibleExponents.length * 2 * 5, 7200);
+assert.deepEqual(
+  inputSplitHits.map((hit) => [
+    hit.inputCut,
+    hit.leftExponent,
+    hit.rightExponent,
+    hit.orientation,
+    hit.cut,
+    hit.output,
+  ]),
+  [
+    [1, 3, 27, "forward", 3, [4, 28, 23, 3, 1, 16]],
+    [1, 17, 27, "forward", 3, [4, 28, 23, 3, 1, 16]],
+    [2, 3, 27, "forward", 3, [4, 28, 23, 3, 1, 16]],
+    [2, 17, 27, "forward", 3, [4, 28, 23, 3, 1, 16]],
+  ]
+);
+assert.equal(modPow(28, 3), 28);
+assert.equal(modPow(28, 27), 28);
+
+// Now hold the source-selected exponent pair itself fixed and charge every
+// per-rune assignment of {3,27}. The selector fixes all value-changing
+// positions. The four surviving masks differ only on rune28=-1 and rune1=1,
+// where the two exponents are mathematically indistinguishable.
+const assignmentHits = [];
+const p28Input = [p28Runes[centerOffset], ...selectedWord.values];
+for (let mask = 0; mask < 64; mask += 1) {
+  const exponents = p28Input.map((_, index) =>
+    ((mask >> index) & 1) === 1 ? 3 : 27
+  );
+  for (const orientation of ["forward", "reverse"]) {
+    let output = p28Input.map((value, index) => modPow(value, exponents[index]));
+    if (orientation === "reverse") output = output.slice().reverse();
+    for (let cut = 1; cut < output.length; cut += 1) {
+      if (
+        gp0(output.slice(0, cut)) === p39Selector.length &&
+        gp0(output.slice(cut)) === p39Selector.gp0Mod29
+      ) {
+        assignmentHits.push({ mask, exponents, orientation, cut, output });
+      }
+    }
+  }
+}
+assert.equal(64 * 2 * 5, 640);
+assert.deepEqual(
+  assignmentHits.map((hit) => hit.exponents),
+  [
+    [3, 27, 27, 27, 27, 27],
+    [3, 3, 27, 27, 27, 27],
+    [3, 27, 27, 27, 3, 27],
+    [3, 3, 27, 27, 3, 27],
+  ]
+);
+assert.ok(assignmentHits.every((hit) =>
+  hit.orientation === "forward" &&
+  hit.cut === 3 &&
+  JSON.stringify(hit.output) === JSON.stringify([4, 28, 23, 3, 1, 16])
+));
+assert.equal(p28Input[1], 28);
+assert.equal(p28Input[4], 1);
+assert.equal(modPow(1, 3), 1);
+assert.equal(modPow(1, 27), 1);
+
 // The authenticated DH state fixes the center exponent alias to e=3.
 const dh = { g: 5, K: 2, e: 3 };
 assert.equal(mod29(dh.g - dh.K), dh.e);
@@ -374,10 +472,27 @@ console.log(JSON.stringify({
       reversibleExponents.length * reversibleExponents.length * 2 * 5,
     hits,
     uniqueRawOutputs: uniqueOutputs.size,
+    widenedInputSplitCharge: {
+      chargedConfigurations:
+        5 * reversibleExponents.length * reversibleExponents.length * 2 * 5,
+      hits: inputSplitHits,
+      interpretation:
+        "Only input cuts1/2 survive; cut2 is value-identical to cut1 because rune28=-1 is exponent-invariant.",
+    },
+    perRuneAssignmentCharge: {
+      chargedConfigurations: 64 * 2 * 5,
+      hits: assignmentHits,
+      invariantPositions: [
+        { position: 1, value: p28Input[1] },
+        { position: 4, value: p28Input[4] },
+      ],
+      interpretation:
+        "All value-changing positions are fixed to the center/word assignment; the four masks differ only on rune28=-1 and rune1=1, where powers3 and27 are indistinguishable.",
+    },
     dhResolvedBoundaryExponent: dh.e,
     selectedOutput,
     transliterationAfterSelection: spell(selectedOutput),
   },
   interpretation:
-    "The selected p33 and p3 bodies each shed exactly 42=GP0(FIND) outer runes while their interiors point to p39 and p53. On independently selected p39, frozen H applied to the outer circumference supplies [55,20] as (transformed outer-shell length, GP0 mod29). Charging [55,20] against all 1,440 reversible p28 power/orientation/cut configurations leaves one raw six-rune output, with only the known center-exponent alias 3/17; authenticated e=3 resolves it. Only then does the output transliterate as READ OUT. This is post-discovery cross-object corroboration, not a blind plaintext probability.",
+    "The selected p33 and p3 bodies each shed exactly 42=GP0(FIND) outer runes while their interiors point to p39 and p53. On independently selected p39, frozen H applied to the outer circumference supplies [55,20] as (transformed outer-shell length, GP0 mod29). Charging [55,20] against all 1,440 fixed-boundary configurations leaves one raw output. Widening to all 7,200 contiguous input splits leaves only cuts1/2, with cut2 identical because rune28=-1 is power-invariant. Charging every per-rune {3,27} assignment leaves only four masks, differing solely at invariant runes28 and1. Thus every value-changing position is fixed to the center/word assignment. Authenticated e=3 resolves the remaining center exponent alias. Only then does the output transliterate as READ OUT. This is post-discovery cross-object corroboration, not a blind plaintext probability.",
 }, null, 2));
