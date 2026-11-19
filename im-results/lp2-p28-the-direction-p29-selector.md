@@ -139,4 +139,4 @@ Run:
 node sims/lp2_p28_the_direction_p29_selector_sft.cjs
 ```
 
-The SFT reconstructs the p28 DH state and local `THE`, parses the authenticated 43-word 2016 source, verifies the origin-invariant self-location and DIRECTION transition, then recomputes the repeated-root24 census across all 55 unknown rune pages and the numeric table.
+The SFT reconstructs the p28 DH state and local `THE`, parses the authenticated 43-word 2016 source, verifies the origin-invariant self-location and DIRECTION transition, then recomputes the repeated-root24 census across all 55 unknown rune pages and the numeric table. Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44442280744.
