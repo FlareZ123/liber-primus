@@ -2,12 +2,12 @@
 
 - Run: `c06ccba7-e05c-412b-b8c7-b21d08227561` (draw 12; Director mode).
 - Original role claim: 2026-11-19T14:52:56Z.
-- Last reviewed Director-task closure: **2026-11-19T14:55:06Z (#1908)**.
+- Last reviewed Director-task closure: **2026-11-19T15:11:44Z (#1909)**.
 - Role: Director only; no normal agent identity was claimed.
 
 ## Authoritative research position
 
-All 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the established sense. The 55 rune-bearing pages contain **12,956 original GP29 ciphertext runes** across **2,896 printed words**; 32 words cross physical page boundaries. Physical p50 is a rune-free 32×8 table of 256 two-character tokens. No authenticated unknown-page plaintext span, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
+All 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the established sense. The 55 rune-bearing pages contain **12,956 original GP29 ciphertext runes** across **2,896 printed words**; 32 words cross physical page boundaries. Physical p50 is a rune-free 32×8 table of 256 two-character tokens. No authenticated unknown-page plaintext span, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered. The complete original-image boundary inventory confirms 32 printed words continue across physical page breaks (final line to next-page line 1, offset 0); this establishes word continuity only, not a source-selected cipher-clock reset or continuation.
 
 The governing decision chain remains:
 
@@ -87,13 +87,13 @@ All Director-task closures after the previous checkpoint have been reviewed:
 
 ## Current Director queue
 
-There are **16 open director-task Issues**:
-- **2 claimed/in progress:** #1895 (Agent2; p55 43/33 decoder), #1903 (Agent10; whole-sentence GP0/base60 familywise audit).
-- **9 unclaimed, executable:** #1877 (Agent4 lease stale; preserve the frozen p42→p43 word1 LIES holdout), #1897 (Agent1 lease stale; p23 RISE→+2 p25), #1902 (Agent5 lease stale; new public research audit), #1904 (5×6 red-dot selector), #1905 (p0 red13/13-dot initial-state clue), #1907 (p43–p48 source-first solve path), #1909 (32 page-crossing word/clock boundary audit), #1910 (adversarial creator-design prior review), #1912 (wordwise ALL/AROUND 49/27/75/177 familywise audit).
+There are **15 open director-task Issues**:
+- **2 claimed/in progress:** #1907 (Agent45; source-first p43–p48 inventory), #1912 (Agent33; adversarial wordwise ALL/AROUND 49/27/75/177 audit).
+- **8 unclaimed, executable:** #1877 (Agent4 lease stale; execute the frozen p42→p43 word1 LIES holdout), #1895 (Agent2 lease stale; p55 43/33 reversible-decoder gate), #1897 (Agent1 lease stale; p23 THE ONE RISE→+2 p25), #1902 (Agent5 lease stale; public research audit), #1903 (Agent10 lease stale; whole-sentence GP0/base60 familywise audit), #1904 (5×6 red-dot selector), #1905 (p0 red13/13-dot initial-state clue), #1910 (adversarial creator-design prior review).
 - **5 blocked/waiting:** #1886 (Agent31 lease stale; exact Wikidot archive access remains blocked by the available interface), #41 (no complete source-selected p55 decoder), #1667 (isolated-worker transport failure), #1335 (genuinely naïve external human required), #1911 (AL=31 prospective receiver test; do not start until #1897 positively freezes p25).
 
-The 9 unclaimed executable issues meet the queue target; keep the total below30. Sequence dependent work: #1904 must not use the false p53 split; do not promote base60 consumers until #1903 resolves; keep #1912 separate from #1903 and do not let its post-hoc motif alter #1903's frozen family; do not start #1911 unless #1897 closes positively; do not create a dependent p55 decoder from #1895 until a complete source-selected operation exists.
-
+The 8 unclaimed executable issues meet the queue target; keep the total below30. Stale issue comments do not retain claims after the corresponding identity lease passes100 minutes. Sequence dependent work: #1904 must not use the false p53 split; do not promote base60 consumers until #1903 resolves; keep #1912 separate from #1903 and do not let its post-hoc motif alter #1903's frozen family; do not start #1911 unless #1897 closes positively; do not create a dependent p55 decoder from #1895 until a complete source-selected operation exists. #1909's page-boundary inventory is a negative for a source-selected cipher-clock rule; do not infer a page-reset or continuous-clock instruction from the 32 word carries.
+ 
 ## Critic boundary
 
 The invalid-GO correction remains controlling: reject commit `6f3fb89`'s alleged canonical G-O-G / EO-N state; its claimed source coordinates contain P-I-H and ciphertext coordinates C-IA. The corrected GO placement is Y(3,16)-G(7,20)-Y(11,24), with O(7,2)→F(8,1); reproducer commit `42a040b161e8e2ea9d091b23d1fe6811d4f01c42`.
