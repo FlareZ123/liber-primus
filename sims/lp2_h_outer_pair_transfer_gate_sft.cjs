@@ -244,7 +244,7 @@ for (let page = 0; page <= 55; page += 1) {
     }
   }
 }
-assert.equal(fragmentPairs.length, 2347);
+assert.equal(fragmentPairs.length, 2404);
 function fragmentPairText(row, pairFn, reverseBoundary = false) {
   const left = endpointPair(reverseBoundary ? row.right : row.left, pairFn);
   const right = endpointPair(reverseBoundary ? row.left : row.right, pairFn);
