@@ -323,6 +323,32 @@ assert.equal(
   exact.state.K
 );
 
+// Independent source semantic consequence. The repository already fixes
+// q=GP0(EMPTY)/p; with p reconstructed above, q is source-only here.
+const emptyGp0 = gp0ByWord.get("EMPTY");
+assert.equal(emptyGp0, 92);
+assert.equal(emptyGp0 % exact.state.p, 0);
+const q = emptyGp0 / exact.state.p;
+assert.equal(q, 4);
+const semanticIndices = [
+  exact.state.K,
+  exact.state.e,
+  q,
+  exact.state.g,
+  exact.state.a,
+  mod29(exact.state.g + exact.state.K),
+  exact.state.A,
+];
+assert.deepEqual(semanticIndices, [2, 3, 4, 5, 6, 7, 8]);
+const semanticWords = semanticIndices.map((index) => sourceWords[index]);
+assert.deepEqual(
+  semanticWords,
+  ["PATH", "LIES", "EMPTY", "EPIPHANY", "SEEKS", "THE", "DEVOTED"]
+);
+assert.equal(sourceWords[exact.state.b], "WORDS");
+assert.equal(sourceWords[exact.state.B], "THEIR");
+assert.equal(sourceWords[exact.state.p], "ROAD");
+
 /** @param {number} seed @returns {() => number} */
 function xorshift32(seed) {
   let state = seed >>> 0;
@@ -365,10 +391,7 @@ for (const seed of nullSeeds) {
 }
 const nullTrials = nullSeeds.length * trialsPerSeed;
 assert.equal(nullTrials, 1000000);
-assert.ok(
-  nullHits <= 20,
-  "unexpectedly high exact-token-multiset familywise null count: " + nullHits
-);
+assert.equal(nullHits, 16);
 
 console.log(JSON.stringify({
   status: "PASS",
@@ -388,6 +411,16 @@ console.log(JSON.stringify({
       kgPair: exact.kgPair.words,
     },
     state: exact.state,
+    semanticIndexConsequence: {
+      q,
+      indices: semanticIndices,
+      words: semanticWords,
+      anchorIndices: {
+        b: [exact.state.b, sourceWords[exact.state.b]],
+        B: [exact.state.B, sourceWords[exact.state.B]],
+        p: [exact.state.p, sourceWords[exact.state.p]],
+      },
+    },
   },
   null: {
     seeds: nullBySeed,
