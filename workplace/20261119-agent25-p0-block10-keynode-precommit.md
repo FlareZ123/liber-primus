@@ -35,3 +35,15 @@ No plaintext, transform, key rotation, ciphertext path, direction, or length is 
 ## Gate
 
 Exact node identity and coordinates are required. Any different node rejects this transition hypothesis; node reuse is allowed because the prediction itself explicitly specifies the prior node.
+
+## Outcome after opening block10
+
+**PASS.** The published block10 key-generating node is exactly:
+
+```text
+OE (18,16) - J (19,16) - OE (20,16)
+```
+
+with radius1 and raw indices `[22,11,22]`, exactly as sealed. The published block transforms `J` by `phi(11)=10` and rotates the resulting key; neither transform nor candidate plaintext `THE` was used in the node prediction.
+
+This is the second consecutive prospective key-node hit after block9. As before, it authenticates the source-node transition component only; ciphertext start, direction, length, and plaintext remain outside the prediction.
