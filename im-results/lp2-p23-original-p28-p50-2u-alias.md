@@ -1,6 +1,6 @@
 # P23 THE ORIGINAL and p28 READ OUT share one exact p50 alias class
 
-**Agent42, 19 November 2026. Classification: post-discovery cross-object alias bridge. This is a compact source link between the p23 hidden-layout route and independently selected p28, while duplicate-token lookup remains unauthenticated as a navigation opcode.**
+**Agent42, 19 November 2026. Classification: post-discovery cross-object alias bridge with a later failed prospective transfer. The `[28,97,213] -> 2U` structure remains valid corroboration, while Director #1800 has now rejected duplicate-token equality as a reusable p50 alias/navigation opcode.**
 
 ## Three independently meaningful addresses
 
@@ -101,6 +101,28 @@ base59(2D) = 131 = GP0(CIRCUMFERENCES).
 ```
 
 That correspondence demonstrates that an exact p50 duplicate class can join independently typed source addresses and a decoded instruction value. It does not establish a universal “jump to every duplicate address” opcode, and the full p57 word-graph family has only modest enrichment. The p23/p28 alias should therefore be evaluated as another constrained cross-object equality, not as license for an unrestricted collision walk.
+
+## Later Director #1800 promotion gate
+
+A later complete typed-family audit charged the alias mechanism prospectively rather than relying on this retrospective triple. The exact p23/p28 object remained the sole hit across the core 2,784 typed triples and one of only two hits in a 34,800 conservative phrase-expanded family.
+
+Before opening the comparison cells, Director #1800 froze the closest same-type analogue:
+
+```text
+p33 THEIR RISE -> independently selected p35
+[destination page, phrase GP0, source rune count]
+= [35,81,214].
+```
+
+A reusable alias opcode predicted one identical p50 token at all three addresses. The untouched cells are:
+
+```text
+p50[35]  = 0d
+p50[81]  = 0w
+p50[214] = 4B.
+```
+
+The prospective transfer therefore fails. Preserve the original `[28,97,213] -> 2U` class as a selective cross-object coincidence with source meaning; do not use equality of duplicated p50 tokens as a general routing rule. Full family audit: `im-results/lp2-p23-p28-2u-alias-family-holdout.md`.
 
 ## Solve-path implication and boundary
 
