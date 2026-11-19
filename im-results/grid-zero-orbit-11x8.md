@@ -4,7 +4,9 @@
 
 ## Candidate operation and printed dimensions
 
-The 256 base60-transcribed bytes printed as a 32×8 table on physical LP2 pp49–51 can be read as an unsigned-byte transition table: start with state 0 and repeatedly follow **next state = table[current state]**, treating a state as a zero-based byte index. This operation is deterministic, requires no key guess, and uses every byte in its original printed order. The starting state zero is source-natural but is not explicitly indicated as a pointer instruction.
+The 256 base60-transcribed bytes printed as a 32×8 table on physical LP2 pp49–51 can be read as an unsigned-byte transition table: start with state 0 and repeatedly follow **next state = table[current state]**, treating a state as a zero-based byte index. This operation is deterministic, requires no key guess, and uses every byte in its original printed order. State0 is now conditionally selected by the ROAD-to-two-zeros route. Treating table bytes as pointers remains an inferred operation until a complete downstream readout authenticates it.
+
+A later ROAD source vector now supplies a conditional state0 entry rather than leaving zero as a free start choice. The frozen `[12,5,1,4]` coordinate reading reaches the two literal `00` cells229/192, and each emits byte0 under this same pointer operation. Separately, authenticated EPIPHANY/DEVOTED numbers select physical p32, whose 121 runes imply an 11×11 square. These updates strengthen the human path into the already-known 11-cycle while leaving its output operation unresolved. [ROAD gate](lp2-road-source-numbers-zero-bracket-direction.md) · [p32 selector](lp2-epiphany-devoted-p32-selector.md).
 
 The **printed row-major** table gives a complete 11-cycle:
 

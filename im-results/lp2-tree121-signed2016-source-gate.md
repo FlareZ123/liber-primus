@@ -1,6 +1,14 @@
 # The 2016 tree image's exact LP2 11×11 prime-sum map
 
-**Evidence classification (source-identity corrected 13 November 2026):** independently exact p32/2016 canvas-size numerical correspondence and bounded finite reversible cryptanalytic tests. The purported **identical source tree** selecting p32 is retracted: the pictures have different source lineages. The p32-derived 11×11 reflow and its visual association are not creator-specified. A suggested affine control rule is post-selected. **No unknown LP2 plaintext, completed key, hidden destination or verified cipher mechanism has been recovered.**
+**Evidence classification (source-identity corrected 13 November; selector reconciled 19 November 2026):** independently exact p32/2016 canvas-size numerical correspondence and bounded finite reversible cryptanalytic tests. The purported **identical source tree** selecting p32 remains retracted because the pictures have different source lineages. A later authenticated-word/table result now selects p32 independently of artwork: `GP0(EPIPHANY)=121` equals p32's rune count, while `GP0(DEVOTED)=102` addresses p50 token `0W=32` under both live radices. The 11×11 reflow remains inferred from 121=11². A suggested affine control rule is post-selected. **No unknown LP2 plaintext, completed key, hidden destination or verified cipher mechanism has been recovered.**
+
+## Authenticated EPIPHANY / DEVOTED selector
+
+The signed 2016 clause `EPIPHANY SEEKS THE DEVOTED` now supplies a source-local p32 selector that does not depend on matching the two tree drawings. Canonical GP0 gives `EPIPHANY=121`, exactly p32's rune count. Canonical GP0 gives `DEVOTED=102`; under the established zero-based GP0 p50 address primitive, original cell102 is `0W`, value32 in both base59 and base60.
+
+Across every authenticated signed word paired with every authenticated signed word and every physical LP2 page rune count, the zero-address/zero-page base59 family has only this hit. Base60 adds only reverse-order `EMPTY/LIES -> p51`; EPIPHANY/DEVOTED is the sole forward-ordered hit. Charging zero/one address origin, base59/base60 and zero/one page output leaves the exact named EPIPHANY/DEVOTED pair only in the two zero/zero-origin radix variants. See [the source-selector report](lp2-epiphany-devoted-p32-selector.md).
+
+This changes the selection status of p32 itself. It does not supply the next cipher operation.
 
 ## The image dimensions are first-row and first-column checksums
 
@@ -15,7 +23,7 @@ Physical p32 contains **exactly 121 unchanged ciphertext GP runes, 11²**, follo
 
 As a bounded chance diagnostic, randomize the 120 *noninitial* p32 prime values without replacement while preserving the original first rune, and assign disjoint ten-number samples to the first row's remaining cells and first column's remaining cells. Among **500,000** uniformly randomized draws (NumPy PCG64, seed `0x20163301`), **2,695** have row sum exactly 563, **2,712** have column sum exactly 569, and **12** hit both; the plus-one joint frequency is **13/500001≈0.000026**. This is a **conditional shuffled-inventory diagnostic**. The tree page, 11×11 shape, and outer image dimensions were noticed while exploring source links, so the figure cannot be reported as a discovery-wide significance probability.
 
-The source-selected human path stops at the 11×11 layout and orientation: see the signed tree, locate the corresponding tree page, notice the **11²** rune count, restore its **prime-weighted 11×11 row-major layout**, then confirm the image's exact width/height with the source matrix axes. That selects p32 and its orientation; it does not select a subsequent traversal or cipher operation.
+The strongest current human path reaches p32 through the signed words before using image geometry: EPIPHANY supplies 121, DEVOTED supplies p50 address102→32, and the selected page has 121=11² runes. Reflowing those source-order runes as 11×11 then gives the exact 563/569 prime-axis checksum against the authenticated image dimensions. This selects p32 independently of the artwork lineage and fixes a natural orientation check; it still does not select a subsequent traversal or cipher operation.
 
 A later exploratory cross-round hypothesis (Agent10) maps the same prime sums into a standard DH tuple using the signed 2013 DH/BASE29 example: \(p=569,g=563,A=463,B=499\) gives shared secret \(291\mapsto\text{BASE29 }A1\). The discrete log 256 also equals p50's 256-cell count. Direct use of A1 as a repeating key and the \(291\bmod121=49\) row-major transposition are nonlinguistic; the role assignment is inferred, not source-specified, and it still does not select a unique tree traversal. See [the p32 DH parameter hypothesis report](p32-dh-image-dimensions-parameter-test.md). The source-only stopping point above therefore remains.
 

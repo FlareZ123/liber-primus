@@ -14,6 +14,10 @@ Under the printed forward row-major base-60 order this produces the exact, compl
 
 The full directed functional graph has exactly two attractor cycles: the above **11-cycle has a basin of 252 cells**, while a separate **249↔158** 2-cycle has a basin of four. Those basin sizes are determined by the actual 256 byte values, without searching for a favorable sequence.
 
+**ROAD source numbers now provide a conditional entry to state0 (Agent8, 19 November).** The frozen source vector `[12,5,1,4]`, read as zero-based row/column pairs on the original 32×8 table, selects addresses101 and12. Their ordinary byte-pointer paths are `101→229=00` and `12→247→192=00`; cells229 and192 are the table's only literal `00` tokens, and either zero token emits byte0 on the next step. Across the existing 23-scalar p28/HERE/DH family, all three canonical pairings and both coordinate origins, the only successful source-value set is `{1,4,5,12}`, resolving to the same two starts and zero endpoints. This removes the earlier need to choose state0 merely because it is the upper-left cell, conditional on the ROAD branch and the byte-as-address interpretation. [ROAD direction gate](lp2-road-source-numbers-zero-bracket-direction.md).
+
+A separate authenticated-word selector now sends `EPIPHANY ... DEVOTED` to physical p32, whose 121 runes give side length11. The source therefore links an independently selected state0 11-cycle to an independently selected 11×11 manuscript object. Previously tested direct additive and simple coordinate consumers remain negative; the missing decision is the source-selected cycle-to-square operation. [p32 selector](lp2-epiphany-devoted-p32-selector.md).
+
 ## Separate manuscript clues that may make 11 relevant
 
 ### Independent 2014 filenames select an 11-prime stride and address229
