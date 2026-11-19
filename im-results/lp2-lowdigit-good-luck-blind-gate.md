@@ -116,4 +116,4 @@ Further unknown-page routing through this operator now requires a new first-part
 node sims/lp2_lowdigit_good_luck_blind_gate_sft.cjs
 ```
 
-The SFT reconstructs the prior 16-mode source-cycle control, charges 84 held-out-free solved/source adjacencies, and executes the sealed GOOD→LUCK test across all 16 modes.
+The SFT reconstructs the prior 16-mode source-cycle control, charges 84 held-out-free solved/source adjacencies, and executes the sealed GOOD→LUCK test across all 16 modes. Windows / Node.js 22 run **44455058444** passed the complete checkpoint.
