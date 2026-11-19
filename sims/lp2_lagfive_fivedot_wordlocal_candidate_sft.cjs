@@ -86,14 +86,15 @@ function railInverse(word, order) {
   return out;
 }
 const natural = [0,1,2,3,4], star = [0,2,4,1,3], reverseStar = [0,3,1,4,2];
-const railResults = [
+const railModels = [
   {name:'natural forward', fn:w => railForward(w,natural)},
   {name:'natural inverse', fn:w => railInverse(w,natural)},
   {name:'pentagram forward', fn:w => railForward(w,star)},
   {name:'pentagram inverse', fn:w => railInverse(w,star)},
   {name:'reverse-star forward', fn:w => railForward(w,reverseStar)},
   {name:'reverse-star inverse', fn:w => railInverse(w,reverseStar)}
-].map(x => ({name:x.name, hits:hits(words.map(x.fn))}));
+];
+const railResults = railModels.map(x => ({name:x.name, hits:hits(words.map(x.fn))}));
 assert.deepEqual(railResults.map(x => x.hits), [79,79,79,79,77,77]);
 
 function pairCounts(word) {
@@ -131,10 +132,37 @@ function expectedStats(transform) {
   }
   return out;
 }
-const period5Control = expectedStats(w => w.map((v,i) => (v - [1,3,5,2,4][i%5] + 29) % 29));
-const railInverseControl = expectedStats(w => railInverse(w,natural));
-assert.ok(period5Control.Gibran.adjacent > 350 && period5Control.Gibran.adjacent < 360);
-assert.ok(railInverseControl.Gibran.adjacent > 390 && railInverseControl.Gibran.adjacent < 400);
+const period5ControlResults = [];
+for (const spec of keySpecs) for (const sign of [-1,1]) {
+  period5ControlResults.push({name:spec.name, sign, expected:expectedStats(w => w.map((v,i) => (v + sign * spec.key[i%5] + 29) % 29))});
+}
+const railControlResults = railModels.map(model => ({name:model.name, expected:expectedStats(model.fn)}));
+assert.ok(period5ControlResults[0].expected.Gibran.adjacent > 350 && period5ControlResults[0].expected.Gibran.adjacent < 360);
+assert.ok(railControlResults[1].expected.Gibran.adjacent > 390 && railControlResults[1].expected.Gibran.adjacent < 400);
+function railOrder(L, order) {
+  const out = [];
+  for (const r of order) for (let i = r; i < L; i += 5) out.push(i);
+  return out;
+}
+function invertPermutation(order) {
+  const inverse = Array(order.length);
+  order.forEach((value, index) => { inverse[value] = index; });
+  return inverse;
+}
+let structural = {lag5Pairs:0, lag5ToPlainAdjacent:0, adjacentPairs:0, adjacentToPlainLag5:0};
+for (let L = 1; L <= 14; L++) {
+  const count = lengthCounts[L];
+  const cipherToPlain = invertPermutation(railOrder(L, natural));
+  for (let i = 0; i + 5 < L; i++) {
+    structural.lag5Pairs += count;
+    if (Math.abs(cipherToPlain[i] - cipherToPlain[i+5]) === 1) structural.lag5ToPlainAdjacent += count;
+  }
+  for (let i = 0; i + 1 < L; i++) {
+    structural.adjacentPairs += count;
+    if (Math.abs(cipherToPlain[i] - cipherToPlain[i+1]) === 5) structural.adjacentToPlainLag5 += count;
+  }
+}
+assert.deepEqual(structural, {lag5Pairs:2105, lag5ToPlainAdjacent:2105, adjacentPairs:10060, adjacentToPlainLag5:216});
 
 const expectedRandomHits = expectedSizes.reduce((sum, size, len) => sum + lengthCounts[len] * size / (29 ** len), 0);
 assert.ok(Math.abs(expectedRandomHits - 86.39592509418684) < 1e-9);
@@ -142,7 +170,8 @@ const report = {
   original:{words:words.length,runes:words.reduce((n,w)=>n+w.length,0),lengthCounts:Array.from(lengthCounts),baselineNativeHits:baseline},
   fiveDotPeriod5Keys:keyResults,
   fiveRailTranspositions:railResults,
-  nativeControlExpected:{period5Additive:period5Control, inverseFiveRail:railInverseControl},
+  nativeControlExpected:{period5Additive:period5ControlResults, fiveRail:railControlResults},
+  inverseNaturalRailStructuralMapping:structural,
   uniform29WordLengthMatchedExpectedHits:expectedRandomHits,
   bestPeriod5CandidateHits:Math.max(...keyResults.map(x=>x.hits)),
   observedOriginal:{withinWordAdjacentRepeats:63,withinWordLag5Repeats:104}
