@@ -65,6 +65,32 @@ The complementary unknown terminal page is p55 with **76 runes**, exactly the ci
 
 So the source sentence does more than mention a key “all around”: its canonical source number selects a physical outer-ring cell whose unique table value is the size of the interior, and the manuscript terminal section has the exact **76 unknown / 180 known** split.
 
+## The clue independently selects base60 over base59
+
+The address calculation and the physical fact that cell252 lies on the outer ring do not depend on how the printed token is decoded.
+
+The selected token itself gives a direct radix fork:
+
+```text
+"30" in base59 = 177
+"30" in base60 = 180
+```
+
+The clue has already fixed the cell before this comparison. The visible p50 geometry independently fixes the interior size at **180**, and the solved terminal register independently fixes `p56+p57=85+95=180`.
+
+Thus the source-conditioned consequence
+
+```text
+selected outer cell value = number of cells it surrounds
+                           = known p56+p57 register
+```
+
+holds in **base60** and fails in base59.
+
+This is qualitatively different from the earlier missing-glyph and FIND/MUST arguments, where the radix was inferred after inspecting table coincidences. Here an authenticated pre-LP sentence fixes an address and physical relation first, and the unopened cell value discriminates the radix.
+
+Under this source interpretation, conventional **base60 is the intended table numeral radix**. Base59-only downstream hypotheses should now be treated as contradicted unless they provide a stronger independent first-party reason to override this selector.
+
 ## Fixed H receiver points uniquely to p53
 
 The selected token is also the ordered numeric digit pair:
