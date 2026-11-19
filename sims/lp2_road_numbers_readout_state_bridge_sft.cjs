@@ -502,6 +502,75 @@ assert.equal(numbersReceiver.length, gp("NUMBERS").length);
 assert.equal(numbersReceiver.length, 7);
 assert.deepEqual(numbersReceiver.values, [25, 15, 26, 1, 8, 4, 16]);
 
+
+// Candidate NUMBERS plaintext: charge the complete authenticated seven-GP-rune
+// target set by a target-independent key-shell shape after the receiver is fixed.
+// Only NUMBERS yields a mirrored key-shell core and all coordinates in the
+// pre-existing state-expression pool.
+const signedSevenTargets = [...new Map(
+  signedWords
+    .map((word) => ({ word, values: gp(word) }))
+    .filter((row) => row.values.length === 7)
+    .map((row) => [row.values.join(","), row])
+).values()];
+assert.deepEqual(
+  signedSevenTargets.map((row) => row.word),
+  ["DEVOTED", "NUMBERS", "OPENPGP"]
+);
+
+const stateExpressionValues = new Set([
+  state.p, state.g, state.a, state.b, state.A, state.B, state.K, state.e, 0,
+  mod29(state.p + 1), mod29(state.p - 1),
+  mod29(state.p + state.K), mod29(state.p - state.K),
+  mod29(state.p + state.e), mod29(state.p - state.e),
+  mod29(state.p - state.a), mod29(state.p - state.K * state.g),
+  mod29(state.g + state.K), mod29(state.a - state.g), mod29(state.g - state.a),
+  mod29(state.A + state.a), mod29(state.A + state.e),
+  mod29(state.K * state.a), mod29(state.K * state.g), mod29(state.K * state.K),
+  ...H(state.K, state.b), ...H(state.A, state.B),
+]);
+
+const sevenTargetAudit = signedSevenTargets.map((target) => {
+  const key = numbersReceiver.values.map((value, index) =>
+    mod29(value - target.values[index])
+  );
+  const keyShell = shell(key);
+  return {
+    word: target.word,
+    key,
+    keyShell,
+    mirroredCore:
+      keyShell[1] === keyShell[4] &&
+      keyShell[2] === keyShell[3],
+    allStateExpressions:
+      keyShell.every((value) => stateExpressionValues.has(value)),
+  };
+});
+assert.deepEqual(
+  sevenTargetAudit.filter((row) => row.mirroredCore && row.allStateExpressions),
+  [{
+    word: "NUMBERS",
+    key: [16,14,7,13,19,0,1],
+    keyShell: [15,17,14,14,17,26,13],
+    mirroredCore: true,
+    allStateExpressions: true,
+  }]
+);
+const numbersKey = sevenTargetAudit.find((row) => row.word === "NUMBERS").key;
+assert.deepEqual(shell(numbersKey), [
+  state.b,
+  H(state.K, state.b)[1],
+  mod29(state.A + state.a),
+  mod29(state.A + state.a),
+  H(state.K, state.b)[1],
+  mod29(state.p + state.e),
+  mod29(state.p - state.K * state.g),
+]);
+const numbersPlain = numbersReceiver.values.map((value, index) =>
+  mod29(value - numbersKey[index])
+);
+assert.deepEqual(numbersPlain, gp("NUMBERS"));
+
 // Do not force a plaintext inverse. Read the raw selected receiver through the
 // already frozen outside-in H transform.
 const receiverShell = shell(numbersReceiver.values);
@@ -688,6 +757,11 @@ console.log(JSON.stringify({
     shellDirection,
     sum75Hits,
     exactShellHits,
+    candidatePlaintext: {
+      audit: sevenTargetAudit,
+      key: numbersKey,
+      plain: numbersPlain,
+    },
   },
   readout: {
     gp0: gp0("READOUT"),
