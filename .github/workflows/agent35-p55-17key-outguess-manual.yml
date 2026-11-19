@@ -14,12 +14,10 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq libjpeg-dev
           mkdir -p evidence
-      - name: Verify authentic 2016 OutGuess positive on original JPEG
+      - name: Verify authentic LP1 03 OutGuess positive on original JPEG
         run: |
-          python sims/outguess_extract.py resources/historical/cicada2016-4gq25.jpg "" --output evidence/2016-positive.asc
-          cmp evidence/2016-positive.asc resources/historical/cicada2016-4gq25-outguess.asc
-          grep -q '^-----BEGIN PGP SIGNED MESSAGE-----' evidence/2016-positive.asc
-          echo AUTHENTIC_2016_OUTGUESS_CONTROL_PASS
+          python sims/outguess_extract.py resources/liber-primus/03.jpg "Default key" --output evidence/lp1-03-positive.pgp | tee evidence/lp1-03-positive.json
+          python -c "from pathlib import Path; p=Path('evidence/lp1-03-positive.pgp'); assert p.stat().st_size == 31809 and p.read_bytes().startswith(b'-----BEGIN PGP SIGNED MESSAGE-----'); print('AUTHENTIC_LP1_03_OUTGUESS_CONTROL_PASS')"
       - name: Test only the forward source-derived 17-symbol key on original p55
         id: forward
         continue-on-error: true
