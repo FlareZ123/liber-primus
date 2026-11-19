@@ -139,6 +139,66 @@ H([p,-K,K,-K,K,0,q,p])
 
 This H form is a consequence only; no downstream receiver is assigned to it here.
 
+## The register selects NE and a held-out LIBER PRIMUS continuation
+
+The visible core admits a puzzle-native numeric reading without introducing a new alphabet.
+
+Canonical GP29 fixes:
+
+```text
+N = 9.
+```
+
+Read the first `*` in
+
+```text
+N*N=NN-*
+```
+
+as the printed multiplication operator, the final `*` as the unknown wildcard, and `NN` as decimal digit concatenation. Then:
+
+```text
+9*9 = 99 - *
+*   = 18
+```
+
+and canonical GP29 fixes rune value18 as **E**. The register's terminal `N*` therefore becomes the ordinary compass direction:
+
+```text
+NE.
+```
+
+There is a real rival: if `NN` is algebraic juxtaposition, it means `N*N`, the wildcard is0=GP F, and no ordinary compass direction follows. The register alone does not decide between those readings.
+
+A pre-existing independent receiver discriminates them. The p49 recursive-SHED result, discovered before this register, fixes p50 address **76** as the post-SHED `DIRECTION` address. Treat the original 32×8 table as a map and charge all eight ordinary compass directions from cell76.
+
+The first cells are:
+
+```text
+N : 68,60,...       no source-word GP0 aliases
+NE: 69,62,55        69={HELLO,LIBER}; 62={PRIMUS}; 55={}
+E : 77,78,...       77={MEANING,FALSE}; 78={}
+SE: 85,94,...       no aliases
+S : 84,92,...       first cell has no alias
+SW: 83,90,...       83={NUMBERS}; 90={}
+W : 75,74,...       75={OPENPGP}; 74={}
+NW: 67,58,...       no aliases
+```
+
+**NE alone has authenticated source-word addresses on both of its first two steps.** The address69 collision is resolved by the second step: `LIBER PRIMUS` is an exact adjacent source phrase at zero-based positions9..10, while `HELLO PRIMUS` is not. The third NE cell55 has no authenticated source-word GP0 alias, so the recovered title terminates without choosing a later stop.
+
+Thus the conditional decimal-concatenation reading makes a held-out prediction on an independently selected DIRECTION receiver:
+
+```text
+p49 SHED -> p50 address76 = DIRECTION
+$N*N=NN-* -> N=9 -> *=18=E -> NE
+76 --NE--> 69,62 -> LIBER PRIMUS
+```
+
+This is the first executable consumer of the nine-character register. It also returns the exact object named by the signed source's next major clause, `LIBER PRIMUS IS THE WAY`.
+
+The result supports the decimal-concatenation/wildcard reading over the algebraic-juxtaposition rival. It does not yet specify what to do after `LIBER PRIMUS`; no operation is added beyond the natural stop where the next NE cell lacks a source-word address.
+
 ## Independent convergence from the p0 DEVOTED state label
 
 The p0 state packet independently recovers the label DEVOTED. Its canonical GP rune numbers, interpreted through the already fixed zero-based source-word register, give:
@@ -181,7 +241,7 @@ $N*N=NN-*
 
 as a new source-derived p50 register worthy of downstream interpretation. It is deterministic from authenticated words, canonical GP0, the printed table order, and ordinary hex syntax. Its contributing GP0 addresses independently form the exact DH-state direction tape `[p,-K,K,-K,K,0,q,p]`, and it also explains the `*N / N*` outer frame reached independently through DEVOTED.
 
-Do not yet promote “North Star”, an algebraic reading of `N*N=NN-*`, or any control-code interpretation as an authored instruction. The next useful test must identify an independently visible consumer for this nine-character register or derive a held-out numeric/page consequence from one conventional interpretation without changing the extraction.
+The decimal-concatenation/wildcard reading now has one independent held-out consequence: it yields NE, and NE from the pre-existing p49 DIRECTION cell76 uniquely recovers the authenticated adjacent phrase `LIBER PRIMUS`. Preserve that route as a conditional executable instruction. Do not broaden it to other starts, wrapped movement, alternate compass encodings, “North Star”, or control-code semantics until the recovered `LIBER PRIMUS` object supplies the next source-visible operation.
 
 ## Reproduction
 
