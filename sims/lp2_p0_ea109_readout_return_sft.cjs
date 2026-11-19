@@ -70,6 +70,27 @@ function gp0(values) {
   return values.reduce((sum, value) => sum + value, 0);
 }
 
+/** @param {number} left @param {number} right @returns {[number,number]} */
+function H(left, right) {
+  return [((left - right) % 29 + 29) % 29, (left + right) % 29];
+}
+
+/** @param {number[]} values @returns {number[]} */
+function hShell(values) {
+  const out = [];
+  for (
+    let left = 0, right = values.length - 1;
+    left < right;
+    left += 1, right -= 1
+  ) {
+    out.push(...H(values[left], values[right]));
+  }
+  if (values.length % 2 === 1) {
+    out.push(values[Math.floor(values.length / 2)]);
+  }
+  return out;
+}
+
 /** @param {string} token @returns {number|null} */
 function base59(token) {
   const high = alphabet59.indexOf(token[0]);
@@ -117,9 +138,20 @@ assert.equal(table60[address], 80);
 assert.equal(base59(tableTokens[address]), 79);
 assert.equal(readOutReceiver[0].start, 80);
 
+// The same frozen p=23 H packet supplies a reciprocal self-index.
+const packet = readOutReceiver.flatMap((word) => hShell(word.values));
+assert.equal(packet.length, 23);
+assert.equal(address % 23, 17);
+assert.equal(packet[(address % 23) - 1], ea);
+assert.equal(corpus.prime[packet[(address % 23) - 1]], afterRoad.start);
+
 // Whole-corpus controls.
 let totalWords = 0;
 let return80Words = 0;
+let reciprocalPacketWords = 0;
+let combinedPacketAndReturn80 = 0;
+const reciprocalHits = [];
+const combinedHits = [];
 const exactSevenWordGeometry = [];
 
 for (let page = 0; page <= 55; page += 1) {
@@ -127,10 +159,36 @@ for (let page = 0; page <= 55; page += 1) {
   const words = parseWords(physicalPart(page));
   totalWords += words.length;
 
-  for (const word of words) {
+  for (let wordIndex = 0; wordIndex < words.length; wordIndex += 1) {
+    const word = words[wordIndex];
     const sum = gp0(word.values);
-    if (sum < table60.length && table60[sum] === 80) {
-      return80Words += 1;
+    const returns80 = sum < table60.length && table60[sum] === 80;
+    if (returns80) return80Words += 1;
+
+    const remainder = sum % 23;
+    if (remainder === 0) continue;
+    const packetValue = packet[remainder - 1];
+    if (corpus.prime[packetValue] !== word.start) continue;
+
+    reciprocalPacketWords += 1;
+    const row = {
+      page,
+      word: wordIndex + 1,
+      start: word.start,
+      end: word.end,
+      length: word.values.length,
+      gp0: sum,
+      remainder,
+      packetValue,
+      packetRune: corpus.translit[packetValue],
+      prime: corpus.prime[packetValue],
+      p50Base60: sum < table60.length ? table60[sum] : null,
+    };
+    reciprocalHits.push(row);
+
+    if (returns80) {
+      combinedPacketAndReturn80 += 1;
+      combinedHits.push(row);
     }
   }
 
@@ -151,6 +209,21 @@ for (let page = 0; page <= 55; page += 1) {
 
 assert.equal(totalWords, 2928);
 assert.equal(return80Words, 111);
+assert.equal(reciprocalPacketWords, 8);
+assert.equal(combinedPacketAndReturn80, 1);
+assert.deepEqual(combinedHits, [{
+  page: 0,
+  word: 24,
+  start: 109,
+  end: 110,
+  length: 2,
+  gp0: 40,
+  remainder: 17,
+  packetValue: 28,
+  packetRune: "EA",
+  prime: 109,
+  p50Base60: 80,
+}]);
 assert.deepEqual(exactSevenWordGeometry, [{
   page: 0,
   firstWord: 18,
@@ -195,9 +268,13 @@ console.log(JSON.stringify({
   controls: {
     totalUnknownWords: totalWords,
     simpleReturn80Words: return80Words,
+    reciprocalPacketWords,
+    combinedPacketAndReturn80,
+    reciprocalHits,
+    combinedHits,
     p0Return80,
     exactSevenWordGeometry,
   },
   classification:
-    "Downstream local navigation holdout. EA prime109 selects the next word, whose untouched GP0/p50 base60 pointer returns exactly to READ OUT start80; no plaintext is assigned to the word.",
+    "Downstream local navigation holdout. EA prime109 selects the next word; its untouched GP0 both self-indexes EA through the frozen p=23 packet and returns through p50/base60 to READ OUT start80; no plaintext is assigned to the word.",
 }, null, 2));
