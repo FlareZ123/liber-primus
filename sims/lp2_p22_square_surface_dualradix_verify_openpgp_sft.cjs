@@ -75,6 +75,15 @@ sourceWords.forEach((word, index) => {
   sourceByGp0.get(value).push({word, index});
 });
 
+const p57Words = "PARABLE LIKE THE INSTAR TUNNELING TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIVINITY WITHIN AND EMERGE"
+  .split(/\s+/u);
+const p57ByGp0 = new Map();
+p57Words.forEach((word, index) => {
+  const value = gp0(word);
+  if (!p57ByGp0.has(value)) p57ByGp0.set(value, []);
+  p57ByGp0.get(value).push({word, index});
+});
+
 /** @param {number[][]} square @returns {number[]} */
 function outerRing(square) {
   const n = square.length;
@@ -182,6 +191,36 @@ assert.equal(verifyOpenPgpPairs.length, 4);
 // Other authenticated squares have no forward adjacent signed-source pair at all.
 assert.equal(charged[1].adjacentForwardPairs.length, 0);
 assert.equal(charged[2].adjacentForwardPairs.length, 0);
+const p57SurfaceEvents = outerRing(squares[0]).flatMap((source, position) =>
+  [
+    readCell(source, alphabet59, "base59"),
+    readCell(source, alphabet60, "base60"),
+  ].flatMap((row) => (p57ByGp0.get(row.value) || []).map((hit) => ({
+    position,
+    word: hit.word,
+    index: hit.index,
+    radix: row.radix,
+    source,
+    address: row.address,
+    token: row.token,
+    value: row.value,
+  })))
+);
+assert.deepEqual(
+  [...new Map(p57SurfaceEvents.map((row) => [row.word, row])).values()]
+    .map((row) => ({word:row.word,index:row.index}))
+    .sort((left,right) => left.index - right.index),
+  [
+    {word:"CIRCUMFERENCES",index:13},
+    {word:"DIVINITY",index:16},
+  ]
+);
+assert.deepEqual(p57Words.slice(13,17), [
+  "CIRCUMFERENCES",
+  "FIND",
+  "THE",
+  "DIVINITY",
+]);
 
 console.log(JSON.stringify({
   status: "PASS",
@@ -190,8 +229,10 @@ console.log(JSON.stringify({
   targetSquare: {
     events: target.events,
     verifyOpenPgpPairs,
+    p57SurfaceEvents,
+    p57Bracket: p57Words.slice(13,17),
   },
   controls: charged.slice(1),
   decision:
-    "The selected 809-centered square is the only authenticated source square whose uniformly charged two-radix surface contains any forward adjacent signed-source pair; that pair is VERIFY41 -> OPENPGP42. Preserve as cross-source support for the literal SURFACE/OpenPGP route, not as a license to switch radix per target word.",
+    "The selected 809-centered square is the only authenticated source square whose uniformly charged two-radix surface contains any forward adjacent signed-source pair; that pair is VERIFY41 -> OPENPGP42. The same surface yields p57 endpoints CIRCUMFERENCES13 and DIVINITY16, bracketing CIRCUMFERENCES FIND THE DIVINITY. Preserve as cross-source support for the literal SURFACE/OpenPGP route, not as a license to switch radix per target word.",
 }, null, 2));
