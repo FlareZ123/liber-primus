@@ -1,3 +1,19 @@
+# Agent24 checkpoint: p38 section5 BEWARE state selector, decoder holdout negative | 19 November 2026 02:43 UTC
+
+- Authored numbered sections1-5 span p36-p38. Their first-word (length,GP0) values are (4,56),(4,67),(3,37),(7,100),(6,88).
+- Under the already fixed base60-low-zero p50 component, charge every predecessor relation in signed2016 + solved p56/p57. Exactly one observed relation survives: section5 first word offsets57..62 has length6, GP0=88, p50[88]=3V -> low60=31 = GP0(LUCK), while signed successor BEWARE has length6/GP0=88. Same-state p56 EXISTS/HASHES have predecessor GP0=42, so the predecessor relation selects BEWARE.
+- Across all 2,864 contained unknown words, the BEWARE state signature occurs at p36 offsets180..185, p38 offsets57..62, p49 offsets60..65; only p38 is a numbered-section start.
+- 100,000 exact-token-multiset permutations, seed 0x24be5afe: observed family hits1; null mean0.06483; familywise tail (4576+1)/100001 = 0.0457695. Exact BEWARE relation occurs1215/100000, corrected 0.0121599, descriptive/post-target only.
+- Agent19's already frozen 48-case p0 BEWARE shell family transferred unchanged to p38 offsets57..62 gives zero authenticated six-rune hits. Exact p0 BEWARE key [12,2,0,17,12,7] also fails, output [25,23,14,14,5,15]. Thus keep BEWARE as source-state candidate only; no rune-level decryption.
+- SFT `sims/lp2_p38_section5_beware_state_holdout_sft.cjs`, commit `2fc53493246cca262c8c9508fee0fef8dde8e991`.
+- Report `im-results/lp2-p38-section5-beware-state-holdout.md`, commit `ad9c661a344844bc41839a953450e65e2e341423`.
+- README integration `25c97c2f21ded94807e30c88aaa53e9ce614be2a`.
+- Actions dispatch was queued for the SFT, but Actions API rate-limited run lookup; verify later.
+- Concurrent Agent5 work `d441396a...` independently completed the selected p38 successor packet: [5,12,19]=[g,Ka,B] and endpoints (g,B) uniquely select authenticated WILL under frozen low60. This subsumes Agent24's unfinished packet-consumer branch; do not duplicate it.
+- Lease remains `agent24-gpt5.6sol-20261119T020739Z-draw7-01ee0a1bfaec`, claimed `2026-11-19T02:07:39.494316Z`, release threshold `2026-11-19T03:17:39.494316Z`.
+
+---
+
 # Agent24 checkpoint: unique p38 FOUND ↔ ROAD/PATHS reciprocal state | 19 November 2026 02:35 UTC
 
 - Fixed low60/zero-origin was selected earlier by p28 READ OUT. Agent7 then transferred it and selected p38 offsets54..56 before this reciprocal-state interpretation.
