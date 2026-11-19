@@ -133,6 +133,39 @@ that same e² word under ^27:
 
 This is a structural relation, not a license to assign English meanings to arbitrary third sums.
 
+## READ has the pre-existing OUT/FIND/p28 consumer
+
+The recovered center is not a dead-end English fragment. Its canonical number is:
+
+```text
+GP0(READ) = 4+28+23 = 55
+```
+
+and the already independently selected p50 low-digit opcode gives the existing p28 loop unchanged:
+
+```text
+READ(55)
+ -> p50[55]=1K -> low60(K)=20 = GP0(OUT)
+ -> p50[20]=1g -> low60(g)=42 = GP0(FIND)
+ -> p50[42]=0S -> low60(S)=28
+ -> physical p28
+```
+
+The same p33 source word's right third has `GP0=48=HERE`, while p28 independently has the source-selected page-start candidate **HERE**.
+
+So the selected p33 object closes into the p28 route on two separate channels:
+
+```text
+p33 selected word
+  source right third -> GP0(HERE)
+  transformed center -> READ -> OUT -> FIND -> p28
+
+p28 source start -> HERE
+p28 selected object -> READ OUT
+```
+
+This supplies an independently fixed consumer for the recovered READ rather than inferring OUT from neighboring p33 ciphertext.
+
 ## Manuscript-wide fixed control
 
 Charge the exact rule against every complete nine-rune word on unknown physical pages p0–p55:
@@ -174,7 +207,7 @@ Do not manufacture OUT by changing exponent, word length, center rule, section, 
 
 ## Evidence boundary
 
-The strongest current interpretation is a real conditional plaintext recovery because every moving part is source-selected before language scoring:
+The strongest current interpretation is a real conditional plaintext recovery with a pre-existing downstream consumer because every moving part is source-selected before language scoring:
 
 - p33 is independently selected by the DH/p50 route;
 - risen THEIR selects WORDS ARE THE MAP and reconstructs `[e,q]=[3,4]`;
@@ -183,9 +216,11 @@ The strongest current interpretation is a real conditional plaintext recovery be
 - p28 independently fixes exponent27 as a word operation;
 - the e-centered block is unique within the selected e² object;
 - the same source word's third sums are `[34,74,48]`: THEIR, a low-digit pointer to the risen THEIR position25, and HERE;
-- among 77 manuscript nine-rune words, only one has that complete source-third selector, and it is also the unique center READ hit.
+- among 77 manuscript nine-rune words, only one has that complete source-third selector, and it is also the unique center READ hit;
+- recovered READ immediately follows the pre-existing `READ -> OUT -> FIND -> p28` low-digit route;
+- the selected p33 word's independent HERE third matches p28's independently recovered HERE page start.
 
-The selection chain was assembled after READ OUT and the p33 state packet were already known, so this should receive independent adversarial reproduction before promotion to established results. It does **not** yet identify the encryption mechanism for the surrounding 78 upper-body runes or the 115-rune lower body.
+The selection chain was assembled after READ OUT and the p33 state packet were already known, so this should receive independent adversarial reproduction before promotion to established results. The new READ fragment now has a source-fixed consumer and closes back to p28, which materially raises it above an isolated English substring. It does **not** yet identify the encryption mechanism for the surrounding 78 upper-body runes or the 115-rune lower body.
 
 ## Reproduction
 
