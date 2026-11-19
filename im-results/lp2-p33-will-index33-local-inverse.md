@@ -198,6 +198,20 @@ and signed word33=WILL
 
 The H-shell `[p,A,K,-K]` is compact and page-local. After conditioning on GP0 selection, its non-automatic H residue is one of only two hits among 62 charged four-rune source-state page/target pairs, the other being p40 PATHS. The coordinate-role interpretation was learned after the targets were assigned, so a first-party selector for those roles or a prospective transfer in a different receiver family would materially strengthen the cipher-mechanism claim.
 
+## P6 state-packet cross-check
+
+The later p6 master-state investigation supplies a source-visible reconstruction of this exact shell. P6 is independently selected by authenticated `SEEKS` at index6 and `a=6`. Its unique red-title packet has length H-state `[K,-e,g,a]`, repeated maximum length `A=q+q`, and therefore supplies
+
+```text
+[-a,A,K,-K] = [23,8,2,27].
+```
+
+A complete four-rune calibration finds 62 unique same-GP0 source/page receiver pairs. Requiring `H1=A=8` leaves WILL, PATHS, and a duplicated THEIR occurrence; requiring the remaining informative H0/H2 coordinates to lie in the signed state register leaves exactly p33 WILL and p40 PATHS. The `H2/H3` negation is forced by equal GP0 and is treated as a checksum.
+
+A prospectively frozen two-rune reduction fails on the expected IS/BE holdouts, so this remains a bounded four-rune class.
+
+See [p6 master-state packet](lp2-p6-master-state-packet.md) and `sims/lp2_p6_master_state_packet_sft.cjs`, Windows PASS **44461943714**.
+
 ## Reproduction
 
 Run:
