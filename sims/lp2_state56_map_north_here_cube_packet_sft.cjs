@@ -260,6 +260,155 @@ const expectedPacket = [b, a, mod29(K * g)];
 assert.deepEqual(cubePacket, [15, 6, 10]);
 assert.deepEqual(cubePacket, expectedPacket);
 
+
+// Literal-hex state semantics on the independently reconstructed DH fields.
+// Among the seven direct fields, a is the sole address whose token is a
+// printable hexadecimal byte: p50[6] = 26 = ASCII '&', the ordinary symbol
+// for AND. The product field K*g independently lands on 2a = ASCII '*'.
+function printableHex(token) {
+  if (!/^[0-9A-Fa-f]{2}$/.test(token)) return null;
+  const code = Number.parseInt(token, 16);
+  return code >= 32 && code <= 126 ? String.fromCharCode(code) : null;
+}
+
+const directState = { p, g, a, b, A, B, K };
+const printableDirectStateTokens = Object.entries(directState)
+  .map(([name, value]) => ({
+    name,
+    value,
+    token: table[value],
+    printable: printableHex(table[value]),
+  }))
+  .filter((entry) => entry.printable !== null);
+assert.deepEqual(printableDirectStateTokens, [{
+  name: "a",
+  value: 6,
+  token: "26",
+  printable: "&",
+}]);
+assert.equal(printableHex(table[mod29(K * g)]), "*");
+
+const state56Collision = ["MAP", "AND", "SEEK"];
+assert.deepEqual(
+  state56Collision.filter((word) => word === "AND"),
+  ["AND"]
+);
+
+// The cubed packet also reconstructs the independently recovered YOU key
+// through the already frozen H operation, without using plaintext letters.
+// q=[b,a,K*g]. H(b,K*g).diff recovers g, then d=H(a,g).diff.
+// [H(p,d).diff, d, H(b,g).sum] is exactly [22,1,20].
+const recoveredG = H(cubePacket[0], cubePacket[2])[0];
+const d = H(cubePacket[1], recoveredG)[0];
+assert.equal(recoveredG, g);
+assert.equal(d, mod29(a - g));
+assert.equal(d, 1);
+const youKey = [
+  H(p, d)[0],
+  d,
+  H(cubePacket[0], recoveredG)[1],
+];
+assert.deepEqual(youKey, [22, 1, 20]);
+const youPlain = receiver.values.map((value, index) =>
+  mod29(value - youKey[index])
+);
+assert.deepEqual(youPlain, gp("YOU"));
+
+// Charge every nearby H-coordinate/orientation choice in the same tree,
+// both additive signs, and every authenticated three-rune target.
+function hChoices(left, right) {
+  return [
+    { name: "xy-d", value: H(left, right)[0] },
+    { name: "xy-s", value: H(left, right)[1] },
+    { name: "yx-d", value: H(right, left)[0] },
+    { name: "yx-s", value: H(right, left)[1] },
+  ];
+}
+
+const threeRuneTargets = new Map();
+for (const word of signed) {
+  const values = gp(word);
+  if (values.length === 3) {
+    if (!threeRuneTargets.has(values.join(","))) {
+      threeRuneTargets.set(values.join(","), []);
+    }
+    threeRuneTargets.get(values.join(",")).push(word);
+  }
+}
+
+const hTreeTargetHits = [];
+let hTreeConfigs = 0;
+for (const gChoice of hChoices(cubePacket[0], cubePacket[2])) {
+  for (const dChoice of hChoices(cubePacket[1], gChoice.value)) {
+    for (const k0Choice of hChoices(p, dChoice.value)) {
+      for (const k2Choice of hChoices(cubePacket[0], gChoice.value)) {
+        const key = [k0Choice.value, dChoice.value, k2Choice.value];
+        for (const sign of [-1, 1]) {
+          hTreeConfigs += 1;
+          const plain = receiver.values.map((value, index) =>
+            mod29(value + sign * key[index])
+          );
+          const matches = threeRuneTargets.get(plain.join(",")) || [];
+          if (matches.length) {
+            hTreeTargetHits.push({
+              gChoice: gChoice.name,
+              dChoice: dChoice.name,
+              k0Choice: k0Choice.name,
+              k2Choice: k2Choice.name,
+              key,
+              sign: sign === -1 ? "subtract" : "add",
+              plain,
+              matches,
+            });
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(hTreeConfigs, 512);
+assert.equal(hTreeTargetHits.length, 4);
+const distinctHTreeOps = new Map(
+  hTreeTargetHits.map((hit) => [
+    [hit.key.join(","), hit.sign, hit.plain.join(",")].join("|"),
+    hit,
+  ])
+);
+assert.equal(distinctHTreeOps.size, 1);
+assert.deepEqual([...distinctHTreeOps.values()][0].key, youKey);
+assert.deepEqual([...distinctHTreeOps.values()][0].matches, ["YOU"]);
+
+// Exact fixed-key manuscript transfer under the compressed H-tree key.
+const youKeyManuscriptHits = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  for (const word of parsePage(parts[page]).words) {
+    if (word.length !== 3) continue;
+    const plain = word.values.map((value, index) =>
+      mod29(value - youKey[index])
+    );
+    const matches = threeRuneTargets.get(plain.join(",")) || [];
+    if (matches.length) {
+      youKeyManuscriptHits.push({
+        page,
+        word: word.index,
+        start: word.start,
+        cipher: word.values,
+        plain,
+        matches,
+      });
+    }
+  }
+}
+assert.deepEqual(youKeyManuscriptHits, [{
+  page: 0,
+  word: 56,
+  start: 254,
+  cipher: [19, 4, 21],
+  plain: gp("YOU"),
+  matches: ["YOU"],
+}]);
+
 // Manuscript-wide control: exact tuple and every permutation of its multiset.
 const packetPermutations = new Set([
   [15, 6, 10],
@@ -345,6 +494,25 @@ console.log(JSON.stringify({
     cipher: receiver.values,
     cubePacket,
     typedPacket: ["b", "a", "K*g"],
+    directStateHex: {
+      printableDirectStateTokens,
+      productKg: {
+        value: mod29(K * g),
+        token: table[mod29(K * g)],
+        printable: printableHex(table[mod29(K * g)]),
+      },
+    },
+    hTreeYou: {
+      recoveredG,
+      d,
+      key: youKey,
+      plaintext: youPlain,
+      text: youPlain.map((value) => corpus.translit[value]).join(""),
+      familyConfigs: hTreeConfigs,
+      labeledTargetHits: hTreeTargetHits.length,
+      distinctTargetOperations: distinctHTreeOps.size,
+      manuscriptTargetHits: youKeyManuscriptHits.length,
+    },
   },
   controls: {
     signedDistinctGpAddresses: signedAddresses.length,
