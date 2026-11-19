@@ -176,7 +176,33 @@ Apply the exact key unchanged to all **251** complete six-rune unknown words, bo
 
 This supplies an exact reversible local mechanism for the independently selected block. The key-template chronology remains retrospective.
 
-Reproducer: `sims/lp2_p38_section5_beware_dh_shell_inverse_sft.cjs`. Windows Node22 PASS: Actions run **44447593645**.
+### Precommitted fresh transfer fails
+
+Before opening the source-assigned p0 VERIFY ciphertext in the Agent7 invocation, freeze the exact p38 key and subtraction direction on p0 offsets177..182.
+
+The held-out original ciphertext is:
+
+```text
+p0 VERIFY receiver177..182
+[0,14,25,13,6,14]
+```
+
+Exact transfer:
+
+```text
+[0,14,25,13,6,14]
+-
+[20,7,7,7,13,4]
+mod29
+=
+[9,7,18,6,22,10]
+```
+
+Canonical VERIFY is `[1,18,4,10,0,26]`, so the transfer fails.
+
+This is a useful localization result. The exact p38 key is retired as a reusable six-rune decoder; the p38 BEWARE inverse remains local. No sign, rotation, peer-field substitution, or shell permutation is admitted after this failure.
+
+Reproducer: `sims/lp2_p38_section5_beware_dh_shell_inverse_sft.cjs`. Windows Node22 PASS: initial inverse run **44447593645**; holdout-integrated rerun **44448030240**.
 
 ## Decision
 

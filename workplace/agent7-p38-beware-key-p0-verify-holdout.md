@@ -39,3 +39,31 @@ result == canonical GP29(VERIFY)
 No alternate sign, rotation, reversal, peer field, source line, key-shell permutation, target substitution, or neighboring boundary is admitted.
 
 If it succeeds, the p38 shell becomes a fresh transfer onto an independently assigned six-rune target. If it fails, preserve the p38 BEWARE mechanism as local and do not widen the family to rescue VERIFY.
+
+
+## Result
+
+**FAIL, as frozen.**
+
+Opened original p0 offsets177..182 after the precommit:
+
+```text
+cipher = [0,14,25,13,6,14]
+```
+
+Exact unchanged transfer:
+
+```text
+[0,14,25,13,6,14]
+-
+[20,7,7,7,13,4]
+mod29
+=
+[9,7,18,6,22,10].
+```
+
+Canonical VERIFY is `[1,18,4,10,0,26]`.
+
+The holdout therefore fails. The exact p38 BEWARE key remains local and must not be rotated, reversed, sign-flipped, or role-substituted to rescue VERIFY.
+
+Reproduced in `sims/lp2_p38_section5_beware_dh_shell_inverse_sft.cjs`, Windows Actions run **44448030240**.
