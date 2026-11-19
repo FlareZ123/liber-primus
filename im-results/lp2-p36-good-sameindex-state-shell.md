@@ -208,4 +208,4 @@ Run:
 node sims/lp2_p36_good_sameindex_state_shell_sft.cjs
 ```
 
-The SFT reconstructs the authenticated state, confirms GOOD's GP packet, performs the complete four-rune same-index state census, verifies the p36 receiver and exact inverse, charges the 81-shell family, and runs the manuscript-wide exact-key control.
+The SFT reconstructs the authenticated state, confirms GOOD's GP packet, performs the complete four-rune same-index state census, verifies the p36 receiver and exact inverse, charges the 81-shell family, and runs the manuscript-wide exact-key control. Windows Node22 PASS: run **44459869563**.
