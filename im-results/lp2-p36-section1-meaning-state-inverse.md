@@ -50,6 +50,37 @@ The state is independently reconstructed from the authenticated 2016 source:
 
 The p6 master-state packet independently exposes the same ingredients, including `K`, `e`, `a`, `B`, `b`, `-K` and `-b`.
 
+## Full source-visible key-alphabet charge
+
+The receiver and key alphabet can be fixed from original red marks before imposing the successful palindrome structure.
+
+The visible values adjacent to the selected section are:
+
+```text
+section marker: 1
+10-dot column signature: 3,4,3
+distinct source-visible values: {1,3,4}
+```
+
+Because the selected receiver has four runes, enumerate **every** four-slot key over that visible alphabet:
+
+```text
+3^4 = 81 keys
+x 2 additive signs
+x 9 distinct authenticated four-rune source targets
+= 1,458 configurations.
+```
+
+There is exactly one hit:
+
+```text
+key    [1,3,3,1]
+sign   subtraction
+target MEANING.
+```
+
+This charge does not assume a palindrome, state-field ordering, or a preferred use of the center versus outer dot columns. The successful key emerges as the sole authenticated hit from the complete local visual key alphabet. Its later interpretation as `[section,e,e,section]` and H shell `[0,0,a,K]` is therefore explanatory rather than required for the selection.
+
 ## Source-derived numbered-section key family
 
 The numbered block is also visibly bracketed by matching red 10-dot glyphs on p36 and p38. The independent original-image geometry audit fixes every 10-dot glyph's column signature as:
