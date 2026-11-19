@@ -208,8 +208,14 @@ function evaluate(tokens) {
     anyOneOrTwoBoundary: false,
     anyTwoSameWord: false,
     anyTwoCarrier: false,
+    anyDualRadixConvergence: false,
+    anyDualRadixBoundaryConvergence: false,
+    anyDualRadixCommonTarget: false,
+    anyDualRadixStableIntermediates: false,
     anyDualRadixShape: false,
     djuAnyTwoBoundary: false,
+    djuDualRadixCommonTarget: false,
+    djuDualRadixStableIntermediates: false,
     djuDualRadixShape: false,
     familyRows: 0,
     oneBoundaryRows: 0,
@@ -246,18 +252,35 @@ function evaluate(tokens) {
     const a = byPairType[i].base59;
     const b = byPairType[i].base60;
     if (!a || !b) continue;
-    const shape =
+    const dualConvergence =
       a.distinctFirst && b.distinctFirst &&
       a.distinctIntermediate && b.distinctIntermediate &&
-      a.firstBothBoundary && b.firstBothBoundary &&
-      a.twoTokenEqual && b.twoTokenEqual &&
-      a.twoSameWord && b.twoSameWord &&
+      a.twoSameWord && b.twoSameWord;
+    const dualBoundaryConvergence =
+      dualConvergence && a.firstBothBoundary && b.firstBothBoundary;
+    const dualCommonTarget =
+      dualBoundaryConvergence &&
+      a.left.target.index === b.left.target.index;
+    const dualStableIntermediates =
+      dualCommonTarget &&
       a.left.intermediate.index === b.left.intermediate.index &&
-      a.right.intermediate.index === b.right.intermediate.index &&
-      a.left.target.index === b.left.target.index &&
+      a.right.intermediate.index === b.right.intermediate.index;
+    const shape =
+      dualStableIntermediates &&
+      a.twoTokenEqual && b.twoTokenEqual &&
       a.left.secondClass === "start" &&
       b.left.secondClass === "interior" &&
       b.left.secondValue === a.left.secondValue + 1;
+    if (dualConvergence) metrics.anyDualRadixConvergence = true;
+    if (dualBoundaryConvergence) metrics.anyDualRadixBoundaryConvergence = true;
+    if (dualCommonTarget) {
+      metrics.anyDualRadixCommonTarget = true;
+      if (i === djuIndex) metrics.djuDualRadixCommonTarget = true;
+    }
+    if (dualStableIntermediates) {
+      metrics.anyDualRadixStableIntermediates = true;
+      if (i === djuIndex) metrics.djuDualRadixStableIntermediates = true;
+    }
     if (shape) {
       metrics.anyDualRadixShape = true;
       if (i === djuIndex) metrics.djuDualRadixShape = true;
@@ -311,8 +334,14 @@ function runNull(mode, trials) {
     anyOneOrTwoBoundary: 0,
     anyTwoSameWord: 0,
     anyTwoCarrier: 0,
+    anyDualRadixConvergence: 0,
+    anyDualRadixBoundaryConvergence: 0,
+    anyDualRadixCommonTarget: 0,
+    anyDualRadixStableIntermediates: 0,
     anyDualRadixShape: 0,
     djuAnyTwoBoundary: 0,
+    djuDualRadixCommonTarget: 0,
+    djuDualRadixStableIntermediates: 0,
     djuDualRadixShape: 0,
   };
   for (let trial = 0; trial < trials; trial += 1) {
