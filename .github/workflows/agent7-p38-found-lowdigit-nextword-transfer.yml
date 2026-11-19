@@ -1,0 +1,19 @@
+name: Agent7 p38 FOUND low-digit next-word transfer
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run p38 FOUND low-digit transfer
+        shell: cmd
+        run: node sims\lp2_p38_found_lowdigit_nextword_transfer_sft.cjs
