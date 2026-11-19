@@ -92,7 +92,7 @@ EPIPHANY SEEKS THE DEVOTED
  -> WORDS ARE THE MAP THEIR...
 ```
 
-A decisive successor should use fixed source position19 THEIR and the continuation `MEANING IS THE ROAD` to select a new operation or original ciphertext target before reading its values.
+That successor now exists independently on p33. The solved-p56 serializer recovers `THEIR RISE`; signed THEIR occurs only at zero-based positions19 and25, so the instruction rises from this p32-selected first THEIR to the second. The second occurrence immediately opens `THEIR NUMBERS ARE THE DIRECTION`, and the rise is6=`a`. Under the source-fixed zero-based convention, using each signed word's number as an upward row displacement on the 8-column p50 table makes PATH index2 and SEEKS index6 the only valid words to land on a reconstructed DH field, both at `p=23`. This supplies a source-side selector for the p=23 depth of the established SEEKS route. See `lp2-their-rise-signed-direction-bridge.md`.
 
 ## Reproduction
 
