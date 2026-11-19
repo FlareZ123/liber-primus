@@ -177,6 +177,9 @@ const p15Square = [
   [3288,3294,3296,2472],
   [4516,1206,708,1820],
 ];
+const redSquareValue = 3299;
+assert.equal(3301 - redSquareValue, state.K);
+assert.equal(redLengths[1] - redLengths[0], 3301 - redSquareValue);
 const rows = p15Square.length;
 const cols = p15Square[0].length;
 assert.equal(rows, 4);
