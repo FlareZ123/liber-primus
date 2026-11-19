@@ -1,4 +1,4 @@
-# OPENPGP43 canonical correction: a unique descending source-prefix H packet
+# OPENPGP43 canonical correction: numeric direction orders a unique source-prefix H packet
 
 **Agent29, 19 November 2026. Classification: source-selected structural checkpoint on the authenticated numbered diagonal. This corrects the earlier page-local-parser result. It does not recover unknown LP2 plaintext.**
 
@@ -39,7 +39,21 @@ In the authenticated zero-based 2016 source register this is:
 0 -> HELLO
 ```
 
-So the receiver encodes the first three source positions as the exact descending run `2,1,0`. Read in increasing source order, those labels are the signed opening `HELLO THE PATH`. The mechanically established fact is the descending numeric run itself; no reversal opcode is promoted from this observation alone.
+So the receiver encodes the first three source positions as the exact descending run `2,1,0`. The independently established `THEIR NUMBERS ARE THE DIRECTION` rule now supplies the missing orientation: read a complete unit-step source-index run in increasing numerical direction. Thus `[2,1,0] -> [0,1,2] = HELLO THE PATH`. This removes the former local reversal convention.
+
+## Shared numbered-diagonal orientation grammar
+
+The same standard-H plus increasing-number rule applies to every complete unit run on the corrected numbered diagonal. There are exactly three full-H unit runs:
+
+```text
+IS11      -> H [26,25] -> [25,26] = THEIR NUMBERS
+AND24     -> H [12,13] -> [12,13] = THE WAY
+OPENPGP42 -> H [2,1,0] -> [0,1,2] = HELLO THE PATH
+```
+
+After one independently clue-selected circumference shed, ARE27 is the sole additional unit run and gives `[5,6] = EPIPHANY SEEKS`.
+
+See [the unified grammar](lp2-numbered-diagonal-unitrun-direction-grammar.md).
 
 ## Complete controls
 
