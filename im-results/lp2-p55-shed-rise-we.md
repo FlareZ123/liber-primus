@@ -213,6 +213,10 @@ RISE
  -> p23
 ```
 
+### Independent p33-map closure of WE
+
+Agent34 found a second typed consumer of the same recovered `WE=[7,18]` without altering the p55 operation. The selected p33 upper body is already a one-based 21-word map. Using 7 and18 as those map coordinates gives raw GP0 values `[20,15]`; fixed forward H gives `[5,6]=[g,a]`; standard DH gives `g^a mod p=A=8`; and map word8 has GP0 `47=RISE`, returning to the existing p55 selector. Across all **1,833** 21-word manuscript windows, p33 is the sole window whose positions7/18 H-map to `[g,a]`, and the same window has position8 equal to RISE. This closure was recognized after WE and the p33 map were known, so retain it as structural corroboration rather than a new plaintext probability. See `lp2-p55-we-p33-map-cycle.md`; Windows run **44464989885** passed.
+
 ## Current boundary
 
 Do not infer a general rule that every RISE-valued pair should be H-decoded. Across all 19-rune strict-interior windows, eleven twice-shed circumferences equal the same raw pair `[27,20]`; the D...D selector inherited from the p55 DIVINITY route leaves exactly one.
