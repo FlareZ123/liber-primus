@@ -1,48 +1,22 @@
 # P28 READ OUT pre-output family audit
 
-**Agent3 with Agent16/Agent31 source-selector updates and Agent6/Agent27 circumference audit, 19 November 2026. Director #1705. Classification: leading p28-local plaintext/instruction candidate with a language-free external numeric selector and a first-party GP29 cube operator. The authenticated-source p50 transition selects the READ OUT rune output uniquely across the charged DH/shell family and across all independent reversible uniform GP29 power pairs on the source-selected object. Solved p57 circumference grammar strongly selects the p28 object but does not uniquely authenticate exponent27: the independent circumference holdout favors removal-count semantics. The transform remains p28-local rather than a demonstrated manuscript-wide cipher, and discovery chronology remains explicit.**
+**Agent3 with later Agent16/Agent31/Agent45 updates, 19 November 2026. Director #1705. Classification: leading p28-local plaintext/instruction candidate with a language-free cross-object numeric selector and a first-party GP29 cube operator. The strongest selector is p39's independently selected outer-circumference pair [55,20], not the p50 low-digit transition whose prospective general-opcode gate later failed. P53 independently supplies [e,-K]=[3,27]. The p28-specific two-part application and post-discovery chronology remain the main caveats.**
 
 ## Decision
 
-The original `READ OUT` recovery survives exact reproduction and has unusually strong **source-object selection**. The earlier full pre-output family correctly showed that English output alone could not authenticate it because the exact p28 source object had two phrase-producing transforms: **READ OUT** and **LUNG DEAR**.
+The exact p28 source object has two English-producing local rivals, **READ OUT** and **LUNG DEAR**, so language alone does not authenticate the output.
 
-Agent16 later established an independent first-party p50 state-pointer route from the authenticated 2016 clue. The source relation **“their numbers are the direction”** gives `GP0(NUMBERS)=83` and `GP0(DIRECTION)=112`; the native-base60 zero-based low digit sends both to13 and then follows `13 -> 4 -> 37 -> 20 -> 42 -> 28`, where `20=GP0(OUT)`, `42=GP0(FIND)`, and 28 is physical p28. Across the three explicit clue noun relations and the complete 16 component conventions, only NUMBERS/DIRECTION under base60/low/zero/zero converges and reaches `FIND -> p28`.
+The strongest current numeric selector comes from a separately selected manuscript object. Solved p57's circumference route selects p39 before this statistic is read. Forward H over p39's word circumferences gives transformed length **55** and GP0 sum mod29 **20**, supplying ordered pair `[55,20]`.
 
-The first downstream charge uses the English parses only as a diagnostic. Apply the external operation to **every two-word parse produced by the complete 44-transform × 2-orientation family on the already fixed p28 center/right-edge object**. Exactly one survives the source-order condition
+Charge `[55,20]` against every reversible uniform GP29 power map on the fixed p28 center-plus-word28 object: 12 center exponents × 12 word exponents × 2 orientations × 5 cuts = **1,440** configurations. Exactly `(3,27)` and `(17,27)` survive, and both produce the same raw output `[4,28,23] | [3,1,16]` with GP0 sums `[55,20]`. The center alias exists because source rune9 has the same image under exponents3 and17; authenticated `e=3` resolves it. Only afterward does the raw output transliterate **READ OUT**.
 
-```text
-first word -> second word -> FIND(42) -> p28
-```
+P53 independently exposes `[e,-K]=[3,27]`, and authenticated source word numbers independently select `C(x)=x^3 mod29`. These sources provide the operator and parameter pair without the low-digit hypothesis.
 
-and it is `READ -> OUT -> FIND -> p28`. The local rival `LUNG DEAR` fails because `GP0(LUNG)=42` points directly to p28.
+An earlier selector used `READ -> OUT -> FIND -> p28` under the native-base60 p50 low/right transition. Preserve it as route-specific corroboration only. Director #1787 sealed GOOD→LUCK prospectively; all 16 modes miss, and the preferred mode has 0/84 held-out adjacent-word transitions across authenticated 2016 plus solved p56/p57. The low/right transition is not a generally authenticated navigation opcode.
 
-A stronger test removes the dictionary and word recognition entirely. For every raw six-rune output of the same 44 transforms in both orientations, charge all five internal rune-boundary splits. For each split, compute the two canonical GP0 sums and require only
+The remaining premise is why the sourced `[3,27]` pair should act separately on the exact p28 center singleton and adjacent five-rune word. P28's geometry and literal DH line motivate that split, while the cross-object selectors remain post-discovery corroboration.
 
-```text
-GP0(left) -> GP0(right) -> FIND(42) -> p28
-```
-
-under the frozen native-base60 low-digit transition. This is **44 × 2 × 5 = 440** numeric configurations. Exactly one survives:
-
-```text
-transform = uniform (3,27)
-orientation = forward
-split = 3 | 3
-raw output = [4,28,23] | [3,1,16]
-GP0 sums = 55 | 20
-walk = 55 -> 20 -> 42 -> 28
-```
-
-Only after this language-free selection do the runes transliterate as `READ | OUT`.
-
-Widen the uniform transform family further. Allow every exponent coprime to 28 independently on the boundary and five-rune word, all orientations, and all five splits. The reversible exponent register is `{1,3,5,9,11,13,15,17,19,23,25,27}`, giving **12 × 12 × 2 × 5 = 1,440** numeric configurations. Two parameter tuples survive, `(3,27)` and `(17,27)`, and both produce the **identical raw six-rune output** because source center value9 satisfies `9^3 = 9^17 = 4 mod29`. Thus the broader reversible family still has exactly **one surviving raw output**. The source-derived DH exponent `e=3` resolves the residual parameter alias.
-
-This materially changes the acceptance status. The full local language family no longer leaves READ OUT tied with its p28 rival once the independently supported state-navigation operation is applied.
-
-Solved p57 still gives strong source-object compression: `FIND -> p28`, `DIVINITY -> [K,g]=[2,5]`, word28 length `g=5`, `K=2` literal sheds to its center, and `e=3` nonempty layers. That geometry does **not** uniquely choose the action count. The wording supports both `K=2` removal actions and `e=3` nonempty layers, giving competing word exponents `e^K=9` and `e^e=27`. Agent27's independent p39 circumference transfer treats named depth as the number of removal actions and therefore favors the `e^K=9` convention; the frozen nonempty-layer rule also misses the source-selected solved-p56 transfer at all three runes. Preserve p57 as object-selection/intended-route compression rather than an authenticated exponent27 selector.
-
-Agent31 separately supplies a first-party selector for the operator class itself: authenticated 2016 word numbers give `e=LIES=3` and `DIRECTION=29`, so `C(x)=x^3 mod29` is source-defined; exponent3 uniquely maps the reconstructed `K->A->B->b` chain and continues through source words `IS(11)->NUMBERS(26)->PATH(2)`. The remaining model premise is therefore **why that authenticated cube map should act separately on the p28 center singleton and adjacent five-rune word, with the five-rune side landing at exponent27 rather than the source-typed removal-count rival9**. The original scan does not visually state that two-part application, and the relevant connections were recognized after READ OUT was already known. The old full-p50-numeral → LP2-rune-offset receiver branch is no longer required for this output-selection result. See [authenticated word-number cube operator](lp2-signed2016-wordnumber-cube-operator.md) and [circumference authentication gate](lp2-p57-circumference-readout-authentication-gate.md).
-
+See `lp2-p39-outer-readout-selector.md`, `lp2-signed2016-wordnumber-cube-operator.md`, `lp2-shed-circumferences-page-pointer.md`, and `lp2-lowdigit-good-luck-blind-gate.md`.
 ## Exact reproduction
 
 The original p28 ciphertext has 269 runes, hence exact center offset134. Printed one-based word28 begins immediately afterward at offset135 and has five runes.
@@ -227,20 +201,17 @@ Reproduction: `sims/lp2_p28_periodcount_inverse_readout_sft.cjs`; Windows Node22
 
 ## Remaining evidence boundary
 
-Seven facts now coexist:
+The strongest current facts are:
 
-1. authenticated source text independently selects the native-base60 low-digit p50 transition and reaches physical p28 through solved `FIND`;
-2. p28's exact center-plus-page-word input object is uniquely constrained by visible/countable manuscript geometry;
-3. the complete p28 source-object phrase family yields two English rivals, while the external low-digit route selects **READ OUT** alone;
-4. more strongly, the external route selects the same raw rune output before language scoring, uniquely across all 440 charged DH/shell transform-orientation-split configurations and as the sole raw output across all 1,440 independent reversible uniform GP29 power-pair/orientation/split configurations;
-5. the source-derived DH exponent `e=3` resolves the only surviving center-exponent alias, `3` versus `17`, which happens to act identically on the source center rune9;
-6. solved p57 circumference/state grammar independently fixes the winning nonempty-layer convention: `DIVINITY -> [K,g]=[2,5]`, the selected p28 word has length `g=5`, literal shedding gives `5 -> 3 -> 1`, and `K+1=e=3` yields the exact `(3,27)` action counts while the nearest count conventions fail;
-7. a separately selected p32 unknown receiver later consumes READ OUT under the fixed outer-H rule and returns authenticated `THE DEVOTED`; the independently fixed `DIRECTION=29` fold continues that result to `GOOD LUCK`. Solved-page transfer still does not establish the p28 power operation as a manuscript-wide cipher, and both selector connections were recognized after READ OUT was already visible.
+1. p28's center-plus-word28 input object is tightly constrained by manuscript geometry and the literal DH line;
+2. authenticated source word numbers select the GP29 cube operator and `e=3`;
+3. p53 independently exposes `[e,-K]=[3,27]`;
+4. separately selected p39 supplies raw-output coordinates `[55,20]`;
+5. `[55,20]` selects one raw six-rune p28 output across all 1,440 reversible uniform power/orientation/cut cases, apart from the known center-value exponent alias;
+6. after numeric selection, that output transliterates **READ OUT**;
+7. READ OUT directly selects the outer H layer at p28's start, producing **HERE**.
 
-Accordingly, the strongest defensible status is **source-selected high-confidence p28-local plaintext/instruction candidate with the raw output and exact layer-count convention independently constrained**. The remaining model premise is why this source-selected center-plus-word object should receive separate reversible GP29 power maps at all. Discovery chronology also prevents treating the convergent selectors as a blind recovery probability. A first-party clue that fixes that operator class before opening its target, or a fresh untouched ciphertext consequence that specifically requires the full p28 power transform, would close the remaining gap.
-
-The rejected full-numeral p50→LP-rune-offset model remains retired and is not an acceptance prerequisite for this branch.
-
+Director #1787 rejects promotion of the earlier low/right p50 route to a general opcode. READ OUT remains the leading p28 instruction candidate; the principal gap is the p28-specific assignment of the sourced `[3,27]` pair to the two visible source parts, plus retrospective discovery chronology.
 ## Reproduction
 
 - SFT: [`sims/lp2_p28_readout_familywise_audit_sft.cjs`](../sims/lp2_p28_readout_familywise_audit_sft.cjs)
