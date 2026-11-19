@@ -28,17 +28,15 @@ function hOutsideIn(values) {
   return output;
 }
 
-/** @param {number[]} values @returns {boolean} */
-function isUnitRun(values) {
-  if (values.length < 2) return false;
-  const step = values[1] - values[0];
-  if (Math.abs(step) !== 1) return false;
-  return values.every((value, index) => index === 0 || value - values[index - 1] === step);
-}
-
-/** @param {number[]} values @returns {number[]} */
-function increasingDirection(values) {
-  return values.slice().sort((left, right) => left - right);
+/** @param {number[]} values @returns {number[]|null} */
+function completeInterval(values) {
+  if (values.length < 2) return null;
+  const ordered = values.slice().sort((left, right) => left - right);
+  if (new Set(ordered).size !== ordered.length) return null;
+  for (let index = 1; index < ordered.length; index += 1) {
+    if (ordered[index] !== ordered[index - 1] + 1) return null;
+  }
+  return ordered;
 }
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
@@ -111,26 +109,27 @@ const diagonal = source.map((sourceWord, sourceIndex) => ({
 }));
 
 assert.equal(diagonal.filter((row) => row.object).length, 42);
-assert.deepEqual(
-  diagonal.filter((row) => !row.object).map((row) => [row.sourceIndex, row.sourceWord]),
-  [[32, "YOU"]]
-);
+assert.deepEqual(diagonal.filter((row) => !row.object).map((row) => [row.sourceIndex, row.sourceWord]), [[32, "YOU"]]);
 
-const fullUnitRuns = diagonal
+const direct = diagonal
   .filter((row) => row.object)
-  .map((row) => ({
-    sourceIndex: row.sourceIndex,
-    sourceWord: row.sourceWord,
-    page: row.object.page,
-    ordinal: row.object.ordinal,
-    start: row.object.start,
-    values: row.object.values,
-    h: hOutsideIn(row.object.values),
-  }))
-  .filter((row) => isUnitRun(row.h));
+  .map((row) => {
+    const h = hOutsideIn(row.object.values);
+    return {
+      sourceIndex: row.sourceIndex,
+      sourceWord: row.sourceWord,
+      page: row.object.page,
+      ordinal: row.object.ordinal,
+      start: row.object.start,
+      values: row.object.values,
+      h,
+      interval: completeInterval(h),
+    };
+  })
+  .filter((row) => row.interval);
 
 assert.deepEqual(
-  fullUnitRuns.map((row) => ({
+  direct.map((row) => ({
     sourceIndex: row.sourceIndex,
     sourceWord: row.sourceWord,
     page: row.page,
@@ -138,50 +137,21 @@ assert.deepEqual(
     start: row.start,
     values: row.values,
     h: row.h,
-    increasing: increasingDirection(row.h),
-    words: increasingDirection(row.h).map((index) => source[index]),
+    interval: row.interval,
+    words: row.interval.map((index) => source[index]),
   })),
   [
-    {
-      sourceIndex: 11,
-      sourceWord: "IS",
-      page: 11,
-      ordinal: 12,
-      start: 49,
-      values: [11, 14],
-      h: [26, 25],
-      increasing: [25, 26],
-      words: ["THEIR", "NUMBERS"],
-    },
-    {
-      sourceIndex: 24,
-      sourceWord: "AND",
-      page: 24,
-      ordinal: 25,
-      start: 115,
-      values: [27, 15],
-      h: [12, 13],
-      increasing: [12, 13],
-      words: ["THE", "WAY"],
-    },
-    {
-      sourceIndex: 42,
-      sourceWord: "OPENPGP",
-      page: 42,
-      ordinal: 43,
-      start: 206,
-      values: [16, 0, 14],
-      h: [2, 1, 0],
-      increasing: [0, 1, 2],
-      words: ["HELLO", "THE", "PATH"],
-    },
+    {sourceIndex:11,sourceWord:"IS",page:11,ordinal:12,start:49,values:[11,14],h:[26,25],interval:[25,26],words:["THEIR","NUMBERS"]},
+    {sourceIndex:24,sourceWord:"AND",page:24,ordinal:25,start:115,values:[27,15],h:[12,13],interval:[12,13],words:["THE","WAY"]},
+    {sourceIndex:42,sourceWord:"OPENPGP",page:42,ordinal:43,start:206,values:[16,0,14],h:[2,1,0],interval:[0,1,2],words:["HELLO","THE","PATH"]},
   ]
 );
 
-const shedUnitRuns = diagonal
+const oneShed = diagonal
   .filter((row) => row.object && row.object.values.length >= 4)
   .map((row) => {
     const shed = row.object.values.slice(1, -1);
+    const h = hOutsideIn(shed);
     return {
       sourceIndex: row.sourceIndex,
       sourceWord: row.sourceWord,
@@ -190,13 +160,14 @@ const shedUnitRuns = diagonal
       start: row.object.start,
       values: row.object.values,
       shed,
-      h: hOutsideIn(shed),
+      h,
+      interval: completeInterval(h),
     };
   })
-  .filter((row) => isUnitRun(row.h));
+  .filter((row) => row.interval);
 
 assert.deepEqual(
-  shedUnitRuns.map((row) => ({
+  oneShed.map((row) => ({
     sourceIndex: row.sourceIndex,
     sourceWord: row.sourceWord,
     page: row.page,
@@ -205,42 +176,32 @@ assert.deepEqual(
     values: row.values,
     shed: row.shed,
     h: row.h,
-    increasing: increasingDirection(row.h),
-    words: increasingDirection(row.h).map((index) => source[index]),
+    interval: row.interval,
+    words: row.interval.map((index) => source[index]),
   })),
   [
-    {
-      sourceIndex: 27,
-      sourceWord: "ARE",
-      page: 27,
-      ordinal: 28,
-      start: 111,
-      values: [0, 20, 15, 1],
-      shed: [20, 15],
-      h: [5, 6],
-      increasing: [5, 6],
-      words: ["EPIPHANY", "SEEKS"],
-    },
+    {sourceIndex:27,sourceWord:"ARE",page:27,ordinal:28,start:111,values:[0,20,15,1],shed:[20,15],h:[5,6],interval:[5,6],words:["EPIPHANY","SEEKS"]},
   ]
 );
 
 console.log(JSON.stringify({
   status: "PASS",
   directionInstruction: source.slice(25, 30),
-  fullUnitRuns: fullUnitRuns.map((row) => ({
+  directConsecutiveSets: direct.map((row) => ({
     selector: `${row.sourceWord}${row.sourceIndex}`,
     receiver: `p${row.page} word${row.ordinal}`,
     h: row.h,
-    increasing: increasingDirection(row.h),
-    words: increasingDirection(row.h).map((index) => source[index]),
+    interval: row.interval,
+    words: row.interval.map((index) => source[index]),
   })),
-  oneShedUnitRuns: shedUnitRuns.map((row) => ({
+  oneShedConsecutiveSets: oneShed.map((row) => ({
     selector: `${row.sourceWord}${row.sourceIndex}`,
     receiver: `p${row.page} word${row.ordinal}`,
     shed: row.shed,
     h: row.h,
-    words: increasingDirection(row.h).map((index) => source[index]),
+    interval: row.interval,
+    words: row.interval.map((index) => source[index]),
   })),
   decision:
-    "The corrected numbered diagonal has exactly three full H unit runs; increasing source-number direction reads THEIR NUMBERS, THE WAY, HELLO THE PATH. With one clue-selected circumference shed, ARE27 is the sole additional unit run and reads EPIPHANY SEEKS.",
+    "Exactly three direct numbered receivers have complete H coordinate sets equal to a consecutive source interval; increasing source numbers read THEIR NUMBERS, THE WAY, HELLO THE PATH. One clue-selected shed adds ARE27 -> EPIPHANY SEEKS. The criterion depends on the coordinate set, so Hpair/Hsplit serialization does not change it.",
 }, null, 2));
