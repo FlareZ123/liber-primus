@@ -112,6 +112,24 @@ assert.deepEqual(start3301, [
   {page: 33, start: 0, length: 10, locator: "3301"},
 ]);
 
+// Secondary full-red-span control: source-visible 1033 also describes the
+// first p33 rubric as two-digit red-span length 10 followed by page 33.
+const allRedRows = ink.pages
+  .filter((page) => page.page <= 55)
+  .flatMap((page) => (page.red_spans || []).map((span) => ({
+    page: page.page,
+    start: span.start,
+    length: span.length,
+    lengthPage:
+      String(span.length).padStart(2, "0") +
+      String(page.page).padStart(2, "0"),
+  })));
+
+const lengthPage1033 = allRedRows.filter((row) => row.lengthPage === "1033");
+assert.deepEqual(lengthPage1033, [
+  {page: 33, start: 0, length: 10, lengthPage: "1033"},
+]);
+
 // Family B: every internal unknown-page red span.
 const internalRows = ink.pages
   .filter((page) => page.page <= 55)
@@ -183,6 +201,8 @@ console.log(JSON.stringify({
     page: pageFrom3301,
     line: lineFrom3301,
     uniqueRedStartHit: start3301[0],
+    sourceVisibleReverseCode: "1033",
+    uniqueLengthPage1033: lengthPage1033[0],
   },
   secondRubricLocator: {
     code: offsetPageCode,
