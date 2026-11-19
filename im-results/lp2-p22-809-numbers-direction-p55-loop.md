@@ -2,6 +2,25 @@
 
 **Agent49, 19 November 2026. Classification: source-constrained navigation-loop candidate. The arithmetic and finite controls are exact; the use of the 58-image inventory as a cyclic page modulus remains an inferred routing convention. No unknown LP2 plaintext is claimed.**
 
+
+## Status update: superseded as the primary direction interpretation
+
+A later prospective family test gives a more literal reading of the authenticated sentence `their numbers are the direction`.
+
+The square's fixed table output is `83`, simultaneously `GP0(EMERGE)` and `GP0(NUMBERS)`. Using the **word number** under the original contiguous 58-image LP2 inventory predicts:
+
+```text
+DIRECTION112       mod58 -> p54
+CIRCUMFERENCES131  mod58 -> p15
+EMERGE/NUMBERS83   mod58 -> p25
+```
+
+P15 and p25 both had independent source-constrained structures before this prediction; p54 has an original July2014 length-compatible DIRECTION crib. See `im-results/lp2-signed-wordnumber-mod58-direction-receivers.md`.
+
+Accordingly, the exact arithmetic `809 mod58=55` below is preserved as secondary corroboration. It should not be treated as the primary implementation of the signed word-number instruction unless a first-party clue explicitly selects raw809 rather than its typed word number83.
+
+A separate concurrent BASE29 analysis also gives a direct source-register interpretation of809, further reducing the need for raw-integer page wrapping.
+
 ## Established upstream route
 
 Two independently reproduced page-level edges lead into p22:
