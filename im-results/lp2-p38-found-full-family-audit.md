@@ -1,6 +1,6 @@
 # p38 FOUND full-family audit: global typed closure plus prospective local inverse
 
-**Agent7, 19 November 2026. Director #1741. Classification: strengthened conditional plaintext route.** The broad HERE/DH lookup family is permissive by itself, but the independently defined p50 typed-closure grammar globally selects exactly one wholly page-contained five-rune receiver across p0–p55 and both live radices: p38 offsets49..53, selecting authenticated word **FOUND**. The frozen HERE/DH inverse then reconstructs FOUND exactly, the precommitted manuscript-wide outside-p38 full-chain holdout has zero matches, and the sealed p50 self-index consequence reselects the same receiver end. This materially strengthens p38 FOUND while retaining the remaining source-semantics caveats.
+**Agent7, 19 November 2026. Director #1741 plus independent transfer follow-up. Classification: strengthened source-constrained plaintext route with a uniquely selected next-state object.** The broad HERE/DH lookup family is permissive by itself, but the independently defined p50 typed-closure grammar globally selects exactly one wholly page-contained five-rune receiver across p0–p55 and both live radices: p38 offsets49..53, selecting authenticated word **FOUND**. The frozen HERE/DH inverse then reconstructs FOUND exactly, the precommitted manuscript-wide outside-p38 full-chain holdout has zero matches, and the sealed p50 self-index consequence reselects the same receiver end. This materially strengthens p38 FOUND while retaining the remaining source-semantics caveats.
 
 ## What was audited
 
@@ -132,6 +132,75 @@ FOUND is also the only one of the seven targets whose addressed token's literal 
 
 The literal-token property must remain a **local checksum** because Director #1743 independently found no transferable literal-token grammar on solved/source controls. The self-index itself is stronger as a downstream exact boundary relation, although p50 numeral-to-rune-offset semantics remain unauthenticated globally.
 
+## All-length closure and independent VERIFY/B convergence
+
+A second deterministic audit removes the five-rune-only scope from the p50 typed closure. The canonical continuous parser contains **2,864 complete words wholly contained on one physical page**. Across every such receiver, both p50 radices, and the same requirements that the selected authenticated 2016 word preserve rune length and that its p50 address land on the receiver start or end, there is exactly **one** closure in the whole unknown manuscript:
+
+```text
+p38 offsets49..53
+cipher GP0 95
+ -> p50[95] = 0Z = 35
+ -> signed word35 FOUND
+ -> GP0(FOUND)=36
+ -> p50[36] base59 = 53
+ -> receiver end53
+```
+
+Thus the p38 object is unique under the typed closure across all word lengths, not only among the 311 five-rune receivers.
+
+This closure also meets a relation fixed independently by Agent15 before the convergence was noticed. The receiver/target GP0 difference is
+
+`95 - 36 = 59 = GP0(VERIFY)`.
+
+Agent15 had already shown that authenticated `VERIFY` is the sole authenticated 2016 source word whose GP0 addresses a literal p50 DH-state value and whose horizontal reflection preserves that state under exactly one radix:
+
+```text
+VERIFY -> 59
+p50[59] = literal 19 = DH B
+reflect 59 -> 60
+p50[60] = 1k
+base60(1k) mod29 = 19 = B
+base59(1k) mod29 = 17
+```
+
+The original p38 receiver also begins with rune value **19 = B**. A complete same-length source-word control has 14 receiver/target pairs with GP0 difference59, and two of those receivers begin with B, so the difference/B coincidence is corroborative rather than independently decisive. The important stronger fact is that only the p38 FOUND pair is also a typed p50 closure.
+
+Reproducer: `sims/lp2_p38_found_verify_b_checksum_sft.cjs`. Windows Node22 PASS: Actions run **44443956878**.
+
+## Independent low-digit opcode transfer selects the next p38 word
+
+After the p38 result was established, Agent24 independently selected one p50 token-component operation from a charged 16-mode family on the p28 READ OUT route: **base60 / low digit / zero-origin / forward**. Its READ OUT loop is `55 -> 20 -> 42 -> 28` and does not consume a full p50 numeral as an LP rune offset.
+
+Before charging the p38 transfer manuscript-wide, Agent7 froze the exact forward adjacent-word grammar in `workplace/agent7-p38-found-lowdigit-nextword-precommit.md`:
+
+1. address p50 by the current ciphertext word's GP0;
+2. read only the low base60 digit as a zero-based signed-2016 word index;
+3. require selected source-word rune length to equal current ciphertext-word length;
+4. require the selected source word's GP0 to equal the immediately following ciphertext word's GP0;
+5. apply the same low-digit operation to the selected GP0 and require the result to equal the next word's local rune start.
+
+Across all forward same-page adjacent pairs, **1,967** have a valid signed-word index, **400** also preserve current-word length, and only **5** also match the next ciphertext word's GP0. Exactly **one** completes the final pointer step:
+
+```text
+p38 offsets49..53, GP0 95
+ -> p50[95] = 0Z
+ -> low60(Z)=35
+ -> signed word35 FOUND, GP0 36
+
+p50[36] = 0s
+ -> low60(s)=54
+ -> next p38 word starts54
+
+next p38 word offsets54..56 = [5,12,19]
+ -> GP0 = 36 = GP0(FOUND)
+```
+
+This is the first independently selected external consumer of Agent24's low-digit opcode. It also removes the earlier need to force `p50[36]=0s` through base59 or a one-origin convention to make it self-index the FOUND receiver end: under the independently selected base60/low/zero rule, the same token cleanly points forward to the **next word start54**.
+
+The source-selected next word has original values `[5,12,19]`, so its endpoints are exactly reconstructed DH `g=5` and `B=19`; the already used outer-pair difference gives `5-19 mod29=15=b`. That DH/H observation was noticed after the word had been selected and is therefore a new hypothesis target, not an additional blind holdout. It should be tested as a finite typed packet before any plaintext is assigned to offsets54..56.
+
+Reproducer: `sims/lp2_p38_found_lowdigit_nextword_transfer_sft.cjs`. Windows Node22 PASS: Actions run **44444271266**.
+
 ## Evidence boundary and decision
 
 The audit changes the weakest premise of the prior route:
@@ -142,7 +211,7 @@ The audit changes the weakest premise of the prior route:
 - the precommitted outside-p38 full-chain holdout has zero matches;
 - p57 `WITHIN` -> 38 and the p50 self-index become independent corroborations.
 
-This is sufficient to retain **FOUND as a serious source-constrained plaintext candidate with an independent causal receiver/target selector**. It still falls short of established plaintext because the HERE/DH per-slot key order was first exposed on another candidate route rather than authenticated by a first-party cipher instruction, and the p50 typed grammar itself has no solved-page positive control.
+This is sufficient to retain **FOUND as a serious source-constrained plaintext candidate with an independent causal receiver/target selector**. The all-length audit makes the typed closure unique across 2,864 contained words, and the independently selected low-base60 pointer transfers uniquely to the following p38 word at offsets54..56. It still falls short of established plaintext because the exact HERE/DH per-slot key order used for the rune inverse lacks a first-party cipher instruction, and neither the typed p50 grammar nor the low-digit pointer has a solved-page positive control.
 
 Do not generalize the HERE/DH lookup family to other pages from this result. The cross-page transfer gate already shows that arbitrary HERE/DH lookup fails as a reusable decoder. Future work should instead ask whether the exact p38 key descriptor sequence or the typed-closure grammar makes a new source-selected prediction on a different operation class.
 
