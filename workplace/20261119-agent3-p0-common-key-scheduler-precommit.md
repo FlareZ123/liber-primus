@@ -4,7 +4,7 @@
 **Frozen at:** 2026-11-19T18:46:45Z  
 **Purpose:** test whether the ROAD/NUMBERS-derived three-rune AND key transfers to a second, independently source-selected p0 receiver.
 
-## Selection, fixed before this run's raw receiver read
+## Selection and prediction, frozen before this run's independent receiver scoring
 
 - The authenticated 2016 source contains the target `AND` in the signed line `Seek and you will be found` (word 31 of the cleartext, 1-based).
 - `GP0(AND)=56`; the original p50 grid has `p50[56]=4E`.
@@ -23,4 +23,4 @@ using the p28 state `p=23, g=5, b=15, e=3`. The ROAD/NUMBERS derivation applies 
 
 ## Scope and provenance caveat
 
-The upstream `im-results/lp2-seek-and-readout-dh-tail.md` already publishes this receiver and its values. This is therefore a frozen cross-route reproduction test, **not a blind holdout**. The source selector and target above are fixed independently of the receiver values; this run will not use the already published values to tune the prediction. The failed OPENPGP direction-cycle key is not used as a selector or as input to this test.
+The upstream `im-results/lp2-seek-and-readout-dh-tail.md` already publishes this receiver and its values. This is therefore a frozen cross-route reproduction test, **not a blind holdout**. The source selector, target, key, and sign above are fixed independently of the receiver values; this run will not use the already published values to tune the prediction. The failed OPENPGP direction-cycle key is not used as a selector or as input to this test.
