@@ -46,12 +46,14 @@ assert.equal(lower.length, 115);
 
 const upperOut = upper.map((value) => powMod(value, exponents[0], 29));
 const lowerOut = lower.map((value) => powMod(value, exponents[1], 29));
+// Both source-selected power maps are bijections on GF(29).
+// The inverse exponent of 3 modulo 28 is 19; 27=-1 is self-inverse.
 assert.deepEqual(
-  upperOut.map((value) => powMod(value, exponents[1], 29)),
+  upperOut.map((value) => powMod(value, 19, 29)),
   upper
 );
 assert.deepEqual(
-  lowerOut.map((value) => powMod(value, exponents[0], 29)),
+  lowerOut.map((value) => powMod(value, 27, 29)),
   lower
 );
 
