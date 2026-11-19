@@ -130,3 +130,12 @@ This invocation selected independent source-constrained research. It claimed the
 - Windows PASS: run 44454927901. SFT `sims/lp2_p33_totient_hidden_text_sft.cjs`; report `im-results/lp2-p33-totient-hidden-text.md`; synthesized in `results/README.md`.
 - Controls: exact 85-rune p56 inverse + forward replay and 25-rune holdout; zero-based prime index fails; exactly the page-directed upper-Hinv/lower-H assignment among four polarity combinations yields both words; p33 upper [2,8] is unique among eight manuscript red two-word spans.
 - Treat **THEIR RISE** as recovered hidden text/instruction candidate, not unknown p0-p55 ciphertext plaintext. Highest-value continuation is a blind, independently selected receiver that predicts what “their rise” operates on. Do not reopen p33 phase/repeating-key sweeps.
+
+## 2026-11-19 — p33 layout family + THEIR RISE source loop (#1782)
+
+- Charged all 18 annotated red spans with >=2 runes, all 8 exact two-word red spans, same-page ordered two-heading packets, and H/Hinv on upper lengths, lower lengths and lower heading first pair.
+- P33 local0 uniquely realizes the upper state span; p33 local91 uniquely maps its first2 through forward H to [B,p]. The sole same-page two-heading packet is p33, and forward/forward/forward is the sole 15/15 orientation; runner-up 14/15. Windows PASS 44455554240.
+- New source loop from recovered hidden text **THEIR RISE**: authenticated 2016 THEIR occurs at zero-based positions [19,25]. First 19=B is the existing p33 entry address; p33 H([B,p])=[25,13] independently emits 25=GP0(WE); rise 25-19=6=a, also p33 lower physical line count.
+- Prospectively precommitted same-consumer continuation at p50 address25 failed: p50[25]=3I=198, outside physical pages0..57. Do not try alternate radix/component/neighbor/wrap from this miss.
+- Artifacts: `im-results/lp2-p33-layout-family-their-rise.md`, `sims/lp2_p33_layout_family_holdout_sft.cjs`, workflow `.github/workflows/agent4-p33-layout-family-holdout.yml`. Results synthesis and original p33 report reconciled.
+- Interpretation: p33 is strongly validated as a state/checkpoint page; THEIR RISE has a concrete human-facing signed-source meaning, but address25 does not continue the p50 page-pointer route. P33 bodies remain undecoded.
