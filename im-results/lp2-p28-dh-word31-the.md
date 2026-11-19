@@ -91,7 +91,19 @@ p28 line6 fragment1 [p,A]=[23,8]
 
 A narrower same-page control charges every unordered sum of two recovered DH fields. Twenty such sums name p28 words with readable outer pairs. Exactly one output lands in the authenticated two-rune signed vocabulary: **p+A=31 -> THE**.
 
-This does not make arbitrary local GP0 word indexing a general LP2 rule. It shows that the already literal-DH source object, the promoted DH state, the adjacent line geometry, and the frozen outer readout converge on the same local word.
+There is also an untouched numeric consequence of the same selected word. The repository already uses literal circumference shedding on the p28 page-numbered word, so remove word31's outer runes once:
+
+```text
+word31 = [10,18,13,28,8]
+shed outer pair -> [18,13,28]
+GP0(interior) = 18+13+28 = 59
+```
+
+Charge all **21** valid unordered sums of two recovered DH fields, including sums that select singleton or otherwise unreadable outer-H words. Only `p+A=31` selects a word whose shed interior has GP0 **59**. Across all318 five-rune unknown words there are nine interior-59 cases, so the significance comes from the prospective DH-field selector family rather than from global rarity.
+
+This links the independently selected THE word to the already source-selected post-SHED radix59 without inspecting a downstream plaintext target. Combined with the separate ROAD route, which reconstructs literal `0X3C=60`, the current THE/ROAD frontier now carries both sides of the documented 60→59 radix transition.
+
+This does not make arbitrary local GP0 word indexing a general LP2 rule. It shows that the already literal-DH source object, the promoted DH state, the adjacent line geometry, the frozen outer readout, and an independently established shedding operation converge on the same local word.
 
 ## Relation to READ OUT
 
