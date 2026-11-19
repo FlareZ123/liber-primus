@@ -16,7 +16,7 @@ Serialize a word from the outside inward:
 H(first,last) || H(second,penultimate) || ... || center
 ```
 
-For every GP word of length at least four, inspect the two coordinates where the first and second H pairs meet. The p0 candidates recovered independently by the current source/navigation chain are:
+For every GP word of length at least four, inspect the two coordinates where the first and second H pairs meet. The p0 candidates selected by the historical candidate chain are:
 
 ```text
 FOUND = [0,3,1,9,23]
@@ -70,7 +70,7 @@ This was not used to choose the individual p0 receivers in the existing chain:
 - GOOD receiver: p0 49..52;
 - LUCK receiver: p0 39..42.
 
-Each candidate's original ciphertext fails the equality before decryption. The exact existing inverses restore it.
+Director #1739 now retires the literal digit-letter p50 route that selected the GOOD/LUCK receivers as a reusable navigation grammar: a sealed DEVOTED -> LIBER transfer fails, and familywise token/boundary controls admit comparable two-edge runs. This correction does not alter the H-shell calculations below because they are evaluated on the already selected candidate words rather than used to navigate to them.\n\nEach candidate's original ciphertext fails the equality before decryption. The exact existing inverses restore it.
 
 ## Compact p28 DH-state form
 
