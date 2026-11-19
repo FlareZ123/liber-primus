@@ -89,6 +89,8 @@ p28 line6 fragment1 [p,A]=[23,8]
  -> THE
 ```
 
+A narrower same-page control charges every unordered sum of two recovered DH fields. Twenty such sums name p28 words with readable outer pairs. Exactly one output lands in the authenticated two-rune signed vocabulary: **p+A=31 -> THE**.
+
 This does not make arbitrary local GP0 word indexing a general LP2 rule. It shows that the already literal-DH source object, the promoted DH state, the adjacent line geometry, and the frozen outer readout converge on the same local word.
 
 ## Relation to READ OUT
@@ -113,3 +115,5 @@ The output is a genuine unknown-page plaintext island candidate, not yet a compl
 ```text
 node sims/lp2_p28_dh_word31_the_sft.cjs
 ```
+
+Windows Node22 PASS before the pair-sum extension: GitHub Actions run `44439331821`. The extended SFT retains the same frozen source path and adds the 20-member unordered field-sum control.
