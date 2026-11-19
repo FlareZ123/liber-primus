@@ -476,6 +476,54 @@ p11 -> THEIR25 NUMBERS26 -> ARE27 THE28 DIRECTION29
 
 This links the recursive p55 shedding path to the already established p11/p27 ordering corridor with an exact word overlap rather than a semantic guess.
 
+## THEIR25 used as the direction lands on DIRECTION29
+
+The p11 instruction is now executable on the occurrence recovered by the p55 route:
+
+~~~text
+THEIR NUMBERS ARE THE DIRECTION
+~~~
+
+The p55/p24/p12-p13 path fixes the second authenticated occurrence:
+
+~~~text
+25 THEIR
+~~~
+
+Use its number25 as the direction through the same numbered diagonal:
+
+~~~text
+source THEIR25
+ -> physical p25
+ -> canonical word26
+ -> ciphertext [20,9]
+~~~
+
+The untouched receiver's raw GP0 is:
+
+~~~text
+20 + 9 = 29
+29 = authenticated source index DIRECTION
+~~~
+
+So THEIR25's number literally directs to a manuscript object whose number is DIRECTION29.
+
+This also resolves the duplicate THEIR occurrence within this exact route. The first occurrence THEIR19 directs to p19 canonical word20 with GP0=114, while THEIR25 gives DIRECTION29.
+
+Across all 42 valid numbered-diagonal receivers, p25 is the sole receiver with raw GP0=29.
+
+The output can therefore hand off immediately to the independently established DIRECTION29 route:
+
+~~~text
+THEIR25
+ -> p25 word26
+ -> DIRECTION29
+ -> project p29
+ -> existing p29 DIRECTION state packet / WAY route
+~~~
+
+This provides a new first-party selector for DIRECTION29 from the p55 chain without relying on the p28 clause continuation.
+
 ## Held-out external consumer: both 36 branches land on p36 GOOD
 
 The p55 result was committed at **05:45:03Z**, fixing both H branch sums at 36 before a separate p36 plaintext result existed in the authoritative synthesis.
