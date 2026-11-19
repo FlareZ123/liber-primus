@@ -106,6 +106,32 @@ assert.equal(
 const outputIoc = scaledIoc(plaintext);
 assert.ok(Math.abs(outputIoc - 0.9259649122807018) < 1e-12);
 
+// Tightened p56-style literal-F clock: every ciphertext F is taken as literal
+// plaintext F and consumes no key symbol. This is the deterministic reading
+// needed to preserve the solved p56 transparency rule without a branch search.
+let transparentKeyIndex = 0;
+const transparentPlaintext = p55.map(cipher => {
+  if (cipher === 0) return 0;
+  const plain = mod29(cipher - key[transparentKeyIndex]);
+  transparentKeyIndex += 1;
+  return plain;
+});
+assert.equal(transparentKeyIndex, 73);
+assert.deepEqual(
+  p55.map((value, index) => value === 0 ? index : -1)
+    .filter(index => index >= 0),
+  [15, 25, 41]
+);
+const transparentTransliteration = transparentPlaintext
+  .map(value => corpus.translit[value])
+  .join("");
+assert.equal(
+  transparentTransliteration,
+  "AMEJEOETHWPBXOEYOGFBIAEJUAUNIAFSUNONGIATHTHEOSFNUGLFESWFEOMGGFURYGEIAWPNAEDWSEAAEJNSBTAEXUFT"
+);
+const transparentIoc = scaledIoc(transparentPlaintext);
+assert.ok(Math.abs(transparentIoc - 1.1091228070175438) < 1e-12);
+
 const p57 = corpus.pages.find(page => page.page === 57).indices;
 assert.equal(p57.length, 95);
 const p57First76Ioc = scaledIoc(p57.slice(0, 76));
@@ -136,11 +162,18 @@ console.log(JSON.stringify({
     cipherDirection: "P=C-K mod29",
   },
   originalP55: {
-    scaledIoC: outputIoc,
+    ordinaryClock: {
+      scaledIoC: outputIoc,
+      transliteration,
+    },
+    literalFTransparentClock: {
+      keySymbolsConsumed: transparentKeyIndex,
+      scaledIoC: transparentIoc,
+      transliteration: transparentTransliteration,
+    },
     clearP57First76ScaledIoC: p57First76Ioc,
-    transliteration,
   },
   positiveControl: "76/76 exact reversible p57-derived plant",
   decision:
-    "The historical 3301-mod-76 perimeter phase does not decrypt p55 under the single frozen direct additive receiver. Retire this exact historically motivated phase without expanding to alternate phases, signs, directions, radices or nonlinear consumers absent a new source clue.",
+    "Neither the ordinary 76-step clock nor the deterministic solved-p56 literal-F-transparent clock decrypts p55 under the frozen historical 3301-mod-76 direct additive receiver. Retire this exact historically motivated phase without expanding to alternate phases, signs, directions, radices or nonlinear consumers absent a new source clue.",
 }, null, 2));
