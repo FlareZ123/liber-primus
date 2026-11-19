@@ -199,6 +199,62 @@ This is the first executable consumer of the nine-character register. It also re
 
 The result supports the decimal-concatenation/wildcard reading over the algebraic-juxtaposition rival. It does not yet specify what to do after `LIBER PRIMUS`; no operation is added beyond the natural stop where the next NE cell lacks a source-word address.
 
+## The next signed clause supplies compass geometry for g and K
+
+The held-out NE continuation recovers the adjacent signed-source title `LIBER PRIMUS` at positions9..10. The next literal words are therefore fixed before any further map arithmetic:
+
+```text
+PRIMUS IS THE WAY
+```
+
+Their GP0 addresses are:
+
+```text
+PRIMUS = 62 = row7,col6
+IS     = 25
+THE    = 20
+WAY    = 57 = row7,col1
+```
+
+The middle-word numeric difference is:
+
+```text
+GP0(IS) - GP0(THE) = 5 = g.
+```
+
+Moving exactly five cells from PRIMUS to WAY on the printed 32×8 map is **W5**. Equivalently:
+
+```text
+GP0(PRIMUS) - GP0(IS) + GP0(THE) = GP0(WAY)
+62 - 25 + 20 = 57.
+```
+
+The fixed-sign algebraic relation `A-B+C=D` occurs exactly once among all 40 consecutive four-word windows of the authenticated message: `PRIMUS IS THE WAY`.
+
+A broader geometric charge asks whether, for any consecutive four words `A B C D`, D lies exactly `|GP0(B)-GP0(C)|` ordinary compass steps from A on the printed 32×8 table. Exactly two of 40 windows pass:
+
+```text
+PRIMUS IS THE WAY
+62 -> 57 by W5
+|25-20| = 5 = g
+
+THE ROAD AND THEIR
+20 -> 34 by SW2
+|54-56| = 2 = K
+```
+
+The second window is independently semantic: it is the transition inside the authenticated road clause. Its signed middle difference `GP0(AND)-GP0(ROAD)=+2=K` maps **K to SW**. Therefore the signed opposite `-K=27` maps naturally to the opposite compass direction **NE**.
+
+That independently agrees with the equation-derived NE interpretation above and with the repeated `-K` entries in the printable register's direction tape:
+
+```text
+[p,-K,K,-K,K,0,q,p].
+```
+
+The first geometric window similarly maps `g=5` to W. No source-selected directions for `p`, `q`, or `0` are claimed here.
+
+This geometry is source-only corroboration and a plausible human continuation from the recovered title. The operation is frozen and finite, but it does not yet decode unknown LP2 runes.
+
 ## Independent convergence from the p0 DEVOTED state label
 
 The p0 state packet independently recovers the label DEVOTED. Its canonical GP rune numbers, interpreted through the already fixed zero-based source-word register, give:
