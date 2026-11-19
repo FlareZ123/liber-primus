@@ -47,6 +47,24 @@ The compact chain is:
 
 This is substantially more constrained than an isolated phrase fit. The chronology remains retrospective: THE ROAD was already a candidate when this continuation was recognized. Treat it as strong intended-route evidence and a concrete downstream consumer, while reserving blind-plaintext status for a consequence frozen before its target is inspected.
 
+## Prospective ordinal-consumer gate
+
+The new ROAD→p50 cell189 consequence permits an untouched test of a separate operation that has since gained solved-page support: interpret p50 token `nX` as “at the same zero-based rune address on the current page, require X and prefix ordinal n.”
+
+Cell189 is `3C`. If that consumer transferred to current page p0, zero-based p0 rune189 would have to be the third `C` through that address.
+
+It is not:
+
+```text
+p0[189] = F
+prefix F occurrence through p0[189] = 11
+expected from 3C = third C
+```
+
+So the solved-page ordinal consumer **fails** as the next step from ROAD's p50 self-pointer. The ROAD→cell189 number-direction result remains an intrinsic structural consequence, while this specific continuation is rejected without retuning.
+
+This negative is encoded in the current `sims/lp2_the_road_number_direction_chain_sft.cjs`.
+
 ## Reproduction
 
 - `sims/lp2_the_road_number_direction_chain_sft.cjs`
