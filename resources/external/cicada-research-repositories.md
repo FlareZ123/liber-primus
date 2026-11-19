@@ -141,6 +141,7 @@ A reproducible execution lab, explicitly not a claim that Liber Primus is solved
 
 - **Pinned source:** [76d3ee8c762f60025822c8c05edbf31351636469](https://github.com/krisyotam/cicada3301/tree/76d3ee8c762f60025822c8c05edbf31351636469); repository created 8 November 2026, **GPL-3.0**. Its claimed 5,157-file historical/solver archive contains embedded copies of existing community collections, not 5,157 independent original documents.
 - **Original-image control:** [`liber-primus/original-onion7/`](https://github.com/krisyotam/cicada3301/tree/76d3ee8c762f60025822c8c05edbf31351636469/liber-primus/original-onion7) currently has **58 JPEGs, one 1,640-byte `index.html` and one `message.txt.asc`**. Git blob SHA-1 of `0.jpg` is `abab573f7a3786f46fe4fab17d5f2dcf2476136b`, exactly the local physical p0 `resources/liber-primus/17.jpg`; its `55.jpg` is `ee00cd34013fe3a5c6808650abb6d3206b6f1b13`, exactly local physical p55 `72.jpg`. The 1,640-byte index matches the established Stage11 envelope in size and description. Thus this inspected archive branch supplies no additional LP2 authoring file, page59 object or revised source bytes.
+- **Stage7 carrier (newly cross-indexed):** the aggregate also contains the original 2014 Interconnectedness carrier. Its exact signed-hex page and MP3 hashes, and the two separate archive locations, are recorded in the 2014 source crosswalk below. This is a prior-stage source artifact, not a new LP2 page or key.
 - **Method/source overlap:** [`HINTS-NEVER-USED.md`](https://github.com/krisyotam/cicada3301/blob/76d3ee8c762f60025822c8c05edbf31351636469/liber-primus/analysis/HINTS-NEVER-USED.md) republishes the 2012 P.S. integer, 2013 telnet prime gap and onion cookies. These are historical research leads already tracked by other public corpora, with no LP2-decoding selector. The archive's copied tools can be a navigational convenience but must not be counted as independent validation.
 
 ### Dukotah/cicada3301 (2026; re-inspected 17 November 2026)
@@ -185,6 +186,54 @@ The pinned [Round44 master snapshot](https://github.com/Dukotah/cicada3301/tree/
 - The signed Onion5 media payload is listed as 12,007 bytes, with 10,923 bytes after the first JPEG EOI. Its signed message is already preserved locally as resources/historical/cicada2014-onion5-signed.asc, and its media/direct-pad hypotheses are already covered by im-results/lp2-2014-onion5-signed-media-directpad-gate.md; this is not a new LP2 key.
 - The remaining messages in the 20-item corpus include coordinates, SSSS threshold-share strings, and encrypted data. Keep those source types distinct from clear prose and do not treat the existence of a 2013 threshold scheme as a selector for LP2.
 
+
+
+## 2014 primary-source archive crosswalk and acquisition priorities (reviewed 19 November 2026)
+
+This crosswalk separates authenticated Cicada messages from community reconstructions, identifies exact source objects missing from `resources/`, and avoids counting forks or mirrored copies as independent evidence.
+
+### Archive graph, revisions, and rights
+
+- [`neuroretransmit/cicada`](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3) at commit `ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`: upstream 2013/2014 archive; no declared repository licence.
+- [`cicada-solvers/neuroretransmit-cicada`](https://github.com/cicada-solvers/neuroretransmit-cicada/tree/b13600373d3400d75ec4208198019f3d92a304dd) at commit `b13600373d3400d75ec4208198019f3d92a304dd`: fork of the preceding repository, not an independent corpus; no declared licence. Its stage READMEs are a community reconstruction and useful navigation, not first-party authorship.
+- [`cijhho123/cicada3301`](https://github.com/cijhho123/cicada3301/tree/d360ad97d39c4719e42dc88b0cbbb81ed54aa02c) at commit `d360ad97d39c4719e42dc88b0cbbb81ed54aa02c`: broad archive. Its repository `LICENSE` declares CC0 for curator-authored contributions but explicitly leaves third-party works with their rights holders; do not treat Cicada's original material as CC0.
+- [`scream314/cicada3301`](https://github.com/scream314/cicada3301/tree/10733feb487bb8beb9966d534727ee5897aa54fc) at commit `10733feb487bb8beb9966d534727ee5897aa54fc`: separate archive, no declared licence.
+- [`iBotPeaches/cicada_3301`](https://github.com/iBotPeaches/cicada_3301/tree/09a6fa4848e5943dbb48c738584f2ec8442ec2a4) at commit `09a6fa4848e5943dbb48c738584f2ec8442ec2a4`: signed-message archive, no declared licence.
+- [`krisyotam/cicada3301`](https://github.com/krisyotam/cicada3301/tree/76d3ee8c762f60025822c8c05edbf31351636469) at commit `76d3ee8c762f60025822c8c05edbf31351636469`: GPL-3.0 aggregate containing copies from `cijhho`, `scream314`, `iBotPeaches`, and `iddqd`; useful as an index, not independent corroboration of those copied objects.
+- `noxaaa/The-Complete-Cicada3301-Archive`, `mdheller/The-Complete-Cicada3301-Archive`, `retcal/The-Complete-Cicada3301-Archive`, and `yorenwyl/The-Complete-Cicada3301-Archive` are forks of `cijhho123/cicada3301`; do not count them as independent discoveries.
+
+### Verified 2014 source-selection controls
+
+- **Stage 1 — Self-Reliance book code.** The signed message [`2014/001-twitter/zN4h51m.jpg.asc`](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/001-twitter/zN4h51m.jpg.asc) is 1,150 bytes, Git blob SHA-1 `1f9a61b97d5de9c4ca57402c064365a503d956a9`. Its OpenPGP signature verifies under the established Cicada key fingerprint `6D854CD7933322A601C3286D181F01E57A35090F` (signature timestamp 2014-01-06 04:59:26 UTC). The poem points to Emerson's *Self-Reliance*; the same stage contains `self-reliance.txt` and a community `book-code.py`. Reimplementing the documented one-indexed paragraph:sentence:word:letter extraction, including the paragraph-offset correction for the inserted excerpt from paragraph 45 onward, reproduces `auqgnxjtvdbll3pv.onion`. This is a verified historical solve path, not an LP2 key or permission to transplant its coordinate convention without an LP2 source-selection clue.
+- **Stage 2 — explicit RSA-OAEP.** The signed [`2014/002-first-onion/1033.jpg.asc`](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/002-first-onion/1033.jpg.asc) is 1,498 bytes, Git blob SHA-1 `cd529671eac7e0e2b50e29a6a3c5b30e99f1b` (the same blob appears as `messages/2014/welcome.asc` in iBotPeaches). Its signature verifies under the same key (2014-01-06 07:35:27 UTC). The message supplies `e = 65537`, a modulus, and explicitly labels the compressed ciphertext `Crypt::RSA::ES::OAEP`. This is evidence of clue-selected, recognizable operations in the earlier round, not an LP2 decryption.
+- These two verified messages are exact duplicate blobs in the iBotPeaches archive; that mirror is not a second independent signature or discovery. iBotPeaches also carries `messages/2014/idgtk-umloo.asc` (989 bytes; SHA-1 `3c42f017cadb94b90f08e04d3e85908384e39a71`) and `messages/2014/hello-you-have-done-well.asc` (1,351 bytes; SHA-1 `14470df9fd76f4d1599ab12e63b77d1a143d46af`), neither currently mirrored in `resources/`. The 2014 Stage 4 README describes XORing the three preceding signed page messages to obtain the `IDGTK...` ciphertext. These two additional message signatures were not independently checked in this invocation; retain them as candidates, not verified claims.
+- The 2014 Stage 8 archive contains signed `2014/008-sixth-onion/11.jpg.asc`, `12.jpg.asc`, and `13.jpg.asc` messages (1,234 bytes each) with magic-square material and hidden-service submission instructions. They are not in `resources/`; the stage README is a community transcription of the route. The adjacent `cgi/key.asc` is a participant-submitted key, not the Cicada signing key.
+- The 2014 Stage 10 reply is already represented by `resources/historical/cicada2014-stage11-message.asc`; do not reacquire it merely because another archive uses a different filename or whitespace.
+
+### Stage 7 Interconnectedness carrier — highest-priority missing source
+
+Two separate archives, [`cijhho123`](https://github.com/cijhho123/cicada3301/tree/d360ad97d39c4719e42dc88b0cbbb81ed54aa02c/assets/2014/stage07) and [`scream314`](https://github.com/scream314/cicada3301/tree/10733feb487bb8beb9966d534727ee5897aa54fc/assets/2014/stage07), contain byte-identical objects:
+
+- Original signed-hex page: `assets/2014/stage07/q4utgdi2n4m4uim5.onion/index.html`, 13,526,359 bytes, Git blob SHA-1 `afb1ae7b8ffe2def6d1cd7a2f7ce961e550331b9`.
+- Derived `index.mp3` / “3301 - Interconnectedness.mp3”: 6,651,873 bytes, Git blob SHA-1 `09fe068192b76a3697c47ec1d604b527703db798`.
+- Derived `magicsquares.txt`: 721 bytes in cijhho (SHA-1 `bc26dcc8bf6c6da12fa16006374831225fe225da`) and 745 bytes in scream314 (SHA-1 `0cff0a94f16a8603443619b6338def411c9f7bd5`). The byte representations differ, but their 99-number streams are identical.
+
+The cijhho Stage 7 README documents GPG verification followed by hexadecimal decoding (`gpg < index.html | xxd -r -p > index.mp3`). The cicada-solvers Stage 7 README documents the subsequent OpenPuff v4.00 extraction using password `33011033`, B/C disabled, and 50% bit selection, yielding the three magic squares before the GEB/OutGuess route. The original page, MP3, and raw square payload are absent from this repository's `resources/`. The archive recipe has not yet been independently rerun here; the exact hashes make this a bounded, reproducible acquisition task. It is a prior-stage receiver/key-selection chain, not new LP2 plaintext.
+
+### LP2 byte and transcription controls; duplicates to retire
+
+- The 58 `2014onion7/0.jpg`–`57.jpg` originals in cijhho match `resources/liber-primus/17.jpg`–`74.jpg` byte-for-byte (58/58). Its `2014/Liber Primus/runes in text format.txt` is also the exact same Git blob as `resources/transcriptions/lp2_krisyotam_2017.txt` (43,739 bytes; SHA-1 `43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7`). This archive adds no new LP2 image bytes or rune sequence.
+- The 58 Stage 11 images in the cicada-solvers reconstruction are differently encoded variants; do not substitute them for the local originals.
+- iBotPeaches' 2016 `hello-the-path-lies-empty.asc` and 2017 `beware-false-paths.asc` are formatting variants of the already-preserved and authenticated `cicada2016-4gq25-outguess.asc` and `cicada2017-yEiTHhvF.asc`. No new message content or key material was found there. The existing 2012–2013 20-message signature audit also remains the controlling record; do not repeat it.
+- scream314 carries the full 75-page image set; the repository's `resources/liber-primus/` currently tracks the 58 LP2 pages (physical images 17–74), not the first 17 LP1 pages. Those earlier pages are historical context, not new LP2 ciphertext.
+
+### Acquisition order
+
+1. **Stage 7 signed page + MP3 + square payload.** Highest value: obtain the exact objects above, verify the page signature with the established key, reproduce GPG→hex→MP3, rerun OpenPuff, and compare the extracted square file's 99-number stream. This restores the original carrier for the known magic-square receiver chain.
+2. **Stage 3 signed page messages and Stage 8 signed square instructions.** Preserve and verify the three XOR inputs, `idgtk-umloo.asc`, and the 11/12/13 messages; these are source-level operations/instructions, but no direct LP2 key has been established.
+3. **Stage 1/2 signed messages and Self-Reliance text.** Keep their hashes and reproducible route as a historical solve-path control. They are already publicly available and their signatures were verified; they do not justify unconstrained book-cipher searches in LP2.
+4. **Stage 9 submission pages and Stage 6 unsigned grouped text.** Secondary context only; the latter lacks a Cicada signature and must not be promoted to authenticated evidence.
+5. **Do not spend further effort reacquiring** the 58 LP2 originals, the rune transcript, or the 2016/2017 messages; their exact content is already present locally.
 
 ### F5 reference toolchain (grayscale-control caveat)
 
