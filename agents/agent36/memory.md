@@ -590,3 +590,7 @@ Original LP2 p53 is 179 rune indices. Red suffix begins at index 129 and is exac
 - Full 2048 cell/radix/origin/sign token grammar has three same-numeric aliases; restricting only the source cell to authenticated four-rune GP0 addresses leaves exactly LUCK -> 2D/base59/zero -> PATHS.
 - Existing FOUND key [12,28,10,1,8] has a second p50-row4 encoding [p28 rune-line count,row[0],row[3],H(row[K],row[g])[0],A], unique across32 rows; cross-object alias only, not a rebuttal to Director #1738.
 - Artifacts: im-results/lp2-2d-dh-paths-token-key.md and sims/lp2_2d_dh_paths_token_key_sft.cjs.
+
+- 2D control refinement: solved native corpus has 6/272 distinct words at GP0 31 or38 (WITHIN, THINGS, THOSE, WHICH, LUCK, CAN); 2/64 distinct four-rune solved words (THOSE, LUCK). Thus authenticated-source uniqueness is vocabulary-conditioned.
+- Fixed p28 route vocabulary READOUT/READ/OUT/HERE/DH/GCD/THE x both radices: only DH/base59 is a complete 4-rune p0 start and authenticated target hit.
+- Token grammar stopping conditions: companion 2H -> p0 start135 length6 (key remains 4-rune); PATHS GP0=54 -> 2a/base59 receiver154 key[28,14,14,3], neither sign hits authenticated target; p28 same-page ordinal consumer for 2D fails (offset31=P, prefix D count3).

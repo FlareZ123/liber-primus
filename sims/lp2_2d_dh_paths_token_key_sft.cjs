@@ -12,6 +12,7 @@ const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const solvedNative = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
 
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const gpTokens = corpus.translit
@@ -264,10 +265,98 @@ assert.deepEqual(sourceHits, [{
   receiver:131,sign:-1,target:"PATHS",key:twoD.key,
 }]);
 
+
+// Solved-native source vocabulary control: 2D is not lexically unique to LUCK.
+const solvedWordTypes = new Map();
+for (const section of solvedNative.sections) {
+  for (const sourceWord of section.source_text.match(/[\u16A0-\u16FF]+/gu) || []) {
+    const values = [...sourceWord].map((rune) => runeIndex.get(rune));
+    solvedWordTypes.set(values.join(","), values);
+  }
+}
+const solvedWords = [...solvedWordTypes.values()];
+const solvedAt2D = solvedWords.filter((values) => {
+  const address = values.reduce((total, value) => total + value, 0);
+  return address === 31 || address === 38;
+});
+const solvedFourAt2D = solvedAt2D.filter((values) => values.length === 4);
+assert.equal(solvedWords.length, 272);
+assert.equal(solvedWords.filter((values) => values.length === 4).length, 64);
+assert.deepEqual(solvedAt2D.map((values) => values.join(",")), [
+  "7,10,2,10,9",
+  "2,21,15",
+  "2,3,15,18",
+  "7,8,10,5,8",
+  "20,1,5,5",
+  "5,24,9",
+]);
+assert.deepEqual(solvedFourAt2D.map((values) => values.join(",")), [
+  "2,3,15,18",
+  "20,1,5,5",
+]);
+
+// Fixed p28 route vocabulary: only DH/base59 is type-correct and target-bearing.
+const routeSources = ["READOUT","READ","OUT","HERE","DH","GCD","THE"];
+const routeRows = [];
+for (const source of routeSources) {
+  const address = gp0(source);
+  const token = tableTokens[address];
+  for (const [radix, alphabet] of Object.entries(alphabets)) {
+    const generated = tokenKey(token, alphabet);
+    const word = p0.find((candidate) => candidate.start === generated.n);
+    let target = null;
+    if (word && word.length === 4) {
+      const plaintext = word.values.map((value, index) =>
+        mod29(value - generated.key[index]));
+      target = fourTargets.find((candidate) =>
+        candidate.values.every((value, index) => value === plaintext[index]))?.word || null;
+    }
+    routeRows.push({
+      source, address, token, radix, receiver:generated.n,
+      receiverLength:word?.length || null, target,
+    });
+  }
+}
+assert.deepEqual(routeRows.filter((row) => row.receiverLength === 4), [{
+  source:"DH",address:31,token:"2D",radix:"base59",
+  receiver:131,receiverLength:4,target:"PATHS",
+}]);
+
+// Companion 2H is a type mismatch under the unchanged four-rune grammar.
+const twoHReceiver = p0.find((word) => word.start === twoH.n);
+assert.ok(twoHReceiver);
+assert.equal(twoH.n, 135);
+assert.equal(twoHReceiver.length, 6);
+
+// Natural PATHS continuation fails rather than being rescued.
+assert.equal(gp0("PATHS"), 54);
+assert.equal(tableTokens[54], "2a");
+const twoA = tokenKey("2a", alphabet59);
+assert.equal(twoA.n, 154);
+assert.deepEqual(twoA.key, [28,14,14,3]);
+const twoAReceiver = p0.find((word) => word.start === twoA.n);
+assert.ok(twoAReceiver);
+assert.equal(twoAReceiver.length, 4);
+for (const sign of [-1,1]) {
+  const plaintext = twoAReceiver.values.map((value, index) =>
+    mod29(value + sign * twoA.key[index]));
+  assert.equal(fourTargets.some((candidate) =>
+    candidate.values.every((value, index) => value === plaintext[index])), false);
+}
+
+// The fixed HERE ordinal self-index consumer does not transfer to p28 2D.
+const p28 = parts[28]
+  .split("")
+  .map((char) => runeIndex.get(char))
+  .filter((value) => value !== undefined);
+assert.notEqual(p28[31], gpBySymbol.get("D"));
+assert.equal(p28.slice(0,32).filter((value) => value === gpBySymbol.get("D")).length, 3);
+
 console.log(JSON.stringify({
   status:"PASS: DH/LUCK select 2D; token generates PATHS receiver and exact key",
   selector:{dhAddress:gp0("DH"),luckAddress:gp0("LUCK"),token:tableTokens[31]},
   packet:{base59:twoD.n,base29:[twoD.q,twoD.r],H:twoD.uv,shell:twoD.shell,key:twoD.key},
   broadCharge:{configs:fullConfigs,hits:fullHits},
   sourceHits,
+  controls:{solvedAt2D:solvedAt2D.length,solvedFourAt2D:solvedFourAt2D.length,routeRows,twoHReceiverLength:twoHReceiver.length,pathsContinuation:"no authenticated target",p28Ordinal2D:"fails"},
 }, null, 2));
