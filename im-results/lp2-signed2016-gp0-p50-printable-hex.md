@@ -255,6 +255,55 @@ The first geometric window similarly maps `g=5` to W. No source-selected directi
 
 This geometry is source-only corroboration and a plausible human continuation from the recovered title. The operation is frozen and finite, but it does not yet decode unknown LP2 runes.
 
+## WAY=57 closes the direction route back onto the clear SHED instruction
+
+The recovered source title and next clause end at the source word:
+
+```text
+WAY
+```
+
+Canonical GP29 gives:
+
+```text
+WAY = [7,24,26]
+GP0(WAY) = 57.
+```
+
+The Liber Primus release's physical page57 is the clear runic instruction page. Direct transliteration of the final source transcription gives:
+
+```text
+PARABLE. LICE THE INSTAR TUNNELNG TO THE SURFACE.
+WE MUST SHED OUR OWN CIRCUMFERENCES.
+FIND THE DIUINITY WITHIN AND EMERGE.
+```
+
+The misspellings/transliteration above are preserved from the canonical rune transcription; the operational words SHED, CIRCUMFERENCES, WITHIN, and EMERGE are explicit.
+
+This creates a closed source-selected loop with the independently prior p49 result:
+
+```text
+physical p57 clear text
+  -> SHED OUR OWN CIRCUMFERENCES / WITHIN / EMERGE
+  -> frozen recursive word-SHED on p49
+  -> five emerged centers, GP0 76
+  -> p50[76] under frozen post-SHED consumer
+  -> GP0(DIRECTION)=112
+  -> p50 cell76 as DIRECTION receiver
+  -> recovered register selects NE
+  -> 76 --NE--> 69,62
+  -> LIBER PRIMUS
+  -> PRIMUS IS THE WAY -> W5 -> WAY
+  -> GP0(WAY)=57
+  -> physical p57 clear SHED instruction.
+```
+
+This loop did not select the upstream p49 SHED result: that transfer was completed independently before the printable register and NE route were found. Conversely, the new route did not use `WAY=57` to choose NE or the p49 cell76 receiver. The return to p57 is therefore a held-out architectural closure.
+
+There is one source-word alias control: `WILL` also has GP0 57. The route resolves the value as WAY because the recovered authenticated clause is literally `PRIMUS IS THE WAY`; the number57 alone does not distinguish WAY from WILL.
+
+The loop materially strengthens the interpretation that the signed 2016 message is an executable navigation layer over the original table and clear manuscript instruction. It still does not supply the missing value-changing inverse for the unknown body runes.
+
 ## Independent convergence from the p0 DEVOTED state label
 
 The p0 state packet independently recovers the label DEVOTED. Its canonical GP rune numbers, interpreted through the already fixed zero-based source-word register, give:
