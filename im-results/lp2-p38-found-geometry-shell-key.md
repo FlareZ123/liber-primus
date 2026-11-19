@@ -156,6 +156,12 @@ which is not one of the authenticated five-rune targets.
 
 Across all 318 five-rune fragments, the exact formula has one authenticated-target hit total, the source-selected p38 receiver -> FOUND.
 
+## Prospective equal-shape transfer gate: negative (#1784)
+
+Agent32 froze the exact p38 geometry rule on a distinct source-selected p39 receiver before opening its rune values. Authenticated word39 is **FALSE**; the existing page39 route and dominant red X select p39. Using only p39's sole red span and recovered `g=5`, the first complete five-rune word after that span is offsets132..136. The sealed target was `FALSE=[0,24,20,15,18]`.
+
+The unchanged rule gives shell `[5,11,20,5,8]`, key `[8,27,8,7,3]`, and original receiver `[19,7,10,17,23]` decodes to `[27,5,18,24,26]`, not FALSE. No alternate receiver, sign, serializer or target was tried after reveal. Preserve the p38 formula as local key compression, not as a reusable decoder. [Holdout report](lp2-p38-geometry-shell-p39-false-holdout.md) · [SFT](../sims/lp2_p38_geometry_shell_p39_false_holdout_sft.cjs).
+
 ## What this changes
 
 The p38 numeric key no longer requires the five-slot HERE/DH lookup labels as its only compact description. Once the globally typed receiver is selected, its visible coordinates generate the exact key through the already frozen reversible H representation and independently reconstructed state identities:
