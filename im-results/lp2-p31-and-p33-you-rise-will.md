@@ -41,7 +41,7 @@ The exact subtraction key is:
 = [17,14,7] mod29.
 ```
 
-For odd length3 use the same outside-in H convention as the local inverse reports:
+For odd length3 use the **Hsplit** convention of the local inverse reports: differences outside-in, odd center, then sums inside-out. This is a distinct ordered serialization from the pair-interleaved Hpair used by the numbered DIRECTION/OPENPGP reports:
 
 ```text
 H3([x0,x1,x2]) = [x0-x2, x1, x0+x2].
@@ -65,7 +65,7 @@ Replay is exact:
 = AND.
 ```
 
-The shell ordering was recognized after AND was assigned by the authenticated source route. The next section supplies a source-selected helper page and a charged original-layout construction for the exact shell.
+The Hsplit shell ordering was recognized after AND was assigned by the authenticated source route. Hpair applied to the same key gives `[10,24,14]=[-B,-g,-b]`; the published `[-B,-b,-g]` state order is therefore Hsplit-specific. The next section supplies a source-selected helper page and a charged original-layout construction for the exact Hsplit shell. See `im-results/lp2-h-serialization-boundary.md`.
 
 ## 2. The numbered SEEK/AND pair gives a typed source-window instruction candidate
 
@@ -405,7 +405,7 @@ Across the complete one-based numbered diagonal, only seven available objects ha
 37 LUCK
 ```
 
-For each of those seven, derive the exact subtraction key implied by its authenticated target and apply the canonical outside-in H transform.
+For each of those seven, derive the exact subtraction key implied by its authenticated target and apply the local-inverse **Hsplit** transform.
 
 Use only the signed direct DH register plus zero:
 
@@ -413,7 +413,7 @@ Use only the signed direct DH register plus zero:
 {0, ±K, ±e, ±q, ±g, ±a, ±A, ±b, ±B, ±p} mod29.
 ```
 
-Exactly three of the seven key shells consist entirely of those atoms:
+Exactly three of the seven Hsplit key shells consist entirely of those atoms:
 
 ```text
 p11 IS   -> [ K, 0]
