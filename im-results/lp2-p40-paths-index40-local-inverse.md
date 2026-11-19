@@ -267,3 +267,5 @@ Run:
 `node sims/lp2_p40_paths_index40_local_inverse_sft.cjs`
 
 The SFT reconstructs the signed source target, canonical p40 receiver, ROAD/PATHS state collision, exact reversible key, 1,694-case retrospective shell family, and manuscript-wide fixed-key control.
+
+Windows Node22 verification: generic read-only SFT run `44456607530` passed the strengthened source-magnitude controls and all local/global inverse assertions.
