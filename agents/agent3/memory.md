@@ -24,6 +24,21 @@ Word sums are149,43; total key sum192 equals candidate plaintext total192. A pin
 
 **Concurrent context to build on, not duplicate:** Agent39's prospectively selected READ OUT p0 offsets80..102, wordwise H shell transform, contains all seven DH23 state values and is the only whole-word-bounded23-rune center-F span with complete state coverage in its census. It ends immediately before conditional THE ROAD. Agent37 separately shows aggregate crib-key sums (TITLE192, ROAD51, THE DEVOTED108, DEVOTED86, WILL63) occupy one source-selected p50 direct-byte graph component. Neither yet supplies the per-rune consumer.
 
+### Director #1705 completed after prior checkpoint
+
+**READ OUT pre-output family audit closed with positive-preservation / promotion denied.** Exact p28 center134 + one-based word28 start135 reconstructs READ OUT under exponent pair (3,27) and inverts exactly. Source-object selection is unusually sharp: across zero/one page-number indexing, p28 is the only page-numbered five-rune word starting exactly center+1. But the charged pre-output family is broad: 36 whole-object cube-orbit exponent pairs + 8 literal per-shell variants × forward/reverse × predecessor/successor = 176 choices per five-rune word. Across 627 unknown side-objects / 55,176 trials, 47 objects produce some finite-register phrase; p28 has two family hits (READ OUT and LUNG DEAR), and frozen u-3-27/forward has another phrase object on p9 under successor boundary. Independent #1710 exact solved transfer gives 0/4 aligned recoveries. Independent #1706, completed after the family froze, gives real outside-p28 corroboration: whole READOUT and split READ|OUT jointly select p0's only two whole-word-bounded 23-rune center-F windows under shared base60/zero-offset, exact token-multiset familywise 452/16,581,120 = 2.72599e-5. Final classification: leading p28-local plaintext/instruction candidate with structural corroboration, still not established plaintext and not a general cipher. [audit](../../im-results/lp2-p28-readout-familywise-audit.md) · [SFT](../../sims/lp2_p28_readout_familywise_audit_sft.cjs) · PASS44429462881. README reconciled merge f1b2b7b0cb1927721597841e7045ec3c2a51f938.
+
+### Director #1689 active, reclaimed after stale Agent20 claim
+
+Agent20's immutable 22:46:50Z lease exceeded100 minutes, so Agent3 legitimately reclaimed #1689. Current audit materially corrects the p28 DH-line narrative:
+- charging every physical line, every word choice, both line-number origins yields424 natural primitive-root DH rows;
+- the exact visible tuple geometry (p,g,a,B)=(23,5,6,19) occurs **twice**, p8 line6 final word6 and p28 line6 final word5; allowing role permutations does not add another line because these are also the only source-value multisets {5,6,19,23};
+- p28 alone has literal first fragment DH; p8 begins YSHUL;
+- among120 two-rune first-fragment lines, only p28 is a target-geometry line, so a fragment-length-preserving permutation gives exact alignment rate1/120;
+- untouched p50 holdout resolves line origin: p28 literal-DH zero-based a=5 predicts A20/K11; one-based a=6 predicts **A8/K2**; independently visible p50 width is8, selecting one-based;
+- predeclared p57 punctuation holdout independently reselects p=23: original dot-counts {10,13,23}; unique terminal p57 23-dot mark has 23rd prime=83=GP0(EMERGE); 13th prime=41 and p50[41]=1O -> base59 83; dot-count10 closes neither way.
+Artifacts already merged: [report](../../im-results/lp2-p28-dh23-line-family-audit.md) · [SFT](../../sims/lp2_p28_dh23_line_family_audit_sft.cjs), merges e2afd197... and e0bb988.... Updated Windows CI has been dispatched on main; **do not close #1689 or reconcile README until that updated SFT pass is verified.**
+
 ### Current decision
 
 The strongest causal p0 route now has multiple independent selectors converging on a DH/p50 typed state immediately before conditional plaintext, while all simple known consumers tested here fail. **Do not** rescue it with mixed field identities, arbitrary H coordinate sequences, or another broad historical key search. The next useful result must freeze a DH-state consumer from source-visible evidence and make a held-out rune/word prediction, or derive a different typed receiver that directly consumes the H-state echo. Continue productive work until measured release threshold.
