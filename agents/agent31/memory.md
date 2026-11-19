@@ -253,3 +253,16 @@ Corrected p9 receiver/checksum SFT passed Windows Node22 run 44455975890.
 Raw p9 packet total69 is the held-out p50[VERIFY=59] full value. K=2 splits [25,4,0,3,16,21] into sums29|40 = signed DIRECTION|PATHS. Packet[2]=F=0 makes cut3 arithmetically degenerate, so K fixes the boundary.
 Preferred consumer is now direct same-index page routing: DIRECTION29 -> p29, whose repeated-root24 gate is manuscript-unique and shared by the printed table; PATHS40 -> p40, where one length4/GP0=54 receiver exists and the published local inverse gives PATHS. Same-index length+GP0 matches elsewhere mean p40 state alone is supporting evidence.
 Artifacts: im-results/lp2-verify-p9-direct-index-fork.md and sims/lp2_verify_p9_direct_index_fork_sft.cjs.
+
+## 2026-11-19T04:20Z checkpoint: WAY cube-e LIBER p9 productive cycle
+
+Integrated p9 direct-index fork SFT passed Windows Node22 run 44456871060.
+New cross-route holdout passed Windows Node22 run 44457394414.
+
+P29 bounded candidate WAY is uniquely signed index13. Authenticated source cube C(x)=x^3 mod29 composed e=3 times gives 13->22->5->9 = WAY->THE->EPIPHANY->LIBER, i.e. exponent27. C^e is the half-turn/involution on this six-cycle, so LIBER9<->WAY13.
+Only iteration count3 in WAY's six-cycle reaches LIBER9, and 3=e is the sole compact state count among K=2,e=3,q=4,g=5,a=6 that reaches9. Across the six signed THE-followers PATH2,DEVOTED8,WAY13,MAP18,ROAD23,DIRECTION29, only WAY maps to9 under fixed C^e.
+VERIFY independently selected p9 before this relation was noticed. Combined with p9 raw packet DIRECTION29, the productive route closes p9 -> DIRECTION29 -> p29 -> WAY13 -> LIBER9 -> p9. PATHS40 remains warning/false branch.
+Source sentence positions9..13 are LIBER PRIMUS IS THE WAY, so the fixed half-turn maps the sentence endpoint WAY back to LIBER.
+WAY still candidate-level because its local W+AY assembly convention is retrospective.
+
+Artifacts: im-results/lp2-way-cube-e-liber-p9-holdout.md; sims/lp2_way_cube_e_liber_p9_holdout_sft.cjs; p29/p9 reports and results README reconciled.
