@@ -116,3 +116,18 @@ The new result moves the p32 problem from an unselected `121=11²` receiver towa
 This is a coherent human-scale sequence using the authenticated wording, the already selected byte-pointer operation, and the page's visible tree motif. The remaining missing instruction is how the 121 ciphertext runes are assigned to or read from those 121 nodes, and what value operation accompanies that traversal.
 
 The next discriminating experiment should therefore test a **small source-defined traversal/transposition family on this exact fixed tree**, preferably with an untouched consequence or solved control. It should not enlarge the additive key menu or tune arbitrary graph features to English.
+
+
+## Canonical tree-order transpositions: negative
+
+A separate source-fixed test assigns the 121 source-order p32 runes to the fixed reverse tree under one canonical traversal, then reads the same node labels under another. The six declared orders are BFS, DFS preorder, and DFS postorder, each with children ordered by ascending or descending original p50 cell address. This gives **36** complete permutations and no symbol-value fitting.
+
+The [tree-transposition SFT](../sims/lp2_p32_reverse_tree_transposition_sft.cjs) passed on Windows Node 22 in [run 44447890471](https://github.com/FlareZ123/liber-primus/actions/runs/44447890471). It scores every full 121-rune result against a frozen GP-native trigram model trained on the repository's independent Gibran control corpus.
+
+- Original p32 source order: **−11.6742072**
+- Best tree transposition, BFS-ascending assignment → descending postorder read: **−11.4672006**
+- Clear p57: **−8.1230342**
+- Held native-English 121-rune median: **−8.3413634**
+- Held native-English 121-rune minimum: **−9.4370118**
+
+The best permutation remains substantially below even the worst held clear-English window and its preview is nonlinguistic. Therefore the fixed reverse-tree scaffold does **not** decode p32 by a plain BFS/DFS transposition alone. A useful next operation must consume the parent-child relation or another independently selected graph value rather than simply changing read order.
