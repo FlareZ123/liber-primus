@@ -537,6 +537,189 @@ assert.deepEqual(
   }
 );
 
+// Independent transfer: Agent8 committed EPIPHANY SEEKS THE DEVOTED as the
+// unique p=23/base60 p32 route before this formula was applied to that phrase.
+// Under the already frozen operation it becomes a second compact DH packet.
+const epiphanyStart = 5;
+assert.deepEqual(words.slice(epiphanyStart, epiphanyStart + 4), [
+  "EPIPHANY", "SEEKS", "THE", "DEVOTED",
+]);
+const epiphanyPacket = sequence.slice(epiphanyStart, epiphanyStart + 4);
+assert.deepEqual(epiphanyPacket, [
+  state.b,
+  state.p - 1,
+  state.p,
+  state.b + state.K,
+]);
+assert.deepEqual(epiphanyPacket, [15, 24, 23, 17]);
+
+const epiphanyHShell = [
+  ...H(epiphanyPacket[0], epiphanyPacket[3]),
+  ...H(epiphanyPacket[1], epiphanyPacket[2]),
+];
+assert.deepEqual(epiphanyHShell, [
+  mod29(-state.K),
+  e,
+  state.a - state.g,
+  state.p - state.g,
+]);
+assert.deepEqual(epiphanyHShell, [27, 3, 1, 18]);
+
+// Charge the exact independently selected four-word transfer against the full
+// 128 numeric conventions x GP/Latin length choice = 256 modes, and every
+// possible four-word start in the authenticated message.
+const epiphanyFamilyHits = [];
+for (const wordLengths of [
+  {name: "GP", values: lengths},
+  {name: "Latin", values: latinLengths},
+]) {
+  for (const mode of modes) {
+    /** @type {Mode} */
+    const base = {
+      addressOrigin: mode.addressOrigin,
+      radix: mode.radix,
+      component: mode.component,
+      digitOrigin: mode.digitOrigin,
+      numberOrigin: mode.numberOrigin,
+      indexSign: mode.indexSign,
+      lengthSign: mode.lengthSign,
+    };
+    const values = derive(base, wordLengths.values);
+    if (!values) continue;
+    for (let start = 0; start + epiphanyPacket.length <= values.length; start += 1) {
+      if (epiphanyPacket.every((value, i) => values[start + i] === value)) {
+        epiphanyFamilyHits.push({
+          lengthType: wordLengths.name,
+          start,
+          ...base,
+        });
+      }
+    }
+  }
+}
+assert.equal(epiphanyFamilyHits.length, 2);
+assert.ok(epiphanyFamilyHits.every(hit =>
+  hit.lengthType === "GP" &&
+  hit.start === epiphanyStart &&
+  hit.addressOrigin === 0 &&
+  hit.radix === "base60" &&
+  hit.component === "low" &&
+  hit.indexSign === -1 &&
+  hit.lengthSign === -1
+));
+assert.deepEqual(
+  epiphanyFamilyHits.map(hit => [hit.digitOrigin, hit.numberOrigin]).sort(),
+  [[0, 0], [1, 1]]
+);
+
+/**
+ * Exact labeled-token assignment count for a fixed source-word vector.
+ *
+ * @param {number} start
+ * @param {number[]} target
+ */
+function exactVectorAssignments(start, target) {
+  let dp = Array(1 << target.length).fill(0n);
+  dp[0] = 1n;
+  for (const token of table) {
+    const low = alpha60.indexOf(token[1]);
+    const next = dp.slice();
+    for (let mask = 0; mask < dp.length; mask += 1) {
+      const base = dp[mask];
+      if (base === 0n) continue;
+      for (let position = 0; position < target.length; position += 1) {
+        if (mask & (1 << position)) continue;
+        const index = start + position;
+        if (mod29(low - index - lengths[index]) !== target[position]) continue;
+        next[mask | (1 << position)] += base;
+      }
+    }
+    dp = next;
+  }
+  return dp.at(-1);
+}
+
+const epiphanyAssignments = exactVectorAssignments(
+  epiphanyStart,
+  epiphanyPacket
+);
+assert.equal(epiphanyAssignments, 7200n);
+let epiphanyDenominator = 1n;
+for (let offset = 0; offset < epiphanyPacket.length; offset += 1) {
+  epiphanyDenominator *= BigInt(256 - offset);
+}
+const epiphanyExactProbability =
+  Number(epiphanyAssignments) / Number(epiphanyDenominator);
+assert.ok(
+  Math.abs(epiphanyExactProbability - 0.0000017163194056683395) < 1e-18
+);
+
+// Origin/orientation controls for the independently selected phrase.
+const epiphanyCyclicExactOffsets = [];
+for (let offset = 0; offset < table.length; offset += 1) {
+  const candidate = [];
+  for (
+    let index = epiphanyStart;
+    index < epiphanyStart + epiphanyPacket.length;
+    index += 1
+  ) {
+    candidate.push(mod29(
+      low60Table[(offset + index) % table.length] -
+      index -
+      lengths[index]
+    ));
+  }
+  if (epiphanyPacket.every((value, i) => candidate[i] === value)) {
+    epiphanyCyclicExactOffsets.push(offset);
+  }
+}
+assert.deepEqual(epiphanyCyclicExactOffsets, [0]);
+
+const epiphanyTraversalHits = [];
+for (const traversal of traversals) {
+  const tokens = [];
+  if (traversal.major === "row") {
+    const rowOrder = traversal.reverseMajor
+      ? [...grid.rows].reverse()
+      : grid.rows;
+    for (const row0 of rowOrder) {
+      const row = traversal.reverseMinor ? [...row0].reverse() : row0;
+      tokens.push(...row);
+    }
+  } else {
+    const columns = Array.from({length: 8}, (_, i) => i);
+    const columnOrder = traversal.reverseMajor
+      ? [...columns].reverse()
+      : columns;
+    const rows = Array.from({length: 32}, (_, i) => i);
+    const rowOrder = traversal.reverseMinor ? [...rows].reverse() : rows;
+    for (const column of columnOrder) {
+      for (const row of rowOrder) tokens.push(grid.rows[row][column]);
+    }
+  }
+  const low = tokens.map(token => alpha60.indexOf(token[1]));
+  const candidate = [];
+  for (
+    let index = epiphanyStart;
+    index < epiphanyStart + epiphanyPacket.length;
+    index += 1
+  ) {
+    candidate.push(mod29(low[index] - index - lengths[index]));
+  }
+  if (epiphanyPacket.every((value, i) => candidate[i] === value)) {
+    epiphanyTraversalHits.push({
+      major: traversal.major,
+      reverseMajor: traversal.reverseMajor,
+      reverseMinor: traversal.reverseMinor,
+    });
+  }
+}
+assert.deepEqual(epiphanyTraversalHits, [{
+  major: "row",
+  reverseMajor: false,
+  reverseMinor: false,
+}]);
+
 console.log(JSON.stringify({
   status: "PASS: signed 2016 terminal words map through p50 low digits to p28 DH state",
   formula: "s_i = low60(p50[i]) - i - GP_length(word_i) mod29",
@@ -585,6 +768,19 @@ console.log(JSON.stringify({
       .filter(row => row.primitive).length,
     sourceTableTraversalsWithExactTail: traversals
       .filter(row => row.exact).length,
+  },
+  independentEpiphanyTransfer: {
+    words: words.slice(epiphanyStart, epiphanyStart + 4),
+    raw: epiphanyPacket,
+    rawLabels: ["b", "p-1", "p", "b+K"],
+    HShell: epiphanyHShell,
+    HShellLabels: ["-K", "e", "a-g", "p-g"],
+    chargedFamilyHits: epiphanyFamilyHits.length,
+    exactTokenAssignments: epiphanyAssignments.toString(),
+    exactTokenDenominator: epiphanyDenominator.toString(),
+    exactTokenProbability: epiphanyExactProbability,
+    cyclicExactOffsets: epiphanyCyclicExactOffsets,
+    sourceTraversalHits: epiphanyTraversalHits,
   },
   exactTokenMultisetNull: {
     denominator: denominator.toString(),
