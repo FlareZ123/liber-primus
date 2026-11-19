@@ -779,3 +779,9 @@ Seek a source-selected consumer for the p50 table or an independent way to turn 
 - This resolves the old two-path ambiguity in `sims/p32_parable_mod19_route_sft.cjs`: the northern copy lacks the new route-selected start.
 - GP0(DEVOTED)=102 also directly equals the p32 zero-based rune offset of complete local EN. This removes the old image-prime-rank detour to EN, though EN movement semantics remain unselected.
 - Remaining gap: what lies beyond the p32 `SURFACE` exit, or which reversible cipher consumer the map instructions select. No unknown plaintext yet.
+
+### 2026-11-19 p32 center → p33 receiver
+- Reuse the established p50 base60 transition on the five-shell center W prime19=B: table state19 token `0X` decodes to physical p33. Across frozen DH fields p,g,a,b,A,B,K, only B maps in one step to an unsolved physical page: 23→87,5→237,6→126,15→212,8→92,19→33,2→167.
+- q=EMPTY/p=4 also selects route[4]=81. One p32 circumference leaves a 9×9=81 core. Original p33 first source unit has 10 red title runes +81 black body runes before its next section boundary. This supplies an independent p33 selector for the old 81↔81 alignment.
+- A fresh direct p32-core GP-prime-residue additive key on the p33 81-rune body was checked in both signs and is nonlinguistic (IoC subtract 0.0324074, add 0.0348765; raw 0.0330247). Old ordinal-key Vigenère remains negative. Do not retune phases/keys.
+- Original p33 scan visibly has oversized red section sigils; the first is Mannaz-like M. If confirmed independently, ordinal(M)=19 and prime(M)=71 would close B=19→p33 and SEEKS=71, but this visual identification is not yet machine/source-annotated and should remain provisional.

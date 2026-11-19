@@ -409,6 +409,46 @@ const reflectOffset=6*side+9;
 assert.equal(parableLabels[corpus.prime[p32Indices[wrapOffset]]%dh.B],"DIVINITY");
 assert.equal(parableLabels[corpus.prime[p32Indices[reflectOffset]]%dh.B],"THE");
 
+
+// Reuse the already established p50 base60 transition on the recovered center.
+// B=19 is the only frozen DH field whose next table value is an unknown page.
+const dhFieldTargets=Object.entries(dh).map(([name,value])=>({
+  name,value,token:tokens[value],next:table60[value],
+  unknownPage:table60[value]>=0 && table60[value]<=55
+}));
+assert.deepEqual(dhFieldTargets.filter((row)=>row.unknownPage),[
+  {name:"B",value:19,token:"0X",next:33,unknownPage:true}
+]);
+assert.equal(divinityPrime,dh.B);
+assert.equal(table60[divinityPrime],33);
+
+// q was recovered before this check. The same route state equals the exact
+// source body size of p33's first red-titled unit, and one p32 shell leaves
+// an equally sized 9x9 core.
+assert.equal(route[q],81);
+const p32OneShellCore=[];
+for(let row=1;row<side-1;row++){
+  for(let column=1;column<side-1;column++){
+    p32OneShellCore.push(p32Indices[row*side+column]);
+  }
+}
+assert.equal(p32OneShellCore.length,81);
+const p33Text=pages[33];
+const firstUnitEnd=p33Text.indexOf("&");
+assert.ok(firstUnitEnd>0);
+const p33FirstUnit=p33Text.slice(0,firstUnitEnd);
+const firstTitleEnd=p33FirstUnit.indexOf(".");
+assert.ok(firstTitleEnd>0);
+const countRunes=(value)=>[...value].filter((ch)=>runeIndex.has(ch)).length;
+const p33TitleRunes=countRunes(p33FirstUnit.slice(0,firstTitleEnd));
+const p33FirstUnitRunes=countRunes(p33FirstUnit);
+const p33BodyRunes=p33FirstUnitRunes-p33TitleRunes;
+assert.equal(p33TitleRunes,10);
+assert.equal(p33FirstUnitRunes,91);
+assert.equal(p33BodyRunes,81);
+assert.equal(p33BodyRunes,route[q]);
+assert.equal(p33BodyRunes,p32OneShellCore.length);
+
 // Supplementary direct-state address: DEVOTED's GP0 value is 102, and p32
 // zero-based rune offset102 begins the complete local EN fragment.
 const devotedOffset=gp0("DEVOTED");
@@ -454,5 +494,6 @@ console.log(JSON.stringify({
   withinGeometry:{shellSizes,divinityOffset,divinityRune,divinityPrime},
   finalWordDirection:{start:finalStart,directionalReads,consecutiveDirections},
   devotedDirectOffset:{offset:devotedOffset,fragment:"EN"},
-  conclusion:"The fixed p50 route aligns with p32 source fragments; EMPTY@7 selects and partitions the HOME/X row, B=19 fixes the PARABLE modulus, g=5 reaches the B-valued center, and THE@21 fixes the sole NE consecutive path that exits at SURFACE. The clue chain still lacks a reversible unknown-cipher consumer or an external destination after leaving the square."
+  p33Handoff:{centerValue:divinityPrime,pointerToken:tokens[divinityPrime],page:table60[divinityPrime],dhFieldTargets,qRouteState:route[q],p32OneShellCore:p32OneShellCore.length,p33TitleRunes,p33BodyRunes},
+  conclusion:"The route now yields a typed p32-to-p33 continuation: five shells expose center B=19, the existing p50 transition sends 19 to physical p33, and q=4 also selects route state81 matching the p32 one-shell core and p33 first-unit body. THE@21 fixes the NE path to SURFACE. The remaining problem is a source-selected reversible decoder on the p33 receiver."
 },null,2));
