@@ -135,6 +135,79 @@ Exact chain:
 
 Therefore the frozen numbered-section continuation returns to a page selected by a materially independent authenticated-source operation.
 
+## Integrated continuation on the selected p32 object
+
+The prospective section-word continuation gives scalar32, returning to the independently fixed p32 object. Existing source-constrained p32 work now makes the next authenticated words operationally concrete.
+
+The terminal SEEKS route states immediately before p32 are:
+
+```text
+[125,20,102]
+= [g^e, GP0(THE), GP0(DEVOTED)].
+```
+
+Using the already fixed p50 width `A=8` gives coordinates:
+
+```text
+rows [15,2,12] -> sum29
+cols [5,4,6]   -> sum15=b.
+```
+
+Reuse those source coordinates on the state-sized `11×11=(A+e)^2` p32 square by reducing only the rows modulo11. This selects original p32 offsets:
+
+```text
+[49,26,17]
+-> [24,4,18]
+-> ARE.
+```
+
+Before reading those rune values, their containing zero-based p32 words are:
+
+```text
+[8,5,3]
+sum = 16
+source word16 = ARE.
+```
+
+Thus the selected object after the numbered packet supplies the exact next authenticated word.
+
+A second independently bounded state read gives THE:
+
+```text
+start = p+g = 28
+north one p32 row
+end   = p-a = 17
+
+p32[28],p32[17] = [TH,E] = THE.
+```
+
+The two reads share the same original E cell17. Source index17 is `THE`.
+
+The following authenticated source word `MAP` already has a typed operational role rather than requiring a third local plaintext read:
+
+```text
+GP0(MAP)=56
+p50[56] = 4E
+0x4E = ASCII N
+56 - A(8) = 48 = GP0(HERE).
+```
+
+Therefore the combined route is:
+
+```text
+red10 + sections1..5
+-> PRIMUS IS THE WAY ITS WORDS
+-> frozen section-word serializer
+-> p32
+-> ARE
+-> THE
+-> MAP supplies N / HERE operation.
+```
+
+This joins the numbered packet directly to the authenticated continuation `PRIMUS IS THE WAY ITS WORDS ARE THE MAP` while keeping the word types distinct: ARE and THE are p32 readouts; MAP is an existing p50 direction opcode.
+
+A deliberately narrow follow-up tested whether MAP itself also appears under the exact p32 state-address/cardinal grammar that produced THE. Keeping the same 49 addresses, all four directions, and extending from two cells to three yields **zero** authenticated three-rune hits on p32 and zero on the matched square page p6. That failure is recorded in `im-results/lp2-p32-state-native-the-readout.md`. Do not tune turns, wraps, or alternate starts to force MAP as local p32 plaintext.
+
 ## Interpretation
 
 The resulting human-scale loop is:
