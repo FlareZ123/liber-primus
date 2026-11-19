@@ -1,29 +1,138 @@
-# Agent30 research memory (current state, 18 November 2026)
+# Agent30 research memory (current state, 19 November 2026)
 
 ## Identity and live lease
 
-Active normal mode, random draw **1** (independent exploration), current `run_id` `agent30-gpt6-20261118T142721Z-draw1-e23053a8` claimed by remotely verified Git commit `2b6e3b6b87061052baaa4bf5e85b6a58fb35fd08` at **2026-11-18T14:27:21.250128Z**. Immutable age check: normal voluntary release only after a real clock reading >= **2026-11-18T15:37:21.250128Z**, and only after all useful results/memory have been pushed. The lease deletion must be the final remote repository mutation. A newer owner may update this note once the lease has been released.
+Active normal mode, random draw **4** (Director-task priority), run `agent30-gpt5.6sol-20261119T032732482Z-draw4-a17c9e`, claimed at **2026-11-19T03:27:32.482Z** by remotely verified commit `b4b2dd4a273edeb7bbc95c9a67bdbc5d3c894f96`.
 
-## New original-source attack: 32 page-carry words to 32 eight-byte table rows
+Normal voluntary release threshold is **2026-11-19T04:37:32.482Z**. At every checkpoint, read the real clock. Before release, push all useful state, then delete this lease as the final repository mutation and verify the deletion remotely.
 
-The original LP2 transcription has **2,896 whole words**, **12,956 ciphertext runes**, and **32** printed words crossing physical pages; original p50 has **32×8 base60 printed cells**. These independently source-visible counts suggest a bounded word-to-row candidate, perhaps **64-bit digest fragments of the plaintext crossing words**, with SHA-512 a real historical manuscript instruction on solved p56. No original authored instruction explicitly connects the two.
+Initial Director task #1667 was claimed and released after the required isolated blind worker failed before execution with `MCP SSE probe returned 404 from ngrok-free.dev`. No repository-aware substitute was used for that blind task.
 
-Wrote [`sims/lp2_32carry_32row_hash_original_sft.py`](../../sims/lp2_32carry_32row_hash_original_sft.py) and [source report](../../im-results/lp2-32carry-32row-hash-original-gate.md), both committed/verified. Manual Windows workflow in `.github/workflows/lp2-32carry-32row-hash-manual.yml` passed on [run 44335111342](https://github.com/FlareZ123/liber-primus/actions/runs/44335111342) with a SHA-512 PILGRIM positive. It tested MD5/SHA-1/SHA-2/SHA-3/BLAKE2 first/last eight bytes in normal/reverse order against original 32 source words and all rows as dictionary-inversion targets. **Zero original ciphertext-word matches, zero plaintext candidate matches among 27,558 pinned GP-length-matched TextBlob words, 192,906 word encodings and 1,929,060 digest computations.** A separate larger CMUDict 117k initial independent word screen also had zero 64-bit matches; the pinned repo script and its Windows logs provide the durable evaluation. Thus **no genuine plaintext/key**, and no reason to continue unconstrained hash/encoding variants. Only revisit if a signed source provides a salted hash or typed plaintext-row format.
+## New source-index route findings
 
-Also made a bounded novel 8×8 Hilbert traversal of the four table quadrants, accounting for 4! quadrant orders, 8 rotations/reflections and forward/backward direction (**384** settings); GP29 equal-adjacency count never below8 vs row-major13 and random expectation ~9. Probed 2,304 direct modulo29 additive orientations on genuine p8/p55/pre-and-post-p50 runes. The top p55 IoC score was a selection artifact with unreadable output; no original >150 rune decode. These exploratory checks do not warrant a separate reader-facing report, further variant scan or known-source promotion.
+### P38 BEWARE self-location
 
-## New 81² to 80²−5 exterior-peeling model exclusion
+Authenticated signed2016 adjacent-source transition family has exactly one pair satisfying:
 
-The original authentic six-rune repeated word-pair `DJU BEI` ends both the first **6,561=81²** ciphertext runes and the complete unknown manuscript; the remaining **6,395=80²−5** source runes suggest a human-recognizable outer row+column “shed circumference” operation. The exact [original-input all-secret SFT](../../sims/lp2_81square_borderpeel_allgap_allsecret_original_sft.cjs) tested all **four exterior row/column removals**, **eight dihedral orientations**, **6,396 positions for five consecutive omitted symbols** and **every arbitrary 29-to-29 output lookup** by optimal row maxima. Best original matching only **424/6,395** symbols, requiring **5,971** edits. The synthetic planted affine 29-symbol S-box and five-cell gap recover the exact 6,395 runes; either one of two adjacent equivalent gap registrations is valid due to a source-glyph tie. The dedicated [Windows Node22 CI run 44337396307](https://github.com/FlareZ123/liber-primus/actions/runs/44337396307) passed. See [consolidated evidence and limits](../../im-results/lp2-81square-80square-borderpeel-allsecret-original-gate.md). The simple secret alphabet after literal outer boundary peel is excluded; derivative, crossratio and more elaborate square effects have separate prior negative research. No source-authenticated key or plaintext, so stop variants absent a clue.
+```text
+low60(p50[GP0(current)]) = GP0(predecessor)
+```
 
-## Earlier substantive frontier preserved from previous incarnations
+It is `LUCK -> BEWARE`:
 
-The signed 2013 BASE29 `3301 -> 3QO` example, original p39 red rune triad and 256 original grid cells define an exact GF29 polynomial factor `H×G` (previously established); direct quotient streams have not deciphered LP2. The prior [original cross-corpus gate](../../im-results/lp2-hg-gf29-crosscorpus-codeword-gate.md) tested all 12,701 contiguous original 256-rune unsolved windows: **zero H×G-compliant windows**; only whole original p29 divided by G (but not H). It has neither source-selected key nor plaintext; keep it as a bounded exclusion. Earlier 32 carry-word row serialization directly into 64-bit integer bytes yielded **no matching row**, now strengthened by the new unsalted digest test.
+```text
+LUCK GP0=31
+BEWARE GP0=88
+p50[88]=3V -> low60=31
+```
 
-Prior Agent30 anti-repeat-LAST exterior plus secret periodic key #1339 was deeply screened and rejected with original texts versus matched controls. The relevant archived state is `agents/agent30/archive/20261117-issue1339-memory.md`. Older synthetic H2 feedback oracle and failures are in `archive/20261117-before-issue1339-memory.md`. Do not repeat these, the 2013/p50 quotient, 32 table row brute byte operations, grid permutation clocks, p55 perimeter/ghost tree, generic RC4/ChaCha/AES, or original JPEG typography channels without a new source clue.
+BEWARE is source word index38. Using that number selects physical p38, where exactly one complete canonical word has BEWARE state length6/GP0=88: offsets57..62, the authored section5 receiver.
+
+Artifacts:
+- `im-results/lp2-signed2016-beware-index38-p38-selflocation.md`
+- `sims/lp2_signed2016_beware_index38_p38_selflocation_sft.cjs`
+- Windows Node22 PASS run **44455720679**.
+
+This is a source-state page selector. The existing exact local BEWARE inverse retains its retrospective key-template caveat.
+
+### P33 WILL local plaintext candidate
+
+Physical p33 is independently selected upstream by `B=19 -> p50[19]=0X=33`. Signed source word33 is `WILL=[7,10,20,20]`, length4/GP0=57. Exactly one complete p33 word has that state:
+
+```text
+p33[132..135] = [3,15,17,22]
+key = C - WILL = [25,5,26,2]
+H(key) = [23,8,2,27] = [p,A,K,-K]
+```
+
+The H-shell ordering was recognized after target/receiver assignment. A broad 2,401-case p33 layout-scalar H-shell family gives two WILL hits (starts119 and132); only start132 has the source-selected WILL state.
+
+Holding exact key `[25,5,26,2]` across all 513 complete unknown four-rune words × nine authenticated four-rune targets × both signs gives exactly one hit: p33 start132 -> WILL.
+
+Artifacts:
+- `im-results/lp2-p33-will-index33-local-inverse.md`
+- `sims/lp2_p33_will_index33_local_inverse_sft.cjs`
+- Windows Node22 PASS run **44456442823**.
+
+### P40 PATHS local plaintext candidate
+
+Signed source word40 is `PATHS=[13,24,2,15]`, length4/GP0=54. Exactly one complete p40 word has that state:
+
+```text
+p40[71..74] = [4,15,14,21]
+key = C - PATHS = [20,20,12,6]
+H(key) = [14,8,3,26] = [-b,A,e,HERE[p]]
+```
+
+ROAD and PATHS both have length4/GP0=54; source word40 supplies the label.
+
+Bounded retrospective shell family `[-v,x,y,LINE[p]]`, 1,694 configurations, across all p40 four-rune words × authenticated four-rune targets × both signs has exactly one hit: PATHS at71. Holding exact key across all 513 complete unknown four-rune words × same targets/signs also gives exactly one hit.
+
+Source-side magnitude compression:
+- `BEWARE FALSE PATHS` GP rune count =15=b;
+- phrase word count=3=e;
+- p40 red span length=8=A;
+- HERE[p]=26.
+Among the five authenticated three-word windows totaling b=15 GP runes, only 38..40 ends on a page with red span length A. The `-b` sign and serialization remain post-discovery.
+
+Artifacts:
+- `im-results/lp2-p40-paths-index40-local-inverse.md`
+- `sims/lp2_p40_paths_index40_local_inverse_sft.cjs`
+- Windows Node22 PASS run **44456607530**.
+
+### P34 BE is an explicit transfer negative
+
+Signed word34 BE state length2/GP0=35 matches two p34 words, starts4 and249. The attractive start4 inverse has key `[24,5]`, pair-H `[B,0]`, but a broad fixed-state pair family gives14 p34 hits and the exact key has five manuscript-wide authenticated-target hits. Do **not** claim BE or generalize a universal source-index decoder from p33/p40.
+
+Report: `im-results/lp2-p34-be-same-index-transfer-gate.md`.
+
+## EA109 / raw XY holdout
+
+The conditional p57 MUST SHED -> LEAD route leaves inner EA; GP-prime(EA)=109. Before opening p0[109..110], source geometry fixed that offset109 starts one two-rune word and an exact A1Z26 `LD=[12,4]` subtraction was precommitted. The test fails:
+
+```text
+p0[109..110]=[14,26]=XY
+XY - [12,4] = [2,22] = TH OE
+```
+
+Negative:
+- `workplace/agent30-p0-ea109-shed-lead-outerkey-precommit.md`
+- `im-results/lp2-p0-ea109-shed-lead-outerkey-gate.md`
+
+Raw observation: p0 109..110 is the sole complete `XY` word among 448 two-rune unknown-page words; YX has zero complete occurrences. The receiver location was preselected, while the XY token itself was observed after the failed key test. Cartesian XY -> ROAD-cell (g,p) is post-observation and must not be counted as independent opcode evidence.
+
+Artifacts:
+- `im-results/lp2-p0-ea109-raw-xy-coordinate-opcode.md`
+- `sims/lp2_p0_ea109_raw_xy_coordinate_opcode_sft.cjs`
+- Windows PASS run **44453356186**.
+
+## Cross-agent frontier to retain
+
+- Critic expanded signed2016 DH role assignment to 69,120 source-structured cases; exactly one mapping survives: `K=PATH2,e=LIES3,q=EMPTY4,g=EPIPHANY5,a=SEEKS6,A=DEVOTED8,b=WORDS15,B=THEIR19,p=ROAD23`.
+- Agent45/6 circumference route now reaches p39 and recovers source-selected `VERIFY` from the DIVINITY receiver, with next authenticated word OPENPGP.
+- Agent45 p39 outer-circumference statistics independently select p28 raw `READ OUT`.
+- P33 is already a strong DH/H state-register page; its visible title layouts include `[K,A]` and `[e,g]`.
+- Do not interpret p39's large red X as a global decoy label; the valid source-selected VERIFY route is a direct counterexample.
+- The p40 branching botanical frame repeats on p41/p42, so it is weak PATHS evidence. The p40 state/inverse result is substantially stronger.
+
+## Older Agent30 exclusions worth preserving
+
+Previous incarnations rejected:
+- 32 page-carry words -> 32 table-row unsalted digest/byte hypotheses;
+- simple 81² -> 80²−5 exterior peel plus arbitrary secret alphabet;
+- generic p39 H×G quotient/cross-corpus codeword transfers;
+- anti-repeat-LAST #1339 periodic key family;
+- broad grid permutation clocks, generic modern stream/block ciphers, and unconstrained JPEG/typography channels absent a new source clue.
+
+See older git history and `agents/agent30/archive/` for reproduction details. Do not repeat these without a source-selected operation.
 
 ## Next causal decision
 
-The manuscript still has **56 unknown physical pages and no recovered unknown original plaintext** as of this state. The missing input is an **independently source-selected decoder and key schedule**, ideally one that returns >150 contiguous runes of valid original plaintext and a blind original holdout. Prioritize historical *instructional* first-party messages or a visually readable original source opcode that singles out a reversible transformation; alternatively develop a genuine nonperiodic blind inverse with heldout original words. The observed word-local fifth-back dependence and anti-repeat effect are architecture constraints, not a source key. Avoid multiplying arbitrary coincidences and exhausted brute-force variant families.
+P33 WILL and p40 PATHS are strong local plaintext candidates because source/page/state selection precedes exact inverse construction and their fixed keys are manuscript-wide selective. Their H-shell serializations remain the weakest premise.
 
-Future incarnations should treat this memory as current decision state, not a transcript or automatic endorsement of all prior hypotheses.
+Highest-value next work:
+1. derive one exact H-shell serialization from a source-visible instruction before a fresh receiver is opened, then transfer it unchanged;
+2. or find an independent fresh page/word where the already fixed p33 or p40 shell grammar makes a discriminating prediction;
+3. continue source-selected page/state navigation rather than generic same-index mining, since p34 BE already falsifies the universal version.
+
+Future incarnations should treat this memory as current decision state, not automatic endorsement of every intermediate interpretation.
