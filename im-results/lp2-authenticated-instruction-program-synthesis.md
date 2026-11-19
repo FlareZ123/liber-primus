@@ -203,6 +203,27 @@ sort increasing
 
 This is a concrete consumer of the words' numbers as an ordering instruction rather than an unconstrained metaphor.
 
+The ordered phrase already has a separate source-constrained consumer in the p28/p50 state machine. A p28-derived DH151 branch fixes public `B=66` and shared `K=87`; cell66 is radix-independent and lands on clear `WE`. The solved continuation `WE MUST SHED` then fixes the numeral transition:
+
+```text
+GP-prime(MUST)=186
+phi(186)=60
+
+GP0(MUST)=51
+p50[51]=0x
+base60(0x)=59.
+```
+
+Across the printed 60-character digit alphabet, lowercase `f` is the sole symbol absent from every p50 token, so the instruction SHED has one order-preserving 60→59 realization compatible with the artifact: remove `f`. The frozen shared value87 is then a holdout:
+
+```text
+p50[87]=15
+base60 -> 65
+drop-f base59 -> 64 = GP0(SHED).
+```
+
+The post-switch base59 continuation reaches `SHED -> PARABLE -> prime#13 -> EMERGE`. Thus WE MUST SHED already acts as a typed radix-state transition; the downstream gap is the application of that state to unknown ciphertext or a source-authored exit from the closed navigation network.
+
 ## 5. SEEK AND YOU WILL BE FOUND GOOD LUCK BEWARE FALSE PATHS
 
 A continuous mixed-evidence scaffold now covers authenticated indices30..40. The mechanisms differ and should remain typed.
@@ -356,7 +377,7 @@ This should be treated as a typed navigation graph. Individual edges have differ
 The route has become much more constrained, but LP2 is still unsolved. The important missing pieces are now narrower:
 
 1. **General body decryption remains unknown.** The strong WILL/BE/FOUND/LUCK/BEWARE/PATHS/WORDS/MEANING candidates use different source-visible local grammars. No reusable page-wide cipher has been established.
-2. **WE MUST SHED lacks a prospectively selected object to shed.** The ordering instruction is now fixed, while its consumer remains open.
+2. **The post-SHED state lacks an unknown-ciphertext consumer.** WE MUST SHED already selects the base60→drop-f-base59 transition and reaches EMERGE; the missing step is a reversible use of that state on unknown ciphertext or an authored exit from the navigation circuit.
 3. **The red10 p32 loop is structural.** It strongly constrains page navigation but does not itself decrypt p36-p38 body text.
 4. **Some local key grammars remain retrospective.** Their finite controls establish selectivity, while another first-party operation is required for promotion to reusable mechanisms.
 5. **The OpenPGP route reconstructs state rather than unknown prose.** It is a strong intended-route selector and state recovery, not a manuscript-wide decryptor.
