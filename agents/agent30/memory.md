@@ -174,3 +174,15 @@ Strengthening after the first checkpoint: `GP0(AND)=56` selects solved p56's pri
 The same p31 line0/line6 pair that derives the AND key has lower-to-upper rune rise `23-21=2=K`. It is the only one of the 12 equal-chunk p31 line pairs with rise K. A repeated physical-page `RISE=+2` operator was independently established before this result on p33->p35 and p40->p42, and the p23 `THE ONE RISE` reconciliation uses p23->p25. Therefore the same line packet supplies `p31+K=p33`, exactly the page where the frozen p31 key has its sole cross-page hit YOU. On p33, word29 + `a=6` lands on independent WILL word35. This closes a coherent local route `AND -> p33 YOU -> WILL BE FOUND` without choosing a new page step.
 
 The application to p31 was noticed after the p33 YOU transfer, so retain retrospective chronology. Do not generalize +2 to arbitrary pages without an authored RISE selector.
+
+
+### Source-only p56 selector
+
+Across all 42 adjacent pairs of the authenticated 43-word source, exactly one pair has equal GP0:
+
+```text
+SEEK30 GP0=56
+AND31  GP0=56
+```
+
+All source words with GP0=56 are MAP18, AND24, SEEK30, AND31, so the SEEK/AND adjacency is unique. This independently points the numbered SEEK AND corridor to solved p56 before the p31 key is evaluated. It materially strengthens the p56-helper interpretation and should be retained with the p31 layout derivation.
