@@ -1,0 +1,294 @@
+# P0 red title is a DH-state packet and yields a state-keyed `EPIPHANY SEEKS` candidate
+
+**Agent21, 19 November 2026. Classification: strong source-constrained local plaintext recovery candidate with an explicit reversible state key.** The p0 title plaintext candidate `EPIPHANY SEEKS` was selected upstream before this analysis, through the authenticated 2016 source, the original 8+5 title shape, and the OPENPGP43 cube continuation. The exact 13-rune key ordering below was recognized after that candidate existed, so this report does not claim a blind key discovery or a global LP2 cipher. What changes is that the untouched ciphertext, the required key, and several fixed H readouts all collapse into the independently reconstructed DH state.
+
+## Fixed source objects
+
+The original p0 image fixes two red title words followed by a large red 13-dot marker:
+
+```text
+cipher word1 length8
+[15,8,18,3,6,19,27,0]
+
+cipher word2 length5
+[15,26,18,21,5]
+```
+
+The authenticated state independently established elsewhere is:
+
+```text
+(p,g,a,b,A,B,K,e,q)
+=
+(23,5,6,15,8,19,2,3,4).
+```
+
+The upstream authenticated-source candidate is:
+
+```text
+EPIPHANY = [18,13,10,13,8,24,9,26]
+SEEKS    = [15,18,18,5,15].
+```
+
+Use the already established interleaved outside-in pair transform:
+
+```text
+H(x,y) = [x-y, x+y] mod29,
+```
+
+emitting each outside pair in difference/sum order and retaining the center last for odd lengths. This is the same interleaved convention already used on local five- and six-rune state shells.
+
+## The untouched ciphertext is already a state transcript
+
+Before any plaintext value is used, the 13 original title runes type exactly as:
+
+```text
+[b, A, A-B, e, a, B, -K, 0 | b, -e, A-B, p-K, g]
+=
+[15,8,18,3,6,19,27,0 | 15,26,18,21,5].
+```
+
+Every coordinate is a direct state field, sign, or one-step state difference. This is materially stronger than an aggregate checksum.
+
+The interleaved H shells of the two untouched physical words are:
+
+```text
+H8(C1)
+= [15,15,10,6,28,8,26,9]
+= [b,b,A+K,a,-1,A,-e,q+g]
+
+H5(C2)
+= [10,20,5,18,18]
+= [A+K,p-e,g,A-B,A-B].
+```
+
+Reduce each complete shell sum modulo29:
+
+```text
+sum(H8(C1)) mod29 = 1
+sum(H5(C2)) mod29 = 13.
+```
+
+In the authenticated 2016 zero-based word register these are exactly:
+
+```text
+1  THE
+13 WAY
+```
+
+so the original p0 red title gives the ciphertext-only readout:
+
+```text
+THE WAY.
+```
+
+Across all unknown physical pages there are 19 adjacent complete word pairs with the same original 8+5 shape. Applying the unchanged interleaved-H shell-sum rule to all 19 leaves exactly one `[1,13]` hit: p0 words1-2.
+
+## The explicit state key
+
+The ordinary additive residual required by the independently selected candidate is:
+
+```text
+K13 = C - P mod29
+    = [26,24,8,19,27,24,18,3 | 0,8,0,16,19].
+```
+
+Every coordinate is again a state expression:
+
+```text
+K13
+=
+[-e,-g,A,B,-K,-g,A-B,e | 0,A,0,K-b,B].
+```
+
+Therefore the title has an exact reversible state-keyed inverse:
+
+```text
+C - K13 mod29
+=
+EPIPHANY SEEKS.
+```
+
+Forward addition reproduces all 13 original ciphertext runes exactly.
+
+This is a concrete local decipherment mechanism. The remaining caveat is key order provenance: the atom ordering was recognized after `EPIPHANY SEEKS` was already selected. An independent clue that emits this exact 13-atom schedule would promote the local recovery further.
+
+## Word-local state shells distinguish the candidate
+
+The candidate plaintext itself has:
+
+```text
+H8(EPIPHANY)
+= [21,15,4,22,15,5,5,21]
+= [p-K,b,q,p-1,b,g,g,p-K]
+
+H5(SEEKS)
+= [0,1,13,23,18]
+= [0,1,b-K,p,A-B].
+```
+
+Their shell sums reduce to:
+
+```text
+[21,26] = [IS, NUMBERS]
+```
+
+in the same authenticated source register.
+
+The state key has:
+
+```text
+H8(K1)
+= [23,0,6,13,13,3,21,17]
+= [p,0,a,b-K,b-K,e,p-K,K+b]
+
+H5(K2)
+= [10,19,21,24,0]
+= [A+K,B,p-K,-g,0].
+```
+
+Its shell sums reduce to:
+
+```text
+[9,16] = [LIBER, ARE].
+```
+
+These source labels are diagnostic rather than a claimed sentence. The important point is that ciphertext, plaintext candidate, and key all remain within the same small state grammar under one fixed transform.
+
+## The visible 13-dot marker supplies a second state reduction
+
+The original large marker has the already documented three-column population:
+
+```text
+4 | 5 | 4
+```
+
+under natural left-to-right column order.
+
+The interleaved H shell of the complete untouched 13-rune ciphertext is:
+
+```text
+[10,20,16,0,0,7,6,0,20,21,19,19,27]
+=
+[A+K,p-e,K-b,0,0,g+K,a,0,p-e,p-K,B,B,-K].
+```
+
+Partition this shell by the visible `4|5|4` marker columns and sum each block modulo29:
+
+```text
+[17,4,28].
+```
+
+Apply the same H operation once more:
+
+```text
+H3([17,4,28])
+= [18,16,4]
+= [A-B,K-b,q].
+```
+
+This packet is unique across every page-local 13-rune window in the unknown book. There are **12,296** charged windows, and p0 start0 is the sole `[A-B,K-b,q]` hit. The full H13 equality pattern itself is also unique among those windows.
+
+The candidate key independently gives:
+
+```text
+H13(K13)
+= [7,16,8,11,8,8,11,27,27,27,21,27,18].
+```
+
+Its `4|5|4` block sums are:
+
+```text
+[13,23,6]
+= [WAY,ROAD,SEEKS]
+```
+
+in the authenticated word register, and their H3 packet is:
+
+```text
+[7,19,23]
+= [g+K,B,p].
+```
+
+Thus the original marker partitions the exact title key into another compact state packet.
+
+## Broad finite lexical control
+
+Use the union of:
+
+- every distinct source-native word in the pinned solved Cicada corpus;
+- all authenticated 2016 signed-message words.
+
+This gives **295** distinct words, including **18** eight-rune forms and **38** five-rune forms. Charge every ordered 8+5 pair under both additive signs:
+
+```text
+18 * 38 * 2 = 1,368 cases.
+```
+
+The exact 13-coordinate state-key schedule
+
+```text
+[-e,-g,A,B,-K,-g,A-B,e,0,A,0,K-b,B]
+```
+
+has exactly one hit:
+
+```text
+C-P : EPIPHANY SEEKS.
+```
+
+A less exact conjunction also leaves the same sole case:
+
+- key marker packet `[g+K,B,p]`;
+- key word-H sums `[9,16]`;
+- candidate word-H sums `[21,26]`.
+
+The key marker packet alone has four solved-corpus candidates, so it is not promoted as independently decisive. The complete fixed state schedule is the stronger discriminator.
+
+## Relationship to the p55 state route
+
+P55's literal solved-text operation `SHED ... WITHIN ... EMERGE` independently produces the hidden-count sequence:
+
+```text
+75 -> 41 -> 23 -> 7 -> 5 -> 3 -> 0.
+```
+
+Its forward drops contain:
+
+```text
+[A-B,K-b,K,K,e]
+```
+
+and reconstruct the same DH state without consuming p0. The p0 nested ciphertext packet:
+
+```text
+[A-B,K-b,q]
+```
+
+therefore reuses two exact p55-emergence fields and the derived `q=e+1`.
+
+This is cross-object mechanism convergence. It does not by itself establish that p55 was intended to emit the complete p0 13-rune key order.
+
+## Decision
+
+Promote the p0 opening from a checksum-only plaintext hypothesis to a **strong state-keyed local plaintext candidate**:
+
+```text
+EPIPHANY SEEKS
+```
+
+with explicit reversible key:
+
+```text
+[-e,-g,A,B,-K,-g,A-B,e,0,A,0,K-b,B].
+```
+
+The strongest target-free evidence is the untouched ciphertext itself:
+
+1. every title rune is a simple DH-state expression;
+2. the original 8+5 word split under fixed interleaved H reads `THE WAY`, uniquely among all 19 manuscript 8+5 adjacencies;
+3. the complete H13 shell is state-typed;
+4. the visible 4|5|4 marker collapses it to `[A-B,K-b,q]`, uniquely among all 12,296 page-local 13-rune windows.
+
+The remaining research problem is now specific: recover a source-authored ordering rule for the 13 state-key atoms, or transfer the exact schedule prospectively to a new independently selected 13-rune receiver. Do not expand into arbitrary state-expression fitting or free key permutations.
+
+Reproducer: `sims/lp2_p0_red13_state_key_the_way_sft.cjs`.
