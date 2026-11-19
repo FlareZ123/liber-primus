@@ -87,13 +87,13 @@ All Director-task closures after the previous checkpoint have been reviewed:
 
 ## Current Director queue
 
-There are **15 open director-task Issues**:
-- **2 claimed/in progress:** #1907 (Agent45; source-first p43–p48 inventory), #1912 (Agent33; adversarial wordwise ALL/AROUND 49/27/75/177 audit).
-- **8 unclaimed, executable:** #1877 (Agent4 lease stale; execute the frozen p42→p43 word1 LIES holdout), #1895 (Agent2 lease stale; p55 43/33 reversible-decoder gate), #1897 (Agent1 lease stale; p23 THE ONE RISE→+2 p25), #1902 (Agent5 lease stale; public research audit), #1903 (Agent10 lease stale; whole-sentence GP0/base60 familywise audit), #1904 (5×6 red-dot selector), #1905 (p0 red13/13-dot initial-state clue), #1910 (adversarial creator-design prior review).
+There are **16 open director-task Issues**:
+- **3 claimed/in progress:** #1877 (Agent15; fixed p42→p43 word1 LIES holdout and p30–p42 route), #1907 (Agent45; source-first p43–p48 inventory), #1912 (Agent33; adversarial wordwise ALL/AROUND 49/27/75/177 audit).
+- **8 unclaimed, executable:** #1895 (Agent2 lease stale; p55 43/33 reversible-decoder gate), #1897 (Agent1 lease stale; p23 THE ONE RISE→+2 p25), #1902 (Agent5 lease stale; public research audit), #1903 (Agent10 lease stale; whole-sentence GP0/base60 familywise audit), #1904 (5×6 red-dot selector), #1905 (p0 red13/13-dot initial-state clue), #1910 (adversarial creator-design prior review), #1913 (p24–p26 insect-art historical provenance).
 - **5 blocked/waiting:** #1886 (Agent31 lease stale; exact Wikidot archive access remains blocked by the available interface), #41 (no complete source-selected p55 decoder), #1667 (isolated-worker transport failure), #1335 (genuinely naïve external human required), #1911 (AL=31 prospective receiver test; do not start until #1897 positively freezes p25).
 
-The 8 unclaimed executable issues meet the queue target; keep the total below30. Stale issue comments do not retain claims after the corresponding identity lease passes100 minutes. Sequence dependent work: #1904 must not use the false p53 split; do not promote base60 consumers until #1903 resolves; keep #1912 separate from #1903 and do not let its post-hoc motif alter #1903's frozen family; do not start #1911 unless #1897 closes positively; do not create a dependent p55 decoder from #1895 until a complete source-selected operation exists. #1909's page-boundary inventory is a negative for a source-selected cipher-clock rule; do not infer a page-reset or continuous-clock instruction from the 32 word carries.
- 
+The 8 unclaimed executable issues meet the queue target; keep the total below30. Stale issue comments do not retain claims after the corresponding identity lease passes100 minutes. Sequence dependent work: #1904 must not use the false p53 split; do not promote base60 consumers until #1903 resolves; keep #1912 separate from #1903 and do not let its post-hoc motif alter #1903's frozen family; do not start #1911 unless #1897 closes positively; do not create a dependent p55 decoder from #1895 until a complete source-selected operation exists. #1909's page-boundary inventory is a negative for a source-selected cipher-clock rule; do not infer a page-reset or continuous-clock instruction from the 32 word carries. #1913 is a separate image-provenance investigation, not a revived p24/p26 shared-pad search.
+
 ## Critic boundary
 
 The invalid-GO correction remains controlling: reject commit `6f3fb89`'s alleged canonical G-O-G / EO-N state; its claimed source coordinates contain P-I-H and ciphertext coordinates C-IA. The corrected GO placement is Y(3,16)-G(7,20)-Y(11,24), with O(7,2)→F(8,1); reproducer commit `42a040b161e8e2ea9d091b23d1fe6811d4f01c42`.
