@@ -101,6 +101,46 @@ const physicalPage = 15;
 assert.equal(punctuationGroupCount, 3);
 assert.equal(punctuationDotCount, 13);
 
+// Charge the complete manuscript family with the same source-visible object type:
+// two red spans on one page plus at least one red large-punctuation count.
+// In natural span order, only p15 forms a four-term arithmetic progression
+// [span1 length, span2 length, red-dot count, physical page].
+const redSpanPacketFamily = [];
+for (const page of ink.pages) {
+  const spans = (page.red_spans || []).slice().sort((left, right) => left.start - right.start);
+  const counts = [...new Set(
+    (page.large_punctuation || [])
+      .filter((row) => row[2] === 'red')
+      .map((row) => row[1])
+  )];
+  for (let left = 0; left < spans.length; left += 1) {
+    for (let right = left + 1; right < spans.length; right += 1) {
+      for (const count of counts) {
+        const sequence = [spans[left].length, spans[right].length, count, page.page];
+        const differences = sequence.slice(1).map((value, index) => value - sequence[index]);
+        redSpanPacketFamily.push({
+          page:page.page,
+          spanStarts:[spans[left].start, spans[right].start],
+          sequence,
+          differences,
+          arithmetic:differences.every((value) => value === differences[0]),
+        });
+      }
+    }
+  }
+}
+assert.deepEqual(redSpanPacketFamily.map((row) => ({
+  page:row.page, spanStarts:row.spanStarts, sequence:row.sequence, differences:row.differences,
+})), [
+  {page:3, spanStarts:[0,119], sequence:[16,3,13,3], differences:[-13,10,-10]},
+  {page:15, spanStarts:[0,9], sequence:[9,11,13,15], differences:[2,2,2]},
+  {page:33, spanStarts:[0,91], sequence:[10,8,13,33], differences:[-2,5,20]},
+]);
+assert.deepEqual(
+  redSpanPacketFamily.filter((row) => row.arithmetic).map((row) => [row.page,row.sequence]),
+  [[15,[9,11,13,15]]],
+);
+
 // The four directly visible source numbers are a K=2 progression.
 const oddSkeleton = [redLengths[0], redLengths[1], punctuationDotCount, physicalPage];
 assert.deepEqual(oddSkeleton, [9,11,13,15]);
@@ -297,6 +337,7 @@ assert.deepEqual(globalHits, [{
 }]);
 
 console.log('PASS lp2_p15_words_geometry_key_sft');
+console.log('red-span packet family:', redSpanPacketFamily.map((row) => [row.page,row.sequence,row.differences]));
 console.log('p15 source-index skeleton:', oddSkeleton, '=>', oddSkeleton.map((i) => sourceWords[i]).join(' '));
 console.log('midpoints:', midpoints, '=>', midpoints.map((i) => sourceWords[i]).join(' '));
 console.log('full clause:', reconstructedIndices.map((i) => sourceWords[i]).join(' '));
