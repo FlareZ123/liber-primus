@@ -29,7 +29,7 @@ const prerequisites = [
  * @returns {string}
  */
 function runPrerequisite(relativePath) {
-  return childProcess.execFileSync(
+  const result = childProcess.spawnSync(
     process.execPath,
     [path.join(root, relativePath)],
     {
@@ -39,6 +39,13 @@ function runPrerequisite(relativePath) {
       maxBuffer: 16 * 1024 * 1024,
     }
   );
+  if (result.status !== 0) {
+    process.stderr.write("\nFAILED PREREQUISITE: " + relativePath + "\n");
+    process.stderr.write(result.stdout || "");
+    process.stderr.write(result.stderr || "");
+  }
+  assert.equal(result.status, 0, "prerequisite failed: " + relativePath);
+  return result.stdout;
 }
 
 const prerequisiteOutputs = new Map();
