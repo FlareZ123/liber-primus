@@ -580,3 +580,13 @@ Original LP2 p53 is 179 rune indices. Red suffix begins at index 129 and is exac
 - GP0(LUCK)=31 -> p50[31]=2D; LUCK is sole authenticated 2016 word addressing literal 2D, semantically closing on 2D table geometry.
 - Blind execution of Agent16 p2 GOOD two-H precommit: zero hits in all1,680 frozen configs; communicated directly.
 - Artifacts: im-results/lp2-good-luck-cross-object-key-bridges.md and sims/lp2_good_luck_cross_object_bridges_sft.cjs.
+
+
+### 2026-11-19 DH/LUCK 2D -> PATHS token-key checkpoint
+- Literal p28 DH and candidate LUCK independently have GP0=31 and select p50 cell31=2D.
+- 2D occurs exactly at cells31=p+A and38=p+b; among 69 duplicated token classes it is the only two-position class whose positions are both p+DH-state values.
+- Printed fields encode K=2 and GP(D)=p=23. Drop-f base59(2D)=131=4*29+15=[|HERE|,b]. Companion cell21=p-K is 2H, encoding K/A in print and |HERE|/B under base59.
+- Frozen H generates the published PATHS key: H(4,15)=[18,19=B]; shell [18,K]||H(B,B)=[18,2,0,9]; H-inverse=[10,19,19,21]. The same value131 is p0 PATHS receiver start131..134.
+- Full 2048 cell/radix/origin/sign token grammar has three same-numeric aliases; restricting only the source cell to authenticated four-rune GP0 addresses leaves exactly LUCK -> 2D/base59/zero -> PATHS.
+- Existing FOUND key [12,28,10,1,8] has a second p50-row4 encoding [p28 rune-line count,row[0],row[3],H(row[K],row[g])[0],A], unique across32 rows; cross-object alias only, not a rebuttal to Director #1738.
+- Artifacts: im-results/lp2-2d-dh-paths-token-key.md and sims/lp2_2d_dh_paths_token_key_sft.cjs.
