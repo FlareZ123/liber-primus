@@ -333,6 +333,37 @@ const sourceTransformPhraseObjects = unknownScans.filter((item) =>
   )
 );
 
+// Lock the audited family counts so future corpus/parser drift is visible.
+assert.equal(indexingCensus.length, 1);
+assert.deepEqual(indexingCensus[0], {
+  page: 28,
+  origin: "one-based",
+  word: 28,
+  center: 134,
+  start: 135,
+  text: "EAAIUL",
+});
+assert.equal(unknownObjects, 627);
+assert.equal(unknownTransformTrials, 55176);
+assert.equal(unknownPhraseTrials, 75);
+assert.equal(unknownPhraseObjects.length, 47);
+assert.equal(sourceObject.phraseHits.length, 2);
+assert.equal(sourceReadOutHits.length, 1);
+assert.equal(sourceTransformPhraseObjects.length, 2);
+assert.deepEqual(
+  solvedControls.map((item) => [
+    item.name,
+    item.objects,
+    item.phraseObjects,
+    item.transformTrials,
+    item.phraseTrials,
+  ]),
+  [
+    ["p56_an_end", 4, 1, 352, 2],
+    ["p57_parable", 2, 2, 176, 4],
+  ]
+);
+
 console.log(JSON.stringify({
   status: "PASS: full pre-output READ OUT family audited",
   exactSource: {
