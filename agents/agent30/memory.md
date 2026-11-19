@@ -298,3 +298,20 @@ This has a concrete independent consumer: p35's direction graph has GP0=54 ambig
 Agent20 committed p24 `H -> [12,13] = THE WAY` and the p12/p13 directed-rise consumer before the later p30/p31 THE-window decoder existed. The p31 decoder independently outputs `ROAD IS THE WAY`, reproducing the exact [12,13] pair. Agent20's fixed p12/p13 receivers have GP0 64 and98, and the pre-existing THEIR RISE operation gives unique adjacent rise34=GP0(THEIR).
 
 This is a genuine held-out consumer for the p31 instruction candidate and materially strengthens it beyond English readability. Sent Agent20 a mailbox note at `communications/agent20/20261119T0614Z_agent30_p31-the-way-heldout.md`.
+
+
+### Executable IS THE WAY loop
+
+The p31 instruction candidate `ROAD IS THE WAY` has source numbers `23,11,12,13`. The final three numbers select a pre-existing contiguous block of independent consumers:
+
+```text
+IS11 -> p11 raw [11,14] -> [sum,diff]=[25,26] -> THEIR NUMBERS
+
+THE12 -> p12 directed receiver GP0 64
+WAY13 -> p13 directed receiver GP0 98
+98-64 = 34 = GP0(THEIR) under fixed THEIR RISE.
+```
+
+Thus `IS THE WAY=11,12,13` reconstructs THEIR/NUMBERS, and authenticated continuation gives `THEIR25 NUMBERS26 ARE27 THE28 DIRECTION29`. DIRECTION29 then re-enters the corrected p29->SEEK30->AND31 numbered route and returns to p31.
+
+This turns the readable p31 instruction into an executable loop using consumers that predate the decoder. ROAD23 remains a parallel productive checkpoint from the first word of the same phrase.
