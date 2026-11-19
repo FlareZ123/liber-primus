@@ -179,6 +179,27 @@ assert.deepEqual(coord(p1End), [p - e, b]);
 assert.deepEqual(coord(p2Start), [p - e, mod29(K - b)]);
 assert.deepEqual(coord(p2End), [mod29(-K), mod29(-K)]);
 
+// Reverse the lock: p=23,g=5 plus the untouched p0-p2 geometry recover the
+// remaining DH state without using the p28-selected a/B values.
+const reverseK = mod29(-side);
+assert.equal(reverseK, K);
+const reverseE = g - reverseK;
+assert.equal(reverseE, e);
+const exponentHits = [];
+for (let exponent = 1; exponent <= 12; exponent += 1) {
+  if (reverseE ** exponent === grid.length) exponentHits.push(exponent);
+}
+assert.deepEqual(exponentHits, [a]);
+const reverseA = powMod(g, exponentHits[0], p);
+assert.equal(reverseA, A);
+const reverseB = coord(p0End)[1];
+assert.equal(coord(p0End)[0], mod29(-reverseB));
+assert.equal(reverseB, B);
+const reverseBHits = discreteLog(g, reverseB, p);
+assert.deepEqual(reverseBHits, [b]);
+assert.equal(powMod(reverseB, exponentHits[0], p), reverseK);
+assert.equal(reverseE + 1, q);
+
 // The visible p0 red count is the state difference b-K.
 const p0Ink = ink.pages.find((page) => page.page === 0);
 assert.ok(p0Ink);
