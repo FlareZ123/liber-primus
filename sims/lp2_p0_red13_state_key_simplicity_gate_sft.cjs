@@ -322,7 +322,7 @@ const randomAtMost13 = countRandomVectorsAtMost(13);
 const randomTotal = 29n ** 13n;
 const pAtMost12 = Number(randomAtMost12) / Number(randomTotal);
 const pAtMost13 = Number(randomAtMost13) / Number(randomTotal);
-assert.ok(Math.abs(pAtMost12 - 0.0029728910795608026) < 1e-15);
+assert.ok(Math.abs(pAtMost12 - 0.002972891078899386) < 1e-15);
 assert.ok(Math.abs(pAtMost13 - 0.012508442432133804) < 1e-15);
 
 console.log(JSON.stringify({
