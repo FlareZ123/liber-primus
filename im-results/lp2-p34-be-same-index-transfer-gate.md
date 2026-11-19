@@ -159,7 +159,7 @@ For each source word `W_i`:
 3. predict the exact ciphertext `C_i = GP(W_i)+K_i mod29`;
 4. inspect only physical page `i` for that exact complete two-rune word.
 
-The result is:
+The frozen family produced an unexpected second hit:
 
 ```text
 1  THE -> no hit
@@ -169,13 +169,20 @@ The result is:
 17 THE -> no hit
 21 IS  -> no hit
 22 THE -> no hit
-28 THE -> no hit
-34 BE  -> p34 offsets4..5 only
+28 THE -> p28 word29 start140
+34 BE  -> p34 word3  start4
 ```
 
-Thus p34 BE is the sole exact hit in the complete authenticated two-rune same-index/+6 family.
+The p28 hit was exposed by Windows CI run **44459406789**, which failed a hard assertion that had expected no p28 receiver. It is documented separately as the held-out **READ OUT THE** continuation in `lp2-p28-readout-the-heldout-rise.md`.
 
-The opposite rise sign is unnecessary under the literal word `RISE`; as an additional control it does not select either p34 BE-state receiver.
+Both successful rises are the authenticated Bob pair:
+
+```text
+THE28 -> BE34       rise b=15
+BE34  -> PATHS40    rise B=19.
+```
+
+The opposite rise sign is unnecessary under the literal word `RISE`; as an additional control all nine reverse-sign predictions miss.
 
 ## Relationship to the earlier negative audit
 
