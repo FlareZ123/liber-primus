@@ -318,6 +318,48 @@ assert.deepEqual(reciprocalCycles, [{
   rightWord: "ROAD",
 }]);
 
+// Sealed cycle-specific p23 ROAD state test from commit
+// b98152d118f372ebc3905d51218976dc301daf9f.
+// The unique reciprocal source cycle points SEEKS6 <-> ROAD23, and p23
+// independently carries THE ONE RISE. A p23 ROAD-state receiver was frozen
+// as len4 / GP0=54. Canonical complete-word parsing yields none.
+const pagePartsForRoad = transcription.split("%").slice(0, 55);
+const p23Raw = pagePartsForRoad[23];
+let p23Words = [];
+let p23Values = [];
+let p23Offset = 0;
+let p23Start = 0;
+function flushP23() {
+  if (!p23Values.length) return;
+  p23Words.push({
+    index:p23Words.length,
+    start:p23Start,
+    end:p23Offset-1,
+    length:p23Values.length,
+    gp0:p23Values.reduce((sum,value)=>sum+value,0),
+    values:p23Values.slice(),
+  });
+  p23Values=[];
+}
+for (const character of p23Raw) {
+  const value = runeIndex.get(character);
+  if (value !== undefined) {
+    if (!p23Values.length) p23Start=p23Offset;
+    p23Values.push(value);
+    p23Offset+=1;
+  } else if (character === "/" || /\s/u.test(character)) {
+    // layout only
+  } else {
+    flushP23();
+  }
+}
+flushP23();
+const roadValues = gp("ROAD");
+assert.equal(roadValues.length,4);
+assert.equal(roadValues.reduce((sum,value)=>sum+value,0),54);
+const p23RoadReceivers=p23Words.filter((word)=>word.length===4&&word.gp0===54);
+assert.equal(p23RoadReceivers.length,0);
+
 // Solved-p57 word EMERGE has GP0=83 and rises to signed word35 FOUND.
 const emerge = gp("EMERGE");
 assert.equal(emerge.reduce((sum, value) => sum + value, 0), 83);
