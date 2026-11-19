@@ -227,9 +227,21 @@ async function main() {
   const tcpAuthored = tcpNoLabels.replace(koanPattern, "");
 
   const parts = transcription.replace(/\r/g, "").split("%");
-  const p33to39 = parseRuneWords(parts.slice(33, 40).join("%"));
-  assert.equal(p33to39.runeCount, 1680);
-  assert.equal(p33to39.words.length, 378);
+  const fullP33to39 = parseRuneWords(parts.slice(33, 40).join("%"));
+  assert.equal(fullP33to39.runeCount, 1680);
+  assert.equal(fullP33to39.words.length, 378);
+
+  const p33AfterFirstAmpersand = parts[33].split("&")[1];
+  const p39BeforeFirstAmpersand = parts[39].split("&")[0];
+  assert.ok(p33AfterFirstAmpersand);
+  assert.ok(p39BeforeFirstAmpersand);
+  const marked = parseRuneWords([
+    p33AfterFirstAmpersand,
+    ...parts.slice(34, 39),
+    p39BeforeFirstAmpersand,
+  ].join("%"));
+  assert.equal(marked.runeCount, 1468);
+  assert.equal(marked.words.length, 326);
 
   const sources = [
     {
@@ -264,7 +276,7 @@ async function main() {
       source.words.reduce((total, word) => total + word.indices.length, 0),
       source.expectedRunes
     );
-    const result = scan(source.words, p33to39.words);
+    const result = scan(source.words, marked.words);
     assert.equal(result.best.words, source.expectedBest.words);
     assert.equal(result.best.runes, source.expectedBest.runes);
     assert.equal(result.best.phrase, source.expectedBest.phrase);
@@ -287,12 +299,14 @@ async function main() {
   console.log(JSON.stringify({
     status: "PASS",
     target: {
-      pages: "33-39",
-      words: p33to39.words.length,
-      runes: p33to39.runeCount,
+      pages: "p33 post-& through p39 pre-&",
+      words: marked.words.length,
+      runes: marked.runeCount,
+      fullPhysicalSpanWords: fullP33to39.words.length,
+      fullPhysicalSpanRunes: fullP33to39.runeCount,
     },
     results,
-    decision: "no direct word-boundary-preserving TCP/NEXT plaintext crib",
+    decision: "no direct word-boundary-preserving TCP/NEXT plaintext crib for marked cuneiform body",
   }, null, 2));
 }
 
