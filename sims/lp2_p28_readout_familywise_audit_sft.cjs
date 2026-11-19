@@ -288,6 +288,42 @@ assert.ok(indexingCensus.some((item) =>
   item.start === 135
 ));
 
+// Prospectively frozen transfer before opening outputs:
+// for every OTHER page whose one-based page-numbered word starts exactly at
+// center+1, apply the same semantic rule: center gets one cube; the complete
+// word gets one cube per nested shell, i.e. exponent 3^ceil(length/2) mod28.
+// No p0/DH receiver fact is used here.
+const centerPageWordHoldouts = [];
+for (let page = 1; page <= 55; page += 1) {
+  if (page === 28 || page === 50) continue;
+  const parsed = parseWords(physicalPart(page));
+  if (parsed.runes.length % 2 === 0) continue;
+  const center = (parsed.runes.length - 1) / 2;
+  const index = page - 1;
+  if (index >= parsed.words.length) continue;
+  const word = parsed.words[index];
+  if (word.start !== center + 1) continue;
+  const layers = Math.ceil(word.values.length / 2);
+  const wordExponent = modPow(3, layers) % 28;
+  const output = [
+    modPow(parsed.runes[center], 3),
+    ...word.values.map((value) => modPow(value, wordExponent)),
+  ];
+  const latin = translit(output).toLowerCase();
+  centerPageWordHoldouts.push({
+    page,
+    word: page,
+    center,
+    start: word.start,
+    input: translit([parsed.runes[center], ...word.values]),
+    wordLength: word.values.length,
+    layers,
+    wordExponent,
+    decoded: latin,
+    parses: oneOrTwoWordParses(latin, lexicon),
+  });
+}
+
 // Full unknown-manuscript family. No downstream p0/DH property is inspected.
 const unknownScans = [];
 let unknownObjects = 0;
@@ -440,6 +476,11 @@ console.log(JSON.stringify({
   structuralIndexingCensus: {
     hits: indexingCensus,
     count: indexingCensus.length,
+  },
+  prospectiveCenterPageWordHoldout: {
+    rule: "one-based page word starts center+1; center exp3; word exp 3^ceil(len/2) mod28",
+    candidates: centerPageWordHoldouts,
+    phraseCandidateCount: centerPageWordHoldouts.filter((item) => item.parses.length > 0).length,
   },
   family: {
     transforms: transforms.length,
