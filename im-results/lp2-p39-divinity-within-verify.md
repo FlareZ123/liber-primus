@@ -61,6 +61,19 @@ and its length is exactly
 
 The one-based rival would address zero offset104. That position is the second rune of a two-rune word beginning103, not a word start. Thus the already standard zero origin gets an independent structural positive.
 
+Charge every pre-existing authenticated reverse-tree count on p39 under the same zero-based address convention:
+
+```text
+FIND             42  -> inside word start38 len5
+LIKE             53  -> inside word start52 len7
+INSTAR           78  -> inside word start74 len6
+DIVINITY        105  -> exact word start105 len5 = g
+EPIPHANY        121  -> inside word start119 len3
+CIRCUMFERENCES  131  -> inside word start126 len6
+```
+
+**DIVINITY=105 is the only one that lands on any p39 word start, and it alone lands on a `g=5` word.** This control was charged over the complete pre-existing tree-label set rather than selected from p39 boundaries.
+
 The selected word's center is literally
 
 ```
