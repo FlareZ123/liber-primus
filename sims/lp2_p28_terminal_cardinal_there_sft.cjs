@@ -29,8 +29,11 @@ function firstPrimes(count) {
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
+const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const parts = transcription.split(/^\s*%\s*$/m);
 const primes = firstPrimes(500);
+const p50Tokens = grid.pages.flatMap((page) => page.tokens);
+const p50Bytes = grid.pages.flatMap((page) => page.bytes);
 
 /** @param {number} cardinal @returns {number} */
 function T(cardinal) {
@@ -69,6 +72,7 @@ const targetSuffix = [2, 8, 3, 8];
 const lineHits = [];
 const suffixWindowHits = [];
 const terminalHits = [];
+const terminalSelfPointers = [];
 let runeBearingLines = 0;
 let fourWordWindows = 0;
 let pageTerminals = 0;
@@ -83,6 +87,22 @@ for (let page = 0; page <= 57; page += 1) {
     const finalLengths = lengths(lines.at(-1));
     if (JSON.stringify(finalLengths) === JSON.stringify(targetLine)) {
       terminalHits.push({ page, line: lines.length, lengths: finalLengths });
+    }
+    if (page <= 55 && finalLengths.length >= 4) {
+      const suffix = finalLengths.slice(-4);
+      const serialized = suffix.map(T);
+      const address = serialized.reduce((sum, value) => sum + value, 0);
+      if (address < p50Bytes.length && p50Bytes[address] === page) {
+        terminalSelfPointers.push({
+          page,
+          line: lines.length,
+          lengths: suffix,
+          serialized: serialized.map((value) => corpus.translit[value]).join(""),
+          gp0: address,
+          token: p50Tokens[address],
+          byte: p50Bytes[address]
+        });
+      }
     }
   }
   for (let index = 0; index < lines.length; index += 1) {
@@ -112,6 +132,15 @@ assert.deepEqual(suffixWindowHits, [{
   wordStart: 2,
   lengths: targetLine
 }]);
+assert.deepEqual(terminalSelfPointers, [{
+  page: 28,
+  line: 12,
+  lengths: targetSuffix,
+  serialized: "THERE",
+  gp0: 42,
+  token: "0S",
+  byte: 28
+}]);
 
 console.log(JSON.stringify({
   status: "PASS",
@@ -128,7 +157,8 @@ console.log(JSON.stringify({
     pageTerminals,
     exactFullVectorHits: lineHits,
     exactThereVectorHits: suffixWindowHits,
-    exactTerminalVectorHits: terminalHits
+    exactTerminalVectorHits: terminalHits,
+    unknownPageTerminalSelfPointers: terminalSelfPointers
   },
   classification:
     "Fixed-serializer hidden-layout candidate on independently selected p28. UTHERE/THERE was recognized after the scan, so uniqueness is descriptive rather than a blind authorship probability."
