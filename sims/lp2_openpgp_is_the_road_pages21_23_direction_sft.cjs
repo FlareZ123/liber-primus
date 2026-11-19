@@ -336,6 +336,37 @@ assert.deepEqual(
 );
 
 
+// Prospective transfer gate frozen before p25 inspection.
+// P22's AND24 -> recovered THEIR25 consequence selects source word25 / p25.
+assert.equal(source[25], "THEIR");
+assert.equal(gp0("THEIR"), 34);
+assert.equal(tape[34], "3H");
+const p25V59 = decodeToken("3H", base59);
+const p25V60 = decodeToken("3H", base60);
+assert.deepEqual([p25V59, p25V60], [194, 197]);
+const p25TransferPositions = [p25V59 - 1, p25V59, p25V60 - 1, p25V60]
+  .sort((x, y) => x - y);
+assert.deepEqual(p25TransferPositions, [193, 194, 196, 197]);
+const p25Words = pageWords(25);
+const p25TransferHits = p25TransferPositions.map(
+  (offset) => containingWord(p25Words, offset)
+);
+assert.ok(p25TransferHits.every(Boolean));
+assert.deepEqual(
+  p25TransferHits.map((word) => [word.index, word.start, word.end]),
+  [
+    [38, 189, 193],
+    [39, 194, 195],
+    [40, 196, 198],
+    [40, 196, 198],
+  ]
+);
+assert.equal(
+  p25TransferHits.every((word) => word.index === p25TransferHits[0].index),
+  false
+);
+
+
 // Local plaintext gate on the prospectively selected p22 receiver.
 // The flanking source words in IS THE ROAD fix the first two shell coordinates.
 const outerRoadShell = H(gp0("IS"), gp0("ROAD"));
@@ -505,6 +536,56 @@ assert.equal(p, 23);
 assert.equal(powMod(g, a, p), A);
 assert.equal(powMod(g, b, p), B);
 
+
+// Tighter corridor-geometry key family.
+// P21 contributes one of its two H2D columns; p23 contributes the immediately
+// flanking a/g pair around center e, with both orientations charged.
+const p21Columns = {
+  left: [p21Packet[0][0], p21Packet[1][0]],
+  right: [p21Packet[0][1], p21Packet[1][1]],
+};
+assert.deepEqual(p21Columns, {
+  left: [e, 20],
+  right: [0, p - K],
+});
+const p23FlankPairs = {
+  "a,g": [a, g],
+  "g,a": [g, a],
+};
+const corridorGeometryHits = [];
+for (const [columnName, column] of Object.entries(p21Columns)) {
+  for (const [pairName, pair] of Object.entries(p23FlankPairs)) {
+    const shell = [...column, ...H(pair[0], pair[1])];
+    const key = H4inv(shell);
+    for (const sign of [-1, 1]) {
+      const output = p22Receiver.values.map(
+        (value, index) => mod29(value + sign * key[index])
+      );
+      for (const target of fourRuneTargets) {
+        if (output.every((value, index) => value === target.values[index])) {
+          corridorGeometryHits.push({
+            columnName,
+            pairName,
+            shell,
+            key,
+            sign,
+            target: target.word,
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(2 * 2 * 2 * fourRuneTargets.length, 72);
+assert.deepEqual(corridorGeometryHits, [{
+  columnName: "right",
+  pairName: "g,a",
+  shell: [0, 21, 28, 11],
+  key: [20, 10, 18, 20],
+  sign: -1,
+  target: "THEIR",
+}]);
+
 // Both the new p22 Bob packet and the older p23 state route fix B=19,
 // whose already-fixed native p50 handoff is physical p33.
 assert.equal(tape[B], "0X");
@@ -556,5 +637,16 @@ console.log(JSON.stringify({
     },
   },
   p23_prior_line_lengths: p23LineLengths,
+  corridor_geometry_inverse: {
+    configurations: 72,
+    hits: corridorGeometryHits,
+  },
+  p25_prospective_transfer: {
+    source_word: source[25],
+    p50_token: tape[34],
+    positions: p25TransferPositions,
+    hit_words: p25TransferHits.map((word) => word.index),
+    same_word: false,
+  },
   shared_B_handoff: { B, token: tape[B], page: p33 },
 }, null, 2));
