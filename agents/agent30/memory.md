@@ -167,3 +167,10 @@ Boundary: do not infer a global key or tune a p31->p33 navigation rule. The stro
 
 Strengthening after the first checkpoint: `GP0(AND)=56` selects solved p56's prime-totient serializer `T(n)=phi(p_n) mod29`. On original p31, the selected receiver is on printed line5. Top line0 has 5 visible chunks / 23 runes; line6 immediately after the receiver line has 5 chunks / 21 runes. Lower-to-upper packet `[5,21,23]=[g,-A,p]` maps under T to `[10,14,24]=[-B,-b,-g]`, and H3 inverse is exactly `[17,14,7]`. Charging all 12 equal-chunk line pairs, both count orders, both signs, and seven three-rune source targets gives 336 configurations and exactly one hit: this AND recovery. This materially reduces the p31 key-shell caveat. The equal-chunk merge/ordering itself was recognized retrospectively, so preserve a local rather than global claim.
 
+
+
+### P31 -> p33 navigation closure
+
+The same p31 line0/line6 pair that derives the AND key has lower-to-upper rune rise `23-21=2=K`. It is the only one of the 12 equal-chunk p31 line pairs with rise K. A repeated physical-page `RISE=+2` operator was independently established before this result on p33->p35 and p40->p42, and the p23 `THE ONE RISE` reconciliation uses p23->p25. Therefore the same line packet supplies `p31+K=p33`, exactly the page where the frozen p31 key has its sole cross-page hit YOU. On p33, word29 + `a=6` lands on independent WILL word35. This closes a coherent local route `AND -> p33 YOU -> WILL BE FOUND` without choosing a new page step.
+
+The application to p31 was noticed after the p33 YOU transfer, so retain retrospective chronology. Do not generalize +2 to arbitrary pages without an authored RISE selector.
