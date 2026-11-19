@@ -244,3 +244,5 @@ Preserve `U THERE` / `THERE` as a strong source-constrained hidden-layout checkp
 The prospective semantic expansion fails. Do not use U THERE to launch further p50 walks, neighboring-page moves, homophone routes, or new local decoders without a new first-party selector.
 
 Reproducer: `sims/lp2_p28_terminal_cardinal_there_director_audit_sft.cjs`.
+
+Director #1796 audit Windows Node22 PASS: **44463667610**.
