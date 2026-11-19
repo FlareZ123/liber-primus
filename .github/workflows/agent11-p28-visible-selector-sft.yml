@@ -1,0 +1,25 @@
+name: Agent11 p28 visible-selector source gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-test:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Use Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image dependencies
+        shell: pwsh
+        run: python -m pip install --disable-pip-version-check numpy pillow
+      - name: Run source gate
+        shell: pwsh
+        run: python sims/lp2_p28_visible_selector_gate_sft.py
