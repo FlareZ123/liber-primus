@@ -184,6 +184,39 @@ count(IS) = K = 2.
 
 No new affine coefficient, rune remapping, phase, or key-order search is introduced.
 
+## Independent recovery of the second IS occurrence
+
+Subsequent Agent45 work independently selected the second authenticated `IS` occurrence at p21 under a different predeclared two-rune navigation family.
+
+That receiver is:
+
+```text
+p21 word21
+start121
+cipher [19,7]
+```
+
+Agent45's held-out ROAD-cycle route selects key `[9,21]`, whose subtraction gives `IS`.
+
+A new cross-check on the untouched p21 ciphertext gives:
+
+```text
+H([19,7])
+= [12,26]
+= source indices THE / NUMBERS
+```
+
+Across all **465** complete two-rune manuscript words, the exact standard-H packet `[12,26]` occurs once, at p21 word21.
+
+The two IS recoveries therefore remain cryptographically distinct while sharing a target-independent source-number signature:
+
+```text
+p11 raw packet -> THEIR NUMBERS
+p21 raw packet -> THE NUMBERS
+```
+
+Do not merge their key schedules. The p11 recovery uses occurrence count `K=2` in an H-rectangle; p21 uses Agent45's ROAD-cycle navigation family. Their agreement is repeated-word validation, not evidence for a universal two-rune additive key.
+
 ## Evidence boundary
 
 Preserve:
