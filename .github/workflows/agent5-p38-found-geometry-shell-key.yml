@@ -1,0 +1,14 @@
+name: Agent5 p38 FOUND geometry shell key
+on:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify p38 FOUND geometry shell key
+        run: node sims/lp2_p38_found_geometry_shell_key_sft.cjs
