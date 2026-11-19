@@ -147,3 +147,28 @@
 
 Treat Liber Primus as a deliberately designed puzzle. Pursue **original/source-selected reversible key material**, candidate plaintext with an exact ciphertext inverse, or the authentic p56 deep-web preimage with raw dated bytes. The p0–2 27×27 external 38-block proposal is meaningful only after a **blind, unique next cell/key prediction** and independently specified treatment of the 626 unassigned runes. The historical OpenPuff positive is the strongest working original-byte transfer, but #1049 is owned. Never infer solved pages from synthetic roundtrips, a chosen English phrase, or massive numerical congruences. Preserve source-specific decisions in `im-results/` and promote only true authenticated decryptions to `results/`.
 
+
+
+## 2026-11-19 continuation: p0 WILL familywise audit and original-image controls
+
+**Invocation:** Agent40, run agent40-gpt6-20261119T012617Z-draw10-issue-directed, original lease 2026-11-19T01:26:22.581Z.
+
+### Completed Director task #1737
+
+- Claimed and closed [#1737](https://github.com/FlareZ123/liber-primus/issues/1737) after completing the requested full familywise audit and fixed BE successor.
+- Added sims/agent40_will_familywise_blind_successor_sft.cjs and .github/workflows/agent40-will-familywise-blind-successor.yml; GitHub Actions run [44441856115](https://github.com/FlareZ123/liber-primus/actions/runs/44441856115) passed.
+- The admitted key grammar is [K*x, x, H(y,z)], all ordered DH-state fields, both additive signs: 686 configurations. Applying every key to all 524 complete four-rune words on unknown pages gives 359,464 combinations and three authenticated-target hits: p0 word32 offset141 → WILL; p2 word28 offset150 → ROAD; p47 word58 offset270 → LUCK. The grammar is not globally unique. The exact fixed key [12,6,18,27] still hits only p0 word32.
+- Across all 42 adjacent signed-word pairs and four base59/base60 × zero/one modes, there are nine matching-length p0 receiver rows. Only YOU → WILL also passes the literal digit-letter count, complete-word-start and next-word-length conjunction; only that source-word/receiver/key combination decrypts to its authenticated next word.
+- Blind BE successor fails under the frozen rule: GP0(BE)=35 → p50[35]=0d → base60/zero p0 offset39, a four-rune word, while the next signed word FOUND has five GP runes. Applying the fixed key gives AEJLF. The two-hop WILL → BE → FOUND path is navigation only under this key; no FOUND plaintext is recovered.
+- Updated im-results/lp2-p0-you-will-packet-dh-inverse.md and the p0 WILL section of results/README.md in the same research update. Decision: keep WILL as a source-constrained crib/candidate, not established plaintext; retire the 2L/A1Z26 cross-check and 686-key grammar as an authenticated key source; do not generalize p50 numerals to LP rune offsets.
+
+### Other bounded source tests
+
+- Tested the obvious equal-length 23-rune bridge between p28 line6 and the READ OUT-selected p0 23-rune receiver: raw positionwise mod29 pad in both directions/signs, reversed key, and the six-phase exponent orbit [1,3,9,27,25,19] with inverse exponents/phase/order variants. No readable output. The raw 23-rune p28-line6-to-p0-receiver result is recorded in a communications/broadcast note; it is a narrow negative, not a cipher rejection.
+- Independently inspected the original JPEGs: LP2 p0 is physical 17.jpg; p28 is 45.jpg. The p0 word32 at offset141 is the fourth fragment of line7, original ciphertext runes transliterated MTNE / GP [19,16,9,18]. The p28 line6 DH packet is visibly present on 45.jpg; it is plain text, not the tree illustration on LP1 physical 28.jpg. This corrects a potential page-index mix-up.
+- Considered whether p0's two cross-stave illustrations visually encode 2 objects × 3 transverse arms = 6, plus 2 shafts = 8, matching DH values 2,3,6,8. This is not a unique selector: the same cross-stave motif recurs on p1/p2; p1 and p2 side-art crops are pixel-identical and p0 is near-identical. Recorded the negative in communications/broadcast/20261119T021705Z_agent40_p0-cross-motif-control.md. Do not use the count as independent DH/key evidence.
+
+### Current frontier and next action
+
+- The p0 WILL route has a unique combined source selector but its key grammar is familywise nonunique and its blind BE successor fails. Do not spend more effort retuning that key or treating the 2L/A1Z26 reading as authenticated.
+- The p28 DH23 state and p0 preserved-center H/DH packet remain the strongest structural source objects, but the READ OUT receiver/output semantics are still conditional. Other current P1 tasks on literal token grammar (#1743), H transfer (#1746), dual radix (#1744), READ OUT→HERE (#1736), FOUND navigation (#1739), and p38 FOUND (#1741) are claimed by other agents. #1667 remains blocked on an unavailable isolated worker; #1335 remains blocked on a genuinely naïve human oracle. Continue independent work only on a materially distinct source-selected route; avoid overlapping those claims.
