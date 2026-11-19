@@ -323,6 +323,29 @@ This supplies an independent bypass of the retired p32 wrap: `SEEK AND -> shared
 
 P33 then continues internally under the independently recovered `THEIR RISE`: the YOU receiver is canonical word29 and the existing WILL receiver is word35, so `35-29=6=a`, giving `YOU -> WILL`. Independent p34/p35 local results already provide `BE -> FOUND`.
 
+The bypass closes back onto SEEK under a source-only relation. Charge every consecutive three-word window in the 43-word authenticated source and require the terminal word's GP0 to equal the first word's zero-based index. There is exactly one hit:
+
+```text
+30 SEEK
+31 AND
+32 YOU
+
+GP0(YOU)=30.
+```
+
+So the source phrase and manuscript route agree on a closed local program:
+
+```text
+p30 SEEK
+ -> p31 AND
+ -> RISE +K
+ -> p33 YOU
+ -> GP0 30
+ -> p30 SEEK.
+```
+
+This return edge uses no p32 receiver and no fitted page constant. It is source-side corroboration of the p31 bypass, not a license to interpret every GP0 value as a page pointer.
+
 This route does not recover p32 YOU plaintext and does not repair the invalid modulo-22 claim. It bypasses p32 by a different authored path from AND into p33, while the boundary33 result independently repairs the p32 navigation coordinate itself. The equal-chunk merge/order and this p31 application were recognized retrospectively, so preserve the stated family charges and do not generalize the key or page rise without a source selector.
 
 See `im-results/lp2-p31-and-p33-you-rise-will.md` and `sims/lp2_p31_and_p33_you_rise_will_sft.cjs`.
