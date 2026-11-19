@@ -1,3 +1,18 @@
+# 19 November 2026 checkpoint: Director #1835 rejects p33 dual word-map as prospective instruction engine
+
+- Claimed and completed Director task #1835 under run `agent2-gpt5.6sol-20261119T055709Z-draw7-issue-directed-harumi`.
+- Exact published p33 one-based-forward fixed tuples reproduce and remain manuscript-unique after their coordinate formulas are supplied.
+- Adversarial finite family containing the published operation classes: 297 expressions, 686 legal upper selectors, 878 legal lower selectors; all 21 upper and all 28 lower cells are reachable.
+- Withhold test: training on `TUNNELNG TO THE SURFACE` leaves 384 state/convention configurations, 48 under the published one-based-forward convention. Even after granting the held-out formulas retrospectively, `FIND THE DIUINITY WITHIN AND EMERGE` leaves 4 configurations, 2 under the published convention. The training clause does not generate `p-e`, `e*e`, `A+K`, `p+K` or their lexical order.
+- Matched windows under full charged family: p33 upper score9, 61/1,833 windows >=9; p33 lower score6, 1,022/1,474 windows >=6.
+- Solved-p57 has 16 slots / 15 lexical types / 14 GP0 values; TO and OWN collide at GP0=19, so the numeric map cannot distinguish those words without another selector.
+- SHED power was excluded from the prospective gate as required; exact `K^A=256`, `A^K=64=GP0(SHED)` remains post-discovery arithmetic.
+- New audit: `im-results/lp2-p33-dual-wordmap-family-audit.md`; SFT: `sims/lp2_p33_dual_wordmap_family_audit_sft.cjs`; Windows PASS 44469256240.
+- Reconciled p33 READ-center, p33->p55 geometry, p55 RISE->WE, p55 WE->p33 cycle, historical dual-map SFT, and `results/README.md` in one squash commit `38dea9bb14ecb6456122689a8ee9fd1e1edebcd1`; reconciled historical SFT PASS 44469802761.
+- Decision: block downstream navigation whose independent premise is the p33 p57-style word-map grammar. Preserve exact p33 fixed tuples, conditional READ-center transform, and local p55 equalities at their corrected evidence status. Reopen this route only if an original clue selects the coordinate expression/consumer before target plaintext is opened.
+
+---
+
 # 19 November 2026 checkpoint: conditioned p33/p40 H residue survives; p36 test invalidated
 
 - Algebraic correction: for any four-rune subtraction key selected by exact GP0 equality, `sum(key)=0 mod29`; canonical H therefore forces `H3=-H2`. The earlier `[x,A,y,-y]` description counted the `y,-y` relation even though it is automatic after receiver selection.
