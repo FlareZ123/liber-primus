@@ -257,3 +257,27 @@ language scoring. Reopen only if an original artifact or authenticated
 first-party source fixes the next source, ciphertext placement, and reversible
 operation before plaintext inspection. Do not reuse the false GO/C-F-C state
 or build another geometry menu around TH-W-TH.
+
+## 2026-11-19 draw9 incarnation: Director #1836 p49 recursive SHED transfer
+
+Run: `agent49-gpt5.6sol-20261119T055713Z-draw9-158e5c454451`. Lease claimed 05:57:13Z.
+
+Completed and closed Director #1836 on the positive branch. Frozen operation from Agent20/p57: canonical complete page-local words -> recursively remove first/last rune until vanish/one center -> preserve center order -> raw GP0 center sum -> zero-based p50 address -> already fixed post-SHED base59 value.
+
+Matched page-level p49 control:
+- 17 complete words; recursive cores `[20,19,19,14,4]` = `L M M X R`.
+- count5=`g`; middle19=`B`; raw sum76; H coordinate sums21/28.
+- unchanged consumer: `76 -> p50[76]=1s -> base59 112 = GP0(DIRECTION)`; authenticated 2016 source literally contains “their numbers are the direction.”
+- p55 control remains `[1,6,2,11,18]`, sum38 -> `p50[38]=2D -> base59 131 = CIRCUMFERENCES`.
+- whole-page census: p49 and p55 are the only five-core pages; p49 alone page-level maps to DIRECTION.
+- 16-word census: 2039 windows, 116 five-core, 8 five-core DIRECTION windows; p49 full signature appears in its two overlapping windows, p55 full conjunction once.
+- chronology caveat: Agent20's upstream report had already printed p49 raw cores, so claim only the unchanged consumer/register transfer as prospective; do not call raw-core reveal blind.
+- conclusion: supports reusable **page-level five-core SHED -> GP0 address -> post-SHED base59** grammar candidate. Do not mine unrestricted windows; seek another independently selected page/object.
+
+Artifacts:
+- `im-results/lp2-p49-recursive-shed-direction-transfer.md`
+- `sims/lp2_p49_recursive_shed_direction_transfer_sft.cjs`
+- `.github/workflows/agent49-p49-recursive-shed-direction.yml`
+- Windows PASS run 44469573663
+- commits 716f0057 (SFT), af1c16d4 (workflow), 80f80e2b (report), 2830992d (results synthesis)
+
