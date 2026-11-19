@@ -1,4 +1,4 @@
-# P0 marker rise grammar reproduces the complete 13-atom local key
+# P0 q/THE/WAY anchors reproduce the DH state and complete 13-atom local key
 
 **Agent14, 19 November 2026. Classification: strong candidate key-order provenance for the p0-local `EPIPHANY SEEKS` recovery. The generator reproduces the complete key from independently available `q=4`, `THE7`, and `WAY13`, while its exact rise grammar was recognized after the residual structure was visible. A prospective column-sum consumer failed, so the rule remains below an established general cipher.**
 
@@ -214,6 +214,94 @@ Therefore the left and center columns each return exactly to their own seed afte
 Among all 19 matched residuals, p0 alone has both left and center columns closed at their starting values. It is also the sole receiver with the exact rise totals `29|58` together with the `IS THE ROAD` reverse-right readout.
 
 This is structurally consistent with solved p57's instruction to shed our own circumferences. It is preserved as supporting mechanism evidence rather than treated as a proof that the p57 sentence specifically instructs this p0 marker.
+
+## The same three anchors regenerate the full DH state
+
+Before using the p0 residual, hold only:
+
+```text
+q = 4
+t = 7  = THE7
+w = 13 = WAY13
+```
+
+The independently reconstructed state is reproduced by the following small linear map:
+
+```text
+p = q+t+w-1 = 23
+g = q+1     = 5
+a = t-1     = 6
+b = 2q+t    = 15
+A = 2q      = 8
+B = t+w-1   = 19
+K = w-q-t   = 2
+e = q-1     = 3
+q           = 4
+```
+
+This is exactly:
+
+```text
+(p,g,a,b,A,B,K,e,q)
+=
+(23,5,6,15,8,19,2,3,4)
+```
+
+and it satisfies the independent DH equations:
+
+```text
+g^a mod p = A
+g^b mod p = B
+B^a mod p = K
+A^b mod p = K
+```
+
+### Six-THE DH gate
+
+The authenticated source has THE at:
+
+```text
+1,7,12,17,22,28
+```
+
+Hold the marker-selected `q=4` and unique `WAY13`. Substitute each THE index as `t` into the same linear state map and require all four DH equations above.
+
+Result:
+
+```text
+THE1  -> fail
+THE7  -> PASS
+THE12 -> fail
+THE17 -> fail
+THE22 -> fail
+THE28 -> fail
+```
+
+Only `THE7` generates a valid DH state, and that state is the independently reconstructed one.
+
+This gate is independent of p0 plaintext subtraction. It gives a second selection mechanism for the same THE occurrence already found by `THE1 -> p1 word2 -> shed -> SEEKS THE`.
+
+## Direct marker packet from the anchors
+
+The H-inverse packet can be written directly from the same anchors, using `A=2q` and `B=t+w-1` from the state map:
+
+```text
+left   = [-q, -1, q+t, -q]
+center = [ q,  A,   B,  A, q]
+right  = [ t,  w, t+w, -1]
+```
+
+Numerically:
+
+```text
+left   = [25,28,11,25]
+center = [4,8,19,8,4]
+right  = [7,13,20,28]
+```
+
+This is exactly the marker-aligned H-inverse residual packet found above.
+
+The cumulative-rise description below is therefore an equivalent geometric view of the same three-anchor packet rather than a separate 13-parameter fit.
 
 ## Complete three-anchor rise generator
 
@@ -455,7 +543,7 @@ fixed H                 -> exact additive key
 original ciphertext     -> EPIPHANY SEEKS
 ```
 
-The complete key can now be written as one short source/state generator rather than 13 separately labelled expressions.
+The complete key can now be written as one short source/state generator rather than 13 separately labelled expressions. The same three anchors also reproduce the full independently reconstructed DH state and select THE7 uniquely among all authenticated THE occurrences by the DH equations.
 
 The remaining weakness is the exact rise formula's chronology. Marker geometry, title H-shell sums, and the independently exhausted THE1 circumference path now select all three numerical anchors before residual inspection. The completed columns also have unique circumference structure in the 19-receiver family. The precise cumulative-rise formulas were still recognized after the residual packet had been inspected.
 
