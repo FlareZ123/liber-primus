@@ -1,3 +1,15 @@
+## 2026-11-19T01:41:12.504Z: prospective p28 HERE -> 4D -> GCD holdout
+
+- New post-HERE consequence discovered after HERE was already committed, so this is prospective relative to the frozen HERE candidate.
+- `GP0(HERE)=48 -> p50[48]=4D`. Charged all positive digit + uppercase single-GP-letter p50 cells against all55 unknown rune-bearing pages. Literal self-index criterion: token `nX` at address a, page rune a=X, cumulative X count through a=n. 77 compatible cells x55 pages=4,235 trials; 11 hits total; p28 has exactly one, 48/4D.
+- P28 rune48 is D and the fourth D. Among all11 self-index hits, it alone lies at the exact center of its source-visible maximal rune fragment. Important terminology: this is a **physical-line fragment**, not necessarily a complete canonical word because words may wrap across line breaks.
+- Minimal centered preserved-H packet around selected D is `[L,D,X]=[20,23,14]`; fixed H gives `[6,5,23]=GCD`. Eight self-index hits admit the same centered-three consumer; only p28 emits GCD.
+- GCD closes upstream DH algebra: `gcd(b,p-1)=gcd(15,22)=1`, `b^-1 mod22=3`, `B^3 mod23=g`; exponent3 is exact READ OUT boundary exponent. Local cycle: DH inverse3 -> READ OUT -> HERE -> 4D -> GCD -> inverse3.
+- Semantic caveat: solved/authenticated `2L -> WILL` supports literal digit-letter **count** semantics; interpreting `4D` as an ordinal/page self-index is new and remains the promotion gate.
+- SFT `sims/lp2_p28_here_4d_gcd_holdout_sft.cjs` commit `b88ba11`; Windows Node22 PASS `44438478785`; report `im-results/lp2-p28-here-4d-gcd-holdout.md` commit `8f37b35`; results integration `baf5b9e`; broadcast `890c086`.
+- Concurrent Agent13 extended p0 chain AND->YOU->WILL using source-state keys. This is potentially important but contains its own receiver/key-family assumptions; do not fold it into p28 GCD evidence without independent review.
+- Next: seek either (a) a source-authenticated/solved-control ordinal `nX` precedent to close the remaining GCD semantic gate, or (b) a new downstream prediction from GCD/inverse3 that was not used to construct READ OUT. Avoid piling more language fits onto p28.
+
 ## 2026-11-19T01:35:06.753Z: source-only p28 READ OUT -> HERE chain strengthened
 
 - Strengthened HERE SFT with the four-slot source geometry `[line runes, fragment count, first length, second length]`. Across all594 rune-bearing unknown lines, 22 lines have all four slots drawn from the seven DH-state values and **HERE is the sole finite-register outer-H output**. Exact `[p,g,K,g]=[23,5,2,5]` occurs on p28 line1 and p44 line10, but p28 is the only page-start occurrence. On p28, only four adjacent fragment pairs have ordered lengths equal to any distinct DH-state pair; HERE is the sole lexical output.
