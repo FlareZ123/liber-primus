@@ -185,4 +185,4 @@ The full roads are `71→108→14→183→81→58→146→92`, then `92→236→
 
 This gives a source-selected p32 receiver in the page's own printed word geometry. Two small consumers were tested before any language selection: a boundary-seeded per-rune pointer clock and one fixed p50 scalar per printed word. Their best GP-native trigram scores remain well below held clear controls, so the boundary chain currently constrains navigation rather than yielding plaintext.
 
-Reproducer: [`sims/lp2_p32_signed_word_boundary_receiver_sft.cjs`](../sims/lp2_p32_signed_word_boundary_receiver_sft.cjs).
+Reproducer: [`sims/lp2_p32_signed_word_boundary_receiver_sft.cjs`, Windows Node22 run **44450837758** passed](../sims/lp2_p32_signed_word_boundary_receiver_sft.cjs).
