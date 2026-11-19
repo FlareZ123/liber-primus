@@ -138,7 +138,7 @@ More importantly, this is familywise rather than an English gloss: among all **2
 
 This holdout is not globally unique across unrelated serializers. Two charged p41 DH physical-handoff rivals from the THE ORIGINAL family also have serialized GP0=88 and therefore hit the same p50 pair. They do not arise from the red-span H serializer and fail the ORIGINAL prime/`[5,5]` holdouts. That collision is preserved explicitly.
 
-## 3. Prospective p8 receiver validation
+## 3. Prospective p8 state cross-check
 
 The `[7,8]` consequence was frozen before opening p8 as a new target. The landing then exposes a compact state checkpoint without using p8 ciphertext language:
 
@@ -170,7 +170,7 @@ red heading -> [q,A] ->H^-1 [a,K].
 
 The original p8 image also visibly opens with an enlarged red initial beside a rising tree-like illustration. That artwork is consistent with the route, while the acceptance test above uses only the numeric/layout state packet.
 
-This is the discriminating untouched receiver consequence requested by Director #1797 for the ONE-RISE branch.
+This is a discriminating untouched numeric/state consequence for Director #1797. It no longer supplies the preferred semantic action of RISE. A concurrent stronger result shows that the same exact `[3,5]+H -> RISE` packet occurs on p23, p33 and p40, with independently supported `+2` page uses at p33→p35 and p40→p42. Under that repeated operator, `THE ONE RISE` means one `+2` application, giving p23→p25; p25 was independently selected by authenticated GOOD LUCK and contains the sole `[K,g]` side object in the charged 627-object family. Preserve the p8 packet above as secondary cross-check evidence rather than the main navigation receiver. See `im-results/lp2-p23-one-rise-plus2-p25-convergence.md`.
 
 ## 4. What is shared, and what is independent
 
@@ -208,7 +208,7 @@ red-span/H route              -> THE ONE RISE.
 
 The stronger next decision is to use each instruction only where its own source-selected consequence identifies a receiver. Do not merge them into one English sentence, and do not transfer operands between the two serializers.
 
-The `[7,8]` holdout now has a prospective receiver validation at p8: page8=A, p50[8]=[e,g], and its unique two-word red heading `[q,A]` maps under inverse H to `[a,K]`. The ORIGINAL branch remains tied to its p23→p33 state route and its `97=p_25`, `[5,5]` closures. Any next target test should preserve that branch separation.
+The `[7,8]` holdout has a prospective state cross-check at p8: page8=A, p50[8]=[e,g], and its unique two-word red heading `[q,A]` maps under inverse H to `[a,K]`. The preferred ONE-RISE operation is the separately established repeated `+2` operator, giving p23→p25. The ORIGINAL branch remains tied to its p23→p33 state route and its `97=p_25`, `[5,5]` closures. Keep the serializer branches separate while using the repeated RISE operation for navigation.
 
 ## Reproduction
 
