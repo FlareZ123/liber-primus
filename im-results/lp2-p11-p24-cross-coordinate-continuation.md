@@ -127,6 +127,64 @@ Across all pairings, packet-role assignments, member choices, and both H seriali
 
 This matters because the output was not constrained to the expected continuation `[14,15,16]`. Any valid source-index unit run could have passed. The sole hit happens to be exactly the next three authenticated words after `THE WAY`.
 
+## Pre-existing downstream closure: WORDS ARE THE MAP
+
+A separate Agent10 route was committed around 04:55 UTC, well before this cross-coordinate family was formulated. It fixes the second authenticated THEIR at source index25 and applies the already selected base60 low-digit p50 consumer:
+
+```text
+25 THEIR
+ -> low60(p50[25]) = 18
+ -> MAP
+
+18 MAP
+ -> low60(p50[18]) = 15
+ -> WORDS.
+```
+
+That older route therefore selects the exact authenticated source interval:
+
+```text
+15 WORDS
+16 ARE
+17 THE
+18 MAP
+
+=> WORDS ARE THE MAP.
+```
+
+The new cross-coordinate packet was selected independently as:
+
+```text
+14 ITS
+15 WORDS
+16 ARE.
+```
+
+The two routes overlap exactly on:
+
+```text
+15 WORDS
+16 ARE.
+```
+
+Combining the independently fixed p24 packet, the new cross packet, and the older low-digit clause gives one continuous authenticated interval:
+
+```text
+12 THE
+13 WAY
+14 ITS
+15 WORDS
+16 ARE
+17 THE
+18 MAP
+
+=> THE WAY ITS WORDS ARE THE MAP.
+```
+
+The held-out check is structural. The SFT reconstructs the low-digit path directly from the canonical p50 grid and requires the overlap and complete interval exactly. The cross-coordinate search did not use the low-digit route or this seven-word interval in its selection predicate.
+
+This materially strengthens the p26 receiver as a bridge between two pre-existing source-register mechanisms. It does not make the cross rule recursive. The prospective recursion test below remains negative.
+
 ## Prospective recursion gate
 
 Freeze the newly derived packet:
@@ -147,18 +205,19 @@ The cross-coordinate mechanism therefore does not currently continue recursively
 
 ## Research consequence
 
-This result links four previously separate facts:
+This result links five independently sourced components:
 
 ```text
 p11 -> THEIR NUMBERS
 p24 -> THE WAY
 their number packets -> p26 word13
-p26 word13 Hsplit -> ITS WORDS ARE.
+p26 word13 Hsplit -> ITS WORDS ARE
+older p50 low-digit route -> WORDS ARE THE MAP.
 ```
 
-It strengthens the interpretation of the signed 2016 source as an executable coordinate register and gives a concrete role to the Hsplit serializer outside the local-inverse plaintext work.
+The shared `WORDS ARE` overlap closes authenticated source indices12 through18 as `THE WAY ITS WORDS ARE THE MAP`. This strengthens the interpretation of the signed 2016 source as an executable coordinate register and gives a concrete role to Hsplit outside the local-inverse plaintext work.
 
-It does not decrypt unknown LP2 prose, establish a universal cross-coordinate opcode, or justify arbitrary packet crossing. Future progress would require an original clue or a new independently selected consumer that explains why these two packets should be crossed.
+Continuous LP2 prose remains unresolved. The evidence supports a bounded cross-coordinate bridge rather than a universal opcode, since the frozen derived packet produces no second-stage unit run. A future advance should seek a source-visible clue explaining why the THEIR NUMBERS and THE WAY packets are crossed, or an independent consumer of the resulting seven-word source interval.
 
 ## Reproduction
 
@@ -169,4 +228,5 @@ node sims/lp2_p11_p24_cross_coordinate_sft.cjs
 Windows Node22:
 - exploratory complete-family pass: **44473862009**
 - prospective second-stage pass: **44473997715**
-- locked assertions: **44474146385 PASS**.
+- locked assertions: **44474146385 PASS**
+- pre-existing low-digit held-out closure: **44474937986 PASS**.
