@@ -482,6 +482,310 @@ assert.equal(tableTokens[gp0("FOUND")], "0s");
 assert.equal(gp0("FOUND"), 36);
 assert.equal(foundGood.word, 10);
 
+
+// Source-native GOOD and LUCK continuation after FOUND.
+// The compound navigation family above prospectively fixes both receivers.
+const hereFragments = lineFragments(p28Lines[0]);
+const hereLineValues = hereFragments.flat();
+const dhLineValues = dhLine.fragments.flat();
+const hereOutput = [
+  ...outerH(hereFragments[0]),
+  ...outerH(hereFragments[1]),
+];
+assert.equal(translit(hereOutput), "HERE");
+assert.deepEqual(hereOutput, gp("HERE"));
+
+const fourRuneTargets = [...new Map(
+  message
+    .map((word) => ({ word: word.toUpperCase(), values: gp(word) }))
+    .filter((entry) => entry.values.length === 4)
+    .map((entry) => [entry.values.join(","), entry])
+).values()];
+assert.deepEqual(
+  fourRuneTargets.map((entry) => entry.word),
+  ["LIES", "THEIR", "MEANING", "ROAD", "SEEK", "WILL", "GOOD", "LUCK", "PATHS"]
+);
+const fourRuneTargetByGp = new Map(
+  fourRuneTargets.map((entry) => [entry.values.join(","), entry.word])
+);
+
+const privilegedLookups = [];
+for (const [lineName, values] of [
+  ["HERE", hereLineValues],
+  ["DH", dhLineValues],
+]) {
+  for (const [field, index] of Object.entries(state)) {
+    privilegedLookups.push({
+      line: lineName,
+      field,
+      value: values[index - 1],
+    });
+  }
+}
+
+function fixedFourRuneManuscriptHits(key) {
+  const hits = [];
+  let count = 0;
+  for (let partIndex = 0; partIndex < 55; partIndex += 1) {
+    const page = partIndex <= 49 ? partIndex : partIndex + 1;
+    const parsed = parsePage(parts[partIndex]);
+    for (const word of parsed.words) {
+      if (word.length !== 4) continue;
+      count += 1;
+      const plain = decrypt(word.values, key, -1);
+      const target = fourRuneTargetByGp.get(plain.join(","));
+      if (target) {
+        hits.push({
+          page,
+          word: word.index,
+          start: word.start,
+          target,
+          plaintext: plain,
+        });
+      }
+    }
+  }
+  return { count, hits };
+}
+
+// FOUND -> GOOD: the charged compound family selects p0 word10 by
+// base59/one endpoint52 before its values are used.
+const goodReceiver = p0.words.find((word) => word.end === foundGood.position);
+assert.deepEqual(goodReceiver, {
+  index: 10,
+  start: 49,
+  end: 52,
+  values: [24, 21, 26, 14],
+  length: 4,
+});
+
+const hab = H(state.A, state.B);
+assert.deepEqual(hab, [18, 27]);
+const goodKey = [
+  hab[0],
+  hab[0],
+  state.p,
+  dhLineValues[state.p - 1],
+];
+assert.deepEqual(goodKey, [18, 18, 23, 20]);
+const goodPlain = decrypt(goodReceiver.values, goodKey, -1);
+assert.deepEqual(goodPlain, gp("GOOD"));
+assert.deepEqual(decrypt(goodPlain, goodKey, +1), goodReceiver.values);
+
+const goodShell = [
+  ...H(goodPlain[0], goodPlain[3]),
+  ...H(goodPlain[1], goodPlain[2]),
+];
+assert.deepEqual(goodShell, [
+  mod29(state.K * state.a),
+  0,
+  0,
+  state.a,
+]);
+
+// Charge both H(A,B) coordinates independently, every direct DH field,
+// every one-based state lookup in the HERE/DH lines, both signs, and then
+// every permutation of the resulting four source values.
+const goodBasicHits = [];
+const goodBroadFamily = new Map();
+let goodRawConfigs = 0;
+for (let left = 0; left < 2; left += 1) {
+  for (let right = 0; right < 2; right += 1) {
+    for (const [field, fieldValue] of Object.entries(state)) {
+      for (const lookup of privilegedLookups) {
+        const baseKey = [hab[left], hab[right], fieldValue, lookup.value];
+        for (const sign of [-1, +1]) {
+          goodRawConfigs += 1;
+          const basicPlain = decrypt(goodReceiver.values, baseKey, sign);
+          for (const target of fourRuneTargets) {
+            if (basicPlain.join(",") === target.values.join(",")) {
+              goodBasicHits.push({
+                left,
+                right,
+                field,
+                lookup,
+                sign,
+                key: baseKey,
+                target: target.word,
+              });
+            }
+          }
+          for (const key of uniquePermutations(baseKey)) {
+            goodBroadFamily.set(sign + ":" + key.join(","), { sign, key });
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(goodRawConfigs, 784);
+assert.deepEqual(goodBasicHits, [{
+  left: 0,
+  right: 0,
+  field: "p",
+  lookup: { line: "DH", field: "p", value: 20 },
+  sign: -1,
+  key: goodKey,
+  target: "GOOD",
+}]);
+assert.equal(goodBroadFamily.size, 8304);
+const goodBroadHits = [];
+for (const member of goodBroadFamily.values()) {
+  const plain = decrypt(goodReceiver.values, member.key, member.sign);
+  for (const target of fourRuneTargets) {
+    if (plain.join(",") === target.values.join(",")) {
+      goodBroadHits.push({ ...member, target: target.word });
+    }
+  }
+}
+assert.deepEqual(goodBroadHits, [{
+  sign: -1,
+  key: goodKey,
+  target: "GOOD",
+}]);
+
+const goodManuscript = fixedFourRuneManuscriptHits(goodKey);
+assert.equal(goodManuscript.count, 514);
+assert.deepEqual(goodManuscript.hits, [{
+  page: 0,
+  word: 10,
+  start: 49,
+  target: "GOOD",
+  plaintext: gp("GOOD"),
+}]);
+
+// GOOD -> LUCK: GP0(GOOD)=35 addresses 0d. Both conventional radices give
+// 39, the exact start of p0 word7, and LUCK is the next authenticated word.
+assert.equal(gp0("GOOD"), 35);
+assert.equal(tableTokens[gp0("GOOD")], "0d");
+assert.equal(decodeToken(tableTokens[gp0("GOOD")], alphabet60), 39);
+assert.equal(decodeToken(tableTokens[gp0("GOOD")], alphabet59), 39);
+const luckReceiver = p0.words.find((word) => word.start === 39);
+assert.deepEqual(luckReceiver, {
+  index: 7,
+  start: 39,
+  end: 42,
+  values: [8, 17, 9, 27],
+  length: 4,
+});
+
+const goodMessageIndex = message.findIndex((word, index) =>
+  word.toLowerCase() === "good" && message[index + 1]?.toLowerCase() === "luck"
+);
+assert.ok(goodMessageIndex >= 0);
+
+// LUCK key: re-H the literal-DH [b,K] state in K,b order, read its sum then
+// difference, append the HERE output length and the B-indexed HERE-line rune.
+const luckPair = H(state.K, state.b).reverse();
+assert.deepEqual(luckPair, [17, 16]);
+const luckKey = [
+  ...luckPair,
+  hereOutput.length,
+  hereLineValues[state.B - 1],
+];
+assert.deepEqual(luckKey, [17, 16, 4, 22]);
+const luckPlain = decrypt(luckReceiver.values, luckKey, -1);
+assert.deepEqual(luckPlain, gp("LUCK"));
+assert.deepEqual(decrypt(luckPlain, luckKey, +1), luckReceiver.values);
+
+const luckShell = [
+  ...H(luckPlain[0], luckPlain[3]),
+  ...H(luckPlain[1], luckPlain[2]),
+];
+assert.deepEqual(luckShell, [
+  state.b,
+  mod29(state.p + state.K),
+  mod29(state.p + state.K),
+  state.a,
+]);
+
+const sourceScalars = [
+  { name: "page-number", value: 28 },
+  { name: "page-rune-lines", value: p28Lines.length },
+  { name: "here-line-one-based", value: 1 },
+  { name: "here-line-runes", value: hereLineValues.length },
+  { name: "here-line-fragments", value: hereFragments.length },
+  { name: "here-fragments-consumed", value: 2 },
+  { name: "here-output-length", value: hereOutput.length },
+  { name: "dh-line-one-based", value: 6 },
+];
+
+// Broaden LUCK: any ordered distinct DH pair, H or reversed H,
+// every source scalar, every HERE/DH state-index lookup, and both signs.
+const luckFamily = new Map();
+let luckRawConfigs = 0;
+for (const [leftField, leftValue] of Object.entries(state)) {
+  for (const [rightField, rightValue] of Object.entries(state)) {
+    if (leftField === rightField) continue;
+    const pair = H(leftValue, rightValue);
+    for (const orderedPair of [pair, pair.slice().reverse()]) {
+      for (const scalar of sourceScalars) {
+        for (const lookup of privilegedLookups) {
+          for (const sign of [-1, +1]) {
+            luckRawConfigs += 1;
+            const key = [
+              orderedPair[0],
+              orderedPair[1],
+              scalar.value,
+              lookup.value,
+            ];
+            luckFamily.set(sign + ":" + key.join(","), {
+              leftField,
+              rightField,
+              scalar: scalar.name,
+              lookup,
+              sign,
+              key,
+            });
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(luckRawConfigs, 18816);
+assert.equal(luckFamily.size, 15392);
+const luckFamilyHits = [];
+for (const member of luckFamily.values()) {
+  const plain = decrypt(luckReceiver.values, member.key, member.sign);
+  for (const target of fourRuneTargets) {
+    if (plain.join(",") === target.values.join(",")) {
+      luckFamilyHits.push({ ...member, target: target.word });
+    }
+  }
+}
+assert.deepEqual(luckFamilyHits, [{
+  leftField: "K",
+  rightField: "b",
+  scalar: "here-output-length",
+  lookup: { line: "HERE", field: "B", value: 22 },
+  sign: -1,
+  key: luckKey,
+  target: "LUCK",
+}]);
+
+const luckManuscript = fixedFourRuneManuscriptHits(luckKey);
+assert.equal(luckManuscript.count, 514);
+assert.deepEqual(luckManuscript.hits, [{
+  page: 0,
+  word: 7,
+  start: 39,
+  target: "LUCK",
+  plaintext: gp("LUCK"),
+}]);
+
+// The local digit-letter chain ends naturally at the signed GOOD LUCK sentence.
+assert.equal(gp0("LUCK"), 31);
+assert.equal(tableTokens[gp0("LUCK")], "2D");
+const luckMessageIndex = message.findIndex((word, index) =>
+  word.toLowerCase() === "luck" && message[index + 1]?.toLowerCase() === "beware"
+);
+assert.ok(luckMessageIndex >= 0);
+assert.notEqual(
+  [...message[luckMessageIndex + 1].toLowerCase()].filter((char) => char === "d").length,
+  2
+);
+
 console.log(JSON.stringify({
   dh: state,
   receiver: {
@@ -502,6 +806,27 @@ console.log(JSON.stringify({
   exactGp29Space: 29 ** 5,
   exactCoverage,
   nextCompoundHit: foundGood,
+  good: {
+    receiver: goodReceiver,
+    key: goodKey,
+    plaintext: translit(goodPlain),
+    shell: goodShell,
+    rawFamilyConfigs: goodRawConfigs,
+    broadFamilyConfigs: goodBroadFamily.size,
+    broadHits: goodBroadHits.length,
+    manuscriptHits: goodManuscript.hits,
+  },
+  luck: {
+    receiver: luckReceiver,
+    key: luckKey,
+    plaintext: translit(luckPlain),
+    shell: luckShell,
+    rawFamilyConfigs: luckRawConfigs,
+    distinctFamilyConfigs: luckFamily.size,
+    familyHits: luckFamilyHits.length,
+    manuscriptHits: luckManuscript.hits,
+    nextToken: tableTokens[gp0("LUCK")],
+  },
 }, null, 2));
 
-console.log("PASS p0 FOUND DH-shell inverse");
+console.log("PASS p0 FOUND GOOD LUCK source chain");
