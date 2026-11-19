@@ -328,6 +328,12 @@ console.log(JSON.stringify({
   matchedDhCascadeHits: matchedHits,
   broadOrderedPairs: spans.length * (spans.length - 1),
   broadDhCascadeHitCount: broadHits.length,
+  gridPagination: {
+    segments: gridSegments,
+    boundaries: [firstTableBoundary, secondTableBoundary],
+    samePageBoundaryPairs,
+    selectedPacketCoordinates,
+  },
   externalRoot: {
     zeroBasedCoordinate: [selected.p, selected.g],
     zeroBasedAddress: rootAddress,
