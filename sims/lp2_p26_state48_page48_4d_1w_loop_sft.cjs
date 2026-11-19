@@ -192,6 +192,134 @@ assert.deepEqual(
   }]
 );
 
+
+// Continue only with literal token grammars already selected by the route:
+//   digit+cardinal = p50 movement;
+//   n<uppercase GP rune> = nth occurrence on the current page, addressed
+//     one-based into p50;
+//   np = ordinary algebraic multiplication n*p using DH p=23, switching to
+//     that page/address when it exists;
+//   two decimal digits = literal page/address.
+const dhP = 23;
+
+function mixedPageChain(startPage, maxSteps = 30) {
+  let page = startPage;
+  let address = startPage;
+  const trace = [];
+  const seen = new Set();
+
+  for (let step = 0; step < maxSteps; step += 1) {
+    const stateKey = page + "/" + address;
+    if (seen.has(stateKey) || address < 0 || address >= 256) break;
+    seen.add(stateKey);
+
+    const token = table[address];
+    let match = token.match(/^([1-9])([NSEW])$/u);
+    if (match) {
+      const destination = cardinalMove(address, token);
+      trace.push({ page, address, token, event: "cardinal", destination });
+      if (destination === null) break;
+      address = destination;
+      continue;
+    }
+
+    match = token.match(/^([1-9])([A-Z])$/u);
+    if (match && singleGp.has(match[2])) {
+      const ordinal = Number(match[1]);
+      const symbol = match[2];
+      const rune = singleGp.get(symbol);
+      const current = corpus.pages.find((candidate) => candidate.page === page);
+      assert.ok(current);
+      const offsets = current.indices
+        .map((value, index) => value === rune ? index : null)
+        .filter((index) => index !== null);
+      if (offsets.length < ordinal) break;
+      const offset = offsets[ordinal - 1];
+      const position = offset + 1;
+      trace.push({
+        page,
+        address,
+        token,
+        event: "ordinal",
+        symbol,
+        ordinal,
+        offset,
+        destination: position,
+      });
+      address = position;
+      continue;
+    }
+
+    match = token.match(/^([1-9])p$/u);
+    if (match) {
+      const multiplier = Number(match[1]);
+      const destination = multiplier * dhP;
+      trace.push({
+        page,
+        address,
+        token,
+        event: "p-multiple",
+        multiplier,
+        destination,
+      });
+      if (destination > 55) break;
+      page = destination;
+      address = destination;
+      continue;
+    }
+
+    if (/^[0-9]{2}$/u.test(token)) {
+      const destination = Number(token);
+      trace.push({
+        page,
+        address,
+        token,
+        event: "decimal-page",
+        destination,
+      });
+      if (destination > 55) break;
+      page = destination;
+      address = destination;
+      continue;
+    }
+
+    break;
+  }
+
+  return trace;
+}
+
+const page48Chain = mixedPageChain(48);
+assert.deepEqual(
+  page48Chain.map((row) => [row.token, row.event, row.destination]),
+  [
+    ["4D", "ordinal", 146],
+    ["1W", "cardinal", 145],
+    ["3U", "ordinal", 135],
+    ["2p", "p-multiple", 46],
+    ["3J", "ordinal", 73],
+    ["1J", "ordinal", 6],
+    ["26", "decimal-page", 26],
+  ]
+);
+
+const chainCensus = corpus.pages
+  .filter((page) => page.page <= 55 && page.indices.length > 0)
+  .map((page) => ({
+    page: page.page,
+    trace: mixedPageChain(page.page),
+  }));
+const maximumChainLength = Math.max(...chainCensus.map((row) => row.trace.length));
+const maximumStarts = chainCensus
+  .filter((row) => row.trace.length === maximumChainLength)
+  .map((row) => row.page);
+assert.equal(maximumChainLength, 7);
+assert.deepEqual(maximumStarts, [48]);
+
+// The external p26 WAY/MAP state chain supplies 48; the mixed page-token
+// interpreter returns 48 to literal page26. This is the closed macro route.
+assert.equal(page48Chain.at(-1).destination, 26);
+
 console.log(JSON.stringify({
   status: "PASS",
   route: {
@@ -213,6 +341,12 @@ console.log(JSON.stringify({
       returnedOffset,
       landingToken: table[returnedOffset],
     },
+    mixedPageLoop: {
+      trace: page48Chain,
+      maximumUnknownPageChainLength: maximumChainLength,
+      maximumStarts,
+      returnsToPage: page48Chain.at(-1).destination,
+    },
   },
   familyAudit: {
     pageIndexedOrdinalTokens: rows.length,
@@ -222,5 +356,5 @@ console.log(JSON.stringify({
     selfReturns,
   },
   classification:
-    "source-only page/ordinal/navigation self-index; preserves a p26-to-p48 route but does not recover plaintext",
+    "source-only closed p26->p48->p46->p26 page/ordinal/navigation loop; no plaintext recovered",
 }, null, 2));
