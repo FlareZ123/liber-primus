@@ -122,38 +122,45 @@ Thus the new factorization supplies a downstream discriminator that the original
 
 This is strong structural evidence, while its chronology must remain explicit: the `2^4 × 43` prefix was recognized after class A's full rank was factored. The B/C comparison is a genuine pre-existing matched control, but this is corroboration rather than a blind discovery probability.
 
-## Destination fork
+## Internal p33 consumer resolves the full-factor fork
 
-The 79-bit full-rank factor is:
+The full-rank 79-bit factor is:
 
 ```text
 571505208178548184347727
 ```
 
-If formatted mechanically as a Tor-v2 80-bit identifier, it gives:
+Mechanical Tor-v2 formatting gives `pecvyau2ayqym5cp.onion`, but a later independent p33 route now supplies a direct manuscript-internal consumer for the same factor.
+
+The three large full-rank factors have low bytes:
 
 ```text
-pecvyau2ayqym5cp.onion
+q13 mod256 = 187
+q32 mod256 = 203
+q79 mod256 = 79
 ```
 
-This is a **representation candidate only**. Tor-v2 base32 formatting supplies no checksum, and no historical occurrence or p56 page-hash match authenticates this host.
+The independently selected p33 section grammar has visible markers `M` and `NG`, body lengths81 and115, `prime(M)=71`, `prime(NG)=79`, title length `A=8`, and route parameter `q=4`.
 
-The existing red-only route instead yields:
+The factor packet closes exactly:
 
 ```text
-nz77w2upkfkyj4rh.onion
+q13 mod256 = 187
+  -> p50[187] = 81 = p33 body1
+  <- p50^q(prime(M)=71)
+
+q79 mod256 = 79 = prime(NG)
+  -> p50^A(79) = 115 = p33 body2
+  -> p50^q(115) = 203 = q32 mod256
 ```
 
-from the 79-bit residual of the reduced 30-of-255 rank.
+Among the four non-power factors, q79 alone has a low byte equal to either p33 marker prime, and q13 alone points in one p50 step to either p33 body length. The p33 layout and its A/q depths were discovered on a separate branch before this factor consumer was tested.
 
-Do not generate more addresses. The two candidates answer different source objects:
+This changes the preferred interpretation of the full q79 factor. **Treat it as an internal state selector, not a Tor destination.** The `pecvyau2ayqym5cp.onion` rendering is retained only as a syntactic curiosity and should not drive further research absent independent historical evidence.
 
-1. **full 31-of-256**: directly selected by title133 and now carrying a compact route checksum;
-2. **red-only 30-of-255**: selected later by the p55/p27 `DJU/BEI` prime-sum gap30 and carrying the p27-local factor labels.
+The older red-only `nz77w2upkfkyj4rh.onion` candidate comes from a different reduced object and is not authenticated by this result. It remains candidate-level pending a source-selected receiver or historical occurrence.
 
-The presently stronger interpretation is that the full rank is a **route/state checksum** which independently confirms the values `q=4`, signed-source count43, event type13, p32, and p27-start79. The red-only rank remains the more causally selected destination candidate because the source supplies an explicit reduction from 31 marks to the 30 red marks before its factorization is consumed.
-
-A destination upgrade requires a source-selected receiver or historical occurrence that discriminates these two 79-bit factors. The existence of two syntactically valid Tor-v2 labels is itself evidence against treating base32 formatting as proof.
+See `im-results/lp2-title133-fullrank-p33-factor-consumer.md` and `sims/lp2_title133_fullrank_p33_factor_consumer_sft.cjs`; Windows run **44451743323** passes.
 
 ## Relation to the new p32 SURFACE closure
 
