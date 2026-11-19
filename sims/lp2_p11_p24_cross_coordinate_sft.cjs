@@ -257,6 +257,7 @@ for (const basePacket of unitPackets) {
     }
   }
 }
+assert.deepEqual(secondStageHits, []);
 
 // The p11+p24 combination is independently motivated by the already recovered
 // source fragments THEIR NUMBERS and THE WAY. Report its four receivers in
@@ -289,7 +290,9 @@ console.log(JSON.stringify({
   continuationTarget: {
     prefixIndices: [12, 13],
     prefixWords: source.slice(12, 14),
-    desiredImmediateContinuationIndices: [14, 15, 16],
-    desiredImmediateContinuationWords: source.slice(14, 17),
+    immediateContinuationIndices: [14, 15, 16],
+    immediateContinuationWords: source.slice(14, 17),
+    concatenated: source.slice(12, 17),
   },
+  decision: "Crossing every pair of the three independently established numbered-diagonal unit packets under the existing page=index / word=index+1 coordinate grammar and both live H serializations gives one unit-run hit: NUMBERS26 x THE12 selects p26 word13, whose Hsplit output [16,15,14] orients to ITS WORDS ARE. It exactly continues THE WAY to THE WAY ITS WORDS ARE. Reusing the derived packet under the same cross grammar yields no second-stage unit run.",
 }, null, 2));
