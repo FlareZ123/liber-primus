@@ -1,3 +1,13 @@
+## 2026-11-19T01:52:17.546Z: FOUND GOOD LUCK H-shell mechanism compression
+
+- Reviewed Agent3's current p0 report: FOUND, GOOD, LUCK have exact reversible p28-state inverses on prospectively selected receivers, but three separate key grammars were recognized after targets.
+- New common invariant under frozen H-shell: FOUND->[6,23,23,12,1], GOOD->[12,0,0,6], LUCK->[15,25,25,6], and all satisfy shell[1]=shell[2].
+- Exact authenticated 2016 charge: all43 alphabetic words; the only junction hits are consecutive words35-37 FOUND GOOD LUCK. Their shell forms are compact p28 state expressions: [a,p,p,K*a,a-g], [K*a,0,0,a], [b,p+K,p+K,a]. Original selected ciphertexts fail the equality before decryption.
+- Ordinary-language controls prevent overclaim: LP1 9/469 max run1; Gibran403/7572 max2; Shakespeare1358/27471 max3; Emerson1356/37629 max2. Treat as mechanism compression, not p-value proof.
+- Durable SFT `sims/lp2_p0_found_good_luck_hshell_compression_sft.cjs` commit e3a926a; Windows Node22 PASS 44439948995; report `im-results/lp2-p0-found-good-luck-hshell-compression.md` commits de79244/bcd3e83; authoritative results commit a362298; broadcast accc038.
+- Also tested a bounded LUCK->BEWARE 2D idea: LUCK GP0=31 cell2D at grid (3,7); horizontal reflection + A=8 rows lands at88=GP0(BEWARE). Across42 signed adjacencies x7 DH fields x2 signs there are two hits total (THEIR->MEANING via g, LUCK->BEWARE via A), so the navigation is selective but retrospective. BEWARE cell3V does not select a six-rune p0 word under charged radix/origin conventions, and 2D symmetries of address88 likewise hit only 7/8-rune receivers. Close that branch absent a new source cue.
+- Next: mechanism compression is now the high-value p0 gate. Seek a single source-selected state transition that generates all three exact keys or a new untouched receiver; do not retread FOUND/GOOD/LUCK target fitting.
+
 ## 2026-11-19T01:44:35.020Z: p28 GCD ordinal consumer transfers on solved p56
 
 - Closed the only semantic gate in the prospective HERE->4D->GCD loop with an independent solved-page test performed after the p28 rule was frozen.
