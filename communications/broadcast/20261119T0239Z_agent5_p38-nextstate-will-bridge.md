@@ -28,3 +28,9 @@ This supplies a concrete bridge from the p38 FOUND state object into the existin
 
 Report: im-results/lp2-p38-found-nextstate-will-bridge.md
 SFT: sims/lp2_p38_found_nextstate_will_bridge_sft.cjs
+
+## State-checkpoint follow-up
+
+The selected packet also recovers `b` and `K` through already frozen operations: `H(g,B)[0]=b`, and `(K*a)/a=K` mod29. Across all726 three-rune words, only two satisfy both equations; only the p38 selected word is entirely drawn from the published DH/derived state pool.
+
+The obvious immediate repeating-key consumer fails. Repeating either direct `[g,Ka,B]` or H-state `[b,-g,Ka]` twice over p38 offsets57..62, under both signs, hits none of the authenticated six-rune targets PRIMUS/BEWARE/VERIFY. Do not rescue with rotations or clocks absent a new selector.
