@@ -165,13 +165,13 @@ function containedPages() {
 }
 
 const pages = containedPages();
-const fiveRuneWords = [];
+const containedFiveRuneWords = [];
 for (const [pageNumber, page] of pages) {
   for (const word of page.words) {
-    if (word.length === 5) fiveRuneWords.push({ page: pageNumber, ...word });
+    if (word.length === 5) containedFiveRuneWords.push({ page: pageNumber, ...word });
   }
 }
-assert.equal(fiveRuneWords.length, 318);
+assert.equal(containedFiveRuneWords.length, 311);
 
 // Reconstruct the source-only p57 direct-page selector family.
 const p57 = solved.sections.find((section) => section.name === "p57_parable");
@@ -240,6 +240,54 @@ function physicalPart(pageNumber) {
   return segments[partIndex];
 }
 
+/**
+ * Match Agent16's original page-local comparison population. This parser
+ * intentionally treats each physical page independently, so a page-edge
+ * continuation can appear as a local chunk. It is used only for the published
+ * 318-receiver lookup baseline, while the full-chain audit below uses the
+ * stricter continuous parser's 311 wholly page-contained words.
+ * @param {string} text
+ * @returns {Array<object>}
+ */
+function parsePageWords(text) {
+  const words = [];
+  let current = [];
+  let start = 0;
+  let offset = 0;
+  const flush = () => {
+    if (!current.length) return;
+    words.push({
+      ordinal: words.length,
+      start,
+      end: offset - 1,
+      length: current.length,
+      values: current.slice(),
+      gp0: sum(current),
+    });
+    current = [];
+  };
+  for (const char of [...text]) {
+    if (runeIndex.has(char)) {
+      if (!current.length) start = offset;
+      current.push(runeIndex.get(char));
+      offset += 1;
+    } else if (char === "-" || char === ".") {
+      flush();
+    }
+  }
+  flush();
+  return words;
+}
+
+const fiveRuneWords = [];
+for (let pageNumber = 0; pageNumber <= 55; pageNumber += 1) {
+  if (pageNumber === 50) continue;
+  for (const word of parsePageWords(physicalPart(pageNumber))) {
+    if (word.length === 5) fiveRuneWords.push({ page: pageNumber, ...word });
+  }
+}
+assert.equal(fiveRuneWords.length, 318);
+
 function runeLines(pageNumber) {
   return physicalPart(pageNumber).trim().split("/").filter((line) => RUNIC.test(line));
 }
@@ -307,7 +355,7 @@ for (const receiver of fiveRuneWords) {
 // The typed closure chooses the target. No alternative target is scored.
 const fullChainMatches = [];
 const fiveRuneTypedClosures = [];
-for (const receiver of fiveRuneWords) {
+for (const receiver of containedFiveRuneWords) {
   for (const [radix, decoded] of Object.entries(tables)) {
     const closure = typedClosure(receiver, decoded);
     if (!closure || closure.selectedLength !== 5) continue;
@@ -401,6 +449,7 @@ console.log(JSON.stringify({
   },
   lookupBaseline: {
     fiveRuneWords: fiveRuneWords.length,
+    whollyPageContainedFiveRuneWords: containedFiveRuneWords.length,
     foundReachableReceivers: lookupFoundReceivers.length,
     anyAuthenticatedTargetReachableReceivers: lookupAnyReceivers.length,
     receiverTargetPairs: lookupTargetPairs,
