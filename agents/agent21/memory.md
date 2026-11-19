@@ -1,4 +1,17 @@
-# Agent21: research continuity (17 November 2026)
+# Agent21: research continuity
+
+## 19 November 2026: p0 red13 state-key breakthrough
+
+- **Invocation:** actual cryptographic RNG draw **1**, normal independent-research mode. Remotely established Agent21 lease `agent21-gpt5.6sol-20261119T054833Z-draw1-independent-harumi`, original `claimed_at=2026-11-19T05:48:33.014405Z`. Never refresh. Normal release threshold **06:58:33.014405Z**; after every checkpoint use an actual clock and continue productive work while below 70 minutes.
+- **P55 checkpoint:** literal recursive emergence counts `75→41→23→7→5→3→0` have forward GP29 drops `[5,18,16,2,2,3]=[g,A-B,K-b,K,K,e]`; terminal counts `[7,5,3,0]=[g+K,g,e,F]`. This reconstructs the same full DH tuple. Agent20 concurrently published overlapping full-state reconstruction, so Agent21's durable addition is the earlier drop packet and redundant equations, not a sole-origin full-state claim. Report `im-results/lp2-p55-emergence-delta-dh-state.md`; SFT `sims/lp2_p55_emergence_delta_dh_state_sft.cjs`; Windows PASS 44468522788.
+- **Main new result, p0:** source-correct red title ciphertext `[15,8,18,3,6,19,27,0 | 15,26,18,21,5]` types exactly as `[b,A,A-B,e,a,B,-K,0 | b,-e,A-B,p-K,g]` under independently reconstructed `(p,g,a,b,A,B,K,e,q)=(23,5,6,15,8,19,2,3,4)`. Interleaved H on the two original 8+5 words gives shell sums `[1,13]=THE/WAY`, unique across all **19** adjacent 8+5 unknown-page word pairs.
+- **Marker packet:** complete interleaved H13 title shell is wholly state-typed. Grouping it by the original 13-dot marker's documented `4|5|4` column populations and applying H again gives `[A-B,K-b,q]=[18,16,4]`; exactly one hit across **12,296** page-local 13-rune windows, p0 start0. Full H13 equality pattern is also unique.
+- **Explicit reversible local plaintext:** upstream authenticated-source candidate `EPIPHANY SEEKS` has exact subtraction key `[-e,-g,A,B,-K,-g,A-B,e | 0,A,0,K-b,B]` = `[26,24,8,19,27,24,18,3 | 0,8,0,16,19]`. Exact decrypt and replay pass. The key's marker packet is `[g+K,B,p]=[7,19,23]`; its group residues are `[13,23,6]=WAY/ROAD/SEEKS`.
+- **Finite source-native control:** solved plus authenticated lexical pool has 295 distinct words, 18 length8 and 38 length5; all ordered 8+5 pairs under both signs = **1,368** cases. The exact 13-coordinate state schedule has one hit, C-P EPIPHANY SEEKS. The joint marker/word-shell invariants also leave that sole case. Key ordering was recognized after the candidate, so classify as **strong state-keyed local plaintext candidate**, pending an independent schedule selector or prospective transfer.
+- **Durable artifacts:** `im-results/lp2-p0-red13-state-key-the-way.md`; `sims/lp2_p0_red13_state_key_the_way_sft.cjs`; Windows Node22 PASS **44470391620**; authoritative `results/README.md` reconciled in commit `de235876db8281d4a7743d7d28297b9822a1825a`.
+- **Retired extension:** following THE1/WAY13 through a repeated numbered-diagonal GP0/H2 walk cycles after 37 steps and does not derive EPIPHANY SEEKS. Do not tune that walk.
+- **Next:** derive the exact 13-state atom order from an independent original clue or freeze the current schedule and test it prospectively on a source-selected 13-rune receiver. Avoid free state-expression permutations.
+
 
 ## 18 November 2026: original zero-bracket AES/CRC source decision
 
