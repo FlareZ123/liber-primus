@@ -102,4 +102,4 @@ Run:
 node sims/lp2_openpgp_source_restart_sft.cjs
 ```
 
-The SFT reconstructs canonical cross-page words, selects OPENPGP43 only through the authenticated numbered route, checks the exact H/source-opening recovery, and exhausts all 716 complete three-rune words.
+The SFT reconstructs canonical cross-page words, selects OPENPGP43 only through the authenticated numbered route, checks the exact H/source-opening recovery, and exhausts all 716 complete three-rune words. Windows/Node 22 run **44468830914** passes.
