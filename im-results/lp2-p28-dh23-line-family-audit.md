@@ -48,6 +48,21 @@ A source-preserving matched null keeps every line length, word boundary, line nu
 
 This is a calibrated structural statistic, not a global discovery probability. It does show that `DH` is doing real source-selection work beyond the duplicated numeric geometry.
 
+## Untouched p50 consequence fixes line-number origin
+
+After the literal `DH` line is selected, the audit still charges both zero- and one-based physical line numbering.
+
+For p28 line6 the two interpretations give:
+
+| line origin | a | A = 5^a mod23 | K = 19^a mod23 |
+| --- | ---: | ---: | ---: |
+| zero-based | 5 | 20 | 11 |
+| one-based | 6 | **8** | **2** |
+
+The physical p50 table is independently **8 columns wide**. That width was not used to define the line family. It therefore selects the one-based convention and its public value `A=8` on the unique literal-DH line.
+
+Across all 424 natural primitive-root DH rows, 24 happen to predict `A=8`; the value itself is not globally rare. The useful holdout is typed and local: among the two charged origins of the already selected literal-DH line, only one-based numbering predicts the independently visible p50 width.
+
 ## Predeclared solved-p57 holdout independently reselects 23
 
 Before this audit, Agent20 had frozen a source-visible holdout on solved p57 punctuation.
@@ -115,6 +130,7 @@ Preserve the p28 DH23 route with a narrower statement:
 - the exact tuple geometry has one original-source rival on p8;
 - p28 is uniquely marked by literal `DH`;
 - the literal-label alignment has exact length-stratified matched rate **1/120**;
+- the independently visible p50 width **8** resolves the charged line-origin ambiguity in favor of one-based `a=6`, which predicts `A=8` and `K=2`;
 - a predeclared solved-p57 punctuation holdout independently reselects **23** and `EMERGE=83`;
 - the tuple should therefore be described as **source-constrained**, not uniquely selected by geometry alone.
 
