@@ -21,6 +21,7 @@ function read(relative) {
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const solved = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
 const signed = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const ink = JSON.parse(read("resources/liber-primus/lp2-p0-physical-ink-override.json"));
 
 const M = 29;
@@ -122,6 +123,44 @@ function runeWords(source) {
 }
 
 /**
+ * Parse complete printed words on every unknown physical page. Whitespace and
+ * slash preserve a word across the printed line wraps, matching the canonical
+ * corpus convention.
+ * @returns {Array<{page:number,words:Array<{start:number,values:number[]}>}>}
+ */
+function unknownPhysicalWords() {
+  const parts = transcription.split(/^\s*%\s*$/m).slice(0, 55);
+  return parts.map((part, segment) => {
+    const page = segment >= 50 ? segment + 1 : segment;
+    const words = [];
+    let current = [];
+    let start = 0;
+    let offset = 0;
+
+    const finish = () => {
+      if (!current.length) return;
+      words.push({start, values: current});
+      current = [];
+    };
+
+    for (const character of [...part]) {
+      const value = runeIndex.get(character);
+      if (value !== undefined) {
+        if (!current.length) start = offset;
+        current.push(value);
+        offset += 1;
+      } else if (character === "/" || /\s/u.test(character)) {
+        // Physical layout alone does not terminate a printed word.
+      } else {
+        finish();
+      }
+    }
+    finish();
+    return {page, words};
+  });
+}
+
+/**
  * Assign thirteen sequential atoms to the physical marker's scan rows, sum
  * the three visible columns, then H the [left,center,right] column vector.
  *
@@ -209,70 +248,90 @@ assert.equal(lexicalPool.size, 295);
 assert.equal(length8.length, 18);
 assert.equal(length5.length, 38);
 
+const adjacent8x5 = [];
+for (const page of unknownPhysicalWords()) {
+  for (let index = 0; index + 1 < page.words.length; index += 1) {
+    const left = page.words[index];
+    const right = page.words[index + 1];
+    if (left.values.length === 8 && right.values.length === 5) {
+      adjacent8x5.push({
+        page: page.page,
+        word: index + 1,
+        start: left.start,
+        cipher: [...left.values, ...right.values],
+      });
+    }
+  }
+}
+assert.equal(adjacent8x5.length, 19);
+
 const exactTarget = [state.a, state.b, state.e];
 const exactHits = [];
-const mirroredExactHits = [];
-const permutationHits = [];
-let lexicalCases = 0;
-
-const permutations = [
-  [state.a, state.b, state.e],
-  [state.a, state.e, state.b],
-  [state.b, state.a, state.e],
-  [state.b, state.e, state.a],
-  [state.e, state.a, state.b],
-  [state.e, state.b, state.a],
-];
-const permutationSet = new Set(permutations.map((row) => row.join(",")));
+let candidateCases = 0;
+let orientationCases = 0;
 
 for (const sign of [1, -1]) {
-  for (const left of length8) {
-    for (const right of length5) {
-      lexicalCases += 1;
-      const candidate = [...left.values, ...right.values];
-      const candidateKey = cipher.map((value, index) =>
-        mod29(sign === 1 ? value - candidate[index] : candidate[index] - value)
-      );
-      const physical = visualMarkerPacket(candidateKey);
-      const mirrored = visualMarkerPacket(candidateKey, true);
-      const row = {
-        sign: sign === 1 ? "C-P" : "P-C",
-        left: left.text,
-        right: right.text,
-        leftSource: left.source,
-        rightSource: right.source,
-      };
-
-      if (physical.packet.every((value, index) => value === exactTarget[index])) {
-        exactHits.push({...row, packet: physical.packet});
-      }
-      if (mirrored.packet.every((value, index) => value === exactTarget[index])) {
-        mirroredExactHits.push({...row, packet: mirrored.packet});
-      }
-
-      for (const [orientation, packet] of [
-        ["physical", physical.packet],
-        ["horizontal-mirror", mirrored.packet],
-      ]) {
-        if (permutationSet.has(packet.join(","))) {
-          permutationHits.push({...row, orientation, packet});
+  for (const receiver of adjacent8x5) {
+    for (const left of length8) {
+      for (const right of length5) {
+        candidateCases += 1;
+        const candidate = [...left.values, ...right.values];
+        const candidateKey = receiver.cipher.map((value, index) =>
+          mod29(sign === 1 ? value - candidate[index] : candidate[index] - value)
+        );
+        for (const [orientation, visual] of [
+          ["physical", visualMarkerPacket(candidateKey)],
+          ["horizontal-mirror", visualMarkerPacket(candidateKey, true)],
+        ]) {
+          orientationCases += 1;
+          if (visual.packet.every((value, index) => value === exactTarget[index])) {
+            exactHits.push({
+              sign: sign === 1 ? "C-P" : "P-C",
+              orientation,
+              page: receiver.page,
+              word: receiver.word,
+              start: receiver.start,
+              left: left.text,
+              right: right.text,
+              leftSource: left.source,
+              rightSource: right.source,
+              packet: visual.packet,
+            });
+          }
         }
       }
     }
   }
 }
 
-assert.equal(lexicalCases, 1368);
-assert.deepEqual(exactHits, [{
-  sign: "C-P",
-  left: "EPIPHANY",
-  right: "SEEKS",
-  leftSource: "signed2016",
-  rightSource: "signed2016",
-  packet: [6, 15, 3],
-}]);
-assert.deepEqual(mirroredExactHits, []);
-assert.equal(permutationHits.length, 3);
+assert.equal(candidateCases, 25992);
+assert.equal(orientationCases, 51984);
+assert.deepEqual(exactHits, [
+  {
+    sign: "C-P",
+    orientation: "physical",
+    page: 0,
+    word: 1,
+    start: 0,
+    left: "EPIPHANY",
+    right: "SEEKS",
+    leftSource: "signed2016",
+    rightSource: "signed2016",
+    packet: [6, 15, 3],
+  },
+  {
+    sign: "C-P",
+    orientation: "horizontal-mirror",
+    page: 19,
+    word: 18,
+    start: 96,
+    left: "STUDENTS",
+    right: "FALSE",
+    leftSource: "solved",
+    rightSource: "signed2016",
+    packet: [6, 15, 3],
+  },
+]);
 
 console.log(JSON.stringify({
   status: "PASS",
@@ -293,9 +352,9 @@ console.log(JSON.stringify({
     lexicalPool: lexicalPool.size,
     length8: length8.length,
     length5: length5.length,
-    lexicalCases,
-    exactPhysicalHits: exactHits,
-    exactMirroredHits: mirroredExactHits,
-    permutationHits,
+    adjacent8x5: adjacent8x5.length,
+    candidateCases,
+    orientationCases,
+    exactTargetHits: exactHits,
   },
 }, null, 2));
