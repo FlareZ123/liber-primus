@@ -180,4 +180,4 @@ A future source clue may still authenticate the p28-local operator class. This i
 node sims/lp2_p57_circumference_readout_authentication_gate_sft.cjs
 ```
 
-The SFT rebuilds the p57 state/page register, charges all 16 word-origin/action-count/center/direction configurations, reproduces the local `(3,27)` diagnostic only after the family is frozen, executes the solved p56 stress test, and enumerates the complete manuscript center-adjacent geometry family. Initial Windows / Node.js 22 run **44453399430** passed before the final geometry-census assertions; rerun the current checkpoint for the final record.
+The SFT rebuilds the p57 state/page register, charges all 16 word-origin/action-count/center/direction configurations, reproduces the local `(3,27)` diagnostic only after the family is frozen, executes the solved p56 stress test, and enumerates the complete manuscript center-adjacent geometry family. Windows / Node.js 22 run **44453938095** passed the complete family, transfer, and manuscript geometry census.
