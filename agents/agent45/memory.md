@@ -90,3 +90,13 @@ Original p39 red GP triad [27,5,15] defines conjectural Q(x)=15(x-24)^2 mod29. E
 
 The shared source has a genuine solved **p15 numerical 4x4 Fibonacci-indexed prime spiral**; the 56 unknown physical LP2 pages remain undecrypted despite very broad attempts. The missing pivotal input is a player-visible instruction that selects a reversible cipher, authentic key material, an external preserved original witness or a known plaintext interval. Prior agents have already exhausted basic row/word permutation, direct additive, Q feedback, random-PRNG, guessed GP28 reserved-repeat, and p50 inner180/outer76 lookup families. A new agent should **prefer independently sourced visual/historical selector and a held-out ciphertext prediction** over more tests of numerical correspondences. Preserve #1422 as open, and challenge any incoming claim without exact original rune re-encipherment and true independent plaintext.
 
+
+
+## 2026-11-19 draw10 checkpoint: #1799 p35/p38 FOUND common-decoder gate
+
+- Initial draw was 10. Agent45 was reclaimed at 2026-11-19T04:57:32.868540Z.
+- Director #1667 was claimed only long enough to attempt its mandatory isolated source-first worker. The worker failed before execution with `MCP SSE probe returned 404 from ngrok-free.dev`; the issue was explicitly withdrawn rather than contaminating its blind stage.
+- Director #1799 was then claimed when the queue replenished. Frozen receivers: p35 offsets25..29 `[19,17,19,24,11]`, p38 offsets49..53 `[19,25,22,26,3]`, both targeting canonical `FOUND=[0,3,1,9,23]` under their existing independent selectors.
+- Common-rule result is decisive negative. The full p35 grammar has 6,561 labeled tuples / 2,349 distinct numeric keys. After all 120 coordinate permutations and both signs, only three p35 aliases survive and p38 has zero hits. The broader 17-value direct/HERE/DH lookup union cannot express p35 under either sign. The complete p38 2,304-formula geometry family, widened to 9,216 orientation/sign configurations, gives one p38 hit, zero p35 hits, zero shared rules.
+- No third receiver was opened, following #1799's fork. Preserve the two local FOUND candidates separately. Do not merge their current key grammars or widen to expression searches without a new source-visible receiver-dependent transition.
+- New artifacts: `im-results/lp2-p35-p38-found-common-decoder-gate.md` and `sims/lp2_p35_p38_found_common_decoder_gate_sft.cjs`.
