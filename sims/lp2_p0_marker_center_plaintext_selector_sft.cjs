@@ -222,12 +222,14 @@ const geometryKey = hOutsideIn([
   ...geometryColumns.right,
 ]);
 assert.deepEqual(geometryKey, [26,24,8,19,27,24,18,3,0,8,0,16,19]);
-const square5 = equal1033[0].order === 5 ? squares.find((sq) => sq.length === 5 && magicSum(sq) === 1033) : null;
-const square7 = squares.find((sq) => sq.length === 7 && magicSum(sq) === 1033);
-assert.ok(square5 && square7);
-const p = square7[e - 1][a - 1];
-const b = square7[e - 1][g + K - 1];
-assert.deepEqual({p,b}, {p:23,b:15});
+
+// Charge the exact frozen rise-grammar shape while varying which visible
+// geometry number occupies each of its four roles.
+// Q drives left seed/first rise and center seed; B is the left symmetric center;
+// S is the shared +/- unit; T is the center step and right symmetric center.
+const geometryValues = [...new Set(Object.values(geometryParameters))];
+assert.deepEqual(geometryValues.sort((a,b)=>a-b), [1,2,4,5,7,13]);
+const riseRoleRivals = [];
 
 // Build the manuscript's complete adjacent page-local 8+5 receiver family.
 const parts = transcription.split(/^\s*%\s*$/m).slice(0,55);
@@ -318,6 +320,36 @@ assert.equal(length5.length, 38);
 
 const p0Receiver = receivers.find((row) => row.page === 0 && row.ordinal === 1);
 assert.ok(p0Receiver);
+
+// Re-evaluate the finite rise-role family now that the receiver and lexicon exist.
+riseRoleRivals.length = 0;
+for (const Q of geometryValues) {
+  for (const Bv of geometryValues) {
+    for (const S of geometryValues) {
+      for (const T of geometryValues) {
+        const columns = {
+          left:cumulative(-Q,[Q-S,Bv-S,Bv+S]),
+          center:cumulative(Q,[Q,Q+T,Q+2*T,Q+3*T]),
+          right:cumulative(T,[T-S,T,T+S]),
+        };
+        const packet=[...columns.left,...columns.center,...columns.right];
+        const key=hOutsideIn(packet);
+        for (const sign of [-1,1]) {
+          const plain=p0Receiver.cipher.map((value,index)=>mod29(value+sign*key[index]));
+          const leftWord=length8.find((candidate)=>
+            candidate.values.join(",")===plain.slice(0,8).join(","));
+          const rightWord=length5.find((candidate)=>
+            candidate.values.join(",")===plain.slice(8).join(","));
+          if (leftWord && rightWord) riseRoleRivals.push({
+            Q,B:Bv,S,T,sign,packet,key,
+            lexicalPair:[leftWord.label,rightWord.label],
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(geometryValues.length ** 4 * 2, 2592);
 const p0SecondCipher = p0Receiver.cipher.slice(8);
 const metadataFields = {g,K,e,q,A,a,B};
 const metadataFieldEntries = Object.entries(metadataFields);
@@ -606,6 +638,7 @@ console.log(JSON.stringify({
   markerGeometry,
   geometryParameters,
   geometryKey,
+  riseRoleRivalHits:riseRoleRivals,
   sourceVisibleReceiverGate:{red13MarkerCount,exactRed13MarkerReceivers},
   palindromeDecryptions,
   palindromeAdditiveDecryptions,
