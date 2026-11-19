@@ -1,3 +1,38 @@
+# Current invocation — 2026-11-19 (Agent42, draw 5; issue-directed normal research)
+
+Lease: run_id `agent42-gpt5.6sol-20261119T042725Z-draw5-issue-directed-579ba4be7f9a`, claimed_at `2026-11-19T04:27:32.636140Z`. Required release threshold is 05:37:32.636140Z; do not refresh the lease.
+
+## Durable advances
+
+1. **Director #1797 completed: p23 carries two distinct source-object instructions.** Full five-dot-selected p23 line1 `[2,6,3,5,4]` plus dot5, terminal GP0=25 and the independently charged p23->p33 handoff serializes under solved T(n)=(p_n-1) mod29 to **THE ORIGINAL**. Raw five-word census is188 lines; nine terminal GP0=0 cases are outside the positive one-based serializer, leaving179 valid controls, with p23 the sole THEORI... hit. Exact red span `[2,6][3,5]` is a separate object; forward H on each pair serializes to **THE ONE RISE**, unique among24 paired-red-span H/H^-1 variants. Report `im-results/lp2-p23-instruction-reconciliation.md`; SFT `sims/lp2_p23_instruction_reconciliation_sft.cjs`; Windows CI run44463568013 passed.
+
+2. **THE ORIGINAL has two arithmetic closures.** Full stream GP0=97 equals p_25, where25 is the selected terminal rune GP0. Canonical p50[97]=2U=150 -> [5,5], returning the five stencil dots and five selected-line words. The shorter THE ORIGIN prefix has GP0=53 -> [5,26]. Files: `im-results/lp2-p23-original-gp0-p50-closure.md`, `sims/lp2_p23_original_gp0_p50_closure_sft.cjs`.
+
+3. **Preferred THE ONE RISE action is +2 to p25.** Agent42's frozen familywise numeric holdout GP0(THE ONE RISE)=88 -> p50[88]=[7,8] remains real, and prospectively opened p8 replays state (page8=A; p50[8]=[e,g]; unique two-word red heading [q,A]; H^-1 -> [a,K]). A stronger concurrent Agent17 result shows the exact [3,5]+H -> RISE packet repeats p23/p33/p40 and already carries +2 at p33->p35 and p40->p42. Therefore use one RISE as one +2 application p23->p25, independently selected by GOOD LUCK / unique [K,g]. Preserve p8 only as secondary state corroboration.
+
+4. **P55 circumference and p33 physical address meet on the authenticated READ OUT key.** P55 has76 runes, exactly the 32x8 circumference; p50[76]=1s=114->[3,27]=[e,-K]. Independently selected physical p33 has p50[33] equal to the same token/value; byte114 occurs only at [33,76]. P33 has214 original runes and p50[214]=4B=251->[8,19]=[A,B]. Among eligible unknown-page rune counts, p33 alone yields ordered [A,B]. Files: `im-results/lp2-p55-count76-p33-readout-key.md`, `sims/lp2_p55_count76_p33_readout_key_sft.cjs`, integrated into `im-results/lp2-p33-dh-layout-state-register.md`.
+
+5. **Exact p33 direct page-key body transfer is negative.** Frozen source order: x^3 on upper81 black runes, x^27 on lower115, no phase/sign/exponent/repartition menu. Source-native trigram mean improves only -3.44398 -> -3.42186, far from solved p57 -2.46814. Windows run44463108049 passed after correcting the test harness inverse exponent (3^-1 mod28=19; 27 self-inverse). Do not tune this direct body power family. SFT `sims/lp2_p33_pagekey_power_transfer_sft.cjs`.
+
+6. **P28 terminal hidden-layout packet is intermediate.** Fixed T on terminal lengths [1,2,8,3,8] gives U THERE. THERE GP0=42 and p50[42]=28, a terminal-last-four self-pointer unique among unknown-page terminals under that exact operand. Full U THERE GP0=43 and p50[43]=[2,15]=[K,b]; p28 is the only page terminal with exact ordered [K,b], though broader state-family/background controls are nontrivial. Report `im-results/lp2-p28-terminal-cardinal-there.md`; SFT `sims/lp2_p28_terminal_cardinal_there_sft.cjs`. Director #1796 is owned by another agent; do not duplicate.
+
+7. **Exact p23/p28 2U alias class is selective only in typed context.** p50[28]=p50[97]=p50[213]=2U=150->[5,5], tying independently selected p28, GP0(THE ORIGINAL)=97 and original p23 rune count213. General page-total->same-token physical-page edges are common (7 observed; cyclic-tail >=7 is48/256), so no universal alias opcode. Preserve the three-way typed closure only. Director #1800 is owned by another agent. Files `im-results/lp2-p23-original-p28-p50-2u-alias.md`, `sims/lp2_p23_original_p28_p50_2u_alias_sft.cjs`.
+
+8. **Canonical p50 origin confirms THE ORIGIN prefix.** p50[0]=3N=203 -> [7,0]; authenticated signed word7=THE. Under canonical register cell0 is the sole [any THE position,0] tape hit. File `im-results/lp2-p23-origin-p50-cell0-crosscheck.md`.
+
+9. **Secondary p23 +g=28 geometry relation retained at low priority.** p28 line1 [2,5,7,5,4]=[K,g,g+K,g,q] is unique among594 unknown-page lines, but the p23->p33 state handoff and repeated RISE +2 route are stronger authored successors. Do not promote +g as p23's main opcode.
+
+## Integration / coordination
+
+- Updated `results/README.md` with the corrected p23 family, #1797 dual-instruction synthesis, THE ORIGINAL numeric closures, and p55/p33 page-number/size state packets.
+- Broadcast: `communications/broadcast/20261119T0520Z_agent42_p23-p33-state-frontier.md`.
+- Combined Windows Node22 frontier workflow `.github/workflows/agent42-frontier-sfts.yml`, run **44464167125**, passed all six Agent42 SFTs.
+- #41 remains correctly WAITING: the new p55 [3,27] key packet does not specify a complete reversible map for all76 p55 runes.
+- #1803 claim was withdrawn because Agent12's claim predated Agent42. Do not touch #1796/#1798/#1800/#1803/#1804 while their current owners are active.
+- No unknown LP2 body plaintext or complete p55 decoder was recovered. The strongest advance is a more constrained intended-route/state architecture, with two source-selected p23 instructions and new exact p33/p55 state packets.
+
+---
+
 ## Adjacent-prime 3301 variant of the p15 window (exploratory negative)
 
 The same uncommitted p15-centered 3,299-rune window was tested with the p56 prime-totient/F-bypass stream starting at the adjacent cuneiform prime 3301 (rather than 3299). It has no legal inverse by offset14: ciphertext Y at phase14 equals key26 from prime3391, requiring forbidden plaintext F. A synthetic p57 plant passes. This is not a separate report because the centered-window target remains exploratory; retain the exact rejection if this specific 3301-start composition is proposed again.
