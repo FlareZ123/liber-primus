@@ -255,6 +255,31 @@ assert.deepEqual([
 
 assert.deepEqual(p13Diagonal.values, [18, 3, 25, 6, 26, 20]);
 assert.equal(p13Diagonal.gp0, 98);
+
+const p13OuterH = H(
+  p13Diagonal.values[0],
+  p13Diagonal.values[p13Diagonal.values.length - 1]
+);
+assert.deepEqual(p13OuterH, [27, 9]);
+
+const outerHRows = numberedDiagonal
+  .filter((row) => row.values.length >= 2)
+  .map((row) => ({
+    sourceIndex: row.sourceIndex,
+    h: H(row.values[0], row.values[row.values.length - 1]),
+  }));
+const exactWayLiberOuter = outerHRows.filter((row) =>
+  row.h[0] === 27 && row.h[1] === 9
+);
+const outerSumLiber = outerHRows.filter((row) => row.h[1] === 9);
+
+assert.deepEqual(exactWayLiberOuter, [
+  { sourceIndex: 13, h: [27, 9] },
+]);
+assert.deepEqual(
+  outerSumLiber.map((row) => row.sourceIndex),
+  [1, 8, 13]
+);
 assert.deepEqual([
   ...H(p13Diagonal.values[0], p13Diagonal.values[5]),
   ...H(p13Diagonal.values[1], p13Diagonal.values[4]),
@@ -601,6 +626,18 @@ console.log(JSON.stringify({
     hBranchGp0: [p55.h0, p55.h1],
     hBranchSourceLabel: "GOOD",
     hSumBranchState: ["B", "b+K"],
+    wayToLiber: {
+      sourceIndex: 13,
+      sourceWord: "WAY",
+      directedPage: 13,
+      oneBasedWord: 14,
+      outerH: p13OuterH,
+      differenceState: "-K",
+      sumSourceIndex: 9,
+      sumSourceWord: "LIBER",
+      exactOuterPairHits: exactWayLiberOuter,
+      outerSumLiberHits: outerSumLiber.map((row) => row.sourceIndex),
+    },
     theirNumberDirection: {
       recoveredOccurrence: 25,
       sourceWord: "THEIR",
