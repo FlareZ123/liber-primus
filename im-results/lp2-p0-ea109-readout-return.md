@@ -41,6 +41,33 @@ So the new word closes the local route:
 
 The rival drop-f base59 value of token `1K` is79, so it does not close on the receiver. The consequence therefore preserves the already selected base60 p0 pointer state rather than silently changing radix.
 
+## Reciprocal packet self-index
+
+The untouched word also closes through the already frozen p=23 packet indexing rule.
+
+Its GP0 sum is40, so:
+
+`40 mod23 = 17`.
+
+One-based packet position17 contains exactly **EA=28**. Its GP prime is109, which is the start of this same word:
+
+`word109 GP0 40 -> mod23 17 -> packet[17]=EA -> prime(EA)=109 -> word109`.
+
+This is the reverse direction of Agent46's pre-existing self-index relation `prime(EA)=109 -> 109 mod23=17 -> packet[17]=EA`. No new modulus, packet origin or rune-value map is introduced.
+
+Across all2,928 complete words on the unknown pages, only eight satisfy the frozen reciprocal predicate
+
+`prime(packet[GP0(word) mod23]) = word.start`
+
+with nonzero remainder. Only **one** of those eight also has its p50/base60 pointer land on READ OUT start80: the selected p0 word24 at109..110.
+
+Thus the same untouched word simultaneously:
+
+- self-identifies through the p=23 H packet;
+- returns through p50/base60 to packet start80.
+
+The conjunction is unique in the whole unknown-word corpus under these frozen operations.
+
 ## Complete local cycle
 
 Combining only previously selected operations gives:
@@ -72,11 +99,11 @@ It occurs **once** in the entire unknown corpus:
 
 The first four words are the independently selected23-rune READ OUT receiver, the next two have the navigation-predicted THE/ROAD lengths, and the final two-rune word is the EA-prime receiver.
 
-The simple property `p50[GP0(word)] base60 = 80` is common by itself: it occurs for111/2,928 words because p50 addresses37,40 and55 all contain byte80. On p0 it occurs at words24,25 and27. The evidential feature is therefore the source-selected position109 plus the closed endpoint, not the pointer equality in isolation.
+The simple property `p50[GP0(word)] base60 = 80` is common by itself: it occurs for111/2,928 words because p50 addresses37,40 and55 all contain byte80. On p0 it occurs at words24,25 and27. The reciprocal packet-self-index predicate occurs for8/2,928 words. Their conjunction occurs only once, at the source-selected word109..110. The evidential feature is therefore the frozen two-register closure rather than the pointer equality in isolation.
 
 ## Decision
 
-Preserve this as a prospective continuation of the ROAD/LEAD/EA route. It supplies a clean stopping condition for the local loop and fixes the pointer radix as base60 at the return edge.
+Preserve this as a prospective continuation of the ROAD/LEAD/EA route. It supplies a clean stopping condition for the local loop, fixes the pointer radix as base60 at the return edge, and reciprocally validates the same p=23 packet index used to derive EA.
 
 Do not invent plaintext for offsets109..110 from the closure. The useful next task is to ask whether the loop is an initialization or key-schedule cycle that can emit a key for the word at109 or the material after110 using only the already selected DH/H/SHED operations.
 
