@@ -124,6 +124,7 @@ A successor should use this state packet to predict a new receiver or make a bli
 
 - SFT: `sims/lp2_p33_dh_layout_state_register_sft.cjs`
 - Windows workflow: `.github/workflows/agent45-p33-dh-layout-state-register.yml`
+- Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44452090194
 - Source transcription: `resources/liber-primus/lp2-transcription.txt`
 - Ink spans and 13-dot marks: `resources/liber-primus/lp2-ink-annotations.json`
 - Canonical GP values: `resources/liber-primus/lp2-corpus.json`
