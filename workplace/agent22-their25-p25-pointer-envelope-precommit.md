@@ -33,3 +33,7 @@ No alternate source word, page, table address, radix, origin, nearby offset, fra
 - Any state/lexical structure discovered inside a successful receiver is supporting evidence only unless it was fixed independently before inspection.
 
 This is a prospective transfer test of the receiver-selection mechanism, not a prediction that p25 decrypts to THEIR or any other source word.
+
+## Outcome
+
+**Transfer failure.** After the precommit was pushed, canonical p25 was opened. `p50[34]=3H` gives base59=194 and base60=197, hence charged offsets `193,194,196,197`. They land in canonical p25 words `38,39,40,40` respectively. The four positions do not collapse to one word. Under the frozen rule this rejects transfer of the p22 four-branch envelope selector to THEIR25/p25. No alternate origin, nearby offset, fragment, or plaintext target was opened.

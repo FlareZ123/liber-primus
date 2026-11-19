@@ -193,6 +193,53 @@ H(GP0(IS),GP0(ROAD)) || H(g,a)
 
 This shell template was recognized after the receiver and source label were available, so it remains a retrospective key grammar rather than a blinded universal cipher rule. Its charged family is finite and target-complete.
 
+### Tighter key grammar from the two flanking pages
+
+The 450-case family above deliberately charges every ordered p23 state pair. The actual three-page corridor supplies a narrower geometric family from structures that existed before the p22 inverse.
+
+P21's independently established two-dimensional H packet is
+
+```text
+[[e, 0],
+ [20,p-K]]
+=
+[[3, 0],
+ [20,21]].
+```
+
+Charge either visible column:
+
+```text
+left  = [e,20]
+right = [0,p-K].
+```
+
+P23's five-dot-selected state line is
+
+```text
+[K,a,e,g,q].
+```
+
+The two states immediately flanking the center `e` are `a` and `g`. Charge both orientations, `(a,g)` and `(g,a)`. For each column/orientation, append the H pair, invert the resulting H4 shell, charge both signs, and test all nine authenticated four-rune targets:
+
+```text
+2 columns * 2 orientations * 2 signs * 9 targets
+= 72 configurations.
+```
+
+Exactly one survives:
+
+```text
+p21 right column = [0,p-K] = [0,21]
+p23 reverse flank H(g,a)   = [28,11]
+
+shell = [0,21,28,11]
+key   = [20,10,18,20]
+subtract -> THEIR.
+```
+
+This geometry is more constrained than choosing an arbitrary ordered pair from the p23 state. The orientation `g,a` remains selected by the finite target family rather than by a prior explicit arrow, so the local inverse retains its retrospective-key classification.
+
 ### The same receiver selects both THEIR occurrences
 
 The selected ciphertext has a direct authenticated-source readout before any decryption:
@@ -263,9 +310,35 @@ receiver raw sum mod29 = 15 = b = authenticated WORDS.
 
 Thus p22 now supplies both a prospectively selected Bob-state packet and a reversible local `THEIR` candidate under a source-constrained, exhaustively charged key family.
 
+## Prospective THEIR25 transfer: the p22 envelope does not generalize to p25
+
+The p22 object itself selects `AND24 -> THEIR25`. Before reading physical p25, the exact p22 pointer-envelope mechanism was frozen in
+`workplace/agent22-their25-p25-pointer-envelope-precommit.md`.
+
+For authenticated `THEIR25`:
+
+```text
+GP0(THEIR)=34
+p50[34]=3H
+base59=194
+base60=197
+charged offsets = 193,194,196,197.
+```
+
+On canonical p25 those positions land in three different words:
+
+```text
+193 -> word38
+194 -> word39
+196 -> word40
+197 -> word40.
+```
+
+The prospective transfer therefore fails cleanly. The exact four-branch envelope and raw-sum self-address remain a special p22 construction; do not generalize that receiver selector to the second THEIR occurrence.
+
 ## The directed pages form a state corridor
 
-The p22 holdout was new in this invocation. The two neighboring pages already had independent state results before this page-direction route was found.
+The p22 holdout was new in this invocation. The two neighboring pages already had independent state results before this page-direction route was found. A concurrent independent result now also recovers the p21 receiver as a strong local `IS` candidate through its receiver-ordinal source key (`im-results/lp2-p21-is-wordordinal-sourcekey.md`).
 
 ### p21 = IS
 
@@ -309,7 +382,7 @@ The five-dot-selected first p23 line has visible word lengths
 
 Physical page number23 supplies `p=23`. Ordinary DH reconstructs `A=8,b=15,B=19`.
 That route existed independently before this new page selector and is documented in
-`im-results/lp2-p23-fivedot-totient-origin.md`.
+`im-results/lp2-p23-fivedot-totient-origin.md`. A later sealed p23 ROAD-state body test found zero complete length4/GP0=54 receivers, so the simplest attempt to reinterpret ROAD as a p23 body plaintext label is rejected; preserve ROAD here as navigation/state semantics.
 
 Both p22 and p23 therefore fix the same Bob public value
 
