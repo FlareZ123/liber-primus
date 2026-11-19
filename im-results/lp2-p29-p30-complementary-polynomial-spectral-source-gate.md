@@ -26,6 +26,24 @@ The two original ciphertext page polynomials thus carry complementary factors of
 
 For uniformly independent GP29 coefficient polynomials, the probability a **particular** successor page has both prescribed root conditions is `1/29²`; this is **not** a discovery-adjusted p-value. The polynomial reading, signed sign restoration and all relationships were developed through retrospective searches. The unusual terminal doublet may also be a postselected correlation. Do not multiply these fractions into a probability of Cicada intent.
 
+## Cross-page third-derivative consistency
+
+The already reconstructed p28 state fixes **e=3** and **q=4**. The authenticated signed-source continuation selects the adjacent project pages as **DIRECTION29 / SEEK30**; the signed p15 matrix independently supplies the polynomial roots **24** (double) and **8,17** (simple). Apply the same third derivative, without fitting an order or root:
+
+```
+P29'''(24) = 7 = W
+P30'''(8)  = 3 = e
+P30'''(17) = 4 = q
+
+3 + 4 = 7 (mod 29) = P29'''(24).
+```
+
+The p30 outputs in ascending root order reproduce the two remaining p28 state values `[e,q]`, and their sum reproduces p29's `W`. The following authenticated source word **AND31** is compatible with adding the two p30 outputs, but does not uniquely specify that operation or any further consumer. This is a new exact structural correspondence, not a recovered plaintext and not a blind holdout: p29/p30, their root conditions, and the p28 state were already under study before the derivative values were computed.
+
+This strengthens the derivative operation as a cross-page state consistency check. It does **not** authenticate the separate p9 assembly `W||AY`; the missing first-party instruction to concatenate the DIRECTION-derived derivative result before the PATHS-derived coefficient pair remains unresolved.
+
+Reproducer: `sims/lp2_p29_p30_complementary_polynomial_hill4_sft.cjs`.
+
 ## Conditional reconstruction of the four terminal source runes
 
 The factor relations give a concrete **two-symbol parity reconstruction**, conditional on the retrospectively found GF29 roots. Hide the last two glyphs of each original page. For the retained original prefix polynomial `R(X)`, write the full original polynomial as `P(X)=X²R(X)+aX+b`, where `a,b` are the two withheld GP indices.

@@ -61,6 +61,21 @@ function polynomialAt(seq,x) {
   }
   return [y,dy];
 }
+/**
+ * Evaluate the k-th formal derivative of a descending-coefficient GF(29)
+ * polynomial at x. The order is fixed by the independently reconstructed
+ * p28 state (e=3); no derivative-order search is performed.
+ * @param {number[]} seq @param {number} x @param {number} order
+ */
+function derivativeValue(seq,x,order) {
+  let current=seq.slice();
+  for(let step=0;step<order;step++) {
+    const degree=current.length-1;
+    current=current.slice(0,-1).map((coefficient,index)=>
+      mod(coefficient*(degree-index)));
+  }
+  return current.reduce((value,coefficient)=>mod(value*x+coefficient),0);
+}
 /** @param {number} nonzero */
 function inverse29(nonzero) {
   for (let i=1;i<29;i++) if (mod(i*nonzero)===1) return i;
@@ -132,6 +147,22 @@ function main() {
     .every(x=>x===0)).map(p=>p.page),[29]);
   assert.deepEqual(unknown.filter(p=>[8,17].every(x=>
     polynomialAt(p.indices,x)[0]===0)).map(p=>p.page),[30]);
+
+  // The independently fixed p28 state supplies e=3 and q=4. Apply the
+  // same third derivative to the source-selected p29/p30 polynomial objects:
+  // p29's repeated root24 yields W=7; p30's p15-matrix roots8,17 yield e,q.
+  const p29Third=derivativeValue(p29,24,3);
+  const p30Third8=derivativeValue(p30,8,3);
+  const p30Third17=derivativeValue(p30,17,3);
+  assert.deepEqual([p29Third,p30Third8,p30Third17],[7,3,4]);
+  assert.deepEqual([p30Third8,p30Third17],[3,4]); // [e,q]
+  assert.equal(mod(p30Third8+p30Third17),p29Third);
+  console.log(JSON.stringify({thirdDerivativeCrossCheck:{
+    order:3,p29Root:24,p29Third,
+    p30Roots:[8,17],p30Thirds:[p30Third8,p30Third17],
+    p30StatePair:[3,4],sum:mod(p30Third8+p30Third17),
+    classification:"post-discovery typed cross-page consistency; not plaintext or a blind holdout"
+  }}));
 
   const A=evalMatrix(p29), B=evalMatrix(p30), K=add(A,B);
   const rankA=invert(A).rank, rankB=invert(B).rank;
