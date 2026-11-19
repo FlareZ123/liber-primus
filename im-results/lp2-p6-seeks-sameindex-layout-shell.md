@@ -37,6 +37,18 @@ A complete same-index census over authenticated signed-word indices that corresp
 
 Thus p6 belongs to the same finite source-index receiver class that independently contains the recent p33 WILL, p38 BEWARE, and p40 PATHS candidates.
 
+The same-index state criterion by itself is weak: charging every one of the 43 signed words against every physical page p0-p42 produces **295/1,849** word/page pairs with at least one matching `(GP length, GP0)` receiver and **267/1,849** with exactly one such receiver. Six of the 43 identity pairs happen to be unique receivers, so the identity count alone should not be treated as evidence.
+
+P6 has an additional visible selector fixed by the original image: require the page to have a red span whose **start offset equals the source GP0**. Across the full **43×43** signed-word/page matrix, exactly **one** pair simultaneously has a unique state receiver and a red span beginning at that GP0:
+
+```text
+source word6 SEEKS, GP0=71
+physical p6 red span start=71
+unique p6 len5/GP071 receiver=start128
+```
+
+Because there is exactly one qualifying edge in the complete 43×43 matrix, a uniform permutation of the 43 fixed source words onto the 43 fixed pages contains that edge with probability exactly **1/43 ≈ 0.02326**. This is the source-selection evidence for p6; the broader same-index coincidence is only context.
+
 ## P6 source layout
 
 P6 has one red span, offsets71..81, bracketed by red 13-dot marks. It begins the second physical section and is exactly four printed words long:
@@ -161,4 +173,4 @@ Preserve SEEKS as a **strong local plaintext candidate**. Promotion to recovered
 ## Reproduction
 
 - SFT: `sims/lp2_p6_seeks_sameindex_layout_shell_sft.cjs`
-- Windows Node PASS: `44458130558`
+- Windows Node PASS: `44458576876`
