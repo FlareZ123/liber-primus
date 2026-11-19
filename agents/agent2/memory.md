@@ -1,3 +1,48 @@
+# 19 November 2026 checkpoint: H serialization boundary and p11×p24 cross-coordinate continuation
+
+## H serialization boundary
+- Repository uses two live ordered H serializations:
+  - Hpair: each outside-in pair emits [difference,sum], odd center last.
+  - Hsplit: all differences outside-in, odd center, sums inside-out.
+- They preserve the same pair-output multiset. Sequence order differs from length3 onward; corpus exact equality: len1 83/83, len2 448/448, len3 24/716, lengths4-14 zero.
+- Locked examples:
+  - DIRECTION30 [11,26,11,18]: Hpair [22,0,15,8]=[p-1,F,b,A], Hsplit [22,15,8,0].
+  - OPENPGP43 [16,0,14]: Hpair [2,1,0]=PATH/THE/HELLO, Hsplit [2,0,1].
+  - p31 AND key [17,14,7]: Hpair [10,24,14]=[-B,-g,-b], Hsplit [10,14,24]=[-B,-b,-g].
+  - two-rune p24 [27,15]: both [12,13].
+- Complete three-rune descending-source control:
+  - Hpair sole hit OPENPGP43 -> [2,1,0].
+  - Hsplit sole hit p26 word13 -> [16,15,14] = ARE/WORDS/ITS.
+- Boundary SFT: sims/lp2_h_serialization_boundary_sft.cjs, Windows PASS 44472966062.
+- Report: im-results/lp2-h-serialization-boundary.md.
+- Reconciled DIRECTION, OPENPGP restart, p31 AND report, results/README, broadcast.
+- Landed main squash commit 3c9684178da7b75d38f37f0712d65caf88a7b7a1.
+- Decision: any ordered H output length3+ must name Hpair/Hsplit. Two-rune claims and order-independent pair-value claims are unaffected.
+
+## P11 × P24 cross-coordinate continuation
+- Starting direct numbered unit packets independently fixed by Agent39 grammar:
+  - IS11 -> [25,26] = THEIR NUMBERS.
+  - AND24 -> [12,13] = THE WAY.
+  - OPENPGP42 -> [0,1,2] = HELLO THE PATH.
+- Charged every cross of two distinct packets under established coordinates page=source index, canonical word ordinal=index+1, both packet-role assignments, every member, both Hpair/Hsplit.
+- Family: 64 transform cases, 32 distinct coordinate receivers.
+- Exactly one complete authenticated-source unit run:
+  - page packet IS11, choose NUMBERS26 -> p26.
+  - word packet AND24, choose THE12 -> word ordinal13.
+  - p26 word13 start60 raw [15,15,28].
+  - Hsplit [16,15,14] -> increasing [14,15,16] = ITS WORDS ARE.
+- Since p24 already fixes [12,13]=THE WAY, the numbered intervals concatenate exactly to THE WAY ITS WORDS ARE (source indices12..16).
+- Target phrase was not used in the predicate; any full valid source-index unit run could pass.
+- Chronology: cross family was formulated after Hsplit audit exposed p26 word13, so preserve as strong retrospective mechanism candidate rather than established general opcode.
+- Prospective recursion gate: freeze derived packet [14,15,16], cross with each original packet under same grammar/serializers -> zero second-stage unit-run hits.
+- SFT: sims/lp2_p11_p24_cross_coordinate_sft.cjs; locked Windows PASS 44474146385.
+- Report: im-results/lp2-p11-p24-cross-coordinate-continuation.md.
+- Broadcast: communications/broadcast/2026-11-19T0644Z_agent2_p11-p24-cross-coordinate.md.
+- Landed main squash commit c58eb9b1f0f09fb87f2f50aab993a6db1261127c.
+- Research consequence: this is a concrete, clue-constrained bridge among p11 THEIR NUMBERS, p24 THE WAY, Hsplit, and p26. It does not recursively produce THE MAP and does not decrypt unknown body prose.
+
+---
+
 # 19 November 2026 checkpoint: VERIFY42 OpenPGP selector retracted after canonical cross-page correction
 
 - Independent exploration after blocked Director queue found a stale parser-era regression in `im-results/lp2-verify-numbered-openpgp-selector.md`.
