@@ -291,6 +291,141 @@ HERE(48)
 
 The p28-local HERE checkpoint and the authenticated NUMBERS/DIRECTION route enter the same state13 tail and return to p28.
 
+## 9. HERE self-indexes the fourth D and recovers GCD
+
+The p50 token at the HERE state is itself readable:
+
+```text
+GP0(HERE) = 48
+p50[48]   = 4D
+```
+
+Under the solved-page-transferred ordinal convention, `4D` means the rune at this same page address is the fourth D. On p28, rune offset48 is exactly the fourth D and is uniquely centered in its physical line fragment among the compatible self-index hits.
+
+Its local centered triple is:
+
+```text
+L D X = [20,23,14]
+```
+
+Applying the already fixed H map to the two outer neighbors and preserving the selected center gives:
+
+```text
+H(L,X) || D
+= [6,5] || [23]
+= G C D
+```
+
+The exact `nX -> nth X at this same address` consumer transfers independently to solved p56: solved `IS` has `GP0(IS)=25`, original `p50[25]=3I`, and solved-p56 rune offset25 is exactly the third I. This closes the earlier semantic objection to the self-index.
+
+The recovered operation label **GCD** immediately returns to the calibrated DH state:
+
+```text
+gcd(b,p-1) = gcd(15,22) = 1
+b^-1 mod22 = 3 = e
+B^e mod23 = g
+```
+
+So the p28 local route closes:
+
+```text
+READ OUT -> HERE -> 4D -> fourth D -> GCD -> e=3
+```
+
+## 10. THE / DIRECTION selects p29 and reconstructs WAY
+
+The independent HERE receiver also leads to the p28 local candidate `THE`. In the authenticated 2016 source, the six THE occurrences have zero-based indices:
+
+```text
+1, 7, 12, 17, 22, 28
+```
+
+The current project page p28 self-locates at the final THE, index28. Its immediate authenticated follower is `DIRECTION` at index29, selecting project p29 under the same origin convention before p29's algebraic property is opened.
+
+P39's red triad defines the repeated-root polynomial with root24. Among all 55 unknown rune pages, p29 alone has that repeated root, and p29 alone shares a repeated root with the printed p50 table.
+
+The authenticated words MAP and DIRECTION independently expose `e=3` in the fixed endpoint-H register. At the selected repeated root, derivative order3 gives:
+
+```text
+P29'''(24) = 7 = W
+```
+
+while the authenticated 2013 BASE29 factor contributes positive-degree coefficients:
+
+```text
+[24,26] = AY
+```
+
+The charged 48-way derivative/insertion/direction family has one authenticated three-rune output:
+
+```text
+W + AY = WAY
+```
+
+WAY remains candidate instruction material because its final assembly was recognized retrospectively, while its page, root and derivative order now have independent source selectors.
+
+## 11. WAY/MAP selects p26 and returns FOURTH DH to p28
+
+The fixed WAY/MAP p50 edge:
+
+```text
+57 --1w--> 56
+```
+
+occurs exactly once as adjacent unknown-word GP0 states, at p26 line10 words2-3 inside a four-word block.
+
+That block's p50 high digits independently read:
+
+```text
+FOUR
+```
+
+and its full base60 residues reduce to:
+
+```text
+[b, p-1, K, p-1]
+```
+
+Applying the already frozen GCD opcode to the final pair gives:
+
+```text
+gcd(K,p-1) = gcd(2,22) = 2 = TH
+```
+
+so the packet extends uniquely to:
+
+```text
+FOURTH
+```
+
+The same state packet reconstructs `A=K^e modp=8`, hence:
+
+```text
+[p,A] = [23,8] = DH
+```
+
+Read as **FOURTH D; H**, this lands exactly on the already selected p28 consumer:
+
+```text
+fourth D -> centered LDX
+H(L,X)||D -> GCD
+GCD -> e=3
+```
+
+This closes the bounded route:
+
+```text
+p28 GCD/e3
+ -> p29 WAY
+ -> WAY/MAP p50 edge
+ -> unique p26 packet
+ -> FOURTH DH
+ -> p28 fourth-D/H
+ -> GCD/e3
+```
+
+The p26 result is a meta-instruction/state packet rather than continuous plaintext; its immediate lexical continuations remain negative.
+
 ## Current evidence boundary
 
 This route now explains, in a single human-facing chain:
@@ -307,7 +442,11 @@ solved p57 circumference route
  -> READ OUT
  -> outer-H page-start selection
  -> HERE
- -> same p50 route back to p28
+ -> p50[HERE]=4D
+ -> fourth-D/H -> GCD -> e=3
+ -> THE / DIRECTION -> p29 -> WAY
+ -> WAY/MAP -> p26 -> FOURTH DH
+ -> p28 fourth-D/H -> GCD -> e=3
 ```
 
 The strongest remaining premise is the p28-specific two-part application: why the source-selected cube map and independently repeated `[e,-K]=[3,27]` packet should be assigned respectively to this exact center singleton and adjacent five-rune word. The source fixes exponent3 and modulus29, p57 supplies circumference/object grammar but its independent holdout favors the competing removal-count exponent9, p28 supplies the literal DH marker and unique center-plus-word geometry, and the external numeric selector chooses the `(3,27)` raw output before language.
@@ -322,6 +461,9 @@ node sims/lp2_signed2016_wordnumber_cube_operator_sft.cjs
 node sims/lp2_2016_road_found_falsepaths_lowdigit_cycle_sft.cjs
 node sims/lp2_p28_readout_familywise_audit_sft.cjs
 node sims/lp2_p28_readout_here_page_start_sft.cjs
+node sims/lp2_p28_here_4d_gcd_holdout_sft.cjs
+node sims/lp2_p29_direction_derivative_way_sft.cjs
+node sims/lp2_p26_way_map_four_receiver_sft.cjs
 ```
 
 The Agent16 combined Windows workflow runs the latter three SFTs together. Agent27's source-word-position SFT independently reproduces the DH state.
