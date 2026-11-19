@@ -383,6 +383,29 @@ const palindromeAdditiveDecryptions =
 const fullStatePalindromeAdditiveDecryptions =
   palindromeAdditiveDecryptionsFor(fullStateFieldEntries);
 
+const exactRed13MarkerReceivers = [];
+let red13MarkerCount = 0;
+for (const pageAnnotation of annotations.pages) {
+  for (const [offset,dots,color] of pageAnnotation.large_punctuation || []) {
+    if (dots !== 13 || color !== "red") continue;
+    red13MarkerCount += 1;
+    for (const span of pageAnnotation.red_spans || []) {
+      if (span.start + span.length === offset && span.length === 13) {
+        exactRed13MarkerReceivers.push({
+          page:pageAnnotation.page,
+          start:span.start,
+          length:span.length,
+          markerOffset:offset,
+        });
+      }
+    }
+  }
+}
+assert.equal(red13MarkerCount,30);
+assert.deepEqual(exactRed13MarkerReceivers, [{
+  page:0,start:0,length:13,markerOffset:13,
+}]);
+
 const centerKey = hOutsideIn(markerCenter);
 assert.deepEqual(centerKey, [0,8,0,16,19]);
 const fiveLexicon = new Map(length5.map((word) => [word.values.join(","), word]));
@@ -583,6 +606,7 @@ console.log(JSON.stringify({
   markerGeometry,
   geometryParameters,
   geometryKey,
+  sourceVisibleReceiverGate:{red13MarkerCount,exactRed13MarkerReceivers},
   palindromeDecryptions,
   palindromeAdditiveDecryptions,
   fullStatePalindromeDecryptions,
