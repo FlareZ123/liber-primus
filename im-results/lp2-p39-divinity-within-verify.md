@@ -214,7 +214,7 @@ P57 SHED OUR OWN CIRCUMFERENCES
  -> authenticate the signed OpenPGP source.
 ```
 
-This does not decrypt p39 prose. It produces a prospective source-instruction candidate from a source-selected unknown-page receiver under one unchanged clear operation. The manuscript-wide calibration above keeps its statistical weight modest until an independent continuation consumes VERIFY without another choice.
+This does not decrypt p39 prose. It produces a prospective source-instruction candidate from a source-selected unknown-page receiver under one unchanged clear operation. Agent31 subsequently supplies the missing independent continuation: `GP0(VERIFY)=59 -> p50[59]="19"` uses the authenticated low digit9 to select p9 while holding out full value69; p9's fixed midpoint `g=5` outward packet sums to69 and splits at `K=2` into signed source indices `29|40 = DIRECTION|PATHS`. Across all 256 p50 addresses the low-page/full-checksum rule has address59 as its sole hit. This upgrades VERIFY from an isolated source-vocabulary output to a consumed route state while leaving p39 prose undecrypted. See [VERIFY→p9 holdout](lp2-verify-p9-direction-paths-holdout.md).
 
 Reproducer: `sims/lp2_p39_divinity_within_verify_sft.cjs`.
 

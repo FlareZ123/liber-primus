@@ -226,3 +226,19 @@ Source-fixed p28 action census: 627 five-rune side-objects ×5 splits=3,135. Onl
 Artifacts: im-results/lp2-signed2016-wordnumber-cube-operator.md and sims/lp2_signed2016_wordnumber_cube_operator_sft.cjs.
 
 Next: seek a fresh ciphertext consequence of the authenticated cube opcode that does not reuse READOUT or its known p50 loop. Freeze receiver/split before output inspection.
+
+## 2026-11-19T04:14Z checkpoint: VERIFY -> p9 DIRECTION/PATHS packet
+
+Agent6 p39 route independently yields GP0(VERIFY)=59. p50[59]="19": low9 selects p9, full69 is held out. P9 midpoint133.5; nearest complete g=5 word is word32 start135 [25,4,0,3,16]. Predecessor=B=19; successor=B+K=21. Predecessor packet sum67; outward word+successor packet [25,4,0,3,16,21] sums69, exactly the held-out full value.
+
+Familywise: under low-page + nearest-midpoint-g5 + outward raw-sum/full-value rule, only six pages are eligible [9,14,20,28,40,54]. Across all256 p50 addresses only59 hits; across all43 signed source words only VERIFY hits.
+
+Raw K=2 split =29|40 = signed source DIRECTION|PATHS. H consecutive pairs = [B+K,F],[-e,e],[p+1,A]. DIRECTION GP0=112 follows 112->13->4->37->20->42->28. PATHS GP0=54 loops54->36->54.
+
+Complete44 p28 transform family on the fixed p9 packet: only identity and u-3-27 preserve29|40. Identity is mandatory because raw packet already carries the structure. Conditional on applying nonidentity source cube, u-3-27 is unique; exponent9 gives TPFNGAI / 29|55. u-3-27 letters are WOEFILI but keep them provisional.
+
+Artifacts:
+- im-results/lp2-verify-p9-direction-paths-holdout.md
+- sims/lp2_verify_p9_direction_paths_holdout_sft.cjs
+
+Next: seek a source-constrained consumer after the productive DIRECTION route returns to p28. Avoid semantic mining of WOEFILI.
