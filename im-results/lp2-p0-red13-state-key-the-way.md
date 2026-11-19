@@ -140,6 +140,15 @@ Forward addition reproduces all 13 original ciphertext runes exactly.
 
 This is a concrete local decipherment mechanism. The remaining caveat is key order provenance: the atom ordering was recognized after `EPIPHANY SEEKS` was already selected. An independent clue that emits this exact 13-atom schedule would promote the local recovery further.
 
+## Independent p28 DH-register corroboration (19 November 2026)
+
+A separate p28 line6 construction independently re-encodes the same state tuple used by this p0 key. The p28 report derives (p=23,g=5,a=6,b=15,A=8,B=19,K=2) from line geometry and the fixed endpoint transform (H(x,y)=(x-y,x+y)\bmod29); the DH equations hold, (gcd(15,22)=1), and the inverse exponent is (e=3). This is a different source object from the p0 title/marker and the p55/p22 state route.
+
+The p28 line6 has five rune fragments with lengths `[2,3,9,4,5]`, exactly `[K,e,a+e,q,g]` for the state above and the independently visible p0 marker parameter (q=4). Their sum is (23=p). Thus the line ordinal encodes (a=6), the fragment count encodes (g=5), total rune count encodes (p=23), endpoint H-pairs encode (b,K,A,B), and fragment lengths redundantly encode (K,e,q,g) plus (a+e). A fixed-schema scan over every rune-bearing line on all 55 unknown pages finds p28 line6 as the **only** complete DH-state match; the implementation is [`sims/lp2_p28_dh_state_cross_page_scan.cjs`](../sims/lp2_p28_dh_state_cross_page_scan.cjs), and the underlying extraction is documented in [the p28 report](lp2-p28-here-4d-gcd-holdout.md).
+
+This materially strengthens the provenance of the state values used in the p0 key, especially (e,g,A,B,K,b). It does **not** select or independently emit the p0 13-atom serialization order. The caveat above remains: the key order was recognized after the phrase candidate existed, and no blind key-order recovery or global LP2 cipher is claimed.
+
+
 ## Target-free algebraic simplicity does not select the key order
 
 A fixed control asks whether the residual stands out before choosing coordinate labels. Give residue 0 cost0, any signed single state field cost1, and any two-field expression `x+y` or `x-y` cost2. No coordinate-specific expressions are admitted.
