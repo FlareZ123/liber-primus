@@ -163,6 +163,46 @@ for (const row of source) {
 }
 assert.deepEqual(sameIndex.map((row) => row.index), [6, 11, 21, 33, 34, 38, 40]);
 
+
+// Charge the index/state premise itself over every signed-word/page pairing.
+// State matching alone is common. The p6 conjunction adds a visible red-span
+// start exactly at the source GP0 and is unique over all 43 x 43 pairings.
+const statePairings = [];
+const uniqueStatePairings = [];
+const uniqueStateRedStartPairings = [];
+
+for (let page = 0; page < source.length; page += 1) {
+  const words = parseWords(pageRaw(page)).words;
+  const redStarts = new Set(
+    (ink.pages.find((row) => row.page === page)?.red_spans || [])
+      .map((span) => span.start)
+  );
+
+  for (const row of source) {
+    const gp0 = row.values.reduce((sum, value) => sum + value, 0);
+    const matches = words.filter(
+      (word) => word.length === row.values.length && word.gp0 === gp0
+    );
+    if (matches.length > 0) {
+      statePairings.push({ page, index: row.index, word: row.word, matches: matches.length });
+    }
+    if (matches.length === 1) {
+      const unique = { page, index: row.index, word: row.word, gp0 };
+      uniqueStatePairings.push(unique);
+      if (redStarts.has(gp0)) uniqueStateRedStartPairings.push(unique);
+    }
+  }
+}
+
+assert.equal(statePairings.length, 295);
+assert.equal(uniqueStatePairings.length, 267);
+assert.deepEqual(uniqueStateRedStartPairings, [{
+  page: 6,
+  index: 6,
+  word: "SEEKS",
+  gp0: 71,
+}]);
+
 // SEEKS uniquely selects one p6 complete word by source length and GP0.
 const p6 = parseWords(pageRaw(6));
 const seeksReceivers = p6.words.filter(
@@ -402,6 +442,14 @@ console.log(JSON.stringify({
   },
   controls: {
     sameIndexHits: sameIndex,
+    crossPairingCensus: {
+      totalPairings: source.length * source.length,
+      statePairings: statePairings.length,
+      uniqueStatePairings: uniqueStatePairings.length,
+      uniqueStatePlusRedStart: uniqueStateRedStartPairings,
+      randomPermutationProbability:
+        uniqueStateRedStartPairings.length === 1 ? 1 / source.length : null,
+    },
     fiveRuneWords: fiveRuneWords.length,
     authenticatedFiveRuneTargets: fiveRuneTargets.map((row) => row.word),
     fixedKeyHits,
