@@ -95,6 +95,33 @@ The central, source-within block is therefore:
 
 The transform is byte-exact reversible: applying exponent27 again to the transformed nine-rune word restores the original source values.
 
+### The same word encodes THEIR and HERE in its source outer thirds
+
+Before exponent27 is applied, split the selected source word by the same fixed `e=3` geometry:
+
+```text
+[0,16,18] | [22,28,24] | [27,15,6]
+ F  T  E     OE EA A      IA S  G
+```
+
+The two outer-third GP0 sums are:
+
+```text
+0+16+18 = 34 = GP0(THEIR)
+27+15+6 = 48 = GP0(HERE)
+```
+
+Both words are independently recovered clue vocabulary: **THEIR** is the p33 hidden title readout and **HERE** is the independently selected p28 page-start candidate. The exponent27 center then becomes literal **READ**.
+
+Thus one source-selected p33 word carries a three-way cross-object relation:
+
+```text
+source outer GP0s:  THEIR | ... | HERE
+after ^27 center:          READ
+```
+
+This is a structural relation, not a license to assign English meanings to arbitrary third sums.
+
 ## Manuscript-wide fixed control
 
 Charge the exact rule against every complete nine-rune word on unknown physical pages p0–p55:
@@ -104,13 +131,22 @@ Charge the exact rule against every complete nine-rune word on unknown physical 
 3. inspect only the central `e=3` runes, positions3..5 zero-based;
 4. require exactly native GP `READ = [4,28,23]`.
 
-There are **77** complete nine-rune words. Exactly **one** passes:
+There are **77** complete nine-rune words. The fixed source-third counts are:
+
+```text
+left third GP0 = THEIR(34):  2 words
+right third GP0 = HERE(48):  2 words
+both outer identities:       1 word
+center after ^27 = READ:     1 word
+all three conditions:         1 word
+```
+
+The sole joint hit is:
 
 ```text
 physical p33
 page word4 / upper-body word2
 page offset12
-center after ^27 = READ
 ```
 
 This control excludes the other source-visible nine-rune words without language scoring or choosing different offsets.
@@ -133,7 +169,8 @@ The strongest current interpretation is a real conditional plaintext recovery be
 - `e²` selects its unique nine-rune word;
 - p28 independently fixes exponent27 as a word operation;
 - the e-centered block is unique within the selected e² object;
-- only one of 77 manuscript nine-rune words recovers READ under the exact fixed center rule.
+- the same source word's outer-third GP0 sums independently equal THEIR and HERE;
+- among 77 manuscript nine-rune words, only one has both fixed outer identities, and it is also the unique center READ hit.
 
 The selection chain was assembled after READ OUT and the p33 state packet were already known, so this should receive independent adversarial reproduction before promotion to established results. It does **not** yet identify the encryption mechanism for the surrounding 78 upper-body runes or the 115-rune lower body.
 
