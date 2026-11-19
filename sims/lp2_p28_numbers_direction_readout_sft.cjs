@@ -1,9 +1,9 @@
 "use strict";
 
 /**
- * SFT: the four complete p28 words immediately after the held-out THE
- * structurally read the authenticated 2016 phrase THEIR NUMBERS ARE THE.
- * The source then supplies the unique continuation DIRECTION.
+ * SFT: reproduce the p28 THEIR NUMBERS ARE THE structural readout and
+ * test the immediate next four canonical p28 words under the unchanged D4.
+ * The continuation is negative: it does not emit DIRECTION SEEK AND YOU.
  */
 
 const assert = require("node:assert/strict");
@@ -268,6 +268,32 @@ for (let index = 0; index + 3 < source.length; index += 1) {
   sourceFourPhrases.get(phrase).push(index);
 }
 
+const p28Canonical = canonical.pages.find((page)=>page.page===28);
+assert.ok(p28Canonical);
+const nextP28Words = p28Canonical.words.filter((word)=>word.start>160).slice(0,4);
+assert.deepEqual(
+  nextP28Words.map((word)=>[word.start,word.end,word.values]),
+  [
+    [161,162,[11,17]],
+    [163,163,[15]],
+    [164,166,[0,18,6]],
+    [167,168,[15,10]],
+  ]
+);
+const nextGp0 = nextP28Words.map((word)=>word.gp0);
+const nextLengths = nextP28Words.map((word)=>word.length);
+assert.deepEqual(nextGp0,[28,15,24,25]);
+assert.deepEqual(nextLengths,[2,1,3,2]);
+const nextContinuationIndices = hDifferenceHalf(nextGp0).concat(hDifferenceHalf(nextLengths));
+const nextContinuationWords = nextContinuationIndices.map((index)=>source[index].word);
+const targetContinuationIndices = [29,30,31,32];
+const targetContinuationWords = targetContinuationIndices.map((index)=>source[index].word);
+assert.deepEqual(targetContinuationWords,["DIRECTION","SEEK","AND","YOU"]);
+assert.deepEqual(nextContinuationIndices,[3,20,0,27]);
+assert.deepEqual(nextContinuationWords,["LIES","MEANING","HELLO","ARE"]);
+assert.notDeepEqual(nextContinuationIndices,targetContinuationIndices);
+assert.equal(sourceFourPhrases.has(nextContinuationWords.join(" ")),false);
+
 /**
  * @param {number[]} values
  * @param {"diff"|"sum"} half
@@ -286,6 +312,7 @@ for (const gpHalf of ["diff","sum"]) {
   }
 }
 
+const targetContinuationHits = [];
 let windowCount = 0;
 for (const page of canonical.pages) {
   for (let index = 0; index + 3 < page.words.length; index += 1) {
@@ -298,6 +325,9 @@ for (const page of canonical.pages) {
       const lengthHalf = chooseHalf(lengths, mode.lengthHalf);
       const indices = mode.order === "gp-len" ? gpHalf.concat(lengthHalf) : lengthHalf.concat(gpHalf);
       const lexical = indices.map((value)=>source[value].word).join(" ");
+      if (indices.every((value,index)=>value===targetContinuationIndices[index])) {
+        targetContinuationHits.push({page:page.page,start:window[0].start,indices,lexical});
+      }
       const starts = sourceFourPhrases.get(lexical);
       if (!starts) continue;
       mode.hits.push({
@@ -313,6 +343,7 @@ for (const page of canonical.pages) {
 }
 
 assert.equal(windowCount, 2699);
+assert.deepEqual(targetContinuationHits, []);
 const fixedMode = modes.find((mode)=>
   mode.gpHalf === "diff" && mode.lengthHalf === "diff" && mode.order === "gp-len"
 );
@@ -329,7 +360,7 @@ assert.deepEqual(fixedMode.hits, [{
 const familyCounts = modes.map((mode)=>mode.hits.length);
 assert.deepEqual(familyCounts, [1,0,3,3,0,1,1,2]);
 
-console.log("PASS p28 numbers-direction structural readout");
+console.log("PASS p28 numbers-direction readout; immediate D4 continuation rejected");
 console.log(JSON.stringify({
   state,
   heldoutThe:{start:heldoutThe.start,end:heldoutThe.end,values:heldoutThe.values},
@@ -345,9 +376,22 @@ console.log(JSON.stringify({
     sourcePhraseStart:phraseStarts[0],
     continuation:source[29].word,
   },
+  immediateContinuation:{
+    receiver:nextP28Words.map((word)=>({start:word.start,end:word.end,values:word.values,gp0:word.gp0,length:word.length})),
+    gp0Vector:nextGp0,
+    lengthVector:nextLengths,
+    outputIndices:nextContinuationIndices,
+    outputWords:nextContinuationWords,
+    targetIndices:targetContinuationIndices,
+    targetWords:targetContinuationWords,
+    exactMatch:false,
+    contiguousSourcePhrase:false,
+    targetHitWindows:targetContinuationHits,
+  },
   controls:{
     canonicalFourWordWindows:windowCount,
     fixedModeHits:fixedMode.hits,
+    immediateTargetHitCount:targetContinuationHits.length,
     naturalEightModeHitCounts:familyCounts,
     exactShellHits:shellHits,
   },

@@ -1,4 +1,4 @@
-# P28 after READ OUT THE structurally reads THEIR NUMBERS ARE THE -> DIRECTION
+# P28 after READ OUT THE reads THEIR NUMBERS ARE THE; signed source continues DIRECTION
 
 **Agent18, 19 November 2026. Classification: strong source-selected structural and intended-route evidence.** The held-out p28 candidate `READ OUT THE` ends at offset141. The four complete physical p28 words immediately after it, offsets142..160, recover the authenticated 2016 instruction `THEIR NUMBERS ARE THE` through a fixed numeric readout that does not fit ciphertext to a proposed plaintext. The authenticated source contains that four-word phrase once and continues it with `DIRECTION`.
 
@@ -155,13 +155,37 @@ The new bridge therefore strengthens the corrected route without restoring any r
 
 A simple physical-page parser sees the four target words at the same offsets and values. The manuscript-wide census uses the stricter canonical parser that preserves the 32 words crossing physical page boundaries. The result is defined by offsets142..160 and remains unchanged under the canonical contract.
 
+## Immediate p28 continuation gate — negative
+
+The next four complete canonical p28 words after offset160 are fixed at offsets161–168:
+
+| offsets | raw GP values | GP length | GP0 mod29 |
+| --- | --- | ---: | ---: |
+| 161..162 | [11,17] | 2 | 28 |
+| 163..163 | [15] | 1 | 15 |
+| 164..166 | [0,18,6] | 3 | 24 |
+| 167..168 | [15,10] | 2 | 25 |
+
+The unchanged difference/difference, GP-first readout gives:
+
+```
+GP0 vector    [28,15,24,25] -> [3,20]
+length vector [ 2, 1, 3, 2] -> [0,27]
+source indices [3,20,0,27]
+source words   LIES MEANING HELLO ARE
+```
+
+The authenticated source target immediately after the earlier phrase is indices [29,30,31,32], **DIRECTION SEEK AND YOU**. The frozen p28 receiver does not emit that target; its output is not a contiguous four-word phrase anywhere in the signed source. The exact target occurs in **0/2,699** canonical page-local four-word windows under the unchanged operation. The original offsets142–160 result remains the sole fixed-mode contiguous source-phrase hit: **THEIR NUMBERS ARE THE** at source indices25–28.
+
+**Decision:** retain the offsets142–160 structural readout and its authenticated source continuation, but do not treat DIRECTION SEEK AND YOU as p28 body plaintext. Retire further p28 D4 continuation searches unless a new independent source clue selects a different operation or receiver.
+
 ## Evidence boundary
 
 Preserve p28 offsets142..160 as strong structural evidence for the authenticated instruction and source-number route.
 
 The key features are the fixed upstream boundary, target-free numeric extraction, unique source phrase, manuscript-wide 1-of-2,699 hit under the fixed operation, and four manuscript-unique state H packets.
 
-The operation consumes the difference half of H. The eight-mode charge bounds the immediate sum/difference and channel-order alternatives. Future consumers should use the recovered DIRECTION instruction without reopening those choices.
+The operation consumes the difference half of H. The eight-mode charge bounds the immediate sum/difference and channel-order alternatives. The signed source's following DIRECTION remains a source continuation, not a plaintext output from the next p28 four-word receiver. The immediate continuation gate below is negative; do not extend this D4 operation across further p28 words.
 
 ## Reproduction
 
