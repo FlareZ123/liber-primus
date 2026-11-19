@@ -243,6 +243,36 @@ assert.deepEqual(repeatedHits, [{
   exactTarget: true,
 }]);
 
+// Plaintext-side H consequence. Among every distinct authenticated two-GP-rune
+// word, IS alone maps to consecutive authenticated source indices.
+const twoRuneSourceH = [];
+for (const word of signedWords) {
+  const values = gp(word);
+  if (
+    values.length !== 2 ||
+    twoRuneSourceH.some((row) => row.word === word)
+  ) continue;
+  const packet = [
+    mod29(values[0] - values[1]),
+    mod29(values[0] + values[1]),
+  ];
+  twoRuneSourceH.push({
+    word,
+    values,
+    packet,
+    sourceWords: packet.map((index) => signedWords[index]),
+    adjacent: packet[1] === packet[0] + 1,
+  });
+}
+assert.deepEqual(twoRuneSourceH, [
+  {word:"THE",values:[2,18],packet:[13,20],sourceWords:["WAY","MEANING"],adjacent:false},
+  {word:"IS",values:[10,15],packet:[24,25],sourceWords:["AND","THEIR"],adjacent:true},
+  {word:"BE",values:[17,18],packet:[28,6],sourceWords:["THE","SEEKS"],adjacent:false},
+]);
+assert.deepEqual(signedWords.slice(24, 30), [
+  "AND", "THEIR", "NUMBERS", "ARE", "THE", "DIRECTION",
+]);
+
 // Broader exact-key control. This is deliberately weaker than the source
 // family: freeze [1,28], charge both signs over every complete two-rune word,
 // and compare against every authenticated two-GP-rune source target.
@@ -315,6 +345,10 @@ console.log(JSON.stringify({
   repeatedTwoRuneFamily: {
     rows: repeatedFamily.length,
     hits: repeatedHits,
+  },
+  plaintextHDirection: {
+    family: twoRuneSourceH,
+    isContinuation: signedWords.slice(24, 30),
   },
   broaderExactKeyControl: {
     completeTwoRuneWords,
