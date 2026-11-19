@@ -20,3 +20,6 @@ jobs:
       - name: Run p2 GOOD key-family audit SFT
         shell: cmd
         run: node sims\lp2_p2_good_key_family_audit_sft.cjs
+      - name: Run prospective p38 FOUND lookup-transfer SFT
+        shell: cmd
+        run: node sims\lp2_p38_found_lookup_transfer_sft.cjs
