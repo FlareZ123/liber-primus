@@ -352,3 +352,19 @@ Also added composite p49->p55->p22 meta-regression:
 
 Next: investigate only source-native consumers of emerged prime809 / EMERGE. Preserve Agent1's failed p56-style prime-totient starts. Existing p57 EMERGE/SURFACE graph may be relevant but must be checked for which parts survived audits.
 
+## 2026-11-19 draw9 continuation: square-derived EMERGE -> audited SURFACE
+
+Connected the new p22 square mechanism only to pre-existing audited consumers:
+- square SHED gives sole-prime center809 -> zero-based mod256 addr41 -> p50[41]=1O -> base59 83=EMERGE.
+- audited GP0 zero-origin address bracket already has EMERGE83 as inner 3D boundary with duplicate127 and exact midpoint105=DIVINITY; outer PILGRIM82/128.
+- independent frozen EMERGE consumer: GP-prime(EMERGE)=300 -> start44; six base59 edges `44,226,72,161,214,247,189`; 189=3C fixed point.
+- visited columns `[4,2,0,1,6,7,5]` omit only3. 3C copies `[67,162,189,247]`; only missing-column copy is67=GP0(SURFACE).
+- complete p57 family under same rule has exactly one completion, EMERGE->SURFACE.
+- dedicated bridge SFT Windows PASS 44472446748 after fixing one local JS identifier collision from failed run44472296911.
+- later SURFACE base60 reset to192/p0 remains conditional and excluded. p33 rejected word-map unused.
+
+Artifacts:
+- `sims/lp2_p22_square_emerge_surface_bridge_sft.cjs`
+- workflow `.github/workflows/agent49-p22-square-emerge-surface.yml`
+- commits aa44ff5e initial SFT, d5faba6a workflow, 779c7565 identifier fix, f2e515de report integration, b7d64157 README, 92192989 broadcast.
+
