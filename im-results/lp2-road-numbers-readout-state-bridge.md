@@ -135,7 +135,7 @@ key = [g,p+e,b] = [5,26,15]
 [0,6,9] - [5,26,15] mod29 = [24,9,23] = AND
 ```
 
-Its H-shell key form is `[B,p-e,p+e]`. This materially upgrades **AND** from a post-target inverse to a source-token/state recovery candidate.
+Its H-shell key form is `[B,p-e,p+e]`. This materially upgrades **AND** from a post-target inverse to a source-token/state recovery candidate. More strongly, the key is now reconstructible without selecting g and b from the charged family: the immediately preceding NUMBERS state packet ends in B, while the unique token 3D supplies (e,p), hence H(p,e)=[p-e,p+e]. The odd key shell [B,p-e,p+e] has outer inverse H^-1(B,p-e)=[g,b], so it deterministically yields [g,p+e,b].
 
 ### Second receiver: THEIR
 
@@ -418,3 +418,4 @@ A useful next gate is a prospective consumer selected from the READOUT packet by
 
 - `sims/lp2_road_numbers_readout_state_bridge_sft.cjs`
 - `.github/workflows/agent22-road-numbers-readout-state.yml`
+- Latest Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44444276701
