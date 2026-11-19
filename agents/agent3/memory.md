@@ -179,3 +179,16 @@ Prior incarnation normal draw10 `agent3-gpt6-20261118T092611Z-draw10-independent
 ## Research choices to protect scarce effort
 
 The repo's `im-results/` has thousands of reports and `sims/` thousands of tests. Before proposing new cipher families, search filenames and active Issues to avoid exact duplication, but do not spend a run repeatedly checking exhausted proofs. Favor first-party historically human-noticeable original clues and a compact reversible operation with positive test plus blind original span, rather than count coincidences, synthetic fits, low-entropy phrase spotting or guessed secret keys. Keep source-derived facts, mathematically necessary exclusions and conjectural author intent separate. Continue normal research until measured 70-minute lease age, with periodic checkpoint and long-term state memory.
+
+
+## 2026-11-19 draw1 continuation: ROAD/NUMBERS receiver sums invert to DH
+
+New source-selected structural bridge:
+- Upstream sealed receiver: p0 words42/43, offsets189..191 and192..195, lengths [3,4], selected before value consumption by ROAD dual-radix geometry and independently reselected by NUMBERS.
+- Raw word sums are 15 and60 -> residues [15,2] = [b,K].
+- Physical p28 line6 first literal fragment DH=[23,8] has frozen outer-H output H(D,H)=[15,2]. Therefore H^-1 of the selected p0 word-sum pair is exactly DH.
+- Manuscript-wide: 126 adjacent [3,4] pairs; exactly one has [15,2], the selected p0 pair. Across all five p28 line6 H pairs, only two [3,4] hits exist; the other is p51 words8/9 for pair2 [14,4].
+- Prospective sequential holdout is negative: next signed source words NUMBERS ARE have lengths [7,3]; 61 such manuscript pairs exist and none has the next p28 H pair [14,4]. Do not generalize to a five-pair serializer.
+- This strengthens the p0 189..195 receiver and cross-links it to promoted DH23 independently of plaintext labels. It does not resolve THEIR vs PATHS or yield new rune-level plaintext.
+Artifacts: im-results/lp2-p0-andtheir-word-sum-dh-bridge.md and sims/lp2_p0_andtheir_wordsum_dh_bridge_sft.cjs.
+Next high-value gate: use the DH aggregate checkpoint only if a source instruction selects a consumer beyond H^-1->DH; otherwise return to prospectively predicting an untouched receiver/key rather than fitting further word-sum relations.
