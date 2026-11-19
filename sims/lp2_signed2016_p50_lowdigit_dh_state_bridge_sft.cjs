@@ -1,0 +1,475 @@
+"use strict";
+
+/**
+ * SFT: authenticated 2016 signed-word numbers -> p50 low digits -> p28 DH state.
+ *
+ * This reproduces a post-discovery cross-source bridge. It does not claim
+ * unknown LP2 plaintext. The arithmetic rule was recognized after the p28
+ * DH state and the terminal signed words were known, so the finite family
+ * charge is a calibration rather than a blind-discovery probability.
+ *
+ * Run:
+ *   node sims/lp2_signed2016_p50_lowdigit_dh_state_bridge_sft.cjs
+ */
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+
+const root = path.resolve(__dirname, "..");
+const read = relative =>
+  fs.readFileSync(path.join(root, relative), "utf8").replace(/\r/g, "");
+
+const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const grid = JSON.parse(read("resources/liber-primus/base60-grid.json"));
+const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const transcription = read("resources/liber-primus/lp2-transcription.txt");
+
+const table = grid.rows.flat();
+const alpha60 = grid.alphabet;
+const alpha59 = alpha60.replace("f", "");
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const gpTokens = corpus.translit
+  .map((symbol, value) => ({symbol, value}))
+  .sort((left, right) => right.symbol.length - left.symbol.length);
+const mod29 = value => (value % 29 + 29) % 29;
+
+/** @param {number} left @param {number} right */
+const H = (left, right) => [
+  mod29(left - right),
+  mod29(left + right),
+];
+
+/** @param {string} word */
+function gp(word) {
+  const normalized = word
+    .toUpperCase()
+    .replace(/QU/g, "CW")
+    .replace(/V/g, "U")
+    .replace(/[KQ]/g, "C")
+    .replace(/Z/g, "S")
+    .replace(/[^A-Z]/g, "");
+
+  const values = [];
+  for (let offset = 0; offset < normalized.length;) {
+    if (normalized.startsWith("ING", offset)) {
+      values.push(21);
+      offset += 3;
+      continue;
+    }
+    if (normalized.startsWith("IO", offset)) {
+      values.push(27);
+      offset += 2;
+      continue;
+    }
+    const token = gpTokens.find(candidate =>
+      normalized.startsWith(candidate.symbol, offset)
+    );
+    assert.ok(token, "unmapped GP spelling at " + normalized.slice(offset));
+    values.push(token.value);
+    offset += token.symbol.length;
+  }
+  return values;
+}
+
+function signedWords() {
+  const clear = signed2016
+    .split("-----BEGIN PGP SIGNATURE-----")[0]
+    .split(/\n\n/u)
+    .slice(1)
+    .join("\n");
+
+  return clear
+    .split(/[^A-Za-z0-9]+/u)
+    .filter(token => /^[A-Za-z]+$/u.test(token))
+    .map(word => word.toUpperCase());
+}
+
+function multiplicativeInverse(value, modulus) {
+  for (let candidate = 1; candidate < modulus; candidate += 1) {
+    if ((value * candidate) % modulus === 1) return candidate;
+  }
+  return null;
+}
+
+function physicalLines(page) {
+  const parts = transcription.split(/^\s*%\s*$/m);
+  return parts[page]
+    .split("/")
+    .filter(line => /[\u16A0-\u16FF]/u.test(line));
+}
+
+function lineFragments(line) {
+  return (line.match(/[\u16A0-\u16FF]+/gu) || []).map(fragment =>
+    [...fragment].map(rune => {
+      const value = runeIndex.get(rune);
+      assert.notEqual(value, undefined);
+      return value;
+    })
+  );
+}
+
+// Independently reconstruct the existing p28 DH state from the literal-DH line.
+const p28Lines = physicalLines(28);
+assert.equal(p28Lines.length, 12);
+const dhLineNumber = 6;
+const dhFragments = lineFragments(p28Lines[dhLineNumber - 1]);
+assert.equal(dhFragments.length, 5);
+assert.deepEqual(
+  dhFragments[0].map(value => corpus.translit[value]),
+  ["D", "H"]
+);
+const firstH = H(dhFragments[0][0], dhFragments[0].at(-1));
+const lastH = H(dhFragments.at(-1)[0], dhFragments.at(-1).at(-1));
+const state = Object.freeze({
+  p: dhFragments.flat().length,
+  g: dhFragments.length,
+  a: dhLineNumber,
+  b: firstH[0],
+  A: lastH[0],
+  B: lastH[1],
+  K: firstH[1],
+});
+assert.deepEqual(state, {
+  p: 23,
+  g: 5,
+  a: 6,
+  b: 15,
+  A: 8,
+  B: 19,
+  K: 2,
+});
+const e = multiplicativeInverse(state.b, state.p - 1);
+assert.equal(e, 3);
+
+const words = signedWords();
+assert.equal(words.length, 43);
+const lengths = words.map(word => gp(word).length);
+assert.deepEqual(words.slice(36), [
+  "GOOD",
+  "LUCK",
+  "BEWARE",
+  "FALSE",
+  "PATHS",
+  "VERIFY",
+  "OPENPGP",
+]);
+assert.deepEqual(lengths.slice(36), [4, 4, 6, 5, 4, 6, 7]);
+
+/**
+ * @typedef {{
+ *   addressOrigin: 0|1,
+ *   radix: "base60"|"base59",
+ *   component: "low"|"high",
+ *   digitOrigin: 0|1,
+ *   numberOrigin: 0|1,
+ *   indexSign: -1|1,
+ *   lengthSign: -1|1
+ * }} Mode
+ */
+
+/** @param {string} token @param {string} alphabet @param {"low"|"high"} component */
+function componentValue(token, alphabet, component) {
+  const char = component === "low" ? token[1] : token[0];
+  const value = alphabet.indexOf(char);
+  return value < 0 ? null : value;
+}
+
+/** @param {Mode} mode */
+function derive(mode) {
+  const alphabet = mode.radix === "base60" ? alpha60 : alpha59;
+  const sequence = [];
+
+  for (let index = 0; index < words.length; index += 1) {
+    const address = index + mode.addressOrigin;
+    const token = table[address];
+    assert.ok(token);
+    const raw = componentValue(token, alphabet, mode.component);
+    if (raw === null) return null;
+
+    sequence.push(mod29(
+      raw +
+      mode.digitOrigin +
+      mode.indexSign * (index + mode.numberOrigin) +
+      mode.lengthSign * lengths[index]
+    ));
+  }
+  return sequence;
+}
+
+const frozenMode = Object.freeze({
+  addressOrigin: 0,
+  radix: "base60",
+  component: "low",
+  digitOrigin: 0,
+  numberOrigin: 0,
+  indexSign: -1,
+  lengthSign: -1,
+});
+
+const sequence = derive(frozenMode);
+assert.ok(sequence);
+const tail = sequence.slice(36);
+assert.deepEqual(tail, [
+  mod29(-state.b),
+  state.A,
+  mod29(-state.K),
+  state.B,
+  state.g,
+  state.a,
+  state.A,
+]);
+assert.deepEqual(tail, [14, 8, 27, 19, 5, 6, 8]);
+
+const terminalRows = words.slice(36).map((word, offset) => {
+  const index = 36 + offset;
+  const token = table[index];
+  const low = alpha60.indexOf(token[1]);
+  return {
+    index,
+    word,
+    token,
+    low,
+    gpLength: lengths[index],
+    residue: sequence[index],
+  };
+});
+assert.deepEqual(terminalRows, [
+  {index: 36, word: "GOOD", token: "0s", low: 54, gpLength: 4, residue: 14},
+  {index: 37, word: "LUCK", token: "1K", low: 20, gpLength: 4, residue: 8},
+  {index: 38, word: "BEWARE", token: "2D", low: 13, gpLength: 6, residue: 27},
+  {index: 39, word: "FALSE", token: "05", low: 5, gpLength: 5, residue: 19},
+  {index: 40, word: "PATHS", token: "1K", low: 20, gpLength: 4, residue: 5},
+  {index: 41, word: "VERIFY", token: "1O", low: 24, gpLength: 6, residue: 6},
+  {index: 42, word: "OPENPGP", token: "0S", low: 28, gpLength: 7, residue: 8},
+]);
+
+// Punctuation-preserving 2 / 3 / 2 grouping of the final alphabetic words.
+const goodLuck = tail.slice(0, 2);
+const bewareFalsePaths = tail.slice(2, 5);
+const verifyOpenpgp = tail.slice(5, 7);
+
+assert.deepEqual(H(goodLuck[0], goodLuck[1]), [
+  state.a,
+  state.p - 1,
+]);
+assert.deepEqual(
+  [...H(bewareFalsePaths[0], bewareFalsePaths[2]), bewareFalsePaths[1]],
+  [state.p - 1, e, state.B]
+);
+assert.deepEqual(H(verifyOpenpgp[0], verifyOpenpgp[1]), [
+  mod29(-state.K),
+  mod29(-state.b),
+]);
+
+// The raw tail plus those H outputs recover the complete DH tuple and e.
+assert.equal(mod29(-tail[0]), state.b);
+assert.equal(tail[1], state.A);
+assert.equal(mod29(-tail[2]), state.K);
+assert.equal(tail[3], state.B);
+assert.equal(tail[4], state.g);
+assert.equal(tail[5], state.a);
+assert.equal(tail[6], state.A);
+assert.equal(H(tail[0], tail[6])[1] + 1, state.p);
+assert.equal(H(tail[2], tail[4])[1], e);
+
+// Family charge: signed primitive DH values.
+const signedPrimitive = new Set(
+  [state.p, state.g, state.a, state.b, state.A, state.B, state.K]
+    .flatMap(value => [value, mod29(-value)])
+);
+
+function allSignedPrimitive(values) {
+  return values.every(value => signedPrimitive.has(value));
+}
+
+const fiveStarts = [];
+for (let start = 0; start + 5 <= sequence.length; start += 1) {
+  if (allSignedPrimitive(sequence.slice(start, start + 5))) {
+    fiveStarts.push(start);
+  }
+}
+assert.deepEqual(fiveStarts, [36, 37, 38]);
+
+const sevenStarts = [];
+for (let start = 0; start + 7 <= sequence.length; start += 1) {
+  if (allSignedPrimitive(sequence.slice(start, start + 7))) {
+    sevenStarts.push(start);
+  }
+}
+assert.deepEqual(sevenStarts, [36]);
+
+const modes = [];
+for (const addressOrigin of [0, 1]) {
+  for (const [radix, alphabet] of [
+    ["base60", alpha60],
+    ["base59", alpha59],
+  ]) {
+    void alphabet;
+    for (const component of ["low", "high"]) {
+      for (const digitOrigin of [0, 1]) {
+        for (const numberOrigin of [0, 1]) {
+          for (const indexSign of [-1, 1]) {
+            for (const lengthSign of [-1, 1]) {
+              /** @type {Mode} */
+              const mode = {
+                addressOrigin,
+                radix,
+                component,
+                digitOrigin,
+                numberOrigin,
+                indexSign,
+                lengthSign,
+              };
+              const values = derive(mode);
+              if (!values) continue;
+              let windows7 = 0;
+              let exactTailWindows = 0;
+              for (let start = 0; start + 7 <= values.length; start += 1) {
+                const window = values.slice(start, start + 7);
+                if (allSignedPrimitive(window)) windows7 += 1;
+                if (window.every((value, i) => value === tail[i])) {
+                  exactTailWindows += 1;
+                }
+              }
+              modes.push({
+                ...mode,
+                final7: allSignedPrimitive(values.slice(36)),
+                windows7,
+                exactTailWindows,
+                tail: values.slice(36),
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(modes.length, 128);
+
+const final7Modes = modes.filter(mode => mode.final7);
+assert.equal(final7Modes.length, 2);
+assert.ok(final7Modes.every(mode =>
+  mode.addressOrigin === 0 &&
+  mode.radix === "base60" &&
+  mode.component === "low" &&
+  mode.indexSign === -1 &&
+  mode.lengthSign === -1
+));
+assert.deepEqual(
+  [...new Set(final7Modes.map(mode => mode.tail.join(",")))],
+  [tail.join(",")]
+);
+
+// The two syntactic modes are numerically identical because +1 digit origin
+// and +1 number origin cancel under subtraction.
+assert.deepEqual(
+  final7Modes.map(mode => [mode.digitOrigin, mode.numberOrigin]).sort(),
+  [[0, 0], [1, 1]]
+);
+
+const anySevenWindowModes = modes.filter(mode => mode.windows7 > 0);
+assert.equal(anySevenWindowModes.length, 6);
+
+const exactTailModes = modes.filter(mode => mode.exactTailWindows > 0);
+assert.equal(exactTailModes.length, 2);
+assert.ok(exactTailModes.every(mode => mode.exactTailWindows === 1));
+
+/**
+ * Exact probability under a uniform random permutation of all 256 labeled
+ * original p50 token instances into the seven fixed terminal addresses.
+ *
+ * @param {(low:number, position:number)=>boolean} accepts
+ */
+function exactAssignmentCount(accepts) {
+  let dp = Array(1 << 7).fill(0n);
+  dp[0] = 1n;
+
+  for (const token of table) {
+    const low = alpha60.indexOf(token[1]);
+    const next = dp.slice();
+    for (let mask = 0; mask < dp.length; mask += 1) {
+      const base = dp[mask];
+      if (base === 0n) continue;
+      for (let position = 0; position < 7; position += 1) {
+        if (mask & (1 << position)) continue;
+        if (!accepts(low, position)) continue;
+        next[mask | (1 << position)] += base;
+      }
+    }
+    dp = next;
+  }
+  return dp.at(-1);
+}
+
+let denominator = 1n;
+for (let offset = 0; offset < 7; offset += 1) {
+  denominator *= BigInt(256 - offset);
+}
+
+const primitiveAssignments = exactAssignmentCount((low, position) => {
+  const index = 36 + position;
+  return signedPrimitive.has(mod29(low - index - lengths[index]));
+});
+assert.equal(primitiveAssignments, 210363202181784n);
+
+const exactAssignments = exactAssignmentCount((low, position) => {
+  const index = 36 + position;
+  return mod29(low - index - lengths[index]) === tail[position];
+});
+assert.equal(exactAssignments, 13305600n);
+
+const primitiveProbability =
+  Number(primitiveAssignments) / Number(denominator);
+const exactTailProbability =
+  Number(exactAssignments) / Number(denominator);
+
+assert.ok(Math.abs(primitiveProbability - 0.003171181641539031) < 1e-15);
+assert.ok(Math.abs(exactTailProbability - 2.0057916029058945e-10) < 1e-22);
+
+console.log(JSON.stringify({
+  status: "PASS: signed 2016 terminal words map through p50 low digits to p28 DH state",
+  formula: "s_i = low60(p50[i]) - i - GP_length(word_i) mod29",
+  terminalRows,
+  rawTail: tail,
+  rawTailLabels: ["-b", "A", "-K", "B", "g", "a", "A"],
+  punctuationGroups: {
+    goodLuck: {
+      raw: goodLuck,
+      H: H(goodLuck[0], goodLuck[1]),
+      labels: ["a", "p-1"],
+    },
+    bewareFalsePaths: {
+      raw: bewareFalsePaths,
+      HOuterAndCenter: [
+        ...H(bewareFalsePaths[0], bewareFalsePaths[2]),
+        bewareFalsePaths[1],
+      ],
+      labels: ["p-1", "e", "B"],
+    },
+    verifyOpenpgp: {
+      raw: verifyOpenpgp,
+      H: H(verifyOpenpgp[0], verifyOpenpgp[1]),
+      labels: ["-K", "-b"],
+    },
+  },
+  familyCharge: {
+    modes: modes.length,
+    finalSevenModes: final7Modes.length,
+    distinctFinalSevenNumericOutputs: new Set(
+      final7Modes.map(mode => mode.tail.join(","))
+    ).size,
+    modesWithAnySevenRun: anySevenWindowModes.length,
+    actualFiveRunStarts: fiveStarts,
+    actualSevenRunStarts: sevenStarts,
+    exactTailModes: exactTailModes.length,
+  },
+  exactTokenMultisetNull: {
+    denominator: denominator.toString(),
+    signedPrimitiveAssignments: primitiveAssignments.toString(),
+    signedPrimitiveProbability: primitiveProbability,
+    exactOrderedAssignments: exactAssignments.toString(),
+    exactOrderedProbabilityDiagnostic: exactTailProbability,
+  },
+  caveat: "Rule discovered after the state and tail were visible; exact ordered probability is diagnostic only.",
+}, null, 2));
