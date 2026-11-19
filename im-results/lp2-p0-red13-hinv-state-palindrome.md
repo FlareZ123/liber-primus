@@ -59,19 +59,33 @@ q=4
 
 and the two printed red title lengths are also `8|5`.
 
-The authenticated source register has unique `WAY13`. The independently reconstructed state has `K=2`, so the same visible center count gives:
+The title's fixed H-shell sums independently give `THE1 / WAY13`. The authenticated instruction says their numbers are the direction. Following `THE1` to p1 canonical word2 and exhaustively shedding its circumferences gives a unique depth3 core:
+
+```text
+THE1
+-> p1 word2 [22,24,25,21,15,23,13,16]
+-> shed depth3 [21,15]
+-> H [6,7]
+-> SEEKS6 THE7
+```
+
+The exhaustive 42-receiver recursive charge has exactly five consecutive H-coordinate sets at all depths, so this selects the specific `THE7` occurrence without consulting the p0 residual. See `lp2-numbered-diagonal-unitrun-direction-grammar.md`.
+
+The three anchors later used by the rise generator can therefore be selected before reading the residual:
+
+```text
+q = 4      <- visible side-column population and independent state q
+THE7       <- THE1 numbered direction plus circumference shedding
+WAY13      <- title H-shell output, total 13 dots, unique authenticated WAY
+```
+
+The independently reconstructed state supplies an additional consistency relation:
 
 ```text
 g + K = 5 + 2 = 7 = THE7
 ```
 
-Thus the three anchors later used by the rise generator can be selected without reading the residual:
-
-```text
-q = 4      <- side-column population and state q
-THE7       <- center5 = g, then g+K
-WAY13      <- total 13 dots and unique authenticated WAY
-```
+so the marker center count `g=5` and state secret `K=2` reach the same source number through a separate route.
 
 The unknown-page marker family supplies a useful visual control. Deduplicating the ink annotation at the one p7 color-disputed position leaves **27 distinct 13-dot positions on unknown p0-p55**. P0 is the sole position immediately following two complete canonical words of lengths **8|5**. It is also the sole 13-dot position ending a red span of exactly13 runes.
 
@@ -443,7 +457,7 @@ original ciphertext     -> EPIPHANY SEEKS
 
 The complete key can now be written as one short source/state generator rather than 13 separately labelled expressions.
 
-The remaining weakness is the exact rise formula's chronology. The marker geometry and independent state now select all three numerical anchors before residual inspection, and the completed columns have unique circumference structure in the 19-receiver family. The precise cumulative-rise formulas were still recognized after the residual packet had been inspected.
+The remaining weakness is the exact rise formula's chronology. Marker geometry, title H-shell sums, and the independently exhausted THE1 circumference path now select all three numerical anchors before residual inspection. The completed columns also have unique circumference structure in the 19-receiver family. The precise cumulative-rise formulas were still recognized after the residual packet had been inspected.
 
 Two prospective generalizations have already failed cleanly:
 
