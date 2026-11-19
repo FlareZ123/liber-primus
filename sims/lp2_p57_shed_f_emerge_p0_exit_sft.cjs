@@ -516,12 +516,20 @@ const openingResidual = p0Cipher13.map(
 assert.deepEqual(openingResidual, [26, 24, 8, 19, 27, 24, 18, 3, 0, 8, 0, 16, 19]);
 assert.equal(gp0(openingResidual), 192);
 assert.equal(gp0(epiphanySeeksValues), 192);
+assert.equal(gpPrime(openingResidual), 729);
+const p0p2RuneCount = corpus.pages
+  .filter((page) => page.page >= 0 && page.page <= 2)
+  .reduce((sum, page) => sum + page.runic_count, 0);
+assert.equal(p0p2RuneCount, 729);
+assert.equal(27 * 27, 729);
 
 // Charge every ordered authenticated source-word pair with the same total
 // rune length. Forward residual-sum == plaintext-sum has exactly one hit;
 // the reverse sign has none.
 const forwardChecksumHits = [];
 const reverseChecksumHits = [];
+const prime729Hits = [];
+const dualGeometryHits = [];
 let sameLengthSourcePairs = 0;
 for (const left of signedWords) {
   for (const right of signedWords) {
@@ -532,9 +540,31 @@ for (const left of signedWords) {
     const forwardSum = gp0(
       p0Cipher13.map((value, index) => (value - candidate[index] + 29) % 29)
     );
+    const candidateResidual = p0Cipher13.map(
+      (value, index) => (value - candidate[index] + 29) % 29
+    );
     const reverseSum = gp0(
       p0Cipher13.map((value, index) => (candidate[index] - value + 29) % 29)
     );
+    const candidatePrimeSum = gpPrime(candidateResidual);
+    if (candidatePrimeSum === p0p2RuneCount) {
+      prime729Hits.push({
+        left: left.index,
+        right: right.index,
+        phrase: left.text + " " + right.text,
+        integerSum: forwardSum,
+        primeSum: candidatePrimeSum,
+      });
+    }
+    if (forwardSum === 192 && candidatePrimeSum === p0p2RuneCount) {
+      dualGeometryHits.push({
+        left: left.index,
+        right: right.index,
+        phrase: left.text + " " + right.text,
+        integerSum: forwardSum,
+        primeSum: candidatePrimeSum,
+      });
+    }
     if (forwardSum === plainSum) {
       forwardChecksumHits.push({
         left: left.index,
@@ -558,6 +588,13 @@ assert.deepEqual(forwardChecksumHits, [
   { left: 5, right: 6, phrase: "EPIPHANY SEEKS", sum: 192 },
 ]);
 assert.deepEqual(reverseChecksumHits, []);
+assert.deepEqual(prime729Hits, [
+  { left: 5, right: 0, phrase: "EPIPHANY HELLO", integerSum: 194, primeSum: 729 },
+  { left: 5, right: 6, phrase: "EPIPHANY SEEKS", integerSum: 192, primeSum: 729 },
+]);
+assert.deepEqual(dualGeometryHits, [
+  { left: 5, right: 6, phrase: "EPIPHANY SEEKS", integerSum: 192, primeSum: 729 },
+]);
 
 console.log(JSON.stringify({
   status:
@@ -609,9 +646,13 @@ console.log(JSON.stringify({
     originalCipherHoldout: {
       residual: openingResidual,
       residualSum: gp0(openingResidual),
+      residualPrimeSum: gpPrime(openingResidual),
+      p0p2RuneCount,
       sameLengthSourcePairs,
       forwardChecksumHits,
       reverseChecksumHits,
+      prime729Hits,
+      dualGeometryHits,
     },
   },
 }, null, 2));
