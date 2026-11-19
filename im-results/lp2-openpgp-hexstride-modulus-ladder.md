@@ -154,6 +154,37 @@ The first seven values occupy the contiguous source interval 2..8, while the key
 
 This is the same state previously recovered from p28/DH geometry and independently audited signed-message word roles, reached here by a complete source-visible operation rather than coordinate-wise expression fitting to the key-ID nibbles.
 
+## q-spaced source phrase closure
+
+The recovered `q=4` and `K=2` give a second finite source-only consequence using the same promoted whole-word p50 operator.
+
+Apply `GP0 -> p50 cell -> base60 value mod29 -> signed-source word index` to the key-ID residue roles:
+
+```text
+WORDS -> GP0 52 -> p50[52]=1Q -> 86 mod29=28 -> THE
+THEIR -> GP0 34 -> p50[34]=3H -> 197 mod29=23 -> ROAD
+ROAD  -> GP0 54 -> p50[54]=2a -> 156 mod29=11 -> IS
+```
+
+The raw image is therefore `THE ROAD IS`. Rotate that three-word packet left by the already reconstructed shared secret `K=2`:
+
+```text
+THE ROAD IS -> IS THE ROAD
+```
+
+`IS THE ROAD` is the exact contiguous authenticated source phrase at indices 21..23.
+
+This transition has a finite source-family control. Keep the step fixed at the independently recovered `q=4`. There are 35 three-term `q`-spaced triples in the 43-word authenticated message. Applying the same p50/base60/mod29 operator and the same `K=2` rotation to every triple yields exactly one output that occurs as any contiguous signed-source trigram:
+
+```text
+input indices 15,19,23 : WORDS THEIR ROAD
+raw image              : THE ROAD IS
+K=2 rotation           : IS THE ROAD
+output indices          : 21,22,23
+```
+
+No English scoring or unknown LP2 ciphertext participates in this test. It materially strengthens the reading that the authenticated prose is encoding an executable state/navigation grammar around `WORDS / THEIR / ROAD`.
+
 ## Why this changes the OPENPGP evidence
 
 The earlier key-ID report and Director #1786 correctly downgraded coordinate-by-coordinate H-shell descriptions such as `7=g+K` because many complete expression templates fit the known state. That negative result remains valid for the H-shell template family. The present mechanism bypasses that family entirely and does not use those coordinate descriptions. It uses one source-fixed integer, one source-fixed anchor, a source-visible radix stride, three source-selected labels, and a charged radix/origin/parser family.
@@ -174,4 +205,4 @@ Run:
 node sims/lp2_openpgp_hexstride_modulus_ladder_sft.cjs
 ```
 
-The SFT reads the preserved authenticated signed payload and canonical 256-cell p50 table, charges all 16 configurations, reconstructs the state, and asserts the p50 packet and DH closure.
+The SFT reads the preserved authenticated signed payload and canonical 256-cell p50 table, charges all 16 configurations, reconstructs the state, asserts the p50 packet and DH closure, and exhausts all 35 q-spaced source triples for the unique `IS THE ROAD` phrase transition.

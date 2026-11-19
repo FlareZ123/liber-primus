@@ -13,10 +13,11 @@ const ASC_PATH = path.join(ROOT, 'resources', 'historical', 'cicada2016-4gq25-ou
 const GRID_PATH = path.join(ROOT, 'resources', 'liber-primus', 'lp2-grid-256.json');
 
 const GP0 = Object.freeze({
-  F: 0, U: 1, O: 3, R: 4, C: 5, G: 6, W: 7, H: 8, N: 9, I: 10,
-  J: 11, P: 13, X: 14, S: 15, T: 16, B: 17, E: 18, M: 19, L: 20,
-  D: 23, A: 24, Y: 26,
+  F: 0, U: 1, TH: 2, O: 3, R: 4, C: 5, G: 6, W: 7, H: 8, N: 9, I: 10,
+  J: 11, EO: 12, P: 13, X: 14, S: 15, T: 16, B: 17, E: 18, M: 19, L: 20,
+  NG: 21, OE: 22, D: 23, A: 24, AE: 25, Y: 26, IA: 27, EA: 28,
 });
+const GP_DIGRAPHS = new Set(['TH', 'EO', 'NG', 'OE', 'AE', 'IA', 'EA']);
 const BASE60 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx';
 const BASE59 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdeghijklmnopqrstuvwx';
 
@@ -53,12 +54,18 @@ function decodeToken(token, alphabet) {
   return hi * alphabet.length + lo;
 }
 
-/** Relevant selected words use only single-rune GP romanizations. @param {string} word */
-function gp0Simple(word) {
-  return [...word.toUpperCase()].reduce((sum, ch) => {
-    assert.ok(Object.hasOwn(GP0, ch), `unsupported GP letter in ${word}: ${ch}`);
-    return sum + GP0[ch];
-  }, 0);
+/** Canonical GP0 whole-word value. @param {string} word */
+function gp0Word(word) {
+  const normalized = word.toUpperCase().replaceAll('V', 'U').replaceAll('K', 'C');
+  let total = 0;
+  for (let i = 0; i < normalized.length;) {
+    const pair = normalized.slice(i, i + 2);
+    const symbol = GP_DIGRAPHS.has(pair) ? pair : normalized[i];
+    assert.ok(Object.hasOwn(GP0, symbol), `unsupported GP symbol in ${word}: ${symbol}`);
+    total += GP0[symbol];
+    i += symbol.length;
+  }
+  return total;
 }
 
 /** @param {string} asc */
@@ -135,7 +142,7 @@ const q = B - b;
 assert.equal(p - B, q);
 assert.equal(q, 4);
 assert.equal(parsers.alpha[q].toUpperCase(), 'EMPTY');
-assert.equal(gp0Simple('EMPTY'), p * q);
+assert.equal(gp0Word('EMPTY'), p * q);
 const possibleG = [];
 for (let g = 1; g < p; g += 1) if (powMod(g, b, p) === B) possibleG.push(g);
 assert.deepEqual(possibleG, [5]);
@@ -171,6 +178,58 @@ const sourceStateWords = sourceStatePositions.map((position) => parsers.alpha[po
 assert.deepEqual(sourceStateWords, ['PATH','LIES','EMPTY','EPIPHANY','SEEKS','THE','DEVOTED','WORDS','THEIR','ROAD']);
 assert.equal(survivors[0].chain.indices[0] - survivors[0].chain.indices[2], 16 * K);
 
+// The residue-selected role packet also closes a source-only phrase transition.
+// Apply the already licensed GP0 -> p50/base60 -> mod29 operator to each role word,
+// then rotate the three-word output left by the recovered shared secret K.
+const sourceUpper = parsers.alpha.map((word) => word.toUpperCase());
+/** @param {string} word */
+function p50SourceIndex(word) {
+  const address = gp0Word(word);
+  assert.ok(address >= 0 && address < tokens.length);
+  return decodeToken(tokens[address], BASE60) % 29;
+}
+/** @param {string[]} haystack @param {string[]} needle */
+function findContiguous(haystack, needle) {
+  for (let i = 0; i <= haystack.length - needle.length; i += 1) {
+    if (needle.every((word, j) => haystack[i + j] === word)) return i;
+  }
+  return -1;
+}
+/** @param {string[]} values @param {number} amount */
+function rotateLeft(values, amount) {
+  const n = amount % values.length;
+  return values.slice(n).concat(values.slice(0, n));
+}
+
+const residueRoleWords = ['WORDS', 'THEIR', 'ROAD'];
+const residueImageIndices = residueRoleWords.map(p50SourceIndex);
+assert.deepEqual(residueImageIndices, [28, 23, 11]);
+const residueImageWords = residueImageIndices.map((index) => sourceUpper[index]);
+assert.deepEqual(residueImageWords, ['THE', 'ROAD', 'IS']);
+const rotatedResidueImage = rotateLeft(residueImageWords, K);
+assert.deepEqual(rotatedResidueImage, ['IS', 'THE', 'ROAD']);
+assert.equal(findContiguous(sourceUpper, rotatedResidueImage), 21);
+
+// Familywise source control: among every three-term q-spaced source triple,
+// this fixed operator and fixed K rotation produces a contiguous signed trigram once.
+const qSpacedHits = [];
+for (let start = 0; start + 2 * q < sourceUpper.length; start += 1) {
+  const inputPositions = [start, start + q, start + 2 * q];
+  const inputWords = inputPositions.map((index) => sourceUpper[index]);
+  const imageWords = inputWords.map((word) => sourceUpper[p50SourceIndex(word)]);
+  const rotated = rotateLeft(imageWords, K);
+  const outputAt = findContiguous(sourceUpper, rotated);
+  if (outputAt >= 0) qSpacedHits.push({ inputPositions, inputWords, imageWords, rotated, outputAt });
+}
+assert.equal(qSpacedHits.length, 1);
+assert.deepEqual(qSpacedHits[0], {
+  inputPositions: [15, 19, 23],
+  inputWords: ['WORDS', 'THEIR', 'ROAD'],
+  imageWords: ['THE', 'ROAD', 'IS'],
+  rotated: ['IS', 'THE', 'ROAD'],
+  outputAt: 21,
+});
+
 const summary = {
   source_selector: {
     anchor: 'OPENPGP',
@@ -188,6 +247,7 @@ const summary = {
   reconstructed: { p, q, g, a, b, A, B, K, e },
   source_state_words: { positions: sourceStatePositions, words: sourceStateWords },
   p50_crosscheck: { words: selectedSourceOrder, addresses, tokens: selectedTokens, base60_mod29: base60Packet, base59_mod29: base59Packet },
+  q_spaced_phrase_closure: qSpacedHits[0],
   hop_count_equals_K: K,
 };
 console.log(JSON.stringify(summary, null, 2));
