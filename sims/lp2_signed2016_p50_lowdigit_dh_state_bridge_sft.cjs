@@ -982,7 +982,7 @@ const openpgpCipher = p0.slice(
 );
 assert.deepEqual(
   openpgpCipher.map(value => corpus.translit[value]),
-  ["F", "P", "F", "N", "NG", "J", "ING"]
+  ["Y", "T", "P", "I", "TH", "D", "J"]
 );
 const openpgpPlain = openpgpCipher.map((value, index) =>
   mod29(value - openpgpKey[index])
