@@ -1,0 +1,24 @@
+name: LP2 five-passage MIX and p56 F-transparent SFT
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - sims/lp2_five_numbered_mix_primephi_sft.cjs
+      - resources/lp2-transcription.txt
+      - resources/liber-primus/lp2-corpus.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run original-input SFT
+        run: node sims/lp2_five_numbered_mix_primephi_sft.cjs

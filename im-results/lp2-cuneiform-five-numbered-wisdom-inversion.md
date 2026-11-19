@@ -82,6 +82,30 @@ The only next cryptographic operation in this bounded test is the known solved-p
 
 All six outputs have no discernible GP-native plaintext opening and remain near the uniform 29-symbol IoC of 0.03448. The exact inverses fully restore all **553/553** original symbols. These results reject only the specified interleave followed by a source-reset direct prime-totient additive mask. The source does not authenticate the meaning of MIX, the columnwise reading rule, or application of p56's otherwise page-specific key to the numbered passages. No unknown plaintext or key was recovered. [Single-file reproducible test](../sims/lp2_five_numbered_mix_primephi_sft.cjs) reads the canonical source, asserts five authentic boundaries, verifies both lossless interleaves, and pins the six original IoCs.
 
+
+## Word-level MIX interleave under the exact p56 F-transparent rule
+
+The source-visible prompt is the five red-numbered passages; the 2014 Wisdom-square route also yields the interpretive candidate word MIX. The cheapest word-based reading is round-robin interleaving: take word 1 from passages 1–5, then word 2, continuing and skipping exhausted passages. I tested both 1→5 and 5→1 order. This is a hypothesis about the MIX instruction, not an established author directive.
+
+The consumer is the already-solved p56 prime-totient GP29 shift with its exact plaintext-F transparency rule: the key index advances only for non-F plaintext. A dynamic program retains every legal history. At each ciphertext F it branches between literal transparent F (no key advance) and a non-F decryption; at other symbols it accepts only non-F plaintext. The p56 key is continuous across the 553-rune composite stream, with no fitted phase or passage reset.
+
+| Input ordering | Key sign | First impossible transformed-stream position (0-based) |
+| --- | ---: | ---: |
+| As printed | +1 | 1 |
+| As printed | −1 | 13 |
+| Rune round-robin 1→5 | +1 | 31 |
+| Rune round-robin 1→5 | −1 | 21 |
+| Rune round-robin 5→1 | +1 | 29 |
+| Rune round-robin 5→1 | −1 | 14 |
+| Word round-robin 1→5 | +1 | 1 |
+| Word round-robin 1→5 | −1 | 9 |
+| Word round-robin 5→1 | +1 | 45 |
+| Word round-robin 5→1 | −1 | 7 |
+
+All ten variants exhaust every legal F-transparent history before the stream ends. The word interleave is a lossless permutation of the original **122 words / 553 runes**; its passage word counts are [30,20,25,19,28]. A positive control repeats known p57 plaintext to 553 runes, encrypts it with the same F-transparent p56 rule, and the inverse retains legal paths for both signs (phase ranges 534–538 and 535–537). The DP is therefore not rejecting every input.
+
+This rejects the specific transfer of the p56 cipher to the as-printed five-passage stream and to the natural rune- and word-level round-robin MIX readings. The weakest premise is that the p56 cipher should transfer to p36–38 at all; no source explicitly establishes that. It is a bounded negative on this human-plausible route, not proof that the five passages are not ciphertext. Reproduction is in sims/lp2_five_numbered_mix_primephi_sft.cjs.
+
 ## LP1 Wisdom 5×5 matrix applied to the five numbered streams
 
 **Agent48's original-source test, 13 November 2026.** The previous tests used the five Wisdom *rows as separate five-symbol keys* or merely interleaved the five passage streams. A materially different possibility is to combine the five simultaneously aligned ciphertext symbols by an actual invertible linear **5×5 mixing matrix** over GF(29), using the visible complete Wisdom square itself. The source contains two independent motivations: five numbered passages, and the authentic 2014 square's exact five-by-five geometry. The original LP1 text also names the totient operation. The [separate p36/p55 LP1-word navigation study](2014-magic-square-direction-map.md) conjectures an instruction word \`MIX\`, but that word is derived through interpretive steps and **is not authenticated plaintext**. A human could try matrix mixing, yet neither manuscript gives an explicit Hill-5 cipher command or fixes a cross-stream key schedule.

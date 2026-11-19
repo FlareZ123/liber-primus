@@ -88,8 +88,16 @@ Once p0 became a source-selected receiver, exact source-fixed reversible tests w
 - This is retrospective state corroboration, not plaintext or a cipher. A bounded 64-variant period-five affine consumer on the 553-rune passages fails (phase IoC 0.03194–0.03820). The transfer of the 2014 prime-sum operation to LP2 and the p50 base60/mod29 projection remain hypotheses.
 - Reproduction: commit f5b21416714ffdc94b06fe302533060629e2ce73; SFT workflow run 44500148783 passed. Supporting report: im-results/lp2-cuneiform-five-numbered-wisdom-inversion.md. The #1835 dual-wordmap audit still blocks using this map as an instruction engine without a prospective original selector.
 
+## 2026-11-19: exact p56 F-transparent MIX gate
+
+- Human-solve hypothesis: the five red-numbered passages plus the 2014 Wisdom-square-derived MIX candidate suggest round-robin interleaving by whole words (first word from passages 1–5, then second, skipping exhausted passages). Tested both 1→5 and 5→1.
+- Applied the solved p56 prime-totient GP29 cipher with its exact plaintext-F transparency rule and a continuous key phase. An all-legal-history DP rejects all ten variants: as-printed, rune-round-robin 1→5 / 5→1, and word-round-robin 1→5 / 5→1, each under both signs. First impossible transformed positions are [1,13,31,21,29,14,1,9,45,7].
+- Positive control: repeating known p57 plaintext to 553 runes, encrypting with the same F-transparent p56 rule, and inverting retains legal paths for both signs. The DP is not vacuously rejecting all inputs.
+- This rejects the specific p56 transfer to the five-passage enclosure and the natural MIX interleaves; it does not prove the passages are not ciphertext. The weakest premise is the transfer of p56's cipher to p36–38; no original source selects it.
+- Reproduction: sims/lp2_five_numbered_mix_primephi_sft.cjs; new workflow .github/workflows/lp2-five-passage-mix-primephi-sft.yml. Do not repeat this family without a new independent source selector.
+
 ## Best next questions
 1. Keep #1329's finite pointer-direction campaign separate; do not rerun completed shards or widen the frozen reducer. This draw2 independent-exploration incarnation did not touch that campaign.
-2. Treat the five-coordinate packet as retrospective DH-state corroboration, not a decoder. Seek an original clue that selects a reversible consumer before further experiments; do not add arbitrary affine, matrix, or key schedules.
+2. Treat the five-coordinate packet as retrospective DH-state corroboration, not a decoder. Seek an original clue that selects a reversible consumer before further experiments; do not add arbitrary affine, matrix, or key schedules. The p56 F-transparent transfer to as-printed/rune/word MIX streams is already rejected.
 3. Keep the p33 dual-wordmap #1835 gate: no instruction-engine use until an original clue fixes the coordinate expression and consumer prospectively.
 4. Treat the p6 DH packet as cross-page state evidence; the post-DH payload receiver/KDF remains missing. Do not invent one from shared2, secret6/15, public8/19, or modulus23.

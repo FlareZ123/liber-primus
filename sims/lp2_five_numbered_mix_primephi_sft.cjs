@@ -98,11 +98,120 @@ function main() {
   assert.equal(results.length, expected.length);
   results.forEach((r, i) => assert.ok(Math.abs(r.ioc - expected[i]) < 1e-12));
   assert.ok(Math.max(...results.map(r => r.ioc)) < 0.035);
-  console.log(JSON.stringify({
+  
+/* Exact F-transparent p56 inverse on as-printed and mixed five-passage streams. */
+const wordTranscription=fs.readFileSync(path.join(ROOT,"resources","lp2-transcription.txt"),"utf8").replaceAll("\r","");
+const wordRuneIndex=new Map(corpus.runes.map((rune,index)=>[rune,index]));
+const wordSegments=wordTranscription.split("%").slice(0,55);
+function parseWordPage(segment){
+ let runeOffset=0,current=[],currentStart=0;const words=[];
+ function finish(){if(current.length){words.push({start:currentStart,end:runeOffset,values:current.slice()});current=[];}}
+ for(const ch of segment){
+  if(wordRuneIndex.has(ch)){if(!current.length)currentStart=runeOffset;current.push(wordRuneIndex.get(ch));runeOffset++;}
+  else if(ch==="/"||/\s/u.test(ch)){}
+  else finish();
+ }
+ finish();return {runeCount:runeOffset,words};
+}
+const wordPages=wordSegments.map(parseWordPage);
+for(const p of [36,37,38])assert.equal(wordPages[p].runeCount,page(p).length);
+const wordSpecs=[
+ [{page:36,start:99,end:238}],
+ [{page:37,start:0,end:91}],
+ [{page:37,start:91,end:189}],
+ [{page:37,start:189,end:228},{page:38,start:0,end:57}],
+ [{page:38,start:57,end:186}],
+];
+const wordPassages=wordSpecs.map((pageParts,passageIndex)=>{
+ const words=[];let offset=0;
+ for(const part of pageParts){
+  for(const w of wordPages[part.page].words.filter(x=>x.start<part.end&&x.end>part.start)){
+   assert.ok(w.start>=part.start&&w.end<=part.end);
+   words.push({values:w.values,start:offset});offset+=w.values.length;
+  }
+ }
+ assert.equal(offset,lengths[passageIndex]);return words;
+});
+assert.deepEqual(wordPassages.map(p=>p.length),[30,20,25,19,28]);
+function interleaveWholeWords(reverse){
+ const order=reverse?[4,3,2,1,0]:[0,1,2,3,4],stream=[],positions=[],wordOrder=[];
+ for(let col=0;col<Math.max(...wordPassages.map(p=>p.length));col++){
+  for(const row of order){
+   const w=wordPassages[row][col];if(!w)continue;
+   for(let i=0;i<w.values.length;i++){stream.push(w.values[i]);positions.push(starts[row]+w.start+i);}
+   wordOrder.push({passage:row+1,word:col+1,runes:w.values.length});
+  }
+ }
+ assert.equal(stream.length,input.length);
+ assert.equal(new Set(positions).size,input.length);
+ const restored=Array(input.length);positions.forEach((pos,i)=>{restored[pos]=stream[i];});
+ assert.deepEqual(restored,input);
+ return {stream,wordOrder};
+}
+function inverseFTransparent(cipher,sign){
+ let states=new Map([[0,1n]]);
+ for(let pos=0;pos<cipher.length;pos++){
+  const next=new Map(),value=cipher[pos];
+  for(const [phase,count] of states){
+   if(value===0)next.set(phase,(next.get(phase)||0n)+count);
+   const plain=((value-sign*key[phase])%29+29)%29;
+   if(plain!==0)next.set(phase+1,(next.get(phase+1)||0n)+count);
+  }
+  if(!next.size)return {firstImpossible:pos,phaseStates:0,phaseRange:null,pathCount:"0"};
+  states=next;
+ }
+ return {firstImpossible:null,phaseStates:states.size,phaseRange:[Math.min(...states.keys()),Math.max(...states.keys())],
+  pathCount:[...states.values()].reduce((s,n)=>s+n,0n).toString()};
+}
+function forwardFTransparent(plain,sign){
+ let phase=0;return plain.map(value=>{if(value===0)return 0;const c=((value+sign*key[phase])%29+29)%29;phase++;return c;});
+}
+const fTransparentSequences=[
+ {name:"as-printed",stream:input},
+ {name:"rune-round-robin-1-to-5",stream:interleave(false).stream},
+ {name:"rune-round-robin-5-to-1",stream:interleave(true).stream},
+ {name:"word-round-robin-1-to-5",stream:interleaveWholeWords(false).stream},
+ {name:"word-round-robin-5-to-1",stream:interleaveWholeWords(true).stream},
+];
+const expectedFailures={
+ "as-printed":{"1":1,"-1":13},
+ "rune-round-robin-1-to-5":{"1":31,"-1":21},
+ "rune-round-robin-5-to-1":{"1":29,"-1":14},
+ "word-round-robin-1-to-5":{"1":1,"-1":9},
+ "word-round-robin-5-to-1":{"1":45,"-1":7},
+};
+const fTransparentVariants=[];
+for(const seq of fTransparentSequences)for(const sign of [1,-1]){
+ const result=inverseFTransparent(seq.stream,sign);
+ assert.equal(result.firstImpossible,expectedFailures[seq.name][String(sign)]);
+ assert.equal(result.phaseStates,0);
+ fTransparentVariants.push({sequence:seq.name,sign,runes:seq.stream.length,...result});
+}
+assert.deepEqual(fTransparentVariants.map(x=>x.firstImpossible),[1,13,31,21,29,14,1,9,45,7]);
+const p57=page(57);assert.equal(p57.length,95);
+const planted=Array.from({length:input.length},(_,i)=>p57[i%p57.length]);
+const fTransparentPositiveControls=[1,-1].map(sign=>{
+ const result=inverseFTransparent(forwardFTransparent(planted,sign),sign);
+ assert.equal(result.firstImpossible,null);assert.ok(BigInt(result.pathCount)>0n);
+ return {sign,plaintextLength:planted.length,...result};
+});
+const fTransparentP56Gate={
+ wordPassageCounts:wordPassages.map(p=>p.length),
+ totalWords:wordPassages.reduce((s,p)=>s+p.length,0),
+ forwardWordOrder:interleaveWholeWords(false).wordOrder.slice(0,15),
+ reverseWordOrder:interleaveWholeWords(true).wordOrder.slice(0,15),
+ variants:fTransparentVariants,
+ positiveControls:fTransparentPositiveControls,
+ classification:"no legal F-transparent p56 plaintext history for any of ten as-printed/rune/word interleave variants; p57 positive controls pass"
+};
+assert.equal(fTransparentP56Gate.totalWords,122);
+
+console.log(JSON.stringify({
     source: "Original LP2 pp36-38, numbered 1-5, 553 GP29 runes",
     originalIoc: ioc(input), primeCount: key.length,
     keyRule: "k_j = (jth prime - 1) mod 29; phase zero at source enclosure",
     outcomes: results,
+  fTransparentP56Gate,
     conclusion: "No direct native GP29 plaintext under these six fixed mixes and signed shifts"
   }, null, 2));
 }
