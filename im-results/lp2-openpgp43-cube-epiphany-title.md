@@ -59,4 +59,4 @@ Run:
 node sims/lp2_openpgp43_cube_epiphany_title_sft.cjs
 ```
 
-The corrected SFT now reproduces the old physical-reset packet, proves that it is canonical word42, proves the actual OPENPGP43 canonical receiver is [16,0,14], and rejects the old selection premise.
+The corrected SFT now reproduces the old physical-reset packet, proves that it is canonical word42, proves the actual OPENPGP43 canonical receiver is [16,0,14], and rejects the old selection premise. Windows/Node 22 run **44469390899** passes.
