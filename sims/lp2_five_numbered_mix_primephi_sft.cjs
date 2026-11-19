@@ -100,7 +100,7 @@ function main() {
   assert.ok(Math.max(...results.map(r => r.ioc)) < 0.035);
   
 /* Exact F-transparent p56 inverse on as-printed and mixed five-passage streams. */
-const wordTranscription=fs.readFileSync(path.join(ROOT,"resources","lp2-transcription.txt"),"utf8").replaceAll("\r","");
+const wordTranscription=fs.readFileSync(path.join(__dirname,"..","resources","liber-primus","lp2-transcription.txt"),"utf8").replaceAll("\r","");
 const wordRuneIndex=new Map(corpus.runes.map((rune,index)=>[rune,index]));
 const wordSegments=wordTranscription.split("%").slice(0,55);
 function parseWordPage(segment){
@@ -133,6 +133,7 @@ const wordPassages=wordSpecs.map((pageParts,passageIndex)=>{
  assert.equal(offset,lengths[passageIndex]);return words;
 });
 assert.deepEqual(wordPassages.map(p=>p.length),[30,20,25,19,28]);
+const starts = [0,139,230,328,424];
 function interleaveWholeWords(reverse){
  const order=reverse?[4,3,2,1,0]:[0,1,2,3,4],stream=[],positions=[],wordOrder=[];
  for(let col=0;col<Math.max(...wordPassages.map(p=>p.length));col++){
