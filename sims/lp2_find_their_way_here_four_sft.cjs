@@ -132,6 +132,32 @@ for (const section of solved.sections) {
   }
 }
 
+const allHighLexicalHits = [];
+for (const section of solved.sections) {
+  const words = solvedWords(section.source_text);
+  for (let index = 0; index + 3 < words.length; index += 1) {
+    const window = words.slice(index, index + 4);
+    const windowAddresses = window.map(gp0v);
+    const output = windowAddresses.map((address) => Number(table[address][0]));
+    if (solvedFourRuneLexicon.has(output.join(","))) {
+      allHighLexicalHits.push({
+        section: section.name,
+        index,
+        source: window.map(textOf),
+        output,
+        text: textOf(output),
+      });
+    }
+  }
+}
+assert.deepEqual(allHighLexicalHits, [{
+  section: "0_welcome",
+  index: 23,
+  source: phrase,
+  output: [0, 3, 1, 4],
+  text: "FOUR",
+}]);
+
 const componentRows = tokens.map((token, index) => ({
   word: phrase[index],
   token,
@@ -256,6 +282,7 @@ console.log(JSON.stringify({
   controls: {
     fourWordWindows,
     fourWindowHits,
+    allHighLexicalHits,
     validComponentDirectionConfigurations: validConfigurations,
     lexicalHits,
     distinctSolvedWords: distinctSolvedWords.size,
@@ -271,5 +298,5 @@ console.log(JSON.stringify({
     sourceDhPrefix: hStream.slice(0, 2),
   },
   classification:
-    "Strong source-derived readout: the solved phrase FIND THEIR WAY HERE maps through GP0-addressed p50 high digits to FOUR, uniquely across 713 solved four-word windows and uniquely in the fixed component/direction family. FOUR uniquely carries GP0=8=A and GP-prime=23=p among solved words, and H(p,A) reproduces the original p28 DH prefix [b,K]=[15,2].",
+    "Strong source-derived readout: the solved phrase FIND THEIR WAY HERE maps through GP0-addressed p50 high digits to FOUR, as the only all-high solved four-rune lexical hit across 713 solved four-word windows and uniquely in the fixed component/direction family. FOUR uniquely carries GP0=8=A and GP-prime=23=p among solved words, and H(p,A) reproduces the original p28 DH prefix [b,K]=[15,2].",
 }, null, 2));
