@@ -1,6 +1,6 @@
-# Independent Liber Primus research index: Dukotah/cicada3301
+# Independent Liber Primus external-research index
 
-**Snapshot inspected:** 2026-11-18T10:25:00Z. Dukotah HEAD: `6b945291ed298c14ccf8c73603f695a28f6a7e35` (2026-11-17T21:54:18Z). Independent njloof HEAD: `bbc190529ad1da23f7f2930933a6ba88ee41cd8a` (2026-11-18T02:03:41Z).
+**Snapshot inspected:** 2026-11-19T16:22:05Z. Dukotah HEAD: `6b945291ed298c14ccf8c73603f695a28f6a7e35` (2026-11-17T21:54:18Z; unchanged since the prior snapshot). Independent njloof HEAD: `0fa6134c2f9c92317e4ea3a6f1fa82a5c3952d9b` (2026-11-19T15:35:09Z).
 **Source:** https://github.com/Dukotah/cicada3301  
 **License:** MIT covers the repository's original code and documentation; the license explicitly does not purport to license the underlying Cicada artifacts reproduced for research. No code was copied here.
 
@@ -23,6 +23,38 @@ The Round 44 closeout also reports negative results for red-ink, p15 grid, punct
 - **Cross-project numbering and red-channel compatibility.** Upstream's “55 unsolved canon pages” means 55 *rune-bearing* encrypted segments: the physical LP2 corpus has 56 unsolved pages p0–p55 because p50 contains only the 256-cell table. Its “canon p55 AN END” is our **physical p56** solved page. [Round 44 red-ink P1](https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/liber-primus/analysis/round44/P1-red-ink/RESULTS.md) expands the old 187-rune red selection to **213 on the 13 unknown red-bearing pages** by including drop-caps, overlooked title and terminal red lines; our `im-results/lp2-red-ink-channel-audit.md` independently already recognizes the same 213 red runes and 30 red 13-/10-dot markings. These counts are compatible, with image indexing requiring the one-page offset. This closes a potential false “new red text” claim.
 
 **Decision:** These are useful source and coverage reconciliations. The audited upstream material supplies no newly authenticated unknown-page plaintext, source-selected invertible key, or untested original-byte operation with an independently frozen ciphertext prediction. Reuse its exact signed blocks as a future keyed/plaintext validation object and pursue independent original-source selector discovery; there is no basis for a new broad enumeration.
+
+## Post-cutoff public activity checked 19 November 2026
+
+### 27×27 p0–p2 candidate route: 2retooz270703
+
+**Source:** [public repository](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption), default branch `main`. No root `LICENSE` file was found through the repository contents endpoint.
+
+The repository now presents a 39-block, **118-rune candidate reading** extracted from the 729-rune p0–p2 stream arranged as a 27×27 square, ending in `DIE`. Relevant post-cutoff commits:
+- [`4fc9de9`](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/commit/4fc9de9c2fcc1cb8baa632e836789707f6cac407) (15:54:40Z): adds Report 24, a modulo-seven filter for the next key-center/ciphertext alignment.
+- [`969101f`](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/commit/969101f9888d6441c97ed4dea3b0e000ca1050fb) (15:59:38Z): edits Report 24's presentation/formulas.
+- [`af0cc45`](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/commit/af0cc451933d344c1e7ed13843740c6bdd07b302) (16:08:30Z): adds the `DIE`/5,360 GP-sum correspondence.
+- [`86bda66`](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/commit/86bda66c33c5072e570584089d99b97d30a52fbd) (16:09:20Z): removes the sentence that the 5,360 equality was identified after `DIE` was known.
+- [`4c982b7`](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/commit/4c982b79517bfcb48a85c3fea131f2ea33297103) (16:15:27Z): adds a README claim that `DIE` is the final word recovered.
+- [`c2dea44`](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/commit/c2dea442f6537c9357aaafcfef9c9930bf870afa) (16:17:29Z): changes “proposed main route” to “main route.”
+
+**Independent arithmetic check against the local original-corpus file** [`lp2-corpus.json`](../liber-primus/lp2-corpus.json):
+- p0–p2 contain 262 + 266 + 201 = **729** runes.
+- Claimed source cells (18,10), (18,14), (18,18) contain indices [5,23,27] = C/K–D–IA. Their `μ(φ(index))) signature is [0,+1,0], giving phase 1 and aligned key [23,27,5] = D–IA–C/K.
+- Claimed ciphertext cells (3,22), (4,23), (5,24) contain [17,8,23] = B–H–D. Subtraction mod 29 yields [23,10,18] = D–I–E; adding the same key forward reproduces [17,8,23] exactly. The GP sum of DIE is 89+31+67 = **187**.
+
+This confirms one **three-rune arithmetic inverse** on original corpus values. It does not authenticate the selection of the source node, the diagonal ciphertext segment, the key rule, or the endpoint. The candidate is selected from scattered cells of a 729-cell square; it is not a complete contiguous page or a full-page plaintext. The local frozen-geometry report already reproduces the same opening two blocks (12 runes) and shows that the simplest unchanged endpoint-node/rightward-totient continuation fails on its untouched third block; see [the local holdout](../../im-results/lp2-2026-square27-frozen-geometric-plaintext-holdout.md). The new longer route changes the transition family rather than supplying a blind confirmation of that frozen rule.
+
+**Decisive source-selection problem:** the public README's own “Let me explain” section says the branch was found by computer brute-force search and that the author does not know whether it is genuine; the method section says exact next-location selection remains open. Report 24 explicitly says its filter was selected retrospectively: it searched 8,610 input predicates and 4,746 output predicates, chose the output predicate with the full route available, and reports 8/12,000 controls for the fixed selected output versus 1,953/12,000 across 4,071 output predicates. Those are measurements of a post-selected search family, not a prospective source-derived selector. The detailed [DIE walkthrough](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/blob/main/plaintext-i-found/39-DIE.md) itself calls DIE a candidate and says the transition rules do not independently establish where the message ends. The 5,360 equality is a checksum noticed after the candidate word was known; deleting that caveat in a later commit does not make it prospective.
+
+**Decision:** retain this as an interesting, exactly reproducible local three-rune construction and a public hypothesis about the 27×27 opening. Do **not** promote the 118-rune route, `DIE` endpoint, or GP checksum to recovered plaintext, authentic key material, or a Cicada-selected mechanism. A promotion would require an original clue that fixes the node/receiver/transition family before plaintext inspection and an untouched prospective continuation.
+
+### Other post-cutoff external updates
+
+- [njloof commit `0fa6134`](https://github.com/njloof/cicada-lp2-sweeps/commit/0fa6134c2f9c92317e4ea3a6f1fa82a5c3952d9b) (2026-11-19T15:35:09Z) adds the C9 peer-review addendum: rounds 1–5 converged after wording corrections, with no new LP2 plaintext or key. [Commit `4f9aee4`](https://github.com/njloof/cicada-lp2-sweeps/commit/4f9aee41cfa63ddaac37bf7fb74d7a93803e91f2) (15:24:18Z) changes only the long-running campaign supervisor.
+- Dukotah's latest commit remains [`6b94529`](https://github.com/Dukotah/cicada3301/commit/6b945291ed298c14ccf8c73603f695a28f6a7e35), dated 2026-11-17T21:54:00Z, before the indexed cutoff. The other newly surfaced tracker/notebook pages inspected in this sweep are also older than the cutoff (certified-retart's latest commit 2026-10-01; CicadaNotebook's displayed latest update 2026-10-30). Targeted web searches for new 19 November plaintext claims surfaced no independently supported new page/key result.
+
+**Post-cutoff audit conclusion:** no newly located public item satisfies the original-cipher acceptance test. The 27×27 repository supplies a reproducible local arithmetic candidate but not an independently selected decryption; the other recent commits are peer-review or infrastructure updates. No external LP2 plaintext/key status change is justified.
 
 ## Measured ceiling and remaining gaps
 
