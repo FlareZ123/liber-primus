@@ -323,6 +323,34 @@ assert.equal(readoutPacket.at(-1), dh.K);
 const stateValues = new Set(Object.values(dh));
 for (const value of stateValues) assert.ok(readoutPacket.includes(value));
 
+// The returned split packet independently regenerates the already recovered
+// WILL key. One-based a/A packet lookups yield [K*a,a], and H(A,B) supplies
+// the suffix. Zero-based lookup does not reproduce the key.
+const regeneratedWillKey = [
+  readoutPacket[dh.a - 1],
+  readoutPacket[dh.A - 1],
+  ...H(dh.A, dh.B),
+];
+const zeroBasedRivalKey = [
+  readoutPacket[dh.a],
+  readoutPacket[dh.A],
+  ...H(dh.A, dh.B),
+];
+assert.deepEqual(regeneratedWillKey, [12, 6, 18, 27]);
+assert.notDeepEqual(zeroBasedRivalKey, regeneratedWillKey);
+assert.deepEqual(
+  [mod29(dh.K * dh.a), dh.a, ...H(dh.A, dh.B)],
+  regeneratedWillKey
+);
+
+const willReceiver = p0.find((word) => word.start === 141);
+assert.ok(willReceiver);
+assert.equal(willReceiver.length, 4);
+const willPlaintext = willReceiver.values.map((value, index) =>
+  mod29(value - regeneratedWillKey[index])
+);
+assert.deepEqual(willPlaintext, gp("WILL"));
+
 console.log(JSON.stringify({
   status: "PASS: WILL -> BE -> FOUND uniquely selects p0 117..121 and returns to READ OUT/DH",
   frozenDh: dh,
@@ -351,6 +379,9 @@ console.log(JSON.stringify({
     boundary: [readoutPacket[0], readoutPacket[1], readoutPacket.at(-1)],
     expectedBoundary: [dh.B, dh.p, dh.K],
     fullStateCovered: [...stateValues].every((value) => readoutPacket.includes(value)),
+    regeneratedWillKey,
+    zeroBasedRivalKey,
+    regeneratedPlaintext: willPlaintext,
   },
   classification:
     "conditional local navigation bridge: K=2 and the signed phrase select the receiver before its ciphertext is consumed; its raw number uniquely returns the five-rune control family to the split READ OUT/DH packet under base60. FOUND is a navigation label, not recovered plaintext.",
