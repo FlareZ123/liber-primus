@@ -77,7 +77,7 @@ The direct state-native THE result independently selects the same p32 pair `(6,4
 
 ## Scope
 
-The coordinate alphabet was recognized retrospectively. Widening it with unrelated `g=5` makes other pages much more permissive, so freeze C exactly as ARE-components plus the selected window length e. This is an intended-navigation candidate rather than proof that p32 plaintext literally equals the signed 2016 message.
+The coordinate alphabet was recognized retrospectively. Widening it with unrelated `g=5` makes other pages much more permissive, so freeze C exactly as ARE-components plus the selected window length e. Also note the dependency: ARE coordinates and e were fixed by the upstream SEEKS/p50 route, so the later PATH/SEEKS→p=23 convergence is a consistency check within that route, not a second independent selection of the DH modulus. This remains an intended-navigation candidate rather than proof that p32 plaintext literally equals the signed 2016 message.
 
 The strongest causal route is now:
 
@@ -98,7 +98,7 @@ That successor now exists independently on p33. The solved-p56 serializer recove
 
 The p32 → THEIR RISE → signed-word-number route now has a plausible downstream connection to the p28 AL/DH receiver, without using the failed p32 9×9-inner-grid/p33 additive consumer:
 
-1. The upward 8-column word-number operation independently selects the DH modulus **p=23** from both signed words PATH (index2) and SEEKS (index6).
+1. The upward 8-column word-number operation converges on the already reconstructed DH modulus **p=23** from both signed words PATH (index2) and SEEKS (index6). PATH/SEEKS agreement is an internal consistency check, not an independent authentication of p=23.
 2. The p23 packet independently emits **THE ORIGIN | AL**; the pre-2014 printed New Comment supplies the human-visible AL=31 interpretation.
 3. P28's unique literal-DH line independently reconstructs the DH23 tuple and exponent 3. AL=31 gives 31 mod 28 = 3 and 31 mod 29 = 2.
 4. Solved p57's “find the divinity within” plus p28's physical page number select the candidate p28 center-rune + word28 receiver. P28's three printed periods and page number28−1 supply the [3,27] fragment exponent pair.
