@@ -116,17 +116,17 @@ assert.equal((82 + 128) / 2, 105);
 // Frozen six-rune EMERGE pointer walk.
 const start = gpPrime("EMERGE") % 256;
 assert.equal(start, 44);
-const path = [start];
+const walk = [start];
 let address = start;
 for (let edge = 0; edge < gpIndices("EMERGE").length; edge += 1) {
   address = base59(address);
-  path.push(address);
+  walk.push(address);
 }
-assert.deepEqual(path, [44, 226, 72, 161, 214, 247, 189]);
+assert.deepEqual(walk, [44, 226, 72, 161, 214, 247, 189]);
 assert.equal(tape[189], "3C");
 assert.equal(base59(189), 189);
 
-const visitedColumns = path.map((value) => value % 8);
+const visitedColumns = walk.map((value) => value % 8);
 assert.deepEqual(visitedColumns, [4, 2, 0, 1, 6, 7, 5]);
 const missingColumns = [...Array(8).keys()]
   .filter((column) => !visitedColumns.includes(column));
@@ -196,7 +196,7 @@ console.log(JSON.stringify({
     gpPrime: gpPrime("EMERGE"),
     start,
     runeLength: gpIndices("EMERGE").length,
-    path,
+    path: walk,
     endpoint: 189,
     token: tape[189],
     visitedColumns,
