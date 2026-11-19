@@ -1,0 +1,270 @@
+"use strict";
+
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+
+const ROOT = path.resolve(__dirname, "..");
+const MOD = 29;
+
+/** @param {string} relative @returns {string} */
+function read(relative) {
+  return fs.readFileSync(path.join(ROOT, relative), "utf8").replace(/\r/g, "");
+}
+
+/** @param {number} value @returns {number} */
+function mod29(value) {
+  return ((value % MOD) + MOD) % MOD;
+}
+
+/** @param {number[]} values @returns {number[]} */
+function hInverse(values) {
+  const out = new Array(values.length);
+  const inverse2 = 15;
+  for (let index = 0; index < Math.floor(values.length / 2); index += 1) {
+    const difference = values[index * 2];
+    const sum = values[index * 2 + 1];
+    out[index] = mod29((sum + difference) * inverse2);
+    out[values.length - 1 - index] = mod29((sum - difference) * inverse2);
+  }
+  if (values.length % 2 === 1) out[Math.floor(values.length / 2)] = values.at(-1);
+  return out;
+}
+
+/** @param {number} n @param {number} base @returns {number[]} */
+function digits(n, base) {
+  const out = [];
+  let value = n;
+  while (value > 0) {
+    out.push(value % base);
+    value = Math.floor(value / base);
+  }
+  return out.reverse();
+}
+
+/** @param {string} text @returns {number[][][]} */
+function parseSquares(text) {
+  return text.trim().split(/\r?\n\s*\r?\n/).map((block) =>
+    block.split(/\r?\n/).map((line) => line.trim().split(/\s+/).map(Number))
+  );
+}
+
+/** @param {number[][]} square @returns {number} */
+function center(square) {
+  const middle = Math.floor(square.length / 2);
+  return square[middle][middle];
+}
+
+/** @param {number[][]} square @returns {number} */
+function magicSum(square) {
+  return square[0].reduce((total, value) => total + value, 0);
+}
+
+const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const transcription = read("resources/liber-primus/lp2-transcription.txt");
+const solved = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
+const signed = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const squares = parseSquares(read("resources/cicada2014-openpuff-magic-squares.txt"));
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const gpTokens = corpus.translit
+  .map((symbol, value) => ({symbol, value}))
+  .sort((left, right) => right.symbol.length - left.symbol.length);
+
+/** @param {string} word @returns {number[]} */
+function gp(word) {
+  const normalized = word
+    .toUpperCase()
+    .replace(/QU/g, "CW")
+    .replace(/V/g, "U")
+    .replace(/[KQ]/g, "C")
+    .replace(/Z/g, "S")
+    .replace(/[^A-Z]/g, "");
+  const out = [];
+  for (let offset = 0; offset < normalized.length;) {
+    if (normalized.startsWith("ING", offset)) {
+      out.push(21);
+      offset += 3;
+      continue;
+    }
+    if (normalized.startsWith("IO", offset)) {
+      out.push(27);
+      offset += 2;
+      continue;
+    }
+    const token = gpTokens.find((candidate) => normalized.startsWith(candidate.symbol, offset));
+    assert.ok(token, "unmapped GP spelling: " + normalized.slice(offset));
+    out.push(token.value);
+    offset += token.symbol.length;
+  }
+  return out;
+}
+
+/** @param {string} source @returns {number[][]} */
+function runeWords(source) {
+  const words = [];
+  let current = [];
+  for (const character of [...source]) {
+    const value = runeIndex.get(character);
+    if (value !== undefined) {
+      current.push(value);
+    } else if (current.length) {
+      words.push(current);
+      current = [];
+    }
+  }
+  if (current.length) words.push(current);
+  return words;
+}
+
+// Recover q,A,B from authenticated square metadata only.
+assert.equal(squares.length, 3);
+const meta = squares.map((square) => ({
+  order: square.length,
+  sum: magicSum(square),
+  center: center(square),
+}));
+assert.deepEqual(meta.map((row) => [row.order,row.sum,row.center]), [
+  [5,3301,809],
+  [7,1033,331],
+  [5,1033,91],
+]);
+const equal1033 = meta.filter((row) => row.sum === 1033).sort((a,b) => a.order - b.order);
+const smallDigits = digits(equal1033[0].center, MOD);
+const largeDigits = digits(equal1033[1].center, MOD);
+const e = smallDigits[0];
+const q = smallDigits[1];
+const A = largeDigits[0] - smallDigits[0];
+const sumDigits = digits(1033, MOD);
+const B = mod29(A - sumDigits[2]);
+assert.deepEqual({e,q,A,B}, {e:3,q:4,A:8,B:19});
+const markerCenter = [q,A,B,A,q];
+
+// Build the manuscript's complete adjacent page-local 8+5 receiver family.
+const parts = transcription.split(/^\s*%\s*$/m).slice(0,55);
+const pages = parts.map((_, segment) => ({
+  page: segment >= 50 ? segment + 1 : segment,
+  words: [],
+  offset: 0,
+}));
+let current = [];
+let startSegment = 0;
+let endSegment = 0;
+let startOffset = 0;
+function flushWord() {
+  if (!current.length) return;
+  if (startSegment === endSegment) {
+    const page = pages[startSegment];
+    page.words.push({
+      ordinal: page.words.length + 1,
+      start: startOffset,
+      values: current.slice(),
+    });
+  }
+  current = [];
+}
+for (let segment = 0; segment < parts.length; segment += 1) {
+  for (const character of [...parts[segment]]) {
+    const value = runeIndex.get(character);
+    if (value !== undefined) {
+      if (!current.length) {
+        startSegment = segment;
+        startOffset = pages[segment].offset;
+      }
+      endSegment = segment;
+      current.push(value);
+      pages[segment].offset += 1;
+    } else if (character !== "/" && !/\s/u.test(character)) {
+      flushWord();
+    }
+  }
+}
+flushWord();
+
+const receivers = [];
+for (const page of pages) {
+  for (let index = 0; index + 1 < page.words.length; index += 1) {
+    const first = page.words[index];
+    const second = page.words[index + 1];
+    if (first.values.length === 8 && second.values.length === 5) {
+      receivers.push({
+        page: page.page,
+        ordinal: first.ordinal,
+        start: first.start,
+        cipher: first.values.concat(second.values),
+      });
+    }
+  }
+}
+assert.equal(receivers.length, 19);
+
+// Build a pinned solved/authenticated native-GP lexical control.
+const lexicon = new Map();
+for (const section of solved.sections) {
+  for (const values of runeWords(section.source_text)) {
+    const label = values.map((value) => corpus.translit[value]).join("");
+    lexicon.set(values.join(","), {label,values,source:"solved"});
+  }
+}
+const clear = signed
+  .split("-----BEGIN PGP SIGNATURE-----")[0]
+  .split(/\n\n/u)
+  .slice(1)
+  .join("\n");
+const sourceWords = clear
+  .split(/[^A-Za-z0-9]+/u)
+  .filter((token) => /^[A-Za-z]+$/u.test(token))
+  .map((word) => word.toUpperCase());
+assert.equal(sourceWords.length, 43);
+for (const label of sourceWords) {
+  const values = gp(label);
+  lexicon.set(values.join(","), {label,values,source:"signed2016"});
+}
+
+const words = [...lexicon.values()];
+const length8 = words.filter((word) => word.values.length === 8);
+const length5 = words.filter((word) => word.values.length === 5);
+assert.equal(length8.length, 18);
+assert.equal(length5.length, 38);
+
+const hits = [];
+for (const receiver of receivers) {
+  for (const left of length8) {
+    for (const right of length5) {
+      const plain = left.values.concat(right.values);
+      const residual = receiver.cipher.map((value,index) => mod29(value - plain[index]));
+      const inverse = hInverse(residual);
+      if (inverse.slice(4,9).join(",") !== markerCenter.join(",")) continue;
+      hits.push({
+        page:receiver.page,
+        ordinal:receiver.ordinal,
+        start:receiver.start,
+        words:[left.label,right.label],
+        sources:[left.source,right.source],
+        inverse,
+        residual,
+      });
+    }
+  }
+}
+
+const p0Hits = hits.filter((row) => row.page === 0 && row.ordinal === 1);
+const signedAdjacentHits = hits.filter((row) => {
+  for (let index = 0; index + 1 < sourceWords.length; index += 1) {
+    if (sourceWords[index] === row.words[0] && sourceWords[index+1] === row.words[1]) return true;
+  }
+  return false;
+});
+
+console.log(JSON.stringify({
+  status:"PASS",
+  independentSquareState:{e,q,A,B,markerCenter},
+  family:{
+    receivers:receivers.length,
+    length8:length8.length,
+    length5:length5.length,
+    candidates:receivers.length * length8.length * length5.length,
+  },
+  hits,
+  p0Hits,
+  signedAdjacentHits,
+}, null, 2));
