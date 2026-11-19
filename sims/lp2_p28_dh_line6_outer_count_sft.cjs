@@ -231,7 +231,88 @@ assert.deepEqual(target.literalPairVariants, [{
   },
 }]);
 
-const dh = target.literalPairVariants[0].tuple;
+// Stronger positional source family on the selected literal-DH line.
+// Charge six binary choices:
+// line origin, g/a count assignment, which literal input is p, whether the
+// other literal input is A or B, literal-H output order bK/Kb, and final-H
+// output order AB/BA. Standard DH algebra must reconcile all three source pairs.
+const literalInput = target.fragmentValues[0];
+const literalOutput = outerH(target.fragmentValues[0]);
+const finalOutput = outerH(target.fragmentValues.at(-1));
+const positionalVariants = [];
+
+for (const origin of ["one", "zero"]) {
+  const lineValue = origin === "one" ? target.line : target.line - 1;
+  if (lineValue <= 0) continue;
+
+  for (const assignment of ["g=fragments,a=line", "g=line,a=fragments"]) {
+    const g = assignment === "g=fragments,a=line"
+      ? target.fragmentCount
+      : lineValue;
+    const a = assignment === "g=fragments,a=line"
+      ? lineValue
+      : target.fragmentCount;
+
+    for (const pIndex of [0, 1]) {
+      const p = literalInput[pIndex];
+      const knownPublic = literalInput[1 - pIndex];
+      if (!primeValues.has(p) || g <= 0 || g >= p) continue;
+
+      for (const publicRole of ["A", "B"]) {
+        for (const pairOrder of ["bK", "Kb"]) {
+          const [b, K] = pairOrder === "bK"
+            ? literalOutput
+            : [literalOutput[1], literalOutput[0]];
+          if (b <= 0 || b >= p) continue;
+
+          const A = powMod(g, a, p);
+          const B = powMod(g, b, p);
+          const derivedK = powMod(A, b, p);
+          if (derivedK !== K || derivedK !== powMod(B, a, p)) continue;
+          if ((publicRole === "A" ? A : B) !== knownPublic) continue;
+
+          for (const finalOrder of ["AB", "BA"]) {
+            const expectedFinal = finalOrder === "AB" ? [A, B] : [B, A];
+            if (
+              expectedFinal[0] !== finalOutput[0] ||
+              expectedFinal[1] !== finalOutput[1]
+            ) continue;
+
+            positionalVariants.push({
+              origin,
+              assignment,
+              pIndex,
+              publicRole,
+              pairOrder,
+              finalOrder,
+              tuple: { p, g, a, b, A, B, K },
+            });
+          }
+        }
+      }
+    }
+  }
+}
+
+assert.deepEqual(positionalVariants, [{
+  origin: "one",
+  assignment: "g=fragments,a=line",
+  pIndex: 0,
+  publicRole: "A",
+  pairOrder: "bK",
+  finalOrder: "AB",
+  tuple: {
+    p: 23,
+    g: 5,
+    a: 6,
+    b: 15,
+    A: 8,
+    B: 19,
+    K: 2,
+  },
+}]);
+
+const dh = positionalVariants[0].tuple;
 assert.equal(powMod(dh.g, dh.a, dh.p), dh.A);
 assert.equal(powMod(dh.g, dh.b, dh.p), dh.B);
 assert.equal(powMod(dh.A, dh.b, dh.p), dh.K);
@@ -288,6 +369,13 @@ console.log(JSON.stringify({
     assignments: ["g=fragments,a=line", "g=line,a=fragments"],
     literalDhPairOrders: ["bK", "Kb"],
     literalDhLineSourceFamilySolutions: target.literalPairVariants,
+    positionalSourceFamily: {
+      configurations: 64,
+      literalInput,
+      literalOutput,
+      finalOutput,
+      solutions: positionalVariants,
+    },
     linesWithAnySevenDistinctDhTuple: valid.length,
     totalSevenDistinctDhTupleVariants: valid.reduce(
       (total, row) => total + row.variants.length, 0
@@ -302,5 +390,5 @@ console.log(JSON.stringify({
     BPowA: powMod(dh.B, dh.a, dh.p),
   },
   classification:
-    "source-derived DH reconstruction: the unique literal-DH line plus fixed outer-H, visible line number, fragment count, and the literal DH fragment's own H pair reconstruct the full DH23 tuple under exactly one member of the charged 2x2x2 source family, without requiring distinctness as a selection rule.",
+    "source-derived DH reconstruction: the unique literal-DH line has literal input [p,A], its own outer-H output [b,K], and final-fragment outer-H output [A,B]. Together with visible line number and fragment count, exactly one of 64 charged positional/count conventions satisfies standard DH, without a distinctness selection rule.",
 }, null, 2));
