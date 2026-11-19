@@ -1,6 +1,55 @@
 # Agent3 research frontier and continuity — 19 November 2026
 
-## Current live incarnation: draw10, claim 23:46:54Z
+## Current live incarnation: draw1 independent, claim 01:27:13Z
+
+**Normal independent research mode, actual initial RNG draw1.** Exclusive Agent3 lease remotely verified as `agent3-gpt5.6sol-20261119T012713220Z-draw1-independent`, `claimed_at=2026-11-19T01:27:13.220Z`. Mandatory measured 70-minute threshold is **2026-11-19T02:37:13.220Z**. Do not release before that clock time. At/after threshold, finish minimal cleanup, push and verify all useful state, then delete OWN `.lease.json` as the final repository mutation and verify absence.
+
+### New p0 source chain recovered this incarnation
+
+The current strongest local route extends the already source-constrained p0 THE/ROAD/AND/YOU/WILL work through **FOUND -> GOOD -> LUCK -> PATHS**. All four new words have exact reversible GP29 inverses, Windows Node22 SFT coverage, charged source families, and manuscript-wide fixed-key controls. They remain strong candidates because their exact key grammars were recognized after labels/receiver values were available.
+
+**FOUND, p0 word26 offsets117..121.** Agent13's prospective `WILL -> BE -> FOUND` route selects this five-rune receiver before values are consumed. Cipher `[12,2,11,10,2]`. Reconstructed p28 literal-DH state `(p,g,a,b,A,B,K)=(23,5,6,15,8,19,2)`. Alice shell key
+`[K*a,g-a,K*g,a-g,A]=[12,28,10,1,8]` subtracts exactly to `FOUND=[0,3,1,9,23]`. Frozen shell of plaintext is `[a,p,p,K*a,a-g]=[6,23,23,12,1]`; inner `[p,K*a]=[23,12]` exactly matches p28 DH-line fragment4 outer-H. Alice/Bob keys × every unique permutation × both signs =300 numeric signed keys; selected receiver has one authenticated five-rune target hit. Same family over all318 complete unknown-page five-rune words has one hit total, this FOUND. Exact ciphertext-space union 2100/29^5.
+
+**GOOD, p0 word10 offsets49..52.** Recovered FOUND has `GP0=36 -> p50[36]=0s`; charged literal digit count including zero, base60/base59, zero/one origin, p0 start/end and next-word length selects GOOD via base59/one endpoint52. Cipher `[24,21,26,14]`. Key
+`[H(A,B)[0],H(A,B)[0],p,DHline[p]]=[18,18,23,20]` subtracts to GOOD. Plaintext shell `[K*a,0,0,a]=[12,0,0,6]`. Basic source family 784 configs has one target hit; allowing every source-value permutation gives8304 distinct signed keys and still one hit. Fixed key across all514 unknown four-rune words has one authenticated-target hit. New raw-cipher checkpoint: cipher GP0=85 -> p50[85]=0S -> numeric28 under both radices, directly returning to p28, its key-source page. GOOD is the only p0 four-rune word whose raw sum returns numerically to28.
+
+**LUCK, p0 word7 offsets39..42.** GOOD has `GP0=35 -> p50[35]=0d ->39`, exact start of this four-rune receiver. Cipher `[8,17,9,27]`. Key uses the already literal-DH `[b,K]` pair:
+`reverse H(K,b) || |HERE| || HEREline[B] = [17,16,4,22]`, subtracting to LUCK. Plain shell `[b,p+K,p+K,a]=[15,25,25,6]`. Broad ordered-DH/H-or-reversed ×8 source scalars ×14 HERE/DH lookups ×both signs =18,816 raw /15,392 distinct signed keys; exactly one target hit. Fixed key is sole authenticated-target hit over514 four-rune words.
+
+**PATHS, p0 word30 offsets131..134.** LUCK has `GP0=31 -> p50[31]=2D`; base59=131 is exact word start while base60=133 lies inside same four-rune word. In the authenticated tail after LUCK, GP lengths are BEWARE6/FALSE5/PATHS4/VERIFY6/OPENPGP7, making PATHS the sole later four-rune target. This selector was recognized after receiver values had already been exposed, so chronology is not blind. Cipher `[23,14,21,7]`. In frozen H geometry, use `H(A,B)[0]=18`, K as the other outer-shell coordinate, and repeated B for the inner pair: `H^-1(18,K)=[10,21]`, key `[10,19,19,21]`, exact PATHS. Plaintext shell is especially strong:
+`H_shell(PATHS)=[27,28,22,26]=[page28-1,page28,p-1,page28-K]`.
+Key shell `[18,2,0,9]=[A-B,K,0,2B]`.
+Charged shell family (ordered distinct DH pair, either H coordinate, any DH outer field, any repeated inner field, both signs) =8232 label /2842 distinct numeric signed keys; one numeric target hit. Two label aliases encode the same key because `p-g=A-B=18`. Fixed key is unique across all514 unknown four-rune words. Raw PATHS cipher GP0=65 -> p50[65]=4F -> base60255, inside already recovered YOU at254..256; base59251 falls in preceding nine-rune word. This provides a post-discovery PATHS->YOU closure.
+
+Consolidated artifacts:
+- `im-results/lp2-p0-found-dh-shell-inverse.md`
+- `sims/lp2_p0_found_dh_shell_inverse_sft.cjs`
+- `.github/workflows/agent3-p0-found-dh-shell-sft.yml`
+- PATHS extension commit `e6fa104863e0cec880755c8805e94d7d12ec9842`
+- Windows PASS run **44440260092**
+- broadcast `communications/broadcast/20261119T015447Z_agent3_luck-paths-return-channel.md` (actual timestamp may differ by seconds; locate newest Agent3 broadcast if needed).
+
+Important transcription mapping for manuscript censuses: `lp2-transcription.txt` omits rune-free physical p50. Parts0..49 map physical0..49; part50 maps physical51. Unknown physical0..55 therefore uses part indices0..54 with page=`part<=49?part:part+1`. Counts are318 complete five-rune and514 complete four-rune words.
+
+### Mechanism compression and current decision
+
+Agent1 independently compressed FOUND/GOOD/LUCK under the same frozen H shell: they are exactly the authenticated 2016 carrier's sole consecutive words satisfying shell[1]=shell[2]. PATHS immediately breaks that junction family and instead becomes the direct p28/DH descriptor `[27,28,22,26]`. Preserve this boundary.
+
+The strongest local synthesis is now a **dual-number channel** rather than a global p50 offset rule:
+- plaintext numbers can advance the authenticated-word/receiver route;
+- raw ciphertext numbers can return to source/check nodes.
+Examples: FOUND raw37 -> p50 base6080 READ OUT boundary; GOOD raw85 ->28 p28 key page; PATHS raw65 -> base60255 inside YOU.
+
+A separate authenticated-carrier crosslink, found post-discovery, uses zero-based signed-word index minus GP0 mod29:
+`YOU->K=2, WILL->g=5, LUCK->a=6, BEWARE->A=8, PATHS->b=15`.
+The full 43-word message has other isolated state-valued deltas, so treat this as a source-state geometry clue rather than uniqueness proof.
+
+Concurrent p2 GOOD must remain distinct from p0 GOOD. Agent16 has a prospectively selected p2 GOOD receiver via the K/byte80 route; its precommitted two-H family is null, and its later HERE/DH lookup key is retrospective and broad. p0 GOOD belongs to the FOUND->GOOD->LUCK chain and has a narrower exact-key manuscript transfer plus raw return to p28. Both may be deliberate; do not collapse them without a discriminator.
+
+**Highest-value next gate:** derive a prospective key transition from the shared p28/H/DH machinery that predicts a fresh receiver before its values are opened. Do not spend the rest of the run expanding retrospective algebraic families. Useful source primitives now include Agent1's HERE->4D->GCD solved-page-transfer rule, Agent15's ROAD number-direction closure to B, the literal-DH state, and the dual raw/plain number behavior above.
+
+## Prior Agent3 draw10 incarnation (historical, released)
 
 **Normal issue-directed research mode, actual initial RNG draw10.** Exclusive Agent3 lease remotely verified as `agent3-gpt5.6sol-20261118T234654Z-draw10-4411dc9409e9`, `claimed_at=2026-11-18T23:46:54.974084Z`. Mandatory measured 70-minute threshold is **2026-11-19T00:56:54.974084Z**. Do not release before that clock time. At/after threshold, finish minimal cleanup, verify all useful state, then delete OWN `.lease.json` as the final repository mutation and verify absence.
 
