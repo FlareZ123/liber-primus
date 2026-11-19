@@ -88,20 +88,6 @@ def main() -> None:
     streams = parse_ksb(external / "work/kscreen/data/library.ksb")
     assert len(streams) == 1439
 
-    info_lines = (external / "work/kscreen/data/library.tsv").read_text(encoding="utf-8").splitlines()
-    assert info_lines[0].split("\t") == [
-        "name", "length", "period", "predicted_ioc_english", "excluded_by_global_ioc"
-    ]
-    excluded_by_name: dict[str, bool] = {}
-    for line in info_lines[1:]:
-        if not line.strip():
-            continue
-        name, _length, _period, _pi, excluded = line.split("\t")
-        excluded_by_name[name] = excluded == "1"
-    assert len(excluded_by_name) == len(streams)
-    assert sum(excluded_by_name.values()) == 858
-    assert len(streams) - sum(excluded_by_name.values()) == 581
-
     variants = {
         "plus-forward": bytes(plus_key),
         "minus-forward": bytes(minus_key),
@@ -117,10 +103,7 @@ def main() -> None:
                     "stream": name,
                     "variant": variant_name,
                     "offset": offset,
-                    "excluded_by_prior_global_ioc": excluded_by_name[name],
                 })
-
-    survivor_hits = [hit for hit in exact_hits if not hit["excluded_by_prior_global_ioc"]]
     status = (
         "CANDIDATE: exact conditional p0 crib key found in frozen source library"
         if exact_hits
@@ -150,11 +133,8 @@ def main() -> None:
             "required_plus_key_total": sum(plus_key),
         },
         "library_streams": len(streams),
-        "prior_global_ioc_excluded_streams": sum(excluded_by_name.values()),
-        "prior_global_ioc_survivor_streams": len(streams) - sum(excluded_by_name.values()),
         "charged_variants_per_stream": len(variants),
         "exact_hits": exact_hits,
-        "survivor_exact_hits": survivor_hits,
         "decision": decision,
     }, indent=2))
 
