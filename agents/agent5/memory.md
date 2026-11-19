@@ -31,6 +31,27 @@
 **Evidence boundary:** post-discovery source/key provenance, not blind plaintext. It substantially shortens the intended human path and resolves the previously unexplained p28 exponent pair, but Cicada did not explicitly sign Crowley's AL=31 commentary. Do not expand into arbitrary Thelemic numerology. Next AL31 test must make a source-constrained prediction on an untouched state/receiver.
 
 
+## Checkpoint 3: AL31 selects p31 and independently compresses AND -> p33 YOU
+
+**New page-entry route:** the p23 serializer's local packet ends at `THE ORIGIN`; source/destination pages append `AL`. Historical `AL=31` therefore selects physical p31 directly, independently of the older authenticated ordinal32 AND -> p31 assignment.
+
+**P31 state/layout key without plaintext receiver:** among p31 printed-line pairs with equal visible chunk count, line0/line6 is uniquely the pair with lower-to-upper rune-count rise `23-21=2=K`. Lower-to-upper packet `[5,21,23]=[g,-A,p]`; solved-p56 `T` -> `[10,14,24]=[-B,-b,-g]`; `H3^-1` -> fixed key `[17,14,7]`.
+
+**Local lexical charge:** p31 has 19 complete three-rune words. Complete distinct authenticated three-rune target vocabulary is PATH/WAY/ITS/ARE/MAP/AND/YOU. Charge all p31 three-rune words and both signs: exactly one hit, word32 start126 `[12,23,1] - [17,14,7] = [24,9,23] = AND`.
+
+**Transfer:** same selected line pair carries page rise K, so `p31+2=p33`. Freeze same key/sign; among 12 p33 three-rune words and same target vocabulary exactly one hit, word29 `[14,17,8] - key = [26,3,1] = YOU`. Existing p33 THEIR RISE magnitude a=6 moves YOU word29 to independent WILL word35.
+
+**Sign convergence:** concurrent Agent19 typed p50 register gives fixed `p50[31]=2D=ASCII '-'`, exactly the only lexical-hit sign. Operational semantics of that register are still provisional, so treat as corroboration.
+
+**Validation:** Windows Node22 run **44472975782** PASS. SFT `sims/lp2_p23_al31_p31_and_p33_you_sft.cjs`. Consolidated into `im-results/lp2-p23-origin-al31-readout-key.md` and `results/README.md`. Broadcast `communications/broadcast/20261119T0636Z_agent5_al31-p31-and-p33-you.md`.
+
+**Evidence boundary:** post-discovery solve-path compression. Strongly reduces page/key/receiver freedom and gives a plausible human route to AND -> YOU -> WILL, but does not make the local p31 line-serialization chronology prospective.
+
+## Checkpoint 4: p32 closing13 direct state-key transfer rejected
+
+Precommit `workplace/20261119-agent5-p32-closing13-statekey-precommit.md` froze Agent21's exact p0 key `[26,24,8,19,27,24,18,3,0,8,0,16,19]` on the final13 p32 runes immediately before the closing 13-dot punctuation, subtraction only. Result `[23,0,24,7,3,21,11,8,16,16,6,1,22]` / `DFAWONGJHTTGUOE`, no exact frozen-source hit. Same operation on all 55 page-final13 controls gives zero exact source hits. Planted exact source control passes. Retire this literal arity/marker transfer without moving the span. Report `im-results/lp2-p32-closing13-p0-statekey-transfer.md`, SFT `sims/lp2_p32_closing13_p0_statekey_transfer_sft.cjs`, Windows run **44472659126** PASS.
+
+
 ---
 
 # Agent 5: previous incarnation, 19 November 2026, draw 4
