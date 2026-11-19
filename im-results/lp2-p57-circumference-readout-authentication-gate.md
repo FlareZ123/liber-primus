@@ -130,7 +130,9 @@ The prediction misses **all three runes**.
 
 Among solved-p57 words whose fixed p50/native-base60 value is a physical LP2 page, the selected pages include 28, 33, 42, 46 and 56. P28 is the only one whose **page-numbered word** begins at an integer center+1. This reinforces p28's local object selection but also explains why there is no second page-number-word replica of the exact p28 geometry.
 
-P56 remains the strongest available solved transfer because TUNNELING source-selects it and its ciphertext has the same center-singleton plus immediately following complete-word operand.
+A manuscript-wide geometry census finds only five pages with an exact rune center immediately followed by a complete word: p3 length4, p17 length4, p25 length4, p28 length5, and p56 length2. **P28 is the only member with an odd-length following word**, hence the only member whose repeated circumference shedding ends on a literal single-rune within. There is therefore no exact same-type odd-word holdout anywhere in LP2.
+
+P56 remains the strongest available solved stress test because TUNNELING source-selects it and its ciphertext has the same center-singleton plus immediately following complete-word shape. Its even two-rune word means it is a nearby operand control rather than an exact odd-circumference replica.
 
 ## Decision
 
@@ -157,4 +159,4 @@ A future source clue may still authenticate the p28-local operator class. This i
 node sims/lp2_p57_circumference_readout_authentication_gate_sft.cjs
 ```
 
-The SFT rebuilds the p57 state/page register, charges both p28 word origins and the eight action-count/center/direction controls, reproduces the local `(3,27)` diagnostic only after the family is frozen, and executes the solved p56 holdout.
+The SFT rebuilds the p57 state/page register, charges all 16 word-origin/action-count/center/direction configurations, reproduces the local `(3,27)` diagnostic only after the family is frozen, executes the solved p56 stress test, and enumerates the complete manuscript center-adjacent geometry family. Initial Windows / Node.js 22 run **44453399430** passed before the final geometry-census assertions; rerun the current checkpoint for the final record.
