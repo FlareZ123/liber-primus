@@ -282,15 +282,25 @@ Its ordinary integer sum is:
 
 which is simultaneously the already selected EMERGE exit value and `GP0(EPIPHANY SEEKS)=192`.
 
-This relation was charged against every ordered pair of authenticated 2016 source words whose combined GP rune length is13. There are **52** such ordered pairs. Requiring
+The same residual has a second manuscript-native checksum:
+
+```
+GP-prime(residual) = 729
+```
+
+The original p0, p1, and p2 rune counts are `262+266+201=729=27^2`, exactly the independently rubrication-selected p0-title-to-next-red13 square span. The residual length is13, matching the physical red-title/delimiter count that selects that span.
+
+This was charged against every ordered pair of authenticated 2016 source words whose combined GP rune length is13. There are **52** such ordered pairs. Forward subtraction gives two prime-sum729 candidates, `EPIPHANY HELLO` and `EPIPHANY SEEKS`; only **EPIPHANY SEEKS** also has residual integer sum192. The separate self-check
 
 ```
 sum((cipher - candidate) mod29) = GP0(candidate)
 ```
 
-leaves exactly one hit, **EPIPHANY SEEKS**. Reversing the subtraction sign leaves zero hits.
+also leaves only **EPIPHANY SEEKS**. Reversing the subtraction sign gives no self-sum hit; a direct both-sign control finds no reverse-sign prime729 hit either.
 
-This is a value-sensitive original-ciphertext holdout rather than another word-length match. It does not yet establish a reusable cipher because no source-selected rule explains the 13 residual symbols or predicts a second independent ciphertext interval. Treat it as a strong check on the conditional opening, not as authenticated plaintext.
+The older direct-Latin `SECUENDI RATIO` red-title candidate does not share these closures: its forward additive residual has GP0=112 and GP-prime=384. That comparison does not invalidate its separate geometric derivation, while it makes the authenticated `EPIPHANY SEEKS` phrase the stronger source-linked candidate for the same physical 13-rune title.
+
+This is a value-sensitive original-ciphertext holdout rather than another word-length match. It does not yet establish a reusable cipher because no source-selected rule explains the 13 residual symbols or predicts a second independent ciphertext interval. Treat it as a strong check on the conditional opening, below authenticated plaintext.
 
 ## Evidence boundary
 
@@ -304,7 +314,7 @@ No first-party sentence literally states that numeral-state restoration. Preserv
 
 This should therefore be treated as a high-priority exit candidate, not as recovered p0 plaintext. A decisive successor would use the resulting p0 receiver to predict a new original-page operation or ciphertext quantity before any language scoring.
 
-Reproduce with `sims/lp2_p57_shed_f_emerge_p0_exit_sft.cjs`. Windows Node22 PASS, including the complete p57 EMERGE→SURFACE family exhaustion and the p0 additive-checksum holdout: **44465044597**.
+Reproduce with `sims/lp2_p57_shed_f_emerge_p0_exit_sft.cjs`. Windows Node22 PASS, including the complete p57 EMERGE→SURFACE family exhaustion and the p0 192/729 residual checks: **44465618240**.
 
 
 ## Plaintext-independent p0 opening backlink to p28
