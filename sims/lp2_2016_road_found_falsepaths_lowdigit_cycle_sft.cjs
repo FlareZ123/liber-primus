@@ -385,7 +385,7 @@ assert.equal(Number(favorable) / Number(denominator), 1 / 2040);
 console.log(JSON.stringify({
   status: "PASS",
   classification:
-    "independent authenticated-source support for the native base60 low-digit p50 state pointer; no unknown LP2 plaintext recovered",
+    "route-specific authenticated-source low/right-digit structures; Director #1787 rejects general navigation-opcode promotion",
   source: {
     distinctWords: distinctWords.length,
     distinctGp0States: wordsByState.size,
