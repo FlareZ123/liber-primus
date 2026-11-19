@@ -190,13 +190,13 @@ Therefore:
 
 This selects the public direction without using English output. A cardinal-neighbor control around the shared state point has eight oriented one-step paths. Two happen to yield source-native words under the block10 key: left-neighbor→center gives `WE`, and right-neighbor→center gives `THE`. The authenticated source pointer fixes the right neighbor because its next numbered word is source17 `THE`; state continuity fixes the endpoint at source16/coordinate16.
 
-## 5. Hard stop at block11
+## 5. Block11 is resolved by the state continuity created above
 
-Do not extrapolate this into a general 27x27 route.
+The global block11 packet `[11,17,11]` is genuinely nonunique: it occurs twice in the original matrix. That remains an important control against arbitrary DH-state rewritings.
 
-The next state-native block11 packet `[11,17,11]` has **two** exact canonical placements in the original matrix, as already established prospectively. The unique key-source condition therefore fails before any map path should be opened. A naive continuation to source row20/columns17–18 produces nonlexical `HM`/`MH` under the block11 key and does not match the external route's separate vertical `END` path.
+A later Agent48 continuation uses information that did not exist in the original negative test. The block9–10 chain has now exposed shared state coordinate `(19,16)`. Exactly one of the two block11 placements contains that coordinate, selecting radius-q D2 `(19,16)->(23,12)->(27,8)`. Its packet formula `[B-A,p-a,B-A]` restores receiver start `(B,p)=(19,23)`; the frozen node transform gives key `[11,11,16]`. Charging both start orientations, all eight compass directions and state-sized lengths `{K,e,q,g,a,g+K,A}` leaves exactly one source-native output: south for `e=3`, yielding **END** on original cells `(19,23)->(20,23)->(21,23)`.
 
-The reconstructed source-window grammar is consequently a **local two-block mechanism producing OF THE**, with its stopping condition aligned to the loss of key-node uniqueness.
+The reconstructed local route therefore extends to **OF THE END**. This still does not establish a general 27x27 route grammar. See `im-results/lp2-p0-state-block11-end.md`.
 
 ## Decision
 
@@ -233,3 +233,8 @@ The chronology remains retrospective: the public route containing `OF THE` was a
 ```text
 node sims/lp2_p0_source_window_block9_of_sft.cjs
 ```
+
+
+## Validation
+
+Windows Node22 CI: **PASS, run 44480401967**.
