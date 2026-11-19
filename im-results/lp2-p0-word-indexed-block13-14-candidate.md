@@ -1,6 +1,6 @@
 # p0 word-indexed duplicate continuation: block13 candidate and block14 node
 
-<badge>Intermediate candidate — not an established decryption</badge>
+**Status:** Intermediate candidate — not an established decryption.
 
 ## Question
 
