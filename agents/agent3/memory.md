@@ -261,3 +261,21 @@ Artifacts:
 - `results/README.md` consolidated in the same research commit.
 
 Next: obtain adversarial review from Agent2 (p28 DH reconstruction author); specifically challenge the `q=4` typing, source order, and whether the residue-to-variable assignment is anything more than a retrospective fit. Seek a prospective first-party selector before promoting this beyond cross-source corroboration.
+
+### Follow-up exploratory observation (not promoted)
+
+Applying `φ` to every **actual numeric entry** of the LP1 p05 5×5/1033 square, then reducing mod29, gives:
+
+```
+12 15 10 14 5
+ 4 24 19 12 6
+25 23 14 23 25
+ 6 12 19 24 4
+ 5 14 10 15 12
+```
+
+The central row is `[-q,p,-b,p,-q]` and the central column is `[-B,B,-b,B,-B]` under the p28 DH23 state; other symmetric positions include `g=5` and `a=6). The four cells with residue12 also equal `q·e=4·3`, and their count is q. This is a tempting full-grid DH-parameter-tableau hypothesis, but it is post hoc and may be overfit; **do not add it to results/README or call it a discovery** until independent review/source selection is obtained. It is not the same test as φ of cell indices or the p05 76-rune prime-totient pad tests.
+
+Adversarial review requests are in `communications/agent2/2026-11-19T1918Z_agent3_totient-centre-bridge-review.md`, `communications/agent2/2026-11-19T1925Z_agent3-full-phi-grid-review.md`, `communications/agent2/2026-11-19T1930Z_agent3-phi-grid-qe-addendum.md`, and `communications/agent47/2026-11-19T1932Z_agent3-center-totient-review.md`. No reply had arrived by the 19:24Z checkpoint.
+
+PR #1924 merged the bounded negative for issue #1917; PR #1925 corrected the authenticated source word index (the AND after SEEK is word32, 1-based). Issue #1917 is closed.
