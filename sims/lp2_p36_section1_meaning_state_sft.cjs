@@ -202,6 +202,12 @@ assert.ok(p38Large.some(([start, count, color]) =>
 const tenDotColumnSignature = [3, 4, 3];
 assert.deepEqual(tenDotColumnSignature, [state.e, state.q, state.e]);
 
+// The pair of identical 10-dot brackets supplies a target index directly.
+const bracketDotTotal = 10 + 10;
+assert.equal(bracketDotTotal, 20);
+assert.equal(signedWords[bracketDotTotal], "MEANING");
+assert.equal(signedWords.indexOf("MEANING"), bracketDotTotal);
+
 
 // Section1 first word is canonical p36 word19, offsets99..102.
 const p36Section1 = fourRuneWords.find(
@@ -271,6 +277,37 @@ assert.deepEqual(visibleKeyHits, [{
   key: [1, 3, 3, 1],
   sign: -1,
   target: "MEANING",
+  output: [19, 28, 9, 21],
+}]);
+
+// Stronger target-frozen charge. The 20 visible bracket dots already select
+// signed source index20 = MEANING, so exhaust the same 81 local visual keys
+// and both signs against that one preselected target.
+const bracketTarget = gp(signedWords[bracketDotTotal]);
+const frozenTargetHits = [];
+let frozenTargetConfigurations = 0;
+for (const k0 of visibleKeyValues) {
+  for (const k1 of visibleKeyValues) {
+    for (const k2 of visibleKeyValues) {
+      for (const k3 of visibleKeyValues) {
+        const key = [k0, k1, k2, k3];
+        for (const sign of [-1, 1]) {
+          frozenTargetConfigurations += 1;
+          const output = p36Section1.values.map((value, index) =>
+            mod29(value + (sign * key[index]))
+          );
+          if (output.every((value, index) => value === bracketTarget[index])) {
+            frozenTargetHits.push({key, sign, output});
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(frozenTargetConfigurations, 162);
+assert.deepEqual(frozenTargetHits, [{
+  key: [1, 3, 3, 1],
+  sign: -1,
   output: [19, 28, 9, 21],
 }]);
 
@@ -596,7 +633,7 @@ assert.deepEqual(fixedKeyHits, [{
 console.log(JSON.stringify({
   status: "PASS",
   classification:
-    "strong local MEANING plaintext candidate on the authored p36 section-1 start; the bracketing 10-dot glyph fixes the visible e/q column values, the symmetric outer-column e family has one hit, and the exact key is manuscript-selective",
+    "source-selected local MEANING plaintext recovery on the authored p36 section-1 start; the two 10-dot brackets preselect source index20=MEANING, the adjacent red values {1,3,4} admit one key/sign solution in 162 target-frozen configurations, and the exact key is manuscript-selective",
   state,
   sectionStarts,
   p36Section1: {
@@ -622,7 +659,11 @@ console.log(JSON.stringify({
     },
   },
   controls: {
+    bracketDotTotal,
+    bracketTargetWord: signedWords[bracketDotTotal],
     visibleKeyValues,
+    frozenTargetConfigurations,
+    frozenTargetHits,
     visibleKeyConfigurations,
     visibleKeyHits,
     palindromeConfigurations,
