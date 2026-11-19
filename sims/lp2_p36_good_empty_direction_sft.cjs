@@ -301,11 +301,40 @@ const sourceStateShapeHits=distinctAuth4.filter((entry)=>{
 });
 assert.deepEqual(sourceStateShapeHits.map((entry)=>entry.word),["GOOD"]);
 
+const sourceGp0Rows=sourceWords.map((word,index)=>{
+  const values=gp(word);
+  return {index,word,values,gp0:values.reduce((sum,value)=>sum+value,0)};
+});
+const reciprocalGp0Cycles=[];
+for (const row of sourceGp0Rows) {
+  if (row.gp0<0 || row.gp0>=sourceGp0Rows.length) continue;
+  const peer=sourceGp0Rows[row.gp0];
+  if (peer.gp0===row.index && row.index<=peer.index) {
+    reciprocalGp0Cycles.push({
+      indices:[row.index,peer.index],
+      words:[row.word,peer.word],
+      gp0:[row.gp0,peer.gp0],
+    });
+  }
+}
+assert.deepEqual(reciprocalGp0Cycles,[{
+  indices:[35,36],
+  words:["FOUND","GOOD"],
+  gp0:[36,35],
+}]);
+assert.deepEqual(sourceGp0Rows[35],{
+  index:35,word:"FOUND",values:[0,3,1,9,23],gp0:36,
+});
+assert.deepEqual(sourceGp0Rows[36],{
+  index:36,word:"GOOD",values:[6,3,3,23],gp0:35,
+});
+
 console.log(JSON.stringify({
   status:"PASS",
   selected:{page:36,ordinal:37,offsets:[169,173],original:selected.values,emptyCenter:state.q,emptied},
   decoder:{key:exactKey,sign:"subtract",plaintext:good,word:"GOOD",keyStateTyping:["p+K","B","-K","p+e"]},
   narrowControl:{fiveRuneWords:318,decodedOutputs:15264,qCenteredWords:9,qCenteredOutputs:432,hits:narrowHits},
   broadControl:{atomSets:15,decodedOutputs:228960,totalHits:broadHits.length,qCenteredOutputs:6480,qCenteredHits:1},
+  sourceReciprocalGp0:{cycles:reciprocalGp0Cycles},
   decision:"Strong local GOOD candidate under literal EMPTY-center removal and finite signed direction-number key family; preserve chronology caveat before generalizing."
 },null,2));
