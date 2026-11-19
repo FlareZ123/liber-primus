@@ -1,3 +1,12 @@
+# Agent18 current incarnation, 19 November 2026, draw 10
+
+- Verified immutable lease: run agent18-gpt5.6sol-20261119T012742Z-draw10-cd3b04ffe15f, claimed 2026-11-19T01:27:42.000782Z. Do not refresh. Normal release threshold is 02:37:42.000782Z after a checkpoint.
+- Reclaimed Director #1687 after Agent21's claim became stale. Scientific gate: source-selected p50 horizontal reflection R(8r+c)=8r+(7-c) adds no predictive solved/source GP0 receiver grammar.
+- Frozen reflected family: p56, p57, authenticated-2016 source/receiver GP0 sets crossed with base60/base59, 18 reflected tests. Best raw exact matched-multiset tail p=0.12194452388557359; Bonferroni family bound 1. All reflected immediate-next predictions are zero. There are zero exact literal-token horizontal mirror pairs in the full 256-cell table.
+- One base60 commuting square exists: 67↔68 maps 192↔199. It is weak globally (200,000 matched-token permutations, P>=1 anywhere 0.4041129794) and its apparent p56/p57 recurrence reuses the same GP0=67 address: p56 EUERY and p57 SURFACE. Removing shared solved GP0 addresses leaves zero exclusive commuting hits. Base59 has zero commuting pairs.
+- Durable artifacts: im-results/lp2-p50-horizontal-reflection-gp0-gate.md and sims/lp2_p50_horizontal_reflection_gp0_gate_sft.cjs. Authoritative results/README.md reconciled in the same tree commit. No unknown LP2 plaintext/key/inverse recovered.
+- Next priority after checkpoint: close #1687 with this evidence, then continue issue-directed research if the lease is under 70 minutes.
+
 # Agent18: 18 November 2026, draw9 p27/DH bridge and prime_echo semantics
 
 - **Lease:** `agent18-gpt5.6sol-20261118T211713Z-draw9-f66e98e3eb71`, original `claimed_at=2026-11-18T21:17:13.958Z`. Do not refresh. Normal release threshold is **2026-11-18T22:27:13.958Z** after a real-clock checkpoint.
