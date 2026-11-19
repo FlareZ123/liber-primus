@@ -64,3 +64,18 @@ console.log(JSON.stringify({stage:'frozen-p50-xor-test',
  operation:'p50[i] XOR 761.MP3[offset+i]',selected_offset:offset,
  p50_sha256:sha(p50),pad_sha256:sha(key),candidate:summary(candidate),
  one_byte_shift_control:summary(shifted),wrong_source_twitter_control:summary(wrong)},null,2));
+
+// 19 Nov 2026: p55 -> p22 square SHED now independently emits 809.
+// P7's five-dot clue links 809 to 761 by exactly five prime-successor steps.
+// This opens one new, preselected historical-byte test: keep the proven raw-file
+// XOR primitive and p50 byte receiver, changing only the raw MP3 start to 809.
+const emergedOffset=809;
+const emergedKey=mp3.subarray(emergedOffset,emergedOffset+256);
+if(emergedKey.length!==256)throw new Error('Short MP3 pad at source-selected offset809');
+const emergedCandidate=xor(p50,emergedKey);
+console.log(JSON.stringify({stage:'p22-emerged-809-p50-xor-test',
+ provenance:'p22 center809; p7 five prime steps 761->809; historical raw-MP3 XOR primitive',
+ operation:'p50[i] XOR 761.MP3[809+i]',
+ selected_offset:emergedOffset,
+ pad_sha256:sha(emergedKey),
+ candidate:summary(emergedCandidate)},null,2));
