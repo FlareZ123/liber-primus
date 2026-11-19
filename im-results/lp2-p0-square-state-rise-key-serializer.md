@@ -214,6 +214,39 @@ w = A+g = 13.
 
 They are no longer required inputs to generate the key.
 
+## Post-freeze original-marker row holdout
+
+The serializer above was already frozen and committed before inspecting a second consequence of the original staggered dot geometry.
+
+The marker has four physical horizontal flank pairs. Apply H to each same-height `[left,right]` pair. The physical difference channel is:
+
+```text
+[18,15,20,26].
+```
+
+The sum channel is `[3,12,2,24]`; swapping left/right changes the difference channel to `[11,14,9,3]`.
+
+The independently established central signed-source instruction occupies zero-based indices14..29. Count how many of the four values in each natural H channel land in that fixed interval:
+
+```text
+left-right difference   4 / 4
+sum                     1 / 4
+right-left difference   1 / 4.
+```
+
+So the physical left-minus-right direction is uniquely selected by the pre-existing source interval. Apply the already recovered **RISE** instruction literally by increasing the four values:
+
+```text
+[18,15,20,26]
+  -> RISE
+[15,18,20,26]
+  -> source register
+WORDS  MAP  MEANING  NUMBERS.
+```
+
+These are the four structural-noun indices inside the authenticated central instruction. Because the state-only serializer was committed before this same-row readout was examined, this is a genuine post-freeze consequence of the generated marker values rather than a term used to fit them.
+
+It still does not by itself derive the three vertical rise laws. It supplies new held-out evidence that the generated dot values interact with the original two-dimensional marker geometry and the authenticated source register in the expected puzzle vocabulary.
 ## Evidence boundary
 
 Exact and reproducible:
