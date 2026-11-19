@@ -564,6 +564,98 @@ assert.deepEqual(firstWordManuscriptHits, [{
   predicted: [24, 16, 14, 17],
 }]);
 
+// Joint four-word packet grammar. Search every page-local consecutive
+// four-word window, with no red-ink prefilter. The family is
+//
+// W1 = [-x1, K-y, -y, K+y]
+// W2 = [B]
+// W3 = [x3, -K, y, K+y]
+// W4 = [-y, x3*K]
+//
+// with x1,x3,y independently ranging over the nine authenticated state
+// fields. Directly solving the implied x1/x3/y values is exactly equivalent
+// to charging all 9^3 assignments per window.
+const completePageWords = [...pages.values()].flat();
+assert.equal(completePageWords.length, 2862);
+const pageLocalFourWordWindows = [];
+for (const [page, pageWords] of pages.entries()) {
+  for (let windowIndex = 0; windowIndex + 4 <= pageWords.length; windowIndex += 1) {
+    pageLocalFourWordWindows.push({
+      page,
+      windowIndex,
+      words: pageWords.slice(windowIndex, windowIndex + 4),
+    });
+  }
+}
+assert.equal(pageLocalFourWordWindows.length, 2697);
+
+const stateNameByValue = new Map(
+  packetFieldEntries.map(([name, value]) => [value, name])
+);
+const fullPacketGrammarHits = [];
+for (const window of pageLocalFourWordWindows) {
+  const [word1, word2, word3, word4] = window.words;
+  if (
+    word1.length !== 4 ||
+    word2.length !== 1 ||
+    word3.length !== 4 ||
+    word4.length !== 2 ||
+    word2.values[0] !== packetState.B
+  ) {
+    continue;
+  }
+
+  const y = mod29(-word1.values[2]);
+  const x1 = mod29(-word1.values[0]);
+  const x3 = word3.values[0];
+  if (
+    !stateNameByValue.has(y) ||
+    !stateNameByValue.has(x1) ||
+    !stateNameByValue.has(x3)
+  ) {
+    continue;
+  }
+
+  const predictedWord1 = [
+    mod29(-x1),
+    mod29(packetState.K - y),
+    mod29(-y),
+    mod29(packetState.K + y),
+  ];
+  const predictedWord3 = [
+    x3,
+    mod29(-packetState.K),
+    y,
+    mod29(packetState.K + y),
+  ];
+  const predictedWord4 = [
+    mod29(-y),
+    mod29(x3 * packetState.K),
+  ];
+  if (
+    predictedWord1.every((value, index) => value === word1.values[index]) &&
+    predictedWord3.every((value, index) => value === word3.values[index]) &&
+    predictedWord4.every((value, index) => value === word4.values[index])
+  ) {
+    fullPacketGrammarHits.push({
+      page: window.page,
+      windowIndex: window.windowIndex,
+      starts: window.words.map((word) => word.start),
+      x1: stateNameByValue.get(x1),
+      x3: stateNameByValue.get(x3),
+      y: stateNameByValue.get(y),
+    });
+  }
+}
+assert.deepEqual(fullPacketGrammarHits, [{
+  page: 6,
+  windowIndex: 14,
+  starts: [71, 75, 76, 80],
+  x1: "g",
+  x3: "a",
+  y: "b",
+}]);
+
 // The fourth field K+b is a target-initial selector. Among authenticated
 // six-rune source words it selects BEWARE alone.
 const packetTargetInitial = p6PacketFirstWord[3];
@@ -986,6 +1078,10 @@ console.log(JSON.stringify({
     manuscriptTemplateCases:
       completeFourRuneWords.length * packetFieldEntries.length * packetFieldEntries.length,
     manuscriptHits: firstWordManuscriptHits,
+    pageLocalFourWordWindows: pageLocalFourWordWindows.length,
+    fullPacketGrammarAssignments:
+      pageLocalFourWordWindows.length * packetFieldEntries.length ** 3,
+    fullPacketGrammarHits,
     targetInitial: packetTargetInitial,
     sixRuneTargetsWithInitial:
       sixRuneTargets.filter((target) => target.values[0] === packetTargetInitial)
@@ -1063,5 +1159,5 @@ console.log(JSON.stringify({
     pass: false,
   },
   classification:
-    "P6 is a source-selected state-packet candidate: its exact red-title layout encodes [K,-e,g,a]; its first red word is the unique red four-rune instance of [-x,K-y,-y,K+y] and fixes x=g,y=b; the unused K+b field uniquely selects BEWARE among authenticated six-rune targets; all 48 possible field-role/sign assignments leave the exact p38 shell [K-b,-g,p,p-e,0,-b] as the sole hit. The broader p6+p28 family is also manuscript-unique and the p0 VERIFY transfer is zero. Preserve as strong cross-page key-schedule evidence with one retrospective role assignment, not as a universal decoder.",
+    "P6 is a source-selected state-packet candidate: its four-word grammar is globally unique across 1,966,113 charged page-window/state assignments; its exact red-title layout encodes [K,-e,g,a]; its first red word is the unique red four-rune instance of [-x,K-y,-y,K+y] and fixes x=g,y=b; the unused K+b field uniquely selects BEWARE among authenticated six-rune targets; all 48 possible field-role/sign assignments leave the exact p38 shell [K-b,-g,p,p-e,0,-b] as the sole hit. The broader p6+p28 family is also manuscript-unique and the p0 VERIFY transfer is zero. Preserve as strong cross-page key-schedule evidence with one retrospective role assignment, not as a universal decoder.",
 }, null, 2));
