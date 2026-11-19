@@ -598,6 +598,25 @@ assert.deepEqual(oneRiseHits, [{
   text: "THEONERISE",
 }]);
 
+// P28 READ OUT can be consumed directionally at ROAD/p23 without fitting a
+// page-specific key: the entire p23 body has outer rune values U=1 and TH=2.
+// The already calibrated H sum branch gives O=3, the GP rune visibly enlarged
+// on the solved p56 half-turn stencil mate. The visual identification itself is
+// documented from the original scans and remains outside this text SFT.
+const p23Values = [...physicalPart(23)]
+  .map((rune) => runeIndex.get(rune))
+  .filter((value) => value !== undefined);
+assert.deepEqual(
+  [p23Values[0], p23Values[p23Values.length - 1]],
+  [1, 2]
+);
+const p23OuterH = H(p23Values[0], p23Values[p23Values.length - 1]);
+assert.deepEqual(p23OuterH, [28, 3]);
+assert.equal(corpus.runes[1], "ᚢ");
+assert.equal(corpus.translit[1], "U");
+assert.equal(corpus.runes[3], "ᚩ");
+assert.equal(corpus.translit[3], "O");
+
 // The selected p35 pair's raw runes also compress under the already frozen H
 // into simple reconstructed-state expressions. These are corroboration only.
 const p35LeftShell = H(p35[6].values[0], p35[6].values[1]);
@@ -654,6 +673,13 @@ console.log(JSON.stringify({
     hidden: p23Hidden,
     chargedPairwiseVariants: pairwiseVariants.length,
     exactHiddenHits: oneRiseHits.length,
+    pageOuter: {
+      values: [p23Values[0], p23Values[p23Values.length - 1]],
+      text: [p23Values[0], p23Values[p23Values.length - 1]]
+        .map((value) => corpus.translit[value]).join(""),
+      H: p23OuterH,
+      sumRune: {value: p23OuterH[1], rune: corpus.runes[p23OuterH[1]], translit: corpus.translit[p23OuterH[1]]},
+    },
   },
   interpretation:
     "P33 RISE selects p35=FOUND by its own printed 3->5 rise. Before using FOUND as plaintext, the held-out p35 2+3 packet is the sole five-rune window in the unknown manuscript whose H5 shell equals [A,p-1,B,K*a,a-g]. Signed word35 then supplies FOUND. Its exact subtraction key is [B,-b,A-B,b,b+K], up to three equivalent middle-difference labels that collapse to the same numeric value18; the exact key has one authenticated five-rune hit manuscript-wide. The p35 mutual p50-low cycle then links FOUND to ROAD, and the frozen source direction graph gives p35->p28->p0->p18->p23, where p28 exposes literal DH and p23=ROAD independently hides THE ONE RISE.",
