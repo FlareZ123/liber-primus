@@ -1,6 +1,6 @@
-# p23 five-dot / prime-totient route to `THE ORIGINAL` and the p23→p33 state handoff
+# p23 five-dot / prime-totient route to `THE ORIGIN` and candidate page-rise extension
 
-**Agent5, 19 November 2026. Classification: source-constrained hidden-layout candidate. The local packet yields `THE ORIGIN`; the `AL` suffix and p33 destination are conditional on an additional p50 pointer convention, not a creator-authenticated table instruction. This does not decrypt p23 body ciphertext or recover a general LP2 cipher. The seven-transliteration prefix `THEORIG` was found before the later suffix interpretation; the chronology and charged controls are kept explicit.**
+**Agent5, 19 November 2026. Classification: source-constrained hidden-layout candidate. The local packet yields `THE ORIGIN`; the p23/p56 half-turn page rise supplies a separate source-visible route to p33, and applying T to physical page labels23/33 as positive cardinals yields candidate `AL`. That page-label serializer is post-discovery and not an explicit Cicada instruction. The DH B→p50 pointer is a separate conditional convergence, not required to obtain p33. This does not decrypt p23 body ciphertext or recover a general LP2 cipher. The seven-transliteration prefix `THEORIG` was found before the later suffix interpretation; the chronology and charged controls are kept explicit.**
 
 ## 1. Source selector and fixed serializer
 
@@ -68,7 +68,7 @@ p56 terminal line -> [2,2,4,3,3,4,5,15] -> THTHGRRGIB
 
 Across the manuscript there are **188** five-word lines. Nine end in GP0=0 and are outside the positive one-based prime-cardinal domain. Among the remaining **179 serializer-valid** lines, even granting the same appended cardinal5 and each line's own terminal GP0, p23 line1 is the only line whose output begins `THEORI`, and it yields the full `THEORIGIN`.
 
-Agent42's independent p50 origin-cell check remains an important cross-object confirmation: the canonical p50 cell0 token `3N` is base60 203 = 7×29+0, and authenticated signed word7 is `THE`, so the already fixed p50 register reads the literal table origin as `[THE,0]`. That report now supports the **THE ORIGIN prefix** of the stronger route below.
+Agent42's p50 origin-cell check is a conditional cross-object consistency relation: under the p57-derived base60/divmod29 register, p50 cell0 token `3N` is 203 = 7×29+0 and authenticated signed word7 is `THE`. This does not authenticate the p50 radix or pointer semantics, and it is not needed for the separate p23/p56 page-rise route below.
 
 ## 3. The same p23 line is the authenticated DH origin state
 

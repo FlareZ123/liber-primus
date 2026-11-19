@@ -94,7 +94,7 @@ Byte150 is not unique in the table: it occurs at addresses `28,97,213`. The clai
 
 Likewise, serializer value `L=20` occurs for physical cardinals22 and33 in p1..p57. The p23/p56 half-turn page rise independently points to33; the DH/p50 state handoff is a separate conditional convergence, not the page selector.
 
-This relation was noticed after `THE ORIGINAL` had already been recovered, so it is a post-discovery consistency check rather than a blind probability. Its useful role is discriminating the full phrase from the shorter prefix with two exact arithmetic closures that use already fixed mechanisms.
+This relation was noticed after the page-rise/T-cardinal `THE ORIGINAL` candidate had already been recognized, so it is a post-discovery consistency check rather than a blind probability. Its useful role is to distinguish the full-phrase candidate from the shorter prefix under the conditionally preferred p50 register.
 
 ## Reproduction
 

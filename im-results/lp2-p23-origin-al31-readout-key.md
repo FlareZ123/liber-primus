@@ -25,7 +25,7 @@ T(23) = A
 T(33) = L
 ```
 
-Therefore, under that conditional pointer convention, the source mechanism gives the structural parse
+Therefore, under that page-label T-cardinal convention, the source mechanism gives the structural parse
 
 ```text
 THE ORIGIN | AL
@@ -58,7 +58,7 @@ separate p23/p56 half-turn page-rise route:
   -> AL
 ```
 
-The combined surface reading is **THE ORIGINAL**, while the conditional mechanism supports the structural split **THE ORIGIN | AL**. Neither p28, p31 nor p39 output values are used to produce the p23 local packet; the `AL` suffix still depends on the p50 pointer convention. The local p23 scan and the existing p23 state/handoff SFT are the starting evidence; the original p23 image visibly supplies the five-dot marker and selected line.
+The combined surface reading is **THE ORIGINAL**, while the post-discovery page-rise/T-cardinal candidate supports the structural split **THE ORIGIN | AL**. Neither p28, p31 nor p39 output values are used to produce the p23 local packet; the `AL` suffix depends on the unverified use of page labels as positive T-cardinals, not on the p50 pointer. The local p23 scan and the existing p23 state/handoff SFT are the starting evidence; the original p23 image visibly supplies the five-dot marker and selected line.
 
 That output gives a constrained lookup path rather than a free association:
 
@@ -106,7 +106,7 @@ The publication records establish pre-2014 print availability. No claim is made 
 
 Frater Achad's *Liber 31* records that the manuscript was written in November 1918, mailed to Crowley around 3 September 1919, and acknowledged by Crowley in a postcard dated 9 September 1919. Crowley wrote: “Your key opens Palace. CCXX has unfolded like a flower. All solved, even II.76 & III.47.” This establishes that the AL/31 key association and its connection to II.76 and III.47 were historical, not a modern reconstruction. Achad's *Liber 31* is distinct from Crowley's later use of the title *Liber XXXI* for the manuscript of the Book itself.
 
-The strongest competing reading of the **THE ORIGIN** prefix is internal, not numerological: the separate p50 cell-0 cross-check reads the canonical p50 origin token as `[THE,0]`, independently supporting the prefix as a literal table-origin instruction. This can coexist with the AL suffix; it means the prefix need not be read only as a verbal pointer to “the original” in III:47. See [the p50 origin cross-check](lp2-p23-origin-p50-cell0-crosscheck.md).
+The strongest competing reading of the **THE ORIGIN** prefix is internal, not numerological: under the p57-derived conditional p50 register, the p50 cell-0 cross-check reads the origin token as `[THE,0]`. This is conditional cross-object consistency, not independent creator authentication of the p50 encoding. It can coexist with the page-rise/T-cardinal AL candidate; the prefix need not be read only as a verbal pointer to “the original” in III:47. See [the p50 origin cross-check](lp2-p23-origin-p50-cell0-crosscheck.md).
 
 Other natural readings are weaker but remain live: the surface phrase may be read simply as the single English word “THE ORIGINAL,” with no external commentary; AL could be treated as the final two letters completing that word rather than a separate book title; and LA is a reversed 31-valued spelling but is not the emitted suffix. The historically salient Thelemic values 93, 418 and 666 are not named as the key in this New Comment passage. The existing SFT's limited residue controls give `[1,9,6]`, `[4,26,12]` and `[22,22,28]` under moduli `[23,28,29]`, none matching the source-state packet `[8,3,2]`; this is a small historically motivated comparison, not a statistical proof.
 
@@ -397,9 +397,9 @@ This is a plausible human solve path because each transition is prompted by an o
 
 ## Decision
 
-**Positive, conditionally**, on the issue's historical question: AL=31 is a plausible May 2014 player-visible key lead if the p50 pointer step is intended. A solver who derives the local `THE ORIGIN` packet and accepts the conditional p23→p33 handoff obtains `THE ORIGIN | AL`, then can follow the already-known Liber AL source to III:47 and consult a New Comment publicly printed since 1974/1975. The New Comment explicitly supplies the key value; this is not an arbitrary occult association.
+**Positive, conditionally**, on the issue's historical question: AL=31 is a plausible May 2014 player-visible key lead if the page-label T-cardinal interpretation is intended. A solver who derives the local `THE ORIGIN` packet and accepts the conditional p23→p33 handoff obtains `THE ORIGIN | AL`, then can follow the already-known Liber AL source to III:47 and consult a New Comment publicly printed since 1974/1975. The New Comment explicitly supplies the key value; this is not an arbitrary occult association.
 
-The candidate page-rise/T route selects 31 without using p28, p31 or p39 output values, but the use of physical page labels as positive T-cardinals remains an unverified operation. The research chronology is different: this association was recognized after those target results were already known, so the current arithmetic bridge is **post-discovery**, not blind empirical validation. The p50 cell-0 interpretation is a conditional cross-object consumer for `THE ORIGIN`; it does not independently authenticate the p50 radix or the AL suffix's B→page pointer.
+The candidate page-rise/T route selects 31 without using p28, p31 or p39 output values, but the use of physical page labels as positive T-cardinals remains an unverified operation. The research chronology is different: this association was recognized after those target results were already known, so the current arithmetic bridge is **post-discovery**, not blind empirical validation. The p50 cell-0 interpretation is a conditional cross-object consumer for `THE ORIGIN`; it does not authenticate the page-label T operation or the p50 radix.
 
 Promote AL=31 only as a **historically sourced key-provenance candidate** for a new untouched original-cipher test. Do not call it a recovered authentic key, a Cicada-signed instruction, or a validated decryption. The 31→modulus/sign mapping remains an unproven operation choice. No new p28 exponent sweep or language-score search was run for this audit.
 

@@ -109,7 +109,7 @@ Across all 256 cyclic origin shifts, **14/256 = 0.0546875** shifts admit at leas
 
 ## Subsequent state-handoff extension: `THE ORIGINAL`
 
-Agent5's later source-state audit supersedes the old need for the local `5×5=25` construction. The selected p23 line itself ends in canonical GP0=25, so `[word lengths] + [five-dot count] + [terminal GP0]` gives `THE ORIGIN` directly. More importantly, the same line is exactly the authenticated `[K,a,e,g,q]` state on physical `p=23`; DH derives `B=19`. Only under the conditional B-as-p50-address/base60/page-label convention does this give destination p33, after which the T serializer applied to page labels23 and33 yields `AL`. The stronger stream therefore conditionally extends to **`THE ORIGINAL`**.
+Agent5's later source-state audit supersedes the old need for the local `5×5=25` construction. The selected p23 line itself ends in canonical GP0=25, so `[word lengths] + [five-dot count] + [terminal GP0]` gives `THE ORIGIN` directly. The p23/p56 half-turn page rise independently supplies 33, and p33's `THEIR RISE` provides a source referent. If page labels23 and33 are treated as positive T-cardinals, the stream conditionally extends to **`THE ORIGINAL`**. The separate DH-derived `B=19→p50[19]=0X→base60 33` pointer is a conditional convergence, not the source of p33.
 
 This report's p50-cell0 relation is a conditional cross-object consistency check for the **THE ORIGIN prefix** under the p57-derived base60/divmod29 register; it is not independent creator authentication of the p50 encoding. See `im-results/lp2-p23-fivedot-totient-origin.md` and `sims/lp2_p23_origin_state_p33_handoff_sft.cjs`.
 

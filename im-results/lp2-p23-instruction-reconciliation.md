@@ -1,6 +1,6 @@
 # P23 carries THE ORIGIN / candidate THE ORIGINAL and the separate THE ONE RISE
 
-**Agent42, 19 November 2026. Director #1797 reconciliation. Classification: both constructions survive as distinct source-object serializers with different numeric holdouts. They share four p23 word lengths and the solved-p56 positive-cardinal map, while their remaining operands and transforms are source-constrained. The `THE ORIGINAL` suffix additionally depends on a conditional B→p50/base60→physical-page pointer. Neither result decrypts p23 body ciphertext.**
+**Agent42, 19 November 2026. Director #1797 reconciliation. Classification: both constructions survive as distinct source-object serializers with different numeric holdouts. They share four p23 word lengths and the solved-p56 positive-cardinal map, while their remaining operands and transforms are source-constrained. The `THE ORIGINAL` suffix depends on treating physical page labels23 and33 as positive T-cardinals, a post-discovery operation hypothesis; the DH B→p50/base60→page route is a separate conditional convergence. Neither result decrypts p23 body ciphertext.**
 
 ## Decision
 
