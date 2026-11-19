@@ -312,6 +312,55 @@ assert.ok(sourceReadOutHits.some((hit) =>
   hit.transform === "u-3-27" && hit.orientation === "forward"
 ));
 
+// Independent center-ray family: every odd-length unknown page contributes
+// the six-rune ray from its exact center to each side. The right ray of p28 is
+// exactly the discovery span. This charges the left/right center-boundary rival
+// without relying on printed-word selection.
+const centerRayObjects = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  const parsed = parseWords(physicalPart(page));
+  if (parsed.runes.length % 2 === 0 || parsed.runes.length < 11) continue;
+  const center = (parsed.runes.length - 1) / 2;
+  const rays = [
+    {side: "left", values: parsed.runes.slice(center - 5, center + 1)},
+    {side: "right", values: parsed.runes.slice(center, center + 6)},
+  ];
+  for (const ray of rays) {
+    const phraseHits = [];
+    for (const transform of transforms) {
+      for (const orientation of orientations) {
+        let output = transform.apply(ray.values[0], ray.values.slice(1));
+        if (orientation === "reverse") output = output.slice().reverse();
+        const latin = translit(output).toLowerCase();
+        const parses = oneOrTwoWordParses(latin, lexicon);
+        if (parses.length) {
+          phraseHits.push({
+            transform: transform.name,
+            kind: transform.kind,
+            orientation,
+            latin,
+            parses,
+          });
+        }
+      }
+    }
+    centerRayObjects.push({page, center, side: ray.side, phraseHits});
+  }
+}
+const centerRayPhraseObjects = centerRayObjects.filter(
+  (item) => item.phraseHits.length > 0
+);
+const p28RightRay = centerRayObjects.find(
+  (item) => item.page === 28 && item.side === "right"
+);
+assert.ok(p28RightRay);
+assert.ok(p28RightRay.phraseHits.some(
+  (hit) => hit.transform === "u-3-27" &&
+    hit.orientation === "forward" &&
+    hit.latin === "readout"
+));
+
 // Solved p56/p57 plaintext controls under the exact same family.
 const solvedControls = [];
 for (const name of ["p56_an_end", "p57_parable"]) {
@@ -407,6 +456,12 @@ console.log(JSON.stringify({
         hit.transform === "u-3-27" && hit.orientation === "forward"
       ),
     })),
+  },
+  centerRayControl: {
+    objects: centerRayObjects.length,
+    phraseObjects: centerRayPhraseObjects.length,
+    phraseObjectFraction: centerRayPhraseObjects.length / centerRayObjects.length,
+    p28RightRayPhraseHits: p28RightRay.phraseHits,
   },
   solvedControls,
   decisionRule:
