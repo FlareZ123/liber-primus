@@ -316,6 +316,71 @@ This familywise control does not choose THE/ROAD/AND as targets first. It asks w
 
 The remaining center value1 is preserved as raw output. A separate source-selected rule is required before using it to extend the phrase.
 
+## AND24 directs to a new p24 THE WAY receiver
+
+The newly recovered source fragment ends with authenticated zero-based index24, AND. The repository's already established numbered diagonal uses a source index as the physical page and its one-based ordinal as the canonical word number. Apply that unchanged rule to AND24:
+
+~~~text
+source index     24 = AND
+physical page    p24
+canonical word   25
+ciphertext       [27,15]
+~~~
+
+The receiver is untouched before this route selects it.
+
+Its raw GP0 is:
+
+~~~text
+27 + 15 = 42 = authenticated source index OPENPGP
+~~~
+
+Apply the same fixed two-rune H map:
+
+~~~text
+H(27,15) = [12,13]
+~~~
+
+Authenticated source indices12 and13 are:
+
+~~~text
+12 THE
+13 WAY
+~~~
+
+so the directed p24 receiver yields:
+
+~~~text
+THE WAY
+~~~
+
+This creates a compact continuation from the p55 readout:
+
+~~~text
+p55 -> THE ROAD AND
+AND24 -> p24 canonical word25
+      -> H = THE WAY
+      -> raw GP0 = OPENPGP42
+~~~
+
+The OPENPGP sum is corroborative rather than unique by itself: the full diagonal also has a p10 receiver with raw GP0=42.
+
+### Complete numbered-diagonal control
+
+Charge the established source-index/page/one-based-word diagonal for every authenticated source index0..42 whose directed canonical word exists. There are 42 valid receivers, including ten two-rune receivers.
+
+For those ten two-rune receivers:
+
+~~~text
+ascending consecutive H source-index pairs:  1
+descending consecutive H source-index pairs: 1
+exact H=[12,13]:                              1
+~~~
+
+The sole ascending pair is p24 word25, [27,15] -> [12,13] = THE WAY. The sole descending pair is p11 word12, H=[26,25], the already active THEIR/NUMBERS object in the signed direction route.
+
+No page, word, H orientation, or source-word target was changed to obtain the p24 hit.
+
 ## Held-out external consumer: both 36 branches land on p36 GOOD
 
 The p55 result was committed at **05:45:03Z**, fixing both H branch sums at 36 before a separate p36 plaintext result existed in the authoritative synthesis.
