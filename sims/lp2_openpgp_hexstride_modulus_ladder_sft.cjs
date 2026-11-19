@@ -131,6 +131,11 @@ assert.deepEqual(survivors[0].chain.indices, [42, 26, 10]);
 assert.deepEqual(survivors[0].residues, [15, 19, 23]);
 
 const [b, B, p] = survivors[0].residues;
+const q = B - b;
+assert.equal(p - B, q);
+assert.equal(q, 4);
+assert.equal(parsers.alpha[q].toUpperCase(), 'EMPTY');
+assert.equal(gp0Simple('EMPTY'), p * q);
 const possibleG = [];
 for (let g = 1; g < p; g += 1) if (powMod(g, b, p) === B) possibleG.push(g);
 assert.deepEqual(possibleG, [5]);
@@ -161,6 +166,9 @@ const a = possibleA[0];
 const K = powMod(A, b, p);
 assert.equal(K, 2);
 assert.equal(powMod(B, a, p), K);
+const sourceStatePositions = [K, e, q, g, a, g + K, A, b, B, p];
+const sourceStateWords = sourceStatePositions.map((position) => parsers.alpha[position].toUpperCase());
+assert.deepEqual(sourceStateWords, ['PATH','LIES','EMPTY','EPIPHANY','SEEKS','THE','DEVOTED','WORDS','THEIR','ROAD']);
 assert.equal(survivors[0].chain.indices[0] - survivors[0].chain.indices[2], 16 * K);
 
 const summary = {
@@ -177,7 +185,8 @@ const summary = {
     base59_zero_roles: family.find((x) => x.parserName === 'alpha' && x.direction === -1 && x.middleRadix === 59 && x.origin === 'zero').roleWords,
   },
   key_id_residues: { mod16_b: b, mod60_B: B, mod29_p: p },
-  reconstructed: { p, g, a, b, A, B, K, e },
+  reconstructed: { p, q, g, a, b, A, B, K, e },
+  source_state_words: { positions: sourceStatePositions, words: sourceStateWords },
   p50_crosscheck: { words: selectedSourceOrder, addresses, tokens: selectedTokens, base60_mod29: base60Packet, base59_mod29: base59Packet },
   hop_count_equals_K: K,
 };
