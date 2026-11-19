@@ -302,6 +302,7 @@ assert.equal(
  * @returns {number[]}
  */
 function shedDepthStream(words, depth) {
+  if (depth === 0) return words.flat();
   return words.flatMap((word) =>
     word.length <= 2 * depth ? [] : word.slice(depth, -depth)
   );
@@ -360,14 +361,91 @@ assert.deepEqual(length3Red, [
   { page: 3, start: 119, values: [13, 23, 2] },
   { page: 39, start: 119, values: [mod29(-K), g, b] },
 ]);
+assert.equal(p39H1[1], e);
+assert.equal(length3Red.find((row) => row.page !== 39)?.page, e);
 
-// A third source body gives a frozen further prediction under the same literal
-// operation, without assigning that output a meaning here.
-const p3SecondBody = bodies.find((row) => row.page === 3 && row.start === 119);
+// The p39 template counterpart is therefore physical p3=e. Transfer the
+// unchanged circumference operation to the body immediately after that paired
+// red span. This freezes p3 -> p53 before p53's marker semantics are opened.
+const p3SecondBody = bodies.find((row) => row.page === e && row.start === 119);
 assert.ok(p3SecondBody);
-assert.equal(p3SecondBody.body.length, 21);
+assert.equal(p3SecondBody.body.length, p - K);
 assert.equal(p3SecondBody.body.flat().length, 95);
 assert.equal(p3SecondBody.inner.length, 53);
+
+// P53 independently answers with the next solved instruction word MUST. Its
+// terminal red span is 51 runes, exactly GP0(MUST), and is the sole red span
+// with that length. Its first pair maps through frozen H to [e,F]. Repeated
+// circumference shedding gives a unique state-count packet.
+const mustGp0 = gp("MUST").reduce((sum, value) => sum + value, 0);
+assert.equal(mustGp0, 51);
+const p53Ink = ink.pages.find((page) => page.page === p3SecondBody.inner.length);
+assert.ok(p53Ink);
+assert.equal(p53Ink.red_spans.length, 1);
+const p53RedSpan = p53Ink.red_spans[0];
+assert.equal(p53RedSpan.length, mustGp0);
+const p53Rows = wordRows(p3SecondBody.inner.length);
+const p53RedWords = p53Rows
+  .filter((row) =>
+    row.start >= p53RedSpan.start &&
+    row.end <= p53RedSpan.start + p53RedSpan.length
+  )
+  .map((row) => row.values);
+assert.equal(p53RedWords.length, K * a);
+const p53RedFlat = p53RedWords.flat();
+assert.deepEqual(H(p53RedFlat.slice(0, 2)), [e, 0]);
+
+const p53ShedCounts = [1, 2, 3, 4, 5].map((depth) =>
+  shedDepthCount(p53RedWords, depth)
+);
+assert.deepEqual(
+  p53ShedCounts,
+  [mod29(-K), K * a, g, e, a - g]
+);
+
+const redSpanControls = [];
+for (const page of ink.pages) {
+  if (page.page === 50) continue;
+  const rows = wordRows(page.page);
+  for (const span of page.red_spans || []) {
+    const words = rows
+      .filter((row) =>
+        row.start >= span.start &&
+        row.end <= span.start + span.length
+      )
+      .map((row) => row.values);
+    const flat = words.flat();
+    redSpanControls.push({
+      page: page.page,
+      start: span.start,
+      length: span.length,
+      firstH: flat.length >= 2 ? H(flat.slice(0, 2)) : null,
+      shedCounts: [1, 2, 3, 4, 5].map((depth) =>
+        shedDepthCount(words, depth)
+      ),
+    });
+  }
+}
+assert.deepEqual(
+  redSpanControls
+    .filter((row) => row.length === mustGp0)
+    .map((row) => [row.page, row.start]),
+  [[53, 128]]
+);
+assert.deepEqual(
+  redSpanControls
+    .filter((row) => row.firstH?.[0] === e && row.firstH?.[1] === 0)
+    .map((row) => [row.page, row.start]),
+  [[53, 128]]
+);
+assert.deepEqual(
+  redSpanControls
+    .filter((row) =>
+      JSON.stringify(row.shedCounts) === JSON.stringify(p53ShedCounts)
+    )
+    .map((row) => [row.page, row.start]),
+  [[53, 128]]
+);
 
 // Full red-body census under the same rule. This includes one-rune words by
 // giving them empty interiors, so the 39/50 results do not depend on a special
@@ -467,14 +545,31 @@ console.log(JSON.stringify({
       },
     },
   },
-  thirdPrediction: {
-    source: "p3 second red-started body",
+  p39ToP53Transfer: {
+    p39SelectsE: p39H1[1],
+    pairedLength3RedSpans: length3Red,
+    source: "p3=e second red-started body",
     bodyWords: p3SecondBody.body.length,
     bodyRunes: p3SecondBody.body.flat().length,
     afterSheddingCircumferences: p3SecondBody.inner.length,
     pointer: "p3 -> p53",
+    p53Holdout: {
+      redStart: p53RedSpan.start,
+      redLength: p53RedSpan.length,
+      interpretation: "red length=GP0(MUST)=51",
+      redWords: p53RedWords.length,
+      firstH: H(p53RedFlat.slice(0, 2)),
+      nestedShedCounts: p53ShedCounts,
+      stateInterpretation: "[-K,K*a,g,e,a-g]",
+      readoutParameterPair: [e, p53ShedCounts[0]],
+      matchingLengthControls: redSpanControls.filter((row) => row.length === mustGp0).length,
+      matchingFirstHControls: redSpanControls.filter((row) => row.firstH?.[0] === e && row.firstH?.[1] === 0).length,
+      matchingShedPacketControls: redSpanControls.filter((row) =>
+        JSON.stringify(row.shedCounts) === JSON.stringify(p53ShedCounts)
+      ).length,
+    },
   },
   census,
   interpretation:
-    "Solved p57 literally says WE MUST SHED OUR OWN CIRCUMFERENCES. Removing each body's first and last rune leaves exactly 50 runes, selecting the p50 number table. P50 state B=19 selects p33; p33's source-visible H chain returns WE and the red 13-dot count. Reusing the solved instruction unchanged on p33's first black body leaves exactly 39 runes, selecting p39. The target p39 independently carries red title [-K,g,b]=[27,5,15], whose H chain is [p-1,e] -> [B,GP0(WE)] -> [p,b]. Its geometry continues the p33 p*g state: upper runes=p*g+q=119, lower black runes=p*g+e=118, complete lower section=p*g+a=121, lower black words=p+g=28, and both source sections have a=6 lines. Repeated shedding at depths [K,e,q,g] leaves [p,a,K,0], uniquely among red-started bodies. At depth e the six-rune core has raw sum36: count6=GP(G)=a and sum36=GP0(FOUND)=zero-based signed index GOOD, the sole red-body depth-e hit of the fixed first-GP/index selector. At depth q the two-rune core [10,5] has sum b=15=index(WORDS) and H(core)=[g,b]. An independent original-image inventory also establishes p39 as the only other page sharing p33's reused three-dot divider graphic. The same operation on p3's second red-started body predicts p53, preserved separately without forced interpretation.",
+    "Solved p57 literally says WE MUST SHED OUR OWN CIRCUMFERENCES. Removing each body's first and last rune leaves exactly 50 runes, selecting the p50 number table. P50 state B=19 selects p33; p33's source-visible H chain returns WE and the red 13-dot count. Reusing the solved instruction unchanged on p33's first black body leaves exactly 39 runes, selecting p39. The target p39 independently carries red title [-K,g,b]=[27,5,15], whose H chain is [p-1,e] -> [B,GP0(WE)] -> [p,b]. Its geometry continues the p33 p*g state: upper runes=p*g+q=119, lower black runes=p*g+e=118, complete lower section=p*g+a=121, lower black words=p+g=28, and both source sections have a=6 lines. Repeated shedding at depths [K,e,q,g] leaves [p,a,K,0], uniquely among red-started bodies. At depth e the six-rune core has raw sum36: count6=GP(G)=a and sum36=GP0(FOUND)=zero-based signed index GOOD, the sole red-body depth-e hit of the fixed first-GP/index selector. At depth q the two-rune core [10,5] has sum b=15=index(WORDS) and H(core)=[g,b]. An independent original-image inventory also establishes p39 as the only other page sharing p33's reused three-dot divider graphic. P39's H chain emits e=3, and p3 is the unique other page carrying the same three-rune red span at the same offset119. The paired p3 body sheds to p53. P53 then carries the unique 51-rune red span, equal to GP0(MUST); its first pair maps through H to [e,F], while repeated shedding leaves [-K,K*a,g,e,a-g]=[27,12,5,3,1]. Thus the route reconstructs WE then MUST from source features while the solved p57 text supplies SHED. The p53 packet also exposes [e,-K]=[3,27], the already used p28 READ OUT exponent pair, without yet authenticating exponentiation as the cipher operator.",
 }, null, 2));
