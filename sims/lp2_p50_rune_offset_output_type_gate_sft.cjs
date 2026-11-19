@@ -199,7 +199,7 @@ console.log(JSON.stringify({
   broad:{
     configurations:broad.length,
     best:broadBest,
-    base60ZeroPeer,
+    base60Peer,
     familywiseBonferroni:Math.min(1,broadBest.p*broad.length)
   },
   signed2016:{charged:signedCharged,exactSolvedIdentityHits:signedIdentityHits},
