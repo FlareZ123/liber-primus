@@ -184,8 +184,8 @@ assert.deepEqual(signedIdentityHits,[]);
 // creator-authored p49-51 codec, and no text/rune/book-offset instruction.
 assert.match(source2014.conversion,/pack 'C'/u);
 assert.doesNotMatch(source2014.converter_source,/offset|position|index|rune|word|book/iu);
-assert.match(sourceAudit,/No creator-authored p49–51 codec/u);
-assert.match(sourceAudit,/number or byte/u);
+assert.match(sourceAudit,/No creator-authored exact table codec was recovered/u);
+assert.match(sourceAudit,/one number or byte/u);
 
 console.log(JSON.stringify({
   status:"PASS",
