@@ -231,6 +231,25 @@ assert.equal(
 const lengthStratifiedDhNull = 1 / twoRuneFragmentLines.length;
 assert.equal(lengthStratifiedDhNull, 1 / 120);
 
+// Untouched p50 holdout: on the unique literal-DH line, the two charged line
+// origins predict different public A values. The physical p50 width was not
+// used in the line-family definition and selects one-based line numbering.
+const p50Width = grid.pages[0].cols;
+assert.ok(grid.pages.every((page) => page.cols === p50Width));
+assert.equal(p50Width, 8);
+const dhNaturalRows = naturalDhRows.filter((row) => row.firstFragment === "DH");
+assert.deepEqual(
+  dhNaturalRows.map((row) => [row.origin, row.a, row.A, row.K]),
+  [[0, 5, 20, 11], [1, 6, 8, 2]]
+);
+assert.deepEqual(
+  dhNaturalRows.filter((row) => row.A === p50Width)
+    .map((row) => [row.origin, row.a, row.A, row.K]),
+  [[1, 6, 8, 2]]
+);
+const allWidthMatches = naturalDhRows.filter((row) => row.A === p50Width);
+assert.equal(allWidthMatches.length, 24);
+
 // Predeclared p57 punctuation holdout.
 const marks = [];
 for (const page of ink.pages) {
@@ -285,6 +304,12 @@ console.log(JSON.stringify({
     twoRuneFirstFragmentLines: twoRuneFragmentLines.length,
     exactLengthStratifiedDhNull: lengthStratifiedDhNull,
   },
+  p50Holdout: {
+    width: p50Width,
+    allNaturalDhRowsPredictingWidth: allWidthMatches.length,
+    uniqueDhLineOrigins: dhNaturalRows,
+    dhLineOriginsPredictingWidth: dhNaturalRows.filter((row) => row.A === p50Width),
+  },
   punctuationHoldout: {
     dotHistogram,
     unique23DotMark: marks.filter((mark) => mark.dots === 23),
@@ -292,5 +317,5 @@ console.log(JSON.stringify({
     dotClosures,
   },
   decision:
-    "The tuple geometry (23,5,6,19) is duplicated on p8 and p28, so geometry alone is not unique. P28 is uniquely labeled DH, and under a first-fragment-length-preserving permutation the unique DH label lands on the sole two-rune-start target-tuple line with exact probability 1/120. Independently, the predeclared p57 punctuation holdout selects 23 because the unique terminal 23-dot mark has 23rd prime=83=GP0(EMERGE), while 13 reaches the same 83 through p50 cell41/base59; dot-count10 does neither. Retain p=23/DH as source-constrained, but do not treat the raw tuple geometry as unique evidence.",
+    "The tuple geometry (23,5,6,19) is duplicated on p8 and p28, so geometry alone is not unique. P28 is uniquely labeled DH, and under a first-fragment-length-preserving permutation the unique DH label lands on the sole two-rune-start target-tuple line with exact probability 1/120. On that unique DH line, the independently fixed p50 width8 selects one-based line numbering because a=6 predicts A=8 while zero-based a=5 predicts A=20. Independently, the predeclared p57 punctuation holdout selects 23 because the unique terminal 23-dot mark has 23rd prime=83=GP0(EMERGE), while 13 reaches the same 83 through p50 cell41/base59; dot-count10 does neither. Retain p=23/DH as source-constrained, but do not treat the raw tuple geometry as unique evidence.",
 }, null, 2));
