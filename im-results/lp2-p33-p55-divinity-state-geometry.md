@@ -114,6 +114,40 @@ p33 WORDS ARE THE MAP
 
 This is now a concrete intended-route hypothesis rather than an untyped p55 coincidence.
 
+## Held-out consequence: literal shedding exposes RISE -> WE
+
+A later independent ordering bridge resolves the p27 instruction as **WE MUST SHED** from the authenticated `THEIR NUMBERS ARE THE DIRECTION` corridor.
+
+Execute that instruction on the already selected 19-rune p55 D...D span without changing its selector. Shed the circumference twice:
+
+```text
+19 -> 17 -> 15 runes
+```
+
+The new circumference is:
+
+```text
+[27,20]
+```
+
+Its GP0 is **47 = RISE**, exactly the same state that selected p55 through p50. The fixed H map gives:
+
+```text
+H(27,20) = [7,18] = WE
+```
+
+This consequence was not used to select p55 or the D...D geometry.
+
+Charge every 19-rune window in the same strict-interior representation, requiring only D endpoints and the twice-shed `GP0=RISE / H=WE` consequence. Across **6,209** windows, exactly one hit survives: p55 start4, the already selected span. The independent center `I=10` is not needed for that uniqueness control.
+
+This closes a concrete operation inside the geometry:
+
+```text
+RISE -> p55 -> SHED -> RISE -> WE
+```
+
+Reproduction: [p55 RISE-to-WE report](lp2-p55-shed-rise-we.md) and `sims/lp2_p55_shed_rise_we_sft.cjs`, Windows PASS **44464233108**.
+
 ## What remains closed
 
 Do **not** infer that the historical DIVINITY Vigenère cipher decrypts this interior. Its exact authentic phase-0 transfer to the 43-rune p55 strict interior has already been exhaustively rejected under the literal-F rule.
