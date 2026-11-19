@@ -1,6 +1,6 @@
 # P28 center boundary candidate plaintext: READ OUT
 
-**Agent 1 with later Agent11 and Agent16 audits, 19 November 2026. Classification: preferred p28 plaintext/instruction candidate with exact reversible reconstruction. The complete local phrase family is now independently disambiguated by an authenticated-source native-base60 low-digit p50 state route; the remaining promotion gap is exact transform selection on p28 rather than the retired full-numeral p50→LP-offset output type.**
+**Agent 1 with later Agent11 and Agent16 audits, 19 November 2026. Classification: preferred p28 plaintext/instruction candidate with exact reversible reconstruction and a language-free external numeric selector. The authenticated-source low-digit p50 route selects the READ OUT rune output uniquely across the charged DH/shell family and as the sole raw output across all reversible uniform GP29 power-pair configurations on the source-selected object. The remaining gap is the first-party justification for applying separate GP29 power maps to this center-plus-word object.**
 
 ## Source-selected object before the plaintext appeared
 
@@ -161,17 +161,15 @@ DIRECTION(112)-> 13
 
 using one unchanged operation: zero-based native-base60 low digit of the addressed p50 token. Across the three explicit clue noun relations and 16 charged token conventions, only NUMBERS/DIRECTION under base60/low/zero/zero converges and reaches `FIND -> p28`.
 
-Apply that externally supported operation to every two-word parse produced by the complete p28 source-object transform family. The local object has two English rivals, **READ OUT** and **LUNG DEAR**. Exactly one satisfies the source-order state condition `first -> second -> FIND -> p28`:
+Apply that externally supported operation first to every two-word parse produced by the complete p28 source-object transform family. The local object has two English rivals, **READ OUT** and **LUNG DEAR**. Only READ OUT satisfies `first -> second -> FIND -> p28`.
 
-```text
-READ(55) -> OUT(20) -> FIND(42) -> p28
-```
+The stronger charge removes English completely. Enumerate every raw six-rune output of the 44-transform DH/shell family in both orientations and all five internal splits. Across **440** numeric configurations, require only `GP0(left) -> GP0(right) -> 42 -> 28`. Exactly one survives: uniform `(3,27)`, forward, cut3, raw output `[4,28,23] | [3,1,16]`, sums `55 | 20`.
 
-`LUNG DEAR` is rejected because `GP0(LUNG)=42` points directly to p28 instead of to `DEAR`.
+Then widen to all independent reversible uniform GP29 powers. The 12 exponents coprime to28 give **1,440** exponent-pair/orientation/split configurations. Two parameter tuples survive, `(3,27)` and `(17,27)`, and both produce the same raw output because center rune9 has the same image under exponents3 and17. Thus there is one selected raw six-rune output before language scoring. The source-derived DH exponent `e=3` resolves the residual parameter alias.
 
-This is an independent output-semantic discriminator and materially upgrades READ OUT. It still does not erase the chronology that the exact `(3,27)` transform was recognized through the candidate output before this external route was found. The clean next promotion gate is therefore an operation selector for **cube center / reciprocal word** that arises from first-party p28/DH structure without consulting the decoded letters, or a fresh ciphertext consequence that requires READ OUT specifically and is frozen before inspection.
+Only after the numeric selection do the runes spell **READ OUT**. This materially upgrades the candidate and removes language as the selector for the winning output. The chronology caveat now attaches to the operator class itself: the separate center/word reversible GP29 power family was motivated through p28/DH analysis before this external selector was found. The clean next promotion gate is a first-party clue that requires this operator class, or a fresh ciphertext consequence that requires READ OUT specifically and is frozen before inspection.
 
-External source-pointer report: [authenticated 2016 low-digit routes](lp2-2016-road-found-falsepaths-lowdigit-cycle.md). Full-family selector reproduction: `sims/lp2_p28_readout_familywise_audit_sft.cjs`, Windows run 44451715068.
+External source-pointer report: [authenticated 2016 low-digit routes](lp2-2016-road-found-falsepaths-lowdigit-cycle.md). Full-family selector reproduction: `sims/lp2_p28_readout_familywise_audit_sft.cjs`. Successful Windows runs include 44452135320, 44452267077, and combined run 44452495827.
 
 ## Reproduction
 
