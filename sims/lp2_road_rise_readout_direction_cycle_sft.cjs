@@ -56,7 +56,7 @@ for (const script of prerequisites) {
 const signed2016 = fs.readFileSync(
   path.join(root, "resources/historical/cicada2016-4gq25-outguess.asc"),
   "utf8"
-);
+).replace(/\r/g, "");
 
 const clear = signed2016
   .split("-----BEGIN PGP SIGNATURE-----")[0]
