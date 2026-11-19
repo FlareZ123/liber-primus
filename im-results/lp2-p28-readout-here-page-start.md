@@ -1,6 +1,6 @@
 # P28 READ OUT -> HERE at the source-selected page start
 
-**Agent1, 19 November 2026; reconciled by Agent2 after Director #1736 and Agent7 after the later independent p39 consumer. Classification: source-constrained p28 receiver/operation candidate, not promoted plaintext. The p23 AL=31 clue, p57 center instruction, page-number28→word28 clue, and unique p28 DH line motivate the center-plus-word28 receiver and [3,27] power pair. A global control across 48 physical rune pages finds only p28's page-numbered word immediately after the exact center (center135, word28 starts136). The p32/p33 signed-word route corroborates p28 under a zero-based convention, but that origin is not explicit in the 2016 payload. READ OUT/HERE remain post-discovery local corroboration; the precommitted untouched continuation fails. Do not extend HERE-indexed pointer, key, or opcode menus.**
+**Agent1, 19 November 2026; reconciled by Agent2 after Director #1736 and Agent7 after the later independent p39 consumer. Classification: source-constrained p28 receiver/operation candidate, not promoted plaintext. The p23 AL=31 clue, p57 center instruction, page-number28→word28 clue, and unique p28 DH line motivate the center-plus-word28 receiver and [3,27] power pair. A global control across 48 physical rune pages finds only p28's page-numbered word immediately after the exact center (center135, word28 starts136). The p32/p33 signed-word route corroborates p28 under a zero-based convention, but that origin is not explicit in the 2016 payload. READ OUT remains post-discovery local corroboration, but a separate frozen THEIR RISE +6 / p34-BE predictor later recovered the immediately adjacent p28 word29 THE, forming READ OUT THE; see [the held-out continuation report](lp2-p28-readout-the-heldout-rise.md). This does not rescue the failed HERE-derived continuation or prove full plaintext. Do not extend HERE-indexed pointer, key, or opcode menus.**
 
 ## Source selection of the body receiver (Agent1, Issue #1915)
 
@@ -238,6 +238,15 @@ p32 selected aggregate 42=GP0(FIND) -> p50[42]=28 -> p28.
 This revives exactly the source-linked `HERE -> FOUND -> p39 -> VERIFY` continuation and the `OUT -> p32 -> FIND -> p28` loop. It does not revive arbitrary HERE-derived table menus, and the failed local MPAEO continuation remains a valid negative.
 
 See `im-results/lp2-p28-here-found-p39-verify-convergence.md` and `sims/lp2_p28_here_found_p39_verify_route_sft.cjs`.
+
+## Separate held-out THEIR RISE continuation: READ OUT THE
+
+A distinct, frozen p34 BE predictor later produced a genuine held-out local continuation on p28. P33's recovered THEIR RISE fixes source rise +6. The signed source pair THE(index28)→BE(index34) has GP0 rise15=b; the same-state H relation forces H(key)=[b,0], hence key=[22,7]=[p−1,g+K]. Applied to THE, this predicts exact ciphertext [24,25] before inspecting p28.
+
+The packet occurs at zero-based rune offsets140..141, immediately after the READ OUT object ends at offset139, and decrypts exactly to THE. **Indexing reconciliation:** the READ OUT receiver is one-based p28 word28 (zero-based word index27; five runes); the held-out continuation is one-based p28 word29 (zero-based word index28; two runes). The separate held-out report calls the latter “canonical word28” because it uses zero-based word indices. The combined contiguous readout is READ OUT THE.
+
+This is distinct from the page-start outer-H HERE readout. The earlier HERE-derived local continuation still fails and must not be revived. The +6 held-out THE result and p34 BE result are documented in [the p28 continuation report](lp2-p28-readout-the-heldout-rise.md) and [the p34 BE report](lp2-p34-be-same-index-transfer-gate.md). Preserve READ OUT THE as a stronger local plaintext candidate, but do not claim the entire p28 page or manuscript is solved.
+
 
 ## Reproduction
 
