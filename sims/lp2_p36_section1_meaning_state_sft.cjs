@@ -469,6 +469,31 @@ assert.deepEqual(meaningShell, [
 ]);
 assert.deepEqual(meaningShell, [27, 19, 8, 11]);
 
+// The authenticated prose itself uses e=3 as a repeated semantic hop:
+const semanticPairs = [
+  ["PRIMUS", "WAY"],
+  ["WORDS", "MAP"],
+  ["MEANING", "ROAD"],
+  ["NUMBERS", "DIRECTION"],
+];
+assert.deepEqual(
+  semanticPairs.map(([from, to]) => [
+    from,
+    signedWords.indexOf(from),
+    to,
+    signedWords.indexOf(to),
+    signedWords.indexOf(to) - signedWords.indexOf(from),
+  ]),
+  [
+    ["PRIMUS", 10, "WAY", 13, state.e],
+    ["WORDS", 15, "MAP", 18, state.e],
+    ["MEANING", 20, "ROAD", 23, state.e],
+    ["NUMBERS", 26, "DIRECTION", 29, state.e],
+  ]
+);
+assert.equal(signedWords.indexOf("MEANING") + state.e, state.p);
+assert.equal(signedWords[state.p], "ROAD");
+
 // The same prospective rule on the other four-rune section start does not
 // produce any authenticated four-rune source target.
 const section2 = sectionStarts[1];
@@ -536,6 +561,13 @@ console.log(JSON.stringify({
     plaintextWord: "MEANING",
     plaintextShell: meaningShell,
     plaintextShellLabels: "[-K,B,A,b-q]",
+    semanticHop: {
+      from: "MEANING",
+      fromIndex: signedWords.indexOf("MEANING"),
+      step: state.e,
+      toIndex: signedWords.indexOf("MEANING") + state.e,
+      to: signedWords[state.p],
+    },
   },
   controls: {
     palindromeConfigurations,
