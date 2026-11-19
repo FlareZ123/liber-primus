@@ -172,6 +172,22 @@ const charged = squares.map((square, squareIndex) => {
 });
 
 const target = charged[0];
+const targetDistinctSigned = [
+  ...new Map(target.events.map((row) => [row.index, {word:row.word,index:row.index}])).values(),
+].sort((left,right) => left.index - right.index);
+assert.deepEqual(targetDistinctSigned, [
+  {word:"VERIFY",index:41},
+  {word:"OPENPGP",index:42},
+]);
+
+const controlDistinctSigned = charged.slice(1).map((row) =>
+  [...new Map(row.events.map((event) => [event.index, {word:event.word,index:event.index}])).values()]
+    .sort((left,right) => left.index - right.index)
+);
+assert.ok(controlDistinctSigned.every((rows) =>
+  !(rows.length === 2 && rows[1].index === rows[0].index + 1)
+));
+
 const targetVerify = target.events.filter((row) =>
   row.word === "VERIFY" && row.radix === "base60"
 );
@@ -228,11 +244,12 @@ console.log(JSON.stringify({
     "For each authenticated magic square, traverse the printed outer perimeter clockwise from top-left. At every perimeter integer, apply the same zero-origin p50 address and read both globally live base59/base60 interpretations. Record authenticated signed-source GP0 hits.",
   targetSquare: {
     events: target.events,
+    distinctSignedHits: targetDistinctSigned,
     verifyOpenPgpPairs,
     p57SurfaceEvents,
     p57Bracket: p57Words.slice(13,17),
   },
   controls: charged.slice(1),
   decision:
-    "The selected 809-centered square is the only authenticated source square whose uniformly charged two-radix surface contains any forward adjacent signed-source pair; that pair is VERIFY41 -> OPENPGP42. The same surface yields p57 endpoints CIRCUMFERENCES13 and DIVINITY16, bracketing CIRCUMFERENCES FIND THE DIVINITY. Preserve as cross-source support for the literal SURFACE/OpenPGP route, not as a license to switch radix per target word.",
+    "Orientation-free, the selected 809-centered square's complete uniformly charged two-radix surface has exactly two distinct signed-source hits, VERIFY41 and OPENPGP42, the terminal adjacent source interval. The same surface yields p57 endpoints CIRCUMFERENCES13 and DIVINITY16, bracketing CIRCUMFERENCES FIND THE DIVINITY. Preserve as cross-source support for the literal SURFACE/OpenPGP route, not as a license to switch radix per target word.",
 }, null, 2));
