@@ -314,5 +314,5 @@ console.log(JSON.stringify({
     shape: titleShape,
   },
   continuationCharge: continuations,
-  uniqueTitlePhrase: allAdjacentShapeHits,
+  uniqueTitlePhrase: allAdjacentShapeHits,\n  ciphertextHoldout: {\n    residual,\n    plainWordSums,\n    residualWordSums,\n    bracketHits,\n  },
 }, null, 2));

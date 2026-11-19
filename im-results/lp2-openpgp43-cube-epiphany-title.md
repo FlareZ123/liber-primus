@@ -135,7 +135,74 @@ Exactly one of the four natural continuations matches the untouched p0 title sha
 
 This is a small source-side discriminating family. It does not use title ciphertext values, an English score, a fitted key, or the earlier value192 route.
 
-## 5. Independence from the existing title evidence
+
+## 5. Ciphertext-level interval-bracket holdout
+
+Once the source-only route above has fixed the candidate interval endpoints
+
+```text
+EPIPHANY = 5
+WAY      = 13,
+```
+
+the original title ciphertext supplies a further exact check.
+
+For the candidate plaintext split:
+
+```text
+P1 = EPIPHANY, GP0(P1)=121 -> 5 mod29
+P2 = SEEKS,     GP0(P2)=71  -> 13 mod29
+```
+
+so the two plaintext word sums reproduce the **inner source interval endpoints** selected above:
+
+```text
+[5,13] = [EPIPHANY, WAY].
+```
+
+The exact additive residual required by the untouched title ciphertext is
+
+```text
+K = C-P mod29
+  = [26,24,8,19,27,24,18,3 | 0,8,0,16,19].
+```
+
+Its two physical word sums are:
+
+```text
+149 -> 4 mod29
+ 43 -> 14 mod29.
+```
+
+Those are exactly the immediately **outside** authenticated source positions:
+
+```text
+4  EMPTY
+5  EPIPHANY
+...
+13 WAY
+14 ITS
+```
+
+Thus the title plus required residual form an exact nested bracket:
+
+```text
+residual sums : EMPTY4  |                 | ITS14
+plaintext sums:          EPIPHANY5 ... WAY13
+```
+
+Charge every ordered authenticated source pair whose GP lengths match the untouched p0 title shape8+5. There are 14. For each pair, derive its exact forward additive residual against the original title ciphertext and require all four source-register relations:
+
+1. first plaintext-word GP0 mod29 equals that first word's authenticated source index;
+2. second plaintext-word GP0 mod29 equals the independently endpoint-selected WAY index13;
+3. first residual-word sum mod29 is one before the first word's source index;
+4. second residual-word sum mod29 is one after WAY13.
+
+Exactly one of 14 pairs survives: **EPIPHANY SEEKS**, with inner endpoints `[5,13]` and outer residual endpoints `[4,14]`.
+
+This census was recognized after the candidate and residual were already known, so it is a structural holdout rather than a discovery probability. It materially links the original ciphertext residual to the independently selected OPENPGP/cube source interval.
+
+## 6. Independence from the existing title evidence
 
 The p0 `EPIPHANY SEEKS` candidate predates this result. Existing support includes:
 
@@ -161,7 +228,7 @@ It does not use value192, EMERGE, SURFACE, the candidate additive residual, the 
 
 Chronology matters: the candidate letters were already known when this relation was noticed. Treat this as independent route convergence and mechanism compression, not as a blind discovery probability.
 
-## 6. Boundary
+## 7. Boundary
 
 Promote the endpoint statement from:
 

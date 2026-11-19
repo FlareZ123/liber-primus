@@ -213,12 +213,44 @@ This route consumes no p0 ciphertext values and is independent of the 192/729 re
 
 See `im-results/lp2-openpgp43-cube-epiphany-title.md`.
 
+
+## OPENPGP-selected interval is bracketed by the residual word sums
+
+The later OPENPGP43 cube route independently selects source interval endpoints `EPIPHANY5` and `WAY13` before consulting p0 ciphertext values. The existing title residual then supplies an exact nested-boundary check.
+
+The candidate plaintext word sums reduce modulo29 to:
+
+```text
+GP0(EPIPHANY)=121 -> 5  = EPIPHANY
+GP0(SEEKS)=71      -> 13 = WAY
+```
+
+while the required residual word sums reduce to:
+
+```text
+149 -> 4  = EMPTY
+43  -> 14 = ITS.
+```
+
+So the source-number register gives:
+
+```text
+EMPTY4 | EPIPHANY5 ... WAY13 | ITS14
+```
+
+with plaintext aggregates on the independently selected inner endpoints and residual aggregates exactly one position outside them.
+
+Across all 14 ordered authenticated source pairs with GP lengths8+5, derive the forward additive residual against the original title and require: first plaintext sum equals the first word's own source index; second plaintext sum equals WAY13; first residual sum is one less than the first source index; second residual sum is WAY+1=14. **EPIPHANY SEEKS is the sole hit.**
+
+The condition was recognized after the title candidate and residual, so treat it as ciphertext-level structural corroboration rather than a blind probability. It does not generate the 13 residual runes.
+
 ## Evidence boundary
 
 The evidence now selects and checks a concrete p0 title candidate through:
 
 - the authenticated 2016 source phrase and exact 8+5 physical word shape;
 - the independent OPENPGP43 cube continuation selecting source indices5-6 `EPIPHANY SEEKS` from the untouched 8+5 title shape;
+- the exact residual-word sums bracketing the cube-selected source interval as `EMPTY4 | EPIPHANY5 ... WAY13 | ITS14`;
 - the upstream EMERGE value192;
 - original-ciphertext residual GP0=192;
 - residual GP-prime=729 matching the source-visible 27-square span;
