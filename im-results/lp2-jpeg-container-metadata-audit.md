@@ -20,6 +20,22 @@ Input: the maintainer-provided original 75-JPEG Liber Primus archive and the mir
 
 The source pages' color grouping tracks changes in document illustration/red-ink usage and contiguous export runs. Some three-component pages contain no conspicuous red ink, so the binary component-class pattern is an export/layout characteristic, **not** an independently verified cryptographic bitstream. No visible instruction selects a numeric encoding of its color/grayscale runs.
 
+## Exact per-file byte map and ancillary metadata
+
+A source-native offset supplement now makes the earlier class-level census fully inspectable page by page. The extended read-only parser, [lp2_jpeg_marker_audit.py](../sims/lp2_jpeg_marker_audit.py), records each marker's starting offset, length-field offset, declared segment length, payload offset/length and payload SHA-256. It also records every SOS offset, entropy start/end/length/hash, byte-stuffing count, restart-marker offsets, full-file SHA-256 and byte length, EOI offset, and post-EOI byte count. The [LP2-only inventory SFT](../sims/lp2_jpeg_container_offset_inventory_sft.py) emits one JSON record for each physical page p0–p57, including the solved p56/p57 controls:
+
+    python sims/lp2_jpeg_container_offset_inventory_sft.py > /tmp/lp2-jpeg-container-offset-inventory.json
+
+The output is deterministic for the canonical repository inputs. On the original 58-image set it is 155,386 bytes with SHA-256 5bd3efd8a31dfce368ca6ce0a0fab93d0fe3d44b5e1922acb468e1803d6c24f1. Each record preserves exact segment and scan byte ranges, rather than merely a marker-name signature.
+
+**Complete-corpus result:** 58/58 parse cleanly as one-scan baseline JPEGs, 35 RGB and 23 grayscale, all 2400×3600 and 8-bit. There are exactly two marker-sequence classes: 35 "SOI APP0 APP2 DQT DQT SOF0 DHT×4 SOS EOI" and 23 "SOI APP0 APP2 DQT SOF0 DHT×2 SOS EOI". Each file has exactly one raw SOI and EOI, with EOI at file_length−2; no restart markers and no bytes after EOI. The corpus contains 35,362,230 bytes in total.
+
+The two APP payloads are invariant across all pages: APP0 JFIF SHA-256 fb259e3d53dc86ac12d161aef88d442454ba017b260166043144cf2378b74f1e; APP2 ICC segment SHA-256 62bf41ee295c823d5e6b44cd6dee8e4754fd8d3d6dc482227fb001e9a61a5c2f. JFIF is version 1.1 with 400×400 density and a 0×0 embedded-thumbnail declaration. APP2 contains one ICC chunk (sequence 1/1), with a 2,576-byte profile whose SHA-256 is 942e0f66212eb8ad252706559da5007d893d7350652704f8d115d5e6074479d0. No EXIF, XMP, IPTC/Photoshop, COM, MPF, APP14 or other APP marker exists; no embedded thumbnail or secondary JPEG stream is present.
+
+The DQT payload fingerprints remain exactly the two already-known class values: 31ebb9300d2f056cdb8ec3ff1ca73a358978675dfc0bd3d250d7d651b0674c93 occurs 58 times and 441cfb11d25025cfb0c3e5eb3fe0f15d4e63e5bb7cbc148a974245cd7f7b2d46 occurs 35 times. All 58 combined DHT signatures are distinct, but the separate coefficient-preserving optimized-libjpeg replay above already establishes that these page-dependent DHT and entropy streams are exactly reproduced from the original quantized DCT coefficients; they are not an independent entropy-coding payload. The inventory counts 130,739 byte-stuffing events and zero restart markers.
+
+The known LP1 05.jpg reversed trailer and LP1 10.jpg four-stream concatenation remain in their existing positive-control reports; neither is repeated or conflated with the LP2 17.jpg–74.jpg range here. This exact offset census adds no new payload and does not test pixel-domain or DCT-coefficient steganography. It closes the ordinary LP2 container-channel question unless new original bytes or a source-selected extraction instruction appears.
+
 ## Source-production fingerprint: Artifex/Ghostscript-compatible ICC
 
 The original APP0 JFIF header also specifies **400 pixels per inch in both axes** for every LP2 page, independently of the ICC profile. Together with the native **2400×3600-pixel** raster, this fixes an intended **6×9-inch output page canvas**. The figure is grounded in the JFIF density units and source dimensions, rather than an assumption about standard paper size. It helps distinguish possible surviving 2014 page-layout/compositor sources from later remakes with different trim sizes. It still does not identify a unique renderer or decryption operation.
