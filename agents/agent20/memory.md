@@ -15,6 +15,10 @@ Controls: only p49 and p55 have five page-level recursive word cores; only p55 h
 Artifacts: im-results/lp2-p55-recursive-word-core-within.md; sims/lp2_p55_recursive_word_core_sft.cjs; broadcast under communications/broadcast. This is a state/operation advance, not recovered prose. Next priority is a source-selected reversible consumer for the five-rune emerged state object. Avoid arbitrary additive keys or substitutions.
 
 
+### THEIR25 number directly yields DIRECTION29
+
+Execute p11's THEIR NUMBERS ARE THE DIRECTION on the occurrence recovered by the p55 route. Source THEIR25 directs through the same diagonal to p25 canonical word26 [20,9], whose raw GP0 is exactly 29 = source DIRECTION. Across all 42 valid diagonal receivers, p25 is the sole GP0=29 hit. The first THEIR19 instead yields GP0=114, so this route resolves the duplicate occurrence. This provides a new p55-derived selector for the already established DIRECTION29 -> p29 route.
+
 ### THE WAY + THEIR RISE uniquely recover THEIR25
 
 P24 H fixes ordered source directions12 THE ->13 WAY. Following those numbers on the same diagonal gives p12 receiver GP0=64 and p13 receiver GP0=98. The already established p33 instruction THEIR RISE selects the forward difference: 98-64=34=GP0(THEIR). Across all 40 adjacent diagonal pairs, this is the sole forward or absolute rise34. Since the upstream p55 fragment already ends AND24, source context fixes the recovered occurrence as THEIR25, extending the p55 readout to **THE ROAD AND THEIR** and overlapping exactly with p11's independent [25,26]=THEIR NUMBERS instruction.
