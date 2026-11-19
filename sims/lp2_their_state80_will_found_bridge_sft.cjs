@@ -321,6 +321,61 @@ assert.equal(afterFound.word.length, 3);
 assert.notEqual(afterFound.word.length, gp("GOOD").length);
 
 
+
+// GOOD enters the only mutual p0 word-start shell-sum cycle under the four
+// fixed radix/origin modes, at the independently recovered LUCK receiver.
+assert.equal(gp0("GOOD"), 35);
+assert.equal(table[35], "0d");
+const goodEntry = wordStartStep(gp0("GOOD"), luckMode);
+assert.ok(goodEntry);
+assert.equal(goodEntry.offset, 39);
+assert.equal(goodEntry.word.index, 7);
+assert.deepEqual(goodEntry.word.values, [8, 17, 9, 27]);
+const luckKey = [17, 16, 4, 22];
+const luckPlain = goodEntry.word.values.map((value, index) =>
+  mod29(value - luckKey[index])
+);
+assert.deepEqual(luckPlain, gp("LUCK"));
+
+function shellSumStep(word, mode) {
+  const address = shell(word.values).reduce((total, value) => total + value, 0);
+  return wordStartStep(address, mode);
+}
+
+const mutualCycles = [];
+const selfLoops = [];
+for (const mode of modes) {
+  for (const word of p0) {
+    const first = shellSumStep(word, mode);
+    if (!first) continue;
+    if (first.word.index === word.index) {
+      selfLoops.push({ mode: [mode.radix, mode.origin], word: word.index });
+      continue;
+    }
+    const second = shellSumStep(first.word, mode);
+    if (!second || second.word.index !== word.index) continue;
+    if (word.index < first.word.index) {
+      mutualCycles.push({
+        mode: [mode.radix, mode.origin],
+        words: [word.index, first.word.index],
+        starts: [word.start, first.word.start],
+        sums: [
+          shell(word.values).reduce((total, value) => total + value, 0),
+          shell(first.word.values).reduce((total, value) => total + value, 0),
+        ],
+      });
+    }
+  }
+}
+assert.deepEqual(selfLoops, []);
+assert.deepEqual(mutualCycles, [{
+  mode: ["base59", 0],
+  words: [7, 9],
+  starts: [39, 46],
+  sums: [50, 35],
+}]);
+assert.equal(shell(p0[9].values).reduce((total, value) => total + value, 0), gp0("GOOD"));
+
 // A second state-packet leg closes LUCK back onto the independently recovered
 // ROAD receiver under one different, but again uniquely word-starting, mode.
 assert.equal(gp0("LUCK"), 31);
@@ -516,6 +571,14 @@ console.log(JSON.stringify({
     receiverWord: foundReceiver.word.index,
     foundKey,
     foundPlain,
+  },
+  goodLuckCycle: {
+    goodGp0: gp0("GOOD"),
+    entryOffset: goodEntry.offset,
+    luckKey,
+    luckPlain,
+    mutualCycles,
+    selfLoops,
   },
   luck: {
     gp0: gp0("LUCK"),
