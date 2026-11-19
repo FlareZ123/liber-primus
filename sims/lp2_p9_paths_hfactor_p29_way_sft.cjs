@@ -43,6 +43,19 @@ function mod29(value) {
   return ((value % M) + M) % M;
 }
 
+/** @param {number} base @param {number} exponent @param {number} modulus @returns {number} */
+function modPow(base, exponent, modulus) {
+  let out = 1;
+  let value = ((base % modulus) + modulus) % modulus;
+  let power = exponent;
+  while (power > 0) {
+    if (power & 1) out = out * value % modulus;
+    value = value * value % modulus;
+    power = Math.floor(power / 2);
+  }
+  return out;
+}
+
 /** @param {number} left @param {number} right @returns {number[]} */
 function H(left, right) {
   return [mod29(left - right), mod29(left + right)];
@@ -60,6 +73,21 @@ function radialH4(values) {
   const inner = H(values[0], values[1]);
   const outer = H(values[2], values[3]);
   return [outer[0], inner[0], inner[1], outer[1]];
+}
+
+/**
+ * Existing project H4 shell transform, pairing outside-in.
+ * @param {number[]} values
+ * @returns {number[]}
+ */
+function H4(values) {
+  assert.equal(values.length, 4);
+  return [
+    mod29(values[0] - values[3]),
+    mod29(values[1] - values[2]),
+    mod29(values[1] + values[2]),
+    mod29(values[0] + values[3]),
+  ];
 }
 
 /** @param {number} page @returns {string} */
@@ -142,6 +170,15 @@ const hPolynomial = rawDigits.slice().reverse();
 assert.deepEqual(hPolynomial, [24,26,3]);
 assert.deepEqual(p9Radial.slice(0,3), hPolynomial);
 assert.equal(p9Radial[3], state.A);
+
+const p9H4 = H4(pathsBlock);
+assert.deepEqual(p9H4, [8,16,19,21]);
+assert.deepEqual(p9H4, [
+  state.A,
+  modPow(state.p, state.e, M),
+  state.B,
+  mod29(state.B + state.K),
+]);
 
 /*
  * The same packet now supplies p29's root, derivative order and AY tail.
@@ -243,6 +280,7 @@ const prefix = hPolynomial;
 let contiguousWindows = 0;
 const fixedFullHits = [];
 const fixedPrefixHits = [];
+const fixedH4Hits = [];
 for (const page of corpus.pages) {
   if (page.page < 0 || page.page > 55 || page.page === 50) continue;
   const values = page.indices;
@@ -256,6 +294,10 @@ for (const page of corpus.pages) {
     if (output.slice(0,3).every((value,index) => value === prefix[index])) {
       fixedPrefixHits.push({page:page.page,start,input,output});
     }
+    const h4Output = H4(input);
+    if (h4Output.every((value,index) => value === p9H4[index])) {
+      fixedH4Hits.push({page:page.page,start,input,output:h4Output});
+    }
   }
 }
 assert.equal(contiguousWindows, 12791);
@@ -266,6 +308,12 @@ assert.deepEqual(fixedFullHits, [{
   output:[24,26,3,8],
 }]);
 assert.deepEqual(fixedPrefixHits, fixedFullHits);
+assert.deepEqual(fixedH4Hits, [{
+  page:9,
+  start:137,
+  input:[0,3,16,21],
+  output:[8,16,19,21],
+}]);
 
 /*
  * Broaden the H-shell family: independently flip each pair's input direction,
@@ -348,7 +396,9 @@ console.log(JSON.stringify({
       pathsSum:40,
     },
     radialH:p9Radial,
-    stateLabels:["p+1","-e","e","A"],
+    radialStateLabels:["p+1","-e","e","A"],
+    outsideInH4:p9H4,
+    outsideInStateLabels:["A","C(p)","B","B+K"],
   },
   signed2013:{
     raw:"3QO",
@@ -370,6 +420,7 @@ console.log(JSON.stringify({
     windows:contiguousWindows,
     fullHits:fixedFullHits,
     prefixHits:fixedPrefixHits,
+    h4Hits:fixedH4Hits,
   },
   broadControl:{
     configurations:broadConfigurations,
@@ -379,5 +430,5 @@ console.log(JSON.stringify({
     prefixPhysicalWindows:[...new Set(broadPrefixHits.map((row) => row.page + ":" + row.start))],
   },
   classification:
-    "The independently selected p9 PATHS half uniquely reproduces the authenticated 2013 H polynomial [24,26,3] plus A=8 under the fixed radial H transform; this same packet supplies p29 root24, derivative order e=3, and AY=[24,26], leaving only the derivative-output insertion order in the WAY assembly family.",
+    "The independently selected p9 PATHS half uniquely reproduces the authenticated 2013 H polynomial [24,26,3] plus A=8 under the fixed radial H transform and uniquely maps under the existing outside-in H4 to [A,C(p),B,B+K]; the same packet supplies p29 root24, derivative order e=3, and AY=[24,26].",
 }, null, 2));
