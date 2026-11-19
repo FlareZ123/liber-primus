@@ -305,6 +305,69 @@ assert.deepEqual(fourExtensions, [
   { page: 31, residues: [4, 9, 20, 21], suffix: 1, suffixRune: "U", output: "FOURU" },
 ]);
 
+/** @param {number} value @param {number} modulus */
+function inverseModulo(value, modulus) {
+  for (let candidate = 1; candidate < modulus; candidate += 1) {
+    if ((value * candidate) % modulus === 1) return candidate;
+  }
+  return null;
+}
+
+/** @param {number} base @param {number} exponent @param {number} modulus */
+function powModulo(base, exponent, modulus) {
+  let result = 1;
+  let current = ((base % modulus) + modulus) % modulus;
+  let power = exponent;
+  while (power > 0) {
+    if (power % 2 === 1) result = (result * current) % modulus;
+    current = (current * current) % modulus;
+    power = Math.floor(power / 2);
+  }
+  return result;
+}
+
+/*
+ * The packet itself reconstructs the literal p28 operation label:
+ * b=15, p-1=22 => b^-1=3; K=2 => K^3 mod23 = A=8;
+ * [p,A]=[23,8] transliterates DH.
+ */
+const recoveredP = p26Residues[1] + 1;
+const inverseB = inverseModulo(p26Residues[0], p26Residues[1]);
+assert.equal(recoveredP, 23);
+assert.equal(inverseB, 3);
+const recoveredA = powModulo(p26Residues[2], inverseB, recoveredP);
+assert.equal(recoveredA, 8);
+assert.equal(translit([recoveredP, recoveredA]), "DH");
+
+/*
+ * Read FOURTH + DH as the pre-existing p28 instruction "fourth D; H".
+ * The frozen p28 consumer is checked directly from original source runes:
+ * offset48 is fourth D, centered L-D-X under H gives G-C-D.
+ */
+const p28InstructionPage = corpus.pages.find((page) => page.page === 28);
+assert.ok(p28InstructionPage);
+const dIndexForInstruction = corpus.translit.findIndex(
+  (token) => token.toUpperCase() === "D"
+);
+assert.equal(p28InstructionPage.indices[48], dIndexForInstruction);
+assert.equal(
+  p28InstructionPage.indices
+    .slice(0, 49)
+    .filter((value) => value === dIndexForInstruction).length,
+  4
+);
+const p28Centered = p28InstructionPage.indices.slice(47, 50);
+assert.deepEqual(p28Centered, [20, 23, 14]);
+assert.equal(translit(p28Centered), "LDX");
+const p28HOutput = [
+  ((p28Centered[0] - p28Centered[2]) % 29 + 29) % 29,
+  (p28Centered[0] + p28Centered[2]) % 29,
+  p28Centered[1],
+];
+assert.deepEqual(p28HOutput, [6, 5, 23]);
+assert.equal(translit(p28HOutput), "GCD");
+
+
 
 /*
  * Follow the table-state continuation within p26 without changing semantics.
@@ -404,6 +467,7 @@ console.log(JSON.stringify({
     dhResidues: p26Residues,
     dhPacketLabels: ["b", "p-1", "K", "p-1"],
     gcdChecks: { firstPairGcd, wayMapGcd, extendedInstruction: p26Four.output + translit([wayMapGcd]), fourExtensions },
+    reconstructedDhInstruction: { recoveredP, inverseB, recoveredA, label: translit([recoveredP, recoveredA]), p28Centered: translit(p28Centered), hOutput: translit(p28HOutput) },
     uniqueState48Word: p26State48,
     state48CurrentPageSelfIndex: { offset48Rune: corpus.translit[p26Page.indices[48]], dCountThrough48: 1, pass: false },
     sharedSecretWordProbe: { plusK: translit(plusK), minusK: translit(minusK), threeRuneWords, signedKEnglishHits },
@@ -413,5 +477,5 @@ console.log(JSON.stringify({
     immediateCiphertextContinuation: 95,
   },
   classification:
-    "Bounded unknown-cipher receiver candidate. Among 3288 within-page unknown-word adjacencies, only two literal p50 movement tokens predict the next word GP0; p26 is the sole 57->56 hit selected by the independently fixed WAY->MAP table edge, and that same p26 boundary window reads FOUR under the independently authenticated high-digit rule. The selected p26 FOUR window also has the unique full-byte residue packet [15,22,2,22]=[b,p-1,K,p-1] across all 3176 unknown four-word windows. Applying the already-frozen GCD opcode to the WAY/MAP residue pair gives gcd(K,p-1)=2=TH, extending FOUR to FOURTH; the other three unknown FOUR windows do not. The 56->48 table continuation does not equal p26's immediate next word; the unique p26 state48 word fails the frozen 4D current-page self-index; and the readable +K word SAD remains below plaintext threshold. No continuous plaintext is claimed.",
+    "Bounded unknown-cipher receiver candidate. Among 3288 within-page unknown-word adjacencies, only two literal p50 movement tokens predict the next word GP0; p26 is the sole 57->56 hit selected by the independently fixed WAY->MAP table edge, and that same p26 boundary window reads FOUR under the independently authenticated high-digit rule. The selected p26 FOUR window also has the unique full-byte residue packet [15,22,2,22]=[b,p-1,K,p-1] across all 3176 unknown four-word windows. Applying the frozen GCD opcode to the WAY/MAP pair gives gcd(K,p-1)=2=TH, extending FOUR to FOURTH. The same packet reconstructs b^-1 mod(p-1)=3 and K^3 mod p=A=8, so [p,A]=[23,8]=DH. Interpreted as FOURTH D; H, this exactly reproduces the original p28 fourth-D centered H consumer LDX->GCD. The 56->48 table continuation does not equal p26's immediate next word; the unique p26 state48 word fails the frozen 4D current-page self-index; and the readable +K word SAD remains below plaintext threshold. No continuous plaintext is claimed.",
 }, null, 2));
