@@ -192,3 +192,15 @@ New source-selected structural bridge:
 - This strengthens the p0 189..195 receiver and cross-links it to promoted DH23 independently of plaintext labels. It does not resolve THEIR vs PATHS or yield new rune-level plaintext.
 Artifacts: im-results/lp2-p0-andtheir-word-sum-dh-bridge.md and sims/lp2_p0_andtheir_wordsum_dh_bridge_sft.cjs.
 Next high-value gate: use the DH aggregate checkpoint only if a source instruction selects a consumer beyond H^-1->DH; otherwise return to prospectively predicting an untouched receiver/key rather than fitting further word-sum relations.
+
+
+## 2026-11-19: DH grid-coordinate branch discriminator
+- Fixed p28 line6 outer-H pairs: [15,2],[14,4],[12,12],[23,12],[8,19].
+- Original table is32x8; only first two pairs are valid zero-based [row,col] coordinates. Pair1 is independently selected by sealed p0 word sums.
+- Pair1 [15,2] -> address122 = token1Q -> lowdigit states26->53->51->59->9; first authenticated GP0 hit is uniquely VERIFY=59.
+- Pair2 [14,4] -> address116 = token0s ->54->36->54 = established ROAD/PATHS <-> FOUND false-path trap.
+- Swapped coordinates invalid. One-based row/col controls addresses113/107 first hit IS/THE.
+- Global calibration: VERIFY is common (190/256 eventually reach59;79/256 first source hit VERIFY), so do not claim rarity. Evidence is the independently selected branch opposition.
+- This converges with Agent6's separate source-selected p39 VERIFY candidate but does not turn packet fields into keys.
+Artifacts: im-results/lp2-p0-dh-grid-verify-falsepath.md; sims/lp2_p0_dh_grid_verify_falsepath_sft.cjs.
+Next: seek a source-selected consumer after VERIFY, or a blind consequence of the first branch. Do not generalize arbitrary H pairs into grid coordinates.
