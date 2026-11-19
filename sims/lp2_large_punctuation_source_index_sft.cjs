@@ -29,6 +29,7 @@ for (const page of ink.pages) {
   }
 }
 assert.equal(marks.length, 36);
+assert.equal(signedWords[marks.length], "GOOD");
 
 const bySize = new Map();
 for (const mark of marks) {
@@ -69,6 +70,12 @@ assert.deepEqual(
 const tenClassTotal = tenMarks.reduce((total, mark) => total + mark.count, 0);
 assert.equal(tenClassTotal, 40);
 assert.equal(signedWords[tenClassTotal], "PATHS");
+
+// The two global punctuation counts bookend the authenticated warning corridor.
+assert.deepEqual(
+  signedWords.slice(marks.length, tenClassTotal + 1),
+  ["GOOD", "LUCK", "BEWARE", "FALSE", "PATHS"]
+);
 
 // The p36/p38 pair visibly brackets the five numbered sections. Their total
 // independently freezes the local p36 target used by the MEANING recovery.
@@ -111,7 +118,7 @@ assert.deepEqual(readouts, {
 console.log(JSON.stringify({
   status: "PASS",
   classification:
-    "source-index punctuation dictionary; visible large-dot counts select authenticated route words without decrypting body ciphertext",
+    "source-index punctuation dictionary; total large-mark count36 and 10-dot class total40 bracket the authenticated GOOD LUCK BEWARE FALSE PATHS corridor, while visible class sizes select PRIMUS WAY ROAD",
   largePunctuation: {
     totalMarks: marks.length,
     classes: [...bySize.entries()]
@@ -123,6 +130,15 @@ console.log(JSON.stringify({
           count < signedWords.length ? signedWords[count] : null,
       }))
       .sort((a, b) => a.count - b.count),
+  },
+  warningCorridor: {
+    totalLargeMarks: marks.length,
+    startIndex: marks.length,
+    startWord: signedWords[marks.length],
+    tenDotClassTotal: tenClassTotal,
+    endIndex: tenClassTotal,
+    endWord: signedWords[tenClassTotal],
+    sourceWords: signedWords.slice(marks.length, tenClassTotal + 1),
   },
   readouts,
   numberedBlock: {
