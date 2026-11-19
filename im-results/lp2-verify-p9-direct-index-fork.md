@@ -16,6 +16,11 @@ P40 has exactly one complete word with PATHS state length4 / GP0=54, at offset71
 
 Same-index length+GP0 matches also occur at indices 6,11,21,33,34 and38, so the p40 local state alone is supporting evidence. The paired fork and independent branch-specific structures carry more weight.
 
+## PATHS half also carries the p29 parameter packet
+
+The right `PATHS40` half `[0,3,16,21]` is not numerically empty even when p40 is treated as the warning branch. Shell-preserving adjacent-pair H gives `[24,26,3,8]=[p+1,-e,e,A]`. Its first three values exactly reproduce the polynomial-order coefficients of authenticated 2013 `BASE29 3301 = 3QO`, while the existing outside-in H4 gives `[8,16,19,21]=[A,C(p),B,B+K]`.
+
+Both exact H signatures are unique to p9 offsets137–140 across all 12,791 unknown-page four-rune windows. This supplies the DIRECTION branch with p29 root24, derivative order e=3, and AY=[24,26]; p29 then returns W=7. Preserving the p9 left/right branch order yields W||AY = WAY, substantially narrowing the p29 assembly. See [p9 PATHS H-factor packet](lp2-p9-paths-hfactor-p29-way.md). Windows Node22 PASS: 44457862429.
 ## WAY cube-e return edge
 
 The productive DIRECTION half now has a closed return path. P29's bounded candidate instruction is WAY, uniquely signed index13. Apply the separately authenticated source cube `C(x)=x^3 mod29` exactly `e=3` times:
