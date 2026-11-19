@@ -436,6 +436,164 @@ assert.deepEqual(manuscriptRoadKeyHits, [{
   target: "ROAD",
 }]);
 
+// Prospective ROAD consumer. Only after ROAD has been recovered, consume
+// the untouched raw GP0 of its original ciphertext. Base60 sends 76 to the
+// exact start of p0 114..116; base59 lands inside the preceding word.
+// The next authenticated source word after ROAD is AND, also three runes.
+const roadRawGp0 = sum(roadReceiver.values);
+assert.equal(roadRawGp0, 76);
+assert.equal(grid.pages.flatMap((page) => page.tokens)[roadRawGp0], "1s");
+
+const alphabet60 = grid.alphabet;
+const alphabet59 = alphabet60.replace("f", "");
+const tableTokens = grid.pages.flatMap((page) => page.tokens);
+
+function decodeToken(token, alphabet) {
+  const high = alphabet.indexOf(token[0]);
+  const low = alphabet.indexOf(token[1]);
+  if (high < 0 || low < 0) return null;
+  return high * alphabet.length + low;
+}
+
+const roadDirection60 = decodeToken(tableTokens[roadRawGp0], alphabet60);
+const roadDirection59 = decodeToken(tableTokens[roadRawGp0], alphabet59);
+assert.equal(roadDirection60, 114);
+assert.equal(roadDirection59, 112);
+
+const andReceiver = p0.find((word) => word.start === roadDirection60);
+assert.deepEqual(andReceiver, {
+  index: 25,
+  start: 114,
+  end: 116,
+  length: 3,
+  values: [5, 0, 9],
+});
+
+const roadSourceIndex = message.findIndex((row) => row.word === "ROAD");
+assert.equal(roadSourceIndex, 23);
+assert.equal(message[roadSourceIndex + 1].word, "AND");
+assert.equal(message[roadSourceIndex + 1].gp.length, andReceiver.length);
+assert.equal(p0.find((word) => word.start === roadDirection59), undefined);
+
+// AND consumer family. The p28 lines already independently selected are the
+// HERE carrier line and literal DH line. Charge either line in either of the
+// first two slots, every DH-state value as a one-based index into that line,
+// every DH-state value as the final scalar, and both signs. AND is fixed by
+// the ROAD holdout before this family is evaluated.
+const hereLineValues = hereFragments.flat();
+const dhLineValues = dhFragments.flat();
+const privilegedLines = { HERE: hereLineValues, DH: dhLineValues };
+const threeRuneTargets = [...new Map(
+  message
+    .filter((row) => row.gp.length === 3)
+    .map((row) => [row.word, row])
+).values()];
+
+const andFamilyHits = [];
+for (const [firstLineName, firstLine] of Object.entries(privilegedLines)) {
+  for (const [secondLineName, secondLine] of Object.entries(privilegedLines)) {
+    for (const [firstField, firstIndex] of Object.entries(dh)) {
+      for (const [secondField, secondIndex] of Object.entries(dh)) {
+        for (const [thirdField, thirdValue] of Object.entries(dh)) {
+          const key = [
+            firstLine[firstIndex - 1],
+            secondLine[secondIndex - 1],
+            thirdValue,
+          ];
+          for (const sign of ["subtract", "add"]) {
+            const plain = andReceiver.values.map((value, index) =>
+              sign === "subtract"
+                ? mod29(value - key[index])
+                : mod29(value + key[index])
+            );
+            const matches = threeRuneTargets
+              .filter((target) =>
+                target.gp.every((value, index) => value === plain[index])
+              )
+              .map((target) => target.word);
+            if (matches.length) {
+              andFamilyHits.push({
+                lines: [firstLineName, secondLineName],
+                fields: [firstField, secondField, thirdField],
+                key,
+                sign,
+                plain,
+                matches,
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+assert.equal(2 * 2 * 7 * 7 * 7 * 2, 2744);
+assert.deepEqual(
+  andFamilyHits.filter((hit) => hit.matches.includes("AND")),
+  [{
+    lines: ["HERE", "DH"],
+    fields: ["a", "p", "b"],
+    key: [10, 20, 15],
+    sign: "subtract",
+    plain: gp("AND"),
+    matches: ["AND"],
+  }]
+);
+
+const andKey = [hereLineValues[dh.a - 1], dhLineValues[dh.p - 1], dh.b];
+assert.deepEqual(andKey, [10, 20, 15]);
+const andPlain = andReceiver.values.map((value, index) =>
+  mod29(value - andKey[index])
+);
+assert.deepEqual(andPlain, gp("AND"));
+assert.deepEqual(
+  andPlain.map((value, index) => mod29(value + andKey[index])),
+  andReceiver.values
+);
+
+// Fixed-key manuscript transfer for AND.
+const threeRuneTargetByGp = new Map(
+  threeRuneTargets.map((target) => [target.gp.join(","), target.word])
+);
+let manuscriptThreeRuneWords = 0;
+const manuscriptAndKeyHits = [];
+
+for (let segment = 0; segment < physicalParts.length; segment += 1) {
+  const page = segment >= 50 ? segment + 1 : segment;
+  for (const word of parsePage(physicalParts[segment])) {
+    if (word.length !== 3) continue;
+    manuscriptThreeRuneWords += 1;
+
+    const plain = word.values.map((value, index) =>
+      mod29(value - andKey[index])
+    );
+    const target = threeRuneTargetByGp.get(plain.join(","));
+    if (target) {
+      manuscriptAndKeyHits.push({
+        page,
+        wordIndex: word.index,
+        start: word.start,
+        end: word.end,
+        ciphertext: word.values,
+        plaintext: plain,
+        target,
+      });
+    }
+  }
+}
+
+assert.equal(manuscriptThreeRuneWords, 726);
+assert.deepEqual(manuscriptAndKeyHits, [{
+  page: 0,
+  wordIndex: 25,
+  start: 114,
+  end: 116,
+  ciphertext: [5, 0, 9],
+  plaintext: gp("AND"),
+  target: "AND",
+}]);
+
 console.log(JSON.stringify({
   status: "PASS: source-native READ OUT HERE recovers p0 THE ROAD",
   p28: {
@@ -468,7 +626,23 @@ console.log(JSON.stringify({
     descriptorHits,
     manuscriptFourRuneWords,
     manuscriptRoadKeyHits,
+    prospectiveDirection: {
+      rawGp0: roadRawGp0,
+      base60: roadDirection60,
+      base59: roadDirection59,
+      nextAuthenticatedWord: message[roadSourceIndex + 1].word,
+    },
+  },
+  and: {
+    receiver: andReceiver,
+    key: andKey,
+    plaintext: andPlain,
+    text: spell(andPlain),
+    familyConfigs: 2744,
+    allAuthenticatedHits: andFamilyHits,
+    manuscriptThreeRuneWords,
+    manuscriptAndKeyHits,
   },
   classification:
-    "strong source-constrained local plaintext recovery: READ OUT fixes the packet ending102; the next [2,4] line-crossing geometry uniquely selects THE ROAD; p28 DH line geometry decrypts THE, and the independently recovered HERE carrier supplies a uniquely charged ROAD key.",
+    "strong source-constrained local plaintext chain: READ OUT fixes the packet ending102; unique [2,4] geometry selects THE ROAD; p28 DH/HERE source objects decrypt THE and ROAD; ROAD's untouched raw number prospectively selects the AND receiver; the charged HERE/DH state-index family then uniquely decrypts the fixed target AND.",
 }, null, 2));
