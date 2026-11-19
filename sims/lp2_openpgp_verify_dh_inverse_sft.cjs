@@ -289,6 +289,113 @@ assert.equal(packetMultisetRows[0].start, 38);
 const endpointSwapRows = fiveWordDropToP.filter((row) => row.endpointSwapMatch);
 assert.deepEqual(endpointSwapRows, packetMultisetRows);
 
+// The same state predicts the printed packet word lengths before any
+// plaintext values are used. The warning source order is exactly
+// [a,g,a-K,a,g+K] = [6,5,4,6,7]. The p0 printed packet is exactly
+// [g+K,e,K-1,a,a] = [7,3,1,6,6]. Joining the e|(K-1) split gives
+// [g+K,a-K,a,a] and g+3a=p.
+const warningDhLengthSignature = [
+  state.a,
+  state.g,
+  mod29(state.a - state.K),
+  state.a,
+  mod29(state.g + state.K),
+];
+assert.deepEqual(warningRows.map((row) => row.gp.length), warningDhLengthSignature);
+assert.equal(
+  message
+    .slice(0, -4)
+    .filter((_, start) =>
+      message.slice(start, start + 5).length === 5 &&
+      message.slice(start, start + 5).every(
+        (row, index) => row.gp.length === warningDhLengthSignature[index]
+      )
+    ).length,
+  0
+);
+
+const dhPrintedPattern = [
+  state.g + state.K,
+  e,
+  state.K - 1,
+  state.a,
+  state.a,
+];
+const dhLogicalPattern = [
+  state.g + state.K,
+  state.a - state.K,
+  state.a,
+  state.a,
+];
+assert.deepEqual(dhPrintedPattern, [7, 3, 1, 6, 6]);
+assert.deepEqual(dhLogicalPattern, [7, 4, 6, 6]);
+assert.equal(dhLogicalPattern.reduce((sum, length) => sum + length, 0), state.p);
+assert.equal(state.g + (3 * state.a), state.p);
+assert.equal(e + (state.K - 1), state.a - state.K);
+
+let fiveWordWindows = 0;
+const dhPrintedPatternHits = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  const pageWords = parsePage(parts[page]);
+  for (let start = 0; start <= pageWords.length - 5; start += 1) {
+    fiveWordWindows += 1;
+    const lengths = pageWords
+      .slice(start, start + 5)
+      .map((word) => word.length);
+    if (lengths.every((length, index) => length === dhPrintedPattern[index])) {
+      dhPrintedPatternHits.push({
+        page,
+        word: start,
+        start: pageWords[start].start,
+        lengths,
+      });
+    }
+  }
+}
+assert.equal(fiveWordWindows, 2713);
+assert.deepEqual(dhPrintedPatternHits, [{
+  page: 0,
+  word: 37,
+  start: 166,
+  lengths: [7, 3, 1, 6, 6],
+}]);
+
+// On p0 itself, the logical [7,4,6,6] boundary schedule around a word-start
+// center has exactly one occurrence. It is center177, with exactly one extra
+// printed boundary inside the logical PATHS segment, at176.
+const p0ForBoundaryGate = parsePage(parts[0]);
+const p0Boundaries = new Set([
+  0,
+  ...p0ForBoundaryGate.map((word) => word.start),
+  ...p0ForBoundaryGate.map((word) => word.end + 1),
+]);
+const logicalBoundaryCenters = [];
+for (const centerWord of p0ForBoundaryGate) {
+  const center = centerWord.start;
+  const required = [
+    center - (state.g + state.a),
+    center - (state.a - state.K),
+    center,
+    center + state.a,
+    center + (2 * state.a),
+  ];
+  if (!required.every((boundary) => p0Boundaries.has(boundary))) continue;
+  const extras = [...p0Boundaries]
+    .filter((boundary) =>
+      boundary > required[0] &&
+      boundary < required.at(-1) &&
+      !required.includes(boundary)
+    )
+    .sort((left, right) => left - right);
+  logicalBoundaryCenters.push({ center, required, extras });
+}
+assert.deepEqual(logicalBoundaryCenters, [{
+  center: 177,
+  required: [166, 173, 177, 183, 189],
+  extras: [176],
+}]);
+
 // OPENPGP and the leading p28 READOUT candidate share the same GP0 state.
 assert.equal(gp0("OPENPGP"), 75);
 assert.equal(gp0("READOUT"), 75);
@@ -1080,6 +1187,12 @@ console.log(JSON.stringify({
       fiveWordDropToP: fiveWordDropToP.length,
       packetMultisetHits: packetMultisetRows.length,
       endpointSwapHits: endpointSwapRows.length,
+      dhWarningSignature: warningDhLengthSignature,
+      dhPrintedPattern,
+      dhLogicalPattern,
+      manuscriptFiveWordWindows: fiveWordWindows,
+      manuscriptPrintedPatternHits: dhPrintedPatternHits,
+      logicalBoundaryCenters,
     },
     openpgpGp0: gp0("OPENPGP"),
     readoutGp0: gp0("READOUT"),
