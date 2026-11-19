@@ -11,12 +11,12 @@ function read(relative) {
 function mod(value, modulus) {
   return ((value % modulus) + modulus) % modulus;
 }
-function base60(token, alphabet) {
+function decodeToken(token, alphabet) {
   let value = 0;
   for (const ch of token) {
     const digit = alphabet.indexOf(ch);
-    assert.notEqual(digit, -1, "unknown base60 token character");
-    value = value * 60 + digit;
+    assert.notEqual(digit, -1, "unknown token character for selected radix");
+    value = value * alphabet.length + digit;
   }
   return value;
 }
@@ -54,6 +54,9 @@ function summarizePassages(passages, translit) {
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(read("resources/liber-primus/base60-grid.json"));
+const base59Alphabet = grid.alphabet.replace("f", "");
+assert.equal(grid.alphabet.length, 60);
+assert.equal(base59Alphabet.length, 59);
 const transcription = read("resources/liber-primus/lp2-transcription.txt")
   .replace(/\r\n?/g, "\n")
   .trim();
@@ -105,8 +108,10 @@ function selectCoordinate(number) {
   const positional = base29Positional(word);
   const tableAddress = positional % 256;
   const token = grid.rows[Math.floor(tableAddress / 8)][tableAddress % 8];
-  const byte = base60(token, grid.alphabet);
+  const byte = decodeToken(token, grid.alphabet);
   const output = byte % 29;
+  const base59Byte = decodeToken(token, base59Alphabet);
+  const base59Output = base59Byte % 29;
   return {
     number,
     pageNumber,
@@ -119,6 +124,9 @@ function selectCoordinate(number) {
     byte,
     output,
     outputRune: corpus.translit[output],
+    base59Byte,
+    base59Output,
+    base59Rune: corpus.translit[base59Output],
   };
 }
 
@@ -166,6 +174,7 @@ assert.deepEqual(fivePacket.map((item) => [
 const fiveKey = fivePacket.map((item) => item.output);
 assert.deepEqual(fiveKey, [18, 28, 6, 19, 21]);
 assert.deepEqual(fivePacket.map((item) => item.outputRune), ["E", "EA", "G", "M", "NG"]);
+assert.deepEqual(fivePacket.map((item) => item.base59Rune), ["T", "Y", "R", "T", "M"]);
 
 // The final two values alone return the p33 oversized marker pair.
 const selected = fivePacket.slice(3);
@@ -177,7 +186,7 @@ assert.deepEqual(selected.map((item) => item.outputRune), ["M", "NG"]);
 const target = [19, 21];
 const matches = [];
 let validVariants = 0;
-function variantOutput(number, config) {
+function variantOutput(number, config, alphabet) {
   const pageNumber = Math.floor(number / 60) - config.pageOrigin;
   const wordIndex = number % 60 - config.wordOrigin;
   if (pageNumber < 0 || pageNumber > 57 || wordIndex < 0) return null;
@@ -195,20 +204,23 @@ function variantOutput(number, config) {
     ? tableAddress % 8
     : Math.floor(tableAddress / 32);
   const token = grid.rows[row][column];
-  return base60(token, grid.alphabet) % 29;
+  return decodeToken(token, alphabet) % 29;
 }
-for (const pageOrigin of [0, 1]) {
-  for (const wordOrigin of [0, 1]) {
-    for (const tableOrigin of [0, 1]) {
-      for (const order of ["row", "column"]) {
-        for (const encoding of ["positional", "sum"]) {
-          for (const reverse of [false, true]) {
-            const config = { pageOrigin, wordOrigin, tableOrigin, order, encoding, reverse };
-            const output = cuneiformNumbers.map((number) => variantOutput(number, config));
-            if (output.every((value) => value !== null)) {
-              validVariants += 1;
-              if (output[0] === target[0] && output[1] === target[1]) {
-                matches.push({ config, output });
+for (const radix of ["base60", "base59"]) {
+  const alphabet = radix === "base60" ? grid.alphabet : base59Alphabet;
+  for (const pageOrigin of [0, 1]) {
+    for (const wordOrigin of [0, 1]) {
+      for (const tableOrigin of [0, 1]) {
+        for (const order of ["row", "column"]) {
+          for (const encoding of ["positional", "sum"]) {
+            for (const reverse of [false, true]) {
+              const config = { pageOrigin, wordOrigin, tableOrigin, order, encoding, reverse };
+              const output = cuneiformNumbers.map((number) => variantOutput(number, config, alphabet));
+              if (output.every((value) => value !== null)) {
+                validVariants += 1;
+                if (output[0] === target[0] && output[1] === target[1]) {
+                  matches.push({ radix, config, output });
+                }
               }
             }
           }
@@ -217,8 +229,9 @@ for (const pageOrigin of [0, 1]) {
     }
   }
 }
-assert.equal(validVariants, 64);
+assert.equal(validVariants, 128);
 assert.equal(matches.length, 1);
+assert.equal(matches[0].radix, "base60");
 assert.deepEqual(matches[0].config, {
   pageOrigin: 0,
   wordOrigin: 1,
@@ -337,8 +350,15 @@ console.log(JSON.stringify({
   sourceOrderNumbers,
   fiveValuePacket: fivePacket,
   cuneiformMarkerPair: selected,
+  fiveValuePacketBase59: fivePacket.map((item) => ({
+    number: item.number,
+    byte: item.base59Byte,
+    output: item.base59Output,
+    outputRune: item.base59Rune,
+  })),
   conventionAudit: {
     validVariants,
+    radixVariants: { base60: 64, base59: 64 },
     target: ["M", "NG"],
     matches,
   },

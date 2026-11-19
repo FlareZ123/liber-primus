@@ -162,15 +162,15 @@ The numeric derivation is reproduced by [the read-only CommonJS SFT](../sims/lp2
 
 The same sexagesimal page:word → base29 positional word number → p50 row-major cell → base60 token → mod29 rune map applies to the three 2014 square centers in source order **809, 331, 91**, followed by the two p33 cuneiform numerals **1033, 3301**:
 
-| Source number | Page:word | Selected word | Base29 value | p50 cell | Token | Base60 | Output |
-| ---: | ---: | --- | ---: | ---: | --- | ---: | --- |
-| 809 | p13:29 | TEI | 13,988 | 164 | 1j | 105 | E |
-| 331 | p5:31 | THYEOTHJTHRU | 50,212,977,392 | 240 | 2O | 144 | EA |
-| 91 | p1:31 | TXELR | 11,673,664 | 64 | 22 | 122 | G |
-| 1033 | p17:13 | FREAMEAA | 3,528,831 | 127 | 3D | 193 | M |
-| 3301 | p55:1 | NG | 21 | 21 | 2H | 137 | NG |
+| Source number | Page:word | Selected word | Base29 value | p50 cell | Token | Base60 → mod29 | Missing-f base59 → mod29 |
+| ---: | ---: | --- | ---: | ---: | --- | --- | --- |
+| 809 | p13:29 | TEI | 13,988 | 164 | 1j | 105 → E | 103 → T |
+| 331 | p5:31 | THYEOTHJTHRU | 50,212,977,392 | 240 | 2O | 144 → EA | 142 → Y |
+| 91 | p1:31 | TXELR | 11,673,664 | 64 | 22 | 122 → G | 120 → R |
+| 1033 | p17:13 | FREAMEAA | 3,528,831 | 127 | 3D | 193 → M | 190 → T |
+| 3301 | p55:1 | NG | 21 | 21 | 2H | 137 → NG | 135 → M |
 
-In the original source order this yields the five-symbol packet **[E,EA,G,M,NG]**. Its cardinality matches the five red-numbered wisdom passages, but it is not their direct boundary sequence: the passage starts are **[L,N,D,NG,H]** and ends are **[A,B,W,M,C]**.
+In the original source order this yields the five-symbol packet **[E,EA,G,M,NG]**. Its cardinality matches the five red-numbered wisdom passages, but it is not their direct boundary sequence: the passage starts are **[L,N,D,NG,H]** and ends are **[A,B,W,M,C]**. Under the competing missing-f base59 parse, the packet is **[T,Y,R,T,M]**; in particular the cuneiform pair returns **[T,M]**, not the p33 markers **[M,NG]**. The base60 alphabet is not Cicada-authenticated, so the marker loop favors this particular base60 consumer but does not settle the radix. The prior direct ASCII byte-stream test remains negative; this route uses a narrow mod29 projection of the two cuneiform-selected words.
 
 Tested the obvious direct uses of this packet on the 553-rune enclosure: one constant additive shift per passage (both signs), a period-5 additive key reset at each passage (both signs), a period-5 additive key over the concatenated passages (both signs), and one multiplicative or inverse coefficient per passage. None produced readable text; their aggregate IoCs remain near the original random-like value **0.03423** (range **0.03367–0.03503**). This rejects these simple consumers, not every possible source-selected use of the packet.
 
