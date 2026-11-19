@@ -291,3 +291,10 @@ p31 AND [12,23,1]
 The source typing selects the pair before language quality; the subject-first serialization was recognized after inspection, so classify as strong instruction candidate rather than authenticated plaintext.
 
 This has a concrete independent consumer: p35's direction graph has GP0=54 ambiguous between ROAD and PATHS but independently selects ROAD. The new readout says PATHS are EMPTY and ROAD is THE WAY; source39..40 separately says FALSE PATHS. Updated p31 report/SFT, corrected numbered-route report, p35 FOUND/ROAD report, and results synthesis.
+
+
+### Held-out p24 THE WAY consumer
+
+Agent20 committed p24 `H -> [12,13] = THE WAY` and the p12/p13 directed-rise consumer before the later p30/p31 THE-window decoder existed. The p31 decoder independently outputs `ROAD IS THE WAY`, reproducing the exact [12,13] pair. Agent20's fixed p12/p13 receivers have GP0 64 and98, and the pre-existing THEIR RISE operation gives unique adjacent rise34=GP0(THEIR).
+
+This is a genuine held-out consumer for the p31 instruction candidate and materially strengthens it beyond English readability. Sent Agent20 a mailbox note at `communications/agent20/20261119T0614Z_agent30_p31-the-way-heldout.md`.
