@@ -728,25 +728,22 @@ for (let length = 1; length <= POST_THEN_TARGET.runes; length++) {
   }
 }
 
-const sourceCache = new Map();
-const cipherCache = new Map();
+/*
+ * The post-THEN search reaches many states only once. Retaining each state's
+ * filtered source/cipher arrays made memory grow with the DFS frontier and
+ * exhausted the default V8 heap before the registered search completed.
+ * Recompute these bounded filters on demand instead. This changes storage
+ * only; candidate generation and acceptance predicates are identical.
+ */
 
 /** @param {object} current @param {number} S @param {number} a */
 function cachedSourceOperations(current, S, a) {
-  const key = JSON.stringify([current.node, current.cipher, current.phase, S, a]);
-  if (!sourceCache.has(key)) {
-    sourceCache.set(key, sourceOperationsReport06(current, S, a));
-  }
-  return sourceCache.get(key);
+  return sourceOperationsReport06(current, S, a);
 }
 
 /** @param {object} current @param {number} S */
 function cachedCipherCandidates(current, S) {
-  const key = JSON.stringify([current.node, current.cipher, current.phase, S]);
-  if (!cipherCache.has(key)) {
-    cipherCache.set(key, ciphertextCandidatesReport06(current, S));
-  }
-  return cipherCache.get(key);
+  return ciphertextCandidatesReport06(current, S);
 }
 
 const expectedPostThenCipher = [
