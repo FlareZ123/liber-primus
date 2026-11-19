@@ -20,3 +20,5 @@ A source-only local compression also emerged: [a,B,HERE[B],K*a]=[6,19,22,12] sum
 
 Updated SFT: sims/lp2_p0_found_good_cipherstate_transition_sft.cjs
 Updated report: im-results/lp2-p0-found-good-cipherstate-transition.md
+
+Windows Node22 complete-gate PASS: 44443213983 (https://github.com/FlareZ123/liber-primus/actions/runs/44443213983)
