@@ -6,7 +6,7 @@
 
 ## Selection, fixed before this run's raw receiver read
 
-- The authenticated 2016 source contains `AND` as a target word.
+- The authenticated 2016 source contains the target `AND` in the signed line `Seek and you will be found` (word 31 of the cleartext, 1-based).
 - `GP0(AND)=56`; the original p50 grid has `p50[56]=4E`.
 - The existing source-only `AND` route interprets `4E` as base-60, zero-origin p0 address 254. The original p0 transcription has a complete three-rune word at that start.
 - Freeze receiver: **p0 rune offsets 254–256**, target **AND**. Do not move the receiver, change radix/origin, or choose another target after seeing its values.
