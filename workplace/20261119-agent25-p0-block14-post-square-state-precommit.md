@@ -30,3 +30,20 @@ No plaintext, center transform, key rotation, ciphertext start, axis, direction,
 ## Gate
 
 Exact node identity and coordinates are required. Any other source node rejects this hypothesis. The already-used `C-OE-C` connector is excluded before inspection, and no other connected-node rescue is allowed.
+
+## Outcome after opening block14
+
+**FAIL.** Block14 uses `EA-J-EA` at `(25,2),(25,6),(25,10)`, not the sealed `C-N-C` node.
+
+The actual node is densely state-typed after inspection:
+
+```text
+values:
+  [28,11,28] = [-1,B-A,-1]
+radius:
+  q=4
+coordinates:
+  (-q,K), (-q,a), (-q,-B)
+```
+
+This retrospective compression does not rescue the failed prospective gate. The result shows that even with the DH tuple independently recovered from authenticated square metadata, the current connected-mirror heuristic does not specify the next 27x27 key node. Do not extend this heuristic to block15 without a new independent selector.
