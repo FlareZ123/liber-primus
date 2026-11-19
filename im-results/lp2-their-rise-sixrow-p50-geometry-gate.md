@@ -81,7 +81,43 @@ North is the clear maximum for both declared target classes.
 
 The zero/one origins produce exactly the same north destinations. That is an algebraic property of a pure vertical translation: subtracting or adding one to define the cell origin cancels when the same origin is restored after the move. The source family therefore selects north, while this operation cannot adjudicate the address-origin convention.
 
-## 3. Historical discovery object becomes an exact source-word transition
+## 3. The geometric displacement is itself a DH bridge
+
+The printed table width and the source-selected rise are independently fixed state fields:
+
+```text
+width = 8 = A
+rise  = 6 = a.
+```
+
+Therefore the actual linear address displacement is:
+
+```text
+A*a = 8*6 = 48.
+```
+
+The same integer has two exact state readings under the two moduli already present in the puzzle:
+
+```text
+48 mod 29 = 19 = B
+48 mod p  = 48 mod 23 = 2 = K.
+```
+
+Equivalently:
+
+```text
+48 = 29 + B = 2*p + K.
+```
+
+Within the ordered 9×9 products of the basic state register `{p,g,a,b,A,B,K,e,q}`, the only products whose GP29 residue is exactly B **and** whose mod-p residue is exactly K are the commuted pair:
+
+```text
+a*A = A*a = 48.
+```
+
+This identity does not by itself recover plaintext, but it gives the visible 32×8 geometry and the authored rise magnitude a direct cryptographic role: one physical rise step size simultaneously encodes the other public key B and the shared secret K.
+
+## 4. Historical discovery object becomes an exact source-word transition
 
 The issue was motivated by:
 
@@ -104,7 +140,7 @@ SEEKS -> ROAD.
 
 Across all 16 direction/origin variants, only the two algebraically equivalent north variants produce exactly `SEEKS -> 23 -> ROAD`.
 
-## 4. Source holdout: BEWARE -> PATHS
+## 5. Source holdout: BEWARE -> PATHS
 
 The operation was frozen in the #1802 claim before the full authenticated-word scan.
 
@@ -149,7 +185,7 @@ GP0(SEEKS) = 71 -> 23 -> signed word23 ROAD.
 
 No word-specific displacement is used.
 
-## 5. Solved-page cross-control: EMERGE -> FOUND
+## 6. Solved-page cross-control: EMERGE -> FOUND
 
 The earlier p50 geometry audit used solved-p57 `EMERGE` as a held-out plaintext word. Its canonical GP0 is:
 
@@ -174,7 +210,7 @@ Among all eight compass directions and both address origins, only north yields d
 
 This solved-page/source relation was not used to notice the original SEEKS71->23 coincidence.
 
-## 6. Prospectively sealed unknown-page transfer: FAIL
+## 7. Prospectively sealed unknown-page transfer: FAIL
 
 After the source and solved controls passed, a separate unknown-page consequence was frozen before reading p29 word states:
 
@@ -219,7 +255,7 @@ The sealed transfer therefore fails.
 
 No neighboring word, fragment, slash-split line fragment, alternate GP sum, target substitution, or different destination is admitted.
 
-## 7. Decision
+## 8. Decision
 
 Director #1802 is **positive for a source-selected 2D p50 movement opcode**:
 
@@ -251,7 +287,7 @@ is rejected.
 
 Therefore do not generalize the six-row opcode into a rule that destination word numbers automatically identify plaintext on same-numbered physical pages. Future uses should stay inside authenticated source navigation unless another original clue specifies a concrete physical-page consumer.
 
-## Reproduction
+## 9. Reproduction
 
 `sims/lp2_their_rise_sixrow_p50_geometry_gate_sft.cjs`
 
