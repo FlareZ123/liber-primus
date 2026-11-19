@@ -65,6 +65,21 @@ Only **OPENPGP43** has nonzero H fields whose source-word labels form an authent
 
 The first H field `0=HELLO` independently returns the numbered route to project p0 at page level. This is consistent with the final signed instruction `VERIFY OPENPGP` producing a return-to-beginning clue, while `THE WAY` quotes the authenticated clause `LIBER PRIMUS IS THE WAY`.
 
+## Independent p0 red-title receiver convergence
+
+The three palindromic three-rune numbered-diagonal objects all have first H field zero, so each returns to `HELLO=0` / project p0. Their endpoint fields are different:
+
+```text
+THEIR20   -> H [0,22,20] -> endpoint20
+SEEK31    -> H [0,15,12] -> endpoint12
+OPENPGP43 -> H [0,22,13] -> endpoint13
+```
+
+The original p0 image independently fixes its leading red title at exactly **13 runes**, split 8+5 and followed by the 13-dot marker. Among this complete three-object diagonal-palindrome class, only OPENPGP43 simultaneously returns to p0 and carries an endpoint value equal to that leading red-span length.
+
+This receiver relation was recognized after the separate EMERGE/SURFACE p0 result existed, so it is independent structural convergence rather than a blind plaintext prediction. The earlier route selected p0 through `189 -> 192 -> 0`; value192 uniquely selected authenticated `EPIPHANY SEEKS`, whose GP rune lengths are 8+5 and therefore match the original p0 red title. The OPENPGP43 endpoint now selects that same physical 13-rune receiver without using the candidate letters or value192.
+
+Consequently the p0 opening candidate has two materially different source routes selecting the same receiver: the p57/p50 radix-state exit and the final signed-word numbered diagonal. The reversible cipher for the 13 runes remains unknown.
 ## Rejected literal coordinate consumer
 
 A stricter numerical reading `[page=0,start=22,length=13]` was checked before opening those segment values. It fails at layout level: p0 offsets22..34 cut across canonical words5–7 rather than selecting a whole-word receiver. No shifted origin or neighboring offset is admitted.
@@ -81,7 +96,7 @@ OPENPGP43
 -> page-level return HELLO=0
 ```
 
-Treat the page-level return as a source-selected navigation clue and the lexical phrase as strong endpoint evidence. Do not treat `[0,22,13]` as a p0 start/length coordinate.
+Treat the page-level return and endpoint13 as a source-selected navigation clue to the original p0 13-rune red title, and retain the lexical phrase as strong endpoint evidence. This independently converges on the pre-existing `EPIPHANY SEEKS` opening candidate without supplying its missing reversible cipher. Do not treat `[0,22,13]` as a p0 start/length coordinate.
 
 ## Reproduction
 

@@ -232,6 +232,17 @@ Under that receiver type, the exit value0 naturally selects **physical p0**, an 
 
 That target is independently interesting because the authenticated 2016 signed-word map has its strongest current boundary structure on p0, including the conditional `EPIPHANY SEEKS`, `THE ROAD`, and `THE DEVOTED` placements. This new route does not authenticate those plaintext candidates, though it gives p0 a causal position downstream of the DH/SHED state machine.
 
+## Independent OPENPGP43 return selects the same 13-rune p0 receiver
+
+A separate numbered-diagonal endpoint now reaches the same physical receiver without using EMERGE, SURFACE, value192, or the candidate plaintext letters.
+
+Authenticated zero-based source index42 `OPENPGP` selects project p42 / physical page43 / canonical word43. That source-selected word is `[11,13,11]`; the fixed odd-length outside-in H gives `[0,22,13]`, which the authenticated source register reads `HELLO THE WAY`. The first field `0=HELLO` returns to project p0. The final field13 equals the independently image-fixed length of p0's leading red title, whose exact original boundary is 8+5 runes followed by a 13-dot marker.
+
+Across the complete numbered diagonal there are only three palindromic three-rune objects. All three return H difference0, yet only OPENPGP43 has its endpoint equal to p0's leading red-span length13. Its exact H shell `[0,22,13]` is also unique among all 726 canonical three-rune unknown-page words.
+
+This was discovered after the conditional `EPIPHANY SEEKS` opening candidate, so it does not make those letters blind. It does independently select the same 13-rune physical receiver that the EMERGE/SURFACE route selects through `189 -> 192 -> 0`. The opening candidate is therefore supported by two different source paths, while the missing reversible p0 cipher remains the decisive unsolved step.
+
+See `im-results/lp2-openpgp43-hello-the-way.md` and `sims/lp2_openpgp43_hello_the_way_sft.cjs`.
 ## Conditional recovery of the p0 opening phrase
 
 The restored-state exit contains one further locked value before the page number:
