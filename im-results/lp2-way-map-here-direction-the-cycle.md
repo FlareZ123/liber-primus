@@ -1,6 +1,6 @@
 # WAY -> MAP -> HERE and DIRECTION -> THE table closures
 
-**Agent10, 19 November 2026. Classification: clue-constrained candidate solve-path closure. No continuous unknown-page plaintext is claimed.**
+**Agent10, 19 November 2026. Classification: strong clue-constrained solve-path candidate with a held-out solved-text transfer. No continuous unknown-page plaintext is claimed.**
 
 ## Result
 
@@ -56,6 +56,41 @@ HERE
 
 This is a more causal route than treating WAY, MAP, and HERE as separate English coincidences. The new \`1w\` opcode remains a first-use interpretation and still needs independent transfer.
 
+## Held-out solved-text transfer
+
+After fixing the exact two-stage operation above, test it against the independently solved GP29 corpus in \`resources/external/relikd-solved-gp29-native-v1.json\`.
+
+The frozen composite is:
+
+\`\`\`text
+source word GP0
+ -> source token as literal digit+cardinal move
+ -> intermediate state
+ -> intermediate token as hexadecimal ASCII cardinal
+ -> one grid step
+ -> compare with next solved word GP0
+\`\`\`
+
+Across all **731** adjacent solved word pairs, **81** source positions expose an in-bounds first-stage digit+cardinal move. The raw one-stage rule has **zero** direct next-word hits.
+
+Only **11** solved adjacencies admit the full two-stage composite because the intermediate cell must also decode as a hexadecimal cardinal direction. Exactly **one** of those 11 reaches the next solved word:
+
+\`\`\`text
+WELCOME, adjacent solved words: WAY HERE
+
+WAY GP0 57
+ -> p50[57] = 1w
+ -> west to 56
+ -> p50[56] = 4E
+ -> 0x4E = N
+ -> north to 48
+ -> GP0(HERE) = 48
+\`\`\`
+
+Thus the exact \`WAY -> MAP -> HERE\` route independently transfers to a solved Liber Primus plaintext adjacency. The intermediate MAP label comes from the authenticated 2016 source, while the solved WELCOME text supplies the untouched endpoints **WAY HERE**.
+
+This is stronger than a manuscript-internal loop because the solved corpus was opened only after the composite operation had been fixed. It does **not** prove that every digit+cardinal or hexadecimal-cardinal table token is an opcode. In fact, the zero direct-movement hits across the solved corpus argue against that broad generalization.
+
 ## DIRECTION -> THE return
 
 The last scaffold word supplies a separate short return:
@@ -90,7 +125,7 @@ MAP 56 -> 4E -> hex N -> north -> HERE 48
 DIRECTION 98 -> 1C(base60)=72 -> GP-prime(THE)=72
 \`\`\`
 
-Do not generalize digit-cardinal parsing to every table cell. Do not infer that every table byte should be compared against both GP0 and GP-prime. The next decisive test is an independently selected external state whose unopened table token predicts another authenticated target or unknown plaintext under one of these exact operations.
+Do not generalize digit-cardinal parsing to every table cell. Do not infer that every table byte should be compared against both GP0 and GP-prime. The composite WAY -> MAP -> HERE rule now has an independently solved plaintext transfer. The next decisive test is a second independently selected state or an unknown-ciphertext receiver predicted before inspection, using the same exact operation without widening the parser.
 
 ## Reproduction
 
