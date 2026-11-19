@@ -105,6 +105,47 @@ The three rises themselves are exactly:
 [a,g+K,A] = [6,7,8].
 ```
 
+## Marker geometry fixes the 8+5 key split
+
+The original title has adjacent word lengths:
+
+```text
+8 | 5.
+```
+
+The adjacent red marker has physical column populations:
+
+```text
+4 | 5 | 4.
+```
+
+There is only one way to group those complete columns into the title's two lengths:
+
+```text
+first word:  left4 + right4 = 8
+second word: center5             = 5.
+```
+
+This is also exactly how the fixed outside-in H transform acts on the concatenated marker packet. With
+
+```text
+R13 = L4 || C5 || R4,
+```
+
+the first four outside pairs are the left column against the reversed right column, producing eight outputs. The remaining five positions are the center column itself. Therefore:
+
+```text
+H(R13) = H(L4 || R4) || H(C5).
+```
+
+Numerically:
+
+```text
+H(L4 || R4) = [26,24,8,19,27,24,18,3]
+H(C5)       = [0,8,0,16,19].
+```
+
+So the original marker geometry selects the same 8+5 boundary as the title before any plaintext is read. This gives a source-visible reason for treating the flanks and center as separate key carriers.
 ## Complete key and plaintext replay
 
 Concatenate the three physical columns:
@@ -203,7 +244,7 @@ authenticated 2014 square metadata
 -> EPIPHANY SEEKS.
 ```
 
-The remaining requirement for an established general cipher is a prospective reuse of this serializer, or an independent original clue that fixes the same three column rise laws before p0 is consulted. Do not search arbitrary state-expression permutations to manufacture such a reuse.
+The original marker geometry now independently fixes how the generated packet maps onto the title word boundary: the two flanks carry the first eight key atoms under H, and the five-dot center carries the final five. The remaining requirement for an established general cipher is a prospective reuse of this serializer, or an independent clue that fixes the same three vertical rise laws before p0 is consulted. Do not search arbitrary state-expression permutations to manufacture such a reuse.
 
 ## Reproduction
 
