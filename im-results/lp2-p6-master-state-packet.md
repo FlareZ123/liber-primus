@@ -351,6 +351,53 @@ This prospective miss blocks promotion of the p39 five-rune grammar to a reusabl
 
 Report: `im-results/lp2-p6-five-rune-numbered-words16-holdout.md`.
 SFT: `sims/lp2_p6_five_rune_numbered_words16_holdout_sft.cjs`.
+
+## Chronologically independent three-rune consumer: p32 YOU
+
+After the p6 packet and its existing consumers were already committed, Agent12 independently selected a p32 three-rune receiver from source/page geometry:
+
+```text
+authenticated source index32 = YOU
+physical p32 first full stop ends at local rune offset32
+terminal complete word = offsets30..32
+cipher = [0,3,2]
+```
+
+Across authenticated source/page indices0..42, only p2 and p32 have a printed period immediately after a zero-based local rune offset equal to the page index. P2 fails target/receiver length compatibility; p32 alone has terminal length3 matching canonical `YOU`. The exact packet `[0,3,2]` is also unique among all **716** complete three-rune unknown-page words.
+
+Its radial shell is:
+
+```text
+H3([0,3,2]) = [27,3,2] = [-K,e,K].
+```
+
+The exact subtraction key for authenticated `YOU=[26,3,1]` is:
+
+```text
+[3,0,1] = [e,0,a-g]
+H3(key) = [2,0,4] = [K,0,q].
+```
+
+All three shell atoms are available from the pre-existing p6 packet. The title-length H transform gives `K`, the adjacent large Fehu gives GP zero, and the repeated maximum title length gives `q`.
+
+To charge role discovery, choose one value from p6 `H([q,1,q,K])=[K,-e,g,a]`, zero, and one distinct title-length value from `{q,1,K}`; allow every coordinate order and deduplicate. The resulting **69-shell** family, both signs, has one hit on the independently selected p32 receiver: `[K,0,q]` subtraction to `YOU`.
+
+Across every same-index authenticated three-rune target/page and all complete three-rune receivers, the 69-shell family gives two hits in **14,628** cases: p31 `AND` and p32 `YOU`. Only p32 also satisfies the independent self-indexed punctuation receiver selector. Holding just the successful atom subset `{K,0,q}` and charging all six orders, both signs, all 716 three-rune manuscript receivers, and all seven distinct authenticated three-rune targets gives one hit in **60,144** cases, p32 `YOU`; this narrower atom-subset control is descriptive because the subset was identified after the local result.
+
+A precommitted transfer of the exact `[K,0,q]` correction to the other eight same-index authenticated three-rune source/page targets covered **103** complete holdout receivers and produced **zero** hits. Therefore p6 supplies a strong source-visible local schedule for p32 without establishing a general three-rune decoder.
+
+This adds a new p6-supported local consumer:
+
+```text
+p32 YOU, H3(key)=[K,0,q]
+```
+
+and completes the independently assembled authenticated suffix `YOU WILL BE FOUND` across p32-p35.
+
+Report: `im-results/lp2-p32-you-selfindex-h3-candidate.md`.
+Reproducer: `sims/lp2_p32_you_selfindex_h3_transfer_sft.cjs`.
+Windows Node22 PASS: **44466418776**.
+
 ## Decision
 
 P6's red title is the strongest current source-visible explanation for several previously isolated key shells:
@@ -361,6 +408,7 @@ p6  -> p33 WILL shell
 p6  -> p40 PATHS shell
 p6  -> p38 BEWARE shell and target initial
 p6  -> p39 FALSE five-rune shell (post-target role discovery)
+p6  -> p32 YOU three-rune shell on an independently selected receiver
 ```
 
 The packet grammar itself is globally unique under a finite, charged family and survives all 24 word-role permutations. The p38 derivation is additionally selective under a 48-role family and under the manuscript-wide six-rune control.

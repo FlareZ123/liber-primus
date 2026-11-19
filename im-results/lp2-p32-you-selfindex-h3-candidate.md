@@ -151,6 +151,55 @@ YOU WILL BE FOUND.
 
 The evidential roles differ by page. P32 is selected by the EPIPHANY/DEVOTED route and the self-indexed clause endpoint; p33-p35 use their separate state and RISE selectors. The phrase-level agreement therefore strengthens the local p32 interpretation without licensing the failed H3 transfer as a manuscript-wide decoder.
 
+
+## Chronologically independent p6 packet calibration
+
+The p6 master-state packet was established and committed before this p32 investigation. It supplies three source-visible channels that contain the p32 key-shell atoms:
+
+- its printed title lengths are `[q,1,q,K]=[4,1,4,2]`;
+- applying the already frozen four-item radial transform to those lengths gives `[K,-e,g,a]=[2,26,5,6]`;
+- the adjacent large Fehu supplies canonical GP zero.
+
+The successful p32 shell `[K,0,q]` therefore uses one atom from each of those pre-existing visible channels.
+
+Because the exact role choice was recognized after the p32 target was known, charge a broader finite family instead of treating `[K,0,q]` as predeclared. Choose any one of the four transformed title-length values, canonical zero, and any one of the three distinct printed title-length values `{q,1,K}`; allow all six coordinate orders and deduplicate. This gives **69** H3 shells. Test both additive signs.
+
+On the independently selected p32 offsets30..32 receiver:
+
+```text
+69 shells * 2 signs = 138 cases
+```
+
+there is exactly one authenticated `YOU` hit:
+
+```text
+shell [K,0,q] = [2,0,4]
+key   [e,0,a-g] = [3,0,1]
+sign  subtraction
+-> YOU.
+```
+
+A broader same-index source/page calibration keeps all authenticated three-rune source words and every complete three-rune word on their corresponding physical pages. It contains **106** receivers and
+
+```text
+106 * 69 * 2 = 14,628 cases.
+```
+
+There are two hits:
+
+```text
+p31 AND start76, shell [0,q,-e], addition
+p32 YOU start30, shell [K,0,q], subtraction
+```
+
+The p31 candidate lacks the p32 receiver's independent self-indexed punctuation selector. The p32 source/layout selector therefore remains the discriminator rather than the p6 family alone.
+
+For an additional specificity check, freeze only the three successful p6 atoms `{K,0,q}` but allow every coordinate permutation, both signs, all **716** complete three-rune manuscript words, and all seven distinct authenticated three-rune targets. This is **60,144** configurations and has one hit: p32 offsets30..32 to `YOU` under `[K,0,q]` subtraction. Since the atom subset was identified from the successful p32 shell, this control is descriptive rather than a prospective discovery test.
+
+This calibration materially improves the local key provenance: p6 supplies the successful state atoms before p32 was investigated, and a complete role family selects one key on the independently fixed receiver. It does not rescue the failed 103-receiver transfer. The p32 inverse remains local.
+
+Windows Node22 PASS with the p6 calibration: https://github.com/FlareZ123/liber-primus/actions/runs/44466418776
+
 ## Decision
 
 Preserve:
