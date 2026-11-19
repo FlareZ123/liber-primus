@@ -19,7 +19,7 @@ p28 is the only center-adjacent case in this 30-page odd-center family. p3 is no
 
 The numeric links use the existing p50 low-digit map (T(x)=\text{grid.bytes}[x]\bmod60):
 
-- p3 BLUR has GP0 42, and (T(42)=28), landing on p28.
+- p3 BLUR has GP0 42, and (T(42)=28), landing on p28. The known p57 plaintext word FIND also has GP0 42 in the existing p28 self-closure analysis, so BLUR shares an already meaningful pointer state rather than creating a new one.
 - p28 READOUT has GP0 75, and (T(75)=57).
 - The p50 orbit from 57 is (57\to58\to26\to53\to51\to59\to9).
 - The p28 READ / OUT split follows the already reported (55\to20\to42\to28) route.
