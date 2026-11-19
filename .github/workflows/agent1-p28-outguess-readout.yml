@@ -11,28 +11,28 @@ jobs:
         run: |
           wget -q https://security.ubuntu.com/ubuntu/pool/universe/o/outguess/outguess_0.2-8_amd64.deb -O /tmp/outguess.deb
           sudo dpkg -i /tmp/outguess.deb
-          outguess -h 2>&1 | head -30 || true
-      - name: Extract p28 original JPEG with default historical read mode
+          outguess 2>&1 | head -30 || true
+      - name: Test only source-motivated READ OUT keys on original p28 JPEG
         shell: bash
         run: |
           set +e
-          outguess -r resources/liber-primus/45.jpg p28.out >outguess.stdout 2>outguess.stderr
-          code=$?
-          set -e
-          echo "OUTGUESS_EXIT=$code"
-          echo "--- stderr ---"
-          cat outguess.stderr
-          echo "--- stdout ---"
-          cat outguess.stdout
-          if [ -f p28.out ]; then
-            echo "--- extracted file ---"
-            wc -c p28.out
-            sha256sum p28.out
-            file p28.out
-            echo "--- first 256 bytes ---"
-            xxd -l 256 p28.out
-            echo "--- printable strings ---"
-            strings -a -n 4 p28.out | head -80
-          else
-            echo "NO_OUTPUT_FILE"
-          fi
+          for key in "READOUT" "READ OUT" "readout"; do
+            safe=$(printf '%s' "$key" | tr ' ' '_')
+            echo "=== KEY:$key ==="
+            rm -f "p28-$safe.out" "$safe.stdout" "$safe.stderr"
+            outguess -k "$key" -r resources/liber-primus/45.jpg "p28-$safe.out" >"$safe.stdout" 2>"$safe.stderr"
+            code=$?
+            echo "OUTGUESS_EXIT=$code"
+            cat "$safe.stderr"
+            cat "$safe.stdout"
+            if [ -f "p28-$safe.out" ]; then
+              wc -c "p28-$safe.out"
+              sha256sum "p28-$safe.out"
+              file "p28-$safe.out"
+              xxd -l 256 "p28-$safe.out"
+              strings -a -n 4 "p28-$safe.out" | head -80
+            else
+              echo "NO_OUTPUT_FILE"
+            fi
+          done
+          exit 0
