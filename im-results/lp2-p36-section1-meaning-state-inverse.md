@@ -181,6 +181,31 @@ plaintext shell [-K,B, A,b-q].
 
 No language model scoring or free alphabet is used.
 
+## Source-number continuation: MEANING + e = ROAD
+
+The authenticated 2016 prose itself uses `e=3` as a repeated semantic hop. Four clauses have the same source-number grammar:
+
+```text
+PRIMUS  10 -> WAY       13   +3
+WORDS   15 -> MAP       18   +3
+MEANING 20 -> ROAD      23   +3
+NUMBERS 26 -> DIRECTION 29   +3
+```
+
+Each clause is literally `X IS/ARE THE Y`; its destination lies three signed-word positions after its subject. The common step is exactly authenticated `e=3`.
+
+Therefore the p36 result has an immediate source-number continuation using the same field already selected by the 10-dot outer columns and the local key:
+
+```text
+p36 section1 -> MEANING
+source index(MEANING) = 20
+20 + e = 23 = p
+source word23 = ROAD
+physical p23 = established ROAD/origin state checkpoint
+```
+
+This continuation does not depend on extending the p36 word cipher. It uses the authenticated message's own instruction that the words' numbers are the direction. P23 independently existed as the `ROAD` state page before this p36 recovery.
+
 ## Prospective continuation and whole-section control
 
 A direct word-for-word continuation would next expect authenticated `IS`, because the source phrase contains:
