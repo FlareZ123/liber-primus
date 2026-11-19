@@ -36,14 +36,26 @@ function mod29(value) {
  * @returns {number[]}
  */
 function base29(value) {
+  return baseDigits(value, M);
+}
+
+/**
+ * Convert a nonnegative integer to canonical most-significant-first digits.
+ *
+ * @param {number} value
+ * @param {number} radix
+ * @returns {number[]}
+ */
+function baseDigits(value, radix) {
   assert.ok(Number.isSafeInteger(value) && value >= 0);
+  assert.ok(Number.isSafeInteger(radix) && radix >= 2);
   if (value === 0) return [0];
 
   const digits = [];
   let current = value;
   while (current > 0) {
-    digits.unshift(current % M);
-    current = Math.floor(current / M);
+    digits.unshift(current % radix);
+    current = Math.floor(current / radix);
   }
   return digits;
 }
@@ -191,6 +203,23 @@ assert.deepEqual(
   mirroredCenterDigits.map((index) => source[index].word),
   ["NUMBERS", "ARE"]
 );
+
+// Charge every radix whose digits can all be literal indices into the 43-word
+// authenticated source register. BASE29 is uniquely selected by the mirrored
+// consecutive-index property, rather than chosen after reading the words.
+const radixHits = [];
+for (let radix = 2; radix <= source.length; radix += 1) {
+  const canonical = baseDigits(square[2][2], radix);
+  const mirrored = [...canonical].reverse();
+  if (isAscendingConsecutive(mirrored)) {
+    radixHits.push({radix, canonical, mirrored});
+  }
+}
+assert.deepEqual(radixHits, [{
+  radix: 29,
+  canonical: [27, 26],
+  mirrored: [26, 27],
+}]);
 
 // Charge the same complete representation on all 25 cells. The emerged center
 // is the sole cell whose mirrored BASE29 digits form an ascending consecutive
@@ -418,6 +447,7 @@ console.log(JSON.stringify({
     base29: centerDigits,
     mirroredBase29: mirroredCenterDigits,
     mirroredWords: lexicalize(mirroredCenterDigits),
+    radixHits,
     consecutiveSquareCells: consecutiveCells,
   },
   transformProvenance: {
