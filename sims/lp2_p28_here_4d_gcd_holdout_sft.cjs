@@ -14,6 +14,7 @@ function read(relative) {
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
+const solved = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const parts = transcription.split(/^\s*%\s*$/m);
 const tableTokens = grid.pages.flatMap((page) => page.tokens);
@@ -319,6 +320,61 @@ assert.deepEqual(
   [[28, 48, "4D"]],
 );
 
+// -------------------------------------------------------------------------
+// 4. Independent solved-page control for the nX self-index semantics.
+// -------------------------------------------------------------------------
+
+const solvedSelfIndexEvents = [];
+for (const sectionName of ["p56_an_end", "p57_parable"]) {
+  const section = solved.sections.find((item) => item.name === sectionName);
+  assert.ok(section);
+  const pageRunes = runes(section.source_text);
+  const pageWords = (section.source_text.match(/[\u16A0-\u16FF]+/gu) || [])
+    .map((raw) => runes(raw));
+
+  let wordStart = 0;
+  for (let word = 0; word < pageWords.length; word += 1) {
+    const values = pageWords[word];
+    const address = values.reduce((sum, value) => sum + value, 0);
+    const token = tableTokens[address];
+    if (/^[1-9][A-Z]$/.test(token) && singleLetterRune.has(token[1]) &&
+        address < pageRunes.length) {
+      const targetRune = singleLetterRune.get(token[1]);
+      assert.notEqual(targetRune, undefined);
+      solvedSelfIndexEvents.push({
+        page: sectionName,
+        word: word + 1,
+        text: spell(values),
+        wordStart,
+        address,
+        token,
+        runeAtAddress: pageRunes[address],
+        prefixCount: prefixCount(pageRunes, address, targetRune),
+        hit:
+          pageRunes[address] === targetRune &&
+          prefixCount(pageRunes, address, targetRune) === Number(token[0]),
+      });
+    }
+    wordStart += values.length;
+  }
+}
+
+assert.equal(solvedSelfIndexEvents.length, 13);
+assert.deepEqual(
+  solvedSelfIndexEvents.filter((row) => row.hit),
+  [{
+    page: "p56_an_end",
+    word: 15,
+    text: "IS",
+    wordStart: 47,
+    address: 25,
+    token: "3I",
+    runeAtAddress: 10,
+    prefixCount: 3,
+    hit: true,
+  }],
+);
+
 // GCD supplies the standard invertibility test required to reverse the
 // literal p28 DH exponent b in the order-(p-1) multiplicative group.
 assert.equal(gcd(state.b, state.p - 1), 1);
@@ -334,7 +390,7 @@ assert.equal(powMod(state.B, inverseB, 29), state.b);
 console.log(JSON.stringify({
   status: "PASS",
   classification:
-    "prospective p28 local holdout: committed HERE -> GP0 48 -> p50[48]=4D -> literal fourth-D self-index at p28 offset48 -> unique exact printed-fragment center -> fixed centered H = GCD -> gcd(b,p-1)=1 and b^-1 mod(p-1)=3",
+    "prospective p28 local holdout with solved-page transfer: committed HERE -> GP0 48 -> p50[48]=4D -> literal fourth-D self-index at p28 offset48 -> unique exact printed-fragment center -> fixed centered H = GCD -> gcd(b,p-1)=1 and b^-1 mod(p-1)=3; the nX current-page self-index semantics independently transfer on solved p56 as IS -> GP0 25 -> 3I -> third I at rune offset25",
   chronology:
     "HERE was committed before the 4D/GCD continuation was inspected in this invocation",
   here: {
@@ -361,6 +417,8 @@ console.log(JSON.stringify({
     exactFragmentCenterSelfIndexes: selfIndexes.filter((row) => row.exactCenter).length,
     centered3Consumers: centeredRows.length,
     gcdOutputs: centeredRows.filter((row) => row.centered3Text === "GCD").length,
+    solvedCompatibleWordEvents: solvedSelfIndexEvents.length,
+    solvedSelfIndexHits: solvedSelfIndexEvents.filter((row) => row.hit),
     allSelfIndexes: selfIndexes.map((row) => ({
       page: row.page,
       address: row.address,
