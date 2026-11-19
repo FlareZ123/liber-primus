@@ -125,7 +125,7 @@ The p50 cell0 token and its value were public before this cross-check was formul
 
 The result does not license new p50 pointer walks, alternate radices, or unknown-page decoding. Its useful consequence is narrower: the **THE ORIGIN** prefix has a separately typed manuscript/source consumer, while the later p23→p33 state handoff extends that prefix to **THE ORIGINAL**.
 
-The natural compositional phrase with the independently recovered p28 candidate `READ OUT` is `READ OUT THE ORIGIN`, but source order between those two candidate instructions is not yet established. Do not use that English composition to select a new receiver without a separate ordering clue.
+The later p23 state route extends the hidden phrase to **THE ORIGINAL**. Its natural English composition with the independently recovered p28 candidate is therefore `READ OUT THE ORIGINAL`. No source order currently binds those two phrases into one instruction, so do not use that English composition to select a receiver without a separate ordering clue. The shorter `READ OUT THE ORIGIN` remains a prefix-level reading only.
 
 ## Reproduction
 
