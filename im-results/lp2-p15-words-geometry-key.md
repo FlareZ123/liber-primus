@@ -234,4 +234,4 @@ A simple unchanged period-5 running-key interpretation is not implied. The surro
 
 `sims/lp2_p15_words_geometry_key_sft.cjs`
 
-The SFT reconstructs the authenticated source indices, p15 red geometry, the K=2 skeleton and midpoints, the state-key equality, the H shell, the exact p15 word15 inverse, all60 key permutations under both signs, and the complete manuscript-wide five-rune receiver charge.
+The SFT reconstructs the authenticated source indices, p15 red geometry, the K=2 skeleton and midpoints, charges the full 43-index same-page/local-word residual family and verifies the unique p8-p15 longest run, checks the state-key equality and H shell, reproduces the exact p15 word15 inverse, exhausts all60 key permutations under both signs, and performs the complete manuscript-wide five-rune receiver charge. The initial Windows Node22 version passed as run **44462102283**; a rerun of the strengthened residual-corridor version supersedes it.
