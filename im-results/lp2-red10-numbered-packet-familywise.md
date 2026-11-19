@@ -162,3 +162,5 @@ The result supports a typed interpretation of the numbered packet as navigation 
 `sims/lp2_red10_numbered_packet_familywise_sft.cjs`
 
 The SFT verifies the complete visible-number census, all280 arithmetic controls, the unique packet bracketing geometry, the exact authenticated-source readout, the frozen section-n/word-n length selection, solved p56 serialization, GP0=32 consequence, and the independent SEEKS depth-p p32 control.
+
+Windows Node22 generic-runner reproduction PASS: **44463236057**.
