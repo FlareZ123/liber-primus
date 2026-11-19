@@ -54,6 +54,23 @@ Concatenate the two source-derived pairs:
 
 This exactly reproduces the previously published ROAD key without reading the p0 ciphertext.
 
+### Independent p38 checksum
+
+The same first pair is present in a manuscript object selected independently before this construction. The frozen p38 FOUND continuation selects offsets54..56, whose original values are `[5,12,19]=[g,K*a,B]`. Reversing its center/first coordinates gives
+
+```text
+[K*a,g] = [12,5] = H(index(ROAD),index(PATHS)).
+```
+
+The direction graph has six total cycle nodes, `a=6`, so its first packet coordinate also gives `a-g=1`. PATHS has graph depth4, and the p38 packet is independently known to be the final word of numbered section4 immediately before the printed `5-` marker. Therefore the complete ROAD key has a second source-side spelling:
+
+```text
+[K*a, g, a-g, depth(PATHS)]
+= [12,5,1,4],
+```
+
+with the terminal `4` also echoed by the original section boundary. This p38 agreement was recognized after the ROAD key result and is corroboration rather than an independent discovery probability.
+
 ## Exact original-cipher consequence
 
 The independently selected p0 receiver at offsets105..108 is:
@@ -146,4 +163,4 @@ Keep ROAD itself at candidate level for now. The construction was found after th
 node sims/lp2_road_paths_signed_index_depth_key_sft.cjs
 ```
 
-The SFT rebuilds the authenticated source words, p50 direction graph, all same-GP0 source collisions, the complete unknown four-rune word census, the exact p0 ROAD replay, the direct-offset rival, and the 464-key nearby convention audit from repository resources.
+The SFT rebuilds the authenticated source words, p50 direction graph, all same-GP0 source collisions, the independently selected p38 state packet checksum, the complete unknown four-rune word census, the exact p0 ROAD replay, the direct-offset rival, and the 464-key nearby convention audit from repository resources. Windows / Node.js 22 reproduction passed first on run 44450234079 before the p38 checksum was added; rerun the current SFT for the final combined checkpoint.
