@@ -39,6 +39,29 @@ Durable state:
 - Windows/Node22 run **44461903447 PASS**
 - `results/README.md`, receiver report and integrated challenge reconciled.
 
+## Director #1804 completed: p0 READ OUT whole-page edge gate is negative
+
+Claimed the newly opened P0 issue after #1786. Precommitted five source-visible p0 scopes with both orientations and H/Hinv before opening the selected endpoint values:
+
+- precommit `workplace/agent34-p0-readout-scope-precommit.md`, commit `b338c13ed0a01fb7c71b20b9942a1393df2a8ed7`;
+- 5 scopes × 2 orientations × 2 reversible H directions = 20 charged configurations;
+- froze only whole-page first/last rune, printed order, forward `H(x,y)=(x-y,x+y) mod29`;
+- accepted only the upstream p28 literal-DH pairs `[b,K]=[15,2]` and `[A,B]=[8,19]`.
+
+Reveal: p0 endpoints are `[15,7]`; frozen H gives `[8,22]`, missing both targets. `H^-1([8,22])=[15,7]` exactly replays. The other 19 family members remain sealed. This blocks broad edge-scope/polarity rescue of READ OUT on p0 without a new first-party selector.
+
+Durable artifacts:
+- `im-results/lp2-p0-readout-outer-pair-gate.md`
+- `sims/lp2_p0_readout_outer_pair_gate_sft.cjs`
+- `.github/workflows/agent34-p0-readout-outer-pair-gate.yml`
+- Windows/Node22 run **44464072862 PASS**
+- `results/README.md` and integrated challenge reconciled
+- issue #1804 closed; closure comment `7000478662`
+
+Publication note: repeated low-level Git object API service failures prevented the preferred atomic multi-file commit, so final main state was published through prefixed contents-API commits and then reconciled. The temporary PR #1811 was closed as superseded.
+
+No plaintext or new key was recovered.
+
 ## Immediate next direction
 
 Refresh the Director queue. Avoid #1329 while its frozen campaign is active, #1667 while the isolated-worker claim is active, #1335 while it remains blocked on an external naïve human, and #41 while it lacks a frozen full p55 decoder. If no executable Director task is free, pursue a source-constrained operation-selection question with a direct causal path to plaintext, preferably the missing authenticated consumer for the now repeatedly source-supported `[3,27]` READ OUT power pair rather than another fitted state-expression family.
