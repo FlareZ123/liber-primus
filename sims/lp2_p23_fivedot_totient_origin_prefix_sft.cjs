@@ -81,6 +81,7 @@ assert.equal(spell([2, 8, 5, 3].map(totientPrimeOrdinal)), "THEIR");
 
 const p7 = pageLines(7);
 const p23 = pageLines(23);
+const p56 = pageLines(56);
 assert.equal(p7.length, 10);
 assert.equal(p23.length, 10);
 assert.deepEqual(p7[9].lens, [2, 4, 3, 2, 3]);
@@ -117,6 +118,35 @@ assert.deepEqual(
   [[23, 1]]
 );
 
+/**
+ * The stencil contributes d=5. For its adjacent text line, append d and d*m,
+ * where m is that line's printed word count.
+ * @param {{lens:number[]}} row
+ * @returns {{cardinals:number[],text:string}}
+ */
+function motifCardinalExtension(row) {
+  const dotCount = 5;
+  const wordCount = row.lens.length;
+  const cardinals = [...row.lens, dotCount, dotCount * wordCount];
+  return { cardinals, text: spell(cardinals.map(totientPrimeOrdinal)) };
+}
+
+const motifControls = {
+  p7: motifCardinalExtension(p7.at(-1)),
+  p23: motifCardinalExtension(p23[0]),
+  p56: motifCardinalExtension(p56.at(-1))
+};
+assert.equal(motifControls.p7.text, "THGRTHRIN");
+assert.equal(motifControls.p23.text, "THEORIGIN");
+assert.equal(motifControls.p56.text, "THTHGRRGEOAE");
+assert.deepEqual(motifControls.p23.cardinals, [2, 6, 3, 5, 4, 5, 25]);
+
+const originHits = allLines
+  .filter((row) => row.lens.length === 5)
+  .filter((row) => motifCardinalExtension(row).text === "THEORIGIN")
+  .map((row) => [row.page, row.line]);
+assert.deepEqual(originHits, [[23, 1]]);
+
 const nCardinals = [];
 for (let cardinal = 1; cardinal <= 300; cardinal += 1) {
   if (totientPrimeOrdinal(cardinal) === corpus.translit.indexOf("N")) nCardinals.push(cardinal);
@@ -138,12 +168,21 @@ console.log(JSON.stringify({
     fullFirstLineLengths: p23[0].lens,
     fullFirstLineOutput: p23[0].text,
     dhTypedLengths: ["K", "a", "e", "g", "q"],
+    dotCount: 5,
+    wordCount: p23[0].lens.length,
+    extendedCardinals: motifControls.p23.cardinals,
+    candidateInstruction: motifControls.p23.text,
     uniqueAcross604Lines: true
   },
-  unresolvedContinuation: {
-    neededTransliteration: "N",
+  matchedMotifControls: {
+    p7TerminalAdjacent: motifControls.p7,
+    p23InitialAdjacent: motifControls.p23,
+    p56TerminalAdjacent: motifControls.p56
+  },
+  chronologyCaveat: "THEORIG was observed before the 5x5=25 completion. Treat THE ORIGIN as a source-constrained candidate instruction, not a blind plaintext probability.",
+  independentEchoes: {
     smallestCardinalMappingToN: 25,
     p23Unique25RuneLine: [9],
-    decision: "Do not append N until a source-visible rule independently selects cardinal 25."
+    signed2016SecondTheirPosition: 25
   }
 }, null, 2));
