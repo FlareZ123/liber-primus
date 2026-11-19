@@ -1,0 +1,219 @@
+# P28 THE selects the authenticated 2016 direction-word scaffold
+
+**Agent17, 19 November 2026. Classification: strong retrospective cross-source bridge. The calibrated p28 DH state and GP29 modulus generate exactly the six one-based word positions occupied by `THE` in the authenticated 2016 signed message. Their following words are `PATH DEVOTED WAY MAP ROAD DIRECTION`. This materially strengthens the relationship between the p28 `READ OUT -> HERE -> THE` candidate and the first-party 2016 clue, while remaining retrospective and without a new unknown-page decipherment.**
+
+## Result
+
+The local p28 route now has the calibrated state
+
+```text
+p=23, g=5, a=6, b=15, A=8, B=19, K=2, e=3
+```
+
+and the independently charged H-coordinate continuation predicts
+
+```text
+HERE -> THE
+```
+
+with `THE=[2,18]=[K,p-g]`.
+
+The authenticated 2016 clear-signed body contains 43 natural-language alphabetic words after excluding the hexadecimal OpenPGP key ID. The exact word `THE`, case-insensitive, occurs six times at one-based positions
+
+```text
+2, 8, 13, 18, 23, 29.
+```
+
+The words immediately following those six occurrences are
+
+```text
+PATH
+DEVOTED
+WAY
+MAP
+ROAD
+DIRECTION
+```
+
+in source order.
+
+The p28 state reproduces the complete six-position vector without a word search:
+
+```text
+start = K = 2
+steps = a, g, g, g, a
+      = 6, 5, 5, 5, 6
+```
+
+where the number of middle `g` steps is exactly `e=3`.
+
+Thus
+
+```text
+2
+2+6       = 8
+8+5       = 13
+13+5      = 18
+18+5      = 23
+23+6      = 29
+```
+
+which is exactly the six-position `THE` vector. The endpoint `29` is also the GP alphabet modulus.
+
+The last four positions give a second compact state identity:
+
+```text
+13 = b-K
+18 = p-g
+23 = p
+29 = GP modulus
+```
+
+and their following words are exactly
+
+```text
+WAY MAP ROAD DIRECTION.
+```
+
+These are the four repeated `THE ...` objects in the signed instruction paragraph:
+
+```text
+Liber Primus is the WAY.
+Its words are the MAP,
+their meaning is the ROAD,
+and their numbers are the DIRECTION.
+```
+
+The earlier two `THE` followers are `PATH` and `DEVOTED`, from the preceding sentence.
+
+## Finite state-template charge
+
+The exact state route above was recognized after seeing the source structure, so its flexibility must be disclosed.
+
+Charge the following finite family:
+
+### Start value
+
+Every calibrated DH field, the inverse exponent, and the GP29 modulus:
+
+```text
+p,g,a,b,A,B,K,e,29
+```
+
+### Step roles
+
+Use either:
+
+```text
+two boundary a steps + e copies of g
+```
+
+or the role-swapped alternative:
+
+```text
+two boundary g steps + e copies of a.
+```
+
+### Step order
+
+Charge all ten distinct placements of the two boundary values among the five steps.
+
+### Direction
+
+Charge forward and reverse signed-word order.
+
+After rejecting out-of-range walks, this gives **140 valid descriptions** corresponding to **130 distinct six-position sets** within the 43-word source.
+
+Only one distinct position set selects the same source token at all six positions:
+
+```text
+2,8,13,18,23,29 -> THE THE THE THE THE THE.
+```
+
+It has two algebraically equivalent descriptions:
+
+1. start `K=2`, move forward with `a,g,g,g,a`;
+2. start `29`, move backward with the same symmetric step sequence.
+
+No role-swapped, reordered, or alternative-state start produces another repeated-token six-position set.
+
+## Exact matched null
+
+The signed source has exactly six `THE` tokens among 43 natural-language words.
+
+Under a uniform permutation of the 43-word multiset, preserving the six-token `THE` count, the `THE` position set is uniform over
+
+```text
+C(43,6) = 6,096,454
+```
+
+six-position sets.
+
+The charged family contains 130 distinct in-range position sets, so its exact fixed-multiset family rate is
+
+```text
+130 / 6,096,454
+= 0.0000213238712208769
+≈ 1 / 46,895.8.
+```
+
+This is a calibration of the disclosed family. It is not an unconditional discovery p-value because the family itself was formulated after the relationship was noticed.
+
+The important scientific point is narrower: after charging every start, both natural `a/g` role assignments, every step ordering, and both directions, the p28 state produces one repeated-token source set, and that token is exactly the independently recovered local candidate `THE`.
+
+## Relation to the p28 receiver
+
+The cross-source position pattern uses the same values already present in the p28 receiver evidence:
+
+- `K=2` is the shared DH secret and the predicted first H coordinate of `THE`;
+- `a=6` is the literal-DH line number;
+- `g=5` is both the DH generator and the selected receiver length;
+- `e=3` is the standard inverse exponent `b^-1 mod22`;
+- `b-K=13` is the selected receiver's center rune value;
+- `p-g=18` is its outer-H sum coordinate;
+- `p=23` is the DH modulus;
+- `29` is the GP alphabet modulus.
+
+The four later `THE` positions `[13,18,23,29]` therefore align directly with `[b-K,p-g,p,29]`, while the complete six-position pattern is generated by the more compact `K` start plus `a,g^e,a` step schedule.
+
+This makes the signed source a meaningful independent object for the p28 state. It is stronger than merely observing that both sources contain the common English word `THE`.
+
+## Interpretation
+
+A plausible human solve path is now:
+
+1. the p28 literal `DH` line yields the DH23 state;
+2. `READ OUT` and the fixed H map expose `HERE`;
+3. the charged DH recurrence and the uniquely typed next line select local candidate `THE`;
+4. the authenticated 2016 clue is then searched for that exact recovered word;
+5. all six `THE` positions are generated by the existing state values;
+6. reading the following signed words reveals the ordered scaffold
+   `PATH DEVOTED WAY MAP ROAD DIRECTION`.
+
+The semantic sequence is source-authenticated and contains the core 2016 instruction vocabulary. This can explain why the 2016 prose repeatedly places `THE` before those nouns.
+
+The bridge still stops short of a cipher. It does not specify whether `PATH`, `DEVOTED`, `WAY`, `MAP`, `ROAD`, or `DIRECTION` should be used as a key, address, operation, or stopping rule on unknown LP2 ciphertext. Existing repository work already shows that unconstrained signed-2016 word-map interpretations can overfit. Do not use this result to revive those branches wholesale.
+
+## Decision
+
+Promote the following as a **strong cross-source structural candidate**:
+
+```text
+p28 state + local THE
+    -> signed-2016 THE positions 2,8,13,18,23,29
+    -> PATH DEVOTED WAY MAP ROAD DIRECTION
+```
+
+Preserve the exact state-generated position rule and the 130-set family charge.
+
+The next high-value test must be prospective. Choose one consumer of the six authenticated follower words from source evidence before opening a new original LP2 target. A successful consumer should recover a key, operation, or unknown plaintext without selecting among those words after the output is seen.
+
+## Reproduction
+
+Run:
+
+```text
+node sims/lp2_p28_the_signed2016_direction_sft.cjs
+```
+
+The SFT reconstructs the p28 DH state, independently rechecks the local `THE` endpoint prediction, parses the authenticated 2016 cleartext, charges the full state-template family, and computes the exact fixed-multiset null.
