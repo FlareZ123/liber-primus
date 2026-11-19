@@ -91,6 +91,19 @@ function multiplicativeInverse(value, modulus) {
   return null;
 }
 
+/** @param {number} base @param {number} exponent @param {number} modulus */
+function modPow(base, exponent, modulus) {
+  let result = 1;
+  let value = base % modulus;
+  let power = exponent;
+  while (power > 0) {
+    if (power % 2 === 1) result = (result * value) % modulus;
+    value = (value * value) % modulus;
+    power = Math.floor(power / 2);
+  }
+  return result;
+}
+
 function physicalLines(page) {
   const parts = transcription.split(/^\s*%\s*$/m);
   return parts[page]
@@ -718,6 +731,147 @@ assert.deepEqual(directionCycles, [
   [22, 6, 24],
 ]);
 
+/**
+ * Classify all 43 authenticated words by the attractor reached through the
+ * first-29 direction graph. Values outside 0..28 cannot occur after one step.
+ *
+ * @param {number[]} values
+ */
+function directionTopology(values) {
+  const cycles = [];
+  const cycleKeys = new Set();
+  const rows = [];
+
+  for (let start = 0; start < values.length; start += 1) {
+    const order = [];
+    const position = new Map();
+    let cursor = start;
+
+    while (!position.has(cursor)) {
+      position.set(cursor, order.length);
+      order.push(cursor);
+      cursor = values[cursor];
+    }
+
+    const cycle = order.slice(position.get(cursor));
+    const rotations = cycle.map((_, offset) =>
+      cycle.slice(offset).concat(cycle.slice(0, offset))
+    );
+    rotations.sort((left, right) =>
+      left.join(",").localeCompare(right.join(","))
+    );
+    const canonical = rotations[0];
+    const key = canonical.join(",");
+    if (!cycleKeys.has(key)) {
+      cycleKeys.add(key);
+      cycles.push(canonical);
+    }
+
+    rows.push({
+      start,
+      depth: position.get(cursor),
+      entry: cursor,
+      cycleKey: key,
+    });
+  }
+
+  cycles.sort((left, right) =>
+    left.join(",").localeCompare(right.join(","))
+  );
+  const maxDepth = Math.max(...rows.map(row => row.depth));
+  const depthHistogram = Array.from({length: maxDepth + 1}, (_, depth) =>
+    rows.filter(row => row.depth === depth).length
+  );
+
+  return {cycles, rows, maxDepth, depthHistogram};
+}
+
+const topology = directionTopology(sequence);
+assert.deepEqual(topology.cycles, [
+  [0, 18, 23],
+  [22, 6, 24],
+]);
+assert.equal(topology.cycles.length, state.K);
+assert(topology.cycles.every(cycle => cycle.length === e));
+assert.equal(topology.maxDepth, state.g);
+assert.deepEqual(topology.depthHistogram, [
+  state.a,
+  state.K * state.g,
+  state.K * state.g,
+  state.a,
+  state.g + state.K,
+  state.K * state.K,
+]);
+assert.deepEqual(topology.depthHistogram, [6, 10, 10, 6, 7, 4]);
+
+const basinStats = topology.cycles.map(cycle => {
+  const key = cycle.join(",");
+  const members = topology.rows.filter(row => row.cycleKey === key);
+  const maxDepth = Math.max(...members.map(row => row.depth));
+  return {
+    cycle,
+    basinSize: members.length,
+    maxDepth,
+    depthHistogram: Array.from({length: topology.maxDepth + 1}, (_, depth) =>
+      members.filter(row => row.depth === depth).length
+    ),
+    entryCounts: cycle.map(node => ({
+      node,
+      word: words[node],
+      count: members.filter(row => row.entry === node).length,
+    })),
+  };
+});
+assert.deepEqual(basinStats, [
+  {
+    cycle: [0, 18, 23],
+    basinSize: 29,
+    maxDepth: 5,
+    depthHistogram: [3, 6, 7, 4, 5, 4],
+    entryCounts: [
+      {node: 0, word: "HELLO", count: 16},
+      {node: 18, word: "MAP", count: 10},
+      {node: 23, word: "ROAD", count: 3},
+    ],
+  },
+  {
+    cycle: [22, 6, 24],
+    basinSize: 14,
+    maxDepth: 4,
+    depthHistogram: [3, 4, 3, 2, 2, 0],
+    entryCounts: [
+      {node: 22, word: "THE", count: 7},
+      {node: 6, word: "SEEKS", count: 2},
+      {node: 24, word: "AND", count: 5},
+    ],
+  },
+]);
+
+// The topology reconstructs the DH state from source-selected graph counts.
+const topologyState = Object.freeze({
+  K: topology.cycles.length,
+  e: topology.cycles[0].length,
+  a: topology.cycles.reduce((sum, cycle) => sum + cycle.length, 0),
+  g: topology.maxDepth,
+  p: 29 - topology.cycles.reduce((sum, cycle) => sum + cycle.length, 0),
+  b: 29 - basinStats[1].basinSize,
+});
+assert.deepEqual(topologyState, {
+  K: state.K,
+  e,
+  a: state.a,
+  g: state.g,
+  p: state.p,
+  b: state.b,
+});
+assert.equal(modPow(topologyState.g, topologyState.a, topologyState.p), state.A);
+assert.equal(modPow(topologyState.g, topologyState.b, topologyState.p), state.B);
+assert.equal(
+  modPow(state.A, topologyState.b, topologyState.p),
+  state.K
+);
+assert.equal(multiplicativeInverse(topologyState.b, topologyState.p - 1), e);
+
 // Charge the exact HELLO -> MAP -> ROAD -> HELLO cycle across all 128
 // arithmetic conventions x GP/Latin word-length definitions.
 const directionFamilyHits = [];
@@ -760,6 +914,60 @@ assert.ok(directionFamilyHits.every(hit =>
 // The eight syntactic forms collapse numerically because these three source
 // words have identical GP/Latin lengths, the relevant low digits are below59
 // in both alphabets, and the paired origin shifts cancel.
+
+// Stronger topology charge across all 128 arithmetic conventions x both
+// GP-rune and Latin-letter length definitions. Only the two algebraically
+// identical syntactic forms of the frozen GP/base60/low operation produce
+// exactly two 3-cycles with maximum tail depth5.
+const topologyFamilyHits = [];
+for (const wordLengths of [
+  {name: "GP", values: lengths},
+  {name: "Latin", values: latinLengths},
+]) {
+  for (const mode of modes) {
+    /** @type {Mode} */
+    const base = {
+      addressOrigin: mode.addressOrigin,
+      radix: mode.radix,
+      component: mode.component,
+      digitOrigin: mode.digitOrigin,
+      numberOrigin: mode.numberOrigin,
+      indexSign: mode.indexSign,
+      lengthSign: mode.lengthSign,
+    };
+    const values = derive(base, wordLengths.values);
+    if (!values) continue;
+    const candidateTopology = directionTopology(values);
+    if (
+      candidateTopology.cycles.length === 2 &&
+      candidateTopology.cycles.every(cycle => cycle.length === 3) &&
+      candidateTopology.maxDepth === 5
+    ) {
+      topologyFamilyHits.push({
+        lengthType: wordLengths.name,
+        ...base,
+        cycles: candidateTopology.cycles,
+        depthHistogram: candidateTopology.depthHistogram,
+      });
+    }
+  }
+}
+assert.equal(topologyFamilyHits.length, 2);
+assert.ok(topologyFamilyHits.every(hit =>
+  hit.lengthType === "GP" &&
+  hit.addressOrigin === 0 &&
+  hit.radix === "base60" &&
+  hit.component === "low" &&
+  hit.indexSign === -1 &&
+  hit.lengthSign === -1 &&
+  JSON.stringify(hit.cycles) === JSON.stringify(topology.cycles) &&
+  JSON.stringify(hit.depthHistogram) ===
+    JSON.stringify(topology.depthHistogram)
+));
+assert.deepEqual(
+  topologyFamilyHits.map(hit => [hit.digitOrigin, hit.numberOrigin]).sort(),
+  [[0, 0], [1, 1]]
+);
 
 // Exact labeled-token multiset calibration for the three fixed cycle nodes.
 const directionPositions = [0, 18, 23];
@@ -963,6 +1171,12 @@ console.log(JSON.stringify({
       .filter(row => row.exact).length,
   },
   signedWordDirectionGraph: {
+    topologyState,
+    cycles: topology.cycles,
+    maximumDepth: topology.maxDepth,
+    depthHistogram: topology.depthHistogram,
+    basinStats,
+    topologyFamilyHits: topologyFamilyHits.length,
     firstWordCycle: [0, 18, 23, 0],
     firstWordCycleWords: ["HELLO", "MAP", "ROAD", "HELLO"],
     allCycles: directionCycles.map(cycle => ({
