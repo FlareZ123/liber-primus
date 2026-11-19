@@ -291,6 +291,74 @@ assert.deepEqual(allDhFourRuns, [{
   residues: [6, 5, 2, 15],
 }]);
 
+// Geometric control: the ROAD-number cells105..108 are a straight inward
+// ray through depths0,1,2,3 of the physical 32x8 table. Enumerate every
+// comparable four-layer normal ray from all four sides. This is the only ray
+// whose four byte residues all belong to the independently reconstructed DH
+// state set.
+const tableRows = table.pages.reduce((sum, page) => sum + page.rows, 0);
+const tableColumns = table.pages[0].cols;
+assert.deepEqual([tableRows, tableColumns], [32, 8]);
+
+/** @param {number} row @param {number} column @returns {number} */
+function oneBasedCell(row, column) {
+  return row * tableColumns + column + 1;
+}
+
+const inwardRays = [];
+for (let row = 3; row <= tableRows - 4; row += 1) {
+  inwardRays.push({
+    side: "left",
+    cells: [0, 1, 2, 3].map((column) => oneBasedCell(row, column)),
+  });
+  inwardRays.push({
+    side: "right",
+    cells: [7, 6, 5, 4].map((column) => oneBasedCell(row, column)),
+  });
+}
+for (let column = 3; column <= tableColumns - 4; column += 1) {
+  inwardRays.push({
+    side: "top",
+    cells: [0, 1, 2, 3].map((row) => oneBasedCell(row, column)),
+  });
+  inwardRays.push({
+    side: "bottom",
+    cells: [31, 30, 29, 28].map((row) => oneBasedCell(row, column)),
+  });
+}
+assert.equal(inwardRays.length, 56);
+
+const dhInwardRays = inwardRays.map((ray) => ({
+  ...ray,
+  residues: ray.cells.map((cell) => table.bytes[cell - 1] % 29),
+})).filter((ray) => ray.residues.every((value) => dhValues.has(value)));
+
+assert.deepEqual(dhInwardRays, [{
+  side: "left",
+  cells: [105, 106, 107, 108],
+  residues: [6, 5, 2, 15],
+}]);
+
+// The second cell on that unique inward ray is zero-based address105, already
+// selected by GP0(DIUINITY)=105 and visibly printed as literal token13.
+assert.equal(table.pages.flatMap((page) => page.tokens)[105], "13");
+assert.equal(gp0("DIUINITY"), 105);
+
+// A direct reuse of the established number->p50-byte pointer grammar does not
+// supply the ROAD additive key. Freeze this negative so the ray is treated as
+// a navigation/state object rather than silently promoted to a keystream.
+const requiredRoadKey = [12, 5, 1, 4];
+const zeroBasedPointerKey = roadTableResidues.map(
+  (address) => table.bytes[address] % 29
+);
+const oneBasedPointerKey = roadTableResidues.map(
+  (cell) => table.bytes[cell - 1] % 29
+);
+assert.deepEqual(zeroBasedPointerKey, [10, 5, 22, 9]);
+assert.deepEqual(oneBasedPointerKey, [5, 10, 28, 9]);
+assert.notDeepEqual(zeroBasedPointerKey, requiredRoadKey);
+assert.notDeepEqual(oneBasedPointerKey, requiredRoadKey);
+
 // Fixed earlier-image control from the same prime-ordinal program.
 assert.deepEqual([nthPrime(96), nthPrime(97)], [503, 509]);
 const controlWord = p0Words.find((word) => word.start <= 96 && word.end >= 97);
@@ -338,6 +406,16 @@ process.stdout.write(JSON.stringify({
       byteResiduesMod29: roadTableResidues,
       dhLabels: ["a", "g", "K", "b"],
       allDhFourRuns,
+      inwardRayCensus: {
+        comparableRays: inwardRays.length,
+        allDhRays: dhInwardRays,
+        divinityLandmark: {zeroBasedAddress: 105, token: "13"},
+      },
+      directPointerNegative: {
+        requiredRoadKey,
+        zeroBasedPointerKey,
+        oneBasedPointerKey,
+      },
     },
   },
   earlierImageControl: {
