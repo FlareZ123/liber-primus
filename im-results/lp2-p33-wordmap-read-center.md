@@ -41,6 +41,56 @@ e^q = 3^4 = 81 runes
 
 so the new route selects that body and identifies its visible printed **words** as the map object before this plaintext extraction.
 
+## State-selected word map recovers FIND THE DIVINITY WITHIN
+
+The same `WORDS ARE THE MAP` route yields a second result before the nine-rune value transform is applied.
+
+The p33 state packet already fixes:
+
+```text
+e = 3
+q = 4
+A = 8
+K = 2
+H(e,q) = H(3,4) = [28,7]
+```
+
+Use only those fixed numbers as **one-based word positions** in the already selected 21-word / 81-rune upper body:
+
+```text
+word e=3          -> GP0 = 94  = TUNNELNG
+word H(e,q)[1]=7  -> GP0 = 20  = THE
+word e²=9         -> GP0 = 105 = DIVINITY
+word A+K=10       -> GP0 = 38  = WITHIN
+```
+
+The `THE` output has the independently fixed p50 low-digit successor:
+
+```text
+THE(20) -> p50[20]=1g -> low60(g)=42 = GP0(FIND)
+```
+
+so the state-selected map reads:
+
+```text
+FIND THE DIVINITY WITHIN
+```
+
+while the independently selected state position `e=3` simultaneously carries **TUNNELNG**.
+
+This is not based on a broad vocabulary hit rate. Charge the exact state-selected tuple against every 21-consecutive-word window on unknown physical pages p0–p55:
+
+```text
+position3  = 94  TUNNELNG
+position7  = 20  THE
+position9  = 105 DIVINITY
+position10 = 38  WITHIN
+```
+
+There are **1,833** candidate windows. Exactly **one** satisfies the complete four-position tuple: the p33 upper body beginning at physical page word3 / rune offset10. Independently, the consecutive GP0 pair `[105,38]` = **DIVINITY WITHIN** occurs exactly once in the manuscript, at the same p33 body.
+
+The chronology remains important: the p33 state packet and p57 vocabulary were already known when this word-map reading was recognized. The fixed tuple census nevertheless makes the p33 receiver sharply discriminating and supplies an authored-looking instruction rather than a generic language score.
+
 ## Unique e² word
 
 The 21 complete printed words in the selected 81-rune upper body have lengths:
@@ -207,7 +257,7 @@ Do not manufacture OUT by changing exponent, word length, center rule, section, 
 
 ## Evidence boundary
 
-The strongest current interpretation is a real conditional plaintext recovery with a pre-existing downstream consumer because every moving part is source-selected before language scoring:
+The strongest current interpretation is a source-selected p33 word-map instruction plus a real conditional plaintext recovery with a pre-existing downstream consumer. The strongest moving parts are fixed before language scoring:
 
 - p33 is independently selected by the DH/p50 route;
 - risen THEIR selects WORDS ARE THE MAP and reconstructs `[e,q]=[3,4]`;
