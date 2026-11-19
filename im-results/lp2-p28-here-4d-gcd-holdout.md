@@ -1,6 +1,6 @@
 # P28 prospective HERE -> 4D -> GCD holdout
 
-**Agent 1, 19 November 2026. Classification: prospective source-local holdout for the p28 READ OUT -> HERE candidate. The continuation was inspected only after HERE had already been committed. It is strongly family-controlled but still introduces a new local ordinal/self-index reading of a digit-letter p50 token, so it does not by itself establish unknown-page plaintext.**
+**Agent 1, 19 November 2026. Classification: prospective source-local holdout with an independent solved-page transfer of the digit-letter ordinal/self-index consumer. The continuation was inspected only after HERE had already been committed. The mechanism now transfers on solved p56, while HERE itself remains candidate unknown-page plaintext rather than a complete page decryption.**
 
 ## Decision
 
@@ -52,7 +52,7 @@ The HERE checkpoint was already durable before this continuation was inspected:
 - HERE report commit: `8ed77aae...`
 - authoritative HERE synthesis commit: `daf0cb46...`
 
-The `4D / fourth-D / GCD` route was discovered later in the same Agent1 incarnation. It is therefore a genuinely **prospective consequence of the committed HERE candidate**, even though the new token interpretation itself is still a hypothesis.
+The `4D / fourth-D / GCD` route was discovered later in the same Agent1 incarnation. It is therefore a genuinely **prospective consequence of the committed HERE candidate**. The token interpretation was then tested independently on solved p56/p57 and transferred exactly once, closing the main semantic gate described in the first version of this report.
 
 ## Upstream source objects
 
@@ -114,6 +114,38 @@ prefix D-count through rune48 = 4
 ```
 
 So `HERE -> 48 -> 4D` is not a generic property of many p28 cells.
+
+## Solved p56/p57 control authenticates the ordinal self-index consumer
+
+After the p28 `4D` self-index had been frozen, the exact same consumer was applied to solved LP2 pages p56 and p57 without changing its semantics:
+
+```text
+plaintext word
+  -> GP0(word) = zero-based p50 address
+  -> require p50[address] = nX
+  -> at the same zero-based rune address on that solved page,
+     require the rune to be X and its prefix ordinal to be n
+```
+
+Across solved p56 and p57 there are **13** word events whose GP0-addressed p50 cell has compatible positive digit + single-GP-letter form. Exactly **one** satisfies the complete current-page self-index rule:
+
+```text
+solved p56 word15 = IS
+GP0(IS) = 10 + 15 = 25
+p50[25] = 3I
+solved p56 rune offset25 = I
+prefix I-count through offset25 = 3
+```
+
+Thus the same mechanism used by `HERE -> 48 -> 4D -> fourth D` independently transfers on known plaintext:
+
+```text
+IS -> 25 -> 3I -> third I at solved-p56 rune25
+```
+
+No compatible p57 event passes, and no other compatible p56 event passes.
+
+This solved-page control is especially useful because it was evaluated only after the p28 self-index rule had been fixed. It does not prove that HERE is plaintext, but it removes the earlier objection that `nX -> nth X at the current-page address` was an interpretation invented solely for `4D`.
 
 ## Exact fragment-center consequence
 
@@ -226,13 +258,14 @@ Its strongest points are:
 - the fixed centered H consumer uniquely emits GCD among the eight eligible self-index hits;
 - GCD immediately recovers the modular-invertibility condition and inverse exponent3 needed upstream.
 
-The remaining weakness is semantic. Existing solved/source evidence supports literal **digit-letter count** readings such as `2L -> WILL has two Ls`; it does not explicitly say `nX` means “the nth X on the current page.” HERE makes that ordinal/self-index reading plausible, and the finite family is selective, but it remains a newly introduced output interpretation.
+The original semantic weakness has now been materially reduced. The exact `nX -> nth X at the same current-page address` consumer transfers independently on solved p56 through `IS -> GP0 25 -> 3I -> third I at rune25`, with exactly one hit among 13 compatible solved p56/p57 word events. The remaining uncertainty is upstream: HERE and the page-period READ OUT formula were first recognized during this research rather than supplied as prior first-party instructions, and the method has not decrypted a continuous unknown page.
 
-Accordingly, promote this as a **prospective p28 local holdout and intended-route candidate**, not as a complete page decryption.
+Accordingly, preserve `READ OUT -> HERE -> 4D -> GCD -> inverse3` as a **strong source-constrained p28 local subpuzzle/intended-route candidate with solved-page mechanism transfer**, while keeping unknown-page plaintext status provisional.
 
 ## Reproduction
 
 - SFT: `sims/lp2_p28_here_4d_gcd_holdout_sft.cjs`
 - commit: `b88ba117604667712da89743723476ef36e83304`
-- Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44438478785
-- charged family: 77 compatible p50 cells × 55 pages = 4,235 trials; 11 self-indexes; 1 exact fragment-center self-index; 8 centered-three consumers; 1 GCD output.
+- Windows Node22 PASS with solved-page control: https://github.com/FlareZ123/liber-primus/actions/runs/44438903229
+- charged unknown family: 77 compatible p50 cells × 55 pages = 4,235 trials; 11 self-indexes; 1 exact fragment-center self-index; 8 centered-three consumers; 1 GCD output.
+- solved transfer family: 13 compatible p56/p57 word events; exactly 1 self-index hit, p56 `IS -> 25 -> 3I -> third I at rune25`.
