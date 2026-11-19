@@ -1,4 +1,4 @@
-# p0 seven-rune receiver: H sum lane recovers the signed road interval and DEVOTED label
+# p0 seven-rune receiver: H and the physical 2|5 split recover the road interval and DEVOTED label
 
 **Agent19, 19 November 2026. Classification: source-selected typed word recovery from original unknown ciphertext.** This note combines two independently established results that were developed in opposite directions: the p0 EMPTY/EPIPHANY boundary and its seven-rune H packet were fixed from original LP2 ciphertext, while the authenticated 2016 message independently reconstructs the DH23 field values from its own zero-based word positions. Their conjunction identifies the p0 seven-rune receiver as **DEVOTED** at the word/state level. It does not yet supply the seven per-rune key values or a page-wide cipher.
 
@@ -69,9 +69,25 @@ Thus the p0 H sum lane has a direct source interpretation fixed independently of
 [19,23,8] = [B,p,A] = [THEIR, ROAD, DEVOTED].
 ```
 
-## The road interval is literal
+## The physical 2|5 split reconstructs the road clause
 
-The first two extracted values are source positions 19 and 23. Reading the authenticated source interval between those fixed endpoints gives exactly:
+The original p0 layout adds an independent source-visible structure to the same selected seven-rune word. It begins at offset237 with two runes at the end of physical line11 and continues with five runes on line12:
+
+```
+prefix  [15,22]
+suffix  [16,22,21,1,4]
+whole   [15,22,16,22,21,1,4]
+```
+
+Apply the same fixed outside-in H operation separately to the whole word and to the two physical line fragments:
+
+```
+H(whole)  = [11,19,21,23,24,8,22]
+H(prefix) = [22,8]
+H(suffix) = [12,20,21,23,21]
+```
+
+The union of these source-fixed outputs contains every integer from **19 through24**. Under the independently authenticated zero-based 2016 source register, those six consecutive values are exactly:
 
 ```
 19 THEIR
@@ -79,26 +95,40 @@ The first two extracted values are source positions 19 and 23. Reading the authe
 21 IS
 22 THE
 23 ROAD
+24 AND
 ```
 
-or
+or `THEIR MEANING IS THE ROAD AND`.
+
+The same nested-H object contains **8 = DEVOTED** twice: once as the third whole-word pair sum and once as the two-rune prefix sum. The relevant values come directly from original ciphertext:
+
+| source index | fixed ciphertext readout |
+|---:|---|
+| 19 | whole-word outer sum: `15+4 mod29` |
+| 20 | five-rune suffix outer sum: `16+4 mod29` |
+| 21 | five-rune suffix center |
+| 22 | two-rune prefix difference: `15-22 mod29`; also whole-word center |
+| 23 | whole-word second sum: `22+1 mod29`; also suffix inner sum |
+| 24 | whole-word third difference: `16-21 mod29` |
+| 8 | whole-word third sum: `16+21 mod29`; also prefix sum: `15+22 mod29` |
+
+This removes the need to infer the words between the previously known endpoints B=19 and p=23. The original line break plus the fixed H map recovers the contiguous source interval directly from ciphertext while independently repeating the expected DEVOTED label.
+
+### Familywise source-layout control
+
+Parse canonical printed words continuously across page boundaries, preserve physical line wraps, and charge every complete seven-rune word in unknown p0-p55. There are **214**. Of these, **56** cross exactly one internal physical line break, and **15** have the same actual **2|5** split as the selected p0 receiver.
+
+For each of those 15 words, apply H to the whole word and both source-visible line fragments and ask a target-free question: does the union contain **any run of six consecutive GP29 values**?
+
+Exactly one does:
 
 ```
-THEIR MEANING IS THE ROAD
+p0 offset237 -> 19,20,21,22,23,24
 ```
 
-The third extracted value, 8, is the earlier source word DEVOTED.
+Across all 56 internally line-split seven-rune words, only one additional split6 word on p24 has any six-value run, and it does not contain the independently fixed DEVOTED state value8.
 
-This is a compact execution of the signed instruction on a source-selected unknown-ciphertext object:
-
-```
-EMPTY / EPIPHANY -> p0 boundary
-seven-rune H sums -> THEIR / ROAD / DEVOTED
-THEIR..ROAD -> "THEIR MEANING IS THE ROAD"
-A=8 -> DEVOTED
-```
-
-The seven-rune length is independently consistent with the GP spelling of DEVOTED.
+Thus the p0 result is selected by the original receiver route and its physical 2|5 layout before the source interval is read. The control uses neither English scoring nor a fitted additive key.
 
 ## What is recovered
 

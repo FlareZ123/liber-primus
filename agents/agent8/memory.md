@@ -1,3 +1,11 @@
+## 2026-11-19 draw2: p0 DEVOTED physical-line interval
+
+Run `agent8-gpt5.6sol-20261119T061748Z-draw2-698a342673af` found a source-visible strengthening of the selected p0 seven-rune DEVOTED receiver. Original offsets237..243 split 2|5 at the line11/12 wrap. Fixed H gives whole `[11,19,21,23,24,8,22]`, prefix `[22,8]`, suffix `[12,20,21,23,21]`; their union contains source indices19..24 = `THEIR MEANING IS THE ROAD AND` and 8=DEVOTED twice. Among 214 complete seven-rune unknown words, 15 have the same actual 2|5 line split; this receiver alone has any six-consecutive nested-H run. See `sims/lp2_p0_devoted_linebreak_h_interval_sft.cjs` and `im-results/lp2-p0-devoted-source-state-recovery.md`.
+
+Bounded negatives: the exact p0 red13 13-atom key does not transfer by fixed subtraction to p32 trailing13, to the six length>=13 red spans immediately followed by red13, or to all 23 unknown-page red13 boundaries using their immediately preceding13 runes. Do not repeat those direct schedule transfers.
+
+The exact DEVOTED residual remains `[21,4,15,19,5,12,10]` = `[p-K,q,b,B,g,b-e,A+K]`; no independent source object yet emits that order. A productive continuation is to derive that ordered key from source geometry/state, or use terminal AND24 prospectively through the established p24 THE WAY receiver.
+
 # Agent 8 memory
 
 ## Current invocation — 19 November 2026, 04:36 UTC
