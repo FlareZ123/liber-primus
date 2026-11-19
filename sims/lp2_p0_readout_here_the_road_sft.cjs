@@ -594,6 +594,147 @@ assert.deepEqual(manuscriptAndKeyHits, [{
   target: "AND",
 }]);
 
+// Plaintext AND has GP0 56. Under the already frozen base60 p50 map this
+// selects p0 254..256 exactly. Of the two authenticated AND occurrences,
+// only the second is followed by a three-rune word: YOU.
+const andGp0 = sum(andPlain);
+assert.equal(andGp0, 56);
+const andDirection60 = decodeToken(tableTokens[andGp0], alphabet60);
+const andDirection59 = decodeToken(tableTokens[andGp0], alphabet59);
+assert.equal(andDirection60, 254);
+assert.equal(andDirection59, 250);
+
+const youReceiver = p0.find((word) => word.start === andDirection60);
+assert.deepEqual(youReceiver, {
+  index: 56,
+  start: 254,
+  end: 256,
+  length: 3,
+  values: [19, 4, 21],
+});
+
+const andOccurrences = message
+  .map((row, index) => ({ row, index }))
+  .filter(({ row }) => row.word === "AND")
+  .map(({ index }) => ({
+    index,
+    next: message[index + 1].word,
+    nextLength: message[index + 1].gp.length,
+  }));
+assert.deepEqual(andOccurrences, [
+  { index: 24, next: "THEIR", nextLength: 4 },
+  { index: 31, next: "YOU", nextLength: 3 },
+]);
+assert.equal(p0.find((word) => word.start === andDirection59), undefined);
+
+// YOU key: HERE-line state lookup, one broad p28 source scalar, and DH-line
+// state lookup. Charge every state index in the two line slots, all eight
+// source scalars already used above, both signs, and all three-rune targets.
+// The target YOU is fixed by the AND navigation before this family is tested.
+const youFamilyHits = [];
+for (const [firstField, firstIndex] of Object.entries(dh)) {
+  for (const scalar of sourceScalars) {
+    for (const [thirdField, thirdIndex] of Object.entries(dh)) {
+      const key = [
+        hereLineValues[firstIndex - 1],
+        scalar.value,
+        dhLineValues[thirdIndex - 1],
+      ];
+      for (const sign of ["subtract", "add"]) {
+        const plain = youReceiver.values.map((value, index) =>
+          sign === "subtract"
+            ? mod29(value - key[index])
+            : mod29(value + key[index])
+        );
+        const matches = threeRuneTargets
+          .filter((target) =>
+            target.gp.every((value, index) => value === plain[index])
+          )
+          .map((target) => target.word);
+        if (matches.length) {
+          youFamilyHits.push({
+            fields: [firstField, scalar.name, thirdField],
+            key,
+            sign,
+            plain,
+            matches,
+          });
+        }
+      }
+    }
+  }
+}
+
+assert.equal(7 * sourceScalars.length * 7 * 2, 784);
+assert.deepEqual(youFamilyHits, [{
+  fields: ["B", "here-line-one-based", "p"],
+  key: [22, 1, 20],
+  sign: "subtract",
+  plain: gp("YOU"),
+  matches: ["YOU"],
+}]);
+
+const youKey = [
+  hereLineValues[dh.B - 1],
+  hereLineNumber,
+  dhLineValues[dh.p - 1],
+];
+assert.deepEqual(youKey, [22, 1, 20]);
+const youPlain = youReceiver.values.map((value, index) =>
+  mod29(value - youKey[index])
+);
+assert.deepEqual(youPlain, gp("YOU"));
+
+// Fixed-key manuscript transfer for YOU.
+const manuscriptYouKeyHits = [];
+let manuscriptThreeRuneWordsForYou = 0;
+for (let segment = 0; segment < physicalParts.length; segment += 1) {
+  const page = segment >= 50 ? segment + 1 : segment;
+  for (const word of parsePage(physicalParts[segment])) {
+    if (word.length !== 3) continue;
+    manuscriptThreeRuneWordsForYou += 1;
+    const plain = word.values.map((value, index) =>
+      mod29(value - youKey[index])
+    );
+    const target = threeRuneTargetByGp.get(plain.join(","));
+    if (target) {
+      manuscriptYouKeyHits.push({
+        page,
+        wordIndex: word.index,
+        start: word.start,
+        end: word.end,
+        ciphertext: word.values,
+        plaintext: plain,
+        target,
+      });
+    }
+  }
+}
+
+assert.equal(manuscriptThreeRuneWordsForYou, 726);
+assert.deepEqual(manuscriptYouKeyHits, [{
+  page: 0,
+  wordIndex: 56,
+  start: 254,
+  end: 256,
+  ciphertext: [19, 4, 21],
+  plaintext: gp("YOU"),
+  target: "YOU",
+}]);
+
+// Held-out closure onto the independently recovered WILL receiver.
+const youGp0 = sum(youPlain);
+assert.equal(youGp0, 30);
+assert.equal(decodeToken(tableTokens[youGp0], alphabet60), 141);
+const willReceiver = p0.find((word) => word.start === 141);
+assert.deepEqual(willReceiver, {
+  index: 32,
+  start: 141,
+  end: 144,
+  length: 4,
+  values: [19, 16, 9, 18],
+});
+
 console.log(JSON.stringify({
   status: "PASS: source-native READ OUT HERE recovers p0 THE ROAD",
   p28: {
@@ -642,7 +783,28 @@ console.log(JSON.stringify({
     allAuthenticatedHits: andFamilyHits,
     manuscriptThreeRuneWords,
     manuscriptAndKeyHits,
+    plaintextDirection: {
+      gp0: andGp0,
+      base60: andDirection60,
+      base59: andDirection59,
+      selectedSignedOccurrence: andOccurrences[1],
+    },
+  },
+  you: {
+    receiver: youReceiver,
+    key: youKey,
+    plaintext: youPlain,
+    text: spell(youPlain),
+    familyConfigs: 784,
+    familyHits: youFamilyHits,
+    manuscriptThreeRuneWords: manuscriptThreeRuneWordsForYou,
+    manuscriptYouKeyHits,
+    heldOutWillReceiver: {
+      gp0: youGp0,
+      p50Base60: 141,
+      receiver: willReceiver,
+    },
   },
   classification:
-    "strong source-constrained local plaintext chain: READ OUT fixes the packet ending102; unique [2,4] geometry selects THE ROAD; p28 DH/HERE source objects decrypt THE and ROAD; ROAD's untouched raw number prospectively selects the AND receiver; the charged HERE/DH state-index family then uniquely decrypts the fixed target AND.",
+    "strong source-constrained local plaintext/navigation chain: READ OUT fixes the packet ending102; unique geometry selects THE ROAD; p28 DH/HERE objects decrypt THE and ROAD; a weaker raw-ROAD direction selects AND, whose source family and fixed-key census are unique; plaintext AND then prospectively selects YOU, whose source family and census are unique; plaintext YOU closes onto the independently recovered WILL receiver.",
 }, null, 2));
