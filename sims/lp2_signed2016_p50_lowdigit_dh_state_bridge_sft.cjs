@@ -888,7 +888,19 @@ assert.equal(
   modPow(topologyStateFull.B, topologyStateFull.a, topologyStateFull.p),
   topologyStateFull.K
 );
-assert.deepEqual(topologyStateFull, state);
+assert.deepEqual(
+  {
+    p: topologyStateFull.p,
+    g: topologyStateFull.g,
+    a: topologyStateFull.a,
+    b: topologyStateFull.b,
+    A: topologyStateFull.A,
+    B: topologyStateFull.B,
+    K: topologyStateFull.K,
+  },
+  state
+);
+assert.equal(topologyStateFull.e, e);
 
 // Pure signed-source OPENPGP key derivation. No p28 value participates here.
 const cycle1Low = topology.cycles[0].map(index =>
