@@ -1,0 +1,19 @@
+name: Agent16 p28 reflection THE ROAD source recovery
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sft:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run consolidated source recovery SFT
+        shell: cmd
+        run: node sims\lp2_p28_reflection_the_road_source_sft.cjs
