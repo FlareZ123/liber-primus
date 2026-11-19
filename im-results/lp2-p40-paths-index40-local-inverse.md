@@ -53,7 +53,7 @@ PATHS = [13,24,2,15]  length4 GP0=54
 
 So length+GP0 alone cannot distinguish `ROAD` from `PATHS`. The authenticated source label at index40 supplies that distinction. This is unusually apt given the source contrast between `the road` and `false paths`.
 
-## 3.## 3. Exact local inverse
+## 3. Exact local inverse
 
 For the independently assigned PATHS target, the additive subtraction key is:
 
@@ -73,26 +73,35 @@ H([20,20,12,6]) = [14,8,3,26] = [-b,A,e,-e]
 
 Here `b=15`, `A=8`, `e=3`, and `-e=26 mod29`. The previous p28-derived label for the value26 is unnecessary. This local PATHS inverse has no dependency on the p28 HERE marker.
 
-## 4. Shared-shell family charge
+## 4. Conditioned cross-page H control
 
-The compact shell was recognized after PATHS was source-assigned, so its serialization remains retrospective. A later p33/p40 audit charges the common skeleton:
-
-```text
-p33 WILL  -> [ p,A,K,-K]
-p40 PATHS -> [-b,A,e,-e]
-common       [ x,A,y,-y]
-```
-
-Let `x` be either sign of one authenticated state value from `{p,g,a,b,A,B,K,e,q}` and `y` one authenticated state value. Collapsing duplicate numeric x values gives 16×9 = **144 shells**.
-
-Apply them across every complete four-rune word on p33 and p40, the nine distinct authenticated four-rune targets `LIES THEIR MEANING ROAD SEEK WILL GOOD LUCK PATHS`, and both additive directions. Exactly two hits survive:
+P33 WILL and p40 PATHS share:
 
 ```text
-p33 start132 -> WILL  subtract -> [ p,A,K,-K]
-p40 start71  -> PATHS subtract -> [-b,A,e,-e]
+p33 H(key) = [23,8,2,27]
+p40 H(key) = [14,8,3,26]
 ```
 
-On p40 alone, PATHS at71 is the sole hit. See `im-results/lp2-p33-p40-shared-shell-pair.md` and `sims/lp2_p33_p40_shared_shell_sft.cjs`.
+The earlier shorthand `[x,A,y,-y]` overstates one degree of evidence. Exact GP0 equality forces `sum(key)=0 mod29`, and canonical four-rune H therefore forces `H3=-H2`. That last-coordinate relation is automatic after the source-state receiver has been selected.
+
+The remaining common criterion is:
+
+```text
+H0 = signed authenticated state value
+H1 = A = 8
+H2 = authenticated state value
+```
+
+Across the complete 43×43 source-word/page charge there are **62** pairs with exactly one complete four-rune receiver at the target GP0. Exactly two satisfy this non-automatic H criterion:
+
+```text
+p33 start132 -> WILL
+p40 start71  -> PATHS
+```
+
+No non-identity pair survives. This is the appropriate familywise control for the shared H evidence.
+
+See `im-results/lp2-p33-p40-shared-shell-pair.md` and `sims/lp2_hshell_state_conditioned_crosspair_sft.cjs`.
 
 ## 5. Source-visible reconstruction of the shell magnitudes
 
@@ -120,7 +129,7 @@ At those endpoint pages, red-span lengths are p7=14, p31=none, p39=3, p40=8=A, p
 
 Cross-page typography adds another pairing: across all exact two-word red spans, only p33 start91 and p40 start0 have printed word lengths `[e,g]=[3,5]`. Signed indices33..40 also contain exactly `A=8` words with endpoint rise `g+K=7`.
 
- Manuscript-wide exact-key control
+## 6. Manuscript-wide exact-key control
 
 Hold the exact key `[20,20,12,6]` fixed.
 
@@ -161,9 +170,9 @@ subtract
 
 The target/page/receiver selection precedes the key-template construction through authenticated index40 and the unique p40 length4/GP0=54 state.
 
-The shell is `[-b,A,e,-e]`, and p33/p40 share the bounded `[x,A,y,-y]` family. The joint 144-shell charge selects only p33 WILL and p40 PATHS on the source-paired pages. The x/y field roles were still recognized after the local inverses.
+The shell is `[-b,A,e,-e]`. After removing the GP0-forced `H3=-H2` relation, the remaining H-state criterion selects only p33 WILL and p40 PATHS among 62 unique four-rune source-state page/target pairs in the full 43×43 control. The free coordinate-role labels were still recognized after the local inverses.
 
-Promotion to a reusable cipher mechanism requires a first-party rule fixing x/y before another receiver is opened, or a prospective transfer to a fresh source-assigned block.
+Promotion to a reusable cipher mechanism requires a first-party rule fixing those roles before another receiver is opened, or a prospective application in a different source-selected receiver family.
 
 ## Reproduction
 
@@ -171,6 +180,6 @@ Run:
 
 `node sims/lp2_p40_paths_index40_local_inverse_sft.cjs`
 
-The SFT reconstructs the signed source target, canonical p40 receiver, ROAD/PATHS state collision, exact reversible key, 1,694-case retrospective shell family, and manuscript-wide fixed-key control.
+The p40 SFT reconstructs the signed source target, canonical receiver, ROAD/PATHS state collision, exact reversible key, HERE-independent shell, and manuscript-wide fixed-key control. The separate conditioned-matrix SFT charges the shared H residue over all unique four-rune source-state page/target pairs.
 
-Windows Node22 verification: corrected p40 SFT run `44457839299` passed; joint shared-shell audit run `44457657138` passed.
+Windows Node22 verification: corrected p40 SFT run `44457839299` passed. The earlier paired-page run `44457657138` is superseded for familywise interpretation by `sims/lp2_hshell_state_conditioned_crosspair_sft.cjs`, which conditions out the automatic GP0 relation.

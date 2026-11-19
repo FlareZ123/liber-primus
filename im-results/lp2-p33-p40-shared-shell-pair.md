@@ -1,6 +1,6 @@
-# P33/P40 shared H-shell skeleton and HERE-independent PATHS inverse
+# P33/P40 conditioned H-shell residue and HERE-independent PATHS inverse
 
-**Agent2, 19 November 2026. Classification: strong cross-page mechanism compression, still retrospective at the field-role level. The p40 PATHS inverse no longer depends on the failed HERE continuation. P33 WILL and p40 PATHS are the only hits in a shared bounded shell family on the two source-paired pages.**
+**Agent2, 19 November 2026. Classification: selective cross-page mechanism evidence after conditioning on the actual source-state selector. The p40 PATHS inverse is independent of HERE. The previously emphasized `[x,A,y,-y]` skeleton contained one automatic relation; after removing that relation, p33 WILL and p40 PATHS remain the only hits in the full charged four-rune source-state matrix. Field-role interpretation remains retrospective.**
 
 ## Exact local inverses
 
@@ -19,57 +19,94 @@ Authenticated signed word40 is PATHS. Physical p40 has one complete four-rune wo
 cipher = [4,15,14,21]
 PATHS  = [13,24,2,15]
 key    = [20,20,12,6]
+H(key) = [14,8,3,26] = [-b,A,e,-e]
+```
+
+Because `e=3`, `-e mod29=26`. The earlier label `HERE[p]=26` was unnecessary. The p40 inverse therefore survives the negative HERE-continuation result.
+
+## Algebraic conditioning
+
+For a four-rune subtraction key
+
+```text
+k = cipher - target mod29
+```
+
+an exact GP0 state match means the cipher and target sums are equal, so:
+
+```text
+k0+k1+k2+k3 = 0 mod29
+```
+
+With canonical four-rune H
+
+```text
+H(k) = [k0-k3, k1-k2, k1+k2, k0+k3]
+```
+
+the last two coordinates obey
+
+```text
+H2 + H3 = sum(k) = 0
+=> H3 = -H2 mod29
+```
+
+Therefore the `y,-y` half of the earlier `[x,A,y,-y]` description is automatic after the receiver has already been selected by exact GP0. It cannot be counted as independent shell evidence.
+
+The non-automatic common residue is:
+
+```text
+H0 ∈ ±{p,g,a,b,A,B,K,e,q}
+H1 = A = 8
+H2 ∈ {p,g,a,b,A,B,K,e,q}
+```
+
+## Full conditioned 43×43 control
+
+Charge the actual selection family instead of only p33 and p40.
+
+For every authenticated signed source word and every physical page p0..p42:
+
+1. restrict to four-rune source targets;
+2. require exactly one complete four-rune page word with the target's exact GP0;
+3. form the subtraction key from that unique receiver;
+4. apply H;
+5. ignore `H3=-H2`, because it is forced by GP0 equality;
+6. score only the three non-automatic conditions above.
+
+There are **62** unique four-rune source-state page/target pairs in this matrix.
+
+Exactly **two** satisfy all three non-automatic H conditions:
+
+```text
+p33 / signed33 WILL  / start132
+H(key) = [23,8,2,27]
+
+p40 / signed40 PATHS / start71
 H(key) = [14,8,3,26]
 ```
 
-The last p40 coordinate had previously been written `HERE[p]=26`. That dependency is unnecessary:
+Both are identity page/index pairings. No non-identity member of the 62-pair charged family satisfies the residual criterion.
+
+This is the correct familywise evidence for the shared H structure. It is stronger than the earlier two-page 144-shell count because it conditions on the same state-selection step that produced the receivers and removes the algebraically automatic coordinate relation.
+
+## Canonical same-index census
+
+Printed `/` line breaks and whitespace are typographic wraps and do not terminate a word. Under that canonical segmentation, same-index source-state hits occur at:
 
 ```text
-e = 3
--e mod29 = 26
-
-H(key_p40) = [-b,A,e,-e]
-             [14,8,3,26]
+6, 11, 21, 33, 34, 38, 40
 ```
 
-Thus the p40 local inverse is independent of HERE.
+P33 WILL and p40 PATHS are the only four-rune identity cases. This prevents using another same-index four-rune page as an untouched transfer without an additional source selector.
 
-## Shared shell
+A temporary p36 GOOD experiment was invalidated because an experimental parser incorrectly split a printed line wrap into a word boundary. The apparent p36 four-rune fragment is part of a longer printed word and supplies no GOOD receiver.
 
-Both exact shells have the same form:
+## Source-visible pairing
 
-```text
-p33: [ p,A,K,-K]
-p40: [-b,A,e,-e]
+The p33/p40 relationship also has source/layout support that does not use their inverse keys.
 
-common skeleton: [x,A,y,-y]
-```
-
-Charge the bounded family without choosing a separate expression per coordinate:
-
-- `x`: either sign of one authenticated state value from `{p,g,a,b,A,B,K,e,q}`, collapsing duplicate numeric values;
-- second coordinate: fixed `A=8`;
-- `y`: one authenticated state value;
-- fourth coordinate: forced `-y mod29`.
-
-There are 16 distinct x values and 9 y values, hence **144 shells**.
-
-Apply all 144 shells to every complete four-rune word on p33 and p40, all nine distinct authenticated four-rune signed targets `LIES, THEIR, MEANING, ROAD, SEEK, WILL, GOOD, LUCK, PATHS`, and both additive directions.
-
-Exactly two hits survive:
-
-```text
-p33 start132 -> WILL   subtract -> [ p,A,K,-K]
-p40 start71  -> PATHS  subtract -> [-b,A,e,-e]
-```
-
-No other p33/p40 four-rune word, authenticated target, or direction is admitted by the shared family.
-
-## Source-visible pairing of p33 and p40
-
-The same two pages are paired before the four-rune inverse family is considered.
-
-Across the complete ink annotations, the only exact two-word red spans whose printed word lengths are `[e,g]=[3,5]` are:
+Across the complete ink annotations, the only exact two-word red spans with printed word lengths `[e,g]=[3,5]` are:
 
 ```text
 p33 start91 length8 -> [3,5]
@@ -89,27 +126,27 @@ The authenticated source interval from word33 through word40 is:
 40 PATHS
 ```
 
-It contains exactly **8=A** words, while the endpoint index rise is **7=g+K**.
+It contains exactly `A=8` words and the endpoint rise is `g+K=7`.
 
-These relations make the p33/p40 pairing source-visible rather than a post-hoc choice of arbitrary pages. The assignment of `x` and `y` to the particular endpoint state fields remains retrospective.
+These observations support treating p33 and p40 as a related pair. They do not fix the particular state labels assigned to H0 and H2 before the inverses are known.
 
 ## Evidence boundary
 
-Preserve the following:
+Preserve:
 
 ```text
-p33 WILL  shell [ p,A,K,-K]
-p40 PATHS shell [-b,A,e,-e]
-shared family [x,A,y,-y]
+p33 WILL  H(key)=[23,8,2,27]=[p,A,K,-K]
+p40 PATHS H(key)=[14,8,3,26]=[-b,A,e,-e]
 ```
 
-The joint 144-shell charge selects only those two local inverses on the source-paired pages. This materially strengthens the case that the two candidates share a mechanism.
+The correct shared evidence is the conditioned residual criterion over **62** unique four-rune source-state page/target pairs, with exactly those two hits.
 
-The result does not yet establish a reusable decoder for another page. A decisive promotion requires a first-party rule fixing `x` and `y` before a fresh receiver is opened, or a prospective third application selected independently of plaintext.
+The field-role labels `p,K,-b,e` were recognized after the local inverses. A decisive next promotion requires a first-party rule fixing the free H coordinates before another receiver is opened, or a genuinely prospective application in a different source-selected receiver family.
 
 ## Reproduction
 
-- Shared-family SFT: `sims/lp2_p33_p40_shared_shell_sft.cjs`
-- Shared-family Windows Node22 PASS: **44457657138**
-- Corrected p40 SFT: `sims/lp2_p40_paths_index40_local_inverse_sft.cjs`
-- HERE-independent p40 Windows Node22 PASS: **44457839299**
+- Conditioned full-matrix SFT: `sims/lp2_hshell_state_conditioned_crosspair_sft.cjs`
+- Canonical same-index audit: `sims/lp2_sameindex_hshell_state_conditioned_sft.cjs`
+- P33/p40 paired-page audit: `sims/lp2_p33_p40_shared_shell_sft.cjs`
+- Corrected p40 inverse SFT: `sims/lp2_p40_paths_index40_local_inverse_sft.cjs`
+- Direct repository calculation of the locked full-matrix script: **62 charged pairs, 2 residual hits, WILL33 and PATHS40 only**.
