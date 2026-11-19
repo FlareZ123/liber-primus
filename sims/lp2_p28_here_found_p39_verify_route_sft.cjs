@@ -116,7 +116,8 @@ assert.equal(cells[253], "0a");
 assert.equal(iterate(gp0("HERE"), K), 36);
 assert.equal(gp0("FOUND"), 36);
 
-// Source-side calibration of the same exact T^K operation.
+// Reproduce the pre-existing Agent13 source-side calibration of the exact
+// T^K operation. This operator predates the present HERE application.
 const adjacencyHits = [];
 for (let index = 0; index < signed.length - 1; index += 1) {
   if (iterate(signed[index].gp0, K) === signed[index + 1].gp0) {
@@ -158,6 +159,19 @@ assert.equal(signed[35 + rise].label, "VERIFY");
 // p50 address -> physical-page grammar.
 assert.equal(cells[35], "0d");
 assert.equal(T(35), 39);
+
+// The same value39 is already multiply source-typed: it is GP0(PATH),
+// signed source index39 is FALSE, and it is physical p39 under the existing
+// same-number page grammar. The established FOUND bridge also uses PATH39
+// to reach EPIPHANY5.
+assert.equal(gp0("PATH"), 39);
+assert.equal(signed[39].label, "FALSE");
+assert.equal(signed[38].label, "BEWARE");
+assert.equal(signed[40].label, "PATHS");
+assert.equal(signed[41].label, "VERIFY");
+assert.equal(cells[39], "05");
+assert.equal(T(39), 5);
+assert.equal(signed[5].label, "EPIPHANY");
 
 // Charge the same rise/address relation over the independently selected
 // source-word/page candidates that predate this route.
@@ -253,6 +267,13 @@ console.log(JSON.stringify({
   },
   pageConvergence: {
     p50AtFoundIndex: T(35),
+    foundHub: {
+      value: 39,
+      gp0Path: gp0("PATH"),
+      signedIndex39: signed[39].label,
+      pathToIndex: T(39),
+      pathToWord: signed[T(39)].label,
+    },
     risePageHits,
   },
   p39: {
