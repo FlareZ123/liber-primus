@@ -41,8 +41,20 @@ The SFT roundtrips genuine clear p57's initial six rune values `PARABL` through 
 
 The original 2013 signed Base29/DH protocol supports *radix-29 integer representation*, and actual Cicada stages use both ASCII/PGP armor and other ordinary binary carriers. None of those historical facts supplies a 2014 instruction to treat these physical 30 markers as five- or six-bit codewords, select a reversed polarity, specify an octet boundary, or map them to an LP2 key. The external short-string recognizer's minimum useful length is not an instruction to invent a shorter codec.
 
+## Proposed 5×6 matrix: source-selection audit
+
+The five red margin numerals are real and source-visible: original p36 (image53.jpg) places red **1** before a paragraph; p37 (image54.jpg) places red **2**, **3**, and **4** before three paragraphs; p38 (image55.jpg) places red **5** before a paragraph. Their typography and placement make them numbered passage markers. No five-row grid is drawn, and no original annotation calls them matrix rows.
+
+The authenticated 2016 signed payload has **43 alphabetic words** (excluding the numeric tokens `3301` and `7A35090F`). Its six occurrences of `THE` are at 1-based word positions **[2,8,13,18,23,29]**, followed by **[PATH, DEVOTED, WAY, MAP, ROAD, DIRECTION]**. The message does say “Its words are the map … their numbers are the direction,” but it never identifies those six occurrences as columns, the five paragraph numerals as rows, or the 30 red-dot events as cells. It supplies no 5×6 instruction, row/column order, or dot polarity.
+
+Thus **five paragraph numbers × six `THE` positions = 30** is a cardinality match, not a source-selected matrix. The 30-dot stream is independently fixed in page/position order, but no original feature binds each event to a row and column. The proposed row-major zero-cell columns 4,5,3 then spelling **MAP/ROAD/WAY** is downstream of the assumed matrix and cannot validate it. The three zero pages p36/p38/p49 do not establish the grid: two happen to be pages containing numbered passages, while p49 is not.
+
+The proposed p53 23/28 corroboration is independently false. Original p53's 51-rune red span has printed word lengths `[5,4,4,11,2,3,2,6,5,5,2,2]`, so its first six / last six totals are **29/22**, not 23/28; physical-line rune counts are **[1,24,22,4]**. See the [original p53 adjudication](lp2-p53-red-span-word-boundary-adjudication.md).
+
 ## Decision
 
-**Close this 30-bit short-message hypothesis under its natural direct GP29/base60 and standard Base64 receivers.** Its severe imbalance is a precise obstacle to those encodings, regardless of bit order. Retain the extracted marker topology as a source observation and revisit it only if independent Cicada-era evidence supplies a specific short codebook, symbol polarity, framing/padding rule, and named downstream consumer.
+**Retire the 5×6 matrix and `///53` locator interpretation.** Preserve the original 30-marker census, five red paragraph numerals, and six 2016 `THE` positions as separate source observations. Do not test MAP/ROAD/WAY or pages36/38/49 as held-out consequences: the required source-selected matrix is absent. The direct GP29/base60/Base64 codebook obstruction above remains in force.
+
+**Outcome:** no unknown plaintext, intended direction/key, or new destination is recovered. Reopen only if an original page feature or authenticated first-party instruction explicitly binds the five numbered passages, six word positions, and 30 dot events into a fixed reversible layout.
 
 **Reproducer:** [`sims/lp2_dot30_historical_shortcodes_sft.cjs`](../sims/lp2_dot30_historical_shortcodes_sft.cjs); Windows-compatible CommonJS, `node sims/lp2_dot30_historical_shortcodes_sft.cjs`, only canonical original source JSON inputs, full source and positive assertions, no file writes.
