@@ -31,6 +31,16 @@ const state = {
   q: 4,
   A: 8,
 };
+
+/** @param {number} value @returns {number} */
+function mod29(value) {
+  return ((value % 29) + 29) % 29;
+}
+
+/** @param {number} left @param {number} right @returns {[number,number]} */
+function H(left, right) {
+  return [mod29(left - right), mod29(left + right)];
+}
 assert.equal(state.p - state.g, 18);
 assert.equal(state.b + state.K, 17);
 assert.equal(state.K * state.g, 10);
@@ -155,11 +165,37 @@ assert.equal(span.length, state.B);
 assert.equal(centerPosition, 14);
 assert.equal(centerValue, state.K * state.g);
 
+// The p33-authenticated H orientation splits the B=19 span into two
+// nine-rune branches plus the fixed center. Their GP0 sums exactly label the
+// p57 instruction object and title.
+const circumferenceBranch = [];
+const parableBranch = [];
+for (let index = 0; index < (span.length - 1) / 2; index += 1) {
+  const [difference, sum] = H(span[index], span[span.length - 1 - index]);
+  circumferenceBranch.push(difference);
+  parableBranch.push(sum);
+}
+const circumferenceBranchGp0 = circumferenceBranch.reduce((sum, value) => sum + value, 0);
+const parableBranchGp0 = parableBranch.reduce((sum, value) => sum + value, 0);
+assert.equal(circumferenceBranchGp0, 131); // GP0(CIRCUMFERENCES)
+assert.equal(parableBranchGp0, 120); // GP0(PARABLE)
+
+// Existing p57/p50 word-graph edges converge on the same PARABLE number.
+const shedGp0 = 64;
+assert.equal(tableValue(shedGp0, alpha59, 59), parableBranchGp0);
+assert.equal(tableValue(circumferenceBranchGp0, alpha60, 60), parableBranchGp0);
+assert.equal(tableValue(parableBranchGp0, alpha60, 60), 42); // GP0(FIND)
+
 // Corpus-wide control in the correct source object: concatenate the strict
 // interiors of complete words on each page, then charge every 43-rune window
 // for the exact [D at g, D at p, center K*g] state geometry.
 let chargedWindows = 0;
 const geometryHits = [];
+let spanWindows = 0;
+let circumferenceOnlyHits = 0;
+let parableOnlyHits = 0;
+let branchPairHits = 0;
+const typedSpanHits = [];
 for (const page of pageInteriors) {
   for (let start = 0; start + 43 <= page.interior.length; start += 1) {
     chargedWindows += 1;
@@ -176,6 +212,38 @@ for (const page of pageInteriors) {
       });
     }
   }
+
+  for (let start = 0; start + state.B <= page.interior.length; start += 1) {
+    spanWindows += 1;
+    const candidate = page.interior.slice(start, start + state.B);
+    const differences = [];
+    const sums = [];
+    for (let index = 0; index < (state.B - 1) / 2; index += 1) {
+      const [difference, sum] = H(
+        candidate[index],
+        candidate[state.B - 1 - index]
+      );
+      differences.push(difference);
+      sums.push(sum);
+    }
+    const differenceGp0 = differences.reduce((total, value) => total + value, 0);
+    const sumGp0 = sums.reduce((total, value) => total + value, 0);
+    if (differenceGp0 === circumferenceBranchGp0) circumferenceOnlyHits += 1;
+    if (sumGp0 === parableBranchGp0) parableOnlyHits += 1;
+    if (
+      differenceGp0 === circumferenceBranchGp0
+      && sumGp0 === parableBranchGp0
+    ) {
+      branchPairHits += 1;
+      if (candidate[(state.B - 1) / 2] === state.K * state.g) {
+        typedSpanHits.push({
+          physicalPage: page.physicalPage,
+          start,
+          center: candidate[(state.B - 1) / 2],
+        });
+      }
+    }
+  }
 }
 
 assert.equal(chargedWindows, 4803);
@@ -183,6 +251,15 @@ assert.deepEqual(geometryHits, [{
   physicalPage: 55,
   start: 0,
   interiorLength: 43,
+}]);
+assert.equal(spanWindows, 6112);
+assert.equal(circumferenceOnlyHits, 77);
+assert.equal(parableOnlyHits, 93);
+assert.equal(branchPairHits, 3);
+assert.deepEqual(typedSpanHits, [{
+  physicalPage: 55,
+  start: state.g - 1,
+  center: state.K * state.g,
 }]);
 
 console.log(JSON.stringify({
@@ -205,6 +282,20 @@ console.log(JSON.stringify({
     inclusiveSpan: span.length,
     centerPosition,
     centerValue,
+    hSplit: {
+      differenceBranch: circumferenceBranch,
+      differenceGp0: circumferenceBranchGp0,
+      differenceLabel: "CIRCUMFERENCES",
+      sumBranch: parableBranch,
+      sumGp0: parableBranchGp0,
+      sumLabel: "PARABLE",
+      center: centerValue,
+      p50Convergence: {
+        shedBase59ToParable: tableValue(shedGp0, alpha59, 59),
+        circumferencesBase60ToParable: tableValue(circumferenceBranchGp0, alpha60, 60),
+        parableBase60ToFind: tableValue(parableBranchGp0, alpha60, 60),
+      },
+    },
     stateReading: {
       positions: ["g", "p"],
       gap: "p-g",
@@ -216,6 +307,11 @@ console.log(JSON.stringify({
   control: {
     strictInterior43Windows: chargedWindows,
     exactGeometryHits: geometryHits,
+    strictInterior19Windows: spanWindows,
+    circumferenceBranchHits: circumferenceOnlyHits,
+    parableBranchHits: parableOnlyHits,
+    orderedBranchPairHits: branchPairHits,
+    exactTypedSpanHits: typedSpanHits,
   },
-  decision: "P33's RISE road uniquely selects physical p55 by its 75/76 local/physical rune counts. After the source-instructed circumference peel, p55's 43-rune strict interior uniquely realizes D=p at positions [g,p]=[5,23], with gap p-g=18, b+K=17 strict-between runes, inclusive span B=19, and center rune K*g=10. This is a source-constrained state geometry, not yet a plaintext decryption.",
+  decision: "P33's RISE road uniquely selects physical p55 by its 75/76 local/physical rune counts. After the source-instructed circumference peel, p55's 43-rune strict interior uniquely realizes D=p at [g,p]=[5,23] with B=19 and center K*g=10. Applying the already fixed H orientation to that B-span yields ordered nine-rune branches whose GP0 sums are exactly CIRCUMFERENCES=131 and PARABLE=120; among 6,112 strict-interior 19-rune windows, only three have that ordered pair and only this p55 span also has the fixed center10. Existing p50 graph edges SHED64/base59 and CIRCUMFERENCES131/base60 both converge to PARABLE120. This is a source-constrained executable shed/circumference operation, not yet a full p55 plaintext decryption.",
 }, null, 2));
