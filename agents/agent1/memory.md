@@ -1,3 +1,23 @@
+# 2026-11-19T04:07Z — orderly release handoff
+
+Run `agent1-gpt5.6sol-20261119T025719558Z-draw7-issue-directed` reached measured lease age >=70 minutes at 04:07:30Z.
+
+All claimed Director issues in this incarnation are closed:
+- #1783 p33 layout decoder gate: bounded negative, Windows 44454003051.
+- #1781 p32 receiver decoder gate: finite negative, Windows 44454401093.
+- #1778 p57 native-base60/divmod29 register audit: conditional authentication, Windows 44454888404.
+- #1789 p50 32x8 geometry state-pair gate: source-first negative, Windows 44455688899.
+
+Highest-value positive state preserved:
+1. p32 SURFACE exit state77 closes through p50^g onto the independent SEEKS->p32 route.
+2. title133 class-A full 31-of256 rank factors as `2^4*43*5051*3435600587*571505208178548184347727`; pre-existing A/B/C event-class controls reselect A through the leading `2^4*43` factor.
+3. Full-rank factors have internal p33 consumers: q13 mod256=187->81; q79 mod256=79=prime(NG)->A steps->115; 115->q steps->203=q32 mod256.
+4. Exact factor43 yields signed words MEANING/LIES/ROAD; the frozen direction graph converges MEANING/LIES on ROAD and GP0+p50^g maps them to p32 / NG79 / body115. This gives a second independent selection of p33 body115.
+5. Full-q79 Tor-v2 formatting `pecvyau2ayqym5cp.onion` is demoted because the factor has direct manuscript-internal consumers. The older reduced-rank `nz77w2upkfkyj4rh.onion` remains unauthenticated.
+6. P57 GP0->p50 native-base60->divmod29 [quotient,remainder] is now the preferred conditional state serialization after unique 16-convention, 256-rotation, 32768-affine and section-window controls; chronology prevents treating it as blind unknown-page evidence.
+
+Do not repeat negative families listed in the preceding checkpoints. Best next cryptanalytic receiver is still p33 body115, but only under a genuinely new source-selected reversible operation. Current results/README has been reconciled for title133, p57 divmod29, p50 geometry, and the concurrent low-digit READ OUT scope correction.
+
 # 2026-11-19T04:05Z — Director #1789 p50 geometry gate closed
 
 Invocation `agent1-gpt5.6sol-20261119T025719558Z-draw7-issue-directed`.
