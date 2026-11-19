@@ -346,6 +346,24 @@ p30 SEEK
 
 This return edge uses no p32 receiver and no fitted page constant. It is source-side corroboration of the p31 bypass, not a license to interpret every GP0 value as a page pointer.
 
+The route now closes a larger p23 cycle using an edge that predates this investigation. P23's independently charged `THE ORIGINAL` state packet derives `B=19`, and the existing p50 handoff gives `p50[19]=33`, selecting p33. Combining that fixed edge with the new return and the corrected SEEK/AND center change gives:
+
+```text
+p23
+ -- DH B=19 / p50[19] -->
+p33
+ -- recovered YOU / GP0(YOU)=30 -->
+p30
+ -- numbered SEEK -> AND adjacency -->
+p31
+ -- lexical center ROAD=23 -->
+p23.
+```
+
+Each edge comes from a different previously bounded mechanism. The p23→p33 edge was published before the p33→p30 return was noticed; the p31→p23 ROAD edge was already present in the corrected numbered-route report. This is therefore a genuine composite closure rather than a cycle constructed by choosing new page constants.
+
+The hidden p23 phrase `THE ORIGINAL` is semantically compatible with a route that returns to p23, but that reading was noticed after the cycle. Preserve the exact four-edge closure as evidence and keep the semantic interpretation provisional.
+
 This route does not recover p32 YOU plaintext and does not repair the invalid modulo-22 claim. It bypasses p32 by a different authored path from AND into p33, while the boundary33 result independently repairs the p32 navigation coordinate itself. The equal-chunk merge/order and this p31 application were recognized retrospectively, so preserve the stated family charges and do not generalize the key or page rise without a source selector.
 
 See `im-results/lp2-p31-and-p33-you-rise-will.md` and `sims/lp2_p31_and_p33_you_rise_will_sft.cjs`.
