@@ -69,34 +69,64 @@ function pageValues(page) {
   return out;
 }
 
-function canonicalWords(page) {
-  const out = [];
+let canonicalPageMap = null;
+
+function buildCanonicalPageMap() {
+  if (canonicalPageMap) return canonicalPageMap;
+
+  const unknownSegments = parts.slice(0, 55);
+  const pages = unknownSegments.map((text, segment) => ({
+    page: segment >= 50 ? segment + 1 : segment,
+    words: [],
+    offset: 0,
+  }));
+
   let current = [];
-  let start = 0;
-  let runeOffset = 0;
+  let startSegment = 0;
+  let endSegment = 0;
+  let startOffset = 0;
+
   function flush() {
     if (!current.length) return;
-    out.push({
-      ordinal: out.length + 1,
-      start,
-      end: runeOffset - 1,
-      values: current.slice(),
-      length: current.length,
-    });
+    if (startSegment === endSegment) {
+      const page = pages[startSegment];
+      page.words.push({
+        ordinal: page.words.length + 1,
+        start: startOffset,
+        end: startOffset + current.length - 1,
+        values: current.slice(),
+        length: current.length,
+      });
+    }
     current = [];
   }
-  for (const character of [...physicalPart(page)]) {
-    const value = runeToValue.get(character);
-    if (value !== undefined) {
-      if (!current.length) start = runeOffset;
-      current.push(value);
-      runeOffset += 1;
-    } else if ((character === "-" || character === ".") && current.length) {
-      flush();
+
+  for (let segment = 0; segment < unknownSegments.length; segment += 1) {
+    for (const character of [...unknownSegments[segment]]) {
+      const value = runeToValue.get(character);
+      if (value !== undefined) {
+        if (!current.length) {
+          startSegment = segment;
+          startOffset = pages[segment].offset;
+        }
+        endSegment = segment;
+        current.push(value);
+        pages[segment].offset += 1;
+      } else if (character === "/" || /\s/u.test(character)) {
+        // Printed line and page wraps may continue a word.
+      } else {
+        flush();
+      }
     }
   }
   flush();
-  return out;
+
+  canonicalPageMap = new Map(pages.map((page) => [page.page, page.words]));
+  return canonicalPageMap;
+}
+
+function canonicalWords(page) {
+  return buildCanonicalPageMap().get(page) || [];
 }
 
 function spanWords(page) {
