@@ -159,7 +159,7 @@ const signedSources = [
   "resources/historical/cicada2016-4gq25-outguess.asc",
   "resources/historical/cicada2017-yEiTHhvF.asc",
 ];
-const semanticSelectorTerms = /\\b(?:a1z26|lead|atomic|periodic|chemical|chemistry|element)\\b/i;
+const semanticSelectorTerms = /\b(?:a1z26|lead|atomic|periodic|chemical|chemistry|element)\b/i;
 const sourceSemanticHits = signedSources.flatMap((relative) => {
   const match = read(relative).match(semanticSelectorTerms);
   return match ? [{relative, term: match[0]}] : [];
@@ -167,11 +167,11 @@ const sourceSemanticHits = signedSources.flatMap((relative) => {
 assert.deepEqual(sourceSemanticHits, []);
 assert.match(
   read("resources/historical/cicada2012-message-only-displayed.asc"),
-  /The encrypted message is a number\\./
+  /The encrypted message is a number\./
 );
 assert.match(
   read("resources/historical/cicada2016-4gq25-outguess.asc"),
-  /their numbers are the direction\\./
+  /their numbers are the direction\./
 );
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
