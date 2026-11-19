@@ -177,9 +177,43 @@ const B = mod(A - aMinusB, MOD);
 assert.equal(unit, q - e);
 assert.equal(unit, e - K);
 
-const p = large.square[e - 1][a - 1];
-const b = large.square[e - 1][g + K - 1];
+// Recover p and b from metadata plus the already established DH state grammar.
+// A = g^a mod p implies that p divides g^a - A.  Because B is a canonical
+// residue, p > B.  The state also fixes e as the inverse of b modulo p-1, so
+// e must possess some multiplicative inverse modulo p-1.  These constraints
+// select p=23 without reading an internal magic-square cell.
+const modulusGap = g ** a - A;
+assert.equal(modulusGap, 15617);
 
+const primeDivisors = [];
+for (let candidate = 2; candidate <= modulusGap; candidate += 1) {
+  if (modulusGap % candidate === 0 && isPrime(candidate)) {
+    primeDivisors.push(candidate);
+  }
+}
+assert.deepEqual(primeDivisors, [7, 23, 97]);
+
+const modulusCandidates = primeDivisors.filter((candidate) => {
+  if (candidate <= B) return false;
+  for (let secret = 1; secret < candidate - 1; secret += 1) {
+    if (mod(secret * e, candidate - 1) === 1) return true;
+  }
+  return false;
+});
+assert.deepEqual(modulusCandidates, [23]);
+const p = modulusCandidates[0];
+
+const secretCandidates = [];
+for (let secret = 1; secret < p - 1; secret += 1) {
+  if (mod(secret * e, p - 1) === 1) secretCandidates.push(secret);
+}
+assert.deepEqual(secretCandidates, [15]);
+const b = secretCandidates[0];
+
+// Only after p,b are fixed algebraically, inspect the state-addressed 7x7
+// cells.  They become independent internal checks rather than inputs.
+assert.equal(large.square[e - 1][a - 1], p);
+assert.equal(large.square[e - 1][g + K - 1], b);
 assert.equal(large.square[g - 1][unit - 1], b);
 assert.equal(large.square[g - 1][K - 1], p);
 
@@ -220,7 +254,10 @@ for (const item of meta) {
   );
 }
 console.log('Derived 7x7 axis:', axis.join(','));
-console.log('State-addressed p,b pair:', p, b, 'with rotated reverse', b, p);
+console.log('g^a-A factorization prime divisors:', JSON.stringify(primeDivisors));
+console.log('Metadata-only modulus candidates after B/e constraints:', JSON.stringify(modulusCandidates));
+console.log('Metadata-only secret candidates:', JSON.stringify(secretCandidates));
+console.log('State-addressed 7x7 p,b cells verify:', p, b, 'with rotated reverse', b, p);
 console.log('Recovered DH state:', JSON.stringify(state));
 console.log('sum1033 BASE29:', JSON.stringify(sum1033Digits));
 console.log('sum3301 BASE29:', JSON.stringify(digits(3301, MOD)));
