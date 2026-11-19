@@ -69,7 +69,22 @@ The shell ordering was recognized after AND was assigned by the authenticated so
 
 ## 2. GP0(AND)=56 selects solved p56; p31 layout derives the shell
 
-The authenticated target itself supplies a helper-page selector before any key is applied:
+The source supplies a stronger helper-page selector before any p31 key is applied. Charge all 42 adjacent pairs in the authenticated 43-word message by exact GP0 equality. There is exactly one equal pair:
+
+```text
+index30 SEEK  GP0=56
+index31 AND   GP0=56
+```
+
+The four source words with GP0=56 are `MAP18`, `AND24`, `SEEK30`, and `AND31`; **SEEK AND is the only adjacent equal-GP0 pair**. Thus the numbered route reaches a source-visible two-word corridor that independently repeats the same destination value:
+
+```text
+SEEK AND
+ -> 56,56
+ -> solved p56.
+```
+
+The authenticated p31 target independently agrees:
 
 ```text
 GP0(AND)
