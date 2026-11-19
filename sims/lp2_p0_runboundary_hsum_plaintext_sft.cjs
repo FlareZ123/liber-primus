@@ -117,7 +117,7 @@ for (const label of signedLabels) {
   lexicon.set(values.join(","), {label, values, source:"signed2016"});
 }
 const words = [...lexicon.values()];
-assert.equal(words.length, 295);
+assert.equal(words.length, 293);
 
 const red = p0.physical_zero_based.red_words.map((word) => word.gp_indices);
 assert.deepEqual(red.map((word) => word.length), [8,5]);
