@@ -151,7 +151,36 @@ The surviving residues land exactly on authenticated roles:
 23 -> ROAD  = p.
 ```
 
-Then `B=g^b mod p` has unique solution `g=5` over `1..p-1`, recovering the existing group generator.
+Then `B=g^b mod p` has unique solution `g=5` over `1..p-1`. The already authenticated `THEIR RISE` relation supplies `a=25-19=6`. From those values alone:
+
+```text
+A = g^a mod p = 8
+K = B^a mod p = A^b mod p = 2
+e = b^-1 mod(p-1) = 3
+q = e+1 = 4.
+```
+
+This reconstructs the **entire nine-field DH state** without using the p28 DH line:
+
+```text
+p=23, g=5, a=6, b=15, A=8, B=19, K=2, e=3, q=4.
+```
+
+Every value lands exactly on its independently authenticated source-role word index:
+
+```text
+ROAD23      = p
+EPIPHANY5   = g
+SEEKS6      = a
+WORDS15     = b
+DEVOTED8    = A
+THEIR19     = B
+PATH2       = K
+LIES3       = e
+EMPTY4      = q.
+```
+
+Thus the VERIFY/OpenPGP route is an independent full-state reconstruction, rather than only a check of three already-known numbers.
 
 ## Manuscript-wide inner-core control
 
@@ -217,4 +246,4 @@ Run:
 node sims/lp2_verify_numbered_openpgp_selector_sft.cjs
 ```
 
-The SFT reconstructs the numbered VERIFY object, extracts its exact inner core, rebuilds the source stride, computes the authentic key-ID residues, verifies the base60 selection, recovers `b,B,p,g`, and exhausts all 1,375 eligible odd-length manuscript words for the exact inner core.
+The SFT reconstructs the numbered VERIFY object, extracts its exact inner core, rebuilds the source stride, computes the authentic key-ID residues, verifies the base60 selection, reconstructs all nine DH/state fields independently of the p28 DH line using THEIR RISE, confirms every recovered value against its authenticated source-role index, and exhausts all 1,375 eligible odd-length manuscript words for the exact inner core.
