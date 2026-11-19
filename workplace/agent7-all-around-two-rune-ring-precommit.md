@@ -65,3 +65,53 @@ The p34 offsets249..250 state match is structurally ineligible because it begins
 
 - A sibling hit preserves a reusable first-party ring-key decoder.
 - Zero sibling hits localizes the ALL AROUND derivation to p34. Preserve p34 BE as a stronger local candidate, but do not claim a general decoder.
+
+
+## Revealed sibling holdouts
+
+After the precommit was pushed and verified, the exact unchanged rule was opened on the two other unique same-index two-rune receivers.
+
+```text
+p11 IS start49
+inner ring [9,8]
+outer ring [20,2]
+shell [18,1]
+key [24,6]
+cipher [11,14] - key -> [16,8] != IS
+
+p21 IS start170
+inner ring [20,23]
+outer ring [3,8]
+shell [24,26]
+key [25,1]
+cipher [24,1] - key -> [28,0] != IS
+```
+
+Both sealed sibling transfers fail. The ALL AROUND ring derivation is therefore local to p34 under this exact grammar.
+
+## Complete authenticated two-rune same-index charge
+
+Charge every authenticated 2016 occurrence whose canonical GP spelling has two runes:
+
+```text
+1 THE, 7 THE, 11 IS, 12 THE, 17 THE,
+21 IS, 22 THE, 28 THE, 34 BE.
+```
+
+For each occurrence, require all of the following before decoding:
+
+1. physical page equals the signed word index;
+2. the receiver is a complete two-rune word with the same GP0 as the source target;
+3. the receiver is the exact center pair of one period-delimited clause;
+4. two complete symmetric source rings exist inside that same clause;
+5. use the frozen outer-to-inner left-minus-right ring shell, H inverse, and subtraction.
+
+Across the complete nine-occurrence family, exactly **one receiver is structurally eligible at all**:
+
+```text
+index34 BE -> p34 offsets4..5, centered in clause0 offsets0..9.
+```
+
+That sole eligible object gives the exact `[B,0]` shell and decrypts to BE as above.
+
+This is independent corroboration of the stronger THEIR RISE selector now present in the repository. It does not establish a reusable two-rune decoder because both sealed IS siblings fail.
