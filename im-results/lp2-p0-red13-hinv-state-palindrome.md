@@ -101,11 +101,21 @@ Its forward rises modulo29 are exactly:
 
 All three source numbers belong to the authenticated clause recovered independently from p0. The seed `7` is the same authenticated `THE7` number and also the reconstructed state value `g+K`.
 
+The center has its own compact rise rule:
+
+```text
+[q,A,B,A,q]
+= [4,8,19,8,4]
+forward rises = [4,11,18,25]
+```
+
+Those four rises are an arithmetic progression of step7 in GP29. Interpreted in the authenticated source register they are `EMPTY4 / IS11 / MAP18 / THEIR25`; the numerical progression, rather than that word sequence, is the charged invariant.
+
 Thus nine of the 13 H-inverse residual coordinates now have compact source/state structure:
 
 ```text
-center5 = [q,A,B,A,q]
-right4  = start7, then rises [6,7,8]
+center5 = seed4 with AP rises 4,11,18,25 (step7)
+right4  = seed7 with AP rises 6,7,8 (step1)
 ```
 
 The remaining unsourced packet is the four-cell left column `[25,28,11,25]`.
@@ -143,9 +153,13 @@ sole hit: p0 word1-word2
 
 The result is therefore not a generic consequence of subtracting the same 8+5 source phrase from a same-shaped receiver.
 
-Charge the right-column rise rule on the same 19 receivers. P0 is the sole receiver whose three right-column rises form **any** consecutive +1 ramp, and its unique ramp is exactly `[6,7,8]`.
+Charge the progression rules on the same 19 receivers.
 
-So the center palindrome and right-column source-number ramp are independently selective inside the same natural receiver family.
+- P0 is the sole receiver whose four center-column rises form **any arithmetic progression**. Its rise sequence is `[4,11,18,25]`, step7.
+- Four receivers have an arithmetic-progression right rise sequence, while p0 is the sole receiver whose right rises are the consecutive +1 ramp `[6,7,8]`.
+- P0 is the sole receiver satisfying both progression properties.
+
+So the marker center and right column carry two independently simple progression structures inside the same natural receiver family.
 
 ## Orientation/control family
 
@@ -179,11 +193,11 @@ This result supplies two physical constraints:
 ```text
 H^-1(residual)
 -> visible 4|5|4 marker columns
--> center = q,A,B,A,q
--> right rises = 6,7,8 = SEEKS,THE,DEVOTED
+-> center seed4, rises 4,11,18,25 (step7)
+-> right seed7, rises 6,7,8 (step1)
 ```
 
-Both are reproducible and unique in the natural 19-receiver family.
+The center progression is unique in the natural 19-receiver family. The exact right ramp is also unique, and only p0 satisfies both.
 
 The remaining key-order gate is now narrower. The unsourced left column is:
 
