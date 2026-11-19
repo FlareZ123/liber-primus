@@ -300,7 +300,7 @@ The p28 object consumed by FOURTH/DH is now source-selected and reproduces the f
 
 ## Reproduction
 
-Windows Node 22 PASS for the complete receiver and negative-continuation gate: [run 44448501937](https://github.com/FlareZ123/liber-primus/actions/runs/44448501937).
+Windows Node 22 PASS for the complete receiver and negative-continuation gate: [run 44448501937](https://github.com/FlareZ123/liber-primus/actions/runs/44448501937). Final PASS including the unique DH packet, FOURTH, reconstructed DH label and `FOURTH D; H -> GCD` closure: [run 44449349264](https://github.com/FlareZ123/liber-primus/actions/runs/44449349264).
 
 
 Run:
