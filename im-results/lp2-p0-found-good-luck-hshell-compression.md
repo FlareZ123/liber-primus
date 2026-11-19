@@ -170,4 +170,4 @@ Do not claim that the junction equation alone decrypts ciphertext, and do not us
 ## Reproduction
 
 - SFT: `sims/lp2_p0_found_good_luck_hshell_compression_sft.cjs`
-- Windows workflow: `44439948995` (queued/running when this report was created; update to PASS only after completion)
+- Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44439948995
