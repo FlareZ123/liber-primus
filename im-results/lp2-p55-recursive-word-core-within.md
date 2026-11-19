@@ -127,6 +127,71 @@ The sole full hit is physical p55, starting at its first complete word.
 
 This control was evaluated after p55 had already been selected by the independent RISE 75/76 receiver and after the recursive shedding rule was fixed by the solved p57 instruction.
 
+## Recursive emergence exposes VERIFY OPENPGP and ROAD
+
+The same literal operation has a second consequence that uses only printed word lengths.
+
+Run the shedding simultaneously over all 16 complete p55 words. Whenever a word reaches one rune, treat that center as having **emerged** and remove it from the still-hidden pool. Even words vanish. Record the number of runes still hidden after each complete shedding round.
+
+P55 gives:
+
+~~~text
+initial hidden runes      75
+after shed round1         41
+after shed round2         23
+after shed round3          7
+after shed round4          5
+after shed round5          3
+after final emergence      0
+~~~
+
+This is mechanically fixed by the original word lengths. No rune values enter the count.
+
+The first transition has a source-selected interpretation already present elsewhere in the route:
+
+~~~text
+75 = GP0(OPENPGP)
+41 = authenticated signed-source index VERIFY
+~~~
+
+P55's independently selected centered e^2 H shell had already produced the whole-branch label OPENPGP=75 before this recursive word-length test. After one literal circumference shed, the still-hidden count becomes 41, giving the signed instruction **VERIFY OPENPGP** without a key search. After the second round it becomes 23, the authenticated source index **ROAD**, matching the signed message's other central navigation noun.
+
+The tail 7,5,3 also falls inside the authenticated source index range. It is preserved as raw output only; no semantic route is assigned to those values here.
+
+### Parity partition gives both numerical identities of OPENPGP
+
+The same 16 original word lengths partition naturally under the recursive operation:
+
+~~~text
+total length of all complete words = 75
+sum of even-word lengths           = 42
+sum of odd-word lengths            = 33
+~~~
+
+The first two are the two independently used numerical identities of the authenticated word OPENPGP:
+
+~~~text
+GP0(OPENPGP)             = 75
+signed source index OPENPGP = 42
+~~~
+
+The complementary odd-length total is source index33 = WILL, the independently active p33 numbered-route label. This is structural corroboration; it is not used to fit the recursive operation.
+
+### Manuscript-wide length control
+
+Charge the same simultaneous emergence process over all 2,039 page-local contiguous 16-word windows:
+
+~~~text
+initial total75:                         76
+prefix 75 -> 41:                         18
+prefix 75 -> 41 -> 23:                    2
+full 75 -> 41 -> 23 -> 7 -> 5 -> 3 -> 0: 1
+total75 plus even-length sum42:            4
+full sequence plus emerged-core GP0=38:    1
+~~~
+
+The sole full sequence is physical p55 starting at its first complete word. It is also the sole full-sequence window whose final five emerged cores sum to WITHIN=38.
+
 ## Held-out external consumer: both 36 branches land on p36 GOOD
 
 The p55 result was committed at **05:45:03Z**, fixing both H branch sums at 36 before a separate p36 plaintext result existed in the authoritative synthesis.
