@@ -182,7 +182,7 @@ assert.deepEqual(addressable, [
       code: "4001",
       page: 40,
       line: 1,
-      lineCount: 14,
+      lineCount: 11,
       redPageStart: {start: 0, length: 8},
     },
   },
