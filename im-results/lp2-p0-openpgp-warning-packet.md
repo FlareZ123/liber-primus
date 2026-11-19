@@ -50,6 +50,68 @@ first word166..172 has length7 = len_GP(OPENPGP)
 
 This output convention has an independent pre-existing check. Agent15 committed the VERIFY reflection/base60 result at **02:03:16Z**, before this packet investigation: `GP0(VERIFY)=59 -> p50[59]=19=B`; horizontal reflection reaches cell60=`1k`, whose full-base60 value is `B=19 mod29`, while the base59 reading is17. That result does not select this packet, but it independently favors full base60 on the same warning vocabulary.
 
+## DH-state length signature
+
+The packet segmentation now has an independent source-state derivation that does not use any candidate plaintext rune values or any of the four additive key formulas.
+
+The authenticated warning's five GP word lengths are:
+
+```text
+BEWARE  FALSE  PATHS  VERIFY  OPENPGP
+   6      5      4       6       7
+```
+
+The independently reconstructed p28 DH state gives:
+
+```text
+a=6, g=5, K=2, e=3, p=23
+```
+
+and the warning length vector is exactly:
+
+```text
+[a, g, a-K, a, g+K]
+= [6,5,4,6,7]
+```
+
+Its total is 28 = 29-1. The literal word **FALSE** has GP length `g=5`; removing exactly FALSE leaves 23 GP runes, `p=23`.
+
+Across all five-word windows in the 43-word authenticated body, only two admit any one-word deletion whose remaining GP length totals23. Only the final warning window has the surviving length multiset `{7,4,6,6}`, and only it matches the packet's low-complexity outer-end serialization `[last,second,third,first]`.
+
+The original p0 word lengths at the selected packet are independently:
+
+```text
+166..172  7
+173..175  3
+176..176  1
+177..182  6
+183..188  6
+```
+
+Those are exactly:
+
+```text
+[g+K, e, K-1, a, a]
+= [7,3,1,6,6]
+```
+
+Joining the printed `3|1` split gives the logical packet:
+
+```text
+[g+K, a-K, a, a]
+= [7,4,6,6]
+```
+
+because `e + (K-1) = a-K = 4`. Its total is:
+
+```text
+g + 3a = 5 + 18 = 23 = p
+```
+
+This pattern is highly selective on the original manuscript. Across **2,713** complete five-word windows on the 55 unknown rune-bearing pages, the exact printed length pattern `[7,3,1,6,6]` occurs **once**, at p0 word37 / offset166. On p0, requiring the logical boundaries induced by `[7,4,6,6]` around a word-start center has exactly one solution: center177 with required boundaries `166,173,177,183,189`, plus exactly one extra printed boundary at176 inside the logical PATHS segment.
+
+This converts **FALSE PATHS** from a semantic afterthought into a concrete structural instruction candidate: the source says FALSE has the state length that must be removed to expose a p-rune warning packet, while the manuscript inserts a state-sized false boundary inside the PATHS-sized segment.
+
 ## Original packet segmentation
 
 P0 offsets166..188 are:
@@ -208,7 +270,7 @@ The source clue also explains an otherwise suspicious detail: PATHS is the only 
 
 Do **not** promote these four candidates to established unknown-page plaintext yet.
 
-The principal unresolved weakness is key scheduling. Each exact key is a compact expression in the independently reconstructed p28 state, and each survives a finite charged family, but the segment-specific formulas were recognized after the corresponding authenticated target vocabulary was already available. Multiplying the individual hit rates would therefore overstate the evidence.
+The principal unresolved weakness is key scheduling. The **receiver and segmentation no longer depend on the fitted keys**: authenticated warning lengths and the independently reconstructed DH state predict the unique p0 `[7,3,1,6,6]` packet geometry before ciphertext values are consulted. Each exact additive segment key is still a compact expression in that state and survives a finite charged family, but those formulas were recognized after the corresponding authenticated target vocabulary was available. Multiplying the individual hit rates would therefore overstate the evidence.
 
 The highest-value promotion gate is now sharply defined:
 
