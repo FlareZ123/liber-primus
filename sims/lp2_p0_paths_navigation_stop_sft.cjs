@@ -119,7 +119,7 @@ assert.deepEqual(receiverModes, [
 const clear = signed
   .split("-----BEGIN PGP SIGNATURE-----")[0]
   .split(/\r?\n\r?\n/).slice(1).join("\n");
-const message = (clear.match(/[A-Za-z]+/g) || []).map((word) => word.toUpperCase());
+const message = (clear.match(/(?<![A-Za-z0-9])[A-Za-z]+(?![A-Za-z0-9])/g) || [])\n  .map((word) => word.toUpperCase());
 const pathsIndex = message.indexOf("PATHS");
 assert.ok(pathsIndex >= 0);
 const continuation = message.slice(pathsIndex + 1);
