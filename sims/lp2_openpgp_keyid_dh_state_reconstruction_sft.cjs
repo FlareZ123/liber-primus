@@ -124,12 +124,31 @@ assert.deepEqual(nibbles, [7, 10, 3, 5, 0, 9, 0, 15]);
 const keyIdShell = shell(nibbles);
 assert.deepEqual(keyIdShell, [21, 22, 10, 10, 23, 12, 5, 5]);
 
+// The raw nibbles themselves form a second state serialization:
+// [g+K, K*g, e, g, F, b-a, F, b].
+const rawG = nibbles[3];
+const rawBPrivate = nibbles[7];
+const rawE = nibbles[2];
+const rawGInv29 = inverse(rawG, 29);
+assert.ok(rawGInv29);
+const rawK = mod(nibbles[1] * rawGInv29);
+const rawA = mod(rawBPrivate - nibbles[5]);
+assert.equal(nibbles[0], mod(rawG + rawK));
+assert.equal(nibbles[4], 0);
+assert.equal(nibbles[6], 0);
+assert.deepEqual(
+  { g: rawG, K: rawK, e: rawE, a: rawA, b: rawBPrivate },
+  { g: 5, K: 2, e: 3, a: 6, b: 15 }
+);
+
+
 // Reconstruct p,g,K,a from the packet without inserting their target values.
 assert.equal(keyIdShell[2], keyIdShell[3]);
 assert.equal(keyIdShell[6], keyIdShell[7]);
 
 const p = keyIdShell[4];
 const g = keyIdShell[6];
+assert.equal(g, rawG);
 const gInv29 = inverse(g, 29);
 assert.ok(gInv29);
 const K = mod(keyIdShell[2] * gInv29);
@@ -140,9 +159,14 @@ const a = mod(keyIdShell[5] * kInv29);
 assert.equal(keyIdShell[0], mod(p - K));
 assert.equal(keyIdShell[1], mod(p - 1));
 assert.deepEqual({ p, g, K, a }, { p: 23, g: 5, K: 2, a: 6 });
+assert.equal(K, rawK);
+assert.equal(a, rawA);
+assert.equal(rawE * rawBPrivate % (p - 1), 1);
 
 const A = modPow(g, a, p);
 assert.equal(A, 8);
+const BFromKeyId = modPow(g, rawBPrivate, p);
+assert.equal(BFromKeyId, 19);
 
 // Charge all 16 dihedral orientations of the eight nibbles against the same
 // structural packet template. Only the printed orientation survives.
@@ -216,6 +240,8 @@ assert.deepEqual(
 assert.equal(anchors[0].residue60, A);
 const B = anchors[1].residue60;
 const e = anchors[2].residue60;
+assert.equal(B, BFromKeyId);
+assert.equal(e, rawE);
 assert.deepEqual([A, B, e], [8, 19, 3]);
 
 // Recover b from the public DH value B in the tiny p=23 group.
@@ -223,7 +249,7 @@ const bCandidates = [];
 for (let exponent = 0; exponent < p - 1; exponent += 1) {
   if (modPow(g, exponent, p) === B) bCandidates.push(exponent);
 }
-assert.deepEqual(bCandidates, [15]);
+assert.deepEqual(bCandidates, [rawBPrivate]);
 const b = bCandidates[0];
 assert.equal((b * e) % (p - 1), 1);
 
@@ -242,11 +268,15 @@ assert.deepEqual(
 console.log(JSON.stringify({
   status: "PASS",
   classification:
-    "authenticated-source state reconstruction: the signed OpenPGP key ID 7A35090F, under the already frozen H transform, independently reconstructs p,g,K,a; the uniquely selected 16-word-spaced PRIMUS/NUMBERS/OPENPGP dual-radix triad supplies A,B,e and cross-checks a,H(K,b)[0],F, recovering the full p28 DH/GCD state without using p28 ciphertext values",
+    "authenticated-source state reconstruction: raw 7A35090F nibbles serialize [g+K,K*g,e,g,F,b-a,F,b], and their frozen H shell serializes [p-K,p-1,K*g,K*g,p,K*a,g,g], so the signed OpenPGP key ID alone reconstructs the complete p,g,a,b,A,B,K,e state. The independently selected 16-word-spaced PRIMUS/NUMBERS/OPENPGP dual-radix triad cross-checks A,B,e and a,H(K,b)[0],F.",
   keyId,
   nibbles,
   keyIdShell,
-  reconstructedFromKeyId: { p, g, K, a, A },
+  rawNibbleState: {
+    template: ["g+K","K*g","e","g","F","b-a","F","b"],
+    reconstructed: { g: rawG, K: rawK, e: rawE, a: rawA, b: rawBPrivate },
+  },
+  reconstructedFromKeyId: { p, g, K, a, b: rawBPrivate, A, B: BFromKeyId, e: rawE },
   dihedralHits,
   anchors,
   fullState: { p, g, a, b, A, B, K, e },
