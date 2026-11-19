@@ -140,7 +140,7 @@ start108
 [11,26,11,18]
 ```
 
-The fixed outside-in H shell is:
+The pair-interleaved outside-in **Hpair** shell used by the numbered-route reports is:
 
 ```text
 H(11,18) = [22,0]
@@ -148,6 +148,8 @@ H(26,11) = [15,8]
 
 => [22,0,15,8]
  = [p-1,F,b,A].
+
+The distinct Hsplit serialization used by several local-inverse reports orders the same pair values as `[22,15,8,0]=[p-1,b,A,F]`. DIRECTION's raw receiver and state values therefore survive, while coordinate roles in this four-value packet are Hpair-specific. See `im-results/lp2-h-serialization-boundary.md`.
 ```
 
 This still recovers:
