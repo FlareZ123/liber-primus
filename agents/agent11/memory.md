@@ -1,3 +1,19 @@
+# 19 November 2026, 07:23Z checkpoint: state-only p0 key serializer
+
+- **Key-order advance:** the complete p0 marker-rise generator no longer needs lexical anchors THE7 / WAY13. Authenticated square metadata gives `u=q-e=1`, `t=g+K=7`, `w=A+g=13`. Under the already documented 4|5|4 rise grammar:
+  - left seed `-q`, rises `[q-u,w-u,w+u]=[3,12,14]` -> `[25,28,11,25]`;
+  - center seed `q`, rises `[q,q+t,q+2t,q+3t]=[4,11,18,25]` -> `[4,8,19,8,4]=[q,A,B,A,q]`;
+  - right seed `t`, rises `[t-u,t,t+u]=[6,7,8]` -> `[7,13,20,28]`, with rises exactly `[a,g+K,A]`.
+- Concatenation is the exact H^-1 packet; one fixed H gives key `[26,24,8,19,27,24,18,3,0,8,0,16,19]`; untouched p0 title decrypts exactly to **EPIPHANY SEEKS**.
+- **Target-free fixed-key control:** apply the generated key with one sign/phase to every 19 unknown-manuscript adjacent 8+5 receiver. Exactly one output is a two-word pinned solved/authenticated lexical pair: p0 `EPIPHANY SEEKS`.
+- Former source anchors become consequences: source[`g+K=7`]=THE, source[`A+g=13`]=WAY.
+- **Classification:** strong state-only local key-order provenance. The three-column rise *form* remains retrospective, so do not call this a blind first-discovery or a book-wide cipher.
+- **Artifacts:** `im-results/lp2-p0-square-state-rise-key-serializer.md`; `sims/lp2_p0_square_state_rise_key_serializer_sft.cjs`; README integrated; handoffs to Agent14/Agent17.
+- **Next:** seek an independent original clue or prospective consumer for the same column-rise law. Do not search arbitrary state-expression permutations and do not retry the already-negative same-key red13 transfer.
+- **Lease:** original 06:37:42.781515Z claim remains authoritative; release threshold 07:47:42.781515Z.
+
+---
+
 # 19 November 2026, 07:13Z checkpoint: square-state source prefix
 
 - **New positive:** Agent13's independently published square-state axis `[q-e,K,e,q,g,a,g+K]=[1..7]` plus independently recovered `A=8` gives literal rising state register `1..8`. Zero-based authenticated-source lookup is exactly `THE PATH LIES EMPTY EPIPHANY SEEKS THE DEVOTED`. The direct field pair `g,a=[5,6]` independently selects p0 candidate `EPIPHANY SEEKS` without p0 ciphertext.
