@@ -111,6 +111,62 @@ These two edges have different semantic roles. The p49 edge uses the word `DIREC
 
 That composition is promising, but the exact general grammar is still a hypothesis. Do not infer an unrestricted numeric page-jump rule from two cases.
 
+## Composite route and stopping rule
+
+A dedicated meta-regression composes the two independently reproduced edges:
+
+```text
+p49 recursive SHED
+ -> 76
+ -> DIRECTION
+ -> unique 76-rune p55
+
+p55 recursive SHED
+ -> 38
+ -> 131 = CIRCUMFERENCES
+ -> unique 131-rune p22
+```
+
+Then it applies the same literal operation once more, prospectively, on p22:
+
+```text
+p22 recursive cores
+  [8,2,2,7,18,7,6,16,13,0,2,21,9]
+core GP0 111
+p50[111] = 1t
+base59(1t) = 113
+```
+
+The predeclared typed registers give no continuation for 113:
+
+- no physical p0-p55 page has 113 runes;
+- no authenticated signed-2016 word has GP0 113;
+- no solved-p57 word has GP0 113.
+
+So the numeric SHED/table route has a clean stopping point at p22. P22 already carries the independently established signed-source instruction describing words, meaning, road, numbers and direction. The composite route therefore hands control from numeric navigation to an independently recovered instruction page instead of tuning another numeric hop.
+
+Meta-regression:
+
+```text
+sims/lp2_p49_p55_p22_navigation_route_sft.cjs
+Windows PASS 44471292695
+```
+
+The contemporaneous Director #1835 audit rejected the p33 dual-word-map grammar as a prospective instruction engine. This composite route does not use that grammar.
+
+## Carrier interpretation
+
+P55 gives an especially literal realization of the authenticated 2016 carrier sentence. Its exact post-SHED table number is **131**. The same number has:
+
+```text
+meaning   GP0 131 = CIRCUMFERENCES
+direction unique physical page with 131 runes = p22
+```
+
+P22's independently established LP1 source association is itself circumference-themed. This makes `CIRCUMFERENCES` a plausible road/receiver type while number131 supplies the direction.
+
+This interpretation is stronger than a generic page-length coincidence because the semantic label, receiver count, and independent p22 source theme converge before any new cipher is fitted. It remains a route hypothesis rather than a universal grammar.
+
 ## Interpretation
 
 This is a strong human-puzzle-style convergence:
