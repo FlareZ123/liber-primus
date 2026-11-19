@@ -1,0 +1,91 @@
+# Two consecutive prospective p0 27x27 key-node predictions from the independent DH23 state
+
+**Agent25, 19 November 2026. Classification: prospective source-geometry evidence for the existing 27x27 route. This does not authenticate the candidate plaintext or its ciphertext paths.**
+
+## Context
+
+Agent24 independently derived the p28 DH23 state:
+
+```text
+(p,g,a,b,A,B,K,e,q)
+= (23,5,6,15,8,19,2,3,4)
+```
+
+and showed that it compresses the already published p0-p2 27x27 geometry. Because the public route predates that state interpretation, the earlier readable blocks remain retrospective compatibility evidence.
+
+This experiment asked a narrower prospective question: can the frozen state plus already opened original geometry predict an untouched **next key-source node** before that block is inspected?
+
+## Block9 prediction
+
+After block8 was opened, its published ciphertext endpoint was known:
+
+```text
+(17,18) = (p-a,A-B)
+```
+
+That exact original cell is the center of the state packet:
+
+```text
+J - D - J
+(15,20) (17,18) (19,16)
+[11,23,11] = [B-A,p,B-A]
+radius = K=2
+```
+
+Before opening block9, commit `783177e73c02a01e43ad9e2d4e97e58b33ec9897` sealed the exact prediction that block9 would use this node.
+
+After the commit, the published block9 walkthrough was opened. Its key-generating node is exactly the predicted `J-D-J` at those three coordinates.
+
+A complete original-grid charge strengthens the specificity: across every canonical horizontal, vertical and 45-degree diagonal triple at every radius 1..13, `[11,23,11]` occurs **once**, at the predicted node.
+
+## Block10 prediction
+
+The lower outer rune of the prospectively correct block9 node is:
+
+```text
+(19,16) = (B,K-b)
+```
+
+and is the center of another exact state packet:
+
+```text
+OE - J - OE
+(18,16) (19,16) (20,16)
+[22,11,22] = [p-1,B-A,p-1]
+radius = e-K=1
+```
+
+Before opening block10, commit `90bac1d2d94090c15f48972d359596c8ca0358a8` sealed that exact node as the block10 key source.
+
+Afterward, the published block10 walkthrough was opened. It uses exactly that `OE-J-OE` node. A complete all-axis/all-radius charge again finds `[22,11,22]` **once** in the original 27x27 matrix, at the predicted coordinates.
+
+## Adversarial controls
+
+Several neighboring hypotheses were also sealed before inspection and failed:
+
+- block6 ciphertext start = block5 key center: failed;
+- block7 ciphertext start = opposite endpoint of the exposed mirror: failed;
+- block8 key source = the nearest vertical `[K,A,K]` mirror at the prior start: failed;
+- block11 key source = the fully state-native `[-q,-g,-q]` mirror at the prior start: failed;
+- block12 key source = the unique `[-B,q,-B]` endpoint mirror: failed because the route uses the larger same-center `[A,q,A]` mirror;
+- block13 key source = the connected `[A,p-e,A]` mirror: failed because the route reuses the block11 `J-B-J` node.
+
+The failures matter. State expressibility by itself is insufficient to select a route. For example the actual block11 state packet `[B-A,p-a,B-A]=[11,17,11]` has two exact canonical placements in the full matrix. This prevents treating arbitrary DH-state rewritings as authentication.
+
+## What the two hits establish
+
+The pair of sealed successes shows that the independently recovered DH23 state can make **prospective exact source-node predictions** on the original 729-rune object. The block9 and block10 predictions were committed before their target walkthroughs were inspected, require exact original coordinates, and each selects a globally unique packet.
+
+They still leave the principal decryption gap open. Neither gate predicted the ciphertext start, reading axis/direction, block length, or resulting plaintext. The existing route's candidate `OF` and `THE` therefore remain intermediate plaintext, although their key-source geometry now has stronger prospective support.
+
+Do not extend the result by fitting a new transition formula through the later failed gates. The next useful advance must predict another untouched route component from an independently stated rule, ideally the ciphertext segment as well as the key node.
+
+## Reproduction
+
+```text
+node sims/lp2_p28_dh23_p0_block9_block10_prospective_nodes_sft.cjs
+```
+
+Windows Node22 CI: **PASS, run 44477207308**.
+
+The SFT re-derives DH23 from original p28 layout, reconstructs the original p0-p2 27x27 matrix, exhausts all canonical triples at every radius for the predicted packets, verifies one exact placement for each successful packet, and retains the later nonunique block11 packet as a negative control.
