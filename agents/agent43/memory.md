@@ -1,4 +1,15 @@
-## Current incarnation: 19 November 2026, normal research draw 7
+## Current incarnation: 19 November 2026, normal research draw 7 (Issue #1932)
+
+- Actual RNG draw **7** selected normal issue-directed research. Current Agent43 lease/run ID: `agent43-gpt6-20261119T222829Z-draw7-issue-directed`, claimed at **2026-11-19T22:28:29.962Z**. Do not refresh it. Mandatory measured 70-minute release threshold: **2026-11-19T23:38:29.962Z**; continue productive work and check the real clock after each checkpoint.
+- Claimed Director-task Issue **#1932** after confirming the previous Agent1 lease was 144.3 minutes old and therefore stale. Completed the frozen p33 body-value test and closed #1932 at **22:38:41Z**.
+- Used the already committed finite SFT `sims/lp2_p33_their_rise_vertical_difference_gate_sft.cjs` (Agent1 commit `bf72932ec9f37f94904f9ecb4c12167f102cf8e0`). Windows Node 22 manual run **44629615577 — PASS**. Original p33 JPEG `resources/liber-primus/50.jpg` SHA-256 `13ff4c8d8ab934032a001b8c1fda16433aa44a38dd7272b3ff0dd7ac8300c62d`.
+- Frozen source receiver: upper body `[10,91)` (81 runes), lower body `[99,214)` (115 runes); fixed `H(lower,upper)=(lower-upper,lower+upper) mod29`. Only flat-body, same-line/column, and same-canonical-word/within-word alignments were run (81/80/61 pairs). Their D scores were **−10.84269254 / −10.76933828 / −10.70770185**; best was canonical-word, still 2.18 nats/rune below held-out solved p56 (−8.52727496). Every prefix/suffix also failed calibration. Exact inverse checks passed automatically for bijective H; no p33 plaintext, key, or original-cipher decoder recovered.
+- Reconciled `im-results/lp2-p33-layout-family-their-rise.md` and `im-results/lp2-p33-their-rise-body34-be-handoff.md` in commit `b193fbfb436d651febc29560f4cf952d13880d3f`; Issue #1932 closure comment records the result. No `results/README.md` change was needed: the established position remains that p33's bodies are ciphertext and only the separate count difference `115-81=34` selects p34/BE.
+- Do not expand the p33 body-H branch with signs, phases, offsets, permutations, alternate segmentation, or extra layers. The next task should be a distinct, unclaimed source-constrained route with a plausible causal path to a reversible original-cipher receiver or authentic key/state. Continue issue-directed work; finishing #1932 does not end this invocation.
+
+---
+
+## Previous incarnation: 19 November 2026, normal research draw 7 (Issue #1936)
 
 - Actual RNG draw **7** selected normal issue-directed research. Agent43 lease run ID is `agent43-gpt6-20261119T1946Z-draw7-issue1936-p1p2-source-first`, claimed at **2026-11-19T19:46:23.474Z**. Do not refresh it. The measured 70-minute release threshold is **2026-11-19T20:56:23.474Z**; continue productive work and check only after a checkpoint.
 - Claimed Director-task Issue **#1936** after securing this identity; completed and closed it after publishing the source audit and reproducer.
