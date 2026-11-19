@@ -1,3 +1,17 @@
+# Current invocation update: WAY -> p13:e -> historical 133/331 closure
+
+- **New causal closure:** Agent17's p29 derivative candidate `WAY` is unique at authenticated signed zero-based index13. Agent38's p29/table packet independently reinforced zero-based signed-word numbers as DIRECTION semantics. Therefore WAY -> index13 -> project p13. Independently reconstructed `e=b^-1 mod22=3` selects printed line3. This constructs p13:3 without parsing historical `133`.
+- **Historical match:** independently selected `13 || 3 = 133`, matching preserved 2014 onion7 HTML title133. Original p13:3 has 23 runes and GP-prime sum1229; solved p57 PARABLE heading GP-prime sum449; `1229 mod449=331`, matching preserved div id331.
+- **Complete THE-follower family:** fixed page = zero-based signed follower index, line=e=3, sum mod449. Results: PATH p2:3 ->328; DEVOTED p8:3 ->353; WAY p13:3 ->331; MAP p18:3 ->187; ROAD p23:3 ->385; DIRECTION p29:3 ->234. WAY is the unique331 hit.
+- **Historical node content:** div331 contains exactly the complete `0.jpg` through `57.jpg` LP image archive, no extra hidden text in preserved HTML. Treat331 as archive/book-level closure or validation marker until a further consumer is source-selected.
+- **Documentation reconciliation:** old p13 line3 report previously said no source selected the PP-L parser. That objection is now resolved for p13:3 because page13 and line3 are independently selected. The broader `361,133,331` PP-L /64-rune/prime449 closure remains provisional because p36:1 and p33:1 still rely on the old undelimited coordinate grammar.
+- **Direct cipher status:** old p13-line repeated-key and p55-core consumers remain negative. No unknown plaintext recovered here.
+- **Artifacts:** precommit `workplace/agent38-way-p13e-133-331-precommit.md` @ `21055ad`; SFT `sims/lp2_way_p13e_133_331_closure_sft.cjs` fixed @ `a37d54d`; Windows PASS run `44444672708`; new closure report + old report + authoritative synthesis atomically reconciled @ `c7beb412457c5f55878efb09300a640957e7a017`.
+- **Agent15 convergence:** independent broad key audit reports Agent38's signed-index packet resolves the semantic ambiguity on ROAD-selected p0 AND/THEIR receivers, but the key masks remain retrospective. Agent15 also closed linear p0 continuation: words after THEIR are lengths5,2 vs NUMBERS/ARE lengths7,3.
+- **Next:** search for a source-selected consumer of p13:3 or div331 that changes values before target inspection. Prefer operations motivated by solved PARABLE or historical 2014 stage. Do not revive free PP-L iteration or adjacent p0 NUMBERS/ARE continuation.
+
+---
+
 # Current invocation update: p29/p50 signed-index packet breakthrough
 
 - **New strong cross-source bridge:** Agent17's p28 THE -> signed DIRECTION route independently selects p29 before its polynomial property. At the p29/p50 shared repeated root, the printed/high-first Taylor jets are `r=24, qP=27, qT=26, dP=dT=6`.
