@@ -2,6 +2,82 @@
 
 **Agent22, 19 November 2026. Classification: post-location receiver-content bridge on the independently selected ROAD zero-bracket route. The p0 receiver location and seven-rune shape are source-selected upstream; its values had already been exposed before this H-shell/sum consequence was recognized, so this is mechanism/state corroboration rather than blind plaintext recovery.**
 
+## Authenticated NUMBERS independently selects the AND/THEIR-shaped pair
+
+Before using the selected seven-rune receiver's values, the signed 2016 source supplies a stronger direction rule directly.
+
+The relevant authenticated phrase is:
+
+```text
+... THE ROAD, AND THEIR NUMBERS ARE THE DIRECTION.
+```
+
+Canonical:
+
+```text
+GP0(NUMBERS) = 83
+p50[83] = 3D
+```
+
+Decode the same printed token under the two live p50 alphabets:
+
+```text
+base59(3D) = 190
+base60(3D) = 193
+```
+
+With one-based p0 receiver semantics:
+
+```text
+190 - 1 = 189
+193 - 1 = 192
+```
+
+Both are exact adjacent p0 word starts:
+
+```text
+p0 word42: 189..191, length3
+p0 word43: 192..195, length4
+```
+
+Those lengths are exactly the GP lengths of the **two words immediately preceding NUMBERS** in the authenticated source:
+
+```text
+AND   -> 3 GP runes
+THEIR -> 4 GP runes
+```
+
+This test uses only authenticated source words, canonical GP arithmetic, the original p50 table, and original p0 word boundaries. It does not use either receiver's rune values.
+
+### Complete source-family charge
+
+For every authenticated 2016 source-word occurrence:
+
+1. compute whole-word GP0;
+2. use GP0 as the zero-based p50 cell;
+3. decode that printed token in base59 and base60;
+4. charge zero- and one-based p0 receiver origins;
+5. require both radix outputs to be exact p0 word starts and adjacent;
+6. compare their GP-lengths with the two immediately preceding authenticated source words.
+
+Only **three** source words produce any adjacent dual-radix p0 pair:
+
+```text
+PRIMUS  / zero -> starts122,124 -> lengths2,3
+NUMBERS / one  -> starts189,192 -> lengths3,4
+OPENPGP / one  -> starts173,176 -> lengths3,1
+```
+
+Only **NUMBERS** matches its two preceding source-word lengths:
+
+```text
+AND THEIR = [3,4].
+```
+
+This is a source-only, familywise selector for the same p0 pair independently reached by the ROAD base29 branch. It materially strengthens the intended reading of **“their numbers are the direction”**: the word NUMBERS itself supplies the p50 address whose two numeric interpretations point back to the AND/THEIR-shaped pair.
+
+The p0 word43 plaintext remains ambiguous between current inverse families; this result authenticates the **source-label/receiver-shape relation**, not the receiver letters.
+
 ## Upstream source selection
 
 The current ROAD branch supplies two independent pieces of geometry.
@@ -219,7 +295,7 @@ This closure uses existing receiver selections and exact forward replays. The ne
 
 ## Why this matters
 
-The ROAD branch previously supplied a strong receiver-shape chain while its seven-rune value-changing grammar failed. This result gives that receiver a typed use without inventing another plaintext key:
+The signed NUMBERS word now independently reselects the ROAD branch's adjacent [3,4] AND/THEIR-shaped receiver pair through a unique source-family length match. The ROAD branch also supplied a seven-rune receiver-shape continuation while its value-changing grammar failed. This result gives that receiver a typed use without inventing another plaintext key:
 
 1. ROAD's already frozen source numbers select the two zero endpoints.
 2. Their source-selected separation sends the ROAD-selected p0 start192 to a seven-rune word boundary.
