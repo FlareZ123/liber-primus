@@ -231,8 +231,13 @@ assert.deepEqual(secondRise, [25, 13]);
 assert.equal(firstRise[0], theirPositions[0]);
 assert.equal(secondRise[0], theirPositions[1]);
 assert.equal(theirPositions[1] - theirPositions[0], state.a);
+const fiveDotCount = 5;
+assert.equal(spellCardinals([fiveDotCount]), "I");
 assert.equal(spellCardinals([theirPositions[1]]), "N");
-assert.equal(spellCardinals(p23Line1) + spellCardinals([theirPositions[1]]), "THEORIGIN");
+assert.equal(
+  spellCardinals([...p23Line1, fiveDotCount, theirPositions[1]]),
+  "THEORIGIN"
+);
 
 // Charge every field-order assignment on every five-word line of every prime physical page.
 const roleOrders = permutations(["K", "a", "e", "g", "q"]);
@@ -338,8 +343,11 @@ console.log(JSON.stringify({
     signedTheirPositions: theirPositions,
     p33HChain: [lowerHeading, firstRise, secondRise],
     rise: theirPositions[1] - theirPositions[0],
+    fiveDotCount,
+    T5: spellCardinals([fiveDotCount]),
     T25: spellCardinals([theirPositions[1]]),
-    completedInstruction: spellCardinals(p23Line1) + spellCardinals([theirPositions[1]])
+    completedCardinals: [...p23Line1, fiveDotCount, theirPositions[1]],
+    completedInstruction: spellCardinals([...p23Line1, fiveDotCount, theirPositions[1]])
   },
   chargedFamily: {
     primePageFiveWordLines,
