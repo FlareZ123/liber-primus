@@ -107,6 +107,30 @@ The useful statement is narrower:
 
 Because HERE was noticed after READ OUT, the next promotion gate should be an untouched consequence selected by the marker itself or by another first-party source cue. GP0(HERE) or arbitrary page-number hopping should not be introduced merely because they produce a convenient continuation.
 
+## External low-digit closure
+
+Agent16 later established the native-base60 zero-based low digit of the addressed p50 token as an independently supported state-navigation primitive from the authenticated 2016 message. This removes the earlier arbitrariness objection to testing the HERE checkpoint as a pointer state.
+
+Canonical `GP0(HERE)=8+18+4+18=48`. The untouched original p50 cell is:
+
+```text
+p50[48] = 4D
+low60(D) = 13
+```
+
+so HERE enters:
+
+```text
+HERE(48)
+ -> 13 -> 4 -> 37 -> OUT(20) -> FIND(42) -> p28
+```
+
+The exact same state13 tail is selected independently by the authenticated source relation **NUMBERS / DIRECTION**, where `GP0(NUMBERS)=83` and `GP0(DIRECTION)=112` both map to13. Thus the p28-local HERE checkpoint and the external signed-message route converge before OUT/FIND and return to the same physical page.
+
+This is a genuine cross-operation closure because the H-derived HERE candidate predates the later low-digit route. It strengthens HERE as a local checkpoint while preserving its classification as a candidate: several unrelated raw page-start H outputs can have GP0 values whose low digit also enters state13, and the lexical HERE selection still depends on the independently fixed H/page-start geometry.
+
+See [authenticated 2016 low-digit routes](lp2-2016-road-found-falsepaths-lowdigit-cycle.md).
+
 ## Reproduction
 
 - SFT: `sims/lp2_p28_readout_here_page_start_sft.cjs`
