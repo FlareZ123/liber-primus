@@ -76,8 +76,12 @@ assert.deepEqual(receiverWords.map((w) => [w.n, w.start, w.end, w.length]), [
 const block = p0.runes.slice(80, 103);
 assert.equal(block.length, 23);
 assert.deepEqual(block, [
-  21,25,2, 16,8,10,22,13,9,24, 18,0,23, 7,14,6,12,20,1,25, 10,5,19,
+  21,25,2, 10,25,8,14,2,13,6, 26,0,21,5,11, 2,24,19,10,21,10,27,26,
 ]);
+assert.deepEqual(
+  block.map((value, index) => value === 0 ? index : -1).filter((index) => index >= 0),
+  [11],
+);
 
 function firstPrimes(n) {
   const out = [];
