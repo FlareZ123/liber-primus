@@ -1,6 +1,6 @@
 # Authenticated 2016 low-digit routes: ROAD / FOUND / PATHS cycle and NUMBERS / DIRECTION -> p28
 
-**Agent16, 19 November 2026. Classification: independent authenticated-source support for the native base60 low-digit p50 state-pointer operation, including a source-only route from the signed clause `NUMBERS ... DIRECTION` through solved `FIND` to physical p28. This materially strengthens the operation already used by the p28 READ OUT self-closure. It does not itself decrypt unknown LP2 ciphertext.**
+**Agent16, 19 November 2026, reconciled after Director #1787. Classification: reproducible, source-visible low/right-digit structures specific to ROAD/PATHS↔FOUND and NUMBERS/DIRECTION→p28. A later sealed GOOD→LUCK holdout failed, and the preferred mode has 0/84 exact held-out adjacent-word transitions across authenticated 2016 plus solved p56/p57. These results therefore do not authenticate the low-digit transition as a general navigation opcode.**
 
 ## Result
 
@@ -87,7 +87,7 @@ Its source labels are exactly:
 
 No base59, high-component, shifted-address, or one-origin mode produces a two-cycle in the authenticated GP0-state graph.
 
-This is a stronger transfer than the earlier READ OUT loop's internal self-consistency because the 2016 vocabulary was authenticated independently of the unknown LP2 ciphertext.
+This is a source-side structural transfer because the 2016 vocabulary is authenticated independently of unknown LP2 ciphertext. Director #1787 later showed that the same operation does not transfer as a general adjacent-word opcode, so preserve the cycle at this narrower scope.
 
 ## Stronger source-only route: NUMBERS and DIRECTION converge to FIND -> p28
 
@@ -147,7 +147,7 @@ READ(55)
         -> p28
 ```
 
-This is the first independent first-party route found here that supplies an external consumer for the low-digit state transition and lands on the same physical page without using unknown p28 ciphertext.
+This is a specific first-party low/right-digit route landing on the same physical page without using unknown p28 ciphertext. It remains useful as route-specific corroboration. The later blind transfer failure prevents treating it as evidence for a general p50 low-digit navigation rule.
 
 ### Relation-family charge
 
@@ -249,19 +249,38 @@ p50[42] = 0S -> low60 = 28
 
 That route previously lacked an independently selected consumer outside READ OUT / FIND / p28. The authenticated ROAD / FOUND / PATHS cycle supplies one.
 
-The evidence upgrade is now broader than a single cycle: **native base60 low-digit p50 state transition is supported by an authenticated source trap, a uniquely charged NUMBERS/DIRECTION route into `FIND -> p28`, and a direct merge with the p28 READ OUT tail.** This still does not imply that every p50 use is a low-digit pointer or recover a packet key scheduler.
+The durable result is narrower: **native base60 low/zero/zero uniquely owns the authenticated ROAD/PATHS↔FOUND two-cycle, and NUMBERS/DIRECTION uniquely owns the charged source relation that converges and reaches `FIND -> p28`.** Director #1787 then sealed `GOOD -> LUCK` as a prospective one-step source prediction; `GOOD(35) -> p50[35]=0d -> 39` misses `GP0(LUCK)=31`, all 16 frozen modes miss, and the preferred mode has 0/84 exact adjacent-word transitions with GOOD/LUCK withheld. The operator is therefore route-specific evidence rather than a general navigation opcode.
 
-## Next decision
+## Prospective gate and current decision
 
-Use the low-digit transition as a preferred state-navigation primitive when a source clue supplies a GP0 state. Do not widen to new token components unless a separate clue requires it.
+Director #1787 supplied the missing blind transfer test after the structures above were documented.
 
-The strongest current interpretation is a candidate intended navigation route: the authenticated 2016 `NUMBERS ... DIRECTION` clause selects the canonical low-digit pointer and reaches `FIND -> p28`, while the ROAD/FOUND/PATHS prose demonstrates a literal false-path trap under the same operation.
+The sealed source prediction was:
 
-That route has now been consumed prospectively on the independently fixed p28 center-plus-word28 object. Across all 440 charged DH/shell transform-orientation-split configurations, the numeric condition `GP0(left) -> GP0(right) -> FIND(42) -> p28` selects one raw output before language scoring. Across all 1,440 independent reversible uniform GP29 power-pair/orientation/split configurations, it still selects one unique raw output; the only parameter alias acts identically on the center rune and is resolved to exponent3 by the source DH state. The selected runes then transliterate as **READ OUT**.
+```text
+GOOD -> LUCK
+native-base60 / low / zero-address / zero-digit
+one transition only
+```
 
-A second p28-local checkpoint, **HERE**, recovered independently by the fixed outer-H page-start mechanism, has `GP0(HERE)=48` and `p50[48]=4D -> 13`, so it enters the same `13 -> 4 -> 37 -> OUT -> FIND -> p28` route as NUMBERS/DIRECTION. This is a cross-operation closure, with HERE remaining a local checkpoint candidate.
+Opening the required cell gives:
 
-The next decision is narrower: identify a first-party clue that demands the separate reversible GP29 power-map operator class on the p28 center-plus-word object, or derive a fresh ciphertext consequence that depends specifically on the selected READ OUT instruction.
+```text
+GP0(GOOD) = 35
+p50[35]   = 0d
+low60(d)  = 39
+
+GP0(LUCK) = 31
+MISS
+```
+
+All 16 frozen radix/component/origin modes miss GOOD→LUCK. With GOOD/LUCK withheld, the preferred native-base60/low/zero/zero mode also has **0/84** exact adjacent-word transitions across authenticated 2016 plus solved p56/p57.
+
+The positive general-opcode fork is therefore rejected. Preserve the ROAD/PATHS↔FOUND cycle, the physical `3D/1D` NUMBERS/DIRECTION convergence, and the route-specific `... -> OUT -> FIND -> p28` identity as specific constructions. Do not use the low/right transition to route new unknown material unless a fresh first-party selector independently fixes that operation.
+
+For p28 READ OUT selection, the stronger current external numeric selector is independent of this failed opcode transfer: the separately selected p39 outer circumference supplies the pair `[55,20]`, and that pair selects one raw p28 output across the charged reversible power family before transliteration.
+
+See `im-results/lp2-lowdigit-good-luck-blind-gate.md` and `im-results/lp2-p39-outer-readout-selector.md`.
 
 ## Reproduction
 
