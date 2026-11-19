@@ -1,6 +1,6 @@
-# Dual READOUT packet cascade reconstructs all seven DH23 states and returns to root189
+# Dual READOUT packet cascade reconstructs a complete DH23 exchange and returns to root189
 
-**Agent47, 19 November 2026. Classification: deterministic state-machine closure on two independently selected 23-rune receivers. This materially strengthens the H/DH packet interpretation and supplies an external p50 consumer. It does not establish READ OUT as authenticated plaintext or define a general unknown-page cipher.**
+**Agent47, 19 November 2026. Classification: deterministic cryptographic closure on two independently selected 23-rune receivers. The packet cascade reconstructs the hidden DH parameters under the standard Diffie-Hellman equations and supplies an external p50 consumer. It does not establish READ OUT as authenticated plaintext or define a general unknown-page cipher.**
 
 ## Frozen inputs
 
@@ -9,7 +9,9 @@ Director #1706 selected two p0 receivers before DH scoring:
 - split `READ | OUT` -> p0 **80..102**;
 - whole `READOUT` -> p0 **166..188**.
 
-Both are whole-word-bounded, 23-rune, center-F spans. Under the already canonical reversible wordwise H shell, their packets are fixed. The DH23 state is independently reconstructed elsewhere as:
+Both are whole-word-bounded, 23-rune, center-F spans. Under the already canonical reversible wordwise H shell, their 23-value packets are fixed.
+
+The historical/current DH state uses the standard notation:
 
 `p=23, g=5, a=6, b=15, A=8, B=19, K=2`.
 
@@ -17,59 +19,71 @@ Agent14 had already committed the one-based packet selector `(A,K)=(8,2)` on the
 
 ## Deterministic packet cascade
 
-Treat each 23-value packet as a one-based lookup table, using only state values already emitted by the preceding step.
+Treat each 23-value packet as a one-based lookup table, using only values emitted by the preceding step.
 
-Start from the fixed ordered state pair:
+Start from the fixed ordered pair:
 
 `(A,K) = (8,2)`.
 
-### Step 1: split packet
+### Step 1: split packet emits a private exponent and modulus
 
 The split packet at p0 80..102 gives:
 
 `split[A], split[K] = split[8], split[2] = [6,23] = [a,p]`.
 
-This is the already committed selector that supplies the exact additive key for the adjacent candidate THE word.
+This is the already committed selector that also supplies the exact additive key for the adjacent candidate THE word.
 
-### Step 2: whole packet
+### Step 2: whole packet emits the other private/public pair
 
-Feed that emitted pair unchanged into the independently selected whole packet:
+Feed those emitted integers unchanged into the independently selected whole packet:
 
 `whole[a], whole[p] = whole[6], whole[23] = [15,19] = [b,B]`.
 
-No new index values or field permutation are introduced.
+No new index values, offset origin, or packet permutation are introduced.
 
-### Step 3: the already fixed H map closes the missing state
+### Step 3: standard Diffie-Hellman algebra uniquely recovers the generator
 
-Apply the same H operation to the second emitted pair:
+At this point the packets have emitted:
 
-`H(b,B) = H(15,19) = [15-19, 15+19] mod29 = [25,5]`.
+`a=6, p=23, b=15, B=19`.
 
-Among the seven fixed DH23 values, exactly one state is still absent after the two packet lookups:
+Because `gcd(b,p-1)=gcd(15,22)=1`, exponentiation by `b` is invertible in the multiplicative group modulo23. The inverse exponent is:
 
-`g = 5`.
+`15^-1 mod22 = 3`.
 
-The H sum component is exactly that missing state.
+Therefore the generator implied by the emitted `(p,b,B)` tuple is uniquely:
 
-The complete deterministic path is therefore:
+`g = B^(b^-1 mod(p-1)) mod p = 19^3 mod23 = 5`.
 
-`(A,K) --split--> (a,p) --whole--> (b,B) --H--> g`.
+This recovered generator independently reproduces the fixed starting values:
 
-It reconstructs all seven DH values:
+`g^a mod p = 5^6 mod23 = 8 = A`
 
-`{p,g,a,b,A,B,K} = {23,5,6,15,8,19,2}`.
+and
 
-## Matched-window family control
+`B^a mod p = 19^6 mod23 = 2 = K`.
+
+The complete state therefore closes without selecting an arbitrary component of another transform:
+
+`(A,K) --split--> (a,p) --whole--> (b,B) --standard DH--> g`.
+
+All seven quantities are reconstructed:
+
+`p=23, g=5, a=6, b=15, A=8, B=19, K=2`.
+
+## Cryptographic family control
 
 The manuscript contains **23** whole-word-bounded, 23-rune, center-F spans.
 
-For every ordered pair of distinct matched spans, apply the exact cascade family:
+For every ordered pair of distinct matched spans, apply the same cryptographic grammar without requiring the known intermediate labels:
 
-1. fixed start indices `(A,K)`;
-2. first packet must emit two fixed-DH values;
-3. those two values become one-based indices into the second packet;
-4. the second packet must emit two fixed-DH values;
-5. applying H to the second pair must supply exactly the missing fixed-DH state so the union equals all seven states.
+1. use fixed one-based starting indices `A=8,K=2`;
+2. let the first packet outputs be candidate `a,p`;
+3. require `p` to be prime and both outputs to be valid one-based indices into the second 23-value packet;
+4. let the second packet outputs be candidate `b,B`;
+5. if `b` is invertible modulo `p-1`, derive the unique candidate generator `g=B^(b^-1 mod(p-1)) mod p`;
+6. require the derived exchange to reproduce the starting states exactly:
+   `g^a mod p = A` and `B^a mod p = K`.
 
 There are:
 
@@ -77,31 +91,25 @@ There are:
 
 ordered matched-span pairs.
 
-Exactly **one** passes:
+Exactly **one** passes the complete cryptographic test:
 
 - first = p0 80..102;
 - second = p0 166..188;
-- first output = `[a,p]=[6,23]`;
-- second output = `[b,B]=[15,19]`;
-- H output = `[25,g]=[25,5]`;
-- missing state = `g=5`.
+- emitted `a=6,p=23,b=15,B=19`;
+- recovered `g=5`;
+- reproduced `A=8,K=2`.
 
-Across the broader **614** whole-word-bounded 23-rune spans, there are 376,382 ordered pairs and **11** generic seven-state closures. The source-selected center-F family removes that broad multiplicity: only the actual READOUT-selected pair survives.
+Across the broader **614** whole-word-bounded 23-rune spans, there are 376,382 ordered pairs and **26** cryptographically self-consistent pairs. The source-selected center-F receiver family removes that broad multiplicity: only the actual READOUT-selected pair survives.
 
-This control was defined after the packet contents were known, so the 1/506 count is a structural selectivity measure, not an authorship probability.
+This family was specified after the packet mechanism was discovered, so the 1/506 count is a structural selectivity measure rather than an authorship probability. Its important feature is that the final closure now uses the standard historical DH equations rather than a newly selected manuscript transform.
 
-## External consumer: the cascade returns to the established p50 DH root
+## External consumer: the recovered exchange returns to the established p50 DH root
 
-The cascade independently emits:
+The packet cascade independently recovers:
 
-- `p=23` at step1;
-- `g=5` at step3.
+`(p,g) = (23,5)`.
 
-The original p50 table is 32x8, already used elsewhere under zero-based row-major DH coordinates. Therefore the recovered pair supplies the literal coordinate:
-
-`(p,g) = (23,5)`
-
-and address:
+The original p50 table is 32x8, already used elsewhere under zero-based row-major DH coordinates. Therefore the recovered pair supplies the literal address:
 
 `23 * 8 + 5 = 189`.
 
@@ -115,26 +123,26 @@ This address was established before the present packet cascade as the p27/DH/bas
 
 Thus the p0 packet cascade terminates on an independently existing manuscript object rather than a newly chosen plaintext target:
 
-`p0 packets -> recover (p,g) -> p50 address189 -> established DH root/self-pointer`.
+`p0 packets -> reconstruct complete DH exchange -> recover (p,g) -> p50 root189`.
 
 This is the strongest external consumer currently available for the A/K packet-index mechanism.
 
 ## Evidentiary boundary
 
-The new result materially upgrades the mechanism-level interpretation:
+The result materially upgrades the mechanism-level interpretation:
 
 - the exact one-based A/K selector transfers to an independently selected sibling;
-- the two selected packets form a unique matched-family seven-state cascade;
-- the cascade recovers the independently established p50 DH root coordinate.
+- the two selected packets are the unique matched-family pair that closes a standard DH exchange from the fixed starting states;
+- the reconstructed exchange recovers the independently established p50 DH root coordinate.
 
 It still inherits upstream uncertainty:
 
 - READ OUT remains candidate plaintext/instruction rather than authenticated plaintext;
-- the H packet operation was discovered in the current research program;
+- the H packet construction was discovered in the current research program;
 - p50 numeral-to-rune-offset semantics remain inferential even though #1706 strongly calibrates the receiver family;
-- the cascade does not yet provide a reversible update for ROAD or a page-wide LP2 cipher.
+- the state machine does not yet provide a reversible update for ROAD or a page-wide LP2 cipher.
 
-Do not extend the cascade with unconstrained state permutations or new KDFs. The next useful test should apply this now-fixed state machine to an untouched source-selected receiver or derive a reversible original-cipher update without fitting plaintext.
+Do not extend the result with unconstrained state permutations or new KDFs. The next useful test should apply this now-fixed state machine to an untouched source-selected receiver or derive a reversible original-cipher update without fitting plaintext.
 
 ## Reproduction
 
