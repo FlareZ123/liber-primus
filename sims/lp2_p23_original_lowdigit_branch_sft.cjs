@@ -216,6 +216,61 @@ assert.deepEqual(p57PairHits, [{
 // Existing p33 semantics close the same source positions.
 assert.deepEqual(H(firstTheirPosition, secondTheirPosition), [23, 15]);
 
+// Read the risen THEIR position with the same low-digit opcode. It lands on
+// the endpoint pair of the exact signed clause WORDS ARE THE MAP, and H
+// recovers the independently reconstructed [e,q]=[3,4] state.
+const signedWords = [
+  "HELLO", "THE", "PATH", "LIES", "EMPTY", "EPIPHANY", "SEEKS", "THE",
+  "DEVOTED", "LIBER", "PRIMUS", "IS", "THE", "WAY", "ITS", "WORDS",
+  "ARE", "THE", "MAP", "THEIR", "MEANING", "IS", "THE", "ROAD", "AND",
+  "THEIR", "NUMBERS", "ARE", "THE", "DIRECTION", "SEEK", "AND", "YOU",
+  "WILL", "BE", "FOUND", "GOOD", "LUCK", "BEWARE", "FALSE", "PATHS",
+  "VERIFY", "OPENPGP",
+];
+assert.equal(signedWords[firstTheirPosition], "THEIR");
+assert.equal(signedWords[secondTheirPosition], "THEIR");
+
+const mapPosition = primary(secondTheirPosition);
+assert.equal(mapPosition, 18);
+assert.equal(signedWords[mapPosition], "MAP");
+const wordsPosition = primary(mapPosition);
+assert.equal(wordsPosition, 15);
+assert.equal(signedWords[wordsPosition], "WORDS");
+assert.deepEqual(signedWords.slice(wordsPosition, mapPosition + 1),
+  ["WORDS", "ARE", "THE", "MAP"]);
+assert.deepEqual(H(mapPosition, wordsPosition), [3, 4]);
+const e = 3;
+const q = 4;
+assert.equal(e ** q, 81);
+
+// Charge every signed-source start index that stays within the signed-word
+// index domain for two low-digit steps and lands on H=[e,q].
+const signedEqHits = [];
+for (let index = 0; index < signedWords.length; index += 1) {
+  const first = primary(index);
+  if (first === null || first < 0 || first >= signedWords.length) continue;
+  const second = primary(first);
+  if (second === null || second < 0 || second >= signedWords.length) continue;
+  if (H(first, second)[0] === e && H(first, second)[1] === q) {
+    signedEqHits.push({
+      index,
+      word: signedWords[index],
+      first,
+      firstWord: signedWords[first],
+      second,
+      secondWord: signedWords[second],
+    });
+  }
+}
+assert.deepEqual(signedEqHits, [{
+  index: 25,
+  word: "THEIR",
+  first: 18,
+  firstWord: "MAP",
+  second: 15,
+  secondWord: "WORDS",
+}]);
+
 // Charge the same token-component family used by READ OUT.
 const chargedModes = [];
 for (const [radix, alphabet] of [[60, alpha60], [59, alpha59]]) {
@@ -276,10 +331,15 @@ console.log(JSON.stringify({
     secondTheirPosition,
     rise,
     theirPairH: H(firstTheirPosition, secondTheirPosition),
+    risenTheirLowDigitPath: [secondTheirPosition, mapPosition, wordsPosition],
+    signedClause: signedWords.slice(wordsPosition, mapPosition + 1).join(" "),
+    mapWordsH: H(mapPosition, wordsPosition),
+    signedEqHits,
+    p33UpperBodyRuneCount: e ** q,
   },
   downstreamControls: {
     p28: translit(p28Plain),
     p33: translit(p33Upper) + " " + translit(p33Lower),
   },
-  decision: "THE ORIGINAL is a source-connected navigation fork under the already selected p50 low-base60 opcode: THE -> FIND -> p28 READ OUT; ORIGINAL -> MUST -> VERIFY -> B -> p33. The clear-p57 number pair FIND/MUST=[15,10] is uniquely mapped by H to [g,25], while B=19 supplies the first THEIR position; 25-19=6=a predicts the existing p33 THEIR RISE semantic loop. This advances navigation/state structure but is not a body-cipher inverse.",
+  decision: "THE ORIGINAL is a source-connected navigation fork under the already selected p50 low-base60 opcode: THE -> FIND -> p28 READ OUT; ORIGINAL -> MUST -> VERIFY -> B -> p33. The clear-p57 number pair FIND/MUST=[15,10] is uniquely mapped by H to [g,25], while B=19 supplies the first THEIR position; 25-19=6=a predicts the existing p33 THEIR RISE semantic loop. Reading the risen THEIR index25 with the same low-digit opcode gives MAP18 -> WORDS15; H(18,15)=[e,q]=[3,4], uniquely among all signed-source two-step starts, and e^q=81 is p33's established upper-body rune count. This advances navigation/state structure but is not a body-cipher inverse.",
 }, null, 2));
