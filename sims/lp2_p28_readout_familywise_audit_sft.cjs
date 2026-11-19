@@ -10,6 +10,9 @@ const read = (relative) => fs.readFileSync(path.join(root, relative), "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const solved = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
+const grid = JSON.parse(read("resources/liber-primus/base60-grid.json"));
+const p50 = grid.rows.flat();
+const alpha60 = grid.alphabet;
 const parts = transcription.split(/^\s*%\s*$/m);
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const runeSet = new Set(corpus.runes);
@@ -32,6 +35,48 @@ function modPow(base, exponent) {
 function translit(values) {
   return values.map((value) => corpus.translit[value]).join("");
 }
+
+/** @param {string} word */
+function gp0(word) {
+  const normalized = word
+    .toUpperCase()
+    .replace(/QU/g, "CW")
+    .replace(/V/g, "U")
+    .replace(/[KQ]/g, "C")
+    .replace(/Z/g, "S")
+    .replace(/[^A-Z]/g, "");
+  const tokens = corpus.translit
+    .map((symbol, value) => ({symbol: symbol.toUpperCase(), value}))
+    .sort((left, right) => right.symbol.length - left.symbol.length);
+  let total = 0;
+  for (let offset = 0; offset < normalized.length;) {
+    if (normalized.startsWith("ING", offset)) {
+      total += 21;
+      offset += 3;
+      continue;
+    }
+    if (normalized.startsWith("IO", offset)) {
+      total += 27;
+      offset += 2;
+      continue;
+    }
+    const token = tokens.find(candidate =>
+      normalized.startsWith(candidate.symbol, offset)
+    );
+    assert.ok(token, "unmapped GP spelling: " + normalized.slice(offset));
+    total += token.value;
+    offset += token.symbol.length;
+  }
+  return total;
+}
+
+/** @param {number} state */
+function low60Step(state) {
+  if (!Number.isInteger(state) || state < 0 || state >= p50.length) return null;
+  const value = alpha60.indexOf(p50[state][1]);
+  return value < 0 ? null : value;
+}
+
 
 /** @param {number} page */
 function physicalPart(page) {
@@ -352,6 +397,60 @@ assert.ok(sourceReadOutHits.some((hit) =>
   hit.transform === "u-3-27" && hit.orientation === "forward"
 ));
 
+// The independently supported native-base60 low-digit state pointer is now an
+// external source operation. Charge it against every English parse produced by
+// the complete 44-transform × 2-orientation family on the independently fixed
+// p28 center/right-edge object. A surviving parse must obey first -> second ->
+// FIND(42) -> p28 under one unchanged zero-based low-digit transition.
+const sourcePointerHits = [];
+for (const hit of sourceObject.phraseHits) {
+  for (const parse of hit.parses) {
+    if (parse.length !== 2) continue;
+    const first = gp0(parse[0]);
+    const second = gp0(parse[1]);
+    const afterFirst = low60Step(first);
+    const afterSecond = low60Step(second);
+    const afterFind = low60Step(42);
+    if (
+      afterFirst === second &&
+      afterSecond === 42 &&
+      afterFind === 28
+    ) {
+      sourcePointerHits.push({
+        transform: hit.transform,
+        kind: hit.kind,
+        orientation: hit.orientation,
+        latin: hit.latin,
+        parse,
+        walk: [first, afterFirst, afterSecond, afterFind],
+      });
+    }
+  }
+}
+assert.deepEqual(sourcePointerHits, [{
+  transform: "u-3-27",
+  kind: "uniform",
+  orientation: "forward",
+  latin: "readout",
+  parse: ["read", "out"],
+  walk: [55, 20, 42, 28],
+}]);
+
+// The sole p28 rival parse is LUNG DEAR. Its first state is FIND=42 and it
+// immediately jumps to p28, so it cannot satisfy the source-order instruction
+// chain that the authenticated 2016 route selects.
+const sourceRivalParses = sourceObject.phraseHits.flatMap(hit =>
+  hit.parses
+    .filter(parse => parse.length === 2)
+    .map(parse => ({latin: hit.latin, parse}))
+);
+assert.ok(sourceRivalParses.some(row =>
+  row.parse[0] === "lung" && row.parse[1] === "dear"
+));
+assert.equal(gp0("LUNG"), 42);
+assert.equal(gp0("DEAR"), 55);
+assert.equal(low60Step(gp0("LUNG")), 28);
+
 // Independent center-ray family: every odd-length unknown page contributes
 // the six-rune ray from its exact center to each side. The right ray of p28 is
 // exactly the discovery span. This charges the left/right center-boundary rival
@@ -499,6 +598,10 @@ console.log(JSON.stringify({
     sourceObjectPhraseHitCount: sourceObject.phraseHits.length,
     sourceObjectPhraseHits: sourceObject.phraseHits,
     sourceReadOutHitCount: sourceReadOutHits.length,
+    externalLowDigitSelector: {
+      rule: "first -> second -> FIND(42) -> p28 under native base60 low digit",
+      hits: sourcePointerHits,
+    },
     frozenSourceTransformPhraseObjects: sourceTransformPhraseObjects.length,
     frozenSourceTransformHits: sourceTransformPhraseObjects.map((item) => ({
       page: item.page,
@@ -518,5 +621,5 @@ console.log(JSON.stringify({
   },
   solvedControls,
   decisionRule:
-    "Do not promote READ OUT from language selectivity alone if the charged pre-output family makes phrase hits common. A surviving claim also requires an untouched consequence from the frozen source transform.",
+    "The externally supported native-base60 low-digit source route now disambiguates the complete p28 source-object phrase family: READ OUT alone obeys first -> second -> FIND(42) -> p28. Preserve the transform chronology caveat while treating the output selection as independently constrained.",
 }, null, 2));
