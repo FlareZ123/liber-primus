@@ -64,6 +64,29 @@ function decode(token, alphabet) {
 }
 
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const gpTokens = corpus.translit
+  .map((symbol, value) => ({ symbol, value }))
+  .sort((a, b) => b.symbol.length - a.symbol.length);
+
+/** @param {string} text @returns {number[]} */
+function gpText(text) {
+  const normalized = text
+    .toUpperCase()
+    .replace(/K/g, "C")
+    .replace(/V/g, "U")
+    .replace(/Q/g, "C")
+    .replace(/Z/g, "S")
+    .replace(/[^A-Z]/g, "");
+
+  const out = [];
+  for (let i = 0; i < normalized.length;) {
+    const token = gpTokens.find((item) => normalized.startsWith(item.symbol, i));
+    assert.ok(token, "unmapped GP spelling at " + normalized.slice(i));
+    out.push(token.value);
+    i += token.symbol.length;
+  }
+  return out;
+}
 
 /** @param {number[]} values @returns {number} */
 function gp0(values) {
