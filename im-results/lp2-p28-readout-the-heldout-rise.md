@@ -1,13 +1,13 @@
 # Frozen THEIR RISE predictor unexpectedly extends p28 READ OUT to READ OUT THE
 
-**Agent1, 19 November 2026. Classification: held-out local plaintext recovery candidate with a source-derived exact key and manuscript-unique ciphertext packet.** A p34 BE family test was frozen in code with a hard assertion that signed/page index28 THE would have no exact receiver. Windows CI run **44459406789** failed that assertion: the unchanged predictor hit p28 word29 at offset140. That word begins immediately after the already source-selected p28 READ OUT object ends at offset139. The exact recovery is therefore:
+**Agent1, 19 November 2026. Classification: held-out local plaintext recovery candidate with a source-derived exact key and manuscript-unique ciphertext packet.** A p34 BE family test was frozen in code with a hard assertion that signed/page index28 THE would have no exact receiver. Windows CI run **44459406789** failed that assertion: the unchanged predictor hit p28 canonical word28 at offset140. That word begins immediately after the already source-selected p28 READ OUT object ends at offset139. The exact recovery is therefore:
 
 ```text
 READ OUT + THE
 = READ OUT THE
 ```
 
-The p28 output was not selected after inspecting p28 word29. It was exposed by a failed holdout assertion under a rule fixed to resolve p34 BE.
+The p28 output was not selected after inspecting the p28 receiver at offset140. It was exposed by a failed holdout assertion under a rule fixed to resolve p34 BE.
 
 ## Frozen source rule
 
@@ -88,14 +88,14 @@ predicted [24,25] mod29.
 The original p28 canonical word list contains exactly:
 
 ```text
-word27 offsets131..134 [3,19,15,9]
-word28 offsets135..139 [28,24,10,1,20]
-word29 offsets140..141 [24,25]
-word30 offsets142..145 [11,14,27,0]
-word31 offsets146..150 [10,18,13,28,8]
+word26 offsets131..134 [3,19,15,9]
+word27 offsets135..139 [28,24,10,1,20]
+word28 offsets140..141 [24,25]
+word29 offsets142..145 [11,14,27,0]
+word30 offsets146..150 [10,18,13,28,8]
 ```
 
-Thus the prediction lands exactly on p28 **word29**, starting at offset140.
+Thus the prediction lands exactly on p28 **word28**, starting at offset140.
 
 Subtract:
 
@@ -113,7 +113,7 @@ The current p28 READ OUT source object is:
 
 ```text
 exact center offset134 = [9]
-one-based word28 offsets135..139 = [28,24,10,1,20].
+canonical word27 offsets135..139 = [28,24,10,1,20].
 ```
 
 The independently sourced exponents `[e,-K]=[3,27]` give:
@@ -167,8 +167,8 @@ search only physical page = source index.
 Exactly two forward-rise predictions hit:
 
 ```text
-p28 THE -> word29 start140
-p34 BE  -> word3  start4
+p28 THE -> canonical word28 start140
+p34 BE  -> canonical word2  start4
 ```
 
 The seven other source rows miss.
@@ -199,29 +199,27 @@ The p28 rule predicts exact ciphertext packet:
 [24,25].
 ```
 
-Across all unknown physical pages p0..p55 there are **473 complete canonical two-rune words**.
+Across all rune-bearing unknown pages there are **448 complete page-local canonical two-rune words** after preserving the 32 printed words that cross physical page boundaries.
 
 The exact ordered packet `[24,25]` occurs once:
 
 ```text
-p28 word29, start140.
+p28 canonical word28, start140.
 ```
 
 Thus the held-out prediction is manuscript-wide unique under the complete two-rune-word census.
 
-## Page / word / source self-location and the +a three-page chain
+## Source/page alignment and the +a three-page chain
 
-The held-out receiver has an additional source-visible alignment that was not part of the prediction:
+The held-out receiver retains the source-selected page alignment that was part of the family definition:
 
 ```text
-physical LP2 page number = 29   (project p28)
-canonical p28 word number = 29
-authenticated source word number = 29 = THE
+authenticated zero-based source index = 28 = THE
+selected project page                  = p28
+receiver                               = canonical word28, start140
 ```
 
-This is a three-way 29 self-location. The recovered word is not merely somewhere on p28: it is **word29**, exactly the one-based signed position of THE.
-
-The next authenticated source word is one-based word30 = DIRECTION.
+The corrected cross-page word parser therefore removes the earlier three-way one-based 29 self-location claim. The receiver remains on the page fixed by source index28, and it is still immediately adjacent to READ OUT. The next authenticated source token is index29 DIRECTION.
 
 The same THEIR RISE step also generates the complete same-index stride:
 
@@ -299,7 +297,7 @@ Windows Node22 run **44459406789** failed because actual p28 output was:
 p28 THE -> start140 hit.
 ```
 
-Only after that failure was p28 word29 inspected as a continuation of READ OUT.
+Only after that failure was the p28 receiver at offset140 inspected as a continuation of READ OUT.
 
 The CI failure therefore preserves the pre-result expectation inside the repository history. This does not prove authorship, while it substantially reduces the usual retrospective-language-fit objection.
 
@@ -313,7 +311,7 @@ THEIR RISE
  -> THE28 -> BE34 gives rise b
  -> H^-1([b,0]) = [p-1,g+K]
  -> exact predicted p28 cipher [24,25]
- -> manuscript-unique receiver p28 word29
+ -> manuscript-unique complete-word receiver p28 word28
  -> exact THE
  -> physical adjacency to READ OUT
  -> READ OUT THE
@@ -332,4 +330,4 @@ Run:
 node sims/lp2_their_rise_h_rectangle_selector_sft.cjs
 ```
 
-The SFT reconstructs THEIR RISE, runs the complete two-rune +6 predictor family, checks the p28/p34 hits, verifies p28 adjacency to the existing READ OUT object, and exhausts all 473 canonical two-rune manuscript words for the exact p28 packet. Windows Node22 PASS after preserving the unexpected holdout: **44461032220**.
+The SFT reconstructs THEIR RISE, runs the complete two-rune +6 predictor family, checks the p28/p34 hits, verifies p28 adjacency to the existing READ OUT object, and exhausts all 448 complete page-local canonical two-rune manuscript words for the exact p28 packet. Windows Node22 PASS after preserving the unexpected holdout: **44461032220**.
