@@ -209,3 +209,30 @@ index36 GOOD   GP0=35 -> index35 FOUND
 No other source pair has mutual GP0/index pointers. This gives a source-only held-out bridge between p35 FOUND and p36 GOOD. Updated the p36 GOOD SFT/report, the p35 FOUND report, and authoritative synthesis. Preserve as cross-result convergence, not a universal GP0 pointer rule.
 
 Also tested the simplest SEEKS->SEEK key truncation: the validated p6 SEEKS key prefix `[28,21,4,10]` has zero SEEK hits across all 509 complete four-rune unknown words under both signs. Do not rescue that branch without a new source selector.
+
+
+### SEEK30 -> AND31 -> YOU32 -> SEEK30 closed source/page loop
+
+Charge every consecutive authenticated-source trigram of width `K+1=3` and require the terminal word's exact GP0 to equal the first zero-based index. Exactly one hit exists:
+
+```text
+30 SEEK
+31 AND
+32 YOU
+GP0(YOU)=30.
+```
+
+This joins three independently fixed manuscript/source steps:
+
+```text
+p30 SEEK -> p31 AND
+  corrected numbered adjacency and unique THE EMPTY THE -> THE ROAD THE transition
+
+p31 AND -> p33 YOU
+  p31 helper derives AND key and existing RISE +K=2 page step; unchanged key transfers only to p33 YOU
+
+p33 YOU -> p30 SEEK
+  source-only GP0(YOU)=30.
+```
+
+So the route closes `p30 SEEK -> p31 AND -> p33 YOU -> p30 SEEK` without a new scalar. Treat as cross-mechanism convergence; do not generalize GP0 as an unrestricted page pointer.
