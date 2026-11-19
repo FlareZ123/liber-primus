@@ -289,6 +289,26 @@ therefore reuses two exact p55-emergence fields and the derived `q=e+1`.
 
 This is cross-object mechanism convergence. It does not by itself establish that p55 was intended to emit the complete p0 13-rune key order.
 
+## Prospective same-marker transfer is negative
+
+Freeze the exact p0 13-rune key schedule before opening any other marked receiver. For every original red 13-dot mark on unknown p0-p55 that has at least 13 preceding page-local runes, take the exact 13-rune predecessor window and subtract the same key with the same phase and sign.
+
+There are **23** such marked windows, including p0.
+
+As a typed output check, build every contiguous 13-rune window in the pinned solved Cicada source plus the authenticated 2016 signed message. There are **3,036** reference windows.
+
+Results:
+
+```text
+p0 red13 predecessor: exact source-native hit
+  -> EPIPHANY SEEKS
+
+other 22 red13 predecessors:
+  -> 0 exact solved/authenticated 13-rune hits
+```
+
+This is an important scope result. The exact state schedule is currently a **p0-local key candidate**, not a reusable key for every red13-delimited object. No rephasing, reversal, alternate sign, or per-marker state permutation was opened after the miss.
+
 ## Decision
 
 Promote the p0 opening from a checksum-only plaintext hypothesis to a **strong state-keyed local plaintext candidate**:
