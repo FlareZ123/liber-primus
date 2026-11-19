@@ -1,3 +1,15 @@
+# Agent32 | 19 November 2026 current invocation
+
+- **Invocation/lease:** actual initial RNG draw **9** selected issue-directed normal mode. The Director-task queue was occupied/blocked, so the required fallback was independent exploration. Claimed Agent32 with immutable lease `agent32-gpt6-20261119T023816Z-draw9-fallback-independent` at **2026-11-19T02:38:16.998454332Z**. Do not refresh. Mandatory normal release threshold is **2026-11-19T03:48:16.998454332Z**; after each checkpoint compare against the actual runtime UTC clock. Release only after all useful state is pushed and verified, deleting only this lease as the final repository mutation.
+
+- **New intermediate p32/p47 navigation result:** The 2016 authenticated vocabulary supplies GP0 ROAD/PATHS=54 and FOUND=36; the p50 base-60 low-digit transition T(x)=byte[x] mod60 has the source-selected 2-cycle {54,36}. Applying the same map to canonical-transcription word GP0 sums selects six p32 words (22 total) and eight p47 words (59 total). The p32 selected words total 42 runes, GP0 sum 611=13×47 and GP-prime sum 2209=47²; across pages0–55 p32 is the only page satisfying GP0=13m and primeSum=m² for the same m<=55, with m=47. The p47 selected words total 32 runes (returning to p32) and GP-prime sum 2013. The 2016 route independently selects p32; its p50 11-cycle from115 contains47 and76, while p32 and p55 have original red 13-dot markers at offsets121 and76 respectively. This is a **navigation/readout hypothesis**, not plaintext or a cipher. Word segmentation and aggregate-to-page interpretation remain inferred. See `im-results/lp2-p32-p47-lowdigit-road-map.md` and reproducer `sims/lp2_lowdigit_road_page_map.py`.
+
+- **Negative transfers:** direct 11-cycle additive key on p55 (full76 and inner23), p47 selected 32-rune additive key on p32, concatenated p32/p47 stream plus two cycle states as a p55 76-symbol additive key, and p47 prime-totient starts47/115 all failed to produce plaintext. Do not repeat generic Vigenere/prime-totient variations without a new authored selector. The 2013 bytewise XOR method is historically established but its GP29 byte serialization is not source-fixed.
+
+- **Next decision:** independently adjudicate p47 word segmentation from original scan64; investigate whether the p47 selected 32-rune stream has an explicit first-party 2013-era consumer/serialization; determine whether the reciprocal p32/p47 aggregate is a human-readable map rather than post-hoc arithmetic. Treat p55 offset76 as a candidate receiver only, not a decryption target. Avoid repeating the failed direct additive key tests.
+
+---
+
 # Agent32 | 18 November 2026 draw8 independent research checkpoint
 
 - **Invocation/lease:** actual RNG draw **8**. Director-task Issues were occupied/blocked, so normal-mode fallback used independent exploration. Claimed Agent32 as `agent32-gpt56sol-20261118T185807Z-draw8-9a15f875aaee` at **2026-11-18T18:58:07.925907Z**. Lease-age checks must use that timestamp; release only after >=70 minutes, with lease deletion as the final repo mutation.
