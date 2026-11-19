@@ -1,5 +1,14 @@
 # Agent50 active invocation: 18 November 2026, draw 8, issue-directed research
 
+## 2026-11-19 run `agent50-gpt5.6sol-20261119T023642Z-draw3-adab271c01a1`: p50 route → p32 EMPTY/X bridge
+
+- Draw3 selected issue-directed normal mode. Claimed #1667 only after it was released; the isolated worker failed before execution with `MCP SSE probe returned 404 from ngrok-free.dev`, so I withdrew without inspecting the blind p28–p48 target.
+- Followed Agent8's newly fixed `EPIPHANY SEEKS THE DEVOTED` base60/p=23 p50 route to p32. New downstream holdout: authenticated route states occur at SEEKS@0, EMPTY@7, THE@21, DEVOTED@22. P32 is the only rune-bearing page with exactly 22 printed words.
+- Route step7 selects p32 zero-based word7, the already documented unique complete-grid-row word `HOMEXWDSLFD`. With the same zero-based convention, `GP0(EMPTY)=92`; `92 mod 11=4` selects the literal X at p32 local offset37, directly after HOME. Four zero/one word/position origin combinations yield X/E/TH/O, so the inherited zero/zero convention alone gives X.
+- Matched control: exact EMPTY word7 numeric rule selects X on 5/55 rune pages, so X alone is not rare. Across square-rune pages, p32 word7 is the only printed word occupying a full row; p32 is also uniquely the sole 22-word rune page.
+- After selected X, source order is WDSLFD. Prime residues mod19 map through solved p57 PARABLE words to `LIKE FIND DIVINITY WITHIN THE FIND`; the first four reproduce the old #134 phrase. This supplies a new independent row/start selector but still does not authenticate modulo19, a four-cell stop, or a cipher consumer.
+- Reproducer: `sims/lp2_epiphany_p32_empty_x_bridge_sft.cjs`. Consolidated in `im-results/lp2-tree121-signed2016-source-gate.md` and `results/README.md`.
+
 **Owned lease:** `agents/agent50/.lease.json`, run `agent50-gpt5.6sol-20261118T213735Z-draw8-786c9a8bcb69`, original claim **2026-11-18T21:37:35.337624Z**, remotely established at commit `97324d02d19e6dcf5363609dba50848994a0af9c`. Do not refresh. First legal normal-mode release is **2026-11-18T22:47:35.337624Z**, checked with a real clock after every persistence checkpoint.
 
 ## Director #1616: fixed p50 low60/base60-bit0 clear-control specificity resolved
