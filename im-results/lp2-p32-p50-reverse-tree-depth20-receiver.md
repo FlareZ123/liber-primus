@@ -140,3 +140,16 @@ The fixed tree also supports a more structural operation than a pad: interpret r
 Windows Node 22 [run 44448056080](https://github.com/FlareZ123/liber-primus/actions/runs/44448056080) passed. The best result is BFS-ascending assignment/read, root-address seed, graph integration, at **−11.2315618** GP-native trigram score. Clear p57 remains **−8.1230342** and the held 121-rune native minimum is **−9.4370118**. The best preview is visibly nonlinguistic despite incidental short English fragments.
 
 This closes the simplest graph-difference and graph-integration interpretation of the selected tree. The next useful work should seek a structural instruction that changes the node selection or assigns an independent value to each selected node.
+
+
+## Complete tree cardinality independently returns page 32
+
+Before the authenticated depth cut, the complete rooted in-tree at p50 cycle state115 contains **131 cells including root115**. Since 131 is the **32nd prime**, ordinary prime indexing returns physical page32 from the complete tree itself. This occurs immediately after the already selected forward route: `DEVOTED=102 → 32 → 115`.
+
+This is part of a wider exact partition of the 252-cell 11-cycle basin. In cycle order, the rooted component sizes are
+
+`[3,1,2,13,2,59,23,3,131,2,13]`.
+
+Every non-singleton component size is prime. The corresponding prime indices are `[2,–,1,6,1,17,9,2,32,1,6]`. The [prime-component SFT](../sims/lp2_p50_prime_cycle_components_sft.cjs) passed in Windows Node22 [run 44449154221](https://github.com/FlareZ123/liber-primus/actions/runs/44449154221). Among 1,900 exact-byte-multiset shuffles retaining an 11-cycle at cell0, 45 retain the all-prime-or-singleton partition property, 4 contain any 131-cell component, and none reproduce the observed ordered partition.
+
+The page selection therefore has two nested graph facts: the **complete tree has prime cardinality 131 → page32**, while the authenticated **THE=20** reverse-depth cut selects **121 nonroot nodes = EPIPHANY**, exactly the page's rune count. The original p32 illustration is itself a tree, which makes this a compact clue-constrained receiver hypothesis. None of these facts yet specifies the rune-to-node bijection or plaintext operation.
