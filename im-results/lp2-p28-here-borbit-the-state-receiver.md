@@ -131,7 +131,7 @@ The output `THE` is read only after this numeric family is resolved.
 
 Relax page-start selection and apply the same 20-member transform family to every physically adjacent pair of multi-rune fragments in the unknown manuscript.
 
-There are **2,367** eligible adjacent pairs.
+There are **2,347** eligible adjacent pairs.
 
 Require the first-to-second recurrence and a same-page occurrence of the predicted third endpoint pair. Exactly two triples survive:
 
