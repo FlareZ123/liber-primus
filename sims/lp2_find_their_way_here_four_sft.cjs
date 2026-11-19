@@ -260,6 +260,9 @@ const p28Lines = parts[28].trim().split("/");
 const dhFragments = fragments(p28Lines[5]);
 const hStream = dhFragments.flatMap(outerH);
 assert.deepEqual(hStream, [15, 2, 14, 4, 12, 12, 23, 12, 8, 19]);
+assert.deepEqual(dhFragments[0], [23, 8]);
+assert.equal(textOf([gpPrimeV(FOUR), gp0v(FOUR)]), "DH");
+assert.equal(textOf([gp0v(FOUR), gpPrimeV(FOUR)]), "HD");
 
 const p = gpPrimeV(FOUR);
 const A = gp0v(FOUR);
@@ -290,6 +293,8 @@ console.log(JSON.stringify({
     fourOccurrences,
   },
   p28Consumer: {
+    fourLabelByPrimeThenGp0: textOf([p, A]),
+    sourceFirstFragment: textOf(dhFragments[0]),
     fourGp0: A,
     fourGpPrime: p,
     pair: ["A", "p"],
@@ -298,5 +303,5 @@ console.log(JSON.stringify({
     sourceDhPrefix: hStream.slice(0, 2),
   },
   classification:
-    "Strong source-derived readout: the solved phrase FIND THEIR WAY HERE maps through GP0-addressed p50 high digits to FOUR, as the only all-high solved four-rune lexical hit across 713 solved four-word windows and uniquely in the fixed component/direction family. FOUR uniquely carries GP0=8=A and GP-prime=23=p among solved words, and H(p,A) reproduces the original p28 DH prefix [b,K]=[15,2].",
+    "Strong source-derived readout: the solved phrase FIND THEIR WAY HERE maps through GP0-addressed p50 high digits to FOUR, as the only all-high solved four-rune lexical hit across 713 solved four-word windows and uniquely in the fixed component/direction family. FOUR uniquely carries GP0=8=A and GP-prime=23=p among solved words; [GP-prime,GP0]=[23,8] literally transliterates to the source line label DH, and H(p,A) reproduces that line's opening packet [b,K]=[15,2].",
 }, null, 2));
