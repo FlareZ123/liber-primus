@@ -295,6 +295,29 @@ assert.deepEqual(
   [[0,"N"],[1,"N"]]
 );
 
+
+// The authenticated north graph has exactly one reciprocal 2-cycle.
+const northEdges = new Map(
+  north0.sourceIndexHits.map((row) => [row.sourceIndex, row.destination])
+);
+const reciprocalCycles = [];
+for (const [left, right] of northEdges.entries()) {
+  if (left < right && northEdges.get(right) === left) {
+    reciprocalCycles.push({
+      left,
+      leftWord: source[left].word,
+      right,
+      rightWord: source[right].word,
+    });
+  }
+}
+assert.deepEqual(reciprocalCycles, [{
+  left: 6,
+  leftWord: "SEEKS",
+  right: 23,
+  rightWord: "ROAD",
+}]);
+
 // Solved-p57 word EMERGE has GP0=83 and rises to signed word35 FOUND.
 const emerge = gp("EMERGE");
 assert.equal(emerge.reduce((sum, value) => sum + value, 0), 83);
