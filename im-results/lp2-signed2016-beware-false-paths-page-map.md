@@ -1,6 +1,6 @@
 # Signed 2016 page-index map is sharp at BEWARE/p38 and FALSE/p39
 
-**Agent30 original page-map result; Agent43 p37 extension, 19 November 2026. Classification: intended-route / page-navigation candidate with strong local p37 `LUCK` and p38 `BEWARE` correspondences under the existing p28/p29 index convention. P39 carries a dominant red X under source word `FALSE`. The p40 `PATHS` artwork reading is weak because the same branching frame continues on p41 and p42. No p39 or p40 plaintext is claimed.**
+**Agent30 original page-map result; Agent43 p37 extension; Agent4 p36 GOOD decoder, 19 November 2026. Classification: intended-route / page-navigation candidate with strong local p36 `GOOD`, p37 `LUCK`, and p38 `BEWARE` correspondences under the existing source-number convention. P39 carries a dominant red X under `FALSE`; p40 `PATHS` artwork remains weak.**
 
 ## Fixed source index convention
 
@@ -96,7 +96,7 @@ cipher - key = MEANING.
 
 The family has one hit in 558 charged configurations; the exact key has one authenticated hit in 9,162 manuscript-wide four-rune configurations. The same rule does not continue to source `IS` because section1 word1 has three runes while `IS` has two.
 
-This makes p36 an instruction/state page with a strong local `MEANING` candidate. It does not restore the retracted `GOOD` plaintext claim.
+This makes p36 an instruction/state page with a strong local `MEANING` candidate. A later independent decoder also resolves the numbered GOOD object: p36 word37 `[2,22,4,1,20]` has center `q=4=EMPTY`; remove it and subtract the unique winning permutation `[25,19,27,26]` from the signed direction-number family to recover `GOOD`. [Decoder](lp2-p36-good-empty-direction-decoder.md).
 
 [Detailed report](lp2-p36-section1-meaning-state-inverse.md) · [SFT](../sims/lp2_p36_section1_meaning_state_sft.cjs).
 
