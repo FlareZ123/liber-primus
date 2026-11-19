@@ -137,11 +137,11 @@ function wordToGp(word) {
 
 const vocab = [];
 const seenVocab = new Set();
-for (const entry of dictionary.values()) {
-  const key = entry.values.join(",");
+for (const [key, entry] of dictionary.entries()) {
+  const values = key.split(",").map(Number);
   if (!seenVocab.has(key)) {
     seenVocab.add(key);
-    vocab.push({ word: entry.word, values: entry.values, source: "SHAKESPEARE" });
+    vocab.push({ word: entry.word, values, source: "SHAKESPEARE" });
   }
 }
 for (const section of solved.sections) {
