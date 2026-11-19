@@ -54,6 +54,26 @@ This result independently explains why 59 and60 deserve attention without using 
 
 This is a closed source/state verification loop. It does not by itself establish THE or ROAD as plaintext, but it provides an authenticated-source reason to prefer full base60 at this exact reflected transition.
 
+## Deterministic continuation to the 2D / LUCK-PATHS state
+
+Consume the selected base60 output as the next p50 address, using the already established table-value/address grammar:
+
+```text
+cell60 1k --base60--> 106
+p50[106] = 0V
+0V = 31 under both base59 and base60
+p50[31] = 2D
+```
+
+The stable value **31** is independently `GP0(LUCK)`, and `2D` is the exact token independently identified in the LUCK→PATHS route. Therefore authenticated VERIFY reaches the same table state without using the PATHS ciphertext or plaintext:
+
+```text
+VERIFY -> 59 -> reflect 60 -> 1k ->[base60] 106
+       -> 0V -> 31 = GP0(LUCK) -> 2D
+```
+
+This continuation was recognized after the LUCK/PATHS result, so it is mechanism compression rather than prospective proof. It strengthens the interpretation that the 59→60 reflection is an authored state transition rather than an isolated arithmetic checksum.
+
 ## Reproduction
 
 ```text
