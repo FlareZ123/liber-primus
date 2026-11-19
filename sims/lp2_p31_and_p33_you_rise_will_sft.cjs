@@ -346,12 +346,20 @@ for (let index = 0; index + state.K < source.length; index += 1) {
     });
   }
 }
-assert.deepEqual(seekAndYouBackstepTrigrams, [{
-  start: 30,
-  words: ["SEEK", "AND", "YOU"],
-  terminalGp0: 30,
-  displacement: state.K,
-}]);
+assert.deepEqual(seekAndYouBackstepTrigrams, [
+  {
+    start: 20,
+    words: ["MEANING", "IS", "THE"],
+    terminalGp0: 20,
+    displacement: state.K,
+  },
+  {
+    start: 30,
+    words: ["SEEK", "AND", "YOU"],
+    terminalGp0: 30,
+    displacement: state.K,
+  },
+]);
 
 const seekRow = diagonal[30];
 assert.equal(seekRow.source.word, "SEEK");
