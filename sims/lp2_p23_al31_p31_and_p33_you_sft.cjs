@@ -328,6 +328,94 @@ assert.ok(p33Will);
 assert.deepEqual(p33Will.values, [3,15,17,22]);
 assert.equal(p33Will.ordinal - p33Hits[0].ordinal, state.a);
 
+// Whole-corpus holdout: keep the AL-derived key/sign and seven-word vocabulary fixed.
+const allThreeRuneWords = canonicalPages.flatMap((page) =>
+  page.words
+    .filter((word) => word.values.length === 3)
+    .map((word) => ({page:page.page, ...word}))
+);
+assert.equal(allThreeRuneWords.length, 726);
+
+const allCorpusHits = [];
+for (const word of allThreeRuneWords) {
+  const output = word.values.map((value, index) =>
+    mod29(value - key[index])
+  );
+  const target = targetMap.get(output.join(","));
+  if (target) {
+    allCorpusHits.push({
+      page:word.page,
+      ordinal:word.ordinal,
+      start:word.start,
+      cipher:word.values,
+      output,
+      target:target.word,
+    });
+  }
+}
+assert.deepEqual(allCorpusHits, [
+  {
+    page:31, ordinal:32, start:126,
+    cipher:[12,23,1], output:[24,9,23], target:"AND",
+  },
+  {
+    page:33, ordinal:29, start:116,
+    cipher:[14,17,8], output:[26,3,1], target:"YOU",
+  },
+]);
+
+// Exhaust the complete 29^3 key family under the already fixed subtraction
+// sign and the same seven source-authenticated three-rune target words.
+let keysWithAtLeastTwoHits = 0;
+let keysWithAtLeastThreeHits = 0;
+const keysHittingBothSelectedPages = [];
+const keysProducingAndYou = [];
+for (let a = 0; a < 29; a += 1) {
+  for (let b = 0; b < 29; b += 1) {
+    for (let c = 0; c < 29; c += 1) {
+      const candidateKey = [a,b,c];
+      let totalHits = 0;
+      const p31Targets = [];
+      const p33Targets = [];
+      for (const word of allThreeRuneWords) {
+        const output = word.values.map((value, index) =>
+          mod29(value - candidateKey[index])
+        );
+        const target = targetMap.get(output.join(","));
+        if (!target) continue;
+        totalHits += 1;
+        if (word.page === 31) p31Targets.push(target.word);
+        if (word.page === 33) p33Targets.push(target.word);
+      }
+      if (totalHits >= 2) keysWithAtLeastTwoHits += 1;
+      if (totalHits >= 3) keysWithAtLeastThreeHits += 1;
+      if (p31Targets.length && p33Targets.length) {
+        keysHittingBothSelectedPages.push({
+          key:candidateKey,
+          p31:p31Targets,
+          p33:p33Targets,
+        });
+      }
+      if (p31Targets.includes("AND") && p33Targets.includes("YOU")) {
+        keysProducingAndYou.push({
+          key:candidateKey,
+          p31:p31Targets,
+          p33:p33Targets,
+        });
+      }
+    }
+  }
+}
+assert.equal(keysWithAtLeastTwoHits, 445);
+assert.equal(keysWithAtLeastThreeHits, 35);
+assert.deepEqual(keysHittingBothSelectedPages, [
+  {key:[17,14,7],p31:["AND"],p33:["YOU"]},
+  {key:[20,24,22],p31:["YOU"],p33:["ITS"]},
+]);
+assert.deepEqual(keysProducingAndYou, [
+  {key:[17,14,7],p31:["AND"],p33:["YOU"]},
+]);
+
 console.log(JSON.stringify({
   status:"PASS",
   classification:"post-discovery solve-path compression and local plaintext recovery support",
