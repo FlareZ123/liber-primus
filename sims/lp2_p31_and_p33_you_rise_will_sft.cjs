@@ -437,6 +437,48 @@ assert.deepEqual(typedTheWindowRows, [
     phrase: ["ROAD", "IS", "THE", "WAY"],
   },
 ]);
+
+const threeRuneDiagonalRows = diagonal.filter(
+  (row) => row.object && row.object.values.length === 3
+);
+assert.equal(threeRuneDiagonalRows.length, 8);
+const unitStepDiagonalRows = threeRuneDiagonalRows.filter(
+  (row) => row.object.values[2] === 1
+);
+assert.deepEqual(
+  unitStepDiagonalRows.map((row) => ({
+    sourceIndex: row.source.index,
+    sourceWord: row.source.word,
+    page: row.page,
+    ordinal: row.object.ordinal,
+    start: row.object.start,
+    values: row.object.values,
+  })),
+  [{
+    sourceIndex: 31,
+    sourceWord: "AND",
+    page: 31,
+    ordinal: 32,
+    start: 126,
+    values: [12, 23, 1],
+  }]
+);
+
+const [p31Distance, p31SourceStart, p31SourceStep] = andRow.object.values;
+assert.equal(p31SourceStep, 1);
+assert.equal(p31SourceStart + p31Distance * p31SourceStep, 35);
+const p31UnitWalk = [];
+for (
+  let index = p31SourceStart;
+  index <= p31SourceStart + p31Distance * p31SourceStep;
+  index += p31SourceStep
+) {
+  p31UnitWalk.push(source[index].word);
+}
+assert.deepEqual(p31UnitWalk, [
+  "ROAD", "AND", "THEIR", "NUMBERS", "ARE", "THE", "DIRECTION",
+  "SEEK", "AND", "YOU", "WILL", "BE", "FOUND",
+]);
 assert.equal(andRow.source.values.reduce((sum, value) => sum + value, 0), 56);
 
 // Original p31 layout. The selected receiver lies on printed line5. The
@@ -708,6 +750,11 @@ console.log(JSON.stringify({
   helperPage56Layout: {
     sourceSelector: equalAdjacentGp0,
     typedTheWindowRows,
+    unitStepDiagonalRows: unitStepDiagonalRows.map((row) => ({
+      sourceIndex: row.source.index,
+      values: row.object.values,
+    })),
+    p31UnitWalk,
     seekAndYouBackstepTrigrams,
     targetGp0: 56,
     receiverLine: receiverLine.index,
