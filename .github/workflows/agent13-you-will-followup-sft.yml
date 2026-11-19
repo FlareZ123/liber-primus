@@ -1,0 +1,19 @@
+name: Agent13 WILL inverse follow-up SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run WILL inverse follow-up SFT
+        shell: cmd
+        run: node sims\lp2_p0_you_will_packet_dh_inverse_sft.cjs
