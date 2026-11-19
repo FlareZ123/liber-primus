@@ -1,5 +1,23 @@
 # Agent10 research continuity
 
+## 19 November 2026, draw5 issue-directed: 2013 all-around / Stage11 cross-era key gate
+
+**Ownership:** run `agent10-gpt6-20261119T133344Z-draw5-issue1900-dju-bei-source-role`; lease originally claimed **2026-11-19T13:33:44.768Z**. Initial actual RNG draw **5** (normal issue-directed). The run's #1900 assignment was closed by the maintainer at13:44 with the independent negative on DJU/BEI. The p49–p54 #1899 claim comment belonged to a different run ID; I contributed additional evidence in its comments and updated its supporting reports, but do not treat #1899 as this run's claimed task. Remaining director tasks were claimed or blocked, so subsequent work was independent exploration.
+
+**Source upgrade — 931→133 is a real cross-era pointer, not merely a helper-code coincidence.** The original 2013 OS message contains **“THE KEY IS ALL AROUND YOU”** and handle `1231507051321` (a verified palindromic prime); its shell invokes `prime_echo`, which prints primes and pauses at1033/3301. The 2013 Twitter-stage archive reconstructs original `gematria.jpg`, a visible Elder Futhark / English / prime-value lookup table; the same carrier yields the PGP-signed whitespace payload `gematria.jpg.asc`. Later `gematria.py`/`analyze_gematria.py` are helper transcriptions, but the mapping itself is present in the original puzzle-stage image. Applying the table to the OS phrase gives 19 GP29 symbols, prime values `5,67,13,67,103,31,53,97,73,73,97,11,7,3,29,89,103,7,3`, sum **931**; signed BASE29 gives **133**, matching the original 2014 Stage11 HTML `<title>133</title>`. The HTML also has `<div id="331">`. This is a credible cross-era locator hypothesis, not an executable p55 instruction.
+
+**Fixed p55 key tests — all negative; do not tune.**
+- Phrase key: the 19 GP29 symbols repeated four times (p55=76=4×19), prime values mod29, and prime-totient values mod29; all three p56-style subtractive/additive periodic tests are nonlinguistic. A stable 19-column prime-ranked transposition is also nonlinguistic. Original p55 line lengths are 24,22,22,8, so the 4×19 reshape is not visually supported.
+- The OS handle BASE29 form `2DBAOS95B` repeated as a p55 key is nonlinguistic.
+- p50 perimeter affine schedule (start=133 mod76=57, stride=331 mod76=27), full-table affine schedule (start133, stride75 mod256), and full-period LCG (handle mod256 seed57, title133 multiplier, div331 mod256 increment75) all fail to produce p55 plaintext. The LCG has a mathematically valid 256-state period but its first76 key bytes fail; its 180-tail matches only6/180 to p56 plaintext+p57 clear text (12/180 reversed). The full-table affine tail matches5/180 (6/180 reversed).
+- The 2013 prime-echo endpoints 1033/3301 have existing zero-deletion alternatives to title133/div331; no role assignment is authenticated.
+
+**Artifacts and communications:** `im-results/lp2-p50-stage11-133-331-affine-perimeter-p55-gate.md`, `sims/lp2_p50_stage11_133_331_affine_perimeter_p55_sft.cjs`; `im-results/lp2-2013-all-around-19-rune-p55-key-gate.md`, `sims/lp2_2013_all_around_19_rune_p55_key_sft.cjs`; updated `im-results/cicada2014-signed19-onion7-title133-source-gate.md`. Messages to Agent2 are under `communications/agent2/*agent10*`. Issue #1899 has correction/follow-up comments and is closed by maintainer; #1900 is closed with the DJU/BEI negative. **No p55 plaintext, key, or cipher recovered.** The established p50→p53→p28 route remains navigation, not a p55 decoder. `results/README.md` was not changed because no established decryption or mechanism resulted.
+
+**Next:** wait for Agent2's independent #1895 p55 43/33 gate and avoid duplicating it. Do not repeat p50 perimeter/table, title133/331 affine/LCG, or literal 19-rune periodic/transposition tests without a new first-party instruction assigning a different operation. Prioritize a genuinely new source-selected receiver over further numeric or provenance exploration.
+
+---
+
 ## 19 November 2026, normal draw 1: WAY -> MAP -> HERE solved-text transfer
 
 **Ownership:** run `agent10-gpt5.6sol-20261119T022711Z-draw1-independent-2651d194`, immutable lease claimed and remotely verified at **2026-11-19T02:27:11.591710Z**. Initial cryptographic RNG draw was **1**, so independent-exploration priority. First permissible measured normal-mode release is **03:37:11.591710Z**.
