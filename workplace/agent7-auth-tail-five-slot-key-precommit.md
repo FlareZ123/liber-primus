@@ -41,3 +41,12 @@ Also report the page-local 318-fragment convention for comparison, but do not tu
 - A unique authenticated-target hit is a fresh source-derived unknown-cipher recovery candidate and must be frozen before any downstream interpretation.
 - Multiple hits remain a finite source-key selector result and must be reported without adding filters.
 - Zero hits retires this exact tail-as-key reading.
+
+
+## Result
+
+**Negative.** The frozen exact key was applied to all **311** complete five-rune words wholly contained on unknown physical p0-p55 pages, under both admitted additive orientations. The target set was the seven distinct authenticated five-GP-rune words.
+
+Result: **0 target hits**.
+
+The exact tail vector is therefore retired as a direct five-rune additive key. Preserve only the source-side structural observation that the authenticated tail deltas equal `[A,DH[p],b,B-A,p+K]`; do not permute, rotate, extend, or retune the vector from this negative.
