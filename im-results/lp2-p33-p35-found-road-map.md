@@ -246,7 +246,20 @@ H_outer([19,24,11]) = [A,a-g,-g].
 
 The five-rune H5 census is the stronger receiver control because it charges the complete contiguous packet against the whole unknown manuscript.
 
-## 4. The frozen direction graph resolves ROAD versus PATHS
+## 4. FOUND has a unique reciprocal source-index bridge to GOOD
+
+A later source-only audit computes GP0 for all 43 authenticated words and keeps values that are valid source indices0..42. Exactly one reciprocal two-cycle exists:
+
+```text
+index35 FOUND  GP0=36 -> index36 GOOD
+index36 GOOD   GP0=35 -> index35 FOUND
+```
+
+This gives the independently recovered p35 FOUND packet a direct first-party continuation to source/page36 GOOD. Agent4 separately committed a reversible p36 GOOD decoder before this reciprocal graph was noticed. The bridge therefore connects two different original ciphertext receivers through authenticated source arithmetic rather than by sharing a fitted key.
+
+The reciprocal property is unique in the complete 43-word source graph. Preserve it as held-out cross-result convergence, not as a claim that every GP0 value is a page pointer.
+
+## 5. The frozen direction graph resolves ROAD versus PATHS
 
 The value54 is deliberately ambiguous in the signed source because both ROAD and PATHS have GP0=54.
 
@@ -292,7 +305,7 @@ and their numbers are the direction.
 
 The route terminates at signed word/page23 **ROAD**.
 
-## 5. The first step lands on literal DH
+## 6. The first step lands on literal DH
 
 The first direction step is:
 
@@ -310,7 +323,7 @@ so the page reached by the frozen direction operation visibly contains literal *
 
 This observation does not supply a new DH key. It makes the p35-to-p28 navigation semantically coherent without adding a fitted constant.
 
-## 6. P23 ROAD hides THE ONE RISE
+## 7. P23 ROAD hides THE ONE RISE
 
 Physical p23 is the ROAD destination of the FOUND direction walk. Its original red four-word heading has lengths:
 
