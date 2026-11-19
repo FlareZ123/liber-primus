@@ -282,8 +282,8 @@ assert.deepEqual(block9Key, {
 assert.equal(selector.end, 15);
 assert.deepEqual(sourceWords.slice(selector.end, selector.end + 4), ["WORDS","ARE","THE","MAP"]);
 
-const path = [[18,15],[18,16]];
-const cipher = path.map(([row, column]) => cell(row, column));
+const block9Path = [[18,15],[18,16]];
+const cipher = block9Path.map(([row, column]) => cell(row, column));
 assert.deepEqual(cipher, [14,22]);
 const plaintext = cipher.map((value, index) => mod29(value - block9Key.key[index]));
 assert.deepEqual(plaintext, [3,0]);
@@ -348,17 +348,70 @@ assert.deepEqual(hingeLexical, [
   { start: 22, phrase: "THE ROAD AND THEIR", coords: [[25,22],[25,23]], label: "TO" },
 ]);
 
-// Explicit block10 boundary: the natural increasing source-number order is
-// opposite the public claimed direction, so no transfer is promoted.
-const block10Key = [22,22,10];
-const block10Increasing = [[19,16],[19,17]];
-const block10Reverse = [[19,17],[19,16]];
-const decodePair = (coords) => coords.map(([row,column], index) =>
-  mod29(cell(row,column) - block10Key[index]));
-assert.deepEqual(decodePair(block10Increasing), [18,2]);
-assert.deepEqual(decodePair(block10Reverse), [2,18]);
-assert.equal(known.get(decodePair(block10Reverse).join(",")), "THE");
-assert.equal(known.get(decodePair(block10Increasing).join(",")) || null, null);
+// Block10: the prospectively sealed node shares its center with the lower
+// outer block9 node, fixing the endpoint before plaintext is read.
+const block9LowerOuter = selectorHits[0].points[2];
+assert.deepEqual(block9LowerOuter, [19,16]);
+
+const block10Packet = [22,11,22];
+const block10Hits = findExactTriples(block10Packet);
+assert.deepEqual(block10Hits, [{
+  radius: 1,
+  axis: "V",
+  points: [[18,16],[19,16],[20,16]],
+}]);
+assert.deepEqual(block10Hits[0].points[1], block9LowerOuter);
+
+const block10Derived = deriveKey(block10Packet);
+assert.deepEqual(block10Derived, {
+  unrotated: [22,10,22],
+  rotation: 2,
+  key: [22,22,10],
+});
+
+// Advance the authenticated source pointer one word: 16 ARE, 17 THE,
+// 18 MAP, 19 THEIR. The map pair is row19, columns16/17. Direction must
+// terminate at the shared state node (19,16), so it is 17 -> 16.
+assert.deepEqual(sourceWords.slice(16,20), ["ARE","THE","MAP","THEIR"]);
+const block10Path = [[19,17],[19,16]];
+assert.deepEqual(block10Path[1], block9LowerOuter);
+const block10Cipher = block10Path.map(([row,column]) => cell(row,column));
+assert.deepEqual(block10Cipher, [24,11]);
+const block10Plain = block10Cipher.map((value,index) => mod29(value - block10Derived.key[index]));
+assert.deepEqual(block10Plain, [2,18]);
+assert.equal(known.get(block10Plain.join(",")), "THE");
+
+// Charge the four cardinal neighbors in both orientations. The source pointer
+// specifically selects column17, while the shared node fixes the endpoint.
+const neighbors = [[18,16],[20,16],[19,15],[19,17]];
+const neighborTrials = [];
+for (const neighbor of neighbors) {
+  for (const coords of [[neighbor,block9LowerOuter],[block9LowerOuter,neighbor]]) {
+    const trialCipher = coords.map(([row,column]) => cell(row,column));
+    const trialPlain = trialCipher.map((value,index) => mod29(value - block10Derived.key[index]));
+    neighborTrials.push({
+      coords,
+      plaintext: trialPlain,
+      label: known.get(trialPlain.join(",")) || null,
+    });
+  }
+}
+assert.deepEqual(neighborTrials.filter((trial) => trial.label), [
+  { coords: [[19,15],[19,16]], plaintext: [7,18], label: "WE" },
+  { coords: [[19,17],[19,16]], plaintext: [2,18], label: "THE" },
+]);
+assert.deepEqual(neighborTrials.find((trial) =>
+  JSON.stringify(trial.coords) === JSON.stringify(block10Path)), {
+  coords: block10Path,
+  plaintext: [2,18],
+  label: "THE",
+});
+
+// Stop at block11. Its state packet has two placements, so the key-source
+// selector is no longer unique and no map continuation is licensed.
+const block11Packet = [11,17,11];
+const block11Hits = findExactTriples(block11Packet);
+assert.equal(block11Hits.length, 2);
 
 console.log(JSON.stringify({
   status: "PASS",
@@ -368,7 +421,7 @@ console.log(JSON.stringify({
   block9Key,
   hinge: selector.end,
   mapPhrase: sourceWords.slice(selector.end, selector.end + 4),
-  path,
+  path: block9Path,
   cipher,
   plaintext: "OF",
   coordinateFamily: {
@@ -376,9 +429,19 @@ console.log(JSON.stringify({
     lexical: coordinateTrials.filter((trial) => trial.label),
   },
   broadHingeControl: hingeLexical,
-  block10Boundary: {
-    increasing: { coords: block10Increasing, plaintext: decodePair(block10Increasing) },
-    reversePublic: { coords: block10Reverse, plaintext: "THE" },
-    decision: "do not infer a reversal rule retrospectively",
+  block10: {
+    packet: block10Packet,
+    node: block10Hits[0],
+    key: block10Derived,
+    path: block10Path,
+    cipher: block10Cipher,
+    plaintext: "THE",
+    sharedEndpoint: block9LowerOuter,
+    neighborLexical: neighborTrials.filter((trial) => trial.label),
+  },
+  stop: {
+    block11Packet,
+    exactPlacements: block11Hits.length,
+    decision: "stop: key-source packet is no longer unique",
   },
 }, null, 2));

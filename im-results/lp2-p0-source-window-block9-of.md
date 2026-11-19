@@ -1,6 +1,6 @@
-# P0 27x27 block9: authenticated source windows select the exact OF inverse
+# P0 27x27 blocks9–10: authenticated source windows select the exact OF THE inverse
 
-**Agent48, 19 November 2026. Classification: source-derived exact local inverse and strong retrospective closure of the public block9 candidate `OF`.** The source grammar below was recognized after the public 27x27 route was already present in the repository, so this is not a blinded plaintext discovery. It nevertheless removes the two main block9 freedoms identified by the prior audit: the key-source node and the ciphertext path are both reconstructed from the authenticated 2016 source plus original LP2 geometry, without choosing them from English output.
+**Agent48, 19 November 2026. Classification: source-derived exact local inverse and strong retrospective closure of the public block9–10 phrase `OF THE`.** The source grammar below was recognized after the public 27x27 route was already present in the repository, so this is not a blinded plaintext discovery. It nevertheless removes the two main block9 freedoms identified by the prior audit: the key-source node and the ciphertext path are both reconstructed from the authenticated 2016 source plus original LP2 geometry, without choosing them from English output.
 
 ## Frozen ingredients
 
@@ -133,17 +133,74 @@ plaintext = OF.
 
 A broader hinge-family control fixes the formula `(i+3,i)->(i+3,i+1)` and charges all 24 possible authenticated starting indices `i=1..24` with the same key. Three lexical outputs occur: OR at i=2, OF at i=15, TO at i=22. This broader family is therefore not a selector by itself. The discriminating fact is that **i=15 was fixed first by the unique 13-rune key-selector window**, before the map window is opened.
 
-## 4. Transfer boundary
+## 4. The shared state node fixes block10 direction
+
+The prospectively sealed block10 packet is:
+
+```text
+[22,11,22] = [p-1,B-A,p-1]
+```
+
+and its globally unique placement is:
+
+```text
+(18,16) -> (19,16) -> (20,16).
+```
+
+Its center **(19,16)** is exactly the lower outer endpoint of the block9 node `(15,20),(17,18),(19,16)`. This shared coordinate exists before the block10 plaintext is read.
+
+Advance the authenticated source pointer one word from the block9 hinge:
+
+```text
+16 ARE
+17 THE
+18 MAP
+19 THEIR
+```
+
+The same map-window construction gives row19 and the adjacent column pair {16,17}. Direction is now fixed by state continuity: the two-cell ciphertext path must **terminate at the shared key-state coordinate (19,16)**. Hence:
+
+```text
+(19,17) -> (19,16).
+```
+
+The frozen block10 node-to-key transform gives:
+
+```text
+[22,11,22]
+ -> center phi(11)=10
+ -> unrotated [22,10,22]
+ -> Möbius rotation2
+ -> key [22,22,10].
+```
+
+Original ciphertext on the selected path is:
+
+```text
+[24,11].
+```
+
+Therefore:
+
+```text
+[24,11] - [22,22] mod29
+= [2,18]
+= THE.
+```
+
+This selects the public direction without using English output. A cardinal-neighbor control around the shared state point has eight oriented one-step paths. Two happen to yield source-native words under the block10 key: left-neighbor→center gives `WE`, and right-neighbor→center gives `THE`. The authenticated source pointer fixes the right neighbor because its next numbered word is source17 `THE`; state continuity fixes the endpoint at source16/coordinate16.
+
+## 5. Hard stop at block11
 
 Do not extrapolate this into a general 27x27 route.
 
-The next public block uses the prospectively validated block10 key node `[22,11,22]`. The natural next source-number window `16..19 = ARE THE MAP THEIR` selects the same unordered public pair `{(19,16),(19,17)}`, but increasing source-number order gives the reverse of the public claimed direction. Under the fixed block10 key the public claimed `THE` requires `(19,17)->(19,16)`.
+The next state-native block11 packet `[11,17,11]` has **two** exact canonical placements in the original matrix, as already established prospectively. The unique key-source condition therefore fails before any map path should be opened. A naive continuation to source row20/columns17–18 produces nonlexical `HM`/`MH` under the block11 key and does not match the external route's separate vertical `END` path.
 
-Therefore this result closes **block9 locally** and leaves block10 direction unresolved. No alternating/reversal rule is introduced after seeing that mismatch.
+The reconstructed source-window grammar is consequently a **local two-block mechanism producing OF THE**, with its stopping condition aligned to the loss of key-node uniqueness.
 
 ## Decision
 
-Promote block9 from a purely public English-conditioned candidate to a **source-derived exact local inverse with reconstructed authenticated key and path**:
+Promote blocks9–10 from purely public English-conditioned candidates to a **source-derived exact local two-block inverse with reconstructed authenticated keys and paths**:
 
 ```text
 THE WAY ITS WORDS
@@ -159,10 +216,17 @@ terminal WORDS15
 original C=[14,22]
   - key=[11,22]
   -> [3,0]
-  -> OF.
+  -> OF
+
+shared block9 outer / block10 center = (19,16)
+next source window = ARE THE MAP THEIR
+  -> path (19,17) -> (19,16)
+  -> key [22,22,10]
+  -> [2,18]
+  -> THE.
 ```
 
-The chronology remains retrospective: the public route containing `OF` was already visible when this source grammar was reconstructed. The result is consequently strong cryptographic closure and an intended-route hypothesis, not a blind discovery. Its value is that the exact local plaintext now has a first-party authenticated causal path rather than only a postselected external geometry.
+The chronology remains retrospective: the public route containing `OF THE` was already visible when this source grammar was reconstructed. The result is consequently strong cryptographic closure and an intended-route hypothesis, not a blind discovery. Its value is that the exact local plaintext now has a first-party authenticated causal path rather than only a postselected external geometry.
 
 ## Reproduction
 
