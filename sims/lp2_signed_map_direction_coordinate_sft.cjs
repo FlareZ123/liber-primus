@@ -172,6 +172,17 @@ const semantic = rows.find((row) =>
   row.pageIndex === anchors.theDirection && row.wordIndex === anchors.map
 );
 assert.ok(semantic);
+assert.equal(rows[0], semantic);
+assert.equal(semantic.best, 7);
+assert.deepEqual(semantic.runs, [[16,22]]);
+assert.equal(rows[1].best, 4);
+
+const semanticWord = (wordsByPage.get(anchors.theDirection) || [])[anchors.map];
+assert.ok(semanticWord);
+assert.deepEqual(semanticWord.breaks, [9]);
+const semanticWholeH = hSequence(semanticWord.values);
+const semanticPrefixH = hSequence(semanticWord.values.slice(0, 9));
+const semanticSuffixH = hSequence(semanticWord.values.slice(9));
 
 const allThe = upper
   .map((word, index) => ({word, index}))
@@ -198,6 +209,9 @@ for (const pageIndex of allThe) {
   });
 }
 theToMap.sort((a, b) => b.best - a.best || a.pageIndex - b.pageIndex);
+assert.equal(theToMap[0].pageIndex, anchors.theDirection);
+assert.equal(theToMap[0].best, 7);
+assert.equal(theToMap[1].best, 3);
 
 console.log(JSON.stringify({
   status: "PASS",
@@ -206,6 +220,13 @@ console.log(JSON.stringify({
     rows: rows.length,
     ranking: rows,
   },
-  literalMapDirectionCoordinate: semantic,
+  literalMapDirectionCoordinate: {
+    ...semantic,
+    sourceWords: upper.slice(16, 23),
+    raw: semanticWord.values,
+    wholeH: semanticWholeH,
+    prefixH: semanticPrefixH,
+    suffixH: semanticSuffixH,
+  },
   theToMapFamily: theToMap,
 }, null, 2));
