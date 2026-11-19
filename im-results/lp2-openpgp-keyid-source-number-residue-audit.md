@@ -127,3 +127,5 @@ A future positive needs a source-visible rule selecting the complete mixed templ
 ```text
 node sims/lp2_openpgp_keyid_source_number_residue_audit_sft.cjs
 ```
+
+Windows/Node22 PASS: workflow run **44465791881**.
