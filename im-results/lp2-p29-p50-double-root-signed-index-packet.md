@@ -196,7 +196,7 @@ The chronology caveat remains real: the Taylor coefficients were already known w
 - No unknown LP2 ciphertext page is decrypted here.
 - The result does not by itself specify the value-changing inverse for p29.
 - It does not license arbitrary polynomial quotient or G-adic decoders; those existing direct consumers remain negative.
-- The low-first p39 triad-to-polynomial interpretation is still conditional on the broader source chain, although its root is now consumed by an independently selected page and an orientation-selective packet.
+- A later source selector now resolves the p39 triad direction: p33 recovers `THEIR RISE`, and reading the printed p39 triad `[27,5,15]` with powers rising left-to-right gives `27+5X+15X^2=15(X-24)^2`. The opposite power direction gives root23. Root24 is exactly this report's unique consecutive p29/p50 event. See `lp2-their-rise-polynomial-orientation.md`. This selector was recognized after the algebra, so the chronology remains retrospective.
 
 ## Reproduction
 
