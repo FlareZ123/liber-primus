@@ -97,6 +97,32 @@ p33 THEIR RISE
 
 The reverse authenticated edge `ROAD -> SEEKS` closes the p6 endpoint as well.
 
+## Cycle-specific p23 ROAD-state consumer: FAIL
+
+After the reciprocal cycle was identified, a stronger p23-specific state consequence was sealed before opening the p23 state census:
+
+`workplace/agent14-seeks-road-cycle-p23-road-precommit.md`
+
+commit `b98152d118f372ebc3905d51218976dc301daf9f`.
+
+Because the unique source cycle is `SEEKS6 ↔ ROAD23` and p23 independently says `THE ONE RISE`, the frozen prediction required exactly one complete p23 word with the canonical ROAD state:
+
+```text
+ROAD
+length4
+GP0=54.
+```
+
+Canonical p23 complete-word parsing yields nine four-rune words with GP0 values:
+
+```text
+72, 28, 64, 64, 86, 64, 81, 52, 62.
+```
+
+There are zero length4 / GP0=54 receivers. The p23 ROAD-state consumer is therefore rejected. No fragment or alternate state is admitted.
+
+This strengthens the evidence boundary: the SEEKS↔ROAD relation is navigation, while ROAD is not licensed as a p23 body plaintext label by the simplest cycle-specific state rule.
+
 ## Evidence boundary
 
 This strengthens the interpretation of the 2016 signed text as a navigation layer because its only reciprocal six-row source pair lands on two physically distinctive manuscript pages, one with a strong SEEKS candidate and one with an independently decoded RISE instruction.
