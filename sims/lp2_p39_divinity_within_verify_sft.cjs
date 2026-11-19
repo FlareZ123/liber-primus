@@ -263,6 +263,40 @@ assert.deepEqual(
   { start:103, len:2 }
 );
 
+// Charge every pre-existing authenticated reverse-tree count on p39. DIVINITY
+// is uniquely aligned to a word start and uniquely to a g=5 word.
+const treeCountControls = [
+  { word:"FIND", count:42, depth:state.a },
+  { word:"LIKE", count:53, depth:7 },
+  { word:"INSTAR", count:78, depth:10 },
+  { word:"DIVINITY", count:105, depth:state.b },
+  { word:"EPIPHANY", count:121, depth:20 },
+  { word:"CIRCUMFERENCES", count:131, depth:24 },
+].map((control) => {
+  const exact = p39Words.find((word) => word.start === control.count);
+  const containing = p39Words.find((word) =>
+    word.start <= control.count && word.end >= control.count
+  );
+  return {
+    ...control,
+    exactStart:exact ? exact.start : null,
+    exactLength:exact ? exact.values.length : null,
+    containingStart:containing ? containing.start : null,
+    containingLength:containing ? containing.values.length : null,
+    isG5:exact ? exact.values.length === state.g : false,
+  };
+});
+assert.deepEqual(treeCountControls.filter((row) => row.exactStart !== null), [{
+  word:"DIVINITY",
+  count:105,
+  depth:state.b,
+  exactStart:105,
+  exactLength:state.g,
+  containingStart:105,
+  containingLength:state.g,
+  isG5:true,
+}]);
+
 // The selected word is itself a complete DH-state shell.
 const selectedShell = [
   ...H(selected.values[0], selected.values[4]),
@@ -387,6 +421,7 @@ console.log(JSON.stringify({
     fiveRuneWordCount:fiveRuneRows.length,
     sourceVocabularyHits:sourceHits,
     oneBasedOffset104WordStart:false,
+    treeCountControls,
     powerTransferNegative:translit(powerOutput),
   },
   instructionContext:{
