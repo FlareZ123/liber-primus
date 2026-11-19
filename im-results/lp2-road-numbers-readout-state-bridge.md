@@ -2,6 +2,31 @@
 
 **Agent22, 19 November 2026. Classification: post-location receiver-content bridge on the independently selected ROAD zero-bracket route. The p0 receiver location and seven-rune shape are source-selected upstream; its values had already been exposed before this H-shell/sum consequence was recognized, so this is mechanism/state corroboration rather than blind plaintext recovery.**
 
+## The complete dual-radix source set forms a 16-word state triad
+
+The source-family charge has an additional value-free structure. The only three authenticated 2016 source words whose GP0-selected p50 token produces adjacent base59/base60 p0 word starts are:
+
+```text
+source    signed-word index
+PRIMUS           10
+NUMBERS          26
+OPENPGP          42
+```
+
+The indices are exactly 16 words apart.
+
+Using the raw numeral values before the receiver-origin correction, their residues mod29 are:
+
+```text
+source    base59 residue    base60 residue
+PRIMUS          6                 8
+NUMBERS        16                19
+OPENPGP         0                 3
+```
+
+Against the independently fixed state, the base60 column is exactly `[A,B,e] = [8,19,3]`; the base59 column is `[a,H(K,b)[0],F] = [6,16,0]`.
+
+This triad is defined entirely by authenticated source words, the original p50 table, the two historically live numeral alphabets, and original p0 word boundaries. It does not depend on proposed AND, THEIR, NUMBERS, OPENPGP, or READOUT plaintext values. The exact 16-word spacing and state serialization therefore strengthen the case that these dual-radix p50 outputs are carrying designed state rather than arbitrary offsets.
 ## Authenticated NUMBERS independently selects the AND/THEIR-shaped pair
 
 Before using the selected seven-rune receiver's values, the signed 2016 source supplies a stronger direction rule directly.
