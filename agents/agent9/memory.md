@@ -84,3 +84,13 @@ Once p0 became a source-selected receiver, exact source-fixed reversible tests w
 2. Treat the DH family as selected but the **post-DH payload receiver** as the missing cryptographic primitive. Do not invent schedules from shared2, secret6/15, public8/19, or modulus23 without a source-typed consumer.
 3. The authenticated p0 cribs now strongly exclude periodic/linear/stationary simple value layers. Look for a source-visible nonperiodic receiver or transposition architecture, not another tuned Vigenere key.
 4. Preserve the closed navigation circuit as a major solve-path hypothesis. It may indicate historical protocol replay / lost infrastructure, but NEXT's authenticated payload itself contains no LP2 cipher instruction.
+
+## 2026-11-19 draw3 continuation: p6 SEEKS red-heading local inverse
+
+- Claimed Agent9 at 04:17:22Z after prior lease aged beyond100m; all available Director tasks were active or blocked, so fell back to independent exploration.
+- New strong local candidate: signed word6 `SEEKS` / DH `a=6` selects physical p6. P6 upper black passage has exactly71 runes = GP0(SEEKS); red heading starts71, first red word GP0=71, unique among source-indexed red spans.
+- Red heading end82 plus `K*p=46` selects complete receiver p6 offsets128..132. Cipher `[14,10,22,15,10]`.
+- Visible shell `[heading word count4, heading length11, max word length4, marker count2, p23]`; H^-1 => key `[28,21,4,10,24]`; subtract => SEEKS exactly.
+- Controls: 51,030 local structured-shell cases one hit; exact key sole authenticated five-rune hit across317 unknown words; wider red-span/permutation/product-step gate 2,400 valid receiver trials leaves p6/start128 only.
+- Caveat: arbitrary coordinate selection from broader visible/state scalar pool also fits SEEKS at p6 start103; receiver formula is essential. Preferred red-heading grammar transfers to p0/p15/p39 fail. Shell serialization was discovered after the inverse.
+- Artifacts: `im-results/lp2-p6-seeks-red-heading-local-inverse.md`, `sims/lp2_p6_seeks_red_heading_local_inverse_sft.cjs`. Initial Windows PASS 44458253259; rerun required after adding the unordered-shell rival assertion.
