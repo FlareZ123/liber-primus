@@ -36,6 +36,34 @@ w = A+g = 13.
 
 So the existing marker-rise grammar can be written entirely in square-state arithmetic.
 
+## The original glyph exposes every serializer anchor
+
+Agent17's independent original-image/receiver audit was completed after the state-only serializer above was frozen. The standard 13-dot glyph visibly alternates row populations:
+
+```text
+1,2,1,2,1,2,1,2,1
+```
+
+and has column populations:
+
+```text
+4 | 5 | 4
+```
+
+with thirteen dots total. These counts expose exactly the numeric anchors used by the serializer:
+
+```text
+u = 1      singleton-row population
+K = 2      paired-row population
+q = 4      either side-column population
+g = 5      center-column population
+w = 13     total marker population
+t = g+K = 7.
+```
+
+Thus the rise generator no longer requires the signed source words THE7 or WAY13, and it does not require opening the 2014 squares merely to obtain its numerical inputs. The authenticated square-derived DH state independently validates the same labels and supplies the cryptographic interpretation.
+
+The unresolved step is correspondingly narrower: why the marker should use the exact three vertical rise laws below. Those laws were recognized retrospectively after the p0 residual was visible.
 ## State-only three-column serializer
 
 Use the original visible marker's left / center / right populations `4|5|4`.
