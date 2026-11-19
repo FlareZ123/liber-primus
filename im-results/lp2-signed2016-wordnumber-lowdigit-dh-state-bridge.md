@@ -166,7 +166,66 @@ THE(22) -> SEEKS -> AND -> THE(22)
 
 The navigation cycle is the one reached immediately from the message's first word.
 
-Charge the exact first-word cycle across the 128 arithmetic conventions and both GP/Latin word-length definitions, 256 syntactic modes total. Eight syntactic modes reproduce it, and all eight collapse to the same numeric operation: zero-addressed low component, subtract word number, subtract word length. The remaining aliases arise because HELLO/MAP/ROAD have identical Latin and GP lengths, their relevant low characters have the same value in base60/base59, and the paired origin shifts cancel.
+### The graph topology reconstructs the DH state
+
+Extend the same directed map to all 43 authenticated words. Every edge lands in the first29 after one step, so the graph has two attractor basins. Its global topology is:
+
+```
+number of cycles      2
+cycle lengths         3, 3
+maximum tail depth    5
+depth histogram       [6,10,10,6,7,4]
+basin sizes           29, 14
+```
+
+These counts reconstruct the independently known p28 state without reading p28:
+
+```
+K = number of cycles                = 2
+e = common cycle length             = 3
+a = total cycle nodes               = 6
+g = maximum tail depth              = 5
+p = GP modulus 29 - total cycle     = 23
+b = GP modulus 29 - smaller basin   = 15
+
+A = g^a mod p = 8
+B = g^b mod p = 19
+K = A^b mod p = 2
+e = b^-1 mod(p-1) = 3
+```
+
+The full depth histogram is itself state-saturated:
+
+```
+[6,10,10,6,7,4]
+= [a, K*g, K*g, a, g+K, K^2].
+```
+
+The two basins provide independent internal checks.
+
+For `HELLO/MAP/ROAD`:
+
+```
+basin size          29
+depth histogram     [3,6,7,4,5,4]
+cycle-entry counts  [16,10,3]
+                  = [b+1,K*g,e]
+```
+
+For `THE/SEEKS/AND`:
+
+```
+basin size          14 = 29-b
+depth histogram     [3,4,3,2,2,0]
+cycle-entry counts  [7,2,5]
+                  = [g+K,K,g]
+```
+
+This changes the causal status of the direction graph. The p28 DH line is now an independent corroboration of a state that the authenticated signed words and original p50 table reconstruct on their own.
+
+Charge the topology across the 128 arithmetic conventions and both GP/Latin word-length definitions, 256 syntactic modes total. Exactly **two** modes have two 3-cycles and maximum depth5. They are the algebraically identical zero-origin / paired-origin aliases of the same GP/base60/low-component/subtract-index/subtract-length numeric operation, and both have the exact cycles and depth histogram above. No Latin-length, high-component, base59, shifted-address, or sign-swapped mode survives this topology gate.
+
+Charge the exact first-word cycle across the same 256-mode family. Eight syntactic modes reproduce it, and all eight collapse to the same numeric operation: zero-addressed low component, subtract word number, subtract word length. The remaining aliases arise because HELLO/MAP/ROAD have identical Latin and GP lengths, their relevant low characters have the same value in base60/base59, and the paired origin shifts cancel.
 
 The source layout is still selective. Across all 256 cyclic p50 table origins, **offset0 alone** gives the cycle. Across the eight obvious 32x8 traversals, **original row-major forward alone** gives the cycle.
 
@@ -290,7 +349,9 @@ authenticated 2016 words
 
 It also independently reinforces the p50 low-digit consumer found in the READ OUT loop and gives the frozen H operation a source-to-source state consumer outside the local p28 plaintext candidates.
 
-The next decisive test should consume this recovered state **prospectively**. A useful successor must freeze one untouched original receiver and one reversible operation before plaintext scoring. The result should not be used to fit another per-word DH expression menu.
+The graph topology now supplies the DH state without p28, and Agent25 has consumed that direction-cycle state in a finite 288-form H/cube serialization that derives the complete seven-rune OPENPGP candidate key from the two cycles. The source-selected p0 receiver then decrypts to OPENPGP. The same key fails an independent ROAD/NUMBERS receiver, so the result is an OPENPGP-specific source-derived candidate rather than a reusable packet key. PATHS, VERIFY and BEWARE still need a shared source-selected scheduler.
+
+The next decisive test should derive one of those remaining segment keys from the frozen graph/topology before inspecting its receiver plaintext, or expose a new untouched receiver selected by the signed-word map.
 
 ## Reproduction
 
