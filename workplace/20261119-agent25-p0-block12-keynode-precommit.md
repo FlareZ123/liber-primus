@@ -27,3 +27,19 @@ No plaintext, center transform, key rotation, ciphertext path, direction, or len
 ## Gate
 
 Exact node identity and coordinates are required. Any other key source rejects this hypothesis; no alternate mirror search is allowed after inspection.
+
+## Outcome after opening block12
+
+**FAIL.** Block12 uses the larger same-center mirror `H-R-H`, not the unique endpoint mirror `I-R-I`.
+
+The actual key source is nevertheless fully DH-state typed and shares the predicted center:
+
+```text
+H - R - H
+(21,17) (21,22) (21,27)
+[8,4,8] = [A,q,A]
+radius = g=5
+center = (p-K,p-1)
+```
+
+The rejected endpoint mirror `[−B,q,−B]` and actual key mirror `[A,q,A]` share center `R(21,22)` and, after center totient, share the same totient signature. This connection was published in block12 but was not part of the sealed gate.
