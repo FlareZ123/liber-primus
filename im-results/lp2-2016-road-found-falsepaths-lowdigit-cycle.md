@@ -39,6 +39,25 @@ The numeric operation is completely source-side. It uses the authenticated signe
 
 The semantic collision at state54 is unusually apt for a human puzzle: the source itself says that meaning is **the road** and separately warns of **false paths**. The numeric state cannot distinguish ROAD from PATHS because the two words have the same GP0 value. The warning supplies a natural linguistic discriminator rather than another arithmetic parameter. This interpretation is plausible, while the numeric cycle is the reproducible fact.
 
+
+The printed source order adds a separate human-path constraint. The alphabetic word positions are:
+
+```text
+ROAD  = word index23
+FOUND = word index35
+PATHS = word index40
+```
+
+and the frozen pointer gives:
+
+```text
+ROAD(54)  -> FOUND(36)
+FOUND(36) -> PATHS/ROAD(54)
+PATHS(54) -> FOUND(36)
+```
+
+Choosing the next matching term that actually appears later in the signed prose yields **ROAD -> FOUND -> PATHS**, after which PATHS loops back to FOUND. This mirrors the three successive source clauses “the road”, “you will be found”, and “false paths”. It gives the “false path” warning a concrete computational meaning: PATHS enters the 36↔54 trap.
+
 ## Complete convention charge
 
 The signed message has 34 distinct alphabetic word types occupying 27 distinct GP0 states.
@@ -127,7 +146,7 @@ This is the first independent first-party route found here that supplies an exte
 
 ### Relation-family charge
 
-Charge the three explicit noun relations above across the same 16 token conventions:
+First charge the three parallel noun relations above across the same 16 token conventions:
 
 - base60 versus drop-f base59;
 - low versus high component;
@@ -147,6 +166,24 @@ NUMBERS / DIRECTION
 base60 / low / zero-address / zero-digit
 13 -> 4 -> 37 -> 20 -> 42 -> 28 -> ...
 ```
+
+
+A broader source control reaches the same result. Freeze ten obvious semantic pairs from the authenticated message:
+
+```text
+PATH / EMPTY
+EPIPHANY / DEVOTED
+LIBER PRIMUS / WAY
+WORDS / MAP
+MEANING / ROAD
+NUMBERS / DIRECTION
+SEEK / FOUND
+GOOD / LUCK
+FALSE / PATHS
+VERIFY / OPENPGP
+```
+
+Crossing these ten relations with the same 16 component conventions gives **160** relation/mode cases. The sole pair/mode that both converges after one step and reaches consecutive `FIND(42) -> 28` is still **NUMBERS/DIRECTION under native base60 low digit with zero-based address/value semantics**.
 
 Several unrelated signed words share first state13 under the canonical mode, so the arithmetic convergence alone is not unique across the whole vocabulary. What is selective is that **NUMBERS / DIRECTION is the sole explicitly related noun pair** that both converges and reaches `FIND -> p28` under the charged convention family.
 
@@ -207,13 +244,19 @@ p50[42] = 0S -> low60 = 28
 
 That route previously lacked an independently selected consumer outside READ OUT / FIND / p28. The authenticated ROAD / FOUND / PATHS cycle supplies one.
 
-The evidence upgrade is narrow: **native base60 low-digit p50 state transition is now supported by an independent first-party vocabulary structure.** This does not establish READ OUT as unknown-page plaintext, prove that every p50 use is a low-digit pointer, or recover a packet key scheduler.
+The evidence upgrade is now broader than a single cycle: **native base60 low-digit p50 state transition is supported by an authenticated source trap, a uniquely charged NUMBERS/DIRECTION route into `FIND -> p28`, and a direct merge with the p28 READ OUT tail.** This still does not imply that every p50 use is a low-digit pointer or recover a packet key scheduler.
 
 ## Next decision
 
 Use the low-digit transition as a preferred state-navigation primitive when a source clue supplies a GP0 state. Do not widen to new token components unless a separate clue requires it.
 
-The strongest current interpretation is now a candidate intended navigation route: the authenticated 2016 `NUMBERS ... DIRECTION` clause selects the canonical low-digit pointer and reaches `FIND -> p28`, where candidate READ OUT starts the same `OUT -> FIND -> p28` tail. The next decisive test should consume this p28 arrival **prospectively**: derive a reversible unknown-ciphertext operation or a fresh receiver from the reached state without using the target plaintext to choose the rule.
+The strongest current interpretation is a candidate intended navigation route: the authenticated 2016 `NUMBERS ... DIRECTION` clause selects the canonical low-digit pointer and reaches `FIND -> p28`, while the ROAD/FOUND/PATHS prose demonstrates a literal false-path trap under the same operation.
+
+That route has now been consumed prospectively on the independently fixed p28 center-plus-word28 object. Across all 440 charged DH/shell transform-orientation-split configurations, the numeric condition `GP0(left) -> GP0(right) -> FIND(42) -> p28` selects one raw output before language scoring. Across all 1,440 independent reversible uniform GP29 power-pair/orientation/split configurations, it still selects one unique raw output; the only parameter alias acts identically on the center rune and is resolved to exponent3 by the source DH state. The selected runes then transliterate as **READ OUT**.
+
+A second p28-local checkpoint, **HERE**, recovered independently by the fixed outer-H page-start mechanism, has `GP0(HERE)=48` and `p50[48]=4D -> 13`, so it enters the same `13 -> 4 -> 37 -> OUT -> FIND -> p28` route as NUMBERS/DIRECTION. This is a cross-operation closure, with HERE remaining a local checkpoint candidate.
+
+The next decision is narrower: identify a first-party clue that demands the separate reversible GP29 power-map operator class on the p28 center-plus-word object, or derive a fresh ciphertext consequence that depends specifically on the selected READ OUT instruction.
 
 ## Reproduction
 
