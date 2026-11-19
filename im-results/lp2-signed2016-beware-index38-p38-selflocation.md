@@ -120,3 +120,5 @@ Run:
 `node sims/lp2_signed2016_beware_index38_p38_selflocation_sft.cjs`
 
 The SFT charges all signed predecessor transitions, reconstructs canonical manuscript words, enumerates every same-index state collision at indices0..42, and verifies that index38 BEWARE is the only collision that also carries the authenticated predecessor echo.
+
+Windows Node22 verification: generic read-only SFT run `44455720679` passed the corrected source tokenizer and all assertions.
