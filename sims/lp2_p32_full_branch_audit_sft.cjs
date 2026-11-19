@@ -54,8 +54,9 @@ const fragmentConventions=[
  {name:"one/exclude-carry",origin:1,includeCarry:false},
 ];
 const routes=[{radix:59,route:route59},{radix:60,route:route60}];
-const nominalConfigurations=routes.length*fragmentConventions.length*2*orientations.length*dirs.length*state.length*thePairs.length;
-assert.equal(nominalConfigurations,67584);
+const sides=["left","right"];
+const nominalConfigurations=routes.length*fragmentConventions.length*2*sides.length*orientations.length*dirs.length*state.length*thePairs.length;
+assert.equal(nominalConfigurations,135168);
 const successes=[];
 for(const r of routes){
  const emptyStep=r.route.indexOf(gp0("EMPTY"));
@@ -65,38 +66,62 @@ for(const r of routes){
   if(!fragment)continue;
   for(const xOrigin of [0,1]){
    const pos=((gp0("EMPTY")%fragment.values.length)-xOrigin+fragment.values.length)%fragment.values.length;
-   if(corpus.translit[fragment.values[pos]]!=="X"||pos<4)continue;
-   const xOffset=fragment.start+pos,sourceBlock=[xOffset-4,xOffset-3,xOffset-2,xOffset-1];
-   for(const [orientation,to,from] of orientations)for(const [dr,dc] of dirs)for(const [field,value] of state){
-    const step=((value%11)+11)%11;if(step===0)continue;
-    const moved=[];let ok=true;
-    for(const offset of [...sourceBlock,xOffset]){
-      const row=Math.floor(offset/11),col=offset%11,[or,oc]=to(row,col),nr=or+dr*step,nc=oc+dc*step;
-      if(nr<0||nr>=11||nc<0||nc>=11){ok=false;break;}
-      const [pr,pc]=from(nr,nc);moved.push(pr*11+pc);
-    }
-    if(!ok)continue;
-    const dest=moved.slice(0,4),destX=moved[4];
-    if(!dest.every((v,k)=>v===dest[0]+k)||destX!==dest[0]+4)continue;
-    const enclosing=fragments.find(f=>dest[0]>=f.start&&dest[3]<=f.end);
-    if(!enclosing||!fragments.some(f=>f.start===destX))continue;
-    const readout=H(enclosing.values[0],enclosing.values.at(-1));
-    for(const pair of thePairs)if(readout[0]===pair[0]&&readout[1]===pair[1]){
-      successes.push({radix:r.radix,fragmentConvention:fc.name,fragmentIndex,pos,xOrigin,orientation,dr,dc,field,value,step,destStart:dest[0],destX,enclosing:enclosing.index,enclosingLength:enclosing.values.length,readout,thePair:pair});
+   if(corpus.translit[fragment.values[pos]]!=="X")continue;
+   const xOffset=fragment.start+pos;
+   for(const side of sides){
+    if(side==="left"&&pos<4)continue;
+    if(side==="right"&&pos+4>=fragment.values.length)continue;
+    const sourceBlock=side==="left"
+      ? [xOffset-4,xOffset-3,xOffset-2,xOffset-1]
+      : [xOffset+1,xOffset+2,xOffset+3,xOffset+4];
+    for(const [orientation,to,from] of orientations)for(const [dr,dc] of dirs)for(const [field,value] of state){
+     const step=((value%11)+11)%11;if(step===0)continue;
+     const moved=[];let ok=true;
+     for(const offset of [...sourceBlock,xOffset]){
+       const row=Math.floor(offset/11),col=offset%11,[or,oc]=to(row,col),nr=or+dr*step,nc=oc+dc*step;
+       if(nr<0||nr>=11||nc<0||nc>=11){ok=false;break;}
+       const [pr,pc]=from(nr,nc);moved.push(pr*11+pc);
+     }
+     if(!ok)continue;
+     const dest=moved.slice(0,4),destX=moved[4];
+     if(!dest.every((v,k)=>v===dest[0]+k))continue;
+
+     let enclosing=null;
+     let structuralBoundary=false;
+     if(side==="left"){
+       if(destX!==dest[0]+4)continue;
+       enclosing=fragments.find(f=>dest[0]>=f.start&&dest[3]<=f.end);
+       structuralBoundary=fragments.some(f=>f.start===destX);
+     }else{
+       if(destX!==dest[0]-1)continue;
+       enclosing=fragments.find(f=>dest[0]>=f.start&&dest[3]<=f.end);
+       structuralBoundary=
+         fragments.some(f=>f.end===destX)&&
+         fragments.some(f=>f.start===dest[0]);
+     }
+     if(!enclosing||!structuralBoundary)continue;
+     const readout=H(enclosing.values[0],enclosing.values.at(-1));
+     for(const pair of thePairs)if(readout[0]===pair[0]&&readout[1]===pair[1]){
+       successes.push({radix:r.radix,fragmentConvention:fc.name,fragmentIndex,pos,xOrigin,side,orientation,dr,dc,field,value,step,destStart:dest[0],destX,enclosing:enclosing.index,enclosingLength:enclosing.values.length,readout,thePair:pair});
+     }
     }
    }
   }
  }
 }
+const leftSuccesses=successes.filter(row=>row.side==="left");
+const rightSuccesses=successes.filter(row=>row.side==="right");
+assert.equal(rightSuccesses.length,0);
+assert.equal(leftSuccesses.length,32);
 assert.equal(successes.length,32);
 const physical=new Map();
 for(const row of successes){
- const key=[row.radix,row.fragmentIndex,row.pos,row.destStart,row.destX,row.enclosing,row.enclosingLength,...row.readout,...row.thePair.slice(0,2)].join("|");
+ const key=[row.radix,row.fragmentIndex,row.pos,row.side,row.destStart,row.destX,row.enclosing,row.enclosingLength,...row.readout,...row.thePair.slice(0,2)].join("|");
  physical.set(key,row);
 }
 assert.equal(physical.size,1);
 const survivor=[...physical.values()][0];
-assert.equal(survivor.radix,60);assert.equal(survivor.fragmentIndex,7);assert.equal(survivor.pos,4);
+assert.equal(survivor.radix,60);assert.equal(survivor.fragmentIndex,7);assert.equal(survivor.pos,4);assert.equal(survivor.side,"left");
 assert.deepEqual([survivor.destStart,survivor.destX,survivor.enclosing,survivor.enclosingLength],[93,97,15,8]);
 assert.deepEqual(survivor.readout,[7,8]);assert.deepEqual(survivor.thePair,[7,8,"DEVOTED"]);
 assert.deepEqual([...new Set(successes.map(r=>r.field))].sort(),["-K","g"]);
@@ -132,13 +157,13 @@ assert.deepEqual(H(meaning,falseIndex),[dh.K*dh.g,dh.a-dh.g]);
 
 console.log(JSON.stringify({
  status:"PASS",
- classification:"Director #1780 positive familywise audit: the full radix/carry/X-origin/dihedral/eight-direction/DH-distance/THE-occurrence family has 32 representational successes but exactly one physical source-to-source branch. The duplicates are coordinate gauges, two equivalent carry/count descriptions of fragment7, and the genuine modulo11 alias g=5=-K. No destination dictionary label is used for selection. The frozen HOME terminal 4D -> hex77 then selects exactly one of six authenticated distinct-word GP0 collision groups, MEANING/FALSE, whose positions H to [K*g,a-g].",
- family:{nominalConfigurations,representationalSuccesses:successes.length,physicalSuccesses:physical.size,
+ classification:"Director #1780 positive familywise audit: the full radix/carry/X-origin/left-right-span/dihedral/eight-direction/DH-distance/THE-occurrence family has 32 representational successes but exactly one physical source-to-source branch. The equally natural four-rune span on the right of X has zero successes. The duplicates are coordinate gauges, two equivalent carry/count descriptions of fragment7, and the genuine modulo11 alias g=5=-K. No destination dictionary label is used for selection. The frozen HOME terminal 4D -> hex77 then selects exactly one of six authenticated distinct-word GP0 collision groups, MEANING/FALSE, whose positions H to [K*g,a-g].",
+ family:{nominalConfigurations,representationalSuccesses:successes.length,leftSuccesses:leftSuccesses.length,rightSuccesses:rightSuccesses.length,physicalSuccesses:physical.size,
   radices:{base59:{end:route59.at(-1),emptyStep:route59.indexOf(92)},base60:{end:route60.at(-1),emptyStep:route60.indexOf(92)}},
   survivingFragmentConventions:[...new Set(successes.map(r=>r.fragmentConvention))],
   survivingDistanceLabels:[...new Set(successes.map(r=>r.field))],
   coordinateOrientations:[...new Set(successes.map(r=>r.orientation))],
  },
- physicalSurvivor:{fragment:7,xPosition:4,destinationStart:93,destinationX:97,enclosingFragment:15,enclosingLength:8,readout:[7,8],sourceWords:["THE","DEVOTED"]},
+ physicalSurvivor:{fragment:7,xPosition:4,side:"left",destinationStart:93,destinationX:97,enclosingFragment:15,enclosingLength:8,readout:[7,8],sourceWords:["THE","DEVOTED"]},
  heldOut:{home:48,token:cells[48],hex:terminalHex,collisionGroups:collisionGroups.length,match:terminalGroups[0],positions:[meaning,falseIndex],H:H(meaning,falseIndex),state:["K*g","a-g"]},
 },null,2));
