@@ -218,6 +218,77 @@ assert.deepEqual(state, {
 const e = multiplicativeInverse(state.b, state.p - 1);
 assert.equal(e, 3);
 
+// Source-only warning-length gate. The authenticated final five words have
+// GP lengths [6,5,4,6,7], totaling 28 = 29-1. FALSE itself has length g=5;
+// deleting that literal word leaves exactly p=23 runes. The surviving source
+// lengths [6,4,6,7] become the physical candidate packet lengths [7,4,6,6]
+// by the single outer-end swap [d,b,c,a]. Charge every five-word window and
+// every one-word deletion in the complete signed body.
+const warningRows = message.slice(-5);
+assert.deepEqual(warningRows.map((row) => row.word), [
+  "BEWARE", "FALSE", "PATHS", "VERIFY", "OPENPGP",
+]);
+assert.deepEqual(warningRows.map((row) => row.gp.length), [6, 5, 4, 6, 7]);
+assert.equal(
+  warningRows.reduce((total, row) => total + row.gp.length, 0),
+  28
+);
+assert.equal(gp("FALSE").length, state.g);
+assert.equal(
+  warningRows
+    .filter((row) => row.word !== "FALSE")
+    .reduce((total, row) => total + row.gp.length, 0),
+  state.p
+);
+
+const packetLogicalLengths = [7, 4, 6, 6];
+const fiveWordDropToP = [];
+for (let start = 0; start <= message.length - 5; start += 1) {
+  const window = message.slice(start, start + 5);
+  for (let drop = 0; drop < 5; drop += 1) {
+    const kept = window.filter((row, index) => index !== drop);
+    const keptLengths = kept.map((row) => row.gp.length);
+    if (keptLengths.reduce((total, length) => total + length, 0) !== state.p) {
+      continue;
+    }
+    const endpointSwap = [
+      keptLengths[3],
+      keptLengths[1],
+      keptLengths[2],
+      keptLengths[0],
+    ];
+    fiveWordDropToP.push({
+      start,
+      words: window.map((row) => row.word),
+      lengths: window.map((row) => row.gp.length),
+      drop,
+      droppedWord: window[drop].word,
+      keptWords: kept.map((row) => row.word),
+      keptLengths,
+      packetMultiset:
+        keptLengths.slice().sort((a, b) => a - b).join(",") ===
+        packetLogicalLengths.slice().sort((a, b) => a - b).join(","),
+      endpointSwapMatch: endpointSwap.every(
+        (length, index) => length === packetLogicalLengths[index]
+      ),
+    });
+  }
+}
+assert.equal(fiveWordDropToP.length, 2);
+assert.deepEqual(
+  fiveWordDropToP.map((row) => row.words),
+  [
+    ["SEEKS", "THE", "DEVOTED", "LIBER", "PRIMUS"],
+    ["BEWARE", "FALSE", "PATHS", "VERIFY", "OPENPGP"],
+  ]
+);
+const packetMultisetRows = fiveWordDropToP.filter((row) => row.packetMultiset);
+assert.equal(packetMultisetRows.length, 1);
+assert.equal(packetMultisetRows[0].droppedWord, "FALSE");
+assert.equal(packetMultisetRows[0].start, 38);
+const endpointSwapRows = fiveWordDropToP.filter((row) => row.endpointSwapMatch);
+assert.deepEqual(endpointSwapRows, packetMultisetRows);
+
 // OPENPGP and the leading p28 READOUT candidate share the same GP0 state.
 assert.equal(gp0("OPENPGP"), 75);
 assert.equal(gp0("READOUT"), 75);
@@ -1000,6 +1071,16 @@ console.log(JSON.stringify({
   state: { ...state, e },
   source: {
     phrase: message.slice(-2).map((row) => row.word),
+    warningLengthGate: {
+      words: warningRows.map((row) => row.word),
+      lengths: warningRows.map((row) => row.gp.length),
+      total: warningRows.reduce((total, row) => total + row.gp.length, 0),
+      falseLength: gp("FALSE").length,
+      remainingLength: state.p,
+      fiveWordDropToP: fiveWordDropToP.length,
+      packetMultisetHits: packetMultisetRows.length,
+      endpointSwapHits: endpointSwapRows.length,
+    },
     openpgpGp0: gp0("OPENPGP"),
     readoutGp0: gp0("READOUT"),
     token: table[75],
