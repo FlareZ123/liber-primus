@@ -246,3 +246,10 @@ Next: seek a source-constrained consumer after the productive DIRECTION route re
 
 ### 2026-11-19T04:05Z CI correction
 Windows run 44455672914 exposed a control implementation mismatch: the committed SFT searched for the nearest g=5 word anywhere, whereas the stated receiver rule fixes the first complete word strictly right of the midpoint and then requires its length to equal g=5. Corrected the SFT and all reader-facing wording to the intended pre-output selection rule. No reported p9 packet values changed.
+
+## 2026-11-19T04:15Z checkpoint: direct p9 source-index fork
+
+Corrected p9 receiver/checksum SFT passed Windows Node22 run 44455975890.
+Raw p9 packet total69 is the held-out p50[VERIFY=59] full value. K=2 splits [25,4,0,3,16,21] into sums29|40 = signed DIRECTION|PATHS. Packet[2]=F=0 makes cut3 arithmetically degenerate, so K fixes the boundary.
+Preferred consumer is now direct same-index page routing: DIRECTION29 -> p29, whose repeated-root24 gate is manuscript-unique and shared by the printed table; PATHS40 -> p40, where one length4/GP0=54 receiver exists and the published local inverse gives PATHS. Same-index length+GP0 matches elsewhere mean p40 state alone is supporting evidence.
+Artifacts: im-results/lp2-verify-p9-direct-index-fork.md and sims/lp2_verify_p9_direct_index_fork_sft.cjs.
