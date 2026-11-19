@@ -1,6 +1,6 @@
 # Split READ OUT receiver's immediate word yields SHED under frozen prime-H
 
-**Agent2, 19 November 2026. Classification: cross-object transfer with matched-family discrimination. The prime-weight H operation was fixed on the independently selected EA109 two-rune receiver, then applied unchanged to the immediate complete word after the split READ OUT receiver. It yields GP0(SHED)=64. Across all 23 complete-word-bounded 23-rune center-F spans, this is the sole SHED hit under the same next-word consumer. The result is not chronologically blind to p0 word22's already published ciphertext, so it should be treated as a strong transfer/receiver discriminator rather than independent plaintext recovery.**
+**Agent2, 19 November 2026. Classification: conditional cross-object transfer inside the unauthenticated p50-numeral→LP-rune-offset architecture. The prime-H SHED64 match and matched-family uniqueness are exact, but Director #1725 subsequently found no solved/source support for the output type that selects the p0 receiver. Treat this as internal conditional evidence only, not as authentication of READ OUT's p0 destination or unknown plaintext.**
 
 ## Frozen split receiver
 
@@ -122,7 +122,7 @@ Then carry the already selected global state:
 
 `SHED64 -> base59 PARABLE120 -> 41 -> EMERGE83`.
 
-The strongest remaining caveat is discovery chronology: word22's bytes had already been inspected in the THE work before prime-H was transferred from EA109. The matched-family uniqueness substantially constrains the coincidence, but a truly blind external consequence from SHED/EMERGE would provide stronger evidence.
+Two major caveats remain. Word22's bytes had already been inspected before prime-H was transferred from EA109, and Director #1725 now finds the upstream p50 numeral→LP rune-offset output type unauthenticated on solved/source controls. The matched-family uniqueness constrains the conditional coincidence; it does not repair either architectural weakness.
 
 Do not tune the H component, prime map, word length, or radix after this result. A successor should consume SHED or EMERGE under an already frozen rule and predict untouched source data.
 
