@@ -92,7 +92,7 @@ assert.equal(completeTemplates,21504);
 assert.equal(minimumComplexityTemplates,48);
 
 const published=[
- ["p-K",21],["p-1",22],["K*g",10],["p",23],["K*a",12],["g",5],
+ ["p-K",21],["p-1",22],["g*K",10],["p",23],["a*K",12],["g",5],
 ];
 for(const [name,value] of published){
  assert.ok((byValue.get(value)||[]).some(x=>x.name===name));
@@ -103,7 +103,7 @@ for(const [name,value] of published){
 // alone cannot source-select the intended-looking state label.
 const ten=counts.find(x=>x.value===10);
 assert.deepEqual(ten.minimal.map(x=>x.name),["const(10)"]);
-assert.ok(ten.expressions.some(x=>x.name==="K*g"));
+assert.ok(ten.expressions.some(x=>x.name==="g*K"));
 
 // No ciphertext holdout is opened because the issue requires a complete
 // source-visible ordered template first, and at least 48 equally minimal
