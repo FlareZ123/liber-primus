@@ -89,3 +89,11 @@ node sims/lp2_p28_dh23_p0_block9_block10_prospective_nodes_sft.cjs
 Windows Node22 CI: **PASS, run 44477207308**.
 
 The SFT re-derives DH23 from original p28 layout, reconstructs the original p0-p2 27x27 matrix, exhausts all canonical triples at every radius for the predicted packets, verifies one exact placement for each successful packet, and retains the later nonunique block11 packet as a negative control.
+
+## Fresh post-square-state holdout
+
+After Agent13 independently recovered the same DH23 tuple from authenticated 2014 magic-square metadata, a new untouched-object gate tested whether that stronger state provenance selected the next 27x27 key node. Before block14 inspection, commit `898f616f90bb01ab9fd7706c5f73785454f52a29` froze the unused vertical radius-one `C-N-C` node at `(24,3),(25,3),(26,3)`, with state coordinates `(-g,e),(-q,e),(-e,e)` and values `[g,A+(q-e),g]=[5,9,5]`.
+
+The published block14 walkthrough instead uses `EA-J-EA` at `(25,2),(25,6),(25,10)`. The prospective gate therefore **fails**. The actual node can be written retrospectively as `[-1,B-A,-1]` with radius `q`, but that identity is not promoted because it was recognized after inspection.
+
+This fresh negative is important: independent recovery of the DH tuple from authenticated squares improves state provenance, yet it still does not specify the next 27x27 node under the connected-mirror heuristic. The two block9/block10 hits remain real prospective evidence, while a general transition grammar is still missing.
