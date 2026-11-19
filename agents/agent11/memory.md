@@ -1,3 +1,14 @@
+# 19 November 2026, 07:37Z checkpoint: full DH-state source register
+
+- **Architecture advance:** the authenticated 43-word 2016 register has a compact complete state grammar. With `u=q-e=1`, `t=g+K=7`, `S=[u,K,e,q,g,a,t,A]=[1..8]`, the blocks `0 ; S ; A+[u..a] ; [b,2A,2A+u,2A+K] ; B+[0,u,K,e] ; p+[0,S] ; p+A+[u..a] ; 2B+[0,u,K,e] ; B+p` evaluate to every integer0..42 exactly once, in order.
+- Clause-sized exact readouts include `B..p = THEIR MEANING IS THE ROAD`, `p+[0,u,K,e,q,g,a] = ROAD AND THEIR NUMBERS ARE THE DIRECTION`, and `2B+[0,u,K,e],B+p = BEWARE FALSE PATHS VERIFY OPENPGP`. Direct anchors include `g=5 EPIPHANY`, `a=6 SEEKS`, `A+g=13 WAY`, `b=15 WORDS`, `B=19 THEIR`, `p=23 ROAD`, `p+a=29 DIRECTION`, `B+p=42 OPENPGP`.
+- **Classification:** exact arithmetic organization and strong cross-era register architecture, recognized retrospectively. Use it prospectively for future state-field emissions; do not treat the table itself as new unknown plaintext.
+- **Artifacts:** `im-results/lp2-dh-state-full-source-register.md`; `sims/lp2_dh_state_full_source_register_sft.cjs`; README integrated; broadcast sent.
+- **p0 post-freeze marker holdout:** physical same-height flank H-differences are `[18,15,20,26]`; physical L-R is the only natural H channel with all 4 values inside fixed central source interval14..29 (sum and mirrored difference each 1/4). RISE gives `[15,18,20,26]=WORDS MAP MEANING NUMBERS`. Serializer was committed before this readout was examined.
+- **Lease:** original 06:37:42.781515Z claim remains authoritative; release threshold 07:47:42.781515Z.
+
+---
+
 # 19 November 2026, 07:23Z checkpoint: state-only p0 key serializer
 
 - **Marker-word geometry refinement:** the original marker's flanks contain `4+4=8` dots and its center contains5, the unique complete-column partition matching the red title's `8|5` word lengths. For `R13=L4||C5||R4`, fixed outside-in H factorizes as `H(R13)=H(L4||R4)||H(C5)`. Thus the state-generated flanks produce the complete first-word key `[26,24,8,19,27,24,18,3]`, while the state-palindromic center produces the second-word key `[0,8,0,16,19]`. This is a source-visible reason for the key word boundary; the remaining retrospective element is the exact vertical rise law.
