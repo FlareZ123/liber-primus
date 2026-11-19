@@ -337,8 +337,39 @@ function validDhState(state) {
   );
 }
 
+/**
+ * @param {number} q
+ * @returns {{p:number,g:number,a:number,b:number,A:number,B:number,K:number,e:number,q:number}}
+ */
+function stateFromQ(q) {
+  return {
+    p: 6 * q - 1,
+    g: q + 1,
+    a: q + 2,
+    b: 4 * q - 1,
+    A: 2 * q,
+    B: 5 * q - 1,
+    K: q - 2,
+    e: q - 1,
+    q,
+  };
+}
+
 const anchorState = stateFromAnchors(4, 7, 13);
 assert.deepEqual(anchorState, {p:23,g:5,a:6,b:15,A:8,B:19,K:2,e:3,q:4});
+assert.deepEqual(stateFromQ(4), anchorState);
+assert.equal(3 * 4 + 1, 13);
+assert.equal(4 + 3, 7);
+
+const qDhSweep = [];
+for (let qCandidate = 2; qCandidate <= 28; qCandidate += 1) {
+  const state = stateFromQ(qCandidate);
+  qDhSweep.push({ q: qCandidate, state, valid: validDhState(state) });
+}
+assert.deepEqual(
+  qDhSweep.filter((row) => row.valid).map((row) => row.q),
+  [4]
+);
 assert.equal(validDhState(anchorState), true);
 assert.deepEqual(
   [
@@ -475,6 +506,12 @@ console.log(JSON.stringify({
   candidateRiseGenerator: {
     anchors: { q: 4, THE: 7, WAY: 13 },
     generatedDhState: anchorState,
+    qOnlyStateGenerator: {
+      q: 4,
+      markerTotal3qPlus1: 3 * 4 + 1,
+      sourceTHEqPlus3: 4 + 3,
+      dhValidQSweep2to28: qDhSweep.filter((row) => row.valid).map((row) => row.q),
+    },
     stateSourceRun2to8: sourceWords.slice(2,9),
     stateSourceLandmarks: {
       b15: sourceWords[anchorState.b],
@@ -508,5 +545,5 @@ console.log(JSON.stringify({
   },
   orientationControl: transformHits,
   decision:
-    "Visible q=4, source-selected THE7, and unique WAY13 generate the entire reconstructed DH state through simple linear relations; among all six authenticated THE occurrences, only THE7 yields a state satisfying the DH equations. The same three anchors directly generate the 13-value H-inverse marker packet and therefore the exact p0 additive key. The formulas were recognized after the residual structure was visible, so they remain candidate provenance pending a new prospective plaintext or key consequence.",
+    "The visible marker side count q=4 alone generates the full reconstructed DH state through the linear ladder K=q-2,e=q-1,g=q+1,a=q+2,A=2q,b=4q-1,B=5q-1,p=6q-1; marker total3q+1=13 and q+3=7 recover WAY13/THE7. Sweeping q=2..28, only q=4 satisfies all four DH equations. The same anchors generate the exact p0 H-inverse marker packet and additive key. The formula family was recognized after the state and residual structures were known, so it remains candidate provenance pending a new prospective consequence.",
 }, null, 2));
