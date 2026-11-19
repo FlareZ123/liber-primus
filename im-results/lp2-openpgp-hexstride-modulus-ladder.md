@@ -62,6 +62,30 @@ GP0(EMPTY) = 92 = 23 * 4 = p*q.
 
 The drop-f base59 rival gives `N mod 59 = 0`, changing the middle landing to `HELLO`. It therefore fails the same independently defined role target.
 
+## Eight-column word-map interpretation of the hex stride
+
+A later Agent46 synthesis supplies a geometric reason for the 16-word stride used above.
+
+The authenticated source's zero-based words occupy the same 8-column address geometry as the original p50 table. Its central clue self-describes that layout: ITS WORDS ARE THE MAP / THEIR MEANING IS THE ROAD / AND THEIR NUMBERS ARE THE DIRECTION.
+
+The prospectively selected p0 EA109 receiver is raw XY. H on its GP-prime weights gives [K,g]=[2,5], so literal X=column,Y=row selects source address:
+
+    g*8 + K = 5*8+2 = 42 = OPENPGP.
+
+Now the native OpenPGP hexadecimal radix has a direct geometric meaning:
+
+    16 = K*8.
+
+Subtracting one hex radix means moving upward K=2 rows while holding X=K fixed. The source stride is therefore:
+
+    (K,g) = (2,5) = 42 OPENPGP
+    (K,e) = (2,3) = 26 NUMBERS
+    (K,1) = (2,1) = 10 PRIMUS.
+
+The first transition also satisfies g-K=e. Thus the OPENPGP/NUMBERS/PRIMUS ladder is a literal XY map traversal, which materially strengthens the source-visible selection of the three moduli used below.
+
+See im-results/lp2-signed2016-p50-xy-word-map.md and sims/lp2_signed2016_p50_xy_word_map_sft.cjs.
+
 ## Finite charge
 
 The SFT charges four choices before accepting the route:

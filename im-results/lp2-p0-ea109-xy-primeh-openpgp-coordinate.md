@@ -107,6 +107,24 @@ So the preferred local route is now:
 
 This is cleaner than treating the GP-origin interval by itself, while the interval remains an independent corroborating register.
 
+## The authenticated source is the same eight-column XY map
+
+A broader source-only synthesis now explains why coordinate42 is useful rather than merely equal to OPENPGP. Lay the authenticated zero-based words into the original p50 width8. The central clue becomes a literal map program:
+
+    ITS WORDS ARE THE MAP
+    THEIR MEANING IS THE ROAD
+    AND THEIR NUMBERS ARE THE DIRECTION
+
+State coordinates then read exact source spans: row K from x=e..g+K is THEIR MEANING IS THE ROAD, row e from x=K..g is NUMBERS ARE THE DIRECTION, and coordinate (K,g) is OPENPGP.
+
+OPENPGP's native hexadecimal radix16 equals K*8, so the previously established source stride 42->26->10 is exactly a vertical move of K rows at fixed X=K:
+
+    OPENPGP (K,g) -> NUMBERS (K,e) -> PRIMUS (K,1).
+
+This gives the XY receiver a complete source-visible consumer and supplies geometric rationale for the key-ID modulus ladder.
+
+See im-results/lp2-signed2016-p50-xy-word-map.md.
+
 ## Decision
 
 Preserve EA109 as a multi-register navigation word, not plaintext:
