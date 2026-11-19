@@ -262,6 +262,63 @@ assert.deepEqual(tripleHits, [{
 const foundReceiver = tripleHits[0].receiver;
 assert.equal(gp0("FOUND"), 36);
 
+// Warning-aligned type ambiguity. Charge every signed source word whose p50
+// base60 output is simultaneously a valid signed-message index and the GP0
+// number of another authenticated signed word. There is one distinct source
+// number: 35, shared by BE and GOOD. Its output39 means index FALSE and
+// GP0(PATH), matching the authenticated warning "BEWARE FALSE PATHS".
+const gp0ToSignedWords = new Map();
+for (let index = 0; index < message.length; index += 1) {
+  const number = gp0(message[index]);
+  if (!gp0ToSignedWords.has(number)) gp0ToSignedWords.set(number, []);
+  gp0ToSignedWords.get(number).push({
+    index,
+    word: message[index].toLowerCase(),
+  });
+}
+
+const dualTypeForks = [];
+for (let index = 0; index < message.length; index += 1) {
+  const address = gp0(message[index]);
+  if (address >= tableTokens.length) continue;
+  const value = decodeToken(tableTokens[address], alphabet60);
+  if (
+    value === null ||
+    value >= message.length ||
+    !gp0ToSignedWords.has(value)
+  ) {
+    continue;
+  }
+  dualTypeForks.push({
+    sourceIndex: index,
+    source: message[index].toLowerCase(),
+    sourceGp0: address,
+    value,
+    indexWord: message[value].toLowerCase(),
+    gp0Words: gp0ToSignedWords.get(value),
+  });
+}
+
+assert.deepEqual(dualTypeForks, [
+  {
+    sourceIndex: 34,
+    source: "be",
+    sourceGp0: 35,
+    value: 39,
+    indexWord: "false",
+    gp0Words: [{ index: 2, word: "path" }],
+  },
+  {
+    sourceIndex: 36,
+    source: "good",
+    sourceGp0: 35,
+    value: 39,
+    indexWord: "false",
+    gp0Words: [{ index: 2, word: "path" }],
+  },
+]);
+assert.deepEqual([...new Set(dualTypeForks.map((row) => row.sourceGp0))], [35]);
+
 // Only after the receiver is selected, consume its untouched raw word number.
 // The original p50 token at address37 is 1K. Base60 returns80, while base59
 // returns79. Offset80 is the independently fixed split READ OUT packet start.
@@ -360,6 +417,7 @@ console.log(JSON.stringify({
     radices: ["base60", "base59"],
     hits: tripleHits,
   },
+  warningControl: { dualTypeForks },
   selectedReceiver: {
     wordIndex: foundReceiver.index,
     offsets: [foundReceiver.start, foundReceiver.end],
