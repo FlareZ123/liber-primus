@@ -84,6 +84,31 @@ const selected={page:28,lengths:[2,5],source:["PC","JTHBIW"],output:HERE,text:"H
 assert.deepEqual(kg,[selected]);
 assert.deepEqual(here,[{page:28,line:1,fragments:[1,2],...selected}]);
 
+
+// READ OUT gives a direct instruction-level selector for the only genuine
+// nesting fork at the p28 start. The first word has one endpoint pair. The
+// second five-rune word has an outer pair and an inner pair. OUT selects the
+// outer pair, yielding HE + RE = HERE; the inner rival does not.
+const p28StartFragments=frags(p28[0]);
+assert.deepEqual(
+  p28StartFragments.slice(0,2).map(spell),
+  ["PC","JTHBIW"]
+);
+const firstWordOuter=outer(p28StartFragments[0]);
+const secondWordOuter=outer(p28StartFragments[1]);
+const secondWordInner=H(
+  p28StartFragments[1][1],
+  p28StartFragments[1][p28StartFragments[1].length-2]
+);
+assert.equal(spell(firstWordOuter),"HE");
+assert.equal(spell(secondWordOuter),"RE");
+assert.equal(spell([...firstWordOuter,...secondWordOuter]),"HERE");
+assert.equal(spell(secondWordInner),"NGEO");
+assert.notEqual(
+  spell([...firstWordOuter,...secondWordInner]),
+  "HERE"
+);
+
 // Same finite lexical register used by the p28 phrase-family audit.
 let dictionary=read("resources/control/english_wordfreq_textblob.txt").toLowerCase().split(/\s+/u).filter(Boolean);
 for(const p of ["resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/liber-primus/lp1-plaintext-reference.txt"]){
@@ -205,5 +230,11 @@ console.log(JSON.stringify({
   dh23:state,
   readOut:{center,source:[p28Runes[center],...word],exponents:[e,we],output:readout,text:spell(readout)},
   here:selected,
+  readOutInstructionGate:{
+    firstWordOuter:{output:firstWordOuter,text:spell(firstWordOuter)},
+    secondWordOuter:{output:secondWordOuter,text:spell(secondWordOuter)},
+    secondWordInner:{output:secondWordInner,text:spell(secondWordInner)},
+    selectedText:spell([...firstWordOuter,...secondWordOuter])
+  },
   controls:{runeLines,eligiblePageStarts:starts.length,adjacentFragmentPairs:adjacent,exactHereAcrossAllAdjacentPairs:here.length,orderedDhFieldPairs:pairs.length,pageStartsMatchingAnyOrderedDhPair:stateStarts.length,lexicalAmongStatePairStarts:stateStarts.filter(r=>r.lexical),dhGeometryLines:dhGeometryLines.length,dhGeometryPageStarts:dhGeometryPageStarts.length,exactPgKgAllLines:dhGeometryLines.filter(row=>JSON.stringify(row.geometry)===JSON.stringify([state.p,state.g,state.K,state.g])).map(row=>[row.page,row.line,row.text]),p28AdjacentStatePairs:p28StatePairs.length,lexicalP28StatePairs:p28StatePairs.filter(row=>row.lexical)}
 },null,2));
