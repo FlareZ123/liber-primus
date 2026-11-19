@@ -3,8 +3,34 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const {createHash} = require("node:crypto");
 
 const root = path.resolve(__dirname, "..");
+const publicKeyArmor = fs.readFileSync(
+  path.join(root, "resources/historical/cicada-3301-2012-public-key.asc"),
+  "utf8"
+);
+
+/** @param {string} armor @returns {Buffer} */
+function decodeArmor(armor) {
+  const lines = armor.split(/\r?\n/);
+  const base64 = lines.filter((line) =>
+    /^[A-Za-z0-9+/]+={0,2}$/.test(line)
+    && !line.startsWith("=")
+  ).join("");
+  return Buffer.from(base64, "base64");
+}
+
+/** @param {Buffer} bytes @returns {{body:Buffer,totalLength:number}} */
+function firstPublicKeyPacket(bytes) {
+  assert.equal(bytes[0], 0x99, "Expected old-format tag-6 public-key packet");
+  const bodyLength = bytes.readUInt16BE(1);
+  return {
+    body:bytes.subarray(3, 3 + bodyLength),
+    totalLength:3 + bodyLength,
+  };
+}
+
 const signed = fs.readFileSync(
   path.join(root, "resources/historical/cicada2016-4gq25-outguess.asc"),
   "utf8"
@@ -31,6 +57,22 @@ function outsideInH(values) {
 
 const keyIdMatch = signed.match(/7A35090F/u);
 assert.ok(keyIdMatch);
+const publicKeyBinary = decodeArmor(publicKeyArmor);
+const publicKeyPacket = firstPublicKeyPacket(publicKeyBinary);
+assert.equal(publicKeyPacket.body[0], 4, "Expected OpenPGP v4 public key");
+const publicKeyFingerprint = createHash("sha1")
+  .update(publicKeyBinary.subarray(0, publicKeyPacket.totalLength))
+  .digest("hex")
+  .toUpperCase();
+assert.equal(
+  publicKeyFingerprint,
+  "6D854CD7933322A601C3286D181F01E57A35090F"
+);
+const publicKeyCreated = new Date(
+  publicKeyPacket.body.readUInt32BE(1) * 1000
+).toISOString();
+assert.match(publicKeyCreated, /^2012-01-05T/);
+
 const nibbles = [...keyIdMatch[0]].map((character) => Number.parseInt(character, 16));
 const hShell = outsideInH(nibbles);
 assert.deepEqual(hShell, [21,22,10,10,23,12,5,5]);
@@ -184,6 +226,24 @@ assert.equal(orderFreeCoveringIds, 3456);
 assert.equal(totalKeyIds, 4294967296);
 assert.deepEqual(new Set(hShell), new Set(sourceSet));
 
+const fingerprintWindows = [];
+for (let start = 0; start + 8 <= publicKeyFingerprint.length; start += 1) {
+  const window = publicKeyFingerprint.slice(start, start + 8);
+  const values = [...window].map((character) => Number.parseInt(character, 16));
+  const output = outsideInH(values);
+  const closesSourceSet =
+    output.every((value) => sourceBit.has(value))
+    && new Set(output).size === sourceSet.length;
+  if (closesSourceSet) {
+    fingerprintWindows.push({start, window, output});
+  }
+}
+assert.deepEqual(fingerprintWindows, [{
+  start:32,
+  window:"7A35090F",
+  output:hShell,
+}]);
+
 console.log(JSON.stringify({
   status:"PASS",
   keyId:keyIdMatch[0],
@@ -205,6 +265,12 @@ console.log(JSON.stringify({
     matchingIds:orderFreeCoveringIds,
     totalIds:totalKeyIds,
     probability:orderFreeCoveringIds / totalKeyIds,
+  },
+  publicKeyControl:{
+    fingerprint:publicKeyFingerprint,
+    created:publicKeyCreated,
+    overlappingEightHexWindows:publicKeyFingerprint.length - 8 + 1,
+    sourceSetClosureWindows:fingerprintWindows,
   },
   decision:"Historical residues compress the minimum family and give a rare order-free six-value closure under a uniform random-key-ID control, but they do not identify one whole OpenPGP shell template. Keep the receiver sealed.",
 }, null, 2));
