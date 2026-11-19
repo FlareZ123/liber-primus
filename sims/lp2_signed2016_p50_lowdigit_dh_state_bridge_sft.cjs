@@ -675,6 +675,141 @@ for (let offset = 0; offset < table.length; offset += 1) {
 }
 assert.deepEqual(epiphanyCyclicExactOffsets, [0]);
 
+// The residue itself is a zero-based word number in 0..28. Under the
+// authenticated "words are the map ... numbers are the direction" clue,
+// treat it as a directed edge among the first 29 signed words. The source's
+// first word closes the exact semantic navigation cycle HELLO -> MAP -> ROAD.
+const direction = sequence.slice(0, 29);
+assert.equal(words[0], "HELLO");
+assert.equal(words[18], "MAP");
+assert.equal(words[23], "ROAD");
+assert.deepEqual(
+  [0, direction[0], direction[18], direction[23]],
+  [0, 18, 23, 0]
+);
+
+const directionCycles = [];
+const cycleKeys = new Set();
+for (let start = 0; start < 29; start += 1) {
+  const order = [];
+  const position = new Map();
+  let cursor = start;
+  while (!position.has(cursor)) {
+    position.set(cursor, order.length);
+    order.push(cursor);
+    cursor = direction[cursor];
+  }
+  const cycle = order.slice(position.get(cursor));
+  const rotations = cycle.map((_, offset) =>
+    cycle.slice(offset).concat(cycle.slice(0, offset))
+  );
+  rotations.sort((left, right) =>
+    left.join(",").localeCompare(right.join(","))
+  );
+  const canonical = rotations[0];
+  const key = canonical.join(",");
+  if (!cycleKeys.has(key)) {
+    cycleKeys.add(key);
+    directionCycles.push(canonical);
+  }
+}
+assert.deepEqual(directionCycles, [
+  [0, 18, 23],
+  [22, 6, 24],
+]);
+
+// Charge the exact HELLO -> MAP -> ROAD -> HELLO cycle across all 128
+// arithmetic conventions x GP/Latin word-length definitions.
+const directionFamilyHits = [];
+for (const wordLengths of [
+  {name: "GP", values: lengths},
+  {name: "Latin", values: latinLengths},
+]) {
+  for (const mode of modes) {
+    /** @type {Mode} */
+    const base = {
+      addressOrigin: mode.addressOrigin,
+      radix: mode.radix,
+      component: mode.component,
+      digitOrigin: mode.digitOrigin,
+      numberOrigin: mode.numberOrigin,
+      indexSign: mode.indexSign,
+      lengthSign: mode.lengthSign,
+    };
+    const values = derive(base, wordLengths.values);
+    if (!values) continue;
+    if (
+      values[0] === 18 &&
+      values[18] === 23 &&
+      values[23] === 0
+    ) {
+      directionFamilyHits.push({
+        lengthType: wordLengths.name,
+        ...base,
+      });
+    }
+  }
+}
+assert.equal(directionFamilyHits.length, 8);
+assert.ok(directionFamilyHits.every(hit =>
+  hit.addressOrigin === 0 &&
+  hit.component === "low" &&
+  hit.indexSign === -1 &&
+  hit.lengthSign === -1
+));
+// The eight syntactic forms collapse numerically because these three source
+// words have identical GP/Latin lengths, the relevant low digits are below59
+// in both alphabets, and the paired origin shifts cancel.
+
+// Exact labeled-token multiset calibration for the three fixed cycle nodes.
+const directionPositions = [0, 18, 23];
+const directionTargets = [18, 23, 0];
+let directionDp = Array(1 << directionPositions.length).fill(0n);
+directionDp[0] = 1n;
+for (const token of table) {
+  const low = alpha60.indexOf(token[1]);
+  const next = directionDp.slice();
+  for (let mask = 0; mask < directionDp.length; mask += 1) {
+    const base = directionDp[mask];
+    if (base === 0n) continue;
+    for (let position = 0; position < directionPositions.length; position += 1) {
+      if (mask & (1 << position)) continue;
+      const index = directionPositions[position];
+      if (
+        mod29(low - index - lengths[index]) !==
+        directionTargets[position]
+      ) continue;
+      next[mask | (1 << position)] += base;
+    }
+  }
+  directionDp = next;
+}
+const directionAssignments = directionDp.at(-1);
+assert.equal(directionAssignments, 120n);
+const directionDenominator = 256n * 255n * 254n;
+const directionProbability =
+  Number(directionAssignments) / Number(directionDenominator);
+assert.ok(
+  Math.abs(directionProbability - 0.000007237146827234831) < 1e-18
+);
+
+const directionCyclicOffsets = [];
+for (let offset = 0; offset < table.length; offset += 1) {
+  const candidate = directionPositions.map(index =>
+    mod29(
+      low60Table[(offset + index) % table.length] -
+      index -
+      lengths[index]
+    )
+  );
+  if (
+    candidate.every((value, i) => value === directionTargets[i])
+  ) {
+    directionCyclicOffsets.push(offset);
+  }
+}
+assert.deepEqual(directionCyclicOffsets, [0]);
+
 const epiphanyTraversalHits = [];
 for (const traversal of traversals) {
   const tokens = [];
@@ -719,6 +854,64 @@ assert.deepEqual(epiphanyTraversalHits, [{
   reverseMajor: false,
   reverseMinor: false,
 }]);
+
+const directionTraversalHits = [];
+for (const traversal of traversals) {
+  const tokens = [];
+  if (traversal.major === "row") {
+    const rowOrder = traversal.reverseMajor
+      ? [...grid.rows].reverse()
+      : grid.rows;
+    for (const row0 of rowOrder) {
+      const row = traversal.reverseMinor ? [...row0].reverse() : row0;
+      tokens.push(...row);
+    }
+  } else {
+    const columns = Array.from({length: 8}, (_, i) => i);
+    const columnOrder = traversal.reverseMajor
+      ? [...columns].reverse()
+      : columns;
+    const rows = Array.from({length: 32}, (_, i) => i);
+    const rowOrder = traversal.reverseMinor ? [...rows].reverse() : rows;
+    for (const column of columnOrder) {
+      for (const row of rowOrder) tokens.push(grid.rows[row][column]);
+    }
+  }
+  const low = tokens.map(token => alpha60.indexOf(token[1]));
+  const candidate = directionPositions.map(index =>
+    mod29(low[index] - index - lengths[index])
+  );
+  if (candidate.every((value, i) => value === directionTargets[i])) {
+    directionTraversalHits.push({
+      major: traversal.major,
+      reverseMajor: traversal.reverseMajor,
+      reverseMinor: traversal.reverseMinor,
+    });
+  }
+}
+assert.deepEqual(directionTraversalHits, [{
+  major: "row",
+  reverseMajor: false,
+  reverseMinor: false,
+}]);
+
+// Raw p50 low digits at the semantic cycle are [p,b,-K]. The same frozen
+// H orientation gives the first three coordinates of the OPENPGP source-side
+// key shell independently documented in the warning-packet report.
+const directionRawLow = directionPositions.map(index =>
+  mod29(low60Table[index])
+);
+assert.deepEqual(directionRawLow, [state.p, state.b, mod29(-state.K)]);
+const directionLowHShell = [
+  ...H(directionRawLow[0], directionRawLow[2]),
+  directionRawLow[1],
+];
+assert.deepEqual(directionLowHShell, [
+  state.p + state.K,
+  state.p - state.K,
+  state.b,
+]);
+assert.deepEqual(directionLowHShell, [25, 21, 15]);
 
 console.log(JSON.stringify({
   status: "PASS: signed 2016 terminal words map through p50 low digits to p28 DH state",
@@ -768,6 +961,23 @@ console.log(JSON.stringify({
       .filter(row => row.primitive).length,
     sourceTableTraversalsWithExactTail: traversals
       .filter(row => row.exact).length,
+  },
+  signedWordDirectionGraph: {
+    firstWordCycle: [0, 18, 23, 0],
+    firstWordCycleWords: ["HELLO", "MAP", "ROAD", "HELLO"],
+    allCycles: directionCycles.map(cycle => ({
+      indices: cycle,
+      words: cycle.map(index => words[index]),
+    })),
+    chargedFamilyHits: directionFamilyHits.length,
+    exactTokenAssignments: directionAssignments.toString(),
+    exactTokenDenominator: directionDenominator.toString(),
+    exactTokenProbability: directionProbability,
+    cyclicExactOffsets: directionCyclicOffsets,
+    sourceTraversalHits: directionTraversalHits,
+    rawLowAtCycle: directionRawLow,
+    HShellAtCycle: directionLowHShell,
+    HShellLabels: ["p+K", "p-K", "b"],
   },
   independentEpiphanyTransfer: {
     words: words.slice(epiphanyStart, epiphanyStart + 4),
