@@ -68,7 +68,7 @@ With that operation frozen, three local consequences read the rest of the DH sta
 ```
 literal line-start DH:     H([23,8])  = [15,2]  = [b,K]
 selected word inner shell: H([24,1])  = [23,25] = [p,GP0(WE)]
-literal NEXT successor:    H([24,25]) = [28,20] = selected outer shell
+immediate successor:       H([24,25]) = [28,20] = selected outer shell
 ```
 
 The already selected geometry supplies `g=5` from word length and `a=6` from line number. Thus the same original p28 object directly contains the complete standard tuple `(p,g,a,b,A,B,K)=(23,5,6,15,8,19,2)`, while also typing the clear instruction values **WE / OUR / OWN**. Standard DH independently validates all fields: `5^6 mod23=8`, `5^15 mod23=19`, and `19^6 mod23=2`.
@@ -83,7 +83,7 @@ H(19,13) = [6,3].
 
 The first output is the known DH exponent **a=6**. The second is exactly **e=3**, where `e=g-K=5-2=a/K`. That exponent selects the reversible GP29 cube permutation `x -> x^3 mod29`, which sends `K=2 -> A=8 -> B=19 -> b=15`. This is a cross-object prediction because the p27 red19+13 receiver was selected independently before the H relation was introduced. Across all **16** original red spans immediately followed by a red 13-dot mark, p27 is the only object whose `H(length,13)` output is `[6,3]`. The cube bridge therefore now has a manuscript-derived exponent selector rather than relying only on the internal identities `g-K=3` and `a/K=3`.
 
-The source-local successor relation is selective. Across all **42** within-page original LP2 adjacencies in which a five-rune word is followed by a two-rune word, **p28 word28→word29 is the only pair** satisfying `H(successor)=current outer shell`. In the page-numbered successor family only p28 satisfies it; p38 is the only other length-eligible page and fails. This is a structural control rather than a discovery-adjusted p-value.
+The immediate-successor relation is selective. Across all **42** within-page original LP2 adjacencies in which a five-rune word is followed by a two-rune word, **p28 word28→word29 is the only pair** satisfying `H(successor)=current outer shell`. In the page-numbered successor family only p28 satisfies it; p38 is the only other length-eligible page and fails. This is a structural control rather than a discovery-adjusted p-value. Director #1690 later charged the complete authenticated 2013 command family and found the numeric `NEXT→p28 DH` landing unique, yet also confirmed that the real 2013 NEXT operation stores client-supplied text and does not advance a manuscript cursor. Therefore this adjacency is retained as local H consistency; the historical NEXT opcode no longer source-selects it.
 
 The same operation was tested without tuning as a manuscript-wide wordwise shell decoder on all **12,956** unknown original runes. It does not recover prose: source-native LP1 trigram score changes only from **−3.41742255** raw to **−3.41475036**, far from solved p57 **−2.46814471**, and the independently predicted p0 opening decodes to `SSIGEAHYN / ILCEE` rather than `EPIPHANY / SEECS`. The source-selected H→cube composition also misses that p0 holdout. Therefore H is currently a **local reversible field/instruction decoder**, not the global LP2 cipher inverse.
 

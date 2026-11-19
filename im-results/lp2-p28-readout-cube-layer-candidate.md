@@ -36,7 +36,7 @@ In GF(29), cubing sends the DH values
 
 `K=2 -> A=8 -> B=19 -> b=15`.
 
-A concurrent source-local result now selects the same exponent without relying on that arithmetic chain. Authenticated `NEXT` selects p28 word29 `[24,25]`; the separately frozen reversible shell map `H(x,y)=(x-y,x+y) mod29` sends that successor exactly to word28's outer shell `[28,20]`, uniquely among the 42 within-page five-rune→two-rune adjacencies. With H fixed by that source geometry, the independently selected p27 red19+13 receiver gives `H(19,13)=[6,3]=[a,e]`. Thus **e=3** is also emitted directly by a separate manuscript receiver.
+A separate source-local receiver selects the same exponent without relying only on those internal DH identities. With the reversible shell map `H(x,y)=(x-y,x+y) mod29` already oriented by the solved **OUR OWN** phrase, the independently selected p27 red19+13 receiver gives `H(19,13)=[6,3]=[a,e]`. Thus **e=3** is emitted directly by a separate manuscript receiver. P28's immediate successor word29 `[24,25]` also maps under H exactly back to word28's outer shell `[28,20]`, uniquely among the 42 within-page five-rune→two-rune adjacencies. Director #1690 later found the historical 2013 `NEXT` command cannot authenticate choosing that successor: its real protocol operation is client upload/storage. The adjacency therefore remains a selective local consistency check rather than an independent NEXT-selected operation.
 
 Cubing is an invertible permutation on all29 GP indices because `gcd(3,28)=1`; exponent19 is its inverse on nonzero residues and zero is fixed.
 
