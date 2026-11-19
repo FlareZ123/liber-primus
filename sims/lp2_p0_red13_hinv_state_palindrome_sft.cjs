@@ -340,6 +340,35 @@ function validDhState(state) {
 const anchorState = stateFromAnchors(4, 7, 13);
 assert.deepEqual(anchorState, {p:23,g:5,a:6,b:15,A:8,B:19,K:2,e:3,q:4});
 assert.equal(validDhState(anchorState), true);
+assert.deepEqual(
+  [
+    [anchorState.K, sourceWords[anchorState.K]],
+    [anchorState.e, sourceWords[anchorState.e]],
+    [anchorState.q, sourceWords[anchorState.q]],
+    [anchorState.g, sourceWords[anchorState.g]],
+    [anchorState.a, sourceWords[anchorState.a]],
+    [anchorState.g + anchorState.K, sourceWords[anchorState.g + anchorState.K]],
+    [anchorState.A, sourceWords[anchorState.A]],
+  ],
+  [
+    [2,"PATH"],
+    [3,"LIES"],
+    [4,"EMPTY"],
+    [5,"EPIPHANY"],
+    [6,"SEEKS"],
+    [7,"THE"],
+    [8,"DEVOTED"],
+  ]
+);
+assert.deepEqual(sourceWords.slice(2,9), [
+  "PATH","LIES","EMPTY","EPIPHANY","SEEKS","THE","DEVOTED",
+]);
+assert.equal(sourceWords[anchorState.b], "WORDS");
+assert.equal(sourceWords[anchorState.B - 1], "MAP");
+assert.equal(sourceWords[anchorState.B], "THEIR");
+assert.equal(sourceWords[anchorState.p], "ROAD");
+assert.equal(sourceWords[anchorState.p + anchorState.K], "THEIR");
+assert.equal(sourceWords[anchorState.p + anchorState.a], "DIRECTION");
 
 const dhAnchorControl = theIndices.map((theIndex) => {
   const state = stateFromAnchors(4, theIndex, 13);
@@ -446,6 +475,15 @@ console.log(JSON.stringify({
   candidateRiseGenerator: {
     anchors: { q: 4, THE: 7, WAY: 13 },
     generatedDhState: anchorState,
+    stateSourceRun2to8: sourceWords.slice(2,9),
+    stateSourceLandmarks: {
+      b15: sourceWords[anchorState.b],
+      Bminus1_18: sourceWords[anchorState.B - 1],
+      B19: sourceWords[anchorState.B],
+      p23: sourceWords[anchorState.p],
+      pPlusK25: sourceWords[anchorState.p + anchorState.K],
+      pPlusa29: sourceWords[anchorState.p + anchorState.a],
+    },
     validTHEIndicesUnderDhGate: dhAnchorControl.filter((row) => row.valid).map((row) => row.theIndex),
     directPacketFromAnchors,
     inversePacket: generated.inverse,
