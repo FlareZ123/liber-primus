@@ -44,7 +44,7 @@ The independent five-dot/full-line p23 instruction is:
 THE ORIGINAL.
 ```
 
-Its p23→p33 handoff is a post-discovery AL=31/state candidate. P33's THEIR RISE supports p33→p35, and p35 has a strong local FOUND candidate; however the p35→p28→p0→p18→p23 continuation uses the same candidate low-digit direction graph and is not an authenticated route after #1787:
+Its p23/p56 half-turn page rise independently points to p33; applying T to page labels23 and33 is the post-discovery AL=31 candidate. The DH B→p50→base60 pointer is a separate conditional convergence. P33's THEIR RISE supports p33→p35, and p35 has a strong local FOUND candidate; however the p35→p28→p0→p18→p23 continuation uses the same candidate low-digit direction graph and is not an authenticated route after #1787:
 
 ```text
 FOUND35

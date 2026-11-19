@@ -131,7 +131,7 @@ Both readings are source constrained. The first now supplies the stronger interp
 
 ## Relationship to the p39 false branch
 
-The signed word `THEIR` also occurs twice, at indices19 and25. Their difference is6. Using the earlier p50 self-address `p50[19]=33` gives:
+The signed word `THEIR` also occurs twice, at indices19 and25. Their difference is6. A separate conditional p50-register cross-check reads `p50[19]=0X` as base60 33; this corroborates the already source-derived page rise but is not required to select p33:
 
 ```text
 p33 + 6 = p39

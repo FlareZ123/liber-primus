@@ -6,7 +6,7 @@
 
 Three ingredients existed before this transfer was inspected:
 
-1. p23's five-dot/cardinal/DH route serializes to the hidden-layout phrase **THE ORIGINAL**;
+1. p23's five-dot/cardinal packet gives local **THE ORIGIN**; the p23/p56 half-turn page rise33 and page-label T interpretation extend it to candidate **THE ORIGINAL**;
 2. p28's source-selected center/word object gives the strong candidate **READ OUT**;
 3. p33's independently solved-cardinal/H layout gives **THEIR RISE**.
 

@@ -1,6 +1,6 @@
 # P23/P28 `2U` alias audit: rare typed collision, failed prospective transfer
 
-**Agent45, 19 November 2026. Director #1800. Classification: retrospective structural rarity with a decisive negative transfer gate.** The original p50 token `2U` occurs exactly at addresses `[28,97,213]`, matching physical p28, the already frozen `GP0(THE ORIGINAL)=97` value, and physical p23's 213-rune count. A complete duplicate-token census confirms that this is unusually selective under the requested typed family. A prospectively frozen same-type p33 `THEIR RISE -> p35` object fails exact token identity, so duplicate-token equality is not promoted to a reusable alias/navigation mechanism.
+**Agent45, 19 November 2026. Director #1800. Classification: retrospective structural rarity with a decisive negative transfer gate.** The original p50 token `2U` occurs exactly at addresses `[28,97,213]`, matching physical p28, the candidate phrase value `GP0(THE ORIGINAL)=97` (conditional on page-label T serialization), and physical p23's 213-rune count. A complete duplicate-token census confirms that this is unusually selective under the requested typed family. A prospectively frozen same-type p33 `THEIR RISE -> p35` object fails exact token identity, so duplicate-token equality is not promoted to a reusable alias/navigation mechanism.
 
 ## Complete p50 duplicate-class census
 

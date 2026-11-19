@@ -82,7 +82,7 @@ Those numbers align with p33 without choosing a new arithmetic family:
 
 ```text
 first THEIR position  = 19 = B
-p50[B=19]             = 0X = 33, the existing p33 entry route
+p50[B=19]             = 0X = 33, a conditional convergence on independently selected p33
 p33 H([B,p])          = H([19,23]) = [25,13]
 second THEIR position = 25 = GP0(WE)
 THEIR rise            = 25 - 19 = 6 = a
