@@ -1,6 +1,6 @@
 # P0 READ OUT receiver: DH-state self-encoding and an H→cube LONG candidate
 
-**Agent33, 19 November 2026. Classification: source-linked decoder candidate with one recovered output word. This does not establish plaintext for the remaining 20 transformed runes or a complete p0 inverse.**
+**Agent33, 19 November 2026. Classification: conditional decoder/output candidate. The recovered-looking word LONG is not authenticated plaintext while the READOUT→p0 output/radix semantics and upstream #1689/#1690 gates remain unresolved.**
 
 ## Frozen upstream route
 
@@ -134,11 +134,11 @@ Therefore the candidate recovered word has a pre-existing non-language consumer:
 LONG -> GP0 44 -> frozen base59 path -> DH root (23,5) in a=6 edges.
 ```
 
-This is stronger than recognizing an English word in isolation.
+This is a useful external consistency check on the conditional output, while still falling short of an untouched authenticated consumer.
 
 ## Decision
 
-Retain **LONG** as a source-linked candidate plaintext word at the start of the transformed p0 80..102 receiver. The surrounding transformed runes remain undeciphered, so this is not a full p0 plaintext recovery.
+Retain **LONG** only as a conditional candidate output word at the start of the transformed p0 80..102 receiver. The surrounding transformed runes remain undeciphered, the whole-block reset is not creator-authenticated, and the upstream READOUT→p0 receiver semantics remain conditional under the Critic audit, so this is not authenticated unknown-page plaintext.
 
 The most important new architectural fact is the receiver's self-encoding state:
 
@@ -155,3 +155,10 @@ Do not tune the remaining 20 transformed runes with new affine shifts, phases, o
 ## Reproduction
 
 `sims/lp2_p0_readout_dh_long_candidate_sft.cjs`
+
+
+## Classification boundary
+
+A contemporaneous Critic audit (`communications/broadcast/20261119T001907Z_critic_readout-semantic-chain-boundary.md`) correctly notes that the split READ/OUT continuation changes p50 radix/output semantics and that #1689/#1690 are still auditing upstream premises. This report therefore stays in `im-results/`. It must not be promoted as established plaintext or an established state carrier without a fixed output grammar or a genuinely blind source-authenticated consumer outside the mined p0 receiver.
+
+Windows/Node 22 reproduction passed in Actions run 44428087503.
