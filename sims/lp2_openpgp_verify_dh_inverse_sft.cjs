@@ -633,6 +633,148 @@ assert.deepEqual(openpgpManuscriptHits, [{
   matches: ["OPENPGP"],
 }]);
 
+// The final word of the same selected packet is another authenticated warning
+// word. Its compact source-state key places BEWARE at the packet end, giving
+// OPENPGP at the start, VERIFY at the exact center, and BEWARE at the end.
+assert.deepEqual(message.slice(-5).map((row) => row.word), [
+  "BEWARE", "FALSE", "PATHS", "VERIFY", "OPENPGP",
+]);
+const bewareReceiver = ends.get(packetEnd);
+assert.deepEqual(bewareReceiver, {
+  index: 41,
+  start: 183,
+  end: 188,
+  length: 6,
+  values: [0, 20, 7, 12, 16, 25],
+});
+const bewareKey = [
+  mod29(state.K * state.a),
+  state.K,
+  0,
+  H(state.b, state.K)[1],
+  mod29(state.K * state.a),
+  H(state.b, state.A)[0],
+];
+assert.deepEqual(bewareKey, [12, 2, 0, 17, 12, 7]);
+const bewarePlain = bewareReceiver.values.map((value, index) =>
+  mod29(value - bewareKey[index])
+);
+assert.deepEqual(bewarePlain, gp("BEWARE"));
+assert.equal(spell(bewarePlain), "BEWARE");
+assert.deepEqual(
+  bewarePlain.map((value, index) => mod29(value + bewareKey[index])),
+  bewareReceiver.values
+);
+
+// Charge the endpoint grammar:
+// - swap private roles a/b;
+// - choose any direct DH field in slot2;
+// - every H coordinate/orientation for other+K;
+// - either public field A/B in the final private/public H;
+// - every H coordinate/orientation there;
+// - both signs.
+const directStateFields = [
+  ["p", state.p],
+  ["g", state.g],
+  ["a", state.a],
+  ["b", state.b],
+  ["A", state.A],
+  ["B", state.B],
+  ["K", state.K],
+];
+let bewareFamilyConfigs = 0;
+const bewareFamilyHits = [];
+for (const role of [
+  { name: "a/b", first: state.a, other: state.b },
+  { name: "b/a", first: state.b, other: state.a },
+]) {
+  for (const [slot2Name, slot2] of directStateFields) {
+    for (const otherK of hChoices(role.other, state.K)) {
+      for (const [publicName, publicValue] of [
+        ["A", state.A],
+        ["B", state.B],
+      ]) {
+        for (const otherPublic of hChoices(role.other, publicValue)) {
+          for (const sign of [-1, 1]) {
+            bewareFamilyConfigs += 1;
+            const repeated = mod29(state.K * role.first);
+            const key = [
+              repeated,
+              slot2,
+              0,
+              otherK.value,
+              repeated,
+              otherPublic.value,
+            ];
+            const plain = bewareReceiver.values.map((value, index) =>
+              mod29(value + (sign * key[index]))
+            );
+            const matches = sixRuneTargets.get(plain.join(",")) || [];
+            if (matches.length) {
+              bewareFamilyHits.push({
+                role: role.name,
+                slot2: slot2Name,
+                otherK: otherK.name,
+                publicField: publicName,
+                otherPublic: otherPublic.name,
+                sign: sign === -1 ? "subtract" : "add",
+                key,
+                plain,
+                matches,
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(bewareFamilyConfigs, 896);
+assert.equal(bewareFamilyHits.length, 2);
+const distinctBewareOps = new Map(
+  bewareFamilyHits.map((hit) => [
+    [hit.key.join(","), hit.sign, hit.plain.join(",")].join("|"),
+    hit,
+  ])
+);
+assert.equal(distinctBewareOps.size, 1);
+const bewareOp = [...distinctBewareOps.values()][0];
+assert.deepEqual(bewareOp.key, bewareKey);
+assert.equal(bewareOp.sign, "subtract");
+assert.deepEqual(bewareOp.matches, ["BEWARE"]);
+
+const bewareManuscriptHits = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  for (const word of parsePage(parts[page])) {
+    if (word.length !== 6) continue;
+    const plain = word.values.map((value, index) =>
+      mod29(value - bewareKey[index])
+    );
+    const matches = sixRuneTargets.get(plain.join(",")) || [];
+    if (matches.length) {
+      bewareManuscriptHits.push({
+        page,
+        word: word.index,
+        start: word.start,
+        end: word.end,
+        cipher: word.values,
+        plain,
+        matches,
+      });
+    }
+  }
+}
+assert.deepEqual(bewareManuscriptHits, [{
+  page: 0,
+  word: 41,
+  start: 183,
+  end: 188,
+  cipher: [0, 20, 7, 12, 16, 25],
+  plain: gp("BEWARE"),
+  matches: ["BEWARE"],
+}]);
+
 // Broader receiver baseline: every adjacent signed pair, both directions,
 // both radices and both origins, requiring only a p0 word start whose printed
 // length matches the addressed source target. This intentionally shows that
@@ -702,7 +844,7 @@ assert.notEqual(mod29(decodeToken(table[60], alpha59)), state.B);
 console.log(JSON.stringify({
   status: "PASS",
   classification:
-    "strong source-constrained local OPENPGP/VERIFY plaintext-pair candidate: authenticated VERIFY OPENPGP selects source state75; base60/zero cell75=177 is both the center of the unique source-word-length-matched p=23 packet 166..188 and the start of a six-rune VERIFY receiver. The packet-start word decrypts to OPENPGP and the center word to canonical-GP UERIFY under compact p28 DH keys. Charged 6144/8192-case key families each collapse to one distinct authenticated-target operation; each fixed key has one manuscript-wide same-length target hit. Key assembly remains retrospective."
+    "strong source-constrained local OPENPGP/VERIFY/BEWARE packet candidate: authenticated warning vocabulary selects state75; base60/zero cell75=177 is both the center of the unique source-word-length-matched p=23 packet 166..188 and the start of a six-rune VERIFY receiver. The packet start decrypts to OPENPGP, center to canonical-GP UERIFY, and end to BEWARE under compact p28 DH keys. Charged finite key families each collapse to one distinct authenticated-target operation; each fixed key has one manuscript-wide same-length target hit. Key assembly remains retrospective.",
   state: { ...state, e },
   source: {
     phrase: message.slice(-2).map((row) => row.word),
@@ -737,6 +879,16 @@ console.log(JSON.stringify({
       distinctFamilyOps: distinctOpenpgpOps.size,
       sevenRuneWords,
       manuscriptHits: openpgpManuscriptHits,
+    },
+    beware: {
+      receiver: bewareReceiver,
+      key: bewareKey,
+      plaintext: bewarePlain,
+      text: spell(bewarePlain),
+      familyConfigs: bewareFamilyConfigs,
+      labeledFamilyHits: bewareFamilyHits.length,
+      distinctFamilyOps: distinctBewareOps.size,
+      manuscriptHits: bewareManuscriptHits,
     },
   },
   controls: {
