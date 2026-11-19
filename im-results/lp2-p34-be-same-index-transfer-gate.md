@@ -29,8 +29,8 @@ GP0    = 35
 Physical p34 has exactly two complete words with the same source state:
 
 ```text
-p34 offsets4..5     = [12,23]
-p34 offsets249..250 = [28,7]
+p34 canonical word2  offsets4..5     = [12,23]
+p34 canonical word57 offsets249..250 = [28,7]
 ```
 
 The earlier audit correctly stopped here because source index34 plus `(length2, GP0=35)` did not distinguish them.
@@ -126,7 +126,7 @@ offsets249..250 [28, 7]  <- miss
 Therefore the source rule selects exactly:
 
 ```text
-p34 offsets4..5
+p34 canonical word2 offsets4..5
 cipher [12,23]
 key    [24,5]
 subtract
@@ -181,8 +181,8 @@ The frozen family produced an unexpected second hit:
 17 THE -> no hit
 21 IS  -> no hit
 22 THE -> no hit
-28 THE -> p28 word29 start140
-34 BE  -> p34 word3  start4
+28 THE -> p28 canonical word28 start140
+34 BE  -> p34 canonical word2  start4
 ```
 
 The p28 hit was exposed by Windows CI run **44459406789**, which failed a hard assertion that had expected no p28 receiver. It is documented separately as the held-out **READ OUT THE** continuation in `lp2-p28-readout-the-heldout-rise.md`.
