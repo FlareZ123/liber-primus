@@ -1,67 +1,123 @@
-# P55 recursive word circumferences produce a unique 23-rune inner register
+# P55 recursive SHED produces a unique 23-rune second peel, but no source-selected consumer
 
-**14 November 2026, Agent7. Status: original-source-constrained, exploratory extraction, no recovered plaintext or keyed inverse.** The last unsolved physical page, p55, is adjacent to the clear p57 PARABLE that tells the reader to “shed our own circumferences” and “find the divinity within.” Repeatedly remove the first and last GP rune **of each complete printed word**, retaining the others in order, and stop when none remain. Applied only to the 16 complete words wholly within p55, this yields a peculiar nested register. The **second peel leaves 23 GP rune symbols**, exactly the count of the final p57 red-dot mark and the modulus in the signed 2013 DH challenge. A straightforward historically available BASE29-to-byte consumer of those 23 digits does **not** yield printable plaintext.
+**Consolidated decision (19 November 2026): structural extraction retained; the 23-rune consumer branch is retired.** The source-visible p57 parable motivates recursive removal of each complete word's circumferences. On p55 this produces a distinctive staged register, including 23 runes after the second peel. The 23 count matches the p57 terminal dot mark and the signed 2013 DH modulus, but the preserved sources do not select the second peel as the stopping point or specify how its 23 runes are to be consumed. The direct BASE29, conditional DH23 and p56 prime-totient consumers tested to date do not recover plaintext.
 
-## Original source and justified geometry
+## Original source and extraction
 
-The p55 manuscript starts with one isolated `NG` rune that closes an **eleven-rune word beginning on p54**, whose ten previous symbols are `G O T TH X E EA R G Y`. The page then prints **16 whole words**, which must be separated from this carry fragment before computing word circumferences. Their exact GP rune lengths in source order are:
+The p55 manuscript starts with one isolated `NG` rune that closes an eleven-rune word beginning on p54; its ten preceding runes are `G O T TH X E EA R G Y`. P55 then prints **16 complete words** wholly within the page. Their exact GP rune lengths are:
 
 `[4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`
 
-These sixteen full words contain **75** runes. The carry rune makes physical p55's original total **76**, and the original unknown corpus still contains **12,956** runes. The extraction is **an unambiguous full-word operation on the sixteen page-contained words**, unlike the separate conditional p55 33-outer/43-inner *page-local* polynomial interpretations that treat the carry as a stand-alone edge. The source does not explicitly order this particular exclusion or iteration depth, which remain the weakest premises.
+The sixteen complete words contain **75** runes. The incoming `NG` makes the physical p55 total **76**. Keep that carry separate from the 16 locally complete words when applying a word-local operation.
 
-The source-visible instruction “shed circumferences” motivates successive edge removals, without any secret key, letter substitution or fitted phase:
+Solved p57 says:
 
-| Completed peels | Surviving printed words | Total original runes remaining | Exact resulting GP rune stream |
-| ---: | ---: | ---: | --- |
-| 0 | 16 | 75 | Full sixteen words, see reproducer |
-| 1 | 11 | 43 | Full strict interior of those words |
-| **2** | **7** | **23** | `G D A B F X I M U C P H NG D IA I G X EO TH TH I M` |
-| 3 | 3 | 9 | `X I M U C P H G TH` |
-| 4 | 1 | 5 | `I M U C P` |
-| 5 | 1 | 3 | `M U C` |
-| 6 | 1 | 1 | `U` |
-| 7 | 0 | 0 | Empty |
+```
+WE MUST SHED OUR OWN CIRCUMFERENCES.
+FIND THE DIVINITY WITHIN AND EMERGE.
+```
 
-The **seven** words at depth two have surviving lengths `[2,2,9,2,3,3,2]`. The three at depth three are `[7,1,1]`. All are literal original ciphertext runes in original relative order, with no claimed decipherment. The single final `U` is original GP rune index1 (prime3). It must not be interpreted as a recovered English pronoun without a predictive decoding rule.
+Repeatedly remove the first and last GP rune of each complete printed word, retaining the survivors in original word order. Stop only when no symbols remain. The resulting stage path is:
 
-A 2014 player had the three earlier magic squares of orders 5, 7 and 5 before receiving LP2, making a **seven-row source object** another candidate context for the seven surviving words. There is no independently indicated mapping from those seven unequal-length rune words to the square's cells or any next cryptographic operation. The matches 43, 23, 9, 5, 3 and 1 were noticed after inspecting the words and historical counts; treat them as a structural extraction worth testing, not separate statistical confirmations.
+| Completed peels | Surviving complete words | Runes |
+|---:|---:|---:|
+| 0 | 16 | 75 |
+| 1 | 11 | 43 |
+| 2 | 7 | **23** |
+| 3 | 3 | 9 |
+| 4 | 1 | 5 |
+| 5 | 1 | 3 |
+| 6 | 1 | 1 |
+| 7 | 0 | 0 |
 
-## Independent original-corpus comparison
+The second-peel 23-rune register is:
 
-The exact continuous-word parser respects original `%` page turns and `/` line wraps, **does not terminate a word at the physical p54→55 boundary**, and parses the first 55 rune-bearing unsolved pages (skipping the runeless p50) into **2,896 full words totaling 12,956 runes**. Repeating the same operation on every consecutive 16-word window yields **2,881** windows:
+```
+G D A B F X I M U C P H NG D IA I G X EO TH TH I M
+```
 
-| Predeclared property of a 16-word window | Matching windows |
-| --- | ---: |
-| Complete 75-rune input | 115 |
-| Complete 75-rune input followed by exactly 23 after two peels | 7 |
-| Entire staged length path `75,43,23,9,5,3,1,0` | **1**, the actual p55 block at zero-based complete-word index **2,880** |
+Its seven surviving words have lengths `[2,2,9,2,3,3,2]`. These are literal original ciphertext runes, not recovered plaintext. The single final survivor at peel six is original GP index1 (`U`); do not read it as English without an independently selected decoding rule.
 
-This is an **empirical distinctness count under the actual manuscript**, not a chance probability of authorial design. The extraction window was selected by a source-visible terminal parable and the full stage path was recognized during exploration. It cannot establish a key by itself. The full original word lengths uniquely determine every stage's remaining count.
+## Structural distinctness
 
-## Frozen first 23-rune consumer
+The continuous-word parser respects original page turns and line wraps and does not terminate a word at the p54→p55 boundary. Across the first 55 unsolved pages it parses **2,896** complete words containing **12,956** runes. The 16-word census contains **2,881** consecutive windows:
 
-The historically authenticated 2013 Cicada server explicitly demonstrates unsigned positional `BASE29`; that supplies a plausible, narrow test for the 23 original GP digit indices. Encode the selected second-peel register as one **big-endian base29 integer** `N=Σ digit_i×29^(22−i)`; this entire range fits 14 bytes because `29^23<256^14`. Read its exact 14-byte, zero-padded big-endian form without shifting, secret keys, compression guesses or extra byte offsets.
+| Predeclared property | Matching windows |
+|---|---:|
+| 75-rune input | 115 |
+| 75-rune input followed by exactly 23 after two peels | 7 |
+| Entire path `75,43,23,9,5,3,1,0` | **1**, the actual p55 block |
 
-- The original 23-rune integer is `1015521743086949888934587058926666`.
-- Its exact 14 bytes are `32 11 af b9 81 f0 de 40 d7 26 90 a8 b4 4a`.
-- Only **4/14** bytes are printable ASCII; rendering nonprintable bytes as dots gives `2......@.&...J`.
-- A separate **14-byte positive plant**, the source-native clear-text label `PARABLE SOURCE`, is encoded as exactly 23 positional BASE29 digits then recovered byte-for-byte by the identical routine.
+This is an empirical uniqueness count under the manuscript, not a chance probability or proof of authorial intent. The p57 parable motivates circumferences, but the choice of the 16 locally complete words, the incoming-carry exclusion, and especially stopping after exactly two peels are not stated explicitly by the source.
 
-This **rejects the direct 23-rune positional BASE29→printable ASCII hypothesis**. It does not exclude that the 23 runes are a key, coordinates, compressed/encrypted bytes, a cross-round link, or a clue pointing elsewhere. No serialization, cipher state, key, or target byte grammar besides the tested printable ASCII interpretation is authored by the preserved source.
+## Consumers already tested
 
-## Follow-up: conditional DH23 / p56-cipher consumer
+### Direct BASE29 integer to bytes
 
-The same BASE29 integer was conditionally interpreted as a DH(23) client exponent, using the worked-example server public share 8 from the authenticated 2013 protocol. `N mod 22 = 4`, giving client public share `5^4 mod 23 = 4` and shared value `8^4 mod 23 = 2`. This matches the example's shared value 2, but is not independent evidence: `8` has order 11 modulo 23, so the example's client exponent 15 also gives `8^15 = 2`; the worked server base/public values are participant-generated, not fixed LP2 key material.
+The authenticated 2013 server challenge documents positional BASE29. As a narrow historically available consumer, encode the 23 GP29 indices as one big-endian integer:
 
-The follow-up then applied the solved p56 prime-minus-one inverse from first prime 2 to both the inner23 and the 52 peeled circumference runes (outer layer then inner layer, left edge before right edge per word). Both are negative: the inner23 has two legal F interpretations, neither readable; the outer52 has one legal F mask and is also non-language. The p56 known-plaintext positive control passes. Full exact inputs, outputs, caveats and a reproducer are in [the DH23 / prime-totient gate](lp2-p55-inner23-dh23-shared2-prime-totient-gate.md) and [its script](../sims/lp2_p55_inner23_dh23_shared2_gate.cjs).
+- Integer: `1015521743086949888934587058926666`
+- Since `29^23 < 256^14`, the fixed 14-byte big-endian representation is `32 11 af b9 81 f0 de 40 d7 26 90 a8 b4 4a`.
+- Only **4/14** bytes are printable ASCII; the rendered output is `2......@.&...J`.
+- The identical routine recovers the source-native 14-byte positive plant `PARABLE SOURCE` exactly.
 
-This retires the simple **inner23→worked DH23 share→shared2 / first-prime2→p56 inverse** direct consumer for both the core and its source-ordered circumferences. It does not rule out an independently specified different use of the 23 symbols; no further DH peers, bases, exponent reductions, ring permutations or cipher starts are justified without an author-selected instruction.
+This rejects direct 23-rune positional BASE29→printable-ASCII. It does not exclude other uses, but none may be invented without a source selector.
 
-## Reproducer and decision
+### Conditional DH(23)
 
-[Complete Windows-compatible Node.js 22 CommonJS SFT](../sims/lp2_p55_recursive_circumference_23_sft.cjs) reads the original [GP corpus](../resources/liber-primus/lp2-corpus.json) and [printed continuous transcript](../resources/liber-primus/lp2-transcription.txt), validates the p54/p55 carried word, all seven peeling depths, all 2,881 manuscript windows, exact BASE29 bytes and native positive implant.
+The same integer conditionally interpreted as a DH private exponent gives `N mod 22 = 4`. With the signed challenge's *worked-example* server base5 and public share8, the client share is `5^4 mod23 = 4` and the shared value is `8^4 mod23 = 2`.
 
-**Next decision with a causal path to plaintext:** seek an **independently authored stopping and consumption rule** for the 23 symbols, particularly any original p57 red-dot instruction or 2014 seven-row square operation that fixes a reversible key use. The worked-example DH23 / p56 direct consumer has now been tested and retired as documented above. Do not infer another free modulus23 mapping, alter the complete-word segmentation, or retune cipher shifts to make these 23 source digits read as a phrase. A subsequent original-input reading should recover meaningful external bytes/unknown plaintext and exactly reproduce the original 23 runes before promotion to [authoritative results](../results/README.md).
+This is not an independently selected key. The worked example's client exponent15 also gives `8^15 mod23 = 2`, because 8 has order11 modulo23. The collision probability for a uniform exponent modulo22 is 2/22 = **1/11**. More importantly, the signed protocol says the participant's server chooses its own base and secret for each request; the example values are not fixed LP2 material. The signed `NEXT` command stores client-supplied text and does not choose a successor instruction.
 
-**Source references:** original p55/p57 scanned LP2 images and word transcript in `resources/liber-primus/`; 2013 authenticated BASE29/DH source `resources/external/2013-tcp-server-signed-source.md`; original 2014 5×5/7×7/5×5 magic squares `resources/cicada2014-openpuff-magic-squares.txt`; 2016 signature record `resources/cicada2016-4gq25.md`. Existing conditional p55 one-peel source polynomial research is consolidated in [p55 inner43 report](p55-inner43-base29-polynomial-bridge.md).
+The same DH23/shared2 interpretation was then composed with the solved p56 prime-totient inverse on both the inner23 and the source-ordered outer52 circumference. Neither yields readable plaintext; the p56 known-plaintext positive control passes exactly. The full inputs, outputs and reproduction are in [the frozen DH23 / prime-totient gate](lp2-p55-inner23-dh23-shared2-prime-totient-gate.md) and [its SFT](../sims/lp2_p55_inner23_dh23_shared2_gate.cjs).
+
+### Direct p56 prime-totient inverse
+
+The inner23 itself was tested under the solved p56 prime-minus-one stream, starting at prime2, with the exact transparent-plaintext-F semantics. Both legal F interpretations are nonlinguistic. The source-ordered outer52 likewise has no coherent plaintext; its p56 positive control passes. This retires these specific direct consumers, not every possible source-authored use of the 23 symbols.
+
+## Source audit: no instruction selects the second peel and a typed consumer
+
+The relevant preserved Cicada sources were checked for the missing selector and consumer:
+
+1. **Solved p57.** “Shed our own circumferences” supports recursive edge removal. “Find the divinity within and emerge” suggests an interior/center and an emergence, but does not say to stop after the second peel, identify the 23-rune register, or specify a codec, direction, key/state role or target. The terminal 23-dot mark is a real source-visible 23 motif; it can motivate considering 23, but does not itself say what to do with 23 symbols.
+2. **Authenticated signed 2013 TCP challenge.** It documents BASE29 and DH, including a worked modulus23 exchange. It does not instruct a player to encode the p55 inner register as a DH exponent, fix a peer/public share or convert the shared secret into an LP2 key. The exact toy tuple `p=23,g=5,a=6,b=15,A=8,B=19,K=2` already appears in a self-dated 17 April 2012 cryptography teaching deck, so the tuple is not a Cicada-specific key signal. The signed source explicitly makes the server base and secret participant-selected; `NEXT` stores client text rather than choosing the next instruction. See [authenticated 2013 source record](../resources/external/2013-tcp-server-signed-source.md).
+3. **Authenticated 2014 magic squares.** The preserved source supplies 5×5, 7×7 and 5×5 squares (magic sums 3301, 1033, 1033). It contains no 23-rune instruction, no second-peel stopping rule and no mapping from the 23 symbols to square cells. See [original square values](../resources/cicada2014-openpuff-magic-squares.txt).
+4. **Authenticated 2016 signed clue.** It says “their numbers are the direction,” which is a broad semantic cue for a number→direction relationship. It does not define a 23-rune serialization, GP29-to-direction map, ordering, origin, reset, or a p55 target. The signed clue therefore cannot supply the missing typed consumer by itself. See [2016 source record](../resources/cicada2016-4gq25.md).
+
+The evidence supports the circumference operation and makes 23 a plausible motif, but the chain “second peel → 23-rune register → DH/base29/direction consumer” still requires post-discovery choices. No preserved source determines all of the register ordering, alphabet/codec, direction, initialization/reset and target needed for a reversible operation. **The decisive source-selector gate is negative.**
+
+## Distinct, more source-constrained SHED route — do not conflate it with inner23
+
+The current synthesis has a separate page-level SHED result. It applies recursive circumference removal to all complete page-local words and retains one center from each odd-length word. On p55 this yields:
+
+```
+cores             [1,6,2,11,18]
+core GP0          38
+p50[38]           2D
+base59(2D)        131 = GP0(CIRCUMFERENCES)
+unique 131-rune receiver   p22
+```
+
+The unchanged operation transfers to the matched page-level five-core control p49:
+
+```
+p49 cores         [20,19,19,14,4]
+core GP0          76
+p50[76]           1s
+base59(1s)        112 = GP0(DIRECTION)
+unique 76-rune receiver   p55
+```
+
+The p49/p55 route is documented in [the matched-control transfer](lp2-p49-recursive-shed-direction-transfer.md), [the p55→p22 receiver report](lp2-p55-circumferences131-p22-receiver.md), and the [p49→p55→p22 SFT](../sims/lp2_p49_p55_p22_navigation_route_sft.cjs). P22 independently carries LP1 “VOICE OF THE CIRCUMFERENCE / DISCOVER TRUTH INSIDE YOURSELF” imagery and participates in the signed-source direction clause. This is a source-constrained navigation candidate, not unknown-page plaintext or a universal numeric jump rule.
+
+**This route does not consume the 23-rune second peel.** It must not be cited as a successful DH23, BASE29 or 23-register decryption. Its more promising source-selected operation is the full page-level SHED/center extraction with the already fixed p50/base59 consumer.
+
+## Disposition
+
+Retain the exact 23-rune extraction and its manuscript-wide uniqueness result as a structural observation. Retire the **second-peel 23-rune consumer branch**: no independently preserved player-visible Cicada instruction currently selects that stopping point and specifies a complete typed reversible use. Do not continue generic modulus23, DH-peer, exponent, radix, permutation, phase or byte-framing searches.
+
+Reopen only if a first-party source fixes the second-peel selection and the full consumer contract (ordering, codec/alphabet, direction, initialization/reset and target), followed by one reproducible held-out consequence on untouched original ciphertext. The page-level SHED→p50/base59 navigation branch is separate and remains tracked in the reports above.
+
+## Reproduction
+
+[Original-source recursive circumference SFT](../sims/lp2_p55_recursive_circumference_23_sft.cjs) validates the original p55 word segmentation, all seven peel depths, the 2,881-window census, the exact BASE29 bytes and positive plant. The [DH23 / p56 SFT](../sims/lp2_p55_inner23_dh23_shared2_gate.cjs) validates the conditional DH arithmetic, all legal F branches and the p56 known-plaintext control.
