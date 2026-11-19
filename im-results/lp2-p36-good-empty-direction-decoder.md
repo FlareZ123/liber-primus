@@ -132,6 +132,15 @@ Before this result, p36 word37 was a manuscript-unique state packet but GOOD pla
 
 P37 already has a strong reversible LUCK candidate and p38 has a strong BEWARE candidate. The new p36 decoder therefore gives a three-page run of strong local candidates `p36 GOOD / p37 LUCK / p38 BEWARE`, with p39's dominant red X still providing the independent visual FALSE warning.
 
+A source-only graph now gives a particularly sharp incoming/outgoing check on GOOD. Compute GP0 for every authenticated source word and keep only values that are themselves valid source indices0..42. There is exactly one reciprocal two-cycle in the complete 43-word graph:
+
+```text
+index35 FOUND  GP0=36 -> index36 GOOD
+index36 GOOD   GP0=35 -> index35 FOUND
+```
+
+Thus **FOUND35 ↔ GOOD36** is the sole mutual GP0/index pair in the authenticated source. This relation uses no LP2 ciphertext and was recognized only after the p35 FOUND and p36 GOOD local decoders were independently committed. It gives a direct first-party bridge between two consecutive recovered pages: p35 FOUND numerically names source/page36 GOOD, while p36 GOOD names back to source/page35 FOUND. Preserve it as cross-result convergence rather than as evidence for a universal GP0 pointer rule.
+
 ## Evidence boundary
 
 This is stronger than a free known-plaintext fit because the receiver was fixed independently, its center was already q=EMPTY, the key atoms come from the exact authenticated direction sentence, every ordering and both signs are charged, the same family is exhausted over every canonical five-rune word, and exact forward reconstruction restores all five original runes.
