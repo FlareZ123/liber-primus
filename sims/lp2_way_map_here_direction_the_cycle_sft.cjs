@@ -266,6 +266,28 @@ function hexCardinalMove(index, token) {
   return deltas[direction] ? oneStep(index, direction) : null;
 }
 
+const tableCompositeTransitions = [];
+for (let source = 0; source < tableTokens.length; source += 1) {
+  const middle = literalMove(source, tableTokens[source]);
+  if (middle === null) continue;
+  const destination = hexCardinalMove(middle, tableTokens[middle]);
+  if (destination === null) continue;
+  tableCompositeTransitions.push({
+    source,
+    sourceToken: tableTokens[source],
+    middle,
+    middleToken: tableTokens[middle],
+    destination,
+  });
+}
+assert.deepEqual(tableCompositeTransitions, [{
+  source: 57,
+  sourceToken: "1w",
+  middle: 56,
+  middleToken: "4E",
+  destination: 48,
+}]);
+
 let solvedAdjacencies = 0;
 let directMovementEligible = 0;
 const directMovementHits = [];
@@ -370,6 +392,7 @@ console.log(
         direction: "N",
         destination: 48,
       },
+      tableCompositeTransitions,
       solvedTransfer: {
         solvedAdjacencies,
         directMovementEligible,
@@ -385,7 +408,7 @@ console.log(
         globalPrimeLinks,
       },
       classification:
-        "Strong clue-constrained solve-path candidate with solved-text transfer: WAY->MAP is the unique literal movement edge in the fixed follower set, and the fixed WAY->MAP->HERE composite is the sole hit among 731 solved GP29 word adjacencies (11 composite-eligible), exactly on solved WELCOME WAY HERE. DIRECTION->THE remains unique only in the fixed follower/radix/carrier-numbering family.",
+        "Strong clue-constrained solve-path candidate with solved-text transfer: WAY->MAP->HERE is the only valid literal-move then hex-cardinal composite anywhere in the full 256-cell table, and it is the sole hit among 731 solved GP29 word adjacencies (11 solved adjacencies share the eligible source state), exactly on solved WELCOME WAY HERE. DIRECTION->THE remains unique only in the fixed follower/radix/carrier-numbering family.",
     },
     null,
     2
