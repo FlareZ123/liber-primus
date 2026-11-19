@@ -188,6 +188,8 @@ signed-source index27 = ARE
 
 This representation is sharply selected. Charge every integer radix from 2 through43, the full size of the authenticated signed-word register. Require the mirrored digits of 809 to form an ascending consecutive source-index run. **Base29 is the sole hit**, with `[26,27]`. Under the same BASE29 rule across all25 cells of the source 5x5 square, **809 is also the sole cell** whose complete mirrored digit list is an ascending consecutive run.
 
+The two untouched authenticated 2014 square centers provide a stronger same-operation holdout. Charge every radix2..809 and all eight whole-pair mirror masks across centers `[809,331,91]`; require each center to become a forward unit-step pair of valid signed-source indices. Exactly one of **6,464** configurations survives: **base29, reversing only809**. The three reads are `809 -> [26,27] = NUMBERS ARE`, `331 -> [11,12] = IS THE`, and `91 -> [3,4] = LIES EMPTY`. Even without orientation, base29 is the sole radix making all three raw center pairs adjacent source indices. The winning reversal mask independently matches the visible p22 mirror on the reused 809 square. This turns the two other authenticated centers into held-out controls for the radix/register interpretation. [Three-square report](lp2-three-square-centers-base29-source-pairs.md) · [SFT](../sims/lp2_three_square_centers_base29_source_pairs_sft.cjs) · Windows Node22 PASS `44474459983`.
+
 The output therefore reads the authenticated clause fragment:
 
 ```text
