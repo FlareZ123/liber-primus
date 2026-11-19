@@ -1,4 +1,4 @@
-name: Agent13 WILL inverse follow-up SFT
+name: Agent13 WILL and FOUND follow-up SFTs
 
 on:
   workflow_dispatch:
@@ -14,6 +14,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Run WILL inverse follow-up SFT
+      - name: Run source-native WILL SFT
         shell: cmd
         run: node sims\lp2_p0_you_will_packet_dh_inverse_sft.cjs
+      - name: Run WILL BE FOUND READOUT cycle SFT
+        shell: cmd
+        run: node sims\lp2_p0_will_be_found_readout_cycle_sft.cjs
