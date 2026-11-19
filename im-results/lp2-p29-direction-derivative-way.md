@@ -204,6 +204,16 @@ This is a serious candidate for an intended cross-year instruction path. It conn
 
 The remaining weakness is the final assembly convention: although the 48-way charge is small and WAY is the sole lexical hit, the source does not explicitly say “place the derivative result before H's positive-degree coefficients.” Treat WAY as **candidate recovered instruction material**, with stronger source support than a free language fit.
 
+## Independent WAY cube-e LIBER p9 holdout
+
+Agent31 later found a second downstream consumer of this candidate that does not use the p13 historical-label route. In the authenticated 2016 source, WAY is uniquely zero-based index13. The separately source-selected operation `C(x)=x^3 mod29`, composed the independently fixed state count `e=3` times, gives:
+
+    13 -> 22 -> 5 -> 9
+    WAY -> THE -> EPIPHANY -> LIBER
+
+Thus `C^e(WAY13)=LIBER9`. Physical p9 had already been independently selected by the p39 VERIFY route before this relationship was noticed. The same operation is involutive on this half-cycle, so `LIBER9 <-> WAY13`. Among all six signed THE-followers, WAY is the sole follower mapped to index9 by the fixed `C^e`; among state counts `K=2,e=3,q=4,g=5,a=6`, only `e` reaches index9 from WAY.
+
+Combined with p9's untouched `K=2` packet split `29|40 = DIRECTION|PATHS`, the productive branch closes `p9 -> DIRECTION29 -> p29 -> WAY13 -> LIBER9 -> p9`. This is a retrospective cross-route holdout, so it strengthens WAY materially while leaving the final W+AY assembly convention as the remaining local weakness. See [WAY cube-e LIBER p9 holdout](lp2-way-cube-e-liber-p9-holdout.md). Windows Node22 PASS: run 44457394414.
 ## Decision
 
 Preserve:
