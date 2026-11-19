@@ -147,6 +147,22 @@ The exact `[7,8]` output is equivalent to outer endpoints `[22,15]`. Across ever
 
 A broader adjacency control prevents overclaiming. Five of 159 eight-rune outer H pairs happen to be consecutive signed-word positions, close to the random 29-state expectation. The discriminating fact is the pre-specified upstream suffix itself: the selected receiver returns exactly `THE DEVOTED`, rather than merely some adjacent source bigram.
 
+### DIRECTION carries the same readout to GOOD LUCK
+
+Agent27 independently fixed the authenticated sentence's literal `DIRECTION` word at zero-based position29 as a modulo29 fold between source positions 1..13 and 30..42. This operator was established after the p32 receiver and does not inspect its ciphertext.
+
+Apply that already fixed source operation to the READ OUT result:
+
+```text
+receiver READ OUT = [7,8]
+DIRECTION = 29
+
+7 + 29 = 36 -> GOOD
+8 + 29 = 37 -> LUCK
+```
+
+So the same p32 receiver has the prospective source continuation **GOOD LUCK**, exactly the complete two-word sentence in the authenticated trailing block. This does not add a new familywise uniqueness claim because every exact `[7,8]` receiver would inherit the same source fold. Its value is causal: an independently fixed source operation converts the p32-returned selector suffix into a clean human-facing continuation without choosing a new transform from the target.
+
 The route now closes as:
 
 ```text
@@ -216,4 +232,4 @@ This is a reusable route worth carrying forward. Further work should use HOME/BU
 
 `node sims/lp2_p32_home_buds_p50_loop_sft.cjs`
 
-The SFT reconstructs the 23-step upstream route, canonical p32 words and 11x11 checksum, the complete DH-diagonal family, the whole p32 four-letter grid census, the independent PARABLE/SURFACE offset97 junction, the 159-fragment H-shell control, the READ OUT / THE DEVOTED source closure, the table-wide frozen p50 composite, and the signed-source value57 ambiguity.
+The SFT reconstructs the 23-step upstream route, canonical p32 words and 11x11 checksum, the complete DH-diagonal family, the whole p32 four-letter grid census, the independent PARABLE/SURFACE offset97 junction, the 159-fragment H-shell control, the READ OUT / THE DEVOTED source closure, the held-out DIRECTION -> GOOD LUCK continuation, the table-wide frozen p50 composite, and the signed-source value57 ambiguity.
