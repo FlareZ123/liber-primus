@@ -15,6 +15,8 @@ The fixed image procedure in [the census SFT](../sims/lp2_p23_p56_large_red_init
 
 The p56 transcription begins with AE on line 0. Its second line begins with O/index3, but that line has **19 ordinary-sized components for 19 transcription runes** and no enlarged red component. The O is therefore not the enlarged p56 initial and is not the visual counterpart of p23's enlarged U.
 
+The shape comparison independently agrees. After fitting binary masks to a centered 128×128 canvas, the p23 large glyph scores IoU 0.915 / cosine 0.955 against a small same-page U, versus 0.815 / 0.899 against a small O. The p56 large glyph scores 0.854 / 0.921 against each of two small same-page AE instances, versus 0.746 / 0.855 and 0.777 / 0.875 against two small O instances. This is a scale-normalized shape check, not a language-model label.
+
 The proposed pair is consequently:
 
 `U_1 \rightarrow AE_{25}`
