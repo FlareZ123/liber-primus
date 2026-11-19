@@ -183,4 +183,4 @@ The vector/order was recognized after both candidate keys and receivers were kno
 node sims/lp2_p0_found_good_cipherstate_transition_sft.cjs
 ~~~
 
-Initial Windows Node22 reproduction passed as workflow run **44442676027** before the matched-shape holdout was added; rerun the workflow after this revision for the complete gate.
+Complete Windows Node22 gate, including the FALSE→PATHS holdout and packet-selector controls, passed as workflow run **44443213983**: https://github.com/FlareZ123/liber-primus/actions/runs/44443213983.
