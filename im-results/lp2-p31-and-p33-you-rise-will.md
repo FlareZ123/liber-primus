@@ -154,6 +154,51 @@ So the p31 instruction candidate has a consumer that was fixed before its discov
 
 See `im-results/lp2-p55-recursive-word-core-within.md` and `sims/lp2_p55_recursive_word_core_sft.cjs`.
 
+### The full IS THE WAY block is executable
+
+The decoded phrase carries authenticated zero-based source numbers:
+
+```text
+ROAD IS THE WAY
+23   11 12  13.
+```
+
+The final three numbers select a contiguous block of independently established numbered-diagonal consumers:
+
+```text
+IS11 -> p11 receiver [11,14]
+     -> fixed sum/difference [25,26]
+     -> THEIR NUMBERS
+
+THE12 -> p12 directed receiver, GP0 64
+WAY13 -> p13 directed receiver, GP0 98
+     -> fixed THEIR RISE
+     -> 98-64 = 34 = GP0(THEIR).
+```
+
+Thus `IS THE WAY = 11,12,13` points directly to manuscript objects that converge on the authenticated phrase `THEIR NUMBERS`. The increasing source continuation is already fixed:
+
+```text
+THEIR25 NUMBERS26 ARE27 THE28 DIRECTION29.
+```
+
+DIRECTION29 then re-enters the corrected numbered route through p29, SEEK30 and AND31, returning to the p31 object that emitted `ROAD IS THE WAY`.
+
+This makes the p31 readout operational rather than merely aphoristic:
+
+```text
+p31
+ -> ROAD IS THE WAY
+ -> IS11 / THE12 / WAY13
+ -> THEIR NUMBERS
+ -> ARE THE DIRECTION
+ -> DIRECTION29
+ -> SEEK30 -> AND31
+ -> p31.
+```
+
+The p11 and p12/p13 consumers predate the p31 decoder. No new cipher family is introduced in this composition. ROAD23 remains a parallel productive checkpoint selected by the first word of the same decoded phrase.
+
 ## 3. GP0(AND)=56 selects solved p56; p31 layout derives the shell
 
 The source supplies a stronger helper-page selector before any p31 key is applied. Charge all 42 adjacent pairs in the authenticated 43-word message by exact GP0 equality. There is exactly one equal pair:
