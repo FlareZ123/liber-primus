@@ -203,6 +203,58 @@ assert.deepEqual(stateHopHits, [{
   to: "be",
 }]);
 
+// Independent complete-word boundary control for the recovered WILL receiver.
+// Under both p50 radices, map every authenticated signed word number through
+// the original token table. A p0 word is bracketed only if at least one source
+// word lands on its printed start and another lands on its printed end.
+const bracketHits = [];
+for (const [radix, alphabet] of [
+  ["base60", alphabet60],
+  ["base59", alphabet59],
+]) {
+  const byOutput = new Map();
+  for (let index = 0; index < message.length; index += 1) {
+    const address = gp0(message[index]);
+    if (address >= tableTokens.length) continue;
+    const value = decodeToken(tableTokens[address], alphabet);
+    if (value === null) continue;
+    if (!byOutput.has(value)) byOutput.set(value, []);
+    byOutput.get(value).push({
+      index,
+      word: message[index].toLowerCase(),
+      gp0: address,
+    });
+  }
+
+  for (const word of p0) {
+    const starts = byOutput.get(word.start) || [];
+    const ends = byOutput.get(word.end) || [];
+    if (!starts.length || !ends.length) continue;
+    bracketHits.push({
+      radix,
+      wordIndex: word.index,
+      start: word.start,
+      end: word.end,
+      length: word.length,
+      starts,
+      ends,
+    });
+  }
+}
+
+assert.deepEqual(bracketHits, [{
+  radix: "base60",
+  wordIndex: 32,
+  start: 141,
+  end: 144,
+  length: 4,
+  starts: [{ index: 32, word: "you", gp0: 30 }],
+  ends: [
+    { index: 20, word: "meaning", gp0: 77 },
+    { index: 39, word: "false", gp0: 77 },
+  ],
+}]);
+
 // Charge every authenticated adjacent triple under both source-supported
 // p50 radices. K=2 fixes the walk depth before reading any p0 ciphertext.
 // The first intermediate table value is treated only as a rune direction:
@@ -411,6 +463,7 @@ assert.deepEqual(willPlaintext, gp("WILL"));
 console.log(JSON.stringify({
   status: "PASS: WILL -> BE -> FOUND uniquely selects p0 117..121 and returns to READ OUT/DH",
   frozenDh: dh,
+  receiverBracketFamily: { radices: ["base60", "base59"], hits: bracketHits },
   stateHopFamily: { fields: Object.keys(dh), radices: ["base60", "base59"], hits: stateHopHits },
   tripleFamily: {
     authenticatedTriples: message.length - 2,
