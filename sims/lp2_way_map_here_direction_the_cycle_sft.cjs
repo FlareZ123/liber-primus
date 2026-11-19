@@ -154,13 +154,14 @@ for (const source of followerRows) {
 }
 assert.deepEqual(allFollowerEdges, [["WAY", "MAP"]]);
 
-const adjacentEdges = followerRows
-  .slice(0, -1)
-  .filter(
-    (source, index) =>
-      source.destination === followerRows[index + 1].address
-  )
-  .map((source, index) => [source.word, followerRows[index + 1].word]);
+const adjacentEdges = [];
+for (let index = 0; index + 1 < followerRows.length; index += 1) {
+  const source = followerRows[index];
+  const target = followerRows[index + 1];
+  if (source.destination === target.address) {
+    adjacentEdges.push([source.word, target.word]);
+  }
+}
 assert.deepEqual(adjacentEdges, [["WAY", "MAP"]]);
 
 assert.equal(gp0("WAY"), 57);
