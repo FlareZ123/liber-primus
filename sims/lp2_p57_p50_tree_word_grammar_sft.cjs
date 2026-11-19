@@ -156,6 +156,38 @@ assert.equal(gp0("CIRCUMFERENCES"), 131);
 const theRoute = walk(gp0("THE"), gpValues("THE").length);
 assert.deepEqual(theRoute, [20,102,32]);
 
+// The manuscript-native p28 selector reconstructs the standard DH23 example.
+// Derive its private exponents from the public tuple rather than hard-coding
+// them as tree depths.
+const dh = { p:23, g:5, A:8, B:19, K:2 };
+
+/** @param {number} base @param {number} exponent @param {number} modulus @returns {number} */
+function powMod(base, exponent, modulus) {
+  let result = 1;
+  let factor = base % modulus;
+  let power = exponent;
+  while (power > 0) {
+    if (power % 2 === 1) result = (result * factor) % modulus;
+    factor = (factor * factor) % modulus;
+    power = Math.floor(power / 2);
+  }
+  return result;
+}
+
+/** @param {number} target @returns {number} */
+function discreteLog23(target) {
+  for (let exponent = 1; exponent < dh.p; exponent += 1) {
+    if (powMod(dh.g, exponent, dh.p) === target) return exponent;
+  }
+  throw new Error("missing DH23 discrete log");
+}
+
+const privateA = discreteLog23(dh.A);
+const privateB = discreteLog23(dh.B);
+assert.deepEqual({ privateA, privateB }, { privateA:6, privateB:15 });
+assert.equal(powMod(dh.B, privateA, dh.p), dh.K);
+assert.equal(powMod(dh.A, privateB, dh.p), dh.K);
+
 /**
  * For a source word, walk its own GP0 for its own GP-rune count.
  * If the endpoint is a main-cycle root, expose that root's component size.
@@ -251,10 +283,10 @@ for (let depth = 0; depth < depthHistogram.length; depth += 1) {
   });
 }
 
-assert.equal(prefixRows[6].nonroot, gp0("FIND"));
+assert.equal(prefixRows[privateA].nonroot, gp0("FIND"));
 assert.equal(prefixRows[7].includingRoot, gp0("LIKE"));
 assert.equal(prefixRows[10].includingRoot, gp0("INSTAR"));
-assert.equal(prefixRows[15].includingRoot, gp0("DIVINITY"));
+assert.equal(prefixRows[privateB].includingRoot, gp0("DIVINITY"));
 assert.equal(prefixRows[20].nonroot, gp0("EPIPHANY"));
 assert.equal(prefixRows[24].includingRoot, gp0("CIRCUMFERENCES"));
 
@@ -338,6 +370,7 @@ assert.equal(
 // At DH private exponent b=15, the p32 branch itself is SURFACE and the
 // complementary rooted sibling object is WITHIN, exactly partitioning
 // DIVINITY=105.
+assert.equal(privateB, 15);
 assert.equal(branch32Depth15, gp0("SURFACE"));
 assert.equal(branch111Depth15, branch111Full);
 assert.equal(
@@ -377,11 +410,12 @@ console.log(JSON.stringify({
   },
   tree115: {
     depthHistogram,
+    dhDepthSelector: { ...dh, privateA, privateB },
     sourceWordPrefixIdentities: {
-      depth6Nonroot_FIND: prefixRows[6].nonroot,
+      depthA6Nonroot_FIND: prefixRows[privateA].nonroot,
       depth7IncludingRoot_LIKE: prefixRows[7].includingRoot,
       depth10IncludingRoot_INSTAR: prefixRows[10].includingRoot,
-      depth15IncludingRoot_DIVINITY: prefixRows[15].includingRoot,
+      depthB15IncludingRoot_DIVINITY: prefixRows[privateB].includingRoot,
       depth20Nonroot_EPIPHANY: prefixRows[20].nonroot,
       depth24IncludingRoot_CIRCUMFERENCES: prefixRows[24].includingRoot,
     },
