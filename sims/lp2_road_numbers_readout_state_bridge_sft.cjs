@@ -125,6 +125,7 @@ function parsePage(text) {
 
 const p0 = parsePage(parts[0]);
 const p0ByStart = new Map(p0.map((word) => [word.start, word]));
+const state = { p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3 };
 
 
 
@@ -224,6 +225,158 @@ assert.deepEqual(
   ]
 );
 assert.deepEqual(backwardLengthMatches, [adjacentDualRadix[1]]);
+
+// NUMBERS is also the only authenticated source word whose addressed token is
+// literally the independently fixed (e,p) state pair: 3 and GP-letter D=23.
+const typedSourceTokens = [];
+for (let sourceIndex = 0; sourceIndex < signedWords.length; sourceIndex += 1) {
+  const address = gp0(signedWords[sourceIndex]);
+  if (address < 0 || address >= tableTokens.length) continue;
+  const token = tableTokens[address];
+  const digit = /^[1-9]$/.test(token[0]) ? Number(token[0]) : null;
+  const letterValue = corpus.translit.indexOf(token[1]);
+  if (digit === null || letterValue < 0) continue;
+  typedSourceTokens.push({
+    sourceIndex,
+    source: signedWords[sourceIndex],
+    address,
+    token,
+    digit,
+    letterValue,
+    exactEP: digit === state.e && letterValue === state.p,
+  });
+}
+assert.deepEqual(
+  typedSourceTokens.filter((row) => row.exactEP),
+  [{
+    sourceIndex: numbersIndex,
+    source: "NUMBERS",
+    address: 83,
+    token: "3D",
+    digit: 3,
+    letterValue: 23,
+    exactEP: true,
+  }]
+);
+
+const numbersTokenH = H(state.p, state.e);
+assert.deepEqual(numbersTokenH, [20, 26]);
+
+// Charge a source-token/state family for the first three-rune receiver.
+// Keys are [x, H(p,e)[j], y] with distinct x,y chosen from the seven
+// non-modulus state variables. Only AND reaches an authenticated 3-rune target.
+const stateVariables = [
+  ["g", state.g], ["a", state.a], ["b", state.b], ["A", state.A],
+  ["B", state.B], ["K", state.K], ["e", state.e],
+];
+const signedThreeTargets = new Map(
+  [...new Map(
+    signedWords
+      .map((word) => ({ word, values: gp(word) }))
+      .filter((row) => row.values.length === 3)
+      .map((row) => [row.values.join(","), row])
+  ).values()].map((row) => [row.values.join(","), row.word])
+);
+const andReceiver = numbersPair[0];
+const andFamilyHits = [];
+let andFamilyConfigs = 0;
+for (const [leftName, leftValue] of stateVariables) {
+  for (const [rightName, rightValue] of stateVariables) {
+    if (leftName === rightName) continue;
+    for (let coordinate = 0; coordinate < 2; coordinate += 1) {
+      andFamilyConfigs += 1;
+      const key = [leftValue, numbersTokenH[coordinate], rightValue];
+      const plain = andReceiver.values.map((value, index) =>
+        mod29(value - key[index])
+      );
+      const target = signedThreeTargets.get(plain.join(","));
+      if (target) {
+        andFamilyHits.push({
+          left: leftName,
+          middle: "H(p,e)[" + coordinate + "]",
+          right: rightName,
+          key,
+          plain,
+          target,
+        });
+      }
+    }
+  }
+}
+assert.equal(andFamilyConfigs, 84);
+assert.deepEqual(andFamilyHits, [{
+  left: "g",
+  middle: "H(p,e)[1]",
+  right: "b",
+  key: [5, 26, 15],
+  plain: gp("AND"),
+  target: "AND",
+}]);
+
+// Charge a second source-token/state family for the four-rune receiver.
+// Keys are [H(p,x)[j], p, K*y, y]. Only THEIR reaches an authenticated
+// four-rune source target in the complete 7*7*2 family.
+const signedFourTargets = new Map(
+  [...new Map(
+    signedWords
+      .map((word) => ({ word, values: gp(word) }))
+      .filter((row) => row.values.length === 4)
+      .map((row) => [row.values.join(","), row])
+  ).values()].map((row) => [row.values.join(","), row.word])
+);
+const theirReceiver = numbersPair[1];
+const theirFamilyHits = [];
+let theirFamilyConfigs = 0;
+for (const [xName, xValue] of stateVariables) {
+  for (const [yName, yValue] of stateVariables) {
+    for (let coordinate = 0; coordinate < 2; coordinate += 1) {
+      theirFamilyConfigs += 1;
+      const key = [
+        H(state.p, xValue)[coordinate],
+        state.p,
+        mod29(state.K * yValue),
+        yValue,
+      ];
+      const plain = theirReceiver.values.map((value, index) =>
+        mod29(value - key[index])
+      );
+      const target = signedFourTargets.get(plain.join(","));
+      if (target) {
+        theirFamilyHits.push({
+          x: xName,
+          y: yName,
+          coordinate,
+          key,
+          plain,
+          target,
+        });
+      }
+    }
+  }
+}
+assert.equal(theirFamilyConfigs, 98);
+assert.deepEqual(theirFamilyHits, [{
+  x: "a",
+  y: "g",
+  coordinate: 0,
+  key: [17, 23, 10, 5],
+  plain: gp("THEIR"),
+  target: "THEIR",
+}]);
+
+// Their key shells are themselves compact p28-state expressions.
+assert.deepEqual(shell(andFamilyHits[0].key), [
+  state.B,
+  mod29(state.p - state.e),
+  mod29(state.p + state.e),
+]);
+assert.deepEqual(shell(theirFamilyHits[0].key), [
+  mod29(state.K * state.a),
+  mod29(state.p - 1),
+  mod29(state.p - state.K * state.g),
+  mod29(state.K * state.K),
+]);
+
 
 
 // The immediately preceding p0 word is itself a state packet whose H-shell
@@ -354,7 +507,7 @@ assert.deepEqual(numbersReceiver.values, [25, 15, 26, 1, 8, 4, 16]);
 const receiverShell = shell(numbersReceiver.values);
 assert.deepEqual(receiverShell, [9, 12, 11, 19, 18, 5, 1]);
 
-const state = { p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3 };
+
 const stateForm = [
   mod29(state.b - state.a),
   mod29(state.K * state.a),
@@ -509,6 +662,10 @@ console.log(JSON.stringify({
     lengths: numbersPair.map((word) => word.length),
     adjacentDualRadix,
     backwardLengthMatches,
+    typedSourceTokens,
+    tokenH: numbersTokenH,
+    andRecovery: { configs: andFamilyConfigs, hits: andFamilyHits },
+    theirRecovery: { configs: theirFamilyConfigs, hits: theirFamilyHits },
   },
   road: {
     gp: roadGp,
