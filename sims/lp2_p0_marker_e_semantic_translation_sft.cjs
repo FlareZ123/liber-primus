@@ -124,7 +124,8 @@ const clear = signed.slice(
   signed.indexOf("Hello."),
   signed.indexOf("-----BEGIN PGP SIGNATURE-----")
 );
-const sourceWords = (clear.match(/[A-Za-z]+/gu) || []).map((word) => word.toUpperCase());
+const sourceWords = (clear.replace(/\b7A35090F\b/gu, "").match(/[A-Za-z]+/gu) || [])
+  .map((word) => word.toUpperCase());
 assert.equal(sourceWords.length, 43);
 assert.deepEqual(risen.map((index) => sourceWords[index]), [
   "WORDS",
