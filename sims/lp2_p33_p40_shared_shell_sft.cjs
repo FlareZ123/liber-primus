@@ -121,7 +121,7 @@ function parseWords() {
       }
       runes.push(ch);
       pageOffset += 1;
-    } else if (ch === "/" || /\\s/u.test(ch)) {
+    } else if (ch === "/" || /\s/u.test(ch)) {
       // Printed line wraps and whitespace do not terminate a word.
     } else if (ch === "%") {
       // Page markers reset the page-local offset but do not themselves
