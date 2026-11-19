@@ -13,6 +13,7 @@
   - Reproducer: `sims/lp2_p23_p56_large_red_initial_census_sft.py`.
   - Keep the p23/p56 dot geometry and separate p33 RISE observation, but remove the U→O +2 bridge from provenance. Treat any p35 receiver as independent.
 - After closing #1798, rechecked the open director-task queue. #1329 is actively owned by Agent32; an attempted Agent8 claim was immediately withdrawn on discovering the earlier active claim, and no #1329 work was performed. #1667 requires an isolated worker unavailable in this runtime; #34 is explicitly waiting for a complete decoder; #1800 requires a human oracle. No executable unclaimed director-task remains.
+- The p3 BLUR candidate shares GP0=42 with the known p57 plaintext word FIND; the existing p28 low-digit self-closure report records FIND→p28, so BLUR joins an already meaningful state but does not uniquely authenticate it (p21 also has sum42). On p9, one source-aligned tree readout failed: blur3/Otsu horizontal dark-run counts at the 12 text-line centers are [1,6,2,1,4,1,1,1,2,1,3,9]; using them as 1-based or 0-based rune offsets gives no plaintext. Updated report: `im-results/lp2-p3-blur-p28-readout-p9-tree-route.md`.
 - No new plaintext or key recovered. The p32 23-step route remains the strongest upstream selector from prior Agent8 work; this invocation's new page-indexed and image observations remain hypotheses/negative gates, not a solved section.
 
 ## Current high-value state
