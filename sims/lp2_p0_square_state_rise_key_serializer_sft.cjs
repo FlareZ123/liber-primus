@@ -266,6 +266,32 @@ for (const row of signedWords) {
 assert.equal(signedWords[t].text, "THE");
 assert.equal(signedWords[w].text, "WAY");
 
+// Post-freeze original-marker holdout: pair the four same-height flank dots.
+// Physical left-minus-right is the only natural H channel whose four outputs
+// all land inside the independently established central source instruction
+// interval 14..29. Literal RISE orders those values increasingly.
+const rowDifference = left.map((value, index) => mod29(value - right[index]));
+const rowSum = left.map((value, index) => mod29(value + right[index]));
+const mirroredDifference = right.map((value, index) => mod29(value - left[index]));
+const centralInstructionMembership = (values) =>
+  values.filter((value) => value >= 14 && value <= 29).length;
+
+assert.deepEqual(rowDifference, [18, 15, 20, 26]);
+assert.deepEqual(rowSum, [3, 12, 2, 24]);
+assert.deepEqual(mirroredDifference, [11, 14, 9, 3]);
+assert.deepEqual([
+  centralInstructionMembership(rowDifference),
+  centralInstructionMembership(rowSum),
+  centralInstructionMembership(mirroredDifference),
+], [4, 1, 1]);
+
+const risingRowDifference = [...rowDifference].sort((a, b) => a - b);
+assert.deepEqual(risingRowDifference, [15, 18, 20, 26]);
+assert.deepEqual(
+  risingRowDifference.map((value) => signedWords[value].text),
+  ["WORDS", "MAP", "MEANING", "NUMBERS"]
+);
+
 const receivers = [];
 for (const page of unknownPhysicalWords()) {
   for (let index = 0; index + 1 < page.words.length; index += 1) {
@@ -337,5 +363,17 @@ console.log(JSON.stringify({
   formerLexicalAnchorsAsConsequences: {
     t: signedWords[t].text,
     w: signedWords[w].text,
+  },
+  postFreezeMarkerRowHoldout: {
+    physicalDifference: rowDifference,
+    physicalSum: rowSum,
+    mirroredDifference,
+    centralInstructionMembership: {
+      physicalDifference: centralInstructionMembership(rowDifference),
+      physicalSum: centralInstructionMembership(rowSum),
+      mirroredDifference: centralInstructionMembership(mirroredDifference),
+    },
+    riseOrderedDifference: risingRowDifference,
+    riseOrderedWords: risingRowDifference.map((value) => signedWords[value].text),
   },
 }, null, 2));
