@@ -100,6 +100,47 @@ Thus the only unknown occurrence of the exact `57,56` WAY/MAP address transition
 
 The other three unknown FOUR windows do not contain the fixed 57->56 transition.
 
+## Deterministic state48 continuation stops on p26
+
+The fixed table continuation from the selected state56 receiver is still:
+
+~~~text
+56 --4E / hex N--> 48
+~~~
+
+If this is interpreted as a state lookup on the same unknown page, p26 contains exactly one rune-word whose GP0 is 48:
+
+~~~text
+p26 line4 word1
+ciphertext transliteration EAMU
+rune vector [28,19,1]
+GP0 = 48
+~~~
+
+This is a clean nonlocal receiver selection, but the next frozen HERE consumer does **not** transfer. The established current-page `4D` rule requires rune offset48 to be the fourth D on the page. On p26:
+
+~~~text
+rune offset48 = L
+D-count through offset48 = 1
+~~~
+
+so the literal self-index fails. Stop the p26 navigation branch there rather than changing the 4D semantics.
+
+## Shared-secret word probe is insufficient
+
+The FOUR -> DH bridge reconstructs shared secret `K=2`. Applying only the two sign choices of a constant GP29 K-shift to the uniquely selected state56 ciphertext word gives:
+
+~~~text
+POENG = [13,22,21]
+
++K: [15,24,23] = SAD
+-K: [11,20,19] = JLM
+~~~
+
+`SAD` is readable English, but a complete manuscript control makes it insufficient for plaintext promotion. Across **795** unknown three-rune words and both signs of K, the stable TextBlob English lexicon accepts **41/1590** outputs. The selected SAD result is unique as SAD, but readable three-rune accidents occur at a non-negligible background rate.
+
+A whole-p26 +K pass also does not produce sustained English. Preserve `POENG + 2 = SAD` only as a bounded candidate word probe, not recovered plaintext.
+
 ## Boundary of the claim
 
 The table's second stage remains:
@@ -142,4 +183,4 @@ Run:
 node sims/lp2_p26_way_map_four_receiver_sft.cjs
 ~~~
 
-The SFT performs the complete unknown-word movement census, proves uniqueness of the 57->56 adjacent pair, enumerates all unknown FOUR windows, verifies the p26 line/word coordinates, and explicitly tests the failed immediate 56->48 continuation.
+The SFT performs the complete unknown-word movement census, proves uniqueness of the 57->56 adjacent pair, enumerates all unknown FOUR windows, verifies the p26 line/word coordinates, tests the failed immediate 56->48 continuation, follows state48 to its sole p26 word and rejects the frozen 4D self-index there, and charges the K=2 SAD/JLM word probe against the full three-rune signed-K English background.
