@@ -144,3 +144,14 @@ The shared source has a genuine solved **p15 numerical 4x4 Fibonacci-indexed pri
 - This covers the complete three-case exact-GP0 two-rune success class. P28 THE is outside the exact raw-GP0 class; no source-selected p20 scalar route exists, so stopped rather than mining p20.
 - Chronology remains retrospective. Preserve as mechanism compression/corroboration. Universal receiver-ordinal navigation remains rejected by the sealed p40->p16/ARE length failure.
 - Artifacts: im-results/lp2-two-rune-helper-page-hkey-architecture.md; sims/lp2_two_rune_helper_page_hkey_architecture_sft.cjs. Repeated-IS report marked as subset and authoritative synthesis replaced with broader three-case statement.
+
+
+## 2026-11-19 independent checkpoint: literal THEIR-numbers H direction bridge
+
+- Strongest causal result this run. The authenticated source positions of THEIR are exactly [19,25]; H([19,25])=[23,15]=[p,b]. Independently selected p39's frozen repeated red-title H chain is [27,5]->[22,3]->[19,25]->[23,15], so it literally traverses THEIR NUMBERS and their DH direction state.
+- Canonical IS=[10,15] has H(IS)=[24,25]=[AND,THEIR], uniquely adjacent among authenticated two-GP-rune words THE/IS/BE.
+- Immediate source context is ROAD23 AND24 THEIR25 NUMBERS26. Holding THEIR=25 fixed gives source boundary shells [23,25] and [26,25]. H^-1 predicts exact ciphertexts [24,1] and [11,14].
+- Across 465 complete two-rune unknown words, [24,1] occurs once at p21 word33/start170 and [11,14] once at p11 word11/start49. The two possible p11/p21 assignments score 0/2 and 2/2; observed assignment is exact.
+- Therefore p21 C_H=[ROAD,THEIR], plaintext IS_H=[AND,THEIR], p11 C_H=[NUMBERS,THEIR], reconstructing ROAD AND THEIR NUMBERS immediately before ARE THE DIRECTION. Key shells are source-index displacements [-1,0]=[28,0] and [+2,0].
+- This gives a direct source-derived reconstruction of both IS ciphertext words and p39's THEIR-numbers state transition. Discovery is retrospective, so preserve chronology and require future untouched two-rune source-selected target for prospective cipher-law promotion.
+- Artifacts: im-results/lp2-their-numbers-h-direction-bridge.md; sims/lp2_their_numbers_h_direction_bridge_sft.cjs. Authoritative synthesis updated; narrower duplicate repeated-IS paragraph removed.
