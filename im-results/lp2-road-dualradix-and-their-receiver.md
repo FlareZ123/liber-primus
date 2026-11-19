@@ -38,7 +38,7 @@ Use the exact operation family suggested by the 2016 statement that word numbers
 5. require the base59 and base60 outputs to be starts of adjacent p0 words, in that order;
 6. before reading receiver runes, require those two p0 word lengths to equal the next two authenticated signed-word GP lengths.
 
-Across all 43 signed words and the four address/receiver-origin combinations there are **172** configurations.
+Across all **41 signed words that have two following alphabetic words** and the four address/receiver-origin combinations there are **164** configurations.
 
 Fourteen configurations land the two radix outputs on adjacent p0 word starts. Exactly **one** also matches the next-two-word source lengths:
 
@@ -186,7 +186,7 @@ The relevant p0 locations lie in a five-rune word and in the already selected fo
 
 ## Decision
 
-The new reproducible result is the **ROAD number -> dual-radix adjacent [3,4] receiver**, uniquely matching the next authenticated source shape `AND THEIR` across the complete frozen 172-configuration family.
+The new reproducible result is the **ROAD number -> dual-radix adjacent [3,4] receiver**, uniquely matching the next authenticated source shape `AND THEIR` across the complete frozen 164-configuration family.
 
 This materially strengthens the local p0 navigation hypothesis and gives a prospectively fixed candidate phrase at p0 words42..43. It does not yet establish those plaintext letters because the pre-existing fixed keys fail, while the later exact source-atom inverses were recognized after the target was fixed and THEIR retains two source-derived keys.
 

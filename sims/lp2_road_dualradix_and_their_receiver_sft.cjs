@@ -303,7 +303,7 @@ for (let index = 0; index < message.length - 2; index += 1) {
   }
 }
 
-assert.equal(structuralConfigs, 172);
+assert.equal(structuralConfigs, 164);
 assert.equal(adjacentHits.length, 14);
 assert.deepEqual(shapeHits, [{
   sourceIndex: 23,
