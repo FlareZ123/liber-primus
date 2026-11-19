@@ -266,19 +266,45 @@ Conditional on the EMERGE radix-reset interpretation, this recovers the p0 openi
 
 This also strengthens the pre-existing p0 title crib enough to use it as a fixed cryptanalytic holdout. It still does not identify the reversible cipher that maps those plaintext runes to the original p0 ciphertext.
 
+### Original-ciphertext additive checksum holdout
+
+The first two printed p0 words are a period-delimited 13-rune opening. Under the source-selected candidate `EPIPHANY SEEKS`, subtract the candidate GP29 runes from the original ciphertext runes modulo29. The exact residual is:
+
+```
+[26,24,8,19,27,24,18,3,0,8,0,16,19]
+```
+
+Its ordinary integer sum is:
+
+```
+192
+```
+
+which is simultaneously the already selected EMERGE exit value and `GP0(EPIPHANY SEEKS)=192`.
+
+This relation was charged against every ordered pair of authenticated 2016 source words whose combined GP rune length is13. There are **52** such ordered pairs. Requiring
+
+```
+sum((cipher - candidate) mod29) = GP0(candidate)
+```
+
+leaves exactly one hit, **EPIPHANY SEEKS**. Reversing the subtraction sign leaves zero hits.
+
+This is a value-sensitive original-ciphertext holdout rather than another word-length match. It does not yet establish a reusable cipher because no source-selected rule explains the 13 residual symbols or predicts a second independent ciphertext interval. Treat it as a strong check on the conditional opening, not as authenticated plaintext.
+
 ## Evidence boundary
 
 Every numeric relation through the base59 fixed point is reproducible from original artifacts and solved p57 text. The reset now has a first-party numeric cue: `GP0(SURFACE)=67 -> p50[67]=3C`, exactly the root token, with base59 returning to189 and base60 exiting to192. Within p57, SURFACE is the sole direct GP0 hit on that root-token class.
 
-The remaining interpretive step is narrower:
+The destination step is now source-selected within the frozen p57 family: EMERGE uniquely completes to SURFACE by the missing-column duplicate-token rule. The remaining interpretive step is narrower:
 
-**EMERGE means return to the pre-SHED SURFACE state, thereby restoring the uniquely shed digit `f` and conventional base60.**
+**Returning to the pre-SHED SURFACE state restores the uniquely shed digit `f` and therefore conventional base60.**
 
-No first-party sentence literally spells out that state-machine rule. The source now names the transition token and orders SURFACE before `WE MUST SHED`; the final EMERGE-to-SURFACE reading is still an interpretation and must remain below authenticated plaintext.
+No first-party sentence literally states that numeral-state restoration. Preserve the base60 reset, the resulting `189 -> 192 -> 0` exit, and the p0 plaintext candidate as conditional until a reversible ciphertext operation is recovered.
 
 This should therefore be treated as a high-priority exit candidate, not as recovered p0 plaintext. A decisive successor would use the resulting p0 receiver to predict a new original-page operation or ciphertext quantity before any language scoring.
 
-Reproduce with `sims/lp2_p57_shed_f_emerge_p0_exit_sft.cjs`. Windows Node22 PASS, including the complete p57 EMERGE→SURFACE completion-family exhaustion: **44464445892**.
+Reproduce with `sims/lp2_p57_shed_f_emerge_p0_exit_sft.cjs`. Windows Node22 PASS, including the complete p57 EMERGE→SURFACE family exhaustion and the p0 additive-checksum holdout: **44465044597**.
 
 
 ## Plaintext-independent p0 opening backlink to p28
