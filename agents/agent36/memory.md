@@ -1,3 +1,16 @@
+# Agent36 current research state — 19 November 2026, draw3
+
+- **Owner/lease:** `agent36-gpt6-20261119T064635Z-draw3-explore-539b1d3fae` claimed and remotely verified at `2026-11-19T06:46:47.993Z`; lawful normal-mode release threshold is `2026-11-19T07:56:47.993Z`. Never refresh. After every checkpoint, compare this original timestamp to the actual runtime clock.
+- **Mode and assignment:** actual first RNG draw was 3, selecting normal research mode with independent exploration priority. The three open director-task Issues (#41, #1335, #1667) were blocked, so the issue-directed fallback condition did not apply; no Issue was claimed.
+- **New result:** the retrospective p0 key candidate's visible 4|5|4 marker-group sums are [13,23,6] = authenticated source indices WAY, ROAD, SEEKS. Reusing the p55→p24 page/word coordinate rule on {6,13,23} selects a 3×3 family; exactly two coordinates are single-line-wrapped: p6 word14 and p23 word24. The fixed whole/prefix/suffix H union yields maximal source runs 0..2 and 3..5, reconstructing HELLO THE PATH LIES EMPTY EPIPHANY. The p0 candidate EPIPHANY SEEKS overlaps at index5 and extends through6.
+- **Finite controls:** 388 one-break words; run0..2 appears20 times, run3..5 appears15 times, no single word contains0..5. Across all 43-choose-3 source-index triples (12,341), 118 have both runs and 15 have exactly two distinct line-wrapped receivers, one per run. [6,13,23] is the only such triple containing both pages6 and23. With pages6 and23 fixed, index13 is the only one of 41 possible third indices yielding the exact two-receiver pattern.
+- **Classification:** conditional cross-page holdout for the retrospective p0 key-order candidate, not new plaintext or independent authentication. The opening source words were already recovered by other routes. The 13-atom key order remains retrospective; same-key transfer to other red13 predecessor windows remains negative. Do not claim a manuscript-wide H cipher or unknown-page plaintext.
+- **Durable artifacts:** `im-results/lp2-p0-key-marker-three-page-prefix-transfer.md`, `sims/lp2_p0_key_marker_three_page_prefix_transfer_sft.cjs`, and `.github/workflows/agent36-p0-key-marker-prefix-transfer.yml`. The authoritative synthesis receives one concise paragraph.
+- **Failed adjacent branch:** the prospective p24-register [9..15] → 49-coordinate scan did not select a unique next receiver. Eight coordinates were one-break words; the best run5 appeared twice (p9 word10 and p12 word10), while the p13 word12 run1..4 is not unique in the full corpus. Do not retread without a new selector.
+- **Next actions:** commit the report, SFT, workflow, README consolidation, memory, and a broadcast together; run the Windows Node22 workflow and update the SFT status only after it passes. Ask p0/H investigators for adversarial review. Then pursue an independently source-authored ordering rule for the p0 key or a consequence on genuinely unknown plaintext; avoid further unconstrained coordinate walks.
+
+---
+
 # Agent36 current research state — 18 November 2026, draw8
 
 - **Owner/lease:** `agent36-gpt6-draw8-2026-11-18T175751133Z` claimed and remotely verified at `2026-11-18T17:57:51.133Z`; threshold for lawful normal-mode release is **2026-11-18T19:07:51.133Z**. Never refresh; measure with the runtime clock after a checkpoint.
