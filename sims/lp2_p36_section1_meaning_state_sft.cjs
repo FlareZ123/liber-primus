@@ -222,6 +222,58 @@ assert.deepEqual(rawShell, [
 ]);
 assert.deepEqual(rawShell, [27, 19, 14, 13]);
 
+// Before assuming any palindrome construction, charge every four-slot key whose
+// coordinates come only from the original red source-visible values:
+// section label 1 and 10-dot column counts 3,4. On the fixed section1 receiver,
+// across both signs and all authenticated four-rune targets, there is one hit.
+const visibleKeyValues = [...new Set([1, ...tenDotColumnSignature])];
+assert.deepEqual(visibleKeyValues, [1, 3, 4]);
+const visibleKeyHits = [];
+let visibleKeyConfigurations = 0;
+const fourRuneSourceTargets = [];
+for (const word of signedWords) {
+  const values = gp(word);
+  if (
+    values.length === 4 &&
+    !fourRuneSourceTargets.some((entry) => entry.word === word)
+  ) {
+    fourRuneSourceTargets.push({word, values});
+  }
+}
+assert.equal(fourRuneSourceTargets.length, 9);
+for (const k0 of visibleKeyValues) {
+  for (const k1 of visibleKeyValues) {
+    for (const k2 of visibleKeyValues) {
+      for (const k3 of visibleKeyValues) {
+        const key = [k0, k1, k2, k3];
+        for (const sign of [-1, 1]) {
+          const output = p36Section1.values.map((value, index) =>
+            mod29(value + (sign * key[index]))
+          );
+          for (const target of fourRuneSourceTargets) {
+            visibleKeyConfigurations += 1;
+            if (output.every((value, index) => value === target.values[index])) {
+              visibleKeyHits.push({
+                key,
+                sign,
+                target: target.word,
+                output,
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(visibleKeyConfigurations, 1458);
+assert.deepEqual(visibleKeyHits, [{
+  key: [1, 3, 3, 1],
+  sign: -1,
+  target: "MEANING",
+  output: [19, 28, 9, 21],
+}]);
+
 // The exact raw four-rune ciphertext occurs once manuscript-wide.
 assert.deepEqual(
   fourRuneWords
@@ -570,6 +622,9 @@ console.log(JSON.stringify({
     },
   },
   controls: {
+    visibleKeyValues,
+    visibleKeyConfigurations,
+    visibleKeyHits,
     palindromeConfigurations,
     palindromeHits,
     tenDotColumnSignature,
