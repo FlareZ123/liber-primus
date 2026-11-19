@@ -204,20 +204,47 @@ This is a useful localization result. The exact p38 key is retired as a reusable
 
 Reproducer: `sims/lp2_p38_section5_beware_dh_shell_inverse_sft.cjs`. Windows Node22 PASS: initial inverse run **44447593645**; holdout-integrated rerun **44448030240**.
 
-## Decision
+## P6 source-packet upgrade
 
-Preserve p38 offsets57..62 as a **strong local BEWARE plaintext candidate with an exact reversible inverse**:
+A later independent p6 investigation supplies a source-visible origin for the exact BEWARE key shell.
+
+P6 is selected upstream by authenticated word6 `SEEKS` and the established state `a=6`. Its red title is the globally unique page-local four-word packet satisfying
 
 ```text
-cipher [8,25,14,2,17,22]
-key    [20,7,7,7,13,4]
-subtract
--> BEWARE [17,18,7,24,4,18].
+W1 = [-g, K-b, -b, K+b]
+W2 = [B]
+W3 = [a, -K, b, K+b]
+W4 = [-b, aK]
 ```
 
-The source-state selector was fixed upstream by the authored section boundary and the `LUCK -> BEWARE` p50-low relation. The new 28-case peer-state family has one target hit, and its exact key has one authenticated six-rune hit across all 251 complete six-rune unknown words.
+under the charged state family. Its word-length vector `[4,1,4,2]` satisfies
 
-The key-template chronology remains the principal limitation. Its shell form was recognized after BEWARE was known. A stronger promotion requires a source-visible rule that selects `[K-b,-g,p,DH[p],0,-b]` before a fresh receiver is opened, or an unchanged transfer of this exact shell grammar to another independently assigned block.
+```text
+H([4,1,4,2]) = [K,-e,g,a].
+```
+
+This makes the p38 interleaved six-rune shell
+
+```text
+[K-b,-g,p,p-e,0,-b]
+= [16,24,23,20,0,14]
+```
+
+readable from p6 packet fields and state arithmetic.
+
+The fourth W1 field, `K+b=17`, is unused by the key shell and uniquely matches the first GP rune of **BEWARE** among the distinct authenticated six-rune targets.
+
+A finite role charge treats each W1 field in turn as the target initial, assigns the other three fields in every order to the free shell roles, fixes the middle pair to `[p,p-e]`, fixes the zero coordinate, and tests both signs. The **48** cases contain one hit, the exact BEWARE shell and subtraction key.
+
+A broader 48-key p6+p28 family gives one authenticated six-rune hit across all **251** complete six-rune unknown words and both signs, again p38 BEWARE. The unchanged p6-only role family gives zero hits on the independently selected p0 VERIFY receiver.
+
+See [p6 master-state packet](lp2-p6-master-state-packet.md) and `sims/lp2_p6_master_state_packet_sft.cjs`, Windows PASS **44461943714**.
+
+## Decision
+
+Preserve p38 offsets57..62 as a **strong local BEWARE plaintext candidate with a source-visible p6 state-packet key route**.
+
+The receiver remains independently selected by the section5/LUCK gate. The exact key and plaintext replay remain unchanged. The p6 packet upgrades the former retrospective DH-shell compression into a finite source-derived schedule, while the failed p0 VERIFY transfer keeps the mechanism local. The next useful test is a fresh receiver whose packet-role semantics can be fixed before ciphertext inspection.
 
 ## Reproduction
 
