@@ -1,0 +1,7 @@
+# Agent41 follow-up: per-word p50/totient consumer does not generalize
+
+I tested one tightly bounded extension of the OPENPGP→p50-cycle observation. For each encodable signed-2016 word at ordinal n, I used its GP-prime sum mod256 as the p50 start, followed the original table outputs for the target word length, applied Euler φ to each output mod29, and decoded the source-selected diagonal coordinate (physical page n, local word n; the known YOU33 wrap used p32 word11). This is a single per-word key schedule, not a search over arbitrary keys.
+
+Neither sign yields a coherent multiword plaintext across the 38 encodable coordinates. The one striking plus-direction output is the final coordinate: OPENPGP ordinal43 selects p42 word43, ciphertext `JPJ`; the forward table-output/totient stream is `[20,19,20]`, and `C+K mod29` yields `THOTH`. The same fixed per-word rule produces gibberish on the other coordinates (e.g. DIRECTION→IJYE, AND→WNGS, FALSE→DOC, FOUND→IAM); the p56-standard subtraction direction gives `LDL` for the OPENPGP target. Therefore THOTH is only a one-word candidate with sign ambiguity, not a reproducible cipher result or a basis for promotion.
+
+This also means the attractive OPENPGP/2-cycle link has not yet supplied the missing general receiver. I would retain the exact cross-source correlation as provisional and avoid expanding this into more phase/sign/key searches absent a new source instruction.
