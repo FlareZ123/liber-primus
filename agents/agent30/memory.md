@@ -263,3 +263,31 @@ p31 -> p23
 ```
 
 This closes `p23 -> p33 -> p30 -> p31 -> p23` with four different mechanisms and no new scalar. The p23->p33 and p31->p23 edges predate recognition of the cycle. `THE ORIGINAL` is semantically compatible with returning to p23, but preserve that semantic reading as provisional.
+
+
+### Typed p30/p31 THE-window readout: EMPTY ARE THE PATHS / ROAD IS THE WAY
+
+The authenticated source has THE at index1, which acts as literal unit radius around the later clause-center THE positions:
+
+```text
+12±1 -> 11 IS / 13 WAY
+17±1 -> 16 ARE / 18 MAP
+22±1 -> 21 IS / 23 ROAD
+28±1 -> 27 ARE / 29 DIRECTION.
+```
+
+Charge all eight complete three-rune objects on the corrected numbered diagonal. Interpret `[center,subject,step]` only when source[center] and source[step] are both THE and center±step remain valid source indices. Exactly two objects qualify:
+
+```text
+p30 SEEK [28,4,12]
+ -> source4 EMPTY + source16/28/40 ARE/THE/PATHS
+ -> EMPTY ARE THE PATHS
+
+p31 AND [12,23,1]
+ -> source23 ROAD + source11/12/13 IS/THE/WAY
+ -> ROAD IS THE WAY.
+```
+
+The source typing selects the pair before language quality; the subject-first serialization was recognized after inspection, so classify as strong instruction candidate rather than authenticated plaintext.
+
+This has a concrete independent consumer: p35's direction graph has GP0=54 ambiguous between ROAD and PATHS but independently selects ROAD. The new readout says PATHS are EMPTY and ROAD is THE WAY; source39..40 separately says FALSE PATHS. Updated p31 report/SFT, corrected numbered-route report, p35 FOUND/ROAD report, and results synthesis.
