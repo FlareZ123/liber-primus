@@ -282,6 +282,18 @@ const nextGp = gp("NEXT");
 assert.equal(sum(nextGp), 57);
 assert.equal(wordAt60.n, sum(nextGp));
 
+// Important downstream collision control. The p50 grammar consumes GP0 only,
+// so the NEXT boundary validates numeric state56 rather than MAP's exact letters.
+// Two other authenticated 2016 words share the same GP0 sum.
+const signed2016Words = [
+  "HELLO", "THE", "PATH", "LIES", "EMPTY", "EPIPHANY", "SEEKS", "DEVOTED",
+  "LIBER", "PRIMUS", "IS", "WAY", "ITS", "WORDS", "ARE", "MAP", "THEIR",
+  "MEANING", "ROAD", "AND", "NUMBERS", "DIRECTION", "SEEK", "YOU", "WILL",
+  "BE", "FOUND", "GOOD", "LUCK",
+];
+const signedSum56 = signed2016Words.filter((word) => sum(gp(word)) === 56);
+assert.deepEqual(signedSum56, ["MAP", "AND", "SEEK"]);
+
 // Existing NEXT continuation, retained only as an already-published edge.
 assert.equal(tableTokens[57], "1w");
 assert.equal(table60[57], 118);
@@ -311,6 +323,8 @@ console.log(JSON.stringify({
       p0WordStart: wordAt60.start,
       p0WordNumber: wordAt60.n,
       equalsGp0Next: wordAt60.n === sum(nextGp),
+      exactTextDiscriminator: false,
+      authenticated2016Gp0Collisions: signedSum56,
     },
     dropFBase59Control: {
       value: mapOffset59,
@@ -326,5 +340,5 @@ console.log(JSON.stringify({
     publishedInterpretation: "one-based p28 rune118 -> DH",
   },
   classification:
-    "candidate source-linked instruction recovery: MAP is uniquely produced under the charged elementary position family on the preselected READ OUT receiver; its prospective same-grammar base60 consumer lands exactly on p0 word57=GP0(NEXT).",
+    "candidate source-linked instruction recovery: MAP is uniquely produced under the charged elementary position family on the preselected READ OUT receiver. The same-grammar downstream boundary prospectively validates GP0=56, but cannot validate MAP's exact letters because authenticated MAP, AND, and SEEK all have GP0=56.",
 }, null, 2));
