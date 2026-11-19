@@ -51,13 +51,21 @@ The two Hill maps are genuine held-out known-plaintext failures, not language-sc
 
 **Reproducer:** [\`sims/lp2_fivedot_coordinate_value_gate.cjs\`](../sims/lp2_fivedot_coordinate_value_gate.cjs), Node.js 22, using the canonical p56 GP29 ciphertext, the independently established AN END plaintext, and the original p56 dot coordinates. No unknown LP2 page is used to fit or select parameters.
 
-## Cardinal-layout role after the p33 serializer control (Agent5, 19 November 2026)
+## Cardinal-layout/state role after the p33 serializer control (Agent5, 19 November 2026)
 
-The previous coordinate/value negatives remain valid, but a narrower role for the stencil is now supported. Exact p7→p23 vertical registration and the shared ten-line layout select **p23 line1** as the reflected counterpart of p7's terminal rubric. Reusing the solved-p56 positive-cardinal serializer `T(n)=(p_n-1) mod29`, independently promoted on p33 title counts, maps that source-selected line's five word lengths `[2,6,3,5,4]` to **`THEORIG`**. This exact vector and output are unique across all 604 rune-bearing manuscript lines; among the three five-word lines that permute `{2,3,4,5,6}`, p23 alone takes the endpoints inward as `2,6,3,5,4`.
+The earlier coordinate/value negatives remain valid, but the stencil now has a narrower source-selected role. Exact p7→p23 vertical registration and shared ten-line layout select **p23 line1**. The solved-p56 positive-cardinal serializer `T(n)=(p_n-1) mod29`, independently validated on p33, maps its five word lengths `[2,6,3,5,4]` to the manuscript-unique prefix **`THEORIG`**. The visible five-dot count5 maps to I and the selected line's terminal GP0=25 maps to N, so the exact local packet `[2,6,3,5,4,5,25]` gives **`THE ORIGIN`**. The previous `5×5` completion is superseded; p7 and solved-p56 motif-adjacent controls fail the same packet grammar.
 
-A post-prefix source-local completion uses the visible five dots and five printed words to append cardinals `[5,25]`, yielding **`THE ORIGIN`** under the same serializer. Because the `5×5=25` completion was recognized after `THEORIG`, it is retained as an intermediate instruction candidate rather than established plaintext. The selected line's terminal GP0 value is independently 25. Matched motif-adjacent p7 and solved-p56 lines do not serialize to language. See [the dedicated report](lp2-p23-fivedot-totient-origin.md) and [passing Windows SFT 44457719011](https://github.com/FlareZ123/liber-primus/actions/runs/44457719011).
+The same five lengths are exactly the independently authenticated signed-2016 field order `[K,a,e,g,q]`, with physical p23 supplying `p=23`. Ordinary DH completes `b=15,A=8,B=19`; the existing native-base60 handoff `B=19→p50[19]=0X→33` selects p33, whose red title packets are exactly `[K,A]=[2,8]` and `[e,g]=[3,5]` and whose validated hidden text is `THEIR RISE`. Charging 53 prime-page five-word lines ×120 field permutations gives 54 DH closures and four physical-page p50 handoffs; only **one** destination reproduces the candidate's own `[K,A]/[e,g]` red packet, p23 line1 in the authenticated role order → p33.
 
-This does not identify a rune-pair transform for the stencil and does not recover p23 body plaintext. It changes the most plausible role of the five-dot copy from a value-changing cipher key toward a **source/page/line selector plus visible cardinal**.
+Finally, the same serializer maps source page23→A and derived destination page33→L. The complete source-forced cardinal stream
+
+```text
+[2,6,3,5,4,5,25,23,33] -> THE ORIGINAL
+```
+
+is therefore the strongest current reading. `THE ORIGIN` remains a genuine prefix and is independently echoed by the canonical p50 cell0 `[THE,0]` relation. Treat **THE ORIGINAL** as a source-constrained hidden-layout/state instruction candidate rather than unknown-cipher plaintext. See [the consolidated report](lp2-p23-fivedot-totient-origin.md) and [state/handoff SFT](../sims/lp2_p23_origin_state_p33_handoff_sft.cjs).
+
+This still does not identify a reusable five-dot value-changing cipher. The stencil's supported role is now **source/page/line selection plus a visible cardinal inside a larger state route**.
 
 ## Fork and reuse
 

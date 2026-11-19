@@ -290,3 +290,13 @@ Next: do not repeat the same base59/base60/order/reversal/sign family or expand 
 - Source-local post-prefix completion appends dot count5 and dot×word-count25 to obtain `THE ORIGIN`. Treat full phrase as intermediate because this completion was recognized after prefix. P23 selected line terminal GP0=25 independently; do not turn the echo into a blind probability.
 - SFT `sims/lp2_p23_fivedot_totient_origin_prefix_sft.cjs`; Windows PASS 44457719011. Dedicated report `im-results/lp2-p23-fivedot-totient-origin.md`.
 - Next high-value task: freeze one meaning of ORIGIN before target inspection and demand an untouched source consequence. Do not reopen retired five-dot coordinate/value, generic transposition or constellation searches.
+
+
+### 2026-11-19 draw6 update: `THE ORIGINAL` / p23→p33 origin-state handoff
+
+- Supersede the earlier `5×5=25` completion. P23 line1 terminal GP0 is directly25. Fixed packet `[word lengths]+[dot5]+[terminal25]=[2,6,3,5,4,5,25]` serializes to `THE ORIGIN`; matched p7/p56 motif-adjacent controls fail, and among all188 five-word lines p23 is the sole `THEORI...` hit under that grammar.
+- Stronger route: the five p23 lengths are exactly authenticated signed2016 `[K,a,e,g,q]`; physical p23 supplies `p`. DH gives `b15,A8,B19`; existing `B19→p50[19]=0X→33` reaches p33, whose red packets replay `[K,A]=[2,8]` and `[e,g]=[3,5]`.
+- Exhaustive charge: 53 prime-page five-word lines ×120 role orders =6360 assignments; 54 DH closures; four p50[B] physical-page handoffs; exactly one destination reproduces candidate `[K,A]/[e,g]` red packets: p23l1 authenticated order → p33. P23 itself has6 abstract DH labelings, but only exact source order yields a physical page (33); rivals B8/B16 yield92/121.
+- Same T map gives source page23→A and destination33→L. Full forced stream `[2,6,3,5,4,5,25,23,33]` = **THE ORIGINAL**. Existing Agent42 p50 cell0 `[THE,0]` supports the `THE ORIGIN` prefix; p33 `THEIR RISE` / 19→25 independently confirms terminal25.
+- Prospective direct +5 page transfer was frozen then failed: p43 first-line direct-T = `THGGEI`; do not tune p43 slices. A fixed p50 first-difference additive reading of ORIGIN/RISE was also flat (IoC0.0344687 vs cipher0.0344784); retire.
+- SFT: `sims/lp2_p23_origin_state_p33_handoff_sft.cjs`. The phrase is hidden-layout/state instruction evidence, not p23 body plaintext. Do not reopen generic original-JPEG stego; extensive gates already exist.

@@ -1,18 +1,18 @@
-# p23 five-dot / prime-totient cardinal route to `THEORIG` and candidate `THE ORIGIN`
+# p23 five-dot / prime-totient route to `THE ORIGINAL` and the p23→p33 state handoff
 
-**Agent5, 19 November 2026. Classification: source-constrained hidden-layout instruction candidate. This does not decrypt p23 ciphertext and does not recover an unknown-page cipher key. The five-letter completion was recognized after the stronger seven-transliteration prefix, so the two evidence levels are kept separate.**
+**Agent5, 19 November 2026. Classification: source-constrained hidden-layout instruction/state-route candidate. This does not decrypt p23 body ciphertext or by itself recover a general LP2 cipher. The seven-transliteration prefix `THEORIG` was found before the later suffix interpretation; the chronology and charged controls are kept explicit.**
 
-## Source-selected line and solved-control serializer
+## 1. Source selector and fixed serializer
 
-Three original LP2 scans reuse the same five-circle stencil: physical p7, p23 and solved p56. Exact source-image registration already establishes that p7→p23 is a vertical reflection. Both pages contain ten printed text lines, so the reflected counterpart of p7's terminal rubric line is p23's initial line. This supplies a source-visible p23 line selector without searching unknown ciphertext for language.
+Original LP2 scans p7, p23 and solved p56 reuse the same five-circle stencil. The established source-image registration shows that p7→p23 is an exact vertical reflection. Both pages print ten text lines, so the reflected counterpart of p7's terminal rubric is p23's initial line. This selects p23 line1 without inspecting unknown plaintext.
 
-The solved p56 cipher supplies the positive-cardinal serializer already used independently on p33:
+The serializer is independently fixed by solved p56 and independently validated on p33 layout cardinals:
 
 ```text
 T(n) = phi(p_n) mod29 = (p_n - 1) mod29
 ```
 
-where `p_n` is the nth prime and `n` is one-based. P33's separately promoted title-count result demonstrates that this exact map can serialize manuscript layout cardinals into GP29 text.
+with positive one-based cardinal `n`.
 
 Physical p23 line1 has five printed words with lengths
 
@@ -20,24 +20,13 @@ Physical p23 line1 has five printed words with lengths
 [2,6,3,5,4]
 ```
 
-and the first four words are exactly its red 16-rune heading. Applying the fixed serializer to the full selected line gives
+and direct serialization gives
 
 ```text
-[2,6,3,5,4]
-T -> [2,12,4,10,6]
-GP -> TH EO R I G
-   = THEORIG
+T([2,6,3,5,4]) = THEORIG
 ```
 
-No unknown rune values, language score, offset, phase, cipher sign or candidate plaintext selects these five operands.
-
-The length vector is also exactly `[K,a,e,g,q]=[2,6,3,5,4]` under the independently source-reconstructed signed-2016 DH23 state. That identity was noticed after the line was selected and is retained as corroboration rather than used as the selector.
-
-## Manuscript-wide controls
-
-Across all **604** rune-bearing printed text lines, p23 line1 is the only line with the exact word-length vector `[2,6,3,5,4]`, and the only line whose direct fixed-T serialization contains `THEORIG`.
-
-There are only three five-word lines whose word lengths are a permutation of the complete cardinal set `{2,3,4,5,6}`:
+Across all **604** rune-bearing printed text lines, this exact vector and direct output occur only on p23 line1. Only three five-word lines permute the complete set `{2,3,4,5,6}`:
 
 ```text
 p12 line5  [6,3,2,4,5] -> EORTHGI
@@ -45,54 +34,170 @@ p23 line1  [2,6,3,5,4] -> THEORIG
 p53 line3  [3,4,2,5,6] -> RGTHIEO
 ```
 
-P23 alone orders the set by taking the two endpoints inward, `2,6,3,5,4` (or its exact endpoint-reversed counterpart `6,2,5,3,4`). Thus the source-selected line is exceptional both in its serialization and in its cardinal geometry.
+P23 alone uses the strict endpoint-inward order `2,6,3,5,4`.
 
-The identical motif's adjacent text controls do not produce language under the same fixed extension rule described below: p7's terminal adjacent line yields `THGRTHRIN`, and solved p56's terminal adjacent line yields `THTHGRRGIAE`.
+## 2. Source-local completion of the prefix to `THE ORIGIN`
 
-## Candidate completion to `THE ORIGIN`
+Two additional source-visible p23 quantities complete the immediate English prefix without the earlier post-hoc multiplication step:
 
-After `THEORIG` had already been observed, the five-circle / five-word coincidence suggested the source-local cardinal pair
+- the copied stencil has exactly **5** dots, and `T(5)=I`;
+- the selected line's terminal rune has canonical **GP0=25**, and `T(25)=N`.
 
-```text
-dot count = 5
-word count = 5
-5 * 5 = 25
-```
-
-Appending `[5,25]` to the five selected word lengths gives
+Therefore the page-local packet
 
 ```text
-[2,6,3,5,4,5,25]
-T -> TH EO R I G I N
-   = THE ORIGIN
+[2,6,3,5,4, 5,25]
+      lengths   dot terminal
 ```
 
-This completion is unusually economical but was found after reading the `THEORIG` prefix. Multiplication and squaring are indistinguishable here because both visible counts equal five. It therefore does **not** receive a blind-discovery probability and is not promoted as established plaintext.
-
-Two source facts independently echo the required terminal cardinal 25: the selected p23 line's final rune has canonical GP0 value **25**, and p23's ninth line is the page's unique 25-rune line. The authenticated signed-2016 message also places the second `THEIR` at zero-based word position 25. These observations strengthen the salience of 25, while their recognition history means they remain corroborative.
-
-A second semantic observation is that the five source lengths themselves move from the outside of the consecutive set `2..6` inward to its center. That makes the missing suffix `IN` descriptively compatible with the geometry, but it is interpretation rather than a separate cryptographic proof.
-
-## Evidence boundary and p50 origin cross-check
-
-The strongest chronology-safe result remains:
+serializes exactly to
 
 ```text
-exact five-dot mirror selector
-+ solved p56 cardinal serializer
-+ p23 line1 word lengths
-=> unique manuscript-wide THEORIG
+THE ORIGIN
 ```
 
-A later cross-object test now gives the full `THE ORIGIN` completion a separately typed consumer. Under the p50 register already selected on solved/source controls, literal table address0 contains `3N = 203`, and native-base60 quotient-first `divmod29(203) = [7,0]`. In the authenticated 2016 signed text, zero-based word7 is `THE`. The canonical origin cell therefore reads exactly `[THE, 0]`, or **THE ORIGIN**. Across all 256 original p50 tokens it is the sole canonical cell whose quotient is any authenticated `THE` position and whose remainder is0. A cyclic token-multiset shift gives 1/256 for that frozen relation. Reopening a conservative 16-way radix/token-order/pair-order/source-origin family weakens the cyclic familywise tail to 14/256.
+The older `5×5=25` completion is superseded as unnecessary.
 
-This cross-check is not blind: p50 cell0 was public before the relation was formulated. It therefore strengthens the semantic completion without promoting it to established plaintext. Full details and the exact control are in `im-results/lp2-p23-origin-p50-cell0-crosscheck.md` and `sims/lp2_p23_origin_p50_cell0_crosscheck_sft.cjs`.
+Matched five-dot controls, using the same motif-adjacent-line grammar `[word lengths] + [dot count] + [terminal GP0]`, are nonlinguistic:
 
-The full `THE ORIGIN` should now be treated as a source-constrained hidden instruction candidate with a cross-object p50 consistency check. A future promotion still requires an untouched consequence or reversible receiver selected before target inspection. Do not use this result to reopen the already failed five-dot coordinate-affine, five-column, direct p56-stream-transfer or generic constellation families.
+```text
+p7  terminal line -> [2,4,3,2,3,5,19] -> THGRTHRIH
+p23 initial line  -> [2,6,3,5,4,5,25] -> THEORIGIN
+p56 terminal line -> [2,2,4,3,3,4,5,15] -> THTHGRRGIB
+```
+
+Across all **188** manuscript five-word lines, even granting the same appended cardinal5 and each line's own terminal GP0, p23 line1 is the only line whose output begins `THEORI`, and it yields the full `THEORIGIN`.
+
+Agent42's independent p50 origin-cell check remains an important cross-object confirmation: the canonical p50 cell0 token `3N` is base60 203 = 7×29+0, and authenticated signed word7 is `THE`, so the already fixed p50 register reads the literal table origin as `[THE,0]`. That report now supports the **THE ORIGIN prefix** of the stronger route below.
+
+## 3. The same p23 line is the authenticated DH origin state
+
+The five selected lengths are exactly the independently source-reconstructed signed-2016 fields
+
+```text
+[K,a,e,g,q] = [2,6,3,5,4]
+```
+
+and the physical page itself supplies `p=23`.
+
+No field labels are fitted here: the signed 2016 word-position reconstruction fixes the role order independently. Ordinary DH arithmetic then reconstructs the missing state:
+
+```text
+b = e^-1 mod(p-1) = 15
+A = g^a mod p     = 8
+B = g^b mod p     = 19
+A^b mod p = B^a mod p = 2 = K
+```
+
+The already established state-to-page handoff uses `B` as a p50 address:
+
+```text
+B=19
+p50[19] = 0X
+base60(0X) = 33
+=> physical p33
+```
+
+P33 then independently reproduces the same state in its red title packets:
+
+```text
+upper title lengths = [2,8] = [K,A]
+lower title lengths = [3,5] = [e,g]
+```
+
+and the independently validated p33 serializer/H route reads **THEIR RISE**.
+
+## 4. Charged DH/page-receiver family
+
+To avoid treating the role assignment or destination as unique merely because the expected state was known, charge every permutation of the five labels `[K,a,e,g,q]` on every five-word line of every prime physical page p0–p55.
+
+There are:
+
+```text
+53 prime-page five-word lines
+× 120 role permutations
+= 6,360 charged assignments
+```
+
+Require only ordinary DH closure: `e` invertible modulo `p-1`, derive `b,A,B`, and require both shared-secret equations to equal `K`.
+
+Results:
+
+```text
+54 assignments close the DH equations
+4 of those have p50[B] decoding to any physical page 0..57
+1 of those lands on a page whose first two exact red title packets
+  equal that candidate's [K,A] and [e,g]
+```
+
+That sole complete packet match is:
+
+```text
+p23 line1
+role order [K,a,e,g,q]
+B=19
+p50[19]=33
+destination p33
+p33 red packets [2,8] / [3,5]
+```
+
+P23 line1 itself admits six abstract DH labelings if source roles are ignored. The five rivals derive `B=8` or `B=16`, whose p50 values are 92 or121, outside LP physical pages. Thus the independently authenticated source order is also the only p23 closure with the pre-existing native-base60 physical-page handoff.
+
+## 5. The handoff extends the instruction to `THE ORIGINAL`
+
+The state route supplies two further positive cardinals with no new operator:
+
+```text
+source physical page = 23
+derived destination page = 33
+```
+
+Under the same fixed serializer:
+
+```text
+T(23) = A
+T(33) = L
+```
+
+Appending those two already-forced page cardinals to the p23 packet gives
+
+```text
+[2,6,3,5,4,5,25,23,33]
+ -> THE ORIGINAL
+```
+
+This is the strongest current reading of the p23 hidden-layout route. It explains why stopping at `THE ORIGIN` was underdetermined: `THE ORIGIN` is a valid prefix, independently echoed by p50 cell0, while the same state handoff naturally supplies the next two cardinals and closes the longer phrase.
+
+The independently recovered p33 **THEIR RISE** loop also confirms the p23 terminal cardinal25 from another source object. Authenticated `THEIR` occurs only at positions19 and25; p33 enters at `B=19` and its visible H chain reaches first coordinate25. That destination equals the selected p23 line's terminal GP0 and serializes to N under the same T map.
+
+## 6. Evidence boundary and failed transfer
+
+The strongest reproducible chain is now:
+
+```text
+original five-dot mirror selects p23 line1
+line lengths -> THEORIG
+dot5 + terminalGP0=25 -> THE ORIGIN
+line lengths + physical p=23 identify the authenticated DH origin state
+derived B=19 -> p50[19] -> p33
+p33 red packets replay the same state and yield THEIR RISE
+source page23 + destination page33 -> AL
+=> THE ORIGINAL
+```
+
+This is a hidden-layout/state instruction candidate, not recovered p23 body plaintext.
+
+A prospective +5 physical-page continuation was also tested after noticing p23,p28,p33 are equally spaced. Before opening p43 counts, the frozen rule was: take p43's first printed line and apply the unchanged direct-T word-length serializer. It yields `THGGEI`, and the analogous direct first-line rule is nonlinguistic across the p23+5n sequence. Retire that direct-transfer version rather than tuning slices or transforms on p43.
+
+The phrase `THE ORIGINAL` does **not** justify reopening generic JPEG steganography. The repository already contains extensive original-JPEG OutGuess/JSteg/F5/steghide/DCT/container/metadata gates. Its actionable value is narrower: source-origin/original-artifact semantics and the p23→p33 state route are now independently tied to the fixed serializer.
+
+The separately recovered p28 candidate **READ OUT** composes naturally as `READ OUT THE ORIGINAL`, but no source order currently fixes that two-phrase sentence. Preserve it as a hypothesis, not an instruction to select a receiver.
 
 ## Reproduction
 
-- SFT: `sims/lp2_p23_fivedot_totient_origin_prefix_sft.cjs`
-- Windows Node22: [PASS 44457719011](https://github.com/FlareZ123/liber-primus/actions/runs/44457719011)
+- State/handoff/full instruction SFT: `sims/lp2_p23_origin_state_p33_handoff_sft.cjs`
+- Earlier prefix/cardinal SFT: `sims/lp2_p23_fivedot_totient_origin_prefix_sft.cjs`
 - Source-art registration: `im-results/lp2-mirrored-five-dot-original-page-bridge.md`
-- Serializer control: `sims/lp2_p33_totient_hidden_text_sft.cjs`
+- P50 origin-cell crosscheck: `im-results/lp2-p23-origin-p50-cell0-crosscheck.md`
+- Signed DH source state: `im-results/lp2-signed2016-word-position-dh.md`
+- P33 serializer/state: `im-results/lp2-p33-totient-hidden-text.md`, `im-results/lp2-p33-layout-family-their-rise.md`

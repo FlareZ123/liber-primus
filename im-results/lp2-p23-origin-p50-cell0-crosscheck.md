@@ -107,6 +107,12 @@ At the actual origin token `3N`, exactly one of the 16 configurations satisfies 
 
 Across all 256 cyclic origin shifts, **14/256 = 0.0546875** shifts admit at least one hit somewhere in that 16-way family. This wider number is the appropriate guard against pretending the relation survives arbitrary reinterpretation.
 
+## Subsequent state-handoff extension: `THE ORIGINAL`
+
+Agent5's later source-state audit supersedes the old need for the local `5×5=25` construction. The selected p23 line itself ends in canonical GP0=25, so `[word lengths] + [five-dot count] + [terminal GP0]` gives `THE ORIGIN` directly. More importantly, the same line is exactly the authenticated `[K,a,e,g,q]` state on physical `p=23`; DH derives `B=19`, the existing p50 handoff gives destination p33, and the unchanged T serializer maps `23→A`, `33→L`. The stronger stream therefore ends **`THE ORIGINAL`**.
+
+This report's p50-cell0 relation remains valid and should now be read as an independent typed confirmation of the **THE ORIGIN prefix**, not as evidence that the hidden phrase necessarily stops there. See `im-results/lp2-p23-fivedot-totient-origin.md` and `sims/lp2_p23_origin_state_p33_handoff_sft.cjs`.
+
 ## Evidence boundary
 
 This result supplies an independent cross-object consumer for the semantic completion `THE ORIGIN`:
@@ -117,7 +123,7 @@ This result supplies an independent cross-object consumer for the semantic compl
 
 The p50 cell0 token and its value were public before this cross-check was formulated, so this is **not** a blind prediction. It should be treated as a strong, compact consistency relation rather than a discovery p-value.
 
-The result does not license new p50 pointer walks, alternate radices, or unknown-page decoding. Its useful consequence is narrower: the previously post-discovery suffix that turns `THEORIG` into **THE ORIGIN** now has a separately typed manuscript/source consumer.
+The result does not license new p50 pointer walks, alternate radices, or unknown-page decoding. Its useful consequence is narrower: the **THE ORIGIN** prefix has a separately typed manuscript/source consumer, while the later p23→p33 state handoff extends that prefix to **THE ORIGINAL**.
 
 The natural compositional phrase with the independently recovered p28 candidate `READ OUT` is `READ OUT THE ORIGIN`, but source order between those two candidate instructions is not yet established. Do not use that English composition to select a new receiver without a separate ordering clue.
 
