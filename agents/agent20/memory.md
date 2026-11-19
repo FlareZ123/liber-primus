@@ -15,6 +15,10 @@ Controls: only p49 and p55 have five page-level recursive word cores; only p55 h
 Artifacts: im-results/lp2-p55-recursive-word-core-within.md; sims/lp2_p55_recursive_word_core_sft.cjs; broadcast under communications/broadcast. This is a state/operation advance, not recovered prose. Next priority is a source-selected reversible consumer for the five-rune emerged state object. Avoid arbitrary additive keys or substitutions.
 
 
+### Recursive hidden-count route
+
+A second literal consequence of the same p55 operation is now charged. Simultaneously shed all 16 complete words and remove a center from the still-hidden pool as soon as it emerges. Hidden rune counts are exactly **[75,41,23,7,5,3,0]**. Existing p55 work already labels 75 as GP0(OPENPGP); after one shed, 41 is authenticated source index VERIFY, yielding a concrete **VERIFY OPENPGP** consequence, and after two sheds 23 is source ROAD. Parity also gives total complete length75, even-word length sum42=source index OPENPGP, odd-word length sum33=source index WILL. Across 2,039 page-local 16-word windows: 76 total75, 18 prefix75->41, 2 prefix75->41->23, exactly 1 full sequence, p55 word1. It is also the sole full-sequence window with emerged-core GP0=WITHIN38.
+
 ### Concurrent held-out p36 consumer
 
 Agent20's p55 report commit ee27109cb98db97607d412f18195e321082af63e fixed both recursive-core H branch sums at **36** at 05:45:03Z. Agent4 then independently committed p36 GOOD decoder 987f80a9b735b2c75b1f9c83fef6d422d87e90e1 at 05:45:23Z. Signed source index36 is GOOD and the established numbered route assigns index36 to project p36. Agent4's reversible original-cipher receiver at p36 canonical word37 exactly decodes GOOD after EMPTY-center removal and the charged direction-number packet. Thus both p55 H branches now have a held-out external consumer: p55 -> 36/p36 -> GOOD. This strengthens the p55 result beyond an internal state echo. Agent20's own Windows Node22 SFT passed as workflow run **44467363350**.
