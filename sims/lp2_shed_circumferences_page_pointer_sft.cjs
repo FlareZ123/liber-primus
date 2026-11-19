@@ -151,6 +151,7 @@ const g = 5;
 const a = 6;
 const A = 8;
 const K = 2;
+const b = 15;
 const e = 3;
 const q = 4;
 assert.equal(grid.byte_rows.flat()[B], 33);
@@ -183,6 +184,44 @@ assert.equal(p33FirstBody.titleLength, A + K);
 assert.equal(p33FirstBody.body.length, p - K);
 assert.equal(p33FirstBody.body.flat().length, e ** q);
 assert.equal(p33FirstBody.inner.length, 39);
+
+// The transferred target p39 carries an independent DH/H holdout in its only
+// red three-rune rubric. Its GP values are [-K,g,b]. Repeated frozen H on the
+// first two values yields [p-1,e] -> [B,GP0(WE)] -> [p,b], and the last value
+// is already the literal third red rune. None of these values was used to
+// obtain the p33 shed-count pointer 39.
+const p39Ink = ink.pages.find((page) => page.page === 39);
+assert.ok(p39Ink);
+assert.equal(p39Ink.red_spans.length, 1);
+const p39Red = [...p39Ink.red_spans[0].runes].map((rune) => {
+  const value = runeIndex.get(rune);
+  assert.notEqual(value, undefined);
+  return value;
+});
+assert.deepEqual(p39Red, [mod29(-K), g, b]);
+const p39H1 = H(p39Red.slice(0, 2));
+const p39H2 = H(p39H1);
+const p39H3 = H(p39H2);
+assert.deepEqual(p39H1, [p - 1, e]);
+assert.deepEqual(p39H2, [B, weGp0]);
+assert.deepEqual(p39H3, [p, b]);
+assert.equal(p39H3[1], p39Red[2]);
+
+const length3Red = [];
+for (const page of ink.pages) {
+  for (const span of page.red_spans || []) {
+    if (span.length !== 3) continue;
+    length3Red.push({
+      page: page.page,
+      start: span.start,
+      values: [...span.runes].map((rune) => runeIndex.get(rune)),
+    });
+  }
+}
+assert.deepEqual(length3Red, [
+  { page: 3, start: 119, values: [13, 23, 2] },
+  { page: 39, start: 119, values: [mod29(-K), g, b] },
+]);
 
 // A third source body gives a frozen further prediction under the same literal
 // operation, without assigning that output a meaning here.
@@ -232,6 +271,13 @@ console.log(JSON.stringify({
     bodyRunes: p33FirstBody.body.flat().length,
     afterSheddingCircumferences: p33FirstBody.inner.length,
     pointer: "p33 -> p39",
+    p39Holdout: {
+      redTitle: p39Red,
+      interpretation: "[-K,g,b]",
+      h1: p39H1,
+      h2: p39H2,
+      h3: p39H3,
+    },
   },
   thirdPrediction: {
     source: "p3 second red-started body",
@@ -242,5 +288,5 @@ console.log(JSON.stringify({
   },
   census,
   interpretation:
-    "Solved p57 literally says WE MUST SHED OUR OWN CIRCUMFERENCES. Removing each body's first and last rune leaves exactly 50 runes, selecting the p50 number table. P50 state B=19 selects p33; p33's source-visible H chain returns WE and the red 13-dot count. Reusing the solved instruction unchanged on p33's first black body leaves exactly 39 runes, selecting p39. An independent original-image inventory already establishes p39 as the only other page sharing p33's reused three-dot divider graphic. The same operation on p3's second red-started body predicts p53, preserved separately without forced interpretation.",
+    "Solved p57 literally says WE MUST SHED OUR OWN CIRCUMFERENCES. Removing each body's first and last rune leaves exactly 50 runes, selecting the p50 number table. P50 state B=19 selects p33; p33's source-visible H chain returns WE and the red 13-dot count. Reusing the solved instruction unchanged on p33's first black body leaves exactly 39 runes, selecting p39. The target p39 independently carries red title [-K,g,b]=[27,5,15], whose H chain is [p-1,e] -> [B,GP0(WE)] -> [p,b]. An independent original-image inventory also establishes p39 as the only other page sharing p33's reused three-dot divider graphic. The same operation on p3's second red-started body predicts p53, preserved separately without forced interpretation.",
 }, null, 2));
