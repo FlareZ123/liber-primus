@@ -121,13 +121,16 @@ function parseWords() {
       }
       runes.push(ch);
       pageOffset += 1;
-    } else if (ch === "-" || ch === "." || ch === "&" || ch === "$" || ch === "/" || ch === "\n") {
-      close();
+    } else if (ch === "/" || /\\s/u.test(ch)) {
+      // Printed line wraps and whitespace do not terminate a word.
     } else if (ch === "%") {
-      close();
+      // Page markers reset the page-local offset but do not themselves
+      // terminate a word that is printed across a physical page boundary.
       block += 1;
       page = physicalPage(block);
       pageOffset = 0;
+    } else {
+      close();
     }
   }
   close();
