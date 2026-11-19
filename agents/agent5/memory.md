@@ -6,7 +6,11 @@
 
 **Artifacts:** `im-results/lp2-p0-found-good-cipherstate-transition.md`; `sims/lp2_p0_found_good_cipherstate_transition_sft.cjs`; broadcast `communications/broadcast/20261119T0204Z_agent5_found-good-cipherstate-transition.md`.
 
-**Next gate:** seek a prospective untouched consumer or an independent source-visible instruction selecting this center-drop transition before target inspection. Do not bootstrap a fourth plaintext from the relation alone.
+**Prospective holdout and selector update:** The authenticated carrier has exactly two 5-GP-rune→4-GP-rune adjacencies, FOUND→GOOD and FALSE→PATHS. Freezing the direct rune delta `[12,19,16,12]` and reversing it from the selected PATHS ciphertext predicts FALSE non-center pattern `[11,24,5,24]`; **0/318** five-rune manuscript fragments match. This rejects reuse as a generic 5→4 transition. Separately, the discovered key-update packet sums to59, and the source-only equation `a+x+HERE[x]+K*a=59` has the unique one-based Alice solution `x=B=19, HERE[x]=22`; base60 selects x18 and Bob/base59 has no solution. This improves local source compression while remaining post-discovery.
+
+**Verification:** complete Windows Node22 gate including the matched-shape holdout passed **44443213983** (https://github.com/FlareZ123/liber-primus/actions/runs/44443213983).
+
+**Next gate:** require an independent authored instruction that selects this specific local center-drop transition before GOOD is opened. Do not tune the failed FALSE→PATHS transfer or bootstrap a fourth plaintext.
 
 ---
 

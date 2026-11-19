@@ -85,6 +85,30 @@ The plaintext and key deltas sum positionwise to the observed ciphertext delta [
 
 A bounded calibration does not privilege the discovered source-vector order. Permute the four distinct terms [a,B,HERE[B],K*a], allow either sign, apply all 48 candidate key updates to the fixed GOOD receiver, and compare only with the nine distinct four-GP-rune words in the authenticated 2016 carrier. Exactly one configuration hits any target: source order, positive sign, published GOOD key, yielding GOOD.
 
+## Source-only packet selector
+
+The discovered key-update packet has an additional source-only compression under the independently selected post-MUST base59 numeral state:
+
+~~~text
+a + B + HERE[B] + K*a
+= 6 + 19 + 22 + 12
+= 59.
+~~~
+
+This relation can select the B-indexed HERE term rather than merely describe it. Holding the Alice role, one-based indexing and the selected HERE line fixed, solve
+
+~~~text
+a + x + HERE[x] + K*a = 59
+~~~
+
+over all 23 one-based positions. There is exactly one solution:
+
+~~~text
+x=19=B, HERE[x]=22.
+~~~
+
+The nearest convention controls differ: base60 selects x=18 with value24, while the Bob-role base59 analogue has no solution. This sharpens the source description of the four-slot update, although the packet-sum equation itself was recognized after the FOUND→GOOD relation and therefore remains retrospective.
+
 ## Whole-manuscript original-input charge
 
 Apply exactly one frozen transform to every page-local five-rune unknown fragment:
@@ -104,6 +128,32 @@ FOUND receiver      -> GOOD receiver.
 The stricter continuous-word parser gives 317 five-rune and 513 four-rune words and the same single hit.
 
 For scale, broaden the post-discovery shell vector while retaining its unchanged first coordinate. Let each of the other three coordinates be any signed value from the eight primitive state values {p,g,a,b,A,B,K,e}. This produces 14 distinct signed residues and 14^3=2,744 numeric vectors. Across the same manuscript pairs, 537 vectors produce at least one match and there are 592 total pair hits. The exact [0,-g,e,a] vector contributes one. This broader family shows why the exact one-hit result is mechanism compression rather than a stand-alone authorship probability.
+
+## Prospective matched-shape holdout
+
+The authenticated 2016 carrier contains exactly two adjacent transitions from a five-GP-rune word to a four-GP-rune word:
+
+~~~text
+FOUND -> GOOD
+FALSE -> PATHS
+~~~
+
+This gives a direct prospective transfer test. Freeze the direct original-cipher rune update from FOUND→GOOD,
+
+~~~text
+D = [12,19,16,12],
+~~~
+
+and invert it from the already selected PATHS receiver `[23,14,21,7]`. Any five-rune FALSE receiver governed by the same center-drop transition would have to expose the non-center coordinates
+
+~~~text
+[23,14,21,7] - D
+= [11,24,5,24].
+~~~
+
+Search all 318 page-local five-rune unknown fragments for that exact first/second/fourth/fifth pattern. The result is **zero matches**.
+
+This is the cleanest generalization test available from the authenticated carrier, and it fails. The FOUND→GOOD relation should therefore be treated as a local state compression, not as a reusable generic five-to-four word transition. Do not tune the center, sign, radix or coordinate order to rescue FALSE→PATHS without an independent source clue.
 
 ## Related ciphertext invariant
 
@@ -125,10 +175,12 @@ The present operation is narrower: it changes dimension by deleting the unique H
 
 Preserve this as a source-connected FOUND→GOOD mechanism-compression result. It materially reduces the earlier statement that FOUND and GOOD require unrelated post-label key grammars: the two exact keys are linked by one compact p28 DH/HERE state vector, and the same transition acts exactly on the original ciphertexts.
 
-The vector/order was recognized after both candidate keys and receivers were known. Do not call this a recovered cipher or established plaintext. The decisive next gate is a prospective untouched consumer or an independent source instruction selecting this center-drop transition before its target is opened.
+The vector/order was recognized after both candidate keys and receivers were known. The first locked matched-shape holdout, FALSE→PATHS, fails with zero manuscript receivers for the predicted non-center pattern. Do not call this a recovered cipher or established plaintext, and do not extrapolate the rule to other five-to-four transitions. A further upgrade now requires an independent source instruction selecting this specific local transition before the GOOD target is opened.
 
 ## Reproduction
 
 ~~~text
 node sims/lp2_p0_found_good_cipherstate_transition_sft.cjs
 ~~~
+
+Complete Windows Node22 gate, including the FALSE→PATHS holdout and packet-selector controls, passed as workflow run **44443213983**: https://github.com/FlareZ123/liber-primus/actions/runs/44443213983.

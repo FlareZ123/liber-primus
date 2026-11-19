@@ -163,6 +163,39 @@ for(const x of signed)for(const y of signed)for(const z of signed){
 }
 assert.deepEqual([configs,configsAny,totalPairHits,exactHits],[2744,537,592,1]);
 
+// Source-only order/radix compression for the discovered key-update packet.
+const alice59=[];
+const alice60=[];
+const bob59=[];
+for(let x=1;x<=p28Lines[0].length;x++){
+  const value=p28Lines[0][x-1];
+  if(st.a+x+value+mod(st.K*st.a)===59) alice59.push({x,value});
+  if(st.a+x+value+mod(st.K*st.a)===60) alice60.push({x,value});
+  if(st.b+x+value+mod(st.K*st.b)===59) bob59.push({x,value});
+}
+assert.deepEqual(alice59,[{x:st.B,value:hereB}]);
+assert.deepEqual(alice60,[{x:18,value:24}]);
+assert.deepEqual(bob59,[]);
+assert.equal(terms.reduce((a,b)=>a+b,0),59);
+
+// Prospective matched-shape holdout: the authenticated carrier has exactly
+// two adjacent 5-GP-rune -> 4-GP-rune transitions.
+const carrier54=[];
+for(let i=0;i<signedWords.length-1;i++){
+  const from=gp(signedWords[i]), to=gp(signedWords[i+1]);
+  if(from.length===5 && to.length===4)
+    carrier54.push([signedWords[i].toUpperCase(),signedWords[i+1].toUpperCase()]);
+}
+assert.deepEqual(carrier54,[["FOUND","GOOD"],["FALSE","PATHS"]]);
+
+// Freeze the direct rune delta learned above and invert it from the already
+// selected PATHS receiver. This predicts the four non-center coordinates a
+// FALSE receiver would require before searching any five-rune source fragment.
+const falseOuter=P.values.map((v,i)=>mod(v-dr[i]));
+assert.deepEqual(falseOuter,[11,24,5,24]);
+const falseMatches=fives.filter((w)=>drop(w.values).join(",")===falseOuter.join(","));
+assert.deepEqual(falseMatches,[]);
+
 const len45=words.filter((w)=>w.length===4||w.length===5);
 const outer=len45.filter((w)=>H(w.values[0],w.values.at(-1))[0]===kg);
 const p0len=len45.filter((w)=>w.page===0);
@@ -175,5 +208,7 @@ console.log(JSON.stringify({
   manuscript:{fiveRune:fives.length,fourRune:fours.length,pairHits:pairHits.length},
   keyFamily:{configs:48,hits:keyHits},
   broadFamily:{configs,configsAny,totalPairHits,exactHits},
+  packetSelector:{sum:terms.reduce((a,b)=>a+b,0),alice59,alice60,bob59},
+  holdout:{carrier54,falseOuter,falseMatches:falseMatches.length},
   outer:{kg,all:[outer.length,len45.length],p0:[p0outer.length,p0len.length]}
 },null,2));
