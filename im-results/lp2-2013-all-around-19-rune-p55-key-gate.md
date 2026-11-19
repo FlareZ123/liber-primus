@@ -4,7 +4,7 @@
 
 ## Source basis
 
-The original 2013 OS message contains **“THE KEY IS ALL AROUND YOU.”** The original 2013 Twitter-stage `gematria.jpg` is a lookup table of Elder Futhark rune / English-letter / prime values. Reading the phrase through that table gives:
+The original 2013 OS message contains **“THE KEY IS ALL AROUND YOU.”** The original 2013 Twitter-stage `gematria.jpg` (see the [pinned source index](../resources/external/2013-twitter-stage-gematria-source.md)) is a lookup table of Elder Futhark rune / English-letter / prime values. Reading the phrase through that table gives:
 
 - GP29 symbols: `TH E C E Y I S A L L A R O U N D Y O U` (19 symbols; K aliases C).
 - Prime values: `5,67,13,67,103,31,53,97,73,73,97,11,7,3,29,89,103,7,3`.

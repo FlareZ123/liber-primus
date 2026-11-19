@@ -4,7 +4,7 @@
 
 ## Source-visible route and why the numbers matter
 
-The original 2013 OS message includes the palindromic-prime handle `1231507051321` and the sentence **“THE KEY IS ALL AROUND YOU.”** Its shell invokes `prime_echo`, which emits the prime sequence and pauses at 1033 and 3301. The 2013 Twitter stage reconstructs `gematria.jpg`, a visible Elder Futhark / English / prime-value lookup table; the same carrier contains the PGP-signed whitespace payload `gematria.jpg.asc`. The prime mapping is therefore present in an original puzzle-stage artifact, not merely in the later helper code.
+The original 2013 OS message includes the palindromic-prime handle `1231507051321` and the sentence **“THE KEY IS ALL AROUND YOU.”** Its shell invokes `prime_echo`, which emits the prime sequence and pauses at 1033 and 3301. The 2013 Twitter stage reconstructs `gematria.jpg`, a visible Elder Futhark / English / prime-value lookup table (see the [pinned source index](../resources/external/2013-twitter-stage-gematria-source.md)); the same carrier contains the PGP-signed whitespace payload `gematria.jpg.asc`. The prime mapping is therefore present in an original puzzle-stage artifact, not merely in the later helper code.
 
 Using that table, the phrase has prime-Gematria value **931**. The signed 2013 BASE29 convention gives
 
