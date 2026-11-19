@@ -92,6 +92,53 @@ const tripleAssignments = [...multiplicities.values()]
 const pairCollisionRate = pairAssignments / (256 * 255);
 const tripleCollisionRate = tripleAssignments / (256 * 255 * 254);
 
+const eligiblePageTotals = ink.pages
+  .filter((page) => page.page <= 55 && page.page !== 50 && page.rune_count < 256)
+  .map((page) => ({ page: page.page, runeCount: page.rune_count }));
+const physicalPageAddresses = Array.from({ length: 58 }, (_, page) => page)
+  .filter((page) => page !== 50);
+
+/** @param {number} shift @returns {{sourcePages:number,totalEdges:number,rows:object[]}} */
+function pageTotalAliasAtShift(shift) {
+  const shiftedByte = (address) => bytes[(address + shift) % bytes.length];
+  const rows = [];
+  let totalEdges = 0;
+  for (const source of eligiblePageTotals) {
+    const peers = physicalPageAddresses
+      .filter((page) => shiftedByte(source.runeCount) === shiftedByte(page));
+    if (peers.length > 0) {
+      rows.push({ ...source, peers });
+      totalEdges += peers.length;
+    }
+  }
+  return { sourcePages: rows.length, totalEdges, rows };
+}
+
+const observedPageTotalAliases = pageTotalAliasAtShift(0);
+assert.deepEqual(observedPageTotalAliases, {
+  sourcePages: 5,
+  totalEdges: 7,
+  rows: [
+    { page: 8, runeCount: 255, peers: [37, 40, 55] },
+    { page: 23, runeCount: 213, peers: [28] },
+    { page: 32, runeCount: 121, peers: [5] },
+    { page: 49, runeCount: 66, peers: [27] },
+    { page: 55, runeCount: 76, peers: [33] }
+  ]
+});
+
+const cyclicAliases = Array.from({ length: 256 }, (_, shift) => pageTotalAliasAtShift(shift));
+const cyclicSourceTail = cyclicAliases.filter(
+  (row) => row.sourcePages >= observedPageTotalAliases.sourcePages
+).length;
+const cyclicEdgeTail = cyclicAliases.filter(
+  (row) => row.totalEdges >= observedPageTotalAliases.totalEdges
+).length;
+assert.equal(cyclicSourceTail, 118);
+assert.equal(cyclicEdgeTail, 48);
+
+const conditionalThirdPeerRate = 1 / 254;
+
 console.log(JSON.stringify({
   status: "PASS",
   independentlyDerivedAddresses: {
@@ -102,7 +149,11 @@ console.log(JSON.stringify({
   },
   exactP50AliasClass: values,
   p23SourceControl: {
-    pagesWhoseRuneCountSharesP28Token: sourcePageRuneCountMatches
+    pagesWhoseRuneCountSharesP28Token: sourcePageRuneCountMatches,
+    fullPageTotalAliasFamily: observedPageTotalAliases,
+    cyclicSourceTail: [cyclicSourceTail, 256],
+    cyclicEdgeTail: [cyclicEdgeTail, 256],
+    conditionalThirdPeerRate
   },
   p50Multiplicity: {
     distinctValues: multiplicities.size,
