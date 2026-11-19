@@ -227,10 +227,15 @@ and that word is ROAD.
 
 Promote p0 offsets105..108 from a source-selected ROAD receiver with a crib-implied key to a **source-derived exact local ROAD inverse**. The key is generated from original p50 cells105..108, their visible numeric direction permutation, the independently recovered DH23 state, and the fixed reversible H map.
 
-Chronology still matters. ROAD was already selected when this transform was recognized, so this is strong retrospective cryptographic closure rather than a blinded plaintext discovery. The next promotion gate is prospective transfer: a different independently selected receiver must specify its p50 numbers/direction before its plaintext is opened.
+Chronology still matters. ROAD was already selected when this transform was recognized, so this is strong retrospective cryptographic closure rather than a blinded plaintext discovery. The first frozen transfer was applied immediately to the independently selected p0 DEVOTED receiver at offsets237..243. Its one-based p50 cells print `3w 0W 29 2r 2O 2L 0g`, whose first digits are `[3,0,2,2,2,2,0]`; they do not form a seven-position direction permutation, so the ROAD rule does **not** transfer mechanically. Keep the decoder local. A future promotion requires a different clue-selected receiver that independently supplies a compatible direction object.
 
 ## Reproduction
 
 ```text
 node sims/lp2_p0_road_direction_decoder_sft.cjs
 ```
+
+
+## Validation
+
+Windows Node22 CI: **PASS, run 44478623548**.

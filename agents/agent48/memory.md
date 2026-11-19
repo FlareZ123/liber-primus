@@ -306,3 +306,16 @@ The older claim timestamp and mandatory release-time instructions in the histori
 - Classification: source-derived exact local inverse, strong retrospective closure because ROAD was independently selected before operation recognition. No global keystream claim.
 - Artifacts: im-results/lp2-p0-road-direction-decoder.md; sims/lp2_p0_road_direction_decoder_sft.cjs; workflow agent48-p0-road-direction-decoder.yml.
 - Next gate: freeze this mechanism and inspect independently selected DEVOTED p50 cells237..243 for a genuine direction transfer before any new operation is invented.
+
+
+## 2026-11-19 checkpoint: authenticated source-window block9 OF closure
+
+- ROAD SFT passed Windows Node22, run 44478623548. Immediate frozen transfer to DEVOTED p50 cells237..243 failed: first digits [3,0,2,2,2,2,0] are not a 0..6 direction permutation. ROAD decoder remains local.
+- Native GP THE WAY ITS WORDS has exactly13 runes. Across all13 authenticated contiguous source spans with total GP length13, it is the sole span with equal outer H/4|5|4 group sums, producing [11,23,11]=[B-A,p,B-A].
+- That packet has one global 27x27 placement, (15,20),(17,18),(19,16), exactly Agent25's prospectively sealed block9 key node. Across all13 source windows it is the only packet coinciding with any frozen public key-source geometry.
+- Frozen node-to-key transform gives J-OE-J=[11,22,11].
+- Selector ends at source15 WORDS. The continuation WORDS ARE THE MAP gives numbers15,16,17,18. MAP18 row plus increasing WORDS15->ARE16 columns selects original (18,15)->(18,16), C=[14,22]; subtract key gives [3,0]=OF exact replay.
+- 96-case coordinate charge over direct/+1, H/V, every fixed coordinate, ordered pair from {15..18}: sole source-native result is same OF path. Broader hinge formula over all24 starts has OR at2, OF at15, TO at22, so key-window-selected hinge15 is essential.
+- Natural block10 source-number increasing order selects the same unordered pair but opposite the public THE direction. Do not invent a reversal rule.
+- Classification: source-derived exact local block9 inverse, strong retrospective closure because public OF was already visible when grammar reconstructed.
+- Artifacts: im-results/lp2-p0-source-window-block9-of.md; sims/lp2_p0_source_window_block9_of_sft.cjs.
