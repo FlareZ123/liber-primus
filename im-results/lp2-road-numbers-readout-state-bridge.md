@@ -202,6 +202,31 @@ The existing ROAD reconciliation uses that independently selected length as a di
 
 Offset228 is exactly a seven-rune word start. The next authenticated ROAD successor after AND THEIR is **NUMBERS**, also seven GP runes. The existing distinct-DH-field inverse family is null at this receiver, so this report does not force a NUMBERS plaintext.
 
+### NUMBERS plaintext candidate from a mirrored key shell
+
+The selected seven-rune receiver can now be charged against the complete authenticated seven-GP-rune target set:
+
+```text
+DEVOTED
+NUMBERS
+OPENPGP
+```
+
+For each target, derive the exact additive key from the fixed ciphertext receiver and H-shell that key. Require two target-independent properties: the key-shell has mirrored core coordinates `shell[1]=shell[4]` and `shell[2]=shell[3]`, and every shell coordinate belongs to the pre-existing p28/GCD state-expression pool used elsewhere in this branch.
+
+Only **NUMBERS** passes both conditions:
+
+```text
+key = [16,14,7,13,19,0,1]
+H_shell(key) = [15,17,14,14,17,26,13]
+             = [b, H(K,b)[1], A+a, A+a, H(K,b)[1], p+e, p-K*g]
+
+[25,15,26,1,8,4,16] - key mod29
+= [9,1,19,17,18,4,15]
+= NUMBERS.
+```
+
+This is stronger than the earlier length-only NUMBERS-shaped label, but the mirrored-shell criterion was noticed after NUMBERS was already the source-predicted target. Preserve **NUMBERS as a strong candidate plaintext**, rather than established plaintext, until an upstream instruction independently selects this key-shell form.
 ## Raw receiver H shell
 
 The selected p0 word is:
