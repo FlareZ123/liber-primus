@@ -127,4 +127,4 @@ Run:
 node sims/lp2_p23_p28_navigation_core_sft.cjs
 ```
 
-The SFT executes the established Route A, p23→p33 handoff, and p33/p35 FOUND-route regressions, then verifies both closed page routes, their exact intersection `[23,28]`, their distinct first destinations, and the absence of p32.
+The SFT executes the established Route A, p23→p33 handoff, and p33/p35 FOUND-route regressions, then verifies both closed page routes, their exact intersection `[23,28]`, their distinct first destinations, and the absence of p32. Windows/Node 22 run **44468466550** passes the full composition.
