@@ -278,6 +278,51 @@ assert.deepEqual(localFamilyHits, [{
   shell: [4, 11, 4, 2, 23], form: "[q,R,q,K,p]",
 }]);
 
+// Adversarial coordinate-pool control: if shell positions may be chosen
+// arbitrarily from the DH state plus the visible red-span length/dot count,
+// a second local SEEKS fit appears at start103. The K*p receiver rule is
+// therefore essential to the candidate rather than decorative.
+const broadVisiblePool = new Set([
+  ...Object.values(state),
+  redSpan.length,
+  13,
+]);
+const unorderedVisibleHits = [];
+for (const word of p6FiveRuneWords) {
+  for (const target of fiveRuneTargets) {
+    for (const direction of ["sub", "add"]) {
+      const candidateKey = word.values.map((value, index) =>
+        direction === "sub"
+          ? mod29(value - target.values[index])
+          : mod29(target.values[index] - value)
+      );
+      const shell = h(candidateKey);
+      if (shell.every((value) => broadVisiblePool.has(value))) {
+        unorderedVisibleHits.push({
+          start: word.start,
+          target: target.label,
+          direction,
+          shell,
+        });
+      }
+    }
+  }
+}
+assert.deepEqual(unorderedVisibleHits, [
+  {
+    start: 103,
+    target: "SEEKS",
+    direction: "sub",
+    shell: [11, 15, 19, 13, 3],
+  },
+  {
+    start: 128,
+    target: "SEEKS",
+    direction: "sub",
+    shell: [4, 11, 4, 2, 23],
+  },
+]);
+
 const distinctProducts = new Map();
 for (const [leftName, left] of stateEntries) {
   for (const [rightName, right] of stateEntries) {
