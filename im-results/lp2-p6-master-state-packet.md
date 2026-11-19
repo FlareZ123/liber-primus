@@ -249,6 +249,44 @@ The same p6-only 48-role family is transferred unchanged to the independently se
 
 The original p6 image also shows a large red `ᚠ` glyph adjacent to the red packet. In the canonical GP alphabet `ᚠ` has value0. That visually corroborates the shell's zero coordinate. The normalized red-span annotation does not encode this large glyph, so the computational result keeps the zero explicit rather than treating the image observation as a machine premise.
 
+## Chronologically independent p37 LUCK follow-on
+
+After the p6 packet had been committed and validated, Agent43 independently published a p37 `LUCK` receiver selected by the source-derived double index `37`:
+
+```text
+p37 word37
+start173
+cipher [3,2,6,27].
+```
+
+Its exact subtraction key is
+
+```text
+[12,1,1,22]
+```
+
+with canonical four-rune H shell
+
+```text
+[19,0,2,5]
+= [B,0,K,g].
+```
+
+Those four scalars are directly available from the already committed p6 packet:
+
+```text
+B = the singleton p6 title word
+0 = GP zero, visually adjacent as the large red Fehu
+K = H(title lengths)[0]
+g = H(title lengths)[2].
+```
+
+The shell order was recognized after the p37 inverse, so it is charged rather than treated as a prior prediction. Permuting the four packet scalars in all **24** orders, testing all **10 authenticated four-rune source occurrences** and both signs gives **480** cases. Exactly one hits: printed order `[B,0,K,g]`, subtraction, source index37 `LUCK`.
+
+This is useful chronological independence: the p37 receiver and local inverse were published after the p6 packet result. It adds a new consumer of the same packet-derived state vocabulary. The ordering remains post-discovery evidence.
+
+Integrated Windows Node22 PASS with this follow-on: **44463756225**.
+
 ## Decision
 
 P6's red title is the strongest current source-visible explanation for several previously isolated key shells:
@@ -273,7 +311,8 @@ Primary SFT:
 Windows Node22 PASS:
 
 - **44461943714** at commit `d1645102537f91c49de4efa6832c442ea34225d3` for the canonical packet, four-rune calibration, p38 role family, manuscript six-rune charge, and VERIFY negatives.
-- A later commit adds the 24 word-role permutation control; use the latest passing run for that strengthened denominator.
+- **44462649433** for the strengthened 24 word-role permutation control.
+- **44463756225** for the integrated packet with the p37 LUCK follow-on.
 
 Local SEEKS SFT:
 
