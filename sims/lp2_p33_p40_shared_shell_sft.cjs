@@ -236,7 +236,7 @@ for (const pageEntry of ink.pages) {
   const pageWords = words.filter((word) =>
     word.startPage === pageEntry.page && word.endPage === pageEntry.page
   );
-  for (const span of pageEntry.red_spans) {
+  for (const span of pageEntry.red_spans || []) {
     const inside = pageWords.filter((word) =>
       word.startOffset >= span.start &&
       word.endOffset < span.start + span.length
