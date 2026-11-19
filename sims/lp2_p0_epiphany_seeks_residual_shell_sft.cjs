@@ -284,6 +284,7 @@ assert.equal(23 - 1, 22);
 
 // Charge every authenticated 8+5 source pair under both additive signs.
 const oldGeometryShared2Hits = [];
+const oldGeometryPhiPHits = [];
 let oldGeometryShared2Cases = 0;
 for (const sign of [1, -1]) {
   for (const left of signedWords.filter(row => row.values.length === 8)) {
@@ -301,6 +302,14 @@ for (const sign of [1, -1]) {
         gp0(bridge.slice(0, 8)),
         gp0(bridge.slice(8)),
       ];
+      if (729 - gpPrime(bridge) === 22) {
+        oldGeometryPhiPHits.push({
+          sign: sign === 1 ? "G-P" : "P-G",
+          phrase: left.text + " " + right.text,
+          bridgePrime: gpPrime(bridge),
+          squareDeficit: 729 - gpPrime(bridge),
+        });
+      }
       if (
         bridgeSums[0] - candidateSums[0] === 2 &&
         bridgeSums[1] - candidateSums[1] === 2
@@ -322,6 +331,14 @@ assert.deepEqual(oldGeometryShared2Hits, [
     phrase: "EPIPHANY SEEKS",
     candidateSums: [121, 71],
     bridgeSums: [123, 73],
+  },
+]);
+assert.deepEqual(oldGeometryPhiPHits, [
+  {
+    sign: "G-P",
+    phrase: "EPIPHANY SEEKS",
+    bridgePrime: 707,
+    squareDeficit: 22,
   },
 ]);
 
@@ -359,6 +376,7 @@ console.log(JSON.stringify({
       wordSums: oldToCandidateWordSums,
       shared2Cases: oldGeometryShared2Cases,
       shared2Hits: oldGeometryShared2Hits,
+      phiPHits: oldGeometryPhiPHits,
       primeSum: gpPrime(oldToCandidate),
       squareMinusPrimeSum: 729 - gpPrime(oldToCandidate),
     },
