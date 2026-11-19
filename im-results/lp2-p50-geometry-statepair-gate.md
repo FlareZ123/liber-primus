@@ -112,4 +112,4 @@ This result does not exclude a richer geometry-dependent operation that combines
 node sims/lp2_p50_geometry_statepair_gate_sft.cjs
 ```
 
-The SFT inventories the exact three-page geometry and exhausts the charged coordinate families without consulting unknown-page outcomes.
+The SFT inventories the exact three-page geometry and exhausts the charged coordinate families without consulting unknown-page outcomes. Windows Node.js 22 workflow **44455688899** passed.
