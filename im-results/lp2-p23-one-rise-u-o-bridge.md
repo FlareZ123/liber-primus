@@ -1,6 +1,6 @@
-# P23 THE ONE RISE visually selects the U(1) to O(3) rise, supplying +2 for p33
+# P23 THE ONE RISE: U(1) to O(3) visually corroborates the source-selected +2 route
 
-**Agent50, 19 November 2026. Classification: intended-route candidate from original visual structure plus independently recovered hidden text. The result supplies a source-visible +2 operation that lands on the held-out p35 FOUND receiver. It does not decrypt unknown body text.**
+**Agent50, 19 November 2026. Current classification: visual corroboration for an independently source-selected +2 navigation operation. Later same-day work established the cleaner direct consumer `p23 + 2 = p25`; the U→O comparison remains an original-image cross-check and the p23/p56 page gap remains a secondary closure on p33. It does not decrypt unknown body text.**
 
 ## Result
 
@@ -31,27 +31,25 @@ RISE    = compare it with the matched p56 rune O, index 3
 3 - 1 = 2
 ```
 
+Later independent route work supplied the cleaner direct consumer for the p23 instruction:
+
+```text
+THE ONE RISE
+ONE RISE = one +2 step
+p23 + 2 = p25
+```
+
+P25 is independently selected by the GOOD/LUCK full-base60 pointer route and carries its own held-out state receiver, so p23→p25 is now the preferred operational use of the +2.
+
 P33 independently says:
 
 ```text
 THEIR RISE
 ```
 
-The pronoun now has a source-visible referent, the p23/p56 matched pair. Their highlighted rune rise is **+2**.
+and its own lower red pair `[3,5]` independently supplies the same local difference `+2`, selecting `p33+2=p35`. P35 then supplies the held-out unique adjacent mutual p50-low GP0 pair `36 <-> 54`, matching FOUND to ROAD/PATHS and resolving toward ROAD through the frozen source direction graph.
 
-Applying that operation to the page carrying the instruction gives:
-
-```text
-p33 + 2 = p35
-```
-
-and authenticated signed word35 is:
-
-```text
-FOUND
-```
-
-The p35 target then supplies a held-out internal validation: its offsets25..29 are the manuscript's unique adjacent mutual p50-low GP0 pair `36 <-> 54`, matching the authenticated FOUND to ROAD/PATHS state and resolving to ROAD through the frozen source direction graph.
+The p23 U→O comparison therefore supports the shared +2 operation without carrying the burden of selecting p35.
 
 ## Visual source evidence
 
@@ -144,34 +142,33 @@ The first identifies the instruction page. The second executes the instruction.
 
 ## Resulting human solve path
 
-A compact intended route is now plausible:
+The current route should be read with the later direct p23 consumer in front:
 
 ```text
-authenticated source:
-"its words are the map, their meaning is the road,
- and their numbers are the direction"
-
-ROAD is signed word23 -> inspect p23
+authenticated ROAD index23 -> physical p23
 
 p23 red heading -> THE ONE RISE
-p23 five-dot stencil + large U pairs with solved p56 five-dot stencil + large O
-THE ONE -> U has GP index1
-U -> O rise = 3 - 1 = 2
+source-selected one-rise operation -> +2
+p23 + 2 -> p25
 
-same visual pair has page rise 56 - 23 = 33 -> inspect p33
-p33 red headings -> THEIR RISE
-their highlighted-rune rise = 2
-p33 + 2 -> p35
-signed word35 = FOUND
+independent p25 GOOD/LUCK pointer and state evidence
+ -> p28 READ OUT / THE / DIRECTION route
 
-held-out p35 structure:
-unique manuscript adjacent mutual p50-low cycle
-36 <-> 54 = FOUND <-> ROAD/PATHS
-source direction graph resolves 54 to ROAD
-route returns toward p23
+visual cross-check:
+p23 large U=1
+p56 half-turn stencil mate large O=3
+O-U = +2
+
+secondary page-number checksum:
+p56-p23 = 33 -> p33 THEIR RISE
+
+p33's own [3,5] RISE encoder also gives +2
+p33 + 2 -> p35 FOUND
+p35 held-out 36 <-> 54 state receiver
+ -> ROAD basin
 ```
 
-This is the first route in this branch where the operation, operand, destination, and success check all arise from source-visible material.
+This keeps the original-image U→O observation as corroboration while using the more direct authored page operation for navigation.
 
 ## Caveats
 
