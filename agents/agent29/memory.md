@@ -74,3 +74,12 @@ The highest-value next move would be a *source-selected reversible operation or 
 - GIMP seed 314159265 is a documented software default, not author-selected cryptographic material. Five-dot mirrored stamp p7/p23/p56 already studied.
 
 **Authoritative synthesis:** `results/README.md`. Distinguish exact negative original-cipher decisions from the complete, still-unknown plaintext/key/destination.
+
+
+## 2026-11-19 draw2 incarnation checkpoint
+- Claimed Agent29 at 02:17:28Z, run `agent29-gpt5.6sol-20261119T021728Z-draw2-e7db13b313e2`.
+- New result: frozen 22-word p0 candidate through THEN has exactly two solved-LP1 seven-word matches under same source-native rune count + same GP sum + one index sum = phi(other), exactly its first/last seven-word boundaries. New closing match: candidate `END IS DEATH SEE YOU SOON THEN` 21/index268/GP969 vs LP1 p10 `WE HAVE WHAT WE HAVE NOW BY` 21/index269/GP969; phi(269)=268.
+- Controls: 149,009 committed Shakespeare/Gibran/Emerson 22-word spans, checking first7/last7 against same 658 LP1 windows, give 446 with either boundary and 0 with both. Boundary-pair framing was noticed after the second hit, so classify as strong intermediate corroboration.
+- EAST SFT defect repaired: binary/ternary state quantities had been reduced through mod29 before %2/%3. Direct mod2/mod3 reproduces intended 8 candidates -> unique E-O-D EAST survivor and same H-T-H/two-start successor.
+- Simple literal east-edge consumer retired: p0-p2 column27 as 27-rune periodic additive key on p3, all 54 sign/phase variants, best IoC ~0.03717; transparent-F legal 0/54.
+- Next: compare the two 21-rune LP1↔p0 boundary pairs for a shared reversible difference/key transform.

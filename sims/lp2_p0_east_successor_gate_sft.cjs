@@ -12,6 +12,11 @@
  *   phi(center) moves from the non-boundary key outer and both adjacent
  *   physical-boundary cells.
  *
+ * Binary state and parity quantities are reduced in their native moduli.
+ * A prior implementation incorrectly reduced through GP29 before mod 2/3;
+ * because 29 is odd, that can change a parity or phase. The corrected native
+ * reductions reproduce the report's frozen 8-candidate -> 1-survivor result.
+ *
  * Plaintext is checked only after the unique surviving key/path/length is
  * selected. The local boundary/successor grammar was reconstructed after the
  * public route was known, so this remains intermediate post-hoc evidence.
@@ -35,6 +40,8 @@ const at=(r,c)=>grid[(r-1)*27+c-1];
 const inBounds=q=>q[0]>=1&&q[0]<=27&&q[1]>=1&&q[1]<=27;
 const same=(a,b)=>a[0]===b[0]&&a[1]===b[1];
 const mod=x=>(x%29+29)%29;
+const mod2=x=>(x%2+2)%2;
+const mod3=x=>(x%3+3)%3;
 
 /** @param {number} n */
 function phi(n){
@@ -139,9 +146,9 @@ function predictSignature(cells,S,outer){
   for(const cell of cells){
     mobiusSum+=mu(reflected?730-n0(cell):n0(cell));
   }
-  const phase=mod(mobiusSum+offset)%3;
+  const phase=mod3(mobiusSum+offset);
   const L=leftmost(cells);
-  const nextOuter=mod(outer+mu(n1(L)))%2;
+  const nextOuter=mod2(outer+mu(n1(L)));
 
   return {
     phase,
@@ -168,15 +175,15 @@ function predictGeometry(cells,center,centerRune,nodeCells,currentPhase){
   const G=gcd(n1(E),n2(E));
   const score=mu(A)+mu(G);
   const axis=score===0?"horizontal":score>0?"vertical":"diagonal";
-  const tau=mod(mu(n3(E))+phi(centerRune))%2;
+  const tau=mod2(mu(n3(E))+phi(centerRune));
 
-  const centerRow=mod(1+B[1]+E[0]+center[0]+mu(n2(B)))%2;
-  const centerColumn=mod(1+B[0]+E[0]+center[0])%2;
+  const centerRow=mod2(1+B[1]+E[0]+center[0]+mu(n2(B)));
+  const centerColumn=mod2(1+B[0]+E[0]+center[0]);
 
-  const endpointRow=mod(1+currentPhase+mu(n2(center)))%2;
-  const leftmostRow=mod(
+  const endpointRow=mod2(1+currentPhase+mu(n2(center)));
+  const leftmostRow=mod2(
     centerRow+1+currentPhase+mu(center[0])
-  )%2;
+  );
 
   const allowance=mu(n0(E))===0&&mu(n3(E))===0?1:0;
 

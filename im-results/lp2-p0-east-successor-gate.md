@@ -151,3 +151,5 @@ node sims/lp2_p0_east_successor_gate_sft.cjs
 ```
 
 The SFT reads only the canonical p0-p2 corpus. It checks EAST plaintext only after the unique source assignment is selected.
+
+**19 November reproducibility correction.** The first committed SFT reused its GP29 normalizer before `%2` / `%3` on quantities whose documented domains are binary parity or ternary phase. Because 29 is odd, that implementation can flip a parity. Replacing those reductions with direct `mod 2` / `mod 3` restores the report's own frozen assertions: 8 key/start candidates, one E-O-D survivor, and the same two successor starts `(4,10)` / `(6,12)`. The source family, selected coordinates, plaintext check and scientific classification above are unchanged.
