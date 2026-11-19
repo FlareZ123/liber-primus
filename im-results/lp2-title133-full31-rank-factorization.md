@@ -82,24 +82,45 @@ Only **zero-based forward lexicographic rank** has the exact factorization above
 
 This is stronger than merely observing that every convention yields a 133-bit-ish integer.
 
-## Natural type control
+## Pre-existing title133 event-class control
 
-A natural same-cardinality rival preserves the 31-of-256 count by replacing the lone black thirteen-dot mark with the lone red 23-dot mark.
+The earlier source audit had already frozen three natural 31-of-256 predicates before this factorization was opened:
 
-That mixed-punctuation tape still has:
+| class | visible predicate | marks |
+| --- | --- | ---: |
+| A | all physical thirteen-dot marks | 31 |
+| B | red large marks with prime dot count | 30×13 + 1×23 |
+| C | original chapter/section marks | 28×13 + 3×10 |
+
+All three combine with the same 225 red runes, all have 31 selected marks among 256 events, and all therefore have the same **133-bit fixed-weight capacity**. That prior audit correctly showed that title133 alone does not choose A.
+
+Open the three already-frozen objects under the same zero-based forward lex rank:
 
 ```text
-31 marks among 256 events
-bit length = 133
+A = 6823208894503251143167281798760439560912
+B = 6823208895688569449655323105851024294370
+C = 6823208894503251143167281798739371324543
 ```
 
-but its frozen rank is:
+Now apply only the leading source labels discovered in A's held-out factorization:
 
 ```text
-6823208895688569449655323105851024294370
+2^q × 43 = 2^4 × 43 = 688
 ```
 
-and it is **not even divisible by `2^4 * 43`**. The compact source signature therefore depends on the type-consistent all-thirteen-dot object rather than only on matching the raw title width.
+where `q=4` is independently fixed by the p32 EMPTY relation and `43` is the authenticated signed-2016 word count.
+
+The result is decisive across this pre-existing three-way control:
+
+| class | divisible by 688 | complete held-out factor signature |
+| --- | --- | --- |
+| **A** | **yes** | **yes** |
+| B | no | no |
+| C | no | no |
+
+Thus the new factorization supplies a downstream discriminator that the original title lacked. It reselects **A, the all-thirteen-dot tape**, before consulting the later 13/32/79 factor-bit labels.
+
+This is strong structural evidence, while its chronology must remain explicit: the `2^4 × 43` prefix was recognized after class A's full rank was factored. The B/C comparison is a genuine pre-existing matched control, but this is corroboration rather than a blind discovery probability.
 
 ## Destination fork
 
@@ -162,4 +183,4 @@ The prime-lift `67 -> 331` remains inferred, so the combined route stays candida
 node sims/lp2_title133_full31_rank_factor_sft.cjs
 ```
 
-Windows Node22 workflow **44450793500** passes the full tape, rank, exact integer factorization, factor bit lengths, signed-message word count, canonical rank variants, mixed-type control, and Tor-v2 formatting.
+Windows Node22 workflow **44451153262** passes the full tape, rank, exact integer factorization, factor bit lengths, signed-message word count, all three pre-existing title133 event-class controls, canonical rank variants, and Tor-v2 formatting.
