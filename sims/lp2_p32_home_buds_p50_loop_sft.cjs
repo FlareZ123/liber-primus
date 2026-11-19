@@ -463,6 +463,15 @@ assert.deepEqual(targetOuterPair, [dh.g + dh.K, dh.A]);
 assert.deepEqual(targetOuterPair, [7,8]);
 assert.deepEqual(targetOuterPair.map((index) => signedWords[index].toUpperCase()), ["THE","DEVOTED"]);
 
+const directionIndex = signedWords.findIndex((word) => word.toUpperCase() === "DIRECTION");
+assert.equal(directionIndex, 29);
+const directionFoldReadout = targetOuterPair.map((index) => index + directionIndex);
+assert.deepEqual(directionFoldReadout, [36,37]);
+assert.deepEqual(
+  directionFoldReadout.map((index) => signedWords[index].toUpperCase()),
+  ["GOOD","LUCK"]
+);
+
 const exactSelectorSuffixFragments = [];
 for (let page = 0; page <= 55; page += 1) {
   const fragments = parseFragments(pages[page]);

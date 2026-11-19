@@ -160,6 +160,7 @@ The 23-step route now supplies a second independently selected receiver for Agen
 - The carried X lands at offset97, exactly the TO cell of the separately fixed PARABLE/SURFACE path [117,107,97,87]; no other charged DH/X diagonal lands its X on that four-cell route.
 - The enclosing destination fragment `OENGOMBUDS` = `[22,21,3,19,17,1,23,15]` is the sole 8/8 hit among all 159 unknown-page 8-rune fragments under the already fixed outside-in H shell when scored against `{p,g,a,b,A,B,K,e,q,-K,g+K}`: `[7,8,27,15,2,4,2,7]=[g+K,A,-K,b,K,q,K,g+K]`.
 - Fixed READ OUT + the authenticated source-index grammar closes the same receiver back to the upstream selector: outer `H(22,15)=[7,8]`, and signed positions 7,8 are exactly `THE DEVOTED`. Four multi-rune unknown fragments share those endpoints, but this is the only 8-rune member; within the locked 159-fragment operand family the exact selector-suffix return is unique.
+- Agent27 independently fixed `DIRECTION` at source position29 as the modulo29 fold. Applying that held-out operation to the receiver readout gives positions36,37 = `GOOD LUCK`, a clean source continuation. It adds semantic consequence rather than a second uniqueness gate.
 
 Artifacts:
 - `im-results/lp2-p32-home-buds-p50-closed-loop.md`
