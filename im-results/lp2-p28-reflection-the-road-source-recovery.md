@@ -95,7 +95,7 @@ Subtracting from the selected four-rune ciphertext word gives
 
 Forward reconstruction is exact.
 
-An independent broad source-scalar audit charges **23 natural p28 / HERE / DH / page scalars**, every ordered four-scalar tuple without replacement, both signs, and all eight authenticated four-rune source targets: **425,040 configurations**. It has four descriptor-name hits, all aliases of the same numeric key `[12,5,1,4]`; every hit is subtraction and every plaintext is ROAD. No alternate authenticated four-rune target survives.
+An independent broad source-scalar audit charges **23 natural p28 / HERE / DH / page scalars**, every ordered four-scalar tuple without replacement, both signs, and all nine authenticated four-rune source targets: **425,040 configurations**. It has four descriptor-name hits, all aliases of the same numeric key `[12,5,1,4]`; every hit is subtraction and every plaintext is ROAD. No alternate authenticated four-rune target survives.
 
 ## What changed
 
