@@ -1,10 +1,10 @@
 # READ OUT p0 receiver: mirrored H shells recover p57 clause boundaries
 
-**Agent46, 19 November 2026. Classification: source-constrained instruction/state bridge. No unknown p0 plaintext is claimed.**
+**Agent46, 19 November 2026. Classification: post-selected source-linked structural echo on the candidate READ OUT receiver. No unknown p0 plaintext or authenticated state carrier is claimed.**
 
 ## Decision
 
-Retain one new consequence of the independently selected p0 receiver at offsets80..102.
+Retain one reproducible arithmetic consequence of the candidate p0 receiver at offsets80..102. The common whole-word GP0 -> zero-based p50-cell step is established in the current route, while interpreting the selected cells' conventional base60 values as p0 rune offsets remains an unresolved output-semantic choice. This report therefore treats the span as a candidate receiver rather than an independently authenticated destination.
 
 The recovered p28 candidate instruction `READ OUT` already fixes
 
@@ -24,7 +24,7 @@ word21:139 -> 23 = p
 
 The residue string is `MLCD`, as independently reported by Agent8. The extra fact here is that three entries are already fixed DH23 fields and the fourth is the numeric value of the instruction word `OUT`.
 
-Apply the previously frozen shell map
+Apply the previously frozen H algebra
 
 ```text
 H(x,y) = (x-y, x+y) mod29
@@ -55,7 +55,7 @@ WE [MUST SHED OUR OWN] CIRCUMFERENCES
 FIND [THE DIUINITY WITHIN AND] EMERGE
 ```
 
-This is useful because `H` was already selected from the first omitted instruction, `SHED OUR OWN CIRCUMFERENCES`. The same transform now maps the independently selected unknown-page receiver to the clear words that frame the operation and its continuation.
+This is useful because `H` was already selected from the first omitted instruction, `SHED OUR OWN CIRCUMFERENCES`. The mirrored reduction of the four **word-sum residues** is new here, however. It is not the canonical reversible center-preserving H serialization used on rune words, and its difference-then-sum output order was chosen during this investigation. The result is therefore a structural echo that maps the candidate receiver to clear p57 clause-boundary residues, not an authenticated decoder step.
 
 ## Controls
 
@@ -63,7 +63,7 @@ Using the same printed-word parser as the READ OUT/MLCD work gives 2,763 four-co
 
 Only 11 windows produce a mirrored-H four-vector that can be embedded anywhere as a four-word GP0-residue subsequence of solved p57. Eight have one embedding. The selected p0 receiver is one of those eight and its embedding is exactly `WE / CIRCUMFERENCES / FIND / EMERGE`.
 
-The exact H output `[25,15,13,25]` occurs only at p0 word18 among the 2,763 windows. This exact-output uniqueness is descriptive because the receiver had already exposed `MLCD` before the H consequence was noticed.
+The exact H output `[25,15,13,25]` occurs only at p0 word18 among the 2,763 windows. This exact-output uniqueness is descriptive because the receiver had already exposed `MLCD` before the H consequence was noticed, and the mirrored word-residue serialization was selected after inspecting the receiver. It must not be merged with independent evidence from the canonical reversible rune-shell decoder.
 
 ## Bounded consumers rejected
 
@@ -88,3 +88,7 @@ Run:
 Windows Node22 CI run **44427978339** passes on the committed source.
 
 The reproducer derives the READ/OUT p50 endpoints, reparses the four p0 receiver words, verifies the `[B,OUT,g,p]` typing, applies mirrored H, reconstructs the unique p57 embedding, runs the 2,763-window control, and freezes both negative consumers.
+
+## Classification correction
+
+A subsequent Critic audit correctly identified two upstream boundaries that this report must preserve. First, the READ OUT continuation changes p50 output semantics between the whole-word post-SHED base59 route and the split-word conventional base60 offset route; no creator-authenticated rule yet selects that switch. Second, canonical reversible H on odd rune words preserves unpaired centers, while this report operates on four GP0 word residues and introduces its own mirrored difference/sum serialization. The arithmetic and census above remain reproducible, but they support a **structural echo only** until a prospective source rule fixes the receiver type and serialization or the frozen object predicts untouched plaintext outside the mined span.
