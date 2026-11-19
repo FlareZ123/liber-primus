@@ -80,6 +80,7 @@ const p50Tokens = grid.pages.flatMap((page) => page.tokens);
 const p50Bytes = grid.pages.flatMap((page) => page.bytes);
 const primes = firstPrimes(400);
 const fiveDots = 5;
+const state = { p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3, q: 4 };
 
 /** @param {number} cardinal @returns {number} */
 function T(cardinal) {
@@ -261,6 +262,81 @@ assert.deepEqual(
 // five-dot stencil page established before the English serializer was read.
 assert.equal(p50Pair(oneRiseGp0)[0], 7);
 assert.equal(p50Pair(oneRiseGp0)[1] - p50Pair(oneRiseGp0)[0], 1);
+
+// ---- Prospective receiver opened only after freezing ONE RISE -> [7,8] ----
+
+// The frozen holdout names p8 as the one-rise endpoint from p7.
+// Physical p8 itself equals A=8.
+assert.equal(state.A, 8);
+assert.deepEqual(p50Pair(state.A), [state.e, state.g]);
+
+const exactTwoWordRedSpans = [];
+for (const page of ink.pages) {
+  if (page.page === 50) continue;
+  const rows = wordRows(page.page);
+  for (const span of page.red_spans || []) {
+    const selected = rows.filter((row) =>
+      row.start >= span.start && row.end <= span.start + span.length
+    );
+    if (
+      selected.length !== 2 ||
+      selected[0].start !== span.start ||
+      selected[1].end !== span.start + span.length
+    ) continue;
+    const lengths = selected.map((row) => row.length);
+    exactTwoWordRedSpans.push({
+      page: page.page,
+      start: span.start,
+      lengths,
+      inverseH: Hinv(lengths[0], lengths[1]),
+      pageP50Pair: p50Pair(page.page)
+    });
+  }
+}
+assert.equal(exactTwoWordRedSpans.length, 8);
+
+const p8RedState = exactTwoWordRedSpans.filter((row) =>
+  row.page === state.A &&
+  row.lengths[0] === state.q &&
+  row.lengths[1] === state.A &&
+  row.inverseH[0] === state.a &&
+  row.inverseH[1] === state.K &&
+  row.pageP50Pair[0] === state.e &&
+  row.pageP50Pair[1] === state.g
+);
+assert.deepEqual(p8RedState, [{
+  page: 8,
+  start: 0,
+  lengths: [state.q, state.A],
+  inverseH: [state.a, state.K],
+  pageP50Pair: [state.e, state.g]
+}]);
+
+assert.deepEqual(
+  exactTwoWordRedSpans.filter((row) =>
+    row.lengths[0] === state.q && row.lengths[1] === state.A
+  ).map((row) => row.page),
+  [8]
+);
+assert.deepEqual(
+  exactTwoWordRedSpans.filter((row) =>
+    row.pageP50Pair[0] === state.e &&
+    row.pageP50Pair[1] === state.g &&
+    row.inverseH[0] === state.a &&
+    row.inverseH[1] === state.K
+  ).map((row) => row.page),
+  [8]
+);
+
+const egByte = state.e * 29 + state.g;
+const egAddresses = p50Bytes
+  .map((value, address) => value === egByte ? address : null)
+  .filter((address) => address !== null);
+assert.deepEqual(egAddresses, [8, 146]);
+assert.deepEqual(
+  egAddresses.filter((address) => address <= 57 && address !== 50),
+  [8]
+);
 
 // ---- THE ORIGIN local packet family ----
 
@@ -458,8 +534,15 @@ console.log(JSON.stringify({
       p50Pair: p50Pair(oneRiseGp0),
       motifStartPage: 7,
       literalRise: 1
+    },
+    prospectiveP8Receiver: {
+      physicalPage: state.A,
+      pageP50Pair: p50Pair(state.A),
+      exactTwoWordRedSpanCount: exactTwoWordRedSpans.length,
+      redState: p8RedState[0],
+      exactEgByteAddresses: egAddresses
     }
   },
   reconciliation:
-    "Both survive as distinct p23 source objects. THE ORIGINAL uses the five-dot-selected complete five-word line plus local dot/terminal and the independently charged DH page handoff. THE ONE RISE uses only the four-word red span plus forward H on its two printed pairs. Their numeric holdouts differ: ORIGINAL closes 97=p_25 and p50[97]=[5,5]; ONE RISE uniquely within the charged red family closes p50[88]=[7,8], a literal one-rise from the other unsolved five-dot motif page p7. The p41 DH rivals also sum to88, so [7,8] is family-specific rather than globally unique."
+    "Both survive as distinct p23 source objects. THE ORIGINAL uses the five-dot-selected complete five-word line plus local dot/terminal and the independently charged DH page handoff. THE ONE RISE uses only the four-word red span plus forward H on its two printed pairs. Their numeric holdouts differ: ORIGINAL closes 97=p_25 and p50[97]=[5,5]; ONE RISE uniquely within the charged red family closes p50[88]=[7,8], a literal one-rise from the other unsolved five-dot motif page p7. After freezing that consequence, p8 independently validates as a state receiver: page8=A, p50[8]=[e,g], its unique red two-word span is [q,A], and Hinv([q,A])=[a,K]. The p41 DH rivals also sum to88, so [7,8] is family-specific rather than globally unique."
 }, null, 2));

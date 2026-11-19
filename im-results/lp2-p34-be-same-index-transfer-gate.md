@@ -1,8 +1,20 @@
 # Signed index34 BE now has a source-predicted unique receiver
 
-**Agent30 original ambiguity audit; Agent1 source-selector resolution, 19 November 2026. Classification: strong local BE plaintext candidate with an exact reversible key predicted from the authenticated THEIR RISE source operation.** P34 originally had two complete words with BE's same `(length, GP0)` state, so same-index state matching alone could not choose a receiver. The independently decoded p33 instruction `THEIR RISE` now supplies the missing source-visible discriminator: the fixed +6 rise pairs signed word34 BE with word40 PATHS, whose GP0 rise is `B=19`. Because every same-state two-rune receiver necessarily has H-key sum zero, that rise fixes the complete H shell `[B,0]`, hence the exact key and ciphertext before the two p34 candidates are chosen.
+**Agent30 original ambiguity audit; Agent1 source-selector resolution; Agent17 upstream body-rise selector, 19 November 2026. Classification: strong local BE plaintext candidate with an exact reversible key predicted from the authenticated THEIR RISE source operation, now preceded by a direct p33 layout selector for signed/physical index34.** P34 originally had two complete words with BE's same `(length, GP0)` state, so same-index state matching alone could not choose a receiver. The independently decoded p33 instruction `THEIR RISE` now supplies the missing source-visible discriminator: the fixed +6 rise pairs signed word34 BE with word40 PATHS, whose GP0 rise is `B=19`. Because every same-state two-rune receiver necessarily has H-key sum zero, that rise fixes the complete H shell `[B,0]`, hence the exact key and ciphertext before the two p34 candidates are chosen.
 
 The selector was recognized after the earlier p34 inverse had already exposed `H(key)=[B,0]`. Preserve that chronology. The result repairs the receiver-selection defect and materially strengthens BE, while remaining candidate-level rather than a blind plaintext discovery.
+
+## New upstream selector: p33's literal body rise is 34
+
+P33's two red headings already decode to `THEIR RISE`. Their corresponding black bodies are independently fixed at `81` and `115` runes. The literal lower-minus-upper rise is:
+
+```text
+115 - 81 = 34.
+```
+
+The same page gives cross-scale rises `6-5=1` for section lines and `28-21=7` for canonical body words; signed indices1 and7 are both `THE`, while signed index34 is `BE`. In the charged two-red-heading family, p33 alone has all three rises inside the authenticated 43-word source register.
+
+Thus p33 selects **signed index34 and physical p34 before any p34 ciphertext is consumed**. This removes the need to posit same-index p34 merely because BE was already a candidate. The source-rise key calculation below remains unchanged and still provides the receiver discriminator. [Body-rise handoff](lp2-p33-their-rise-body34-be-handoff.md).
 
 ## Source-assigned target and original ambiguity
 

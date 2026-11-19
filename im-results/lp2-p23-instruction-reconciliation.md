@@ -138,7 +138,41 @@ More importantly, this is familywise rather than an English gloss: among all **2
 
 This holdout is not globally unique across unrelated serializers. Two charged p41 DH physical-handoff rivals from the THE ORIGINAL family also have serialized GP0=88 and therefore hit the same p50 pair. They do not arise from the red-span H serializer and fail the ORIGINAL prime/`[5,5]` holdouts. That collision is preserved explicitly.
 
-## 3. What is shared, and what is independent
+## 3. Prospective p8 receiver validation
+
+The `[7,8]` consequence was frozen before opening p8 as a new target. The landing then exposes a compact state checkpoint without using p8 ciphertext language:
+
+```text
+physical page = 8 = A
+
+p50[8] = 1W
+native base60 = 92
+92 = 3*29 + 5
+=> [e,g] = [3,5]
+
+p8 complete red heading word lengths = [4,8] = [q,A]
+
+H^-1([q,A])
+= H^-1([4,8])
+= [6,2]
+= [a,K].
+```
+
+There are eight exact two-word red spans in the annotation corpus. P8 is the only one with lengths `[q,A]=[4,8]`, and it is the only span whose physical page address simultaneously returns `[e,g]` while inverse H returns `[a,K]`.
+
+The byte for `[e,g]` is 92. It appears at p50 addresses8 and146; p8 is its only occurrence in the physical page-address range0..57. Thus the frozen ONE-RISE endpoint does not merely land on the next page. It lands on the unique physical page carrying a three-part replay of the authenticated state:
+
+```text
+page number -> A
+page p50 cell -> [e,g]
+red heading -> [q,A] ->H^-1 [a,K].
+```
+
+The original p8 image also visibly opens with an enlarged red initial beside a rising tree-like illustration. That artwork is consistent with the route, while the acceptance test above uses only the numeric/layout state packet.
+
+This is the discriminating untouched receiver consequence requested by Director #1797 for the ONE-RISE branch.
+
+## 4. What is shared, and what is independent
 
 The overlap is now exact:
 
@@ -174,7 +208,7 @@ red-span/H route              -> THE ONE RISE.
 
 The stronger next decision is to use each instruction only where its own source-selected consequence identifies a receiver. Do not merge them into one English sentence, and do not transfer operands between the two serializers.
 
-The `[7,8]` holdout makes literal p7→p8 a source-motivated consequence of ONE RISE, while the ORIGINAL branch remains tied to its p23→p33 state route and its `97=p_25`, `[5,5]` closures. Any next target test should preserve that branch separation.
+The `[7,8]` holdout now has a prospective receiver validation at p8: page8=A, p50[8]=[e,g], and its unique two-word red heading `[q,A]` maps under inverse H to `[a,K]`. The ORIGINAL branch remains tied to its p23→p33 state route and its `97=p_25`, `[5,5]` closures. Any next target test should preserve that branch separation.
 
 ## Reproduction
 

@@ -16,6 +16,7 @@ const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const parts = transcription.split(/^\s*%\s*$/m);
 const tape = grid.pages.flatMap((page) => page.tokens);
 const alpha60 = grid.alphabet;
+const alpha59 = alpha60.replace("f", "");
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 
 /** @param {number} value @returns {number} */
@@ -130,13 +131,41 @@ assert.deepEqual(hEq, [28, 7]);
 const TUNNELNG_GP0 = 94;
 const THE_GP0 = 20;
 const FIND_GP0_MAP = 42;
+const RISE_GP0 = 47;
 const DIVINITY_GP0 = 105;
 const WITHIN_GP0 = 38;
 assert.equal(upperWordGp0[e - 1], TUNNELNG_GP0);
 assert.equal(upperWordGp0[hEq[1] - 1], THE_GP0);
 assert.equal(low60(THE_GP0), FIND_GP0_MAP);
+assert.equal(upperWordGp0[A - 1], RISE_GP0);
 assert.equal(upperWordGp0[e ** 2 - 1], DIVINITY_GP0);
 assert.equal(upperWordGp0[A + K - 1], WITHIN_GP0);
+
+// FIND THE DIVINITY WITHIN is executable inside the selected 21-word map:
+// word9 is the DIVINITY object; its unique center is 8=A, and map word8 is
+// RISE. This turns the recovered semantic phrase into a deterministic road.
+const divinityWord = upperBodyWords[e ** 2 - 1];
+assert.equal(divinityWord.values.length, 7);
+const divinityCenter = divinityWord.values[(divinityWord.values.length - 1) / 2];
+assert.equal(divinityCenter, A);
+assert.equal(upperWordGp0[divinityCenter - 1], RISE_GP0);
+
+// RISE then uses the same GP0->p50 number grammar. Its token has the two
+// documented radix values 75/76.
+assert.equal(tape[RISE_GP0], "1G");
+const rise60 = 60 * alpha60.indexOf(tape[RISE_GP0][0])
+  + alpha60.indexOf(tape[RISE_GP0][1]);
+const rise59 = 59 * alpha59.indexOf(tape[RISE_GP0][0])
+  + alpha59.indexOf(tape[RISE_GP0][1]);
+assert.deepEqual([rise59, rise60], [75, 76]);
+
+// TUNNELNG supplies the independently known adjacent terminal page pair.
+assert.equal(tape[TUNNELNG_GP0], "0u");
+const tunnel60 = 60 * alpha60.indexOf(tape[TUNNELNG_GP0][0])
+  + alpha60.indexOf(tape[TUNNELNG_GP0][1]);
+const tunnel59 = 59 * alpha59.indexOf(tape[TUNNELNG_GP0][0])
+  + alpha59.indexOf(tape[TUNNELNG_GP0][1]);
+assert.deepEqual([tunnel59, tunnel60], [55, 56]);
 
 // e^2=9 selects exactly one word inside the already selected 81-rune body.
 const selected = upperBodyWords
@@ -189,6 +218,7 @@ assert.equal(low60(FIND_GP0), 28);
 // window. The receiver is unique without language scoring.
 let mapWindows = 0;
 const mapTupleHits = [];
+const mapRoadHits = [];
 const divinityWithinPairHits = [];
 for (let physicalPage = 0; physicalPage <= 55; physicalPage += 1) {
   if (physicalPage === 50) continue;
@@ -207,6 +237,24 @@ for (let physicalPage = 0; physicalPage <= 55; physicalPage += 1) {
       && window[A + K - 1] === WITHIN_GP0
     ) {
       mapTupleHits.push({
+        physicalPage,
+        startWord: start + 1,
+        startOffset: words[start].start,
+      });
+    }
+
+    const localDivinity = words[start + e ** 2 - 1];
+    const localCenter = localDivinity.values.length % 2 === 1
+      ? localDivinity.values[(localDivinity.values.length - 1) / 2]
+      : null;
+    if (
+      window[hEq[1] - 1] === THE_GP0
+      && window[A - 1] === RISE_GP0
+      && window[e ** 2 - 1] === DIVINITY_GP0
+      && window[A + K - 1] === WITHIN_GP0
+      && localCenter === A
+    ) {
+      mapRoadHits.push({
         physicalPage,
         startWord: start + 1,
         startOffset: words[start].start,
@@ -234,6 +282,66 @@ assert.deepEqual(divinityWithinPairHits, [{
   physicalPage: 33,
   word: 11,
   pageOffset: 43,
+}]);
+assert.deepEqual(mapRoadHits, [{
+  physicalPage: 33,
+  startWord: 3,
+  startOffset: 10,
+}]);
+
+// Reproduce incoming-carry lengths so the RISE 75/76 pair can be typed
+// against physical-page counts rather than merely noticed numerically.
+const rawSegments = transcription.split("%").slice(0, 55);
+const continuous = rawSegments.join("%");
+const runePattern = /[\u16A0-\u16FF]/u;
+/** @type {{page:number}[][]} */
+const continuousWords = [];
+/** @type {{page:number}[]} */
+let currentWord = [];
+let runePage = 0;
+const finishContinuousWord = () => {
+  if (!currentWord.length) return;
+  continuousWords.push(currentWord);
+  currentWord = [];
+};
+for (const character of continuous) {
+  if (runePattern.test(character)) {
+    currentWord.push({ page: runePage });
+  } else if (character === "%") {
+    runePage += 1;
+  } else if (character === "/" || /\s/u.test(character)) {
+    // Printed line wrapping preserves words.
+  } else {
+    finishContinuousWord();
+  }
+}
+finishContinuousWord();
+
+const physicalFromRunePage = (page) => page >= 50 ? page + 1 : page;
+const carryByPhysical = new Map([[0, 0]]);
+for (let pageIndex = 1; pageIndex < rawSegments.length; pageIndex += 1) {
+  const crossing = continuousWords.find((word) =>
+    word[0].page < pageIndex && word.some((site) => site.page === pageIndex)
+  );
+  carryByPhysical.set(
+    physicalFromRunePage(pageIndex),
+    crossing ? crossing.filter((site) => site.page === pageIndex).length : 0
+  );
+}
+const risePageHits = corpus.pages
+  .filter((page) => page.page <= 55)
+  .map((page) => ({
+    physicalPage: page.page,
+    runes: page.indices.length,
+    carry: carryByPhysical.get(page.page) || 0,
+    localRunes: page.indices.length - (carryByPhysical.get(page.page) || 0),
+  }))
+  .filter((page) => page.runes === rise60 && page.localRunes === rise59);
+assert.deepEqual(risePageHits, [{
+  physicalPage: 55,
+  runes: 76,
+  carry: 1,
+  localRunes: 75,
 }]);
 
 // Manuscript-wide fixed control: every complete nine-rune unknown-page word,
@@ -329,19 +437,33 @@ console.log(JSON.stringify({
       tunnelng: e,
       the: hEq[1],
       divinity: e ** 2,
+      rise: A,
       within: A + K,
     },
     selectedValues: {
       tunnelng: upperWordGp0[e - 1],
       the: upperWordGp0[hEq[1] - 1],
       findViaLowDigitOfThe: low60(THE_GP0),
+      rise: upperWordGp0[A - 1],
       divinity: upperWordGp0[e ** 2 - 1],
+      divinityCenter,
       within: upperWordGp0[A + K - 1],
     },
     recoveredInstruction: "FIND THE DIVINITY WITHIN",
     manuscriptWindowsCharged: mapWindows,
     exactMapTupleHits: mapTupleHits,
+    exactMapRoadHits: mapRoadHits,
     exactDivinityWithinPairHits: divinityWithinPairHits,
+    risenReceiver: {
+      riseGp0: RISE_GP0,
+      token: tape[RISE_GP0],
+      base59: rise59,
+      base60: rise60,
+      uniquePageCountHit: risePageHits,
+      tunnelngToken: tape[TUNNELNG_GP0],
+      tunnelngBase59: tunnel59,
+      tunnelngBase60: tunnel60,
+    },
   },
   selection: {
     uniqueUpperBodyLength: e ** 2,

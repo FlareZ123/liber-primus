@@ -38,39 +38,61 @@ function modPow(base, exponent, modulus) {
 }
 
 /**
- * Canonical LP2 word parser. Printed "/" line wraps are retained inside words.
- *
- * @param {string} text
+ * Canonical unknown-word parser. Printed line wraps and physical page breaks
+ * may continue a word. Retain only words wholly contained on one unknown page.
  */
-function parseCanonical(text) {
-  const words = [];
-  let values = [];
-  let start = 0;
-  let offset = 0;
+const unknownSegments = parts.slice(0, 55);
+const canonicalPages = unknownSegments.map((text, segment) => ({
+  page: segment >= 50 ? segment + 1 : segment,
+  words: [],
+  offset: 0,
+}));
+let currentWord = [];
+let startSegment = 0;
+let endSegment = 0;
+let startOffset = 0;
 
-  function flush() {
-    if (!values.length) return;
-    words.push({
-      ordinal: words.length + 1,
-      start,
-      end: offset - 1,
-      values: values.slice(),
+function flushCanonicalWord() {
+  if (!currentWord.length) return;
+  if (startSegment === endSegment) {
+    const page = canonicalPages[startSegment];
+    page.words.push({
+      index: page.words.length,
+      ordinal: page.words.length + 1,
+      start: startOffset,
+      end: startOffset + currentWord.length - 1,
+      values: currentWord.slice(),
     });
-    values = [];
   }
-
-  for (const char of [...text]) {
+  currentWord = [];
+}
+for (let segment = 0; segment < unknownSegments.length; segment += 1) {
+  for (const char of [...unknownSegments[segment]]) {
     const value = runeIndex.get(char);
     if (value !== undefined) {
-      if (!values.length) start = offset;
-      values.push(value);
-      offset += 1;
-    } else if ((char === "-" || char === ".") && values.length) {
-      flush();
+      if (!currentWord.length) {
+        startSegment = segment;
+        startOffset = canonicalPages[segment].offset;
+      }
+      endSegment = segment;
+      currentWord.push(value);
+      canonicalPages[segment].offset += 1;
+    } else if (char === "/" || /\s/u.test(char)) {
+      // Printed line/page wrap can continue a word.
+    } else {
+      flushCanonicalWord();
     }
   }
-  flush();
-  return words;
+}
+flushCanonicalWord();
+const canonicalWords = canonicalPages.flatMap((page) =>
+  page.words.map((word) => ({page: page.page, ...word}))
+);
+const wordsByPage = new Map(
+  canonicalPages.map((page) => [page.page, page.words])
+);
+function pageWords(page) {
+  return wordsByPage.get(page) || [];
 }
 
 /**
@@ -150,7 +172,7 @@ assert.deepEqual(state, {
 // (project page n-1) -> canonical local word n.
 const diagonal = source.map((row) => {
   const page = row.ordinal - 1;
-  const words = parseCanonical(parts[page]);
+  const words = pageWords(page);
   const object = words[row.ordinal - 1] || null;
   return {
     source: row,
@@ -273,7 +295,7 @@ assert.equal(you.wordCount, groupOrder);
 const wrappedOrdinal = ((you.source.ordinal - 1) % groupOrder) + 1;
 assert.equal(wrappedOrdinal, 11);
 
-const youObject = parseCanonical(parts[you.page])[wrappedOrdinal - 1];
+const youObject = pageWords(you.page)[wrappedOrdinal - 1];
 assert.equal(youObject.ordinal, 11);
 assert.equal(youObject.start, 59);
 assert.deepEqual(youObject.values, [
@@ -321,8 +343,7 @@ const packets = [
 const packetHits = new Map(packets.map((packet) => [packet.name, []]));
 const lengthCounts = new Map();
 
-for (let page = 0; page <= 55; page += 1) {
-  for (const word of parseCanonical(parts[page])) {
+for (const word of canonicalWords) {
     lengthCounts.set(
       word.values.length,
       (lengthCounts.get(word.values.length) || 0) + 1
@@ -340,11 +361,10 @@ for (let page = 0; page <= 55; page += 1) {
         });
       }
     }
-  }
 }
 
-assert.equal(lengthCounts.get(3), 731);
-assert.equal(lengthCounts.get(5), 320);
+assert.equal(lengthCounts.get(3), 722);
+assert.equal(lengthCounts.get(5), 318);
 assert.deepEqual(packetHits.get("SEEK"), [{
   page: 30,
   ordinal: 31,
