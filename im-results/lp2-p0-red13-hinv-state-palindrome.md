@@ -215,6 +215,28 @@ Among all 19 matched residuals, p0 alone has both left and center columns closed
 
 This is structurally consistent with solved p57's instruction to shed our own circumferences. It is preserved as supporting mechanism evidence rather than treated as a proof that the p57 sentence specifically instructs this p0 marker.
 
+## The visible q=4 marker count regenerates the DH state
+
+The 4|5|4 marker gives `q=4` directly from either side column. A smaller equivalent state map is:
+
+```text
+K=q-2
+e=q-1
+q=q
+g=q+1
+a=q+2
+A=2q
+b=4q-1
+B=5q-1
+p=6q-1
+```
+
+At q=4 this is the exact independently reconstructed state. The same geometry gives total dots `3q+1=13=WAY13`, while `q+3=7=THE7`.
+
+Charging q=2..28 under this fixed ladder and requiring all four DH equations leaves **q=4 only**. This is a strong finite selectivity control, although the ladder itself was recognized after the state values were already available.
+
+The three-anchor representation below remains useful because THE7 is independently selected by the THE1 numbered-direction/circumference route.
+
 ## The same three anchors regenerate the full DH state
 
 Before using the p0 residual, hold only:
