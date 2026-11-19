@@ -15,6 +15,20 @@ The source-number diagonal remains real under the repository's canonical printed
 This correction preserves the source-selected route where it survives and removes the conclusions that depended on page-fragment numbering.
 
 
+## Upstream p28 mechanically selects the governing clause
+
+A later p28 result strengthens the source-selection premise of this corrected route. The held-out `READ OUT THE` ends at offset141. The four complete p28 words immediately following it, offsets142..160, have GP0 residues `[23,19,22,27]` and GP lengths `[4,5,4,6]`. The already fixed forward-H difference half gives source indices `[25,26]` from GP0 and `[27,1]` from lengths. Under the established zero-based authenticated-source register these read:
+
+~~~
+THEIR NUMBERS ARE THE
+~~~
+
+Across 2,699 canonical page-local four-word manuscript windows, this is the sole fixed difference/difference, GP-first readout producing any contiguous four-word phrase from the authenticated 43-word source. The source contains the phrase once and continues it with `DIRECTION`.
+
+P28 therefore selects the governing instruction before DIRECTION30 is consumed. This strengthens the surviving numbered route below. It does not restore the retired modulo-22 YOU wrap or the old boundary-fragment SEEK packet.
+
+See `im-results/lp2-p28-numbers-direction-readout.md` and `sims/lp2_p28_numbers_direction_readout_sft.cjs`.
+
 ## Independent p33-p35 plaintext-candidate convergence
 
 A later layout/receiver result now gives the route's post-YOU suffix a second, materially independent realization.
