@@ -313,6 +313,34 @@ assert.deepEqual(andFamilyHits, [{
   target: "AND",
 }]);
 
+const deterministicAndKeyShell = [
+  numbersPredecessorShell.at(-1),
+  ...numbersTokenH,
+];
+assert.deepEqual(deterministicAndKeyShell, [
+  state.B,
+  mod29(state.p - state.e),
+  mod29(state.p + state.e),
+]);
+const deterministicAndOuter = invH(
+  deterministicAndKeyShell[0],
+  deterministicAndKeyShell[1]
+);
+assert.deepEqual(deterministicAndOuter, [state.g, state.b]);
+const deterministicAndKey = [
+  deterministicAndOuter[0],
+  deterministicAndKeyShell[2],
+  deterministicAndOuter[1],
+];
+assert.deepEqual(deterministicAndKey, andFamilyHits[0].key);
+assert.deepEqual(
+  andReceiver.values.map((value, index) =>
+    mod29(value - deterministicAndKey[index])
+  ),
+  gp("AND")
+);
+
+
 // Charge a second source-token/state family for the four-rune receiver.
 // Keys are [H(p,x)[j], p, K*y, y]. Only THEIR reaches an authenticated
 // four-rune source target in the complete 7*7*2 family.
@@ -733,7 +761,12 @@ console.log(JSON.stringify({
     backwardLengthMatches,
     typedSourceTokens,
     tokenH: numbersTokenH,
-    andRecovery: { configs: andFamilyConfigs, hits: andFamilyHits },
+    andRecovery: {
+      configs: andFamilyConfigs,
+      hits: andFamilyHits,
+      deterministicKeyShell: deterministicAndKeyShell,
+      deterministicKey: deterministicAndKey,
+    },
     theirRecovery: { configs: theirFamilyConfigs, hits: theirFamilyHits },
   },
   road: {
