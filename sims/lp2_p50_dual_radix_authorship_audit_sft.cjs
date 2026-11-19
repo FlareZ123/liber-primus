@@ -12,6 +12,7 @@ const root = path.resolve(__dirname, "..");
 const read = (relative) => fs.readFileSync(path.join(root, relative), "utf8");
 
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 
@@ -29,7 +30,7 @@ function decodeToken(token, alphabet) {
   return high * alphabet.length + low;
 }
 
-const runeIndex = new Map(grid.runes.map((rune, index) => [rune, index]));
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const parts = transcription.split(/^\s*%\s*$/m);
 
 function physicalPage(partIndex) {
@@ -121,11 +122,11 @@ for (let cell = 0; cell < cells.length; cell += 1) {
 
 assert.equal(
   boundaryEvents.filter((event) => event.consecutiveStarts).length,
-  670
+  48
 );
 assert.equal(
   boundaryEvents.filter((event) => event.consecutiveEnds).length,
-  645
+  47
 );
 
 const selfPointers = [];
