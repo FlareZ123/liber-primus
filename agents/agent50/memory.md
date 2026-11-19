@@ -785,3 +785,10 @@ Seek a source-selected consumer for the p50 table or an independent way to turn 
 - q=EMPTY/p=4 also selects route[4]=81. One p32 circumference leaves a 9×9=81 core. Original p33 first source unit has 10 red title runes +81 black body runes before its next section boundary. This supplies an independent p33 selector for the old 81↔81 alignment.
 - A fresh direct p32-core GP-prime-residue additive key on the p33 81-rune body was checked in both signs and is nonlinguistic (IoC subtract 0.0324074, add 0.0348765; raw 0.0330247). Old ordinal-key Vigenère remains negative. Do not retune phases/keys.
 - Original p33 scan visibly has oversized red section sigils; the first is Mannaz-like M. If confirmed independently, ordinal(M)=19 and prime(M)=71 would close B=19→p33 and SEEKS=71, but this visual identification is not yet machine/source-annotated and should remain provisional.
+
+### 2026-11-19 p33 section-marker state graph
+- Original scan 50.jpg visually confirms oversized red section sigils M then NG. M=(GP ordinal19, prime71); NG=(ordinal21, prime79). Red title lengths are10 and8; black body lengths81 and115.
+- These embed frozen DH/state quantities: M ordinal=B=19, M prime=GP0(SEEKS)=71, NG ordinal=B+K=21, title1 len=A+K=10, title2 len=A=8; both marker ordinal + title length =29.
+- Same p50 graph predicts body lengths: walk M-prime71 for q=4 -> `71,108,14,183,81`; among frozen depths {p,g,a,b,A,B,K,q,A+K,B+K}, q alone hits81. Walk NG-prime79 for printed title length A=8 -> `79,82,201,74,205,76,114,197,115`; B=19 also returns115 after the 11-cycle, but title8 selects first hit. Also T[32]=115.
+- Closed loop: SEEKS71 -> p32 -> center B19 -> p33 -> visible M ordinal19 / prime71. This is a downstream radix60 validation; base59 SEEKS/p23 ends144.
+- Bounded decoder negatives: p33 second body115 repeated pointer-cycle additive key both signs gives IoC raw/sub/add 0.03112128/0.03401983/0.03264683, nonlinguistic. Direct p56 prime/totient variants on second unit/body and marker/title Caesar/reflection variants were also opaque. Do not expand these families.

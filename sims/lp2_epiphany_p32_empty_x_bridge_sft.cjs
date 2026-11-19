@@ -449,6 +449,84 @@ assert.equal(p33BodyRunes,81);
 assert.equal(p33BodyRunes,route[q]);
 assert.equal(p33BodyRunes,p32OneShellCore.length);
 
+
+// P33 source layout after the p32->p33 handoff.
+// The two oversized decorative section runes are read directly from original
+// scan 50.jpg as M and NG. The red-title lengths are machine-verifiable below.
+const p33SecondUnit=p33Text.slice(firstUnitEnd+1);
+const secondTitleEnd=p33SecondUnit.indexOf(".");
+assert.ok(secondTitleEnd>0);
+const p33SecondTitleRunes=countRunes(p33SecondUnit.slice(0,secondTitleEnd));
+const p33SecondUnitRunes=countRunes(p33SecondUnit);
+const p33SecondBodyRunes=p33SecondUnitRunes-p33SecondTitleRunes;
+assert.equal(p33SecondTitleRunes,8);
+assert.equal(p33SecondUnitRunes,123);
+assert.equal(p33SecondBodyRunes,115);
+assert.equal(table60[32],p33SecondBodyRunes);
+
+const markerM={
+  translit:"M",
+  ordinal:corpus.translit.indexOf("M"),
+  prime:corpus.prime[corpus.translit.indexOf("M")]
+};
+const markerNG={
+  translit:"NG",
+  ordinal:corpus.translit.indexOf("NG"),
+  prime:corpus.prime[corpus.translit.indexOf("NG")]
+};
+assert.deepEqual(markerM,{translit:"M",ordinal:19,prime:71});
+assert.deepEqual(markerNG,{translit:"NG",ordinal:21,prime:79});
+assert.equal(markerM.ordinal,dh.B);
+assert.equal(markerM.prime,gp0("SEEKS"));
+assert.equal(markerNG.ordinal,dh.B+dh.K);
+assert.equal(p33TitleRunes,dh.A+dh.K);
+assert.equal(p33SecondTitleRunes,dh.A);
+assert.equal(markerM.ordinal+p33TitleRunes,29);
+assert.equal(markerNG.ordinal+p33SecondTitleRunes,29);
+
+// The p50 transition graph maps each visible marker's prime to its own black
+// body length under a source-fixed depth: q for section 1, printed A=8 title
+// length for section 2.
+const markerMRoute=walk(markerM.prime,q);
+const markerNGRoute=walk(markerNG.prime,dh.A);
+assert.equal(markerMRoute[q],p33BodyRunes);
+assert.equal(markerNGRoute[dh.A],p33SecondBodyRunes);
+assert.deepEqual(markerMRoute,[71,108,14,183,81]);
+assert.deepEqual(markerNGRoute,[79,82,201,74,205,76,114,197,115]);
+
+const depthCandidates=[
+  ["p",dh.p],["g",dh.g],["a",dh.a],["b",dh.b],
+  ["A",dh.A],["B",dh.B],["K",dh.K],["q",q],
+  ["A+K",dh.A+dh.K],["B+K",dh.B+dh.K]
+];
+const markerMDepthHits=depthCandidates.filter(([,depth])=>
+  walk(markerM.prime,depth)[depth]===p33BodyRunes);
+const markerNGDepthHits=depthCandidates.filter(([,depth])=>
+  walk(markerNG.prime,depth)[depth]===p33SecondBodyRunes);
+assert.deepEqual(markerMDepthHits,[["q",4]]);
+assert.deepEqual(markerNGDepthHits,[["A",8],["B",19]]);
+assert.equal(p33SecondTitleRunes,dh.A); // local title length selects the first hit.
+
+// Exact bounded decoder negatives on the newly selected second p33 body.
+const p33Indices=corpus.pages[33].indices;
+const p33SecondBody=p33Indices.slice(99,214);
+assert.equal(p33SecondBody.length,p33SecondBodyRunes);
+const pointerCycle=[115,247,192,0,203,68,199,47,76,114,197];
+const ioc=(values)=>{
+  const counts=Array(29).fill(0);
+  for(const value of values)counts[value]++;
+  return counts.reduce((sum,count)=>sum+count*(count-1),0)/
+    (values.length*(values.length-1));
+};
+const pointerKey=pointerCycle.map((value)=>value%29);
+const secondCycleMinus=p33SecondBody.map((value,index)=>
+  (value-pointerKey[index%pointerKey.length]+29)%29);
+const secondCyclePlus=p33SecondBody.map((value,index)=>
+  (value+pointerKey[index%pointerKey.length])%29);
+assert.ok(Math.abs(ioc(p33SecondBody)-0.031121281464530894)<1e-15);
+assert.ok(Math.abs(ioc(secondCycleMinus)-0.034019832189168576)<1e-15);
+assert.ok(Math.abs(ioc(secondCyclePlus)-0.032646834477498096)<1e-15);
+
 // Supplementary direct-state address: DEVOTED's GP0 value is 102, and p32
 // zero-based rune offset102 begins the complete local EN fragment.
 const devotedOffset=gp0("DEVOTED");
@@ -494,6 +572,9 @@ console.log(JSON.stringify({
   withinGeometry:{shellSizes,divinityOffset,divinityRune,divinityPrime},
   finalWordDirection:{start:finalStart,directionalReads,consecutiveDirections},
   devotedDirectOffset:{offset:devotedOffset,fragment:"EN"},
-  p33Handoff:{centerValue:divinityPrime,pointerToken:tokens[divinityPrime],page:table60[divinityPrime],dhFieldTargets,qRouteState:route[q],p32OneShellCore:p32OneShellCore.length,p33TitleRunes,p33BodyRunes},
-  conclusion:"The route now yields a typed p32-to-p33 continuation: five shells expose center B=19, the existing p50 transition sends 19 to physical p33, and q=4 also selects route state81 matching the p32 one-shell core and p33 first-unit body. THE@21 fixes the NE path to SURFACE. The remaining problem is a source-selected reversible decoder on the p33 receiver."
+  p33Handoff:{centerValue:divinityPrime,pointerToken:tokens[divinityPrime],page:table60[divinityPrime],dhFieldTargets,qRouteState:route[q],p32OneShellCore:p32OneShellCore.length,p33TitleRunes,p33BodyRunes,
+    secondTitleRunes:p33SecondTitleRunes,secondBodyRunes:p33SecondBodyRunes,
+    markerM,markerNG,markerMRoute,markerNGRoute,markerMDepthHits,markerNGDepthHits,
+    secondBodyPointerCycleIoC:{raw:ioc(p33SecondBody),minus:ioc(secondCycleMinus),plus:ioc(secondCyclePlus)}},
+  conclusion:"The route now reaches p33 and its two source sections: M(ordinal B, prime SEEKS) walked q steps lands on the first body length 81; NG(ordinal B+K) walked A=8 title-length steps lands on the second body length 115, which is also T[32]. The repeated 115-cycle additive body test is negative. The remaining problem is a source-selected reversible decoder on these now-selected p33 receivers."
 },null,2));
