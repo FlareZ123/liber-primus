@@ -79,24 +79,65 @@ function gp(word) {
   return out;
 }
 
-/** @param {number} page @returns {string} */
-function physicalPart(page) {
-  assert.notEqual(page, 50);
-  return parts[page <= 49 ? page : page - 1];
+// Canonical unknown-word parser. Printed line wraps and physical page breaks
+// may continue a word; only true punctuation/delimiters terminate one. Retain
+// only words wholly contained on one physical unknown page.
+const unknownSegments = parts.slice(0, 55);
+const canonicalPages = unknownSegments.map((text, segment) => ({
+  page: segment >= 50 ? segment + 1 : segment,
+  words: [],
+  offset: 0,
+}));
+let currentWord = [];
+let startSegment = 0;
+let endSegment = 0;
+let startOffset = 0;
+
+function flushCanonicalWord() {
+  if (!currentWord.length) return;
+  if (startSegment === endSegment) {
+    const page = canonicalPages[startSegment];
+    page.words.push({
+      index: page.words.length,
+      start: startOffset,
+      end: startOffset + currentWord.length - 1,
+      values: currentWord.slice(),
+    });
+  }
+  currentWord = [];
 }
+
+for (let segment = 0; segment < unknownSegments.length; segment += 1) {
+  for (const char of [...unknownSegments[segment]]) {
+    const value = runeIndex.get(char);
+    if (value !== undefined) {
+      if (!currentWord.length) {
+        startSegment = segment;
+        startOffset = canonicalPages[segment].offset;
+      }
+      endSegment = segment;
+      currentWord.push(value);
+      canonicalPages[segment].offset += 1;
+    } else if (char === "/" || /\s/u.test(char)) {
+      // Line/page wrap can continue a word.
+    } else {
+      flushCanonicalWord();
+    }
+  }
+}
+flushCanonicalWord();
+
+const canonicalWords = canonicalPages.flatMap((page) =>
+  page.words.map((word) => ({page: page.page, ...word}))
+);
+assert.equal(canonicalWords.length, 2864);
+const wordsByPage = new Map(
+  canonicalPages.map((page) => [page.page, page.words])
+);
 
 /** @param {number} page @returns {{index:number,start:number,end:number,values:number[]}[]} */
 function pageWords(page) {
-  const source = physicalPart(page).replace(/\/\s*/gu, "");
-  const printed = source.match(/[\u16A0-\u16FF]+/gu) || [];
-  let offset = 0;
-  return printed.map((word, index) => {
-    const values = [...word].map((rune) => runeIndex.get(rune));
-    assert.ok(values.every((value) => value !== undefined));
-    const start = offset;
-    offset += values.length;
-    return {index, start, end: offset - 1, values};
-  });
+  return wordsByPage.get(page) || [];
 }
 
 const clear = signed2016.split("-----BEGIN PGP SIGNATURE-----")[0];
@@ -147,26 +188,11 @@ const plusOnePointers = doubleIndexRows.filter(
 );
 assert.deepEqual(
   plusOnePointers.map((row) => [row.index, row.sourceWord, row.gp0]),
-  [
-    [20, "MEANING", 21],
-    [37, "LUCK", 38],
-  ]
+  [[37, "LUCK", 38]]
 );
 
-// Both raw +1 pointers land on next-word pages that were independently
-// source-selected before this double-index observation.
-const isValues = gp("IS");
-const p21IsReceivers = pageWords(21).filter(
-  (word) =>
-    word.values.length === isValues.length &&
-    word.values.reduce((total, value) => total + value, 0) ===
-      isValues.reduce((total, value) => total + value, 0)
-);
-assert.deepEqual(
-  p21IsReceivers.map((word) => [word.index, word.start, word.values]),
-  [[33, 170, [24, 1]]]
-);
-
+// The sole raw +1 pointer lands on the next authenticated word/page, whose
+// receiver was independently selected before this double-index observation.
 const bewareValues = gp("BEWARE");
 const p38BewareReceivers = pageWords(38).filter(
   (word) =>
@@ -195,12 +221,10 @@ assert.deepEqual(
   lengthMatches.map((row) => [row.index, row.sourceWord, row.sourceLength, row.start]),
   [
     [3, "LIES", 4, 16],
-    [9, "LIBER", 5, 31],
     [11, "IS", 2, 49],
     [14, "ITS", 3, 59],
     [15, "WORDS", 5, 71],
     [21, "IS", 2, 121],
-    [28, "THE", 2, 140],
     [31, "AND", 3, 126],
     [37, "LUCK", 4, 146],
   ]
@@ -228,29 +252,20 @@ assert.deepEqual(rawShell, [
 ]);
 assert.deepEqual(rawShell, [5, 25, 8, 1]);
 
-// The untouched raw shell is unique across every complete unknown four-rune word.
-const unknownRunePages = [
-  ...Array.from({length: 50}, (_, index) => index),
-  ...Array.from({length: 5}, (_, index) => index + 51),
-];
-const fourRuneWords = [];
-const rawShellHits = [];
-for (const page of unknownRunePages) {
-  for (const word of pageWords(page)) {
-    if (word.values.length !== 4) continue;
-    const row = {page, ...word};
-    fourRuneWords.push(row);
-    if (H4(word.values).every((value, slot) => value === rawShell[slot])) {
-      rawShellHits.push({
-        page,
-        wordIndex: word.index,
-        start: word.start,
-        cipher: word.values,
-      });
-    }
-  }
-}
-assert.equal(fourRuneWords.length, 514);
+// The untouched raw shell is unique across every canonical complete unknown
+// four-rune word.
+const fourRuneWords = canonicalWords.filter((word) => word.values.length === 4);
+const rawShellHits = fourRuneWords
+  .filter((word) =>
+    H4(word.values).every((value, slot) => value === rawShell[slot])
+  )
+  .map((word) => ({
+    page: word.page,
+    wordIndex: word.index,
+    start: word.start,
+    cipher: word.values,
+  }));
+assert.equal(fourRuneWords.length, 509);
 assert.deepEqual(rawShellHits, [{
   page: 37,
   wordIndex: 37,
@@ -371,7 +386,7 @@ assert.deepEqual(fixedKeyHits, [{
   cipher: [3, 2, 6, 27],
 }]);
 
-// Family context: among the nine double-index length matches, direct-state
+// Family context: among the seven double-index length matches, direct-state
 // H-shell keys also occur for a few very short 2-3 rune cases. P37 is the only
 // length >= 4 case with any direct-state-shell target hit.
 const directValues = new Set(shellFields.map((entry) => entry[1]));
@@ -445,26 +460,15 @@ console.log(JSON.stringify({
       word: row.sourceWord,
       gp0: row.gp0,
     })),
-    independentDestinations: {
-      p20ToP21: {
-        pointer: 21,
-        target: "IS",
-        receiver: {
-          wordIndex: p21IsReceivers[0].index,
-          start: p21IsReceivers[0].start,
-          cipher: p21IsReceivers[0].values,
-        },
+    independentDestination: {
+      pointer: 38,
+      target: "BEWARE",
+      receiver: {
+        wordIndex: p38BewareReceivers[0].index,
+        start: p38BewareReceivers[0].start,
+        cipher: p38BewareReceivers[0].values,
       },
-      p37ToP38: {
-        pointer: 38,
-        target: "BEWARE",
-        receiver: {
-          wordIndex: p38BewareReceivers[0].index,
-          start: p38BewareReceivers[0].start,
-          cipher: p38BewareReceivers[0].values,
-        },
-        p50LowAtBewareGp0: 31,
-      },
+      p50LowAtBewareGp0: 31,
     },
     plusOneLengthMatches: lengthMatches
       .filter((row) => row.gp0 === row.index + 1)
@@ -498,5 +502,5 @@ console.log(JSON.stringify({
       doubleIndexDirectHits.filter((row) => row.length >= 4),
   },
   interpretation:
-    "Signed index37 selects physical p37 and printed word37 under the already active zero-based source-number convention. Its raw GP0 is 38, pointing directly to the next authenticated word/page BEWARE; only p20 and p37 have GP0=i+1 among all 42 double-index receivers, and p37 alone also matches its source target length. The untouched four-rune receiver has the manuscript-unique H shell [g,p+K,A,a-g]. Across every direct authenticated-state H4 key shell plus zero, every authenticated four-rune target and both signs, [B,0,K,g] with subtraction is the sole hit and yields LUCK. Preserve as a strong local plaintext candidate; the second use of the source index remains the main route caveat.",
+    "Signed index37 selects physical p37 and printed word37 under the already active zero-based source-number convention. Under the canonical cross-page word parser its raw GP0 is 38, making p37 the sole GP0=i+1 case among all 42 double-index receivers and pointing directly to authenticated word/page38 BEWARE. It is also the sole such case among the seven target-length matches. The untouched four-rune receiver has the manuscript-unique H shell [g,p+K,A,a-g]. Across every direct authenticated-state H4 key shell plus zero, every authenticated four-rune target and both signs, [B,0,K,g] with subtraction is the sole hit and yields LUCK. Preserve as a strong local plaintext candidate; the second use of the source index remains the main route caveat.",
 }, null, 2));
