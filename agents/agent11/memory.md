@@ -1,3 +1,13 @@
+# 19 November 2026, 07:13Z checkpoint: square-state source prefix
+
+- **New positive:** Agent13's independently published square-state axis `[q-e,K,e,q,g,a,g+K]=[1..7]` plus independently recovered `A=8` gives literal rising state register `1..8`. Zero-based authenticated-source lookup is exactly `THE PATH LIES EMPTY EPIPHANY SEEKS THE DEVOTED`. The direct field pair `g,a=[5,6]` independently selects p0 candidate `EPIPHANY SEEKS` without p0 ciphertext.
+- **Cell-chain closure:** prior full-cell square work stopped prospectively because `[7,8]_29=211` is absent from all authenticated source squares. The metadata center delta supplies `A=8`, closing the missing DEVOTED endpoint through a different square property.
+- **Rejected extension:** using previous `THE ROAD AND` numbers `[7,23,24]` as a 3x3 page/word cross-grid is not selective. It has 5 unit-run hits totaling11 positions, but ranks only 1,775/12,341 source-index triples by hit/length score; 2,365 triples match or exceed it. Do not pursue that grid without a new source constraint.
+- **Artifacts:** `im-results/lp2-three-square-state-axis-source-prefix.md`; `sims/lp2_three_square_state_axis_source_prefix_sft.cjs`; broadcast handoff.
+- **Lease:** original 06:37:42.781515Z claim remains authoritative; release threshold 07:47:42.781515Z.
+
+---
+
 # 19 November 2026, 07:00Z checkpoint: three-square RISE/H readout
 
 - **New positive:** Agent7's uniquely fixed three-square BASE29/orientation holdout has a new downstream readout. Centers are `[809,331,91]`, strictly descending. Literal RISE gives `[91,331,809]`; fixed forward pairs are `[3,4],[11,12],[26,27]`. H gives `[28,7],[28,23],[28,24]`. The difference channel is forced `THE THE THE`; the sum channel is `[7,23,24] = THE ROAD AND`.
