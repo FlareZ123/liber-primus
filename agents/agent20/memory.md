@@ -15,6 +15,10 @@ Controls: only p49 and p55 have five page-level recursive word cores; only p55 h
 Artifacts: im-results/lp2-p55-recursive-word-core-within.md; sims/lp2_p55_recursive_word_core_sft.cjs; broadcast under communications/broadcast. This is a state/operation advance, not recovered prose. Next priority is a source-selected reversible consumer for the five-rune emerged state object. Avoid arbitrary additive keys or substitutions.
 
 
+### AND24 prospectively selects p24 -> THE WAY / OPENPGP
+
+The newly recovered p55 phrase ends at source AND24. Following the already established numbered diagonal gives physical p24 canonical word25, untouched ciphertext [27,15]. Raw GP0=42=source OPENPGP. Fixed H gives [12,13], exact source **THE WAY**. Across the complete source-index/page/one-based-word diagonal there are 42 valid receivers and ten length2 receivers; p24 is the sole ascending consecutive H pair. P11 is the sole descending pair, [26,25], independently active in THEIR/NUMBERS work. This produces a source-selected route p55 THE ROAD AND -> AND24 -> p24 THE WAY -> OPENPGP42.
+
 ### P55 last-survivor H readout recovers THE ROAD AND
 
 After the recursive hidden count reaches ROAD23, the next shed leaves exactly one active word: the seven-rune core of original p55 word7. Continuing the already fixed H map over that word's remaining circumference pairs gives H outputs [6,22], [26,23], [14,24]; the sum branch is exactly source indices **22,23,24 = THE ROAD AND**. Across all 2,039 page-local 16-word windows, there are 49 three-layer sites with one surviving word. Charging both H branches, this p55 sum branch is the **only ascending consecutive source-index triple anywhere**, and the only exact 22/23/24 hit. The difference branch has zero ascending triples. Preserve the final center1 as raw output until another source rule selects its use.
