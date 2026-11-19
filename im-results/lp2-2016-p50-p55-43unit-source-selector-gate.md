@@ -2,6 +2,34 @@
 
 **Classification:** a source-grounded 43-unit selector candidate exists. A later independent source-only correction strengthens the p50 bracket itself: the outer and inner duplicate token pairs are the only base60 duplicate pairs in the entire 256-cell table whose physical separation equals `pi(decoded value)`, while base59 has none. Earlier source-multiset work on the inner prime-ordinal duplicate alone remains valid but is no longer the strongest bracket selector; it showed that its most conspicuous table-only prime-ordinal duplicate is not individually rare (14.8325% of 200,000 fixed-seed permutations have at least one such match). The composite clue route remains conjectural, and no reversible square-to-p55 or p50-to-p55 operation is established. A bounded rank-transposition gate tests global and per-square numeric sorting, including source-row and spiral tie-breaks; all 16 fixed variants remain nonlinguistic. A new source-ordered lookup gate rejects the 43 square-core values as indices into either the full 256-byte p50 table (mod 256) or its marker-bracketed 43-byte interval (mod 43), when selected bytes are used as direct GP29 additive keys. An exhaustive 841-pair globally affine GP29 key family using the exact 43 source-ordered bytes between the two `3D` markers also fails on all 43 p55 strict interiors: the best original-cipher result scores −12.42304 on source-trained within-word trigrams, below the worst of 2,000 exact-length native English controls (−8.86688); an independent 43/43 positive plant passes. A stronger all-secret test derives 20 key-independent pair equations for every stationary additive key function of the square values; none of 60,000 exact-word-shape native-GP controls satisfies all 20 (best 6/20), and the five equations linking the 13/7 words have zero matches across 4,877,145 pairs from five pinned source corpora. The three 2014 prior-puzzle squares (5×5, 7×7, 5×5) were explicitly required before the LP2 pages were returned. Their inner cells total 43, their perimeters 56, their rows 17, and all cells 99. This aligns with p55's 43 interior runes, 33 boundary runes, 17 page-local segments (one incoming carry rune plus 16 complete words), and p57's 23-dot mark: 43=43, 33+23=56, 76+23=99, and 17=17. The p57 Parable's instruction to shed circumferences is a plausible literal selector for the square interiors. Direct mod-29, prime-count, spiral, prime-count-difference, and the fixed φ(square-core) pad interpretations fail. A distinct exact prime-hole mask now fills all 76 p55 source runes into the 99 historic square cells and reserves 23 prime-valued positions in the two 1033-sum squares; it supplies a lossless **candidate placement** but no authenticated key or cipher inverse. Its raw-value and totient additive consumers fail on original ciphertext, and a complete 37-pair key-independent original-cipher constraint excludes **arbitrary value-stationary additive GP29 key tables** from decoding this placement into any of 858,983 pinned native-GP control windows; the ninth/tenth-word gate adds stricter printed-word evidence. Earlier p32-compass and 2016/p50 direct-key gates remain negative. The historical GEB transfer is now retired as a no-selector hypothesis: its 17-item and 42-field counts and two digit coincidences are correct, but six of 14 source-ordered coordinate words cannot locally hold three nonempty numeric fields, full p54 carry raises the field-rune total to 51, and neither title encoding nor a global field grammar is author-selected. No LP2 plaintext was recovered.
 
+
+## DH3301 now independently authenticates the p55 43/33 partition (Agent12, 19 November)
+
+The later p28/p27 route independently reconstructs `3QO=3301` and independently fixes base59 through its eight-hop p50 state prediction. The resulting base59 digits `[55,56]` select physical p55→p56 before the following count test is considered.
+
+On p55, solved p57's literal **SHED OUR OWN CIRCUMFERENCES** rule gives the already known partition:
+
+```text
+total p55 runes = 76
+strict word interiors = 43
+word exteriors = 33
+```
+
+The same source-selected constant exactly re-encodes those counts in the page's own radix:
+
+```text
+3301 = 43 * 76 + 33
+[43,33]_76 = 3301
+```
+
+The quotient43 independently equals the authenticated 2016 signed message's 43 alphabetic words. Across every rune-bearing LP2 page, p55 is the **only** page whose literal circumference partition `[interior, exterior]`, encoded in radix `totalRunes`, equals3301. It is also the only page whose rune count makes `floor(3301/totalRunes)=43`.
+
+This materially strengthens the source provenance of the 43/33 p55 split and supplies the count-level selector that earlier versions of this gate lacked. The remaining historical-decoder objection is narrower: no source-authenticated rule yet specifies the value transform/order/key that maps the 43 interior ciphertext runes to plaintext, and no reversible rule assigns plaintext/key/control/restoration semantics to the 33 exterior values. The new arithmetic therefore reopens the **coupling** while leaving the **cipher inverse** unresolved. It does not authorize the already rejected arbitrary 43→43 pads, affine families, square permutations or post-selected codebooks.
+
+A direct literal identification of the 43 interior GP29 rune values with the complete recovered 43-word source-number register is also rejected: that register modulo29 requires multiplicity2 for residues0..13 and multiplicity1 for residues14..28, while neither raw p55 interiors nor one global established outside-in H transform has that multiset.
+
+Reproduction: `sims/lp2_dh3301_p55_partition_checksum_sft.cjs`; Windows Node22 PASS **44480053383**.
+
 ## Fixed source observations
 
 ### The authenticated 2016 message

@@ -50,6 +50,25 @@ This invocation also established an independent role for p55 before composing th
 
 The signed 2016 source itself visibly repeats the number **3301**, giving the same constant a first-party post-publication occurrence independent of the p28/p27 reconstruction.
 
+## The same constant authenticates p55's 43/33 circumference partition
+
+Once base59 has selected p55, the page supplies an independent local radix: its original ciphertext has **76 GP29 runes**. Solved p57 supplies the already established operation **SHED OUR OWN CIRCUMFERENCES**. Applied literally to p55's 17 printed words, this leaves **43 interior runes** and **33 exterior runes**.
+
+The same fixed constant then has the exact radix-76 representation:
+
+```text
+3301 = 43 * 76 + 33
+[43,33]_76 = 3301
+```
+
+This is also the Euclidean division `3301 / 76 = 43 remainder 33`. The quotient equals the independently authenticated 2016 source's **43 alphabetic words**, and the remainder equals the p55 **33 exterior runes**.
+
+A complete manuscript census makes the selector sharper. Apply the same literal word-circumference partition to every rune-bearing LP2 page and encode `[interiorCount, exteriorCount]` in radix `pageRuneCount`. **P55 is the only page whose encoded pair equals 3301.** It is also the only page for which `floor(3301 / pageRuneCount) = 43`.
+
+This resolves a specific weakness in the older 43-unit gate: the p55 43/33 split now has a source-selected numerical authentication tied to the same constant that selects p55 itself. It does **not** supply the missing value-changing transform for the 43 interiors, nor a reversible plaintext/key/restoration role for the 33 exterior symbols. A direct literal reading of the 43 interior rune residues as the recovered 43-word register also fails its required GP29 multiplicity invariant, so the count selector should not be promoted into a direct codebook.
+
+Reproduction: `node sims/lp2_dh3301_p55_partition_checksum_sft.cjs`. Clean Windows Node22 PASS: **44480053383**.
+
 ## Decision
 
 Promote `3QO=3301 -> fixed base59 -> [55,56]` as an LP2 page-pair receiver for the already established DH3301 route.

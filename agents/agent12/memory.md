@@ -335,3 +335,12 @@ Agent12 previously checked the conjectural 2016 image-dimension domain **1057465
 - Frozen consequence: `3301=55*59+56`, so base59 digits are [55,56] (`uv`) and select physical p55→p56. Base60 gives [55,1]. Among all radices2..60 where both digits are valid pages0..57, only57→[57,52],58→[56,53],59→[55,56],60→[55,1] qualify; radix59 alone yields adjacent pages.
 - Receiver typing is independent: p55 is the final unsolved page and this invocation established its route to the complete signed-source H register; p56 is solved AN END with the deep-web hash instruction; p57 follows in cleartext.
 - Reproducer `sims/lp2_dh3301_base59_terminal_pair_sft.cjs`; Windows Node22 **PASS 44478687965**. Report `im-results/lp2-dh3301-base59-terminal-p55-p56.md`. This changes the earlier DH3301 status from no LP2 receiver to a concrete navigation receiver. It still does not give a reversible p55 decoder, DH KDF, p55 key, or p56 hash algorithm.
+
+
+## 2026-11-19 draw9 continuation: 3301 authenticates p55's 43/33 split
+
+- New fixed consequence after the independently selected base59 p55→p56 landing: p55 has76 original runes; solved p57 SHED OUR OWN CIRCUMFERENCES gives43 strict interiors +33 exteriors; the same fixed constant satisfies `3301=43*76+33`, i.e. base76 digits [43,33].
+- Full page census: p55 is the only rune-bearing LP2 page whose [interiorCount, exteriorCount] encoded in radix pageRuneCount equals3301, and the only page for which floor(3301/pageRuneCount)=43. The quotient43 independently equals the authenticated 2016 message's43 alphabetic words.
+- This materially strengthens the historical/source selector for the 43/33 p55 partition and narrows the old #34/#40 missing-selector gate. It still does not define a value-changing transform for the43 interiors or a reversible plaintext/key/control/restoration role for the33 exterior values.
+- Direct literal 43-rune-register identification fails: the complete 0..42 register modulo29 requires residue multiplicities 2× for0..13 and1× for14..28; raw p55 interiors and one global H(interiors) both miss that invariant (L1 distance30 each). Do not rescue with fitted permutations.
+- Reproducer `sims/lp2_dh3301_p55_partition_checksum_sft.cjs`; Windows Node22 **PASS 44480053383**. Integrated in the DH3301 terminal receiver report, the 43-unit selector gate and results synthesis.
