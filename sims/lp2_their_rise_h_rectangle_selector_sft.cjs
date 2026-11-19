@@ -336,9 +336,72 @@ assert.equal(
 );
 
 // Exact downstream consequence on the existing source-selected p28 object:
-// assign the ordered source pair [e,-K] to [center singleton, word28].
+// assign the ordered source pair [e,-K] to [center singleton, the adjacent five-rune word].
 // This recovers READ OUT exactly.
 const parts = transcription.split(/^\s*%\s*$/m);
+
+// Canonical page-local words must retain printed words that continue across
+// physical page boundaries. Crossing words are excluded from either page's
+// complete-word ordinals.
+const unknownSegments = parts.slice(0, 55);
+const canonicalPages = unknownSegments.map((text, segment) => ({
+  page: segment >= 50 ? segment + 1 : segment,
+  words: [],
+  offset: 0,
+}));
+let currentCanonicalWord = [];
+let canonicalStartSegment = 0;
+let canonicalEndSegment = 0;
+let canonicalStartOffset = 0;
+let crossingWordCount = 0;
+
+function flushCanonicalWord() {
+  if (!currentCanonicalWord.length) return;
+  if (canonicalStartSegment === canonicalEndSegment) {
+    const page = canonicalPages[canonicalStartSegment];
+    page.words.push({
+      ordinal: page.words.length + 1,
+      start: canonicalStartOffset,
+      end: canonicalStartOffset + currentCanonicalWord.length - 1,
+      length: currentCanonicalWord.length,
+      values: currentCanonicalWord.slice(),
+    });
+  } else {
+    crossingWordCount += 1;
+  }
+  currentCanonicalWord = [];
+}
+
+for (let segment = 0; segment < unknownSegments.length; segment += 1) {
+  for (const char of [...unknownSegments[segment]]) {
+    const value = runeIndex.get(char);
+    if (value !== undefined) {
+      if (!currentCanonicalWord.length) {
+        canonicalStartSegment = segment;
+        canonicalStartOffset = canonicalPages[segment].offset;
+      }
+      canonicalEndSegment = segment;
+      currentCanonicalWord.push(value);
+      canonicalPages[segment].offset += 1;
+    } else if (char === "/" || /\s/u.test(char)) {
+      // Printed line and physical-page wraps may continue a word.
+    } else {
+      flushCanonicalWord();
+    }
+  }
+}
+flushCanonicalWord();
+
+const canonicalWords = canonicalPages.flatMap((page) =>
+  page.words.map((word) => ({page: page.page, ...word}))
+);
+const canonicalWordsByPage = new Map(
+  canonicalPages.map((page) => [page.page, page.words])
+);
+const canonicalPageWords = (page) => canonicalWordsByPage.get(page) || [];
+
+assert.equal(crossingWordCount, 32);
+assert.equal(canonicalWords.length, 2864);
 
 // Fresh same-index consequence: BE(34) -> PATHS(40) fixes the only
 // nonzero H coordinate of a same-GP0 two-rune subtraction key.
@@ -357,7 +420,7 @@ const predictedP34Cipher = beValues.map((value, index) =>
 );
 assert.deepEqual(predictedP34Cipher, [12, 23]);
 
-const p34Words = parsePage(parts[34]);
+const p34Words = canonicalPageWords(34);
 const p34StateReceivers = p34Words.filter(
   (word) =>
     word.values.length === beValues.length &&
@@ -391,7 +454,7 @@ for (const source of message) {
   const sourceRise = mod29(message[source.index + rise].gp0 - source.gp0);
   const key = HInv(sourceRise, 0);
   const predicted = target.map((value, index) => mod29(value + key[index]));
-  const pageWords = parsePage(parts[source.index]);
+  const pageWords = canonicalPageWords(source.index);
   const matches = pageWords.filter(
     (word) =>
       word.values.length === 2 &&
@@ -437,18 +500,20 @@ const p28TheCipher = gp(p28Source.word).map((value, index) =>
 );
 assert.deepEqual(p28TheCipher, [24, 25]);
 
-const p28Words = parsePage(parts[28]);
+const p28Words = canonicalPageWords(28);
 const p28Runes = corpus.pages.find((page) => page.page === 28).indices;
 assert.equal(p28Runes.length, 269);
 const centerOffset = Math.floor(p28Runes.length / 2);
 assert.equal(centerOffset, 134);
-const word28 = p28Words[27];
-assert.equal(word28.start, 135);
-assert.equal(word28.length, state.g);
-const word29 = p28Words[28];
-assert.equal(word29.start, 140);
-assert.deepEqual(word29.values, p28TheCipher);
-const p28The = word29.values.map((value, index) =>
+const readoutWord = p28Words[26];
+assert.equal(readoutWord.ordinal, 27);
+assert.equal(readoutWord.start, 135);
+assert.equal(readoutWord.length, state.g);
+const p28TheWord = p28Words[27];
+assert.equal(p28TheWord.ordinal, 28);
+assert.equal(p28TheWord.start, 140);
+assert.deepEqual(p28TheWord.values, p28TheCipher);
+const p28The = p28TheWord.values.map((value, index) =>
   mod29(value - p28TheKey[index])
 );
 assert.deepEqual(p28The, gp("THE"));
@@ -458,21 +523,27 @@ const [centerExponent, wordExponent] = tailEvent.missing;
 // Manuscript-wide exact packet control for the held-out p28 prediction.
 let twoRuneWordCount = 0;
 const p28PacketHits = [];
-for (let page = 0; page <= 55; page += 1) {
-  for (const word of parsePage(parts[page])) {
-    if (word.values.length !== 2) continue;
-    twoRuneWordCount += 1;
-    if (word.values.every((value, index) => value === p28TheCipher[index])) {
-      p28PacketHits.push({ page, start: word.start });
-    }
+for (const word of canonicalWords) {
+  if (word.values.length !== 2) continue;
+  twoRuneWordCount += 1;
+  if (word.values.every((value, index) => value === p28TheCipher[index])) {
+    p28PacketHits.push({
+      page: word.page,
+      ordinal: word.ordinal,
+      start: word.start,
+    });
   }
 }
-assert.equal(twoRuneWordCount, 473);
-assert.deepEqual(p28PacketHits, [{ page: 28, start: 140 }]);
+assert.equal(twoRuneWordCount, 448);
+assert.deepEqual(p28PacketHits, [{
+  page: 28,
+  ordinal: 28,
+  start: 140,
+}]);
 
 const decoded = [
   Number(BigInt(p28Runes[centerOffset]) ** BigInt(centerExponent) % 29n),
-  ...word28.values.map((value) =>
+  ...readoutWord.values.map((value) =>
     Number(BigInt(value) ** BigInt(wordExponent) % 29n)
   ),
 ];
