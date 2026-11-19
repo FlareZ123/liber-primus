@@ -49,6 +49,52 @@ Subtract:
 
 Thus the source-selected p11 receiver recovers the same authenticated word that selected it.
 
+## The untouched receiver says THEIR NUMBERS before decryption
+
+P11 word11 is:
+
+```text
+[11,14]
+```
+
+Apply the already used two-coordinate H arithmetic, reading the sum coordinate before the difference coordinate:
+
+```text
+sum        = 11 + 14 = 25
+difference = 11 - 14 = -3 = 26 mod29
+
+[25,26]
+```
+
+Those are authenticated source indices:
+
+```text
+25 THEIR
+26 NUMBERS
+```
+
+giving the exact adjacent phrase:
+
+```text
+THEIR NUMBERS
+```
+
+This is a ciphertext-side selector that does not use the target plaintext `IS`.
+
+Charge the exact `[sum,difference]=[25,26]` packet over all **465** complete two-rune manuscript words. It occurs once:
+
+```text
+p11 word11, offset49
+```
+
+This directly echoes the authenticated instruction:
+
+```text
+their numbers are the direction
+```
+
+and materially sharpens p11 beyond a source-labelled crib inverse.
+
 ## Why the selector is stronger than the raw key
 
 The exact key `[1,28]` is not unique enough on its own.
@@ -148,7 +194,7 @@ p11 word11 -> IS
 
 as a strong local plaintext candidate.
 
-The repeated-word family is finite and leaves one exact recovery. The selector and operator are source-visible. The interpretation was still recognized after the source word IS was already known from the authenticated carrier, so this is not a blind plaintext discovery.
+The repeated-word family is finite and leaves one exact recovery. The untouched receiver independently emits the unique source-index packet `[25,26]=THEIR NUMBERS`. The selector and operator are source-visible. The interpretation was still recognized after the source word IS was already known from the authenticated carrier, so preserve the result as a strong local recovery rather than treating it as a blind plaintext discovery.
 
 A decisive upgrade would be a different source word whose occurrence count prospectively selects the same H-rectangle grammar and recovers a previously unopened receiver, or an original-page clue that explicitly identifies occurrence count as the p11 scalar.
 
