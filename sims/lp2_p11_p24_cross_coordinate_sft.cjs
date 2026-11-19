@@ -195,6 +195,68 @@ for (let left = 0; left < unitPackets.length; left += 1) {
 }
 
 const unitHits = crossCases.filter((row) => row.unitRun);
+assert.deepEqual(unitHits, [{
+  pagePacket: "IS11",
+  wordPacket: "AND24",
+  pageIndex: 26,
+  wordIndex: 12,
+  page: 26,
+  ordinal: 13,
+  start: 60,
+  raw: [15, 15, 28],
+  transform: "Hsplit",
+  output: [16, 15, 14],
+  unitRun: true,
+  increasing: [14, 15, 16],
+  words: ["ITS", "WORDS", "ARE"],
+}]);
+
+// Treat the unique first-stage output as a derived packet, then charge every
+// cross with the three independently established packets under the same
+// coordinate grammar. This is a prospective continuation test.
+const derivedPacket = {
+  selector: "P26W13",
+  values: unitHits[0].increasing,
+};
+const secondStageHits = [];
+for (const basePacket of unitPackets) {
+  for (const [pagePacket, wordPacket] of [
+    [derivedPacket, basePacket],
+    [basePacket, derivedPacket],
+  ]) {
+    for (const pageIndex of pagePacket.values) {
+      for (const wordIndex of wordPacket.values) {
+        const ordinal = wordIndex + 1;
+        const object = getWord(pageIndex, ordinal);
+        if (!object) continue;
+        for (const [transform, output] of [
+          ["Hpair", Hpair(object.values)],
+          ["Hsplit", Hsplit(object.values)],
+        ]) {
+          if (
+            isUnitRun(output)
+            && output.every((value) => value >= 0 && value < source.length)
+          ) {
+            secondStageHits.push({
+              pagePacket: pagePacket.selector,
+              wordPacket: wordPacket.selector,
+              pageIndex,
+              wordIndex,
+              page: pageIndex,
+              ordinal,
+              start: object.start,
+              raw: object.values,
+              transform,
+              output,
+              increasing: increasing(output),
+              words: increasing(output).map((index) => source[index]),
+            });
+          }
+        }
+      }
+    }
+  }
+}
 
 // The p11+p24 combination is independently motivated by the already recovered
 // source fragments THEIR NUMBERS and THE WAY. Report its four receivers in
@@ -220,6 +282,10 @@ console.log(JSON.stringify({
   },
   p11p24,
   unitHits,
+  secondStage: {
+    derivedPacket,
+    hits: secondStageHits,
+  },
   continuationTarget: {
     prefixIndices: [12, 13],
     prefixWords: source.slice(12, 14),
