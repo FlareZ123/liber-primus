@@ -440,6 +440,29 @@ assert.deepEqual(fixedKeyHits, [{
   target: "THEIR",
 }]);
 
+
+// Raw source-index readout and duplicate-THEIR bridge.
+// This is a second interpretation of the already selected ciphertext, so it is
+// supporting route structure rather than an independent statistical control.
+const p22LexicalReadout = p22Receiver.values.map((value) => source[value]);
+assert.deepEqual(p22LexicalReadout, ["THE", "THE", "THE", "AND"]);
+const lexicalPatternHits = canonicalFourRuneWords.filter((word) =>
+  word.values.map((value) => source[value]).join(" ") === "THE THE THE AND"
+);
+assert.deepEqual(
+  lexicalPatternHits.map((word) => [word.page, word.index, word.start, word.values]),
+  [[22, 19, 99, [22, 28, 28, 24]]]
+);
+
+const finalRawSourceIndex = p22Receiver.values.at(-1);
+assert.equal(finalRawSourceIndex, 24);
+assert.equal(source[finalRawSourceIndex], "AND");
+assert.equal(source[finalRawSourceIndex + 1], "THEIR");
+assert.equal(p22KeyFamilyHits[0].target, source[finalRawSourceIndex + 1]);
+assert.equal(p22Receiver.index, 19);
+assert.equal(finalRawSourceIndex - p22Receiver.index, g);
+assert.equal((finalRawSourceIndex + 1) - p22Receiver.index, a);
+
 // P21 was independently established before this route as an IS state object.
 const isValues = gp("IS");
 const isSum = isValues.reduce((sum, value) => sum + value, 0);
@@ -522,6 +545,14 @@ console.log(JSON.stringify({
       raw_shell_occurrences: rawShellHits.length,
       fixed_key_configurations: 9162,
       fixed_key_hits: fixedKeyHits,
+      raw_source_readout: p22LexicalReadout,
+      raw_source_readout_occurrences: lexicalPatternHits.length,
+      their_occurrences: {
+        first: p22Receiver.index,
+        separator: finalRawSourceIndex,
+        second: finalRawSourceIndex + 1,
+        rise: (finalRawSourceIndex + 1) - p22Receiver.index,
+      },
     },
   },
   p23_prior_line_lengths: p23LineLengths,
