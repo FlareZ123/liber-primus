@@ -65,12 +65,23 @@ function wordLengths(line) {
   return (line.match(/[\u16A0-\u16FF]+/gu) || []).map((word) => [...word].length);
 }
 
-/** @param {number} page @returns {number[][]} */
-function pageLineLengths(page) {
+/** @param {number} page @returns {{lens:number[],terminalGp0:number}[]} */
+function pageLineRecords(page) {
   return physicalPart(page)
     .split(/\n/u)
     .filter((line) => /[\u16A0-\u16FF]/u.test(line))
-    .map(wordLengths);
+    .map((line) => {
+      const words = line.match(/[\u16A0-\u16FF]+/gu) || [];
+      const terminalRune = [...words.at(-1)].at(-1);
+      const terminalGp0 = runeIndex.get(terminalRune);
+      assert.notEqual(terminalGp0, undefined);
+      return { lens: words.map((word) => [...word].length), terminalGp0 };
+    });
+}
+
+/** @param {number} page @returns {number[][]} */
+function pageLineLengths(page) {
+  return pageLineRecords(page).map((row) => row.lens);
 }
 
 /** @param {number} page @returns {{start:number,end:number,length:number}[]} */
@@ -177,8 +188,10 @@ const theirPositions = sourceWords
   .map((entry) => entry.index);
 assert.deepEqual(theirPositions, [19, 25]);
 
-const p23Line1 = pageLineLengths(23)[0];
+const p23Line1Record = pageLineRecords(23)[0];
+const p23Line1 = p23Line1Record.lens;
 assert.deepEqual(p23Line1, [2, 6, 3, 5, 4]);
+assert.equal(p23Line1Record.terminalGp0, 25);
 assert.equal(spellCardinals(p23Line1), "THEORIG");
 
 const state = {
@@ -233,11 +246,57 @@ assert.equal(secondRise[0], theirPositions[1]);
 assert.equal(theirPositions[1] - theirPositions[0], state.a);
 const fiveDotCount = 5;
 assert.equal(spellCardinals([fiveDotCount]), "I");
-assert.equal(spellCardinals([theirPositions[1]]), "N");
+assert.equal(spellCardinals([p23Line1Record.terminalGp0]), "N");
 assert.equal(
-  spellCardinals([...p23Line1, fiveDotCount, theirPositions[1]]),
+  spellCardinals([...p23Line1, fiveDotCount, p23Line1Record.terminalGp0]),
   "THEORIGIN"
 );
+assert.equal(secondRise[0], p23Line1Record.terminalGp0);
+
+let fiveWordLines = 0;
+const localPacketPrefixHits = [];
+for (let page = 0; page <= 57; page += 1) {
+  if (page === 50) continue;
+  const records = pageLineRecords(page);
+  for (let lineIndex = 0; lineIndex < records.length; lineIndex += 1) {
+    const row = records[lineIndex];
+    if (row.lens.length !== 5) continue;
+    fiveWordLines += 1;
+    const output = spellCardinals([...row.lens, fiveDotCount, row.terminalGp0]);
+    if (output.startsWith("THEORI")) {
+      localPacketPrefixHits.push({
+        page,
+        line: lineIndex + 1,
+        lens: row.lens,
+        terminalGp0: row.terminalGp0,
+        output
+      });
+    }
+  }
+}
+assert.equal(fiveWordLines, 188);
+assert.deepEqual(localPacketPrefixHits, [{
+  page: 23,
+  line: 1,
+  lens: [2, 6, 3, 5, 4],
+  terminalGp0: 25,
+  output: "THEORIGIN"
+}]);
+
+const motifAdjacentControls = [
+  { page: 7, row: pageLineRecords(7).at(-1) },
+  { page: 23, row: pageLineRecords(23)[0] },
+  { page: 56, row: pageLineRecords(56).at(-1) }
+].map(({ page, row }) => ({
+  page,
+  cardinals: [...row.lens, fiveDotCount, row.terminalGp0],
+  output: spellCardinals([...row.lens, fiveDotCount, row.terminalGp0])
+}));
+assert.deepEqual(motifAdjacentControls, [
+  { page: 7, cardinals: [2, 4, 3, 2, 3, 5, 19], output: "THGRTHRIH" },
+  { page: 23, cardinals: [2, 6, 3, 5, 4, 5, 25], output: "THEORIGIN" },
+  { page: 56, cardinals: [2, 2, 4, 3, 3, 4, 5, 15], output: "THTHGRRGIB" }
+]);
 
 // Charge every field-order assignment on every five-word line of every prime physical page.
 const roleOrders = permutations(["K", "a", "e", "g", "q"]);
@@ -329,6 +388,13 @@ console.log(JSON.stringify({
     sourceSelector: "five-dot p7->p23 vertical mirror selects p23 initial line",
     line1WordLengths: p23Line1,
     prefix: spellCardinals(p23Line1),
+    fiveDotCount,
+    terminalGp0: p23Line1Record.terminalGp0,
+    completedCardinals: [...p23Line1, fiveDotCount, p23Line1Record.terminalGp0],
+    completedInstruction: spellCardinals([...p23Line1, fiveDotCount, p23Line1Record.terminalGp0]),
+    fiveWordLineControlCount: fiveWordLines,
+    localPacketPrefixHits,
+    motifAdjacentControls,
     originState: state
   },
   stateHandoff: {
@@ -343,11 +409,10 @@ console.log(JSON.stringify({
     signedTheirPositions: theirPositions,
     p33HChain: [lowerHeading, firstRise, secondRise],
     rise: theirPositions[1] - theirPositions[0],
-    fiveDotCount,
-    T5: spellCardinals([fiveDotCount]),
-    T25: spellCardinals([theirPositions[1]]),
-    completedCardinals: [...p23Line1, fiveDotCount, theirPositions[1]],
-    completedInstruction: spellCardinals([...p23Line1, fiveDotCount, theirPositions[1]])
+    signedRiseDestination: theirPositions[1],
+    TOfRiseDestination: spellCardinals([theirPositions[1]]),
+    equalsP23TerminalGp0: theirPositions[1] === p23Line1Record.terminalGp0,
+    role: "independent confirmation of the p23 terminal cardinal 25"
   },
   chargedFamily: {
     primePageFiveWordLines,
