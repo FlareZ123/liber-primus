@@ -17,9 +17,10 @@ const transcription = read('resources/liber-primus/lp2-transcription.txt');
 const signed = read('resources/cicada2016-4gq25.md');
 
 function parseSignedWords(md) {
-  const block = md.match(/```text\nHello\.[\s\S]*?\n```/u);
-  assert.ok(block, 'normalized authenticated 2016 text block not found');
-  const alpha = block[0].match(/[A-Za-z]+/gu).map((word) => word.toUpperCase());
+  const start = md.indexOf('Hello.');
+  const finish = md.indexOf('```', start);
+  assert.ok(start >= 0 && finish > start, 'normalized authenticated 2016 text block not found');
+  const alpha = md.slice(start, finish).match(/[A-Za-z]+/gu).map((word) => word.toUpperCase());
   const end = alpha.indexOf('OPENPGP');
   assert.ok(end >= 0);
   return alpha.slice(0, end + 1);
