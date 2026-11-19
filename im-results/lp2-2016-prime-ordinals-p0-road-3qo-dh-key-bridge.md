@@ -178,6 +178,29 @@ p50 one-based cells103/104   -> 3QO = 3301
 
 The difference in origins must remain explicit. The manuscript does not currently contain an instruction saying “use zero-based on p0 and one-based on p50.” The value of the convergence is that both readings were independently fixed by earlier source-specific routes.
 
+## ROAD's four numeric followers are uniquely DH-valued
+
+The source-selected plaintext receiver continues from `THE` at offsets103–104 through `ROAD` at offsets105–108. Use those four ROAD integers as the same one-based p50 cell numbers:
+
+| p0 ROAD offset | p50 cell | byte/base60 value | mod29 | DH label |
+| ---: | ---: | ---: | ---: | --- |
+| 105 | 105 | 122 | **6** | **a** |
+| 106 | 106 | 63 | **5** | **g** |
+| 107 | 107 | 31 | **2** | **K** |
+| 108 | 108 | 218 | **15** | **b** |
+
+Thus the continuation is exactly:
+
+```text
+[a,g,K,b] = [6,5,2,15]
+```
+
+This is the **only** four-consecutive-cell window among all 256 p50 bytes whose four residues mod29 are all members of the independently derived DH state set `{p,g,a,A,B,b,K}`.
+
+The observation is source-constrained in two ways: the start and length come from the independently predicted word `ROAD`, and the target p50 table was already part of the signed-word pointer and DH navigation routes. No search over p50 start positions was needed to choose cell105.
+
+This does not yet reveal the operation that turns those four DH values into the required additive increments for plaintext `ROAD`, which are `[12,5,1,4]`. Direct subtraction of `[a,g,K,b]` does not spell ROAD. Preserve the exact `a,g,K,b` run as a state/route clue and require a source-visible transform before using it as a keystream.
+
 ## Why this changes the frontier
 
 Before this result, the p0 `THE ROAD` placement was a navigation prediction whose value-changing cipher remained unspecified.
