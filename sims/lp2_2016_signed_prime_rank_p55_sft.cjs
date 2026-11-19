@@ -1,6 +1,7 @@
 "use strict";
 /**
- * SFT: authenticated 2016 words -> stable GP-prime rank -> p55's 43 interiors.
+ * SFT: authenticated 2016 words -> stable GP-prime rank and word-length-rank
+ * controls -> p55's 43 interiors.
  * Run from the repository root with Node.js 22:
  *   node sims/lp2_2016_signed_prime_rank_p55_sft.cjs
  * This read-only script tests one locked rank and its exact inverse.
@@ -252,6 +253,55 @@ const wordLengthMultiplicativeGate=["multiply","divide"].map(mode=>{
   return {mode,score:value,output:plain.map(i=>corpus.translit[i]).join(""),
     fullOriginalRoundTrip:true,plantedPositiveRecovered:43};
 });
+const asciiWordLengths = sourceWords.map(w => w.length);
+/** @param {number[]} values @param {"ascending"|"descending"} direction */
+function stableLengthOrder(values, direction) {
+  return Array.from({length:43}, (_,i)=>i).sort((a,b)=>
+    (direction === "ascending" ? values[a]-values[b] : values[b]-values[a]) || a-b);
+}
+/** @param {number[]} a @param {number[]} order @param {"rank"|"unrank"} mode */
+function permuteByOrder(a, order, mode) {
+  if (mode === "rank") return order.map(k => a[k]);
+  const inverse = Array(a.length);
+  for (let i=0;i<a.length;i++) inverse[order[i]] = a[i];
+  return inverse;
+}
+const expectedLengthRankScores = {
+  "ASCII:ascending:rank": -6.615916866772693,
+  "ASCII:ascending:unrank": -7.093699965885596,
+  "ASCII:descending:rank": -6.750193833607633,
+  "ASCII:descending:unrank": -7.043706015086984,
+  "GP:ascending:rank": -6.368781980871491,
+  "GP:ascending:unrank": -6.025048614093973,
+  "GP:descending:rank": -6.470602715374585,
+  "GP:descending:unrank": -6.572442579152487
+};
+const lengthRankOutcomes = [];
+for (const [measure, values] of [
+  ["ASCII", asciiWordLengths], ["GP", gpWordLengths]
+]) {
+  for (const direction of ["ascending","descending"]) {
+    const order = stableLengthOrder(values,direction);
+    for (const mode of ["rank","unrank"]) {
+      const plain = permuteByOrder(original,order,mode);
+      const inverseMode = mode === "rank" ? "unrank" : "rank";
+      assert.deepEqual(permuteByOrder(plain,order,inverseMode),original);
+      const plantCipher = permuteByOrder(plantPlain,order,inverseMode);
+      assert.deepEqual(permuteByOrder(plantCipher,order,mode),plantPlain);
+      const value = score(plain);
+      const expected = expectedLengthRankScores[`${measure}:${direction}:${mode}`];
+      assert.ok(Math.abs(value-expected)<1e-9,"frozen length-rank score differs");
+      assert.ok(value < control[0],"length-rank output unexpectedly reaches native controls");
+      lengthRankOutcomes.push({
+        measure,direction,mode,score:value,
+        nativeControlsAtOrBelow:control.filter(s=>s<=value).length,
+        nativeControlCount:control.length,
+        output:plain.map(i=>corpus.translit[i]).join(""),
+        exactOriginalRoundTrip:true,plantedNativeRecovered:43
+      });
+    }
+  }
+}
 const outcomes = [];
 for (const mode of ["rank", "unrank"]) {
   const undo = mode === "rank" ? "unrank" : "rank";
@@ -293,7 +343,8 @@ console.log(JSON.stringify({
   sourceWords,primeSums:sums,rankOrderZeroBased:ranks,
   interiorOffsets,originalCipher:original,exteriorOffsets,
   fixedTwoRuneWords,nativeTwoRuneWordControls,
-  gpWordLengths,zeroPrimeSumKeyPositions,wordLengthMultiplicativeGate,
+  gpWordLengths,asciiWordLengths,zeroPrimeSumKeyPositions,wordLengthMultiplicativeGate,
+  lengthRankOutcomes,
   nativePlantScore:score(plantPlain),nativeControlMedian:control[509],
   outcomes,
   pureTranspositionNecessaryInvariant:{originalCounts,originalOnegram,
