@@ -322,6 +322,17 @@ assert.deepEqual(reciprocalGp0Cycles,[{
   words:["FOUND","GOOD"],
   gp0:[36,35],
 }]);
+const successorGp0Edges=sourceGp0Rows
+  .filter((row)=>row.gp0===row.index+1)
+  .map((row)=>({from:row.index,word:row.word,to:row.gp0,target:sourceGp0Rows[row.gp0].word}));
+assert.deepEqual(successorGp0Edges,[
+  {from:34,word:"BE",to:35,target:"FOUND"},
+  {from:35,word:"FOUND",to:36,target:"GOOD"},
+]);
+assert.equal(sourceGp0Rows[19].word,"THEIR");
+assert.equal(sourceGp0Rows[19].gp0,34);
+assert.equal(sourceGp0Rows[25].word,"THEIR");
+assert.equal(sourceGp0Rows[25].gp0,34);
 assert.deepEqual(sourceGp0Rows[35],{
   index:35,word:"FOUND",values:[0,3,1,9,23],gp0:36,
 });
@@ -335,6 +346,6 @@ console.log(JSON.stringify({
   decoder:{key:exactKey,sign:"subtract",plaintext:good,word:"GOOD",keyStateTyping:["p+K","B","-K","p+e"]},
   narrowControl:{fiveRuneWords:318,decodedOutputs:15264,qCenteredWords:9,qCenteredOutputs:432,hits:narrowHits},
   broadControl:{atomSets:15,decodedOutputs:228960,totalHits:broadHits.length,qCenteredOutputs:6480,qCenteredHits:1},
-  sourceReciprocalGp0:{cycles:reciprocalGp0Cycles},
+  sourceReciprocalGp0:{cycles:reciprocalGp0Cycles,successorEdges:successorGp0Edges,theirGp0:sourceGp0Rows[19].gp0},
   decision:"Strong local GOOD candidate under literal EMPTY-center removal and finite signed direction-number key family; preserve chronology caveat before generalizing."
 },null,2));
