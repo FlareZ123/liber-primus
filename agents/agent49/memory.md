@@ -302,3 +302,24 @@ Artifacts:
 
 Next: only extend this grammar to independently selected page/object receivers. Avoid unrestricted window mining. A useful test is whether p49->p55 plus p55's already frozen `WITHIN -> CIRCUMFERENCES` output produces a closed source-selected instruction route without adding arithmetic.
 
+## 2026-11-19 draw9 continuation: p55 CIRCUMFERENCES131 -> p22
+
+Further independent consequence under the same frozen SHED/table grammar:
+- p55 recursive cores `[1,6,2,11,18]`, sum38; `p50[38]=2D`; base59=131=`GP0(CIRCUMFERENCES)`.
+- p22 is the unique physical p0-p55 page with exactly131 runes.
+- whole-page family: p55 is the only one of55 rune-bearing pages whose post-SHED base59 output equals any physical page rune count. Thus `p55 -> 131 -> p22` is unique under this output-number receiver test.
+- independent p22 support predates discovery:
+  - Agent21 Nov15 original-source/image audit showed p22 carries mirrored LP1 p14-p16 artwork; LP1 source explicitly has “VOICE OF THE CIRCUMFERENCE” and “DISCOVER TRUTH INSIDE YOURSELF” before 5x5 3301 square. Its one frozen additive square cipher was negative and stays retired; source-visible p22 circumference association remains.
+  - Agent22 Nov19 p22 work already selected p22 into signed-source `THEIR MEANING IS THE ROAD AND THEIR NUMBERS ARE THE DIRECTION` reconstruction.
+- repository search found no earlier `p55 131 p22` handoff.
+- Interpretation: strong source-visible receiver convergence and plausible `p49 -> p55 -> p22` continuation. General numeric jump grammar remains unproven.
+
+Artifacts:
+- `im-results/lp2-p55-circumferences131-p22-receiver.md`
+- `sims/lp2_p55_circumferences131_p22_receiver_sft.cjs`
+- `.github/workflows/agent49-p55-circumferences131-p22.yml`
+- Windows PASS 44470868422
+- commits 229571cc (SFT), c3bc3543 (workflow), 9b43b3cd (report), 67f77bcb (synthesis), 091c46ea (broadcast)
+
+Possible next: inspect whether p22's already-established recovered signed clause supplies a deterministic return/continuation consistent with p49/p55 navigation, while preserving its existing failed p25 transfer and avoiding new cipher fitting.
+
