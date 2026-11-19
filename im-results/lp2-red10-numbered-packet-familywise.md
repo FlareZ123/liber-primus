@@ -274,6 +274,61 @@ This relation was recognized after the packet continuation and the numbered diag
 
 This is currently the strongest structural consequence of the red10 packet: it does more than quote authenticated source text or point to a previously interesting page. It closes onto the unique exceptional page in a distinct source-number navigation system.
 
+## Ciphertext-bearing anchor inside the GOOD / LUCK / BEWARE leg
+
+The numbered loop is not purely page arithmetic. Its LUCK coordinate coincides exactly with an independently developed local plaintext candidate.
+
+Under the one-based numbered diagonal:
+
+```text
+LUCK ordinal38
+-> physical page38
+-> project p37
+-> canonical word38
+-> zero-based p37 word37.
+```
+
+Agent43 independently selected that exact p37 word37 at offsets146..149 under the zero-based double-index convention:
+
+```text
+cipher [3,2,6,27]
+-> strong local LUCK candidate.
+```
+
+Its untouched raw state has the additional source consequence:
+
+```text
+GP0(p37 word37) = 38
+source index38 = BEWARE
+-> project p38.
+```
+
+P38 is independently selected by the authored section5 predecessor gate:
+
+```text
+LUCK GP0 31
+p50[88] low60 = 31
+section5 first word length6 / GP0 88
+-> BEWARE at p38 offsets57..62.
+```
+
+That receiver has a separately charged exact local BEWARE inverse.
+
+So the post-YOU loop contains a ciphertext-bearing bridge before the red10 packet returns to p32:
+
+```text
+... GOOD37
+-> LUCK38 / p37 numbered receiver
+-> local LUCK candidate
+-> raw GP0 38
+-> BEWARE39 / p38 section5 receiver
+-> local BEWARE candidate
+-> red10 numbered packet
+-> p32 / YOU.
+```
+
+The former p36 local GOOD inverse is retired because it used a line-wrap pseudo-word; this loop does not depend on it.
+
 ## Existing downstream continuation from MAP / HERE
 
 The MAP opcode does not terminate at an untyped pointer. Existing independently documented work gives a constrained continuation:
