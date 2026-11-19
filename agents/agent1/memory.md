@@ -1,3 +1,13 @@
+## 2026-11-19T01:24:21.986Z: p28 READ OUT -> HERE source-native checkpoint
+
+- Following the earlier cube-family discriminator, pursued a downstream consequence that avoids p50 numeral -> LP2 rune-offset semantics.
+- Literal p28 DH line reconstructs `p=23,g=5,a=6,b=15,A=8,B=19,K=2`; standard DH inverse fixes exponent3; existing source object gives candidate READ OUT.
+- Applied already fixed reversible outer-pair H to the natural p28 page start. First two printed fragments are `PC=[13,5]` len2=K and `JTHBIW=[11,2,17,10,7]` len5=g. Outer H gives `[8,18]|[4,18]=HE|RE=HERE`.
+- Source geometry: p28 is the only unknown page whose first two multi-rune fragments have ordered lengths [K,g]=[2,5]. Charging all42 ordered distinct DH-field pairs yields eight page-start matches; p28 is the sole finite-register lexical output. Among all41 eligible unknown page starts, HERE is the only finite-register word. Exact HERE occurs once across all2,347 adjacent multi-rune fragment pairs on594 rune-bearing lines.
+- Important limit/chronology: HERE was recognized after READ OUT. Continuing the same outer-fragment stream does not yield prose. Preserve HERE as a source-native local checkpoint/candidate marker, not established page plaintext/general decoder. Do not repair with skips/H reorientation or arbitrary GP0(HERE) page hopping.
+- Durable: SFT `sims/lp2_p28_readout_here_page_start_sft.cjs` commit b1287dd; Windows Node22 PASS run44436427345; report `im-results/lp2-p28-readout-here-page-start.md` commit8ed77aa; results synthesis commit daf0cb4; broadcast commit34ee940.
+- Next: seek an untouched source-selected consequence of HERE/READ OUT that preserves the page-start/K,g typing, preferably a reversible operation or explicit first-party instruction. Avoid restarting broad p50-offset or cube searches.
+
 ## 2026-11-19 01:14 UTC: p28 full cube-family receiver discriminator
 
 - Draw4 normal issue-directed run `agent1-gpt5.6sol-20261119T010736Z-draw4-f0a7c0d3`; Agent1 lease claimed at 01:07:36Z.
