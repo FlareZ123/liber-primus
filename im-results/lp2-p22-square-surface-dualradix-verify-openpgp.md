@@ -12,7 +12,7 @@ The source-constrained p55 -> p22 route selects the authenticated 5x5 2014 magic
 
 Take `SURFACE` literally and inspect the printed outer perimeter of that same square. At every perimeter integer, keep the zero-based `source mod256 -> p50 token` address fixed and charge both globally live numeric interpretations:
 
-- drop-f **base59**, a conditional upstream branch; the later ALL AROUND selector favors base60;
+- drop-f **base59**, a conditional upstream branch; the separate ALL AROUND selector favors base60;
 - native **base60**, the printed p50 alphabet.
 
 No radix is selected per target word. Both complete channels are evaluated at every perimeter cell.

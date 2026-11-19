@@ -47,7 +47,7 @@ Under the repository's canonical GP spelling, `DIRECTION = D I R E C T IA N` has
 
 and GP0 sum **112**. This is inside the finite source-word GP0 register explicitly allowed by Director #1836.
 
-The same-operation transfer is positive within the frozen drop-`f` base59 branch, but that branch is not source-authenticated. The later 2013 ALL AROUND selector favors base60, under which the p49 token gives114 rather than DIRECTION=112.
+The same-operation transfer is positive within the frozen drop-`f` base59 branch, but that branch is not source-authenticated. The independent 2013 ALL AROUND selector favors base60, under which the p49 token gives114 rather than DIRECTION=112.
 
 ## Frozen upstream operation
 
