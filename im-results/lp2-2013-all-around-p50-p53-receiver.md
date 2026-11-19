@@ -1,6 +1,6 @@
 # 2013 OS “THE KEY IS ALL AROUND YOU”: sentence-total and wordwise selectors into p49–51 and p53
 
-**Agent33, 19 November 2026; source/radix reconciliation by Agent9, 19 November. Classification: strong source-conditioned navigation structure with competing base59/base60 readouts. The wordwise ALL/AROUND=64 selector, KEY=49 perimeter arc, unique 75/177 phrase partition, and sentence-total252 selector form one coherent historical clue pattern. Base60=180 still matches the interior and p56+p57 register; base59=177 matches the phrase's content-word sum. The direct 49/27 [3,27] p55 key consumer is negative. No global digit legend or p55 plaintext is established.**
+**Agent33, 19 November 2026; source/radix reconciliation by Agent9, 19 November; full-corpus audit #1912. Classification: finite-family exceptional navigation motif, but local radix selector missing.** The GP0/zero-based/row-major/clockwise ALL/AROUND=64 → KEY=49 → cell252 route is unique in both 466 sentence-bounded and 711 message-contiguous windows, and the 75/177 partition is the only match among all ten unordered partitions. The displayed OS file is unsigned, but its body has a clear-signed counterpart in the pinned 2013 archive. Base59 gives120/177 at cells64/252; base60 gives122/180. The phrase favors base59 locally, while base60 retains the interior and p56+p57 register correspondence. No first-party source fixes the drop-f base59 alphabet, and neither radix is a global codec. The direct 49/27 [3,27] p55 key consumer remains negative.**
 
 ## Source-preserved 2013 OS screen and candidate sentence-total pointer
 
@@ -31,39 +31,59 @@ total  252
 
 Under this sentence-total hypothesis, the source selects **global p49–51 table cell252** before its contents are read.
 
-## Independent wordwise ALL/AROUND cross-check
+## Full-corpus wordwise and perimeter family audit (#1912)
 
-The authenticated 2016 Cicada instruction says that the manuscript's words are the map and their numbers the direction. That supports testing each word as an address; it does not specify a radix.
+The displayed OS file, resources/historical/cicada2013-os-original-message.txt, is unsigned. The same body is separately preserved as a PGP clear-signed message.txt.asc in the pinned 2013 archive; the two bodies have identical normalized sentence-word sequences. Do not collapse the file-status distinction: the displayed file is unsigned, while a clear-signed counterpart exists.
 
-Applying the existing candidate wordwise GP0-sum → zero-based table-address rule to the six words individually gives:
+The reproducible corpus is the union of the pinned ten-file 2013 clear-signed snapshot at neuroretransmit/cicada commit ade9a02889ef8acbc8cde8edbfd0a785c369f4c3 and two additional repository-preserved signed messages, no-more-testing and welcome-and-congratulations. It contains **12 distinct source records**, **67 punctuation-delimited sentence fragments**, **466 sentence-bounded six-word windows**, and **711 message-contiguous six-word windows**. The latter deliberately ignores sentence punctuation while retaining message boundaries. The two third-onion coordinate messages remain separate zero-word sources; the three-word standby message remains included. Seven local copies/variants from the former nine-source SFT are checked against the pinned bodies and are not double-counted. Exact source blob hashes and duplicate checks are emitted by the SFT.
 
-| Word | GP0 | Global table cell | On outer ring? |
-|---|---:|---:|---|
-| THE | 20 | 20 | no |
-| KEY | 49 | 49 | no |
-| IS | 25 | 25 | no |
-| ALL | 64 | 64 | yes |
-| AROUND | 64 | 64 | yes |
-| YOU | 30 | 30 | no |
+### Frozen wordwise grammar
 
-The adjacent words ALL AROUND therefore share address64. In the combined 32×8 p49–51 table, global cell64 is row8, column0, on the left perimeter. The original p49 scan (66.jpg) visibly prints token 22 at that coordinate. Under the drop-f base59 interpretation, 22=120=GP0(PARABLE); under base60, 22=122. The solved p57 instruction SHED also has GP0=64, so the 2013 word pair supplies a second historical input to the existing SHED=64 → PARABLE=120 edge. This is a local base59-compatible cross-check, not by itself a global radix selection.
+- Word tokens are alphabetic runs; apostrophes remain within a word and are removed only for rune conversion. Email, onion, and URL tokens are excluded. The abbreviations e.g. and i.e. are normalized before sentence splitting. Primary windows stay within sentence fragments; the broader control flattens sentences within each message but never crosses message boundaries.
+- **GP0** uses the canonical 29-symbol LP2 alphabet with zero-based rune indices, longest match, and the existing LP2 spelling aliases QU→CW, V→U, K/Q→C, Z→S, ING→NG, and IO→IA. **GP1** is the one-based-per-rune alternative using the same tokenization.
+- The historically motivated alternative is the pinned 2013 first-onion Gematria.py prime lookup, with QU→CW, Q→K, and longest matching including ING. It is distinct from GP0 and is not silently reduced modulo 256.
+- Word sums are raw addresses only when they fall in 0..255. Both zero- and one-based address origins, row-major and column-major layouts, clockwise and counterclockwise perimeter traversal, all five adjacent-pair positions, and all six possible distance-word positions are tested. No modular wrap is allowed.
+- Every six-word window is split into all **ten unordered** 3-versus-3 partitions. Complementary masks are counted once. No semantic partition is selected before scoring.
 
-A fixed local control corpus of eight PGP-clear-signed 2013 text messages plus the archived OS screen contains 66 sentence fragments after normalizing e.g./i.e. and excluding email, onion-address, and URL strings. It has exactly four adjacent equal-GP0 pairs:
+The authenticated 2016 instruction says: “Its words are the map, their meaning is the road, and their numbers are the direction.” This motivates considering wordwise navigation. It does **not** specify GP0 rather than the historical 2013 prime mapping, per-word summation, address origin, row/column order, perimeter direction, or a base59 digit alphabet.
 
-| Pair | Shared GP0/address | Table location |
-|---|---:|---|
-| YOU'RE / LOOKING | 52 | interior |
-| WON'T / BE | 35 | interior |
-| DRAWN / TOGETHER | 67 | interior |
-| ALL / AROUND | 64 | outer ring |
+### Results
 
-ALL/AROUND is the only natural-language adjacent equal-GP0 pair in this fixed corpus whose common address lies on the outer ring. This is a finite-corpus control, not a p-value or proof of intent. The encrypted PGP TCP-server envelope is not part of this plaintext corpus.
+The target phrase is the sole matching six-word window in the corpus: THE KEY IS ALL AROUND YOU. Its GP0 values are **[20, 49, 25, 64, 64, 30]**, total252. The GP1 values are [22, 52, 27, 67, 70, 33]; the 2013 prime values are [72, 183, 84, 243, 236, 113] (prime total931). Neither alternative produces the repeated-address/perimeter/partition motif.
 
-The stronger combined motif is checked below against all 466 contiguous six-word windows within those 66 sentence fragments. Three windows have total GP0 252; only one has the ring pair64; only one has a word value49 equal to the clockwise perimeter distance from that pair to the sentence-total address; only one has the 75/177 three-plus-three partition. Their intersection is the original OS phrase. This remains a fixed-corpus uniqueness observation, not a model-search-adjusted probability.
+Under GP0, zero-based row-major addressing, the adjacent ALL/AROUND pair selects cell64 and the six-word total selects cell252. On the 76-cell physical perimeter, the clockwise arc is49 and the counterclockwise complement is27. KEY is the only word at the clockwise distance; no word is27. The full 466-window sentence-bounded scan has three GP0 total252 windows, one window with an adjacent equal outer-ring address, and exactly one perimeter route candidate. The 711-window message-contiguous control has four total252 windows and three equal-adjacent outer-pair windows, but still exactly one route candidate. In both scopes the only complete route-plus-partition hit is the target phrase under GP0/zero-based/row-major/clockwise.
 
-Important limits: token 22 also occurs at global cell104, so the table output is not unique; the source-derived address64 is what selects cell64. The existing p57 word-family audit finds table matches at 5/17 word addresses, so the PARABLE hit is not a unique decoder. The OS screen itself is not PGP-signed, and neither it nor the signed TCP protocol explicitly defines GP0 word sums. The signed 2016 “words are the map” clue is the source motivation for wordwise addressing, not for base59.
+The ten unordered partitions of the target phrase are:
 
-This wordwise route is distinct from the complete-sentence total252 below. Do not merge them into one operation: the wordwise pair selects cell64, while the whole phrase selects cell252. The next section shows that the phrase itself relates those two perimeter positions.
+| Three-word group | Sum | Complementary group | Sum |
+|---|---:|---|---:|
+| THE + KEY + IS | 94 | ALL + AROUND + YOU | 158 |
+| THE + KEY + ALL | 133 | IS + AROUND + YOU | 119 |
+| THE + IS + ALL | 109 | KEY + AROUND + YOU | 143 |
+| KEY + IS + ALL | 138 | THE + AROUND + YOU | 114 |
+| THE + KEY + AROUND | 133 | IS + ALL + YOU | 119 |
+| THE + IS + AROUND | 109 | KEY + ALL + YOU | 143 |
+| KEY + IS + AROUND | 138 | THE + ALL + YOU | 114 |
+| THE + ALL + AROUND | 148 | KEY + IS + YOU | 104 |
+| KEY + ALL + AROUND | **177** | THE + IS + YOU | **75** |
+| IS + ALL + AROUND | 153 | THE + KEY + YOU | 99 |
+
+Exactly one of the ten is 75/177. Across both complete-corpus window scopes, exactly one window has that partition. Under the full family matrix, no other combination of GP0/GP1/2013-prime, origin, order, direction, pair position, or distance-word position yields a complete base59 or base60 motif. Some broader-control alternatives produce an isolated perimeter route or an isolated 75-versus-table partition, but their intersection is empty.
+
+### Fixed-cell radix comparison and disposition
+
+| Fixed cell | Printed token | Drop-f base59 | Base60 |
+|---:|---|---:|---:|
+| 64 (row8, column0) | 22 | 120 | 122 |
+| 252 (row31, column4) | 30 | 177 | 180 |
+
+Token22 occurs at cells64 and104, so the PARABLE value120 is not a unique table token; the phrase-derived address is what selects cell64. Token30 occurs only at cell252. GP0(PARABLE)=120 and GP0(SHED)=64. P55 has 76 printed runes, of which 75 are locally owned after assigning its first carried rune to p54. Base59 therefore explains the PARABLE and 75/177 correspondences at the named cells; base60 gives122/180, with180 independently matching the 180-cell interior and p56+p57=85+95 register.
+
+The former SFT's 3+3 assertion was internally inconsistent: it counted both complementary oriented masks but asserted one result. The revised SFT canonicalizes complements into ten unordered partitions and confirms one 75/177 partition.
+
+**Bounded negative on the radix selector.** The motif is exceptional within the declared source-natural family, including the broader 711-window control. But the source does not specify the drop-f base59 alphabet or any equivalent digit legend. The 2016 wording motivates wordwise navigation but does not select the exact GP0/address grammar or radix; the 2013 Gematria alternative uses prime values, and the 2014 sexagesimal.bin is a participant derivative rather than an original digit legend. The smallest missing selector is a first-party table-digit legend or test vector that distinguishes base59 from base60 at these already fixed cells. Retain the 49/27/75/177 relation as an intermediate structural correspondence; do not promote it to a source-fixed local base59 readout, a global codec, or a p55 key. The existing negative 49/27 [3,27] p55 key-consumer result is unchanged and was not rerun.
+
+Reproduction: sims/lp2_2013_allaround_wordwise_address_sft.cjs. Corpus manifest: im-results/data/cicada2013-clear-signed-text-corpus.json. Historical alternative tokenizer: https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/004-first-onion/gematria.py. This audit does not inspect p53/p28 outputs and does not run any p55 key schedule.
 
 ## Sentence-total cell252 lies on the outer circumference
 
@@ -178,7 +198,7 @@ These were independent properties of the p53 route before this 2013 clue was con
 
 ## Candidate historical/manuscript navigation loop
 
-The existing p27 parser reconstructs historical **3301** from the selected DIVINITY object and authenticated 2013 BASE29 protocol. The archived original-ISO OS program then displays the source-preserved screen containing **THE KEY IS ALL AROUND YOU** (not PGP-signed).
+The existing p27 parser reconstructs historical **3301** from the selected DIVINITY object and authenticated 2013 BASE29 protocol. The archived original-ISO OS program displays the unsigned message.txt containing **THE KEY IS ALL AROUND YOU**; a separate clear-signed message.txt.asc counterpart preserves the same body.
 
 The new source pointer gives:
 
@@ -239,7 +259,7 @@ The semantic wording is unusually literal: the archived 2013 OS screen says **TH
 
 ## What this changes
 
-The archived 2013 OS screen now supplies a coherent source-conditioned navigation structure, not merely a phrase-total pointer. The wordwise pair ALL/AROUND selects perimeter cell64; KEY=49 selects the clockwise 49-step arc to sentence-total cell252; the complement is27. The semantic phrase partition gives KEY+ALL+AROUND=177 and THE+IS+YOU=75, matching respectively base59(cell252 token30) and p55's 75 locally owned runes. The complete motif is unique in the fixed 466-window corpus control. This strengthens the base59 interpretation at both cell64 and cell252, while base60(cell252)=180 continues to match the 180-cell interior and p56+p57 terminal register. The global radix remains unresolved.
+The archived 2013 OS message supplies a coherent navigation motif under the tested GP0/zero-based/row-major/clockwise grammar: ALL/AROUND selects cell64, KEY=49 measures the clockwise arc to cell252, and the unique 75/177 partition matches base59 at cell252. The full motif is unique in both the 466 sentence-bounded and 711 message-contiguous corpus controls. This is exceptional within the declared family, but it does not select the drop-f base59 alphabet: the same fixed tokens give122/180 under base60, with180 matching the interior and p56+p57 register. Retain the motif as an intermediate structural correspondence; the global and local radix selector remains unresolved.
 
 This does **not** turn the p50 circumference into a p55 additive key. The earlier singleton-plus-75 [3,27] power schedule, raw/divmod pads, fixed perimeter transpositions, unique-zero cursor, and 3301-mod76 direct pad fail their bounded tests. The newly source-motivated 49+27 segment schedule also fails: both radices, both exponent assignments, three additive/Beaufort registers and eight F-bypass masks give 96 variants, no exact OUR OWN footer, and at best 2/6 footer matches. The source clue fixes framing and navigation; it does not yet supply a successful reversible operation for p55. Do not rescue these negatives with arbitrary rotations, exponents, mixed projections or tuned word cribs.
 

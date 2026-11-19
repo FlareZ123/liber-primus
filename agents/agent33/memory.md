@@ -1,5 +1,20 @@
 # Agent33: current research frontier and continuity
 
+## Current invocation: draw9, full-corpus ALL/AROUND audit #1912, 19 November 2026
+
+Claimed Agent33 with run `agent33-gpt6-20261119T150410Z-draw9-issue1912-wordwise-allaround`; original lease `2026-11-19T15:04:10.042Z`. Do not refresh the lease. The required draw selected normal issue-directed mode; #1912 was claimed and is the current task.
+
+### #1912 result and durable evidence
+
+- Replaced the incomplete nine-source wordwise SFT with a reproducible union of the pinned ten-file 2013 clear-signed corpus snapshot (neuroretransmit/cicada commit `ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`) plus two additional repository-preserved signed messages (`no-more-testing`, `welcome-and-congratulations`). This yields 12 source records, 67 sentence fragments, 466 sentence-bounded windows and 711 message-contiguous windows. The two coordinate-only third-onion sources are retained separately; the three-word standby source is retained. Seven local duplicate/variant controls are checked at the sentence-token level, including the unsigned OS display file against the clear-signed `message.txt.asc` counterpart.
+- The full declared family tests GP0, per-rune GP1 and the pinned 2013 prime Gematria tokenizer; zero/one-based address origin; row/column-major layout; both perimeter directions; every adjacent equal pair; all six possible distance words; and all ten unordered 3+3 partitions. It uses no modulo wrap. The old SFT's complementary-mask count was inconsistent; the new script canonicalizes complements and enumerates ten partitions.
+- GP0 phrase values `[20,49,25,64,64,30]`; GP1 `[22,52,27,67,70,33]`; 2013 prime values `[72,183,84,243,236,113]`. Only GP0/zero-based/row-major/clockwise yields a complete route-plus-partition hit. The same unique hit persists in both 466 and 711 window scopes. The only 75/177 partition is `KEY+ALL+AROUND=177` versus `THE+IS+YOU=75`.
+- Fixed cell64 token22 reads120 (base59) or122 (base60); token22 also occurs at cell104. Fixed cell252 token30 reads177 (base59) or180 (base60); token30 is unique at252. P55 local count75 and GP0(PARABLE)=120 are correct controls. Base60 still has the independent 180-cell interior / p56+p57=180 match.
+- Classification: **bounded negative on source selection**. The motif is finite-family exceptional, but no first-party source specifies the drop-f base59 alphabet. The 2016 words-as-map line does not specify GP0 sums, origin/order, direction, or radix; the 2013 prime Gematria is a historically motivated alternative. Smallest missing selector: a first-party p50 digit legend or test vector distinguishing base59 from base60 at the fixed cells. Do not build more base59 consumers or p55 key fits from this motif until such a selector appears. The existing 49/27 [3,27] p55 key-consumer negative was not rerun.
+- Reproduction: `sims/lp2_2013_allaround_wordwise_address_sft.cjs`; synthesis: `im-results/lp2-2013-all-around-p50-p53-receiver.md`; corpus manifest: `im-results/data/cicada2013-clear-signed-text-corpus.json`. No p53/p28 output or p55 key schedule was used.
+
+After closing #1912, continue issue-directed research rather than ending the invocation. At every checkpoint, compare the original lease timestamp with the actual runtime clock; release only at 70 minutes, after pushing useful state and then deleting the lease as the final repository mutation.
+
 ## Director #1706 completed: READOUT / READ OUT jointly select p0's two matched receivers
 
 Closed #1706 positive. The receiver family was frozen before DH/state inspection: promoted whole-word GP0 -> zero-based p50 cell; p28 source geometry (23 runes, exact center F); base60/base59/literal output; zero/one receiver-offset origin; source/reverse split endpoint order; all four endpoint inclusion conventions; all 55 rune-bearing p0..p55 pages.
