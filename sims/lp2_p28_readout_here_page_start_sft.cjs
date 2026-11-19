@@ -104,11 +104,106 @@ for(const row of starts){
 assert.equal(stateStarts.length,8);
 assert.deepEqual(stateStarts.filter(r=>r.lexical),[{...selected,statePairs:[["K","g"]],lexical:true}]);
 
+// Strengthen the selector without using plaintext. At each physical line, take
+// [total rune count, fragment count, first-fragment length, second-fragment
+// length]. Charge every assignment whose four values belong to the recovered
+// DH-state value set before lexical scoring.
+const valueToLabel=new Map(Object.entries(state).map(([label,value])=>[value,label]));
+const dhGeometryLines=[];
+for(let page=0;page<=55;page++){
+  if(page===50)continue;
+  const ls=lines(page);
+  for(let li=0;li<ls.length;li++){
+    const f=frags(ls[li]);
+    if(f.length<2)continue;
+    const geometry=[f.flat().length,f.length,f[0].length,f[1].length];
+    if(!geometry.every(value=>valueToLabel.has(value)))continue;
+    const output=[...outer(f[0]),...outer(f[1])];
+    dhGeometryLines.push({
+      page,
+      line:li+1,
+      geometry,
+      stateLabels:geometry.map(value=>valueToLabel.get(value)),
+      source:[spell(f[0]),spell(f[1])],
+      output,
+      text:spell(output),
+      lexical:lex.has(spell(output).toLowerCase()),
+    });
+  }
+}
+assert.equal(dhGeometryLines.length,22);
+assert.deepEqual(
+  dhGeometryLines.filter(row=>row.lexical),
+  [{
+    page:28,
+    line:1,
+    geometry:[23,5,2,5],
+    stateLabels:["p","g","K","g"],
+    source:["PC","JTHBIW"],
+    output:HERE,
+    text:"HERE",
+    lexical:true,
+  }],
+);
+const dhGeometryPageStarts=dhGeometryLines.filter(row=>row.line===1);
+assert.equal(dhGeometryPageStarts.length,4);
+assert.deepEqual(dhGeometryPageStarts.filter(row=>row.lexical),[dhGeometryLines.find(row=>row.page===28&&row.line===1)]);
+assert.deepEqual(
+  dhGeometryLines
+    .filter(row=>JSON.stringify(row.geometry)===JSON.stringify([state.p,state.g,state.K,state.g]))
+    .map(row=>[row.page,row.line,row.text]),
+  [[28,1,"HERE"],[44,10,"IDGY"]],
+);
+assert.deepEqual(
+  dhGeometryPageStarts
+    .filter(row=>JSON.stringify(row.geometry)===JSON.stringify([state.p,state.g,state.K,state.g]))
+    .map(row=>[row.page,row.line,row.text]),
+  [[28,1,"HERE"]],
+);
+
+// On p28 itself, charge all adjacent fragment pairs whose ordered lengths are
+// any distinct ordered DH-field pair. HERE remains the only lexical output.
+const p28StatePairs=[];
+for(let li=0;li<p28.length;li++){
+  const f=frags(p28[li]);
+  for(let i=0;i+1<f.length;i++){
+    if(f[i].length<2||f[i+1].length<2)continue;
+    const lengths=[f[i].length,f[i+1].length];
+    const matches=pairs.filter(pair=>pair.values[0]===lengths[0]&&pair.values[1]===lengths[1]);
+    if(!matches.length)continue;
+    const output=[...outer(f[i]),...outer(f[i+1])];
+    p28StatePairs.push({
+      line:li+1,
+      fragments:[i+1,i+2],
+      lengths,
+      statePairs:matches.map(match=>match.labels),
+      source:[spell(f[i]),spell(f[i+1])],
+      output,
+      text:spell(output),
+      lexical:lex.has(spell(output).toLowerCase()),
+    });
+  }
+}
+assert.equal(p28StatePairs.length,4);
+assert.deepEqual(
+  p28StatePairs.filter(row=>row.lexical),
+  [{
+    line:1,
+    fragments:[1,2],
+    lengths:[2,5],
+    statePairs:[["K","g"]],
+    source:["PC","JTHBIW"],
+    output:HERE,
+    text:"HERE",
+    lexical:true,
+  }],
+);
+
 console.log(JSON.stringify({
   status:"PASS",
   classification:"source-native local plaintext/checkpoint candidate: p28 READ OUT plus fixed outer-H and the unique page-start [K,g]=[2,5] geometry yields HERE; no p50 numeral-to-rune-offset coercion is used",
   dh23:state,
   readOut:{center,source:[p28Runes[center],...word],exponents:[e,we],output:readout,text:spell(readout)},
   here:selected,
-  controls:{runeLines,eligiblePageStarts:starts.length,adjacentFragmentPairs:adjacent,exactHereAcrossAllAdjacentPairs:here.length,orderedDhFieldPairs:pairs.length,pageStartsMatchingAnyOrderedDhPair:stateStarts.length,lexicalAmongStatePairStarts:stateStarts.filter(r=>r.lexical)}
+  controls:{runeLines,eligiblePageStarts:starts.length,adjacentFragmentPairs:adjacent,exactHereAcrossAllAdjacentPairs:here.length,orderedDhFieldPairs:pairs.length,pageStartsMatchingAnyOrderedDhPair:stateStarts.length,lexicalAmongStatePairStarts:stateStarts.filter(r=>r.lexical),dhGeometryLines:dhGeometryLines.length,dhGeometryPageStarts:dhGeometryPageStarts.length,exactPgKgAllLines:dhGeometryLines.filter(row=>JSON.stringify(row.geometry)===JSON.stringify([state.p,state.g,state.K,state.g])).map(row=>[row.page,row.line,row.text]),p28AdjacentStatePairs:p28StatePairs.length,lexicalP28StatePairs:p28StatePairs.filter(row=>row.lexical)}
 },null,2));
