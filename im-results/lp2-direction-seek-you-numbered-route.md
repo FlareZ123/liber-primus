@@ -1,43 +1,19 @@
-# THEIR NUMBERS route makes YOU the sole missing diagonal coordinate and finds it modulo p−1
+# Canonical source-number route: YOU is the sole missing coordinate, while SEEK/AND changes EMPTY to ROAD
 
-**Agent1, 19 November 2026. Classification: source-selected numbered-route candidate with a prospective one-wrap hit.** The authenticated instruction now has a literal numerical consumer. Use each signed word's one-based ordinal `n` as both physical LP2 page number `n` and canonical local word number `n`. Across all 43 authenticated source words, **42/43** direct coordinates exist. The sole missing direct coordinate is:
+**Agent6 correction, 19 November 2026. Classification: source-selected structural route evidence. The earlier p−1 YOU-wrap claim is retracted.**
 
-```text
-33 YOU -> physical page33 / project p32 -> word33
-```
+The source-number diagonal remains real under the repository's canonical printed-word contract, but the earlier page-local parser counted fragments created by physical page boundaries as separate words. Once the 32 words that cross physical page boundaries are kept intact, several local ordinals change. The strongest surviving facts are:
 
-because that page has exactly **22 = p−1 canonical words**.
+- authenticated source ordinals still give **42/43** direct page/word coordinates;
+- **33 YOU** is still the sole missing direct coordinate;
+- DIRECTION30 still selects the same exact p29 packet and recovers group order22;
+- p32 has **21** complete page-local words, so its length no longer equals group order22;
+- the former modulo22 YOU recovery is therefore unsupported;
+- corrected SEEK31 and AND32 form a unique lexical center transition
+  `THE EMPTY THE -> THE ROAD THE` under the independently fixed zero-based source indexing.
 
-Immediately before this stop, source word30 DIRECTION selects physical page30/word30, whose fixed outside-in H packet is `[p−1,0,b,A]`. It therefore recovers group order22 before YOU is reached. Using exactly one one-based cyclic reduction modulo that recovered group order maps:
+This correction preserves the source-selected route where it survives and removes the conclusions that depended on page-fragment numbering.
 
-```text
-YOU ordinal33 -> word11.
-```
-
-P32 word11 is the manuscript-unique five-rune packet:
-
-```text
-[2,7,14,27,2]
-= [K,g+K,-b,-K,K],
-```
-
-whose fixed outer-H shell is:
-
-```text
-[0,4,9,5,14]
-= [F,q,b-a,g,-b].
-```
-
-After that one wrap, the direct ordinal route resumes at WILL34, BE35, FOUND36 without another exception.
-
-This is a plausible literal realization of:
-
-```text
-THEIR NUMBERS ARE THE DIRECTION
-SEEK AND YOU WILL BE FOUND
-```
-
-because source numbers determine the route, DIRECTION supplies the group order, and YOU is literally the only source word whose direct numbered coordinate must be sought.
 
 ## Independent p33-p35 plaintext-candidate convergence
 
@@ -72,268 +48,279 @@ local inverses    WILL -> BE  -> FOUND
 
 This is phrase-level convergence of strong local candidates, not final authenticated plaintext. It materially strengthens the interpretation that the authenticated word numbers are an intended guide through unknown LP2. See `lp2-p33-p35-will-be-found-suffix.md`.
 
-## The numbered diagonal
+## Canonical word contract
 
-For authenticated one-based source ordinal `n`, define:
+The manuscript contains 2,896 printed words, including 32 words that cross physical page boundaries. For page-local ordinal tests, keep each crossing word intact and exclude it from either page's complete-word list.
+
+That leaves:
+
+```text
+2,864 complete page-local words
+32 crossing words
+2,896 total printed words
+```
+
+The relevant complete-word census is:
+
+```text
+length2: 448
+length3: 716
+length5: 311
+```
+
+The older per-page parser restarted at every physical page and therefore promoted boundary fragments into local words. That is the source of the obsolete 731/320 counts and several shifted ordinals.
+
+## The direct numbered diagonal still has one failure
+
+For authenticated one-based source ordinal `n`, keep the existing route definition:
 
 ```text
 physical LP2 page = n
 project page       = n-1
-canonical word     = n.
+canonical local word = n
 ```
 
-Use canonical word boundaries, preserving printed line wraps inside words.
+Charge all 43 authenticated source ordinals using complete page-local canonical words.
 
-Charge all 43 authenticated source ordinals. Exactly one direct coordinate is absent:
+Exactly one direct coordinate is absent:
 
 ```text
-source ordinal33 YOU
-project p32
-physical page33
-canonical page word count = 22
-requested word33 absent.
+33 YOU
+ -> physical page33
+ -> project p32
+ -> canonical word33
+ -> absent
 ```
 
-Every other authenticated ordinal1..43 has a direct numbered word on its corresponding physical page.
+P32 has exactly **21** complete page-local words.
 
-As a semantic calibration only, hold the manuscript's one missing ordinal33 fixed and uniformly permute the 43 authenticated source-word labels across their positions. The literal token `YOU` lands at that fixed missing position in `1/43 ≈ 0.02326` of permutations. This is not an authorship p-value and is not multiplied by the packet uniqueness controls.
+Every other source ordinal1..43 has the requested complete word on its numbered page. The unique failure at literal YOU therefore survives the parser correction.
 
-The existence census alone is structural. The important point is that the unique failure occurs exactly after DIRECTION has recovered `p−1=22`.
-
-## DIRECTION30 calibrates the register and the wrap modulus
+## DIRECTION30 survives unchanged
 
 Source word30 DIRECTION selects physical page30/project p29 and canonical word30:
 
 ```text
-p29 word30, offsets108..111
-[11,26,11,18].
+p29 word30
+start108
+[11,26,11,18]
 ```
 
-Outside-in pair readout gives:
+The fixed outside-in H shell is:
 
 ```text
 H(11,18) = [22,0]
-H(26,11) = [15,8].
+H(26,11) = [15,8]
+
+=> [22,0,15,8]
+ = [p-1,F,b,A].
 ```
 
-So in visible pair order:
+This still recovers:
 
 ```text
-[22,0,15,8]
-= [p-1,F,b,A].
+group order = 22
+p = 23
+b = 15
+A = 8
+K = A^b mod23 = 2.
 ```
 
-This recovers:
+The DIRECTION packet is unchanged because no crossing word precedes its local ordinal on p29.
+
+## The earlier YOU modulo22 recovery fails
+
+The old route relied on the equality:
 
 ```text
-group order = p-1 = 22
-p           = 23
-b           = 15
-A           = 8
-K=A^b mod p = 2.
+p32 complete words = p-1 = 22.
 ```
 
-The group order is therefore available before the route reaches YOU.
-
-A separate report documents the DIRECTION packet and its derivative consequence:
-`lp2-p29-direction-selfindex-packet.md`.
-
-## SEEK31 and AND32 are exact state packets
-
-Continue the unchanged source-number diagonal.
-
-Source word31 SEEK selects physical page31/project p30, word31:
+Canonical cross-page parsing gives:
 
 ```text
-offsets127..129
-[22,12,22]
-= [p-1,K*a,p-1].
+p32 complete words = 21
+group order         = 22.
 ```
 
-Its outer H pair gives:
+The two natural cyclic reductions now disagree:
 
 ```text
-H(22,22) = [0,15] = [F,b],
-center   = 12      = K*a.
+33 mod group-order22 -> one-based word11
+33 mod page-length21 -> one-based word12.
 ```
 
-The exact ordered packet `[22,12,22]` occurs once among all **731** canonical three-rune words in p0..p55.
-
-Source word32 AND selects physical page32/project p31, word32:
+The five-rune packet previously cited as wrapped YOU remains at the same physical offsets:
 
 ```text
-offsets126..128
+p32 offset59
+[2,7,14,27,2].
+```
+
+Canonical numbering places it at **word10**, not word11. Group-order reduction therefore no longer selects it.
+
+The old statement that DIRECTION forces a unique p−1 wrap which finds YOU is retracted. A new source-visible rule would be required to choose a p32 receiver.
+
+## Corrected SEEK31 and AND32
+
+The canonical parser changes SEEK31 because a crossing word earlier on p30 shifts its local ordinal.
+
+SEEK31 now selects:
+
+```text
+project p30
+word31
+start130
+[28,4,12].
+```
+
+AND32 remains:
+
+```text
+project p31
+word32
+start126
 [12,23,1]
 = [K*a,p,1].
 ```
 
-This exact ordered packet also occurs once among all 731 canonical three-rune words.
-
-These two objects were selected by source number before their state decompositions were assigned.
-
-## SEEK AND numerically reads THE ROAD
-
-The same two packets have a second source-native interpretation using the independently fixed zero-based signed-word positions. Treat each GP rune value in the selected numbered object as an index into the authenticated 43-word source.
+The raw SEEK packet occurs three times among complete canonical words:
 
 ```text
-SEEK31 -> p30 word31 [22,12,22]
-         source[22], source[12], source[22]
-         THE THE THE
-
-AND32  -> p31 word32 [12,23,1]
-         source[12], source[23], source[1]
-         THE ROAD THE
+p8  word15 start60
+p26 word18 start79
+p30 word31 start130
 ```
 
-The shared outer lexical value leaves the center transition `THE -> ROAD`, so the consecutive instruction words **SEEK AND** expose **THE ROAD** through their numbered manuscript objects.
+AND's exact packet remains manuscript-unique:
 
-Charge the complete diagonal family: inspect every consecutive pair among the 43 numbered objects, require both objects to have exactly three runes, then require the first lexicalized object to be `[X,X,X]` and the next to be `[X,Y,X]` with `Y != X`. Under the independently established zero-based source convention there is exactly one hit:
+```text
+p31 word32 start126.
+```
+
+The earlier claim that SEEK was the unique raw packet `[22,12,22]` is retired.
+
+## SEEK AND changes EMPTY to ROAD
+
+The authenticated DH-role audit independently fixes zero-based source positions as meaningful numeric values. Reuse that convention literally as a number-to-source-word readout.
+
+For SEEK31:
+
+```text
+[28,4,12]
+source[28] = THE
+source[4]  = EMPTY
+source[12] = THE
+
+=> THE EMPTY THE
+```
+
+For the immediately following AND32:
+
+```text
+[12,23,1]
+source[12] = THE
+source[23] = ROAD
+source[1]  = THE
+
+=> THE ROAD THE
+```
+
+The two objects therefore preserve the same lexical wrapper while changing only the center:
+
+```text
+THE EMPTY THE
+THE ROAD  THE
+    EMPTY -> ROAD
+```
+
+This is a finite-family result. Charge every consecutive pair on the complete 43-word numbered diagonal, require both selected objects to have exactly three runes, require each lexicalized object to have equal outer words, require the outer word to remain unchanged across the pair, and require the center to change.
+
+Under zero-based source indexing there is exactly one hit:
 
 ```text
 SEEK31 -> AND32
-THE THE THE -> THE ROAD THE
-extracted = THE ROAD
+THE EMPTY THE -> THE ROAD THE.
 ```
 
-Under one-based source indexing the complete family has zero hits. The alternate origin reads these local objects as `IS IS IS` and `IS THE HELLO`, which does not satisfy the frozen transition.
+Under one-based source indexing there are zero hits.
 
-This is a direct source-number readout of authenticated **THE ROAD** and links the numbered route to the existing THE ROAD number-direction branch. The lexical interpretation was recognized after the SEEK/AND packets were available, so retain it as structural route evidence.
+The only individual zero-based lexicalized three-rune diagonal objects with equal outer words are SEEK31 and AND32 themselves. Their adjacency was fixed by the authenticated source before the lexical readout was inspected.
 
-## YOU33 is the sole missing direct coordinate
+This is stronger than the retracted `THE THE THE -> THE ROAD THE` claim because it survives the canonical parser and isolates the changed center without selecting one of two adjacent bigrams after the fact.
 
-The next source word is:
+## A motivated ROAD consumer
+
+The changed center is authenticated source word ROAD at zero-based index23:
 
 ```text
-33 YOU.
+source[23] = ROAD.
 ```
 
-Its numbered page is physical page33/project p32. That page has:
+The source instruction says that their numbers are the direction. Reading the newly exposed ROAD through its already audited number therefore points naturally to project **p23**.
+
+That landing has an independent source-constrained structure already present in the repository: p23's five-dot/cardinal layout yields hidden **THE ORIGINAL** and a unique DH-state handoff to p33. Because the p23 result predates this corrected SEEK/AND center transition, treat the connection as retrospective convergence. It is nevertheless a causal consumer with no new numeric choice:
 
 ```text
-22 canonical words = p-1.
+SEEK AND
+ -> EMPTY changes to ROAD
+ -> ROAD number = 23
+ -> p23
+ -> independent THE ORIGINAL / p33 handoff.
 ```
 
-Therefore direct word33 does not exist.
+This route deserves prospective testing at the next untouched consumer rather than further tuning of p32 wraps.
 
-Use the group order just recovered by DIRECTION as the one and only wrap modulus, with ordinary one-based cyclic indexing:
+## Direct numbering resumes after YOU
+
+The direct coordinate rule still resumes immediately:
 
 ```text
-((33-1) mod22)+1
-= 11.
+34 WILL  -> p33 word34 start130 [12,24]
+35 BE    -> p34 word35 start148 [25,14,18,9,7]
+36 FOUND -> p35 word36 start164 [14,5].
 ```
 
-No alternate modulus, sign, origin, or fallback is charged after opening the result.
+The old numbered-route BE state expression came from a boundary-shifted word and is retired. This does not invalidate the separate p34 BE plaintext receiver at offsets4..5, which is selected by the THEIR RISE family rather than by numbered-route word35.
 
-P32 word11 is:
-
-```text
-offsets59..63
-[2,7,14,27,2].
-```
-
-It has the exact state form:
-
-```text
-[K,g+K,-b,-K,K].
-```
-
-Its fixed outside-in shell is:
-
-```text
-H(K,K)       = [0,q]
-H(g+K,-K)    = [b-a,g]
-center       = -b
-
-=> [0,q,b-a,g,-b]
- = [0,4,9,5,14].
-```
-
-The exact raw packet `[2,7,14,27,2]` occurs once among all **320** canonical five-rune words in p0..p55, at this wrapped p32 word11.
-
-This is the prospective part of the route: group order22 and the direct-coordinate failure were known before the one permitted wrap was opened, and the wrapped object lands on a compact authenticated-state packet.
-
-## WILL BE FOUND resumes directly
-
-After the one YOU wrap, the direct numbered diagonal resumes immediately:
-
-```text
-34 WILL  -> project p33 / physical page34 / word34
-35 BE    -> project p34 / physical page35 / word35
-36 FOUND -> project p35 / physical page36 / word36.
-```
-
-No second wrap or exception is required.
-
-Their raw values also have compact state expressions:
-
-```text
-WILL word34:
-[12,24] = [K*a,-g]
-
-BE word35:
-[23,21,28,24] = [p,a+b,-1,-g]
-
-FOUND word36:
-[14,5] = [-b,g].
-```
-
-These decompositions were observed after the objects were opened and are supporting structure only. The decisive route claim is the unique missing YOU coordinate and its one-wrap state hit.
-
-## Why the stop is meaningful
-
-The current human-facing sequence is:
-
-```text
-READ OUT THE
- -> authenticated DIRECTION30
- -> physical page30 / word30
- -> recover p-1=22
-
-SEEK31
- -> page31 / word31
- -> [p-1,K*a,p-1]
- -> source indices THE THE THE
-
-AND32
- -> page32 / word32
- -> [K*a,p,1]
- -> source indices THE ROAD THE
- -> unique diagonal lexical transition extracts THE ROAD
-
-YOU33
- -> page33 has only p-1=22 words
- -> wrap33 by p-1
- -> word11
- -> [K,g+K,-b,-K,K]
-
-WILL34 BE35 FOUND36
- -> direct numbering resumes.
-```
-
-This is the first current route in which the authenticated sentence's wording and the manuscript's failure mode line up literally: **YOU** is the only numbered object that is absent and must be found.
+The later source ordinal38 LUCK still selects p37 word38 at start146, so the independent p37 LUCK convergence remains available as a downstream coordinate check.
 
 ## Evidence boundary
 
-Preserve this as a **numbered-route candidate with a prospective wrapped state hit**.
+Preserve:
 
-Strong points:
+```text
+READ OUT THE candidate
+ -> authenticated DIRECTION30
+ -> numbered p29 word30
+ -> exact [p-1,F,b,A] packet
 
-- source numbering is fixed before manuscript values are inspected;
-- DIRECTION30 independently supplies the exact group order used later;
-- the direct diagonal has one missing coordinate across all 43 source words;
-- consecutive SEEK/AND numbered objects uniquely realize `THE THE THE -> THE ROAD THE` under the fixed zero-based source indexing, extracting authenticated `THE ROAD`;
-- that sole missing word is YOU;
-- its page has exactly the recovered group-order number of words;
-- the single natural one-based wrap lands on a manuscript-unique compact state packet;
-- direct numbering resumes immediately at WILL BE FOUND.
+42/43 direct numbered coordinates
+ -> only YOU33 is absent
 
-Caveats:
+SEEK31 / AND32
+ -> THE EMPTY THE
+ -> THE ROAD THE
+ -> unique fixed-family center transition EMPTY -> ROAD
 
-- interpreting the English semantics as an intentional instruction remains a puzzle-design hypothesis;
-- compact state expressions for SEEK/AND/WILL/BE/FOUND were recognized after those objects were opened;
-- the wrapped YOU object is numerical state material, not plaintext YOU.
+ROAD source number23
+ -> motivated project p23 consumer
+ -> independent p23 THE ORIGINAL / p33 state handoff.
+```
 
-Do not open alternative modulo families or tune a second wrap rule.
+Retire:
+
+```text
+p32 page length = 22
+YOU33 forced modulo22 -> word11
+old p32 offset59 packet as word11
+SEEK31 = [22,12,22]
+SEEK raw-packet uniqueness
+THE THE THE -> THE ROAD THE
+numbered-route BE=[p,a+b,-1,-g].
+```
+
+The route still does not constitute unknown-page plaintext recovery by itself. Its value is a source-selected navigation grammar with one striking missing coordinate and one unique parser-correct lexical transition.
 
 ## Reproduction
 
@@ -343,4 +330,4 @@ Run:
 node sims/lp2_direction_seek_you_numbered_route_sft.cjs
 ```
 
-The SFT charges all 43 source ordinals, proves YOU is the sole missing direct coordinate, reconstructs DIRECTION's group order, performs the one permitted wrap, verifies the exact state packets, and runs complete manuscript packet-uniqueness controls for SEEK, AND, and wrapped YOU. Windows Node22 PASS: **44462393395**.
+The SFT uses the cross-page canonical parser, checks all 43 numbered coordinates, verifies the unchanged DIRECTION packet, rejects the former YOU wrap, exhausts the complete-word length and exact-packet controls, and charges the zero-based versus one-based SEEK/AND lexical-transition family.
