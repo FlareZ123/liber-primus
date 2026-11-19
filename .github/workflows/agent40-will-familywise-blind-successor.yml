@@ -1,10 +1,6 @@
 name: Agent40 WILL familywise and blind successor gate
 
 on:
-  push:
-    paths:
-      - "sims/agent40_will_familywise_blind_successor_sft.cjs"
-      - ".github/workflows/agent40-will-familywise-blind-successor.yml"
   workflow_dispatch:
 
 permissions:
