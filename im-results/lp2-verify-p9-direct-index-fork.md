@@ -16,6 +16,13 @@ P40 has exactly one complete word with PATHS state length4 / GP0=54, at offset71
 
 Same-index length+GP0 matches also occur at indices 6,11,21,33,34 and38, so the p40 local state alone is supporting evidence. The paired fork and independent branch-specific structures carry more weight.
 
+## WAY cube-e return edge
+
+The productive DIRECTION half now has a closed return path. P29's bounded candidate instruction is WAY, uniquely signed index13. Apply the separately authenticated source cube `C(x)=x^3 mod29` exactly `e=3` times:
+
+    WAY13 -> THE22 -> EPIPHANY5 -> LIBER9.
+
+Index9 is the same p9 independently selected here by VERIFY. The mapping is the half-turn of WAY's six-cycle, so `LIBER9 <-> WAY13`. Among all six signed THE-followers, WAY is the sole one mapped to p9 by fixed `C^e`. The resulting productive cycle is `p9 -> DIRECTION29 -> p29 -> WAY13 -> LIBER9 -> p9`; PATHS40 remains the warning/false fork. See [WAY cube-e LIBER p9 holdout](lp2-way-cube-e-liber-p9-holdout.md). Windows Node22 PASS: run 44457394414.
 ## Decision
 Prefer the direct source-index/page consumer for 29|40. The older GP0 low-digit walks of DIRECTION and PATHS remain secondary arithmetic echoes. The DIRECTION side points into the unique p29 algebraic branch; PATHS is naturally treated as the warning/false branch under the signed BEWARE FALSE PATHS corridor.
 
