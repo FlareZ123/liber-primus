@@ -288,6 +288,45 @@ assert.deepEqual(relationRouteHits, [{
   path: [13, 4, 37, 20, 42, 28, 30, 21, 17, 22, 59, 9],
 }]);
 
+
+// Physical-table self-reference. The original 32x8 table spans LP2 p49-p51
+// as 10 / 13 / 9 rows; p50 is the rune-free middle page. Among the ten
+// charged semantic pairs, NUMBERS/DIRECTION is uniquely the pair whose two
+// GP0 addresses both lie on p50 and whose printed two-character cells share
+// their right-hand character. That character is D, native-base60 value13.
+assert.deepEqual(grid.original_scans, ["66.jpg", "67.jpg", "68.jpg"]);
+assert.deepEqual(grid.lp2_pages, [49, 50, 51]);
+assert.deepEqual(grid.page_row_counts, [10, 13, 9]);
+const middleStart = grid.page_row_counts[0] * 8;
+const middleEnd = middleStart + grid.page_row_counts[1] * 8;
+assert.deepEqual([middleStart, middleEnd], [80, 184]);
+
+const physicalRelationRows = relationPairs.map(([leftWord, rightWord]) => {
+  const left = gp0(leftWord);
+  const right = gp0(rightWord);
+  return {
+    relation: [leftWord, rightWord],
+    addresses: [left, right],
+    tokens: [table[left], table[right]],
+    bothOnP50:
+      left >= middleStart && left < middleEnd &&
+      right >= middleStart && right < middleEnd,
+    sameRight: table[left][1] === table[right][1],
+  };
+});
+assert.deepEqual(
+  physicalRelationRows.filter(row => row.bothOnP50 && row.sameRight),
+  [{
+    relation: ["NUMBERS", "DIRECTION"],
+    addresses: [83, 112],
+    tokens: ["3D", "1D"],
+    bothOnP50: true,
+    sameRight: true,
+  }]
+);
+assert.equal(alpha60.indexOf("D"), 13);
+assert.equal(grid.page_row_counts[1], 13);
+
 // The source-only direction route joins the READ OUT route at OUT=20 and then
 // shares FIND=42 -> physical p28.
 assert.equal(gp0("NUMBERS"), 83);
@@ -373,6 +412,14 @@ console.log(JSON.stringify({
     gp0: gp0("HERE"),
     token: table[gp0("HERE")],
     nextState: alpha60.indexOf(table[gp0("HERE")][1]),
+  },
+  physicalTableSelector: {
+    p50AddressRange: [middleStart, middleEnd],
+    p50Rows: grid.page_row_counts[1],
+    relationHits: physicalRelationRows.filter(
+      row => row.bothOnP50 && row.sameRight
+    ),
+    sharedRightDigitValue: alpha60.indexOf("D"),
   },
   directionRoute: {
     relationHits: relationRouteHits,
