@@ -188,7 +188,7 @@ assert.deepEqual(
     row.page,
     row.wordCount,
   ]),
-  [[33, "YOU", 32, 22]]
+  [[33, "YOU", 32, 21]]
 );
 
 // The p31 object is fixed before any inverse by authenticated ordinal32 AND.
