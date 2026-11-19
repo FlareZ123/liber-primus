@@ -160,3 +160,4 @@ The next causal problem remains the value-changing operation on original ciphert
 
 - SFT: `sims/lp2_readout_p0_receiver_familywise_audit_sft.cjs`
 - Director task: #1706
+- Windows/Node 22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44429176150
