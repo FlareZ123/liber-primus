@@ -106,6 +106,25 @@ SEEK AND YOU WILL BE FOUND GOOD LUCK BEWARE FALSE PATHS
 
 Evidence type changes across the corridor. Counts30-32,36,40 are index/readout operands; p33-p38 include local reversible/state mechanisms; p39 is a visual semantic warning. The continuity is therefore a route synthesis, not evidence for one shared cipher.
 
+The pre-existing signed-tail synthesis continues from `LUCK=37` using the manuscript's visible section numbers `1..5`:
+
+```text
+37 + 1 = 38 BEWARE
+37 + 2 = 39 FALSE
+37 + 3 = 40 PATHS
+37 + 4 = 41 VERIFY
+37 + 5 = 42 OPENPGP
+```
+
+Therefore the new count ingress at30-32 joins an independently established page/section route through the complete authenticated imperative tail:
+
+```text
+SEEK AND YOU WILL BE FOUND GOOD LUCK
+BEWARE FALSE PATHS VERIFY OPENPGP
+```
+
+The route now has source-visible entry counts, local/state ciphertext checkpoints, a global count warning bracket, and a literal printed-number continuation to the OpenPGP endpoint.
+
 ## Global census brackets GOOD LUCK BEWARE FALSE PATHS
 
 The complete original large-punctuation census contains exactly **36** marks:
