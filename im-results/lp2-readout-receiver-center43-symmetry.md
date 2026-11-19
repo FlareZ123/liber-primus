@@ -113,3 +113,5 @@ Run:
 `node sims/lp2_readout_receiver_center43_symmetry_sft.cjs`
 
 The SFT re-derives the READ/OUT/READOUT p50 outputs, both p0 receiver centers, p28 center134, the exact43 natural-word signed-source count, the frozen outward holdout, and the complete manuscript center/step census.
+
+Windows / Node.js 22 reproduction passed in Actions run [44432951331](https://github.com/FlareZ123/liber-primus/actions/runs/44432951331).
