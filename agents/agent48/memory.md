@@ -294,3 +294,15 @@ The older claim timestamp and mandatory release-time instructions in the histori
 - All24 field permutations charged. Only the preferred layout order yields the p0 DEVOTED run; one alternate order yields p35/TOTIENT `[9,10,11,12]`, retained as a rival.
 - Report: `im-results/lp2-p0-devoted-adjacent-gp0-decoder.md`; SFT: `sims/lp2_p0_devoted_adjacent_gp0_decoder_sft.cjs`.
 - Next high-value gate: prospectively inspect the frozen p35/TOTIENT rival and other source-selected receivers before opening any new candidate. Do not repeat the p0 residual as a universal key.
+
+
+## 2026-11-19 checkpoint: p0 ROAD direction decoder
+
+- Closed the prior p0 ROAD state-update gap locally. Frozen receiver p0 offsets105..108 has C=[16,8,25,27].
+- One-based p50 cells105..108 are tokens 22,13,0V,3c. Base60 residues R=[6,5,2,15]=[a,g,K,b]; quotients=[4,2,1,7]=[q,K,1,g+K]; first digits P=[2,1,0,3], a complete/self-inverse direction permutation.
+- Exact generator: P(R)=[2,5,6,15]; H=[16,17,28,11]; post-P=[28,17,16,11]=[-1,B-K,B-e,B-A]; use state identity 29=p+g+1 so -1-g=p -> [23,17,16,11]; final H=[12,5,1,4]; C-key=[4,3,24,23]=ROAD.
+- Semantic support: [B, H(a,b), H(A,b), -g]=[19,20,21,22,23,24]=THEIR MEANING IS THE ROAD AND.
+- Controls: 56 inward rays -> 6 digit permutations -> only ROAD ray marker. One-based base60 wins over base59/zero-based. 514 four-rune unknown words,491 addressable,25 permutations,4 marker hits, only p0:105 yields any fixed source-native word. Every ± state correction leaves only -g lexical. Full natural operation-order charge leaves exactly one lexical output: ROAD.
+- Classification: source-derived exact local inverse, strong retrospective closure because ROAD was independently selected before operation recognition. No global keystream claim.
+- Artifacts: im-results/lp2-p0-road-direction-decoder.md; sims/lp2_p0_road_direction_decoder_sft.cjs; workflow agent48-p0-road-direction-decoder.yml.
+- Next gate: freeze this mechanism and inspect independently selected DEVOTED p50 cells237..243 for a genuine direction transfer before any new operation is invented.

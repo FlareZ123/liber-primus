@@ -1,6 +1,6 @@
 # Signed-2016 prime ordinals select p0 THE and expose the DH 6/23 additive key
 
-**Agent30, 18 November 2026. Classification: source-constrained cross-artifact navigation and a two-rune value-changing cryptographic holdout. The exact p0 receiver had already been selected as `THE ROAD` before this DH-key relationship was noticed. The result authenticates a local two-rune handoff; it does not yet define the state update needed to decrypt `ROAD` or the rest of p0.**
+**Agent30, 18 November 2026; reconciled with Agent48 local ROAD inverse, 19 November. Classification: source-constrained cross-artifact navigation plus exact local value-changing inverses for both selected words. The p0 receiver had already been selected as `THE ROAD` before either inverse was recognized. THE uses the local `[a,p]=[6,23]` handoff below. ROAD now has a source-derived key generator from its selected p50 ray, visible numeric direction permutation, fixed H map, and DH23 state. These are strong retrospective local closures, not a page-wide decoder.**
 
 ## Decision
 
@@ -35,7 +35,7 @@ so the local additive key is exactly:
 
 This is a concrete cryptographic receiver. It explains why the ciphertext word and plaintext word have the same GP0 sum: the two key increments total 29.
 
-The next unresolved decision is narrow: identify a source-visible state update after `[a,p]` that predicts the four key increments for `ROAD` without fitting them. Until that update is found, do not extrapolate a DH-derived keystream.
+The former ROAD state-update gap is now closed locally. The four selected p50 cells themselves supply a visible direction permutation and a state-native H transition that generates the exact ROAD key without subtracting the plaintext. The full charged construction is documented in `im-results/lp2-p0-road-direction-decoder.md`. Do not extrapolate either local key as a page-wide keystream.
 
 ## The signed image supplies prime ordinals 103 and 104
 
@@ -199,7 +199,7 @@ This is the **only** four-consecutive-cell window among all 256 p50 bytes whose 
 
 The observation is source-constrained in two ways: the start and length come from the independently predicted word `ROAD`, and the target p50 table was already part of the signed-word pointer and DH navigation routes. No search over p50 start positions was needed to choose cell105.
 
-This does not yet reveal the operation that turns those four DH values into the required additive increments for plaintext `ROAD`, which are `[12,5,1,4]`. Direct subtraction of `[a,g,K,b]` does not spell ROAD. Preserve the exact `a,g,K,b` run as a state/route clue and require a source-visible transform before using it as a keystream.
+The exact `a,g,K,b` run now has a source-visible consumer. The four printed tokens `22 13 0V 3c` expose first digits `[2,1,0,3]`, a complete position permutation. Conjugating the residue packet by that visible direction around the fixed H map gives `[-1,B-K,B-e,B-A]`; the independently fixed identity `29=p+g+1` turns the marked `-1` into `p` via `-1-g`, and one final H yields the exact additive key `[12,5,1,4]`. See `im-results/lp2-p0-road-direction-decoder.md` for the full finite-family charge.
 
 ## ROAD is the unique four-layer inward DH ray
 
@@ -250,7 +250,7 @@ GP0(plain THE)   = 20
 
 The strongest remaining objection is temporal: both the p0 crib and the DH tuple existed before this connection was recognized, so this is a cross-artifact holdout rather than a blinded decryption trial.
 
-The correct next experiment is prospective. Freeze `[a,p]` as the two-rune receiver state and derive one human-motivated update from the same source object. That update must predict the next four key increments at offsets105..108 before evaluating whether they spell `ROAD`. Generic PRNG, affine, or key-family searches would erase the discriminating value of this result.
+The correct next experiment is now prospective transfer. Freeze the ROAD direction decoder exactly as documented: one-based base60 p50 cells, visible first-digit permutation, `P -> H -> P`, the `-1-g -> p` state correction, then final H. Apply it only to a differently selected receiver whose location and direction are fixed before its plaintext is opened. Generic PRNG, affine, or formula searches remain ineligible.
 
 ## Reproduction
 
