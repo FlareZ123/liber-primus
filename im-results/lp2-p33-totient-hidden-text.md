@@ -65,6 +65,8 @@ A zero-based prime index does not recover either word. Charging the four H/Hinv 
 
 These controls do not justify a post-hoc probability for the English phrase. They establish that the mechanism is narrow, source-typed and reproducible.
 
+A later precommitted manuscript-wide transfer scan charges all eight exact two-word red spans under both one-step H/H^-1 extensions with this same solved-p56 serializer. It finds no additional authenticated signed-2016 or solved-p56/p57 word. It also shows that p40 repeats the lower title-length pair `[3,5]`, so p40 mechanically yields `RISE` under forward H as well. **RISE alone is therefore non-unique.** P33's evidence is the conjunction of the unique upper `THEIR`, the page-fixed opposite H polarities, the full state-layout packet, and the signed-source 19→25 rise loop. See `lp2-redspan-totient-extension-scan.md`.
+
 ## Interpretation and next causal test
 
 `THEIR RISE` should be preserved as hidden text or an instruction candidate, not yet promoted to unknown LP2 ciphertext plaintext. Its semantics remain open. A relevant possibility is that it instructs a rising or ordinal treatment of a previously identified sequence. That must be predicted on untouched material rather than inferred from a convenient target.
