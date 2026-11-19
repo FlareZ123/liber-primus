@@ -26,3 +26,21 @@ For each stream only:
 - inspect the resulting 23-rune packet only after all six outputs are fixed.
 
 Success requires a visibly coherent multiword plaintext or a complete authenticated-source phrase spanning substantially more than the already candidate OPENPGP/VERIFY words. A short word hit is insufficient. Failure closes direct key-ID-as-repeating-GP29-key consumption without phase or reset tuning.
+
+
+## Outcome
+
+All six frozen outputs were opened after the precommit. Their canonical transliterations are:
+
+```text
+hex nibbles, subtract : MGICTHXJWUIAEAXTPLWMBTHEOWAE
+hex nibbles, add      : RYTSTHOJHSUTHCXCPNGNGIDEOEOAEAE
+hex bytes, subtract   : LNGRAAEEATHWTHAEMXHURLHCJNGGNGT
+hex bytes, add        : OJOEAEHELHXSHSLLOENGLAFOEEJC
+base29 digits, subtract: DRSSMPBMAEOERBRTHIDTCHYEPP
+base29 digits, add     : FEAJCXRCAELEDEOAMTEEOAOBGMH
+```
+
+None is a coherent multiword plaintext or an authenticated-source phrase spanning the 23-rune packet. No phase, reset, reversal, permutation, hash, KDF, or additional state value was tried.
+
+**Decision: negative.** Retire direct use of the literal OpenPGP identifier `7A35090F` as a simple repeating GP29 additive key on p0 166..188. The identifier remains an authenticated verification instruction and may have a non-key role.
