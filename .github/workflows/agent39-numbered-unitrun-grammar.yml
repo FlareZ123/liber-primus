@@ -2,10 +2,6 @@ name: Agent39 numbered diagonal unit-run grammar
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - "sims/lp2_numbered_diagonal_unitrun_direction_grammar_sft.cjs"
-      - ".github/workflows/agent39-numbered-unitrun-grammar.yml"
 
 jobs:
   sft:
