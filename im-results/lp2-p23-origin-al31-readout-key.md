@@ -91,6 +91,17 @@ The repository's `resources/external/2013-liber-al-bookcode-{I,II,III}.txt` file
 
 Accordingly, Cicada's 2013 use makes Liber AL a genuine, player-visible source, but it does not itself authorize the New Comment. The additional LP2 clue is what makes the commentary lookup plausible: p23 emits AL, while the complete surface phrase points toward III:47 and its explicit “Key of it all” wording.
 
+## Sources and source scope
+
+- **2013 Cicada book code:** [surviving 2013 riddle and book-code reconstruction](https://github.com/neuroretransmit/cicada/blob/master/2013/001-232.jpg/README.md). This records the riddle and chapter/verse/character coordinates; it identifies Liber AL text, not a commentary edition.
+- **New Comment text:** [III:47 commentary](https://hermetic.com/legis/new-comment/chapter-iii); [New Comment title note and I.37](https://www.otohungary.org/documents/essay/english/The_New_Comment_to_Liber_AL_vel_Legis.html). These are current online transcripts, not proof of a pre-May-2014 web capture.
+- **Publication chronology:** [Hermetic Library timeline](https://hermetic.com/hermeneuticon/timeline-of-events-in-the-history-of-the-book-of-the-law); [1974 *Magical and Philosophical Commentaries* catalogue record](https://openlibrary.org/books/OL5441811M/Magical_and_philosophical_commentaries_on_The_book_of_the_law); [1975 *The Law is for All* first-edition record](https://openlibrary.org/books/OL5192925M/The_law_is_for_all); [1975 first-printing description](https://www.abebooks.co.uk/first-edition/Law-Crowley-Aleister-Israel-Regardie-Llewellyn/32238151699/bd); [1983 second edition](https://openlibrary.org/books/OL3194786M/The_law_is_for_all); [1996 edition record](https://openlibrary.org/works/OL136313W/The_law_is_for_all).
+- **Exact later text witness:** [1996 *The Law is for All* scan](https://logoilibrary.com/wp-content/uploads/2019/07/Law-is-for-All.pdf). It preserves the New Comment's AL=31 note and III:47 gloss; the scan's 2019 upload path is not evidence of 2014 online availability.
+- **1919 historical corroboration:** [Achad's *Liber 31* and Crowley's 9 September 1919 postcard](https://hermetic.net/crowley/libers/lib31). This is Frater Achad's *Liber 31*, not Crowley's separate *Liber XXXI* title for the Book manuscript.
+- **Independent LP2 alternative:** [p50 cell-0 origin cross-check](lp2-p23-origin-p50-cell0-crosscheck.md).
+
+The publication records establish pre-2014 print availability. No claim is made that the current online mirrors or exact webpage paths were archived by May 2014.
+
 ### Historical corroboration and finite alternatives
 
 Frater Achad's *Liber 31* records that the manuscript was written in November 1918, mailed to Crowley around 3 September 1919, and acknowledged by Crowley in a postcard dated 9 September 1919. Crowley wrote: “Your key opens Palace. CCXX has unfolded like a flower. All solved, even II.76 & III.47.” This establishes that the AL/31 key association and its connection to II.76 and III.47 were historical, not a modern reconstruction. Achad's *Liber 31* is distinct from Crowley's later use of the title *Liber XXXI* for the manuscript of the Book itself.
