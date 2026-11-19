@@ -75,7 +75,54 @@ Thus the p28 phrase plus p50 reflection selects the same p0 pair previously prop
 
 This bypasses the principal output-type objection against the earlier READ/OUT -> 80/102 route for the purpose of selecting these two ciphertext words. It does not validate that older numeral-to-offset mechanism.
 
-## Constrained inverse on the first selected word
+## Source-selected predecessor packet and geometry-selected key
+
+The selected first word begins at p0 offset103. The recovered DH modulus is `p=23`.
+
+Step back exactly **23 runes** from the selected receiver. This lands at offset80, exactly on a printed-word boundary. The preceding four complete words are:
+
+- offset80, length3;
+- offset83, length7;
+- offset90, length5;
+- offset95, length8.
+
+Their lengths sum to **23**, and the block ends at offset102 immediately before the selected word.
+
+Apply the already fixed reversible wordwise outer-H shell operation. The resulting 23-value packet is:
+
+`[19,23,25,4,16,12,9,6,10,14,15,8,24,5,21,5,28,26,22,9,0,18,2]`.
+
+The p50 geometry independently supplies an ordered two-number selector:
+
+- table width = `A=8`;
+- `OUT=20` lies on zero-based row `2=K`.
+
+So the geometry gives **(A,K)=(8,2)** without inspecting the packet contents.
+
+Read those as one-based positions in the p-length packet:
+
+- packet[8] = **6 = a**;
+- packet[2] = **23 = p**.
+
+The zero-based rival gives `[10,25]` and does not close onto DH state fields.
+
+Thus the source chain emits the two-rune additive key:
+
+`[a,p]=[6,23]`.
+
+Subtract it from the independently selected ciphertext word:
+
+`[8,12]-[6,23] mod29=[2,18]=THE`.
+
+Forward reconstruction is exact:
+
+`[2,18]+[6,23] mod29=[8,12]`.
+
+This is the first route in this chain that both selects its original-cipher receiver without p50-value/rune-offset semantics and derives its exact local key from upstream source geometry.
+
+The remaining convention caveat is packet indexing origin. One-based indexing is supported by the packet's p-element/group-style interpretation and is the only origin that returns the labeled DH state; it remains a convention rather than an explicit printed numeral instruction.
+
+## Constrained inverse family on the first selected word
 
 The first selected ciphertext word is fixed before plaintext scoring:
 
@@ -121,7 +168,9 @@ The new result strengthens:
 - p28 READ OUT / HERE;
 - the p50 reflection as an external consumer;
 - p0 words22–23 as the intended nearby receiver;
-- THE as a constrained local plaintext candidate.
+- the preceding p-length word-bounded H packet;
+- the geometry-selected packet indices (A,K)=(8,2);
+- THE as an exact locally reversible plaintext candidate.
 
 It does **not** yet provide a source-selected four-rune key for the adjacent word.
 
@@ -131,4 +180,4 @@ Run:
 
 `node sims/lp2_p28_readout_here_reflection_p0_receiver_sft.cjs`
 
-The SFT reconstructs the p28 DH labels needed for the geometry, verifies all reflection identities, parses all 2,896 canonical words including cross-page carries, proves the [20,76] adjacency unique, and exhausts the 84 ordered-DH-pair/sign inverses on the selected two-rune word.
+The SFT reconstructs the p28 DH labels needed for the geometry, verifies all reflection identities, parses all 2,896 canonical words including cross-page carries, proves the [20,76] adjacency unique, reconstructs the immediately preceding p=23 word-bounded H packet, derives (A,K)=(8,2) from table width and OUT-row geometry, recovers THE by subtraction, verifies exact forward reconstruction, and exhausts the 84 ordered-DH-pair/sign control family.
