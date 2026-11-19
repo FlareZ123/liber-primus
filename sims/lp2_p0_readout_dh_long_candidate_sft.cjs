@@ -319,7 +319,7 @@ assert(!orbit(map60, longAddress).includes(rootAddress));
 
 console.log(JSON.stringify({
   status: "PASS",
-  classification: "source-linked p0 decoder candidate; first recovered output word LONG; no full-block plaintext claim",
+  classification: "conditional p0 decoder/output candidate; LONG is not authenticated plaintext while READOUT receiver semantics remain unresolved",
   receiver: {
     page: 0,
     offsets: [80, 102],
