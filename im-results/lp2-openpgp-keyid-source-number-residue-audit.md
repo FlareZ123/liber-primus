@@ -134,6 +134,42 @@ This is a conditional rarity calculation, not a discovery-adjusted proof of auth
 
 It still does not solve the template-selection problem: the set condition says **which values** populate the shell, while #1786 requires a source rule for **which semantic label occupies each coordinate** before opening a receiver.
 
+## Full-fingerprint matched control and chronology
+
+The repository preserves the original armored 2012 Cicada public key at
+`resources/historical/cicada-3301-2012-public-key.asc`. The SFT parses its v4
+public-key packet directly and reproduces:
+
+```text
+fingerprint = 6D854CD7933322A601C3286D181F01E57A35090F
+created     = 2012-01-05...
+short ID    = 7A35090F
+```
+
+The key therefore predates the later DH protocol and LP2 material. This matters
+for causal interpretation: the 2013/2014 puzzle could have been designed around
+an already-fixed key ID. It is not evidence that the key was generated in 2014
+to fit Liber Primus.
+
+Use the full fingerprint as a matched control. Freeze the same six-value closure
+rule and scan every overlapping eight-hex window in the 40-hex fingerprint.
+There are 33 windows.
+
+Exactly one closes over the complete source set `S`:
+
+```text
+offset 32: 7A35090F
+H shell:   [21,22,10,10,23,12,5,5]
+```
+
+All other 32 overlapping fingerprint windows fail the same rule.
+
+This matters because the 2016 signed instruction explicitly names the short ID
+`7A35090F`, and that exact suffix is uniquely distinguished inside the full
+fingerprint by the source-set closure. The matched control is still structural
+corroboration. It does not supply the missing semantic coordinate rule or an
+unknown-page plaintext.
+
 ## Decision
 
 The historical numbers are a genuine new compression of the OpenPGP shell and should be preserved. They do **not** overturn #1786.
