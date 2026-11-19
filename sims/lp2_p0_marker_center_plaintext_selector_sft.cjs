@@ -271,6 +271,7 @@ const centerKey = hOutsideIn(markerCenter);
 assert.deepEqual(centerKey, [0,8,0,16,19]);
 const fiveLexicon = new Map(length5.map((word) => [word.values.join(","), word]));
 const centerKeyMarkerTransfers = [];
+let centerKeyMarkerWindows = 0;
 for (const pageAnnotation of annotations.pages) {
   const page = corpus.pages.find((candidate) => candidate.page === pageAnnotation.page);
   assert.ok(page);
@@ -279,6 +280,7 @@ for (const pageAnnotation of annotations.pages) {
     for (const side of ["pre","post"]) {
       const start = side === "pre" ? marker[0] - 5 : marker[0];
       if (start < 0 || start + 5 > page.indices.length) continue;
+      centerKeyMarkerWindows += 1;
       const cipher = page.indices.slice(start,start+5);
       const plain = cipher.map((value,index) => mod29(value - centerKey[index]));
       const word = fiveLexicon.get(plain.join(","));
@@ -336,6 +338,7 @@ console.log(JSON.stringify({
   palindromeDecryptions,
   centerKeyMarkerTransfers,
   family:{
+    centerKeyMarkerWindows,
     palindromeAssignments:metadataFieldEntries.length ** 3,
     receivers:receivers.length,
     length8:length8.length,
