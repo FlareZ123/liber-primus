@@ -774,17 +774,230 @@ assert.deepEqual(luckManuscript.hits, [{
   plaintext: gp("LUCK"),
 }]);
 
-// The local digit-letter chain ends naturally at the signed GOOD LUCK sentence.
+// LUCK no longer ends the numerical route. Its plaintext number addresses 2D;
+// the base59 reading is exactly the start of a four-rune p0 word, while base60
+// falls inside the same word. In the authenticated tail after LUCK, PATHS is
+// the first and only subsequent four-rune GP word.
 assert.equal(gp0("LUCK"), 31);
 assert.equal(tableTokens[gp0("LUCK")], "2D");
-const luckMessageIndex = message.findIndex((word, index) =>
-  word.toLowerCase() === "luck" && message[index + 1]?.toLowerCase() === "beware"
-);
+const luckDirection60 = decodeToken(tableTokens[gp0("LUCK")], alphabet60);
+const luckDirection59 = decodeToken(tableTokens[gp0("LUCK")], alphabet59);
+assert.equal(luckDirection60, 133);
+assert.equal(luckDirection59, 131);
+
+const luckMessageIndex = message.findIndex((word) => word.toLowerCase() === "luck");
 assert.ok(luckMessageIndex >= 0);
-assert.notEqual(
-  [...message[luckMessageIndex + 1].toLowerCase()].filter((char) => char === "d").length,
-  2
+const tailFourRuneWords = message
+  .slice(luckMessageIndex + 1)
+  .filter((word) => gp(word).length === 4);
+assert.deepEqual(tailFourRuneWords.map((word) => word.toUpperCase()), ["PATHS"]);
+
+const pathsReceiver = p0.words.find((word) => word.start === luckDirection59);
+assert.deepEqual(pathsReceiver, {
+  index: 30,
+  start: 131,
+  end: 134,
+  values: [23, 14, 21, 7],
+  length: 4,
+});
+assert.ok(pathsReceiver.start < luckDirection60 && luckDirection60 <= pathsReceiver.end);
+
+// PATHS key in the frozen H geometry. Use the difference coordinate from the
+// source-paired public values [A,B], K as the second outer-shell coordinate,
+// and H(B,B) for the inner shell. Invert H only at the outer pair.
+const inverseTwo = 15;
+function inverseH(difference, sumValue) {
+  return [
+    mod29((difference + sumValue) * inverseTwo),
+    mod29((sumValue - difference) * inverseTwo),
+  ];
+}
+const publicDifference = H(state.A, state.B)[0];
+assert.equal(publicDifference, 18);
+const pathsOuter = inverseH(publicDifference, state.K);
+const pathsKey = [pathsOuter[0], state.B, state.B, pathsOuter[1]];
+assert.deepEqual(pathsKey, [10, 19, 19, 21]);
+
+const pathsPlain = decrypt(pathsReceiver.values, pathsKey, -1);
+assert.deepEqual(pathsPlain, gp("PATHS"));
+assert.deepEqual(decrypt(pathsPlain, pathsKey, +1), pathsReceiver.values);
+
+const pathsPlainShell = [
+  ...H(pathsPlain[0], pathsPlain[3]),
+  ...H(pathsPlain[1], pathsPlain[2]),
+];
+assert.deepEqual(pathsPlainShell, [
+  28 - 1,
+  28,
+  state.p - 1,
+  28 - state.K,
+]);
+
+const pathsKeyShell = [
+  ...H(pathsKey[0], pathsKey[3]),
+  ...H(pathsKey[1], pathsKey[2]),
+];
+assert.deepEqual(pathsKeyShell, [
+  publicDifference,
+  state.K,
+  0,
+  mod29(2 * state.B),
+]);
+
+// Charge the shell grammar broadly:
+// - any ordered distinct DH field pair;
+// - either H coordinate as outer-shell coordinate 1;
+// - any DH field as outer-shell coordinate 2;
+// - any repeated DH field in the inner pair;
+// - both signs.
+// The numeric key is unique on this receiver. Two labeled aliases survive
+// because p-g = A-B = 18 in the reconstructed state.
+const pathsLabelHits = [];
+const pathsFamily = new Map();
+let pathsRawConfigs = 0;
+for (const [leftField, leftValue] of Object.entries(state)) {
+  for (const [rightField, rightValue] of Object.entries(state)) {
+    if (leftField === rightField) continue;
+    const pair = H(leftValue, rightValue);
+    for (let coordinate = 0; coordinate < 2; coordinate += 1) {
+      for (const [outerField, outerValue] of Object.entries(state)) {
+        for (const [innerField, innerValue] of Object.entries(state)) {
+          const endpoints = inverseH(pair[coordinate], outerValue);
+          const key = [endpoints[0], innerValue, innerValue, endpoints[1]];
+          for (const sign of [-1, +1]) {
+            pathsRawConfigs += 1;
+            const signature = sign + ":" + key.join(",");
+            if (!pathsFamily.has(signature)) {
+              pathsFamily.set(signature, { sign, key });
+            }
+            const plain = decrypt(pathsReceiver.values, key, sign);
+            for (const target of fourRuneTargets) {
+              if (plain.join(",") === target.values.join(",")) {
+                pathsLabelHits.push({
+                  leftField,
+                  rightField,
+                  coordinate,
+                  outerField,
+                  innerField,
+                  sign,
+                  key,
+                  target: target.word,
+                });
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(pathsRawConfigs, 8232);
+assert.equal(pathsFamily.size, 2842);
+assert.deepEqual(pathsLabelHits, [
+  {
+    leftField: "p",
+    rightField: "g",
+    coordinate: 0,
+    outerField: "K",
+    innerField: "B",
+    sign: -1,
+    key: pathsKey,
+    target: "PATHS",
+  },
+  {
+    leftField: "A",
+    rightField: "B",
+    coordinate: 0,
+    outerField: "K",
+    innerField: "B",
+    sign: -1,
+    key: pathsKey,
+    target: "PATHS",
+  },
+]);
+
+const pathsNumericHits = [];
+for (const member of pathsFamily.values()) {
+  const plain = decrypt(pathsReceiver.values, member.key, member.sign);
+  for (const target of fourRuneTargets) {
+    if (plain.join(",") === target.values.join(",")) {
+      pathsNumericHits.push({ ...member, target: target.word });
+    }
+  }
+}
+assert.deepEqual(pathsNumericHits, [{
+  sign: -1,
+  key: pathsKey,
+  target: "PATHS",
+}]);
+
+const pathsManuscript = fixedFourRuneManuscriptHits(pathsKey);
+assert.equal(pathsManuscript.count, 514);
+assert.deepEqual(pathsManuscript.hits, [{
+  page: 0,
+  word: 30,
+  start: 131,
+  target: "PATHS",
+  plaintext: gp("PATHS"),
+}]);
+
+// Two untouched source checks strengthen the p0 GOOD/PATHS route.
+// GOOD's raw ciphertext GP0 addresses 0S -> 28, pointing directly back to
+// physical p28, the page from which its key is derived.
+const goodRawGp0 = sum(goodReceiver.values);
+assert.equal(goodRawGp0, 85);
+assert.equal(tableTokens[goodRawGp0], "0S");
+assert.equal(decodeToken(tableTokens[goodRawGp0], alphabet60), 28);
+assert.equal(decodeToken(tableTokens[goodRawGp0], alphabet59), 28);
+const p0FourRuneP28Returns = p0.words
+  .filter((word) => word.length === 4)
+  .filter((word) => {
+    const address = sum(word.values);
+    const token = tableTokens[address];
+    return decodeToken(token, alphabet60) === 28 ||
+      decodeToken(token, alphabet59) === 28;
+  })
+  .map((word) => word.index);
+assert.deepEqual(p0FourRuneP28Returns, [goodReceiver.index]);
+
+// PATHS's raw ciphertext GP0 addresses 4F. Base60 position255 lies inside the
+// already recovered three-rune YOU receiver; base59 position251 lies in the
+// preceding nine-rune word.
+const pathsRawGp0 = sum(pathsReceiver.values);
+assert.equal(pathsRawGp0, 65);
+assert.equal(tableTokens[pathsRawGp0], "4F");
+const pathsReturn60 = decodeToken(tableTokens[pathsRawGp0], alphabet60);
+const pathsReturn59 = decodeToken(tableTokens[pathsRawGp0], alphabet59);
+assert.equal(pathsReturn60, 255);
+assert.equal(pathsReturn59, 251);
+const pathsReturnWord60 = p0.words.find((word) =>
+  word.start <= pathsReturn60 && pathsReturn60 <= word.end
 );
+const pathsReturnWord59 = p0.words.find((word) =>
+  word.start <= pathsReturn59 && pathsReturn59 <= word.end
+);
+assert.equal(pathsReturnWord60.index, 56);
+assert.equal(pathsReturnWord60.length, 3);
+assert.equal(pathsReturnWord59.index, 55);
+assert.equal(pathsReturnWord59.length, 9);
+
+// Post-discovery carrier crosslink: zero-based authenticated word index minus
+// GP0 modulo29 independently spells several DH state values in the same tail.
+const carrierRows = message.map((word, index) => ({
+  word: word.toUpperCase(),
+  index,
+  delta: mod29(index - gp0(word)),
+}));
+function carrierDelta(word) {
+  const row = carrierRows.find((candidate) => candidate.word === word);
+  assert.ok(row);
+  return row.delta;
+}
+assert.equal(carrierDelta("YOU"), state.K);
+assert.equal(carrierDelta("WILL"), state.g);
+assert.equal(carrierDelta("LUCK"), state.a);
+assert.equal(carrierDelta("BEWARE"), state.A);
+assert.equal(carrierDelta("PATHS"), state.b);
 
 console.log(JSON.stringify({
   dh: state,
@@ -827,6 +1040,27 @@ console.log(JSON.stringify({
     manuscriptHits: luckManuscript.hits,
     nextToken: tableTokens[gp0("LUCK")],
   },
+  paths: {
+    receiver: pathsReceiver,
+    key: pathsKey,
+    plaintext: translit(pathsPlain),
+    plaintextShell: pathsPlainShell,
+    keyShell: pathsKeyShell,
+    rawFamilyConfigs: pathsRawConfigs,
+    distinctFamilyConfigs: pathsFamily.size,
+    numericHits: pathsNumericHits.length,
+    manuscriptHits: pathsManuscript.hits,
+    rawReturn: {
+      gp0: pathsRawGp0,
+      token: tableTokens[pathsRawGp0],
+      base60: pathsReturn60,
+      base59: pathsReturn59,
+      base60Word: pathsReturnWord60.index,
+    },
+  },
+  carrierStateCrosslink: carrierRows.filter((row) =>
+    ["YOU", "WILL", "LUCK", "BEWARE", "PATHS"].includes(row.word)
+  ),
 }, null, 2));
 
-console.log("PASS p0 FOUND GOOD LUCK source chain");
+console.log("PASS p0 FOUND GOOD LUCK PATHS source chain");
