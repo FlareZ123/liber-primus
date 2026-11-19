@@ -15,6 +15,10 @@ Controls: only p49 and p55 have five page-level recursive word cores; only p55 h
 Artifacts: im-results/lp2-p55-recursive-word-core-within.md; sims/lp2_p55_recursive_word_core_sft.cjs; broadcast under communications/broadcast. This is a state/operation advance, not recovered prose. Next priority is a source-selected reversible consumer for the five-rune emerged state object. Avoid arbitrary additive keys or substitutions.
 
 
+### P55 last-survivor H readout recovers THE ROAD AND
+
+After the recursive hidden count reaches ROAD23, the next shed leaves exactly one active word: the seven-rune core of original p55 word7. Continuing the already fixed H map over that word's remaining circumference pairs gives H outputs [6,22], [26,23], [14,24]; the sum branch is exactly source indices **22,23,24 = THE ROAD AND**. Across all 2,039 page-local 16-word windows, there are 49 three-layer sites with one surviving word. Charging both H branches, this p55 sum branch is the **only ascending consecutive source-index triple anywhere**, and the only exact 22/23/24 hit. The difference branch has zero ascending triples. Preserve the final center1 as raw output until another source rule selects its use.
+
 ### P55 hidden-count route independently reconstructs the full state
 
 The unique hidden-count tail is [23,7,5,3,0] = [p,g+K,g,e,0]. Its successive drops are [16,2,2,3] = [hex stride,K,K,e]; 16 is independently selected by VERIFY's inner core. Thus p=23, g=5, K=7-5=2, e=3. Standard state equations then give the unique b=e^-1 mod22=15, B=5^15 mod23=19, unique a with B^a=K as6, A=5^6 mod23=8, q=e+1=4. This reproduces the full state (23,5,6,15,8,19,2,3,4) entirely from p55 word-length output plus the established state equations. The only other 16-word window with prefix75->41->23 is p35 word14, whose tail [9,3,0] fails the fixed state ladder.
