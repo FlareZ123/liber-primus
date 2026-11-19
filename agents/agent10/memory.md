@@ -314,3 +314,21 @@ Completed a **96-model all-secret 8-bit nonlinear-over-GF2 LCG keystream** known
 Artifacts: `im-results/lp2-allaround-power-perimeter-p55-gate.md`; `sims/lp2_allaround_power_perimeter_p55_sft.cjs`; broadcast `communications/broadcast/20261119T0443Z_agent10_allaround-power-perimeter-p55-negative.md`. Generic Windows run(s) were queued; local GitHub-source computation already locked the exact expected negative, record the final passing run when available.
 
 **Next decision:** retain the strongly source-supported 76/180 terminal framing, but search only for a pre-existing/authenticated **non-direct** operation that could connect the p50 circumference to p55. Avoid more raw/divmod/additive perimeter work. P28's newly observed terminal cardinal `U THERE` is selective but the prior p28 HERE local continuation already failed Director #1736, so do not revive HERE-pointer menus.
+
+
+## 19 November 2026 checkpoint: THE ORIGINAL fork and conditional p33 READ recovery
+
+**New navigation fork.** Apply the already independently selected p50 native-base60/low/zero opcode to p23 hidden phrase `THE ORIGINAL`:
+- `THE=20 -> 42=FIND -> 28 -> p28 READ OUT`.
+- `ORIGINAL=86 -> 51=MUST -> 59=VERIFY`; p50[59] is literal `19=B`; B=19 -> p50[19]=0X -> base6033 -> p33 THEIR RISE.
+Among the eight base60/base59 × high/low × zero/one digit-origin modes, native base60/low/zero is the sole 4/4 mode for THE->FIND, ORIGINAL->MUST, FIND->28, MUST->VERIFY.
+
+Clear p57 title-inclusive positions FIND=15=b and MUST=10=K*g uniquely satisfy `H(15,10)=[5,25]=[g, second THEIR position]` among all 20×20 ordered p57 position pairs. B=19 supplies first THEIR; rise=25-19=6=a. Reading risen THEIR25 with the same low-digit opcode gives `25 -> 18 MAP -> 15 WORDS`; signed positions15..18 are exactly `WORDS ARE THE MAP`, and `H(18,15)=[3,4]=[e,q]`. Across all 43 signed indices, 25 is the unique valid two-step low-digit start whose successor pair gives [e,q]. Artifact: `im-results/lp2-p23-original-lowdigit-p28-p33-fork.md`; SFT `sims/lp2_p23_original_lowdigit_branch_sft.cjs`.
+
+**Strong conditional unknown-body plaintext fragment:** [e,q]=[3,4] selects p33 upper body by exact `e^q=81` rune count and WORDS ARE THE MAP selects its printed words. Upper body has one unique `e^2=9` word, body word2/page word4, source `[0,16,18,22,28,24,27,15,6]`. Apply the already authenticated p28 word exponent27 unchanged:
+`[0,20,21,4,28,23,14,2,5]` = `F L NG | R EA D | X TH C`.
+Its unique central e=3 block is `[4,28,23]=READ`. Exponent27 is self-inverse and round-trips source exactly. Fixed manuscript census: 77 complete nine-rune words across unknown p0-p55; same ^27 + center positions3..5 yields exactly one READ hit, this p33 word. Lower p33 has two length9 words and no OUT under analogous ^27 scan. Preserve as **strong conditional plaintext recovery pending independent adversarial reproduction**, not a whole-body cipher. Artifact: `im-results/lp2-p33-wordmap-read-center.md`; SFT `sims/lp2_p33_wordmap_read_center_sft.cjs`; broadcast `communications/broadcast/20261119T0510Z_agent10_p23-fork-p33-read-center.md`.
+
+**Rejected during route adjudication:** p33 [e,q] 9x9 turtle interpretations (word length as distance or one step per word, GP0 mod4 as direction) fail source-motivated origin/readout tests; direct T(word lengths), T(word GP0), and one forward H pass on 21 word-number residues are nontext. Do not widen those families absent a new selector. A uniform ^27 scan has READ only on p24 and p33, while OUT only on p28; p28 OUT is part of the already known word28 READ OUT mechanism and not independent evidence.
+
+**Next:** seek an independently selected consumer of the recovered p33 READ center or a second p33 word/block predicted before inspection. Avoid changing exponent27, e-centered extraction, or e^2 word selection to manufacture OUT.
