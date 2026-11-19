@@ -34,6 +34,7 @@ function firstPrimes(count) {
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const parts = transcription.split(/^\s*%\s*$/m);
 const primes = firstPrimes(300);
@@ -60,7 +61,16 @@ function wordLengths(line) {
   return (line.match(/[\u16A0-\u16FF]+/gu) || []).map((word) => [...word].length);
 }
 
-/** @param {number} page @returns {{line:number,lens:number[],runes:number,text:string}[]} */
+/** @param {string} line @returns {number} */
+function terminalGp0(line) {
+  const words = line.match(/[\u16A0-\u16FF]+/gu) || [];
+  const terminalRune = [...words.at(-1)].at(-1);
+  const value = runeIndex.get(terminalRune);
+  assert.notEqual(value, undefined);
+  return value;
+}
+
+/** @param {number} page @returns {{line:number,lens:number[],runes:number,text:string,terminalGp0:number}[]} */
 function pageLines(page) {
   return physicalPart(page)
     .split(/\r?\n/)
@@ -71,7 +81,8 @@ function pageLines(page) {
         line: index + 1,
         lens,
         runes: lens.reduce((sum, value) => sum + value, 0),
-        text: spell(lens.map(totientPrimeOrdinal))
+        text: spell(lens.map(totientPrimeOrdinal)),
+        terminalGp0: terminalGp0(line)
       };
     });
 }
@@ -138,8 +149,10 @@ const motifControls = {
 };
 assert.equal(motifControls.p7.text, "THGRTHRIN");
 assert.equal(motifControls.p23.text, "THEORIGIN");
-assert.equal(motifControls.p56.text, "THTHGRRGEOAE");
+assert.equal(motifControls.p56.text, "THTHGRRGIAE");
 assert.deepEqual(motifControls.p23.cardinals, [2, 6, 3, 5, 4, 5, 25]);
+assert.equal(p23[0].terminalGp0, 25);
+assert.equal(spell([p23[0].terminalGp0].map(totientPrimeOrdinal)), "N");
 
 const originHits = allLines
   .filter((row) => row.lens.length === 5)
@@ -183,6 +196,7 @@ console.log(JSON.stringify({
   independentEchoes: {
     smallestCardinalMappingToN: 25,
     p23Unique25RuneLine: [9],
-    signed2016SecondTheirPosition: 25
+    signed2016SecondTheirPosition: 25,
+    p23SelectedLineTerminalGp0: p23[0].terminalGp0
   }
 }, null, 2));
