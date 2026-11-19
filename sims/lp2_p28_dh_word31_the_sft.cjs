@@ -198,52 +198,37 @@ for (let partIndex = 0; partIndex < parts.length; partIndex += 1) {
       if (fragment.length !== 2) continue;
 
       twoRuneFragmentCount += 1;
-      const sum = fragment[0] + fragment[1];
-      if (sum < 1 || sum > parsed.words.length) continue;
-      validSamePageIndexCount += 1;
-
-      const target = parsed.words[sum - 1];
-      if (target.length >= 2) {
-        const output = H(target[0], target[target.length - 1]);
-        const signedTargets = signedTwoRune.get(output.join(","));
-        if (signedTargets) {
-          signedTwoRuneHits.push({
-            page,
-            line: lineIndex + 1,
-            fragment: fragmentIndex + 1,
-            source: fragment,
-            sum,
-            targetLength: target.length,
-            output,
-            signedTargets,
-          });
-        }
-      }
 
       const distinctStatePair =
         fragment[0] !== fragment[1] &&
         stateValues.has(fragment[0]) &&
         stateValues.has(fragment[1]);
+      if (distinctStatePair) statePairSourceCount += 1;
 
-      if (!distinctStatePair) continue;
-      statePairSourceCount += 1;
-      validStatePairIndexCount += 1;
+      const sum = fragment[0] + fragment[1];
+      if (sum < 1 || sum > parsed.words.length) continue;
+      validSamePageIndexCount += 1;
+      if (distinctStatePair) validStatePairIndexCount += 1;
 
+      const target = parsed.words[sum - 1];
       if (target.length < 2) continue;
+
       const output = H(target[0], target[target.length - 1]);
       const signedTargets = signedTwoRune.get(output.join(","));
-      if (signedTargets) {
-        statePairSignedHits.push({
-          page,
-          line: lineIndex + 1,
-          fragment: fragmentIndex + 1,
-          source: fragment,
-          sum,
-          targetLength: target.length,
-          output,
-          signedTargets,
-        });
-      }
+      if (!signedTargets) continue;
+
+      const hit = {
+        page,
+        line: lineIndex + 1,
+        fragment: fragmentIndex + 1,
+        source: fragment,
+        sum,
+        targetLength: target.length,
+        output,
+        signedTargets,
+      };
+      signedTwoRuneHits.push(hit);
+      if (distinctStatePair) statePairSignedHits.push(hit);
     }
   }
 
