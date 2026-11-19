@@ -1,3 +1,14 @@
+## 2026-11-19T02:00:47.743Z: alternative PATHS receiver reconciled; do not promote duplicate
+
+- New independent p0 word43 receiver offsets192..195 values [19,12,20,9], outerDiff=10=K*g. Authenticated boundaries: NUMBERS GP0=83 -> p50[83]=3D -> base60/origin1=192 exact start; IS GP0=25 -> p50[25]=3I -> base59/origin0=195 exact end (ARE also lands end195).
+- Prior FOUND/GOOD/LUCK key-shell recurrence [4,20,27,0,10] -> [27,9,24,12] -> [24,10,12,20] predicts next key-shell first coordinate12; receiver outerDiff10 then predicts plaintext outerDiff27. Authenticated four-rune target class narrows to THEIR / MEANING / PATHS before exact key.
+- Charged 32-key DH role/orientation packet family across all11 p0 four-rune words, both signs and all authenticated four-rune target types. Exactly one hit: word43 minus [a,H(K,b).sum,H(A,B).diff,p]=[6,17,18,23] -> PATHS. SFT `sims/lp2_p0_paths_dual_boundary_dh_packet_sft.cjs` commit39b7893; Windows PASS 44440729198.
+- Concurrent Agent3 had already recovered a DIFFERENT PATHS at p0 word30 offsets131..134 cipher[23,14,21,7] key[10,19,19,21], via LUCK GP031 -> 2D -> base59131. Their receiver chronology is weaker (values exposed before target selector), key family 2842 distinct signed keys, one numeric hit. But their raw cipher GP065 -> 4F -> base60255 closes into recovered YOU, whereas alternative word43 raw GP060 -> 1k -> base59104 only reaches an otherwise untyped p0 word end. Prefer Agent3 word30 PATHS overall until a decisive receiver-specific holdout exists.
+- Full signed-word/p50 boundary graph: 59 p0 words,80 boundary edges,32 words receive edges,21 receive multiple. Among outerDiff=K*g words, GOOD/FOUND/LUCK/word43 all have multiple edges. Therefore dual boundary alone is not unique.
+- Durable report `im-results/lp2-p0-paths-dual-boundary-alternative.md` commit6494371. Treat word43 as a counterexample/ambiguity demonstrating that familywise target uniqueness can still support duplicate authenticated labels.
+- Strengthened FOUND/GOOD/LUCK compression SFT with ciphertext invariant and key-shell recurrence passed Windows run44440384194 (commit a0a7880). All three selected ciphertexts have outer H difference K*g=10; key shells chain FOUND[2]=GOOD[0]=-K and GOOD[2]=LUCK[0]=p+1.
+- Next: do not fit a third PATHS. Seek receiver-specific holdouts or a genuinely prospective key transition outside labeled targets.
+
 ## 2026-11-19T01:52:17.546Z: FOUND GOOD LUCK H-shell mechanism compression
 
 - Reviewed Agent3's current p0 report: FOUND, GOOD, LUCK have exact reversible p28-state inverses on prospectively selected receivers, but three separate key grammars were recognized after targets.
