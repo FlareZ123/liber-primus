@@ -59,6 +59,46 @@ function recursiveCore(values) {
 }
 
 /**
+ * Return the H coordinates for every recursive layer on which exactly one
+ * active word remains and still has a circumference pair.
+ * @param {number[][]} wordValues
+ * @returns {{depth:number,wordIndex:number,length:number,h:[number,number]}[]}
+ */
+function singleSurvivorHLayers(wordValues) {
+  let active = wordValues.map((values, index) => ({
+    values: values.slice(),
+    index,
+  }));
+  const layers = [];
+  let depth = 0;
+
+  while (active.length) {
+    if (active.length === 1 && active[0].values.length >= 2) {
+      const values = active[0].values;
+      layers.push({
+        depth,
+        wordIndex: active[0].index,
+        length: values.length,
+        h: H(values[0], values[values.length - 1]),
+      });
+    }
+
+    const next = [];
+    for (const word of active) {
+      if (word.values.length <= 1) continue;
+      const inner = word.values.slice(1, -1);
+      if (inner.length > 1) {
+        next.push({ values: inner, index: word.index });
+      }
+    }
+    active = next;
+    depth += 1;
+  }
+
+  return layers;
+}
+
+/**
  * @param {number[][]} wordValues
  * @returns {number[]}
  */
@@ -159,6 +199,14 @@ assert.equal(p55.gp0, WITHIN_GP0);
 const p55HiddenCounts = hiddenRuneCounts(p55Words);
 assert.deepEqual(p55HiddenCounts, [75, 41, 23, 7, 5, 3, 0]);
 
+const p55SingleLayers = singleSurvivorHLayers(p55Words);
+assert.deepEqual(p55SingleLayers, [
+  { depth: 3, wordIndex: 6, length: 7, h: [6, 22] },
+  { depth: 4, wordIndex: 6, length: 5, h: [26, 23] },
+  { depth: 5, wordIndex: 6, length: 3, h: [14, 24] },
+]);
+assert.deepEqual(p55SingleLayers.map((layer) => layer.h[1]), [22, 23, 24]);
+
 const pFromHiddenCounts = p55HiddenCounts[2];
 const gPlusKFromHiddenCounts = p55HiddenCounts[3];
 const gFromHiddenCounts = p55HiddenCounts[4];
@@ -250,6 +298,13 @@ let prefix75To41To23Windows = 0;
 const prefix75To41To23Hits = [];
 let fullHiddenSequenceWindows = 0;
 let dualOpenPgpWindows = 0;
+let singleSurvivorTripleSites = 0;
+let sumAscendingTriples = 0;
+let differenceAscendingTriples = 0;
+let eitherAscendingTriples = 0;
+let exactSource222324Sum = 0;
+let exactSource222324Difference = 0;
+const sourceTripleHits = [];
 const hiddenSequenceHits = [];
 const exactHits = [];
 
@@ -260,6 +315,49 @@ for (let page = 0; page <= 55; page += 1) {
     const windowWords = pageWords.slice(start, start + 16);
     const signature = coreSignature(windowWords);
     const hiddenCounts = hiddenRuneCounts(windowWords);
+    const singleLayers = singleSurvivorHLayers(windowWords);
+    for (let layerIndex = 0; layerIndex + 2 < singleLayers.length; layerIndex += 1) {
+      const triple = singleLayers.slice(layerIndex, layerIndex + 3);
+      if (
+        triple[1].depth !== triple[0].depth + 1
+        || triple[2].depth !== triple[1].depth + 1
+      ) {
+        continue;
+      }
+
+      singleSurvivorTripleSites += 1;
+      const differences = triple.map((layer) => layer.h[0]);
+      const sums = triple.map((layer) => layer.h[1]);
+      const sumAscending =
+        sums[1] === sums[0] + 1
+        && sums[2] === sums[1] + 1;
+      const differenceAscending =
+        differences[1] === differences[0] + 1
+        && differences[2] === differences[1] + 1;
+
+      if (sumAscending) sumAscendingTriples += 1;
+      if (differenceAscending) differenceAscendingTriples += 1;
+      if (sumAscending || differenceAscending) eitherAscendingTriples += 1;
+
+      const sumExact = sums[0] === 22 && sums[1] === 23 && sums[2] === 24;
+      const differenceExact =
+        differences[0] === 22
+        && differences[1] === 23
+        && differences[2] === 24;
+
+      if (sumExact) exactSource222324Sum += 1;
+      if (differenceExact) exactSource222324Difference += 1;
+
+      if (sumAscending || differenceAscending || sumExact || differenceExact) {
+        sourceTripleHits.push({
+          physicalPage: page,
+          startWord: start + 1,
+          depth: triple[0].depth,
+          differences,
+          sums,
+        });
+      }
+    }
     const lengths = windowWords.map((word) => word.length);
     const evenLengthSum = lengths
       .filter((length) => length % 2 === 0)
@@ -329,6 +427,19 @@ assert.deepEqual(prefix75To41To23Hits, [
 ]);
 assert.equal(fullHiddenSequenceWindows, 1);
 assert.equal(dualOpenPgpWindows, 4);
+assert.equal(singleSurvivorTripleSites, 49);
+assert.equal(sumAscendingTriples, 1);
+assert.equal(differenceAscendingTriples, 0);
+assert.equal(eitherAscendingTriples, 1);
+assert.equal(exactSource222324Sum, 1);
+assert.equal(exactSource222324Difference, 0);
+assert.deepEqual(sourceTripleHits, [{
+  physicalPage: 55,
+  startWord: 1,
+  depth: 3,
+  differences: [6, 26, 14],
+  sums: [22, 23, 24],
+}]);
 assert.deepEqual(hiddenSequenceHits, [{
   physicalPage: 55,
   startWord: 1,
@@ -363,6 +474,11 @@ console.log(JSON.stringify({
     hBranchGp0: [p55.h0, p55.h1],
     hBranchSourceLabel: "GOOD",
     hSumBranchState: ["B", "b+K"],
+    sourceFragment: {
+      hDifferenceBranch: p55SingleLayers.map((layer) => layer.h[0]),
+      hSumBranch: p55SingleLayers.map((layer) => layer.h[1]),
+      signedWords: ["THE", "ROAD", "AND"],
+    },
     hiddenCountState: {
       counts: p55HiddenCounts,
       p: pFromHiddenCounts,
@@ -395,6 +511,13 @@ console.log(JSON.stringify({
     prefix75To41To23Hits,
     fullHiddenSequenceWindows,
     dualOpenPgpWindows,
+    singleSurvivorTripleSites,
+    sumAscendingTriples,
+    differenceAscendingTriples,
+    eitherAscendingTriples,
+    exactSource222324Sum,
+    exactSource222324Difference,
+    sourceTripleHits,
     hiddenSequenceHits,
     exactHits,
   },
