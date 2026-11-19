@@ -178,6 +178,57 @@ Hold `[14,15]` fixed over all 465 complete two-rune unknown words, the three dis
 There are five lexical hits, including p21. Therefore the **source-selected receiver and receiver-ordinal key selector are essential**. The claim is not that `[14,15]` is a unique manuscript-wide key.
 
 
+
+## Independent solved-p57 route reproduces the p21 scalar
+
+There is a second, more puzzle-facing way to obtain the p21 scalar after the receiver ordinal has selected `WILL`.
+
+The complete receiver-ordinal source-word family is:
+
+```text
+p6  ordinal28 -> THE   GP0=20
+p11 ordinal11 -> IS    GP0=25
+p21 ordinal33 -> WILL  GP0=57
+p33 ordinal34 -> BE    GP0=35
+p34 ordinal2  -> PATH  GP0=39
+p38 ordinal11 -> IS    GP0=25
+p40 ordinal16 -> ARE   GP0=46
+```
+
+P21 is the **only** member whose selected source word has GP0 equal to either solved physical LP2 page number56 or57.
+
+Thus the p21 selector gives a literal solved-page handoff:
+
+```text
+receiver ordinal33
+ -> source word33 WILL
+ -> GP0(WILL)=57
+ -> physical solved p57.
+```
+
+Solved p57 already supplies the independently established imperative/navigation route:
+
+```text
+FIND
+GP0(FIND)=42
+p50[42]=0S
+low base60 digit S=28.
+```
+
+That output is exactly the p21 key scalar:
+
+```text
+28
+ -> H^-1([28,0])
+ -> [14,15]
+ -> p21 [24,1] - [14,15]
+ -> IS.
+```
+
+This route reproduces the scalar without using the arithmetic shortcut `57 mod29=28`. It also gives a plausible human-facing sequence: a receiver word number names `WILL`, its GP0 is an actual solved-page number, and the solved imperative `FIND` feeds the already audited p50-low operation.
+
+The chronology remains retrospective at one point: interpreting `GP0(WILL)=57` as a physical-page handoff was recognized after the p21 key scalar was known. Treat the solved-p57 route as **independent mechanism corroboration**, not as blind key recovery. The complete family census above prevents extending the shortcut to other receiver ordinals without a new source clue.
+
 ## Prospective receiver-ordinal page-pointer continuation fails on p40 -> p16
 
 The p21 result suggested a stronger interpretation that needed a blind gate: perhaps a selected receiver's printed ordinal is not only a source-key selector but also a general destination page/word number.
