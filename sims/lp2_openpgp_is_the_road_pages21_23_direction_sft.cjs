@@ -494,6 +494,63 @@ assert.equal(p22Receiver.index, 19);
 assert.equal(finalRawSourceIndex - p22Receiver.index, g);
 assert.equal((finalRawSourceIndex + 1) - p22Receiver.index, a);
 
+
+// "Their numbers are the direction": consume the selected adjacent source
+// numbers AND24/THEIR25 as p50 addresses. Charge the documented base59/base60
+// numeric alphabets across every authenticated adjacent source pair. A
+// uniform pair shift means both outputs preserve adjacency by the same source
+// index displacement.
+/** @param {string} alphabet */
+function sourceNumberUniformShiftHits(alphabet) {
+  const hits = [];
+  for (let index = 0; index + 1 < source.length; index += 1) {
+    const left = tryDecodeToken(tape[index], alphabet);
+    const right = tryDecodeToken(tape[index + 1], alphabet);
+    if (left === null || right === null) continue;
+    const leftOut = left % 29;
+    const rightOut = right % 29;
+    const leftShift = leftOut - index;
+    const rightShift = rightOut - (index + 1);
+    if (leftShift === rightShift) {
+      hits.push({
+        index,
+        input: [source[index], source[index + 1]],
+        tokens: [tape[index], tape[index + 1]],
+        outputs: [leftOut, rightOut],
+        words: [source[leftOut], source[rightOut]],
+        shift: leftShift,
+      });
+    }
+  }
+  return hits;
+}
+
+const sourceNumberUniformShiftHits59 = sourceNumberUniformShiftHits(base59);
+const sourceNumberUniformShiftHits60 = sourceNumberUniformShiftHits(base60);
+assert.deepEqual(sourceNumberUniformShiftHits59, [{
+  index: 24,
+  input: ["AND", "THEIR"],
+  tokens: ["1n", "3I"],
+  outputs: [20, 21],
+  words: ["MEANING", "IS"],
+  shift: -q,
+}]);
+assert.deepEqual(sourceNumberUniformShiftHits60, []);
+
+const reconstructedClause = [
+  source[p22Receiver.index],
+  ...sourceNumberUniformShiftHits59[0].words,
+  source[22],
+  source[23],
+  source[finalRawSourceIndex],
+  p22KeyFamilyHits[0].target,
+];
+assert.deepEqual(
+  reconstructedClause,
+  ["THEIR", "MEANING", "IS", "THE", "ROAD", "AND", "THEIR"]
+);
+assert.deepEqual(source.slice(19, 26), reconstructedClause);
+
 // P21 was independently established before this route as an IS state object.
 const isValues = gp("IS");
 const isSum = isValues.reduce((sum, value) => sum + value, 0);
@@ -633,6 +690,11 @@ console.log(JSON.stringify({
         separator: finalRawSourceIndex,
         second: finalRawSourceIndex + 1,
         rise: (finalRawSourceIndex + 1) - p22Receiver.index,
+      },
+      number_direction: {
+        base59_uniform_shift_hits: sourceNumberUniformShiftHits59,
+        base60_uniform_shift_hits: sourceNumberUniformShiftHits60,
+        reconstructed_clause: reconstructedClause,
       },
     },
   },
