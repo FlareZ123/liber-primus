@@ -508,10 +508,15 @@ assert.deepEqual(receiver, predictedReceiver);
  * variant, use the immediate post-state line (a+1), fragment e, and require
  * that fragment length equals g before testing the b-orbit output.
  */
+let nextLineExists = 0;
+let orderLengthMatches = 0;
+let fragmentCountMatchesA = 0;
+let lineMetaMatches = 0;
 let coordinateExists = 0;
 let lengthMatchesG = 0;
 let outerPredictionHits = 0;
 let fullReceiverHits = 0;
+const lineMetaHits = [];
 const stateReceiverHits = [];
 
 for (const row of invertibleNontrivial) {
@@ -521,6 +526,37 @@ for (const row of invertibleNontrivial) {
   const targetLine = row.a + 1;
   if (targetLine < 1 || targetLine > lines.length) continue;
   const line = lines[targetLine - 1];
+  nextLineExists += 1;
+
+  const lineRuneCount = line.reduce(
+    (sum, fragment) => sum + fragment.length,
+    0
+  );
+  const orderLengthHit = lineRuneCount === row.p - 1;
+  const fragmentCountHit = line.length === row.a;
+  if (orderLengthHit) orderLengthMatches += 1;
+  if (fragmentCountHit) fragmentCountMatchesA += 1;
+  if (orderLengthHit && fragmentCountHit) {
+    lineMetaMatches += 1;
+    lineMetaHits.push({
+      page: row.page,
+      line: row.line,
+      origin: row.origin,
+      assignment: row.assignment,
+      p: row.p,
+      g: row.g,
+      a: row.a,
+      b: row.b,
+      A: row.A,
+      B: row.B,
+      K: row.K,
+      e: row.e,
+      targetLine,
+      lineRuneCount,
+      fragmentCount: line.length,
+    });
+  }
+
   if (row.e < 1 || row.e > line.length) continue;
   coordinateExists += 1;
 
@@ -561,12 +597,37 @@ for (const row of invertibleNontrivial) {
       e: row.e,
       targetLine,
       targetFragment: row.e,
+      lineRuneCount,
+      fragmentCount: line.length,
+      orderLengthHit,
+      fragmentCountHit,
       outerHit,
       fullHit,
     });
   }
 }
 
+assert.equal(nextLineExists, 289);
+assert.equal(orderLengthMatches, 10);
+assert.equal(fragmentCountMatchesA, 69);
+assert.equal(lineMetaMatches, 1);
+assert.deepEqual(lineMetaHits, [{
+  page: 28,
+  line: 6,
+  origin: "one",
+  assignment: "g=fragments,a=line",
+  p: 23,
+  g: 5,
+  a: 6,
+  b: 15,
+  A: 8,
+  B: 19,
+  K: 2,
+  e: 3,
+  targetLine: 7,
+  lineRuneCount: 22,
+  fragmentCount: 6,
+}]);
 assert.equal(coordinateExists, 110);
 assert.equal(lengthMatchesG, 7);
 assert.equal(outerPredictionHits, 1);
@@ -586,6 +647,10 @@ assert.deepEqual(stateReceiverHits, [{
   e: 3,
   targetLine: 7,
   targetFragment: 3,
+  lineRuneCount: 22,
+  fragmentCount: 6,
+  orderLengthHit: true,
+  fragmentCountHit: true,
   outerHit: true,
   fullHit: true,
 }]);
@@ -683,6 +748,11 @@ console.log(JSON.stringify({
     },
     stateReceiver: {
       invertibleNontrivialVariants: invertibleNontrivial.length,
+      nextLineExists,
+      orderLengthMatches,
+      fragmentCountMatchesA,
+      lineMetaMatches,
+      lineMetaHits,
       coordinateExists,
       lengthMatchesG,
       outerPredictionHits,
