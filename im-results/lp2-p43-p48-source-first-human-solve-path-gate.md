@@ -45,7 +45,7 @@ No extra phase, substitution, or key was added after this failed prediction.
 
 The low-digit road-map report had one open prerequisite: verify p47 word segmentation against original scan 64. That check is now complete.
 
-- Original p47 is archive image 64.jpg (SHA-256 08ed86be5561c09ce5c773d8001b290cc505436db89637d66ea0f5a15818d1c8). The image visibly matches the canonical 12-line transcription's 54 hyphen dividers and four periods.
+- Original p47 is archive image 64.jpg (SHA-256 08ed86be5561c09ce5c773d8001b290cc505436db89637d66ea0f5a15818d1c8). The 12-line image supports the canonical transcription's 54 hyphen dividers and four periods; the line-start and cross-line cases that determine the 59-word segmentation were checked explicitly.
 - The transcription's slash marks are line-wrap notation, not printed separators. Where a line break has no divider, the word continues across it. The scan confirms the leading dividers on lines 5, 8, and 9; in particular, p47 word index 29 is the two-rune **AENG** spanning the end of line 6 and start of line 7, with no divider between those runes.
 - Joining the twelve wrapped lines and splitting only at the printed hyphen/period marks yields **59 words / 274 runes**, matching the low-digit study's input. Its eight selected word positions are present as complete source spans:
 
