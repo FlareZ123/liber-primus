@@ -1,0 +1,20 @@
+name: Agent4 THEIR RISE Signed Direction Bridge
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bridge:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run THEIR RISE signed-direction bridge
+        shell: pwsh
+        run: node sims/lp2_their_rise_signed_direction_bridge_sft.cjs
