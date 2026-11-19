@@ -46,6 +46,10 @@ function gp(word) {
   return out;
 }
 
+function gp0(word) {
+  return gp(word).reduce((sum, value) => sum + value, 0);
+}
+
 function mod29(value) {
   return (value % 29 + 29) % 29;
 }
@@ -160,6 +164,54 @@ assert.deepEqual(
   [state.a - state.g, state.a, state.q, mod29(-state.b), state.g],
 );
 
+// Charge the same-index page/local-word residual family across the complete
+// authenticated source. P32 READ OUT independently selects DEVOTED8, making
+// the longest run's entry point source-selected before this finite census.
+const stateScalars = new Set([
+  0, state.p, state.g, state.a, state.b, state.A, state.B,
+  state.K, state.e, state.q, state.K * state.a, state.K * state.g,
+  state.a - state.g,
+]);
+
+const residualRows = sourceWords.map((word, index) => {
+  const words = pageWords(index);
+  if (index >= words.length) return {index, word, residual:null, inFamily:false};
+  const local = words[index];
+  const localGp0 = local.values.reduce((sum, value) => sum + value, 0);
+  const residual = mod29(localGp0 - gp0(word));
+  return {index, word, residual, inFamily:stateScalars.has(residual)};
+});
+
+const residualRuns = [];
+let runStart = null;
+for (let index = 0; index <= residualRows.length; index += 1) {
+  const inside = index < residualRows.length && residualRows[index].inFamily;
+  if (inside && runStart === null) runStart = index;
+  if (!inside && runStart !== null) {
+    residualRuns.push({
+      start:runStart,
+      end:index - 1,
+      length:index - runStart,
+      residuals:residualRows.slice(runStart, index).map((row) => row.residual),
+      words:residualRows.slice(runStart, index).map((row) => row.word),
+    });
+    runStart = null;
+  }
+}
+residualRuns.sort((left, right) => right.length - left.length || left.start - right.start);
+assert.deepEqual(residualRuns[0], {
+  start:8,
+  end:15,
+  length:8,
+  residuals:[23,6,0,0,15,12,5,23],
+  words:['DEVOTED','LIBER','PRIMUS','IS','THE','WAY','ITS','WORDS'],
+});
+assert.equal(residualRuns.filter((run) => run.length === 8).length, 1);
+assert.deepEqual(
+  residualRuns.slice(0, 3).map((run) => [run.start, run.end, run.length]),
+  [[8,15,8],[21,25,5],[33,35,3]],
+);
+
 // Signed word15 selects physical p15 and local printed word15.
 assert.equal(sourceWords[15], 'WORDS');
 const receiver = pageWords(15)[15];
@@ -248,6 +300,7 @@ console.log('PASS lp2_p15_words_geometry_key_sft');
 console.log('p15 source-index skeleton:', oddSkeleton, '=>', oddSkeleton.map((i) => sourceWords[i]).join(' '));
 console.log('midpoints:', midpoints, '=>', midpoints.map((i) => sourceWords[i]).join(' '));
 console.log('full clause:', reconstructedIndices.map((i) => sourceWords[i]).join(' '));
+console.log('same-index residual longest run:', residualRuns[0]);
 console.log('geometry key:', geometryKey, '= [e,K*g,q,q,K]');
 console.log('H(key):', H5(geometryKey), '= [a-g,a,q,-b,g]');
 console.log('receiver p15 word15:', receiver.values, 'subtract key => WORDS', target);
