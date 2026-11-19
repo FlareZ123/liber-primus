@@ -328,6 +328,20 @@ assert.deepEqual(manuscriptHits, [{
   target: "BEWARE",
 }]);
 
+// Precommitted fresh transfer: source-assigned p0 VERIFY at offsets177..182.
+// The exact p38 key and subtraction direction were frozen before these values
+// were opened in the Agent7 invocation. The transfer must fail without rescue.
+const verify = signedWords.find((word) => word.word === "VERIFY");
+assert.ok(verify);
+const p0 = pages.get(0);
+assert.ok(p0);
+const verifyReceiver = p0.find((word) => word.start === 177 && word.end === 182);
+assert.ok(verifyReceiver);
+assert.deepEqual(verifyReceiver.values, [0, 14, 25, 13, 6, 14]);
+const verifyTransfer = verifyReceiver.values.map((value, index) => mod29(value - exact.key[index]));
+assert.deepEqual(verifyTransfer, [9, 7, 18, 6, 22, 10]);
+assert.notDeepEqual(verifyTransfer, verify.values);
+
 console.log(JSON.stringify({
   status: "PASS: p38 section-5 BEWARE has one compact DH-shell inverse",
   sourceSelector: {
@@ -368,6 +382,19 @@ console.log(JSON.stringify({
   manuscriptControl: {
     completeSixRuneWords: sixRuneWords.length,
     exactKeyBothSignsTargetHits: manuscriptHits,
+  },
+  precommittedFreshTransfer: {
+    assignedTarget: verify.word,
+    receiver: {
+      page: verifyReceiver.page,
+      start: verifyReceiver.start,
+      end: verifyReceiver.end,
+      cipher: verifyReceiver.values,
+    },
+    exactP38Key: exact.key,
+    direction: "subtraction",
+    result: verifyTransfer,
+    pass: false,
   },
   classification:
     "target and receiver were source-selected before this key family; the shell template itself was recognized after BEWARE was known, so preserve as a strong local inverse with retrospective key-template discovery.",
