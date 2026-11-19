@@ -1,19 +1,6 @@
-# GOOD37 selects a unique p36 DH-state packet; q-th section1 plaintext gate is negative
+# GOOD37 selects a unique p36 DH-state packet; later EMPTY-center direction decoder recovers GOOD
 
-**Agent17, 19 November 2026. Classification: source-number navigation/state validation, with a prospectively closed plaintext branch.** The established one-based numbered diagonal sends authenticated source ordinal37 `GOOD` to project p36 canonical word37. Under the canonical parser that preserves printed line wraps inside words, the selected object is a five-rune packet whose untouched H5 shell is an exact DH-state expression and is unique among all canonical five-rune unknown-page words.
-
-```text
-GOOD ordinal37
--> project p36 word37
--> offsets169..173
--> [2,22,4,1,20]
-
-H5
-= [11,21,4,23,22]
-= [a+g, p-K, q, p, p-1].
-```
-
-This gives the GOOD coordinate a strong structural role without claiming `GOOD` plaintext.
+**Agent17 receiver gate; Agent4 decoder, 19 November 2026. Classification: source-number navigation/state validation plus a strong local GOOD plaintext candidate under a later finite source-derived codec.** The numbered diagonal selects canonical p36 word37 at offsets169..173. Its untouched H5 shell remains manuscript-unique. The q-th-section1 continuation still fails and remains closed. A distinct later operation reads the selected word's center `q=4` as authenticated **EMPTY**, removes that center, and applies the finite signed direction-number key family to recover GOOD exactly.
 
 ## Canonical-parser correction
 
@@ -77,22 +64,21 @@ Therefore the frozen q-th receiver has length2. Canonical `GOOD=[6,3,3,23]` has 
 
 Do not repair this result with zero-based q, reverse counting, a neighboring word, or a new cipher.
 
-## Decision
+## Later EMPTY-center direction-number decoder
 
-Preserve:
+The selected word is `[2,22,4,1,20]` with `H5=[a+g,p-K,q,p,p-1]`. Its center is `q=4=EMPTY`; remove that center to get `[2,22,1,20]`. The authenticated direction sentence supplies THEIR positions19/25 plus NUMBERS26 and ARE27. Across all 24 orderings and both signs, exactly one maps the emptied receiver to any authenticated four-rune source word:
 
 ```text
-GOOD37
--> p36 word37
--> unique H5 state shell [a+g,p-K,q,p,p-1].
+[2,22,1,20] - [25,19,27,26] = [6,3,3,23] = GOOD.
 ```
 
-This strengthens the source-number route as a state-bearing navigation system. It does not recover `GOOD` plaintext. The q-th section1 plaintext interpretation is closed by its precommitted length gate.
+The same family is unique across all 318 five-rune unknown-page words. A broader six-atom control has three hits in 228,960 outputs, but p36 GOOD is the only hit with center q=EMPTY. Exact forward reconstruction restores the original five-rune word after q is reinserted. See [decoder report](lp2-p36-good-empty-direction-decoder.md) and [SFT](../sims/lp2_p36_good_empty_direction_sft.cjs).
 
-P36 can independently contain the strong section1 `MEANING` candidate at a different receiver; the numbered GOOD object should remain typed as a navigation/state packet unless another source clue supplies a reversible consumer.
+## Decision
+
+Preserve the unique state-selected receiver and the later reversible decoder. The earlier q-th-section1 ordinal interpretation remains rejected by its precommitted length gate. Literal q=EMPTY center removal followed by the complete direction-number family yields GOOD and exact forward replay. Preserve GOOD as a strong local plaintext candidate. Do not generalize without a second independently selected receiver and source-visible marker.
 
 ## Reproduction
 
-`node sims/lp2_p36_good37_state_shell_gate_sft.cjs`
-
-Precommit: `workplace/agent17-p36-good37-q-section1-precommit.md`.
+- `node sims/lp2_p36_good37_state_shell_gate_sft.cjs`
+- `node sims/lp2_p36_good_empty_direction_sft.cjs`
