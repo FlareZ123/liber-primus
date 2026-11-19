@@ -4,7 +4,7 @@
 
 ## Source selector: the manuscript literally says DH
 
-Across the 55 rune-bearing unknown pages there are **604 physical rune lines** in the canonical transcription.
+Across the 55 rune-bearing unknown pages there are **594 physical rune lines** in the canonical transcription.
 
 Exactly one physical line begins with the literal GP transliteration:
 
@@ -109,7 +109,7 @@ For each of those four variants:
 4. require `A`, `B`, and `K` to occur in the same outer-H output set;
 5. require all seven standard fields `p,g,a,b,A,B,K` to be distinct.
 
-Across the **604** physical rune lines:
+Across the **594** physical rune lines:
 
 - **31** lines admit at least one seven-distinct-field DH tuple somewhere in this broad family;
 - there are **60** such tuple variants total;
