@@ -243,6 +243,13 @@ Across the complete numbered diagonal there are only three palindromic three-run
 This was discovered after the conditional `EPIPHANY SEEKS` opening candidate, so it does not make those letters blind. It does independently select the same 13-rune physical receiver that the EMERGE/SURFACE route selects through `189 -> 192 -> 0`. The opening candidate is therefore supported by two different source paths, while the missing reversible p0 cipher remains the decisive unsolved step.
 
 See `im-results/lp2-openpgp43-hello-the-way.md` and `sims/lp2_openpgp43_hello_the_way_sft.cjs`.
+### OPENPGP cube continuation also selects the candidate letters
+
+The endpoint now has a source-only continuation that does not use the EMERGE/SURFACE value192 route. The established cube operator is `C(x)=x^3 mod29`. OPENPGP43's nonzero H fields satisfy `C(WAY13)=THE22`; extending the same edge once gives `C(THE22)=EPIPHANY5`. The independently fixed p0 red-title split is 8+5, and authenticated source word5 `EPIPHANY` followed by word6 `SEEKS` is the unique adjacent 8+5 pair in the signed source. Thus OPENPGP43 now converges on both the same p0 13-rune receiver and the same `EPIPHANY SEEKS` candidate phrase. The reversible title cipher remains unresolved.
+
+See `im-results/lp2-openpgp43-cube-epiphany-title.md`.
+
+
 ## Conditional recovery of the p0 opening phrase
 
 The restored-state exit contains one further locked value before the page number:

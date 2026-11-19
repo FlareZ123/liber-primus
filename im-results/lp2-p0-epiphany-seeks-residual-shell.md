@@ -158,11 +158,20 @@ GP-prime(residual)=384
 
 It therefore lacks the 192 and729 closures above. This comparison does not undo the finite geometric arithmetic that produced that older raw sequence. Its documented GP orthography problem remains, and the authenticated-source `EPIPHANY SEEKS` phrase now has substantially stronger cross-route checks on the original ciphertext.
 
+## Independent OPENPGP43 cube route to the same candidate
+
+A later numbered endpoint supplies a source-only selection of the same title candidate without using the residual or value192. Authenticated `OPENPGP43` selects project p42 word43 `[11,13,11]`; fixed outside-H gives `[0,22,13]=HELLO / THE / WAY`. The independently established source operator `C(x)=x^3 mod29` has `C(13)=22`, so the endpoint exposes the directed edge `WAY13 -> THE22`. One further fixed cube gives `C(22)=5=EPIPHANY`. The original p0 title is 8+5, and source word5 `EPIPHANY` followed by word6 `SEEKS` is the unique adjacent authenticated source pair with that GP-length shape.
+
+This route consumes no p0 ciphertext values and is independent of the 192/729 residual checks below. It therefore upgrades the candidate's source selection while leaving the exact 13-rune residual-generation rule unresolved.
+
+See `im-results/lp2-openpgp43-cube-epiphany-title.md`.
+
 ## Evidence boundary
 
 The evidence now selects and checks a concrete p0 title candidate through:
 
 - the authenticated 2016 source phrase and exact 8+5 physical word shape;
+- the independent OPENPGP43 cube continuation selecting source indices5-6 `EPIPHANY SEEKS` from the untouched 8+5 title shape;
 - the upstream EMERGE value192;
 - original-ciphertext residual GP0=192;
 - residual GP-prime=729 matching the source-visible 27-square span;

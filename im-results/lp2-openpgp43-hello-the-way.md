@@ -80,6 +80,35 @@ The original p0 image independently fixes its leading red title at exactly **13 
 This receiver relation was recognized after the separate EMERGE/SURFACE p0 result existed, so it is independent structural convergence rather than a blind plaintext prediction. The earlier route selected p0 through `189 -> 192 -> 0`; value192 uniquely selected authenticated `EPIPHANY SEEKS`, whose GP rune lengths are 8+5 and therefore match the original p0 red title. The OPENPGP43 endpoint now selects that same physical 13-rune receiver without using the candidate letters or value192.
 
 Consequently the p0 opening candidate has two materially different source routes selecting the same receiver: the p57/p50 radix-state exit and the final signed-word numbered diagonal. The reversible cipher for the 13 runes remains unknown.
+## Cube continuation independently selects the candidate title phrase
+
+The source-number cube operator was established independently from this endpoint:
+
+```text
+C(x)=x^3 mod29.
+```
+
+OPENPGP43's two nonzero H fields are themselves one directed cube edge:
+
+```text
+WAY13 -> THE22
+C(13)=22.
+```
+
+Continue that already visible edge once:
+
+```text
+C(22)=5=EPIPHANY.
+```
+
+The original p0 red title is independently fixed at 13 runes split 8+5. Authenticated source word5 `EPIPHANY` has GP length8 and its immediate follower word6 `SEEKS` has GP length5. Across all adjacent authenticated source pairs, `EPIPHANY SEEKS` is the unique 8+5 pair.
+
+Charge all four immediate cube continuations from the OPENPGP pair `[22,13]`: forward or inverse cube from either field. They land at source indices5,22,13,6, whose forward adjacent GP-length shapes are respectively 8+5, 2+4, 3+3, and 5+2. Only `C(22)=5` matches the untouched p0 title shape.
+
+This gives OPENPGP43 an independent source-only route to the existing `EPIPHANY SEEKS` candidate letters without using value192, the title residual, or any p0 ciphertext value. The phrase predates this discovery, so preserve the result as independent route convergence rather than a blind plaintext probability.
+
+See `im-results/lp2-openpgp43-cube-epiphany-title.md` and `sims/lp2_openpgp43_cube_epiphany_title_sft.cjs`.
+
 ## Rejected literal coordinate consumer
 
 A stricter numerical reading `[page=0,start=22,length=13]` was checked before opening those segment values. It fails at layout level: p0 offsets22..34 cut across canonical words5–7 rather than selecting a whole-word receiver. No shifted origin or neighboring offset is admitted.
