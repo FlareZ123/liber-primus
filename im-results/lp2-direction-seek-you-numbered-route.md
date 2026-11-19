@@ -39,6 +39,39 @@ SEEK AND YOU WILL BE FOUND
 
 because source numbers determine the route, DIRECTION supplies the group order, and YOU is literally the only source word whose direct numbered coordinate must be sought.
 
+## Independent p33-p35 plaintext-candidate convergence
+
+A later layout/receiver result now gives the route's post-YOU suffix a second, materially independent realization.
+
+The numbered diagonal already resumes after the single YOU wrap at:
+
+```text
+WILL34  -> project p33
+BE35    -> project p34
+FOUND36 -> project p35.
+```
+
+Independent local research now gives strong plaintext candidates on those same three consecutive project pages:
+
+```text
+p33 -> WILL
+p34 -> BE
+p35 -> FOUND.
+```
+
+The page selection is additionally reproduced from p33 itself. Its hidden `THEIR RISE` two-body layout has rune counts81 and115, so literal body rise `115-81=34` selects p34 / signed BE before p34 ciphertext is consumed. The lower p33 RISE title uses cardinals `[3,5]`, whose already established literal rise `5-3=2` selects p35 / signed FOUND. P33 itself is independently selected by the DH/p50 state and carries the existing WILL inverse.
+
+Thus the numbered route and the p33 layout arrive at the same physical/source suffix through different authored objects:
+
+```text
+source:           WILL -> BE -> FOUND
+numbered diagonal p33  -> p34 -> p35
+p33 RISE layout   p33  -> p34 and p35
+local inverses    WILL -> BE  -> FOUND
+```
+
+This is phrase-level convergence of strong local candidates, not final authenticated plaintext. It materially strengthens the interpretation that the authenticated word numbers are an intended guide through unknown LP2. See `lp2-p33-p35-will-be-found-suffix.md`.
+
 ## The numbered diagonal
 
 For authenticated one-based source ordinal `n`, define:
