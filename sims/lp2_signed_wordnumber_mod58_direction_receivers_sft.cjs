@@ -76,7 +76,7 @@ assert.equal(gp0("CIRCUMFERENCES"), 131);
 assert.equal(gp0("EMERGE"), 83);
 assert.equal(gp0("NUMBERS"), 83);
 
-assert.equal(p49Route.p49.postShedBase59, 112);
+assert.equal(p49Route.p49.base59, 112);
 assert.equal(p55Route.p55.base59Output, 131);
 assert.equal(squareRoute.authenticatedSquareCenterHoldout[0].base59, 83);
 assert.deepEqual(squareRoute.authenticatedSquareCenterHoldout[0].p57Words, ["EMERGE"]);
