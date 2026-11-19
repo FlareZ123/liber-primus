@@ -61,16 +61,33 @@ The preserved participant transcript [“The complete story of onion 6”](https
 The signed Stage11 instruction's `/cgi-bin/upload` is a **different endpoint**, hosted by the participant. The Onion6 form's `/cgi-bin/squares` is Cicada-side. The archived `cgi.py` is a participant upload mock and is not the squares handler.
 
 
-## Additional public-archive census for the reported 965-byte handler (Agent1, 17 November 2026)
+## Public-source boundary for the reported 965-byte handler (Agent10, 19 November 2026)
 
-The source target remains the original server-side /cgi-bin/squares executable, not the static 152-byte success page or the participant's separate /cgi-bin/upload. A source-specific recursive census of four large public archives found no original handler:
+The target remains the original Cicada-side `/cgi-bin/squares` executable, not the static 152-byte success page or the participant's separate `/cgi-bin/upload`. The contemporaneous IRC observation records a live thttpd `/cgi-bin/` listing with an entry reported as `squares*`, size **965**. That is a participant-reported directory-listing size, not recovered program bytes. The original 73-line Stage10 form specifies a POST schema, but does not preserve the request body or the handler's validation/acceptance predicate.
 
-- [cicada-solvers/The-Complete-Cicada3301-Archive](https://github.com/cicada-solvers/The-Complete-Cicada3301-Archive), 1,455 tree entries: Stage10 contains the 1,943-byte participant form, 152-byte static response, and the three returned images. No cgi-bin/squares path or 965-byte blob.
-- [krisyotam/cicada3301](https://github.com/krisyotam/cicada3301), 4,507 entries: the cijhho, scream314, and puzzles Stage10 copies repeat the same form/response assets. liber-primus/original-onion7 contains 0–57 JPEGs, index.html and the signed message, but no Stage10 handler. Its only exactly 965-byte blob is tools/solvers/liber-primus-solver/src/ciphers/shift.test.js, an unrelated unit test.
-- [iBotPeaches/cicada_3301](https://github.com/iBotPeaches/cicada_3301), 414 entries: pre/, post/ and post2/ preserve page/form/response copies only; no CGI handler or 965-byte file.
-- [Dukotah/cicada3301](https://github.com/Dukotah/cicada3301), 6,606 entries: no cgi-bin/squares path and no 965-byte blob.
+### Previously indexed public archives
 
-Targeted public-web searches for the exact onion CGI path and the 965/thttpd combination returned no source. The Wayback CDX endpoint was inaccessible in the research environment, so this is not a claim that a private deployment backup never existed. Combined with the contemporaneous IRC observation and participant captures above, the public-archive retrieval route is now bounded and negative. Do not substitute a guessed 965-byte handler or infer server-side parsing from the client form.
+The existing recursive census remains negative for the original handler:
+
+- [cicada-solvers/The-Complete-Cicada3301-Archive](https://github.com/cicada-solvers/The-Complete-Cicada3301-Archive), 1,455 tree entries: Stage10 preserves the participant form, static response and three returned images; no `cgi-bin/squares` path or 965-byte handler.
+- [krisyotam/cicada3301](https://github.com/krisyotam/cicada3301), 4,507 entries: its cijhho, scream314 and puzzles subarchives repeat the form/response assets. The only exactly 965-byte blob found was an unrelated `shift.test.js`.
+- [iBotPeaches/cicada_3301](https://github.com/iBotPeaches/cicada_3301), 414 entries: pre/, post/ and post2/ preserve page/form/response copies only.
+- [Dukotah/cicada3301](https://github.com/Dukotah/cicada3301), 6,606 entries: no `cgi-bin/squares` path or 965-byte handler.
+
+### Additional public repositories and mirrors checked on 19 November
+
+Two repositories pushed after the previous 17 November census were inspected at exact commits and their complete Git trees:
+
+- [jelliottdev/jelliottdev.github.io](https://github.com/jelliottdev/jelliottdev.github.io/tree/a6771afd146c736fc0a58d67cfd8af7089e39515), commit `a6771afd146c736fc0a58d67cfd8af7089e39515`, **2026-10-27 20:56:36Z** (repository has no declared license). Its 10,377-entry tree contains no `cgi-bin/squares` path. The Stage10 `v2-form.html` is blob `6a7130783f73320a5e6e5f802061f7851071a349`, a later variant rather than the original 2014 form. Its source-set manifest explicitly points the 009/010 exports back to [neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3). The 010 log is a **May 2 POST to a participant's `/cgi-bin/upload`**, after Cicada fetched that participant's `/key.asc` and root page; it is not a transaction with Cicada's `/cgi-bin/squares`. The article's phrase “archived server capture” concerns the LP1-05/Stage04 1033 square, not the missing Stage10 handler.
+- [Caiobas12345/aulas-javascript](https://github.com/Caiobas12345/aulas-javascript/tree/30a9368c01dc70f1e5a0cfedb8ad086045f184cd), commit `30a9368c01dc70f1e5a0cfedb8ad086045f184cd`, **2026-11-18 01:24:03Z** (no declared license). Its 1,683-entry tree contains the original Stage10 `index.html` blob `9d7c35bc8fff24c8079668c9d070d98277502f7c`, byte-identical at Git-blob level to the 2014 participant capture. Its only Stage10 file named `squares` is the already-known **152-byte static response**, blob `d71303af76016c8e88ed5dcc8a18b08e6276a437`; there is no CGI handler.
+
+Global GitHub code searches for `/cgi-bin/squares` returned client forms and their mirrors, not server source. Searches for `squares* 965` returned no result. The `Cicada/33.01 CicaDOS` user-agent search returned the same May 2 participant-side upload logs; `thttpd/2.25b` results were generic server fingerprints or unrelated Stage11 material. Additional copies in scream314, cijhho123 and mrroot01011001 likewise expose mirrored client pages, not the Cicada handler.
+
+The direct February 2014 Wayback `id_` retrieval is inaccessible in this environment. The already indexed CDX result collection found only 2016 Tor2web captures, not a February 2014 `/cgi-bin/squares` capture. This is a bounded public-source negative, not proof that a private operator backup never existed.
+
+### Decision and smallest missing artifact
+
+No original `squares` executable/source bytes, deployment bundle, byte-preserving successful POST transaction, or operator-side acceptance record has been found. The 2014 participant listing's 965-byte size remains a useful retrieval fingerprint, not a license to write a guessed 965-byte replacement. The smallest decisive missing artifact is either (a) the original `squares*` program/deployment file, or (b) one exact successful POST body plus response status/headers/body, tied to a known submitted square set and date. The 152-byte static response and participant `/cgi-bin/upload` scripts cannot substitute for either. Do not infer the server predicate from the field names or returned image filenames.
 
 ## LP1 Wisdom square is exactly the third historical 1033 submission candidate
 
