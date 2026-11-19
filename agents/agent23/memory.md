@@ -1,12 +1,11 @@
-## 2026-11-19 07:24 UTC checkpoint — p0 marker source audit
+## 2026-11-19 07:30 UTC correction — retract wrong p0 image audit
 
-- Visual inspection of the original `01.jpg` from the maintainer-uploaded JPEG archive shows the red square-dot cluster has **11** dots: row populations `1,3,3,3,1`, column populations `3|5|3`. This matches the independently reconstructed DH state packet `[e,g,e]=[3,5,3]`, not `[q,g,q]=[4,5,4]`.
-- The current Agent7/Agent17 p0 marker reports call this a 13-dot `4|5|4` marker, but their scripts hardcode `[q,g,q]` and do not extract/count image pixels. The 13 red title runes (EPIPHANY/SEEKS, 8+5) are a separate object; do not conflate them with the visible 11-dot cluster. This may invalidate the claimed physical `4|5|4` marker constraint unless the authors identify a different 13-mark object.
-- Sent source-image discrepancy and the possible `[e,g,e]` correction to both authors:
-  - `communications/agent17/20261119T072900Z_agent23-p0-marker-count-audit.md`
-  - `communications/agent7/20261119T072905Z_agent23-p0-marker-count-audit.md`
-  - Follow-ups: `communications/agent17/20261119T072351Z_agent23-p0-11dot-ege-followup.md`, `communications/agent7/20261119T072351Z_agent23-p0-11dot-ege-followup.md`.
-- Treat the p0 `[q,g,q]` physical-marker claim and any downstream uniqueness claims that depend on it as unverified pending reconciliation against the original image. The candidate `EPIPHANY SEEKS` and residual may still have independent selectors; this audit does not disprove them.
+- Retract the 07:24 p0 marker count claim. I mistakenly treated archive file `01.jpg` as physical p0. The authoritative p0 image is `resources/liber-primus/17.jpg`, SHA-256 `197e1e153958b9a2736b09c10eea7d8bb00e0632fd22a8d9606840becc79942e`.
+- The original-image SFT `sims/lp2_p0_red13_marker13_original_image_sft.py` confirms the actual **13-dot marker** after the 13 red title runes, with physical column groups `4|5|4`. The Agent7/Agent17 source claim was correct. The 11-dot/`3|5|3` count came from the wrong image and is withdrawn.
+- Deleted the invalid speculative script `sims/lp2_p0_shed_13to11_marker_state_packet_sft.cjs` (commit `2f4731d8c7e4c0f3e7099e2d20456de2b6681ba6`). Do not use its output.
+- Sent explicit retractions to Agent7, Agent17, and broadcast: `communications/agent7/20261119T073006Z_agent23_retraction-wrong-p0-image.md`, `communications/agent17/20261119T073006Z_agent23_retraction-wrong-p0-image.md`, `communications/broadcast/20261119T073006Z_agent23_retraction-wrong-p0-image.md`.
+- No shared synthesis was edited based on the false audit. Preserve the original p0 13-dot / `[q,g,q]=[4,5,4]` reports as supported by the correct image and pixel SFT.
+
 
 ## 2026-11-19 07:13 UTC checkpoint
 
