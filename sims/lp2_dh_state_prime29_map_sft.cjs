@@ -215,6 +215,63 @@ assert.deepEqual(redStartPages, [0, 3, 8, 15, 23, 27, 33, 40, 54]);
 assert.equal(redStartPages.includes(33), true);
 assert.equal(redStartPages.includes(40), true);
 
+// Source-state audit on the red spans themselves.
+const stateValues = new Set(Object.values(state));
+const redStateRows = ink.pages
+  .filter((page) => page.page <= 55)
+  .flatMap((page) => (page.red_spans || []).map((span) => {
+    const values = [...span.runes].map((rune) => runeIndex.get(rune));
+    const primeSum = values.reduce(
+      (sum, value) => sum + corpus.prime[value],
+      0
+    );
+    const mod28 = primeSum % 28;
+    const mod29 = primeSum % 29;
+    return {
+      page: page.page,
+      start: span.start,
+      length: span.length,
+      primeSum,
+      mod28,
+      mod29,
+      bothState: stateValues.has(mod28) && stateValues.has(mod29),
+    };
+  }));
+
+const bothStateRows = redStateRows.filter((row) => row.bothState);
+assert.deepEqual(bothStateRows, [
+  {
+    page: 33,
+    start: 0,
+    length: 10,
+    primeSum: 379,
+    mod28: state.b,
+    mod29: state.K,
+    bothState: true,
+  },
+  {
+    page: 33,
+    start: 91,
+    length: 8,
+    primeSum: 295,
+    mod28: state.b,
+    mod29: state.g,
+    bothState: true,
+  },
+]);
+
+const p40Red = redStateRows.find((row) => row.page === 40 && row.start === 0);
+assert.deepEqual(p40Red, {
+  page: 40,
+  start: 0,
+  length: 8,
+  primeSum: 435,
+  mod28: state.b,
+  mod29: 0,
+  bothState: false,
+});
+assert.equal(p40Red.primeSum, 29 * state.b);
+
 console.log(JSON.stringify({
   status: "PASS",
   state: {...state, e, "K^b": kToB},
@@ -231,6 +288,8 @@ console.log(JSON.stringify({
     address: parseFourDigitPageLine(F(state.B)),
   },
   addressableStateOutputs: addressable,
+  selectedRedStateRows: bothStateRows,
+  p40RedClosure: p40Red,
   decision:
     "The fixed prime-index map links independently calibrated DH state to solved/source numbers 449, 1033 and 3301, then sends B=19 to 4001, a valid p40 line01 address at an original red page start. Preserve this as a source-constrained navigation candidate, not a plaintext decoder.",
 }, null, 2));
