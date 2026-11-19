@@ -110,6 +110,23 @@ with forward rises:
 
 The seed7 is authenticated `THE7` from the independently recovered clause and also state value `g+K`.
 
+Read the same right column bottom-to-top. Its rises become:
+
+```text
+[21,22,23]
+=
+[IS, THE, ROAD]
+```
+
+So one physical four-cell column carries two exact contiguous authenticated source triples under opposite directions:
+
+```text
+top -> bottom rises  = 6,7,8    = SEEKS THE DEVOTED
+bottom -> top rises  = 21,22,23 = IS THE ROAD
+```
+
+Because the forward ramp is unique among the 19 matched receivers, this bidirectional source-clause pair is unique in the same family.
+
 Across all 19 manuscript 8+5 residuals under the same source target:
 
 - p0 alone has a center whose rises form any arithmetic progression;
@@ -278,6 +295,42 @@ H^-1, p0 word1-word2
 P0 is also the sole exact `[q,A,B,A,q]` center.
 
 This localizes both the H orientation and the marker packet inside the natural same-shape family.
+
+## ROAD23 closes onto the authenticated opening prefix
+
+The reverse right-column rise terminates at authenticated `ROAD23`. Apply the established numbered-direction rule literally:
+
+```text
+ROAD23
+-> physical p23 canonical word24
+```
+
+That original receiver is:
+
+```text
+[22,7,0,26,21,1,26,10]
+```
+
+and it has one original physical line break at `6|2`. Existing line-wrap work fixed the readout before this marker consequence was noticed: take H of the whole word and H of each physical fragment, then union the outputs. It contains the consecutive source run:
+
+```text
+3,4,5
+=
+LIES EMPTY EPIPHANY
+```
+
+The marker-side route therefore closes as:
+
+```text
+right column bottom -> top
+-> IS THE ROAD
+-> ROAD23
+-> p23 word24
+-> LIES EMPTY EPIPHANY
+-> EPIPHANY SEEKS ... on p0
+```
+
+The p23 receiver result predates this route, so this is a cross-object consistency consequence rather than a blind holdout. It matters because the terminal source word selected by the marker has a concrete, previously fixed manuscript consumer.
 
 ## Prospective column-sum consumer is negative
 
