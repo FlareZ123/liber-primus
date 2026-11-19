@@ -1,6 +1,6 @@
 # P0 red title is a DH-state packet and yields a state-keyed `EPIPHANY SEEKS` candidate
 
-**Agent21, 19 November 2026. Classification: strong source-constrained local plaintext recovery candidate with an explicit reversible state key.** The p0 title plaintext candidate `EPIPHANY SEEKS` predates this analysis. Its former OPENPGP43 cube selector has been retracted after canonical cross-page parsing, so that obsolete route is not used here. The surviving current selector is a conjunction of independent source/state results: literal p55 shedding reconstructs `g=5` and `a=6`, which are authenticated source indices `EPIPHANY5 / SEEKS6`; those words are the signed message's unique adjacent GP-length `8+5` pair. Separately, the repaired `YOU33 -> p32 -> HOME/F0` handoff selects p0 before the red-title DH arithmetic is opened. The original p0 red title is visibly `8+5`, so the fixed state roles and physical shape select `EPIPHANY SEEKS` without using the 13 p0 rune values. The exact 13-rune key ordering below was recognized after that candidate existed, so this report does not claim a blind key discovery or a global LP2 cipher. What changes is that the untouched ciphertext, the required key, and several fixed H readouts all collapse into the independently reconstructed DH state.
+**Agent21, 19 November 2026. Classification: strong source-constrained local plaintext recovery candidate with an explicit reversible state key.** The p0 title plaintext candidate `EPIPHANY SEEKS` predates this analysis. Its former OPENPGP43 cube selector has been retracted after canonical cross-page parsing, so that obsolete route is not used here. Three surviving source-side routes now converge on the same phrase without using the 13 p0 ciphertext values. Literal p55 shedding reconstructs `g=5` and `a=6`, authenticated source indices `EPIPHANY5 / SEEKS6`; those words are the signed message's unique adjacent GP-length `8+5` pair. The repaired `YOU33 -> p32 -> HOME/F0` handoff independently selects p0 before the red-title DH arithmetic is opened. A newer p55→p22 square route sheds to center809; the source illustration is mirrored, and mirrored BASE29 uniquely turns 809 into source indices `[26,27] = NUMBERS ARE`. Those established numbered directions enter ARE27, whose shed/H receiver gives `[5,6] = EPIPHANY SEEKS` under both live H serializations. The original p0 red title is visibly `8+5`, so the source routes and physical shape select the phrase before its additive residual is inspected. The exact 13-rune key ordering below was recognized after that candidate existed, so this report does not claim a blind key discovery or a global LP2 cipher. The untouched ciphertext, required key, and fixed H readouts still collapse into the independently reconstructed DH state.
 
 ## Fixed source objects
 
@@ -41,22 +41,29 @@ emitting each outside pair in difference/sum order and retaining the center last
 
 The old OPENPGP43 cube continuation is retired and is not evidence for this report.
 
-The current chain uses two independently established results:
+The current selection has three source-constrained inputs:
 
 1. P55's solved-text-driven recursive shedding reconstructs the full state and fixes the authenticated source roles `g=5=EPIPHANY` and `a=6=SEEKS`.
 2. The repaired `YOU33` route selects p32, whose boundary packet `[K,A]=[2,8]` gives row-major coordinate `(2,8)`, literal F=0 and manuscript-unique HOME, selecting physical p0 before the p0 red operands are inspected.
+3. P55 also routes through `CIRCUMFERENCES=131` to p22. Literal square shedding leaves center809. Because p22 mirrors the source illustration, reverse the canonical integer digits. Among every radix2..43, BASE29 alone turns 809 into an ascending consecutive source pair, `[26,27] = NUMBERS ARE`. The established numbered route sends ARE27 to p27 canonical word28 `[0,20,15,1]`; one literal shed leaves `[20,15]`, and H gives `[5,6] = EPIPHANY SEEKS`. Direct four-rune Hpair `[28,1,5,6]` and Hsplit `[28,5,6,1]` both preserve the same adjacent ordered pair, unique in the numbered-source census under each serialization.
 
-In the authenticated signed message, `EPIPHANY SEEKS` is the only adjacent pair whose native GP rune lengths are `8+5`. The original p0 red title has exactly the same visible `8+5` word shape. Thus the present selection is:
+In the authenticated signed message, `EPIPHANY SEEKS` is the only adjacent pair whose native GP rune lengths are `8+5`. The original p0 red title has exactly the same visible `8+5` word shape. Thus the current selection is:
 
 ```text
 p55 state -> g=5 / a=6
           -> EPIPHANY5 / SEEKS6
+
+p55 CIRCUMFERENCES -> p22 -> shed square -> 809
+                   -> mirrored BASE29 -> NUMBERS ARE
+                   -> ARE27 -> shed + H -> [5,6]
+                   -> EPIPHANY SEEKS
+
 p32 HOME/F0 -> p0
 p0 visible title shape -> 8+5
           -> EPIPHANY SEEKS
 ```
 
-This conjunction was recognized after the candidate had already been proposed, so it remains chronologically retrospective. Mechanically, it does not consult the p0 rune values or the additive residual.
+The first state/shape route and the p22 center route were recognized after the phrase had already been proposed, so preserve that chronology. The p22 route nevertheless supplies an independent source object and emits the exact phrase without consulting p0 rune values or its additive residual. Reproducer: `sims/lp2_p22_809_numbers_are_epiphany_seeks_sft.cjs`, Windows Node22 PASS `44473420144`.
 
 ## The untouched ciphertext is already a state transcript
 
@@ -152,7 +159,7 @@ BEHAUIARS SEEKS score = 12
 
 Opening both additive signs gives 1,368 cases. The `C-P` EPIPHANY SEEKS residual ranks 9th, and 14 cases have score13. Under uniformly random 13-residue vectors, this grammar assigns total cost at most13 with probability about 0.0125084.
 
-This control closes one possible authentication argument. The residual is compact in the reconstructed state algebra, while that compactness does not independently choose `EPIPHANY SEEKS` or the 13-atom order. The active evidence remains the source-selected 8+5 pair, ciphertext-only `THE WAY`, the unique marker packet, and exact reversible replay. Key-order provenance remains unresolved.
+This control closes one possible authentication argument. The residual is compact in the reconstructed state algebra, while that compactness does not independently choose `EPIPHANY SEEKS` or the 13-atom order. The active evidence is the independent p22→809→NUMBERS ARE source route, the source-selected 8+5 pair, ciphertext-only `THE WAY`, the unique marker packet, and exact reversible replay. Key-order provenance remains unresolved.
 
 Reproducer: `sims/lp2_p0_red13_state_key_simplicity_gate_sft.cjs`.
 

@@ -273,6 +273,34 @@ With that historically selected offset frozen, the exact 256-byte row-major p50 
 
 Reproducer: [`sims/761_mp3_xor_p50_gate.cjs`](../sims/761_mp3_xor_p50_gate.cjs), [workflow](../.github/workflows/761-mp3-p50-xor-gate.yml), [successful run 43049496469](https://github.com/FlareZ123/liber-primus/actions/runs/43049496469). This rejects direct reuse of the historical 761.MP3 XOR pad on the p50 byte table; it does not reject other independently selected uses of the Parable or audio asset.
 
+### Source-selected raw-file offset809 from the new p22 center
+
+The later p22 square result now supplies a narrow raw-byte alignment that the older audio screens could not preselect. Literal circumference shedding of the source-linked p22 5x5 square leaves center **809**. Independently, the older p7 five-dot result links the historical file number761 to 809 by exactly five ordinary-prime successors:
+
+```text
+761 -> 769 -> 773 -> 787 -> 797 -> 809
+```
+
+Keep the historically demonstrated raw-file XOR primitive and the byte-native p50 table receiver unchanged. Change only the raw `761.MP3` start to the newly source-selected byte offset809:
+
+```text
+candidate[i] = p50[i] XOR 761.MP3[809+i]
+```
+
+The complete 256-byte output is:
+
+```text
+SHA256    a49fc900f5b4bb8e3b5c5381a3bcb70e6e04a10e8a17af1b363faea4920a08cc
+first16   cbe7a7ba61ed7eb75cf99cdef704b7d4
+printable 0.3828
+entropy   7.2966 bits/byte
+magic     none
+```
+
+The same workflow first reproduces the authentic 2013 raw-file offset0 Twitter/JPEG positive control, so the byte primitive and source bytes are validated before this LP2 test. Windows-independent Linux Node22 workflow run **44472593829** passes.
+
+**Decision:** retire the exact source-selected `MP3[809:]` direct XOR consumer on p50. The p22/p7 convergence still supports 809 as a source object; it does not support reopening arbitrary audio offsets or adding another fitted binary layer.
+
 ### Interpretation
 
 The published audio tag provides a genuine historical prior clue and a mathematical route to exact key-state enumeration. A separate candidate three-prime textbook-RSA use of the same product, with e=65,537, was also tested: the p50 four-byte encodings contain invalid residues, the 3-byte decrypt is non-linguistic, and fixed-width seven-rune LP2 blocks violate the leading-digit bound. This rejects only those direct RSA framings; see the section above and its reproducer. The original ciphertext has failed the 960 historic integer/PRNG tests, 480 fixed-seed modular-square inverses, 120 collision-keyskip source tests, and full **5,201,280** two-prime seed-independent modular-squaring inverses. These finite negatives have independently positive-tested recovery power within their declared output models. They **do not establish** how Cicada intended the three Parable primes to be used, if at all, in the unsolved manuscript. A separate, source-motivated cross-round check now reduces the three audio prime factors modulo 29 to [12,16,11], with product 24; the file ID 761 reduces to 7, matching the order of 16 and 24. The resulting 28-/7-period keys, factor-root recurrence, seed-24 feedback and canonical 3×3 Hill candidates also fail to recover plaintext; see [the consolidated mod-29 test](2013-audio-mod29-crossround-key.md). A further collision-only hidden-consumption Viterbi test used the source-fixed period-7 and period-28 keys. Its planted 1,200-symbol English control recovered exactly, but the source key orders ranked only at the 20th/30th percentiles against 20 random cyclic-order controls, with no LP2 plaintext ([report](2013-audio-mod29-collision-viterbi.md); [reproducer](../sims/parable_mod29_periodic_collision_viterbi.cjs)). This is distinct from the byte/waveform and direct-key tests above; it does not change the earlier exact-state exclusions. Further arbitrary source-seed and bit-order variants without a new source instruction remain unlikely to advance a genuine decipherment. The source-selection audit in Issue #176 finds no player-visible instruction for a second waveform operation; the ID3 Parable is the only source-selected LP2 link established here. The direct raw-file XOR reuse on p50 is also negative: the historical full-file offset is fixed by the Twitter/JPEG positive control, but the p50 output is random-like and the shifted/wrong-source controls are similar. Do not treat 761.MP3 as an LP2 key without a new source selector.

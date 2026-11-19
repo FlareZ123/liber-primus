@@ -173,6 +173,64 @@ This does not prove that every p57/signed GP0 collision is intentional. It stren
 
 Windows holdout PASS: `44473196144`.
 
+## Mirrored BASE29 center emits NUMBERS ARE and enters the existing ARE27 bridge
+
+The emerged center has a second direct source-register reading that does not use p50:
+
+```text
+809 in canonical BASE29 = [27,26]
+p22 reuses the source illustration in mirrored form
+mirror the digit order     = [26,27]
+
+signed-source index26 = NUMBERS
+signed-source index27 = ARE
+```
+
+This representation is sharply selected. Charge every integer radix from 2 through43, the full size of the authenticated signed-word register. Require the mirrored digits of 809 to form an ascending consecutive source-index run. **Base29 is the sole hit**, with `[26,27]`. Under the same BASE29 rule across all25 cells of the source 5x5 square, **809 is also the sole cell** whose complete mirrored digit list is an ascending consecutive run.
+
+The output therefore reads the authenticated clause fragment:
+
+```text
+NUMBERS ARE
+```
+
+Those two source numbers have an already established consumer. Under the canonical page/word direction rule:
+
+```text
+NUMBERS26 -> physical p26, canonical word27
+          -> raw [2,6,11]
+          -> Hpair [20,13,6]
+          -> MEANING WAY SEEKS
+
+ARE27     -> physical p27, canonical word28
+          -> raw [0,20,15,1]
+          -> one literal shed -> [20,15]
+          -> H2 [5,6]
+          -> EPIPHANY SEEKS
+```
+
+The p27 result predates this center reading. The new evidence supplies a source-selected **upstream entry** into that route. It does not claim discovery of the ARE27 transform itself.
+
+The ordered pair `[5,6]` is robust to the two live four-rune H serializations. Hpair gives `[28,1,5,6]`; Hsplit gives `[28,5,6,1]`. Across the numbered source objects, each serialization has exactly one adjacent `[5,6]` hit, this ARE27 receiver. The authenticated words at indices5 and6 are `EPIPHANY SEEKS`, the sole adjacent signed-source pair with native GP lengths8+5, matching the physical p0 red-title shape without consulting its 13 ciphertext values.
+
+This creates a compact human-facing chain:
+
+```text
+p55 CIRCUMFERENCES -> p22
+ -> shed the mirrored source square
+ -> center809
+ -> mirrored BASE29 [26,27]
+ -> NUMBERS ARE
+ -> ARE27 numbered direction
+ -> shed + H
+ -> [5,6]
+ -> EPIPHANY SEEKS
+```
+
+It strengthens the source selection of the p0 phrase. The 13-atom additive key ordering on p0 remains a separate unresolved provenance question.
+
+Reproducer: `sims/lp2_p22_809_numbers_are_epiphany_seeks_sft.cjs`. Windows Node22 PASS: `44473420144`.
+
 ## Center rival family
 
 For the center, charge four source-native numerical representations:
@@ -235,7 +293,9 @@ five successors after 761:
 
 That older work correctly rejected direct p56-style prime-totient cipher starts from these values. The negative remains valid.
 
-The new square mechanism supplies an independent literal route to **809** rather than reviving the failed cipher. The two paths now converge on the same prime object.
+The newly selected integer also licenses one narrow historical-byte check that earlier audio work could not preselect: keep the authentic 2013 raw-file XOR primitive and byte-native p50 receiver, and start the original `761.MP3` pad at byte809. The frozen output is random-like: first16 `cbe7a7ba61ed7eb75cf99cdef704b7d4`, printable ratio0.3828, entropy7.2966 bits/byte, with no recognized leading file magic. Windows run `44472593829` passes. This closes that exact offset809 consumer without reopening arbitrary audio offsets.
+
+The new square mechanism supplies an independent literal route to **809** and preserves the older cipher negatives. The two paths converge on the same prime object.
 
 ## Relation to the older p22 square negative
 
@@ -323,9 +383,13 @@ p55 says CIRCUMFERENCES and selects p22
  -> sole-prime center809
  -> p50 mod256/base59
  -> EMERGE
+ -> mirrored BASE29
+ -> NUMBERS ARE
+ -> existing ARE27 route
+ -> EPIPHANY SEEKS
 ```
 
-It recovers an authentic instruction-state transition and a concrete source-derived prime **809**. It does not yet specify an unknown-page decryption key or recover unknown prose.
+It recovers an authentic instruction-state transition and a concrete source-derived prime **809**. The new BASE29 branch independently routes to the leading p0 phrase candidate without opening p0 ciphertext values. Continuous unknown-page prose and the p0 key serialization remain unresolved.
 
 ## Reproduction
 
