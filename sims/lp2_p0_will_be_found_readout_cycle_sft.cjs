@@ -87,7 +87,8 @@ function signedWords() {
     .slice(1)
     .join("\n");
 
-  return clear.match(/[A-Za-z]+/g) || [];
+  return clear.split(/[^A-Za-z0-9]+/)
+    .filter((token) => /^[A-Za-z]+$/.test(token));
 }
 
 function parsePage(text) {
