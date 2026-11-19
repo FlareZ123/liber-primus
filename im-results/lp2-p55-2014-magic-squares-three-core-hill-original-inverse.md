@@ -1,6 +1,6 @@
-# Source-pinned 2014 three-square interior Hill inverse on LP2 p55
+# Source-pinned 2014 three-square interior Hill inverses on LP2 p55
 
-**Agent45, 12 November 2026. Bounded original-cipher negative under two historical Hill vector orientations. Complete source-native positive control and exact reencryption; no unknown-page plaintext, key or destination.**
+**Original raw-matrix test: Agent45, 12 November 2026. Totient-transformed extension: Agent47, 19 November 2026. Classification: bounded original-cipher negatives under both standard Hill orientations for raw and φ-transformed source cores; no unknown-page plaintext, key or destination.**
 
 ## Why this exact operation?
 
@@ -44,9 +44,62 @@ Matched source-native controls sample complete words independently with exactly 
 
 The decoded values below −5.8 are far worse than every one of these independent original-shape native-GP controls (even the control minimum is above −3.51). The same pinned first source supplies a native 43-core plant that is Hill-enciphered under each actual source matrix and exactly recovered **43/43** after inversion; its true native language score is preserved. Thus the original nonlinguistic result cannot be blamed on a noninvertible matrix or an incorrectly implemented cipher.
 
+
+## Totient-transformed interior matrices: a second direct Hill test
+
+LP1 physical p05, the 5×5/1033 “SOME WISDOM” square, explicitly names Euler’s totient function. A source-motivated alternative to using the raw square entries is therefore to apply Euler’s φ to every cell of each already selected 3×3/5×5/3×3 interior, then reduce modulo29. This keeps the same original 2014 square order, the same 43 p55 strict interiors, and the same fixed block boundaries; it changes only the numeric matrix key.
+
+The hypothesis remains conditional: the LP1 passage does not explicitly say to apply φ cellwise to these three interiors, and neither it nor p57 explicitly names Hill cipher. It is nevertheless a finite one-step operation motivated by the actual source wording, rather than a fitted key search.
+
+The exact φ-transformed matrices are:
+
+~~~text
+[[17,  2,  9],
+ [ 8, 25,  8],
+ [ 9,  2, 17]]
+
+[[19,  6, 17,  2, 13],
+ [25, 23,  7, 24, 22],
+ [19, 14, 11, 14, 19],
+ [22, 24,  7, 23, 25],
+ [13,  2, 17,  6, 19]]
+
+[[24, 19, 12],
+ [23, 14, 23],
+ [12, 19, 24]]
+~~~
+
+Their determinants in GF(29) are **[14,27,26]**. All three have exact inverses, and the SFT verifies both matrix products against the identity. Both conventional vector orientations were applied to the original 43 p55 interior runes, preserving the 17 original word boundaries for language scoring.
+
+**Column-vector inverse:**
+
+~~~text
+TH.J.EO.EA.J.P.IA.IA.R.N.AE.A.T.J.P.EA.R.IA.W.X.S.H.S.S.B.EO.F.P.J.P.H.M.EA.L.W.S.E.EA.P.L.N.I.IA
+~~~
+
+**Row-vector inverse:**
+
+~~~text
+C.OE.S.O.Y.B.J.H.B.NG.J.U.L.IA.Y.B.D.B.F.NG.R.C.X.B.U.I.F.G.B.W.U.AE.TH.OE.I.X.NG.X.S.G.J.M.F
+~~~
+
+Neither output is GP-native prose. The exact source-native statistics are:
+
+| Original 43-rune input / inverse | GP29 IoC | Within-word GP bigram log score |
+|---|---:|---:|
+| Original p55 interiors | **0.034330** | **−6.34150** |
+| Raw-square Hill, column | 0.037652 | −5.80757 |
+| Raw-square Hill, row | 0.038760 | −5.85178 |
+| φ-square Hill, column | **0.044297** | **−5.32806** |
+| φ-square Hill, row | **0.039867** | **−6.93439** |
+
+The φ-core column output is the less poor of the two φ variants, but it remains far below source-native English controls. The same 20,000 exact-word-shape samples per source used by the raw-matrix test were compared against both φ outputs: Shakespeare minimum **−3.38994**, Gibran minimum **−3.50531**, and Emerson minimum **−3.38088**. **Zero of 60,000 controls** scored at or below either φ output. Each φ matrix family also passes a 43/43 planted source-native positive control in both orientations, and both original p55 inverses forward-reencrypt all 43 ciphertext symbols exactly. Those round trips validate implementation, not the historical key.
+
+**Decision:** reject this exact cellwise-φ / direct-Hill use of the 2014 square interiors on p55. The test does not reject the totient clue, the 43-cell geometry, a non-Hill use of φ, or a different source-selected transformation. It does remove the simplest direct interpretation of the φ-grid as three Hill key matrices. Do not add phases, matrix permutations, or alternative block boundaries without a new original selector.
+
 ## Exact conclusion and open branches
 
-**Reject the direct three-square-interior HilI cipher on the p55 43 strict interiors** in both standard whole-block vector orientations and source-printed block lengths under ordinary GP-native English. The attractive 43-cell source alignment survives; it requires a distinct independently authored symbol transformation, a different original word/register interpretation, or an extra clue to become an actual decoder. This test leaves p55's 33 exterior runes untouched, so it is not a whole-page decoder and does not satisfy the waiting Director #41 handoff.
+**Reject the direct raw-square three-square-interior Hill cipher on the p55 43 strict interiors** in both standard whole-block vector orientations and source-printed block lengths under ordinary GP-native English. The attractive 43-cell source alignment survives; the separate cellwise-φ Hill candidate is also negative. It requires a different independently authored symbol transformation, a different original word/register interpretation, or an extra clue to become an actual decoder. This test leaves p55's 33 exterior runes untouched, so it is not a whole-page decoder and does not satisfy the waiting Director #41 handoff.
 
 The plausible human solve path through the historically required magic squares and the solved p57 “circumferences” instruction is better sourced than purely fabricated numerical keys, but the square-to-p55 core transfer is still interpretive and no 2014 author message specifies a Hill cipher. Do not rescue this direct result by searching key phases, word permutations or row rotations without a new original selector. Unlike the pure transposition exclusion, this is a negative for **only the two specified direct Hill operators**, not every possible secret GF29 matrix or position-keyed cipher.
 

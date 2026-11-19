@@ -6,14 +6,16 @@
  *
  * The historically available 2014 5x5/7x7/5x5 matrices have interiors
  * 3x3/5x5/3x3, hence 9+25+9=43 cells exactly matching the original 43 strict
- * word interiors on physical LP2 p55. Read the interior matrices as GF(29)
- * Hill keys; decrypt three consecutive source-ordered blocks. For each block
+ * word interiors on physical LP2 p55. Test both raw matrices and a distinct
+ * source-motivated variant applying Euler phi to each interior cell before
+ * reduction mod29. Use each matrix family as three successive Hill keys.
+ * For each block
  * preserve printed row grouping and test only historical conventional
  * column-vector and row-vector formulations. No phase, permutation,
  * offset, seed, second operation, key fitting, or padding.
  *
  * From repository root: node sims/lp2_p55_2014_three_inner_squares_hill_sft.cjs
- * Status: bounded direct inverse negative, NOT plaintext recovery.
+ * Status: bounded raw and totient-transformed direct inverse negatives; NOT plaintext recovery.
  */
 
 const assert = require("node:assert/strict");
@@ -45,6 +47,22 @@ const inner = squares.map(a=>a.slice(1,-1)
 assert.deepEqual(inner.map(a=>a.length),[3,5,3]);
 assert.equal(inner.reduce((s,a)=>s+a.length*a.length,0),43);
 const mod = n => ((n%29)+29)%29;
+function phi(n){
+  let remaining=n;
+  let result=n;
+  for(let p=2;p*p<=remaining;p+=1){
+    if(remaining%p===0){
+      while(remaining%p===0)remaining/=p;
+      result-=result/p;
+    }
+  }
+  if(remaining>1)result-=result/remaining;
+  return result;
+}
+const innerPhi=squares.map(a=>a.slice(1,-1)
+  .map(row=>row.slice(1,-1).map(v=>mod(phi(v)))));
+assert.deepEqual(innerPhi.map(a=>a.length),[3,5,3]);
+assert.equal(innerPhi.reduce((sum,a)=>sum+a.length*a.length,0),43);
 
 /** @param {number[][]} a @param {number[][]} b */
 function multiply(a,b) {
@@ -83,6 +101,13 @@ function inverse(a){
 }
 const inverseInfo=inner.map(inverse);
 assert.deepEqual(inverseInfo.map(k=>k.determinant),[24,8,24]);
+const inversePhiInfo=innerPhi.map(inverse);
+assert.deepEqual(inversePhiInfo.map(k=>k.determinant),[14,27,26]);
+assert.deepEqual(innerPhi,[
+  [[17,2,9],[8,25,8],[9,2,17]],
+  [[19,6,17,2,13],[25,23,7,24,22],[19,14,11,14,19],[22,24,7,23,25],[13,2,17,6,19]],
+  [[24,19,12],[23,14,23],[12,19,24]]
+]);
 for(let s=0;s<inner.length;s++){
   const n=inner[s].length;
   const eye=Array.from({length:n},(_,i)=>
@@ -122,11 +147,35 @@ function ioc(data){
   for(const v of data)counts[v]++;
   return Array.from(counts).reduce((sum,n)=>sum+n*(n-1),0)/(data.length*(data.length-1));
 }
+function transformPhi(orientation,data,encrypt){
+  assert.equal(data.length,43);
+  const output=[];
+  let at=0;
+  for(let s=0;s<innerPhi.length;s++){
+    const n=innerPhi[s].length;
+    const matrix=encrypt ? innerPhi[s] : inversePhiInfo[s].matrix;
+    for(let k=0;k<n;k++){
+      const vector=data.slice(at,at+n);
+      assert.equal(vector.length,n);
+      const transformed=orientation==="column"
+        ? multiply(matrix,vector.map(x=>[x])).map(row=>row[0])
+        : multiply([vector],matrix)[0];
+      output.push(...transformed);
+      at+=n;
+    }
+  }
+  assert.equal(at,43);
+  return output;
+}
 const plain={};
+const plainPhi={};
 for(const orientation of ["column","row"]){
   const decoded=transform(orientation,cipher,false);
   assert.deepEqual(transform(orientation,decoded,true),cipher);
   plain[orientation]=decoded;
+  const decodedPhi=transformPhi(orientation,cipher,false);
+  assert.deepEqual(transformPhi(orientation,decodedPhi,true),cipher);
+  plainPhi[orientation]=decodedPhi;
 }
 const originalRunes=corpus.translit.map((g,index)=>({g,index}));
 const tokenize=originalRunes.map(x=>({token:x.g.toUpperCase(),index:x.index}))
@@ -184,12 +233,18 @@ function interiorBigramScore(data){
 const originalScore=interiorBigramScore(cipher);
 const decodedScore=Object.fromEntries(
   Object.entries(plain).map(([key,value])=>[key,interiorBigramScore(value)]));
+const phiDecodedScore=Object.fromEntries(
+  Object.entries(plainPhi).map(([key,value])=>[key,interiorBigramScore(value)]));
 assert.ok(Math.abs(originalScore+6.341504871710818)<1e-8);
 assert.ok(Math.abs(decodedScore.column+5.807567035994547)<1e-8);
 assert.ok(Math.abs(decodedScore.row+5.85177719103807)<1e-8);
+assert.ok(Math.abs(phiDecodedScore.column+5.32806184370589)<1e-8);
+assert.ok(Math.abs(phiDecodedScore.row+6.93439190479688)<1e-8);
 assert.ok(Math.abs(ioc(cipher)-62/1806)<1e-12);
 assert.ok(Math.abs(ioc(plain.column)-68/1806)<1e-12);
 assert.ok(Math.abs(ioc(plain.row)-70/1806)<1e-12);
+assert.ok(Math.abs(ioc(plainPhi.column)-80/1806)<1e-12);
+assert.ok(Math.abs(ioc(plainPhi.row)-72/1806)<1e-12);
 
 let seed=0x45001113;
 /** @returns {number} */
@@ -205,7 +260,7 @@ for(const {name,words:sourceWords} of sources){
   for(const word of sourceWords)if(word.length<32)buckets[word.length].push(word);
   for(const n of new Set(lengths))assert.ok(buckets[n].length>0);
   let min=Infinity,max=-Infinity,mean=0;
-  let atOrBelowCol=0,atOrBelowRow=0;
+  const atOrBelow={rawColumn:0,rawRow:0,phiColumn:0,phiRow:0};
   const trials=20000;
   for(let i=0;i<trials;i++){
     const plant=[];
@@ -218,8 +273,10 @@ for(const {name,words:sourceWords} of sources){
     min=Math.min(min,value);
     max=Math.max(max,value);
     mean+=value;
-    if(value<=decodedScore.column)atOrBelowCol++;
-    if(value<=decodedScore.row)atOrBelowRow++;
+    if(value<=decodedScore.column)atOrBelow.rawColumn++;
+    if(value<=decodedScore.row)atOrBelow.rawRow++;
+    if(value<=phiDecodedScore.column)atOrBelow.phiColumn++;
+    if(value<=phiDecodedScore.row)atOrBelow.phiRow++;
     if(i===0){
       // Complete synthetic source-native positive control in each convention.
       for(const dir of ["column","row"]){
@@ -227,34 +284,42 @@ for(const {name,words:sourceWords} of sources){
         assert.deepEqual(transform(dir,encrypted,false),plant);
         assert.ok(Math.abs(interiorBigramScore(
           transform(dir,encrypted,false))-value)<1e-12);
+        const encryptedPhi=transformPhi(dir,plant,true);
+        assert.deepEqual(transformPhi(dir,encryptedPhi,false),plant);
+        assert.ok(Math.abs(interiorBigramScore(
+          transformPhi(dir,encryptedPhi,false))-value)<1e-12);
       }
     }
   }
   controls.push({
     name,trials,min,max,mean:mean/trials,
-    atOrBelowCol,atOrBelowRow
+    atOrBelow
   });
 }
-assert.deepEqual(controls.map(c=>[c.atOrBelowCol,c.atOrBelowRow]),[
-  [0,0],[0,0],[0,0]
+assert.deepEqual(controls.map(c=>Object.values(c.atOrBelow)),[
+  [0,0,0,0],[0,0,0,0],[0,0,0,0]
 ]);
 for(const row of controls)assert.ok(row.min>-3.6);
 const gp=data=>data.map(i=>corpus.translit[i]).join(".");
 console.log(JSON.stringify({
-  status:"bounded original-source 43-core Hill inverse negative; no plaintext",
+  status:"bounded original-source raw and totient-transformed 43-core Hill inverse negatives; no plaintext",
   sourceHistoricalSquareOrders:[5,7,5],
   sourceMatrixInteriorOrders:[3,5,3],
   originalInteriorRunes:43,
-  sourceMatricesDeterminantsGF29:inverseInfo.map(x=>x.determinant),
+  rawSourceMatricesDeterminantsGF29:inverseInfo.map(x=>x.determinant),
+  totientCoreMatricesGF29:innerPhi,
+  totientCoreDeterminantsGF29:inversePhiInfo.map(x=>x.determinant),
   original:{ioc:ioc(cipher),intraWordBigramLog:originalScore},
-  column:{runes:gp(plain.column),ioc:ioc(plain.column),
-    intraWordBigramLog:decodedScore.column,
-    exactForwardReencryption:43},
-  row:{runes:gp(plain.row),ioc:ioc(plain.row),
-    intraWordBigramLog:decodedScore.row,
-    exactForwardReencryption:43},
+  rawColumn:{runes:gp(plain.column),ioc:ioc(plain.column),
+    intraWordBigramLog:decodedScore.column,exactForwardReencryption:43},
+  rawRow:{runes:gp(plain.row),ioc:ioc(plain.row),
+    intraWordBigramLog:decodedScore.row,exactForwardReencryption:43},
+  totientColumn:{runes:gp(plainPhi.column),ioc:ioc(plainPhi.column),
+    intraWordBigramLog:phiDecodedScore.column,exactForwardReencryption:43},
+  totientRow:{runes:gp(plainPhi.row),ioc:ioc(plainPhi.row),
+    intraWordBigramLog:phiDecodedScore.row,exactForwardReencryption:43},
   languageControls:controls,
-  sourceNativePositiveControl:"43/43 symbols recovered in both conventions",
-  scope:"Only original 43 strict p55 word interiors, source matrices as direct Hill keys, unshifted [9,25,9] layout, conventional row/column inverse."
+  sourceNativePositiveControl:"43/43 symbols recovered for raw and totient-transformed matrices in both conventions",
+  scope:"Original 43 strict p55 word interiors, source-ordered 3x3/5x5/3x3 cores, raw and cellwise Euler-phi mod29 Hill keys, conventional row/column inverse; no fitted phase or permutation."
 },null,2));
-console.log("SFT PASS: source inputs, native positive controls, full inverse/forward replay.");
+console.log("SFT PASS: original sources, raw/phi matrix inverses, 43/43 forward replay and planted controls, 60,000 matched native-language controls.");
