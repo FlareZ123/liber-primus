@@ -1,21 +1,23 @@
-# P0 first physical line reconstructs signed-source indices 5..13 under fixed H scopes
+# P0 THE/WAY directions reconstruct signed-source indices 5..13
 
-**Agent14, 19 November 2026. Classification: source-derived local readout and strong support for the p0 opening candidate. This does not recover a general p0 inverse or derive the retrospective 13-atom additive key.**
+**Agent14, 19 November 2026. Classification: source-derived local register recovery and strong support for the p0 opening candidate. This does not recover a general p0 inverse or derive the retrospective 13-atom additive key.**
 
 ## Starting evidence
 
-Three ingredients were fixed independently before this test:
+The route uses operations and source objects fixed independently before this result:
 
-1. Original physical p0 begins with two red words of GP lengths **8+5**, followed by the large red punctuation mark.
-2. The repository already uses the outside-in transform
-   `H(x,y) = [x-y, x+y] mod29`, retaining an odd center.
-3. The authenticated 2016 clear-signed message supplies a zero-based word register. Existing source-side routes independently select `EPIPHANY5 / SEEKS6` for the p0 8+5 opening, and the untouched p0 title word H-shell sums were already known to be `[1,13] = THE / WAY`.
+1. Original physical p0 begins with two red GP words of lengths **8+5**.
+2. The repository's fixed outside-in transform is `H(x,y) = [x-y, x+y] mod29`, retaining an odd center.
+3. The authenticated 2016 clear-signed message supplies the zero-based source-word register.
+4. Existing p0 work had already established that the two untouched title words have H-shell sums `[1,13]`, which read as **THE / WAY** in that register.
+5. The authenticated instruction says **THEIR NUMBERS ARE THE DIRECTION**, and the numbered diagonal already uses source number `i` to select physical `p_i`, canonical word `i+1`.
+6. The existing source route also uses **RISE** as a numerical forward difference.
 
-The question here is narrower: does the original p0 opening itself contain a source-number readout under the same fixed H operation, without subtracting a plaintext-derived key?
+The test asks whether those already selected title outputs can direct to a held-out source register without subtracting any plaintext-derived p0 key.
 
-## Exact title readout
+## P0 title gives THE1 / WAY13
 
-The original two title words are:
+The original red title ciphertext is:
 
 ```text
 C1 length8
@@ -25,84 +27,81 @@ C2 length5
 [15,26,18,21,5]
 ```
 
-Their fixed H outputs are:
+Fixed H gives:
 
 ```text
 H(C1)
 = [15,15,10,6,28,8,26,9]
+sum mod29 = 1 = THE
 
 H(C2)
 = [10,20,5,18,18]
-
-H(C1 || C2)
-= [10,20,16,0,0,7,6,0,20,21,19,19,27]
+sum mod29 = 13 = WAY
 ```
 
-The union of those three source-visible scopes contains every authenticated source index **5 through 10**.
-
-More specifically, the run is partitioned by scope:
+So the untouched title supplies the source-labelled pair:
 
 ```text
-H(C2)       contains 5
-H(C1||C2)   contains 6,7
-H(C1)       contains 8,9,10
+THE1 / WAY13
 ```
 
-Therefore the untouched title gives:
+## Their numbers are the direction
+
+Follow those two source numbers through the already established numbered diagonal.
+
+### THE1
 
 ```text
-5  EPIPHANY
+THE1
+-> p1 canonical word2
+-> [22,24,25,21,15,23,13,16]
+
+H
+-> [6,9,11,8,2,19,6,7]
+
+sum(H) mod29
+-> 10
+```
+
+The H coordinates plus their fixed shell sum contain every source index **6 through 11**:
+
+```text
 6  SEEKS
 7  THE
 8  DEVOTED
 9  LIBER
 10 PRIMUS
+11 IS
 ```
 
-The operation is a numerical source-register readout. It does not assert that all H coordinates are plaintext characters.
-
-## Matched 8+5 control
-
-Charge every adjacent complete page-local **8+5** word pair on unknown physical p0-p55 under the same three scopes.
-
-There are **19** such pairs.
-
-Only two pairs have a three-scope H union containing all indices5..10:
+### WAY13
 
 ```text
-p0 word1-word2
-p39 word9-word10
+WAY13
+-> p13 canonical word14
+-> [18,3,25,6,26,20]
+
+H
+-> [27,9,6,0,19,2]
+
+sum(H) mod29
+-> 5
+-> EPIPHANY
 ```
 
-The p39 rival fails the scope partition above. Across all 19 matched pairs, **p0 alone** satisfies:
+The two directed receivers therefore recover source indices **5 through 11**.
+
+## RISE completes 12 and the endpoint supplies 13
+
+The title directions are ordered `1 -> 13`. Their fixed forward rise is:
 
 ```text
-second-word H contains 5
-whole-pair H contains 6 and 7
-first-word H contains 8, 9 and 10
+13 - 1 = 12
 ```
 
-P0 is also the sole 8+5 pair whose separate word-H sums are exactly:
+Source index12 is **THE**. The second direction itself is source index13, **WAY**.
 
-```text
-[1,13] = THE, WAY
-```
-
-The broad union observation is therefore insufficient by itself; the fixed source-visible scope assignment and the independent THE/WAY shell sums provide the useful discrimination.
-
-## First physical line extends the register to 12
-
-The first original physical text line of p0 has complete word lengths:
-
-```text
-8 | 5 | 4 | 3
-```
-
-Apply H to the whole physical line and to each printed word, then take the union. With no new arithmetic rule, that line contains every authenticated source index **5 through 12**.
-
-The already established H sum of the second red title word supplies **13**.
-
-The complete p0 first-line readout is therefore:
+Combining the two numbered receivers, the rise, and the endpoint gives one continuous authenticated register:
 
 ```text
 5  EPIPHANY
@@ -123,47 +122,84 @@ EPIPHANY SEEKS THE DEVOTED.
 LIBER PRIMUS IS THE WAY.
 ```
 
-This is an authenticated source clause, recovered as a consecutive numerical register from original unknown-page ciphertext and its printed scopes.
+No candidate plaintext values from p0 and no 13-atom additive residual are used in this route.
 
-## Physical-line control
+## Matched 8+5 family control
 
-Across unknown p0-p55 there are **10** physical lines containing an adjacent 8+5 pair.
+Charge every adjacent complete page-local **8+5** word pair on unknown physical p0-p55. There are **19**.
 
-Under the unchanged whole-line plus word-H union:
+For each pair, freeze exactly the same grammar:
 
-- **3/10** contain every source index5..12;
-- exactly **1/10** has its 8+5 pair word-H sums equal `[1,13]`;
-- the conjunction is **p0 line1 only**.
+1. H each word;
+2. reduce each complete H shell to its mod29 sum, obtaining two source-number directions;
+3. follow both directions through the numbered diagonal;
+4. take each receiver's complete H coordinates plus its H-shell sum;
+5. add the forward rise `d2-d1 mod29` and endpoint `d2`;
+6. ask whether the resulting numerical set contains the complete consecutive source run5..13.
 
-This is the relevant matched control because both the original 8+5 title shape and the physical first line are source-visible before the readout.
+Result:
 
-A much broader census of arbitrary physical-line H unions is dense in long consecutive runs, so long runs on unrestricted lines should not be treated as evidence by themselves. The result here is localized to the independently selected p0 opening and its exact title geometry.
+```text
+19 matched 8+5 pairs
+19 valid direction pairs
+1 full source5..13 hit
+
+sole hit:
+p0 word1-word2
+directions [1,13]
+rise 12
+run 5..13
+```
+
+The next-best matched control has a consecutive run of length5. P0's run length is9.
+
+This is a stronger control than merely asking whether a broad H union contains several source numbers.
+
+## Independent local corroboration from the original first line
+
+The same p0 title also has a direct nested-scope H signature.
+
+```text
+H(C2)       contains 5
+H(C1||C2)   contains 6,7
+H(C1)       contains 8,9,10
+```
+
+Across all 19 adjacent 8+5 pairs, p0 alone has that exact `1|2|3` scope partition.
+
+The first original physical p0 line has word lengths:
+
+```text
+8 | 5 | 4 | 3
+```
+
+The fixed union of H on that complete line and H on its printed words contains every source index5..12. Across the **10** physical lines in unknown p0-p55 containing an adjacent 8+5 pair, only p0 line1 combines that 5..12 line readout with title H sums `[1,13]`.
+
+Physical-line unions are dense in general, so this is corroboration rather than the primary discriminator. The numbered-direction familywise result above is the cleaner causal path.
 
 ## Relationship to the p0 plaintext candidate
 
-The repository already has a strong candidate that the first two red words are:
+The repository already has the strong candidate that the first two red words are:
 
 ```text
 EPIPHANY SEEKS
 ```
 
-with a retrospective additive residual expressed in the reconstructed DH state. The unresolved weakness of that model is the missing source-authored order for its 13 key atoms.
+with an exact additive residual expressible in the reconstructed DH state. Its missing provenance is the order of the 13 residual atoms.
 
-This result bypasses that missing key order for the source identification step. It recovers the larger authenticated phrase **EPIPHANY SEEKS THE DEVOTED. LIBER PRIMUS IS THE WAY.** from the original p0 opening through fixed H scopes and source-number ordering.
+This result selects the same opening through a different mechanism. The p0 title first emits **THE/WAY**, their authenticated numbers direct to two original numbered receivers, and those receivers plus the fixed rise reconstruct the complete source clause5..13.
 
-That materially strengthens the title interpretation, while leaving two boundaries intact:
+The clause makes the p0 8+5 title's first two source words **EPIPHANY SEEKS** without requiring the retrospective additive key schedule. It also supplies the following authenticated context **THE DEVOTED. LIBER PRIMUS IS THE WAY.**
 
-- it does not produce a reversible character-by-character decoder for the p0 body;
-- it does not explain the exact 13-atom additive residual schedule.
+Two boundaries remain:
 
-Treat this as a local source-register mechanism and a strong plaintext-selection clue, not as a solved continuous page.
+- this is a numerical source-register recovery, not a character-by-character plaintext inverse for the p0 body;
+- it does not explain how the 13-atom additive residual should be serialized.
 
 ## Reproduction
-
-Run:
 
 ```text
 node sims/lp2_p0_firstline_h_source_register_sft.cjs
 ```
 
-The SFT reconstructs the canonical page/word parse, exact title H outputs, all 19 matched 8+5 controls, all 10 physical-line 8+5 controls, and the source5..13 register.
+The SFT reconstructs the canonical page/word parse, exact p0 H values, all 19 matched 8+5 direction/rise controls, and the independent 10-line corroboration.
