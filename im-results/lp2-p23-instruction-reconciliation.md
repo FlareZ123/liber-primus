@@ -115,6 +115,32 @@ This serializer never consumes the fifth word of p23 line1, the five-dot count, 
 
 Charge every red span whose complete printed words form adjacent pairs, with every independent H/H^-1 polarity per pair. There are **24** valid serializer variants in the fixed annotation corpus. Exactly one yields `THEONERISE`: p23's red span under forward/forward H.
 
+### Separate EMERGE / OPENPGP precommit: H-only receiver fails p24
+
+For Director #1875, the p22 1033-square `EMERGE` and signed-register `OPENPGP` handoff selected at most three visible p23 objects before reading the holdout: (1) the first red span, (2) the five-dot-selected full first line, (3) the page/illustration boundary. The shortest explicitly marked object was frozen: the first red span only, four complete printed word lengths `[2,6,3,5]` in page-local order. The precommit fixed forward H on adjacent printed pairs, concatenating **only H outputs**, then the existing positive-cardinal T serializer; no input-value interleaving, H-inverse, reversal, alternate origin or phase was allowed. The sole p24 holdout was the complete first printed line.
+
+Raw p23 red span:
+
+```
+ᚢᚪ-ᚹᛝᚷᛉᛞᚷ-ᛁᛒᛁ-ᛇᛏᛒᛁᚣ
+word lengths [2,6,3,5]
+H(2,6)=[25,8]; H(3,5)=[27,8]
+H-only output [25,8,27,8]
+T output GP0 [9,18,15,18] = NESE
+```
+
+That is not an exact instruction or readable plaintext. The frozen p24 holdout is the first printed line:
+
+```
+ᛞᚱᚠ-ᛖᛄᚫ-ᚾᚳᚻᚹ-ᛇᛡᛈᛠᚹ-ᛗᛚ-ᚹᛟᚹᛠ-ᚪ
+word lengths [3,3,4,5,2,4,1]
+H(3,3)=[0,6]; H(4,5)=[28,9]; H(2,4)=[27,6]; singleton=1
+```
+
+The first H output is zero, outside the precommitted positive one-based prime-cardinal domain, so T is undefined and the p24 holdout fails immediately. This is a bounded negative, not a license to try H-inverse or another p23 object.
+
+Do not conflate this failed H-only precommit with the already established `THE ONE RISE` serializer above: that distinct construction interleaves each original input pair with its H pair, producing `[2,6,25,8,3,5,27,8]` and the p7→p8 holdout. Adding the input values to the failed precommit now would change the operation after observing the miss. The EMERGE/OPENPGP handoff therefore supplies no new p24 body receiver or p23 decryption. Full precommit and result: [Director #1875](https://github.com/FlareZ123/liber-primus/issues/1875#issuecomment-7005699563).
+
 ### Numeric holdout for THE ONE RISE
 
 The complete output has
