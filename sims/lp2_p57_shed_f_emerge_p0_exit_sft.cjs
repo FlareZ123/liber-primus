@@ -275,6 +275,65 @@ const signedWords = (signedBody.match(/[A-Za-z]+/g) || []).map((text, index) => 
 });
 assert.equal(signedWords.length, 43);
 
+// The complete printed duplicate class of the SURFACE/EMERGE root token is
+// itself state-shaped. With the visible table width8, every 3C copy lands in
+// one of the independently recovered columns K,e,g,g+K.
+const rootTokenCopies = tokens
+  .map((token, address) =>
+    token === tokens[root189]
+      ? { address, row: Math.floor(address / tableWidth), col: address % tableWidth }
+      : null
+  )
+  .filter((row) => row !== null);
+assert.deepEqual(rootTokenCopies, [
+  { address: 67, row: 8, col: 3 },
+  { address: 162, row: 20, col: 2 },
+  { address: 189, row: 23, col: 5 },
+  { address: 247, row: 30, col: 7 },
+]);
+
+const inverseExponent = 3;
+const publicA = 8;
+const stateColumns = [dhShared, inverseExponent, dhGenerator, dhGenerator + dhShared]
+  .sort((a, b) => a - b);
+assert.deepEqual(
+  rootTokenCopies.map((row) => row.col).sort((a, b) => a - b),
+  stateColumns
+);
+
+// Charge the column set against every original token class. 3C is the only
+// token whose complete occurrence-column set is exactly {K,e,g,g+K}.
+const tokenAddresses = new Map();
+tokens.forEach((token, address) => {
+  if (!tokenAddresses.has(token)) tokenAddresses.set(token, []);
+  tokenAddresses.get(token).push(address);
+});
+const stateColumnTokenClasses = [...tokenAddresses.entries()]
+  .filter(([, addresses]) => {
+    const columns = [...new Set(addresses.map((address) => address % tableWidth))]
+      .sort((a, b) => a - b);
+    return columns.length === stateColumns.length &&
+      columns.every((value, index) => value === stateColumns[index]);
+  })
+  .map(([token, addresses]) => ({ token, count: addresses.length }));
+assert.deepEqual(stateColumnTokenClasses, [{ token: "3C", count: 4 }]);
+
+// The same four zero-based rows are authenticated 2016 source indexes.
+// Two are themselves DH state roles (A=DEVOTED and p=ROAD); the other two
+// are the source navigation words MEANING and SEEK.
+const rootCopySourceRows = rootTokenCopies.map((row) => ({
+  address: row.address,
+  row: row.row,
+  word: signedWords[row.row].text,
+  col: row.col,
+}));
+assert.deepEqual(rootCopySourceRows, [
+  { address: publicA * tableWidth + inverseExponent, row: publicA, word: "DEVOTED", col: inverseExponent },
+  { address: 20 * tableWidth + dhShared, row: 20, word: "MEANING", col: dhShared },
+  { address: dhModulus * tableWidth + dhGenerator, row: dhModulus, word: "ROAD", col: dhGenerator },
+  { address: 30 * tableWidth + (dhGenerator + dhShared), row: 30, word: "SEEK", col: dhGenerator + dhShared },
+]);
+
 const pair192 = [];
 for (let i = 0; i < signedWords.length - 1; i += 1) {
   const left = signedWords[i];
@@ -343,6 +402,9 @@ console.log(JSON.stringify({
     base59: decode(tokens[surface.gp0], alphabet59),
     base60: decode(tokens[surface.gp0], alphabet60),
     p57RootTokenWords,
+    rootTokenCopies,
+    stateColumnTokenClasses,
+    rootCopySourceRows,
   },
   restoredShared2Walk: restored,
   literalZeroCells: zeroCells,
