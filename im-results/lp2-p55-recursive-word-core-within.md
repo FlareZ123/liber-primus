@@ -255,6 +255,67 @@ full sequence plus emerged-core GP0=38:    1
 
 The sole full sequence is physical p55 starting at its first complete word. It is also the sole full-sequence window whose final five emerged cores sum to WITHIN=38.
 
+## The final surviving word recovers THE ROAD AND
+
+The recursive count route itself selects a smaller ciphertext object before any language scoring.
+
+After the hidden count reaches source/state ROAD=23 and the next shed is performed, every other active word has vanished or emitted its center. One seven-rune core remains, inside original p55 word7:
+
+~~~text
+[14,10,19,1,5,13,8]
+~~~
+
+Continue the already fixed outside-in H operation while literally shedding this last word's three remaining circumferences:
+
+~~~text
+H(14,8)  = [6,22]
+H(10,13) = [26,23]
+H(19,5)  = [14,24]
+center    = 1
+~~~
+
+The H sum branch is therefore:
+
+~~~text
+[22,23,24]
+~~~
+
+Under the authenticated zero-based signed-source numbering fixed elsewhere, those values are the contiguous words:
+
+~~~text
+22 THE
+23 ROAD
+24 AND
+~~~
+
+So the independently selected p55 object yields the exact source fragment:
+
+~~~text
+THE ROAD AND
+~~~
+
+This is a direct ciphertext-to-source-word readout under two operations already fixed before the phrase was inspected: literal circumference shedding from solved p57 and the established outside-in H map.
+
+### Complete branch and window charge
+
+Charge every page-local contiguous 16-word window in the unknown manuscript. Whenever recursive shedding leaves exactly one active word for at least three consecutive paired layers, read both fixed H branches over each three-layer run.
+
+Across all 2,039 windows there are only 49 such three-layer single-survivor sites.
+
+~~~text
+ascending consecutive triples on H sum branch:        1
+ascending consecutive triples on H difference branch: 0
+ascending consecutive triples on either branch:        1
+exact [22,23,24] on H sum branch:                      1
+exact [22,23,24] on H difference branch:               0
+~~~
+
+The sole consecutive triple is physical p55 word1's window, on original p55 word7 at recursive depths3–5. Its difference branch is [6,26,14], which is not consecutive.
+
+This familywise control does not choose THE/ROAD/AND as targets first. It asks whether either fixed H branch forms any ascending three-step source-index run; the only such run is the p55 sum branch, and it happens to be exactly 22→23→24.
+
+The remaining center value1 is preserved as raw output. A separate source-selected rule is required before using it to extend the phrase.
+
 ## Held-out external consumer: both 36 branches land on p36 GOOD
 
 The p55 result was committed at **05:45:03Z**, fixing both H branch sums at 36 before a separate p36 plaintext result existed in the authoritative synthesis.
