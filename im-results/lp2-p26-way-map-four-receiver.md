@@ -160,6 +160,69 @@ Thus p26 is no longer merely a state-transition coincidence. The independently s
 
 This still does not identify what object FOURTH selects. The obvious pre-existing consumers are the p28 `4D -> fourth D` self-index and the fourth signed THE-follower `MAP`; treat those as candidate receivers until one predicts untouched data.
 
+## FOURTH + reconstructed DH gives an exact p28 instruction
+
+The same residue packet can reconstruct the DH label without importing the already known `A=8` as an input.
+
+From the packet:
+
+~~~text
+b = 15
+p-1 = 22
+K = 2
+~~~
+
+the established p28 inverse step is forced:
+
+~~~text
+b^{-1} mod (p-1)
+= 15^{-1} mod22
+= 3
+~~~
+
+and then:
+
+~~~text
+K^3 mod p
+= 2^3 mod23
+= 8
+= A
+~~~
+
+So the packet reconstructs:
+
+~~~text
+[p,A]
+= [23,8]
+= GP runes D,H
+= DH
+~~~
+
+Together with the independently derived word **FOURTH**, this yields a compact instruction reading:
+
+~~~text
+FOURTH D ; H
+~~~
+
+Apply that literally to the original p28 source under the already frozen consumer:
+
+~~~text
+p28 rune offset48 = D
+D-count through offset48 = 4
+
+centered runes 47..49 = [20,23,14] = L D X
+
+H(L,X) || D
+= [20-14, 20+14, 23] mod29
+= [6,5,23]
+= G C D
+= GCD
+~~~
+
+Thus the p26 unknown-cipher block independently reconstructs the exact operation used by the earlier p28 HERE route: **select the fourth D, then apply H around it, yielding GCD**.
+
+This is a cross-page solve-path closure rather than unknown prose recovery. It is substantially stronger than recognizing FOUR alone because every step after the p26 packet is a pre-existing, source-tested p28 operation.
+
 ## Deterministic state48 continuation stops on p26
 
 The fixed table continuation from the selected state56 receiver is still:
@@ -233,7 +296,7 @@ unknown p26 word GP0 57
 
 and preserve the enclosing `18,61,57,56 -> FOUR` boundary window as supporting evidence.
 
-The next decisive step should identify the source-selected object consumed by FOURTH and require that choice to predict untouched ciphertext/state before inspection. Avoid treating the p7 movement hit or the four generic FOUR windows as equivalent.
+The p28 object consumed by FOURTH/DH is now source-selected and reproduces the frozen fourth-D/H -> GCD operation. The next decisive step is to use the resulting GCD/inverse3 state to predict an untouched receiver or plaintext downstream, rather than adding another interpretation layer. Avoid treating the p7 movement hit or the four generic FOUR windows as equivalent.
 
 ## Reproduction
 
@@ -246,4 +309,4 @@ Run:
 node sims/lp2_p26_way_map_four_receiver_sft.cjs
 ~~~
 
-The SFT performs the complete unknown-word movement census, proves uniqueness of the 57->56 adjacent pair, enumerates all unknown FOUR windows, proves the `[b,p-1,K,p-1]` residue packet unique across 3,176 windows, derives GCD suffix TH and FOURTH, verifies the p26 line/word coordinates, tests the failed immediate 56->48 continuation, follows state48 to its sole p26 word and rejects the frozen 4D self-index there, and charges the K=2 SAD/JLM word probe against the full three-rune signed-K English background.
+The SFT performs the complete unknown-word movement census, proves uniqueness of the 57->56 adjacent pair, enumerates all unknown FOUR windows, proves the `[b,p-1,K,p-1]` residue packet unique across 3,176 windows, derives GCD suffix TH and FOURTH, reconstructs `[p,A]=DH`, verifies the literal `FOURTH D; H` instruction against original p28 as `LDX -> GCD`, verifies the p26 line/word coordinates, tests the failed immediate 56->48 continuation, follows state48 to its sole p26 word and rejects the frozen 4D self-index there, and charges the K=2 SAD/JLM word probe against the full three-rune signed-K English background.
