@@ -33,6 +33,7 @@ The [standalone reproducer](../sims/lp2_p50_stage11_133_331_affine_perimeter_p55
 - Subtractive output IoC: **0.03824561**, versus raw p55 **0.03789474**.
 - The 76-rune subtractive output is nonlinguistic and does not form a recognizable directive.
 - Additive-sign control IoC: **0.03017544**; likewise nonlinguistic.
+- The remaining 180 affine-ordered bytes, reduced mod29, were compared in printed order with the independently established p56 plaintext followed by clear p57. Only **5/180** positions match; reverse order gives **6/180**. The tail therefore does not encode that known 180-rune receiver either.
 
 The exact key stream and both output strings are emitted by the reproducer. The result does not support a p55 plaintext.
 

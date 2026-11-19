@@ -47,6 +47,31 @@ const key = order.map(position => perimeter[position] % 29);
 const subtract = ciphertext.map((value, i) => (value - key[i] + 29) % 29);
 const addControl = ciphertext.map((value, i) => (value + key[i]) % 29);
 
+// The source-visible 76/180 split also invites a fixed known-plaintext check:
+// compare the remaining 180 affine-ordered bytes with solved p56 plaintext
+// followed by the clear p57 text. p56 wording is independently pinned in
+// sims/authentic_lp2_p56_totient_regression.cjs.
+const expectedP56 = "AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE";
+function toGpRunes(words) {
+  const sorted = translit.map((token, index) => ({ token, index }))
+    .sort((a, b) => b.token.length - a.token.length);
+  const out = [];
+  for (const word of words.split(" ")) {
+    for (let i = 0; i < word.length;) {
+      const match = sorted.find(({ token }) => word.startsWith(token, i));
+      assert.ok(match, "No GP spelling for " + word.slice(i));
+      out.push(match.index);
+      i += match.token.length;
+    }
+  }
+  return out;
+}
+const known180 = toGpRunes(expectedP56).concat(corpus.pages.find(page => page.page === 57).indices);
+assert.equal(known180.length, 180);
+const affineTail = perm.slice(76).map(value => value % 29);
+const tailMatches = affineTail.reduce((count, value, i) => count + (value === known180[i] ? 1 : 0), 0);
+const tailReverseMatches = affineTail.reduce((count, value, i) => count + (value === known180[179 - i] ? 1 : 0), 0);
+
 function render(indices) {
   return indices.map(index => translit[index]).join(" ");
 }
@@ -70,5 +95,10 @@ console.log(JSON.stringify({
   p55_subtract_ioc: ioc(subtract),
   p55_add_control: render(addControl),
   p55_add_ioc: ioc(addControl),
-  p55_raw_ioc: ioc(ciphertext)
+  p55_raw_ioc: ioc(ciphertext),
+  affine_tail_length: affineTail.length,
+  affine_tail_mod29_first40: render(affineTail.slice(0, 40)),
+  p56_plaintext_plus_p57_clear_length: known180.length,
+  affine_tail_exact_matches_to_p56p57: tailMatches,
+  affine_tail_reverse_matches_to_p56p57: tailReverseMatches
 }, null, 2));
