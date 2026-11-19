@@ -12,6 +12,7 @@ function read(relative) {
 }
 
 const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
+const base60 = JSON.parse(read("resources/liber-primus/base60-grid.json"));
 const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 
 const clear = signed2016.split("-----BEGIN PGP SIGNATURE-----")[0];
@@ -42,6 +43,26 @@ assert.deepEqual(
     .map(([count, rows]) => [count, rows.length])
     .sort((a, b) => a[0] - b[0]),
   [[10, 4], [13, 31], [23, 1]]
+);
+
+// The red/all-13-dot census and p50 row count read the first three words of
+// the authenticated imperative corridor directly.
+const thirteenMarks = bySize.get(13);
+const redThirteenMarks = thirteenMarks.filter((mark) => mark.color === "red");
+assert.equal(redThirteenMarks.length, 30);
+assert.equal(thirteenMarks.length, 31);
+assert.equal(base60.rows.length, 32);
+assert.deepEqual(
+  [
+    [redThirteenMarks.length, signedWords[redThirteenMarks.length]],
+    [thirteenMarks.length, signedWords[thirteenMarks.length]],
+    [base60.rows.length, signedWords[base60.rows.length]],
+  ],
+  [
+    [30, "SEEK"],
+    [31, "AND"],
+    [32, "YOU"],
+  ]
 );
 
 // The complete source-visible large-punctuation size alphabet is itself a
@@ -75,6 +96,16 @@ assert.equal(signedWords[tenClassTotal], "PATHS");
 assert.deepEqual(
   signedWords.slice(marks.length, tenClassTotal + 1),
   ["GOOD", "LUCK", "BEWARE", "FALSE", "PATHS"]
+);
+
+// Together the count anchors bound the full authenticated imperative from
+// source indices30 through40.
+assert.deepEqual(
+  signedWords.slice(redThirteenMarks.length, tenClassTotal + 1),
+  [
+    "SEEK", "AND", "YOU", "WILL", "BE", "FOUND",
+    "GOOD", "LUCK", "BEWARE", "FALSE", "PATHS",
+  ]
 );
 
 // The p36/p38 pair visibly brackets the five numbered sections. Their total
@@ -130,6 +161,15 @@ console.log(JSON.stringify({
           count < signedWords.length ? signedWords[count] : null,
       }))
       .sort((a, b) => a.count - b.count),
+  },
+  imperativeCorridor: {
+    redThirteenCount: redThirteenMarks.length,
+    redThirteenWord: signedWords[redThirteenMarks.length],
+    allThirteenCount: thirteenMarks.length,
+    allThirteenWord: signedWords[thirteenMarks.length],
+    p50Rows: base60.rows.length,
+    p50RowsWord: signedWords[base60.rows.length],
+    sourceWords30to40: signedWords.slice(30, 41),
   },
   warningCorridor: {
     totalLargeMarks: marks.length,
