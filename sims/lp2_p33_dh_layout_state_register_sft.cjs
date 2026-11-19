@@ -73,8 +73,7 @@ function mul2(left, right) {
  * @returns {number[][]}
  */
 function hPower(exponent) {
-  let n = mod29(exponent);
-  n %= 28;
+  let n = ((exponent % 28) + 28) % 28;
   let result = [[1, 0], [0, 1]];
   let factor = [[1, 28], [1, 1]];
   while (n > 0) {
@@ -111,6 +110,25 @@ function shellPower(word, exponent) {
     out.push(...hPowerPair([word[left], word[right]], exponent));
   }
   if (word.length % 2 === 1) out.push(word[Math.floor(word.length / 2)]);
+  return out;
+}
+
+/**
+ * @param {number[][]} words
+ * @param {number} phase
+ * @param {1|-1} direction
+ * @returns {number[]}
+ */
+function shellUnpower(decoded, exponent) {
+  const out = new Array(decoded.length);
+  let input = 0;
+  for (let left = 0, right = decoded.length - 1; left < right; left += 1, right -= 1) {
+    const [x, y] = hPowerPair([decoded[input], decoded[input + 1]], -exponent);
+    out[left] = x;
+    out[right] = y;
+    input += 2;
+  }
+  if (decoded.length % 2 === 1) out[Math.floor(decoded.length / 2)] = decoded[input];
   return out;
 }
 
@@ -309,7 +327,7 @@ assert.equal(secondBody.length, order);
 
 for (let exponent = 0; exponent < order; exponent += 1) {
   for (const word of secondBody) {
-    assert.deepEqual(shellPower(shellPower(word.values, exponent), -exponent), word.values);
+    assert.deepEqual(shellUnpower(shellPower(word.values, exponent), exponent), word.values);
   }
 }
 
