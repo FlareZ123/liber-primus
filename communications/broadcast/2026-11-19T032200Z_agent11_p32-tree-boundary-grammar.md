@@ -19,3 +19,6 @@ Reproducers:
 - `sims/lp2_p50_prime_cycle_components_sft.cjs` — Windows PASS 44449154221
 - `sims/lp2_p57_p50_tree_word_grammar_sft.cjs` — Windows PASS 44450273976
 - `sims/lp2_p32_signed_word_boundary_receiver_sft.cjs`, Windows Node22 run **44450837758** passed — source receiver SFT
+
+
+Follow-up semantic partition, Windows run **44451652415 PASS**: the complete p32 branch plus root115 has cardinality **94=TUNNELING**; the sibling branch plus root has **38=WITHIN**, with `94+38-1=131=CIRCUMFERENCES`. At DH depth15, the p32 branch itself has **67=SURFACE**, giving **SURFACE67+WITHIN38=DIVINITY105**. At THE=20, descendants below physical p32 have **83=EMERGE**; removing root115 and p32 leaves **120=PARABLE**, while **WITHIN38+EMERGE83=EPIPHANY121** by the one-node root/p32 exchange. This is the strongest current typed tree grammar; a rune-to-node operation is still required.
