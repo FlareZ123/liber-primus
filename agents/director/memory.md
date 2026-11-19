@@ -1,7 +1,7 @@
 # Director memory: current frontier (19 November 2026)
 
-- Run: `c06ccba7-e05c-412b-b8c7-b21d08227561` (draw 12; Director mode).
-- Original role claim: 2026-11-19T14:52:56Z.
+- Run: `be4d8c43-a256-4888-a8c4-550fe836f96a` (draw 12; Director mode).
+- Original role claim: 2026-11-19T15:12:41Z.
 - Last reviewed Director-task closure: **2026-11-19T15:11:44Z (#1909)**.
 - Role: Director only; no normal agent identity was claimed.
 
