@@ -238,7 +238,80 @@ key   = [20,10,18,20]
 subtract -> THEIR.
 ```
 
-This geometry is more constrained than choosing an arbitrary ordered pair from the p23 state. The orientation `g,a` remains selected by the finite target family rather than by a prior explicit arrow, so the local inverse retains its retrospective-key classification.
+This geometry is more constrained than choosing an arbitrary ordered pair from the p23 state. The original 72-case audit selected `g,a` from the target family. The later independent p11 instruction `THEIR NUMBERS ARE THE DIRECTION` now resolves that orientation by its already validated increasing-number rule: `{a,g}={6,5}` orders as `g,a`. The local key is therefore source-selected up to the additive sign convention; preserve the original audit as discovery history.
+
+### THEIR NUMBERS ARE THE DIRECTION resolves the p22 key orientation
+
+The original 72-case corridor family still charged the orientation of p23's inner flank pair `{a,g}`. The independently recovered p11 instruction now supplies that missing choice.
+
+P11 says:
+
+```text
+THEIR NUMBERS ARE THE DIRECTION
+```
+
+and its validated p27 consumer interprets that direction as **increasing numerical order**.
+
+P23's five-dot-selected state line is
+
+```text
+[K,a,e,g,q].
+```
+
+The two fields flanking its center `e` are the values
+
+```text
+{a,g} = {6,5}.
+```
+
+Apply the independently established increasing-number direction:
+
+```text
+5,6 = g,a.
+```
+
+The first shell half was already fixed without the target by the source-selected corridor endpoints:
+
+```text
+H(GP0(IS),GP0(ROAD))
+= H(25,25)
+= [0,21]
+= [0,p-K].
+```
+
+The p11 ordering rule now fixes the second half:
+
+```text
+H(g,a)
+= H(5,6)
+= [28,11].
+```
+
+Therefore the complete key shell is source-ordered before plaintext comparison:
+
+```text
+[0,21,28,11]
+= [0,p-K,g-a,g+a].
+```
+
+Its unique H4 inverse is
+
+```text
+key = [20,10,18,20].
+```
+
+Apply both additive signs to the prospectively selected receiver:
+
+```text
+[22,28,28,24] - [20,10,18,20]
+= [2,18,10,4]
+= THEIR
+
+[22,28,28,24] + [20,10,18,20]
+= [13,9,17,15]
+```
+
+The addition output is not any authenticated four-rune source word. The key itself no longer depends on choosing `THEIR` from the 72-case target family; only the additive inverse sign remains an operation convention. This materially upgrades the local plaintext candidate while preserving the distinction between a source-selected key and a globally established cipher.
 
 ### The same receiver selects both THEIR occurrences
 

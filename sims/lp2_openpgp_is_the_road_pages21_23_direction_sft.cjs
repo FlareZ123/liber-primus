@@ -591,6 +591,38 @@ assert.deepEqual(
   ["THEIR", "MEANING", "IS", "THE", "ROAD", "AND", "THEIR", "NUMBERS", "ARE", "THE", "DIRECTION"]
 );
 assert.deepEqual(source.slice(19, 30), reconstructedFullClause);
+
+
+// The independently recovered "THEIR NUMBERS ARE THE DIRECTION" ordering rule
+// resolves the last orientation choice in the p22 shell. P23's inner flanks
+// around e are the unordered state values {a,g}; numerical direction is
+// increasing, so their source/state order is g=5 then a=6.
+const directionOrderedP23Flanks = [a, g].sort((left, right) => left - right);
+assert.deepEqual(directionOrderedP23Flanks, [g, a]);
+const sourceOrderedP22Shell = [
+  ...outerRoadShell,
+  ...H(directionOrderedP23Flanks[0], directionOrderedP23Flanks[1]),
+];
+assert.deepEqual(sourceOrderedP22Shell, [0, p - K, mod29(g - a), mod29(g + a)]);
+assert.deepEqual(sourceOrderedP22Shell, [0, 21, 28, 11]);
+const sourceOrderedP22Key = H4inv(sourceOrderedP22Shell);
+assert.deepEqual(sourceOrderedP22Key, [20, 10, 18, 20]);
+assert.deepEqual(sourceOrderedP22Key, p22Key);
+
+const sourceOrderedSubtract = p22Receiver.values.map(
+  (value, index) => mod29(value - sourceOrderedP22Key[index])
+);
+const sourceOrderedAdd = p22Receiver.values.map(
+  (value, index) => mod29(value + sourceOrderedP22Key[index])
+);
+assert.deepEqual(sourceOrderedSubtract, gp("THEIR"));
+assert.deepEqual(sourceOrderedAdd, [13, 9, 17, 15]);
+assert.equal(
+  fourRuneTargets.some((target) =>
+    sourceOrderedAdd.every((value, index) => value === target.values[index])
+  ),
+  false
+);
 assert.deepEqual(
   p21Is.map((word) => [word.index, word.start, word.values]),
   [[33, 170, [24, 1]]]
@@ -685,6 +717,13 @@ console.log(JSON.stringify({
     raw_sum_difference: p11TheirNumbers,
     words: p11TheirNumbers.map((index) => source[index]),
     full_clause: reconstructedFullClause,
+    p22_key_orientation: {
+      ordered_p23_flanks: directionOrderedP23Flanks,
+      shell: sourceOrderedP22Shell,
+      key: sourceOrderedP22Key,
+      subtract: sourceOrderedSubtract,
+      add: sourceOrderedAdd,
+    },
   },
   p22_prospective_holdout: {
     source_word: source[22],
