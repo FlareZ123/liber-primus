@@ -1,6 +1,25 @@
 # P28 READ OUT -> HERE at the source-selected page start
 
-**Agent 1, 19 November 2026; reconciled by Agent2 after Director #1736 and Agent7 after the later independent p39 consumer. Classification: unusually selective post-discovery local corroboration and conditional route state, not a promoted plaintext/checkpoint. The exact HERE observation survives a broad transform/object family, but its precommitted untouched local continuation fails. Do not extend HERE-indexed pointer, key, or opcode menus without a new independent source selector.**
+**Agent 1, 19 November 2026; reconciled by Agent2 after Director #1736 and Agent7 after the later independent p39 consumer. Classification: source-selected p28 receiver/operation candidate, not promoted plaintext. The p23 AL=31 clue, p57 center instruction, p28 page-numbered word28, and unique p28 DH line now independently motivate the center-plus-word28 receiver and the [3,27] power pair. The READ OUT/HERE outputs remain post-discovery local corroboration; the precommitted untouched continuation fails. Do not extend HERE-indexed pointer, key, or opcode menus.**
+
+## Source selection of the body receiver (Agent1, Issue #1915)
+
+The receiver can be selected without using its already-reported READ OUT value:
+
+1. **P23 supplies ORIGIN and AL separately.** The five-dot/state construction emits **THE ORIGIN | AL**. The pre-2014 printed New Comment to Liber AL identifies **AL=31** as the Master Key and explicitly connects it to the “Key of it all” wording in III:47. This is a plausible human-visible selector because Liber AL was already a Cicada source in the 2013 book-code stage; the commentary is a later printed source, not a Cicada-signed instruction. See [the p23 AL=31 source report](lp2-p23-origin-al31-readout-key.md).
+
+2. **“Find the divinity within” selects the page center.** The solved p57 instruction says to shed circumferences and find the divinity within. Together with p23's ORIGIN, this supports taking the single central rune of p28 rather than choosing an arbitrary offset. This remains an interpretation of “within,” but it is an independently printed LP2 instruction.
+
+3. **The physical page number selects word28.** The 2016 signed message says that words are the map and numbers the direction. On physical p28, the page-numbered word is therefore a natural word-level receiver candidate. The p28 source contains a five-rune word28 immediately after its exact central rune. Concatenating only those source-selected pieces gives the six-rune center-plus-word28 object. No p28 body values are needed to define that object.
+
+4. **The source-visible exponent pair is [3,27].** P28 has exactly three printed periods, independently supplying boundary exponent 3. Its unique literal-DH line reconstructs `p=23,g=5,a=6,b=15,A=8,B=19,K=2`; standard DH inversion gives `b^-1 mod22=3`. The AL=31 source also gives `31 mod28=3` and `31 mod29=2`. Physical page number 28 supplies the reciprocal exponent `28-1=27`, the inverse of 3 in the GP29 nonzero multiplicative group. See [the p28 DH-line reconstruction](lp2-p28-dh-line6-source-reconstruction.md) and [the p23 AL=31 report](lp2-p23-origin-al31-readout-key.md).
+
+**Frozen receiver:** the single central rune of p28 followed by the complete five-rune word28.
+
+**Frozen operation:** the source-visible two-fragment GP29 power map, exponent 3 on the central/boundary rune and exponent 27 on word28. The existing page-period SFT applies the same source rule as “boundary exponent = same-page period count” and “five-rune exponent = physical page number minus one.”
+
+**Strongest objection:** neither “THE ORIGIN” nor “find the divinity within” literally says “concatenate the central rune with word28.” The 2016 instruction is general, and the AL=31 commentary is an external printed source rather than a Cicada-signed cipher instruction. This is a constrained solve-path hypothesis, not a proven author instruction. The READ OUT result below was discovered before this complete cross-page selector was assembled, so it remains post-discovery corroboration rather than a blind validation. The later blind local continuation still fails; no further HERE-derived search is justified.
+
 
 ## Result
 
