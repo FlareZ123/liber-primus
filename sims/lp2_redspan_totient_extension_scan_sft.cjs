@@ -151,7 +151,7 @@ const exactHits=rows.filter((row)=>row.registerHits.length>0);
 const knownTheir=rows.find((row)=>row.page===33&&row.start===0&&row.mode==="Hinv");
 const knownRise=rows.find((row)=>row.page===33&&row.start===91&&row.mode==="H");
 assert.ok(knownTheir&&knownTheir.registerHits.includes("THEIR"));
-assert.ok(knownRise&&knownRise.registerHits.includes("RISE"));
+assert.ok(knownRise&&knownRise.translit==="RISE");
 
 console.log(JSON.stringify({
   status:"PASS",
