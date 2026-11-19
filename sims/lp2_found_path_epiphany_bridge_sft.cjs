@@ -145,6 +145,29 @@ assert.equal(navTested,560);
 assert.equal(navHits.length,1);
 assert.equal(navHits[0].index,found60.secondValue);
 assert.deepEqual(navHits[0].words,["EPIPHANY","SEEKS","THE","DEVOTED"]);
+assert.equal(words[32].word,"YOU");
+assert.deepEqual(words.slice(32,36).map((row)=>row.word),["YOU","WILL","BE","FOUND"]);
+
+// Held-out semantic convergence: every word of the uniquely selected clause
+// finds state32 under the same selected base60 table, at source-motivated depths.
+const clauseFindsYou=[
+  {word:"EPIPHANY",depth:2},
+  {word:"SEEKS",depth:23},
+  {word:"THE",depth:2},
+  {word:"DEVOTED",depth:1},
+].map(({word,depth})=>{
+  const row=words.find((item)=>item.word===word && item.index>=5 && item.index<=8);
+  assert.ok(row);
+  const route=walk(tables.base60,row.gp0,depth);
+  assert.ok(route);
+  return {word,index:row.index,gp0:row.gp0,depth,terminal:route.at(-1)};
+});
+assert.deepEqual(clauseFindsYou,[
+  {word:"EPIPHANY",index:5,gp0:121,depth:2,terminal:32},
+  {word:"SEEKS",index:6,gp0:71,depth:23,terminal:32},
+  {word:"THE",index:7,gp0:20,depth:2,terminal:32},
+  {word:"DEVOTED",index:8,gp0:102,depth:1,terminal:32},
+]);
 assert.deepEqual(
   {field:navHits[0].field,depth:navHits[0].depth,radix:navHits[0].radix,terminal:navHits[0].terminal},
   {field:"p",depth:23,radix:"base60",terminal:32}
@@ -164,6 +187,9 @@ console.log(JSON.stringify({
   downstreamUniqueNavigation:{
     tested:navTested,
     hit:navHits[0],
+    state32SignedWord:words[32].word,
+    clauseFindsYou,
+    closingSource:words.slice(32,36).map((row)=>row.word),
   },
-  interpretation:"The final signed word FOUND supplies a radix-invariant two-stage p50 bridge to PATH and then EPIPHANY. EPIPHANY is exactly the start of the independently unique 560-case EPIPHANY SEEKS THE DEVOTED route to physical p32. This closes a human-readable loop from YOU WILL BE FOUND back into the authenticated p32 navigation mechanism.",
+  interpretation:"FOUND supplies a radix-invariant bridge to PATH then EPIPHANY. The uniquely selected EPIPHANY SEEKS THE DEVOTED clause has all four words converge on base60 state32 at source-motivated depths [2,23,2,1]; state32 is simultaneously physical p32 and signed word YOU. Reading YOU WILL BE FOUND reaches FOUND35, which returns through PATH to EPIPHANY, closing the source/table loop.",
 },null,2));
