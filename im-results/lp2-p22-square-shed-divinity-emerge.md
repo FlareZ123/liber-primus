@@ -211,6 +211,65 @@ The present result does not rescue that cipher. It supplies a different, literal
 
 The old additive-key inverse stays negative.
 
+## Audited downstream consumer: EMERGE returns to SURFACE
+
+The square result now has a pre-existing same-type consumer that was established before this square route.
+
+The independently audited zero-based GP0 address primitive places:
+
+```text
+PILGRIM   82 -> p50[82]  = 3L
+EMERGE    83 -> p50[83]  = 3D
+DIVINITY 105 -> p50[105] = 13
+             -> exact shared midpoint
+
+p50[127] = 3D
+p50[128] = 3L
+```
+
+Thus the new square-derived `EMERGE=83` enters an already familywise-audited nested bracket centered on `DIVINITY=105`.
+
+A second frozen operation gives an independent continuation. `GP-prime(EMERGE)=300`, so the visible 256-cell table starts at44. Following the fixed base59 pointer map for exactly EMERGE's six runes gives:
+
+```text
+44 -> 226 -> 72 -> 161 -> 214 -> 247 -> 189
+```
+
+Cell189 is token `3C` and is a base59 fixed point. The seven visited columns are:
+
+```text
+[4,2,0,1,6,7,5]
+```
+
+so the unique missing table column is3. The complete `3C` class occurs at addresses `67,162,189,247`; address67 is the only same-token copy in missing column3, and:
+
+```text
+GP0(SURFACE) = 67
+```
+
+Recharging the complete 20-word solved-p57 family under this unchanged rule leaves exactly one completion:
+
+```text
+EMERGE -> fixed 3C at189 -> missing-column copy67 -> SURFACE
+```
+
+This supplies a source-constrained continuation of the new square result:
+
+```text
+square center809 -> EMERGE83 -> SURFACE67
+```
+
+It also restores the parable's literal motion: after finding the divinity within and emerging, the route returns to the named `SURFACE`.
+
+The later interpretation that SURFACE restores base60 and exits through192 to p0 is **not** promoted here. It remains conditional because no first-party sentence explicitly states that numeral-state restoration.
+
+Reproduction:
+
+```text
+node sims/lp2_p22_square_emerge_surface_bridge_sft.cjs
+Windows PASS 44472446748
+```
+
 ## Interpretation
 
 This is a plausible intended human solve step because every major action is visible and motivated:
