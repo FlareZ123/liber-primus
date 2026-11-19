@@ -1,6 +1,6 @@
 # Source-first 2016 -> p50 -> p28 -> READ OUT -> HERE route
 
-**Agent16, 19 November 2026. Classification: strongest current intended-route reconstruction for the p28 READ OUT candidate. Every routing decision through the selected raw six-rune output can be stated numerically before transliteration. The route remains a candidate because the two-part GP29 reversible-power operator class on the p28 center-plus-word object is motivated by DH and geometry rather than explicitly printed as an instruction. No claim is made that the rest of LP2 is decrypted.**
+**Agent16, 19 November 2026. Classification: strongest current intended-route reconstruction for the p28 READ OUT candidate. Every routing decision through the selected raw six-rune output can be stated numerically before transliteration. Authenticated source word numbers independently select the GP29 cube operator; the main remaining local premise is applying that fixed map separately to p28's center singleton and adjacent five-rune word according to their visible layers. No claim is made that the rest of LP2 is decrypted.**
 
 ## 1. The authenticated 2016 clue supplies the DH state
 
@@ -111,22 +111,42 @@ center | word28
 
 P28 also contains the literal transliterated marker `DH` at the start of line6, connecting the page to the source-derived DH state.
 
-## 5. DH supplies a reversible GP29 power family
+## 5. Authenticated word numbers select the GP29 cube operator
 
-DH is modular exponentiation. The authenticated source supplies `e=3` and DIRECTION=29. Cubing is a permutation of GP29 because `gcd(3,28)=1`.
+Agent31's independent source audit fixes the operator itself before p28 ciphertext is consumed. With `LIES=e=3` and `DIRECTION=29`, the signed message defines
 
-The visible object has one center layer and three layers in the five-rune word. One application of exponent3 to the center and three applications to the word give:
+```text
+C(x) = x^3 mod29
+```
+
+and exponent3 is the unique exponent from1..28 satisfying the reconstructed state chain `K -> A -> B -> b`. Continuing that same fixed map yields a closed authenticated-word cycle:
+
+```text
+PATH(2)
+ -> DEVOTED(8)
+ -> THEIR(19)
+ -> WORDS(15)
+ -> IS(11)
+ -> NUMBERS(26)
+ -> PATH(2)
+```
+
+so the cube opcode is first-party source structure rather than a p28 output fit.
+
+P57's literal circumference grammar gives a natural layer count for the already fixed p28 source object: the center singleton has one nonempty layer and the adjacent five-rune word has three. Repeated application of the source-selected cube therefore gives
 
 ```text
 center exponent = 3
 word exponent   = 3^3 mod28 = 27
 ```
 
-The resulting raw output is:
+and the raw output:
 
 ```text
 [4,28,23] | [3,1,16]
 ```
+
+A fresh manuscript-wide control applies only this frozen `(3,27)` action to every unknown five-rune side-object and every internal split. Among **3,135** configurations, only two raw pointer hits survive: p25 at an unbalanced5|1 split and p28 at the balanced3|3 split. P28 is the sole balanced hit and the sole hit on the independently selected terminal page28.
 
 ## 6. The external route selects that raw output before language
 
@@ -246,7 +266,7 @@ authenticated 2016 word numbers
  -> same p50 route back to p28
 ```
 
-The strongest remaining premise is the operator class in step5: why the p28 center-plus-word object should receive separate reversible GP29 power maps counted by visible layers. DH, exponent3, modulus29, the literal p28 DH marker and the numeric external selector make this operation compact and source-motivated, while no recovered first-party text literally says “raise the center and word to these powers.”
+The strongest remaining premise is local application: why the source-selected cube map should act separately on this exact center singleton and adjacent five-rune word using their visible layer counts. The source fixes exponent3 and modulus29, p57 supplies circumference/layer grammar, p28 supplies the literal DH marker and unique center-plus-word geometry, and the external numeric selector chooses the resulting raw output before language.
 
 A decisive next advance would either recover such an operator instruction from a first-party source or use READ OUT / HERE to derive new unknown plaintext outside the already used p28 checkpoint.
 
@@ -254,6 +274,7 @@ A decisive next advance would either recover such an operator instruction from a
 
 ```text
 node sims/lp2_signed2016_word_position_dh_sft.cjs
+node sims/lp2_signed2016_wordnumber_cube_operator_sft.cjs
 node sims/lp2_2016_road_found_falsepaths_lowdigit_cycle_sft.cjs
 node sims/lp2_p28_readout_familywise_audit_sft.cjs
 node sims/lp2_p28_readout_here_page_start_sft.cjs
