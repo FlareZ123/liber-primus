@@ -149,6 +149,41 @@ assert.deepEqual(new Set(five.minimal), new Set(["g", "const(5)"]));
 const forcedSourceMinimumTemplates = 2;
 assert.equal(forcedSourceMinimumTemplates, five.minimalCount);
 
+// Exact order-free random-key-ID control.  A 32-bit key ID consists of four
+// independent hexadecimal nibble pairs.  Count pair-output subsets inside the
+// six-value source set, then compose four pairs by bitmask dynamic programming.
+const sourceSet = [5,10,12,21,22,23];
+const sourceBit = new Map(sourceSet.map((value, index) => [value, 1 << index]));
+const pairMaskCounts = new Map();
+
+for (let left = 0; left < 16; left += 1) {
+  for (let right = 0; right < 16; right += 1) {
+    const output = H(left, right);
+    if (!output.every((value) => sourceBit.has(value))) continue;
+    const mask = sourceBit.get(output[0]) | sourceBit.get(output[1]);
+    pairMaskCounts.set(mask, (pairMaskCounts.get(mask) || 0) + 1);
+  }
+}
+
+let states = new Map([[0, 1]]);
+for (let pair = 0; pair < 4; pair += 1) {
+  const next = new Map();
+  for (const [mask, count] of states) {
+    for (const [pairMask, pairCount] of pairMaskCounts) {
+      const merged = mask | pairMask;
+      next.set(merged, (next.get(merged) || 0) + count * pairCount);
+    }
+  }
+  states = next;
+}
+
+const fullMask = (1 << sourceSet.length) - 1;
+const orderFreeCoveringIds = states.get(fullMask) || 0;
+const totalKeyIds = 16 ** 8;
+assert.equal(orderFreeCoveringIds, 3456);
+assert.equal(totalKeyIds, 4294967296);
+assert.deepEqual(new Set(hShell), new Set(sourceSet));
+
 console.log(JSON.stringify({
   status:"PASS",
   keyId:keyIdMatch[0],
@@ -165,5 +200,11 @@ console.log(JSON.stringify({
     minimumWholeTemplates:forcedSourceMinimumTemplates,
     remainingValue5Choices:five.minimal,
   },
-  decision:"Historical residues compress the minimum family but do not identify one whole OpenPGP shell template. Keep the receiver sealed.",
+  orderFreeRandomKeyIdControl:{
+    sourceSet,
+    matchingIds:orderFreeCoveringIds,
+    totalIds:totalKeyIds,
+    probability:orderFreeCoveringIds / totalKeyIds,
+  },
+  decision:"Historical residues compress the minimum family and give a rare order-free six-value closure under a uniform random-key-ID control, but they do not identify one whole OpenPGP shell template. Keep the receiver sealed.",
 }, null, 2));
