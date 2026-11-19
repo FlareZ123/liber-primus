@@ -341,6 +341,117 @@ assert.deepEqual(originControl.hits, [
   },
 ]);
 
+// Fixed-key manuscript transfer: after the exact WILL key is frozen, apply it
+// unchanged to every complete four-rune word on unknown physical pages p0..p55.
+// Compare only against the already fixed authenticated 2016 four-rune vocabulary.
+const unknownSegments = transcription.split(/^\\s*%\\s*$/m).slice(0, 55);
+let allFourRuneWords = 0;
+const fixedKeyGlobalHits = [];
+for (let segment = 0; segment < unknownSegments.length; segment += 1) {
+  const physicalPage = segment >= 50 ? segment + 1 : segment;
+  const page = parsePage(unknownSegments[segment]);
+  for (const word of page.words) {
+    if (word.values.length !== 4) continue;
+    allFourRuneWords += 1;
+    const candidate = word.values.map((value, index) =>
+      mod29(value - exactKey[index])
+    );
+    const matched = targets.get(candidate.join(","));
+    if (!matched) continue;
+    fixedKeyGlobalHits.push({
+      page: physicalPage,
+      start: word.start,
+      end: word.end,
+      cipher: word.values,
+      plain: candidate,
+      targets: matched,
+    });
+  }
+}
+assert.equal(allFourRuneWords, 514);
+assert.deepEqual(fixedKeyGlobalHits, [{
+  page: 0,
+  start: 141,
+  end: 144,
+  cipher: [19, 16, 9, 18],
+  plain: [7, 10, 20, 20],
+  targets: [{ index: 33, word: "will" }],
+}]);
+
+// Prospective source consumer after WILL was recovered. Under the unchanged
+// conventional p50 pointer graph, the recovered word's GP0=57 reaches the
+// immediately following authenticated signed word BE in exactly K=2 edges.
+function gp0Word(text) {
+  return sum(gp(text));
+}
+function pointerWalk(start, steps) {
+  const path = [start];
+  let value = start;
+  for (let step = 0; step < steps; step += 1) {
+    assert.ok(value >= 0 && value < table60.length);
+    value = table60[value];
+    path.push(value);
+  }
+  return path;
+}
+const willGp0 = gp0Word("WILL");
+const beGp0 = gp0Word("BE");
+assert.equal(willGp0, 57);
+assert.equal(beGp0, 35);
+assert.deepEqual(pointerWalk(willGp0, state.K), [57, 118, 35]);
+
+// Charge every authenticated signed adjacency and pointer depth 1..6.
+// Only THE->DEVOTED at depth1 and WILL->BE at depth2 occur.
+const adjacencyPointerHits = [];
+for (let index = 0; index < message.length - 1; index += 1) {
+  const left = gp0Word(message[index]);
+  const right = gp0Word(message[index + 1]);
+  for (let steps = 1; steps <= 6; steps += 1) {
+    const path = pointerWalk(left, steps);
+    if (path.at(-1) !== right) continue;
+    adjacencyPointerHits.push({
+      index,
+      left: message[index].toLowerCase(),
+      right: message[index + 1].toLowerCase(),
+      steps,
+      path,
+    });
+  }
+}
+assert.deepEqual(adjacencyPointerHits, [
+  { index: 7, left: "the", right: "devoted", steps: 1, path: [20, 102] },
+  { index: 33, left: "will", right: "be", steps: 2, path: [57, 118, 35] },
+]);
+
+// The new WILL->BE edge closes the previously published typed navigation loop.
+// Each receiver/output type below was already in use before this check:
+// GP0 address, signed-word index, p0 zero-based offset, and K-step p50 walk.
+assert.equal(table60[gp0Word("DEVOTED")], 32);
+assert.equal(message[32].toLowerCase(), "you");
+assert.equal(table60[gp0Word("YOU")], 141);
+assert.equal(receiver.start, 141);
+assert.equal(pointerWalk(gp0Word("WILL"), state.K).at(-1), gp0Word("BE"));
+assert.equal(table60[gp0Word("BE")], gp0Word("PATH"));
+assert.equal(table60[gp0Word("PATH")], 5);
+assert.equal(message[5].toLowerCase(), "epiphany");
+assert.equal(table60[gp0Word("EPIPHANY")], 237);
+const devotedReceiver = p0.words.find((word) => word.start === 237);
+assert.ok(devotedReceiver);
+assert.equal(devotedReceiver.values.length, gp("DEVOTED").length);
+
+const conditionalNavigationCycle = {
+  devotedGp0: gp0Word("DEVOTED"),
+  devotedToSignedIndex: table60[gp0Word("DEVOTED")],
+  signedWord: message[32].toLowerCase(),
+  youToP0Offset: table60[gp0Word("YOU")],
+  recoveredP0Word: "will",
+  willToBeKStepPath: pointerWalk(gp0Word("WILL"), state.K),
+  beToPath: table60[gp0Word("BE")],
+  pathToSignedIndex: table60[gp0Word("PATH")],
+  signedIndexWord: message[5].toLowerCase(),
+  epiphanyToP0Offset: table60[gp0Word("EPIPHANY")],
+};
+
 console.log(JSON.stringify({
   status: "PASS: p0 141..144 conditionally recovers WILL",
   receiver: {
@@ -356,7 +467,7 @@ console.log(JSON.stringify({
     plaintextText: "WILL",
     reencryption,
   },
-  fixedOneBasedFamily: fixedFamily,
+  fixedOneBasedFamily: fixedFamily,\n  fixedKeyManuscriptTransfer: { allFourRuneWords, hits: fixedKeyGlobalHits },\n  adjacencyPointerHits,\n  conditionalNavigationCycle,
   originControl,
   classification:
     "conditional value-changing recovery: the receiver and WILL candidate are selected before the packet/H inverse family; the exact split(a,A)+H(A,B) subtraction is the sole authenticated four-rune target hit under the frozen one-based family.",
