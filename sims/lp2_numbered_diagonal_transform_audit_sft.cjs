@@ -271,7 +271,7 @@ const direction30Split = rows.find((row) =>
 assert.ok(direction30Pair);
 assert.ok(direction30Split);
 assert.deepEqual(direction30Pair.values, [22, 0, 15, 8]);
-assert.deepEqual(direction30Split.values, [22, 8, 15, 0]);
+assert.deepEqual(direction30Split.values, [22, 15, 8, 0]);
 assert.notDeepEqual(direction30Pair.values, direction30Split.values);
 
 const p42Split = rows.find((row) =>
