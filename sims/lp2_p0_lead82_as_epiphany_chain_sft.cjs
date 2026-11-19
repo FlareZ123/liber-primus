@@ -297,6 +297,89 @@ assert.deepEqual(
   }
 );
 
+
+// The selected raw p0 word's number is itself a unique signed-message word.
+const signedGp0Rows = message.map((word, index) => ({
+  index,
+  word: word.toLowerCase(),
+  gp0: sum(gp(word)),
+}));
+assert.deepEqual(
+  signedGp0Rows.filter((row) => row.gp0 === asWord.gp0),
+  [{ index: 2, word: "path", gp0: 39 }]
+);
+
+const base60NamedRows = base60.filter((row) =>
+  signedGp0Rows.some((signed) => signed.gp0 === row.p0Gp0)
+);
+assert.deepEqual(
+  base60NamedRows.map((row) => [row.address, row.token, row.p0Gp0]),
+  [[82, "3L", 39], [128, "3L", 39]]
+);
+
+// Prospective downstream consequence of the pre-existing DEVOTED candidate.
+const devotedGp0 = sum(gp("DEVOTED"));
+assert.equal(devotedGp0, 102);
+assert.equal(decodeAt(alphabet60, devotedGp0), 32);
+assert.equal(decodeAt(alphabet59, devotedGp0), 32);
+assert.equal(message[32].toLowerCase(), "you");
+
+const youGp0 = sum(gp("YOU"));
+assert.equal(youGp0, 30);
+assert.equal(decodeAt(alphabet60, youGp0), 141);
+const youReceiver = p0ByStart.get(141);
+assert.ok(youReceiver);
+assert.equal(youReceiver.index, 32);
+assert.equal(youReceiver.length, 4);
+
+/**
+ * @param {string} alphabet
+ * @param {"zero"|"one"} origin
+ */
+function signedSelfIndex(alphabet, origin) {
+  const hits = [];
+  for (let index = 0; index < message.length; index += 1) {
+    const wordGp0 = sum(gp(message[index]));
+    if (wordGp0 >= 256) continue;
+    const tableValue = decodeAt(alphabet, wordGp0);
+    if (tableValue === null) continue;
+    const offset = origin === "zero" ? tableValue : tableValue - 1;
+    const p0Word = p0ByStart.get(offset);
+    if (p0Word && p0Word.index === index) {
+      hits.push({
+        index,
+        word: message[index].toLowerCase(),
+        gp0: wordGp0,
+        tableValue,
+        p0Offset: offset,
+      });
+    }
+  }
+  return hits;
+}
+
+const signedSelfIndexModes = [
+  ["base60", "zero", signedSelfIndex(alphabet60, "zero")],
+  ["base60", "one", signedSelfIndex(alphabet60, "one")],
+  ["base59", "zero", signedSelfIndex(alphabet59, "zero")],
+  ["base59", "one", signedSelfIndex(alphabet59, "one")],
+];
+assert.deepEqual(signedSelfIndexModes, [
+  ["base60", "zero", [{
+    index: 32,
+    word: "you",
+    gp0: 30,
+    tableValue: 141,
+    p0Offset: 141,
+  }]],
+  ["base60", "one", []],
+  ["base59", "zero", []],
+  ["base59", "one", []],
+]);
+
+assert.equal(message[33].toLowerCase(), "will");
+assert.equal(gp(message[33]).length, youReceiver.length);
+
 console.log(JSON.stringify({
   status: "PASS",
   frozenLeadNumber: leadAtomicNumber,
@@ -308,6 +391,8 @@ console.log(JSON.stringify({
     duplicate3L,
   },
   leadRoute: leadRow,
+  semanticNumberBridge: { rawP0Gp0: asWord.gp0, signedWordAtSameGp0: "path", selectedSignedWord: "epiphany" },
+  downstreamSelfIndex: { devotedGp0, signedIndex: 32, signedWord: "you", youGp0, p0Offset: 141, p0WordIndex: youReceiver.index, p0WordLength: youReceiver.length, modes: signedSelfIndexModes },
   radixControl: {
     base60Address82: decodeAt(alphabet60, 82),
     base59Address82: decodeAt(alphabet59, 82),
@@ -319,5 +404,5 @@ console.log(JSON.stringify({
     final237: target237,
   },
   decision:
-    "Frozen LEAD=82 selects the already solved PILGRIM outer-bracket cell. Under the pre-MUST base60 state, the unchanged typed pointer grammar gives 82->201->AS->39->EPIPHANY->121->237. Across all 256 addresses and both frozen radices, only the duplicate 3L cells 82/128 reach 237; LEAD and solved PILGRIM independently select 82.",
+    "Frozen LEAD=82 selects the solved PILGRIM outer-bracket cell and uniquely enters the PATH-number -> EPIPHANY -> 237 route. The pre-existing DEVOTED candidate then selects signed YOU, whose GP0 uniquely self-indexes p0 word32 at offset141 under base60/zero origin.",
 }, null, 2));

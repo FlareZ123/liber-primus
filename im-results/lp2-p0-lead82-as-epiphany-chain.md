@@ -83,7 +83,7 @@ For transparency, the five base60 viable starting addresses are \`82,91,128,169,
 
 ## What is actually new
 
-This is a source-constrained connection between two previously separate p0 candidate systems:
+This is a source-constrained connection between previously separate p0 candidate systems, with a new prospective downstream receiver:
 
 1. the ROAD-derived **LEAD=82** / DH packet-selector branch;
 2. the authenticated signed-message **EPIPHANY -> 237** receiver branch.
@@ -91,6 +91,54 @@ This is a source-constrained connection between two previously separate p0 candi
 The connection is prospective relative to the 82 interpretation: the sequence \`82 -> 201 -> AS -> EPIPHANY -> 237\` was found after LEAD=82 had been committed. It uses only original p50 tokens, original p0 word boundaries and rune values, the authenticated 2016 word order, and the already frozen same-radix pointer grammar.
 
 The literal p0 word \`AS\` is raw ciphertext transliteration. This report does not assert that AS is plaintext or that it should be read as English. Its role in the test is only its source-visible GP0 sum39.
+
+## PATH-number bridge and downstream YOU self-index holdout
+
+The selected raw p0 word at201 is not interpreted as plaintext. Its source-visible number has a stronger property:
+
+\`\`\`text
+raw p0 word201..202 = A S
+GP0(A S) = 39
+GP0(PATH) = 39
+\`\`\`
+
+Across the authenticated 43-word 2016 message, **PATH at zero-based index2 is the only word with GP0=39**. Among the five viable base60 typed chains from the complete 256-address census, only addresses **82 and128**, the two copies of \`3L\`, select a p0 word whose GP0 is also the GP0 of any authenticated signed word. The frozen LEAD/PILGRIM value82 selects the first copy.
+
+The route therefore has a word-number interpretation before the signed index lookup:
+
+\`\`\`text
+LEAD/PILGRIM 82
+  -> p0 word201..202
+  -> number39 = PATH
+  -> p50[39] = signed index5 = EPIPHANY
+  -> GP0(EPIPHANY)=121
+  -> p50[121] = p0 offset237
+\`\`\`
+
+A second prospective consequence starts from the already existing **DEVOTED** candidate rather than using its ciphertext to invent a key:
+
+\`\`\`text
+GP0(DEVOTED)=102
+p50[102] = 32
+signed word[32] = YOU
+GP0(YOU)=30
+p50[30] base60 = 141
+p0 offset141 = start of zero-based p0 word32
+\`\`\`
+
+The self-index property is exact and selective. Exhausting all **43** authenticated signed words under all four source-supported table/output modes gives:
+
+| table/output mode | signed word whose GP0 lands on the same zero-based p0 word ordinal |
+| --- | --- |
+| base60 / zero offset | **YOU, index32 only** |
+| base60 / one origin | none |
+| base59 / zero offset | none |
+| base59 / one origin | none |
+
+Thus the pre-existing DEVOTED hypothesis makes a new untouched receiver prediction at p0 **141..144** while independently selecting the same base60/zero-offset semantics used by the earlier route.
+
+The selected word has four runes. The next authenticated signed word after YOU is **WILL**, also four GP runes. That is a conditional next-word plaintext hypothesis, not a recovered plaintext claim; no value-changing inverse is asserted here.
+
 
 ## Remaining blocker
 
