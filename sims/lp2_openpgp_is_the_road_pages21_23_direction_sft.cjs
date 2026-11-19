@@ -21,6 +21,29 @@ function H(x, y) {
   return [mod29(x - y), mod29(x + y)];
 }
 
+/** @param {number[]} values */
+function H4(values) {
+  assert.equal(values.length, 4);
+  return [
+    mod29(values[0] - values[3]),
+    mod29(values[1] - values[2]),
+    mod29(values[1] + values[2]),
+    mod29(values[0] + values[3]),
+  ];
+}
+
+/** @param {number[]} shell */
+function H4inv(shell) {
+  assert.equal(shell.length, 4);
+  const inv2 = 15;
+  return [
+    mod29((shell[0] + shell[3]) * inv2),
+    mod29((shell[1] + shell[2]) * inv2),
+    mod29((shell[2] - shell[1]) * inv2),
+    mod29((shell[3] - shell[0]) * inv2),
+  ];
+}
+
 /** @param {number} base @param {number} exponent @param {number} modulus */
 function powMod(base, exponent, modulus) {
   let b = BigInt(base);
@@ -312,6 +335,111 @@ assert.deepEqual(
   [22]
 );
 
+
+// Local plaintext gate on the prospectively selected p22 receiver.
+// The flanking source words in IS THE ROAD fix the first two shell coordinates.
+const outerRoadShell = H(gp0("IS"), gp0("ROAD"));
+assert.deepEqual(outerRoadShell, [0, p - K]);
+assert.deepEqual(outerRoadShell, [0, 21]);
+
+// Charge every ordered pair, including repeats, from p23's visible state line
+// [K,a,e,g,q] for the remaining two coordinates. Compare both signs against
+// every distinct authenticated four-rune source target.
+const p23VisibleState = { K, a, e, g, q };
+const fourRuneTargets = [...new Set(source)]
+  .map((word) => ({ word, values: gp(word) }))
+  .filter((row) => row.values.length === 4);
+assert.deepEqual(
+  fourRuneTargets.map((row) => row.word),
+  ["LIES", "THEIR", "MEANING", "ROAD", "SEEK", "WILL", "GOOD", "LUCK", "PATHS"]
+);
+
+const p22KeyFamilyHits = [];
+for (const [leftName, leftValue] of Object.entries(p23VisibleState)) {
+  for (const [rightName, rightValue] of Object.entries(p23VisibleState)) {
+    const pairShell = H(leftValue, rightValue);
+    const shell = [...outerRoadShell, ...pairShell];
+    const key = H4inv(shell);
+    for (const sign of [-1, 1]) {
+      const output = p22Receiver.values.map(
+        (value, index) => mod29(value + sign * key[index])
+      );
+      for (const target of fourRuneTargets) {
+        if (output.every((value, index) => value === target.values[index])) {
+          p22KeyFamilyHits.push({
+            leftName,
+            rightName,
+            shell,
+            key,
+            sign,
+            target: target.word,
+            output,
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(5 * 5 * 2 * fourRuneTargets.length, 450);
+assert.deepEqual(p22KeyFamilyHits, [{
+  leftName: "g",
+  rightName: "a",
+  shell: [0, 21, 28, 11],
+  key: [20, 10, 18, 20],
+  sign: -1,
+  target: "THEIR",
+  output: gp("THEIR"),
+}]);
+
+const p22Key = p22KeyFamilyHits[0].key;
+assert.deepEqual(H4(p22Key), [0, p - K, mod29(g - a), mod29(g + a)]);
+assert.deepEqual(H4(p22Receiver.values), [27, 0, 27, 17]);
+
+// Manuscript-wide receiver and fixed-key controls.
+const canonicalFourRuneWords = canonicalPages.flatMap((page) =>
+  page.words
+    .filter((word) => word.values.length === 4)
+    .map((word) => ({ page: page.page, ...word }))
+);
+assert.equal(canonicalFourRuneWords.length, 509);
+
+const rawReceiverShell = H4(p22Receiver.values);
+const rawShellHits = canonicalFourRuneWords.filter((word) =>
+  H4(word.values).every((value, index) => value === rawReceiverShell[index])
+);
+assert.deepEqual(
+  rawShellHits.map((word) => [word.page, word.index, word.start, word.values]),
+  [[22, 19, 99, [22, 28, 28, 24]]]
+);
+
+const fixedKeyHits = [];
+for (const word of canonicalFourRuneWords) {
+  for (const target of fourRuneTargets) {
+    for (const sign of [-1, 1]) {
+      const output = word.values.map(
+        (value, index) => mod29(value + sign * p22Key[index])
+      );
+      if (output.every((value, index) => value === target.values[index])) {
+        fixedKeyHits.push({
+          page: word.page,
+          word: word.index,
+          start: word.start,
+          sign,
+          target: target.word,
+        });
+      }
+    }
+  }
+}
+assert.equal(canonicalFourRuneWords.length * fourRuneTargets.length * 2, 9162);
+assert.deepEqual(fixedKeyHits, [{
+  page: 22,
+  word: 19,
+  start: 99,
+  sign: -1,
+  target: "THEIR",
+}]);
+
 // P21 was independently established before this route as an IS state object.
 const isValues = gp("IS");
 const isSum = isValues.reduce((sum, value) => sum + value, 0);
@@ -386,6 +514,14 @@ console.log(JSON.stringify({
       same_word_collapses: collapses.length,
       exact_envelope_pages: collapses.filter((row) => row.exactEnvelope).map((row) => row.page),
       self_address_pages: collapses.filter((row) => row.selfAddress).map((row) => row.page),
+    },
+    local_inverse: {
+      raw_h4_shell: H4(p22Receiver.values),
+      key_family_configurations: 450,
+      hit: p22KeyFamilyHits[0],
+      raw_shell_occurrences: rawShellHits.length,
+      fixed_key_configurations: 9162,
+      fixed_key_hits: fixedKeyHits,
     },
   },
   p23_prior_line_lengths: p23LineLengths,
