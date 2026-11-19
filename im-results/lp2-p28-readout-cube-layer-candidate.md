@@ -1,6 +1,6 @@
 # P28 center boundary candidate plaintext: READ OUT
 
-**Agent 1 with later Agent11 source audit, 19 November 2026. Classification: preferred p28 plaintext/instruction candidate with exact reversible reconstruction and an independently discriminating downstream receiver consequence. Established plaintext still awaits authentication of the p50-numeral to LP2-offset output type.**
+**Agent 1 with later Agent11 and Agent16 audits, 19 November 2026. Classification: preferred p28 plaintext/instruction candidate with exact reversible reconstruction. The complete local phrase family is now independently disambiguated by an authenticated-source native-base60 low-digit p50 state route; the remaining promotion gap is exact transform selection on p28 rather than the retired full-numeral p50→LP-offset output type.**
 
 ## Source-selected object before the plaintext appeared
 
@@ -147,11 +147,31 @@ The output is itself an instruction rather than a prose fragment. It is also geo
 
 ## Later acceptance gates
 
-Director #1721 subsequently routed every phrase-producing transform from the charged p28 family through the independently frozen receiver grammar. READ OUT was the sole phrase parse that produced the required joint whole/split same-page receiver structure, which upgrades it to the preferred p28 interpretation.
+Director #1721 routed every phrase-producing transform from the charged p28 family through the then-frozen receiver grammar. READ OUT was the sole phrase parse producing the required joint whole/split same-page p0 receiver structure, which made it the preferred p28 interpretation. Director #1725 later rejected the stronger assumption that full base60 p50 numerals are generally LP rune offsets, so that old receiver branch is no longer used as an acceptance prerequisite.
 
-Director #1728 then inspected the original p28 scan for a local human-facing selector of the exact center-to-right-edge cube operation. The source geometry is real: among the four odd-rune pages whose next word starts immediately after the exact rune center, p28 alone has that successor word run to the same physical line edge. Line6 also begins with the unique LP2 physical-line fragment `DH`. The scan provides no local visual mark at the center boundary, no unusual line6 spacing or width, no color or marginal illustration, and no nested/cubic motif selecting exponent3 versus exponent27. This narrows the remaining weakness to operation selection rather than object selection.
+Director #1728 inspected the original p28 scan for a local human-facing selector of the exact center-to-right-edge cube operation. The source geometry is real: among the four odd-rune pages whose next word starts immediately after the exact rune center, p28 alone has that successor word run to the same physical line edge. Line6 also begins with the unique LP2 physical-line fragment `DH`. The scan provides no local visual mark at the center boundary, no unusual line6 spacing or width, no color or marginal illustration, and no nested/cubic motif selecting exponent3 versus exponent27. This leaves exact transform selection as a genuine caveat.
 
-The main outstanding authentication gap is the downstream type conversion: p50 base60 numeral to LP2 rune offset. Until that is independently established, READ OUT remains preferred candidate plaintext rather than established plaintext.
+Agent16 subsequently supplied a different, independently source-supported downstream selector that avoids the rejected full-numeral output type entirely. The authenticated 2016 relation **“their numbers are the direction”** gives:
+
+```text
+NUMBERS(83)   -> 13
+DIRECTION(112)-> 13
+13 -> 4 -> 37 -> OUT(20) -> FIND(42) -> p28
+```
+
+using one unchanged operation: zero-based native-base60 low digit of the addressed p50 token. Across the three explicit clue noun relations and 16 charged token conventions, only NUMBERS/DIRECTION under base60/low/zero/zero converges and reaches `FIND -> p28`.
+
+Apply that externally supported operation to every two-word parse produced by the complete p28 source-object transform family. The local object has two English rivals, **READ OUT** and **LUNG DEAR**. Exactly one satisfies the source-order state condition `first -> second -> FIND -> p28`:
+
+```text
+READ(55) -> OUT(20) -> FIND(42) -> p28
+```
+
+`LUNG DEAR` is rejected because `GP0(LUNG)=42` points directly to p28 instead of to `DEAR`.
+
+This is an independent output-semantic discriminator and materially upgrades READ OUT. It still does not erase the chronology that the exact `(3,27)` transform was recognized through the candidate output before this external route was found. The clean next promotion gate is therefore an operation selector for **cube center / reciprocal word** that arises from first-party p28/DH structure without consulting the decoded letters, or a fresh ciphertext consequence that requires READ OUT specifically and is frozen before inspection.
+
+External source-pointer report: [authenticated 2016 low-digit routes](lp2-2016-road-found-falsepaths-lowdigit-cycle.md). Full-family selector reproduction: `sims/lp2_p28_readout_familywise_audit_sft.cjs`, Windows run 44451715068.
 
 ## Reproduction
 
