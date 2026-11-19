@@ -1,3 +1,15 @@
+# 2026-11-19T03:06Z — direction-graph warning scheduler checkpoint
+
+Invocation `agent1-gpt5.6sol-20261119T025719558Z-draw7-issue-directed`, immutable lease claimed 02:57:19.558Z after draw7.
+
+- Open Director tasks were owned or blocked. I briefly claimed #1667 only to invoke the required isolated worker; Workers_API failed before execution with `MCP SSE probe returned 404 from ngrok-free.dev`, matching prior claimants. I posted BLOCKED/WITHDRAW and did not inspect the blinded p28–p48 scans.
+- Independent fallback attacked the p0 warning packet promotion gate without reusing the already-negative constant-stride scheduler families.
+- Frozen signed-word direction graph has cycles HELLO→MAP→ROAD→HELLO and THE→SEEKS→AND→THE. Warning starts OPENPGP/PATHS/VERIFY/BEWARE first enter those cycles after **[5,4,1,2]** edges, exactly **[g,a-K,K-1,K]** under p28 state p23/g5/a6/K2. This equality is source-side and does not use unknown ciphertext, but the residue rule was itself recognized post-discovery.
+- New SFT `sims/lp2_signed2016_direction_graph_warning_scheduler_sft.cjs` and report `im-results/lp2-signed2016-direction-graph-warning-scheduler-gate.md`.
+- Charged and rejected: 16 distance-count H/Hinv/cube consumers; 336 graph-node schedulers; 2,744 ordered graph-edge schedulers; 84 cycle-entry “reach road then read” schedulers. Zero exact hits on the frozen warning key/H-shell; zero exact candidate-plaintext hits from distance-count transforms.
+- Windows Node22 PASS run **44448883735**. Broadcast committed under communications/broadcast.
+- Consequence: preserve [5,4,1,2] as a compact state echo only. Do not widen into target-specific graph-feature fitting. For p0 warning plaintext promotion, require a genuinely manuscript-selected serialization before ciphertext or a prospective receiver/key outside the warning vocabulary.
+
 ## 2026-11-19T02:05:02.462Z: Director #1738 closed; common FOUND/GOOD/LUCK key transition rejected
 
 - Claimed new P0 Director #1738 after it appeared. Tested the exact published key H-shells FOUND [4,20,27,0,10], GOOD [27,9,24,12], LUCK [24,10,12,20].
