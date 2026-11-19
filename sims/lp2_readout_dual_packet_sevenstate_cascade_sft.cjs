@@ -202,6 +202,61 @@ function scanPairs(family) {
 const matched = spans.filter((span) => span.centerF);
 assert.equal(matched.length, 23);
 
+ // The 256-token grid is one continuous 32x8 object physically split across
+ // p49-p51. The page-local token counts define the original address breaks.
+ const gridSegments = grid.pages.map((page) => ({
+   page: page.page,
+   tokens: page.tokens.length,
+   rows: page.tokens.length / 8,
+ }));
+ assert.deepEqual(gridSegments, [
+   {page:49,tokens:80,rows:10},
+   {page:50,tokens:104,rows:13},
+   {page:51,tokens:72,rows:9},
+ ]);
+ assert.equal(gridSegments.reduce((sum, page) => sum + page.tokens, 0), 256);
+ assert.equal(corpus.pages.find((page) => page.page === 49).runic_count > 0, true);
+ assert.equal(corpus.pages.find((page) => page.page === 50).runic_count, 0);
+ assert.equal(corpus.pages.find((page) => page.page === 51).runic_count > 0, true);
+ const firstTableBoundary = gridSegments[0].tokens; // address 80
+ const secondTableBoundary = firstTableBoundary + gridSegments[1].tokens; // 184
+
+ // Post-discovery physical-layout audit: charge the two original table page
+ // breaks against all 23 already frozen center-F receiver windows.
+ const startsAtFirstBoundary = matched.filter(
+   (span) => span.start === firstTableBoundary);
+ const crossesSecondBoundary = matched.filter(
+   (span) => span.start < secondTableBoundary &&
+     span.end >= secondTableBoundary);
+ assert.deepEqual(startsAtFirstBoundary.map((span) =>
+   [span.page,span.start,span.end]), [[0,80,102]]);
+ assert.deepEqual(crossesSecondBoundary.map((span) =>
+   [span.page,span.start,span.end]), [
+   [0,166,188],
+   [8,172,194],
+   [24,172,194],
+ ]);
+
+ const samePageBoundaryPairs = [];
+ for (const first of matched) {
+   if (first.start !== firstTableBoundary) continue;
+   for (const second of matched) {
+     if (first === second || first.page !== second.page) continue;
+     if (second.start < secondTableBoundary &&
+         second.end >= secondTableBoundary) {
+       samePageBoundaryPairs.push({
+         first:[first.page,first.start,first.end],
+         second:[second.page,second.start,second.end],
+       });
+     }
+   }
+ }
+ assert.equal(matched.length * (matched.length - 1), 506);
+ assert.deepEqual(samePageBoundaryPairs, [{
+   first:[0,80,102],
+   second:[0,166,188],
+ }]);
+
 const matchedHits = scanPairs(matched);
 assert.deepEqual(matchedHits, [{
   first: [0, 80, 102],
