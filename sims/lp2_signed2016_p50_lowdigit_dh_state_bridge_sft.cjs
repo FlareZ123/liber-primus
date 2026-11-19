@@ -732,6 +732,19 @@ assert.deepEqual(directionCycles, [
   [22, 6, 24],
 ]);
 
+const semanticDirectionEdges = [
+  {from: 2, to: 13, fromWord: "PATH", toWord: "WAY"},
+  {from: 26, to: 20, fromWord: "NUMBERS", toWord: "MEANING"},
+  {from: 20, to: 18, fromWord: "MEANING", toWord: "MAP"},
+  {from: 18, to: 23, fromWord: "MAP", toWord: "ROAD"},
+  {from: 23, to: 0, fromWord: "ROAD", toWord: "HELLO"},
+];
+for (const edge of semanticDirectionEdges) {
+  assert.equal(words[edge.from], edge.fromWord);
+  assert.equal(words[edge.to], edge.toWord);
+  assert.equal(direction[edge.from], edge.to);
+}
+
 /**
  * Classify all 43 authenticated words by the attractor reached through the
  * first-29 direction graph. Values outside 0..28 cannot occur after one step.
@@ -1023,6 +1036,60 @@ assert.ok(directionFamilyHits.every(hit =>
 // words have identical GP/Latin lengths, the relevant low digits are below59
 // in both alphabets, and the paired origin shifts cancel.
 
+// Charge the clue-native semantic edges across the same 256 conventions.
+const semanticFamilyHits = [];
+const semanticNearHits = [];
+for (const wordLengths of [
+  {name: "GP", values: lengths},
+  {name: "Latin", values: latinLengths},
+]) {
+  for (const mode of modes) {
+    /** @type {Mode} */
+    const base = {
+      addressOrigin: mode.addressOrigin,
+      radix: mode.radix,
+      component: mode.component,
+      digitOrigin: mode.digitOrigin,
+      numberOrigin: mode.numberOrigin,
+      indexSign: mode.indexSign,
+      lengthSign: mode.lengthSign,
+    };
+    const values = derive(base, wordLengths.values);
+    if (!values) continue;
+    const matchCount = semanticDirectionEdges.filter(edge =>
+      values[edge.from] === edge.to
+    ).length;
+    if (matchCount >= 3) {
+      semanticNearHits.push({
+        lengthType: wordLengths.name,
+        ...base,
+        matchCount,
+      });
+    }
+    if (matchCount === semanticDirectionEdges.length) {
+      semanticFamilyHits.push({
+        lengthType: wordLengths.name,
+        ...base,
+      });
+    }
+  }
+}
+assert.equal(semanticFamilyHits.length, 2);
+assert.ok(semanticFamilyHits.every(hit =>
+  hit.lengthType === "GP" &&
+  hit.addressOrigin === 0 &&
+  hit.radix === "base60" &&
+  hit.component === "low" &&
+  hit.indexSign === -1 &&
+  hit.lengthSign === -1
+));
+assert.deepEqual(
+  semanticFamilyHits.map(hit => [hit.digitOrigin, hit.numberOrigin]).sort(),
+  [[0, 0], [1, 1]]
+);
+assert.equal(semanticNearHits.filter(hit => hit.matchCount === 4).length, 0);
+assert.equal(semanticNearHits.filter(hit => hit.matchCount === 5).length, 2);
+
 // Stronger topology charge across all 128 arithmetic conventions x both
 // GP-rune and Latin-letter length definitions. Only the two algebraically
 // identical syntactic forms of the frozen GP/base60/low operation produce
@@ -1298,6 +1365,8 @@ console.log(JSON.stringify({
     depthHistogram: topology.depthHistogram,
     basinStats,
     topologyFamilyHits: topologyFamilyHits.length,
+    semanticEdges: semanticDirectionEdges,
+    semanticFamilyHits: semanticFamilyHits.length,
     firstWordCycle: [0, 18, 23, 0],
     firstWordCycleWords: ["HELLO", "MAP", "ROAD", "HELLO"],
     allCycles: directionCycles.map(cycle => ({
