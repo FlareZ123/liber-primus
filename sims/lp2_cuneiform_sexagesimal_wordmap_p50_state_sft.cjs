@@ -207,8 +207,11 @@ const target = [19, 21];
 const matches = [];
 let validVariants = 0;
 function variantOutput(number, config, alphabet) {
-  const pageNumber = Math.floor(number / 60) - config.pageOrigin;
-  const wordIndex = number % 60 - config.wordOrigin;
+  const coordinate = config.reverseDigits
+    ? (number % 60) * 60 + Math.floor(number / 60)
+    : number;
+  const pageNumber = Math.floor(coordinate / 60) - config.pageOrigin;
+  const wordIndex = coordinate % 60 - config.wordOrigin;
   if (pageNumber < 0 || pageNumber > 57 || wordIndex < 0) return null;
   const word = wordsAt(pageNumber)[wordIndex];
   if (!word) return null;
@@ -226,20 +229,24 @@ function variantOutput(number, config, alphabet) {
   const token = grid.rows[row][column];
   return decodeToken(token, alphabet) % 29;
 }
-for (const radix of ["base60", "base59"]) {
-  const alphabet = radix === "base60" ? grid.alphabet : base59Alphabet;
-  for (const pageOrigin of [0, 1]) {
-    for (const wordOrigin of [0, 1]) {
-      for (const tableOrigin of [0, 1]) {
-        for (const order of ["row", "column"]) {
-          for (const encoding of ["positional", "sum"]) {
-            for (const reverse of [false, true]) {
-              const config = { pageOrigin, wordOrigin, tableOrigin, order, encoding, reverse };
-              const output = cuneiformNumbers.map((number) => variantOutput(number, config, alphabet));
-              if (output.every((value) => value !== null)) {
-                validVariants += 1;
-                if (output[0] === target[0] && output[1] === target[1]) {
-                  matches.push({ radix, config, output });
+for (const reverseDigits of [false, true]) {
+  for (const radix of ["base60", "base59"]) {
+    const alphabet = radix === "base60" ? grid.alphabet : base59Alphabet;
+    for (const pageOrigin of [0, 1]) {
+      for (const wordOrigin of [0, 1]) {
+        for (const tableOrigin of [0, 1]) {
+          for (const order of ["row", "column"]) {
+            for (const encoding of ["positional", "sum"]) {
+              for (const reverse of [false, true]) {
+                const config = {
+                  reverseDigits, pageOrigin, wordOrigin, tableOrigin, order, encoding, reverse,
+                };
+                const output = cuneiformNumbers.map((number) => variantOutput(number, config, alphabet));
+                if (output.every((value) => value !== null)) {
+                  validVariants += 1;
+                  if (output[0] === target[0] && output[1] === target[1]) {
+                    matches.push({ radix, config, output });
+                  }
                 }
               }
             }
@@ -249,10 +256,11 @@ for (const radix of ["base60", "base59"]) {
     }
   }
 }
-assert.equal(validVariants, 128);
+assert.equal(validVariants, 256);
 assert.equal(matches.length, 1);
 assert.equal(matches[0].radix, "base60");
 assert.deepEqual(matches[0].config, {
+  reverseDigits: false,
   pageOrigin: 0,
   wordOrigin: 1,
   tableOrigin: 0,
@@ -260,6 +268,86 @@ assert.deepEqual(matches[0].config, {
   encoding: "positional",
   reverse: false,
 });
+
+// Source-native whole-book and marker controls for the fixed forward/base60 consumer.
+function wordsFromStream(source) {
+  const words = [];
+  let current = [];
+  for (const ch of [...source]) {
+    const value = runeIndex.get(ch);
+    if (value !== undefined) current.push(value);
+    else if (ch === "/" || /\\s/u.test(ch)) continue;
+    else if (current.length > 0) {
+      words.push(current);
+      current = [];
+    }
+  }
+  if (current.length > 0) words.push(current);
+  return words;
+}
+const p0to55Stream = Array.from({ length: 56 }, (_, page) =>
+  page === 50 ? "" : segments[page >= 51 ? page - 1 : page]
+).join("");
+const completeP0to55Words = wordsFromStream(p0to55Stream);
+assert.equal(completeP0to55Words.length, 2896);
+function mappedWordRune(word, alphabet) {
+  const address = base29Positional(word) % 256;
+  const token = grid.rows[Math.floor(address / 8)][address % 8];
+  return decodeToken(token, alphabet) % 29;
+}
+const wholeBookOutputCounts = {
+  base60: Array(29).fill(0),
+  base59: Array(29).fill(0),
+};
+for (const word of completeP0to55Words) {
+  wholeBookOutputCounts.base60[mappedWordRune(word, grid.alphabet)] += 1;
+  wholeBookOutputCounts.base59[mappedWordRune(word, base59Alphabet)] += 1;
+}
+assert.deepEqual(
+  [wholeBookOutputCounts.base60[19], wholeBookOutputCounts.base60[21]],
+  [108, 74],
+);
+assert.deepEqual(
+  [wholeBookOutputCounts.base59[19], wholeBookOutputCounts.base59[21]],
+  [101, 160],
+);
+const orderedDistinctWordPairs = completeP0to55Words.length * (completeP0to55Words.length - 1);
+const targetPairWordCount = wholeBookOutputCounts.base60[19] * wholeBookOutputCounts.base60[21];
+assert.equal(orderedDistinctWordPairs, 8383920);
+assert.equal(targetPairWordCount, 7992);
+
+const tableResidueCounts = {
+  base60: Array(29).fill(0),
+  base59: Array(29).fill(0),
+};
+for (const token of grid.rows.flat()) {
+  tableResidueCounts.base60[decodeToken(token, grid.alphabet) % 29] += 1;
+  tableResidueCounts.base59[decodeToken(token, base59Alphabet) % 29] += 1;
+}
+assert.deepEqual([tableResidueCounts.base60[19], tableResidueCounts.base60[21]], [10, 6]);
+assert.deepEqual([tableResidueCounts.base59[19], tableResidueCounts.base59[21]], [9, 14]);
+
+// Manual original-JPEG census of oversized red GP runes on unsolved LP2 p0-p55.
+const oversizedRedMarkerCensus = [
+  { page: 0, markers: ["S"] },
+  { page: 3, markers: ["L", "P"] },
+  { page: 6, markers: ["A"] },
+  { page: 8, markers: ["X"] },
+  { page: 15, markers: ["F"] },
+  { page: 23, markers: ["U"] },
+  { page: 27, markers: ["M"] },
+  { page: 33, markers: ["M", "NG"] },
+  { page: 39, markers: ["IA"] },
+  { page: 40, markers: ["F"] },
+  { page: 54, markers: ["A"] },
+];
+assert.equal(oversizedRedMarkerCensus.reduce((sum, item) => sum + item.markers.length, 0), 13);
+assert.deepEqual(
+  oversizedRedMarkerCensus.filter((item) => item.markers.length > 1),
+  [{ page: 3, markers: ["L", "P"] }, { page: 33, markers: ["M", "NG"] }],
+);
+assert.deepEqual(fivePacket.slice(0, 3).map((item) => item.outputRune), ["E", "EA", "G"]);
+
 
 // Five red-numbered passage intervals from the existing five-passage analysis.
 const pageRunes = new Map(corpus.pages.map((page) => [page.page, page.indices]));
@@ -711,9 +799,35 @@ console.log(JSON.stringify({
   })),
   conventionAudit: {
     validVariants,
-    radixVariants: { base60: 64, base59: 64 },
+    radixVariants: { base60: 128, base59: 128 },
+    dimensions: [
+      "sexagesimal digit order",
+      "table token radix",
+      "page origin",
+      "word origin",
+      "table origin",
+      "row/column serialization",
+      "BASE29 positional versus sum",
+      "forward versus reversed rune order",
+    ],
     target: ["M", "NG"],
     matches,
+  },
+  sourceNativeControls: {
+    wholeBookWords: completeP0to55Words.length,
+    wholeBookOutputCounts: {
+      base60: { M: wholeBookOutputCounts.base60[19], NG: wholeBookOutputCounts.base60[21] },
+      base59: { M: wholeBookOutputCounts.base59[19], NG: wholeBookOutputCounts.base59[21] },
+    },
+    targetPairWordCount,
+    orderedDistinctWordPairs,
+    targetPairFraction: targetPairWordCount / orderedDistinctWordPairs,
+    tableResidueCounts: {
+      base60: { M: tableResidueCounts.base60[19], NG: tableResidueCounts.base60[21] },
+      base59: { M: tableResidueCounts.base59[19], NG: tableResidueCounts.base59[21] },
+    },
+    squareCenterOutputs: fivePacket.slice(0, 3).map((item) => item.outputRune),
+    oversizedRedMarkerCensus,
   },
   fivePassageStructure: {
     lengths: passages.map((passage) => passage.length),

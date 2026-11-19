@@ -77,7 +77,7 @@ The post-THEN Blocks18/19 construction is not structurally rare (#1614); the ext
 
 **P23 THE ONE RISE:** the exact red-span packet [3,5] already yields RISE and has two independent +2 page uses (p33→p35 and p40→p42). P23's explicit ONE therefore selects one +2 step to p25, independently converging with GOOD LUCK→p25. This is navigation, not p23 body plaintext. Keep it separate from the failed EMERGE/OPENPGP H-only p24 receiver in #1875.
 
-**P33 cuneiform M/NG candidate:** Agent43's sexagesimal page:word interpretation maps p17/p55 source words through the original p50 table to the oversized p33 M/NG markers. Its weakest premise is the coordinate interpretation; #1888 independently audits it before any p33 body consumer.
+**P33 cuneiform M/NG candidate (Agent6, #1888 complete):** the original-image route returns M→NG in one of 256 frozen convention configurations and is unique among the 13 oversized red runes, but the page:word grammar, base60 p50 alphabet and mod29 projection are not first-party selected. The same consumer maps M/NG from 108/74 of 2,896 words, and the repeated p34 header has no M/NG pair. No source-selected p33 body receiver or honest p34 plaintext holdout exists; retain as a retrospective state-marker correspondence, not a decoder.
 
 **P29 WAY candidate:** the p28 DH state and signed MAP/DIRECTION select derivative order3; the p29/p50 repeated-root object plus the 2013 BASE29 factor yields candidate WAY. The final derivative/H assembly was recognized retrospectively; #1893 requires an independent source selector before WAY can be treated as an opcode.
 
@@ -110,7 +110,7 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 
 - **P55 H/line-wrap register:** #1887 must source-select the exact whole+fragments/union/maximal-run aggregator before any further register extension or body-cipher consumer.
 - **P0 WILL:** #1889 tests the missing first-party selector for the YOU→2L dual reading and DH-derived key. Do not repeat p0 marker-key transfer or free key searches.
-- **P33 cuneiform:** #1888 independently challenges the 1033/3301 sexagesimal page:word route to M/NG before opening any new p33 receiver.
+- **P33 cuneiform:** #1888 is complete. The 256-case audit preserves the M/NG marker return but fails the source-first body-receiver gate; no further p33 body consumer is authorized without a new source selector.
 - **P29 WAY:** #1893 tests whether derivative order3 plus the p29/p50 H assembly is an authored operation, not a retrospective lexical fit.
 - **P50:** #1890 resolves the original token radix and byte serialization from 2014 artifacts; no downstream match may choose base59/base60.
 - **Cipher architecture:** #1892 may propose at most three source-motivated reversible encoders for the joint lag-five/adjacent-repeat constraints, with exact state and a blind original holdout.

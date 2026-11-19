@@ -41,9 +41,9 @@ The signed 2016 message also warns “Beware false paths.” The most defensible
 
 ## Receiver and decision
 
-The two selected words are still original ciphertext fragments: `FREAMEAA` and `NG`. No first-party Cicada instruction selects an operation that uses them as a key, pointer, or instruction. No unique receiver, authentic key, 150+ rune plaintext, withheld prediction, or forward re-encryption follows.
+The original extraction produces ciphertext fragments FREAMEAA and NG. A later, separate route now maps those selected words through BASE29 positional values, the p50 table, base60 token decoding and mod29 projection back to the visible p33 M/NG markers; see [the p33 state-register report](lp2-p33-dh-layout-state-register.md). This is a concrete retrospective marker correspondence, not a Cicada-authenticated page:word grammar or a source-selected body receiver. The 2016 signed phrase motivates word navigation but does not specify one-based word ordinals, the p50 consumer, or its byte-to-rune projection.
 
-**Decision:** close #1393 as a bounded negative for this exact page:word interpretation. Preserve `(17,13)` and `(55,1)` only as an unverified reading; do not promote them to a key or cipher mechanism. This does not rule out other uses of the cuneiform values or the 2016 word-navigation clue.
+**Decision:** retain (17,13) and (55,1) as an unverified page:word reading with a reproducible M/NG marker return under one finite convention. The original source-selector negative remains: no authentic key, reversible body operation, unknown plaintext, held-out p34 consequence, or forward re-encryption follows. The separate seven-rune concatenated-key tests below remain negative. Do not promote the page:word reading to a cipher mechanism.
 
 ## Candidate seven-rune key receiver test
 
