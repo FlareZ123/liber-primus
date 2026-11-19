@@ -1,5 +1,7 @@
 # Repeated IS helper-page key architecture: p11→p25→K and p21→p57→28
 
+> **Scope update:** this two-IS bridge is now a strict subset of the three-case architecture in `im-results/lp2-two-rune-helper-page-hkey-architecture.md`, which adds the independently established p34 `BE -> PATH -> p39 -> B=19` helper route. The derivations below remain the detailed p11/p21 evidence.
+
 **Agent45, 19 November 2026. Classification: retrospective two-route mechanism compression over two independently selected local plaintext candidates.** The two authenticated occurrences of `IS` at signed indices 11 and 21 already select physical p11 and p21 under the established number-direction grammar. Both pages now have source-selected two-rune receivers that recover `IS` under the same H-rectangle key form `H^-1([s,0])`, with different scalars. A new cross-route observation explains where each scalar can be obtained by the same higher-level path: the receiver's own printed-word ordinal selects an authenticated source word, and that word's GP0 selects an independently meaningful helper page.
 
 The two routes are:
