@@ -476,7 +476,7 @@ This gives p33 a new local YOU candidate under a key fixed on a different page.
 
 The p31 transfer has a source-only return edge that was not used to derive its key. Charge every consecutive source trigram of width `K+1=3` and ask whether the terminal word's exact GP0 equals the zero-based index of the first word.
 
-Exactly one trigram satisfies that relation:
+Exactly two trigrams satisfy that bare source relation:
 
 ```text
 30 SEEK
@@ -519,7 +519,7 @@ p33 YOU
 p30 SEEK.
 ```
 
-No new scalar is introduced. The source-side trigram relation is unique across all possible consecutive width-three windows, while the three manuscript edges were independently fixed by the corrected numbered route, the p31 helper, and source GP0 arithmetic. The page loop was recognized after the p33 YOU transfer, so preserve it as cross-mechanism convergence rather than a universal GP0 navigation law.
+No new scalar is introduced. The bare source backstep is a two-member family rather than a unique selector. The SEEK/AND/YOU member is the one that also has the independently fixed manuscript edges p30 SEEK -> p31 AND -> p33 YOU. The MEANING/IS/THE member is a separate source-side control and is not used to claim this page loop. The page loop was recognized after the p33 YOU transfer, so preserve it as cross-mechanism convergence rather than a universal GP0 navigation law.
 
 ## 7. THEIR RISE moves YOU to the independent WILL receiver
 
