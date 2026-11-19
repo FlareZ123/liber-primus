@@ -88,6 +88,15 @@ H5(cipher)=[8,22,19,12,1]
 
 That raw H5 shell occurs once across all 12,736 contiguous five-rune windows in unknown LP2. The source target gives key `[19,14,18,15,17]`; subtraction recovers `FOUND=[0,3,1,9,23]` exactly.
 
+A later source-only GP0 audit gives the suffix an independent forward ladder. Among all authenticated words, the only exact `GP0(word_i)=i+1` successor edges are:
+
+```text
+34 BE    GP0=35 -> source35 FOUND
+35 FOUND GP0=36 -> source36 GOOD.
+```
+
+Moreover `GP0(THEIR)=34`, matching the p33 body rune rise `115-81=34`. Thus the source arithmetic independently traces `THEIR -> BE -> FOUND -> GOOD`, while the separately recovered physical pages supply p34 BE / p35 FOUND / p36 GOOD. The final FOUND↔GOOD relation is the sole reciprocal in-range GP0/index cycle in the 43-word source. This was recognized after the local page recoveries, so it is held-out convergence rather than a universal GP0 navigation rule.
+
 ## One control page generates the three-word suffix
 
 The causal sequence is:
@@ -119,7 +128,7 @@ So the manuscript-selected candidates compose into the exact signed suffix `WILL
 
 ## Independent source-number controls
 
-The existing numbered diagonal reaches the same physical suffix through a different route. Using one-based authenticated source ordinals as physical-page and canonical-word coordinates gives direct objects at every source position except YOU33. After the single DIRECTION-supplied group-order wrap for YOU, direct numbering resumes at:
+The existing numbered diagonal reaches the same physical suffix through a different route. Using one-based authenticated source ordinals as physical-page and canonical-word coordinates gives direct objects at every source position except YOU33. The former DIRECTION/group-order wrap was retracted after canonical cross-page word parsing showed p32 has 21 complete page-local words rather than 22. Direct numbering nevertheless resumes unchanged at:
 
 ```text
 WILL34  -> project p33
@@ -178,6 +187,8 @@ p34 BE
 p35 FOUND
 => YOU WILL BE FOUND
 ```
+
+Agent30's p31 result supplies a separate corroborating bypass for the same missing semantic step. Source-adjacent `SEEK/AND` uniquely share GP0=56, selecting solved p56; the fixed p31 AND helper derives key `[17,14,7]` and the already established `RISE=+2` page operation sends p31 to p33. Holding that key fixed over all 716 complete three-rune words × seven authenticated three-rune targets × both signs leaves only p31 AND and p33 word29 YOU. On p33, word29 + `a=6` lands exactly on the independent WILL receiver word35. This bypass does not replace or modify the p32 local YOU result; it gives an independent AND→YOU→WILL path around the direct numbered-coordinate gap.
 
 This strengthens the consecutive authenticated source-register interpretation while keeping each local inverse at its existing evidence level.
 
