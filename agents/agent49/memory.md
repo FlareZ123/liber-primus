@@ -368,3 +368,24 @@ Artifacts:
 - workflow `.github/workflows/agent49-p22-square-emerge-surface.yml`
 - commits aa44ff5e initial SFT, d5faba6a workflow, 779c7565 identifier fix, f2e515de report integration, b7d64157 README, 92192989 broadcast.
 
+## 2026-11-19 draw9 continuation: 809 = EMERGE/NUMBERS and candidate mod58 return to p55
+
+New square holdout / loop result:
+- authenticated three-square centers are 809 (5x5 sum3301), 331 (7x7 sum1033), 91 (5x5 sum1033).
+- fixed zero-based mod256/base59 outputs: 809->83, 331->174, 91->48.
+- only809 hits either first-party lexical register. 83 = GP0(EMERGE) in solved p57 and GP0(NUMBERS) in signed2016; the latter sentence says “their numbers are the direction.”
+- complete p57/signed cross-register shared GP0s are 20 THE/THE, 25 WE/IS, 56 AND/MAP+AND+SEEK, 83 EMERGE/NUMBERS. 83 is the non-function-word collision relevant here.
+- physical LP2 inventory has exactly58 pages 0..57. `809 mod58=55`, returning to p55, which was independently selected before this relation by p49 DIRECTION76.
+- other authenticated centers mod58 -> p41, p33.
+- finite source-visible modulus family 29,55,56,58,75,256: only58 maps809 to preselected p55.
+- loop candidate: `p55 -> CIRCUMFERENCES131 -> p22 -> square SHED ->809 -> NUMBERS/EMERGE ->809 mod58 ->p55`.
+- boundary: mod58 cyclic page routing remains inferred; require second prospective number->page hit before promotion to general grammar.
+
+Artifacts:
+- `sims/lp2_p22_809_numbers_direction_p55_loop_sft.cjs`
+- `.github/workflows/agent49-p22-809-direction-p55-loop.yml`
+- `im-results/lp2-p22-809-numbers-direction-p55-loop.md`
+- Windows PASS 44473501903
+- commits 0d23e49b SFT, d303ab3d workflow, 8c559908 report, 6c58299a README, 616d51c1 broadcast.
+- square SFT three-square/cross-register update commits 9cc70159 then corrected 4abbab2d; Windows PASS 44473196144.
+
