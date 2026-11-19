@@ -1,6 +1,6 @@
 # Authenticated 2013 command-family audit of the p28 NEXT route
 
-**Agent11, 19 November 2026. Director #1690. Classification: sharp numeric alignment with a negative authenticated-opcode transfer. Preserve as conditional/thematic corroboration, not as a source-authenticated LP2 navigation opcode. No unknown plaintext or complete inverse is recovered.**
+**Agent11 / Agent41, 19 November 2026. Director #1690 and #1872. Classification: sharp numeric alignment with a negative authenticated-opcode transfer and a negative full-state-transition gate. Preserve as conditional/thematic corroboration, not as a source-authenticated LP2 navigation opcode or state machine. No unknown plaintext or complete inverse is recovered.**
 
 ## Decision
 
@@ -102,6 +102,25 @@ The recovered signed source and original participant log settle the directionali
 - no recovered 2014–2016 first-party instruction reuses that NEXT exchange as an LP2 page/key/offset handoff.
 
 Consequently “take the next manuscript word” is an English-name reinterpretation, not the authenticated 2013 protocol operation.
+
+
+## Full DH/NEXT/BASE29 state-transition gate (#1872, 19 November 2026)
+
+The task was to determine whether the exact signed 2013 protocol defines a reversible state update that can be applied to LP2 without inventing a recurrence. Replaying its actual arithmetic confirms:
+
+- DH: 5^6 mod23 = 8; 5^15 mod23 = 19; 8^15 mod23 = 19^6 mod23 = 2. The protocol returns one shared scalar K=2.
+- BASE29: 3301 converts to 3QO; 1033 converts to 16I. This is stateless integer-to-base29 conversion, not a rune decoder, key schedule or stream generator.
+- NEXT: the client supplies text and the server stores it. The server does not calculate a successor, advance a counter, or emit a new state.
+
+The now-reconstructed LP2 tuple is (p,g,a,b,A,B,K,e,q)=(23,5,6,15,8,19,2,3,4). The signed 2013 specification directly exposes p,g,A,B,K; the private exponents a,b are recoverable from this small public example, while e=3 and q=4 come from the independent LP2 marker/square construction. The protocol has no e or q fields, no per-symbol update, and no function S(n+1)=F(S(n)). The exact 2013 command family also contains no NUMBER, PRIMES, COUNT, GP29 mapping, KDF, byte/rune serialization, or symmetric payload cipher.
+
+The p0 title receiver is a separate LP2 construction. The p0 marker SFT derives a 13-symbol packet from the marker geometry and H outside-in operation, yielding key [26,24,8,19,27,24,18,3,0,8,0,16,19] and candidate plaintext EPIPHANY SEEKS. That 13-vector is not emitted by the 2013 DH/BASE29/NEXT protocol: DH gives one scalar, BASE29(3301) gives three digits, and no signed rule maps either into the 13-symbol packet. The superficial overlap of digits 3,Q,O with members of the marker key is not a serialization rule.
+
+The p0 marker SFT's fixed-key transfer gate checks44 valid pre/post 13-rune windows around red13 markers across LP2; only the p0 pre-marker receiver yields the title. The p1/p2 windows therefore fail as held-out receivers. More importantly, the 2013 protocol supplies no transition that could predict a new p1/p2 key. Repeating or evolving K=2, 3QO, or the p0 marker key would be an invented recurrence and is outside this task.
+
+The exact DH23 tuple is also present in a 17 April 2012 Cibertec teaching deck, before the 2013 Cicada signature. The signed 2013 artifact authenticates that participants were shown the example, but the tuple itself is generic pedagogical material rather than a unique Cicada key.
+
+**Decision for #1872: negative, decisive semantic mismatch.** The 2013 protocol is authentic historical context for the DH23 arithmetic and the BASE29 numeral 3QO, but it does not define an LP2 state machine or reversible ciphertext update. Keep the p0 title candidate on its separate marker-derived route; do not retrofit the 2013 protocol into a keystream or state recurrence.
 
 ## Reproduction
 
