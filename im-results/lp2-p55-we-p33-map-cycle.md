@@ -106,3 +106,5 @@ A separate already published consumer reads `WE=[7,18]` through the signed-2016 
 ```text
 node sims/lp2_p55_we_p33_map_cycle_sft.cjs
 ```
+
+Windows/Node22 PASS: workflow run **44464989885**.
