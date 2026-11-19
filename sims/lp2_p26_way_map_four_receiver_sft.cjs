@@ -241,6 +241,76 @@ assert.deepEqual(p26Four, {
   ],
 });
 
+
+/*
+ * Follow the table-state continuation within p26 without changing semantics.
+ * State48 occurs exactly once as a word-GP0 receiver, but the already-frozen
+ * 4D current-page rune self-index does not transfer to p26.
+ */
+const p26State48 = [];
+for (let line = 0; line < p26Lines.length; line += 1) {
+  const lineWords = runeWords(p26Lines[line]);
+  for (let word = 0; word < lineWords.length; word += 1) {
+    if (gp0(lineWords[word]) === 48) {
+      p26State48.push({
+        line: line + 1,
+        word: word + 1,
+        cipher: translit(lineWords[word]),
+        vector: lineWords[word],
+      });
+    }
+  }
+}
+assert.deepEqual(p26State48, [{
+  line: 4,
+  word: 1,
+  cipher: "EAMU",
+  vector: [28, 19, 1],
+}]);
+
+const p26Page = corpus.pages.find((page) => page.page === 26);
+assert.ok(p26Page);
+const dIndex = corpus.translit.findIndex((token) => token.toUpperCase() === "D");
+assert.equal(corpus.translit[p26Page.indices[48]], "L");
+assert.equal(
+  p26Page.indices.slice(0, 49).filter((value) => value === dIndex).length,
+  1
+);
+
+/*
+ * The recovered DH shared secret K=2 gives a readable word at the selected
+ * state56 receiver under +K, but charge the sign and English background before
+ * treating it as plaintext.
+ */
+const selectedReceiver = p26Line10[2];
+const mod29 = (value) => ((value % 29) + 29) % 29;
+const plusK = selectedReceiver.map((value) => mod29(value + 2));
+const minusK = selectedReceiver.map((value) => mod29(value - 2));
+assert.equal(translit(plusK), "SAD");
+assert.equal(translit(minusK), "JLM");
+
+const english = new Set(
+  read("resources/control/english_wordfreq_textblob.txt")
+    .split(/\r?\n/)
+    .filter((line) => line && !line.startsWith(";"))
+    .map((line) => line.trim().split(/\s+/)[0].toUpperCase())
+);
+
+let threeRuneWords = 0;
+let signedKEnglishHits = 0;
+for (let page = 0; page <= 55; page += 1) {
+  for (const word of runeWords(pages[page] || "")) {
+    if (word.length !== 3) continue;
+    threeRuneWords += 1;
+    for (const sign of [-1, 1]) {
+      const shifted = word.map((value) => mod29(value + sign * 2));
+      if (english.has(translit(shifted))) signedKEnglishHits += 1;
+    }
+  }
+}
+assert.equal(threeRuneWords, 795);
+assert.equal(signedKEnglishHits, 41);
+
 /*
  * Boundary: the second stage is a table-state transition, not the immediate
  * next p26 ciphertext word. After the state56 word, p26's next word is state95.
@@ -265,11 +335,14 @@ console.log(JSON.stringify({
   },
   p26Receiver: {
     fourWindow: p26Four,
+    uniqueState48Word: p26State48,
+    state48CurrentPageSelfIndex: { offset48Rune: corpus.translit[p26Page.indices[48]], dCountThrough48: 1, pass: false },
+    sharedSecretWordProbe: { plusK: translit(plusK), minusK: translit(minusK), threeRuneWords, signedKEnglishHits },
     line10Addresses: p26Line10Addresses,
     exactNextStateTransition: "57 --1w--> 56",
     tableContinuation: "56 --4E/hex N--> 48",
     immediateCiphertextContinuation: 95,
   },
   classification:
-    "Bounded unknown-cipher receiver candidate. Among 3288 within-page unknown-word adjacencies, only two literal p50 movement tokens predict the next word GP0; p26 is the sole 57->56 hit selected by the independently fixed WAY->MAP table edge, and that same p26 boundary window reads FOUR under the independently authenticated high-digit rule. The 56->48 table continuation does not equal p26's immediate next word, so no continuous plaintext is claimed.",
+    "Bounded unknown-cipher receiver candidate. Among 3288 within-page unknown-word adjacencies, only two literal p50 movement tokens predict the next word GP0; p26 is the sole 57->56 hit selected by the independently fixed WAY->MAP table edge, and that same p26 boundary window reads FOUR under the independently authenticated high-digit rule. The 56->48 table continuation does not equal p26's immediate next word; the unique p26 state48 word fails the frozen 4D current-page self-index; and the readable +K word SAD is only a bounded candidate against a 41/1590 signed-K English background. No continuous plaintext is claimed.",
 }, null, 2));
