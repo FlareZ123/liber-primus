@@ -67,6 +67,15 @@ The authenticated source register gives:
 
 The first two natural scales independently land on the same source token. The highest-resolution scale provides the actionable handoff:
 
+A later source-only audit adds an exact semantic checksum on the rune-scale rise: canonical `THEIR=[2,18,10,4]` has `GP0(THEIR)=34`. Thus the hidden instruction's noun and its authored body rise independently name the same authenticated destination:
+
+```text
+THEIR -> GP0 34 -> source/page34 BE
+body rune RISE -> 115-81 = 34 -> source/page34 BE.
+```
+
+This uses no p34 ciphertext and was recognized after the body-rise result, so treat it as cross-channel corroboration rather than the original selector.
+
 ```text
 their rune rise = 34
 -> signed word34 = BE
