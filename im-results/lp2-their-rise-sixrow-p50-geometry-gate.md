@@ -59,22 +59,22 @@ The exact counts are:
 ```text
 origin direction  legal moves  DH hits  signed-index hits
 0      N           24           9        20
-0      NE           6           2         6
-0      E            2           0         2
-0      SE           0           0         0
+0      NE           9           2         6
+0      E           12           0         2
+0      SE          12           0         0
 0      S           43           0         0
-0      SW           0           0         0
-0      W            5           0         5
-0      NW           5           1         5
+0      SW          11           0         0
+0      W           11           0         5
+0      NW           6           1         5
 
 1      N           24           9        20
-1      NE           2           2         2
-1      E            4           0         4
-1      SE           0           0         0
+1      NE           3           2         2
+1      E            8           0         4
+1      SE           8           0         0
 1      S           43           0         0
-1      SW           0           0         0
-1      W            2           0         2
-1      NW           7           4         7
+1      SW          10           0         0
+1      W           10           0         2
+1      NW           8           4         7
 ```
 
 North is the clear maximum for both declared target classes.
