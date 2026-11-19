@@ -285,6 +285,85 @@ So one p22 object selects both occurrences used by the downstream instruction:
 
 The already established p33 instruction is `THEIR RISE`, and its authenticated source action is precisely the rise from THEIR19 to THEIR25 by `a=6`. The p22 receiver therefore supplies a source-visible occurrence selector for that later operation instead of leaving the duplicate word THEIR ambiguous.
 
+### Their numbers point back by q to MEANING IS
+
+The same p22 object fixes the adjacent authenticated pair
+
+```text
+AND24 THEIR25.
+```
+
+The carrier instruction says that the words' **numbers are the direction**. Consume those already selected source numbers directly as p50 addresses and use the two documented numeric alphabets.
+
+Under drop-f base59:
+
+```text
+p50[24] = 1n
+base59(1n) = 107
+107 mod29 = 20 = MEANING
+
+p50[25] = 3I
+base59(3I) = 195
+195 mod29 = 21 = IS
+```
+
+Both outputs move by the independently reconstructed state value
+
+```text
+20 - 24 = -4 = -q
+21 - 25 = -4 = -q.
+```
+
+So the fixed adjacent suffix
+
+```text
+AND THEIR
+```
+
+points uniformly backward by `q` to
+
+```text
+MEANING IS.
+```
+
+This was found after `AND24/THEIR25` had already been fixed by the p22 object, so the input pair was not selected from the table output.
+
+#### Complete adjacent-pair/radix charge
+
+Apply the same map to every authenticated adjacent source pair `i,i+1`:
+
+```text
+i
+ -> p50[i]
+ -> decode in one fixed radix
+ -> mod29 source index
+```
+
+Retain only pairs whose two outputs preserve adjacency by one common index shift.
+
+Across all 42 adjacent inputs:
+
+- **base59:** exactly one uniform-shift pair, `AND24/THEIR25 -> MEANING20/IS21`, shift `-q=-4`;
+- **base60:** zero uniform-shift pairs.
+
+This makes the base59 result a finite source-register event rather than a general readability scan.
+
+The p22 object and the earlier q-spaced closure now reconstruct the complete contiguous authenticated clause segment:
+
+```text
+receiver word ordinal19 -> THEIR
+numbers24,25 / base59   -> MEANING IS
+q-spaced closure         -> IS THE ROAD
+raw final + local inverse-> AND THEIR
+
+union of source indices19..25:
+THEIR MEANING IS THE ROAD AND THEIR
+```
+
+The overlap at `IS21` is exact. The next authenticated token is `NUMBERS26`, which is independently a strong p26 routing/meta-instruction junction elsewhere in the repository.
+
+This is structural solve-path evidence. It does not mean p50/base59 maps every signed word number to prose; the full adjacent-pair census shows the uniform-shift event is isolated.
+
 ### Fixed-key manuscript control
 
 Hold the exact numeric key `[20,10,18,20]` fixed across all 509 unknown four-rune words, all nine authenticated four-rune targets, and both signs:
@@ -426,4 +505,4 @@ This route materially strengthens the role of the authenticated 2016 message as 
 
 `node sims/lp2_openpgp_is_the_road_pages21_23_direction_sft.cjs`
 
-The SFT reconstructs the upstream state and phrase, uses the repository's canonical cross-page word parser, exhausts the complete source-index pointer family, charges the 450-case p22 key family, verifies the 509-word raw-shell and 9,162-case fixed-key controls, verifies the p21 prior state packet and p23 state line, and checks the common p33 handoff.
+The SFT reconstructs the upstream state and phrase, uses the repository's canonical cross-page word parser, exhausts the complete source-index pointer family, charges the 450-case and 72-case p22 key families, verifies the 509-word raw-shell and 9,162-case fixed-key controls, exhausts the base59/base60 adjacent source-number map, verifies the p21 prior state packet and p23 state line, and checks the common p33 handoff.
