@@ -381,6 +381,101 @@ The sole ascending pair is p24 word25, [27,15] -> [12,13] = THE WAY. The sole de
 
 No page, word, H orientation, or source-word target was changed to obtain the p24 hit.
 
+## THE WAY numbers plus THEIR RISE recover THEIR25
+
+The p24 receiver fixes the ordered authenticated source pair:
+
+~~~text
+12 THE
+13 WAY
+~~~
+
+The repository already has two independent instructions needed to consume that pair:
+
+~~~text
+THEIR NUMBERS ARE THE DIRECTION
+THEIR RISE
+~~~
+
+Follow the numbers12 and13 through the same numbered diagonal used above. Their untouched directed receivers are:
+
+~~~text
+THE12 -> p12 canonical word13
+          [28,1,0,15,20]
+          GP0 = 64
+
+WAY13 -> p13 canonical word14
+          [18,3,25,6,26,20]
+          GP0 = 98
+~~~
+
+The H shell of p12 is a prospective state packet:
+
+~~~text
+H-shell(p12) = [8,19,15,16,0]
+             = [A,B,b,hex-stride,0]
+~~~
+
+and its GP0 address64 points to p50 token22, whose two conventional base60 digits are exactly [K,K]=[2,2]. Across the full numbered diagonal, p12 is the sole receiver whose GP0 addresses token22.
+
+The p13 H shell independently contains:
+
+~~~text
+[-K,9,a,0,B,K]
+= [27,9,6,0,19,2]
+~~~
+
+The decisive operation is already source-authored by p33: THEIR RISE. The ordered receiver rise is:
+
+~~~text
+98 - 64 = 34
+GP0(THEIR) = 34
+~~~
+
+So the p24 output THE WAY, treated as two directed source numbers, recovers THEIR without introducing a key or language score.
+
+Because the upstream p55 fragment already ends at AND24, source context fixes the recovered occurrence as the immediately following second THEIR:
+
+~~~text
+22 THE
+23 ROAD
+24 AND
+25 THEIR
+~~~
+
+This extends the p55 fragment to:
+
+~~~text
+THE ROAD AND THEIR
+~~~
+
+### Complete adjacent-diagonal rise control
+
+Charge every adjacent pair on the same authenticated source-index/page/word diagonal. Forty adjacent pairs have both directed receivers available.
+
+Exactly one has forward rise34, and exactly one has absolute rise34:
+
+~~~text
+THE12 -> WAY13
+64 -> 98
+rise = +34 = GP0(THEIR)
+~~~
+
+Thus the direction and rise operations are both fixed before the recovered word is read.
+
+### Handoff to the existing p11 instruction
+
+The independently established p11 receiver is the untouched two-rune object [11,14]. Its fixed sum/difference coordinates are [25,26], source THEIR/NUMBERS, and the authenticated increasing continuation gives THEIR NUMBERS ARE THE DIRECTION.
+
+The new p55/p24/p12-p13 route therefore lands exactly on the p11 instruction's first word:
+
+~~~text
+p55 -> THE ROAD AND THEIR25
+p11 -> THEIR25 NUMBERS26 -> ARE27 THE28 DIRECTION29
+~~~
+
+This links the recursive p55 shedding path to the already established p11/p27 ordering corridor with an exact word overlap rather than a semantic guess.
+
 ## Held-out external consumer: both 36 branches land on p36 GOOD
 
 The p55 result was committed at **05:45:03Z**, fixing both H branch sums at 36 before a separate p36 plaintext result existed in the authoritative synthesis.
