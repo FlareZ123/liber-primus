@@ -139,6 +139,7 @@ assert.equal(line7Lengths[5], 1);
 let runeBearingLineCount = 0;
 const stateProfileHits = [];
 let fiveRuneWordCount = 0;
+let fiveRuneInner59Count = 0;
 const outerTheHits = [];
 
 const signedClear = signed2016
@@ -169,6 +170,7 @@ const stateFieldEntries = Object.entries({
   K: state.K,
 });
 const pairSumRows = [];
+const pairSumShedRows = [];
 for (let left = 0; left < stateFieldEntries.length; left += 1) {
   for (let right = left + 1; right < stateFieldEntries.length; right += 1) {
     const [leftName, leftValue] = stateFieldEntries[left];
@@ -176,6 +178,15 @@ for (let left = 0; left < stateFieldEntries.length; left += 1) {
     const index = leftValue + rightValue;
     if (index < 1 || index > p28.words.length) continue;
     const target = p28.words[index - 1];
+    const shedInteriorSum = target.length >= 3
+      ? target.slice(1, -1).reduce((total, value) => total + value, 0)
+      : null;
+    pairSumShedRows.push({
+      expression: `${leftName}+${rightName}`,
+      index,
+      length: target.length,
+      shedInteriorSum,
+    });
     if (target.length < 2) continue;
     const output = H(target[0], target[target.length - 1]);
     pairSumRows.push({
@@ -187,6 +198,16 @@ for (let left = 0; left < stateFieldEntries.length; left += 1) {
   }
 }
 assert.equal(pairSumRows.length, 20);
+assert.equal(pairSumShedRows.length, 21);
+assert.deepEqual(
+  pairSumShedRows.filter((row) => row.shedInteriorSum === 59),
+  [{
+    expression: "p+A",
+    index: 31,
+    length: 5,
+    shedInteriorSum: 59,
+  }]
+);
 assert.deepEqual(
   pairSumRows.filter((row) => row.signedTargets.length > 0),
   [{
@@ -274,6 +295,8 @@ for (let partIndex = 0; partIndex < parts.length; partIndex += 1) {
     const word = parsed.words[wordIndex];
     if (word.length !== 5) continue;
     fiveRuneWordCount += 1;
+    const innerSum = word.slice(1, -1).reduce((total, value) => total + value, 0);
+    if (innerSum === 59) fiveRuneInner59Count += 1;
     const output = H(word[0], word[word.length - 1]);
     if (output[0] === 2 && output[1] === 18) {
       outerTheHits.push({ page, word: wordIndex + 1, values: word });
@@ -289,6 +312,9 @@ assert.deepEqual(stateProfileHits, [{
 }]);
 
 assert.equal(fiveRuneWordCount, 318);
+assert.equal(fiveRuneInner59Count, 9);
+assert.deepEqual(word31.slice(1, -1), [18, 13, 28]);
+assert.equal(word31.slice(1, -1).reduce((total, value) => total + value, 0), 59);
 assert.deepEqual(outerTheHits, [{
   page: 28,
   word: 31,
@@ -339,10 +365,12 @@ console.log(JSON.stringify({
     validSamePageIndexCount,
     signedTwoRuneHitCount: signedTwoRuneHits.length,
     pairSumRows,
+    pairSumShedRows,
+    fiveRuneInner59Count,
     statePairSourceCount,
     validStatePairIndexCount,
     statePairSignedHits,
   },
   classification:
-    "post-discovery source-constrained local plaintext candidate; do not generalize local GP0 word indexing without a new holdout.",
+    "post-discovery source-constrained local plaintext candidate with a prospective shed-interior radix59 consequence; do not generalize local GP0 word indexing without a new holdout.",
 }, null, 2));
