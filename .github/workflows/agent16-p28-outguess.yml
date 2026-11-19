@@ -1,0 +1,102 @@
+name: Agent16 p28 OutGuess gate
+
+on:
+  push:
+    paths:
+      - ".github/workflows/agent16-p28-outguess.yml"
+  workflow_dispatch:
+
+jobs:
+  outguess:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Verify original p28 image
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual="$(sha256sum resources/liber-primus/45.jpg | cut -d' ' -f1)"
+          echo "sha256=$actual"
+          test "$actual" = "318bb587f4dcab11b4db7ba3b8bb13b7913ca79bb409e1c987595503a22e0522"
+
+      - name: Install OutGuess
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y outguess
+          outguess 2>&1 | head -n 2 || true
+
+      - name: Charge source-motivated OutGuess keys
+        shell: bash
+        run: |
+          set -u
+          image="resources/liber-primus/45.jpg"
+          rm -rf outguess-results
+          mkdir outguess-results
+
+          inspect_output() {
+            label="$1"
+            file="$2"
+            status="$3"
+            echo "=== $label exit=$status ==="
+            if [ -f "$file" ]; then
+              bytes="$(wc -c < "$file")"
+              echo "bytes=$bytes"
+              sha256sum "$file"
+              file "$file" || true
+              xxd -l 256 "$file" || true
+              strings -n 4 "$file" | head -n 40 || true
+            else
+              echo "no-output-file"
+            fi
+          }
+
+          run_first() {
+            label="$1"
+            key="$2"
+            out="outguess-results/${label}.bin"
+            log="outguess-results/${label}.log"
+            if [ "$key" = "__DEFAULT__" ]; then
+              outguess -r "$image" "$out" >"$log" 2>&1
+            else
+              outguess -r -k "$key" "$image" "$out" >"$log" 2>&1
+            fi
+            status=$?
+            cat "$log"
+            inspect_output "$label" "$out" "$status"
+          }
+
+          run_second() {
+            label="$1"
+            key="$2"
+            out="outguess-results/${label}.bin"
+            log="outguess-results/${label}.log"
+            outguess -r -K "$key" "$image" "$out" >"$log" 2>&1
+            status=$?
+            cat "$log"
+            inspect_output "$label" "$out" "$status"
+          }
+
+          run_first "first-default" "__DEFAULT__"
+          for entry in \
+            "HERE:HERE" \
+            "here:here" \
+            "READOUT:READOUT" \
+            "readout:readout" \
+            "READ_OUT:READ OUT" \
+            "read_out:read out" \
+            "READOUTHERE:READOUTHERE" \
+            "readouthere:readouthere" \
+            "READ_OUT_HERE:READ OUT HERE" \
+            "read_out_here:read out here"
+          do
+            label="${entry%%:*}"
+            key="${entry#*:}"
+            run_first "first-${label}" "$key"
+            run_second "second-${label}" "$key"
+          done
+
+          echo "=== result inventory ==="
+          find outguess-results -maxdepth 1 -type f -printf '%f %s bytes\n' | sort
