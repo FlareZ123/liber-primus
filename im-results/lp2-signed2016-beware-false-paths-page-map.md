@@ -72,7 +72,7 @@ The authenticated interval between those fixed endpoints is exactly:
 40 PATHS
 ```
 
-This changes the role of p36 in the corridor. The retracted p36 `GOOD` body claim stays retracted; `GOOD` is supplied by a global authored-count readout instead. P37 and p38 retain their independent local candidates, p39 retains its original red-X warning, and the global 10-dot class total supplies the `PATHS` endpoint without relying on p40's repeated botanical frame.
+This changes the role of p36 in the corridor. The earlier line-fragment p36 `GOOD` claim stays retracted, while the later EMPTY-center/direction-number decoder independently supplies a strong local `GOOD` candidate at canonical word37. The global count `36=GOOD` remains a separate navigation endpoint. P37 and p38 retain their independent local candidates, p39 retains its original red-X warning, and the global 10-dot class total supplies the `PATHS` endpoint without relying on p40's repeated botanical frame.
 
 [Large-punctuation dictionary](lp2-large-punctuation-source-index-dictionary.md) · [SFT](../sims/lp2_large_punctuation_source_index_sft.cjs).
 
@@ -217,7 +217,7 @@ The adjacent source words36-37 are `GOOD LUCK`. Physical pages p36-p38 are exact
 40 PATHS
 ```
 
-The strongest evidence now includes the global punctuation endpoints `36=GOOD` and `40=PATHS`, the p36 section1 `MEANING` recovery, the p37 reversible `LUCK` candidate, the exact p38 word/state match, and the p39 red-X visual. P40's repeated artwork is no longer needed to obtain the PATHS endpoint.
+The strongest evidence now includes the global punctuation endpoints `36=GOOD` and `40=PATHS`, the p36 EMPTY-center `GOOD` recovery plus section1 `MEANING`, the p37 reversible `LUCK` candidate, the exact p38 word/state match, and the p39 red-X visual. P40's repeated artwork is no longer needed to obtain the PATHS endpoint.
 
 ## Relationship to the new p0 XY route
 
