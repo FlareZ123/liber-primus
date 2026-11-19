@@ -195,7 +195,6 @@ const p23Line1 = p23Line1Record.lens;
 assert.deepEqual(p23Line1, [2, 6, 3, 5, 4]);
 assert.equal(p23Line1Record.terminalGp0, 25);
 assert.equal(spellCardinals(p23Line1), "THEORIG");
-const fiveDotCount = 5;
 
 const state = {
   p: 23,
