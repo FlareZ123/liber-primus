@@ -283,6 +283,33 @@ The only individual zero-based lexicalized three-rune diagonal objects with equa
 
 This is stronger than the retracted `THE THE THE -> THE ROAD THE` claim because it survives the canonical parser and isolates the changed center without selecting one of two adjacent bigrams after the fact.
 
+## Typed THE-window readout resolves PATHS versus ROAD
+
+The corrected SEEK31/AND32 packets are also the only complete three-rune numbered-diagonal objects whose first and third values both point to authenticated `THE` positions and whose resulting source directions stay in range.
+
+Use the packet as `[center,subject,step]` and read:
+
+```text
+source[subject],
+source[center-step], source[center], source[center+step].
+```
+
+The two typed packets give:
+
+```text
+SEEK31 [28,4,12]
+ -> EMPTY ARE THE PATHS
+
+AND32 [12,23,1]
+ -> ROAD IS THE WAY.
+```
+
+The underlying source arithmetic is transparent. `THE1` is a literal unit step around later clause-center `THE` positions, for example `12±1 -> 11 IS / 13 WAY`, while `THE12` supplies the larger step around `THE28`: `28-12=16 ARE`, `28+12=40 PATHS`.
+
+The source typing selects exactly these two adjacent diagonal objects before the output words are judged. The subject-first serialization was recognized after inspection, so retain the two lines as an instruction candidate.
+
+This candidate has a concrete existing consumer: ROAD and PATHS are the GP0=54 ambiguity in the independent FOUND direction graph, and that graph selects ROAD. The new text says `EMPTY ARE THE PATHS / ROAD IS THE WAY`, agreeing with that selection and with the authenticated source's separate `FALSE PATHS` warning.
+
 ## A motivated ROAD consumer
 
 The changed center is authenticated source word ROAD at zero-based index23:
