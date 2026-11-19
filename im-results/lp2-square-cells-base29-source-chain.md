@@ -127,4 +127,4 @@ The exact 13-atom additive key ordering on p0 remains retrospective. This result
 node sims/lp2_square_cells_base29_source_chain_sft.cjs
 ```
 
-Windows Node22 workflow: pending at report creation.
+Windows Node22 PASS: `44475812105`.
