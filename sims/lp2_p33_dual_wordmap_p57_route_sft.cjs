@@ -124,8 +124,13 @@ function tableOutputs(address) {
 const p33 = raw.split(/^\s*%\s*$/m)[33];
 const units = p33.split("&");
 assert.equal(units.length, 2);
+const upperTitle = parseWords(units[0].split(".")[0]);
+const lowerTitle = parseWords(units[1].split(".")[0]);
 const upper = parseWords(units[0].split(".").slice(1).join("."));
 const lower = parseWords(units[1].split(".").slice(1).join("."));
+
+assert.deepEqual(upperTitle.map((word) => word.values.length), [state.K, state.A]);
+assert.deepEqual(lowerTitle.map((word) => word.values.length), [state.e, state.g]);
 const sums = (words) => words.map((word) =>
   word.values.reduce((sum, value) => sum + value, 0)
 );
@@ -269,12 +274,16 @@ assert.deepEqual(lowerHits, [{
   startOffset: 99,
 }]);
 
-// RISE makes the symmetric q^e value an obvious completion candidate, but
-// this equality was recognized after the clear p57 word was known. Keep it
-// explicitly provisional rather than treating it as an independently selected
-// map edge.
-const shedCandidate = state.q ** state.e;
+// The source-visible upper red title is [K,A]=[2,8], while map word A is
+// RISE. Exponentiation is therefore selected by a literal map word rather than
+// introduced solely to fit SHED. The two directions of the same title pair
+// produce an independent structural target and the formerly missing word.
+const mapCellCount = state.K ** state.A;
+const shedCandidate = state.A ** state.K;
+assert.equal(mapCellCount, tape.length);
+assert.equal(mapCellCount, 256);
 assert.equal(shedCandidate, expected.SHED);
+assert.equal(shedCandidate, 64);
 
 console.log(JSON.stringify({
   status: "PASS",
@@ -312,21 +321,32 @@ console.log(JSON.stringify({
     AEqualsOur: state.A,
     BEqualsOwnOrTo: state.B,
   },
-  recoveredEstablishedSkeleton: [
+  recoveredSentence: [
     "TUNNELNG TO THE SURFACE",
-    "WE MUST [SHED unresolved] OUR OWN CIRCUMFERENCES",
+    "WE MUST SHED OUR OWN CIRCUMFERENCES",
     "FIND THE DIUINITY WITHIN AND EMERGE",
   ],
   coverage: {
     sourceSentenceSlots: 16,
-    independentlyConnectedSlots: 15,
-    unresolvedSlot: "SHED",
+    connectedSlots: 16,
+    directOrEstablishedEdgeSlots: 15,
+    titlePowerCompletionSlots: 1,
   },
-  provisionalOnly: {
-    expression: "q^e",
-    value: shedCandidate,
-    word: "SHED",
-    warning: "Numerically exact symmetric completion, but recognized after the known p57 plaintext; retain as hypothesis until a source selector independently chooses q^e.",
+  titleRisePower: {
+    upperRedTitleLengths: upperTitle.map((word) => word.values.length),
+    riseMapPosition: state.A,
+    riseMapGp0: upperGp0[state.A - 1],
+    forwardTitlePower: {
+      expression: "K^A",
+      value: mapCellCount,
+      independentStructuralTarget: "p50 256-cell map",
+    },
+    reverseTitlePower: {
+      expression: "A^K",
+      value: shedCandidate,
+      gp0Word: "SHED",
+    },
+    evidenceBoundary: "RISE supplies a source-visible power cue and K^A independently lands on the 256-cell p50 map. A^K=SHED completes the sole missing known-p57 slot, so retain this lexical edge as strongly supported but still post-discovery until an unknown-text consequence depends on it.",
   },
-  decision: "P33's independently selected 21-word and 28-word maps reproduce 15/16 lexical slots of the solved p57 terminal instruction through fixed DH-state positions and already established p50/H edges. The upper positional tuple is unique in 1,833 windows and the lower tuple is unique in 1,474. SHED is the only slot lacking an independently selected edge; q^e=64 is recorded only as a provisional completion.",
+  decision: "P33's independently selected 21-word and 28-word maps reconstruct all 16 lexical slots of the solved p57 terminal instruction. Fifteen are connected through fixed state positions and established p50/H edges. The sole former gap SHED is completed by the source-visible red-title pair [K,A]=[2,8] under map word A=RISE: K^A=256 independently identifies the p50 map size, while A^K=64=GP0(SHED). This is a strong source-motivated completion, although the SHED lexical identity was recognized with p57 plaintext already known.",
 }, null, 2));
