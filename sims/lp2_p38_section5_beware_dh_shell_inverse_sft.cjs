@@ -119,6 +119,69 @@ const signedWords = (signedBody.match(/[A-Za-z]+/g) || []).map((word, index) => 
 });
 assert.equal(signedWords.length, 43);
 
+// Reconstruct the independently frozen signed-word direction graph:
+// s_i = low60(p50[i]) - i - GP_length(word_i) mod29.
+const edges = signedWords.map((word) =>
+  mod29(low60(tokens[word.index]) - word.index - word.length)
+);
+
+/** @param {number} start @returns {{cycle:string,depth:number,cycleNodes:number[]}} */
+function traceGraph(start) {
+  const seen = new Map();
+  const route = [];
+  let node = start;
+  while (!seen.has(node)) {
+    seen.set(node, route.length);
+    route.push(node);
+    node = edges[node];
+  }
+  const cycleStart = seen.get(node);
+  const cycleNodes = route.slice(cycleStart);
+  const rotations = cycleNodes.map((_, offset) =>
+    [...cycleNodes.slice(offset), ...cycleNodes.slice(0, offset)]
+  );
+  rotations.sort((left, right) => {
+    for (let index = 0; index < left.length; index += 1) {
+      if (left[index] !== right[index]) return left[index] - right[index];
+    }
+    return 0;
+  });
+  return {
+    cycle: rotations[0].join(","),
+    depth: cycleStart,
+    cycleNodes: rotations[0],
+  };
+}
+
+const traces = signedWords.map((_, index) => traceGraph(index));
+const cycleMap = new Map();
+for (const trace of traces) {
+  if (!cycleMap.has(trace.cycle)) cycleMap.set(trace.cycle, trace.cycleNodes);
+}
+const cycles = [...cycleMap.values()];
+const cycleLengths = cycles.map((cycle) => cycle.length).sort((left, right) => left - right);
+const totalCycleNodes = cycleLengths.reduce((sum, value) => sum + value, 0);
+const maxDepth = Math.max(...traces.map((trace) => trace.depth));
+const basinSizes = [...cycleMap.keys()]
+  .map((cycle) => traces.filter((trace) => trace.cycle === cycle).length)
+  .sort((left, right) => left - right);
+
+assert.equal(cycles.length, 2);
+assert.deepEqual(cycleLengths, [3, 3]);
+assert.equal(totalCycleNodes, 6);
+assert.equal(maxDepth, 5);
+assert.deepEqual(basinSizes, [14, 29]);
+
+const topologyState = Object.freeze({
+  K: cycles.length,
+  e: cycleLengths[0],
+  a: totalCycleNodes,
+  g: maxDepth,
+  p: 29 - totalCycleNodes,
+  b: 29 - basinSizes[0],
+});
+assert.deepEqual(topologyState, { K: 2, e: 3, a: 6, g: 5, p: 23, b: 15 });
+
 const sixRuneTargets = [...new Map(
   signedWords
     .filter((word) => word.length === 6)
@@ -288,6 +351,20 @@ assert.deepEqual(familyHits, [{
   target: "BEWARE",
 }]);
 
+// The same shell compresses entirely to signed-word direction-graph topology.
+// p-e=20 independently equals the literal p28 DH[p] lookup.
+const topologyShell = [
+  mod29(topologyState.K - topologyState.b),
+  mod29(-topologyState.g),
+  topologyState.p,
+  mod29(topologyState.p - topologyState.e),
+  mod29(topologyState.e - topologyState.e),
+  mod29(-topologyState.b),
+];
+assert.deepEqual(topologyShell, [16, 24, 23, 20, 0, 14]);
+assert.deepEqual(topologyShell, familyHits[0].shell);
+assert.equal(mod29(topologyState.p - topologyState.e), dhLine[state.p - 1]);
+
 const exact = familyHits[0];
 assert.deepEqual(exact.shell, hShell(exact.key));
 const plaintext = receiver.values.map((value, index) => mod29(value - exact.key[index]));
@@ -365,6 +442,17 @@ console.log(JSON.stringify({
     plaintextLabels: "[g-a,a,-b,HERE[B],K*a,K]",
     key: exact.shell,
     keyLabels: "[K-b,-g,p,DH[p],0,-b]",
+  },
+  directionGraphTopology: {
+    cycles,
+    cycleLengths,
+    totalCycleNodes,
+    maxDepth,
+    basinSizes,
+    reconstructed: topologyState,
+    topologyShell,
+    shellLabels: "[K-b,-g,p,p-e,e-e,-b]",
+    pMinusEEqualsDhAtP: mod29(topologyState.p - topologyState.e),
   },
   family: {
     stateFields: Object.keys(state),
