@@ -496,6 +496,15 @@ const p27BodyStateCounts = p27BodyStateDepths.map((depth) =>
 );
 assert.deepEqual(p27BodyStateCounts, [57, 32, b, q]);
 
+const p27FirstShedCount = shedDepthCount(p27Body.body, 1);
+assert.equal(p27FirstShedCount, p39Body.flat().length);
+assert.deepEqual(
+  bodies
+    .filter((row) => row.body.flat().length === p27FirstShedCount)
+    .map((row) => [row.page, row.start]),
+  [[39, 119]]
+);
+
 const p27BodyPacketHits = bodies
   .filter((row) =>
     JSON.stringify(p27BodyStateDepths.map((depth) =>
@@ -504,6 +513,33 @@ const p27BodyPacketHits = bodies
   )
   .map((row) => [row.page, row.start]);
 assert.deepEqual(p27BodyPacketHits, [[27, 0]]);
+
+// Reproduce the independently established p32 center handoff inside this SFT.
+// P32 is 11x11; five g=5 circumferences leave center W, GP-prime B=19.
+// The established p50 byte map sends state B to physical p33.
+const p32Corpus = corpus.pages.find((page) => page.page === 32);
+assert.ok(p32Corpus);
+assert.equal(p32Corpus.runic_count, 121);
+const p32Side = Math.sqrt(p32Corpus.runic_count);
+assert.equal(p32Side, 11);
+const p32CenterOffset = g * (p32Side + 1);
+assert.equal(p32CenterOffset, 60);
+const p32CenterIndex = p32Corpus.indices[p32CenterOffset];
+assert.equal(corpus.translit[p32CenterIndex], "W");
+assert.equal(corpus.prime[p32CenterIndex], B);
+const p32NextPage = grid.byte_rows.flat()[B];
+assert.equal(p32NextPage, 33);
+
+const pageCycle = [
+  p27Page,
+  p27BodyStateCounts[1],
+  p32NextPage,
+  p33FirstBody.inner.length,
+  p39H1[1],
+  p3SecondBody.inner.length,
+  p53ShedCounts[0],
+];
+assert.deepEqual(pageCycle, [27, 32, 33, 39, 3, 53, 27]);
 
 // Full red-body census under the same rule. This includes one-rune words by
 // giving them empty interiors, so the 39/50 results do not depend on a special
