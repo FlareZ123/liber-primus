@@ -327,6 +327,54 @@ const theirRise = sourceWords.lastIndexOf("THEIR") - sourceWords.indexOf("THEIR"
 assert.equal(theirRise, state.a);
 assert.equal(willReceiver.ordinal - youReceiver.ordinal, state.a);
 
+const home = [8,3,19,18];
+assert.deepEqual(p32.slice(33, 37), home);
+assert.equal(
+  home.map((value) => corpus.translit[value]).join(""),
+  "HOME"
+);
+
+const homeHits = [];
+for (let segment = 0; segment < 55; segment += 1) {
+  const page = segment >= 50 ? segment + 1 : segment;
+  const values = [];
+  for (const character of [...parts[segment]]) {
+    const value = runeToValue.get(character);
+    if (value !== undefined) values.push(value);
+  }
+  for (let offset = 0; offset <= values.length - home.length; offset += 1) {
+    if (home.every((value, index) => value === values[offset + index])) {
+      homeHits.push({page, offset});
+    }
+  }
+}
+assert.deepEqual(homeHits, [{page:32, offset:33}]);
+
+const coordinateOutputs = [];
+function dihedralCoordinates(row, column) {
+  return [
+    [row, column],
+    [column, 10 - row],
+    [10 - row, 10 - column],
+    [10 - column, row],
+    [row, 10 - column],
+    [10 - row, column],
+    [column, row],
+    [10 - column, 10 - row],
+  ];
+}
+for (const origin of [0,1]) {
+  const row = state.K - origin;
+  const column = state.A - origin;
+  for (const [r,c] of dihedralCoordinates(row, column)) {
+    coordinateOutputs.push(p32[r * 11 + c]);
+  }
+}
+const coordinateStateHits = [...new Set(
+  coordinateOutputs.filter((value) => directState.has(value))
+)].sort((left, right) => left - right);
+assert.deepEqual(coordinateStateHits, [state.a, state.A, state.b, state.B, state.e].sort((left,right)=>left-right));
+
 const selectedRow = p32.slice(33, 44);
 assert.equal(
   selectedRow.map((value) => corpus.translit[value]).join(""),
@@ -366,6 +414,8 @@ console.log(JSON.stringify({
     displacement: willReceiver.ordinal - youReceiver.ordinal,
     expected: "a=6",
   },
+  heldOutRowStart: {word:"HOME", values:home, uniqueHits:homeHits},
+  matrixCoordinateGate: {chargedReadings:coordinateOutputs.length, directStateOutputs:coordinateStateHits, result:"AMBIGUOUS"},
   excludedFromSelector: {
     selectedRowTranslit: "HOMEXWDSLFD",
     note: "Known p32 lexical material was not used to choose boundary33.",
