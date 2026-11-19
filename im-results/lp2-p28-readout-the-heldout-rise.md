@@ -209,6 +209,42 @@ p28 word29, start140.
 
 Thus the held-out prediction is manuscript-wide unique under the complete two-rune-word census.
 
+## Page / word / source self-location and the +a three-page chain
+
+The held-out receiver has an additional source-visible alignment that was not part of the prediction:
+
+```text
+physical LP2 page number = 29   (project p28)
+canonical p28 word number = 29
+authenticated source word number = 29 = THE
+```
+
+This is a three-way 29 self-location. The recovered word is not merely somewhere on p28: it is **word29**, exactly the one-based signed position of THE.
+
+The next authenticated source word is one-based word30 = DIRECTION.
+
+The same THEIR RISE step also generates the complete same-index stride:
+
+```text
+source/project index28 THE
+             +6
+source/project index34 BE
+             +6
+source/project index40 PATHS.
+```
+
+The first two members are the exact additive recoveries documented here and in the p34 report. The third member, p40 PATHS at start71, was independently recovered before this chain was noticed. Thus the authored rise `a=6` lands on three matching source/page plaintext candidates in succession:
+
+```text
+p28 THE
+p34 BE
+p40 PATHS.
+```
+
+The two direct rise-derived keys occur on the first two steps, whose GP0 rises are exactly Bob's DH pair `b -> B`. The p40 plaintext uses its independently established local shell rather than a repaired extension of the two-rune rule.
+
+This three-page stride is cross-route corroboration. Do not force the two-rune key formula onto p40's four-rune target.
+
 ## Relationship to the authenticated DIRECTION route
 
 The recovered local token is source word28 THE. In the authenticated signed message its immediate follower is:
@@ -296,4 +332,4 @@ Run:
 node sims/lp2_their_rise_h_rectangle_selector_sft.cjs
 ```
 
-The SFT reconstructs THEIR RISE, runs the complete two-rune +6 predictor family, checks the p28/p34 hits, verifies p28 adjacency to the existing READ OUT object, and exhausts all 473 canonical two-rune manuscript words for the exact p28 packet.
+The SFT reconstructs THEIR RISE, runs the complete two-rune +6 predictor family, checks the p28/p34 hits, verifies p28 adjacency to the existing READ OUT object, and exhausts all 473 canonical two-rune manuscript words for the exact p28 packet. Windows Node22 PASS after preserving the unexpected holdout: **44461032220**.
