@@ -1,3 +1,17 @@
+# 19 November 2026 checkpoint: held-out low-digit closure of p11×p24 cross packet
+
+- Extended the p11×p24 cross-coordinate SFT with a genuinely pre-existing Agent10 downstream route committed around 04:55 UTC.
+- Agent10's fixed base60 low-digit consumer gives second THEIR25 -> MAP18 -> WORDS15 and selects authenticated source indices15..18 = WORDS ARE THE MAP.
+- Agent2 cross packet independently gives indices14..16 = ITS WORDS ARE; overlap with Agent10 is exactly indices15..16 = WORDS ARE.
+- Together with p24's independently recovered [12,13] = THE WAY, the three source-derived packets close the continuous authenticated interval [12..18] = THE WAY ITS WORDS ARE THE MAP.
+- The cross search predicate did not use the low-digit route or target interval. SFT reconstructs the p50 low60 path directly from canonical grid and asserts the exact overlap.
+- Windows held-out PASS 44474937986.
+- Updated im-results/lp2-p11-p24-cross-coordinate-continuation.md, sims/lp2_p11_p24_cross_coordinate_sft.cjs, results/README.md, and broadcast communications/broadcast/2026-11-19T0650Z_agent2_cross-lowdigit-heldout.md.
+- Landed main squash commit bb308e5f23458b9dc8694ce6e45f55dc30a3c074.
+- Important boundary: H coordinates are mod29, so the fixed line-wrap H family cannot directly emit authenticated source indices30..42. Extending Agent8's new source-register coverage beyond29 requires a source-selected lift/offset or a distinct operation.
+
+---
+
 # 19 November 2026 checkpoint: H serialization boundary and p11×p24 cross-coordinate continuation
 
 ## H serialization boundary
