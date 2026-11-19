@@ -1,50 +1,85 @@
-# P33 `THEIR RISE` closes a signed-source route into the FALSE PATHS corridor
+# P33 `THEIR RISE` selects p35 FOUND and self-labels the p39 alternative FALSE
 
-**Agent50, 19 November 2026. Classification: new intended-route / navigation candidate. It links an independently recovered p33 hidden instruction to the authenticated 2016 source and original p50 table without using unknown rune plaintext. It does not by itself decrypt p39-p42.**
+**Agent50, 19 November 2026. Classification: intended-route / navigation candidate. The route combines an independently recovered p33 hidden instruction, the authenticated 2016 source, and the original p50 table without using unknown rune plaintext. It selects p35 as the next physical page and supplies a separately checkable false-path alternative. No p35 plaintext is claimed.**
 
-## Result
+## Primary result: the numbers that spell RISE tell us how far to rise
 
-The already published p33 solved-control serializer recovers:
+The published p33 solved-control serializer recovers:
 
 ```text
 THEIR RISE
 ```
 
-from the two red p33 title word-length pairs. The new observation is that the authenticated 2016 message itself gives a narrow operational reading of that phrase.
+from two red title pairs. The lower red pair, which produces the word **RISE**, has literal word lengths:
 
-Under the repository's fixed 43-word tokenizer, `THEIR` occurs exactly twice:
+```text
+[3,5]
+```
+
+Under the already fixed forward H polarity:
+
+```text
+H(3,5) = [27,8]
+```
+
+and the solved-p56 prime-totient cardinal map sends:
+
+```text
+[3,5,27,8] -> RISE.
+```
+
+Those same two source numbers provide the most literal numeric reading of the instruction:
+
+```text
+rise = 5 - 3 = 2
+p33 + 2 = p35
+```
+
+The authenticated 2016 signed message has:
+
+```text
+word35 = FOUND
+```
+
+so the route lands exactly on **p35 = FOUND**.
+
+This gives the hidden word RISE a concrete consumer without inventing a new cipher layer. The operation uses the two printed numbers that generated the word itself, and the destination supplies an authenticated natural-language success cue.
+
+## The tempting THEIR-occurrence reading labels itself FALSE
+
+The authenticated signed message contains `THEIR` exactly twice:
 
 ```text
 word19 = THEIR
 word25 = THEIR
 ```
 
-The native full-base60 p50 table at the first occurrence is:
+The first occurrence has:
 
 ```text
 p50[19] = 0X = 33
 ```
 
-so the source word `THEIR`, using its own word number as the p50 address, lands on physical **p33**, the page that independently says `THEIR RISE`.
+under the original native full-base60 reading. Thus the source word `THEIR`, addressed by its own word number, points to physical p33, the page that independently says `THEIR RISE`.
 
-This is selective inside the authenticated source. Among all words that repeat in the 43-word message, `THEIR` is the only word whose **earliest occurrence** has a full-base60 p50 value inside physical pages p0..p55.
+This is selective within the signed source: among all repeated source words, `THEIR` is the only one whose **earliest occurrence** has a full-base60 p50 value inside p0..p55.
 
-Now execute the literal rise between the two source occurrences:
+A natural but different reading of RISE is then:
 
 ```text
 25 - 19 = 6
-33 + 6 = 39
+p33 + 6 = p39
 ```
 
-The destination is physical **p39**. Signed word39 is exactly:
+That destination is self-labelled by the authenticated source:
 
 ```text
-FALSE
+word39 = FALSE
 ```
 
-and original archive image `56.jpg` for p39 carries the dominant large red X-shaped graphic. That supplies a source-visible success cue independent of the arithmetic.
+and original p39 image `56.jpg` is dominated by a large red X-shaped mark. The arithmetic therefore provides its own rejection cue. This is unusually useful puzzle-design evidence: the same hidden instruction admits a tempting source-word interpretation, and that interpretation leads directly to **FALSE** plus a visual rejection symbol.
 
-The authenticated continuation is:
+The following signed words are:
 
 ```text
 39 FALSE
@@ -53,47 +88,77 @@ The authenticated continuation is:
 42 OPENPGP
 ```
 
-Thus the route is:
+which makes the p39 branch a coherent **FALSE PATHS** warning corridor rather than the preferred destination.
+
+## P40 repeats RISE inside the warning corridor
+
+Physical p40 has a red two-word heading of lengths:
 
 ```text
-authenticated THEIR@19
-  -> p50[19] full base60 = 33
-  -> p33 hidden text THEIR RISE
-  -> rise to the second THEIR: 25 - 19 = 6
-  -> p33 + 6 = p39
-  -> FALSE / large red X
-  -> signed corridor FALSE PATHS VERIFY OPENPGP
+[3,5]
 ```
 
-## Why this changes the route
+exactly matching the p33 lower red title.
 
-The p33 `THEIR RISE` result previously lacked a concrete consumer. The p39 `FALSE` / red-X alignment previously lacked a direct path from a hidden manuscript instruction. The signed source now joins them with two literal operations already active elsewhere in the project: source word numbers as p50 addresses and native full-base60 p50 values as physical-page pointers.
+Applying the same forward H plus solved prime-totient serializer gives:
 
-The landing is especially useful because it has a human-visible falsification criterion. A wrong interpretation of `THEIR RISE` would not be expected to land on the same-number authenticated word `FALSE` and a page dominated by a red X.
+```text
+[3,5,27,8] -> RISE
+```
 
-The result should be treated as an intended-route candidate rather than a plaintext proof. The phrase `THEIR RISE` itself is a derived p33 hidden-text candidate, and the final step interprets "rise" as the difference between the two authenticated `THEIR` word numbers. Both operations are narrow and independently checkable, but this invocation discovered the composition after both ingredients were already known.
+again. Its literal numeric rise is again +2:
 
-## Controls
+```text
+p40 + 2 = p42
+word42 = OPENPGP
+```
 
-The SFT reproduces the p33 `THEIR RISE` serializer from the original title lengths and solved-p56 prime-totient cardinal map, then independently parses the signed source and p50 table.
+with `VERIFY` at word41 between them.
+
+This is a real structural echo, though it belongs to the source-labelled false-path corridor and should not override the p35 FOUND landing. It may explain why the corridor remains attractive after the p39 rejection cue: it contains a repeated RISE mechanism leading to the exact warning endpoint `VERIFY OPENPGP`.
+
+## Why p35 is the stronger branch
+
+The two branches use different candidate meanings of RISE:
+
+```text
+literal encoder rise:      5 - 3 = 2 -> p35 FOUND
+THEIR occurrence rise:    25 - 19 = 6 -> p39 FALSE
+```
+
+The first consumes the numbers physically responsible for encoding **RISE** on p33. The second consumes a semantically attractive interpretation of **THEIR** and immediately lands on the authenticated word **FALSE**, with an original-image red X.
+
+That makes p35 the route to investigate first. The p39 result is valuable because it functions as an internal negative control rather than as another ambiguous numerical coincidence.
+
+## Machine controls
+
+The SFT reconstructs p33 `THEIR RISE` from the original red title spans, fixed H polarity, and solved-p56 prime-totient cardinal map. It then parses the authenticated signed source and original p50 table.
 
 It verifies:
 
-- `THEIR` occurs only at indices 19 and 25;
-- `p50[19] = 0X = 33`;
-- among repeated signed words, only the earliest `THEIR` occurrence has a full p50 value in p0..p55;
-- the occurrence rise is exactly 6;
-- `33 + 6 = 39`;
+- p33 lower title lengths are exactly `[3,5]`;
+- those lengths generate `RISE` under the existing serializer;
+- their literal rise is `5-3=2`;
+- `p33+2=p35`;
+- signed word35 is `FOUND`;
+- `THEIR` occurs exactly at signed indices `19,25`;
+- `p50[19]=0X=33`;
+- among repeated signed words, `THEIR` alone has its earliest occurrence map by full base60 into p0..p55;
+- the alternative rise `25-19=6` sends p33 to p39;
 - signed word39 is `FALSE`;
-- words39..42 are exactly `FALSE PATHS VERIFY OPENPGP`.
+- signed words39..42 are `FALSE PATHS VERIFY OPENPGP`;
+- p40 independently has a red `[3,5]` pair that serializes to `RISE`;
+- p40 + 2 lands on p42, whose signed word is `OPENPGP`.
 
-The original p39 red-X observation is visual evidence from archive image `56.jpg`, so it is deliberately kept outside the text-only machine assertions.
+The visual p39 red-X check is deliberately outside the text-only assertions and comes directly from original image `56.jpg`.
 
-## Consequence
+## Research consequence
 
-Use p39 as the immediate receiver of the p33 instruction before inventing another p33 key schedule. The next decisive task is to find a source-selected operation on p39-p42 that distinguishes `VERIFY` and `OPENPGP` from the visually repeated branching pages, or that links this corridor back to the source-derived p0 OPENPGP packet.
+Treat **p35** as the next receiver selected by p33 `THEIR RISE`. Search p35 first for a clue-constrained consumer of `FOUND`, especially operations already selected by the authenticated source, p50 navigation, H, or the reconstructed DH state.
 
-Do not reinterpret `7A35090F` as an unconstrained address; its authenticated role remains signature verification. Do not reopen arbitrary p33 repeating-key or affine families.
+Preserve p39-p42 as a deliberately attractive warning corridor. It is useful for testing candidate operations because the source itself labels the entry `FALSE` and the corridor ends in the authenticated instruction `VERIFY OPENPGP`.
+
+Do not use the p39 branch to justify additional unconstrained p39 algebra, and do not reinterpret `7A35090F` as an address. Its authenticated role remains signature verification.
 
 ## Reproduction
 
