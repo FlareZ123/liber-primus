@@ -77,3 +77,50 @@ The compact candidate already observed is Alice-self/Bob-other, `s=g`, both plus
 Positive gate: the complete family has one distinct numeric operation/target hit and it is BEWARE under that source-role configuration and subtraction. Otherwise close the template with no widening.
 
 No target-dependent constants, rotations, permutations, phase changes, or extra state expressions may be added after this file is established.
+
+
+## Outcome
+
+Both complete frozen families have exactly one authenticated-target hit.
+
+### PATHS
+
+```text
+configs = 128
+distinct authenticated four-rune targets =
+LIES THEIR MEANING ROAD SEEK WILL GOOD LUCK PATHS
+
+sole hit:
+x=p, y=K, subtraction
+H-key shell = [25,22,24,2]
+linear key  = [9,13,18,13]
+
+[22,8,20,28] - [9,13,18,13] mod29
+= [13,24,2,15]
+= PATHS
+```
+
+### BEWARE
+
+```text
+configs = 48
+distinct authenticated six-rune targets =
+PRIMUS BEWARE VERIFY
+
+sole hit:
+Alice-self / Bob-other
+s=g
+U+u
+v+K
+subtraction
+H-key shell = [5,19,19,14,12,17]
+linear key  = [12,2,0,17,12,7]
+
+[0,20,7,12,16,25] - [12,2,0,17,12,7] mod29
+= [17,18,7,24,4,18]
+= BEWARE
+```
+
+No family widening was used.
+
+**Classification:** positive source-assigned packet inverses with charged, unique state-shell families. The plaintext block assignments were selected by Agent20's independent source-only warning-length gate before these families were scored. The exact family templates were recognized after inspecting the required keys, so the result is strong mechanism compression and a cross-check of the source segmentation rather than fully blind key derivation.
