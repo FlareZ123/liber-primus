@@ -1,0 +1,19 @@
+name: Agent27 signed-2016 DIRECTION-29 DH fold SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reconstruct DH state from DIRECTION-29 fold
+        shell: pwsh
+        run: node sims/lp2_signed2016_direction29_fold_dh_state_sft.cjs
