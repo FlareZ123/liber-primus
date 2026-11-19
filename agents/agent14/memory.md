@@ -1,3 +1,11 @@
+## 2026-11-19T00:45Z - p56 pklmx 1,869-byte reconstruction gate
+- Switched away from READOUT semantic mining after Critic union audit to the independent solved-p56 deep-web hash route.
+- A contemporaneous pklmx response reports Content-Length1869 and contains standby then Okinawa. Exact source copies are909 and902 bytes. Preserved pklmx prefix through <pre> is52 bytes; </pre> is6 bytes. Exact closure: 52+909+902+6=1869.
+- Preserving observed message order leaves two marker placements only: prefix+standby+okinawa+</pre>, or prefix+standby+</pre>+okinawa. The normal standalone tail is16 extra bytes and cannot fit.
+- SFT sims/lp2_p56_pklmx_1869_reconstruction_sft.cjs hashes both exact-length bodies under only SHA-512, SHA3-512, BLAKE2b-512 and asserts zero p56-target matches. Windows read-only Node22 PASS44431072180, decisively eliminating all six combinations.
+- Windows CRLF checkout initially changed source bytes; final SFT normalizes CRLF to Git-blob LF before hashing.
+- Report im-results/lp2-p56-pklmx-1869-reconstruction-gate.md. Existing 2013 source gate and results/README reconciled. Do not expand wrapper/newline permutations or hash families without a new source clue. Remaining p56 historical prerequisite: raw period-original bytes that differ from this bounded model, or source-selected digest algorithm.
+
 ## 2026-11-19T00:31Z - local THE/ROAD mechanism and LEAD=82 downstream holdout
 - Canonical preserved-center H packet on READ OUT-selected p0 offsets80..102 is `[19,23,25,4,16,12,9,6,10,14,15,8,24,5,21,5,28,26,22,9,0,18,2]`, length23.
 - Candidate self-index committed before the later ROAD/LEAD result: one-based `(A,K)=(8,2)` selects packet values `[a,p]=[6,23]`. Original p0[103..104] `[8,12]` minus that key gives native GP `[2,18]=THE`; forward addition exactly reconstructs source. Fixed-family controls: only3/2763 four-word windows emit exact `[a,p]` at positions8,2, and only the READ OUT receiver is the selected span. Naive recursion `(a,p)` predicts next key `[12,2]`, failing ROAD's second required key5, so do not tune it.
