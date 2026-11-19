@@ -315,3 +315,21 @@ WAY13 -> p13 directed receiver GP0 98
 Thus `IS THE WAY=11,12,13` reconstructs THEIR/NUMBERS, and authenticated continuation gives `THEIR25 NUMBERS26 ARE27 THE28 DIRECTION29`. DIRECTION29 then re-enters the corrected p29->SEEK30->AND31 numbered route and returns to p31.
 
 This turns the readable p31 instruction into an executable loop using consumers that predate the decoder. ROAD23 remains a parallel productive checkpoint from the first word of the same phrase.
+
+
+### P31 unit-step ROAD23 -> FOUND35
+
+Among all eight complete three-rune numbered-diagonal objects, p31 alone has third coordinate1. Read untouched `[12,23,1]` as distance12, source start23=ROAD, unit step1:
+
+```text
+23 + 12*1 = 35 = FOUND.
+```
+
+The exact authenticated walk is:
+
+```text
+ROAD AND THEIR NUMBERS ARE THE DIRECTION SEEK AND YOU WILL BE FOUND
+(indices23..35).
+```
+
+P35 was independently selected and locally recovered as FOUND before this unit-step interpretation. This gives p31 a second, purely numeric route to p35, independent of the subject-first THE-window decoder and independent of p33 THEIR RISE +2.
