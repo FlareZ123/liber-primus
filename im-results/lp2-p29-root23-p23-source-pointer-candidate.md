@@ -50,8 +50,22 @@ The missing step remains explicit: **no first-party source currently says that a
 
 The older p23 five-dot work also matters as a negative control. It found no standalone value-changing cipher from the emblem, and a fixed music-symmetry transfer of the solved p56 prime-totient operation to p23 already failed. Selecting p23 does not revive those exhausted decoders.
 
+## Later source-selector update: root24 wins the coefficient-direction fork
+
+P33 now independently yields hidden `THEIR RISE`. Consuming `RISE` as a coefficient-direction instruction on the printed p39 triad `[27,5,15]` means powers rise left-to-right:
+
+```text
+27 + 5X + 15X^2 = 15(X-24)^2 mod29.
+```
+
+The opposite direction, `27X^2+5X+15`, has double root23. A dedicated exact-source SFT then recomputes the p29/p50 orientation family: root24 is the printed/high-first event with the unique consecutive Taylor packet `[24,25,26,27]`; root23 is the reversed event with nonconsecutive packet `[23,47,15,10]`.
+
+Under the current source chain this resolves the orientation in favor of **root24** before any root-as-page interpretation. The earlier p23 visual asymmetry remains a documented retrospective coincidence/control. Retire root23 -> p23 navigation unless a later first-party clue explicitly licenses root-as-page output and overrides the rising-power direction.
+
+See `lp2-their-rise-polynomial-orientation.md`, Windows PASS 44457869317.
+
 ## Next decisive test
 
-A useful successor must supply the missing output type before consuming p23 ciphertext. Examples would be a first-party instruction that numbers select pages, or an independently predicted p23 operation from the p29/p39/p50 algebra. Without that, do not expand the root23 coincidence into new p23 key searches.
+The current source-selected orientation is root24, so the root23 page-pointer branch is inactive. Do not consume p23 ciphertext from this branch unless new independent source evidence explicitly restores root23 and supplies a page-pointer output type.
 
 Supporting exact orientation reproducer: `sims/lp2_p29_direction_orientation_symmetry_sft.cjs`, Windows PASS 44443088769.
