@@ -157,6 +157,32 @@ plaintext shell [-K,B, A,b-q].
 
 No language model scoring or free alphabet is used.
 
+## Prospective continuation and whole-section control
+
+A direct word-for-word continuation would next expect authenticated `IS`, because the source phrase contains:
+
+```text
+MEANING IS THE ROAD
+```
+
+That continuation fails immediately at a structural gate. The second complete ciphertext word in section1 has **3 runes**, while canonical `IS` has **2 GP runes**. No key value can repair that length mismatch under this additive word-local rule.
+
+A broader frozen-rule control applies the same section1/`e` palindrome key to every complete word in section1:
+
+```text
+word length n
+key = [1, e, ..., e, 1]
+signs = both additive directions
+```
+
+Section1 contains **30** complete words. Across all 60 word/sign outputs, exactly one equals any authenticated 2016 source word:
+
+```text
+section1 word0 -> MEANING.
+```
+
+This supports a local instruction/state reading and rejects a simple running plaintext sentence under the same word-local rule.
+
 ## Manuscript-wide fixed-key control
 
 Hold the exact key `[1,3,3,1]` fixed across:
