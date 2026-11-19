@@ -238,6 +238,10 @@ assert.deepEqual(selected, {start: 135, values: [28, 24, 10, 1, 20]});
 assert.equal(selected.start, centerOffset + 1);
 assert.equal(p28.runes[centerOffset], 9);
 
+const dh = {g: 5, K: 2, A: 8, B: 19};
+assert.equal((dh.g - dh.K + 29) % 29, 3);
+assert.equal(dh.A + dh.B, 27);
+
 const sourceTransform = transforms.find((item) => item.name === "u-3-27");
 assert.ok(sourceTransform);
 const sourceDecoded = renderCandidate(
@@ -399,6 +403,8 @@ assert.equal(unknownPhraseObjects.length, 47);
 assert.equal(sourceObject.phraseHits.length, 2);
 assert.equal(sourceReadOutHits.length, 1);
 assert.equal(sourceTransformPhraseObjects.length, 2);
+assert.equal(centerRayObjects.length, 64);
+assert.equal(centerRayPhraseObjects.length, 4);
 assert.deepEqual(
   solvedControls.map((item) => [
     item.name,
@@ -417,6 +423,12 @@ console.log(JSON.stringify({
   status: "PASS: full pre-output READ OUT family audited",
   exactSource: {
     page: 28,
+    sourceExponentMotivation: {
+      centerExponent: 3,
+      centerDerivation: "g-K mod29",
+      wordExponent: 27,
+      wordDerivations: ["A+B", "3^3 mod28"],
+    },
     centerOffset,
     selectedWord: 28,
     selectedStart: selected.start,
