@@ -44,4 +44,4 @@ The next useful investigation is an independent, human-plausible readout of the 
 
 `node sims/lp2_page_index_centerword_cube_route_sft.cjs`
 
-The SFT reconstructs all 30 page-indexed outputs from the original corpus and transcription, checks the corrected 58-page/57-section mapping, dictionary matches, p50 pointers and orbits, and the p9 center-pair/word9 negative.
+The SFT reconstructs all 30 page-indexed outputs from the original corpus and transcription, checks the corrected 58-page/57-section mapping, dictionary matches, p50 pointers and orbits, and the p9 center-pair/word9 negative. It passed together with the independent large-red-initial census in [GitHub Actions run 44466128898](https://github.com/FlareZ123/liber-primus/actions/runs/44466128898).
