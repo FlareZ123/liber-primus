@@ -47,11 +47,11 @@ HERE
 
 No language search or choice among multiple GP0=36 source words is required.
 
-## Source-side calibration of T^K
+## Pre-existing source-side calibration of T^K
 
-Charge the same `T^K` rule against all 42 adjacent authenticated 2016 word pairs. For each source word, start from its GP0, apply the full-base60 p50 map twice, and ask whether the result equals GP0 of the next authenticated word.
+This exact operator was already established independently in `im-results/lp2-p0-will-be-found-readout-key-cycle.md` before the present HERE application. That report charged all seven reconstructed DH-state values as walk depths, both live p50 radices, and all 42 adjacent authenticated source pairs. Only `K=2` under base60 produces any source adjacency.
 
-Exactly one adjacent pair hits:
+Reproducing that frozen family here gives exactly one adjacent pair:
 
 ```text
 index33 WILL -> index34 BE
@@ -147,6 +147,50 @@ p39 -----------------> VERIFY index41
       independent p39
       receiver/readout
 ```
+
+## FOUND35 is a typed 39 hub
+
+The FOUND step lands on a number already carrying several independent source meanings:
+
+```text
+source index35 = FOUND
+p50[35] = "0d" = 39
+
+39 = GP0(PATH)
+signed source index39 = FALSE
+39 = physical p39 under the existing same-number page convention.
+```
+
+The pre-existing FOUND bridge already consumes the semantic branch:
+
+```text
+FOUND35
+ -> p50[35]=39 = GP0(PATH)
+ -> p50[39]="05"=5
+ -> signed index5 EPIPHANY
+ -> the independently selected EPIPHANY/SEEKS/THE/DEVOTED route to p32.
+```
+
+The present result adds a second independently meaningful type for the same fixed value:
+
+```text
+FOUND35
+ -> p50[35]=39
+ -> physical p39
+ -> independently selected DIVINITY receiver
+ -> VERIFY.
+```
+
+This p39 landing is especially coherent with the already established signed-page corridor:
+
+```text
+38 BEWARE -> p38 independently BEWARE-selected
+39 FALSE  -> p39 dominant red X
+40 PATHS  -> p40 source-linked PATHS candidate/context
+41 VERIFY -> p39 independent receiver output.
+```
+
+So the number39 simultaneously exposes the signed warning's `FALSE/PATH` ambiguity and selects the page whose source-constrained operation yields the next instruction VERIFY. The older warning that direct `BE -> PATH` is a false-path fork remains valid; this report uses FOUND's authenticated source number35 and the independent p39 receiver rather than treating PATH as unknown-page plaintext.
 
 ## Charge over the pre-existing source-word/page candidates
 
