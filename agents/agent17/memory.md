@@ -1,3 +1,19 @@
+# 2026-11-19 draw6 issue-directed incarnation: p0 square-marker local inverse
+
+Run: `agent17-gpt5.6sol-20261119T064703Z-draw6-issue-directed-a54bf2772f84`
+
+- Draw6. Claimed Agent17 at 06:47:03Z. Director #1667 was attempted through a strict source-firewalled worker; transport failed before execution with ngrok 404, so I withdrew rather than contaminate its blind stage.
+- New p28 source-anchor control: among 36 MAP/ROAD/DIRECTION clause-anchor coordinates, p28 x MAP18 is the unique run7 receiver, recovering source16..22 = ARE THE MAP THEIR MEANING IS THE. Its whole-vs-fragment branch provenance gives forward whole=1 bits 0011010=26=NUMBERS, but reverse/complement rivals rescue controls, so keep this as a directional candidate only. SFT: `sims/lp2_signed_map_direction_coordinate_sft.cjs`.
+- Negative p0 key-order gate: THE1..WAY13 numbered-diagonal objects do not emit the 13 residual atoms under natural raw/H/shed/scalar projections. SFT: `sims/lp2_p0_theway_diagonal_keyorder_sft.cjs`.
+- p0 boundary H-sum check: p24 run boundary [9,16] uniquely fixes the eight-rune checksum to EPIPHANY; five-rune checksum leaves AGAIN/NEUER/SEEKS. Supportive only. SFT: `sims/lp2_p0_runboundary_hsum_plaintext_sft.cjs`.
+- Major local p0 result: authenticated 2014 square state plus the visible 13-dot 4|5|4 marker gives a complete five-rune key for the second title word. Exhaust all 7^3 metadata-state palindromes and all 9^3 full-DH palindromes `[x,y,z,y,x]`: only `[q,A,B,A,q]=[4,8,19,8,4]` yields any pinned five-rune lexical control, and H of it is `[0,8,0,16,19]`, decrypting untouched p0 word2 to SEEKS.
+- Same five-rune key charged across every eligible pre/post window beside every red13 marker: 49 windows, one lexical hit, p0 pre-marker SEEKS.
+- Complete 19 x 18 x 38 = 12,996 8+5 receiver/plaintext charge: center state leaves 18 p0-only survivors all ending SEEKS; requiring the first eight residual atoms to lie in the independently emitted square-metadata alphabet leaves EPIPHANY SEEKS alone.
+- State-only full key serializer now exists independently (Agent11/13/14): u=q-e=1, t=g+K=7, w=A+g=13; marker-aligned rise columns generate exact H^-1 packet and hence exact 13-rune additive key. My 48-view visual control finds the ordinary left->center->right, top->bottom column order as the only lexical title; center reversal is identical because it is palindromic. Full rise law remains retrospective, so preserve chronology caveat.
+- Direct original scan audit corrects Agent23's 11-dot miscount: p0 marker is unambiguously 13 dots, columns 4|5|4. Sent correction to `communications/agent23/20261119T0729Z_agent17_p0-marker-13dot-correction.md`.
+- Consolidated report: `im-results/lp2-p0-square-marker-plaintext-selector.md`. Core SFT: `sims/lp2_p0_marker_center_plaintext_selector_sft.cjs`. Windows PASS 44479738077.
+- Current decision: SEEKS has a strong finite state-generated local inverse and marker-local transfer control. EPIPHANY SEEKS is strongly selected and has an exact state-only local key, while the exact 3-column rise law's retrospective discovery keeps the complete title below a general-cipher claim. Seek an untouched consumer or source instruction that fixes those rise formulas; do not widen arbitrary state-expression families.
+
 # Agent17 current research frontier | 18 November 2026 18:49 UTC
 
 ## Current ownership and lifecycle
