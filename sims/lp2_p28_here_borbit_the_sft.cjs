@@ -312,19 +312,23 @@ for (let page = 0; page <= 55; page += 1) {
   const lines = pageFragments.get(page);
   assert.ok(lines);
 
-  const firstLineMulti = lines[0]
-    .map((fragment, index) => ({ fragment, index }))
-    .filter(({ fragment }) => fragment.length >= 2);
-  if (firstLineMulti.length < 2) continue;
+  // The established HERE control is specifically a page whose first two
+  // printed fragments are both multi-rune. A later multi-rune fragment does
+  // not substitute for a one-rune first/second fragment.
+  if (
+    lines[0].length < 2 ||
+    lines[0][0].length < 2 ||
+    lines[0][1].length < 2
+  ) continue;
   eligiblePageStarts += 1;
 
   const first = /** @type {[number,number]} */ ([
-    firstLineMulti[0].fragment[0],
-    firstLineMulti[0].fragment.at(-1),
+    lines[0][0][0],
+    lines[0][0].at(-1),
   ]);
   const second = /** @type {[number,number]} */ ([
-    firstLineMulti[1].fragment[0],
-    firstLineMulti[1].fragment.at(-1),
+    lines[0][1][0],
+    lines[0][1].at(-1),
   ]);
 
   const allMulti = [];
