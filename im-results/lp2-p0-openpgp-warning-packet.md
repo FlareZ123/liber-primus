@@ -50,6 +50,18 @@ first word166..172 has length7 = len_GP(OPENPGP)
 
 This output convention has an independent pre-existing check. Agent15 committed the VERIFY reflection/base60 result at **02:03:16Z**, before this packet investigation: `GP0(VERIFY)=59 -> p50[59]=19=B`; horizontal reflection reaches cell60=`1k`, whose full-base60 value is `B=19 mod29`, while the base59 reading is17. That result does not select this packet, but it independently favors full base60 on the same warning vocabulary.
 
+## EA109 XY coordinate selects OPENPGP directly
+
+The selected EA109 word supplies a more explicit OPENPGP selector than the interval alone. Its raw spelling is XY. H on its GP-prime weights [47,103] gives [2,5]=[K,g]. Read literally as X=column,Y=row:
+
+    address = g*8 + K = 5*8+2 = 42
+    source42 = OPENPGP
+    p50[42] = 28
+
+The same address42 equals the word's GP1 sum. This connects the p0 receiver back to the p28 DH state and explains the operational role of the raw XY token.
+
+See im-results/lp2-p0-ea109-xy-primeh-openpgp-coordinate.md.
+
 ## Direct EA109 source-interval ingress
 
 A second ingress reaches this packet directly from the selected EA109 two-rune word. P0 109..110 is [14,26], raw XY. Its zero-origin GP sum is40 and one-origin GP sum is42, so the inclusive authenticated-source interval40..42 is:

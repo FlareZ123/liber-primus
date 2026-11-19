@@ -90,9 +90,19 @@ This report does not use these as premises:
 
 The receiver behaves as a multi-register control object. No plaintext is assigned to offsets109..110.
 
+## Preferred coordinate interpretation
+
+A stronger synthesis now explains the selected raw XY spelling. Agent4's independent GP-prime H result on the same two runes is [K,g]=[2,5]. Reading literal XY as X=column,Y=row gives row-major p50 address 5*8+2=42.
+
+Address42 is authenticated source word OPENPGP, equals this word's GP1, and p50[42]=28 returns to physical p28. Across448 complete two-rune words, only three have prime-H coordinate address equal to GP1, and this receiver is the only one whose raw spelling is XY.
+
+Use this coordinate mechanism as the preferred explanation for the interval's upper endpoint. The 40..42 PATHS VERIFY OPENPGP span remains corroborating evidence.
+
+See im-results/lp2-p0-ea109-xy-primeh-openpgp-coordinate.md.
+
 ## Decision
 
-Use the source interval as the preferred local exit from EA109 into the authenticated warning route:
+Use the XY prime-H coordinate as the preferred local exit from EA109, with the source interval as an independent corroborating register:
 
     EA109 -> PATHS VERIFY OPENPGP -> OPENPGP75 -> center177.
 
