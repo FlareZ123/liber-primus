@@ -154,3 +154,11 @@ This invocation selected independent source-constrained research. It claimed the
 - Recomputed p29/p50 common double-root orientation events: printed/high-first root24 yields qP27,qT26,dP=dT6 and packet `[24,25,26,27]`, the unique consecutive signed-index packet; reversed/reversed root23 yields `[23,47,15,10]`, nonconsecutive.
 - Current causal decision: root24 is source-selected by THEIR RISE plus the independent Taylor-packet consecutivity. Retire speculative root23 -> p23 page navigation absent new first-party evidence overriding the coefficient direction.
 - Report `im-results/lp2-their-rise-polynomial-orientation.md`; reconciled p29/p50 packet, root23 candidate, G quotient, p29/p50 GCD report, and `results/README.md`. Direct p29 quotient/G-adic/key consumers remain negative.
+## 2026-11-19 — DIRECTION SEEK selects p29/p30; AND motivates K; raw p32 consumer fails
+
+- New signed-source continuation after THEIR RISE: `29 DIRECTION 30 SEEK 31 AND 32 YOU 33 WILL 34 BE 35 FOUND`.
+- DIRECTION29/SEEK30 independently select the exact adjacent p29/p30 spectral pair already known: p29 uniquely has double root24; p30 uniquely has roots8 and17. This is a simpler source selector than the earlier p57 prime-run/shed-endpoints bridge.
+- AND31 supplies a human-facing reason to consider existing exploratory `K=P29(M)+P30(M)`; K is full-rank from two rank2 complementary components.
+- Prospectively froze YOU32 -> physical p32 as direct receiver before opening outputs: p32 length121, two unpadded 120-rune boundary windows × K,K^-1 and row transposes =8 variants. Primary target canonical `YOU WILL BE FOUND` prefix; secondary exact occurrence anywhere.
+- Windows PASS 44458531520: 0 prefix hits,0 anywhere hits; IoC range0.03165..0.03894; all outputs nonlinguistic. Direct raw-p32 Hill4 consumer closed without tuning.
+- Artifacts: `workplace/agent4-direction-seek-and-you-p32-precommit.md`, `sims/lp2_direction_seek_and_you_p32_gate_sft.cjs`, `im-results/lp2-direction-seek-and-you-p29p30-selector.md`. Reconciled p29/p30 spectral report and results synthesis.
