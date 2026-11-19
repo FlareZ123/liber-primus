@@ -141,6 +141,51 @@ assert.deepEqual(receiver, {
 assert.equal(receiver.start, 7 ** 2);
 assert.equal(signedWords[7], "THE");
 
+// Target-independent raw selector: read the receiver's H coordinates in
+// sum-before-difference order. They are the exact authenticated adjacent phrase
+// THEIR NUMBERS by source indices 25,26.
+const rawDirectionPacket = [
+  mod29(receiver.values[0] + receiver.values[1]),
+  mod29(receiver.values[0] - receiver.values[1]),
+];
+assert.deepEqual(rawDirectionPacket, [25, 26]);
+assert.deepEqual(
+  rawDirectionPacket.map((index) => signedWords[index]),
+  ["THEIR", "NUMBERS"]
+);
+
+// Charge the exact raw packet over every complete two-rune manuscript word.
+const rawDirectionHits = [];
+let completeTwoRuneWordsForRaw = 0;
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  for (const local of pageWords(page)) {
+    if (local.values.length !== 2) continue;
+    completeTwoRuneWordsForRaw += 1;
+    const packet = [
+      mod29(local.values[0] + local.values[1]),
+      mod29(local.values[0] - local.values[1]),
+    ];
+    if (packet.every((value, slot) => value === rawDirectionPacket[slot])) {
+      rawDirectionHits.push({
+        page,
+        ordinal0: local.ordinal0,
+        start: local.start,
+        cipher: local.values,
+        packet,
+      });
+    }
+  }
+}
+assert.equal(completeTwoRuneWordsForRaw, 465);
+assert.deepEqual(rawDirectionHits, [{
+  page: 11,
+  ordinal0: 11,
+  start: 49,
+  cipher: [11, 14],
+  packet: [25, 26],
+}]);
+
 // Reuse the already fixed two-rune H-rectangle grammar.
 const key = hInverse(K, 0);
 assert.deepEqual(key, [1, 28]);
@@ -255,6 +300,12 @@ console.log(JSON.stringify({
     selectedWord: "IS",
   },
   receiver,
+  rawDirection: {
+    packet: rawDirectionPacket,
+    words: rawDirectionPacket.map((index) => signedWords[index]),
+    completeTwoRuneWords: completeTwoRuneWordsForRaw,
+    hits: rawDirectionHits,
+  },
   hRectangle: {
     coordinate: [K, 0],
     key,
@@ -272,5 +323,5 @@ console.log(JSON.stringify({
     hits: exactKeyHits,
   },
   interpretation:
-    "Strong local p11 plaintext candidate. Authenticated IS occurs exactly K=2 times; its first source index selects p11 word11 under the existing number-direction grammar. The already fixed two-rune H-rectangle maps [K,0] to key [1,28], whose subtraction yields IS. Charging the complete repeated two-GP-rune source-word family leaves this as the sole exact target hit. The exact key alone has four lexical hits manuscript-wide, so the source selector is essential and the result remains candidate-level pending an independent transfer.",
+    "Strong local p11 plaintext candidate. Authenticated IS occurs exactly K=2 times; its first source index selects p11 word11 under the existing number-direction grammar. Before plaintext inversion, the untouched receiver has unique [sum,difference]=[25,26], exactly the authenticated adjacent phrase THEIR NUMBERS. The already fixed two-rune H-rectangle maps [K,0] to key [1,28], whose subtraction yields IS. Charging the complete repeated two-GP-rune source-word family leaves this as the sole exact target hit. The exact key alone has four lexical hits manuscript-wide, so the source and raw-packet selectors are essential.",
 }, null, 2));
