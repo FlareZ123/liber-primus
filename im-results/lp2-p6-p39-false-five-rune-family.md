@@ -80,6 +80,13 @@ The boundary remains important: the p39 role grammar was discovered after the FA
 
 Do not alter the failed #1784 p38 geometry decoder or claim that its transfer succeeded.
 
+## Prospective transfer gate: WORDS16 fails
+
+A fresh transfer was selected after this family was frozen. Under the established one-based numbered diagonal, charge every authenticated source occurrence with five GP runes and inspect only the numbered receiver lengths. WORDS16 is the sole length-compatible case: physical page16 / project p15 / canonical word16 / start71 has length5. The other six candidates have receiver lengths 8,2,6,11,2,3.
+
+Precommit `workplace/agent16-p6-five-rune-numbered-words16-holdout.md` froze that receiver, target WORDS, and the unchanged 6,144-form family before opening its runes. The revealed receiver is `[10,13,8,27,17]`. The family has **0** mappings to `WORDS=[7,3,4,23,15]` and **0** mappings to any of the seven authenticated five-rune targets at that receiver.
+
+This is a prospective negative. It blocks promotion of the p39 role grammar to a reusable five-rune decoder. Do not tune the family or neighboring p15 words after this miss.
 ## Reproduction
 
 `node sims/lp2_p6_p39_false_five_rune_family_sft.cjs`

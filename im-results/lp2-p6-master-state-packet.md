@@ -328,6 +328,29 @@ The important limitation is discovery order: the five-rune shell-role grammar wa
 
 Precommit: `workplace/agent16-p6-p39-false-five-rune-family-precommit.md`.
 Reproducer: `sims/lp2_p6_p39_false_five_rune_family_sft.cjs`.
+## Prospective five-rune transfer: numbered WORDS16 fails
+
+After the p39 family was frozen, Agent16 used the established one-based source-number diagonal to choose a fresh transfer without reading receiver runes. Charge every authenticated source occurrence whose GP spelling has five runes. Only one same-number page/word receiver also has length five:
+
+```text
+WORDS16 -> physical page16 / project p15 / canonical word16 / start71.
+```
+
+The other six five-rune source occurrences have numbered-receiver lengths 8, 2, 6, 11, 2, and 3. Thus WORDS16 is the sole length-compatible direct-diagonal holdout.
+
+The receiver and unchanged 6,144-form p6 family were precommitted before reveal at `workplace/agent16-p6-five-rune-numbered-words16-holdout.md` (commit `cfd95b54951772e849eb21d0f446ee3e521577ff`). Opening only that receiver gives:
+
+```text
+p15 word16 start71 = [10,13,8,27,17]
+WORDS               = [7,3,4,23,15]
+```
+
+The frozen family yields **zero WORDS recoveries** and **zero recoveries of any of the seven authenticated five-rune targets** at this receiver. No alternate offset, origin, target, or family extension was tried.
+
+This prospective miss blocks promotion of the p39 five-rune grammar to a reusable decoder. Preserve p39 FALSE as strong local/post-target role compression only. A different source-visible rule must fix a five-rune key before another transfer is attempted.
+
+Report: `im-results/lp2-p6-five-rune-numbered-words16-holdout.md`.
+SFT: `sims/lp2_p6_five_rune_numbered_words16_holdout_sft.cjs`.
 ## Decision
 
 P6's red title is the strongest current source-visible explanation for several previously isolated key shells:
@@ -342,7 +365,7 @@ p6  -> p39 FALSE five-rune shell (post-target role discovery)
 
 The packet grammar itself is globally unique under a finite, charged family and survives all 24 word-role permutations. The p38 derivation is additionally selective under a 48-role family and under the manuscript-wide six-rune control.
 
-The current boundary is clear. The packet supports local key scheduling across multiple rune lengths. It does not provide a general manuscript cipher, and its prospective two-rune reduction and p0 VERIFY transfer both fail. Future work should seek a fresh receiver whose target and packet-role semantics can be fixed before opening its ciphertext. The p39 FALSE family adds a selective five-rune consumer but does not remove that holdout requirement.
+The current boundary is clear. The packet supports local key scheduling across multiple rune lengths. It does not provide a general manuscript cipher, and its prospective two-rune reduction and p0 VERIFY transfer both fail. Future work should seek a fresh receiver whose target and packet-role semantics can be fixed before opening its ciphertext. The p39 FALSE family adds a selective five-rune consumer. The subsequent prospectively selected WORDS16 transfer fails unchanged, so the five-rune family remains local and does not remove that holdout requirement.
 
 ## Reproduction
 
