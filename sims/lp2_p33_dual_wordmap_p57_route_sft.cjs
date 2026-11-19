@@ -274,10 +274,7 @@ assert.deepEqual(lowerHits, [{
   startOffset: 99,
 }]);
 
-// The source-visible upper red title is [K,A]=[2,8], while map word A is
-// RISE. Exponentiation is therefore selected by a literal map word rather than
-// introduced solely to fit SHED. The two directions of the same title pair
-// produce an independent structural target and the formerly missing word.
+// Preserve the exact historical title-power equalities for reproduction.\n// Director #1835 shows that the p33 word-map selector grammar does not\n// prospectively select map word A=RISE or the solved lexical slots. The SHED\n// power remains a post-discovery equality rather than a predictive decoder.
 const mapCellCount = state.K ** state.A;
 const shedCandidate = state.A ** state.K;
 assert.equal(mapCellCount, tape.length);
@@ -321,12 +318,12 @@ console.log(JSON.stringify({
     AEqualsOur: state.A,
     BEqualsOwnOrTo: state.B,
   },
-  recoveredSentence: [
+  postSelectedSolvedSentenceFit: [
     "TUNNELNG TO THE SURFACE",
     "WE MUST SHED OUR OWN CIRCUMFERENCES",
     "FIND THE DIUINITY WITHIN AND EMERGE",
   ],
-  coverage: {
+  retrospectiveCoverage: {
     sourceSentenceSlots: 16,
     connectedSlots: 16,
     directOrEstablishedEdgeSlots: 15,
@@ -346,7 +343,7 @@ console.log(JSON.stringify({
       value: shedCandidate,
       gp0Word: "SHED",
     },
-    evidenceBoundary: "RISE supplies a source-visible power cue and K^A independently lands on the 256-cell p50 map. A^K=SHED completes the sole missing known-p57 slot, so retain this lexical edge as strongly supported but still post-discovery until an unknown-text consequence depends on it.",
+    evidenceBoundary: "The exact K^A=256 and A^K=64 equalities reproduce. #1835 shows that the p33 map grammar does not prospectively select this RISE position or the solved SHED slot, so retain the edge as post-discovery arithmetic only.",
   },
-  decision: "P33's independently selected 21-word and 28-word maps reconstruct all 16 lexical slots of the solved p57 terminal instruction. Fifteen are connected through fixed state positions and established p50/H edges. The sole former gap SHED is completed by the source-visible red-title pair [K,A]=[2,8] under map word A=RISE: K^A=256 independently identifies the p50 map size, while A^K=64=GP0(SHED). This is a strong source-motivated completion, although the SHED lexical identity was recognized with p57 plaintext already known.",
+  decision: "This script exactly reproduces the published post-selected p33 fit to all 16 solved-p57 slots and its fixed-tuple manuscript controls. Director #1835's family audit shows that the low-description selector family reaches every cell and fails a withheld-clause prediction, so these equalities are structural corroboration rather than a predictive instruction engine. SHED remains post-discovery arithmetic.",
 }, null, 2));
