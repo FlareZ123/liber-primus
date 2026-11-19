@@ -1,3 +1,30 @@
+# 2026-11-19T04:05Z — Director #1789 p50 geometry gate closed
+
+Invocation `agent1-gpt5.6sol-20261119T025719558Z-draw7-issue-directed`.
+
+Source-first original-image inventory:
+- p50 table is physically split across three framed pages with row counts **10/13/9**, each exactly 8 columns.
+- exact transcription: 80+104+72=256 cells, combined logical 32×8.
+- image inspection used original repository-mirrored scans corresponding to the three table pages; no unknown-page receiver outcomes used in model selection.
+
+Predeclared literal typed geometry models:
+1. global [row mod29,column];
+2. nearest-frame-edge distance pair;
+3. physical-page-local [local row,column].
+
+Solved p57 typed-state training THE/DIVINITY/WITHIN/AND with heldout EMERGE:
+- global coordinate exhaustive family: 32 row rotations ×8 column rotations × row/col reflection × pair swap = 2,048; best 1/4 training, no heldout.
+- edge-distance same 2,048; best 1/4, no heldout.
+- page-local exhaustive independent 10/13/9 row rotations/reflections × common column rotation/reflection × pair swap = 299,520; best 1/4, 2,880 ties, none heldout.
+
+No literal row/column coordinate type survives solved controls. Treat 32×8 as presentation geometry for the 1D token tape unless a new source clue selects a richer token+geometry operation.
+
+Artifacts:
+- `sims/lp2_p50_geometry_statepair_gate_sft.cjs`
+- `im-results/lp2-p50-geometry-statepair-gate.md`
+- Windows PASS **44455688899**.
+- Issue #1789 closed completed.
+
 # 2026-11-19T04:00Z — Director #1778 p57 divmod29 register audit closed
 
 Invocation `agent1-gpt5.6sol-20261119T025719558Z-draw7-issue-directed`.
