@@ -176,6 +176,8 @@ const line6Start = p28.runes.length === 269
 assert.equal(line6Start, 117);
 assert.equal(line6Start + firstFourLength - 1, centerOffset);
 assert.equal(fragmentLengths[2], p28.runes[centerOffset]);
+assert.equal(outerH[1][1], fragmentLengths[3]);
+assert.equal(powMod(p28.runes[centerOffset], e, 29), outerH[1][1]);
 assert.equal(powMod(p28.runes[centerOffset], e, 29), fragmentLengths[3]);
 
 const word28 = p28.words[27];
@@ -204,6 +206,8 @@ let length23Count = 0;
 let length23FiveFragmentCount = 0;
 let length23FiveFragmentLine6Count = 0;
 const exactSequenceHits = [];
+const centerBoundaryFamily = [];
+const centerEquationHits = [];
 
 for (let partIndex = 0; partIndex < parts.length; partIndex += 1) {
   const page = physicalPageForPart(partIndex);
@@ -225,12 +229,46 @@ for (let partIndex = 0; partIndex < parts.length; partIndex += 1) {
       if (lineIndex + 1 === 6) length23FiveFragmentLine6Count += 1;
     }
 
+    const pageCenter = parsed.runes.length % 2 === 1
+      ? (parsed.runes.length - 1) / 2
+      : null;
+    const endFourth = lengths.length >= 4
+      ? pageOffset +
+        lengths.slice(0, 4).reduce((total, value) => total + value, 0) - 1
+      : null;
+
+    if (
+      lengths.length >= 4 &&
+      pageCenter !== null &&
+      endFourth === pageCenter &&
+      parsed.runes[pageCenter] === lengths[2] &&
+      row.fragments[1].length >= 2
+    ) {
+      const fragment2H = H(
+        row.fragments[1][0],
+        row.fragments[1][row.fragments[1].length - 1]
+      );
+      const centerValue = parsed.runes[pageCenter];
+      const powerOutput = powMod(centerValue, lengths[1], 29);
+      const candidate = {
+        page,
+        line: lineIndex + 1,
+        lengths,
+        centerValue,
+        fragment2H,
+        powerOutput,
+        fragment4Length: lengths[3],
+      };
+      centerBoundaryFamily.push(candidate);
+      if (
+        powerOutput === fragment2H[1] &&
+        powerOutput === lengths[3]
+      ) {
+        centerEquationHits.push(candidate);
+      }
+    }
+
     if (lengths.join(",") === "2,3,9,4,5") {
-      const pageCenter = parsed.runes.length % 2 === 1
-        ? (parsed.runes.length - 1) / 2
-        : null;
-      const endFourth = pageOffset +
-        lengths.slice(0, 4).reduce((total, value) => total + value, 0) - 1;
       exactSequenceHits.push({
         page,
         line: lineIndex + 1,
@@ -259,6 +297,27 @@ assert.deepEqual(exactSequenceHits, [{
   centerValue: 9,
   endFourth: 134,
 }]);
+assert.deepEqual(centerBoundaryFamily, [
+  {
+    page: 11,
+    line: 6,
+    lengths: [8, 9, 2, 2],
+    centerValue: 2,
+    fragment2H: [1, 27],
+    powerOutput: 19,
+    fragment4Length: 2,
+  },
+  {
+    page: 28,
+    line: 6,
+    lengths: [2, 3, 9, 4, 5],
+    centerValue: 9,
+    fragment2H: [14, 4],
+    powerOutput: 4,
+    fragment4Length: 4,
+  },
+]);
+assert.deepEqual(centerEquationHits, [centerBoundaryFamily[1]]);
 
 console.log(JSON.stringify({
   status: "PASS: p28 DH fragment lengths self-encode READ OUT center transform",
@@ -285,6 +344,8 @@ console.log(JSON.stringify({
     length23FiveFragmentCount,
     length23FiveFragmentLine6Count,
     exactSequenceHits,
+    centerBoundaryFamily,
+    centerEquationHits,
   },
   classification:
     "post-discovery source-visible structural support; exact [2,3,9,4,5] geometry is unique across 594 unknown rune-bearing lines and predicts center 9^3=4 before language scoring.",
