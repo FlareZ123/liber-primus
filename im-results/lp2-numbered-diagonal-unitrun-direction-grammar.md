@@ -1,98 +1,75 @@
-# THEIR NUMBERS gives one orientation rule for every numbered-diagonal unit run
+# THEIR NUMBERS orders every direct consecutive H coordinate set
 
-**Agent39, 19 November 2026. Classification: source-authored readout grammar. This consolidates four previously separate numbered-diagonal checkpoints under the standard outside-in H transform plus one numeric orientation rule. It removes the p11 sum-before-difference exception and supplies the previously missing OPENPGP reversal opcode.**
+**Agent39, 19 November 2026. Classification: source-authored readout grammar. This consolidates four numbered-diagonal checkpoints under an H-coordinate-set invariant plus one numeric orientation rule. It removes the p11 sum-before-difference exception and makes the OPENPGP restart independent of the Hpair/Hsplit serialization order.**
 
 ## Fixed inputs
 
 The corrected numbered diagonal uses authenticated source index `i` to select physical `p_i`, canonical word `i+1`. It has 42 valid objects; YOU32 is the sole direct-coordinate gap.
 
-Use the standard pair-interleaved outside-in transform throughout:
+For each receiver, compute the usual outside-in H coordinates. Hpair and Hsplit serialize the same coordinates in different orders for words longer than two runes. This report therefore asks a serialization-invariant question:
 
-```text
-H(x0,...,xn) =
-  x0-xn, x0+xn,
-  x1-xn-1, x1+xn-1,
-  ...
-  mod29
-```
+> Does the **complete H coordinate set** equal one consecutive source-index interval?
 
-The authenticated source itself supplies the orientation instruction:
+If yes, `THEIR NUMBERS ARE THE DIRECTION` supplies the order: read the coordinates in increasing numerical direction.
 
-```text
-25 THEIR
-26 NUMBERS
-27 ARE
-28 THE
-29 DIRECTION
-```
+## Complete direct charge
 
-The active numerical direction is increasing source order.
-
-## Complete full-H charge
-
-Apply standard H to every one of the 42 valid numbered-diagonal receivers. Ask only whether the **complete** H output is a strict unit-step run in either direction.
-
-Exactly three objects pass:
+Across all 42 valid direct numbered receivers, exactly three complete H coordinate sets are consecutive intervals:
 
 ```text
 IS11
 -> p11 canonical word12 [11,14]
--> H [26,25]
--> increasing direction [25,26]
+-> H coordinates {25,26}
+-> increasing [25,26]
 -> THEIR NUMBERS
 
 AND24
 -> p24 canonical word25 [27,15]
--> H [12,13]
--> increasing direction [12,13]
+-> H coordinates {12,13}
+-> increasing [12,13]
 -> THE WAY
 
 OPENPGP42
 -> p42 canonical word43 [16,0,14]
--> H [2,1,0]
--> increasing direction [0,1,2]
+-> H coordinates {0,1,2}
+-> increasing [0,1,2]
 -> HELLO THE PATH
 ```
 
-This resolves two former local conventions.
+Under Hpair, OPENPGP serializes as `[2,1,0]`; under Hsplit, the same coordinates serialize as `[2,0,1]`. The source-authored numerical direction orders the invariant coordinate set and gives `HELLO THE PATH` either way. This resolves the serialization objection without selecting a convention.
 
-The p11 report previously serialized the pair as sum before difference to obtain `[25,26]`. Standard H actually gives `[26,25]`; the source-authored numeric direction supplies the ordering.
+P11 is likewise read by standard difference/sum coordinates `[26,25]` and increasing numerical order, so the earlier sum-before-difference exception is unnecessary. P24 is already increasing.
 
-The corrected OPENPGP report already proved `[2,1,0]` is the unique three-rune diagonal unit run and manuscript-unique exact H shell, but correctly withheld a reversal opcode. The same increasing-number rule now supplies it, giving the exact source prefix `HELLO THE PATH` without a new local exception.
-
-P24 was already in increasing order, so `THE WAY` is unchanged.
+The separate p26 cross-coordinate receiver recently found by Agent2 has the same kind of complete coordinate set `{14,15,16}`, but it is outside this 42-object direct numbered-diagonal family and is assessed in its own report.
 
 ## One clue-selected circumference shed
 
-The p27 branch independently supplies `WE MUST SHED`, and the solved p57 text specifies circumferences. Charge every numbered-diagonal object with length at least4 after exactly one outer-rune shed, then apply the same H and complete-unit-run predicate.
+The p27 branch independently supplies `WE MUST SHED`, and solved p57 specifies circumferences. Charge every direct numbered receiver of length at least4 after one outer-rune shed.
 
-There is one hit:
+Exactly one complete H coordinate set is a consecutive interval:
 
 ```text
 ARE27
 -> p27 canonical word28 [0,20,15,1]
 -> shed [20,15]
--> H [5,6]
--> increasing direction [5,6]
+-> H coordinates {5,6}
 -> EPIPHANY SEEKS
 ```
 
-Thus the four checkpoints share one grammar:
+The direct grammar is therefore:
 
 ```text
 source number
--> numbered-diagonal receiver
--> optional clue-selected circumference shed
--> standard H
--> if complete output is a unit run, orient by increasing source numbers
--> read authenticated source tokens
+-> corrected numbered receiver
+-> optional independently selected circumference shed
+-> H coordinates
+-> require the complete coordinate set to be one consecutive interval
+-> increasing source numbers give the readout order
 ```
 
 ## Consequence
 
-The numbered diagonal now has a reusable, source-authored readout convention rather than several page-local orientation choices.
-
-It yields:
+The direct family yields:
 
 ```text
 THEIR NUMBERS
@@ -101,10 +78,10 @@ HELLO THE PATH
 EPIPHANY SEEKS
 ```
 
-The OPENPGP endpoint therefore resets mechanically to the beginning of the authenticated source program, while the ARE27 branch feeds its `EPIPHANY SEEKS THE DEVOTED` p32 route. This strengthens the interpretation of the signed 2016 text as an executable navigation register.
-
-It does not decrypt continuous unknown LP2 body prose.
+The OPENPGP endpoint resets mechanically to the authenticated source opening, and the ARE27 branch feeds the established `EPIPHANY SEEKS THE DEVOTED` route to p32. The result concerns source-selected navigation and does not decrypt continuous LP2 body prose.
 
 ## Reproduction
 
 `node sims/lp2_numbered_diagonal_unitrun_direction_grammar_sft.cjs`
+
+Windows Node22 PASS for the original Hpair-order formulation: run 44473717540. The current SFT uses the stricter serialization-invariant coordinate-set criterion.

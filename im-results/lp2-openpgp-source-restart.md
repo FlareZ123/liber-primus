@@ -37,14 +37,14 @@ Those are authenticated source indices:
 => PATH THE HELLO.
 ```
 
-Apply the independently established `THEIR NUMBERS ARE THE DIRECTION` rule to the complete unit-step shell. Increasing numerical direction gives:
+Hsplit reorders the same three coordinates as `[2,0,1]`. The invariant coordinate set is `{0,1,2}`. Apply the independently established `THEIR NUMBERS ARE THE DIRECTION` rule to that complete set:
 
 ```text
-[2,1,0] -> [0,1,2]
+{0,1,2} -> [0,1,2]
 HELLO THE PATH.
 ```
 
-That is the exact first three words of the same signed source, and the orientation is now selected by a shared numbered-diagonal rule.
+The source restart therefore survives the Hpair/Hsplit serialization boundary. The stronger claim that OPENPGP is the sole descending three-rune shell remains Hpair-specific and is retained below only as a convention-specific control.
 
 ## Whole-corpus charge
 
@@ -82,7 +82,7 @@ VERIFY OPENPGP
  -> signed-source beginning.
 ```
 
-Within the numbered-route Hpair convention, this supports a **restart / verification** interpretation. The broader H-serialization family contains a rival descending run, so preserve the interpretation as convention-specific rather than a serializer-independent manuscript invariant.
+The **restart / verification** interpretation is supported by the serialization-independent coordinate set `{0,1,2}` plus increasing numerical direction. The broader H-serialization family still matters for claims about exact coordinate order: the Hpair descending-shell uniqueness has an Hsplit rival and remains convention-specific.
 
 The result also explains why a search for a simple terminal exit from the p23/p28 navigation core did not immediately produce one: the authenticated source's final numbered object loops back to the source beginning.
 
@@ -90,7 +90,7 @@ This does not prove that the entire signed instruction is meant to be traversed 
 
 ## Neighbor controls
 
-Across all 42 valid numbered objects, standard H has exactly three complete unit-step runs: IS11 gives `[26,25]`, AND24 gives `[12,13]`, and OPENPGP42 gives `[2,1,0]`. Increasing numeric direction reads them as `THEIR NUMBERS`, `THE WAY`, and `HELLO THE PATH`. After one clue-selected circumference shed, ARE27 is the sole additional unit run and reads `EPIPHANY SEEKS`.
+Across all 42 valid direct numbered objects, exactly three complete H coordinate sets are consecutive intervals: IS11 `{25,26}`, AND24 `{12,13}`, and OPENPGP42 `{0,1,2}`. Increasing numeric direction reads them as `THEIR NUMBERS`, `THE WAY`, and `HELLO THE PATH`. After one clue-selected circumference shed, ARE27 is the sole additional direct consecutive set, `{5,6} = EPIPHANY SEEKS`.
 
 The stronger complete-corpus control avoids choosing the numbered subset after seeing the hit: among all 716 complete three-rune words, OPENPGP43 is the sole descending-consecutive **Hpair** output. See `im-results/lp2-h-serialization-boundary.md` for the Hsplit rival and operation boundary.
 
