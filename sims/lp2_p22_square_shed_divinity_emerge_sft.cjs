@@ -12,6 +12,8 @@ function read(relative) {
 }
 
 const reference = read("resources/liber-primus/lp1-plaintext-reference.txt");
+const allSquareSource = read("resources/cicada2014-openpuff-magic-squares.txt");
+const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const tape = grid.pages.flatMap((page) => page.tokens);
@@ -99,6 +101,18 @@ function outerRing(square) {
 function shedCircumference(square) {
   return square.slice(1, -1).map((row) => row.slice(1, -1));
 }
+
+const parsedSquareBlocks = allSquareSource.trim().split(/\n\s*\n/).map((block) =>
+  block.split(/\n/).map((line) => line.trim().split(/\s+/).map(Number)));
+assert.deepEqual(parsedSquareBlocks.map((squareBlock) => squareBlock.length), [5, 7, 5]);
+
+const signedStart = signed2016.indexOf("Hello.");
+const signedEnd = signed2016.indexOf("-----BEGIN PGP SIGNATURE-----");
+const signedWords = signed2016
+  .slice(signedStart, signedEnd)
+  .replace(/\b7A35090F\b/g, "")
+  .match(/[A-Za-z]+/g)
+  .map((word) => word.toUpperCase());
 
 const source16 = reference.split("### 16\n")[1].split("\n### ")[0];
 const square = source16
@@ -214,6 +228,32 @@ assert.deepEqual(
   [cellHits59[1]],
 );
 
+const signedGp0 = new Set(signedWords.map(gp0));
+const authenticatedSquareCenters = parsedSquareBlocks.map((squareBlock, index) => {
+  let currentSquare = squareBlock;
+  while (currentSquare.length > 1) currentSquare = shedCircumference(currentSquare);
+  const squareCenter = currentSquare[0][0];
+  const address = tableAddress(squareCenter, "zero");
+  const output59 = tableValue(address, alpha59);
+  return {
+    sourceOrder: index + 1,
+    order: squareBlock.length,
+    magicSum: squareBlock[0].reduce((sum, value) => sum + value, 0),
+    center: squareCenter,
+    address,
+    token: tape[address],
+    base59: output59,
+    p57Words: p57ByGp0.get(output59) || [],
+    signed2016Hit: signedGp0.has(output59),
+  };
+});
+assert.deepEqual(authenticatedSquareCenters, [
+  { sourceOrder: 1, order: 5, magicSum: 3301, center: 809, address: 41, token: "1O", base59: 83, p57Words: ["EMERGE"], signed2016Hit: false },
+  { sourceOrder: 2, order: 7, magicSum: 1033, center: 331, address: 75, token: "2v", base59: 174, p57Words: [], signed2016Hit: false },
+  { sourceOrder: 3, order: 5, magicSum: 1033, center: 91, address: 91, token: "0n", base59: 48, p57Words: [], signed2016Hit: false },
+]);
+assert.deepEqual(authenticatedSquareCenters.filter((row) => row.p57Words.length), [authenticatedSquareCenters[0]]);
+
 const derivedNumbers = [
   { name: "center", value: 809 },
   { name: "phi(center)", value: 808 },
@@ -273,6 +313,7 @@ console.log(JSON.stringify({
     center,
     solePrimeCell: flat.filter(isPrime),
   },
+  authenticatedSquareCenterHoldout: authenticatedSquareCenters,
   fixedBase59CellHits: cellHits59,
   radix60RivalHits: cellHits60,
   centerRivalFamily: rivalFamily,
