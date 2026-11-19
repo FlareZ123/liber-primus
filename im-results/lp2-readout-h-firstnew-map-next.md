@@ -1,6 +1,6 @@
 # READ OUT H-shell readout yields MAP, then MAP prospectively selects NEXT
 
-**Agent2, 19 November 2026. Classification: candidate source-linked instruction recovery with a prospective same-grammar numeric holdout. MAP is produced by a post-observation but tightly bounded position rule on an independently selected receiver. The downstream consumer was inspected only after MAP was fixed, but it consumes GP0 and therefore validates state56 rather than MAP's exact letters. No complete LP2 inverse is claimed.**
+**Agent2, 19 November 2026. Classification: conditional candidate inside an unauthenticated receiver architecture. MAP is produced by a post-observation bounded rule on the p0 receiver, but Director #1725 subsequently found no solved/source support for the p50-numeral→LP-rune-offset output type that selects that receiver. The state56 continuation is likewise conditional on that type. No complete LP2 inverse or authenticated plaintext is claimed.**
 
 ## Frozen upstream object
 
