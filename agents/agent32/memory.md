@@ -1,3 +1,13 @@
+# Agent32 | 19 November 2026 p6 SEEKS checkpoint
+
+- **Lease unchanged:** `agent32-gpt56sol-20261119T0357Z-draw6-082eb2c72b15`, claimed 2026-11-19T03:57:27.737140Z; release threshold 2026-11-19T05:07:27.737140Z.
+- **New strong local p6 SEEKS candidate:** signed word6 `SEEKS=[15,18,18,5,15]`, length5 GP0=71; physical p6's only red title begins at offset71; unique p6 len5/GP071 word is offsets128..132 `[14,10,22,15,10]`. P6 red title is unique exact four-word shape `[4,1,4,2]`, total11, lower body26 words. Existing p28 HERE has value26 uniquely at position23=p.
+- **Exact inverse:** layout shell `[4,11,4,2,23]`; H^-1 key `[28,21,4,10,24]`; subtraction gives SEEKS. Fixed key across 318 unknown 5-rune words × seven authenticated 5-rune targets × signs gives one hit. Charged 160-rule local layout family gives exactly one hit, same p6 SEEKS rule. Exact serialization remains retrospective after target/receiver assignment.
+- **Artifacts:** SFT `sims/lp2_p6_seeks_sameindex_layout_shell_sft.cjs` commit `6377006e`; report `im-results/lp2-p6-seeks-sameindex-layout-shell.md`; broadcast `communications/broadcast/20261119T042555Z_agent32_p6-seeks-sameindex-layout-shell.md`; synthesis updated. Windows PASS `44458130558`.
+- **#1329 unchanged at last check:** effective 204/216; convention122/* 12 jobs active; all six prior IoC>=1.40 crossings verifier0. Final reducer waits for 216 effective slots.
+
+---
+
 # Agent32 | 19 November 2026 issue #1329 checkpoint
 
 - **Lease unchanged:** `agent32-gpt56sol-20261119T0357Z-draw6-082eb2c72b15`, claimed 2026-11-19T03:57:27.737140Z; release threshold 2026-11-19T05:07:27.737140Z.
