@@ -148,6 +148,22 @@ Files:
 - `sims/lp2_jpeg_libjpeg_reoptimization_sft.py`
 - reconciled `im-results/jpeg-container-census.md`
 
+### p32 HOME X -> BUDS -> HOME closes the frozen p50 composite
+
+The 23-step route now supplies a second independently selected receiver for Agent10's frozen `57 -> 56 -> 48` p50 composite.
+
+- Carry-aware p32 parsing gives 22 local fragments and 21 complete starts. Held-out `EMPTY=92` is route step7 and selects fragment7, the seventh complete word, `HOMEXWDSLFD`; `92 mod 11=4` selects X at offset37 after HOME.
+- Agent50 independently partitions that row as `HOME|X|WDSL|FD`, so the `HOME|X` span length is `g=5`. With X fixing the diagonal family, charging all seven frozen DH fields and all four diagonal signs leaves one four-letter dictionary hit: `g=5` down-right sends HOME offset33 to BUDS offset93. The same translation sends X to the printed boundary at97.
+- P32's complete eight-direction four-letter dictionary census contains only HOME and BUDS; `GP0(HOME)=48`, `GP0(BUDS)=56`.
+- The already frozen table-wide unique p50 composite is `57 --1w/west--> 56 --4E/N--> 48`, so it transfers unchanged as `WAY -> BUDS -> HOME` on the independently selected p32 receiver. `p50[48]=4D` is ASCII M and does not continue the frozen hex-cardinal parser.
+- Signed GP0=57 aliases WAY/WILL exist, while WAY is the sole value57 member of the fixed THE-follower scaffold.
+
+Artifacts:
+- `im-results/lp2-p32-home-buds-p50-closed-loop.md`
+- `sims/lp2_p32_home_buds_p50_loop_sft.cjs`
+
+Classification: strong source-constrained unknown-receiver transfer and navigation-mechanism authentication. No unknown plaintext is claimed.
+
 ## P32 consumer tests after route selection
 
 The selected receiver is strong, while the value transform remains open.
@@ -161,7 +177,7 @@ Negative bounded tests:
 - route node/source/destination values modulo121 as direct p32 indices, zero/one origin, nonlinguistic.
 - established word-shell H transform on canonical p32 words, nonlinguistic; IoC drops to about0.03320.
 - exact H-shell inverse on p32, nonlinguistic.
-- p32 has 26 canonical printed words. A prior apparent 22-word capacity match was a parser artifact and must not be reused.
+- p32 has 22 page-local fragments and 21 complete word starts because fragment0 continues the final p31 word. The earlier 26-word count was a parser artifact and must not be reused.
 - 26 words plus red13 mark naturally suggests13 pairs, but adjacent/halves word-length sum/difference keys do not decrypt the p0 red13 title.
 
 Do not expand these failed consumers with arbitrary transforms. Seek a source-selected p32 traversal or value operation.
@@ -180,7 +196,7 @@ Consult previous commits/results for details rather than reconstructing from mem
 ## Highest-value next actions
 
 1. Treat the unique `EPIPHANY SEEKS THE DEVOTED` 23-step base60/p=23 route as the main upstream solve path.
-2. Search for a source-selected p32 operation that uses original layout, illustrations, punctuation, word structure, prime-axis 563/569 checksum, or a previously authenticated operation without adding free transforms.
+2. Treat HOME/BUDS as fixed p32 navigation-state labels. Seek a source-selected reversible value-changing operation on untouched p32 ciphertext that reuses this receiver without adding free transforms.
 3. Use the held-out EMPTY-on-path relation as a model for future validation: prefer predictions from unused signed words or original page features.
 4. Continue the conditional SEEK->AND branch only if the [g,g,K] tail/sign rule gains an independent selector or a prospective reuse.
 5. Avoid further JPEG container/Huffman/component-mode searches; only motivated coefficient-level stego remains open.
