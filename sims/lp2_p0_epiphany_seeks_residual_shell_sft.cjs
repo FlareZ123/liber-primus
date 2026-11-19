@@ -23,6 +23,9 @@ const read = file =>
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const signed = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const solved = JSON.parse(
+  read("resources/external/relikd-solved-gp29-native-v1.json")
+);
 
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const gpTokens = corpus.translit
@@ -342,6 +345,80 @@ assert.deepEqual(oldGeometryPhiPHits, [
   },
 ]);
 
+// Wider lexical control: union the authenticated 2016 vocabulary with every
+// unique source-native word in the pinned solved Cicada corpus. Keep the same
+// physical 8+5 shape, both additive signs, and both state closures.
+const lexicalPool = new Map();
+for (const section of solved.sections) {
+  for (const values of runeWords(section.source_text)) {
+    const text = values.map(value => corpus.translit[value]).join("");
+    lexicalPool.set(text, { text, values, source: "solved" });
+  }
+}
+for (const row of signedWords) {
+  lexicalPool.set(row.text, {
+    text: row.text,
+    values: row.values,
+    source: "signed2016",
+  });
+}
+const lexicalValues = [...lexicalPool.values()];
+const lexical8 = lexicalValues.filter(row => row.values.length === 8);
+const lexical5 = lexicalValues.filter(row => row.values.length === 5);
+const broadStateBridgeHits = [];
+let broadStateBridgeCases = 0;
+for (const sign of [1, -1]) {
+  for (const left of lexical8) {
+    for (const right of lexical5) {
+      broadStateBridgeCases += 1;
+      const candidate = [...left.values, ...right.values];
+      const bridge = oldLiteral.map((value, index) =>
+        mod29(sign === 1 ? value - candidate[index] : candidate[index] - value)
+      );
+      const candidateSums = [
+        gp0(candidate.slice(0, 8)),
+        gp0(candidate.slice(8)),
+      ];
+      const bridgeSums = [
+        gp0(bridge.slice(0, 8)),
+        gp0(bridge.slice(8)),
+      ];
+      if (
+        bridgeSums[0] - candidateSums[0] === 2 &&
+        bridgeSums[1] - candidateSums[1] === 2 &&
+        729 - gpPrime(bridge) === 22
+      ) {
+        broadStateBridgeHits.push({
+          sign: sign === 1 ? "G-P" : "P-G",
+          left: left.text,
+          right: right.text,
+          leftSource: left.source,
+          rightSource: right.source,
+          candidateSums,
+          bridgeSums,
+          bridgePrime: gpPrime(bridge),
+        });
+      }
+    }
+  }
+}
+assert.equal(lexicalPool.size, 295);
+assert.equal(lexical8.length, 18);
+assert.equal(lexical5.length, 38);
+assert.equal(broadStateBridgeCases, 1368);
+assert.deepEqual(broadStateBridgeHits, [
+  {
+    sign: "G-P",
+    left: "EPIPHANY",
+    right: "SEEKS",
+    leftSource: "signed2016",
+    rightSource: "signed2016",
+    candidateSums: [121, 71],
+    bridgeSums: [123, 73],
+    bridgePrime: 707,
+  },
+]);
+
 console.log(JSON.stringify({
   candidate: "EPIPHANY SEEKS",
   residual,
@@ -377,6 +454,13 @@ console.log(JSON.stringify({
       shared2Cases: oldGeometryShared2Cases,
       shared2Hits: oldGeometryShared2Hits,
       phiPHits: oldGeometryPhiPHits,
+      broadLexicalControl: {
+        uniqueWords: lexicalPool.size,
+        length8: lexical8.length,
+        length5: lexical5.length,
+        cases: broadStateBridgeCases,
+        hits: broadStateBridgeHits,
+      },
       primeSum: gpPrime(oldToCandidate),
       squareMinusPrimeSum: 729 - gpPrime(oldToCandidate),
     },
