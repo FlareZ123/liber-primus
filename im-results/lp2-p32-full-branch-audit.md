@@ -1,0 +1,154 @@
+# Director #1780: full p32 source-loop branch audit
+
+**Agent27, 19 November 2026. Decision: positive familywise source-loop gate, with explicit representation aliases.** The p32 route survives the complete low-description branch family without destination-language scoring. A frozen terminal consequence then returns to a unique authenticated source collision register.
+
+## Charged family
+
+Starting only from the authenticated 2016 source, canonical p50 tape, p32 boundaries, frozen DH tuple, and fixed H:
+
+- radices 59 and 60;
+- four incoming-carry/count conventions for mapping EMPTY step7 to a p32 fragment;
+- zero- and one-based position use for EMPTY modulo fragment length;
+- all eight square dihedral orientations;
+- all eight movement directions;
+- finite state distances `{p,g,a,b,A,B,K,e,q,-K,g+K}` reduced modulo11;
+- all six signed `THE -> next word` pairs as possible READ OUT source returns.
+
+This is **67,584 nominal configurations**.
+
+No destination dictionary word is used as an acceptance condition. A branch must:
+
+1. reach p32 and contain EMPTY on the source walk;
+2. land EMPTY on a literal X in the selected fragment;
+3. translate the four runes immediately before X and the X rigidly in the charged square geometry;
+4. land the translated X exactly at a fragment start, with the four-rune block immediately before it inside one enclosing fragment;
+5. READ OUT the enclosing fragment's outer pair under fixed forward H to one of the actual signed `THE -> next` index pairs.
+
+## Radix and fragment gate
+
+The two p50 walks are:
+
+```text
+base59: SEEKS=71 -> ... -> 144 after 23 steps
+        EMPTY=92 never occurs
+
+base60: SEEKS=71 -> ... -> 32 after 23 steps
+        EMPTY=92 occurs at step7
+```
+
+So base60 is uniquely retained before p32 geometry.
+
+The carry/count family gives fragment indices6,7,8. Two descriptions converge on fragment7:
+
+- zero-based fragment count including the incoming p31 carry;
+- one-based complete-word count excluding that carry.
+
+Both are descriptions of the same physical object. The other two conventions fail the literal-X gate.
+
+Only zero-based `EMPTY mod 11 = 4` lands on the literal X of fragment7.
+
+## Full geometric result
+
+The full family has **32 representational successes**, yet all 32 collapse to **one physical branch**:
+
+```text
+source fragment7
+X position4, absolute offset37
+four-rune source block offsets33..36
+
+physical translation (+5,+5)
+destination block offsets93..96
+translated X offset97
+enclosing fragment15, length8
+
+READ OUT:
+H(first,last) = [7,8]
+signed positions 7,8 = THE DEVOTED
+```
+
+The 32 representations are explained exactly:
+
+- 2 equivalent carry/count descriptions of physical fragment7;
+- 8 coordinate-gauge descriptions from square dihedral orientation paired with direction;
+- 2 state labels with the same modulo11 distance, `g=5` and `-K=27 ≡ 5 mod11`.
+
+Thus:
+
+```text
+2 * 8 * 2 = 32
+```
+
+and there is only **one physical destination/readout branch**.
+
+The `g/-K` alias is a real state-residue ambiguity, so this audit does not claim that p32 geometry alone names the distance field as g. The physical movement is nevertheless unique in the charged family.
+
+After the physical branch is fixed, its four destination runes are the already observed BUDS span. That spelling is diagnostic, not a selector in this audit.
+
+## Frozen next consequence
+
+The retained p50 composite reaches:
+
+```text
+57 --1w--> 56 --4E / hex N--> 48
+```
+
+with p32's selected states `56=BUDS` and `48=HOME`.
+
+Before opening any further target, freeze the terminal HOME cell and keep the same hexadecimal interpretation already used at `4E`:
+
+```text
+p50[48] = 4D
+hex(4D) = 77
+```
+
+Compare that single value only against the authenticated source's **distinct lexical same-GP0 collision register**.
+
+There are six such collision groups:
+
+```text
+69 HELLO/LIBER
+57 WAY/WILL
+56 MAP/AND/SEEK
+77 MEANING/FALSE
+54 ROAD/PATHS
+35 BE/GOOD
+```
+
+Exactly one matches terminal77:
+
+```text
+MEANING / FALSE
+```
+
+Their zero-based signed positions are 20 and39, and the independently fixed H operation gives:
+
+```text
+H(20,39)
+= [10,1]
+= [K*g, a-g].
+```
+
+So the p32 route's frozen terminal state returns to the same authenticated source collision register that independently participates in the source-side DH reconstruction.
+
+No p33 object, new key family, dictionary target, or fitted plaintext enters this consequence.
+
+## Decision
+
+Director #1780's positive branch-family gate is met at the level of the **physical source-to-source loop**:
+
+- base60 is uniquely retained;
+- fragment7/X position4 are physically retained despite two equivalent counting descriptions;
+- all square-orientation/direction aliases reduce to one physical translation;
+- the only remaining state label ambiguity is the exact modulo11 identity `g ≡ -K`;
+- the destination's enclosing fragment READ OUT returns exactly `THE DEVOTED`;
+- the frozen terminal HOME cell gives a new exact source-register consequence, `4D -> 77 -> MEANING/FALSE -> [K*g,a-g]`.
+
+This authenticates the p32 loop as a sparse, source-constrained physical mechanism. It still does **not** recover continuous unknown plaintext. The next downstream work should treat the physical offsets93..97, fragment15, and terminal collision77 as fixed objects rather than reopening HOME/BUDS selection.
+
+## Reproduction
+
+```text
+node sims/lp2_p32_full_branch_audit_sft.cjs
+```
+
+The SFT charges all 67,584 nominal branch configurations and verifies the held-out terminal collision consequence.
