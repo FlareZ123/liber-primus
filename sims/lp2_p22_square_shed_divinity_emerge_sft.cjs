@@ -239,6 +239,17 @@ for (const candidate of derivedNumbers) {
   }
 }
 
+const token2DCount = tape.filter((token) => token === "2D").length;
+const token1OCount = tape.filter((token) => token === "1O").length;
+assert.equal(token2DCount, 2);
+assert.equal(token1OCount, 3);
+const exactFixedAddressNull = {
+  numerator: token2DCount * token1OCount,
+  denominator: tape.length * (tape.length - 1),
+};
+assert.equal(exactFixedAddressNull.numerator, 6);
+assert.equal(exactFixedAddressNull.denominator, 65280);
+
 const rivalHits = rivalFamily.filter((row) => row.p57Words.length);
 assert.deepEqual(rivalHits, [{
   name: "center",
@@ -265,6 +276,11 @@ console.log(JSON.stringify({
   fixedBase59CellHits: cellHits59,
   radix60RivalHits: cellHits60,
   centerRivalFamily: rivalFamily,
+  fixedAddressTokenMultisetNull: {
+    ...exactFixedAddressNull,
+    probability: exactFixedAddressNull.numerator / exactFixedAddressNull.denominator,
+    exact: "1/10880",
+  },
   centerRivalHits: rivalHits,
   independentPrimeEcho: {
     start: 761,
