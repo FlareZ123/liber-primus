@@ -290,6 +290,15 @@ FOUND <-> ROAD
 
 while PATHS remains associated with the separately identified p39 FALSE corridor.
 
+A later numbered-route readout supplies an independent human-readable disambiguator. The corrected p30/p31 diagonal packets are the only three-rune diagonal objects typed as `[THE-position, subject, THE-position]`. A fixed source-window readout gives:
+
+```text
+p30 SEEK -> EMPTY ARE THE PATHS
+p31 AND  -> ROAD IS THE WAY.
+```
+
+That result was found without re-opening the p35 direction graph and agrees exactly with its ROAD branch while rejecting PATHS in the same vocabulary. See `im-results/lp2-p31-and-p33-you-rise-will.md` and `sims/lp2_p31_and_p33_you_rise_will_sft.cjs`.
+
 The same graph can be read directly as physical page numbers once p35 is selected:
 
 ```text
