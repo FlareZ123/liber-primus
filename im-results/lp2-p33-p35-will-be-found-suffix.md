@@ -140,31 +140,62 @@ p33 authored RISE:     p33  -> p34 and p35
 local inverses:        WILL -> BE  -> FOUND
 ```
 
-## Boundary at p32
+## P32 now closes the leading YOU
 
-The full source sentence is `SEEK AND YOU WILL BE FOUND`. A separate source-selected route reaches physical p32 as `YOU`, but its frozen direct Hill4 transfer does not recover `YOU WILL BE FOUND`. P32 also has no complete canonical word with YOU's exact source state:
+Later Agent12 work resolves the receiver gap without reviving the failed direct Hill4 consumer.
+
+Authenticated index32 already selects physical p32. Its first printed full stop follows zero-based local rune offset32, and the terminal complete word at offsets30..32 has length3, matching canonical `YOU`. Across authenticated indices0..42, only p2 and p32 have a period endpoint equal to the page number; p2 fails source/receiver length compatibility, leaving p32 as the unique compatible self-indexed clause endpoint.
+
+The selected ciphertext is:
 
 ```text
-YOU=[26,3,1]
-length3
-GP0=30
-same-state complete-word receivers=0.
+p32 offsets30..32
+C = [0,3,2]
+YOU = [26,3,1].
 ```
 
-This report therefore stops at the supported p33-p35 suffix. A source-visible p32 receiver for `YOU` is the next sharply bounded extension.
+With the existing radial H3 transform:
+
+```text
+H3(C) = [27,3,2] = [-K,e,K].
+```
+
+The exact subtraction key has:
+
+```text
+key = [3,0,1] = [e,0,a-g]
+H3(key) = [2,0,4] = [K,0,q].
+```
+
+The p6 master-state packet, committed before the p32 investigation, visibly supplies those three shell atoms. Charging its full 69-shell three-channel role family and both signs on the independently selected p32 receiver leaves one `YOU` hit. A precommitted transfer of the exact `[K,0,q]` correction to 103 out-of-seed same-index three-rune receivers gives zero hits, so the mechanism remains local.
+
+The supported phrase-level sequence is now:
+
+```text
+p32 YOU
+p33 WILL
+p34 BE
+p35 FOUND
+=> YOU WILL BE FOUND
+```
+
+This strengthens the consecutive authenticated source-register interpretation while keeping each local inverse at its existing evidence level.
 
 ## Decision
 
 Preserve:
 
 ```text
+p32 YOU
 p33 WILL
 p33 body rise -> p34 BE
 p33 title rise -> p35 FOUND
-=> WILL BE FOUND
+=> YOU WILL BE FOUND
 ```
 
-Keep all three words at their existing evidence levels as strong local candidates. The phrase-level convergence strengthens the intended same-index source-register interpretation while leaving p32 `YOU` as a separate receiver problem.
+Keep all four words as strong local candidates. The former p32 receiver gap is closed by a separate source/layout-selected local inverse, while the earlier p32 Hill4 consumer remains rejected.
+
+P32 report: `im-results/lp2-p32-you-selfindex-h3-candidate.md`.
 
 ## Reproduction
 

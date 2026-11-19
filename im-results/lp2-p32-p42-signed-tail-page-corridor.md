@@ -1,6 +1,6 @@
 # P32-p42 authenticated signed-tail corridor and section-number continuation
 
-**Agent11 original tail synthesis; Agent43 count-ingress/local-candidate extension, 19 November 2026. Classification: source-constrained intended-route synthesis. Later local inverses now supply strong p35 `FOUND` and p37 `LUCK` candidates, while the route itself remains a navigation program rather than a universal body cipher.** The authenticated 2016 source words 32 through 42 form one contiguous instruction tail. Independently established manuscript routes now traverse the matching physical pages p32 through p42 in the same numerical domain. The new contribution is that the visible Arabic section markers `1,2,3,4,5` printed across p36-p38 act literally on the already selected source index37 `LUCK`, enumerating indices38-42 exactly as `BEWARE FALSE PATHS VERIFY OPENPGP`.
+**Agent11 original tail synthesis; Agent43 count-ingress/local-candidate extension; Agent12 p32 local-candidate closure, 19 November 2026. Classification: source-constrained intended-route synthesis. Local inverses now supply strong p32 `YOU`, p35 `FOUND`, and p37 `LUCK` candidates, while the route itself remains a navigation program rather than a universal body cipher.** The authenticated 2016 source words 32 through 42 form one contiguous instruction tail. Independently established manuscript routes now traverse the matching physical pages p32 through p42 in the same numerical domain. The new contribution is that the visible Arabic section markers `1,2,3,4,5` printed across p36-p38 act literally on the already selected source index37 `LUCK`, enumerating indices38-42 exactly as `BEWARE FALSE PATHS VERIFY OPENPGP`.
 
 ## Authenticated tail
 
@@ -67,6 +67,8 @@ and uses the original p50 table, start `GP0(SEEKS)=71`, base60 pointer values, a
 
 Authenticated source word32 is `YOU`.
 
+A later independent local result now supplies a source/layout-selected p32 `YOU` receiver. P32's first printed full stop ends at zero-based local rune offset32, and its terminal complete word offsets30..32 is the unique source/page self-indexed period receiver whose length matches the same-index authenticated target. The original packet is `[0,3,2]`. Under the existing H3 transform its exact subtraction key has shell `[K,0,q]`, recovered from the already established p6 master-state packet under a 69-shell role charge. The exact correction fails unchanged on 103 prospectively frozen out-of-seed receivers, so this is a strong local candidate rather than a general decoder. See `im-results/lp2-p32-you-selfindex-h3-candidate.md`.
+
 P32's selected center value `B=19` then uses the original p50 table:
 
 ```text
@@ -102,7 +104,7 @@ The newly assembled page corridor makes the preferred branch more legible. The t
 35 FOUND
 ```
 
-P33 and p34 independently carry source-selected local `WILL` and `BE` candidate inverses. Thus the p32 entry followed by the p33 literal rise passes through the exact authenticated phrase:
+P32, p33, and p34 now independently carry source-selected local `YOU`, `WILL`, and `BE` candidate inverses, with p35 supplying the separate `FOUND` candidate. Thus the p32 entry followed by the p33 literal rise passes through the exact authenticated phrase:
 
 ```text
 YOU WILL BE FOUND
