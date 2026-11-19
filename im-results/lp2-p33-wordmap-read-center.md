@@ -91,6 +91,54 @@ There are **1,833** candidate windows. Exactly **one** satisfies the complete fo
 
 The chronology remains important: the p33 state packet and p57 vocabulary were already known when this word-map reading was recognized. The fixed tuple census nevertheless makes the p33 receiver sharply discriminating and supplies an authored-looking instruction rather than a generic language score.
 
+## DIVINITY WITHIN resolves to RISE, then uniquely to p55
+
+The recovered instruction is executable inside the selected 21-word map itself.
+
+Map word9 is the word numbered **DIVINITY**. It has seven runes and its exact center is GP value:
+
+```text
+8 = A
+```
+
+Under the same map-relative one-based coordinate system, map word8 is:
+
+```text
+GP0(word8) = 47 = RISE
+```
+
+So the road is literal:
+
+```text
+FIND THE DIVINITY WITHIN
+ -> center(DIVINITY word) = 8
+ -> map word8 = RISE
+```
+
+Across all 1,833 candidate 21-word windows, only the p33 upper body simultaneously has the DIVINITY/WITHIN pair, DIVINITY-center8 and map-word8 RISE.
+
+Now apply the already established GP0→p50 number grammar:
+
+```text
+RISE = 47
+p50[47] = 1G
+base59 = 75
+base60 = 76
+```
+
+The original boundary audit gives p55 exactly **76 physical runes**, one of which is an incoming p54 carry, leaving **75 locally owned p55 runes**. Across p0–p55, p55 alone simultaneously matches those two counts.
+
+Map word `e=3` independently carries **TUNNELNG**, whose established p50 token `0u` reads 55/56 under base59/base60. Thus the map has two source-native terminal selectors:
+
+```text
+TUNNELNG -> terminal p55/p56 pair
+RISE      -> exact p55 75/76 local/physical counts
+```
+
+The second resolves the first onto p55 without choosing a radix after observing a page number.
+
+That receiver is developed further in `im-results/lp2-p33-p55-divinity-state-geometry.md`.
+
 ## Unique e² word
 
 The 21 complete printed words in the selected 81-rune upper body have lengths:
