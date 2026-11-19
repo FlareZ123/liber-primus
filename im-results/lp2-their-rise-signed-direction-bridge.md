@@ -36,6 +36,36 @@ and the second occurrence opens the exact signed clause:
 
 This supplies a concrete reading of the hidden instruction: rise from the first THEIR to the second, then consume the authenticated statement that their numbers provide direction.
 
+## Clause-level +a translation
+
+The hidden instruction also has an exact source-text action before p50 geometry is involved. The first THEIR begins:
+
+```text
+19 THEIR 20 MEANING 21 IS 22 THE 23 ROAD
+```
+
+Adding the rise `a=6` to every index yields:
+
+```text
+25 THEIR 26 NUMBERS 27 ARE 28 THE 29 DIRECTION
+```
+
+with index24 `AND` acting as the printed separator between the parallel clauses. Thus `THEIR RISE` translates the complete five-word clause `THEIR MEANING IS THE ROAD` into `THEIR NUMBERS ARE THE DIRECTION` by one fixed +6 word-index operation.
+
+The corresponding exact GP0 rises are:
+
+```text
+THEIR    -> THEIR       +0
+MEANING  -> NUMBERS     +6  = a
+IS       -> ARE        +21  = p-K
+THE      -> THE         +0
+ROAD     -> DIRECTION  +58  = 2*29
+```
+
+The positional consequence is more important than these secondary GP0 equalities. It maps `THE22 -> THE28` and `ROAD23 -> DIRECTION29`. The authenticated THE scaffold has only two +a boundary jumps, `1->7` and `22->28`; this hidden instruction independently supplies the later jump. Therefore the signed THE at index28 and DIRECTION at29 can be selected from the first THEIR clause before consulting p28/p29 algebraic properties.
+
+This removes the weakest circular step in the existing p28 THE / DIRECTION p29 selector: instead of choosing THE28 because the current manuscript page is p28, p32 provides THEIR19, p33 provides the +a rise, and the source clause itself carries THE22 to THE28 and ROAD23 to DIRECTION29.
+
 ## Literal 32x8 operation
 
 The original p50 object is visibly a 32x8 table, and its width is the reconstructed state value `A=8`. Interpret a signed word's GP0 as a table address and its zero-based word number as an upward row displacement:
@@ -114,5 +144,5 @@ This materially reduces a previously open parameter choice in the SEEKS route. I
 
 - SFT: `sims/lp2_their_rise_signed_direction_bridge_sft.cjs`
 - Workflow: `.github/workflows/agent4-their-rise-signed-direction.yml`
-- Windows PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44457129816
+- Windows PASS with clause-translation assertions: https://github.com/FlareZ123/liber-primus/actions/runs/44457504951
 - PATH transfer precommit: `workplace/agent4-path-rise-pointer-precommit.md`
