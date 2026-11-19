@@ -90,6 +90,15 @@ The following signed words are:
 
 which makes the p39 branch a coherent **FALSE PATHS** warning corridor rather than the preferred destination.
 
+A later numbered-route result gives an independent source-number warning in the same vocabulary. The only two three-rune numbered-diagonal packets typed as `[THE-position, subject, THE-position]` decode under one fixed source-window rule to:
+
+```text
+p30 SEEK -> EMPTY ARE THE PATHS
+p31 AND  -> ROAD IS THE WAY.
+```
+
+That readout uses neither p39/p40 ciphertext nor this THEIR-occurrence branch. It therefore strengthens the interpretation already forced by `FALSE` and the red X: PATHS is the warning branch, while ROAD23 is the productive route checkpoint. The subsequent source words `VERIFY OPENPGP` remain valid instructions and independent routes; the new evidence specifically argues against treating PATHS itself as the preferred onward destination.
+
 ## P40 repeats RISE inside the warning corridor
 
 Physical p40 has a red two-word heading of lengths:
