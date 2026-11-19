@@ -246,11 +246,18 @@ assert.ok(clear);
 const signedWords = clear[1].match(/\b[A-Za-z]+\b/gu) || [];
 assert.equal(signedWords.length, Number(sourceWordCount));
 
-// Existing independently selected route labels.
+// Existing independently selected route labels. The p32 page selector and
+// p27 carrier start were established before this factorization was opened.
+const selectedPage = 32;
+const p27CarrierStart = 79;
+const p27 = corpus.pages.find(page => page.page === 27);
+assert.ok(p27);
+const p27Text = p27.indices.map(index => corpus.translit[index]).join("");
+assert.equal(p27Text.slice(p27CarrierStart, p27CarrierStart + 13), "EORNSOOCAEYEE");
 assert.equal(gp0("EMPTY") / 23, 4);
-assert.equal(13, 13); // source punctuation type
-assert.equal(32, 32); // selected EPIPHANY/SEEKS receiver page
-assert.equal(79, 79); // selected p27 DIVINITY-carrier start
+assert.equal(bitLength(q13), 13); // literal thirteen-dot event type
+assert.equal(bitLength(q32), selectedPage);
+assert.equal(bitLength(q79), p27CarrierStart);
 
 // Canonical convention controls for the same full object.
 const reversed = reversePositions(256, full.positions);
@@ -312,7 +319,9 @@ console.log(JSON.stringify({
       factor43:"authenticated signed-2016 word count",
       factor5051Bits:bitLength(q13),
       factor3435600587Bits:bitLength(q32),
+      selectedReceiverPage:selectedPage,
       factor571505208178548184347727Bits:bitLength(q79),
+      selectedP27CarrierStart:p27CarrierStart,
     },
     factorProbablePrimes:[43n,q13,q32,q79].map(value => ({
       value:value.toString(),
