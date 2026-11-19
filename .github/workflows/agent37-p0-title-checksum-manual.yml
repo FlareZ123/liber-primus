@@ -18,3 +18,5 @@ jobs:
         run: |
           node --check sims/lp2_p0_epiphany_seeks_key_checksum_sft.cjs
           node sims/lp2_p0_epiphany_seeks_key_checksum_sft.cjs
+          node --check sims/lp2_p0_you_false_will_candidate_sft.cjs
+          node sims/lp2_p0_you_false_will_candidate_sft.cjs
