@@ -170,6 +170,24 @@ This is the strongest current reading of the p23 hidden-layout route. It explain
 
 The independently recovered p33 **THEIR RISE** loop also confirms the p23 terminal cardinal25 from another source object. Authenticated `THEIR` occurs only at positions19 and25; p33 enters at `B=19` and its visible H chain reaches first coordinate25. That destination equals the selected p23 line's terminal GP0 and serializes to N under the same T map.
 
+Later numbered-route work closes the p33 handoff back to p23 through independently selected objects:
+
+```text
+p23 -> p33
+  this report's B=19 / p50[19]=33 handoff
+
+p33 -> p30
+  fixed-key p33 YOU candidate, with GP0(YOU)=30
+
+p30 -> p31
+  corrected numbered SEEK -> AND adjacency
+
+p31 -> p23
+  unique lexical center change EMPTY -> ROAD, with ROAD index23.
+```
+
+The first and last edges predate recognition of the closed cycle. The cycle therefore provides a downstream consumer for the p23→p33 handoff without modifying the p23 serializer or DH roles. The phrase `THE ORIGINAL` is descriptively compatible with returning to p23, but no direction word in this report explicitly commands that interpretation, so retain the semantic connection as provisional.
+
 ## 6. Evidence boundary and failed transfer
 
 The strongest reproducible chain is now:
