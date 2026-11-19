@@ -1090,6 +1090,79 @@ assert.deepEqual(
 assert.equal(semanticNearHits.filter(hit => hit.matchCount === 4).length, 0);
 assert.equal(semanticNearHits.filter(hit => hit.matchCount === 5).length, 2);
 
+// Broaden to a simple affine family. This removes the sign-flip presumption:
+// component + a*wordIndex + b*wordLength + constant (mod29), with
+// a,b in [-3,3], all 29 constants, both word-length definitions, both
+// source address origins, both alphabets, and high/low p50 components.
+const semanticAffineHits = [];
+let semanticAffineTested = 0;
+for (const wordLengths of [
+  {name: "GP", values: lengths},
+  {name: "Latin", values: latinLengths},
+]) {
+  for (const addressOrigin of [0, 1]) {
+    for (const [radix, alphabet] of [
+      ["base60", alpha60],
+      ["base59", alpha59],
+    ]) {
+      for (const component of ["low", "high"]) {
+        for (let indexCoefficient = -3; indexCoefficient <= 3; indexCoefficient += 1) {
+          for (
+            let lengthCoefficient = -3;
+            lengthCoefficient <= 3;
+            lengthCoefficient += 1
+          ) {
+            for (let constant = 0; constant < 29; constant += 1) {
+              semanticAffineTested += 1;
+              let valid = true;
+              for (const edge of semanticDirectionEdges) {
+                const token = table[edge.from + addressOrigin];
+                const char = component === "low" ? token[1] : token[0];
+                const componentValue = alphabet.indexOf(char);
+                if (componentValue < 0) {
+                  valid = false;
+                  break;
+                }
+                const value = mod29(
+                  componentValue +
+                  indexCoefficient * edge.from +
+                  lengthCoefficient * wordLengths.values[edge.from] +
+                  constant
+                );
+                if (value !== edge.to) {
+                  valid = false;
+                  break;
+                }
+              }
+              if (valid) {
+                semanticAffineHits.push({
+                  lengthType: wordLengths.name,
+                  addressOrigin,
+                  radix,
+                  component,
+                  indexCoefficient,
+                  lengthCoefficient,
+                  constant,
+                });
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(semanticAffineTested, 22736);
+assert.deepEqual(semanticAffineHits, [{
+  lengthType: "GP",
+  addressOrigin: 0,
+  radix: "base60",
+  component: "low",
+  indexCoefficient: -1,
+  lengthCoefficient: -1,
+  constant: 0,
+}]);
+
 // Stronger topology charge across all 128 arithmetic conventions x both
 // GP-rune and Latin-letter length definitions. Only the two algebraically
 // identical syntactic forms of the frozen GP/base60/low operation produce
@@ -1367,6 +1440,8 @@ console.log(JSON.stringify({
     topologyFamilyHits: topologyFamilyHits.length,
     semanticEdges: semanticDirectionEdges,
     semanticFamilyHits: semanticFamilyHits.length,
+    semanticAffineTested,
+    semanticAffineHits,
     firstWordCycle: [0, 18, 23, 0],
     firstWordCycleWords: ["HELLO", "MAP", "ROAD", "HELLO"],
     allCycles: directionCycles.map(cycle => ({
