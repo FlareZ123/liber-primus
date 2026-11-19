@@ -70,6 +70,14 @@ Use `K` and its inverse to process consecutive **four-rune column blocks**, alwa
 
 Each output is ciphertext-like and begins with nonlinguistic GP symbols; **none recovers native prose or an authentic instruction**. Both directions reconstruct every original GP29 rune exactly under the algebraic inverse. For the table they reconstruct only the original **byte residues mod29**, since the required 256-byte→GF29 reduction loses information; the matrix is not a reversible operator on the original 8-bit cells. A separate positive control encrypts and recovers **92/92 clear-source p57 GP29 runes** under the same full-rank Hill4 matrices. No plaintext claim is justified by exact roundtripping alone.
 
+## Later signed-source selector and direct p32 transfer
+
+A later p32/p33 route now independently reaches signed index29 `DIRECTION` through the `THEIR RISE` +a clause translation. The authenticated continuation is `29 DIRECTION 30 SEEK 31 AND 32 YOU`. This supplies a simpler human-facing selector for the same adjacent pair: DIRECTION29 selects p29 and SEEK30 selects p30 before the complementary spectral factors are opened.
+
+The next word, AND31, also supplies the previously missing semantic reason to consider the already defined algebraic combination `K=A+B`. A prospectively frozen transfer then used YOU32 to select physical p32 and charged exactly its two unpadded 120-rune boundary windows under K, K^-1 and the two row-vector transposes. None begins with or contains canonical `YOU WILL BE FOUND`; all eight outputs remain ciphertext-like. Therefore the source selector for p29/p30 and the semantic motivation for K survive, while the direct raw-p32 Hill4 consumer is closed.
+
+See `lp2-direction-seek-and-you-p29p30-selector.md`, Windows PASS 44458531520.
+
 ## Decision and reproducibility
 
 The **new p30 complementary roots** are a specific, reproducible original-cipher relationship that extends the existing p29/p39/p50 and p15 source algebra. They change which page pair would be worth examining **if** a human-visible source selector for matrix/polynomial operations is independently found. The explicit invertible matrix combined from both pages did **not** directly decode **its own 540-rune concatenated source pages**, the original table residues, either tested chapter or p55's independently ink-bounded 76-rune body. The own-page receiver is more naturally motivated than unrelated chapter applications because the original p29→p30 page break visibly carries one word and their total length fits 135 four-rune blocks; its failure sharply limits the simplest self-decoding interpretation. It cannot be promoted to a Cicada key merely because it is invertible.
