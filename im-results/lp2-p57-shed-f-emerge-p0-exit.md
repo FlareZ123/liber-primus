@@ -123,6 +123,34 @@ This is materially stronger than a free semantic radix switch at189: the parable
 
 There are four `3C` cells in the table (67,162,189,247), so the token is not globally unique. The charged fact is that the solved word `SURFACE` fixes address67 through the already established GP0→p50 primitive, and p57 contains no other direct word hit on that root-token class.
 
+The complete four-copy class supplies an additional manuscript-state check. With the visible width8, the copies are:
+
+| address | row | column | authenticated 2016 zero-based row label |
+|---:|---:|---:|---|
+|67|8|3|DEVOTED|
+|162|20|2|MEANING|
+|189|23|5|ROAD|
+|247|30|7|SEEK|
+
+Their complete column set is exactly:
+
+```
+{2,3,5,7} = {K,e,g,g+K}
+```
+
+for the independently reconstructed state `K=2,e=3,g=5`. Exhausting every original p50 token class leaves **3C as the only token whose complete occurrence-column set is exactly `{K,e,g,g+K}`**.
+
+Two copies are exact state coordinates without any lexical fitting:
+
+```
+67  = A*8 + e = 8*8 + 3
+189 = p*8 + g = 23*8 + 5
+```
+
+and the authenticated source indexes at those rows are independently `DEVOTED8=A` and `ROAD23=p`. The remaining copies are `MEANING20/K` and `SEEK30/(g+K)`, so the same token class also lands on two central navigation words from the signed 2016 instruction.
+
+This geometry does not by itself prove a decoder. It does show that the exact token singled out by both SURFACE and the EMERGE fixed point is uniquely organized by the already recovered state rather than being an arbitrary duplicate.
+
 ## Candidate reset: let the shed digit EMERGE
 
 The solved instruction is literally **EMERGE**. With the new SURFACE holdout, the proposed reversal is source-linked rather than an arbitrary escape: EMERGE reaches the token numerically named by SURFACE, and the original pre-SHED base60 state is the only one of the two established numeral states that leaves the base59 trap.
@@ -229,7 +257,7 @@ No first-party sentence literally spells out that state-machine rule. The source
 
 This should therefore be treated as a high-priority exit candidate, not as recovered p0 plaintext. A decisive successor would use the resulting p0 receiver to predict a new original-page operation or ciphertext quantity before any language scoring.
 
-Reproduce with `sims/lp2_p57_shed_f_emerge_p0_exit_sft.cjs`.
+Reproduce with `sims/lp2_p57_shed_f_emerge_p0_exit_sft.cjs`. Windows Node22 PASS, including the SURFACE reset and complete 3C state-column census: **44464036754**.
 
 
 ## Plaintext-independent p0 opening backlink to p28
