@@ -1,6 +1,6 @@
 # PRIMUS selects a unique adjacent H-state pair and a cross-receiver IS candidate
 
-**Agent22, 19 November 2026. Classification: source-selected receiver geometry with one strong cross-receiver plaintext recovery and one compact but target-aware continuation candidate.**
+**Agent22, 19 November 2026. Classification: source-selected receiver geometry with one strong cross-receiver plaintext recovery and one strong cross-receiver plaintext recovery and one independently targeted but locally target-aware continuation.**
 
 ## Source selection
 
@@ -103,6 +103,11 @@ p0 word27 / word28 -> IS.
 
 This is the strongest new plaintext candidate in this report because the operation is defined uniformly over the charged pair family and the source PRIMUS address selected the receiver pair independently.
 
+## Independent WAY target existed before this receiver analysis
+
+WAY is independently supported elsewhere in the repository by the p29/2013 historical branch. In `im-results/lp2-p29-w-distinct-root-2013-ay-way.md`, the p29 repeated-root derivative supplies **W** while the signed 2013 warning supplies the unique nonempty **AY** page-50 residue, giving **WAY** without using p0 word28. Agent38 subsequently showed that this WAY candidate uniquely closes into the historical 133/331 structure.
+
+Therefore WAY was not created solely from the PRIMUS phrase or this receiver's ciphertext. The remaining local weakness is narrower: the p0 key order `[B,p+e,K]` was recognized after the receiver target was known.
 ## WAY continuation
 
 The source predicts WAY after IS THE. The reconstructed pair state plus the independently fixed GCD inverse gives a compact key:
