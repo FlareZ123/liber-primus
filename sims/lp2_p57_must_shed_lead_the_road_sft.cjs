@@ -197,59 +197,63 @@ const lexicon4 = new Set(
   dictionaryWords.filter((word) => /^[a-z]{4}$/u.test(word))
 );
 
-// Solved p57 gives the source words. Search all adjacent word pairs under all
-// four base60/base59 state pairs and both coordinate orders. GP-prime is
-// frozen here because the independently established MUST -> SHED transition
-// is itself defined by GP-prime(MUST)=186 and the post-switch SHED state.
+// Solved p57 gives the source words. Charge every adjacent word pair under
+// all four base60/base59 state pairs, both coordinate orders, and all three
+// standard GP metrics. The selector must survive the full family.
 const p57Section = solved.sections.find((section) => /p57/i.test(section.name));
 assert.ok(p57Section);
 const p57Words = (p57Section.source_text.match(/[\u16A0-\u16FF]+/gu) || [])
   .map((word) => [...word].map((rune) => runeIndex.get(rune)));
 assert.equal(p57Words.length, 20);
 
+const coordinateMetrics = {gp0, gp1, gpPrime};
 const englishCoordinateHits = [];
 let typedCoordinateStrings = 0;
 
-for (let index = 0; index < p57Words.length - 1; index += 1) {
-  const first = {
-    position: index + 1,
-    word: spell(p57Words[index]),
-    value: gpPrime(p57Words[index]),
-  };
-  const second = {
-    position: index + 2,
-    word: spell(p57Words[index + 1]),
-    value: gpPrime(p57Words[index + 1]),
-  };
+for (const [metric, metricFn] of Object.entries(coordinateMetrics)) {
+  for (let index = 0; index < p57Words.length - 1; index += 1) {
+    const first = {
+      position: index + 1,
+      word: spell(p57Words[index]),
+      value: metricFn(p57Words[index]),
+    };
+    const second = {
+      position: index + 2,
+      word: spell(p57Words[index + 1]),
+      value: metricFn(p57Words[index + 1]),
+    };
 
-  for (const firstRadix of ["base60", "base59"]) {
-    for (const secondRadix of ["base60", "base59"]) {
-      const firstCoord = uniqueCoordinate(first.value, firstRadix);
-      const secondCoord = uniqueCoordinate(second.value, secondRadix);
-      if (firstCoord === null || secondCoord === null) continue;
+    for (const firstRadix of ["base60", "base59"]) {
+      for (const secondRadix of ["base60", "base59"]) {
+        const firstCoord = uniqueCoordinate(first.value, firstRadix);
+        const secondCoord = uniqueCoordinate(second.value, secondRadix);
+        if (firstCoord === null || secondCoord === null) continue;
 
-      for (const order of ["forward", "reverse"]) {
-        typedCoordinateStrings += 1;
-        const text = order === "forward"
-          ? firstCoord.pair + secondCoord.pair
-          : secondCoord.pair + firstCoord.pair;
+        for (const order of ["forward", "reverse"]) {
+          typedCoordinateStrings += 1;
+          const text = order === "forward"
+            ? firstCoord.pair + secondCoord.pair
+            : secondCoord.pair + firstCoord.pair;
 
-        if (lexicon4.has(text.toLowerCase())) {
-          englishCoordinateHits.push({
-            words: [first, second],
-            radices: [firstRadix, secondRadix],
-            coordinates: [firstCoord, secondCoord],
-            order,
-            text,
-          });
+          if (lexicon4.has(text.toLowerCase())) {
+            englishCoordinateHits.push({
+              metric,
+              words: [first, second],
+              radices: [firstRadix, secondRadix],
+              coordinates: [firstCoord, secondCoord],
+              order,
+              text,
+            });
+          }
         }
       }
     }
   }
 }
 
-assert.equal(typedCoordinateStrings, 12);
+assert.equal(typedCoordinateStrings, 36);
 assert.deepEqual(englishCoordinateHits, [{
+  metric: "gpPrime",
   words: [
     {position: 10, word: "MUST", value: 186},
     {position: 11, word: "SHED", value: 232},
