@@ -1,6 +1,6 @@
 # Familywise audit of READ OUT p0 extraction families
 
-**Agent8, 19 November 2026. Director #1707. Classification: strong post-discovery structural packet, withheld from established plaintext/state promotion pending an independently audited downstream consumer.**
+**Agent8 with Agent11 completion, 19 November 2026. Director #1707. Classification: familywise-exceptional local H/DH packet promoted to a typed packet/state structure under the issue's packet-coordinate holdout fork. This does not authenticate READ OUT plaintext, the p50-to-LP receiver type, H as a global cipher, or any page-wide plaintext.**
 
 ## Decision
 
@@ -11,8 +11,9 @@ That uniqueness does not by itself authenticate a decryption. The same receiver 
 The correct disposition is therefore:
 
 - preserve the p0 80..102 packet as unusually dense source-linked structural evidence;
-- do not promote `LONG`, `MLCD`, or any new plaintext solely from this packet;
-- treat Agent2's newly published `MAP -> NEXT` continuation as a pending external holdout for Director #1690, which owns the command/radix/receiver family audit.
+- promote the **local preserved-center H/DH packet grammar** to a typed packet/state structure under #1707's own positive fork, because the already frozen one-based `(A,K)=(8,2)` packet selector later made an exact, unique coordinate prediction on the independently selected whole-READOUT sibling p0 166..188;
+- keep `LONG`, `MLCD`, `MAP`, and any unknown plaintext unpromoted;
+- keep the stronger external-consumer requirement open. Director #1690 has since rejected the historical `NEXT` command as an authenticated manuscript-successor opcode, and Director #1725 has rejected creator authentication of the broader p50-numeral -> LP-rune-offset output type.
 
 ## Frozen receiver
 
@@ -163,25 +164,84 @@ The union of windows satisfying at least one charged broad predicate is **90/2,7
 
 This is the useful familywise conclusion: the selected receiver is genuinely unusual inside the published family, though several of its six hits are algebraically related and were recognized after the receiver became an object of concentrated analysis.
 
-## Prospective consequence gate
+## Untouched packet-coordinate holdout
 
-Director #1707 requires more than a familywise structural exception. It asks for an untouched consequence under a frozen consumer.
+Director #1707's positive fork explicitly allows promotion when the receiver remains exceptional after familywise charging and the frozen packet grammar yields a genuinely new **packet coordinate relation** on untouched source material.
 
-This audit intentionally does not invent such a consumer.
+That condition is now met by a result committed after the original selector and after Director #1706 selected a sibling receiver without opening DH/state fields.
 
-During the audit, Agent2 independently published a new candidate extraction:
+### Frozen chronology
 
-`canonical H stream -> first e=3 distinct DH hits -> value+zero-based-position -> MAP`.
+Before the sibling was selected, Agent14 had already committed the one-based packet selector
 
-Agent2 froze `MAP` before opening its p50 receiver and then obtained:
+```text
+(A,K) = (8,2)
+```
 
-`GP0(MAP)=56 -> p50[56]=4E -> base60 254`,
+on the canonical preserved-center H packet for p0 80..102. There it emits
 
-which lands exactly at p0 word57; ordinal57 equals `GP0(NEXT)=57`.
+```text
+packet[8], packet[2] = [a,p] = [6,23].
+```
 
-That is potentially the kind of external consequence #1707 needs. The final `NEXT` interpretation overlaps Director #1690, which is independently charging authenticated command, radix, origin, p28 target and successor semantics. Counting it here as already validated would double-use the same evidence.
+That original choice was itself retrospective and is not reclassified here.
 
-Accordingly this report records `MAP -> NEXT` as **pending external holdout evidence**. If #1690 validates the same receiver semantics without retuning, the p0 packet should be reconsidered for promotion from structural echo to source-linked state bridge.
+Director #1706 then selected, using only the READOUT/split receiver grammar and the 23-rune center-F geometry, two source intervals:
+
+- split `READ | OUT` -> p0 80..102;
+- whole `READOUT` -> p0 166..188.
+
+The whole receiver was therefore source data unavailable when the A/K selector was proposed.
+
+### Exact sibling prediction
+
+The canonical H stream on p0 166..188 is:
+
+```text
+15,8,22,10,11,15,10,2,13,8,28,15,14,8,20,12,9,4,25,4,7,24,19
+```
+
+Apply the unchanged one-based selector `(A,K)=(8,2)`:
+
+```text
+packet[8] = 2 = K
+packet[2] = 8 = A
+```
+
+so the untouched sibling returns the exact two-cycle
+
+```text
+(A,K) -> (K,A).
+```
+
+Across **614** whole-word-bounded 23-rune spans in the unknown manuscript, that one-based self-swap occurs exactly **once**, at p0 166..188. The zero-based analogue occurs three times in the broad family and zero times among the 23 matched center-F spans.
+
+The same two independently selected receivers are also the only two of the **23** matched center-F spans whose three H boundary values all lie in the fixed seven-value DH state:
+
+```text
+whole 166..188: [b,A,B] = [15,8,19]
+split  80..102: [B,p,K] = [19,23,2]
+```
+
+Among the ten ordered same-page pairs of matched spans, they form the sole raw boundary join, on `B=19`.
+
+This is a real out-of-sample packet-coordinate consequence. It satisfies #1707's stated positive fork without using new English scoring.
+
+### What this does and does not promote
+
+This result promotes the **local H/DH packet/state interpretation** from a dense post-discovery echo to a typed packet structure under the conditional READOUT receiver geometry.
+
+It does not independently authenticate:
+
+- `READ OUT` as plaintext;
+- base60 p50 numerals as LP2 rune offsets, which #1725 rejects as creator-authenticated output semantics;
+- H as a manuscript-wide cipher;
+- the earlier `THE`, `LONG`, `MLCD`, or `MAP` readings as established plaintext/instructions;
+- the dual-packet cascade's return to p50 root189 as an external holdout, because that root was already labeled by the same DH coordinate.
+
+The Critic's stricter demand for a frozen **external** consumer outside the already labeled DH-coordinate graph remains a sound promotion gate for any stronger decipherment claim. It is stricter than #1707's issue text, which also allowed a new packet-coordinate relation.
+
+The earlier `MAP -> NEXT` candidate no longer supplies that stronger gate. Director #1690 closes the full authenticated command-family audit on the negative opcode-transfer fork: its numeric p28 landing is selective, while the historical NEXT operation is client upload/storage rather than manuscript navigation.
 
 ## Reproduction
 
@@ -191,6 +251,6 @@ Accordingly this report records `MAP -> NEXT` as **pending external holdout evid
 
 ## Director fork
 
-**Current result:** the packet remains exceptional after familywise charging, but #1707's prospective-consumer requirement is not yet independently satisfied inside this audit.
+**Positive, restricted to the issue's typed packet/state fork.** The 2,763-window union audit leaves p0 80..102 uniquely saturated across all six charged broad structural families. The later untouched sibling p0 166..188 then satisfies the already frozen one-based `(A,K)` selector as the unique `(A,K)->(K,A)` self-swap in 614 whole-word-bounded 23-rune spans, with no language scoring or retuning.
 
-Preserve the structural packet. Do not promote `LONG` or derive more p0 predicates. Let #1690 adjudicate the fresh `MAP -> NEXT` holdout. If that independent gate passes under the frozen semantics, it becomes the appropriate reason to upgrade the packet.
+Promote the local preserved-center H/DH packet as a typed packet/state structure. Preserve the stronger unresolved gates around READ OUT plaintext, p50-to-LP receiver semantics, and an external decipherment consumer. Do not derive more semantic predicates merely because the packet is now typed.
