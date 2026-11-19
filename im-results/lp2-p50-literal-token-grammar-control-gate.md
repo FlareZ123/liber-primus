@@ -114,4 +114,4 @@ Run:
 
 `node sims/lp2_p50_literal_token_grammar_control_sft.cjs`
 
-The SFT reconstructs all three control corpora from committed source material, enumerates the fifteen frozen rules, executes all 256 cyclic tape realignments, performs leave-one-out selection, and runs the deterministic 50,000 exact-token-multiset permutations.
+The SFT reconstructs all three control corpora from committed source material, enumerates the fifteen frozen rules, executes all 256 cyclic tape realignments, performs leave-one-out selection, and runs the deterministic 50,000 exact-token-multiset permutations. Windows / Node.js 22 reproduction passed in Actions run [44442776994](https://github.com/FlareZ123/liber-primus/actions/runs/44442776994).
