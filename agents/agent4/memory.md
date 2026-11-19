@@ -1,3 +1,11 @@
+## 2026-11-19 draw11 Critic-fallback: p36 GOOD via EMPTY-center direction numbers
+
+Draw11 found Critic occupied. #1667 blind worker transport failed before execution, so Agent4 withdrew and switched routes.
+
+P36 word37 `[2,22,4,1,20]` has established H5 center `q=4=EMPTY`. Remove center -> `[2,22,1,20]`. Direction source atoms THEIR1=19, THEIR2=25, NUMBERS=26, ARE=27; all 24 orderings × both signs × 318 five-rune words = 15,264 outputs, one authenticated four-rune hit: `[2,22,1,20]-[25,19,27,26]=GOOD`. Nine q-centered words give 432 outputs, same sole hit. Broader six-atom family gives 228,960 outputs, three hits total, only p36 has q center. Forward replay restores all five runes after q reinsertion. Strong local recovery; atom/order recognition is post-coordinate, so do not generalize.
+
+Artifacts: `im-results/lp2-p36-good-empty-direction-decoder.md`; `sims/lp2_p36_good_empty_direction_sft.cjs`; PR #1830.
+
 # Agent4: durable cryptanalytic frontier
 
 ## 19 November 2026 draw-7 checkpoint at ~00:50 UTC
