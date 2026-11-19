@@ -394,6 +394,74 @@ assert.deepEqual(logicalBoundaryCenters, [{
   extras: [176],
 }]);
 
+// The authenticated carrier itself supplies the same packet coordinates.
+// For each source word define delta = signed_index - GP0(word) mod29, then
+// apply the already frozen H(delta, GP-length). The final warning's five H
+// pairs are entirely simple p28-state expressions, and four coordinates
+// directly delimit the selected packet around center177.
+const warningCarrierGeometry = warningRows.map((row) => {
+  const signedIndex = message.findIndex((candidate) =>
+    candidate.index === row.index
+  );
+  const address = row.gp.reduce((total, value) => total + value, 0);
+  const delta = mod29(signedIndex - address);
+  const pair = H(delta, row.gp.length);
+  return {
+    word: row.word,
+    signedIndex,
+    length: row.gp.length,
+    address,
+    delta,
+    Hdiff: pair[0],
+    Hsum: pair[1],
+  };
+});
+assert.deepEqual(warningCarrierGeometry, [
+  { word: "BEWARE", signedIndex: 38, length: 6, address: 88, delta: 8, Hdiff: 2, Hsum: 14 },
+  { word: "FALSE", signedIndex: 39, length: 5, address: 77, delta: 20, Hdiff: 15, Hsum: 25 },
+  { word: "PATHS", signedIndex: 40, length: 4, address: 54, delta: 15, Hdiff: 11, Hsum: 19 },
+  { word: "VERIFY", signedIndex: 41, length: 6, address: 59, delta: 11, Hdiff: 5, Hsum: 17 },
+  { word: "OPENPGP", signedIndex: 42, length: 7, address: 75, delta: 25, Hdiff: 18, Hsum: 3 },
+]);
+assert.deepEqual(
+  warningCarrierGeometry.map((row) => [row.Hdiff, row.Hsum]),
+  [
+    [state.K, mod29(state.B - state.g)],
+    [state.b, mod29(state.p + state.K)],
+    [state.a + state.g, state.B],
+    [state.g, mod29(state.b + state.K)],
+    [mod29(state.p - state.g), e],
+  ]
+);
+
+// Read residues 18 and25 as signed offsets -11 and -4 around center177.
+// Together with center0, VERIFY's H-difference +5, direct a=+6, and
+// PATHS' H-difference +11, the carrier reproduces all logical packet bounds.
+const signedResidue = (value) => value > 14 ? value - 29 : value;
+const carrierPacketCoordinates = {
+  startInclusive: signedResidue(warningCarrierGeometry[4].Hdiff),
+  pathsStart: signedResidue(warningCarrierGeometry[1].Hsum),
+  verifyStart: 0,
+  verifyEndInclusive: signedResidue(warningCarrierGeometry[3].Hdiff),
+  bewareStart: state.a,
+  endInclusive: signedResidue(warningCarrierGeometry[2].Hdiff),
+};
+assert.deepEqual(carrierPacketCoordinates, {
+  startInclusive: -11,
+  pathsStart: -4,
+  verifyStart: 0,
+  verifyEndInclusive: 5,
+  bewareStart: 6,
+  endInclusive: 11,
+});
+assert.deepEqual([
+  177 + carrierPacketCoordinates.startInclusive,
+  177 + carrierPacketCoordinates.pathsStart,
+  177 + carrierPacketCoordinates.verifyStart,
+  177 + carrierPacketCoordinates.bewareStart,
+  177 + carrierPacketCoordinates.endInclusive + 1,
+], [166, 173, 177, 183, 189]);
+
 // OPENPGP and the leading p28 READOUT candidate share the same GP0 state.
 assert.equal(gp0("OPENPGP"), 75);
 assert.equal(gp0("READOUT"), 75);
@@ -1192,6 +1260,8 @@ console.log(JSON.stringify({
       manuscriptFiveWordWindows: fiveWordWindows,
       manuscriptPrintedPatternHits: dhPrintedPatternHits,
       logicalBoundaryCenters,
+      warningCarrierGeometry,
+      carrierPacketCoordinates,
     },
     openpgpGp0: gp0("OPENPGP"),
     readoutGp0: gp0("READOUT"),
