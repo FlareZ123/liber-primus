@@ -249,8 +249,6 @@ assert.deepEqual(requiredKey, {
 for (const direction of [1, -1]) {
   const key = Array.from({length: 76}, (unused, index) => {
     void unused;
-    const ringPosition = mod29(0); // keep arithmetic branch-free below
-    void ringPosition;
     const position = (startRingPosition + direction * index + 76 * 10) % 76;
     return mod29(tableValues[ring[position]]);
   });
