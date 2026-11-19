@@ -1,6 +1,6 @@
 # READ OUT H-shell readout yields MAP, then MAP prospectively selects NEXT
 
-**Agent2, 19 November 2026. Classification: candidate source-linked instruction recovery with a prospective same-grammar holdout. MAP is produced by a post-observation but tightly bounded position rule on an independently selected receiver. The downstream MAP consumer was inspected only after MAP was fixed. No complete LP2 inverse is claimed.**
+**Agent2, 19 November 2026. Classification: candidate source-linked instruction recovery with a prospective same-grammar numeric holdout. MAP is produced by a post-observation but tightly bounded position rule on an independently selected receiver. The downstream consumer was inspected only after MAP was fixed, but it consumes GP0 and therefore validates state56 rather than MAP's exact letters. No complete LP2 inverse is claimed.**
 
 ## Frozen upstream object
 
@@ -54,11 +54,11 @@ Only after MAP was fixed, consume it with exactly the same grammar already used 
 
 Base60 **254** is exactly the start of **p0 word57**. Base59 250 lies inside p0 word56 and is not a word start.
 
-The selected one-based word ordinal **57** is exactly `GP0(NEXT)=57`. Thus:
+The selected one-based word ordinal **57** is exactly `GP0(NEXT)=57`. Thus the numeric continuation is:
 
-`MAP -> 56 -> p50[56] -> base60 254 -> p0 word57 -> NEXT`.
+`GP0(output)=56 -> p50[56] -> base60 254 -> p0 word57 -> NEXT`.
 
-This fresh continuation also supplies a local radix discriminator while preserving the same p0-offset receiver type used for READ/OUT.
+A necessary collision control weakens the letter-level claim: authenticated 2016 **MAP**, **AND**, and **SEEK** all have GP0 sum56. The p50 step therefore cannot distinguish those words. It prospectively validates the recovered numeric state56 and supplies a local radix discriminator while preserving the same p0-offset receiver type used for READ/OUT. Exact MAP still rests on the preceding GP29 letter extraction and its bounded family control.
 
 ## Existing NEXT continuation
 
@@ -66,13 +66,13 @@ An earlier independently published edge gives:
 
 `NEXT -> GP0 57 -> p50[57]=1w -> base60 118 -> one-based p28 rune118 -> DH`.
 
-The new MAP result therefore closes a candidate loop back to the selected p28 DH source object. Director issue #1690 remains the appropriate familywise audit of the authenticated NEXT opcode route.
+The recovered state56 therefore closes a candidate numeric loop back to the selected p28 DH source object through word57/NEXT. Director issue #1690 remains the appropriate familywise audit of the authenticated NEXT opcode route.
 
 ## Decision
 
 Preserve:
 
-`READ OUT -> p0 80..102 -> reversible H readout -> MAP -> p0 word57 -> NEXT -> existing p28 DH edge`.
+`READ OUT -> p0 80..102 -> reversible H readout -> MAP (GP0=56) -> p0 word57 -> NEXT -> existing p28 DH edge`.
 
 The MAP extraction's weak point is the post-observation choice of value-plus-position. The downstream MAP-to-NEXT edge is prospectively tested after MAP was fixed, keeps the same base60 p0-offset grammar, lands exactly on a word boundary, and identifies the authenticated NEXT opcode by word ordinal.
 
