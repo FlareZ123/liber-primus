@@ -41,12 +41,16 @@ p50[213] = p50[28] = 2U.
 
 Thus the five-dot-selected source page p23 is uniquely tied to independently selected p28 by its complete original rune count under this exact equality test.
 
-The completed p23 instruction contributes a second independently derived address into the same class:
+This page-total relation is **not globally enriched**. Across all 20 unknown pages with rune totals below256, five source pages have at least one same-value physical-page peer, producing seven edges in all: p8→{37,40,55}, p23→28, p32→5, p49→27 and p55→33. Under all 256 cyclic rotations of the exact p50 byte tape, at least five source pages have peers in 118/256 shifts, and at least seven total edges occur in 48/256. Therefore page-total→same-token navigation is not promoted as a general grammar.
+
+The p23 case gains its specificity from a third address fixed independently by the completed hidden instruction:
 
 ```text
 GP0(THE ORIGINAL) = 97
 p50[97] = p50[28] = p50[213].
 ```
+
+The value150 class has exactly three members. Conditional on the already observed pair 213↔28 and its class multiplicity3, there is exactly one remaining peer address among the other254 cells; it is97, the independently derived phrase sum. The corresponding conditional arrangement selectivity is therefore 1/254. This remains a post-discovery diagnostic rather than an authorship probability.
 
 This supplies a tighter p23-to-p28 relation than the weaker post-discovery arithmetic displacement `23+5=28`.
 
@@ -84,6 +88,19 @@ and three preselected ordered addresses share a value at rate
 ```
 
 These are arrangement selectivity measures for fixed addresses, not Cicada-authorship probabilities. The three meanings were noticed at different stages and the 213 interpretation was recognized after opening the alias class, so historical multiple-testing is not captured by those numbers.
+
+## Existing duplicate-token precedent
+
+The current p28 center route already contains a source-selected duplicate-token correspondence under fixed p50 semantics:
+
+```text
+center I -> GP-prime31
+p50[31] = 2D
+p50[38] = 2D, where 38 = GP0(WITHIN)
+base59(2D) = 131 = GP0(CIRCUMFERENCES).
+```
+
+That correspondence demonstrates that an exact p50 duplicate class can join independently typed source addresses and a decoded instruction value. It does not establish a universal “jump to every duplicate address” opcode, and the full p57 word-graph family has only modest enrichment. The p23/p28 alias should therefore be evaluated as another constrained cross-object equality, not as license for an unrestricted collision walk.
 
 ## Solve-path implication and boundary
 
