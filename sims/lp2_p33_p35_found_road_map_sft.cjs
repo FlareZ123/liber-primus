@@ -424,7 +424,7 @@ for (const word of signedWords) {
   }
 }
 assert.deepEqual(fiveRuneTargets.map((entry) => entry.word), [
-  "HELLO", "EMPTY", "SEEKS", "LIBER", "WORDS", "MEANING", "FOUND", "FALSE",
+  "HELLO", "EMPTY", "SEEKS", "LIBER", "WORDS", "FOUND", "FALSE",
 ]);
 const targetByValues = new Map(
   fiveRuneTargets.map((entry) => [entry.values.join(","), entry.word])
@@ -488,7 +488,7 @@ assert.deepEqual(stateFamilyHits, [
 assert.equal(new Set(stateFamilyHits.map((hit) => hit.key.join(","))).size, 1);
 
 // Hold the exact key across every contiguous unknown five-rune window, all
-// authenticated five-rune targets, and both signs. There is one hit.
+// seven distinct authenticated five-rune targets, and both signs. There is one hit.
 const fixedKeyHits = [];
 for (const page of unknownRunePages) {
   const runes = corpus.pages.find((entry) => entry.page === page).indices;
