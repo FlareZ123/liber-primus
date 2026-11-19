@@ -1,6 +1,6 @@
 # OPENPGP43 H-shell points back to the signed-source opening
 
-**Agent6, 19 November 2026. Classification: authenticated-source self-verification / restart marker.**
+**Agent6, 19 November 2026; serialization boundary reconciled by Agent2. Classification: authenticated-source self-verification / restart candidate under the pair-interleaved numbered-route H serialization.**
 
 The signed 2016 instruction ends:
 
@@ -18,7 +18,7 @@ start206
 cipher [16,0,14].
 ```
 
-Apply the already established outside-in H shell:
+Apply the pair-interleaved outside-in **Hpair** serialization used by the numbered-route reports:
 
 ```text
 H(16,14) = [2,1]
@@ -59,7 +59,7 @@ outside-in H shell is a strict descending consecutive
 authenticated-source index triple [k+2,k+1,k].
 ```
 
-Exactly one of the 716 words satisfies it:
+Exactly one of the 716 words satisfies it under Hpair:
 
 ```text
 p42 word43 start206
@@ -67,7 +67,7 @@ p42 word43 start206
 H -> [2,1,0].
 ```
 
-So OPENPGP43 is not merely one numbered object that can be read as English. It is the sole complete three-rune manuscript object whose H shell is any descending consecutive source-index triple, and its run is specifically the source start.
+So OPENPGP43 is the sole complete three-rune manuscript object whose **Hpair** output is any descending consecutive source-index triple, and its run is specifically the source start. The repository also uses a distinct longer-word serializer, Hsplit. Charging Hsplit across the same 716 words yields one rival descending run at p26 word13, `[16,15,14] = ARE / WORDS / ITS`. OPENPGP's uniqueness is therefore conditional on Hpair rather than serialization-independent.
 
 ## Interpretation
 
@@ -82,7 +82,7 @@ VERIFY OPENPGP
  -> signed-source beginning.
 ```
 
-This strongly favors a **restart / verification** interpretation over treating OPENPGP as an unconstrained key-search instruction.
+Within the numbered-route Hpair convention, this supports a **restart / verification** interpretation. The broader H-serialization family contains a rival descending run, so preserve the interpretation as convention-specific rather than a serializer-independent manuscript invariant.
 
 The result also explains why a search for a simple terminal exit from the p23/p28 navigation core did not immediately produce one: the authenticated source's final numbered object loops back to the source beginning.
 
@@ -92,7 +92,7 @@ This does not prove that the entire signed instruction is meant to be traversed 
 
 Across all numbered objects, reverse-H contiguous-source runs also occur for the two-rune IS12 object, which yields THEIR NUMBERS. OPENPGP is the only three-rune numbered example.
 
-The stronger complete-corpus control avoids choosing the numbered subset after seeing the hit: among all 716 complete three-rune words, OPENPGP43 is the sole descending-consecutive H shell.
+The stronger complete-corpus control avoids choosing the numbered subset after seeing the hit: among all 716 complete three-rune words, OPENPGP43 is the sole descending-consecutive **Hpair** output. See `im-results/lp2-h-serialization-boundary.md` for the Hsplit rival and operation boundary.
 
 ## Reproduction
 
@@ -102,4 +102,4 @@ Run:
 node sims/lp2_openpgp_source_restart_sft.cjs
 ```
 
-The SFT reconstructs canonical cross-page words, selects OPENPGP43 only through the authenticated numbered route, checks the exact H/source-opening recovery, and exhausts all 716 complete three-rune words. Windows/Node 22 run **44468830914** passes.
+The original SFT reconstructs canonical cross-page words, selects OPENPGP43 only through the authenticated numbered route, checks the exact Hpair/source-opening recovery, and exhausts all 716 complete three-rune words. Windows/Node 22 run **44468830914** passes. The serialization-boundary SFT charges Hpair and Hsplit together; Windows/Node22 run **44472966062** passes.
