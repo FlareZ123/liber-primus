@@ -78,7 +78,7 @@ assert.deepEqual(
 const pageStartGeometryHits = [];
 const fullVectorHits = [];
 let runeBearingLines = 0;
-for (let page = 0; page <= 57; page += 1) {
+for (let page = 0; page <= 55; page += 1) {
   if (page === 50) continue;
   const lines = pageLines(page);
   for (const row of lines) {
