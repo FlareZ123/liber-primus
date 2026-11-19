@@ -66,6 +66,58 @@ function parseWords(raw) {
   return { words, runeCount: offset };
 }
 
+/**
+ * Parse the continuous source transcription. A physical-page marker resets
+ * the page-local offset but does not terminate a printed word that carries
+ * across the page boundary.
+ */
+function parseAllWords() {
+  const words = [];
+  let block = 0;
+  let page = 0;
+  let offset = 0;
+  let startPage = null;
+  let start = 0;
+  let values = [];
+
+  const flush = () => {
+    if (!values.length) return;
+    words.push({
+      page: startPage,
+      endPage: page,
+      start,
+      end: offset - 1,
+      length: values.length,
+      values: values.slice(),
+      gp0: values.reduce((sum, value) => sum + value, 0),
+    });
+    startPage = null;
+    start = 0;
+    values = [];
+  };
+
+  for (const character of transcription) {
+    if (runeIndex.has(character)) {
+      if (!values.length) {
+        startPage = page;
+        start = offset;
+      }
+      values.push(runeIndex.get(character));
+      offset += 1;
+    } else if (character === "/" || /\\s/u.test(character)) {
+      // Printed line wraps and whitespace do not terminate words.
+    } else if (character === "%") {
+      block += 1;
+      page = block < 50 ? block : block + 1;
+      offset = 0;
+    } else {
+      flush();
+    }
+  }
+  flush();
+  return words;
+}
+
 /** @param {string} word */
 function gp(word) {
   const normalized = word
@@ -285,14 +337,15 @@ assert.deepEqual(fiveRuneTargets.map((row) => row.word), [
   "HELLO", "EMPTY", "SEEKS", "LIBER", "WORDS", "FOUND", "FALSE",
 ]);
 
-const fiveRuneWords = [];
-for (let page = 0; page <= 55; page += 1) {
-  if (page === 50) continue;
-  for (const word of parseWords(pageRaw(page)).words) {
-    if (word.length === 5) fiveRuneWords.push({ page, ...word });
-  }
-}
-assert.equal(fiveRuneWords.length, 318);
+// Use continuous word segmentation for manuscript-wide controls. Page-local
+// parsing above remains appropriate for p6 geometry, but it splits words that
+// cross physical-page boundaries and creates false page fragments.
+const fiveRuneWords = parseAllWords().filter((word) =>
+  word.page <= 55 && word.endPage <= 55 && word.length === 5
+);
+const crossPageFiveRuneWords = fiveRuneWords.filter((word) => word.page !== word.endPage);
+assert.equal(fiveRuneWords.length, 317);
+assert.equal(crossPageFiveRuneWords.length, 6);
 
 const receiverStateShell = [4, 24, 22, 25, 24]; // [q,-g,p-1,p+K,-g]
 assert.deepEqual(H(receiver.values), receiverStateShell);
@@ -469,6 +522,7 @@ console.log(JSON.stringify({
         uniqueStateRedStartPairings.length === 1 ? 1 / source.length : null,
     },
     fiveRuneWords: fiveRuneWords.length,
+    crossPageFiveRuneWords: crossPageFiveRuneWords.length,
     authenticatedFiveRuneTargets: fiveRuneTargets.map((row) => row.word),
     fixedKeyHits,
     layoutFamilyConfigurations: familyConfigurations,
