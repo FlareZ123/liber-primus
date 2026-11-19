@@ -78,6 +78,12 @@ This gives a source-indexed explanation for the otherwise unexplained EA-J-EA no
 
 A tempting adjacent readout at row 25, columns 11–13 (IS, THE, WAY) gives ciphertext [23,1,23] = [D,U,D]. Subtracting [10,28,28] yields [13,2,24] = [P,TH,A], i.e. **PTHA**, a permutation of the source word PATH, not PATH itself. This is explicitly **not** a plaintext result. It may be a false path, an indication of an unresolved direction/transposition, or coincidence.
 
+## Bounded direct-crib rejection for the block14 key
+
+With the fixed block14 key [10,28,28], I searched the original 27×27 grid for the exact GP29 ciphertext of each authenticated 2016 source word `FOUND`, `BEWARE`, `FALSE`, `PATHS`, `VERIFY`, `OPENPGP`, and `SEEK`, over every in-bounds straight H/V/diagonal path in both directions. There are no matches. `FOUND` also has no match under the block11 key [11,11,16].
+
+This rejects the simplest direct straight-line reading of those source words under the candidate block14 key. It does not reject a different source-selected path or a layered operation, but there is currently no basis for expanding the search to arbitrary curves, wraparound, or extra transformations.
+
 ## Strongest objections
 
 1. The block13 key-reuse rule is not independently selected. The repeated `THEIR` may be relevant, but that is presently an interpretation.
