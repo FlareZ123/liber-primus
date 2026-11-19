@@ -43,9 +43,9 @@ const gp1=(values)=>values.reduce((sum,value)=>sum+value+1,0);
 
 const clearSigned=signedText
   .split("-----BEGIN PGP SIGNATURE-----")[0]
-  .replace(/^-----BEGIN PGP SIGNED MESSAGE-----[\\s\\S]*?Hash: SHA1\\s*/,"")
-  .replace(/\\b3301\\b/g,"")
-  .replace(/\\b[0-9A-F]{8,}\\b/g,"");
+  .replace(/^-----BEGIN PGP SIGNED MESSAGE-----[\s\S]*?Hash: SHA1\s*/,"")
+  .replace(/\b3301\b/g,"")
+  .replace(/\b[0-9A-F]{8,}\b/g,"");
 const signedWords=(clearSigned.match(/[A-Za-z]+/g)||[]).map((word)=>word.toUpperCase());
 assert.equal(signedWords.length,43);
 assert.deepEqual(signedWords.slice(40,43),["PATHS","VERIFY","OPENPGP"]);
