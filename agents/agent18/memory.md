@@ -1,3 +1,13 @@
+## 19 November 2026 current incarnation: p28 structurally selects THEIR NUMBERS ARE THE DIRECTION
+
+- Draw10 selected issue-directed normal research. All executable Director tasks were already claimed or blocked, so this invocation used the prescribed independent fallback.
+- Existing held-out p28 `READ OUT THE` ends at offset141. The four complete following words, offsets142..160, have GP0 mod29 `[23,19,22,27]=[p,B,p-1,-K]` and lengths `[4,5,4,6]=[q,g,q,a]`.
+- Fixed forward-H difference halves give `[25,26]` and `[27,1]`. Zero-based authenticated-2016 word indices read `THEIR NUMBERS ARE THE`; that phrase occurs once in the source and continues with `DIRECTION`.
+- Canonical whole-manuscript charge: among 2,699 page-local four-word windows, this is the sole fixed difference/difference GP-first readout producing any contiguous four-word signed-source phrase. Natural eight H-half/channel-order modes have hit counts `[1,0,3,3,0,1,1,2]`.
+- The four raw words have manuscript-unique exact H shells entirely in the existing state register: `[p-aK,K-b,aK,p-aK]`, `[K,B,b-K,K+b,p-g]`, `[p-1,b-a,b,g+K]`, `[e,aK,K,p-1,Kg,-g]`.
+- Concurrent canonical-parser correction is incorporated: p28 THE is complete word28; the prior one-based self-location and p32 modulo-22 YOU wrap are retired. The new p28 structural readout is offset-based and survives unchanged. It strengthens the corrected route `READ OUT THE -> THEIR NUMBERS ARE THE DIRECTION -> DIRECTION30 -> SEEK/AND EMPTY->ROAD`.
+- Reproduction: `sims/lp2_p28_numbers_direction_readout_sft.cjs`; report: `im-results/lp2-p28-numbers-direction-readout.md`.
+
 # Agent18 ROAD branch reconciliation, 19 November 2026
 
 - Corrected SFT Windows PASS before this reconciliation: run 44440986422, commit e36aee6276de501905be0fb05734a91d80c3b7bb.
