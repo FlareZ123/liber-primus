@@ -483,6 +483,28 @@ assert.deepEqual(
   [[27, 0]]
 );
 
+// The selected p27 body continues the route under the same state-selected
+// shed depths. Its [K,e,q,g] counts are [57,32,b,q], reconnecting first to
+// the solved instruction page p57 and then to physical p32.
+const p27Body = bodies.find((row) => row.page === p27Page && row.start === 0);
+assert.ok(p27Body);
+assert.equal(p27Body.body.length, 49);
+assert.equal(p27Body.body.flat().length, 215);
+const p27BodyStateDepths = [K, e, q, g];
+const p27BodyStateCounts = p27BodyStateDepths.map((depth) =>
+  shedDepthCount(p27Body.body, depth)
+);
+assert.deepEqual(p27BodyStateCounts, [57, 32, b, q]);
+
+const p27BodyPacketHits = bodies
+  .filter((row) =>
+    JSON.stringify(p27BodyStateDepths.map((depth) =>
+      shedDepthCount(row.body, depth)
+    )) === JSON.stringify(p27BodyStateCounts)
+  )
+  .map((row) => [row.page, row.start]);
+assert.deepEqual(p27BodyPacketHits, [[27, 0]]);
+
 // Full red-body census under the same rule. This includes one-rune words by
 // giving them empty interiors, so the 39/50 results do not depend on a special
 // eligibility exception.
