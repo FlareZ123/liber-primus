@@ -53,7 +53,15 @@ assert len({r["icc"]["data_sha256"] for r in rows}) == 1
 assert len({r["segments"][0]["payload_sha256"] for r in rows}) == 1
 assert len({r["segments"][1]["payload_sha256"] for r in rows}) == 1
 assert all(r["raw_soi_count"] == r["raw_eoi_count"] == 1 and r["trailing_bytes"] == 0 for r in rows)
-assert sorted(dqt_payloads.values()) == [35,58]
+assert dict(dqt_payloads) == {
+    "31ebb9300d2f056cdb8ec3ff1ca73a358978675dfc0bd3d250d7d651b0674c93":58,
+    "441cfb11d25025cfb0c3e5eb3fe0f15d4e63e5bb7cbc148a974245cd7f7b2d46":35,
+}
+assert rows[0]["segments"][0]["payload_sha256"] == "fb259e3d53dc86ac12d161aef88d442454ba017b260166043144cf2378b74f1e"
+assert rows[0]["segments"][1]["payload_sha256"] == "62bf41ee295c823d5e6b44cd6dee8e4754fd8d3d6dc482227fb001e9a61a5c2f"
+assert rows[0]["icc"]["data_sha256"] == "942e0f66212eb8ad252706559da5007d893d7350652704f8d115d5e6074479d0"
+assert sum(r["bytes"] for r in rows) == 35362230
+assert sum(r["scans"][0]["stuffed_bytes"] for r in rows) == 130739
 assert len(dht_signatures) == 58
 
 summary = {

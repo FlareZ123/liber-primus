@@ -7,7 +7,7 @@ SOF = {0xC0:"SOF0",0xC1:"SOF1",0xC2:"SOF2",0xC3:"SOF3",0xC5:"SOF5",0xC6:"SOF6",0
 def name(m):
     if m in SOF: return SOF[m]
     if 0xE0 <= m <= 0xEF: return "APP" + str(m-0xE0)
-    return {0xC4:"DHT",0xDB:"DQT",0xDD:"DRI",0xDA:"SOS",0xFE:"COM",0xD8:"SOI",0xD9:"EOI"}.get(m, "M" + format(m,"02X"))
+    return {0x01:"TEM",0xC4:"DHT",0xDB:"DQT",0xDD:"DRI",0xDA:"SOS",0xFE:"COM",0xD8:"SOI",0xD9:"EOI"}.get(m, "M" + format(m,"02X"))
 def digest(data): return hashlib.sha256(data).hexdigest()
 def audit(path: Path):
     data=path.read_bytes()
@@ -22,6 +22,9 @@ def audit(path: Path):
         m=data[i]; i+=1; marker_name=name(m)
         if m == 0xD9:
             markers.append({"name":"EOI","offset":marker_offset}); eoi=marker_offset; trailing=len(data)-i; break
+        if m == 0x01:
+            markers.append({"name":"TEM","offset":marker_offset})
+            continue
         if m == 0x00 or m == 0xD8 or 0xD0 <= m <= 0xD7:
             error="unexpected standalone marker FF" + format(m,"02X") + " outside scan"; break
         if i+2 > len(data): error="truncated segment length"; break
