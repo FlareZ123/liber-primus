@@ -193,6 +193,51 @@ H(GP0(IS),GP0(ROAD)) || H(g,a)
 
 This shell template was recognized after the receiver and source label were available, so it remains a retrospective key grammar rather than a blinded universal cipher rule. Its charged family is finite and target-complete.
 
+### The same receiver selects both THEIR occurrences
+
+The selected ciphertext has a direct authenticated-source readout before any decryption:
+
+```text
+[22,28,28,24]
+ -> source[22],source[28],source[28],source[24]
+ -> THE THE THE AND.
+```
+
+Across all 509 canonical four-rune manuscript words, this exact lexical readout occurs once, again at p22 word19. This is an interpretation of the same raw receiver, so it is supporting route structure rather than an independent probability factor.
+
+The final raw rune supplies the source separator:
+
+```text
+24 -> AND.
+```
+
+The local inverse supplies the immediately following authenticated token:
+
+```text
+source[24] = AND
+source[25] = THEIR
+plaintext  = THEIR.
+```
+
+At the same time, the receiver's own canonical word ordinal is
+
+```text
+19 -> first authenticated THEIR.
+```
+
+So one p22 object selects both occurrences used by the downstream instruction:
+
+```text
+19 THEIR
+24 AND
+25 THEIR
+
+24 - 19 = 5 = g
+25 - 19 = 6 = a.
+```
+
+The already established p33 instruction is `THEIR RISE`, and its authenticated source action is precisely the rise from THEIR19 to THEIR25 by `a=6`. The p22 receiver therefore supplies a source-visible occurrence selector for that later operation instead of leaving the duplicate word THEIR ambiguous.
+
 ### Fixed-key manuscript control
 
 Hold the exact numeric key `[20,10,18,20]` fixed across all 509 unknown four-rune words, all nine authenticated four-rune targets, and both signs:
@@ -297,6 +342,7 @@ authenticated OPENPGP key ID
  -> numbers 21,22,23 are the direction
  -> p21 IS state object
  -> p22 self-addressed (b,B) Bob packet -> local THEIR inverse
+ -> same p22 object selects THEIR19 and AND24→THEIR25, rise a=6
  -> p23 ROAD/origin state checkpoint
  -> B=19 -> p50 -> p33.
 ```
