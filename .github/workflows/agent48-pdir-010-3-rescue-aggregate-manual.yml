@@ -1,13 +1,33 @@
 name: Agent48 LP2 pdir original failed shard rescue aggregate
 on:
   workflow_dispatch:
+    inputs:
+      recovery_run_id:
+        description: "Three-part targeted rescue workflow run ID"
+        required: true
+        type: string
+        default: "44239236615"
+      conv:
+        description: "Original pdir convention hmc (000 through 122)"
+        required: true
+        type: string
+        default: "010"
+      shard:
+        description: "Original 12-way rule shard (0 through 11)"
+        required: true
+        type: string
+        default: "3"
 permissions:
   contents: read
   actions: read
 jobs:
-  aggregate-original-shard-010-3:
+  aggregate-original-shard-rescue:
     runs-on: windows-latest
     timeout-minutes: 20
+    env:
+      RECOVERY_RUN_ID: ${{ inputs.recovery_run_id }}
+      CONV: ${{ inputs.conv }}
+      SHARD: ${{ inputs.shard }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -19,7 +39,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           $ErrorActionPreference = "Stop"
-          gh run download 44239236615 --repo FlareZ123/liber-primus --dir rescue-extracted --pattern "pdir-sixsections-rescue-010-3-*"
+          if ($env:RECOVERY_RUN_ID -cnotmatch '^[0-9]+$') { throw "Invalid recovery run ID" }
+          if ($env:CONV -cnotmatch '^[01][012][012]$') { throw "Invalid convention" }
+          if ($env:SHARD -cnotmatch '^(?:[0-9]|10|11)$') { throw "Invalid original shard" }
+          gh run download "$env:RECOVERY_RUN_ID" --repo FlareZ123/liber-primus --dir rescue-extracted --pattern "pdir-sixsections-rescue-$env:CONV-$env:SHARD-*"
           if ($LASTEXITCODE -ne 0) { throw "Rescue source artifact download failed" }
       - name: Reconstruct exact original shard with independent score and rule coverage gates
         shell: pwsh
@@ -27,15 +50,16 @@ jobs:
           $ErrorActionPreference = "Stop"
           New-Item -ItemType Directory -Path rescue-zips -Force | Out-Null
           foreach ($part in 0..2) {
-            $name = "pdir-sixsections-rescue-010-3-part${part}of3"
+            $name = "pdir-sixsections-rescue-$env:CONV-$env:SHARD-part${part}of3"
             $folder = Join-Path "rescue-extracted" $name
             if (-not (Test-Path -Path $folder -PathType Container)) { throw "Missing original shard fragment: $name" }
             Compress-Archive -Path (Join-Path $folder "*") -DestinationPath (Join-Path rescue-zips "$name.zip") -CompressionLevel Optimal
           }
-          python sims/lp2_pdir_1329_rescue_merge.py rescue-zips 010 3
+          python sims/lp2_pdir_1329_rescue_merge.py rescue-zips "$env:CONV" "$env:SHARD"
           if ($LASTEXITCODE -ne 0) { throw "Exact rescue disjointness/score/coverage gate failed" }
+          $merged = "pdir-sixsections-$env:CONV-$env:SHARD.zip"
           New-Item -ItemType Directory -Path verified-single-shard -Force | Out-Null
-          Copy-Item -LiteralPath rescue-zips/pdir-sixsections-010-3.zip -Destination verified-single-shard/pdir-sixsections-010-3.zip
+          Copy-Item -LiteralPath (Join-Path rescue-zips $merged) -Destination (Join-Path verified-single-shard $merged)
           python sims/lp2_pdir_1329_incremental_artifact_gate.py verified-single-shard | Out-File -FilePath rescue-zips/partial-gate.json -Encoding utf8
           if ($LASTEXITCODE -ne 0) { throw "Strict original ciphertext rescue gate failed" }
           Get-Content rescue-zips/partial-gate.json
@@ -43,8 +67,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: pdir-sixsections-010-3-verified-replacement
+          name: pdir-sixsections-${{ inputs.conv }}-${{ inputs.shard }}-verified-replacement
           path: |
-            rescue-zips/pdir-sixsections-010-3.zip
+            rescue-zips/pdir-sixsections-${{ inputs.conv }}-${{ inputs.shard }}.zip
             rescue-zips/partial-gate.json
           if-no-files-found: error
