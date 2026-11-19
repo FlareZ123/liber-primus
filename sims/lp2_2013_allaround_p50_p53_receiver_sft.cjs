@@ -72,6 +72,19 @@ function Hinv(pair) {
   ];
 }
 
+/** @param {number} base @param {number} exponent @returns {number} */
+function modPow29(base, exponent) {
+  let result = 1;
+  let value = mod29(base);
+  let power = exponent;
+  while (power > 0) {
+    if (power % 2 === 1) result = (result * value) % 29;
+    value = (value * value) % 29;
+    power = Math.floor(power / 2);
+  }
+  return result;
+}
+
 const phrase = "The key is all around you";
 assert.ok(screen.includes(phrase + "."));
 assert.ok(screen.trim().endsWith("3301"));
@@ -222,6 +235,48 @@ const firstShedCount = selectedWords.reduce(
 );
 assert.equal(firstShedCount, 27);
 
+// The clue has now yielded an ordered raw key pair before p28 is opened:
+// H(first2) begins with 3, and the first literal shed count is 27.
+// Apply those values in source order to p28's independently fixed
+// center-singleton and one-based word28 operands.
+const p28Part = parts[28].replace(/\/\s*/gu, "");
+let p28Offset = 0;
+const p28Words = (p28Part.match(/[\u16A0-\u16FF]+/gu) || []).map(word => {
+  const values = [...word].map(rune => {
+    const value = runeIndex.get(rune);
+    assert.notEqual(value, undefined);
+    return value;
+  });
+  const row = {start: p28Offset, end: p28Offset + values.length, values};
+  p28Offset = row.end;
+  return row;
+});
+const p28Runes = p28Words.flatMap(row => row.values);
+assert.equal(p28Runes.length, 269);
+const p28CenterOffset = 134;
+const p28Word28 = p28Words[27];
+assert.equal(p28Word28.start, p28CenterOffset + 1);
+assert.deepEqual(
+  [p28Runes[p28CenterOffset], ...p28Word28.values],
+  [9, 28, 24, 10, 1, 20]
+);
+
+const historicalKeyPair = [digitPair[0], firstShedCount];
+assert.deepEqual(historicalKeyPair, [3, 27]);
+const readOutRaw = [
+  modPow29(p28Runes[p28CenterOffset], historicalKeyPair[0]),
+  ...p28Word28.values.map(value => modPow29(value, historicalKeyPair[1])),
+];
+assert.deepEqual(readOutRaw, [4, 28, 23, 3, 1, 16]);
+assert.equal(readOutRaw.map(value => corpus.translit[value]).join(""), "READOUT");
+
+const reversedKeyRaw = [
+  modPow29(p28Runes[p28CenterOffset], historicalKeyPair[1]),
+  ...p28Word28.values.map(value => modPow29(value, historicalKeyPair[0])),
+];
+assert.deepEqual(reversedKeyRaw, [13, 28, 20, 14, 1, 25]);
+assert.equal(reversedKeyRaw.map(value => corpus.translit[value]).join(""), "PEALXUAE");
+
 
 const ourOwn = [...gp("OUR"), ...gp("OWN")];
 assert.deepEqual(ourOwn, [3, 1, 4, 3, 7, 9]);
@@ -312,6 +367,13 @@ console.log(JSON.stringify({
     printedWords: selectedWords.length,
     firstLiteralShedCount: firstShedCount,
   },
+  historicalKeyToP28: {
+    keyPair: historicalKeyPair,
+    p28Source: [p28Runes[p28CenterOffset], ...p28Word28.values],
+    rawOutput: readOutRaw,
+    plaintext: readOutRaw.map(value => corpus.translit[value]).join(""),
+    reversedKeyPlaintext: reversedKeyRaw.map(value => corpus.translit[value]).join(""),
+  },
   sourceSelectedP55DirectPadGate: {
     startCell: phraseAddress,
     base60SelectedByValue180: true,
@@ -320,5 +382,5 @@ console.log(JSON.stringify({
     exactOurOwnHits: footerRows.filter(row => row.matches === 6),
   },
   decision:
-    "The authenticated 2013 phrase self-selects p50 outer cell252. Its unique value180 types both the table interior and the known p56+p57 terminal register. Token30 maps through fixed H^-1 to the unique p53 terminal red-span start; its untouched length51=MUST and first shed27 reconnect to p27. The same source-selected cell252 phase closes the previously untested direct p50-ring pad start: all 24 base60 direction/sign/F-clock variants miss the conditional OUR OWN footer, so that direct p55 consumer remains retired.",
+    "The authenticated 2013 phrase self-selects p50 outer cell252. Its unique value180 types both the table interior and the known p56+p57 terminal register. Token30 maps through fixed H^-1 to the unique p53 terminal red-span start; its untouched length51=MUST and first shed27 reconnect to p27. The p53 receiver supplies the ordered raw key pair [3,27], which applied in source order to p28's fixed center and word28 operands yields READ OUT; reversing the key order yields PEALXUAE. The same source-selected cell252 phase closes the previously untested direct p50-ring pad start: all 24 base60 direction/sign/F-clock variants miss the conditional OUR OWN footer, so that direct p55 consumer remains retired.",
 }, null, 2));
