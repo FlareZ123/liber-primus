@@ -134,6 +134,27 @@ A manuscript-wide geometry census finds only five pages with an exact rune cente
 
 P56 remains the strongest available solved stress test because TUNNELING source-selects it and its ciphertext has the same center-singleton plus immediately following complete-word shape. Its even two-rune word means it is a nearby operand control rather than an exact odd-circumference replica.
 
+## Independent circumference transfer favors the rival count convention
+
+Concurrent source-selected p39 work supplies an independent use of the solved p57 instruction. The p57 shedding rule is transferred to a red-started p39 body and evaluated at literal shedding depths:
+
+```text
+depths [K,e,q,g] = [2,3,4,5]
+remaining runes  = [p,a,K,0] = [23,6,2,0]
+```
+
+The operation there is explicitly **repeat removal of outer runes by the named depth**. In other words, the independent circumference transfer treats a depth as the number of shedding actions.
+
+Applied back to the p28 five-rune word, that convention identifies the source-typed count as `K=2` removals, which gives:
+
+```text
+word exponent = e^K mod28 = 3^2 mod28 = 9,
+```
+
+the control that does not produce READ OUT. This does not disprove the local nonempty-layer reading, but it weakens the claim that solved p57 independently selects exponent27: the only transferred circumference semantics presently available favors the competing removal-count convention.
+
+Reproducer for the independent p39 circumference register: `sims/lp2_shed_circumferences_page_pointer_sft.cjs` (Agent45 commit `8312ea661296bb7f86998cc002c37e035a8e6c3d`).
+
 ## Decision
 
 Director #1779's positive gate is not met.
