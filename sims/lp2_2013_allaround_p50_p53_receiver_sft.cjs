@@ -222,6 +222,62 @@ const firstShedCount = selectedWords.reduce(
 );
 assert.equal(firstShedCount, 27);
 
+
+const ourOwn = [...gp("OUR"), ...gp("OWN")];
+assert.deepEqual(ourOwn, [3, 1, 4, 3, 7, 9]);
+const p55Tail = p55.indices.slice(70);
+assert.deepEqual(p55Tail, [23, 11, 1, 17, 18, 10]);
+assert.deepEqual(
+  p55.indices.map((value, index) => value === 0 ? index : -1)
+    .filter(index => index >= 0),
+  [15, 25, 41]
+);
+
+const startRingPosition = ring.indexOf(phraseAddress);
+const footerRows = [];
+const requiredKey = {
+  plus: p55Tail.map((cipher, index) => mod29(cipher - ourOwn[index])),
+  minus: p55Tail.map((cipher, index) => mod29(ourOwn[index] - cipher)),
+  beaufort: p55Tail.map((cipher, index) => mod29(cipher + ourOwn[index])),
+};
+assert.deepEqual(requiredKey, {
+  plus: [20, 10, 26, 14, 11, 1],
+  minus: [9, 19, 3, 15, 18, 28],
+  beaufort: [26, 12, 5, 20, 25, 19],
+});
+
+for (const direction of [1, -1]) {
+  const key = Array.from({length: 76}, (unused, index) => {
+    void unused;
+    const ringPosition = mod29(0); // keep arithmetic branch-free below
+    void ringPosition;
+    const position = (startRingPosition + direction * index + 76 * 10) % 76;
+    return mod29(tableValues[ring[position]]);
+  });
+
+  for (const [mode, required] of Object.entries(requiredKey)) {
+    for (let bypassCount = 0; bypassCount <= 3; bypassCount += 1) {
+      const consumedBeforeTail = 70 - bypassCount;
+      const keyTail = key.slice(consumedBeforeTail, consumedBeforeTail + 6);
+      const matches = keyTail.filter((value, index) =>
+        value === required[index]
+      ).length;
+      footerRows.push({
+        direction: direction === 1 ? "clockwise" : "counterclockwise",
+        mode,
+        bypassCount,
+        consumedBeforeTail,
+        keyTail,
+        matches,
+      });
+    }
+  }
+}
+
+assert.equal(footerRows.length, 24);
+assert.equal(Math.max(...footerRows.map(row => row.matches)), 1);
+assert.equal(footerRows.some(row => row.matches === 6), false);
+
 console.log(JSON.stringify({
   status: "PASS",
   historicalSource: {
@@ -258,6 +314,13 @@ console.log(JSON.stringify({
     printedWords: selectedWords.length,
     firstLiteralShedCount: firstShedCount,
   },
+  sourceSelectedP55DirectPadGate: {
+    startCell: phraseAddress,
+    base60SelectedByValue180: true,
+    variants: footerRows.length,
+    maxFooterMatches: Math.max(...footerRows.map(row => row.matches)),
+    exactOurOwnHits: footerRows.filter(row => row.matches === 6),
+  },
   decision:
-    "The authenticated 2013 phrase self-selects p50 outer cell252. Its unique value180 types both the table interior and the known p56+p57 terminal register. Token30 maps through fixed H^-1 to the unique p53 terminal red-span start; its untouched length51=MUST and first shed27 reconnect to p27.",
+    "The authenticated 2013 phrase self-selects p50 outer cell252. Its unique value180 types both the table interior and the known p56+p57 terminal register. Token30 maps through fixed H^-1 to the unique p53 terminal red-span start; its untouched length51=MUST and first shed27 reconnect to p27. The same source-selected cell252 phase closes the previously untested direct p50-ring pad start: all 24 base60 direction/sign/F-clock variants miss the conditional OUR OWN footer, so that direct p55 consumer remains retired.",
 }, null, 2));
