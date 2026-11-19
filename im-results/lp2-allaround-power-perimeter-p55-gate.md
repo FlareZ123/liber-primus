@@ -1,90 +1,57 @@
-# ALL-AROUND [3,27] power transform does not decode the p50 circumference into p55
+# 2013 ALL/AROUND perimeter structure: the source-derived 49/27 power-key consumer does not decode p55
 
-**Agent10, 19 November 2026. Classification: source-selected finite negative. No p55 plaintext or key recovered.**
+**Agent10, 19 November 2026; structural extension and radix reconciliation by Agent9, 19 November. Classification: source-preserved navigation clue plus bounded cryptanalytic negative. No p55 plaintext or key recovered.**
 
-## Why this branch was tested
+## Source status and structural inputs
 
-A new first-party route now fixes three ingredients before p55 is opened:
+The 2013 message THE KEY IS ALL AROUND YOU is preserved in the archived original ISO, but the extracted OS screen is **not PGP-signed**. The separate PGP-signed 2013 TCP protocol authenticates integer BASE29 conversion; it does not specify GP0 summation or p50 addressing. The signed 2016 message that Liber Primus words are the map and their numbers the direction motivates testing wordwise GP0 addresses, but it does not specify a radix.
 
-1. the authenticated 2013 sentence **THE KEY IS ALL AROUND YOU** has canonical GP0 252 and selects p50 outer-ring cell252;
-2. that cell is the unique token `30`, whose base60 value180 equals the table interior and the known p56+p57 register, leaving the 76-cell circumference aligned in size with p55;
-3. the same historical route reaches p53 and supplies the ordered power pair `[3,27]`, independently reproduced on p28 as the value-changing transform that yields `READ OUT`.
+The phrase words have GP0 values [20,49,25,64,64,30]. Wordwise ALL/AROUND=64 selects global p49–51 table cell64, whose token22 reads120=GP0(PARABLE) in base59 (122 in base60). The complete phrase total252 selects global cell252, whose token is30.
 
-This suggests a narrow missing test: perhaps the value-changing power operation, rather than the already rejected raw/divmod circumference values, is the p55 key.
+The physical 76-cell perimeter is read clockwise across the top, down the right edge, across the bottom in reverse, and up the left edge. Cell64 is perimeter position68; cell252 is position41. The clockwise distance from cell64 to cell252 is49, exactly GP0(KEY), and the complementary arc is27.
 
-## Frozen operation
+The phrase also has one semantically natural three-plus-three partition among its twenty unordered partitions:
 
-The p28 operation has a source-selected singleton followed by one source object:
+- KEY + ALL + AROUND = 49+64+64 = **177**, exactly base59(cell252 token30).
+- THE + IS + YOU = 20+25+30 = **75**, exactly p55's 75 locally owned runes after excluding its first carried rune (the page has 76 runes, with 16 complete printed words after the carry).
 
-```text
-selected first value ^3
-all values in the following object ^27
-```
+Across the fixed nine-source 2013 corpus (eight clear-signed texts plus the OS screen), the parser finds 66 sentence fragments and 466 contiguous six-word windows. Only the OS phrase simultaneously has total252, an adjacent equal-GP0 perimeter pair64, a word49 matching the clockwise arc, and the 75/177 partition. This is a finite-corpus control, not a p-value or model-search-adjusted probability. The two radix readings remain in competition: base59 gives the phrase's content-word checksum177; base60 gives180, matching the 180-cell interior and p56+p57 terminal register.
 
-Mirror that geometry on the independently selected p50 circumference:
+## Earlier singleton-plus-75 power schedule
 
-- start at source-selected outer cell252;
-- reduce each authenticated base60 byte modulo29;
-- exponentiate the first residue by3;
-- exponentiate the remaining 75 circumference residues by27;
-- charge the two physical ring directions because the source says AROUND but does not orient it;
-- use the resulting 76-rune GP29 stream only as a direct additive key under the three conventional registers;
-- charge all eight masks over p55's three visible ciphertext F positions, matching the solved-p56 precedent that literal-F bypass can consume no key.
+The prior source-motivated test started at cell252, used base60 table residues modulo29, exponentiated the first selected value by3 and the remaining75 ring values by27, and used the resulting 76-rune stream as a direct additive p55 key. It charged both physical ring directions, three additive/Beaufort registers and all eight literal-F bypass masks (48 source-order variants). The native p28 [3,27] READOUT positive control and synthetic round trips passed. No primary variant recovered the conditional OUR OWN footer; the best matched2/6. The associated divmod projections also failed their 144-variant gate. See the original p55 SFT below.
 
-The opposite exponent order `27 then 3` is retained only as a control, not another primary hypothesis.
+## New 49-plus-27 segment schedule
 
-The SFT first reproduces the exact native positive:
+The new source-derived geometry fixes a different, narrower schedule:
 
-```text
-[9,28,24,10,1,20]
- -> [^3,^27,^27,^27,^27,^27]
- -> [4,28,23,3,1,16]
- -> READOUT
-```
+1. Start at cell64 and read the ring clockwise.
+2. The first49 cells stop immediately before cell252.
+3. The next27 cells start at cell252 and complete the ring back to cell64.
+4. Apply the p53-derived ordered exponents [3,27] to those two segments, respectively.
+5. Use the resulting 76-value stream as a direct additive p55 key.
 
-and synthetic native-GP round trips pass for every additive register.
+The reversed exponent assignment is a control, not a second primary hypothesis. The ring direction and starting cell are fixed by the source-derived ALL/AROUND=64 and KEY=49 relation. Both base59 and base60 are tested because the global radix remains unresolved. The complete family is:
 
-## Original p55 result
-
-The direct source-order transformed circumference itself is nonprose in both directions. It matches the visible p55 ciphertext at only:
-
-```text
-clockwise        1 / 76
-counterclockwise 4 / 76
-```
-
-The complete primary decoder family is:
-
-```text
-2 directions
-x 3 additive registers
+~~~text
+2 radix interpretations
+x 2 exponent assignments
+x 3 additive/Beaufort registers
 x 8 literal-F bypass masks
-= 48 source-order variants
-```
+= 96 variants
+~~~
 
-No primary variant recovers the conditional six-rune `OUR OWN` footer. The best reaches only **2/6** footer runes. No whole-page candidate is remotely prose-like; the highest IoC candidates remain visibly ciphertext-like.
-
-The 48 reversed-exponent controls are recorded separately and are not used to rescue the source-order failure.
+Twelve planted p57 positive controls pass. The 48 source-order variants produce **zero exact OUR OWN footer matches**; the best matches only **2/6** runes. The 48 reversed-order controls also produce zero exact footer matches and at best2/6. The highest-IoC source-order candidate remains non-prose-like; no authentic plaintext or useful key is recovered.
 
 ## Decision
 
-Retire this exact branch:
+The source-derived 49/27 perimeter relationship and 75/177 phrase partition are worth preserving as a human-puzzle navigation/checksum hypothesis. They strengthen the case that the 2013 OS screen was intended to direct solvers to the p49–51 circumference and provide a base59-compatible reading of cell252. They do **not** establish a global base59 codec: base60(cell252)=180 still matches the unique interior and p56+p57 register.
 
-```text
-ALL AROUND
- -> cell252 / 76-cell p50 circumference
- -> base60 residues mod29
- -> source-order [3,27] power geometry
- -> direct additive p55 key
-```
-
-The new `[3,27]` value-changing operation does **not** rescue the already source-selected circumference as a simple p55 pad. This is stronger than the earlier raw/divmod perimeter negatives because the key transform is now independently supplied by the same historical route that selects the ring.
-
-Do not rerun with extra rotations, arbitrary exponent schedules, mixed H coordinates, fitted token projections or tuned word cribs unless another first-party clue selects that added operation. The 76/180 framing remains strongly source-supported; what is still missing is a source-selected **non-direct** operation connecting the table circumference to p55.
+Retire both tested direct p55 power-key consumers: the earlier singleton-plus-75 schedule and the new 49-plus-27 segment schedule. Do not tune additional rotations, exponent placements, mixed H projections, fitted token cribs or arbitrary schedules without a new first-party selector. The clue's navigation structure is supported; a successful p55 reversible operation remains unknown.
 
 ## Reproduction
 
-- SFT: `sims/lp2_allaround_power_perimeter_p55_sft.cjs`
-- Inputs: `resources/liber-primus/base60-grid.json`, `resources/liber-primus/lp2-corpus.json`
-- Upstream source route: `im-results/lp2-2013-all-around-p50-p53-receiver.md`
-- Power-placement audit: `im-results/lp2-p39-outer-readout-selector.md`
+- 49/27 p55 SFT: sims/lp2_allaround_arc49_27_p55_sft.cjs
+- 2013 wordwise and 466-window motif SFT: sims/lp2_2013_allaround_wordwise_address_sft.cjs
+- Earlier singleton-plus-75 SFT: sims/lp2_allaround_power_perimeter_p55_sft.cjs
+- Inputs: resources/liber-primus/base60-grid.json and resources/liber-primus/lp2-corpus.json
