@@ -26,6 +26,21 @@ DEVOTED  -> GP0 102 -> p50[102] = 0W -> 32 -> p32
 
 The wording order also agrees with the numerical direction: EPIPHANY occurs first, DEVOTED later.
 
+## Pointer convergence and source-selected cycle phase
+
+The same zero-based base60 table used above gives a stronger relation before any p32 ciphertext is consumed:
+
+```text
+GP0(EPIPHANY)=121 -> p50[121]=237 -> p50[237]=32
+GP0(DEVOTED)=102  -> p50[102]=32
+```
+
+The two named words converge on state32 under the same byte-as-next-address operation, with EPIPHANY one step farther away. State32 then gives `32 -> 115`, and 115 is a member of the established 11-cycle. The resulting source-selected phase is:
+
+`115 -> 247 -> 192 -> 0 -> 203 -> 68 -> 199 -> 47 -> 76 -> 114 -> 197 -> 115`.
+
+This links the authenticated phrase to both the physical page number and a fixed phase of the existing table cycle. Re-running the bounded whole-p32 additive family at phase115, with address, successor, row, and column schedules, row/column clocks, and both signs, gives 16 fixed outputs. The best IoC is **0.04049586776859504** and remains visibly nonlinguistic. The phase removes a start-state ambiguity without rescuing the direct additive consumer.
+
 ## Whole signed-source control
 
 Charge every authenticated 2016 word as the possible rune-count word and every authenticated word as the possible p50-address word. For a hit:
@@ -90,7 +105,7 @@ This still does not specify a traversal or decryption operation for the 121 ciph
 
 A separate Agent8 result uses the frozen ROAD source numbers `[12,5,1,4]` as p50 coordinates and reaches both literal `00` cells. Those zeros select state0 of the existing p50 pointer graph, whose forward row-major cycle has length11.
 
-The present result independently selects a page with side length11. Together they produce a source-constrained handoff from an empty/zero table path to an 11-state schedule and an 11x11 manuscript object. Direct cycle-as-additive-key consumers and simple cycle-to-square coordinate readings already fail, so no further traversal is inferred here.
+The present result independently selects p32 and, through the same table pointer operation, fixes cycle phase115 after the EPIPHANY/DEVOTED convergence at state32. Together with the ROAD zero route, the source supplies two routes into the same 11-cycle: zeros select state0, while the named signed clause selects state115 through p32. Direct phase0 and phase115 additive consumers and simple cycle-to-square coordinate readings fail, so the remaining missing element is the authored cycle-to-square readout.
 
 ## Decision
 

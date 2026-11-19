@@ -206,6 +206,45 @@ const leftPrimeSum = Array.from({length: 11}, (_, row) => p32.indices[row * 11])
 assert.equal(topPrimeSum, 563);
 assert.equal(leftPrimeSum, 569);
 
+const tableBytes = grid.pages.flatMap((page) => page.bytes);
+assert.deepEqual([gp0("EPIPHANY"), tableBytes[121], tableBytes[237]], [121,237,32]);
+assert.deepEqual([gp0("DEVOTED"), tableBytes[102]], [102,32]);
+assert.equal(tableBytes[32],115);
+const canonicalCycle=[0,203,68,199,47,76,114,197,115,247,192];
+const phaseIndex=canonicalCycle.indexOf(115);
+const sourceSelectedPhase115=canonicalCycle.slice(phaseIndex).concat(canonicalCycle.slice(0,phaseIndex));
+assert.deepEqual(sourceSelectedPhase115,[115,247,192,0,203,68,199,47,76,114,197]);
+
+/** @param {number[]} values @returns {number} */
+function ioc(values){
+ const counts=Array(29).fill(0);
+ for(const value of values) counts[value]+=1;
+ const n=values.length;
+ return counts.reduce((sum,count)=>sum+count*(count-1),0)/(n*(n-1));
+}
+const phaseSuccessors=sourceSelectedPhase115.slice(1).concat(sourceSelectedPhase115[0]);
+const phaseKeys={
+ address:sourceSelectedPhase115.map((value)=>value%29),
+ successor:phaseSuccessors.map((value)=>value%29),
+ row:sourceSelectedPhase115.map((value)=>Math.floor(value/8)%29),
+ column:sourceSelectedPhase115.map((value)=>value%8),
+};
+const phaseCandidates=[];
+for(const [keyName,key] of Object.entries(phaseKeys)){
+ for(const axis of ["row","column"]){
+  for(const sign of [-1,1]){
+   const output=p32.indices.map((value,index)=>{
+    const row=Math.floor(index/11), column=index%11;
+    return ((value+sign*key[axis==="row"?row:column])%29+29)%29;
+   });
+   phaseCandidates.push({keyName,axis,sign,ioc:ioc(output)});
+  }
+ }
+}
+phaseCandidates.sort((a,b)=>b.ioc-a.ioc);
+assert.equal(phaseCandidates.length,16);
+assert.ok(Math.abs(phaseCandidates[0].ioc-0.04049586776859504)<1e-15);
+
 console.log(JSON.stringify({
   status: "PASS",
   signedClause: words.slice(5, 9),
@@ -222,5 +261,8 @@ console.log(JSON.stringify({
     hits: row.hits,
   })),
   p32Axes: {topPrimeSum, leftPrimeSum},
-  decision: "EPIPHANY / DEVOTED is a source-selected p32 handoff; traversal and cipher remain unresolved.",
+  pointerConvergence: {epiphany:[121,237,32],devoted:[102,32],next:115},
+  sourceSelectedPhase115,
+  phase115BestAdditiveIoC: phaseCandidates[0],
+  decision: "EPIPHANY / DEVOTED selects p32 and cycle phase115; direct phase115 additive readout remains negative.",
 }, null, 2));
