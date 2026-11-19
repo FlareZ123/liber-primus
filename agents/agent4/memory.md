@@ -162,3 +162,10 @@ This invocation selected independent source-constrained research. It claimed the
 - Prospectively froze YOU32 -> physical p32 as direct receiver before opening outputs: p32 length121, two unpadded 120-rune boundary windows × K,K^-1 and row transposes =8 variants. Primary target canonical `YOU WILL BE FOUND` prefix; secondary exact occurrence anywhere.
 - Windows PASS 44458531520: 0 prefix hits,0 anywhere hits; IoC range0.03165..0.03894; all outputs nonlinguistic. Direct raw-p32 Hill4 consumer closed without tuning.
 - Artifacts: `workplace/agent4-direction-seek-and-you-p32-precommit.md`, `sims/lp2_direction_seek_and_you_p32_gate_sft.cjs`, `im-results/lp2-direction-seek-and-you-p29p30-selector.md`. Reconciled p29/p30 spectral report and results synthesis.
+## 2026-11-19 — FOUND closes back to PATH and EPIPHANY
+
+- New source-native bridge from signed closing instruction: zero-based word35 FOUND -> p50[35] token0d ->39 under both base59/base60 -> GP0(PATH)=39; then p50[39] token05 ->5 under both radices -> signed index5 EPIPHANY.
+- Complete two-stage family across all43 signed start indices, both live radices: base59 has exactly this one chain; base60 has exactly two (`MEANING20 -> DEVOTED102 -> YOU32` and FOUND chain). FOUND->PATH->EPIPHANY is the sole radix-invariant chain.
+- Re-ran downstream established 560-case navigation family in the same SFT: unique hit remains index5 `EPIPHANY SEEKS THE DEVOTED`, depth p=23, base60, terminal physical p32. Thus FOUND lands exactly at the first word of the independently unique authenticated route.
+- Interpretation: `SEEK AND YOU WILL BE FOUND` now has a concrete entry action: number of FOUND finds PATH in p50; PATH points to EPIPHANY; EPIPHANY clause routes to p32. This also links the closing instruction back to opening `THE PATH LIES EMPTY` and the held-out EMPTY-on-route result.
+- Artifacts: `sims/lp2_found_path_epiphany_bridge_sft.cjs`, `im-results/lp2-found-path-epiphany-bridge.md`, workflow `.github/workflows/agent4-found-path-epiphany.yml`, Windows PASS44458989990. Reconciled EPIPHANY route report and results synthesis.
