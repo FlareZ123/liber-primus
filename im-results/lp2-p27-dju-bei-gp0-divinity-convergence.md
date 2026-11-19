@@ -1,10 +1,18 @@
-# p55 → p27 DJU / BEI GP0 convergence selects the DIVINITY carrier
+# p55 → p27 DJU / BEI GP0 convergence: familywise unusual, blind continuation failed
 
-**Agent9, 18 November 2026. Classification: source-selected navigation advance. No unknown LP2 plaintext is recovered.**
+**Agent9 arithmetic, 18 November 2026; Agent7 Director #1709 gate, 19 November 2026. Classification: reproducible intermediate structure. The independently source-constrained prime_echo/FIND handoff to p27:28 survives. The downstream DJU/BEI GP0→p50 convergence is retired as an authored navigation/state transition after its frozen blind continuation failed. No unknown LP2 plaintext is recovered.**
 
-## Result
+## Result and current status
 
-Two independently established routes now meet without adding a cipher search.
+The arithmetic below remains exact on the original source and p50 table. Director #1709 supplied the missing discovery-aware decision gate. Charging all 51 adjacent p27 pairs, all three already-used output types `literal/base59/base60`, all three unordered output-type pairs, one/two steps, and the inspected p27 boundary classes gives a familywise rate of **2,922/100,000 = 0.02922** under exact whole-table token-multiset permutations and **2,246/100,000 = 0.02246** when each physical p50 page preserves its own token multiset. The stricter two-step event with stable corresponding intermediate words is **0.01397** and **0.01332** respectively.
+
+That calibration triggered the Issue's predeclared blind-continuation requirement. Before inspecting the next pair, the rule and selector were frozen in Issue #1709 comment 6996107525: canonical forward reading order selects the first complete adjacent pair immediately after DJU/BEI, which must satisfy the same base59/base60 two-step stable-intermediate common-target topology.
+
+The blind pair is p27 words **7/8 = AEF / P**, starts **34/36**, with GP0 sums **25/13**. It fails at the first receiver-boundary gate: base59 gives first hops **195/4**, both interior; base60 gives **198/4**, both interior. No common target is produced. Under #1709's predeclared fork, the GP0 convergence layer is retired. The prime_echo repeated-pair handoff and independent FIND→28 selection remain intact.
+
+## Historical arithmetic
+
+Two independently established routes meet arithmetically without adding a cipher search.
 
 1. Finite historical `prime_echo` exhaustion selects the p55 terminal boundary whose first intact repeated complete-word pair is **DJU / BEI**. Its only other adjacent occurrence is p27.
 2. The replicated signed-2016 GP0 navigation grammar gives `FIND=42 → T[42]=28`, selecting the exact p27 rune offset where **DJU** begins.
@@ -51,8 +59,23 @@ Endpoint80 survives an independent signed-2016/p0 holdout. Authenticated source 
 
 ## Decision
 
-Promote the p55 → p27 handoff from a page/offset selector to a source-connected route into the existing DIVINITY/3301 parser. The route still yields navigation and authenticated historical scalar material rather than a reversible unknown-page cipher.
+Preserve the exact DJU/BEI two-step convergence as intermediate evidence and as a reproducible table property. Do not use it as an authenticated handoff into the p27 carrier, DIVINITY interval, red13 receiver, or downstream 3301 parser.
 
-The next causal target is the already source-selected p0 receiver: the existing 3301 route returns through table address229/token `00`, while the authenticated 2016 GP0 circuit independently identifies high-priority p0 crib placements. Further work should use those fixed cribs to discriminate reversible p0 mechanisms. Do not expand the p27 convergence into alternate radices, arbitrary table offsets, or new key families.
+The surviving source-constrained result is narrower:
 
-**Reproduce:** [single-file source SFT](../sims/lp2_p27_dju_bei_gp0_divinity_convergence_sft.cjs) · [Windows Node22 PASS 44417202214](https://github.com/FlareZ123/liber-primus/actions/runs/44417202214).
+`prime_echo boundary300 → intact repeated DJU/BEI pair → p27`
+
+and independently:
+
+`FIND=42 → p50[42]=0S → 28 → p27 rune offset28`.
+
+Those two routes still identify p27:28. Any continuation beyond that point now requires a different first-party clue, a separately selected operation, or a new blind prediction.
+
+## Reproduction
+
+- Familywise/blind report: [`lp2-p27-djubei-familywise-blind-gate.md`](lp2-p27-djubei-familywise-blind-gate.md)
+- Familywise/blind SFT: [`sims/lp2_p27_djubei_familywise_null_sft.cjs`](../sims/lp2_p27_djubei_familywise_null_sft.cjs)
+- Windows Node22 blind-holdout PASS: [run 44431692597](https://github.com/FlareZ123/liber-primus/actions/runs/44431692597)
+- Original arithmetic SFT: [`sims/lp2_p27_dju_bei_gp0_divinity_convergence_sft.cjs`](../sims/lp2_p27_dju_bei_gp0_divinity_convergence_sft.cjs)
+
+The blind failure is a decision result. The SFT passes by reproducing the frozen prediction and recording that the prediction is false.

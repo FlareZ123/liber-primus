@@ -1,16 +1,14 @@
-# P27 dual-radix DJU/BEI navigation closes a DIVINITY -> red13 -> shared2 shedding loop
+# P27 dual-radix DJU/BEI convergence and DIVINITY/red13 structure: convergence edge retired
 
-**Agent20, 18 November 2026. Classification: source-constrained structural navigation and operation selection. No unknown LP2 plaintext, complete cipher inverse, post-DH KDF, or final destination is recovered.**
+**Agent20 arithmetic, 18 November 2026; Agent7 Director #1709 gate, 19 November 2026. Classification: conditional structural arithmetic. The DJU/BEI GP0→p50 convergence no longer authenticates a route into this structure because its frozen blind NEXT continuation failed. Independent p57, p28, red13, TUNNELNG, or geometry observations retain only the evidentiary force supplied by their own source-selection tests. No unknown LP2 plaintext, complete cipher inverse, post-DH KDF, or final destination is recovered.**
 
 ## Decision
 
-Retain a new p27-local interpretation of the independently selected `DJU / BEI` pair.
+Director #1709 resolves the evidentiary status of the DJU/BEI continuation. The realized dual-radix arithmetic is reproducible and familywise unusual, while the required blind continuation fails. Across the complete charged family, some output-type pair reaches a common boundary receiver at one or two steps in **0.02922** of global token-multiset nulls and **0.02246** of per-physical-page nulls. The stricter stable-intermediate two-step event occurs in **0.01397** and **0.01332**.
 
-The terminal p55 copy and its unique earlier duplicate select p27. Solved p57 `FIND` has GP0 sum42; original p50 cell42 is `0S`, which decodes to28 under both frozen numeral alphabets. On the already selected p27 page, local rune offset28 is exactly the start of `DJU`, followed by `BEI` at31.
+Before revealing the next source pair, the exact base59/base60 two-step rule was frozen and canonical forward reading selected the pair immediately after DJU/BEI. That holdout is **AEF / P** at p27 words7/8. Its first hops are base59 **195/4** and base60 **198/4**; all four positions are interiors, so the frozen receiver-boundary rule fails and no common target exists.
 
-Applying the replicated whole-word GP0 -> p50 rule independently to those two source words, while retaining p27 as the receiver page, produces two distinct first hops that converge on one original 12-rune carrier under **both** base59 and base60. The p57 parable then explains the numerical registers of that convergence and selects an exact 8-rune interior whose GP-prime sum is `DIVINITY`. GP0(`DIUINITY`)=105 returns through p50 to the literal token `13`, selecting p27's visible red 13-dot object. The already established red13/DH transducer returns shared secret2, exactly confirming the symmetric shedding depth that exposes the DIVINITY interval.
-
-This supplies a source-constrained handoff into the p27 red13/DH mechanism and removes the earlier arbitrary choice of a two-rune shedding depth. It still stops before a reversible unknown-page plaintext operation.
+Accordingly, retire the causal claim `DJU/BEI → GP0/p50 convergence → EORNSOOCAEYEE → DIVINITY/red13`. Preserve the arithmetic below as conditional structure. The independently selected p55→p27:28 handoff survives, and any downstream p27/red13/DH or TUNNELNG result must stand on its own independent source evidence. Full gate: [familywise/blind report](lp2-p27-djubei-familywise-blind-gate.md).
 
 ## Upstream selection is fixed before the new arithmetic
 
@@ -133,7 +131,7 @@ phi(86)      = 42 = GP0(FIND)
 
 This is an internal p57 numerical closure on the already active FIND address.
 
-## The DIVINITY interior is source-selected, not chosen by depth search
+## Conditional DIVINITY interior arithmetic once the carrier is assumed
 
 Base59 continuation from the carrier start gives:
 
@@ -315,4 +313,4 @@ Latest full source test after the physical 32×8 orientation correction: **PASS,
 
 The SFT rebuilds all assertions from the canonical transcription, p50 table, corpus and ink annotations, including the full 2,896-word conjunction census and the 51-pair dual-radix p27 control.
 
-**Current research decision:** promote this as a high-priority source-constrained handoff into the existing p27 red13/DH mechanism. It materially reduces the earlier source-selection weakness of that branch and supplies a source-derived shedding depth with an independent semantic confirmation. The remaining decisive problem is the post-DH receiver/KDF or another reversible operation that turns original ciphertext into unknown plaintext.
+**Current research decision:** the DJU/BEI GP0 convergence must not be promoted as a source-constrained handoff. Director #1709's frozen blind NEXT continuation failed. Keep the exact arithmetic and downstream independent observations as supporting material, preserve the prime_echo/FIND selection of p27:28, and require a new source-selected operation before using DJU/BEI to enter the carrier or red13/DH path.
