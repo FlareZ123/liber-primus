@@ -31,6 +31,14 @@ function H(left, right) {
   return [mod29(left - right), mod29(left + right)];
 }
 
+function HInv(diff, sum) {
+  const inv2 = 15;
+  return [
+    mod29((diff + sum) * inv2),
+    mod29((sum - diff) * inv2),
+  ];
+}
+
 function gp(word) {
   const normalized = word
     .toUpperCase()
@@ -331,6 +339,86 @@ assert.equal(
 // assign the ordered source pair [e,-K] to [center singleton, word28].
 // This recovers READ OUT exactly.
 const parts = transcription.split(/^\s*%\s*$/m);
+
+// Fresh same-index consequence: BE(34) -> PATHS(40) fixes the only
+// nonzero H coordinate of a same-GP0 two-rune subtraction key.
+const be = message[34];
+const paths = message[40];
+assert.equal(be.word, "BE");
+assert.equal(paths.word, "PATHS");
+const beRise = mod29(paths.gp0 - be.gp0);
+assert.equal(beRise, state.B);
+
+const beKey = HInv(beRise, 0);
+assert.deepEqual(beKey, [24, 5]);
+const beValues = gp(be.word);
+const predictedP34Cipher = beValues.map((value, index) =>
+  mod29(value + beKey[index])
+);
+assert.deepEqual(predictedP34Cipher, [12, 23]);
+
+const p34Words = parsePage(parts[34]);
+const p34StateReceivers = p34Words.filter(
+  (word) =>
+    word.values.length === beValues.length &&
+    word.values.reduce((sum, value) => sum + value, 0) === be.gp0
+);
+assert.deepEqual(
+  p34StateReceivers.map((word) => [word.start, word.values]),
+  [
+    [4, [12, 23]],
+    [249, [28, 7]],
+  ]
+);
+assert.deepEqual(
+  p34StateReceivers
+    .filter((word) =>
+      word.values.every((value, index) => value === predictedP34Cipher[index])
+    )
+    .map((word) => word.start),
+  [4]
+);
+
+// Charge every authenticated two-GP-rune word whose +6 partner exists.
+// The same rise -> H^-1([rise,0]) predictor hits only p34 BE.
+const twoRunePredictions = [];
+for (const source of message) {
+  if (source.index + rise >= message.length) continue;
+  const target = gp(source.word);
+  if (target.length !== 2) continue;
+
+  const sourceRise = mod29(message[source.index + rise].gp0 - source.gp0);
+  const key = HInv(sourceRise, 0);
+  const predicted = target.map((value, index) => mod29(value + key[index]));
+  const pageWords = parsePage(parts[source.index]);
+  const matches = pageWords.filter(
+    (word) =>
+      word.values.length === 2 &&
+      word.values.every((value, index) => value === predicted[index])
+  );
+  twoRunePredictions.push({
+    index: source.index,
+    word: source.word,
+    rise: sourceRise,
+    predicted,
+    matches: matches.map((word) => word.start),
+  });
+}
+assert.deepEqual(
+  twoRunePredictions.map((row) => [row.index, row.word, row.matches]),
+  [
+    [1, "THE", []],
+    [7, "THE", []],
+    [11, "IS", []],
+    [12, "THE", []],
+    [17, "THE", []],
+    [21, "IS", []],
+    [22, "THE", []],
+    [28, "THE", []],
+    [34, "BE", [4]],
+  ]
+);
+
 const p28Words = parsePage(parts[28]);
 const p28Runes = corpus.pages.find((page) => page.page === 28).indices;
 assert.equal(p28Runes.length, 269);
@@ -367,5 +455,11 @@ console.log(JSON.stringify({
   })),
   privatePair: privateEvent.missing,
   exponentPair: tailEvent.missing,
+  p34Be: {
+    rise: beRise,
+    key: beKey,
+    predictedCipher: predictedP34Cipher,
+    receiverStart: 4,
+  },
   p28Decoded: spell(decoded),
 }, null, 2));
