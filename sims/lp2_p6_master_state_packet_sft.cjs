@@ -432,6 +432,99 @@ assert.deepEqual(p40Shell, [
   p6LastWord.gp0,
 ]);
 
+// Complete four-rune source/page calibration. Charge every authenticated
+// four-rune source occurrence against every physical page0..42 and keep only
+// pairs with exactly one complete same-GP0 four-rune receiver. There are 62
+// such pairs. H1=A leaves WILL, THEIR (twice because the source repeats it),
+// and PATHS. Requiring the non-forced H0 and H2 coordinates to be signed
+// state values leaves exactly p33 WILL and p40 PATHS.
+const fourRuneSourceOccurrences = signedWords.filter((word) => word.length === 4);
+assert.deepEqual(
+  fourRuneSourceOccurrences.map((word) => [word.index, word.word]),
+  [
+    [3, "LIES"],
+    [19, "THEIR"],
+    [20, "MEANING"],
+    [23, "ROAD"],
+    [25, "THEIR"],
+    [30, "SEEK"],
+    [33, "WILL"],
+    [36, "GOOD"],
+    [37, "LUCK"],
+    [40, "PATHS"],
+  ]
+);
+const fourRuneUniqueReceiverPairs = [];
+for (let page = 0; page <= 42; page += 1) {
+  const pageWords = (pages.get(page) || []).filter((word) => word.length === 4);
+  for (const target of fourRuneSourceOccurrences) {
+    const matches = pageWords.filter((word) => word.gp0 === target.gp0);
+    if (matches.length !== 1) continue;
+    const word = matches[0];
+    const key = word.values.map((value, index) =>
+      mod29(value - target.values[index])
+    );
+    fourRuneUniqueReceiverPairs.push({
+      page,
+      start: word.start,
+      sourceIndex: target.index,
+      target: target.word,
+      shell: h4Canonical(key),
+    });
+  }
+}
+assert.equal(fourRuneUniqueReceiverPairs.length, 62);
+
+const aShellPairs = fourRuneUniqueReceiverPairs.filter((row) =>
+  row.shell[1] === packetState.A
+);
+assert.deepEqual(aShellPairs, [
+  {
+    page: 33,
+    start: 132,
+    sourceIndex: 33,
+    target: "WILL",
+    shell: [23, 8, 2, 27],
+  },
+  {
+    page: 37,
+    start: 4,
+    sourceIndex: 19,
+    target: "THEIR",
+    shell: [1, 8, 16, 13],
+  },
+  {
+    page: 37,
+    start: 4,
+    sourceIndex: 25,
+    target: "THEIR",
+    shell: [1, 8, 16, 13],
+  },
+  {
+    page: 40,
+    start: 71,
+    sourceIndex: 40,
+    target: "PATHS",
+    shell: [14, 8, 3, 26],
+  },
+]);
+
+const stateTypedAShellPairs = aShellPairs.filter((row) =>
+  signedStateValues.has(row.shell[0]) &&
+  signedStateValues.has(row.shell[2])
+);
+assert.deepEqual(stateTypedAShellPairs, [
+  aShellPairs[0],
+  aShellPairs[3],
+]);
+
+// For equal-GP0 four-rune receiver/target pairs, shell[2]+shell[3]=0 is
+// algebraically forced by key-sum zero. Treat that tail relation as a
+// checksum only, not independent evidence.
+for (const row of fourRuneUniqueReceiverPairs) {
+  assert.equal(mod29(row.shell[2] + row.shell[3]), 0);
+}
+
 const p38 = pages.get(38);
 assert.ok(p38);
 const receiver = p38.find((word) => word.start === 57 && word.end === 62);
@@ -1067,6 +1160,12 @@ console.log(JSON.stringify({
       receiver: [71, 74],
       shell: p40Shell,
       shellLabels: "[-b,A,e,-e]",
+    },
+    fourRuneCalibration: {
+      uniqueSameGp0Pairs: fourRuneUniqueReceiverPairs.length,
+      aShellPairs,
+      stateTypedAShellPairs,
+      note: "H2+H3=0 is forced by equal GP0 and is not independent evidence",
     },
   },
   p6FirstWordGrammar: {
