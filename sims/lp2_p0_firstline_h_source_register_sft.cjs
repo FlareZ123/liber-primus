@@ -168,6 +168,63 @@ assert.deepEqual(
   [[0, 1]]
 );
 
+/** @param {number} sourceIndex @returns {{h:number[], hsum:number, read:number[]} | null} */
+function numberedReceiverRead(sourceIndex) {
+  const page = pages.find((candidate) => candidate.page === sourceIndex);
+  const object = page ? page.words[sourceIndex] : null;
+  if (!object) return null;
+  const h = hOutsideIn(object.values);
+  const hsum = modSum(h);
+  return { h, hsum, read: [...h, hsum] };
+}
+
+const p0Directions = [modSum(hFirst), modSum(hSecond)];
+assert.deepEqual(p0Directions, [1, 13]);
+assert.equal(sourceWords[p0Directions[0]], "THE");
+assert.equal(sourceWords[p0Directions[1]], "WAY");
+
+const direction1 = numberedReceiverRead(p0Directions[0]);
+const direction13 = numberedReceiverRead(p0Directions[1]);
+assert.ok(direction1);
+assert.ok(direction13);
+assert.deepEqual(direction1.h, [6, 9, 11, 8, 2, 19, 6, 7]);
+assert.equal(direction1.hsum, 10);
+assert.deepEqual(direction13.h, [27, 9, 6, 0, 19, 2]);
+assert.equal(direction13.hsum, 5);
+
+const p0DirectionReadout = [
+  ...direction1.read,
+  ...direction13.read,
+  mod29(p0Directions[1] - p0Directions[0]),
+  p0Directions[1],
+];
+assert.ok(containsRange(p0DirectionReadout, 5, 13));
+
+const directionControls = matchedPairs.map((row) => {
+  const firstDirection = numberedReceiverRead(row.hSums[0]);
+  const secondDirection = numberedReceiverRead(row.hSums[1]);
+  if (!firstDirection || !secondDirection) {
+    return { ...row, valid: false, covers5to13: false };
+  }
+  const readout = [
+    ...firstDirection.read,
+    ...secondDirection.read,
+    mod29(row.hSums[1] - row.hSums[0]),
+    row.hSums[1],
+  ];
+  return {
+    ...row,
+    valid: true,
+    covers5to13: containsRange(readout, 5, 13),
+  };
+});
+
+assert.equal(directionControls.filter((row) => row.valid).length, 19);
+assert.deepEqual(
+  directionControls.filter((row) => row.covers5to13).map((row) => [row.page, row.ordinal]),
+  [[0, 1]]
+);
+
 /**
  * @param {string} text
  * @returns {number[][]}
@@ -258,6 +315,19 @@ console.log(JSON.stringify({
       .filter((row) => row.hSums[0] === 1 && row.hSums[1] === 13)
       .map((row) => [row.page, row.ordinal]),
   },
+  directionAndRiseControl: {
+    titleDirections: p0Directions,
+    direction1H: direction1.h,
+    direction1HSum: direction1.hsum,
+    direction13H: direction13.h,
+    direction13HSum: direction13.hsum,
+    rise: mod29(p0Directions[1] - p0Directions[0]),
+    recoveredIndices: [5, 6, 7, 8, 9, 10, 11, 12, 13],
+    matched8plus5Pairs: directionControls.length,
+    fullRunHits: directionControls
+      .filter((row) => row.covers5to13)
+      .map((row) => [row.page, row.ordinal]),
+  },
   physicalLineControls: {
     linesContainingAdjacent8plus5: lineControls.length,
     cover5to12Count: lineControls.filter((row) => row.covers5to12).length,
@@ -269,5 +339,5 @@ console.log(JSON.stringify({
     sentence: "EPIPHANY SEEKS THE DEVOTED. LIBER PRIMUS IS THE WAY.",
   },
   decision:
-    "P0's source-selected 8+5 opening is the sole matched pair whose fixed nested-H scopes partition source indices 5..10 as 1|2|3 and whose word-H sums are THE1/WAY13. On its original first physical line, the same fixed line/word H union contains 5..12, while the second title-word H sum supplies 13. This reconstructs authenticated source indices 5..13 without an additive title key. It supports the EPIPHANY SEEKS title interpretation but does not derive the 13-atom residual key or decrypt continuous p0 prose.",
+    "P0's H word sums are THE1/WAY13. Using those numbers as the established numbered-diagonal directions, H plus each receiver's H sum recovers source5..11; the fixed rise 13-1 supplies12 and endpoint13 supplies WAY. Among all 19 matched 8+5 pairs, p0 alone reconstructs the complete authenticated run5..13. The original first-line H union independently contains5..12. This supports EPIPHANY SEEKS without using the retrospective 13-atom additive key, while leaving continuous p0 prose unsolved.",
 }, null, 2));
