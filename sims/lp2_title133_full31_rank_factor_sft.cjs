@@ -19,6 +19,7 @@ const read = relative =>
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
+const punctuation = JSON.parse(read("resources/liber-primus/lp2-punctuation-identity.json"));
 const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 const wrapper = read("resources/historical/stage11-2014-index.html");
 
@@ -154,10 +155,41 @@ function torV2Base32(n) {
   return out;
 }
 
-/**
- * @param {"all13"|"red13plusred23"} mode
- */
-function eventTape(mode) {
+/** @param {{page:number,offset:number,dots:number,color:string}} mark */
+const markSignature = mark =>
+  `${mark.page}:${mark.offset}:${mark.dots}:${mark.color}`;
+
+/** @param {number} value */
+function isSmallPrime(value) {
+  if (value < 2) return false;
+  for (let divisor = 2; divisor * divisor <= value; divisor += 1) {
+    if (value % divisor === 0) return false;
+  }
+  return true;
+}
+
+const physicalMarks = ink.pages.flatMap(page =>
+  (page.large_punctuation || []).map(([offset,dots,color]) => ({
+    page:page.page, offset, dots, color,
+  }))
+);
+const classA = physicalMarks.filter(mark => mark.dots === 13);
+const classB = physicalMarks.filter(mark =>
+  mark.color === "red" && isSmallPrime(mark.dots)
+);
+const classC = punctuation.events
+  .filter(event => event.symbol === "⁜" && event.large_mark)
+  .map(event => ({
+    page:event.page,
+    offset:event.local_rune_offset,
+    dots:event.large_mark.dot_count,
+    color:event.large_mark.color,
+  }));
+assert.deepEqual([classA.length,classB.length,classC.length],[31,31,31]);
+
+/** @param {{page:number,offset:number,dots:number,color:string}[]} selected */
+function eventTape(selected) {
+  const selectedSet = new Set(selected.map(markSignature));
   const events = [];
   let serial = 0;
   for (const page of [...ink.pages].sort((a, b) => a.page - b.page)) {
@@ -174,17 +206,12 @@ function eventTape(mode) {
       }
     }
     for (const [offset, dots, color] of page.large_punctuation || []) {
-      const include =
-        mode === "all13"
-          ? dots === 13
-          : color === "red" && (dots === 13 || dots === 23);
-      if (!include) continue;
+      const mark = {page:page.page,offset,dots,color};
+      if (!selectedSet.has(markSignature(mark))) continue;
       events.push({
-        page:page.page,
-        offset,
+        ...mark,
         bit:1,
-        kind:"dot" + dots,
-        color,
+        kind:"mark",
         serial:serial++,
       });
     }
@@ -203,7 +230,7 @@ function eventTape(mode) {
 
 assert.match(wrapper, /<title>133<\/title>/u);
 
-const full = eventTape("all13");
+const full = eventTape(classA);
 assert.equal(full.events.length, 256);
 assert.equal(full.positions.length, 31);
 assert.deepEqual(full.positions, [
@@ -283,15 +310,36 @@ assert.deepEqual(
   [{name:"lex_forward",base:0}]
 );
 
-// Type control: replacing the lone black 13-dot mark with the unrelated lone
-// red 23-dot mark preserves the raw 31-of-256 cardinality and title133 width,
-// but loses the first exact source factors before any large-prime labeling.
-const mixed = eventTape("red13plusred23");
-assert.equal(mixed.events.length, 256);
-assert.equal(mixed.positions.length, 31);
-const mixedRank = lexRank(256,31,mixed.positions);
-assert.equal(bitLength(mixedRank), 133);
-assert.notEqual(mixedRank % ((2n ** q) * sourceWordCount), 0n);
+// The authoritative title133 audit froze three natural 31-of-256
+// event predicates before this factorization was opened. Only class A
+// survives the independently available leading factor 2^q * 43.
+const classTapes = [
+  ["A_all_physical_13dot", classA],
+  ["B_red_prime_dot", classB],
+  ["C_chapter_marks", classC],
+].map(([name, selected]) => {
+  const tape = eventTape(selected);
+  assert.equal(tape.events.length, 256);
+  assert.equal(tape.positions.length, 31);
+  const value = lexRank(256,31,tape.positions);
+  return {
+    name,
+    positions:tape.positions,
+    rank:value,
+    bits:bitLength(value),
+    prefix688:value % ((2n ** q) * sourceWordCount) === 0n,
+    exactHeldoutFactorization:
+      value === (2n ** q) * sourceWordCount * q13 * q32 * q79,
+  };
+});
+assert.deepEqual(
+  classTapes.filter(row => row.prefix688).map(row => row.name),
+  ["A_all_physical_13dot"]
+);
+assert.deepEqual(
+  classTapes.filter(row => row.exactHeldoutFactorization).map(row => row.name),
+  ["A_all_physical_13dot"]
+);
 
 const label = torV2Base32(q79);
 assert.equal(label, "pecvyau2ayqym5cp");
@@ -326,12 +374,13 @@ console.log(JSON.stringify({
     })),
   },
   canonicalVariants:variants,
-  mixedTypeControl:{
-    rank:mixedRank.toString(),
-    bits:bitLength(mixedRank),
-    divisibleBy2pow4Times43:
-      mixedRank % ((2n ** q) * sourceWordCount) === 0n,
-  },
+  title133EventClassControl:classTapes.map(row => ({
+    name:row.name,
+    rank:row.rank.toString(),
+    bits:row.bits,
+    divisibleBy2pow4Times43:row.prefix688,
+    exactHeldoutFactorization:row.exactHeldoutFactorization,
+  })),
   torV2Formatting:{
     q79:q79.toString(),
     label,
