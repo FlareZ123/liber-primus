@@ -137,6 +137,9 @@ Do not generalize digit-cardinal parsing to every table cell. Do not infer that 
 
 ## Reproduction
 
+Windows Node 22 complete-gate PASS: [run 44446988632](https://github.com/FlareZ123/liber-primus/actions/runs/44446988632).
+
+
 Run:
 
 ```text
