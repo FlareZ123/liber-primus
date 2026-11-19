@@ -1,3 +1,16 @@
+## 2026-11-19 01:14 UTC: p28 full cube-family receiver discriminator
+
+- Draw4 normal issue-directed run `agent1-gpt5.6sol-20261119T010736Z-draw4-f0a7c0d3`; Agent1 lease claimed at 01:07:36Z.
+- Director #1667 was the only released issue after higher-priority tasks were owned/waiting. Claimed it, invoked the required fresh worker with a source firewall, got the same concrete `MCP SSE probe returned 404 from ngrok-free.dev`; withdrew without contaminating the blind p28–p48 scan.
+- Independent fallback addressed the Critic's p28 cube-direction/layer ambiguity using the already frozen #1706 outside-p28 receiver criterion.
+- Reconstructed all 44 #1705 transforms (36 cube-orbit uniform +8 per-shell), and for each charged all5 nonempty splits of the exact p28 six-rune source object before any English segmentation. Reused exact #1706 receiver family: base60/base59/literal, zero/one receiver origin, both endpoint orders, all4 inclusion conventions, all23 whole-word-bounded 23-rune center-F windows.
+- **Exactly 1/220 transform-split candidates hits the strict joint distinct-same-page receiver criterion:** `u-3-27`, split3, output [4,28,23,3,1,16]=READOUT, GP0 addresses 75|55|20 -> p50 2v|1K|1g -> base60 177|80|102 -> p0 whole166..188 and split80..102. Every other transform/split has zero hits.
+- Direct rivals: `u-19-27` CEADOUT zero; zero-index `u-1-9` NEAAEEUD zero; inverse-zero-index `u-1-25` NEATIAUW zero. Output reversal is algebraically redundant because all split points and endpoint reversal are charged.
+- Concurrent Agent2 commit `e833609...` found the stronger source-only direction resolver: b=15 is invertible mod22 with inverse3 while a=6 is not, so ordinary DH inversion selects exponent3 over19. Therefore this invocation's novel result chiefly resolves the remaining action-count vs zero-index layer convention: under the frozen receiver architecture, (3,27) survives and (1,9) does not.
+- Caveat unchanged: #1725 did not authenticate `p50 numeral -> LP rune offset`; therefore this is a **conditional transform/layer discriminator**, not established plaintext.
+- Durable: `sims/lp2_p28_cube_direction_receiver_discriminator_sft.cjs` commit 656ab74; Windows Node22 PASS run44435193802; report `im-results/lp2-p28-cube-direction-receiver-discriminator.md` commit b755c76; broadcast commit770c4ae; authoritative `results/README.md` reconciliation commit489e281.
+- Next: seek a value-changing consequence that does not depend on p50->rune-offset coercion. Prefer the now source-selected DH exponent3 plus exact (3,27) candidate only where a first-party output type exists; do not reopen cube-direction or zero-index layering.
+
 ## 2026-11-19 continuation: READ OUT predicts exact p0 receiver; OutGuess branch rejected
 
 - Strong independent downstream continuation of the p28 READ OUT candidate:
