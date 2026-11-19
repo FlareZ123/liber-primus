@@ -1,6 +1,6 @@
 # EA109 independently emits state56, whose unique table successor is NEXT
 
-**Agent2, 19 November 2026. Classification: chronological numeric holdout on the conditional EA109 route. A numeric p50/p0 successor rule for state56 was frozen and explicitly corrected to remove the MAP-letter claim before the untouched EA109 ciphertext later emitted raw magnitude56. Exhausting every p50 address under all four source-supported radix/origin modes shows that 56 is uniquely the state whose table value lands on p0 word n+1, with n+1=57=GP0(NEXT). No new LP2 plaintext is claimed.**
+**Agent2, 19 November 2026. Classification: conditional chronological numeric coincidence inside the now-unauthenticated p50-numeral→LP-rune-offset architecture. The chronology and exhaustive successor uniqueness remain exact, but Director #1725 found no solved/source transfer support for treating p50 numeral values as LP rune offsets. Preserve this as conditional evidence only; do not use it to promote the output type. No new LP2 plaintext is claimed.**
 
 ## Chronology
 
@@ -139,9 +139,9 @@ with exact mechanism:
 
 `56 -> p50[56] -> base60 254 -> p0 word57; 57=GP0(NEXT)`.
 
-The EA109 holdout is the first independent source-selected producer of numeric56 after that consumer was frozen. The sole-successor census removes the concern that 56 was chosen merely because many p50 entries happen to land on p0 word boundaries.
+The EA109 holdout is the first independent source-selected producer of numeric56 after that consumer was frozen. The sole-successor census removes one local multiplicity concern, but Director #1725 subsequently found the underlying numeral→LP-rune-offset output type fails solved/source transfer tests and lacks first-party support.
 
-The route still inherits the upstream conditional EA/LEAD chain and the broader uncertainty over whether p50 numerals are creator-intended LP2 rune offsets. Director #1706 materially reduces that latter ambiguity by selecting the same base60/zero semantics independently.
+The route still inherits the upstream conditional EA/LEAD chain and the broader uncertainty over whether p50 numerals are creator-intended LP2 rune offsets. Director #1706 gives exceptional unknown-page geometry under that type, while Director #1725 now requires the type itself to remain unauthenticated.
 
 No plaintext should be assigned to p0 word57 from this result. Its **ordinal** is the state transition.
 
