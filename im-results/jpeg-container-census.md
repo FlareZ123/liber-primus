@@ -18,6 +18,8 @@ For every file, record whether data follows that EOI, whether JPEG COM or APP1â€
 
 ## Cryptanalytic consequence and limitations
 
+A coefficient-domain reconstruction now closes the remaining variable compression-serialization channel: after removing only the identical APP2 ICC segment, standard libjpeg with optimized Huffman coding regenerates **all 58 LP2 JPEGs byte-for-byte** from their original quantized DCT coefficients. Thus per-page DHT tables, entropy-coded bytes, JFIF/DQT/SOF/SOS bytes are determined by the coefficient arrays rather than independent hidden metadata. See [byte-exact libjpeg reconstruction](lp2-jpeg-libjpeg-byteexact-reoptimization.md). Coefficient-level steganography remains outside this exclusion.
+
 The 56 unresolved LP2 pages, as well as its two solved terminal pages, **cannot conceal a separate post-EOI byte payload or individualized ICC-profile value within these original files**. Search effort should prioritize visually present marks, quantized image coefficients, actual rune sequences, or independently motivated key sources rather than more trailer-byte hunting. This is an exact scope exclusion for the audited files only, not a no-steganography claim. Pixel-level JPEG encoding can carry information without post-EOI bytes or individualized APP metadata; visible dot patterns, coloured typography, and the existing numeric grid are outside this test.
 
 ## Reproduce
