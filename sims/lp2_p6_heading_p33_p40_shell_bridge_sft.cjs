@@ -837,7 +837,14 @@ console.log(JSON.stringify({
     redSpans: spanRecords.length,
     hits: fixedFormulaHits,
   },
-  stateTemplateControl: {\n    sameIndexStateMatches,\n    recipientCases: stateTemplateRecipientCases,\n    recipientHits: stateTemplateHits,\n    globalCases: globalStateTemplateCases,\n    globalHits: globalStateTemplateHits,\n  },\n  prospectiveTwoRuneHoldout: {
+  stateTemplateControl: {
+    sameIndexStateMatches,
+    recipientCases: stateTemplateRecipientCases,
+    recipientHits: stateTemplateHits,
+    globalCases: globalStateTemplateCases,
+    globalHits: globalStateTemplateHits,
+  },
+  prospectiveTwoRuneHoldout: {
     cases: twoRuneReductionCases,
     lexicalHits: twoRuneReductionHits,
     expectedHits: twoRuneReductionHits.filter((hit) => hit.target === hit.expected),
@@ -850,5 +857,6 @@ console.log(JSON.stringify({
     p40LexicalHits: p40FamilyHits,
     dualHitSpans: dualSpanKeys,
   },
-  decision:\n    "The independently SEEKS-selected p6 red heading reconstructs a common [x,A,y,-y] state-shell family. On the only two four-rune members of the same-index receiver class, that family has exactly two authenticated hits: p33 WILL and p40 PATHS. The family has seven hits manuscript-wide, so recipient preselection is essential. The p6 layout-to-state readout was recognized after the recipient inverses, so preserve this as cross-page key-schedule evidence and the prospectively frozen [x,-y] reduction fails on every expected two-rune same-index label. Preserve this as a four-rune class key-schedule candidate rather than a general length-independent mechanism.",
+  decision:
+    "On the only two four-rune members of the same-index receiver class, H1=A plus signed-state H0/H2 yields p33 WILL and p40 PATHS; the H2/H3 negation is algebraically forced by equal GP0 and is not independent evidence. The prospectively frozen two-rune outer-pair reduction [x,-y] fails on every expected IS/BE label. Preserve this as a bounded four-rune class candidate and do not extend it by length reduction.",
 }, null, 2));
