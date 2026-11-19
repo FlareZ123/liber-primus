@@ -94,6 +94,8 @@ def main() -> None:
     ]
     excluded_by_name: dict[str, bool] = {}
     for line in info_lines[1:]:
+        if not line.strip():
+            continue
         name, _length, _period, _pi, excluded = line.split("\t")
         excluded_by_name[name] = excluded == "1"
     assert len(excluded_by_name) == len(streams)
