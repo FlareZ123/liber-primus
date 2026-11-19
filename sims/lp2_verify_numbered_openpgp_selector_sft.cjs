@@ -187,6 +187,50 @@ for (let g = 1; g < p; g += 1) {
   if (modPow(g, b, p) === B) gCandidates.push(g);
 }
 assert.deepEqual(gCandidates, [5]);
+const g = gCandidates[0];
+
+// Reconstruct the remaining state without the p28 DH line.
+// THEIR occurs at zero-based positions19 and25, so authored RISE gives a=6.
+const theirPositions = source
+  .filter((row) => row.word === "THEIR")
+  .map((row) => row.index);
+assert.deepEqual(theirPositions, [19, 25]);
+const a = theirPositions[1] - theirPositions[0];
+const A = modPow(g, a, p);
+const K = modPow(B, a, p);
+const e = (() => {
+  for (let candidate = 1; candidate < p - 1; candidate += 1) {
+    if ((b * candidate) % (p - 1) === 1) return candidate;
+  }
+  return null;
+})();
+const q = e + 1;
+
+const recoveredState = {p, g, a, b, A, B, K, e, q};
+assert.deepEqual(recoveredState, {
+  p: 23,
+  g: 5,
+  a: 6,
+  b: 15,
+  A: 8,
+  B: 19,
+  K: 2,
+  e: 3,
+  q: 4,
+});
+
+// Every recovered value lands on the independently authenticated role word.
+assert.equal(byWord.get("ROAD"), recoveredState.p);
+assert.equal(byWord.get("EPIPHANY"), recoveredState.g);
+assert.equal(byWord.get("SEEKS"), recoveredState.a);
+assert.equal(byWord.get("WORDS"), recoveredState.b);
+assert.equal(byWord.get("DEVOTED"), recoveredState.A);
+assert.equal(byWord.get("THEIR"), recoveredState.B);
+assert.equal(byWord.get("PATH"), recoveredState.K);
+assert.equal(byWord.get("LIES"), recoveredState.e);
+assert.equal(byWord.get("EMPTY"), recoveredState.q);
+assert.equal(modPow(A, b, p), K);
+assert.equal(modPow(B, a, p), K);
 
 // Manuscript-wide inner-core control: every canonical odd-length word >=3,
 // same fixed outside-in shell, exact innermost [diff,sum,center] triple.
@@ -233,6 +277,6 @@ console.log(JSON.stringify({
   },
   keyId: keyIdMatch[1],
   residues,
-  recovered: {b, B, p, g: gCandidates[0]},
+  recoveredState,
   control: {eligibleOddWords, coreHits},
 }, null, 2));
