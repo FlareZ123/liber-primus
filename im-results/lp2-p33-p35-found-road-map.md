@@ -213,7 +213,7 @@ That ambiguity is numerical only. Charge the whole retrospective grammar
 [x,-y,u-v,y,y+K]
 ```
 
-with `x,y,u,v` independently drawn from the nine state fields `{p,g,a,b,A,B,K,e,q}`. This gives **6,561 labeled tuples** and **2,349 distinct numeric keys**. On the fixed p35 receiver, across all eight distinct authenticated five-rune source targets and both signs, there are three labeled hits:
+with `x,y,u,v` independently drawn from the nine state fields `{p,g,a,b,A,B,K,e,q}`. This gives **6,561 labeled tuples** and **2,349 distinct numeric keys**. On the fixed p35 receiver, across all seven distinct authenticated five-rune source targets and both signs, there are three labeled hits:
 
 ```text
 [B,-b,q-b,b,b+K]
@@ -223,10 +223,10 @@ with `x,y,u,v` independently drawn from the nine state fields `{p,g,a,b,A,B,K,e,
 
 All three are the **same numeric key** `[19,14,18,15,17]`, use subtraction, and yield only `FOUND`. Thus the role label for the middle coordinate is unresolved, while the actual decoder is unique in this charged family.
 
-Hold that exact key fixed across every one of the **12,736** unknown five-rune windows, all eight authenticated five-rune targets, and both additive signs:
+Hold that exact key fixed across every one of the **12,736** unknown five-rune windows, all seven authenticated five-rune targets, and both additive signs:
 
 ```text
-12,736 * 8 * 2 = 203,776 configurations.
+12,736 * 7 * 2 = 178,304 configurations.
 ```
 
 Exactly one hit remains:
