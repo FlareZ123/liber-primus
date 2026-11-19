@@ -555,6 +555,178 @@ assert.deepEqual(
   ]
 );
 
+
+// Shared state-shell family for the only two four-rune same-index receivers.
+const sameIndexStateMatches = [];
+for (const sourceWord of signedWords) {
+  if (sourceWord.index > 42) continue;
+  const sourceGp0 = sum(sourceWord.values);
+  const pageMatches = words.filter((word) =>
+    word.page === sourceWord.index &&
+    word.endPage === sourceWord.index &&
+    word.values.length === sourceWord.values.length &&
+    sum(word.values) === sourceGp0
+  );
+  if (pageMatches.length > 0) {
+    sameIndexStateMatches.push({
+      index: sourceWord.index,
+      label: sourceWord.label,
+      starts: pageMatches.map((word) => word.start),
+    });
+  }
+}
+assert.deepEqual(sameIndexStateMatches.map((row) => row.index), [
+  6, 11, 21, 33, 34, 38, 40,
+]);
+assert.deepEqual(
+  sameIndexStateMatches
+    .filter((row) => signedWords[row.index].values.length === 4)
+    .map((row) => [row.index, row.label]),
+  [[33, "WILL"], [40, "PATHS"]]
+);
+
+const p6Lengths = p6HeadingWords.map((word) => word.values.length);
+const p6MaxLength = Math.max(...p6Lengths);
+const p6MaxTotal = p6Lengths
+  .filter((length) => length === p6MaxLength)
+  .reduce((total, length) => total + length, 0);
+const p6MultiCount = p6Lengths.filter((length) => length > 1).length;
+const p6LastWord = p6HeadingWords.at(-1);
+assert.equal(p6MaxTotal, state.A);
+assert.equal(p6LastWord.values.length, state.K);
+assert.equal(p6MultiCount, state.e);
+assert.equal(p6LastWord.values[0], mod29(-state.b));
+assert.equal(sum(p6LastWord.values), mod29(-state.e));
+assert.equal(state.p, mod29(-state.a));
+
+const stateTemplateP33 = [
+  mod29(-state.a), state.A, state.K, mod29(-state.K),
+];
+const stateTemplateP40 = [
+  mod29(-state.b), state.A, state.e, mod29(-state.e),
+];
+assert.deepEqual(stateTemplateP33, p6Shells.p33);
+assert.deepEqual(stateTemplateP40, p6Shells.p40);
+
+const stateAliases = new Map();
+for (const [name, value] of Object.entries(state)) {
+  for (const [label, signedValue] of [
+    [name, value],
+    ["-" + name, mod29(-value)],
+  ]) {
+    if (!stateAliases.has(signedValue)) stateAliases.set(signedValue, []);
+    stateAliases.get(signedValue).push(label);
+  }
+}
+const signedStateValues = [...stateAliases.keys()];
+assert.equal(signedStateValues.length, 16);
+
+const stateTemplateHits = [];
+let stateTemplateRecipientCases = 0;
+for (const recipient of [
+  { name: "p33", word: p33Receiver },
+  { name: "p40", word: p40Receiver },
+]) {
+  for (const x of signedStateValues) {
+    for (const y of signedStateValues) {
+      const shell = [x, state.A, y, mod29(-y)];
+      const key = hInverse(shell);
+      for (const sign of ["sub", "add"]) {
+        stateTemplateRecipientCases += 1;
+        const output = applyKey(recipient.word.values, key, sign);
+        const target = fourRuneTargets.find((word) =>
+          word.values.every((value, index) => value === output[index])
+        );
+        if (target) {
+          stateTemplateHits.push({
+            recipient: recipient.name,
+            x: stateAliases.get(x),
+            y: stateAliases.get(y),
+            sign,
+            target: target.label,
+            shell,
+            key,
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(stateTemplateRecipientCases, 1024);
+assert.deepEqual(stateTemplateHits, [
+  {
+    recipient: "p33",
+    x: ["p", "-a"],
+    y: ["K"],
+    sign: "sub",
+    target: "WILL",
+    shell: [23, 8, 2, 27],
+    key: [25, 5, 26, 2],
+  },
+  {
+    recipient: "p40",
+    x: ["-b"],
+    y: ["e"],
+    sign: "sub",
+    target: "PATHS",
+    shell: [14, 8, 3, 26],
+    key: [20, 20, 12, 6],
+  },
+]);
+
+const completeFourRuneWords = words.filter((word) =>
+  word.page < 56 &&
+  word.endPage < 56 &&
+  word.values.length === 4
+);
+assert.equal(completeFourRuneWords.length, 513);
+const globalStateTemplateHits = [];
+let globalStateTemplateCases = 0;
+for (const word of completeFourRuneWords) {
+  for (const x of signedStateValues) {
+    for (const y of signedStateValues) {
+      const shell = [x, state.A, y, mod29(-y)];
+      const key = hInverse(shell);
+      for (const sign of ["sub", "add"]) {
+        globalStateTemplateCases += 1;
+        const output = applyKey(word.values, key, sign);
+        const target = fourRuneTargets.find((candidate) =>
+          candidate.values.every((value, index) => value === output[index])
+        );
+        if (target) {
+          globalStateTemplateHits.push({
+            page: word.page,
+            start: word.start,
+            x: stateAliases.get(x),
+            y: stateAliases.get(y),
+            sign,
+            target: target.label,
+            shell,
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(globalStateTemplateCases, 262656);
+assert.equal(globalStateTemplateHits.length, 7);
+assert.equal(
+  new Set(globalStateTemplateHits.map((hit) => hit.page + ":" + hit.start)).size,
+  7
+);
+assert.deepEqual(
+  globalStateTemplateHits
+    .filter((hit) =>
+      (hit.page === 33 && hit.start === 132) ||
+      (hit.page === 40 && hit.start === 71)
+    )
+    .map((hit) => [hit.page, hit.start, hit.target, hit.shell]),
+  [
+    [33, 132, "WILL", [23, 8, 2, 27]],
+    [40, 71, "PATHS", [14, 8, 3, 26]],
+  ]
+);
+
 console.log(JSON.stringify({
   status: "PASS",
   p6Heading: {
@@ -583,7 +755,7 @@ console.log(JSON.stringify({
     redSpans: spanRecords.length,
     hits: fixedFormulaHits,
   },
-  broadFamilyControl: {
+  stateTemplateControl: {\n    sameIndexStateMatches,\n    recipientCases: stateTemplateRecipientCases,\n    recipientHits: stateTemplateHits,\n    globalCases: globalStateTemplateCases,\n    globalHits: globalStateTemplateHits,\n  },\n  broadFamilyControl: {
     p33Cases: p33FamilyCases,
     p33LexicalHits: p33FamilyHits.length,
     p6WillHits: p6WillFamilyHits,
@@ -591,6 +763,5 @@ console.log(JSON.stringify({
     p40LexicalHits: p40FamilyHits,
     dualHitSpans: dualSpanKeys,
   },
-  decision:
-    "The independently SEEKS-selected p6 red heading is the only annotated red span whose fixed geometric/terminal readouts reproduce both local p33 WILL and p40 PATHS H-shell keys. The p40 readout is unique even in its broad family; p33 alone is not. Because both readout formulas were recognized after the recipient inverses, preserve this as cross-page key-schedule evidence pending a fresh prospective transfer.",
+  decision:\n    "The independently SEEKS-selected p6 red heading reconstructs a common [x,A,y,-y] state-shell family. On the only two four-rune members of the same-index receiver class, that family has exactly two authenticated hits: p33 WILL and p40 PATHS. The family has seven hits manuscript-wide, so recipient preselection is essential. The p6 layout-to-state readout was recognized after the recipient inverses, so preserve this as cross-page key-schedule evidence pending a fresh prospective transfer.",
 }, null, 2));
