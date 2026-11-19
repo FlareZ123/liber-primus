@@ -1,6 +1,6 @@
-# P23 state-cardinal page handoff lands uniquely on p28
+# Secondary p23 +g displacement lands on p28 geometry
 
-**Agent42, 19 November 2026. Classification: post-discovery source-route compression. This supplies a compact manuscript-internal p23→p28 selector without using p28 plaintext. It does not by itself authenticate the READ OUT letters or define a general page-jump opcode.**
+**Agent42, 19 November 2026. Classification: post-discovery secondary corroboration. This exact p23→p28 geometry match remains reproducible, but it is no longer the leading p23 successor: the independently charged DH-state handoff B=19 -> p50[19] -> p33 uniquely reproduces the destination state packets and extends the hidden instruction to THE ORIGINAL. Preserve p+g as a lower-priority parallel relation, not as the intended p23 page-jump opcode.**
 
 ## Source-side state
 
@@ -76,11 +76,13 @@ lands on a page whose first line has exact `[p,g,K,g]` geometry, and p28 alone h
 
 No p28 candidate plaintext, p50 value, English score or rune decryption is used by this acceptance test.
 
-## Evidence boundary
+## Evidence boundary after the stronger p23→p33 result
 
-This handoff was recognized after p28 had already become a major target, so it is not a blind destination prediction. Its value is explanatory: it gives the new p23 hidden-layout candidate a compact manuscript-internal route to the same p28 object already selected independently by the solved-p57 `FIND` register.
+This handoff was recognized after p28 had already become a major target, so it is not a blind destination prediction. A subsequent charged p23 state-family audit found a stronger successor: authenticated [K,a,e,g,q] on p23 derives B=19, p50[19]=33, and p33 uniquely replays [K,A]/[e,g]. That route also extends the fixed serializer from THE ORIGIN to THE ORIGINAL.
 
-The route also supplies a source-order relationship that was missing from the English candidates:
+Accordingly, p+g=28 should not compete with p33 as the main p23 successor. Its remaining value is narrower: it independently lands on the same p28 object already selected by solved-p57 FIND and hits unique p28 page-start DH-cardinal geometry without using p28 candidate plaintext.
+
+The secondary relation still supplies a concrete page-order observation:
 
 ```text
 p23: THE ORIGIN candidate
@@ -92,7 +94,7 @@ p28: independently recovered READ OUT candidate
 
 Do not concatenate those English strings into a new decoding instruction solely because the page handoff exists. The arithmetic selects the destination; a complete intended sentence order still requires a source cue.
 
-The useful update is narrower: p28 now has another source-constrained manuscript selector that does not depend on its recovered letters, and the landing is independently marked by a unique DH-cardinal page-start vector.
+The useful retained update is therefore p28-side corroboration only: p28 has another low-description manuscript selector that does not depend on its recovered letters, and the landing is marked by a unique DH-cardinal page-start vector. Do not use this weaker displacement to extend the p23 route past the stronger p33 handoff.
 
 ## Reproduction
 
