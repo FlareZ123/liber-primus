@@ -409,6 +409,125 @@ assert.deepEqual(youKeyManuscriptHits, [{
   matches: ["YOU"],
 }]);
 
+
+// Prospective cross-source holdout: the p28 DH state generates the six
+// one-based THE positions in the authenticated 2016 message. This scaffold
+// was committed by Agent17 only after the MAP/N/HERE selector above had
+// already been committed, so the consumer is evaluated without retuning.
+const thePositionsOneBased = signed
+  .map((word, index) => ({ word, position: index + 1 }))
+  .filter((entry) => entry.word === "THE")
+  .map((entry) => entry.position);
+assert.deepEqual(thePositionsOneBased, [2, 8, 13, 18, 23, 29]);
+const generatedThePositions = [
+  K,
+  K + a,
+  K + a + g,
+  K + a + (2 * g),
+  K + a + (3 * g),
+  K + (2 * a) + (3 * g),
+];
+assert.deepEqual(generatedThePositions, thePositionsOneBased);
+const theFollowers = thePositionsOneBased.map((position) => signed[position]);
+assert.deepEqual(theFollowers, [
+  "PATH", "DEVOTED", "WAY", "MAP", "ROAD", "DIRECTION",
+]);
+const followerCardinals = theFollowers
+  .map((word) => ({
+    word,
+    address: gp0(word),
+    token: table[gp0(word)],
+    direction: asciiCardinal(table[gp0(word)]),
+  }))
+  .filter((entry) => entry.direction !== null);
+assert.deepEqual(followerCardinals, [{
+  word: "MAP",
+  address: 56,
+  token: "4E",
+  direction: "N",
+}]);
+assert.equal(
+  moveOne(followerCardinals[0].address, followerCardinals[0].direction),
+  gp0("HERE")
+);
+
+// The state56 collision is itself exceptional in the authenticated source:
+// it is the only GP0 address shared by three distinct signed lexemes.
+const signedByAddress = new Map();
+for (let index = 0; index < signed.length; index += 1) {
+  const address = gp0(signed[index]);
+  if (!signedByAddress.has(address)) signedByAddress.set(address, []);
+  signedByAddress.get(address).push({ index, word: signed[index] });
+}
+const multiLexemeCollisions = [...signedByAddress.entries()]
+  .map(([address, rows]) => ({
+    address,
+    distinct: [...new Set(rows.map((row) => row.word))],
+    rows,
+  }))
+  .filter((entry) => entry.distinct.length > 1)
+  .sort((left, right) =>
+    right.distinct.length - left.distinct.length || left.address - right.address
+  );
+assert.deepEqual(multiLexemeCollisions[0].distinct, ["MAP", "AND", "SEEK"]);
+assert.equal(multiLexemeCollisions[0].address, 56);
+assert.equal(multiLexemeCollisions[0].distinct.length, 3);
+assert.ok(multiLexemeCollisions.slice(1).every((entry) => entry.distinct.length === 2));
+
+// Integrated signed-sentence route. The authenticated source contains the
+// exact phrase SEEK AND YOU WILL BE FOUND. SEEK addresses state56; the
+// selected receiver emits the '&' AND marker from packet coordinate a and
+// the H-tree decrypts that same receiver to YOU. The already source-derived
+// YOU/WILL key and K-deep table walk then continue to WILL, BE and the FOUND
+// receiver, whose raw GP0 returns to the fixed READ OUT packet start80.
+assert.deepEqual(signed.slice(30, 36), [
+  "SEEK", "AND", "YOU", "WILL", "BE", "FOUND",
+]);
+assert.equal(gp0("SEEK"), 56);
+assert.equal(table[a], "26");
+assert.equal(printableHex(table[a]), "&");
+assert.deepEqual(youPlain, gp("YOU"));
+
+assert.equal(gp0("YOU"), 30);
+assert.equal(table[gp0("YOU")], "2L");
+const willOffset = decodeBase60(table[gp0("YOU")]);
+assert.equal(willOffset, 141);
+const willReceiver = p0.words.find((word) => word.start === willOffset);
+assert.ok(willReceiver);
+assert.deepEqual(willReceiver.values, [19, 16, 9, 18]);
+const willKey = [
+  mod29(K * a),
+  a,
+  ...H(A, B),
+];
+assert.deepEqual(willKey, [12, 6, 18, 27]);
+const willPlain = willReceiver.values.map((value, index) =>
+  mod29(value - willKey[index])
+);
+assert.deepEqual(willPlain, gp("WILL"));
+
+let walkAddress = gp0("WILL");
+for (let step = 0; step < K; step += 1) {
+  walkAddress = decodeBase60(table[walkAddress]);
+}
+assert.equal(walkAddress, gp0("BE"));
+assert.equal(walkAddress, 35);
+
+const willFirstHop = decodeBase60(table[gp0("WILL")]);
+assert.equal(willFirstHop, 118);
+const foundReceiver = p0.words.find((word) =>
+  word.start <= willFirstHop && word.end >= willFirstHop
+);
+assert.ok(foundReceiver);
+assert.equal(foundReceiver.start, 117);
+assert.equal(foundReceiver.end, 121);
+assert.equal(foundReceiver.length, gp("FOUND").length);
+assert.deepEqual(foundReceiver.values, [12, 2, 11, 10, 2]);
+const foundRawGp0 = foundReceiver.values.reduce((total, value) => total + value, 0);
+assert.equal(foundRawGp0, 37);
+assert.equal(decodeBase60(table[foundRawGp0]), 80);
+assert.ok(p0.words.some((word) => word.start === 80));
+
 // Manuscript-wide control: exact tuple and every permutation of its multiset.
 const packetPermutations = new Set([
   [15, 6, 10],
@@ -512,6 +631,27 @@ console.log(JSON.stringify({
       labeledTargetHits: hTreeTargetHits.length,
       distinctTargetOperations: distinctHTreeOps.size,
       manuscriptTargetHits: youKeyManuscriptHits.length,
+    },
+    prospectiveTheFollower: {
+      positions: thePositionsOneBased,
+      followers: theFollowers,
+      uniqueCardinal: followerCardinals,
+      closesTo: "HERE",
+    },
+    signedSentence: {
+      words: signed.slice(30, 36),
+      seekState: gp0("SEEK"),
+      andMarker: printableHex(table[a]),
+      you: youPlain,
+      will: willPlain,
+      beState: walkAddress,
+      foundReceiver: {
+        start: foundReceiver.start,
+        end: foundReceiver.end,
+        cipher: foundReceiver.values,
+        rawGp0: foundRawGp0,
+        returnsTo: decodeBase60(table[foundRawGp0]),
+      },
     },
   },
   controls: {
