@@ -183,11 +183,27 @@ function structuralState(values) {
   const candidateKInv = inverse(candidateK, 29);
   if (!candidateKInv) return null;
   const candidateA = mod(packet[5] * candidateKInv);
+
+  // Raw orientation must simultaneously encode the same state.
+  if (values[3] !== candidateG) return null;
+  if (values[1] !== mod(candidateK * candidateG)) return null;
+  if (values[0] !== mod(candidateG + candidateK)) return null;
+  if (values[4] !== 0 || values[6] !== 0) return null;
+  const candidateBPrivate = values[7];
+  if (values[5] !== mod(candidateBPrivate - candidateA)) return null;
+  const candidateE = values[2];
+  if (candidateP <= 1) return null;
+  if ((candidateBPrivate * candidateE) % (candidateP - 1) !== 1) return null;
+
   return {
     p: candidateP,
     g: candidateG,
     K: candidateK,
     a: candidateA,
+    b: candidateBPrivate,
+    e: candidateE,
+    A: modPow(candidateG, candidateA, candidateP),
+    B: modPow(candidateG, candidateBPrivate, candidateP),
     packet,
   };
 }
