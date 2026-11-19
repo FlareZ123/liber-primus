@@ -177,6 +177,9 @@ The next decisive step should derive a source-selected use of the p26 state56 re
 
 ## Reproduction
 
+Windows Node 22 PASS for the complete receiver and negative-continuation gate: [run 44448501937](https://github.com/FlareZ123/liber-primus/actions/runs/44448501937).
+
+
 Run:
 
 ~~~text
