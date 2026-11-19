@@ -18,6 +18,16 @@ function mod29(value) {
 }
 
 /** @param {number[]} values @returns {number[]} */
+function hOutsideIn(values) {
+  const out = [];
+  for (let left = 0, right = values.length - 1; left < right; left += 1, right -= 1) {
+    out.push(mod29(values[left] - values[right]), mod29(values[left] + values[right]));
+  }
+  if (values.length % 2 === 1) out.push(values[(values.length - 1) / 2]);
+  return out;
+}
+
+/** @param {number[]} values @returns {number[]} */
 function hInverse(values) {
   const out = new Array(values.length);
   const inverse2 = 15;
@@ -230,6 +240,32 @@ const length5 = words.filter((word) => word.values.length === 5);
 assert.equal(length8.length, 18);
 assert.equal(length5.length, 38);
 
+const p0Receiver = receivers.find((row) => row.page === 0 && row.ordinal === 1);
+assert.ok(p0Receiver);
+const p0SecondCipher = p0Receiver.cipher.slice(8);
+const metadataFields = {g,K,e,q,A,a,B};
+const metadataFieldEntries = Object.entries(metadataFields);
+const palindromeDecryptions = [];
+for (const [xName,x] of metadataFieldEntries) {
+  for (const [yName,y] of metadataFieldEntries) {
+    for (const [zName,z] of metadataFieldEntries) {
+      const center = [x,y,z,y,x];
+      const key = hOutsideIn(center);
+      const plain = p0SecondCipher.map((value,index) => mod29(value - key[index]));
+      const word = length5.find((candidate) => candidate.values.join(",") === plain.join(","));
+      if (word) {
+        palindromeDecryptions.push({
+          fields:[xName,yName,zName],
+          center,
+          key,
+          word:word.label,
+          source:word.source,
+        });
+      }
+    }
+  }
+}
+
 const hits = [];
 for (const receiver of receivers) {
   for (const left of length8) {
@@ -265,7 +301,9 @@ const signedAdjacentHits = hits.filter((row) => {
 console.log(JSON.stringify({
   status:"PASS",
   independentSquareState:{e,q,A,B,markerCenter,squareMetadataAlphabet},
+  palindromeDecryptions,
   family:{
+    palindromeAssignments:metadataFieldEntries.length ** 3,
     receivers:receivers.length,
     length8:length8.length,
     length5:length5.length,
