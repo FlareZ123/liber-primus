@@ -56,17 +56,30 @@ The existing p57 report already records `WITHIN→CIRCUMFERENCES→PARABLE→FIN
 
 This is a plausible reconstruction of a player-visible sequence, not proof of creator intent. The 2016 signed sentence about words being a map and their numbers giving direction motivates a word-number route, but does not explicitly state the exact GP0-sum/address operation.
 
+
+## Source-matched controls and word-order null (Agent26, 19 November)
+
+The pinned external solved-GP29 corpus, resources/external/relikd-solved-gp29-native-v1.json, contains seven non-target source records in addition to p56 and p57: 0_warning (45 words), 0_welcome (124), 0_wisdom (31), 0_koan_1 (206), 0_loss_of_divinity (181), jpg107-167 (85), and jpg229 (18). The same rune-word parser and title-inclusive segmentation were applied without changing the GP0 sum or zero-based p50 address rule.
+
+The fixed control family contains 35 source-pair comparisons: 21 pairings among the seven non-target records and 14 pairings using p56 or p57 as an anchor against another record. Across 1,433 aligned word positions there are **zero** hits on either member of the fixed nested pair ([82,83] or [127,128]); the 27 pairings with at least 20 aligned words also give **zero** position-20 hits. No exact 25-word/20-word control pair exists. The nearest length pair is 0_wisdom (31) with jpg229 (18), but the latter cannot supply a 20th word. The six non-target records long enough for position20 have 20th-word GP0 addresses 23, 34, 97, 96, 33, and 72, respectively, none of which is 82 or 83.
+
+A separate word-order null preserves the exact p56 and p57 word multisets. In 300,000 seeded independent shuffles, the observed position-20 hit rates were 612/300,000 (all words shuffled) and 702/300,000 (titles held fixed); the any-aligned-position rates were 11,761/300,000 and 12,256/300,000. Because p56 contains exactly one GP0-82 word and p57 exactly one GP0-83 word, with neither page containing 127 or 128, the corresponding exact conditional probabilities are:
+- all words shuffled: **1/500** at position20 and **1/25** at any of the 20 aligned positions;
+- titles fixed in their printed slots: **1/437** at position20 and **18/437** at any aligned position.
+
+These are conditional word-order probabilities, not p-values for creator intent. The all-position probability is materially larger than the position-20 probability, and the control corpus has no perfectly length-matched 25/20 pair. The result strengthens the positional selectivity of the candidate navigation relationship but does not authenticate GP0 summation, title inclusion, zero-based table addressing, or any value-changing receiver.
+
 ## Strongest caveats and falsifiers
 
 - **Title inclusion is essential.** The alignment counts the visible titles `AN END` and `PARABLE` as words, matching the title-inclusive segmentation used in the existing p57 map. If titles are excluded, p56 has23 body words and p57 has19; the 19th body words are `TO=19` and `EMERGE=83`, which do not select the bracket. The p56 hexadecimal digest is not counted as a GP word.
 - **The arithmetic is inferred.** The clue does not independently specify GP0 rather than GP1, GP-prime, another word statistic, or zero-based rather than one-based table addressing. At position20 GP1 gives 89/89 and GP-prime gives 277/300, so neither reproduces the adjacent bracket pair; this is a bounded comparison, not an exhaustive operation search.
 - **The source transcription is not organizer-supplied.** p56 plaintext is independently reproduced by `sims/authentic_lp2_p56_totient_regression.cjs`; p57 is visibly legible in the original scan. The rune-to-GP mapping and p50 table come from `resources/liber-primus/lp2-corpus.json` and `lp2-grid-256.json`, with the cited table glyphs checked against the scan.
-- **The observation is post-discovery.** It extends an existing p57→p50 hypothesis; it is not a blind statistical test and no p-value is claimed.
+- **The observation remains post-discovery.** The source-matched controls and word-order null test positional concentration conditional on the existing p57→p50 hypothesis; they do not blind-discover or authenticate the GP0-to-table operation. The external corpus has no exact 25/20 control pair.
 - **No decoder follows.** The result identifies a candidate navigation structure only. It supplies no source-authenticated value-changing receiver for the 43-cell interior and recovers no unknown plaintext or key.
 
 ## Reproduction and next decision
 
-Run `node sims/lp2_p56_p57_word20_nested_bracket_sft.cjs` from the repository root. The SFT freezes the source sections, title-inclusive segmentation, GP0/GP1/GP-prime calculations, all 256 table positions, duplicate-pair census, aligned-position scan, title-excluded control, and secondary word edges.
+Run `node sims/lp2_p56_p57_word20_nested_bracket_sft.cjs` and `node sims/lp2_p56_p57_word20_source_matched_controls_sft.cjs` from the repository root. The first freezes the source sections, title-inclusive segmentation, GP0/GP1/GP-prime calculations, all 256 table positions, duplicate-pair census, aligned-position scan, title-excluded control, and secondary word edges. The second reproduces the 35 source-pair controls and 300,000 word-order permutations. Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44448469523.
 
 Next, seek first-party evidence that selects title-inclusive GP0 word sums and zero-based p50 addressing. Do not expand into generic cipher/key searches or duplicate the active p57→p28 follow-up; coordinate that branch with Agent5. Reopen the route only when an independently source-selected receiver or a discriminating prediction on untouched original ciphertext is available.
 
