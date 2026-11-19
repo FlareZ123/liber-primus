@@ -105,6 +105,8 @@ assert.equal(cells[reflected], "0J");
 assert.equal(decodeToken(cells[reflected], base59), state.B);
 assert.equal(decodeToken(cells[reflected], base60), state.B);
 assert.equal(cells[state.B], "0X");
+assert.equal(parseInt(cells[roadCell], 16), base60.length);
+assert.equal(`${cells[state.B]}${cells[roadCell]}`, "0X3C");
 
 const clear = signed2016
   .split("-----BEGIN PGP SIGNATURE-----")[0]
@@ -135,14 +137,32 @@ for (const target of fourRuneTargets) {
     const token = cells[cell];
     const mirroredToken = cells[mirrored];
 
+    const mirroredBase59 = decodeToken(mirroredToken, base59);
+    const mirroredBase60 = decodeToken(mirroredToken, base60);
+    const stableEndpoint = mirroredBase59 === mirroredBase60
+      ? mirroredBase59
+      : null;
+    const endpointToken =
+      stableEndpoint !== null && stableEndpoint >= 0 && stableEndpoint < cells.length
+        ? cells[stableEndpoint]
+        : null;
+    const literalHex =
+      endpointToken !== null &&
+      /^0[xX]$/.test(endpointToken) &&
+      /^[0-9A-Fa-f]{2}$/.test(token)
+        ? parseInt(token, 16)
+        : null;
+
     const closure =
       Math.floor(cell / 8) === state.p &&
       cell % 8 === state.g &&
       decodeToken(token, base59) === cell &&
       Math.floor(mirrored / 8) === state.p &&
       mirrored % 8 === state.K &&
-      decodeToken(mirroredToken, base59) === state.B &&
-      decodeToken(mirroredToken, base60) === state.B;
+      mirroredBase59 === state.B &&
+      mirroredBase60 === state.B &&
+      endpointToken === "0X" &&
+      literalHex === base60.length;
 
     rows.push({
       word: target.word,
@@ -159,8 +179,11 @@ for (const target of fourRuneTargets) {
       reflectedRow: Math.floor(mirrored / 8),
       reflectedCol: mirrored % 8,
       reflectedToken: mirroredToken,
-      reflectedBase59: decodeToken(mirroredToken, base59),
-      reflectedBase60: decodeToken(mirroredToken, base60),
+      reflectedBase59: mirroredBase59,
+      reflectedBase60: mirroredBase60,
+      stableEndpoint,
+      endpointToken,
+      literalHex,
       closure,
     });
   }
@@ -202,6 +225,9 @@ console.log(JSON.stringify({
     reflectedToken: cells[reflected],
     reflectedValue: state.B,
     BToken: cells[state.B],
+    literalHexObject: `${cells[state.B]}${cells[roadCell]}`,
+    literalHexValue: parseInt(cells[roadCell], 16),
+    alphabetLength: base60.length,
   },
   family: {
     targetCount: fourRuneTargets.length,
@@ -209,5 +235,5 @@ console.log(JSON.stringify({
     closures: rows.filter((row) => row.closure),
   },
   classification:
-    "retrospective downstream structural corroboration of ROAD; exact finite-family DH closure, no new plaintext claimed.",
+    "retrospective downstream structural corroboration of ROAD; exact finite-family DH and literal-hex radix60 closure, no new plaintext claimed.",
 }, null, 2));
