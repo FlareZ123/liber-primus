@@ -564,6 +564,78 @@ p24 -> THE WAY
 
 The p29 W+AY assembly retains its existing candidate-level caveat. The new p13 receiver strengthens the downstream WAY consumer and the source-number loop.
 
+## Emergence chronology recovers GOOD LUCK BEWARE
+
+The recursive p55 operation also fixes when each odd-word center emerges.
+
+For the five p55 centers, the emergence batches are:
+
+~~~text
+shed round1: [11,18]  batch GP0 29
+shed round3: [6,2]    batch GP0 8
+shed round6: [1]      batch GP0 1
+~~~
+
+The cumulative GP0 before the final long-word center emerges is:
+
+~~~text
+11 + 18 + 6 + 2 = 37
+~~~
+
+After the final center1 emerges:
+
+~~~text
+37 + 1 = 38
+~~~
+
+The already fixed outside-in H on the complete five-center vector has both branch sums36. Therefore the literal shedding process produces the consecutive authenticated source indices:
+
+~~~text
+36  H branch GP0
+37  cumulative emerged-core GP0 before final emergence
+38  final emerged-core GP0
+
+36 GOOD
+37 LUCK
+38 BEWARE
+~~~
+
+So p55 recovers another exact signed-source fragment:
+
+~~~text
+GOOD LUCK BEWARE
+~~~
+
+The final value38 retains its independent GP0 typing as WITHIN, so the same terminal state is simultaneously the solved instruction label WITHIN and source direction BEWARE38.
+
+### Manuscript-wide chronology control
+
+Charge all 2,039 page-local 16-word windows. For each window:
+
+1. recursively identify every odd-word center and its deterministic emergence round;
+2. compute both fixed H branch sums on the final center vector;
+3. compute the cumulative center GP0 immediately before the last emergence round;
+4. compute the final center GP0;
+5. ask whether either H branch, pre-final cumulative GP0, and final GP0 form any ascending consecutive three-number run.
+
+Across both H branches there are 4,078 charged branch cases.
+
+Exactly two branch cases form any ascending consecutive triple. They are the two equal H branches of the same p55 window:
+
+~~~text
+p55 word1 window
+difference branch: 36 -> 37 -> 38
+sum branch:        36 -> 37 -> 38
+~~~
+
+No other 16-word window produces an ascending consecutive triple under this fixed chronology. The two branch hits are one physical result because p55's branch sums happen to coincide at36.
+
+### External warning-corridor holdout
+
+The recovered terminal source index BEWARE38 already has an independently selected strong local ciphertext candidate on p38, and source continuation p39/p40 has independently developed FALSE/PATHS structural candidates. Thus the new p55 output lands on a pre-existing warning corridor rather than requiring a new target family.
+
+This does not make every warning-page local inverse transferable. Existing prospective transfer failures remain valid. The new result is the source-index selection and exact GOOD LUCK BEWARE chronology.
+
 ## Held-out external consumer: both 36 branches land on p36 GOOD
 
 The p55 result was committed at **05:45:03Z**, fixing both H branch sums at 36 before a separate p36 plaintext result existed in the authoritative synthesis.
