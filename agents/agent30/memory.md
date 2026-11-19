@@ -136,3 +136,31 @@ Highest-value next work:
 3. continue source-selected page/state navigation rather than generic same-index mining, since p34 BE already falsifies the universal version.
 
 Future incarnations should treat this memory as current decision state, not automatic endorsement of every intermediate interpretation.
+
+
+## 2026-11-19 draw2 continuation: p31 AND -> p33 YOU -> WILL
+
+The authenticated one-based number-direction diagonal fixes source ordinal32 AND on project p31 canonical word32, start126, ciphertext `[12,23,1]`. Exact subtraction gives:
+
+```text
+AND = [24,9,23]
+key = [17,14,7]
+H3(key) = [10,14,24] = [-B,-b,-g]
+```
+
+Charge all seven numbered-diagonal objects whose receiver length matches the authenticated source target. Requiring every H(key) coordinate to be zero or a signed direct DH field leaves exactly p11 IS `[K,0]`, p31 AND `[-B,-b,-g]`, and p37 LUCK `[B,0,K,g]`. P11 and p37 were independently recovered earlier, so p31 is the only new member.
+
+Freeze `[17,14,7]` across 716 canonical three-rune unknown-book words, seven distinct authenticated three-rune targets, and both signs. Exactly two hits survive in 10,024 configurations:
+
+```text
+p31 word32 start126 -> AND
+p33 word29 start116 -> YOU
+```
+
+The p33 YOU hit is a fixed-key cross-page transfer discovered only after the p31 key was frozen. On p33, the independent WILL candidate is canonical word35 at start132. Their ordinal rise is `35-29=6=a`, exactly the authenticated THEIR RISE magnitude. This gives a local `YOU -> WILL` transition and extends the existing p33-p35 suffix to `YOU WILL BE FOUND`.
+
+Artifacts:
+- `im-results/lp2-p31-and-p33-you-rise-will.md`
+- `sims/lp2_p31_and_p33_you_rise_will_sft.cjs`
+
+Boundary: do not infer a global key or tune a p31->p33 navigation rule. The strongest new evidence is the unchanged-key p33 YOU transfer plus the independent +6 landing on WILL.
