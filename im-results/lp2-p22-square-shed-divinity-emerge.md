@@ -133,6 +133,46 @@ Those are at row1 col5 and row5 col1.
 
 The current route uses base59 because that state was independently fixed by the post-SHED p50 consumer before this square was examined. The base60 `DIVINITY` pair is retained as secondary structure rather than being mixed into the primary operation.
 
+## Authenticated three-square holdout and NUMBERS cross-register hit
+
+The original 2014 submission stage supplied exactly three authenticated squares. Apply the same orientation-free circumference shedding to all three, then the same zero-based modulo256/base59 consumer:
+
+```text
+5x5, sum3301 -> center809 -> address41 -> 1O -> 83
+7x7, sum1033 -> center331 -> address75 -> 2v -> 174
+5x5, sum1033 -> center 91 -> address91 -> 0n -> 48
+```
+
+The two untouched 1033-square controls hit neither the solved-p57 GP0 register nor the authenticated signed-2016 word GP0 register.
+
+The p22-linked 3301-square center is the sole typed center. Its output83 has a stronger cross-register identity:
+
+```text
+GP0(EMERGE)  = 83   // solved p57
+GP0(NUMBERS) = 83   // authenticated 2016
+```
+
+The signed source says:
+
+```text
+their numbers are the direction
+```
+
+Across the complete solved-p57 and signed-2016 word registers, only four GP0 values are shared:
+
+```text
+20 : THE / THE
+25 : WE / IS
+56 : AND / MAP,AND,SEEK
+83 : EMERGE / NUMBERS
+```
+
+The value83 is therefore a source-authored collision between two semantically relevant words, rather than a generic common function word.
+
+This does not prove that every p57/signed GP0 collision is intentional. It strengthens the specific square route because the p22-linked center was selected structurally before its table output was compared with either lexical register, while the two authenticated square controls miss both.
+
+Windows holdout PASS: `44473196144`.
+
 ## Center rival family
 
 For the center, charge four source-native numerical representations:
