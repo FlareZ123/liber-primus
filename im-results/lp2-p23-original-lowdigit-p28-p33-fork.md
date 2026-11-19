@@ -124,6 +124,59 @@ THEIR rise: 19 -> 25, delta 6=a
 
 This does not decrypt p33 body text. It is a cross-source state prediction from the already recovered p23 phrase into the independently established p33 layout semantics.
 
+## The risen THEIR selects WORDS ARE THE MAP and recovers [e,q]
+
+The newly licensed low-digit consumer can now be applied prospectively to the already fixed **second** THEIR position25. It gives:
+
+```text
+25 (second THEIR)
+ -> p50[25] = 3I
+ -> low60(I) = 18
+ -> signed word18 = MAP
+
+18 (MAP position)
+ -> p50[18] = 0F
+ -> low60(F) = 15
+ -> signed word15 = WORDS
+```
+
+Signed positions15..18 are exactly:
+
+```text
+15 WORDS
+16 ARE
+17 THE
+18 MAP
+```
+
+so the p33 phrase's literal rise from the first THEIR to the second THEIR lands on one endpoint of **WORDS ARE THE MAP** and the same fixed operation returns the opposite endpoint.
+
+The frozen H map then recovers two independently established state fields:
+
+```text
+H(MAP#, WORDS#)
+= H(18,15)
+= [3,4]
+= [e,q]
+```
+
+This is selective under a complete signed-source start-index charge. For every one of the 43 authenticated word indices, apply two native-base60 low-digit steps when both outputs remain valid signed-word indices, then require H of those two outputs to equal the fixed state `[e,q]=[3,4]`. There is exactly one hit:
+
+```text
+start25 = THEIR
+25 -> 18 MAP -> 15 WORDS
+H(18,15) = [3,4]
+```
+
+The result also matches a p33 layout quantity fixed before this observation:
+
+```text
+e^q = 3^4 = 81
+= p33 upper-body rune count
+```
+
+This gives the source phrase **WORDS ARE THE MAP** a concrete, page-local role: the risen THEIR endpoint selects its MAP/WORDS endpoints and reconstructs the `[e,q]` pair that numerically defines the p33 upper body. It still does not specify a reversible decoder for those 81 ciphertext runes.
+
 ## Convention charge
 
 Charge the same finite token-component family relevant to READ OUT:
@@ -162,9 +215,11 @@ Still, it removes a real ambiguity in the human solve path:
 - its second word passes through two authenticated command words and rejoins the independently reconstructed DH state at B;
 - FIND/MUST's fixed p57 positions uniquely map under H to `[g,25]`;
 - B=19 and the predicted 25 reconstruct the p33 THEIR positions and their rise `6=a`;
+- the risen THEIR position uniquely follows the same low-digit opcode to `MAP -> WORDS`, the endpoints of **WORDS ARE THE MAP**;
+- H of those endpoints recovers `[e,q]=[3,4]`, whose power `3^4=81` is the established p33 upper-body rune count;
 - B lands on the already validated p33 state/checkpoint page.
 
-Do not generalize this to arbitrary English-word walks or change component conventions. The next useful step is to use the now-linked p23→p28/p33 state graph to seek a receiver selected jointly by READ OUT and the reconstructed THEIR-rise state, without inventing a new token component or cipher family.
+Do not generalize this to arbitrary English-word walks or change component conventions. The next useful step is to determine whether the newly source-selected `[e,q]=[3,4]` and **WORDS ARE THE MAP** relation specify an operation on p33's exact 81-rune upper body. Any candidate must be fixed from existing p33 layout/source semantics before the body values are scored.
 
 ## Reproduction
 
