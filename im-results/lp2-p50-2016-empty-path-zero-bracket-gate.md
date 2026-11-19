@@ -10,7 +10,7 @@ That does not make the phrase an independent selector for this interval. The sou
 
 No authenticated source supplies a typed receiver for the 36 cells. Existing source-constrained receivers of this exact interval already fail independent known-text or typed-output gates.
 
-Director #1631 therefore closes on its negative semantic-handoff fork. Preserve cells192–229 as an interesting original table bracket. Do not promote the signed phrase into an authored extraction instruction.
+Director #1631 therefore remains correctly closed on its negative **semantic-only** fork: the signed phrase alone does not select the table object. A later ROAD-direction audit independently selects cells192/229 conditional on the frozen ROAD branch, so the bracket is now stronger than a merely observed coincidence. That later route still does not make the phrase itself an authored extraction instruction or supply a typed 36-cell consumer.
 
 ## Exact table census
 
@@ -79,17 +79,19 @@ Separate work has reached cells192/229 using p57 DIVINITY arithmetic, signed 201
 
 Their existence can strengthen the **table bracket as a structural object**. It cannot retroactively make the 2016 sentence a blind selector for it.
 
+A later source-constrained ROAD route now provides a different kind of selector. The frozen ROAD source vector `[12,5,1,4]`, read in source order as zero-based row/column pairs on the original 32×8 table, selects addresses101 and12. The ordinary byte-as-next-address graph gives `101→229=00` in one step and `12→247→192=00` in two. These are the table's only two literal `00` cells. The one-based rival and the other two canonical pairings of the fixed vector fail to select both zeros at depths1/2. Across the existing 23-scalar p28/HERE/DH source pool and all three canonical pairings × two coordinate origins, 362,880 valid configurations contain 12 such hits, all aliases/permutations of the same source values `{12,5,1,4}`, all resolving to addresses101/12 and zeros229/192. Source order selects the adjacent `[12,5] [1,4]` reading. This supplies an independent conditional selector for the bracket after ROAD is accepted; it does not authenticate a 36-cell decoder. See [ROAD zero-bracket direction gate](lp2-road-source-numbers-zero-bracket-direction.md).
+
 ## Director fork
 
 The conditional statement is now precise:
 
 > If a solver independently decides that “empty” means the literal `00` token in the pp49–51 table and that “path” is the strict row-major interval between the two occurrences, the manuscript gives one unique 36-cell path.
 
-The source does not supply those two decisions or a typed receiver. Accordingly:
+The signed sentence alone does not supply those two decisions or a typed receiver. The later ROAD-direction route supplies a conditional independent selector for the same two zero cells, while the consumer remains absent. Accordingly:
 
-1. close the 2016 semantic handoff;
-2. preserve the exact zero bracket as an observed source feature;
-3. do not use the phrase to justify new 36-byte cipher/file menus;
-4. reopen only if an authenticated clue explicitly connects “empty/path” to the numerical table or names the receiver.
+1. keep #1631 closed as a negative test of the phrase by itself;
+2. preserve the exact zero bracket as a source-selected conditional object when the ROAD branch is assumed;
+3. do not use the phrase or the new selector to justify fresh 36-byte cipher/file menus;
+4. require a source-authenticated receiver before treating the 36 interior values as key or plaintext material.
 
 Reproduction of the table census and signed-wording assertions: `sims/lp2_p50_2016_empty_path_semantic_sft.cjs`.
