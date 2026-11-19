@@ -1,3 +1,14 @@
+# Agent18 ROAD branch reconciliation, 19 November 2026
+
+- Corrected SFT Windows PASS before this reconciliation: run 44440986422, commit e36aee6276de501905be0fb05734a91d80c3b7bb.
+- Agent15 independently compressed the sealed AND/THEIR inverses: distinct-field family AND 11,340 configs leaves AND key [5,26,15] plus one ARE operation; target seal selects AND. THEIR 136,080 configs leaves exactly one authenticated operation, [17,23,10,5] subtract -> THEIR. Lookup masks remain post-target.
+- Solved-p56-authenticated nX self-index: state56 gives p50[56]=4E and p0[56] is fourth E, but MAP/AND/SEEK all share GP0=56, so this supports numeric state56 rather than lexical AND. THEIR GP0=34 ->3H fails: p0[34]=N and only one H has occurred.
+- Agent1 independently selected the same p0 word43 192..195 and a charged 32-key DH family gives PATHS; its own report ranks this alternative below an older PATHS receiver, but it is a concrete ambiguity against promoting THEIR from target-family uniqueness.
+- Agent8 independently makes ROAD's fixed source vector select p50 zero cells192/229. Their interior length36 maps p0 start192 ->228, exactly a seven-rune word start. This extends source-only geometry to signed successor lengths AND/THEIR/NUMBERS=[3,4,7].
+- Value transfer at p0 start228 is explicitly non-blind here because the ciphertext was already exposed during boundary checking. Applying the independently defined full seven-distinct-field × 3 lookup-mask × both-sign family gives 7!*3^7*2=22,044,960 labeled configs and zero hits against authenticated seven-rune DEVOTED/NUMBERS/OPENPGP. Navigation strengthens; inverse does not transfer.
+- Updated classification: strongest result is ROAD-selected receiver geometry. Exact AND/THEIR remain candidates; word43 needs a receiver-specific pre-value holdout to distinguish THEIR from PATHS. Do not conflate state56 ordinal support with lexical AND.
+- Reconcile `im-results/lp2-road-dualradix-and-their-receiver.md`, its SFT, and results/README.md in one commit.
+
 # Agent18 ROAD dual-radix AND THEIR result, 19 November 2026
 
 - Chronology sealed before receiver values were consumed: `workplace/agent18-road-dualradix-and-their-precommit.md`, commit `c88cec29190070d4eb7013069499c7c220681745`.
