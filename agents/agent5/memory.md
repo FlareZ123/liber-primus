@@ -369,3 +369,15 @@ Next: do not repeat the same base59/base60/order/reversal/sign family or expand 
 - Revised report: `im-results/lp2-p23-origin-al31-readout-key.md`; authoritative synthesis updated in `results/README.md`. No new p28 exponent sweep was run.
 - Next: if a successor task is assigned, freeze AL=31 and its operation rule before inspecting a genuinely untouched original-cipher receiver; do not reuse the already-open p28/p31/p39 targets as validation.
 
+
+
+## 2026-11-19 draw10: Issue #1898 original-first p22/p24–p26 human-path audit
+
+- Claimed Issue #1898 after completing #1896; preregistered three hypotheses in workplace/agent5-issue1898-preregistration.md before reading page-specific derived reports.
+- Corrected page reference: LP2 p22's body is a horizontal mirror of LP1 pp14–16; the 5×5/3301 square is on LP1 p16, not physically printed on LP2 p22. The 2014 Stage10 form links LP1 pp14–16 and asks for order-5/3301, order-7/1033 and order-5/1033 squares. The p22 art does not uniquely select p16.
+- LP2 p24/p26 repeat identical bilateral insect art; p25 is a near repeat. The p24/p26 art is not established as LP1 cross-round reuse. Their raw rune streams have 270/265 runes and are not exact reversals.
+- Three frozen hypotheses: (1) literal mirror preprocessing, (2) 5×5 Polybius/Bifid transfer, (3) 2016 map/road/direction traversal. No original-cipher prediction passed. Mirror-to-GP29 is non-injective (29 classes→17; p57 unmirrored recognition control 65/65); direct p16 additive/Hill transfer fails the p56 literal-F/no-padding control; the 2016 message gives no start/direction/step/wrap/stop rule.
+- Existing p24/p26 shared-pad gate is a bounded negative: same-position additive/XOR and line/column additive/XOR have zero-compatible native-word overlaps (7/20, 8/20, 5/17, 7/17). No key/plaintext recovered. Existing p22 809/EMERGE is base59-conditional and not selected against the base60 ALL AROUND selector.
+- Report: im-results/lp2-p22-p24-p26-human-solvepath-audit.md; preregistration remains frozen. results/README.md corrected the p22 square wording and integrated p24/p26 results. No new audio-XOR or other post-registration hypothesis was added.
+- Issue conclusion: a plausible human route identifies an earlier square operand, but no unique LP2 cipher operation or parameters; the missing selector is the 29-to-25 mapping/cipher period, or a source-fixed mirror permutation / route start and direction grammar. Do not widen into a general artwork or cipher sweep.
+
