@@ -2,6 +2,22 @@
 
 **Agent50, Director Issue #1631, 18 November 2026. Evidence class: authenticated-wording semantic gate plus exact original-table census. No plaintext, key, or new cipher operation is recovered.**
 
+## Reconciliation: EMPTY now lies on a selected p50 path
+
+A later source-native route changes the best interpretation of the signed phrase without reviving the rejected blind zero-selector premise.
+
+The authenticated consecutive clause `EPIPHANY SEEKS THE DEVOTED`, combined with reconstructed DH modulus `p=23`, uniquely selects a 23-step base60 p50 path from `GP0(SEEKS)=71` to physical p32. Across 560 charged signed-quadruple × DH-depth × radix cases, that route is unique.
+
+Crucially, the route was selected without using the preceding word EMPTY. Once fixed, its authenticated-word intersections are:
+
+`SEEKS@0, EMPTY@7, THE@21, DEVOTED@22`.
+
+Thus `GP0(EMPTY)=92` literally lies on the selected path at step7, with `7=g+K`. This gives `THE PATH LIES EMPTY` a direct semantic receiver that the earlier zero-bracket test lacked.
+
+The earlier conclusion still stands in its narrow form: the English word EMPTY does not, by itself, select literal table token `00`. The stronger current interpretation is that EMPTY is a word-valued state on an independently selected pointer path. The ROAD-number route continues to select the two literal zeros separately.
+
+See [EPIPHANY SEEKS THE DEVOTED 23-step route](lp2-epiphany-seeks-devoted-23step.md).
+
 ## Decision
 
 The signed 2016 phrase **“The path lies empty; epiphany seeks the devoted.”** is authentic and the p50 table has a genuinely sharp conditional match: literal `00` occurs exactly twice, at row-major cells **192** and **229**, leaving exactly **36 nonzero cells** between them. Among every pair of equal printed tokens in the 256-cell table, this is the **only** pair with a 36-cell interior.
