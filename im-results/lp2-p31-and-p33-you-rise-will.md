@@ -127,6 +127,33 @@ which selects the same branch in source-authored vocabulary. The authenticated s
 
 This is the first route in this report that explains the ROAD/PATHS choice in human-readable terms without changing the established direction arithmetic.
 
+### Held-out consumer: p24 already recovered THE WAY
+
+The p30/p31 source-window decoder was committed after Agent20 had independently recovered a different p24 object:
+
+```text
+p24 H -> [12,13] -> THE WAY.
+```
+
+That route then treated 12 and13 as directed source numbers, landing on p12/p13 numbered-diagonal receivers with GP0 values64 and98. The previously recovered `THEIR RISE` operation gives:
+
+```text
+98 - 64 = 34 = GP0(THEIR),
+```
+
+and the adjacent-diagonal charge makes p12->p13 the unique forward/absolute rise34 pair.
+
+The new p31 readout ends in the **same exact authenticated pair**:
+
+```text
+ROAD IS THE WAY
+        12  13.
+```
+
+So the p31 instruction candidate has a consumer that was fixed before its discovery. It joins ROAD23 directly to the independently operational THE-WAY pair without fitting a new page number or key. This is stronger than semantic agreement alone and should be preserved as held-out route convergence.
+
+See `im-results/lp2-p55-recursive-word-core-within.md` and `sims/lp2_p55_recursive_word_core_sft.cjs`.
+
 ## 3. GP0(AND)=56 selects solved p56; p31 layout derives the shell
 
 The source supplies a stronger helper-page selector before any p31 key is applied. Charge all 42 adjacent pairs in the authenticated 43-word message by exact GP0 equality. There is exactly one equal pair:
