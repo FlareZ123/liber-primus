@@ -29,3 +29,17 @@ No plaintext, transform, key rotation, ciphertext path, direction, or length is 
 ## Gate
 
 Exact node identity and coordinates are required. Any other source node rejects this hypothesis; no substitution with the adjacent `EO-L-EO` mirror is allowed.
+
+## Outcome after opening block13
+
+**FAIL.** Block13 reuses `J-B-J` at `(19,16),(23,12),(27,8)` as its key source rather than the frozen connected `H-L-H` node.
+
+The reused node is the same state-typed object exposed at block11:
+
+```text
+[11,17,11] = [B-A,p-a,B-A]
+radius = q=4
+center = (p,phi(b-K))
+```
+
+The block13 prediction is retired. After this miss, no additional transition rule is fitted from the block12 connected-mirror chain.
