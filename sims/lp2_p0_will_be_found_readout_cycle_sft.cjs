@@ -326,7 +326,8 @@ for (const value of stateValues) assert.ok(readoutPacket.includes(value));
 console.log(JSON.stringify({
   status: "PASS: WILL -> BE -> FOUND uniquely selects p0 117..121 and returns to READ OUT/DH",
   frozenDh: dh,
-  stateHopFamily: { fields: Object.keys(dh), radices: ["base60", "base59"], hits: stateHopHits },\n  tripleFamily: {
+  stateHopFamily: { fields: Object.keys(dh), radices: ["base60", "base59"], hits: stateHopHits },
+  tripleFamily: {
     authenticatedTriples: message.length - 2,
     radices: ["base60", "base59"],
     hits: tripleHits,
